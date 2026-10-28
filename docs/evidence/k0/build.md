@@ -316,3 +316,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 892,120 bytes, SHA-256 `4e76f1cb6a43e7e9d2ecb85a012554d7deb994104f723e0ed26cc7ea3a9d9c18`, Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과, 수집 런타임 오류 0, Player 0. [로그](skill-visuals-0170-smoke.log) |
 | 소스·실제 Play 및 한계 | 스킬 자세 30·타격 효과 99·서버 376·기본 근접 40·무기 2,177개 통과. 빌드 전 격리 R15 Player에서 Elf 실제 명중 효과·Rapid Fire 시점, Knight 도발 표시·몸통 회전 확인. 전체 Player 시각 수용, 최종 빌드 Player Play, 실기기·다인·게시 환경은 미검증. 기존 `203785492` 자산 유형 경고 재관측. [상세](starter-skill-visuals.md). 릴리스 태그·Roblox 게시 없음. |
+
+## 0.17.1 — 쿨다운 숫자를 아이콘 안에 표시
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `c5d836506ce266349241356e51c4ae88285ca734`, `VERSION=0.17.1`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.17.1/TheLastThrone-0.17.1.rbxlx`, 종료 0 |
+| 결과물 | 892,236 bytes, SHA-256 `839aca8fa69ca6cb208092d54bb564a7b15e519b0973165d61d4bb7729a91d3e`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | 첫 실행은 Studio에서 `K0 shared sources missing`으로 시작 전 중단됐다. 빌드 XML에 Shared/K0Config 존재를 확인하고 같은 파일을 절대 경로로 재검사해 451개 통과, 수집 런타임 오류 0, Player 0. [최초 로그](cooldown-0171-smoke-initial.log) · [재검사 로그](cooldown-0171-smoke.log) |
+| 실제 Play 및 한계 | 빌드 전 동일 GUI 소스의 격리 R15 Player에서 Whirlwind 쿨다운 시간의 아이콘 내부 위치·키/스킬명 비중첩과 만료 시 아이콘 복원을 확인했다. 최종 빌드 Player Play, 모바일·패드와 사용자 시각 수용은 미검증. [상세](cooldown-inside-icon.md). 릴리스 태그·Roblox 게시 없음. |
