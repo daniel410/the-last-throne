@@ -266,3 +266,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개, `tests/k0-basic-attacks-native.luau` 317개 통과. Player 0의 모델·서버 fixture 검사다. [스모크](hero-skills-0120-smoke.log), [서버](hero-skills-0120-server.log) |
 | 소스 검사 | 순수 전투 규칙 122개, 격리 Studio 타이밍 106개 및 무기 2,177개 통과. [타이밍](hero-skills-source-timing.log), [무기](hero-skills-source-weapons.log). 타이밍·무기는 최종 피해 효과 조건만 변경하기 전 동일 동작 소스 결과다. |
 | 실제 Play 및 한계 | 빌드 전 격리 Studio R15의 MP 소비·기술별 대기·V 연속 회피·스태미나 HUD 부재와 일부 직업 입력을 확인했다. 이 빌드의 Player Play, 모바일·패드·다인·게시 환경, 전체 모션·밸런스 수용은 미검증이다. [상세](basic-skills-mana.md). 기존 `203785492` 유형 경고 재관측. 릴리스 태그·Roblox 게시 없음. |
+
+## 0.13.0 — 공통 액션·스킬 자원과 세션 편성
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `b07e994b6926ed1e723871db2125a6e4b08c1a24`, `VERSION=0.13.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.13.0/TheLastThrone-0.13.0.rbxlx`, 종료 0 |
+| 결과물 | 873,717 bytes, SHA-256 `179588a4af190937fb3e36ea6230a1e0da325b480eca74e2cf02a09afb05330a`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과, 수집 런타임 오류 0, Player 0. [로그](action-skill-0130-smoke.log) |
+| 소스·실제 Play 및 한계 | 격리 Studio 서버 325·타이밍 106·로비 348개, 로컬 규칙 122·세션 89개 통과. 빌드 전 동일 핵심 전투 소스 R15 Player Play의 Knight 편성·방어·달리기·회피·4번 기술 및 Mage 1번 MP 기술 확인. 최종 빌드 Player Play, 실기기·다인·게시 환경과 사용자 수용은 미검증. 기존 `203785492` 유형 경고 재관측. [상세](action-skill-prototype.md). 릴리스 태그·Roblox 게시 없음. |
