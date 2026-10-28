@@ -2,6 +2,7 @@
 """Produce an isolated blank-place Source probe; does not run Rojo or build a game.
 
 Usage: python3 tests/make_k0_source_probe.py --output-dir /tmp/tlt-k0-source-probe
+       ... --test-script tests/k0-timing-native.luau
 Then use run-in-roblox with the printed blank .rbxlx and runner .luau paths.
 """
 from pathlib import Path
@@ -13,8 +14,12 @@ import xml.etree.ElementTree as ET
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--output-dir', type=Path, required=True)
+parser.add_argument('--test-script', type=Path, default=Path('tests/k0-build-smoke.luau'))
 args = parser.parse_args()
 project = Path(__file__).resolve().parents[1]
+test_script = (project / args.test_script).resolve()
+if not test_script.is_relative_to(project) or not test_script.is_file():
+    raise SystemExit('--test-script must select an existing file inside this repository')
 out = args.output_dir.resolve()
 out.mkdir(parents=True, exist_ok=True)
 project_path = project / 'default.project.json'
@@ -81,7 +86,7 @@ manifest = {
     'default.project.json': hashlib.sha256(project_path.read_bytes()).hexdigest(),
     str(asset_manifest_path.relative_to(project)): hashlib.sha256(asset_manifest_path.read_bytes()).hexdigest(),
     runtime_rel: hashlib.sha256(runtime_bytes).hexdigest(),
-    'tests/k0-build-smoke.luau': hashlib.sha256((project / 'tests/k0-build-smoke.luau').read_bytes()).hexdigest(),
+    str(test_script.relative_to(project)): hashlib.sha256(test_script.read_bytes()).hexdigest(),
     'tests/make_k0_source_probe.py': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
 }
 source_count = 0
@@ -104,10 +109,10 @@ for source in sorted((project / 'src').rglob('*.luau')):
 lines.append('server.Disabled=false')
 lines.append('client.Disabled=false')
 lines.append('print("K0_SOURCE_PROBE_INPUTS " .. ' + quote(json.dumps(manifest, sort_keys=True)) + ')')
-lines.append((project / 'tests/k0-build-smoke.luau').read_text())
+lines.append(test_script.read_text())
 place = out / 'tlt-k0-qa-empty.rbxlx'
 runner = out / 'source-probe.luau'
 place.write_bytes(ET.tostring(fixture_xml, encoding='utf-8', xml_declaration=True) + b'\n')
 runner.write_text('\n'.join(lines) + '\n')
 (out / 'source-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
-print(json.dumps({'kind': 'QA Source fixture with actual vendored TD MeshParts; no Rojo game build', 'place': str(place), 'script': str(runner), 'source_files': source_count, 'input_files': len(manifest), 'td_models': len(template_folder.findall("Item[@class='Model']"))}))
+print(json.dumps({'kind': 'QA Source fixture with actual vendored TD MeshParts; no Rojo game build', 'place': str(place), 'script': str(runner), 'test_script': str(test_script.relative_to(project)), 'source_files': source_count, 'input_files': len(manifest), 'td_models': len(template_folder.findall("Item[@class='Model']"))}))

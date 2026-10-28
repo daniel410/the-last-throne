@@ -140,4 +140,32 @@ for index, expected in ipairs({ 1, 1, 2 }) do
 	equal(ogreEnemy.attack.definition, Config.Enemy.Ogre.attacks[expected], "Ogre two melee then unblockable pattern " .. index)
 end
 near(goblinTimestamp(), 10.1, "Ogre attacks preserve Goblin spacing timestamp")
+
+-- R1/R2 helper boundaries supplement the actual service/callback regression in
+-- tests/k0-timing-native.luau; they are not the service integration evidence.
+near(Rules.MaxLateHit, 0.25, "late missed-window cap is explicit")
+near(Rules.MaxLateBuffer, 0.25, "late eligible-buffer cap is explicit")
+for _, definition in ipairs(Config.Attacks) do
+	local begin = definition.windup
+	local finish = definition.windup + definition.active
+	equal(Rules.shouldSampleHitWindow(begin - 0.0001, definition, false), false, "R1 no hit before active")
+	equal(Rules.shouldSampleHitWindow(begin, definition, false), true, "R1 active start included")
+	equal(Rules.shouldSampleHitWindow(finish - 0.0001, definition, true), true, "R1 observed active keeps sampling new targets")
+	equal(Rules.shouldSampleHitWindow(finish, definition, true), false, "R1 observed active ends exclusively")
+	equal(Rules.shouldSampleHitWindow(finish, definition, false), true, "R1 entirely skipped window has one late query")
+	equal(Rules.shouldSampleHitWindow(finish + 0.25, definition, false), true, "R1 late cap boundary included")
+	equal(Rules.shouldSampleHitWindow(finish + 0.2501, definition, false), false, "R1 above late cap rejected")
+	equal(Rules.shouldSampleHitWindow(finish + 3, definition, false), false, "R1 long pause cannot cause ghost hit")
+	equal(Rules.shouldSampleHitWindow(0/0, definition, false), false, "R1 non-finite clock rejected")
+end
+equal(Rules.bufferCanExecute(0.416667, 0.42, 0.421), false, "R2 cannot execute before eligible")
+equal(Rules.bufferCanExecute(0.42, 0.42, 0.421), true, "R2 eligible boundary included")
+equal(Rules.bufferCanExecute(0.433333, 0.42, 0.421), true, "R2 next 60Hz frame consumes valid single input")
+equal(Rules.bufferCanExecute(0.67, 0.42, 0.421), true, "R2 late cap boundary included")
+equal(Rules.bufferCanExecute(0.6701, 0.42, 0.421), false, "R2 above late cap rejected")
+equal(Rules.bufferCanExecute(3.42, 0.42, 0.421), false, "R2 long pause cannot cause ghost input")
+equal(Rules.bufferCanExecute(0.42, 0.42, 0.42), false, "R2 eligible at expiry is rejected")
+equal(Rules.bufferCanExecute(0.433333, 0.42, 0.419), false, "R2 genuinely expired before eligibility")
+equal(Rules.bufferCanExecute(math.huge, 0.42, 0.421), false, "R2 infinite current clock rejected")
+equal(Rules.bufferCanExecute(0.433333, 0/0, 0.421), false, "R2 non-finite eligibility rejected")
 print("K0 rules: " .. checks .. " checks passed")

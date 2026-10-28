@@ -1,6 +1,11 @@
 -- Engine-independent K0 decisions; used by the server and by Lua boundary tests.
 local Rules = {}
 
+-- Experimental server-stall limits. These are not latency compensation.
+Rules.MaxLateHit = 0.25
+Rules.MaxLateBuffer = 0.25
+Rules.TimeEpsilon = 1e-9 -- numeric roundoff only; not a network grace period
+
 function Rules.isFinite(value)
 	return type(value) == "number" and value == value and value ~= math.huge and value ~= -math.huge
 end
@@ -14,6 +19,24 @@ function Rules.phase(elapsed, attack)
 		return "Recovery"
 	end
 	return "None"
+end
+
+-- The active interval is [windup, windup+active). A fully skipped interval
+-- gets one late observation; an interval already observed does not get an
+-- extra, potentially false, observation after it has ended.
+function Rules.shouldSampleHitWindow(elapsed, attack, sampledActive)
+	if not Rules.isFinite(elapsed) or elapsed < attack.windup then
+		return false
+	end
+	local activeEnd = attack.windup + attack.active
+	return elapsed < activeEnd or (not sampledActive and elapsed <= activeEnd + Rules.MaxLateHit + Rules.TimeEpsilon)
+end
+
+-- Buffer expiration is evaluated against when the command became eligible,
+-- not when the next server frame happened to run.
+function Rules.bufferCanExecute(current, eligibleAt, expires)
+	return Rules.isFinite(current) and Rules.isFinite(eligibleAt) and Rules.isFinite(expires)
+		and eligibleAt < expires and current >= eligibleAt and current <= eligibleAt + Rules.MaxLateBuffer + Rules.TimeEpsilon
 end
 
 function Rules.allowedInAttack(action, elapsed, attack)

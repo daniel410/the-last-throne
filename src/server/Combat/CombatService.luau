@@ -210,6 +210,7 @@ local function startAttack(state, current)
 		hits = {},
 		hitCount = 0,
 		counterDamage = nil,
+		sampledActive = false,
 	}
 	setPlayerState(state, "Attack")
 	state.character:SetAttribute("K0AttackPhase", "Windup")
@@ -271,6 +272,17 @@ local function executeAction(state, action, direction, current)
 	end
 end
 
+local function actionEligibleAt(state, action, current)
+	if state.mode == "Idle" or state.mode == "Block" then
+		return current
+	elseif state.mode == "Attack" and state.attack then
+		return state.attack.started + Rules.nextAllowedInAttack(action, state.attack.definition)
+	elseif state.mode == "Dodge" and state.dodge then
+		return state.dodge.started + Config.Dodge.duration
+	end
+	return math.huge
+end
+
 local function acceptAction(state, action, direction, current)
 	if not alive(state) or state.mode == "Dead" or state.mode == "Stunned" then
 		return
@@ -294,22 +306,20 @@ local function acceptAction(state, action, direction, current)
 	if not resourceReady(state, action, current) then
 		return
 	end
+	if state.queued and Rules.priority(state.queued.action) > Rules.priority(action) then
+		return
+	end
 	if state.mode == "Idle" or state.mode == "Block" then
 		executeAction(state, action, direction, current)
 		return
 	end
-	local eligibleAt = math.huge
-	if state.mode == "Attack" and state.attack then
-		eligibleAt = state.attack.started + Rules.nextAllowedInAttack(action, state.attack.definition)
-	elseif state.mode == "Dodge" and state.dodge then
-		eligibleAt = state.dodge.started + Config.Dodge.duration
-	end
+	local eligibleAt = actionEligibleAt(state, action, current)
 	if current >= eligibleAt then
 		executeAction(state, action, direction, current)
-	elseif eligibleAt - current <= Config.InputBuffer then
+	elseif eligibleAt < current + Config.InputBuffer then
 		-- A held button cannot extend the lifetime of a previous buffered input.
 		if not state.queued or Rules.priority(action) > Rules.priority(state.queued.action) then
-			state.queued = { action = action, direction = direction, expires = current + Config.InputBuffer }
+			state.queued = { action = action, direction = direction, eligibleAt = eligibleAt, expires = current + Config.InputBuffer }
 		end
 	end
 end
@@ -454,7 +464,13 @@ local function moveDodge(state, current)
 		if distance > 0 then
 			state.character:PivotTo(state.character:GetPivot() + dodge.direction * distance)
 			state.root.AssemblyLinearVelocity = Vector3.new(0, state.root.AssemblyLinearVelocity.Y, 0)
-			dodge.moved = dodge.moved + distance
+			-- An unobstructed step reaches this exact cumulative distance.
+			-- Repeating the same server timestamp must not move or cast again.
+			if dodge.blocked then
+				dodge.moved = dodge.moved + distance
+			else
+				dodge.moved = targetDistance
+			end
 		end
 	end
 	state.character:SetAttribute("K0Invulnerable", elapsed >= Config.Dodge.invulnerableStart and elapsed < Config.Dodge.invulnerableEnd)
@@ -491,21 +507,98 @@ local function checkMovement(state, current)
 	return true
 end
 
-local function stepPlayer(state, current, dt)
+-- Resolve pending player and enemy windows before input, state transitions or
+-- cancellation can discard an attack. A delayed observation uses current
+-- player/target positions and defense; enemy origin/direction remain the last
+-- server-observed windup lock. No historical guard/dodge is reconstructed.
+-- If both sides are overdue, the earlier window starts first; player wins a tie.
+local function processCombatSamples(current, requiredState)
+	local validPlayers, orderedPlayers, pending, pendingPlayers = {}, {}, {}, {}
+	local needsTargets = false
+	for _, state in pairs(playerStates) do
+		local attack = state.attack
+		if alive(state) and state.mode == "Attack" and attack
+			and Rules.shouldSampleHitWindow(current - attack.started, attack.definition, attack.sampledActive) then
+			pendingPlayers[state] = true
+			table.insert(pending, { player = state, attack = attack,
+				at = attack.sampledActive and current or attack.started + attack.definition.windup,
+				order = 0, id = state.player.UserId })
+		end
+	end
+	for _, enemy in pairs(enemyStates) do
+		local attack = enemy.attack
+		if enemyAlive(enemy) and attack
+			and Rules.shouldSampleHitWindow(current - attack.started, attack.definition, attack.sampledActive) then
+			needsTargets = true
+			table.insert(pending, { enemy = enemy, attack = attack,
+				at = attack.sampledActive and current or attack.started + attack.definition.windup,
+				order = 1, id = enemy.id })
+		end
+	end
+	-- An enemy hit may reach any player. A player-only hit needs just its own
+	-- validated attacker; when no hit is due, only the input sender is checked.
+	for _, state in pairs(playerStates) do
+		if alive(state) and (needsTargets or pendingPlayers[state] or state == requiredState) then
+			validPlayers[state] = checkMovement(state, current)
+			if needsTargets and validPlayers[state] and state.mode == "Dodge" then
+				-- An enemy samples the position at this server time. Advance only
+				-- the already server-owned dodge before checking that position;
+				-- stepPlayer's later call at the same time is idempotent.
+				if state.dodge and state.dodgeOwned then
+					moveDodge(state, current)
+					validPlayers[state] = checkMovement(state, current)
+				else
+					validPlayers[state] = false
+				end
+			end
+			if needsTargets then table.insert(orderedPlayers, state) end
+		end
+	end
+	if needsTargets then
+		table.sort(orderedPlayers, function(a, b) return a.player.UserId < b.player.UserId end)
+	end
+	if #pending > 1 then
+		table.sort(pending, function(a, b)
+			if a.at ~= b.at then return a.at < b.at end
+			if a.order ~= b.order then return a.order < b.order end
+			return a.id < b.id
+		end)
+	end
+	for _, sample in ipairs(pending) do
+		local attack = sample.attack
+		if sample.player then
+			local state = sample.player
+			if validPlayers[state] and alive(state) and state.mode == "Attack" and state.attack == attack then
+				attack.sampledActive = true
+				applySwordHits(state, current)
+			end
+		else
+			local enemy = sample.enemy
+			if enemyAlive(enemy) and enemy.attack == attack then
+				attack.sampledActive = true
+				for _, state in ipairs(orderedPlayers) do
+					if validPlayers[state] then applyPlayerHit(enemy, state, attack, current) end
+					if enemy.attack ~= attack or not enemyAlive(enemy) then break end
+				end
+			end
+		end
+	end
+	return validPlayers
+end
+
+local function stepPlayer(state, current, dt, movementAlreadyChecked)
 	if not alive(state) then
 		markDead(state)
 		return
 	end
-	if not checkMovement(state, current) then
+	if not movementAlreadyChecked and not checkMovement(state, current) then
 		return
 	end
 	if state.mode == "Attack" and state.attack then
 		local attack = state.attack
 		local phase = Rules.phase(current - attack.started, attack.definition)
 		state.character:SetAttribute("K0AttackPhase", phase)
-		if phase == "Active" then
-			applySwordHits(state, current)
-		elseif phase == "None" then
+		if phase == "None" then
 			state.lastAttackFinished = attack.started + attack.definition.windup + attack.definition.active + attack.definition.recovery
 			state.attack = nil
 			setPlayerState(state, "Idle")
@@ -525,11 +618,13 @@ local function stepPlayer(state, current, dt)
 	if state.counter and current >= state.counter.expires then
 		state.counter = nil
 	end
+	local consumedAction
 	if state.queued then
 		local queued = state.queued
-		if current >= queued.expires or not resourceReady(state, queued.action, current) then
+		if queued.eligibleAt >= queued.expires or current > queued.eligibleAt + Rules.MaxLateBuffer + Rules.TimeEpsilon
+			or not resourceReady(state, queued.action, current) then
 			state.queued = nil
-		else
+		elseif Rules.bufferCanExecute(current, queued.eligibleAt, queued.expires) then
 			local isReady = state.mode == "Idle" or state.mode == "Block"
 			if state.mode == "Attack" and state.attack then
 				isReady = Rules.allowedInAttack(queued.action, current - state.attack.started, state.attack.definition)
@@ -537,12 +632,14 @@ local function stepPlayer(state, current, dt)
 			if isReady then
 				state.queued = nil
 				executeAction(state, queued.action, queued.direction, current)
+				consumedAction = queued.action
 			end
 		end
 	end
 	if current >= state.regenAt and state.mode ~= "Block" and state.mode ~= "Dead" then
 		setStamina(state, state.stamina + Config.StaminaRegen * math.min(dt, 0.25))
 	end
+	return consumedAction
 end
 
 local function closestTarget(enemy)
@@ -615,7 +712,7 @@ local function beginEnemyAttack(enemy, target, current)
 	end
 	local definition = enemy.config.attacks[attackIndex]
 	local direction = horizontalUnit(target.root.Position - enemy.root.Position, enemy.root.CFrame.LookVector)
-	enemy.attack = { definition = definition, started = current, direction = direction, origin = enemy.root.Position, hits = {}, locked = false, extraRecovery = 0 }
+	enemy.attack = { definition = definition, started = current, direction = direction, origin = enemy.root.Position, hits = {}, locked = false, extraRecovery = 0, sampledActive = false }
 	enemy.target = target
 	enemy.attackSeq = enemy.attackSeq + 1
 	enemy.model:SetAttribute("K0AttackSeq", enemy.attackSeq)
@@ -688,12 +785,6 @@ local function stepEnemy(enemy, current, dt)
 			setEnemyState(enemy, "Windup")
 		elseif phase == "Active" then
 			setEnemyState(enemy, "Active")
-			for _, playerState in pairs(playerStates) do
-				applyPlayerHit(enemy, playerState, attack, current)
-				if enemy.attack ~= attack then
-					break
-				end
-			end
 		elseif elapsed < definition.windup + definition.active + definition.recovery + attack.extraRecovery then
 			setEnemyState(enemy, "Recovery")
 			enemy.model:SetAttribute("K0Telegraph", "None")
@@ -868,9 +959,15 @@ function CombatService.start(enemies)
 		if not state or not alive(state) or type(action) ~= "string" or #action > 16 or select("#", ...) > 0 or not validDirection(direction) then
 			return
 		end
+		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" then
+			return
+		end
 		local current = now()
 		-- Releasing guard is always safe and must not be dropped after a burst.
 		if action == "BlockEnd" then
+			if state.mode == "Block" or (state.queued and state.queued.action == "BlockStart") then
+				processCombatSamples(current, state)
+			end
 			acceptAction(state, action, direction, current)
 			return
 		end
@@ -880,15 +977,32 @@ function CombatService.start(enemies)
 			return
 		end
 		state.tokens = state.tokens - 1
-		if checkMovement(state, current) then
-			acceptAction(state, action, direction, current)
+		local validPlayers = processCombatSamples(current, state)
+		if not validPlayers[state] or not alive(state) then
+			return
 		end
+		-- A valid higher-priority new intent may replace a due buffered one.
+		-- Lower/equal repeated input cannot preempt an already due intent.
+		local queued = state.queued
+		if queued and Rules.bufferCanExecute(current, queued.eligibleAt, queued.expires)
+			and Rules.priority(action) > Rules.priority(queued.action) and resourceReady(state, action, current)
+			and current >= actionEligibleAt(state, action, current) then
+			state.queued = nil
+		end
+		local consumed = stepPlayer(state, current, 0, true)
+		if consumed and Rules.priority(action) <= Rules.priority(consumed) then
+			return
+		end
+		acceptAction(state, action, direction, current)
 	end)
 	RunService.Heartbeat:Connect(function(dt)
 		local current = now()
+		local validPlayers = processCombatSamples(current)
 		local living = 0
 		for _, state in pairs(playerStates) do
-			stepPlayer(state, current, dt)
+			if validPlayers[state] ~= false then
+				stepPlayer(state, current, dt, validPlayers[state] == true)
+			end
 			if alive(state) then
 				living = living + 1
 			end
