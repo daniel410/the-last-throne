@@ -295,11 +295,14 @@ function Hud.create()
 				local ready = character and character:GetAttribute("K0SkillReady" .. index) or 0
 				local remaining = math.max(0, (ready or 0) - Workspace:GetServerTimeNow())
 				button.BackgroundTransparency = remaining > 0 and 0.45 or 0
+				button.Icon.Visible = remaining <= 0
 				local label = button:FindFirstChild("Cooldown")
 				if not label then
-					label = text(button, "Cooldown", "", UDim2.fromOffset(0, -14), UDim2.new(1, 0, 0, 18), 12, COLORS.cream)
+					label = text(button, "Cooldown", "", UDim2.fromOffset(24, 5), UDim2.new(1, -26, 0, 27), 12, COLORS.cream)
 					label.TextXAlignment = Enum.TextXAlignment.Center
+					label.TextStrokeTransparency = 0.3
 				end
+				label.Visible = remaining > 0
 				label.Text = remaining > 0 and string.format("%.1fs", remaining) or ""
 			end
 		end,
