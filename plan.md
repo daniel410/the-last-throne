@@ -32,7 +32,7 @@
 | 클래스/성장 | 4클래스·8계열·32전직 단계 방향, 스탯·기술·노드 예산 | 계수·자원 정책·전 데이터·리그/모션·전직 시험·유효 빌드 검증 |
 | UI/외형 | 공통 UI v2 최종9장 승인, 영웅/환경/적 컨셉, 장비 UX v2 | 실제 공통 컴포넌트·영어 문자열·기기 입력·접근성·사용성 |
 | 자산 | TD 영웅5·타워30·몬스터40 카탈로그 엔트리와 공유 원본 | 최신 해시·권한·사용 적합성·RPG 리그/모션/AI·파생/신규 제작 |
-| 경제/연동 | 32구간 보상 정본·장비/리셋권 카탈로그·같은 Experience/공통 Diamonds 방향 | TD writer 감사·실제 저장/거래/영수증·상품ID·테스트 왕복/복구 |
+| 경제/연동 | 32구간 보상 정본·장비/리셋권 카탈로그·독립 Experience/공통 Diamonds 후보 | TD 보존 감사·외부 지갑 권위/실제 저장·거래·영수증·상품ID·테스트 왕복/복구 |
 
 컨셉·HTML 동작 보드·정적 계산이 있다는 사실을 게임 기능 완료로 계산하지 않는다. 기존 모델은 메시 재사용 이점이 있지만 근접 액션용 리그·타격·AI까지 대체하지 않는다. 신규 계획 문서의 완성은 G0의 일부 입력이며 게임 게이트 통과가 아니다.
 
@@ -114,10 +114,10 @@ Deepwood는 주동선7·선택3구역과 필수 보스2/선택 보스3을 보존
 
 ```mermaid
 flowchart LR
-    TD[기존 TD 시작 Place] <--> RP[RPG Dawnspire / 지역 Place]
+    TD[Throne Defense Experience] -->|개인 이동| RP[The Last Throne Experience]
     RP --> EX[지역·던전·레이드 원정 서버]
-    TD --> CW[공통 Diamonds / 명시된 계정 권리]
-    RP --> CW
+    TD -. 검증된 외부 계약 후 .-> CW[공통 Diamonds / 명시된 계정 권리]
+    RP -. 검증된 외부 계약 후 .-> CW
     EX --> CW
     TD --> TP[기존 TD 진행]
     RP --> CP[RPG 캐릭터 / 장비 / 이야기 / Coins]
@@ -126,11 +126,11 @@ flowchart LR
     SH --> RP
 ```
 
-같은 Experience의 Place는 DataStore에 함께 접근할 수 있다. 따라서 공유 지갑은 단일 기준과 호환 writer가 필요하며, RPG 저장기를 TD 전체 프로필 저장기로 사용하지 않는다. 로드 실패·오래된 저장·중복 영수증·차감 직후 종료의 복구 계약을 먼저 설계한다. [Roblox Data stores](https://create.roblox.com/docs/cloud-services/data-stores).
+독립 Experience는 DataStore를 공유하지 않는다. 공통 Diamonds를 제공하려면 두 게임의 DataStore를 직접 읽어 합치는 대신, 별도 서버 권위 지갑과 거래/영수증 조정 계약이 필요하다. 그 계약이 검증되기 전에는 TD와 RPG의 잔액·상품을 분리하며, RPG 저장기를 TD 프로필 저장기로 사용하지 않는다. [Roblox Data stores](https://create.roblox.com/docs/cloud-services/data-stores).
 
-TeleportData는 돈·아이템 권리의 근거가 아니며, 이동 실패/부분 파티 도착/재접속을 복구해야 한다. Place 이동 수용은 게시된 테스트 환경의 Roblox 클라이언트에서 한다. [Roblox Teleport](https://create.roblox.com/docs/projects/teleport).
+TeleportData는 돈·아이템 권리의 근거가 아니며, Experience 간 개인 이동 실패/재접속을 복구해야 한다. Roblox의 단체 TeleportAsync는 같은 Experience 안에서만 지원되므로, 초기 TD↔RPG 이동은 개인 이동으로 제한한다. 수용은 게시된 각 테스트 Experience의 Roblox 클라이언트에서 한다. [Roblox Teleport](https://create.roblox.com/docs/projects/teleport).
 
-서버가 입력 자격·거리·상태·빈도·금액·피해·보상·소유권을 검증한다. 상품 구매 UI 종료를 지급 근거로 쓰지 않고 영수증을 처리하며, 같은 Experience의 TD/RPG 상품은 공통 라우터가 기존 권리를 보존한다. [클라이언트/서버 경계](https://create.roblox.com/docs/scripting/security/client-server-boundary), [Developer Products](https://create.roblox.com/docs/production/monetization/developer-products).
+서버가 입력 자격·거리·상태·빈도·금액·피해·보상·소유권을 검증한다. 상품 구매 UI 종료를 지급 근거로 쓰지 않고, 각 Experience가 자신의 영수증을 처리한다. 공통 권리가 필요하면 검증된 외부 권리 장부로 조정하며 TD 기존 권리는 보존한다. [클라이언트/서버 경계](https://create.roblox.com/docs/scripting/security/client-server-boundary), [Developer Products](https://create.roblox.com/docs/production/monetization/developer-products).
 
 ## 8. 영어 게임 제작 계약
 

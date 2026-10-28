@@ -41,14 +41,14 @@
 | 항목 | 채택한 방향 |
 | --- | --- |
 | 게임명 | The Last Throne / 최후의 왕좌 |
-| Roblox 구성 | Throne Defense와 같은 Experience의 별도 RPG Place, 개발 소스는 별도 |
-| 진입 | 기존 TD 시작 Place 유지, 양쪽 거점의 포탈로 왕복 |
-| 공통 계정 | Diamonds 지갑·명시된 공통 업적/외형/이벤트 기록 |
+| Roblox 구성 | The Last Throne은 TD와 분리된 독립 Experience, 개발 소스도 별도 |
+| 진입 | 각 Experience의 Start Place를 유지. TD↔RPG는 개인 Experience 간 이동으로만 연결하며 초기 단체 이동은 제외 |
+| 공통 계정 | 공통 Diamonds·명시된 공통 업적/외형/이벤트는 외부 서버 권위 계약이 검증될 때만 제공. 그 전에는 분리 |
 | 보존 | 기존 TD 잔액·확인된 구매/수령 권리·진행·복구 보존 |
 | 장르별 데이터 | TD 성장/전투와 RPG 클래스/장비/스토리/Coins를 구분 |
 | 일반 재화 | TD Gold / RPG Coins / 임무 내 Command Points를 별도 관리 |
 
-출처는 [TD 쪽 업데이트 제안서](../../throne-defense/docs/throne-chronicles-rpg-proposal.md)다. 자세한 계약과 도입 조건은 [Experience·지갑 연동](experience-integration.md)을 따른다. 문서에 반영한 방향이며 실제 Place나 운영 데이터가 이미 연동됐다는 의미는 아니다.
+2026-10-28 최신 사용자 결정으로 같은 Experience 방향을 독립 Experience로 대체했다. 기존 TD 제안서는 공유 세계관의 참고만으로 사용한다. 자세한 계약과 도입 조건은 [Experience·지갑 연동](experience-integration.md)을 따른다. 문서에 반영한 방향이며 새 Experience 생성·게시나 운영 데이터 연동을 수행했다는 의미는 아니다.
 
 ## 3. 현재 채택한 설계 초안
 

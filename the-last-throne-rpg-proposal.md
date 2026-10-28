@@ -2,7 +2,7 @@
 
 게임명: **The Last Throne / 최후의 왕좌**  
 문서 묶음: v0.25 · 기준일: 2026-10-28, America/Toronto · 상태: 기획·제작 준비  
-개발 구성: Throne Defense와 같은 Roblox Experience의 별도 RPG Place, 개발 소스 분리
+개발 구성: Throne Defense와 분리된 독립 Roblox Experience, 개발 소스 분리
 
 개발 문서는 한국어, 게임 저작 콘텐츠는 영어(en-US)로 제작한다. 전체 실행 순서·역할·작업/수용 기준은 [통합 개발 계획](plan.md)과 [백로그](backlog.md)를 따른다.
 
@@ -35,9 +35,9 @@
 | 항목 | 현재 기획 방향 |
 | --- | --- |
 | 장르·플랫폼 | Roblox 스토리 중심 협동 액션 RPG |
-| Experience | Throne Defense와 같은 Experience, 장르별 Place·개발 소스 분리 |
-| 진입·연동 | 기존 TD 시작 Place 유지, TD↔RPG 양방향 포탈 |
-| 공통 계정 | Diamonds 지갑·명시된 공통 업적/외형/이벤트 |
+| Experience | Throne Defense와 분리된 The Last Throne Experience, RPG 내부 Place·개발 소스 분리 |
+| 진입·연동 | 각 Experience Start Place 유지, TD↔RPG 선택형 개인 이동 |
+| 공통 계정 | 외부 서버 권위 계약 검증 후에만 Diamonds·명시된 공통 업적/외형/이벤트 |
 | 카메라 | 3인칭 자유 시점, 선택형 표적 고정 |
 | 기본 모험 | 솔로 또는1~4인 파티 |
 | 소셜 공간 | 왕도와 지역 거점의 공유 공간 |
@@ -346,7 +346,7 @@
 
 ## 13 경제와 아이템 거래
 
-**Diamonds는 TD와 RPG가 공유하는 하나의 계정 지갑**으로 설계한다. 같은 Experience 안에서 기존 TD 잔액·확인된 구매/수령 기록을 보존하며, Place 이동으로 복사·환전·추가 지급하지 않는다. 공통 지갑이 모든 TD 상품 효과의 RPG 자동 적용을 뜻하지는 않는다. 상품별 사용 가능 범위와 기존 구매권을 명시한다.
+**Diamonds는 TD와 RPG가 공유하는 하나의 계정 지갑을 목표로 한다.** 독립 Experience 전환으로 별도 서버 권위 지갑과 각 Experience 영수증 조정 계약이 필요하며, 그 계약을 검증하기 전에는 양쪽 Diamonds를 분리한다. 어떤 경우에도 이동으로 복사·환전·추가 지급하지 않으며, 공통 지갑이 모든 TD 상품 효과의 RPG 자동 적용을 뜻하지는 않는다. 상품별 사용 가능 범위와 기존 구매권을 명시한다.
 
 | 재화 | 용도·범위 |
 | --- | --- |
@@ -448,7 +448,7 @@ PC·게임패드는 직접 조준과 표적 고정을 모두 지원한다. 입�
 
 ## 21 기술과 제작 원칙
 
-RPG 소스는 이 개발 프로젝트에서 관리하고, 게시 대상은 **TD와 같은 Roblox Experience의 별도 RPG Place**로 구성한다. 기존 TD 시작 Place를 유지하고 양방향 포탈로 연결한다. 공통 허브의 신설과 실제 Place ID는 별도 결정한다.
+RPG 소스는 이 개발 프로젝트에서 관리하고, 게시 대상은 **TD와 분리된 The Last Throne Experience**로 구성한다. RPG는 독립 Start Place를 사용하며 TD와는 선택형 개인 이동으로만 연결한다. 공통 허브·Experience ID·실제 이동 설정은 별도 결정한다.
 
 공통 데이터는 Diamonds·명시된 업적/외형/이벤트 기록이다. TD 성장/전투 기록과 RPG 클래스/전직/장비/스토리/Coins는 장르별 계약으로 구분한다. 텔레포트는 이동을 담당하며 잔액·아이템·보상 권리는 서버 저장 기록으로 확인한다. 기존 TD 코드 버전과 공통 지갑 writer를 감사하고, 확인된 잔액·구매권·복구 동작을 보존하는 순서로 도입한다.
 
@@ -508,7 +508,7 @@ PM은 세계와 시스템의 의존성과 수용조건을 관리한다. 시나�
 | [기사 전투 상세 명세](docs/knight-combat-spec.md) | 검·방패·두 계열 기술·첫 실험실·구현/검증 기준 |
 | [마법 분류·학습](docs/magic-schools-and-learning.md) | 학파·속성·초반 훈련·단계별 주문 |
 | [공유 자산](docs/shared-universe-and-assets.md) | 타워/영웅/몬스터 활용 후보·신규 제작·검증 |
-| [Experience·경제 연동](docs/experience-integration.md) | 포탈·Diamonds·공통 권리·TD 보존 |
+| [Experience·경제 연동](docs/experience-integration.md) | 독립 Experience 이동·Diamonds 후보·공통 권리·TD 보존 |
 | [제작 로드맵](docs/production-roadmap.md) | 제작량·게이트·백로그·품질/운영 준비 |
 | [변경 이력](docs/CHANGELOG.md) | 과거 제안의 변경 과정 |
 
@@ -516,7 +516,7 @@ PM은 세계와 시스템의 의존성과 수용조건을 관리한다. 시나�
 
 ## 기획 기반 문서
 
-- [TD 쪽 업데이트 제안서](../throne-defense/docs/throne-chronicles-rpg-proposal.md): 같은 Experience·Diamonds 공유의 참고 방향.
+- [TD 쪽 업데이트 제안서](../throne-defense/docs/throne-chronicles-rpg-proposal.md): 공유 세계관·자산의 참고. 같은 Experience·Diamonds 공유 방향은 2026-10-28 사용자 결정으로 대체.
 - [Throne Defense 제품 목표](../throne-defense/GOAL.md): 기존 세계관·영웅·왕좌·포탈의 기반.
 - [TD 용어](../throne-defense/Terminology.md), [공유 Config](../throne-defense/src/Shared/Config.lua): 기존 게임 용어와 자산 원형.
 - [TD 미술 기준](../throne-defense/docs/art-style-guide.md): 색·무기·재질·시각 정체성.

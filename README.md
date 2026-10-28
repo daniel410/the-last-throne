@@ -6,7 +6,7 @@ Throne Defense의 세계관·영웅·타워·맵·몬스터·포탈·왕좌와 3
 
 **개발 문서는 한국어, 게임의 UI·퀘스트·대사·아이템·스킬·상품·오류·음성/자막은 영어(en-US)로 제작합니다.**
 
-Throne Defense와 **같은 Roblox Experience의 별도 RPG Place**로 연결하고 **Diamonds 계정 지갑을 공유**하는 방향을 반영했습니다. 개발 소스와 장르별 성장·장비·스토리·일반 재화는 구분합니다.
+Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox Experience**로 공개합니다. 개발 소스·공개 페이지·장르별 성장·장비·스토리·일반 재화는 분리합니다. 공통 Diamonds는 별도 서버 권위 지갑과 권리 조정 계약이 검증되기 전까지 자동 공유하지 않습니다.
 
 ## 개발 계획과 에이전트
 
@@ -56,7 +56,7 @@ Throne Defense와 **같은 Roblox Experience의 별도 RPG Place**로 연결하�
 | 8 | [마법 분류·단계별 학습](docs/magic-schools-and-learning.md) | 비전/바람/물·Pyro/Cryo·추가 원소·광역·최강 주문 |
 | 9 | [동료·성녀NPC·전술 지원](docs/companions-and-support.md) | 셀레네·선택형AI동료·보호/정화·교단NPC·편성 |
 | 10 | [공유 세계관·자산 활용](docs/shared-universe-and-assets.md) | TD 영웅5·타워30·몬스터40엔트리와RPG 활용/신규 제작 |
-| 11 | [Experience·공통 지갑 연동](docs/experience-integration.md) | TD↔RPG 포탈·Diamonds·공통 권리·기존TD 보존 |
+| 11 | [Experience·공통 지갑 연동](docs/experience-integration.md) | 독립 Experience 이동·공통 Diamonds 후보·공통 권리·기존TD 보존 |
 | 12 | [공통 UI·룩앤필](docs/shared-ui-and-look-and-feel.md) | TD 원본·메뉴/아이콘/이미지/3D 공유·로비/배틀 적용 기준 |
 | 13 | [제작 로드맵](docs/production-roadmap.md) | 제작량·단계 게이트·최초24작업·품질/복구 기준 |
 

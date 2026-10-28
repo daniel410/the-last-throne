@@ -2,7 +2,7 @@
 
 v0.25 · 2026-10-28 · 문서 한국어 / 게임 영어 전용 · 상태: 구현 전 제작 실행안
 
-**The Last Throne**은 Throne Defense의 세계관·자산·공통 UI를 공유하는 1~4인 액션 RPG다. 같은 Experience의 별도 RPG Place·별도 소스로 만들며, 기존 TD 진행/권리는 보존한다. 전체 일정·게이트·정식 작업 의존은 [plan.md](../../plan.md)와 [backlog.md](../../backlog.md)를 따른다. 이 문서는 그 계획에 연결할 기획 계약과 32구간 추적표다.
+**The Last Throne**은 Throne Defense의 세계관·자산·공통 UI 원본을 공유하는 1~4인 액션 RPG다. TD와 분리된 독립 Experience·별도 소스로 만들며, 기존 TD 진행/권리는 보존한다. 공통 Diamonds는 외부 서버 권위 계약 검증 전까지 분리한다. 전체 일정·게이트·정식 작업 의존은 [plan.md](../../plan.md)와 [backlog.md](../../backlog.md)를 따른다. 이 문서는 그 계획에 연결할 기획 계약과 32구간 추적표다.
 
 ## 1. 근거와 결정 상태
 

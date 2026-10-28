@@ -17,7 +17,7 @@
 - [기사 전투 상세 명세·첫 전투 실험실](knight-combat-spec.md)
 - [마법 학파·속성 분류·추가 학습](magic-schools-and-learning.md)
 - [Throne Defense 공유 자산 활용안](shared-universe-and-assets.md)
-- [같은 Experience·Place 이동·Diamonds 공통 지갑](experience-integration.md)
+- [독립 Experience 이동·Diamonds 공통 지갑 후보](experience-integration.md)
 - [제작 로드맵·우선 작업·품질 검증](production-roadmap.md)
 
 ## 1. 최고의 액션 RPG를 위한 제품 약속
@@ -40,9 +40,9 @@
 | 항목 | 제작 기준안 |
 | --- | --- |
 | 플랫폼 | Roblox 확정. PC·터치를 전투 제작 시작부터 함께 검증하고 게임패드 지원을 통합 단계에서 완료 |
-| Roblox 구성 | Throne Defense와 같은 Experience, RPG는 별도 Place·별도 개발 소스 |
-| 진입·연동 | 기존 TD 시작 Place 유지, 양쪽 거점의 포탈로 왕복. 공통 허브는 후속 동선 결정 |
-| 공통 계정 요소 | Diamonds 지갑·연동 업적·공통 외형·공동 이벤트 수령 기록 |
+| Roblox 구성 | TD와 분리된 The Last Throne Experience, RPG Start Place·별도 개발 소스 |
+| 진입·연동 | 각 Experience의 Start Place 유지, 선택형 개인 이동으로 연결. 공통 허브는 후속 동선 결정 |
+| 공통 계정 요소 | 외부 서버 권위 계약 검증 후에만 Diamonds·연동 업적·공통 외형·공동 이벤트 수령 기록 |
 | 장르·카메라 | 스토리 중심 협동 액션 RPG, 3인칭 자유 시점·선택형 표적 고정 |
 | 모험 인원 | 솔로~4인. 친구를 기다리지 않고 출발 가능 |
 | 클래스 | Knight / Elf Archer / Dwarf Axe Thrower / Mage의4종. 성녀는NPC/지원 동료 |
@@ -307,7 +307,7 @@ Deepwood 1장의 결전이며, 제작 초기에는 이 구간만 뽑아 15~20분
 
 | 자원 | 획득 | 소비 | 저장 |
 | --- | --- | --- | --- |
-| Diamonds | TD/RPG의 정의된 획득·구매·공동 이벤트 | 양쪽의 명시된 상품, RPG에서는 외형·꾸미기 중심 | Experience 공통 계정 지갑 |
+| Diamonds | 외부 서버 권위 계약 후 정의된 양쪽 획득·구매·공동 이벤트 | 양쪽의 명시된 상품, RPG에서는 외형·꾸미기 중심 | 계약 전 분리, 계약 후 외부 공통 계정 지갑 |
 | TD Gold | TD 전투의 기존 규칙 | TD 전투 배치·강화 | TD 매치 규칙, RPG로 환전하지 않음 |
 | Coins | 퀘스트·전투·일반 전리품 정리 | 제작·재련·생활·장식 | 영속 |
 | 제작 재료·보스 인장 | 지역 활동·보스 확정 보상 | 목표 장비·효과 계승 | 영속, 아이템 단위 |
@@ -390,11 +390,11 @@ Throne Defense의 밝은 판타지 색과 블로키 몸체 문법을 이어받�
 
 ## 18. Roblox 기술 구조와 데이터 신뢰
 
-RPG의 게시 대상은 **기존 Throne Defense와 같은 Roblox Experience의 별도 Place**다. 개발 소스는 이 프로젝트로 구분하고, RPG의 소셜 성채·지역·예약 던전/레이드는 필요에 따라 Place와 서버를 나눈다. 기존 TD 시작 Place를 유지하며 TD→RPG 원정, RPG→TD 방어전 포탈을 제공한다. RPG 광장 정원20명·지역16명·원정4명·레이드8명은 시험할 초기 상한이며 TD 기존 정원 변경을 뜻하지 않는다.
+RPG의 게시 대상은 **TD와 분리된 The Last Throne Experience**다. 개발 소스는 이 프로젝트로 구분하고, RPG의 소셜 성채·지역·예약 던전/레이드는 이 Experience 안에서 필요에 따라 Place와 서버를 나눈다. TD와 RPG는 각자의 Start Place를 유지하고 선택형 개인 이동만 제공한다. RPG 광장 정원20명·지역16명·원정4명·레이드8명은 시험할 초기 상한이며 TD 기존 정원 변경을 뜻하지 않는다.
 
-공통 계정 데이터는 Diamonds·공통 업적/외형·공동 이벤트 기록, TD 전용은 TD 성장/전투 기록, RPG 전용은 캐릭터·전직·스킬트리·장비·Coins·스토리다. 같은 Experience의 Place들은 같은 DataStore에 접근할 수 있으므로 저장 이름과 쓰기 책임을 명시적으로 나눈다. 플랫폼 근거는 [Data stores](https://create.roblox.com/docs/cloud-services/data-stores)다. 공통 지갑을 각 게임의 캐릭터 저장본에 복사해 저장하지 않는다.
+TD 전용은 TD 성장/전투 기록, RPG 전용은 캐릭터·전직·스킬트리·장비·Coins·스토리다. 공통 Diamonds·업적/외형·공동 이벤트는 외부 서버 권위 계약을 검증한 뒤에만 제공한다. 독립 Experience의 DataStore를 직접 공유하거나 공통 지갑을 각 게임의 캐릭터 저장본에 복사해 저장하지 않는다. 플랫폼 근거는 [Data stores](https://create.roblox.com/docs/cloud-services/data-stores)다.
 
-텔레포트 정보는 목적지·파티/원정 식별의 보조 정보로 사용하고, 잔액·아이템·보상 자격은 서버 저장 기록으로 다시 확인한다. 이동 실패·부분 파티 이동·재접속의 복구 흐름을 설계한다. Place 이동은 [TeleportService 안내](https://create.roblox.com/docs/projects/teleport)를 따르고 실제 게시된 테스트 환경의 Roblox 클라이언트에서 검증한다. 이 문서 갱신은 Place 생성·게시·운영 데이터 변경을 실행한 것이 아니다.
+텔레포트 정보는 목적지 식별의 보조 정보로 사용하고, 잔액·아이템·보상 자격은 서버 권위 기록으로 다시 확인한다. Experience 간 이동은 개인 이동만 초기 범위에 두며 실패·재접속의 복구 흐름을 설계한다. 이동은 [TeleportService 안내](https://create.roblox.com/docs/projects/teleport)를 따르고 실제 게시된 각 테스트 Experience의 Roblox 클라이언트에서 검증한다. 이 문서 갱신은 Experience 생성·게시·운영 데이터 변경을 실행한 것이 아니다.
 
 서버는 피해·회복·쿨다운·자원·인벤토리·전직·스킬포인트·퀘스트·전리품·구매를 확정한다. 클라이언트는 입력과 빠른 애니메이션을 예측하고 서버 결과와 맞춘다. 원격 요청에는 타입·범위·거리·상태·순서·빈도를 검증한다. 이는 Roblox의 [클라이언트/서버 경계 검증 지침](https://create.roblox.com/docs/scripting/security/client-server-boundary)을 적용한 설계다.
 
@@ -439,7 +439,7 @@ RPG의 게시 대상은 **기존 Throne Defense와 같은 Roblox Experience의 �
 4. 실제 기기·네트워크에서 공격 예고와 회피가 납득되고, 핵심 화면과 입력이 가려지지 않는다.
 5. 클래스 외부 전직·스킬포인트 복제·보상 중복·구매 유실·재접속 진행 퇴행의 필수 검증을 통과한다.
 6. 버전·스키마·자산을 추적하고 실제 운영 복구·배포 되돌리기 절차를 리허설한다.
-7. TD↔RPG 왕복·Diamonds 동시 소비·공동 보상 중복 수령·영수증 재시도·구버전 서버 혼용을 검증하고, 기존 TD 잔액·성장·구매권·복구를 보존한다.
+7. TD↔RPG 개인 왕복·외부 권위 지갑의 Diamonds 동시 소비·공동 보상 중복 수령·각 Experience 영수증 조정 재시도·구버전 서버 혼용을 검증하고, 기존 TD 잔액·성장·구매권·복구를 보존한다.
 
 작업 단위·단계 게이트·검증 표본·최초 백로그는 [제작 로드맵](production-roadmap.md)에 정의한다.
 

@@ -26,7 +26,7 @@
 
 | 공식 근거 | 확인 내용과 설계 영향 |
 | --- | --- |
-| [Data stores](https://create.roblox.com/docs/cloud-services/data-stores) | 같은 Experience의 Place가 같은 저장 데이터를 읽고 바꿀 수 있다. 서버에서 접근하며 호출 실패를 처리해야 한다. 운영 Experience의 Studio 접근은 운영 저장에 닿을 수 있어 별도 테스트 Experience를 사용한다. |
+| [Data stores](https://create.roblox.com/docs/cloud-services/data-stores) | 저장 데이터는 Experience 단위다. TD와 RPG의 독립 Experience는 같은 DataStore를 직접 공유하지 않으며, 공통 지갑에는 별도 서버 권위 서비스가 필요하다. 서버에서 접근하며 호출 실패를 처리해야 한다. 운영 Experience의 Studio 접근은 운영 저장에 닿을 수 있어 별도 테스트 Experience를 사용한다. |
 | [GlobalDataStore / UpdateAsync](https://create.roblox.com/docs/reference/engine/classes/GlobalDataStore#UpdateAsync) | 갱신 대상은 지정 키다. 여러 키의 커밋을 하나로 보장한다고 확대 해석하지 않는다. 프로젝트의 변환 콜백은 순수·비동기 대기 없음으로 제한한다. |
 | [클라이언트/서버 경계](https://create.roblox.com/docs/scripting/security/client-server-boundary) | 서버에서 입력 구조·값·행동 자격을 검증한다. NaN/무한대·과도한 크기·허용 범위 밖 값도 거부한다. |
 | [네트워크 소유권](https://create.roblox.com/docs/scripting/security/network-ownership) | 클라이언트가 물리 시뮬레이션을 소유한 위치·접촉만으로 피해나 보상을 확정할 수 없다. 서버 이동/상태 검증이 필요하다. |
@@ -208,22 +208,22 @@ flowchart LR
 
 기획 검증 명령은 `python3 scripts/simulate_story_progression.py --output /tmp/tlt-progression-check.json`이다. 목표는 승인32구간의 정합성·Lv40/0XP·Coins 총유입19,652 확인이며 실제 플레이 속도·소비 후 잔액·저장/지급 검증을 대신하지 않는다. Lv41~80 곡선/전직 시험/후반 보상은 별도 설계·수용 대상이다.
 
-## 8. 공통 Diamonds와 TD writer 전환
+## 8. 공통 Diamonds와 외부 권위 지갑 후보
 
-**단일 권위는 하나의 논리 지갑 키와 호환 계약**을 뜻한다. 모든 Place가 한 대의 서버 프로세스에 의존한다는 뜻은 아니다. TD/RPG 서버의 공통 계층이 동일 원본 키를 조건부 갱신하고 잔액/권리/작업 기록을 함께 확정한다.
+**단일 권위는 외부 서비스의 하나의 논리 지갑 원장과 계약**을 뜻한다. TD/RPG DataStore나 클라이언트/TeleportData를 함께 읽어 지갑을 만드는 방식은 금지한다. 각 Experience 서버는 인증된 최소 권한 요청으로만 원장을 호출하고, 지갑/권리/작업 기록은 외부 원장이 함께 확정한다.
 
-1. TLT-021에서 현재 TD의 저장소/키·모든 지급/소비/legacy fallback·receipt·오래된 저장·Place별 배포 버전을 전수 매핑한다. 현재 TD의 `DiamondWallet` 기반을 우선 평가하고 잔액/기존 권리를 새 RPG 계정으로 복사/합산하지 않는다.
-2. `walletContractVersion`, `writerVersion`, revision·작업ID·허용 작업을 정한다. TD 전용 보상 정책 이관을 RPG 로드마다 실행하지 않도록 공통 커널과 TD 어댑터를 분리하고 알 수 없는 기존 필드는 보존한다. 새 RPG 코드가 TD의 유효 권리/마이그레이션을 임의 재해석하지 않는다.
-3. 기존 키 유지가 가능하면 호환 writer를 단계적으로 배포한다. 새 키가 필요하면 기준 잔액/권리를 고정한 단일 전환 기록과 구 writer 차단·커밋 지점·검증/복구를 설계한다. 구/신 지갑 이중 쓰기나 두 잔액 합산은 사용하지 않는다.
-4. 같은 키를 읽을 수 있다는 이유만으로 구버전 쓰기가 차단되는 것은 아니다. 호환 로직을 모르는 오래된 서버는 새 version 필드만 추가해도 계속 쓸 수 있다. 관련 TD 시작/전투/기타 Place의 구 writer가 모두 교체·종료됐다는 배포 증거 후 RPG 공통 소비·지급/포탈을 켠다. 실제 서버 정리·배포는 별도 승인된 구현 작업에서 수행한다.
-5. 잔액100에서 TD/RPG 각각80 동시 소비는 한 번만 성공하고 최종20이어야 한다. 중복/불명 응답·지급과 소비 경쟁·새 캐릭터/삭제·왕복에서도 같은 잔액/권리를 유지한다. 로드 실패는 null/재시도 상태이며0 저장으로 대체하지 않는다.
-6. 롤백은 기능 플래그로 RPG 공통 소비/포탈을 중지하고 호환 읽기/복구를 유지한다. 오래된 TD writer나 과거 잔액 snapshot으로 돌아가 최신 지갑을 덮어쓰지 않는다. 복구용 snapshot은 권리 대조/감사 원천이며 그대로 실시간 잔액에 합산하지 않는다.
+1. TLT-021에서 현재 TD의 저장소/키·모든 지급/소비/legacy fallback·receipt·오래된 저장·배포 버전을 읽기 전용으로 전수 매핑한다. TD의 `DiamondWallet` 기반은 보존하고, 잔액/기존 권리를 RPG 계정으로 복사·합산·자동 이관하지 않는다.
+2. `walletContractVersion`, `writerVersion`, revision·처리ID·허용 작업, 서비스 인증·비밀 관리·가용성/장애 정책을 정한다. TD/RPG 어댑터는 어떤 거래가 외부 원장에 반영됐는지 같은 처리ID로 조회·복구할 수 있어야 한다.
+3. 각 Experience의 구매·보상 서버는 자기 영수증/자격을 먼저 검증하고, 외부 원장에 멱등 처리를 요청한다. 지갑 차감과 각 게임 권리 지급이 나뉘면 outbox·재처리를 사용하며 두 잔액 합산·이중 쓰기를 사용하지 않는다.
+4. 외부 계약이 배포되기 전에는 RPG 공통 소비·지급 UI와 권리 표시를 비활성화한다. TD 또는 RPG의 기존 writer를 교체·차단할 필요가 있다는 가정으로 TD 운영을 변경하지 않는다. 실제 서버 정리·배포는 별도 승인된 구현 작업에서 수행한다.
+5. 잔액100에서 TD/RPG 각각80 동시 소비는 한 번만 성공하고 최종20이어야 한다. 중복/불명 응답·지급과 소비 경쟁·새 캐릭터/삭제·개인 이동에서도 같은 원장 결과를 유지한다. 원장 로드 실패는 null/재시도 상태이며0 저장으로 대체하지 않는다.
+6. 롤백은 기능 플래그로 외부 공통 소비/표시만 중지하고 거래 조회·복구를 유지한다. 과거 TD/RPG snapshot으로 최신 외부 원장을 덮어쓰지 않으며, 복구용 snapshot은 권리 대조/감사 원천으로만 쓴다.
 
 TD Gold / RPG Coins / Command Points는 각 영역에 남긴다. 공유 업적/외형/공동 이벤트도 명시된 권리ID만 연결한다. TD 영웅/타워·Priest 구매/성장 기록은 RPG 클래스 전환 때문에 삭제하거나 재해석하지 않는다.
 
 ## 9. 영수증·장비 판매·지급 대기
 
-같은 Experience의 **각 관련 Place 서버에 같은 버전의 영수증 라우터를 설치하고 서버당 `ProcessReceipt` 대입은 하나로 유지**한다. Experience 전체에서 한 번만 실행되는 전역 콜백으로 착각하지 않는다. 기존 TD 상품 처리기를 보존하고 새 RPG ProductId는 검증된 허용목록에 명시적으로 추가한다. null/0·미등록·중복ID·다른 환경ID를 판매 가능한 상품으로 취급하지 않는다.
+각 독립 Experience는 서버당 `ProcessReceipt` 대입을 하나로 유지하며 자기 상품만 처리한다. TD와 RPG가 하나의 전역 콜백을 공유한다고 가정하지 않는다. 공통 Diamonds·권리가 필요하면 두 영수증 처리 결과를 검증된 외부 권위 장부에 처리 ID로 조정한다. 기존 TD 상품 처리기를 보존하고 새 RPG ProductId는 RPG의 검증된 허용목록에 명시적으로 추가한다. null/0·미등록·중복ID·다른 환경ID를 판매 가능한 상품으로 취급하지 않는다.
 
 | 단계 | 계약 |
 | --- | --- |
@@ -244,8 +244,8 @@ TD Gold / RPG Coins / Command Points는 각 영역에 남긴다. 공유 업적/�
 | --- | --- |
 | 로컬/단위 검사 | 순수 정의/규칙·저장 어댑터 대체·오류 주입. live API 접근 없이 계약 검증 |
 | Studio 테스트 | 별도 테스트 Experience/저장 namespace에서 이동·전투·UI·멀티클라이언트 확인. Teleport 통과 증거로 사용하지 않음 |
-| 게시된 통합 테스트 | **같은 테스트 Experience 안** TD 테스트 Place↔RPG 테스트 Place↔원정. 테스트 상품/가짜 지급 경로를 명확히 분리하고 운영ID 접근 거부 |
-| 운영 | 기존 TD 시작 Place 유지·별도 RPG Place. 호환 writer/상품/복구/TD 회귀/실제 이동 수용 후 승인된 공개 범위만 활성화 |
+| 게시된 통합 테스트 | **분리된 TD 테스트 Experience와 RPG 테스트 Experience 사이** 개인 이동·각 Experience 저장/상품·외부 지갑 어댑터를 검증. 테스트 상품/가짜 지급 경로를 명확히 분리하고 운영ID 접근 거부 |
+| 운영 | TD Experience와 The Last Throne Experience를 각각 유지. 외부 지갑 권위/상품/복구/TD 회귀/실제 개인 이동 수용 후 승인된 공개 범위만 활성화 |
 
 실제 Experience/Place/상품ID·접근 권한·예약 정책은 환경 manifest에서 조회해 기록한다. 이 문서에 ID를 추정하지 않는다. 시작 때 서버가 `game.GameId`, `PlaceId`, 환경·writer/계약 버전을 대조하고 불일치 환경에서 경제 쓰기·판매·잘못된 포탈을 거부한다. 환경 분리는 단순 파일 이름 접미사만으로 완료하지 않는다.
 
@@ -289,7 +289,7 @@ TD Gold / RPG Coins / Command Points는 각 영역에 남긴다. 공유 업적/�
 | 서버 계약 | 위조 action/target·NaN/무한/큰 payload·중복/만료 입력·생명/세션 epoch·공격 구간 경계·벽·다중 적중·저장 콜백 재실행 |
 | 장애 주입 | 각 거래 단계 전후의 종료/저장 실패/응답 유실/중복 요청·복구 작업자 경합. 잔액·수량·포인트 보존과 단일 수령을 원천 기록으로 대조 |
 | Studio/엔진 | K0→K3 실제 판정/모션/리그·전멸·재시도·SP·모바일/패드 입력. Teleport/실기기 증거는 별도 |
-| 게시 테스트 | TD↔RPG 왕복·기존/신규 이용자·부분 도착·세션 fence·기존 TD 상품/권리 회귀·설정된 테스트 상품의 실제 영수증 경로 |
+| 게시 테스트 | TD↔RPG 개인 왕복·기존/신규 이용자·이동 실패 재시도·세션 fence·기존 TD 상품/권리 회귀·각 Experience의 설정된 테스트 상품과 외부 지갑 조정 경로 |
 | 실기기/관찰 | 기준 기기/그래픽/네트워크/부하의 성능·터치/패드·영어 가독성·새 이용자의 원인 이해. 사용자 미술/재미 수용은 실제 받은 결과만 기록 |
 
 장애 검증의 최소 불변식은 “원래 잔액+확정 유입−확정 소비=잔액”, “원래 아이템+지급−소비/판매=각 활성 위치+예약 수량”, “같은 보상/구매/리셋 작업은 한 번”, “각 instanceId는 한 활성 위치”, “투자+미배분=레벨 예산”이다. 검사는 구현을 따라 쓴 형식적 테스트보다 이 불변식과 사용자 결과를 검증한다. 세부 테스트ID·심각도·출시 판정은 [QA 계획](qa-and-release-plan.md)에 연결한다.

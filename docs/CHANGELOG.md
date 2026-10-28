@@ -4,6 +4,12 @@
 
 현재 사양은 [기획 결정](decisions.md)과 상세 문서를 따른다. 아래의 과거 수치는 이력이며 현재 값이 아니다.
 
+## 2026-10-28 — 독립 Experience 전환
+
+- 사용자 결정에 따라 The Last Throne을 TD와 같은 Experience의 RPG Place가 아니라 **독립 Roblox Experience**로 전환했다. TD Experience·기존 시작 Place·잔액·구매권·성장·복구는 변경하지 않는다.
+- 독립 Experience는 DataStore와 상품 영수증 처리를 공유하지 않으므로, 공통 Diamonds·공통 권리는 외부 서버 권위 지갑과 거래/영수증 조정 계약이 검증될 때만 제공한다. 그 전에는 분리한다.
+- TD↔RPG 동선은 초기 개인 Experience 간 이동으로 제한한다. 단체 TeleportAsync는 같은 Experience 안에서만 지원되는 제약을 반영했다.
+
 ## 2026-10-28 — K0 구현·액션/스킬·전직별 슬롯 정리
 
 - 게임 시험 빌드 0.12.0의 네 영웅·공통 기술·Mage MP·독립 쿨다운과 기존 자산·서버 검증 증거를 [현재 상태](production/current-status.md)에 정리했다. 게임 빌드 버전과 문서 묶음 v0.25는 별개다.

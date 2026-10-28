@@ -6,7 +6,7 @@
 
 - [현재 통합 제안서](../../the-last-throne-rpg-proposal.md): 프롤로그·8장·에필로그, Aetheria/Lumia·다섯 문명·동료·세 결말·전체 콘텐츠. 최신 사용자 결정과 충돌하면 결정표/상세 사양이 우선한다.
 - [최초 제안 보관본](../archive/the-last-throne-rpg-proposal-initial-2026-10-26.md), [보관 안내](../archive/README.md): 변경 전 기록이며 현행 플레이어 클래스/수익화/영어 언어 계약의 정본으로 쓰지 않는다.
-- [TD 업데이트 제안서](../../../throne-defense/docs/throne-chronicles-rpg-proposal.md), [TD 이야기](../../../throne-defense/docs/storyline.md): 공유 세계관/Experience 방향의 읽기 전용 참고. 오래된5플레이어 클래스/직업명은 현행 RPG의4클래스 결정으로 대체한다.
+- [TD 업데이트 제안서](../../../throne-defense/docs/throne-chronicles-rpg-proposal.md), [TD 이야기](../../../throne-defense/docs/storyline.md): 공유 세계관·자산 원형의 읽기 전용 참고. 같은 Experience 제안은 2026-10-28 독립 Experience 사용자 결정으로 대체한다. 오래된5플레이어 클래스/직업명은 현행 RPG의4클래스 결정으로 대체한다.
 
 ## 2. 기존 상세 문서 55개
 
@@ -106,7 +106,7 @@
 
 ## 6. 공식 플랫폼 근거
 
-- [Data stores](https://create.roblox.com/docs/cloud-services/data-stores): 같은 Experience의 접근 범위·서버 저장·테스트 환경 분리.
+- [Data stores](https://create.roblox.com/docs/cloud-services/data-stores): Experience별 서버 저장·테스트 환경 분리. 독립 Experience 공통 지갑에는 별도 서버 권위 계약이 필요.
 - [Teleport](https://create.roblox.com/docs/projects/teleport): 실제 게시된 테스트 클라이언트 수용.
 - [Developer Products](https://create.roblox.com/docs/production/monetization/developer-products): 영수증 기반 구매 처리.
 - [Client-server boundary](https://create.roblox.com/docs/scripting/security/client-server-boundary): 서버 자격/구조/값/빈도 검증.

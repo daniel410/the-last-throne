@@ -24,7 +24,7 @@ Throne Defense와 세계관·메뉴·아이콘·이미지·3D 원본을 공유�
 - 장비는9슬롯이다. 최신 UX는 가방 진입 통합·고정 슬롯 자동 지정·장신구 대상 선택·거점 창고·미수령 배지다. 용량60/120·스택99/999는 제안이다.
 - 스탯/스킬 리셋권과 실제 성능 장비 판매는 최신 사용자 요구다. 외형 전용 판매나 상시 무료 초기화로 되돌리지 않는다. 가격·성능·실상품ID·무료 획득 세부는 설계/검증 대상으로 구분한다.
 - 일반 모험1~4인·솔로 본편 완결을 지향한다. 일반4인 파티의 전투AI동료는0, 성녀도 동료 슬롯을 사용한다. 후반8인 레이드는 별도 성능/공략 게이트다.
-- 같은 Experience의 별도 RPG Place와 공통 Diamonds 방향을 따른다. 기존 TD 시작 Place·잔액·구매권·성장을 보존한다. TD Gold / RPG Coins / 임무 Command Points는 구분한다.
+- The Last Throne은 TD와 분리된 Roblox Experience다. TD의 기존 시작 Place·잔액·구매권·성장은 변경하지 않는다. 공통 Diamonds는 별도 서버 권위 지갑과 권리 조정이 검증되기 전까지 공유하지 않으며, TD Gold / RPG Coins / 임무 Command Points는 항상 구분한다.
 
 ## 원본과 구현 상태
 
@@ -59,4 +59,4 @@ Throne Defense와 세계관·메뉴·아이콘·이미지·3D 원본을 공유�
 - DataStore 단일 키 갱신을 다중 키 거래로 간주하지 않는다. 공통 지갑과 계정 창고·캐릭터 사이의 복구 가능한 거래 계약을 먼저 정한다.
 - 영어 문자열은 키와 en-US 원문으로 관리하고 오류에도 사용자가 취할 행동을 담는다. 한국어 개발 설명을 게임 표면에 노출하지 않는다.
 - 변경에 맞는 검증만 실행하고 결과를 기록한다. XP 검증은 `python3 scripts/simulate_story_progression.py --output /tmp/tlt-progression-check.json`으로 원본을 덮어쓰지 않고 실행할 수 있다.
-- Place 이동은 Studio 결과만으로 통과시키지 않는다. 실제 게시된 **테스트 환경**의 Roblox 클라이언트 검증이 필요하다. 세부는 [QA 계획](docs/production/qa-and-release-plan.md)을 따른다.
+- Experience 간 이동은 Studio 결과만으로 통과시키지 않는다. 실제 게시된 **각 테스트 Experience**의 Roblox 클라이언트 검증이 필요하다. 세부는 [QA 계획](docs/production/qa-and-release-plan.md)을 따른다.
