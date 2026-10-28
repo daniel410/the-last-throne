@@ -166,7 +166,7 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 		-- Idle is lowered; the raised arm and this grip pose combine into an
 		-- upright bow while drawing and releasing.
 		if phase == "Windup" or phase == "Active" then
-			return CFrame.Angles(math.rad(-75), 0, 0)
+			return CFrame.Angles(math.rad(-95), 0, 0)
 		elseif phase == "Recovery" then
 			return CFrame.Angles(math.rad(-88), 0, math.rad(4))
 		end
@@ -223,8 +223,12 @@ local function updateElfIK(character, mode, phase, dt)
 	local humanoid = character:FindFirstChildOfClass("Humanoid")
 	local upper, hand = character:FindFirstChild("RightUpperArm"), character:FindFirstChild("RightHand")
 	local arrow = character:FindFirstChild("NockedArrow", true)
+	local stringPart = character:FindFirstChild("String", true)
+	local arrowJoint = arrow and arrow:FindFirstChild("NockedArrowVisualJoint")
+	local stringJoint = stringPart and stringPart:FindFirstChild("StringVisualJoint")
 	if not humanoid or humanoid.RigType ~= Enum.HumanoidRigType.R15 or not upper or not hand
-		or not arrow or not arrow:IsA("BasePart") then return false end
+		or not arrow or not arrow:IsA("BasePart") or not arrowJoint or not arrowJoint:IsA("Motor6D")
+		or not stringJoint or not stringJoint:IsA("Motor6D") then return false end
 	if not state or state.arrow ~= arrow or not state.control.Parent then
 		if state then
 			if state.control.Parent then state.control:Destroy() end
@@ -232,9 +236,10 @@ local function updateElfIK(character, mode, phase, dt)
 		end
 		local target = Instance.new("Attachment")
 		target.Name = "K0BowNockTarget"
-		-- The source string extends far behind the face at its original depth.
-		-- Shorten that bowstring during aiming and follow its forward nock.
-		target.Position = Vector3.new(0, 0.2, arrow.Size.Z * 0.155)
+		-- Compensate for the R15 arm's joint constraints so the hand itself
+		-- reaches the string's middle height during the draw.
+		local middleY = stringJoint.C0.Position.Y - arrowJoint.C0.Position.Y
+		target.Position = Vector3.new(0, middleY - 0.475, arrow.Size.Z * 0.155)
 		target.Parent = arrow
 		local control = Instance.new("IKControl")
 		control.Name = "K0BowDrawIK"
@@ -264,11 +269,11 @@ function Visual.renderArms(character, dt)
 	elseif mode == "Attack" and (phase == "Windup" or phase == "Active" or phase == "Recovery") then
 		if classId == "elf" then
 			if phase == "Windup" then
-				left = CFrame.Angles(math.rad(75), 0, math.rad(10))
+				left = CFrame.Angles(math.rad(95), 0, math.rad(10))
 				right = CFrame.Angles(math.rad(65), math.rad(32), math.rad(-18))
 				rightElbow = CFrame.Angles(math.rad(-65), 0, 0)
 			elseif phase == "Active" then
-				left = CFrame.Angles(math.rad(75), 0, math.rad(10))
+				left = CFrame.Angles(math.rad(95), 0, math.rad(10))
 				right = CFrame.Angles(math.rad(60), math.rad(12), math.rad(-23))
 				rightElbow = CFrame.Angles(math.rad(-20), 0, 0)
 			else

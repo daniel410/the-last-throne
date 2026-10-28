@@ -304,7 +304,41 @@ local ok, err = xpcall(function()
 		local originalParts = {}
 		for _, part in meshParts(originalVisual) do originalParts[part.Name] = part end
 		local deathAt = os.clock()
+		local originalRoot = original:FindFirstChild("HumanoidRootPart")
+		local originalRootSize = originalRoot.Size
+		local originalSlimeSize = kind == "Slime" and originalVisual.Body.Size or nil
 		original:FindFirstChildOfClass("Humanoid").Health = 0
+		if kind == "Slime" then
+			local function children()
+				local list = {}
+				for _, child in ipairs(enemies:GetChildren()) do
+					if child:GetAttribute("SlimeSplitGeneration") == 1 then table.insert(list, child) end
+				end
+				return list
+			end
+			local split = waitFor(function() local list = children(); return #list == 2 and list end, 3)
+			check(split ~= nil, "Slime splits into exactly two children")
+			if split then
+				for _, child in ipairs(split) do
+					local h = child:FindFirstChildOfClass("Humanoid")
+					local r = child:FindFirstChild("HumanoidRootPart")
+					local visual = child:FindFirstChild("TdMonsterVisual")
+					check(h and h.Health == 55 and h.MaxHealth == 55 and h.DisplayName == "Small Slime", "child has quarter parent health and English label")
+					check(r and math.abs(r.Size.Y / originalRootSize.Y - 0.5) < 0.001, "child control rig has half height")
+					check((visual.Body.Size - originalSlimeSize * 0.5).Magnitude < 0.001, "child TD mesh has half dimensions")
+					local bar = child:FindFirstChild("EnemyHealthBar")
+					check(bar and bar.Enabled and bar.HpBg.HpValue.Text == "55 / 55", "child health bar uses its own health")
+				end
+				task.wait(config.Enemy.Slime.respawnTime + 0.2)
+				check(enemies:FindFirstChild("Slime") == original, "parent does not respawn while split children live")
+				split[1].Humanoid.Health = 0
+				waitFor(function() return not split[1].Parent end, 3)
+				check(#children() == 1, "first child death produces no further split")
+				check(enemies:FindFirstChild("Slime") == original, "parent still waits for the surviving child")
+				split[2].Humanoid.Health = 0
+				check(waitFor(function() return #children() == 0 end, 3), "both split children retire without respawning")
+			end
+		end
 		local replacement = waitFor(function()
 			local model = enemies:FindFirstChild(kind)
 			return model and model ~= original and model

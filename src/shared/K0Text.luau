@@ -100,5 +100,5 @@ return {
 		SkillCooling = "Cast is recharging. Try again shortly.",
 		NeedStamina = "Not enough stamina. Wait, then cast again.",
 	},
-	Enemy = { Slime = "Slime", Goblin = "Goblin", Orc = "Orc Warrior", Ogre = "Ogre" },
+	Enemy = { Slime = "Slime", SmallSlime = "Small Slime", Goblin = "Goblin", Orc = "Orc Warrior", Ogre = "Ogre" },
 }

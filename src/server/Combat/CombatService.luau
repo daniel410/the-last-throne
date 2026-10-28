@@ -7,6 +7,7 @@ local PathfindingService = game:GetService("PathfindingService")
 local Config = require(ReplicatedStorage.Shared.K0Config)
 local Rules = require(script.Parent.K0Rules)
 local EnemyHealthBar = require(script.Parent.Parent.World.EnemyHealthBar)
+local Text = require(ReplicatedStorage.Shared.K0Text)
 
 local CombatService = {}
 local started = false
@@ -22,9 +23,8 @@ local enemyFolder
 local lastGoblinStart = -math.huge
 local hadLivingPlayer = false
 local nextEnemyId = 0
--- K0 experiment: retain bow damage briefly and respond to the actual attacker
--- without expanding an enemy's spawn-based leash or changing melee behavior.
-local RANGED_RETALIATION_SECONDS = 6
+-- Respond to the actual attacker briefly; the enemy itself still respects its spawn leash.
+local ATTACKER_RECOGNITION_SECONDS = 6
 
 local function now()
 	return os.clock()
@@ -488,14 +488,17 @@ local function damageEnemy(state, enemy, attack, current)
 	end
 	local multiplier = enemy.mode == "Exposed" and 1.15 or 1
 	local damage = math.max(1, math.floor(attack.attackPower * (attack.definition.damage + attack.counterDamage) * multiplier + 0.5))
+	-- Set the attacker before TakeDamage: a lethal hit can synchronously fire
+	-- Died, and split offspring must inherit the real server-validated attacker.
+	local expires = current + ATTACKER_RECOGNITION_SECONDS
+	enemy.attackers = enemy.attackers or {}
+	enemy.attackers[state] = expires
+	enemy.aggroUntil = expires
+	enemy.lastAttacker = state
+	enemy.target = state
 	enemy.humanoid:TakeDamage(damage)
 	if enemy.humanoid.Health > 0 then
-		if state.baseClassId == "elf" or attack.isSpell then
-			local expires = current + RANGED_RETALIATION_SECONDS
-			enemy.rangedAttackers = enemy.rangedAttackers or {}
-			enemy.rangedAttackers[state] = expires
-			enemy.rangedAggroUntil = expires
-		end
+		if not enemy.attack and enemy.mode ~= "Exposed" then setEnemyState(enemy, "Chase") end
 		damagePosture(enemy, attack.definition.posture, current)
 	end
 	updateFeedback(state, "Hit")
@@ -811,18 +814,25 @@ end
 
 local function closestTarget(enemy, current)
 	local closest, closestDistance
-	if enemy.rangedAttackers then
-		for attacker, expires in pairs(enemy.rangedAttackers) do
-			if current >= expires or not alive(attacker) then enemy.rangedAttackers[attacker] = nil end
+	if enemy.attackers then
+		for attacker, expires in pairs(enemy.attackers) do
+			if current >= expires or not alive(attacker) then
+				enemy.attackers[attacker] = nil
+			else
+				local distance = horizontal(attacker.root.Position - enemy.root.Position).Magnitude
+				if not closestDistance or distance < closestDistance then closest, closestDistance = attacker, distance end
+			end
 		end
+		-- A validated hit is recognized even outside passive detection range.
+		-- stepEnemy separately keeps the enemy inside its own spawn leash.
+		if closest then return closest, closestDistance end
 	end
 	for _, playerState in pairs(playerStates) do
 		if alive(playerState) then
 			local position = playerState.root.Position
 			local distance = horizontal(position - enemy.root.Position).Magnitude
 			local distanceFromSpawn = horizontal(position - enemy.spawnPosition).Magnitude
-			local retaliating = enemy.rangedAttackers and current < (enemy.rangedAttackers[playerState] or 0)
-			if distanceFromSpawn <= enemy.config.leashRange and (distance <= enemy.config.aggroRange or retaliating)
+			if distanceFromSpawn <= enemy.config.leashRange and distance <= enemy.config.aggroRange
 				and (not closestDistance or distance < closestDistance) then
 				closest, closestDistance = playerState, distance
 			end
@@ -909,8 +919,9 @@ local function resetEnemy(enemy)
 	enemy.pathPending = false
 	enemy.waypoints = nil
 	enemy.target = nil
-	enemy.rangedAttackers = nil
-	enemy.rangedAggroUntil = 0
+	enemy.attackers = nil
+	enemy.aggroUntil = 0
+	enemy.lastAttacker = nil
 	enemy.pattern = 0
 	enemy.posture = enemy.config.posture
 	enemy.postureImmuneUntil = 0
@@ -977,7 +988,7 @@ local function stepEnemy(enemy, current, dt)
 			setEnemyState(enemy, "Chase")
 			moveEnemy(enemy, enemy.spawnPosition, current)
 		else
-			if enemy.humanoid.Health < enemy.humanoid.MaxHealth and current >= (enemy.rangedAggroUntil or 0) then
+			if enemy.humanoid.Health < enemy.humanoid.MaxHealth and current >= (enemy.aggroUntil or 0) then
 				resetEnemy(enemy)
 			else
 				if enemy.mode ~= "Idle" then stopEnemy(enemy) end
@@ -998,14 +1009,94 @@ local function stepEnemy(enemy, current, dt)
 	end
 end
 
-local function registerEnemy(model, savedTemplate, savedPivot, savedId)
+local registerEnemy
+
+local function scheduleEnemyRespawn(enemy)
+	if enemy.respawnScheduled then return end
+	enemy.respawnScheduled = true
+	task.delay(enemy.config.respawnTime, function()
+		local model = enemy.model
+		if enemyStates[model] ~= enemy or not enemyFolder or not enemyFolder.Parent then return end
+		enemyStates[model] = nil
+		model:Destroy()
+		local replacement = enemy.template:Clone()
+		replacement:PivotTo(enemy.spawnPivot)
+		replacement.Parent = enemyFolder
+		registerEnemy(replacement, enemy.template, enemy.spawnPivot, enemy.id)
+	end)
+end
+
+local function retireSplitChild(enemy)
+	if enemy.retired then return end
+	enemy.retired = true
+	enemyStates[enemy.model] = nil
+	enemy.pathToken = enemy.pathToken + 1
+	local group = enemy.splitGroup
+	group.remaining = math.max(0, group.remaining - 1)
+	local model = enemy.model
+	task.delay(0.35, function() if model.Parent then model:Destroy() end end)
+	if group.remaining == 0 and not group.creating then scheduleEnemyRespawn(group.parent) end
+end
+
+local function splitSlime(enemy)
+	local settings = Config.SlimeSplit
+	local group = {
+		parent = enemy, remaining = 0, creating = true,
+		childHealth = math.max(1, math.floor(enemy.humanoid.MaxHealth * settings.healthMultiplier + 0.5)),
+	}
+	local parentPosition = enemy.root.Position
+	local forward = horizontalUnit(enemy.root.CFrame.LookVector, Vector3.new(0, 0, -1))
+	local right = Vector3.new(-forward.Z, 0, forward.X)
+	local parentFoot = enemy.root.Size.Y * 1.5
+	for index = 1, settings.count do
+		local child, counted
+		local ok, err = pcall(function()
+			child = enemy.template:Clone()
+			child.Name = "SmallSlime"
+			child:SetAttribute("SlimeSplitGeneration", 1)
+			child:ScaleTo(settings.sizeMultiplier)
+			for _, name in ipairs({ "TdMonsterTargetHeight", "TdMonsterVisualMultiplier", "TdMonsterScale" }) do
+				local value = child:GetAttribute(name)
+				if type(value) == "number" then child:SetAttribute(name, value * settings.sizeMultiplier) end
+			end
+			local root = assert(child:FindFirstChild("HumanoidRootPart"))
+			local side = index == 1 and -1 or 1
+			local position = parentPosition + right * side * math.max(0.6, root.Size.X * 1.2)
+				+ Vector3.new(0, -parentFoot + root.Size.Y * 1.5, 0)
+			local pivot = CFrame.lookAt(position, position + forward)
+			child:PivotTo(pivot)
+			child.Parent = enemyFolder
+			group.remaining = group.remaining + 1
+			counted = true
+			local registered = registerEnemy(child, enemy.template, pivot, nil, group)
+			if not registered then
+				group.remaining = group.remaining - 1
+				counted = false
+				child:Destroy()
+			end
+		end)
+		if not ok then
+			if child then
+				local partial = enemyStates[child]
+				if partial then partial.retired = true; enemyStates[child] = nil end
+				if counted then group.remaining = math.max(0, group.remaining - 1) end
+				child:Destroy()
+			end
+			warn("K0 could not create a split slime: " .. tostring(err))
+		end
+	end
+	group.creating = false
+	if group.remaining == 0 then scheduleEnemyRespawn(enemy) end
+end
+
+registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	local kind = model:GetAttribute("EnemyKind")
 	local config = Config.Enemy[kind]
 	local humanoid = model:FindFirstChildOfClass("Humanoid")
 	local root = model:FindFirstChild("HumanoidRootPart")
 	if not config or not humanoid or not root or not root:IsA("BasePart") then
 		warn("K0 skipped enemy without a supported kind, Humanoid or HumanoidRootPart:", model:GetFullName())
-		return
+		return nil
 	end
 	local spawnPivot = savedPivot or model:GetPivot()
 	local template = savedTemplate or model:Clone()
@@ -1018,11 +1109,14 @@ local function registerEnemy(model, savedTemplate, savedPivot, savedId)
 		spawnPivot = spawnPivot, spawnPosition = root.Position, template = template, mode = "", attack = nil, attackSeq = 0,
 		posture = config.posture, postureImmuneUntil = 0, lastPostureDamage = now(), lastPerfectResponse = -math.huge,
 		pattern = 0, reconsiderAt = 0, nextMoveAt = 0, nextPathAt = 0, pathToken = 0, pathPending = false,
+		splitGroup = splitGroup,
 	}
 	enemyStates[model] = enemy
-	humanoid.MaxHealth = config.health
-	humanoid.Health = config.health
+	local health = splitGroup and splitGroup.childHealth or config.health
+	humanoid.MaxHealth = health
+	humanoid.Health = health
 	humanoid.WalkSpeed = config.walkSpeed
+	if splitGroup then humanoid.DisplayName = Text.Enemy.SmallSlime end
 	EnemyHealthBar.attach(model, humanoid)
 	model:SetAttribute("K0Posture", config.posture)
 	model:SetAttribute("K0MaxPosture", config.posture)
@@ -1030,22 +1124,33 @@ local function registerEnemy(model, savedTemplate, savedPivot, savedId)
 	model:SetAttribute("K0AttackSeq", 0)
 	setEnemyState(enemy, "Idle")
 	pcall(function() root:SetNetworkOwner(nil) end)
+	if splitGroup then
+		local attacker = splitGroup.parent.lastAttacker
+		local expires = splitGroup.parent.aggroUntil or 0
+		if attacker and alive(attacker) and expires > now() then
+			enemy.attackers = { [attacker] = expires }
+			enemy.aggroUntil, enemy.lastAttacker, enemy.target = expires, attacker, attacker
+			setEnemyState(enemy, "Chase")
+		end
+		model.AncestryChanged:Connect(function()
+			if not model:IsDescendantOf(enemyFolder) then retireSplitChild(enemy) end
+		end)
+	end
 	humanoid.Died:Connect(function()
+		if enemy.deathHandled then return end
+		enemy.deathHandled = true
 		resetEnemyAttack(enemy)
 		setEnemyState(enemy, "Dead")
 		enemy.pathToken = enemy.pathToken + 1
-		task.delay(config.respawnTime, function()
-			if enemyStates[model] ~= enemy or not enemyFolder.Parent then
-				return
-			end
-			enemyStates[model] = nil
-			model:Destroy()
-			local replacement = template:Clone()
-			replacement:PivotTo(spawnPivot)
-			replacement.Parent = enemyFolder
-			registerEnemy(replacement, template, spawnPivot, enemy.id)
-		end)
+		if splitGroup then
+			retireSplitChild(enemy)
+		elseif kind == "Slime" then
+			splitSlime(enemy)
+		else
+			scheduleEnemyRespawn(enemy)
+		end
 	end)
+	return enemy
 end
 
 local function setupCharacter(player, character)
@@ -1231,7 +1336,7 @@ function CombatService.start(enemies, serverContextResolver)
 		elseif hadLivingPlayer then
 			hadLivingPlayer = false
 			for _, enemy in pairs(enemyStates) do
-				resetEnemy(enemy)
+				if enemy.splitGroup then retireSplitChild(enemy) else resetEnemy(enemy) end
 			end
 		end
 		for _, enemy in pairs(enemyStates) do

@@ -24,6 +24,7 @@ local Config = {
 	ArcaneBolt = { windup = 0.45, active = 0.12, recovery = 0.45, damage = 1.00, posture = 10,
 		range = 40, angle = 45, maxHeight = 10, staminaCost = 15, cooldown = 3 },
 	HitStun = 0.25,
+	SlimeSplit = { count = 2, sizeMultiplier = 0.5, healthMultiplier = 0.25 },
 	Enemy = {
 		-- First training opponent. Values are a prototype, not story rewards.
 		Slime = {
