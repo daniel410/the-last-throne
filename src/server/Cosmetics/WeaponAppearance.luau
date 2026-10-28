@@ -223,6 +223,16 @@ local function rightHandFor(character, hands)
 	return hand
 end
 
+local function weaponHandFor(character, hands, classId)
+	if classId ~= "elf" then return rightHandFor(character, hands) end
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if not humanoid then return nil end
+	local name = humanoid.RigType == Enum.HumanoidRigType.R15 and "LeftHand" or "Left Arm"
+	local hand = character:FindFirstChild(name)
+	if not hand or not hand:IsA("BasePart") or (hands and hands.left ~= hand) then return nil end
+	return hand
+end
+
 local function attachedResult(model, classId, hand)
 	local spec = SPECS[classId]
 	if model:GetAttribute("WeaponClassId") ~= classId or model:GetAttribute("WeaponSourceKey") ~= spec.sourceKey
@@ -285,7 +295,7 @@ local function handPoseFor(hand, classId)
 		return CFrame.new(0, hand.Name == "Right Arm" and -0.95 or -0.12, -hand.Size.Z / 2)
 			* CFrame.Angles(math.rad(-20), 0, math.rad(-8))
 	end
-	local offset = CFrame.new(0, hand.Name == "Right Arm" and -0.95 or -0.12, -0.12)
+	local offset = CFrame.new(0, (hand.Name == "Right Arm" or hand.Name == "Left Arm") and -0.95 or -0.12, -0.12)
 		* CFrame.Angles(0, 0, math.rad(classId == "elf" and 0 or -23))
 	if classId ~= "elf" then offset = offset * CFrame.new(0, 0, -hand.Size.Z / 2 + 0.12) end
 	if classId == "dwarf" then
@@ -299,7 +309,7 @@ end
 function Appearance.isAttached(appearanceModel, character, classId, hands)
 	if not SPECS[classId] or not appearanceModel or not appearanceModel:IsA("Model")
 		or not character or not character:IsA("Model") then return false end
-	local hand = rightHandFor(character, hands)
+	local hand = weaponHandFor(character, hands, classId)
 	return hand ~= nil and attachedResult(appearanceModel, classId, hand) ~= nil
 end
 
@@ -308,8 +318,8 @@ function Appearance.attachInto(appearanceModel, character, classId, hands)
 	if not spec then return nil, "unsupported_class" end
 	if not appearanceModel or not appearanceModel:IsA("Model") or not character or not character:IsA("Model") then
 		return nil, "invalid_character_or_appearance" end
-	local hand = rightHandFor(character, hands)
-	if not hand then return nil, "right_hand_not_ready" end
+	local hand = weaponHandFor(character, hands, classId)
+	if not hand then return nil, classId == "elf" and "left_hand_not_ready" or "right_hand_not_ready" end
 	local existing = attachedResult(appearanceModel, classId, hand)
 	if existing then return existing end
 	local result, reason = Appearance.build(classId)

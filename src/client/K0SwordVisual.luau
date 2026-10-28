@@ -13,11 +13,11 @@ local seenShots = {}
 local arrows = {}
 local seenSpells = {}
 local spells = {}
-local bowRest = setmetatable({}, { __mode = "k" })
-local armPoses = setmetatable({}, { __mode = "k" })
-local weaponPoses = setmetatable({}, { __mode = "k" })
-local knightLoads = setmetatable({}, { __mode = "k" })
-local elfIK = setmetatable({}, { __mode = "k" })
+local bowRest = {}
+local armPoses = {}
+local weaponPoses = {}
+local knightLoads = {}
+local elfIK = {}
 local MELEE = {
 	knight = { grip = "SwordGrip", joint = "K0SwordJoint", windup = 38, active = -85, recovery = -10, side = 45 },
 	dwarf = { grip = "WeaponGrip", joint = "PlayerWeaponJoint", windup = 58, active = -105, recovery = -15, side = 60 },
@@ -168,9 +168,9 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 		if phase == "Windup" or phase == "Active" then
 			return CFrame.Angles(math.rad(-85), 0, 0)
 		elseif phase == "Recovery" then
-			return CFrame.Angles(math.rad(-88), 0, math.rad(-4))
+			return CFrame.Angles(math.rad(-88), 0, math.rad(4))
 		end
-		return CFrame.Angles(math.rad(-105), 0, math.rad(-8))
+		return CFrame.Angles(math.rad(-105), 0, math.rad(8))
 	end
 	if classId == "mage" and attackKind == "Arcane" then
 		if phase == "Windup" or phase == "Active" then return CFrame.Angles(math.rad(-145), 0, 0) end
@@ -205,15 +205,23 @@ end
 
 -- R15's two-segment arm can actually reach the drawn nock. The target follows
 -- the source arrow through its local draw transform; R6 retains the pose fallback.
-local function updateElfIK(character, mode, phase)
+local function updateElfIK(character, mode, phase, dt)
 	local state = elfIK[character]
-	local isDrawing = character:GetAttribute("K0ClassId") == "elf" and mode == "Attack" and phase == "Windup"
+	local isElf = character:GetAttribute("K0ClassId") == "elf"
+	local isDrawing = isElf and mode == "Attack" and (phase == "Windup" or phase == "Active")
 	if not isDrawing then
-		if state and state.control.Parent then state.control.Enabled = false end
+		if state and state.control.Parent then
+			if isElf then
+				state.weight = math.max(0, state.weight - dt * 3.5)
+				state.control.Weight = state.weight
+				if state.weight > 0 then return true end
+			end
+			state.control.Enabled = false
+		end
 		return false
 	end
 	local humanoid = character:FindFirstChildOfClass("Humanoid")
-	local upper, hand = character:FindFirstChild("LeftUpperArm"), character:FindFirstChild("LeftHand")
+	local upper, hand = character:FindFirstChild("RightUpperArm"), character:FindFirstChild("RightHand")
 	local arrow = character:FindFirstChild("NockedArrow", true)
 	if not humanoid or humanoid.RigType ~= Enum.HumanoidRigType.R15 or not upper or not hand
 		or not arrow or not arrow:IsA("BasePart") then return false end
@@ -234,10 +242,10 @@ local function updateElfIK(character, mode, phase)
 		control.ChainRoot, control.EndEffector, control.Target = upper, hand, target
 		control.SmoothTime, control.Weight = 0.04, 1
 		control.Parent = humanoid
-		state = { control = control, target = target, arrow = arrow }
+		state = { control = control, target = target, arrow = arrow, weight = 1 }
 		elfIK[character] = state
 	end
-	state.control.Enabled = true
+	state.weight, state.control.Weight, state.control.Enabled = 1, 1, true
 	return true
 end
 
@@ -248,24 +256,23 @@ function Visual.renderArms(character, dt)
 	local mode = character:GetAttribute("K0State")
 	local phase = character:GetAttribute("K0AttackPhase")
 	local kind = character:GetAttribute("K0AttackKind")
-	local right, left, leftElbow
-	local usesIK = updateElfIK(character, mode, phase)
+	local right, left, rightElbow
+	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
+	local usesIK = updateElfIK(character, mode, phase, elapsed)
 	if classId == "knight" and mode == "Block" then
 		left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
 	elseif mode == "Attack" and (phase == "Windup" or phase == "Active" or phase == "Recovery") then
 		if classId == "elf" then
 			if phase == "Windup" then
-				right = CFrame.Angles(math.rad(85), 0, math.rad(-10))
-				left = CFrame.Angles(math.rad(65), math.rad(-32), math.rad(18))
-				leftElbow = CFrame.Angles(math.rad(-65), 0, 0)
+				left = CFrame.Angles(math.rad(85), 0, math.rad(10))
+				right = CFrame.Angles(math.rad(65), math.rad(32), math.rad(-18))
+				rightElbow = CFrame.Angles(math.rad(-65), 0, 0)
 			elseif phase == "Active" then
-				right = CFrame.Angles(math.rad(85), 0, math.rad(-10))
-				left = CFrame.Angles(math.rad(60), math.rad(-12), math.rad(23))
-				leftElbow = CFrame.Angles(math.rad(-20), 0, 0)
+				left = CFrame.Angles(math.rad(85), 0, math.rad(10))
+				right = CFrame.Angles(math.rad(60), math.rad(12), math.rad(-23))
+				rightElbow = CFrame.Angles(math.rad(-20), 0, 0)
 			else
-				right = CFrame.Angles(math.rad(48), 0, math.rad(-7))
-				left = CFrame.Angles(math.rad(35), math.rad(-8), math.rad(10))
-				leftElbow = CFrame.Angles(math.rad(-10), 0, 0)
+				left = CFrame.Angles(math.rad(48), 0, math.rad(7))
 			end
 		elseif classId == "mage" and kind == "Arcane" then
 			right = CFrame.Angles(math.rad(70), 0, math.rad(-8))
@@ -278,7 +285,6 @@ function Visual.renderArms(character, dt)
 			right = CFrame.Angles(math.rad(pitch), 0, math.rad(phase == "Active" and roll or -roll))
 		end
 	end
-	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
 	local function apply(joint, target)
 		if not joint then return end
 		local previous = armPoses[joint]
@@ -291,14 +297,14 @@ function Visual.renderArms(character, dt)
 		else armPoses[joint] = { pose = pose, returning = returning } end
 		joint.Transform = pose
 	end
-	apply(armJoint(character, "Right", "Shoulder"), right)
-	local leftShoulder, elbow = armJoint(character, "Left", "Shoulder"), armJoint(character, "Left", "Elbow")
+	apply(armJoint(character, "Left", "Shoulder"), left)
+	local rightShoulder, elbow = armJoint(character, "Right", "Shoulder"), armJoint(character, "Right", "Elbow")
 	if usesIK then
-		if leftShoulder then armPoses[leftShoulder] = nil end
+		if rightShoulder then armPoses[rightShoulder] = nil end
 		if elbow then armPoses[elbow] = nil end
 	else
-		apply(leftShoulder, left)
-		apply(elbow, leftElbow)
+		apply(rightShoulder, right)
+		apply(elbow, rightElbow)
 	end
 end
 
@@ -491,16 +497,16 @@ local function drawBow(model, phase, elapsed)
 		or not arrow or not arrow:IsA("BasePart") or not arrowJoint or not arrowJoint:IsA("Motor6D") then return end
 	local state = bowRest[model]
 	if not state or state.part ~= stringPart or state.arrow ~= arrow then
-		state = { part = stringPart, arrow = arrow, size = stringPart.Size, arrowTransparency = arrow.LocalTransparencyModifier, draw = 0, depth = 1 }
+		state = { part = stringPart, arrow = arrow, size = stringPart.Size, arrowTransparency = arrow.Transparency, draw = 0 }
 		bowRest[model] = state
 	end
 	local target = phase == "Windup" and 0.48 or 0
 	local speed = phase == "Windup" and 12 or 35
 	state.draw = state.draw + (target - state.draw) * math.clamp(elapsed * speed, 0, 1)
-	arrow.LocalTransparencyModifier = (phase == "Active" or phase == "Recovery") and 1 or state.arrowTransparency
-	local aiming = phase == "Windup" or phase == "Active" or phase == "Recovery"
-	state.depth = state.depth + ((aiming and 0.48 or 1) - state.depth) * math.clamp(elapsed * 12, 0, 1)
-	local depth = state.size.Z * state.depth + state.draw
+	arrow.Transparency = (phase == "Active" or phase == "Recovery") and 1 or state.arrowTransparency
+	-- The TD string mesh is unusually deep at rest. Keep a relaxed baseline;
+	-- only the same draw amount that moves the arrow pulls its nock back.
+	local depth = state.size.Z * 0.48 + state.draw
 	stringPart.Size = Vector3.new(state.size.X, state.size.Y, depth)
 	stringJoint.Transform = CFrame.new(0, 0, (depth - state.size.Z) / 2)
 	arrowJoint.Transform = CFrame.new(0, 0, state.draw)
@@ -573,6 +579,17 @@ function Visual.start()
 		end
 		for character in pairs(seenSpells) do
 			if not character:IsDescendantOf(game) then seenSpells[character] = nil end
+		end
+		-- Keep animation baselines alive while the engine instance exists, and
+		-- explicitly release them once a model, joint or character is removed.
+		for model in pairs(bowRest) do if not model:IsDescendantOf(game) then bowRest[model] = nil end end
+		for model in pairs(knightLoads) do if not model:IsDescendantOf(game) then knightLoads[model] = nil end end
+		for joint in pairs(armPoses) do if not joint:IsDescendantOf(game) then armPoses[joint] = nil end end
+		for joint in pairs(weaponPoses) do if not joint:IsDescendantOf(game) then weaponPoses[joint] = nil end end
+		for character, state in pairs(elfIK) do
+			if not character:IsDescendantOf(game) then
+				state.control:Destroy(); state.target:Destroy(); elfIK[character] = nil
+			end
 		end
 	end)
 end

@@ -168,7 +168,7 @@ local function syncAppearance(character)
 		local classId = character:GetAttribute("K0ClassId")
 		local supported = type(classId) == "string" and SUPPORTED_CLASSES[classId] == true
 		local rightHand, leftHand = findHands(character)
-		local ready = supported and rightHand ~= nil and (classId ~= "knight" or leftHand ~= nil)
+		local ready = supported and rightHand ~= nil and ((classId ~= "knight" and classId ~= "elf") or leftHand ~= nil)
 		local attached = false
 		for _, child in ipairs(character:GetChildren()) do
 			if child:IsA("Model") and child.Name == MODEL_NAME and child:GetAttribute(OWNED_ATTRIBUTE) == true then
