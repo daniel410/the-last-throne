@@ -14,7 +14,7 @@
 | 기술 시험 | 네 직업 각 3개 기술, Knight Shield Bash/Whirlwind/Provoke, Dwarf Overhead Smash/Axe Throw/Ground Slam, Elf Aimed Shot/Rapid Fire/Multi Shot 및 Mage Mana Bolt/Water Ball/Gravity, Stamina/MP와 개별 쿨다운, 로비 편성·하단 1~5 슬롯 | 기본 3슬롯, 5슬롯은 PRACTICE ONLY. 정식 전직·습득·영구 저장·6번 용도는 미구현/미결정. [신규 기록](../evidence/k0/action-skill-prototype.md). [기술](../evidence/k0/basic-skills-mana.md) |
 | 결과물 | Rojo 7.7.1로 `builds/0.17.0/TheLastThrone-0.17.0.rbxlx` 시험 빌드 | 결과물은 Git에서 제외된 로컬 파일이며 다른 체크아웃에 자동 제공되지 않는다. [해시·검증](../evidence/k0/build.md) |
 
-확인된 범위: 격리 Studio의 스킬 동작 R6/R15 검사 30개, 스킬별 타격 효과 검사 99개, 서버 전투 검사 376개, 무기 검사 2,177개, 기존 근접 동작 검사 40개 통과. 빌드 전 격리 R15 Player에서 Rapid Fire 3발과 실제 Aimed Shot 적중 시 효과, Provoke 표식 및 Whirlwind 몸통 회전을 확인했다. 모든 스킬의 Player 시각 수용, 모바일·패드·다인·게시 클라이언트 및 최종 밸런스는 미검증이다. 기존 `203785492` 자산 유형 경고가 관측됐다. [기록](../evidence/k0/starter-skill-visuals.md).
+확인된 범위: 고정 0.17.0 빌드 스모크 451개 및 격리 Studio의 스킬 동작 R6/R15 검사 30개, 스킬별 타격 효과 검사 99개, 서버 전투 검사 376개, 무기 검사 2,177개, 기존 근접 동작 검사 40개 통과. 빌드 전 격리 R15 Player에서 Rapid Fire 3발과 실제 Aimed Shot 적중 시 효과, Provoke 표식 및 Whirlwind 몸통 회전을 확인했다. 모든 스킬의 Player 시각 수용, 모바일·패드·다인·게시 클라이언트 및 최종 밸런스는 미검증이다. 기존 `203785492` 자산 유형 경고가 관측됐다. [기록](../evidence/k0/starter-skill-visuals.md).
 
 ## 최신 사용자 결정
 

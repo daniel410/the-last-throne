@@ -306,3 +306,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 882,976 bytes, SHA-256 `dfa0d389f0fc50c7c8fd71bcf77110d55b148a8c749004c54f1b5f1889d0721d`, Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과, 수집 런타임 오류 0, Player 0. [로그](dwarf-elf-0160-smoke.log) |
 | 소스·실제 Play 및 한계 | 서버 fixture 374개, 로컬 규칙 122개·세션 89개 통과. 빌드 전 동일 소스 R15 Player에서 드워프·엘프의 기술 이름·1~3 입력·Stamina·쿨다운 및 엘프 화살 시퀀스 확인. 실제 Player 다중 적 광역·연출의 시각 수용, 최종 빌드 Player Play, 실기기·다인·게시 환경은 미검증. 기존 `203785492` 자산 유형 경고 재관측. [상세](dwarf-elf-starter-skills.md). 릴리스 태그·Roblox 게시 없음. |
+
+## 0.17.0 — 기본 스킬 동작·적중 효과
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `b5b972cb2d070e04ceb32cafd9fd4173ea1732a4`, `VERSION=0.17.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.17.0/TheLastThrone-0.17.0.rbxlx`, 종료 0 |
+| 결과물 | 892,120 bytes, SHA-256 `4e76f1cb6a43e7e9d2ecb85a012554d7deb994104f723e0ed26cc7ea3a9d9c18`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과, 수집 런타임 오류 0, Player 0. [로그](skill-visuals-0170-smoke.log) |
+| 소스·실제 Play 및 한계 | 스킬 자세 30·타격 효과 99·서버 376·기본 근접 40·무기 2,177개 통과. 빌드 전 격리 R15 Player에서 Elf 실제 명중 효과·Rapid Fire 시점, Knight 도발 표시·몸통 회전 확인. 전체 Player 시각 수용, 최종 빌드 Player Play, 실기기·다인·게시 환경은 미검증. 기존 `203785492` 자산 유형 경고 재관측. [상세](starter-skill-visuals.md). 릴리스 태그·Roblox 게시 없음. |
