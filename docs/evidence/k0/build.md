@@ -286,3 +286,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 874,789 bytes, SHA-256 `9a15ed5da472de845a9a0e7967d3baa5303f127be766f306649b0eea65c7dd93`, Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과, 수집 런타임 오류 0, Player 0. [로그](mage-spells-0140-smoke.log) |
 | 소스·실제 Play 및 한계 | 격리 Studio 서버 fixture 332개, 로컬 규칙 122개·세션 89개 통과. 빌드 전 동일 소스 R15 Player에서 세 주문 이름·1~3 입력·MP·쿨다운 확인. Gravity 실전 적중·시각 수용, 최종 빌드 Player Play, 실기기·다인·게시 환경 미검증. 기존 `203785492` 자산 유형 경고 재관측. [상세](mage-basic-spells.md). 릴리스 태그·Roblox 게시 없음. |
+
+## 0.15.0 — 기사 기본 스킬·Gravity 광역
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `8e9dc6eb8e9fe9e90d471798f3f617a10c91264a`, `VERSION=0.15.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.15.0/TheLastThrone-0.15.0.rbxlx`, 종료 0 |
+| 결과물 | 879,255 bytes, SHA-256 `dc9cade18d4c75b5de1f6ff85bb57958015d4aeea360c0074288bc36991f03e5`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | 최초 스모크는 Roblox Studio TexturePack 업로드 429 요청 제한 오류가 수집되어 실패했다. [원본 로그](knight-gravity-0150-smoke-initial.log). 제한 시간이 지난 후 같은 빌드 파일의 재검사에서 451개 통과, 런타임 오류 0, Player 0. [재검사 로그](knight-gravity-0150-smoke.log) |
+| 소스·실제 Play 및 한계 | 서버 fixture 351개, 로컬 규칙 122개·세션 89개 통과. 빌드 전 동일 소스 R15 Player에서 기사 세 기술의 이름·1~3 입력·Stamina·쿨다운 확인. 실제 Player 다중 적 광역·도발·시각 수용, 최종 빌드 Player Play, 실기기·다인·게시 환경은 미검증. 기존 `203785492` 자산 유형 경고 재관측. [상세](knight-gravity-area.md). 릴리스 태그·Roblox 게시 없음. |
