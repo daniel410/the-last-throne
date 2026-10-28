@@ -20,6 +20,7 @@ local report = { kind = "K0_TIMING_NATIVE", checks = 0, cases = {}, failures = {
 	limits = "Missed unsampled windows and eligible buffered commands have a 0.25-second experimental processing cap; current position/facing/defense is used",
 	players = #Players:GetPlayers(), realCharacterCases = 0, identityMockCases = 0 }
 local api, privateModule, fixture, enemyFolder, characters, startedRun
+local contexts = {}
 local realPlayer, realSnapshot
 local origin = Vector3.new(10000, 1000, 10000)
 local T = 0 -- exact boundary ages do not subtract a large synthetic epoch
@@ -52,6 +53,7 @@ local function resetCase()
 		for _, state in pairs(api.playerStates) do api.clearAction(state) end
 		table.clear(api.playerStates)
 		table.clear(api.enemyStates)
+		table.clear(contexts)
 	end
 	if enemyFolder then enemyFolder:ClearAllChildren() end
 	if characters then characters:ClearAllChildren() end
@@ -98,11 +100,14 @@ local function playerState(preferReal)
 	end
 	local state = { player = player, character = model, humanoid = humanoid, root = root,
 		baseClassId = "knight", attackProfile = api.Config.BasicAttackProfiles.knight, attackSeq = 0,
+		heroId = "timing-hero", heroEpoch = 1, characterGeneration = 1,
 		mode = "Idle", stamina = api.Config.MaxStamina, combo = 0, lastAttackFinished = -math.huge,
 		lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge, regenAt = math.huge,
 		stunnedUntil = 0, feedbackSeq = 0, lastMotionPosition = root.Position,
 		lastSafePivot = model:GetPivot(), lastMotionAt = T, movementBudget = api.Config.MovementBudget,
 		tokens = api.Config.RemoteBurst, lastRefill = T }
+	model:SetAttribute("K0SpawnReady", true)
+	contexts[player] = { heroId = "timing-hero", baseClassId = "knight", epoch = 1, characterGeneration = 1, character = model }
 	api.playerStates[player] = state
 	return state
 end
@@ -148,6 +153,7 @@ return {
  Config=Config, Rules=Rules, playerStates=playerStates, enemyStates=enemyStates,
  setEnemyFolder=function(value) enemyFolder=value end,
  setClock=function(value) now=function() return value end end,
+	setResolver=function(value) contextResolver=value end,
  startAttack=startAttack, beginEnemyAttack=beginEnemyAttack, acceptAction=acceptAction,
  stepPlayer=stepPlayer, stepEnemy=stepEnemy, processCombatSamples=processCombatSamples,
  clearAction=clearAction, markDead=markDead, resetEnemyAttack=resetEnemyAttack,
@@ -161,6 +167,11 @@ return {
 	privateModule.Source = instrumented
 	privateModule.Parent = production.Parent -- preserves script.Parent.K0Rules resolution
 	api = require(privateModule)
+	api.setResolver(function(player, character)
+		local context = contexts[player]
+		if context and context.character == character then return context end
+		return nil
+	end)
 	report.originalSourceBytes = #original
 	report.remoteCallbackBytes = #remoteExpression
 	report.heartbeatCallbackBytes = #heartbeatExpression

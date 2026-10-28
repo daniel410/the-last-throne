@@ -15,7 +15,7 @@ assert(not RunService:IsRunning(), "K0 smoke requires an idle isolated Studio")
 assert(ReplicatedStorage:FindFirstChild("Shared") and ReplicatedStorage.Shared:FindFirstChild("K0Config"), "K0 shared sources missing")
 assert(ServerScriptService:FindFirstChild("Server"), "K0 server bootstrap missing")
 
-local report = { kind = "K0_NATIVE_SMOKE", checks = 0, failures = {}, compiledModules = {}, runtimeErrors = {}, players = 0, enemies = {}, respawns = {}, assetLoads = {}, spawnCoverage = "Spawn instance only; initial Player placement and respawn require real Play", combatCoverage = "Three idle enemy presets and death/respawn only; real Player aggro, attacks, damage and Goblin spacing require Play", assetCoverage = "Actual TD MeshParts in isolated Studio; published RPG permissions and visible Play presentation require separate evidence" }
+local report = { kind = "K0_NATIVE_SMOKE", checks = 0, failures = {}, compiledModules = {}, runtimeErrors = {}, players = 0, enemies = {}, respawns = {}, assetLoads = {}, spawnCoverage = "Spawn instance only; initial Player placement and respawn require real Play", lobbyCoverage = "Dawnspire scene floor/bounds/spawn and native request/state remote creation only; actual Player lobby selection/start/UI and combat safety require separate evidence", combatCoverage = "Three idle enemy presets and death/respawn only; real Player aggro, attacks, damage and Goblin spacing require Play", assetCoverage = "Actual TD MeshParts in isolated Studio; published RPG permissions and visible Play presentation require separate evidence" }
 local function check(condition, label)
 	report.checks += 1
 	if not condition then table.insert(report.failures, label) end
@@ -188,6 +188,36 @@ local ok, err = xpcall(function()
 	local remote = ReplicatedStorage:FindFirstChild("Remotes") and ReplicatedStorage.Remotes:FindFirstChild("K0Action")
 	check(remote and remote:IsA("RemoteEvent"), "server creates K0Action RemoteEvent")
 	check(field:FindFirstChild("Spawn") and field.Spawn:IsA("SpawnLocation"), "safe spawn exists")
+	local lobby = waitFor(function() return workspace:FindFirstChild("DawnspireLobbyPrototype") end, 10)
+	check(lobby and lobby:IsA("Model") and lobby:GetAttribute("TLTLobbyWorld") == true, "server creates owned Dawnspire lobby")
+	assert(lobby, "no Dawnspire lobby after server startup")
+	local lobbySpawn = lobby:FindFirstChild("Spawn")
+	check(lobbySpawn and lobbySpawn:IsA("SpawnLocation") and lobbySpawn.Enabled and lobbySpawn.Neutral and lobbySpawn.Anchored,
+		"lobby has enabled anchored neutral safe spawn")
+	local ground = lobby:FindFirstChild("Ground")
+	check(ground and ground:IsA("BasePart") and ground.Anchored and ground.CanCollide, "lobby has solid anchored ground")
+	if ground and lobbySpawn then
+		local ray = RaycastParams.new()
+		ray.FilterType, ray.FilterDescendantsInstances = Enum.RaycastFilterType.Include, { ground }
+		local support = workspace:Raycast(lobbySpawn.Position + Vector3.new(0, 8, 0), Vector3.new(0, -20, 0), ray)
+		check(support and support.Instance == ground, "lobby spawn stands above its continuous ground")
+		check((lobbySpawn.Position - field.Spawn.Position).Magnitude > 100, "lobby is spatially separated from training enemies")
+		report.lobby = { spawnX = lobbySpawn.Position.X, spawnY = lobbySpawn.Position.Y, spawnZ = lobbySpawn.Position.Z,
+			trainingDistance = (lobbySpawn.Position - field.Spawn.Position).Magnitude }
+	end
+	local bounds = lobby:FindFirstChild("SafetyBounds")
+	check(bounds and bounds:IsA("Folder") and #bounds:GetChildren() == 4, "lobby has four safety boundaries")
+	if bounds then
+		for _, barrier in ipairs(bounds:GetChildren()) do
+			check(barrier:IsA("BasePart") and barrier.Anchored and barrier.CanCollide and barrier.CanQuery, "solid lobby safety boundary " .. barrier.Name)
+		end
+	end
+	for _, name in ipairs({ "K0HeroRequest", "K0HeroState" }) do
+		local lobbyRemote = ReplicatedStorage.Remotes:FindFirstChild(name)
+		check(lobbyRemote and lobbyRemote:IsA("RemoteEvent"), "server creates lobby remote " .. name)
+	end
+	local sameLobby = require(ServerScriptService.Server.World.LobbyWorld).create()
+	check(sameLobby.folder == lobby and sameLobby.spawn == lobbySpawn, "repeated lobby create returns same validated scene/spawn")
 	local config = require(ReplicatedStorage.Shared.K0Config)
 	check(#enemies:GetChildren() == 3, "exactly three initial enemies")
 	check(enemies:FindFirstChild("Slime") == nil, "Slime is not added to combat")

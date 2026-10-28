@@ -56,14 +56,18 @@ local Config = {
 	RemoteRefillPerSecond = 8,
 }
 
--- Knight is the only class selected in the current game. Dwarf and Mage are
--- single-hit melee test fixtures, not finalized balance, equipment or skills.
--- The Axe Thrower swings a hand axe; Mage swings a wooden staff. No projectile
--- is part of either basic attack. Keep Knight tied to the existing K0 values.
+-- Prototype-only basic attacks; these are not finalized class balance,
+-- equipment or skills. Dwarf swings a hand axe; Mage swings a wooden staff.
+-- Keep Knight tied to the existing K0 values. Elf uses one server-resolved
+-- ranged shot with a narrow forward aim assist, not a client damage claim.
 Config.BasicAttackProfiles = {
 	knight = {
 		id = "knight.sword.basic", attackPower = Config.AttackPower,
 		maxTargets = Config.AttackMaxTargets, maxHeight = Config.AttackHeight, attacks = Config.Attacks,
+	},
+	elf = {
+		id = "elf.bow.basic", attackPower = 100, maxTargets = 1, maxHeight = 10,
+		attacks = {{ windup = 0.22, active = 0.08, recovery = 0.30, damage = 0.70, posture = 8, range = 55, angle = 45 }},
 	},
 	dwarf = {
 		id = "dwarf.axe.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,

@@ -754,9 +754,48 @@ local ok, fatal = xpcall(function()
 			end)
 		end
 	end
-	case("elf-remains-a-static-preview", function()
-		check(clientVisual.samplePose("elf", "Active", 1) == nil, "Elf has no falsely implemented melee pose")
-		check(clientVisual.render(buildModels.elf.model, "Active", 1, 1 / 60) == false, "Elf preview is not reported as melee rendering")
+	case("elf-bow-pose-and-harmless-local-arrow", function()
+		local character = cloneRig("R15", "elfBowRender")
+		local model = Instance.new("Model")
+		model.Name, model.Parent = "QaElfAppearance", character
+		local result, reason = appearance.attachInto(model, character, "elf")
+		check(result ~= nil, "bow setup: " .. tostring(reason))
+		character:SetAttribute("K0ClassId", "elf")
+		character:SetAttribute("K0Combo", 1)
+		character:SetAttribute("K0AttackPhase", "Windup")
+		check(clientVisual.samplePose("elf", "Windup", 1) ~= nil, "Elf has an explicit bow pose")
+		check(clientVisual.renderCharacter(character, 1 / 30) == 1, "matching Elf bow renders")
+		local windup = result.joint.Transform
+		check(windup ~= CFrame.new(), "bow windup moves its joint")
+		character:SetAttribute("K0AttackPhase", "Active")
+		check(clientVisual.renderCharacter(character, 1 / 30) == 1 and result.joint.Transform ~= windup, "bow release pose differs")
+		local root = assert(character:FindFirstChild("HumanoidRootPart"))
+		local from, to = root.Position, root.Position + Vector3.new(0, 0, -10)
+		character:SetAttribute("K0ArrowVisual", string.format("1|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f", from.X, from.Y, from.Z, to.X, to.Y, to.Z))
+		local visualOrigin = result.tip and result.tip.WorldPosition or result.grip.Position
+		clientVisual.renderCharacter(character, 1 / 30)
+		local arrow = workspace:FindFirstChild("K0VisualArrow")
+		check(arrow and arrow:IsA("Model"), "server shot snapshot produces a visible local arrow")
+		check((arrow.Shaft.Position - visualOrigin).Magnitude < 0.01, "visual arrow starts at the authored bow socket")
+		for _, part in ipairs(parts(arrow)) do
+			check(part.Transparency == 0 and part.Anchored and not part.CanCollide and not part.CanTouch and not part.CanQuery,
+				"arrow is visible and does not collide or inflict touch damage: " .. part.Name)
+		end
+		check(#parts(arrow) >= 2 and #parts(arrow, "LuaSourceContainer") == 0, "local arrow has shape and no executable content")
+		clientVisual.renderCharacter(character, 1 / 30)
+		local count = 0
+		for _, child in ipairs(workspace:GetChildren()) do if child.Name == "K0VisualArrow" then count += 1 end end
+		check(count == 1, "one shot snapshot is consumed once")
+		arrow:Destroy()
+		local missingBow = cloneRig("R15", "elfMissingBow")
+		missingBow:SetAttribute("K0ClassId", "elf")
+		local fallback = assert(missingBow:FindFirstChild("HumanoidRootPart")).Position
+		missingBow:SetAttribute("K0ArrowVisual", string.format("1|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f",
+			fallback.X, fallback.Y, fallback.Z, fallback.X, fallback.Y, fallback.Z - 10))
+		clientVisual.renderCharacter(missingBow, 1 / 30)
+		local fallbackArrow = workspace:FindFirstChild("K0VisualArrow")
+		check(fallbackArrow and (fallbackArrow.Shaft.Position - fallback).Magnitude < 0.002, "late or missing bow uses server snapshot origin")
+		fallbackArrow:Destroy()
 	end)
 	case("source-library-immutable-after-all-builds-and-attachments", sourcesUnchanged)
 end, debug.traceback)

@@ -10,17 +10,20 @@ local Rules = require(script.Parent.K0Rules)
 local CombatService = {}
 local started = false
 local playerStates = {}
--- This in-memory server selection is fixed for a Player's entire session,
--- including respawns. Replicated attributes and remote arguments are display
--- data only; they are never consulted to choose a combat profile.
-local playerClasses = {}
+-- Hero selection and life generation are held by a trusted server service.
+-- Replicated attributes and remote arguments never select a combat profile.
 local activePlayers = {}
-local classResolver = function(_player) return "knight" end
+local heroClasses = {}
+local pendingCharacters = {}
+local contextResolver = function(_player, _character) return nil end
 local enemyStates = {}
 local enemyFolder
 local lastGoblinStart = -math.huge
 local hadLivingPlayer = false
 local nextEnemyId = 0
+-- K0 experiment: retain bow damage briefly and respond to the actual attacker
+-- without expanding an enemy's spawn-based leash or changing melee behavior.
+local RANGED_RETALIATION_SECONDS = 6
 
 local function now()
 	return os.clock()
@@ -59,18 +62,22 @@ local function rayParams(exclusions)
 	return params
 end
 
-local function unobstructed(first, second, excludeA, excludeB)
-	local delta = second - first
-	if delta.Magnitude < 0.01 then
-		return true
-	end
+local function combatRayParams(excludeA, excludeB)
 	local exclusions = { excludeA, excludeB }
 	-- Combatants do not count as wall cover for other combatants.
 	if enemyFolder then table.insert(exclusions, enemyFolder) end
 	for _, state in pairs(playerStates) do
 		if state.character.Parent then table.insert(exclusions, state.character) end
 	end
-	return workspace:Raycast(first, delta, rayParams(exclusions)) == nil
+	return rayParams(exclusions)
+end
+
+local function unobstructed(first, second, excludeA, excludeB)
+	local delta = second - first
+	if delta.Magnitude < 0.01 then
+		return true
+	end
+	return workspace:Raycast(first, delta, combatRayParams(excludeA, excludeB)) == nil
 end
 
 local function updateFeedback(state, value)
@@ -131,18 +138,47 @@ local function resetCombo(state)
 	state.character:SetAttribute("K0Combo", 0)
 end
 
+local function readCombatContext(player, character)
+	-- The session service must return a synchronous snapshot. A yielding or
+	-- failing resolver cannot postpone validation until after a hero switch.
+	local thread = coroutine.create(contextResolver)
+	local ok, context = coroutine.resume(thread, player, character)
+	if coroutine.status(thread) ~= "dead" then
+		pcall(coroutine.close, thread)
+		return nil
+	end
+	if not ok or type(context) ~= "table" or type(context.heroId) ~= "string"
+		or #context.heroId == 0 or #context.heroId > 128 or type(context.baseClassId) ~= "string"
+		or not Config.BasicAttackProfiles[context.baseClassId]
+		or not Rules.isFinite(context.epoch) or context.epoch < 1 or context.epoch % 1 ~= 0
+		or not Rules.isFinite(context.characterGeneration) or context.characterGeneration < 1
+		or context.characterGeneration % 1 ~= 0 then
+		return nil
+	end
+	local remembered = heroClasses[player] and heroClasses[player][context.heroId]
+	if remembered and remembered ~= context.baseClassId then return nil end
+	return context
+end
+
 local function alive(state)
-	return state and state.player.Parent == Players and state.player.Character == state.character
-		and state.character.Parent ~= nil and state.humanoid.Health > 0 and state.root.Parent ~= nil
+	if not state or playerStates[state.player] ~= state or state.player.Parent ~= Players or state.player.Character ~= state.character
+		or state.character.Parent == nil or state.character:GetAttribute("K0SpawnReady") ~= true
+		or state.humanoid.Health <= 0 or state.root.Parent == nil then
+		return false
+	end
+	local context = readCombatContext(state.player, state.character)
+	return context ~= nil and context.heroId == state.heroId and context.baseClassId == state.baseClassId
+		and context.epoch == state.heroEpoch and context.characterGeneration == state.characterGeneration
 end
 
 local function markDead(state)
-	if state.mode == "Dead" then
+	if playerStates[state.player] ~= state or state.mode == "Dead" then
 		return
 	end
 	state.queued = nil
 	state.counter = nil
 	clearAction(state)
+	state.character:SetAttribute("K0ArrowVisual", nil)
 	resetCombo(state)
 	setPlayerState(state, "Dead")
 end
@@ -409,7 +445,32 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	end
 end
 
--- All supported basic attacks use the same melee cone and obstruction checks.
+local function damageEnemy(state, enemy, attack, current)
+	attack.hits[enemy.model] = true
+	attack.hitCount = attack.hitCount + 1
+	if attack.counterDamage == nil then
+		attack.counterDamage = 0
+		if state.baseClassId == "knight" and state.counter and state.counter.expires > current then
+			attack.counterDamage = state.counter.bonus
+			state.counter = nil
+		end
+	end
+	local multiplier = enemy.mode == "Exposed" and 1.15 or 1
+	local damage = math.max(1, math.floor(attack.attackPower * (attack.definition.damage + attack.counterDamage) * multiplier + 0.5))
+	enemy.humanoid:TakeDamage(damage)
+	if enemy.humanoid.Health > 0 then
+		if state.baseClassId == "elf" then
+			local expires = current + RANGED_RETALIATION_SECONDS
+			enemy.rangedAttackers = enemy.rangedAttackers or {}
+			enemy.rangedAttackers[state] = expires
+			enemy.rangedAggroUntil = expires
+		end
+		damagePosture(enemy, attack.definition.posture, current)
+	end
+	updateFeedback(state, "Hit")
+end
+
+-- Knight, Dwarf and Mage share melee cone and obstruction checks.
 local function applySwordHits(state, current)
 	local attack = state.attack
 	if not attack or attack.hitCount >= attack.maxTargets then
@@ -438,24 +499,48 @@ local function applySwordHits(state, current)
 		if attack.hitCount >= attack.maxTargets then
 			break
 		end
-		local enemy = candidate.enemy
-		attack.hits[enemy.model] = true
-		attack.hitCount = attack.hitCount + 1
-		if attack.counterDamage == nil then
-			attack.counterDamage = 0
-			if state.baseClassId == "knight" and state.counter and state.counter.expires > current then
-				attack.counterDamage = state.counter.bonus
-				state.counter = nil
+		damageEnemy(state, candidate.enemy, attack, current)
+	end
+end
+
+-- One server-resolved shot per attack. The narrow aim assist chooses the
+-- nearest visible enemy; the endpoint is presentation data, never input.
+-- A missed Active window uses the existing bounded late-sample rule.
+local function applyArrowShot(state, current)
+	local attack = state.attack
+	if not attack or attack.arrowFired then return end
+	attack.arrowFired = true
+	local origin, target, nearest = state.root.Position, nil, math.huge
+	for _, enemy in pairs(enemyStates) do
+		if enemyAlive(enemy) and not attack.hits[enemy.model] then
+			local position = enemy.root.Position
+			local delta = position - origin
+			local distance = delta.Magnitude
+			local dot = facingDot(origin, attack.direction, position)
+			if Rules.withinCone(distance, math.abs(delta.Y), dot, attack.definition.range, attack.maxHeight, attack.definition.angle)
+				and (distance < nearest or (distance == nearest and (not target or enemy.id < target.id)))
+				and unobstructed(origin, position, state.character, enemy.model) then
+				target, nearest = enemy, distance
 			end
 		end
-		local multiplier = enemy.mode == "Exposed" and 1.15 or 1
-		local damage = math.max(1, math.floor(attack.attackPower * (attack.definition.damage + attack.counterDamage) * multiplier + 0.5))
-		enemy.humanoid:TakeDamage(damage)
-		if enemy.humanoid.Health > 0 then
-			damagePosture(enemy, attack.definition.posture, current)
-		end
-		updateFeedback(state, "Hit")
 	end
+	local endpoint
+	if target then
+		endpoint = target.root.Position
+	else
+		local delta = attack.direction * attack.definition.range
+		local wall = workspace:Raycast(origin, delta, combatRayParams(state.character, enemyFolder))
+		endpoint = wall and wall.Position or origin + delta
+	end
+	state.arrowSeq = state.arrowSeq + 1
+	state.character:SetAttribute("K0ArrowFrom", origin)
+	state.character:SetAttribute("K0ArrowTo", endpoint)
+	state.character:SetAttribute("K0ArrowSeq", state.arrowSeq)
+	-- A single replicated snapshot avoids combining endpoints from two shots
+	-- if separate attributes arrive in different replication updates.
+	state.character:SetAttribute("K0ArrowVisual", string.format("%d|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f",
+		state.arrowSeq, origin.X, origin.Y, origin.Z, endpoint.X, endpoint.Y, endpoint.Z))
+	if target then damageEnemy(state, target, attack, current) end
 end
 
 local function moveDodge(state, current)
@@ -589,7 +674,7 @@ local function processCombatSamples(current, requiredState)
 			local state = sample.player
 			if validPlayers[state] and alive(state) and state.mode == "Attack" and state.attack == attack then
 				attack.sampledActive = true
-				applySwordHits(state, current)
+				if state.baseClassId == "elf" then applyArrowShot(state, current) else applySwordHits(state, current) end
 			end
 		else
 			local enemy = sample.enemy
@@ -661,14 +746,20 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 	return consumedAction
 end
 
-local function closestTarget(enemy)
+local function closestTarget(enemy, current)
 	local closest, closestDistance
+	if enemy.rangedAttackers then
+		for attacker, expires in pairs(enemy.rangedAttackers) do
+			if current >= expires or not alive(attacker) then enemy.rangedAttackers[attacker] = nil end
+		end
+	end
 	for _, playerState in pairs(playerStates) do
 		if alive(playerState) then
 			local position = playerState.root.Position
 			local distance = horizontal(position - enemy.root.Position).Magnitude
 			local distanceFromSpawn = horizontal(position - enemy.spawnPosition).Magnitude
-			if distanceFromSpawn <= enemy.config.leashRange and distance <= enemy.config.aggroRange
+			local retaliating = enemy.rangedAttackers and current < (enemy.rangedAttackers[playerState] or 0)
+			if distanceFromSpawn <= enemy.config.leashRange and (distance <= enemy.config.aggroRange or retaliating)
 				and (not closestDistance or distance < closestDistance) then
 				closest, closestDistance = playerState, distance
 			end
@@ -755,6 +846,8 @@ local function resetEnemy(enemy)
 	enemy.pathPending = false
 	enemy.waypoints = nil
 	enemy.target = nil
+	enemy.rangedAttackers = nil
+	enemy.rangedAggroUntil = 0
 	enemy.pattern = 0
 	enemy.posture = enemy.config.posture
 	enemy.postureImmuneUntil = 0
@@ -814,16 +907,17 @@ local function stepEnemy(enemy, current, dt)
 		end
 		return
 	end
-	local target, distance = closestTarget(enemy)
+	local target, distance = closestTarget(enemy, current)
 	if not target or horizontal(enemy.root.Position - enemy.spawnPosition).Magnitude > enemy.config.leashRange then
 		enemy.target = nil
 		if horizontal(enemy.root.Position - enemy.spawnPosition).Magnitude > 2 then
 			setEnemyState(enemy, "Chase")
 			moveEnemy(enemy, enemy.spawnPosition, current)
 		else
-			if enemy.humanoid.Health < enemy.humanoid.MaxHealth then
+			if enemy.humanoid.Health < enemy.humanoid.MaxHealth and current >= (enemy.rangedAggroUntil or 0) then
 				resetEnemy(enemy)
 			else
+				if enemy.mode ~= "Idle" then stopEnemy(enemy) end
 				setEnemyState(enemy, "Idle")
 			end
 		end
@@ -890,58 +984,42 @@ local function registerEnemy(model, savedTemplate, savedPivot, savedId)
 	end)
 end
 
-local function resolveBaseClass(player)
-	local previous = playerClasses[player]
-	if previous ~= nil then
-		return previous or nil
-	end
-	-- Resolver is server-only; it may yield (a future profile load could do so).
-	-- A failed or unsupported result is pinned as false, never guessed as Knight.
-	local ok, classId = pcall(classResolver, player)
-	if not activePlayers[player] or player.Parent ~= Players then
-		return nil
-	end
-	previous = playerClasses[player]
-	if previous ~= nil then
-		return previous or nil
-	end
-	if not ok or type(classId) ~= "string" or not Config.BasicAttackProfiles[classId] then
-		playerClasses[player] = false
-		warn("K0 combat disabled: server class could not be resolved")
-		return nil
-	end
-	playerClasses[player] = classId
-	return classId
-end
-
 local function setupCharacter(player, character)
+	if not activePlayers[player] or player.Parent ~= Players or player.Character ~= character then return end
+	local current = playerStates[player]
+	if pendingCharacters[player] == character or (current and current.character == character) then return end
+	pendingCharacters[player] = character
 	task.spawn(function()
 		-- CharacterAdded precedes the engine's actual spawn placement. Do not
 		-- establish the movement baseline or enter combat before SpawnService
-		-- has confirmed the new life at the safe spawn.
-		while player.Parent == Players and player.Character == character and character:GetAttribute("K0SpawnReady") ~= true do
+		-- confirms placement and the session service activates this hero/life.
+		local humanoid, root, context
+		while activePlayers[player] and pendingCharacters[player] == character
+			and player.Parent == Players and player.Character == character do
+			humanoid = character:FindFirstChildOfClass("Humanoid")
+			root = character:FindFirstChild("HumanoidRootPart")
+			if humanoid and humanoid.Health <= 0 then break end
+			if character:GetAttribute("K0SpawnReady") == true and character:IsDescendantOf(workspace)
+				and humanoid and root and root:IsA("BasePart") then
+				context = readCombatContext(player, character)
+				if context then break end
+			end
 			task.wait(0.1)
 		end
-		if player.Parent ~= Players or player.Character ~= character or not character:IsDescendantOf(workspace) then
-			return
-		end
-		local humanoid = character:WaitForChild("Humanoid", 10)
-		local root = character:WaitForChild("HumanoidRootPart", 10)
-		if not humanoid or not root or not humanoid:IsA("Humanoid") or not root:IsA("BasePart")
-			or player.Parent ~= Players or player.Character ~= character or not character:IsDescendantOf(workspace)
-			or humanoid.Health <= 0 then
-			return
-		end
-		local classId = resolveBaseClass(player)
-		if not classId or not activePlayers[player] or player.Parent ~= Players or player.Character ~= character
-			or not character:IsDescendantOf(workspace) or humanoid.Health <= 0 then
-			return
-		end
+		local stillPending = pendingCharacters[player] == character
+		if stillPending then pendingCharacters[player] = nil end
+		if not context or not stillPending or not activePlayers[player] or player.Parent ~= Players or player.Character ~= character
+			or not character:IsDescendantOf(workspace) or humanoid.Health <= 0 then return end
+		local classId = context.baseClassId
+		local classes = heroClasses[player]
+		if not classes then classes = {}; heroClasses[player] = classes end
+		classes[context.heroId] = classId
 		local attackProfile = Config.BasicAttackProfiles[classId]
 		local current = now()
 		local state = {
 			player = player, character = character, humanoid = humanoid, root = root, mode = "", stamina = Config.MaxStamina,
-			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0,
+			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, arrowSeq = 0,
+			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
 			combo = 0, lastAttackFinished = -math.huge, lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge,
 			regenAt = current, stunnedUntil = 0, feedbackSeq = 0, attack = nil, queued = nil, counter = nil,
 			lastMotionPosition = root.Position, lastSafePivot = character:GetPivot(), lastMotionAt = current, movementBudget = Config.MovementBudget,
@@ -951,8 +1029,15 @@ local function setupCharacter(player, character)
 		humanoid.MaxHealth = Config.MaxHealth
 		humanoid.Health = Config.MaxHealth
 		character:SetAttribute("K0ClassId", classId)
+		character:SetAttribute("K0HeroId", context.heroId)
+		character:SetAttribute("K0HeroEpoch", context.epoch)
+		character:SetAttribute("K0CharacterGeneration", context.characterGeneration)
 		character:SetAttribute("K0AttackProfileId", attackProfile.id)
 		character:SetAttribute("K0AttackSeq", 0)
+		character:SetAttribute("K0ArrowSeq", 0)
+		character:SetAttribute("K0ArrowFrom", nil)
+		character:SetAttribute("K0ArrowTo", nil)
+		character:SetAttribute("K0ArrowVisual", nil)
 		character:SetAttribute("K0MaxStamina", Config.MaxStamina)
 		character:SetAttribute("K0Stamina", Config.MaxStamina)
 		character:SetAttribute("K0Combo", 0)
@@ -976,13 +1061,13 @@ local function setupPlayer(player)
 	end
 end
 
--- The optional resolver is supplied by a trusted server bootstrap, never by a
--- remote. The current bootstrap omits it and can therefore select only Knight.
-function CombatService.start(enemies, serverClassResolver)
+-- Resolver is supplied only by the trusted hero session server. It must return
+-- nil or a non-yielding {heroId, baseClassId, epoch, characterGeneration}.
+function CombatService.start(enemies, serverContextResolver)
 	assert(not started, "K0 combat service already started")
 	assert(enemies and enemies:IsA("Folder"), "K0 combat needs an enemy Folder")
-	assert(serverClassResolver == nil or type(serverClassResolver) == "function", "K0 class resolver must be a server function")
-	if serverClassResolver then classResolver = serverClassResolver end
+	assert(type(serverContextResolver) == "function", "K0 combat needs a server hero context resolver")
+	contextResolver = serverContextResolver
 	started = true
 	enemyFolder = enemies
 	local remotes = ReplicatedStorage:FindFirstChild("Remotes")
@@ -1007,7 +1092,8 @@ function CombatService.start(enemies, serverClassResolver)
 	Players.PlayerAdded:Connect(setupPlayer)
 	Players.PlayerRemoving:Connect(function(player)
 		activePlayers[player] = nil
-		playerClasses[player] = nil
+		heroClasses[player] = nil
+		pendingCharacters[player] = nil
 		local state = playerStates[player]
 		if state then
 			clearAction(state)

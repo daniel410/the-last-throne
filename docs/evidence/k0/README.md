@@ -1,16 +1,16 @@
 # Deepwood 기사 K0 원형 작업 기록
 
-2026-10-28 · 총괄: DIR · 작업: TLT-002/003/005/006/007/021/026/030~034 일부
+2026-10-28 · 총괄: DIR · 작업: TLT-002~008/014/021/026/030~034 일부
 
 ## 목적과 현재 범위
 
-Deepwood의 평탄한 훈련장에서 플레이어가 기사로 Goblin, Orc Warrior, Ogre의 전방 공격을 보고 검·방패·회피를 시험하는 첫 원형이다. 월드는 임시 자산이며, 기사 검·방패와 적 외형은 TD 원본 메시·텍스처를 사용한다. 드워프·엘프 무기와 신규 지팡이는 직업 외형 어댑터에 준비했지만 현재 선택할 수 있는 직업은 기사뿐이다. Slime 원본과 어댑터도 포함하되 슬라임 전투는 아직 추가하지 않는다. 스토리 임무, 성장·장비 소유, 저장, 상품, 공통 지갑과 TD↔RPG 포탈은 연결하지 않았다. 이 원형은 선행 게이트나 각 백로그 티켓의 전체 수용을 대신하지 않는다.
+Deepwood의 평탄한 훈련장에서 플레이어가 네 기초 직업으로 Goblin, Orc Warrior, Ogre를 상대로 기본 공격과 회피를 시험하는 첫 원형이다. Dawnspire 시험 로비에서 각 직업의 영웅을 하나씩 만들고 튜토리얼에 들어갈 수 있다. 월드는 임시 자산이며, 초상·기사 검·방패·엘프 활·드워프 도끼와 적 외형은 TD 원본 메시·텍스처를 사용하고 마법사 지팡이는 새로 만들었다. 현재 플레이어 본체는 Roblox 아바타와 TD 직업 색상이다. Slime 원본과 어댑터도 포함하되 슬라임 전투는 아직 추가하지 않는다. 세션 영웅은 저장되지 않으며, 스토리 임무, 성장·장비 소유, 상품, 공통 지갑과 TD↔RPG 포탈은 연결하지 않았다. 이 원형은 선행 게이트나 각 백로그 티켓의 전체 수용을 대신하지 않는다.
 
 | 구성 | 소스와 확인해야 할 계약 |
 | --- | --- |
 | 월드 | `src/server/World/TrainingField.luau`: 안전 시작·96×96 공터·엄폐·TD 외형을 연결한 적. [독립 지형/물리 기록](world-design.md)과 통합 플레이 검증을 구분한다. |
 | 전투 | `src/server/Combat/CombatService.luau`, `K0Rules.luau`, `src/shared/K0Config.luau`: 서버 시간과 서버 위치로 검격·방어·회피·피해·적 AI를 판정한다. 수치와 입력 제한은 K0 실험용이다. |
-| 시각 | `src/server/Cosmetics/KnightAppearance.luau`·`WeaponAppearance.luau`: R6/R15 TD 원본 검·방패, 후속 직업의 무기 어댑터. `src/client/K0SwordVisual.luau`, `K0Telegraphs.luau`: 서버 전투 상태에 따른 로컬 근접 무기 연출과 공격 예고. 연출은 판정을 계산하지 않는다. |
+| 시각 | `src/server/Cosmetics/KnightAppearance.luau`·`WeaponAppearance.luau`: R6/R15 TD 원본 검·방패와 직업별 무기. `HeroPalette.luau`는 TD 직업 색상. `src/client/K0SwordVisual.luau`, `K0Telegraphs.luau`: 서버 전투 상태에 따른 무기 연출과 공격 예고. 연출은 판정을 계산하지 않는다. |
 | 조작/UI | `src/client/init.client.luau`, `K0Hud.luau`: PC 왼쪽 클릭/오른쪽 클릭 유지/Space, 패드 R2/L2/B, 터치 공격/방어/회피 버튼. 문자열은 `src/shared/K0Text.luau`의 en-US 키를 사용한다. |
 | 기존 원본 | [TD 몬스터 연결 결과](td-monster-integration.md), [기존 원본 기록](td-monster-sources.md), [오크 원본 기록](orc-source.md)에 채택한 runtime과 Meshy 원본 경로·해시를 고정했다. 이전 [TD 3D 조사](asset-audit.md)와 조사 시점을 구분한다. [Studio 로딩 조사](asset-load-probe.md)는 소유자 컨텍스트의 후보 12개 preload 성공을 확인했으며, RPG 게시 환경 권한·최종 리그/모션은 별도다. |
 
@@ -23,6 +23,7 @@ HP 1000, 공격력 100, 스태미나 100은 전투 실험 프리셋이다. 스�
 - 독립 QA와 첫 게임 빌드 결과는 각각 [QA 기록](qa.md), [빌드 기록](build.md)에 남긴다. 기록이 실제로 추가되기 전에는 이를 통과 증거로 간주하지 않는다.
 - 첫 리뷰의 프레임 건너뜀·입력 버퍼 수정과 한계는 [전투 타이밍 기록](combat-timing-fix.md)에 분리해 남긴다. 검 방향과 캐릭터 회전, 메뉴/채팅 진입 시 홀드 정리는 후속 과제다.
 - TD 원본 플레이어 무기·신규 지팡이·드워프/마법사의 근접 기본 공격과 검증 조건은 [플레이어 무기 기록](player-weapons.md)에 남긴다.
+- 세션 영웅 생성·네 직업·로비/튜토리얼 전환의 구현과 검증 조건은 [영웅 로비 기록](hero-lobby.md)에 남긴다.
 - 격리 Studio에서 PC 단발·홀드 입력과 오크 교전은 일부 확인했다. 다음은 R3/R4를 고치고 Goblin·Ogre 전투 순환과 터치·게임패드, 다인·네트워크 악용과 지연을 확인하는 것이다. 이후 TD 자산의 현재 권한·대상 Experience 로드를 검증하고 실측에 맞게 리그와 모션을 교체한다.
 - 공통 지갑/상품은 [TD 지갑 읽기 전용 감사](td-wallet-audit.md)를 시작점으로 writer 전수 확인과 중복 처리 계약을 완성한다. 운영 데이터, TD 시작 Place, 지갑과 구매권은 변경하지 않는다.
 

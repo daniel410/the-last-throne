@@ -136,7 +136,8 @@ function Hud.create()
 	local status = panel(root, "Status", UDim2.fromOffset(16, 16), UDim2.fromOffset(248, 132))
 	local statusScale = Instance.new("UIScale")
 	statusScale.Parent = status
-	text(status, "Class", Text.ClassKnight, UDim2.fromOffset(14, 8), UDim2.fromOffset(130, 20), 14, COLORS.gold)
+	local classLabel = text(status, "Class", "", UDim2.fromOffset(14, 8), UDim2.fromOffset(120, 20), 11, COLORS.gold)
+	classLabel.TextTruncate = Enum.TextTruncate.AtEnd
 	local state = text(status, "State", Text.State.Idle, UDim2.new(1, -109, 0, 8), UDim2.fromOffset(95, 20), 10, COLORS.muted)
 	state.TextXAlignment = Enum.TextXAlignment.Right
 	local setHealth = bar(status, Text.Health, 32, COLORS.red)
@@ -171,6 +172,31 @@ function Hud.create()
 	local block, blockHint = action(actions, "Block", Text.Block, Text.HintHold, UDim2.fromOffset(72, 0), 68)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintSpace, UDim2.fromOffset(0, 91), 68)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(134, 71), 88)
+	local back = Instance.new("TextButton")
+	back.Name = "BackToLobby"
+	back.AnchorPoint = Vector2.new(1, 0)
+	back.Position = UDim2.new(1, -16, 0, 16)
+	back.Size = UDim2.fromOffset(168, 42)
+	back.BackgroundColor3 = COLORS.blue
+	back.BorderSizePixel = 0
+	back.Font = Enum.Font.GothamBold
+	back.TextSize = 12
+	back.TextColor3 = COLORS.cream
+	back.Text = Text.BackToLobby
+	back.Selectable = true
+	back.Parent = root
+	local backScale = Instance.new("UIScale")
+	backScale.Parent = back
+	round(back, 8)
+	outline(back, COLORS.gold, 1)
+	local practice = panel(root, "Practice", UDim2.fromOffset(16, 162), UDim2.fromOffset(344, 112))
+	local practiceScale = Instance.new("UIScale")
+	practiceScale.Parent = practice
+	text(practice, "Title", Text.PracticeTitle, UDim2.fromOffset(12, 8), UDim2.new(1, -24, 0, 18), 11, COLORS.gold)
+	local objective = text(practice, "Objective", Text.Practice.Move, UDim2.fromOffset(12, 30), UDim2.new(1, -24, 0, 42), 12)
+	objective.TextWrapped = true
+	local note = text(practice, "Note", Text.Practice.Note, UDim2.fromOffset(12, 76), UDim2.new(1, -24, 0, 28), 10, COLORS.muted)
+	note.TextWrapped = true
 
 	local function updateScale()
 		local camera = Workspace.CurrentCamera
@@ -180,8 +206,13 @@ function Hud.create()
 		statusScale.Scale = scale
 		headingScale.Scale = scale
 		actionScale.Scale = scale
+		practiceScale.Scale = scale
+		backScale.Scale = scale
+		back.Size = UDim2.fromOffset(viewport.X < 500 and 126 or 168, 42)
+		back.TextSize = viewport.X < 500 and 10 or 12
+		practice.Position = UDim2.fromOffset(16, 16 + 132 * scale + 12)
 		-- On narrow screens, keep the title clear of the status panel.
-		heading.Visible = viewport.X >= 650
+		heading.Visible = viewport.X >= 860
 	end
 	local cameraConnection
 	local function bindCamera()
@@ -197,6 +228,20 @@ function Hud.create()
 		attack = attack,
 		block = block,
 		dodge = dodge,
+		back = back,
+		setVisible = function(visible)
+			gui.Enabled = visible
+		end,
+		setClass = function(classId)
+			classLabel.Text = Text.Class[classId] or ""
+			block.Visible = classId == "knight"
+		end,
+		setPractice = function(value, classId)
+			value = value or {}
+			objective.Text = not value.moved and Text.Practice.Move
+				or not value.attacked and (classId == "elf" and Text.Practice.ElfAttack or Text.Practice.Attack)
+				or not value.dodged and Text.Practice.Dodge or Text.Practice.Complete
+		end,
 		setHealth = setHealth,
 		setStamina = setStamina,
 		setState = function(value)
