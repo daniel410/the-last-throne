@@ -184,15 +184,16 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 		return CFrame.new()
 	end
 	if classId == "dwarf" then
-		-- The shoulder supplies the large vertical stroke; the grip helps the
-		-- axe head follow it without adding a sideways sweep on alternate hits.
-		if phase == "Windup" or phase == "Active" then return CFrame.Angles(math.rad(30), 0, 0) end
+		-- Raise the axe head overhead, then keep it pointed forward as the arm
+		-- extends through the downward stroke.
+		if phase == "Windup" then return CFrame.Angles(math.rad(-150), 0, math.rad(30)) end
+		if phase == "Active" then return CFrame.Angles(math.rad(-150), 0, 0) end
 		if phase == "Recovery" then return CFrame.Angles(math.rad(-15), 0, 0) end
 		return CFrame.new()
 	end
 	if classId == "mage" then
-		if phase == "Windup" then return CFrame.Angles(math.rad(-60), 0, 0) end
-		if phase == "Active" then return CFrame.Angles(math.rad(-90), 0, math.rad(30)) end
+		if phase == "Windup" then return CFrame.Angles(math.rad(-135), 0, 0) end
+		if phase == "Active" then return CFrame.Angles(math.rad(-150), 0, math.rad(-30)) end
 		if phase == "Recovery" then return CFrame.Angles(math.rad(-8), 0, 0) end
 	end
 	return CFrame.new()
@@ -289,11 +290,11 @@ function Visual.renderArms(character, dt)
 			local yaw = phase == "Windup" and 60 * side or phase == "Active" and -60 * side or 0
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		elseif classId == "dwarf" then
-			local pitch = phase == "Windup" and 45 or phase == "Active" and -45 or 20
+			local pitch = phase == "Windup" and 135 or phase == "Active" and 90 or 20
 			right = CFrame.Angles(math.rad(pitch), 0, 0)
 		elseif classId == "mage" then
-			local pitch = phase == "Windup" and 60 or phase == "Active" and 30 or 20
-			local yaw = phase == "Windup" and -30 or phase == "Active" and 30 or 0
+			local pitch = phase == "Windup" and 105 or phase == "Active" and 75 or 20
+			local yaw = phase == "Windup" and -30 or phase == "Active" and 45 or 0
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		end
 	end

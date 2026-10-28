@@ -40,6 +40,7 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 					return frame(joint.Part0) * joint.C0 * joint.Transform * joint.C1:Inverse()
 				end
 				local bladeOffset = classId == "knight" and weapon.grip.CFrame:ToObjectSpace(weapon.trailPart.CFrame) or nil
+				local hand = assert(character:FindFirstChild(rig == Enum.HumanoidRigType.R6 and "Right Arm" or "RightHand"))
 				local function sample(phase, frames)
 					character:SetAttribute("K0AttackPhase", phase)
 					for _ = 1, frames do
@@ -49,20 +50,24 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 					local grip = frame(weapon.grip)
 					local tip = classId == "knight" and (grip * bladeOffset):PointToWorldSpace(Vector3.new(0, weapon.trailPart.Size.Y / 2, 0))
 						or grip:PointToWorldSpace(weapon.tip.Position)
-					return character.HumanoidRootPart.CFrame:PointToObjectSpace(tip)
+					local root = character.HumanoidRootPart.CFrame
+					return root:PointToObjectSpace(tip), root:PointToObjectSpace(frame(hand).Position)
 				end
-				local windup, active = sample("Windup", 10), sample("Active", 6)
-				table.insert(report.samples, { rig = rig.Name, class = classId, combo = combo, windup = vector(windup), active = vector(active) })
+				local windup = sample("Windup", 10)
+				local active, activeHand = sample("Active", 6)
+				table.insert(report.samples, { rig = rig.Name, class = classId, combo = combo, windup = vector(windup), active = vector(active), activeHand = vector(activeHand) })
 				check(windup.Z < 0 and active.Z < -1, classId .. " weapon stays in front during attack")
 				if classId == "knight" then
 					local direction = combo == 2 and -1 or 1
 					check((active.X - windup.X) * direction > 6, "knight sweeps widely and alternates direction")
 					check(math.abs(active.Y - windup.Y) < 1, "knight stroke remains broadly horizontal")
 				elseif classId == "dwarf" then
-					check(windup.Y - active.Y > 2, "dwarf axe descends substantially from above")
+					check(windup.Y > 3.4 and windup.Y - active.Y > 3, "dwarf axe descends substantially from overhead")
 					check(math.abs(active.X - windup.X) < 1, "dwarf stroke remains broadly vertical")
+					check(active.Z < -3.7 and activeHand.Z < -0.35, "dwarf arm and axe extend forward")
 				else
 					check(windup.Y - active.Y > 2 and windup.X - active.X > 2, "mage staff moves down and across diagonally")
+					check(active.Z < -3.7 and activeHand.Z < -0.35, "mage arm and staff extend forward")
 				end
 			end, debug.traceback)
 			if character then character:Destroy() end
