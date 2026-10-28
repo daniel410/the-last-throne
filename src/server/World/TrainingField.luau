@@ -57,7 +57,8 @@ local function makeSign(parent)
 	local sign = Instance.new("Model")
 	sign.Name = "TrailSign"
 	sign.Parent = parent
-	anchoredPart(sign, "Post", Vector3.new(0.8, 6, 0.8), Vector3.new(-30, 3, 53),
+	-- Keep the post behind the printed face so it cannot cover the lettering.
+	anchoredPart(sign, "Post", Vector3.new(0.8, 6, 0.8), Vector3.new(-30, 3, 52.3),
 		COLORS.wood, Enum.Material.Wood, true)
 	local board = anchoredPart(sign, "Board", Vector3.new(10, 3.5, 0.5), Vector3.new(-30, 5, 53),
 		COLORS.wood, Enum.Material.Wood, false)

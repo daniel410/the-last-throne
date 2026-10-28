@@ -14,3 +14,16 @@
 | 릴리스 | 없음. Git 태그/Roblox 게시를 하지 않음 |
 
 Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못했다. 다음 빌드는 자동 캐릭터 생성과 안전 Spawn 설정 순서 및 사망 후 리스폰을 고친 뒤 `0.1.1`로 예약한다. 같은 `0.1.0` 결과물을 덮어쓰지 않는다. 실제 PC 입력·터치·패드·협동·지연은 별도 검증이다.
+
+## 0.1.1 — 안전 스폰 수정 빌드
+
+| 항목 | 실제 결과 |
+| --- | --- |
+| 입력 소스 | `2646dea48f8870e833cb33181be9ccdec22492de`, `VERSION=0.1.1`. 빌드 전에 `origin/main` 푸시와 원격 SHA 일치 확인 |
+| 도구·명령 | Rojo `7.7.1`: `rojo build default.project.json --output builds/0.1.1/TheLastThrone-0.1.1.rbxlx` |
+| 산출물 | `builds/0.1.1/TheLastThrone-0.1.1.rbxlx`, 약96 KiB, SHA-256 `9c265365a4ef872c1e043bcac63c2c2d3f7d0464e2d6b5d22ebafc28a1f91a5e`. 로컬 생성 파일이며 Git 제외 |
+| 콘텐츠·자산·스키마 | K0Config SHA `40d3c41ea8d993abc35f96853a77228489586cc3dcba4372abce519085baeb8e`, K0Text SHA `86a50b7923be4fd541ef2e99015c583bb9acf5b8094978d3fcfea5ed0b050a3a`, SpawnService SHA `b497c4b7166379f73035cdfa908bc9c44b04427266514ccb3f5b4b08c6865c77`. 외부 모델 대신 임시 도형, 저장 스키마 없음 |
+| 엔진 smoke | `run-in-roblox --place <위 빌드> --script tests/k0-build-smoke.luau`: 종료0, **39개 통과**, 실패·수집 런타임 오류0. Player0이며 실제 캐릭터 검사는 별도 |
+| 실제 Studio Play | PlaceId0 독립 세션에서 첫 캐릭터와 사망 뒤 새 캐릭터 모두 root `(-20, 3.096, 56)` 부근, `K0SpawnReady=true`, HP1000·스태미나100을 확인했다. 별도 Play에서 가상 마우스 홀드 연격1~3, 오른쪽 방어/해제, Space 회피와 회피 비용30을 관측했다. [QA 기록](qa.md)의 조건과 한계를 따른다. |
+| 남은 문제 | 화면에서 안내 표지의 기둥이 글자를 가리는 시각 결함 발견. 다음 버전에서 기둥을 글자 뒤로 옮겨 재확인한다. 적과의 실제 교전·터치/패드·네트워크와 다인은 미검증 |
+| 릴리스 | 없음. Git 태그/Roblox 게시를 하지 않음 |

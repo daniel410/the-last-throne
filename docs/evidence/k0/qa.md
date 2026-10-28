@@ -2,13 +2,13 @@
 
 2026-10-28 · 관련 작업: TLT-005/006/007/031/034의 첫 원형 · 담당: QA
 
-**초기 프로토타입 빌드를 차단할 확정 런타임 결함은 이번 검사에서 발견하지 않았다. K0 전체·G1 통과는 아니다.** 순수 경계56개, 외형 생명주기 모의 시험, 실제 Roblox Studio의 빈 Place 소스 probe37개 검사를 통과했다. 실제 Player가 없는 Run 모드였으며 조작·UI 렌더/사용성·원격 요청·플레이어 리스폰·모바일/네트워크는 미검증이다.
+**현재 수용 상태: 0.1.0의 실제 Play 첫 스폰 결함이 확인됐으며, 0.1.1 수정의 실제 Play 수용은 대기다.** 아래1~5절은 최초 소스의 순수56개·외형 모의 시험·Player=0 native Run37개 통과 기록이다. 이 검사는 첫 플레이어의 잘못된 스폰을 탐지하지 못했다. 최신 결함·0.1.1 후보39개 소스 probe와 필수 Play 절차는6절을 따른다. K0 전체·G1 통과는 아니다.
 
 ## 1. 범위·버전·환경
 
 - 코드 확인: `src/server/Combat`, `World`, `Cosmetics`, `src/client`, `src/shared/K0Config.luau`, `K0Text.luau`.
 - 검사 시 Git HEAD: `b9faae2ebaacedd531d5c1b65d3c7d328af23a8e`. 그 위 작업 트리의13개 소스 바이트를 probe manifest로 고정했다. 이 HEAD가 새 구현을 이미 포함한 커밋이라는 뜻은 아니다.
-- 게임 버전은 총괄이 첫 빌드용 `0.1.0`을 예약 중이다. QA는 VERSION·커밋/푸시·Rojo 게임 빌드·릴리스·게시를 실행하지 않았다.
+- 최초 검사 당시 총괄이 첫 빌드용 `0.1.0`을 예약 중이었다. QA는 VERSION·커밋/푸시·Rojo 게임 빌드·릴리스·게시를 실행하지 않았다. 이후 실제 빌드/Play의 판단은6절과 총괄 후속 증거로 구분한다.
 - 도구: 로컬 Lua, Rojo sourcemap, `run-in-roblox 0.3.0`, 실제 macOS Roblox Studio. 별도 `/private/tmp/tlt-k0-source-probe/tlt-k0-qa-empty.rbxlx`에 소스를 주입했다. 이 빈 XML/임시 Source fixture는 고정 커밋에서 만든 게임 빌드가 아니다.
 - 기존 Studio3개(TD 시작 Place와 `td-hero-status-empty.rbxlx`2개)는 전후 모두 Edit였다. 이 인스턴스를 수정/재생/종료하지 않았고 별도 probe는 실행 후 종료됐다.
 - TD 운영 코드·DataStore·상품/영수증·Place 게시·사용자 계정 잔액/성장은 변경하지 않았다.
@@ -88,3 +88,54 @@ probe의 `source-manifest.json` SHA256은 `0a698c879edef18f32b7ae7924fe6d834bddf
 | src/shared/Hello.luau | `68de9377a853c5dd3863901c12e8f29802b9d6d3dd01b99e44a8d332755cca8f` |
 | src/shared/K0Config.luau | `40d3c41ea8d993abc35f96853a77228489586cc3dcba4372abce519085baeb8e` |
 | src/shared/K0Text.luau | `abf34922a70d76a57847f950358d1accbb9faa4a62cf45d79c6b9c66815c9912` |
+
+## 6. 0.1.0 스폰 결함과 0.1.1 후보 검증
+
+### 실제 Play 결함: K0-QA-SPAWN-001
+
+총괄이 **0.1.0 고정 빌드의 실제 Studio Play**에서 첫 플레이어가 안전 Spawn `(-20,0.1,56)` 대신 root `(0,3,0)`에 생성돼 Goblin 피해를 받는 것을 관측했다. 심각도는 첫 입장/안전 시작을 깨뜨리는 **S1**이며, 이 관측은 총괄의 실제 Play 결과다. QA가 같은 현상을 별도로 조작해 재현한 것으로 기입하지 않는다.
+
+앞선 Run 모드 검사는 Player가0이고 Spawn 인스턴스의 존재만 확인했으므로 **이 결함을 탐지하지 못했다.** 두 적의 초기 물리가 안정됐거나37개가 통과했다는 사실은 플레이어 초기 위치·엔진의 캐릭터 생성 순서·이동 기준점·리스폰의 통과 증거가 아니었다. 실제 Play 수용을 생략할 수 없다.
+
+### 수정 후보의 독립 정적/모의/native 결과
+
+엔지니어 수정은 `Players.CharacterAutoLoads=false`를 프로젝트에 직렬화하고, 별도 SpawnService가 지정 `RespawnLocation`·로드/재시도·사망 후 생성·잘못된 위치 복구를 맡는 구조다. CombatService는 `K0SpawnReady=true`까지 전투 등록/이동 기준점 수집을 기다린다. 클라이언트에는 `LOADING`·`RETRYING`·행동 가능한 영어 재시도 안내가 추가됐다. 이 구현을 정적으로 검토했으며 **실제 Player 생성의 수정 수용은 아직 아니다.**
+
+| 검사 | 실제 결과 | 한계 |
+| --- | --- | --- |
+| `lua tests/k0-spawn.spec.lua` | 통과.4플레이어 모형·실패 재시도·늦은 Humanoid·위치 복구·중복 방지·사망/늦은 사망 이벤트·이탈을 결정적 스케줄러로 확인 | 엔지니어 fixture를 tests/로 이동해 독립 재실행. Roblox 엔진의 캐릭터 배치·실제 사용자/통신 검사가 아님 |
+| `rojo sourcemap --output /tmp/tlt-k0-011-qa-sourcemap.json` | 종료0, tests/spec 소스 런타임 매핑0 | 실제 Place 빌드·Player 생성 검사가 아님 |
+| 0.1.1 후보 소스 probe | 종료0, **39개 통과·실패0·수집 런타임 오류0**. ModuleScript12개 require(SpawnService 포함), 서버/클라이언트 엔트리2개 native 컴파일, 기존 적/물리/재생성 검사 유지 | Player0. 스폰 서비스 모듈/시작이 실행돼도 실제 스폰 수정은 판단 불가 |
+
+```bash
+python3 tests/make_k0_source_probe.py --output-dir /tmp/tlt-k0-011-source-probe
+run-in-roblox --place /private/tmp/tlt-k0-011-source-probe/tlt-k0-qa-empty.rbxlx --script /private/tmp/tlt-k0-011-source-probe/source-probe.luau
+```
+
+생성기는 프로젝트의 `CharacterAutoLoads=false`가 없으면 실패하고, 그 설정을 빈 Place에 동일하게 적용한다. Lua소스14개와 `default.project.json`1개의 해시를 입력으로 기록했다. 수정된 `K0Text`·`K0Hud`·클라이언트 엔트리도 native 컴파일 대상에 포함했다. smoke 결과에는 `spawnCoverage = Spawn instance only; initial Player placement and respawn require real Play`를 명시했다. 앞서 관측한 ContentId203785492 타입 불일치 경고는 이번에도 stdout에 나왔으며 원천 미확정 상태다.
+
+새 manifest SHA256은 `ff95a773b26263a0e47db86aad8faa30e40ed1e8e9e47c8e14b5f415a79c0f70`이다. 검사 종료 뒤15개 입력을 다시 해시해 변경0을 확인했다. 원본/출력은 `/private/tmp/tlt-k0-011-source-probe/`에 있다. QA는 이 과정에서 게임 빌드·버전/태그·커밋/푸시·기존 Studio Play를 실행하지 않았다.
+
+### 0.1.1 고정 빌드의 필수 실제 Play 절차
+
+다음 담당은 정확한 격리 Studio와 고정 빌드를 선택하는 총괄이다. **실제 Play를 시작하고 Player가1명 이상 존재하는지 확인한다. Run 모드·스크립트로 만든 가짜 Player/아바타·수동 Pivot으로 수정을 대신하지 않는다.** 결과에는 빌드 버전/소스 커밋/산출물 해시·Studio ID·Server/Client 컨텍스트·시각·화면/로그를 붙인다.
+
+1. **첫 입장/무입력3초:** Play 직후 첫 Character·root 위치를 가능한 빨리 기록하고, `RespawnLocation`이 `DeepwoodK0.Spawn`인지 확인한다. 로딩 중 위치와 `K0SpawnReady`/`K0SpawnStatus`·최초 `K0State`를 구분한다. 준비된 캐릭터는 안전 Spawn 근처에 있고, 전투가 준비되기 전에 원점에서 피해를 받거나 잘못된 이동 기준점에 고정되지 않아야 한다. 준비 후3초 동안 입력 없이 HP1000·적의 초기 공격 없음·안전 바닥을 확인한다.
+2. **첫 조작:** 실제 클라이언트에서 WASD 이동 후 정지, 마우스 공격 홀드로1/2/3연격, 오른쪽 방어 홀드/해제, Space 회피를 수행한다. 위치가 정상 변하고 원점으로 되감기지 않는지, 상태·스태미나·검/방패·영어 HUD가 실제 캐릭터와 일치하는지 화면/서버 상태로 확인한다. 스크립트로 상태만 바꾼 결과를 실제 입력 통과로 처리하지 않는다.
+3. **사망 후 리스폰:** 첫 캐릭터 인스턴스와 위치/시각을 기록한 뒤 격리 테스트 서버에서 의도적으로 HP0을 만든다. 사망 상태/입력 정리·설정된 재생성 지연 후 **새 캐릭터가 한 번만** 생기는지 확인한다. 새 root가 다시 안전 Spawn 근처에서 준비되고 HP1000/스태미나100으로 복구되는지, 무입력3초 동안 피해·원점 생성/되감김이 없는지 관측한다.
+4. **리스폰 뒤 재조작/입력 정리:** 이동·공격·방어/해제·회피를 다시 수행하고 이전 캐릭터의 홀드/연격/콜백이 새 생명에 이어지지 않는지 확인한다. 채팅 입력과 포커스 이탈 때 공격/방어 입력이 정리되는지, HUD가 새 캐릭터의 HP/스태미나를 구독하는지도 확인한다.
+5. **판정:** 첫 입장과 사망 후 안전 위치·초기 피해 방지·조작을 모두 확인한 실제 증거가 있어야 K0-QA-SPAWN-001을 수정 검증 완료로 바꾼다. 로딩 실패/재시도 안내 화면, 터치/패드·지연/실기기는 실행하지 않았다면 별도 미검증으로 남긴다.39개 native 성공만으로 이 결함을 닫지 않는다.
+
+현재 판정은 **0.1.1 후보의 정적/모의/native 서버 검사는 통과, 실제 Play 수정 검증 대기**다. 총괄이 실제 고정 빌드의 Play 결과를 후속 증거로 추가한다.
+
+## 7. 총괄의 0.1.1 고정 빌드 실제 Play 후속 확인
+
+2026-10-28 · 소스 `2646dea48f8870e833cb33181be9ccdec22492de`, 빌드 SHA-256 `9c265365a4ef872c1e043bcac63c2c2d3f7d0464e2d6b5d22ebafc28a1f91a5e`. 이 절은 위 독립 QA의 후보 판정을 실행 이후 갱신한다. 빌드/로그 범위는 [빌드 기록](build.md)과 같다.
+
+총괄이 `run-in-roblox`로 연 `PlaceId=0`의 별도 Studio Play 두 세션을 이용했다. TD와 기존 사용자의 Studio는 조작하지 않았다. 첫 세션에서는 Client의 첫 준비 상태가 root `(-20.014, 3.096, 56.011)`, Spawn 중심 `(-20, 0.1, 56)`, `K0SpawnReady=true`, `K0SpawnStatus=Ready`, `K0State=Idle`, HP1000/1000, 스태미나100이었다. 영어 HUD와 임시 검·방패도 존재하고 화면에 나타났다.
+
+같은 세션에서 Studio 가상 마우스 왼쪽을 1.7초 유지했을 때 클라이언트가 관찰한 최대 `K0Combo=3`이었다. 오른쪽 버튼을 누르고 있을 때 `Block`, 스태미나96을, 버튼을 놓은 뒤 `Idle`을 확인했다. Space 키에는 `Dodge` 상태와 스태미나 최저70, 시작 위치에서 약7stud 이동을 관찰했다. 이 결과는 Studio에서 주입한 입력이며 물리 PC·터치·패드의 실기기 검사나 적을 맞힌 실전 교전이 아니다.
+
+두 번째 별도 Play 세션에서는 준비된 첫 Character의 서버 HP를0으로 설정했다. 약5.8초 뒤 이전 객체와 다른 Character가 `(-20, 3.096, 56)`에서 준비됐고, `Idle`, HP1000/1000, 스태미나100과 `K0SpawnReady=true`를 확인했다. 수동 위치 이동은 사용하지 않았다. 이 두 관측으로 0.1.0의 원점 스폰 및 사망 후 원점 재생성 경로는 해당 조건에서 개선됐지만, 리스폰 후 재조작·3초 무입력·다인 동시 스폰·실제 네트워크의 전체 수용은 아직 남아 있으므로 작업 티켓 전체를 Done으로 바꾸지 않는다.
+
+화면에서 표지 기둥이 글자를 가리는 문제가 확인됐다. `0.1.2`의 시각 수정 후 별도 화면 검증이 필요하다. 적 추적·실제 피해/사선·방어 타이밍·모바일/게임패드·지연·오래된 원격 입력·서약 자원도 여전히 미검증 또는 미구현이다.
