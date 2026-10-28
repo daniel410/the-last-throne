@@ -183,3 +183,14 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 검사 | `tests/k0-melee-motion-native.luau`, 종료 0, 28개 통과. 실제 R6/R15 리그와 무기 소켓의 순운동학 검사. [로그](melee-swing-build-native.log) |
 | 소스 fixture 및 실제 Play | 기존 무기 2,177개 검사와 격리된 실제 R15 플레이의 무기 끝 위치 측정은 [작업 기록](melee-swing-motion.md) 참고. 이 빌드 파일 자체의 Player Play는 수행하지 않았다. |
 | 미검증·릴리스 | 사용자 화면 평가, 다양한 아바타 체형, R6 Play·다인·모바일·게시 환경은 미검증. Git 릴리스 태그·Roblox 게시 없음. |
+
+## 0.8.2 — 드워프·마법사 전방 공격 동작
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `52d80bffedba0b6e545a4e5bb8bebb1226574830`, `VERSION=0.8.2`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.8.2/TheLastThrone-0.8.2.rbxlx`, 종료 0 |
+| 결과물 | 837,921 bytes, SHA-256 `50db22edcaacf10ed7f1cf7863d8cab9881a86574fa6ade6a3ec8fe40b214b64`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-melee-motion-native.luau`, 종료 0, 32개 통과. R6/R15 관절 및 무기 소켓의 순운동학 검사. [로그](forward-melee-build-native.log) |
+| 소스 fixture 및 실제 Play | 기존 무기 2,177개 검사 및 격리된 R15 플레이 측정은 [작업 기록](forward-melee-motion.md) 참고. 이 빌드 파일 자체의 Player Play는 별도 수행하지 않았다. |
+| 미검증·릴리스 | 다양한 체형의 시각 평가, R6 실제 Play·다인·모바일·게시 환경은 미검증. Git 릴리스 태그·Roblox 게시 없음. |
