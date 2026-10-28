@@ -235,3 +235,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 847,736 bytes, SHA-256 `e077b556269a164ed5af0f675f544fb147c787b508515a42e66ab21c569fd3e2`, Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | `tests/k0-dodge-pose-native.luau` 60개, `tests/k0-melee-motion-native.luau` 40개, `tests/k0-timing-native.luau` 121개 통과. Player 0의 관절·서버 fixture 검사다. [회피](alternating-dodge-build-native.log), [무기](low-swing-build-native.log), [서버](alternating-dodge-build-timing.log) |
 | 실제 Play 및 한계 | 빌드 전 격리 R15 플레이의 발 교대·무기 궤적 측정은 [상세](low-swing-alternating-dodge.md) 참고. 이 빌드의 Player Play, 다양한 체형·R6·실기기·다인·게시 환경과 사용자 시각 평가는 미검증이다. 릴리스 태그·Roblox 게시 없음. |
+
+## 0.11.0 — 근접 표적 공격·높은 도끼 자세
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `49167bbd32a79b16f1234a4fa3190750680b61ca`, `VERSION=0.11.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.11.0/TheLastThrone-0.11.0.rbxlx`, 종료 0 |
+| 결과물 | 849,825 bytes, SHA-256 `0a6029b8dc0c0b39f765e6aea503d314f1b06013881b225c89e04380444f6b7c`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개, `tests/k0-melee-motion-native.luau` 40개, `tests/k0-basic-attacks-native.luau` 256개 통과. Player 0의 모델·관절·서버 fixture 검사다. [스모크](melee-target-0110-smoke.log), [동작](melee-target-0110-motion.log), [서버](melee-target-0110-server.log) |
+| 실제 Play 및 한계 | 빌드 전 동일 표적 코드로 격리된 R15 기사 플레이에서 마우스 클릭 표적·측면 자동 회전·피해를 확인했다. 도끼 높이의 최종 변경과 이 빌드 파일 자체의 Player Play, 다양한 체형·R6·실기기·다인·게시 환경과 사용자 시각 평가는 미검증. 기존 `203785492` 유형 경고가 재관측됐다. [상세](melee-target-high-axe.md). 릴리스 태그·Roblox 게시 없음. |
