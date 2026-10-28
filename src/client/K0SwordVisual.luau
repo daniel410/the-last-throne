@@ -19,9 +19,9 @@ local weaponPoses = {}
 local knightLoads = {}
 local elfIK = {}
 local MELEE = {
-	knight = { grip = "SwordGrip", joint = "K0SwordJoint", windup = 38, active = -85, recovery = -10, side = 45 },
-	dwarf = { grip = "WeaponGrip", joint = "PlayerWeaponJoint", windup = 58, active = -105, recovery = -15, side = 60 },
-	mage = { grip = "WeaponGrip", joint = "PlayerWeaponJoint", windup = 32, active = -92, recovery = -8, side = 48 },
+	knight = { grip = "SwordGrip", joint = "K0SwordJoint" },
+	dwarf = { grip = "WeaponGrip", joint = "PlayerWeaponJoint" },
+	mage = { grip = "WeaponGrip", joint = "PlayerWeaponJoint" },
 	elf = { grip = "WeaponGrip", joint = "PlayerWeaponJoint", bow = true },
 }
 
@@ -177,21 +177,23 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 		if phase == "Recovery" then return CFrame.Angles(math.rad(-90), 0, 0) end
 		return CFrame.new()
 	end
-	local side = combo == 2 and -1 or 1
 	if classId == "knight" then
-		-- Combine with the raised shoulder and -30 degree hand pose: the
-		-- blade points outward while sweeping across the forward arc.
-		if phase == "Windup" then return CFrame.Angles(math.rad(-115), 0, math.rad(-35 * side)) end
-		if phase == "Active" then return CFrame.Angles(math.rad(-125), 0, math.rad(35 * side)) end
+		-- Keep the blade extended while the shoulder sweeps it across the front.
+		if phase == "Windup" or phase == "Active" then return CFrame.Angles(math.rad(-120), 0, 0) end
 		if phase == "Recovery" then return CFrame.Angles(math.rad(-55), 0, 0) end
 		return CFrame.new()
 	end
-	if phase == "Windup" then
-		return CFrame.Angles(math.rad(spec.windup), 0, math.rad(-25 * side))
-	elseif phase == "Active" then
-		return CFrame.Angles(math.rad(spec.active), 0, math.rad(spec.side * side))
-	elseif phase == "Recovery" then
-		return CFrame.Angles(math.rad(spec.recovery), 0, 0)
+	if classId == "dwarf" then
+		-- The shoulder supplies the large vertical stroke; the grip helps the
+		-- axe head follow it without adding a sideways sweep on alternate hits.
+		if phase == "Windup" or phase == "Active" then return CFrame.Angles(math.rad(30), 0, 0) end
+		if phase == "Recovery" then return CFrame.Angles(math.rad(-15), 0, 0) end
+		return CFrame.new()
+	end
+	if classId == "mage" then
+		if phase == "Windup" then return CFrame.Angles(math.rad(-60), 0, 0) end
+		if phase == "Active" then return CFrame.Angles(math.rad(-90), 0, math.rad(30)) end
+		if phase == "Recovery" then return CFrame.Angles(math.rad(-8), 0, 0) end
 	end
 	return CFrame.new()
 end
@@ -282,12 +284,17 @@ function Visual.renderArms(character, dt)
 		elseif classId == "mage" and kind == "Arcane" then
 			right = CFrame.Angles(math.rad(70), 0, math.rad(-8))
 		elseif classId == "knight" then
-			local pitch = phase == "Windup" and 55 or phase == "Active" and 65 or 20
+			local side = character:GetAttribute("K0Combo") == 2 and -1 or 1
+			local pitch = phase == "Windup" and 60 or phase == "Active" and 60 or 20
+			local yaw = phase == "Windup" and 60 * side or phase == "Active" and -60 * side or 0
+			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
+		elseif classId == "dwarf" then
+			local pitch = phase == "Windup" and 45 or phase == "Active" and -45 or 20
 			right = CFrame.Angles(math.rad(pitch), 0, 0)
-		else
-			local pitch = phase == "Windup" and -50 or phase == "Active" and 95 or 20
-			local roll = classId == "dwarf" and 18 or 8
-			right = CFrame.Angles(math.rad(pitch), 0, math.rad(phase == "Active" and roll or -roll))
+		elseif classId == "mage" then
+			local pitch = phase == "Windup" and 60 or phase == "Active" and 30 or 20
+			local yaw = phase == "Windup" and -30 or phase == "Active" and 30 or 0
+			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		end
 	end
 	local function apply(joint, target)
@@ -304,6 +311,12 @@ function Visual.renderArms(character, dt)
 	end
 	apply(armJoint(character, "Left", "Shoulder"), left)
 	local rightShoulder, elbow = armJoint(character, "Right", "Shoulder"), armJoint(character, "Right", "Elbow")
+	if right and rightShoulder and (classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane")) then
+		-- Classic R6 shoulders use a different joint basis from R15. Express
+		-- these strokes in torso axes so both rigs travel the same way.
+		local basis = rightShoulder.C0.Rotation
+		right = basis:Inverse() * right * basis
+	end
 	if usesIK then
 		if rightShoulder then armPoses[rightShoulder] = nil end
 		if elbow then armPoses[elbow] = nil end
