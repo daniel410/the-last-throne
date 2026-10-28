@@ -5,6 +5,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local ContentProvider = game:GetService("ContentProvider")
+local Workspace = game:GetService("Workspace")
 
 local Visual = {}
 local started = false
@@ -162,7 +163,7 @@ local function monitorKnightMeshes(character)
 	end
 end
 
-function Visual.samplePose(classId, phase, combo, attackKind)
+function Visual.samplePose(classId, phase, combo, attackKind, skillId)
 	local spec = MELEE[classId]
 	if not spec then return nil end
 	if spec.bow then
@@ -186,6 +187,11 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 		if phase == "Recovery" then return CFrame.Angles(math.rad(-55), 0, 0) end
 		-- Tilt the blade forward while standing without changing the TD grip.
 		return CFrame.Angles(math.rad(-25), 0, 0)
+	end
+	if classId == "dwarf" and skillId == "dwarf.common.throw" then
+		if phase == "Windup" then return CFrame.Angles(math.rad(-95), 0, math.rad(20)) end
+		if phase == "Active" then return CFrame.Angles(math.rad(-135), 0, 0) end
+		if phase == "Recovery" then return CFrame.Angles(math.rad(-85), 0, 0) end
 	end
 	if classId == "dwarf" then
 		-- Raise the axe head overhead, then keep it pointed forward as the arm
@@ -261,6 +267,17 @@ local function updateElfIK(character, mode, phase, dt)
 	return true
 end
 
+-- Rapid Fire redraws between server-confirmed shots. No local timer can
+-- generate a projectile or damage; it only changes the bow/hand pose.
+function Visual.bowPhase(character, phase, clockTime)
+	if phase ~= "Active" or character:GetAttribute("K0SkillId") ~= "elf.common.rapid" then return phase end
+	local count = character:GetAttribute("K0RapidShotCount") or 0
+	local releasedAt = character:GetAttribute("K0RapidShotAt")
+	if count >= 3 then return "Active" end
+	if type(releasedAt) ~= "number" then return "Windup" end
+	return clockTime - releasedAt < 0.07 and "Active" or "Windup"
+end
+
 -- Avatar arms are presentation-only. PreSimulation runs after animation
 -- evaluation for both classic Motor6D and modern AnimationConstraint rigs.
 function Visual.renderArms(character, dt)
@@ -268,6 +285,8 @@ function Visual.renderArms(character, dt)
 	local mode = character:GetAttribute("K0State")
 	local phase = character:GetAttribute("K0AttackPhase")
 	local kind = character:GetAttribute("K0AttackKind")
+	local skillId = character:GetAttribute("K0SkillId")
+	if classId == "elf" then phase = Visual.bowPhase(character, phase, Workspace:GetServerTimeNow()) end
 	local right, left, rightElbow, torso, rightHipPose, rightKneePose, leftHipPose, leftKneePose
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
 	local usesIK = updateElfIK(character, mode, phase, elapsed)
@@ -287,7 +306,8 @@ function Visual.renderArms(character, dt)
 			if phase == "Windup" then
 				left = CFrame.Angles(math.rad(95), 0, math.rad(10))
 				right = CFrame.Angles(math.rad(65), math.rad(32), math.rad(-18))
-				rightElbow = CFrame.Angles(math.rad(-65), 0, 0)
+				rightElbow = CFrame.Angles(math.rad(skillId == "elf.common.aimed" and -75 or skillId == "elf.common.rapid" and -50 or -65), 0, 0)
+				if skillId == "elf.common.multi" then torso = CFrame.Angles(0, math.rad(-12), 0) end
 			elseif phase == "Active" then
 				left = CFrame.Angles(math.rad(95), 0, math.rad(10))
 				right = CFrame.Angles(math.rad(60), math.rad(12), math.rad(-23))
@@ -296,13 +316,27 @@ function Visual.renderArms(character, dt)
 				left = CFrame.Angles(math.rad(48), 0, math.rad(7))
 			end
 		elseif classId == "mage" and kind == "Arcane" then
-			right = CFrame.Angles(math.rad(70), 0, math.rad(-8))
+			local windup = phase == "Windup"
+			local active = phase == "Active"
+			if skillId == "mage.common.water_ball" then
+				right = CFrame.Angles(math.rad(windup and 45 or active and 85 or 45), math.rad(windup and -20 or 0), math.rad(-10))
+				left = CFrame.Angles(math.rad(windup and 55 or active and 70 or 25), math.rad(15), math.rad(15))
+			elseif skillId == "mage.common.gravity" then
+				right = CFrame.Angles(math.rad(windup and 110 or active and 90 or 45), math.rad(-10), math.rad(-20))
+				left = CFrame.Angles(math.rad(windup and 100 or active and 85 or 25), math.rad(15), math.rad(20))
+				torso = CFrame.Angles(math.rad(active and -8 or 5), 0, 0)
+			else
+				right = CFrame.Angles(math.rad(windup and 40 or active and 85 or 35), 0, math.rad(-8))
+			end
 		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.whirlwind" then
 			right = CFrame.Angles(math.rad(90), math.rad(phase == "Windup" and 80 or phase == "Active" and -80 or 0), 0)
-			torso = CFrame.Angles(0, math.rad(phase == "Windup" and 45 or phase == "Active" and -45 or 0), 0)
+			local startedAt = character:GetAttribute("K0SkillStartedAt")
+			local progress = type(startedAt) == "number" and math.clamp((Workspace:GetServerTimeNow() - startedAt - 0.25) / 0.18, 0, 1) or 0.5
+			torso = CFrame.Angles(0, phase == "Active" and -2 * math.pi * progress or math.rad(phase == "Windup" and 45 or 0), 0)
 		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.provoke" then
-			left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
-			right = CFrame.Angles(math.rad(70), 0, math.rad(-15))
+			local pitch = phase == "Windup" and 80 or phase == "Active" and 120 or 65
+			left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
+			right = CFrame.Angles(math.rad(phase == "Windup" and 50 or phase == "Active" and 85 or 35), 0, math.rad(-15))
 		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.bash" then
 			local pitch = phase == "Windup" and 90 or phase == "Active" and 125 or 70
 			left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
@@ -311,8 +345,16 @@ function Visual.renderArms(character, dt)
 			local pitch = phase == "Windup" and 60 or phase == "Active" and 60 or 20
 			local yaw = phase == "Windup" and 60 * side or phase == "Active" and -60 * side or 0
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
+		elseif classId == "dwarf" and skillId == "dwarf.common.throw" then
+			local pitch = phase == "Windup" and 145 or phase == "Active" and 78 or 40
+			right = CFrame.Angles(math.rad(pitch), math.rad(phase == "Windup" and -25 or 0), 0)
+			rightElbow = CFrame.Angles(math.rad(phase == "Windup" and -45 or 0), 0, 0)
+			left = CFrame.Angles(math.rad(phase == "Windup" and 35 or 50), 0, math.rad(15))
 		elseif classId == "dwarf" then
 			local pitch = phase == "Windup" and 165 or phase == "Active" and 75 or 65
+			if skillId == "dwarf.common.ground" then
+				left = CFrame.Angles(math.rad(phase == "Windup" and 115 or phase == "Active" and 50 or 25), 0, math.rad(20))
+			end
 			right = CFrame.Angles(math.rad(pitch), 0, 0)
 			-- The reference raises a bent arm, straightens it into the blow,
 			-- and keeps the axe forward during the follow-through.
@@ -338,7 +380,16 @@ function Visual.renderArms(character, dt)
 	end
 	apply(armJoint(character, "Left", "Shoulder"), left)
 	local waist = character:FindFirstChild("Waist", true)
-	if waist and (waist:IsA("Motor6D") or waist:IsA("AnimationConstraint")) then apply(waist, torso) end
+	if waist and (waist:IsA("Motor6D") or waist:IsA("AnimationConstraint")) then
+		apply(waist, torso)
+	else
+		local root = character:FindFirstChild("HumanoidRootPart")
+		local rootJoint = root and root:FindFirstChild("RootJoint")
+		if rootJoint and rootJoint:IsA("Motor6D") then
+			local rootPose = classId == "knight" and skillId == "knight.common.whirlwind" and torso or nil
+			apply(rootJoint, rootPose)
+		end
+	end
 	local function applyLeg(side, pose, kneePose)
 		local hip, knee = armJoint(character, side, "Hip"), armJoint(character, side, "Knee")
 		if hip and pose then
@@ -597,7 +648,7 @@ local function advanceSpells(dt)
 	end
 end
 
-local function drawBow(model, phase, elapsed)
+local function drawBow(model, phase, elapsed, skillId)
 	local stringPart, arrow = model:FindFirstChild("String"), model:FindFirstChild("NockedArrow")
 	local stringJoint = stringPart and stringPart:FindFirstChild("StringVisualJoint")
 	local arrowJoint = arrow and arrow:FindFirstChild("NockedArrowVisualJoint")
@@ -608,7 +659,7 @@ local function drawBow(model, phase, elapsed)
 		state = { part = stringPart, arrow = arrow, size = stringPart.Size, arrowTransparency = arrow.Transparency, draw = 0 }
 		bowRest[model] = state
 	end
-	local target = phase == "Windup" and 0.48 or 0
+	local target = phase == "Windup" and (skillId == "elf.common.aimed" and 0.62 or skillId == "elf.common.rapid" and 0.38 or 0.48) or 0
 	local speed = phase == "Windup" and 12 or 35
 	state.draw = state.draw + (target - state.draw) * math.clamp(elapsed * speed, 0, 1)
 	arrow.Transparency = (phase == "Active" or phase == "Recovery") and 1 or state.arrowTransparency
@@ -633,12 +684,15 @@ function Visual.render(model, phase, combo, dt, attackKind)
 		return false
 	end
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and dt or 1 / 60
-	local target = Visual.samplePose(classId, phase, combo, attackKind)
+	local character = model.Parent
+	local skillId = character and character:GetAttribute("K0SkillId")
+	if classId == "elf" and character then phase = Visual.bowPhase(character, phase, Workspace:GetServerTimeNow()) end
+	local target = Visual.samplePose(classId, phase, combo, attackKind, skillId)
 	local pose = (weaponPoses[joint] or CFrame.new()):Lerp(target, math.clamp(elapsed * 22, 0, 1))
 	weaponPoses[joint] = pose
 	joint.Transform = pose
 	if classId == "elf" then
-		drawBow(model, phase, elapsed)
+		drawBow(model, phase, elapsed, skillId)
 		clearEffect(model)
 	else
 		local effect = meleeEffect(model, joint, classId)
@@ -707,8 +761,8 @@ function Visual.start()
 		for model in pairs(effects) do
 			if not model:IsDescendantOf(game) then clearEffect(model) end
 		end
-		for character in pairs(seenShots) do
-			if not character:IsDescendantOf(game) then seenShots[character] = nil end
+		for _, cache in ipairs({ seenShots, seenMultiShots, seenSkillEffects, seenGravityAreas }) do
+			for character in pairs(cache) do if not character:IsDescendantOf(game) then cache[character] = nil end end
 		end
 		for character in pairs(seenSpells) do
 			if not character:IsDescendantOf(game) then seenSpells[character] = nil end

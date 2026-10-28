@@ -206,6 +206,17 @@ return {
 		sample(0.20)
 		equal(#events, 1, "one attack window cannot broadcast the hit twice")
 	end)
+	case("confirmed-hit-includes-server-skill-identity", function()
+		api.injectResolver(function() return "dwarf" end)
+		local events = {}
+		api.setHitEffectRemote({ FireAllClients = function(_, ...) table.insert(events, { ... }) end })
+		local state = spawnPlayer()
+		spawnEnemy(3)
+		action(state, "Skill1", 0)
+		sample(0.37)
+		equal(#events, 1, "actual damage produces one skill effect")
+		equal(events[1][7], "dwarf.common.overhead", "effect ID comes from the accepted server skill")
+	end)
 	case("miss-and-forcefield-do-not-broadcast-hit-feedback", function()
 		api.injectResolver(function() return "knight" end)
 		local events = {}

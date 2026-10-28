@@ -21,6 +21,7 @@ function EnemyVisual.start()
 		local enemies = field and field:WaitForChild("Enemies", 10)
 		if not enemies then return end
 		local gravityEffects = {}
+		local provokeEffects = {}
 		RunService.RenderStepped:Connect(function(dt)
 			local alpha = math.clamp(dt * 15, 0, 1)
 			for model, effect in pairs(gravityEffects) do
@@ -29,7 +30,23 @@ function EnemyVisual.start()
 					gravityEffects[model] = nil
 				end
 			end
+			for model, effect in pairs(provokeEffects) do
+				local untilTime = model:GetAttribute("K0ProvokeUntil")
+				if model.Parent ~= enemies or type(untilTime) ~= "number" or Workspace:GetServerTimeNow() >= untilTime then
+					effect:Destroy()
+					provokeEffects[model] = nil
+				end
+			end
 			for _, model in enemies:GetChildren() do
+				local provokeUntil = model:GetAttribute("K0ProvokeUntil")
+				if type(provokeUntil) == "number" and Workspace:GetServerTimeNow() < provokeUntil and not provokeEffects[model] then
+					local glow = Instance.new("Highlight")
+					glow.Name, glow.Adornee = "ProvokeEffect", model
+					glow.FillColor, glow.OutlineColor = Color3.fromRGB(180, 80, 25), Color3.fromRGB(255, 194, 90)
+					glow.FillTransparency, glow.OutlineTransparency = 0.8, 0.1
+					glow.DepthMode, glow.Parent = Enum.HighlightDepthMode.Occluded, model
+					provokeEffects[model] = glow
+				end
 				if model:GetAttribute("K0GravityUntil") and not gravityEffects[model] then
 					local glow = Instance.new("Highlight")
 					glow.Name = "GravityEffect"

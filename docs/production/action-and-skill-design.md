@@ -4,7 +4,7 @@
 
 ## 제품 방향
 
-모든 영웅이 사용하는 **액션(Action)**과 영웅의 직업 및 전직으로 배우고 장착하는 **스킬(Skill)**을 구분한다. 이번 문서는 사용자 결정과 구체적 구현 전 추천안을 분리한다. 0.16.0에는 아래 계약의 세션용 시험 구현이 있으며, 정식 성장과 전직은 별도다.
+모든 영웅이 사용하는 **액션(Action)**과 영웅의 직업 및 전직으로 배우고 장착하는 **스킬(Skill)**을 구분한다. 이번 문서는 사용자 결정과 구체적 구현 전 추천안을 분리한다. 0.17.0에는 아래 계약의 세션용 시험 구현이 있으며, 정식 성장과 전직은 별도다.
 
 ### 공통 액션
 
@@ -60,3 +60,5 @@ Stamina는 **물리 스킬 자원**이며 공통 액션에 쓰지 않는다. MP�
 마법사의 세 기본 주문은 Mana Bolt·Water Ball·Gravity다. Gravity는 선택한 적 주변을 타격하는 광역기다. 기사의 기본 기술은 Shield Bash·Whirlwind·Provoke이며 Whirlwind는 기사 주변 광역 공격이다. 도발과 감속의 수치·범위는 시험용이다. [현재 구현](../evidence/k0/knight-gravity-area.md).
 
 드워프 기본 기술은 Overhead Smash·Axe Throw·Ground Slam, 엘프 기본 기술은 Aimed Shot·Rapid Fire·Multi Shot이다. Ground Slam과 Multi Shot은 광역기이며, 범위·대상 수·연사 간격·피해 수치는 시험값이다. [구현](../evidence/k0/dwarf-elf-starter-skills.md).
+
+0.17.0은 각 기본 스킬의 절차적 준비·발동 자세와 서버 확인 적중 효과를 제공한다. Rapid Fire의 재장전 동작은 실제 서버 화살 발사 시각에 맞춰 표시하며, Provoke는 피해 없는 도발 표식으로 구분한다. 사용자 시각 수용과 실기기/다인은 별도다. [기록](../evidence/k0/starter-skill-visuals.md).

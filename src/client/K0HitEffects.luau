@@ -20,6 +20,22 @@ local profiles = {
 	elf = { color = Color3.fromRGB(173, 246, 161), secondary = Color3.fromRGB(247, 255, 224), sound = "rbxasset://sounds/action_jump_land.mp3", volume = 0.12, speed = 1.65 },
 }
 
+-- Skill-specific palettes and impact silhouettes. IDs are supplied by the
+-- server's confirmed damage event; unknown IDs use the class baseline.
+local skillProfiles = {
+	["knight.common.bash"] = { class = "knight", color = Color3.fromRGB(255, 193, 82), secondary = Color3.fromRGB(255, 245, 190), shape = "shield" },
+	["knight.common.whirlwind"] = { class = "knight", color = Color3.fromRGB(255, 219, 122), secondary = Color3.fromRGB(244, 251, 255), shape = "sweep" },
+	["dwarf.common.overhead"] = { class = "dwarf", color = Color3.fromRGB(255, 151, 63), secondary = Color3.fromRGB(255, 224, 157), shape = "chop" },
+	["dwarf.common.throw"] = { class = "dwarf", color = Color3.fromRGB(255, 182, 76), secondary = Color3.fromRGB(237, 241, 255), shape = "axe" },
+	["dwarf.common.ground"] = { class = "dwarf", color = Color3.fromRGB(223, 125, 55), secondary = Color3.fromRGB(255, 214, 128), shape = "shockwave" },
+	["elf.common.aimed"] = { class = "elf", color = Color3.fromRGB(231, 248, 156), secondary = Color3.fromRGB(255, 255, 226), shape = "precision" },
+	["elf.common.rapid"] = { class = "elf", color = Color3.fromRGB(134, 237, 165), secondary = Color3.fromRGB(224, 255, 210), shape = "rapid" },
+	["elf.common.multi"] = { class = "elf", color = Color3.fromRGB(111, 209, 187), secondary = Color3.fromRGB(210, 255, 230), shape = "multi" },
+	["mage.common.mana_bolt"] = { class = "mage", color = Color3.fromRGB(129, 212, 255), secondary = Color3.fromRGB(225, 251, 255), shape = "mana" },
+	["mage.common.water_ball"] = { class = "mage", color = Color3.fromRGB(69, 155, 255), secondary = Color3.fromRGB(174, 232, 255), shape = "water" },
+	["mage.common.gravity"] = { class = "mage", color = Color3.fromRGB(126, 65, 211), secondary = Color3.fromRGB(214, 169, 255), shape = "gravity" },
+}
+
 local function finite(value)
 	return type(value) == "number" and value == value and math.abs(value) < 10000000
 end
@@ -46,15 +62,23 @@ local function playSound(parent, profile)
 end
 
 -- Public for isolated native fixture QA; live calls come only from OnClientEvent.
-function HitEffects.show(model, position, damage, classId, enemyKind, direction)
+function HitEffects.show(model, position, damage, classId, enemyKind, direction, skillId)
 	local profile = profiles[classId]
 	if not profile or typeof(position) ~= "Vector3" or not finite(position.X) or not finite(position.Y) or not finite(position.Z)
 		or not finite(damage) or damage <= 0 or damage > 1000000 or type(enemyKind) ~= "string" then return false end
 	if model ~= nil and (typeof(model) ~= "Instance" or not model:IsA("Model")) then return false end
+	local skill = type(skillId) == "string" and skillProfiles[skillId] or nil
+	if skill and skill.class == classId then
+		profile = table.clone(profile)
+		profile.color, profile.secondary = skill.color, skill.secondary
+	else
+		skill = nil
+	end
 	for i = #active, 1, -1 do if not active[i].Parent then table.remove(active, i) end end
 	if #active >= MAX_ACTIVE then table.remove(active, 1):Destroy() end
 	local holder = part(workspace, "K0HitEffect", position, Vector3.new(0.1, 0.1, 0.1), profile.color)
 	holder.Transparency = 1
+	if skill then holder:SetAttribute("K0SkillEffectId", skillId) end
 	table.insert(active, holder)
 	Debris:AddItem(holder, 1.2)
 	local scale = enemyKind == "Ogre" and 1.3 or 1
@@ -68,6 +92,35 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction)
 		highlight.FillColor, highlight.FillTransparency, highlight.OutlineTransparency = profile.secondary, 0.55, 1
 		highlight.DepthMode, highlight.Parent = Enum.HighlightDepthMode.Occluded, holder
 		TweenService:Create(highlight, TweenInfo.new(0.15), { FillTransparency = 1 }):Play()
+	end
+	if skill then
+		local accent = part(holder, "K0SkillImpact", position, Vector3.new(0.12, 0.45, 0.45) * scale, skill.color)
+		accent:SetAttribute("Style", skill.shape)
+		local isRing = skill.shape == "shield" or skill.shape == "sweep" or skill.shape == "shockwave" or skill.shape == "gravity" or skill.shape == "water"
+		if isRing then
+			accent.Shape = Enum.PartType.Cylinder
+			accent.CFrame = CFrame.new(position) * CFrame.Angles(0, 0, math.rad(90))
+			TweenService:Create(accent, TweenInfo.new(0.28), { Size = Vector3.new(0.12, 2.5, 2.5) * scale, Transparency = 1 }):Play()
+		else
+			accent.Shape = Enum.PartType.Block
+			local flat = typeof(direction) == "Vector3" and finite(direction.X) and finite(direction.Z)
+				and Vector3.new(direction.X, 0, direction.Z) or Vector3.new(0, 0, -1)
+			if flat.Magnitude < 0.001 then flat = Vector3.new(0, 0, -1) end
+			accent.Size = Vector3.new(0.12, skill.shape == "chop" and 2.4 or 1.4, 0.12) * scale
+			accent.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(skill.shape == "chop" and 0 or 45))
+			TweenService:Create(accent, TweenInfo.new(0.22), { Size = accent.Size * 1.35, Transparency = 1 }):Play()
+		end
+		if skill.shape == "rapid" or skill.shape == "multi" or skill.shape == "mana" or skill.shape == "water" or skill.shape == "gravity" or skill.shape == "shockwave" then
+			for index = 1, 3 do
+				local angle = (index - 1) * math.pi * 2 / 3
+				local offset = Vector3.new(math.cos(angle), skill.shape == "water" and 0.8 or 0.2, math.sin(angle)) * scale
+				local particle = part(holder, "K0SkillAccent", position + offset * 0.25, Vector3.one * 0.14 * scale, skill.secondary)
+				if skill.shape ~= "water" and skill.shape ~= "gravity" then particle.Shape = Enum.PartType.Block end
+				if skill.shape == "rapid" or skill.shape == "multi" then particle.Size = Vector3.new(0.07, 0.55, 0.07) * scale end
+				if skill.shape == "gravity" then offset = -offset * 0.6 end
+				TweenService:Create(particle, TweenInfo.new(0.26), { Position = position + offset, Size = particle.Size * 0.5, Transparency = 1 }):Play()
+			end
+		end
 	end
 	local slime = enemyKind == "Slime"
 	local particleColor = slime and Color3.fromRGB(130, 224, 155) or profile.color

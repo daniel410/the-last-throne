@@ -37,6 +37,23 @@ local ok, err = xpcall(function()
 		table.insert(result.samples, { class = classId, sound = sound.SoundId, speed = sound.PlaybackSpeed })
 		task.wait(0.09)
 	end
+	local skillSamples = {
+		{ "knight", "knight.common.bash", "shield" }, { "knight", "knight.common.whirlwind", "sweep" },
+		{ "dwarf", "dwarf.common.overhead", "chop" }, { "dwarf", "dwarf.common.throw", "axe" }, { "dwarf", "dwarf.common.ground", "shockwave" },
+		{ "elf", "elf.common.aimed", "precision" }, { "elf", "elf.common.rapid", "rapid" }, { "elf", "elf.common.multi", "multi" },
+		{ "mage", "mage.common.mana_bolt", "mana" }, { "mage", "mage.common.water_ball", "water" }, { "mage", "mage.common.gravity", "gravity" },
+	}
+	for _, item in ipairs(skillSamples) do
+		local before = {}; for _, h in ipairs(holders()) do before[h] = true end
+		check(visual.show(model, Vector3.new(0, 50, 0), 50, item[1], "Goblin", Vector3.new(0, 0, -1), item[2]), "skill hit accepted")
+		local h; for _, candidate in ipairs(holders()) do if not before[candidate] then h = candidate end end
+		check(h and h:GetAttribute("K0SkillEffectId") == item[2], "skill identity preserved")
+		check(h.K0SkillImpact:GetAttribute("Style") == item[3], "correct skill impact style")
+	end
+	local before = {}; for _, h in ipairs(holders()) do before[h] = true end
+	check(visual.show(model, Vector3.zero, 10, "elf", "Goblin", Vector3.new(0, 0, -1), "mage.common.gravity"), "cross-class ID falls back")
+	local h; for _, candidate in ipairs(holders()) do if not before[candidate] then h = candidate end end
+	check(h and h:FindFirstChild("K0SkillImpact") == nil, "cross-class ID cannot choose wrong effect")
 	for _ = 1, 30 do check(visual.show(model, Vector3.zero, 1, "knight", "Goblin"), "bounded effect accepts valid hit") end
 	check(#holders() <= 24, "effect count is bounded")
 	task.wait(1.4)

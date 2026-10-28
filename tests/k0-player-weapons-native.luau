@@ -896,7 +896,7 @@ local ok, fatal = xpcall(function()
 		local from, to = root.Position, root.Position + Vector3.new(0, 0, -10)
 		character:SetAttribute("K0SpellVisual", string.format("1|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f", from.X, from.Y, from.Z, to.X, to.Y, to.Z))
 		clientVisual.renderCharacter(character, 0.1)
-		local orb = workspace:FindFirstChild("K0VisualArcaneBolt")
+		local orb = workspace:FindFirstChild("K0VisualSpell")
 		check(orb and orb:IsA("BasePart") and orb.Anchored and not orb.CanCollide and not orb.CanTouch and not orb.CanQuery,
 			"server snapshot creates a visible non-colliding local magic orb")
 		check(orb and orb:FindFirstChildOfClass("Trail") ~= nil, "magic orb has a visible trail")

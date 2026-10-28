@@ -368,6 +368,11 @@ local function startSkill(state, slot, current, targetModel)
 	state.humanoid.AutoRotate = false
 	setPlayerState(state, "Attack")
 	state.character:SetAttribute("K0SkillId", skill.id)
+	state.character:SetAttribute("K0SkillStartedAt", workspace:GetServerTimeNow())
+	if skill.effect == "rapid" then
+		state.character:SetAttribute("K0RapidShotCount", 0)
+		state.character:SetAttribute("K0RapidShotAt", nil)
+	end
 	state.character:SetAttribute("K0AttackKind", skill.magic and "Arcane" or "Basic")
 	state.character:SetAttribute("K0AttackPhase", "Windup")
 	state.attackSeq = state.attackSeq + 1
@@ -595,7 +600,7 @@ local function damageEnemy(state, enemy, attack, current)
 		-- This is presentation data for an already resolved hit, never an
 		-- input to damage. A position snapshot survives a lethal target's removal.
 		local direction = horizontalUnit(position - state.root.Position, attack.direction)
-		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction)
+		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, attack.isSkill and attack.definition.id or nil)
 	end
 	if enemy.humanoid.Health > 0 then
 		if applied > 0 and attack.isSkill and attack.definition.effect == "mark" then
@@ -953,6 +958,8 @@ local function processCombatSamples(current, requiredState)
 				attack.sampledActive = true
 				if sample.rapidIndex then
 					attack.rapidFired = math.max(attack.rapidFired or 0, sample.rapidIndex)
+					state.character:SetAttribute("K0RapidShotAt", workspace:GetServerTimeNow())
+					state.character:SetAttribute("K0RapidShotCount", sample.rapidIndex)
 					attack.arrowFired, attack.hits, attack.hitCount, attack.counterDamage = false, {}, 0, nil
 					applyArrowShot(state, current)
 				elseif attack.isSkill and attack.definition.effect == "provoke" then

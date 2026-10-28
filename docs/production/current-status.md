@@ -1,6 +1,6 @@
 # 현재 개발 상태와 확정된 전투 방향
 
-2026-10-28 · 총괄 DIR · 게임 빌드 `0.16.0` · 세션 원형
+2026-10-28 · 총괄 DIR · 게임 빌드 `0.17.0` · 세션 원형
 [최신 결정](../decisions.md) · [액션·스킬 상세](action-and-skill-design.md) · [빌드 증거](../evidence/k0/build.md) · [백로그](../../backlog.md)
 
 ## 현재 실행 가능한 시험판
@@ -12,9 +12,9 @@
 | 적과 피드백 | 네 종류 적의 시험 전투·머리 위 HP, 실제 서버 명중 피드백. Slime 사망 시 크기 50%·최대 HP 25%의 작은 슬라임 둘로 1회 분열. 유효 피격 시 적이 공격자를 인식 | 최종 AI·밸런스·다인/게시 테스트는 미완료. [기록](../evidence/k0/slime-awareness-bow.md) |
 | 기본 전투 | 네 직업 무기 공격·표적 클릭, 공통 방어·회피·달리기와 서버 피해 판정 | PC 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R/V 회피, Space 점프, X 표적 해제. 조작·모션은 시험용. [표적](../evidence/k0/melee-target-high-axe.md) |
 | 기술 시험 | 네 직업 각 3개 기술, Knight Shield Bash/Whirlwind/Provoke, Dwarf Overhead Smash/Axe Throw/Ground Slam, Elf Aimed Shot/Rapid Fire/Multi Shot 및 Mage Mana Bolt/Water Ball/Gravity, Stamina/MP와 개별 쿨다운, 로비 편성·하단 1~5 슬롯 | 기본 3슬롯, 5슬롯은 PRACTICE ONLY. 정식 전직·습득·영구 저장·6번 용도는 미구현/미결정. [신규 기록](../evidence/k0/action-skill-prototype.md). [기술](../evidence/k0/basic-skills-mana.md) |
-| 결과물 | Rojo 7.7.1로 `builds/0.16.0/TheLastThrone-0.16.0.rbxlx` 시험 빌드 | 결과물은 Git에서 제외된 로컬 파일이며 다른 체크아웃에 자동 제공되지 않는다. [해시·검증](../evidence/k0/build.md) |
+| 결과물 | Rojo 7.7.1로 `builds/0.17.0/TheLastThrone-0.17.0.rbxlx` 시험 빌드 | 결과물은 Git에서 제외된 로컬 파일이며 다른 체크아웃에 자동 제공되지 않는다. [해시·검증](../evidence/k0/build.md) |
 
-확인된 범위: 고정 0.16.0 빌드 스모크 451개와 격리 Studio 서버 fixture 374개와 순수 규칙 122개·영웅 세션 89개 검사 통과. 빌드 전 격리 Studio R15 Player에서 드워프·엘프의 스킬 이름·1~3 키 발동·Stamina·쿨다운과 엘프 5회 발사 시퀀스를 확인했다. 다중 대상 피해·벽 차단·연속 발사 중단은 서버 fixture에서 확인했으며 실제 Player 다중 적 시각 수용, 모바일·패드·다인·게시 클라이언트 및 최종 밸런스는 미검증이다. 기존 `203785492` 자산 유형 경고가 관측됐다. [기록](../evidence/k0/dwarf-elf-starter-skills.md).
+확인된 범위: 격리 Studio의 스킬 동작 R6/R15 검사 30개, 스킬별 타격 효과 검사 99개, 서버 전투 검사 376개, 무기 검사 2,177개, 기존 근접 동작 검사 40개 통과. 빌드 전 격리 R15 Player에서 Rapid Fire 3발과 실제 Aimed Shot 적중 시 효과, Provoke 표식 및 Whirlwind 몸통 회전을 확인했다. 모든 스킬의 Player 시각 수용, 모바일·패드·다인·게시 클라이언트 및 최종 밸런스는 미검증이다. 기존 `203785492` 자산 유형 경고가 관측됐다. [기록](../evidence/k0/starter-skill-visuals.md).
 
 ## 최신 사용자 결정
 
