@@ -228,3 +228,7 @@
 ## 2026-10-28 마법사 기본 주문 세 개
 
 사용자 지정: Mage의 기본 마법을 **Mana Bolt, Water Ball, Gravity** 세 개로 구성한다. Water Ball/Bolt 중 투사체 형태를 나타내는 Water Ball을 시험 명칭으로 사용한다. 기존 Gust는 기본 3개에서 빠진다. 비전/바람 입문 훈련과 이후 Pyro/Cryo·Lv40 추가 원소·Lv60 광역·Lv80 궁극기 성장 방향은 유지한다. Gravity 단일 표적 감속·비용과 지속 시간은 시험 구현이며 최종 밸런스는 미확정이다. [구현과 검증](evidence/k0/mage-basic-spells.md).
+
+## 2026-10-28 기사 기본 스킬과 Gravity 광역
+
+사용자 지정: 기사의 기본 스킬은 Shield Bash·Whirlwind·Provoke이며 Whirlwind는 광역기다. Mage의 Gravity도 광역기다. 시험판은 기사 주변 Whirlwind·주변 적 도발과 선택한 적 중심 Gravity 광역 피해/감속을 사용한다. 범위·대상 수·도발/감속 시간은 시험값이며 대규모 광역의 Lv60 성장 방향을 변경하지 않는다. [구현과 검증](evidence/k0/knight-gravity-area.md).

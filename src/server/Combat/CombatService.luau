@@ -330,6 +330,7 @@ local function startSkill(state, slot, current, targetModel)
 	end
 	if skill.effect == "recall" then targetModel = state.thrownTarget end
 	local direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1))
+	if skill.effect == "whirlwind" or skill.effect == "provoke" then targetModel = nil end
 	local selected = targetModel and enemyStates[targetModel]
 	if selected and enemyAlive(selected) then
 		local delta = horizontal(selected.root.Position - state.root.Position)
@@ -582,7 +583,10 @@ local function damageEnemy(state, enemy, attack, current)
 	enemy.attackers[state] = expires
 	enemy.aggroUntil = expires
 	enemy.lastAttacker = state
-	enemy.target = state
+	if not (enemy.provokedBy and current < (enemy.provokeUntil or 0) and alive(enemy.provokedBy)
+		and horizontal(enemy.provokedBy.root.Position - enemy.spawnPosition).Magnitude <= enemy.config.leashRange) then
+		enemy.target = state
+	end
 	local healthBefore = enemy.humanoid.Health
 	local position = enemy.root.Position
 	enemy.humanoid:TakeDamage(damage)
@@ -743,7 +747,27 @@ local function applyArrowShot(state, current)
 		sequence, visualFrom.X, visualFrom.Y, visualFrom.Z, visualTo.X, visualTo.Y, visualTo.Z))
 	if target then
 		damageEnemy(state, target, attack, current)
-		if attack.isSkill and attack.definition.effect == "pierce" then
+		if attack.isSkill and attack.definition.effect == "gravity" then
+			local center = endpoint
+			state.character:SetAttribute("K0GravityAreaVisual", string.format("%d|%.3f|%.3f|%.3f", state.spellSeq, center.X, center.Y, center.Z))
+			local others = {}
+			for _, enemy in pairs(enemyStates) do
+				local delta = enemy.root.Position - center
+				if enemy ~= target and enemyAlive(enemy) and horizontal(delta).Magnitude <= attack.definition.areaRadius
+					and math.abs(delta.Y) <= attack.maxHeight and unobstructed(center, enemy.root.Position, target.model, enemy.model) then
+					table.insert(others, enemy)
+				end
+			end
+			table.sort(others, function(a, b)
+				local da, db = (a.root.Position - center).Magnitude, (b.root.Position - center).Magnitude
+				if da == db then return a.id < b.id end
+				return da < db
+			end)
+			for _, enemy in ipairs(others) do
+				if attack.hitCount >= attack.maxTargets then break end
+				damageEnemy(state, enemy, attack, current)
+			end
+		elseif attack.isSkill and attack.definition.effect == "pierce" then
 			local aim = horizontalUnit(target.root.Position - origin, attack.direction)
 			local others = {}
 			for _, enemy in pairs(enemyStates) do
@@ -891,20 +915,29 @@ local function processCombatSamples(current, requiredState)
 			local state = sample.player
 			if validPlayers[state] and alive(state) and state.mode == "Attack" and state.attack == attack then
 				attack.sampledActive = true
-				if attack.isSkill and attack.definition.effect == "rally" then
-					local allies = { state }
-					for _, ally in pairs(playerStates) do
-						if ally ~= state and alive(ally) and (ally.root.Position - state.root.Position).Magnitude <= 10 and unobstructed(state.root.Position, ally.root.Position, state.character, ally.character) then
-							table.insert(allies, ally)
+				if attack.isSkill and attack.definition.effect == "provoke" then
+					local candidates = {}
+					local origin = state.root.Position
+					for _, enemy in pairs(enemyStates) do
+						local delta = enemy.root.Position - origin
+						if enemyAlive(enemy) and horizontal(delta).Magnitude <= attack.definition.range
+							and math.abs(delta.Y) <= attack.maxHeight
+							and horizontal(origin - enemy.spawnPosition).Magnitude <= enemy.config.leashRange
+							and unobstructed(origin, enemy.root.Position, state.character, enemy.model) then
+							table.insert(candidates, enemy)
 						end
 					end
-					table.sort(allies, function(a, b)
-						if a == state then return true elseif b == state then return false end
-						return (a.root.Position - state.root.Position).Magnitude < (b.root.Position - state.root.Position).Magnitude
+					table.sort(candidates, function(a, b)
+						local da, db = (a.root.Position - origin).Magnitude, (b.root.Position - origin).Magnitude
+						if da == db then return a.id < b.id end
+						return da < db
 					end)
-					for index = 1, math.min(4, #allies) do
-						allies[index].rallyUntil = current + 4
-						allies[index].character:SetAttribute("K0RallyUntil", workspace:GetServerTimeNow() + 4)
+					for index = 1, math.min(attack.maxTargets, #candidates) do
+						local enemy = candidates[index]
+						enemy.provokedBy, enemy.provokeUntil = state, current + attack.definition.provokeDuration
+						enemy.target = state
+						enemy.model:SetAttribute("K0ProvokeUntil", workspace:GetServerTimeNow() + attack.definition.provokeDuration)
+						if not enemy.attack and enemy.mode ~= "Exposed" then setEnemyState(enemy, "Chase") end
 					end
 				elseif attack.isSkill and not attack.ranged then
 					applySwordHits(state, current)
@@ -1001,6 +1034,15 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 end
 
 local function closestTarget(enemy, current)
+	local forced = enemy.provokedBy
+	if forced then
+		if current < (enemy.provokeUntil or 0) and alive(forced)
+			and horizontal(forced.root.Position - enemy.spawnPosition).Magnitude <= enemy.config.leashRange then
+			return forced, horizontal(forced.root.Position - enemy.root.Position).Magnitude
+		end
+		enemy.provokedBy, enemy.provokeUntil = nil, nil
+		enemy.model:SetAttribute("K0ProvokeUntil", nil)
+	end
 	local closest, closestDistance
 	if enemy.attackers then
 		for attacker, expires in pairs(enemy.attackers) do
@@ -1110,6 +1152,8 @@ local function resetEnemy(enemy)
 	enemy.attackers = nil
 	enemy.aggroUntil = 0
 	enemy.lastAttacker = nil
+	enemy.provokedBy, enemy.provokeUntil = nil, nil
+	enemy.model:SetAttribute("K0ProvokeUntil", nil)
 	enemy.pattern = 0
 	enemy.posture = enemy.config.posture
 	enemy.postureImmuneUntil = 0

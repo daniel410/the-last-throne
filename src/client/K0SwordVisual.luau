@@ -12,6 +12,8 @@ local effects = {}
 local seenShots = {}
 local arrows = {}
 local seenSpells = {}
+local seenSkillEffects = {}
+local seenGravityAreas = {}
 local spells = {}
 local bowRest = {}
 local armPoses = {}
@@ -294,6 +296,12 @@ function Visual.renderArms(character, dt)
 			end
 		elseif classId == "mage" and kind == "Arcane" then
 			right = CFrame.Angles(math.rad(70), 0, math.rad(-8))
+		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.whirlwind" then
+			right = CFrame.Angles(math.rad(90), math.rad(phase == "Windup" and 80 or phase == "Active" and -80 or 0), 0)
+			torso = CFrame.Angles(0, math.rad(phase == "Windup" and 45 or phase == "Active" and -45 or 0), 0)
+		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.provoke" then
+			left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
+			right = CFrame.Angles(math.rad(70), 0, math.rad(-15))
 		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.bash" then
 			local pitch = phase == "Windup" and 90 or phase == "Active" and 125 or 70
 			left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
@@ -433,6 +441,15 @@ local function impact(position, color)
 	local tween = TweenService:Create(part, TweenInfo.new(0.24), { Size = Vector3.new(1.5, 1.5, 1.5), Transparency = 1 })
 	tween:Play()
 	task.delay(0.3, function() part:Destroy() end)
+end
+
+local function areaPulse(position, color, radius)
+	local part = arrowPart(workspace, "K0SkillArea", Vector3.new(0.15, 0.5, 0.5), color, Enum.Material.Neon)
+	part.Shape = Enum.PartType.Cylinder
+	part.CFrame = CFrame.new(position) * CFrame.Angles(0, 0, math.rad(90))
+	part.Transparency = 0.55
+	TweenService:Create(part, TweenInfo.new(0.35), { Size = Vector3.new(0.15, radius * 2, radius * 2), Transparency = 1 }):Play()
+	task.delay(0.4, function() part:Destroy() end)
 end
 
 local function advanceArrows(dt)
@@ -612,6 +629,23 @@ end
 
 function Visual.renderCharacter(character, dt)
 	local classId = character:GetAttribute("K0ClassId") or "knight"
+	if classId == "knight" and character:GetAttribute("K0AttackPhase") == "Active" then
+		local skillId, seq = character:GetAttribute("K0SkillId"), character:GetAttribute("K0AttackSeq")
+		local root = character:FindFirstChild("HumanoidRootPart")
+		if root and seq and seenSkillEffects[character] ~= seq and (skillId == "knight.common.whirlwind" or skillId == "knight.common.provoke") then
+			seenSkillEffects[character] = seq
+			areaPulse(root.Position, skillId == "knight.common.whirlwind" and Color3.fromRGB(255, 222, 151) or Color3.fromRGB(255, 147, 75), skillId == "knight.common.whirlwind" and 7 or 12)
+		end
+	end
+	if classId == "mage" then
+		local payload = character:GetAttribute("K0GravityAreaVisual")
+		if type(payload) == "string" and #payload <= 100 and seenGravityAreas[character] ~= payload then
+			seenGravityAreas[character] = payload
+			local seq, x, y, z = payload:match("^(%d+)|([%d%.%-]+)|([%d%.%-]+)|([%d%.%-]+)$")
+			x, y, z = tonumber(x), tonumber(y), tonumber(z)
+			if seq and finite(x) and finite(y) and finite(z) then areaPulse(Vector3.new(x, y, z), Color3.fromRGB(126, 65, 211), 6) end
+		end
+	end
 	if classId == "elf" then consumeArrow(character) end
 	if classId == "mage" or classId == "dwarf" then consumeSpell(character) end
 	local rendered = 0

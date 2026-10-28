@@ -2,7 +2,7 @@
 
 Throne Defense의 세계관·영웅·타워·맵·몬스터·포탈·왕좌와 3D 자산을 공유하는 Roblox 협동 액션 RPG입니다. 직접 조작 전투, 클래스 안의 전직과 스킬트리, 공명 연계, 탐험과 이야기를 중심으로 최고의 액션 RPG를 목표로 합니다.
 
-**문서 묶음 v0.25 + 2026-10-28 전투 결정 정리 · 최신 시험 빌드 0.14.0 · Deepwood K0 원형 제작·검증**
+**문서 묶음 v0.25 + 2026-10-28 전투 결정 정리 · 최신 시험 빌드 0.15.0 · Deepwood K0 원형 제작·검증**
 
 **개발 문서는 한국어, 게임의 UI·퀘스트·대사·아이템·스킬·상품·오류·음성/자막은 영어(en-US)로 제작합니다.**
 
@@ -23,7 +23,7 @@ Throne Defense와 **같은 Roblox Experience의 별도 RPG Place**로 연결하�
 
 | 분야별 상세 계획 | 내용 |
 | --- | --- |
-| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.14.0 시험 구현·최신 결정·미구현 차이·다음 작업/수용 |
+| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.15.0 시험 구현·최신 결정·미구현 차이·다음 작업/수용 |
 | [액션·스킬 설계](docs/production/action-and-skill-design.md) | 공통 액션·물리/마법 자원·전직별 슬롯·키/HUD |
 | [기획·시스템](docs/production/game-systems-plan.md) | 32구간 추적·후반8장 연결·전직/스탯/스킬·장비/경제·동료 |
 | [디자인·월드](docs/production/design-and-world-plan.md) | 승인 컨셉·맵/랜드마크·모바일/패드·가방 v2·접근성 |
@@ -52,7 +52,7 @@ Throne Defense와 **같은 Roblox Experience의 별도 RPG Place**로 연결하�
 | 4 | [Deepwood 지역 설계](docs/deepwood-region-design.md) | 주동선7지점·선택3구역·몬스터10종·제단·지역 선택 |
 | 5 | [클래스·전직·스킬트리](docs/class-advancement-and-skill-trees.md) | 플레이어4클래스·8전직 계열·32단계·기술·노드·자격 |
 | 6 | [기본 스탯·전투 능력치](docs/character-stats.md) | 힘·민첩·지력·체력·파생 능력치·성장/배분 초안 |
-| 7 | [기사 전투 상세 명세](docs/knight-combat-spec.md)의 Deepwood K0 시험 전투에서 네 영웅의 기본 공격·표적 선택과 공통 방어·회피·달리기를 사용할 수 있습니다. PC 시험 조작은 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R 또는 V 회피, Space 점프, X 표적 해제입니다. 1~5번은 장착 기술이며 6번은 미정입니다. 로비에서 기술을 편성하고 하단에서 키와 쿨다운을 확인합니다. 물리 기술은 Stamina, 마법사의 Mana Bolt·Water Ball·Gravity 주문은 MP를 사용합니다. 실제 전직·저장은 아직 없으므로 5슬롯은 로비의 명시적 연습 모드로만 체험합니다. 스킬 수치·아이콘·키 배치와 전투 밸런스는 시험용이며 모바일·패드·사용자 수용은 추가 검증이 필요합니다. [현재 상태와 다음 작업](docs/production/current-status.md).
+| 7 | [기사 전투 상세 명세](docs/knight-combat-spec.md) | 기사 액션·기본 스킬·판정과 전투 성장 초안 |
 | 8 | [마법 분류·단계별 학습](docs/magic-schools-and-learning.md) | 비전/바람/물·Pyro/Cryo·추가 원소·광역·최강 주문 |
 | 9 | [동료·성녀NPC·전술 지원](docs/companions-and-support.md) | 셀레네·선택형AI동료·보호/정화·교단NPC·편성 |
 | 10 | [공유 세계관·자산 활용](docs/shared-universe-and-assets.md) | TD 영웅5·타워30·몬스터40엔트리와RPG 활용/신규 제작 |
@@ -105,7 +105,7 @@ TD 실제 아틀라스를 참조한 공통 보드와 로비HUD·로비 메뉴·�
 
 ## 다음 구현 작업
 
-[기사 전투 상세 명세](docs/knight-combat-spec.md)의 **Deepwood K0 기본기**와 네 직업의 시험용 기본 공격을 제작 중입니다. 기사는 검과 방패, 엘프는 전방 활 공격, 드워프와 마법사는 각각 도끼와 지팡이 근접 공격을 사용합니다. PC는 왼쪽 클릭 공격·V 회피·Space 점프, 기사는 오른쪽 클릭 유지 방어를 사용합니다. 네 직업 모두 적을 클릭해 표적을 정할 수 있으며, Q/E/R로 직업별 공통 기술을 사용하며 마법사는 MP를 소비합니다. 0.12.0에는 스태미나가 아직 없으며 기본 공격과 회피는 별도 쿨다운 없이 동작 시간을 사용합니다. X로 표적을 해제할 수 있습니다. 몬스터 머리 위에는 남은 체력이 표시됩니다. 패드와 터치용 입력도 제공하지만 조작 가독성과 실제 입력은 기기별 수용 검증이 필요합니다. 최신 결정인 물리 스킬 Stamina·네 직업 Block/Sprint·숫자 1~6 키·전투 하단 아이콘/스킬 관리·전직 후 5슬롯은 아직 구현되지 않았습니다. [현재 상태와 다음 작업](docs/production/current-status.md)에서 실제 검증과 남은 범위를 확인합니다.
+Deepwood 시험장에서 네 영웅의 공통 공격·방어·회피·달리기와 직업 스킬을 사용할 수 있습니다. 기사의 기본 스킬은 Shield Bash·Whirlwind·Provoke, 마법사는 Mana Bolt·Water Ball·Gravity입니다. Whirlwind와 Gravity는 광역기입니다. PC는 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R/V 회피, 1~5번 장착 스킬, Space 점프, X 표적 해제입니다. 물리 스킬은 Stamina, 마법은 MP와 기술별 쿨다운을 사용합니다. 정식 전직·저장은 미구현이며 5슬롯은 연습 전용입니다. [현재 상태와 검증](docs/production/current-status.md).
 
 ## Deepwood 에픽·상세 시나리오
 

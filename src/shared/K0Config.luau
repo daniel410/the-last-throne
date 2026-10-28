@@ -93,9 +93,9 @@ Config.BasicAttackProfiles = {
 -- Every magic skill declares a mana cost; each skill owns its own cooldown.
 Config.Skills = {
 	knight = {
-		{ id = "knight.common.breach", staminaCost = 20, name = "BREACH", cooldown = 6, windup = 0.18, active = 0.12, recovery = 0.30, damage = 1.4, posture = 18, range = 4.5, angle = 100, maxHeight = 7, maxTargets = 3, effect = "advance" },
 		{ id = "knight.common.bash", staminaCost = 25, name = "SHIELD BASH", cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 4, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash" },
-		{ id = "knight.common.rally", staminaCost = 30, name = "RALLY", cooldown = 18, windup = 0.25, active = 0.05, recovery = 0.30, damage = 0, posture = 0, range = 10, angle = 360, maxHeight = 10, maxTargets = 0, effect = "rally" },
+		{ id = "knight.common.whirlwind", staminaCost = 30, name = "WHIRLWIND", cooldown = 8, windup = 0.25, active = 0.18, recovery = 0.4, damage = 1.0, posture = 18, range = 7, angle = 360, maxHeight = 7, maxTargets = 8, effect = "whirlwind" },
+		{ id = "knight.common.provoke", staminaCost = 20, name = "PROVOKE", cooldown = 12, windup = 0.25, active = 0.1, recovery = 0.3, damage = 0, posture = 0, range = 12, angle = 360, maxHeight = 10, maxTargets = 8, effect = "provoke", provokeDuration = 4 },
 	},
 	elf = {
 		{ id = "elf.common.pierce", staminaCost = 20, name = "PIERCE", cooldown = 6, windup = 0.3, active = 0.1, recovery = 0.3, damage = 1.1, posture = 10, range = 55, angle = 16, maxHeight = 10, maxTargets = 3, effect = "pierce", ranged = true },
@@ -110,7 +110,7 @@ Config.Skills = {
 	mage = {
 		{ id = "mage.common.mana_bolt", name = "MANA BOLT", cooldown = 3, manaCost = 15, magic = true, windup = 0.45, active = 0.12, recovery = 0.45, damage = 1.0, posture = 10, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "mana_bolt", ranged = true },
 		{ id = "mage.common.water_ball", name = "WATER BALL", cooldown = 5, manaCost = 12, magic = true, windup = 0.35, active = 0.12, recovery = 0.35, damage = 0.85, posture = 8, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "water", ranged = true },
-		{ id = "mage.common.gravity", name = "GRAVITY", cooldown = 8, manaCost = 20, magic = true, windup = 0.4, active = 0.12, recovery = 0.4, damage = 0.7, posture = 15, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "gravity", ranged = true, slowDuration = 3, slowMultiplier = 0.5 },
+		{ id = "mage.common.gravity", name = "GRAVITY", cooldown = 8, manaCost = 20, magic = true, windup = 0.4, active = 0.12, recovery = 0.4, damage = 0.7, posture = 15, range = 40, angle = 45, maxHeight = 10, maxTargets = 8, effect = "gravity", areaRadius = 6, ranged = true, slowDuration = 3, slowMultiplier = 0.5 },
 	},
 }
 
