@@ -105,3 +105,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 734,056 bytes, SHA-256 `52482a85df1ea7baec571e6c34ca212f3dbbe493ea00eb9000ea5d5d675f566b`. Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau`, 종료 0, 329개 검사 통과·실패 및 수집 런타임 오류 0. Player 0, TD 몬스터 메시·색맵 로드와 3종 리스폰 확인. [로그](player-weapons-build-smoke.log). 플레이어 무기·방패·직업 근접 공격은 [별도 원형 기록](player-weapons.md)의 엔진 fixture 결과를 따른다. |
 | 미검증·릴리스 | 이 버전에서 실제 Player Play는 수행하지 않았다. 원본 방패의 사용자 계정 Studio 렌더를 확인했지만 대상 게시 Experience 권한, 기기·네트워크 수용은 별도다. 기존 자산 `203785492` 유형 경고가 재관측됐다. Git 릴리스 태그·Roblox 게시 없음 |
+
+## 0.5.0 — 네 영웅 시험 로비와 튜토리얼
+
+| 항목 | 실제 결과 |
+| --- | --- |
+| 입력 소스 | `02424864917bed834c2e2f03615cbf3a1f47733b`, `VERSION=0.5.0`. 빌드 전 `origin/main`과 동일 SHA 확인 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.5.0/TheLastThrone-0.5.0.rbxlx`, 종료 0. 해당 버전의 기존 결과물 없음 확인 |
+| 결과물 | 799,808 bytes, SHA-256 `b26f395c2f6e53096f6544c3439d4cc729889e6f6929dd115a6ba8b004a6717e`. `builds/` 아래 Git 제외 로컬 결과물 |
+| 입력 자산·스키마 | TD 몬스터 runtime SHA `14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5`, 플레이어 무기 runtime `8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9`, 분리 방패 runtime `77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823`. 영속 저장 스키마 없음 |
+| 고정 빌드 엔진 검사 | `tests/k0-build-smoke.luau` 종료 0, 346개 통과, 실패·수집 런타임 오류 0. Player 0에서 로비 바닥/경계/스폰·Remote 생성, 19개 모듈, 16개 몬스터 메시/텍스처와 세 적 리스폰을 확인했다. [로그](hero-lobby-build-smoke.log) |
+| 고정 빌드 실제 Play | PlaceId 0 격리 Studio의 실제 Player 1명. 마우스로 네 영웅 생성, 각 직업 선택·튜토리얼 출발·무기·공격을 확인하고 로비에 복귀했다. Elf의 약 25.70stud 원거리 공격은 Goblin HP 300→230 유지 및 추격을 관찰했다. [화면](hero-lobby-0.5.0.jpg) · [조건과 한계](hero-lobby.md) |
+| 미검증·릴리스 | 영웅/연습은 세션 한정, 플레이어 본체는 Roblox 아바타·TD 직업 색상이다. 지속 저장, 정식 리그/모션·성장·보상, 실제 모바일/패드·다인/지연·성능과 게시 Experience 자산 권한은 미검증이다. 기존 `203785492` 유형 경고가 재관측됐다. Git 릴리스 태그·Roblox 게시 없음 |
