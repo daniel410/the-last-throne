@@ -700,7 +700,7 @@ local function processCombatSamples(current, requiredState)
 			and Rules.shouldSampleHitWindow(current - attack.started, attack.definition, attack.sampledActive) then
 			pendingPlayers[state] = true
 			table.insert(pending, { player = state, attack = attack,
-				at = attack.sampledActive and current or attack.started + attack.definition.windup,
+				at = attack.sampledActive and current or attack.started + attack.definition.windup + (attack.definition.hitDelay or 0),
 				order = 0, id = state.player.UserId })
 		end
 	end

@@ -21,11 +21,14 @@ function Rules.phase(elapsed, attack)
 	return "None"
 end
 
--- The active interval is [windup, windup+active). A fully skipped interval
+-- Hits can begin later within the active animation, at the actual impact pose.
+-- A fully skipped interval
 -- gets one late observation; an interval already observed does not get an
 -- extra, potentially false, observation after it has ended.
 function Rules.shouldSampleHitWindow(elapsed, attack, sampledActive)
-	if not Rules.isFinite(elapsed) or elapsed < attack.windup then
+	local hitDelay = attack.hitDelay or 0
+	if not Rules.isFinite(elapsed) or not Rules.isFinite(hitDelay) or hitDelay < 0 or hitDelay >= attack.active
+		or elapsed < attack.windup + hitDelay then
 		return false
 	end
 	local activeEnd = attack.windup + attack.active

@@ -11,6 +11,11 @@ local function near(actual, expected, label)
 	checks = checks + 1
 	assert(math.abs(actual - expected) < 0.000001, label)
 end
+local axe = Config.BasicAttackProfiles.dwarf.attacks[1]
+equal(Rules.shouldSampleHitWindow(axe.windup + axe.hitDelay - 0.001, axe, false), false, "axe cannot hit before impact")
+equal(Rules.shouldSampleHitWindow(axe.windup + axe.hitDelay, axe, false), true, "axe hits at impact")
+equal(Rules.shouldSampleHitWindow(axe.windup + axe.active + 0.01, axe, false), true, "axe retains bounded late sample")
+equal(Rules.shouldSampleHitWindow(axe.windup + axe.active + 0.01, axe, true), false, "observed axe window has no late repeat")
 for index, attack in ipairs(Config.Attacks) do
 	local activeStart = attack.windup
 	local recoveryStart = activeStart + attack.active

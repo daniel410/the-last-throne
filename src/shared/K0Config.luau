@@ -81,7 +81,7 @@ Config.BasicAttackProfiles = {
 	},
 	dwarf = {
 		id = "dwarf.axe.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,
-		attacks = {{ windup = 0.16, active = 0.10, recovery = 0.16, damage = 0.75, posture = 12, range = 4.5, angle = 100 }},
+		attacks = {{ windup = 0.16, active = 0.10, hitDelay = 0.06, recovery = 0.16, damage = 0.75, posture = 12, range = 4.5, angle = 100 }},
 	},
 	mage = {
 		id = "mage.staff.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,

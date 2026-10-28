@@ -54,7 +54,13 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 					return root:PointToObjectSpace(tip), root:PointToObjectSpace(frame(hand).Position)
 				end
 				local windup = sample("Windup", 10)
+				local elbow = character:FindFirstChild("RightElbow", true)
+				local windupElbow = elbow and elbow.Transform
 				local active, activeHand = sample("Active", 6)
+				local activeElbow = elbow and elbow.Transform
+				local waist = character:FindFirstChild("Waist", true)
+				local activeWaist = waist and waist.Transform
+				local recovery = sample("Recovery", 10)
 				table.insert(report.samples, { rig = rig.Name, class = classId, combo = combo, windup = vector(windup), active = vector(active), activeHand = vector(activeHand) })
 				check(windup.Z < 0 and active.Z < -1, classId .. " weapon stays in front during attack")
 				if classId == "knight" then
@@ -65,6 +71,14 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 					check(windup.Y > 3.4 and windup.Y - active.Y > 3, "dwarf axe descends substantially from overhead")
 					check(math.abs(active.X - windup.X) < 1, "dwarf stroke remains broadly vertical")
 					check(active.Z < -3.7 and activeHand.Z < -0.35, "dwarf arm and axe extend forward")
+					check(recovery.Z < -2, "dwarf follows through forward during recovery")
+					if rig == Enum.HumanoidRigType.R15 then
+						local windPitch = select(1, windupElbow:ToEulerAnglesXYZ())
+						local activePitch = select(1, activeElbow:ToEulerAnglesXYZ())
+						local lean = select(1, activeWaist:ToEulerAnglesXYZ())
+						check(windPitch < -0.3 and math.abs(activePitch) < 0.1, "dwarf bends elbow before extending it")
+						check(lean < -0.15, "dwarf leans upper body into the strike")
+					end
 				else
 					check(windup.Y - active.Y > 2 and windup.X - active.X > 2, "mage staff moves down and across diagonally")
 					check(active.Z < -3.7 and activeHand.Z < -0.35, "mage arm and staff extend forward")

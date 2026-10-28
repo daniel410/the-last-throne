@@ -186,9 +186,9 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 	if classId == "dwarf" then
 		-- Raise the axe head overhead, then keep it pointed forward as the arm
 		-- extends through the downward stroke.
-		if phase == "Windup" then return CFrame.Angles(math.rad(-150), 0, math.rad(30)) end
+		if phase == "Windup" then return CFrame.Angles(math.rad(-125), 0, math.rad(30)) end
 		if phase == "Active" then return CFrame.Angles(math.rad(-150), 0, 0) end
-		if phase == "Recovery" then return CFrame.Angles(math.rad(-15), 0, 0) end
+		if phase == "Recovery" then return CFrame.Angles(math.rad(-120), 0, 0) end
 		return CFrame.new()
 	end
 	if classId == "mage" then
@@ -264,7 +264,7 @@ function Visual.renderArms(character, dt)
 	local mode = character:GetAttribute("K0State")
 	local phase = character:GetAttribute("K0AttackPhase")
 	local kind = character:GetAttribute("K0AttackKind")
-	local right, left, rightElbow
+	local right, left, rightElbow, torso
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
 	local usesIK = updateElfIK(character, mode, phase, elapsed)
 	if classId == "knight" and mode == "Block" then
@@ -290,8 +290,12 @@ function Visual.renderArms(character, dt)
 			local yaw = phase == "Windup" and 60 * side or phase == "Active" and -60 * side or 0
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		elseif classId == "dwarf" then
-			local pitch = phase == "Windup" and 135 or phase == "Active" and 90 or 20
+			local pitch = phase == "Windup" and 135 or phase == "Active" and 90 or 70
 			right = CFrame.Angles(math.rad(pitch), 0, 0)
+			-- The reference raises a bent arm, straightens it into the blow,
+			-- and keeps the axe forward during the follow-through.
+			rightElbow = CFrame.Angles(math.rad(phase == "Windup" and -25 or 0), 0, 0)
+			torso = CFrame.Angles(math.rad(phase == "Windup" and 5 or phase == "Active" and -15 or -9), 0, 0)
 		elseif classId == "mage" then
 			local pitch = phase == "Windup" and 105 or phase == "Active" and 75 or 20
 			local yaw = phase == "Windup" and -30 or phase == "Active" and 45 or 0
@@ -311,6 +315,8 @@ function Visual.renderArms(character, dt)
 		joint.Transform = pose
 	end
 	apply(armJoint(character, "Left", "Shoulder"), left)
+	local waist = character:FindFirstChild("Waist", true)
+	if waist and (waist:IsA("Motor6D") or waist:IsA("AnimationConstraint")) then apply(waist, torso) end
 	local rightShoulder, elbow = armJoint(character, "Right", "Shoulder"), armJoint(character, "Right", "Elbow")
 	if right and rightShoulder and (classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane")) then
 		-- Classic R6 shoulders use a different joint basis from R15. Express
