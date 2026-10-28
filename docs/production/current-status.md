@@ -1,6 +1,6 @@
 # 현재 개발 상태와 확정된 전투 방향
 
-2026-10-28 · 총괄 DIR · 게임 빌드 `0.13.0` · 세션 원형
+2026-10-28 · 총괄 DIR · 게임 빌드 `0.14.0` · 세션 원형
 [최신 결정](../decisions.md) · [액션·스킬 상세](action-and-skill-design.md) · [빌드 증거](../evidence/k0/build.md) · [백로그](../../backlog.md)
 
 ## 현재 실행 가능한 시험판
@@ -11,10 +11,10 @@
 | 공유 3D | TD Goblin·Slime·Orc·Ogre와 기사 검/방패, 엘프 활, 드워프 도끼를 연결. 마법사 나무 지팡이는 신규 | 기사 방패는 TD 원본 분리 후 소유자 Restricted 메시를 사용. 게시 Experience의 권한과 최종 리그/시각 수용은 미검증. [몬스터](../evidence/k0/td-monster-integration.md) · [무기](../evidence/k0/player-weapons.md) |
 | 적과 피드백 | 네 종류 적의 시험 전투·머리 위 HP, 실제 서버 명중 피드백. Slime 사망 시 크기 50%·최대 HP 25%의 작은 슬라임 둘로 1회 분열. 유효 피격 시 적이 공격자를 인식 | 최종 AI·밸런스·다인/게시 테스트는 미완료. [기록](../evidence/k0/slime-awareness-bow.md) |
 | 기본 전투 | 네 직업 무기 공격·표적 클릭, 공통 방어·회피·달리기와 서버 피해 판정 | PC 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R/V 회피, Space 점프, X 표적 해제. 조작·모션은 시험용. [표적](../evidence/k0/melee-target-high-axe.md) |
-| 기술 시험 | 네 직업 각 3개 기술, 물리 기술 Stamina·Mage 주문 MP·개별 쿨다운, 로비 편성·하단 1~5 슬롯 | 기본 3슬롯, 5슬롯은 PRACTICE ONLY. 정식 전직·습득·영구 저장·6번 용도는 미구현/미결정. [신규 기록](../evidence/k0/action-skill-prototype.md). [기술](../evidence/k0/basic-skills-mana.md) |
-| 결과물 | Rojo 7.7.1로 `builds/0.13.0/TheLastThrone-0.13.0.rbxlx` 시험 빌드 | 결과물은 Git에서 제외된 로컬 파일이며 다른 체크아웃에 자동 제공되지 않는다. [해시·검증](../evidence/k0/build.md) |
+| 기술 시험 | 네 직업 각 3개 기술, 물리 기술 Stamina·Mage의 Mana Bolt/Water Ball/Gravity MP·개별 쿨다운, 로비 편성·하단 1~5 슬롯 | 기본 3슬롯, 5슬롯은 PRACTICE ONLY. 정식 전직·습득·영구 저장·6번 용도는 미구현/미결정. [신규 기록](../evidence/k0/action-skill-prototype.md). [기술](../evidence/k0/basic-skills-mana.md) |
+| 결과물 | Rojo 7.7.1로 `builds/0.14.0/TheLastThrone-0.14.0.rbxlx` 시험 빌드 | 결과물은 Git에서 제외된 로컬 파일이며 다른 체크아웃에 자동 제공되지 않는다. [해시·검증](../evidence/k0/build.md) |
 
-확인된 범위: 고정 0.13.0 빌드 스모크 451개와 격리 Studio 서버 fixture 325개·타이밍 106개, 순수 규칙 122개·영웅 세션 89개 검사 통과. 빌드 전 격리 Studio Play에서 기사 편성·연습용 5슬롯, Q 방어·E 달리기·R 회피·4번 기술과 마법사 1번 MP 기술을 확인했다. 최종 빌드 자체의 Player Play, 모바일·패드·다인·게시 클라이언트, 전 기술 모션·밸런스와 사용자 수용은 미검증이다. 기존 `203785492` 자산 유형 경고가 관측됐다. [기록](../evidence/k0/action-skill-prototype.md).
+확인된 범위: 마법 변경 소스의 격리 Studio 서버 fixture 332개 및 순수 규칙 122개·영웅 세션 89개 검사 통과. 빌드 전 격리 Studio R15 Player에서 세 주문 이름·1~3 키 발동·MP 및 쿨다운 표시를 확인했다. Gravity 표적 효과는 서버 fixture에서 확인했으며 실제 Player Play에서 표적 타격은 벽 차단과 피격 중단으로 확인하지 못했다. 최종 빌드 자체의 Player Play, 모바일·패드·다인·게시 클라이언트, 전 기술 모션·밸런스와 사용자 수용은 미검증이다. 기존 `203785492` 자산 유형 경고가 관측됐다. [기록](../evidence/k0/mage-basic-spells.md).
 
 ## 최신 사용자 결정
 

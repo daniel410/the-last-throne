@@ -133,7 +133,7 @@ return {
    end
  end,
  setupCharacter=setupCharacter, readCombatContext=readCombatContext,
- clearAction=clearAction, processCombatSamples=processCombatSamples, stepPlayer=stepPlayer,
+ clearAction=clearAction, processCombatSamples=processCombatSamples, stepPlayer=stepPlayer, stepEnemy=stepEnemy,
  start=CombatService.start, startAttack=startAttack, beginEnemyAttack=beginEnemyAttack,
  remote=qaRemote, heartbeat=qaHeartbeat
 }
@@ -307,6 +307,22 @@ return {
 		equal(state.skillReadyAt["knight.common.rally"], 18.1, "cooldown follows skill identity")
 		equal(state.character:GetAttribute("K0EquippedSkill1"), "knight.common.bash", "replicated equipped skill matches trusted slot")
 	end)
+	case("gravity-slows-one-target-and-expires", function()
+		api.injectResolver(function() return "mage" end)
+		local state = spawnPlayer()
+		local target = spawnEnemy(8)
+		local other = spawnEnemy(12)
+		action(state, "Skill3", 0, nil, target.model)
+		near(state.mana, 80, "gravity consumes mana")
+		sample(0.41)
+		near(target.humanoid.Health, 9930, "gravity deals server damage")
+		near(target.humanoid.WalkSpeed, target.config.walkSpeed * 0.5, "gravity slows target")
+		near(other.humanoid.Health, 10000, "gravity does not hit another enemy")
+		equal(type(target.model:GetAttribute("K0GravityUntil")), "number", "gravity duration replicated")
+		api.stepEnemy(target, 3.42, 0)
+		near(target.humanoid.WalkSpeed, target.config.walkSpeed, "gravity expires and restores speed")
+		equal(target.model:GetAttribute("K0GravityUntil"), nil, "gravity marker cleared")
+	end)
 	case("mana-rejection-does-not-spend-or-start-cooldown", function()
 		api.injectResolver(function() return "mage" end)
 		local state = spawnPlayer()
@@ -357,12 +373,12 @@ return {
 		action(state, "Skill1", 0)
 		sample(0.46)
 		action(state, "Skill2", 1.1)
-		equal(state.attack and state.attack.definition.id, "mage.common.gust", "second spell available while first cooling")
-		near(state.mana, 65, "two spells spend their own MP costs")
+		equal(state.attack and state.attack.definition.id, "mage.common.water_ball", "second spell available while first cooling")
+		near(state.mana, 73, "two spells spend their own MP costs")
 		sample(1.46)
 		action(state, "Skill1", 2.1)
 		equal(state.character:GetAttribute("K0Feedback"), "SkillCooling", "first spell remains on its own cooldown")
-		near(state.mana, 65, "cooldown rejection spends no MP")
+		near(state.mana, 73, "cooldown rejection spends no MP")
 	end)
 	case("arcane-denies-other-classes-and-wall-damage", function()
 		api.injectResolver(function() return "knight" end)

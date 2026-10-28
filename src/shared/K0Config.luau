@@ -108,9 +108,9 @@ Config.Skills = {
 		{ id = "dwarf.common.ground", staminaCost = 25, name = "GROUND SLAM", cooldown = 10, windup = 0.35, active = 0.1, recovery = 0.4, damage = 1.2, posture = 30, range = 6, angle = 130, maxHeight = 7, maxTargets = 3, effect = "slam" },
 	},
 	mage = {
-		{ id = "mage.common.arcane", name = "ARCANE", cooldown = 3, manaCost = 15, magic = true, windup = 0.45, active = 0.12, recovery = 0.45, damage = 1.0, posture = 10, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "arcane", ranged = true },
-		{ id = "mage.common.gust", name = "GUST", cooldown = 7, manaCost = 20, magic = true, windup = 0.35, active = 0.12, recovery = 0.35, damage = 0.7, posture = 25, range = 12, angle = 90, maxHeight = 10, maxTargets = 3, effect = "gust" },
-		{ id = "mage.common.water", name = "WATER", cooldown = 5, manaCost = 12, magic = true, windup = 0.35, active = 0.12, recovery = 0.35, damage = 0.85, posture = 8, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "water", ranged = true },
+		{ id = "mage.common.mana_bolt", name = "MANA BOLT", cooldown = 3, manaCost = 15, magic = true, windup = 0.45, active = 0.12, recovery = 0.45, damage = 1.0, posture = 10, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "mana_bolt", ranged = true },
+		{ id = "mage.common.water_ball", name = "WATER BALL", cooldown = 5, manaCost = 12, magic = true, windup = 0.35, active = 0.12, recovery = 0.35, damage = 0.85, posture = 8, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "water", ranged = true },
+		{ id = "mage.common.gravity", name = "GRAVITY", cooldown = 8, manaCost = 20, magic = true, windup = 0.4, active = 0.12, recovery = 0.4, damage = 0.7, posture = 15, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "gravity", ranged = true, slowDuration = 3, slowMultiplier = 0.5 },
 	},
 }
 

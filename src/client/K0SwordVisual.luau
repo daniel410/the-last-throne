@@ -503,7 +503,11 @@ local function consumeSpell(character)
 	local classId = character:GetAttribute("K0ClassId")
 	first = weaponOrigin(character, first, last, classId)
 	if #spells >= 32 then table.remove(spells, 1).part:Destroy() end
-	local color = classId == "dwarf" and Color3.fromRGB(255, 155, 65) or character:GetAttribute("K0SkillId") == "mage.common.water" and Color3.fromRGB(88, 175, 255) or Color3.fromRGB(182, 111, 255)
+	local skillId = character:GetAttribute("K0SkillId")
+	local color = classId == "dwarf" and Color3.fromRGB(255, 155, 65)
+		or skillId == "mage.common.water_ball" and Color3.fromRGB(70, 170, 255)
+		or skillId == "mage.common.gravity" and Color3.fromRGB(126, 65, 211)
+		or Color3.fromRGB(160, 224, 255)
 	local orb
 	if classId == "dwarf" then
 		for _, model in ipairs(character:GetChildren()) do
@@ -518,14 +522,15 @@ local function consumeSpell(character)
 		orb.Name, orb.Anchored, orb.CanCollide, orb.CanTouch, orb.CanQuery = "K0VisualThrownAxe", true, false, false, false
 		orb.Parent, orb.Position = workspace, first
 	else
-		orb = arrowPart(workspace, "K0VisualArcaneBolt", Vector3.new(0.65, 0.65, 0.65), color, Enum.Material.Neon)
+		local size = skillId == "mage.common.water_ball" and 1.05 or skillId == "mage.common.gravity" and 0.9 or 0.65
+		orb = arrowPart(workspace, "K0VisualSpell", Vector3.new(size, size, size), color, Enum.Material.Neon)
 		orb.Shape, orb.Position = Enum.PartType.Ball, first
 	end
 	local light = Instance.new("PointLight"); light.Color = orb.Color; light.Brightness = 2; light.Range = 8; light.Parent = orb
 	local front = Instance.new("Attachment"); front.Position = Vector3.new(0, 0, -0.3); front.Parent = orb
 	local back = Instance.new("Attachment"); back.Position = Vector3.new(0, 0, 0.3); back.Parent = orb
 	local trail = Instance.new("Trail"); trail.Attachment0, trail.Attachment1 = front, back
-	trail.Color = ColorSequence.new(Color3.fromRGB(224, 183, 255), Color3.fromRGB(99, 152, 255))
+	trail.Color = ColorSequence.new(color, Color3.fromRGB(230, 238, 255))
 	trail.Transparency, trail.Lifetime, trail.LightEmission = NumberSequence.new(0.2), 0.25, 1
 	trail.Parent = orb
 	local distance = (last - first).Magnitude
@@ -548,7 +553,7 @@ local function advanceSpells(dt)
 			local position = spell.first + spell.direction * spell.distance * math.min(1, spell.elapsed / spell.duration)
 			spell.part.CFrame = CFrame.lookAt(position, position + spell.direction) * (spell.character:GetAttribute("K0ClassId") == "dwarf" and CFrame.Angles(spell.elapsed * 20, 0, 0) or CFrame.new())
 			if spell.elapsed >= spell.duration then
-				impact(position, Color3.fromRGB(196, 144, 255))
+				impact(position, spell.part.Color)
 				spell.part:Destroy(); table.remove(spells, index)
 			end
 		end

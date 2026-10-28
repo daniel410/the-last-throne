@@ -20,9 +20,27 @@ function EnemyVisual.start()
 		local field = Workspace:WaitForChild("DeepwoodK0", 30)
 		local enemies = field and field:WaitForChild("Enemies", 10)
 		if not enemies then return end
+		local gravityEffects = {}
 		RunService.RenderStepped:Connect(function(dt)
 			local alpha = math.clamp(dt * 15, 0, 1)
+			for model, effect in pairs(gravityEffects) do
+				if model.Parent ~= enemies or not model:GetAttribute("K0GravityUntil") then
+					effect:Destroy()
+					gravityEffects[model] = nil
+				end
+			end
 			for _, model in enemies:GetChildren() do
+				if model:GetAttribute("K0GravityUntil") and not gravityEffects[model] then
+					local glow = Instance.new("Highlight")
+					glow.Name = "GravityEffect"
+					glow.Adornee = model
+					glow.FillColor = Color3.fromRGB(98, 43, 168)
+					glow.OutlineColor = Color3.fromRGB(199, 152, 255)
+					glow.FillTransparency, glow.OutlineTransparency = 0.65, 0.1
+					glow.DepthMode = Enum.HighlightDepthMode.Occluded
+					glow.Parent = model
+					gravityEffects[model] = glow
+				end
 				local torso = model:FindFirstChild("Torso")
 				local root = model:FindFirstChild("HumanoidRootPart")
 				if not torso or not root then continue end

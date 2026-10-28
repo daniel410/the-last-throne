@@ -602,15 +602,11 @@ local function damageEnemy(state, enemy, attack, current)
 		if applied > 0 and attack.isSkill and attack.definition.effect == "water" then
 			enemy.model:SetAttribute("K0WetUntil", workspace:GetServerTimeNow() + 4)
 		end
-		if applied > 0 and attack.isSkill and attack.definition.effect == "gust" and enemy.kind ~= "Ogre" then
-			local away = horizontalUnit(enemy.root.Position - state.root.Position, attack.direction)
-			local params = rayParams({ state.character, enemy.model })
-			local obstacle = workspace:Blockcast(enemy.root.CFrame, enemy.root.Size * 0.9, away * 3, params)
-			local distance = obstacle and math.max(0, obstacle.Distance - 0.15) or 3
-			local destination = enemy.root.Position + away * distance
-			if workspace:Raycast(destination + Vector3.new(0, 2, 0), Vector3.new(0, -12, 0), params) then
-				enemy.model:PivotTo(enemy.model:GetPivot() + away * distance)
-			end
+		if applied > 0 and attack.isSkill and attack.definition.effect == "gravity" then
+			enemy.gravityUntil = current + attack.definition.slowDuration
+			enemy.gravityMultiplier = attack.definition.slowMultiplier
+			enemy.humanoid.WalkSpeed = enemy.config.walkSpeed * enemy.gravityMultiplier
+			enemy.model:SetAttribute("K0GravityUntil", workspace:GetServerTimeNow() + attack.definition.slowDuration)
 		end
 		if not enemy.attack and enemy.mode ~= "Exposed" then setEnemyState(enemy, "Chase") end
 		damagePosture(enemy, attack.definition.posture, current)
@@ -1117,6 +1113,9 @@ local function resetEnemy(enemy)
 	enemy.pattern = 0
 	enemy.posture = enemy.config.posture
 	enemy.postureImmuneUntil = 0
+	enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
+	enemy.humanoid.WalkSpeed = enemy.config.walkSpeed
+	enemy.model:SetAttribute("K0GravityUntil", nil)
 	enemy.humanoid.Health = enemy.humanoid.MaxHealth
 	enemy.model:SetAttribute("K0Posture", enemy.posture)
 	enemy.model:PivotTo(enemy.spawnPivot)
@@ -1127,6 +1126,11 @@ end
 local function stepEnemy(enemy, current, dt)
 	if not enemyAlive(enemy) then
 		return
+	end
+	if enemy.gravityUntil and current >= enemy.gravityUntil then
+		enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
+		enemy.humanoid.WalkSpeed = enemy.config.walkSpeed
+		enemy.model:SetAttribute("K0GravityUntil", nil)
 	end
 	if enemy.mode == "Exposed" then
 		if current >= enemy.exposedUntil then
