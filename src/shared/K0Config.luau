@@ -3,6 +3,10 @@ local Config = {
 	MaxHealth = 1000,
 	AttackPower = 100,
 	MaxMana = 100,
+	MaxStamina = 100,
+	StaminaRegen = 15,
+	StaminaRegenDelay = 1,
+	SprintSpeed = 24,
 	ManaRegen = 10,
 	ManaRegenDelay = 1,
 	WalkSpeed = 16,
@@ -89,19 +93,19 @@ Config.BasicAttackProfiles = {
 -- Every magic skill declares a mana cost; each skill owns its own cooldown.
 Config.Skills = {
 	knight = {
-		{ id = "knight.common.breach", name = "BREACH", cooldown = 6, windup = 0.18, active = 0.12, recovery = 0.30, damage = 1.4, posture = 18, range = 4.5, angle = 100, maxHeight = 7, maxTargets = 3, effect = "advance" },
-		{ id = "knight.common.bash", name = "SHIELD BASH", cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 4, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash" },
-		{ id = "knight.common.rally", name = "RALLY", cooldown = 18, windup = 0.25, active = 0.05, recovery = 0.30, damage = 0, posture = 0, range = 10, angle = 360, maxHeight = 10, maxTargets = 0, effect = "rally" },
+		{ id = "knight.common.breach", staminaCost = 20, name = "BREACH", cooldown = 6, windup = 0.18, active = 0.12, recovery = 0.30, damage = 1.4, posture = 18, range = 4.5, angle = 100, maxHeight = 7, maxTargets = 3, effect = "advance" },
+		{ id = "knight.common.bash", staminaCost = 25, name = "SHIELD BASH", cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 4, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash" },
+		{ id = "knight.common.rally", staminaCost = 30, name = "RALLY", cooldown = 18, windup = 0.25, active = 0.05, recovery = 0.30, damage = 0, posture = 0, range = 10, angle = 360, maxHeight = 10, maxTargets = 0, effect = "rally" },
 	},
 	elf = {
-		{ id = "elf.common.pierce", name = "PIERCE", cooldown = 6, windup = 0.3, active = 0.1, recovery = 0.3, damage = 1.1, posture = 10, range = 55, angle = 16, maxHeight = 10, maxTargets = 3, effect = "pierce", ranged = true },
-		{ id = "elf.common.retreat", name = "RETREAT SHOT", cooldown = 8, windup = 0.25, active = 0.1, recovery = 0.35, damage = 0.8, posture = 8, range = 45, angle = 45, maxHeight = 10, maxTargets = 1, effect = "retreat", ranged = true },
-		{ id = "elf.common.mark", name = "HUNTER MARK", cooldown = 12, windup = 0.25, active = 0.1, recovery = 0.25, damage = 0.4, posture = 4, range = 55, angle = 45, maxHeight = 10, maxTargets = 1, effect = "mark", ranged = true },
+		{ id = "elf.common.pierce", staminaCost = 20, name = "PIERCE", cooldown = 6, windup = 0.3, active = 0.1, recovery = 0.3, damage = 1.1, posture = 10, range = 55, angle = 16, maxHeight = 10, maxTargets = 3, effect = "pierce", ranged = true },
+		{ id = "elf.common.retreat", staminaCost = 20, name = "RETREAT SHOT", cooldown = 8, windup = 0.25, active = 0.1, recovery = 0.35, damage = 0.8, posture = 8, range = 45, angle = 45, maxHeight = 10, maxTargets = 1, effect = "retreat", ranged = true },
+		{ id = "elf.common.mark", staminaCost = 25, name = "HUNTER MARK", cooldown = 12, windup = 0.25, active = 0.1, recovery = 0.25, damage = 0.4, posture = 4, range = 55, angle = 45, maxHeight = 10, maxTargets = 1, effect = "mark", ranged = true },
 	},
 	dwarf = {
-		{ id = "dwarf.common.throw", name = "AXE THROW", cooldown = 7, windup = 0.3, active = 0.1, recovery = 0.3, damage = 1.1, posture = 18, range = 32, angle = 45, maxHeight = 10, maxTargets = 1, effect = "throw", ranged = true },
-		{ id = "dwarf.common.recall", name = "RECALL", cooldown = 5, windup = 0.18, active = 0.1, recovery = 0.25, damage = 0.7, posture = 12, range = 32, angle = 45, maxHeight = 10, maxTargets = 1, effect = "recall", ranged = true },
-		{ id = "dwarf.common.ground", name = "GROUND SLAM", cooldown = 10, windup = 0.35, active = 0.1, recovery = 0.4, damage = 1.2, posture = 30, range = 6, angle = 130, maxHeight = 7, maxTargets = 3, effect = "slam" },
+		{ id = "dwarf.common.throw", staminaCost = 20, name = "AXE THROW", cooldown = 7, windup = 0.3, active = 0.1, recovery = 0.3, damage = 1.1, posture = 18, range = 32, angle = 45, maxHeight = 10, maxTargets = 1, effect = "throw", ranged = true },
+		{ id = "dwarf.common.recall", staminaCost = 15, name = "RECALL", cooldown = 5, windup = 0.18, active = 0.1, recovery = 0.25, damage = 0.7, posture = 12, range = 32, angle = 45, maxHeight = 10, maxTargets = 1, effect = "recall", ranged = true },
+		{ id = "dwarf.common.ground", staminaCost = 25, name = "GROUND SLAM", cooldown = 10, windup = 0.35, active = 0.1, recovery = 0.4, damage = 1.2, posture = 30, range = 6, angle = 130, maxHeight = 7, maxTargets = 3, effect = "slam" },
 	},
 	mage = {
 		{ id = "mage.common.arcane", name = "ARCANE", cooldown = 3, manaCost = 15, magic = true, windup = 0.45, active = 0.12, recovery = 0.45, damage = 1.0, posture = 10, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "arcane", ranged = true },

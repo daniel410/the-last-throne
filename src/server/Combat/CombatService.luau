@@ -95,7 +95,8 @@ local function setPlayerState(state, name)
 	end
 	state.mode = name
 	state.character:SetAttribute("K0State", name)
-	local speed = Config.WalkSpeed
+	local speed = state.sprinting and Config.SprintSpeed or Config.WalkSpeed
+	if name ~= "Idle" then state.sprinting = false; state.character:SetAttribute("K0Sprinting", false) end
 	if name == "Attack" then
 		speed = Config.AttackSpeed
 	elseif name == "Block" then
@@ -307,15 +308,23 @@ local function setMana(state, value)
 	state.character:SetAttribute("K0Mana", math.floor(state.mana * 10 + 0.5) / 10)
 end
 
+local function setStamina(state, value)
+	state.stamina = math.clamp(value, 0, Config.MaxStamina)
+	state.character:SetAttribute("K0Stamina", math.floor(state.stamina * 10 + 0.5) / 10)
+end
+
 local function startSkill(state, slot, current, targetModel)
 	local skills = Config.Skills[state.baseClassId]
-	local skill = skills and skills[slot]
+	if slot > state.slotCount then return end
+	local skill = skills and skills[state.skillSlots[slot] or 0]
 	if not skill then return end
 	if state.mode ~= "Idle" then updateFeedback(state, "SkillBusy"); return end
 	if current < (state.skillReadyAt[skill.id] or -math.huge) then updateFeedback(state, "SkillCooling"); return end
 	-- Magic costs MP by contract, including future magic-archer abilities.
 	if skill.magic and (type(skill.manaCost) ~= "number" or skill.manaCost <= 0) then return end
-	if skill.magic and state.mana < skill.manaCost then updateFeedback(state, "NeedMana"); return end
+	if skill.magic and (not state.mana or state.mana < skill.manaCost) then updateFeedback(state, "NeedMana"); return end
+	if not skill.magic and (type(skill.staminaCost) ~= "number" or skill.staminaCost <= 0) then return end
+	if not skill.magic and (not state.stamina or state.stamina < skill.staminaCost) then updateFeedback(state, "NeedStamina"); return end
 	if skill.effect == "recall" and (not state.thrownUntil or current >= state.thrownUntil) then
 		updateFeedback(state, "NoAxeToRecall"); return
 	end
@@ -333,8 +342,13 @@ local function startSkill(state, slot, current, targetModel)
 	state.queued = nil
 	resetCombo(state)
 	state.skillReadyAt[skill.id] = current + skill.cooldown
+	if state.setSkillReadyAt then state.setSkillReadyAt(skill.id, state.skillReadyAt[skill.id]) end
 	state.character:SetAttribute("K0SkillReady" .. slot, workspace:GetServerTimeNow() + skill.cooldown)
-	if skill.magic then setMana(state, state.mana - skill.manaCost); state.manaRegenAt = current + Config.ManaRegenDelay end
+	if skill.magic then
+		setMana(state, state.mana - skill.manaCost); state.manaRegenAt = current + Config.ManaRegenDelay
+	else
+		setStamina(state, state.stamina - skill.staminaCost); state.staminaRegenAt = current + Config.StaminaRegenDelay
+	end
 	if skill.effect == "advance" then skillStep(state, direction, 6) end
 	if skill.effect == "retreat" then skillStep(state, -direction, 4) end
 	local recallFrom
@@ -361,9 +375,6 @@ local function startSkill(state, slot, current, targetModel)
 end
 
 local function startGuard(state, current)
-	if state.baseClassId ~= "knight" then
-		return
-	end
 	if state.attack then
 		state.lastAttackFinished = current
 	end
@@ -403,7 +414,7 @@ local function resourceReady(state, action, current)
 	if action == "Dodge" then
 		return true
 	elseif action == "BlockStart" then
-		return state.baseClassId == "knight" and current >= state.lastGuardStarted + Config.Guard.cooldown
+		return current >= state.lastGuardStarted + Config.Guard.cooldown
 	end
 	return action == "Attack" and state.attackProfile ~= nil and Config.BasicAttackProfiles[state.baseClassId] == state.attackProfile
 end
@@ -433,6 +444,21 @@ local function acceptAction(state, action, direction, current, targetModel)
 	if not alive(state) or state.mode == "Dead" or state.mode == "Stunned" then
 		return
 	end
+	if action == "SprintEnd" then
+		state.sprinting = false
+		state.character:SetAttribute("K0Sprinting", false)
+		if state.mode == "Idle" then state.humanoid.WalkSpeed = Config.WalkSpeed end
+		return
+	end
+	if action == "SprintStart" then
+		if state.mode == "Idle" then
+			state.sprinting = true
+			state.sprintExpires = current + 1
+			state.character:SetAttribute("K0Sprinting", true)
+			state.humanoid.WalkSpeed = Config.SprintSpeed
+		end
+		return
+	end
 	if action == "BlockEnd" then
 		if state.queued and state.queued.action == "BlockStart" then
 			state.queued = nil
@@ -447,7 +473,7 @@ local function acceptAction(state, action, direction, current, targetModel)
 		startSkill(state, 1, current, targetModel)
 		return
 	end
-	local skillSlot = action:match("^Skill([123])$")
+	local skillSlot = action:match("^Skill([12345])$")
 	if skillSlot then startSkill(state, tonumber(skillSlot), current, targetModel); return end
 	if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" then
 		return
@@ -494,7 +520,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	local guardDot = facingDot(target, playerState.root.CFrame.LookVector, origin)
 	local result, multiplier = Rules.defense(
 		playerState.mode == "Dodge", playerState.dodge and current - playerState.dodge.started or -1,
-		playerState.baseClassId == "knight" and playerState.mode == "Block", playerState.guardStarted and current - playerState.guardStarted or -1,
+		playerState.mode == "Block", playerState.guardStarted and current - playerState.guardStarted or -1,
 		guardDot, attack.definition.blockable, Config.Guard, Config.Dodge
 	)
 	if result == "Dodge" then
@@ -785,7 +811,7 @@ local function checkMovement(state, current)
 		local travelled = (position - state.lastMotionPosition).Magnitude
 		-- Replicated movement can arrive in bursts between heartbeats. Accumulate
 		-- the unused allowance instead of charging every sample as a fresh burst.
-		local permitted, remaining = Rules.movementBudget(state.movementBudget, elapsed, travelled, Config.WalkSpeed, Config.MovementBudget)
+		local permitted, remaining = Rules.movementBudget(state.movementBudget, elapsed, travelled, state.sprinting and Config.SprintSpeed or Config.WalkSpeed, Config.MovementBudget)
 		if not permitted then
 			-- Rewind to the last accepted server sample; never use a rejected position for hits.
 			state.character:PivotTo(state.lastSafePivot)
@@ -963,6 +989,14 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 				consumedAction = queued.action
 			end
 		end
+	end
+	if state.sprinting and current >= state.sprintExpires then
+		state.sprinting = false
+		state.character:SetAttribute("K0Sprinting", false)
+		if state.mode == "Idle" then state.humanoid.WalkSpeed = Config.WalkSpeed end
+	end
+	if state.stamina and current >= state.staminaRegenAt and state.mode ~= "Dead" then
+		setStamina(state, state.stamina + Config.StaminaRegen * math.min(dt, 0.25))
 	end
 	if state.mana and current >= state.manaRegenAt and state.mode ~= "Dead" then
 		setMana(state, state.mana + Config.ManaRegen * math.min(dt, 0.25))
@@ -1346,7 +1380,9 @@ local function setupCharacter(player, character)
 		local state = {
 			player = player, character = character, humanoid = humanoid, root = root, mode = "",
 			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0,
-			mana = Config.MaxMana, manaRegenAt = current, skillReadyAt = {},
+			mana = classId == "mage" and Config.MaxMana or nil, manaRegenAt = current,
+			stamina = classId ~= "mage" and Config.MaxStamina or nil, staminaRegenAt = current,
+			skillSlots = context.skillSlots or {1, 2, 3, 0, 0}, slotCount = context.slotCount or 3, skillReadyAt = context.skillReadyAt or {}, setSkillReadyAt = context.setSkillReadyAt,
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
 			combo = 0, lastAttackFinished = -math.huge, lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge,
 			stunnedUntil = 0, feedbackSeq = 0, attack = nil, queued = nil, counter = nil,
@@ -1369,9 +1405,17 @@ local function setupCharacter(player, character)
 		character:SetAttribute("K0ArrowVisual", nil)
 		character:SetAttribute("K0SpellVisual", nil)
 		character:SetAttribute("K0AttackKind", nil)
-		character:SetAttribute("K0MaxMana", Config.MaxMana)
-		character:SetAttribute("K0Mana", Config.MaxMana)
-		for slot = 1, 3 do character:SetAttribute("K0SkillReady" .. slot, 0) end
+		character:SetAttribute("K0MaxMana", state.mana and Config.MaxMana or nil)
+		character:SetAttribute("K0Mana", state.mana)
+		character:SetAttribute("K0MaxStamina", state.stamina and Config.MaxStamina or nil)
+		character:SetAttribute("K0Stamina", state.stamina)
+		character:SetAttribute("K0SkillSlotCount", state.slotCount)
+		character:SetAttribute("K0Sprinting", false)
+		for slot = 1, 5 do
+			local skill = slot <= state.slotCount and Config.Skills[classId][state.skillSlots[slot] or 0]
+			character:SetAttribute("K0EquippedSkill" .. slot, skill and skill.id or "")
+			character:SetAttribute("K0SkillReady" .. slot, skill and workspace:GetServerTimeNow() + math.max(0, (state.skillReadyAt[skill.id] or current) - current) or 0)
+		end
 		character:SetAttribute("K0Combo", 0)
 		character:SetAttribute("K0AttackPhase", "None")
 		character:SetAttribute("K0Invulnerable", false)
@@ -1447,16 +1491,16 @@ function CombatService.start(enemies, serverContextResolver)
 		if not state or not alive(state) or type(action) ~= "string" or #action > 16 or select("#", ...) > 0 or not validDirection(direction) then
 			return
 		end
-		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" and not action:match("^Skill[123]$") then
+		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" and action ~= "SprintStart" and action ~= "SprintEnd" and not action:match("^Skill[12345]$") then
 			return
 		end
 		if targetModel ~= nil then
 			if typeof(targetModel) ~= "Instance" or not enemyStates[targetModel]
-				or not (action == "Attack" or action:match("^Skill[123]$") or (action == "CastArcane" and state.baseClassId == "mage")) then return end
+				or not (action == "Attack" or action:match("^Skill[12345]$") or (action == "CastArcane" and state.baseClassId == "mage")) then return end
 		end
 		local current = now()
 		-- Releasing guard is always safe and must not be dropped after a burst.
-		if action == "BlockEnd" then
+		if action == "BlockEnd" or action == "SprintEnd" then
 			if state.mode == "Block" or (state.queued and state.queued.action == "BlockStart") then
 				processCombatSamples(current, state)
 			end

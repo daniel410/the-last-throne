@@ -18,6 +18,9 @@ require(script.K0EnemyVisual).start()
 require(script.K0HitEffects).start()
 local actionRemote
 local heldBlock = false
+local heldSprint = false
+local sprintGeneration = 0
+local touchSprintInput
 local blockGeneration = 0
 local touchBlockInput
 local attackInputs = {}
@@ -97,10 +100,10 @@ player:GetAttributeChangedSignal("K0SpawnStatus"):Connect(updateSpawnStatus)
 updateSpawnStatus()
 
 local function sendAction(action, direction)
-	if actionRemote and (action == "BlockEnd" or combatInputAllowed()) then
+	if actionRemote and (action == "BlockEnd" or action == "SprintEnd" or combatInputAllowed()) then
 		local character = player.Character
 		local classId = character and character:GetAttribute("K0ClassId")
-		local canTarget = action == "Attack" or action:match("^Skill[123]$") or (action == "CastArcane" and classId == "mage")
+		local canTarget = action == "Attack" or action:match("^Skill[12345]$") or (action == "CastArcane" and classId == "mage")
 		local target = canTarget and selectedEnemy or nil
 		if target and not Targeting.valid(target) then clearTarget(); target = nil end
 		-- Avoid turning mid-swing when held input repeats. The server turns
@@ -177,7 +180,7 @@ local function useSkill(slot)
 end
 
 local function startBlock()
-	if heldBlock or not isKnight() or not combatInputAllowed() then return end
+	if heldBlock or not combatInputAllowed() then return end
 	heldBlock = true
 	blockGeneration += 1
 	local generation = blockGeneration
@@ -201,6 +204,28 @@ local function endBlock()
 	sendAction("BlockEnd")
 end
 
+local function startSprint()
+	if heldSprint or not combatInputAllowed() then return end
+	heldSprint = true
+	sprintGeneration += 1
+	local generation = sprintGeneration
+	sendAction("SprintStart")
+	task.spawn(function()
+		while heldSprint and generation == sprintGeneration do
+			task.wait(0.4)
+			if heldSprint and generation == sprintGeneration then sendAction("SprintStart") end
+		end
+	end)
+end
+
+local function endSprint()
+	if not heldSprint then return end
+	heldSprint = false
+	sprintGeneration += 1
+	touchSprintInput = nil
+	sendAction("SprintEnd")
+end
+
 local function clearCharacterConnections()
 	for _, connection in characterConnections do
 		connection:Disconnect()
@@ -211,13 +236,18 @@ end
 local function bindCharacter(character)
 	clearCharacterConnections()
 	endBlock()
+	endSprint()
 	clearAttacks()
 	hud.setHealth(nil, nil)
 	hud.setMana(nil, nil)
+	hud.setStamina(nil, nil)
 	hud.setState(Text.State.Loading)
 
 	local function updateMana()
 		hud.setMana(character:GetAttribute("K0Mana"), character:GetAttribute("K0MaxMana"))
+	end
+	local function updateStamina()
+		hud.setStamina(character:GetAttribute("K0Stamina"), character:GetAttribute("K0MaxStamina"))
 	end
 	local function updateState()
 		local value = character:GetAttribute("K0State")
@@ -229,14 +259,16 @@ local function bindCharacter(character)
 	end
 	local function updateClass()
 		hud.setClass(character:GetAttribute("K0ClassId"))
-		if not isKnight() then endBlock() end
 	end
+	table.insert(characterConnections, character:GetAttributeChangedSignal("K0Stamina"):Connect(updateStamina))
+	table.insert(characterConnections, character:GetAttributeChangedSignal("K0MaxStamina"):Connect(updateStamina))
 	table.insert(characterConnections, character:GetAttributeChangedSignal("K0Mana"):Connect(updateMana))
 	table.insert(characterConnections, character:GetAttributeChangedSignal("K0MaxMana"):Connect(updateMana))
 	table.insert(characterConnections, character:GetAttributeChangedSignal("K0State"):Connect(updateState))
 	table.insert(characterConnections, character:GetAttributeChangedSignal("K0FeedbackSeq"):Connect(showFeedback))
 	table.insert(characterConnections, character:GetAttributeChangedSignal("K0ClassId"):Connect(updateClass))
 	updateMana()
+	updateStamina()
 	updateState()
 	updateClass()
 
@@ -257,6 +289,7 @@ player.CharacterRemoving:Connect(function()
 	clearTarget()
 	clearCharacterConnections()
 	endBlock()
+	endSprint()
 	clearAttacks()
 end)
 if player.Character then bindCharacter(player.Character) end
@@ -268,6 +301,13 @@ for slot, button in ipairs(hud.skills) do
 	button.Activated:Connect(function() useSkill(slot) end)
 end
 RunService.RenderStepped:Connect(function() hud.setCooldowns(player.Character) end)
+hud.sprint.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+		touchSprintInput = input
+		startSprint()
+	end
+end)
+hud.sprint.InputEnded:Connect(function(input) if input == touchSprintInput then endSprint() end end)
 hud.block.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
 		touchBlockInput = input
@@ -292,34 +332,44 @@ UserInputService.InputBegan:Connect(function(input, processed)
 		clearTarget(); hud.showFeedback(Text.TargetCleared)
 	elseif input.UserInputType == Enum.UserInputType.MouseButton1 or input.KeyCode == Enum.KeyCode.ButtonR2 then
 		startAttack(input)
-	elseif input.UserInputType == Enum.UserInputType.MouseButton2 or input.KeyCode == Enum.KeyCode.ButtonL2 then
+	elseif input.UserInputType == Enum.UserInputType.MouseButton2 or input.KeyCode == Enum.KeyCode.Q or input.KeyCode == Enum.KeyCode.ButtonL2 then
 		startBlock()
-	elseif input.KeyCode == Enum.KeyCode.Q or input.KeyCode == Enum.KeyCode.ButtonY then
+	elseif input.KeyCode == Enum.KeyCode.E or input.KeyCode == Enum.KeyCode.ButtonL3 then
+		startSprint()
+	elseif input.KeyCode == Enum.KeyCode.One or input.KeyCode == Enum.KeyCode.ButtonY then
 		useSkill(1)
-	elseif input.KeyCode == Enum.KeyCode.E or input.KeyCode == Enum.KeyCode.ButtonX then
+	elseif input.KeyCode == Enum.KeyCode.Two or input.KeyCode == Enum.KeyCode.ButtonX then
 		useSkill(2)
-	elseif input.KeyCode == Enum.KeyCode.R or input.KeyCode == Enum.KeyCode.ButtonL1 then
+	elseif input.KeyCode == Enum.KeyCode.Three or input.KeyCode == Enum.KeyCode.ButtonL1 then
 		useSkill(3)
+	elseif input.KeyCode == Enum.KeyCode.Four or input.KeyCode == Enum.KeyCode.DPadLeft then
+		useSkill(4)
+	elseif input.KeyCode == Enum.KeyCode.Five or input.KeyCode == Enum.KeyCode.DPadRight then
+		useSkill(5)
 	end
 end)
 UserInputService.InputEnded:Connect(function(input)
 	endAttack(input)
-	if input == touchBlockInput or input.UserInputType == Enum.UserInputType.MouseButton2 or input.KeyCode == Enum.KeyCode.ButtonL2 then
+	if input == touchBlockInput or input.UserInputType == Enum.UserInputType.MouseButton2 or input.KeyCode == Enum.KeyCode.ButtonL2 or input.KeyCode == Enum.KeyCode.Q then
 		endBlock()
 	end
+	if input == touchSprintInput or input.KeyCode == Enum.KeyCode.E or input.KeyCode == Enum.KeyCode.ButtonL3 then endSprint() end
 end)
 UserInputService.WindowFocusReleased:Connect(function()
 	focused = false
 	endBlock()
+	endSprint()
 	clearAttacks()
 end)
 UserInputService.WindowFocused:Connect(function() focused = true end)
 UserInputService.TextBoxFocused:Connect(function()
 	endBlock()
+	endSprint()
 	clearAttacks()
 end)
 GuiService.MenuOpened:Connect(function()
 	endBlock()
+	endSprint()
 	clearAttacks()
 end)
 
@@ -328,16 +378,16 @@ ContextActionService:BindActionAtPriority("K0Dodge", function(_, state)
 	if not combatInputAllowed() then return Enum.ContextActionResult.Pass end
 	if state == Enum.UserInputState.Begin then dodge() end
 	return Enum.ContextActionResult.Sink
-end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.V, Enum.KeyCode.ButtonB)
+end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.V, Enum.KeyCode.R, Enum.KeyCode.ButtonB)
 
 local function updateHints()
 	local input = UserInputService:GetLastInputType()
 	if input.Name:match("^Gamepad") then
-		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB, Text.HintY, Text.HintX, Text.HintL1)
+		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB, "L3", {"Y", "X", "L1", "LEFT", "RIGHT"})
 	elseif UserInputService.TouchEnabled and (input == Enum.UserInputType.Touch or not UserInputService.KeyboardEnabled) then
-		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap, Text.HintTap, Text.HintTap, Text.HintTap)
+		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap, Text.HintHold, {"1", "2", "3", "4", "5"})
 	else
-		hud.setHints(Text.HintClick, Text.HintRightClick, Text.HintV, Text.HintQ, Text.HintE, Text.HintR)
+		hud.setHints(Text.HintClick, "Q / RMB", "R / V", "E", {"1", "2", "3", "4", "5"})
 	end
 end
 UserInputService.LastInputTypeChanged:Connect(updateHints)
@@ -350,6 +400,7 @@ local function requestHero(action, argument)
 		return
 	end
 	endBlock()
+	endSprint()
 	clearAttacks()
 	requestSequence += 1
 	local requestId = "ui-" .. tostring(requestSequence)
@@ -370,7 +421,7 @@ hud.back.Activated:Connect(function() requestHero("ReturnLobby") end)
 local function updateSessionView()
 	local playing = player:GetAttribute("K0SessionPhase") == "Tutorial"
 	hud.setVisible(playing)
-	if not playing then endBlock(); clearAttacks(); clearTarget() end
+	if not playing then endBlock(); endSprint(); clearAttacks(); clearTarget() end
 	if heroSnapshot then
 		for _, hero in ipairs(heroSnapshot.heroes) do
 			if hero.heroId == heroSnapshot.selectedHeroId then

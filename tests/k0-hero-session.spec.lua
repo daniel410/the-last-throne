@@ -154,6 +154,26 @@ _, errorCode = request(first, "CreateHero", "mage")
 check(errorCode == "ReturnToPlatform", "nonfinite position cannot manage heroes")
 initial:FindFirstChild("HumanoidRootPart").Position = Vector3.new(0, 99, 536)
 
+request(first, "SelectHero", heroes.knight)
+value, errorCode = request(first, "SetSkillSlot", "4:1")
+check(errorCode == "InvalidRequest", "slot 4 is locked before practice advancement")
+value, errorCode = request(first, "SetSkillSlot", "1:2")
+local selected = value.heroes[1]
+check(errorCode == nil and selected.skillSlots[1] == 2 and selected.skillSlots[2] == 1, "duplicate skill swaps slots")
+selected.skillSlots[1] = 99
+value = request(first, "GetState")
+check(value.heroes[1].skillSlots[1] == 2, "snapshot cannot modify server loadout")
+_, errorCode = request(first, "SetSkillSlot", "1:9")
+check(errorCode == "InvalidRequest", "unlearned skill rejected")
+value, errorCode = request(first, "PracticeAdvance")
+check(errorCode == nil and value.heroes[1].practiceAdvanced, "practice advancement explicitly enables five slots")
+value, errorCode = request(first, "SetSkillSlot", "4:3")
+check(errorCode == nil and value.heroes[1].skillSlots[4] == 3 and value.heroes[1].skillSlots[3] == 0, "advanced practice can rearrange into slot 4")
+request(first, "PracticeAdvance")
+request(first, "SetSkillSlot", "1:1")
+request(first, "SetSkillSlot", "2:2")
+request(first, "SetSkillSlot", "3:3")
+
 local previousContext
 local generation = 1
 for classIndex, classId in ipairs({ "knight", "dwarf", "mage", "elf" }) do
@@ -171,6 +191,9 @@ for classIndex, classId in ipairs({ "knight", "dwarf", "mage", "elf" }) do
 	local context = Service.getCombatContext(first, actor)
 	check(context and context.heroId == heroes[classId] and context.baseClassId == classId and context.characterGeneration == generation, "same player can play " .. classId .. " using its own identity")
 	check(not previousContext or context.epoch > previousContext.epoch, "hero life epoch increases")
+	context.setSkillReadyAt("test.skill", 12345)
+	context.skillReadyAt["test.skill"] = 0
+	check(Service.getCombatContext(first, actor).skillReadyAt["test.skill"] == 12345, "cooldown is server-owned and snapshot is isolated")
 	previousContext = context
 	_, errorCode = request(first, "SelectHero", heroes.mage)
 	check(errorCode == "WaitForLobby" and Service.getCombatContext(first, actor).baseClassId == classId, "in-combat selection cannot change class")
@@ -200,11 +223,13 @@ local load = spawnRequests[#spawnRequests]
 generation = generation + 1
 local life = ready(first, load.id, generation, Vector3.new(-20, 4, 56))
 local beforeDeath = Service.getCombatContext(first, life)
+check(beforeDeath.skillReadyAt["test.skill"] == 12345, "hero cooldown survives lobby and tutorial transition")
 Service.onLifeEnded(first, life, generation, load.id, "Died")
 check(Service.getCombatContext(first, life) == nil, "death immediately revokes old context")
 generation = generation + 1
 local respawned = ready(first, load.id, generation, Vector3.new(-20, 4, 56))
 local afterDeath = Service.getCombatContext(first, respawned)
+check(afterDeath.skillReadyAt["test.skill"] == 12345, "hero cooldown survives respawn")
 check(afterDeath.epoch > beforeDeath.epoch and afterDeath.characterGeneration > beforeDeath.characterGeneration, "respawn is a distinct context")
 Service.onLifeEnded(first, life, generation - 1, load.id, "Removing")
 check(Service.getCombatContext(first, respawned) ~= nil, "late old removal cannot revoke current life")

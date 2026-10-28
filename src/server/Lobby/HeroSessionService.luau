@@ -37,6 +37,7 @@ local function snapshot(state)
 	for _, hero in ipairs(state.heroes) do
 		table.insert(heroes, {
 			heroId = hero.heroId, classId = hero.baseClassId,
+			skillSlots = { table.unpack(hero.skillSlots) }, practiceAdvanced = hero.practiceAdvanced,
 			practice = { moved = hero.practice.moved, attacked = hero.practice.attacked, dodged = hero.practice.dodged },
 		})
 	end
@@ -113,6 +114,8 @@ local function validateRequest(action, requestId, argument, extraCount)
 		or type(requestId) ~= "string" or #requestId < 1 or #requestId > 48
 		or not requestId:match("^[%w_-]+$") then return false end
 	if action == "CreateHero" then return type(argument) == "string" and CLASS_IDS[argument] == true end
+	if action == "SetSkillSlot" then return type(argument) == "string" and argument:match("^[1-5]:[0-3]$") ~= nil end
+	if action == "PracticeAdvance" then return argument == nil end
 	if action == "SelectHero" then return type(argument) == "string" and #argument > 0 and #argument <= 64 end
 	return (action == "GetState" or action == "StartTutorial" or action == "ReturnLobby") and argument == nil
 end
@@ -141,6 +144,7 @@ local function execute(state, action, argument)
 		local hero = {
 			heroId = HttpService:GenerateGUID(false), baseClassId = argument,
 			practice = { moved = false, attacked = false, dodged = false },
+			skillSlots = {1, 2, 3, 0, 0}, practiceAdvanced = false, skillReadyAt = {},
 		}
 		state.byId[hero.heroId] = hero
 		state.byClass[argument] = hero
@@ -151,6 +155,25 @@ local function execute(state, action, argument)
 		if not state.byId[argument] then return "HeroNotOwned" end
 		if state.selectedHeroId ~= argument then state.epoch = state.epoch + 1 end
 		state.selectedHeroId = argument
+		changed(state)
+	elseif action == "SetSkillSlot" then
+		local hero = selectedHero(state)
+		if not hero then return "SelectHeroFirst" end
+		local slot, skill = argument:match("^(%d):(%d)$")
+		slot, skill = tonumber(slot), tonumber(skill)
+		if slot > (hero.practiceAdvanced and 5 or 3) then return "InvalidRequest" end
+		if skill > 0 then
+			for index, equipped in ipairs(hero.skillSlots) do
+				if index ~= slot and equipped == skill then hero.skillSlots[index] = hero.skillSlots[slot] end
+			end
+		end
+		hero.skillSlots[slot] = skill
+		changed(state)
+	elseif action == "PracticeAdvance" then
+		local hero = selectedHero(state)
+		if not hero then return "SelectHeroFirst" end
+		hero.practiceAdvanced = not hero.practiceAdvanced
+		if not hero.practiceAdvanced then hero.skillSlots[4] = 0; hero.skillSlots[5] = 0 end
 		changed(state)
 	elseif action == "StartTutorial" then
 		if not selectedHero(state) then return "SelectHeroFirst" end
@@ -214,7 +237,8 @@ function HeroSessionService.getActiveHero(player)
 	local state = sessions[player]
 	local hero = state and selectedHero(state)
 	if not hero or not connected(state) then return nil end
-	return { heroId = hero.heroId, classId = hero.baseClassId, epoch = state.epoch }
+	return { heroId = hero.heroId, classId = hero.baseClassId,
+			skillSlots = { table.unpack(hero.skillSlots) }, practiceAdvanced = hero.practiceAdvanced, epoch = state.epoch }
 end
 
 function HeroSessionService.getCombatContext(player, character)
@@ -223,7 +247,11 @@ function HeroSessionService.getCombatContext(player, character)
 	local hero = selectedHero(state)
 	local human = character:FindFirstChildOfClass("Humanoid")
 	if not hero or not human or human.Health <= 0 then return nil end
-	return { heroId = hero.heroId, baseClassId = hero.baseClassId, epoch = state.epoch, characterGeneration = state.generation }
+	local ready = {}
+	for id, time in pairs(hero.skillReadyAt) do ready[id] = time end
+	return { heroId = hero.heroId, baseClassId = hero.baseClassId, epoch = state.epoch, characterGeneration = state.generation,
+		skillSlots = { table.unpack(hero.skillSlots) }, slotCount = hero.practiceAdvanced and 5 or 3, skillReadyAt = ready,
+		setSkillReadyAt = function(id, time) hero.skillReadyAt[id] = time end }
 end
 
 function HeroSessionService.onLifeStarted(player, character, generation, requestId)

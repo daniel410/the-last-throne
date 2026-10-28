@@ -143,6 +143,7 @@ function Hud.create()
 	state.TextXAlignment = Enum.TextXAlignment.Right
 	local setHealth = bar(status, Text.Health, 32, COLORS.red)
 	local setMana = bar(status, Text.Mana, 77, Color3.fromRGB(75, 151, 235))
+	local setStamina = bar(status, Text.Stamina, 77, Color3.fromRGB(224, 180, 65))
 
 	local heading = panel(root, "Heading", UDim2.new(0.5, -108, 0, 16), UDim2.fromOffset(216, 55))
 	local headingScale = Instance.new("UIScale")
@@ -171,13 +172,30 @@ function Hud.create()
 	local actionScale = Instance.new("UIScale")
 	actionScale.Parent = actions
 	local block, blockHint = action(actions, "Block", Text.Block, Text.HintHold, UDim2.fromOffset(72, 0), 68)
+	local skillBar = Instance.new("Frame")
+	skillBar.Name = "SkillBar"
+	skillBar.BackgroundTransparency = 1
+	skillBar.AnchorPoint = Vector2.new(0.5, 1)
+	skillBar.Position = UDim2.new(0.5, 0, 1, -24)
+	skillBar.Size = UDim2.fromOffset(360, 68)
+	skillBar.Parent = root
+	local skillScale = Instance.new("UIScale")
+	skillScale.Parent = skillBar
 	local skillButtons, skillHints = {}, {}
-	for index, hint in ipairs({ Text.HintQ, Text.HintE, Text.HintR }) do
-		local button, key = action(actions, "Skill" .. index, "", hint, UDim2.fromOffset(-125 + (index - 1) * 64, -72), 58)
-		button.Caption.TextSize = 9
+	for index = 1, 5 do
+		local button, key = action(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index - 1) * 72, 0), 64)
+		button.UICorner.CornerRadius = UDim.new(0, 8)
+		button.Caption.TextSize = 8
+		button.Caption.Position = UDim2.fromOffset(3, 36)
+		button.Caption.Size = UDim2.new(1, -6, 0, 25)
 		button.Caption.TextWrapped = true
+		key.Position = UDim2.fromOffset(4, 2)
+		key.Size = UDim2.fromOffset(19, 16)
+		local icon = text(button, "Icon", "", UDim2.new(0.5, -15, 0, 5), UDim2.fromOffset(30, 28), 17, COLORS.gold)
+		icon.TextXAlignment = Enum.TextXAlignment.Center
 		skillButtons[index], skillHints[index] = button, key
 	end
+	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(0, 0), 68)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintV, UDim2.fromOffset(0, 91), 68)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(134, 71), 88)
 	local back = Instance.new("TextButton")
@@ -214,6 +232,7 @@ function Hud.create()
 		statusScale.Scale = scale
 		headingScale.Scale = scale
 		actionScale.Scale = scale
+		skillScale.Scale = math.min(scale, viewport.X / 520)
 		practiceScale.Scale = scale
 		backScale.Scale = scale
 		back.Size = UDim2.fromOffset(viewport.X < 500 and 126 or 168, 42)
@@ -235,6 +254,7 @@ function Hud.create()
 	return {
 		attack = attack,
 		block = block,
+		sprint = sprint,
 		skills = skillButtons,
 		dodge = dodge,
 		back = back,
@@ -243,17 +263,13 @@ function Hud.create()
 		end,
 		setClass = function(classId)
 			classLabel.Text = Text.Class[classId] or ""
-			block.Visible = classId == "knight"
 			local classSkills = Config.Skills[classId]
-			local showMana = false
-			for _, ability in ipairs(classSkills or {}) do
-				if ability.magic then showMana = true; break end
-			end
-			status.Size = UDim2.fromOffset(248, showMana and 132 or 87)
-			for _, suffix in ipairs({ "Label", "Value", "Track" }) do status[Text.Mana .. suffix].Visible = showMana end
-			for index, button in ipairs(skillButtons) do
-				button.Visible = classSkills ~= nil
-				button.Caption.Text = classSkills and classSkills[index].name or ""
+			local showMana = classId == "mage"
+			local showStamina = classSkills ~= nil and not showMana
+			status.Size = UDim2.fromOffset(248, classSkills and 132 or 87)
+			for _, suffix in ipairs({ "Label", "Value", "Track" }) do
+				status[Text.Mana .. suffix].Visible = showMana
+				status[Text.Stamina .. suffix].Visible = showStamina
 			end
 			updateScale()
 		end,
@@ -265,8 +281,17 @@ function Hud.create()
 		end,
 		setHealth = setHealth,
 		setMana = setMana,
+		setStamina = setStamina,
 		setCooldowns = function(character)
 			for index, button in ipairs(skillButtons) do
+				local classId = character and character:GetAttribute("K0ClassId")
+				local equipped = character and character:GetAttribute("K0EquippedSkill" .. index)
+				local count = character and character:GetAttribute("K0SkillSlotCount") or 3
+				local ability
+				for _, candidate in ipairs(Config.Skills[classId] or {}) do if candidate.id == equipped then ability = candidate; break end end
+				button.Caption.Text = index > count and "LOCKED" or ability and ability.name or "EMPTY"
+				button.Icon.Text = ability and string.sub(ability.name, 1, 2) or ""
+				button.Active = index <= count and ability ~= nil
 				local ready = character and character:GetAttribute("K0SkillReady" .. index) or 0
 				local remaining = math.max(0, (ready or 0) - Workspace:GetServerTimeNow())
 				button.BackgroundTransparency = remaining > 0 and 0.45 or 0
@@ -281,11 +306,10 @@ function Hud.create()
 		setState = function(value)
 			state.Text = value
 		end,
-		setHints = function(attackText, blockText, dodgeText, skillText, skill2Text, skill3Text)
+		setHints = function(attackText, blockText, dodgeText, sprintText, keys)
 			attackHint.Text, blockHint.Text, dodgeHint.Text = attackText, blockText, dodgeText
-			skillHints[1].Text = skillText or Text.HintQ
-			skillHints[2].Text = skill2Text or Text.HintE
-			skillHints[3].Text = skill3Text or Text.HintR
+			sprintHint.Text = sprintText or "E"
+			for index, hint in ipairs(skillHints) do hint.Text = keys and keys[index] or tostring(index) end
 		end,
 		showFeedback = function(value, duration)
 			feedbackSequence += 1

@@ -270,13 +270,42 @@ return {
 				if skill.effect == "recall" then state.thrownUntil = 100 end
 				state.mode = "Idle"; state.attack = nil
 				local t = (slot - 1) * 1.2
-				local before = state.mana
+				local before = skill.magic and state.mana or state.stamina
 				action(state, "Skill" .. slot, t)
 				equal(state.attack and state.attack.definition, skill, classId .. " accepts its own skill " .. slot)
 				equal(state.skillReadyAt[skill.id], t + skill.cooldown, classId .. " skill cooldown is independent")
-				near(state.mana, before - (skill.manaCost or 0), classId .. " only magic spends mana")
+				near(skill.magic and state.mana or state.stamina, before - (skill.manaCost or skill.staminaCost), classId .. " spends its skill resource")
 			end
 		end
+	end)
+	case("physical-resource-and-action-contract", function()
+		api.injectResolver(function() return "knight" end)
+		local state = spawnPlayer()
+		state.stamina = 0
+		action(state, "Skill1", 0)
+		equal(state.attack, nil, "skill rejected without stamina")
+		equal(state.skillReadyAt[api.Config.Skills.knight[1].id], nil, "rejected skill starts no cooldown")
+		equal(state.character:GetAttribute("K0Feedback"), "NeedStamina", "stamina failure reported")
+		action(state, "SprintStart", 0.1)
+		equal(state.humanoid.WalkSpeed, api.Config.SprintSpeed, "sprint starts at zero stamina")
+		action(state, "SprintEnd", 0.2)
+		equal(state.humanoid.WalkSpeed, api.Config.WalkSpeed, "sprint stops")
+		action(state, "Attack", 0.3)
+		equal(state.mode, "Attack", "basic attack works at zero stamina")
+		equal(state.stamina, 0, "basic attack spends no stamina")
+	end)
+	case("server-loadout-enforces-slots", function()
+		api.injectResolver(function(player)
+			return {heroId = "hero-" .. player.UserId, baseClassId = "knight", epoch = 1, characterGeneration = 1,
+				skillSlots = {2, 1, 0, 3, 0}, slotCount = 5}
+		end)
+		local state = spawnPlayer()
+		action(state, "Skill3", 0)
+		equal(state.attack, nil, "empty skill is rejected")
+		action(state, "Skill4", 0.1)
+		equal(state.attack.definition.id, "knight.common.rally", "equipped skill is used in slot 4")
+		equal(state.skillReadyAt["knight.common.rally"], 18.1, "cooldown follows skill identity")
+		equal(state.character:GetAttribute("K0EquippedSkill1"), "knight.common.bash", "replicated equipped skill matches trusted slot")
 	end)
 	case("mana-rejection-does-not-spend-or-start-cooldown", function()
 		api.injectResolver(function() return "mage" end)
@@ -340,7 +369,7 @@ return {
 		local knight = spawnPlayer()
 		action(knight, "CastArcane", 0)
 		equal(knight.attack, nil, "non-Mage cannot request Arcane Bolt")
-		near(knight.mana, 100, "denied cast spends no mana")
+		equal(knight.mana, nil, "Knight has no mana before a magic path")
 		reset()
 		api.injectResolver(function() return "mage" end)
 		local mage = spawnPlayer()
@@ -591,19 +620,17 @@ return {
 			sample(0.28)
 			near(enemy.humanoid.Health, 9925, "recovery cannot hit twice")
 		end)
-		case(classId .. "-no-knight-guard", function()
+		case(classId .. "-common-guard", function()
 			api.injectResolver(function() return classId end)
 			local state = spawnPlayer()
 			local enemy = spawnEnemy()
+			local before = state.stamina
 			action(state, "BlockStart", 0)
-			equal(state.mode, "Idle", "no Knight guard action")
-			equal(state.character:GetAttribute("K0Stamina"), nil, "no stamina resource exists")
-			state.mode = "Block" -- exercise defense fail-closed even for corrupt state
-			state.guardStarted = 0.46
+			equal(state.mode, "Block", "every class can guard")
+			equal(state.stamina, before, "guard spends no stamina")
 			api.beginEnemyAttack(enemy, state, 0)
 			sample(0.61)
-			near(state.humanoid.Health, 920, "forced guard cannot mitigate Goblin attack")
-			equal(state.counter, nil, "no Knight counter is granted")
+			near(state.humanoid.Health, 984, "guard mitigates frontal Goblin attack")
 		end)
 	end
 
@@ -785,17 +812,15 @@ return {
 		near(enemy.humanoid.Health, 9930, "forged direction does not reverse server facing")
 		equal(state.character:GetAttribute("K0ArrowSeq"), 1, "burst yields only one shot")
 	end)
-	case("elf-cannot-use-knight-guard", function()
+	case("elf-common-guard", function()
 		api.injectResolver(function() return "elf" end)
 		local state = spawnPlayer()
 		local enemy = spawnEnemy()
 		action(state, "BlockStart", 0)
-		equal(state.mode, "Idle", "Elf cannot start Knight guard")
-		state.mode, state.guardStarted = "Block", 0.46
+		equal(state.mode, "Block", "Elf can block")
 		api.beginEnemyAttack(enemy, state, 0)
 		sample(0.61)
-		near(state.humanoid.Health, 920, "forged guard does not reduce damage")
-		equal(state.counter, nil, "Elf has no Knight counter")
+		near(state.humanoid.Health, 984, "Elf block reduces frontal damage")
 	end)
 	case("session-context-required-before-combat-setup", function()
 		local ready = false

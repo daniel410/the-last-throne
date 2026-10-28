@@ -276,6 +276,9 @@ function Visual.renderArms(character, dt)
 		if leftStep then leftHipPose, leftKneePose = hip, knee else rightHipPose, rightKneePose = hip, knee end
 	elseif classId == "knight" and mode == "Block" then
 		left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
+	elseif mode == "Block" then
+		right = CFrame.Angles(math.rad(75), math.rad(-20), math.rad(-20))
+		left = CFrame.Angles(math.rad(70), math.rad(20), math.rad(20))
 	elseif mode == "Attack" and (phase == "Windup" or phase == "Active" or phase == "Recovery") then
 		if classId == "elf" then
 			if phase == "Windup" then

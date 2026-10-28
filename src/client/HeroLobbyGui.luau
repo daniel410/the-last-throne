@@ -7,6 +7,7 @@ local GuiService = game:GetService("GuiService")
 local UserInputService = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
+local Config = require(ReplicatedStorage.Shared.K0Config)
 
 local LobbyGui = {}
 local CLASS_ORDER = { "knight", "elf", "dwarf", "mage" }
@@ -169,6 +170,55 @@ function LobbyGui.create(request)
 		elseif current.canStart then request("StartTutorial") end
 	end)
 
+	local manage = button(shell, "ManageSkills", "MANAGE SKILLS", UDim2.new(0, 18, 1, -64), UDim2.fromOffset(150, 42))
+	local skillPanel = Instance.new("Frame")
+	skillPanel.Name = "SkillManagement"
+	skillPanel.AnchorPoint = Vector2.new(0.5, 0.5)
+	skillPanel.Position = UDim2.fromScale(0.5, 0.5)
+	skillPanel.Size = UDim2.new(1, -24, 1, -24)
+	skillPanel.BackgroundColor3 = COLOR.ink
+	skillPanel.BorderSizePixel = 0
+	skillPanel.Visible = false
+	skillPanel.ZIndex = 10
+	skillPanel.Parent = shell
+	rounded(skillPanel, 10)
+	local title = label(skillPanel, "Title", "SKILL MANAGEMENT", UDim2.fromOffset(16, 10), UDim2.new(1, -100, 0, 30), 18, COLOR.gold)
+	title.ZIndex = 11
+	local instructions = label(skillPanel, "Instructions", "Select a slot to cycle through learned skills. Slots 4 and 5 unlock after your first advancement.", UDim2.fromOffset(16, 42), UDim2.new(1, -32, 0, 48), 12, COLOR.muted)
+	instructions.ZIndex = 11
+	local close = button(skillPanel, "Close", "CLOSE", UDim2.new(1, -90, 0, 10), UDim2.fromOffset(76, 32))
+	close.ZIndex = 11
+	close.Activated:Connect(function() skillPanel.Visible = false; refresh() end)
+	local skillList = Instance.new("ScrollingFrame")
+	skillList.Name = "SkillSlots"
+	skillList.Position = UDim2.fromOffset(16, 96)
+	skillList.Size = UDim2.new(1, -32, 1, -160)
+	skillList.BackgroundTransparency = 1
+	skillList.BorderSizePixel = 0
+	skillList.ScrollBarThickness = 5
+	skillList.CanvasSize = UDim2.fromOffset(0, 250)
+	skillList.ZIndex = 11
+	skillList.Parent = skillPanel
+	local slotButtons = {}
+	for index = 1, 5 do
+		local slot = button(skillList, "Slot" .. index, "", UDim2.fromOffset(0, (index - 1) * 48), UDim2.new(1, -8, 0, 40))
+		slot.ZIndex = 12
+		slotButtons[index] = slot
+		slot.Activated:Connect(function()
+			if busy or not current or not current.canManage then return end
+			for _, hero in ipairs(current.heroes) do
+				if hero.heroId == current.selectedHeroId and index <= (hero.practiceAdvanced and 5 or 3) then
+					request("SetSkillSlot", tostring(index) .. ":" .. tostring(((hero.skillSlots[index] or 0) + 1) % 4))
+					return
+				end
+			end
+		end)
+	end
+	local practiceAdvance = button(skillPanel, "PracticeAdvancement", "PRACTICE: UNLOCK 5 SLOTS", UDim2.new(0, 16, 1, -52), UDim2.new(1, -32, 0, 38))
+	practiceAdvance.ZIndex = 11
+	practiceAdvance.Activated:Connect(function() if not busy then request("PracticeAdvance") end end)
+	manage.Activated:Connect(function() if current and current.canStart and not busy then skillPanel.Visible = true; refresh() end end)
+
 	refresh = function()
 		if not current then return end
 		gui.Enabled = current.phase ~= "Tutorial"
@@ -187,6 +237,21 @@ function LobbyGui.create(request)
 			view.border.Thickness = isSelected and 2 or 1
 			view.status.Text = owned and Text.Lobby.Owned or Text.Lobby.NewHero
 		end
+		manage.Visible = selected ~= nil and current.phase == "Lobby"
+		manage.Active = selected ~= nil and current.canManage and not busy
+		if not selected or current.phase ~= "Lobby" then skillPanel.Visible = false end
+		if selected then
+			local skills = Config.Skills[selected.classId]
+			for index, slot in ipairs(slotButtons) do
+				local enabled = index <= (selected.practiceAdvanced and 5 or 3)
+				local skill = skills[(selected.skillSlots or {})[index] or 0]
+				slot.Text = tostring(index) .. "  " .. (not enabled and "LOCKED" or skill and string.format("%s   |   %d %s   |   %ds cooldown", skill.name, skill.manaCost or skill.staminaCost, skill.magic and "MP" or "STAMINA", skill.cooldown) or "EMPTY")
+				slot.Active = enabled and current.canManage and not busy
+				slot.Selectable = slot.Active
+				slot.BackgroundTransparency = slot.Active and 0 or 0.6
+			end
+			practiceAdvance.Text = selected.practiceAdvanced and "PRACTICE ONLY: RESET TO 3 SLOTS" or "PRACTICE ONLY: TRY 5 SLOTS"
+		end
 		roster.Text = string.format(Text.Lobby.RosterFormat, #current.heroes, current.maxHeroes or 4)
 		selection.Text = selected and string.format(Text.Lobby.SelectedFormat, Text.Class[selected.classId]) or Text.Lobby.Choose
 		start.Text = current.phase == "LoadingTutorial" and Text.Lobby.Starting
@@ -198,7 +263,9 @@ function LobbyGui.create(request)
 			GuiService.SelectedObject = nil
 		elseif gui.Enabled and UserInputService:GetLastInputType().Name:match("^Gamepad") then
 			local focused = GuiService.SelectedObject
-			if not focused or not focused:IsDescendantOf(gui) or not focused.Selectable then
+			if skillPanel.Visible then
+				if not focused or not focused:IsDescendantOf(skillPanel) or not focused.Selectable then GuiService.SelectedObject = slotButtons[1] end
+			elseif not focused or not focused:IsDescendantOf(gui) or not focused.Selectable or focused:IsDescendantOf(skillPanel) then
 				GuiService.SelectedObject = start.Selectable and start or cardViews.knight.button.Selectable and cardViews.knight.button or nil
 			end
 		end
@@ -216,6 +283,8 @@ function LobbyGui.create(request)
 		errorLabel.Position = UDim2.new(0, 18, 1, compact and -106 or -151)
 		roster.Visible = not compact
 		selection.Visible = width >= 420
+		manage.Position = UDim2.new(0, 18, 1, width < 420 and -106 or -64)
+		selection.Visible = false
 		start.Size = width < 420 and UDim2.new(1, -36, 0, 42) or UDim2.fromOffset(196, 46)
 		start.Position = width < 420 and UDim2.new(0, 18, 1, -58) or UDim2.new(1, -214, 1, -66)
 	end
