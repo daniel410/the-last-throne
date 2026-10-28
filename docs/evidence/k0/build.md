@@ -117,3 +117,14 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 엔진 검사 | `tests/k0-build-smoke.luau` 종료 0, 346개 통과, 실패·수집 런타임 오류 0. Player 0에서 로비 바닥/경계/스폰·Remote 생성, 19개 모듈, 16개 몬스터 메시/텍스처와 세 적 리스폰을 확인했다. [로그](hero-lobby-build-smoke.log) |
 | 고정 빌드 실제 Play | PlaceId 0 격리 Studio의 실제 Player 1명. 마우스로 네 영웅 생성, 각 직업 선택·튜토리얼 출발·무기·공격을 확인하고 로비에 복귀했다. Elf의 약 25.70stud 원거리 공격은 Goblin HP 300→230 유지 및 추격을 관찰했다. [화면](hero-lobby-0.5.0.jpg) · [조건과 한계](hero-lobby.md) |
 | 미검증·릴리스 | 영웅/연습은 세션 한정, 플레이어 본체는 Roblox 아바타·TD 직업 색상이다. 지속 저장, 정식 리그/모션·성장·보상, 실제 모바일/패드·다인/지연·성능과 게시 Experience 자산 권한은 미검증이다. 기존 `203785492` 유형 경고가 재관측됐다. Git 릴리스 태그·Roblox 게시 없음 |
+
+## 0.6.0 — 튜토리얼 전투 피드백
+
+| 항목 | 실제 결과 |
+| --- | --- |
+| 입력 소스 | `97b4202a3c1d3b1001cc3e0ef8d477b449cbfd84`, `VERSION=0.6.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.6.0/TheLastThrone-0.6.0.rbxlx`, 종료 0 |
+| 결과물 | 817,588 bytes, SHA-256 `7048971d4822ec8a499d4eadc8f3ac51d91abec635ae77a5e558d7b3d8a0f887`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 종료 0, 435개 통과, 실패·수집 런타임 오류 0, Player 0. 네 적의 외형·리스폰과 작은 체력 바의 수치/색/사망 시 숨김 확인. [로그](combat-feedback-build-smoke.log) |
+| 실제 Play | 빌드 전 동일 런타임 소스로 격리 Studio의 Player 1명·R15 검/방패 방향, 네 직업 동작 일부와 마법 Q 입력을 측정. [상세](combat-feedback.md). 이 빌드 파일 자체의 Player Play는 수행하지 않았다. |
+| 상태 | 사용자 추가 요청에 따라 엘프 발사 동작을 다음 버전에서 개선한다. 기존 `203785492` 유형 경고 관측. 모바일/패드·다인 및 게시 Experience 권한은 미검증, 릴리스 태그·Roblox 게시 없음. |

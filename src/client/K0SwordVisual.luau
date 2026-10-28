@@ -86,8 +86,10 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 	if spec.bow then
 		-- Idle is lowered; the raised arm and this grip pose combine into an
 		-- upright bow while drawing and releasing.
-		if phase == "Windup" or phase == "Active" or phase == "Recovery" then
+		if phase == "Windup" or phase == "Active" then
 			return CFrame.Angles(math.rad(-70), 0, 0)
+		elseif phase == "Recovery" then
+			return CFrame.Angles(math.rad(-88), 0, math.rad(-4))
 		end
 		return CFrame.Angles(math.rad(-105), 0, math.rad(-8))
 	end
@@ -115,9 +117,9 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 	return CFrame.new()
 end
 
-local function shoulder(character, side)
-	local joint = character:FindFirstChild(side .. "Shoulder", true)
-		or character:FindFirstChild(side .. " Shoulder", true)
+local function armJoint(character, side, name)
+	local joint = character:FindFirstChild(side .. name, true)
+		or character:FindFirstChild(side .. " " .. name, true)
 	if joint and (joint:IsA("Motor6D") or joint:IsA("AnimationConstraint")) then return joint end
 	return nil
 end
@@ -129,13 +131,24 @@ function Visual.renderArms(character, dt)
 	local mode = character:GetAttribute("K0State")
 	local phase = character:GetAttribute("K0AttackPhase")
 	local kind = character:GetAttribute("K0AttackKind")
-	local right, left
+	local right, left, leftElbow
 	if classId == "knight" and mode == "Block" then
 		left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
 	elseif mode == "Attack" and (phase == "Windup" or phase == "Active" or phase == "Recovery") then
 		if classId == "elf" then
-			right = CFrame.Angles(math.rad(70), 0, math.rad(-10))
-			left = CFrame.Angles(math.rad(65), math.rad(-25), math.rad(15))
+			if phase == "Windup" then
+				right = CFrame.Angles(math.rad(70), 0, math.rad(-10))
+				left = CFrame.Angles(math.rad(65), math.rad(-32), math.rad(18))
+				leftElbow = CFrame.Angles(math.rad(-65), 0, 0)
+			elseif phase == "Active" then
+				right = CFrame.Angles(math.rad(70), 0, math.rad(-10))
+				left = CFrame.Angles(math.rad(60), math.rad(-12), math.rad(23))
+				leftElbow = CFrame.Angles(math.rad(-20), 0, 0)
+			else
+				right = CFrame.Angles(math.rad(48), 0, math.rad(-7))
+				left = CFrame.Angles(math.rad(35), math.rad(-8), math.rad(10))
+				leftElbow = CFrame.Angles(math.rad(-10), 0, 0)
+			end
 		elseif classId == "mage" and kind == "Arcane" then
 			right = CFrame.Angles(math.rad(70), 0, math.rad(-8))
 		elseif classId == "knight" then
@@ -154,13 +167,15 @@ function Visual.renderArms(character, dt)
 		if not target and not previous then return end
 		local pose = previous and previous.pose or CFrame.new()
 		local returning = target == nil and ((previous and previous.returning or 0) + elapsed) or 0
-		pose = pose:Lerp(target or CFrame.new(), math.clamp(elapsed * 24, 0, 1))
+		local speed = classId == "elf" and (phase == "Active" and 30 or phase == "Recovery" and 9 or 12) or 24
+		pose = pose:Lerp(target or CFrame.new(), math.clamp(elapsed * speed, 0, 1))
 		if not target and returning >= 0.25 then pose = CFrame.new(); armPoses[joint] = nil
 		else armPoses[joint] = { pose = pose, returning = returning } end
 		joint.Transform = pose
 	end
-	apply(shoulder(character, "Right"), right)
-	apply(shoulder(character, "Left"), left)
+	apply(armJoint(character, "Right", "Shoulder"), right)
+	apply(armJoint(character, "Left", "Shoulder"), left)
+	apply(armJoint(character, "Left", "Elbow"), leftElbow)
 end
 
 local function finite(value)
@@ -349,14 +364,16 @@ local function drawBow(model, phase, elapsed)
 	local stringJoint = stringPart and stringPart:FindFirstChild("StringVisualJoint")
 	local arrowJoint = arrow and arrow:FindFirstChild("NockedArrowVisualJoint")
 	if not stringPart or not stringPart:IsA("BasePart") or not stringJoint or not stringJoint:IsA("Motor6D")
-		or not arrowJoint or not arrowJoint:IsA("Motor6D") then return end
+		or not arrow or not arrow:IsA("BasePart") or not arrowJoint or not arrowJoint:IsA("Motor6D") then return end
 	local state = bowRest[model]
-	if not state or state.part ~= stringPart then
-		state = { part = stringPart, size = stringPart.Size, draw = 0 }
+	if not state or state.part ~= stringPart or state.arrow ~= arrow then
+		state = { part = stringPart, arrow = arrow, size = stringPart.Size, arrowTransparency = arrow.LocalTransparencyModifier, draw = 0 }
 		bowRest[model] = state
 	end
 	local target = phase == "Windup" and 0.48 or 0
-	state.draw = state.draw + (target - state.draw) * math.clamp(elapsed * 22, 0, 1)
+	local speed = phase == "Windup" and 12 or 35
+	state.draw = state.draw + (target - state.draw) * math.clamp(elapsed * speed, 0, 1)
+	arrow.LocalTransparencyModifier = (phase == "Active" or phase == "Recovery") and 1 or state.arrowTransparency
 	stringPart.Size = Vector3.new(state.size.X, state.size.Y, state.size.Z + state.draw)
 	stringJoint.Transform = CFrame.new(0, 0, state.draw / 2)
 	arrowJoint.Transform = CFrame.new(0, 0, state.draw)
