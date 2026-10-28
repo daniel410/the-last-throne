@@ -70,7 +70,7 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 					check((active.X - windup.X) * direction > 6, "knight sweeps widely and alternates direction")
 					check(math.abs(active.Y - windup.Y) < 1, "knight stroke remains broadly horizontal")
 				elseif classId == "dwarf" then
-					check(windup.Y > 4.2 and windup.Y - active.Y > 5, "dwarf axe descends in a large overhead stroke")
+					check(windup.Y > 4.8 and windup.Y - active.Y > 6.3, "dwarf axe starts higher overhead and descends in a large stroke")
 					check(active.Y < footHeight + 1.2, "dwarf axe reaches the lower leg area")
 					check(math.abs(active.X - windup.X) < 1, "dwarf stroke remains broadly vertical")
 					check(active.Z < -3.7 and activeHand.Z < -0.35, "dwarf arm and axe extend forward")

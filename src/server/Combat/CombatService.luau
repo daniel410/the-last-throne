@@ -126,8 +126,16 @@ local function releaseDodgeOwnership(state)
 	end
 end
 
+local function restoreAutoRotate(state)
+	if state.savedAutoRotate ~= nil then
+		if state.humanoid.Parent then state.humanoid.AutoRotate = state.savedAutoRotate end
+		state.savedAutoRotate = nil
+	end
+end
+
 local function clearAction(state)
 	releaseDodgeOwnership(state)
+	restoreAutoRotate(state)
 	state.attack = nil
 	state.dodge = nil
 	state.guardStarted = nil
@@ -255,17 +263,33 @@ local function startAttack(state, current, targetModel)
 	state.character:SetAttribute("K0Combo", nextCombo)
 	state.attackSeq = state.attackSeq + 1
 	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
+	local direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1))
+	if targetModel and state.baseClassId ~= "elf" then
+		local selected = enemyStates[targetModel]
+		if selected and enemyAlive(selected) then
+			local delta = horizontal(selected.root.Position - state.root.Position)
+			if finiteVector(delta) and delta.Magnitude > 0.01 then
+				direction = delta.Unit
+				-- Turn at the accepted attack start, including buffered attacks.
+				-- The hit direction is locked for the whole swing.
+				state.savedAutoRotate = state.humanoid.AutoRotate
+				state.humanoid.AutoRotate = false
+				local position = state.root.Position
+				state.root.CFrame = CFrame.lookAt(position, position + direction)
+			end
+		end
+	end
 	state.attack = {
 		started = current,
 		definition = profile.attacks[nextCombo],
 		attackPower = profile.attackPower,
 		maxTargets = profile.maxTargets,
 		maxHeight = profile.maxHeight,
-		direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1)),
+		direction = direction,
 		hits = {},
 		hitCount = 0,
 		counterDamage = nil,
-		sampledActive = false, targetModel = state.baseClassId == "elf" and targetModel or nil,
+		sampledActive = false, targetModel = targetModel,
 	}
 	setPlayerState(state, "Attack")
 	state.character:SetAttribute("K0AttackKind", "Basic")
@@ -524,6 +548,23 @@ local function applySwordHits(state, current)
 	end
 	local origin = state.root.Position
 	local candidates = {}
+	local selected = attack.targetModel and enemyStates[attack.targetModel]
+	if attack.targetModel and not attack.hits[attack.targetModel] then
+		local failure
+		if not selected or not enemyAlive(selected) then
+			failure = "TargetUnavailable"
+		else
+			local position = selected.root.Position
+			local distance = horizontal(position - origin).Magnitude
+			local dot = facingDot(origin, attack.direction, position)
+			if not Rules.withinCone(distance, math.abs(position.Y - origin.Y), dot, attack.definition.range, attack.maxHeight, attack.definition.angle)
+				or not unobstructed(origin, position, state.character, selected.model) then failure = "TargetBlocked" end
+		end
+		if failure then
+			if attack.targetFeedback ~= failure then updateFeedback(state, failure); attack.targetFeedback = failure end
+			return
+		end
+	end
 	for _, enemy in pairs(enemyStates) do
 		if enemyAlive(enemy) and not attack.hits[enemy.model] then
 			local position = enemy.root.Position
@@ -536,6 +577,7 @@ local function applySwordHits(state, current)
 		end
 	end
 	table.sort(candidates, function(left, right)
+		if selected and (left.enemy == selected) ~= (right.enemy == selected) then return left.enemy == selected end
 		if left.distance == right.distance then
 			return left.enemy.id < right.enemy.id
 		end
@@ -782,6 +824,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 		if phase == "None" then
 			state.lastAttackFinished = attack.started + attack.definition.windup + attack.definition.active + attack.definition.recovery
 			state.attack = nil
+			restoreAutoRotate(state)
 			state.character:SetAttribute("K0AttackKind", nil)
 			setPlayerState(state, "Idle")
 		end
@@ -1304,7 +1347,7 @@ function CombatService.start(enemies, serverContextResolver)
 		end
 		if targetModel ~= nil then
 			if typeof(targetModel) ~= "Instance" or not enemyStates[targetModel]
-				or not ((action == "Attack" and state.baseClassId == "elf") or (action == "CastArcane" and state.baseClassId == "mage")) then return end
+				or not (action == "Attack" or (action == "CastArcane" and state.baseClassId == "mage")) then return end
 		end
 		local current = now()
 		-- Releasing guard is always safe and must not be dropped after a burst.

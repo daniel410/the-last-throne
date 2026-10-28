@@ -31,7 +31,7 @@ return {
 	PracticeTitle = "CONTROLS TUTORIAL",
 	Practice = {
 		Move = "Move away from the blue spawn pad.",
-		Attack = "Use your basic attack. Face an enemy to aim.",
+		Attack = "Select an enemy and attack, or face an enemy to swing.",
 		ElfAttack = "Click an enemy to target and shoot, or face an enemy to fire.",
 		Dodge = "Use Dodge to practice avoiding an attack.",
 		Complete = "Controls practiced! Explore the grove and test your hero.",
@@ -57,10 +57,10 @@ return {
 		Waiting = "Waiting for the server...",
 		Retry = "RETRY LOBBY",
 		Role = {
-			knight = "Sword and shield.\nMelee attacks and blocking.",
+			knight = "Sword and shield.\nSelect an enemy to attack.",
 			elf = "Bow and arrow.\nClick an enemy to shoot.",
-			dwarf = "Hand axe.\nSwing in close combat.",
-			mage = "Wooden staff.\nClick an enemy and press Q to cast.",
+			dwarf = "Hand axe.\nSelect an enemy to attack.",
+			mage = "Wooden staff.\nSelect an enemy to attack or cast.",
 		},
 		Errors = {
 			InvalidRequest = "That request could not be read. Try again.",

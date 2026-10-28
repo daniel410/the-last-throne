@@ -99,10 +99,13 @@ local function sendAction(action, direction)
 	if actionRemote and (action == "BlockEnd" or combatInputAllowed()) then
 		local character = player.Character
 		local classId = character and character:GetAttribute("K0ClassId")
-		local ranged = (action == "Attack" and classId == "elf") or (action == "CastArcane" and classId == "mage")
-		local target = ranged and selectedEnemy or nil
+		local canTarget = action == "Attack" or (action == "CastArcane" and classId == "mage")
+		local target = canTarget and selectedEnemy or nil
 		if target and not Targeting.valid(target) then clearTarget(); target = nil end
-		if target then
+		-- Avoid turning mid-swing when held input repeats. The server turns
+		-- again when a buffered melee attack actually begins.
+		local state = character and character:GetAttribute("K0State")
+		if target and (classId == "elf" or action == "CastArcane" or state == "Idle" or state == "Block") then
 			local root, enemyRoot = character:FindFirstChild("HumanoidRootPart"), target:FindFirstChild("HumanoidRootPart")
 			if root and enemyRoot then
 				local delta = enemyRoot.Position - root.Position
@@ -278,11 +281,11 @@ UserInputService.InputBegan:Connect(function(input, processed)
 	if processed or UserInputService:GetFocusedTextBox() then return end
 	local character = player.Character
 	local classId = character and character:GetAttribute("K0ClassId")
-	if combatInputAllowed() and (classId == "elf" or classId == "mage")
+	if combatInputAllowed() and (classId == "knight" or classId == "elf" or classId == "dwarf" or classId == "mage")
 		and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 		local picked = selectAt(input.Position)
-		-- A mage selects with a click, then casts with Q or the skill button.
-		if picked and (classId == "mage" or input.UserInputType == Enum.UserInputType.Touch) then return end
+		-- A world tap selects; touch combat uses its dedicated HUD buttons.
+		if picked and input.UserInputType == Enum.UserInputType.Touch then return end
 	end
 	if input.KeyCode == Enum.KeyCode.X and selectedEnemy then
 		clearTarget(); hud.showFeedback(Text.TargetCleared)

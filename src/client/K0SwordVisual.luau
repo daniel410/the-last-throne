@@ -194,7 +194,7 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 	end
 	if classId == "mage" then
 		if phase == "Windup" then return CFrame.Angles(math.rad(-135), 0, 0) end
-		if phase == "Active" then return CFrame.Angles(math.rad(-157), 0, math.rad(-30)) end
+		if phase == "Active" then return CFrame.Angles(math.rad(-160), 0, math.rad(-30)) end
 		if phase == "Recovery" then return CFrame.Angles(math.rad(-8), 0, 0) end
 	end
 	return CFrame.new()
@@ -297,14 +297,14 @@ function Visual.renderArms(character, dt)
 			local yaw = phase == "Windup" and 60 * side or phase == "Active" and -60 * side or 0
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		elseif classId == "dwarf" then
-			local pitch = phase == "Windup" and 150 or phase == "Active" and 75 or 65
+			local pitch = phase == "Windup" and 165 or phase == "Active" and 75 or 65
 			right = CFrame.Angles(math.rad(pitch), 0, 0)
 			-- The reference raises a bent arm, straightens it into the blow,
 			-- and keeps the axe forward during the follow-through.
 			rightElbow = CFrame.Angles(math.rad(phase == "Windup" and -25 or 0), 0, 0)
 			torso = CFrame.Angles(math.rad(phase == "Windup" and 5 or phase == "Active" and -10 or -8), 0, 0)
 		elseif classId == "mage" then
-			local pitch = phase == "Windup" and 100 or phase == "Active" and 72 or 20
+			local pitch = phase == "Windup" and 97 or phase == "Active" and 69 or 20
 			local yaw = phase == "Windup" and -30 or phase == "Active" and 45 or 0
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		end
