@@ -255,3 +255,14 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 849,802 bytes, SHA-256 `9fca8c5d1ff0ab19c69dde292377598748066921f1e3925bd50231f05329afe7`, Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과, 수집 런타임 오류 0, Player 0. [로그](dodge-v-0111-smoke.log) |
 | 실제 Play 및 한계 | 빌드 전 동일 소스의 격리 Studio R15 Knight에서 가상 PC Space 점프와 V 회피, V HUD를 확인했다. 이 빌드 파일 자체의 Player Play·실기기·패드/터치·다인·게시 환경은 미검증이다. [상세](dodge-v.md). 기존 `203785492` 유형 경고가 재관측됐다. 릴리스 태그·Roblox 게시 없음. |
+
+## 0.12.0 — 네 영웅 공통 기술·마나·스태미나 제거
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `1be1c39b916a9e65424cd6919a482e08589d3f84`, `VERSION=0.12.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.12.0/TheLastThrone-0.12.0.rbxlx`, 종료 0 |
+| 결과물 | 861,964 bytes, SHA-256 `c2b171dafdaec154a218441ba204de67375c0d26b93e24dee00336563e49c8fc`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개, `tests/k0-basic-attacks-native.luau` 317개 통과. Player 0의 모델·서버 fixture 검사다. [스모크](hero-skills-0120-smoke.log), [서버](hero-skills-0120-server.log) |
+| 소스 검사 | 순수 전투 규칙 122개, 격리 Studio 타이밍 106개 및 무기 2,177개 통과. [타이밍](hero-skills-source-timing.log), [무기](hero-skills-source-weapons.log). 타이밍·무기는 최종 피해 효과 조건만 변경하기 전 동일 동작 소스 결과다. |
+| 실제 Play 및 한계 | 빌드 전 격리 Studio R15의 MP 소비·기술별 대기·V 연속 회피·스태미나 HUD 부재와 일부 직업 입력을 확인했다. 이 빌드의 Player Play, 모바일·패드·다인·게시 환경, 전체 모션·밸런스 수용은 미검증이다. [상세](basic-skills-mana.md). 기존 `203785492` 유형 경고 재관측. 릴리스 태그·Roblox 게시 없음. |
