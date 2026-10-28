@@ -161,3 +161,14 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 검사 | `tests/k0-player-weapons-native.luau`, 종료 0, 무기/활 동작 2,177개 검사 통과, Player 0. [로그](bow-lower-build-native.log) |
 | 실제 Play | 빌드 전 동일 게임 소스로 격리 Studio의 R15 Player를 측정. 왼손과 시위 중앙의 높이 차이 약 0.04 studs. [상세](bow-hand-adjustment.md). 이 빌드 파일 자체의 Player Play는 별도 수행하지 않았다. |
 | 미검증·릴리스 | 사용자 아바타별 화면 수용, R6 실플레이·모바일·다인 및 게시 환경은 미검증. Git 릴리스 태그·Roblox 게시 없음. |
+
+## 0.8.0 — 슬라임 분열·피격 인식·엘프 발사 자세
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `901b9259fde27d8b5e1e83d2c56352e55dcd3c2c`, `VERSION=0.8.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.8.0/TheLastThrone-0.8.0.rbxlx`, 종료 0 |
+| 결과물 | 837,141 bytes, SHA-256 `4466693d670e152fa9b6ffd0b069f7169874e42b6be08cfdb1bab010e2621454`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau`, 종료 0, 449개 통과, 검사 수집 런타임 오류 0, Player 0. 자식 분열·크기·체력·재생성 확인. [로그](slime-awareness-build-smoke.log) |
+| 소스 fixture와 Play | 공격 인식 182개, 무기 2,177개, 타이밍 116개 검사 및 격리 R15 손 위치 측정은 [작업 기록](slime-awareness-bow.md) 참고. 실제 손 위치 조정은 동일 소스의 격리 Play에서 수동으로 측정했다. |
+| 미검증·릴리스 | 다양한 아바타 체형의 자세와 시각 수용, 실제 사용자 조작·다인·게시 환경은 미검증. Git 릴리스 태그·Roblox 게시 없음. |
