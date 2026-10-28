@@ -5,6 +5,7 @@ local ServerStorage = game:GetService("ServerStorage")
 local Appearance = {}
 local SPECS = {
 	Goblin = { template = "goblin", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
+	Orc = { template = "orc", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
 	Ogre = { template = "ogre", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
 	Slime = { template = "slime", parts = { "Body" } },
 }

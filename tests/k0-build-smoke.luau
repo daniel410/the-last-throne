@@ -15,7 +15,7 @@ assert(not RunService:IsRunning(), "K0 smoke requires an idle isolated Studio")
 assert(ReplicatedStorage:FindFirstChild("Shared") and ReplicatedStorage.Shared:FindFirstChild("K0Config"), "K0 shared sources missing")
 assert(ServerScriptService:FindFirstChild("Server"), "K0 server bootstrap missing")
 
-local report = { kind = "K0_NATIVE_SMOKE", checks = 0, failures = {}, compiledModules = {}, runtimeErrors = {}, players = 0, enemies = {}, assetLoads = {}, spawnCoverage = "Spawn instance only; initial Player placement and respawn require real Play", assetCoverage = "Actual TD MeshParts in isolated Studio; published RPG permissions and visible Play presentation require separate evidence" }
+local report = { kind = "K0_NATIVE_SMOKE", checks = 0, failures = {}, compiledModules = {}, runtimeErrors = {}, players = 0, enemies = {}, respawns = {}, assetLoads = {}, spawnCoverage = "Spawn instance only; initial Player placement and respawn require real Play", combatCoverage = "Three idle enemy presets and death/respawn only; real Player aggro, attacks, damage and Goblin spacing require Play", assetCoverage = "Actual TD MeshParts in isolated Studio; published RPG permissions and visible Play presentation require separate evidence" }
 local function check(condition, label)
 	report.checks += 1
 	if not condition then table.insert(report.failures, label) end
@@ -36,8 +36,12 @@ local TD_EXPECTED = {
 	Ogre = { template = "ogre", height = 6.05, texture = "90412861785322", meshes = {
 		Body = "98618217378067", ArmL = "108622715572697", ArmR = "98353562560509", LegL = "76243711635467", LegR = "77089513742534",
 	} },
+	Orc = { template = "orc", height = 4.6, texture = "140427201929012", meshes = {
+		Body = "91974284442570", ArmL = "80036546875989", ArmR = "126087041396792", LegL = "122434686618387", LegR = "108357424176147",
+	} },
 	Slime = { template = "slime", height = 1.1, texture = "75994104212849", meshes = { Body = "84245584635347" } },
 }
+local COMBAT_KINDS = { "Goblin", "Ogre", "Orc" }
 local ANCHORS = { Body = "Torso", ArmL = "Right Arm", ArmR = "Left Arm", LegL = "Right Leg", LegR = "Left Leg" }
 local function numericId(uri)
 	return tostring(uri):match("rbxassetid://(%d+)") or tostring(uri):match("[?&]id=(%d+)")
@@ -109,7 +113,7 @@ local function preloadActualParts(definitions)
 			row.done = true
 		end)
 	end
-	-- One 45-second deadline covers all 11 real MeshParts and their textures.
+	-- One 45-second deadline covers all 16 real MeshParts and their textures.
 	waitFor(function()
 		for _, row in ipairs(report.assetLoads) do if not row.done then return false end end
 		return true
@@ -185,23 +189,24 @@ local ok, err = xpcall(function()
 	check(remote and remote:IsA("RemoteEvent"), "server creates K0Action RemoteEvent")
 	check(field:FindFirstChild("Spawn") and field.Spawn:IsA("SpawnLocation"), "safe spawn exists")
 	local config = require(ReplicatedStorage.Shared.K0Config)
-	check(#enemies:GetChildren() == 2, "exactly two initial enemies")
+	check(#enemies:GetChildren() == 3, "exactly three initial enemies")
 	check(enemies:FindFirstChild("Slime") == nil, "Slime is not added to combat")
 	task.wait(2)
 	local actualParts = {}
 	local firstVisuals = {}
-	for _, kind in { "Goblin", "Ogre" } do
+	for _, kind in COMBAT_KINDS do
 		local model = enemies:FindFirstChild(kind)
 		local humanoid = model and model:FindFirstChildOfClass("Humanoid")
 		local root = model and model:FindFirstChild("HumanoidRootPart")
 		check(model and humanoid and root, kind .. " has native rig")
 		if humanoid and root then
-			check(humanoid.Health == config.Enemy[kind].health, kind .. " server health preset")
+			check(humanoid.Health == config.Enemy[kind].health and humanoid.MaxHealth == config.Enemy[kind].health, kind .. " server health preset")
+			check(model:GetAttribute("EnemyKind") == kind, kind .. " explicit combat identity without fallback")
 			check(model:GetAttribute("K0Posture") == config.Enemy[kind].posture, kind .. " posture initialized")
 			check(model:GetAttribute("K0EnemyState") == "Idle", kind .. " idle without Players")
 			check(root.Position.Y > 0 and root.Position.Y < 12, kind .. " stays above continuous ground")
 			check(root.AssemblyLinearVelocity.Magnitude < 2, kind .. " settles physically")
-			report.enemies[kind] = { health = humanoid.Health, y = root.Position.Y, speed = root.AssemblyLinearVelocity.Magnitude }
+			report.enemies[kind] = { health = humanoid.Health, posture = model:GetAttribute("K0Posture"), y = root.Position.Y, speed = root.AssemblyLinearVelocity.Magnitude }
 		end
 		local visual = checkVisual(model, kind, kind)
 		firstVisuals[kind] = visual
@@ -225,30 +230,48 @@ local ok, err = xpcall(function()
 	slimeRig.Parent = ServerStorage
 	local slimeVisual = appearance.attach(slimeRig, "Slime", 0)
 	check(checkVisual(slimeRig, "Slime", "Slime adapter fixture") == slimeVisual, "Slime adapter returns its attached model")
-	check(slimeRig:FindFirstChildOfClass("Humanoid") == nil and slimeRig:GetAttribute("EnemyKind") == nil and #enemies:GetChildren() == 2,
+	check(slimeRig:FindFirstChildOfClass("Humanoid") == nil and slimeRig:GetAttribute("EnemyKind") == nil and #enemies:GetChildren() == 3,
 		"Slime visual-only fixture does not enter combat")
 	for _, part in meshParts(slimeVisual) do table.insert(actualParts, { name = "Slime." .. part.Name, part = part }) end
-	check(#actualParts == 11, "preload exercises all ten enemy parts plus one Slime part")
+	check(#actualParts == 16, "preload exercises all fifteen enemy parts plus one Slime part")
 	preloadActualParts(actualParts)
 	slimeRig:Destroy()
-	local oldGoblin = assert(enemies:FindFirstChild("Goblin"))
-	oldGoblin:FindFirstChildOfClass("Humanoid").Health = 0
-	local replacement = waitFor(function()
-		local model = enemies:FindFirstChild("Goblin")
-		return model and model ~= oldGoblin and model
-	end, config.Enemy.Goblin.respawnTime + 3)
-	check(replacement ~= nil, "dead Goblin replaced after configured respawn")
-	if replacement then
-		local humanoid = replacement:FindFirstChildOfClass("Humanoid")
-		check(humanoid and humanoid.Health == config.Enemy.Goblin.health, "respawn restores server health")
-		check(replacement:GetAttribute("K0EnemyState") == "Idle", "respawn initializes AI state")
-		check(#enemies:GetChildren() == 2, "respawn does not duplicate enemy")
-		local replacementVisual = checkVisual(replacement, "Goblin", "Goblin respawn")
-		check(replacementVisual and replacementVisual ~= firstVisuals.Goblin, "respawn creates a fresh TD visual model")
-		if replacementVisual and firstVisuals.Goblin then
-			check(replacementVisual:FindFirstChild("Body") ~= firstVisuals.Goblin:FindFirstChild("Body"), "respawn clones fresh MeshParts")
+	for _, kind in COMBAT_KINDS do
+		local original = assert(enemies:FindFirstChild(kind))
+		local originalVisual = assert(original:FindFirstChild("TdMonsterVisual"))
+		local originalParts = {}
+		for _, part in meshParts(originalVisual) do originalParts[part.Name] = part end
+		local deathAt = os.clock()
+		original:FindFirstChildOfClass("Humanoid").Health = 0
+		local replacement = waitFor(function()
+			local model = enemies:FindFirstChild(kind)
+			return model and model ~= original and model
+		end, config.Enemy[kind].respawnTime + 3)
+		check(replacement ~= nil, "dead " .. kind .. " replaced after configured respawn")
+		if replacement then
+			local humanoid = replacement:FindFirstChildOfClass("Humanoid")
+			check(humanoid and humanoid.Health == config.Enemy[kind].health and humanoid.MaxHealth == config.Enemy[kind].health, kind .. " respawn restores server health")
+			check(replacement:GetAttribute("K0EnemyState") == "Idle" and replacement:GetAttribute("K0Posture") == config.Enemy[kind].posture, kind .. " respawn initializes AI and posture")
+			check(#enemies:GetChildren() == 3, kind .. " respawn does not duplicate enemy")
+			local replacementVisual = checkVisual(replacement, kind, kind .. " respawn")
+			check(replacementVisual and replacementVisual ~= originalVisual, kind .. " respawn creates a fresh TD visual model")
+			if replacementVisual then
+				for name, part in pairs(originalParts) do
+					check(replacementVisual:FindFirstChild(name) ~= part, kind .. " respawn clones fresh MeshPart " .. name)
+				end
+			end
+			firstVisuals[kind] = replacementVisual
+			for _, otherKind in COMBAT_KINDS do
+				if otherKind ~= kind then
+					local other = enemies:FindFirstChild(otherKind)
+					check(other and other:FindFirstChild("TdMonsterVisual") == firstVisuals[otherKind], kind .. " respawn preserves " .. otherKind .. " appearance")
+				end
+			end
+			task.wait(1)
+			local root = replacement:FindFirstChild("HumanoidRootPart")
+			check(root and root.Position.Y > 0 and root.Position.Y < 12 and root.AssemblyLinearVelocity.Magnitude < 2, kind .. " respawn settles on continuous ground")
+			report.respawns[kind] = { seconds = os.clock() - deathAt, health = humanoid and humanoid.Health, y = root and root.Position.Y }
 		end
-		check(enemies:FindFirstChild("Ogre"):FindFirstChild("TdMonsterVisual") == firstVisuals.Ogre, "Goblin respawn preserves Ogre appearance")
 	end
 	report.players = #Players:GetPlayers()
 	check(report.players == 0, "native Run has no Player; it cannot detect the 0.1.0 initial-spawn defect or validate the spawn fix")

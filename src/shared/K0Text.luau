@@ -39,5 +39,5 @@ return {
 		Dodged = "DODGED",
 		Interrupted = "INTERRUPTED",
 	},
-	Enemy = { Goblin = "Goblin", Ogre = "Ogre" },
+	Enemy = { Goblin = "Goblin", Orc = "Orc Warrior", Ogre = "Ogre" },
 }

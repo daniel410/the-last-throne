@@ -610,7 +610,7 @@ local function beginEnemyAttack(enemy, target, current)
 	if enemy.kind == "Ogre" then
 		attackIndex = enemy.pattern % 3 == 2 and 2 or 1
 		enemy.pattern = enemy.pattern + 1
-	else
+	elseif enemy.kind == "Goblin" then
 		lastGoblinStart = current
 	end
 	local definition = enemy.config.attacks[attackIndex]

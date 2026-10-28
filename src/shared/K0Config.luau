@@ -27,6 +27,13 @@ return {
 			exposeTime = 1.20, respawnTime = 5,
 			attacks = {{ name = "Melee", windup = 0.60, active = 0.10, recovery = 0.80, range = 4, angle = 90, damage = 80, guardCost = 16, blockable = true }},
 		},
+		-- Initial K0 test values, pending Orc Warrior playtesting; armor and
+		-- flank-specific damage are future behavior, not part of this preset.
+		Orc = {
+			health = 900, posture = 100, walkSpeed = 8.5, aggroRange = 25, leashRange = 36,
+			exposeTime = 1.20, respawnTime = 5,
+			attacks = {{ name = "Melee", windup = 0.85, active = 0.12, recovery = 1.05, range = 5, angle = 90, damage = 125, guardCost = 25, blockable = true }},
+		},
 		Ogre = {
 			health = 6000, posture = 220, walkSpeed = 7, aggroRange = 25, leashRange = 36,
 			exposeTime = 1.50, respawnTime = 5,

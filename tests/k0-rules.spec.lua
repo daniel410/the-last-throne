@@ -75,4 +75,69 @@ local allowed = Rules.movementBudget(Config.MovementBudget, 1 / 60, 30, Config.W
 equal(allowed, false, "large instantaneous displacement rejected")
 allowed = Rules.movementBudget(Config.MovementBudget, 1 / 60, 0/0, Config.WalkSpeed, Config.MovementBudget)
 equal(allowed, false, "non-finite movement rejected")
+
+-- Orc's ordinary, blockable strike uses the same actual rules as Goblin/Ogre.
+-- These are pure decisions, not proof of real Player hits or animations.
+local orc = assert(Config.Enemy.Orc, "Orc combat preset missing; fallback is not allowed")
+equal(orc.health, 900, "Orc prototype health")
+equal(orc.posture, 100, "Orc prototype posture")
+local orcAttack = assert(orc.attacks[1])
+equal(#orc.attacks, 1, "Orc has one authored ordinary melee attack")
+equal(orcAttack.blockable, true, "Orc strike is blockable")
+equal(Rules.phase(orcAttack.windup - 0.001, orcAttack), "Windup", "Orc damage cannot begin before windup")
+equal(Rules.phase(orcAttack.windup, orcAttack), "Active", "Orc active starts inclusively")
+equal(Rules.phase(orcAttack.windup + orcAttack.active, orcAttack), "Recovery", "Orc active ends exclusively")
+equal(Rules.withinCone(orcAttack.range, 0, 1, orcAttack.range, Config.AttackHeight, orcAttack.angle), true, "Orc maximum frontal range included")
+equal(Rules.withinCone(orcAttack.range + 0.001, 0, 1, orcAttack.range, Config.AttackHeight, orcAttack.angle), false, "Orc out of range rejected")
+equal(Rules.withinCone(1, 0, -1, orcAttack.range, Config.AttackHeight, orcAttack.angle), false, "Orc rear is outside frontal strike")
+outcome, multiplier, stamina = defense(false, 0, true, 0.25, 1, orcAttack.blockable, 100, orcAttack.guardCost)
+equal(outcome, "Blocked", "ordinary guard blocks Orc strike")
+near(orcAttack.damage * multiplier, 25, "Orc ordinary block receives 25 damage")
+equal(stamina, 75, "Orc block consumes 25 impact stamina")
+outcome, multiplier, stamina = defense(false, 0, true, 0.25, 1, orcAttack.blockable, 24, orcAttack.guardCost)
+equal(outcome, "GuardBroken", "Orc strike breaks guard below required stamina")
+near(orcAttack.damage * multiplier, 125, "Orc guard break receives full 125 damage")
+outcome, multiplier = defense(true, 0.08, false, 0, 1, orcAttack.blockable, 100, orcAttack.guardCost)
+equal(outcome, "Dodge", "Orc strike respects dodge window")
+near(orcAttack.damage * multiplier, 0, "Orc dodge prevents damage")
+
+-- Run the actual local attack-start function with side effects isolated. This
+-- covers the shared Goblin timestamp and Ogre pattern without faking a Player
+-- or rewriting the function's branch in the test. It does not run the full AI.
+local serviceFile = assert(io.open("src/server/Combat/CombatService.luau", "r"))
+local serviceSource = serviceFile:read("*a")
+serviceFile:close()
+local beginSource = assert(serviceSource:match("(local function beginEnemyAttack%(.-)\nlocal function resetEnemy"), "actual beginEnemyAttack source missing")
+local context = setmetatable({
+	horizontalUnit = function(_, fallback) return fallback end,
+	stopEnemy = function(enemy) enemy.stopped = true end,
+	setEnemyState = function(enemy, state) enemy.mode = state end,
+}, { __index = _G })
+local chunk, loadError = load("local lastGoblinStart=-math.huge\n" .. beginSource .. "\nreturn beginEnemyAttack,function() return lastGoblinStart end", "K0 actual attack-start contract", "t", context)
+assert(chunk, loadError)
+local beginEnemyAttack, goblinTimestamp = chunk()
+local function mockEnemy(kind)
+	local attributes = {}
+	return { kind = kind, config = assert(Config.Enemy[kind]), pattern = 0, attackSeq = 0, pathToken = 0,
+		root = { Position = 0, CFrame = { LookVector = "forward" } },
+		model = { SetAttribute = function(_, key, value) attributes[key] = value end }, attributes = attributes }
+end
+local target = { root = { Position = 1 } }
+local orcEnemy = mockEnemy("Orc")
+beginEnemyAttack(orcEnemy, target, 10)
+equal(goblinTimestamp(), -math.huge, "Orc attack does not start Goblin spacing clock")
+equal(orcEnemy.attack.definition, orcAttack, "Orc uses its own attack without Goblin fallback")
+equal(orcEnemy.mode, "Windup", "actual Orc attack enters windup")
+equal(orcEnemy.attributes.K0AttackRange, 5, "Orc telegraph publishes its own range")
+local goblinEnemy = mockEnemy("Goblin")
+beginEnemyAttack(goblinEnemy, target, 10.1)
+near(goblinTimestamp(), 10.1, "Goblin attack updates shared spacing timestamp")
+beginEnemyAttack(orcEnemy, target, 10.2)
+near(goblinTimestamp(), 10.1, "later Orc attack preserves Goblin spacing timestamp")
+local ogreEnemy = mockEnemy("Ogre")
+for index, expected in ipairs({ 1, 1, 2 }) do
+	beginEnemyAttack(ogreEnemy, target, 11 + index)
+	equal(ogreEnemy.attack.definition, Config.Enemy.Ogre.attacks[expected], "Ogre two melee then unblockable pattern " .. index)
+end
+near(goblinTimestamp(), 10.1, "Ogre attacks preserve Goblin spacing timestamp")
 print("K0 rules: " .. checks .. " checks passed")

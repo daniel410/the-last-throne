@@ -10,7 +10,7 @@
     "td_project_entry": "tree.ServerStorage.MonsterModels",
     "runtime_top_level_folder": "MonsterModels",
     "runtime_model_count": 43,
-    "scope": "Full runtime XML is preserved byte-for-byte; only three selected original GLBs are copied."
+    "scope": "Full runtime XML is preserved byte-for-byte; only four selected original GLBs are copied."
   },
   "files": {
     "runtime": {
@@ -39,6 +39,13 @@
       "td_source_path": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Grimfang_the_Bonecrusher_20261025_texture_5d91642a.glb",
       "sha256": "d5a01cdc860ce2bc0725594e89c01b574f095ac9cde4a84807b72640493af2b3",
       "size_bytes": 7654612,
+      "git_lfs": true
+    },
+    "orc": {
+      "path": "assets/shared/td-monsters/source/Meshy_AI_Ironhide_Warlord_20261025_texture_3545c9fe.glb",
+      "td_source_path": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Ironhide_Warlord_20261025_texture_3545c9fe.glb",
+      "sha256": "b612a43d660f11cf24a9b5216462fdf1cf7b98a2e49db625102006cc70fb5ad3",
+      "size_bytes": 8383884,
       "git_lfs": true
     }
   },
@@ -390,6 +397,158 @@
         }
       ],
       "target_height": 1.1
+    },
+    "orc": {
+      "template_name": "orc",
+      "source_glb_path": "assets/shared/td-monsters/source/Meshy_AI_Ironhide_Warlord_20261025_texture_3545c9fe.glb",
+      "parts": [
+        {
+          "name": "LegL",
+          "mesh_id": "rbxassetid://122434686618387",
+          "texture_id": "rbxassetid://140427201929012",
+          "size": [
+            0.36441105604171753,
+            0.2199999988079071,
+            0.3707941174507141
+          ],
+          "position": [
+            -0.18220549821853638,
+            0.10999999940395355,
+            0.012691862881183624
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "LegL",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "LegR",
+          "mesh_id": "rbxassetid://108357424176147",
+          "texture_id": "rbxassetid://140427201929012",
+          "size": [
+            0.36441105604171753,
+            0.21845021843910217,
+            0.32424700260162354
+          ],
+          "position": [
+            0.18220549821853638,
+            0.11077488958835602,
+            -0.04009736329317093
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "LegR",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "ArmL",
+          "mesh_id": "rbxassetid://80036546875989",
+          "texture_id": "rbxassetid://140427201929012",
+          "size": [
+            0.22269564867019653,
+            0.6541112661361694,
+            0.38372206687927246
+          ],
+          "position": [
+            -0.3713478446006775,
+            0.5670556426048279,
+            0.022240586578845978
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "ArmL",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "ArmR",
+          "mesh_id": "rbxassetid://126087041396792",
+          "texture_id": "rbxassetid://140427201929012",
+          "size": [
+            0.2609190344810486,
+            0.7138054966926575,
+            0.7221068143844604
+          ],
+          "position": [
+            0.39045950770378113,
+            0.4860346019268036,
+            0.0983985960483551
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "ArmR",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "Body",
+          "mesh_id": "rbxassetid://91974284442570",
+          "texture_id": "rbxassetid://140427201929012",
+          "size": [
+            0.6073552370071411,
+            0.7799999713897705,
+            0.4865700602531433
+          ],
+          "position": [
+            -0.016281843185424805,
+            0.6100000143051147,
+            -0.0426139235496521
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "Body",
+          "anchored": true,
+          "can_collide": false
+        }
+      ],
+      "target_height": 4.6
     }
   },
   "validation_limits": {

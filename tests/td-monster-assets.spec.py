@@ -9,7 +9,6 @@ import hashlib
 import json
 import math
 from pathlib import Path
-import re
 import struct
 import subprocess
 import sys
@@ -24,12 +23,16 @@ EXPECTED = {
         'Body': '98618217378067', 'ArmL': '108622715572697', 'ArmR': '98353562560509',
         'LegL': '76243711635467', 'LegR': '77089513742534'}},
     'slime': {'height': 1.1, 'texture': '75994104212849', 'meshes': {'Body': '84245584635347'}},
+    'orc': {'height': 4.6, 'texture': '140427201929012', 'meshes': {
+        'Body': '91974284442570', 'ArmL': '80036546875989', 'ArmR': '126087041396792',
+        'LegL': '122434686618387', 'LegR': '108357424176147'}},
 }
 CAPTURED_HASHES = {
     'runtime': '14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5',
     'goblin': '90ece6137ab326db2e9b929383c5b98c3f2529b0f78bc7f4d1fc8dbba1dc0a7b',
     'ogre': 'd5a01cdc860ce2bc0725594e89c01b574f095ac9cde4a84807b72640493af2b3',
     'slime': '3adc1a12f3e89f6690047abb2c8cab3d6fbb4ae0f3726b87e2a5607d4d7324c2',
+    'orc': 'b612a43d660f11cf24a9b5216462fdf1cf7b98a2e49db625102006cc70fb5ad3',
 }
 report = {'kind': 'TLT_TD_MONSTER_ASSETS_STATIC', 'checks': [], 'failures': [], 'not_run': [],
           'coverage': 'Vendored bytes/schema/XML/LFS/Rojo only; no Studio, asset fetch, visible render, Player, performance or published access'}
@@ -81,8 +84,8 @@ def main():
     args = parser.parse_args()
     manifest = json.loads((ROOT / 'assets/shared/td-monsters/manifest.json').read_text())
     check(manifest['schema_version'] == 1, 'manifest/schema-v1')
-    check(set(manifest['files']) == set(CAPTURED_HASHES), 'manifest/runtime-and-three-originals')
-    check(set(manifest['models']) == set(EXPECTED), 'manifest/three-selected-models')
+    check(set(manifest['files']) == set(CAPTURED_HASHES), 'manifest/runtime-and-four-originals')
+    check(set(manifest['models']) == set(EXPECTED), 'manifest/four-selected-models')
     td_root = (args.td_root or (ROOT / manifest['provenance']['td_repository'])).resolve()
     if args.td_root and not td_root.is_dir():
         raise ValueError('Explicit TD checkout does not exist: ' + str(td_root))

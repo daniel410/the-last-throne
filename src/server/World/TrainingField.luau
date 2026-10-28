@@ -207,7 +207,7 @@ end
 
 function TrainingField.create()
 	-- Check all imported K0 template contracts before changing Workspace.
-	for _, kind in ipairs({ "Goblin", "Ogre", "Slime" }) do
+	for _, kind in ipairs({ "Goblin", "Orc", "Ogre", "Slime" }) do
 		TdMonsterAppearance.describe(kind)
 	end
 	local existing = Workspace:FindFirstChild("DeepwoodK0")
@@ -261,6 +261,7 @@ function TrainingField.create()
 	enemies.Name = "Enemies"
 	enemies.Parent = folder
 	makeEnemy(enemies, "Goblin", -18, -10, 0.85)
+	makeEnemy(enemies, "Orc", 42, 17, 1.10)
 	makeEnemy(enemies, "Ogre", 20, -30, 1.45)
 
 	return { folder = folder, enemies = enemies, spawn = spawn }
