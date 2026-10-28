@@ -150,3 +150,14 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 종료 0, 436개 통과, 실패·수집 런타임 오류 0, Player 0. [로그](targeted-build-smoke.log). 표적 서버 145개·무기 2,177개·기존 타이밍 116개 검사는 [작업 기록](targeted-combat.md)의 소스 fixture 결과다. |
 | 고정 빌드 실제 Play | 격리 Studio 실제 Player 1명/R15에서 Elf와 Mage를 로비에서 생성해 튜토리얼 진입. Elf 활이 LeftHand에 붙고 RightHand가 시위를 당겼으며, 시위 깊이는 대기 1.192 → 준비 1.651 → 발사 1.198 → 복귀 1.192 studs, 화살이 복구되는 것을 확인. Mage 버튼이 CAST로 표시됨. 공격 자체는 테스트 스크립트에서 서버 요청을 보냈다. |
 | 미검증·릴리스 | 손과 시위의 정확한 접촉·최종 애니메이션 품질, R6 실플레이, 모바일·패드·다인·게시 Experience의 원본 메시 권한은 미검증이다. 기존 `203785492` 유형 경고가 재관측됐다. Git 릴리스 태그·Roblox 게시 없음. |
+
+## 0.7.1 — 엘프 활 잡는 손 높이 조정
+
+| 항목 | 실제 결과 |
+| --- | --- |
+| 입력 소스 | `6989c5398b9dbd15c7c3d1a28364bc1a2be81e61`, `VERSION=0.7.1`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.7.1/TheLastThrone-0.7.1.rbxlx`, 종료 0 |
+| 결과물 | 832,585 bytes, SHA-256 `ebd43bf8fe051a84b4ebd7c6c1c1537afba93834e691a93d6be9dc5162ebf94c`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-player-weapons-native.luau`, 종료 0, 무기/활 동작 2,177개 검사 통과, Player 0. [로그](bow-lower-build-native.log) |
+| 실제 Play | 빌드 전 동일 게임 소스로 격리 Studio의 R15 Player를 측정. 왼손과 시위 중앙의 높이 차이 약 0.04 studs. [상세](bow-hand-adjustment.md). 이 빌드 파일 자체의 Player Play는 별도 수행하지 않았다. |
+| 미검증·릴리스 | 사용자 아바타별 화면 수용, R6 실플레이·모바일·다인 및 게시 환경은 미검증. Git 릴리스 태그·Roblox 게시 없음. |
