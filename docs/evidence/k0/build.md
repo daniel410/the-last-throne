@@ -205,3 +205,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과·수집 런타임 오류 0, Player 0. [로그](hit-feedback-build-smoke.log). `tests/k0-hit-effects-native.luau` 64개 통과. [로그](hit-feedback-build-native.log) |
 | 소스 fixture 및 실제 Play | 서버 공격 192개 검사와 격리된 R15 플레이의 드워프·마법사 이벤트 및 임시 음원 로드 확인은 [작업 기록](hit-feedback.md) 참고. 이 빌드 파일 자체의 Player Play는 수행하지 않았다. |
 | 미검증·릴리스 | 실제 화면·음성의 사용자 수용, R6 실플레이, 다양한 체형·다인·모바일·게시 환경과 장거리 투사체 시각 동기화는 미검증. Git 릴리스 태그·Roblox 게시 없음. |
+
+## 0.9.1 — 영상 참고 드워프 도끼 공격
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `b5d179adf6ee587321512c94cd29873953c2bd54`, `VERSION=0.9.1`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.9.1/TheLastThrone-0.9.1.rbxlx`, 종료 0 |
+| 결과물 | 846,627 bytes, SHA-256 `80f470cca47c29e08de99c25344394c9c119bb7a6a07ffde6924d1b589e4a71e`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-melee-motion-native.luau` 36개 통과 [로그](axe-reference-build-motion.log), `tests/k0-basic-attacks-native.luau` 196개 통과 [로그](axe-reference-build-combat.log). Player 0의 리그 순운동학·서버 fixture 검사다. |
+| 실제 Play 및 한계 | 빌드 전 동일 게임 소스의 격리된 R15 플레이에서 도끼 자세와 슬라임 명중 시점을 측정했다. [상세](axe-reference-motion.md). 이 빌드의 Player Play, 사용자 시각 수용, 다양한 체형·R6·다인·모바일·게시 환경은 미검증이다. 릴리스 태그·Roblox 게시 없음. |
