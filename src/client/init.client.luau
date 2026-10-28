@@ -18,6 +18,27 @@ local touchBlockInput
 local attackInputs = {}
 local attackGeneration = 0
 local characterConnections = {}
+local showingSpawnRetry = false
+
+local function updateSpawnStatus()
+	local status = player:GetAttribute("K0SpawnStatus")
+	if status == "Retrying" then
+		showingSpawnRetry = true
+		hud.setState(Text.State.Retrying)
+		hud.showFeedback(Text.SpawnRetry, 60)
+	elseif status == "Loading" or status == "Respawning" then
+		if showingSpawnRetry then hud.clearFeedback() end
+		showingSpawnRetry = false
+		hud.setState(Text.State.Loading)
+	elseif status == "Ready" then
+		if showingSpawnRetry then hud.clearFeedback() end
+		showingSpawnRetry = false
+		local character = player.Character
+		hud.setState(character and Text.State[character:GetAttribute("K0State")] or Text.State.Idle)
+	end
+end
+player:GetAttributeChangedSignal("K0SpawnStatus"):Connect(updateSpawnStatus)
+updateSpawnStatus()
 
 local function sendAction(action, direction)
 	if actionRemote then
@@ -116,13 +137,14 @@ local function bindCharacter(character)
 	clearAttacks()
 	hud.setHealth(nil, nil)
 	hud.setStamina(nil, nil)
-	hud.setState(Text.State.Idle)
+	hud.setState(Text.State.Loading)
 
 	local function updateStamina()
 		hud.setStamina(character:GetAttribute("K0Stamina"), character:GetAttribute("K0MaxStamina"))
 	end
 	local function updateState()
-		hud.setState(Text.State[character:GetAttribute("K0State")] or Text.State.Idle)
+		local value = character:GetAttribute("K0State")
+		if value then hud.setState(Text.State[value] or Text.State.Idle) end
 	end
 	local function showFeedback()
 		local message = Text.Feedback[character:GetAttribute("K0Feedback")]

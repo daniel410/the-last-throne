@@ -12,7 +12,7 @@ Deepwood의 평탄한 훈련장에서 플레이어가 기사로 Goblin과 Ogre�
 | 전투 | `src/server/Combat/CombatService.luau`, `K0Rules.luau`, `src/shared/K0Config.luau`: 서버 시간과 서버 위치로 검격·방어·회피·피해·적 AI를 판정한다. 수치와 입력 제한은 K0 실험용이다. |
 | 시각 | `src/server/Cosmetics/KnightAppearance.luau`: R6/R15 임시 검·방패. `src/client/K0SwordVisual.luau`, `K0Telegraphs.luau`: 서버 전투 상태에 따른 로컬 검 연출과 공격 예고. 연출은 판정을 계산하지 않는다. |
 | 조작/UI | `src/client/init.client.luau`, `K0Hud.luau`: PC 왼쪽 클릭/오른쪽 클릭 유지/Space, 패드 R2/L2/B, 터치 공격/방어/회피 버튼. 문자열은 `src/shared/K0Text.luau`의 en-US 키를 사용한다. |
-| 기존 원본 | [TD 3D 조사](asset-audit.md)에 실제 작업 트리 경로·해시와 RPG 환경의 미확인 권한을 기록했다. 조사한 후보는 최종 RPG 리그/모션 또는 현재 Place 로딩 성공을 의미하지 않는다. |
+| 기존 원본 | [TD 3D 조사](asset-audit.md)에 실제 작업 트리 경로·해시를 기록했다. [Studio 로딩 조사](asset-load-probe.md)는 소유자 컨텍스트의 후보 12개 preload 성공을 확인했으며, RPG 게시 환경 권한·실제 렌더·최종 리그/모션은 별도다. |
 
 HP 1000, 공격력 100, 스태미나 100은 전투 실험 프리셋이다. 스탯 포인트나 레벨·보상을 지급하지 않는다. 클라이언트는 행동 의도만 전송하며 서버가 대상·거리·각도·사선·피해·스태미나와 적 행동을 처리한다. 부정 입력, 위치 소유권과 지연에 대한 실제 네트워크 검증이 필요하다.
 

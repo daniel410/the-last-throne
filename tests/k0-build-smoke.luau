@@ -14,7 +14,7 @@ assert(not RunService:IsRunning(), "K0 smoke requires an idle isolated Studio")
 assert(ReplicatedStorage:FindFirstChild("Shared") and ReplicatedStorage.Shared:FindFirstChild("K0Config"), "K0 shared sources missing")
 assert(ServerScriptService:FindFirstChild("Server"), "K0 server bootstrap missing")
 
-local report = { kind = "K0_NATIVE_SMOKE", checks = 0, failures = {}, compiledModules = {}, runtimeErrors = {}, players = 0, enemies = {} }
+local report = { kind = "K0_NATIVE_SMOKE", checks = 0, failures = {}, compiledModules = {}, runtimeErrors = {}, players = 0, enemies = {}, spawnCoverage = "Spawn instance only; initial Player placement and respawn require real Play" }
 local function check(condition, label)
 	report.checks += 1
 	if not condition then table.insert(report.failures, label) end
@@ -33,6 +33,7 @@ local errorsConnection = LogService.MessageOut:Connect(function(message, message
 end)
 local started = false
 local ok, err = xpcall(function()
+	check(Players.CharacterAutoLoads == false, "CharacterAutoLoads=false is serialized before players can join")
 	-- Module bodies are required in Edit; presentation start/create methods are
 	-- intentionally not called because this is not a LocalPlayer client.
 	for _, container in { ReplicatedStorage.Shared, ServerScriptService.Server, game:GetService("StarterPlayer").StarterPlayerScripts } do
@@ -99,7 +100,7 @@ local ok, err = xpcall(function()
 		check(#enemies:GetChildren() == 2, "respawn does not duplicate enemy")
 	end
 	report.players = #Players:GetPlayers()
-	check(report.players == 0, "native Run test has no real Player; client input remains unverified")
+	check(report.players == 0, "native Run has no Player; it cannot detect the 0.1.0 initial-spawn defect or validate the spawn fix")
 	check(#report.runtimeErrors == 0, "no native runtime errors during smoke")
 end, debug.traceback)
 if not ok then table.insert(report.failures, tostring(err)) end

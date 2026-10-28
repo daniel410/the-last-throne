@@ -150,8 +150,10 @@ function Hud.create()
 	local subtitle = text(heading, "Subtitle", Text.Subtitle, UDim2.fromOffset(8, 28), UDim2.new(1, -16, 0, 16), 10, COLORS.muted)
 	subtitle.TextXAlignment = Enum.TextXAlignment.Center
 
-	local feedback = text(root, "Feedback", "", UDim2.new(0.5, -150, 0.55, -12), UDim2.fromOffset(300, 24), 16, COLORS.cream)
+	local feedback = text(root, "Feedback", "", UDim2.new(0.5, 0, 0.55, 0), UDim2.new(0.8, 0, 0, 52), 16, COLORS.cream)
+	feedback.AnchorPoint = Vector2.new(0.5, 0.5)
 	feedback.TextXAlignment = Enum.TextXAlignment.Center
+	feedback.TextWrapped = true
 	feedback.TextStrokeTransparency = 0.3
 	feedback.Visible = false
 	local feedbackSequence = 0
@@ -211,6 +213,10 @@ function Hud.create()
 			task.delay(duration or 1.2, function()
 				if feedbackSequence == sequence and feedback.Parent then feedback.Visible = false end
 			end)
+		end,
+		clearFeedback = function()
+			feedbackSequence += 1
+			feedback.Visible = false
 		end,
 	}
 end

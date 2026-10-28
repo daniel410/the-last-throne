@@ -782,9 +782,20 @@ end
 
 local function setupCharacter(player, character)
 	task.spawn(function()
+		-- CharacterAdded precedes the engine's actual spawn placement. Do not
+		-- establish the movement baseline or enter combat before SpawnService
+		-- has confirmed the new life at the safe spawn.
+		while player.Parent == Players and player.Character == character and character:GetAttribute("K0SpawnReady") ~= true do
+			task.wait(0.1)
+		end
+		if player.Parent ~= Players or player.Character ~= character or not character:IsDescendantOf(workspace) then
+			return
+		end
 		local humanoid = character:WaitForChild("Humanoid", 10)
 		local root = character:WaitForChild("HumanoidRootPart", 10)
-		if not humanoid or not root or not humanoid:IsA("Humanoid") or not root:IsA("BasePart") or player.Character ~= character then
+		if not humanoid or not root or not humanoid:IsA("Humanoid") or not root:IsA("BasePart")
+			or player.Parent ~= Players or player.Character ~= character or not character:IsDescendantOf(workspace)
+			or humanoid.Health <= 0 then
 			return
 		end
 		local current = now()

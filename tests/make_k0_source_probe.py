@@ -15,6 +15,11 @@ args = parser.parse_args()
 project = Path(__file__).resolve().parents[1]
 out = args.output_dir.resolve()
 out.mkdir(parents=True, exist_ok=True)
+project_path = project / 'default.project.json'
+project_tree = json.loads(project_path.read_text())['tree']
+auto_loads = project_tree.get('Players', {}).get('$properties', {}).get('CharacterAutoLoads')
+if auto_loads is not False:
+    raise SystemExit('K0 source probe requires CharacterAutoLoads=false in default.project.json; do not mask the project setting')
 
 def quote(value):
     marks = '='
@@ -28,11 +33,12 @@ lines = [
     'local ss=game:GetService("ServerScriptService")',
     'local sp=game:GetService("StarterPlayer").StarterPlayerScripts',
     'assert(not rs:FindFirstChild("Shared") and not ss:FindFirstChild("Server") and not sp:FindFirstChild("Client"), "K0 source probe refuses an existing game")',
+    'game:GetService("Players").CharacterAutoLoads=false -- mirrors the required serialized project property',
     'local shared=Instance.new("Folder");shared.Name="Shared";shared.Parent=rs',
     'local server=Instance.new("Script");server.Name="Server";server.Disabled=true;server.Parent=ss',
     'local client=Instance.new("LocalScript");client.Name="Client";client.Disabled=true;client.Parent=sp',
 ]
-manifest = {}
+manifest = {'default.project.json': hashlib.sha256(project_path.read_bytes()).hexdigest()}
 for source in sorted((project / 'src').rglob('*.luau')):
     rel = source.relative_to(project)
     data = source.read_text()
@@ -57,4 +63,4 @@ runner = out / 'source-probe.luau'
 place.write_text('<roblox version="4"><External>null</External><External>nil</External></roblox>\n')
 runner.write_text('\n'.join(lines) + '\n')
 (out / 'source-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
-print(json.dumps({'kind': 'QA blank fixture and source runner; no game build', 'place': str(place), 'script': str(runner), 'source_files': len(manifest)}))
+print(json.dumps({'kind': 'QA blank fixture and source runner; no game build', 'place': str(place), 'script': str(runner), 'source_files': len(manifest)-1, 'input_files': len(manifest)}))

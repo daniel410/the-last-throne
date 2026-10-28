@@ -10,6 +10,7 @@ return {
 	Block = "BLOCK",
 	Dodge = "DODGE",
 	Unavailable = "Combat is unavailable. Rejoin to retry.",
+	SpawnRetry = "Character could not load. Please wait or rejoin to retry.",
 	IncomingAttack = "INCOMING ATTACK",
 	Unblockable = "UNBLOCKABLE",
 	HintClick = "CLICK",
@@ -21,6 +22,8 @@ return {
 	HintL2 = "L2",
 	HintB = "B",
 	State = {
+		Loading = "LOADING",
+		Retrying = "RETRYING",
 		Idle = "READY",
 		Attack = "ATTACKING",
 		Dodge = "DODGING",
