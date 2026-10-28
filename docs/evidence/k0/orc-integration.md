@@ -19,6 +19,8 @@
 | `lua tests/k0-rules.spec.lua` | 83개 통과. 오크 공격/방어 경계와 고블린 공격 간격·오우거 패턴 회귀 포함 |
 | `lua tests/k0-spawn.spec.lua`, `lua tests/k0-appearance.spec.lua` | 기존 플레이어 스폰·기사 장비 모의 검사 통과 |
 | 격리 Studio source probe | 327개 통과, 실패·수집 오류0. Goblin/Orc/Ogre/Slime의 실제 메시16부위 및 색맵 콜백32개 Success. Goblin/Orc/Ogre 사망·각자 원본 외형의 재생성 확인. Player0이므로 실제 전투의 증거는 아님 |
+| `0.3.0` 고정 빌드 Studio 실행 | 같은 327개 통과, 실제 메시16부위·색맵 로드 성공, 세 전투 적의 사망·재생성 통과. [엔진 로그](orc-build-smoke.log) 참조 |
+| `0.3.0` 격리 Studio Play | 안전 스폰 후 가상 이동으로 Orc에게 접근했다. 오크가 추적·전방 공격해 플레이어 체력이 감소했고, 마우스 검 공격으로 오크 HP900→780·자세100→76을 관찰했다. 오크 Windup의 무기 어깨 Transform을 관측하고 도끼 예고를 화면에서 확인했다. 게시된 테스트·실기기나 모든 전투 패턴 수용을 뜻하지 않는다 |
 
 고정 빌드와 Studio Play, 실기기 등 미검증 범위는 [빌드 기록](build.md)에 남긴다. 기존 K0의 [전투 리뷰 결함](first-implementation-review.md)은 별도 작업이다.
 

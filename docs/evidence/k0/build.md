@@ -65,3 +65,19 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 로그/릴리스 | 기존 출처 미확인203785492 자산 유형 경고 재관측. Git 태그·Roblox 게시 없음 |
 
 기사 소품과 환경은 여전히 임시 도형이다. [첫 리뷰](first-implementation-review.md)의 네 결함은 별도 수정 대상으로 남는다. 이번 빌드는 공유 몬스터 외형의 재사용이며 K0 전체 수용/출시 완료가 아니다.
+
+## 0.3.0 — TD Orc Warrior 추가 빌드
+
+| 항목 | 실제 결과 |
+| --- | --- |
+| 입력 소스 | `90c81ea639aba20fb606f3fcd52856165eed3c93`, `VERSION=0.3.0`. 빌드 전 `origin/main` SHA 일치 확인 |
+| 빌드 | Rojo7.7.1 `rojo build default.project.json --output builds/0.3.0/TheLastThrone-0.3.0.rbxlx`, 종료0 |
+| 결과물 | 662,717bytes, SHA-256 `a3187207ff8fec0ded91c0aa8bf8987277a0299d968ebcc509cec07c448b1a5f`. `builds/` 아래 Git 제외 로컬 결과물 |
+| 원본 | TD runtime XML SHA `14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5`. 오크 Meshy 원본 SHA `b612a43d660f11cf24a9b5216462fdf1cf7b98a2e49db625102006cc70fb5ad3`. 8.4MB LFS 전송 성공. [출처 기록](orc-source.md) 참조 |
+| 정적/규칙 | 자산 구조·원본 정적 검사134개, K0 규칙83개, 기존 플레이어 스폰·기사 장비 모의 검사 통과 |
+| 고정 빌드 엔진 | `run-in-roblox --place <위 빌드 절대경로> --script <tests/k0-build-smoke.luau 절대경로>` 종료0. 327개 통과·실패/수집 오류0. 16 MeshPart 및 각 색맵의 콜백32개 성공, 세 적이 사망 후 복제·리스폰. Player0. [로그](orc-build-smoke.log) |
+| 실제 Studio Play | 독립 PlaceId0에서 플레이어 안전 스폰과 Orc Warrior 표시, TD 원본 외형·도끼 및 메시 5부위 확인. 가상 이동으로 오크에게 접근해 추적·예고·공격을 관측했고 플레이어 HP가1000에서 약885로 감소했다. 가상 마우스 검 공격 후 오크 HP900→780, 자세100→76 관측. Windup 중 무기 쪽 어깨 회전과 도끼 표시 확인 |
+| 미검증 | 오크 장갑·측후면 전용 피해, 오크 본편 배치·보상, 연속 모션의 미술 수용, 실제폰·패드·다인·네트워크, 게시된 테스트 Experience 권한·성능 |
+| 로그/릴리스 | 이전부터 반복 관측된 `rbxassetid://203785492` 유형 불일치 경고는 출처 미확인. Git 릴리스 태그·Roblox 게시 없음 |
+
+오크 수치는 시험 프리셋이다. 기존 [K0 리뷰](first-implementation-review.md)의 전투 판정·입력 결함은 이 추가로 해결됐다고 보고하지 않는다.
