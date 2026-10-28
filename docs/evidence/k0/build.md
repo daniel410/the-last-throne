@@ -95,3 +95,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 실제 Player를 사용하는 판정 검사 | 위와 별도인 같은 격리 Play 서버에서 게임 서버 소스와 콜백을 복제하고 가상 시각을 주입해 116검사/37사례 통과. 실제 Player/Character 34사례, 신원 모형 3사례. 원격 전송과 입력을 재현하는 검사는 아니다. [Play 로그](combat-timing-native-play.log), [상세 계약](combat-timing-fix.md) |
 | 실행 환경 | 기존 `rbxassetid://203785492` 자산 유형 경고가 반복됐다. 첫 고정 빌드 판정 명령의 비정상 종료 원인은 미확인이다. 격리 Play 브리지가 실행 중일 때 별도 명령을 재시도해 로컬 포트 충돌로 종료 2가 났고, 브리지 종료 후 같은 판정 검사 명령은 종료 0으로 통과했다. [포트 충돌 로그](combat-timing-runner-retry.log) |
 | 미검증·릴리스 | 게시된 환경의 실제 지연·프레임 정지, 실기기·패드, 4인/8인 부하, 칼 시각 방향 R3와 메뉴/채팅 홀드 해제 R4는 미검증 또는 미수정. Git 릴리스 태그·Roblox 게시 없음 |
+
+## 0.4.0 — TD 플레이어 무기·근접 기본 공격 원형
+
+| 항목 | 실제 결과 |
+| --- | --- |
+| 입력 소스 | `2cecdcd03317945d81d4579ad26ceac65a1e2804`, `VERSION=0.4.0`. 빌드 전 `origin/main` 일치와 LFS 13개 전송 확인 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.4.0/TheLastThrone-0.4.0.rbxlx`, 종료 0 |
+| 결과물 | 734,056 bytes, SHA-256 `52482a85df1ea7baec571e6c34ca212f3dbbe493ea00eb9000ea5d5d675f566b`. Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau`, 종료 0, 329개 검사 통과·실패 및 수집 런타임 오류 0. Player 0, TD 몬스터 메시·색맵 로드와 3종 리스폰 확인. [로그](player-weapons-build-smoke.log). 플레이어 무기·방패·직업 근접 공격은 [별도 원형 기록](player-weapons.md)의 엔진 fixture 결과를 따른다. |
+| 미검증·릴리스 | 이 버전에서 실제 Player Play는 수행하지 않았다. 원본 방패의 사용자 계정 Studio 렌더를 확인했지만 대상 게시 Experience 권한, 기기·네트워크 수용은 별도다. 기존 자산 `203785492` 유형 경고가 재관측됐다. Git 릴리스 태그·Roblox 게시 없음 |
