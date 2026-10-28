@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-28",
+  "sourceProject": "../throne-defense",
+  "status": "local exact-source extraction; TLT native load/hand-contact/permissions not reverified",
+  "newUploads": 0,
+  "buildPerformed": false,
+  "published": false,
+  "folderName": "TDPlayerWeaponModels",
+  "sourcePins": {
+    "assets/models/meshy-factions-refresh-v1/runtime.rbxmx": "8402a11b665bdbe61240e76df62b2a0ca4fd4400ee8e322643f151c00fa6726f",
+    "assets/models/hero-weapons-latest-v1/runtime.rbxmx": "53badbcac662bd476b7da58b7a4102f5a0825ecc5015a28e4179ee046c8bb274",
+    "assets/models/hero-weapons-latest-v1/runtime-metadata.json": "41bf0fa1d1a929642cfc14ffed9beb3e78a47b18b90ade54542f39d810365712"
+  },
+  "models": [
+    {
+      "hero": "knight",
+      "markers": {
+        "HeroWeaponVersion": 1,
+        "HeroWeaponSource": "TowerModels.swordsman weapon-only source islands",
+        "WeaponTipPosition": [
+          -1.9892413076162542e-16,
+          3.5637928945002106,
+          -2.436118000103941e-32
+        ]
+      },
+      "parts": [
+        {
+          "name": "Weapon",
+          "meshId": "rbxassetid://130169610186060",
+          "size": [
+            1.1829665003859942,
+            3.4466292872436064,
+            0.49279008769164745
+          ],
+          "cf": [
+            -0.03251206253560302,
+            1.8404782508784077,
+            0.03683537831882953,
+            1.0,
+            0.0,
+            -1.2246467991473532e-16,
+            0,
+            1,
+            0,
+            1.2246467991473532e-16,
+            -0.0,
+            1.0
+          ],
+          "textureId": "rbxassetid://97596525220590",
+          "sourceTowerKind": "swordsman",
+          "sourceMeshName": null,
+          "surfaces": 0
+        }
+      ],
+      "gripAdjustment": {
+        "uniformScale": 1,
+        "yawDegrees": 180,
+        "offset": [
+          0,
+          0.3,
+          0
+        ],
+        "reason": "Expose the source hilt above the palm and face the original blue guard gem toward avatar -Z. Exact source mesh and UV remain unchanged."
+      },
+      "triangles": 248,
+      "modelName": "KnightSword",
+      "primaryPart": "Grip",
+      "sourceTowerKind": "swordsman",
+      "reuseMode": "existing exact tower-derived weapon mesh; wrapper-only change",
+      "sourceWrapperNodeSha256": "7a2daa7df5a2995460aa2430b04e1f3967e98997813b5fb85a67f4d690698c03",
+      "sourceGeometry": "assets/models/hero-weapons-latest-v1/knight/geometry.json"
+    },
+    {
+      "hero": "dwarf",
+      "markers": {
+        "HeroWeaponVersion": 1,
+        "HeroWeaponSource": "TowerModels.axe existing authored equipment",
+        "WeaponTipPosition": [
+          0.3068070843685478,
+          3.2276309599742143,
+          -0.19916757369606222
+        ]
+      },
+      "parts": [
+        {
+          "name": "Weapon",
+          "meshId": "rbxassetid://106045080642382",
+          "size": [
+            3.1047523975372315,
+            1.570200572013855,
+            2.2084670734405516
+          ],
+          "cf": [
+            0.08505903038039214,
+            1.388284033473262,
+            -0.023478484906273366,
+            -0.47066092775447965,
+            -0.8823141680179984,
+            -4.114648510118916e-08,
+            -0.7543532053641503,
+            0.40240151526427487,
+            0.5186754882099732,
+            -0.4576347152939037,
+            0.24412031752339475,
+            -0.8549711912866725
+          ],
+          "textureId": "",
+          "sourceTowerKind": "axe",
+          "sourceMeshName": "Axe",
+          "surfaces": 1
+        }
+      ],
+      "gripAdjustment": {},
+      "triangles": 184,
+      "modelName": "DwarfAxe",
+      "primaryPart": "Grip",
+      "sourceTowerKind": "axe",
+      "reuseMode": "existing exact tower-derived weapon mesh; wrapper-only change",
+      "sourceWrapperNodeSha256": "9cf23b79bd575d8ffd4c3bc0797fc93dda7f10c86128e93ec26f06645a851632",
+      "sourceGeometry": "assets/models/hero-weapons-latest-v1/dwarf/geometry.json"
+    },
+    {
+      "hero": "elf",
+      "markers": {
+        "HeroWeaponVersion": 1,
+        "HeroWeaponSource": "TowerModels.archer existing authored equipment",
+        "WeaponTipPosition": [
+          -0.0164947509765625,
+          0.37656283378601074,
+          -1.4486234188079834
+        ],
+        "BowStringEndZ": -0.09967827796936035,
+        "BowStringNockZ": 2.372382927685976,
+        "BowDrawDistance": 0.48
+      },
+      "parts": [
+        {
+          "name": "Bow",
+          "meshId": "rbxassetid://83795343518288",
+          "size": [
+            0.1506519317626953,
+            3.727588176727295,
+            0.42797040939331055
+          ],
+          "cf": [
+            -5.960464477539063e-08,
+            -1.7881393432617188e-07,
+            -0.09290194511413574,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "textureId": "",
+          "sourceTowerKind": "archer",
+          "sourceMeshName": "archer__Bow",
+          "surfaces": 1
+        },
+        {
+          "name": "String",
+          "meshId": "rbxassetid://108052120766619",
+          "size": [
+            0.03476840257644653,
+            3.6253366470336914,
+            2.4841535091400146
+          ],
+          "cf": [
+            -0.008247405290603638,
+            0.000530242919921875,
+            1.1363522382453084,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "textureId": "",
+          "sourceTowerKind": "archer",
+          "sourceMeshName": "archer__String",
+          "surfaces": 1
+        },
+        {
+          "name": "NockedArrow",
+          "meshId": "rbxassetid://77202496614276",
+          "size": [
+            0.16613048315048218,
+            0.15789508819580078,
+            3.8542323112487793
+          ],
+          "cf": [
+            -0.02203238010406494,
+            0.37656283378601074,
+            0.4784928282024339,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "textureId": "",
+          "sourceTowerKind": "archer",
+          "sourceMeshName": "archer__Arrow",
+          "surfaces": 1
+        }
+      ],
+      "gripAdjustment": {},
+      "triangles": 1412,
+      "modelName": "ElfBow",
+      "primaryPart": "Grip",
+      "sourceTowerKind": "archer",
+      "reuseMode": "existing exact tower-derived weapon mesh; wrapper-only change",
+      "sourceWrapperNodeSha256": "1e06bb81ebd54b38ace9eebc15cc3f5023037ff7fba3d4fe37fa42a257bbfb07",
+      "sourceGeometry": "assets/models/hero-weapons-latest-v1/elf/geometry.json"
+    }
+  ],
+  "sourceReviewMeshes": [
+    {
+      "modelName": "KnightSword",
+      "path": "source/KnightSword-td-derived-review.glb",
+      "sourcePath": "assets/models/hero-weapons-latest-v1/knight/textured-review.glb",
+      "sha256": "3001e1caeee86a768bbbbddd57f7e49230ee728e11f203e2656ba308d992d534",
+      "bytes": 1815256,
+      "kind": "byte-identical TD tower-derived weapon-only review model; not original whole tower",
+      "note": "Review geometry can predate final TD wrapper grip corrections. runtime.rbxmx records the actual adopted wrapper transform."
+    },
+    {
+      "modelName": "DwarfAxe",
+      "path": "source/DwarfAxe-td-derived-review.glb",
+      "sourcePath": "assets/models/hero-weapons-latest-v1/dwarf/textured-review.glb",
+      "sha256": "66dbe9935c0aa40ead045bf012a7abf5ed2930f8d16ee069c53e56d6f1195469",
+      "bytes": 6499688,
+      "kind": "byte-identical TD tower-derived weapon-only review model; not original whole tower",
+      "note": "Review geometry can predate final TD wrapper grip corrections. runtime.rbxmx records the actual adopted wrapper transform."
+    },
+    {
+      "modelName": "ElfBow",
+      "path": "source/ElfBow-td-derived-review.glb",
+      "sourcePath": "assets/models/hero-weapons-latest-v1/elf/textured-review.glb",
+      "sha256": "e8e51d71bceab81e7dfbb727f1a32cdd4904f0368661bb5e2f6ea0e88b350167",
+      "bytes": 156916,
+      "kind": "byte-identical TD tower-derived weapon-only review model; not original whole tower",
+      "note": "Review geometry can predate final TD wrapper grip corrections. runtime.rbxmx records the actual adopted wrapper transform."
+    }
+  ],
+  "attachmentContract": {
+    "primaryPart": "Grip",
+    "gripAttachment": "GripSocket",
+    "origin": [
+      0,
+      0,
+      0
+    ],
+    "visibleGeometryPolicy": "Existing TD weapon wrapper MeshPart properties and SurfaceAppearance preserved exactly; only referents regenerated",
+    "scalePolicy": "TD wrapper scale, yaw, grip correction already applied. Do not apply them a second time.",
+    "runtime": "Clone, PivotTo(hand.CFrame * reviewedHandOffset), unanchor all BaseParts, weld each visible part to Grip, Motor6D/Weld Grip to hand. Keep collision/query/touch off.",
+    "handOffset": "No universal R6/R15 hand CFrame certified by this extraction. Verify with actual avatars."
+  },
+  "shield": {
+    "source": "TowerModels.swordsman Body",
+    "status": "not included: no standalone existing Shield MeshId verified; source-preserving local extraction is separate",
+    "noSubstitute": true
+  },
+  "permissionStatus": "Historical TD evidence preserved; no fresh API/UI inspection or TLT Experience grant verification performed. Full existing Experience grants were not enumerable in source evidence.",
+  "runtimeSha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9",
+  "files": {
+    "runtime": {
+      "path": "assets/shared/td-player-weapons/runtime.rbxmx",
+      "sha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9"
+    }
+  },
+  "provenance": {
+    "runtime_top_level_folder": "TDPlayerWeaponModels",
+    "source_project": "../throne-defense"
+  },
+  "validation": {
+    "models": 3,
+    "visibleMeshParts": 5,
+    "grips": 3,
+    "originalVisiblePropertiesExact": true,
+    "scripts": 0,
+    "freshNativeTests": false
+  }
+}

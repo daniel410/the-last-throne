@@ -10,6 +10,12 @@ local Rules = require(script.Parent.K0Rules)
 local CombatService = {}
 local started = false
 local playerStates = {}
+-- This in-memory server selection is fixed for a Player's entire session,
+-- including respawns. Replicated attributes and remote arguments are display
+-- data only; they are never consulted to choose a combat profile.
+local playerClasses = {}
+local activePlayers = {}
+local classResolver = function(_player) return "knight" end
 local enemyStates = {}
 local enemyFolder
 local lastGoblinStart = -math.huge
@@ -188,6 +194,10 @@ local function damagePosture(enemy, amount, current)
 end
 
 local function startAttack(state, current)
+	local profile = state.attackProfile
+	if not profile or Config.BasicAttackProfiles[state.baseClassId] ~= profile or #profile.attacks == 0 then
+		return
+	end
 	if state.attack then
 		local previous = state.attack
 		local previousEnd = previous.started + previous.definition.windup + previous.definition.active + previous.definition.recovery
@@ -197,15 +207,20 @@ local function startAttack(state, current)
 	end
 	local nextCombo = 1
 	if state.combo > 0 and current - state.lastAttackFinished <= Config.ComboReset then
-		nextCombo = state.combo % 3 + 1
+		nextCombo = state.combo % #profile.attacks + 1
 	end
 	clearAction(state)
 	state.queued = nil
 	state.combo = nextCombo
 	state.character:SetAttribute("K0Combo", nextCombo)
+	state.attackSeq = state.attackSeq + 1
+	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
 	state.attack = {
 		started = current,
-		definition = Config.Attacks[nextCombo],
+		definition = profile.attacks[nextCombo],
+		attackPower = profile.attackPower,
+		maxTargets = profile.maxTargets,
+		maxHeight = profile.maxHeight,
 		direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1)),
 		hits = {},
 		hitCount = 0,
@@ -218,6 +233,9 @@ local function startAttack(state, current)
 end
 
 local function startGuard(state, current)
+	if state.baseClassId ~= "knight" then
+		return
+	end
 	if state.attack then
 		state.lastAttackFinished = current
 	end
@@ -257,9 +275,9 @@ local function resourceReady(state, action, current)
 	if action == "Dodge" then
 		return state.stamina >= Config.Dodge.cost and current >= state.lastDodgeStarted + Config.Dodge.cooldown
 	elseif action == "BlockStart" then
-		return state.stamina >= Config.Guard.initialCost and current >= state.lastGuardStarted + Config.Guard.cooldown
+		return state.baseClassId == "knight" and state.stamina >= Config.Guard.initialCost and current >= state.lastGuardStarted + Config.Guard.cooldown
 	end
-	return action == "Attack"
+	return action == "Attack" and state.attackProfile ~= nil and Config.BasicAttackProfiles[state.baseClassId] == state.attackProfile
 end
 
 local function executeAction(state, action, direction, current)
@@ -342,7 +360,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	local guardDot = facingDot(target, playerState.root.CFrame.LookVector, origin)
 	local result, multiplier, remaining = Rules.defense(
 		playerState.mode == "Dodge", playerState.dodge and current - playerState.dodge.started or -1,
-		playerState.mode == "Block", playerState.guardStarted and current - playerState.guardStarted or -1,
+		playerState.baseClassId == "knight" and playerState.mode == "Block", playerState.guardStarted and current - playerState.guardStarted or -1,
 		guardDot, attack.definition.blockable, playerState.stamina, attack.definition.guardCost, Config.Guard, Config.Dodge
 	)
 	if result == "Dodge" then
@@ -391,9 +409,10 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	end
 end
 
+-- All supported basic attacks use the same melee cone and obstruction checks.
 local function applySwordHits(state, current)
 	local attack = state.attack
-	if not attack or attack.hitCount >= Config.AttackMaxTargets then
+	if not attack or attack.hitCount >= attack.maxTargets then
 		return
 	end
 	local origin = state.root.Position
@@ -403,7 +422,7 @@ local function applySwordHits(state, current)
 			local position = enemy.root.Position
 			local distance = horizontal(position - origin).Magnitude
 			local dot = facingDot(origin, attack.direction, position)
-			if Rules.withinCone(distance, math.abs(position.Y - origin.Y), dot, attack.definition.range, Config.AttackHeight, attack.definition.angle)
+			if Rules.withinCone(distance, math.abs(position.Y - origin.Y), dot, attack.definition.range, attack.maxHeight, attack.definition.angle)
 				and unobstructed(origin, position, state.character, enemy.model) then
 				table.insert(candidates, { enemy = enemy, distance = distance })
 			end
@@ -416,7 +435,7 @@ local function applySwordHits(state, current)
 		return left.distance < right.distance
 	end)
 	for _, candidate in ipairs(candidates) do
-		if attack.hitCount >= Config.AttackMaxTargets then
+		if attack.hitCount >= attack.maxTargets then
 			break
 		end
 		local enemy = candidate.enemy
@@ -424,13 +443,13 @@ local function applySwordHits(state, current)
 		attack.hitCount = attack.hitCount + 1
 		if attack.counterDamage == nil then
 			attack.counterDamage = 0
-			if state.counter and state.counter.expires > current then
+			if state.baseClassId == "knight" and state.counter and state.counter.expires > current then
 				attack.counterDamage = state.counter.bonus
 				state.counter = nil
 			end
 		end
 		local multiplier = enemy.mode == "Exposed" and 1.15 or 1
-		local damage = math.max(1, math.floor(Config.AttackPower * (attack.definition.damage + attack.counterDamage) * multiplier + 0.5))
+		local damage = math.max(1, math.floor(attack.attackPower * (attack.definition.damage + attack.counterDamage) * multiplier + 0.5))
 		enemy.humanoid:TakeDamage(damage)
 		if enemy.humanoid.Health > 0 then
 			damagePosture(enemy, attack.definition.posture, current)
@@ -871,6 +890,30 @@ local function registerEnemy(model, savedTemplate, savedPivot, savedId)
 	end)
 end
 
+local function resolveBaseClass(player)
+	local previous = playerClasses[player]
+	if previous ~= nil then
+		return previous or nil
+	end
+	-- Resolver is server-only; it may yield (a future profile load could do so).
+	-- A failed or unsupported result is pinned as false, never guessed as Knight.
+	local ok, classId = pcall(classResolver, player)
+	if not activePlayers[player] or player.Parent ~= Players then
+		return nil
+	end
+	previous = playerClasses[player]
+	if previous ~= nil then
+		return previous or nil
+	end
+	if not ok or type(classId) ~= "string" or not Config.BasicAttackProfiles[classId] then
+		playerClasses[player] = false
+		warn("K0 combat disabled: server class could not be resolved")
+		return nil
+	end
+	playerClasses[player] = classId
+	return classId
+end
+
 local function setupCharacter(player, character)
 	task.spawn(function()
 		-- CharacterAdded precedes the engine's actual spawn placement. Do not
@@ -889,9 +932,16 @@ local function setupCharacter(player, character)
 			or humanoid.Health <= 0 then
 			return
 		end
+		local classId = resolveBaseClass(player)
+		if not classId or not activePlayers[player] or player.Parent ~= Players or player.Character ~= character
+			or not character:IsDescendantOf(workspace) or humanoid.Health <= 0 then
+			return
+		end
+		local attackProfile = Config.BasicAttackProfiles[classId]
 		local current = now()
 		local state = {
 			player = player, character = character, humanoid = humanoid, root = root, mode = "", stamina = Config.MaxStamina,
+			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0,
 			combo = 0, lastAttackFinished = -math.huge, lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge,
 			regenAt = current, stunnedUntil = 0, feedbackSeq = 0, attack = nil, queued = nil, counter = nil,
 			lastMotionPosition = root.Position, lastSafePivot = character:GetPivot(), lastMotionAt = current, movementBudget = Config.MovementBudget,
@@ -900,6 +950,9 @@ local function setupCharacter(player, character)
 		playerStates[player] = state
 		humanoid.MaxHealth = Config.MaxHealth
 		humanoid.Health = Config.MaxHealth
+		character:SetAttribute("K0ClassId", classId)
+		character:SetAttribute("K0AttackProfileId", attackProfile.id)
+		character:SetAttribute("K0AttackSeq", 0)
 		character:SetAttribute("K0MaxStamina", Config.MaxStamina)
 		character:SetAttribute("K0Stamina", Config.MaxStamina)
 		character:SetAttribute("K0Combo", 0)
@@ -913,15 +966,23 @@ local function setupCharacter(player, character)
 end
 
 local function setupPlayer(player)
+	if activePlayers[player] then
+		return
+	end
+	activePlayers[player] = true
 	player.CharacterAdded:Connect(function(character) setupCharacter(player, character) end)
 	if player.Character then
 		setupCharacter(player, player.Character)
 	end
 end
 
-function CombatService.start(enemies)
+-- The optional resolver is supplied by a trusted server bootstrap, never by a
+-- remote. The current bootstrap omits it and can therefore select only Knight.
+function CombatService.start(enemies, serverClassResolver)
 	assert(not started, "K0 combat service already started")
 	assert(enemies and enemies:IsA("Folder"), "K0 combat needs an enemy Folder")
+	assert(serverClassResolver == nil or type(serverClassResolver) == "function", "K0 class resolver must be a server function")
+	if serverClassResolver then classResolver = serverClassResolver end
 	started = true
 	enemyFolder = enemies
 	local remotes = ReplicatedStorage:FindFirstChild("Remotes")
@@ -945,6 +1006,8 @@ function CombatService.start(enemies)
 	end
 	Players.PlayerAdded:Connect(setupPlayer)
 	Players.PlayerRemoving:Connect(function(player)
+		activePlayers[player] = nil
+		playerClasses[player] = nil
 		local state = playerStates[player]
 		if state then
 			clearAction(state)

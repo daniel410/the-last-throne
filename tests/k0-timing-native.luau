@@ -97,6 +97,7 @@ local function playerState(preferReal)
 		report.identityMockCases += 1
 	end
 	local state = { player = player, character = model, humanoid = humanoid, root = root,
+		baseClassId = "knight", attackProfile = api.Config.BasicAttackProfiles.knight, attackSeq = 0,
 		mode = "Idle", stamina = api.Config.MaxStamina, combo = 0, lastAttackFinished = -math.huge,
 		lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge, regenAt = math.huge,
 		stunnedUntil = 0, feedbackSeq = 0, lastMotionPosition = root.Position,

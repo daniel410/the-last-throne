@@ -1,0 +1,977 @@
+{
+  "schemaVersion": 1,
+  "sourceRecords": [
+    {
+      "sourcePath": "assets/models/hero-weapons-latest-v1/existing-wrappers.json",
+      "sha256": "012b15a5cf8e89c79cb1e1eca4bf84c3a58e733b55060683f4eefb5db84b7555",
+      "record": {
+        "elf": {
+          "hero": "elf",
+          "sourceGLB": "assets/models/meshy-towers-v1/archer-pilot/runtime/archer-meshy-runtime.glb",
+          "sourceSha256": "985222e886ca8eac7e3d64cd39a87e8d4cf6fe32e6539c0755a33745f1647703",
+          "triangles": 1412,
+          "sourceGrip": [
+            -0.7039895057678223,
+            2.7423367500305176,
+            2.4070587158203125
+          ],
+          "sourceTip": [
+            -0.6874947547912598,
+            3.1188995838165283,
+            3.855682134628296
+          ],
+          "sourceToWeaponBasisColumns": [
+            [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          ],
+          "uniformScale": 1.0,
+          "parts": [
+            {
+              "inputTowerKind": "archer",
+              "inputMeshName": "archer__Bow",
+              "name": "Bow",
+              "size": [
+                0.1506519317626953,
+                3.727588176727295,
+                0.42797040939331055
+              ],
+              "cf": [
+                -5.960464477539063e-08,
+                -1.7881393432617188e-07,
+                -0.09290194511413574,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "sourceNativeCenterOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "meshId": "rbxassetid://83795343518288"
+            },
+            {
+              "inputTowerKind": "archer",
+              "inputMeshName": "archer__String",
+              "name": "String",
+              "size": [
+                0.03476840257644653,
+                3.6253366470336914,
+                2.4841535091400146
+              ],
+              "cf": [
+                -0.008247405290603638,
+                0.000530242919921875,
+                1.1363522382453084,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "sourceNativeCenterOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "meshId": "rbxassetid://108052120766619"
+            },
+            {
+              "inputTowerKind": "archer",
+              "inputMeshName": "archer__Arrow",
+              "name": "NockedArrow",
+              "size": [
+                0.16613048315048218,
+                0.15789508819580078,
+                3.8542323112487793
+              ],
+              "cf": [
+                -0.02203238010406494,
+                0.37656283378601074,
+                0.4784928282024339,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "sourceNativeCenterOffset": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "meshId": "rbxassetid://77202496614276"
+            }
+          ],
+          "runtimeMarkers": {
+            "HeroWeaponVersion": 1,
+            "HeroWeaponSource": "TowerModels.archer existing authored equipment",
+            "WeaponTipPosition": [
+              -0.0164947509765625,
+              0.37656283378601074,
+              -1.4486234188079834
+            ],
+            "BowStringEndZ": -0.09967827796936035,
+            "BowStringNockZ": 2.372382927685976,
+            "BowDrawDistance": 0.48
+          },
+          "gripPolicy": "Existing authored bow grip; native R6/R15 hand-contact review required",
+          "geometryPolicy": "Existing native mesh IDs and PBR cloned; only proper rigid transform plus uniform size scale",
+          "status": "Local wrapper transform; native template/hand-contact validation pending"
+        },
+        "dwarf": {
+          "hero": "dwarf",
+          "sourceGLB": "assets/models/meshy-dwarf-axe-v1/roblox/parts/Axe.glb",
+          "sourceSha256": "ae1d46ef163de861924b117bb3df8dbc0ffbd3899c5f1606f2354d528afcbb89",
+          "triangles": 184,
+          "sourceGrip": [
+            -1.7637446025716317,
+            3.315603391241447,
+            1.185563321253256
+          ],
+          "sourceTip": [
+            2.24920654296875,
+            4.895413875579834,
+            -1.7892363667488098
+          ],
+          "sourceToWeaponBasisColumns": [
+            [
+              0.47066092775447965,
+              0.7543531600200932,
+              0.4576347900378556
+            ],
+            [
+              -0.8823141680179984,
+              0.40240151526427487,
+              0.24412031752339475
+            ],
+            [
+              -2.7755575615628914e-17,
+              -0.518675554157621,
+              0.8549711512789685
+            ]
+          ],
+          "uniformScale": 0.62,
+          "parts": [
+            {
+              "inputTowerKind": "axe",
+              "inputMeshName": "Axe",
+              "name": "Weapon",
+              "size": [
+                3.1047523975372315,
+                1.570200572013855,
+                2.2084670734405516
+              ],
+              "cf": [
+                0.08505903038039214,
+                1.388284033473262,
+                -0.023478484906273366,
+                -0.47066092775447965,
+                -0.8823141680179984,
+                -4.114648510118916e-08,
+                -0.7543532053641503,
+                0.40240151526427487,
+                0.5186754882099732,
+                -0.4576347152939037,
+                0.24412031752339475,
+                -0.8549711912866725
+              ],
+              "sourceNativeCenterOffset": [
+                -0.05069146305322647,
+                1.1920928955078125e-07,
+                -0.9336336851119995
+              ],
+              "meshId": "rbxassetid://106045080642382"
+            }
+          ],
+          "runtimeMarkers": {
+            "HeroWeaponVersion": 1,
+            "HeroWeaponSource": "TowerModels.axe existing authored equipment",
+            "WeaponTipPosition": [
+              0.3068070843685478,
+              3.2276309599742143,
+              -0.19916757369606222
+            ]
+          },
+          "gripPolicy": "Actual source ArmR skin-vertex bounds center projected onto axe shaft axis; shaft direction is pommel-plane smallest-variance normal; native R6/R15 contact review required",
+          "geometryPolicy": "Existing native mesh IDs and PBR cloned; only proper rigid transform plus uniform size scale",
+          "status": "Local wrapper transform; native template/hand-contact validation pending",
+          "handContactExtraction": {
+            "sourceSkinVertices": 27,
+            "sourceHandCenter": [
+              -1.6254335045814514,
+              2.839232087135315,
+              1.017139881849289
+            ],
+            "sourcePommelCenter": [
+              -2.4167271171297346,
+              2.9672769478389194,
+              1.6345387952668327
+            ],
+            "sourceShaftAxis": [
+              0.7543531600200932,
+              0.40240151526427487,
+              -0.518675554157621
+            ],
+            "handCenterDistanceToShaft": 0.5238568832645879
+          }
+        }
+      }
+    },
+    {
+      "sourcePath": "assets/models/hero-weapons-latest-v1/knight/geometry.json",
+      "sha256": "c5e868f6620399dd97f29facb4d2c0fcf698cc12c2618508bd5fab4c18ae7a09",
+      "record": {
+        "hero": "knight",
+        "towerKind": "swordsman",
+        "sourceGLB": "assets/models/meshy-factions-refresh-v1/derived/swordsman/rest.glb",
+        "sourceSha256": "cee73ede7abe099b5b1f5cbd63753765e500a37942cbe61a5beccf632172d0fa",
+        "sourceIslandIds": [
+          171,
+          40,
+          345,
+          831,
+          1039,
+          1222
+        ],
+        "sourceFaceIds": [
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          591,
+          592,
+          593,
+          594,
+          595,
+          596,
+          741,
+          742,
+          743,
+          744,
+          1297,
+          1298,
+          1299,
+          1300,
+          1301,
+          1302,
+          1581,
+          1582,
+          1583,
+          1584,
+          1652,
+          1653,
+          1654,
+          1655,
+          2230,
+          2231,
+          2287,
+          2288,
+          2289,
+          2990,
+          3240,
+          3516,
+          3553,
+          3554,
+          3753,
+          3754,
+          3755,
+          3756,
+          3757,
+          3957,
+          3958,
+          4028,
+          4029,
+          4261,
+          4262,
+          4311,
+          4380,
+          4381,
+          4442,
+          4547,
+          4548,
+          4549,
+          4658,
+          4796,
+          4797,
+          4798,
+          4799,
+          4800,
+          4801,
+          4802,
+          4803,
+          4870,
+          4871,
+          4872,
+          4873,
+          40,
+          41,
+          42,
+          43,
+          268,
+          269,
+          270,
+          786,
+          787,
+          788,
+          789,
+          790,
+          791,
+          1086,
+          1087,
+          1088,
+          1089,
+          1712,
+          2066,
+          2067,
+          2068,
+          2069,
+          2206,
+          2207,
+          2208,
+          2209,
+          2614,
+          2615,
+          2616,
+          2617,
+          3053,
+          3468,
+          3469,
+          3816,
+          3817,
+          3818,
+          3819,
+          3840,
+          3841,
+          3964,
+          3965,
+          4116,
+          4163,
+          4339,
+          4340,
+          4374,
+          4493,
+          4494,
+          4696,
+          4697,
+          4786,
+          4787,
+          4788,
+          4789,
+          4790,
+          4791,
+          345,
+          346,
+          347,
+          348,
+          349,
+          350,
+          1303,
+          1304,
+          1305,
+          1306,
+          1307,
+          1308,
+          2585,
+          2586,
+          2587,
+          2689,
+          2690,
+          2691,
+          2692,
+          3237,
+          3238,
+          3239,
+          3446,
+          3447,
+          3448,
+          3987,
+          4593,
+          4598,
+          4636,
+          4637,
+          831,
+          832,
+          833,
+          834,
+          1836,
+          1837,
+          1838,
+          2346,
+          2347,
+          2348,
+          2349,
+          2350,
+          2351,
+          2733,
+          2734,
+          3069,
+          3070,
+          3351,
+          3352,
+          3353,
+          3354,
+          4206,
+          4207,
+          4208,
+          4209,
+          4319,
+          4782,
+          4783,
+          4784,
+          4785,
+          1039,
+          1040,
+          1041,
+          1042,
+          1043,
+          1365,
+          1366,
+          1367,
+          1368,
+          1369,
+          1370,
+          3028,
+          3029,
+          3030,
+          3031,
+          3144,
+          3145,
+          3146,
+          3147,
+          3148,
+          3298,
+          3700,
+          3701,
+          3702,
+          3703,
+          3704,
+          3767,
+          3768,
+          3769,
+          3770,
+          1222,
+          1223,
+          1224,
+          1482,
+          1483,
+          1484,
+          1485,
+          2096,
+          2097,
+          2098,
+          2099,
+          2100,
+          2253,
+          2254,
+          2255,
+          2713,
+          2714,
+          2809,
+          3198,
+          3199,
+          3200,
+          4004,
+          4005,
+          4006,
+          4101,
+          4489,
+          4897,
+          4898,
+          4899,
+          4900
+        ],
+        "triangles": 248,
+        "sourceGrip": [
+          -0.4056773289049401,
+          0.5920249495635447,
+          0.21291748409788577
+        ],
+        "sourceTip": [
+          -0.7888882624833662,
+          0.8971422765020636,
+          0.6399993032446564
+        ],
+        "gripPolicy": "Actual pommel-island unique-vertex center plus .015 source-height along blade axis; native hand-contact review required",
+        "sourceToWeaponBasisColumns": [
+          [
+            0.6228866532188212,
+            -0.5896626994070222,
+            0.5141109979079226
+          ],
+          [
+            0.7823120970826518,
+            0.4694967989518525,
+            -0.40934159150043353
+          ],
+          [
+            2.7755575615628914e-17,
+            0.6571686668595724,
+            0.7537435527405939
+          ]
+        ],
+        "uniformScale": 5.022134704,
+        "WeaponTipPosition": [
+          1.9892413076162542e-16,
+          3.263792894500211,
+          0.0
+        ],
+        "parts": [
+          {
+            "name": "Weapon",
+            "anchor": "Weapon",
+            "size": [
+              1.1829665003859942,
+              3.4466292872436064,
+              0.49279008769164745
+            ],
+            "localCF": [
+              0.032512062535603015,
+              1.5404782508784076,
+              -0.036835378318829534,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            "pivot": [
+              0.032512062535603015,
+              3.263792894500211,
+              -0.036835378318829534
+            ],
+            "triangles": 248,
+            "sourceSurfaceTriangles": 248,
+            "jointCapTriangles": 0
+          }
+        ],
+        "validation": {
+          "noNewFaces": true,
+          "originalUVExact": true,
+          "properRotationDeterminant": 1.0000000000000004,
+          "inversePositionMaxError": 1.1102230246251565e-16,
+          "noBodyOrHandIslands": true,
+          "serializedUVFloat32Exact": true,
+          "serializedRotatedNormalFloat32Exact": true,
+          "serializedPositionMaxError": 5.9178616229615955e-08
+        },
+        "meshOnlySha256": "dc52226caa802a8e264a8c2c95fd02beadcc117ce94e3e2316d7f925f383b727",
+        "textureSha256": "fe40c700491df87c77ed881fa58e9cf631cb04357a917d918f9f71e4c85c4a91",
+        "runtimeMarkers": {
+          "HeroWeaponVersion": 1,
+          "HeroWeaponSource": "TowerModels.swordsman weapon-only source islands",
+          "WeaponTipPosition": [
+            1.9892413076162542e-16,
+            3.263792894500211,
+            0.0
+          ]
+        },
+        "status": "Local weapon-only candidate; native import/ownership/hand-contact acceptance pending"
+      }
+    },
+    {
+      "sourcePath": "docs/evidence/hero-weapons-latest-v1/privacy-after.json",
+      "sha256": "10ab0b278106149e5ded645d080d5ada708f3f4fab0c4016512d3384ddb7bb55",
+      "record": {
+        "owner": 9156786071,
+        "ownerName": "Robloxianb1b5e7p5p",
+        "ownerType": "User",
+        "verifiedPrivate": true,
+        "importBundleSha256": "564f6818ed3076b1f5bcab29da06ef95a12fd5e5c32ea76ea06e9142c188dd30",
+        "importSettings": {
+          "creator": "Me",
+          "uploadToRoblox": true,
+          "package": false
+        },
+        "newAssets": [
+          {
+            "id": 130169610186060,
+            "type": "Mesh",
+            "name": "knight__Weapon",
+            "restricted": true,
+            "collaborators": [],
+            "isForSale": false,
+            "isPublicDomain": false,
+            "evidence": [
+              "knight-configure.txt",
+              "knight-private.png",
+              "knight-permissions.txt",
+              "knight-experiences.txt",
+              "new-mesh-product-info.json"
+            ]
+          },
+          {
+            "id": 139598490141787,
+            "type": "Mesh",
+            "name": "mage__Weapon",
+            "restricted": true,
+            "collaborators": [],
+            "isForSale": false,
+            "isPublicDomain": false,
+            "evidence": [
+              "mage-configure.txt",
+              "mage-private.png",
+              "mage-permissions.txt",
+              "mage-experiences.txt",
+              "new-mesh-product-info.json"
+            ]
+          },
+          {
+            "id": 135192688361091,
+            "type": "Model",
+            "name": "TD-HeroWeaponsLatest-20261026",
+            "restricted": true,
+            "collaborators": [],
+            "creatorStoreDistribution": false,
+            "isForSale": false,
+            "isPublicDomain": false,
+            "evidence": [
+              "model-private.png",
+              "model-permissions.txt",
+              "model-configure.txt",
+              "model-private-distribution.png"
+            ]
+          }
+        ],
+        "newImagesOrTexturePacks": 0,
+        "newExperienceGrants": [],
+        "allowedExperiences": null,
+        "experiencePermissionScope": "Dashboard states saved experience grants are not displayed. No grants added; complete existing grant list not enumerable.",
+        "reusedTextures": {
+          "knight": "rbxassetid://97596525220590",
+          "mage": "rbxassetid://105910393403208"
+        },
+        "publication": false
+      }
+    },
+    {
+      "sourcePath": "docs/evidence/hero-weapons-latest-v1/privacy-before.json",
+      "sha256": "06acd99ae2434878ee0d5c63ca03e63d8dd74ece3583597f92ad90e338672d01",
+      "record": {
+        "studioUserId": 9156786071,
+        "accountName": "Robloxianb1b5e7p5p",
+        "ownerType": "User",
+        "advancedSettingsUrl": "https://create.roblox.com/settings/advanced",
+        "defaultRestrictedChecked": true,
+        "source": "Actual CUA Advanced settings checkbox Value=1 and StudioService:GetUserId() on 2026-10-26",
+        "reusedMeshProductInfo": {
+          "83795343518288": {
+            "name": "archer__Bow",
+            "owner": 9156786071,
+            "isForSale": false,
+            "isPublicDomain": false
+          },
+          "108052120766619": {
+            "name": "archer__String",
+            "owner": 9156786071,
+            "isForSale": false,
+            "isPublicDomain": false
+          },
+          "77202496614276": {
+            "name": "archer__Arrow",
+            "owner": 9156786071,
+            "isForSale": false,
+            "isPublicDomain": false
+          },
+          "106045080642382": {
+            "name": "Axe",
+            "owner": 9156786071,
+            "isForSale": false,
+            "isPublicDomain": false
+          }
+        },
+        "scope": "Pre-upload settings and current source owner/API flags. Restricted permission pages for newly uploaded meshes must be verified after import. Reused source Restricted status is covered by earlier source records, not inferred from IsPublicDomain."
+      }
+    },
+    {
+      "sourcePath": "docs/evidence/axe-meshy-v1/privacy-checks.json",
+      "sha256": "af5939b897a45a808e5daa81e8e9d3d4053a0de4f12f112a2214184211b8a61d",
+      "record": [
+        {
+          "id": "79838983673865",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "98465383428887",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "125092026087248",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "72615572473617",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "117012167040323",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "86709514163228",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "89922696465514",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "98722132808977",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "73998674242354",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "106045080642382",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "90859524223740",
+          "restricted": true,
+          "noCollaborators": true
+        }
+      ]
+    },
+    {
+      "sourcePath": "docs/evidence/meshy-archer/runtime/privacy-all-ui.json",
+      "sha256": "c3ffc83e843bf412d43665b00d8a8dbdea5fc1658b590061bbe691b37b6fc053",
+      "record": [
+        {
+          "id": "83795343518288",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "115101390772936",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "110003398368829",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "105500976380479",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "108052120766619",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "83202469624782",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "73748139234368",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "136388685627801",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "104057011269483",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "105193580157591",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "77202496614276",
+          "restricted": true,
+          "noCollaborators": true
+        },
+        {
+          "id": "93473438037142",
+          "restricted": true,
+          "distributed": false,
+          "noCollaborators": true
+        }
+      ]
+    },
+    {
+      "sourcePath": "assets/models/meshy-factions-refresh-v1/upload-textures/uploaded.json",
+      "sha256": "889c001969f31c48860dcdccea3440ca5cda543c027fcc07c5962e7e5541dc17",
+      "record": {
+        "owner": 9156786071,
+        "models": [
+          {
+            "key": "swordsman",
+            "textureId": "rbxassetid://97596525220590",
+            "decalId": 92696857565440,
+            "decalProduct": {
+              "AssetTypeId": 13,
+              "IconImageAssetId": 0,
+              "IsNew": false,
+              "Updated": "2026-10-26T02:41:07.288Z",
+              "AssetId": 92696857565440,
+              "ProductId": 0,
+              "MinimumMembershipLevel": 0,
+              "Created": "2026-10-26T02:41:07.226Z",
+              "Creator": {
+                "Name": "Robloxianb1b5e7p5p",
+                "CreatorTargetId": 9156786071,
+                "Id": 9156786071,
+                "HasVerifiedBadge": false,
+                "CreatorType": "User"
+              },
+              "IsLimited": false,
+              "Sales": 0,
+              "PriceDiscountDetails": [],
+              "IsPublicDomain": false,
+              "Name": "TD-factions-refresh-swordsman",
+              "IsForSale": false,
+              "TargetId": 92696857565440,
+              "ContentRatingTypeId": 0,
+              "Description": "",
+              "IsLimitedUnique": false
+            },
+            "imageId": 97596525220590,
+            "imageProduct": {
+              "AssetTypeId": 1,
+              "IconImageAssetId": 0,
+              "IsNew": false,
+              "Updated": "2026-10-26T02:41:06.901Z",
+              "AssetId": 97596525220590,
+              "ProductId": 0,
+              "MinimumMembershipLevel": 0,
+              "Created": "2026-10-26T02:41:06.838Z",
+              "Creator": {
+                "Name": "Robloxianb1b5e7p5p",
+                "CreatorTargetId": 9156786071,
+                "Id": 9156786071,
+                "HasVerifiedBadge": false,
+                "CreatorType": "User"
+              },
+              "IsLimited": false,
+              "Sales": 0,
+              "PriceDiscountDetails": [],
+              "IsPublicDomain": false,
+              "Name": "TD-factions-refresh-swordsman",
+              "IsForSale": false,
+              "TargetId": 0,
+              "ContentRatingTypeId": 0,
+              "Description": "",
+              "IsLimitedUnique": false
+            },
+            "file": "derived/swordsman/ColorMap.png",
+            "sha256": "fe40c700491df87c77ed881fa58e9cf631cb04357a917d918f9f71e4c85c4a91",
+            "owner": 9156786071,
+            "privacyVerified": true,
+            "restricted": true,
+            "isPublicDomain": false,
+            "isForSale": false,
+            "collaborators": [],
+            "allowedExperiences": null,
+            "allowedExperiencesVisibility": "not-enumerated-by-dashboard",
+            "allowedExperiencesAddedByThisWorkflow": [],
+            "privacyEvidence": [
+              "docs/evidence/meshy-factions-refresh-v1/92696857565440-configure.txt",
+              "docs/evidence/meshy-factions-refresh-v1/92696857565440-permissions.txt",
+              "docs/evidence/meshy-factions-refresh-v1/97596525220590-configure.txt",
+              "docs/evidence/meshy-factions-refresh-v1/97596525220590-permissions.txt"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "sourcePath": "docs/evidence/axe-meshy-v1/vivid-color-owner.json",
+      "sha256": "0750c6ad25b279e5ff1b4ac435a7af5c89efc2d2db21a6913eef1719b65e67ea",
+      "record": {
+        "AssetTypeId": 1,
+        "Description": "This asset is uploaded by Roblox Assistant",
+        "IsNew": false,
+        "Updated": "2026-10-25T05:54:45.715Z",
+        "IsLimitedUnique": false,
+        "ProductId": 0,
+        "MinimumMembershipLevel": 0,
+        "ContentRatingTypeId": 0,
+        "Created": "2026-10-25T05:54:45.655Z",
+        "Creator": {
+          "Name": "Robloxianb1b5e7p5p",
+          "CreatorTargetId": 9156786071,
+          "Id": 9156786071,
+          "HasVerifiedBadge": false,
+          "CreatorType": "User"
+        },
+        "IsLimited": false,
+        "TargetId": 0,
+        "Sales": 0,
+        "PriceDiscountDetails": [],
+        "IsPublicDomain": false,
+        "Name": "Assistant_2393c04b278aee8a3f6f1b998526aaf2.png",
+        "IsForSale": false,
+        "AssetId": 79341687829464,
+        "IconImageAssetId": 0
+      }
+    },
+    {
+      "sourcePath": "docs/evidence/axe-meshy-v1/vivid-configure.txt",
+      "sha256": "d7f02b2cf703ac5f776af325221bd0b2bda3c50dc1bc5b2483644ca60976880f",
+      "record": "- link \"Creator\":\n  - /url: /\n  - generic: Creator\n- combobox \"Robloxianb1b5e7p5p Robloxianb1b5e7p5p\":\n  - img \"Robloxianb1b5e7p5p\"\n  - generic \"Robloxianb1b5e7p5p\"\n- textbox: \"9156786071\"\n- link \"Home\":\n  - /url: /\n  - generic: Home\n- link \"Creations\":\n  - /url: /dashboard/creations\n  - generic: Creations\n- link \"Learn\":\n  - /url: https://create.roblox.com/docs/\n  - generic: Learn\n- link \"Store\":\n  - /url: https://create.roblox.com/store/\n  - generic: Store\n- link \"Forum\":\n  - /url: https://devforum.roblox.com\n  - generic: Forum\n- link \"Updates\":\n  - /url: /updates\n  - generic: Updates\n- separator\n- link \"Finances\":\n  - /url: /dashboard/devex\n  - generic: Finances\n- link \"Analytics\":\n  - /url: /dashboard/analytics\n  - generic: Analytics\n- link \"Ads\":\n  - /url: https://create.roblox.com/advertise\n  - generic: Ads\n- separator\n- button \"All tools\":\n  - generic: All tools\n- link \"Roblox.com\":\n  - /url: https://roblox.com/\n  - generic: Roblox.com\n- button \"Studio\":\n  - generic: Studio\n- button \"Hide sidebar\":\n  - generic: Hide sidebar\n- link \"Back\":\n  - /url: /dashboard/creations?activeTab=Image\n  - button \"Back\":\n    - generic: Back\n- list:\n  - generic: Assistant_2393c04b278aee8a3f6f1b998526aaf2.png\n  - button \"more\":\n- tree:\n  - treeitem \"Configure\" [checked]:\n    - link \"Configure\":\n      - /url: /dashboard/creations/store/79341687829464/configure\n  - treeitem \"Permissions\":\n    - link \"Permissions\":\n      - /url: /dashboard/creations/store/79341687829464/permissions\n- button \"menu\":\n- navigation \"breadcrumb\":\n  - list:\n    - link \"Creations\":\n      - /url: /dashboard/creations\n    - listitem: /\n    - listitem: Assistant_2393c04b278aee8a3f6f1b998526aaf2.png\n    - listitem: /\n    - listitem: Configure\n- button \"Search\"\n- button \"Notifications\"\n- button \"Robloxianb1b5e7p5p\":\n  - img \"Robloxianb1b5e7p5p\"\n- heading \"Configure\" [level=1]\n- text: Name\n- generic: \"*\"\n- textbox \"Name\": Assistant_2393c04b278aee8a3f6f1b998526aaf2.png\n- generic: Name *\n- paragraph: Up to 50 characters\n- generic: Description\n- textbox \"Description\": This asset is uploaded by Roblox Assistant\n- generic: Description\n- paragraph: Up to 1000 characters\n- separator\n- heading \"Asset Privacy\" [level=4]\n- text: Only Image, Mesh, and Decal assets can be set to Open Use. Asset Privacy must be enabled to create new Image, Mesh, and Decal assets as Restricted.\n- link \"Learn more\":\n  - /url: https://create.roblox.com/docs/projects/assets/privacy\n- alert:\n  - generic: Click here to enable Asset Privacy\n  - link \"Enable\":\n    - /url: https://create.roblox.com/settings/advanced\n    - generic: Enable\n- radiogroup:\n  - radio \"Restricted\" [checked]\n  - generic: Restricted\n  - generic: Only you and those with permission can use this asset\n  - radio \"OpenUse\"\n  - generic: Open Use\n  - generic: Anyone on Roblox can use this asset\n- separator\n- button \"Cancel\":\n  - generic: Cancel\n- button \"Save Changes\" [disabled]:\n  - generic: Save Changes\n- generic: ©2026 Roblox Corporation. All rights reserved.\n- link \"Terms\":\n  - /url: https://www.roblox.com/info/terms\n- text: ·\n- link \"Privacy\":\n  - /url: https://www.roblox.com/info/privacy\n- text: ·\n- link \"Accessibility\":\n  - /url: https://www.roblox.com/info/accessibility\n- text: ·\n- link \"Support\":\n  - /url: https://www.roblox.com/info/help\n- text: ·\n- button \"Your Privacy Choices\":\n  - generic: Your Privacy Choices\n- link \"X\":\n  - /url: https://x.com/Roblox\n  - button \"X\":\n- link \"Facebook\":\n  - /url: https://www.facebook.com/Roblox/\n  - button \"Facebook\":\n- link \"LinkedIn\":\n  - /url: https://www.linkedin.com/company/roblox\n  - button \"LinkedIn\":\n- link \"Instagram\":\n  - /url: https://www.instagram.com/roblox/\n  - button \"Instagram\":\n- link \"YouTube\":\n  - /url: https://www.youtube.com/Roblox\n  - button \"YouTube\":\n- link \"English\":\n  - /url: https://roblox.com/my/account\n  - button \"English\":\n    - generic: English\n- alert: /dashboard/creations/store/79341687829464/configure"
+    },
+    {
+      "sourcePath": "docs/evidence/axe-meshy-v1/vivid-permissions.txt",
+      "sha256": "a5379ba975aeb9ac3672a30892feb77322f15a613f3ed93648947b71bf11fc88",
+      "record": "- link \"Creator\":\n  - /url: /\n  - generic: Creator\n- combobox \"Robloxianb1b5e7p5p Robloxianb1b5e7p5p\":\n  - img \"Robloxianb1b5e7p5p\"\n  - generic \"Robloxianb1b5e7p5p\"\n- textbox: \"9156786071\"\n- link \"Home\":\n  - /url: /\n  - generic: Home\n- link \"Creations\":\n  - /url: /dashboard/creations\n  - generic: Creations\n- link \"Learn\":\n  - /url: https://create.roblox.com/docs/\n  - generic: Learn\n- link \"Store\":\n  - /url: https://create.roblox.com/store/\n  - generic: Store\n- link \"Forum\":\n  - /url: https://devforum.roblox.com\n  - generic: Forum\n- link \"Updates\":\n  - /url: /updates\n  - generic: Updates\n- separator\n- link \"Finances\":\n  - /url: /dashboard/devex\n  - generic: Finances\n- link \"Analytics\":\n  - /url: /dashboard/analytics\n  - generic: Analytics\n- link \"Ads\":\n  - /url: https://create.roblox.com/advertise\n  - generic: Ads\n- separator\n- button \"All tools\":\n  - generic: All tools\n- link \"Roblox.com\":\n  - /url: https://roblox.com/\n  - generic: Roblox.com\n- button \"Studio\":\n  - generic: Studio\n- button \"Hide sidebar\":\n  - generic: Hide sidebar\n- link \"Back\":\n  - /url: /dashboard/creations?activeTab=Image\n  - button \"Back\":\n    - generic: Back\n- list:\n  - generic: Assistant_2393c04b278aee8a3f6f1b998526aaf2.png\n  - button \"more\":\n- tree:\n  - treeitem \"Configure\":\n    - link \"Configure\":\n      - /url: /dashboard/creations/store/79341687829464/configure\n  - treeitem \"Permissions\" [checked] [active]:\n    - link \"Permissions\":\n      - /url: /dashboard/creations/store/79341687829464/permissions\n- button \"menu\":\n- navigation \"breadcrumb\":\n  - list:\n    - link \"Creations\":\n      - /url: /dashboard/creations\n    - listitem: /\n    - link \"Assistant_2393c04b278aee8a3f6f1b998526aaf2.png\":\n      - /url: /dashboard/creations/store/79341687829464/configure\n    - listitem: /\n    - listitem: Permissions\n- button \"Search\"\n- button \"Notifications\"\n- button \"Robloxianb1b5e7p5p\":\n  - img \"Robloxianb1b5e7p5p\"\n- heading \"Permissions\" [level=1]\n- generic: Configure who has permission to access your asset\n- tablist:\n  - tab \"Collaborators\" [selected]\n  - tab \"Experiences\"\n- tabpanel \"Collaborators\":\n  - tabpanel:\n    - generic: No collaborators yet\n    - generic: Give your friends and groups access to this asset\n    - button \"Add collaborators\":\n      - generic: Add collaborators\n- generic: ©2026 Roblox Corporation. All rights reserved.\n- link \"Terms\":\n  - /url: https://www.roblox.com/info/terms\n- text: ·\n- link \"Privacy\":\n  - /url: https://www.roblox.com/info/privacy\n- text: ·\n- link \"Accessibility\":\n  - /url: https://www.roblox.com/info/accessibility\n- text: ·\n- link \"Support\":\n  - /url: https://www.roblox.com/info/help\n- text: ·\n- button \"Your Privacy Choices\":\n  - generic: Your Privacy Choices\n- link \"X\":\n  - /url: https://x.com/Roblox\n  - button \"X\":\n- link \"Facebook\":\n  - /url: https://www.facebook.com/Roblox/\n  - button \"Facebook\":\n- link \"LinkedIn\":\n  - /url: https://www.linkedin.com/company/roblox\n  - button \"LinkedIn\":\n- link \"Instagram\":\n  - /url: https://www.instagram.com/roblox/\n  - button \"Instagram\":\n- link \"YouTube\":\n  - /url: https://www.youtube.com/Roblox\n  - button \"YouTube\":\n- link \"English\":\n  - /url: https://roblox.com/my/account\n  - button \"English\":\n    - generic: English\n- alert: Assistant_2393c04b278aee8a3f6f1b998526aaf2.png / Permissions"
+    }
+  ],
+  "limitations": "Historical TD evidence preserved; no fresh API/UI inspection or TLT Experience grant verification performed. Full existing Experience grants were not enumerable in source evidence."
+}

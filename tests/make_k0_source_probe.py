@@ -49,6 +49,47 @@ if folder_name is None or folder_name.text != asset_manifest['provenance']['runt
 if any(item.get('class') in ('Script', 'LocalScript', 'ModuleScript') for item in runtime_xml.iter('Item')):
     raise SystemExit('TD runtime fixture refuses executable source containers')
 
+weapon_manifest_path = project / 'assets/shared/td-player-weapons/manifest.json'
+weapon_manifest = json.loads(weapon_manifest_path.read_text())
+weapon_rel = weapon_manifest['files']['runtime']['path']
+weapon_path = project / weapon_rel
+weapon_bytes = weapon_path.read_bytes()
+if hashlib.sha256(weapon_bytes).hexdigest() != weapon_manifest['files']['runtime']['sha256']:
+    raise SystemExit('TD weapon runtime XML differs from its provenance manifest')
+weapon_mapping = project_tree.get('ServerStorage', {}).get('TDPlayerWeaponModels', {}).get('$path')
+if weapon_mapping != weapon_rel:
+    raise SystemExit('K0 source probe requires the exact ServerStorage.TDPlayerWeaponModels Rojo mapping')
+weapon_xml = ET.fromstring(weapon_bytes)
+weapon_items = weapon_xml.findall('Item')
+if len(weapon_items) != 1 or weapon_items[0].get('class') != 'Folder':
+    raise SystemExit('TD weapon runtime must contain exactly one top-level Folder')
+weapon_folder = weapon_items[0]
+weapon_name = weapon_folder.find("./Properties/string[@name='Name']")
+if weapon_name is None or weapon_name.text != weapon_manifest['provenance']['runtime_top_level_folder']:
+    raise SystemExit('TD weapon runtime top-level folder differs from the provenance manifest')
+if any(item.get('class') in ('Script', 'LocalScript', 'ModuleScript') for item in weapon_xml.iter('Item')):
+    raise SystemExit('TD weapon fixture refuses executable source containers')
+
+shield_manifest_path = project / 'assets/shared/td-player-weapons/shield/manifest.json'
+shield_manifest = json.loads(shield_manifest_path.read_text())
+shield_rel = shield_manifest['files']['runtime']['path']
+shield_bytes = (project / shield_rel).read_bytes()
+if hashlib.sha256(shield_bytes).hexdigest() != shield_manifest['files']['runtime']['sha256']:
+    raise SystemExit('TD shield runtime XML differs from its provenance manifest')
+shield_mapping = project_tree.get('ServerStorage', {}).get('TDKnightShieldModels', {}).get('$path')
+if shield_mapping != shield_rel:
+    raise SystemExit('K0 source probe requires the exact ServerStorage.TDKnightShieldModels Rojo mapping')
+shield_xml = ET.fromstring(shield_bytes)
+shield_items = shield_xml.findall('Item')
+if len(shield_items) != 1 or shield_items[0].get('class') != 'Folder':
+    raise SystemExit('TD shield runtime must contain exactly one top-level Folder')
+shield_folder = shield_items[0]
+shield_name = shield_folder.find("./Properties/string[@name='Name']")
+if shield_name is None or shield_name.text != shield_manifest['provenance']['runtime_top_level_folder']:
+    raise SystemExit('TD shield runtime top-level folder differs from its provenance manifest')
+if any(item.get('class') in ('Script', 'LocalScript', 'ModuleScript') for item in shield_xml.iter('Item')):
+    raise SystemExit('TD shield fixture refuses executable source containers')
+
 # Preserve the actual serialized MeshParts, references and root metadata. Only
 # the mounted folder name changes, matching Rojo's ServerStorage key.
 fixture_xml = copy.deepcopy(runtime_xml)
@@ -59,6 +100,34 @@ ET.SubElement(storage_properties, 'string', {'name': 'Name'}).text = 'ServerStor
 mounted_folder = copy.deepcopy(template_folder)
 mounted_folder.find("./Properties/string[@name='Name']").text = 'TdMonsterModels'
 storage_item.append(mounted_folder)
+mounted_weapons = copy.deepcopy(weapon_folder)
+mounted_weapons.find("./Properties/string[@name='Name']").text = 'TDPlayerWeaponModels'
+# Isolate referents because the two independently authored model files may use
+# the same local IDs. Update internal references such as Model.PrimaryPart too.
+weapon_referents = {}
+for item in mounted_weapons.iter('Item'):
+    old = item.get('referent')
+    if old:
+        weapon_referents[old] = 'TLT_WEAPON_' + old
+        item.set('referent', weapon_referents[old])
+for reference in mounted_weapons.iter('Ref'):
+    if reference.text in weapon_referents:
+        reference.text = weapon_referents[reference.text]
+storage_item.append(mounted_weapons)
+mounted_shields = copy.deepcopy(shield_folder)
+mounted_shields.find("./Properties/string[@name='Name']").text = 'TDKnightShieldModels'
+shield_referents = {}
+for item in mounted_shields.iter('Item'):
+    old = item.get('referent')
+    if old:
+        if old in shield_referents:
+            raise SystemExit('TD shield runtime has duplicate instance referents')
+        shield_referents[old] = 'TLT_SHIELD_' + old
+        item.set('referent', shield_referents[old])
+for reference in mounted_shields.iter('Ref'):
+    if reference.text in shield_referents:
+        reference.text = shield_referents[reference.text]
+storage_item.append(mounted_shields)
 players_item = ET.SubElement(fixture_xml, 'Item', {'class': 'Players', 'referent': 'TLT_QA_PLAYERS'})
 players_properties = ET.SubElement(players_item, 'Properties')
 ET.SubElement(players_properties, 'string', {'name': 'Name'}).text = 'Players'
@@ -78,6 +147,8 @@ lines = [
     'assert(not rs:FindFirstChild("Shared") and not ss:FindFirstChild("Server") and not sp:FindFirstChild("Client"), "K0 source probe refuses an existing game")',
     'assert(game:GetService("Players").CharacterAutoLoads == false, "K0 fixture must serialize CharacterAutoLoads=false")',
     'assert(game:GetService("ServerStorage"):FindFirstChild("TdMonsterModels"), "K0 fixture is missing actual vendored TD MeshParts")',
+    'assert(game:GetService("ServerStorage"):FindFirstChild("TDPlayerWeaponModels"), "K0 fixture is missing actual vendored TD weapons")',
+    'assert(game:GetService("ServerStorage"):FindFirstChild("TDKnightShieldModels"), "K0 fixture is missing actual reviewed TD shield")',
     'local shared=Instance.new("Folder");shared.Name="Shared";shared.Parent=rs',
     'local server=Instance.new("Script");server.Name="Server";server.Disabled=true;server.Parent=ss',
     'local client=Instance.new("LocalScript");client.Name="Client";client.Disabled=true;client.Parent=sp',
@@ -86,6 +157,10 @@ manifest = {
     'default.project.json': hashlib.sha256(project_path.read_bytes()).hexdigest(),
     str(asset_manifest_path.relative_to(project)): hashlib.sha256(asset_manifest_path.read_bytes()).hexdigest(),
     runtime_rel: hashlib.sha256(runtime_bytes).hexdigest(),
+    str(weapon_manifest_path.relative_to(project)): hashlib.sha256(weapon_manifest_path.read_bytes()).hexdigest(),
+    weapon_rel: hashlib.sha256(weapon_bytes).hexdigest(),
+    str(shield_manifest_path.relative_to(project)): hashlib.sha256(shield_manifest_path.read_bytes()).hexdigest(),
+    shield_rel: hashlib.sha256(shield_bytes).hexdigest(),
     str(test_script.relative_to(project)): hashlib.sha256(test_script.read_bytes()).hexdigest(),
     'tests/make_k0_source_probe.py': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
 }

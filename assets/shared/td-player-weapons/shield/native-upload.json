@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-28",
+  "meshId": "rbxassetid://86935256146675",
+  "textureId": "rbxassetid://97596525220590",
+  "sourceFile": "shield-mesh-only.glb",
+  "sourceMeshSha256": "151ad5b6075705e2e7b6f9bb7877e0c6aa1c21627b9eeaff4ccfd7eeadf7dce3",
+  "meshSize": [
+    1.8906252384,
+    1.8785308599,
+    0.4970029891
+  ],
+  "size": [
+    1.8906252384,
+    1.8785308599,
+    0.4970029891
+  ],
+  "assetTypeId": 4,
+  "reportedFaces": 550,
+  "authorization": {
+    "scope": "one exact Swordsman shield mesh; Restricted; current user account",
+    "grantedBy": "human user; relayed by Director",
+    "newModelPackageAuthorized": false,
+    "newImageUploadAuthorized": false
+  },
+  "uploaderAccount": {
+    "reportedRelation": "Creator is the current signed-in user",
+    "exactCreatorId": 9156786071,
+    "expectedHistoricalTDUserId": 9156786071,
+    "expectedHistoricalTDUserName": "Robloxianb1b5e7p5p",
+    "limit": "Director independently confirmed GetProductInfo CreatorTargetId9156786071/User/name and actual Dashboard Restricted selection; this builder did not repeat those external checks.",
+    "exactCreatorName": "Robloxianb1b5e7p5p",
+    "creatorType": "User"
+  },
+  "nativeContract": {
+    "front": [
+      0,
+      0,
+      -1
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "centerFromGrip": [
+      0,
+      0,
+      -0.2485014851004278
+    ],
+    "rotationRowMajor": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "basis": "Director actual Studio double-sided render comparison: original GLB +Z front imports as native MeshPart -Z front; original star/UV normal."
+  },
+  "verification": {
+    "verifiedBy": "Director; actual Studio/Creator Dashboard/GetProductInfo checks relayed to modeling agent",
+    "assetTypeId": 4,
+    "reportedFaces": 550,
+    "creatorRelation": "current signed-in user",
+    "restricted": true,
+    "openUse": false,
+    "restrictedUiValue": 1,
+    "openUseUiValue": 0,
+    "meshPreload": "Success",
+    "existingTexturePreload": "Success",
+    "sourceUvAndColor": "normal in actual Studio",
+    "modelPackageUploadOption": "OFF",
+    "newModelPackageUploaded": "not independently enumerated by this builder; Director reports option OFF",
+    "newImagesUploaded": 0,
+    "isForSale": null,
+    "distributionEnabled": null,
+    "collaborators": null,
+    "allowedExperiences": null,
+    "evidencePaths": [
+      "docs/evidence/k0/td-shield-native.jpg"
+    ],
+    "limits": "No independent Dashboard/API/Studio verification by this builder; complete collaborator/Experience list and distribution/sale state not provided. Stored claims reflect only Director-reported checks.",
+    "creatorTargetId": 9156786071,
+    "creatorName": "Robloxianb1b5e7p5p",
+    "creatorType": "User",
+    "creatorIdentityVerification": "Director actual GetProductInfo response; User/name/CreatorTargetId confirmed",
+    "restrictedVerification": "Director actual Creator Dashboard Configure: Restricted radio1, Open Use radio0",
+    "evidenceScope": {
+      "docs/evidence/k0/td-shield-native.jpg": "actual Studio front render/appearance; does not itself prove ownership/Restricted permission"
+    }
+  }
+}

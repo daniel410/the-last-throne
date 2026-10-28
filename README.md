@@ -32,7 +32,7 @@ Throne Defense와 **같은 Roblox Experience의 별도 RPG Place**로 연결하�
 | [원천 검토표](docs/production/source-audit.md) | 기존 문서·컨셉·지도·정본 데이터와 새 계획의 연결 |
 | [문서 검증 결과](docs/production/validation-report.md) | 링크·백로그 의존·컨셉 해시·성장 정합·스킬 구조의 실제 정적 검사 |
 
-현재 저장소에는 계획·컨셉과 함께 Deepwood 시험장, 임시 기사 장비·TD 원본 Goblin/Orc Warrior/Ogre, 서버 전투 및 영어 HUD의 첫 원형이 있습니다. 최종 맵·공유 원본 리그·성능·저장/결제·Experience 연동의 완료 보고는 아닙니다. 실제 검증과 남은 항목은 [K0 작업 기록](docs/evidence/k0/README.md)을 확인합니다. 공개 콘텐츠 묶음·출시일·인력·예산은 대표 구간의 실제 제작/검증 결과로 정합니다.
+현재 저장소에는 계획·컨셉과 함께 Deepwood 시험장, TD 원본 기사 검·방패와 Goblin/Orc Warrior/Ogre, 서버 전투 및 영어 HUD의 첫 원형이 있습니다. 드워프 도끼·엘프 활·신규 나무 지팡이와 드워프/마법사 근접 기본 공격은 후속 직업 연결을 위한 원형이며, 현재 게임에서 선택할 수 있는 직업은 기사뿐입니다. 최종 맵·공유 원본 리그·성능·저장/결제·Experience 연동의 완료 보고는 아닙니다. 실제 검증과 남은 항목은 [K0 작업 기록](docs/evidence/k0/README.md)을 확인합니다. 공개 콘텐츠 묶음·출시일·인력·예산은 대표 구간의 실제 제작/검증 결과로 정합니다.
 
 ## Git·빌드·릴리스
 

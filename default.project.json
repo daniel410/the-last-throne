@@ -24,6 +24,12 @@
     "ServerStorage": {
       "TdMonsterModels": {
         "$path": "assets/shared/td-monsters/runtime.rbxmx"
+      },
+      "TDPlayerWeaponModels": {
+        "$path": "assets/shared/td-player-weapons/runtime.rbxmx"
+      },
+      "TDKnightShieldModels": {
+        "$path": "assets/shared/td-player-weapons/shield/runtime.rbxmx"
       }
     },
 

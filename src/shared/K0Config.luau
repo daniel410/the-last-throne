@@ -1,5 +1,5 @@
 -- Prototype-only values from docs/knight-combat-spec.md. No progression is saved.
-return {
+local Config = {
 	MaxHealth = 1000,
 	AttackPower = 100,
 	MaxStamina = 100,
@@ -55,3 +55,24 @@ return {
 	RemoteBurst = 10,
 	RemoteRefillPerSecond = 8,
 }
+
+-- Knight is the only class selected in the current game. Dwarf and Mage are
+-- single-hit melee test fixtures, not finalized balance, equipment or skills.
+-- The Axe Thrower swings a hand axe; Mage swings a wooden staff. No projectile
+-- is part of either basic attack. Keep Knight tied to the existing K0 values.
+Config.BasicAttackProfiles = {
+	knight = {
+		id = "knight.sword.basic", attackPower = Config.AttackPower,
+		maxTargets = Config.AttackMaxTargets, maxHeight = Config.AttackHeight, attacks = Config.Attacks,
+	},
+	dwarf = {
+		id = "dwarf.axe.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,
+		attacks = {{ windup = 0.16, active = 0.10, recovery = 0.16, damage = 0.75, posture = 12, range = 4.5, angle = 100 }},
+	},
+	mage = {
+		id = "mage.staff.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,
+		attacks = {{ windup = 0.16, active = 0.10, recovery = 0.16, damage = 0.75, posture = 12, range = 4.5, angle = 100 }},
+	},
+}
+
+return Config
