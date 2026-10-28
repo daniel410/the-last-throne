@@ -4,6 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
+local Config = require(ReplicatedStorage.Shared.K0Config)
 
 local Hud = {}
 
@@ -141,7 +142,7 @@ function Hud.create()
 	local state = text(status, "State", Text.State.Idle, UDim2.new(1, -109, 0, 8), UDim2.fromOffset(95, 20), 10, COLORS.muted)
 	state.TextXAlignment = Enum.TextXAlignment.Right
 	local setHealth = bar(status, Text.Health, 32, COLORS.red)
-	local setStamina = bar(status, Text.Stamina, 77, COLORS.green)
+	local setMana = bar(status, Text.Mana, 77, Color3.fromRGB(75, 151, 235))
 
 	local heading = panel(root, "Heading", UDim2.new(0.5, -108, 0, 16), UDim2.fromOffset(216, 55))
 	local headingScale = Instance.new("UIScale")
@@ -170,8 +171,13 @@ function Hud.create()
 	local actionScale = Instance.new("UIScale")
 	actionScale.Parent = actions
 	local block, blockHint = action(actions, "Block", Text.Block, Text.HintHold, UDim2.fromOffset(72, 0), 68)
-	local skill, skillHint = action(actions, "ArcaneBolt", Text.ArcaneBolt, Text.HintQ, UDim2.fromOffset(72, 0), 68)
-	skill.Visible = false
+	local skillButtons, skillHints = {}, {}
+	for index, hint in ipairs({ Text.HintQ, Text.HintE, Text.HintR }) do
+		local button, key = action(actions, "Skill" .. index, "", hint, UDim2.fromOffset(-125 + (index - 1) * 64, -72), 58)
+		button.Caption.TextSize = 9
+		button.Caption.TextWrapped = true
+		skillButtons[index], skillHints[index] = button, key
+	end
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintV, UDim2.fromOffset(0, 91), 68)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(134, 71), 88)
 	local back = Instance.new("TextButton")
@@ -212,7 +218,7 @@ function Hud.create()
 		backScale.Scale = scale
 		back.Size = UDim2.fromOffset(viewport.X < 500 and 126 or 168, 42)
 		back.TextSize = viewport.X < 500 and 10 or 12
-		practice.Position = UDim2.fromOffset(16, 16 + 132 * scale + 12)
+		practice.Position = UDim2.fromOffset(16, 16 + status.Size.Y.Offset * scale + 12)
 		-- On narrow screens, keep the title clear of the status panel.
 		heading.Visible = viewport.X >= 860
 	end
@@ -229,7 +235,7 @@ function Hud.create()
 	return {
 		attack = attack,
 		block = block,
-		skill = skill,
+		skills = skillButtons,
 		dodge = dodge,
 		back = back,
 		setVisible = function(visible)
@@ -238,7 +244,18 @@ function Hud.create()
 		setClass = function(classId)
 			classLabel.Text = Text.Class[classId] or ""
 			block.Visible = classId == "knight"
-			skill.Visible = classId == "mage"
+			local classSkills = Config.Skills[classId]
+			local showMana = false
+			for _, ability in ipairs(classSkills or {}) do
+				if ability.magic then showMana = true; break end
+			end
+			status.Size = UDim2.fromOffset(248, showMana and 132 or 87)
+			for _, suffix in ipairs({ "Label", "Value", "Track" }) do status[Text.Mana .. suffix].Visible = showMana end
+			for index, button in ipairs(skillButtons) do
+				button.Visible = classSkills ~= nil
+				button.Caption.Text = classSkills and classSkills[index].name or ""
+			end
+			updateScale()
 		end,
 		setPractice = function(value, classId)
 			value = value or {}
@@ -247,13 +264,28 @@ function Hud.create()
 				or not value.dodged and Text.Practice.Dodge or Text.Practice.Complete
 		end,
 		setHealth = setHealth,
-		setStamina = setStamina,
+		setMana = setMana,
+		setCooldowns = function(character)
+			for index, button in ipairs(skillButtons) do
+				local ready = character and character:GetAttribute("K0SkillReady" .. index) or 0
+				local remaining = math.max(0, (ready or 0) - Workspace:GetServerTimeNow())
+				button.BackgroundTransparency = remaining > 0 and 0.45 or 0
+				local label = button:FindFirstChild("Cooldown")
+				if not label then
+					label = text(button, "Cooldown", "", UDim2.fromOffset(0, -14), UDim2.new(1, 0, 0, 18), 12, COLORS.cream)
+					label.TextXAlignment = Enum.TextXAlignment.Center
+				end
+				label.Text = remaining > 0 and string.format("%.1fs", remaining) or ""
+			end
+		end,
 		setState = function(value)
 			state.Text = value
 		end,
-		setHints = function(attackText, blockText, dodgeText, skillText)
+		setHints = function(attackText, blockText, dodgeText, skillText, skill2Text, skill3Text)
 			attackHint.Text, blockHint.Text, dodgeHint.Text = attackText, blockText, dodgeText
-			skillHint.Text = skillText or Text.HintQ
+			skillHints[1].Text = skillText or Text.HintQ
+			skillHints[2].Text = skill2Text or Text.HintE
+			skillHints[3].Text = skill3Text or Text.HintR
 		end,
 		showFeedback = function(value, duration)
 			feedbackSequence += 1

@@ -83,21 +83,16 @@ function Rules.movementBudget(budget, elapsed, distance, walkSpeed, capacity)
 	return distance <= allowance, math.max(0, allowance - distance)
 end
 
-function Rules.defense(isDodging, dodgeAge, isGuarding, guardAge, guardFacingDot, blockable, stamina, cost, guard, dodge)
+function Rules.defense(isDodging, dodgeAge, isGuarding, guardAge, guardFacingDot, blockable, guard, dodge)
 	if isDodging and dodgeAge >= dodge.invulnerableStart and dodgeAge < dodge.invulnerableEnd then
-		return "Dodge", 0, stamina
+		return "Dodge", 0
 	end
 	if not isGuarding or guardAge < guard.raiseTime or not blockable or not Rules.isFinite(guardFacingDot)
 		or guardFacingDot < math.cos(math.rad(guard.angle / 2)) then
-		return "Hit", 1, stamina
+		return "Hit", 1
 	end
-	if guardAge < guard.raiseTime + guard.perfectTime then
-		return "PerfectBlock", 0, stamina
-	end
-	if stamina < cost then
-		return "GuardBroken", 1, 0
-	end
-	return "Blocked", guard.damageMultiplier, stamina - cost
+	if guardAge < guard.raiseTime + guard.perfectTime then return "PerfectBlock", 0 end
+	return "Blocked", guard.damageMultiplier
 end
 
 function Rules.priority(action)

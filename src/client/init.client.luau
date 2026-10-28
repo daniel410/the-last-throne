@@ -1,10 +1,11 @@
 -- The client may suggest a target. The server validates combat, damage,
--- stamina, range and obstruction before rendering its replicated result.
+-- mana, range and obstruction before rendering its replicated result.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
 local GuiService = game:GetService("GuiService")
+local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
@@ -99,7 +100,7 @@ local function sendAction(action, direction)
 	if actionRemote and (action == "BlockEnd" or combatInputAllowed()) then
 		local character = player.Character
 		local classId = character and character:GetAttribute("K0ClassId")
-		local canTarget = action == "Attack" or (action == "CastArcane" and classId == "mage")
+		local canTarget = action == "Attack" or action:match("^Skill[123]$") or (action == "CastArcane" and classId == "mage")
 		local target = canTarget and selectedEnemy or nil
 		if target and not Targeting.valid(target) then clearTarget(); target = nil end
 		-- Avoid turning mid-swing when held input repeats. The server turns
@@ -171,11 +172,8 @@ local function dodge()
 	sendAction("Dodge", movementDirection())
 end
 
-local function castArcane()
-	local character = player.Character
-	if character and character:GetAttribute("K0ClassId") == "mage" and combatInputAllowed() then
-		sendAction("CastArcane")
-	end
+local function useSkill(slot)
+	if combatInputAllowed() then sendAction("Skill" .. slot) end
 end
 
 local function startBlock()
@@ -215,11 +213,11 @@ local function bindCharacter(character)
 	endBlock()
 	clearAttacks()
 	hud.setHealth(nil, nil)
-	hud.setStamina(nil, nil)
+	hud.setMana(nil, nil)
 	hud.setState(Text.State.Loading)
 
-	local function updateStamina()
-		hud.setStamina(character:GetAttribute("K0Stamina"), character:GetAttribute("K0MaxStamina"))
+	local function updateMana()
+		hud.setMana(character:GetAttribute("K0Mana"), character:GetAttribute("K0MaxMana"))
 	end
 	local function updateState()
 		local value = character:GetAttribute("K0State")
@@ -233,12 +231,12 @@ local function bindCharacter(character)
 		hud.setClass(character:GetAttribute("K0ClassId"))
 		if not isKnight() then endBlock() end
 	end
-	table.insert(characterConnections, character:GetAttributeChangedSignal("K0Stamina"):Connect(updateStamina))
-	table.insert(characterConnections, character:GetAttributeChangedSignal("K0MaxStamina"):Connect(updateStamina))
+	table.insert(characterConnections, character:GetAttributeChangedSignal("K0Mana"):Connect(updateMana))
+	table.insert(characterConnections, character:GetAttributeChangedSignal("K0MaxMana"):Connect(updateMana))
 	table.insert(characterConnections, character:GetAttributeChangedSignal("K0State"):Connect(updateState))
 	table.insert(characterConnections, character:GetAttributeChangedSignal("K0FeedbackSeq"):Connect(showFeedback))
 	table.insert(characterConnections, character:GetAttributeChangedSignal("K0ClassId"):Connect(updateClass))
-	updateStamina()
+	updateMana()
 	updateState()
 	updateClass()
 
@@ -266,7 +264,10 @@ if player.Character then bindCharacter(player.Character) end
 hud.attack.InputBegan:Connect(startAttack)
 hud.attack.InputEnded:Connect(endAttack)
 hud.dodge.Activated:Connect(dodge)
-hud.skill.Activated:Connect(castArcane)
+for slot, button in ipairs(hud.skills) do
+	button.Activated:Connect(function() useSkill(slot) end)
+end
+RunService.RenderStepped:Connect(function() hud.setCooldowns(player.Character) end)
 hud.block.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
 		touchBlockInput = input
@@ -294,7 +295,11 @@ UserInputService.InputBegan:Connect(function(input, processed)
 	elseif input.UserInputType == Enum.UserInputType.MouseButton2 or input.KeyCode == Enum.KeyCode.ButtonL2 then
 		startBlock()
 	elseif input.KeyCode == Enum.KeyCode.Q or input.KeyCode == Enum.KeyCode.ButtonY then
-		castArcane()
+		useSkill(1)
+	elseif input.KeyCode == Enum.KeyCode.E or input.KeyCode == Enum.KeyCode.ButtonX then
+		useSkill(2)
+	elseif input.KeyCode == Enum.KeyCode.R or input.KeyCode == Enum.KeyCode.ButtonL1 then
+		useSkill(3)
 	end
 end)
 UserInputService.InputEnded:Connect(function(input)
@@ -328,11 +333,11 @@ end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.V, Enum.KeyCode.
 local function updateHints()
 	local input = UserInputService:GetLastInputType()
 	if input.Name:match("^Gamepad") then
-		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB, Text.HintY)
+		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB, Text.HintY, Text.HintX, Text.HintL1)
 	elseif UserInputService.TouchEnabled and (input == Enum.UserInputType.Touch or not UserInputService.KeyboardEnabled) then
-		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap, Text.HintTap)
+		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap, Text.HintTap, Text.HintTap, Text.HintTap)
 	else
-		hud.setHints(Text.HintClick, Text.HintRightClick, Text.HintV, Text.HintQ)
+		hud.setHints(Text.HintClick, Text.HintRightClick, Text.HintV, Text.HintQ, Text.HintE, Text.HintR)
 	end
 end
 UserInputService.LastInputTypeChanged:Connect(updateHints)

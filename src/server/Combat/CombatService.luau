@@ -88,15 +88,6 @@ local function updateFeedback(state, value)
 	state.character:SetAttribute("K0FeedbackSeq", state.feedbackSeq)
 end
 
-local function setStamina(state, value)
-	state.stamina = math.max(0, math.min(Config.MaxStamina, value))
-	state.character:SetAttribute("K0Stamina", math.floor(state.stamina * 10 + 0.5) / 10)
-end
-
-local function spendStamina(state, amount, current, regenDelay)
-	setStamina(state, state.stamina - amount)
-	state.regenAt = current + (regenDelay or Config.StaminaRegenDelay)
-end
 
 local function setPlayerState(state, name)
 	if state.mode == name then
@@ -141,6 +132,7 @@ local function clearAction(state)
 	state.guardStarted = nil
 	state.character:SetAttribute("K0AttackPhase", "None")
 	state.character:SetAttribute("K0AttackKind", nil)
+	state.character:SetAttribute("K0SkillId", nil)
 	state.character:SetAttribute("K0Invulnerable", false)
 end
 
@@ -297,26 +289,74 @@ local function startAttack(state, current, targetModel)
 	updateFeedback(state, "ActionStarted")
 end
 
-local function startArcaneBolt(state, current, targetModel)
-	local spell = Config.ArcaneBolt
-	if state.baseClassId ~= "mage" then return end
+-- This movement is server-resolved, bounded and cannot cross a wall or edge.
+local function skillStep(state, direction, distance)
+	local params = rayParams({ state.character })
+	local hit = workspace:Blockcast(state.root.CFrame, state.root.Size * 0.9, direction * distance, params)
+	if hit then distance = math.max(0, math.min(distance, hit.Distance - 0.15)) end
+	local destination = state.root.Position + direction * distance
+	if not workspace:Raycast(destination + Vector3.new(0, 2, 0), Vector3.new(0, -12, 0), params) then return end
+	state.character:PivotTo(state.character:GetPivot() + direction * distance)
+	state.root.AssemblyLinearVelocity = Vector3.zero
+	state.lastMotionPosition = state.root.Position
+	state.lastSafePivot = state.character:GetPivot()
+end
+
+local function setMana(state, value)
+	state.mana = math.clamp(value, 0, Config.MaxMana)
+	state.character:SetAttribute("K0Mana", math.floor(state.mana * 10 + 0.5) / 10)
+end
+
+local function startSkill(state, slot, current, targetModel)
+	local skills = Config.Skills[state.baseClassId]
+	local skill = skills and skills[slot]
+	if not skill then return end
 	if state.mode ~= "Idle" then updateFeedback(state, "SkillBusy"); return end
-	if current < state.lastSpellStarted + spell.cooldown then updateFeedback(state, "SkillCooling"); return end
-	if state.stamina < spell.staminaCost then updateFeedback(state, "NeedStamina"); return end
+	if current < (state.skillReadyAt[skill.id] or -math.huge) then updateFeedback(state, "SkillCooling"); return end
+	-- Magic costs MP by contract, including future magic-archer abilities.
+	if skill.magic and (type(skill.manaCost) ~= "number" or skill.manaCost <= 0) then return end
+	if skill.magic and state.mana < skill.manaCost then updateFeedback(state, "NeedMana"); return end
+	if skill.effect == "recall" and (not state.thrownUntil or current >= state.thrownUntil) then
+		updateFeedback(state, "NoAxeToRecall"); return
+	end
+	if skill.effect == "recall" then targetModel = state.thrownTarget end
+	local direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1))
+	local selected = targetModel and enemyStates[targetModel]
+	if selected and enemyAlive(selected) then
+		local delta = horizontal(selected.root.Position - state.root.Position)
+		if delta.Magnitude > 0.01 then
+			direction = delta.Unit
+			state.root.CFrame = CFrame.lookAt(state.root.Position, state.root.Position + direction)
+		end
+	end
 	clearAction(state)
 	state.queued = nil
 	resetCombo(state)
-	state.lastSpellStarted = current
-	spendStamina(state, spell.staminaCost, current)
+	state.skillReadyAt[skill.id] = current + skill.cooldown
+	state.character:SetAttribute("K0SkillReady" .. slot, workspace:GetServerTimeNow() + skill.cooldown)
+	if skill.magic then setMana(state, state.mana - skill.manaCost); state.manaRegenAt = current + Config.ManaRegenDelay end
+	if skill.effect == "advance" then skillStep(state, direction, 6) end
+	if skill.effect == "retreat" then skillStep(state, -direction, 4) end
+	local recallFrom
+	if skill.effect == "throw" then state.thrownUntil = current + 4; state.thrownTarget = targetModel; state.thrownPosition = nil end
+	if skill.effect == "recall" then
+		targetModel = state.thrownTarget; recallFrom = state.thrownPosition
+		state.thrownUntil = nil; state.thrownTarget = nil; state.thrownPosition = nil
+	end
 	state.attack = {
-		started = current, definition = spell, attackPower = state.attackProfile.attackPower,
-		maxTargets = 1, maxHeight = spell.maxHeight, isSpell = true,
-		direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1)),
+		started = current, definition = skill, attackPower = state.attackProfile.attackPower,
+		maxTargets = skill.maxTargets, maxHeight = skill.maxHeight, isSpell = skill.magic,
+		isSkill = true, ranged = skill.ranged, direction = direction, recallFrom = recallFrom,
 		hits = {}, hitCount = 0, counterDamage = nil, sampledActive = false, targetModel = targetModel,
 	}
+	state.savedAutoRotate = state.humanoid.AutoRotate
+	state.humanoid.AutoRotate = false
 	setPlayerState(state, "Attack")
-	state.character:SetAttribute("K0AttackKind", "Arcane")
+	state.character:SetAttribute("K0SkillId", skill.id)
+	state.character:SetAttribute("K0AttackKind", skill.magic and "Arcane" or "Basic")
 	state.character:SetAttribute("K0AttackPhase", "Windup")
+	state.attackSeq = state.attackSeq + 1
+	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
 	updateFeedback(state, "ActionStarted")
 end
 
@@ -331,7 +371,6 @@ local function startGuard(state, current)
 	state.queued = nil
 	state.guardStarted = current
 	state.lastGuardStarted = current
-	spendStamina(state, Config.Guard.initialCost, current)
 	setPlayerState(state, "Block")
 	updateFeedback(state, "ActionStarted")
 end
@@ -356,16 +395,15 @@ local function startDodge(state, direction, current)
 	state.lastDodgeStarted = current
 	state.dodgeSeq = (state.dodgeSeq or 0) + 1
 	state.character:SetAttribute("K0DodgeSeq", state.dodgeSeq)
-	spendStamina(state, Config.Dodge.cost, current)
 	setPlayerState(state, "Dodge")
 	updateFeedback(state, "ActionStarted")
 end
 
 local function resourceReady(state, action, current)
 	if action == "Dodge" then
-		return state.stamina >= Config.Dodge.cost and current >= state.lastDodgeStarted + Config.Dodge.cooldown
+		return true
 	elseif action == "BlockStart" then
-		return state.baseClassId == "knight" and state.stamina >= Config.Guard.initialCost and current >= state.lastGuardStarted + Config.Guard.cooldown
+		return state.baseClassId == "knight" and current >= state.lastGuardStarted + Config.Guard.cooldown
 	end
 	return action == "Attack" and state.attackProfile ~= nil and Config.BasicAttackProfiles[state.baseClassId] == state.attackProfile
 end
@@ -405,10 +443,12 @@ local function acceptAction(state, action, direction, current, targetModel)
 		end
 		return
 	end
-	if action == "CastArcane" then
-		startArcaneBolt(state, current, targetModel)
+	if action == "CastArcane" and state.baseClassId == "mage" then
+		startSkill(state, 1, current, targetModel)
 		return
 	end
+	local skillSlot = action:match("^Skill([123])$")
+	if skillSlot then startSkill(state, tonumber(skillSlot), current, targetModel); return end
 	if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" then
 		return
 	end
@@ -452,10 +492,10 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	end
 	attack.hits[playerState.character] = true
 	local guardDot = facingDot(target, playerState.root.CFrame.LookVector, origin)
-	local result, multiplier, remaining = Rules.defense(
+	local result, multiplier = Rules.defense(
 		playerState.mode == "Dodge", playerState.dodge and current - playerState.dodge.started or -1,
 		playerState.baseClassId == "knight" and playerState.mode == "Block", playerState.guardStarted and current - playerState.guardStarted or -1,
-		guardDot, attack.definition.blockable, playerState.stamina, attack.definition.guardCost, Config.Guard, Config.Dodge
+		guardDot, attack.definition.blockable, Config.Guard, Config.Dodge
 	)
 	if result == "Dodge" then
 		updateFeedback(playerState, "Dodged")
@@ -473,8 +513,6 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 		updateFeedback(playerState, "PerfectBlock")
 		return
 	elseif result == "Blocked" then
-		setStamina(playerState, remaining)
-		playerState.regenAt = current + Config.StaminaRegenDelay
 		if not playerState.counter or playerState.counter.bonus < 0.25 or playerState.counter.expires <= current then
 			playerState.counter = { bonus = 0.25, expires = current + Config.Guard.counterDuration }
 		else
@@ -486,16 +524,11 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 		playerState.counter = nil
 		clearAction(playerState)
 		resetCombo(playerState)
-		if result == "GuardBroken" then
-			setStamina(playerState, 0)
-			playerState.regenAt = current + Config.GuardBreakRegenDelay
-			playerState.stunnedUntil = current + Config.Guard.breakStun
-		else
-			playerState.stunnedUntil = current + Config.HitStun
-		end
+		playerState.stunnedUntil = current + Config.HitStun
 		setPlayerState(playerState, "Stunned")
-		updateFeedback(playerState, result == "GuardBroken" and "GuardBroken" or "Interrupted")
+		updateFeedback(playerState, "Interrupted")
 	end
+	if playerState.rallyUntil and current < playerState.rallyUntil then multiplier = multiplier * 0.8 end
 	local damage = math.max(1, math.floor(attack.definition.damage * multiplier + 0.5))
 	playerState.humanoid:TakeDamage(damage)
 	if playerState.humanoid.Health <= 0 then
@@ -514,6 +547,7 @@ local function damageEnemy(state, enemy, attack, current)
 		end
 	end
 	local multiplier = enemy.mode == "Exposed" and 1.15 or 1
+	if enemy.marks and enemy.marks[state] and current < enemy.marks[state] then multiplier *= 1.2 end
 	local damage = math.max(1, math.floor(attack.attackPower * (attack.definition.damage + attack.counterDamage) * multiplier + 0.5))
 	-- Set the attacker before TakeDamage: a lethal hit can synchronously fire
 	-- Died, and split offspring must inherit the real server-validated attacker.
@@ -534,6 +568,24 @@ local function damageEnemy(state, enemy, attack, current)
 		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction)
 	end
 	if enemy.humanoid.Health > 0 then
+		if applied > 0 and attack.isSkill and attack.definition.effect == "mark" then
+			enemy.marks = enemy.marks or {}; enemy.marks[state] = current + 8
+			enemy.model:SetAttribute("K0MarkedUntil", workspace:GetServerTimeNow() + 8)
+		end
+		if applied > 0 and attack.isSkill and attack.definition.effect == "bash" and enemy.kind ~= "Ogre" and enemy.attack then resetEnemyAttack(enemy) end
+		if applied > 0 and attack.isSkill and attack.definition.effect == "water" then
+			enemy.model:SetAttribute("K0WetUntil", workspace:GetServerTimeNow() + 4)
+		end
+		if applied > 0 and attack.isSkill and attack.definition.effect == "gust" and enemy.kind ~= "Ogre" then
+			local away = horizontalUnit(enemy.root.Position - state.root.Position, attack.direction)
+			local params = rayParams({ state.character, enemy.model })
+			local obstacle = workspace:Blockcast(enemy.root.CFrame, enemy.root.Size * 0.9, away * 3, params)
+			local distance = obstacle and math.max(0, obstacle.Distance - 0.15) or 3
+			local destination = enemy.root.Position + away * distance
+			if workspace:Raycast(destination + Vector3.new(0, 2, 0), Vector3.new(0, -12, 0), params) then
+				enemy.model:PivotTo(enemy.model:GetPivot() + away * distance)
+			end
+		end
 		if not enemy.attack and enemy.mode ~= "Exposed" then setEnemyState(enemy, "Chase") end
 		damagePosture(enemy, attack.definition.posture, current)
 	end
@@ -622,7 +674,7 @@ local function applyArrowShot(state, current)
 		end
 	end
 	for _, enemy in pairs(enemyStates) do
-		if not attack.targetModel and enemyAlive(enemy) and not attack.hits[enemy.model] then
+		if not attack.targetModel and not (attack.isSkill and attack.definition.effect == "recall") and enemyAlive(enemy) and not attack.hits[enemy.model] then
 			local position = enemy.root.Position
 			local delta = position - origin
 			local distance = delta.Magnitude
@@ -639,13 +691,15 @@ local function applyArrowShot(state, current)
 		endpoint = target.root.Position
 	elseif selectedEndpoint then
 		endpoint = selectedEndpoint
+	elseif attack.recallFrom then
+		endpoint = attack.recallFrom
 	else
 		local delta = attack.direction * attack.definition.range
 		local wall = workspace:Raycast(origin, delta, combatRayParams(state.character, enemyFolder))
 		endpoint = wall and wall.Position or origin + delta
 	end
 	local sequence, visualName
-	if attack.isSpell then
+	if attack.isSpell or (attack.isSkill and state.baseClassId == "dwarf") then
 		state.spellSeq = state.spellSeq + 1
 		sequence, visualName = state.spellSeq, "K0SpellVisual"
 	else
@@ -657,9 +711,31 @@ local function applyArrowShot(state, current)
 	end
 	-- A single replicated snapshot avoids combining endpoints from two shots
 	-- if separate attributes arrive in different replication updates.
+	if attack.isSkill and attack.definition.effect == "throw" then
+		state.thrownTarget = target and target.model or nil
+		state.thrownPosition = endpoint
+	end
+	local visualFrom, visualTo = origin, endpoint
+	if attack.isSkill and attack.definition.effect == "recall" then visualFrom, visualTo = endpoint, origin end
 	state.character:SetAttribute(visualName, string.format("%d|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f",
-		sequence, origin.X, origin.Y, origin.Z, endpoint.X, endpoint.Y, endpoint.Z))
-	if target then damageEnemy(state, target, attack, current) end
+		sequence, visualFrom.X, visualFrom.Y, visualFrom.Z, visualTo.X, visualTo.Y, visualTo.Z))
+	if target then
+		damageEnemy(state, target, attack, current)
+		if attack.isSkill and attack.definition.effect == "pierce" then
+			local aim = horizontalUnit(target.root.Position - origin, attack.direction)
+			local others = {}
+			for _, enemy in pairs(enemyStates) do
+				local delta = enemy.root.Position - origin
+				if enemy ~= target and enemyAlive(enemy) and Rules.withinCone(delta.Magnitude, math.abs(delta.Y), facingDot(origin, aim, enemy.root.Position), attack.definition.range, attack.maxHeight, attack.definition.angle)
+					and unobstructed(origin, enemy.root.Position, state.character, enemy.model) then table.insert(others, enemy) end
+			end
+			table.sort(others, function(a,b) return (a.root.Position-origin).Magnitude < (b.root.Position-origin).Magnitude end)
+			for _, enemy in ipairs(others) do
+				if attack.hitCount >= attack.maxTargets then break end
+				damageEnemy(state, enemy, attack, current)
+			end
+		end
+	end
 end
 
 local function moveDodge(state, current)
@@ -793,7 +869,33 @@ local function processCombatSamples(current, requiredState)
 			local state = sample.player
 			if validPlayers[state] and alive(state) and state.mode == "Attack" and state.attack == attack then
 				attack.sampledActive = true
-				if state.baseClassId == "elf" or attack.isSpell then applyArrowShot(state, current) else applySwordHits(state, current) end
+				if attack.isSkill and attack.definition.effect == "rally" then
+					local allies = { state }
+					for _, ally in pairs(playerStates) do
+						if ally ~= state and alive(ally) and (ally.root.Position - state.root.Position).Magnitude <= 10 and unobstructed(state.root.Position, ally.root.Position, state.character, ally.character) then
+							table.insert(allies, ally)
+						end
+					end
+					table.sort(allies, function(a, b)
+						if a == state then return true elseif b == state then return false end
+						return (a.root.Position - state.root.Position).Magnitude < (b.root.Position - state.root.Position).Magnitude
+					end)
+					for index = 1, math.min(4, #allies) do
+						allies[index].rallyUntil = current + 4
+						allies[index].character:SetAttribute("K0RallyUntil", workspace:GetServerTimeNow() + 4)
+					end
+				elseif attack.isSkill and not attack.ranged then
+					applySwordHits(state, current)
+					if attack.isSpell then
+						state.spellSeq += 1
+						local first = state.root.Position
+						local last = first + attack.direction * attack.definition.range
+						local wall = workspace:Raycast(first, last - first, combatRayParams(state.character, enemyFolder))
+						if wall then last = wall.Position end
+						state.character:SetAttribute("K0SpellVisual", string.format("%d|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f", state.spellSeq, first.X, first.Y, first.Z, last.X, last.Y, last.Z))
+					end
+				elseif state.baseClassId == "elf" or attack.isSpell or attack.ranged then applyArrowShot(state, current)
+				else applySwordHits(state, current) end
 			end
 		else
 			local enemy = sample.enemy
@@ -826,6 +928,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 			state.attack = nil
 			restoreAutoRotate(state)
 			state.character:SetAttribute("K0AttackKind", nil)
+			state.character:SetAttribute("K0SkillId", nil)
 			setPlayerState(state, "Idle")
 		end
 	elseif state.mode == "Dodge" and state.dodge then
@@ -861,8 +964,8 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 			end
 		end
 	end
-	if current >= state.regenAt and state.mode ~= "Block" and state.mode ~= "Dead" then
-		setStamina(state, state.stamina + Config.StaminaRegen * math.min(dt, 0.25))
+	if state.mana and current >= state.manaRegenAt and state.mode ~= "Dead" then
+		setMana(state, state.mana + Config.ManaRegen * math.min(dt, 0.25))
 	end
 	return consumedAction
 end
@@ -1241,11 +1344,12 @@ local function setupCharacter(player, character)
 		local attackProfile = Config.BasicAttackProfiles[classId]
 		local current = now()
 		local state = {
-			player = player, character = character, humanoid = humanoid, root = root, mode = "", stamina = Config.MaxStamina,
-			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0, lastSpellStarted = -math.huge,
+			player = player, character = character, humanoid = humanoid, root = root, mode = "",
+			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0,
+			mana = Config.MaxMana, manaRegenAt = current, skillReadyAt = {},
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
 			combo = 0, lastAttackFinished = -math.huge, lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge,
-			regenAt = current, stunnedUntil = 0, feedbackSeq = 0, attack = nil, queued = nil, counter = nil,
+			stunnedUntil = 0, feedbackSeq = 0, attack = nil, queued = nil, counter = nil,
 			lastMotionPosition = root.Position, lastSafePivot = character:GetPivot(), lastMotionAt = current, movementBudget = Config.MovementBudget,
 			tokens = Config.RemoteBurst, lastRefill = current,
 		}
@@ -1265,8 +1369,9 @@ local function setupCharacter(player, character)
 		character:SetAttribute("K0ArrowVisual", nil)
 		character:SetAttribute("K0SpellVisual", nil)
 		character:SetAttribute("K0AttackKind", nil)
-		character:SetAttribute("K0MaxStamina", Config.MaxStamina)
-		character:SetAttribute("K0Stamina", Config.MaxStamina)
+		character:SetAttribute("K0MaxMana", Config.MaxMana)
+		character:SetAttribute("K0Mana", Config.MaxMana)
+		for slot = 1, 3 do character:SetAttribute("K0SkillReady" .. slot, 0) end
 		character:SetAttribute("K0Combo", 0)
 		character:SetAttribute("K0AttackPhase", "None")
 		character:SetAttribute("K0Invulnerable", false)
@@ -1342,12 +1447,12 @@ function CombatService.start(enemies, serverContextResolver)
 		if not state or not alive(state) or type(action) ~= "string" or #action > 16 or select("#", ...) > 0 or not validDirection(direction) then
 			return
 		end
-		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" then
+		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" and not action:match("^Skill[123]$") then
 			return
 		end
 		if targetModel ~= nil then
 			if typeof(targetModel) ~= "Instance" or not enemyStates[targetModel]
-				or not (action == "Attack" or (action == "CastArcane" and state.baseClassId == "mage")) then return end
+				or not (action == "Attack" or action:match("^Skill[123]$") or (action == "CastArcane" and state.baseClassId == "mage")) then return end
 		end
 		local current = now()
 		-- Releasing guard is always safe and must not be dropped after a burst.

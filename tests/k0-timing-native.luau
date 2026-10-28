@@ -101,8 +101,8 @@ local function playerState(preferReal)
 	local state = { player = player, character = model, humanoid = humanoid, root = root,
 		baseClassId = "knight", attackProfile = api.Config.BasicAttackProfiles.knight, attackSeq = 0,
 		heroId = "timing-hero", heroEpoch = 1, characterGeneration = 1,
-		mode = "Idle", stamina = api.Config.MaxStamina, combo = 0, lastAttackFinished = -math.huge,
-		lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge, regenAt = math.huge,
+		mode = "Idle", combo = 0, lastAttackFinished = -math.huge,
+		lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge,
 		stunnedUntil = 0, feedbackSeq = 0, lastMotionPosition = root.Position,
 		lastSafePivot = model:GetPivot(), lastMotionAt = T, movementBudget = api.Config.MovementBudget,
 		tokens = api.Config.RemoteBurst, lastRefill = T }
@@ -271,7 +271,7 @@ return {
 		api.acceptAction(state, "BlockStart", nil, T - 0.2)
 		frame(T + 0.27, 0.2)
 		near(state.humanoid.Health, 9984, "current ordinary block reduces Goblin damage")
-		near(state.stamina, 80, "raise plus impact stamina charged once")
+
 	end)
 	case("R1-cancel-before-active-and-dead-attacker", function()
 		local state, enemy = playerState(false), enemyState("Ogre")
@@ -339,7 +339,7 @@ return {
 			frame(T + age, 0)
 			near((state.root.Position - position).Magnitude, 0, "same timestamp cannot move twice")
 			near(dodge.moved, moved, "same timestamp preserves cumulative distance")
-			near(state.stamina, 70, "dodge charged once")
+
 		end)
 	end
 	for _, age in { 0.08, 0.28 } do
@@ -351,7 +351,7 @@ return {
 			beginEnemy(enemy, state, T + age - 0.001)
 			frame(T + age, age)
 			near(state.humanoid.Health, age == 0.08 and 10000 or 9920, "invulnerability start included and end excluded at current moved position")
-			near(state.stamina, 70, "boundary hit cannot charge dodge twice")
+
 		end)
 	end
 	case("R1-dodge-wall-and-same-time-idempotence", function()
@@ -369,7 +369,7 @@ return {
 		local position = state.root.Position
 		frame(T + 0.3, 0)
 		near((state.root.Position - position).Magnitude, 0, "blocked same-time observation cannot move twice")
-		near(state.stamina, 70, "blocked dodge costs once")
+
 	end)
 	case("dodge-sequence-advances-only-on-accepted-dodges", function()
 		local state = playerState()
@@ -381,12 +381,10 @@ return {
 		intent(state, "Dodge", T + 0.67, Vector3.new(0, 0, -1))
 		equal(state.character:GetAttribute("K0DodgeSeq"), 2, "second accepted dodge chooses left")
 		frame(T + 1.34, 0.67)
-		state.stamina = 0
 		intent(state, "Dodge", T + 1.35, Vector3.new(0, 0, -1))
-		equal(state.character:GetAttribute("K0DodgeSeq"), 2, "insufficient stamina does not advance")
-		state.stamina = 100
+		equal(state.character:GetAttribute("K0DodgeSeq"), 3, "third dodge starts when the prior action ends")
 		intent(state, "Dodge", T + 1.36, Vector3.new(0, 0, -1))
-		equal(state.character:GetAttribute("K0DodgeSeq"), 3, "third accepted dodge chooses right")
+		equal(state.character:GetAttribute("K0DodgeSeq"), 3, "ongoing dodge cannot restart early")
 	end)
 
 	for _, action in { "Attack", "BlockStart", "Dodge" } do
@@ -410,9 +408,7 @@ return {
 			local feedback = state.feedbackSeq
 			frame(T + nextFrame)
 			equal(state.feedbackSeq, feedback, "same observation cannot consume twice")
-			if action == "Attack" then equal(state.combo, 2, "single next combo")
-			elseif action == "BlockStart" then near(state.stamina, 96, "guard initial cost once")
-			else near(state.stamina, 70, "dodge cost once") end
+			if action == "Attack" then equal(state.combo, 2, "single next combo") end
 		end)
 	end
 	case("R2-repeated-input-cannot-extend-buffer", function()
@@ -435,20 +431,17 @@ return {
 		frame(T + 0.333333333)
 		equal(state.queued, nil, "release cancels guard queue")
 		equal(state.mode, "Attack", "released guard does not start")
-		near(state.stamina, 100, "cancelled guard costs nothing")
+
 	end)
 	for _, action in { "BlockStart", "Dodge" } do
-		case("R2-resource-denial-" .. action, function()
+		case("R2-no-resource-gate-" .. action, function()
 			local state = playerState()
 			local definition = beginSword(state, 1)
 			local eligible = api.Rules.nextAllowedInAttack(action, definition)
 			intent(state, action, T + eligible - 0.119)
-			equal(state.queued and state.queued.action, action, "resource-ready action queues")
-			state.stamina = 0
+			equal(state.queued and state.queued.action, action, "action queues")
 			frame(T + eligible + 0.01)
-			equal(state.queued, nil, "resource loss discards queue")
-			equal(state.mode, "Attack", "resource denied action does not start")
-			near(state.stamina, 0, "resource denial cannot overspend")
+			equal(state.mode, action == "BlockStart" and "Block" or "Dodge", "action starts without stamina")
 		end)
 	end
 	case("R2-death-discards-buffer", function()
@@ -486,7 +479,7 @@ return {
 		intent(state, "Dodge", T + 0.433333333)
 		equal(state.mode, "Dodge", "higher-priority incoming dodge replaces due attack")
 		equal(state.attack, nil, "buffered attack does not also execute")
-		near(state.stamina, 70, "replacement dodge costs once")
+
 	end)
 	case("R2-due-dodge-precedes-lower-priority-remote", function()
 		local state = playerState()
@@ -495,7 +488,7 @@ return {
 		intent(state, "Attack", T + 0.366666667)
 		equal(state.mode, "Dodge", "due dodge is not overridden by fresh attack")
 		equal(state.queued, nil, "lower-priority remote does not make a second action")
-		near(state.stamina, 70, "due dodge costs once")
+
 	end)
 end, debug.traceback)
 if not ok then table.insert(report.failures, "fixture: " .. tostring(fatal)) end

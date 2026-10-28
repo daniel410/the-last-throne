@@ -246,7 +246,8 @@ return {
 		local enemy = spawnEnemy(20)
 		action(state, "CastArcane", 0)
 		equal(state.character:GetAttribute("K0AttackKind"), "Arcane", "Mage enters replicated cast pose")
-		near(state.stamina, 85, "server charges the configured stamina cost")
+		equal(state.character:GetAttribute("K0Stamina"), nil, "no stamina attribute is created")
+		near(state.mana, 85, "server charges the configured mana cost")
 		sample(0.46)
 		near(enemy.humanoid.Health, 9900, "server resolves Arcane Bolt damage")
 		equal(type(state.character:GetAttribute("K0SpellVisual")), "string", "server publishes spell visual snapshot")
@@ -258,12 +259,88 @@ return {
 		action(state, "CastArcane", 3.01)
 		equal(state.character:GetAttribute("K0AttackKind"), "Arcane", "spell can be cast after cooldown")
 	end)
+	case("all-classes-have-independent-skill-cooldowns-and-magic-mana", function()
+		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
+			reset()
+			api.injectResolver(function() return classId end)
+			local state = spawnPlayer()
+			spawnEnemy(3)
+			for slot = 1, 3 do
+				local skill = api.Config.Skills[classId][slot]
+				if skill.effect == "recall" then state.thrownUntil = 100 end
+				state.mode = "Idle"; state.attack = nil
+				local t = (slot - 1) * 1.2
+				local before = state.mana
+				action(state, "Skill" .. slot, t)
+				equal(state.attack and state.attack.definition, skill, classId .. " accepts its own skill " .. slot)
+				equal(state.skillReadyAt[skill.id], t + skill.cooldown, classId .. " skill cooldown is independent")
+				near(state.mana, before - (skill.manaCost or 0), classId .. " only magic spends mana")
+			end
+		end
+	end)
+	case("mana-rejection-does-not-spend-or-start-cooldown", function()
+		api.injectResolver(function() return "mage" end)
+		local state = spawnPlayer()
+		state.mana = 0
+		action(state, "Skill2", 0)
+		equal(state.attack, nil, "insufficient mana rejects cast")
+		equal(state.skillReadyAt[api.Config.Skills.mage[2].id], nil, "rejected cast starts no cooldown")
+		equal(state.character:GetAttribute("K0Feedback"), "NeedMana", "mana failure is reported")
+	end)
+	case("skills-resolve-at-their-own-hit-window", function()
+		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
+			for slot = 1, 3 do
+				reset()
+				api.injectResolver(function() return classId end)
+				local state = spawnPlayer()
+				local enemy = spawnEnemy(3)
+				local skill = api.Config.Skills[classId][slot]
+				if skill.effect == "recall" then state.thrownUntil = 4; state.thrownTarget = enemy.model end
+				action(state, "Skill" .. slot, 0, nil, enemy.model)
+				sample(skill.windup + (skill.hitDelay or 0) + 0.01)
+				if skill.effect == "rally" then
+					assert(state.rallyUntil and state.rallyUntil > 0, "rally protects caster")
+					report.checks += 1
+				else
+					assert(enemy.humanoid.Health < 10000, classId .. " skill " .. slot .. " damages target")
+					report.checks += 1
+				end
+				if skill.effect == "mark" then equal(enemy.marks[state] ~= nil, true, "hunter mark applies") end
+				if skill.effect == "water" then equal(enemy.model:GetAttribute("K0WetUntil") ~= nil, true, "water applies wet marker") end
+			end
+		end
+	end)
+	case("piercing-skill-hits-aligned-targets-once", function()
+		api.injectResolver(function() return "elf" end)
+		local state = spawnPlayer()
+		local first, second = spawnEnemy(4), spawnEnemy(8)
+		action(state, "Skill1", 0, nil, second.model)
+		sample(0.31)
+		near(first.humanoid.Health, 9890, "piercing arrow hits nearer target")
+		near(second.humanoid.Health, 9890, "piercing arrow hits selected target")
+		sample(0.35)
+		near(first.humanoid.Health, 9890, "piercing arrow cannot hit twice")
+	end)
+	case("magic-costs-and-cooldowns-are-independent", function()
+		api.injectResolver(function() return "mage" end)
+		local state = spawnPlayer()
+		spawnEnemy(3)
+		action(state, "Skill1", 0)
+		sample(0.46)
+		action(state, "Skill2", 1.1)
+		equal(state.attack and state.attack.definition.id, "mage.common.gust", "second spell available while first cooling")
+		near(state.mana, 65, "two spells spend their own MP costs")
+		sample(1.46)
+		action(state, "Skill1", 2.1)
+		equal(state.character:GetAttribute("K0Feedback"), "SkillCooling", "first spell remains on its own cooldown")
+		near(state.mana, 65, "cooldown rejection spends no MP")
+	end)
 	case("arcane-denies-other-classes-and-wall-damage", function()
 		api.injectResolver(function() return "knight" end)
 		local knight = spawnPlayer()
 		action(knight, "CastArcane", 0)
 		equal(knight.attack, nil, "non-Mage cannot request Arcane Bolt")
-		near(knight.stamina, 100, "denied cast spends no stamina")
+		near(knight.mana, 100, "denied cast spends no mana")
 		reset()
 		api.injectResolver(function() return "mage" end)
 		local mage = spawnPlayer()
@@ -520,7 +597,7 @@ return {
 			local enemy = spawnEnemy()
 			action(state, "BlockStart", 0)
 			equal(state.mode, "Idle", "no Knight guard action")
-			near(state.stamina, 100, "denied guard has no cost")
+			equal(state.character:GetAttribute("K0Stamina"), nil, "no stamina resource exists")
 			state.mode = "Block" -- exercise defense fail-closed even for corrupt state
 			state.guardStarted = 0.46
 			api.beginEnemyAttack(enemy, state, 0)

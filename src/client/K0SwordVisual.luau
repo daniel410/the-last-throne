@@ -291,6 +291,9 @@ function Visual.renderArms(character, dt)
 			end
 		elseif classId == "mage" and kind == "Arcane" then
 			right = CFrame.Angles(math.rad(70), 0, math.rad(-8))
+		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.bash" then
+			local pitch = phase == "Windup" and 90 or phase == "Active" and 125 or 70
+			left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		elseif classId == "knight" then
 			local side = character:GetAttribute("K0Combo") == 2 and -1 or 1
 			local pitch = phase == "Windup" and 60 or phase == "Active" and 60 or 20
@@ -494,10 +497,27 @@ local function consumeSpell(character)
 	seenSpells[character] = payload
 	local first, last = decodeShot(payload)
 	if not first then return end
-	first = weaponOrigin(character, first, last, "mage")
+	local classId = character:GetAttribute("K0ClassId")
+	first = weaponOrigin(character, first, last, classId)
 	if #spells >= 32 then table.remove(spells, 1).part:Destroy() end
-	local orb = arrowPart(workspace, "K0VisualArcaneBolt", Vector3.new(0.65, 0.65, 0.65), Color3.fromRGB(182, 111, 255), Enum.Material.Neon)
-	orb.Shape, orb.Position = Enum.PartType.Ball, first
+	local color = classId == "dwarf" and Color3.fromRGB(255, 155, 65) or character:GetAttribute("K0SkillId") == "mage.common.water" and Color3.fromRGB(88, 175, 255) or Color3.fromRGB(182, 111, 255)
+	local orb
+	if classId == "dwarf" then
+		for _, model in ipairs(character:GetChildren()) do
+			if model:IsA("Model") and classFor(model) == "dwarf" then
+				local weapon = model:FindFirstChild("Weapon")
+				if weapon and weapon:IsA("BasePart") then orb = weapon:Clone(); break end
+			end
+		end
+	end
+	if orb then
+		for _, child in ipairs(orb:GetDescendants()) do if child:IsA("JointInstance") or child:IsA("Constraint") or child:IsA("Trail") then child:Destroy() end end
+		orb.Name, orb.Anchored, orb.CanCollide, orb.CanTouch, orb.CanQuery = "K0VisualThrownAxe", true, false, false, false
+		orb.Parent, orb.Position = workspace, first
+	else
+		orb = arrowPart(workspace, "K0VisualArcaneBolt", Vector3.new(0.65, 0.65, 0.65), color, Enum.Material.Neon)
+		orb.Shape, orb.Position = Enum.PartType.Ball, first
+	end
 	local light = Instance.new("PointLight"); light.Color = orb.Color; light.Brightness = 2; light.Range = 8; light.Parent = orb
 	local front = Instance.new("Attachment"); front.Position = Vector3.new(0, 0, -0.3); front.Parent = orb
 	local back = Instance.new("Attachment"); back.Position = Vector3.new(0, 0, 0.3); back.Parent = orb
@@ -516,14 +536,14 @@ local function advanceSpells(dt)
 	for index = #spells, 1, -1 do
 		local spell = spells[index]
 		if not spell.part.Parent or not spell.character:IsDescendantOf(workspace)
-			or spell.character:GetAttribute("K0ClassId") ~= "mage"
+			or (spell.character:GetAttribute("K0ClassId") ~= "mage" and spell.character:GetAttribute("K0ClassId") ~= "dwarf")
 			or spell.character:GetAttribute("K0SpellVisual") ~= spell.payload
 			or (spell.owner and spell.owner.Character ~= spell.character) then
 			spell.part:Destroy(); table.remove(spells, index)
 		else
 			spell.elapsed = spell.elapsed + elapsed
 			local position = spell.first + spell.direction * spell.distance * math.min(1, spell.elapsed / spell.duration)
-			spell.part.CFrame = CFrame.lookAt(position, position + spell.direction)
+			spell.part.CFrame = CFrame.lookAt(position, position + spell.direction) * (spell.character:GetAttribute("K0ClassId") == "dwarf" and CFrame.Angles(spell.elapsed * 20, 0, 0) or CFrame.new())
 			if spell.elapsed >= spell.duration then
 				impact(position, Color3.fromRGB(196, 144, 255))
 				spell.part:Destroy(); table.remove(spells, index)
@@ -585,7 +605,7 @@ end
 function Visual.renderCharacter(character, dt)
 	local classId = character:GetAttribute("K0ClassId") or "knight"
 	if classId == "elf" then consumeArrow(character) end
-	if classId == "mage" then consumeSpell(character) end
+	if classId == "mage" or classId == "dwarf" then consumeSpell(character) end
 	local rendered = 0
 	for _, model in ipairs(character:GetChildren()) do
 		if model:IsA("Model") and classFor(model) == classId then
