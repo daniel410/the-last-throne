@@ -40,6 +40,7 @@ local function reset()
 		table.clear(api.heroClasses)
 		table.clear(api.pendingCharacters)
 		api.setClock(0)
+		api.setHitEffectRemote(nil)
 	end
 	if characters then characters:ClearAllChildren() end
 	if enemies then enemies:ClearAllChildren() end
@@ -120,6 +121,7 @@ local ok, fatal = xpcall(function()
 return {
  Config=Config, playerStates=playerStates, enemyStates=enemyStates, activePlayers=activePlayers, heroClasses=heroClasses, pendingCharacters=pendingCharacters,
  setEnemyFolder=function(value) enemyFolder=value end,
+ setHitEffectRemote=function(value) hitEffectRemote=value end,
  setClock=function(value) now=function() return value end end,
  injectResolver=function(value)
    contextResolver=function(player, character)
@@ -185,6 +187,46 @@ return {
 		near(enemy.humanoid.Health, 9925, "a low Slime receives the server-authoritative sword hit")
 		sample(0.20)
 		near(enemy.humanoid.Health, 9925, "the same sword window cannot hit Slime twice")
+	end)
+	case("confirmed-hit-feedback-only-for-actual-health-loss", function()
+		api.injectResolver(function() return "knight" end)
+		local events = {}
+		api.setHitEffectRemote({ FireAllClients = function(_, ...) table.insert(events, { ... }) end })
+		local state = spawnPlayer()
+		local enemy = spawnEnemy(3, "Slime")
+		action(state, "Attack", 0)
+		enemy.humanoid.Health = 50
+		sample(0.17)
+		equal(#events, 1, "server broadcasts one confirmed hit")
+		equal(events[1][1], enemy.model, "feedback identifies the actual enemy")
+		equal(events[1][2], enemy.root.Position, "feedback snapshots target position")
+		near(events[1][3], 50, "lethal damage number is actual health lost")
+		equal(events[1][4], "knight", "feedback class comes from trusted server state")
+		equal(events[1][5], "Slime", "feedback identifies slime material")
+		sample(0.20)
+		equal(#events, 1, "one attack window cannot broadcast the hit twice")
+	end)
+	case("miss-and-forcefield-do-not-broadcast-hit-feedback", function()
+		api.injectResolver(function() return "knight" end)
+		local events = {}
+		api.setHitEffectRemote({ FireAllClients = function(_, ...) table.insert(events, { ... }) end })
+		local state = spawnPlayer()
+		local enemy = spawnEnemy(3)
+		local shield = Instance.new("ForceField")
+		shield.Parent = enemy.model
+		action(state, "Attack", 0)
+		sample(0.17)
+		near(enemy.humanoid.Health, 10000, "forcefield blocks health loss")
+		equal(#events, 0, "blocked damage does not create hit feedback")
+		shield:Destroy()
+		reset()
+		api.injectResolver(function() return "knight" end)
+		api.setHitEffectRemote({ FireAllClients = function(_, ...) table.insert(events, { ... }) end })
+		state = spawnPlayer()
+		spawnEnemy(20)
+		action(state, "Attack", 0)
+		sample(0.17)
+		equal(#events, 0, "miss does not create hit feedback")
 	end)
 	case("slime-melee-is-server-authoritative", function()
 		api.injectResolver(function() return "knight" end)

@@ -20,6 +20,7 @@ local pendingCharacters = {}
 local contextResolver = function(_player, _character) return nil end
 local enemyStates = {}
 local enemyFolder
+local hitEffectRemote
 local lastGoblinStart = -math.huge
 local hadLivingPlayer = false
 local nextEnemyId = 0
@@ -496,7 +497,16 @@ local function damageEnemy(state, enemy, attack, current)
 	enemy.aggroUntil = expires
 	enemy.lastAttacker = state
 	enemy.target = state
+	local healthBefore = enemy.humanoid.Health
+	local position = enemy.root.Position
 	enemy.humanoid:TakeDamage(damage)
+	local applied = math.max(0, healthBefore - math.max(0, enemy.humanoid.Health))
+	if applied > 0 and hitEffectRemote then
+		-- This is presentation data for an already resolved hit, never an
+		-- input to damage. A position snapshot survives a lethal target's removal.
+		local direction = horizontalUnit(position - state.root.Position, attack.direction)
+		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction)
+	end
 	if enemy.humanoid.Health > 0 then
 		if not enemy.attack and enemy.mode ~= "Exposed" then setEnemyState(enemy, "Chase") end
 		damagePosture(enemy, attack.definition.posture, current)
@@ -1255,6 +1265,13 @@ function CombatService.start(enemies, serverContextResolver)
 		actionRemote.Parent = remotes
 	end
 	assert(actionRemote:IsA("RemoteEvent"), "K0Action must be a RemoteEvent")
+	hitEffectRemote = remotes:FindFirstChild("K0HitEffect")
+	if not hitEffectRemote then
+		hitEffectRemote = Instance.new("RemoteEvent")
+		hitEffectRemote.Name = "K0HitEffect"
+		hitEffectRemote.Parent = remotes
+	end
+	assert(hitEffectRemote:IsA("RemoteEvent"), "K0HitEffect must be a RemoteEvent")
 	for _, model in ipairs(enemies:GetChildren()) do
 		if model:IsA("Model") then
 			registerEnemy(model)

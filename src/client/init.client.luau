@@ -14,6 +14,7 @@ hud.setVisible(false)
 require(script.K0Telegraphs).start()
 require(script.K0SwordVisual).start()
 require(script.K0EnemyVisual).start()
+require(script.K0HitEffects).start()
 local actionRemote
 local heldBlock = false
 local blockGeneration = 0
