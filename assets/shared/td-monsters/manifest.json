@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "captured_date": "2026-10-28",
+  "provenance": {
+    "td_repository": "../throne-defense",
+    "td_head_at_capture": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+    "worktree_note": "TD default.project.json modified; model directories untracked. File SHA, not HEAD alone, identifies the captured source.",
+    "td_project_file": "default.project.json",
+    "td_project_file_sha256": "6bf773a8306b10cfaeddba5f5f826665b7b8a9d6177dff1fe021174c35a28f47",
+    "td_project_entry": "tree.ServerStorage.MonsterModels",
+    "runtime_top_level_folder": "MonsterModels",
+    "runtime_model_count": 43,
+    "scope": "Full runtime XML is preserved byte-for-byte; only three selected original GLBs are copied."
+  },
+  "files": {
+    "runtime": {
+      "path": "assets/shared/td-monsters/runtime.rbxmx",
+      "td_source_path": "assets/models/meshy-deepwood-slime-v1/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+      "size_bytes": 548546,
+      "git_lfs": true
+    },
+    "goblin": {
+      "path": "assets/shared/td-monsters/source/Meshy_AI_Goblin_Bladebearer_20261025_texture_da014fd3.glb",
+      "td_source_path": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Goblin_Bladebearer_20261025_texture_da014fd3.glb",
+      "sha256": "90ece6137ab326db2e9b929383c5b98c3f2529b0f78bc7f4d1fc8dbba1dc0a7b",
+      "size_bytes": 7368640,
+      "git_lfs": true
+    },
+    "slime": {
+      "path": "assets/shared/td-monsters/source/Meshy_AI_Grumpy_Green_Slime_1026021945_texture.glb",
+      "td_source_path": "assets/models/meshy-deepwood-slime-v1/source/Meshy_AI_Grumpy_Green_Slime_1026021945_texture.glb",
+      "sha256": "3adc1a12f3e89f6690047abb2c8cab3d6fbb4ae0f3726b87e2a5607d4d7324c2",
+      "size_bytes": 6033596,
+      "git_lfs": true
+    },
+    "ogre": {
+      "path": "assets/shared/td-monsters/source/Meshy_AI_Grimfang_the_Bonecrusher_20261025_texture_5d91642a.glb",
+      "td_source_path": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Grimfang_the_Bonecrusher_20261025_texture_5d91642a.glb",
+      "sha256": "d5a01cdc860ce2bc0725594e89c01b574f095ac9cde4a84807b72640493af2b3",
+      "size_bytes": 7654612,
+      "git_lfs": true
+    }
+  },
+  "coordinate_contract": {
+    "runtime_origin": "feet",
+    "up": "+Y",
+    "template_forward": "+Z per TD VisualFactoryEnemyMeshes.lua",
+    "native_part_rotation": "serialized Y 180 degrees; preserve and verify before applying any additional rotation",
+    "scale": "TD uses TargetHeight / template:GetBoundingBox().Y, then optional visual multiplier",
+    "physics": "serialized MeshParts are anchored and non-colliding; runtime adapter must configure visual physics"
+  },
+  "models": {
+    "goblin": {
+      "template_name": "goblin",
+      "source_glb_path": "assets/shared/td-monsters/source/Meshy_AI_Goblin_Bladebearer_20261025_texture_da014fd3.glb",
+      "parts": [
+        {
+          "name": "LegL",
+          "mesh_id": "rbxassetid://78392327157438",
+          "texture_id": "rbxassetid://134919664038207",
+          "size": [
+            0.39153796434402466,
+            0.2199999988079071,
+            0.3517947196960449
+          ],
+          "position": [
+            -0.19576898217201233,
+            0.10999999940395355,
+            0.06743590533733368
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            -8.742277657347586e-08,
+            0.0,
+            1.0,
+            0.0,
+            8.742277657347586e-08,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "LegL",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "LegR",
+          "mesh_id": "rbxassetid://100268725310905",
+          "texture_id": "rbxassetid://134919664038207",
+          "size": [
+            0.39153796434402466,
+            0.21897388994693756,
+            0.3784617781639099
+          ],
+          "position": [
+            0.19576898217201233,
+            0.11051305383443832,
+            -0.05410237982869148
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            -8.742277657347586e-08,
+            0.0,
+            1.0,
+            0.0,
+            8.742277657347586e-08,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "LegR",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "ArmL",
+          "mesh_id": "rbxassetid://127402469282462",
+          "texture_id": "rbxassetid://134919664038207",
+          "size": [
+            0.15128225088119507,
+            0.4153382182121277,
+            0.3584379553794861
+          ],
+          "position": [
+            -0.3456411361694336,
+            0.447669118642807,
+            0.1436018943786621
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            -8.742277657347586e-08,
+            0.0,
+            1.0,
+            0.0,
+            8.742277657347586e-08,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "ArmL",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "ArmR",
+          "mesh_id": "rbxassetid://106102430341786",
+          "texture_id": "rbxassetid://134919664038207",
+          "size": [
+            0.27281999588012695,
+            0.3618377447128296,
+            0.6287177801132202
+          ],
+          "position": [
+            0.40640997886657715,
+            0.44297027587890625,
+            0.12897449731826782
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            -8.742277657347586e-08,
+            0.0,
+            1.0,
+            0.0,
+            8.742277657347586e-08,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "ArmR",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "Body",
+          "mesh_id": "rbxassetid://77403549111699",
+          "texture_id": "rbxassetid://134919664038207",
+          "size": [
+            0.7261101603507996,
+            0.7799999713897705,
+            0.6184609532356262
+          ],
+          "position": [
+            0.06489315629005432,
+            0.6100000143051147,
+            0.03769262880086899
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            -8.742277657347586e-08,
+            0.0,
+            1.0,
+            0.0,
+            8.742277657347586e-08,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "Body",
+          "anchored": true,
+          "can_collide": false
+        }
+      ],
+      "target_height": 3.6
+    },
+    "ogre": {
+      "template_name": "ogre",
+      "source_glb_path": "assets/shared/td-monsters/source/Meshy_AI_Grimfang_the_Bonecrusher_20261025_texture_5d91642a.glb",
+      "parts": [
+        {
+          "name": "LegL",
+          "mesh_id": "rbxassetid://76243711635467",
+          "texture_id": "rbxassetid://90412861785322",
+          "size": [
+            0.4556170701980591,
+            0.2199999988079071,
+            0.42680251598358154
+          ],
+          "position": [
+            -0.22780853509902954,
+            0.10999999940395355,
+            0.011653654277324677
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "LegL",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "LegR",
+          "mesh_id": "rbxassetid://77089513742534",
+          "texture_id": "rbxassetid://90412861785322",
+          "size": [
+            0.359649121761322,
+            0.2194509506225586,
+            0.38392382860183716
+          ],
+          "position": [
+            0.179824560880661,
+            0.11027452349662781,
+            -0.033092983067035675
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "LegR",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "ArmL",
+          "mesh_id": "rbxassetid://108622715572697",
+          "texture_id": "rbxassetid://90412861785322",
+          "size": [
+            0.2553510069847107,
+            0.5295271873474121,
+            0.3178104758262634
+          ],
+          "position": [
+            -0.3876754939556122,
+            0.5047636032104492,
+            0.023934371769428253
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "ArmL",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "ArmR",
+          "mesh_id": "rbxassetid://98353562560509",
+          "texture_id": "rbxassetid://90412861785322",
+          "size": [
+            0.30304789543151855,
+            0.5399999618530273,
+            0.4952409267425537
+          ],
+          "position": [
+            0.4115239381790161,
+            0.5099999904632568,
+            0.029144078493118286
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "ArmR",
+          "anchored": true,
+          "can_collide": false
+        },
+        {
+          "name": "Body",
+          "mesh_id": "rbxassetid://98618217378067",
+          "texture_id": "rbxassetid://90412861785322",
+          "size": [
+            0.965402364730835,
+            0.7799999713897705,
+            0.5482463836669922
+          ],
+          "position": [
+            0.010720312595367432,
+            0.6100000143051147,
+            0.015076473355293274
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "Body",
+          "anchored": true,
+          "can_collide": false
+        }
+      ],
+      "target_height": 6.05
+    },
+    "slime": {
+      "template_name": "slime",
+      "source_glb_path": "assets/shared/td-monsters/source/Meshy_AI_Grumpy_Green_Slime_1026021945_texture.glb",
+      "parts": [
+        {
+          "name": "Body",
+          "mesh_id": "rbxassetid://84245584635347",
+          "texture_id": "rbxassetid://75994104212849",
+          "size": [
+            2.0734453201293945,
+            1.0,
+            1.8152666091918945
+          ],
+          "position": [
+            -0.0004366207867860794,
+            0.5,
+            -0.00020314319408498704
+          ],
+          "rotation_matrix": [
+            -1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "mesh_anchor": "Body",
+          "anchored": true,
+          "can_collide": false
+        }
+      ],
+      "target_height": 1.1
+    }
+  },
+  "validation_limits": {
+    "source_license_terms": "not independently verified",
+    "published_rpg_experience_access": "not verified",
+    "rpg_mesh_loading_rig_and_play": "not verified",
+    "past_td_owner_restricted_evidence": "see docs/evidence/k0/asset-audit.md and asset-load-probe.md; does not establish published RPG permissions"
+  }
+}

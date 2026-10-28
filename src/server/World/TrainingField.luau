@@ -3,6 +3,7 @@ local Lighting = game:GetService("Lighting")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
 local Text = require(ReplicatedStorage.Shared.K0Text)
+local TdMonsterAppearance = require(script.Parent.TdMonsterAppearance)
 
 local TrainingField = {}
 
@@ -107,18 +108,6 @@ local function motor(parent, name, part0, part1, c0, c1)
 	joint.Parent = parent
 end
 
-local function attachVisual(model, name, size, position, color, attachedTo)
-	local piece = bodyPart(model, name, size, position, color, 0, false)
-	piece.CanTouch = false
-	piece.CanQuery = false
-	piece.Massless = true
-	local weld = Instance.new("WeldConstraint")
-	weld.Part0 = attachedTo
-	weld.Part1 = piece
-	weld.Parent = piece
-	return piece
-end
-
 local function makeEnemy(parent, kind, x, z, scale)
 	local model = Instance.new("Model")
 	model.Name = kind
@@ -135,8 +124,8 @@ local function makeEnemy(parent, kind, x, z, scale)
 		return Vector3.new(dx * scale, dy * scale, dz * scale)
 	end
 
-	-- Named R6 body parts and Motor6Ds allow Humanoid:MoveTo, damage, cloning,
-	-- and later replacement with a validated RPG rig. This is not a TD model.
+	-- This R6 skeleton is the K0 movement/combat rig. The separate visible
+	-- pieces come from the pinned Throne Defense Meshy runtime models.
 	local root = bodyPart(model, "HumanoidRootPart", size(2, 2, 1), at(0, 3, 0), skin, 1, true)
 	local torso = bodyPart(model, "Torso", size(2, 2, 1), at(0, 3, 0), armor, 0, false)
 	local head = bodyPart(model, "Head", size(2, 1, 1), at(0, 4.5, 0), skin, 0, false)
@@ -153,22 +142,6 @@ local function makeEnemy(parent, kind, x, z, scale)
 	motor(torso, "Left Hip", torso, leftLeg, CFrame.new(-0.5 * scale, -scale, 0), CFrame.new(0, scale, 0))
 	motor(torso, "Right Hip", torso, rightLeg, CFrame.new(0.5 * scale, -scale, 0), CFrame.new(0, scale, 0))
 
-	-- Eyes and broad ears supply a readable blockout silhouette, not final art.
-	local eyeColor = Color3.fromRGB(240, 160, 39)
-	attachVisual(model, "LeftEye", size(0.28, 0.22, 0.08), at(-0.45, 4.55, -0.54), eyeColor, head)
-	attachVisual(model, "RightEye", size(0.28, 0.22, 0.08), at(0.45, 4.55, -0.54), eyeColor, head)
-	if isGoblin then
-		attachVisual(model, "LeftEar", size(0.8, 0.45, 0.35), at(-1.35, 4.65, 0), skin, head)
-		attachVisual(model, "RightEar", size(0.8, 0.45, 0.35), at(1.35, 4.65, 0), skin, head)
-		-- Temporary visual only; the server's combat query is independent of the prop.
-		attachVisual(model, "DaggerGrip", size(0.24, 0.68, 0.24), at(1.5, 2.25, -0.25), dark, rightArm)
-		attachVisual(model, "DaggerBlade", size(0.33, 0.22, 1.4), at(1.5, 2.25, -1.02), Color3.fromRGB(173, 175, 164), rightArm)
-	else
-		attachVisual(model, "Shoulders", size(3.1, 0.45, 1.25), at(0, 3.8, 0), armor, torso)
-		attachVisual(model, "ClubHandle", size(0.35, 0.35, 1.0), at(1.5, 2.2, -0.85), COLORS.wood, rightArm)
-		attachVisual(model, "ClubHead", size(1.0, 1.0, 1.1), at(1.5, 2.2, -1.6), dark, rightArm)
-	end
-
 	local humanoid = Instance.new("Humanoid")
 	humanoid.Name = "Humanoid"
 	humanoid.DisplayName = Text.Enemy[kind] or kind
@@ -178,6 +151,7 @@ local function makeEnemy(parent, kind, x, z, scale)
 	humanoid.UseJumpPower = true
 	humanoid.JumpPower = 0
 	humanoid.Parent = model
+	TdMonsterAppearance.attach(model, kind, 3 * scale)
 	model.Parent = parent
 	root:SetNetworkOwner(nil)
 	return model
@@ -232,6 +206,10 @@ local function makeTerrain(folder)
 end
 
 function TrainingField.create()
+	-- Check all imported K0 template contracts before changing Workspace.
+	for _, kind in ipairs({ "Goblin", "Ogre", "Slime" }) do
+		TdMonsterAppearance.describe(kind)
+	end
 	local existing = Workspace:FindFirstChild("DeepwoodK0")
 	if existing then
 		assert(existing:IsA("Model"), "DeepwoodK0 must be a Model")

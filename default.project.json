@@ -21,6 +21,12 @@
       }
     },
 
+    "ServerStorage": {
+      "TdMonsterModels": {
+        "$path": "assets/shared/td-monsters/runtime.rbxmx"
+      }
+    },
+
     "StarterPlayer": {
       "StarterPlayerScripts": {
         "Client": {
