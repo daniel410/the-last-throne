@@ -172,3 +172,14 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau`, 종료 0, 449개 통과, 검사 수집 런타임 오류 0, Player 0. 자식 분열·크기·체력·재생성 확인. [로그](slime-awareness-build-smoke.log) |
 | 소스 fixture와 Play | 공격 인식 182개, 무기 2,177개, 타이밍 116개 검사 및 격리 R15 손 위치 측정은 [작업 기록](slime-awareness-bow.md) 참고. 실제 손 위치 조정은 동일 소스의 격리 Play에서 수동으로 측정했다. |
 | 미검증·릴리스 | 다양한 아바타 체형의 자세와 시각 수용, 실제 사용자 조작·다인·게시 환경은 미검증. Git 릴리스 태그·Roblox 게시 없음. |
+
+## 0.8.1 — 기사·드워프·마법사 근접 공격 동작
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `f801ed7b5312c2c37969a560938ed585c679b690`, `VERSION=0.8.1`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.8.1/TheLastThrone-0.8.1.rbxlx`, 종료 0 |
+| 결과물 | 837,882 bytes, SHA-256 `2e639c08eb766a193e991f4c61934feab81736c606d12fcf8626d0a4a788103f`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-melee-motion-native.luau`, 종료 0, 28개 통과. 실제 R6/R15 리그와 무기 소켓의 순운동학 검사. [로그](melee-swing-build-native.log) |
+| 소스 fixture 및 실제 Play | 기존 무기 2,177개 검사와 격리된 실제 R15 플레이의 무기 끝 위치 측정은 [작업 기록](melee-swing-motion.md) 참고. 이 빌드 파일 자체의 Player Play는 수행하지 않았다. |
+| 미검증·릴리스 | 사용자 화면 평가, 다양한 아바타 체형, R6 Play·다인·모바일·게시 환경은 미검증. Git 릴리스 태그·Roblox 게시 없음. |
