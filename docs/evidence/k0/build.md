@@ -245,3 +245,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 849,825 bytes, SHA-256 `0a6029b8dc0c0b39f765e6aea503d314f1b06013881b225c89e04380444f6b7c`, Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개, `tests/k0-melee-motion-native.luau` 40개, `tests/k0-basic-attacks-native.luau` 256개 통과. Player 0의 모델·관절·서버 fixture 검사다. [스모크](melee-target-0110-smoke.log), [동작](melee-target-0110-motion.log), [서버](melee-target-0110-server.log) |
 | 실제 Play 및 한계 | 빌드 전 동일 표적 코드로 격리된 R15 기사 플레이에서 마우스 클릭 표적·측면 자동 회전·피해를 확인했다. 도끼 높이의 최종 변경과 이 빌드 파일 자체의 Player Play, 다양한 체형·R6·실기기·다인·게시 환경과 사용자 시각 평가는 미검증. 기존 `203785492` 유형 경고가 재관측됐다. [상세](melee-target-high-axe.md). 릴리스 태그·Roblox 게시 없음. |
+
+## 0.11.1 — PC V 회피·Space 점프
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `350e8f31f434cb2890af1f7344a1e4ddcf222b17`, `VERSION=0.11.1`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.11.1/TheLastThrone-0.11.1.rbxlx`, 종료 0 |
+| 결과물 | 849,802 bytes, SHA-256 `9fca8c5d1ff0ab19c69dde292377598748066921f1e3925bd50231f05329afe7`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과, 수집 런타임 오류 0, Player 0. [로그](dodge-v-0111-smoke.log) |
+| 실제 Play 및 한계 | 빌드 전 동일 소스의 격리 Studio R15 Knight에서 가상 PC Space 점프와 V 회피, V HUD를 확인했다. 이 빌드 파일 자체의 Player Play·실기기·패드/터치·다인·게시 환경은 미검증이다. [상세](dodge-v.md). 기존 `203785492` 유형 경고가 재관측됐다. 릴리스 태그·Roblox 게시 없음. |
