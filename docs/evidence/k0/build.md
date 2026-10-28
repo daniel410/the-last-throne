@@ -225,3 +225,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 847,303 bytes, SHA-256 `f826e5725732d27981c5b11fc62c76c8a95a30f81d05897bae4ab11e9b378066`, Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | `tests/k0-dodge-pose-native.luau` 28개 통과. 네 직업 R6/R15 관절 순운동학과 기사 대기 검 방향을 검사. Player 0. [로그](dodge-right-foot-build-native.log) |
 | 실제 Play 및 한계 | 빌드 전 동일 소스의 격리 R15 기사로 실제 회피·검 자세를 측정했다. [상세](dodge-right-foot.md). 이 빌드 파일의 Player Play, 사용자 시각 수용, 다양한 체형·R6·다인·모바일·게시 환경은 미검증. 릴리스 태그·Roblox 게시 없음. |
+
+## 0.10.0 — 낮은 근접 공격·교대 회피
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `ee9a62b3fa2dfe80377df9f4cf67d1d2fec6b7e1`, `VERSION=0.10.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.10.0/TheLastThrone-0.10.0.rbxlx`, 종료 0 |
+| 결과물 | 847,736 bytes, SHA-256 `e077b556269a164ed5af0f675f544fb147c787b508515a42e66ab21c569fd3e2`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-dodge-pose-native.luau` 60개, `tests/k0-melee-motion-native.luau` 40개, `tests/k0-timing-native.luau` 121개 통과. Player 0의 관절·서버 fixture 검사다. [회피](alternating-dodge-build-native.log), [무기](low-swing-build-native.log), [서버](alternating-dodge-build-timing.log) |
+| 실제 Play 및 한계 | 빌드 전 격리 R15 플레이의 발 교대·무기 궤적 측정은 [상세](low-swing-alternating-dodge.md) 참고. 이 빌드의 Player Play, 다양한 체형·R6·실기기·다인·게시 환경과 사용자 시각 평가는 미검증이다. 릴리스 태그·Roblox 게시 없음. |
