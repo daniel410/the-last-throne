@@ -194,3 +194,14 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 검사 | `tests/k0-melee-motion-native.luau`, 종료 0, 32개 통과. R6/R15 관절 및 무기 소켓의 순운동학 검사. [로그](forward-melee-build-native.log) |
 | 소스 fixture 및 실제 Play | 기존 무기 2,177개 검사 및 격리된 R15 플레이 측정은 [작업 기록](forward-melee-motion.md) 참고. 이 빌드 파일 자체의 Player Play는 별도 수행하지 않았다. |
 | 미검증·릴리스 | 다양한 체형의 시각 평가, R6 실제 Play·다인·모바일·게시 환경은 미검증. Git 릴리스 태그·Roblox 게시 없음. |
+
+## 0.9.0 — 서버 확정 명중 피드백
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `65ee3212213e7fbfe5cef459805cca66cede2094`, `VERSION=0.9.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.9.0/TheLastThrone-0.9.0.rbxlx`, 종료 0 |
+| 결과물 | 845,941 bytes, SHA-256 `ad81950e3fd8642ba71ce0ab4978ac882b54a939e717dd33e58e96dbf4856411`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과·수집 런타임 오류 0, Player 0. [로그](hit-feedback-build-smoke.log). `tests/k0-hit-effects-native.luau` 64개 통과. [로그](hit-feedback-build-native.log) |
+| 소스 fixture 및 실제 Play | 서버 공격 192개 검사와 격리된 R15 플레이의 드워프·마법사 이벤트 및 임시 음원 로드 확인은 [작업 기록](hit-feedback.md) 참고. 이 빌드 파일 자체의 Player Play는 수행하지 않았다. |
+| 미검증·릴리스 | 실제 화면·음성의 사용자 수용, R6 실플레이, 다양한 체형·다인·모바일·게시 환경과 장거리 투사체 시각 동기화는 미검증. Git 릴리스 태그·Roblox 게시 없음. |
