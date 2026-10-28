@@ -11,6 +11,8 @@ return {
 	Block = "BLOCK",
 	Dodge = "DODGE",
 	ArcaneBolt = "ARCANE",
+	TargetSelected = "Target: %s. Press X to clear.",
+	TargetCleared = "Target cleared.",
 	Unavailable = "Combat is unavailable. Rejoin to retry.",
 	SpawnRetry = "Character could not load. Please wait or rejoin to retry.",
 	IncomingAttack = "INCOMING ATTACK",
@@ -30,7 +32,7 @@ return {
 	Practice = {
 		Move = "Move away from the blue spawn pad.",
 		Attack = "Use your basic attack. Face an enemy to aim.",
-		ElfAttack = "Face an enemy to shoot. Use your basic attack.",
+		ElfAttack = "Click an enemy to target and shoot, or face an enemy to fire.",
 		Dodge = "Use Dodge to practice avoiding an attack.",
 		Complete = "Controls practiced! Explore the grove and test your hero.",
 		Note = "Practice only: no story rewards or saved progress.",
@@ -56,9 +58,9 @@ return {
 		Retry = "RETRY LOBBY",
 		Role = {
 			knight = "Sword and shield.\nMelee attacks and blocking.",
-			elf = "Bow and arrow.\nFace an enemy to shoot.",
+			elf = "Bow and arrow.\nClick an enemy to shoot.",
 			dwarf = "Hand axe.\nSwing in close combat.",
-			mage = "Wooden staff.\nSwing in close combat.",
+			mage = "Wooden staff.\nClick an enemy and press Q to cast.",
 		},
 		Errors = {
 			InvalidRequest = "That request could not be read. Try again.",
@@ -92,6 +94,8 @@ return {
 		GuardBroken = "GUARD BROKEN",
 		Dodged = "DODGED",
 		Interrupted = "INTERRUPTED",
+		TargetBlocked = "Target is out of range or blocked. Move closer and try again.",
+		TargetUnavailable = "Target is no longer available. Select another enemy.",
 		SkillBusy = "Finish your action, then cast again.",
 		SkillCooling = "Arcane Bolt is recharging. Try again shortly.",
 		NeedStamina = "Not enough stamina. Wait, then cast again.",

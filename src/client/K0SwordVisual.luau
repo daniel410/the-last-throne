@@ -4,6 +4,7 @@
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
+local ContentProvider = game:GetService("ContentProvider")
 
 local Visual = {}
 local started = false
@@ -15,6 +16,8 @@ local spells = {}
 local bowRest = setmetatable({}, { __mode = "k" })
 local armPoses = setmetatable({}, { __mode = "k" })
 local weaponPoses = setmetatable({}, { __mode = "k" })
+local knightLoads = setmetatable({}, { __mode = "k" })
+local elfIK = setmetatable({}, { __mode = "k" })
 local MELEE = {
 	knight = { grip = "SwordGrip", joint = "K0SwordJoint", windup = 38, active = -85, recovery = -10, side = 45 },
 	dwarf = { grip = "WeaponGrip", joint = "PlayerWeaponJoint", windup = 58, active = -105, recovery = -15, side = 60 },
@@ -80,6 +83,82 @@ local function meleeEffect(model, joint, classId)
 	return effect
 end
 
+-- Restricted assets may be present in the place but fail to load for a
+-- particular client. Show a lightweight local substitute while fetching and
+-- keep it on failure; the TD mesh returns as soon as its fetch succeeds.
+function Visual.setKnightMeshReady(model, kind, ready)
+	local sword = kind == "sword"
+	local mesh = model:FindFirstChild(sword and "SwordBlade" or "Shield")
+	local grip = model:FindFirstChild(sword and "SwordGrip" or "ShieldGrip")
+	if not mesh or not mesh:IsA("MeshPart") or not grip or not grip:IsA("BasePart") then return false end
+	local name = sword and "K0LocalSwordFallback" or "K0LocalShieldFallback"
+	local old = model:FindFirstChild(name)
+	if ready then
+		if old then old:Destroy() end
+		mesh.LocalTransparencyModifier = 0
+		return true
+	end
+	mesh.LocalTransparencyModifier = 1
+	if old then return true end
+	local folder = Instance.new("Folder"); folder.Name = name; folder.Parent = model
+	local function part(partName, size, offset, color, material)
+		local p = Instance.new("Part")
+		p.Name, p.Size, p.Color, p.Material = partName, size, color, material
+		p.CanCollide, p.CanTouch, p.CanQuery, p.Massless, p.CastShadow = false, false, false, true, false
+		p.CFrame = grip.CFrame * offset
+		p.Parent = folder
+		local weld = Instance.new("WeldConstraint")
+		weld.Part0, weld.Part1, weld.Parent = grip, p, p
+	end
+	local silver, blue, gold = Color3.fromRGB(194, 205, 218), Color3.fromRGB(38, 85, 165), Color3.fromRGB(217, 174, 73)
+	if sword then
+		part("Handle", Vector3.new(.22, .72, .22), CFrame.new(0, 0, 0), Color3.fromRGB(64, 48, 46), Enum.Material.SmoothPlastic)
+		part("Guard", Vector3.new(.78, .14, .3), CFrame.new(0, .38, 0), gold, Enum.Material.Metal)
+		part("Blade", Vector3.new(.38, 2.95, .16), CFrame.new(0, 1.91, 0), silver, Enum.Material.Metal)
+		part("Edge", Vector3.new(.07, 2.80, .17), CFrame.new(.205, 1.91, 0), Color3.fromRGB(231, 237, 243), Enum.Material.Metal)
+	else
+		part("Rim", Vector3.new(1.89, 1.88, .18), CFrame.new(0, 0, -.24), silver, Enum.Material.Metal)
+		part("Face", Vector3.new(1.63, 1.62, .12), CFrame.new(0, 0, -.38), blue, Enum.Material.SmoothPlastic)
+		part("Emblem", Vector3.new(.34, .34, .08), CFrame.new(0, 0, -.48) * CFrame.Angles(0, 0, math.rad(45)), gold, Enum.Material.Metal)
+	end
+	return true
+end
+
+local function monitorKnightMeshes(character)
+	if character:GetAttribute("K0ClassId") ~= "knight" then return end
+	for _, model in ipairs(character:GetChildren()) do
+		if model:IsA("Model") and classFor(model) == "knight" then
+			local tracked = knightLoads[model]
+			if not tracked then tracked = {}; knightLoads[model] = tracked end
+			for _, kind in ipairs({ "sword", "shield" }) do
+				local mesh = model:FindFirstChild(kind == "sword" and "SwordBlade" or "Shield")
+				if mesh and mesh:IsA("MeshPart") and tracked[kind] ~= mesh and Visual.setKnightMeshReady(model, kind, false) then
+					tracked[kind] = mesh
+					local meshKind, expectedMesh = kind, mesh
+					task.spawn(function()
+						for attempt = 1, 3 do
+							if tracked[meshKind] ~= expectedMesh or not expectedMesh:IsDescendantOf(model)
+								or not model:IsDescendantOf(character) then return end
+							local status
+							local ok = pcall(function()
+								ContentProvider:PreloadAsync({ expectedMesh }, function(id, result)
+									if id == expectedMesh.MeshId then status = result end
+								end)
+							end)
+							if ok and status == Enum.AssetFetchStatus.Success and tracked[meshKind] == expectedMesh
+								and expectedMesh:IsDescendantOf(model) and model:IsDescendantOf(character) then
+								Visual.setKnightMeshReady(model, meshKind, true)
+								return
+							end
+							if attempt < 3 then task.wait(2 ^ attempt) end
+						end
+					end)
+				end
+			end
+		end
+	end
+end
+
 function Visual.samplePose(classId, phase, combo, attackKind)
 	local spec = MELEE[classId]
 	if not spec then return nil end
@@ -87,7 +166,7 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 		-- Idle is lowered; the raised arm and this grip pose combine into an
 		-- upright bow while drawing and releasing.
 		if phase == "Windup" or phase == "Active" then
-			return CFrame.Angles(math.rad(-70), 0, 0)
+			return CFrame.Angles(math.rad(-85), 0, 0)
 		elseif phase == "Recovery" then
 			return CFrame.Angles(math.rad(-88), 0, math.rad(-4))
 		end
@@ -124,6 +203,44 @@ local function armJoint(character, side, name)
 	return nil
 end
 
+-- R15's two-segment arm can actually reach the drawn nock. The target follows
+-- the source arrow through its local draw transform; R6 retains the pose fallback.
+local function updateElfIK(character, mode, phase)
+	local state = elfIK[character]
+	local isDrawing = character:GetAttribute("K0ClassId") == "elf" and mode == "Attack" and phase == "Windup"
+	if not isDrawing then
+		if state and state.control.Parent then state.control.Enabled = false end
+		return false
+	end
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	local upper, hand = character:FindFirstChild("LeftUpperArm"), character:FindFirstChild("LeftHand")
+	local arrow = character:FindFirstChild("NockedArrow", true)
+	if not humanoid or humanoid.RigType ~= Enum.HumanoidRigType.R15 or not upper or not hand
+		or not arrow or not arrow:IsA("BasePart") then return false end
+	if not state or state.arrow ~= arrow or not state.control.Parent then
+		if state then
+			if state.control.Parent then state.control:Destroy() end
+			if state.target.Parent then state.target:Destroy() end
+		end
+		local target = Instance.new("Attachment")
+		target.Name = "K0BowNockTarget"
+		-- The source string extends far behind the face at its original depth.
+		-- Shorten that bowstring during aiming and follow its forward nock.
+		target.Position = Vector3.new(0, 0.2, arrow.Size.Z * 0.155)
+		target.Parent = arrow
+		local control = Instance.new("IKControl")
+		control.Name = "K0BowDrawIK"
+		control.Type = Enum.IKControlType.Position
+		control.ChainRoot, control.EndEffector, control.Target = upper, hand, target
+		control.SmoothTime, control.Weight = 0.04, 1
+		control.Parent = humanoid
+		state = { control = control, target = target, arrow = arrow }
+		elfIK[character] = state
+	end
+	state.control.Enabled = true
+	return true
+end
+
 -- Avatar arms are presentation-only. PreSimulation runs after animation
 -- evaluation for both classic Motor6D and modern AnimationConstraint rigs.
 function Visual.renderArms(character, dt)
@@ -132,16 +249,17 @@ function Visual.renderArms(character, dt)
 	local phase = character:GetAttribute("K0AttackPhase")
 	local kind = character:GetAttribute("K0AttackKind")
 	local right, left, leftElbow
+	local usesIK = updateElfIK(character, mode, phase)
 	if classId == "knight" and mode == "Block" then
 		left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
 	elseif mode == "Attack" and (phase == "Windup" or phase == "Active" or phase == "Recovery") then
 		if classId == "elf" then
 			if phase == "Windup" then
-				right = CFrame.Angles(math.rad(70), 0, math.rad(-10))
+				right = CFrame.Angles(math.rad(85), 0, math.rad(-10))
 				left = CFrame.Angles(math.rad(65), math.rad(-32), math.rad(18))
 				leftElbow = CFrame.Angles(math.rad(-65), 0, 0)
 			elseif phase == "Active" then
-				right = CFrame.Angles(math.rad(70), 0, math.rad(-10))
+				right = CFrame.Angles(math.rad(85), 0, math.rad(-10))
 				left = CFrame.Angles(math.rad(60), math.rad(-12), math.rad(23))
 				leftElbow = CFrame.Angles(math.rad(-20), 0, 0)
 			else
@@ -174,8 +292,14 @@ function Visual.renderArms(character, dt)
 		joint.Transform = pose
 	end
 	apply(armJoint(character, "Right", "Shoulder"), right)
-	apply(armJoint(character, "Left", "Shoulder"), left)
-	apply(armJoint(character, "Left", "Elbow"), leftElbow)
+	local leftShoulder, elbow = armJoint(character, "Left", "Shoulder"), armJoint(character, "Left", "Elbow")
+	if usesIK then
+		if leftShoulder then armPoses[leftShoulder] = nil end
+		if elbow then armPoses[elbow] = nil end
+	else
+		apply(leftShoulder, left)
+		apply(elbow, leftElbow)
+	end
 end
 
 local function finite(value)
@@ -367,15 +491,18 @@ local function drawBow(model, phase, elapsed)
 		or not arrow or not arrow:IsA("BasePart") or not arrowJoint or not arrowJoint:IsA("Motor6D") then return end
 	local state = bowRest[model]
 	if not state or state.part ~= stringPart or state.arrow ~= arrow then
-		state = { part = stringPart, arrow = arrow, size = stringPart.Size, arrowTransparency = arrow.LocalTransparencyModifier, draw = 0 }
+		state = { part = stringPart, arrow = arrow, size = stringPart.Size, arrowTransparency = arrow.LocalTransparencyModifier, draw = 0, depth = 1 }
 		bowRest[model] = state
 	end
 	local target = phase == "Windup" and 0.48 or 0
 	local speed = phase == "Windup" and 12 or 35
 	state.draw = state.draw + (target - state.draw) * math.clamp(elapsed * speed, 0, 1)
 	arrow.LocalTransparencyModifier = (phase == "Active" or phase == "Recovery") and 1 or state.arrowTransparency
-	stringPart.Size = Vector3.new(state.size.X, state.size.Y, state.size.Z + state.draw)
-	stringJoint.Transform = CFrame.new(0, 0, state.draw / 2)
+	local aiming = phase == "Windup" or phase == "Active" or phase == "Recovery"
+	state.depth = state.depth + ((aiming and 0.48 or 1) - state.depth) * math.clamp(elapsed * 12, 0, 1)
+	local depth = state.size.Z * state.depth + state.draw
+	stringPart.Size = Vector3.new(state.size.X, state.size.Y, depth)
+	stringJoint.Transform = CFrame.new(0, 0, (depth - state.size.Z) / 2)
 	arrowJoint.Transform = CFrame.new(0, 0, state.draw)
 end
 
@@ -429,6 +556,7 @@ function Visual.start()
 	RunService.PreSimulation:Connect(function(dt)
 		for _, player in ipairs(Players:GetPlayers()) do
 			if player.Character then
+				monitorKnightMeshes(player.Character)
 				Visual.renderArms(player.Character, dt)
 				Visual.renderCharacter(player.Character, dt)
 			end

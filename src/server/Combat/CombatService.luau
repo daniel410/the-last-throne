@@ -232,7 +232,7 @@ local function damagePosture(enemy, amount, current)
 	end
 end
 
-local function startAttack(state, current)
+local function startAttack(state, current, targetModel)
 	local profile = state.attackProfile
 	if not profile or Config.BasicAttackProfiles[state.baseClassId] ~= profile or #profile.attacks == 0 then
 		return
@@ -264,7 +264,7 @@ local function startAttack(state, current)
 		hits = {},
 		hitCount = 0,
 		counterDamage = nil,
-		sampledActive = false,
+		sampledActive = false, targetModel = state.baseClassId == "elf" and targetModel or nil,
 	}
 	setPlayerState(state, "Attack")
 	state.character:SetAttribute("K0AttackKind", "Basic")
@@ -272,7 +272,7 @@ local function startAttack(state, current)
 	updateFeedback(state, "ActionStarted")
 end
 
-local function startArcaneBolt(state, current)
+local function startArcaneBolt(state, current, targetModel)
 	local spell = Config.ArcaneBolt
 	if state.baseClassId ~= "mage" then return end
 	if state.mode ~= "Idle" then updateFeedback(state, "SkillBusy"); return end
@@ -287,7 +287,7 @@ local function startArcaneBolt(state, current)
 		started = current, definition = spell, attackPower = state.attackProfile.attackPower,
 		maxTargets = 1, maxHeight = spell.maxHeight, isSpell = true,
 		direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1)),
-		hits = {}, hitCount = 0, counterDamage = nil, sampledActive = false,
+		hits = {}, hitCount = 0, counterDamage = nil, sampledActive = false, targetModel = targetModel,
 	}
 	setPlayerState(state, "Attack")
 	state.character:SetAttribute("K0AttackKind", "Arcane")
@@ -343,9 +343,9 @@ local function resourceReady(state, action, current)
 	return action == "Attack" and state.attackProfile ~= nil and Config.BasicAttackProfiles[state.baseClassId] == state.attackProfile
 end
 
-local function executeAction(state, action, direction, current)
+local function executeAction(state, action, direction, current, targetModel)
 	if action == "Attack" then
-		startAttack(state, current)
+		startAttack(state, current, targetModel)
 	elseif action == "BlockStart" then
 		startGuard(state, current)
 	elseif action == "Dodge" then
@@ -364,7 +364,7 @@ local function actionEligibleAt(state, action, current)
 	return math.huge
 end
 
-local function acceptAction(state, action, direction, current)
+local function acceptAction(state, action, direction, current, targetModel)
 	if not alive(state) or state.mode == "Dead" or state.mode == "Stunned" then
 		return
 	end
@@ -379,7 +379,7 @@ local function acceptAction(state, action, direction, current)
 		return
 	end
 	if action == "CastArcane" then
-		startArcaneBolt(state, current)
+		startArcaneBolt(state, current, targetModel)
 		return
 	end
 	if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" then
@@ -395,16 +395,16 @@ local function acceptAction(state, action, direction, current)
 		return
 	end
 	if state.mode == "Idle" or state.mode == "Block" then
-		executeAction(state, action, direction, current)
+		executeAction(state, action, direction, current, targetModel)
 		return
 	end
 	local eligibleAt = actionEligibleAt(state, action, current)
 	if current >= eligibleAt then
-		executeAction(state, action, direction, current)
+		executeAction(state, action, direction, current, targetModel)
 	elseif eligibleAt < current + Config.InputBuffer then
 		-- A held button cannot extend the lifetime of a previous buffered input.
 		if not state.queued or Rules.priority(action) > Rules.priority(state.queued.action) then
-			state.queued = { action = action, direction = direction, eligibleAt = eligibleAt, expires = current + Config.InputBuffer }
+			state.queued = { action = action, direction = direction, targetModel = targetModel, eligibleAt = eligibleAt, expires = current + Config.InputBuffer }
 		end
 	end
 end
@@ -534,16 +534,38 @@ local function applySwordHits(state, current)
 	end
 end
 
--- One server-resolved shot per attack. The narrow aim assist chooses the
--- nearest visible enemy; the endpoint is presentation data, never input.
+-- One server-resolved shot per attack. An explicit registered target is
+-- checked for life, range and obstruction; otherwise narrow aim assist uses
+-- the nearest visible enemy. The endpoint is presentation data, never input.
 -- A missed Active window uses the existing bounded late-sample rule.
 local function applyArrowShot(state, current)
 	local attack = state.attack
 	if not attack or attack.arrowFired then return end
 	attack.arrowFired = true
 	local origin, target, nearest = state.root.Position, nil, math.huge
+	local selected = attack.targetModel and enemyStates[attack.targetModel]
+	local selectedEndpoint
+	if attack.targetModel then
+		if selected and enemyAlive(selected) then
+			local position = selected.root.Position
+			local delta = position - origin
+			local distance = delta.Magnitude
+			local direction = horizontalUnit(delta, attack.direction)
+			selectedEndpoint = origin + direction * math.min(distance, attack.definition.range)
+			local wall = workspace:Raycast(origin, selectedEndpoint - origin, combatRayParams(state.character, enemyFolder))
+			if wall then selectedEndpoint = wall.Position end
+			if distance <= attack.definition.range and math.abs(delta.Y) <= attack.maxHeight
+				and unobstructed(origin, position, state.character, selected.model) then
+				target, selectedEndpoint = selected, position
+			else
+				updateFeedback(state, "TargetBlocked")
+			end
+		else
+			updateFeedback(state, "TargetUnavailable")
+		end
+	end
 	for _, enemy in pairs(enemyStates) do
-		if enemyAlive(enemy) and not attack.hits[enemy.model] then
+		if not attack.targetModel and enemyAlive(enemy) and not attack.hits[enemy.model] then
 			local position = enemy.root.Position
 			local delta = position - origin
 			local distance = delta.Magnitude
@@ -558,6 +580,8 @@ local function applyArrowShot(state, current)
 	local endpoint
 	if target then
 		endpoint = target.root.Position
+	elseif selectedEndpoint then
+		endpoint = selectedEndpoint
 	else
 		local delta = attack.direction * attack.definition.range
 		local wall = workspace:Raycast(origin, delta, combatRayParams(state.character, enemyFolder))
@@ -774,7 +798,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 			end
 			if isReady then
 				state.queued = nil
-				executeAction(state, queued.action, queued.direction, current)
+				executeAction(state, queued.action, queued.direction, current, queued.targetModel)
 				consumedAction = queued.action
 			end
 		end
@@ -1145,7 +1169,7 @@ function CombatService.start(enemies, serverContextResolver)
 	for _, player in ipairs(Players:GetPlayers()) do
 		setupPlayer(player)
 	end
-	actionRemote.OnServerEvent:Connect(function(player, action, direction, ...)
+	actionRemote.OnServerEvent:Connect(function(player, action, direction, targetModel, ...)
 		local state = playerStates[player]
 		if not state or not alive(state) or type(action) ~= "string" or #action > 16 or select("#", ...) > 0 or not validDirection(direction) then
 			return
@@ -1153,13 +1177,17 @@ function CombatService.start(enemies, serverContextResolver)
 		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" then
 			return
 		end
+		if targetModel ~= nil then
+			if typeof(targetModel) ~= "Instance" or not enemyStates[targetModel]
+				or not ((action == "Attack" and state.baseClassId == "elf") or (action == "CastArcane" and state.baseClassId == "mage")) then return end
+		end
 		local current = now()
 		-- Releasing guard is always safe and must not be dropped after a burst.
 		if action == "BlockEnd" then
 			if state.mode == "Block" or (state.queued and state.queued.action == "BlockStart") then
 				processCombatSamples(current, state)
 			end
-			acceptAction(state, action, direction, current)
+			acceptAction(state, action, direction, current, targetModel)
 			return
 		end
 		state.tokens = math.min(Config.RemoteBurst, state.tokens + math.max(0, current - state.lastRefill) * Config.RemoteRefillPerSecond)
@@ -1184,7 +1212,7 @@ function CombatService.start(enemies, serverContextResolver)
 		if consumed and Rules.priority(action) <= Rules.priority(consumed) then
 			return
 		end
-		acceptAction(state, action, direction, current)
+		acceptAction(state, action, direction, current, targetModel)
 	end)
 	RunService.Heartbeat:Connect(function(dt)
 		local current = now()

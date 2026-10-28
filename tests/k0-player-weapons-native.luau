@@ -734,6 +734,25 @@ local ok, fatal = xpcall(function()
 		check(waitFor(function() return #owned(character) == 0 end, 2), "cleared class waits without stale weapon")
 		lifecycle.unbind(player)
 	end)
+	case("unavailable-knight-meshes-have-local-visuals", function()
+		local character = cloneRig("R15", "fallbackVisible")
+		local model = Instance.new("Model"); model.Name, model.Parent = "QaKnight", character
+		local sword = assert(appearance.attachInto(model, character, "knight"))
+		local shield = assert(appearance.attachShieldInto(model, character))
+		for _, kind in ipairs({ "sword", "shield" }) do
+			check(clientVisual.setKnightMeshReady(model, kind, false), kind .. " creates fallback")
+			check(clientVisual.setKnightMeshReady(model, kind, false), kind .. " fallback is idempotent")
+			local folder = assert(model:FindFirstChild(kind == "sword" and "K0LocalSwordFallback" or "K0LocalShieldFallback"))
+			check(#parts(folder) >= 3, kind .. " fallback has visible geometry")
+			for _, part in ipairs(parts(folder)) do
+				check(part.Transparency == 0 and not part.CanCollide and not part.CanTouch and not part.CanQuery, "fallback is visible and presentation-only")
+			end
+			local mesh = kind == "sword" and sword.trailPart or shield.shield
+			check(mesh.LocalTransparencyModifier == 1, "unavailable mesh hidden while fallback is shown")
+			check(clientVisual.setKnightMeshReady(model, kind, true), kind .. " can restore its TD source")
+			check(folder.Parent == nil and mesh.LocalTransparencyModifier == 0, "loaded TD source replaces fallback")
+		end
+	end)
 	case("production-sword-render-api-with-native-effects", function()
 		local character = cloneRig("R15", "swordEffects")
 		local model = Instance.new("Model")
@@ -812,7 +831,7 @@ local ok, fatal = xpcall(function()
 		local windup = result.joint.Transform
 		check(windup ~= CFrame.new(), "bow windup moves its joint")
 		local arrowJoint = assert(arrowPart:FindFirstChild("NockedArrowVisualJoint"))
-		check(stringPart.Size.Z > initialSize.Z and arrowJoint.Transform.Position.Z > 0, "windup draws the original bowstring and nocked arrow")
+		check(stringPart.Size.Z < initialSize.Z and arrowJoint.Transform.Position.Z > 0, "windup brings the string forward and draws the nocked arrow")
 		character:SetAttribute("K0AttackPhase", "Active")
 		check(clientVisual.renderCharacter(character, 1 / 30) == 1 and result.joint.Transform ~= windup, "bow release pose differs")
 		check(arrowJoint.Transform.Position.Z < 0.48, "release lets the nocked arrow return forward")

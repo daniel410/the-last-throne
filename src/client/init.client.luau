@@ -1,5 +1,5 @@
--- The server owns combat, damage, stamina and target selection. This client only
--- sends intentions and renders replicated state.
+-- The client may suggest a target. The server validates combat, damage,
+-- stamina, range and obstruction before rendering its replicated result.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
@@ -8,6 +8,7 @@ local GuiService = game:GetService("GuiService")
 
 local player = Players.LocalPlayer
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
+local Targeting = require(script.K0Targeting)
 local hud = require(script.K0Hud).create()
 hud.setVisible(false)
 require(script.K0Telegraphs).start()
@@ -28,6 +29,37 @@ local lobby
 local pendingRequest
 local requestSequence = 0
 local lastRevision = -1
+local selectedEnemy
+local targetHighlight
+local targetConnections = {}
+
+local function clearTarget()
+	for _, connection in ipairs(targetConnections) do connection:Disconnect() end
+	table.clear(targetConnections)
+	selectedEnemy = nil
+	if targetHighlight then targetHighlight:Destroy(); targetHighlight = nil end
+end
+
+local function selectAt(screenPosition)
+	local part = Targeting.pick(screenPosition, player.Character)
+	if not part then return false end
+	if selectedEnemy ~= part then
+		clearTarget()
+		selectedEnemy = part
+		targetHighlight = Instance.new("Highlight")
+		targetHighlight.Name = "K0TargetHighlight"
+		targetHighlight.Adornee = part
+		targetHighlight.FillTransparency, targetHighlight.OutlineTransparency = 0.8, 0
+		targetHighlight.FillColor, targetHighlight.OutlineColor = Color3.fromRGB(255, 200, 80), Color3.fromRGB(255, 235, 170)
+		targetHighlight.DepthMode = Enum.HighlightDepthMode.Occluded
+		targetHighlight.Parent = part
+		local humanoid = part:FindFirstChildOfClass("Humanoid")
+		table.insert(targetConnections, humanoid.Died:Connect(function() if selectedEnemy == part then clearTarget() end end))
+		table.insert(targetConnections, part.AncestryChanged:Connect(function() if selectedEnemy == part and not Targeting.valid(part) then clearTarget() end end))
+		hud.showFeedback(string.format(Text.TargetSelected, humanoid.DisplayName))
+	end
+	return true
+end
 
 local function combatInputAllowed()
 	local character = player.Character
@@ -64,7 +96,20 @@ updateSpawnStatus()
 
 local function sendAction(action, direction)
 	if actionRemote and (action == "BlockEnd" or combatInputAllowed()) then
-		actionRemote:FireServer(action, direction)
+		local character = player.Character
+		local classId = character and character:GetAttribute("K0ClassId")
+		local ranged = (action == "Attack" and classId == "elf") or (action == "CastArcane" and classId == "mage")
+		local target = ranged and selectedEnemy or nil
+		if target and not Targeting.valid(target) then clearTarget(); target = nil end
+		if target then
+			local root, enemyRoot = character:FindFirstChild("HumanoidRootPart"), target:FindFirstChild("HumanoidRootPart")
+			if root and enemyRoot then
+				local delta = enemyRoot.Position - root.Position
+				local flat = Vector3.new(delta.X, 0, delta.Z)
+				if flat.Magnitude > 0.01 then root.CFrame = CFrame.lookAt(root.Position, root.Position + flat) end
+			end
+		end
+		actionRemote:FireServer(action, direction, target)
 	end
 end
 
@@ -207,6 +252,7 @@ end
 
 player.CharacterAdded:Connect(bindCharacter)
 player.CharacterRemoving:Connect(function()
+	clearTarget()
 	clearCharacterConnections()
 	endBlock()
 	clearAttacks()
@@ -229,7 +275,17 @@ end)
 
 UserInputService.InputBegan:Connect(function(input, processed)
 	if processed or UserInputService:GetFocusedTextBox() then return end
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.KeyCode == Enum.KeyCode.ButtonR2 then
+	local character = player.Character
+	local classId = character and character:GetAttribute("K0ClassId")
+	if combatInputAllowed() and (classId == "elf" or classId == "mage")
+		and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
+		local picked = selectAt(input.Position)
+		-- A mage selects with a click, then casts with Q or the skill button.
+		if picked and (classId == "mage" or input.UserInputType == Enum.UserInputType.Touch) then return end
+	end
+	if input.KeyCode == Enum.KeyCode.X and selectedEnemy then
+		clearTarget(); hud.showFeedback(Text.TargetCleared)
+	elseif input.UserInputType == Enum.UserInputType.MouseButton1 or input.KeyCode == Enum.KeyCode.ButtonR2 then
 		startAttack(input)
 	elseif input.UserInputType == Enum.UserInputType.MouseButton2 or input.KeyCode == Enum.KeyCode.ButtonL2 then
 		startBlock()
@@ -305,7 +361,7 @@ hud.back.Activated:Connect(function() requestHero("ReturnLobby") end)
 local function updateSessionView()
 	local playing = player:GetAttribute("K0SessionPhase") == "Tutorial"
 	hud.setVisible(playing)
-	if not playing then endBlock(); clearAttacks() end
+	if not playing then endBlock(); clearAttacks(); clearTarget() end
 	if heroSnapshot then
 		for _, hero in ipairs(heroSnapshot.heroes) do
 			if hero.heroId == heroSnapshot.selectedHeroId then
