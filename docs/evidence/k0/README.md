@@ -11,7 +11,7 @@ Deepwood의 평탄한 훈련장에서 플레이어가 네 기초 직업으로 Sl
 | 월드 | `src/server/World/TrainingField.luau`: 안전 시작·96×96 공터·엄폐·TD 외형을 연결한 적. [독립 지형/물리 기록](world-design.md)과 통합 플레이 검증을 구분한다. |
 | 전투 | `src/server/Combat/CombatService.luau`, `K0Rules.luau`, `src/shared/K0Config.luau`: 서버 시간과 서버 위치로 검격·방어·회피·피해·적 AI를 판정한다. 수치와 입력 제한은 K0 실험용이다. |
 | 시각 | `src/server/Cosmetics/KnightAppearance.luau`·`WeaponAppearance.luau`: R6/R15 TD 원본 검·방패와 직업별 무기. `HeroPalette.luau`는 TD 직업 색상. `src/client/K0SwordVisual.luau`, `K0Telegraphs.luau`: 서버 전투 상태에 따른 무기 연출과 공격 예고. 연출은 판정을 계산하지 않는다. |
-| 조작/UI | `src/client/init.client.luau`, `K0Hud.luau`: PC 왼쪽 클릭/오른쪽 클릭 유지/Space, 패드 R2/L2/B, 터치 공격/방어/회피 버튼. 문자열은 `src/shared/K0Text.luau`의 en-US 키를 사용한다. |
+| 조작/UI | `src/client/init.client.luau`, `K0Hud.luau`: PC 왼쪽 클릭/오른쪽 클릭 유지/V 회피/Space 점프, 패드 R2/L2/B, 터치 공격/방어/회피 버튼. 문자열은 `src/shared/K0Text.luau`의 en-US 키를 사용한다. |
 | 기존 원본 | [TD 몬스터 연결 결과](td-monster-integration.md), [기존 원본 기록](td-monster-sources.md), [오크 원본 기록](orc-source.md)에 채택한 runtime과 Meshy 원본 경로·해시를 고정했다. 이전 [TD 3D 조사](asset-audit.md)와 조사 시점을 구분한다. [Studio 로딩 조사](asset-load-probe.md)는 소유자 컨텍스트의 후보 12개 preload 성공을 확인했으며, RPG 게시 환경 권한·최종 리그/모션은 별도다. |
 
 HP 1000, 공격력 100, 스태미나 100은 전투 실험 프리셋이다. 스탯 포인트나 레벨·보상을 지급하지 않는다. 클라이언트는 행동 의도만 전송하며 서버가 대상·거리·각도·사선·피해·스태미나와 적 행동을 처리한다. 부정 입력, 위치 소유권과 지연에 대한 실제 네트워크 검증이 필요하다.

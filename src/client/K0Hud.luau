@@ -172,7 +172,7 @@ function Hud.create()
 	local block, blockHint = action(actions, "Block", Text.Block, Text.HintHold, UDim2.fromOffset(72, 0), 68)
 	local skill, skillHint = action(actions, "ArcaneBolt", Text.ArcaneBolt, Text.HintQ, UDim2.fromOffset(72, 0), 68)
 	skill.Visible = false
-	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintSpace, UDim2.fromOffset(0, 91), 68)
+	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintV, UDim2.fromOffset(0, 91), 68)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(134, 71), 88)
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
