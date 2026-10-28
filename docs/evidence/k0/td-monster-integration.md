@@ -27,6 +27,8 @@
 
 위 source probe의 어댑터 SHA는 `893fdec06a0f4c5797252c2ea7e0d936df92cd2a9ef69c6abc1e9985616c9a1b`, smoke SHA는 `badfdbab0423dc8c5d8a94b37bdaa5043899adb975c3e3a63631ef72d1b5fc80`다. 기존에 별도 빈 fixture에서도 관측한 `rbxassetid://203785492` 유형 불일치 경고는 이번에도 발생했으며 출처 미확인이다.
 
+후속 고정 빌드 `0.2.1`도 동일 엔진177개를 통과했다. 실제 Studio Play의 독립 PlaceId0에서 Goblin/Ogre의 TD 메시·색맵을 화면으로 확인했고, Goblin의 추적·공격·무기 팔 예비 동작을 관측했다. Slime는 로드/어댑터 검사까지이며 전투나 실제 플레이 배치를 완료한 것이 아니다. 명령·커밋·파일 해시·관측 한계는 [빌드 기록](build.md)의 0.2.1 항목, 엔진 원본 출력은 [smoke 로그](td-monster-build-smoke.log)에 남겼다.
+
 ## 남은 범위와 다음 담당
 
 기사 검/방패와 환경은 아직 임시 도형이다. TD UI·기사 원본 연결, 실기기·다인·게시된 테스트 환경의 접근 권한과 성능은 후속 담당 ART/ENG/QA가 검증한다. [첫 구현 리뷰](first-implementation-review.md)의 전투 판정·입력 결함도 별도 미해결이며 이번 외형 교체로 해결됐다고 보고하지 않는다. 자산 원본이 있다는 사실을 완성된 RPG 리그·AI·전투 수용으로 확대하지 않는다.

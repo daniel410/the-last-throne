@@ -1,5 +1,7 @@
 # K0 TD 몬스터 원본과 런타임 보존
 
+후속 RPG 연결·실제 검증은 [연결 결과](td-monster-integration.md)와 [0.2.1 빌드 기록](build.md)에 남겼다. 아래 원본 인계 시점의 미검증 상태와 구분한다.
+
 작업 ID: `TLT-002`, `TLT-032` 일부 · 2026-10-28 · 담당: 3D 모델링
 
 Throne Defense의 현재 작업 트리에서 `MonsterModels` 런타임 XML과 고블린·슬라임·오우거의 Meshy 원본 GLB를 그대로 복사했다. [manifest.json](../../../assets/shared/td-monsters/manifest.json)에 원본 경로, SHA-256, 파일 크기, 세 모델의 모든 부품 좌표·ID와 검증 한계를 기록한다. 이것은 자산 출처와 런타임 입력의 보존이며 RPG에서의 로딩·전투·미술 수용 결과는 아니다.
