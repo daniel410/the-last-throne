@@ -6,6 +6,7 @@ local PathfindingService = game:GetService("PathfindingService")
 
 local Config = require(ReplicatedStorage.Shared.K0Config)
 local Rules = require(script.Parent.K0Rules)
+local EnemyHealthBar = require(script.Parent.Parent.World.EnemyHealthBar)
 
 local CombatService = {}
 local started = false
@@ -130,6 +131,7 @@ local function clearAction(state)
 	state.dodge = nil
 	state.guardStarted = nil
 	state.character:SetAttribute("K0AttackPhase", "None")
+	state.character:SetAttribute("K0AttackKind", nil)
 	state.character:SetAttribute("K0Invulnerable", false)
 end
 
@@ -179,6 +181,7 @@ local function markDead(state)
 	state.counter = nil
 	clearAction(state)
 	state.character:SetAttribute("K0ArrowVisual", nil)
+	state.character:SetAttribute("K0SpellVisual", nil)
 	resetCombo(state)
 	setPlayerState(state, "Dead")
 end
@@ -264,6 +267,30 @@ local function startAttack(state, current)
 		sampledActive = false,
 	}
 	setPlayerState(state, "Attack")
+	state.character:SetAttribute("K0AttackKind", "Basic")
+	state.character:SetAttribute("K0AttackPhase", "Windup")
+	updateFeedback(state, "ActionStarted")
+end
+
+local function startArcaneBolt(state, current)
+	local spell = Config.ArcaneBolt
+	if state.baseClassId ~= "mage" then return end
+	if state.mode ~= "Idle" then updateFeedback(state, "SkillBusy"); return end
+	if current < state.lastSpellStarted + spell.cooldown then updateFeedback(state, "SkillCooling"); return end
+	if state.stamina < spell.staminaCost then updateFeedback(state, "NeedStamina"); return end
+	clearAction(state)
+	state.queued = nil
+	resetCombo(state)
+	state.lastSpellStarted = current
+	spendStamina(state, spell.staminaCost, current)
+	state.attack = {
+		started = current, definition = spell, attackPower = state.attackProfile.attackPower,
+		maxTargets = 1, maxHeight = spell.maxHeight, isSpell = true,
+		direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1)),
+		hits = {}, hitCount = 0, counterDamage = nil, sampledActive = false,
+	}
+	setPlayerState(state, "Attack")
+	state.character:SetAttribute("K0AttackKind", "Arcane")
 	state.character:SetAttribute("K0AttackPhase", "Windup")
 	updateFeedback(state, "ActionStarted")
 end
@@ -349,6 +376,10 @@ local function acceptAction(state, action, direction, current)
 			clearAction(state)
 			setPlayerState(state, "Idle")
 		end
+		return
+	end
+	if action == "CastArcane" then
+		startArcaneBolt(state, current)
 		return
 	end
 	if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" then
@@ -459,7 +490,7 @@ local function damageEnemy(state, enemy, attack, current)
 	local damage = math.max(1, math.floor(attack.attackPower * (attack.definition.damage + attack.counterDamage) * multiplier + 0.5))
 	enemy.humanoid:TakeDamage(damage)
 	if enemy.humanoid.Health > 0 then
-		if state.baseClassId == "elf" then
+		if state.baseClassId == "elf" or attack.isSpell then
 			local expires = current + RANGED_RETALIATION_SECONDS
 			enemy.rangedAttackers = enemy.rangedAttackers or {}
 			enemy.rangedAttackers[state] = expires
@@ -532,14 +563,21 @@ local function applyArrowShot(state, current)
 		local wall = workspace:Raycast(origin, delta, combatRayParams(state.character, enemyFolder))
 		endpoint = wall and wall.Position or origin + delta
 	end
-	state.arrowSeq = state.arrowSeq + 1
-	state.character:SetAttribute("K0ArrowFrom", origin)
-	state.character:SetAttribute("K0ArrowTo", endpoint)
-	state.character:SetAttribute("K0ArrowSeq", state.arrowSeq)
+	local sequence, visualName
+	if attack.isSpell then
+		state.spellSeq = state.spellSeq + 1
+		sequence, visualName = state.spellSeq, "K0SpellVisual"
+	else
+		state.arrowSeq = state.arrowSeq + 1
+		sequence, visualName = state.arrowSeq, "K0ArrowVisual"
+		state.character:SetAttribute("K0ArrowFrom", origin)
+		state.character:SetAttribute("K0ArrowTo", endpoint)
+		state.character:SetAttribute("K0ArrowSeq", sequence)
+	end
 	-- A single replicated snapshot avoids combining endpoints from two shots
 	-- if separate attributes arrive in different replication updates.
-	state.character:SetAttribute("K0ArrowVisual", string.format("%d|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f",
-		state.arrowSeq, origin.X, origin.Y, origin.Z, endpoint.X, endpoint.Y, endpoint.Z))
+	state.character:SetAttribute(visualName, string.format("%d|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f",
+		sequence, origin.X, origin.Y, origin.Z, endpoint.X, endpoint.Y, endpoint.Z))
 	if target then damageEnemy(state, target, attack, current) end
 end
 
@@ -674,7 +712,7 @@ local function processCombatSamples(current, requiredState)
 			local state = sample.player
 			if validPlayers[state] and alive(state) and state.mode == "Attack" and state.attack == attack then
 				attack.sampledActive = true
-				if state.baseClassId == "elf" then applyArrowShot(state, current) else applySwordHits(state, current) end
+				if state.baseClassId == "elf" or attack.isSpell then applyArrowShot(state, current) else applySwordHits(state, current) end
 			end
 		else
 			local enemy = sample.enemy
@@ -705,6 +743,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 		if phase == "None" then
 			state.lastAttackFinished = attack.started + attack.definition.windup + attack.definition.active + attack.definition.recovery
 			state.attack = nil
+			state.character:SetAttribute("K0AttackKind", nil)
 			setPlayerState(state, "Idle")
 		end
 	elseif state.mode == "Dodge" and state.dodge then
@@ -783,7 +822,7 @@ local function moveEnemy(enemy, destination, current)
 		local startPosition = origin
 		local goal = destination
 		task.spawn(function()
-			local path = PathfindingService:CreatePath({ AgentRadius = enemy.kind == "Ogre" and 3 or 2, AgentHeight = enemy.kind == "Ogre" and 7 or 5, AgentCanJump = false, WaypointSpacing = 5 })
+			local path = PathfindingService:CreatePath({ AgentRadius = enemy.kind == "Ogre" and 3 or 2, AgentHeight = enemy.kind == "Ogre" and 10 or 5, AgentCanJump = false, WaypointSpacing = 5 })
 			local ok = pcall(function()
 				path:ComputeAsync(startPosition, goal)
 			end)
@@ -960,6 +999,7 @@ local function registerEnemy(model, savedTemplate, savedPivot, savedId)
 	humanoid.MaxHealth = config.health
 	humanoid.Health = config.health
 	humanoid.WalkSpeed = config.walkSpeed
+	EnemyHealthBar.attach(model, humanoid)
 	model:SetAttribute("K0Posture", config.posture)
 	model:SetAttribute("K0MaxPosture", config.posture)
 	model:SetAttribute("K0Telegraph", "None")
@@ -1018,7 +1058,7 @@ local function setupCharacter(player, character)
 		local current = now()
 		local state = {
 			player = player, character = character, humanoid = humanoid, root = root, mode = "", stamina = Config.MaxStamina,
-			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, arrowSeq = 0,
+			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, arrowSeq = 0, spellSeq = 0, lastSpellStarted = -math.huge,
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
 			combo = 0, lastAttackFinished = -math.huge, lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge,
 			regenAt = current, stunnedUntil = 0, feedbackSeq = 0, attack = nil, queued = nil, counter = nil,
@@ -1038,6 +1078,8 @@ local function setupCharacter(player, character)
 		character:SetAttribute("K0ArrowFrom", nil)
 		character:SetAttribute("K0ArrowTo", nil)
 		character:SetAttribute("K0ArrowVisual", nil)
+		character:SetAttribute("K0SpellVisual", nil)
+		character:SetAttribute("K0AttackKind", nil)
 		character:SetAttribute("K0MaxStamina", Config.MaxStamina)
 		character:SetAttribute("K0Stamina", Config.MaxStamina)
 		character:SetAttribute("K0Combo", 0)
@@ -1108,7 +1150,7 @@ function CombatService.start(enemies, serverContextResolver)
 		if not state or not alive(state) or type(action) ~= "string" or #action > 16 or select("#", ...) > 0 or not validDirection(direction) then
 			return
 		end
-		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" then
+		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" then
 			return
 		end
 		local current = now()

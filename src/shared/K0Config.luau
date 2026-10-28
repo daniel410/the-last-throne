@@ -20,8 +20,17 @@ local Config = {
 	},
 	Guard = { raiseTime = 0.10, perfectTime = 0.15, initialCost = 4, cooldown = 0.40, angle = 120, damageMultiplier = 0.2, breakStun = 0.8, counterDuration = 1.5 },
 	Dodge = { cost = 30, duration = 0.65, moveDuration = 0.30, distance = 7, invulnerableStart = 0.08, invulnerableEnd = 0.28, cooldown = 0.65 },
+	-- One early Arcane spell for testing; not a finalized skill-tree unlock.
+	ArcaneBolt = { windup = 0.45, active = 0.12, recovery = 0.45, damage = 1.00, posture = 10,
+		range = 40, angle = 45, maxHeight = 10, staminaCost = 15, cooldown = 3 },
 	HitStun = 0.25,
 	Enemy = {
+		-- First training opponent. Values are a prototype, not story rewards.
+		Slime = {
+			health = 220, posture = 40, walkSpeed = 7, aggroRange = 18, leashRange = 28,
+			exposeTime = 1.20, respawnTime = 5,
+			attacks = {{ name = "Melee", windup = 0.80, active = 0.10, recovery = 0.90, range = 3.5, angle = 100, damage = 40, guardCost = 10, blockable = true }},
+		},
 		Goblin = {
 			health = 300, posture = 60, walkSpeed = 10, aggroRange = 25, leashRange = 36,
 			exposeTime = 1.20, respawnTime = 5,

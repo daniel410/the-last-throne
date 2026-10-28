@@ -15,7 +15,7 @@ assert(not RunService:IsRunning(), "K0 smoke requires an idle isolated Studio")
 assert(ReplicatedStorage:FindFirstChild("Shared") and ReplicatedStorage.Shared:FindFirstChild("K0Config"), "K0 shared sources missing")
 assert(ServerScriptService:FindFirstChild("Server"), "K0 server bootstrap missing")
 
-local report = { kind = "K0_NATIVE_SMOKE", checks = 0, failures = {}, compiledModules = {}, runtimeErrors = {}, players = 0, enemies = {}, respawns = {}, assetLoads = {}, spawnCoverage = "Spawn instance only; initial Player placement and respawn require real Play", lobbyCoverage = "Dawnspire scene floor/bounds/spawn and native request/state remote creation only; actual Player lobby selection/start/UI and combat safety require separate evidence", combatCoverage = "Three idle enemy presets and death/respawn only; real Player aggro, attacks, damage and Goblin spacing require Play", assetCoverage = "Actual TD MeshParts in isolated Studio; published RPG permissions and visible Play presentation require separate evidence" }
+local report = { kind = "K0_NATIVE_SMOKE", checks = 0, failures = {}, compiledModules = {}, runtimeErrors = {}, players = 0, enemies = {}, respawns = {}, assetLoads = {}, spawnCoverage = "Spawn instance only; initial Player placement and respawn require real Play", lobbyCoverage = "Dawnspire scene floor/bounds/spawn and native request/state remote creation only; actual Player lobby selection/start/UI and combat safety require separate evidence", combatCoverage = "Four idle enemy presets and death/respawn only; real Player aggro, attacks and damage require Play", assetCoverage = "Actual TD MeshParts in isolated Studio; published RPG permissions and visible Play presentation require separate evidence" }
 local function check(condition, label)
 	report.checks += 1
 	if not condition then table.insert(report.failures, label) end
@@ -33,7 +33,7 @@ local TD_EXPECTED = {
 	Goblin = { template = "goblin", height = 3.6, texture = "134919664038207", meshes = {
 		Body = "77403549111699", ArmL = "127402469282462", ArmR = "106102430341786", LegL = "78392327157438", LegR = "100268725310905",
 	} },
-	Ogre = { template = "ogre", height = 6.05, texture = "90412861785322", meshes = {
+	Ogre = { template = "ogre", height = 6.05, visualHeight = 6.05 * 2.20 / 1.45, texture = "90412861785322", meshes = {
 		Body = "98618217378067", ArmL = "108622715572697", ArmR = "98353562560509", LegL = "76243711635467", LegR = "77089513742534",
 	} },
 	Orc = { template = "orc", height = 4.6, texture = "140427201929012", meshes = {
@@ -41,7 +41,7 @@ local TD_EXPECTED = {
 	} },
 	Slime = { template = "slime", height = 1.1, texture = "75994104212849", meshes = { Body = "84245584635347" } },
 }
-local COMBAT_KINDS = { "Goblin", "Ogre", "Orc" }
+local COMBAT_KINDS = { "Goblin", "Slime", "Ogre", "Orc" }
 local ANCHORS = { Body = "Torso", ArmL = "Right Arm", ArmR = "Left Arm", LegL = "Right Leg", LegR = "Left Leg" }
 local function numericId(uri)
 	return tostring(uri):match("rbxassetid://(%d+)") or tostring(uri):match("[?&]id=(%d+)")
@@ -63,7 +63,8 @@ local function checkVisual(rig, kind, label)
 	if not visual then return nil end
 	check(#meshParts(rig) == expectedCount and #meshParts(visual) == expectedCount, label .. " exact visible MeshPart count")
 	check(rig:GetAttribute("TdMonsterTemplate") == spec.template, label .. " source template recorded")
-	check(math.abs((rig:GetAttribute("TdMonsterTargetHeight") or 0) - spec.height) < 0.0001, label .. " source TargetHeight recorded")
+	check(math.abs((rig:GetAttribute("TdMonsterSourceHeight") or 0) - spec.height) < 0.0001, label .. " source TargetHeight recorded")
+	check(math.abs((rig:GetAttribute("TdMonsterTargetHeight") or 0) - (spec.visualHeight or spec.height)) < 0.0001, label .. " applied visual height recorded")
 	local scale = rig:GetAttribute("TdMonsterScale")
 	check(type(scale) == "number" and scale > 0 and scale < math.huge, label .. " finite positive visual scale")
 	for name, id in pairs(spec.meshes) do
@@ -73,7 +74,7 @@ local function checkVisual(rig, kind, label)
 			check(numericId(part.MeshId) == id and numericId(part.TextureID) == spec.texture, label .. " original mesh/texture IDs " .. name)
 			check(not part.Anchored and part.Massless and not part.CanCollide and not part.CanTouch and not part.CanQuery and part.Transparency == 0,
 				label .. " presentation-only physics " .. name)
-			local anchorName = if kind == "Slime" then "HumanoidRootPart" else ANCHORS[name]
+			local anchorName = if kind == "Slime" and not rig:FindFirstChild("Torso") then "HumanoidRootPart" else ANCHORS[name]
 			local weld = part:FindFirstChild("TdVisualWeld")
 			check(weld and weld:IsA("WeldConstraint") and weld.Part0 == rig:FindFirstChild(anchorName) and weld.Part1 == part,
 				label .. " weld attached to independent rig " .. name)
@@ -86,7 +87,7 @@ local function checkVisual(rig, kind, label)
 			check(false, label .. " appearance must not import executable scripts")
 		end
 	end
-	if kind ~= "Slime" then
+	if kind ~= "Slime" or rig:FindFirstChildOfClass("Humanoid") then
 		local root = rig:FindFirstChild("HumanoidRootPart")
 		check(root and rig.PrimaryPart == root and root.CanCollide and root.CanQuery and not root.Anchored,
 			label .. " independent moving collision/query root preserved")
@@ -219,8 +220,8 @@ local ok, err = xpcall(function()
 	local sameLobby = require(ServerScriptService.Server.World.LobbyWorld).create()
 	check(sameLobby.folder == lobby and sameLobby.spawn == lobbySpawn, "repeated lobby create returns same validated scene/spawn")
 	local config = require(ReplicatedStorage.Shared.K0Config)
-	check(#enemies:GetChildren() == 3, "exactly three initial enemies")
-	check(enemies:FindFirstChild("Slime") == nil, "Slime is not added to combat")
+	check(#enemies:GetChildren() == 4, "exactly four initial enemies")
+	check(enemies:FindFirstChild("Slime") ~= nil, "Slime enters tutorial combat")
 	task.wait(2)
 	local actualParts = {}
 	local firstVisuals = {}
@@ -237,11 +238,27 @@ local ok, err = xpcall(function()
 			check(root.Position.Y > 0 and root.Position.Y < 12, kind .. " stays above continuous ground")
 			check(root.AssemblyLinearVelocity.Magnitude < 2, kind .. " settles physically")
 			report.enemies[kind] = { health = humanoid.Health, posture = model:GetAttribute("K0Posture"), y = root.Position.Y, speed = root.AssemblyLinearVelocity.Magnitude }
+			local bar = model:FindFirstChild("EnemyHealthBar")
+			local background = bar and bar:FindFirstChild("HpBg")
+			local value = background and background:FindFirstChild("HpValue")
+			check(bar and bar:IsA("BillboardGui") and bar.Adornee == root and bar.Enabled, kind .. " has a visible overhead health bar")
+			check(value and value.Text == string.format("%d / %d", config.Enemy[kind].health, config.Enemy[kind].health), kind .. " health bar shows authoritative numeric HP")
 		end
 		local visual = checkVisual(model, kind, kind)
 		firstVisuals[kind] = visual
 		for _, part in meshParts(visual) do table.insert(actualParts, { name = kind .. "." .. part.Name, part = part }) end
 	end
+	local ogreVisual = firstVisuals.Ogre
+	local orcVisual = firstVisuals.Orc
+	assert(ogreVisual and orcVisual, "both original TD visuals required for scale comparison")
+	local _, ogreBounds = ogreVisual:GetBoundingBox()
+	local _, orcBounds = orcVisual:GetBoundingBox()
+	check(ogreBounds.Y >= orcBounds.Y * 1.9, "Ogre visual is at least 1.9 times Orc height")
+	local ogreRoot = enemies.Ogre:FindFirstChild("HumanoidRootPart")
+	local orcRoot = enemies.Orc:FindFirstChild("HumanoidRootPart")
+	check(ogreRoot and orcRoot and ogreRoot.Size.Y >= orcRoot.Size.Y * 1.9, "Ogre collision rig scales with its appearance")
+	report.sizeComparison = { ogreHeight = ogreBounds.Y, orcHeight = orcBounds.Y,
+		ogreRootHeight = ogreRoot and ogreRoot.Size.Y, orcRootHeight = orcRoot and orcRoot.Size.Y }
 	local appearance = require(ServerScriptService.Server.World.TdMonsterAppearance)
 	for kind, spec in pairs(TD_EXPECTED) do
 		local description = appearance.describe(kind)
@@ -260,12 +277,27 @@ local ok, err = xpcall(function()
 	slimeRig.Parent = ServerStorage
 	local slimeVisual = appearance.attach(slimeRig, "Slime", 0)
 	check(checkVisual(slimeRig, "Slime", "Slime adapter fixture") == slimeVisual, "Slime adapter returns its attached model")
-	check(slimeRig:FindFirstChildOfClass("Humanoid") == nil and slimeRig:GetAttribute("EnemyKind") == nil and #enemies:GetChildren() == 3,
+	check(slimeRig:FindFirstChildOfClass("Humanoid") == nil and slimeRig:GetAttribute("EnemyKind") == nil and #enemies:GetChildren() == 4,
 		"Slime visual-only fixture does not enter combat")
-	for _, part in meshParts(slimeVisual) do table.insert(actualParts, { name = "Slime." .. part.Name, part = part }) end
-	check(#actualParts == 16, "preload exercises all fifteen enemy parts plus one Slime part")
+	check(#actualParts == 16, "preload exercises all fifteen humanoid enemy parts plus the live Slime part")
 	preloadActualParts(actualParts)
 	slimeRig:Destroy()
+	-- A separate native Humanoid cannot be reset by the training enemy AI.
+	local healthRig = Instance.new("Model"); healthRig.Name = "QA_EnemyHealth"; healthRig.Parent = workspace
+	local healthRoot = Instance.new("Part"); healthRoot.Name = "HumanoidRootPart"; healthRoot.Anchored = true; healthRoot.Parent = healthRig
+	local healthHumanoid = Instance.new("Humanoid"); healthHumanoid.MaxHealth = 100; healthHumanoid.Health = 100; healthHumanoid.Parent = healthRig
+	local healthBar = require(ServerScriptService.Server.World.EnemyHealthBar).attach(healthRig, healthHumanoid)
+	check(healthBar.Size == UDim2.fromOffset(96, 30) and healthBar.HpBg.Size.Y.Offset == 14, "overhead bar uses compact dimensions")
+	check(math.abs(healthBar.StudsOffsetWorldSpace.Y - (4 - healthRoot.Size.Y * 1.5 + 1.45)) < 0.001, "health bar has additional clearance above the head")
+	local fill, value = healthBar.HpBg.HpFill, healthBar.HpBg.HpValue
+	for _, sample in ipairs({ { 75, Color3.fromRGB(90, 220, 90) }, { 50, Color3.fromRGB(230, 200, 70) }, { 25, Color3.fromRGB(230, 80, 80) } }) do
+		healthHumanoid.Health = sample[1]
+		check(waitFor(function() return value.Text == string.format("%d / 100", sample[1]) end, 2), "health value updates at " .. sample[1])
+		check(math.abs(fill.Size.X.Scale - sample[1] / 100) < 0.001 and fill.BackgroundColor3 == sample[2], "TD color/fill at " .. sample[1])
+	end
+	healthHumanoid.Health = 0
+	check(waitFor(function() return not healthBar.Enabled end, 2), "overhead health bar disappears when enemy dies")
+	healthRig:Destroy()
 	for _, kind in COMBAT_KINDS do
 		local original = assert(enemies:FindFirstChild(kind))
 		local originalVisual = assert(original:FindFirstChild("TdMonsterVisual"))
@@ -282,7 +314,8 @@ local ok, err = xpcall(function()
 			local humanoid = replacement:FindFirstChildOfClass("Humanoid")
 			check(humanoid and humanoid.Health == config.Enemy[kind].health and humanoid.MaxHealth == config.Enemy[kind].health, kind .. " respawn restores server health")
 			check(replacement:GetAttribute("K0EnemyState") == "Idle" and replacement:GetAttribute("K0Posture") == config.Enemy[kind].posture, kind .. " respawn initializes AI and posture")
-			check(#enemies:GetChildren() == 3, kind .. " respawn does not duplicate enemy")
+			check(replacement:FindFirstChild("EnemyHealthBar") ~= nil, kind .. " respawn has a new overhead health display")
+			check(#enemies:GetChildren() == 4, kind .. " respawn does not duplicate enemy")
 			local replacementVisual = checkVisual(replacement, kind, kind .. " respawn")
 			check(replacementVisual and replacementVisual ~= originalVisual, kind .. " respawn creates a fresh TD visual model")
 			if replacementVisual then

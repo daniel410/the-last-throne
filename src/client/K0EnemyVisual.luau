@@ -34,6 +34,19 @@ function EnemyVisual.start()
 				local state = model:GetAttribute("K0EnemyState")
 				local rightAngle, leftAngle, legAngle = 0, 0, 0
 				local velocity = root.AssemblyLinearVelocity
+				if model:GetAttribute("EnemyKind") == "Slime" then
+					-- Animate only the torso carrying the single TD slime mesh.
+					-- These hops do not move the server's collision or hit origin.
+					local joint = root:FindFirstChild("RootJoint")
+					if joint and joint:IsA("Motor6D") then
+						local lift = 0
+						if state == "Chase" and Vector3.new(velocity.X, 0, velocity.Z).Magnitude > 0.6 then
+							lift = math.abs(math.sin(os.clock() * 7)) * 0.45
+						elseif state == "Windup" then lift = -0.10
+						elseif state == "Active" then lift = 0.35 end
+						joint.Transform = joint.Transform:Lerp(CFrame.new(0, lift, 0), alpha)
+					end
+				end
 				if state == "Chase" and Vector3.new(velocity.X, 0, velocity.Z).Magnitude > 0.6 then
 					legAngle = math.sin(os.clock() * 8) * 0.35
 					rightAngle, leftAngle = -legAngle * 0.7, legAngle * 0.7

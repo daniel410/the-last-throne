@@ -48,12 +48,17 @@ function Appearance.describe(kind)
 	return { template = spec.template, targetHeight = height, sourceToStudScale = scale, parts = names }
 end
 
-function Appearance.attach(rig, kind, footOffset)
+function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 	assert(rig and rig:IsA("Model"), "TD monster visual requires a Model rig")
 	assert(not rig:FindFirstChild("TdMonsterVisual"), "TD monster visual already attached")
 	local root = rig:FindFirstChild("HumanoidRootPart")
 	assert(root and root:IsA("BasePart"), "TD monster rig needs HumanoidRootPart")
-	local spec, height, sources, scale = templateFor(kind)
+	local spec, sourceHeight, sources, scale = templateFor(kind)
+	local multiplier = visualMultiplier or 1
+	assert(type(multiplier) == "number" and multiplier > 0 and multiplier == multiplier and multiplier < math.huge,
+		"Invalid TD monster visual multiplier")
+	local height = sourceHeight * multiplier
+	scale = scale * multiplier
 	local offset = footOffset or root.Size.Y * 1.5
 	assert(type(offset) == "number" and offset >= 0 and offset == offset and offset < math.huge,
 		"Invalid TD monster foot offset")
@@ -128,7 +133,9 @@ function Appearance.attach(rig, kind, footOffset)
 	end
 	visual.Parent = rig
 	rig:SetAttribute("TdMonsterTemplate", spec.template)
+	rig:SetAttribute("TdMonsterSourceHeight", sourceHeight)
 	rig:SetAttribute("TdMonsterTargetHeight", height)
+	rig:SetAttribute("TdMonsterVisualMultiplier", multiplier)
 	rig:SetAttribute("TdMonsterScale", scale)
 	rig:SetAttribute("TdWeaponShoulder", kind == "Slime" and "None" or "Left Shoulder")
 	return visual

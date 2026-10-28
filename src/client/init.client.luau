@@ -122,6 +122,13 @@ local function dodge()
 	sendAction("Dodge", movementDirection())
 end
 
+local function castArcane()
+	local character = player.Character
+	if character and character:GetAttribute("K0ClassId") == "mage" and combatInputAllowed() then
+		sendAction("CastArcane")
+	end
+end
+
 local function startBlock()
 	if heldBlock or not isKnight() or not combatInputAllowed() then return end
 	heldBlock = true
@@ -209,6 +216,7 @@ if player.Character then bindCharacter(player.Character) end
 hud.attack.InputBegan:Connect(startAttack)
 hud.attack.InputEnded:Connect(endAttack)
 hud.dodge.Activated:Connect(dodge)
+hud.skill.Activated:Connect(castArcane)
 hud.block.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
 		touchBlockInput = input
@@ -225,6 +233,8 @@ UserInputService.InputBegan:Connect(function(input, processed)
 		startAttack(input)
 	elseif input.UserInputType == Enum.UserInputType.MouseButton2 or input.KeyCode == Enum.KeyCode.ButtonL2 then
 		startBlock()
+	elseif input.KeyCode == Enum.KeyCode.Q or input.KeyCode == Enum.KeyCode.ButtonY then
+		castArcane()
 	end
 end)
 UserInputService.InputEnded:Connect(function(input)
@@ -258,11 +268,11 @@ end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.Space, Enum.KeyC
 local function updateHints()
 	local input = UserInputService:GetLastInputType()
 	if input.Name:match("^Gamepad") then
-		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB)
+		hud.setHints(Text.HintR2, Text.HintL2, Text.HintB, Text.HintY)
 	elseif UserInputService.TouchEnabled and (input == Enum.UserInputType.Touch or not UserInputService.KeyboardEnabled) then
-		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap)
+		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap, Text.HintTap)
 	else
-		hud.setHints(Text.HintClick, Text.HintRightClick, Text.HintSpace)
+		hud.setHints(Text.HintClick, Text.HintRightClick, Text.HintSpace, Text.HintQ)
 	end
 end
 UserInputService.LastInputTypeChanged:Connect(updateHints)

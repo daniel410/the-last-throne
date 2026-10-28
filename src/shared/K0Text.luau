@@ -10,6 +10,7 @@ return {
 	Attack = "ATTACK",
 	Block = "BLOCK",
 	Dodge = "DODGE",
+	ArcaneBolt = "ARCANE",
 	Unavailable = "Combat is unavailable. Rejoin to retry.",
 	SpawnRetry = "Character could not load. Please wait or rejoin to retry.",
 	IncomingAttack = "INCOMING ATTACK",
@@ -22,6 +23,8 @@ return {
 	HintR2 = "R2",
 	HintL2 = "L2",
 	HintB = "B",
+	HintQ = "Q",
+	HintY = "Y",
 	BackToLobby = "BACK TO LOBBY",
 	PracticeTitle = "CONTROLS TUTORIAL",
 	Practice = {
@@ -89,6 +92,9 @@ return {
 		GuardBroken = "GUARD BROKEN",
 		Dodged = "DODGED",
 		Interrupted = "INTERRUPTED",
+		SkillBusy = "Finish your action, then cast again.",
+		SkillCooling = "Arcane Bolt is recharging. Try again shortly.",
+		NeedStamina = "Not enough stamina. Wait, then cast again.",
 	},
-	Enemy = { Goblin = "Goblin", Orc = "Orc Warrior", Ogre = "Ogre" },
+	Enemy = { Slime = "Slime", Goblin = "Goblin", Orc = "Orc Warrior", Ogre = "Ogre" },
 }

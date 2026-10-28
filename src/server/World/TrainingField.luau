@@ -108,7 +108,7 @@ local function motor(parent, name, part0, part1, c0, c1)
 	joint.Parent = parent
 end
 
-local function makeEnemy(parent, kind, x, z, scale)
+local function makeEnemy(parent, kind, x, z, scale, visualMultiplier)
 	local model = Instance.new("Model")
 	model.Name = kind
 	model:SetAttribute("EnemyKind", kind)
@@ -151,7 +151,7 @@ local function makeEnemy(parent, kind, x, z, scale)
 	humanoid.UseJumpPower = true
 	humanoid.JumpPower = 0
 	humanoid.Parent = model
-	TdMonsterAppearance.attach(model, kind, 3 * scale)
+	TdMonsterAppearance.attach(model, kind, 3 * scale, visualMultiplier)
 	model.Parent = parent
 	root:SetNetworkOwner(nil)
 	return model
@@ -261,8 +261,11 @@ function TrainingField.create()
 	enemies.Name = "Enemies"
 	enemies.Parent = folder
 	makeEnemy(enemies, "Goblin", -18, -10, 0.85)
+	makeEnemy(enemies, "Slime", -4, 24, 0.50)
 	makeEnemy(enemies, "Orc", 42, 17, 1.10)
-	makeEnemy(enemies, "Ogre", 20, -30, 1.45)
+	-- Scale the visible TD source and its control rig together. Its resulting
+	-- 9.18-stud visual is twice the original Orc's 4.6-stud height.
+	makeEnemy(enemies, "Ogre", 20, -30, 2.20, 2.20 / 1.45)
 
 	return { folder = folder, enemies = enemies, spawn = spawn }
 end

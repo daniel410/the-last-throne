@@ -146,11 +146,22 @@ local function buildTd(spec)
 			copy.CFrame = sourceGrip.CFrame:ToObjectSpace(original.CFrame)
 			inert(copy)
 			copy.Parent = model
-			local weld = Instance.new("WeldConstraint")
-			weld.Name = name .. "VisualWeld"
-			weld.Part0 = grip
-			weld.Part1 = copy
-			weld.Parent = copy
+			if spec.template == "ElfBow" and (name == "String" or name == "NockedArrow") then
+				-- The original string and arrow retain their geometry and grip
+				-- offsets. A local-only Transform can now show the draw/release.
+				local joint = Instance.new("Motor6D")
+				joint.Name = name .. "VisualJoint"
+				joint.Part0, joint.Part1 = grip, copy
+				joint.C0 = copy.CFrame
+				joint.C1 = CFrame.new()
+				joint.Parent = copy
+			else
+				local weld = Instance.new("WeldConstraint")
+				weld.Name = name .. "VisualWeld"
+				weld.Part0 = grip
+				weld.Part1 = copy
+				weld.Parent = copy
+			end
 			if spec.template == "KnightSword" then
 				copy.Name = "SwordBlade"
 				blade = copy
@@ -233,7 +244,9 @@ local function attachedResult(model, classId, hand)
 		if part ~= grip then
 			local welded = false
 			for _, item in ipairs(part:GetChildren()) do
-				if item:IsA("WeldConstraint") and item.Part0 == grip and item.Part1 == part then welded = true; break end
+				local movableBowPart = classId == "elf" and (name == "String" or name == "NockedArrow")
+				if ((movableBowPart and item:IsA("Motor6D")) or (not movableBowPart and item:IsA("WeldConstraint")))
+					and item.Part0 == grip and item.Part1 == part then welded = true; break end
 			end
 			if not welded then return nil end
 		end
@@ -262,13 +275,23 @@ end
 local function handPoseFor(hand, classId)
 	-- Match TD HeroWeaponVisuals' authored hand pose, separately from the
 	-- import normalization already present in the source templates.
+	if classId == "knight" then
+		-- The original sword's blade axis is +Y. Keep it upright in the hand
+		-- and tip it toward character-forward (-Z) without a sideways lean.
+		return CFrame.new(0, hand.Name == "Right Arm" and -0.95 or -0.12, -hand.Size.Z / 2)
+			* CFrame.Angles(math.rad(-30), 0, 0)
+	end
+	if classId == "mage" then
+		return CFrame.new(0, hand.Name == "Right Arm" and -0.95 or -0.12, -hand.Size.Z / 2)
+			* CFrame.Angles(math.rad(-20), 0, math.rad(-8))
+	end
 	local offset = CFrame.new(0, hand.Name == "Right Arm" and -0.95 or -0.12, -0.12)
 		* CFrame.Angles(0, 0, math.rad(classId == "elf" and 0 or -23))
 	if classId ~= "elf" then offset = offset * CFrame.new(0, 0, -hand.Size.Z / 2 + 0.12) end
-	if classId == "knight" then
-		offset = offset * CFrame.Angles(math.rad(-12), 0, 0)
-	elseif classId == "dwarf" then
-		offset = offset * CFrame.Angles(math.rad(-15), 0, 0) * CFrame.Angles(0, math.pi / 2, 0)
+	if classId == "dwarf" then
+		-- Reverse the previously backward axe head while preserving its
+		-- original TD mesh and grip-relative shape.
+		offset = offset * CFrame.Angles(math.rad(-35), 0, 0) * CFrame.Angles(0, -math.pi / 2, 0)
 	end
 	return offset
 end
@@ -481,9 +504,10 @@ function Appearance.attachShieldInto(appearanceModel, character, hands)
 	end
 	local inserted = {}
 	local ok, err = pcall(function()
-		-- The socket is the back-center contact plane. The native template's
-		-- front is already -Z; do not add a 180-degree hand rotation.
-		local offset = CFrame.new(0, hand.Name == "Left Arm" and -0.65 or 0, -hand.Size.Z / 2 - 0.02)
+		-- The shield's native front is -Z. Turn that face toward the
+		-- character's left side while keeping its back socket at the hand.
+		local offset = CFrame.new(-hand.Size.X / 2 - 0.02, hand.Name == "Left Arm" and -0.65 or 0, 0)
+			* CFrame.Angles(0, math.rad(90), 0)
 		local target = hand.CFrame * offset
 		local frames = {}
 		for _, item in ipairs(result.model:GetDescendants()) do

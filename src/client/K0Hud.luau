@@ -170,6 +170,8 @@ function Hud.create()
 	local actionScale = Instance.new("UIScale")
 	actionScale.Parent = actions
 	local block, blockHint = action(actions, "Block", Text.Block, Text.HintHold, UDim2.fromOffset(72, 0), 68)
+	local skill, skillHint = action(actions, "ArcaneBolt", Text.ArcaneBolt, Text.HintQ, UDim2.fromOffset(72, 0), 68)
+	skill.Visible = false
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintSpace, UDim2.fromOffset(0, 91), 68)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(134, 71), 88)
 	local back = Instance.new("TextButton")
@@ -227,6 +229,7 @@ function Hud.create()
 	return {
 		attack = attack,
 		block = block,
+		skill = skill,
 		dodge = dodge,
 		back = back,
 		setVisible = function(visible)
@@ -235,6 +238,7 @@ function Hud.create()
 		setClass = function(classId)
 			classLabel.Text = Text.Class[classId] or ""
 			block.Visible = classId == "knight"
+			skill.Visible = classId == "mage"
 		end,
 		setPractice = function(value, classId)
 			value = value or {}
@@ -247,8 +251,9 @@ function Hud.create()
 		setState = function(value)
 			state.Text = value
 		end,
-		setHints = function(attackText, blockText, dodgeText)
+		setHints = function(attackText, blockText, dodgeText, skillText)
 			attackHint.Text, blockHint.Text, dodgeHint.Text = attackText, blockText, dodgeText
+			skillHint.Text = skillText or Text.HintQ
 		end,
 		showFeedback = function(value, duration)
 			feedbackSequence += 1
