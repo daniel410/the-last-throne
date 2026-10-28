@@ -10,6 +10,7 @@ local Visual = {}
 local started = false
 local effects = {}
 local seenShots = {}
+local seenMultiShots = {}
 local arrows = {}
 local seenSpells = {}
 local seenSkillEffects = {}
@@ -458,7 +459,6 @@ local function advanceArrows(dt)
 		local arrow = arrows[index]
 		if not arrow.character:IsDescendantOf(workspace) or not arrow.model.Parent
 			or arrow.character:GetAttribute("K0ClassId") ~= "elf"
-			or arrow.character:GetAttribute("K0ArrowVisual") ~= arrow.payload
 			or (arrow.owner and arrow.owner.Character ~= arrow.character) then
 			arrow.model:Destroy()
 			table.remove(arrows, index)
@@ -509,6 +509,26 @@ local function consumeArrow(character)
 	seenShots[character] = payload
 	local first, last = decodeShot(payload)
 	if first then emitArrow(character, weaponOrigin(character, first, last, "elf"), last, payload) end
+end
+
+local function consumeMultiShot(character)
+	local payload = character:GetAttribute("K0MultiShotVisual")
+	if type(payload) ~= "string" or #payload > 256 or seenMultiShots[character] == payload then return end
+	seenMultiShots[character] = payload
+	local fields = string.split(payload, "|")
+	if #fields < 7 or #fields > 16 or (#fields - 4) % 3 ~= 0 then return end
+	local values = {}
+	for index, field in ipairs(fields) do
+		values[index] = tonumber(field)
+		if not finite(values[index]) then return end
+	end
+	if values[1] < 1 or values[1] % 1 ~= 0 then return end
+	local origin = Vector3.new(values[2], values[3], values[4])
+	for index = 5, #values, 3 do
+		local endpoint = Vector3.new(values[index], values[index + 1], values[index + 2])
+		local length = (endpoint - origin).Magnitude
+		if length >= 0.05 and length <= 55.1 then emitArrow(character, weaponOrigin(character, origin, endpoint, "elf"), endpoint, payload) end
+	end
 end
 
 local function consumeSpell(character)
@@ -637,6 +657,14 @@ function Visual.renderCharacter(character, dt)
 			areaPulse(root.Position, skillId == "knight.common.whirlwind" and Color3.fromRGB(255, 222, 151) or Color3.fromRGB(255, 147, 75), skillId == "knight.common.whirlwind" and 7 or 12)
 		end
 	end
+	if classId == "dwarf" and character:GetAttribute("K0AttackPhase") == "Active"
+		and character:GetAttribute("K0SkillId") == "dwarf.common.ground" then
+		local seq, root = character:GetAttribute("K0AttackSeq"), character:FindFirstChild("HumanoidRootPart")
+		if root and seq and seenSkillEffects[character] ~= seq then
+			seenSkillEffects[character] = seq
+			areaPulse(root.Position, Color3.fromRGB(255, 168, 64), 6)
+		end
+	end
 	if classId == "mage" then
 		local payload = character:GetAttribute("K0GravityAreaVisual")
 		if type(payload) == "string" and #payload <= 100 and seenGravityAreas[character] ~= payload then
@@ -646,7 +674,7 @@ function Visual.renderCharacter(character, dt)
 			if seq and finite(x) and finite(y) and finite(z) then areaPulse(Vector3.new(x, y, z), Color3.fromRGB(126, 65, 211), 6) end
 		end
 	end
-	if classId == "elf" then consumeArrow(character) end
+	if classId == "elf" then consumeArrow(character); consumeMultiShot(character) end
 	if classId == "mage" or classId == "dwarf" then consumeSpell(character) end
 	local rendered = 0
 	for _, model in ipairs(character:GetChildren()) do

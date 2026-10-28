@@ -232,3 +232,7 @@
 ## 2026-10-28 기사 기본 스킬과 Gravity 광역
 
 사용자 지정: 기사의 기본 스킬은 Shield Bash·Whirlwind·Provoke이며 Whirlwind는 광역기다. Mage의 Gravity도 광역기다. 시험판은 기사 주변 Whirlwind·주변 적 도발과 선택한 적 중심 Gravity 광역 피해/감속을 사용한다. 범위·대상 수·도발/감속 시간은 시험값이며 대규모 광역의 Lv60 성장 방향을 변경하지 않는다. [구현과 검증](evidence/k0/knight-gravity-area.md).
+
+## 2026-10-28 드워프·엘프 기본 스킬
+
+사용자 지정: 드워프의 기본 스킬은 Overhead Smash·Axe Throw·Ground Slam이며 Ground Slam은 광역기다. 엘프는 Aimed Shot·Rapid Fire·Multi Shot이며 Multi Shot은 광역기다. 각 물리 스킬은 Stamina와 독립 쿨다운을 적용한다. 기술별 피해·사거리·대상 수·연속 발사 간격은 시험값이다. 기존 전직 방향과 영웅별 무료 기본 공격은 유지한다. [구현과 검증](evidence/k0/dwarf-elf-starter-skills.md).

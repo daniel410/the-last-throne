@@ -330,7 +330,7 @@ local function startSkill(state, slot, current, targetModel)
 	end
 	if skill.effect == "recall" then targetModel = state.thrownTarget end
 	local direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1))
-	if skill.effect == "whirlwind" or skill.effect == "provoke" then targetModel = nil end
+	if skill.effect == "whirlwind" or skill.effect == "provoke" or skill.effect == "slam" then targetModel = nil end
 	local selected = targetModel and enemyStates[targetModel]
 	if selected and enemyAlive(selected) then
 		local delta = horizontal(selected.root.Position - state.root.Position)
@@ -767,6 +767,28 @@ local function applyArrowShot(state, current)
 				if attack.hitCount >= attack.maxTargets then break end
 				damageEnemy(state, enemy, attack, current)
 			end
+		elseif attack.isSkill and attack.definition.effect == "multi" then
+			local aim = horizontalUnit(target.root.Position - origin, attack.direction)
+			local others = {}
+			for _, enemy in pairs(enemyStates) do
+				local delta = enemy.root.Position - origin
+				if enemy ~= target and enemyAlive(enemy)
+					and Rules.withinCone(delta.Magnitude, math.abs(delta.Y), facingDot(origin, aim, enemy.root.Position), attack.definition.range, attack.maxHeight, attack.definition.angle)
+					and unobstructed(origin, enemy.root.Position, state.character, enemy.model) then table.insert(others, enemy) end
+			end
+			table.sort(others, function(a, b)
+				local da, db = (a.root.Position - origin).Magnitude, (b.root.Position - origin).Magnitude
+				if da == db then return a.id < b.id end
+				return da < db
+			end)
+			local points = { tostring(sequence), string.format("%.3f", origin.X), string.format("%.3f", origin.Y), string.format("%.3f", origin.Z) }
+			for _, enemy in ipairs(others) do
+				if attack.hitCount >= attack.maxTargets then break end
+				local position = enemy.root.Position
+				table.insert(points, string.format("%.3f", position.X)); table.insert(points, string.format("%.3f", position.Y)); table.insert(points, string.format("%.3f", position.Z))
+				damageEnemy(state, enemy, attack, current)
+			end
+			if #points > 4 then state.character:SetAttribute("K0MultiShotVisual", table.concat(points, "|")) end
 		elseif attack.isSkill and attack.definition.effect == "pierce" then
 			local aim = horizontalUnit(target.root.Position - origin, attack.direction)
 			local others = {}
@@ -862,12 +884,26 @@ local function processCombatSamples(current, requiredState)
 	local needsTargets = false
 	for _, state in pairs(playerStates) do
 		local attack = state.attack
-		if alive(state) and state.mode == "Attack" and attack
-			and Rules.shouldSampleHitWindow(current - attack.started, attack.definition, attack.sampledActive) then
-			pendingPlayers[state] = true
-			table.insert(pending, { player = state, attack = attack,
-				at = attack.sampledActive and current or attack.started + attack.definition.windup + (attack.definition.hitDelay or 0),
-				order = 0, id = state.player.UserId })
+		if alive(state) and state.mode == "Attack" and attack then
+			if attack.isSkill and attack.definition.effect == "rapid" then
+				local fired = attack.rapidFired or 0
+				while fired < attack.definition.shotCount do
+					local due = attack.started + attack.definition.windup + fired * attack.definition.shotInterval
+					if current < due then break end
+					fired += 1
+					if current <= due + Rules.MaxLateHit + Rules.TimeEpsilon then
+						pendingPlayers[state] = true
+						table.insert(pending, { player = state, attack = attack, rapidIndex = fired, at = due, order = 0, id = state.player.UserId })
+					else
+						attack.rapidFired = fired
+					end
+				end
+			elseif Rules.shouldSampleHitWindow(current - attack.started, attack.definition, attack.sampledActive) then
+				pendingPlayers[state] = true
+				table.insert(pending, { player = state, attack = attack,
+					at = attack.sampledActive and current or attack.started + attack.definition.windup + (attack.definition.hitDelay or 0),
+					order = 0, id = state.player.UserId })
+			end
 		end
 	end
 	for _, enemy in pairs(enemyStates) do
@@ -915,7 +951,11 @@ local function processCombatSamples(current, requiredState)
 			local state = sample.player
 			if validPlayers[state] and alive(state) and state.mode == "Attack" and state.attack == attack then
 				attack.sampledActive = true
-				if attack.isSkill and attack.definition.effect == "provoke" then
+				if sample.rapidIndex then
+					attack.rapidFired = math.max(attack.rapidFired or 0, sample.rapidIndex)
+					attack.arrowFired, attack.hits, attack.hitCount, attack.counterDamage = false, {}, 0, nil
+					applyArrowShot(state, current)
+				elseif attack.isSkill and attack.definition.effect == "provoke" then
 					local candidates = {}
 					local origin = state.root.Position
 					for _, enemy in pairs(enemyStates) do

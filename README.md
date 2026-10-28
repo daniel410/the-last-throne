@@ -2,7 +2,7 @@
 
 Throne Defense의 세계관·영웅·타워·맵·몬스터·포탈·왕좌와 3D 자산을 공유하는 Roblox 협동 액션 RPG입니다. 직접 조작 전투, 클래스 안의 전직과 스킬트리, 공명 연계, 탐험과 이야기를 중심으로 최고의 액션 RPG를 목표로 합니다.
 
-**문서 묶음 v0.25 + 2026-10-28 전투 결정 정리 · 최신 시험 빌드 0.15.0 · Deepwood K0 원형 제작·검증**
+**문서 묶음 v0.25 + 2026-10-28 전투 결정 정리 · 최신 시험 빌드 0.16.0 · Deepwood K0 원형 제작·검증**
 
 **개발 문서는 한국어, 게임의 UI·퀘스트·대사·아이템·스킬·상품·오류·음성/자막은 영어(en-US)로 제작합니다.**
 
@@ -23,7 +23,7 @@ Throne Defense와 **같은 Roblox Experience의 별도 RPG Place**로 연결하�
 
 | 분야별 상세 계획 | 내용 |
 | --- | --- |
-| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.15.0 시험 구현·최신 결정·미구현 차이·다음 작업/수용 |
+| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.16.0 시험 구현·최신 결정·미구현 차이·다음 작업/수용 |
 | [액션·스킬 설계](docs/production/action-and-skill-design.md) | 공통 액션·물리/마법 자원·전직별 슬롯·키/HUD |
 | [기획·시스템](docs/production/game-systems-plan.md) | 32구간 추적·후반8장 연결·전직/스탯/스킬·장비/경제·동료 |
 | [디자인·월드](docs/production/design-and-world-plan.md) | 승인 컨셉·맵/랜드마크·모바일/패드·가방 v2·접근성 |
@@ -105,7 +105,7 @@ TD 실제 아틀라스를 참조한 공통 보드와 로비HUD·로비 메뉴·�
 
 ## 다음 구현 작업
 
-Deepwood 시험장에서 네 영웅의 공통 공격·방어·회피·달리기와 직업 스킬을 사용할 수 있습니다. 기사의 기본 스킬은 Shield Bash·Whirlwind·Provoke, 마법사는 Mana Bolt·Water Ball·Gravity입니다. Whirlwind와 Gravity는 광역기입니다. PC는 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R/V 회피, 1~5번 장착 스킬, Space 점프, X 표적 해제입니다. 물리 스킬은 Stamina, 마법은 MP와 기술별 쿨다운을 사용합니다. 정식 전직·저장은 미구현이며 5슬롯은 연습 전용입니다. [현재 상태와 검증](docs/production/current-status.md).
+Deepwood 시험장에서 네 영웅의 공통 공격·방어·회피·달리기와 직업 스킬을 사용할 수 있습니다. 기사의 기본 스킬은 Shield Bash·Whirlwind·Provoke, 마법사는 Mana Bolt·Water Ball·Gravity입니다. 드워프는 Overhead Smash·Axe Throw·Ground Slam, 엘프는 Aimed Shot·Rapid Fire·Multi Shot을 사용합니다. Whirlwind·Gravity·Ground Slam·Multi Shot은 광역기입니다. PC는 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R/V 회피, 1~5번 장착 스킬, Space 점프, X 표적 해제입니다. 물리 스킬은 Stamina, 마법은 MP와 기술별 쿨다운을 사용합니다. 정식 전직·저장은 미구현이며 5슬롯은 연습 전용입니다. [현재 상태와 검증](docs/production/current-status.md).
 
 ## Deepwood 에픽·상세 시나리오
 
