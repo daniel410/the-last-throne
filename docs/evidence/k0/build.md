@@ -128,3 +128,14 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 종료 0, 435개 통과, 실패·수집 런타임 오류 0, Player 0. 네 적의 외형·리스폰과 작은 체력 바의 수치/색/사망 시 숨김 확인. [로그](combat-feedback-build-smoke.log) |
 | 실제 Play | 빌드 전 동일 런타임 소스로 격리 Studio의 Player 1명·R15 검/방패 방향, 네 직업 동작 일부와 마법 Q 입력을 측정. [상세](combat-feedback.md). 이 빌드 파일 자체의 Player Play는 수행하지 않았다. |
 | 상태 | 사용자 추가 요청에 따라 엘프 발사 동작을 다음 버전에서 개선한다. 기존 `203785492` 유형 경고 관측. 모바일/패드·다인 및 게시 Experience 권한은 미검증, 릴리스 태그·Roblox 게시 없음. |
+
+## 0.6.1 — 엘프 발사 동작 조정
+
+| 항목 | 실제 결과 |
+| --- | --- |
+| 입력 소스 | `34eedb4f33169454c0657d89868cc56d2550c863`, `VERSION=0.6.1`, 빌드 전 origin/main과 동일 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.6.1/TheLastThrone-0.6.1.rbxlx`, 종료 0 |
+| 결과물 | 818,630 bytes, SHA-256 `a77153d6a25fc08350e31083cc4597ace5add79b709a576666dd8ccd79d27990`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 종료 0, 435개 통과, 실패·수집 런타임 오류 0, Player 0. [로그](elf-release-build-smoke.log) |
+| 고정 빌드 실제 Play | 격리 Studio의 실제 Player 1명·R15에서 Elf를 로비 UI로 생성하고 튜토리얼로 진입했다. 클라이언트에서 서버에 시험 공격 요청을 보내 활시위 당김 약 0.46 studs, 팔꿈치 회전, 화살 발사와 발사 중 걸린 화살 숨김·복원을 확인했다. 입력 기기와 정밀 손 접촉의 수용 검사는 별도다. |
+| 상태 | 세션 전용 시험판. 모바일·패드·다인·게시 Experience 자산 권한은 미검증, Git 릴리스 태그·Roblox 게시 없음. 기존 `203785492` 유형 불일치 경고가 재관측됐다. |
