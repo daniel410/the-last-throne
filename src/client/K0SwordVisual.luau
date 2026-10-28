@@ -194,7 +194,7 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 	end
 	if classId == "mage" then
 		if phase == "Windup" then return CFrame.Angles(math.rad(-135), 0, 0) end
-		if phase == "Active" then return CFrame.Angles(math.rad(-150), 0, math.rad(-30)) end
+		if phase == "Active" then return CFrame.Angles(math.rad(-157), 0, math.rad(-30)) end
 		if phase == "Recovery" then return CFrame.Angles(math.rad(-8), 0, 0) end
 	end
 	return CFrame.new()
@@ -265,14 +265,15 @@ function Visual.renderArms(character, dt)
 	local mode = character:GetAttribute("K0State")
 	local phase = character:GetAttribute("K0AttackPhase")
 	local kind = character:GetAttribute("K0AttackKind")
-	local right, left, rightElbow, torso, rightHipPose, rightKneePose
+	local right, left, rightElbow, torso, rightHipPose, rightKneePose, leftHipPose, leftKneePose
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
 	local usesIK = updateElfIK(character, mode, phase, elapsed)
 	if mode == "Dodge" then
-		-- A backward right step is a visual pose only; server dodge movement
-		-- and invulnerability remain authoritative.
-		rightHipPose = CFrame.Angles(math.rad(-42), 0, 0)
-		rightKneePose = CFrame.Angles(math.rad(15), 0, 0)
+		-- Alternate on accepted server dodges so observers see the same foot.
+		local seq = character:GetAttribute("K0DodgeSeq")
+		local leftStep = type(seq) == "number" and seq > 0 and seq % 2 == 0
+		local hip, knee = CFrame.Angles(math.rad(-42), 0, 0), CFrame.Angles(math.rad(15), 0, 0)
+		if leftStep then leftHipPose, leftKneePose = hip, knee else rightHipPose, rightKneePose = hip, knee end
 	elseif classId == "knight" and mode == "Block" then
 		left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
 	elseif mode == "Attack" and (phase == "Windup" or phase == "Active" or phase == "Recovery") then
@@ -296,14 +297,14 @@ function Visual.renderArms(character, dt)
 			local yaw = phase == "Windup" and 60 * side or phase == "Active" and -60 * side or 0
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		elseif classId == "dwarf" then
-			local pitch = phase == "Windup" and 135 or phase == "Active" and 90 or 70
+			local pitch = phase == "Windup" and 150 or phase == "Active" and 75 or 65
 			right = CFrame.Angles(math.rad(pitch), 0, 0)
 			-- The reference raises a bent arm, straightens it into the blow,
 			-- and keeps the axe forward during the follow-through.
 			rightElbow = CFrame.Angles(math.rad(phase == "Windup" and -25 or 0), 0, 0)
-			torso = CFrame.Angles(math.rad(phase == "Windup" and 5 or phase == "Active" and -15 or -9), 0, 0)
+			torso = CFrame.Angles(math.rad(phase == "Windup" and 5 or phase == "Active" and -10 or -8), 0, 0)
 		elseif classId == "mage" then
-			local pitch = phase == "Windup" and 105 or phase == "Active" and 75 or 20
+			local pitch = phase == "Windup" and 100 or phase == "Active" and 72 or 20
 			local yaw = phase == "Windup" and -30 or phase == "Active" and 45 or 0
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		end
@@ -323,13 +324,17 @@ function Visual.renderArms(character, dt)
 	apply(armJoint(character, "Left", "Shoulder"), left)
 	local waist = character:FindFirstChild("Waist", true)
 	if waist and (waist:IsA("Motor6D") or waist:IsA("AnimationConstraint")) then apply(waist, torso) end
-	local rightHip, rightKnee = armJoint(character, "Right", "Hip"), armJoint(character, "Right", "Knee")
-	if rightHip and rightHipPose then
-		local basis = rightHip.C0.Rotation
-		rightHipPose = basis:Inverse() * rightHipPose * basis
+	local function applyLeg(side, pose, kneePose)
+		local hip, knee = armJoint(character, side, "Hip"), armJoint(character, side, "Knee")
+		if hip and pose then
+			local basis = hip.C0.Rotation
+			pose = basis:Inverse() * pose * basis
+		end
+		apply(hip, pose)
+		apply(knee, kneePose)
 	end
-	apply(rightHip, rightHipPose)
-	apply(rightKnee, rightKneePose)
+	applyLeg("Right", rightHipPose, rightKneePose)
+	applyLeg("Left", leftHipPose, leftKneePose)
 	local rightShoulder, elbow = armJoint(character, "Right", "Shoulder"), armJoint(character, "Right", "Elbow")
 	if right and rightShoulder and (classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane")) then
 		-- Classic R6 shoulders use a different joint basis from R15. Express

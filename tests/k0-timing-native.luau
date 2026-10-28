@@ -371,6 +371,23 @@ return {
 		near((state.root.Position - position).Magnitude, 0, "blocked same-time observation cannot move twice")
 		near(state.stamina, 70, "blocked dodge costs once")
 	end)
+	case("dodge-sequence-advances-only-on-accepted-dodges", function()
+		local state = playerState()
+		intent(state, "Dodge", T, Vector3.new(0, 0, -1))
+		equal(state.character:GetAttribute("K0DodgeSeq"), 1, "first accepted dodge chooses right")
+		intent(state, "Dodge", T + 0.1, Vector3.new(0, 0, -1))
+		equal(state.character:GetAttribute("K0DodgeSeq"), 1, "early rejected input does not advance")
+		frame(T + 0.66, 0.56)
+		intent(state, "Dodge", T + 0.67, Vector3.new(0, 0, -1))
+		equal(state.character:GetAttribute("K0DodgeSeq"), 2, "second accepted dodge chooses left")
+		frame(T + 1.34, 0.67)
+		state.stamina = 0
+		intent(state, "Dodge", T + 1.35, Vector3.new(0, 0, -1))
+		equal(state.character:GetAttribute("K0DodgeSeq"), 2, "insufficient stamina does not advance")
+		state.stamina = 100
+		intent(state, "Dodge", T + 1.36, Vector3.new(0, 0, -1))
+		equal(state.character:GetAttribute("K0DodgeSeq"), 3, "third accepted dodge chooses right")
+	end)
 
 	for _, action in { "Attack", "BlockStart", "Dodge" } do
 		case("R2-60Hz-single-" .. action, function()

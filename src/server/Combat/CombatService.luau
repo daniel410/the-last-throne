@@ -330,6 +330,8 @@ local function startDodge(state, direction, current)
 	local travel = direction and horizontalUnit(direction, fallback) or fallback
 	state.dodge = { started = current, direction = travel, moved = 0 }
 	state.lastDodgeStarted = current
+	state.dodgeSeq = (state.dodgeSeq or 0) + 1
+	state.character:SetAttribute("K0DodgeSeq", state.dodgeSeq)
 	spendStamina(state, Config.Dodge.cost, current)
 	setPlayerState(state, "Dodge")
 	updateFeedback(state, "ActionStarted")
@@ -1197,7 +1199,7 @@ local function setupCharacter(player, character)
 		local current = now()
 		local state = {
 			player = player, character = character, humanoid = humanoid, root = root, mode = "", stamina = Config.MaxStamina,
-			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, arrowSeq = 0, spellSeq = 0, lastSpellStarted = -math.huge,
+			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0, lastSpellStarted = -math.huge,
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
 			combo = 0, lastAttackFinished = -math.huge, lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge,
 			regenAt = current, stunnedUntil = 0, feedbackSeq = 0, attack = nil, queued = nil, counter = nil,
@@ -1213,6 +1215,7 @@ local function setupCharacter(player, character)
 		character:SetAttribute("K0CharacterGeneration", context.characterGeneration)
 		character:SetAttribute("K0AttackProfileId", attackProfile.id)
 		character:SetAttribute("K0AttackSeq", 0)
+		character:SetAttribute("K0DodgeSeq", 0)
 		character:SetAttribute("K0ArrowSeq", 0)
 		character:SetAttribute("K0ArrowFrom", nil)
 		character:SetAttribute("K0ArrowTo", nil)

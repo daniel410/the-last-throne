@@ -58,6 +58,8 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 				local windupElbow = elbow and elbow.Transform
 				local active, activeHand = sample("Active", 6)
 				local activeElbow = elbow and elbow.Transform
+				local foot = assert(character:FindFirstChild(rig == Enum.HumanoidRigType.R6 and "Right Leg" or "RightFoot"))
+				local footHeight = character.HumanoidRootPart.CFrame:PointToObjectSpace(frame(foot).Position).Y
 				local waist = character:FindFirstChild("Waist", true)
 				local activeWaist = waist and waist.Transform
 				local recovery = sample("Recovery", 10)
@@ -68,7 +70,8 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 					check((active.X - windup.X) * direction > 6, "knight sweeps widely and alternates direction")
 					check(math.abs(active.Y - windup.Y) < 1, "knight stroke remains broadly horizontal")
 				elseif classId == "dwarf" then
-					check(windup.Y > 3.4 and windup.Y - active.Y > 3, "dwarf axe descends substantially from overhead")
+					check(windup.Y > 4.2 and windup.Y - active.Y > 5, "dwarf axe descends in a large overhead stroke")
+					check(active.Y < footHeight + 1.2, "dwarf axe reaches the lower leg area")
 					check(math.abs(active.X - windup.X) < 1, "dwarf stroke remains broadly vertical")
 					check(active.Z < -3.7 and activeHand.Z < -0.35, "dwarf arm and axe extend forward")
 					check(recovery.Z < -2, "dwarf follows through forward during recovery")
@@ -82,6 +85,7 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 				else
 					check(windup.Y - active.Y > 2 and windup.X - active.X > 2, "mage staff moves down and across diagonally")
 					check(active.Z < -3.7 and activeHand.Z < -0.35, "mage arm and staff extend forward")
+					check(windup.Y < 3.5 and active.Y < 0.5, "mage staff stays in the lower attack arc")
 				end
 			end, debug.traceback)
 			if character then character:Destroy() end

@@ -31,6 +31,7 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 			local right = assert(character:FindFirstChild(rig == Enum.HumanoidRigType.R6 and "Right Leg" or "RightFoot"))
 			local left = assert(character:FindFirstChild(rig == Enum.HumanoidRigType.R6 and "Left Leg" or "LeftFoot"))
 			local rightBefore, leftBefore = root:PointToObjectSpace(frame(right).Position), root:PointToObjectSpace(frame(left).Position)
+			character:SetAttribute("K0DodgeSeq", 1)
 			character:SetAttribute("K0State", "Dodge")
 			for _ = 1, 10 do visual.renderArms(character, 1 / 60) end
 			local rightAfter, leftAfter = root:PointToObjectSpace(frame(right).Position), root:PointToObjectSpace(frame(left).Position)
@@ -41,6 +42,19 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 			for _ = 1, 20 do visual.renderArms(character, 1 / 60) end
 			local rightRestored = root:PointToObjectSpace(frame(right).Position)
 			check((rightRestored - rightBefore).Magnitude < 0.01, "right leg returns to idle after dodge")
+			character:SetAttribute("K0DodgeSeq", 2)
+			character:SetAttribute("K0State", "Dodge")
+			for _ = 1, 10 do visual.renderArms(character, 1 / 60) end
+			local rightSecond, leftSecond = root:PointToObjectSpace(frame(right).Position), root:PointToObjectSpace(frame(left).Position)
+			check(leftSecond.Z - leftBefore.Z > 0.25, "second dodge moves left foot backward")
+			check((rightSecond - rightBefore).Magnitude < 0.01, "second dodge leaves right foot neutral")
+			character:SetAttribute("K0State", "Idle")
+			for _ = 1, 20 do visual.renderArms(character, 1 / 60) end
+			check((root:PointToObjectSpace(frame(left).Position) - leftBefore).Magnitude < 0.01, "left leg returns after second dodge")
+			character:SetAttribute("K0DodgeSeq", 3)
+			character:SetAttribute("K0State", "Dodge")
+			for _ = 1, 10 do visual.renderArms(character, 1 / 60) end
+			check(root:PointToObjectSpace(frame(right).Position).Z - rightBefore.Z > 0.25, "third dodge returns to right foot")
 		end, debug.traceback)
 		if character then character:Destroy() end
 		if not ok then table.insert(report.failures, rig.Name .. "/" .. classId .. ": " .. tostring(err)) end
