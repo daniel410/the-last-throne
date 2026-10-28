@@ -166,7 +166,7 @@ function Visual.samplePose(classId, phase, combo, attackKind)
 		-- Idle is lowered; the raised arm and this grip pose combine into an
 		-- upright bow while drawing and releasing.
 		if phase == "Windup" or phase == "Active" then
-			return CFrame.Angles(math.rad(-85), 0, 0)
+			return CFrame.Angles(math.rad(-75), 0, 0)
 		elseif phase == "Recovery" then
 			return CFrame.Angles(math.rad(-88), 0, math.rad(4))
 		end
@@ -264,11 +264,11 @@ function Visual.renderArms(character, dt)
 	elseif mode == "Attack" and (phase == "Windup" or phase == "Active" or phase == "Recovery") then
 		if classId == "elf" then
 			if phase == "Windup" then
-				left = CFrame.Angles(math.rad(85), 0, math.rad(10))
+				left = CFrame.Angles(math.rad(75), 0, math.rad(10))
 				right = CFrame.Angles(math.rad(65), math.rad(32), math.rad(-18))
 				rightElbow = CFrame.Angles(math.rad(-65), 0, 0)
 			elseif phase == "Active" then
-				left = CFrame.Angles(math.rad(85), 0, math.rad(10))
+				left = CFrame.Angles(math.rad(75), 0, math.rad(10))
 				right = CFrame.Angles(math.rad(60), math.rad(12), math.rad(-23))
 				rightElbow = CFrame.Angles(math.rad(-20), 0, 0)
 			else
