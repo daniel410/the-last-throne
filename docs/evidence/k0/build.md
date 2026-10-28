@@ -139,3 +139,14 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 종료 0, 435개 통과, 실패·수집 런타임 오류 0, Player 0. [로그](elf-release-build-smoke.log) |
 | 고정 빌드 실제 Play | 격리 Studio의 실제 Player 1명·R15에서 Elf를 로비 UI로 생성하고 튜토리얼로 진입했다. 클라이언트에서 서버에 시험 공격 요청을 보내 활시위 당김 약 0.46 studs, 팔꿈치 회전, 화살 발사와 발사 중 걸린 화살 숨김·복원을 확인했다. 입력 기기와 정밀 손 접촉의 수용 검사는 별도다. |
 | 상태 | 세션 전용 시험판. 모바일·패드·다인·게시 Experience 자산 권한은 미검증, Git 릴리스 태그·Roblox 게시 없음. 기존 `203785492` 유형 불일치 경고가 재관측됐다. |
+
+## 0.7.0 — 원거리 표적과 무기 동작 수정
+
+| 항목 | 실제 결과 |
+| --- | --- |
+| 입력 소스 | `d70aedb019bfb75be46576a7ac9c3a6f003dd4ef`, `VERSION=0.7.0`. 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.7.0/TheLastThrone-0.7.0.rbxlx`, 종료 0 |
+| 결과물 | 832,585 bytes, SHA-256 `2a8b92d426f4ec4fb3b4492b6a673a77e55ff37e5c54b41dbb7bb52d7ac53d75`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 종료 0, 436개 통과, 실패·수집 런타임 오류 0, Player 0. [로그](targeted-build-smoke.log). 표적 서버 145개·무기 2,177개·기존 타이밍 116개 검사는 [작업 기록](targeted-combat.md)의 소스 fixture 결과다. |
+| 고정 빌드 실제 Play | 격리 Studio 실제 Player 1명/R15에서 Elf와 Mage를 로비에서 생성해 튜토리얼 진입. Elf 활이 LeftHand에 붙고 RightHand가 시위를 당겼으며, 시위 깊이는 대기 1.192 → 준비 1.651 → 발사 1.198 → 복귀 1.192 studs, 화살이 복구되는 것을 확인. Mage 버튼이 CAST로 표시됨. 공격 자체는 테스트 스크립트에서 서버 요청을 보냈다. |
+| 미검증·릴리스 | 손과 시위의 정확한 접촉·최종 애니메이션 품질, R6 실플레이, 모바일·패드·다인·게시 Experience의 원본 메시 권한은 미검증이다. 기존 `203785492` 유형 경고가 재관측됐다. Git 릴리스 태그·Roblox 게시 없음. |
