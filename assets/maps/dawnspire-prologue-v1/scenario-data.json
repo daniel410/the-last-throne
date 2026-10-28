@@ -1,0 +1,277 @@
+[
+  {
+    "id": "DS-01",
+    "name": "견습 수호자의 첫 훈련",
+    "center_studs": {
+      "x": -210,
+      "y": 0,
+      "z": 150
+    },
+    "footprint_studs": {
+      "x": 160,
+      "z": 150
+    },
+    "target_level": 2,
+    "quest_xp": 100,
+    "quest_coins": 20,
+    "encounters": [],
+    "nodes": [
+      "A SP1 영웅 생성",
+      "B 세렌·기본 무기",
+      "C 이동·조준·공격",
+      "D 방어·회피 연습",
+      "E 훈련 완료·Lv2"
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "goal": "선택 클래스의 기본 무기 수령·이동/카메라·기본 공격·일반 방어/회피 확인·세렌에게 훈련 완료 보고",
+    "save": "무기 지급/기본 입력/훈련 완료를 각각 기록한다. 훈련 표적은 처치XP/Coins를 주지 않고 훈련 보고100XP를 초회1회 지급한다.",
+    "story": "왕도 외곽의 서약식에 참가한 견습 수호자는 세렌에게 기본 조작을 배운다. 첫 훈련 완료로 Lv2가 되며 성장의 즐거움을 빠르게 경험한다.",
+    "space": "초기 안전 마당에서 훈련장으로 직진한다. 무기 선택은 클래스에 맞는 기본 장비 수령이며 다른 클래스로 변경하는 선택이 아니다. 표적/연습 공격은 사망을 유발하지 않는 연습 모드다. 완벽 방어·정밀 에임·시간 제한은 요구하지 않는다.",
+    "lesson": "기본 조작·HP와 현재 클래스 자원·레벨업 예고",
+    "start_point": {
+      "id": "DS-01-SP",
+      "safe_pad_studs": [
+        40,
+        32
+      ],
+      "anchor_draft_studs": {
+        "x": -260.0,
+        "y": 0,
+        "z": 195.0
+      },
+      "status": "blockout budget anchor; validate collision and camera"
+    },
+    "repeat_quest_xp": 0,
+    "repeat_quest_coins": 0,
+    "expected_combat_xp": 0,
+    "expected_kill_coins": 0
+  },
+  {
+    "id": "DS-02",
+    "name": "나의 성장과 왕도의 하루",
+    "center_studs": {
+      "x": 0,
+      "y": 4,
+      "z": 90
+    },
+    "footprint_studs": {
+      "x": 170,
+      "z": 160
+    },
+    "target_level": 3,
+    "quest_xp": 125,
+    "quest_coins": 30,
+    "encounters": [],
+    "nodes": [
+      "A SP2 성장 안내",
+      "B 스탯·스킬 예산",
+      "C 상인의 작은 부탁",
+      "D 아이와 분실 물품",
+      "E 서약식 보고·Lv3"
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "goal": "스탯/스킬 안내 확인 또는 간편 설명 선택·상인 물품 전달·아이 분실품 반환·보고",
+    "save": "성장 안내 확인과 두 부탁을 각각 저장한다. 실제 포인트 소비·구매·장비 강화는 진행 조건이 아니다. 훈련/안내를 다시 열어도 재화/포인트를 재지급하지 않는다.",
+    "story": "첫 성장 이후 상인과 아이의 작은 부탁을 해결하며 지킬 사람들의 평범한 삶을 만난다. 이 인물들은 침공 구조와 복구된 성채에서 다시 등장한다. NPC 개별 이름/대사는 제작 초안이다.",
+    "space": "광장 가장자리에 성장 안내와 두 부탁을 짧게 순환 배치한다. 안내 메뉴를 닫아도 재열기 위치와 현재 목표를 유지한다. 적0이며 공용 도시 전체를 메뉴 때문에 정지시키지 않는다.",
+    "lesson": "힘/민첩/지력/체력·스탯4P/레벨·별도 스킬1P/레벨·미배분·저장/취소·스킬 해금/장착",
+    "start_point": {
+      "id": "DS-02-SP",
+      "safe_pad_studs": [
+        40,
+        32
+      ],
+      "anchor_draft_studs": {
+        "x": -55.0,
+        "y": 4,
+        "z": 140.0
+      },
+      "status": "blockout budget anchor; validate collision and camera"
+    },
+    "repeat_quest_xp": 0,
+    "repeat_quest_coins": 0,
+    "expected_combat_xp": 0,
+    "expected_kill_coins": 0
+  },
+  {
+    "id": "DS-03",
+    "name": "꺼진 왕좌와 주민 구조",
+    "center_studs": {
+      "x": 210,
+      "y": 0,
+      "z": 120
+    },
+    "footprint_studs": {
+      "x": 180,
+      "z": 180
+    },
+    "target_level": 4,
+    "quest_xp": 122,
+    "quest_coins": 50,
+    "encounters": [
+      {
+        "species": "Goblin",
+        "level": 3,
+        "count": 2,
+        "boss": false
+      }
+    ],
+    "nodes": [
+      "A SP3 침공 전 엄폐",
+      "B 고블린2 교전",
+      "C 상인 안전 확보",
+      "D 아이 대피 통로",
+      "E 구조 보고·Lv4"
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "goal": "고블린2마리 위협 해제·두 주민 안전 확인·구조 보고",
+    "save": "고블린 교전 완료/처치 수령과 두 주민 안전을 구분해 저장한다. 미완료 교전만 초기화하며 이미 받은 처치 보상과 구조 진행을 중복 지급하지 않는다.",
+    "story": "서약식 도중 왕좌의 빛이 꺼지고 침공 포탈이 열린다. 방금 만난 상인과 아이를 구하며 ‘왕좌를 지킨다’는 말이 사람을 지키는 행동으로 바뀐다.",
+    "space": "첫 실제 적은 Lv3 Goblin2마리다. 교전을 넓은 거리 공터에 두고 주민은 위협 해제 뒤 짧은 연출로 엄폐로 이동한다. 주민 HP 호위/구조 제한시간/숨은 추가 적은 없다.",
+    "lesson": "실전 공격·피격/회피·목표 표식·스킬 사용은 선택·안전 체크포인트",
+    "start_point": {
+      "id": "DS-03-SP",
+      "safe_pad_studs": [
+        40,
+        32
+      ],
+      "anchor_draft_studs": {
+        "x": 150.0,
+        "y": 0,
+        "z": 180.0
+      },
+      "status": "blockout budget anchor; validate collision and camera"
+    },
+    "repeat_quest_xp": 0,
+    "repeat_quest_coins": 0,
+    "expected_combat_xp": 28,
+    "expected_kill_coins": 8
+  },
+  {
+    "id": "DS-04",
+    "name": "성문 방어와 첫 원정",
+    "center_studs": {
+      "x": 0,
+      "y": 0,
+      "z": -160
+    },
+    "footprint_studs": {
+      "x": 260,
+      "z": 240
+    },
+    "target_level": 5,
+    "quest_xp": 143,
+    "quest_coins": 80,
+    "encounters": [
+      {
+        "species": "Goblin",
+        "level": 4,
+        "count": 2,
+        "boss": false
+      }
+    ],
+    "nodes": [
+      "A SP4 성문 전실",
+      "B 첫 고블린",
+      "C 두 번째 고블린",
+      "D 리라의 짧은 목소리",
+      "E 원정 보고·Lv5",
+      "F Deepwood 포탈"
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "goal": "Lv4 고블린2마리를 한 마리씩 격퇴·세렌 보고·루칸의 첫 원정 안내 확인",
+    "save": "고블린별 논리 처치ID/수령을 먼저 기록하고 두 마리 격퇴·보고/원정 해금은 별도 저장한다. 한 마리 뒤 끊기면 완료 처치를 유지하고 남은 적부터 재개하며 확정 처치 보상을 중복 지급하지 않는다. 두 마리 격퇴 뒤에는 보고부터 이어간다.",
+    "story": "세렌의 지휘 아래 무너진 성문에서 넘어온 고블린2마리를 한 마리씩 막는다. 경보와 성문 수비 연출로 긴장감을 주고 초보 영웅에게 큰 적을 강요하지 않는다. 리라의 목소리와 공명의 단서를 보고 첫 원정을 맡는다.",
+    "space": "고블린은 기존 일반 모델이며 보스/신규 정예 외형이 아니다. 첫 고블린 격퇴 후 다음 고블린이 들어오는 순차 교전이다. 넓은 공터에서 기본 공격 예고·일반 방어/회피를 복습한다. 완벽 방어/시간제한/성문 내구도는 필수 조건이 아니다. 큰 적의 예고 학습은 Deepwood DW-02 일반Ogre전에서 시작한다. 세렌은 지휘 연출이며4인에 추가 전투AI를 붙이지 않는다.",
+    "lesson": "기본 예고/방어·회피 복습·순차 표적 전환·보고·포탈/원정",
+    "start_point": {
+      "id": "DS-04-SP",
+      "safe_pad_studs": [
+        40,
+        32
+      ],
+      "anchor_draft_studs": {
+        "x": -100.0,
+        "y": 0,
+        "z": -70.0
+      },
+      "status": "blockout budget anchor; validate collision and camera"
+    },
+    "repeat_quest_xp": 0,
+    "repeat_quest_coins": 0,
+    "expected_combat_xp": 32,
+    "expected_kill_coins": 10
+  }
+]

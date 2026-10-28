@@ -1,0 +1,420 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "path_base": "the-last-throne project root",
+  "source_project": "../throne-defense",
+  "policy": "Reuse common components, atlas/image IDs, model/mesh/texture originals by default; versioned source and genre adapters; snapshots are not live wiring.",
+  "status": "local audit only; common package extraction and RPG runtime wiring not performed",
+  "entries": [
+    {
+      "key": "ui.theme",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Client/UITheme.lua",
+      "sha256": "ef12d54816c6eef810f69d9477cba958cc584c2aff60308904b9ac0b61723b6d",
+      "bytes": 20085,
+      "role": "shared visual roles and state decoration",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "ui.menu-art",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Client/StatusWindowArt.lua",
+      "sha256": "08504786bf614adcca77da2b6e8fffa919853d864aeafdd94a4099f80dd596f2",
+      "bytes": 24163,
+      "role": "generic frame/button rendering candidate; TD captions need adapter",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "ui.lobby",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Client/LobbyHomeUI.lua",
+      "sha256": "44e68c065d2f77306634ef32b304d55ed2ec748c801c8c525bdd1ce097666ed1",
+      "bytes": 24270,
+      "role": "lobby layout reference",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "ui.battle-art",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Client/BattleArt.lua",
+      "sha256": "83515869e5efc0e06f9b93498e1ba13c76a6111711860cbe50ffaad2d5de8178",
+      "bytes": 6411,
+      "role": "battle frame rendering",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "ui.layout",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Client/UILayout.lua",
+      "sha256": "aa39c66909f753982fc96eb4ee43c462cd6a500fa3cd17a89bc437ed798f3e8e",
+      "bytes": 15337,
+      "role": "safe-area reflow reference",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "ui.mobile-battle",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Client/MobileBattleLayout.lua",
+      "sha256": "e09a914a56347dda68767ff281bcd3a5de355cec7385f22ca52b9f6bced1851c",
+      "bytes": 41553,
+      "role": "touch reflow reference",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "ui.selection",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Client/SelectionCheck.lua",
+      "sha256": "f0839c7eaf7a769dc84dd278f663701fd7e5656d87a7aa5c8d42bd90cb366aad",
+      "bytes": 2679,
+      "role": "selection check",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "ui.icons",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Client/ConceptIcons.lua",
+      "sha256": "2be2100a574f334960ad88b7fa630350df24c41e9353daf3a0d340686e983203",
+      "bytes": 3410,
+      "role": "icon renderer",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "ui.lobby-style",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Client/LobbyCitadelStyle.lua",
+      "sha256": "052fb8568d699ff94fa2399f173b4baa13a8ebd10bef78cbaeaab3efc12bf46c",
+      "bytes": 2546,
+      "role": "citadel ornaments",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "ui.menu-atlas",
+      "kind": "asset-definition",
+      "source_path": "../throne-defense/src/Shared/StatusWindowArtAssets.lua",
+      "sha256": "c6927fe3f15902818046f72f9d902e6aacfb38e9c6c5bddce4578dac9238163a",
+      "bytes": 3486,
+      "role": "shared menu atlas/slices",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": [
+        "rbxassetid://126012242626142",
+        "rbxassetid://98305074323052"
+      ]
+    },
+    {
+      "key": "ui.lobby-atlas",
+      "kind": "asset-definition",
+      "source_path": "../throne-defense/src/Shared/LobbyHomeArtAssets.lua",
+      "sha256": "acc224ec5472b9a3e2d80601e018a12dd2d48eebbf9d215302b0fa73edd0d809",
+      "bytes": 1840,
+      "role": "lobby icons/art",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": [
+        "rbxassetid://101441413467224",
+        "rbxassetid://127394633978202",
+        "rbxassetid://134869184877363",
+        "rbxassetid://135608370136189",
+        "rbxassetid://135705589802868"
+      ]
+    },
+    {
+      "key": "ui.battle-atlas",
+      "kind": "asset-definition",
+      "source_path": "../throne-defense/src/Shared/BattleChromeArtAssets.lua",
+      "sha256": "118045fa68c1419eef26235b5a0321bc98f539ff3e7549cd0e5facd6d7355a77",
+      "bytes": 1325,
+      "role": "battle HUD atlas/slices",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": [
+        "rbxassetid://97570429280107"
+      ]
+    },
+    {
+      "key": "ui.icon-atlases",
+      "kind": "asset-definition",
+      "source_path": "../throne-defense/src/Shared/UIIconAssets.lua",
+      "sha256": "b6de17e2c894b51e527c27109db1c4598739a87e517b3e6b6a7dec23c936330b",
+      "bytes": 10060,
+      "role": "shared icon IDs/regions",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": [
+        "rbxassetid://100630525608408",
+        "rbxassetid://101027288850338",
+        "rbxassetid://101463603654402",
+        "rbxassetid://104582041764974",
+        "rbxassetid://105817462958602",
+        "rbxassetid://107496771246499",
+        "rbxassetid://115948760578578",
+        "rbxassetid://121682123228475",
+        "rbxassetid://122765923934152",
+        "rbxassetid://127394633978202",
+        "rbxassetid://130032636171199",
+        "rbxassetid://136026185203238",
+        "rbxassetid://84795048151880",
+        "rbxassetid://89396984680210",
+        "rbxassetid://96768305100708",
+        "rbxassetid://97570429280107",
+        "rbxassetid://99890504888739"
+      ]
+    },
+    {
+      "key": "world.palette",
+      "kind": "asset-definition",
+      "source_path": "../throne-defense/src/Shared/LobbyCitadelPalette.lua",
+      "sha256": "7869753d5fc89a9da84ce4a58372b90ea1dca4f444d8df5dc7e65697fbdb4449",
+      "bytes": 1552,
+      "role": "shared world color source",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "hero.portrait.knight",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/hero-icons/hero-knight-v2.png",
+      "sha256": "06724d7047f6e76ab77ceadf2ea717a57102b80a7e2e2e7e7f5065e649b71759",
+      "bytes": 2428632,
+      "role": "approved TD portrait identity",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "hero.portrait.elf",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/hero-icons/hero-elf-v1.png",
+      "sha256": "4cacc2b781ccc5c3d3b0f35d670eff4c16ed4f11fe2a1a134399646e5e974508",
+      "bytes": 2620883,
+      "role": "approved TD portrait identity",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "hero.portrait.dwarf",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/hero-icons/hero-dwarf-v1.png",
+      "sha256": "55e9166c73406407767dbdad7051e386d617b1c2eed1309afb30f616099e19bf",
+      "bytes": 2490734,
+      "role": "approved TD portrait identity",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "hero.portrait.mage",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/hero-icons/hero-mage-v2.png",
+      "sha256": "5b89a93afa0a208ea7fa7976c75e337533fe4132db5010665cf5b340ecdedf87",
+      "bytes": 2417510,
+      "role": "approved TD portrait identity",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.goblin",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/goblin.png",
+      "sha256": "c073b0c3e5a598fdd0edc56f3aa02dc1e994134b4951b0ffc744cfdc0157a3c4",
+      "bytes": 1497615,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.slime",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/slime.png",
+      "sha256": "4283fde43d2935ad95381b16d585ed95b23a4470c8d35f7abdced7cad3ffd393",
+      "bytes": 1780222,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.orc",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/orc.png",
+      "sha256": "41b862ee44ca2699d7e84c889639f0a5150edb80966feb6353b87afd9a7f8ec2",
+      "bytes": 1857147,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.ogre",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/ogre.png",
+      "sha256": "d089c7eb0da3cf586847688589ea7e1c5823ec60b2ed4e0a83055b94a6ae84ab",
+      "bytes": 1798108,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.shaman",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/shaman.png",
+      "sha256": "d547d481f58f63f8b8d4386895d9d39f144ec22082b2cbd68212c8a7c90bb410",
+      "bytes": 1701296,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.warlord",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/warlord.png",
+      "sha256": "503ed8ba400566b8a4831457e0c0bd2cbe73e7805363601ae8123bb6521853f1",
+      "bytes": 1920611,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.king",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/king.png",
+      "sha256": "276ac714bc9fbbce7e8c429ec956635ee8943fd7b22c994b3d074224627a55b4",
+      "bytes": 1672117,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.king_ogre",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/king_ogre.png",
+      "sha256": "ab89431356d9ef9058201fb00d1ad6852b2a3c2ab90443a63ef152bf3473a303",
+      "bytes": 2086346,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.warlord-enraged",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/warlord-enraged.png",
+      "sha256": "a0c967be41277700bf019d61dae6916588581895f680e63fda478c67fcc1a274",
+      "bytes": 1973162,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "monster.concept.king_shaman",
+      "kind": "image",
+      "source_path": "../throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/king_shaman.png",
+      "sha256": "785745f8929f96a0afdda1457dda5ea786702c8b646c7be81853dd11b3345d64",
+      "bytes": 1959592,
+      "role": "shared monster identity reference",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "world.lobby-concept",
+      "kind": "concept-reference",
+      "source_path": "../throne-defense/assets/ui/lobby-menu-concept-v3.png",
+      "sha256": "4102b45d7512bd7a31a24e2fd8bd2581841e3fa53b8d90ed090183c21d7cb3e3",
+      "bytes": 2901407,
+      "role": "visual reference; not an implemented RPG screen",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "world.deepwood-concept",
+      "kind": "concept-reference",
+      "source_path": "../throne-defense/assets/concepts/maps-battle-target-v1/forest.png",
+      "sha256": "990ee77ce8e46d752b599456cf70316a546e1f994c9caf4055f17a964497d0c6",
+      "bytes": 3192470,
+      "role": "visual reference; not an implemented RPG screen",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "ui.lobby-battle-target",
+      "kind": "concept-reference",
+      "source_path": "../throne-defense/assets/ui/td297-lobby-battle-design-target-v1.png",
+      "sha256": "5c2614e0783697f6149a40de5094937c0a5f3bbfa362b1ef8701e145c4aa86ba",
+      "bytes": 2780077,
+      "role": "visual reference; not an implemented RPG screen",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "model.towers",
+      "kind": "model-runtime-source",
+      "source_path": "../throne-defense/assets/models/meshy-factions-refresh-v1/runtime.rbxmx",
+      "sha256": "8402a11b665bdbe61240e76df62b2a0ca4fd4400ee8e322643f151c00fa6726f",
+      "bytes": 202666,
+      "role": "shared model source; RPG rig/collision/behavior validation pending",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "td_project_entry": "tree.ServerStorage.TowerModels"
+    },
+    {
+      "key": "model.hero-weapons",
+      "kind": "model-runtime-source",
+      "source_path": "../throne-defense/assets/models/meshy-hero-weapons-3k-v1/runtime.rbxmx",
+      "sha256": "eca30419a3381c0e2bb2434e54619cc2dda0dbbc8c634d7da12094ad0f00416d",
+      "bytes": 19283,
+      "role": "shared model source; RPG rig/collision/behavior validation pending",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "td_project_entry": "tree.ServerStorage.HeroWeaponModels"
+    },
+    {
+      "key": "model.monsters",
+      "kind": "model-runtime-source",
+      "source_path": "../throne-defense/assets/models/meshy-deepwood-slime-v1/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+      "bytes": 548546,
+      "role": "shared model source; RPG rig/collision/behavior validation pending",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "td_project_entry": "tree.ServerStorage.MonsterModels"
+    },
+    {
+      "key": "model.maps",
+      "kind": "model-runtime-source",
+      "source_path": "../throne-defense/assets/models/maps-mesh-v2/runtime.rbxmx",
+      "sha256": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39",
+      "bytes": 50089,
+      "role": "shared model source; RPG rig/collision/behavior validation pending",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "td_project_entry": "tree.ServerStorage.MapModels"
+    },
+    {
+      "key": "model.forest-kit",
+      "kind": "model-runtime-source",
+      "source_path": "../throne-defense/assets/models/maps-quality-v2/forest-kit-v3/runtime.rbxmx",
+      "sha256": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5",
+      "bytes": 72228,
+      "role": "shared forest environment source",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "td_project_entry": "tree.ServerStorage.MapModels.ForestKit"
+    },
+    {
+      "key": "world.lobby-manifest",
+      "kind": "model-source-manifest",
+      "source_path": "../throne-defense/assets/models/lobby-citadel-v1/manifest.json",
+      "sha256": "3eb74a5daa41cc5114c4ce8eefdacbb8b789cdc5e4deb2d3e0d258d84c27cc4c",
+      "bytes": 13753,
+      "role": "source geometry/material/integration metadata",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "world.forest-manifest",
+      "kind": "model-source-manifest",
+      "source_path": "../throne-defense/assets/models/maps-quality-v2/forest-kit-v3/manifest.json",
+      "sha256": "ef5c072b85a79b119a358790bb63e89b255faa86c524a526738e73a9fceb09af",
+      "bytes": 2660,
+      "role": "source geometry/material/integration metadata",
+      "audit_status": "local-file-verified; RPG integration pending"
+    },
+    {
+      "key": "model.hero-weapon-adapter",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Server/HeroWeaponVisuals.lua",
+      "sha256": "fe0a60744d3ea2ca5896f6d6b4825205f62b865debcc666e61c5f39bef92d688",
+      "bytes": 22170,
+      "role": "existing TD weapon attachment reference",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    },
+    {
+      "key": "model.hero-motion",
+      "kind": "component-source",
+      "source_path": "../throne-defense/src/Shared/HeroWeaponMotion.lua",
+      "sha256": "60814089309414793a59f9db4389b092f4bd47d15e404903195017454a04b9fb",
+      "bytes": 6494,
+      "role": "shared motion source candidate; RPG timings require validation",
+      "audit_status": "local-file-verified; RPG integration pending",
+      "image_ids_found_in_source": []
+    }
+  ]
+}

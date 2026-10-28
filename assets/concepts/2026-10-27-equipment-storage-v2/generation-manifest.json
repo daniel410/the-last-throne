@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-27",
+  "mode": "built-in image_gen",
+  "skill": "/Users/daniel/.codex/skills/.system/imagegen/SKILL.md",
+  "outputs": [
+    {
+      "file": "01-bag-simple.png",
+      "prompt": "01-bag-simple.prompt.txt",
+      "reference": "../2026-10-27-equipment-storage-v1/01-equipment.png"
+    },
+    {
+      "file": "02-storage-simple.png",
+      "prompt": "02-storage-simple.prompt.txt",
+      "reference": "../2026-10-27-equipment-storage-v1/03-storage.png"
+    }
+  ],
+  "runtime_assets": false,
+  "character_identity": "approved TD/RPG knight retained; original 3D not changed"
+}

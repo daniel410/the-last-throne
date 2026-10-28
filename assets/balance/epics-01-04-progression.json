@@ -1,0 +1,1241 @@
+{
+  "version": "0.23",
+  "date": "2026-10-27",
+  "status": "applied planning baseline; runtime integration and playtests pending",
+  "currency": "RPG Coins; separate from TD Gold",
+  "budget_source": "assets/balance/story-reward-budget.json",
+  "assumptions": {
+    "start_level": 1,
+    "start_xp_in_level": 0,
+    "start_coins": 0,
+    "xp_curve": {
+      "base": 100,
+      "per_level": 25,
+      "formula": "100 + 25*(level-1)",
+      "validated_design_range": [
+        1,
+        40
+      ],
+      "outside_range": "calculation only; no Lv41-80 content calibration claimed"
+    },
+    "enemy_rewards": {
+      "xp_base": 8,
+      "xp_per_level": 2,
+      "boss_xp_multiplier": 5,
+      "coins_base": 3,
+      "coins_level_divisor": 2,
+      "boss_coins_multiplier": 10
+    },
+    "required_costs": 0,
+    "excluded": "optional kills/bosses, slime children, respawns, sales, boosters, random loot and equipment value",
+    "participation": "full amount; no party split; once per valid receipt",
+    "warning": "encounter participation and economy still require implementation/playtests",
+    "calibration": "approved fixed quest XP; validator does not recompute or fit reward values",
+    "tutorial_repeat_rewards": "quest and kills0; logic encounter receipt prevents retry farming",
+    "legacy_fields": "existing_quest_xp/baseline_finish describe the superseded percentage table; proposed_quest_xp is a compatibility alias for applied_quest_xp"
+  },
+  "quest_coins_total": 16750,
+  "rows": [
+    {
+      "id": "DS-01",
+      "name": "견습 수호자의 첫 훈련",
+      "quest_coins": 20,
+      "existing_quest_xp": 100,
+      "proposed_quest_xp": 100,
+      "applied_quest_xp": 100,
+      "repeat_quest_xp": 0,
+      "target": 2,
+      "planned_main_enemy_count": 0,
+      "start_adjusted": {
+        "level": 1,
+        "xp_in_level": 0,
+        "next_level_xp": 100
+      },
+      "cumulative_stat_points_earned": 4,
+      "cumulative_skill_points_earned": 1,
+      "combat_xp_draft": 0,
+      "kill_coins_draft": 0,
+      "total_coins_draft": 20,
+      "cumulative_gross_coins_draft": 20,
+      "baseline_finish": {
+        "level": 2,
+        "xp_in_level": 0,
+        "next_level_xp": 125
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 100,
+      "adjusted_finish": {
+        "level": 2,
+        "xp_in_level": 0,
+        "next_level_xp": 125
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DS-02",
+      "name": "나의 성장과 왕도의 하루",
+      "quest_coins": 30,
+      "existing_quest_xp": 125,
+      "proposed_quest_xp": 125,
+      "applied_quest_xp": 125,
+      "repeat_quest_xp": 0,
+      "target": 3,
+      "planned_main_enemy_count": 0,
+      "start_adjusted": {
+        "level": 2,
+        "xp_in_level": 0,
+        "next_level_xp": 125
+      },
+      "cumulative_stat_points_earned": 8,
+      "cumulative_skill_points_earned": 2,
+      "combat_xp_draft": 0,
+      "kill_coins_draft": 0,
+      "total_coins_draft": 30,
+      "cumulative_gross_coins_draft": 50,
+      "baseline_finish": {
+        "level": 3,
+        "xp_in_level": 0,
+        "next_level_xp": 150
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 125,
+      "adjusted_finish": {
+        "level": 3,
+        "xp_in_level": 0,
+        "next_level_xp": 150
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DS-03",
+      "name": "꺼진 왕좌와 주민 구조",
+      "quest_coins": 50,
+      "existing_quest_xp": 122,
+      "proposed_quest_xp": 122,
+      "applied_quest_xp": 122,
+      "repeat_quest_xp": 0,
+      "target": 4,
+      "planned_main_enemy_count": 2,
+      "start_adjusted": {
+        "level": 3,
+        "xp_in_level": 0,
+        "next_level_xp": 150
+      },
+      "cumulative_stat_points_earned": 12,
+      "cumulative_skill_points_earned": 3,
+      "combat_xp_draft": 28,
+      "kill_coins_draft": 8,
+      "total_coins_draft": 58,
+      "cumulative_gross_coins_draft": 108,
+      "baseline_finish": {
+        "level": 4,
+        "xp_in_level": 0,
+        "next_level_xp": 175
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 150,
+      "adjusted_finish": {
+        "level": 4,
+        "xp_in_level": 0,
+        "next_level_xp": 175
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DS-04",
+      "name": "성문 방어와 첫 원정",
+      "quest_coins": 80,
+      "existing_quest_xp": 143,
+      "proposed_quest_xp": 143,
+      "applied_quest_xp": 143,
+      "repeat_quest_xp": 0,
+      "target": 5,
+      "planned_main_enemy_count": 2,
+      "start_adjusted": {
+        "level": 4,
+        "xp_in_level": 0,
+        "next_level_xp": 175
+      },
+      "cumulative_stat_points_earned": 16,
+      "cumulative_skill_points_earned": 4,
+      "combat_xp_draft": 32,
+      "kill_coins_draft": 10,
+      "total_coins_draft": 90,
+      "cumulative_gross_coins_draft": 198,
+      "baseline_finish": {
+        "level": 5,
+        "xp_in_level": 0,
+        "next_level_xp": 200
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 175,
+      "adjusted_finish": {
+        "level": 5,
+        "xp_in_level": 0,
+        "next_level_xp": 200
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DW-01",
+      "name": "고블린 숲길",
+      "quest_coins": 150,
+      "existing_quest_xp": 70,
+      "proposed_quest_xp": 140,
+      "applied_quest_xp": 140,
+      "repeat_quest_xp": 35,
+      "target": 6,
+      "planned_main_enemy_count": 3,
+      "start_adjusted": {
+        "level": 5,
+        "xp_in_level": 0,
+        "next_level_xp": 200
+      },
+      "cumulative_stat_points_earned": 20,
+      "cumulative_skill_points_earned": 5,
+      "combat_xp_draft": 60,
+      "kill_coins_draft": 18,
+      "total_coins_draft": 168,
+      "cumulative_gross_coins_draft": 366,
+      "baseline_finish": {
+        "level": 5,
+        "xp_in_level": 130,
+        "next_level_xp": 200
+      },
+      "quest_xp_delta": 70,
+      "total_adjusted_xp": 200,
+      "adjusted_finish": {
+        "level": 6,
+        "xp_in_level": 0,
+        "next_level_xp": 225
+      },
+      "baseline_reaches_target": false,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DW-02",
+      "name": "무너진 수레 공터",
+      "quest_coins": 240,
+      "existing_quest_xp": 101,
+      "proposed_quest_xp": 163,
+      "applied_quest_xp": 163,
+      "repeat_quest_xp": 40,
+      "target": 7,
+      "planned_main_enemy_count": 3,
+      "start_adjusted": {
+        "level": 6,
+        "xp_in_level": 0,
+        "next_level_xp": 225
+      },
+      "cumulative_stat_points_earned": 24,
+      "cumulative_skill_points_earned": 6,
+      "combat_xp_draft": 62,
+      "kill_coins_draft": 18,
+      "total_coins_draft": 258,
+      "cumulative_gross_coins_draft": 624,
+      "baseline_finish": {
+        "level": 6,
+        "xp_in_level": 93,
+        "next_level_xp": 225
+      },
+      "quest_xp_delta": 62,
+      "total_adjusted_xp": 225,
+      "adjusted_finish": {
+        "level": 7,
+        "xp_in_level": 0,
+        "next_level_xp": 250
+      },
+      "baseline_reaches_target": false,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DW-03",
+      "name": "거목 전초기지",
+      "quest_coins": 100,
+      "existing_quest_xp": 62,
+      "proposed_quest_xp": 62,
+      "applied_quest_xp": 62,
+      "repeat_quest_xp": 0,
+      "target": 7,
+      "planned_main_enemy_count": 0,
+      "start_adjusted": {
+        "level": 7,
+        "xp_in_level": 0,
+        "next_level_xp": 250
+      },
+      "cumulative_stat_points_earned": 24,
+      "cumulative_skill_points_earned": 6,
+      "combat_xp_draft": 0,
+      "kill_coins_draft": 0,
+      "total_coins_draft": 100,
+      "cumulative_gross_coins_draft": 724,
+      "baseline_finish": {
+        "level": 6,
+        "xp_in_level": 155,
+        "next_level_xp": 225
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 62,
+      "adjusted_finish": {
+        "level": 7,
+        "xp_in_level": 62,
+        "next_level_xp": 250
+      },
+      "baseline_reaches_target": false,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DW-04",
+      "name": "버려진 감시탑",
+      "quest_coins": 320,
+      "existing_quest_xp": 200,
+      "proposed_quest_xp": 200,
+      "applied_quest_xp": 200,
+      "repeat_quest_xp": 50,
+      "target": 8,
+      "planned_main_enemy_count": 6,
+      "start_adjusted": {
+        "level": 7,
+        "xp_in_level": 62,
+        "next_level_xp": 250
+      },
+      "cumulative_stat_points_earned": 28,
+      "cumulative_skill_points_earned": 7,
+      "combat_xp_draft": 140,
+      "kill_coins_draft": 40,
+      "total_coins_draft": 360,
+      "cumulative_gross_coins_draft": 1084,
+      "baseline_finish": {
+        "level": 8,
+        "xp_in_level": 20,
+        "next_level_xp": 275
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 340,
+      "adjusted_finish": {
+        "level": 8,
+        "xp_in_level": 152,
+        "next_level_xp": 275
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DW-05",
+      "name": "오크 점령지",
+      "quest_coins": 450,
+      "existing_quest_xp": 247,
+      "proposed_quest_xp": 247,
+      "applied_quest_xp": 247,
+      "repeat_quest_xp": 61,
+      "target": 10,
+      "planned_main_enemy_count": 8,
+      "start_adjusted": {
+        "level": 8,
+        "xp_in_level": 152,
+        "next_level_xp": 275
+      },
+      "cumulative_stat_points_earned": 36,
+      "cumulative_skill_points_earned": 9,
+      "combat_xp_draft": 322,
+      "kill_coins_draft": 129,
+      "total_coins_draft": 579,
+      "cumulative_gross_coins_draft": 1663,
+      "baseline_finish": {
+        "level": 10,
+        "xp_in_level": 14,
+        "next_level_xp": 325
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 569,
+      "adjusted_finish": {
+        "level": 10,
+        "xp_in_level": 146,
+        "next_level_xp": 325
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DW-06",
+      "name": "오염된 뿌리숲",
+      "quest_coins": 380,
+      "existing_quest_xp": 227,
+      "proposed_quest_xp": 227,
+      "applied_quest_xp": 227,
+      "repeat_quest_xp": 56,
+      "target": 11,
+      "planned_main_enemy_count": 5,
+      "start_adjusted": {
+        "level": 10,
+        "xp_in_level": 146,
+        "next_level_xp": 325
+      },
+      "cumulative_stat_points_earned": 40,
+      "cumulative_skill_points_earned": 10,
+      "combat_xp_draft": 142,
+      "kill_coins_draft": 40,
+      "total_coins_draft": 420,
+      "cumulative_gross_coins_draft": 2083,
+      "baseline_finish": {
+        "level": 11,
+        "xp_in_level": 58,
+        "next_level_xp": 350
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 369,
+      "adjusted_finish": {
+        "level": 11,
+        "xp_in_level": 190,
+        "next_level_xp": 350
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "DW-07",
+      "name": "검은 뿌리의 제단",
+      "quest_coins": 650,
+      "existing_quest_xp": 350,
+      "proposed_quest_xp": 134,
+      "applied_quest_xp": 134,
+      "repeat_quest_xp": 33,
+      "target": 12,
+      "planned_main_enemy_count": 9,
+      "start_adjusted": {
+        "level": 11,
+        "xp_in_level": 190,
+        "next_level_xp": 350
+      },
+      "cumulative_stat_points_earned": 44,
+      "cumulative_skill_points_earned": 11,
+      "combat_xp_draft": 400,
+      "kill_coins_draft": 154,
+      "total_coins_draft": 804,
+      "cumulative_gross_coins_draft": 2887,
+      "baseline_finish": {
+        "level": 13,
+        "xp_in_level": 83,
+        "next_level_xp": 400
+      },
+      "quest_xp_delta": -216,
+      "total_adjusted_xp": 534,
+      "adjusted_finish": {
+        "level": 12,
+        "xp_in_level": 374,
+        "next_level_xp": 375
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": true,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "FV-01",
+      "name": "눈보라 관문",
+      "quest_coins": 280,
+      "existing_quest_xp": 187,
+      "proposed_quest_xp": 187,
+      "applied_quest_xp": 187,
+      "repeat_quest_xp": 46,
+      "target": 13,
+      "planned_main_enemy_count": 5,
+      "start_adjusted": {
+        "level": 12,
+        "xp_in_level": 374,
+        "next_level_xp": 375
+      },
+      "cumulative_stat_points_earned": 48,
+      "cumulative_skill_points_earned": 12,
+      "combat_xp_draft": 162,
+      "kill_coins_draft": 45,
+      "total_coins_draft": 325,
+      "cumulative_gross_coins_draft": 3212,
+      "baseline_finish": {
+        "level": 14,
+        "xp_in_level": 32,
+        "next_level_xp": 425
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 349,
+      "adjusted_finish": {
+        "level": 13,
+        "xp_in_level": 348,
+        "next_level_xp": 400
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": true,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "FV-02",
+      "name": "잿불 피난처",
+      "quest_coins": 120,
+      "existing_quest_xp": 100,
+      "proposed_quest_xp": 51,
+      "applied_quest_xp": 51,
+      "repeat_quest_xp": 0,
+      "target": 13,
+      "planned_main_enemy_count": 0,
+      "start_adjusted": {
+        "level": 13,
+        "xp_in_level": 348,
+        "next_level_xp": 400
+      },
+      "cumulative_stat_points_earned": 48,
+      "cumulative_skill_points_earned": 12,
+      "combat_xp_draft": 0,
+      "kill_coins_draft": 0,
+      "total_coins_draft": 120,
+      "cumulative_gross_coins_draft": 3332,
+      "baseline_finish": {
+        "level": 14,
+        "xp_in_level": 132,
+        "next_level_xp": 425
+      },
+      "quest_xp_delta": -49,
+      "total_adjusted_xp": 51,
+      "adjusted_finish": {
+        "level": 13,
+        "xp_in_level": 399,
+        "next_level_xp": 400
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": true,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "FV-03",
+      "name": "얼음늑대 협곡",
+      "quest_coins": 360,
+      "existing_quest_xp": 320,
+      "proposed_quest_xp": 185,
+      "applied_quest_xp": 185,
+      "repeat_quest_xp": 46,
+      "target": 14,
+      "planned_main_enemy_count": 7,
+      "start_adjusted": {
+        "level": 13,
+        "xp_in_level": 399,
+        "next_level_xp": 400
+      },
+      "cumulative_stat_points_earned": 52,
+      "cumulative_skill_points_earned": 13,
+      "combat_xp_draft": 240,
+      "kill_coins_draft": 64,
+      "total_coins_draft": 424,
+      "cumulative_gross_coins_draft": 3756,
+      "baseline_finish": {
+        "level": 15,
+        "xp_in_level": 267,
+        "next_level_xp": 450
+      },
+      "quest_xp_delta": -135,
+      "total_adjusted_xp": 425,
+      "adjusted_finish": {
+        "level": 14,
+        "xp_in_level": 424,
+        "next_level_xp": 425
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": true,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "FV-04",
+      "name": "빙하 아래 폐허",
+      "quest_coins": 480,
+      "existing_quest_xp": 382,
+      "proposed_quest_xp": 382,
+      "applied_quest_xp": 382,
+      "repeat_quest_xp": 95,
+      "target": 16,
+      "planned_main_enemy_count": 6,
+      "start_adjusted": {
+        "level": 14,
+        "xp_in_level": 424,
+        "next_level_xp": 425
+      },
+      "cumulative_stat_points_earned": 60,
+      "cumulative_skill_points_earned": 15,
+      "combat_xp_draft": 224,
+      "kill_coins_draft": 60,
+      "total_coins_draft": 540,
+      "cumulative_gross_coins_draft": 4296,
+      "baseline_finish": {
+        "level": 16,
+        "xp_in_level": 423,
+        "next_level_xp": 475
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 606,
+      "adjusted_finish": {
+        "level": 16,
+        "xp_in_level": 155,
+        "next_level_xp": 475
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "FV-05",
+      "name": "침묵의 전장",
+      "quest_coins": 540,
+      "existing_quest_xp": 403,
+      "proposed_quest_xp": 403,
+      "applied_quest_xp": 403,
+      "repeat_quest_xp": 100,
+      "target": 17,
+      "planned_main_enemy_count": 7,
+      "start_adjusted": {
+        "level": 16,
+        "xp_in_level": 155,
+        "next_level_xp": 475
+      },
+      "cumulative_stat_points_earned": 64,
+      "cumulative_skill_points_earned": 16,
+      "combat_xp_draft": 286,
+      "kill_coins_draft": 77,
+      "total_coins_draft": 617,
+      "cumulative_gross_coins_draft": 4913,
+      "baseline_finish": {
+        "level": 18,
+        "xp_in_level": 137,
+        "next_level_xp": 525
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 689,
+      "adjusted_finish": {
+        "level": 17,
+        "xp_in_level": 369,
+        "next_level_xp": 500
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": true,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "FV-06",
+      "name": "서리왕성 성문",
+      "quest_coins": 680,
+      "existing_quest_xp": 500,
+      "proposed_quest_xp": 500,
+      "applied_quest_xp": 500,
+      "repeat_quest_xp": 125,
+      "target": 19,
+      "planned_main_enemy_count": 5,
+      "start_adjusted": {
+        "level": 17,
+        "xp_in_level": 369,
+        "next_level_xp": 500
+      },
+      "cumulative_stat_points_earned": 72,
+      "cumulative_skill_points_earned": 18,
+      "combat_xp_draft": 406,
+      "kill_coins_draft": 168,
+      "total_coins_draft": 848,
+      "cumulative_gross_coins_draft": 5761,
+      "baseline_finish": {
+        "level": 19,
+        "xp_in_level": 518,
+        "next_level_xp": 550
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 906,
+      "adjusted_finish": {
+        "level": 19,
+        "xp_in_level": 250,
+        "next_level_xp": 550
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "FV-07",
+      "name": "얼음거울 궁전",
+      "quest_coins": 900,
+      "existing_quest_xp": 550,
+      "proposed_quest_xp": 450,
+      "applied_quest_xp": 450,
+      "repeat_quest_xp": 112,
+      "target": 20,
+      "planned_main_enemy_count": 5,
+      "start_adjusted": {
+        "level": 19,
+        "xp_in_level": 250,
+        "next_level_xp": 550
+      },
+      "cumulative_stat_points_earned": 76,
+      "cumulative_skill_points_earned": 19,
+      "combat_xp_draft": 424,
+      "kill_coins_draft": 178,
+      "total_coins_draft": 1078,
+      "cumulative_gross_coins_draft": 6839,
+      "baseline_finish": {
+        "level": 21,
+        "xp_in_level": 367,
+        "next_level_xp": 600
+      },
+      "quest_xp_delta": -100,
+      "total_adjusted_xp": 874,
+      "adjusted_finish": {
+        "level": 20,
+        "xp_in_level": 574,
+        "next_level_xp": 575
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": true,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "EC-01",
+      "name": "잿빛 관문",
+      "quest_coins": 420,
+      "existing_quest_xp": 316,
+      "proposed_quest_xp": 316,
+      "applied_quest_xp": 316,
+      "repeat_quest_xp": 79,
+      "target": 21,
+      "planned_main_enemy_count": 4,
+      "start_adjusted": {
+        "level": 20,
+        "xp_in_level": 574,
+        "next_level_xp": 575
+      },
+      "cumulative_stat_points_earned": 80,
+      "cumulative_skill_points_earned": 20,
+      "combat_xp_draft": 192,
+      "kill_coins_draft": 52,
+      "total_coins_draft": 472,
+      "cumulative_gross_coins_draft": 7311,
+      "baseline_finish": {
+        "level": 22,
+        "xp_in_level": 275,
+        "next_level_xp": 625
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 508,
+      "adjusted_finish": {
+        "level": 21,
+        "xp_in_level": 507,
+        "next_level_xp": 600
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": true,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "EC-02",
+      "name": "용광로 도시",
+      "quest_coins": 160,
+      "existing_quest_xp": 150,
+      "proposed_quest_xp": 92,
+      "applied_quest_xp": 92,
+      "repeat_quest_xp": 0,
+      "target": 21,
+      "planned_main_enemy_count": 0,
+      "start_adjusted": {
+        "level": 21,
+        "xp_in_level": 507,
+        "next_level_xp": 600
+      },
+      "cumulative_stat_points_earned": 80,
+      "cumulative_skill_points_earned": 20,
+      "combat_xp_draft": 0,
+      "kill_coins_draft": 0,
+      "total_coins_draft": 160,
+      "cumulative_gross_coins_draft": 7471,
+      "baseline_finish": {
+        "level": 22,
+        "xp_in_level": 425,
+        "next_level_xp": 625
+      },
+      "quest_xp_delta": -58,
+      "total_adjusted_xp": 92,
+      "adjusted_finish": {
+        "level": 21,
+        "xp_in_level": 599,
+        "next_level_xp": 600
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": true,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "EC-03",
+      "name": "무너진 공명광산",
+      "quest_coins": 560,
+      "existing_quest_xp": 600,
+      "proposed_quest_xp": 600,
+      "applied_quest_xp": 600,
+      "repeat_quest_xp": 150,
+      "target": 23,
+      "planned_main_enemy_count": 7,
+      "start_adjusted": {
+        "level": 21,
+        "xp_in_level": 599,
+        "next_level_xp": 600
+      },
+      "cumulative_stat_points_earned": 88,
+      "cumulative_skill_points_earned": 22,
+      "combat_xp_draft": 358,
+      "kill_coins_draft": 94,
+      "total_coins_draft": 654,
+      "cumulative_gross_coins_draft": 8125,
+      "baseline_finish": {
+        "level": 24,
+        "xp_in_level": 108,
+        "next_level_xp": 675
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 958,
+      "adjusted_finish": {
+        "level": 23,
+        "xp_in_level": 332,
+        "next_level_xp": 650
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": true,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "EC-04",
+      "name": "갈라진 냉각 수로",
+      "quest_coins": 680,
+      "existing_quest_xp": 650,
+      "proposed_quest_xp": 657,
+      "applied_quest_xp": 657,
+      "repeat_quest_xp": 164,
+      "target": 25,
+      "planned_main_enemy_count": 6,
+      "start_adjusted": {
+        "level": 23,
+        "xp_in_level": 332,
+        "next_level_xp": 650
+      },
+      "cumulative_stat_points_earned": 96,
+      "cumulative_skill_points_earned": 24,
+      "combat_xp_draft": 336,
+      "kill_coins_draft": 88,
+      "total_coins_draft": 768,
+      "cumulative_gross_coins_draft": 8893,
+      "baseline_finish": {
+        "level": 25,
+        "xp_in_level": 419,
+        "next_level_xp": 700
+      },
+      "quest_xp_delta": 7,
+      "total_adjusted_xp": 993,
+      "adjusted_finish": {
+        "level": 25,
+        "xp_in_level": 0,
+        "next_level_xp": 700
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "EC-05",
+      "name": "가문의 설계고",
+      "quest_coins": 720,
+      "existing_quest_xp": 630,
+      "proposed_quest_xp": 630,
+      "applied_quest_xp": 630,
+      "repeat_quest_xp": 157,
+      "target": 26,
+      "planned_main_enemy_count": 4,
+      "start_adjusted": {
+        "level": 25,
+        "xp_in_level": 0,
+        "next_level_xp": 700
+      },
+      "cumulative_stat_points_earned": 100,
+      "cumulative_skill_points_earned": 25,
+      "combat_xp_draft": 236,
+      "kill_coins_draft": 62,
+      "total_coins_draft": 782,
+      "cumulative_gross_coins_draft": 9675,
+      "baseline_finish": {
+        "level": 26,
+        "xp_in_level": 585,
+        "next_level_xp": 725
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 866,
+      "adjusted_finish": {
+        "level": 26,
+        "xp_in_level": 166,
+        "next_level_xp": 725
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "EC-06",
+      "name": "지열 심장 시험로",
+      "quest_coins": 900,
+      "existing_quest_xp": 725,
+      "proposed_quest_xp": 745,
+      "applied_quest_xp": 745,
+      "repeat_quest_xp": 186,
+      "target": 28,
+      "planned_main_enemy_count": 5,
+      "start_adjusted": {
+        "level": 26,
+        "xp_in_level": 166,
+        "next_level_xp": 725
+      },
+      "cumulative_stat_points_earned": 108,
+      "cumulative_skill_points_earned": 27,
+      "combat_xp_draft": 564,
+      "kill_coins_draft": 234,
+      "total_coins_draft": 1134,
+      "cumulative_gross_coins_draft": 10809,
+      "baseline_finish": {
+        "level": 28,
+        "xp_in_level": 399,
+        "next_level_xp": 775
+      },
+      "quest_xp_delta": 20,
+      "total_adjusted_xp": 1309,
+      "adjusted_finish": {
+        "level": 28,
+        "xp_in_level": 0,
+        "next_level_xp": 775
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "EC-07",
+      "name": "대용광로",
+      "quest_coins": 1200,
+      "existing_quest_xp": 800,
+      "proposed_quest_xp": 843,
+      "applied_quest_xp": 843,
+      "repeat_quest_xp": 210,
+      "target": 30,
+      "planned_main_enemy_count": 7,
+      "start_adjusted": {
+        "level": 28,
+        "xp_in_level": 0,
+        "next_level_xp": 775
+      },
+      "cumulative_stat_points_earned": 116,
+      "cumulative_skill_points_earned": 29,
+      "combat_xp_draft": 732,
+      "kill_coins_draft": 282,
+      "total_coins_draft": 1482,
+      "cumulative_gross_coins_draft": 12291,
+      "baseline_finish": {
+        "level": 30,
+        "xp_in_level": 356,
+        "next_level_xp": 825
+      },
+      "quest_xp_delta": 43,
+      "total_adjusted_xp": 1575,
+      "adjusted_finish": {
+        "level": 30,
+        "xp_in_level": 0,
+        "next_level_xp": 825
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "HG-01",
+      "name": "안개 묘역",
+      "quest_coins": 600,
+      "existing_quest_xp": 495,
+      "proposed_quest_xp": 495,
+      "applied_quest_xp": 495,
+      "repeat_quest_xp": 123,
+      "target": 31,
+      "planned_main_enemy_count": 6,
+      "start_adjusted": {
+        "level": 30,
+        "xp_in_level": 0,
+        "next_level_xp": 825
+      },
+      "cumulative_stat_points_earned": 120,
+      "cumulative_skill_points_earned": 30,
+      "combat_xp_draft": 412,
+      "kill_coins_draft": 108,
+      "total_coins_draft": 708,
+      "cumulative_gross_coins_draft": 12999,
+      "baseline_finish": {
+        "level": 31,
+        "xp_in_level": 438,
+        "next_level_xp": 850
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 907,
+      "adjusted_finish": {
+        "level": 31,
+        "xp_in_level": 82,
+        "next_level_xp": 850
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "HG-02",
+      "name": "등불 예배당",
+      "quest_coins": 220,
+      "existing_quest_xp": 212,
+      "proposed_quest_xp": 212,
+      "applied_quest_xp": 212,
+      "repeat_quest_xp": 0,
+      "target": 31,
+      "planned_main_enemy_count": 0,
+      "start_adjusted": {
+        "level": 31,
+        "xp_in_level": 82,
+        "next_level_xp": 850
+      },
+      "cumulative_stat_points_earned": 120,
+      "cumulative_skill_points_earned": 30,
+      "combat_xp_draft": 0,
+      "kill_coins_draft": 0,
+      "total_coins_draft": 220,
+      "cumulative_gross_coins_draft": 13219,
+      "baseline_finish": {
+        "level": 31,
+        "xp_in_level": 650,
+        "next_level_xp": 850
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 212,
+      "adjusted_finish": {
+        "level": 31,
+        "xp_in_level": 294,
+        "next_level_xp": 850
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "HG-03",
+      "name": "이름 잃은 묘지",
+      "quest_coins": 780,
+      "existing_quest_xp": 850,
+      "proposed_quest_xp": 929,
+      "applied_quest_xp": 929,
+      "repeat_quest_xp": 232,
+      "target": 33,
+      "planned_main_enemy_count": 7,
+      "start_adjusted": {
+        "level": 31,
+        "xp_in_level": 294,
+        "next_level_xp": 850
+      },
+      "cumulative_stat_points_earned": 128,
+      "cumulative_skill_points_earned": 32,
+      "combat_xp_draft": 502,
+      "kill_coins_draft": 131,
+      "total_coins_draft": 911,
+      "cumulative_gross_coins_draft": 14130,
+      "baseline_finish": {
+        "level": 33,
+        "xp_in_level": 277,
+        "next_level_xp": 900
+      },
+      "quest_xp_delta": 79,
+      "total_adjusted_xp": 1431,
+      "adjusted_finish": {
+        "level": 33,
+        "xp_in_level": 0,
+        "next_level_xp": 900
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "HG-04",
+      "name": "잊힌 마을",
+      "quest_coins": 900,
+      "existing_quest_xp": 900,
+      "proposed_quest_xp": 1373,
+      "applied_quest_xp": 1373,
+      "repeat_quest_xp": 343,
+      "target": 35,
+      "planned_main_enemy_count": 6,
+      "start_adjusted": {
+        "level": 33,
+        "xp_in_level": 0,
+        "next_level_xp": 900
+      },
+      "cumulative_stat_points_earned": 136,
+      "cumulative_skill_points_earned": 34,
+      "combat_xp_draft": 452,
+      "kill_coins_draft": 118,
+      "total_coins_draft": 1018,
+      "cumulative_gross_coins_draft": 15148,
+      "baseline_finish": {
+        "level": 34,
+        "xp_in_level": 729,
+        "next_level_xp": 925
+      },
+      "quest_xp_delta": 473,
+      "total_adjusted_xp": 1825,
+      "adjusted_finish": {
+        "level": 35,
+        "xp_in_level": 0,
+        "next_level_xp": 950
+      },
+      "baseline_reaches_target": false,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "HG-05",
+      "name": "멈춘 종탑",
+      "quest_coins": 980,
+      "existing_quest_xp": 855,
+      "proposed_quest_xp": 855,
+      "applied_quest_xp": 855,
+      "repeat_quest_xp": 213,
+      "target": 36,
+      "planned_main_enemy_count": 5,
+      "start_adjusted": {
+        "level": 35,
+        "xp_in_level": 0,
+        "next_level_xp": 950
+      },
+      "cumulative_stat_points_earned": 140,
+      "cumulative_skill_points_earned": 35,
+      "combat_xp_draft": 394,
+      "kill_coins_draft": 102,
+      "total_coins_draft": 1082,
+      "cumulative_gross_coins_draft": 16230,
+      "baseline_finish": {
+        "level": 36,
+        "xp_in_level": 103,
+        "next_level_xp": 975
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 1249,
+      "adjusted_finish": {
+        "level": 36,
+        "xp_in_level": 299,
+        "next_level_xp": 975
+      },
+      "baseline_reaches_target": true,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "HG-06",
+      "name": "왕릉의 문",
+      "quest_coins": 1200,
+      "existing_quest_xp": 975,
+      "proposed_quest_xp": 975,
+      "applied_quest_xp": 975,
+      "repeat_quest_xp": 243,
+      "target": 38,
+      "planned_main_enemy_count": 5,
+      "start_adjusted": {
+        "level": 36,
+        "xp_in_level": 299,
+        "next_level_xp": 975
+      },
+      "cumulative_stat_points_earned": 148,
+      "cumulative_skill_points_earned": 37,
+      "combat_xp_draft": 744,
+      "kill_coins_draft": 304,
+      "total_coins_draft": 1504,
+      "cumulative_gross_coins_draft": 17734,
+      "baseline_finish": {
+        "level": 37,
+        "xp_in_level": 847,
+        "next_level_xp": 1000
+      },
+      "quest_xp_delta": 0,
+      "total_adjusted_xp": 1719,
+      "adjusted_finish": {
+        "level": 38,
+        "xp_in_level": 43,
+        "next_level_xp": 1025
+      },
+      "baseline_reaches_target": false,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    },
+    {
+      "id": "HG-07",
+      "name": "증언의 왕릉",
+      "quest_coins": 1600,
+      "existing_quest_xp": 1050,
+      "proposed_quest_xp": 1252,
+      "applied_quest_xp": 1252,
+      "repeat_quest_xp": 313,
+      "target": 40,
+      "planned_main_enemy_count": 5,
+      "start_adjusted": {
+        "level": 38,
+        "xp_in_level": 43,
+        "next_level_xp": 1025
+      },
+      "cumulative_stat_points_earned": 156,
+      "cumulative_skill_points_earned": 39,
+      "combat_xp_draft": 780,
+      "kill_coins_draft": 318,
+      "total_coins_draft": 1918,
+      "cumulative_gross_coins_draft": 19652,
+      "baseline_finish": {
+        "level": 39,
+        "xp_in_level": 652,
+        "next_level_xp": 1050
+      },
+      "quest_xp_delta": 202,
+      "total_adjusted_xp": 2032,
+      "adjusted_finish": {
+        "level": 40,
+        "xp_in_level": 0,
+        "next_level_xp": 1075
+      },
+      "baseline_reaches_target": false,
+      "baseline_exceeds_target": false,
+      "adjusted_reaches_target": true
+    }
+  ],
+  "summary": {
+    "baseline_final": {
+      "level": 39,
+      "xp_in_level": 652,
+      "next_level_xp": 1050
+    },
+    "adjusted_final": {
+      "level": 40,
+      "xp_in_level": 0,
+      "next_level_xp": 1075
+    },
+    "baseline_missed_targets": 6,
+    "baseline_exceeded_targets": 9,
+    "quest_xp_total_existing": 13397,
+    "quest_xp_total_proposed": 13795,
+    "gross_coins_draft": 19652
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-27",
+  "path_base": "RPG project root",
+  "policy": "reference existing originals; no model/icon regeneration or runtime integration claimed",
+  "sources": [
+    {
+      "path": "../throne-defense/src/Shared/Config.lua",
+      "sha256": "c4851ed5516aad88f489e35d8cda3ca1cdc630684bebd1ef8a773ba46e7f294d",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    },
+    {
+      "path": "../throne-defense/docs/td290-map-sculpt-direction.md",
+      "sha256": "ec78a951d735188528deeca773ee3e97461d3873464dff192a75a04d81de65bc",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    },
+    {
+      "path": "../throne-defense/assets/concepts/maps-battle-target-v1/cemetery.png",
+      "sha256": "683d4339e3a36ce0e5cc469cccc7b505b2d463f3c8ddd9a5a24ccb10c6cb1872",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    },
+    {
+      "path": "../throne-defense/assets/ui/monster-catalog-v2/cemetery-board.png",
+      "sha256": "a0671cd5b0c2f0b51bebed30771026c49882ec3126002f64a6fedd99c3a85dec",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    },
+    {
+      "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime-metadata-r2.json",
+      "sha256": "46ae354967c8c0987c81e9f6f0b00a70c6f380de8a40d0f52076ec82c4d6a21b",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    }
+  ]
+}

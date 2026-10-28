@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-27",
+  "assets": [
+    {
+      "file": "references/hero-knight.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-knight-v2.png",
+      "sha256": "06724d7047f6e76ab77ceadf2ea717a57102b80a7e2e2e7e7f5065e649b71759",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "references/hero-elf.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-elf-v1.png",
+      "sha256": "4cacc2b781ccc5c3d3b0f35d670eff4c16ed4f11fe2a1a134399646e5e974508",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "references/hero-dwarf.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-dwarf-v1.png",
+      "sha256": "55e9166c73406407767dbdad7051e386d617b1c2eed1309afb30f616099e19bf",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "references/hero-mage.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-mage-v2.png",
+      "sha256": "5b89a93afa0a208ea7fa7976c75e337533fe4132db5010665cf5b340ecdedf87",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "references/priestess-faction.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/faction-priestess-concept.png",
+      "sha256": "838a3b202d72f04035175c72ca770eae0c7d6bc18698aea613c21a2ac07b07fc",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "references/deepwood-td.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/maps-battle-target-v1/forest.png",
+      "sha256": "990ee77ce8e46d752b599456cf70316a546e1f994c9caf4055f17a964497d0c6",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "references/lobby-ui-td.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-menu-concept-v3.png",
+      "sha256": "4102b45d7512bd7a31a24e2fd8bd2581841e3fa53b8d90ed090183c21d7cb3e3",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "references/art-direction-reference.webp",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/docs/art-direction-reference.webp",
+      "sha256": "9cd6bda81011da1e1a7259237fdbd561a709c45f3c2a916f93ee59d22cf4cf6b",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/goblin.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/goblin.png",
+      "sha256": "c073b0c3e5a598fdd0edc56f3aa02dc1e994134b4951b0ffc744cfdc0157a3c4",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/slime.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/slime.png",
+      "sha256": "4283fde43d2935ad95381b16d585ed95b23a4470c8d35f7abdced7cad3ffd393",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/orc.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/orc.png",
+      "sha256": "41b862ee44ca2699d7e84c889639f0a5150edb80966feb6353b87afd9a7f8ec2",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/ogre.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/ogre.png",
+      "sha256": "d089c7eb0da3cf586847688589ea7e1c5823ec60b2ed4e0a83055b94a6ae84ab",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/shaman.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/shaman.png",
+      "sha256": "d547d481f58f63f8b8d4386895d9d39f144ec22082b2cbd68212c8a7c90bb410",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/warlord.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/warlord.png",
+      "sha256": "503ed8ba400566b8a4831457e0c0bd2cbe73e7805363601ae8123bb6521853f1",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/king.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/king.png",
+      "sha256": "276ac714bc9fbbce7e8c429ec956635ee8943fd7b22c994b3d074224627a55b4",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/king_ogre.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/king_ogre.png",
+      "sha256": "ab89431356d9ef9058201fb00d1ad6852b2a3c2ab90443a63ef152bf3473a303",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/warlord-enraged.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/warlord-enraged.png",
+      "sha256": "a0c967be41277700bf019d61dae6916588581895f680e63fda478c67fcc1a274",
+      "use": "exact-original-reuse"
+    },
+    {
+      "file": "monsters/king_shaman.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/king_shaman.png",
+      "sha256": "785745f8929f96a0afdda1457dda5ea786702c8b646c7be81853dd11b3345d64",
+      "use": "exact-original-reuse"
+    }
+  ]
+}

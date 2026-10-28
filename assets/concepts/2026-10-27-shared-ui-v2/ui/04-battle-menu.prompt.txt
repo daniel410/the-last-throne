@@ -1,0 +1,11 @@
+Use case: ui-mockup. Asset: landscape16:9 action RPG BATTLE MENU overlay. SHARED KIT LOCK for ALL RPG screens: follow input1 shared component board exactly: navy #0C1B36/#141D2D, broad clean SILVER outer rails, restrained gold diamond corner fittings, red square silver X close at top-right, same beveled octagonal green/blue/gray buttons, same selected blue tab and gray disabled state, white Gotham-like bold Korean type. Reuse subjects and silhouettes from the TD source atlases, not newly themed icons. Maintain edge thickness proportion and consistent spacing, with more compact version of SAME frames for HUD. No ornate all-gold filigree, no generic line icon replacement, no new UI art style per screen, no tiny unreadable Korean text. Rendered art is a concept mockup; use short labels. No watermarks.
+Input1 authoritative exact kit; input2 exact forest trail setting behind menu; input3 shared TD icons; input4 locks current Knight identity if visible behind. Reuse exactly same frame/header/close/button treatments as lobby menu. This is a menu state in an ongoing cooperative battle, NOT a pause screen.
+Centered navy landscape window with source silver rails/gold fittings. Plain title "메뉴", small subtitle "Deepwood · 전투 중", source red/silver X upper-right. Preserve visible forest at margins; a tiny amber enemy telegraph remains visible behind to suggest live world, dim/blur only mildly. Do not put a huge frozen enemy behind.
+Use a clear two-column list rather than giant decorative cards, each row reuses source square icon well:
+"설정" with source gear, blue button "열기";
+"퀘스트" with sealed scroll, blue "보기";
+"파티 상태" with source group emblem, blue "보기";
+"영웅 정보" with player's approved open-helmet portrait (not generic hood/plume), blue "보기";
+"스탯 재분배" with gray locked button and small "거점에서 가능";
+"스킬 재분배" with gray locked button and small "거점에서 가능".
+Small clear info line "메뉴를 열어도 전투는 계속됩니다." Bottom primary GREEN source octagonal button "전투로 돌아가기". A smaller blue secondary button "귀환 안내" gives information, not instant guaranteed escape. No auto-pause icon, no active reallocation or equipment switching, no paid revive, no quit-without-warning, no TD tower selling or wave controls. Short readable Korean labels and generous row spacing. Footer "배틀 메뉴 · 공통 UI 적용안".

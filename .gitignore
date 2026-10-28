@@ -1,0 +1,22 @@
+# Project place file
+/the-last-throne.rbxlx
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
+
+sourcemap.json
+
+# Local OS files and credentials
+.DS_Store
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Generated build outputs
+/build/
+/builds/
+/dist/
+__pycache__/
+*.pyc

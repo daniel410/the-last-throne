@@ -1,0 +1,34 @@
+{
+  "version": "0.24",
+  "status": "new design proposal; not runtime",
+  "slots": [
+    "weapon",
+    "offhand",
+    "head",
+    "body",
+    "hands",
+    "feet",
+    "accessory1",
+    "accessory2",
+    "relic"
+  ],
+  "capacity_draft": {
+    "character_bag": 60,
+    "rpg_account_storage": 120
+  },
+  "stack_limit_draft": {
+    "equipment": 1,
+    "consumable": 99,
+    "material": 999
+  },
+  "rules": {
+    "storage_scope": "RPG account, not TD inventory",
+    "storage_access": "safe hub",
+    "binding": "account bound can move between compatible same-account characters; no player trade",
+    "lock": "sale/dismantle protection; equips and transfers allowed",
+    "overflow": "durable pending grant; no automatic expiry for these purchases",
+    "capacity_monetization": "not added",
+    "equip": "bag to slot, atomic swap; no direct storage equip",
+    "runtime": "none"
+  }
+}

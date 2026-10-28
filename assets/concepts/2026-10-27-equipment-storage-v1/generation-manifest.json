@@ -1,0 +1,50 @@
+{
+  "version": "0.24",
+  "date": "2026-10-27",
+  "status": "new concepts for user review; not approval/runtime-ready art",
+  "tool": "built-in image_gen; initial generation and targeted text/layout correction edits",
+  "references": [
+    {
+      "path": "assets/concepts/2026-10-27-shared-ui-v2/ui/05-hero-stats.png",
+      "sha256": "7159b470e872aad4e4ce4e0c1612e8fb05878877f5ef3b405826823bb7e1c286"
+    },
+    {
+      "path": "assets/concepts/2026-10-27-shared-ui-v2/heroes/hero-knight.png",
+      "sha256": "73ba91b9342acba955937cbfc77e8c5d43710057407bb008131df1842a6a608d"
+    },
+    {
+      "path": "../throne-defense/assets/ui/menu-blocky-v4/status-atlas.png",
+      "sha256": "43ba841584cdf59ffe029211f9f166aeb93d9ed9595d2f4a8950cd930d27ba9c"
+    },
+    {
+      "path": "../throne-defense/assets/ui/menu-blocky-v4/manifest.json",
+      "sha256": "3bee9eab8a40c33c5141cbeb6238c324a815452e6a238f0c8f7f0823f70161a4"
+    }
+  ],
+  "selected_images": [
+    {
+      "path": "assets/concepts/2026-10-27-equipment-storage-v1/01-equipment.png",
+      "sha256": "52386ee5d8a5937411ae41c06c2d2686731a050ca011237dc1b94020115831fd"
+    },
+    {
+      "path": "assets/concepts/2026-10-27-equipment-storage-v1/02-bag.png",
+      "sha256": "4d241f225e745cc02dd89b8a2812a1298f0f9fcf8ea0944bbbf88bcc00e06540"
+    },
+    {
+      "path": "assets/concepts/2026-10-27-equipment-storage-v1/03-storage.png",
+      "sha256": "3c3f6d14ead6f4e9873c9749e48ebf804716fece88bc58528a134d17bfdb8301"
+    }
+  ],
+  "prompts": [
+    "01-equipment.prompt.txt",
+    "02-bag.prompt.txt",
+    "02-bag-correction.prompt.txt",
+    "03-storage.prompt.txt",
+    "03-storage-correction.prompt.txt"
+  ],
+  "limits": [
+    "Korean raster text has minor artifacts; canonical labels are the HTML/spec",
+    "generated item art/stats are illustrative and do not replace original icons/models/catalog values",
+    "review board directly references approved hero and TD status atlas; no actual Roblox runtime inventory"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "The Last Throne 제작"
+  short_description: "기존 세계관과 승인 컨셉을 지키며 RPG 제작 계획과 검증을 연결"
+  default_prompt: "$the-last-throne-production 스킬로 다음 백로그 작업의 설계·구현·검증을 진행해 줘."

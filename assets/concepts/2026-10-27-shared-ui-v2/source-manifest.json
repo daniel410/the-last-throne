@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-27",
+  "assets": [
+    {
+      "file": "references/td-status-atlas.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/menu-blocky-v4/status-atlas.png",
+      "sha256": "43ba841584cdf59ffe029211f9f166aeb93d9ed9595d2f4a8950cd930d27ba9c",
+      "role": "authoritative shared TD UI source",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/td-menu-atlas.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/menu-blocky-v4/menu-atlas.png",
+      "sha256": "64837eeb9e5a95d46d589453daeafa7e40cb8669d53724a6324f1868dbfd25ea",
+      "role": "authoritative shared TD UI source",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/td-battle-atlas.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/battle-chrome-v1/atlas.png",
+      "sha256": "32712e20e00759022f10a7fb84623a539ca0e9bc7d2f2dc3fb3c936e0e53c6e4",
+      "role": "authoritative shared TD UI source",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/td-hero-icon.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-navigation-v3/hero.png",
+      "sha256": "8137e8025955eaca929fc044e1067236ff0d3450f76d4eb8a6c9c64440e2d3a2",
+      "role": "authoritative shared TD UI source",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/td-party-icon.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-navigation-v3/party.png",
+      "sha256": "b57b498431f445b9251a3bfed5985a525d51ec2be912db1c5ad0b0c428d9d571",
+      "role": "authoritative shared TD UI source",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/td-settings-icon.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-navigation-v3/settings.png",
+      "sha256": "2ee42ebbc3b6f6ab2bebc7db193d458c848bdda2fe5b09d7b67f8c5261a156be",
+      "role": "authoritative shared TD UI source",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/td-close-icon.png",
+      "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-navigation-v3/close.png",
+      "sha256": "66e01c6567adfcb77d2d7e450904d1d8dedae9c39c7dcf463d573efefcd6b7b1",
+      "role": "authoritative shared TD UI source",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/hero-dwarf.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/references/hero-dwarf.png",
+      "sha256": "55e9166c73406407767dbdad7051e386d617b1c2eed1309afb30f616099e19bf",
+      "role": "authoritative approved TD hero identity",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/hero-elf.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/references/hero-elf.png",
+      "sha256": "4cacc2b781ccc5c3d3b0f35d670eff4c16ed4f11fe2a1a134399646e5e974508",
+      "role": "authoritative approved TD hero identity",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/hero-knight.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/references/hero-knight.png",
+      "sha256": "06724d7047f6e76ab77ceadf2ea717a57102b80a7e2e2e7e7f5065e649b71759",
+      "role": "authoritative approved TD hero identity",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "references/hero-mage.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/references/hero-mage.png",
+      "sha256": "5b89a93afa0a208ea7fa7976c75e337533fe4132db5010665cf5b340ecdedf87",
+      "role": "authoritative approved TD hero identity",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "heroes/hero-dwarf.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/heroes/hero-dwarf.png",
+      "sha256": "73238de4f753f87b73794b4b8634a83b0be61dd3101d3f37ee4a0679d7e60d76",
+      "role": "unchanged identity sheet from v1",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "heroes/hero-elf.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/heroes/hero-elf.png",
+      "sha256": "00fd6f19917708141b885162e9d2517fee39660b7fe6ecc3a61e0fc74715f2c5",
+      "role": "unchanged identity sheet from v1",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "heroes/hero-knight.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/heroes/hero-knight.png",
+      "sha256": "73ba91b9342acba955937cbfc77e8c5d43710057407bb008131df1842a6a608d",
+      "role": "unchanged identity sheet from v1",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "heroes/hero-mage.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/heroes/hero-mage.png",
+      "sha256": "5245a94661744a182ccb2762a8d5ba5de42893496a3c492a309a1e2ba2bae901",
+      "role": "unchanged identity sheet from v1",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "heroes/npc-priestess.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/heroes/npc-priestess.png",
+      "sha256": "f234048772fc9f5f33db7d013b9ec18af4356a379cd6c445e30c6af8b206b138",
+      "role": "unchanged identity sheet from v1",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "world/dawnspire-lobby-v1.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/world/dawnspire-lobby-v1.png",
+      "sha256": "632c6889ea176807b3a3ab0fc49694e9ea82e85488283b02f171c18afd9850ef",
+      "role": "unchanged environment concept from v1",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "world/epic-01-deepwood.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/world/epic-01-deepwood.png",
+      "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d",
+      "role": "unchanged environment concept from v1",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "world/story-01-goblin-trail.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/world/story-01-goblin-trail.png",
+      "sha256": "ce838005aade2f9fb81e9a1b2bd4a938f2bf1fe3448e811e313c432d05083950",
+      "role": "unchanged environment concept from v1",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/goblin.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/goblin.png",
+      "sha256": "c073b0c3e5a598fdd0edc56f3aa02dc1e994134b4951b0ffc744cfdc0157a3c4",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/king.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/king.png",
+      "sha256": "276ac714bc9fbbce7e8c429ec956635ee8943fd7b22c994b3d074224627a55b4",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/king_ogre.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/king_ogre.png",
+      "sha256": "ab89431356d9ef9058201fb00d1ad6852b2a3c2ab90443a63ef152bf3473a303",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/king_shaman.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/king_shaman.png",
+      "sha256": "785745f8929f96a0afdda1457dda5ea786702c8b646c7be81853dd11b3345d64",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/ogre.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/ogre.png",
+      "sha256": "d089c7eb0da3cf586847688589ea7e1c5823ec60b2ed4e0a83055b94a6ae84ab",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/orc.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/orc.png",
+      "sha256": "41b862ee44ca2699d7e84c889639f0a5150edb80966feb6353b87afd9a7f8ec2",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/shaman.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/shaman.png",
+      "sha256": "d547d481f58f63f8b8d4386895d9d39f144ec22082b2cbd68212c8a7c90bb410",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/slime.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/slime.png",
+      "sha256": "4283fde43d2935ad95381b16d585ed95b23a4470c8d35f7abdced7cad3ffd393",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/warlord-enraged.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/warlord-enraged.png",
+      "sha256": "a0c967be41277700bf019d61dae6916588581895f680e63fda478c67fcc1a274",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "monsters/warlord.png",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/monsters/warlord.png",
+      "sha256": "503ed8ba400566b8a4831457e0c0bd2cbe73e7805363601ae8123bb6521853f1",
+      "role": "unchanged TD monster concept",
+      "use": "byte-identical reference/reuse snapshot"
+    },
+    {
+      "file": "shared-asset-registry-snapshot.json",
+      "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/shared/td-asset-registry.json",
+      "sha256": "a5716ecc2d936d03b4a040f434ceb53c77ef343bef0840c10fdf906129f28f7c",
+      "role": "shared runtime source registry snapshot, not runtime wiring",
+      "use": "byte-identical registry snapshot"
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "date": "2026-10-27",
+  "new_shared_ui": 9,
+  "unchanged_existing_art": 18,
+  "items": [
+    {
+      "id": "00-shared-ui-board",
+      "file": "ui/00-shared-ui-board.png",
+      "title": "TD × RPG 공통 컴포넌트 보드",
+      "category": "system",
+      "note": "실제 TD 상태/메뉴/배틀 아틀라스 참조 · 은색 레일·금색 피팅·남색 패널",
+      "origin": "공통 UI 재제작 v2",
+      "sha256": "e2f5c90fefd39ed299b7e1882fb60b55e4fbfef7000613cd834e51374ec30a2a"
+    },
+    {
+      "id": "01-lobby-hud-corrected",
+      "file": "ui/01-lobby-hud-corrected.png",
+      "title": "Dawnspire 로비 화면",
+      "category": "ui",
+      "note": "기존 광장 유지 · 공통 바로가기/재화/XP · 플레이어 초상과 보라 마법사 수정",
+      "origin": "공통 UI 재제작 v2",
+      "sha256": "a24d9130b338576230a34e8139a681d80fc1ae92b09fdadac51a7ed2b7903313"
+    },
+    {
+      "id": "02-lobby-menu",
+      "file": "ui/02-lobby-menu.png",
+      "title": "로비 메뉴",
+      "category": "ui",
+      "note": "영웅·원정·퀘스트·파티·상점·설정 · TD 메뉴 원본 도상 참조",
+      "origin": "공통 UI 재제작 v2",
+      "sha256": "eb9ba2d6f0a0a3378d0580c7838ea4644f4b7b3bf06fd728c7e7ce875f3168ac"
+    },
+    {
+      "id": "03-battle-hud-corrected",
+      "file": "ui/03-battle-hud-corrected.png",
+      "title": "Deepwood 배틀 화면",
+      "category": "ui",
+      "note": "공통 자원바/액션 슬롯 · 기사 원본 초상 · 로비와 XP 색·값 일치",
+      "origin": "공통 UI 재제작 v2",
+      "sha256": "134e9ee03d290d2963a6d04674cabba364e3c6741b140c53e5d0eeb4c240b3b8"
+    },
+    {
+      "id": "04-battle-menu",
+      "file": "ui/04-battle-menu.png",
+      "title": "배틀 메뉴",
+      "category": "ui",
+      "note": "로비와 같은 패널/버튼 · 전투 지속 안내 · 거점 전용 재분배 잠금",
+      "origin": "공통 UI 재제작 v2",
+      "sha256": "b36eebbb832ceee4ea5aec36d05dbc3390ca67b01de00093c2addb324c80b239"
+    },
+    {
+      "id": "05-hero-stats",
+      "file": "ui/05-hero-stats.png",
+      "title": "영웅 스탯 메뉴",
+      "category": "ui",
+      "note": "스탯4P/레벨 · TD 상태 아이콘과 버튼 셸 참조 · 표시 수치는 예시",
+      "origin": "공통 UI 재제작 v2",
+      "sha256": "7159b470e872aad4e4ce4e0c1612e8fb05878877f5ef3b405826823bb7e1c286"
+    },
+    {
+      "id": "06-skill-tree",
+      "file": "ui/06-skill-tree.png",
+      "title": "기사 스킬 메뉴",
+      "category": "ui",
+      "note": "Lv28 누적27P = 투자15P + 잔여12P · 액티브3+궁극기1",
+      "origin": "공통 UI 재제작 v2",
+      "sha256": "72d735c15bcfac318c3415a74454a3a67470a291cfe62a0bfbdac403b3e38abb"
+    },
+    {
+      "id": "07-hero-creation",
+      "file": "ui/07-hero-creation.png",
+      "title": "새 영웅 생성",
+      "category": "ui",
+      "note": "승인된 TD 초상4종 · Lv20 두 계열 · 다른 클래스로 전직 불가",
+      "origin": "공통 UI 재제작 v2",
+      "sha256": "c86a734a5bfbe091c712778d6434091b03f1e8004c52b8b1bef2a4c149b8b310"
+    },
+    {
+      "id": "08-expedition-menu",
+      "file": "ui/08-expedition-menu.png",
+      "title": "에픽·스토리 원정 메뉴",
+      "category": "ui",
+      "note": "기존 Deepwood/고블린 숲길 이미지 참조 · 마지막 안전 지점 계속하기 초안",
+      "origin": "공통 UI 재제작 v2",
+      "sha256": "d0593923dcfd1166026bf930334ae45c49018f73643da990d484dd3963c7f8cc"
+    },
+    {
+      "id": "dawnspire-lobby-v1",
+      "file": "world/dawnspire-lobby-v1.png",
+      "title": "Dawnspire · RPG 로비",
+      "category": "world",
+      "note": "TD 왕성/광장 기반 · 원정 포탈·훈련장·대장간·동료·TD 복귀 동선 초안",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "632c6889ea176807b3a3ab0fc49694e9ea82e85488283b02f171c18afd9850ef"
+    },
+    {
+      "id": "epic-01-deepwood",
+      "file": "world/epic-01-deepwood.png",
+      "title": "에픽 1 — Deepwood",
+      "category": "world",
+      "note": "거목·폭포·돌길·포탈을 공유하는 RPG 지역 전경",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+    },
+    {
+      "id": "story-01-goblin-trail",
+      "file": "world/story-01-goblin-trail.png",
+      "title": "스토리 1 — 고블린 숲길",
+      "category": "world",
+      "note": "기사·고블린·현행 Cave Slime 원본을 참조한 첫 모험 장면",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "ce838005aade2f9fb81e9a1b2bd4a938f2bf1fe3448e811e313c432d05083950"
+    },
+    {
+      "id": "hero-knight",
+      "file": "heroes/hero-knight.png",
+      "title": "기사",
+      "category": "heroes",
+      "note": "승인된 은청 기사 초상 기반 · 전신/후면/장비",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "73ba91b9342acba955937cbfc77e8c5d43710057407bb008131df1842a6a608d"
+    },
+    {
+      "id": "hero-elf",
+      "file": "heroes/hero-elf.png",
+      "title": "엘프 궁수",
+      "category": "heroes",
+      "note": "기존 녹색 후드·갈색 머리·활과 화살 유지",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "00fd6f19917708141b885162e9d2517fee39660b7fe6ecc3a61e0fc74715f2c5"
+    },
+    {
+      "id": "hero-dwarf",
+      "file": "heroes/hero-dwarf.png",
+      "title": "드워프",
+      "category": "heroes",
+      "note": "기존 주황 수염·청동 갑옷·도끼 유지",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "73238de4f753f87b73794b4b8634a83b0be61dd3101d3f37ee4a0679d7e60d76"
+    },
+    {
+      "id": "hero-mage",
+      "file": "heroes/hero-mage.png",
+      "title": "마법사",
+      "category": "heroes",
+      "note": "기존 보라 비전 복장 유지 · Pyro/Cryo 전직 이전",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "5245a94661744a182ccb2762a8d5ba5de42893496a3c492a309a1e2ba2bae901"
+    },
+    {
+      "id": "npc-priestess",
+      "file": "heroes/npc-priestess.png",
+      "title": "성녀 · 지원 NPC",
+      "category": "heroes",
+      "note": "TD 성녀 팩션의 등불 성녀 기반 · 셀레네 개인 외형 확정안은 아님",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "f234048772fc9f5f33db7d013b9ec18af4356a379cd6c445e30c6af8b206b138"
+    },
+    {
+      "id": "goblin",
+      "file": "monsters/goblin.png",
+      "title": "Goblin · 고블린",
+      "category": "monsters",
+      "note": "일반 · DW-01 고블린 숲길",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "c073b0c3e5a598fdd0edc56f3aa02dc1e994134b4951b0ffc744cfdc0157a3c4"
+    },
+    {
+      "id": "slime",
+      "file": "monsters/slime.png",
+      "title": "Cave Slime · 동굴 슬라임",
+      "category": "monsters",
+      "note": "일반 · 현행 슬라임, 구 미리보기의 좀비 제외",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "4283fde43d2935ad95381b16d585ed95b23a4470c8d35f7abdced7cad3ffd393"
+    },
+    {
+      "id": "orc",
+      "file": "monsters/orc.png",
+      "title": "Orc Warrior · 오크 전사",
+      "category": "monsters",
+      "note": "일반 · 감시탑/점령지",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "41b862ee44ca2699d7e84c889639f0a5150edb80966feb6353b87afd9a7f8ec2"
+    },
+    {
+      "id": "ogre",
+      "file": "monsters/ogre.png",
+      "title": "Ogre · 오우거",
+      "category": "monsters",
+      "note": "일반 · 수레 공터/점령지",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "d089c7eb0da3cf586847688589ea7e1c5823ec60b2ed4e0a83055b94a6ae84ab"
+    },
+    {
+      "id": "shaman",
+      "file": "monsters/shaman.png",
+      "title": "Goblin Shaman · 고블린 주술사",
+      "category": "monsters",
+      "note": "일반 · 지원/주술 연결",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "d547d481f58f63f8b8d4386895d9d39f144ec22082b2cbd68212c8a7c90bb410"
+    },
+    {
+      "id": "warlord",
+      "file": "monsters/warlord.png",
+      "title": "Orc Warlord · 오크 군벌",
+      "category": "monsters",
+      "note": "필수 보스 · 오크 점령지",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "503ed8ba400566b8a4831457e0c0bd2cbe73e7805363601ae8123bb6521853f1"
+    },
+    {
+      "id": "king",
+      "file": "monsters/king.png",
+      "title": "Goblin King · 고블린 왕",
+      "category": "monsters",
+      "note": "선택 보스 · 왕의 야영지",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "276ac714bc9fbbce7e8c429ec956635ee8943fd7b22c994b3d074224627a55b4"
+    },
+    {
+      "id": "king_ogre",
+      "file": "monsters/king_ogre.png",
+      "title": "King Ogre · 오우거 왕",
+      "category": "monsters",
+      "note": "선택 보스 · 폭포 아래 동굴/채석장",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "ab89431356d9ef9058201fb00d1ad6852b2a3c2ab90443a63ef152bf3473a303"
+    },
+    {
+      "id": "warlord-enraged",
+      "file": "monsters/warlord-enraged.png",
+      "title": "Enraged Warlord · 광폭 군벌",
+      "category": "monsters",
+      "note": "선택 보스 · 붉은 전쟁터",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "a0c967be41277700bf019d61dae6916588581895f680e63fda478c67fcc1a274"
+    },
+    {
+      "id": "king_shaman",
+      "file": "monsters/king_shaman.png",
+      "title": "King Shaman · 주술사 왕",
+      "category": "monsters",
+      "note": "필수 보스 · 검은 뿌리의 제단",
+      "origin": "기존 파일 그대로 유지",
+      "sha256": "785745f8929f96a0afdda1457dda5ea786702c8b646c7be81853dd11b3345d64"
+    }
+  ]
+}

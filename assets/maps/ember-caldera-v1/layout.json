@@ -1,0 +1,575 @@
+{
+  "version": "1.0",
+  "date": "2026-10-27",
+  "status": "new proposed design; not Studio runtime",
+  "coordinate_system": "Roblox Y up; north=-Z; SVG x=X+1000,y=Z+800; 2000x1700stud envelope",
+  "zones": [
+    {
+      "id": "EC-01",
+      "name": "잿빛 관문",
+      "level_draft": "20~21",
+      "center_studs": {
+        "x": -720,
+        "y": 48,
+        "z": 500
+      },
+      "footprint_studs": {
+        "x": 300,
+        "z": 240
+      },
+      "map_xy": [
+        280,
+        1300
+      ],
+      "start_point": {
+        "id": "EC-01-SP",
+        "anchor_draft_studs": {
+          "x": -830.0,
+          "y": 48,
+          "z": 580.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/ember-caldera-story-01-ash-gate.md",
+      "focus": "Frozen Vale의 도면을 가지고 도착한 플레이어는 도시로 가는 화물길이 지진으로 끊겼음을 본다. 브란은 왕도 봉인 장치와 같은 가문의 문양을 알아본다. 고립된 노동자를 안전 구역으로 안내하고 정지한 화물 승강기를 복구해 도시 접근로를 확보한다.",
+      "exit": "보행/승강기: 복구한 화물길로 용광로 도시 진입",
+      "nodes": [
+        "A SP1 원정 포탈",
+        "B 재덮인 보급로",
+        "C 노동자 엄폐",
+        "D 승강기 제어실",
+        "E 도시 접근",
+        "S 슬라임 가지"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          3
+        ]
+      ]
+    },
+    {
+      "id": "EC-02",
+      "name": "용광로 도시",
+      "level_draft": "21 · 안전 거점",
+      "center_studs": {
+        "x": -450,
+        "y": 60,
+        "z": 130
+      },
+      "footprint_studs": {
+        "x": 320,
+        "z": 280
+      },
+      "map_xy": [
+        550,
+        930
+      ],
+      "start_point": {
+        "id": "EC-02-SP",
+        "anchor_draft_studs": {
+          "x": -570.0,
+          "y": 60,
+          "z": 230.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/ember-caldera-story-02-forge-city.md",
+      "focus": "도시는 용광로 보호막으로 화산재와 분출을 막는다. 노동자들은 위험을 알리지 않는 작업 명령에 항의하고 장로회는 용광로를 끄면 주민이 죽는다고 주장한다. 플레이어는 양쪽 말을 듣고 광산 구조부터 맡는다. 브란은 가문의 설계를 확인하겠다고 약속하지만 필수 전투동료가 되지는 않는다.",
+      "exit": "보행: 광산 작업로로 출발",
+      "nodes": [
+        "A SP2 도시 입구",
+        "B 보호막 광장",
+        "C 노동자 대표",
+        "D 장로회 기록관",
+        "E 구조 임무 수락",
+        "S 작업장·훈련"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          3
+        ]
+      ]
+    },
+    {
+      "id": "EC-03",
+      "name": "무너진 공명광산",
+      "level_draft": "21~23",
+      "center_studs": {
+        "x": -80,
+        "y": 34,
+        "z": 430
+      },
+      "footprint_studs": {
+        "x": 340,
+        "z": 280
+      },
+      "map_xy": [
+        920,
+        1230
+      ],
+      "start_point": {
+        "id": "EC-03-SP",
+        "anchor_draft_studs": {
+          "x": -210.0,
+          "y": 34,
+          "z": 530.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/ember-caldera-story-03-collapsed-mine.md",
+      "focus": "Magma Worm의 이동이 지진을 일으켜 갱도가 무너졌다. 두 지지 장치를 안정화하고 갇힌 광부를 구조하면 광석 운송관 외에 산 아래 생명과 공명을 끌어올리는 관이 발견된다. 노동자의 사고 기록이 지워졌다는 증언도 나온다.",
+      "exit": "보행: 안정화한 작업 통로가 냉각 수로로 연결",
+      "nodes": [
+        "A SP3 광산 입구",
+        "B 갱도 경비",
+        "C 지지 장치1",
+        "D 지지 장치2",
+        "E 웜 공터·구조",
+        "F 공명 추출관",
+        "S 유품 틈새"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          6,
+          4
+        ]
+      ]
+    },
+    {
+      "id": "EC-04",
+      "name": "갈라진 냉각 수로",
+      "level_draft": "23~25",
+      "center_studs": {
+        "x": 440,
+        "y": 20,
+        "z": 380
+      },
+      "footprint_studs": {
+        "x": 360,
+        "z": 280
+      },
+      "map_xy": [
+        1440,
+        1180
+      ],
+      "start_point": {
+        "id": "EC-04-SP",
+        "anchor_draft_studs": {
+          "x": 300.0,
+          "y": 20,
+          "z": 480.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/ember-caldera-story-04-coolant-canals.md",
+      "focus": "주술사들은 불안정한 수로를 이용해 봉인핵으로 접근하려 한다. 플레이어는 두 밸브와 유량 조절기로 냉각수를 복구한다. 강제 공명 추출을 끄려면 기존 용광로와 분리된 지열 순환 회로가 필요하다는 단서를 얻는다.",
+      "exit": "장애물 해제: 유량 안정화로 증기문이 열려 가문 설계고 진입",
+      "nodes": [
+        "A SP4 수로 입구",
+        "B 배수 마당",
+        "C 밸브1",
+        "C 밸브2",
+        "D 유량 안정화",
+        "E 우회관 기록",
+        "F 설계고 길"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "id": "EC-05",
+      "name": "가문의 설계고",
+      "level_draft": "25~26",
+      "center_studs": {
+        "x": 620,
+        "y": 36,
+        "z": -100
+      },
+      "footprint_studs": {
+        "x": 340,
+        "z": 280
+      },
+      "map_xy": [
+        1620,
+        700
+      ],
+      "start_point": {
+        "id": "EC-05-SP",
+        "anchor_draft_studs": {
+          "x": 490.0,
+          "y": 36,
+          "z": 0.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/ember-caldera-story-05-ancestral-design-vault.md",
+      "focus": "브란은 가문이 결함을 알면서도 도시가 무너질까 두려워 침묵했음을 인정한다. 원본에는 주민의 생명력을 소모하지 않는 지열 순환안이 있었지만 위험과 비용 때문에 폐기됐다. 플레이어는 노동자 안전 중단권과 단계별 시험에 대한 합의를 기록하고 대체 열원 시험 준비를 한다.",
+      "exit": "보행: 검증한 도면을 가지고 지열 시험로로 이동",
+      "nodes": [
+        "A SP5 설계고 입구",
+        "B 기록 경비",
+        "C 원본 도면",
+        "D 사고 장부",
+        "E 중재·안전 보고",
+        "F 시험로 출구",
+        "S 가문 유품"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          6,
+          4
+        ]
+      ]
+    },
+    {
+      "id": "EC-06",
+      "name": "지열 심장 시험로",
+      "level_draft": "26~28",
+      "center_studs": {
+        "x": 230,
+        "y": 12,
+        "z": -550
+      },
+      "footprint_studs": {
+        "x": 340,
+        "z": 300
+      },
+      "map_xy": [
+        1230,
+        250
+      ],
+      "start_point": {
+        "id": "EC-06-SP",
+        "anchor_draft_studs": {
+          "x": 100.0,
+          "y": 12,
+          "z": -440.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/ember-caldera-story-06-geothermal-testworks.md",
+      "focus": "두 외곽 제어기를 연결하고 시험로를 점거한 Magma Golem을 돌파한다. 독립 지열 회로가 도시의 최소 보호막을 유지할 수 있음을 시험 계기로 확인하지만 본 회로 전환은 아직 남아 있다. 과열된 기존 용광로에서 거대한 공명체가 형성되기 시작한다.",
+      "exit": "장애물 해제: 시험 인증으로 안전 격리문을 열어 대용광로 접근",
+      "nodes": [
+        "A SP6 시험로 입구",
+        "B 외곽 제어기1",
+        "C 외곽 제어기2",
+        "D 보스 전 안전실",
+        "E Magma Golem",
+        "F 지열 시험·인증",
+        "G 대용광로 길"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "id": "EC-07",
+      "name": "대용광로",
+      "level_draft": "28~30",
+      "center_studs": {
+        "x": -120,
+        "y": -4,
+        "z": -200
+      },
+      "footprint_studs": {
+        "x": 400,
+        "z": 340
+      },
+      "map_xy": [
+        880,
+        600
+      ],
+      "start_point": {
+        "id": "EC-07-SP",
+        "anchor_draft_studs": {
+          "x": -280.0,
+          "y": -4,
+          "z": -70.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/ember-caldera-story-07-great-furnace.md",
+      "focus": "과열과 강제 추출이 Inferno Overlord라는 공명체를 만들었다. 플레이어는 냉각 장치로 폭주를 억제하며 공명체를 쓰러뜨린다. 도시 보호막을 시험 완료된 지열 회로로 넘기고 강제 추출을 차단한 뒤 세 번째 봉인핵을 분리한다. 기록에서 왕좌 중심 의식이 아직 살아 있음을 확인하고 왕도의 기억 상실 소식을 받는다.",
+      "exit": "안전 귀환 포탈: 도시 정비·왕도 보고 → Haunted Graveyard 원정",
+      "nodes": [
+        "A SP7 격리 입구",
+        "B 외곽 전환기1",
+        "C 외곽 전환기2",
+        "D 보스 전 안전실",
+        "E Inferno Overlord",
+        "F 열원 전환·핵/기록",
+        "G 도시 귀환·보고"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    }
+  ],
+  "optional_zones": [
+    {
+      "id": "EC-S1",
+      "name": "불씨 약탈단 둥지",
+      "boss": "Magma Imp",
+      "map_xy": [
+        300,
+        580
+      ]
+    },
+    {
+      "id": "EC-S2",
+      "name": "화산 주술사의 제단",
+      "boss": "King Volcano Shaman",
+      "map_xy": [
+        1650,
+        1450
+      ]
+    },
+    {
+      "id": "EC-S3",
+      "name": "분화구 거인의 분지",
+      "boss": "Caldera Titan",
+      "map_xy": [
+        1650,
+        200
+      ],
+      "unlock": "에픽 완료 후"
+    }
+  ],
+  "connections": [
+    {
+      "from": "EC-01",
+      "to": "EC-02",
+      "method": "보행/승강기: 복구한 화물길로 용광로 도시 진입"
+    },
+    {
+      "from": "EC-02",
+      "to": "EC-03",
+      "method": "보행: 광산 작업로로 출발"
+    },
+    {
+      "from": "EC-03",
+      "to": "EC-04",
+      "method": "보행: 안정화한 작업 통로가 냉각 수로로 연결"
+    },
+    {
+      "from": "EC-04",
+      "to": "EC-05",
+      "method": "장애물 해제: 유량 안정화로 증기문이 열려 가문 설계고 진입"
+    },
+    {
+      "from": "EC-05",
+      "to": "EC-06",
+      "method": "보행: 검증한 도면을 가지고 지열 시험로로 이동"
+    },
+    {
+      "from": "EC-06",
+      "to": "EC-07",
+      "method": "장애물 해제: 시험 인증으로 안전 격리문을 열어 대용광로 접근"
+    }
+  ],
+  "return_connections": [
+    {
+      "from": "EC-05",
+      "to": "EC-02",
+      "method": "unlocked walking shortcut; portal alternative after timing test"
+    },
+    {
+      "from": "EC-07",
+      "to": "EC-02",
+      "method": "safe return portal after victory/records"
+    }
+  ]
+}

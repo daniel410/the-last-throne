@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-27",
+  "mode": "built-in image_gen",
+  "status": "concepts-complete-implementation-unverified",
+  "selected_count": 12,
+  "jobs": [
+    {
+      "id": "hero-knight",
+      "prompt": "Use case: stylized-concept.\nAsset type: full-body RPG hero identity sheet, one single polished illustration, landscape 3:2.\nPrimary request: THE LAST THRONE shares EXACTLY the same Knight character as the input Throne Defense portrait. Expand this character into a full-body adventure concept, not a redesign.\nInput image 1: authoritative face, helmet, armor, sword and shield reference. Preserve yellow blocky Roblox skin, simple black oval eyes, thick angled eyebrows and friendly confident smile; the open silver crested helmet with cheek guards; vivid cobalt scarf and cape; silver faceted armor, leather straps and blue diamond gems; straight silver sword with gold crossguard and blue gems; blue kite shield with silver faceplate and central blue gem. Match the face and all distinctive equipment shapes carefully.\nComposition: one large complete three-quarter front standing figure occupying the left two thirds, boots and sword tip in frame. A smaller clean rear view of THE SAME figure on the right to show the cobalt cape, plus two small close details of shield and helmet, on a warm light gray studio backdrop. Grounded chunky Roblox proportions, short blocky legs, blocky hands and limbs. This is a reusable base Knight, no advanced promotion armor or new crown.\nStyle: richly finished stylized 3D game concept, readable hard-surface forms, vivid blue textile, restrained metallic highlights, same quality and art family as reference. Neutral warm key light with gentle blue rim, no overexposed glow.\nConstraints: keep recognizable identity; no realistic human face, no anime, no elongated human proportions, no new horns, no different shield, no tower pedestal, no text, no watermark.",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-knight-v2.png"
+      ],
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-3e6885fc-df91-47ae-a503-aad805b1eaf0.png",
+      "file": "heroes/hero-knight.png",
+      "selected": true
+    },
+    {
+      "id": "hero-elf",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-elf-v1.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset: full-body identity sheet for The Last Throne RPG, landscape 3:2.\nInput image 1 is the authoritative SAME Elf Archer from Throne Defense, not a loose inspiration. Preserve exact friendly yellow blocky face, simple black oval eyes and smile, short brown hair with asymmetric fringe, long pointed ears, vivid green hood with narrow gold leaf edging, green tunic with gold leaf panels, brown diagonal straps and belt, faceted brown and gold bow with central emerald leaf gem, green-white feathered arrows and quiver. Full-body expansion must match this portrait identity, not a replacement elf.\nOne large full-body three-quarter front figure on the left, smaller rear view on the upper right showing hood, cape and quiver, two close detail insets below of bow and face. Warm light gray studio background, same clean richly rendered stylized 3D finish as source. Short chunky Roblox block limbs and boots, block hands holding a naturally curved bow with one clear straight string and a single properly oriented arrow. Green glow restrained to arrow tip and small bow crystal.\nNo human realistic anatomy, no tall anime elf, no new hair color, no swords, no excessive armor, no tower pedestal. No text, no watermark. This is base Elf Archer, not two different advanced jobs.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-8736318f-6b50-4f08-8c89-083c357f875b.png",
+      "file": "heroes/hero-elf.png",
+      "selected": true
+    },
+    {
+      "id": "hero-dwarf",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-dwarf-v1.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset: full-body identity sheet for The Last Throne RPG, landscape 3:2.\nInput image 1 is the authoritative SAME Dwarf from Throne Defense. Keep exact yellow block face, black oval eyes, huge vivid orange mustache and orange beard divided into braids with metal bands, orange crested helmet with silver riveted brow and cheek guards, orange-bronze layered armor with hexagonal shoulder plates, brown leather straps and wide silver/bronze axe. Extend the existing portrait into a full-body concept, not a redesign.\nComposition matches a professional character identity sheet: large complete three-quarter front stance at left, smaller rear view at upper right, close-up axe head and helmet/beard at lower right. Warm light gray neutral studio background and soft shadow. Shortest and broadest of the four heroes, chunky block limbs, broad boots, thick belt and rugged gloves. Existing strong orange/bronze palette and true silver axe edge, restrained warm rim lighting.\nDo not replace the axe with hammer or gun, no new beard color, no human realistic anatomy, no horned helmet, no extra weapons, no tower base, no text or watermark. Premium stylized 3D game render matching original portrait materials.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-91fe2914-6260-49ab-9443-9a046dcf2eed.png",
+      "file": "heroes/hero-dwarf.png",
+      "selected": true
+    },
+    {
+      "id": "hero-mage",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-mage-v2.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset: full-body identity sheet for The Last Throne RPG, landscape 3:2.\nInput image 1 is the authoritative SAME base Mage from Throne Defense. Preserve yellow block face, simple black oval eyes, angled eyebrows and cheeky smile with tiny tongue at corner; purple bent pointed hood/hat and layered purple robe; thin gold geometric trim; purple diamond forehead and chest gems; shoulder cape with round gold clasps. Preserve the distinctive straight dark wand/staff, purple faceted crystal tip and restrained gold orbital rings. Base Mage is PURPLE ARCANE, not a red fire mage or blue ice mage; those specializations happen later.\nLayout: one large whole-body three-quarter front figure left, a smaller rear view upper right showing robe and cape, two detail insets lower right of face and straight crystal-tipped staff. Keep face, silhouette, color and equipment identity from portrait. Warm light gray studio backdrop, same richly finished faceted stylized 3D art family. Short chunky Roblox proportions, block hands, grounded boots under robe.\nOnly restrained violet glow near crystal and tiny spell in free hand, no giant explosive VFX hiding costume. No human face or elongated anatomy, no white beard, no different staff head, no red robe, no pedestal, no text, no watermark.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-184c1f6c-8aef-41bd-a44a-1a3d9811f8b6.png",
+      "file": "heroes/hero-mage.png",
+      "selected": true
+    },
+    {
+      "id": "epic-01-deepwood",
+      "file": "world/epic-01-deepwood.png",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/maps-battle-target-v1/forest.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset: wide landscape 16:9 regional key art for Roblox action RPG THE LAST THRONE, EPIC 1 — DEEPWOOD.\nInput image 1 is authoritative Throne Defense Deepwood environment identity: sunlit saturated green forest, mossy limestone cliff islands and waterfalls, ancient great tree and ruined stone arches, royal cobalt banners with gold crown emblem, purple stone portal, tiny pink-violet crystal sanctuary. Extend THIS SAME WORLD into an explorable RPG landscape.\nCamera high sweeping three-quarter overview with strong depth and readable connected terrain. Foreground left: a safe purple stone arrival portal and the cobbled goblin forest trail entering warm green woodland. Midground: broken supply cart clearing, enormous landmark tree with a small wooden outpost built at its roots, abandoned stone watchtower and an orc occupied ruin beyond. Far background: gradually darker tangled root forest ending in a small distant black-root altar with restrained violet corruption; side waterfall cave and little goblin encampment. Terrain is connected by broad walkable paths and safe stone bridges, no isolated floating mission islands.\nPreserve TD carved stone forms, tree canopy, palette, materials, sunset warmth and waterfalls. Premium colorful stylized 3D environment concept, chunky readable architecture rather than photorealistic dense foliage. It must look like an expanded version of the source location. No tower defense placement rings, no towers on pedestals, no fixed U-shape lane, no modern buildings, no snow or desert. Region landmarks should remain visually distinct.\nText only at upper left, editorial title: \"EPIC 01\" small then \"DEEPWOOD\" large then \"깊은 숲의 부름\" below, tasteful pale gold/ivory serif, readable over a subtle dark corner. No other text, no HUD, no watermark. Do not add a giant new throne or a second kingdom.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-53e14290-1b25-4f69-b037-015815ee9e01.png",
+      "selected": true
+    },
+    {
+      "id": "story-01-goblin-trail",
+      "file": "world/story-01-goblin-trail.png",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/maps-battle-target-v1/forest.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-knight-v2.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/goblin.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/slime.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset: wide 16:9 story keyframe, THE LAST THRONE, STORY 1 — GOBLIN FOREST TRAIL.\nInput1 locks the exact Throne Defense Deepwood setting and palette. Input2 locks Knight identity: open silver crested helmet, yellow simple block face, cobalt scarf/cape, faceted silver armor, blue-gem straight sword and blue kite shield. Input3 locks goblin: long broad pink-inner ears, yellow-green angular skin, orange eyes, brown studded shoulder armor and crude short stone blade. Input4 locks Cave Slime: faceted translucent emerald dome, yellow-orange eyes, leaf on top. Preserve these recognizable shapes and colors; this is the same cast in a new scene.\nComposition: ground-level third-person adventure cinematic, camera slightly above and behind the Knight on the left foreground, face edge and sword visible, blue cape and shield clearly recognizable. Cobbled trail leads forward into a friendly sunlit forest. One goblin on trail ahead preparing an ambush, a second partly visible beside a mossy rock. One small Cave Slime beside a shallow marsh, not on every path. Broken wooden sign and supply crate suggest missing supply route. Huge ancient tree and watchtower silhouette visible in distance. Safe violet return portal partly visible behind the arrival area. Spacious combat clearing, clear walkable ground, detailed but readable faceted foliage and waterfalls beyond.\nPremium cheerful 3D Roblox fantasy, warm sun rays, rich greens and cobalt, mild adventure tension not horror. Characters retain blocky proportions, monsters stay exactly like refs; no realistic human knight, no redesign, no blood, no zombies, no tower slots or tower platforms.\nMinimal title at top left: \"STORY 01\" then \"고블린 숲길\". Below in small clear type \"끊어진 보급로를 조사하라\". No gameplay HUD, no watermark.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-8d8d9d44-8161-4966-a141-4b32abadd1a2.png",
+      "selected": true
+    },
+    {
+      "id": "npc-priestess",
+      "file": "heroes/npc-priestess.png",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/faction-priestess-concept.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset: full-body white-and-gold priestess SUPPORT NPC concept sheet for THE LAST THRONE, not a playable class.\nInput image 1 is authoritative Throne Defense priestess faction. Use the FIRST hooded lantern-bearing priestess at far left as identity reference, not the crowned fourth figure and not the armored mace wielder. Preserve her friendly simple yellow Roblox face, black eyes with lashes and gentle smile, white cloth hood with thin gold edging, brown hair at forehead, long white robe with geometric gold hem, gold belt and small brown pouch, gold lantern. Extend precisely this same design in polished larger detail.\nOne large complete three-quarter front figure left, smaller rear view at upper right, close-ups of gold lantern and hooded face at lower right. Warm light gray studio background matching character sheets, chunky block hands and body. Show a small gentle gold protective light around open free hand; no giant combat spell. Premium stylized 3D, matte white cloth and restrained gold metal. This is optional support / story NPC, no playable class selection interface.\nNo tall human woman or anime face, no changing hair to blonde, no royal crown, no heavy armor, no staff replacing her lantern, no pedestal, no text, no watermark.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-2b23d036-1107-482e-8710-372431483970.png",
+      "selected": true
+    },
+    {
+      "id": "ui-hero-stats",
+      "file": "ui/hero-stats.png",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-knight-v2.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-menu-concept-v3.png",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/heroes/hero-knight.png"
+      ],
+      "prompt": "Use case: ui-mockup. Asset: high-fidelity landscape 16:9 Korean Roblox action RPG hero STAT ALLOCATION screen for THE LAST THRONE.\nReference1 is authoritative Knight portrait identity; reference2 gives existing Throne Defense navy panels, precise gold beveled borders, bright readable icons and warm castle background; reference3 is same Knight full-body expansion. Maintain same face, open silver crested helmet, blue cape/scarf, straight gem sword and blue kite shield.\nCreate a plausible clean game screen, not a collage or marketing poster. Large centered dark-navy window over softly blurred sunlit castle. Top title \"영웅\" and four generous tabs \"스탯\" highlighted, \"장비\", \"스킬\", \"전직\". Close X in upper right. Left third full-body Knight preview, header \"기사 · 강철기사\" and \"Lv.20\", equipment slots around preview but not obscuring character.\nRight two thirds: prominent header \"사용 가능한 스탯 포인트 4\". Four big rows with icons, generous spacing and a gold plus button per row, exact labels \"힘 STR\" value \"49\", \"민첩 DEX\" value \"13\", \"지력 INT\" value \"9\", \"체력 VIT\" value \"21\". Small helper \"레벨업마다 +4 포인트\". This is four freely spendable points, NOT plus4 automatically on every stat. Lower compact panel \"전투 능력치\" with four clearly labeled sample values: \"생명력 1,000\", \"물리 공격력 145\", \"방어력 62\", \"치명타 8%\". Bottom actions \"추천 배분\", \"초기화\", and primary gold/green \"적용\". Small footer \"컨셉 예시 · 능력치 수치 미확정\".\nReadable polished Korean typography, high contrast white text and gold headings, restrained blue accents, large touch targets. Stay consistent TD framed 3D icons but simplify visual clutter. No real money upgrade buttons, no shop popup, no five stats, no skill-point budget mixed with stats, no wave counter. No invented new appearance. No watermark.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-68cca91b-b6c9-4498-b98c-89bff779987b.png",
+      "selected": true
+    },
+    {
+      "id": "ui-skill-tree",
+      "file": "ui/skill-tree.png",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-knight-v2.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-menu-concept-v3.png"
+      ],
+      "prompt": "Use case: ui-mockup. Asset: polished Korean 16:9 RPG SKILL TREE screen, THE LAST THRONE.\nInput1 authoritative Knight icon identity; Input2 authoritative TD navy/gold UI language and vibrant icon rendering. Same Knight yellow face, open crested silver helmet, cobalt scarf; do not substitute closed helmet portrait.\nFull-screen dark navy skill window with warm blurred castle behind. Title \"스킬\", top breadcrumb \"기사 / 강철기사\" and badge \"Lv.28\". Very clear separate counter \"남은 스킬포인트 3\". Secondary tab \"강철기사\" selected; \"성기사\" unselected alternative path within SAME Knight class. Never offer Elf or Mage cross-class transfer.\nTree area uses large touch-friendly nodes and thin precise connecting lines. Left group \"공통\" with six blue/silver sword, shield, shout, guard, breath, recovery nodes, three rows of two. Center group \"Lv.20 강철기사\" with seven steel-blue nodes, primary skills \"반격참\", \"철벽진\", \"파쇄돌진\", small rank badges 1/3 or 2/3. Highlight selected \"반격참 숙련\" with a gold outline and clear short detail panel at right: title \"반격참 숙련\", \"랭크 1 / 3\", body \"방어 후 첫 검격을 강화합니다.\", button \"포인트 투자\". This strengthens an already learned skill; do not imply locked skills usable.\nFarther tiers shown as COLLAPSED locked chapter cards only: \"Lv.40 중갑기사\", \"Lv.60 철벽기사\", \"Lv.80 강철의 수호자\" with padlock. Do not squeeze every future node into tiny circles.\nBottom strip \"장착 스킬\": exactly THREE square active slots labeled \"돌파베기\", \"반격참\", \"철벽진\", followed by one distinct ULTIMATE slot \"수호자의 결의\". Basic attack, guard and dodge do not occupy these slots. Bottom left \"초기화\", bottom right \"저장\". Small footnote \"컨셉 예시 · 트리 배치 초안\".\nClean Korean text hierarchy, navy matte panels, restrained beveled gold edge, cobalt active paths, muted gray locked paths. No 316 stat points here, no shop, no fake currency costs, no tiny paragraphs or excessive decoration, no watermark.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-4128a2f3-97b9-46b4-b303-e61edb960d70.png",
+      "selected": false
+    },
+    {
+      "id": "ui-skill-tree-v2",
+      "file": "ui/skill-tree-v2.png",
+      "refs": [
+        "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-4128a2f3-97b9-46b4-b303-e61edb960d70.png"
+      ],
+      "prompt": "Use case: text-localization / precise UI correction. Input1 is the edit target. Keep the entire UI layout, style, portrait, colors, panel geometry, rank badges, level, three equipped active slots and ultimate exactly unchanged. Correct only text, point accounting and skill-node connections.\nTop right remaining skill-point number must change from \"3\" to \"12\". At Lv.28 there are27 earned points; visible allocated ranks total15, hence12 left. Heading stays \"남은 스킬포인트\".\nReplace the six common-node labels in reading order (top left, top right, middle left, middle right, bottom left, bottom right) EXACTLY with: \"돌파 숙련\", \"방패 충격\", \"결의의 외침\", \"안정된 방어\", \"서약의 호흡\", \"전열 정비\". Keep badges top left2/3 and other five1/3.\nReplace the seven steel-node labels in reading order with: top left \"반격참 숙련\", top right \"철벽진 숙련\"; middle left \"파쇄돌진 숙련\", middle center \"서약 회수\", middle right \"굳건한 발\"; bottom left \"파쇄 추격\", bottom right \"강철의 결의\". Keep middle center2/3 and other six1/3. Smaller type for long labels allowed, but remain legible.\nFix connectors: 반격참 숙련 to 서약 회수; 철벽진 숙련 to 굳건한 발; 파쇄돌진 숙련 to 파쇄 추격; 서약 회수 and 굳건한 발 both feed 강철의 결의 as alternative prerequisites. Remove any direct connector between top left and top right. Common connections optional if too cluttered.\nRight selected-node panel remains \"반격참 숙련\", rank1/3 and existing description. Retain locked Lv.40 중갑기사 / Lv.60 철벽기사 / Lv.80 강철의 수호자. No new nodes, no new features, no extra text or watermark. Preserve EVERYTHING else.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-341c815e-5c01-4f67-aed2-f6a3b56097fc.png",
+      "selected": true
+    },
+    {
+      "id": "ui-combat-hud",
+      "file": "ui/combat-hud.png",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/world/story-01-goblin-trail.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-knight-v2.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/monsters/2026-10-25/blocky-v1/forest/goblin.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-menu-concept-v3.png"
+      ],
+      "prompt": "Use case: ui-mockup. Asset: plausible landscape 16:9 Roblox action RPG THIRD-PERSON GAMEPLAY HUD concept for THE LAST THRONE, Korean.\nInput1 locks same Goblin Forest Trail setting and composition language. Input2 exact same Knight identity: open silver helmet with crest, cobalt cape/scarf, blue gem sword and blue kite shield. Input3 exact same yellow-green big-eared brown-armored goblin; input4 locks navy/gold TD UI style.\nShow camera behind full-body Knight in lower middle, facing one goblin winding up a clearly telegraphed attack on the cobbled forest path. Readable walkable clearing with grass, moss rocks, gigantic distant landmark tree, small return portal behind at side. Goblin has one thin red HP bar. A restrained amber ground wedge shows incoming attack direction, not a permanent glowing carpet.\nCompact top-left portrait/level \"기사 Lv.10\", red HP bar \"생명력 820 / 1,000\", green stamina bar \"스태미나 100 / 100\", small blue resource bar \"서약 65 / 100\". Do NOT invent MP for Knight. Top-center small location title \"EPIC 01 · DEEPWOOD\" and below \"고블린 숲길\". Upper-right compact round minimap and two-line quest \"끊어진 보급로\" / \"수레의 흔적 조사 0/1\".\nLandscape touch-control concept: bottom left subtle circular movement joystick; bottom right large basic sword attack, smaller shield guard and dodge buttons; above controls exactly THREE active skill icons \"돌파베기\", \"방패강타\", \"수호 외침\". One separate ultimate slot is visibly padlocked \"Lv.15\", since this is Lv.10. Bottom center slim XP progress. Controls must fit safe margins, no overlapping fingers or devices drawn.\nCenter sixty percent remains spacious for combat. Same warm vibrant stylized 3D Roblox aesthetic and shared TD models, not photorealistic. No TD tower slots, waves, pause or time-speed controls, no class-transfer UI, no shop banner, no cash purchases, no extra skill rows. Do not turn reference Knight into realistic human. Small bottom annotation \"전투 화면 컨셉\". No watermark.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-33aec3e6-ee7d-45f6-9bad-3c98d986ef72.png",
+      "selected": false
+    },
+    {
+      "id": "ui-hero-select",
+      "file": "ui/hero-select.png",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-knight-v2.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-elf-v1.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-dwarf-v1.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/hero-icons/hero-mage-v2.png",
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-menu-concept-v3.png"
+      ],
+      "prompt": "Use case: ui-mockup. Asset: high-fidelity wide 16:9 initial HERO CLASS SELECTION screen, Korean Roblox action RPG THE LAST THRONE.\nInput images1-4 are authoritative exact identity portraits in order: Knight silver/cobalt, Elf green hood/brown hair/pointed ears/bow, Dwarf orange beard/bronze helmet/axe, Mage PURPLE bent hood/arcane gem staff. Input5 locks existing TD bright castle environment and navy panels with thin gold beveled edges. Reuse these recognizable characters, not replacement faces or recolored jobs. In particular Mage remains purple; do not replace with red pyromancer.\nHeader at top \"THE LAST THRONE\" then \"영웅 선택\". Four equally sized generous vertical character cards across middle, showing a recognizable whole-body version and large matching original-style portrait inset. Labels exact: \"기사\", \"엘프 궁수\", \"드워프\", \"마법사\". Each has one short role descriptor: \"검과 방패\", \"활과 화살\", \"도끼와 화약\", \"비전과 원소\". Each lower section states its TWO advancement paths: Knight \"강철기사 / 성기사\"; Elf \"명궁 / 마법궁수\"; Dwarf \"강철 / 화약\"; Mage \"Pyro / Cryo\". These are future choices at Lv.20, not four separate starting subclasses or immediate unlocks.\nKnight selected with gold border, others quiet blue-gray borders. Bottom notice \"선택한 클래스는 다른 클래스로 전직할 수 없습니다.\" Small secondary line \"Lv.20에 두 전직 계열 중 하나를 선택합니다.\" Primary green-gold action \"기사로 시작\". This is character creation / initial class selection, no switching an existing character. Exactly FOUR playable cards. Priestess is optional NPC support and must NOT appear as fifth playable class.\nUse chunky blocky Roblox bodies and cheerful source faces, consistent gold-trim icon craft and navy UI. Readable Korean text, clear hierarchy and comfortable spacing, bright blurred royal castle with violet portal in background. No gacha rarities, paid unlocks, price labels, stat allocation at this screen, watermark, or invented character redesign.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-8ab9d8ac-8d86-42a9-87e6-4f16069f0191.png",
+      "selected": true
+    },
+    {
+      "id": "ui-combat-hud-v2",
+      "file": "ui/combat-hud-v2.png",
+      "refs": [
+        "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-33aec3e6-ee7d-45f6-9bad-3c98d986ef72.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Input1 is the exact edit target, a game HUD concept. Preserve the entire screen pixel composition, UI labels and numbers, hero appearance, scenery, lighting, enemy position and amber danger wedge. Change ONLY the extra weapon in the goblin's raised hand: REMOVE the raised axe/mace so that this raised hand is an empty closed fist. Keep the ONE existing crude short stone blade in the goblin's lower hand unchanged. The same goblin must have only that single blade, matching Throne Defense source. Do not add weapons, change armor, recolor face, or change the character silhouette otherwise. Keep all UI text intact. No new text, no watermark.",
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-05d7ade1-858d-40ec-bd2c-45ab33f9800f.png",
+      "selected": true
+    },
+    {
+      "id": "dawnspire-lobby-v1",
+      "prompt": "Use case: stylized-concept.\nAsset: one polished wide 16:9 environment concept illustration of the explorable DAWNSPIRE RPG LOBBY for THE LAST THRONE, in the SAME universe and art family as Throne Defense.\nInput image1: authoritative existing Throne Defense royal lobby ENVIRONMENT reference. Preserve ivory carved-stone castle, purple conical roofs, royal cobalt banners with gold crown, warm sunlit paving, terraced stairs, mountainous cliffs, waterfalls, violet stone portal and colorful friendly 3D Roblox aesthetic. Use its environment identity, NOT its menu overlay, play button, five-class selection or red-robed mage.\nInput image2: authoritative CURRENT four character identities. Knight silver open crested helmet/cobalt scarf and cape/straight blue-gem sword/kite shield; Elf green hood/brown fringe/pointed ears/leaf bow; Dwarf orange braided beard/bronze helmet and armor/axe; Mage PURPLE bent hood and gold trim/purple crystal staff. Preserve these exact identities. Do not redesign faces, recolor the Mage red, or give Elf a sword.\nInput image3: authoritative white-gold lantern-bearing priestess SUPPORT NPC identity; keep as an NPC by the quiet companion corner, never as a fifth playable class.\n\nPrimary request: a spacious, welcoming, walkable RPG social hub rather than a menu background. Camera is elevated slightly above third-person exploration height and pulled back to reveal the entire practical plaza. Strong path hierarchy, hero-readable human scale expressed with chunky blocky Roblox characters.\nComposition: central circular blue-and-gold stone arrival plaza, seen from behind the SAME silver-blue Knight in foreground, with a wide clear route up to the familiar royal castle. Four useful side areas frame the plaza without blocking walking paths.\nLEFT MIDGROUND: a prominent reusable carved-stone violet expedition portal, with same cobalt/gold banners as TD, a modest wooden quest board and a readable physical sign \"원정\". A small adjacent plaque reads \"EPIC 01 · DEEPWOOD\", showing forest and an ancient tree beyond the portal. A green-hooded Elf is waiting at the quest board. This is the clear main adventure departure destination.\nLEFT FOREGROUND EDGE: compact training courtyard, wood target dummies and weapon rack, physical hanging shield sign with crossed swords and short label \"훈련장\"; calm safe practice, no live monsters.\nRIGHT MIDGROUND: orange-lit dwarven smithy integrated into an existing ivory-stone shopfront, awning, forge, anvil and the SAME orange-bearded Dwarf blacksmith, practical hanging anvil sign \"대장간\". Beside it one modest blue awning supply stall, no shopping mall or giant currency sale graphics.\nRIGHT PLAZA EDGE: peaceful companion/party corner beneath a leafy tree with bench, white-gold lantern priestess NPC and same purple Mage, small physical sign \"동료\". NPCs stand on walkable paving, not tower pedestals.\nFAR SIDE: a smaller distinct stone return arch with tasteful sign \"THRONE DEFENSE\", visually secondary to the expedition portal. No need to add rows of future portals or new unrelated biomes.\nRetain the castle and royal fantasy identity from input1 rather than inventing a different town. Castle remains the background anchor; no extra giant throne or sacred crystal invented in plaza. The royal crown paving motif can mark the arrival circle. Gentle fountain or small planters only if space remains. Rich saturated cobalt cloth, emerald vegetation, restrained gold, neutral silver armor, warm cream stone, violet magic. Chunky readable geometry, well-crafted stylized 3D materials, soft atmospheric distance, warm afternoon light. Enough detail for a premium Roblox action RPG, with generous traversable floor and readable facilities, not photorealistic human city.\n\nText: only tasteful small editorial title at upper left \"DAWNSPIRE\" with \"RPG LOBBY\" beneath; facility text appears on actual in-world signs as specified. No interface panels, HUD, health bars, giant PLAY button, hero cards, floating menus or explanatory diagram arrows. No tower placement rings, combat scene, enemies, gacha, real money banners, new character designs, or watermark. Entire image is a single coherent environment, not multiple panels.",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/references/lobby-ui-td.png",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/ui/hero-select.png",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-10-27-v1/heroes/npc-priestess.png"
+      ],
+      "generated_source": "/Users/daniel/.codex/generated_images/01a17b1c-9c83-76c0-932d-30046a27ae4e/exec-659d1c66-c1ed-4e1f-b549-bae853d73ce5.png",
+      "file": "world/dawnspire-lobby-v1.png",
+      "selected": true
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Use case: precise UI correction. Input1 exact edit target. Keep the entire screen and character/monster appearances, environment, camera, HP/stamina/oath numbers, minimap, buttons, labels and frame geometry unchanged.
+Change ONLY:
+1. The bottom-center XP strip: change orange XP fill to the SAME cyan/blue XP fill used by the shared RPG lobby; change text "320 / 1,000" to "210 / 500 XP". Keep Lv.10 unchanged. This is one consistent preview character.
+2. The first active icon labeled "돌파베기": replace the RED FIRE-like streak with a BLUE/SILVER sword slash, preserving frame, slot position, size and text. This is a steel Knight's physical skill, no fire element. Do not alter the blue shield skill or gold shout icon.
+No other changes. No new text, no extra icons, no watermark.

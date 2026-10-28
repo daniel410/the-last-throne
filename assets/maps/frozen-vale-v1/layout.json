@@ -1,0 +1,575 @@
+{
+  "version": "1.0",
+  "date": "2026-10-27",
+  "status": "new proposed design; not Studio runtime",
+  "coordinate_system": "Roblox Y up; north=-Z; SVG x=X+1000,y=Z+800; 2000x1700stud envelope",
+  "zones": [
+    {
+      "id": "FV-01",
+      "name": "눈보라 관문",
+      "level_draft": "12~13",
+      "center_studs": {
+        "x": -650,
+        "y": 0,
+        "z": 520
+      },
+      "footprint_studs": {
+        "x": 300,
+        "z": 240
+      },
+      "map_xy": [
+        350,
+        1320
+      ],
+      "start_point": {
+        "id": "FV-01-SP",
+        "anchor_draft_studs": {
+          "x": -760.0,
+          "y": 0,
+          "z": 600.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/frozen-vale-story-01-blizzard-gate.md",
+      "focus": "Deepwood의 기록을 가지고 북방으로 향하지만 원정 포탈 밖은 눈보라에 잠겨 있다. 남겨진 왕도 보급 깃발은 낡았고 지원대는 오지 않았다. 조난민은 여왕이 왕도의 사절을 막고 있다고 말한다. 플레이어는 무너진 길표식을 복구해 피난처까지 안전한 길을 잇는다.",
+      "exit": "보행: 복구한 등불 길로 잿불 피난처에 진입",
+      "nodes": [
+        "A SP1 원정 포탈",
+        "B 꺼진 길표식",
+        "C 늑대 협로",
+        "D 조난민 엄폐",
+        "E 트롤·마지막 표식",
+        "F 피난처 접근"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "id": "FV-02",
+      "name": "잿불 피난처",
+      "level_draft": "13 · 안전 거점",
+      "center_studs": {
+        "x": -300,
+        "y": 12,
+        "z": 270
+      },
+      "footprint_studs": {
+        "x": 300,
+        "z": 260
+      },
+      "map_xy": [
+        700,
+        1070
+      ],
+      "start_point": {
+        "id": "FV-02-SP",
+        "anchor_draft_studs": {
+          "x": -410.0,
+          "y": 12,
+          "z": 360.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/frozen-vale-story-02-ember-refuge.md",
+      "focus": "북방 주민과 피난 온 Ice Elf가 함께 난로를 지킨다. 주민은 여왕이 생존을 위한 봉인을 강화했지만 보급길까지 막혔다고 말한다. 왕도를 무조건 믿거나 여왕을 악인으로 단정하지 않고, 먼저 협곡 관측소를 복구해 눈보라의 흐름을 조사하기로 한다.",
+      "exit": "보행: 난로 광장에서 협곡 관측길로 출발",
+      "nodes": [
+        "A SP2 도착 마당",
+        "B 조난민 보고",
+        "C 난로 광장",
+        "D 북방 기록관",
+        "E 협곡 임무 수락",
+        "S 정비·훈련"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          5,
+          3
+        ]
+      ]
+    },
+    {
+      "id": "FV-03",
+      "name": "얼음늑대 협곡",
+      "level_draft": "13~14",
+      "center_studs": {
+        "x": 80,
+        "y": 24,
+        "z": 430
+      },
+      "footprint_studs": {
+        "x": 340,
+        "z": 260
+      },
+      "map_xy": [
+        1080,
+        1230
+      ],
+      "start_point": {
+        "id": "FV-03-SP",
+        "anchor_draft_studs": {
+          "x": -50.0,
+          "y": 24,
+          "z": 520.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/frozen-vale-story-03-wolf-ravine.md",
+      "focus": "눈보라에 밀려난 늑대와 곰이 관측길을 점유하고 있다. 두 관측 등대를 복구하면 폭풍이 자연 기후만으로 설명되지 않고 빙하 아래 봉인망에서 되돌아오는 현상임을 알게 된다. 주민을 굶주리게 하는 야수를 모두 섬멸하는 이야기가 아니라 안전한 통행권을 되찾는 임무다.",
+      "exit": "보행: 관측 정보로 찾아낸 빙하 틈의 경사길",
+      "nodes": [
+        "A SP3 협곡 입구",
+        "B 늑대 길",
+        "C 관측 등대1",
+        "D 곰 공터",
+        "E 관측 등대2",
+        "F 빙하 접근",
+        "S 안전한 재료 가지"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          6,
+          3
+        ]
+      ]
+    },
+    {
+      "id": "FV-04",
+      "name": "빙하 아래 폐허",
+      "level_draft": "14~16",
+      "center_studs": {
+        "x": 420,
+        "y": 34,
+        "z": 180
+      },
+      "footprint_studs": {
+        "x": 340,
+        "z": 280
+      },
+      "map_xy": [
+        1420,
+        980
+      ],
+      "start_point": {
+        "id": "FV-04-SP",
+        "anchor_draft_studs": {
+          "x": 290.0,
+          "y": 34,
+          "z": 280.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/frozen-vale-story-04-subglacial-archive.md",
+      "focus": "빙하 아래에는 왕도 문양이 새겨진 보급 시설이 있다. 두 중계기를 안정화하고 기록실을 열면 식량만 아니라 주민의 공명과 기억을 징발한 명부가 나온다. 첫 기억은 주민들의 자발적 헌신이라는 공식 서술과 다른 강제 징발의 증거다. 경비 Ice Elf는 기억을 밖으로 내보내지 않으려 하며 격퇴 뒤 물러난다.",
+      "exit": "장애물 해제: 안정화된 중계기가 얼음 셔터를 열어 전장으로 연결",
+      "nodes": [
+        "A SP4 빙하 입구",
+        "B 폐허 홀",
+        "C 중계기1",
+        "C 중계기2",
+        "D 징발 기록실",
+        "E 기억 증거1",
+        "F 전장 출구"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "id": "FV-05",
+      "name": "침묵의 전장",
+      "level_draft": "16~17",
+      "center_studs": {
+        "x": 390,
+        "y": 42,
+        "z": -210
+      },
+      "footprint_studs": {
+        "x": 360,
+        "z": 280
+      },
+      "map_xy": [
+        1390,
+        590
+      ],
+      "start_point": {
+        "id": "FV-05-SP",
+        "anchor_draft_studs": {
+          "x": 250.0,
+          "y": 42,
+          "z": -110.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/frozen-vale-story-05-silent-battlefield.md",
+      "focus": "얼어붙은 병사들은 새 언데드 종이 아니라 전장의 환경 조형물이다. 두 기념비의 기록을 대조하면 북방이 징발에 저항했고 그 전쟁이 역사에서 지워졌음을 알게 된다. 왕도 문양과 북방 문양이 한 전장에 남아 있다. 세렌의 이야기는 대사/기록으로 전달하며 정식 동료 편성을 강요하지 않는다.",
+      "exit": "보행: 군기 길을 따라 서리왕성 성문 앞에 도착",
+      "nodes": [
+        "A SP5 전장 입구",
+        "B 부서진 군기",
+        "C 기억 기념비1",
+        "D 기억 기념비2",
+        "E 기록 대조",
+        "F 성문 접근",
+        "S 유품 회수"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          6,
+          4
+        ]
+      ]
+    },
+    {
+      "id": "FV-06",
+      "name": "서리왕성 성문",
+      "level_draft": "17~19",
+      "center_studs": {
+        "x": 20,
+        "y": 56,
+        "z": -450
+      },
+      "footprint_studs": {
+        "x": 320,
+        "z": 280
+      },
+      "map_xy": [
+        1020,
+        350
+      ],
+      "start_point": {
+        "id": "FV-06-SP",
+        "anchor_draft_studs": {
+          "x": -100.0,
+          "y": 56,
+          "z": -350.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/frozen-vale-story-06-frost-citadel-gate.md",
+      "focus": "왕성의 골렘은 기억 반출을 막도록 옛 명령을 반복한다. 플레이어는 두 봉인 잠금을 풀어 골렘의 시험장에 들어간다. 골렘을 돌파하자 여왕은 침입자가 기록을 파괴하지 않았음을 확인하고 궁전의 문을 연다. 여왕이 완전히 설득된 것은 아니며 마지막 대면을 준비한다.",
+      "exit": "장애물 해제: 골렘 통행 시험 뒤 궁전 성문 개방",
+      "nodes": [
+        "A SP6 외성 안전 마당",
+        "B 성문 경비",
+        "C 봉인 잠금1",
+        "C 봉인 잠금2",
+        "D 보스 전 안전실",
+        "E King Ice Golem",
+        "F 궁전 길"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "id": "FV-07",
+      "name": "얼음거울 궁전",
+      "level_draft": "19~20",
+      "center_studs": {
+        "x": -410,
+        "y": 66,
+        "z": -520
+      },
+      "footprint_studs": {
+        "x": 380,
+        "z": 320
+      },
+      "map_xy": [
+        590,
+        280
+      ],
+      "start_point": {
+        "id": "FV-07-SP",
+        "anchor_draft_studs": {
+          "x": -560.0,
+          "y": 66,
+          "z": -400.0
+        },
+        "safe_pad_studs": [
+          40,
+          32
+        ],
+        "status": "budget anchor; validate ground/collision/camera in blockout"
+      },
+      "scenario": "../../../docs/frozen-vale-story-07-ice-mirror-palace.md",
+      "focus": "마지막 기억은 여왕이 왕좌의 연료 징발과 추가 전쟁을 막으려 자기 백성과 함께 얼어붙는 길을 택한 장면이다. 그녀는 기록을 풀면 왕이 다시 깨어날까 두려워한다. 플레이어는 여왕을 죽여 핵을 빼앗는 대신 세 거울에 징발·저항·희생의 기억을 복원해 봉인 명령과 대립을 끝낸다. 두 번째 봉인핵은 여왕의 동의와 대체 안정화 뒤 회수한다.",
+      "exit": "귀환 포탈: 피난처 정비 → 왕도 보고/원정 메뉴 → Ember Caldera",
+      "nodes": [
+        "A SP7 궁전 입구",
+        "B 봉인 회랑",
+        "C 세 번째 기억 조각",
+        "D 여왕 앞 안전실",
+        "E 여왕·거울3개",
+        "F 핵/기억 기록실",
+        "G 귀환·개인 보고"
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    }
+  ],
+  "optional_zones": [
+    {
+      "id": "FV-S1",
+      "name": "서리송곳 굴",
+      "boss": "Ice Troll King",
+      "map_xy": [
+        350,
+        780
+      ]
+    },
+    {
+      "id": "FV-S2",
+      "name": "푸른 호수 굴",
+      "boss": "King Ice Bear",
+      "map_xy": [
+        1500,
+        1180
+      ]
+    },
+    {
+      "id": "FV-S3",
+      "name": "고대 빙하 심연",
+      "boss": "Ancient Glacier King",
+      "map_xy": [
+        1660,
+        370
+      ],
+      "unlock": "에픽 완료 후"
+    }
+  ],
+  "connections": [
+    {
+      "from": "FV-01",
+      "to": "FV-02",
+      "method": "보행: 복구한 등불 길로 잿불 피난처에 진입"
+    },
+    {
+      "from": "FV-02",
+      "to": "FV-03",
+      "method": "보행: 난로 광장에서 협곡 관측길로 출발"
+    },
+    {
+      "from": "FV-03",
+      "to": "FV-04",
+      "method": "보행: 관측 정보로 찾아낸 빙하 틈의 경사길"
+    },
+    {
+      "from": "FV-04",
+      "to": "FV-05",
+      "method": "장애물 해제: 안정화된 중계기가 얼음 셔터를 열어 전장으로 연결"
+    },
+    {
+      "from": "FV-05",
+      "to": "FV-06",
+      "method": "보행: 군기 길을 따라 서리왕성 성문 앞에 도착"
+    },
+    {
+      "from": "FV-06",
+      "to": "FV-07",
+      "method": "장애물 해제: 골렘 통행 시험 뒤 궁전 성문 개방"
+    }
+  ],
+  "return_connections": [
+    {
+      "from": "FV-05",
+      "to": "FV-02",
+      "method": "unlocked walking shortcut; portal alternative after timing test"
+    },
+    {
+      "from": "FV-07",
+      "to": "FV-02",
+      "method": "safe return portal after victory/records"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "version": "0.24",
+  "status": "new design proposal; not runtime",
+  "slots": [
+    "weapon",
+    "offhand",
+    "head",
+    "body",
+    "hands",
+    "feet",
+    "accessory1",
+    "accessory2",
+    "relic"
+  ],
+  "capacity_draft": {
+    "character_bag": 60,
+    "rpg_account_storage": 120
+  },
+  "stack_limit_draft": {
+    "equipment": 1,
+    "consumable": 99,
+    "material": 999
+  },
+  "rules": {
+    "storage_scope": "RPG account, not TD inventory",
+    "storage_access": "safe hub",
+    "binding": "account bound can move between compatible same-account characters; no player trade",
+    "lock": "sale/dismantle protection; equips and transfers allowed",
+    "overflow": "durable pending grant; no automatic expiry for these purchases",
+    "capacity_monetization": "not added",
+    "equip": "bag to slot, atomic swap; no direct storage equip",
+    "runtime": "none"
+  },
+  "revision": "2026-10-27-simplified-v2",
+  "ui": {
+    "entry": "bag",
+    "default_tab": "equipment",
+    "fixed_slot": "automatic; accessory target only",
+    "equipment_slots": "collapsed equipment view; all 9 retained",
+    "details": "collapsed",
+    "organize": "collapsed",
+    "storage": "hub entry; equipment qty fixed 1; stack quantity only",
+    "pending": "nonzero badge opens list",
+    "mobile": "list then detail; bag/storage tabs",
+    "tutorial": "DS01 equipped marker; DS02 select/compare/equip; contextual storage/lock/pending"
+  }
+}

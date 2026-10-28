@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "timezone": "America/Toronto",
+  "status": "user-approved-concept-baseline",
+  "approval_message": "좋아 좋은 컨셉이야 저장 해줘",
+  "scope": "v2 visual concept direction: shared TD UI look and feel; 9 selected UI concepts, with existing character/world/monster references preserved",
+  "not_finalized_by_this_approval": [
+    "game balance numbers",
+    "production layout and accessibility validation",
+    "shared runtime module extraction",
+    "Roblox asset integration or publishing"
+  ],
+  "gallery": "index.html",
+  "prompts_and_sources": "README.md",
+  "selected_ui": [
+    {
+      "id": "00-shared-ui-board",
+      "file": "ui/00-shared-ui-board.png",
+      "sha256": "e2f5c90fefd39ed299b7e1882fb60b55e4fbfef7000613cd834e51374ec30a2a",
+      "prompt_file": "ui/00-shared-ui-board.prompt.txt"
+    },
+    {
+      "id": "02-lobby-menu",
+      "file": "ui/02-lobby-menu.png",
+      "sha256": "eb9ba2d6f0a0a3378d0580c7838ea4644f4b7b3bf06fd728c7e7ce875f3168ac",
+      "prompt_file": "ui/02-lobby-menu.prompt.txt"
+    },
+    {
+      "id": "04-battle-menu",
+      "file": "ui/04-battle-menu.png",
+      "sha256": "b36eebbb832ceee4ea5aec36d05dbc3390ca67b01de00093c2addb324c80b239",
+      "prompt_file": "ui/04-battle-menu.prompt.txt"
+    },
+    {
+      "id": "05-hero-stats",
+      "file": "ui/05-hero-stats.png",
+      "sha256": "7159b470e872aad4e4ce4e0c1612e8fb05878877f5ef3b405826823bb7e1c286",
+      "prompt_file": "ui/05-hero-stats.prompt.txt"
+    },
+    {
+      "id": "06-skill-tree",
+      "file": "ui/06-skill-tree.png",
+      "sha256": "72d735c15bcfac318c3415a74454a3a67470a291cfe62a0bfbdac403b3e38abb",
+      "prompt_file": "ui/06-skill-tree.prompt.txt"
+    },
+    {
+      "id": "07-hero-creation",
+      "file": "ui/07-hero-creation.png",
+      "sha256": "c86a734a5bfbe091c712778d6434091b03f1e8004c52b8b1bef2a4c149b8b310",
+      "prompt_file": "ui/07-hero-creation.prompt.txt"
+    },
+    {
+      "id": "08-expedition-menu",
+      "file": "ui/08-expedition-menu.png",
+      "sha256": "d0593923dcfd1166026bf930334ae45c49018f73643da990d484dd3963c7f8cc",
+      "prompt_file": "ui/08-expedition-menu.prompt.txt"
+    },
+    {
+      "id": "01-lobby-hud-corrected",
+      "file": "ui/01-lobby-hud-corrected.png",
+      "sha256": "a24d9130b338576230a34e8139a681d80fc1ae92b09fdadac51a7ed2b7903313",
+      "prompt_file": "ui/01-lobby-hud-corrected.prompt.txt"
+    },
+    {
+      "id": "03-battle-hud-corrected",
+      "file": "ui/03-battle-hud-corrected.png",
+      "sha256": "134e9ee03d290d2963a6d04674cabba364e3c6741b140c53e5d0eeb4c240b3b8",
+      "prompt_file": "ui/03-battle-hud-corrected.prompt.txt"
+    }
+  ],
+  "catalog": "catalog.json",
+  "catalog_sha256": "d736ebf12304d855146609f422e6bfe7438ebd9795b97ff665c1a2f2a69c1036"
+}

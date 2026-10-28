@@ -1,0 +1,263 @@
+{
+  "version": "0.22",
+  "date": "2026-10-27",
+  "status": "requested monetization plan; prices/power not live or playtest validated",
+  "currency": "Robux direct; no Diamonds wallet redesign",
+  "gear_slots": [
+    "weapon",
+    "offhand",
+    "head",
+    "body",
+    "hands",
+    "feet",
+    "accessory1",
+    "accessory2",
+    "relic"
+  ],
+  "items": [
+    {
+      "id": "reset.stat",
+      "name": "스탯 리셋권",
+      "category": "consumable",
+      "target": "stats",
+      "stackable": true,
+      "consume_on_success": 1,
+      "price_robux_draft": 39,
+      "acquisition": [
+        "Robux developer product"
+      ],
+      "binding": "account inventory; consumed for selected RPG character; no trading",
+      "product_id": null
+    },
+    {
+      "id": "reset.skill",
+      "name": "스킬 리셋권",
+      "category": "consumable",
+      "target": "skills",
+      "stackable": true,
+      "consume_on_success": 1,
+      "price_robux_draft": 49,
+      "acquisition": [
+        "Robux developer product"
+      ],
+      "binding": "account inventory; consumed for selected RPG character; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.knight.weapon",
+      "name": "서약 수호검",
+      "category": "equipment",
+      "slot": "weapon",
+      "class": "knight",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.knight.weapon",
+      "power_note": "same gameplay stats as obtainable craft/drop template; numeric ATK coefficients pending",
+      "price_robux_draft": 99,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; equip compatible RPG character; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.elf.weapon",
+      "name": "숲길 정찰궁",
+      "category": "equipment",
+      "slot": "weapon",
+      "class": "elf",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.elf.weapon",
+      "power_note": "same gameplay stats as obtainable craft/drop template; numeric ATK coefficients pending",
+      "price_robux_draft": 99,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; equip compatible RPG character; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.dwarf.weapon",
+      "name": "견습 대장장이 도끼",
+      "category": "equipment",
+      "slot": "weapon",
+      "class": "dwarf",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.dwarf.weapon",
+      "power_note": "same gameplay stats as obtainable craft/drop template; numeric ATK coefficients pending",
+      "price_robux_draft": 99,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; equip compatible RPG character; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.mage.weapon",
+      "name": "공명 수습지팡이",
+      "category": "equipment",
+      "slot": "weapon",
+      "class": "mage",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.mage.weapon",
+      "power_note": "same gameplay stats as obtainable craft/drop template; numeric ATK coefficients pending",
+      "price_robux_draft": 99,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; equip compatible RPG character; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.royal.head",
+      "name": "왕도 견습 투구",
+      "category": "equipment",
+      "slot": "head",
+      "class": "all four; class-compatible shared visual variant",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.armor.head",
+      "power_note": "same stats as ordinary craft/drop template; exact DEF/HP pending",
+      "price_robux_draft": 49,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.royal.body",
+      "name": "왕도 견습 흉갑",
+      "category": "equipment",
+      "slot": "body",
+      "class": "all four; class-compatible shared visual variant",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.armor.body",
+      "power_note": "same stats as ordinary craft/drop template; exact DEF/HP pending",
+      "price_robux_draft": 49,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.royal.hands",
+      "name": "왕도 견습 장갑",
+      "category": "equipment",
+      "slot": "hands",
+      "class": "all four; class-compatible shared visual variant",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.armor.hands",
+      "power_note": "same stats as ordinary craft/drop template; exact DEF/HP pending",
+      "price_robux_draft": 49,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.royal.feet",
+      "name": "왕도 견습 장화",
+      "category": "equipment",
+      "slot": "feet",
+      "class": "all four; class-compatible shared visual variant",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.armor.feet",
+      "power_note": "same stats as ordinary craft/drop template; exact DEF/HP pending",
+      "price_robux_draft": 49,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.resolve-ring",
+      "name": "결의의 반지",
+      "category": "equipment",
+      "slot": "accessory",
+      "class": "all",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.accessory.resolve-ring",
+      "power_note": "VIT/HP-oriented fixed profile; exact coefficients pending",
+      "equip_unique_group": "resolve-ring",
+      "price_robux_draft": 79,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; no trading",
+      "product_id": null
+    },
+    {
+      "id": "gear.lv5.focus-charm",
+      "name": "집중의 목걸이",
+      "category": "equipment",
+      "slot": "accessory",
+      "class": "all",
+      "level_required": 5,
+      "rarity_draft": "uncommon",
+      "power_template": "earned.lv5.uncommon.accessory.focus-charm",
+      "power_note": "class-appropriate attack-oriented fixed profile; exact coefficients pending",
+      "equip_unique_group": "focus-charm",
+      "price_robux_draft": 79,
+      "acquisition": [
+        "Robux developer product",
+        "specified ordinary craft/drop path"
+      ],
+      "binding": "account item; no trading",
+      "product_id": null
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bundle.reset-duo",
+      "name": "성장 재설계 묶음",
+      "price_robux_draft": 79,
+      "grants": {
+        "reset.stat": 1,
+        "reset.skill": 1
+      },
+      "product_id": null
+    },
+    {
+      "id": "bundle.royal-armor",
+      "name": "왕도 견습 방어구 세트",
+      "price_robux_draft": 169,
+      "grants": {
+        "gear.lv5.royal.head": 1,
+        "gear.lv5.royal.body": 1,
+        "gear.lv5.royal.hands": 1,
+        "gear.lv5.royal.feet": 1
+      },
+      "product_id": null
+    }
+  ],
+  "rules": {
+    "reset_policy": "consumable required for confirmed stat/skill reallocation at safe hub; preview/cancel free",
+    "new_points": "free allocation from earned balance; no point sales",
+    "monetization_scope": "actual weapons/armor/accessories and resets; not cosmetics only",
+    "gear_choice": "fixed item/profile; no paid random roll in this launch catalog",
+    "progression": "existing no-purchase story XP/Coins and free starter gear unchanged",
+    "receipt": "one Experience-level server receipt owner; idempotent grants; no prompt callback grants",
+    "trading": "not enabled",
+    "deployment": "no products created, no IDs assigned, no sales enabled"
+  }
+}

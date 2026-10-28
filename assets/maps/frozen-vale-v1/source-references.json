@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-27",
+  "path_base": "RPG project root",
+  "policy": "reference existing originals; no model/icon regeneration or runtime integration claimed",
+  "sources": [
+    {
+      "path": "../throne-defense/src/Shared/Config.lua",
+      "sha256": "c4851ed5516aad88f489e35d8cda3ca1cdc630684bebd1ef8a773ba46e7f294d",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    },
+    {
+      "path": "../throne-defense/docs/td290-map-sculpt-direction.md",
+      "sha256": "ec78a951d735188528deeca773ee3e97461d3873464dff192a75a04d81de65bc",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    },
+    {
+      "path": "../throne-defense/assets/concepts/maps-battle-target-v1/snow.png",
+      "sha256": "e67b1502ef0ba7c6d56a0b57253ab20b44fa8e82f04e14d19621e2e3acf218db",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    },
+    {
+      "path": "../throne-defense/assets/ui/monster-catalog-v2/snow-board.png",
+      "sha256": "b4478834336943198f29ca4a8b03f5863a3675a433a960d6baaf0fa0656a9e30",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    },
+    {
+      "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime-metadata-r2.json",
+      "sha256": "46ae354967c8c0987c81e9f6f0b00a70c6f380de8a40d0f52076ec82c4d6a21b",
+      "role": "local source/reference inspected; model metadata not individual rig verification"
+    }
+  ]
+}
