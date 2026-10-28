@@ -14,7 +14,7 @@
 | 기술 시험 | 네 직업 각 3개 기술, 물리 기술 Stamina·Mage의 Mana Bolt/Water Ball/Gravity MP·개별 쿨다운, 로비 편성·하단 1~5 슬롯 | 기본 3슬롯, 5슬롯은 PRACTICE ONLY. 정식 전직·습득·영구 저장·6번 용도는 미구현/미결정. [신규 기록](../evidence/k0/action-skill-prototype.md). [기술](../evidence/k0/basic-skills-mana.md) |
 | 결과물 | Rojo 7.7.1로 `builds/0.14.0/TheLastThrone-0.14.0.rbxlx` 시험 빌드 | 결과물은 Git에서 제외된 로컬 파일이며 다른 체크아웃에 자동 제공되지 않는다. [해시·검증](../evidence/k0/build.md) |
 
-확인된 범위: 마법 변경 소스의 격리 Studio 서버 fixture 332개 및 순수 규칙 122개·영웅 세션 89개 검사 통과. 빌드 전 격리 Studio R15 Player에서 세 주문 이름·1~3 키 발동·MP 및 쿨다운 표시를 확인했다. Gravity 표적 효과는 서버 fixture에서 확인했으며 실제 Player Play에서 표적 타격은 벽 차단과 피격 중단으로 확인하지 못했다. 최종 빌드 자체의 Player Play, 모바일·패드·다인·게시 클라이언트, 전 기술 모션·밸런스와 사용자 수용은 미검증이다. 기존 `203785492` 자산 유형 경고가 관측됐다. [기록](../evidence/k0/mage-basic-spells.md).
+확인된 범위: 고정 0.14.0 빌드 스모크 451개와 마법 변경 소스의 격리 Studio 서버 fixture 332개 및 순수 규칙 122개·영웅 세션 89개 검사 통과. 빌드 전 격리 Studio R15 Player에서 세 주문 이름·1~3 키 발동·MP 및 쿨다운 표시를 확인했다. Gravity 표적 효과는 서버 fixture에서 확인했으며 실제 Player Play에서 표적 타격은 벽 차단과 피격 중단으로 확인하지 못했다. 최종 빌드 자체의 Player Play, 모바일·패드·다인·게시 클라이언트, 전 기술 모션·밸런스와 사용자 수용은 미검증이다. 기존 `203785492` 자산 유형 경고가 관측됐다. [기록](../evidence/k0/mage-basic-spells.md).
 
 ## 최신 사용자 결정
 

@@ -276,3 +276,13 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 873,717 bytes, SHA-256 `179588a4af190937fb3e36ea6230a1e0da325b480eca74e2cf02a09afb05330a`, Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과, 수집 런타임 오류 0, Player 0. [로그](action-skill-0130-smoke.log) |
 | 소스·실제 Play 및 한계 | 격리 Studio 서버 325·타이밍 106·로비 348개, 로컬 규칙 122·세션 89개 통과. 빌드 전 동일 핵심 전투 소스 R15 Player Play의 Knight 편성·방어·달리기·회피·4번 기술 및 Mage 1번 MP 기술 확인. 최종 빌드 Player Play, 실기기·다인·게시 환경과 사용자 수용은 미검증. 기존 `203785492` 유형 경고 재관측. [상세](action-skill-prototype.md). 릴리스 태그·Roblox 게시 없음. |
+
+## 0.14.0 — Mage 기본 주문
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `6f9436625f9215f9af7825a9124c8046c829302f`, `VERSION=0.14.0`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.14.0/TheLastThrone-0.14.0.rbxlx`, 종료 0 |
+| 결과물 | 874,789 bytes, SHA-256 `9a15ed5da472de845a9a0e7967d3baa5303f127be766f306649b0eea65c7dd93`, Git 제외 로컬 결과물 |
+| 고정 빌드 검사 | `tests/k0-build-smoke.luau` 451개 통과, 수집 런타임 오류 0, Player 0. [로그](mage-spells-0140-smoke.log) |
+| 소스·실제 Play 및 한계 | 격리 Studio 서버 fixture 332개, 로컬 규칙 122개·세션 89개 통과. 빌드 전 동일 소스 R15 Player에서 세 주문 이름·1~3 입력·MP·쿨다운 확인. Gravity 실전 적중·시각 수용, 최종 빌드 Player Play, 실기기·다인·게시 환경 미검증. 기존 `203785492` 자산 유형 경고 재관측. [상세](mage-basic-spells.md). 릴리스 태그·Roblox 게시 없음. |
