@@ -81,3 +81,17 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 로그/릴리스 | 이전부터 반복 관측된 `rbxassetid://203785492` 유형 불일치 경고는 출처 미확인. Git 릴리스 태그·Roblox 게시 없음 |
 
 오크 수치는 시험 프리셋이다. 기존 [K0 리뷰](first-implementation-review.md)의 전투 판정·입력 결함은 이 추가로 해결됐다고 보고하지 않는다.
+
+## 0.3.1 — K0 판정·입력 타이밍 수정 빌드
+
+| 항목 | 실제 결과 |
+| --- | --- |
+| 입력 소스 | `17d34cf4a3277fab5a9ca66a3108222a02a71b5e`, `VERSION=0.3.1`. 빌드 전 `origin/main` 푸시와 원격 SHA 일치 확인 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.3.1/TheLastThrone-0.3.1.rbxlx`, 종료 0. 기존 결과물을 덮어쓰지 않음 |
+| 결과물 | 668,872 bytes, SHA-256 `594f276c5d28cb9370669271fa6cc7ab546a5319365c07af9aa2532f7486efc3`. `builds/` 아래 Git 제외 로컬 결과물 |
+| 고정 빌드 기본 엔진 검사 | `run-in-roblox --place <위 빌드 절대경로> --script <tests/k0-build-smoke.luau 절대경로>` 종료 0. 327개 통과, 실패·검사에서 수집한 런타임 오류 0. 공유 메시와 색맵 콜백 32개 성공, 세 적 리스폰. Player 0. [로그](combat-timing-build-smoke.log) |
+| 고정 빌드 판정 검사 | 같은 빌드에 `tests/k0-timing-native.luau`를 재실행해 종료 0, 116검사/37사례 통과. Player 0·신원 모형 사용. [성공 로그](combat-timing-native-retry.log). 첫 실행도 검사 보고서는 통과했으나 Studio 기본 플러그인의 React 오류 출력 뒤 명령 종료 1이었으며 종료 원인은 확인되지 않았다. [첫 로그](combat-timing-native-run.log) |
+| 실제 Studio Play | 격리된 PlaceId 0에서 안전 스폰과 실제 Player를 확인했다. 가상 마우스 단발 두 번을 약 310ms 간격으로 입력했을 때 서버 캐릭터의 연격 변화 `1 → 2 → 0`을 관측했다. 일반 오크 교전에서 오크 HP 900→450, 플레이어 HP 1000→151.99가 관측됐다. 입력 시각은 실제 환경 스케줄링에 따르므로 이것만으로 버퍼 경계의 정확성을 주장하지 않는다. |
+| 실제 Player를 사용하는 판정 검사 | 위와 별도인 같은 격리 Play 서버에서 게임 서버 소스와 콜백을 복제하고 가상 시각을 주입해 116검사/37사례 통과. 실제 Player/Character 34사례, 신원 모형 3사례. 원격 전송과 입력을 재현하는 검사는 아니다. [Play 로그](combat-timing-native-play.log), [상세 계약](combat-timing-fix.md) |
+| 실행 환경 | 기존 `rbxassetid://203785492` 자산 유형 경고가 반복됐다. 첫 고정 빌드 판정 명령의 비정상 종료 원인은 미확인이다. 격리 Play 브리지가 실행 중일 때 별도 명령을 재시도해 로컬 포트 충돌로 종료 2가 났고, 브리지 종료 후 같은 판정 검사 명령은 종료 0으로 통과했다. [포트 충돌 로그](combat-timing-runner-retry.log) |
+| 미검증·릴리스 | 게시된 환경의 실제 지연·프레임 정지, 실기기·패드, 4인/8인 부하, 칼 시각 방향 R3와 메뉴/채팅 홀드 해제 R4는 미검증 또는 미수정. Git 릴리스 태그·Roblox 게시 없음 |

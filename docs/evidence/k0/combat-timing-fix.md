@@ -22,5 +22,8 @@
 | `lua tests/k0-spawn.spec.lua`, `lua tests/k0-appearance.spec.lua` | 기존 플레이어 스폰과 기사 외형 모의 회귀 통과 |
 | `tests/make_k0_source_probe.py --test-script tests/k0-timing-native.luau`와 격리 Studio Run | 실제 서버 소스와 콜백을 복제한 116검사/37사례 통과. Player0에서 신원 모형과 실제 Roblox Model/Humanoid·충돌/차단을 사용하고 시각을 주입했다. 실제 원격 전송이나 플레이어 입력 검사는 아님 |
 | 같은 source fixture의 기본 `k0-build-smoke.luau` | 327개 통과, 실패·수집 게임 런타임 오류0. 세 적 초기화/리스폰과 공유 메시 로딩 확인. Player0 |
+| 고정 `0.3.1` 빌드의 `k0-build-smoke.luau` | 종료 0, 327개 통과, 실패·수집 게임 런타임 오류 0. [로그](combat-timing-build-smoke.log) |
+| 고정 `0.3.1` 빌드의 `k0-timing-native.luau` | 재실행 종료 0, 116개 통과, Player 0. [성공 로그](combat-timing-native-retry.log). 첫 실행의 보고서도 통과했으나 명령은 종료 1이었고 원인은 미확인. [첫 로그](combat-timing-native-run.log) |
+| 고정 빌드의 격리 Studio Play 서버 | 실제 Player/Character 34사례·신원 모형 3사례의 가상 시각 검사 116개 통과. [로그](combat-timing-native-play.log). 별도로 실제 가상 마우스 입력의 연격 1→2와 오크와의 상호 피해 관측 |
 
-네이티브 시험 준비 중 테스트 모듈의 구문 오류와 Humanoid 사망 체력·원거리 Vector3 정밀도에 대한 테스트 가정을 수정한 뒤 위 전체 검사를 다시 통과했다. Studio 기본 플러그인의 React hook 로그와 기존 자산 유형 경고가 별도로 출력됐으며 게임 코드 오류와 구분한다. 고정 빌드와 실제 플레이의 결과는 [빌드 기록](build.md)에 남긴다. 멀티플레이·네트워크·실기기와 4인/8인 부하는 미검증이다.
+네이티브 시험 준비 중 테스트 모듈의 구문 오류와 Humanoid 사망 체력·원거리 Vector3 정밀도에 대한 테스트 가정을 수정한 뒤 위 검사를 다시 통과했다. Studio 기본 플러그인의 React hook 로그와 기존 자산 유형 경고가 별도로 출력됐으며 게임 코드 오류와 구분한다. 고정 빌드와 실제 플레이의 조건은 [빌드 기록](build.md)에 남긴다. 보정 때 과거 위치를 되감지 않으므로 타격 구간 뒤에 범위로 들어온 대상도 처리 시점에 적중할 수 있다. 게시 환경의 실제 프레임 정지·멀티플레이·네트워크·실기기와 4인/8인 부하는 미검증이다.

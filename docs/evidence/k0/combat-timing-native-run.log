@@ -1,0 +1,86 @@
+run-in-roblox fixed build timing test, exit 1; report below passed, Studio plugin errors followed; exit cause unconfirmed.
+K0_TIMING_NATIVE {"coverage":"Production service and verbatim callbacks with synthetic clock; no real RemoteEvent transport, input, historical rewind, latency or performance acceptance","sourceTailOnly":true,"checks":116,"remoteCallbackBytes":1709,"heartbeatCallbackBytes":585,"cases":[{"id":"R1-sword-1-skip-active-and-deduplicate","pass":true,"checks":3},{"id":"R1-sword-2-skip-active-and-deduplicate","pass":true,"checks":3},{"id":"R1-sword-3-skip-active-and-deduplicate","pass":true,"checks":3},{"id":"R1-enemy-Goblin-skip-active-and-deduplicate","pass":true,"checks":3},{"id":"R1-enemy-Orc-skip-active-and-deduplicate","pass":true,"checks":3},{"id":"R1-enemy-Ogre-skip-active-and-deduplicate","pass":true,"checks":3},{"id":"R1-normal-active-cannot-hit-new-target-in-recovery","pass":true,"checks":2},{"id":"R1-normal-active-multiple-samples-still-one-hit","pass":true,"checks":1},{"id":"R1-late-hit-cap-0.25","pass":true,"checks":1},{"id":"R1-late-hit-cap-0.2501","pass":true,"checks":1},{"id":"R1-late-hit-cap-3","pass":true,"checks":1},{"id":"R1-current-position-rejects-missed-behind-target","pass":true,"checks":1},{"id":"R1-current-block-state-is-not-historically-rewound","pass":true,"checks":2},{"id":"R1-cancel-before-active-and-dead-attacker","pass":true,"checks":2},{"id":"R1-pending-earlier-player-kill-cancels-enemy","pass":true,"checks":2},{"id":"R1-pending-earlier-enemy-stun-cancels-sword","pass":true,"checks":3},{"id":"R1-remote-resolves-old-window-before-new-action","pass":true,"checks":2},{"id":"R1-remote-earlier-enemy-death-denies-new-input","pass":true,"checks":3},{"id":"R1-dodge-position-before-enemy-hit-0.079","pass":true,"checks":7},{"id":"R1-dodge-position-before-enemy-hit-0.281","pass":true,"checks":7},{"id":"R1-dodge-invulnerability-boundary-0.08","pass":true,"checks":2},{"id":"R1-dodge-invulnerability-boundary-0.28","pass":true,"checks":2},{"id":"R1-dodge-wall-and-same-time-idempotence","pass":true,"checks":4},{"id":"R2-60Hz-single-Attack","pass":true,"checks":7},{"id":"R2-60Hz-single-BlockStart","pass":true,"checks":7},{"id":"R2-60Hz-single-Dodge","pass":true,"checks":7},{"id":"R2-repeated-input-cannot-extend-buffer","pass":true,"checks":3},{"id":"R2-release-cancels-buffered-guard","pass":true,"checks":4},{"id":"R2-resource-denial-BlockStart","pass":true,"checks":4},{"id":"R2-resource-denial-Dodge","pass":true,"checks":4},{"id":"R2-death-discards-buffer","pass":true,"checks":3},{"id":"R2-late-buffer-cap-0.25","pass":true,"checks":2},{"id":"R2-late-buffer-cap-0.2501","pass":true,"checks":2},{"id":"R2-late-buffer-cap-3","pass":true,"checks":2},{"id":"R2-exact-expiry-is-not-accepted","pass":true,"checks":2},{"id":"R2-higher-priority-dodge-replaces-due-attack","pass":true,"checks":3},{"id":"R2-due-dodge-precedes-lower-priority-remote","pass":true,"checks":3}],"pass":true,"context":"isolated Run: zero real Player coverage; strict player identity mocks with native Model/Humanoid/physics APIs","failures":[],"limits":"Missed unsampled windows and eligible buffered commands have a 0.25-second experimental processing cap; current position/facing/defense is used","identityMockCases":37,"players":0,"kind":"K0_TIMING_NATIVE","realCharacterCases":0,"originalSourceBytes":37015}
+[Roblox][ManageCollaborators.ManageCollaborators.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_Debugger.rbxm.Debugger.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_Debugger.rbxm.Debugger.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293:
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+TagEditor.TagEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+TagEditor.TagEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.Scheduler.Scheduler.Scheduler:320
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.Scheduler.Scheduler.Scheduler:268
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+sabuiltin_Debugger.rbxm.Debugger.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+[Roblox][sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293:
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+TagEditor.TagEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+TagEditor.TagEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.Scheduler.Scheduler.Scheduler:320
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.Scheduler.Scheduler.Scheduler:268
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+builtin_AudioDiscovery.rbxm.AudioDiscovery.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+[Roblox][MaterialManager.MaterialManager.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293:
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+TagEditor.TagEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+TagEditor.TagEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.Scheduler:320
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.Scheduler:268
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'MaterialManager.MaterialManager.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+[Roblox][SocialPresence.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:335: builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:312:
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+TagEditor.TagEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+TagEditor.TagEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:255
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1977
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1953
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1896
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:915
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:860
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.Scheduler:320
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.Scheduler:268
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:260 function doWork
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:296 function performWorkUntilDeadline
+
+Stack Begin
+Script 'SocialPresence.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 335
+Stack End
