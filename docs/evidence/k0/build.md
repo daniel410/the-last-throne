@@ -418,3 +418,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 제한 | 실제 Player·다양한 체형의 미관, 네트워크 복제와 모바일 성능 미검증. [상세](2026-10-28-horizontal-block-slime.md) 참고. |
 
 일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
+
+## 0.18.7 — Overhead Smash 회전과 타격 효과
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `a52048f3082d4c4fba1e6df31ca1ee5ceced101d`, `VERSION=0.18.7`, 빌드 전 origin/main 일치 |
+| 빌드 | `rojo build default.project.json --output builds/0.18.7/TheLastThrone-0.18.7.rbxlx`, 성공 |
+| SHA-256 | `323813d9fbb4fafe815b38197fe3f559c982f6d5f7b93f73a662b1db5dc1db99` |
+| 격리 Studio | 빌드 smoke 458개, 서버 전투 401개, 스킬 자세 35개, 효과 102개, 실제 리그 회전 경로 6개, 무기 회귀 2238개 검사 통과. |
+| 제한 | 실제 Player 및 네트워크·모바일·동작 체감 미검증. [상세](2026-10-28-overhead-smash.md) 참고. |
+
+일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
