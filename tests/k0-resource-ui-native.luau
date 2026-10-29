@@ -63,6 +63,33 @@ local ok, failure = xpcall(function()
 		check(not string.find(string.lower(child.Name), "stamina", 1, true), "status has no stamina control")
 	end
 
+	local root = playerGui.DeepwoodTrainingHud.Root
+	check(status.TDPanelArt.Image ~= "", "status uses original TD panel")
+	check(status.HEALTHTrack.TDResourceFrame.Image == "rbxassetid://97570429280107", "health uses pinned TD battle chrome")
+	check(root.Actions.Attack.TDButtonArt:GetAttribute("TDArtKey") == "shellUpgrade", "primary attack uses TD green shell")
+	check(root.BackToLobby.Caption.Text ~= "", "return control keeps a readable caption")
+	hud.setHealth(45, 90)
+	check(status.HEALTHValue.Text == "45 / 90" and status.HEALTHTrack.Fill.Size.X.Scale == .5, "HP value and TD fill follow current health")
+	local character = Instance.new("Model")
+	character:SetAttribute("K0ClassId", "knight")
+	character:SetAttribute("K0SkillSlotCount", 3)
+	local skills = require(game:GetService("ReplicatedStorage").Shared.K0Config).Skills.knight
+	character:SetAttribute("K0EquippedSkill1", skills[1].id)
+	character:SetAttribute("K0SkillReady1", workspace:GetServerTimeNow() + 10)
+	character:SetAttribute("K0ItemCount1", 7)
+	character:SetAttribute("K0ItemDefinition1", "mana_potion")
+	hud.setCooldowns(character)
+	check(root.SkillBar.Item1.Caption.Text == "MP x7", "quick item follows reassignment and count")
+	check(root.SkillBar.Skill1.Cooldown.Visible and not root.SkillBar.Skill1.Icon.Visible, "cooldown stays inside its skill control")
+	check(root.SkillBar.Skill4.Caption.Text == "LOCKED" and not root.SkillBar.Skill4.Active, "fourth slot stays locked without advancement")
+	check(root.SkillBar.Skill2.Caption.Text == "EMPTY" and not root.SkillBar.Skill2.Active, "unassigned slot stays inactive")
+	character:SetAttribute("K0SkillSlotCount", 5)
+	character:SetAttribute("K0SkillReady1", 0)
+	hud.setCooldowns(character)
+	check(not root.SkillBar.Skill1.Cooldown.Visible and root.SkillBar.Skill1.Icon.Visible, "ready skill clears stale countdown")
+	check(root.SkillBar.Skill5.Caption.Text == "EMPTY", "practice slot count does not invent an ability")
+	character:Destroy()
+
 	local lobby = copyModule("HeroLobbyGui").create(function() end)
 	local panel = playerGui.HeroLobbyGui.Shade.HeroPanel.SkillManagement
 	local slots = panel.SkillSlots

@@ -8,9 +8,10 @@ local Theme = {color = {
 	gold=Color3.fromRGB(222,185,106), silver=Color3.fromRGB(156,185,210), text=Color3.fromRGB(242,239,224),
 	muted=Color3.fromRGB(161,179,199), green=Color3.fromRGB(155,225,174), error=Color3.fromRGB(255,174,145),
 }}
-function Theme.sprite(parent, name, key, position, size)
-	local data, crop = Art, Art.regions[key]
-	if Art.overrides[key] then data = Art.overrides[key]; crop = data.regions[key] end
+function Theme.sprite(parent, name, key, position, size, atlas)
+	local source = atlas or Art
+	local data, crop = source, source.regions[key]
+	if source.overrides and source.overrides[key] then data = source.overrides[key]; crop = data.regions[key] end
 	local result = Instance.new("ImageLabel")
 	result.Name, result.Position, result.Size, result.BackgroundTransparency = name, position, size, 1
 	result.Image = data.image

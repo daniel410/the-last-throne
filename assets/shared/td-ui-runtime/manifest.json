@@ -14,6 +14,12 @@
       "runtime": "src/shared/TDUI/UIIconAssets.luau",
       "sha256": "b6de17e2c894b51e527c27109db1c4598739a87e517b3e6b6a7dec23c936330b",
       "adaptation": "byte-identical pinned source; behavior resides in TDInventoryTheme"
+    },
+    {
+      "source": "../throne-defense/src/Shared/BattleChromeArtAssets.lua",
+      "runtime": "src/shared/TDUI/BattleChromeArtAssets.luau",
+      "sha256": "118045fa68c1419eef26235b5a0321bc98f539ff3e7549cd0e5facd6d7355a77",
+      "adaptation": "byte-identical pinned source; battle HUD atlas rendering in TDInventoryTheme"
     }
   ],
   "policy": "Original Roblox image IDs and atlas crops; no reupload or TD edits. Restricted permission remains environment-specific."

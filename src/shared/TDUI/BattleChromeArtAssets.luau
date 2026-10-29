@@ -1,0 +1,111 @@
+--!strict
+-- Personally owned Restricted battle HUD and shop artwork.
+return {
+ image = "rbxassetid://97570429280107",
+ width = 1254,
+ height = 1254,
+ renderWidth = 1024,
+ renderHeight = 1024,
+ ownerId = 9156786071,
+ access = "Restricted",
+ regions = {
+ healthFrame = {
+ x = 6,
+ y = 83,
+ width = 635,
+ height = 149,
+ slice = {
+ left = 96,
+ top = 45,
+ right = 539,
+ bottom = 104,
+},
+ sliceScale = 0.42,
+},
+ healthFill = {
+ x = 664,
+ y = 96,
+ width = 573,
+ height = 125,
+ slice = {
+ left = 40,
+ top = 30,
+ right = 533,
+ bottom = 95,
+},
+ sliceScale = 0.42,
+},
+ throne = {
+ x = 6,
+ y = 265,
+ width = 297,
+ height = 308,
+},
+ start = {
+ x = 331,
+ y = 266,
+ width = 282,
+ height = 317,
+},
+ menu = {
+ x = 635,
+ y = 280,
+ width = 302,
+ height = 296,
+},
+ diamond = {
+ x = 946,
+ y = 305,
+ width = 307,
+ height = 272,
+},
+ goldBoost = {
+ x = 16,
+ y = 603,
+ width = 280,
+ height = 277,
+},
+ revive = {
+ x = 304,
+ y = 636,
+ width = 337,
+ height = 239,
+},
+ speed = {
+ x = 643,
+ y = 599,
+ width = 291,
+ height = 291,
+},
+ supporter = {
+ x = 950,
+ y = 598,
+ width = 292,
+ height = 286,
+},
+ wave = {
+ x = 14,
+ y = 910,
+ width = 288,
+ height = 280,
+},
+ wallet = {
+ x = 328,
+ y = 897,
+ width = 292,
+ height = 294,
+},
+ timer = {
+ x = 630,
+ y = 899,
+ width = 303,
+ height = 302,
+},
+ enemy = {
+ x = 941,
+ y = 894,
+ width = 308,
+ height = 309,
+},
+},
+}

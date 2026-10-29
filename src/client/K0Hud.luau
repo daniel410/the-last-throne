@@ -6,6 +6,8 @@ local Workspace = game:GetService("Workspace")
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
 local Config = require(ReplicatedStorage.Shared.K0Config)
 
+local Theme = require(script.Parent.TDInventoryTheme)
+local BattleArt = require(ReplicatedStorage.Shared.TDUI.BattleChromeArtAssets)
 local Hud = {}
 
 local COLORS = {
@@ -49,17 +51,7 @@ local function text(parent, name, value, position, size, fontSize, color)
 end
 
 local function panel(parent, name, position, size)
-	local frame = Instance.new("Frame")
-	frame.Name = name
-	frame.Position = position
-	frame.Size = size
-	frame.BackgroundColor3 = COLORS.panel
-	frame.BackgroundTransparency = 0.08
-	frame.BorderSizePixel = 0
-	frame.Parent = parent
-	round(frame, 10)
-	outline(frame, COLORS.gold, 1.5)
-	return frame
+	return Theme.frame(parent, name, position, size)
 end
 
 local function bar(parent, title, top, color)
@@ -70,10 +62,10 @@ local function bar(parent, title, top, color)
 	local track = Instance.new("Frame")
 	track.Name = title .. "Track"
 	track.Position = UDim2.new(0, 14, 0, top + 19)
-	track.Size = UDim2.new(1, -28, 0, 10)
+	track.Size = UDim2.new(1, -28, 0, 18)
 	track.BackgroundColor3 = COLORS.ink
 	track.BorderSizePixel = 0
-	track.ClipsDescendants = true
+	track.ClipsDescendants = false
 	track.Parent = parent
 	round(track, 5)
 	local fill = Instance.new("Frame")
@@ -83,6 +75,11 @@ local function bar(parent, title, top, color)
 	fill.BorderSizePixel = 0
 	fill.Parent = track
 	round(fill, 5)
+	-- TD's authored red fill stays red; MP uses a blue native fill with the same silver frame.
+	if title == Text.Health then
+		Theme.sprite(fill, "TDFill", "healthFill", UDim2.new(), UDim2.fromScale(1, 1), BattleArt)
+	end
+	Theme.sprite(track, "TDResourceFrame", "healthFrame", UDim2.fromOffset(-4, -5), UDim2.new(1, 8, 1, 10), BattleArt)
 	return function(current, maximum)
 		if typeof(current) ~= "number" or typeof(maximum) ~= "number" or maximum <= 0 then
 			value.Text = "--"
@@ -107,9 +104,17 @@ local function action(parent, name, caption, hint, position, diameter)
 	button.Selectable = false
 	button.Parent = parent
 	local circle = Instance.new("UICorner")
-	circle.CornerRadius = UDim.new(1, 0)
+	circle.CornerRadius = UDim.new(0, 10)
 	circle.Parent = button
-	outline(button, COLORS.gold, 2)
+	local art = Theme.sprite(button, "TDButtonArt", name == "Attack" and "shellUpgrade" or "shellDetails", UDim2.new(), UDim2.fromScale(1, 1))
+	art.SliceScale = 0.26
+	button.AutoButtonColor = false
+	button.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			art.ImageColor3 = Color3.fromRGB(175, 200, 230)
+		end
+	end)
+	button.InputEnded:Connect(function() art.ImageColor3 = Color3.new(1, 1, 1) end)
 	local title = text(button, "Caption", caption, UDim2.new(0, 4, 0.5, -15), UDim2.new(1, -8, 0, 20), 12)
 	title.TextXAlignment = Enum.TextXAlignment.Center
 	local key = text(button, "Hint", hint, UDim2.new(0, 4, 0.5, 5), UDim2.new(1, -8, 0, 16), 10, COLORS.muted)
@@ -125,6 +130,7 @@ function Hud.create()
 	gui.Name = "DeepwoodTrainingHud"
 	gui.ResetOnSpawn = false
 	gui.IgnoreGuiInset = false
+	gui.ScreenInsets = Enum.ScreenInsets.CoreUISafeInsets
 	gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	gui.Parent = playerGui
 
@@ -222,7 +228,10 @@ function Hud.create()
 	local backScale = Instance.new("UIScale")
 	backScale.Parent = back
 	round(back, 8)
-	outline(back, COLORS.gold, 1)
+	Theme.sprite(back, "TDButtonArt", "shellDetails", UDim2.new(), UDim2.fromScale(1, 1)).SliceScale = .3
+	back.Text = ""
+	local backCaption = text(back, "Caption", Text.BackToLobby, UDim2.fromOffset(10, 0), UDim2.new(1, -20, 1, 0), 12)
+	backCaption.TextXAlignment = Enum.TextXAlignment.Center
 	local practice = panel(root, "Practice", UDim2.fromOffset(16, 162), UDim2.fromOffset(344, 112))
 	local practiceScale = Instance.new("UIScale")
 	practiceScale.Parent = practice
@@ -235,16 +244,21 @@ function Hud.create()
 	local function updateScale()
 		local camera = Workspace.CurrentCamera
 		if not camera then return end
-		local viewport = camera.ViewportSize
+		local viewport = root.AbsoluteSize
+		if viewport.X <= 0 or viewport.Y <= 0 then viewport = camera.ViewportSize end
 		local scale = math.clamp(math.min(viewport.X / 900, viewport.Y / 550), 0.72, 1)
 		statusScale.Scale = scale
 		headingScale.Scale = scale
 		actionScale.Scale = scale
-		skillScale.Scale = math.min(scale, viewport.X / 664)
+		skillScale.Scale = math.min(scale, viewport.X / 536)
 		practiceScale.Scale = scale
 		backScale.Scale = scale
 		back.Size = UDim2.fromOffset(viewport.X < 500 and 126 or 168, 42)
-		back.TextSize = viewport.X < 500 and 10 or 12
+		backCaption.TextSize = viewport.X < 500 and 10 or 12
+		-- Below 1100px, reserve a separate row above held-action controls.
+		skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)
+		if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end
+		practice.Size = UDim2.fromOffset(viewport.X < 600 and 248 or 344, 112)
 		practice.Position = UDim2.fromOffset(16, 16 + status.Size.Y.Offset * scale + 12)
 		-- On narrow screens, keep the title clear of the status panel.
 		heading.Visible = viewport.X >= 860
@@ -257,6 +271,7 @@ function Hud.create()
 		updateScale()
 	end
 	Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(bindCamera)
+	root:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateScale)
 	bindCamera()
 
 	return {
@@ -308,6 +323,7 @@ function Hud.create()
 				local ready = character and character:GetAttribute("K0SkillReady" .. index) or 0
 				local remaining = math.max(0, (ready or 0) - Workspace:GetServerTimeNow())
 				button.BackgroundTransparency = remaining > 0 and 0.45 or 0
+				button.TDButtonArt.ImageTransparency = index > count and .6 or remaining > 0 and .35 or 0
 				button.Icon.Visible = remaining <= 0
 				local label = button:FindFirstChild("Cooldown")
 				if not label then
