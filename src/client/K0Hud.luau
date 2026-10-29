@@ -260,6 +260,11 @@ function Hud.create()
 		if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end
 		practice.Size = UDim2.fromOffset(viewport.X < 600 and 248 or 344, 112)
 		practice.Position = UDim2.fromOffset(16, 16 + status.Size.Y.Offset * scale + 12)
+		if viewport.Y < 450 and viewport.X >= 600 then
+			practice.Position = UDim2.fromOffset(28 + 248 * scale, 16)
+			local available = viewport.X - (28 + 248 * scale) - back.Size.X.Offset * scale - 28
+			practice.Size = UDim2.fromOffset(math.min(344, available / scale), 112)
+		end
 		-- On narrow screens, keep the title clear of the status panel.
 		heading.Visible = viewport.X >= 860
 	end
