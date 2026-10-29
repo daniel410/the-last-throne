@@ -73,7 +73,20 @@ Frozen Vale에서 얻은 도면에는 북방 봉인과 화산 용광로를 잇�
 | Caldera Titan | EC-S3 분화구 거인의 분지·에픽 후 선택 도전 |
 | King Volcano Shaman | EC-S2 화산 주술사의 제단·선택 침투 세력 추적 |
 
-TD [Config의volcano명단](../../throne-defense/src/Shared/Config.lua), [원본 카탈로그](../../throne-defense/assets/ui/monster-catalog-v2/volcano-board.png), [맵 원본](../../throne-defense/assets/concepts/maps-battle-target-v1/volcano.png)을 확인했다. 모델 정체성을 공유하되 현행 개별 리그/공격 모션 수용과 RPG 수치는 후속 검증한다. Magma Worm을 새 보스 종으로 만들지 않는다. Lava Slime 부모→자식2/재분열 없음은 RPG 시험안이며 활성 상한/보상은 별도다. 선택3곳은 위치/역할만 설계하고 내부 전체 전투는 후속 작업이다. Caldera Titan 선택전과 장기8인 레이드 Heart of the Caldera는 같은 콘텐츠로 취급하지 않는다.
+TD [Config의volcano명단](../../throne-defense/src/Shared/Config.lua), [원본 카탈로그](../../throne-defense/assets/ui/monster-catalog-v2/volcano-board.png), [맵 원본](../../throne-defense/assets/concepts/maps-battle-target-v1/volcano.png)을 확인했다. 모델 정체성을 공유하되 현행 개별 리그/공격 모션 수용과 RPG 수치는 후속 검증한다. Magma Worm을 새 보스 종으로 만들지 않는다. Lava Slime 부모→자식2/재분열 없음은 RPG 시험안이며 활성 상한/보상은 별도다. 세 구역의 숨은 퀘스트와 보스 역할은 아래 초안에서 구체화하며 실제 전투/수치는 후속 검증한다. Caldera Titan 선택전과 장기8인 레이드 Heart of the Caldera는 같은 콘텐츠로 취급하지 않는다.
+
+## 숨은 퀘스트 · 순서와 완료 조건
+
+Deepwood와 같은 숨은 퀘스트 한 종류로 구성한다. 주민 안내와 현장 발견이 같은 이야기로 이어지면 퀘스트와 보상은 하나다. 번호는 최초 접근 순서이며 퀘스트끼리 선행하지 않는다. 지역 ID는 기존 구역이며 별도 Place가 아니다. 보스가 있는 퀘스트도 보스 승리 후 다른 필수 목표와 보고를 마쳐야 완료한다.
+
+| 순서·퀘스트 ID | 지역·시작 조건 | 보스 완료 조건 | 다른 필수 완료 조건 |
+| --- | --- | --- | --- |
+| 1 · EC-Q1 · 남겨진 작업자의 표식 | EC-01 잿빛 관문 · EC-01 진입 후 떨어진 공구 표식 조사 | 없음 | 작업 표식과 안전 기록을 회수해 EC-02 작업자에게 전달 |
+| 2 · EC-Q2 · 불씨 약탈단의 짐 | EC-S1 불씨 약탈단 둥지 · EC-03 완료 후 작업자 안내 또는 빼앗긴 상자 조사 | Magma Imp 격파 | 보급 상자 확인·물자 회수·EC-02 보고 |
+| 3 · EC-Q3 · 주술사의 도관 | EC-S2 화산 주술사의 제단 · EC-04 완료 후 도관 표식 조사 또는 작업자 안내 | King Volcano Shaman 격파 | 외곽 도관을 순차 차단·침투 기록 확인·EC-02 보고 |
+| 4 · EC-Q4 · 분화구의 오래된 거인 | EC-S3 분화구 거인의 분지 · EC-07 지역 결말 후 관측 장치 조사 또는 도시 안내 | Caldera Titan 격파 | 지열 교란 기록 조사·안전 통로 확인·EC-02 보고 |
+
+[숨은 퀘스트 상세·몬스터 역할·복구](ember-caldera-hidden-quests.md). 4개 모두 본편/다음 에픽의 필수 조건이 아니며 초회/반복 보상 수치와 실제 플레이는 미확정이다.
 
 ## 5. 성장/보상 초안
 

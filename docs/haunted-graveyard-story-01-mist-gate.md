@@ -4,6 +4,9 @@
 
 [에픽4 전체/공통 계약](epic-04-haunted-graveyard-story.md) · [맵 제작안](haunted-graveyard-map-design.md) · [다음: 등불 예배당](haunted-graveyard-story-02-lantern-chapel.md)
 
+
+[숨은 퀘스트 HG-Q1](haunted-graveyard-hidden-quests.md)은 안개 묘역의 이름표를 조사해 시작하는 별도 이야기다. 조사대 구조나 본편 보상에 필수가 아니다.
+
 ## 1. 역할·진입·이야기
 
 HG-01, 권장Lv30~31. Ember Caldera 개인 보고/에픽 완료가 서사 선행이다. 레벨·적 수·대사·보상·장치 수는 테스트 초안이다.

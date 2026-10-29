@@ -90,9 +90,9 @@ EC-01-SP~EC-07-SP를 각 A에 배치한다. 포탈이 아니라 안전 입구/�
 
 | ID | 지도 중심 X/Z 초안 | 역할 |
 | --- | --- | --- |
-| EC-S1 불씨 약탈단 둥지 | -700 / -220 | Magma Imp·도시 보급 회수 선택 |
-| EC-S2 화산 주술사의 제단 | 650 / 650 | King Volcano Shaman·협곡 가지 선택 |
-| EC-S3 분화구 거인의 분지 | 650 / -600 | Caldera Titan·에픽 후 선택 도전 |
+| [EC-S1](ember-caldera-hidden-quests.md) 불씨 약탈단 둥지 | -700 / -220 | Magma Imp·도시 보급 회수 선택 |
+| [EC-S2](ember-caldera-hidden-quests.md) 화산 주술사의 제단 | 650 / 650 | King Volcano Shaman·협곡 가지 선택 |
+| [EC-S3](ember-caldera-hidden-quests.md) 분화구 거인의 분지 | 650 / -600 | Caldera Titan·에픽 후 선택 도전 |
 
 선택3곳의 내부 상세전은 후속 작업이며 필수 핵/전직/레벨 자원을 독점하지 않는다. 용암/절벽의 경계는 시각 메시와 별도 판정으로 만들고 낙하 시 유료 부활 없이 안전 복귀한다. 열기 지속 피해/갈증 게이지를 필수로 도입하지 않는다. Cryo 물마법이나 화염 면역으로만 통과하는 장벽은 없다.
 

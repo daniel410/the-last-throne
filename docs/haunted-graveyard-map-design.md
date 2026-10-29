@@ -92,9 +92,9 @@ HG-01-SP~HG-07-SP를 각 구역 A에 배치한다. 포탈이 아닌 안전 입�
 
 | ID | 지도 중심 X/Z 초안 | 목적 |
 | --- | --- | --- |
-| HG-S1 망각의 기사묘 | -650 / -20 | Skeleton Knight·선택 명예 기록 |
-| HG-S2 잊힌 기록관 | 650 / 650 | Lich·선택 사본 탐험 |
-| HG-S3 침묵의 군영 | 650 / -600 | Dread Commander·에픽 후 도전 |
+| [HG-S1](haunted-graveyard-hidden-quests.md) 망각의 기사묘 | -650 / -20 | Skeleton Knight·선택 명예 기록 |
+| [HG-S2](haunted-graveyard-hidden-quests.md) 잊힌 기록관 | 650 / 650 | Lich·선택 사본 탐험 |
+| [HG-S3](haunted-graveyard-hidden-quests.md) 침묵의 군영 | 650 / -600 | Dread Commander·에픽 후 도전 |
 
 선택3곳의 내부 상세전은 미작성이고 필수 레벨/전직/핵/다음 에픽 재료를 독점하지 않는다. 망각의 기사묘와 본편 Death Knight를 같은 부활 인물로 설명하지 않는다. The Hollow Cathedral 레이드와도 별개다.
 

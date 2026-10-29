@@ -73,7 +73,20 @@ Death Knight와 수호대는 원본 반출을 막는다. 두 통행 봉인을 �
 | Lich Sovereign | HG-07 베이르의 전투 원형·승리 후 대화 |
 | Dread Commander | HG-S3 침묵의 군영·에픽 후 선택 도전 |
 
-TD [Config의cemetery명단](../../throne-defense/src/Shared/Config.lua), [기존 맵 컨셉](../../throne-defense/assets/concepts/maps-battle-target-v1/cemetery.png), [10종 카탈로그](../../throne-defense/assets/ui/monster-catalog-v2/cemetery-board.png)를 대조했다. 모델 원본과 정체성을 공유하며 개별 RPG 리그/공격/수치는 후속 검증한다. Lich와 Lich Sovereign은 서로 다른 원본 역할이고 모든 리치를 베이르라고 부르지 않는다. Dread Commander 선택전은 왕릉 본편/장기 레이드 The Hollow Cathedral과 별개다. 선택3곳의 내부 상세전은 이번 범위 밖이다.
+TD [Config의cemetery명단](../../throne-defense/src/Shared/Config.lua), [기존 맵 컨셉](../../throne-defense/assets/concepts/maps-battle-target-v1/cemetery.png), [10종 카탈로그](../../throne-defense/assets/ui/monster-catalog-v2/cemetery-board.png)를 대조했다. 모델 원본과 정체성을 공유하며 개별 RPG 리그/공격/수치는 후속 검증한다. Lich와 Lich Sovereign은 서로 다른 원본 역할이고 모든 리치를 베이르라고 부르지 않는다. Dread Commander 선택전은 왕릉 본편/장기 레이드 The Hollow Cathedral과 별개다. 세 구역의 숨은 퀘스트와 보스 역할은 아래 초안에서 구체화하며 실제 전투/수치는 후속 검증한다.
+
+## 숨은 퀘스트 · 순서와 완료 조건
+
+Deepwood와 같은 숨은 퀘스트 한 종류로 구성한다. 주민 안내와 현장 발견이 같은 이야기로 이어지면 퀘스트와 보상은 하나다. 번호는 최초 접근 순서이며 퀘스트끼리 선행하지 않는다. 지역 ID는 기존 구역이며 별도 Place가 아니다. 보스가 있는 퀘스트도 보스 승리 후 다른 필수 목표와 보고를 마쳐야 완료한다.
+
+| 순서·퀘스트 ID | 지역·시작 조건 | 보스 완료 조건 | 다른 필수 완료 조건 |
+| --- | --- | --- | --- |
+| 1 · HG-Q1 · 돌려주지 못한 이름 | HG-01 안개 묘역 · HG-01 진입 후 떨어진 이름표 조사 | 없음 | 이름표와 기록을 확인해 HG-02 조사관에게 전달 |
+| 2 · HG-Q2 · 망각의 기사묘 | HG-S1 망각의 기사묘 · HG-03 완료 후 묘비 조사 또는 예배당 안내 | Skeleton Knight 격파 | 묘비와 명예 기록 확인·안전한 곳으로 기록 전달·HG-02 보고 |
+| 3 · HG-Q3 · 잊힌 기록관의 사본 | HG-S2 잊힌 기록관 · HG-04 완료 후 봉인된 장부 조사 또는 예배당 안내 | Lich 격파 | 사본 보존 장치 순차 해제·사본 확보·HG-02 보고 |
+| 4 · HG-Q4 · 침묵의 군영 | HG-S3 침묵의 군영 · HG-07 지역 결말 후 군영 표식 조사 또는 조사관 안내 | Dread Commander 격파 | 잔존 명령 조사·귀환길 안전 확인·HG-02 보고 |
+
+[숨은 퀘스트 상세·몬스터 역할·복구](haunted-graveyard-hidden-quests.md). 4개 모두 본편/다음 에픽의 필수 조건이 아니며 초회/반복 보상 수치와 실제 플레이는 미확정이다.
 
 ## 5. 성장·보상 초안
 

@@ -4,6 +4,9 @@
 
 [에픽2 전체 줄거리·공통 계약](epic-02-frozen-vale-story.md) · [맵 제작안](frozen-vale-map-design.md) · [다음: 잿불 피난처](frozen-vale-story-02-ember-refuge.md)
 
+
+[숨은 퀘스트 FV-Q1](frozen-vale-hidden-quests.md)은 눈 속 이름표를 조사해 시작하는 별도 이야기다. 조난민 구조나 본편 보상에 필수가 아니다.
+
 ## 1. 역할과 진입
 
 지역ID FV-01, 권장Lv12~13. Deepwood 메인/개인 보고 완료가 서사 선행이다. 레벨은 안내값이며 XP 곡선과 함께 검증한다. 장소·대사·적 수·장치 수·보상은 초안이다.
