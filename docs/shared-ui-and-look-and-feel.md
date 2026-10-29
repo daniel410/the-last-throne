@@ -1,6 +1,6 @@
 # TD·RPG 공통 UI와 룩앤필
 
-문서 묶음 v0.25 · 2026-10-29, America/Toronto · 상태: 원본 조사·설계 기준, 가방/창고 런타임 일부 연결
+문서 묶음 v0.25 · 2026-10-29, America/Toronto · 상태: 원본 조사·설계 기준, 가방/창고·배틀 HUD 런타임 일부 연결
 
 ## 1. 사용자 결정과 적용 범위
 
@@ -107,3 +107,7 @@
 [상세 기획](equipment-bag-and-storage.md)과 [신규 콘셉트/동작 보드](../assets/concepts/2026-10-27-equipment-storage-v1/index.html)를 추가했다. 장비8슬롯/비교·캐릭터 가방·계정 창고/수령 대기를 같은 메뉴 문법으로 연결한다. 생성 이미지의 아이콘/텍스트를 원본으로 채택하지 않고 TD atlas/공통 컴포넌트와 확정 데이터를 실제 구현에 연결한다. 이전 승인 UI를 덮어쓴 작업은 아니다.
 
 2026-10-29 사용자 구현 요청으로 `StatusWindowArtAssets`와 `UIIconAssets` 원본을 바이트 동일 버전으로 고정해 RPG가 소비하고, 별도 `TDInventoryTheme` 어댑터에 렌더링을 연결했다. [manifest](../assets/shared/td-ui-runtime/manifest.json)는 TD 소스 커밋/해시를 기록한다. 같은 이미지 ID·9-slice/아틀라스 영역·남색/은색/금색·Gotham 역할을 사용하며 TD 컨트롤러/운영 소스는 변경하지 않는다. [실제 가방/8슬롯/창고 및 좁은 화면](evidence/inventory/README.md)에서 검증 범위와 Restricted 이미지의 게시 권한 미검증을 확인한다.
+
+## 배틀 HUD 런타임 연결 (0.20.0)
+
+TD 원본 BattleChromeArtAssets의 HP 프레임/채움과 기존 공통 패널/버튼 셸을 배틀 HUD에 연결했다. MP는 청색 채움과 같은 프레임을 쓴다. RPG 조작·3/5 슬롯·쿨다운·실제 물약 수량을 유지하며 작은 폭에서는 액션과 스킬 행을 나눈다. [검증과 한계](evidence/battle-hud/README.md). 실기기·패드·게시 수용은 별도다.

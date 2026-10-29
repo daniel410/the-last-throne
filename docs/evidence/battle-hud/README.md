@@ -13,3 +13,16 @@
 0.20.0 고정 빌드: Rojo 성공, 소스 `d60fb58f0f3b428d56ddaf1a11b00d9edff61e72`, 1,009,152 bytes, SHA256 `04e7405b996cd5c7a191c548b114ee4427c043abb682f58108d9ced1ac3337ea`. UI100개·smoke469개 통과, 실패/수집 런타임 오류0. 실제 Player에서 TD 이미지 로드/표시와 Mage HP/MP를 확인했으나 BAG이 귀환 버튼을 가리는 결함을 발견했다. 귀환을 별도 행(y68)으로 옮기고 0.20.1에서 재검증한다.
 
 0.20.1 고정 빌드: 소스 `de300d886eb93a6ca05d06efa0216cc6ebabd911`, 1,009,152 bytes, SHA256 `b77d0fd539358cd5a0703bf50092cb82854492b928314bec9568d7074ba1fe9a`, Rojo 성공/UI101개 통과. 실제 Mage 키1 입력 후 MP85/100과 쿨다운2.7s·분리된 BAG/귀환 표시 확인. Root만390×700으로 제한해 스킬 폭362.88px·하단540px, 액션 상단560.64px(겹침 없음)을 확인했다. 640×360 Root에서는 목표 하단203.64px와 스킬 상단151.04px가 겹쳐 낮은 가로 화면의 목표를 상단 옆으로 재배치한다. Root 제한은 실제 디바이스/전체 뷰포트 에뮬레이션이 아니다. 첫 Start 입력은 초기화 중 반영되지 않아 상태를 보고 다시 클릭한 후 진입했다.
+
+## 최종 0.20.2 결과
+
+- 소스 `5bbf013ca43668edf31a522c36c85adc50772d2d`, 빌드 전 origin/main 일치 확인. `rojo build default.project.json --output builds/0.20.2/TheLastThrone-0.20.2.rbxlx` 종료0, 1,009,431 bytes, SHA256 `2c2e3c4af5e2d53025cd1a1095251088994660aff3955fefe5ad67b81d1cf68b`.
+- `run-in-roblox --place builds/0.20.2/TheLastThrone-0.20.2.rbxlx --script tests/k0-resource-ui-native.luau`: 종료0,101개 통과/실패0. [원시 로그](0.20.2-ui.log). 새 UI 원본 모듈을 포함한0.20.0 smoke469개·실패0·수집 런타임 오류0은 [원시 로그](0.20.0-smoke.log)에 있다. 마지막 두 수정은 배치만 바꾸며 smoke 전체는0.20.2에서 재실행하지 않았다.
+- 고정0.20.2의 격리 비게시 Studio 단일 실제 R15 Player: Knight HP1000/1000, MP 숨김, BLOCK 버튼 누름 중 서버 `K0State=Block`/HUD BLOCKING 확인. 최초 mouseUp 도구 호출은 위치 누락으로 거부되어 방어 상태의 스킬 요청은 기존 서버 규칙대로 거부됐다. 위치를 지정한 mouseUp 후 키1을 다시 눌러 ATTACKING과 슬롯 안9.7s 쿨다운을 확인했다. 이는 도구 호출 오류이며 제품 코드 수정 없이 해제됐다.
+- B로 가방 열기(`TLTInventoryOpen=true`), B로 닫기, 귀환 버튼 클릭 후 HUD 숨김/로비 표시/가방 닫힘을 확인했다. TD 배틀 이미지·패널·버튼의 실제 로드를 화면에서 확인했다. Mage MP 소비와 쿨다운은 앞선0.20.1 실제 Player 증거이며0.20.2의 Mage 실플레이 결과로 바꿔 적지 않는다.
+- Root390×700: 스킬 폭362.88px, 하단540px < 액션 상단560.64px. Root640×360: 목표 하단96.64px < 스킬 상단151.04px, 상태 우측194.56px < 목표 좌측206px. 각각 엔진에서 assert 통과. Root만 제한했으므로 가방 버튼 등 다른 ScreenGui와 실제 모바일 기본 컨트롤·safe-area 전체 수용이 아니다.
+- QA bridge는 Play 중지 후 Ctrl-C로 종료(130)했다. 실제 게시·DataStore·TD 운영 변경·릴리스 태그는 수행하지 않았다.
+
+화면: [최종 PC](0.20.2-pc.png) · [세로 Root 제한](0.20.2-portrait-layout.png) · [가로 Root 제한](0.20.2-landscape-layout.png) · [0.20.1 Mage MP/쿨다운](0.20.1-mage.png).
+
+미검증: 실제 폰/태블릿/패드 입력·전환·안전 영역, 다인/지연·게시된 Experience의 제한 자산 권한, 전체 UI의 접근성/기기별 최소 글자/터치 크기와 사용자 시각 수용. 다음 담당은 QA이며 TLT-028/052/084 전체를 완료로 올리지 않는다.

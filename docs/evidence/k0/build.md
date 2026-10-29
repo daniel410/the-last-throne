@@ -483,3 +483,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 실제 Player는 격리 비게시 Studio의 단일 R15와 도구 입력이다. Studio는 세션 어댑터를 사용하며 게시 DataStore·실제 재접속·동시 서버·실기기/패드 수용은 미검증이다. 화면 폭 제한은 실기기 결과가 아니다. 새 방어구 외형·정식 성장/보상/상품/리셋/판매·제작은 후속이다. `203785492` 유형 경고 및 Studio `MaterialManager` 경고는 수집 런타임 오류0과 별도로 남는다. [상세·화면·실패/수정 과정](../inventory/README.md).
 
 일반 로컬 시험 빌드이며 Roblox 게시·실제 DataStore 변경·릴리스 태그를 수행하지 않았다. 사용자와 다른 작업의 스토리 문서 커밋이 사이에 포함됐으며 해당 문서는 보존했다.
+
+## 0.20.0~0.20.2 — TD 배틀 HUD
+
+TD 배틀 HP 프레임과 공통 패널·버튼 셸을 HUD에 적용했다. 원본/해시는 [공유 manifest](../../../assets/shared/td-ui-runtime/manifest.json)에 고정했다. Rojo7.7.1 빌드 명령은 각 `rojo build default.project.json --output builds/<version>/TheLastThrone-<version>.rbxlx`이며 모두 종료0. 입력 커밋은 각 빌드 전 푸시했고 원격 일치를 확인했다. 산출물은 Git 제외 로컬 파일이다.
+
+| 버전 | 입력 커밋 | bytes | SHA256 | 검증/수정 |
+| --- | --- | --- | --- | --- |
+| 0.20.0 | `d60fb58f0f3b428d56ddaf1a11b00d9edff61e72` | 1,009,152 | `04e7405b996cd5c7a191c548b114ee4427c043abb682f58108d9ced1ac3337ea` | GUI100·smoke469개 통과, Player에서 가방/귀환 겹침 발견 |
+| 0.20.1 | `de300d886eb93a6ca05d06efa0216cc6ebabd911` | 1,009,152 | `b77d0fd539358cd5a0703bf50092cb82854492b928314bec9568d7074ba1fe9a` | GUI101개 통과, 실제 Mage MP/쿨다운·390px Root 확인, 낮은 가로 배치 겹침 발견 |
+| 0.20.2 | `5bbf013ca43668edf31a522c36c85adc50772d2d` | 1,009,431 | `2c2e3c4af5e2d53025cd1a1095251088994660aff3955fefe5ad67b81d1cf68b` | GUI101개 통과. 실제 Knight 방어/스킬·B가방·귀환,390×700/640×360 Root 배치 확인 |
+
+[상세·원시 로그·화면·미검증](../battle-hud/README.md). 일반 로컬 시험 빌드이며 실제 디바이스/게시 Experience 수용·Roblox 게시·릴리스 태그를 수행하지 않았다.0.20.0 smoke 전체를 마지막 두 배치 수정에서 반복하지 않았다.

@@ -36,7 +36,7 @@
 
 컨셉·HTML 동작 보드·정적 계산이 있다는 사실을 게임 기능 완료로 계산하지 않는다. 기존 모델은 메시 재사용 이점이 있지만 근접 액션용 리그·타격·AI까지 대체하지 않는다. 신규 계획 문서의 완성은 G0의 일부 입력이며 게임 게이트 통과가 아니다.
 
-현재 0.19.3의 로비·네 영웅·전투/12개 시험 기술·장비8슬롯·가방/계정 창고와 미수령 원형, 최신 확정 규칙과 미구현 차이는 [현재 개발 상태](docs/production/current-status.md)를 따른다. Studio는 세션 보관이며 실제 게시 저장/재접속·정식 성장 수용은 별도다. [장비 구현 증거](docs/evidence/inventory/README.md)와 [영웅별 스킬 성장 설계](docs/production/hero-skill-progression-design.md)에 다음 검증과 제작 입력을 연결한다.
+현재 0.20.2의 로비·네 영웅·전투/12개 시험 기술·장비8슬롯·가방/계정 창고와 미수령 원형, 최신 확정 규칙과 미구현 차이는 [현재 개발 상태](docs/production/current-status.md)를 따른다. Studio는 세션 보관이며 실제 게시 저장/재접속·정식 성장 수용은 별도다. [장비 구현 증거](docs/evidence/inventory/README.md)와 [영웅별 스킬 성장 설계](docs/production/hero-skill-progression-design.md)에 다음 검증과 제작 입력을 연결한다.
 
 ## 3. 변하지 않을 기준과 검증할 제안
 
@@ -246,3 +246,5 @@ TeleportData는 돈·아이템 권리의 근거가 아니며, Experience 간 개
 새 작업은 기존 TLT-001~024 ID를 보존하고 [backlog.md](backlog.md)에 추가한다. 사용자 결정 변경은 [결정표](docs/decisions.md), 관련 상세 사양, [변경 이력](docs/CHANGELOG.md)을 함께 갱신한다. 문서 계획의 성공을 게임 출시·결제·실기기 검증의 성공으로 보고하지 않는다.
 
 2026-10-28 사용자 지시에 따라 작업 마감은 [Git·빌드 버전·릴리스·LFS 규칙](docs/development-workflow.md)을 따른다. 작업 완료마다 커밋/푸시, 빌드마다 세 자리 게임 버전, 실제 릴리스마다 해당 빌드 커밋의 태그/푸시를 기록한다. 이미지/3D/자산 압축본은 LFS로 관리하며 문서 버전과 게임 빌드 버전은 구분한다.
+
+0.20.2: 사용자 요청으로 TD 배틀 프레임·공통 버튼 셸을 HUD에 연결하고 좁은/낮은 화면 재배치를 적용했다. 실제 기기 수용은 후속이며 [증거](docs/evidence/battle-hud/README.md)를 따른다.
