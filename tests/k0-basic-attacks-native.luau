@@ -138,7 +138,7 @@ return {
  end,
  setupCharacter=setupCharacter, readCombatContext=readCombatContext,
  clearAction=clearAction, processCombatSamples=processCombatSamples, stepPlayer=stepPlayer, stepEnemy=stepEnemy, closestTarget=closestTarget,
- start=CombatService.start, startAttack=startAttack, beginEnemyAttack=beginEnemyAttack,
+ start=CombatService.start, startAttack=startAttack, beginEnemyAttack=beginEnemyAttack, registerEnemy=registerEnemy,
  remote=qaRemote, heartbeat=qaHeartbeat
 }
 ]]
@@ -191,6 +191,90 @@ return {
 		near(enemy.humanoid.Health, 9925, "a low Slime receives the server-authoritative sword hit")
 		sample(0.20)
 		near(enemy.humanoid.Health, 9925, "the same sword window cannot hit Slime twice")
+	end)
+	case("lethal-swing-does-not-hit-new-slime-children", function()
+		for _, trial in ipairs({
+			{ action = "Attack", firstSample = 0.17, laterSample = 0.20 },
+			{ action = "Skill2", firstSample = 0.26, laterSample = 0.31 },
+		}) do
+			reset(); api.injectResolver(function() return "knight" end)
+			local state = spawnPlayer()
+			local model, humanoid = rig("Slime", enemies, origin + Vector3.new(0, 0, -3), Vector3.new(0, 0, 1))
+			model:SetAttribute("EnemyKind", "Slime")
+			assert(api.registerEnemy(model), "register production slime")
+			humanoid.Health = 75
+			action(state, trial.action, 0)
+			local attack = assert(state.attack)
+			sample(trial.firstSample)
+			local children = {}
+			waitFor(function()
+				children = {}
+				for _, child in ipairs(enemies:GetChildren()) do
+					if child:GetAttribute("SlimeSplitGeneration") == 1 then table.insert(children, child) end
+				end
+				return #children == 2
+			end, trial.action .. " creates both children")
+			equal(humanoid.Health, 0, trial.action .. " kills the parent")
+			sample(trial.laterSample)
+			for _, child in ipairs(children) do
+				near(child.Humanoid.Health, 55, trial.action .. " cannot damage a child in the same attack")
+			end
+			local nextStart = attack.definition.windup + attack.definition.active + attack.definition.recovery + 0.02
+			action(state, "Attack", nextStart)
+			local nextAttack = assert(state.attack)
+			sample(nextStart + nextAttack.definition.windup + 0.01)
+			local damaged = 0
+			for _, child in ipairs(children) do if child.Humanoid.Health < 55 then damaged += 1 end end
+			equal(damaged > 0, true, trial.action .. " does not protect children from the next attack")
+		end
+	end)
+	case("another-player-can-hit-children-during-original-swing", function()
+		api.injectResolver(function() return "knight" end)
+		local first, ally = spawnPlayer(), spawnPlayer()
+		local model, humanoid = rig("Slime", enemies, origin + Vector3.new(0, 0, -3), Vector3.new(0, 0, 1))
+		model:SetAttribute("EnemyKind", "Slime")
+		assert(api.registerEnemy(model), "register production slime")
+		humanoid.Health = 75
+		action(first, "Skill2", 0)
+		sample(0.26)
+		local children = {}
+		waitFor(function()
+			children = {}
+			for _, child in ipairs(enemies:GetChildren()) do
+				if child:GetAttribute("SlimeSplitGeneration") == 1 then table.insert(children, child) end
+			end
+			return #children == 2
+		end, "whirlwind creates both children")
+		action(ally, "Attack", 0.26)
+		sample(0.31)
+		for _, child in ipairs(children) do near(child.Humanoid.Health, 55, "original swing leaves child intact") end
+		sample(0.425) -- ally's swing is active before the original Whirlwind ends at 0.43
+		local damaged = 0
+		for _, child in ipairs(children) do if child.Humanoid.Health < 55 then damaged += 1 end end
+		equal(damaged > 0, true, "a separate player's attack can damage the children immediately")
+	end)
+	case("rapid-fire-later-arrow-can-hit-split-children", function()
+		api.injectResolver(function() return "elf" end)
+		local state = spawnPlayer()
+		local model, humanoid = rig("Slime", enemies, origin + Vector3.new(0, 0, -6), Vector3.new(0, 0, 1))
+		model:SetAttribute("EnemyKind", "Slime")
+		assert(api.registerEnemy(model), "register production slime")
+		humanoid.Health = 50
+		action(state, "Skill2", 0)
+		sample(0.25)
+		local children = {}
+		waitFor(function()
+			children = {}
+			for _, child in ipairs(enemies:GetChildren()) do
+				if child:GetAttribute("SlimeSplitGeneration") == 1 then table.insert(children, child) end
+			end
+			return #children == 2
+		end, "first arrow creates both children")
+		for _, child in ipairs(children) do near(child.Humanoid.Health, 55, "killing arrow does not damage the children") end
+		sample(0.43)
+		local damaged = 0
+		for _, child in ipairs(children) do if child.Humanoid.Health < 55 then damaged += 1 end end
+		equal(damaged > 0, true, "a later arrow in the burst has its own hit set")
 	end)
 	case("player-health-recovers-slowly-on-server", function()
 		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do

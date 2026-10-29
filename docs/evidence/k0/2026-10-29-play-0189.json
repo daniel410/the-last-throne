@@ -1,0 +1,412 @@
+{
+  "build": "0.18.9",
+  "build_sha256": "131694ba180af11c4c644ea03221b6c9281a140717008ebe3933983bf48d2792",
+  "environment": "Unpublished isolated Studio Play, one R15 Player, tool-generated input; controlled server HP injection where recorded",
+  "results": {
+    "entry": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"potionMP\":3,\"phase\":\"Tutorial\",\"potionHP\":3,\"enemies\":{\"1\":{\"name\":\"Slime\",\"pos\":\"-4, 2.15997314453125, 24\"},\"4\":{\"name\":\"Goblin\",\"pos\":\"-18, 3.05999755859375, -10\"},\"3\":{\"name\":\"Orc\",\"pos\":\"42, 4.949951171875, 17\"},\"2\":{\"name\":\"Ogre\",\"pos\":\"20, 7.42498779296875, -30\"}},\"state\":\"Idle\",\"player\":\"Robloxianb1b5e7p5p\",\"health\":1000,\"position\":\"-20, 3.0963194370269775, 56\",\"rig\":\"Enum.HumanoidRigType.R15\",\"class\":\"knight\",\"spawn\":true}"
+        }
+      ],
+      "isError": false
+    },
+    "knightSprint": {
+      "down": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"speed\":24,\"sprinting\":true,\"state\":\"Idle\"}"
+          }
+        ],
+        "isError": false
+      },
+      "up": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"speed\":16,\"sprinting\":false,\"state\":\"Idle\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightBlock": {
+      "down": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"speed\":8,\"state\":\"Block\"}"
+          }
+        ],
+        "isError": false
+      },
+      "up": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"speed\":16,\"state\":\"Idle\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightDodge": {
+      "first": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"state\":\"Dodge\",\"sequence\":1,\"position\":\"-20, 3.0963189601898193, 61.06951141357422\"}"
+          }
+        ],
+        "isError": false
+      },
+      "second": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"state\":\"Dodge\",\"sequence\":2,\"position\":\"-20, 3.0963189601898193, 68.04853057861328\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightHoldAttack": {
+      "release": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"feedback\":\"ActionStarted\",\"attackSeq\":4,\"state\":\"Idle\",\"combo\":1}"
+          }
+        ],
+        "isError": false
+      },
+      "later": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"state\":\"Idle\",\"attackSeq\":4,\"combo\":0}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightFullPotions": {
+      "health": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"hpCount\":3,\"hp\":1000,\"feedback\":\"HealthFull\"}"
+          }
+        ],
+        "isError": false
+      },
+      "mana": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"feedback\":\"NoManaPool\",\"mpCount\":3}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightHpRegen": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"healthOverride\":\"Script\",\"characterUnchanged\":true,\"elapsed\":5.015934875002131,\"start\":500,\"rate\":1.993506364194746,\"finish\":509.9992980957031}"
+        }
+      ],
+      "isError": false
+    },
+    "knightHpPotions": {
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"count\":3,\"hp\":523.4344482421875}"
+          }
+        ],
+        "isError": false
+      },
+      "afterOne": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"feedback\":\"NoManaPool\",\"hp\":564.0337524414063,\"count\":2,\"caption\":\"HP x2\"}"
+          }
+        ],
+        "isError": false
+      },
+      "empty": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"feedback\":\"ItemEmpty\",\"hp\":646.03564453125,\"count\":0,\"caption\":\"HP x0\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightNavigate": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"slimeState\":\"Idle\",\"slimeHealth\":220,\"health\":693.5654907226563,\"position\":\"7.199234485626221, 3.0963194370269775, 43.60049819946289\",\"slimePosition\":\"-4, 2.15997314453125, 24\",\"facing\":\"8.794763743935619e-07, 1.2781426050878508e-07, -1\",\"state\":\"Idle\"}"
+        }
+      ],
+      "isError": false
+    },
+    "knightTargetFirst": {
+      "input": {
+        "content": [
+          {
+            "type": "text",
+            "text": "sabuiltin_Assistant.rbxm.Assistant.Packages._Index.AssistantUI.AssistantUI.Util.TestAutomationUtils:226: Instance is not a GuiObject: Model"
+          }
+        ],
+        "isError": true
+      },
+      "observe": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"feedback\":\"Interrupted\",\"attackSeq\":4,\"characterHP\":599.5980224609375,\"message\":\"INTERRUPTED\",\"slimeHP\":220}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightSlime": {
+      "first": {
+        "input": {
+          "content": [
+            {
+              "type": "text",
+              "text": "sabuiltin_Assistant.rbxm.Assistant.Packages._Index.AssistantUI.AssistantUI.Util.TestAutomationUtils:226: Instance is not a GuiObject: Model"
+            }
+          ],
+          "isError": true
+        },
+        "observe": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"feedback\":\"Interrupted\",\"attackSeq\":4,\"characterHP\":599.5980224609375,\"message\":\"INTERRUPTED\",\"slimeHP\":220}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"seq\":6,\"slimes\":{\"1\":{\"maxhp\":220,\"name\":\"Slime\",\"hp\":220}},\"playerHP\":0,\"class\":\"knight\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightRespawn": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"item2\":3,\"spawn\":true,\"generation\":3,\"position\":\"-20, 3.0963194370269775, 56\",\"phase\":\"Tutorial\",\"class\":\"knight\",\"hp\":1000,\"item1\":3}"
+        }
+      ],
+      "isError": false
+    },
+    "knightCooldownRespawn": {
+      "input": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"before\":11.781828880310059,\"after\":6.148193597793579,\"newGeneration\":4,\"class\":\"knight\",\"oldGeneration\":3,\"ready\":true}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightCooldownRecast": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"feedback\":\"SkillCooling\",\"remaining\":0.7626276016235352,\"seq\":0}"
+        }
+      ],
+      "isError": false
+    },
+    "knightNaturalSlime": {
+      "projection": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"visible\":true,\"x\":943.6248168945313,\"hp\":220,\"y\":506.528076171875}"
+          }
+        ],
+        "isError": false
+      },
+      "click": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "skill": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "attack": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"slimes\":{\"1\":{\"scale\":1,\"maxhp\":220,\"hp\":0,\"name\":\"Slime\"}},\"playerHP\":783.397216796875,\"seq\":6}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightSlimeAfter": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"1\":{\"name\":\"Goblin\",\"scale\":1,\"maxhp\":300,\"hp\":300,\"kind\":\"Goblin\"},\"4\":{\"name\":\"Slime\",\"scale\":1,\"maxhp\":220,\"hp\":220,\"kind\":\"Slime\"},\"3\":{\"name\":\"Ogre\",\"scale\":1,\"maxhp\":6000,\"hp\":6000,\"kind\":\"Ogre\"},\"2\":{\"name\":\"Orc\",\"scale\":1,\"maxhp\":900,\"hp\":900,\"kind\":\"Orc\"}}"
+        }
+      ],
+      "isError": false
+    },
+    "controlledSlimeSplit": {
+      "setup": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"state\":\"Windup\",\"distance\":3.1813459396362306,\"enemyHP\":75}"
+          }
+        ],
+        "isError": false
+      },
+      "skill": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "observe": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"live\":{\"1\":{\"scale\":1,\"maxhp\":220,\"hp\":75,\"name\":\"Slime\"}},\"observed\":[],\"playerHP\":816.1649169921875}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "controlledSlimeSplit2": {
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"visible\":true,\"x\":919.0972290039063,\"hp\":75,\"y\":530.9170532226563}"
+          }
+        ],
+        "isError": false
+      },
+      "input": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "observe": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"live\":{\"1\":{\"scale\":1,\"maxhp\":220,\"hp\":0,\"name\":\"Slime\"}},\"observed\":{\"Generation1\":1,\"Health2\":55,\"Scale1\":0.5,\"Name2\":\"SmallSlime\",\"Health1\":55,\"Scale2\":0.5,\"Max2\":55,\"Name1\":\"SmallSlime\",\"Generation2\":1,\"Max1\":55},\"playerHP\":600.632080078125}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "slimeCascadeProbe": {
+      "setup": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"playerHP\":1000,\"distance\":2.3216745853424074,\"seq\":0,\"enemyHP\":75}"
+          }
+        ],
+        "isError": false
+      },
+      "input": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "observe": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"events\":{\"spawnTime1\":1793276671.68522,\"deadTime2\":1793276671.700003,\"deadSeq2\":1,\"spawnTime2\":1793276671.68621,\"spawnSeq1\":1,\"spawnSeq2\":1},\"slimes\":{\"1\":{\"hp\":0,\"name\":\"Slime\"},\"2\":{\"hp\":55,\"name\":\"SmallSlime\"}},\"seq\":1,\"playerHP\":1000}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "knightProjectedWorldAttack": {
+      "projection": {
+        "visible": true,
+        "x": 957.6492309570312,
+        "y": 500.5539245605469,
+        "slimeHP": 220
+      },
+      "afterClick": {
+        "class": "knight",
+        "attackSeq": 5,
+        "playerHP": 163.39724731445312,
+        "slimeHP": 145,
+        "feedback": "Hit",
+        "message": "HIT"
+      },
+      "source": "Observed Studio Client projection and post-click attributes in this test session"
+    }
+  }
+}

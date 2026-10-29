@@ -575,6 +575,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 end
 
 local function damageEnemy(state, enemy, attack, current)
+	if attack.hits[enemy.model] then return end
 	attack.hits[enemy.model] = true
 	attack.hitCount = attack.hitCount + 1
 	if attack.counterDamage == nil then
@@ -601,7 +602,11 @@ local function damageEnemy(state, enemy, attack, current)
 	end
 	local healthBefore = enemy.humanoid.Health
 	local position = enemy.root.Position
+	-- Retain this impact's hit set before damage can fire Died. A split child
+	-- must not be sampled by the same swing or projectile that made it.
+	enemy.lethalHitSet = enemy.kind == "Slime" and not enemy.splitGroup and damage >= healthBefore and attack.hits or nil
 	enemy.humanoid:TakeDamage(damage)
+	if enemy.humanoid.Health > 0 then enemy.lethalHitSet = nil end
 	local applied = math.max(0, healthBefore - math.max(0, enemy.humanoid.Health))
 	if applied > 0 and hitEffectRemote then
 		-- This is presentation data for an already resolved hit, never an
@@ -766,7 +771,7 @@ local function applyArrowShot(state, current)
 			local others = {}
 			for _, enemy in pairs(enemyStates) do
 				local delta = enemy.root.Position - center
-				if enemy ~= target and enemyAlive(enemy) and horizontal(delta).Magnitude <= attack.definition.areaRadius
+				if enemy ~= target and not attack.hits[enemy.model] and enemyAlive(enemy) and horizontal(delta).Magnitude <= attack.definition.areaRadius
 					and math.abs(delta.Y) <= attack.maxHeight and unobstructed(center, enemy.root.Position, target.model, enemy.model) then
 					table.insert(others, enemy)
 				end
@@ -785,7 +790,7 @@ local function applyArrowShot(state, current)
 			local others = {}
 			for _, enemy in pairs(enemyStates) do
 				local delta = enemy.root.Position - origin
-				if enemy ~= target and enemyAlive(enemy)
+				if enemy ~= target and not attack.hits[enemy.model] and enemyAlive(enemy)
 					and Rules.withinCone(delta.Magnitude, math.abs(delta.Y), facingDot(origin, aim, enemy.root.Position), attack.definition.range, attack.maxHeight, attack.definition.angle)
 					and unobstructed(origin, enemy.root.Position, state.character, enemy.model) then table.insert(others, enemy) end
 			end
@@ -805,7 +810,7 @@ local function applyArrowShot(state, current)
 			local others = {}
 			for _, enemy in pairs(enemyStates) do
 				local delta = enemy.root.Position - origin
-				if enemy ~= target and enemyAlive(enemy) and Rules.withinCone(delta.Magnitude, math.abs(delta.Y), facingDot(origin, aim, enemy.root.Position), attack.definition.range, attack.maxHeight, attack.definition.angle)
+				if enemy ~= target and not attack.hits[enemy.model] and enemyAlive(enemy) and Rules.withinCone(delta.Magnitude, math.abs(delta.Y), facingDot(origin, aim, enemy.root.Position), attack.definition.range, attack.maxHeight, attack.definition.angle)
 					and unobstructed(origin, enemy.root.Position, state.character, enemy.model) then table.insert(others, enemy) end
 			end
 			table.sort(others, function(a,b) return (a.root.Position-origin).Magnitude < (b.root.Position-origin).Magnitude end)
@@ -1358,6 +1363,8 @@ end
 
 local function splitSlime(enemy)
 	local settings = Config.SlimeSplit
+	local lethalHitSet = enemy.lethalHitSet
+	enemy.lethalHitSet = nil
 	local group = {
 		parent = enemy, remaining = 0, creating = true,
 		childHealth = math.max(1, math.floor(enemy.humanoid.MaxHealth * settings.healthMultiplier + 0.5)),
@@ -1372,6 +1379,7 @@ local function splitSlime(enemy)
 			child = enemy.template:Clone()
 			child.Name = "SmallSlime"
 			child:SetAttribute("SlimeSplitGeneration", 1)
+			if lethalHitSet then lethalHitSet[child] = true end
 			child:ScaleTo(settings.sizeMultiplier)
 			for _, name in ipairs({ "TdMonsterTargetHeight", "TdMonsterVisualMultiplier", "TdMonsterScale" }) do
 				local value = child:GetAttribute(name)
