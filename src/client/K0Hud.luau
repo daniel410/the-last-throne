@@ -135,6 +135,7 @@ function Hud.create()
 	local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 	local old = playerGui:FindFirstChild("DeepwoodTrainingHud")
 	if old then old:Destroy() end
+	local oldTop=playerGui:FindFirstChild("DeepwoodTopHud");if oldTop then oldTop:Destroy() end
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "DeepwoodTrainingHud"
 	gui.ResetOnSpawn = false
@@ -149,6 +150,10 @@ function Hud.create()
 	root.Size = UDim2.fromScale(1, 1)
 	root.Parent = gui
 
+	local topGui=Instance.new("ScreenGui")
+	topGui.Name,topGui.ResetOnSpawn,topGui.DisplayOrder="DeepwoodTopHud",false,1
+	topGui.ScreenInsets=Enum.ScreenInsets.DeviceSafeInsets;topGui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;topGui.Parent=playerGui
+	local topRoot=Instance.new("Frame");topRoot.Name="Root";topRoot.BackgroundTransparency=1;topRoot.Size=UDim2.fromScale(1,1);topRoot.Parent=topGui
 	local status = panel(root, "Status", UDim2.fromOffset(16, 16), UDim2.fromOffset(248, 100))
 	local statusScale = Instance.new("UIScale")
 	statusScale.Parent = status
@@ -163,13 +168,18 @@ function Hud.create()
 		status[Text.Mana .. suffix].Visible = false
 	end
 
-	local heading = panel(root, "Heading", UDim2.new(0.5, -108, 0, 16), UDim2.fromOffset(216, 55))
+	local heading = panel(topRoot, "Heading", UDim2.new(0.5, -108, 0, 4), UDim2.fromOffset(216, 55))
+	heading.BackgroundTransparency=1
+	local headingArt=heading:FindFirstChild("TDPanelArt");if headingArt then headingArt:Destroy() end
+	local headingOutline=heading:FindFirstChildOfClass("UIStroke");if headingOutline then headingOutline.Transparency=1 end
 	local headingScale = Instance.new("UIScale")
 	headingScale.Parent = heading
 	local headingTitle = text(heading, "Title", Text.Title, UDim2.fromOffset(8, 6), UDim2.new(1, -16, 0, 20), 15, COLORS.gold)
 	headingTitle.TextXAlignment = Enum.TextXAlignment.Center
+	headingTitle.TextStrokeTransparency=.25;headingTitle.TextStrokeColor3=Color3.new(0,0,0)
 	local subtitle = text(heading, "Subtitle", Text.Subtitle, UDim2.fromOffset(8, 28), UDim2.new(1, -16, 0, 16), 10, COLORS.muted)
 	subtitle.TextXAlignment = Enum.TextXAlignment.Center
+	subtitle.TextStrokeTransparency=.35;subtitle.TextStrokeColor3=Color3.new(0,0,0)
 
 	local feedback = text(root, "Feedback", "", UDim2.new(0.5, 0, 0.55, 0), UDim2.new(0.8, 0, 0, 52), 16, COLORS.cream)
 	feedback.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -227,7 +237,7 @@ function Hud.create()
 	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(92, 6), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(0, 91), 68)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(76, 71), 88)
-	local minimap=MiniMap.create(root)
+	local minimap=MiniMap.create(topRoot)
 	local mapScale=Instance.new("UIScale");mapScale.Parent=minimap.frame
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
@@ -308,6 +318,7 @@ function Hud.create()
 		heroMenu=minimap.hero,bagMenu=minimap.bag,
 		setVisible = function(visible)
 			gui.Enabled = visible
+			topGui.Enabled=visible
 			if not visible then minimap.menu.Visible=false end
 		end,
 		setClass = function(classId)

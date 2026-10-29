@@ -4,7 +4,7 @@ local Theme=require(script.Parent.TDInventoryTheme)
 local Chrome=require(script.Parent.InventoryChrome)
 local Map={}
 function Map.create(parent)
- local frame=Instance.new('Frame');frame.Name='Minimap';frame.AnchorPoint=Vector2.new(1,0);frame.Position=UDim2.new(1,-16,0,0);frame.Size=UDim2.fromOffset(168,168);frame.BackgroundColor3=Color3.fromRGB(7,22,35);frame.BorderSizePixel=0;frame.Parent=parent
+ local frame=Instance.new('Frame');frame.Name='Minimap';frame.AnchorPoint=Vector2.new(1,0);frame.Position=UDim2.new(1,-10,0,8);frame.Size=UDim2.fromOffset(168,168);frame.BackgroundColor3=Color3.fromRGB(7,22,35);frame.BorderSizePixel=0;frame.Parent=parent
  local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(1,0);corner.Parent=frame
  local outline=Instance.new('UIStroke');outline.Color=Theme.color.silver;outline.Thickness=5;outline.Parent=frame
  local view=Instance.new('ViewportFrame');view.Name='MapPreview';view.Position=UDim2.fromOffset(5,5);view.Size=UDim2.new(1,-10,1,-10);view.BackgroundColor3=Color3.fromRGB(27,61,36);view.BorderSizePixel=0;view.Ambient=Color3.fromRGB(210,221,215);view.LightColor=Color3.new(1,1,1);view.LightDirection=Vector3.new(-1,-3,-1);view.Parent=frame
@@ -14,8 +14,7 @@ function Map.create(parent)
  for i,p in ipairs({UDim2.fromScale(.5,0),UDim2.fromScale(1,.5),UDim2.fromScale(.5,1),UDim2.fromScale(0,.5)}) do Chrome.diamond(frame,'MapGem'..i,p,12,Theme.color.gold) end
  local north=Theme.label(frame,'North','N',UDim2.new(.5,-10,0,9),UDim2.fromOffset(20,18),10,Theme.color.text);north.TextXAlignment=Enum.TextXAlignment.Center
  local playerMarker=Theme.label(frame,'PlayerMarker','▲',UDim2.fromScale(.5,.5),UDim2.fromOffset(20,20),18,Color3.fromRGB(98,204,255));playerMarker.AnchorPoint=Vector2.new(.5,.5);playerMarker.TextXAlignment=Enum.TextXAlignment.Center;playerMarker.TextStrokeTransparency=0;playerMarker.TextStrokeColor3=Color3.new(1,1,1);playerMarker.Visible=false;playerMarker.ZIndex=4
- local plate=Theme.sprite(frame,'RegionPlate','shellDetails',UDim2.new(.5,-64,1,6),UDim2.fromOffset(128,28));plate.SliceScale=.18
- local caption=Theme.label(plate,'Region','DEEPWOOD',UDim2.fromOffset(6,0),UDim2.new(1,-12,1,0),10,Theme.color.text);caption.TextXAlignment=Enum.TextXAlignment.Center
+ local caption=Theme.label(frame,'Region','DEEPWOOD',UDim2.new(0,12,1,-30),UDim2.new(1,-24,0,18),9,Theme.color.text);caption.TextXAlignment=Enum.TextXAlignment.Center;caption.TextStrokeTransparency=.2;caption.TextStrokeColor3=Color3.new(0,0,0)
  local menuButton=Theme.button(frame,'MapMenu','≡',UDim2.new(1,-34,0,0),UDim2.fromOffset(40,40));menuButton.Caption.Visible=false
  Theme.icon(menuButton,'settings',UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8))
  local menu=Theme.frame(frame,'MapActions',UDim2.new(1,-168,0,199),UDim2.fromOffset(168,146));menu.Visible=false

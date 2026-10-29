@@ -67,8 +67,8 @@ local ok, failure = xpcall(function()
 	check(status.TDPanelArt.Image ~= "", "status uses original TD panel")
 	check(status.HEALTHTrack.TDResourceFrame.Image == "rbxassetid://97570429280107", "health uses pinned TD battle chrome")
 	check(root.Actions.Attack.TDButtonArt:GetAttribute("TDArtKey") == "shellUpgrade", "primary attack uses TD green shell")
-	check(root.Minimap.MapActions.BackToLobby.Caption.Text ~= "", "return control keeps a readable caption")
-	check(root:FindFirstChild("BackToLobby")==nil and not root.Minimap.MapActions.Visible,"top-right long return button moves into the collapsed map menu")
+	check(playerGui.DeepwoodTopHud.Root.Minimap.MapActions.BackToLobby.Caption.Text ~= "", "return control keeps a readable caption")
+	check(root:FindFirstChild("BackToLobby")==nil and not playerGui.DeepwoodTopHud.Root.Minimap.MapActions.Visible,"top-right long return button moves into the collapsed map menu")
 	hud.setHealth(45, 90)
 	check(status.HEALTHValue.Text == "45 / 90" and status.HEALTHTrack.FillWindow.Fill.Size.X.Scale == .5, "HP value and TD fill follow current health")
 	local character = Instance.new("Model")
@@ -108,9 +108,9 @@ local ok, failure = xpcall(function()
 	check(root.SkillBar.Item1.ItemCount.Text == "x0" and root.SkillBar.Item1.PotionIcon:GetAttribute("DefinitionId") == "mana_potion_xl", "empty stack keeps its assigned icon and displays zero")
 	local mapRoot=Instance.new("Part");mapRoot.Name="HumanoidRootPart";mapRoot.Position=Vector3.new(18,3,36);mapRoot.CFrame=CFrame.new(mapRoot.Position);mapRoot.Parent=character
 	task.wait(.12);hud.setCooldowns(character)
-	local marker=root.Minimap.PlayerMarker
+	local marker=playerGui.DeepwoodTopHud.Root.Minimap.PlayerMarker
 	check(marker.Visible and math.abs(marker.Position.X.Scale-.6)<.001 and math.abs(marker.Position.Y.Scale-.7)<.001,"minimap projects the actual hero position north-up")
-	check(root.Minimap.MapPreview.CurrentCamera~=nil and not root.Minimap.MapActions.Visible,"map preview is visible while its menu stays collapsed")
+	check(playerGui.DeepwoodTopHud.Root.Minimap.MapPreview.CurrentCamera~=nil and not playerGui.DeepwoodTopHud.Root.Minimap.MapActions.Visible,"map preview is visible while its menu stays collapsed")
 	character:Destroy()
 
 	local lobby = copyModule("HeroLobbyGui").create(function() end)
