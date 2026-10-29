@@ -177,13 +177,19 @@ function Hud.create()
 	skillBar.BackgroundTransparency = 1
 	skillBar.AnchorPoint = Vector2.new(0.5, 1)
 	skillBar.Position = UDim2.new(0.5, 0, 1, -24)
-	skillBar.Size = UDim2.fromOffset(360, 68)
+	skillBar.Size = UDim2.fromOffset(504, 68)
 	skillBar.Parent = root
 	local skillScale = Instance.new("UIScale")
 	skillScale.Parent = skillBar
+	local itemButtons = {}
+	for index, item in ipairs({ {"HP", "Z"}, {"MP", "C"} }) do
+		local button = action(skillBar, "Item" .. index, item[1], item[2], UDim2.fromOffset((index - 1) * 72, 0), 64)
+		button.UICorner.CornerRadius = UDim.new(0, 8)
+		itemButtons[index] = button
+	end
 	local skillButtons, skillHints = {}, {}
 	for index = 1, 5 do
-		local button, key = action(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index - 1) * 72, 0), 64)
+		local button, key = action(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index + 1) * 72, 0), 64)
 		button.UICorner.CornerRadius = UDim.new(0, 8)
 		button.Caption.TextSize = 8
 		button.Caption.Position = UDim2.fromOffset(3, 36)
@@ -232,7 +238,7 @@ function Hud.create()
 		statusScale.Scale = scale
 		headingScale.Scale = scale
 		actionScale.Scale = scale
-		skillScale.Scale = math.min(scale, viewport.X / 520)
+		skillScale.Scale = math.min(scale, viewport.X / 664)
 		practiceScale.Scale = scale
 		backScale.Scale = scale
 		back.Size = UDim2.fromOffset(viewport.X < 500 and 126 or 168, 42)
@@ -256,6 +262,7 @@ function Hud.create()
 		block = block,
 		sprint = sprint,
 		skills = skillButtons,
+		items = itemButtons,
 		dodge = dodge,
 		back = back,
 		setVisible = function(visible)
@@ -283,6 +290,10 @@ function Hud.create()
 		setMana = setMana,
 		setStamina = setStamina,
 		setCooldowns = function(character)
+			for index, button in ipairs(itemButtons) do
+				local count = character and character:GetAttribute("K0ItemCount" .. index) or 0
+				button.Caption.Text = (index == 1 and "HP" or "MP") .. " x" .. tostring(count)
+			end
 			for index, button in ipairs(skillButtons) do
 				local classId = character and character:GetAttribute("K0ClassId")
 				local equipped = character and character:GetAttribute("K0EquippedSkill" .. index)

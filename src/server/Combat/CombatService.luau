@@ -450,6 +450,21 @@ local function acceptAction(state, action, direction, current, targetModel)
 	if not alive(state) or state.mode == "Dead" or state.mode == "Stunned" then
 		return
 	end
+	if action == "Item1" or action == "Item2" then
+		local slot = action == "Item1" and 1 or 2
+		if state.itemCounts[slot] <= 0 then updateFeedback(state, "ItemEmpty"); return end
+		if slot == 1 then
+			if state.humanoid.Health >= state.humanoid.MaxHealth then updateFeedback(state, "HealthFull"); return end
+			state.humanoid.Health = math.min(state.humanoid.MaxHealth, state.humanoid.Health + 40)
+		else
+			if not state.mana then updateFeedback(state, "NoManaPool"); return end
+			if state.mana >= Config.MaxMana then updateFeedback(state, "ManaFull"); return end
+			setMana(state, state.mana + 40)
+		end
+		state.itemCounts[slot] -= 1
+		state.character:SetAttribute("K0ItemCount" .. slot, state.itemCounts[slot])
+		return
+	end
 	if action == "SprintEnd" then
 		state.sprinting = false
 		state.character:SetAttribute("K0Sprinting", false)
@@ -1499,6 +1514,7 @@ local function setupCharacter(player, character)
 			player = player, character = character, humanoid = humanoid, root = root, mode = "",
 			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0,
 			mana = classId == "mage" and Config.MaxMana or nil, manaRegenAt = current,
+			itemCounts = {3, 3},
 			stamina = classId ~= "mage" and Config.MaxStamina or nil, staminaRegenAt = current,
 			skillSlots = context.skillSlots or {1, 2, 3, 0, 0}, slotCount = context.slotCount or 3, skillReadyAt = context.skillReadyAt or {}, setSkillReadyAt = context.setSkillReadyAt,
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
@@ -1523,6 +1539,8 @@ local function setupCharacter(player, character)
 		character:SetAttribute("K0ArrowVisual", nil)
 		character:SetAttribute("K0SpellVisual", nil)
 		character:SetAttribute("K0AttackKind", nil)
+		character:SetAttribute("K0ItemCount1", state.itemCounts[1])
+		character:SetAttribute("K0ItemCount2", state.itemCounts[2])
 		character:SetAttribute("K0MaxMana", state.mana and Config.MaxMana or nil)
 		character:SetAttribute("K0Mana", state.mana)
 		character:SetAttribute("K0MaxStamina", state.stamina and Config.MaxStamina or nil)
@@ -1609,7 +1627,7 @@ function CombatService.start(enemies, serverContextResolver)
 		if not state or not alive(state) or type(action) ~= "string" or #action > 16 or select("#", ...) > 0 or not validDirection(direction) then
 			return
 		end
-		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" and action ~= "SprintStart" and action ~= "SprintEnd" and not action:match("^Skill[12345]$") then
+		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" and action ~= "SprintStart" and action ~= "SprintEnd" and action ~= "Item1" and action ~= "Item2" and not action:match("^Skill[12345]$") then
 			return
 		end
 		if targetModel ~= nil then

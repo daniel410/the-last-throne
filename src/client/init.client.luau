@@ -301,6 +301,9 @@ hud.dodge.Activated:Connect(dodge)
 for slot, button in ipairs(hud.skills) do
 	button.Activated:Connect(function() useSkill(slot) end)
 end
+for slot, button in ipairs(hud.items) do
+	button.Activated:Connect(function() sendAction("Item" .. slot) end)
+end
 RunService.RenderStepped:Connect(function() hud.setCooldowns(player.Character) end)
 hud.sprint.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -337,6 +340,10 @@ UserInputService.InputBegan:Connect(function(input, processed)
 		startBlock()
 	elseif input.KeyCode == Enum.KeyCode.E or input.KeyCode == Enum.KeyCode.ButtonL3 then
 		startSprint()
+	elseif input.KeyCode == Enum.KeyCode.Z then
+		sendAction("Item1")
+	elseif input.KeyCode == Enum.KeyCode.C then
+		sendAction("Item2")
 	elseif input.KeyCode == Enum.KeyCode.One or input.KeyCode == Enum.KeyCode.ButtonY then
 		useSkill(1)
 	elseif input.KeyCode == Enum.KeyCode.Two or input.KeyCode == Enum.KeyCode.ButtonX then

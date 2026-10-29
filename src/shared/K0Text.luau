@@ -94,6 +94,10 @@ return {
 		Dead = "DEFEATED",
 	},
 	Feedback = {
+		ItemEmpty = "No potions left. Restart the practice to try again.",
+		HealthFull = "Health is full. Save your potion for later.",
+		ManaFull = "Mana is full. Save your potion for later.",
+		NoManaPool = "This hero has no mana to restore.",
 		Hit = "HIT",
 		Blocked = "BLOCKED",
 		PerfectBlock = "PERFECT BLOCK",
