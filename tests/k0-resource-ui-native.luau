@@ -95,6 +95,7 @@ local ok, failure = xpcall(function()
 		local def = catalog.items[id]
 		local icon = icons.create(playerGui, def, UDim2.new(), UDim2.fromOffset(40, 40))
 		check(icon:GetAttribute("DefinitionId") == id and icon.Glass.SizeMark.Text == (def.potionTier == 4 and "XL" or def.potionSize:sub(1, 1)), "icon identity and size mark: " .. id)
+		check(icon.Glass.SizeMark.BackgroundTransparency == 1, "size text never covers the potion with a background: " .. id)
 		icon:Destroy()
 		character:SetAttribute("K0ItemDefinition1", id)
 		character:SetAttribute("K0ItemCount1", 99)

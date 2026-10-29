@@ -23,3 +23,7 @@ TD 공유 아이콘/배틀 아틀라스와 레지스트리 조사에서 재사�
 0.22.0: 소스8cd973ffa8899bd9dbcd67b7e2885f83476c6aef,Rojo 성공,1,026,714 bytes,SHA25642826484e5ef7496791ae7af44f78776d69822151162fff148d6093dae1a6086. 서버513개/GUI126개 통과. 실제 Knight 가방에서3열/영웅/새 장비 그림을 확인했으나 프레임 색이 곱셈으로 너무 어둡고 카드 UIStroke가 TextButton의 텍스트용 모드여서 보이지 않는 결함을 발견했다. 배경 흰색+남색 gradient와 Border모드로 수정한다.
 
 0.22.1은 imagegen 스킬의 built-in 생성기로 새 RPG 전용 아이콘 아틀라스를 만들고 연결한다. 원본PNG RGBA/alpha0 픽셀61.8%를 읽기 전용 검사했고 별도 이미지 편집 없이 사용했다. Roblox Studio upload_image로 새 이미지135019494060990을 등록(기존 TD/Place 게시 변경 없음),AssetFetchStatus.Success와 렌더 크기683x1024의 검 crop을 실제 화면에서 확인했다. 원본1024x1536/SHA256과 출처는 assets/ui/item-icons-v1/manifest.json에 기록한다. 아이템은 렌더 삽화 아틀라스를 우선 사용하고 네이티브3D/물약 도형은 대체 경로다. 생성된 컨셉에서 잘라 대체한 것이 아니라 이 작업용 독립 아이템 아트다. 게시된 RPG Experience 권한은 별도 검증 전이다.
+
+0.22.1: 소스3d68ad747ba69f4947a45ef78badd378793f9fd2,Rojo 성공,1,030,061 bytes,SHA256d21e4733c82ef3dcf02688b895102828c22fcc71901e0184869cd91f08a77bfd. GUI126개 통과. 실제 Knight 가방/8개 장비 슬롯/8종 물약 아틀라스 표시와 HP XL등록을 확인했다. 첫 키 입력은 실제 반영되지 않아 수량 assert가 실패했으나 아이템 버튼 클릭 후 HP1000·등록 HP XL x0,MP없는Knight의NoManaPool과 MP XL x1 유지 확인. 도구의Success만으로 동작 통과 처리하지 않았다.
+
+사용자 추가 요청으로0.22.2에서 S/M/L/XL 글자 뒤 검은 박스를 제거(BackgroundTransparency1)하고12px 외곽선 글자로 줄인다. 삽화가 있는 물약 루트의 강제정사각 constraint도 제거해 상세/카드 사각형 안에서 그림을 중앙Fit시킨다. 철광석 crop의 아래쪽에 이웃 XL마개 끝이 섞이는 것을 수정하고 HP XL마개 윗부분 crop을 넓혔다. 검증에8종 글자 배경 투명 검사를 추가한다.

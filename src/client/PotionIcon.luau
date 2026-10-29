@@ -25,13 +25,15 @@ function Icon.create(parent, definition, position, size)
 	aspect.AspectRatio, aspect.DominantAxis, aspect.Parent = 1, Enum.DominantAxis.Height, root
 	local illustration = Sprites.create(root, definition, UDim2.new(), UDim2.fromScale(1,1))
 	if illustration then
+		aspect:Destroy()
 		local glass = part(root, "Glass", 0, 0, 1, 1, Color3.new(1,1,1))
 		glass.BackgroundTransparency=1
 		local mark=Instance.new("TextLabel")
 		mark.Name,mark.Text="SizeMark",definition.potionTier==4 and "XL" or definition.potionSize:sub(1,1)
-		mark.Position,mark.Size=UDim2.fromScale(.62,.65),UDim2.fromScale(.35,.3)
-		mark.BackgroundColor3,mark.BackgroundTransparency=Color3.fromRGB(10,25,45),.15
-		mark.TextColor3,mark.TextScaled,mark.Font=Color3.new(1,1,1),true,Enum.Font.GothamBold
+		mark.Position,mark.Size=UDim2.new(1,-24,1,-18),UDim2.fromOffset(24,16)
+		mark.BackgroundTransparency=1
+		mark.TextColor3,mark.TextScaled,mark.Font=Color3.new(1,1,1),false,Enum.Font.GothamBold
+		mark.TextSize,mark.TextStrokeTransparency=12,.3
 		mark.AutoLocalize,mark.Parent=false,glass
 		return root
 	end
