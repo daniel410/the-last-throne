@@ -832,8 +832,30 @@ function Visual.render(model, phase, combo, dt, attackKind)
 	if classId == "elf" and character then phase = Visual.bowPhase(character, phase, Workspace:GetServerTimeNow()) end
 	local target = Visual.samplePose(classId, phase, combo, attackKind, skillId)
 	if character and character:GetAttribute("K0State") == "Block" then
-		if classId == "elf" then target = CFrame.Angles(math.rad(-80), 0, math.rad(-45))
-		elseif classId == "dwarf" or classId == "mage" then target = CFrame.Angles(math.rad(-70), 0, math.rad(55)) end
+		if classId == "elf" or classId == "dwarf" or classId == "mage" then
+			local root = character:FindFirstChild("HumanoidRootPart")
+			if root and joint.Part0 then
+				-- All three grips use +Y as the shaft/bow axis. Rotate around the
+				-- held-hand socket so the grip position and raised arms stay put.
+				local basis = (joint.Part0.CFrame * joint.C0).Rotation
+				local from = (basis * target).UpVector
+				local lateral = root.CFrame.RightVector * (classId == "elf" and 1 or -1)
+				lateral = Vector3.new(lateral.X, 0, lateral.Z)
+				if lateral.Magnitude > 0.001 then
+					local to = lateral.Unit
+					local axis = from:Cross(to)
+					local dot = math.clamp(from:Dot(to), -1, 1)
+					if axis.Magnitude > 0.0001 then
+						local rotation = CFrame.fromAxisAngle(axis.Unit, math.acos(dot))
+						target = basis:Inverse() * rotation * basis * target
+					elseif dot < 0 then
+						local perpendicular = from:Cross(Vector3.yAxis)
+						if perpendicular.Magnitude < 0.001 then perpendicular = from:Cross(Vector3.xAxis) end
+						target = basis:Inverse() * CFrame.fromAxisAngle(perpendicular.Unit, math.pi) * basis * target
+					end
+				end
+			end
+		end
 	end
 	local pose = (weaponPoses[joint] or CFrame.new()):Lerp(target, math.clamp(elapsed * 22, 0, 1))
 	weaponPoses[joint] = pose

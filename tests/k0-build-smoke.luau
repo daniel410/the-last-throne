@@ -41,7 +41,7 @@ local TD_EXPECTED = {
 	Orc = { template = "orc", height = 4.6, visualHeight = 4.6 * 1.5, texture = "140427201929012", meshes = {
 		Body = "91974284442570", ArmL = "80036546875989", ArmR = "126087041396792", LegL = "122434686618387", LegR = "108357424176147",
 	} },
-	Slime = { template = "slime", height = 1.1, visualHeight = 1.1 * 1.2, texture = "75994104212849", meshes = { Body = "84245584635347" } },
+	Slime = { template = "slime", height = 1.1, visualHeight = 1.1 * 1.44, texture = "75994104212849", meshes = { Body = "84245584635347" } },
 }
 local COMBAT_KINDS = { "Goblin", "Slime", "Ogre", "Orc" }
 local ANCHORS = { Body = "Torso", ArmL = "Right Arm", ArmR = "Left Arm", LegL = "Right Leg", LegR = "Left Leg" }
@@ -281,7 +281,7 @@ local ok, err = xpcall(function()
 	slimeRoot.Parent = slimeRig
 	slimeRig.PrimaryPart = slimeRoot
 	slimeRig.Parent = ServerStorage
-	local slimeVisual = appearance.attach(slimeRig, "Slime", 0, 1.2)
+	local slimeVisual = appearance.attach(slimeRig, "Slime", 0, 1.44)
 	check(checkVisual(slimeRig, "Slime", "Slime adapter fixture") == slimeVisual, "Slime adapter returns its attached model")
 	check(slimeRig:FindFirstChildOfClass("Humanoid") == nil and slimeRig:GetAttribute("EnemyKind") == nil and #enemies:GetChildren() == 4,
 		"Slime visual-only fixture does not enter combat")

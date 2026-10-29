@@ -261,7 +261,7 @@ function TrainingField.create()
 	enemies.Name = "Enemies"
 	enemies.Parent = folder
 	makeEnemy(enemies, "Goblin", -18, -10, 1.02, 1.2)
-	makeEnemy(enemies, "Slime", -4, 24, 0.60, 1.2)
+	makeEnemy(enemies, "Slime", -4, 24, 0.72, 1.44)
 	-- Preserve each TD visual and its control rig at the same relative scale.
 	makeEnemy(enemies, "Orc", 42, 17, 1.65, 1.5)
 	makeEnemy(enemies, "Ogre", 20, -30, 2.475, 2.475 / 1.45)

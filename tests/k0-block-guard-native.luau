@@ -28,6 +28,8 @@ local ok, err = xpcall(function()
 			local relative = character.Head.CFrame:PointToObjectSpace(weapon.grip.Position)
 			check(relative.Z < -0.5, classId .. " grip in front of face")
 			check(math.abs(relative.Y) < 0.8, classId .. " grip at face height")
+			local shaft = weapon.grip.CFrame.UpVector
+			check(math.abs(shaft.Y) < 0.1 and math.abs(shaft:Dot(root.CFrame.RightVector)) > 0.95, classId .. " weapon held horizontally across face")
 			local side = classId == "elf" and "Right" or "Left"
 			local hand = character:FindFirstChild(side .. (rigType == Enum.HumanoidRigType.R15 and "Hand" or " Arm"))
 			local point = rigType == Enum.HumanoidRigType.R15 and hand.Position or hand.CFrame:PointToWorldSpace(Vector3.new(0, -hand.Size.Y * 0.5, 0))
@@ -39,6 +41,8 @@ local ok, err = xpcall(function()
 			task.wait(0.5)
 			point = rigType == Enum.HumanoidRigType.R15 and hand.Position or hand.CFrame:PointToWorldSpace(Vector3.new(0, -hand.Size.Y * 0.5, 0))
 			check((target.WorldPosition - point).Magnitude < 0.35, "hand tracks weapon when character turns")
+			shaft = weapon.grip.CFrame.UpVector
+			check(math.abs(shaft.Y) < 0.1 and math.abs(shaft:Dot(root.CFrame.RightVector)) > 0.95, "weapon remains horizontal when character turns")
 			character:SetAttribute("K0State", "Idle"); task.wait(0.4)
 			check(not weapon.grip:FindFirstChild("K0BlockHandTarget"), "contact target cleans up after guard")
 			connection:Disconnect(); character:Destroy()
