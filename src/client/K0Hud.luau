@@ -260,7 +260,13 @@ function Hud.create()
 	local backCaption = text(back, "Caption", Text.BackToLobby, UDim2.fromOffset(10, 0), UDim2.new(1, -20, 1, 0), 12)
 	backCaption.TextXAlignment = Enum.TextXAlignment.Center
 	local storyTracker
-	local practice = panel(root, "Practice", UDim2.fromOffset(16, 162), UDim2.fromOffset(344, 112))
+	local practice = Instance.new("Frame")
+ practice.Name = "Practice"
+ practice.Position = UDim2.fromOffset(16, 162)
+ practice.Size = UDim2.fromOffset(248, 112)
+ practice.BackgroundTransparency = 1
+ practice.BorderSizePixel = 0
+ practice.Parent = root
 	local practiceScale = Instance.new("UIScale")
 	practiceScale.Parent = practice
 	text(practice, "Title", Text.PracticeTitle, UDim2.fromOffset(12, 8), UDim2.new(1, -24, 0, 18), 11, COLORS.gold)
@@ -268,6 +274,10 @@ function Hud.create()
 	objective.TextWrapped = true
 	local note = text(practice, "Note", Text.Practice.Note, UDim2.fromOffset(12, 76), UDim2.new(1, -24, 0, 28), 10, COLORS.muted)
 	note.TextWrapped = true
+ for _,label in ipairs(practice:GetChildren()) do if label:IsA("TextLabel") then
+  label.TextStrokeColor3 = Color3.new(0,0,0)
+  label.TextStrokeTransparency = .3
+ end end
 
 	local function updateScale()
 		local camera = Workspace.CurrentCamera
@@ -287,13 +297,8 @@ function Hud.create()
 		-- Below 1100px, reserve a separate row above held-action controls.
 		skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)
 		if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end
-		practice.Size = UDim2.fromOffset(viewport.X < 600 and 248 or 344, 112)
-		practice.Position = UDim2.fromOffset(16, 16 + status.Size.Y.Offset * scale + 12)
-		if viewport.Y < 450 and viewport.X >= 600 then
-			practice.Position = UDim2.fromOffset(28 + 248 * scale, 16)
-			local available = viewport.X - (28 + 248 * scale) - back.Size.X.Offset * scale - 28
-			practice.Size = UDim2.fromOffset(math.min(344, available / scale), 112)
-		end
+  practice.Size = UDim2.fromOffset(status.Size.X.Offset, 112)
+  practice.Position = UDim2.fromOffset(status.Position.X.Offset, 16 + status.Size.Y.Offset * scale + 8)
 		-- On narrow screens, keep the title clear of the status panel.
 		heading.Visible = viewport.X >= 860
 	end
