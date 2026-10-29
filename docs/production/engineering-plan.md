@@ -317,3 +317,7 @@ TD Gold / RPG Coins / Command Points는 각 영역에 남긴다. 공유 업적/�
 현재 산출물은 기술 제안·역할 지침과 읽기 전용 표본 조사다. 런타임 구현·저장 장애 주입·Studio·게시 테스트·실기기·실제 결제·운영 전환은 미실행이다. 다음 구현 담당은 ENG-01의 Engineer/QA, 첫 플레이 장면 담당은 ENG-02의 Engineer/Designer/Modeling이다.
 
 계획 작성 시 검증 기록(2026-10-28): 두 담당 Markdown의 상대 링크 대상 존재와 코드 펜스 균형을 Python으로 확인했다(누락0). 성장 검증 명령 `python3 scripts/simulate_story_progression.py --output /tmp/tlt-engineering-progression-check.json`은 종료0, 반영값 Lv40·0XP/총유입19,652Coins를 반환했다. 이 검사는 문서/기획 데이터 검증이며 서버 구현이나 실제 지급의 Pass가 아니다.
+
+### 클래스 제한 아이템 획득 계약
+
+획득·제작·보상 수령 및 구매 시작 시 서버가 선택 영웅의 불변 `baseClassId`와 아이템의 `classRequirements`를 확인한다. 공용 정의는 제한 없이 처리한다. 보상은 클래스별 유효 선택지와 수령 실패 복구를 갖추며 승인 보상 예산을 임의 변경하지 않는다. 결제 시작의 자격을 영수증과 안정적으로 연결하는 계약 및 기결제 영수증의 중복 없는 복구가 확정되기 전에는 실상품을 출시하지 않는다. 기존 창고 소유·이동과 신규 획득을 구분하고 장착은 별도로 검사한다. 미구현 설계다.
