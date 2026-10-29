@@ -750,6 +750,7 @@ local function applyArrowShot(state, current)
 	if attack.isSkill and attack.definition.effect == "recall" then visualFrom, visualTo = endpoint, origin end
 	state.character:SetAttribute(visualName, string.format("%d|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f",
 		sequence, visualFrom.X, visualFrom.Y, visualFrom.Z, visualTo.X, visualTo.Y, visualTo.Z))
+	local multiVisualTargets = {}
 	if target then
 		damageEnemy(state, target, attack, current)
 		if attack.isSkill and attack.definition.effect == "gravity" then
@@ -786,14 +787,12 @@ local function applyArrowShot(state, current)
 				if da == db then return a.id < b.id end
 				return da < db
 			end)
-			local points = { tostring(sequence), string.format("%.3f", origin.X), string.format("%.3f", origin.Y), string.format("%.3f", origin.Z) }
 			for _, enemy in ipairs(others) do
 				if attack.hitCount >= attack.maxTargets then break end
 				local position = enemy.root.Position
-				table.insert(points, string.format("%.3f", position.X)); table.insert(points, string.format("%.3f", position.Y)); table.insert(points, string.format("%.3f", position.Z))
+				table.insert(multiVisualTargets, position)
 				damageEnemy(state, enemy, attack, current)
 			end
-			if #points > 4 then state.character:SetAttribute("K0MultiShotVisual", table.concat(points, "|")) end
 		elseif attack.isSkill and attack.definition.effect == "pierce" then
 			local aim = horizontalUnit(target.root.Position - origin, attack.direction)
 			local others = {}
@@ -808,6 +807,24 @@ local function applyArrowShot(state, current)
 				damageEnemy(state, enemy, attack, current)
 			end
 		end
+	end
+	if attack.isSkill and attack.definition.effect == "multi" then
+		-- Four visual lanes accompany the primary shot even with no enemies.
+		-- Extra target damage remains strictly in the server-validated loop above.
+		local aim = horizontalUnit(endpoint - origin, attack.direction)
+		local angles = { -24, -12, 12, 24 }
+		while #multiVisualTargets < 4 do
+			local angle = math.rad(angles[#multiVisualTargets + 1])
+			local direction = CFrame.Angles(0, angle, 0):VectorToWorldSpace(aim)
+			local delta = direction * attack.definition.range
+			local wall = workspace:Raycast(origin, delta, combatRayParams(state.character, enemyFolder))
+			table.insert(multiVisualTargets, wall and wall.Position or origin + delta)
+		end
+		local points = { tostring(sequence), string.format("%.3f", origin.X), string.format("%.3f", origin.Y), string.format("%.3f", origin.Z) }
+		for _, position in ipairs(multiVisualTargets) do
+			table.insert(points, string.format("%.3f", position.X)); table.insert(points, string.format("%.3f", position.Y)); table.insert(points, string.format("%.3f", position.Z))
+		end
+		state.character:SetAttribute("K0MultiShotVisual", table.concat(points, "|"))
 	end
 end
 
@@ -1133,7 +1150,7 @@ local function moveEnemy(enemy, destination, current)
 		local startPosition = origin
 		local goal = destination
 		task.spawn(function()
-			local path = PathfindingService:CreatePath({ AgentRadius = enemy.kind == "Ogre" and 3 or 2, AgentHeight = enemy.kind == "Ogre" and 10 or 5, AgentCanJump = false, WaypointSpacing = 5 })
+			local path = PathfindingService:CreatePath({ AgentRadius = enemy.kind == "Ogre" and 4 or 2, AgentHeight = enemy.kind == "Ogre" and 10 or 5, AgentCanJump = false, WaypointSpacing = 5 })
 			local ok = pcall(function()
 				path:ComputeAsync(startPosition, goal)
 			end)

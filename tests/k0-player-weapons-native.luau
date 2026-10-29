@@ -902,6 +902,56 @@ local ok, fatal = xpcall(function()
 		check(orb and orb:FindFirstChildOfClass("Trail") ~= nil, "magic orb has a visible trail")
 		if orb then orb:Destroy() end
 	end)
+	case("multi-shot-renders-five-arrows", function()
+		local character = cloneRig("R15", "multiFan")
+		character:SetAttribute("K0ClassId", "elf")
+		local p = character.HumanoidRootPart.Position
+		character:SetAttribute("K0ArrowVisual", string.format("1|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f", p.X, p.Y, p.Z, p.X, p.Y, p.Z - 20))
+		local fields = { "1", tostring(p.X), tostring(p.Y), tostring(p.Z) }
+		for _, x in ipairs({-6, -3, 3, 6}) do
+			table.insert(fields, tostring(p.X + x)); table.insert(fields, tostring(p.Y)); table.insert(fields, tostring(p.Z - 20))
+		end
+		character:SetAttribute("K0MultiShotVisual", table.concat(fields, "|"))
+		clientVisual.renderCharacter(character, 1 / 30)
+		local arrows = {}
+		for _, child in ipairs(workspace:GetChildren()) do if child.Name == "K0VisualArrow" then table.insert(arrows, child) end end
+		check(#arrows == 5, "primary and four simultaneous secondary arrows created")
+		for _, arrow in ipairs(arrows) do arrow:Destroy() end
+	end)
+	case("thrown-axe-never-retains-character-weld", function()
+		local character = cloneRig("R15", "axeProjectileSafety")
+		local model = Instance.new("Model"); model.Name = "QaDwarfAppearance"; model.Parent = character
+		assert(appearance.attachInto(model, character, "dwarf"))
+		local root = assert(character:FindFirstChild("HumanoidRootPart"))
+		local original = root.CFrame
+		character:SetAttribute("K0ClassId", "dwarf")
+		character:SetAttribute("K0SkillId", "dwarf.common.throw")
+		local p = root.Position
+		character:SetAttribute("K0SpellVisual", string.format("1|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f", p.X, p.Y, p.Z, p.X, p.Y, p.Z - 10))
+		clientVisual.renderCharacter(character, 1 / 30)
+		local axe = workspace:FindFirstChild("K0VisualThrownAxe")
+		check(axe ~= nil and axe.Anchored and not axe.CanCollide, "thrown visual exists and is harmless")
+		if axe then
+			for _, item in ipairs(axe:GetDescendants()) do
+				check(not item:IsA("WeldConstraint") and not item:IsA("JointInstance") and not item:IsA("Constraint"), "projectile has no physical connections")
+			end
+			check(root.CFrame == original, "creating projectile does not move character")
+			axe:Destroy()
+		end
+	end)
+	case("water-ball-has-orbiting-droplets", function()
+		local character = cloneRig("R15", "waterProjectile")
+		character:SetAttribute("K0ClassId", "mage"); character:SetAttribute("K0SkillId", "mage.common.water_ball")
+		local p = character.HumanoidRootPart.Position
+		character:SetAttribute("K0SpellVisual", string.format("1|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f", p.X, p.Y, p.Z, p.X, p.Y, p.Z - 10))
+		clientVisual.renderCharacter(character, 1 / 30)
+		local orb = workspace:FindFirstChild("K0WaterBall")
+		check(orb ~= nil and orb.Material == Enum.Material.Glass and not orb.CanCollide, "water ball is a harmless glass sphere")
+		local count = 0
+		if orb then for _, child in ipairs(orb:GetChildren()) do if child.Name == "K0WaterDroplet" then count += 1 end end end
+		check(count == 5, "five water droplets surround the ball")
+		if orb then orb:Destroy() end
+	end)
 	case("source-library-immutable-after-all-builds-and-attachments", sourcesUnchanged)
 end, debug.traceback)
 if not ok then table.insert(report.failures, "fixture: " .. tostring(fatal)) end

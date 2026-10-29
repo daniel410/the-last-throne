@@ -456,7 +456,7 @@ local function arrowPart(model, name, size, color, material)
 	return part
 end
 
-local function emitArrow(character, first, last, payload)
+local function emitArrow(character, first, last, payload, showImpact, fanOffset)
 	-- Keep presentation bounded even if a spectator observes many characters.
 	if #arrows >= 32 then
 		table.remove(arrows, 1).model:Destroy()
@@ -480,7 +480,7 @@ local function emitArrow(character, first, last, payload)
 	model.Parent = workspace
 	local distance = (last - first).Magnitude
 	local arrow = { model = model, shaft = shaft, tip = tip, feather = feather, character = character,
-		owner = Players:GetPlayerFromCharacter(character), payload = payload,
+		owner = Players:GetPlayerFromCharacter(character), payload = payload, showImpact = showImpact ~= false, fanOffset = fanOffset or 0,
 		first = first, direction = (last - first).Unit, distance = distance, elapsed = 0,
 		duration = math.clamp(distance / 100, 0.12, 0.55) }
 	table.insert(arrows, arrow)
@@ -515,13 +515,18 @@ local function advanceArrows(dt)
 			table.remove(arrows, index)
 		else
 			arrow.elapsed = arrow.elapsed + elapsed
-			local position = arrow.first + arrow.direction * arrow.distance * math.min(1, arrow.elapsed / arrow.duration)
+			local progress = math.min(1, arrow.elapsed / arrow.duration)
+			local position = arrow.first + arrow.direction * arrow.distance * progress
+			if arrow.fanOffset ~= 0 then
+				local sideways = Vector3.new(-arrow.direction.Z, 0, arrow.direction.X)
+				if sideways.Magnitude > 0.001 then position += sideways.Unit * arrow.fanOffset * math.sin(math.pi * progress) end
+			end
 			local pose = CFrame.lookAt(position, position + arrow.direction)
 			arrow.shaft.CFrame = pose
 			arrow.tip.CFrame = pose * CFrame.new(0, 0, -0.93)
 			arrow.feather.CFrame = pose * CFrame.new(0, 0, 0.70)
 			if arrow.elapsed >= arrow.duration then
-				impact(arrow.first + arrow.direction * arrow.distance, Color3.fromRGB(196, 255, 178))
+				if arrow.showImpact then impact(arrow.first + arrow.direction * arrow.distance, Color3.fromRGB(196, 255, 178)) end
 				arrow.model:Destroy()
 				table.remove(arrows, index)
 			end
@@ -578,7 +583,10 @@ local function consumeMultiShot(character)
 	for index = 5, #values, 3 do
 		local endpoint = Vector3.new(values[index], values[index + 1], values[index + 2])
 		local length = (endpoint - origin).Magnitude
-		if length >= 0.05 and length <= 55.1 then emitArrow(character, weaponOrigin(character, origin, endpoint, "elf"), endpoint, payload) end
+		if length >= 0.05 and length <= 55.1 then
+			local lane = ({ -2.4, -1.2, 1.2, 2.4 })[math.floor((index - 5) / 3) + 1]
+			emitArrow(character, weaponOrigin(character, origin, endpoint, "elf"), endpoint, payload, false, lane)
+		end
 	end
 end
 
@@ -606,13 +614,28 @@ local function consumeSpell(character)
 		end
 	end
 	if orb then
-		for _, child in ipairs(orb:GetDescendants()) do if child:IsA("JointInstance") or child:IsA("Constraint") or child:IsA("Trail") then child:Destroy() end end
+		-- A cloned WeldConstraint can retain a Part0 reference to the live hand.
+		-- Keep only appearance, before parenting or moving the anchored clone.
+		for _, child in ipairs(orb:GetChildren()) do
+			if not child:IsA("SurfaceAppearance") and not child:IsA("SpecialMesh") then child:Destroy() end
+		end
 		orb.Name, orb.Anchored, orb.CanCollide, orb.CanTouch, orb.CanQuery = "K0VisualThrownAxe", true, false, false, false
 		orb.Parent, orb.Position = workspace, first
 	else
-		local size = skillId == "mage.common.water_ball" and 1.05 or skillId == "mage.common.gravity" and 0.9 or 0.65
+		local size = skillId == "mage.common.water_ball" and 1.35 or skillId == "mage.common.gravity" and 0.9 or 0.65
 		orb = arrowPart(workspace, "K0VisualSpell", Vector3.new(size, size, size), color, Enum.Material.Neon)
 		orb.Shape, orb.Position = Enum.PartType.Ball, first
+	end
+	local waterDroplets
+	if skillId == "mage.common.water_ball" and classId == "mage" then
+		orb.Name, orb.Material, orb.Transparency = "K0WaterBall", Enum.Material.Glass, 0.25
+		waterDroplets = {}
+		for index = 1, 5 do
+			local droplet = arrowPart(orb, "K0WaterDroplet", Vector3.one * (index % 2 == 0 and 0.20 or 0.27), Color3.fromRGB(160, 226, 255), Enum.Material.Glass)
+			droplet.Shape, droplet.Transparency = Enum.PartType.Ball, 0.15
+			droplet.Position = first + Vector3.new(math.cos(index * 1.256) * 0.9, (index % 2) * 0.3, math.sin(index * 1.256) * 0.9)
+			table.insert(waterDroplets, droplet)
+		end
 	end
 	local light = Instance.new("PointLight"); light.Color = orb.Color; light.Brightness = 2; light.Range = 8; light.Parent = orb
 	local front = Instance.new("Attachment"); front.Position = Vector3.new(0, 0, -0.3); front.Parent = orb
@@ -623,7 +646,7 @@ local function consumeSpell(character)
 	trail.Parent = orb
 	local distance = (last - first).Magnitude
 	table.insert(spells, { part = orb, character = character, owner = Players:GetPlayerFromCharacter(character),
-		payload = payload, first = first, direction = (last - first).Unit, distance = distance, elapsed = 0,
+		payload = payload, first = first, direction = (last - first).Unit, distance = distance, elapsed = 0, waterDroplets = waterDroplets,
 		duration = math.clamp(distance / 75, 0.15, 0.60) })
 end
 
@@ -640,6 +663,10 @@ local function advanceSpells(dt)
 			spell.elapsed = spell.elapsed + elapsed
 			local position = spell.first + spell.direction * spell.distance * math.min(1, spell.elapsed / spell.duration)
 			spell.part.CFrame = CFrame.lookAt(position, position + spell.direction) * (spell.character:GetAttribute("K0ClassId") == "dwarf" and CFrame.Angles(spell.elapsed * 20, 0, 0) or CFrame.new())
+			for i, droplet in ipairs(spell.waterDroplets or {}) do
+				local angle = spell.elapsed * 12 + i * 2 * math.pi / 5
+				droplet.Position = position + Vector3.new(math.cos(angle) * 0.9, math.sin(angle * 1.3) * 0.55, math.sin(angle) * 0.9)
+			end
 			if spell.elapsed >= spell.duration then
 				impact(position, spell.part.Color)
 				spell.part:Destroy(); table.remove(spells, index)

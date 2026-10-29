@@ -33,10 +33,10 @@ local TD_EXPECTED = {
 	Goblin = { template = "goblin", height = 3.6, texture = "134919664038207", meshes = {
 		Body = "77403549111699", ArmL = "127402469282462", ArmR = "106102430341786", LegL = "78392327157438", LegR = "100268725310905",
 	} },
-	Ogre = { template = "ogre", height = 6.05, visualHeight = 6.05 * 2.20 / 1.45, texture = "90412861785322", meshes = {
+	Ogre = { template = "ogre", height = 6.05, visualHeight = 6.05 * 3.30 / 1.45, texture = "90412861785322", meshes = {
 		Body = "98618217378067", ArmL = "108622715572697", ArmR = "98353562560509", LegL = "76243711635467", LegR = "77089513742534",
 	} },
-	Orc = { template = "orc", height = 4.6, texture = "140427201929012", meshes = {
+	Orc = { template = "orc", height = 4.6, visualHeight = 4.6 * 1.5, texture = "140427201929012", meshes = {
 		Body = "91974284442570", ArmL = "80036546875989", ArmR = "126087041396792", LegL = "122434686618387", LegR = "108357424176147",
 	} },
 	Slime = { template = "slime", height = 1.1, texture = "75994104212849", meshes = { Body = "84245584635347" } },

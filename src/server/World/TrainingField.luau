@@ -262,10 +262,9 @@ function TrainingField.create()
 	enemies.Parent = folder
 	makeEnemy(enemies, "Goblin", -18, -10, 0.85)
 	makeEnemy(enemies, "Slime", -4, 24, 0.50)
-	makeEnemy(enemies, "Orc", 42, 17, 1.10)
-	-- Scale the visible TD source and its control rig together. Its resulting
-	-- 9.18-stud visual is twice the original Orc's 4.6-stud height.
-	makeEnemy(enemies, "Ogre", 20, -30, 2.20, 2.20 / 1.45)
+	-- Increase both control rig and TD visual by 50%, preserving proportions.
+	makeEnemy(enemies, "Orc", 42, 17, 1.65, 1.5)
+	makeEnemy(enemies, "Ogre", 20, -30, 3.30, 3.30 / 1.45)
 
 	return { folder = folder, enemies = enemies, spawn = spawn }
 end

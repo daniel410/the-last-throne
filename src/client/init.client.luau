@@ -12,6 +12,7 @@ local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Te
 local Targeting = require(script.K0Targeting)
 local hud = require(script.K0Hud).create()
 hud.setVisible(false)
+require(script.K0BackgroundMusic).start()
 require(script.K0Telegraphs).start()
 require(script.K0SwordVisual).start()
 require(script.K0EnemyVisual).start()

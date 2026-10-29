@@ -110,6 +110,15 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 			accent.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(skill.shape == "chop" and 0 or 45))
 			TweenService:Create(accent, TweenInfo.new(0.22), { Size = accent.Size * 1.35, Transparency = 1 }):Play()
 		end
+		if skill.shape == "water" then
+			for index = 1, 6 do
+				local angle = (index - 1) * math.pi / 3
+				local splash = part(holder, "K0WaterSplash", position, Vector3.one * 0.22 * scale, Color3.fromRGB(128, 215, 255))
+				splash.Material = Enum.Material.Glass
+				local destination = position + Vector3.new(math.cos(angle) * 1.4, 0.8 + (index % 2) * 0.5, math.sin(angle) * 1.4) * scale
+				TweenService:Create(splash, TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = destination, Size = Vector3.one * 0.07 * scale, Transparency = 1 }):Play()
+			end
+		end
 		if skill.shape == "rapid" or skill.shape == "multi" or skill.shape == "mana" or skill.shape == "water" or skill.shape == "gravity" or skill.shape == "shockwave" then
 			for index = 1, 3 do
 				local angle = (index - 1) * math.pi * 2 / 3
