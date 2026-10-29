@@ -1,0 +1,53 @@
+{
+  "kind": "transcribed isolated Studio Player observations; not raw logs",
+  "version": "0.22.2",
+  "class": "mage",
+  "hpXL": {
+    "fromHP": 100,
+    "toHP": 1000,
+    "countBefore": 1,
+    "countAfter": 0
+  },
+  "mpXL": {
+    "fromMP": 85,
+    "toMP": 100,
+    "countBefore": 1,
+    "countAfter": 0
+  },
+  "quickDefinitionsAfterZero": [
+    "health_potion_xl",
+    "mana_potion_xl"
+  ],
+  "sizeTextBackgroundTransparency": 1,
+  "attackCenterX": 120,
+  "sprintCenterX": 120,
+  "equippedWeapon": "mage_weapon_fine",
+  "transferSmallHP": {
+    "before": [
+      3,
+      0
+    ],
+    "deposit": [
+      2,
+      1
+    ],
+    "withdraw": [
+      3,
+      0
+    ]
+  },
+  "compact": {
+    "overlay": [
+      390,
+      700
+    ],
+    "panel": [
+      366,
+      676
+    ],
+    "gearButtonHeight": 44,
+    "primaryButtonHeight": 46,
+    "flow": "list/detail/back passed after closing gear panel"
+  },
+  "scope": "single R15, local unpublished Studio; viewport-frame constraint, not device"
+}

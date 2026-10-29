@@ -2,7 +2,7 @@
 
 Throne Defense의 세계관·영웅·타워·맵·몬스터·포탈·왕좌와 3D 자산을 공유하는 Roblox 협동 액션 RPG입니다. 직접 조작 전투, 클래스 안의 전직과 스킬트리, 공명 연계, 탐험과 이야기를 중심으로 최고의 액션 RPG를 목표로 합니다.
 
-**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.20.5 · 비공개 게시 시험판 0.18.3 · Deepwood K0 원형 제작·검증**
+**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.22.2 · 비공개 게시 시험판 0.18.3 · Deepwood K0 원형 제작·검증**
 
 **개발 문서는 한국어, 게임의 UI·퀘스트·대사·아이템·스킬·상품·오류·음성/자막은 영어(en-US)로 제작합니다.**
 
@@ -23,7 +23,7 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 
 | 분야별 상세 계획 | 내용 |
 | --- | --- |
-| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.20.5 시험 구현·게시 상태·미구현 차이·다음 작업/수용 |
+| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.22.2 시험 구현·게시 상태·미구현 차이·다음 작업/수용 |
 | [액션·스킬 설계](docs/production/action-and-skill-design.md) | 공통 액션·물리/마법 자원·전직별 슬롯·키/HUD |
 | [기획·시스템](docs/production/game-systems-plan.md) | 32구간 추적·후반8장 연결·전직/스탯/스킬·장비/경제·동료 |
 | [디자인·월드](docs/production/design-and-world-plan.md) | 승인 컨셉·맵/랜드마크·모바일/패드·가방 v2·접근성 |
@@ -34,7 +34,7 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 | [원천 검토표](docs/production/source-audit.md) | 기존 문서·컨셉·지도·정본 데이터와 새 계획의 연결 |
 | [문서 검증 결과](docs/production/validation-report.md) | 링크·백로그 의존·컨셉 해시·성장 정합·스킬 구조의 실제 정적 검사 |
 
-현재 저장소에는 Dawnspire 시험용 로비, 네 영웅 생성·선택, Deepwood 튜토리얼 시험장과 Slime/Goblin/Orc Warrior/Ogre, 서버 전투와 영어 HUD, TD 아틀라스를 사용한 장비·가방·공유 창고와 배틀 HUD가 있습니다. Knight·Elf Archer·Dwarf Axe Thrower·Mage를 각 1명 생성하며 최초 직업은 고정됩니다. Studio는 세션 보관이며, 게시 서버용 RPG 전용 계정 저장 경로에는 영웅 식별자와 아이템·장착·창고를 연결했습니다. 실제 게시 저장·재접속 수용과 정식 성장 저장은 미검증입니다. TD 초상과 검·방패·활·도끼, 새 나무 지팡이 및 Roblox 아바타에 적용한 TD 직업 색상을 사용합니다. 전신 플레이어 리그·최종 맵·성능·결제·Experience 연동은 후속 작업입니다. [TD 배틀 HUD](docs/evidence/battle-hud/README.md), [장비 구현과 검증](docs/evidence/inventory/README.md), [영웅 로비 이력](docs/evidence/k0/hero-lobby.md) 및 [K0 작업 기록](docs/evidence/k0/README.md)에서 실제 범위를 확인합니다.
+현재 저장소에는 Dawnspire 시험용 로비, 네 영웅 생성·선택, Deepwood 튜토리얼 시험장과 Slime/Goblin/Orc Warrior/Ogre, 서버 전투와 영어 HUD, TD 아틀라스를 사용한 장비·가방·공유 창고와 배틀 HUD가 있습니다. Knight·Elf Archer·Dwarf Axe Thrower·Mage를 각 1명 생성하며 최초 직업은 고정됩니다. Studio는 세션 보관이며, 게시 서버용 RPG 전용 계정 저장 경로에는 영웅 식별자와 아이템·장착·창고를 연결했습니다. 실제 게시 저장·재접속 수용과 정식 성장 저장은 미검증입니다. TD 초상과 검·방패·활·도끼, 새 나무 지팡이 및 Roblox 아바타에 적용한 TD 직업 색상을 사용합니다. 전신 플레이어 리그·최종 맵·성능·결제·Experience 연동은 후속 작업입니다. [컨셉 가방·8종 물약](docs/evidence/potions/README.md), [TD 배틀 HUD](docs/evidence/battle-hud/README.md), [장비 구현과 검증](docs/evidence/inventory/README.md), [영웅 로비 이력](docs/evidence/k0/hero-lobby.md) 및 [K0 작업 기록](docs/evidence/k0/README.md)에서 실제 범위를 확인합니다.
 
 ## Git·빌드·릴리스
 

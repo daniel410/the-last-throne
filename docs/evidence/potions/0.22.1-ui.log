@@ -1,0 +1,2 @@
+K0_RESOURCE_UI_NATIVE {"coverage":"Actual GUI constructors and state refresh, native GUI instances, LocalPlayer double; no rendered client or device","checks":126,"failures":[],"pass":true,"kind":"K0_RESOURCE_UI_NATIVE"}
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
