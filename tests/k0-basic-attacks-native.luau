@@ -323,7 +323,7 @@ return {
 			state.humanoid.Health = 500
 			state.mode = "Block"
 			for tick = 1, 4 do api.stepPlayer(state, tick * 0.25, 0.25, true) end
-			near(state.humanoid.Health, 502, classId .. " heals 0.2 percent per second even in combat")
+			near(state.humanoid.Health, 501, classId .. " heals 0.1 percent per second even in combat")
 			state.humanoid.Health = 999.9
 			api.stepPlayer(state, 1.25, 0.25, true)
 			near(state.humanoid.Health, 1000, classId .. " cannot exceed max health")

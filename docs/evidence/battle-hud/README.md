@@ -36,3 +36,7 @@ TLT-028/084 일부. Dodge의 V 바인딩/힌트를 제거하고 키보드는 R�
 격리 비게시 Studio 단일 Knight 실제 Player: Dodge 힌트 R, 스킬/아이템 간격32px 확인. V 누르기 전/후 서버 복제 K0DodgeSeq=0→0, R 입력 후1로 증가(assert 통과). [실제 화면](0.20.3-pc.png)에서 아이템은 붉은 TD 셸, 스킬/방어/회피/달리기는 청색, 공격은 녹색으로 표시됨을 확인했다. Root390×700과640×360에서 바가 Root 안에 들어가며 스킬/액션 행이 겹치지 않는 assert를 통과했다. Root 제한은 실기기 검증과 구분한다. Play 중지 후 QA bridge를 Ctrl-C 종료130으로 정리했다. 게시·릴리스 태그·실기기/패드 검증은 수행하지 않았다. 다음 담당: QA 실기기/사용자 시각 수용.
 
 0.20.3 Play bridge 콘솔에는 기존 `203785492` 자산 유형 경고와 Studio MaterialManager `debug.profileEnd()` 경고가 있었다. GUI 검사 통과 및 게임 입력 관측과 별도 기록한다.
+
+## 0.20.4 — Attack 추가 이동
+
+사용자 요청으로 Attack x118→102,16px 더 왼쪽. 소스 `93373b9520af360825a01197364c0c08e6128e59`를 푸시/원격 일치 확인 후 Rojo 빌드 성공.1,009,590 bytes, SHA256 `4e38367dc573e7e6cff00d6cb1bd19c4db98da8d910186dc64903988c1ca8742`. 격리 실제 Knight Player에서 x102·Dodge와 수평 비겹침 assert 통과. QA Play 중지/bridge 종료130. 같은 작업 중 추가된 HP 회복 요청은0.20.5로 분리한다. 다른 작업의 숨겨진 퀘스트 문서 커밋은 보존했다.

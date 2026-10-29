@@ -1,7 +1,7 @@
 -- Prototype-only values from docs/knight-combat-spec.md. No progression is saved.
 local Config = {
 	MaxHealth = 1000,
-	HealthRegenFraction = 0.002,
+	HealthRegenFraction = 0.001,
 	AttackPower = 100,
 	MaxMana = 100,
 	SprintSpeed = 24,
