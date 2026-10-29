@@ -7,13 +7,14 @@ local Theme=require(script.Parent.TDInventoryTheme)
 local Chrome=require(script.Parent.InventoryChrome)
 local Menu=require(script.Parent.HeroMenuChrome)
 local SkillTree=require(script.Parent.HeroSkillTree)
+local StatsView=require(script.Parent.HeroStatsView)
 local Advanced=require(RS.Shared.AdvancedSkills)
 local Growth=require(RS.Shared.HeroProgression)
 local Config=require(RS.Shared.K0Config)
 local Gui={}
 local portraits={knight="103255177842108",elf="80894238854345",dwarf="74628903359757",mage="91907986271282"}
 local names={knight="KNIGHT",elf="ELF ARCHER",dwarf="DWARF AXE THROWER",mage="MAGE"}
-local errors={SkillLocked="Complete the required advancement and reach the skill level first.",InvalidAdvancement="This advancement is unavailable. Review your current path.",LevelRequired="Reach the required hero level before advancing.",TrialRequired="Defeat more training foes to complete this advancement trial.",Busy="A save is in progress. Try again shortly.",Changed="Your hero changed. Review the refreshed values and try again.",WaitForLobby="Return to Dawnspire to invest points or change skills.",NotEnoughStatPoints="Not enough stat points. Clear your draft and try again.",NotEnoughSkillPoints="Earn another level to gain a skill point.",SkillMaxRank="This basic skill has reached level 4.",SaveUnknown="Save confirmation is pending. Press RETRY SAVE to check the same request.",AccountBusy="This account is active elsewhere. Rejoin to load safely.",Unavailable="Hero data is unavailable. Rejoin to load safely.",InvalidRequest="This change was rejected. Refresh your hero and try again.",Incompatible="Hero data could not be loaded safely. Rejoin and try again."}
+local errors={SkillLocked="Complete the required advancement and reach the skill level first.",InvalidAdvancement="This advancement is unavailable. Review your current path.",LevelRequired="Reach the required hero level before advancing.",TrialRequired="Defeat more training foes to complete this advancement trial.",Busy="A save is in progress. Try again shortly.",Changed="Your hero changed. Review the refreshed values and try again.",WaitForLobby="Return to Hub to invest points or change skills.",NotEnoughStatPoints="Not enough stat points. Clear your draft and try again.",NotEnoughSkillPoints="Earn another level to gain a skill point.",SkillMaxRank="This basic skill has reached level 4.",SaveUnknown="Save confirmation is pending. Press RETRY SAVE to check the same request.",AccountBusy="This account is active elsewhere. Rejoin to load safely.",Unavailable="Hero data is unavailable. Rejoin to load safely.",InvalidRequest="This change was rejected. Refresh your hero and try again.",Incompatible="Hero data could not be loaded safely. Rejoin and try again."}
 function Gui.create(onVisibility)
 	local player=Players.LocalPlayer
 	local gui=Instance.new("ScreenGui"); gui.Name="HeroGrowthGui"; gui.ResetOnSpawn=false; gui.DisplayOrder=55; gui.Parent=player:WaitForChild("PlayerGui")
@@ -22,7 +23,7 @@ function Gui.create(onVisibility)
 	local panel=Menu.frame(overlay,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-40)); panel.AnchorPoint=Vector2.new(.5,.5)
 	local limit=Instance.new("UISizeConstraint"); limit.MaxSize=Vector2.new(1240,800); limit.Parent=panel
 	local title=Menu.plaque(panel,"TitlePlaque","HERO",UDim2.new(.5,-180,0,-24),UDim2.fromOffset(360,58))
-	local close=Theme.button(panel,"Close","X",UDim2.new(1,-62,0,10),UDim2.fromOffset(44,34))
+	local close=Theme.button(panel,"Close","X",UDim2.new(1,-62,0,10),UDim2.fromOffset(44,44))
 	local statsTab=Theme.button(panel,"StatsTab","STATS",UDim2.fromOffset(18,54),UDim2.new(1/3,-16,0,38))
 	local skillsTab=Theme.button(panel,"SkillsTab","SKILLS",UDim2.new(1/3,6,0,54),UDim2.new(1/3,-16,0,38))
 	local advanceTab=Theme.button(panel,"AdvanceTab","ADVANCE",UDim2.new(2/3,-6,0,54),UDim2.new(1/3,-12,0,38))
@@ -49,13 +50,14 @@ function Gui.create(onVisibility)
 		task.delay(10,function() if pending==cmd then show(errors.SaveUnknown); render() end end)
 	end
 	local function visible(value)
-		opened=value; overlay.Visible=value; player:SetAttribute("TLTProgressionOpen",value)
+		opened=value; overlay.Visible=value;launch.Visible=not value; player:SetAttribute("TLTProgressionOpen",value)
 		if onVisibility then onVisibility(value) end
 		if value then
 			CAS:BindActionAtPriority("HeroGrowthMovement",function() return Enum.ContextActionResult.Sink end,false,4000,Enum.KeyCode.W,Enum.KeyCode.A,Enum.KeyCode.S,Enum.KeyCode.D,Enum.KeyCode.Space,Enum.KeyCode.Thumbstick1)
 			getState(); render()
 		else CAS:UnbindAction("HeroGrowthMovement") end
 	end
+	player:GetAttributeChangedSignal("TLTInventoryOpen"):Connect(function() launch.Visible=not opened and not player:GetAttribute("TLTInventoryOpen") end)
 	local function label(parent,name,text,y,height,size,color)
 		return Theme.label(parent,name,text,UDim2.fromOffset(12,y),UDim2.new(1,-24,0,height),size or 14,color)
 	end
@@ -63,7 +65,7 @@ function Gui.create(onVisibility)
 		for _,child in ipairs(body:GetChildren()) do child:Destroy() end
 		local hero=snapshot and snapshot.heroes[snapshot.heroId]
 		local g=hero and hero.progression
-		if not g then label(body,"Loading","Select a hero in Dawnspire to view growth.",12,70); body.CanvasSize=UDim2.fromOffset(0,100); return end
+		if not g then label(body,"Loading","Select a hero in Hub to view growth.",12,70); body.CanvasSize=UDim2.fromOffset(0,100); return end
 		local classId=hero.baseClassId
 		title.Caption.Text=tab=="Skills" and "SKILLS" or tab=="Advance" and "ADVANCEMENT" or "HERO STATS"
 		for _,entry in ipairs({{statsTab,"Stats"},{skillsTab,"Skills"},{advanceTab,"Advance"}}) do entry[1].TDButtonArt.ImageColor3=tab==entry[2] and Color3.fromRGB(132,206,255) or Color3.new(1,1,1) end
@@ -71,7 +73,7 @@ function Gui.create(onVisibility)
 			treeState.retry=function() if pending then remote:FireServer(pending);show("Checking the same save...") end end
 			local height=SkillTree.render(body,hero,snapshot,treeState,send,render,pending)
 			body.CanvasSize=UDim2.fromOffset(0,height)
-			if not snapshot.atHub and not pending then show("Return to Dawnspire to invest points or change skills.") end
+			if not snapshot.atHub and not pending then show("Return to Hub to invest points or change skills.") end
 			return
 		end
 		local preview=Growth.copy(g)
@@ -84,42 +86,19 @@ function Gui.create(onVisibility)
 		derived.physicalPower=math.floor(derived.physicalPower*(1+(equipment.power or 0)/100)+.5)
 		derived.magicPower=math.floor(derived.magicPower*(1+(equipment.power or 0)/100)+.5)
 		local narrow=body.AbsoluteSize.X<620
+		if tab=="Stats" then
+			local height=StatsView.render(body,hero,snapshot,derived,draft,pending,render,send,resetDraft,function() if pending then remote:FireServer(pending);show("Checking the same save...") end end)
+			body.CanvasSize=UDim2.fromOffset(0,height)
+			if not snapshot.atHub and not pending then show("Return to Hub to invest points or change skills.") end
+			return
+		end
 		local portraitWidth=narrow and 110 or math.floor(body.AbsoluteSize.X*.37)
 		local portraitHeight=narrow and 156 or 368
 		local portraitFrame=Chrome.frame(body,"HeroPortrait",UDim2.fromOffset(0,0),UDim2.fromOffset(portraitWidth,portraitHeight))
-		local image=Instance.new("ImageLabel"); image.Name="TDHero"; image.BackgroundTransparency=1; image.Size=UDim2.new(1,-12,1,narrow and -42 or -76); image.Position=UDim2.fromOffset(6,4); image.Image="rbxassetid://"..portraits[classId]; image.ScaleType=Enum.ScaleType.Fit; image.Parent=portraitFrame
-		label(portraitFrame,"Level","LEVEL "..g.level,portraitHeight-(narrow and 36 or 68),28,18,Theme.color.gold)
-		if not narrow then label(portraitFrame,"Resources",string.format("HP %d   MP %d",derived.health,derived.mana),portraitHeight-36,28,14) end
-		local info=Theme.label(body,"HeroName",names[classId],UDim2.fromOffset(narrow and 122 or 0,narrow and 2 or 376),UDim2.fromOffset(narrow and math.max(130,body.AbsoluteSize.X-132) or portraitWidth,32),narrow and 16 or 20,Theme.color.gold)
-		local xp=g.level==80 and "MAX LEVEL" or string.format("XP  %d / %d",g.xp,Growth.xpToNext(g.level))
-		Theme.label(body,"XP",xp,UDim2.fromOffset(narrow and 122 or 0,narrow and 42 or 414),UDim2.fromOffset(narrow and math.max(130,body.AbsoluteSize.X-132) or portraitWidth,24),13,Theme.color.green)
-		local resources=Theme.label(body,"Resources",string.format("HP %d   MP %d",derived.health,derived.mana),UDim2.fromOffset(narrow and 122 or 0,narrow and 72 or 446),UDim2.fromOffset(narrow and math.max(130,body.AbsoluteSize.X-132) or portraitWidth,42),14)
-		resources.Visible=narrow
-		local content=Instance.new("Frame"); content.Name="Growth"; content.BackgroundTransparency=1; content.Position=UDim2.fromOffset(narrow and 0 or portraitWidth+18,narrow and 172 or 0); content.Size=UDim2.new(1,narrow and -4 or -portraitWidth-22,0,700); content.Parent=body
+		local image=Instance.new("ImageLabel");image.BackgroundTransparency=1;image.Size=UDim2.fromScale(1,1);image.Image="rbxassetid://"..portraits[classId];image.ScaleType=Enum.ScaleType.Fit;image.Parent=portraitFrame
+		local content=Instance.new("Frame");content.Name="Growth";content.BackgroundTransparency=1;content.Position=UDim2.fromOffset(narrow and 0 or portraitWidth+18,narrow and 172 or 0);content.Size=UDim2.new(1,narrow and -4 or -portraitWidth-22,0,700);content.Parent=body
 		local editable=snapshot.ready and snapshot.atHub and not pending
-		if tab=="Stats" then
-			label(content,"Points","AVAILABLE STAT POINTS   "..(statPoints-spent),0,30,16,Theme.color.gold)
-			label(content,"Budget","+4 per level  /  Base + invested + draft",30,24,11,Theme.color.muted)
-			for index,key in ipairs(Growth.statKeys) do
-				local y=62+(index-1)*58
-				local row=Chrome.frame(content,key,UDim2.fromOffset(0,y),UDim2.new(1,0,0,52))
-				label(row,"Value",string.format("%s   %d  (%d + %d + %d)",key,derived.totalStats[key],Growth.bases[classId].stats[key],g.stats[key],draft[key]),0,50,14)
-				local minus=Theme.button(row,"Minus","-",UDim2.new(1,-92,0,8),UDim2.fromOffset(38,36))
-				local plus=Theme.button(row,"Plus","+",UDim2.new(1,-48,0,8),UDim2.fromOffset(38,36))
-				row.Value.Size=UDim2.new(1,-110,1,0)
-				Theme.enabled(minus,editable and draft[key]>0); Theme.enabled(plus,editable and statPoints>spent)
-				minus.Activated:Connect(function() if editable and draft[key]>0 then draft[key]=draft[key]-1; render() end end)
-				plus.Activated:Connect(function() if editable and statPoints>spent then draft[key]=draft[key]+1; render() end end)
-			end
-			label(content,"Derived",string.format("POWER %d   MAGIC %d   ARMOR %d",derived.physicalPower,derived.magicPower,derived.armor),302,38,13,Theme.color.silver)
-			label(content,"Effects","STR: melee power  /  DEX: bow power\nINT: magic power & Mage MP  /  VIT: HP & armor",342,44,11,Theme.color.muted)
-			local cancel=Theme.button(content,"CancelDraft","CANCEL DRAFT",UDim2.fromOffset(0,398),UDim2.new(.5,-5,0,42))
-			local apply=Theme.button(content,"ApplyPoints","APPLY POINTS",UDim2.new(.5,5,0,398),UDim2.new(.5,-5,0,42),true)
-			Theme.enabled(apply,editable and spent>0)
-			cancel.Activated:Connect(function() resetDraft(); render() end)
-			apply.Activated:Connect(function() if editable and spent>0 then send("AllocateStats",{stats=Growth.copy(draft)}) end end)
-			label(content,"CommitNote","Applied points are permanent. Cancel only clears this draft.",448,40,11,Theme.color.muted)
-		elseif tab=="Advance" then
+		if tab=="Advance" then
 			selectedBranch=g.branch~="" and g.branch or selectedBranch
 			if not selectedBranch or Advanced.branches[selectedBranch].classId~=classId then selectedBranch=Advanced.order[classId][1] end
 			label(content,"PathHeading","CLASS ADVANCEMENT",0,30,16,Theme.color.gold)
@@ -143,7 +122,7 @@ function Gui.create(onVisibility)
 				Theme.enabled(button,ready)
 				button.Activated:Connect(function() if ready then send("Advance",{branch=selectedBranch,stage=nextStage}) end end)
 			end
-			label(content,"AdvancementNote","Complete each trial in Dawnspire. Reaching a level alone does not advance your hero. Stage 1 opens slot 4; stage 2 opens slot 5.\nNew path skills are learned at their listed levels after the matching stage is complete.",546,102,12,Theme.color.muted)
+			label(content,"AdvancementNote","Complete each trial in Hub. Reaching a level alone does not advance your hero. Stage 1 opens slot 4; stage 2 opens slot 5.\nNew path skills are learned at their listed levels after the matching stage is complete.",546,102,12,Theme.color.muted)
 			content:SetAttribute("ContentHeight",660)
 		end
 		if pending then
@@ -151,7 +130,7 @@ function Gui.create(onVisibility)
 			retry.Activated:Connect(function() if pending then remote:FireServer(pending); show("Checking the same save...") end end)
 		end
 		body.CanvasSize=UDim2.fromOffset(0,(narrow and 172 or 0)+(tab=="Stats" and (pending and 550 or 496) or (content:GetAttribute("ContentHeight") or 706)+(pending and 50 or 0)))
-		if not snapshot.atHub and not pending then show("Return to Dawnspire to invest points or change skills.") end
+		if not snapshot.atHub and not pending then show("Return to Hub to invest points or change skills.") end
 	end
 	advanceTab.Activated:Connect(function() tab="Advance";body.CanvasPosition=Vector2.zero;render() end)
 	statsTab.Activated:Connect(function() tab="Stats";body.CanvasPosition=Vector2.zero; render() end)

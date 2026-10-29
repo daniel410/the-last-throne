@@ -23,7 +23,7 @@ local profiles = {
 -- Skill-specific palettes and impact silhouettes. IDs are supplied by the
 -- server's confirmed damage event; unknown IDs use the class baseline.
 local skillProfiles = {
-	["knight.common.bash"] = { class = "knight", color = Color3.fromRGB(255, 193, 82), secondary = Color3.fromRGB(255, 245, 190), shape = "shield" },
+	["knight.common.bash"] = { class = "knight", color = Color3.fromRGB(100, 208, 255), secondary = Color3.fromRGB(245, 253, 255), shape = "shield" },
 	["knight.common.whirlwind"] = { class = "knight", color = Color3.fromRGB(255, 219, 122), secondary = Color3.fromRGB(244, 251, 255), shape = "sweep" },
 	["dwarf.common.overhead"] = { class = "dwarf", color = Color3.fromRGB(255, 151, 63), secondary = Color3.fromRGB(255, 224, 157), shape = "chop" },
 	["dwarf.common.throw"] = { class = "dwarf", color = Color3.fromRGB(255, 182, 76), secondary = Color3.fromRGB(237, 241, 255), shape = "axe" },
@@ -101,7 +101,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		if isRing then
 			accent.Shape = Enum.PartType.Cylinder
 			accent.CFrame = CFrame.new(position) * CFrame.Angles(0, 0, math.rad(90))
-			TweenService:Create(accent, TweenInfo.new(0.28), { Size = Vector3.new(0.12, 2.5, 2.5) * scale, Transparency = 1 }):Play()
+			TweenService:Create(accent, TweenInfo.new(0.28), { Size = Vector3.new(0.12, skill.shape=="shield" and 4.5 or 2.5, skill.shape=="shield" and 4.5 or 2.5) * scale, Transparency = 1 }):Play()
 		else
 			accent.Shape = Enum.PartType.Block
 			local flat = typeof(direction) == "Vector3" and finite(direction.X) and finite(direction.Z)

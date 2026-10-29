@@ -142,7 +142,7 @@ function InventoryGui.create(onVisibility, feedback)
 		if error and not opened and feedback then feedback(text) end
 	end
 	local function setOpen(value)
-		opened=value; shade.Visible=value; launcher.Visible=not value
+		opened=value; shade.Visible=value; launcher.Visible=not value and not player:GetAttribute("TLTProgressionOpen")
 		discardOverlay.Visible=false; discardTarget=nil
 		if not value then claimsOverlay.Visible=false end
 		player:SetAttribute("TLTInventoryOpen",value)
@@ -158,6 +158,7 @@ function InventoryGui.create(onVisibility, feedback)
 			if previousFocus and previousFocus.Parent and previousFocus.Visible then GuiService.SelectedObject=previousFocus else GuiService.SelectedObject=nil end
 		end
 	end
+	player:GetAttributeChangedSignal("TLTProgressionOpen"):Connect(function() launcher.Visible=not opened and not player:GetAttribute("TLTProgressionOpen") end)
 	local function choose(item)
 		selectedId,accessorySlot,quantity,quantityBox=item.instanceId,nil,1,nil
 		expandedDetails=false

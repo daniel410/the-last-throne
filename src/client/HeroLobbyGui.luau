@@ -46,7 +46,10 @@ end
 
 local function button(parent,name,value,position,size)
 	local result=Theme.button(parent,name,"",position,size)
-	result.Caption:Destroy()
+	result.Caption.Text=value
+	result.TextTransparency=1
+	result:GetPropertyChangedSignal("Text"):Connect(function() result.Caption.Text=result.Text end)
+	result:GetPropertyChangedSignal("TextSize"):Connect(function() result.Caption.TextSize=result.TextSize end)
 	result.Text,result.TextSize,result.Font,result.TextColor3,result.TextWrapped=value,13,Enum.Font.GothamBold,COLOR.cream,true
 	return result
 end
@@ -78,7 +81,7 @@ function LobbyGui.create(request,onManage)
 	local explore = button(shell, "ExploreCourtyard", "X", UDim2.new(1,-58,0,12), UDim2.fromOffset(40,40))
 	explore.Activated:Connect(function() minimized=true; shade.Visible=false; reopen.Visible=not suppressed end)
 	reopen.Activated:Connect(function() minimized=false; shade.Visible=not suppressed; reopen.Visible=false end)
-	local titlePlaque=Menu.plaque(shell,"TitlePlaque","CHOOSE YOUR HERO",UDim2.new(.5,-200,0,-26),UDim2.fromOffset(400,64))
+	local titlePlaque=Menu.plaque(shell,"TitlePlaque","THE LAST THRONE",UDim2.new(.5,-200,0,-26),UDim2.fromOffset(400,64))
 	local subtitle = label(shell, "Subtitle", Text.Lobby.Subtitle, UDim2.fromOffset(18, 46), UDim2.new(1, -36, 0, 23), 13, COLOR.cream)
 	label(shell, "SessionNotice", Text.Lobby.Notice, UDim2.fromOffset(18, 75), UDim2.new(1, -36, 0, 34), 12, COLOR.gold)
 	local roster = label(shell, "Roster", string.format(Text.Lobby.RosterFormat, 0, 4), UDim2.fromOffset(18, 113), UDim2.new(1, -36, 0, 20), 12, COLOR.muted)
@@ -275,7 +278,7 @@ function LobbyGui.create(request,onManage)
 		titlePlaque.Size=UDim2.fromOffset(math.min(400,width*.72),56)
 		titlePlaque.Caption.TextSize=compact and 17 or 24
 		subtitle.Position,subtitle.Size=UDim2.fromOffset(22,38),UDim2.new(1,-86,0,24)
-		subtitle.Text="Choose your class. Your adventure starts in Dawnspire."
+		subtitle.Text="CHOOSE YOUR HERO  /  Begin your adventure."
 		subtitle.Visible=not short
 		shell.SessionNotice.Position,shell.SessionNotice.Size=UDim2.fromOffset(22,short and 36 or 65),UDim2.new(1,-44,0,28)
 		shell.SessionNotice.TextSize=10
@@ -292,7 +295,7 @@ function LobbyGui.create(request,onManage)
 		manage.Position,manage.Size=UDim2.new(0,22,1,-56),UDim2.new(.38,-28,0,44);manage.TextSize=compact and 10 or 13
 		start.Position,start.Size=UDim2.new(.4,0,1,-56),UDim2.new(.6,-22,0,44)
 		start.BackgroundColor3=Color3.fromRGB(20,120,46)
-		explore.Position,explore.Size=UDim2.new(1,-54,0,10),UDim2.fromOffset(44,44)
+		explore.Position,explore.Size=UDim2.new(1,-54,0,52),UDim2.fromOffset(44,44)
 		explore.BackgroundColor3=Color3.fromRGB(170,29,46)
 	end
 

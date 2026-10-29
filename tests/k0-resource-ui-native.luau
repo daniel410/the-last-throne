@@ -141,6 +141,7 @@ local ok, failure = xpcall(function()
 		lobby.setState({ phase = "Lobby", heroes = {hero}, selectedHeroId = "test", canManage = true, canStart = true })
 		check(string.find(slots.Slot4.Text, "EMPTY", 1, true) ~= nil, classId .. " practice slot remains empty")
 	end
+	local statsView=require(client.HeroStatsView)
 	local tree=require(client.HeroSkillTree)
 	local growth=require(game:GetService("ReplicatedStorage").Shared.HeroProgression)
 	local advanced=require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills)
@@ -158,9 +159,20 @@ local ok, failure = xpcall(function()
 				check(count==16,classId.." selected branch has exactly sixteen actual skill nodes")
 				check(body:FindFirstChild("SkillDetails") and body:FindFirstChild("CombatLoadout"),"tree keeps detail and loadout controls")
 				check(height>500,"tree reports scrollable content height")
+				check(body.SkillMap.Skill1:FindFirstChild("SkillGlyph")~=nil,"basic skill uses a distinct native action symbol")
 				check(body.CombatLoadout.Slot4.Active==(level==80),"loadout slot eligibility follows completed advancement")
 			end
 		end
+		body:ClearAllChildren()
+		local g=growth.new(2)
+		local h={heroId="test",baseClassId=classId,progression=g}
+		local draft={STR=0,DEX=0,INT=0,VIT=0}
+		local height=statsView.render(body,h,{ready=true,atHub=true,items={}},growth.derived(classId,g),draft,nil,function() end,function() end,function() end,function() end)
+		local slots=0;for _,v in ipairs(body.HeroEquipment:GetChildren()) do if v.Name:match("^EquipSlot_") then slots+=1 end end
+		check(slots==8,"stats view contains eight actual equipment slots")
+		check(body.StatAllocation.STR.Plus.Active,"level two has investable stat points")
+		check(not body.StatAllocation.ApplyPoints.Active,"empty draft cannot be confirmed")
+		check(height>500,"stats view reports scrollable content")
 	end
 	body:Destroy()
 

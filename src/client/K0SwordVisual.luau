@@ -427,8 +427,12 @@ function Visual.renderArms(character, dt)
 			left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 			right = CFrame.Angles(math.rad(phase == "Windup" and 50 or phase == "Active" and 85 or 35), 0, math.rad(-15))
 		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.bash" then
-			local pitch = phase == "Windup" and 90 or phase == "Active" and 125 or 70
-			left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
+			local windup,active=phase=="Windup",phase=="Active"
+			left=CFrame.new(0,0,active and -.9 or windup and .18 or -.3)*CFrame.Angles(0,math.rad(windup and -100 or active and -55 or -65),0)*CFrame.Angles(math.rad(windup and 75 or active and 140 or 100),0,0)
+			right=CFrame.Angles(math.rad(active and 70 or 35),0,math.rad(-20))
+			torso=CFrame.new(0,0,active and -.28 or windup and .12 or -.12)*CFrame.Angles(math.rad(active and -18 or windup and 10 or -6),math.rad(windup and -22 or active and 14 or 6),0)
+			leftHipPose=CFrame.Angles(math.rad(active and -24 or 8),0,0)
+			rightHipPose=CFrame.Angles(math.rad(active and 12 or -8),0,0)
 		elseif classId == "knight" then
 			local side = character:GetAttribute("K0Combo") == 2 and -1 or 1
 			local pitch = phase == "Windup" and 60 or phase == "Active" and 60 or 20
@@ -511,7 +515,7 @@ function Visual.renderArms(character, dt)
 		local root = character:FindFirstChild("HumanoidRootPart")
 		local rootJoint = root and root:FindFirstChild("RootJoint")
 		if rootJoint and rootJoint:IsA("Motor6D") then
-			local rootPose = classId == "knight" and skillId == "knight.common.whirlwind" and torso or nil
+			local rootPose = classId == "knight" and (skillId == "knight.common.whirlwind" or skillId == "knight.common.bash") and torso or nil
 			if not slamming then apply(rootJoint, rootPose) end
 		end
 	end
@@ -630,6 +634,31 @@ local function areaPulse(position, color, radius)
 	part.Transparency = 0.55
 	TweenService:Create(part, TweenInfo.new(0.35), { Size = Vector3.new(0.15, radius * 2, radius * 2), Transparency = 1 }):Play()
 	task.delay(0.4, function() part:Destroy() end)
+end
+
+local bashEffects={}
+local function shieldBashPulse(root)
+	for i=#bashEffects,1,-1 do if not bashEffects[i].Parent then table.remove(bashEffects,i) end end
+	if #bashEffects>=12 then table.remove(bashEffects,1):Destroy() end
+	local holder=Instance.new("Folder");holder.Name="K0ShieldBashPulse";holder.Parent=workspace
+	table.insert(bashEffects,holder)
+	local center=root.CFrame*CFrame.new(-.5,.2,-2.6)
+	for layer=1,2 do
+		for i=1,12 do
+			local angle=i*math.pi/6
+			local p=arrowPart(holder,"ShieldShockwave",Vector3.new(.1,.5,.12),layer==1 and Color3.fromRGB(100,208,255) or Color3.fromRGB(255,238,176),Enum.Material.Neon)
+			local x,y=math.cos(angle),math.sin(angle)
+			p.CFrame=center*CFrame.new(x*.8,y*.8,0)*CFrame.Angles(0,0,angle-math.pi/2)
+			p.Transparency=.22+layer*.12
+			TweenService:Create(p,TweenInfo.new(.32+layer*.06,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{CFrame=center*CFrame.new(x*(2.4+layer*.3),y*(2.4+layer*.3),-layer*.45)*CFrame.Angles(0,0,angle-math.pi/2),Size=Vector3.new(.08,1.3,.1),Transparency=1}):Play()
+		end
+	end
+	for i=1,6 do
+		local p=arrowPart(holder,"ShieldSpark",Vector3.new(.09,.09,.7),Color3.fromRGB(227,250,255),Enum.Material.Neon)
+		p.CFrame=center*CFrame.new((i-3.5)*.23,(i%2)*.4,0)
+		TweenService:Create(p,TweenInfo.new(.28),{CFrame=p.CFrame*CFrame.new((i-3.5)*.3,.2,-1.4),Transparency=1}):Play()
+	end
+	task.delay(.55,function() holder:Destroy() end)
 end
 
 local function advanceArrows(dt)
@@ -890,9 +919,10 @@ function Visual.renderCharacter(character, dt)
 	if classId == "knight" and character:GetAttribute("K0AttackPhase") == "Active" then
 		local skillId, seq = character:GetAttribute("K0SkillId"), character:GetAttribute("K0AttackSeq")
 		local root = character:FindFirstChild("HumanoidRootPart")
-		if root and seq and seenSkillEffects[character] ~= seq and (skillId == "knight.common.whirlwind" or skillId == "knight.common.provoke") then
+		if root and seq and seenSkillEffects[character] ~= seq and (skillId == "knight.common.whirlwind" or skillId == "knight.common.provoke" or skillId == "knight.common.bash") then
 			seenSkillEffects[character] = seq
-			areaPulse(root.Position, skillId == "knight.common.whirlwind" and Color3.fromRGB(255, 222, 151) or Color3.fromRGB(255, 147, 75), skillId == "knight.common.whirlwind" and 7 or 12)
+			if skillId=="knight.common.bash" then shieldBashPulse(root)
+			else areaPulse(root.Position, skillId == "knight.common.whirlwind" and Color3.fromRGB(255, 222, 151) or Color3.fromRGB(255, 147, 75), skillId == "knight.common.whirlwind" and 7 or 12) end
 		end
 	end
 	if classId == "dwarf" and character:GetAttribute("K0AttackPhase") == "Active"

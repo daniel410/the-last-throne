@@ -5,6 +5,7 @@ local Menu=require(script.Parent.HeroMenuChrome)
 local Advanced=require(RS.Shared.AdvancedSkills)
 local Growth=require(RS.Shared.HeroProgression)
 local Config=require(RS.Shared.K0Config)
+local Glyph=require(script.Parent.SkillGlyph)
 local Tree={}
 local portraits={knight='103255177842108',elf='80894238854345',dwarf='74628903359757',mage='91907986271282'}
 local classNames={knight='Knight',elf='Elf Archer',dwarf='Dwarf Axe Thrower',mage='Mage'}
@@ -54,7 +55,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
   local count=#row.indices
   local left=treeWidth<440 and 58 or 76
   local available=treeWidth-left-20
-  local tag=Menu.plaque(map,'Stage'..row.stage,row.stage==0 and 'BASIC' or 'Lv.'..row.stage*20,UDim2.fromOffset(8,y+8),UDim2.fromOffset(left-12,34));tag.Caption.TextSize=treeWidth<440 and 9 or 11
+  local tag=Menu.plaque(map,'Stage'..row.stage,row.stage==0 and 'BASE' or 'Lv.'..row.stage*20,UDim2.fromOffset(8,y+8),UDim2.fromOffset(left-12,34));tag.Caption.TextSize=treeWidth<440 and 9 or 11
   for order,index in ipairs(row.indices) do
    local base=Config.Skills[classId][index]
    positions[index]=Vector2.new(left+available*(order-.5)/math.max(count,1),y+size/2)
@@ -82,8 +83,9 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
    local base=Config.Skills[classId][index]
    local learned=Advanced.unlocked(g,classId,index)
    local pos=positions[index]
-   local node=Menu.node(map,'Skill'..index,base.icon or defaultIcons[classId],UDim2.fromOffset(pos.X-size/2,pos.Y-size/2),size,learned,index==selected)
+   local node=Menu.node(map,'Skill'..index,'',UDim2.fromOffset(pos.X-size/2,pos.Y-size/2),size,learned,index==selected)
    node:SetAttribute('SkillIndex',index);node:SetAttribute('Unlocked',learned)
+   local symbol=table.clone(base);symbol.root=index<=3 and index or base.root;Glyph.draw(node,classId,symbol,size*.72,learned)
    local badge=label(node,'Rank',learned and ('Lv.'..(1+g.mastery[index])) or 'LOCKED',-5,size-3,size+10,20,9,learned and Theme.color.gold or Theme.color.muted)
    badge.BackgroundTransparency,badge.BackgroundColor3=0,Theme.color.ink;badge.TextXAlignment=Enum.TextXAlignment.Center
    local title=label(map,'SkillName'..index,base.name,pos.X-((treeWidth-90)/math.max(#row.indices,3)-6)/2,pos.Y+size/2+22,(treeWidth-90)/math.max(#row.indices,3)-6,38,treeWidth<440 and 8 or 10,learned and Theme.color.text or Theme.color.muted);title.TextXAlignment=Enum.TextXAlignment.Center
@@ -99,7 +101,8 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local skill=Growth.skill(classId,selected,base,g)
  local learned=Advanced.unlocked(g,classId,selected)
  local heading=Menu.plaque(detail,'SkillTitle',base.name,UDim2.fromOffset(10,10),UDim2.new(1,-20,0,50));heading.Caption.TextSize=15
- Menu.node(detail,'SelectedSkillIcon',base.icon or defaultIcons[classId],UDim2.new(.5,-44,0,84),88,learned,true)
+ local detailIcon=Menu.node(detail,'SelectedSkillIcon','',UDim2.new(.5,-44,0,84),88,learned,true)
+ local symbol=table.clone(base);symbol.root=selected<=3 and selected or base.root;Glyph.draw(detailIcon,classId,symbol,66,learned)
  local rank=label(detail,'Mastery','MASTERY  '..(1+g.mastery[selected])..' / 4',12,196,detailW-24,28,15,Theme.color.gold);rank.TextXAlignment=Enum.TextXAlignment.Center
  local effect=skill.damage>0 and string.format('Damage × %.2f',skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration)
  if skill.pulses and skill.pulses>1 then effect=effect..'  /  '..skill.pulses..' hits' end
