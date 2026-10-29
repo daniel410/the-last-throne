@@ -1,3 +1,4 @@
+local Story=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
 -- Pure single-account transitions; no services, clocks, random IDs or side effects.
 local Growth = game and require(game:GetService("ReplicatedStorage").Shared.HeroProgression) or dofile("src/shared/HeroProgression.luau")
 local Rules = {}
@@ -90,6 +91,7 @@ function Rules.validate(profile, catalog)
 	for id, hero in pairs(profile.heroes) do
 		if type(hero) ~= "table" or id ~= hero.heroId or type(id) ~= "string" or not catalog.classes[hero.baseClassId]
 			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, 80) or type(hero.quickSlots) ~= "table" then return false end
+		if hero.deepwood~=nil and not Story.validate(hero.deepwood) then return false end
 		if hero.progression ~= nil and (not Growth.validate(hero.progression,hero.baseClassId) or hero.level ~= hero.progression.level) then return false end
 		for index = 1, 2 do
 			local definition = catalog.items[hero.quickSlots[index]]
@@ -274,6 +276,10 @@ function Rules.progress(profile,command,context,catalog)
 	if repeated then return nextProfile,nil,true end
 	nextProfile.heroes[command.heroId].progression=nextG
 	nextProfile.heroes[command.heroId].level=nextG.level
+ if command.action=='AwardXP' and command.coins~=nil then
+  if not Rules.integer(command.coins,0,1000000) then return nil,'InvalidRequest' end
+  local h=nextProfile.heroes[command.heroId];h.deepwood=h.deepwood or Story.new();h.deepwood.killCoins=(h.deepwood.killCoins or 0)+command.coins
+ end
 	nextProfile.revision=nextProfile.revision+1
 	if command.action~="AwardXP" then
 		nextProfile.operations[command.requestId]={fingerprint=fingerprint,revision=nextProfile.revision}
@@ -282,5 +288,30 @@ function Rules.progress(profile,command,context,catalog)
 	end
 	if not Rules.validate(nextProfile,catalog) then return nil,"Incompatible" end
 	return nextProfile
+end
+-- Journal, first-clear receipt, Coins and quest XP commit in one account write.
+function Rules.story(profile,heroId,chapterId,goalId,choice,catalog)
+ local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
+ local journal,reason,reward=Story.apply(hero.deepwood or Story.new(),chapterId,goalId,choice)
+ if not journal then return nil,reason end
+ if reward.repeated then return Rules.copy(profile),nil,true end
+ local n=Rules.copy(profile);local h=n.heroes[heroId];h.deepwood=journal
+ local g=h.progression or Growth.new(h.level)
+ g.xp=g.xp+reward.xp
+ while g.level<80 and g.xp>=Growth.xpToNext(g.level) do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end
+ if g.level==80 then g.xp=0 end
+ g.revision=g.revision+1
+ h.progression=g;h.level=g.level;n.revision=n.revision+1
+ local function grant(id,quantity,suffix)
+  local instanceId=heroId..'-'..chapterId..'-'..suffix
+  if not n.items[instanceId] then insertItem(n,instanceId,id,quantity,{kind='pending'},catalog,'story:'..heroId..':'..chapterId..':'..suffix) end
+ end
+ if reward.chapter=='DW-01' or reward.chapter=='DW-05' then grant(h.baseClassId..'_weapon_fine',1,'equipment')
+ elseif reward.chapter=='DW-02' then grant('traveler_coat',1,'equipment')
+ elseif reward.chapter=='DW-04' or reward.chapter=='DW-06' then grant('iron_ore',5,'materials') end
+ if chapterId=='DW-05' and goalId=='warlord' then grant('warlord_seal',1,'bossseal') end
+ if chapterId=='DW-07' and goalId=='king_shaman' then grant('king_shaman_seal',1,'bossseal') end
+ if not Rules.validate(n,catalog) then return nil,'Incompatible' end
+ return n
 end
 return Rules

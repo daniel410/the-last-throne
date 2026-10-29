@@ -205,6 +205,8 @@ local function makeTerrain(folder)
 	makeSign(terrain)
 end
 
+TrainingField.makeEnemy = makeEnemy
+
 function TrainingField.create()
 	-- Check all imported K0 template contracts before changing Workspace.
 	for _, kind in ipairs({ "Goblin", "Orc", "Ogre", "Slime" }) do

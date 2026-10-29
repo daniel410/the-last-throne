@@ -192,6 +192,16 @@ lines.append('server.Disabled=false')
 lines.append('client.Disabled=false')
 lines.append('print("K0_SOURCE_PROBE_INPUTS " .. ' + quote(json.dumps(manifest, sort_keys=True)) + ')')
 lines.append(test_script.read_text())
+# Import optional pinned TD environment models from their actual serialized bytes.
+server_storage = next(item for item in fixture_xml.findall('Item') if item.find("./Properties/string[@name='Name']") is not None and item.find("./Properties/string[@name='Name']").text == 'ServerStorage')
+for mount in ('TDMapModels', 'TDForestKit'):
+    entry = project_tree.get('ServerStorage', {}).get(mount)
+    if entry:
+        path = project / entry['$path']
+        imported = copy.deepcopy(ET.fromstring(path.read_bytes()).find('Item'))
+        imported.find("./Properties/string[@name='Name']").text = mount
+        server_storage.append(imported)
+        manifest[entry['$path']] = hashlib.sha256(path.read_bytes()).hexdigest()
 place = out / 'tlt-k0-qa-empty.rbxlx'
 runner = out / 'source-probe.luau'
 place.write_bytes(ET.tostring(fixture_xml, encoding='utf-8', xml_declaration=True) + b'\n')

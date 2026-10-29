@@ -1,0 +1,22 @@
+{
+  "captured": "2026-10-29",
+  "source_repository": "../throne-defense",
+  "files": [
+    {
+      "path": "assets/shared/td-deepwood-environment/maps.rbxmx",
+      "td_source_path": "assets/models/maps-mesh-v2/runtime.rbxmx",
+      "sha256": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39",
+      "bytes": 50089,
+      "byte_identical": true
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+      "td_source_path": "assets/models/maps-quality-v2/forest-kit-v3/runtime.rbxmx",
+      "sha256": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5",
+      "bytes": 72228,
+      "byte_identical": true
+    }
+  ],
+  "scope": "Pinned TD presentation only. RPG collision and story geometry are independent. No TD source edits.",
+  "permissions": "User requested shared TD models; published independent Experience asset permissions remain unverified."
+}

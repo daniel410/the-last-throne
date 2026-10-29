@@ -9,6 +9,8 @@ local LevelUpEffect=require(script.Parent.HeroLevelUpEffect)
 local AdvancedCombat=require(script.Parent.AdvancedCombat)
 local advancedEffectRemote
 local Growth = require(ReplicatedStorage.Shared.HeroProgression)
+local storyDamageHandler
+local storyDefeatHandler
 local rewardHandler
 local Config = require(ReplicatedStorage.Shared.K0Config)
 local Rules = require(script.Parent.K0Rules)
@@ -652,6 +654,7 @@ local function damageEnemy(state, enemy, attack, current)
 	-- Retain this impact's hit set before damage can fire Died. A split child
 	-- must not be sampled by the same swing or projectile that made it.
 	enemy.lethalHitSet = enemy.kind == "Slime" and not enemy.splitGroup and damage >= healthBefore and attack.hits or nil
+	if storyDamageHandler and enemy.model:GetAttribute("DeepwoodEncounter") then damage=storyDamageHandler(enemy.model,damage) end
 	enemy.humanoid:TakeDamage(damage)
 	if enemy.humanoid.Health > 0 then enemy.lethalHitSet = nil end
 	local applied = math.max(0, healthBefore - math.max(0, enemy.humanoid.Health))
@@ -1277,7 +1280,7 @@ end
 
 local function beginEnemyAttack(enemy, target, current)
 	local attackIndex = 1
-	if enemy.kind == "Ogre" then
+	if enemy.kind == "Ogre" or enemy.model:GetAttribute("DeepwoodEncounter") and #enemy.config.attacks>1 then
 		attackIndex = enemy.pattern % 3 == 2 and 2 or 1
 		enemy.pattern = enemy.pattern + 1
 	elseif enemy.kind == "Goblin" then
@@ -1330,6 +1333,7 @@ local function resetEnemy(enemy)
 end
 
 local function stepEnemy(enemy, current, dt)
+ if (enemy.model:GetAttribute('StoryPauseUntil') or 0)>workspace:GetServerTimeNow() then stopEnemy(enemy);return end
 	if not enemyAlive(enemy) then
 		return
 	end
@@ -1497,6 +1501,20 @@ end
 registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	local kind = model:GetAttribute("EnemyKind")
 	local config = Config.Enemy[kind]
+ if model:GetAttribute('DeepwoodEncounter') then
+  config=table.clone(config or Config.Enemy.Orc)
+  config.health=model:GetAttribute('StoryHealth') or config.health
+  config.walkSpeed=9;config.aggroRange=32;config.leashRange=65
+  local damage=model:GetAttribute('StoryDamage') or 25
+  config.attacks={}
+  local source=(Config.Enemy[kind] or Config.Enemy.Orc).attacks
+  if kind=='Shaman' then source={{name='Melee',windup=1.25,active=.18,recovery=1.3,range=18,angle=35,blockable=true}}
+  elseif kind=='KingShaman' then source={{name='Melee',windup=1.2,active=.2,recovery=1.3,range=22,angle=35,blockable=true},{name='Unblockable',windup=1.6,active=.15,recovery=1.8,range=10,angle=360,blockable=false}}
+  elseif kind=='Warlord' or kind=='EnragedWarlord' or kind=='KingOgre' then source={{name='Melee',windup=1.1,active=.15,recovery=1.1,range=7,angle=100,blockable=true},{name='Unblockable',windup=1.5,active=.2,recovery=1.5,range=12,angle=50,blockable=false}} end
+  for _,attack in ipairs(source) do
+   local a=table.clone(attack);a.damage=damage;table.insert(config.attacks,a)
+  end
+ end
 	local humanoid = model:FindFirstChildOfClass("Humanoid")
 	local root = model:FindFirstChild("HumanoidRootPart")
 	if not config or not humanoid or not root or not root:IsA("BasePart") then
@@ -1517,6 +1535,9 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 		splitGroup = splitGroup,
 	}
 	enemyStates[model] = enemy
+ model.AncestryChanged:Connect(function()
+  if not model:IsDescendantOf(enemyFolder) then enemyStates[model]=nil;enemy.pathToken=enemy.pathToken+1 end
+ end)
 	local health = splitGroup and splitGroup.childHealth or config.health
 	humanoid.MaxHealth = health
 	humanoid.Health = health
@@ -1545,15 +1566,18 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 		if enemy.deathHandled then return end
 		enemy.deathHandled = true
 		local winner=enemy.lastAttacker
-		if not splitGroup and rewardHandler and winner and playerStates[winner.player]==winner and winner.player.Parent==Players then
+		if not model:GetAttribute("DeepwoodEncounter") and not splitGroup and rewardHandler and winner and playerStates[winner.player]==winner and winner.player.Parent==Players then
 			-- Trial training levels; approved XP formula 8 + 2 * enemy level.
 			local level=({Slime=1,Goblin=2,Orc=4,Ogre=8})[kind] or 1
 			rewardHandler(winner.player,winner.heroId,8+2*level,true)
 		end
+  if model:GetAttribute('DeepwoodEncounter') and storyDefeatHandler then storyDefeatHandler(model,winner and winner.player) end
 		resetEnemyAttack(enemy)
 		setEnemyState(enemy, "Dead")
 		enemy.pathToken = enemy.pathToken + 1
-		if splitGroup then
+  if model:GetAttribute('DeepwoodEncounter') then
+   task.delay(2,function() enemyStates[model]=nil;if model.Parent then model:Destroy() end end)
+		elseif splitGroup then
 			retireSplitChild(enemy)
 		elseif kind == "Slime" then
 			splitSlime(enemy)
@@ -1731,6 +1755,8 @@ function CombatService.applyInventoryItem(player, definition, character)
 	elseif definition.restore == "mana" and state.mana then setMana(state, state.mana + definition.amount) end
 end
 
+function CombatService.addStoryEnemy(model) return registerEnemy(model) end
+function CombatService.setStoryDefeatHandler(callback,damageCallback) storyDefeatHandler=callback;storyDamageHandler=damageCallback end
 function CombatService.start(enemies, serverContextResolver, awardXP)
 	rewardHandler=awardXP
 	assert(not started, "K0 combat service already started")

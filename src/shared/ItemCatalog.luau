@@ -45,4 +45,7 @@ Catalog.items.iron_ore = {id = "iron_ore", name = "Iron Ore", category = "Materi
 Catalog.items.soft_hide = {id = "soft_hide", name = "Soft Hide", category = "Materials", maxStack = 999,
 	glyph = "LH", rarity = "Common", description = "Crafting material. Crafting is not available yet."}
 Catalog.kit = {"traveler_hood", "traveler_coat", "traveler_gloves", "traveler_boots", "copper_ring", "amber_charm", "veteran_hood"}
+for _,id in ipairs({'warlord_seal','king_shaman_seal'}) do
+ Catalog.items[id]={id=id,name=id=='warlord_seal' and 'Orc Warlord Seal' or 'King Shaman Seal',category='Materials',maxStack=99,glyph='SE',rarity='Uncommon',description='A personal trophy from the Deepwood campaign. Collect from Unclaimed at Hub.'}
+end
 return Catalog

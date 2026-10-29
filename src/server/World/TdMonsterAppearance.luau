@@ -7,6 +7,12 @@ local SPECS = {
 	Goblin = { template = "goblin", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
 	Orc = { template = "orc", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
 	Ogre = { template = "ogre", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
+	Shaman = {template = "shaman", parts = {"Body", "ArmL", "ArmR"}},
+ Warlord = {template = "warlord", parts = {"Body", "ArmL", "ArmR", "LegL", "LegR"}},
+ GoblinKing = {template = "king", parts = {"Body", "ArmL", "ArmR"}},
+ KingOgre = {template = "king_ogre", parts = {"Body", "ArmL", "ArmR"}},
+ EnragedWarlord = {template = "warlord:enraged", parts = {"Body"}},
+ KingShaman = {template = "king_shaman", parts = {"Body", "ArmL", "ArmR"}},
 	Slime = { template = "slime", parts = { "Body" } },
 }
 
@@ -78,6 +84,7 @@ function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 		assert(torso and torso:IsA("BasePart"), "Missing R6 torso for " .. kind)
 		local jointNames = { ArmL = "Right Shoulder", ArmR = "Left Shoulder", LegL = "Right Hip", LegR = "Left Hip" }
 		for partName, jointName in pairs(jointNames) do
+   if not sources[partName] then continue end
 			local joint = torso:FindFirstChild(jointName)
 			assert(joint and joint:IsA("Motor6D") and joint.Part0 == torso and joint.Part1 == anchors[partName],
 				"Missing R6 joint for " .. kind .. ": " .. jointName)

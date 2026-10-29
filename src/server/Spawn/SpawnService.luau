@@ -102,6 +102,7 @@ requestLoad = function(state, generation)
 		end
 	end
 	local request = state.desiredRequest
+ if lifecycle.resolveDestination then request.destination=lifecycle.resolveDestination(state.player,request.destination) end
 	if not isSafeSpawnAvailable(request.destination) then
 		warn("K0 safe spawn is unavailable; character loading will retry.")
 		scheduleRetry(state, generation)

@@ -1,7 +1,7 @@
 -- en-US source text for the K0 training prototype. Keys are language-neutral.
 return {
 	Title = "DEEPWOOD",
-	Subtitle = "TRAINING GROVE",
+	Subtitle = "THE BLACK ROOTS",
 	TrailSign = "DEEPWOOD\nTRAINING FIELD  >",
 	ClassKnight = "KNIGHT",
 	Class = { knight = "Knight", elf = "Elf Archer", dwarf = "Dwarf Axe Thrower", mage = "Mage" },
@@ -52,8 +52,8 @@ return {
 		Selected = "SELECTED",
 		Owned = "CLASS LOCKED",
 		NewHero = "NEW HERO",
-		Start = "START TUTORIAL",
-		Starting = "STARTING TUTORIAL...",
+		Start = "ENTER DEEPWOOD",
+		Starting = "ENTERING DEEPWOOD...",
 		Loading = "Loading your lobby character. Please wait.",
 		Returning = "Returning to Hub. Please wait.",
 		Choose = "Create or select a hero to begin.",

@@ -139,7 +139,7 @@ function Service.progress(player, command, serverReward)
 	publish(player,command.requestId,errorCode)
 	return errorCode
 end
-function Service.awardXP(player,heroId,amount,defeat)
+function Service.awardXP(player,heroId,amount,defeat,coins)
 	local state=accounts[player]
 	if not state or not state.valid or state.closing or not state.profile.heroes[heroId] then return end
 	state.rewards=state.rewards or {}
@@ -147,7 +147,7 @@ function Service.awardXP(player,heroId,amount,defeat)
 	local saved=state.profile.heroes[heroId].progression
 	local sequence=(state.rewardSequences[heroId] or (saved.rewardStream==token and saved.rewardSequence or 0))+1
 	state.rewardSequences[heroId]=sequence
-	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,rewardKind=defeat and "Defeat" or nil,stream=token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
+	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,coins=coins or 0,rewardKind=defeat and "Defeat" or nil,stream=token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
 	if state.rewardWorker then return end
 	state.rewardWorker=true
 	task.spawn(function()
@@ -161,11 +161,35 @@ function Service.awardXP(player,heroId,amount,defeat)
 		state.rewardWorker=false
 	end)
 end
+-- Server-only story command; never accepted by InventoryRequest/ProgressionRequest.
+function Service.storyState(player,heroId)
+ local state=accounts[player];local hero=state and state.profile and state.profile.heroes[heroId]
+ return hero and Rules.copy(hero.deepwood or require(ReplicatedStorage.Shared.DeepwoodProgress).new())
+end
+function Service.storyEvent(player,heroId,chapterId,goalId,choice)
+ local state=accounts[player]
+ if not state or state.busy or state.closing then return 'Busy' end
+ local key=heroId..':'..chapterId..':'..goalId..':'..tostring(choice)
+ if state.storyPending and state.storyPending~=key then return 'Busy' end
+ if not state.valid and state.storyPending~=key then return state.errorCode or 'Unavailable' end
+ state.busy=true;state.storyPending=key
+ local profile,reason=store:transact(player.UserId,function(current)
+  return Rules.story(current,heroId,chapterId,goalId,choice,Catalog)
+ end)
+ if profile then
+  state.profile,state.valid,state.errorCode=profile,true,nil;state.storyPending=nil
+  Service.refreshCharacter(player);options.heroSession.refresh(player)
+ elseif reason=='SaveUnknown' or reason=='AccountBusy' then state.valid,state.errorCode=false,reason
+ else state.storyPending=nil end
+ state.busy=false;publish(player,nil,reason);return reason
+end
 local function atStorage(player)
 	local context = options.heroSession.getInventoryContext(player)
 	local character = player.Character
 	local root = character and character:FindFirstChild("HumanoidRootPart")
-	return context and context.atHub and root and (root.Position - options.chest.Position).Magnitude <= 14
+	if not context or not context.atHub or not root then return false end
+ for _,chest in ipairs(options.chests or {options.chest}) do if (root.Position-chest.Position).Magnitude<=14 then return true end end
+ return false
 end
 function Service.snapshot(player)
 	local state = accounts[player]
@@ -329,9 +353,9 @@ function Service.start(settings)
 		local reason=Service.progress(player,command,false)
 		if reason then publish(player,command.requestId,reason) end
 	end)
-	options.prompt.Triggered:Connect(function(player)
-		if Service.ready(player) and atStorage(player) then openRemote:FireClient(player); publish(player) end
-	end)
+	for _,prompt in ipairs(options.prompts or {options.prompt}) do prompt.Triggered:Connect(function(player)
+  if Service.ready(player) and atStorage(player) then openRemote:FireClient(player);publish(player) end
+ end) end
 	task.spawn(function()
 		while true do
 			task.wait(30)

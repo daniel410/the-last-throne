@@ -242,7 +242,7 @@ function Hud.create()
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
 	back.AnchorPoint = Vector2.zero
-	back.Position = UDim2.fromOffset(10,96)
+	back.Position = UDim2.fromOffset(10,140)
 	back.Size = UDim2.fromOffset(168, 42)
 	back.BackgroundColor3 = COLORS.blue
 	back.BorderSizePixel = 0
@@ -259,6 +259,7 @@ function Hud.create()
 	back.Text = ""
 	local backCaption = text(back, "Caption", Text.BackToLobby, UDim2.fromOffset(10, 0), UDim2.new(1, -20, 1, 0), 12)
 	backCaption.TextXAlignment = Enum.TextXAlignment.Center
+	local storyTracker
 	local practice = panel(root, "Practice", UDim2.fromOffset(16, 162), UDim2.fromOffset(344, 112))
 	local practiceScale = Instance.new("UIScale")
 	practiceScale.Parent = practice
@@ -315,7 +316,7 @@ function Hud.create()
 		items = itemButtons,
 		dodge = dodge,
 		back = back,
-		heroMenu=minimap.hero,bagMenu=minimap.bag,
+		heroMenu=minimap.hero,bagMenu=minimap.bag,journalMenu=minimap.journal,
 		setVisible = function(visible)
 			gui.Enabled = visible
 			topGui.Enabled=visible
@@ -324,7 +325,12 @@ function Hud.create()
 		setClass = function(classId)
 			classLabel.Text = Text.Class[classId] or ""
 		end,
-		setPractice = function(value, classId)
+		setStory = function(value)
+   storyTracker=value
+   practice.Title.Text=value.title;objective.Text=value.objective;note.Text=value.note
+  end,
+  setPractice = function(value, classId)
+   if storyTracker then return end
 			value = value or {}
 			objective.Text = not value.moved and Text.Practice.Move
 				or not value.attacked and (classId == "elf" and Text.Practice.ElfAttack or Text.Practice.Attack)

@@ -102,7 +102,7 @@ local function transition(state, mode)
 	state.phase = mode == "Tutorial" and "LoadingTutorial" or "ReturningLobby"
 	state.transitionId = state.transitionId + 1
 	changed(state)
-	local destination = mode == "Tutorial" and settings.tutorialSpawn or settings.lobbySpawn
+	local destination = mode == "Tutorial" and (settings.tutorialDestination and settings.tutorialDestination(state.player,selectedHero(state).heroId) or settings.tutorialSpawn) or settings.lobbySpawn
 	local ok = settings.requestSpawn(state.player, destination, state.transitionId)
 	if not ok then
 		-- Keep the old life ineligible. The user can safely retry the same route.
@@ -267,6 +267,11 @@ local function unbindPlayer(player)
 	sessions[player] = nil
 end
 
+function HeroSessionService.restartAdventure(player)
+ local state=sessions[player]
+ if not state or state.mode~='Tutorial' or not state.ready then return false end
+ return transition(state,'Tutorial')==nil
+end
 function HeroSessionService.refresh(player)
 	local state=sessions[player]
 	if state then changed(state) end
@@ -288,7 +293,11 @@ function HeroSessionService.getInventoryContext(player)
 	local half = settings.lobbyBounds.size / 2
 	local atHub = state.phase == "Lobby" and state.mode == "Lobby" and finite(delta.X) and finite(delta.Y) and finite(delta.Z)
 		and math.abs(delta.X) <= half.X and math.abs(delta.Y) <= half.Y and math.abs(delta.Z) <= half.Z
-	return {heroId = hero.heroId, classId = hero.baseClassId, generation = state.generation, atHub = atHub}
+	if state.mode=='Tutorial' and state.phase=='Tutorial' and settings.outpostBounds then
+  local b=settings.outpostBounds;local d=root.Position-b.center;local half=b.size/2
+  if math.abs(d.X)<=half.X and math.abs(d.Y)<=half.Y and math.abs(d.Z)<=half.Z then atHub=true end
+ end
+ return {heroId = hero.heroId, classId = hero.baseClassId, generation = state.generation, atHub = atHub}
 end
 
 -- Server bootstrap dependency. Snapshot tables are copies, never mutable roster

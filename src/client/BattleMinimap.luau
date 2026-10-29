@@ -17,19 +17,33 @@ function Map.create(parent)
  local caption=Theme.label(frame,'Region','DEEPWOOD',UDim2.new(0,12,1,-30),UDim2.new(1,-24,0,18),9,Theme.color.text);caption.TextXAlignment=Enum.TextXAlignment.Center;caption.TextStrokeTransparency=.2;caption.TextStrokeColor3=Color3.new(0,0,0)
  local menuButton=Theme.button(frame,'MapMenu','≡',UDim2.new(1,-34,0,0),UDim2.fromOffset(40,40));menuButton.Caption.Visible=false
  Theme.icon(menuButton,'settings',UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8))
- local menu=Theme.frame(frame,'MapActions',UDim2.new(1,-168,0,199),UDim2.fromOffset(168,146));menu.Visible=false
+ local menu=Theme.frame(frame,'MapActions',UDim2.new(1,-168,0,199),UDim2.fromOffset(168,194));menu.Visible=false
  local hero=Theme.button(menu,'Hero','HERO [H]',UDim2.fromOffset(10,8),UDim2.fromOffset(148,36))
  local bag=Theme.button(menu,'Bag','BAG [B]',UDim2.fromOffset(10,52),UDim2.fromOffset(148,36))
+ local journal=Theme.button(menu,'Journal','JOURNAL [J]',UDim2.fromOffset(10,96),UDim2.fromOffset(148,36))
+ journal.Activated:Connect(function() menu.Visible=false end)
  menuButton.Activated:Connect(function() menu.Visible=not menu.Visible end)
  hero.Activated:Connect(function() menu.Visible=false end);bag.Activated:Connect(function() menu.Visible=false end)
  local terrain,enemyMarkers,lastUpdate=nil,{},-math.huge
+ local mapOrigin=Vector3.zero;local mapWidth=180
  local function point(marker,position)
-  local x,z=position.X/180,position.Z/180
+  local x,z=(position.X-mapOrigin.X)/mapWidth,(position.Z-mapOrigin.Z)/mapWidth
   marker.Position=UDim2.fromScale(.5+x,.5+z);marker.Visible=x*x+z*z<.21
  end
  local function update(character)
   local now=os.clock();if now-lastUpdate<.1 then return end;lastUpdate=now
   local field=Workspace:FindFirstChild('DeepwoodK0');local source=field and field:FindFirstChild('TerrainBlockout')
+  local campaign=Workspace:FindFirstChild('DeepwoodCampaign');local charRoot=character and character:FindFirstChild('HumanoidRootPart')
+  if campaign and charRoot and charRoot.Position.X < 800 and charRoot.Position.Z < 650 and (charRoot.Position-Vector3.new(0,0,0)).Magnitude>100 then
+   local regions=campaign:FindFirstChild('TerrainBlockout');local closest,distance
+   if regions then for _,region in ipairs(regions:GetChildren()) do if region:IsA('Model') then
+    local ground=region:FindFirstChild('ForestGround');local d=ground and (ground.Position-charRoot.Position).Magnitude
+    if d and (not distance or d<distance) then closest=region;distance=d end
+   end end end
+   if closest then source=closest;mapOrigin=closest.ForestGround.Position;mapWidth=math.max(closest.ForestGround.Size.X,closest.ForestGround.Size.Z)*1.1
+    caption.Text=closest.Name;camera.CFrame=CFrame.lookAt(mapOrigin+Vector3.new(0,mapWidth*5.72,0),mapOrigin,Vector3.new(0,0,-1))
+   end
+  else mapOrigin=Vector3.zero;mapWidth=180 end
   if source and source~=terrain then
    world:ClearAllChildren();terrain=source
    local count=0
@@ -58,6 +72,6 @@ function Map.create(parent)
   end
   for enemy,marker in pairs(enemyMarkers) do if not present[enemy] then marker:Destroy();enemyMarkers[enemy]=nil end end
  end
- return {frame=frame,menu=menu,hero=hero,bag=bag,update=update}
+ return {frame=frame,menu=menu,hero=hero,bag=bag,journal=journal,update=update}
 end
 return Map

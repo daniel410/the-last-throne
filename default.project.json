@@ -2,25 +2,21 @@
   "name": "the-last-throne",
   "tree": {
     "$className": "DataModel",
-
     "ReplicatedStorage": {
       "Shared": {
         "$path": "src/shared"
       }
     },
-
     "Players": {
       "$properties": {
         "CharacterAutoLoads": false
       }
     },
-
     "ServerScriptService": {
       "Server": {
         "$path": "src/server"
       }
     },
-
     "ServerStorage": {
       "TdMonsterModels": {
         "$path": "assets/shared/td-monsters/runtime.rbxmx"
@@ -30,9 +26,14 @@
       },
       "TDKnightShieldModels": {
         "$path": "assets/shared/td-player-weapons/shield/runtime.rbxmx"
+      },
+      "TDMapModels": {
+        "$path": "assets/shared/td-deepwood-environment/maps.rbxmx"
+      },
+      "TDForestKit": {
+        "$path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx"
       }
     },
-
     "StarterPlayer": {
       "StarterCharacterScripts": {
         "Health": {
@@ -45,7 +46,6 @@
         }
       }
     },
-
     "Workspace": {
       "$properties": {
         "FilteringEnabled": true
