@@ -59,6 +59,7 @@ return {
 		Choose = "Create or select a hero to begin.",
 		RosterFormat = "SESSION HEROES  %d / %d",
 		SelectedFormat = "Selected: %s",
+		SkillInstructions = "Complete the level 20 advancement for slot 4 and level 40 for slot 5. Select a practice skill.",
 		PhysicalSkillFormat = "%s   |   %ds cooldown",
 		MagicSkillFormat = "%s   |   %d MP   |   %ds cooldown",
 		Waiting = "Waiting for the server...",

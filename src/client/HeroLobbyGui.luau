@@ -184,7 +184,7 @@ function LobbyGui.create(request)
 	rounded(skillPanel, 10)
 	local title = label(skillPanel, "Title", "SKILL MANAGEMENT", UDim2.fromOffset(16, 10), UDim2.new(1, -100, 0, 30), 18, COLOR.gold)
 	title.ZIndex = 11
-	local instructions = label(skillPanel, "Instructions", "Select a slot to cycle through learned skills. Slots 4 and 5 unlock after your first advancement.", UDim2.fromOffset(16, 42), UDim2.new(1, -32, 0, 48), 12, COLOR.muted)
+	local instructions = label(skillPanel, "Instructions", Text.Lobby.SkillInstructions, UDim2.fromOffset(16, 42), UDim2.new(1, -32, 0, 48), 12, COLOR.muted)
 	instructions.ZIndex = 11
 	local close = button(skillPanel, "Close", "CLOSE", UDim2.new(1, -90, 0, 10), UDim2.fromOffset(76, 32))
 	close.ZIndex = 11

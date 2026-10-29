@@ -64,7 +64,10 @@ local ok, failure = xpcall(function()
 	end
 
 	local lobby = copyModule("HeroLobbyGui").create(function() end)
-	local slots = playerGui.HeroLobbyGui.Shade.HeroPanel.SkillManagement.SkillSlots
+	local panel = playerGui.HeroLobbyGui.Shade.HeroPanel.SkillManagement
+	local slots = panel.SkillSlots
+	check(string.find(panel.Instructions.Text, "level 20 advancement for slot 4", 1, true) ~= nil, "slot 4 requires the level 20 advancement")
+	check(string.find(panel.Instructions.Text, "level 40 for slot 5", 1, true) ~= nil, "slot 5 requires the level 40 advancement")
 	local config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
 	for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
 		local hero = { heroId = "test", classId = classId, skillSlots = {1, 2, 3, 0, 0}, practiceAdvanced = false }

@@ -430,3 +430,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 제한 | 실제 Player 및 네트워크·모바일·동작 체감 미검증. [상세](2026-10-28-overhead-smash.md) 참고. |
 
 일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
+
+## 0.18.8 — Stamina 제거
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `f239075287ec022d25130bbff0da5a632e35a745`, `VERSION=0.18.8`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.18.8/TheLastThrone-0.18.8.rbxlx`, 종료 0 |
+| 결과물 | 906,697 bytes, SHA-256 `0ae7fd67b09a6c16b397854e6ff2e448f98225a3cb473e918f88026cf145bea9`. Git 제외 로컬 파일 |
+| 격리 Studio | 고정 빌드 smoke 458개·서버 452개·UI 83개·타이밍 106개 통과. [스모크 로그](stamina-0188-smoke.log), [상세](2026-10-29-stamina-removal.md) |
+| 실제 Player와 한계 | 로컬 Studio의 네 직업 기본 기술 입력·자원 표시와 Dwarf 사망/리스폰 일부 확인. MP 부족 실제 입력·다인·실기기·사용자 체감 및 게시 환경은 미검증. 기존 `203785492` 유형 경고가 재관측됐다. |
+
+일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
