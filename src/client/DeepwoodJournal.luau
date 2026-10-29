@@ -23,10 +23,10 @@ function Journal.start(hud)
  local sanctuary=Theme.button(dialog,'Sanctuary','ELVEN SANCTUARY',UDim2.new(0,12,1,-46),UDim2.fromOffset(260,36));sanctuary.Visible=false
  local shared=Theme.button(dialog,'Share','SHARE WITH REFUGEES',UDim2.new(1,-282,1,-46),UDim2.fromOffset(270,36));shared.Visible=false
  local current,target,lastMessage,selectedChapter
- local marker=Instance.new('BillboardGui');marker.Name='DeepwoodWaypoint';marker.Size=UDim2.fromOffset(190,55);marker.AlwaysOnTop=true;marker.StudsOffset=Vector3.new(0,6,0);marker.MaxDistance=2400;marker.Parent=gui
+ local marker=Instance.new('BillboardGui');marker.Name='DeepwoodWaypoint';marker.Size=UDim2.fromOffset(190,55);marker.AlwaysOnTop=true;marker.StudsOffset=Vector3.new(0,6,0);marker.MaxDistance=2400;marker.Parent=player:WaitForChild("PlayerGui")
  local waypoint=Theme.label(marker,'Waypoint','',UDim2.new(),UDim2.fromScale(1,1),12,Theme.color.gold);waypoint.TextXAlignment=Enum.TextXAlignment.Center;waypoint.TextStrokeTransparency=.15
  local function setOpen(open)
-  panel.Visible=open;player:SetAttribute('TLTStoryOpen',open or dialog.Visible)
+  panel.Visible=open;player:SetAttribute('TLTStoryOpen',open or (dialog.Visible and sanctuary.Visible))
  end
  local function choose(v) request:FireServer('Choose',v);dialog.Visible=false;setOpen(false) end
  sanctuary.Activated:Connect(function() choose('sanctuary') end);shared.Activated:Connect(function() choose('shared') end)
@@ -88,7 +88,7 @@ function Journal.start(hud)
  RunService.Heartbeat:Connect(function(dt)
   elapsed=elapsed+dt;if elapsed<.2 then return end;elapsed=0
   local phase=player:GetAttribute('K0SessionPhase');local alive=phase=='Tutorial'
-  gui.Enabled=alive
+  gui.Enabled=alive;marker.Enabled=alive
   if not alive then panel.Visible=false;dialog.Visible=false;player:SetAttribute('TLTStoryOpen',false);return end
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   if target and root then waypoint.Text='◆ '..target.goal.title..'\n'..math.floor((root.Position-Vector3.new(table.unpack(target.goal.position))).Magnitude)..' studs' end

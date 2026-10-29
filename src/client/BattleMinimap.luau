@@ -49,7 +49,7 @@ function Map.create(parent)
    local count=0
    for _,part in ipairs(source:GetDescendants()) do
     if part:IsA('BasePart') and part.Transparency<1 and count<100 then
-     local copy=Instance.new('Part');copy.Name=part.Name;copy.Size,copy.CFrame,copy.Color=part.Size,part.CFrame,part.Color;copy.Shape=part:IsA('Part') and part.Shape or Enum.PartType.Block;copy.Material=Enum.Material.SmoothPlastic;copy.Anchored=true;copy.CanCollide=false;copy.CanTouch=false;copy.CanQuery=false;copy.Parent=world;count+=1
+     local copy=Instance.new('Part');copy.Name=part.Name;copy.Size,copy.CFrame,copy.Color=part.Size,part.CFrame,(part:IsA('MeshPart') and Color3.fromRGB(94,139,72) or part.Color);copy.Shape=part:IsA('Part') and part.Shape or Enum.PartType.Block;copy.Material=Enum.Material.SmoothPlastic;copy.Anchored=true;copy.CanCollide=false;copy.CanTouch=false;copy.CanQuery=false;copy.Parent=world;count+=1
     end
    end
    frame:SetAttribute('PreviewPartCount',count)

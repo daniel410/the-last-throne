@@ -75,7 +75,7 @@ function World.create()
   for id,z in pairs(Content.zones) do result.spawns[id]=existing:FindFirstChild(id..'_SP');result.positions[id]=vec(z.center) end
   for _,p in ipairs(existing:WaitForChild('Objectives'):GetChildren()) do
    local c=Content.byId[p:GetAttribute('ChapterId')];local goalId=p:GetAttribute('GoalId')
-   if c then for _,g in ipairs(c.goals) do if g.id==goalId then result.nodes[c.id..':'..g.id]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g} end end end
+   if c then for _,g in ipairs(c.goals) do if g.id==goalId then result.nodes[c.id..':'..(p.Name:match('_request$') and 'request' or g.id)]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g} end end end
   end
   World.current=result;return result
  end
@@ -83,12 +83,12 @@ function World.create()
  local terrain=Instance.new('Folder');terrain.Name='TerrainBlockout';terrain.Parent=root
  local nodes=Instance.new('Folder');nodes.Name='Objectives';nodes.Parent=root
  local spawns,positions={},{}
- local titles={} for _,c in ipairs(Content.chapters) do titles[c.zone]=c.title end
+ local titles={} for _,c in ipairs(Content.chapters) do if not c.side or not titles[c.zone] then titles[c.zone]=c.title end end
  for id,z in pairs(Content.zones) do
   local region=Instance.new('Model');region.Name=id;region.Parent=terrain
   local center=vec(z.center);local sx,sz=z.size[1],z.size[2]
   part(region,'MossyLimestoneCliff',Vector3.new(sx,34,sz),center-Vector3.new(0,17,0),id=='DW-07' and C.dark or C.stone,nil,true)
-  for i=0,5 do local angle=i*math.pi/3;Env.cliff(region,center+Vector3.new(math.cos(angle)*(sx/2-22),-32,math.sin(angle)*(sz/2-22)),34) end
+  for i=0,5 do local angle=i*math.pi/3;Env.cliff(region,center+Vector3.new(math.cos(angle)*(sx/2-22),-38,math.sin(angle)*(sz/2-22)),34) end
   part(region,'ForestGround',Vector3.new(sx,.4,sz),center-Vector3.new(0,.2,0),id=='DW-07' and C.dark or C.grass,Enum.Material.Grass,true)
   part(region,'BroadStoneTrail',Vector3.new(sx*.78,.12,16),center+Vector3.new(0,.06,0),C.path,Enum.Material.Cobblestone,false)
   for i=0,13 do
@@ -96,7 +96,7 @@ function World.create()
   end
   for _,x in ipairs({-sx*.34,sx*.34}) do lamp(region,center+Vector3.new(x,0,40)) end
   local spawn=Instance.new('SpawnLocation');spawn.Name=id..'_SP';spawn.Size=Vector3.new(12,.3,12);spawn.Position=center+Vector3.new(-sx*.37,.15,sz*.34)
-  spawn.Anchored=true;spawn.CanCollide=false;spawn.CanQuery=false;spawn.CanTouch=false;spawn.Neutral=true;spawn.Duration=0;spawn.Color=C.blue;spawn.Enabled=true;spawn.Parent=root;spawns[id]=spawn
+  spawn.Material=Enum.Material.Slate;spawn.TopSurface=Enum.SurfaceType.Smooth;spawn.BottomSurface=Enum.SurfaceType.Smooth;spawn.Anchored=true;spawn.CanCollide=false;spawn.CanQuery=false;spawn.CanTouch=false;spawn.Neutral=true;spawn.Duration=0;spawn.Color=C.blue;spawn.Enabled=true;spawn.Parent=root;spawns[id]=spawn
   label(spawn,(titles[id] or id)..' · CHECKPOINT')
   positions[id]=center
   if id=='DW-01' then
@@ -132,6 +132,15 @@ function World.create()
  end
  for i=1,6 do bridge(string.format('DW-%02d',i),string.format('DW-%02d',i+1)) end
  bridge('DW-03','DW-S1');bridge('DW-03','DW-S2');bridge('DW-05','DW-S3')
+ -- Local paths follow story investigation points as well as the regional bridges.
+ for _,c in ipairs(Content.chapters) do if not c.side then
+  local previous=spawns[c.zone].Position
+  for _,g in ipairs(c.goals) do if not g.zone and not g.optional then
+   local p=vec(g.position)+Vector3.new(0,.07,0);local start=Vector3.new(previous.X,p.Y,previous.Z);local delta=p-start
+   if delta.Magnitude>1 then part(terrain,'InvestigationPath',Vector3.new(12,.1,delta.Magnitude+2),CFrame.lookAt((start+p)/2,p),C.path,Enum.Material.Cobblestone,false) end
+   previous=p
+  end end
+ end end
  local interactions={}
  for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
   local p=part(nodes,c.id..'_'..g.id,Vector3.new(3,2,3),vec(g.position)+Vector3.new(0,1,0),#g.enemies>0 and C.gold or C.violet,Enum.Material.Slate,false)
