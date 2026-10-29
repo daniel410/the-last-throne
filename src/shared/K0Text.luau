@@ -71,6 +71,7 @@ return {
 			mage = "Wooden staff.\nSelect an enemy to attack or cast.",
 		},
 		Errors = {
+			InventoryUnavailable = "Equipment storage is not ready. Wait, or rejoin to verify your items.",
 			InvalidRequest = "That request could not be read. Try again.",
 			RequestConflict = "That request has changed. Try the action again.",
 			TooFast = "Please wait a moment, then try again.",
@@ -96,7 +97,10 @@ return {
 		Dead = "DEFEATED",
 	},
 	Feedback = {
-		ItemEmpty = "No potions left. Restart the practice to try again.",
+		ItemEmpty = "No potions in your bag. Withdraw or collect more at Dawnspire.",
+		EquipWeapon = "Equip a weapon from your bag before attacking.",
+		EquipShield = "Equip a shield from your bag to use this action.",
+		InventoryItemOnly = "Use the bag or the Z / C item buttons to drink a potion.",
 		HealthFull = "Health is full. Save your potion for later.",
 		ManaFull = "Mana is full. Save your potion for later.",
 		NoManaPool = "This hero has no mana to restore.",

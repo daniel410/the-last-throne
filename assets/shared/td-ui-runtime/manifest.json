@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "source_commit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "source_project": "../throne-defense",
+  "files": [
+    {
+      "source": "../throne-defense/src/Shared/StatusWindowArtAssets.lua",
+      "runtime": "src/shared/TDUI/StatusWindowArtAssets.luau",
+      "sha256": "c6927fe3f15902818046f72f9d902e6aacfb38e9c6c5bddce4578dac9238163a",
+      "adaptation": "byte-identical pinned source; behavior resides in TDInventoryTheme"
+    },
+    {
+      "source": "../throne-defense/src/Shared/UIIconAssets.lua",
+      "runtime": "src/shared/TDUI/UIIconAssets.luau",
+      "sha256": "b6de17e2c894b51e527c27109db1c4598739a87e517b3e6b6a7dec23c936330b",
+      "adaptation": "byte-identical pinned source; behavior resides in TDInventoryTheme"
+    }
+  ],
+  "policy": "Original Roblox image IDs and atlas crops; no reupload or TD edits. Restricted permission remains environment-specific."
+}

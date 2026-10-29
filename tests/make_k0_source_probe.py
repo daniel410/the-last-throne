@@ -153,6 +153,12 @@ lines = [
     'local server=Instance.new("Script");server.Name="Server";server.Disabled=true;server.Parent=ss',
     'local client=Instance.new("LocalScript");client.Name="Client";client.Disabled=true;client.Parent=sp',
 ]
+health_rel = project_tree.get('StarterPlayer', {}).get('StarterCharacterScripts', {}).get('Health', {}).get('$path')
+if health_rel != 'src/character/Health.server.lua':
+    raise SystemExit('K0 source probe requires the exact default-health override mapping')
+health_path = project / health_rel
+lines.append('do local h=Instance.new("Script");h.Name="Health";h.Source=' + quote(health_path.read_text())
+             + ';h.Parent=game:GetService("StarterPlayer").StarterCharacterScripts end')
 manifest = {
     'default.project.json': hashlib.sha256(project_path.read_bytes()).hexdigest(),
     str(asset_manifest_path.relative_to(project)): hashlib.sha256(asset_manifest_path.read_bytes()).hexdigest(),
@@ -163,6 +169,7 @@ manifest = {
     shield_rel: hashlib.sha256(shield_bytes).hexdigest(),
     str(test_script.relative_to(project)): hashlib.sha256(test_script.read_bytes()).hexdigest(),
     'tests/make_k0_source_probe.py': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+    health_rel: hashlib.sha256(health_path.read_bytes()).hexdigest(),
 }
 source_count = 0
 for source in sorted((project / 'src').rglob('*.luau')):

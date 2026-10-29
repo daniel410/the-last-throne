@@ -235,6 +235,7 @@ local function damagePosture(enemy, amount, current)
 end
 
 local function startAttack(state, current, targetModel)
+	state.lastEquipmentCombat = current
 	local profile = state.attackProfile
 	if not profile or Config.BasicAttackProfiles[state.baseClassId] ~= profile or #profile.attacks == 0 then
 		return
@@ -275,7 +276,7 @@ local function startAttack(state, current, targetModel)
 	state.attack = {
 		started = current,
 		definition = profile.attacks[nextCombo],
-		attackPower = profile.attackPower,
+		attackPower = profile.attackPower * (1 + (state.equipment and state.equipment.power or 0) / 100),
 		maxTargets = profile.maxTargets,
 		maxHeight = profile.maxHeight,
 		direction = direction,
@@ -336,6 +337,7 @@ local function startSkill(state, slot, current, targetModel)
 	state.queued = nil
 	resetCombo(state)
 	state.skillReadyAt[skill.id] = current + skill.cooldown
+	state.lastEquipmentCombat = current
 	if state.setSkillReadyAt then state.setSkillReadyAt(skill.id, state.skillReadyAt[skill.id]) end
 	state.character:SetAttribute("K0SkillReady" .. slot, workspace:GetServerTimeNow() + skill.cooldown)
 	if skill.magic then
@@ -350,7 +352,7 @@ local function startSkill(state, slot, current, targetModel)
 		state.thrownUntil = nil; state.thrownTarget = nil; state.thrownPosition = nil
 	end
 	state.attack = {
-		started = current, definition = skill, attackPower = state.attackProfile.attackPower,
+		started = current, definition = skill, attackPower = state.attackProfile.attackPower * (1 + (state.equipment and state.equipment.power or 0) / 100),
 		maxTargets = skill.maxTargets, maxHeight = skill.maxHeight, isSpell = skill.magic,
 		isSkill = true, ranged = skill.ranged, direction = direction, recallFrom = recallFrom,
 		hits = {}, hitCount = 0, counterDamage = nil, sampledActive = false, targetModel = targetModel,
@@ -441,7 +443,14 @@ local function acceptAction(state, action, direction, current, targetModel)
 	if not alive(state) or state.mode == "Dead" or state.mode == "Stunned" then
 		return
 	end
+	local inventoryContext = readCombatContext(state.player, state.character)
+	if inventoryContext and inventoryContext.inventoryLocked and action ~= "BlockEnd" and action ~= "SprintEnd" then return end
+	if state.inventoryManaged and (action == "Attack" or action:match("^Skill") or action == "CastArcane" or action == "BlockStart") then
+		if not state.equipment or not state.equipment.weapon then updateFeedback(state, "EquipWeapon"); return end
+		if state.baseClassId == "knight" and (action == "BlockStart" or action == "Skill1") and not state.equipment.offhand then updateFeedback(state, "EquipShield"); return end
+	end
 	if action == "Item1" or action == "Item2" then
+		if state.inventoryManaged then updateFeedback(state, "InventoryItemOnly"); return end
 		local slot = action == "Item1" and 1 or 2
 		if state.itemCounts[slot] <= 0 then updateFeedback(state, "ItemEmpty"); return end
 		if slot == 1 then
@@ -568,7 +577,9 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	end
 	if playerState.rallyUntil and current < playerState.rallyUntil then multiplier = multiplier * 0.8 end
 	local damage = math.max(1, math.floor(attack.definition.damage * multiplier + 0.5))
+	damage = math.max(1, damage - (playerState.equipment and playerState.equipment.armor or 0))
 	playerState.humanoid:TakeDamage(damage)
+	playerState.lastEquipmentCombat = current
 	if playerState.humanoid.Health <= 0 then
 		markDead(playerState)
 	end
@@ -1515,7 +1526,7 @@ local function setupCharacter(player, character)
 			player = player, character = character, humanoid = humanoid, root = root, mode = "",
 			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0,
 			mana = classId == "mage" and Config.MaxMana or nil, manaRegenAt = current,
-			itemCounts = {3, 3},
+			itemCounts = context.itemCounts or {3, 3}, equipment = context.equipment, inventoryManaged = context.inventoryManaged,
 			skillSlots = context.skillSlots or {1, 2, 3, 0, 0}, slotCount = context.slotCount or 3, skillReadyAt = context.skillReadyAt or {}, setSkillReadyAt = context.setSkillReadyAt,
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
 			combo = 0, lastAttackFinished = -math.huge, lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge,
@@ -1524,8 +1535,13 @@ local function setupCharacter(player, character)
 			tokens = Config.RemoteBurst, lastRefill = current,
 		}
 		playerStates[player] = state
-		humanoid.MaxHealth = Config.MaxHealth
-		humanoid.Health = Config.MaxHealth
+		humanoid.MaxHealth = Config.MaxHealth + (state.equipment and state.equipment.health or 0)
+		humanoid.Health = humanoid.MaxHealth
+		if state.inventoryManaged then
+			character:SetAttribute("TLTEquippedWeapon", state.equipment and state.equipment.weapon or "")
+			character:SetAttribute("TLTEquippedOffhand", state.equipment and state.equipment.offhand or "")
+			for index = 1, 2 do character:SetAttribute("K0ItemDefinition" .. index, context.itemSlots[index]) end
+		end
 		character:SetAttribute("K0ClassId", classId)
 		character:SetAttribute("K0HeroId", context.heroId)
 		character:SetAttribute("K0HeroEpoch", context.epoch)
@@ -1576,6 +1592,46 @@ end
 
 -- Resolver is supplied only by the trusted hero session server. It must return
 -- nil or a non-yielding {heroId, baseClassId, epoch, characterGeneration}.
+function CombatService.isSafeForEquipment(player)
+	local state = playerStates[player]
+	if not alive(state) or not finiteVector(state.root.Position) or state.mode ~= "Idle" or state.sprinting or now() - (state.lastEquipmentCombat or -math.huge) < 5 then return false end
+	for _, enemy in pairs(enemyStates) do
+		if enemyAlive(enemy) and (enemy.target == state or (enemy.root.Position - state.root.Position).Magnitude < 45) then return false end
+	end
+	return true
+end
+
+function CombatService.refreshEquipment(player, equipment)
+	local state = playerStates[player]
+	if not state or player.Character ~= state.character or not equipment then return end
+	state.equipment = equipment
+	local health = state.humanoid.Health
+	state.humanoid.MaxHealth = Config.MaxHealth + equipment.health
+	state.humanoid.Health = math.min(health, state.humanoid.MaxHealth)
+	state.character:SetAttribute("TLTEquippedWeapon", equipment.weapon or "")
+	state.character:SetAttribute("TLTEquippedOffhand", equipment.offhand or "")
+	state.character:SetAttribute("TLTEquipmentPower", equipment.power)
+	state.character:SetAttribute("TLTEquipmentArmor", equipment.armor)
+end
+
+function CombatService.canUseInventoryItem(player, definition)
+	local state = playerStates[player]
+	if not alive(state) or state.mode == "Dead" or state.mode == "Stunned" then return false, "Unavailable" end
+	if definition.restore == "health" and state.humanoid.Health >= state.humanoid.MaxHealth then return false, "HealthFull", state.character end
+	if definition.restore == "mana" then
+		if not state.mana then return false, "NoManaPool", state.character end
+		if state.mana >= Config.MaxMana then return false, "ManaFull", state.character end
+	end
+	return true, nil, state.character
+end
+
+function CombatService.applyInventoryItem(player, definition, character)
+	local state = playerStates[player]
+	if not state or state.character ~= character or not alive(state) then return end
+	if definition.restore == "health" then state.humanoid.Health = math.min(state.humanoid.MaxHealth, state.humanoid.Health + definition.amount)
+	elseif definition.restore == "mana" and state.mana then setMana(state, state.mana + definition.amount) end
+end
+
 function CombatService.start(enemies, serverContextResolver)
 	assert(not started, "K0 combat service already started")
 	assert(enemies and enemies:IsA("Folder"), "K0 combat needs an enemy Folder")

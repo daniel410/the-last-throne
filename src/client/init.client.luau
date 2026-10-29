@@ -36,6 +36,7 @@ local pendingRequest
 local requestSequence = 0
 local lastRevision = -1
 local selectedEnemy
+local inventory
 local targetHighlight
 local targetConnections = {}
 
@@ -70,6 +71,7 @@ end
 local function combatInputAllowed()
 	local character = player.Character
 	return focused and not GuiService.MenuIsOpen and not UserInputService:GetFocusedTextBox()
+		and not player:GetAttribute("TLTInventoryOpen")
 		and player:GetAttribute("K0SessionPhase") == "Tutorial"
 		and character and character:GetAttribute("K0SpawnReady") == true
 		and character:GetAttribute("K0State") ~= nil and character:GetAttribute("K0State") ~= "Dead"
@@ -101,6 +103,10 @@ player:GetAttributeChangedSignal("K0SpawnStatus"):Connect(updateSpawnStatus)
 updateSpawnStatus()
 
 local function sendAction(action, direction)
+	if action == "Item1" or action == "Item2" then
+		if inventory and combatInputAllowed() then inventory.use(action == "Item1" and 1 or 2) end
+		return
+	end
 	if actionRemote and (action == "BlockEnd" or action == "SprintEnd" or combatInputAllowed()) then
 		local character = player.Character
 		local classId = character and character:GetAttribute("K0ClassId")
@@ -417,6 +423,10 @@ local function requestHero(action, argument)
 end
 
 lobby = require(script.HeroLobbyGui).create(requestHero)
+inventory = require(script.InventoryGui).create(function(opened)
+	if opened then endBlock(); endSprint(); clearAttacks(); clearTarget() end
+	lobby.setSuppressed(opened)
+end, function(message) hud.showFeedback(message) end)
 hud.back.Activated:Connect(function() requestHero("ReturnLobby") end)
 
 local function updateSessionView()
@@ -463,6 +473,7 @@ task.spawn(function()
 			lobby.setBusy(false)
 		end
 		lobby.setState(value, errorCode)
+		if inventory then inventory.refresh() end
 		updateSessionView()
 	end)
 	requestHero("GetState")

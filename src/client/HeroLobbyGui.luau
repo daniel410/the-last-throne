@@ -75,6 +75,9 @@ function LobbyGui.create(request)
 	shade.BorderSizePixel = 0
 	shade.Active = true
 	shade.Parent = gui
+	local minimized, suppressed = false, false
+	local reopen = button(gui, "OpenHeroes", "HEROES", UDim2.fromOffset(14,10), UDim2.fromOffset(120,44))
+	reopen.Visible = false
 	local shell = Instance.new("Frame")
 	shell.Name = "HeroPanel"
 	shell.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -90,6 +93,9 @@ function LobbyGui.create(request)
 	local stroke = Instance.new("UIStroke")
 	stroke.Color, stroke.Thickness = COLOR.gold, 1.5
 	stroke.Parent = shell
+	local explore = button(shell, "ExploreCourtyard", "X", UDim2.new(1,-58,0,12), UDim2.fromOffset(40,40))
+	explore.Activated:Connect(function() minimized=true; shade.Visible=false; reopen.Visible=not suppressed end)
+	reopen.Activated:Connect(function() minimized=false; shade.Visible=not suppressed; reopen.Visible=false end)
 	label(shell, "Title", Text.Lobby.Title, UDim2.fromOffset(18, 12), UDim2.new(1, -36, 0, 30), 24, COLOR.gold)
 	local subtitle = label(shell, "Subtitle", Text.Lobby.Subtitle, UDim2.fromOffset(18, 46), UDim2.new(1, -36, 0, 23), 13, COLOR.cream)
 	label(shell, "SessionNotice", Text.Lobby.Notice, UDim2.fromOffset(18, 75), UDim2.new(1, -36, 0, 34), 12, COLOR.gold)
@@ -222,6 +228,11 @@ function LobbyGui.create(request)
 	refresh = function()
 		if not current then return end
 		gui.Enabled = current.phase ~= "Tutorial"
+		shade.Visible = not minimized and not suppressed
+		reopen.Visible = minimized and not suppressed
+		shell.SessionNotice.Text = current.inventoryMode == "RPG test save"
+			and "Equipment, items and hero identities are saved. Training progress resets."
+			or "Studio session: heroes, equipment and items reset when this test ends."
 		local selected
 		for classId, view in pairs(cardViews) do
 			local owned
@@ -296,6 +307,11 @@ function LobbyGui.create(request)
 	UserInputService.LastInputTypeChanged:Connect(function() refresh() end)
 	resize()
 	return {
+		setSuppressed = function(value)
+			suppressed=value
+			shade.Visible=not value and not minimized
+			reopen.Visible=not value and minimized
+		end,
 		setState = function(value, errorCode)
 			if type(value) ~= "table" or type(value.heroes) ~= "table" then return end
 			current = value

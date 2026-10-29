@@ -292,7 +292,9 @@ function Hud.create()
 		setCooldowns = function(character)
 			for index, button in ipairs(itemButtons) do
 				local count = character and character:GetAttribute("K0ItemCount" .. index) or 0
-				button.Caption.Text = (index == 1 and "HP" or "MP") .. " x" .. tostring(count)
+				local definitionId = character and character:GetAttribute("K0ItemDefinition" .. index)
+				local caption = definitionId == "health_potion" and "HP" or definitionId == "mana_potion" and "MP" or (index == 1 and "HP" or "MP")
+				button.Caption.Text = caption .. " x" .. tostring(count)
 			end
 			for index, button in ipairs(skillButtons) do
 				local classId = character and character:GetAttribute("K0ClassId")

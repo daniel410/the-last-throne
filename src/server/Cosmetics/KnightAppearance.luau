@@ -182,6 +182,17 @@ local function syncAppearance(character)
 		if ready and not attached then
 			buildAppearance(character, rightHand, leftHand, classId)
 		end
+		local appearance = character:FindFirstChild(MODEL_NAME)
+		if appearance then
+			for _, part in ipairs(appearance:GetDescendants()) do
+				if part:IsA("BasePart") then
+					local original = part:GetAttribute("TLTEquipmentRestTransparency")
+					if original == nil then original = part.Transparency; part:SetAttribute("TLTEquipmentRestTransparency", original) end
+					local key = part:GetAttribute("TLTPlayerShieldPart") and "TLTEquippedOffhand" or "TLTEquippedWeapon"
+					part.Transparency = character:GetAttribute(key) == "" and 1 or original
+				end
+			end
+		end
 	end)
 	syncing[character] = nil
 	if not ok then warn("K0 equipment appearance could not be synchronized: " .. tostring(err)) end
@@ -191,6 +202,8 @@ local function disconnectCharacter(binding)
 	if binding.childAdded then binding.childAdded:Disconnect() end
 	if binding.childRemoved then binding.childRemoved:Disconnect() end
 	if binding.classChanged then binding.classChanged:Disconnect() end
+	if binding.weaponChanged then binding.weaponChanged:Disconnect() end
+	if binding.offhandChanged then binding.offhandChanged:Disconnect() end
 	if binding.descendantRemoving then binding.descendantRemoving:Disconnect() end
 	binding.childAdded = nil
 	binding.childRemoved = nil
@@ -209,6 +222,8 @@ local function watchCharacter(player, character)
 	binding.childAdded = character.ChildAdded:Connect(function() syncAppearance(character) end)
 	binding.childRemoved = character.ChildRemoved:Connect(function() syncAppearance(character) end)
 	binding.classChanged = character:GetAttributeChangedSignal("K0ClassId"):Connect(function() syncAppearance(character) end)
+	binding.weaponChanged = character:GetAttributeChangedSignal("TLTEquippedWeapon"):Connect(function() syncAppearance(character) end)
+	binding.offhandChanged = character:GetAttributeChangedSignal("TLTEquippedOffhand"):Connect(function() syncAppearance(character) end)
 	binding.descendantRemoving = character.DescendantRemoving:Connect(function(item)
 		local cursor = item
 		local owned = false

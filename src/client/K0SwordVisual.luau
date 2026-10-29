@@ -817,7 +817,8 @@ local function drawBow(model, phase, elapsed, skillId)
 	local target = phase == "Windup" and (skillId == "elf.common.aimed" and 0.62 or skillId == "elf.common.rapid" and 0.38 or 0.48) or 0
 	local speed = phase == "Windup" and 12 or 35
 	state.draw = state.draw + (target - state.draw) * math.clamp(elapsed * speed, 0, 1)
-	arrow.Transparency = (phase == "Active" or phase == "Recovery") and 1 or state.arrowTransparency
+	local unequipped = model.Parent and model.Parent:GetAttribute("TLTEquippedWeapon") == ""
+	arrow.Transparency = (unequipped or phase == "Active" or phase == "Recovery") and 1 or (arrow:GetAttribute("TLTEquipmentRestTransparency") or state.arrowTransparency)
 	-- The TD string mesh is unusually deep at rest. Keep a relaxed baseline;
 	-- only the same draw amount that moves the arrow pulls its nock back.
 	local depth = state.size.Z * 0.48 + state.draw
@@ -921,6 +922,14 @@ function Visual.renderCharacter(character, dt)
 			if Visual.render(model, character:GetAttribute("K0AttackPhase"), character:GetAttribute("K0Combo"), dt, character:GetAttribute("K0AttackKind")) then
 				rendered = rendered + 1
 			end
+			for _, name in ipairs({"K0LocalSwordFallback", "K0LocalShieldFallback"}) do
+				local fallback = model:FindFirstChild(name)
+				local hidden = character:GetAttribute(name == "K0LocalShieldFallback" and "TLTEquippedOffhand" or "TLTEquippedWeapon") == ""
+				if fallback then
+					for _, part in ipairs(fallback:GetDescendants()) do if part:IsA("BasePart") then part.LocalTransparencyModifier = hidden and 1 or 0 end end
+				end
+			end
+			if character:GetAttribute("TLTEquippedWeapon") == "" then clearEffect(model) end
 		elseif model:IsA("Model") and effects[model] then
 			clearEffect(model)
 		end

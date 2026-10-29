@@ -139,6 +139,7 @@ return {
  setupCharacter=setupCharacter, readCombatContext=readCombatContext,
  clearAction=clearAction, processCombatSamples=processCombatSamples, stepPlayer=stepPlayer, stepEnemy=stepEnemy, closestTarget=closestTarget,
  start=CombatService.start, startAttack=startAttack, beginEnemyAttack=beginEnemyAttack, registerEnemy=registerEnemy,
+ refreshEquipment=CombatService.refreshEquipment, canUseInventoryItem=CombatService.canUseInventoryItem, applyInventoryItem=CombatService.applyInventoryItem,
  remote=qaRemote, heartbeat=qaHeartbeat
 }
 ]]
@@ -191,6 +192,45 @@ return {
 		near(enemy.humanoid.Health, 9925, "a low Slime receives the server-authoritative sword hit")
 		sample(0.20)
 		near(enemy.humanoid.Health, 9925, "the same sword window cannot hit Slime twice")
+	end)
+	case("inventory-equipment-projection-preserves-health-and-cooldowns", function()
+		api.injectResolver(function(player)
+			return {heroId="hero-"..player.UserId,baseClassId="knight",epoch=1,characterGeneration=1,inventoryManaged=true,
+				equipment={power=0,armor=0,health=100,weapon="knight_weapon",offhand="knight_shield"},itemCounts={3,3},itemSlots={"health_potion","mana_potion"}}
+		end)
+		local state=spawnPlayer()
+		equal(state.humanoid.MaxHealth,1100,"equipped HP bonus applied at spawn")
+		state.humanoid.Health=500
+		state.skillReadyAt["knight.common.whirlwind"]=20
+		api.refreshEquipment(state.player,{power=10,armor=4,health=40,weapon="knight_weapon_fine",offhand="knight_shield"})
+		equal(state.humanoid.MaxHealth,1040,"new maximum projected")
+		equal(state.humanoid.Health,500,"changing gear never heals")
+		equal(state.skillReadyAt["knight.common.whirlwind"],20,"changing gear preserves skill cooldown")
+		local enemy=spawnEnemy(3,"Slime")
+		action(state,"Attack",0); sample(.17)
+		equal(enemy.humanoid.Health,9917,"server power bonus changes actual damage")
+		action(state,"Item1",.2)
+		equal(state.humanoid.Health,500,"legacy combat item route cannot grant free healing")
+		equal(state.character:GetAttribute("K0Feedback"),"InventoryItemOnly","managed items require inventory transaction")
+		local usable,reason=api.canUseInventoryItem(state.player,{restore="mana"})
+		equal(usable,false,"knight has no mana potion target"); equal(reason,"NoManaPool","mana pool rejection")
+		api.applyInventoryItem(state.player,{restore="health",amount=40},state.character)
+		equal(state.humanoid.Health,540,"confirmed item effect restores only its server amount")
+		api.applyInventoryItem(state.player,{restore="health",amount=40},Instance.new("Model"))
+		equal(state.humanoid.Health,540,"old life cannot heal new life")
+	end)
+	case("unequipped-weapon-cannot-attack",function()
+		api.injectResolver(function(player)
+			return {heroId="hero-"..player.UserId,baseClassId="mage",epoch=1,characterGeneration=1,inventoryManaged=true,
+				equipment={power=0,armor=0,health=0,weapon=false,offhand=false},itemCounts={3,3},itemSlots={"health_potion","mana_potion"}}
+		end)
+		local state=spawnPlayer()
+		action(state,"Attack",0)
+		equal(state.attack,nil,"no invisible equipped weapon attack")
+		equal(state.character:GetAttribute("K0Feedback"),"EquipWeapon","equipment remedy shown")
+		action(state,"Skill1",.1)
+		equal(state.mana,100,"blocked unequipped spell does not cost MP")
+		equal(state.skillReadyAt["mage.common.bolt"],nil,"blocked unequipped spell does not start cooldown")
 	end)
 	case("lethal-swing-does-not-hit-new-slime-children", function()
 		for _, trial in ipairs({

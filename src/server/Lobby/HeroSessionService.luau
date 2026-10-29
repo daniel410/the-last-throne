@@ -1,5 +1,5 @@
--- Isolated prototype roster. This module owns hero identity, immutable class and
--- life eligibility in server memory; it never reads or writes a DataStore.
+-- Owns playable life eligibility. Optional RPG account inventory persists roster
+-- identity; training/skill presets remain session-only.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
@@ -44,9 +44,10 @@ local function snapshot(state)
 	return {
 		revision = state.revision, phase = state.phase, heroes = heroes,
 		selectedHeroId = state.selectedHeroId, activeHeroId = state.mode == "Tutorial" and state.selectedHeroId or nil,
-		canManage = state.phase == "Lobby" and state.ready,
-		canStart = state.phase == "Lobby" and state.ready and selectedHero(state) ~= nil,
+		canManage = state.phase == "Lobby" and state.ready and state.profileReady,
+		canStart = state.phase == "Lobby" and state.ready and state.profileReady and selectedHero(state) ~= nil,
 		maxHeroes = MAX_HEROES, sessionOnly = true,
+		inventoryMode = settings.inventory and state.player:GetAttribute("TLTInventoryMode") or nil,
 	}
 end
 
@@ -69,6 +70,7 @@ local function validLife(state, character)
 end
 
 local function atLobby(state)
+	if not state.profileReady or settings.inventory and not settings.inventory.ready(state.player) then return false, "InventoryUnavailable" end
 	if state.phase ~= "Lobby" or state.mode ~= "Lobby" or not state.character or not validLife(state, state.character) then
 		return false, "WaitForLobby"
 	end
@@ -146,6 +148,10 @@ local function execute(state, action, argument)
 			practice = { moved = false, attacked = false, dodged = false },
 			skillSlots = {1, 2, 3, 0, 0}, practiceAdvanced = false, skillReadyAt = {},
 		}
+		if settings.inventory then
+			local errorCode = settings.inventory.createHero(state.player, hero.heroId, argument)
+			if errorCode then return errorCode == "ClassAlreadyCreated" and errorCode or "InventoryUnavailable" end
+		end
 		state.byId[hero.heroId] = hero
 		state.byClass[argument] = hero
 		table.insert(state.heroes, hero)
@@ -204,9 +210,14 @@ local function handleRequest(player, action, requestId, argument, ...)
 		publish(state, requestId, errorCode)
 		return
 	end
+	if state.busy or settings.inventory and (not settings.inventory.available(player) or settings.inventory.busy(player)) then
+		publish(state, requestId, "InventoryUnavailable"); return
+	end
+	state.busy = true
 	local errorCode = execute(state, action, argument)
-	-- This bounded response cache makes double taps replay a result instead of
-	-- creating another hero or another life. All mutations above are non-yielding.
+	state.busy = false
+	-- A durable hero creation may yield; the per-player gate serializes it with
+	-- inventory transfers and life changes. Repeated IDs replay the result.
 	state.requests[requestId] = { action = action, argument = argument, errorCode = errorCode }
 	table.insert(state.requestOrder, requestId)
 	if #state.requestOrder > 32 then state.requests[table.remove(state.requestOrder, 1)] = nil end
@@ -217,18 +228,58 @@ local function bindPlayer(player)
 	if sessions[player] or player.Parent ~= Players then return end
 	local state = {
 		player = player, heroes = {}, byId = {}, byClass = {}, mode = "Lobby", phase = "LoadingLobby",
+		profileReady = settings.inventory == nil, busy = false,
 		epoch = 0, generation = 0, transitionId = 0, ready = false, revision = 0,
 		tokens = REQUEST_BURST, lastRefill = os.clock(), requests = {}, requestOrder = {}, lifeConnections = {},
 	}
 	sessions[player] = state
 	player:SetAttribute("K0SessionPhase", state.phase)
+	if settings.inventory then
+		task.spawn(function()
+			local roster, errorCode = settings.inventory.open(player)
+			if not connected(state) then return end
+			if roster then
+				for id, stored in pairs(roster) do
+					local hero = {heroId = id, baseClassId = stored.baseClassId, practice = {moved=false, attacked=false, dodged=false},
+						skillSlots = {1,2,3,0,0}, practiceAdvanced = false, skillReadyAt = {}}
+					state.byId[id], state.byClass[hero.baseClassId] = hero, hero
+					table.insert(state.heroes, hero)
+				end
+				table.sort(state.heroes, function(a,b) return a.heroId < b.heroId end)
+				state.selectedHeroId = state.heroes[1] and state.heroes[1].heroId
+				state.profileReady = true
+			end
+			changed(state)
+			if errorCode then publish(state, nil, "InventoryUnavailable") end
+		end)
+	end
 end
 
 local function unbindPlayer(player)
 	local state = sessions[player]
 	if not state then return end
 	invalidateLife(state)
+	if settings.inventory then settings.inventory.close(player) end
 	sessions[player] = nil
+end
+
+function HeroSessionService.isBusy(player)
+	local state = sessions[player]
+	return state == nil or state.busy
+end
+
+function HeroSessionService.getInventoryContext(player)
+	local state = sessions[player]
+	local hero = state and selectedHero(state)
+	if not state or not hero or not state.ready or not validLife(state, state.character) then return nil end
+	local human = state.character:FindFirstChildOfClass("Humanoid")
+	local root = state.character:FindFirstChild("HumanoidRootPart")
+	if not human or human.Health <= 0 or not root then return nil end
+	local delta = root.Position - settings.lobbyBounds.center
+	local half = settings.lobbyBounds.size / 2
+	local atHub = state.phase == "Lobby" and state.mode == "Lobby" and finite(delta.X) and finite(delta.Y) and finite(delta.Z)
+		and math.abs(delta.X) <= half.X and math.abs(delta.Y) <= half.Y and math.abs(delta.Z) <= half.Z
+	return {heroId = hero.heroId, classId = hero.baseClassId, generation = state.generation, atHub = atHub}
 end
 
 -- Server bootstrap dependency. Snapshot tables are copies, never mutable roster
@@ -247,9 +298,15 @@ function HeroSessionService.getCombatContext(player, character)
 	local hero = selectedHero(state)
 	local human = character:FindFirstChildOfClass("Humanoid")
 	if not hero or not human or human.Health <= 0 then return nil end
+	if settings.inventory and not settings.inventory.available(player) then return nil end
 	local ready = {}
 	for id, time in pairs(hero.skillReadyAt) do ready[id] = time end
+	local equipment = settings.inventory and settings.inventory.stats(player, hero.heroId)
+	local itemCounts, itemSlots
+	if settings.inventory then itemCounts, itemSlots = settings.inventory.counts(player, hero.heroId) end
 	return { heroId = hero.heroId, baseClassId = hero.baseClassId, epoch = state.epoch, characterGeneration = state.generation,
+		equipment = equipment, itemCounts = itemCounts, itemSlots = itemSlots, inventoryManaged = settings.inventory ~= nil,
+		inventoryLocked = settings.inventory and settings.inventory.busy(player) or false,
 		skillSlots = { table.unpack(hero.skillSlots) }, slotCount = hero.practiceAdvanced and 5 or 3, skillReadyAt = ready,
 		setSkillReadyAt = function(id, time) hero.skillReadyAt[id] = time end }
 end

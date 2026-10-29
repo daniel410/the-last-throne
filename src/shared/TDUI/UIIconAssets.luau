@@ -1,0 +1,103 @@
+--!strict
+-- Actual upload IDs are supplied only after ownership and private-use verification.
+local UIIconAssets = {}
+UIIconAssets.atlases = {
+	map_blocky_v4 = { image = "rbxassetid://127394633978202", width = 1145, height = 1374, renderWidth = 853, renderHeight = 1024 },
+	mortar_v2 = { image = "rbxassetid://104582041764974", width = 1254, height = 1254, renderWidth = 1024, renderHeight = 1024 },
+	crusader_v2 = { image = "rbxassetid://122765923934152", width = 1254, height = 1254, renderWidth = 1024, renderHeight = 1024 },
+	blue_diamond = { image = "rbxassetid://97570429280107", width = 1254, height = 1254, renderWidth = 1024, renderHeight = 1024 },
+	settings_v3 = { image = "rbxassetid://101463603654402", width = 1254, height = 1254, renderWidth = 1024, renderHeight = 1024 },
+	close_v3 = { image = "rbxassetid://100630525608408", width = 1254, height = 1254, renderWidth = 1024, renderHeight = 1024 },
+	elf = { image = "rbxassetid://84795048151880", width = 1536, height = 1024, renderWidth = 1023, renderHeight = 682 },
+	knights = { image = "rbxassetid://101027288850338", width = 1536, height = 1024, renderWidth = 1023, renderHeight = 682 },
+	mages = { image = "rbxassetid://115948760578578", width = 1536, height = 1024, renderWidth = 1023, renderHeight = 682 },
+	dwarves = { image = "rbxassetid://121682123228475", width = 1536, height = 1024, renderWidth = 1023, renderHeight = 682 },
+	priests = { image = "rbxassetid://99890504888739", width = 1536, height = 1024, renderWidth = 1023, renderHeight = 682 },
+	common = { image = "rbxassetid://96768305100708", width = 1254, height = 1254, renderWidth = 1024, renderHeight = 1024 },
+}
+UIIconAssets.icons = {
+	maps = { atlas = "map_blocky_v4", x = 0, y = 0, width = 1145, height = 1374 },
+	archer = { atlas = "elf", x = 0, y = 0, width = 512, height = 512 },
+	rapid = { atlas = "elf", x = 512, y = 0, width = 512, height = 512 },
+	tracker = { atlas = "elf", x = 1024, y = 0, width = 512, height = 512 },
+	storm = { atlas = "elf", x = 0, y = 512, width = 512, height = 512 },
+	sharpshooter = { atlas = "elf", x = 512, y = 512, width = 512, height = 512 },
+	warden = { atlas = "elf", x = 1024, y = 512, width = 512, height = 512 },
+	swordsman = { atlas = "knights", x = 0, y = 0, width = 512, height = 512 },
+	shieldbearer = { atlas = "knights", x = 512, y = 0, width = 512, height = 512 },
+	paladin = { atlas = "knights", x = 1024, y = 0, width = 512, height = 512 },
+	ironwall = { atlas = "knights", x = 0, y = 512, width = 512, height = 512 },
+	lancer = { atlas = "knights", x = 512, y = 512, width = 512, height = 512 },
+	crusader = { atlas = "crusader_v2", x = 0, y = 0, width = 1254, height = 1254 },
+	pyromancer = { atlas = "mages", x = 0, y = 0, width = 512, height = 512 },
+	cryomancer = { atlas = "mages", x = 512, y = 0, width = 512, height = 512 },
+	voltmancer = { atlas = "mages", x = 1024, y = 0, width = 512, height = 512 },
+	zephyrmancer = { atlas = "mages", x = 0, y = 512, width = 512, height = 512 },
+	arcanist = { atlas = "mages", x = 512, y = 512, width = 512, height = 512 },
+	geomancer = { atlas = "mages", x = 1024, y = 512, width = 512, height = 512 },
+	axe = { atlas = "dwarves", x = 0, y = 0, width = 512, height = 512 },
+	twinaxe = { atlas = "dwarves", x = 512, y = 0, width = 512, height = 512 },
+	gunner = { atlas = "dwarves", x = 1024, y = 0, width = 512, height = 512 },
+	runesmith = { atlas = "dwarves", x = 0, y = 512, width = 512, height = 512 },
+	mortar = { atlas = "mortar_v2", x = 0, y = 0, width = 1254, height = 1254 },
+	grenadier = { atlas = "dwarves", x = 1024, y = 512, width = 512, height = 512 },
+	nun = { atlas = "priests", x = 0, y = 0, width = 512, height = 512 },
+	blessing = { atlas = "priests", x = 512, y = 0, width = 512, height = 512 },
+	judge = { atlas = "priests", x = 1024, y = 0, width = 512, height = 512 },
+	cantor = { atlas = "priests", x = 0, y = 512, width = 512, height = 512 },
+	inquisitor = { atlas = "priests", x = 512, y = 512, width = 512, height = 512 },
+	grand = { atlas = "priests", x = 1024, y = 512, width = 512, height = 512 },
+	shop = { atlas = "blue_diamond", x = 946, y = 305, width = 307, height = 272 },
+	towers = { atlas = "common", x = 314, y = 0, width = 313, height = 314 },
+	hero = { atlas = "common", x = 627, y = 0, width = 313, height = 314 },
+	party = { atlas = "common", x = 940, y = 0, width = 314, height = 314 },
+	quests = { atlas = "common", x = 0, y = 314, width = 314, height = 313 },
+	login_rewards = { atlas = "common", x = 314, y = 314, width = 313, height = 313 },
+	battle_pass = { atlas = "common", x = 627, y = 314, width = 313, height = 313 },
+	gold_boost = { atlas = "common", x = 940, y = 314, width = 314, height = 313 },
+	mailbox = { atlas = "common", x = 0, y = 627, width = 314, height = 313 },
+	redeem = { atlas = "common", x = 314, y = 627, width = 313, height = 313 },
+	menu = { atlas = "blue_diamond", x = 635, y = 280, width = 302, height = 296 },
+	settings = { atlas = "settings_v3", x = 0, y = 0, width = 1254, height = 1254 },
+	gold = { atlas = "common", x = 0, y = 940, width = 314, height = 314 },
+	diamonds = { atlas = "blue_diamond", x = 946, y = 305, width = 307, height = 272 },
+	play = { atlas = "common", x = 627, y = 940, width = 313, height = 314 },
+	close = { atlas = "close_v3", x = 0, y = 0, width = 1254, height = 1254 },
+}
+-- Dedicated detail portraits keep existing card, battle and hero icon mappings intact.
+UIIconAssets.atlases.tower_detail_blocky_knights = { image = "rbxassetid://136026185203238", width = 1023, height = 682, renderWidth = 1023, renderHeight = 682 }
+UIIconAssets.icons.blocky_detail_swordsman = { atlas = "tower_detail_blocky_knights", x = 0, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_shieldbearer = { atlas = "tower_detail_blocky_knights", x = 341, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_paladin = { atlas = "tower_detail_blocky_knights", x = 682, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_ironwall = { atlas = "tower_detail_blocky_knights", x = 0, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_lancer = { atlas = "tower_detail_blocky_knights", x = 341, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_crusader = { atlas = "tower_detail_blocky_knights", x = 682, y = 341, width = 341, height = 341 }
+UIIconAssets.atlases.tower_detail_blocky_elf = { image = "rbxassetid://107496771246499", width = 1023, height = 682, renderWidth = 1023, renderHeight = 682 }
+UIIconAssets.icons.blocky_detail_archer = { atlas = "tower_detail_blocky_elf", x = 0, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_rapid = { atlas = "tower_detail_blocky_elf", x = 341, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_tracker = { atlas = "tower_detail_blocky_elf", x = 682, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_storm = { atlas = "tower_detail_blocky_elf", x = 0, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_sharpshooter = { atlas = "tower_detail_blocky_elf", x = 341, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_warden = { atlas = "tower_detail_blocky_elf", x = 682, y = 341, width = 341, height = 341 }
+UIIconAssets.atlases.tower_detail_blocky_dwarves = { image = "rbxassetid://105817462958602", width = 1023, height = 682, renderWidth = 1023, renderHeight = 682 }
+UIIconAssets.icons.blocky_detail_axe = { atlas = "tower_detail_blocky_dwarves", x = 0, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_twinaxe = { atlas = "tower_detail_blocky_dwarves", x = 341, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_gunner = { atlas = "tower_detail_blocky_dwarves", x = 682, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_runesmith = { atlas = "tower_detail_blocky_dwarves", x = 0, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_mortar = { atlas = "tower_detail_blocky_dwarves", x = 341, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_grenadier = { atlas = "tower_detail_blocky_dwarves", x = 682, y = 341, width = 341, height = 341 }
+UIIconAssets.atlases.tower_detail_blocky_mages = { image = "rbxassetid://130032636171199", width = 1023, height = 682, renderWidth = 1023, renderHeight = 682 }
+UIIconAssets.icons.blocky_detail_pyromancer = { atlas = "tower_detail_blocky_mages", x = 0, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_cryomancer = { atlas = "tower_detail_blocky_mages", x = 341, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_voltmancer = { atlas = "tower_detail_blocky_mages", x = 682, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_zephyrmancer = { atlas = "tower_detail_blocky_mages", x = 0, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_arcanist = { atlas = "tower_detail_blocky_mages", x = 341, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_geomancer = { atlas = "tower_detail_blocky_mages", x = 682, y = 341, width = 341, height = 341 }
+UIIconAssets.atlases.tower_detail_blocky_priests = { image = "rbxassetid://89396984680210", width = 1023, height = 682, renderWidth = 1023, renderHeight = 682 }
+UIIconAssets.icons.blocky_detail_nun = { atlas = "tower_detail_blocky_priests", x = 0, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_blessing = { atlas = "tower_detail_blocky_priests", x = 341, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_judge = { atlas = "tower_detail_blocky_priests", x = 682, y = 0, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_cantor = { atlas = "tower_detail_blocky_priests", x = 0, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_inquisitor = { atlas = "tower_detail_blocky_priests", x = 341, y = 341, width = 341, height = 341 }
+UIIconAssets.icons.blocky_detail_grand = { atlas = "tower_detail_blocky_priests", x = 682, y = 341, width = 341, height = 341 }
+return UIIconAssets
