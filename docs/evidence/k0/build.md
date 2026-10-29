@@ -382,3 +382,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 - Studio Edit에서 Place/Experience ID와 양손 방어 코드 존재를 확인했다. Creator Dashboard의 Version History에서 **게시된 Place 버전 4**와 시간을 확인했다. Experience의 게임 접근과 대상은 확인 당시 Private이었다.
 - Roblox의 Place 버전 4와 게임 빌드 버전 `0.18.3`은 서로 다른 번호다. 빌드 SHA-256은 위의 0.18.3 기록과 같다. 실제 게시된 Roblox 클라이언트에서의 시각·입력·음원 재생 및 제한 자산 권한은 별도 검증 대상이다.
 - 주석 태그 `v0.18.3`은 빌드 입력 커밋 `bc67459207f937b146c988d65a5e43648c73eefb`를 가리키며 원격에 푸시하고 역참조를 확인했다.
+
+## 0.18.4 — 양손 방어 접촉 보정
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `b02c926b6b75abc9e7f3d8254189000e8715e723`, `VERSION=0.18.4`, 빌드 전 origin/main 일치 |
+| 빌드 | `rojo build default.project.json --output builds/0.18.4/TheLastThrone-0.18.4.rbxlx`, 성공 |
+| SHA-256 | `24ba152a580ed44329f6a458f4bde3a1500dbe1a9f1bdaf6ec6e52fc6c8b5820` |
+| 격리 Studio | 빌드 smoke 458개, 움직이는 R6/R15 접촉·회전·해제 30개, 무기·동작 회귀 2238개 검사 통과. |
+| 제한 | 실제 플레이 및 다양한 체형의 자연스러움과 네트워크 복제는 미검증. [상세](2026-10-28-guard-hand-contact.md) 참고. |
+
+일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
