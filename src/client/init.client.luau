@@ -380,12 +380,12 @@ GuiService.MenuOpened:Connect(function()
 	clearAttacks()
 end)
 
--- Keep the standard Space jump available; V is the keyboard dodge action.
+-- Keep the standard Space jump available; R is the keyboard dodge action.
 ContextActionService:BindActionAtPriority("K0Dodge", function(_, state)
 	if not combatInputAllowed() then return Enum.ContextActionResult.Pass end
 	if state == Enum.UserInputState.Begin then dodge() end
 	return Enum.ContextActionResult.Sink
-end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.V, Enum.KeyCode.R, Enum.KeyCode.ButtonB)
+end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.R, Enum.KeyCode.ButtonB)
 
 local function updateHints()
 	local input = UserInputService:GetLastInputType()
@@ -394,7 +394,7 @@ local function updateHints()
 	elseif UserInputService.TouchEnabled and (input == Enum.UserInputType.Touch or not UserInputService.KeyboardEnabled) then
 		hud.setHints(Text.HintTap, Text.HintHold, Text.HintTap, Text.HintHold, {"1", "2", "3", "4", "5"})
 	else
-		hud.setHints(Text.HintClick, "Q / RMB", "R / V", "E", {"1", "2", "3", "4", "5"})
+		hud.setHints(Text.HintClick, "Q / RMB", Text.HintR, "E", {"1", "2", "3", "4", "5"})
 	end
 end
 UserInputService.LastInputTypeChanged:Connect(updateHints)

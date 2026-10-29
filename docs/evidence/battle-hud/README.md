@@ -26,3 +26,7 @@
 화면: [최종 PC](0.20.2-pc.png) · [세로 Root 제한](0.20.2-portrait-layout.png) · [가로 Root 제한](0.20.2-landscape-layout.png) · [0.20.1 Mage MP/쿨다운](0.20.1-mage.png).
 
 미검증: 실제 폰/태블릿/패드 입력·전환·안전 영역, 다인/지연·게시된 Experience의 제한 자산 권한, 전체 UI의 접근성/기기별 최소 글자/터치 크기와 사용자 시각 수용. 다음 담당은 QA이며 TLT-028/052/084 전체를 완료로 올리지 않는다.
+
+## 0.20.3 사용자 배치 조정
+
+TLT-028/084 일부. Dodge의 V 바인딩/힌트를 제거하고 키보드는 R을 유지한다. Attack x134→118(-16px), Sprint x78→92(+14px). 아이템과 스킬 사이 간격은8→32px, 바 전체 폭은528px로 조정한다. 아이템은 TD shellSell, 스킬/보조 액션은 shellDetails, Attack은 shellUpgrade로 유형을 구분한다. 물약 캡션은 실제 등록 HP/MP를 따라 따뜻한/차가운 색을 쓴다. 변경 파일은 K0Hud·init.client·K0Text·VERSION이며 GUI 검사와 실제 Player의 R/V·배치·색상/간격을 검증한다.

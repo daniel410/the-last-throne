@@ -106,7 +106,7 @@ local function action(parent, name, caption, hint, position, diameter)
 	local circle = Instance.new("UICorner")
 	circle.CornerRadius = UDim.new(0, 10)
 	circle.Parent = button
-	local art = Theme.sprite(button, "TDButtonArt", name == "Attack" and "shellUpgrade" or "shellDetails", UDim2.new(), UDim2.fromScale(1, 1))
+	local art = Theme.sprite(button, "TDButtonArt", name == "Attack" and "shellUpgrade" or string.sub(name, 1, 4) == "Item" and "shellSell" or "shellDetails", UDim2.new(), UDim2.fromScale(1, 1))
 	art.SliceScale = 0.26
 	button.AutoButtonColor = false
 	button.InputBegan:Connect(function(input)
@@ -185,7 +185,7 @@ function Hud.create()
 	skillBar.BackgroundTransparency = 1
 	skillBar.AnchorPoint = Vector2.new(0.5, 1)
 	skillBar.Position = UDim2.new(0.5, 0, 1, -24)
-	skillBar.Size = UDim2.fromOffset(504, 68)
+	skillBar.Size = UDim2.fromOffset(528, 68)
 	skillBar.Parent = root
 	local skillScale = Instance.new("UIScale")
 	skillScale.Parent = skillBar
@@ -197,7 +197,7 @@ function Hud.create()
 	end
 	local skillButtons, skillHints = {}, {}
 	for index = 1, 5 do
-		local button, key = action(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index + 1) * 72, 0), 64)
+		local button, key = action(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index + 1) * 72 + 24, 0), 64)
 		button.UICorner.CornerRadius = UDim.new(0, 8)
 		button.Caption.TextSize = 8
 		button.Caption.Position = UDim2.fromOffset(3, 36)
@@ -209,9 +209,9 @@ function Hud.create()
 		icon.TextXAlignment = Enum.TextXAlignment.Center
 		skillButtons[index], skillHints[index] = button, key
 	end
-	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(78, 6), 56)
-	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintV, UDim2.fromOffset(0, 91), 68)
-	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(134, 71), 88)
+	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(92, 6), 56)
+	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(0, 91), 68)
+	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(118, 71), 88)
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
 	back.AnchorPoint = Vector2.new(1, 0)
@@ -250,7 +250,7 @@ function Hud.create()
 		statusScale.Scale = scale
 		headingScale.Scale = scale
 		actionScale.Scale = scale
-		skillScale.Scale = math.min(scale, viewport.X / 536)
+		skillScale.Scale = math.min(scale, viewport.X / 560)
 		practiceScale.Scale = scale
 		backScale.Scale = scale
 		back.Size = UDim2.fromOffset(viewport.X < 500 and 126 or 168, 42)
@@ -315,6 +315,7 @@ function Hud.create()
 				local definitionId = character and character:GetAttribute("K0ItemDefinition" .. index)
 				local caption = definitionId == "health_potion" and "HP" or definitionId == "mana_potion" and "MP" or (index == 1 and "HP" or "MP")
 				button.Caption.Text = caption .. " x" .. tostring(count)
+				button.Caption.TextColor3 = caption == "HP" and Color3.fromRGB(255, 210, 195) or Color3.fromRGB(181, 235, 255)
 			end
 			for index, button in ipairs(skillButtons) do
 				local classId = character and character:GetAttribute("K0ClassId")

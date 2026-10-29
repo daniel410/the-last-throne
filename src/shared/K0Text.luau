@@ -20,7 +20,7 @@ return {
 	Unblockable = "UNBLOCKABLE",
 	HintClick = "CLICK",
 	HintRightClick = "RIGHT CLICK",
-	HintV = "V",
+	HintR = "R",
 	HintTap = "TAP",
 	HintHold = "HOLD",
 	HintR2 = "R2",
