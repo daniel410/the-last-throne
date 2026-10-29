@@ -1,6 +1,6 @@
 # 현재 개발 상태와 다음 작업
 
-2026-10-29 · 총괄 DIR · **로컬 시험 빌드 `0.24.2`** · 게시된 비공개 시험판 `0.18.3`
+2026-10-29 · 총괄 DIR · **로컬 시험 빌드 `0.25.1`** · 게시된 비공개 시험판 `0.18.3`
 
 [최신 결정](../decisions.md) · [액션·스킬 상세](action-and-skill-design.md) · [빌드·게시 증거](../evidence/k0/build.md) · [백로그](../../backlog.md)
 
@@ -17,14 +17,14 @@
 | 공통 액션 | 네 영웅의 기본 공격·Block·Dodge·Sprint, 클릭 표적과 서버 피해 판정. 드워프·엘프·마법사는 무기를 두 손으로 가로로 들어 방어 | PC 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R 회피, Space 점프, X 표적 해제는 시험 배치. 양손 접촉은 R6/R15 동적 리그에서 검사했으나 실제 사용자·다양한 체형은 미검증. [방어](../evidence/k0/2026-10-28-horizontal-block-slime.md) |
 | 스킬·성장 | Lv1~80 XP, 별도316 스탯/79SP, 기본12·8계열96액티브+8궁극기 정의, 숙련·거점 편성·전직 시험·3→4→5, 마법궁수 MP | 823개 서버 전투·778개 전직/정의 경계 검사. 시험 처치 조건·수치·연출이며216노드 전체·정식 전직 퀘스트·실기기/4인·게시 저장 수용은 후속. [범위·검증](../evidence/progression/README.md) |
 | 스킬 연출 | Axe Throw 투사체의 캐릭터 연결 제거, Multi Shot 5개 시각 화살·서버 확인 타격, Water Ball 물방울·물보라, Ground Slam 도약·착지. Overhead Smash는 머리 위 한 바퀴 후 내려찍기와 확대 타격 효과 | 서버와 격리 Studio 검사 통과. 물리 투척/회수 전체 계약, 모든 실제 Player 시각·다인 수용은 미완료. [연출](../evidence/k0/2026-10-28-combat-and-bgm.md) · [Overhead](../evidence/k0/2026-10-28-overhead-smash.md) |
-| 회복 | 시험값: HP는최대치의 초당 0.1%, Mage MP는 초당 10. Stamina 회복은 제거 | HP는 전투 중에도 회복하며 기본 Roblox 회복 대체 스크립트가 포함됨. 0.18.9 단일 Player의 제어된 약 5초 측정에서 중복 회복 징후가 없었으나 다른 조건과 체감 밸런스는 미검증. [관측](../evidence/k0/2026-10-29-player-combat-and-slime.md) |
+| 회복 | 시험값: HP는최대치의 초당 0.1%, MP도 최대치의 초당 0.1%. Stamina 회복은 제거 | HP는 전투 중에도 회복하며 기본 Roblox 회복 대체 스크립트가 포함됨. 0.18.9 단일 Player의 제어된 약 5초 측정에서 중복 회복 징후가 없었으나 다른 조건과 체감 밸런스는 미검증. [관측](../evidence/k0/2026-10-29-player-combat-and-slime.md) |
 | 음악 | TD 일반 BGM `Riftstorm`을 기존 ID로 반복·음량 0.20·1.5초 페이드 | 격리 Studio 로드/재생 상태 확인. 해당 음원은 Restricted이며 별도 RPG Experience에서의 권한·실제 청취는 미검증. [근거](../evidence/k0/2026-10-28-combat-and-bgm.md) |
 
 기본 스킬은 Knight **Shield Bash / Whirlwind / Provoke**, Dwarf **Overhead Smash / Axe Throw / Ground Slam**, Elf **Aimed Shot / Rapid Fire / Multi Shot**, Mage **Mana Bolt / Water Ball / Gravity**다. 광역기는 Whirlwind·Ground Slam·Multi Shot·Gravity다. Overhead Smash 시험 준비 시간은 0.65초이며 서버 타격은 그 후 0.06초다.
 
 ## 빌드·게시와 검증의 경계
 
-- **최신 로컬:** `0.24.2`, 소스 커밋 `e9c60e427589ead5fdaa3d5e59df91fe7f7c19ab`, [빌드 파일](../../builds/0.24.2/TheLastThrone-0.24.2.rbxlx). 빌드 산출물은 Git에서 제외된 로컬 파일이다.
+- **최신 로컬:** `0.25.1`, 소스 커밋 `22c8abd24cb3860121a1963e28844031ac76933f`, [빌드 파일](../../builds/0.25.1/TheLastThrone-0.25.1.rbxlx). 빌드 산출물은 Git에서 제외된 로컬 파일이다.
 - **현재 확인된 게시:** 2026-10-28 사용자가 `0.18.3`을 독립 The Last Throne Experience `10773575153`, 시작 Place `70829337938054`에 게시했다. Creator Dashboard의 게시 Place 버전은 **4**, 확인 당시 접근은 Private이며 Git 태그 `v0.18.3`을 해당 빌드 소스에 푸시했다. Roblox의 Place 버전과 게임 빌드 버전은 서로 다르다. `0.18.4~0.24.1`는 게시되지 않았다. [게시 기록](../evidence/k0/build.md).
 - **0.18.7 증거:** 격리 Studio 빌드 smoke 458개, 서버 전투 401개, 스킬 자세 35개, 적중 효과 102개, R6/R15 Overhead 회전 경로 6개, 무기 회귀 2,238개 통과. 0.18.6 양손·수평 방어 동적 리그 42개 검사도 통과했다. 이는 실제 게시 클라이언트·실기기·다인·시각적 완성 수용과 구분한다.
 - **0.18.8 증거:** 고정 빌드 smoke 458개, 서버 전투 452개, UI 상태 83개, 타이밍 106개 통과. 격리 Studio의 실제 Player에서 네 직업의 기본3 기술 입력·자원 표시를 부분 확인했다. [자원 검증](../evidence/k0/2026-10-29-stamina-removal.md).
@@ -75,3 +75,7 @@ HP/MP 프레임·상태/목표 패널·액션/아이템/스킬/귀환 버튼에 
 최신 자원은 Lv1 Knight250/Dwarf200/Elf150/Mage100 HP 및 Mage100 MP다. H/HERO 창에서 TD 초상·프레임·아이콘으로 스탯/스킬/전직을 제공한다. 레벨만으로 전직하지 않으며 서버 처치 기록의 시험 조건과 거점 명시적 완료를 사용한다. [구현·원시 검사·실제 Player 관측과 미검증](../evidence/progression/README.md). 아래와 과거 단락의 미구현 문구는 해당 버전 당시 기록이며 위의 최신 구현 범위를 우선한다.
 
 0.24.2는 물약 S/M/L/XL 글자를 아이콘 중앙 하단으로 옮긴 표시 조정이다. 글자 배경 투명/크기·회복량은 유지했으며 고정 빌드 HUD135개 검사 통과. [기록](../evidence/potions/README.md).
+
+## 0.25.1 가방·자원·레벨업 최신 요청
+
+검색창 제거/Sort 유지, Small 물약 원본 확대, HP 패널에 `LV n   xp 현재/필요`를 표시한다. MP는 HP와 같은 최대치 초당0.1%로 회복한다. 확정 레벨 상승 때만 HP/MP 완충 및 TD 타워 업그레이드 원본 기반 효과를 재생한다. 같은 레벨 장비/스탯 갱신은 완충하지 않는다. [원본·검증·조건·한계](../evidence/battle-hud/levelup-and-bag-0.25.1.md).

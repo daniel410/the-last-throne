@@ -1,0 +1,29 @@
+[
+  {
+    "version": "0.24.3",
+    "source_commit": "d3cc3f0970355acce820e79251d23f88e18a7d2d",
+    "path": "builds/0.24.3/TheLastThrone-0.24.3.rbxlx",
+    "bytes": 1095252,
+    "sha256": "0f1d652b0065b8666a003d96cacdb688d27ce40853b95c6d4f4c651e59ded966",
+    "result": "success",
+    "published": false
+  },
+  {
+    "version": "0.25.0",
+    "source_commit": "e8c111b88b14957e86dab8ee6d25153fe55c58a3",
+    "path": "builds/0.25.0/TheLastThrone-0.25.0.rbxlx",
+    "bytes": 1101503,
+    "sha256": "ae0850d4dfcab1541217daff5413044863f08ad69fa84bb7903d1f4479cf3c9b",
+    "result": "success",
+    "published": false
+  },
+  {
+    "version": "0.25.1",
+    "source_commit": "22c8abd24cb3860121a1963e28844031ac76933f",
+    "path": "builds/0.25.1/TheLastThrone-0.25.1.rbxlx",
+    "bytes": 1101412,
+    "sha256": "32ff725b33da7a3cd8fab2ac298dfce942288d7fd0bbf576f727999af850a315",
+    "result": "success",
+    "published": false
+  }
+]

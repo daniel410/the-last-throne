@@ -1,0 +1,57 @@
+{
+  "kind": "Transcribed isolated Studio Player observations",
+  "placeId": 0,
+  "sessionOnly": true,
+  "bagBuild": "0.24.3",
+  "bag": {
+    "searchExists": false,
+    "sortBefore": "SORT: NAME",
+    "sortAfter": "SORT: LEVEL",
+    "smallHPrect": "149, 138",
+    "smallMPrect": "149, 154",
+    "shape": "existing atlas, tighter crop; no image upload"
+  },
+  "xp": {
+    "qaClientDisplayAttributes": {
+      "K0XP": 10,
+      "K0XPToNext": 1000
+    },
+    "display": "LV 1   xp 10/1000",
+    "authoritativeXPCurveChanged": false
+  },
+  "levelBuild": "0.25.0",
+  "slowMana": {
+    "before": 85,
+    "after": 85.4,
+    "seconds": 5.01727070834022,
+    "oneSecondRegenDelay": true
+  },
+  "slowHP": {
+    "before": 50.025054931640625,
+    "after": 50.52834701538086
+  },
+  "levelUp": {
+    "qaServerXPGrant": 100,
+    "newLevel": 2,
+    "health": 108,
+    "maxHealth": 108,
+    "mana": 104,
+    "maxMana": 104,
+    "levelUpSequence": 1,
+    "rings": 8,
+    "chevronBars": 4,
+    "label": "LV 2   xp 0/125",
+    "remainingEffectsAfterExpiry": 0
+  },
+  "newRuntimeErrors": 0,
+  "existingAssetWarning": "203785492 asset type mismatch",
+  "finalHeader": {
+    "build": "0.25.1",
+    "display": "LV 1   xp 10/1000",
+    "localY": 19,
+    "localBottom": 31,
+    "HPLabelStartsY": 32,
+    "qaClientDisplayAttributesOnly": true,
+    "screenshot": "xp-header-0.25.1.png"
+  }
+}

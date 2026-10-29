@@ -540,3 +540,15 @@ TD 배틀 HP 프레임과 공통 패널·버튼 셸을 HUD에 적용했다. 원�
 ## 0.24.2 — 물약 글자 중앙 하단 정렬
 
 입력 소스 `e9c60e427589ead5fdaa3d5e59df91fe7f7c19ab`와 VERSION을 커밋·푸시 후 Rojo7.7.1 `rojo build default.project.json --output builds/0.24.2/TheLastThrone-0.24.2.rbxlx` 성공. 1,095,772 bytes, SHA256 `623290bd8bcd099920b31eaec4b254d4f3628eff07d525310af52371a9f4ccfa`. 고정 빌드 HUD135개 통과·실패0. [변경·검증 한계](../potions/README.md). 일반 로컬 빌드이며 Roblox 게시·릴리스 태그는 수행하지 않았다.
+
+## 0.24.3·0.25.0·0.25.1 — 가방·XP·저속 MP·TD 레벨업
+
+각 소스/VERSION을 커밋·푸시한 후 Rojo7.7.1로 생성했다. 일반 로컬 빌드이며 게시/릴리스 태그를 수행하지 않았다.
+
+| 버전 | 입력 소스 | bytes | SHA256 |
+| --- | --- | --- | --- |
+| 0.24.3 | `d3cc3f0970355acce820e79251d23f88e18a7d2d` | 1,095,252 | `0f1d652b0065b8666a003d96cacdb688d27ce40853b95c6d4f4c651e59ded966` |
+| 0.25.0 | `e8c111b88b14957e86dab8ee6d25153fe55c58a3` | 1,101,503 | `ae0850d4dfcab1541217daff5413044863f08ad69fa84bb7903d1f4479cf3c9b` |
+| 0.25.1 | `22c8abd24cb3860121a1963e28844031ac76933f` | 1,101,412 | `32ff725b33da7a3cd8fab2ac298dfce942288d7fd0bbf576f727999af850a315` |
+
+0.24.3은 검색 제거·Small 확대·레벨 옆 XP,0.25.0은 저속 MP/TD 효과·레벨업 완충,0.25.1은 XP와 자원 테두리 겹침 보완이다. [검증·원본·실제 Player 조건](../battle-hud/levelup-and-bag-0.25.1.md). `0.24.4`는 개발 중 버전 예약만 했다가 새 기능 MINOR0.25.0으로 대체했으며 빌드하지 않았다.
