@@ -215,7 +215,7 @@ function Hud.create()
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
 	back.AnchorPoint = Vector2.new(1, 0)
-	back.Position = UDim2.new(1, -16, 0, 16)
+	back.Position = UDim2.new(1, -16, 0, 68)
 	back.Size = UDim2.fromOffset(168, 42)
 	back.BackgroundColor3 = COLORS.blue
 	back.BorderSizePixel = 0

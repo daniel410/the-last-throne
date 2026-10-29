@@ -9,3 +9,5 @@
 빌드 전 source-probe GUI 생성/상태 검사: `tests/k0-resource-ui-native.luau` 100개 통과, 실패0. LocalPlayer 대역의 엔진 GUI 검사이며 실제 화면/기기 수용과 구분한다. 기존 `203785492` 자산 유형 경고가 관측됐다.
 
 최종 고정 빌드·실제 Player 검사 결과는 아래에 추가한다. 실제 폰/태블릿/패드·다인·게시 Experience 권한/성능은 미검증이며 상위 티켓을 Done 처리하지 않는다. 다음 담당: QA의 실기기/게시 환경 수용.
+
+0.20.0 고정 빌드: Rojo 성공, 소스 `d60fb58f0f3b428d56ddaf1a11b00d9edff61e72`, 1,009,152 bytes, SHA256 `04e7405b996cd5c7a191c548b114ee4427c043abb682f58108d9ced1ac3337ea`. UI100개·smoke469개 통과, 실패/수집 런타임 오류0. 실제 Player에서 TD 이미지 로드/표시와 Mage HP/MP를 확인했으나 BAG이 귀환 버튼을 가리는 결함을 발견했다. 귀환을 별도 행(y68)으로 옮기고 0.20.1에서 재검증한다.
