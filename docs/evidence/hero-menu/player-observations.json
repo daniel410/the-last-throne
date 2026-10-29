@@ -1,0 +1,61 @@
+{
+  "kind": "Transcribed isolated Studio Player observations; not published or device QA",
+  "placeId": 0,
+  "sessionOnly": true,
+  "build": "0.27.3",
+  "hud": {
+    "defaultCoreGuiHealthEnabled": false,
+    "topScreenInsets": "DeviceSafeInsets",
+    "minimapLocalTop": 8,
+    "headingLocalTop": 4,
+    "headingBackgroundTransparency": 1,
+    "headingPanelArtExists": false,
+    "gearIconExists": true,
+    "terrainPreviewPartCount": 52,
+    "finalScreenshot": "final-hud-0.27.3.png"
+  },
+  "earlierBuildObservations": {
+    "build": "0.26.1",
+    "equipActionAfter": "UNEQUIP",
+    "showEquippedSlotsAfter": true,
+    "tutorialWeapon": "knight_weapon_fine",
+    "sortAlwaysVisible": true,
+    "organizeDoneAbsent": true,
+    "lockedDiscardActive": false,
+    "discard": {
+      "item": "iron_ore",
+      "before": 24,
+      "confirmedQuantity": 7,
+      "after": 17
+    },
+    "localQAXPGrant": 100,
+    "statConfirm": {
+      "availablePointsBefore": 4,
+      "availablePointsAfter": 3,
+      "INTAfter": 15,
+      "maxMPAfter": 107
+    },
+    "skillTrain": {
+      "masteryAfter": "2 / 4",
+      "SPAfter": 0
+    },
+    "skillLoadoutAfter": [
+      "WATER BALL",
+      "MANA BOLT",
+      "GRAVITY",
+      "LOCKED",
+      "LOCKED"
+    ]
+  },
+  "earlierDeathObservation": {
+    "build": "0.27.1",
+    "controlledServerDeath": true,
+    "jointsBefore": 16,
+    "jointsAfter": 16,
+    "rootLookY": -1,
+    "phase": "Respawning",
+    "growthOpen": false,
+    "lobbyVisible": false
+  },
+  "cameraCaveat": "0.27.3 camera hold/restore is covered by seven native instance checks. A final real Play death capture was interrupted when Studio disconnected; no final Play camera visual acceptance is claimed."
+}

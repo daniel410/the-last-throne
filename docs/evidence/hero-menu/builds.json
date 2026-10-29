@@ -1,0 +1,72 @@
+[
+  {
+    "version": "0.26.0",
+    "source": "ad0336bd2554492dd83878d5c5bb98bc1a653dc3",
+    "path": "builds/0.26.0/TheLastThrone-0.26.0.rbxlx",
+    "bytes": 1120011,
+    "sha256": "1c0a994766bcfe7756aff7b5886ba793a767da76e63530d83724bc95053d9f9f",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.26.1",
+    "source": "e4cc34c8bcbc7cc557c370d44698542a65257cc6",
+    "path": "builds/0.26.1/TheLastThrone-0.26.1.rbxlx",
+    "bytes": 1129388,
+    "sha256": "1ba2288e5deb3aef12db112f759ea324b1f3d02d3dbec390e7306c39a90b6d0d",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.26.2",
+    "source": "12a655ad1c38abcaa76cd5b7b9effb27a0961bfb",
+    "path": "builds/0.26.2/TheLastThrone-0.26.2.rbxlx",
+    "bytes": 1129498,
+    "sha256": "7302b729293266868a539f9fd0b3d27fcb13ab39eedbc2afbefc541010b9dcd9",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.27.0",
+    "source": "f033ef2800f622b66a35808c19c35e3b968d4d06",
+    "path": "builds/0.27.0/TheLastThrone-0.27.0.rbxlx",
+    "bytes": 1139220,
+    "sha256": "037cad035ce7578926e51496ad4775960a39bb3de3774123231155aa46b12ac5",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.27.1",
+    "source": "94370d2df8dfdce9332583cad1f4a5ed9c501493",
+    "path": "builds/0.27.1/TheLastThrone-0.27.1.rbxlx",
+    "bytes": 1139760,
+    "sha256": "1e88bb929467518dece816967002c9bbf19c798504704d47131a0085d7030554",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.27.2",
+    "source": "b6ef4832ca72b8c7549f3d5f1639f491facb51bb",
+    "path": "builds/0.27.2/TheLastThrone-0.27.2.rbxlx",
+    "bytes": 1141669,
+    "sha256": "fed3126b19a089cb65da039aff8c84befa1c0255ffffe11a1559fa017ed053d6",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.27.3",
+    "source": "ada72ab33994c9318e9df4c01871feb51a71123f",
+    "path": "builds/0.27.3/TheLastThrone-0.27.3.rbxlx",
+    "bytes": 1142984,
+    "sha256": "35785acc5c5379529fca3b3b28c43905197e0a3d65d12dda4bf85d7403791204",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  }
+]

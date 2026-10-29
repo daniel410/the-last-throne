@@ -1,0 +1,7 @@
+{
+  "failures": [],
+  "kind": "HERO_DEATH_CAMERA_NATIVE",
+  "pass": true,
+  "checks": 7,
+  "testScriptSha256": "0546f9ba1e24d64b574f38aaf386f97293903d6251b022a4b3d1b738bb2513c9"
+}

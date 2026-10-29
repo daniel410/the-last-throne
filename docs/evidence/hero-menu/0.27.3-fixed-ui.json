@@ -1,0 +1,7 @@
+{
+  "coverage": "Actual GUI constructors and state refresh, native GUI instances, LocalPlayer double; no rendered client or device",
+  "checks": 243,
+  "failures": [],
+  "pass": true,
+  "kind": "K0_RESOURCE_UI_NATIVE"
+}

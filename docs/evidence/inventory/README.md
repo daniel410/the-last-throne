@@ -1,5 +1,7 @@
 # 장비·아이템·가방·Dawnspire 창고 구현
 
+> 2026-10-29 후속: 상시 Sort·미수령 팝업·잠금/버리기·착용 결과/제한 안내는 [0.26.2 기록](../hero-menu/README.md)을 따른다. 아래0.19.x는 당시의 역사적 증거다.
+
 2026-10-29 · TLT-011/028/041/043/046/047/052 부분 · ENG/DES 자체 검증 · 전체 티켓 수용 대기
 
 사용자의 장비·아이템·가방·스토리지 구현 및 TD 룩앤필 요청을 우선 적용했다. [장비 UX](../../equipment-bag-and-storage.md), [공통 UI](../../shared-ui-and-look-and-feel.md), [기술 계약](../../production/engineering-plan.md)을 기준으로 구현한다.
