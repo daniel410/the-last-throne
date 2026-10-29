@@ -49,19 +49,19 @@ flowchart LR
 
 첫 필수 Ogre 교전은 DW-05 막사 접근이며 단독 예고/회피 학습으로 설계한다. Ogre는 일반 몬스터 종류이고 King Ogre가 별도 보스다. K0 실험의 체력6,000·보스 반응 적용은 공격 읽기 검사용 프리셋이며 이 지역의 모든 일반Ogre가 같은 수치/반응을 갖는다는 뜻은 아니다.
 
-## 4. 선택 퀘스트 지역과 보스3종
+## 4. 숨은 퀘스트 지역과 보스3종
 
 | 구역ID·장소 | 보스 | 이야기/탐험 목적 | 입장/보상 원칙 |
 | --- | --- | --- | --- |
-| [DW-S1 고블린 왕의 야영지](deepwood-side-story-01-goblin-king.md) | Goblin King | 식량 독점·포로/물자 회수 | DW-04 후 선택 의뢰 |
-| [DW-S2 폭포 아래 동굴·채석장](deepwood-side-story-02-king-ogre.md) | King Ogre | Cave Slime 서식지·채굴 흔적·대형 보스 | DW-05 후 선택 의뢰·낙하 강요 없음 |
-| [DW-S3 붉은 전쟁터](deepwood-side-story-03-enraged-warlord.md) | Enraged Warlord | 별도 인물인 잔당 지휘관과 귀환로 | DW-07 결말 후 선택 의뢰 |
+| [DW-S1 고블린 왕의 야영지](deepwood-side-story-01-goblin-king.md) | Goblin King | 식량 독점·포로/물자 회수 | DW-04 후 숨은 퀘스트 |
+| [DW-S2 폭포 아래 동굴·채석장](deepwood-side-story-02-king-ogre.md) | King Ogre | Cave Slime 서식지·채굴 흔적·대형 보스 | DW-05 후 숨은 퀘스트·낙하 강요 없음 |
+| [DW-S3 붉은 전쟁터](deepwood-side-story-03-enraged-warlord.md) | Enraged Warlord | 별도 인물인 잔당 지휘관과 귀환로 | DW-07 결말 후 숨은 퀘스트 |
 
 메인 필수 보스는 **Orc Warlord → King Shaman**이다. 선택 보스는 고유 외형/제작 재료/기록·주민 이야기의 목표를 제공하되 첫 지역 결말·다음 장·기본 전직에 필요한 재료를 독점하지 않는다. 보상 계수·리젠·반복 제한은 경제 상세에서 정한다.
 
-Enraged Warlord는 `warlord`·`enraged`의 gameplay 조합과 전용 시각 키 `warlord:enraged`를 쓴다. 오크 군벌과 같은 원형을 쓴다는 이유로 방금 죽인 동일 인물이 설명 없이 되살아나는 이야기를 만들지 않는다. 별도의 잔당 지휘관이라는 정체성을 선택 이야기 초안에 기록한다.
+Enraged Warlord는 `warlord`·`enraged`의 gameplay 조합과 전용 시각 키 `warlord:enraged`를 쓴다. 오크 군벌과 같은 원형을 쓴다는 이유로 방금 죽인 동일 인물이 설명 없이 되살아나는 이야기를 만들지 않는다. 별도의 잔당 지휘관이라는 정체성을 숨은 퀘스트 초안에 기록한다.
 
-[통합 선택 퀘스트 DW-Q1~Q4](deepwood-optional-quests.md)는 습지 조사와 왕의 야영지·폭포 채석장·붉은 전쟁터 이야기를 포함한다. 주민 안내와 현장 단서는 같은 퀘스트로 합쳐지며 별도 완료·보상이 아니다. 본편 선행과 기존 성장 예산에 포함하지 않는다.
+[숨은 퀘스트 DW-Q1~Q4](deepwood-hidden-quests.md)는 습지 조사와 왕의 야영지·폭포 채석장·붉은 전쟁터 이야기를 포함한다. 주민 안내와 현장 단서는 같은 퀘스트로 합쳐지며 별도 완료·보상이 아니다. 본편 선행과 기존 성장 예산에 포함하지 않는다.
 
 ## 5. 몬스터10종과 지역 역할
 
