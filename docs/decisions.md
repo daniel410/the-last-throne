@@ -236,3 +236,7 @@
 ## 2026-10-28 드워프·엘프 기본 스킬
 
 사용자 지정: 드워프의 기본 스킬은 Overhead Smash·Axe Throw·Ground Slam이며 Ground Slam은 광역기다. 엘프는 Aimed Shot·Rapid Fire·Multi Shot이며 Multi Shot은 광역기다. 각 물리 스킬은 Stamina와 독립 쿨다운을 적용한다. 기술별 피해·사거리·대상 수·연속 발사 간격은 시험값이다. 기존 전직 방향과 영웅별 무료 기본 공격은 유지한다. [구현과 검증](evidence/k0/dwarf-elf-starter-skills.md).
+
+## 2026-10-28 HP·스태미나 회복 조정
+
+사용자 결정: HP는 아주 느리게 회복하고 물리 스킬에 사용하는 Stamina도 이전보다 느리게 회복한다. 0.18.5 시험값은 네 영웅 공통 HP 최대치의 초당 0.2%, 물리 영웅 Stamina 초당 6이며 Stamina 사용 후 1초 대기는 유지한다. HP는 전투 중에도 회복한다. 수치는 플레이 테스트 후 조정 가능한 시험값이다. Roblox 기본 HP 회복은 대체하고 서버가 회복을 확정한다.

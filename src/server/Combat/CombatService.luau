@@ -1088,6 +1088,12 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 		state.character:SetAttribute("K0Sprinting", false)
 		if state.mode == "Idle" then state.humanoid.WalkSpeed = Config.WalkSpeed end
 	end
+	-- Recovery is server-owned and continues during combat; dead or invalid
+	-- characters already returned through alive() above.
+	if state.humanoid.Health < state.humanoid.MaxHealth then
+		state.humanoid.Health = math.min(state.humanoid.MaxHealth,
+			state.humanoid.Health + state.humanoid.MaxHealth * Config.HealthRegenFraction * math.min(dt, 0.25))
+	end
 	if state.stamina and current >= state.staminaRegenAt and state.mode ~= "Dead" then
 		setStamina(state, state.stamina + Config.StaminaRegen * math.min(dt, 0.25))
 	end

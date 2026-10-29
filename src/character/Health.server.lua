@@ -1,0 +1,1 @@
+-- Suppress Roblox default regeneration; CombatService owns player HP recovery.

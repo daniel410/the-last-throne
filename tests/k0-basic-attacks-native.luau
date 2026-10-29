@@ -188,6 +188,36 @@ return {
 		sample(0.20)
 		near(enemy.humanoid.Health, 9925, "the same sword window cannot hit Slime twice")
 	end)
+	case("player-health-recovers-slowly-on-server", function()
+		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
+			reset(); api.injectResolver(function() return classId end)
+			local state = spawnPlayer()
+			state.humanoid.Health = 500
+			state.mode = "Block"
+			for tick = 1, 4 do api.stepPlayer(state, tick * 0.25, 0.25, true) end
+			near(state.humanoid.Health, 502, classId .. " heals 0.2 percent per second even in combat")
+			state.humanoid.Health = 999.9
+			api.stepPlayer(state, 1.25, 0.25, true)
+			near(state.humanoid.Health, 1000, classId .. " cannot exceed max health")
+			state.humanoid.Health = 0
+			api.stepPlayer(state, 1.5, 0.25, true)
+			near(state.humanoid.Health, 0, classId .. " does not regenerate after death")
+		end
+	end)
+	case("physical-skill-stamina-recovers-slowly-after-delay", function()
+		for _, classId in ipairs({ "knight", "elf", "dwarf" }) do
+			reset(); api.injectResolver(function() return classId end)
+			local state = spawnPlayer()
+			state.stamina = 40; state.staminaRegenAt = 2
+			api.stepPlayer(state, 1.75, 0.25, true)
+			near(state.stamina, 40, classId .. " respects the recovery delay")
+			for tick = 0, 3 do api.stepPlayer(state, 2 + tick * 0.25, 0.25, true) end
+			near(state.stamina, 46, classId .. " recovers six stamina per second")
+			state.stamina = 99
+			api.stepPlayer(state, 3, 0.25, true)
+			near(state.stamina, 100, classId .. " does not exceed maximum")
+		end
+	end)
 	case("confirmed-hit-feedback-only-for-actual-health-loss", function()
 		api.injectResolver(function() return "knight" end)
 		local events = {}

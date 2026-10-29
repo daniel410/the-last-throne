@@ -62,3 +62,7 @@ Stamina는 **물리 스킬 자원**이며 공통 액션에 쓰지 않는다. MP�
 드워프 기본 기술은 Overhead Smash·Axe Throw·Ground Slam, 엘프 기본 기술은 Aimed Shot·Rapid Fire·Multi Shot이다. Ground Slam과 Multi Shot은 광역기이며, 범위·대상 수·연사 간격·피해 수치는 시험값이다. [구현](../evidence/k0/dwarf-elf-starter-skills.md).
 
 0.17.0은 각 기본 스킬의 절차적 준비·발동 자세와 서버 확인 적중 효과를 제공한다. Rapid Fire의 재장전 동작은 실제 서버 화살 발사 시각에 맞춰 표시하며, Provoke는 피해 없는 도발 표식으로 구분한다. 사용자 시각 수용과 실기기/다인은 별도다. [기록](../evidence/k0/starter-skill-visuals.md).
+
+### 0.18.5 회복 시험값
+
+사용자의 회복 속도 조정에 따라 네 영웅 HP는 서버에서 최대 HP의 초당 0.2%씩 회복한다. 물리 스킬 Stamina는 초당 6으로 줄이고 스킬 사용 후 1초 회복 지연을 유지한다. MP 회복과 무료 공통 액션 계약은 그대로다. 위의 0.13.0 수치는 당시 기록이다.

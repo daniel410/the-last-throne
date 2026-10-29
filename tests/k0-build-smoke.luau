@@ -14,6 +14,8 @@ assert(game.PlaceId == 0, "K0 smoke requires an unpublished local test place")
 assert(not RunService:IsRunning(), "K0 smoke requires an idle isolated Studio")
 assert(ReplicatedStorage:FindFirstChild("Shared") and ReplicatedStorage.Shared:FindFirstChild("K0Config"), "K0 shared sources missing")
 assert(ServerScriptService:FindFirstChild("Server"), "K0 server bootstrap missing")
+local healthOverride = game:GetService("StarterPlayer"):WaitForChild("StarterCharacterScripts"):FindFirstChild("Health")
+assert(healthOverride and healthOverride:IsA("Script"), "player default health regeneration must be overridden")
 
 local report = { kind = "K0_NATIVE_SMOKE", checks = 0, failures = {}, compiledModules = {}, runtimeErrors = {}, players = 0, enemies = {}, respawns = {}, assetLoads = {}, spawnCoverage = "Spawn instance only; initial Player placement and respawn require real Play", lobbyCoverage = "Dawnspire scene floor/bounds/spawn and native request/state remote creation only; actual Player lobby selection/start/UI and combat safety require separate evidence", combatCoverage = "Four idle enemy presets and death/respawn only; real Player aggro, attacks and damage require Play", assetCoverage = "Actual TD MeshParts in isolated Studio; published RPG permissions and visible Play presentation require separate evidence" }
 local function check(condition, label)
