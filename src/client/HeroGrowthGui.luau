@@ -15,7 +15,7 @@ function Gui.create(onVisibility)
 	local player=Players.LocalPlayer
 	local gui=Instance.new("ScreenGui"); gui.Name="HeroGrowthGui"; gui.ResetOnSpawn=false; gui.DisplayOrder=55; gui.Parent=player:WaitForChild("PlayerGui")
 	local launch=Theme.button(gui,"OpenHero","HERO [H]",UDim2.new(1,-278,0,16),UDim2.fromOffset(128,40))
-	local overlay=Instance.new("Frame"); overlay.Name="Overlay"; overlay.Size=UDim2.fromScale(1,1); overlay.BackgroundColor3=Color3.new(0,0,0); overlay.BackgroundTransparency=.25; overlay.Visible=false; overlay.Parent=gui
+	local overlay=Instance.new("Frame"); overlay.Name="Overlay"; overlay.Size=UDim2.fromScale(1,1); overlay.BackgroundColor3=Color3.new(0,0,0); overlay.BackgroundTransparency=.25; overlay.Visible=false; overlay.Active=true; overlay.Parent=gui
 	local panel=Chrome.frame(overlay,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-40)); panel.AnchorPoint=Vector2.new(.5,.5)
 	local limit=Instance.new("UISizeConstraint"); limit.MaxSize=Vector2.new(940,600); limit.Parent=panel
 	Theme.label(panel,"Title","HERO",UDim2.fromOffset(20,10),UDim2.new(1,-120,0,32),22,Theme.color.gold)
@@ -45,7 +45,10 @@ function Gui.create(onVisibility)
 	local function visible(value)
 		opened=value; overlay.Visible=value; player:SetAttribute("TLTProgressionOpen",value)
 		if onVisibility then onVisibility(value) end
-		if value then getState(); render() end
+		if value then
+			CAS:BindActionAtPriority("HeroGrowthMovement",function() return Enum.ContextActionResult.Sink end,false,4000,Enum.KeyCode.W,Enum.KeyCode.A,Enum.KeyCode.S,Enum.KeyCode.D,Enum.KeyCode.Space,Enum.KeyCode.Thumbstick1)
+			getState(); render()
+		else CAS:UnbindAction("HeroGrowthMovement") end
 	end
 	local function label(parent,name,text,y,height,size,color)
 		return Theme.label(parent,name,text,UDim2.fromOffset(12,y),UDim2.new(1,-24,0,height),size or 14,color)
@@ -69,12 +72,14 @@ function Gui.create(onVisibility)
 		local portraitWidth=narrow and 110 or math.floor(body.AbsoluteSize.X*.37)
 		local portraitHeight=narrow and 156 or 368
 		local portraitFrame=Chrome.frame(body,"HeroPortrait",UDim2.fromOffset(0,0),UDim2.fromOffset(portraitWidth,portraitHeight))
-		local image=Instance.new("ImageLabel"); image.Name="TDHero"; image.BackgroundTransparency=1; image.Size=UDim2.new(1,-12,1,-42); image.Position=UDim2.fromOffset(6,4); image.Image="rbxassetid://"..portraits[classId]; image.ScaleType=Enum.ScaleType.Fit; image.Parent=portraitFrame
-		label(portraitFrame,"Level","LEVEL "..g.level,portraitHeight-36,28,18,Theme.color.gold)
+		local image=Instance.new("ImageLabel"); image.Name="TDHero"; image.BackgroundTransparency=1; image.Size=UDim2.new(1,-12,1,narrow and -42 or -76); image.Position=UDim2.fromOffset(6,4); image.Image="rbxassetid://"..portraits[classId]; image.ScaleType=Enum.ScaleType.Fit; image.Parent=portraitFrame
+		label(portraitFrame,"Level","LEVEL "..g.level,portraitHeight-(narrow and 36 or 68),28,18,Theme.color.gold)
+		if not narrow then label(portraitFrame,"Resources",string.format("HP %d   MP %d",derived.health,derived.mana),portraitHeight-36,28,14) end
 		local info=Theme.label(body,"HeroName",names[classId],UDim2.fromOffset(narrow and 122 or 0,narrow and 2 or 376),UDim2.fromOffset(narrow and math.max(130,body.AbsoluteSize.X-132) or portraitWidth,32),narrow and 16 or 20,Theme.color.gold)
 		local xp=g.level==80 and "MAX LEVEL" or string.format("XP  %d / %d",g.xp,Growth.xpToNext(g.level))
 		Theme.label(body,"XP",xp,UDim2.fromOffset(narrow and 122 or 0,narrow and 42 or 414),UDim2.fromOffset(narrow and math.max(130,body.AbsoluteSize.X-132) or portraitWidth,24),13,Theme.color.green)
-		Theme.label(body,"Resources",string.format("HP %d   MP %d",derived.health,derived.mana),UDim2.fromOffset(narrow and 122 or 0,narrow and 72 or 446),UDim2.fromOffset(narrow and math.max(130,body.AbsoluteSize.X-132) or portraitWidth,42),14)
+		local resources=Theme.label(body,"Resources",string.format("HP %d   MP %d",derived.health,derived.mana),UDim2.fromOffset(narrow and 122 or 0,narrow and 72 or 446),UDim2.fromOffset(narrow and math.max(130,body.AbsoluteSize.X-132) or portraitWidth,42),14)
+		resources.Visible=narrow
 		local content=Instance.new("Frame"); content.Name="Growth"; content.BackgroundTransparency=1; content.Position=UDim2.fromOffset(narrow and 0 or portraitWidth+18,narrow and 172 or 0); content.Size=UDim2.new(1,narrow and -4 or -portraitWidth-22,0,700); content.Parent=body
 		local editable=snapshot.ready and snapshot.atHub and not pending
 		if tab=="Stats" then
