@@ -211,7 +211,7 @@ function Hud.create()
 	end
 	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(92, 6), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(0, 91), 68)
-	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(118, 71), 88)
+	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(102, 71), 88)
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
 	back.AnchorPoint = Vector2.new(1, 0)
