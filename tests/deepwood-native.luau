@@ -16,7 +16,7 @@ local ok,err=xpcall(function()
  local Content=require(RS.Shared.DeepwoodContent)
  local nav=require(game:GetService('StarterPlayer').StarterPlayerScripts.Client.DeepwoodNavigation)
  local function pos(id) return Vector3.new(table.unpack(Content.zones[id].center)) end
- local route=nav.route(pos('DW-01')+Vector3.new(8,3,5),pos('DW-03'))
+ local route=nav.route(pos('DW-01')+Vector3.new(-30,3,45),pos('DW-03'))
  check(#route==5 and route[3]==pos('DW-02'),'guide uses the middle region instead of cutting across cliffs')
  local midpoint=pos('DW-01'):Lerp(pos('DW-02'),.4)
  route=nav.route(midpoint,pos('DW-03'))
