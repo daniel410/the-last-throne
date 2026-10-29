@@ -242,7 +242,7 @@ function Hud.create()
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
 	back.AnchorPoint = Vector2.zero
-	back.Position = UDim2.fromOffset(10,184)
+	back.Position = UDim2.fromOffset(10,140)
 	back.Size = UDim2.fromOffset(168, 42)
 	back.BackgroundColor3 = COLORS.blue
 	back.BorderSizePixel = 0
@@ -321,7 +321,7 @@ function Hud.create()
 		items = itemButtons,
 		dodge = dodge,
 		back = back,
-		heroMenu=minimap.hero,bagMenu=minimap.bag,journalMenu=minimap.journal,trainingMenu=minimap.training,
+		heroMenu=minimap.hero,bagMenu=minimap.bag,journalMenu=minimap.journal,
 		setVisible = function(visible)
 			gui.Enabled = visible
 			topGui.Enabled=visible

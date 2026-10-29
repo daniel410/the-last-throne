@@ -457,12 +457,8 @@ growthGui = require(script.HeroGrowthGui).create(function(opened)
 	end
 	lobby.setSuppressed(opened)
 end)
-hud.trainingMenu.Activated:Connect(function()
- requestHero(player:GetAttribute("TLTRoute")=="Training" and "StartTutorial" or "StartTraining")
-end)
 local function routeCaption()
  local training=player:GetAttribute("TLTRoute")=="Training"
- hud.trainingMenu.Caption.Text=training and "DEEPWOOD" or "TRAINING"
  if training then hud.setStory(nil) end
 end
 player:GetAttributeChangedSignal("TLTRoute"):Connect(routeCaption);routeCaption()

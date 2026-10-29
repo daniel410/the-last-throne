@@ -5,6 +5,7 @@ local RunService=game:GetService('RunService')
 local Content=require(RS.Shared.DeepwoodContent)
 local Progress=require(RS.Shared.DeepwoodProgress)
 local Theme=require(script.Parent.TDInventoryTheme)
+local Navigation=require(script.Parent.DeepwoodNavigation)
 local Journal={}
 function Journal.start(hud)
  local player=Players.LocalPlayer
@@ -18,11 +19,16 @@ function Journal.start(hud)
  local retry=Theme.button(panel,'Retry','RETRY CHECKPOINT',UDim2.new(0,14,1,-52),UDim2.fromOffset(200,40))
  local coins=Theme.label(panel,'Coins','',UDim2.new(0,225,1,-52),UDim2.new(1,-240,0,40),12)
  local dialog=Theme.frame(gui,'StoryMessage',UDim2.new(.5,0,1,-195),UDim2.fromOffset(620,128));dialog.AnchorPoint=Vector2.new(.5,1);dialog.Visible=false
+ dialog.BackgroundTransparency=.85
+ dialog.TDPanelArt:Destroy()
+ dialog:FindFirstChildOfClass('UIStroke').Transparency=1
  local prose=Theme.label(dialog,'Dialogue','',UDim2.fromOffset(16,8),UDim2.new(1,-32,0,65),13)
+ prose.TextStrokeColor3=Color3.new(0,0,0);prose.TextStrokeTransparency=.2
  local dismiss=Theme.button(dialog,'Continue','CONTINUE',UDim2.new(1,-150,1,-46),UDim2.fromOffset(136,36))
  local sanctuary=Theme.button(dialog,'Sanctuary','ELVEN SANCTUARY',UDim2.new(0,12,1,-46),UDim2.fromOffset(260,36));sanctuary.Visible=false
  local shared=Theme.button(dialog,'Share','SHARE WITH REFUGEES',UDim2.new(1,-282,1,-46),UDim2.fromOffset(270,36));shared.Visible=false
  local current,target,lastMessage,selectedChapter
+ local navigation=Navigation.start()
  local marker=Instance.new('BillboardGui');marker.Name='DeepwoodWaypoint';marker.Size=UDim2.fromOffset(190,55);marker.AlwaysOnTop=true;marker.StudsOffset=Vector3.new(0,6,0);marker.MaxDistance=2400;marker.Parent=player:WaitForChild("PlayerGui")
  local waypoint=Theme.label(marker,'Waypoint','',UDim2.new(),UDim2.fromScale(1,1),12,Theme.color.gold);waypoint.TextXAlignment=Enum.TextXAlignment.Center;waypoint.TextStrokeTransparency=.15
  local function setOpen(open)
@@ -92,8 +98,9 @@ function Journal.start(hud)
   elapsed=elapsed+dt;if elapsed<.2 then return end;elapsed=0
   local phase=player:GetAttribute('K0SessionPhase');local alive=phase=='Tutorial' and not (current and current.training)
   gui.Enabled=alive;marker.Enabled=alive
-  if not alive then panel.Visible=false;dialog.Visible=false;player:SetAttribute('TLTStoryOpen',false);return end
+  if not alive then navigation.setTarget(nil);panel.Visible=false;dialog.Visible=false;player:SetAttribute('TLTStoryOpen',false);return end
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
+  navigation.setTarget(alive and current and current.journal.main<3 and target and Vector3.new(table.unpack(target.goal.position)) or nil)
   if target and root then waypoint.Text='◆ '..target.goal.title..'\n'..math.floor((root.Position-Vector3.new(table.unpack(target.goal.position))).Magnitude)..' studs' end
   if current and root then
    local c=Content.byId['DW-07'];local g=Progress.goal(c,'restoration')

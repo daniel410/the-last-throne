@@ -259,7 +259,11 @@ local adventureLoad=spawnRequests[#spawnRequests]
 check(adventureLoad.destination==tutorialSpawn,"Deepwood route is distinct from training")
 generation=generation+1;ready(first,adventureLoad.id,generation,Vector3.new(-20,4,56))
 value,errorCode=request(first,"StartTraining")
-check(errorCode==nil and value.training==true,"adventure menu can return to training")
+check(errorCode=="WaitForLobby" and value.training==false,"adventure cannot enter training outside lobby")
+check(spawnRequests[#spawnRequests]==adventureLoad,"rejected training request does not respawn or switch route")
+request(first,"ReturnLobby");local lobbyAgain=spawnRequests[#spawnRequests];generation=generation+1;ready(first,lobbyAgain.id,generation)
+value,errorCode=request(first,"StartTraining")
+check(errorCode==nil and value.training==true,"training remains available after returning to lobby")
 local lastTraining=spawnRequests[#spawnRequests];generation=generation+1;ready(first,lastTraining.id,generation,Vector3.new(-20,4,56))
 request(first,"ReturnLobby");local finalLobby=spawnRequests[#spawnRequests];generation=generation+1;ready(first,finalLobby.id,generation)
 for index = 1, 30 do remote.OnServerEvent:Fire(first, "CreateHero", "spam-" .. index, "knight") end
