@@ -446,6 +446,10 @@ hud.bagMenu.Activated:Connect(function() inventory.open() end)
 local function updateSessionView()
 	local phase=player:GetAttribute("K0SessionPhase")
 	local playing = phase == "Tutorial" or phase=="Respawning"
+	if phase=="Respawning" then
+		if inventory and inventory.isOpen() then inventory.close() end
+		if growthGui and growthGui.isOpen() then growthGui.close() end
+	end
 	hud.setVisible(playing)
 	if not playing then endBlock(); endSprint(); clearAttacks(); clearTarget() end
 	if heroSnapshot then

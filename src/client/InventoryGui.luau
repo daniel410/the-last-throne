@@ -146,6 +146,7 @@ function InventoryGui.create(onVisibility, feedback)
 		launcher.Visible=not opened and not player:GetAttribute("TLTProgressionOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function setOpen(value)
+		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end
 		opened=value; shade.Visible=value; showLauncher()
 		discardOverlay.Visible=false; discardTarget=nil
 		if not value then claimsOverlay.Visible=false end

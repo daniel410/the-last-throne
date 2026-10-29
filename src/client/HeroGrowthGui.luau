@@ -54,6 +54,7 @@ function Gui.create(onVisibility)
 		launch.Visible=not opened and not player:GetAttribute("TLTInventoryOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function visible(value)
+		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end
 		opened=value; overlay.Visible=value;showLaunch(); player:SetAttribute("TLTProgressionOpen",value)
 		if onVisibility then onVisibility(value) end
 		if value then
