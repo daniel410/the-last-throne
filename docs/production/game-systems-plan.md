@@ -60,7 +60,7 @@ Aetheria의 수정 왕좌·보라 포탈·다섯 문명이 기반이다. Aurelia
 | 051/060·DS-03 | The Darkened Throne · [꺼진 왕좌와 주민 구조](../prologue-dawnspire-tutorial.md) | DS-02·4 | Goblin2 위협 해제·주민2 안전·보고 | 구조 주민 성채 재등장·논리 처치 이중수령 차단 |
 | 051/060·DS-04 | Defend the Gate · [성문 방어와 첫 원정](../prologue-dawnspire-tutorial.md) | DS-03·5 | Lv4 Goblin2 순차·Seren 보고·Lucan 안내 | Ogre 없음·Lv5/0XP/198Coins Deepwood 이관 |
 | 061·DW-01 | Goblin Trail · [고블린 숲길](../story-01-goblin-trail.md) | DS-04·6 | 보급로/이정표/큰 발자국 조사·필수 위협·F | 조사/도착 구분·선택 슬라임 성장 예산 제외 |
-| 061·DW-02 | Broken Cart Clearing · [무너진 수레 공터](../story-02-broken-cart-clearing.md) | DW-01·7 | 주민 안전·일반 Ogre·전초기지 길 | 첫 큰 적 예고·주민/교전 공간 분리 |
+| 061·DW-02 | Broken Cart Clearing · [무너진 수레 공터](../story-02-broken-cart-clearing.md) | DW-01·7 | 주민 안전·고블린 위협·전초기지 길 | 오우거는 먼 예고만·주민/교전 공간 분리 |
 | 061·DW-03 | Elder Tree Outpost · [거목 전초기지](../story-03-elder-tree-outpost.md) | DW-02·7 | 보고·Eryn 면담·감시탑 조사 수락 | 적0·구매/소비 비강제·스킵에도 수락 보존 |
 | 061·DW-04 | Abandoned Watchtower · [버려진 감시탑](../story-04-abandoned-watchtower.md) | DW-03·8 | 장치2 순차·정령 구출·기록·F | 경비+조작 저장·지름길·Eryn 영입 비강제 |
 | 061·DW-05 | Orc-Occupied Ruins · [오크 점령지](../story-05-orc-occupied-ruins.md) | DW-04·10 | 포로·막사 연결·Orc Warlord·이송 기록 | 보스후F 복구·초회 무기/별도 인장 수령 |

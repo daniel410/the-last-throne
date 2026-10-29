@@ -59,7 +59,7 @@ GothamBold/GothamBlack은 제목·버튼, GothamMedium은 정보문 기준으로
 
 | 지역·도면·데이터 | 이어받는 공간과 제작 모듈 | 랜드마크·가독성과 서사 조건 |
 | --- | --- | --- |
-| Dawnspire · [명세](../dawnspire-prologue-map-design.md) · [전체 SVG](../../assets/maps/dawnspire-prologue-v1/dawnspire-prologue-masterplan.svg) · [배치 JSON](../../assets/maps/dawnspire-prologue-v1/layout.json) · [시나리오 JSON](../../assets/maps/dawnspire-prologue-v1/scenario-data.json) | 800×800stud 외곽 예산, DS-01~04. 성벽/분수/배너/훈련 표적/주민 엄폐/성문/포탈 마당 | 왕성과 왕관이 원경 기준. 훈련→성장 안내→주민 거리→성문/출발을 도보 연결한다. 공용 로비와 실행별 침공의 적·파괴·충돌을 분리한다. DS-04는 Lv4 Goblin 2마리 순차 교전이며 첫 Ogre는 DW-02다. |
+| Dawnspire · [명세](../dawnspire-prologue-map-design.md) · [전체 SVG](../../assets/maps/dawnspire-prologue-v1/dawnspire-prologue-masterplan.svg) · [배치 JSON](../../assets/maps/dawnspire-prologue-v1/layout.json) · [시나리오 JSON](../../assets/maps/dawnspire-prologue-v1/scenario-data.json) | 800×800stud 외곽 예산, DS-01~04. 성벽/분수/배너/훈련 표적/주민 엄폐/성문/포탈 마당 | 왕성과 왕관이 원경 기준. 훈련→성장 안내→주민 거리→성문/출발을 도보 연결한다. 공용 로비와 실행별 침공의 적·파괴·충돌을 분리한다. DS-04는 Lv4 Goblin 2마리 순차 교전이며 첫 필수 Ogre 교전은 DW-05다. |
 | Deepwood · [명세](../deepwood-map-design.md) · [전체 SVG](../../assets/maps/deepwood-v1/deepwood-masterplan.svg) · [배치 JSON](../../assets/maps/deepwood-v1/layout.json) · [7개 시나리오](../epic-01-deepwood-story.md) | 1,800×1,500stud 외곽 예산, DW-01~07·선택 3곳. 비대칭 수관/뿌리·이끼 돌·숲길·폭포 절벽·감시탑·오염 장치 | 중앙 거목과 동쪽 감시탑으로 방향을 알리고 북쪽 제단은 뿌리 능선 뒤에 숨긴다. 밝은 남쪽→중성 점령지→차가운 북쪽 순서. 원형 거목 높이 48stud를 지역 폭 280stud와 혼동해 거대 확대하지 않는다. 왕좌의 생명력 기록은 제단 이후다. |
 | Frozen Vale · [명세](../frozen-vale-map-design.md) · [전체 SVG](../../assets/maps/frozen-vale-v1/frozen-vale-masterplan.svg) · [배치 JSON](../../assets/maps/frozen-vale-v1/layout.json) · [시나리오 JSON](../../assets/maps/frozen-vale-v1/scenario-data.json) | 2,000×1,700stud 외곽 예산, FV-01~07·선택 3곳. V자 빙하·설송·청회색 암반·피난처 난로·중계기·군기·성벽·복원 거울 | 따뜻한 난로/피난처와 왕성/빙하의 실루엣을 대조한다. 눈보라는 원경, cyan 발광은 균열/표식에 제한한다. King Ice Golem 뒤 Queen 대면은 거울 3개 복원으로 비살상 해결. 화염 클래스 열쇠·강제 미끄러짐·필수 생존 게이지를 추가하지 않는다. |
 | Ember Caldera · [명세](../ember-caldera-map-design.md) · [전체 SVG](../../assets/maps/ember-caldera-v1/ember-caldera-masterplan.svg) · [배치 JSON](../../assets/maps/ember-caldera-v1/layout.json) · [시나리오 JSON](../../assets/maps/ember-caldera-v1/scenario-data.json) | 2,000×1,700stud 외곽 예산, EC-01~07·선택 3곳. 자주회/갈색 현무암·기울어진 기둥·보호막·안전 승강기·지지대·수로/밸브·설계고·전환 계기 | 높은 도시와 낮은 추출 시설의 단면으로 비용을 드러낸다. 넓은 어두운 바닥과 얇은 용암 균열을 쓴다. 용암이 주황 도로처럼 보이지 않게 한다. 시험 인증→본 전환/보호막 유지→핵 회수의 상태/표식을 구분한다. 냉기/물 클래스나 용암 횡단이 필수 열쇠가 아니다. |
@@ -82,7 +82,7 @@ GothamBold/GothamBlack은 제목·버튼, GothamMedium은 정보문 기준으로
 | 경사 | 일반 12도 이하 목표, 짧은 구간 18도 이내 시험 | 전투 바닥은 완만하게 유지, 높이 차는 진입 램프/안전 승강기로 처리 |
 | 카메라 | Deepwood 뒤 12~24stud 시작 범위 | 4클래스·조준/방어/회피 시 전경 수관·지붕·기둥이 적과 예고를 가리지 않음 |
 
-DW-02 Ogre 96×96stud와 DW-07 128×128stud, FV-07 여왕 136×128stud, EC-07/HG-07 144×136stud는 각각 해당 맵 명세의 유효 교전장 초안이다. 모든 보스를 같은 프리팹 크기로 찍지 않는다. 기존 최종 던전 시간 목표인 DW 15~20분, FV 15~25분, EC/HG 20~30분은 지역 전체 분량이나 실제 측정치가 아니다.
+DW-02 고블린 공터 96×96stud와 DW-07 128×128stud, FV-07 여왕 136×128stud, EC-07/HG-07 144×136stud는 각각 해당 맵 명세의 유효 교전장 초안이다. 모든 보스를 같은 프리팹 크기로 찍지 않는다. 기존 최종 던전 시간 목표인 DW 15~20분, FV 15~25분, EC/HG 20~30분은 지역 전체 분량이나 실제 측정치가 아니다.
 
 DS 4개와 4지역 각 7개로 총 32개 SP를 제작 입력으로 추적한다. `Start`, `Continue`, `Replay from Start`, `Rejoin Party`는 서로 다른 상태다. 스토리 사이 기본 이동은 도보, 에픽 이동/안전 귀환은 포탈을 기준으로 하며 SP마다 포탈을 추가하지 않는다. 미로딩 목적지·보스 공격장 한가운데로 보내지 않고 유효 안전 지점/로딩 상태를 제공한다. 공동 재시작은 개인 확인과 파티 동의를 구분한다.
 

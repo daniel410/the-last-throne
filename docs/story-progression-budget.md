@@ -1,5 +1,8 @@
 # 프롤로그+에픽1~4 스토리별 Coins·XP·예상 레벨 · 반영 기준
 
+> 2026-10-29: DW-02의 오우거 전투가 고블린 위협으로 변경됐다. 아래 계산과 정본의 필수 전투XP·처치 Coins는 이전 배치의 기준이며 새 배치의 성장 결과는 미검증이다. 승인 퀘스트 XP는 유지한다. TLT-061/065에서 적 구성과 보상 정본을 검토한다.
+
+
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 사용자 승인 기획 반영, 런타임/플레이테스트 전
 
 [프롤로그/튜토리얼](prologue-dawnspire-tutorial.md) · [아이템/수익화](items-and-monetization.md) · [정본 보상 데이터](../assets/balance/story-reward-budget.json) · [표 보기](../assets/balance/epics-01-04-progression.html) · [검증 결과](../assets/balance/epics-01-04-progression.json) · [계산기](../scripts/simulate_story_progression.py) · [표 생성기](../scripts/render_story_progression_report.py)

@@ -54,12 +54,12 @@ Throne Defense의 기존 게시본과 저장을 이 기획 작업으로 수정�
 | 지형·절벽·폭포 | [forest-kit-v3](../../throne-defense/assets/models/maps-quality-v2/forest-kit-v3/manifest.json)의 지형/석조/폭포38메시·53,144tri, 거목은 별도 재사용 | 적합한 메시를 선별해 재사용·변형. 수치는 kit 원본 범위이며 거목·전체 맵·RPG 성능 수치가 아님 |
 | 석조 포탈 | 석재 아치·계단·청금 배너와 보라 소용돌이 | 첫 도착/귀환 지점 또는 봉인된 균열 후보. 안전 이동과 적 출현은 문양·프롬프트·작동 상태로 구별 |
 | 수정 왕좌 | 실제 화면의 분홍/보라 수정·기단, TD의 수호 목표 | 첫 구역에서는 성역/수호 목표 참고. 왕좌의 개수·세계관 의미·실제 퀘스트 용도는 서사 사양에 맞춰 결정 |
-| 굽은 돌길·초지·이끼 바위 | 실제 근접 화면의 석재 포장과 숲 색 | 초반 안전 동선·고블린 교전·오우거 공터를 연결하고 바위 뒤 선택 탐험 공간을 추가 |
+| 굽은 돌길·초지·이끼 바위 | 실제 근접 화면의 석재 포장과 숲 색 | 초반 안전 동선·고블린 교전·수레 공터를 연결하고 바위 뒤 선택 탐험 공간을 추가 |
 | 충돌과 시야 | [기존 충돌 모듈](../../throne-defense/src/Server/VisualFactoryForestCollision.lua)은 별도 경사판과 외곽 경계를 사용. 시각 kit는 `CanCollide/CanQuery/CanTouch=false` | 플레이어 발판·회피/돌진·적 이동·카메라/공격 가림에 맞는 RPG 충돌/쿼리 규칙을 따로 작성. TD 충돌 설정을 그대로 전투 판정에 사용하지 않음 |
 
 실제 확인한 자료는 [Studio 전경](../../throne-defense/docs/evidence/maps-quality-v2/forest-native-final-overview.jpg), [근접 거리](../../throne-defense/docs/evidence/maps-quality-v2/forest-native-final-play.jpg), [폭포 측면](../../throne-defense/docs/evidence/maps-quality-v2/forest-native-final-waterfall.jpg), [목표 컨셉](../../throne-defense/assets/concepts/maps-battle-target-v1/forest.png)이다. 컨셉의 높은 식생 밀도·정교한 성역/원경과 실제 보존 화면의 구현 밀도는 다르다. 컨셉 이미지를 실제 완성 맵으로 안내하지 않는다.
 
-첫 구역의 공간 흐름은 **포탈 인근의 안전 도착점 → 돌길의 고블린 교전 → 거목이 보이는 오우거 공터 → 성역 방향의 다음 목표**로 제안한다. K0의96×96stud는 이 안의 전투 검사 구역 예산이며 Deepwood 전체 크기가 아니다. 폭포/절벽은 처음에는 풍경과 안전 경계로 활용하고 경사·좁은 통로·높이 차 전투는 기본기 확인 후 추가한다. 첫 본격 던전은 기존 계획의 「검은 뿌리의 제단」을 유지한다. 전체 주동선7지점·선택3구역·필수/선택 보스 배치는 [Deepwood 지역 설계](deepwood-region-design.md)에서 관리한다.
+첫 구역의 공간 흐름은 **포탈 인근의 안전 도착점 → 돌길의 고블린 교전 → 거목이 보이는 수레 공터 → 성역 방향의 다음 목표**로 제안한다. K0의96×96stud는 이 안의 전투 검사 구역 예산이며 Deepwood 전체 크기가 아니다. 폭포/절벽은 처음에는 풍경과 안전 경계로 활용하고 경사·좁은 통로·높이 차 전투는 기본기 확인 후 추가한다. 첫 본격 던전은 기존 계획의 「검은 뿌리의 제단」을 유지한다. 전체 주동선7지점·선택3구역·필수/선택 보스 배치는 [Deepwood 지역 설계](deepwood-region-design.md)에서 관리한다.
 
 ## 2. 영웅과 ID 대응
 
