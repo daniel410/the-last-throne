@@ -363,3 +363,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 제한 | 실제 플레이의 크기 체감과 모바일 화면은 미검증. [상세](2026-10-28-goblin-slime-scale.md) 참고. |
 
 일반 빌드이며 릴리스 태그와 Roblox 게시를 하지 않았다.
+
+## 0.18.3 — 양손 무기 방어 및 버튼 배치
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `bc67459207f937b146c988d65a5e43648c73eefb`, `VERSION=0.18.3`, 빌드 전 origin/main 일치 |
+| 빌드 | `rojo build default.project.json --output builds/0.18.3/TheLastThrone-0.18.3.rbxlx`, 성공 |
+| SHA-256 | `1d2fbce48152c5904d3d20e2c61a06908f5df86b98cedb2f5d53dcf7cb9705ba` |
+| 격리 Studio | 빌드 smoke 458개 검사 통과, 런타임 오류 0. 무기·동작 2238개 및 움직이는 리그 방어 위치 15개 검사 통과. |
+| 제한 | 실제 플레이의 손 접촉·자세, 네트워크 복제 및 모바일 버튼 수용 미검증. [상세](2026-10-28-two-handed-guard.md) 참고. |
+
+일반 빌드이며 릴리스 태그와 Roblox 게시를 하지 않았다.
