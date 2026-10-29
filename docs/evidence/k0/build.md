@@ -326,3 +326,16 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 결과물 | 892,236 bytes, SHA-256 `839aca8fa69ca6cb208092d54bb564a7b15e519b0973165d61d4bb7729a91d3e`, Git 제외 로컬 결과물 |
 | 고정 빌드 검사 | 첫 실행은 Studio에서 `K0 shared sources missing`으로 시작 전 중단됐다. 빌드 XML에 Shared/K0Config 존재를 확인하고 같은 파일을 절대 경로로 재검사해 451개 통과, 수집 런타임 오류 0, Player 0. [최초 로그](cooldown-0171-smoke-initial.log) · [재검사 로그](cooldown-0171-smoke.log) |
 | 실제 Play 및 한계 | 빌드 전 동일 GUI 소스의 격리 R15 Player에서 Whirlwind 쿨다운 시간의 아이콘 내부 위치·키/스킬명 비중첩과 만료 시 아이콘 복원을 확인했다. 최종 빌드 Player Play, 모바일·패드와 사용자 시각 수용은 미검증. [상세](cooldown-inside-icon.md). 릴리스 태그·Roblox 게시 없음. |
+
+## 0.18.0 — 전투 연출, 몬스터 크기 및 TD 일반 배경 음악
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `34bf6f2d11212d766b1a89a44010255cb34043c2`, `VERSION=0.18.0`, 빌드 전 origin/main 일치 |
+| 빌드 | `rojo build default.project.json --output builds/0.18.0/TheLastThrone-0.18.0.rbxlx`, 성공 |
+| SHA-256 | `271c8b38966afef466582c6e971565311c8401587af88e1c116a7f04bb46873e` |
+| 빌드 검증 | 격리 Studio `tests/k0-build-smoke.luau` 452개 검사 통과, 런타임 오류 0. 확대된 TD 외형 및 리그 검증. |
+| 음악 검증 | 격리 Studio에서 Riftstorm `73105938035554` 로드·재생 상태, 61.538초, 반복 및 음량 0.20 확인. 실제 청취와 게시된 RPG Experience 사용 권한은 미검증. |
+| 전투 검증 | [소스 픽스처 및 제한](2026-10-28-combat-and-bgm.md) 참고. 실제 Player Play·모바일·체감 수용은 미검증. |
+
+일반 빌드이며 릴리스 태그와 Roblox 게시를 하지 않았다.
