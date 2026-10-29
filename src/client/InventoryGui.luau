@@ -130,6 +130,7 @@ function InventoryGui.create(onVisibility, feedback)
 		for _, child in ipairs(parent:GetChildren()) do if not kind or child:IsA(kind) then child:Destroy() end end
 	end
 	local function renderDetails()
+		if quantityBox and quantityBox.Parent then quantity=tonumber(quantityBox.Text) end
 		clearChildren(detailScroll)
 		actionForSelection,quantityBox=nil,nil
 		local y=0
@@ -190,7 +191,8 @@ function InventoryGui.create(onVisibility, feedback)
 			quantityBox.ClearTextOnFocus,quantityBox.BackgroundColor3,quantityBox.TextColor3=false,Color.ink,Color.text
 			quantityBox.Font,quantityBox.TextSize=Enum.Font.GothamBold,16
 			quantityBox.Parent=detailScroll
-			quantityBox.FocusLost:Connect(function() quantity=tonumber(quantityBox.Text) end)
+			local entry=quantityBox
+			entry.FocusLost:Connect(function() quantity=tonumber(entry.Text) end)
 			y=y+52
 		end
 		if def.restore and loc=="bag" and not storageMode then
@@ -317,6 +319,11 @@ function InventoryGui.create(onVisibility, feedback)
 		storageTab.Position,storageTab.Size=UDim2.fromOffset(180,tabY),UDim2.fromOffset(164,40)
 		pendingButton.Position,pendingButton.Size=UDim2.new(1,-236,0,78),UDim2.fromOffset(212,40)
 		pendingButton.Visible=snapshot~=nil and snapshot.pending>0
+		pendingButton.Caption.Text=Text.Pending.." ("..tostring(snapshot and snapshot.pending or 0)..")"
+		pendingButton.Caption.TextSize=13
+		title.Size=UDim2.new(1,-140,0,35)
+		gear.Size,organize.Size=UDim2.fromOffset(156,40),UDim2.fromOffset(144,40)
+		organize.Position=UDim2.fromOffset(184,78)
 		if compact then
 			pendingButton.Position,pendingButton.Size=UDim2.new(1,-166,0,18),UDim2.fromOffset(90,44)
 			pendingButton.Caption.Text="CLAIMS "..tostring(snapshot and snapshot.pending or 0)
@@ -399,7 +406,7 @@ function InventoryGui.create(onVisibility, feedback)
 				else pending=nil; retry.Visible=false; message.Size=UDim2.new(1,-48,0,32) end
 			end
 			resize()
-			if changed then render() else renderDetails() end
+			if changed then render() elseif completed then renderDetails() end
 			if errorCode then setMessage(Text.Errors[errorCode] or Text.Errors.Unavailable,true)
 			elseif completed and not pending then setMessage(Text.SavedAction) end
 		end)

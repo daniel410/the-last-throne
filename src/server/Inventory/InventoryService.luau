@@ -32,7 +32,12 @@ function Service.open(player)
 	local state = {busy = true, valid = false, delivered = {}, tokens = 12, refillAt = os.clock()}
 	accounts[player] = state
 	local profile, errorCode = store:open(player.UserId)
-	if accounts[player] ~= state or player.Parent ~= Players then store:close(player.UserId); return nil, "Unavailable" end
+	if accounts[player] ~= state or player.Parent ~= Players then
+		state.busy = false
+		if accounts[player] == state then accounts[player] = nil end
+		store:close(player.UserId)
+		return nil, "Unavailable"
+	end
 	state.busy = false
 	state.profile, state.valid, state.errorCode = profile, profile ~= nil, errorCode
 	player:SetAttribute("TLTInventoryMode", sessionOnly and "Studio session" or "RPG test save")
@@ -143,7 +148,12 @@ local function handle(player, command, ...)
 	if state.tokens < 1 then return end
 	state.tokens = state.tokens - 1
 	if select("#", ...) ~= 0 or not validCommand(command) then publish(player, nil, "InvalidRequest"); return end
-	if command.action == "GetState" then publish(player, command.requestId, state.valid and nil or state.errorCode or "Unavailable"); return end
+	if command.action == "GetState" then
+		local errorCode
+		if not state.valid then errorCode = state.errorCode or "Unavailable" end
+		publish(player, command.requestId, errorCode)
+		return
+	end
 	if state.busy then publish(player, command.requestId, "Busy"); return end
 	if not state.valid and not (state.pending and state.pending.requestId == command.requestId) then publish(player, command.requestId, state.errorCode or "Unavailable"); return end
 	local heroContext = options.heroSession.getInventoryContext(player)

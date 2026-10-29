@@ -33,6 +33,7 @@ local function selectedHero(state)
 end
 
 local function snapshot(state)
+	local inventoryReady = settings.inventory == nil or settings.inventory.available(state.player)
 	local heroes = {}
 	for _, hero in ipairs(state.heroes) do
 		table.insert(heroes, {
@@ -44,8 +45,8 @@ local function snapshot(state)
 	return {
 		revision = state.revision, phase = state.phase, heroes = heroes,
 		selectedHeroId = state.selectedHeroId, activeHeroId = state.mode == "Tutorial" and state.selectedHeroId or nil,
-		canManage = state.phase == "Lobby" and state.ready and state.profileReady,
-		canStart = state.phase == "Lobby" and state.ready and state.profileReady and selectedHero(state) ~= nil,
+		canManage = state.phase == "Lobby" and state.ready and state.profileReady and inventoryReady,
+		canStart = state.phase == "Lobby" and state.ready and state.profileReady and inventoryReady and selectedHero(state) ~= nil,
 		maxHeroes = MAX_HEROES, sessionOnly = true,
 		inventoryMode = settings.inventory and state.player:GetAttribute("TLTInventoryMode") or nil,
 	}

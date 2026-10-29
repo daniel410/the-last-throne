@@ -35,6 +35,8 @@ Studio는 실제 DataStore를 호출하지 않는 명시적 세션 어댑터다.
 - 소스 smoke 초기 시도는 기존 source-probe 생성기가 `src/character/Health.server.lua`를 누락해 실패했다. 기본 회복 대체 스크립트를 정본 프로젝트 매핑대로 포함하도록 생성기를 보완한 뒤 468개 통과했다. 이후 고정 빌드 검사를 별도로 기록한다.
 - 소스 주입용 runner를 Play로 전환하면 플러그인이 다시 실행되어 기존 소스 보호 assert로 종료된다. 이 경로는 실제 Player 수용에 사용하지 않으며 고정 Rojo 빌드로 검증한다.
 
-고정 빌드 해시·실제 Player 화면·입력 결과는 검증 후 이 기록과 [빌드 기록](../k0/build.md)에 추가한다. 다음 담당 QA/ENG/DES는 실제 게시 저장/재접속·동시 서버·실기기/패드 포커스·사용자 가독성·장시간 저장 크기를 검증한다. TLT 부모 티켓/G3 전체를 완료 처리하지 않는다.
+0.19.0 고정 빌드(`bc47ed023c997eebf9e49cc96cb51175d2d4931f`, SHA-256 `5dce98f09dffc03b860e856aa89335ebae38462d9f3ba43ce53bab2c2f0da7ae`)의 실제 Player 도구 입력으로 무기/몸통 장착·장신구2 선택·물약 1개 부분 수령·보관함 F 진입을 확인했다. 이 과정에서 정상 GetState에 Unavailable이 표시되는 Lua nil 조건식 오류와 초기 좁은 화면 배치가 남기는 미수령 0 문구를 발견해 수정했다. 같은 revision의 주기 조회가 상세를 재생성해 입력 포커스/수량을 잃을 수 있어 불필요한 재생성도 제거했다. 고정 수정 빌드 해시·최종 실제 Player 화면·입력 결과는 검증 후 아래와 [빌드 기록](../k0/build.md)에 추가한다.
+
+다음 담당 QA/ENG/DES는 실제 게시 저장/재접속·동시 서버·실기기/패드 포커스·사용자 가독성·장시간 저장 크기를 검증한다. TLT 부모 티켓/G3 전체를 완료 처리하지 않는다.
 
 저장 API 근거(2026-10-29): [Roblox UpdateAsync/세션 잠금](https://create.roblox.com/docs/cloud-services/data-stores/player-data-purchasing), [데이터 저장 권장 사항](https://create.roblox.com/docs/cloud-services/data-stores/best-practices). UI 안전 영역은 [ScreenGui](https://create.roblox.com/docs/reference/engine/classes/ScreenGui/DisplayOrder)의 CoreUISafeInsets를 사용한다.
