@@ -167,6 +167,21 @@ local stale=request(p,hp,"Use")
 denied,reason=R.apply(used,stale,safe,C)
 equal(reason,"Changed","concurrent old revision rejected")
 
+p=profile()
+local mana=find(p,"mana_potion","bag")
+p=assert(apply(p,mana,"Assign",{slot=1}))
+equal(p.heroes['hero-knight'].quickSlots[1],"mana_potion","quick slot accepts an owned potion")
+equal(R.quantity(p,"hero-knight","mana_potion"),3,"assignment consumes nothing")
+denied,reason=apply(p,find(p,"mana_potion","bag"),"Assign",{slot=3})
+equal(reason,"InvalidRequest","only two item slots")
+denied,reason=apply(p,find(p,"iron_ore","bag"),"Assign",{slot=2})
+equal(reason,"InvalidRequest","materials cannot become potion slots")
+local lastPotion=find(p,"health_potion","bag")
+lastPotion.quantity=1
+p=assert(apply(p,lastPotion,"Use"))
+equal(R.quantity(p,"hero-knight","health_potion"),0,"last potion consumes the stack")
+equal(p.heroes['hero-knight'].quickSlots[2],"mana_potion","consuming another potion preserves assignment")
+
 -- A fake UpdateAsync adapter exercises callback retries and unknown write results.
 local data,failBefore,failAfter,callbacks={},false,0,0
 local adapter={UpdateAsync=function(_,key,fn)

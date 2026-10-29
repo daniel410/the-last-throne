@@ -214,7 +214,7 @@ function InventoryGui.create(onVisibility, feedback)
 			local lock=Theme.button(detailScroll,"ToggleLock",item.locked and Text.Unlock or Text.Lock,UDim2.fromOffset(0,y),UDim2.new(1,-6,0,44))
 			lock.Activated:Connect(function() command("Lock") end); Theme.enabled(lock,not pending and snapshot.ready); y=y+50
 		end
-		detailLabel("StatsNotice",Text.StatsHint,y,55,11,Color.muted)
+		detailLabel("StatsNotice",def.slot and Text.StatsHint or def.restore and (snapshot.atHub and Text.UseInField or Text.PotionHint) or Text.HubHint,y,55,12,Color.muted)
 		primary.Visible=actionForSelection~=nil
 		if actionForSelection then
 			primary.Caption.Text=Text[actionForSelection]
@@ -222,6 +222,7 @@ function InventoryGui.create(onVisibility, feedback)
 			if actionForSelection~="Use" then enabled=enabled and snapshot.safe end
 			if actionForSelection=="Deposit" or actionForSelection=="Withdraw" then enabled=enabled and snapshot.atStorage end
 			if actionForSelection=="Claim" then enabled=enabled and snapshot.atHub end
+			if actionForSelection=="Use" and snapshot.atHub then enabled=false end
 			if actionForSelection=="Equip" then enabled=enabled and (not def.classId or hero.baseClassId==def.classId) and hero.level>=(def.level or 1) and (def.slot~="accessory" or accessorySlot~=nil) end
 			Theme.enabled(primary,enabled==true)
 		end
@@ -268,7 +269,7 @@ function InventoryGui.create(onVisibility, feedback)
 			local name=Theme.label(card,"ItemName",def and def.name or Text.Slots[item.emptySlot],UDim2.fromOffset(8,49),UDim2.new(1,-16,0,38),12,Color.text)
 			name.TextXAlignment=Enum.TextXAlignment.Center
 			local flag=item.emptySlot and "EMPTY" or item.location.kind=="equipped" and Text.Slots[item.location.slot]
-				or item.quantity>1 and "x"..item.quantity or def.classId and Catalog.classes[def.classId] or "Lv "..(def.level or 1)
+				or (def.category~="Equipment" or item.quantity>1) and "x"..item.quantity or def.classId and Catalog.classes[def.classId] or "Lv "..(def.level or 1)
 			if item.locked then flag=Text.Locked.."  "..flag end
 			local status=Theme.label(card,"ItemStatus",flag,UDim2.new(0,7,1,-24),UDim2.new(1,-14,0,18),10,Color.silver)
 			status.TextXAlignment=Enum.TextXAlignment.Center
@@ -321,6 +322,7 @@ function InventoryGui.create(onVisibility, feedback)
 			local button=filterButtons[name]
 			button.Position,button.Size=UDim2.fromOffset(index*(fw+6),0),UDim2.fromOffset(fw,filterHeight)
 			button.Caption.TextSize=width<500 and 10 or 12; index=index+1
+			button.Caption.Text=compact and Text.ShortFilters[name] or Text[name]
 		end
 		search.Visible,sort.Visible=organizing,organizing
 		search.Position,search.Size=UDim2.fromOffset(20,searchY),UDim2.new(1,-180,0,compact and 44 or 40)

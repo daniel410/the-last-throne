@@ -41,4 +41,8 @@ Studio는 실제 DataStore를 호출하지 않는 명시적 세션 어댑터다.
 
 0.19.1(`5b50ac23756eba4f2ae75136bfc8183dd498bedd`, SHA-256 `d694c0cd73d3c8b6bdd766a448600cbe3fbcea1eee6fa5199d161c0134f047a4`)에서는 정상 조회 오류가 사라지고 미수령 1이 정확히 표시됐다. 실제 F 입력과 텍스트 입력으로 철광석 수량 7을 지정하고 주기 조회 2.2초 뒤에도 포커스/수량이 유지되며 가방 17·창고 7로 전량 성공한 것을 확인했다. 다음 품목으로 바꿀 때 직전 수량이 재사용될 여지를 제거하고, 작은 화면 버튼 44px·탭 폭·제목/영웅 표시·하단 대비를 보완한 0.19.2로 최종 검증한다.
 
+0.19.2의 [실제 Player 관측](0.19.2-player.json)과 [8슬롯 화면](0.19.2-equipment.png), [390×700 부모 영역의 배치 검사](0.19.2-compact-layout.png)를 보존했다. 실제 도구 입력으로 8슬롯 장착, 장신구 대상 선택, 보상 5개 수령, 철광석 부분 보관/다른 영웅의 부분 인출과 병합, 클래스 불일치의 UI/서버 거부를 확인했다. 서버 HP/사망을 통제한 물약 검사는 최대 자원 무소모·실제 회복과 수량 감소·같은 사용 재전송 무변경·리스폰 수량 보존을 확인했다. 메뉴 열린 상태의 공격/회피/스킬·이동 입력은 시퀀스·MP·위치를 바꾸지 않았다. QA 관측 Folder가 캐릭터 교체에 지워져 ScreenGui로 바꾸고 측정을 반복했다. 해당 회차의 리스폰 후 로비 귀환/아이템 등록 입력은 확인하지 못했으며 별도 결과로 남긴다.
+
+작은 화면의 긴 필터명 줄바꿈과 1개짜리 물약의 Lv 표기를 고치고, 현재 로비의 선택 영웅에는 전투 자원이 없으므로 물약 사용을 막고 튜토리얼 진입 안내를 주는 0.19.3을 최종 확인한다. Z/C 등록과 장비/보관 관리 자체는 거점에서 가능하다.
+
 저장 API 근거(2026-10-29): [Roblox UpdateAsync/세션 잠금](https://create.roblox.com/docs/cloud-services/data-stores/player-data-purchasing), [데이터 저장 권장 사항](https://create.roblox.com/docs/cloud-services/data-stores/best-practices). UI 안전 영역은 [ScreenGui](https://create.roblox.com/docs/reference/engine/classes/ScreenGui/DisplayOrder)의 CoreUISafeInsets를 사용한다.

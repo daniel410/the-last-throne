@@ -2,6 +2,8 @@ return {
 	Bag = "BAG", Title = "Hero Bag", StorageTitle = "Dawnspire Storage", EquipmentTitle = "Equipped Gear",
 	Eyebrow = "DAWNSPIRE  /  EQUIPMENT & ITEMS", Close = "CLOSE", ViewGear = "VIEW GEAR", ViewBag = "BACK TO BAG",
 	Organize = "ORGANIZE", Done = "DONE", All = "All", Equipment = "Equipment", Consumables = "Consumables", Materials = "Materials",
+	ShortFilters = {All="All",Equipment="Gear",Consumables="Potions",Materials="Materials"},
+	PotionHint = "Z / C uses potions carried in this hero's bag.", UseInField = "Enter the tutorial with this hero to use potions.",
 	Search = "Search items...", Empty = "No items here.", SelectItem = "Select an item", SelectHint = "Choose an item to compare equipment, use a potion or read its details.",
 	SelectHero = "Create or select a hero in Dawnspire to open their bag.",
 	Session = "STUDIO SESSION  •  Items reset when this test ends", Saved = "RPG TEST SAVE  •  Equipment and items are saved",
@@ -29,5 +31,6 @@ return {
 		ChooseAccessory = "Select Accessory 1 or Accessory 2 before equipping.", UniqueGroup = "An item from this unique group is already equipped. Choose its slot to replace it.",
 		InvalidQuantity = "Enter a whole number between 1 and the quantity you own.", ItemEmpty = "No assigned potions in your bag. Collect or withdraw more at Dawnspire.",
 		HealthFull = "Health is full. Save your potion for later.", ManaFull = "Mana is full. Save your potion for later.", NoManaPool = "This hero has no mana to restore.",
+		EnterTutorial = "Enter the tutorial with this hero to use potions.",
 	},
 }

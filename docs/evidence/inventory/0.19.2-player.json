@@ -1,0 +1,191 @@
+{
+  "build": "0.19.2",
+  "source_commit": "13663a338983078c333b12c5008f3d3f30991354",
+  "sha256": "e8e08929a74f1ba25892818f71135fc3ce71ff7db2eb0613cfb1d6d88d95642c",
+  "environment": "Unpublished Studio Play, one R15 Player, tool-generated mouse/keyboard. Health/death controlled on server for labeled cases; desktop frame constrained to 390x700 for compact layout, not a physical mobile device.",
+  "results": {
+    "initial": {
+      "bag": 12,
+      "heroes": {
+        "knight": "b5945fe3-3fbf-4c40-a86f-44e64dca3eaf",
+        "mage": "4a361745-f3d3-412d-9a35-043e0f32400c"
+      },
+      "pending": 2,
+      "revision": 2,
+      "ready": true
+    },
+    "equipment": {
+      "stats": {
+        "health": 100,
+        "power": 18,
+        "armor": 6,
+        "offhand": "knight_shield",
+        "weapon": "knight_weapon_fine"
+      },
+      "revision": 9,
+      "slots": {
+        "weapon": "knight_weapon_fine",
+        "feet": "traveler_boots",
+        "accessory2": "copper_ring",
+        "head": "traveler_hood",
+        "hands": "traveler_gloves",
+        "body": "traveler_coat",
+        "offhand": "knight_shield",
+        "accessory1": "amber_charm"
+      },
+      "bag": 6
+    },
+    "storage": {
+      "items": {
+        "1": {
+          "location": {
+            "kind": "storage"
+          },
+          "quantity": 7,
+          "definition": "iron_ore",
+          "id": "2f76f868-3dc2-4a34-8f04-1b7f80b6d2d6-split"
+        },
+        "2": {
+          "location": {
+            "kind": "pending"
+          },
+          "quantity": 5,
+          "definition": "health_potion",
+          "id": "4a361745-f3d3-412d-9a35-043e0f32400c-starter-14"
+        },
+        "3": {
+          "location": {
+            "kind": "storage"
+          },
+          "quantity": 1,
+          "definition": "knight_weapon",
+          "id": "b5945fe3-3fbf-4c40-a86f-44e64dca3eaf-starter-1"
+        },
+        "4": {
+          "location": {
+            "kind": "bag",
+            "heroId": "b5945fe3-3fbf-4c40-a86f-44e64dca3eaf"
+          },
+          "quantity": 8,
+          "definition": "health_potion",
+          "id": "b5945fe3-3fbf-4c40-a86f-44e64dca3eaf-starter-11"
+        },
+        "5": {
+          "location": {
+            "kind": "bag",
+            "heroId": "b5945fe3-3fbf-4c40-a86f-44e64dca3eaf"
+          },
+          "quantity": 17,
+          "definition": "iron_ore",
+          "id": "b5945fe3-3fbf-4c40-a86f-44e64dca3eaf-starter-13"
+        }
+      },
+      "pending": 1,
+      "storage": 2,
+      "revision": 12
+    },
+    "crossHero": {
+      "hero": "4a361745-f3d3-412d-9a35-043e0f32400c",
+      "revision": 14,
+      "requirements": "Knight only\nRequires level 1",
+      "equipActive": false,
+      "items": {
+        "1": {
+          "location": {
+            "kind": "storage"
+          },
+          "quantity": 4,
+          "definition": "iron_ore",
+          "id": "2f76f868-3dc2-4a34-8f04-1b7f80b6d2d6-split"
+        },
+        "2": {
+          "location": {
+            "heroId": "4a361745-f3d3-412d-9a35-043e0f32400c",
+            "kind": "bag"
+          },
+          "quantity": 27,
+          "definition": "iron_ore",
+          "id": "4a361745-f3d3-412d-9a35-043e0f32400c-starter-12"
+        },
+        "3": {
+          "location": {
+            "heroId": "4a361745-f3d3-412d-9a35-043e0f32400c",
+            "kind": "bag"
+          },
+          "quantity": 1,
+          "definition": "knight_weapon",
+          "id": "b5945fe3-3fbf-4c40-a86f-44e64dca3eaf-starter-1"
+        }
+      }
+    },
+    "activeLife": {
+      "mpCount": 2,
+      "hpCount": 2,
+      "phase": "Tutorial",
+      "hp": 626.47021484375,
+      "mp": 100
+    },
+    "fullHP": {
+      "hp": 1000,
+      "count": 2,
+      "error": "HealthFull"
+    },
+    "fullMP": {
+      "error": "ManaFull",
+      "count": 2,
+      "mp": 100
+    },
+    "usedHP": {
+      "revision": 18,
+      "count": 1,
+      "hp": 540.7661743164062
+    },
+    "usedMP": {
+      "count": 1,
+      "mp": 100
+    },
+    "replay": {
+      "before": {
+        "count": 1,
+        "hp": 569.0972290039062
+      },
+      "revision": 18,
+      "after": {
+        "count": 1,
+        "hp": 569.5963745117188
+      }
+    },
+    "respawn": {
+      "mpCount": 1,
+      "hpCount": 1,
+      "phase": "Tutorial",
+      "hp": 1000,
+      "generation": 3
+    },
+    "inputLeak": {
+      "attackAfter": 0,
+      "movement": 0,
+      "manaBefore": 100,
+      "dodgeAfter": 0,
+      "manaAfter": 100,
+      "attackBefore": 0,
+      "dodgeBefore": 0
+    },
+    "negativeProbes": {
+      "crossClass": {
+        "error": "WrongClass",
+        "revision": 14
+      },
+      "storageOutsideHub": {
+        "error": "InCombat",
+        "revision": 18
+      }
+    }
+  },
+  "limits": [
+    "No actual DataStore reads/writes in Studio",
+    "No physical mobile/gamepad or simultaneous live server acceptance",
+    "Initial QA observer Folder was removed on character replacement; measurements were repeated with ResetOnSpawn=false ScreenGui",
+    "Post-respawn quick-slot assignment and return-to-lobby attempt were not verified by the UI automation in this run"
+  ]
+}

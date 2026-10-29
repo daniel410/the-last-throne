@@ -158,6 +158,7 @@ local function handle(player, command, ...)
 	if not state.valid and not (state.pending and state.pending.requestId == command.requestId) then publish(player, command.requestId, state.errorCode or "Unavailable"); return end
 	local heroContext = options.heroSession.getInventoryContext(player)
 	if not heroContext or heroContext.heroId ~= command.heroId or options.heroSession.isBusy(player) then publish(player, command.requestId, "Changed"); return end
+	if command.action == "Use" and heroContext.atHub then publish(player, command.requestId, "EnterTutorial"); return end
 	local context = {safe = heroContext.atHub or options.combat.isSafeForEquipment(player), atHub = heroContext.atHub, atStorage = atStorage(player) == true,
 		lifeToken = token .. ":" .. tostring(heroContext.generation)}
 	local item = state.profile.items[command.instanceId]
