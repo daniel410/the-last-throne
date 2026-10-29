@@ -299,16 +299,27 @@ function Hud.create()
 			skillScale.Scale = math.min(scale, math.max(.35, (viewport.X-280)/528))
 			skillBar.Position = UDim2.new(.5, 0, 1, -12)
 			local jump=playerGui:FindFirstChild('JumpButton',true)
-			local clearance=112
+			local clearance=24
 			if jump and jump:IsA('GuiObject') and jump.Visible and jump.AbsoluteSize.Y>0 then
-				clearance=math.max(clearance,root.AbsolutePosition.Y+viewport.Y-jump.AbsolutePosition.Y+12)
+				clearance=math.max(clearance,root.AbsolutePosition.Y+viewport.Y-jump.AbsolutePosition.Y+12-124*scale)
 			end
-			actions.Size=UDim2.fromOffset(172,150)
+			actions.Size=UDim2.fromOffset(172,188)
 			actions.Position=UDim2.new(1,-20,1,-clearance)
-			block.Position=UDim2.fromOffset(8,18)
-			sprint.Position=UDim2.fromOffset(94,0)
-			dodge.Position=UDim2.fromOffset(8,84);dodge.Size=UDim2.fromOffset(60,60)
-			attack.Position=UDim2.fromOffset(90,78);attack.Size=UDim2.fromOffset(64,64)
+			block.Position=UDim2.fromOffset(8,0);block.Size=UDim2.fromOffset(56,56)
+			dodge.Position=UDim2.fromOffset(8,66);dodge.Size=UDim2.fromOffset(56,56)
+			sprint.Position=UDim2.fromOffset(8,132);sprint.Size=UDim2.fromOffset(56,56)
+			attack.Position=UDim2.fromOffset(90,0);attack.Size=UDim2.fromOffset(64,64)
+			if viewport.X<600 then
+				-- Two bottom rows preserve readable touch targets on narrow displays.
+				skillBar.Size=UDim2.fromOffset(288,140)
+				skillScale.Scale=math.min(scale,(viewport.X-40)/288)
+				for i,button in ipairs(itemButtons) do button.Position=UDim2.fromOffset((i-1)*72,0) end
+				for i,button in ipairs(skillButtons) do local slot=i+1;button.Position=UDim2.fromOffset((slot%4)*72,math.floor(slot/4)*72) end
+				actions.Position=UDim2.new(1,-20,1,-math.max(clearance,140*skillScale.Scale+24))
+			else
+				skillBar.Size=UDim2.fromOffset(528,68)
+				for i,button in ipairs(skillButtons) do button.Position=UDim2.fromOffset((i+1)*72+24,0) end
+			end
 		else
 			skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)
 			if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end

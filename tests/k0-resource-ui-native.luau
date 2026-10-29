@@ -191,11 +191,13 @@ local ok, failure = xpcall(function()
 		local actions,bar=mobile.Actions,mobile.SkillBar
 		check(bar.Position.Y.Scale==1 and bar.Position.Y.Offset==-12,'mobile items and skills stay at the bottom')
 		check(actions.Attack.Size==UDim2.fromOffset(64,64),'mobile attack is reduced to64px')
-		check(actions.Sprint.Position.Y.Offset<actions.Block.Position.Y.Offset,'mobile sprint sits above block')
+		check(actions.Block.Size==actions.Dodge.Size and actions.Dodge.Size==actions.Sprint.Size,'mobile defensive actions have equal size')
+		check(actions.Block.Position.X.Offset==actions.Dodge.Position.X.Offset and actions.Dodge.Position.X.Offset==actions.Sprint.Position.X.Offset,'mobile defensive actions form one column')
+		check(actions.Attack.Position.Y.Offset==actions.Block.Position.Y.Offset,'attack occupies the upper-right action slot')
 		local scale=actions.UIScale.Scale
 		local attackBottom=size.Y+actions.Position.Y.Offset-actions.Size.Y.Offset*scale+(actions.Attack.Position.Y.Offset+64)*scale
 		check(attackBottom<size.Y-112,'mobile attack clears the reserved jump area')
-		check(bar.Size.X.Offset*bar.UIScale.Scale<=size.X-280+.1,'bottom row preserves both thumb regions')
+		check(bar.Size.X.Offset*bar.UIScale.Scale<=(size.X<600 and size.X-40 or size.X-280)+.1,'bottom row fits the available width')
 	end
 
 end, debug.traceback)
