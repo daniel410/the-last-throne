@@ -4,6 +4,12 @@
 
 현재 사양은 [기획 결정](decisions.md)과 상세 문서를 따른다. 아래의 과거 수치는 이력이며 현재 값이 아니다.
 
+## 2026-10-28 — 0.18.7 구현 현황과 후속 계획 동기화
+
+- 로컬 0.18.7의 네 영웅·12개 스킬, TD 원본과 적/무기, 양손 가로 방어, Overhead Smash, 회복 및 배경 음악을 [현재 상태](production/current-status.md)에 정리했다.
+- 실제 Roblox 게시 0.18.3 / Place 버전 4와 미게시 로컬 0.18.7을 구분하고, 격리 Studio 증거·실제 플레이/제한 자산 미검증을 명시했다.
+- 다음 순서는 실제 Play 및 자산 검증 → 영구 저장·스킬 자격·전직 슬롯 → 정식 HUD → Deepwood 첫 스토리 수직 슬라이스다. 문서 갱신으로 기능이나 게이트를 완료 처리하지 않았다.
+
 ## 2026-10-28 — 독립 Experience 전환
 
 - 사용자 결정에 따라 The Last Throne을 TD와 같은 Experience의 RPG Place가 아니라 **독립 Roblox Experience**로 전환했다. TD Experience·기존 시작 Place·잔액·구매권·성장·복구는 변경하지 않는다.
