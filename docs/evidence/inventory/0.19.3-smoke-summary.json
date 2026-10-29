@@ -1,0 +1,13 @@
+{
+  "build": "0.19.3",
+  "source_commit": "1eebb93f41c303be765d7e12d21855078f69b33b",
+  "command": "run-in-roblox --place builds/0.19.3/TheLastThrone-0.19.3.rbxlx --script tests/k0-build-smoke.luau",
+  "record_type": "Summary transcribed from completed tool report; not a raw stdout log",
+  "exitCode": 0,
+  "kind": "K0_NATIVE_SMOKE",
+  "checks": 468,
+  "players": 0,
+  "pass": true,
+  "failures": [],
+  "runtimeErrors": []
+}

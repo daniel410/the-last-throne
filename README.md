@@ -2,7 +2,7 @@
 
 Throne Defense의 세계관·영웅·타워·맵·몬스터·포탈·왕좌와 3D 자산을 공유하는 Roblox 협동 액션 RPG입니다. 직접 조작 전투, 클래스 안의 전직과 스킬트리, 공명 연계, 탐험과 이야기를 중심으로 최고의 액션 RPG를 목표로 합니다.
 
-**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.18.10 · 비공개 게시 시험판 0.18.3 · Deepwood K0 원형 제작·검증**
+**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.19.3 · 비공개 게시 시험판 0.18.3 · Deepwood K0 원형 제작·검증**
 
 **개발 문서는 한국어, 게임의 UI·퀘스트·대사·아이템·스킬·상품·오류·음성/자막은 영어(en-US)로 제작합니다.**
 
@@ -23,7 +23,7 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 
 | 분야별 상세 계획 | 내용 |
 | --- | --- |
-| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.18.10 시험 구현·게시 상태·미구현 차이·다음 작업/수용 |
+| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.19.3 시험 구현·게시 상태·미구현 차이·다음 작업/수용 |
 | [액션·스킬 설계](docs/production/action-and-skill-design.md) | 공통 액션·물리/마법 자원·전직별 슬롯·키/HUD |
 | [기획·시스템](docs/production/game-systems-plan.md) | 32구간 추적·후반8장 연결·전직/스탯/스킬·장비/경제·동료 |
 | [디자인·월드](docs/production/design-and-world-plan.md) | 승인 컨셉·맵/랜드마크·모바일/패드·가방 v2·접근성 |
@@ -34,7 +34,7 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 | [원천 검토표](docs/production/source-audit.md) | 기존 문서·컨셉·지도·정본 데이터와 새 계획의 연결 |
 | [문서 검증 결과](docs/production/validation-report.md) | 링크·백로그 의존·컨셉 해시·성장 정합·스킬 구조의 실제 정적 검사 |
 
-현재 저장소에는 Dawnspire 시험용 로비, 네 영웅 생성·선택, Deepwood 튜토리얼 시험장과 Slime/Goblin/Orc Warrior/Ogre, 서버 전투 및 영어 HUD의 원형이 있습니다. 한 세션에서 Knight·Elf Archer·Dwarf Axe Thrower·Mage를 각 1명 생성해 시험할 수 있으며, 영웅과 튜토리얼 진행은 접속 종료 시 초기화됩니다. 각 영웅의 최초 직업은 고정됩니다. TD 초상과 검·방패·활·도끼, 새 나무 지팡이 및 Roblox 아바타에 적용한 TD 직업 색상을 사용합니다. 전신 플레이어 리그·최종 맵·성능·저장/결제·Experience 연동은 후속 작업입니다. 실제 검증과 남은 항목은 [영웅 로비 기록](docs/evidence/k0/hero-lobby.md)과 [K0 작업 기록](docs/evidence/k0/README.md)을 확인합니다. 공개 콘텐츠 묶음·출시일·인력·예산은 대표 구간의 실제 제작/검증 결과로 정합니다.
+현재 저장소에는 Dawnspire 시험용 로비, 네 영웅 생성·선택, Deepwood 튜토리얼 시험장과 Slime/Goblin/Orc Warrior/Ogre, 서버 전투와 영어 HUD, TD 아틀라스를 사용한 장비·가방·공유 창고가 있습니다. Knight·Elf Archer·Dwarf Axe Thrower·Mage를 각 1명 생성하며 최초 직업은 고정됩니다. Studio는 세션 보관이며, 게시 서버용 RPG 전용 계정 저장 경로에는 영웅 식별자와 아이템·장착·창고를 연결했습니다. 실제 게시 저장·재접속 수용과 정식 성장 저장은 미검증입니다. TD 초상과 검·방패·활·도끼, 새 나무 지팡이 및 Roblox 아바타에 적용한 TD 직업 색상을 사용합니다. 전신 플레이어 리그·최종 맵·성능·결제·Experience 연동은 후속 작업입니다. [장비 구현과 검증](docs/evidence/inventory/README.md), [영웅 로비 이력](docs/evidence/k0/hero-lobby.md) 및 [K0 작업 기록](docs/evidence/k0/README.md)에서 실제 범위를 확인합니다.
 
 ## Git·빌드·릴리스
 
@@ -109,7 +109,7 @@ TD 실제 아틀라스를 참조한 공통 보드와 로비HUD·로비 메뉴·�
 
 Deepwood 시험장에서 네 영웅의 공통 공격·방어·회피·달리기와 직업 스킬을 사용할 수 있습니다. 기사의 기본 스킬은 Shield Bash·Whirlwind·Provoke, 마법사는 Mana Bolt·Water Ball·Gravity입니다. 드워프는 Overhead Smash·Axe Throw·Ground Slam, 엘프는 Aimed Shot·Rapid Fire·Multi Shot을 사용합니다. Whirlwind·Gravity·Ground Slam·Multi Shot은 광역기이며 각 기본 스킬에 시험용 동작과 적중 효과가 있습니다. PC는 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R/V 회피, 1~5번 장착 스킬, Space 점프, X 표적 해제입니다. 0.18.8에서 Stamina를 제거해 물리 스킬은 개별 쿨다운만, 마법 스킬은 MP와 개별 쿨다운을 사용합니다. 정식 전직·저장은 미구현이며 5슬롯은 연습 전용입니다. [현재 상태와 검증](docs/production/current-status.md).
 
-우선 작업은 **0.18.10의 네 영웅 플레이 검증을 확장**하고, 제한 자산·배경 음악의 독립 Experience 사용 가능 여부를 확인하는 것입니다. 0.18.8에서 네 영웅의 기본 스킬 시전과 자원 표시, 0.18.9에서 기사 액션·회복 일부, 0.18.10에서 수정된 슬라임 분열과 Mage 물약 일부를 격리 Studio의 실제 Player로 확인했습니다. 이어서 정식 영웅 저장·스킬 학습·Lv20/40 전직 완료에 따른 3→4→5 슬롯, 스킬 관리 HUD, Deepwood 첫 스토리 구간을 순서대로 진행합니다. 공개된 정식 서비스가 아니라 비공개 시험 환경이며 최신 0.18.10은 아직 Roblox에 게시되지 않았습니다. 상세 순서와 완료 조건은 [현재 개발 상태](docs/production/current-status.md) 및 [백로그](backlog.md)를 따릅니다.
+우선 작업은 **0.19.3 장비·가방·창고의 실제 저장/재접속·다인 검증**과 네 영웅 플레이 검증 확장, 제한 자산·배경 음악의 독립 Experience 사용 가능 여부 확인입니다. 0.19.2의 단일 Player에서 8슬롯 장착·영웅 간 창고 이동·물약 사용/재생성 수량을, 0.19.3에서 등록·검색·잠금과 좁은 화면 흐름을 확인했습니다. 이어서 정식 성장·스킬 학습·Lv20/40 전직 완료에 따른 3→4→5 슬롯, 스킬 관리 HUD, Deepwood 첫 스토리 구간을 진행합니다. 최신 0.19.3은 로컬 시험 빌드이며 Roblox에 게시되지 않았습니다. 상세 순서와 완료 조건은 [현재 개발 상태](docs/production/current-status.md) 및 [백로그](backlog.md)를 따릅니다.
 
 ## Deepwood 에픽·상세 시나리오
 
@@ -143,4 +143,4 @@ Deepwood 시험장에서 네 영웅의 공통 공격·방어·회피·달리기�
 
 ## 장비 장착·가방·스토리지
 
-[기능 기획](docs/equipment-bag-and-storage.md) · [간소화 콘셉트/동작 보드](assets/concepts/2026-10-27-equipment-storage-v2/index.html).유물 슬롯을 제거해 8슬롯으로 정리하고 기본 진입을 가방으로 통합했습니다. 망토는 의복이며 장착 방식은 후속 설계입니다. 기존 이미지의 9슬롯은 이전 콘셉트입니다. 고정 슬롯 자동 지정·접힌 상세/정리·거점 창고·미수령 배지·단계별 안내를 반영했습니다. 용량60/120은 신규 제안이며 실제 Roblox UI/저장 구현은 아직입니다.
+[기능 기획](docs/equipment-bag-and-storage.md) · [실제 구현·화면·검증](docs/evidence/inventory/README.md). **B / BAG**에서 비교·장착/해제·8슬롯·소모품·재료·검색/정렬/잠금을 사용하고, Dawnspire 보관함 **F / 패드 X / 터치**에서 계정 창고에 넣거나 꺼냅니다. 고정 슬롯 자동 지정·장신구 대상 선택·미수령 배지와 거점 수령, Z/C 물약 등록 및 가방 수량 소비를 서버에 연결했습니다. TD 상태창·버튼·닫기/클래스 아이콘 원본과 남색·은색·금색 룩앤필을 사용합니다. 60/120칸·99/999스택과 장비 성능은 시험값입니다. Studio 세션 보관과 실제 게시 저장 수용을 구분하며, 정식 보상/상품·성장·판매/제작과 신규 방어구 외형은 후속입니다.

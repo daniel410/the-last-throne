@@ -45,4 +45,24 @@ Studio는 실제 DataStore를 호출하지 않는 명시적 세션 어댑터다.
 
 작은 화면의 긴 필터명 줄바꿈과 1개짜리 물약의 Lv 표기를 고치고, 현재 로비의 선택 영웅에는 전투 자원이 없으므로 물약 사용을 막고 튜토리얼 진입 안내를 주는 0.19.3을 최종 확인한다. Z/C 등록과 장비/보관 관리 자체는 거점에서 가능하다.
 
+## 최종 고정 빌드와 수용 범위
+
+최신 로컬 빌드는 `0.19.3`, 입력 `1eebb93f41c303be765d7e12d21855078f69b33b`, 1,005,956 bytes, SHA-256 `a10e9dd493b42e0183c9a4dd183aadf7305d60b38f0c15770693a33440672de6`다. 소스/버전 커밋·원격 일치 확인 후 `rojo build default.project.json --output builds/0.19.3/TheLastThrone-0.19.3.rbxlx`가 종료0이었다. [로컬 파일](../../../builds/0.19.3/TheLastThrone-0.19.3.rbxlx), 중간 버전별 커밋/해시/결과는 [빌드 기록](../k0/build.md)에 보존했다.
+
+| 명령/조건 | 결과 | 증거 |
+| --- | --- | --- |
+| `lua tests/inventory.spec.lua` | 143개 통과. 앞의134개에2칸 등록·무소모·잘못된 슬롯/재료 거부·마지막 수량 소비를 추가 | 실제 reducer/AccountStore, 모형 UpdateAsync·콜백 재실행 및 실패 주입 |
+| `lua tests/k0-rules.spec.lua`, `lua tests/k0-hero-session.spec.lua` | 각각125·89개 통과 | 기존 규칙/세션 호환 검사. 세션89개는 신규 게시 저장 수용이 아님 |
+| `run-in-roblox --place builds/0.19.3/TheLastThrone-0.19.3.rbxlx --script tests/k0-basic-attacks-native.luau` | 종료0·481개 통과 | [서버 로그](0.19.3-combat.log) |
+| 같은 고정 빌드 + `tests/k0-timing-native.luau` | 종료0·106개 통과 | [타이밍](0.19.3-timing.log) |
+| 같은 고정 빌드 + `tests/k0-resource-ui-native.luau` | 종료0·85개 통과 | [기존 HUD/로비 상태](0.19.3-ui.log) |
+| 같은 고정 빌드 + `tests/k0-player-weapons-native.luau` | 종료0·2,238개 통과 | [무기/리그](0.19.3-weapons.log) |
+| 같은 고정 빌드 + `tests/k0-build-smoke.luau` | 종료0·468개, 실패/수집 오류0, Player0 | [완료 보고서의 요약](0.19.3-smoke-summary.json). 원 stdout 로그가 아닌 명시적 전사 요약 |
+| 0.19.3 단일 실제 Player 도구 입력 | 정상 조회·미수령1, HP 물약을 C에 등록해 양 슬롯 HP로 변경 후 MP 복원, 잠금 시 수량3 유지, `Mana` 검색에 Mana Potion만 표시 | [관측 JSON](0.19.3-player.json) · [실제 가방 화면](0.19.3-bag.png) |
+| 0.19.3의390×700 부모 영역 | 패널366×676, 필터/뒤로/등록 버튼44px, 목록→상세→뒤로. 로비 사용 비활성 및 진입 안내·서버 EnterTutorial 거부 | [좁은 화면](0.19.3-compact-layout.png). 실기기/실제 터치 입력 수용은 아님 |
+
+완료 전 smoke 프로세스가 사용 중인 runner 포트50312에 다른 검사를 시작한 시도는 종료2로 실패했다. 해당 프로세스 종료/성공을 확인한 뒤 위 네 회귀를 순차 실행해 모두 종료0을 확인했다. 버전/산출물을 다시 빌드하거나 덮어쓰지 않았다. 기존 자산 `203785492` 유형 경고와 Studio MaterialManager의 `debug.profileEnd` 경고는 게임 검사 성공과 구분하며 출처/게시 권한은 미해결이다.
+
+일반 로컬 빌드이며 Roblox 게시나 실제 저장소 쓰기·상품 활성화·릴리스 태그는 수행하지 않았다. 다음 담당은 QA/ENG/DES이며 위 게시 저장/실기기·정식 성장/지급의 남은 수용을 맡는다.
+
 저장 API 근거(2026-10-29): [Roblox UpdateAsync/세션 잠금](https://create.roblox.com/docs/cloud-services/data-stores/player-data-purchasing), [데이터 저장 권장 사항](https://create.roblox.com/docs/cloud-services/data-stores/best-practices). UI 안전 영역은 [ScreenGui](https://create.roblox.com/docs/reference/engine/classes/ScreenGui/DisplayOrder)의 CoreUISafeInsets를 사용한다.

@@ -1,0 +1,85 @@
+{
+  "build": "0.19.3",
+  "source_commit": "1eebb93f41c303be765d7e12d21855078f69b33b",
+  "sha256": "a10e9dd493b42e0183c9a4dd183aadf7305d60b38f0c15770693a33440672de6",
+  "environment": "Unpublished Studio Play, one R15 Player, tool-generated mouse and keyboard. Compact UI was tested with a 390x700 parent frame, not physical mobile hardware.",
+  "results": {
+    "initial": {
+      "hero": "6859f3c6-cc27-48df-b535-ca2fa1e5aaea",
+      "revision": 1,
+      "phase": "Lobby",
+      "claim": "UNCLAIMED (1)",
+      "ready": true
+    },
+    "hubUse": {
+      "overlay": true,
+      "useActive": false,
+      "title": "Health Potion",
+      "assign": true,
+      "hint": "Enter the tutorial with this hero to use potions."
+    },
+    "assignment": {
+      "bag": 12,
+      "slots": {
+        "1": "health_potion",
+        "2": "health_potion"
+      },
+      "revision": 2
+    },
+    "search": {
+      "cards": {
+        "1": "Mana Potion"
+      },
+      "query": "Mana"
+    },
+    "lockAndAssign": {
+      "locked": true,
+      "revision": 4,
+      "slots": {
+        "1": "health_potion",
+        "2": "mana_potion"
+      },
+      "quantity": 3
+    },
+    "compactLayout": {
+      "detailVisible": false,
+      "height": 676,
+      "bagVisible": true,
+      "width": 366,
+      "filters": {
+        "Filter_Consumables": {
+          "height": 44,
+          "caption": "Potions"
+        },
+        "Filter_Materials": {
+          "height": 44,
+          "caption": "Materials"
+        },
+        "Filter_Equipment": {
+          "height": 44,
+          "caption": "Gear"
+        },
+        "Filter_All": {
+          "height": 44,
+          "caption": "All"
+        }
+      }
+    },
+    "compactDetail": {
+      "useActive": false,
+      "backHeight": 44,
+      "assignHeight": 44,
+      "bagVisible": false,
+      "detailsVisible": true
+    },
+    "negativeUseAtHub": {
+      "error": "EnterTutorial",
+      "revision": 4
+    }
+  },
+  "limits": [
+    "Studio session adapter only; no actual DataStore or published Experience writes",
+    "Full eight-slot, shared-storage and combat-consumable Player flow is recorded separately for 0.19.2",
+    "Physical mobile, gamepad focus, live reconnect and simultaneous servers remain unverified"
+  ]
+}
