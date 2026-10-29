@@ -319,9 +319,12 @@ function Hud.create()
 		end,
 		setCooldowns = function(character)
 			if character then
-				classLabel.Text=(Text.Class[character:GetAttribute("K0ClassId")] or "").." · LV "..tostring(character:GetAttribute("K0Level") or 1)
+				classLabel.Text=Text.Class[character:GetAttribute("K0ClassId")] or ""
 				xpLabel.Position=UDim2.fromOffset(14,character:GetAttribute("K0MaxMana") and 117 or 72)
-				xpLabel.Text=string.format("XP %d / %d",character:GetAttribute("K0XP") or 0,character:GetAttribute("K0XPToNext") or 100)
+				local level=character:GetAttribute("K0Level") or 1
+				local needed=character:GetAttribute("K0XPToNext") or 100
+				xpLabel.Text=needed>0 and string.format("LV %d   xp %d/%d",level,character:GetAttribute("K0XP") or 0,needed)
+					or string.format("LV %d   xp MAX",level)
 			end
 			for index, button in ipairs(itemButtons) do
 				local count = character and character:GetAttribute("K0ItemCount" .. index) or 0
