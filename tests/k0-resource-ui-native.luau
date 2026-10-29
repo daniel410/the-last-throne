@@ -94,7 +94,7 @@ local ok, failure = xpcall(function()
 	for _, id in ipairs(catalog.potions) do
 		local def = catalog.items[id]
 		local icon = icons.create(playerGui, def, UDim2.new(), UDim2.fromOffset(40, 40))
-		check(icon:GetAttribute("DefinitionId") == id and icon.Glass.SizeMark.Text == def.potionSize:sub(1, 1), "icon identity and size mark: " .. id)
+		check(icon:GetAttribute("DefinitionId") == id and icon.Glass.SizeMark.Text == (def.potionTier == 4 and "XL" or def.potionSize:sub(1, 1)), "icon identity and size mark: " .. id)
 		icon:Destroy()
 		character:SetAttribute("K0ItemDefinition1", id)
 		character:SetAttribute("K0ItemCount1", 99)
@@ -104,7 +104,7 @@ local ok, failure = xpcall(function()
 	end
 	character:SetAttribute("K0ItemCount1", 0)
 	hud.setCooldowns(character)
-	check(root.SkillBar.Item1.ItemCount.Text == "x0" and root.SkillBar.Item1.PotionIcon:GetAttribute("DefinitionId") == "mana_potion_large", "empty stack keeps its assigned icon and displays zero")
+	check(root.SkillBar.Item1.ItemCount.Text == "x0" and root.SkillBar.Item1.PotionIcon:GetAttribute("DefinitionId") == "mana_potion_xl", "empty stack keeps its assigned icon and displays zero")
 	character:Destroy()
 
 	local lobby = copyModule("HeroLobbyGui").create(function() end)

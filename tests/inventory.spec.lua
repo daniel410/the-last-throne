@@ -30,7 +30,7 @@ local function apply(p,item,action,extra,context)
 	return nextP,errorCode,command,repeated
 end
 -- Six distinct definitions retain the original saved Small potion IDs.
-equal(#C.potions,6,"six potion variants")
+equal(#C.potions,8,"eight potion variants")
 for _,id in ipairs(C.potions) do
 	local def=C.items[id]
 	local sample=profile()
@@ -47,8 +47,8 @@ for _,id in ipairs(C.potions) do
 	local replay=assert(R.apply(consumed,command,context,C))
 	equal(R.quantity(replay,"hero-knight",id),count-1,"replay cannot consume another variant or quantity")
 end
-equal(C.items.health_potion.amount,40,"saved Small HP retains its restore amount")
-equal(C.items.mana_potion.amount,40,"saved Small MP retains its restore amount")
+equal(C.items.health_potion.amount,100,"Small HP follows user restore amount")
+equal(C.items.mana_potion.amount,50,"Small MP follows user restore amount")
 local p=profile()
 equal(#C.slots,8,"exactly eight equipment slots")
 equal(R.quantity(p,"hero-knight","health_potion"),3,"starter potions in bag")

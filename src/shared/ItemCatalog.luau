@@ -25,12 +25,12 @@ gear("traveler_boots", "Traveler's Boots", "feet", nil, {armor = 2}, "FT")
 gear("copper_ring", "Copper Ring", "accessory", nil, {power = 5}, "RG", {uniqueGroup = "copper_ring"})
 gear("amber_charm", "Amber Charm", "accessory", nil, {health = 60}, "CH", {rarity = "Uncommon"})
 gear("veteran_hood", "Veteran's Hood", "head", nil, {armor = 6}, "HD", {level = 5, rarity = "Uncommon"})
--- Keep the original small-potion IDs and catalog version compatible with saved accounts.
+-- Stable IDs/schema; potion restore amounts follow the latest user balance decision.
 Catalog.potions = {}
 for _, resource in ipairs({"health", "mana"}) do
-	for tier, size in ipairs({"Small", "Medium", "Large"}) do
+	for tier, size in ipairs({"Small", "Medium", "Large", "XL"}) do
 		local id = resource .. "_potion" .. (tier == 1 and "" or "_" .. size:lower())
-		local amount = (resource == "health" and {40, 120, 300} or {40, 80, 160})[tier]
+		local amount = (resource == "health" and {100, 300, 500, 1000} or {50, 100, 200, 500})[tier]
 		local glyph = resource == "health" and "HP" or "MP"
 		Catalog.items[id] = {id = id, name = size .. " " .. (resource == "health" and "Health" or "Mana") .. " Potion",
 			category = "Consumables", maxStack = 99, glyph = glyph, rarity = "Common", restore = resource,

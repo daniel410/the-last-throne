@@ -1,4 +1,5 @@
 return {
+	RestoreAmount = "Restores up to %d %s", MoreDetails = "DETAILS  >", LessDetails = "LESS DETAILS",
 	Bag = "BAG", Title = "Hero Bag", StorageTitle = "Dawnspire Storage", EquipmentTitle = "Equipped Gear",
 	Eyebrow = "DAWNSPIRE  /  EQUIPMENT & ITEMS", Close = "CLOSE", ViewGear = "VIEW GEAR", ViewBag = "BACK TO BAG",
 	Organize = "ORGANIZE", Done = "DONE", All = "All", Equipment = "Equipment", Consumables = "Consumables", Materials = "Materials",

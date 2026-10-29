@@ -23,7 +23,7 @@ function Icon.create(parent, definition, position, size)
 	local aspect = Instance.new("UIAspectRatioConstraint")
 	aspect.AspectRatio, aspect.DominantAxis, aspect.Parent = 1, Enum.DominantAxis.Height, root
 	local tier = definition.potionTier
-	local width, height = ({.46, .60, .72})[tier], ({.46, .56, .66})[tier]
+	local width, height = ({.46, .60, .72, .82})[tier], ({.46, .56, .66, .72})[tier]
 	local left, top = .5 - width / 2, .87 - height
 	local silver, gold = Color3.fromRGB(191, 216, 235), Color3.fromRGB(222, 185, 106)
 	part(root, "Neck", .4, top - .13, .2, .2, silver, .2)
@@ -38,11 +38,11 @@ function Icon.create(parent, definition, position, size)
 	gradient.Rotation, gradient.Parent = 90, liquid
 	local shine = part(body, "GlassShine", .14, .13, .1, .48, Color3.new(1, 1, 1), .5)
 	shine.BackgroundTransparency = .35
-	if tier == 3 then part(body, "GoldBand", 0, .78, 1, .08, gold) end
+	if tier >= 3 then part(body, "GoldBand", 0, .78, 1, .08, gold) end
 	local mark = Instance.new("TextLabel")
 	mark.Name, mark.BackgroundTransparency = "SizeMark", 1
 	mark.Position, mark.Size = UDim2.fromScale(.2, .27), UDim2.fromScale(.7, .6)
-	mark.Text, mark.Font = definition.potionSize:sub(1, 1), Enum.Font.GothamBlack
+	mark.Text, mark.Font = (tier == 4 and "XL" or definition.potionSize:sub(1, 1)), Enum.Font.GothamBlack
 	mark.TextColor3, mark.TextScaled, mark.TextStrokeTransparency = Color3.new(1, 1, 1), true, .45
 	mark.AutoLocalize, mark.Parent = false, body
 	return root
