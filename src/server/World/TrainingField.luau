@@ -262,9 +262,9 @@ function TrainingField.create()
 	enemies.Parent = folder
 	makeEnemy(enemies, "Goblin", -18, -10, 0.85)
 	makeEnemy(enemies, "Slime", -4, 24, 0.50)
-	-- Increase both control rig and TD visual by 50%, preserving proportions.
+	-- Preserve each TD visual and its control rig at the same relative scale.
 	makeEnemy(enemies, "Orc", 42, 17, 1.65, 1.5)
-	makeEnemy(enemies, "Ogre", 20, -30, 3.30, 3.30 / 1.45)
+	makeEnemy(enemies, "Ogre", 20, -30, 2.475, 2.475 / 1.45)
 
 	return { folder = folder, enemies = enemies, spawn = spawn }
 end

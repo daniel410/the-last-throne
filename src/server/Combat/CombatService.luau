@@ -1150,7 +1150,7 @@ local function moveEnemy(enemy, destination, current)
 		local startPosition = origin
 		local goal = destination
 		task.spawn(function()
-			local path = PathfindingService:CreatePath({ AgentRadius = enemy.kind == "Ogre" and 4 or 2, AgentHeight = enemy.kind == "Ogre" and 10 or 5, AgentCanJump = false, WaypointSpacing = 5 })
+			local path = PathfindingService:CreatePath({ AgentRadius = enemy.kind == "Ogre" and 3 or 2, AgentHeight = enemy.kind == "Ogre" and 10 or 5, AgentCanJump = false, WaypointSpacing = 5 })
 			local ok = pcall(function()
 				path:ComputeAsync(startPosition, goal)
 			end)

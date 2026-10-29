@@ -33,7 +33,7 @@ local TD_EXPECTED = {
 	Goblin = { template = "goblin", height = 3.6, texture = "134919664038207", meshes = {
 		Body = "77403549111699", ArmL = "127402469282462", ArmR = "106102430341786", LegL = "78392327157438", LegR = "100268725310905",
 	} },
-	Ogre = { template = "ogre", height = 6.05, visualHeight = 6.05 * 3.30 / 1.45, texture = "90412861785322", meshes = {
+	Ogre = { template = "ogre", height = 6.05, visualHeight = 6.05 * 2.475 / 1.45, texture = "90412861785322", meshes = {
 		Body = "98618217378067", ArmL = "108622715572697", ArmR = "98353562560509", LegL = "76243711635467", LegR = "77089513742534",
 	} },
 	Orc = { template = "orc", height = 4.6, visualHeight = 4.6 * 1.5, texture = "140427201929012", meshes = {
@@ -255,10 +255,10 @@ local ok, err = xpcall(function()
 	assert(ogreVisual and orcVisual, "both original TD visuals required for scale comparison")
 	local _, ogreBounds = ogreVisual:GetBoundingBox()
 	local _, orcBounds = orcVisual:GetBoundingBox()
-	check(ogreBounds.Y >= orcBounds.Y * 1.9, "Ogre visual is at least 1.9 times Orc height")
+	check(ogreBounds.Y >= orcBounds.Y * 1.4, "Ogre visual remains substantially taller than Orc")
 	local ogreRoot = enemies.Ogre:FindFirstChild("HumanoidRootPart")
 	local orcRoot = enemies.Orc:FindFirstChild("HumanoidRootPart")
-	check(ogreRoot and orcRoot and ogreRoot.Size.Y >= orcRoot.Size.Y * 1.9, "Ogre collision rig scales with its appearance")
+	check(ogreRoot and orcRoot and ogreRoot.Size.Y >= orcRoot.Size.Y * 1.4, "Ogre collision rig scales with its appearance")
 	report.sizeComparison = { ogreHeight = ogreBounds.Y, orcHeight = orcBounds.Y,
 		ogreRootHeight = ogreRoot and ogreRoot.Size.Y, orcRootHeight = orcRoot and orcRoot.Size.Y }
 	local appearance = require(ServerScriptService.Server.World.TdMonsterAppearance)

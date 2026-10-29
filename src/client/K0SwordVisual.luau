@@ -6,6 +6,12 @@ local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local ContentProvider = game:GetService("ContentProvider")
 local Workspace = game:GetService("Workspace")
+local Config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
+local groundSlam
+for _, skill in ipairs(Config.Skills.dwarf) do
+	if skill.id == "dwarf.common.ground" then groundSlam = skill; break end
+end
+assert(groundSlam, "Ground Slam configuration is missing")
 
 local Visual = {}
 local started = false
@@ -19,6 +25,7 @@ local seenGravityAreas = {}
 local spells = {}
 local bowRest = {}
 local armPoses = {}
+local groundSlamJoints = {}
 local weaponPoses = {}
 local knightLoads = {}
 local elfIK = {}
@@ -278,6 +285,15 @@ function Visual.bowPhase(character, phase, clockTime)
 	return clockTime - releasedAt < 0.07 and "Active" or "Windup"
 end
 
+-- The visible hop lands at the server's configured hit window. It does not
+-- move the HumanoidRootPart or change server combat geometry.
+function Visual.groundSlamLift(phase, startedAt, now)
+	if (phase ~= "Windup" and phase ~= "Active") or type(startedAt) ~= "number" then return 0 end
+	local landing = groundSlam.windup + (groundSlam.hitDelay or 0)
+	local progress = math.clamp((now - startedAt) / landing, 0, 1)
+	return 1.1 * math.sin(math.pi * progress)
+end
+
 -- Avatar arms are presentation-only. PreSimulation runs after animation
 -- evaluation for both classic Motor6D and modern AnimationConstraint rigs.
 function Visual.renderArms(character, dt)
@@ -354,6 +370,9 @@ function Visual.renderArms(character, dt)
 			local pitch = phase == "Windup" and 165 or phase == "Active" and 75 or 65
 			if skillId == "dwarf.common.ground" then
 				left = CFrame.Angles(math.rad(phase == "Windup" and 115 or phase == "Active" and 50 or 25), 0, math.rad(20))
+				local hipAngle = phase == "Windup" and -30 or phase == "Active" and 20 or 10
+				rightHipPose, leftHipPose = CFrame.Angles(math.rad(hipAngle), 0, 0), CFrame.Angles(math.rad(hipAngle), 0, 0)
+				rightKneePose, leftKneePose = CFrame.Angles(math.rad(phase == "Windup" and 35 or 15), 0, 0), CFrame.Angles(math.rad(phase == "Windup" and 35 or 15), 0, 0)
 			end
 			right = CFrame.Angles(math.rad(pitch), 0, 0)
 			-- The reference raises a bent arm, straightens it into the blow,
@@ -379,6 +398,25 @@ function Visual.renderArms(character, dt)
 		joint.Transform = pose
 	end
 	apply(armJoint(character, "Left", "Shoulder"), left)
+	-- Animate the root joint, not the physics root: every observer sees the hop
+	-- while the authoritative hit position and collision remain on the ground.
+	local lowerTorso = character:FindFirstChild("LowerTorso")
+	local rootPart = character:FindFirstChild("HumanoidRootPart")
+	local rootJoint = lowerTorso and lowerTorso:FindFirstChild("Root") or (rootPart and rootPart:FindFirstChild("RootJoint"))
+	local slamming = classId == "dwarf" and mode == "Attack" and skillId == "dwarf.common.ground"
+	if rootJoint and (rootJoint:IsA("Motor6D") or rootJoint:IsA("AnimationConstraint")) then
+		if slamming then
+			local lift = Visual.groundSlamLift(phase, character:GetAttribute("K0SkillStartedAt"), Workspace:GetServerTimeNow())
+			local basis = rootJoint.C0.Rotation
+			local pose = basis:Inverse() * CFrame.new(0, lift, 0) * basis
+			rootJoint.Transform = pose
+			armPoses[rootJoint] = { pose = pose, returning = 0 }
+			groundSlamJoints[rootJoint] = true
+		elseif groundSlamJoints[rootJoint] then
+			apply(rootJoint, nil)
+			if not armPoses[rootJoint] then groundSlamJoints[rootJoint] = nil end
+		end
+	end
 	local waist = character:FindFirstChild("Waist", true)
 	if waist and (waist:IsA("Motor6D") or waist:IsA("AnimationConstraint")) then
 		apply(waist, torso)
@@ -387,7 +425,7 @@ function Visual.renderArms(character, dt)
 		local rootJoint = root and root:FindFirstChild("RootJoint")
 		if rootJoint and rootJoint:IsA("Motor6D") then
 			local rootPose = classId == "knight" and skillId == "knight.common.whirlwind" and torso or nil
-			apply(rootJoint, rootPose)
+			if not slamming then apply(rootJoint, rootPose) end
 		end
 	end
 	local function applyLeg(side, pose, kneePose)
@@ -741,7 +779,9 @@ function Visual.renderCharacter(character, dt)
 	if classId == "dwarf" and character:GetAttribute("K0AttackPhase") == "Active"
 		and character:GetAttribute("K0SkillId") == "dwarf.common.ground" then
 		local seq, root = character:GetAttribute("K0AttackSeq"), character:FindFirstChild("HumanoidRootPart")
-		if root and seq and seenSkillEffects[character] ~= seq then
+		local startedAt = character:GetAttribute("K0SkillStartedAt")
+		local landed = type(startedAt) ~= "number" or Workspace:GetServerTimeNow() - startedAt >= groundSlam.windup + (groundSlam.hitDelay or 0)
+		if root and seq and landed and seenSkillEffects[character] ~= seq then
 			seenSkillEffects[character] = seq
 			areaPulse(root.Position, Color3.fromRGB(255, 168, 64), 6)
 		end
@@ -798,7 +838,7 @@ function Visual.start()
 		-- explicitly release them once a model, joint or character is removed.
 		for model in pairs(bowRest) do if not model:IsDescendantOf(game) then bowRest[model] = nil end end
 		for model in pairs(knightLoads) do if not model:IsDescendantOf(game) then knightLoads[model] = nil end end
-		for joint in pairs(armPoses) do if not joint:IsDescendantOf(game) then armPoses[joint] = nil end end
+		for joint in pairs(armPoses) do if not joint:IsDescendantOf(game) then armPoses[joint] = nil; groundSlamJoints[joint] = nil end end
 		for joint in pairs(weaponPoses) do if not joint:IsDescendantOf(game) then weaponPoses[joint] = nil end end
 		for character, state in pairs(elfIK) do
 			if not character:IsDescendantOf(game) then
