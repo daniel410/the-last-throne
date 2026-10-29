@@ -30,7 +30,7 @@ local function waitFor(predicate, seconds)
 	return nil
 end
 local TD_EXPECTED = {
-	Goblin = { template = "goblin", height = 3.6, texture = "134919664038207", meshes = {
+	Goblin = { template = "goblin", height = 3.6, visualHeight = 3.6 * 1.2, texture = "134919664038207", meshes = {
 		Body = "77403549111699", ArmL = "127402469282462", ArmR = "106102430341786", LegL = "78392327157438", LegR = "100268725310905",
 	} },
 	Ogre = { template = "ogre", height = 6.05, visualHeight = 6.05 * 2.475 / 1.45, texture = "90412861785322", meshes = {
@@ -39,7 +39,7 @@ local TD_EXPECTED = {
 	Orc = { template = "orc", height = 4.6, visualHeight = 4.6 * 1.5, texture = "140427201929012", meshes = {
 		Body = "91974284442570", ArmL = "80036546875989", ArmR = "126087041396792", LegL = "122434686618387", LegR = "108357424176147",
 	} },
-	Slime = { template = "slime", height = 1.1, texture = "75994104212849", meshes = { Body = "84245584635347" } },
+	Slime = { template = "slime", height = 1.1, visualHeight = 1.1 * 1.2, texture = "75994104212849", meshes = { Body = "84245584635347" } },
 }
 local COMBAT_KINDS = { "Goblin", "Slime", "Ogre", "Orc" }
 local ANCHORS = { Body = "Torso", ArmL = "Right Arm", ArmR = "Left Arm", LegL = "Right Leg", LegR = "Left Leg" }
@@ -244,6 +244,8 @@ local ok, err = xpcall(function()
 			local background = bar and bar:FindFirstChild("HpBg")
 			local value = background and background:FindFirstChild("HpValue")
 			check(bar and bar:IsA("BillboardGui") and bar.Adornee == root and bar.Enabled, kind .. " has a visible overhead health bar")
+			local visualHeight = model:GetAttribute("TdMonsterTargetHeight")
+			check(bar and root and visualHeight and math.abs(bar.StudsOffsetWorldSpace.Y - (visualHeight - root.Size.Y * 1.5 + 1.45)) < 0.001, kind .. " health bar tracks scaled visual height")
 			check(value and value.Text == string.format("%d / %d", config.Enemy[kind].health, config.Enemy[kind].health), kind .. " health bar shows authoritative numeric HP")
 		end
 		local visual = checkVisual(model, kind, kind)
@@ -277,7 +279,7 @@ local ok, err = xpcall(function()
 	slimeRoot.Parent = slimeRig
 	slimeRig.PrimaryPart = slimeRoot
 	slimeRig.Parent = ServerStorage
-	local slimeVisual = appearance.attach(slimeRig, "Slime", 0)
+	local slimeVisual = appearance.attach(slimeRig, "Slime", 0, 1.2)
 	check(checkVisual(slimeRig, "Slime", "Slime adapter fixture") == slimeVisual, "Slime adapter returns its attached model")
 	check(slimeRig:FindFirstChildOfClass("Humanoid") == nil and slimeRig:GetAttribute("EnemyKind") == nil and #enemies:GetChildren() == 4,
 		"Slime visual-only fixture does not enter combat")
@@ -330,6 +332,7 @@ local ok, err = xpcall(function()
 					check((visual.Body.Size - originalSlimeSize * 0.5).Magnitude < 0.001, "child TD mesh has half dimensions")
 					local bar = child:FindFirstChild("EnemyHealthBar")
 					check(bar and bar.Enabled and bar.HpBg.HpValue.Text == "55 / 55", "child health bar uses its own health")
+					check(bar and r and math.abs(bar.StudsOffsetWorldSpace.Y - (child:GetAttribute("TdMonsterTargetHeight") - r.Size.Y * 1.5 + 1.45)) < 0.001, "split health bar tracks scaled child visual")
 				end
 				task.wait(config.Enemy.Slime.respawnTime + 0.2)
 				check(enemies:FindFirstChild("Slime") == original, "parent does not respawn while split children live")
