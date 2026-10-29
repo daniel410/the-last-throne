@@ -1028,6 +1028,13 @@ local Content = {
     },
   },
 }
+-- Keep the connected campaign separate from the preserved K0 training grove.
+-- Relative masterplan coordinates are preserved; runtime translation is -2000 Z.
+Content.origin = {0, 0, -2000}
+for _,zone in pairs(Content.zones) do zone.center[3] = zone.center[3] + Content.origin[3] end
+for _,chapter in ipairs(Content.chapters) do
+ for _,goal in ipairs(chapter.goals) do goal.position[3] = goal.position[3] + Content.origin[3] end
+end
 Content.byId = {}
 for _,chapter in ipairs(Content.chapters) do Content.byId[chapter.id] = chapter end
 return Content
