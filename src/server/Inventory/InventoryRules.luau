@@ -159,7 +159,7 @@ function Rules.apply(profile, command, context, catalog)
 	if action ~= "Lock" and action ~= "Use" and not context.safe then return nil, "InCombat" end
 	if (action == "Deposit" or action == "Withdraw") and not context.atStorage then return nil, "StorageOnly" end
 	if action == "Claim" and not context.atHub then return nil, "StorageOnly" end
-	if action == "Lock" and loc.kind ~= "bag" then return nil, "BagOnly" end
+	if action == "Lock" and loc.kind ~= "bag" and loc.kind ~= "equipped" then return nil, "BagOnly" end
 	local nextProfile = Rules.copy(profile)
 	local target = nextProfile.items[item.instanceId]
 	if action == "Equip" then
@@ -183,6 +183,12 @@ function Rules.apply(profile, command, context, catalog)
 		target.location = {kind = "bag", heroId = hero.heroId}
 	elseif action == "Lock" then
 		target.locked = not target.locked
+	elseif action == "Discard" then
+		if loc.kind ~= "bag" then return nil, "BagOnly" end
+		if item.locked then return nil, "ItemLocked" end
+		if not Rules.integer(command.quantity, 1, item.quantity) then return nil, "InvalidQuantity" end
+		target.quantity = target.quantity - command.quantity
+		if target.quantity == 0 then nextProfile.items[target.instanceId] = nil end
 	elseif action == "Assign" then
 		if loc.kind ~= "bag" or not def.restore or not Rules.integer(command.slot, 1, 2) then return nil, "InvalidRequest" end
 		nextProfile.heroes[hero.heroId].quickSlots[command.slot] = def.id

@@ -5,6 +5,8 @@ local CAS=game:GetService("ContextActionService")
 local Http=game:GetService("HttpService")
 local Theme=require(script.Parent.TDInventoryTheme)
 local Chrome=require(script.Parent.InventoryChrome)
+local Menu=require(script.Parent.HeroMenuChrome)
+local SkillTree=require(script.Parent.HeroSkillTree)
 local Advanced=require(RS.Shared.AdvancedSkills)
 local Growth=require(RS.Shared.HeroProgression)
 local Config=require(RS.Shared.K0Config)
@@ -17,9 +19,9 @@ function Gui.create(onVisibility)
 	local gui=Instance.new("ScreenGui"); gui.Name="HeroGrowthGui"; gui.ResetOnSpawn=false; gui.DisplayOrder=55; gui.Parent=player:WaitForChild("PlayerGui")
 	local launch=Theme.button(gui,"OpenHero","HERO [H]",UDim2.new(1,-278,0,16),UDim2.fromOffset(128,40))
 	local overlay=Instance.new("Frame"); overlay.Name="Overlay"; overlay.Size=UDim2.fromScale(1,1); overlay.BackgroundColor3=Color3.new(0,0,0); overlay.BackgroundTransparency=.25; overlay.Visible=false; overlay.Active=true; overlay.Parent=gui
-	local panel=Chrome.frame(overlay,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-40)); panel.AnchorPoint=Vector2.new(.5,.5)
-	local limit=Instance.new("UISizeConstraint"); limit.MaxSize=Vector2.new(940,600); limit.Parent=panel
-	Theme.label(panel,"Title","HERO",UDim2.fromOffset(20,10),UDim2.new(1,-120,0,32),22,Theme.color.gold)
+	local panel=Menu.frame(overlay,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-40)); panel.AnchorPoint=Vector2.new(.5,.5)
+	local limit=Instance.new("UISizeConstraint"); limit.MaxSize=Vector2.new(1240,800); limit.Parent=panel
+	local title=Menu.plaque(panel,"TitlePlaque","HERO",UDim2.new(.5,-180,0,-24),UDim2.fromOffset(360,58))
 	local close=Theme.button(panel,"Close","X",UDim2.new(1,-62,0,10),UDim2.fromOffset(44,34))
 	local statsTab=Theme.button(panel,"StatsTab","STATS",UDim2.fromOffset(18,54),UDim2.new(1/3,-16,0,38))
 	local skillsTab=Theme.button(panel,"SkillsTab","SKILLS",UDim2.new(1/3,6,0,54),UDim2.new(1/3,-16,0,38))
@@ -31,8 +33,7 @@ function Gui.create(onVisibility)
 	local inventoryRemote=remotes:WaitForChild("InventoryRequest")
 	local snapshot,pending
 	local tab="Stats"
-	local skillView=0
-	local selectedEquip
+	local treeState={selected=1}
 	local selectedBranch
 	local draft={STR=0,DEX=0,INT=0,VIT=0}
 	local opened=false
@@ -64,7 +65,15 @@ function Gui.create(onVisibility)
 		local g=hero and hero.progression
 		if not g then label(body,"Loading","Select a hero in Dawnspire to view growth.",12,70); body.CanvasSize=UDim2.fromOffset(0,100); return end
 		local classId=hero.baseClassId
-		if selectedEquip and not Advanced.unlocked(g,classId,selectedEquip) then selectedEquip=nil end
+		title.Caption.Text=tab=="Skills" and "SKILLS" or tab=="Advance" and "ADVANCEMENT" or "HERO STATS"
+		for _,entry in ipairs({{statsTab,"Stats"},{skillsTab,"Skills"},{advanceTab,"Advance"}}) do entry[1].TDButtonArt.ImageColor3=tab==entry[2] and Color3.fromRGB(132,206,255) or Color3.new(1,1,1) end
+		if tab=="Skills" then
+			treeState.retry=function() if pending then remote:FireServer(pending);show("Checking the same save...") end end
+			local height=SkillTree.render(body,hero,snapshot,treeState,send,render,pending)
+			body.CanvasSize=UDim2.fromOffset(0,height)
+			if not snapshot.atHub and not pending then show("Return to Dawnspire to invest points or change skills.") end
+			return
+		end
 		local preview=Growth.copy(g)
 		local spent=0; for k,v in pairs(draft) do preview.stats[k]=preview.stats[k]+v; spent=spent+v end
 		local statPoints,skillPoints=Growth.points(g)
@@ -136,60 +145,6 @@ function Gui.create(onVisibility)
 			end
 			label(content,"AdvancementNote","Complete each trial in Dawnspire. Reaching a level alone does not advance your hero. Stage 1 opens slot 4; stage 2 opens slot 5.\nNew path skills are learned at their listed levels after the matching stage is complete.",546,102,12,Theme.color.muted)
 			content:SetAttribute("ContentHeight",660)
-		else
-			label(content,"Points","SKILL POINTS   "..skillPoints.."  /  +1 PER LEVEL",0,30,15,Theme.color.gold)
-			for view=0,4 do
-				local button=Theme.button(content,"Filter"..view,view==0 and "BASIC" or tostring(view*20),UDim2.new(view/5,0,0,36),UDim2.new(.2,-4,0,34),skillView==view)
-				button.Activated:Connect(function() skillView=view;render() end)
-			end
-			local path=g.branch~="" and g.branch or selectedBranch or Advanced.order[classId][1]
-			if not Advanced.branches[path] or Advanced.branches[path].classId~=classId then path=Advanced.order[classId][1] end
-			local shown={}
-			for index,base in ipairs(Config.Skills[classId]) do
-				if (skillView==0 and index<=3) or base.branch==path and base.stage==skillView then table.insert(shown,index) end
-			end
-			for order,index in ipairs(shown) do
-				local base=Config.Skills[classId][index]
-				local skill=Growth.skill(classId,index,base,g)
-				local learned=Advanced.unlocked(g,classId,index)
-				local y=84+(order-1)*164
-				local row=Chrome.frame(content,"Skill"..index,UDim2.fromOffset(0,y),UDim2.new(1,0,0,156))
-				Theme.icon(row,skill.icon or ({knight="shieldbearer",elf="archer",dwarf="axe",mage="arcanist"})[classId],UDim2.fromOffset(8,6),UDim2.fromOffset(40,40))
-				local title=label(row,"Name",base.name.."  Lv."..(1+g.mastery[index]),4,36,13,learned and Theme.color.gold or Theme.color.muted);title.Position=UDim2.fromOffset(52,4);title.Size=UDim2.new(1,-58,0,36)
-				local effect=skill.damage>0 and string.format("Damage x%.2f",skill.damage) or string.format("Provoke %.1fs",skill.provokeDuration)
-				if skill.pulses and skill.pulses>1 then effect=effect.." x "..skill.pulses.." hits" end
-				label(row,"Effect",effect,48,22,12)
-				label(row,"Cost",string.format("%gs CD%s  /  %s",skill.cooldown,skill.manaCost and " / "..skill.manaCost.." MP" or "",skill.form or "basic"),72,22,11,Theme.color.muted)
-				local nextEffect=string.format("Next: +%d%% base damage",index<=3 and (Growth.mastery[classId][index] or 0)*100 or 4)
-				if classId=="knight" and index==3 then nextEffect="Next: +0.2s provoke"
-				elseif classId=="mage" and index==3 then nextEffect="Next: +3% damage / +0.2s slow" end
-				local reason=learned and (g.mastery[index]<3 and nextEffect or "MAX MASTERY") or string.format("LOCKED: Level %d / Stage %d",base.level or 1,base.stage or 0)
-				local note=label(row,"Requirement",reason,92,18,10,Theme.color.muted)
-				local equip=Theme.button(row,"Equip","EQUIP",UDim2.fromOffset(8,114),UDim2.fromOffset(100,32))
-				Theme.enabled(equip,editable and learned)
-				equip.Activated:Connect(function()
-					if editable and learned then selectedEquip=index;render();body.CanvasPosition=Vector2.new(0,(narrow and 172 or 0)+84+#shown*164+8) end
-				end)
-				local train=Theme.button(row,"Train","+1 LV / 1 SP",UDim2.new(1,-142,1,-38),UDim2.fromOffset(134,32),true)
-				Theme.enabled(train,editable and learned and skillPoints>0 and g.mastery[index]<3)
-				train.Activated:Connect(function() if editable and learned then send("TrainSkill",{skill=index}) end end)
-			end
-			local y=84+#shown*164+8
-			label(content,"LoadoutTitle",selectedEquip and ("EQUIP: "..Config.Skills[classId][selectedEquip].name) or "COMBAT LOADOUT / Tap a slot to cycle",y,28,13,Theme.color.gold)
-			local unlocked={0};for index=1,29 do if Advanced.unlocked(g,classId,index) then table.insert(unlocked,index) end end
-			for slot=1,5 do
-				local index=g.skillSlots[slot];local skill=Config.Skills[classId][index]
-				local active=slot<=Advanced.slotCount(g)
-				local button=Theme.button(content,"Slot"..slot,slot.."  "..(active and (skill and skill.name or "EMPTY") or "LOCKED - ADVANCE"),UDim2.fromOffset(0,y+34+(slot-1)*42),UDim2.new(1,0,0,36))
-				Theme.enabled(button,editable and active)
-				button.Activated:Connect(function()
-					if not editable or not active then return end
-					local position=1;for i,v in ipairs(unlocked) do if v==index then position=i;break end end
-					send("SetSkillSlot",{slot=slot,skill=selectedEquip or unlocked[position%#unlocked+1]})
-				end)
-			end
-			label(content,"PathNote","Path: "..Advanced.branches[path].name.." (provisional)\nSkills are learned free; mastery uses separate SP.\nUltimate: Level 80 and stage 4. Uses a combat slot in this trial.",y+252,78,11,Theme.color.muted)
-			content:SetAttribute("ContentHeight",y+342)
 		end
 		if pending then
 			local retry=Theme.button(content,"RetrySave","RETRY SAVE",UDim2.fromOffset(0,tab=="Stats" and 500 or content:GetAttribute("ContentHeight") or 710),UDim2.new(1,0,0,38))
@@ -211,6 +166,7 @@ function Gui.create(onVisibility)
 	remotes:WaitForChild("InventoryState").OnClientEvent:Connect(function(value,requestId,reason)
 		if type(value)~="table" or type(value.heroes)~="table" or snapshot and value.revision<snapshot.revision then return end
 		local changed=not snapshot or snapshot.revision~=value.revision or snapshot.heroId~=value.heroId
+		if snapshot and snapshot.heroId~=value.heroId then treeState={selected=1} end
 		snapshot=value
 		if pending and requestId==pending.requestId then
 			if reason~="SaveUnknown" and reason~="Busy" then pending=nil end

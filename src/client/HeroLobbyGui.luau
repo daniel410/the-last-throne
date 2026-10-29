@@ -8,6 +8,8 @@ local UserInputService = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
 local Config = require(ReplicatedStorage.Shared.K0Config)
+local Theme=require(script.Parent.TDInventoryTheme)
+local Menu=require(script.Parent.HeroMenuChrome)
 
 local LobbyGui = {}
 local CLASS_ORDER = { "knight", "elf", "dwarf", "mage" }
@@ -42,18 +44,10 @@ local function label(parent, name, value, position, size, fontSize, color)
 	return result
 end
 
-local function button(parent, name, value, position, size)
-	local result = Instance.new("TextButton")
-	result.Name, result.Text = name, value
-	result.Position, result.Size = position, size
-	result.BackgroundColor3 = COLOR.blue
-	result.BorderSizePixel = 0
-	result.Font, result.TextSize = Enum.Font.GothamBold, 13
-	result.TextColor3 = COLOR.cream
-	result.TextWrapped = true
-	result.Selectable = true
-	result.Parent = parent
-	rounded(result, 7)
+local function button(parent,name,value,position,size)
+	local result=Theme.button(parent,name,"",position,size)
+	result.Caption:Destroy()
+	result.Text,result.TextSize,result.Font,result.TextColor3,result.TextWrapped=value,13,Enum.Font.GothamBold,COLOR.cream,true
 	return result
 end
 
@@ -78,25 +72,13 @@ function LobbyGui.create(request,onManage)
 	local minimized, suppressed = false, false
 	local reopen = button(gui, "OpenHeroes", "HEROES", UDim2.fromOffset(14,10), UDim2.fromOffset(120,44))
 	reopen.Visible = false
-	local shell = Instance.new("Frame")
-	shell.Name = "HeroPanel"
-	shell.AnchorPoint = Vector2.new(0.5, 0.5)
-	shell.Position = UDim2.fromScale(0.5, 0.5)
-	shell.Size = UDim2.new(1, -24, 1, -24)
-	shell.BackgroundColor3 = COLOR.panel
-	shell.BorderSizePixel = 0
-	shell.Parent = shade
-	rounded(shell, 12)
-	local constraint = Instance.new("UISizeConstraint")
-	constraint.MaxSize = Vector2.new(920, 670)
-	constraint.Parent = shell
-	local stroke = Instance.new("UIStroke")
-	stroke.Color, stroke.Thickness = COLOR.gold, 1.5
-	stroke.Parent = shell
+	local shell=Menu.frame(shade,"HeroPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-48,1,-72))
+	shell.AnchorPoint=Vector2.new(.5,.5)
+	local constraint=Instance.new("UISizeConstraint");constraint.MaxSize=Vector2.new(1240,760);constraint.Parent=shell
 	local explore = button(shell, "ExploreCourtyard", "X", UDim2.new(1,-58,0,12), UDim2.fromOffset(40,40))
 	explore.Activated:Connect(function() minimized=true; shade.Visible=false; reopen.Visible=not suppressed end)
 	reopen.Activated:Connect(function() minimized=false; shade.Visible=not suppressed; reopen.Visible=false end)
-	label(shell, "Title", Text.Lobby.Title, UDim2.fromOffset(18, 12), UDim2.new(1, -36, 0, 30), 24, COLOR.gold)
+	local titlePlaque=Menu.plaque(shell,"TitlePlaque","CHOOSE YOUR HERO",UDim2.new(.5,-200,0,-26),UDim2.fromOffset(400,64))
 	local subtitle = label(shell, "Subtitle", Text.Lobby.Subtitle, UDim2.fromOffset(18, 46), UDim2.new(1, -36, 0, 23), 13, COLOR.cream)
 	label(shell, "SessionNotice", Text.Lobby.Notice, UDim2.fromOffset(18, 75), UDim2.new(1, -36, 0, 34), 12, COLOR.gold)
 	local roster = label(shell, "Roster", string.format(Text.Lobby.RosterFormat, 0, 4), UDim2.fromOffset(18, 113), UDim2.new(1, -36, 0, 20), 12, COLOR.muted)
@@ -125,27 +107,26 @@ function LobbyGui.create(request,onManage)
 	for index, classId in ipairs(CLASS_ORDER) do
 		local card = Instance.new("Frame")
 		card.Name, card.LayoutOrder = classId, index
-		card.BackgroundColor3 = COLOR.ink
-		card.BorderSizePixel = 0
-		card.Parent = cards
-		rounded(card, 8)
-		local border = Instance.new("UIStroke")
-		border.Color, border.Thickness = COLOR.blue, 1
-		border.Parent = card
+		card:Destroy()
+		card=Menu.frame(cards,classId,UDim2.new(),UDim2.new());card.LayoutOrder=index
+		local border=card:FindFirstChildOfClass("UIStroke")
+		local selectedMark=label(card,"SelectedMark","✓",UDim2.fromOffset(12,10),UDim2.fromOffset(40,40),32,COLOR.gold)
+		selectedMark.ZIndex=3;selectedMark.Visible=false
 		local image = Instance.new("ImageLabel")
 		image.Name = "Portrait"
 		image.BackgroundTransparency = 1
-		image.Position, image.Size = UDim2.fromOffset(8, 8), UDim2.fromOffset(104, 142)
+		image.Position, image.Size = UDim2.fromOffset(9, 9), UDim2.new(1,-18,1,-142)
 		image.Image = PORTRAITS[classId]
-		image.ScaleType = Enum.ScaleType.Fit
+		image.ScaleType = Enum.ScaleType.Crop
 		image.Parent = card
-		local fallback = label(card, "PortraitFallback", Text.Class[classId], UDim2.fromOffset(8, 20), UDim2.fromOffset(104, 110), 14, COLOR.gold)
+		local fallback = label(card, "PortraitFallback", Text.Class[classId], UDim2.fromOffset(12,20), UDim2.new(1,-24,1,-152), 14, COLOR.gold)
 		fallback.TextXAlignment = Enum.TextXAlignment.Center
-		label(card, "ClassName", Text.Class[classId], UDim2.fromOffset(122, 10), UDim2.new(1, -132, 0, 36), 15, COLOR.gold)
-		label(card, "Role", Text.Lobby.Role[classId], UDim2.fromOffset(122, 47), UDim2.new(1, -132, 0, 40), 11, COLOR.muted)
-		local status = label(card, "Ownership", Text.Lobby.NewHero, UDim2.fromOffset(122, 90), UDim2.new(1, -132, 0, 18), 10, COLOR.muted)
-		local choose = button(card, "ChooseHero", Text.Lobby.Create, UDim2.fromOffset(122, 115), UDim2.new(1, -132, 0, 33))
-		cardViews[classId] = { button = choose, border = border, status = status }
+		local plaque=Menu.plaque(card,"ClassPlaque",classId=="dwarf" and "Dwarf" or Text.Class[classId],UDim2.new(0,0,1,-146),UDim2.new(1,0,0,48))
+		plaque.Caption.TextSize=20
+		local role=label(card,"Role",({knight="Sword & Shield",elf="Bow & Arrow",dwarf="Axe Thrower",mage="Arcane & Elements"})[classId],UDim2.new(0,10,1,-99),UDim2.new(1,-20,0,24),11,COLOR.muted);role.TextXAlignment=Enum.TextXAlignment.Center
+		local status=label(card,"Ownership",Text.Lobby.NewHero,UDim2.new(0,10,1,-76),UDim2.new(1,-20,0,20),10,COLOR.gold);status.TextXAlignment=Enum.TextXAlignment.Center
+		local choose=button(card,"ChooseHero",Text.Lobby.Create,UDim2.new(0,10,1,-52),UDim2.new(1,-20,0,42))
+		cardViews[classId]={button=choose,border=border,status=status,mark=selectedMark,portrait=image}
 		choose.Activated:Connect(function()
 			if busy or not current or not current.canManage then return end
 			local existing
@@ -244,8 +225,9 @@ function LobbyGui.create(request,onManage)
 			view.button.Selectable = view.button.Active
 			view.button.AutoButtonColor = view.button.Active
 			view.button.BackgroundTransparency = view.button.Active and 0 or 0.6
-			view.border.Color = isSelected and COLOR.gold or COLOR.blue
-			view.border.Thickness = isSelected and 2 or 1
+			view.mark.Visible=isSelected==true
+			view.border.Color = isSelected and Color3.fromRGB(89,202,255) or Theme.color.silver
+			view.border.Thickness = isSelected and 4 or 2
 			view.status.Text = owned and Text.Lobby.Owned or Text.Lobby.NewHero
 		end
 		manage.Visible = selected ~= nil and current.phase == "Lobby"
@@ -286,22 +268,34 @@ function LobbyGui.create(request,onManage)
 	end
 
 	local function resize()
-		local width = shell.AbsoluteSize.X
-		grid.CellSize = width < 670 and UDim2.new(1, -6, 0, 158) or UDim2.new(0.5, -7, 0, 158)
-		-- Scroll the cards on small screens; the start action stays in reach.
-		local compact = shell.AbsoluteSize.Y < 480
-		subtitle.Visible = not compact
-		cards.Position = UDim2.fromOffset(18, compact and 121 or 142)
-		cards.Size = UDim2.new(1, -36, 1, compact and -230 or -300)
-		classLock.Visible = not compact
-		errorLabel.Position = UDim2.new(0, 18, 1, compact and -106 or -151)
-		roster.Visible = not compact
-		selection.Visible = width >= 420
-		manage.Position = UDim2.new(0, 18, 1, width < 420 and -106 or -64)
-		selection.Visible = false
-		start.Size = width < 420 and UDim2.new(1, -36, 0, 42) or UDim2.fromOffset(196, 46)
-		start.Position = width < 420 and UDim2.new(0, 18, 1, -58) or UDim2.new(1, -214, 1, -66)
+		local width,height=shell.AbsoluteSize.X,shell.AbsoluteSize.Y
+		local compact=width<720
+		local short=height<480
+		titlePlaque.Position=UDim2.new(.5,-math.min(200,width*.36),0,-22)
+		titlePlaque.Size=UDim2.fromOffset(math.min(400,width*.72),56)
+		titlePlaque.Caption.TextSize=compact and 17 or 24
+		subtitle.Position,subtitle.Size=UDim2.fromOffset(22,38),UDim2.new(1,-86,0,24)
+		subtitle.Text="Choose your class. Your adventure starts in Dawnspire."
+		subtitle.Visible=not short
+		shell.SessionNotice.Position,shell.SessionNotice.Size=UDim2.fromOffset(22,short and 36 or 65),UDim2.new(1,-44,0,28)
+		shell.SessionNotice.TextSize=10
+		roster.Visible=false
+		cards.Position=UDim2.fromOffset(22,short and 72 or 104)
+		cards.Size=UDim2.new(1,-44,1,short and -170 or -218)
+		local columns=compact and 2 or 4
+		grid.CellSize=UDim2.new(1/columns,-(columns==4 and 12 or 9),0,compact and 282 or math.max(260,cards.AbsoluteSize.Y-8))
+		grid.CellPadding=UDim2.fromOffset(14,16)
+		classLock.Position,classLock.Size=UDim2.new(0,22,1,-106),UDim2.new(1,-44,0,28)
+		classLock.TextSize=10;classLock.Visible=not short
+		errorLabel.Position,errorLabel.Size=UDim2.new(0,22,1,-78),UDim2.new(1,-44,0,20)
+		selection.Visible=false
+		manage.Position,manage.Size=UDim2.new(0,22,1,-56),UDim2.new(.38,-28,0,44);manage.TextSize=compact and 10 or 13
+		start.Position,start.Size=UDim2.new(.4,0,1,-56),UDim2.new(.6,-22,0,44)
+		start.BackgroundColor3=Color3.fromRGB(20,120,46)
+		explore.Position,explore.Size=UDim2.new(1,-54,0,10),UDim2.fromOffset(44,44)
+		explore.BackgroundColor3=Color3.fromRGB(170,29,46)
 	end
+
 	shell:GetPropertyChangedSignal("AbsoluteSize"):Connect(resize)
 	Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(resize)
 	UserInputService.LastInputTypeChanged:Connect(function() refresh() end)

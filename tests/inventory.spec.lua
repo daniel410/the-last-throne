@@ -203,6 +203,42 @@ p=assert(apply(p,lastPotion,"Use"))
 equal(R.quantity(p,"hero-knight","health_potion"),0,"last potion consumes the stack")
 equal(p.heroes['hero-knight'].quickSlots[2],"mana_potion","consuming another potion preserves assignment")
 
+-- Discard removes only the requested owned, unlocked bag quantity and is replay-safe.
+p=profile()
+local ore=find(p,"iron_ore","bag")
+local partial,discardError,discardCommand=apply(p,ore,"Discard",{quantity=7})
+equal(discardError,nil,"partial discard succeeds")
+equal(partial.items[ore.instanceId].quantity,17,"discard preserves remainder")
+equal(p.items[ore.instanceId].quantity,24,"discard does not mutate input")
+equal(R.stats(partial,"hero-knight",C).weapon,"knight_weapon","discard preserves equipped weapon")
+local repeatDiscard=assert(R.apply(partial,discardCommand,safe,C))
+equal(repeatDiscard.items[ore.instanceId].quantity,17,"replay does not discard twice")
+local conflict=R.copy(discardCommand);conflict.quantity=8
+local _,discardReason=R.apply(partial,conflict,safe,C)
+equal(discardReason,"RequestConflict","reused request cannot change discarded count")
+local staleDiscard=request(p,ore,"Discard",{quantity=1})
+_,discardReason=R.apply(partial,staleDiscard,safe,C);equal(discardReason,"Changed","old revision cannot discard")
+for _,quantity in ipairs({0,-1,1.5,25,math.huge,0/0}) do
+ local denied,reason=apply(p,ore,"Discard",{quantity=quantity});equal(denied,nil,"invalid discard quantity rejected");equal(reason,"InvalidQuantity","discard quantity reason")
+end
+local lockedProfile=assert(apply(p,ore,"Lock"))
+_,discardReason=apply(lockedProfile,lockedProfile.items[ore.instanceId],"Discard",{quantity=1});equal(discardReason,"ItemLocked","locked item cannot be discarded")
+local unlockedProfile=assert(apply(lockedProfile,lockedProfile.items[ore.instanceId],"Lock"))
+local deleted=assert(apply(unlockedProfile,unlockedProfile.items[ore.instanceId],"Discard",{quantity=24}))
+equal(deleted.items[ore.instanceId],nil,"full stack removed")
+_,discardReason=apply(p,find(p,"knight_weapon","equipped"),"Discard",{quantity=1});equal(discardReason,"BagOnly","equipped item must be removed first")
+local equippedLocked=assert(apply(p,find(p,"knight_weapon","equipped"),"Lock"));check(find(equippedLocked,"knight_weapon","equipped").locked,"equipped item can be locked")
+local unequipped=assert(apply(equippedLocked,find(equippedLocked,"knight_weapon","equipped"),"Unequip"));check(find(unequipped,"knight_weapon","bag").locked,"unequipping preserves lock")
+_,discardReason=apply(p,find(p,"health_potion","pending"),"Discard",{quantity=1});equal(discardReason,"BagOnly","unclaimed reward cannot be discarded")
+local stored=assert(apply(p,ore,"Deposit",{quantity=24}))
+_,discardReason=apply(stored,find(stored,"iron_ore","storage"),"Discard",{quantity=1});equal(discardReason,"BagOnly","storage cannot be discarded directly")
+_,discardReason=apply(p,ore,"Discard",{quantity=1},{safe=false});equal(discardReason,"InCombat","combat cannot discard")
+local other=assert(R.addHero(p,"hero-mage","mage",C))
+_,discardReason=apply(other,find(other,"mage_weapon_fine","bag"),"Discard",{quantity=1});equal(discardReason,"NotOwned","other hero bag cannot be discarded")
+local hpDiscard=assert(apply(p,find(p,"health_potion","bag"),"Discard",{quantity=3}))
+equal(R.quantity(hpDiscard,"hero-knight","health_potion"),0,"discard updates quick-slot count")
+equal(hpDiscard.heroes['hero-knight'].quickSlots[1],"health_potion","empty quick slot preserves selection")
+
 -- A fake UpdateAsync adapter exercises callback retries and unknown write results.
 local data,failBefore,failAfter,callbacks={},false,0,0
 local adapter={UpdateAsync=function(_,key,fn)

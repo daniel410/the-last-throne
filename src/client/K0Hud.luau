@@ -64,24 +64,30 @@ local function bar(parent, title, top, color)
 	local track = Instance.new("Frame")
 	track.Name = title .. "Track"
 	track.Position = UDim2.new(0, 14, 0, top + 19)
-	track.Size = UDim2.new(1, -28, 0, 18)
-	track.BackgroundColor3 = COLORS.ink
+	track.Size = UDim2.new(1, -28, 0, 28)
+	track.BackgroundTransparency = 1
 	track.BorderSizePixel = 0
 	track.ClipsDescendants = false
 	track.Parent = parent
-	round(track, 5)
+	local window=Instance.new("Frame")
+	window.Name,window.Position,window.Size="FillWindow",UDim2.fromOffset(14,8),UDim2.new(1,-28,1,-16)
+	window.BackgroundColor3,window.BorderSizePixel,window.ClipsDescendants=COLORS.ink,0,true
+	window.Parent=track
+	round(window,3)
 	local fill = Instance.new("Frame")
 	fill.Name = "Fill"
 	fill.Size = UDim2.fromScale(0, 1)
 	fill.BackgroundColor3 = color
 	fill.BorderSizePixel = 0
-	fill.Parent = track
+	fill.Parent = window
 	round(fill, 5)
 	-- TD's authored red fill stays red; MP uses a blue native fill with the same silver frame.
 	if title == Text.Health then
-		Theme.sprite(fill, "TDFill", "healthFill", UDim2.new(), UDim2.fromScale(1, 1), BattleArt)
+		local art=Theme.sprite(fill, "TDFill", "healthFill", UDim2.new(), UDim2.fromScale(1, 1), BattleArt)
+		art.SliceScale=.15
 	end
-	Theme.sprite(track, "TDResourceFrame", "healthFrame", UDim2.fromOffset(-4, -5), UDim2.new(1, 8, 1, 10), BattleArt)
+	local resourceFrame=Theme.sprite(track, "TDResourceFrame", "healthFrame", UDim2.new(), UDim2.fromScale(1,1), BattleArt)
+	resourceFrame.SliceScale=.18
 	return function(current, maximum)
 		if typeof(current) ~= "number" or typeof(maximum) ~= "number" or maximum <= 0 then
 			value.Text = "--"
@@ -142,7 +148,7 @@ function Hud.create()
 	root.Size = UDim2.fromScale(1, 1)
 	root.Parent = gui
 
-	local status = panel(root, "Status", UDim2.fromOffset(16, 16), UDim2.fromOffset(248, 87))
+	local status = panel(root, "Status", UDim2.fromOffset(16, 16), UDim2.fromOffset(248, 100))
 	local statusScale = Instance.new("UIScale")
 	statusScale.Parent = status
 	local classLabel = text(status, "Class", "", UDim2.fromOffset(14, 5), UDim2.fromOffset(120, 12), 10, COLORS.gold)
@@ -311,7 +317,7 @@ function Hud.create()
 		setMana = function(current, maximum)
 			local showMana = typeof(maximum) == "number" and maximum > 0
 			setManaValue(current, maximum)
-			status.Size = UDim2.fromOffset(248, showMana and 132 or 87)
+			status.Size = UDim2.fromOffset(248, showMana and 145 or 100)
 			for _, suffix in ipairs({ "Label", "Value", "Track" }) do
 				status[Text.Mana .. suffix].Visible = showMana
 			end

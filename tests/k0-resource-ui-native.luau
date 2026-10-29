@@ -41,20 +41,20 @@ local ok, failure = xpcall(function()
 	local status = playerGui.DeepwoodTrainingHud.Root.Status
 	local label, value, track = status.MANALabel, status.MANAValue, status.MANATrack
 	check(not label.Visible and not value.Visible and not track.Visible, "empty hero has no mana bar")
-	check(status.Size.Y.Offset == 87, "empty status panel fits one bar")
+	check(status.Size.Y.Offset == 100, "empty status panel fits one bar")
 	for _, classId in ipairs({ "knight", "elf", "dwarf" }) do
 		hud.setClass(classId)
 		hud.setMana(nil, nil)
-		check(not label.Visible and status.Size.Y.Offset == 87, classId .. " shows health only")
+		check(not label.Visible and status.Size.Y.Offset == 100, classId .. " shows health only")
 	end
 	hud.setClass("mage")
 	hud.setMana(85, 100)
 	check(label.Visible and value.Visible and track.Visible, "mage mana bar is visible")
-	check(value.Text == "85 / 100" and status.Size.Y.Offset == 132, "mana amount and panel size are correct")
+	check(value.Text == "85 / 100" and status.Size.Y.Offset == 145, "mana amount and panel size are correct")
 	hud.setMana(0, 100)
 	check(value.Text == "0 / 100" and label.Visible, "empty mana pool remains visible")
 	hud.setMana(nil, nil)
-	check(not label.Visible and status.Size.Y.Offset == 87, "changing heroes hides stale mana")
+	check(not label.Visible and status.Size.Y.Offset == 100, "changing heroes hides stale mana")
 	-- Capability-driven display does not itself grant Elf a pool or advancement.
 	hud.setClass("elf")
 	hud.setMana(25, 40)
@@ -70,7 +70,7 @@ local ok, failure = xpcall(function()
 	check(root.BackToLobby.Caption.Text ~= "", "return control keeps a readable caption")
 	check(root.BackToLobby.Position.Y.Offset >= 68, "return control reserves the top-right bag row")
 	hud.setHealth(45, 90)
-	check(status.HEALTHValue.Text == "45 / 90" and status.HEALTHTrack.Fill.Size.X.Scale == .5, "HP value and TD fill follow current health")
+	check(status.HEALTHValue.Text == "45 / 90" and status.HEALTHTrack.FillWindow.Fill.Size.X.Scale == .5, "HP value and TD fill follow current health")
 	local character = Instance.new("Model")
 	character:SetAttribute("K0ClassId", "knight")
 	character:SetAttribute("K0SkillSlotCount", 3)
@@ -113,6 +113,13 @@ local ok, failure = xpcall(function()
 	local slots = panel.SkillSlots
 	check(string.find(panel.Instructions.Text, "level 20 advancement for slot 4", 1, true) ~= nil, "slot 4 requires the level 20 advancement")
 	check(string.find(panel.Instructions.Text, "level 40 for slot 5", 1, true) ~= nil, "slot 5 requires the level 40 advancement")
+	for _,resource in ipairs({"HEALTH","MANA"}) do
+		local bar=status[resource.."Track"]
+		check(bar.FillWindow.ClipsDescendants,"resource fill clips at the inner window")
+		check(bar.Position.X.Offset>=14 and bar.Size.X.Offset<=-28,"resource frame stays inside horizontal panel rails")
+		check(bar.Position.Y.Offset+bar.Size.Y.Offset<=status.Size.Y.Offset-16 or resource=="MANA" and not bar.Visible,"resource frame clears the lower rail")
+		check(bar.TDResourceFrame.Position==UDim2.new() and bar.TDResourceFrame.Size==UDim2.fromScale(1,1),"resource artwork never extends beyond its track")
+	end
 	local config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
 	for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
 		local hero = { heroId = "test", classId = classId, skillSlots = {1, 2, 3, 0, 0}, practiceAdvanced = false }
@@ -134,6 +141,29 @@ local ok, failure = xpcall(function()
 		lobby.setState({ phase = "Lobby", heroes = {hero}, selectedHeroId = "test", canManage = true, canStart = true })
 		check(string.find(slots.Slot4.Text, "EMPTY", 1, true) ~= nil, classId .. " practice slot remains empty")
 	end
+	local tree=require(client.HeroSkillTree)
+	local growth=require(game:GetService("ReplicatedStorage").Shared.HeroProgression)
+	local advanced=require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills)
+	local body=Instance.new("Frame");body.Size=UDim2.fromOffset(1160,700);body.Parent=playerGui
+	for _,classId in ipairs({"knight","elf","dwarf","mage"}) do
+		for _,path in ipairs(advanced.order[classId]) do
+			for _,level in ipairs({1,80}) do
+				body:ClearAllChildren()
+				local g=growth.new(level)
+				if level==80 then g.branch=path;g.stage=4 end
+				local h={baseClassId=classId,progression=g}
+				local height=tree.render(body,h,{ready=true,atHub=true},{path=path,selected=1},function() end,function() end,nil)
+				local count=0
+				for _,node in ipairs(body.SkillMap:GetChildren()) do if node:GetAttribute("SkillIndex") then count+=1 end end
+				check(count==16,classId.." selected branch has exactly sixteen actual skill nodes")
+				check(body:FindFirstChild("SkillDetails") and body:FindFirstChild("CombatLoadout"),"tree keeps detail and loadout controls")
+				check(height>500,"tree reports scrollable content height")
+				check(body.CombatLoadout.Slot4.Active==(level==80),"loadout slot eligibility follows completed advancement")
+			end
+		end
+	end
+	body:Destroy()
+
 end, debug.traceback)
 if not ok then table.insert(report.failures, tostring(failure)) end
 for _, module in ipairs(copies) do module:Destroy() end

@@ -43,7 +43,6 @@ function InventoryGui.create(onVisibility, feedback)
 	close.TDButtonArt.ImageColor3=Color3.fromRGB(255,170,180)
 	close.Caption.Text="X"; close.Caption.TextSize=24
 	local gear = Theme.button(shell,"ViewEquipment",Text.ViewGear,UDim2.fromOffset(20,78),UDim2.fromOffset(156,40))
-	local organize = Theme.button(shell,"Organize",Text.Organize,UDim2.fromOffset(184,78),UDim2.fromOffset(144,40))
 	local heroLabel = Theme.label(shell,"HeroName","",UDim2.fromOffset(344,78),UDim2.new(1,-368,0,40),14,Color.silver)
 	local filters = Instance.new("Frame"); filters.Name="Filters"; filters.BackgroundTransparency=1; filters.Parent=shell
 	local filterButtons = {}
@@ -81,7 +80,29 @@ function InventoryGui.create(onVisibility, feedback)
 	detailScroll.BackgroundTransparency,detailScroll.BorderSizePixel,detailScroll.ScrollBarThickness=1,0,4
 	detailScroll.AutomaticCanvasSize,detailScroll.CanvasSize,detailScroll.ScrollingDirection=Enum.AutomaticSize.Y,UDim2.new(),Enum.ScrollingDirection.Y
 	detailScroll.Parent=details
-	local primary=Theme.button(details,"PrimaryAction",Text.Equip,UDim2.new(0,16,1,-64),UDim2.new(1,-32,0,46),false)
+	local primary=Theme.button(details,"PrimaryAction",Text.Equip,UDim2.new(0,12,1,-110),UDim2.new(1,-24,0,46),false)
+	local lockItem=Theme.button(details,"ToggleLock",Text.Lock,UDim2.new(0,12,1,-58),UDim2.new(.5,-16,0,44))
+	local discard=Theme.button(details,"DiscardItem",Text.Discard,UDim2.new(.5,4,1,-58),UDim2.new(.5,-16,0,44))
+	lockItem.Caption.TextSize,discard.Caption.TextSize=10,11
+	discard.BackgroundColor3=Color3.fromRGB(115,27,39)
+	local discardOverlay=Instance.new("Frame")
+	discardOverlay.Name,discardOverlay.Size,discardOverlay.BackgroundColor3="DiscardOverlay",UDim2.fromScale(1,1),Color.ink
+	discardOverlay.BackgroundTransparency,discardOverlay.Active,discardOverlay.Visible,discardOverlay.ZIndex=.12,true,false,20
+	discardOverlay.Parent=shade
+	local discardDialog=Theme.frame(discardOverlay,"DiscardDialog",UDim2.fromScale(.5,.5),UDim2.new(1,-40,0,300))
+	discardDialog.AnchorPoint=Vector2.new(.5,.5)
+	local dialogLimit=Instance.new("UISizeConstraint");dialogLimit.MaxSize=Vector2.new(460,300);dialogLimit.Parent=discardDialog
+	local discardPrompt=Theme.label(discardDialog,"Prompt","",UDim2.fromOffset(20,20),UDim2.new(1,-40,0,76),17,Color.gold)
+	Theme.label(discardDialog,"Hint",Text.DiscardHint,UDim2.fromOffset(20,100),UDim2.new(1,-40,0,48),12,Color.muted)
+	local discardQuantity=Instance.new("TextBox")
+	discardQuantity.Name,discardQuantity.Text,discardQuantity.ClearTextOnFocus="DiscardQuantity","1",false
+	discardQuantity.Position,discardQuantity.Size=UDim2.fromOffset(20,158),UDim2.new(1,-40,0,44)
+	discardQuantity.BackgroundColor3,discardQuantity.TextColor3,discardQuantity.TextSize=Color.ink,Color.text,18
+	discardQuantity.Parent=discardDialog
+	local confirmDiscard=Theme.button(discardDialog,"ConfirmDiscard",Text.ConfirmDiscard,UDim2.new(.5,4,1,-66),UDim2.new(.5,-24,0,46))
+	local cancelDiscard=Theme.button(discardDialog,"CancelDiscard",Text.Cancel,UDim2.new(0,20,1,-66),UDim2.new(.5,-24,0,46))
+	confirmDiscard.Caption.TextSize=11
+	local discardTarget
 	local footer=Instance.new("Frame")
 	footer.Name,footer.Position,footer.Size="FooterBacking",UDim2.new(0,20,1,-68),UDim2.new(1,-40,0,54)
 	footer.BackgroundColor3,footer.BackgroundTransparency,footer.BorderSizePixel=Color.ink,.12,0
@@ -93,8 +114,17 @@ function InventoryGui.create(onVisibility, feedback)
 	local bagTab=Theme.button(shell,"BagTab",Text.BagTab,UDim2.new(),UDim2.new())
 	local storageTab=Theme.button(shell,"StorageTab",Text.StorageTab,UDim2.new(),UDim2.new())
 	local pendingButton=Theme.button(shell,"OpenPending",Text.Pending,UDim2.new(),UDim2.new()); pendingButton.Visible=false
+	local closeClaims=Theme.button(shell,"CloseClaims","X  CLOSE CLAIMS",UDim2.new(),UDim2.new());closeClaims.Visible=false;closeClaims.BackgroundColor3=Color3.fromRGB(135,27,40)
+	local claimsOverlay=Instance.new("Frame")
+	claimsOverlay.Name,claimsOverlay.Size,claimsOverlay.BackgroundColor3="ClaimsOverlay",UDim2.fromScale(1,1),Color.ink
+	claimsOverlay.BackgroundTransparency,claimsOverlay.Active,claimsOverlay.Visible,claimsOverlay.ZIndex=.12,true,false,10
+	claimsOverlay.Parent=shade
+	local claimsPanel=Chrome.frame(claimsOverlay,"ClaimsPopup",UDim2.fromScale(.5,.5),UDim2.new(1,-48,1,-64));claimsPanel.AnchorPoint=Vector2.new(.5,.5)
+	local claimsLimit=Instance.new("UISizeConstraint");claimsLimit.MaxSize=Vector2.new(980,680);claimsLimit.Parent=claimsPanel
+	local claimsTitle=Theme.label(claimsPanel,"ClaimsTitle",Text.Pending,UDim2.fromOffset(20,12),UDim2.new(1,-92,0,42),24,Color.gold)
+	closeClaims.Parent=claimsPanel;closeClaims.Caption.Text="X";closeClaims.Caption.TextSize=24
 	local snapshot,remote,pending,selectedId,accessorySlot,actionForSelection,quantityBox
-	local opened,storageMode,gearMode,organizing,mobileDetail=false,false,false,false,false
+	local opened,storageMode,gearMode,mobileDetail=false,false,false,false
 	local category,sourceTab,sortMode="Equipment","bag","Name"
 	local expandedDetails=false
 	local quantity=1
@@ -113,6 +143,8 @@ function InventoryGui.create(onVisibility, feedback)
 	end
 	local function setOpen(value)
 		opened=value; shade.Visible=value; launcher.Visible=not value
+		discardOverlay.Visible=false; discardTarget=nil
+		if not value then claimsOverlay.Visible=false end
 		player:SetAttribute("TLTInventoryOpen",value)
 		if onVisibility then onVisibility(value) end
 		if value then
@@ -153,11 +185,12 @@ function InventoryGui.create(onVisibility, feedback)
 		clearChildren(detailScroll)
 		actionForSelection,quantityBox=nil,nil
 		local y=0
-		if compact then
+		if compact or sourceTab=="pending" and claimsPanel.AbsoluteSize.X<700 then
 			local back=Theme.button(detailScroll,"BackToItems","BACK TO ITEMS",UDim2.fromOffset(0,0),UDim2.new(1,-6,0,44))
 			back.Activated:Connect(function() mobileDetail=false; resize() end); y=50
 		end
 		local item=getSelected()
+		lockItem.Visible,discard.Visible=false,false
 		if not item then
 			detailLabel("Prompt",snapshot and not snapshot.heroId and Text.SelectHero or Text.SelectItem,y,50,22,Color.gold)
 			detailLabel("Hint",Text.SelectHint,y+58,100,14,Color.muted)
@@ -182,6 +215,16 @@ function InventoryGui.create(onVisibility, feedback)
 			primary.Visible=actionForSelection~=nil
 			if actionForSelection then primary.Caption.Text=Text[actionForSelection]; Theme.enabled(primary,not pending and snapshot.ready and snapshot.safe and snapshot.atStorage) end
 			return
+		end
+		if item.location.kind=="equipped" then
+			detailLabel("EquippedStatus",string.format(Text.EquippedSlot,Text.Slots[item.location.slot]),y,26,13,Color.gold);y=y+30
+		end
+		if def.slot and item.location.kind=="bag" and not snapshot.safe then
+			detailLabel("ActionBlockedReason",Text.EquipHint,y,64,13,Color.error);y=y+68
+		elseif def.slot and item.location.kind=="bag" and def.classId and hero and def.classId~=hero.baseClassId then
+			detailLabel("ActionBlockedReason",Text.Errors.WrongClass,y,56,13,Color.error);y=y+60
+		elseif def.slot and hero and hero.level<(def.level or 1) then
+			detailLabel("ActionBlockedReason",Text.Errors.LevelRequired,y,48,13,Color.error);y=y+52
 		end
 		local heading=detailLabel("ItemName",def.name,y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
 		Artwork.create(detailScroll,def,UDim2.fromOffset(12,y),UDim2.new(1,-32,0,156)); y=y+160
@@ -247,9 +290,12 @@ function InventoryGui.create(onVisibility, feedback)
 			end
 			y=y+50
 		end
-		if organizing and loc=="bag" then
-			local lock=Theme.button(detailScroll,"ToggleLock",item.locked and Text.Unlock or Text.Lock,UDim2.fromOffset(0,y),UDim2.new(1,-6,0,44))
-			lock.Activated:Connect(function() command("Lock") end); Theme.enabled(lock,not pending and snapshot.ready); y=y+50
+		if loc=="bag" or loc=="equipped" then
+			lockItem.Visible=true;lockItem.Caption.Text=item.locked and Text.Unlock or Text.Lock
+			Theme.enabled(lockItem,not pending and snapshot.ready)
+			discard.Visible=loc=="bag"
+			Theme.enabled(discard,not pending and snapshot.ready and snapshot.safe and not item.locked)
+			if item.locked then detailLabel("LockNotice",Text.LockHint,y,52,12,Color.gold);y=y+56 end
 		end
 		detailLabel("StatsNotice",def.slot and Text.StatsHint or def.restore and (snapshot.atHub and Text.UseInField or Text.PotionHint) or Text.HubHint,y,55,12,Color.muted)
 		primary.Visible=actionForSelection~=nil
@@ -261,6 +307,7 @@ function InventoryGui.create(onVisibility, feedback)
 			if actionForSelection=="Claim" then enabled=enabled and snapshot.atHub end
 			if actionForSelection=="Use" and snapshot.atHub then enabled=false end
 			if actionForSelection=="Equip" then enabled=enabled and (not def.classId or hero.baseClassId==def.classId) and hero.level>=(def.level or 1) and (def.slot~="accessory" or accessorySlot~=nil) end
+			if actionForSelection=="Equip" and not snapshot.safe then primary.Caption.Text=Text.CombatLocked end
 			Theme.enabled(primary,enabled==true)
 		end
 	end
@@ -270,7 +317,7 @@ function InventoryGui.create(onVisibility, feedback)
 		for _, item in ipairs(snapshot and snapshot.items or {}) do
 			local def=Catalog.items[item.definitionId]
 			if item.location.kind==kind and (kind~="bag" and kind~="equipped" or item.location.heroId==snapshot.heroId)
-				and (category=="All" or def.category==category) then table.insert(items,item) end
+				and (kind=="pending" or category=="All" or def.category==category) then table.insert(items,item) end
 		end
 		table.sort(items,function(a,b)
 			local ad,bd=Catalog.items[a.definitionId],Catalog.items[b.definitionId]
@@ -326,7 +373,6 @@ function InventoryGui.create(onVisibility, feedback)
 		end
 		mode.Text=snapshot and not snapshot.sessionOnly and Text.Saved or Text.Session
 		gear.Caption.Text=gearMode and Text.ViewBag or Text.ViewGear
-		organize.Caption.Text=organizing and Text.Done or Text.Organize
 		bag.heading.Text=sourceTab=="pending" and Text.Pending or snapshot and string.format(Text.BagCount,snapshot.bagUsed,snapshot.bagCapacity) or Text.BagTab
 		storage.heading.Text=snapshot and string.format(Text.StorageCount,snapshot.storageUsed,snapshot.storageCapacity) or Text.StorageTab
 		for key,button in pairs(filterButtons) do button.TDButtonArt.ImageColor3=key==category and Color3.fromRGB(150,205,255) or Color3.new(1,1,1) end
@@ -347,15 +393,18 @@ function InventoryGui.create(onVisibility, feedback)
 		plaque.Position,plaque.Size=UDim2.new(.5,compact and -108 or -150,0,-20),UDim2.fromOffset(compact and 216 or 300,54)
 		title.Position,title.Size,title.TextSize=UDim2.fromOffset(12,4),UDim2.new(1,-24,1,-8),compact and 19 or 26
 		close.Position,close.Size=UDim2.new(1,-56,0,8),UDim2.fromOffset(44,44)
-		organize.Position,organize.Size=UDim2.new(1,-174,0,12),UDim2.fromOffset(108,32)
-		organize.Caption.TextSize=11
+		sort.Position,sort.Size=UDim2.new(1,-174,0,12),UDim2.fromOffset(108,32)
+		sort.Caption.TextSize=11
 		pendingButton.Position,pendingButton.Size=UDim2.fromOffset(20,12),UDim2.fromOffset(178,32)
-		pendingButton.Visible=snapshot~=nil and snapshot.pending>0
+		pendingButton.Visible=snapshot~=nil and snapshot.pending>0 and sourceTab~="pending"
+		closeClaims.Visible=sourceTab=="pending"
+		closeClaims.Position,closeClaims.Size=UDim2.new(1,-62,0,12),UDim2.fromOffset(44,44)
+		closeClaims.Caption.TextSize=24
 		pendingButton.Caption.Text=Text.Pending.." ("..tostring(snapshot and snapshot.pending or 0)..")"
 		pendingButton.Caption.TextSize=11
 		heroLabel.Position,heroLabel.Size,heroLabel.TextSize=UDim2.fromOffset(10,8),UDim2.new(1,-20,0,26),12
 		heroLabel.TextXAlignment=Enum.TextXAlignment.Center
-		local top=116+(organizing and 46 or 0)
+		local top=116
 		local cw=width-40
 		local heroWidth=math.floor(cw*.24)
 		local detailWidth=math.floor(cw*.28)
@@ -368,12 +417,12 @@ function InventoryGui.create(onVisibility, feedback)
 		if compact then
 			local third=(width-56)/3
 			gear.Position,gear.Size=UDim2.fromOffset(20,70),UDim2.fromOffset(third,44)
-			organize.Position,organize.Size=UDim2.fromOffset(28+third,70),UDim2.fromOffset(third,44)
+			sort.Position,sort.Size=UDim2.fromOffset(28+third,70),UDim2.fromOffset(third,44)
 			pendingButton.Position,pendingButton.Size=UDim2.fromOffset(36+third*2,70),UDim2.fromOffset(third,44)
 			pendingButton.Caption.Text="CLAIMS "..tostring(snapshot and snapshot.pending or 0)
-			gear.Caption.TextSize,organize.Caption.TextSize,pendingButton.Caption.TextSize=10,10,10
+			gear.Caption.TextSize,sort.Caption.TextSize,pendingButton.Caption.TextSize=10,10,10
 			filterLeft,filterWidth=20,cw
-			top=176+(organizing and 50 or 0)
+			top=176
 			if storageMode or sourceTab=="pending" then top=top+50 end
 		end
 		filters.Position,filters.Size=UDim2.fromOffset(filterLeft,compact and 124 or 68),UDim2.fromOffset(filterWidth,compact and 44 or 38)
@@ -383,9 +432,7 @@ function InventoryGui.create(onVisibility, feedback)
 			button.Position,button.Size=UDim2.fromOffset((index-1)*(fw+6),0),UDim2.fromOffset(fw,compact and 44 or 38)
 			button.Caption.TextSize=compact and 10 or 11; button.Caption.Text=compact and Text.ShortFilters[name] or Text[name]
 		end
-		sort.Visible=organizing
-		local sortY=compact and 176 or 112
-		sort.Position,sort.Size=UDim2.new(1,-150,0,sortY),UDim2.fromOffset(130,40)
+		sort.Visible=true
 		content.Position,content.Size=UDim2.fromOffset(20,top),UDim2.new(1,-40,1,-top-62)
 		footer.Position,footer.Size=UDim2.new(0,20,1,-54),UDim2.new(1,-40,0,42)
 		message.Position,message.Size,message.TextSize=UDim2.new(0,24,1,-51),UDim2.new(1,-48,0,20),11
@@ -394,8 +441,8 @@ function InventoryGui.create(onVisibility, feedback)
 		bagTab.Visible,storageTab.Visible=tabs,tabs and storageMode
 		bagTab.Position,bagTab.Size=UDim2.fromOffset(20,top-48),UDim2.fromOffset((cw-8)/2,42)
 		storageTab.Position,storageTab.Size=UDim2.fromOffset(28+(cw-8)/2,top-48),UDim2.fromOffset((cw-8)/2,42)
-		detailScroll.Position,detailScroll.Size=UDim2.fromOffset(12,12),UDim2.new(1,-24,1,-78)
-		primary.Position,primary.Size=UDim2.new(0,12,1,-58),UDim2.new(1,-24,0,46)
+		detailScroll.Position,detailScroll.Size=UDim2.fromOffset(12,12),UDim2.new(1,-24,1,-132)
+		primary.Position,primary.Size=UDim2.new(0,12,1,-110),UDim2.new(1,-24,0,46)
 		if compact then
 			heroPanel.Position,heroPanel.Size=UDim2.new(),UDim2.fromScale(1,1)
 			heroPanel.Visible=gearMode and not mobileDetail and not storageMode
@@ -419,6 +466,24 @@ function InventoryGui.create(onVisibility, feedback)
 			details.Position,details.Size=UDim2.new(1,-detailWidth,0,0),UDim2.new(0,detailWidth,1,0)
 			bag.panel.Visible,storage.panel.Visible,details.Visible=true,false,true
 		end
+		claimsOverlay.Visible=opened and sourceTab=="pending"
+		content.Parent=sourceTab=="pending" and claimsPanel or shell
+		message.Parent=sourceTab=="pending" and claimsPanel or shell
+		if sourceTab=="pending" then
+			claimsTitle.Text=Text.Pending.." ("..tostring(snapshot and snapshot.pending or 0)..")"
+			content.Position,content.Size=UDim2.fromOffset(18,74),UDim2.new(1,-36,1,-130)
+			message.Position,message.Size=UDim2.new(0,20,1,-48),UDim2.new(1,-40,0,36)
+			heroPanel.Visible,storage.panel.Visible=false,false
+			if claimsPanel.AbsoluteSize.X<700 then
+				bag.panel.Position,bag.panel.Size=UDim2.new(),UDim2.fromScale(1,1)
+				details.Position,details.Size=UDim2.new(),UDim2.fromScale(1,1)
+				bag.panel.Visible,details.Visible=not mobileDetail,mobileDetail
+			else
+				bag.panel.Position,bag.panel.Size=UDim2.new(),UDim2.new(.56,-8,1,0)
+				details.Position,details.Size=UDim2.new(.56,8,0,0),UDim2.new(.44,-8,1,0)
+				bag.panel.Visible,details.Visible=true,true
+			end
+		end
 		for _,view in ipairs({bag,storage}) do
 			view.heading.Position,view.heading.Size,view.heading.BackgroundTransparency=UDim2.fromOffset(10,5),UDim2.new(1,-20,0,24),1
 			view.heading.TextSize,view.heading.TextXAlignment=12,Enum.TextXAlignment.Right
@@ -440,14 +505,44 @@ function InventoryGui.create(onVisibility, feedback)
 		end)
 	end
 	primary.Activated:Connect(function() if actionForSelection then command(actionForSelection,accessorySlot,actionForSelection=="Claim" and "bag" or nil) end end)
+	lockItem.Activated:Connect(function() if lockItem.Active then command("Lock") end end)
+	local function closeDiscard()
+		discardOverlay.Visible=false;discardTarget=nil
+		if UserInputService:GetLastInputType().Name:match("^Gamepad") then GuiService.SelectedObject=discard end
+	end
+	cancelDiscard.Activated:Connect(closeDiscard)
+	discard.Activated:Connect(function()
+		local item=getSelected()
+		if not discard.Active or not item or pending then return end
+		discardTarget={instanceId=item.instanceId,itemVersion=item.version,revision=snapshot.revision,heroId=snapshot.heroId,quantity=item.quantity,definitionId=item.definitionId}
+		discardQuantity.Text="1"
+		discardPrompt.Text=string.format(Text.DiscardConfirm,1,Catalog.items[item.definitionId].name)
+		discardOverlay.Visible=true
+		if UserInputService:GetLastInputType().Name:match("^Gamepad") then GuiService.SelectedObject=cancelDiscard end
+	end)
+	discardQuantity:GetPropertyChangedSignal("Text"):Connect(function()
+		if discardTarget then
+			local n=tonumber(discardQuantity.Text)
+			discardPrompt.Text=n and n%1==0 and n>=1 and n<=discardTarget.quantity and string.format(Text.DiscardConfirm,n,Catalog.items[discardTarget.definitionId].name) or Text.Errors.InvalidQuantity
+		end
+	end)
+	confirmDiscard.Activated:Connect(function()
+		local target=discardTarget
+		if not target or pending then return end
+		local count=tonumber(discardQuantity.Text)
+		if not count or count%1~=0 or count<1 or count>target.quantity then discardPrompt.Text=Text.Errors.InvalidQuantity;return end
+		if not snapshot or snapshot.revision~=target.revision or snapshot.heroId~=target.heroId then closeDiscard();setMessage(Text.Errors.Changed,true);return end
+		closeDiscard()
+		send({requestId=HttpService:GenerateGUID(false),action="Discard",heroId=target.heroId,instanceId=target.instanceId,itemVersion=target.itemVersion,revision=target.revision,quantity=count})
+	end)
 	retry.Activated:Connect(function() if pending and remote then remote:FireServer(pending); setMessage(Text.Waiting) end end)
 	launcher.Activated:Connect(function() storageMode,sourceTab=false,"bag"; setOpen(true) end)
 	close.Activated:Connect(function() setOpen(false) end)
 	gear.Activated:Connect(function() gearMode=not gearMode; storageMode=false; sourceTab="bag"; mobileDetail=false; resize(); render() end)
-	organize.Activated:Connect(function() organizing=not organizing; resize(); render() end)
 	bagTab.Activated:Connect(function() sourceTab="bag"; mobileDetail=false; resize(); render() end)
 	storageTab.Activated:Connect(function() sourceTab="storage"; mobileDetail=false; resize(); render() end)
-	pendingButton.Activated:Connect(function() sourceTab="pending"; gearMode=false; mobileDetail=false; resize(); render() end)
+	pendingButton.Activated:Connect(function() sourceTab="pending"; selectedId=nil;accessorySlot=nil;quantity=1;gearMode=false; mobileDetail=false; resize(); render() end)
+	closeClaims.Activated:Connect(function() sourceTab="bag";selectedId=nil;mobileDetail=false;resize();render() end)
 	for key,button in pairs(filterButtons) do button.Activated:Connect(function() category=key; selectedId=nil; mobileDetail=false; resize(); render() end) end
 	sort.Activated:Connect(function() sortMode=sortMode=="Name" and "Level" or "Name"; sort.Caption.Text="SORT: "..string.upper(sortMode); render() end)
 	shell:GetPropertyChangedSignal("AbsoluteSize"):Connect(function() resize(); render() end)
@@ -459,6 +554,8 @@ function InventoryGui.create(onVisibility, feedback)
 	ContextActionService:BindActionAtPriority("InventoryBack",function(_,state)
 		if not opened then return Enum.ContextActionResult.Pass end
 		if state==Enum.UserInputState.Begin then
+			if discardOverlay.Visible then closeDiscard();return Enum.ContextActionResult.Sink end
+			if sourceTab=="pending" then sourceTab="bag";selectedId=nil;mobileDetail=false;resize();render();return Enum.ContextActionResult.Sink end
 			if compact and mobileDetail then mobileDetail=false; resize() else setOpen(false) end
 		end
 		return Enum.ContextActionResult.Sink
@@ -473,6 +570,9 @@ function InventoryGui.create(onVisibility, feedback)
 			snapshot=value
 			badge.Text, badge.Visible=tostring(value.pending),value.pending>0
 			local completed=pending and requestId==pending.requestId and errorCode~="Busy"
+			local equipped=completed and not errorCode and (pending.action=="Equip" or pending.action=="Unequip")
+			if equipped then gearMode=true;mobileDetail=compact and false or mobileDetail end
+			if discardOverlay.Visible and discardTarget and (value.revision~=discardTarget.revision or value.heroId~=discardTarget.heroId) then closeDiscard() end
 			if completed then
 				if errorCode=="SaveUnknown" then retry.Visible=true
 				else pending=nil; retry.Visible=false; message.Size=UDim2.new(1,-48,0,32) end
@@ -480,7 +580,7 @@ function InventoryGui.create(onVisibility, feedback)
 			resize()
 			if changed then render() elseif completed then renderDetails() end
 			if errorCode then setMessage(Text.Errors[errorCode] or Text.Errors.Unavailable,true)
-			elseif completed and not pending then setMessage(Text.SavedAction) end
+			elseif completed and not pending then setMessage(equipped and Text.GearApplied or Text.SavedAction) end
 		end)
 		remotes:WaitForChild("InventoryOpenStorage").OnClientEvent:Connect(function()
 			storageMode,gearMode,sourceTab,mobileDetail=true,false,"bag",false
