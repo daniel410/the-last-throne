@@ -495,3 +495,7 @@ TD 배틀 HP 프레임과 공통 패널·버튼 셸을 HUD에 적용했다. 원�
 | 0.20.2 | `5bbf013ca43668edf31a522c36c85adc50772d2d` | 1,009,431 | `2c2e3c4af5e2d53025cd1a1095251088994660aff3955fefe5ad67b81d1cf68b` | GUI101개 통과. 실제 Knight 방어/스킬·B가방·귀환,390×700/640×360 Root 배치 확인 |
 
 [상세·원시 로그·화면·미검증](../battle-hud/README.md). 일반 로컬 시험 빌드이며 실제 디바이스/게시 Experience 수용·Roblox 게시·릴리스 태그를 수행하지 않았다.0.20.0 smoke 전체를 마지막 두 배치 수정에서 반복하지 않았다.
+
+## 0.20.3 — 사용자 요청 UI 균형 조정
+
+입력 소스 `32cc0d05e270c30e14c619061cb6e939d242567e`를 origin/main에 고정 후 `rojo build default.project.json --output builds/0.20.3/TheLastThrone-0.20.3.rbxlx` 성공(종료0).1,009,590 bytes, SHA256 `3ad8b612a880f353ed16c8610ac58135f33444d8fb099c2feb44e75b7843561d`. Dodge V 제거/R 유지, Attack16px 왼쪽/Sprint14px 오른쪽, 아이템과 스킬32px 간격·붉은 아이템 셸 적용. GUI101개 통과, 실제 Knight Player에서 V→회피0/R→회피1과 표시·390×700/640×360 Root 배치 확인. [로그·화면·범위](../battle-hud/README.md). 로컬 일반 빌드이며 Roblox 게시·릴리스 태그·실기기 검증은 수행하지 않았다.

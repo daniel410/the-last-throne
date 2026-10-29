@@ -30,3 +30,9 @@
 ## 0.20.3 사용자 배치 조정
 
 TLT-028/084 일부. Dodge의 V 바인딩/힌트를 제거하고 키보드는 R을 유지한다. Attack x134→118(-16px), Sprint x78→92(+14px). 아이템과 스킬 사이 간격은8→32px, 바 전체 폭은528px로 조정한다. 아이템은 TD shellSell, 스킬/보조 액션은 shellDetails, Attack은 shellUpgrade로 유형을 구분한다. 물약 캡션은 실제 등록 HP/MP를 따라 따뜻한/차가운 색을 쓴다. 변경 파일은 K0Hud·init.client·K0Text·VERSION이며 GUI 검사와 실제 Player의 R/V·배치·색상/간격을 검증한다.
+
+0.20.3 검증: 소스 `32cc0d05e270c30e14c619061cb6e939d242567e`를 푸시하고 원격 일치 확인 뒤 Rojo7.7.1 빌드 성공.1,009,590 bytes, SHA256 `3ad8b612a880f353ed16c8610ac58135f33444d8fb099c2feb44e75b7843561d`. [GUI 원시 로그](0.20.3-ui.log):101개 통과/실패0, CLI종료0. src에서 KeyCode.V/HintV/R / V 검색 결과0.
+
+격리 비게시 Studio 단일 Knight 실제 Player: Dodge 힌트 R, 스킬/아이템 간격32px 확인. V 누르기 전/후 서버 복제 K0DodgeSeq=0→0, R 입력 후1로 증가(assert 통과). [실제 화면](0.20.3-pc.png)에서 아이템은 붉은 TD 셸, 스킬/방어/회피/달리기는 청색, 공격은 녹색으로 표시됨을 확인했다. Root390×700과640×360에서 바가 Root 안에 들어가며 스킬/액션 행이 겹치지 않는 assert를 통과했다. Root 제한은 실기기 검증과 구분한다. Play 중지 후 QA bridge를 Ctrl-C 종료130으로 정리했다. 게시·릴리스 태그·실기기/패드 검증은 수행하지 않았다. 다음 담당: QA 실기기/사용자 시각 수용.
+
+0.20.3 Play bridge 콘솔에는 기존 `203785492` 자산 유형 경고와 Studio MaterialManager `debug.profileEnd()` 경고가 있었다. GUI 검사 통과 및 게임 입력 관측과 별도 기록한다.
