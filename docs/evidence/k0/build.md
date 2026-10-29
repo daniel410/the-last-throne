@@ -351,3 +351,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 제한 | 실제 플레이어의 애니메이션 체감, 네트워크 복제와 모바일 실기는 미검증. [상세](2026-10-28-ground-slam-ogre.md) 참고. |
 
 일반 빌드이며 릴리스 태그와 Roblox 게시를 하지 않았다.
+
+## 0.18.2 — 고블린·슬라임 확대
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `51a254904c3e8a9ca9e975503e1c9c550ca5deea`, `VERSION=0.18.2`, 빌드 전 origin/main 일치 |
+| 빌드 | `rojo build default.project.json --output builds/0.18.2/TheLastThrone-0.18.2.rbxlx`, 성공 |
+| SHA-256 | `22d3debe79690ab16c388f7c4e966a56286cb897ae79b4d10654190c91ab3b33` |
+| 격리 Studio | 빌드 smoke 458개 검사 통과, 런타임 오류 0. 확대된 외형·리그, 부모와 분열 자식의 체력바·절반 크기·체력 확인. |
+| 제한 | 실제 플레이의 크기 체감과 모바일 화면은 미검증. [상세](2026-10-28-goblin-slime-scale.md) 참고. |
+
+일반 빌드이며 릴리스 태그와 Roblox 게시를 하지 않았다.
