@@ -394,3 +394,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 제한 | 실제 플레이 및 다양한 체형의 자연스러움과 네트워크 복제는 미검증. [상세](2026-10-28-guard-hand-contact.md) 참고. |
 
 일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
+
+## 0.18.5 — HP·스태미나 회복 조정
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `8e53714d9986df99f11c72cad7349c48f008bd1e`, `VERSION=0.18.5`, 빌드 전 origin/main 일치 |
+| 빌드 | `rojo build default.project.json --output builds/0.18.5/TheLastThrone-0.18.5.rbxlx`, 성공 |
+| SHA-256 | `23a83aa3ab54e3848300c1a03f00b9543fe8d75b80e823f1cae0045b1daf9d91` |
+| 격리 Studio | 서버 전투 400개 검사와 빌드 smoke 458개 검사 통과. 기본 HP 회복 대체 스크립트 배치 확인. |
+| 제한 | 실제 플레이어 생성 시 기본 회복 중복 여부 및 회복 속도 체감은 미검증. [상세](2026-10-28-player-regen.md) 참고. |
+
+일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
