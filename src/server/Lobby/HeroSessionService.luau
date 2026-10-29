@@ -137,7 +137,7 @@ end
 local function execute(state, action, argument)
 	if action == "GetState" then return nil end
  if (action=="StartTutorial" or action=="StartTraining") and state.mode=="Tutorial" then
-  if state.phase~="Tutorial" or not state.ready or not selectedHero(state) or state.busy then return "Busy" end
+  if state.phase~="Tutorial" or not state.ready or not selectedHero(state) then return "Busy" end
   if settings.inventory and not settings.inventory.available(state.player) then return "InventoryUnavailable" end
   state.route=action=="StartTraining" and "Training" or "Deepwood"
   return transition(state,"Tutorial")
