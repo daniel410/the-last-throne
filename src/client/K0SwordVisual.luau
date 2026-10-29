@@ -29,6 +29,7 @@ local groundSlamJoints = {}
 local weaponPoses = {}
 local knightLoads = {}
 local elfIK = {}
+local blockIK = {}
 local MELEE = {
 	knight = { grip = "SwordGrip", joint = "K0SwordJoint" },
 	dwarf = { grip = "WeaponGrip", joint = "PlayerWeaponJoint" },
@@ -231,6 +232,8 @@ local function updateElfIK(character, mode, phase, dt)
 	local isDrawing = isElf and mode == "Attack" and (phase == "Windup" or phase == "Active")
 	if not isDrawing then
 		if state and state.control.Parent then
+			-- Block has its own right-hand control; never blend the bow draw into it.
+			if mode == "Block" then state.weight = 0; state.control.Weight = 0; state.control.Enabled = false; return false end
 			if isElf then
 				state.weight = math.max(0, state.weight - dt * 3.5)
 				state.control.Weight = state.weight
@@ -274,6 +277,48 @@ local function updateElfIK(character, mode, phase, dt)
 	return true
 end
 
+-- The weapon remains attached to its original hand. R15's free hand follows
+-- a point on the weapon during guard; R6 uses the shoulder-pose fallback.
+local function updateBlockIK(character, classId, mode)
+	local state = blockIK[character]
+	local blocking = mode == "Block" and (classId == "dwarf" or classId == "elf" or classId == "mage")
+	local grip
+	if blocking then
+		for _, model in ipairs(character:GetChildren()) do
+			if model:IsA("Model") and classFor(model) == classId then grip = model:FindFirstChild("WeaponGrip"); break end
+		end
+	end
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	local side = classId == "elf" and "Right" or "Left"
+	local upper, hand = character:FindFirstChild(side .. "UpperArm"), character:FindFirstChild(side .. "Hand")
+	if not blocking or not grip or not grip:IsA("BasePart") or not humanoid
+		or humanoid.RigType ~= Enum.HumanoidRigType.R15 or not upper or not hand then
+		if state then
+			state.control:Destroy(); state.target:Destroy(); blockIK[character] = nil
+		end
+		return nil
+	end
+	if state and (state.grip ~= grip or state.side ~= side or not state.control.Parent or not state.target.Parent) then
+		state.control:Destroy(); state.target:Destroy(); blockIK[character] = nil; state = nil
+	end
+	if not state then
+		local target = Instance.new("Attachment")
+		target.Name = "K0BlockHandTarget"
+		target.Position = Vector3.new(0, classId == "elf" and 0.48 or 0.55, 0)
+		target.Parent = grip
+		local control = Instance.new("IKControl")
+		control.Name = "K0BlockHandIK"
+		control.Type = Enum.IKControlType.Position
+		control.ChainRoot, control.EndEffector, control.Target = upper, hand, target
+		control.SmoothTime, control.Weight = 0.08, 1
+		control.Parent = humanoid
+		state = { control = control, target = target, grip = grip, side = side }
+		blockIK[character] = state
+	end
+	state.control.Enabled = true
+	return side
+end
+
 -- Rapid Fire redraws between server-confirmed shots. No local timer can
 -- generate a projectile or damage; it only changes the bow/hand pose.
 function Visual.bowPhase(character, phase, clockTime)
@@ -306,6 +351,7 @@ function Visual.renderArms(character, dt)
 	local right, left, rightElbow, torso, rightHipPose, rightKneePose, leftHipPose, leftKneePose
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
 	local usesIK = updateElfIK(character, mode, phase, elapsed)
+	local blockHand = updateBlockIK(character, classId, mode)
 	if mode == "Dodge" then
 		-- Alternate on accepted server dodges so observers see the same foot.
 		local seq = character:GetAttribute("K0DodgeSeq")
@@ -315,8 +361,10 @@ function Visual.renderArms(character, dt)
 	elseif classId == "knight" and mode == "Block" then
 		left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
 	elseif mode == "Block" then
-		right = CFrame.Angles(math.rad(75), math.rad(-20), math.rad(-20))
-		left = CFrame.Angles(math.rad(70), math.rad(20), math.rad(20))
+		-- Raise the held weapon to face level; the free hand braces it.
+		right = CFrame.Angles(math.rad(112), math.rad(-18), math.rad(-12))
+		left = CFrame.Angles(math.rad(112), math.rad(18), math.rad(12))
+		rightElbow = CFrame.Angles(math.rad(-25), 0, 0)
 	elseif mode == "Attack" and (phase == "Windup" or phase == "Active" or phase == "Recovery") then
 		if classId == "elf" then
 			if phase == "Windup" then
@@ -397,7 +445,18 @@ function Visual.renderArms(character, dt)
 		else armPoses[joint] = { pose = pose, returning = returning } end
 		joint.Transform = pose
 	end
-	apply(armJoint(character, "Left", "Shoulder"), left)
+	local leftShoulder = armJoint(character, "Left", "Shoulder")
+	if left and leftShoulder and mode == "Block" and classId ~= "knight" then
+		local basis = leftShoulder.C0.Rotation
+		left = basis:Inverse() * left * basis
+	end
+	if blockHand == "Left" then
+		if leftShoulder then armPoses[leftShoulder] = nil end
+		local leftElbow = armJoint(character, "Left", "Elbow")
+		if leftElbow then armPoses[leftElbow] = nil end
+	else
+		apply(leftShoulder, left)
+	end
 	-- Animate the root joint, not the physics root: every observer sees the hop
 	-- while the authoritative hit position and collision remain on the ground.
 	local lowerTorso = character:FindFirstChild("LowerTorso")
@@ -440,13 +499,13 @@ function Visual.renderArms(character, dt)
 	applyLeg("Right", rightHipPose, rightKneePose)
 	applyLeg("Left", leftHipPose, leftKneePose)
 	local rightShoulder, elbow = armJoint(character, "Right", "Shoulder"), armJoint(character, "Right", "Elbow")
-	if right and rightShoulder and (classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane")) then
+	if right and rightShoulder and (classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane") or (mode == "Block" and classId ~= "knight")) then
 		-- Classic R6 shoulders use a different joint basis from R15. Express
 		-- these strokes in torso axes so both rigs travel the same way.
 		local basis = rightShoulder.C0.Rotation
 		right = basis:Inverse() * right * basis
 	end
-	if usesIK then
+	if usesIK or blockHand == "Right" then
 		if rightShoulder then armPoses[rightShoulder] = nil end
 		if elbow then armPoses[elbow] = nil end
 	else
@@ -753,6 +812,10 @@ function Visual.render(model, phase, combo, dt, attackKind)
 	local skillId = character and character:GetAttribute("K0SkillId")
 	if classId == "elf" and character then phase = Visual.bowPhase(character, phase, Workspace:GetServerTimeNow()) end
 	local target = Visual.samplePose(classId, phase, combo, attackKind, skillId)
+	if character and character:GetAttribute("K0State") == "Block" then
+		if classId == "elf" then target = CFrame.Angles(math.rad(-80), 0, math.rad(-45))
+		elseif classId == "dwarf" or classId == "mage" then target = CFrame.Angles(math.rad(-70), 0, math.rad(55)) end
+	end
 	local pose = (weaponPoses[joint] or CFrame.new()):Lerp(target, math.clamp(elapsed * 22, 0, 1))
 	weaponPoses[joint] = pose
 	joint.Transform = pose
@@ -840,6 +903,11 @@ function Visual.start()
 		for model in pairs(knightLoads) do if not model:IsDescendantOf(game) then knightLoads[model] = nil end end
 		for joint in pairs(armPoses) do if not joint:IsDescendantOf(game) then armPoses[joint] = nil; groundSlamJoints[joint] = nil end end
 		for joint in pairs(weaponPoses) do if not joint:IsDescendantOf(game) then weaponPoses[joint] = nil end end
+		for character, state in pairs(blockIK) do
+			if not character:IsDescendantOf(game) then
+				state.control:Destroy(); state.target:Destroy(); blockIK[character] = nil
+			end
+		end
 		for character, state in pairs(elfIK) do
 			if not character:IsDescendantOf(game) then
 				state.control:Destroy(); state.target:Destroy(); elfIK[character] = nil

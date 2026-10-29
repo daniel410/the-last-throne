@@ -753,6 +753,54 @@ local ok, fatal = xpcall(function()
 		clientVisual.renderCharacter(character, 0.01)
 		check(countPulses() == before + 1, "impact appears only once")
 	end)
+	for _, rigName in ipairs({ "R6", "R15" }) do
+		for _, classId in ipairs({ "dwarf", "elf", "mage" }) do
+			case("two-handed-block-" .. rigName .. "-" .. classId, function()
+				local character = cloneRig(rigName, "twoHandGuard" .. classId)
+				local model = Instance.new("Model"); model.Name = "QaGuardAppearance"; model.Parent = character
+				local weapon = assert(appearance.attachInto(model, character, classId))
+				character:SetAttribute("K0ClassId", classId); character:SetAttribute("K0State", "Idle")
+				character:SetAttribute("K0AttackPhase", "None")
+				clientVisual.renderCharacter(character, 0.1)
+				local idle = weapon.joint.Transform
+				character:SetAttribute("K0State", "Block")
+				for _ = 1, 8 do clientVisual.renderArms(character, 0.05); clientVisual.renderCharacter(character, 0.05) end
+				check(weapon.joint.Transform ~= idle, "blocking changes weapon orientation")
+				local humanoid = character:FindFirstChildOfClass("Humanoid")
+				local control = humanoid:FindFirstChild("K0BlockHandIK")
+				if rigName == "R15" then
+					local side = classId == "elf" and "Right" or "Left"
+					check(control and control.Enabled and control.EndEffector == character:FindFirstChild(side .. "Hand"), "free hand uses IK")
+					check(control.Target and control.Target.Parent == weapon.grip, "free hand follows the equipped weapon")
+				else
+					check(not control, "R6 uses shoulder poses without IK")
+					local left = character:FindFirstChild("Left Shoulder", true)
+					local right = character:FindFirstChild("Right Shoulder", true)
+					check(left.Transform ~= CFrame.new() and right.Transform ~= CFrame.new(), "both R6 arms guard")
+				end
+				character:SetAttribute("K0State", "Idle")
+				for _ = 1, 8 do clientVisual.renderArms(character, 0.05); clientVisual.renderCharacter(character, 0.05) end
+				check(not humanoid:FindFirstChild("K0BlockHandIK"), "block IK released on exit")
+				check(not weapon.grip:FindFirstChild("K0BlockHandTarget"), "block target cleaned up")
+				check(weapon.joint.Part0 == character:FindFirstChild((classId == "elf" and "Left" or "Right") .. (rigName == "R15" and "Hand" or " Arm")), "weapon remains attached to its original hand")
+			end)
+		end
+	end
+	case("elf-draw-ik-replaces-block-ik", function()
+		local character = cloneRig("R15", "blockToBow")
+		local model = Instance.new("Model"); model.Parent = character
+		assert(appearance.attachInto(model, character, "elf"))
+		character:SetAttribute("K0ClassId", "elf"); character:SetAttribute("K0State", "Block")
+		clientVisual.renderArms(character, 0.05)
+		local humanoid = character:FindFirstChildOfClass("Humanoid")
+		check(humanoid:FindFirstChild("K0BlockHandIK") ~= nil, "block IK active")
+		character:SetAttribute("K0State", "Attack"); character:SetAttribute("K0AttackPhase", "Windup")
+		clientVisual.renderArms(character, 0.05)
+		check(not humanoid:FindFirstChild("K0BlockHandIK"), "block IK released before drawing")
+		check(humanoid:FindFirstChild("K0BowDrawIK") and humanoid.K0BowDrawIK.Enabled, "bow drawing IK resumes")
+		character:SetAttribute("K0State", "Block"); clientVisual.renderArms(character, 0.05)
+		check(not humanoid.K0BowDrawIK.Enabled and humanoid:FindFirstChild("K0BlockHandIK") ~= nil, "drawing IK yields immediately to block")
+	end)
 	case("class-signal-replaces-owned-only-and-waits-on-invalid", function()
 		local character = cloneRig("R15", "classSignalMatrix")
 		character:SetAttribute("K0ClassId", nil)

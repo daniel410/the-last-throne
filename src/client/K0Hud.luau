@@ -171,7 +171,7 @@ function Hud.create()
 	actions.Parent = root
 	local actionScale = Instance.new("UIScale")
 	actionScale.Parent = actions
-	local block, blockHint = action(actions, "Block", Text.Block, Text.HintHold, UDim2.fromOffset(72, 0), 68)
+	local block, blockHint = action(actions, "Block", Text.Block, Text.HintHold, UDim2.fromOffset(6, 6), 56)
 	local skillBar = Instance.new("Frame")
 	skillBar.Name = "SkillBar"
 	skillBar.BackgroundTransparency = 1
@@ -195,7 +195,7 @@ function Hud.create()
 		icon.TextXAlignment = Enum.TextXAlignment.Center
 		skillButtons[index], skillHints[index] = button, key
 	end
-	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(0, 0), 68)
+	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(78, 6), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintV, UDim2.fromOffset(0, 91), 68)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(134, 71), 88)
 	local back = Instance.new("TextButton")
