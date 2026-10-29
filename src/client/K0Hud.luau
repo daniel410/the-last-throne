@@ -145,11 +145,11 @@ function Hud.create()
 	local status = panel(root, "Status", UDim2.fromOffset(16, 16), UDim2.fromOffset(248, 87))
 	local statusScale = Instance.new("UIScale")
 	statusScale.Parent = status
-	local classLabel = text(status, "Class", "", UDim2.fromOffset(14, 8), UDim2.fromOffset(120, 20), 11, COLORS.gold)
+	local classLabel = text(status, "Class", "", UDim2.fromOffset(14, 5), UDim2.fromOffset(120, 12), 10, COLORS.gold)
 	classLabel.TextTruncate = Enum.TextTruncate.AtEnd
-	local state = text(status, "State", Text.State.Idle, UDim2.new(1, -109, 0, 8), UDim2.fromOffset(95, 20), 10, COLORS.muted)
+	local state = text(status, "State", Text.State.Idle, UDim2.new(1, -109, 0, 5), UDim2.fromOffset(95, 12), 10, COLORS.muted)
 	state.TextXAlignment = Enum.TextXAlignment.Right
-	local xpLabel=text(status,"XP","",UDim2.fromOffset(14,72),UDim2.new(1,-28,0,12),9,COLORS.gold)
+	local xpLabel=text(status,"XP","",UDim2.fromOffset(14,19),UDim2.new(1,-28,0,12),10,COLORS.gold)
 	local setHealth = bar(status, Text.Health, 32, COLORS.red)
 	local setManaValue = bar(status, Text.Mana, 77, Color3.fromRGB(75, 151, 235))
 	for _, suffix in ipairs({ "Label", "Value", "Track" }) do
@@ -320,7 +320,6 @@ function Hud.create()
 		setCooldowns = function(character)
 			if character then
 				classLabel.Text=Text.Class[character:GetAttribute("K0ClassId")] or ""
-				xpLabel.Position=UDim2.fromOffset(14,character:GetAttribute("K0MaxMana") and 117 or 72)
 				local level=character:GetAttribute("K0Level") or 1
 				local needed=character:GetAttribute("K0XPToNext") or 100
 				xpLabel.Text=needed>0 and string.format("LV %d   xp %d/%d",level,character:GetAttribute("K0XP") or 0,needed)
