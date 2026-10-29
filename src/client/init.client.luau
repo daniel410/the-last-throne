@@ -8,6 +8,19 @@ local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
+local StarterGui=game:GetService("StarterGui")
+local function hideDefaultHealth()
+	task.spawn(function()
+		for _=1,20 do
+			local ok=pcall(function() StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Health,false) end)
+			if ok then return end
+			task.wait(.25)
+		end
+		warn("Default health UI could not be hidden; custom health HUD remains active.")
+	end)
+end
+hideDefaultHealth()
+player.CharacterAdded:Connect(hideDefaultHealth)
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
 local Targeting = require(script.K0Targeting)
 local hud = require(script.K0Hud).create()
