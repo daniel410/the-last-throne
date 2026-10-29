@@ -536,3 +536,7 @@ TD 배틀 HP 프레임과 공통 패널·버튼 셸을 HUD에 적용했다. 원�
 | 0.24.1 | `036809b8bf437b9e007b62f99e0d31a231f87463` | 1,095,733 | `c89155e6c225e61624497811de7569d1cc8ac21df105710339f3229c4725225a` | 직접 스킬 선택→슬롯 편성. 실제 Player 최신 자원/전직/궁극기·마법궁수 MP 확인 |
 
 [전체 범위·검증 명령·실제 Player QA 조건·한계](../progression/README.md), [빌드 메타데이터](../progression/builds.json). Studio 세션/서버 대역 검사이며 실제 게시 저장·재접속·다인/실기기·최종 미술 수용은 미검증이다.
+
+## 0.24.2 — 물약 글자 중앙 하단 정렬
+
+입력 소스 `e9c60e427589ead5fdaa3d5e59df91fe7f7c19ab`와 VERSION을 커밋·푸시 후 Rojo7.7.1 `rojo build default.project.json --output builds/0.24.2/TheLastThrone-0.24.2.rbxlx` 성공. 1,095,772 bytes, SHA256 `623290bd8bcd099920b31eaec4b254d4f3628eff07d525310af52371a9f4ccfa`. 고정 빌드 HUD135개 통과·실패0. [변경·검증 한계](../potions/README.md). 일반 로컬 빌드이며 Roblox 게시·릴리스 태그는 수행하지 않았다.
