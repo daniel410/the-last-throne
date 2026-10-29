@@ -13,7 +13,7 @@
 - [WoW 과거 특성 시스템 설명](https://worldofwarcraft.blizzard.com/en-us/news/3773320): 당시 전문화 선택 시 핵심 기술을 주고 이후 여러 레벨에 직업/전문화 기술을 획득하는 구조를 설명한다. 특정 확장팩 당시 사례이며 현재 WoW 전체의 규칙이라고 주장하지 않는다.
 - [Diablo IV 출시 전 스킬 구조](https://news.blizzard.com/en-us/article/23938756/make-sanctuary-yoursplay-your-way-in-diablo-iv): 기본·핵심·궁극기 및 강화의 역할을 구분한다. 신규 행동과 강화 선택은 모두 성장을 제공하지만 서로 같은 것은 아니다. 버전이 달라질 수 있다.
 
-강철기사의 방어 중심 배치와 기술 내용은 [기본3스킬 뿌리별 재설계](steel-knight-root-tree-2026-10-29.md)로 대체한다. 이 문서의 성장 간격·수량과 성기사 후보는 유지한다.
+강철기사의 방어 중심 배치와 기술 내용은 [기본3스킬 뿌리별 재설계](steel-knight-root-tree-2026-10-29.md)로 대체한다. 성기사의 기술 내용도 [성기사 뿌리별 재설계](paladin-root-tree-2026-10-29.md)로 대체한다. 이 문서의 성장 간격·수량은 유지한다.
 
 ## 나이트 성장 간격: 실험용 배치
 
