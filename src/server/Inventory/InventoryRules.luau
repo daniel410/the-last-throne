@@ -1,4 +1,5 @@
 -- Pure single-account transitions; no services, clocks, random IDs or side effects.
+local Growth = game and require(game:GetService("ReplicatedStorage").Shared.HeroProgression) or dofile("src/shared/HeroProgression.luau")
 local Rules = {}
 function Rules.copy(value)
 	if type(value) ~= "table" then return value end
@@ -55,7 +56,7 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	if not catalog.classes[classId] then return nil, "InvalidRequest" end
 	for _, hero in pairs(profile.heroes) do if hero.baseClassId == classId then return nil, "ClassAlreadyCreated" end end
 	local nextProfile = Rules.copy(profile)
-	nextProfile.heroes[heroId] = {heroId = heroId, baseClassId = classId, level = 1, quickSlots = {"health_potion", "mana_potion"}}
+	nextProfile.heroes[heroId] = {heroId = heroId, baseClassId = classId, level = 1, progression = Growth.new(), quickSlots = {"health_potion", "mana_potion"}}
 	local n = 0
 	local function add(definitionId, quantity, location)
 		n = n + 1
@@ -89,6 +90,7 @@ function Rules.validate(profile, catalog)
 	for id, hero in pairs(profile.heroes) do
 		if type(hero) ~= "table" or id ~= hero.heroId or type(id) ~= "string" or not catalog.classes[hero.baseClassId]
 			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, 80) or type(hero.quickSlots) ~= "table" then return false end
+		if hero.progression ~= nil and (not Growth.validate(hero.progression) or hero.level ~= hero.progression.level) then return false end
 		for index = 1, 2 do
 			local definition = catalog.items[hero.quickSlots[index]]
 			if not definition or not definition.restore then return false end
@@ -234,6 +236,44 @@ function Rules.apply(profile, command, context, catalog)
 	-- cannot be applied again. Monetary/receipt grants must use a separate ledger.
 	if #nextProfile.operationOrder > 96 then nextProfile.operations[table.remove(nextProfile.operationOrder, 1)] = nil end
 	if not Rules.validate(nextProfile, catalog) then return nil, "Incompatible" end
+	return nextProfile
+end
+-- Legacy account migration preserves roster, classes, items and all ownership.
+function Rules.upgrade(profile)
+	local changed=false
+	for _,hero in pairs(profile.heroes) do
+		if hero.progression==nil then hero.progression=Growth.new(hero.level); changed=true end
+	end
+	if changed then profile.revision=profile.revision+1 end
+	return profile
+end
+function Rules.progress(profile,command,context,catalog)
+	if command.stats~=nil and type(command.stats)~="table" then return nil,"InvalidRequest" end
+	local hero=profile.heroes[command.heroId]
+	if not hero then return nil,"HeroNotOwned" end
+	local g=hero.progression or Growth.new(hero.level)
+	local fingerprint=table.concat({"growth",command.action,command.heroId,tostring(command.skill or ""),tostring(command.slot or ""),
+		tostring(command.stats and command.stats.STR or 0),tostring(command.stats and command.stats.DEX or 0),
+		tostring(command.stats and command.stats.INT or 0),tostring(command.stats and command.stats.VIT or 0)},"|")
+	if command.action~="AwardXP" then
+		local previous=profile.operations[command.requestId]
+		if previous then if previous.fingerprint~=fingerprint then return nil,"RequestConflict" end; return Rules.copy(profile),nil,true end
+		if command.revision~=profile.revision then return nil,"Changed" end
+		if not context.atHub then return nil,"WaitForLobby" end
+	elseif context.serverReward~=true then return nil,"InvalidRequest" end
+	local nextG,reason,repeated=Growth.apply(g,command)
+	if not nextG then return nil,reason end
+	local nextProfile=Rules.copy(profile)
+	if repeated then return nextProfile,nil,true end
+	nextProfile.heroes[command.heroId].progression=nextG
+	nextProfile.heroes[command.heroId].level=nextG.level
+	nextProfile.revision=nextProfile.revision+1
+	if command.action~="AwardXP" then
+		nextProfile.operations[command.requestId]={fingerprint=fingerprint,revision=nextProfile.revision}
+		table.insert(nextProfile.operationOrder,command.requestId)
+		if #nextProfile.operationOrder>96 then nextProfile.operations[table.remove(nextProfile.operationOrder,1)]=nil end
+	end
+	if not Rules.validate(nextProfile,catalog) then return nil,"Incompatible" end
 	return nextProfile
 end
 return Rules

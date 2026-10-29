@@ -164,6 +164,7 @@ local function execute(state, action, argument)
 		state.selectedHeroId = argument
 		changed(state)
 	elseif action == "SetSkillSlot" then
+		if settings.inventory then return "UseHeroPanel" end
 		local hero = selectedHero(state)
 		if not hero then return "SelectHeroFirst" end
 		local slot, skill = argument:match("^(%d):(%d)$")
@@ -177,6 +178,7 @@ local function execute(state, action, argument)
 		hero.skillSlots[slot] = skill
 		changed(state)
 	elseif action == "PracticeAdvance" then
+		if settings.inventory then return "AdvancementRequired" end
 		local hero = selectedHero(state)
 		if not hero then return "SelectHeroFirst" end
 		hero.practiceAdvanced = not hero.practiceAdvanced
@@ -264,6 +266,11 @@ local function unbindPlayer(player)
 	sessions[player] = nil
 end
 
+function HeroSessionService.refresh(player)
+	local state=sessions[player]
+	if state then changed(state) end
+end
+
 function HeroSessionService.isBusy(player)
 	local state = sessions[player]
 	return state == nil or state.busy
@@ -300,15 +307,16 @@ function HeroSessionService.getCombatContext(player, character)
 	local human = character:FindFirstChildOfClass("Humanoid")
 	if not hero or not human or human.Health <= 0 then return nil end
 	if settings.inventory and not settings.inventory.available(player) then return nil end
+	local growth = settings.inventory and settings.inventory.growth(player,hero.heroId)
 	local ready = {}
 	for id, time in pairs(hero.skillReadyAt) do ready[id] = time end
 	local equipment = settings.inventory and settings.inventory.stats(player, hero.heroId)
 	local itemCounts, itemSlots
 	if settings.inventory then itemCounts, itemSlots = settings.inventory.counts(player, hero.heroId) end
 	return { heroId = hero.heroId, baseClassId = hero.baseClassId, epoch = state.epoch, characterGeneration = state.generation,
-		equipment = equipment, itemCounts = itemCounts, itemSlots = itemSlots, inventoryManaged = settings.inventory ~= nil,
+		growth = growth, equipment = equipment, itemCounts = itemCounts, itemSlots = itemSlots, inventoryManaged = settings.inventory ~= nil,
 		inventoryLocked = settings.inventory and settings.inventory.busy(player) or false,
-		skillSlots = { table.unpack(hero.skillSlots) }, slotCount = hero.practiceAdvanced and 5 or 3, skillReadyAt = ready,
+		skillSlots = { table.unpack(growth and growth.skillSlots or hero.skillSlots) }, slotCount = settings.inventory and 3 or (hero.practiceAdvanced and 5 or 3), skillReadyAt = ready,
 		setSkillReadyAt = function(id, time) hero.skillReadyAt[id] = time end }
 end
 

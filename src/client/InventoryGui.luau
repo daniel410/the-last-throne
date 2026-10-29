@@ -500,6 +500,7 @@ function InventoryGui.create(onVisibility, feedback)
 	resize()
 	return {
 		isOpen=function() return opened end,
+		close=function() setOpen(false) end,
 		refresh=requestState,
 		use=function(slot)
 			if pending or not snapshot or not snapshot.ready or not snapshot.heroId then return end

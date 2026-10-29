@@ -15,7 +15,7 @@ heroSession.start({
 })
 require(script.Cosmetics.KnightAppearance).start()
 require(script.Cosmetics.HeroPalette).start()
-combat.start(world.enemies, heroSession.getCombatContext)
+combat.start(world.enemies, heroSession.getCombatContext, inventory.awardXP)
 spawnService.start(lobby.spawn, {
 	onLifeStarted = heroSession.onLifeStarted,
 	onReady = heroSession.onReady,

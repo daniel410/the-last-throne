@@ -4,6 +4,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local PathfindingService = game:GetService("PathfindingService")
 
+local Growth = require(ReplicatedStorage.Shared.HeroProgression)
+local rewardHandler
 local Config = require(ReplicatedStorage.Shared.K0Config)
 local Rules = require(script.Parent.K0Rules)
 local EnemyHealthBar = require(script.Parent.Parent.World.EnemyHealthBar)
@@ -276,7 +278,7 @@ local function startAttack(state, current, targetModel)
 	state.attack = {
 		started = current,
 		definition = profile.attacks[nextCombo],
-		attackPower = profile.attackPower * (1 + (state.equipment and state.equipment.power or 0) / 100),
+		attackPower = (state.derived and (state.baseClassId=="mage" and state.derived.magicPower or state.derived.physicalPower) or profile.attackPower) * (1 + (state.equipment and state.equipment.power or 0) / 100),
 		maxTargets = profile.maxTargets,
 		maxHeight = profile.maxHeight,
 		direction = direction,
@@ -305,7 +307,7 @@ local function skillStep(state, direction, distance)
 end
 
 local function setMana(state, value)
-	state.mana = math.clamp(value, 0, Config.MaxMana)
+	state.mana = math.clamp(value, 0, state.maxMana or Config.MaxMana)
 	state.character:SetAttribute("K0Mana", math.floor(state.mana * 10 + 0.5) / 10)
 end
 
@@ -313,6 +315,7 @@ local function startSkill(state, slot, current, targetModel)
 	local skills = Config.Skills[state.baseClassId]
 	if slot > state.slotCount then return end
 	local skill = skills and skills[state.skillSlots[slot] or 0]
+	if skill and state.growth then skill=Growth.skill(state.baseClassId,state.skillSlots[slot],skill,state.growth) end
 	if not skill then return end
 	if state.mode ~= "Idle" then updateFeedback(state, "SkillBusy"); return end
 	if current < (state.skillReadyAt[skill.id] or -math.huge) then updateFeedback(state, "SkillCooling"); return end
@@ -352,7 +355,7 @@ local function startSkill(state, slot, current, targetModel)
 		state.thrownUntil = nil; state.thrownTarget = nil; state.thrownPosition = nil
 	end
 	state.attack = {
-		started = current, definition = skill, attackPower = state.attackProfile.attackPower * (1 + (state.equipment and state.equipment.power or 0) / 100),
+		started = current, definition = skill, attackPower = (state.derived and (skill.magic and state.derived.magicPower or state.derived.physicalPower) or state.attackProfile.attackPower) * (1 + (state.equipment and state.equipment.power or 0) / 100),
 		maxTargets = skill.maxTargets, maxHeight = skill.maxHeight, isSpell = skill.magic,
 		isSkill = true, ranged = skill.ranged, direction = direction, recallFrom = recallFrom,
 		hits = {}, hitCount = 0, counterDamage = nil, sampledActive = false, targetModel = targetModel,
@@ -458,7 +461,7 @@ local function acceptAction(state, action, direction, current, targetModel)
 			state.humanoid.Health = math.min(state.humanoid.MaxHealth, state.humanoid.Health + 40)
 		else
 			if not state.mana then updateFeedback(state, "NoManaPool"); return end
-			if state.mana >= Config.MaxMana then updateFeedback(state, "ManaFull"); return end
+			if state.mana >= (state.maxMana or Config.MaxMana) then updateFeedback(state, "ManaFull"); return end
 			setMana(state, state.mana + 40)
 		end
 		state.itemCounts[slot] -= 1
@@ -577,7 +580,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	end
 	if playerState.rallyUntil and current < playerState.rallyUntil then multiplier = multiplier * 0.8 end
 	local damage = math.max(1, math.floor(attack.definition.damage * multiplier + 0.5))
-	damage = math.max(1, damage - (playerState.equipment and playerState.equipment.armor or 0))
+	damage = math.max(1, damage - (playerState.equipment and playerState.equipment.armor or 0) - (playerState.derived and playerState.derived.armor or 0))
 	playerState.humanoid:TakeDamage(damage)
 	playerState.lastEquipmentCombat = current
 	if playerState.humanoid.Health <= 0 then
@@ -1476,6 +1479,12 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	humanoid.Died:Connect(function()
 		if enemy.deathHandled then return end
 		enemy.deathHandled = true
+		local winner=enemy.lastAttacker
+		if not splitGroup and rewardHandler and winner and playerStates[winner.player]==winner and winner.player.Parent==Players then
+			-- Trial training levels; approved XP formula 8 + 2 * enemy level.
+			local level=({Slime=1,Goblin=2,Orc=4,Ogre=8})[kind] or 1
+			rewardHandler(winner.player,winner.heroId,8+2*level)
+		end
 		resetEnemyAttack(enemy)
 		setEnemyState(enemy, "Dead")
 		enemy.pathToken = enemy.pathToken + 1
@@ -1522,10 +1531,12 @@ local function setupCharacter(player, character)
 		classes[context.heroId] = classId
 		local attackProfile = Config.BasicAttackProfiles[classId]
 		local current = now()
+		local derived=context.growth and Growth.derived(classId,context.growth)
 		local state = {
 			player = player, character = character, humanoid = humanoid, root = root, mode = "",
 			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0,
-			mana = classId == "mage" and Config.MaxMana or nil, manaRegenAt = current,
+			growth=context.growth, derived=derived, maxMana=derived and derived.mana or Config.MaxMana,
+			mana = classId == "mage" and (derived and derived.mana or Config.MaxMana) or nil, manaRegenAt = current,
 			itemCounts = context.itemCounts or {3, 3}, equipment = context.equipment, inventoryManaged = context.inventoryManaged,
 			skillSlots = context.skillSlots or {1, 2, 3, 0, 0}, slotCount = context.slotCount or 3, skillReadyAt = context.skillReadyAt or {}, setSkillReadyAt = context.setSkillReadyAt,
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
@@ -1535,7 +1546,12 @@ local function setupCharacter(player, character)
 			tokens = Config.RemoteBurst, lastRefill = current,
 		}
 		playerStates[player] = state
-		humanoid.MaxHealth = Config.MaxHealth + (state.equipment and state.equipment.health or 0)
+		if state.growth then
+			local sp,kp=Growth.points(state.growth)
+			for key,value in pairs({K0Level=state.growth.level,K0XP=state.growth.xp,K0XPToNext=Growth.xpToNext(state.growth.level),K0StatPoints=sp,K0SkillPoints=kp}) do character:SetAttribute(key,value) end
+			for i=1,3 do character:SetAttribute("K0SkillRank"..i,state.growth.mastery[i]) end
+		end
+		humanoid.MaxHealth = (derived and derived.health or Config.MaxHealth) + (state.equipment and state.equipment.health or 0)
 		humanoid.Health = humanoid.MaxHealth
 		if state.inventoryManaged then
 			character:SetAttribute("TLTEquippedWeapon", state.equipment and state.equipment.weapon or "")
@@ -1557,7 +1573,7 @@ local function setupCharacter(player, character)
 		character:SetAttribute("K0AttackKind", nil)
 		character:SetAttribute("K0ItemCount1", state.itemCounts[1])
 		character:SetAttribute("K0ItemCount2", state.itemCounts[2])
-		character:SetAttribute("K0MaxMana", state.mana and Config.MaxMana or nil)
+		character:SetAttribute("K0MaxMana", state.mana and state.maxMana or nil)
 		character:SetAttribute("K0Mana", state.mana)
 		-- Clear legacy prototype attributes if an existing character is reused.
 		character:SetAttribute("K0MaxStamina", nil)
@@ -1605,8 +1621,19 @@ function CombatService.refreshEquipment(player, equipment)
 	local state = playerStates[player]
 	if not state or player.Character ~= state.character or not equipment then return end
 	state.equipment = equipment
+	local context=readCombatContext(player,state.character)
+	if context and context.growth then
+		state.growth=context.growth
+		state.derived=Growth.derived(state.baseClassId,state.growth)
+		state.maxMana=state.derived.mana
+		if state.mana then setMana(state,math.min(state.mana,state.maxMana)) end
+		state.character:SetAttribute("K0MaxMana",state.mana and state.maxMana or nil)
+		local sp,kp=Growth.points(state.growth)
+		for key,value in pairs({K0Level=state.growth.level,K0XP=state.growth.xp,K0XPToNext=Growth.xpToNext(state.growth.level),K0StatPoints=sp,K0SkillPoints=kp}) do state.character:SetAttribute(key,value) end
+		for i=1,3 do state.character:SetAttribute("K0SkillRank"..i,state.growth.mastery[i]) end
+	end
 	local health = state.humanoid.Health
-	state.humanoid.MaxHealth = Config.MaxHealth + equipment.health
+	state.humanoid.MaxHealth = (state.derived and state.derived.health or Config.MaxHealth) + equipment.health
 	state.humanoid.Health = math.min(health, state.humanoid.MaxHealth)
 	state.character:SetAttribute("TLTEquippedWeapon", equipment.weapon or "")
 	state.character:SetAttribute("TLTEquippedOffhand", equipment.offhand or "")
@@ -1620,7 +1647,7 @@ function CombatService.canUseInventoryItem(player, definition)
 	if definition.restore == "health" and state.humanoid.Health >= state.humanoid.MaxHealth then return false, "HealthFull", state.character end
 	if definition.restore == "mana" then
 		if not state.mana then return false, "NoManaPool", state.character end
-		if state.mana >= Config.MaxMana then return false, "ManaFull", state.character end
+		if state.mana >= (state.maxMana or Config.MaxMana) then return false, "ManaFull", state.character end
 	end
 	return true, nil, state.character
 end
@@ -1632,7 +1659,8 @@ function CombatService.applyInventoryItem(player, definition, character)
 	elseif definition.restore == "mana" and state.mana then setMana(state, state.mana + definition.amount) end
 end
 
-function CombatService.start(enemies, serverContextResolver)
+function CombatService.start(enemies, serverContextResolver, awardXP)
+	rewardHandler=awardXP
 	assert(not started, "K0 combat service already started")
 	assert(enemies and enemies:IsA("Folder"), "K0 combat needs an enemy Folder")
 	assert(type(serverContextResolver) == "function", "K0 combat needs a server hero context resolver")

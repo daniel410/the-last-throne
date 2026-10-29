@@ -149,6 +149,7 @@ function Hud.create()
 	classLabel.TextTruncate = Enum.TextTruncate.AtEnd
 	local state = text(status, "State", Text.State.Idle, UDim2.new(1, -109, 0, 8), UDim2.fromOffset(95, 20), 10, COLORS.muted)
 	state.TextXAlignment = Enum.TextXAlignment.Right
+	local xpLabel=text(status,"XP","",UDim2.fromOffset(14,72),UDim2.new(1,-28,0,12),9,COLORS.gold)
 	local setHealth = bar(status, Text.Health, 32, COLORS.red)
 	local setManaValue = bar(status, Text.Mana, 77, Color3.fromRGB(75, 151, 235))
 	for _, suffix in ipairs({ "Label", "Value", "Track" }) do
@@ -317,6 +318,11 @@ function Hud.create()
 			updateScale()
 		end,
 		setCooldowns = function(character)
+			if character then
+				classLabel.Text=(Text.Class[character:GetAttribute("K0ClassId")] or "").." · LV "..tostring(character:GetAttribute("K0Level") or 1)
+				xpLabel.Position=UDim2.fromOffset(14,character:GetAttribute("K0MaxMana") and 117 or 72)
+				xpLabel.Text=string.format("XP %d / %d",character:GetAttribute("K0XP") or 0,character:GetAttribute("K0XPToNext") or 100)
+			end
 			for index, button in ipairs(itemButtons) do
 				local count = character and character:GetAttribute("K0ItemCount" .. index) or 0
 				local definitionId = character and character:GetAttribute("K0ItemDefinition" .. index)

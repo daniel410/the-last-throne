@@ -4,6 +4,7 @@ local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
 local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
+local Growth = require(ReplicatedStorage.Shared.HeroProgression)
 local Rules = require(script.Parent.InventoryRules)
 local Store = require(script.Parent.AccountStore)
 local Service = {}
@@ -50,6 +51,12 @@ function Service.close(player)
 	-- An in-flight committed mutation must settle before releasing its fence.
 	task.spawn(function()
 		while state.busy do task.wait(0.1) end
+		local deadline=os.clock()+10
+		while accounts[player]==state and state.rewards and #state.rewards>0 and os.clock()<deadline do
+			local reason=Service.progress(player,state.rewards[1],true)
+			if not reason then table.remove(state.rewards,1)
+			elseif reason=="SaveUnknown" or reason=="Busy" then task.wait(.5) else break end
+		end
 		if accounts[player] ~= state then return end
 		state.busy = true
 		store:close(player.UserId)
@@ -83,6 +90,76 @@ function Service.counts(player, heroId)
 	local counts = {}
 	for index = 1, 2 do counts[index] = Rules.quantity(state.profile, heroId, hero.quickSlots[index]) end
 	return counts, Rules.copy(hero.quickSlots)
+end
+function Service.growth(player, heroId)
+	local state=accounts[player]
+	local hero=state and state.profile and state.profile.heroes[heroId]
+	return hero and Growth.copy(hero.progression)
+end
+-- One account fence serializes items, point investments and XP. Unknown writes
+-- retry the exact command; no new reward sequence is issued during recovery.
+function Service.progress(player, command, serverReward)
+	local state=accounts[player]
+	if not state or state.busy or state.closing and not serverReward then return "Busy" end
+	local pending=state.growthPending
+	if not state.valid and not (pending and pending.requestId==command.requestId) then return state.errorCode or "Unavailable" end
+	if pending then
+		if pending.requestId~=command.requestId then return "Busy" end
+		local function same(a,b)
+			if type(a)~=type(b) then return false end
+			if type(a)~="table" then return a==b end
+			for k,v in pairs(a) do if not same(v,b[k]) then return false end end
+			for k in pairs(b) do if a[k]==nil then return false end end
+			return true
+		end
+		if not same(command,pending) then return "RequestConflict" end
+		command=Growth.copy(pending)
+	end
+	local initial=options.heroSession.getInventoryContext(player)
+	if not serverReward and (not initial or initial.heroId~=command.heroId or not initial.atHub or options.heroSession.isBusy(player)) then return "WaitForLobby" end
+	state.busy=true
+	state.growthPending=Growth.copy(command)
+	local profile,errorCode=store:transact(player.UserId,function(current)
+		local context={serverReward=serverReward==true}
+		if not serverReward then
+			local latest=options.heroSession.getInventoryContext(player)
+			context.atHub=latest and initial and latest.heroId==initial.heroId and latest.generation==initial.generation and latest.atHub
+		end
+		return Rules.progress(current,command,context,Catalog)
+	end)
+	if profile then
+		state.profile,state.valid,state.errorCode=profile,true,nil
+		state.growthPending=nil
+		Service.refreshCharacter(player)
+		options.heroSession.refresh(player)
+	elseif errorCode=="SaveUnknown" or errorCode=="AccountBusy" then
+		state.valid,state.errorCode=false,errorCode
+	else state.growthPending=nil end
+	state.busy=false
+	publish(player,command.requestId,errorCode)
+	return errorCode
+end
+function Service.awardXP(player,heroId,amount)
+	local state=accounts[player]
+	if not state or not state.valid or state.closing or not state.profile.heroes[heroId] then return end
+	state.rewards=state.rewards or {}
+	state.rewardSequences=state.rewardSequences or {}
+	local saved=state.profile.heroes[heroId].progression
+	local sequence=(state.rewardSequences[heroId] or (saved.rewardStream==token and saved.rewardSequence or 0))+1
+	state.rewardSequences[heroId]=sequence
+	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,stream=token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
+	if state.rewardWorker then return end
+	state.rewardWorker=true
+	task.spawn(function()
+		while accounts[player]==state and #state.rewards>0 and not state.closing do
+			local command=state.rewards[1]
+			local reason=Service.progress(player,command,true)
+			if not reason then table.remove(state.rewards,1)
+			elseif reason=="Busy" or reason=="SaveUnknown" or state.pending and state.errorCode=="SaveUnknown" then task.wait(1)
+			else break end
+		end
+		state.rewardWorker=false
+	end)
 end
 local function atStorage(player)
 	local context = options.heroSession.getInventoryContext(player)
@@ -233,6 +310,25 @@ function Service.start(settings)
 	stateRemote = remote("InventoryState")
 	openRemote = remote("InventoryOpenStorage")
 	remote("InventoryRequest").OnServerEvent:Connect(handle)
+	remote("HeroProgressionRequest").OnServerEvent:Connect(function(player,command,...)
+		local state=accounts[player]
+		if not state or state.closing then return end
+		local current=os.clock()
+		state.tokens=math.min(12,state.tokens+(current-state.refillAt)*3); state.refillAt=current
+		if state.tokens<1 then return end
+		state.tokens=state.tokens-1
+		local valid=select("#",...)==0 and type(command)=="table"
+		if valid then
+			local allowed={action=true,requestId=true,heroId=true,revision=true,stats=true,skill=true,slot=true}
+			for key in pairs(command) do if not allowed[key] then valid=false end end
+			valid=valid and type(command.requestId)=="string" and #command.requestId>0 and #command.requestId<=64 and command.requestId:match("^[%w_-]+$")
+				and type(command.heroId)=="string" and #command.heroId<=64 and Growth.integer(command.revision,0,1e12)
+				and (command.action=="AllocateStats" or command.action=="TrainSkill" or command.action=="SetSkillSlot")
+		end
+		if not valid then publish(player,nil,"InvalidRequest"); return end
+		local reason=Service.progress(player,command,false)
+		if reason then publish(player,command.requestId,reason) end
+	end)
 	options.prompt.Triggered:Connect(function(player)
 		if Service.ready(player) and atStorage(player) then openRemote:FireClient(player); publish(player) end
 	end)

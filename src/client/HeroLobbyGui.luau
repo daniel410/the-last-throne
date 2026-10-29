@@ -57,7 +57,7 @@ local function button(parent, name, value, position, size)
 	return result
 end
 
-function LobbyGui.create(request)
+function LobbyGui.create(request,onManage)
 	local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 	local previous = playerGui:FindFirstChild("HeroLobbyGui")
 	if previous then previous:Destroy() end
@@ -223,7 +223,7 @@ function LobbyGui.create(request)
 	local practiceAdvance = button(skillPanel, "PracticeAdvancement", "PRACTICE: UNLOCK 5 SLOTS", UDim2.new(0, 16, 1, -52), UDim2.new(1, -32, 0, 38))
 	practiceAdvance.ZIndex = 11
 	practiceAdvance.Activated:Connect(function() if not busy then request("PracticeAdvance") end end)
-	manage.Activated:Connect(function() if current and current.canStart and not busy then skillPanel.Visible = true; refresh() end end)
+	manage.Activated:Connect(function() if current and current.canStart and not busy then if onManage then onManage() else skillPanel.Visible = true; refresh() end end end)
 
 	refresh = function()
 		if not current then return end

@@ -40,7 +40,7 @@ return {
 		ElfAttack = "Click an enemy to target and shoot, or face an enemy to fire.",
 		Dodge = "Use Dodge to practice avoiding an attack.",
 		Complete = "Controls practiced! Explore the grove and test your hero.",
-		Note = "Practice only: no story rewards or saved progress.",
+		Note = "Training foes grant hero XP. No story rewards.",
 	},
 	Lobby = {
 		Title = "DAWNSPIRE",

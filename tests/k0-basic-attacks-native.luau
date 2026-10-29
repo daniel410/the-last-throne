@@ -162,6 +162,38 @@ return {
 	api.setEnemyFolder(enemies)
 	if not RunService:IsRunning() then RunService:Run(); startedRun = true end
 
+	for classId,hp in pairs({knight=300,dwarf=250,elf=200,mage=150}) do
+		case("growth-starting-resources-"..classId,function()
+			local G=require(game:GetService("ReplicatedStorage").Shared.HeroProgression)
+			local growth=G.new()
+			api.injectResolver(function(player)
+				return {heroId="hero-"..player.UserId,baseClassId=classId,epoch=1,characterGeneration=1,growth=growth,
+					equipment={power=0,armor=0,health=0},itemCounts={3,3},itemSlots={"health_potion","mana_potion"},skillSlots=growth.skillSlots}
+			end)
+			local state,player=spawnPlayer()
+			equal(state.humanoid.MaxHealth,hp,"user starting HP")
+			equal(state.humanoid.Health,hp,"initial full health")
+			equal(state.mana,classId=="mage" and 100 or nil,"only Mage has MP")
+			equal(state.character:GetAttribute("K0Level"),1,"starts level1")
+			state.humanoid.Health=hp-20
+			if state.mana then state.mana=50 end
+			growth=assert(G.apply(growth,{action="AwardXP",stream="qa",sequence=1,amount=100}))
+			growth=assert(G.apply(growth,{action="AllocateStats",stats={VIT=4}}))
+			growth=assert(G.apply(growth,{action="TrainSkill",skill=1}))
+			api.refreshEquipment(player,{power=0,armor=0,health=0})
+			equal(state.humanoid.MaxHealth,hp+G.bases[classId].healthPerLevel+40,"level and VIT applied")
+			equal(state.humanoid.Health,hp-20,"growth grants no heal")
+			equal(state.character:GetAttribute("K0Level"),2,"level projection refresh")
+			equal(state.character:GetAttribute("K0SkillRank1"),1,"mastery projection")
+			if state.mana then equal(state.maxMana,104,"Mage mana growth");equal(state.mana,50,"growth grants no mana refill") end
+			action(state,"Skill1",0)
+			assert(state.attack,"basic skill casts with growth")
+			near(state.attack.definition.damage,api.Config.Skills[classId][1].damage*(1+G.mastery[classId][1]),"mastery cast snapshot")
+			local frozen=state.attack.definition.damage
+			growth.mastery[1]=2
+			near(state.attack.definition.damage,frozen,"inflight mastery immutable")
+		end)
+	end
 	case("server-selected-knight-and-forged-client-class", function()
 		api.injectResolver(function() return "knight" end)
 		local state = spawnPlayer()
