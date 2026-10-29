@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-29",
+  "status": "concept, not approved or implemented",
+  "generator": "built-in image_gen",
+  "images": [
+    {
+      "file": "01-battle-hud.png",
+      "sha256": "f83fa3c30cb5309be266b4562c4e6d2cca1043a948b06c0a161fd01a4c84c9a1"
+    },
+    {
+      "file": "02-bag-equipment.png",
+      "sha256": "2b9703c79b986e21cfdd6987c62942add33005b38dfb07a1868310cf2332d516"
+    },
+    {
+      "file": "03-account-storage.png",
+      "sha256": "1a7847e30cc9e23e607ffb1f6ec5a59eb72362102e9f78a4ac575f94374266d7"
+    },
+    {
+      "file": "04-hero-stats.png",
+      "sha256": "30e16f058badd257e4d0fcc5aaecfa46d41cd0f0dd2218c006085542af70cecc"
+    },
+    {
+      "file": "05-skill-tree.png",
+      "sha256": "96b8b12e040b693575807b1b5a37c9b3d2b9d0f6c8d1e3cedf06160409bb867c"
+    },
+    {
+      "file": "06-hero-selection.png",
+      "sha256": "17874f5aa41974399c42aa83b98ef649ddc86e9d7fb9b6780e891c927b20774f"
+    }
+  ]
+}

@@ -137,6 +137,10 @@ Deepwood 시험장에서 네 영웅의 공통 공격·방어·회피·달리기�
 
 [Lv1~5 프롤로그/스탯·스킬 튜토리얼](docs/prologue-dawnspire-tutorial.md) · [맵 보드](assets/maps/dawnspire-prologue-v1/index.html) · [아이템/수익화](docs/items-and-monetization.md) · [상품 검토표](assets/economy/item-catalog-v1.html). 프롤로그4구간을 기존28스토리에 이어 Lv1→40을 검증합니다. 스탯/스킬 확정 초기화는 리셋권 소비로 변경하고 실제 장비 상품도 포함했습니다. 가격/계수는 신규 제안이며 실제 상품/맵/결제 구현은 아직입니다.
 
+## 최신 게임 시스템 컨셉
+
+[6개 화면 컨셉 갤러리](assets/concepts/2026-10-29-game-systems-refresh/index.html) · [시안과 검증 범위](assets/concepts/2026-10-29-game-systems-refresh/README.md). 가방·창고, 전투 HUD, 스탯, 스킬트리와 4클래스의 2026-10-29 검토용 이미지이며 기존 승인본이나 실제 구현을 대체하지 않습니다.
+
 ## 장비 장착·가방·스토리지
 
 [기능 기획](docs/equipment-bag-and-storage.md) · [간소화 콘셉트/동작 보드](assets/concepts/2026-10-27-equipment-storage-v2/index.html).유물 슬롯을 제거해 8슬롯으로 정리하고 기본 진입을 가방으로 통합했습니다. 망토는 의복이며 장착 방식은 후속 설계입니다. 기존 이미지의 9슬롯은 이전 콘셉트입니다. 고정 슬롯 자동 지정·접힌 상세/정리·거점 창고·미수령 배지·단계별 안내를 반영했습니다. 용량60/120은 신규 제안이며 실제 Roblox UI/저장 구현은 아직입니다.
