@@ -339,3 +339,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 전투 검증 | [소스 픽스처 및 제한](2026-10-28-combat-and-bgm.md) 참고. 실제 Player Play·모바일·체감 수용은 미검증. |
 
 일반 빌드이며 릴리스 태그와 Roblox 게시를 하지 않았다.
+
+## 0.18.1 — Ground Slam 도약과 오우거 축소
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `79181ce48b65cb38f04c127de0213dc5a7e393e1`, `VERSION=0.18.1`, 빌드 전 origin/main 일치 |
+| 빌드 | `rojo build default.project.json --output builds/0.18.1/TheLastThrone-0.18.1.rbxlx`, 성공 |
+| SHA-256 | `51fab35c0e19d474b1cb78de45176afd464d65f4dc9b042f833b6c8d97d3998d` |
+| 격리 Studio | 무기·연출 픽스처 2198개 검사 및 빌드 smoke 452개 검사 통과. 오우거 외형 높이 약 10.33, 오크 약 6.90 스터드. 런타임 오류 0. |
+| 제한 | 실제 플레이어의 애니메이션 체감, 네트워크 복제와 모바일 실기는 미검증. [상세](2026-10-28-ground-slam-ogre.md) 참고. |
+
+일반 빌드이며 릴리스 태그와 Roblox 게시를 하지 않았다.
