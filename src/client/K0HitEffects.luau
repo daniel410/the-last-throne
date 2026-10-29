@@ -83,9 +83,10 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	Debris:AddItem(holder, 1.2)
 	local scale = enemyKind == "Ogre" and 1.3 or 1
 	if model and model:GetAttribute("SlimeSplitGeneration") == 1 then scale = 0.7 end
-	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.25 * scale, profile.secondary)
+	local impactScale = skill and skill.shape == "chop" and 1.5 or 1
+	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.25 * scale * impactScale, profile.secondary)
 	TweenService:Create(flash, TweenInfo.new(0.20, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-		{ Size = Vector3.one * 1.1 * scale, Transparency = 1 }):Play()
+		{ Size = Vector3.one * 1.1 * scale * impactScale, Transparency = 1 }):Play()
 	if model and model:IsDescendantOf(workspace) then
 		local highlight = Instance.new("Highlight")
 		highlight.Name, highlight.Adornee = "K0HitFlash", model
@@ -106,7 +107,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 			local flat = typeof(direction) == "Vector3" and finite(direction.X) and finite(direction.Z)
 				and Vector3.new(direction.X, 0, direction.Z) or Vector3.new(0, 0, -1)
 			if flat.Magnitude < 0.001 then flat = Vector3.new(0, 0, -1) end
-			accent.Size = Vector3.new(0.12, skill.shape == "chop" and 2.4 or 1.4, 0.12) * scale
+			accent.Size = (skill.shape == "chop" and Vector3.new(0.2, 3.8, 0.2) or Vector3.new(0.12, 1.4, 0.12)) * scale
 			accent.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(skill.shape == "chop" and 0 or 45))
 			TweenService:Create(accent, TweenInfo.new(0.22), { Size = accent.Size * 1.35, Transparency = 1 }):Play()
 		end

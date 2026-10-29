@@ -49,6 +49,10 @@ local ok, err = xpcall(function()
 		local h; for _, candidate in ipairs(holders()) do if not before[candidate] then h = candidate end end
 		check(h and h:GetAttribute("K0SkillEffectId") == item[2], "skill identity preserved")
 		check(h.K0SkillImpact:GetAttribute("Style") == item[3], "correct skill impact style")
+		if item[3] == "chop" then
+			check(h.K0SkillImpact.Size.Y >= 3.79 and h.K0SkillImpact.Size.X >= 0.199, "overhead smash has a larger vertical impact")
+			check(h.K0ImpactFlash.Size.X >= 0.374, "overhead smash has a larger flash")
+		end
 		if item[3] == "water" then
 			local droplets = 0; for _, part in ipairs(h:GetChildren()) do if part.Name == "K0WaterSplash" then droplets += 1 end end
 			check(droplets == 6, "water impact creates six splash droplets")

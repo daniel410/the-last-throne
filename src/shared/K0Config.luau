@@ -104,7 +104,7 @@ Config.Skills = {
 		{ id = "elf.common.multi", staminaCost = 30, name = "MULTI SHOT", cooldown = 10, windup = 0.30, active = 0.10, recovery = 0.35, damage = 0.75, posture = 8, range = 50, angle = 70, maxHeight = 10, maxTargets = 5, effect = "multi", ranged = true },
 	},
 	dwarf = {
-		{ id = "dwarf.common.overhead", staminaCost = 20, name = "OVERHEAD SMASH", cooldown = 6, windup = 0.30, active = 0.18, hitDelay = 0.06, recovery = 0.30, damage = 1.4, posture = 25, range = 5, angle = 80, maxHeight = 7, maxTargets = 1, effect = "overhead" },
+		{ id = "dwarf.common.overhead", staminaCost = 20, name = "OVERHEAD SMASH", cooldown = 6, windup = 0.65, active = 0.18, hitDelay = 0.06, recovery = 0.30, damage = 1.4, posture = 25, range = 5, angle = 80, maxHeight = 7, maxTargets = 1, effect = "overhead" },
 		{ id = "dwarf.common.throw", staminaCost = 20, name = "AXE THROW", cooldown = 7, windup = 0.30, active = 0.10, recovery = 0.30, damage = 1.1, posture = 18, range = 32, angle = 45, maxHeight = 10, maxTargets = 1, effect = "throw", ranged = true },
 		{ id = "dwarf.common.ground", staminaCost = 30, name = "GROUND SLAM", cooldown = 10, windup = 0.35, active = 0.18, hitDelay = 0.06, recovery = 0.40, damage = 1.2, posture = 30, range = 6, angle = 360, maxHeight = 7, maxTargets = 8, effect = "slam" },
 	},

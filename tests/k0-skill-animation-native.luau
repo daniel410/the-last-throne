@@ -15,6 +15,11 @@ local skills = {
 	elf = {"elf.common.aimed", "elf.common.rapid", "elf.common.multi"},
 	mage = {"mage.common.mana_bolt", "mage.common.water_ball", "mage.common.gravity"},
 }
+local windup = require(game:GetService("ReplicatedStorage").Shared.K0Config).Skills.dwarf[1].windup
+for index = 0, 4 do
+	local angle = visual.overheadSpinAngle(10, 10 + windup * index / 4)
+	check(math.abs(angle - math.pi * index / 2) < 0.0001, "overhead windup traces one full turn")
+end
 for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 	for _, classId in ipairs({"knight", "dwarf", "elf", "mage"}) do
 		local character

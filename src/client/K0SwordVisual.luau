@@ -7,11 +7,12 @@ local TweenService = game:GetService("TweenService")
 local ContentProvider = game:GetService("ContentProvider")
 local Workspace = game:GetService("Workspace")
 local Config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
-local groundSlam
+local groundSlam, overheadSmash
 for _, skill in ipairs(Config.Skills.dwarf) do
-	if skill.id == "dwarf.common.ground" then groundSlam = skill; break end
+	if skill.id == "dwarf.common.ground" then groundSlam = skill
+	elseif skill.id == "dwarf.common.overhead" then overheadSmash = skill end
 end
-assert(groundSlam, "Ground Slam configuration is missing")
+assert(groundSlam and overheadSmash, "Dwarf skill configuration is missing")
 
 local Visual = {}
 local started = false
@@ -348,6 +349,12 @@ function Visual.bowPhase(character, phase, clockTime)
 	return clockTime - releasedAt < 0.07 and "Active" or "Windup"
 end
 
+-- The shared server start timestamp gives every observer one complete turn.
+function Visual.overheadSpinAngle(startedAt, now)
+	if type(startedAt) ~= "number" then return 0 end
+	return 2 * math.pi * math.clamp((now - startedAt) / overheadSmash.windup, 0, 1)
+end
+
 -- The visible hop lands at the server's configured hit window. It does not
 -- move the HumanoidRootPart or change server combat geometry.
 function Visual.groundSlamLift(phase, startedAt, now)
@@ -432,6 +439,11 @@ function Visual.renderArms(character, dt)
 			right = CFrame.Angles(math.rad(pitch), math.rad(phase == "Windup" and -25 or 0), 0)
 			rightElbow = CFrame.Angles(math.rad(phase == "Windup" and -45 or 0), 0, 0)
 			left = CFrame.Angles(math.rad(phase == "Windup" and 35 or 50), 0, math.rad(15))
+		elseif classId == "dwarf" and skillId == "dwarf.common.overhead" and phase == "Windup" then
+			local angle = Visual.overheadSpinAngle(character:GetAttribute("K0SkillStartedAt"), Workspace:GetServerTimeNow())
+			right = CFrame.Angles(0, angle, 0) * CFrame.Angles(math.rad(135), 0, 0)
+			rightElbow = CFrame.Angles(math.rad(-15), 0, 0)
+			left = CFrame.Angles(math.rad(45), 0, math.rad(18))
 		elseif classId == "dwarf" then
 			local pitch = phase == "Windup" and 165 or phase == "Active" and 75 or 65
 			if skillId == "dwarf.common.ground" then
@@ -865,7 +877,9 @@ function Visual.render(model, phase, combo, dt, attackKind)
 		clearEffect(model)
 	else
 		local effect = meleeEffect(model, joint, classId)
-		if effect then effect.trail.Enabled = phase == "Active" and attackKind ~= "Arcane" end
+		if effect then
+			effect.trail.Enabled = attackKind ~= "Arcane" and (phase == "Active" or (classId == "dwarf" and skillId == "dwarf.common.overhead" and phase == "Windup"))
+		end
 	end
 	return true
 end
