@@ -40,7 +40,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  end
  local top=narrow and 174 or 116
  local treeWidth=narrow and width-8 or math.floor(width*.65)
- local treeHeight=700
+ local treeHeight=750
  local map=Menu.frame(body,'SkillMap',UDim2.fromOffset(4,top),UDim2.fromOffset(treeWidth,treeHeight))
  local rows={{stage=0,indices={}},{stage=1,indices={}},{stage=2,indices={}},{stage=3,indices={}},{stage=4,indices={}}}
  for index,base in ipairs(Config.Skills[classId]) do
@@ -55,7 +55,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
   local count=#row.indices
   local left=treeWidth<440 and 58 or 76
   local available=treeWidth-left-20
-  local tag=Menu.plaque(map,'Stage'..row.stage,row.stage==0 and 'BASE' or 'Lv.'..row.stage*20,UDim2.fromOffset(8,y+8),UDim2.fromOffset(left-12,34));tag.Caption.TextSize=treeWidth<440 and 9 or 11
+  local tag=Menu.plaque(map,'Stage'..row.stage,row.stage==0 and 'BASE' or 'Lv.'..row.stage*20,UDim2.fromOffset(8,y+8),UDim2.fromOffset(left-12,34));tag.Caption.TextSize=treeWidth<440 and 9 or 11;tag.Caption.Position=UDim2.fromOffset(2,0);tag.Caption.Size=UDim2.new(1,-4,1,0);tag.Caption.TextWrapped=false
   for order,index in ipairs(row.indices) do
    local base=Config.Skills[classId][index]
    positions[index]=Vector2.new(left+available*(order-.5)/math.max(count,1),y+size/2)
