@@ -17,6 +17,7 @@ function Chest.create(lobby)
 		band.Material = Enum.Material.Metal
 	end
 	local prompt = Instance.new("ProximityPrompt")
+ prompt.Style=Enum.ProximityPromptStyle.Custom
 	prompt.Name, prompt.ActionText, prompt.ObjectText = "OpenAccountStorage", "Open Storage", "Dawnspire Storage"
 	prompt.KeyboardKeyCode, prompt.GamepadKeyCode = Enum.KeyCode.F, Enum.KeyCode.ButtonX
 	prompt.HoldDuration, prompt.MaxActivationDistance, prompt.RequiresLineOfSight = 0, 12, false

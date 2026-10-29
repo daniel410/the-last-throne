@@ -70,7 +70,7 @@ local function pillar(e,index)
  local p=Instance.new('Part');p.Name='TemporarySealPillar';p.Size=Vector3.new(4,9,4);p.Position=e.position+Vector3.new(index==1 and -22 or 22,3,0)
  p.Anchored=true;p.CanCollide=false;p.CanQuery=false;p.Color=Color3.fromRGB(160,70,220);p.Material=Enum.Material.Neon;p.Parent=options.world.folder
  e.parts=e.parts or {};table.insert(e.parts,p)
- local prompt=Instance.new('ProximityPrompt');prompt.ObjectText='Temporary seal pillar';prompt.ActionText='Break the shield link';prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.HoldDuration=.6;prompt.Parent=p
+ local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ObjectText='Temporary seal pillar';prompt.ActionText='Break the shield link';prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.HoldDuration=.6;prompt.Parent=p
  e.pillarParts=e.pillarParts or {};e.pillarParts[index]=p
  prompt.Triggered:Connect(function(player) Service.breakPillar(player,e.key,index) end)
 end

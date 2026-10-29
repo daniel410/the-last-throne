@@ -8,6 +8,7 @@ local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
+require(script.InteractionPrompts).start()
 local StarterGui=game:GetService("StarterGui")
 local function hideDefaultHealth()
 	task.spawn(function()

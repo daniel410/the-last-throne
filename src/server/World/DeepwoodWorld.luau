@@ -146,7 +146,7 @@ function World.create()
   local p=part(nodes,c.id..'_'..g.id,Vector3.new(3,2,3),vec(g.position)+Vector3.new(0,1,0),#g.enemies>0 and C.gold or C.violet,Enum.Material.Slate,false)
   p:SetAttribute('ChapterId',c.id);p:SetAttribute('GoalId',g.id)
   ball(p,'ObjectiveGem',Vector3.new(1.4,2,1.4),p.Position+Vector3.new(0,2,0),#g.enemies>0 and C.gold or C.violet,Enum.Material.Neon)
-  local prompt=Instance.new('ProximityPrompt');prompt.Name='StoryInteract';prompt.ActionText=#g.enemies>0 and 'Begin encounter' or 'Interact';prompt.ObjectText=g.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
+  local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.Name='StoryInteract';prompt.ActionText=#g.enemies>0 and 'Begin encounter' or 'Interact';prompt.ObjectText=g.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
   interactions[c.id..':'..g.id]={part=p,prompt=prompt,chapter=c,goal=g}
  end end
  -- Resident and field starts share the exact same first-goal receipt.
@@ -154,7 +154,7 @@ function World.create()
   local g=c.goals[1];local p=part(nodes,c.id..'_request',Vector3.new(3,2,3),positions['DW-03']+Vector3.new((index-9)*18,1,72),C.blue,Enum.Material.Slate,false)
   p:SetAttribute('ChapterId',c.id);p:SetAttribute('GoalId',g.id)
   label(p,c.id=='DW-Q4' and 'Outpost Scout' or 'Outpost Resident')
-  local prompt=Instance.new('ProximityPrompt');prompt.ActionText='Hear request';prompt.ObjectText=c.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
+  local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ActionText='Hear request';prompt.ObjectText=c.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
   interactions[c.id..':request']={part=p,prompt=prompt,chapter=c,goal=g}
  end end
  root:SetAttribute("DeepwoodReady",true)
