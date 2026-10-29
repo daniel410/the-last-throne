@@ -73,7 +73,14 @@ King Shaman을 쓰러뜨린 뒤 첫 봉인핵을 확보한다. 승리를 기뻐�
 | 선택 3 · DW-Q3 · 폭포 아래 채석장 | DW-S2 폭포 채석장 → DW-03 | DW-05 완료 후 주민 의뢰 또는 도구 조사 | 자재 이송을 조사하고 King Ogre를 제압해 보고. 작업 기록과 Cave Slime 교전은 선택 |
 | 선택 4 · DW-Q4 · 붉은 전쟁터의 잔당 | DW-S3 붉은 전쟁터 → DW-03 | DW-07 결말 후 정찰병 의뢰 | 별도 인물인 Enraged Warlord를 제압하고 귀환로 확보·보고 |
 
-기존 DW-H1~H3은 각각 DW-Q1~Q3의 이야기/조사에 통합했으며 별도 퀘스트나 보상이 아니다. Q2/Q3의 단서는 선택 조사이며 두 퀘스트를 마치려면 해당 선택 보스를 제압해야 한다. 어느 퀘스트도 본편·승인 32구간 보상에 필수가 아니다. [통합 상세와 복구 계약](deepwood-hidden-quests.md) · [Q2](deepwood-side-story-01-goblin-king.md) · [Q3](deepwood-side-story-02-king-ogre.md) · [Q4](deepwood-side-story-03-enraged-warlord.md). 보상·전투 수치와 실제 구현은 미정이다.
+| 퀘스트 ID | 보스 완료 조건 | 다른 필수 조건 |
+| --- | --- | --- |
+| DW-Q1 | 없음 | 방수 기록 회수·DW-03 구조 주민에게 전달 |
+| DW-Q2 | Goblin King 격파 | 포로 안전 확보·창고 확인·물자 회수·DW-03 보고 |
+| DW-Q3 | King Ogre 격파 | 장치/자재 이송 흔적 확인·DW-03 보고 |
+| DW-Q4 | Enraged Warlord 격파 | 정찰병 흔적과 잔당 활동 조사·귀환로 안전 확인·DW-03 보고 |
+
+기존 DW-H1~H3은 각각 DW-Q1~Q3의 이야기/조사에 통합했으며 별도 퀘스트나 보상이 아니다. Q2/Q3의 전달·작업 기록은 선택 조사다. 현장으로 시작하면 해당 시작 단서는 조사하지만, 주민에게 의뢰를 받았다면 그 단서를 별도로 조사할 필요는 없다. 두 퀘스트를 마치려면 해당 선택 보스를 제압해야 한다. 어느 퀘스트도 본편·승인 32구간 보상에 필수가 아니다. [통합 상세와 복구 계약](deepwood-hidden-quests.md) · [Q2](deepwood-side-story-01-goblin-king.md) · [Q3](deepwood-side-story-02-king-ogre.md) · [Q4](deepwood-side-story-03-enraged-warlord.md). 보상·전투 수치와 실제 구현은 미정이다.
 
 ### 몬스터 10종 활용 리뷰
 
