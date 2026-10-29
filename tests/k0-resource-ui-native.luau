@@ -20,13 +20,17 @@ local function check(condition, message)
 	report.checks += 1
 	assert(condition, message)
 end
-local function copyModule(name)
+local function copyModule(name, mobileViewport)
 	local original = assert(client:FindFirstChild(name))
 	local replacement = [[local Players = { LocalPlayer = { WaitForChild = function(_, name)
   assert(name == "PlayerGui"); return script.FixturePlayerGui.Value
 end } }]]
 	local source, count = original.Source:gsub('local Players = game:GetService%("Players"%)', function() return replacement end)
 	assert(count == 1, name .. " LocalPlayer binding changed")
+	if mobileViewport then
+		source=source:gsub('local UserInputService = game:GetService%("UserInputService"%)','local UserInputService = {TouchEnabled=true}')
+		source=source:gsub('local viewport = root.AbsoluteSize',string.format('local viewport = Vector2.new(%d,%d)',mobileViewport.X,mobileViewport.Y))
+	end
 	local copy = Instance.new("ModuleScript")
 	copy.Name, copy.Source = "ResourceUiQa" .. name, source
 	local value = Instance.new("ObjectValue")
@@ -181,6 +185,18 @@ local ok, failure = xpcall(function()
 		check(height>500,"stats view reports scrollable content")
 	end
 	body:Destroy()
+	for _,size in ipairs({Vector2.new(1050,506),Vector2.new(844,390),Vector2.new(740,360),Vector2.new(568,320),Vector2.new(390,844)}) do
+		copyModule('K0Hud',size).create()
+		local mobile=playerGui.DeepwoodTrainingHud.Root
+		local actions,bar=mobile.Actions,mobile.SkillBar
+		check(bar.Position.Y.Scale==1 and bar.Position.Y.Offset==-12,'mobile items and skills stay at the bottom')
+		check(actions.Attack.Size==UDim2.fromOffset(64,64),'mobile attack is reduced to64px')
+		check(actions.Sprint.Position.Y.Offset<actions.Block.Position.Y.Offset,'mobile sprint sits above block')
+		local scale=actions.UIScale.Scale
+		local attackBottom=size.Y+actions.Position.Y.Offset-actions.Size.Y.Offset*scale+(actions.Attack.Position.Y.Offset+64)*scale
+		check(attackBottom<size.Y-112,'mobile attack clears the reserved jump area')
+		check(bar.Size.X.Offset*bar.UIScale.Scale<=size.X-280+.1,'bottom row preserves both thumb regions')
+	end
 
 end, debug.traceback)
 if not ok then table.insert(report.failures, tostring(failure)) end

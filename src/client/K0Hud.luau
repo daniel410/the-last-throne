@@ -294,9 +294,25 @@ function Hud.create()
 		mapScale.Scale=viewport.X<500 and math.max(.62,scale*.85) or scale
 		back.Size = UDim2.fromOffset(148,36)
 		backCaption.TextSize = 11
-		-- Below 1100px, reserve a separate row above held-action controls.
-		skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)
-		if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end
+		if UserInputService.TouchEnabled then
+			-- Keep the item/skill row at the bottom between the two thumb controls.
+			skillScale.Scale = math.min(scale, math.max(.35, (viewport.X-280)/528))
+			skillBar.Position = UDim2.new(.5, 0, 1, -12)
+			local jump=playerGui:FindFirstChild('JumpButton',true)
+			local clearance=112
+			if jump and jump:IsA('GuiObject') and jump.Visible and jump.AbsoluteSize.Y>0 then
+				clearance=math.max(clearance,root.AbsolutePosition.Y+viewport.Y-jump.AbsolutePosition.Y+12)
+			end
+			actions.Size=UDim2.fromOffset(172,150)
+			actions.Position=UDim2.new(1,-20,1,-clearance)
+			block.Position=UDim2.fromOffset(8,18)
+			sprint.Position=UDim2.fromOffset(94,0)
+			dodge.Position=UDim2.fromOffset(8,84);dodge.Size=UDim2.fromOffset(60,60)
+			attack.Position=UDim2.fromOffset(90,78);attack.Size=UDim2.fromOffset(64,64)
+		else
+			skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)
+			if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end
+		end
   practice.Size = UDim2.fromOffset(status.Size.X.Offset, 112)
   practice.Position = UDim2.fromOffset(status.Position.X.Offset, 16 + status.Size.Y.Offset * scale + 8)
 		-- On narrow screens, keep the title clear of the status panel.
@@ -311,6 +327,16 @@ function Hud.create()
 	end
 	Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(bindCamera)
 	root:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateScale)
+	-- Default mobile controls can be mounted after our HUD and move on rotation.
+	local jumpConnection
+	local function bindJump(child)
+		if child.Name~='JumpButton' or not child:IsA('GuiObject') then return end
+		if jumpConnection then jumpConnection:Disconnect() end
+		jumpConnection=child:GetPropertyChangedSignal('AbsolutePosition'):Connect(updateScale)
+		updateScale()
+	end
+	playerGui.DescendantAdded:Connect(bindJump)
+	local jump=playerGui:FindFirstChild('JumpButton',true);if jump then bindJump(jump) end
 	bindCamera()
 
 	return {
