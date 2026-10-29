@@ -90,7 +90,7 @@ function Rules.validate(profile, catalog)
 	for id, hero in pairs(profile.heroes) do
 		if type(hero) ~= "table" or id ~= hero.heroId or type(id) ~= "string" or not catalog.classes[hero.baseClassId]
 			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, 80) or type(hero.quickSlots) ~= "table" then return false end
-		if hero.progression ~= nil and (not Growth.validate(hero.progression) or hero.level ~= hero.progression.level) then return false end
+		if hero.progression ~= nil and (not Growth.validate(hero.progression,hero.baseClassId) or hero.level ~= hero.progression.level) then return false end
 		for index = 1, 2 do
 			local definition = catalog.items[hero.quickSlots[index]]
 			if not definition or not definition.restore then return false end
@@ -242,7 +242,8 @@ end
 function Rules.upgrade(profile)
 	local changed=false
 	for _,hero in pairs(profile.heroes) do
-		if hero.progression==nil then hero.progression=Growth.new(hero.level); changed=true end
+		if hero.progression==nil then hero.progression=Growth.new(hero.level); changed=true
+		elseif hero.progression.version==1 then hero.progression=Growth.upgrade(hero.progression); changed=true end
 	end
 	if changed then profile.revision=profile.revision+1 end
 	return profile
@@ -252,7 +253,7 @@ function Rules.progress(profile,command,context,catalog)
 	local hero=profile.heroes[command.heroId]
 	if not hero then return nil,"HeroNotOwned" end
 	local g=hero.progression or Growth.new(hero.level)
-	local fingerprint=table.concat({"growth",command.action,command.heroId,tostring(command.skill or ""),tostring(command.slot or ""),
+	local fingerprint=table.concat({"growth",command.action,command.heroId,tostring(command.skill or ""),tostring(command.slot or ""),tostring(command.branch or ""),tostring(command.stage or ""),
 		tostring(command.stats and command.stats.STR or 0),tostring(command.stats and command.stats.DEX or 0),
 		tostring(command.stats and command.stats.INT or 0),tostring(command.stats and command.stats.VIT or 0)},"|")
 	if command.action~="AwardXP" then
@@ -261,7 +262,7 @@ function Rules.progress(profile,command,context,catalog)
 		if command.revision~=profile.revision then return nil,"Changed" end
 		if not context.atHub then return nil,"WaitForLobby" end
 	elseif context.serverReward~=true then return nil,"InvalidRequest" end
-	local nextG,reason,repeated=Growth.apply(g,command)
+	local nextG,reason,repeated=Growth.apply(g,command,hero.baseClassId)
 	if not nextG then return nil,reason end
 	local nextProfile=Rules.copy(profile)
 	if repeated then return nextProfile,nil,true end

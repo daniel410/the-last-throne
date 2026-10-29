@@ -87,7 +87,7 @@ Config.BasicAttackProfiles = {
 	},
 }
 
--- Session-only training skills. These do not grant levels or permanent unlocks.
+-- Shared basic skill definitions. Growth and branch eligibility are server owned.
 -- Physical skills use only their own cooldown; magic also costs mana.
 Config.Skills = {
 	knight = {
@@ -112,4 +112,6 @@ Config.Skills = {
 	},
 }
 
+local Advanced=game and require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
+for classId,skills in pairs(Advanced.skills) do for _,skill in ipairs(skills) do table.insert(Config.Skills[classId],skill) end end
 return Config

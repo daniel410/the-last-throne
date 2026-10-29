@@ -1,7 +1,8 @@
 -- Owns playable life eligibility. Optional RPG account inventory persists roster
--- identity; training/skill presets remain session-only.
+-- identity, hero growth, advancement and loadouts. Control practice is session-only.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Advanced=ReplicatedStorage.Shared and require(ReplicatedStorage.Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 
@@ -316,7 +317,7 @@ function HeroSessionService.getCombatContext(player, character)
 	return { heroId = hero.heroId, baseClassId = hero.baseClassId, epoch = state.epoch, characterGeneration = state.generation,
 		growth = growth, equipment = equipment, itemCounts = itemCounts, itemSlots = itemSlots, inventoryManaged = settings.inventory ~= nil,
 		inventoryLocked = settings.inventory and settings.inventory.busy(player) or false,
-		skillSlots = { table.unpack(growth and growth.skillSlots or hero.skillSlots) }, slotCount = settings.inventory and 3 or (hero.practiceAdvanced and 5 or 3), skillReadyAt = ready,
+		skillSlots = { table.unpack(growth and growth.skillSlots or hero.skillSlots) }, slotCount = growth and Advanced.slotCount(growth) or (hero.practiceAdvanced and 5 or 3), skillReadyAt = ready,
 		setSkillReadyAt = function(id, time) hero.skillReadyAt[id] = time end }
 end
 

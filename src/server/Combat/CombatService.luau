@@ -4,6 +4,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local PathfindingService = game:GetService("PathfindingService")
 
+local Advanced=require(ReplicatedStorage.Shared.AdvancedSkills)
+local AdvancedCombat=require(script.Parent.AdvancedCombat)
+local advancedEffectRemote
 local Growth = require(ReplicatedStorage.Shared.HeroProgression)
 local rewardHandler
 local Config = require(ReplicatedStorage.Shared.K0Config)
@@ -314,7 +317,9 @@ end
 local function startSkill(state, slot, current, targetModel)
 	local skills = Config.Skills[state.baseClassId]
 	if slot > state.slotCount then return end
-	local skill = skills and skills[state.skillSlots[slot] or 0]
+	local skillIndex=state.skillSlots[slot] or 0
+	if state.growth and not Advanced.unlocked(state.growth,state.baseClassId,skillIndex) then return end
+	local skill = skills and skills[skillIndex]
 	if skill and state.growth then skill=Growth.skill(state.baseClassId,state.skillSlots[slot],skill,state.growth) end
 	if not skill then return end
 	if state.mode ~= "Idle" then updateFeedback(state, "SkillBusy"); return end
@@ -346,6 +351,17 @@ local function startSkill(state, slot, current, targetModel)
 	if skill.magic then
 		setMana(state, state.mana - skill.manaCost); state.manaRegenAt = current + Config.ManaRegenDelay
 	end
+	local advancedCast=skill.advanced and AdvancedCombat.snapshot(state,skill,direction,targetModel,enemyStates,unobstructed)
+	if skill.move then skillStep(state,direction,skill.move) end
+	if skill.shield then
+		for _,friend in pairs(playerStates) do
+			if alive(friend) and (friend==state or skill.partyShield and (friend.root.Position-state.root.Position).Magnitude<=10 and unobstructed(state.root.Position,friend.root.Position,state.character,friend.character)) then
+				local amount=friend.humanoid.MaxHealth*skill.shield
+				friend.branchShield={amount=math.max(amount,friend.branchShield and friend.branchShield.expires>current and friend.branchShield.amount or 0),expires=current+4}
+				friend.character:SetAttribute("K0Shield",friend.branchShield.amount)
+			end
+		end
+	end
 	if skill.effect == "advance" then skillStep(state, direction, 6) end
 	if skill.effect == "retreat" then skillStep(state, -direction, 4) end
 	local recallFrom
@@ -355,7 +371,7 @@ local function startSkill(state, slot, current, targetModel)
 		state.thrownUntil = nil; state.thrownTarget = nil; state.thrownPosition = nil
 	end
 	state.attack = {
-		started = current, definition = skill, attackPower = (state.derived and (skill.magic and state.derived.magicPower or state.derived.physicalPower) or state.attackProfile.attackPower) * (1 + (state.equipment and state.equipment.power or 0) / 100),
+		started = current, definition = skill, advancedCast=advancedCast, attackPower = (state.derived and (skill.magic and state.derived.magicPower or state.derived.physicalPower) or state.attackProfile.attackPower) * (1 + (state.equipment and state.equipment.power or 0) / 100),
 		maxTargets = skill.maxTargets, maxHeight = skill.maxHeight, isSpell = skill.magic,
 		isSkill = true, ranged = skill.ranged, direction = direction, recallFrom = recallFrom,
 		hits = {}, hitCount = 0, counterDamage = nil, sampledActive = false, targetModel = targetModel,
@@ -373,6 +389,7 @@ local function startSkill(state, slot, current, targetModel)
 	state.character:SetAttribute("K0AttackPhase", "Windup")
 	state.attackSeq = state.attackSeq + 1
 	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
+	if skill.advanced and advancedEffectRemote then advancedEffectRemote:FireAllClients(state.character,skill.id,state.root.Position,advancedCast.center,0) end
 	updateFeedback(state, "ActionStarted")
 end
 
@@ -581,6 +598,11 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	if playerState.rallyUntil and current < playerState.rallyUntil then multiplier = multiplier * 0.8 end
 	local damage = math.max(1, math.floor(attack.definition.damage * multiplier + 0.5))
 	damage = math.max(1, damage - (playerState.equipment and playerState.equipment.armor or 0) - (playerState.derived and playerState.derived.armor or 0))
+	if playerState.branchShield and playerState.branchShield.expires>current then
+		local absorbed=math.min(damage,playerState.branchShield.amount)
+		playerState.branchShield.amount=playerState.branchShield.amount-absorbed;damage=damage-absorbed
+		playerState.character:SetAttribute("K0Shield",playerState.branchShield.amount)
+	end
 	playerState.humanoid:TakeDamage(damage)
 	playerState.lastEquipmentCombat = current
 	if playerState.humanoid.Health <= 0 then
@@ -602,7 +624,17 @@ local function damageEnemy(state, enemy, attack, current)
 	local multiplier = (enemy.mode == "Exposed" and 1.15 or 1)
 		* Rules.defenseBreakMultiplier(current, enemy.defenseBreakUntil, Config.Skills.knight[3].defenseBreakDamageMultiplier)
 	if enemy.marks and enemy.marks[state] and current < enemy.marks[state] then multiplier *= 1.2 end
-	local damage = math.max(1, math.floor(attack.attackPower * (attack.definition.damage + attack.counterDamage) * multiplier + 0.5))
+	local d=attack.definition
+	local ownedMark=enemy.branchMarks and enemy.branchMarks[state.heroId]
+	if d.advanced then
+		if ownedMark and ownedMark.expires>current and d.consume==ownedMark.kind then
+			multiplier=multiplier*(1+(d.markBonus or 0));attack.branchMarked=true
+			enemy.branchMarks[state.heroId]=nil
+		else attack.branchMarked=false end
+		if d.wetBonus and (enemy.model:GetAttribute("K0WetUntil") or 0)>workspace:GetServerTimeNow() then multiplier=multiplier*(1+d.wetBonus) end
+		if d.weakenBonus and (enemy.defenseBreakUntil or 0)>current then multiplier=multiplier*(1+d.weakenBonus) end
+	end
+	local damage = math.max(1, math.floor(attack.attackPower * (d.damage + attack.counterDamage) * multiplier + 0.5))
 	-- Set the attacker before TakeDamage: a lethal hit can synchronously fire
 	-- Died, and split offspring must inherit the real server-validated attacker.
 	local expires = current + ATTACKER_RECOGNITION_SECONDS
@@ -629,6 +661,16 @@ local function damageEnemy(state, enemy, attack, current)
 		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, attack.isSkill and attack.definition.id or nil)
 	end
 	if enemy.humanoid.Health > 0 then
+		if applied>0 and d.advanced then
+			if d.mark then enemy.branchMarks=enemy.branchMarks or {};enemy.branchMarks[state.heroId]={kind=d.mark,expires=current+8};enemy.model:SetAttribute("K0BranchMark",d.mark) end
+			if d.slow and enemy.kind~="Ogre" then enemy.gravityUntil=current+(d.slowDuration or 2);enemy.gravityMultiplier=d.slow;enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+(d.slowDuration or 2)) end
+			if d.taunt and enemy.kind~="Ogre" then enemy.provokedBy=state;enemy.provokeUntil=current+d.taunt;enemy.model:SetAttribute("K0ProvokeUntil",workspace:GetServerTimeNow()+d.taunt) end
+			if d.push and enemy.kind~="Ogre" then
+				local push=horizontalUnit(enemy.root.Position-state.root.Position,attack.direction)*d.push
+				local wall=workspace:Blockcast(enemy.root.CFrame,enemy.root.Size*.9,push,rayParams({enemy.model,state.character}))
+				if not wall and workspace:Raycast(enemy.root.Position+push,Vector3.new(0,-10,0),rayParams({enemy.model,state.character})) then enemy.model:PivotTo(enemy.model:GetPivot()+push) end
+			end
+		end
 		if applied > 0 and attack.isSkill and attack.definition.effect == "mark" then
 			enemy.marks = enemy.marks or {}; enemy.marks[state] = current + 8
 			enemy.model:SetAttribute("K0MarkedUntil", workspace:GetServerTimeNow() + 8)
@@ -644,7 +686,13 @@ local function damageEnemy(state, enemy, attack, current)
 			enemy.model:SetAttribute("K0GravityUntil", workspace:GetServerTimeNow() + attack.definition.slowDuration)
 		end
 		if not enemy.attack and enemy.mode ~= "Exposed" then setEnemyState(enemy, "Chase") end
-		damagePosture(enemy, attack.definition.posture, current)
+		local posture=d.posture
+		if d.advanced then
+			if attack.branchMarked then posture=posture+(d.markPosture or 0) end
+			if d.weakenPosture and (enemy.defenseBreakUntil or 0)>current then posture=posture+d.weakenPosture end
+			if d.counterPosture and attack.counterDamage>0 then posture=posture+d.counterPosture end
+		end
+		damagePosture(enemy,posture,current)
 	end
 	updateFeedback(state, "Hit")
 end
@@ -933,7 +981,18 @@ local function processCombatSamples(current, requiredState)
 	for _, state in pairs(playerStates) do
 		local attack = state.attack
 		if alive(state) and state.mode == "Attack" and attack then
-			if attack.isSkill and attack.definition.effect == "rapid" then
+			if attack.isSkill and attack.definition.advanced then
+				local fired=attack.advancedFired or 0
+				while fired<attack.definition.pulses do
+					local due=attack.started+attack.definition.windup+fired*attack.definition.interval
+					if current<due then break end
+					fired=fired+1
+					if current<=due+Rules.MaxLateHit+Rules.TimeEpsilon then
+						pendingPlayers[state]=true
+						table.insert(pending,{player=state,attack=attack,advancedIndex=fired,at=due,order=0,id=state.player.UserId})
+					else attack.advancedFired=fired end
+				end
+			elseif attack.isSkill and attack.definition.effect == "rapid" then
 				local fired = attack.rapidFired or 0
 				while fired < attack.definition.shotCount do
 					local due = attack.started + attack.definition.windup + fired * attack.definition.shotInterval
@@ -999,7 +1058,11 @@ local function processCombatSamples(current, requiredState)
 			local state = sample.player
 			if validPlayers[state] and alive(state) and state.mode == "Attack" and state.attack == attack then
 				attack.sampledActive = true
-				if sample.rapidIndex then
+				if sample.advancedIndex then
+					attack.advancedFired=math.max(attack.advancedFired or 0,sample.advancedIndex)
+					AdvancedCombat.resolve(state,attack,current,{enemies=enemyStates,clear=unobstructed,damage=damageEnemy,move=skillStep,
+						visual=function(actor,d,origin,center,pulse,points) if advancedEffectRemote then advancedEffectRemote:FireAllClients(actor.character,d.id,origin,center,pulse,points) end end},sample.advancedIndex)
+				elseif sample.rapidIndex then
 					attack.rapidFired = math.max(attack.rapidFired or 0, sample.rapidIndex)
 					state.character:SetAttribute("K0RapidShotAt", workspace:GetServerTimeNow())
 					state.character:SetAttribute("K0RapidShotCount", sample.rapidIndex)
@@ -1118,6 +1181,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 	end
 	-- Recovery is server-owned and continues during combat; dead or invalid
 	-- characters already returned through alive() above.
+	if state.branchShield and current>=state.branchShield.expires then state.branchShield=nil;state.character:SetAttribute("K0Shield",0) end
 	if state.humanoid.Health < state.humanoid.MaxHealth then
 		state.humanoid.Health = math.min(state.humanoid.MaxHealth,
 			state.humanoid.Health + state.humanoid.MaxHealth * Config.HealthRegenFraction * math.min(dt, 0.25))
@@ -1483,7 +1547,7 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 		if not splitGroup and rewardHandler and winner and playerStates[winner.player]==winner and winner.player.Parent==Players then
 			-- Trial training levels; approved XP formula 8 + 2 * enemy level.
 			local level=({Slime=1,Goblin=2,Orc=4,Ogre=8})[kind] or 1
-			rewardHandler(winner.player,winner.heroId,8+2*level)
+			rewardHandler(winner.player,winner.heroId,8+2*level,true)
 		end
 		resetEnemyAttack(enemy)
 		setEnemyState(enemy, "Dead")
@@ -1536,7 +1600,7 @@ local function setupCharacter(player, character)
 			player = player, character = character, humanoid = humanoid, root = root, mode = "",
 			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0,
 			growth=context.growth, derived=derived, maxMana=derived and derived.mana or Config.MaxMana,
-			mana = classId == "mage" and (derived and derived.mana or Config.MaxMana) or nil, manaRegenAt = current,
+			mana = (derived and derived.mana>0) and derived.mana or (not derived and classId=="mage" and Config.MaxMana or nil), manaRegenAt = current,
 			itemCounts = context.itemCounts or {3, 3}, equipment = context.equipment, inventoryManaged = context.inventoryManaged,
 			skillSlots = context.skillSlots or {1, 2, 3, 0, 0}, slotCount = context.slotCount or 3, skillReadyAt = context.skillReadyAt or {}, setSkillReadyAt = context.setSkillReadyAt,
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
@@ -1626,7 +1690,7 @@ function CombatService.refreshEquipment(player, equipment)
 		state.growth=context.growth
 		state.derived=Growth.derived(state.baseClassId,state.growth)
 		state.maxMana=state.derived.mana
-		if state.mana then setMana(state,math.min(state.mana,state.maxMana)) end
+		if state.maxMana>0 then setMana(state,math.min(state.mana or 0,state.maxMana)) else state.mana=nil end
 		state.character:SetAttribute("K0MaxMana",state.mana and state.maxMana or nil)
 		local sp,kp=Growth.points(state.growth)
 		for key,value in pairs({K0Level=state.growth.level,K0XP=state.growth.xp,K0XPToNext=Growth.xpToNext(state.growth.level),K0StatPoints=sp,K0SkillPoints=kp}) do state.character:SetAttribute(key,value) end
@@ -1674,6 +1738,7 @@ function CombatService.start(enemies, serverContextResolver, awardXP)
 		remotes.Parent = ReplicatedStorage
 	end
 	assert(remotes:IsA("Folder"), "ReplicatedStorage.Remotes must be a Folder")
+	advancedEffectRemote=Instance.new("RemoteEvent");advancedEffectRemote.Name="K0AdvancedEffect";advancedEffectRemote.Parent=remotes
 	local actionRemote = remotes:FindFirstChild("K0Action")
 	if not actionRemote then
 		actionRemote = Instance.new("RemoteEvent")

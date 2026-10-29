@@ -5,12 +5,13 @@ local CAS=game:GetService("ContextActionService")
 local Http=game:GetService("HttpService")
 local Theme=require(script.Parent.TDInventoryTheme)
 local Chrome=require(script.Parent.InventoryChrome)
+local Advanced=require(RS.Shared.AdvancedSkills)
 local Growth=require(RS.Shared.HeroProgression)
 local Config=require(RS.Shared.K0Config)
 local Gui={}
 local portraits={knight="103255177842108",elf="80894238854345",dwarf="74628903359757",mage="91907986271282"}
 local names={knight="KNIGHT",elf="ELF ARCHER",dwarf="DWARF AXE THROWER",mage="MAGE"}
-local errors={Busy="A save is in progress. Try again shortly.",Changed="Your hero changed. Review the refreshed values and try again.",WaitForLobby="Return to Dawnspire to invest points or change skills.",NotEnoughStatPoints="Not enough stat points. Clear your draft and try again.",NotEnoughSkillPoints="Earn another level to gain a skill point.",SkillMaxRank="This basic skill has reached level 4.",SaveUnknown="Save confirmation is pending. Press RETRY SAVE to check the same request.",AccountBusy="This account is active elsewhere. Rejoin to load safely.",Unavailable="Hero data is unavailable. Rejoin to load safely.",InvalidRequest="This change was rejected. Refresh your hero and try again.",Incompatible="Hero data could not be loaded safely. Rejoin and try again."}
+local errors={SkillLocked="Complete the required advancement and reach the skill level first.",InvalidAdvancement="This advancement is unavailable. Review your current path.",LevelRequired="Reach the required hero level before advancing.",TrialRequired="Defeat more training foes to complete this advancement trial.",Busy="A save is in progress. Try again shortly.",Changed="Your hero changed. Review the refreshed values and try again.",WaitForLobby="Return to Dawnspire to invest points or change skills.",NotEnoughStatPoints="Not enough stat points. Clear your draft and try again.",NotEnoughSkillPoints="Earn another level to gain a skill point.",SkillMaxRank="This basic skill has reached level 4.",SaveUnknown="Save confirmation is pending. Press RETRY SAVE to check the same request.",AccountBusy="This account is active elsewhere. Rejoin to load safely.",Unavailable="Hero data is unavailable. Rejoin to load safely.",InvalidRequest="This change was rejected. Refresh your hero and try again.",Incompatible="Hero data could not be loaded safely. Rejoin and try again."}
 function Gui.create(onVisibility)
 	local player=Players.LocalPlayer
 	local gui=Instance.new("ScreenGui"); gui.Name="HeroGrowthGui"; gui.ResetOnSpawn=false; gui.DisplayOrder=55; gui.Parent=player:WaitForChild("PlayerGui")
@@ -20,8 +21,9 @@ function Gui.create(onVisibility)
 	local limit=Instance.new("UISizeConstraint"); limit.MaxSize=Vector2.new(940,600); limit.Parent=panel
 	Theme.label(panel,"Title","HERO",UDim2.fromOffset(20,10),UDim2.new(1,-120,0,32),22,Theme.color.gold)
 	local close=Theme.button(panel,"Close","X",UDim2.new(1,-62,0,10),UDim2.fromOffset(44,34))
-	local statsTab=Theme.button(panel,"StatsTab","STATS",UDim2.fromOffset(18,54),UDim2.new(.5,-24,0,38))
-	local skillsTab=Theme.button(panel,"SkillsTab","SKILLS",UDim2.new(.5,6,0,54),UDim2.new(.5,-24,0,38))
+	local statsTab=Theme.button(panel,"StatsTab","STATS",UDim2.fromOffset(18,54),UDim2.new(1/3,-16,0,38))
+	local skillsTab=Theme.button(panel,"SkillsTab","SKILLS",UDim2.new(1/3,6,0,54),UDim2.new(1/3,-16,0,38))
+	local advanceTab=Theme.button(panel,"AdvanceTab","ADVANCE",UDim2.new(2/3,-6,0,54),UDim2.new(1/3,-12,0,38))
 	local body=Instance.new("ScrollingFrame"); body.Name="Content"; body.Position=UDim2.fromOffset(18,104); body.Size=UDim2.new(1,-36,1,-166); body.BackgroundTransparency=1; body.BorderSizePixel=0; body.ScrollBarThickness=5; body.Parent=panel
 	local message=Theme.label(panel,"Message","",UDim2.new(0,18,1,-54),UDim2.new(1,-36,0,42),12,Theme.color.muted)
 	local remotes=RS:WaitForChild("Remotes")
@@ -29,6 +31,8 @@ function Gui.create(onVisibility)
 	local inventoryRemote=remotes:WaitForChild("InventoryRequest")
 	local snapshot,pending
 	local tab="Stats"
+	local skillView=0
+	local selectedBranch
 	local draft={STR=0,DEX=0,INT=0,VIT=0}
 	local opened=false
 	local render
@@ -104,41 +108,92 @@ function Gui.create(onVisibility)
 			cancel.Activated:Connect(function() resetDraft(); render() end)
 			apply.Activated:Connect(function() if editable and spent>0 then send("AllocateStats",{stats=Growth.copy(draft)}) end end)
 			label(content,"CommitNote","Applied points are permanent. Cancel only clears this draft.",448,40,11,Theme.color.muted)
+		elseif tab=="Advance" then
+			selectedBranch=g.branch~="" and g.branch or selectedBranch
+			if not selectedBranch or Advanced.branches[selectedBranch].classId~=classId then selectedBranch=Advanced.order[classId][1] end
+			label(content,"PathHeading","CLASS ADVANCEMENT",0,30,16,Theme.color.gold)
+			for i,id in ipairs(Advanced.order[classId]) do
+				local data=Advanced.branches[id]
+				local button=Theme.button(content,"Path"..i,data.name..(id==selectedBranch and "  *" or ""),UDim2.new((i-1)/2,(i-1)*5,0,42),UDim2.new(.5,-5,0,48),id==selectedBranch)
+				Theme.enabled(button,g.stage==0 and not pending)
+				button.Activated:Connect(function() if g.stage==0 then selectedBranch=id;render() end end)
+			end
+			label(content,"Identity","Base class stays permanent. Path selection is saved.\nPath names and combat balance are provisional.",100,52,12,Theme.color.muted)
+			local nextStage=g.stage+1
+			for stage=1,4 do
+				local y=164+(stage-1)*78
+				local row=Chrome.frame(content,"Stage"..stage,UDim2.fromOffset(0,y),UDim2.new(1,0,0,70))
+				label(row,"Title",string.format("LEVEL %d  /  STAGE %d  %s",stage*20,stage,stage<=g.stage and "COMPLETE" or "LOCKED"),0,30,14,stage<=g.stage and Theme.color.green or Theme.color.gold)
+				label(row,"Trial",string.format("Training trial: %d / %d foes defeated",math.min(g.battleWins,stage*3),stage*3),32,30,12,Theme.color.muted)
+			end
+			if nextStage<=4 then
+				local ready=editable and g.level>=nextStage*20 and g.battleWins>=nextStage*3
+				local button=Theme.button(content,"CompleteAdvancement","COMPLETE STAGE "..nextStage,UDim2.fromOffset(0,490),UDim2.new(1,0,0,44),true)
+				Theme.enabled(button,ready)
+				button.Activated:Connect(function() if ready then send("Advance",{branch=selectedBranch,stage=nextStage}) end end)
+			end
+			label(content,"AdvancementNote","Complete each trial in Dawnspire. Reaching a level alone does not advance your hero. Stage 1 opens slot 4; stage 2 opens slot 5.\nNew path skills are learned at their listed levels after the matching stage is complete.",546,102,12,Theme.color.muted)
+			content:SetAttribute("ContentHeight",660)
 		else
-			label(content,"Points","AVAILABLE SKILL POINTS   "..skillPoints,0,30,16,Theme.color.gold)
-			label(content,"Budget","+1 per level  /  Basic skill mastery: 3 ranks",30,24,11,Theme.color.muted)
+			label(content,"Points","SKILL POINTS   "..skillPoints.."  /  +1 PER LEVEL",0,30,15,Theme.color.gold)
+			for view=0,4 do
+				local button=Theme.button(content,"Filter"..view,view==0 and "BASIC" or tostring(view*20),UDim2.new(view/5,0,0,36),UDim2.new(.2,-4,0,34),skillView==view)
+				button.Activated:Connect(function() skillView=view;render() end)
+			end
+			local path=g.branch~="" and g.branch or selectedBranch or Advanced.order[classId][1]
+			if not Advanced.branches[path] or Advanced.branches[path].classId~=classId then path=Advanced.order[classId][1] end
+			local shown={}
 			for index,base in ipairs(Config.Skills[classId]) do
+				if (skillView==0 and index<=3) or base.branch==path and base.stage==skillView then table.insert(shown,index) end
+			end
+			for order,index in ipairs(shown) do
+				local base=Config.Skills[classId][index]
 				local skill=Growth.skill(classId,index,base,g)
-				local y=62+(index-1)*128
-				local row=Chrome.frame(content,"Skill"..index,UDim2.fromOffset(0,y),UDim2.new(1,0,0,120))
-				Chrome.diamond(row,"Node",UDim2.fromOffset(24,25),18,Theme.color.gold)
-				local title=label(row,"Name",base.name.."  Lv."..(1+g.mastery[index]),4,36,14,Theme.color.gold); title.Position=UDim2.fromOffset(44,4); title.Size=UDim2.new(1,-50,0,36)
+				local learned=Advanced.unlocked(g,classId,index)
+				local y=84+(order-1)*148
+				local row=Chrome.frame(content,"Skill"..index,UDim2.fromOffset(0,y),UDim2.new(1,0,0,140))
+				Theme.icon(row,skill.icon or ({knight="shieldbearer",elf="archer",dwarf="axe",mage="arcanist"})[classId],UDim2.fromOffset(8,6),UDim2.fromOffset(40,40))
+				local title=label(row,"Name",base.name.."  Lv."..(1+g.mastery[index]),4,36,13,learned and Theme.color.gold or Theme.color.muted);title.Position=UDim2.fromOffset(52,4);title.Size=UDim2.new(1,-58,0,36)
 				local effect=skill.damage>0 and string.format("Damage x%.2f",skill.damage) or string.format("Provoke %.1fs",skill.provokeDuration)
-				if skill.slowDuration then effect=effect..string.format(" / Slow %.1fs",skill.slowDuration) end
-				label(row,"Effect",effect,40,24,12)
-				label(row,"Cost",string.format("%gs cooldown%s",skill.cooldown,skill.manaCost and " / "..skill.manaCost.." MP" or ""),66,24,11,Theme.color.muted)
+				if skill.pulses and skill.pulses>1 then effect=effect.." x "..skill.pulses.." hits" end
+				label(row,"Effect",effect,48,22,12)
+				label(row,"Cost",string.format("%gs CD%s  /  %s",skill.cooldown,skill.manaCost and " / "..skill.manaCost.." MP" or "",skill.form or "basic"),72,22,11,Theme.color.muted)
+				local nextEffect=string.format("Next: +%d%% base damage",index<=3 and (Growth.mastery[classId][index] or 0)*100 or 4)
+				if classId=="knight" and index==3 then nextEffect="Next: +0.2s provoke"
+				elseif classId=="mage" and index==3 then nextEffect="Next: +3% damage / +0.2s slow" end
+				local reason=learned and (g.mastery[index]<3 and nextEffect or "MAX MASTERY") or string.format("LOCKED: Level %d / Stage %d",base.level or 1,base.stage or 0)
+				local note=label(row,"Requirement",reason,104,30,10,Theme.color.muted);note.Size=UDim2.new(1,-145,0,30)
 				local train=Theme.button(row,"Train","+1 LV / 1 SP",UDim2.new(1,-142,1,-38),UDim2.fromOffset(134,32),true)
-				Theme.enabled(train,editable and skillPoints>0 and g.mastery[index]<3)
-				train.Activated:Connect(function() if editable then send("TrainSkill",{skill=index}) end end)
+				Theme.enabled(train,editable and learned and skillPoints>0 and g.mastery[index]<3)
+				train.Activated:Connect(function() if editable and learned then send("TrainSkill",{skill=index}) end end)
 			end
-			label(content,"LoadoutTitle","COMBAT LOADOUT  /  Tap a slot to cycle",454,28,13,Theme.color.gold)
-			for slot=1,3 do
-				local index=g.skillSlots[slot]; local skill=Config.Skills[classId][index]
-				local button=Theme.button(content,"Slot"..slot,slot.."  "..(skill and skill.name or "EMPTY"),UDim2.fromOffset(0,490+(slot-1)*42),UDim2.new(1,0,0,36))
-				Theme.enabled(button,editable)
-				button.Activated:Connect(function() if editable then send("SetSkillSlot",{slot=slot,skill=(index+1)%4}) end end)
+			local y=84+#shown*148+8
+			label(content,"LoadoutTitle","COMBAT LOADOUT / Tap a slot to cycle",y,28,13,Theme.color.gold)
+			local unlocked={0};for index=1,29 do if Advanced.unlocked(g,classId,index) then table.insert(unlocked,index) end end
+			for slot=1,5 do
+				local index=g.skillSlots[slot];local skill=Config.Skills[classId][index]
+				local active=slot<=Advanced.slotCount(g)
+				local button=Theme.button(content,"Slot"..slot,slot.."  "..(active and (skill and skill.name or "EMPTY") or "LOCKED - ADVANCE"),UDim2.fromOffset(0,y+34+(slot-1)*42),UDim2.new(1,0,0,36))
+				Theme.enabled(button,editable and active)
+				button.Activated:Connect(function()
+					if not editable or not active then return end
+					local position=1;for i,v in ipairs(unlocked) do if v==index then position=i;break end end
+					send("SetSkillSlot",{slot=slot,skill=unlocked[position%#unlocked+1]})
+				end)
 			end
-			label(content,"Advancement","SLOTS 4 / 5 LOCKED\nRequires Level 20 / 40 and completed advancement.\nAdvancement paths and ultimate skills are in development.",622,74,11,Theme.color.muted)
+			label(content,"PathNote","Path: "..Advanced.branches[path].name.." (provisional)\nSkills are learned free; mastery uses separate SP.\nUltimate: Level 80 and stage 4. Uses a combat slot in this trial.",y+252,78,11,Theme.color.muted)
+			content:SetAttribute("ContentHeight",y+342)
 		end
 		if pending then
-			local retry=Theme.button(content,"RetrySave","RETRY SAVE",UDim2.fromOffset(0,tab=="Stats" and 500 or 710),UDim2.new(1,0,0,38))
+			local retry=Theme.button(content,"RetrySave","RETRY SAVE",UDim2.fromOffset(0,tab=="Stats" and 500 or content:GetAttribute("ContentHeight") or 710),UDim2.new(1,0,0,38))
 			retry.Activated:Connect(function() if pending then remote:FireServer(pending); show("Checking the same save...") end end)
 		end
-		body.CanvasSize=UDim2.fromOffset(0,(narrow and 172 or 0)+(tab=="Stats" and (pending and 550 or 496) or (pending and 760 or 706)))
+		body.CanvasSize=UDim2.fromOffset(0,(narrow and 172 or 0)+(tab=="Stats" and (pending and 550 or 496) or (content:GetAttribute("ContentHeight") or 706)+(pending and 50 or 0)))
 		if not snapshot.atHub and not pending then show("Return to Dawnspire to invest points or change skills.") end
 	end
-	statsTab.Activated:Connect(function() tab="Stats"; render() end)
-	skillsTab.Activated:Connect(function() tab="Skills"; render() end)
+	advanceTab.Activated:Connect(function() tab="Advance";body.CanvasPosition=Vector2.zero;render() end)
+	statsTab.Activated:Connect(function() tab="Stats";body.CanvasPosition=Vector2.zero; render() end)
+	skillsTab.Activated:Connect(function() tab="Skills";body.CanvasPosition=Vector2.zero; render() end)
 	launch.Activated:Connect(function() visible(not opened) end)
 	close.Activated:Connect(function() visible(false) end)
 	body:GetPropertyChangedSignal("AbsoluteSize"):Connect(function() if opened then render() end end)

@@ -431,6 +431,7 @@ inventory = require(script.InventoryGui).create(function(opened)
 	end
 	lobby.setSuppressed(opened)
 end, function(message) hud.showFeedback(message) end)
+require(script.AdvancedSkillVisual).start()
 growthGui = require(script.HeroGrowthGui).create(function(opened)
 	if opened then
 		if inventory.isOpen() then inventory.close() end

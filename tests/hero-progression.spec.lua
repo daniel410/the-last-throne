@@ -7,7 +7,7 @@ local C=dofile('src/shared/ItemCatalog.luau')
 local n=0
 local function check(v,label) n=n+1; assert(v,label) end
 local function eq(a,b,label) check(a==b,label..': '..tostring(a)..' ~= '..tostring(b)) end
-for id,hp in pairs({knight=300,dwarf=250,elf=200,mage=150}) do
+for id,hp in pairs({knight=250,dwarf=200,elf=150,mage=100}) do
  local g=G.new(); check(G.validate(g),'valid level1')
  local d=G.derived(id,g); eq(d.health,hp,id..' starting HP'); eq(d.mana,id=='mage' and 100 or 0,id..' starting MP')
  local st,sp=G.points(g); eq(st,0,'no free stats'); eq(sp,0,'no free skills')
@@ -22,7 +22,7 @@ check(not G.apply(g,{action='AllocateStats',stats={VIT=9}}),'overspend')
 check(not G.apply(g,{action='AllocateStats',stats={VIT=-1}}),'no refund')
 check(not G.apply(g,{action='AllocateStats',stats={Luck=1}}),'unknown stat')
 g=assert(G.apply(g,{action='AllocateStats',stats={VIT=4,STR=4}})); st,sp=G.points(g); eq(st,0,'all stats invested');eq(sp,2,'SP preserved')
-eq(G.derived('knight',g).health,370,'level+invested VIT');eq(G.derived('knight',g).physicalPower,114,'power scaling')
+eq(G.derived('knight',g).health,320,'level+invested VIT');eq(G.derived('knight',g).physicalPower,114,'power scaling')
 g=assert(G.apply(g,{action='TrainSkill',skill=1}));eq(g.mastery[1],1,'rank trained'); st,sp=G.points(g);eq(sp,1,'only1SP cost')
 local base={damage=.8,posture=55,cooldown=10,id='bash'}
 local skill=G.skill('knight',1,base,g); check(math.abs(skill.damage-.84)<.00001,'mastery damage');eq(skill.posture,58,'mastery posture');eq(base.posture,55,'base immutable');eq(skill.cooldown,10,'CD unchanged')

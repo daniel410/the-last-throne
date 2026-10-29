@@ -231,7 +231,7 @@ function LobbyGui.create(request,onManage)
 		shade.Visible = not minimized and not suppressed
 		reopen.Visible = minimized and not suppressed
 		shell.SessionNotice.Text = current.inventoryMode == "RPG test save"
-			and "Equipment, items and hero identities are saved. Training progress resets."
+			and "Hero level, stats, skills and items are saved. Control practice resets."
 			or "Studio session: heroes, equipment and items reset when this test ends."
 		local selected
 		for classId, view in pairs(cardViews) do

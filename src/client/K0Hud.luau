@@ -347,7 +347,7 @@ function Hud.create()
 				local ability
 				for _, candidate in ipairs(Config.Skills[classId] or {}) do if candidate.id == equipped then ability = candidate; break end end
 				button.Caption.Text = index > count and "LOCKED" or ability and ability.name or "EMPTY"
-				button.Icon.Text = ability and string.sub(ability.name, 1, 2) or ""
+				button.Icon.Text = ability and (ability.glyph or string.sub(ability.name,1,2)) or ""
 				button.Active = index <= count and ability ~= nil
 				local ready = character and character:GetAttribute("K0SkillReady" .. index) or 0
 				local remaining = math.max(0, (ready or 0) - Workspace:GetServerTimeNow())

@@ -1,4 +1,4 @@
--- RPG-only account items. Studio uses an explicitly labeled session adapter.
+-- RPG-only roster, items and hero growth share one account fence. Studio uses a session adapter.
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -139,7 +139,7 @@ function Service.progress(player, command, serverReward)
 	publish(player,command.requestId,errorCode)
 	return errorCode
 end
-function Service.awardXP(player,heroId,amount)
+function Service.awardXP(player,heroId,amount,defeat)
 	local state=accounts[player]
 	if not state or not state.valid or state.closing or not state.profile.heroes[heroId] then return end
 	state.rewards=state.rewards or {}
@@ -147,7 +147,7 @@ function Service.awardXP(player,heroId,amount)
 	local saved=state.profile.heroes[heroId].progression
 	local sequence=(state.rewardSequences[heroId] or (saved.rewardStream==token and saved.rewardSequence or 0))+1
 	state.rewardSequences[heroId]=sequence
-	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,stream=token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
+	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,rewardKind=defeat and "Defeat" or nil,stream=token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
 	if state.rewardWorker then return end
 	state.rewardWorker=true
 	task.spawn(function()
@@ -319,11 +319,11 @@ function Service.start(settings)
 		state.tokens=state.tokens-1
 		local valid=select("#",...)==0 and type(command)=="table"
 		if valid then
-			local allowed={action=true,requestId=true,heroId=true,revision=true,stats=true,skill=true,slot=true}
+			local allowed={action=true,requestId=true,heroId=true,revision=true,stats=true,skill=true,slot=true,branch=true,stage=true}
 			for key in pairs(command) do if not allowed[key] then valid=false end end
 			valid=valid and type(command.requestId)=="string" and #command.requestId>0 and #command.requestId<=64 and command.requestId:match("^[%w_-]+$")
 				and type(command.heroId)=="string" and #command.heroId<=64 and Growth.integer(command.revision,0,1e12)
-				and (command.action=="AllocateStats" or command.action=="TrainSkill" or command.action=="SetSkillSlot")
+				and (command.action=="AllocateStats" or command.action=="TrainSkill" or command.action=="SetSkillSlot" or command.action=="Advance")
 		end
 		if not valid then publish(player,nil,"InvalidRequest"); return end
 		local reason=Service.progress(player,command,false)

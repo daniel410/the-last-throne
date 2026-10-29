@@ -162,7 +162,7 @@ return {
 	api.setEnemyFolder(enemies)
 	if not RunService:IsRunning() then RunService:Run(); startedRun = true end
 
-	for classId,hp in pairs({knight=300,dwarf=250,elf=200,mage=150}) do
+	for classId,hp in pairs({knight=250,dwarf=200,elf=150,mage=100}) do
 		case("growth-starting-resources-"..classId,function()
 			local G=require(game:GetService("ReplicatedStorage").Shared.HeroProgression)
 			local growth=G.new()
@@ -194,6 +194,68 @@ return {
 			near(state.attack.definition.damage,frozen,"inflight mastery immutable")
 		end)
 	end
+	for classId in pairs({knight=true,dwarf=true,elf=true,mage=true}) do
+		for skillIndex=4,29 do
+			local descriptor=require(game.ReplicatedStorage.Shared.K0Config).Skills[classId][skillIndex]
+			case("branch-cast-"..descriptor.id,function()
+				local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+				local growth=G.new(80);growth.branch=descriptor.branch;growth.stage=4;growth.battleWins=12;growth.skillSlots={skillIndex,0,0,0,0}
+				api.injectResolver(function(player) return {heroId="hero-"..player.UserId,baseClassId=classId,epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5} end)
+				local state=spawnPlayer();local enemy=spawnEnemy(3)
+				local before=state.mana
+				action(state,"Skill1",0,nil,enemy.model)
+				assert(state.attack,"qualified branch skill must cast")
+				local definition=state.attack.definition
+				for pulse=1,definition.pulses do sample(definition.windup+(pulse-1)*definition.interval+.01) end
+				equal(enemy.humanoid.Health<10000,true,"branch skill deals actual damage")
+				equal(state.skillReadyAt[definition.id],definition.cooldown,"own stable cooldown")
+				if definition.magic then near(state.mana,before-definition.manaCost,"magic uses MP") end
+				if definition.shield then equal(state.branchShield.amount>0,true,"attack grants server shield") end
+			end)
+		end
+	end
+	case("advanced-branch-forgery-is-rejected",function()
+		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+		local growth=G.new(80);growth.skillSlots={4,0,0,0,0}
+		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="mage",epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5}end)
+		local state=spawnPlayer();action(state,"Skill1",0)
+		equal(state.attack,nil,"level80 without advancement cannot cast")
+	end)
+	case("branch-marks-are-owned-and-consumed-once",function()
+		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+		local growth=G.new(80);growth.branch="paladin";growth.stage=4;growth.battleWins=12;growth.skillSlots={17,22,0,0,0}
+		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="knight",epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5}end)
+		local state=spawnPlayer();local enemy=spawnEnemy(3)
+		action(state,"Skill1",0,nil,enemy.model);sample(.31);sample(.61)
+		equal(enemy.branchMarks[state.heroId].kind,"oath","Oathblade creates own mark")
+		sample(1.1);api.stepPlayer(state,1.1,0,true)
+		local before=enemy.humanoid.Health
+		action(state,"Skill2",1.2,nil,enemy.model);sample(1.51)
+		equal(enemy.branchMarks[state.heroId],nil,"Shield Verdict consumes own mark")
+		near(before-enemy.humanoid.Health,math.floor(337*1.9*1.4+.5),"mark adds one bounded bonus")
+	end)
+	case("branch-area-pulses-and-wall-cover",function()
+		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+		local growth=G.new(80);growth.branch="pyro";growth.stage=4;growth.battleWins=12;growth.skillSlots={15,0,0,0,0}
+		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="mage",epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5}end)
+		local state=spawnPlayer();local target=spawnEnemy(3);local covered=spawnEnemy(8)
+		local wall=Instance.new("Part");wall.Name="Wall";wall.Anchored=true;wall.Size=Vector3.new(12,8,1);wall.CFrame=CFrame.new(origin+Vector3.new(0,0,-5));wall.Parent=fixture
+		action(state,"Skill1",0,nil,target.model)
+		for pulse=1,4 do sample(.65+(pulse-1)*.5+.01) end
+		local damage=10000-target.humanoid.Health
+		equal(damage>0,true,"ground pulses hit selected area")
+		near(covered.humanoid.Health,10000,"wall protects targets inside nominal radius")
+		sample(2.17);near(10000-target.humanoid.Health,damage,"same pulse does not replay")
+	end)
+	case("branch-boss-control-immunity-retains-damage",function()
+		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+		local growth=G.new(80);growth.branch="cryo";growth.stage=4;growth.battleWins=12;growth.skillSlots={18,0,0,0,0}
+		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="mage",epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5}end)
+		local state=spawnPlayer();local target=spawnEnemy(3,"Ogre")
+		action(state,"Skill1",0,nil,target.model);sample(.31)
+		equal(target.humanoid.Health<10000,true,"boss still receives cold damage")
+		equal(target.gravityUntil,nil,"Ogre is not forcibly slowed")
+	end)
 	case("server-selected-knight-and-forged-client-class", function()
 		api.injectResolver(function() return "knight" end)
 		local state = spawnPlayer()
