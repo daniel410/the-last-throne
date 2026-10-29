@@ -18,7 +18,7 @@ v0.25 · 2026-10-28 · [총괄 계획](plan.md) · [역할](agent.md) · [결정
 
 ## 현재 우선 작업: 최신 전투 계약 반영
 
-[현재 상태·검증](docs/production/current-status.md)과 [액션·스킬 설계](docs/production/action-and-skill-design.md)가 0.18.7 시험 구현과 최신 결정을 비교한다. 아래는 기존 작업ID의 세부 순서이며 각 부모 티켓의 전체 완료를 뜻하지 않는다.
+[현재 상태·검증](docs/production/current-status.md)과 [액션·스킬 설계](docs/production/action-and-skill-design.md)가 0.18.7 시험 구현과 최신 결정을 비교한다. [영웅별 스킬 성장 설계](docs/production/hero-skill-progression-design.md)는 TLT-027/042의 공통 12기술 랭크와 TLT-013/015/054~056의 8계열 제작 입력 제안이다. 아래는 기존 작업ID의 세부 순서이며 각 부모 티켓의 전체 완료를 뜻하지 않는다.
 
 | 순서 | 연결 작업 | 남은 산출물·검증 |
 | --- | --- | --- |

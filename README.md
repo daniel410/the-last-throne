@@ -51,6 +51,7 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 | 3 | [게임 개발 기획안](docs/game-design.md) | 전투·탐험·성장·협동·경제·기술·운영 기준 |
 | 4 | [Deepwood 지역 설계](docs/deepwood-region-design.md) | 주동선7지점·선택3구역·몬스터10종·제단·지역 선택 |
 | 5 | [클래스·전직·스킬트리](docs/class-advancement-and-skill-trees.md) | 플레이어4클래스·8전직 계열·32단계·기술·노드·자격 |
+| 5-1 | [영웅별 스킬 레벨업·트리 설계](docs/production/hero-skill-progression-design.md) | 현재 12기술 기반 강화·8계열 성장·포인트·구현 순서 제안 |
 | 6 | [기본 스탯·전투 능력치](docs/character-stats.md) | 힘·민첩·지력·체력·파생 능력치·성장/배분 초안 |
 | 7 | [기사 전투 상세 명세](docs/knight-combat-spec.md) | 기사 액션·기본 스킬·판정과 전투 성장 초안 |
 | 8 | [마법 분류·단계별 학습](docs/magic-schools-and-learning.md) | 비전/바람/물·Pyro/Cryo·추가 원소·광역·최강 주문 |
