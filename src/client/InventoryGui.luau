@@ -7,6 +7,7 @@ local ContextActionService = game:GetService("ContextActionService")
 local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
 local Text = require(ReplicatedStorage.Shared.InventoryText)
 local Theme = require(script.Parent.TDInventoryTheme)
+local PotionIcon = require(script.Parent.PotionIcon)
 local Color = Theme.color
 local InventoryGui = {}
 
@@ -152,6 +153,9 @@ function InventoryGui.create(onVisibility, feedback)
 		end
 		local def=Catalog.items[item.definitionId]
 		local hero=snapshot.heroes[snapshot.heroId]
+		if def.potionTier then
+			PotionIcon.create(detailScroll,def,UDim2.fromOffset(2,y),UDim2.fromOffset(64,64)); y=y+68
+		end
 		local classText=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or Text.Compatible
 		detailLabel("ItemName",def.name,y,60,22,Color.gold).Font=Enum.Font.GothamBold; y=y+64
 		detailLabel("Rarity",string.upper(def.rarity).."  •  "..string.upper(def.category),y,24,11,Color.silver); y=y+28
@@ -262,7 +266,10 @@ function InventoryGui.create(onVisibility, feedback)
 			local border=Instance.new("UIStroke"); border.Color=selectedId==item.instanceId and Color.gold or Color.silver; border.Transparency=selectedId==item.instanceId and 0 or .65; border.Thickness=selectedId==item.instanceId and 2 or 1; border.Parent=card
 			local glyph=Theme.label(card,"ItemGlyph",def and def.glyph or "—",UDim2.fromOffset(8,8),UDim2.new(1,-16,0,38),24,def and def.rarity=="Uncommon" and Color.green or Color.gold)
 			glyph.TextXAlignment,glyph.Font=Enum.TextXAlignment.Center,Enum.Font.GothamBlack
-			if def and def.classId then
+			if def and def.potionTier then
+				glyph.Visible=false
+				PotionIcon.create(card,def,UDim2.new(.5,-24,0,3),UDim2.fromOffset(48,45))
+			elseif def and def.classId then
 				glyph.TextSize,glyph.TextXAlignment=11,Enum.TextXAlignment.Right
 				Theme.icon(card,({knight="swordsman",elf="archer",dwarf="axe",mage="arcanist"})[def.classId],UDim2.new(.5,-22,0,6),UDim2.fromOffset(44,44))
 			end

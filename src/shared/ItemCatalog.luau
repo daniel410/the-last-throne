@@ -25,12 +25,21 @@ gear("traveler_boots", "Traveler's Boots", "feet", nil, {armor = 2}, "FT")
 gear("copper_ring", "Copper Ring", "accessory", nil, {power = 5}, "RG", {uniqueGroup = "copper_ring"})
 gear("amber_charm", "Amber Charm", "accessory", nil, {health = 60}, "CH", {rarity = "Uncommon"})
 gear("veteran_hood", "Veteran's Hood", "head", nil, {armor = 6}, "HD", {level = 5, rarity = "Uncommon"})
-Catalog.items.health_potion = {id = "health_potion", name = "Health Potion", category = "Consumables", maxStack = 99,
-	glyph = "HP", rarity = "Common", restore = "health", amount = 40,
-	description = "Restores up to 40 HP. Use from your bag or assign to Z / C."}
-Catalog.items.mana_potion = {id = "mana_potion", name = "Mana Potion", category = "Consumables", maxStack = 99,
-	glyph = "MP", rarity = "Common", restore = "mana", amount = 40,
-	description = "Restores up to 40 MP. A mana pool is required."}
+-- Keep the original small-potion IDs and catalog version compatible with saved accounts.
+Catalog.potions = {}
+for _, resource in ipairs({"health", "mana"}) do
+	for tier, size in ipairs({"Small", "Medium", "Large"}) do
+		local id = resource .. "_potion" .. (tier == 1 and "" or "_" .. size:lower())
+		local amount = (resource == "health" and {40, 120, 300} or {40, 80, 160})[tier]
+		local glyph = resource == "health" and "HP" or "MP"
+		Catalog.items[id] = {id = id, name = size .. " " .. (resource == "health" and "Health" or "Mana") .. " Potion",
+			category = "Consumables", maxStack = 99, glyph = glyph, rarity = "Common", restore = resource,
+			amount = amount, potionSize = size, potionTier = tier, iconKey = id,
+			description = "Restores up to " .. amount .. " " .. glyph .. ". "
+				.. (resource == "mana" and "A mana pool is required. " or "") .. "Assign to Z / C in your bag. Training balance is provisional."}
+		table.insert(Catalog.potions, id)
+	end
+end
 Catalog.items.iron_ore = {id = "iron_ore", name = "Iron Ore", category = "Materials", maxStack = 999,
 	glyph = "FE", rarity = "Common", description = "Crafting material. Keep it in your bag or shared storage."}
 Catalog.items.soft_hide = {id = "soft_hide", name = "Soft Hide", category = "Materials", maxStack = 999,

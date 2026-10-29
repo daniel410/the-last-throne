@@ -316,6 +316,31 @@ return {
 		for _, child in ipairs(children) do if child.Humanoid.Health < 55 then damaged += 1 end end
 		equal(damaged > 0, true, "a later arrow in the burst has its own hit set")
 	end)
+	case("six-catalog-potions-restore-exactly-and-cap", function()
+		local catalog = require(game:GetService("ReplicatedStorage").Shared.ItemCatalog)
+		for _, id in ipairs(catalog.potions) do
+			reset(); api.injectResolver(function() return "mage" end)
+			local state = spawnPlayer()
+			local def = catalog.items[id]
+			state.humanoid.Health, state.mana = 100, 0
+			local allowed = api.canUseInventoryItem(state.player, def)
+			equal(allowed, true, id .. " is usable with missing resource")
+			api.applyInventoryItem(state.player, def, state.character)
+			if def.restore == "health" then
+				near(state.humanoid.Health, 100 + def.amount, id .. " restores catalog HP amount")
+				near(state.mana, 0, id .. " does not restore mana")
+				state.humanoid.Health = 999
+				api.applyInventoryItem(state.player, def, state.character)
+				near(state.humanoid.Health, 1000, id .. " caps at max HP")
+			else
+				near(state.mana, math.min(100, def.amount), id .. " restores and caps mana")
+				near(state.humanoid.Health, 100, id .. " does not restore HP")
+				state.mana = 99
+				api.applyInventoryItem(state.player, def, state.character)
+				near(state.mana, 100, id .. " caps near max mana")
+			end
+		end
+	end)
 	case("player-health-recovers-slowly-on-server", function()
 		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
 			reset(); api.injectResolver(function() return classId end)

@@ -8,6 +8,8 @@ local Config = require(ReplicatedStorage.Shared.K0Config)
 
 local Theme = require(script.Parent.TDInventoryTheme)
 local BattleArt = require(ReplicatedStorage.Shared.TDUI.BattleChromeArtAssets)
+local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
+local PotionIcon = require(script.Parent.PotionIcon)
 local Hud = {}
 
 local COLORS = {
@@ -193,6 +195,11 @@ function Hud.create()
 	for index, item in ipairs({ {"HP", "Z"}, {"MP", "C"} }) do
 		local button = action(skillBar, "Item" .. index, item[1], item[2], UDim2.fromOffset((index - 1) * 72, 0), 64)
 		button.UICorner.CornerRadius = UDim.new(0, 8)
+		button.Caption.Position, button.Caption.Size = UDim2.fromOffset(2, 47), UDim2.new(1, -4, 0, 14)
+		button.Caption.TextSize = 9
+		button.Hint.Position, button.Hint.Size = UDim2.fromOffset(4, 2), UDim2.fromOffset(16, 14)
+		local count = text(button, "ItemCount", "x0", UDim2.new(1, -32, 0, 2), UDim2.fromOffset(28, 14), 11)
+		count.TextXAlignment, count.TextStrokeTransparency = Enum.TextXAlignment.Right, .3
 		itemButtons[index] = button
 	end
 	local skillButtons, skillHints = {}, {}
@@ -211,7 +218,7 @@ function Hud.create()
 	end
 	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(92, 6), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(0, 91), 68)
-	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(102, 71), 88)
+	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(76, 71), 88)
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
 	back.AnchorPoint = Vector2.new(1, 0)
@@ -313,9 +320,19 @@ function Hud.create()
 			for index, button in ipairs(itemButtons) do
 				local count = character and character:GetAttribute("K0ItemCount" .. index) or 0
 				local definitionId = character and character:GetAttribute("K0ItemDefinition" .. index)
-				local caption = definitionId == "health_potion" and "HP" or definitionId == "mana_potion" and "MP" or (index == 1 and "HP" or "MP")
-				button.Caption.Text = caption .. " x" .. tostring(count)
-				button.Caption.TextColor3 = caption == "HP" and Color3.fromRGB(255, 210, 195) or Color3.fromRGB(181, 235, 255)
+				local definition = Catalog.items[definitionId or (index == 1 and "health_potion" or "mana_potion")]
+				if definition and definition.potionTier then
+					if button:GetAttribute("DefinitionId") ~= definition.id then
+						local old = button:FindFirstChild("PotionIcon"); if old then old:Destroy() end
+						PotionIcon.create(button, definition, UDim2.fromOffset(14, 7), UDim2.fromOffset(36, 39))
+						button:SetAttribute("DefinitionId", definition.id)
+					end
+					button.Caption.Text = definition.potionSize .. " " .. definition.glyph
+					button.Caption.TextColor3 = definition.restore == "health" and Color3.fromRGB(255, 210, 195) or Color3.fromRGB(181, 235, 255)
+				end
+				button.ItemCount.Text = "x" .. tostring(count)
+				button.TDButtonArt.ImageTransparency = count > 0 and 0 or .45
+				button.ItemCount.TextColor3 = count > 0 and COLORS.cream or COLORS.muted
 			end
 			for index, button in ipairs(skillButtons) do
 				local classId = character and character:GetAttribute("K0ClassId")

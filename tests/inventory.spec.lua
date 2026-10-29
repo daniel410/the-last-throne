@@ -29,6 +29,26 @@ local function apply(p,item,action,extra,context)
 	if nextP then valid(nextP) end
 	return nextP,errorCode,command,repeated
 end
+-- Six distinct definitions retain the original saved Small potion IDs.
+equal(#C.potions,6,"six potion variants")
+for _,id in ipairs(C.potions) do
+	local def=C.items[id]
+	local sample=profile()
+	equal(def.iconKey,id,"variant owns a distinct icon identity")
+	equal(def.maxStack,99,"potions share the 99-stack contract")
+	equal(R.quantity(sample,"hero-knight",id),def.potionTier==1 and 3 or def.potionTier==2 and 2 or 1,"training stock per tier")
+	local assigned=assert(apply(sample,find(sample,id,"bag"),"Assign",{slot=1}))
+	equal(assigned.heroes['hero-knight'].quickSlots[1],id,"all six potions assign by exact definition")
+	local count=R.quantity(assigned,"hero-knight",id)
+	local context={safe=true,atHub=true,canUse=true,restore=def.restore,lifeToken="potion-life"}
+	local consumed,_,command=apply(assigned,find(assigned,id,"bag"),"Use",nil,context)
+	assert(consumed)
+	equal(R.quantity(consumed,"hero-knight",id),count-1,"one potion of selected size is consumed")
+	local replay=assert(R.apply(consumed,command,context,C))
+	equal(R.quantity(replay,"hero-knight",id),count-1,"replay cannot consume another variant or quantity")
+end
+equal(C.items.health_potion.amount,40,"saved Small HP retains its restore amount")
+equal(C.items.mana_potion.amount,40,"saved Small MP retains its restore amount")
 local p=profile()
 equal(#C.slots,8,"exactly eight equipment slots")
 equal(R.quantity(p,"hero-knight","health_potion"),3,"starter potions in bag")

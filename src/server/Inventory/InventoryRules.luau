@@ -65,7 +65,11 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	if classId == "knight" then add("knight_shield", 1, {kind = "equipped", heroId = heroId, slot = "offhand"}) end
 	add(classId .. "_weapon_fine", 1)
 	for _, id in ipairs(catalog.kit) do add(id, 1) end
-	add("health_potion", 3); add("mana_potion", 3); add("iron_ore", 24); add("soft_hide", 8)
+	add("health_potion", 3); add("mana_potion", 3)
+	for _, resource in ipairs({"health", "mana"}) do
+		add(resource .. "_potion_medium", 2); add(resource .. "_potion_large", 1)
+	end
+	add("iron_ore", 24); add("soft_hide", 8)
 	add("health_potion", 5, {kind = "pending"})
 	nextProfile.revision = nextProfile.revision + 1
 	return nextProfile
