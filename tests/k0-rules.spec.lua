@@ -11,6 +11,10 @@ local function near(actual, expected, label)
 	checks = checks + 1
 	assert(math.abs(actual - expected) < 0.000001, label)
 end
+local weaken = Config.Skills.knight[3]
+near(Rules.defenseBreakMultiplier(1, nil, weaken.defenseBreakDamageMultiplier), 1, "no defense break")
+near(Rules.defenseBreakMultiplier(1, 5, weaken.defenseBreakDamageMultiplier), 1.1, "defense break active")
+near(Rules.defenseBreakMultiplier(5, 5, weaken.defenseBreakDamageMultiplier), 1, "defense break expires at boundary")
 local axe = Config.BasicAttackProfiles.dwarf.attacks[1]
 equal(Rules.shouldSampleHitWindow(axe.windup + axe.hitDelay - 0.001, axe, false), false, "axe cannot hit before impact")
 equal(Rules.shouldSampleHitWindow(axe.windup + axe.hitDelay, axe, false), true, "axe hits at impact")

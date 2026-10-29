@@ -1,6 +1,14 @@
 -- Engine-independent K0 decisions; used by the server and by Lua boundary tests.
 local Rules = {}
 
+-- K0 has no enemy armor formula yet: this is an incoming-damage test proxy.
+function Rules.defenseBreakMultiplier(current, expires, multiplier)
+	if type(expires) == "number" and current < expires then
+		return multiplier
+	end
+	return 1
+end
+
 -- Experimental server-stall limits. These are not latency compensation.
 Rules.MaxLateHit = 0.25
 Rules.MaxLateBuffer = 0.25

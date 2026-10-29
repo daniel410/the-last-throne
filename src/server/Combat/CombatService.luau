@@ -593,7 +593,8 @@ local function damageEnemy(state, enemy, attack, current)
 			state.counter = nil
 		end
 	end
-	local multiplier = enemy.mode == "Exposed" and 1.15 or 1
+	local multiplier = (enemy.mode == "Exposed" and 1.15 or 1)
+		* Rules.defenseBreakMultiplier(current, enemy.defenseBreakUntil, Config.Skills.knight[3].defenseBreakDamageMultiplier)
 	if enemy.marks and enemy.marks[state] and current < enemy.marks[state] then multiplier *= 1.2 end
 	local damage = math.max(1, math.floor(attack.attackPower * (attack.definition.damage + attack.counterDamage) * multiplier + 0.5))
 	-- Set the attacker before TakeDamage: a lethal hit can synchronously fire
@@ -1014,6 +1015,8 @@ local function processCombatSamples(current, requiredState)
 					for index = 1, math.min(attack.maxTargets, #candidates) do
 						local enemy = candidates[index]
 						enemy.provokedBy, enemy.provokeUntil = state, current + attack.definition.provokeDuration
+						enemy.defenseBreakUntil = current + attack.definition.defenseBreakDuration
+						enemy.model:SetAttribute("K0DefenseBreakUntil", workspace:GetServerTimeNow() + attack.definition.defenseBreakDuration)
 						enemy.target = state
 						enemy.model:SetAttribute("K0ProvokeUntil", workspace:GetServerTimeNow() + attack.definition.provokeDuration)
 						if not enemy.attack and enemy.mode ~= "Exposed" then setEnemyState(enemy, "Chase") end
@@ -1238,6 +1241,8 @@ local function resetEnemy(enemy)
 	enemy.aggroUntil = 0
 	enemy.lastAttacker = nil
 	enemy.provokedBy, enemy.provokeUntil = nil, nil
+	enemy.defenseBreakUntil = nil
+	enemy.model:SetAttribute("K0DefenseBreakUntil", nil)
 	enemy.model:SetAttribute("K0ProvokeUntil", nil)
 	enemy.pattern = 0
 	enemy.posture = enemy.config.posture
