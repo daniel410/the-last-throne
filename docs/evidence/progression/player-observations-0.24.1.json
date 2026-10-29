@@ -1,0 +1,99 @@
+{
+  "kind": "Transcribed Studio tool observations; not a published-client report",
+  "version": "0.24.1",
+  "placeId": 0,
+  "players": 1,
+  "accountAdapter": "Studio session memory",
+  "startingResources": [
+    {
+      "classId": "knight",
+      "level": 1,
+      "maxHealth": 250,
+      "maxMana": null
+    },
+    {
+      "classId": "dwarf",
+      "level": 1,
+      "maxHealth": 200,
+      "maxMana": null
+    },
+    {
+      "classId": "elf",
+      "level": 1,
+      "maxHealth": 150,
+      "maxMana": null
+    },
+    {
+      "classId": "mage",
+      "level": 1,
+      "maxHealth": 100,
+      "maxMana": 100
+    }
+  ],
+  "normalServerKill": {
+    "heroClass": "knight",
+    "enemy": "Goblin",
+    "xp": 12,
+    "battleWins": 1,
+    "qaConditions": "Local spawn moved near enemy; enemy health set to 1; actual Attack damage/Died/account reward callbacks"
+  },
+  "advancement": {
+    "qaSeededXPAndAdditionalDefeats": true,
+    "firstCompletion": {
+      "classId": "knight",
+      "level": 20,
+      "stage": 1,
+      "branch": "steel_knight",
+      "battleWins": 3,
+      "skillSlots": [
+        1,
+        2,
+        3,
+        4,
+        0
+      ]
+    },
+    "lateCompletion": {
+      "level": 80,
+      "stage": 4,
+      "battleWins": 12,
+      "skillSlots": [
+        1,
+        2,
+        3,
+        4,
+        16
+      ],
+      "ultimateMasteryRank": 1,
+      "skillPointsRemaining": 78
+    },
+    "nextLifeUltimate": {
+      "maxHealth": 1435,
+      "slotCount": 5,
+      "slot5": "knight.steel_knight.unyielding_front",
+      "cast": "knight.steel_knight.unyielding_front",
+      "shield": 358.75,
+      "cooldownSeconds": 60
+    }
+  },
+  "magicArcher": {
+    "qaSeededBoundary": true,
+    "level": 20,
+    "maxHealth": 340,
+    "maxMana": 80,
+    "slotCount": 4,
+    "skillCast": "elf.magic_archer.elemental_arrow",
+    "manaAfterCast": 60
+  },
+  "console": {
+    "newRuntimeErrors": 0,
+    "existingWarning": "ContentId 203785492: Asset type does not match requested type"
+  },
+  "notVerified": [
+    "published DataStore reconnect",
+    "real devices/gamepad",
+    "multiplayer and latency",
+    "complete 1-80 leveling cadence",
+    "final skill art/animations and balance"
+  ]
+}

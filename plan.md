@@ -1,5 +1,7 @@
 # The Last Throne 통합 개발 계획
 
+> 2026-10-29 TLT-004/014/015/027/042/052/054~056 부분 구현: `0.24.1`에 Lv1~80 성장·8계열 기술·전직 시험·3→4→5 편성·계정 저장 경로를 연결했다. 최신 시작 HP는 Knight250/Dwarf200/Elf150/Mage100, Mage MP100. 실제 게시 저장·재접속,216노드 전체,정식 전직 퀘스트·4인/실기기 수용은 남아 있으므로 부모 티켓 전체 Done으로 바꾸지 않는다. [증거와 다음 담당](docs/evidence/progression/README.md).
+
 문서 묶음 v0.25 · 2026-10-28, America/Toronto · **Deepwood K0 원형 제작·검증 단계**
 개발 문서 한국어 · 게임 영어(en-US) · 총괄 [agent.md](agent.md) · 실행 [backlog.md](backlog.md)
 

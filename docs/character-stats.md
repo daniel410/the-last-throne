@@ -1,5 +1,7 @@
 # 기본 스탯과 전투 능력치
 
+> 2026-10-29 최신 사용자 결정/0.24.1 시험 구현: Lv1 Knight HP250, Dwarf HP200, Elf HP150, Mage HP100·MP100. 아래 설계 초안과 실제 구현 시험 계수는 구분한다. 서버 성장·포인트 투자와 전투 반영/저장 경로를 구현했으며 [실제 범위·검증](evidence/progression/README.md)을 따른다.
+
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 구현 전 설계
 
 상위 기준은 [기획 결정](decisions.md), [개발 기획안](game-design.md), [클래스·전직·스킬트리](class-advancement-and-skill-trees.md)다.

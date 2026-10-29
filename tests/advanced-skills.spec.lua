@@ -12,6 +12,18 @@ for classId,paths in pairs(A.order)do
  eq(#K.Skills[classId],29,'class catalog')
  for _,path in ipairs(paths)do
   local b=A.branches[path];eq(#b.skills,13,'12 actives + ultimate');local roots={0,0,0};local ids={}
+  for stage=1,4 do
+   local edge=G.new(stage*20-1);edge.stage=stage-1;edge.branch=stage==1 and '' or path;edge.battleWins=12
+   local denied,why=G.apply(edge,{action='Advance',branch=path,stage=stage},classId)
+   eq(denied,nil,'below advancement boundary');eq(why,'LevelRequired','exact level gate')
+   edge.level=stage*20
+   local completed=assert(G.apply(edge,{action='Advance',branch=path,stage=stage},classId))
+   eq(completed.stage,stage,'boundary completion')
+   eq(A.slotCount(completed),stage==1 and 4 or 5,'slot opens only on completion')
+   for _,d in ipairs(b.skills)do
+    if d.level==stage*20 then check(A.unlocked(completed,classId,d.index),'new skill at each completed boundary')end
+   end
+  end
   for _,d in ipairs(b.skills)do
    count=count+1;check(not ids[d.id],'unique branch id');ids[d.id]=true
    check(d.damage>0 and d.range>0 and d.cooldown>0 and d.maxTargets<=8 and d.pulses<=4,'bounded useful damage')
@@ -57,4 +69,28 @@ for stage=1,4 do g=assert(G.apply(g,{action='Advance',branch='pyro',stage=stage}
 for _,d in ipairs(A.branches.pyro.skills)do
  if d.element=='earth' then check(d.stage>=2 and d.level>=40,'no early earth')end
 end
+-- A committed advancement whose response is lost must reconcile the same
+-- stage, preserving the original path and existing item ownership.
+local Store=dofile('src/server/Inventory/AccountStore.luau')
+local data={};local lose=false
+local adapter={UpdateAsync=function(_,key,callback)
+ local result=callback(G.copy(data[key]));if result then data[key]=G.copy(result)end
+ if lose then error('lost response')end;return G.copy(result)
+end}
+local store=Store.new(adapter,R,C,function()return 1000 end,function()end,'growth-fence')
+assert(store:open(42))
+local stored=assert(store:transact(42,function(current)
+ local profile=assert(R.addHero(current,'hero','mage',C))
+ profile.heroes.hero.level=80;profile.heroes.hero.progression=G.new(80);profile.heroes.hero.progression.battleWins=12
+ return profile
+end))
+local advance={action='Advance',heroId='hero',branch='pyro',stage=1,requestId='advance-once',revision=stored.revision}
+lose=true
+local unknown,reason=store:transact(42,function(current)return R.progress(current,advance,{atHub=true},C)end)
+eq(unknown,nil,'unknown response remains unavailable');eq(reason,'SaveUnknown','unknown result classified')
+lose=false
+local recovered=assert(store:transact(42,function(current)return R.progress(current,advance,{atHub=false},C)end))
+eq(recovered.heroes.hero.progression.stage,1,'replay does not advance twice')
+eq(recovered.heroes.hero.progression.branch,'pyro','path survives unknown response')
+check(R.validate(recovered,C),'all item and growth ownership invariants preserved')
 print('Advanced skills: '..checks..' checks passed')

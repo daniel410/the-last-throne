@@ -1,0 +1,47 @@
+{
+  "tool": "Rojo 7.7.1",
+  "command": "rojo build default.project.json --output builds/<version>/TheLastThrone-<version>.rbxlx",
+  "final_version": "0.24.1",
+  "builds": [
+    {
+      "version": "0.23.0",
+      "source_commit": "a702f23188e6c10864cad47f54be16670fc4ad49",
+      "path": "builds/0.23.0/TheLastThrone-0.23.0.rbxlx",
+      "bytes": 1060687,
+      "sha256": "63fbe3d5aaa3709c0b17fa029c227ca06a277ed2d2ca60f84b87afc97c9e3898",
+      "result": "success",
+      "published": false,
+      "released": false
+    },
+    {
+      "version": "0.23.1",
+      "source_commit": "9c6b28dac621a5458ec8adccb5746192bcb89de6",
+      "path": "builds/0.23.1/TheLastThrone-0.23.1.rbxlx",
+      "bytes": 1061195,
+      "sha256": "556bfb0d9159b4e6243204f669e85c537541bc2b0c315660b3850d4e1ad13246",
+      "result": "success",
+      "published": false,
+      "released": false
+    },
+    {
+      "version": "0.24.0",
+      "source_commit": "d34b4955132e2f9d2a8b459e06c111a42f15704d",
+      "path": "builds/0.24.0/TheLastThrone-0.24.0.rbxlx",
+      "bytes": 1095222,
+      "sha256": "cd68d030021a2bd689daddb6a91c54633ab48f9ddedcecf7ff75182851d0fc47",
+      "result": "success",
+      "published": false,
+      "released": false
+    },
+    {
+      "version": "0.24.1",
+      "source_commit": "036809b8bf437b9e007b62f99e0d31a231f87463",
+      "path": "builds/0.24.1/TheLastThrone-0.24.1.rbxlx",
+      "bytes": 1095733,
+      "sha256": "c89155e6c225e61624497811de7569d1cc8ac21df105710339f3229c4725225a",
+      "result": "success",
+      "published": false,
+      "released": false
+    }
+  ]
+}
