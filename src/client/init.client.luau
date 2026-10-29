@@ -304,6 +304,10 @@ end
 for slot, button in ipairs(hud.items) do
 	button.Activated:Connect(function() sendAction("Item" .. slot) end)
 end
+local deathCamera=require(script.HeroDeathCamera)
+RunService:BindToRenderStep("HeroDeathCamera",Enum.RenderPriority.Camera.Value+1,function()
+	deathCamera.update(player.Character,player:GetAttribute("K0SessionPhase")=="Respawning")
+end)
 RunService.RenderStepped:Connect(function() hud.setCooldowns(player.Character) end)
 hud.sprint.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
