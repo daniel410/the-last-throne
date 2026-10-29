@@ -406,3 +406,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 제한 | 실제 플레이어 생성 시 기본 회복 중복 여부 및 회복 속도 체감은 미검증. [상세](2026-10-28-player-regen.md) 참고. |
 
 일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
+
+## 0.18.6 — 가로 방어와 슬라임 추가 확대
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `19eac45a9766822aac3d378b11e6c37e87ad5f05`, `VERSION=0.18.6`, 빌드 전 origin/main 일치 |
+| 빌드 | `rojo build default.project.json --output builds/0.18.6/TheLastThrone-0.18.6.rbxlx`, 성공 |
+| SHA-256 | `fe022b9f7379d4b99044bed31e83c0600ac81ed6f74c2b97853fec670296dab4` |
+| 격리 Studio | 빌드 smoke 458개, 동적 양손·수평 방어 42개, 무기·동작 회귀 2238개 검사 통과. 슬라임 분열 및 체력바 검사 포함. |
+| 제한 | 실제 Player·다양한 체형의 미관, 네트워크 복제와 모바일 성능 미검증. [상세](2026-10-28-horizontal-block-slime.md) 참고. |
+
+일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
