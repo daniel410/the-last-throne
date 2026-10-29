@@ -277,9 +277,9 @@ local function updateElfIK(character, mode, phase, dt)
 	return true
 end
 
--- The weapon remains attached to its original hand. R15's free hand follows
--- a point on the weapon during guard; R6 uses the shoulder-pose fallback.
-local function updateBlockIK(character, classId, mode)
+-- Keep the held weapon on its original hand; explicitly guide the free arm
+-- to a contact point on the weapon on both R6 and R15 rigs.
+local function updateBlockHand(character, classId, mode)
 	local state = blockIK[character]
 	local blocking = mode == "Block" and (classId == "dwarf" or classId == "elf" or classId == "mage")
 	local grip
@@ -288,35 +288,53 @@ local function updateBlockIK(character, classId, mode)
 			if model:IsA("Model") and classFor(model) == classId then grip = model:FindFirstChild("WeaponGrip"); break end
 		end
 	end
-	local humanoid = character:FindFirstChildOfClass("Humanoid")
 	local side = classId == "elf" and "Right" or "Left"
-	local upper, hand = character:FindFirstChild(side .. "UpperArm"), character:FindFirstChild(side .. "Hand")
-	if not blocking or not grip or not grip:IsA("BasePart") or not humanoid
-		or humanoid.RigType ~= Enum.HumanoidRigType.R15 or not upper or not hand then
-		if state then
-			state.control:Destroy(); state.target:Destroy(); blockIK[character] = nil
-		end
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	local isR15 = humanoid and humanoid.RigType == Enum.HumanoidRigType.R15
+	local hand = character:FindFirstChild(side .. (isR15 and "Hand" or " Arm"))
+	local shoulder = armJoint(character, side, "Shoulder")
+	if not blocking or not grip or not grip:IsA("BasePart") or not hand or not shoulder or not shoulder.Part0 then
+		if state then state.target:Destroy(); blockIK[character] = nil end
 		return nil
 	end
-	if state and (state.grip ~= grip or state.side ~= side or not state.control.Parent or not state.target.Parent) then
-		state.control:Destroy(); state.target:Destroy(); blockIK[character] = nil; state = nil
+	if state and (state.grip ~= grip or state.shoulder ~= shoulder or not state.target.Parent) then
+		state.target:Destroy(); blockIK[character] = nil; state = nil
 	end
 	if not state then
 		local target = Instance.new("Attachment")
 		target.Name = "K0BlockHandTarget"
 		target.Position = Vector3.new(0, classId == "elf" and 0.48 or 0.55, 0)
 		target.Parent = grip
-		local control = Instance.new("IKControl")
-		control.Name = "K0BlockHandIK"
-		control.Type = Enum.IKControlType.Position
-		control.ChainRoot, control.EndEffector, control.Target = upper, hand, target
-		control.SmoothTime, control.Weight = 0.08, 1
-		control.Parent = humanoid
-		state = { control = control, target = target, grip = grip, side = side }
+		state = { target = target, grip = grip, shoulder = shoulder, hand = hand, side = side, r15 = isR15, pose = nil }
 		blockIK[character] = state
 	end
-	state.control.Enabled = true
-	return side
+	return state
+end
+
+local function aimBlockHand(state, basePose, dt)
+	local joint, hand = state.shoulder, state.hand
+	local jointFrame = joint.Part0.CFrame * joint.C0
+	local pivot = jointFrame.Position
+	local contact = state.r15 and hand.Position or hand.CFrame:PointToWorldSpace(Vector3.new(0, -hand.Size.Y * 0.5, 0))
+	local from, to = contact - pivot, state.target.WorldPosition - pivot
+	local pose = state.pose or basePose
+	if from.Magnitude > 0.01 and to.Magnitude > 0.01 then
+		local f, t = from.Unit, to.Unit
+		local axis = f:Cross(t)
+		local dot = math.clamp(f:Dot(t), -1, 1)
+		if axis.Magnitude > 0.0001 then
+			local rotation = CFrame.fromAxisAngle(axis.Unit, math.acos(dot) * math.clamp(dt * 12, 0, 1))
+			local basis = jointFrame.Rotation
+			pose = basis:Inverse() * rotation * basis * pose
+		end
+		-- A small radial correction handles differences in avatar proportions.
+		local radial = math.clamp(to.Magnitude - from.Magnitude, -0.45, 0.45)
+		local offset = jointFrame:VectorToObjectSpace(t * radial * math.clamp(dt * 10, 0, 1))
+		pose = CFrame.new(offset) * pose
+	end
+	state.pose = pose
+	joint.Transform = pose
+	armPoses[joint] = { pose = pose, returning = 0 }
 end
 
 -- Rapid Fire redraws between server-confirmed shots. No local timer can
@@ -351,7 +369,7 @@ function Visual.renderArms(character, dt)
 	local right, left, rightElbow, torso, rightHipPose, rightKneePose, leftHipPose, leftKneePose
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
 	local usesIK = updateElfIK(character, mode, phase, elapsed)
-	local blockHand = updateBlockIK(character, classId, mode)
+	local blockHand = updateBlockHand(character, classId, mode)
 	if mode == "Dodge" then
 		-- Alternate on accepted server dodges so observers see the same foot.
 		local seq = character:GetAttribute("K0DodgeSeq")
@@ -450,10 +468,8 @@ function Visual.renderArms(character, dt)
 		local basis = leftShoulder.C0.Rotation
 		left = basis:Inverse() * left * basis
 	end
-	if blockHand == "Left" then
-		if leftShoulder then armPoses[leftShoulder] = nil end
-		local leftElbow = armJoint(character, "Left", "Elbow")
-		if leftElbow then armPoses[leftElbow] = nil end
+	if blockHand and blockHand.side == "Left" then
+		aimBlockHand(blockHand, left or CFrame.new(), elapsed)
 	else
 		apply(leftShoulder, left)
 	end
@@ -505,7 +521,10 @@ function Visual.renderArms(character, dt)
 		local basis = rightShoulder.C0.Rotation
 		right = basis:Inverse() * right * basis
 	end
-	if usesIK or blockHand == "Right" then
+	if blockHand and blockHand.side == "Right" then
+		aimBlockHand(blockHand, right or CFrame.new(), elapsed)
+		apply(elbow, rightElbow)
+	elseif usesIK then
 		if rightShoulder then armPoses[rightShoulder] = nil end
 		if elbow then armPoses[elbow] = nil end
 	else
@@ -905,7 +924,7 @@ function Visual.start()
 		for joint in pairs(weaponPoses) do if not joint:IsDescendantOf(game) then weaponPoses[joint] = nil end end
 		for character, state in pairs(blockIK) do
 			if not character:IsDescendantOf(game) then
-				state.control:Destroy(); state.target:Destroy(); blockIK[character] = nil
+				state.target:Destroy(); blockIK[character] = nil
 			end
 		end
 		for character, state in pairs(elfIK) do
