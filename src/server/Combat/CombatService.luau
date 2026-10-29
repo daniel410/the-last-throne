@@ -5,6 +5,7 @@ local RunService = game:GetService("RunService")
 local PathfindingService = game:GetService("PathfindingService")
 
 local Advanced=require(ReplicatedStorage.Shared.AdvancedSkills)
+local LevelUpEffect=require(script.Parent.HeroLevelUpEffect)
 local AdvancedCombat=require(script.Parent.AdvancedCombat)
 local advancedEffectRemote
 local Growth = require(ReplicatedStorage.Shared.HeroProgression)
@@ -1187,7 +1188,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 			state.humanoid.Health + state.humanoid.MaxHealth * Config.HealthRegenFraction * math.min(dt, 0.25))
 	end
 	if state.mana and current >= state.manaRegenAt and state.mode ~= "Dead" then
-		setMana(state, state.mana + Config.ManaRegen * math.min(dt, 0.25))
+		setMana(state, state.mana + (state.maxMana or Config.MaxMana) * Config.ManaRegenFraction * math.min(dt, 0.25))
 	end
 	return consumedAction
 end
@@ -1686,11 +1687,13 @@ function CombatService.refreshEquipment(player, equipment)
 	if not state or player.Character ~= state.character or not equipment then return end
 	state.equipment = equipment
 	local context=readCombatContext(player,state.character)
+	local leveledUp=false
 	if context and context.growth then
+		leveledUp=state.growth~=nil and context.growth.level>state.growth.level
 		state.growth=context.growth
 		state.derived=Growth.derived(state.baseClassId,state.growth)
 		state.maxMana=state.derived.mana
-		if state.maxMana>0 then setMana(state,math.min(state.mana or 0,state.maxMana)) else state.mana=nil end
+		if state.maxMana>0 then setMana(state,leveledUp and state.maxMana or math.min(state.mana or 0,state.maxMana)) else state.mana=nil end
 		state.character:SetAttribute("K0MaxMana",state.mana and state.maxMana or nil)
 		local sp,kp=Growth.points(state.growth)
 		for key,value in pairs({K0Level=state.growth.level,K0XP=state.growth.xp,K0XPToNext=Growth.xpToNext(state.growth.level),K0StatPoints=sp,K0SkillPoints=kp}) do state.character:SetAttribute(key,value) end
@@ -1698,7 +1701,12 @@ function CombatService.refreshEquipment(player, equipment)
 	end
 	local health = state.humanoid.Health
 	state.humanoid.MaxHealth = (state.derived and state.derived.health or Config.MaxHealth) + equipment.health
-	state.humanoid.Health = math.min(health, state.humanoid.MaxHealth)
+	state.humanoid.Health = leveledUp and state.humanoid.MaxHealth or math.min(health, state.humanoid.MaxHealth)
+	if leveledUp then
+		state.levelUpSeq=(state.levelUpSeq or 0)+1
+		state.character:SetAttribute("K0LevelUpSeq",state.levelUpSeq)
+		LevelUpEffect.play(state.character)
+	end
 	state.character:SetAttribute("TLTEquippedWeapon", equipment.weapon or "")
 	state.character:SetAttribute("TLTEquippedOffhand", equipment.offhand or "")
 	state.character:SetAttribute("TLTEquipmentPower", equipment.power)

@@ -182,10 +182,18 @@ return {
 			growth=assert(G.apply(growth,{action="TrainSkill",skill=1}))
 			api.refreshEquipment(player,{power=0,armor=0,health=0})
 			equal(state.humanoid.MaxHealth,hp+G.bases[classId].healthPerLevel+40,"level and VIT applied")
-			equal(state.humanoid.Health,hp-20,"growth grants no heal")
+			equal(state.humanoid.Health,state.humanoid.MaxHealth,"level-up refills HP")
 			equal(state.character:GetAttribute("K0Level"),2,"level projection refresh")
 			equal(state.character:GetAttribute("K0SkillRank1"),1,"mastery projection")
-			if state.mana then equal(state.maxMana,104,"Mage mana growth");equal(state.mana,50,"growth grants no mana refill") end
+			if state.mana then equal(state.maxMana,104,"Mage mana growth");equal(state.mana,104,"level-up refills MP") end
+			equal(state.character:GetAttribute("K0LevelUpSeq"),1,"level-up effect emitted once")
+			state.humanoid.Health=state.humanoid.MaxHealth-10
+			local wounded=state.humanoid.Health
+			if state.mana then state.mana=50 end
+			api.refreshEquipment(player,{power=0,armor=0,health=10})
+			equal(state.humanoid.Health,wounded,"same-level gear refresh does not heal")
+			equal(state.character:GetAttribute("K0LevelUpSeq"),1,"same confirmed level does not replay effect")
+			if state.mana then equal(state.mana,50,"same-level refresh does not refill MP") end
 			action(state,"Skill1",0)
 			assert(state.attack,"basic skill casts with growth")
 			near(state.attack.definition.damage,api.Config.Skills[classId][1].damage*(1+G.mastery[classId][1]),"mastery cast snapshot")
@@ -691,10 +699,21 @@ return {
 		api.stepPlayer(state, 0.75, 0.25, true)
 		near(state.mana, 85, "mana does not recover before delay")
 		for tick = 0, 3 do api.stepPlayer(state, 1 + tick * 0.25, 0.25, true) end
-		near(state.mana, 95, "mana recovers at configured rate")
-		state.mana = 99
+		near(state.mana, 85.1, "100 MP recovers only 0.1 per second")
+		state.mana = 99.99
 		api.stepPlayer(state, 2, 0.25, true)
 		near(state.mana, 100, "mana cannot exceed maximum")
+	end)
+	case("magic-archer-mana-and-health-share-slow-percentage",function()
+		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+		local growth=G.new(20);growth.branch="magic_archer";growth.stage=1;growth.battleWins=3
+		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="elf",epoch=1,characterGeneration=1,growth=growth}end)
+		local state=spawnPlayer();state.mana=40;state.manaRegenAt=0;state.humanoid.Health=state.humanoid.MaxHealth-10
+		local health=state.humanoid.Health
+		for tick=1,4 do api.stepPlayer(state,tick*.25,.25,true)end
+		near(state.mana,40.08,"80 MP recovers 0.08 per second")
+		local hpRate=(state.humanoid.Health-health)/state.humanoid.MaxHealth
+		assert(math.abs(hpRate-(state.mana-40)/state.maxMana)<.00001,"HP and MP recover the same percentage")
 	end)
 	case("physical-skill-cooldown-survives-respawn", function()
 		local ready = {}

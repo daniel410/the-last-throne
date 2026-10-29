@@ -415,6 +415,18 @@
       "role": "shared motion source candidate; RPG timings require validation",
       "audit_status": "local-file-verified; RPG integration pending",
       "image_ids_found_in_source": []
+    },
+    {
+      "key": "effects.hero-level-up",
+      "kind": "component-source-adapter",
+      "source_path": "../throne-defense/src/Server/EffectsFactory.lua",
+      "sha256": "ab6cb48205cb108a593abf6e1c61a82d49ebb27f56497bc3274ecf334d442637",
+      "bytes": 29052,
+      "role": "TD tower upgrade presentation reused for RPG hero level-up",
+      "audit_status": "local source inspected and copied subset; RPG engine validation in build evidence; TD unchanged",
+      "manifest": "assets/shared/td-level-up-effect/manifest.json",
+      "runtime_path": "src/server/Combat/HeroLevelUpEffect.luau",
+      "image_ids_found_in_source": []
     }
   ]
 }

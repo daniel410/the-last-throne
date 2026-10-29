@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-29",
+  "source_project": "../throne-defense",
+  "source_git_head": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "sources": [
+    {
+      "path": "../throne-defense/src/Server/EffectsFactory.lua",
+      "sha256": "ab6cb48205cb108a593abf6e1c61a82d49ebb27f56497bc3274ecf334d442637",
+      "bytes": 29052
+    },
+    {
+      "path": "../throne-defense/src/Shared/Config.lua",
+      "sha256": "139287b9f57cc6aeb1cb2ba9ff5b57e1fd3690cba8d0a50fc276fe117181b8d0",
+      "bytes": 74360
+    }
+  ],
+  "source_status": "local working files; not claimed identical to published TD",
+  "runtime": "src/server/Combat/HeroLevelUpEffect.luau",
+  "reuse": "towerUpgrade geometry, tuning, particles, highlight and tweens",
+  "adaptation": "RPG module/function/folder names and isolated bounded holder bookkeeping; invoked only after authoritative hero level increase",
+  "authorization": "User requested the TD tower level-up effect; project shared-asset reuse instructions",
+  "external_asset": "built-in rbxasset://textures/particles/sparkles_main.dds; no upload",
+  "td_changes": false
+}
