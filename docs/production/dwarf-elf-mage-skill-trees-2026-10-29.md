@@ -30,7 +30,7 @@
 
 ## 드워프 Axe Thrower
 
-기본 무기는 손도끼, 기본 공격은 근접 휘두르기다. 화약 스킬은 폭탄·임시 포격 연출로 표현하며 장착 총/화약 무기는 향후 확장으로 남긴다. 무한 탄약을 유료/소모 아이템으로 요구하지 않는다.
+기본 무기는 손도끼, 기본 공격은 근접 휘두르기다. Lv20 Gunner 전직 후 총기·폭탄·포격을 스킬로 사용한다. 도끼 기본 공격과 장착 무기는 유지하며 총기는 해당 기술 동작 중 등장하는 장비로 제안한다. 총을 독립 장착 무기로 전환할지는 후속 확장으로 남긴다. 무한 탄약을 유료/소모 아이템으로 요구하지 않는다.
 
 | 뿌리 | 공통 기술·기능 | 강화 선택 예시 |
 | --- | --- | --- |
@@ -56,25 +56,29 @@
 | 73 | D3 | Tremor Guard | 주변 충격파와 짧은 자기 보호; 아군 보호 여부·수치는 별도 결정 |
 | 80 전직 | — | Mountain Collapse (궁극기) | 강한 내려찍기와 전방 광역 충격을 순차 발생 |
 
-### 화약 계열 (전직명 가칭)
+### Gunner — 총·폭탄·포격 (Lv20 사용자 결정, 상위 전직명 가칭)
 
-| 레벨 | 뿌리 | 신규 스킬(가칭) | 역할·효과 |
-| --- | --- | --- | --- |
-| 20 전직 | D2 | Bomb Toss | 목표 지점에 예고 후 폭탄 폭발, 주변 물리 피해 |
-| 26 | D1 | Fuse Chop | 도끼 단일 타격과 짧은 점화 표식; 다른 폭발 없이도 피해 |
-| 33 | D3 | Powder Slam | 내려찍기와 작은 주변 폭발, 일반 적 밀기 |
-| 36 | D2 | Skipping Charge | 튕기는 소형 폭탄이 두 지점에 순차 폭발; 지점별 상한 |
-| 40 전직 | D1 | Scatter Shot | 임시 화약 도구로 전방 부채꼴 공격; 장착 무기 전환 아님 |
-| 46 | D3 | Blast Step | 짧은 방향 이동 후 뒤쪽에 작은 폭발; 무자원 기본 회피와 별개 스킬 |
-| 49 | D2 | Shrapnel Toss | 폭탄 파편이 전방으로 흩어져 여러 대상 공격 |
-| 53 | D1 | Detonator Chop | 도끼 타격으로 점화 표식을 소비해 추가 물리 피해; 표식 없이 기본 타격 |
-| 60 전직 | D3 | Field Mortar | 예고한 지점에 제한 횟수 포격하는 임시 스킬 장치; AI 동료/장착 무기 아님 |
-| 63 | D2 | Rolling Charge | 바닥을 구르는 폭탄이 첫 장애물/지점에서 폭발 |
-| 69 | D1 | Fortified Blast | 도끼 강타와 작은 폭발 후 짧은 자기 보호 |
-| 73 | D3 | Siege Pattern | 전방 두 구역을 순차 폭격; 예고·안전 지대가 명확해야 함 |
-| 80 전직 | — | Siege Barrage (궁극기) | 정해진 구역에 제한된 일제 포격 |
+3개 전투 스타일은 계열의 추가 액티브를 표현하는 분류이며, 기존 도끼 뿌리 3개의 학습/강화 구조와 다르다. Lv20 총기 기술부터 사용할 수 있다. 총기 시전 때 임시 총을 꺼내 발사하고 동작 종료 후 도끼로 돌아오는 안이며, 독립 총 장착·기본 공격 변경은 별도 확장이다. 탄약 아이템은 필요하지 않고 물리 스킬로 Stamina·개별 쿨다운을 쓴다.
 
-드워프 리뷰: 강철은 투척 경로/자세 파쇄, 화약은 예고·장소·폭발 간격이 특징이다. Returning Echo/Crosscut Axe/Twin Axe Path는 귀환 경로·대상 수·시전 방향으로 구분해야 한다. Field Mortar는 최대1개 초기 제안·짧은 지속, 시전자와 무관하게 새 목표를 선택하는 AI 동료가 아니라 **시전 시 지정한 영역에 제한 횟수 효과를 내는 장치**다. 몬스터 경직·보스 면역, 벽/낙하/리스폰 도끼 복구 및 탈출 불가 지형 검증이 필요하다.
+| 레벨 | 뿌리 | 스타일 | 신규 스킬(가칭) | 역할·효과 |
+| --- | --- | --- | --- | --- |
+| 20 전직 | D1 Overhead Smash | 총 | Gunner Shot | 임시 총으로 단일 적을 조준 사격; 적중 시 기본 물리 피해 |
+| 26 | D2 Axe Throw | 폭탄 | Bomb Toss | 목표 지점에 예고 후 폭탄 폭발, 주변 물리 피해 |
+| 33 | D3 Ground Slam | 포격 | Shell Burst | 전방 짧은 지점에 포탄을 쏴 작은 범위 피해 |
+| 36 | D1 Overhead Smash | 총 | Quickfire | 한 대상에 짧게 연사; 각 발의 적중 판정과 상한 분리 |
+| 40 전직 | D2 Axe Throw | 폭탄 | Shrapnel Toss | 폭탄 파편이 전방에 흩어져 여러 대상 공격 |
+| 46 | D3 Ground Slam | 포격 | Blast Step | 짧게 이동하고 출발 지점에 포탄 폭발; 기본 회피와 별개 |
+| 49 | D1 Overhead Smash | 총 | Scatter Shot | 총기로 전방 부채꼴 사격, 근거리 다수 압박 |
+| 53 | D2 Axe Throw | 폭탄 | Skipping Charge | 폭탄이 튕겨 두 지점에서 순차 폭발; 지점별 상한 |
+| 60 전직 | D3 Ground Slam | 포격 | Field Mortar | 지정 구역에 제한 횟수 포격하는 임시 장치; 동료·장착 무기 아님 |
+| 63 | D1 Overhead Smash | 총 | Piercing Round | 직선 사격으로 여러 적 관통; 대상 상한 |
+| 69 | D2 Axe Throw | 폭탄 | Rolling Charge | 바닥을 구르는 폭탄이 첫 장애물/지점에서 폭발 |
+| 73 | D3 Ground Slam | 포격 | Siege Pattern | 전방 두 구역에 순차 포격; 예고·안전 지대 표시 |
+| 80 전직 | — | 포격 | Siege Barrage (궁극기) | 지정 영역에 제한된 일제 포격 |
+
+총·폭탄·포격 각4개, 계열 액티브12개다. D1/D2/D3 뿌리별4개씩이며 파생의 자격은 뿌리 학습·레벨·해당 전직 완료, 뿌리 장착은 필요 없다는 기존 제안을 유지한다. 뿌리와 파생 사이의 모션·강화 의미(단일 타격→총 조준, 투척→폭탄 투척, 지면 광역→포격 구역)는 연출과 노드에서 연결한다. 독립 액티브가 도끼 뿌리를 실제 슬롯에서 써야만 작동하는 것은 아니다. 전직 중간 기술/슬롯5/궁극기 미결정을 유지한다.
+
+드워프 리뷰: 강철은 투척 경로/자세 파쇄, Gunner는 단일·연사·산탄·관통 총격, 폭탄 투척, 예고 지점 포격의 차이가 특징이다. Returning Echo/Crosscut Axe/Twin Axe Path는 귀환 경로·대상 수·시전 방향으로 구분해야 한다. Field Mortar는 최대1개 초기 제안·짧은 지속, 시전자와 무관하게 새 목표를 선택하는 AI 동료가 아니라 **시전 시 지정한 영역에 제한 횟수 효과를 내는 장치**다. 몬스터 경직·보스 면역, 벽/낙하/리스폰 도끼 복구 및 탈출 불가 지형 검증이 필요하다.
 
 ## 엘프 Archer
 
@@ -179,7 +183,7 @@
 예시 편성(전부 해당 자격 습득 후, 각 5칸):
 
 - 강철 드워프: Armor Splitter / Returning Echo / Ground Slam / Stonebound Leap / Shatter Blow — 단일 파쇄와 회수.
-- 화약 드워프: Bomb Toss / Scatter Shot / Blast Step / Field Mortar / Ground Slam — 지정 구역과 이동. (Lv60 이후)
+- 화약 드워프: Gunner Shot / Bomb Toss / Scatter Shot / Field Mortar / Ground Slam — 지정 구역과 이동. (Lv60 이후)
 - 명궁: Weakpoint Shot / Moving Volley / Piercing Line / Mark Breaker / Arrow Rain — 단일 표식과 다수 공격. (Lv73 이후)
 - 마법궁수: Elemental Arrow / Vine Trap / Storm Arrow / Gliding Shot / Spirit Rain — 표식과 제어. (Lv60 이후)
 - Pyro: Ember Lance / Earth Rise / Ember Step / Searing Ward / Lava Eruption — 단일·이동·대규모 광역. (Lv60 이후)
