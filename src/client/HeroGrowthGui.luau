@@ -32,6 +32,7 @@ function Gui.create(onVisibility)
 	local snapshot,pending
 	local tab="Stats"
 	local skillView=0
+	local selectedEquip
 	local selectedBranch
 	local draft={STR=0,DEX=0,INT=0,VIT=0}
 	local opened=false
@@ -63,6 +64,7 @@ function Gui.create(onVisibility)
 		local g=hero and hero.progression
 		if not g then label(body,"Loading","Select a hero in Dawnspire to view growth.",12,70); body.CanvasSize=UDim2.fromOffset(0,100); return end
 		local classId=hero.baseClassId
+		if selectedEquip and not Advanced.unlocked(g,classId,selectedEquip) then selectedEquip=nil end
 		local preview=Growth.copy(g)
 		local spent=0; for k,v in pairs(draft) do preview.stats[k]=preview.stats[k]+v; spent=spent+v end
 		local statPoints,skillPoints=Growth.points(g)
@@ -150,8 +152,8 @@ function Gui.create(onVisibility)
 				local base=Config.Skills[classId][index]
 				local skill=Growth.skill(classId,index,base,g)
 				local learned=Advanced.unlocked(g,classId,index)
-				local y=84+(order-1)*148
-				local row=Chrome.frame(content,"Skill"..index,UDim2.fromOffset(0,y),UDim2.new(1,0,0,140))
+				local y=84+(order-1)*164
+				local row=Chrome.frame(content,"Skill"..index,UDim2.fromOffset(0,y),UDim2.new(1,0,0,156))
 				Theme.icon(row,skill.icon or ({knight="shieldbearer",elf="archer",dwarf="axe",mage="arcanist"})[classId],UDim2.fromOffset(8,6),UDim2.fromOffset(40,40))
 				local title=label(row,"Name",base.name.."  Lv."..(1+g.mastery[index]),4,36,13,learned and Theme.color.gold or Theme.color.muted);title.Position=UDim2.fromOffset(52,4);title.Size=UDim2.new(1,-58,0,36)
 				local effect=skill.damage>0 and string.format("Damage x%.2f",skill.damage) or string.format("Provoke %.1fs",skill.provokeDuration)
@@ -162,13 +164,18 @@ function Gui.create(onVisibility)
 				if classId=="knight" and index==3 then nextEffect="Next: +0.2s provoke"
 				elseif classId=="mage" and index==3 then nextEffect="Next: +3% damage / +0.2s slow" end
 				local reason=learned and (g.mastery[index]<3 and nextEffect or "MAX MASTERY") or string.format("LOCKED: Level %d / Stage %d",base.level or 1,base.stage or 0)
-				local note=label(row,"Requirement",reason,104,30,10,Theme.color.muted);note.Size=UDim2.new(1,-145,0,30)
+				local note=label(row,"Requirement",reason,92,18,10,Theme.color.muted)
+				local equip=Theme.button(row,"Equip","EQUIP",UDim2.fromOffset(8,114),UDim2.fromOffset(100,32))
+				Theme.enabled(equip,editable and learned)
+				equip.Activated:Connect(function()
+					if editable and learned then selectedEquip=index;render();body.CanvasPosition=Vector2.new(0,(narrow and 172 or 0)+84+#shown*164+8) end
+				end)
 				local train=Theme.button(row,"Train","+1 LV / 1 SP",UDim2.new(1,-142,1,-38),UDim2.fromOffset(134,32),true)
 				Theme.enabled(train,editable and learned and skillPoints>0 and g.mastery[index]<3)
 				train.Activated:Connect(function() if editable and learned then send("TrainSkill",{skill=index}) end end)
 			end
-			local y=84+#shown*148+8
-			label(content,"LoadoutTitle","COMBAT LOADOUT / Tap a slot to cycle",y,28,13,Theme.color.gold)
+			local y=84+#shown*164+8
+			label(content,"LoadoutTitle",selectedEquip and ("EQUIP: "..Config.Skills[classId][selectedEquip].name) or "COMBAT LOADOUT / Tap a slot to cycle",y,28,13,Theme.color.gold)
 			local unlocked={0};for index=1,29 do if Advanced.unlocked(g,classId,index) then table.insert(unlocked,index) end end
 			for slot=1,5 do
 				local index=g.skillSlots[slot];local skill=Config.Skills[classId][index]
@@ -178,7 +185,7 @@ function Gui.create(onVisibility)
 				button.Activated:Connect(function()
 					if not editable or not active then return end
 					local position=1;for i,v in ipairs(unlocked) do if v==index then position=i;break end end
-					send("SetSkillSlot",{slot=slot,skill=unlocked[position%#unlocked+1]})
+					send("SetSkillSlot",{slot=slot,skill=selectedEquip or unlocked[position%#unlocked+1]})
 				end)
 			end
 			label(content,"PathNote","Path: "..Advanced.branches[path].name.." (provisional)\nSkills are learned free; mastery uses separate SP.\nUltimate: Level 80 and stage 4. Uses a combat slot in this trial.",y+252,78,11,Theme.color.muted)
