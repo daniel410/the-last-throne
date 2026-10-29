@@ -52,6 +52,8 @@ function InventoryGui.create(onVisibility, feedback)
 	local function list(name)
 		local panel=Theme.frame(content,name,UDim2.new(),UDim2.new())
 		local heading=Theme.label(panel,"Heading","",UDim2.fromOffset(14,10),UDim2.new(1,-28,0,25),13,Color.gold)
+		heading.TextXAlignment=Enum.TextXAlignment.Center
+		heading.BackgroundColor3,heading.BackgroundTransparency=Color.ink,.15
 		local scroll=Instance.new("ScrollingFrame")
 		scroll.Name,scroll.Position,scroll.Size="Items",UDim2.fromOffset(12,43),UDim2.new(1,-24,1,-55)
 		scroll.BackgroundTransparency,scroll.BorderSizePixel,scroll.ScrollBarThickness=1,0,4
@@ -69,6 +71,10 @@ function InventoryGui.create(onVisibility, feedback)
 	detailScroll.AutomaticCanvasSize,detailScroll.CanvasSize,detailScroll.ScrollingDirection=Enum.AutomaticSize.Y,UDim2.new(),Enum.ScrollingDirection.Y
 	detailScroll.Parent=details
 	local primary=Theme.button(details,"PrimaryAction",Text.Equip,UDim2.new(0,16,1,-64),UDim2.new(1,-32,0,46),true)
+	local footer=Instance.new("Frame")
+	footer.Name,footer.Position,footer.Size="FooterBacking",UDim2.new(0,20,1,-68),UDim2.new(1,-40,0,54)
+	footer.BackgroundColor3,footer.BackgroundTransparency,footer.BorderSizePixel=Color.ink,.12,0
+	footer.Parent=shell
 	local message=Theme.label(shell,"InventoryMessage",Text.Loading,UDim2.new(0,24,1,-60),UDim2.new(1,-48,0,32),13,Color.silver)
 	local mode=Theme.label(shell,"SaveMode",Text.Session,UDim2.new(0,24,1,-25),UDim2.new(1,-48,0,18),10,Color.muted)
 	local retry=Theme.button(shell,"RetryRequest",Text.Retry,UDim2.new(1,-212,1,-66),UDim2.fromOffset(188,42))
@@ -109,7 +115,7 @@ function InventoryGui.create(onVisibility, feedback)
 		end
 	end
 	local function choose(item)
-		selectedId,accessorySlot,quantity=item.instanceId,nil,1
+		selectedId,accessorySlot,quantity,quantityBox=item.instanceId,nil,1,nil
 		mobileDetail=true
 		resize(); render()
 	end
@@ -135,7 +141,7 @@ function InventoryGui.create(onVisibility, feedback)
 		actionForSelection,quantityBox=nil,nil
 		local y=0
 		if compact then
-			local back=Theme.button(detailScroll,"BackToItems","BACK TO ITEMS",UDim2.fromOffset(0,0),UDim2.new(1,-6,0,40))
+			local back=Theme.button(detailScroll,"BackToItems","BACK TO ITEMS",UDim2.fromOffset(0,0),UDim2.new(1,-6,0,44))
 			back.Activated:Connect(function() mobileDetail=false; resize() end); y=50
 		end
 		local item=getSelected()
@@ -156,7 +162,7 @@ function InventoryGui.create(onVisibility, feedback)
 				detailLabel("ChooseSlot",Text.ChooseAccessory,y,36,13,Color.silver); y=y+40
 				for index=1,2 do
 					local slot="accessory"..index
-					local button=Theme.button(detailScroll,"Choose_"..slot,(accessorySlot==slot and "[X] " or "")..Text["Accessory"..index],UDim2.new((index-1)*.5,0,0,y),UDim2.new(.5,-5,0,42))
+					local button=Theme.button(detailScroll,"Choose_"..slot,(accessorySlot==slot and "[X] " or "")..Text["Accessory"..index],UDim2.new((index-1)*.5,0,0,y),UDim2.new(.5,-5,0,44))
 					button.Caption.TextSize=11
 					button.Activated:Connect(function() accessorySlot=slot; renderDetails() end)
 				end
@@ -192,19 +198,20 @@ function InventoryGui.create(onVisibility, feedback)
 			quantityBox.Font,quantityBox.TextSize=Enum.Font.GothamBold,16
 			quantityBox.Parent=detailScroll
 			local entry=quantityBox
-			entry.FocusLost:Connect(function() quantity=tonumber(entry.Text) end)
+			local selectedWhenCreated=selectedId
+			entry.FocusLost:Connect(function() if selectedId==selectedWhenCreated then quantity=tonumber(entry.Text) end end)
 			y=y+52
 		end
 		if def.restore and loc=="bag" and not storageMode then
 			for index=1,2 do
-				local button=Theme.button(detailScroll,"AssignQuick"..index,Text[index==1 and "AssignZ" or "AssignC"],UDim2.new((index-1)*.5,0,0,y),UDim2.new(.5,-5,0,42))
+				local button=Theme.button(detailScroll,"AssignQuick"..index,Text[index==1 and "AssignZ" or "AssignC"],UDim2.new((index-1)*.5,0,0,y),UDim2.new(.5,-5,0,44))
 				button.Activated:Connect(function() command("Assign",index) end)
 				Theme.enabled(button,not pending and snapshot.ready and snapshot.safe)
 			end
 			y=y+50
 		end
 		if organizing and loc=="bag" then
-			local lock=Theme.button(detailScroll,"ToggleLock",item.locked and Text.Unlock or Text.Lock,UDim2.fromOffset(0,y),UDim2.new(1,-6,0,42))
+			local lock=Theme.button(detailScroll,"ToggleLock",item.locked and Text.Unlock or Text.Lock,UDim2.fromOffset(0,y),UDim2.new(1,-6,0,44))
 			lock.Activated:Connect(function() command("Lock") end); Theme.enabled(lock,not pending and snapshot.ready); y=y+50
 		end
 		detailLabel("StatsNotice",Text.StatsHint,y,55,11,Color.muted)
@@ -295,34 +302,44 @@ function InventoryGui.create(onVisibility, feedback)
 	resize=function()
 		local width,height=shell.AbsoluteSize.X,shell.AbsoluteSize.Y
 		compact=width<820
-		title.TextSize=compact and 20 or 26
+		title.TextSize=compact and (storageMode and 16 or 20) or 26
+		title.Position=UDim2.fromOffset(24,compact and 20 or 35)
 		shell.Eyebrow.Visible=width>=500
-		heroLabel.Visible=width>=650
+		heroLabel.Visible=true
+		heroLabel.Position=compact and UDim2.fromOffset(24,54) or UDim2.fromOffset(344,78)
+		heroLabel.Size=compact and UDim2.new(1,-48,0,18) or UDim2.new(1,-368,0,40)
+		heroLabel.TextSize=compact and 11 or 14
 		local tabs=storageMode or sourceTab=="pending"
-		local top=organizing and 218 or 168
-		if tabs then top=top+48 end
-		filters.Position,filters.Size=UDim2.fromOffset(20,122),UDim2.new(1,-40,0,38)
+		local filterHeight=compact and 44 or 38
+		local searchY=compact and 182 or 168
+		local tabY=searchY+(organizing and (compact and 52 or 50) or 0)
+		local top=tabY+(tabs and (compact and 52 or 48) or 0)
+		filters.Position,filters.Size=UDim2.fromOffset(20,compact and 130 or 122),UDim2.new(1,-40,0,filterHeight)
 		local fw=math.max(1,(width-58)/4)
 		local index=0
 		for _,name in ipairs({"All","Equipment","Consumables","Materials"}) do
 			local button=filterButtons[name]
-			button.Position,button.Size=UDim2.fromOffset(index*(fw+6),0),UDim2.fromOffset(fw,38)
+			button.Position,button.Size=UDim2.fromOffset(index*(fw+6),0),UDim2.fromOffset(fw,filterHeight)
 			button.Caption.TextSize=width<500 and 10 or 12; index=index+1
 		end
 		search.Visible,sort.Visible=organizing,organizing
-		search.Position,search.Size=UDim2.fromOffset(20,166),UDim2.new(1,-180,0,40)
-		sort.Position=UDim2.new(1,-150,0,166)
+		search.Position,search.Size=UDim2.fromOffset(20,searchY),UDim2.new(1,-180,0,compact and 44 or 40)
+		sort.Position,sort.Size=UDim2.new(1,-150,0,searchY),UDim2.fromOffset(130,compact and 44 or 40)
 		content.Position,content.Size=UDim2.fromOffset(20,top),UDim2.new(1,-40,1,-top-76)
-		local tabY=organizing and 212 or 164
 		bagTab.Visible,storageTab.Visible=tabs,storageMode
-		bagTab.Position,bagTab.Size=UDim2.fromOffset(20,tabY),UDim2.fromOffset(152,40)
-		storageTab.Position,storageTab.Size=UDim2.fromOffset(180,tabY),UDim2.fromOffset(164,40)
+		bagTab.Position,bagTab.Size=UDim2.fromOffset(20,tabY),UDim2.fromOffset(152,compact and 44 or 40)
+		storageTab.Position,storageTab.Size=UDim2.fromOffset(180,tabY),UDim2.fromOffset(164,compact and 44 or 40)
+		if compact then
+			local tabWidth=(width-48)/2
+			bagTab.Size=UDim2.fromOffset(tabWidth,44)
+			storageTab.Position,storageTab.Size=UDim2.fromOffset(28+tabWidth,tabY),UDim2.fromOffset(tabWidth,44)
+		end
 		pendingButton.Position,pendingButton.Size=UDim2.new(1,-236,0,78),UDim2.fromOffset(212,40)
 		pendingButton.Visible=snapshot~=nil and snapshot.pending>0
 		pendingButton.Caption.Text=Text.Pending.." ("..tostring(snapshot and snapshot.pending or 0)..")"
 		pendingButton.Caption.TextSize=13
 		title.Size=UDim2.new(1,-140,0,35)
-		gear.Size,organize.Size=UDim2.fromOffset(156,40),UDim2.fromOffset(144,40)
+		gear.Size,organize.Size=UDim2.fromOffset(156,compact and 44 or 40),UDim2.fromOffset(144,compact and 44 or 40)
 		organize.Position=UDim2.fromOffset(184,78)
 		if compact then
 			pendingButton.Position,pendingButton.Size=UDim2.new(1,-166,0,18),UDim2.fromOffset(90,44)
@@ -353,7 +370,9 @@ function InventoryGui.create(onVisibility, feedback)
 			view.grid.CellSize=UDim2.fromOffset(math.floor((available-(columns-1)*8)/columns),116)
 		end
 		if width<380 then
-			gear.Size,organize.Size=UDim2.fromOffset(140,40),UDim2.fromOffset(134,40); organize.Position=UDim2.fromOffset(168,78)
+			local buttonWidth=(width-48)/2
+			gear.Size,organize.Size=UDim2.fromOffset(buttonWidth,44),UDim2.fromOffset(buttonWidth,44)
+			organize.Position=UDim2.fromOffset(28+buttonWidth,78)
 		end
 	end
 	send=function(value)

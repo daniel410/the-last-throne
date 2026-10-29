@@ -13,7 +13,7 @@ return {
 	CharacterBound = "HERO BOUND", Equipped = "EQUIPPED", BagTab = "HERO BAG", StorageTab = "SHARED STORAGE", Pending = "UNCLAIMED",
 	Quantity = "Quantity", ChooseAccessory = "Choose the accessory slot to replace.", Accessory1 = "ACCESSORY 1", Accessory2 = "ACCESSORY 2",
 	Compatible = "Available to all classes", Level = "Requires level %d", Class = "%s only", Current = "CURRENT", Selected = "SELECTED",
-	Details = "DETAILS", BagCount = "BAG  %d / %d", StorageCount = "STORAGE  %d / %d", StatsHint = "Equipment bonuses apply on the server. Changing gear does not heal you.",
+	Details = "DETAILS", BagCount = "BAG  %d / %d", StorageCount = "STORAGE  %d / %d", StatsHint = "Changing equipment does not restore health.",
 	Stats = {power = "Power", armor = "Armor", health = "Max HP"},
 	Slots = {weapon="Weapon", offhand="Offhand", head="Head", body="Body", hands="Hands", feet="Feet", accessory1="Accessory 1", accessory2="Accessory 2"},
 	Errors = {

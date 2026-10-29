@@ -39,4 +39,6 @@ Studio는 실제 DataStore를 호출하지 않는 명시적 세션 어댑터다.
 
 다음 담당 QA/ENG/DES는 실제 게시 저장/재접속·동시 서버·실기기/패드 포커스·사용자 가독성·장시간 저장 크기를 검증한다. TLT 부모 티켓/G3 전체를 완료 처리하지 않는다.
 
+0.19.1(`5b50ac23756eba4f2ae75136bfc8183dd498bedd`, SHA-256 `d694c0cd73d3c8b6bdd766a448600cbe3fbcea1eee6fa5199d161c0134f047a4`)에서는 정상 조회 오류가 사라지고 미수령 1이 정확히 표시됐다. 실제 F 입력과 텍스트 입력으로 철광석 수량 7을 지정하고 주기 조회 2.2초 뒤에도 포커스/수량이 유지되며 가방 17·창고 7로 전량 성공한 것을 확인했다. 다음 품목으로 바꿀 때 직전 수량이 재사용될 여지를 제거하고, 작은 화면 버튼 44px·탭 폭·제목/영웅 표시·하단 대비를 보완한 0.19.2로 최종 검증한다.
+
 저장 API 근거(2026-10-29): [Roblox UpdateAsync/세션 잠금](https://create.roblox.com/docs/cloud-services/data-stores/player-data-purchasing), [데이터 저장 권장 사항](https://create.roblox.com/docs/cloud-services/data-stores/best-practices). UI 안전 영역은 [ScreenGui](https://create.roblox.com/docs/reference/engine/classes/ScreenGui/DisplayOrder)의 CoreUISafeInsets를 사용한다.
