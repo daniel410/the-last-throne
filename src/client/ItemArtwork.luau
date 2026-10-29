@@ -1,5 +1,6 @@
 -- Small native 3D item illustrations. These are UI representations, not owned gear models.
 local PotionIcon=require(script.Parent.PotionIcon)
+local Sprites=require(script.Parent.ItemSprites)
 local Artwork={}
 local metal=Color3.fromRGB(190,208,224)
 local gold=Color3.fromRGB(220,171,68)
@@ -15,6 +16,7 @@ local function block(model,name,size,position,color,rotation,shape)
 end
 function Artwork.create(parent,def,position,size)
 	if def.potionTier then return PotionIcon.create(parent,def,position,size) end
+	local sprite=Sprites.create(parent,def,position,size); if sprite then return sprite end
 	local viewport=Instance.new("ViewportFrame")
 	viewport.Name,viewport.Position,viewport.Size,viewport.BackgroundTransparency="ItemArtwork",position,size,1
 	viewport.Ambient,viewport.LightColor,viewport.LightDirection=Color3.fromRGB(163,178,205),Color3.new(1,1,1),Vector3.new(-1,-2,-3)

@@ -13,7 +13,7 @@ end
 function Chrome.frame(parent,name,position,size)
 	local frame=Instance.new("Frame")
 	frame.Name,frame.Position,frame.Size=name,position,size
-	frame.BackgroundColor3,frame.BorderSizePixel=Color3.fromRGB(7,20,39),0
+	frame.BackgroundColor3,frame.BorderSizePixel=Color3.new(1,1,1),0
 	frame.Parent=parent
 	local corner=Instance.new("UICorner"); corner.CornerRadius=UDim.new(0,6); corner.Parent=frame
 	local stroke=Instance.new("UIStroke"); stroke.Color=Color3.fromRGB(80,121,157); stroke.Thickness=1; stroke.Parent=frame
@@ -33,7 +33,7 @@ function Chrome.card(parent,name,position,size,selected,occupied)
 	frame.AutoButtonColor,frame.Selectable=false,occupied
 	frame.Parent=parent
 	local corner=Instance.new("UICorner"); corner.CornerRadius=UDim.new(0,7); corner.Parent=frame
-	local line=Instance.new("UIStroke"); line.Name="SelectionOutline"; line.Color=selected and Color3.fromRGB(57,195,255) or Color3.fromRGB(116,140,163); line.Thickness=selected and 3 or 1.5; line.Transparency=occupied and 0 or .55; line.Parent=frame
+	local line=Instance.new("UIStroke"); line.Name="SelectionOutline"; line.ApplyStrokeMode=Enum.ApplyStrokeMode.Border; line.Color=selected and Color3.fromRGB(57,195,255) or Color3.fromRGB(116,140,163); line.Thickness=selected and 3 or 1.5; line.Transparency=occupied and 0 or .55; line.Parent=frame
 	if selected then
 		for i,p in ipairs({UDim2.fromOffset(3,3),UDim2.new(1,-3,0,3),UDim2.new(0,3,1,-3),UDim2.new(1,-3,1,-3)}) do Chrome.diamond(frame,"SelectedGem"..i,p,7,Base.color.gold) end
 	end

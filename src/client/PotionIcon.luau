@@ -1,6 +1,7 @@
 -- Native scalable artwork: no external image upload or Restricted asset dependency.
 -- TD palette: silver glass, gold stopper, red HP and blue MP. Shape + size mark
 -- distinguish tiers without relying on color alone.
+local Sprites = require(script.Parent.ItemSprites)
 local Icon = {}
 local function part(parent, name, x, y, w, h, color, radius)
 	local frame = Instance.new("Frame")
@@ -22,6 +23,18 @@ function Icon.create(parent, definition, position, size)
 	root:SetAttribute("PotionSize", definition.potionSize)
 	local aspect = Instance.new("UIAspectRatioConstraint")
 	aspect.AspectRatio, aspect.DominantAxis, aspect.Parent = 1, Enum.DominantAxis.Height, root
+	local illustration = Sprites.create(root, definition, UDim2.new(), UDim2.fromScale(1,1))
+	if illustration then
+		local glass = part(root, "Glass", 0, 0, 1, 1, Color3.new(1,1,1))
+		glass.BackgroundTransparency=1
+		local mark=Instance.new("TextLabel")
+		mark.Name,mark.Text="SizeMark",definition.potionTier==4 and "XL" or definition.potionSize:sub(1,1)
+		mark.Position,mark.Size=UDim2.fromScale(.62,.65),UDim2.fromScale(.35,.3)
+		mark.BackgroundColor3,mark.BackgroundTransparency=Color3.fromRGB(10,25,45),.15
+		mark.TextColor3,mark.TextScaled,mark.Font=Color3.new(1,1,1),true,Enum.Font.GothamBold
+		mark.AutoLocalize,mark.Parent=false,glass
+		return root
+	end
 	local tier = definition.potionTier
 	local width, height = ({.46, .60, .72, .82})[tier], ({.46, .56, .66, .72})[tier]
 	local left, top = .5 - width / 2, .87 - height

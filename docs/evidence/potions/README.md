@@ -19,3 +19,7 @@ TD 공유 아이콘/배틀 아틀라스와 레지스트리 조사에서 재사�
 회복 최신 사용자 결정으로 다시 변경: HP Small100/Medium300/Large500/XL1000, MP Small50/Medium100/Large200/XL500. 총8종, 기존 Small ID와 저장 스키마는 유지하되 회복량은 최신 결정을 따른다. 신규 시험 영웅에 각 XL1개도 추가한다.0.21.0의6종/옛 수치는 이력이다. 순수 인벤토리218개 통과.
 
 재디자인 기준: equipment-storage-v2/01-bag-simple.png·02-storage-simple.png 및 shared-ui-v2/05-hero-stats.png를 직접 비교했다. InventoryChrome의 은빛 주 프레임/금 모서리·중앙 제목, 왼쪽 TD 공식 영웅 초상/접이식8슬롯, 가운데 정사각 그리드/청록 선택·빈칸, 오른쪽 큰 그림/간소 비교/청색 실행 버튼, 접는 상세를 구현한다. 창고는 좌우 가방/창고와 하단 선택/수량/이동 영역이다. ItemArtwork는 문자 대체용 코드 기반3D 삽화이며 실제 장비 모델/소유권 원본으로 간주하지 않는다. 장비 SVG/생성 컨셉에서 잘라 쓰지 않았다. 공유 TD 영웅 초상 ID는 기존 로비와 같다. 물약은 같은 네이티브 렌더러를 사용한다. 작은 화면은 목록/상세 및 장비 보기 전환을 유지한다. 파일변경은 InventoryGui·InventoryChrome·ItemArtwork·PotionIcon·Catalog/Rules·영문/테스트와 증거이며 서버 이동/소유권 규칙은 기존 경로를 쓴다.
+
+0.22.0: 소스8cd973ffa8899bd9dbcd67b7e2885f83476c6aef,Rojo 성공,1,026,714 bytes,SHA25642826484e5ef7496791ae7af44f78776d69822151162fff148d6093dae1a6086. 서버513개/GUI126개 통과. 실제 Knight 가방에서3열/영웅/새 장비 그림을 확인했으나 프레임 색이 곱셈으로 너무 어둡고 카드 UIStroke가 TextButton의 텍스트용 모드여서 보이지 않는 결함을 발견했다. 배경 흰색+남색 gradient와 Border모드로 수정한다.
+
+0.22.1은 imagegen 스킬의 built-in 생성기로 새 RPG 전용 아이콘 아틀라스를 만들고 연결한다. 원본PNG RGBA/alpha0 픽셀61.8%를 읽기 전용 검사했고 별도 이미지 편집 없이 사용했다. Roblox Studio upload_image로 새 이미지135019494060990을 등록(기존 TD/Place 게시 변경 없음),AssetFetchStatus.Success와 렌더 크기683x1024의 검 crop을 실제 화면에서 확인했다. 원본1024x1536/SHA256과 출처는 assets/ui/item-icons-v1/manifest.json에 기록한다. 아이템은 렌더 삽화 아틀라스를 우선 사용하고 네이티브3D/물약 도형은 대체 경로다. 생성된 컨셉에서 잘라 대체한 것이 아니라 이 작업용 독립 아이템 아트다. 게시된 RPG Experience 권한은 별도 검증 전이다.

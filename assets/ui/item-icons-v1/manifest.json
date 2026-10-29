@@ -1,0 +1,25 @@
+{
+  "source": "built-in image_gen",
+  "kind": "RPG-specific new illustrations; TD originals unchanged",
+  "generationFile": "exec-f47aede0-bf41-46b2-831f-e71bf11669ee.png",
+  "runtimeDefinition": "src/shared/ItemSpriteAtlas.luau",
+  "sha256": "01bef9997f726e092a912ebfd3ff189418abaefc0ef4dd66cd0cc75de8986e62",
+  "sourceSize": [
+    1024,
+    1536
+  ],
+  "runtimeRenderSize": [
+    683,
+    1024
+  ],
+  "image": "rbxassetid://135019494060990",
+  "uploadTool": "Roblox Studio upload_image",
+  "studio": "isolated unpublished local QA",
+  "alphaInspected": {
+    "min": 0,
+    "max": 254,
+    "zeroFraction": 0.6182804107666016
+  },
+  "verified": "Studio AssetFetchStatus.Success and visual sword crop; published Experience permissions unverified",
+  "cellOrder": "knight_weapon,dwarf_weapon,elf_weapon,mage_weapon;offhand,head,body,hands;feet,copper_ring,amber_charm,iron_ore;health_potion,health_potion_medium,health_potion_large,health_potion_xl;mana_potion,mana_potion_medium,mana_potion_large,mana_potion_xl;soft_hide"
+}

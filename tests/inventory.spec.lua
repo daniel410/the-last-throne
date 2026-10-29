@@ -33,6 +33,7 @@ end
 equal(#C.potions,8,"eight potion variants")
 for _,id in ipairs(C.potions) do
 	local def=C.items[id]
+	equal(def.amount,(def.restore=="health" and {100,300,500,1000} or {50,100,200,500})[def.potionTier],"user-approved restore amount")
 	local sample=profile()
 	equal(def.iconKey,id,"variant owns a distinct icon identity")
 	equal(def.maxStack,99,"potions share the 99-stack contract")
