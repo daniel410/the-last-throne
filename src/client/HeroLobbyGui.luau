@@ -211,7 +211,7 @@ function LobbyGui.create(request,onManage)
 
 	refresh = function()
 		if not current then return end
-		gui.Enabled = current.phase ~= "Tutorial"
+		gui.Enabled = current.phase ~= "Tutorial" and current.phase~="Respawning" and current.phase~="LoadingTutorial"
 		shade.Visible = not minimized and not suppressed
 		reopen.Visible = minimized and not suppressed
 		shell.SessionNotice.Text = current.inventoryMode == "RPG test save"

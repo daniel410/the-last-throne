@@ -440,9 +440,12 @@ growthGui = require(script.HeroGrowthGui).create(function(opened)
 	lobby.setSuppressed(opened)
 end)
 hud.back.Activated:Connect(function() requestHero("ReturnLobby") end)
+hud.heroMenu.Activated:Connect(function() growthGui.open("Stats") end)
+hud.bagMenu.Activated:Connect(function() inventory.open() end)
 
 local function updateSessionView()
-	local playing = player:GetAttribute("K0SessionPhase") == "Tutorial"
+	local phase=player:GetAttribute("K0SessionPhase")
+	local playing = phase == "Tutorial" or phase=="Respawning"
 	hud.setVisible(playing)
 	if not playing then endBlock(); endSprint(); clearAttacks(); clearTarget() end
 	if heroSnapshot then

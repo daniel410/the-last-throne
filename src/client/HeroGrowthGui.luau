@@ -49,15 +49,20 @@ function Gui.create(onVisibility)
 		pending=cmd; remote:FireServer(cmd); show("Saving hero..."); render()
 		task.delay(10,function() if pending==cmd then show(errors.SaveUnknown); render() end end)
 	end
+	local function showLaunch()
+		local phase=player:GetAttribute("K0SessionPhase")
+		launch.Visible=not opened and not player:GetAttribute("TLTInventoryOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
+	end
 	local function visible(value)
-		opened=value; overlay.Visible=value;launch.Visible=not value; player:SetAttribute("TLTProgressionOpen",value)
+		opened=value; overlay.Visible=value;showLaunch(); player:SetAttribute("TLTProgressionOpen",value)
 		if onVisibility then onVisibility(value) end
 		if value then
 			CAS:BindActionAtPriority("HeroGrowthMovement",function() return Enum.ContextActionResult.Sink end,false,4000,Enum.KeyCode.W,Enum.KeyCode.A,Enum.KeyCode.S,Enum.KeyCode.D,Enum.KeyCode.Space,Enum.KeyCode.Thumbstick1)
 			getState(); render()
 		else CAS:UnbindAction("HeroGrowthMovement") end
 	end
-	player:GetAttributeChangedSignal("TLTInventoryOpen"):Connect(function() launch.Visible=not opened and not player:GetAttribute("TLTInventoryOpen") end)
+	player:GetAttributeChangedSignal("TLTInventoryOpen"):Connect(showLaunch)
+	player:GetAttributeChangedSignal("K0SessionPhase"):Connect(showLaunch)
 	local function label(parent,name,text,y,height,size,color)
 		return Theme.label(parent,name,text,UDim2.fromOffset(12,y),UDim2.new(1,-24,0,height),size or 14,color)
 	end

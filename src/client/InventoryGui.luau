@@ -141,8 +141,12 @@ function InventoryGui.create(onVisibility, feedback)
 		message.Text,message.TextColor3=text,error and Color.error or Color.silver
 		if error and not opened and feedback then feedback(text) end
 	end
+	local function showLauncher()
+		local phase=player:GetAttribute("K0SessionPhase")
+		launcher.Visible=not opened and not player:GetAttribute("TLTProgressionOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
+	end
 	local function setOpen(value)
-		opened=value; shade.Visible=value; launcher.Visible=not value and not player:GetAttribute("TLTProgressionOpen")
+		opened=value; shade.Visible=value; showLauncher()
 		discardOverlay.Visible=false; discardTarget=nil
 		if not value then claimsOverlay.Visible=false end
 		player:SetAttribute("TLTInventoryOpen",value)
@@ -158,7 +162,8 @@ function InventoryGui.create(onVisibility, feedback)
 			if previousFocus and previousFocus.Parent and previousFocus.Visible then GuiService.SelectedObject=previousFocus else GuiService.SelectedObject=nil end
 		end
 	end
-	player:GetAttributeChangedSignal("TLTProgressionOpen"):Connect(function() launcher.Visible=not opened and not player:GetAttribute("TLTProgressionOpen") end)
+	player:GetAttributeChangedSignal("TLTProgressionOpen"):Connect(showLauncher)
+	player:GetAttributeChangedSignal("K0SessionPhase"):Connect(showLauncher)
 	local function choose(item)
 		selectedId,accessorySlot,quantity,quantityBox=item.instanceId,nil,1,nil
 		expandedDetails=false
@@ -592,6 +597,7 @@ function InventoryGui.create(onVisibility, feedback)
 	end)
 	resize()
 	return {
+		open=function() storageMode,sourceTab=false,"bag";setOpen(true) end,
 		isOpen=function() return opened end,
 		close=function() setOpen(false) end,
 		refresh=requestState,

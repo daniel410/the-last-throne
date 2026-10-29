@@ -4,6 +4,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 
+local DeathFall = script and require(script.Parent.HeroDeathFall)
 local SpawnService = {}
 local RESPAWN_DELAY = 5
 local POSITION_GRACE = 3
@@ -165,6 +166,7 @@ local function beginCharacter(state, character)
 		if not connected(state) or state.generation ~= generation or state.player.Character ~= character then
 			return
 		end
+		if DeathFall then DeathFall.play(character) end
 		state.player:SetAttribute("K0SpawnStatus", "Respawning")
 		endLife(state, character, generation, request.id, "Died")
 		scheduleLoad(state, RESPAWN_DELAY, generation)
@@ -176,6 +178,7 @@ local function beginCharacter(state, character)
 		end
 		if state.humanoidConnection then state.humanoidConnection:Disconnect() end
 		state.humanoid = humanoid
+		if DeathFall then DeathFall.prepare(humanoid) else humanoid.BreakJointsOnDeath=false end
 		state.humanoidConnection = humanoid.Died:Connect(died)
 		if humanoid.Health <= 0 then died() end
 	end

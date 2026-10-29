@@ -32,7 +32,7 @@ return {
 	HintX = "X",
 	HintL1 = "L1",
 	HintY = "Y",
-	BackToLobby = "BACK TO LOBBY",
+	BackToLobby = "RETURN TO HUB",
 	PracticeTitle = "CONTROLS TUTORIAL",
 	Practice = {
 		Move = "Move away from the blue spawn pad.",

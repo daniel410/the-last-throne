@@ -10,6 +10,7 @@ local Theme = require(script.Parent.TDInventoryTheme)
 local BattleArt = require(ReplicatedStorage.Shared.TDUI.BattleChromeArtAssets)
 local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
 local PotionIcon = require(script.Parent.PotionIcon)
+local MiniMap=require(script.Parent.BattleMinimap)
 local Hud = {}
 
 local COLORS = {
@@ -226,10 +227,12 @@ function Hud.create()
 	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(92, 6), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(0, 91), 68)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(76, 71), 88)
+	local minimap=MiniMap.create(root)
+	local mapScale=Instance.new("UIScale");mapScale.Parent=minimap.frame
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
-	back.AnchorPoint = Vector2.new(1, 0)
-	back.Position = UDim2.new(1, -16, 0, 68)
+	back.AnchorPoint = Vector2.zero
+	back.Position = UDim2.fromOffset(10,96)
 	back.Size = UDim2.fromOffset(168, 42)
 	back.BackgroundColor3 = COLORS.blue
 	back.BorderSizePixel = 0
@@ -238,7 +241,7 @@ function Hud.create()
 	back.TextColor3 = COLORS.cream
 	back.Text = Text.BackToLobby
 	back.Selectable = true
-	back.Parent = root
+	back.Parent = minimap.menu
 	local backScale = Instance.new("UIScale")
 	backScale.Parent = back
 	round(back, 8)
@@ -266,9 +269,10 @@ function Hud.create()
 		actionScale.Scale = scale
 		skillScale.Scale = math.min(scale, viewport.X / 560)
 		practiceScale.Scale = scale
-		backScale.Scale = scale
-		back.Size = UDim2.fromOffset(viewport.X < 500 and 126 or 168, 42)
-		backCaption.TextSize = viewport.X < 500 and 10 or 12
+		backScale.Scale = 1
+		mapScale.Scale=viewport.X<500 and math.max(.62,scale*.85) or scale
+		back.Size = UDim2.fromOffset(148,36)
+		backCaption.TextSize = 11
 		-- Below 1100px, reserve a separate row above held-action controls.
 		skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)
 		if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end
@@ -301,8 +305,10 @@ function Hud.create()
 		items = itemButtons,
 		dodge = dodge,
 		back = back,
+		heroMenu=minimap.hero,bagMenu=minimap.bag,
 		setVisible = function(visible)
 			gui.Enabled = visible
+			if not visible then minimap.menu.Visible=false end
 		end,
 		setClass = function(classId)
 			classLabel.Text = Text.Class[classId] or ""
@@ -324,6 +330,7 @@ function Hud.create()
 			updateScale()
 		end,
 		setCooldowns = function(character)
+			if gui.Enabled then minimap.update(character) end
 			if character then
 				classLabel.Text=Text.Class[character:GetAttribute("K0ClassId")] or ""
 				local level=character:GetAttribute("K0Level") or 1

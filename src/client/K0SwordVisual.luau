@@ -377,7 +377,9 @@ function Visual.renderArms(character, dt)
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
 	local usesIK = updateElfIK(character, mode, phase, elapsed)
 	local blockHand = updateBlockHand(character, classId, mode)
-	if mode == "Dodge" then
+	if mode == "Dead" or character:GetAttribute("TLTDeathFalling") then
+		left=CFrame.Angles(math.rad(20),0,math.rad(12));right=CFrame.Angles(math.rad(15),0,math.rad(-12))
+	elseif mode == "Dodge" then
 		-- Alternate on accepted server dodges so observers see the same foot.
 		local seq = character:GetAttribute("K0DodgeSeq")
 		local leftStep = type(seq) == "number" and seq > 0 and seq % 2 == 0

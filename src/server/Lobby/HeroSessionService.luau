@@ -335,11 +335,11 @@ function HeroSessionService.onLifeStarted(player, character, generation, request
 	changed(state)
 end
 
-function HeroSessionService.onLifeEnded(player, character, generation, requestId)
+function HeroSessionService.onLifeEnded(player, character, generation, requestId, reason)
 	local state = sessions[player]
 	if not state or state.character ~= character or state.generation ~= generation or state.transitionId ~= requestId then return end
 	invalidateLife(state)
-	state.phase = state.mode == "Tutorial" and "LoadingTutorial" or "LoadingLobby"
+	state.phase = state.mode == "Tutorial" and (reason=="Died" and "Respawning" or "LoadingTutorial") or "LoadingLobby"
 	changed(state)
 end
 
