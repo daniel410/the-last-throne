@@ -134,7 +134,7 @@ function Hud.create()
 	root.Size = UDim2.fromScale(1, 1)
 	root.Parent = gui
 
-	local status = panel(root, "Status", UDim2.fromOffset(16, 16), UDim2.fromOffset(248, 132))
+	local status = panel(root, "Status", UDim2.fromOffset(16, 16), UDim2.fromOffset(248, 87))
 	local statusScale = Instance.new("UIScale")
 	statusScale.Parent = status
 	local classLabel = text(status, "Class", "", UDim2.fromOffset(14, 8), UDim2.fromOffset(120, 20), 11, COLORS.gold)
@@ -142,8 +142,10 @@ function Hud.create()
 	local state = text(status, "State", Text.State.Idle, UDim2.new(1, -109, 0, 8), UDim2.fromOffset(95, 20), 10, COLORS.muted)
 	state.TextXAlignment = Enum.TextXAlignment.Right
 	local setHealth = bar(status, Text.Health, 32, COLORS.red)
-	local setMana = bar(status, Text.Mana, 77, Color3.fromRGB(75, 151, 235))
-	local setStamina = bar(status, Text.Stamina, 77, Color3.fromRGB(224, 180, 65))
+	local setManaValue = bar(status, Text.Mana, 77, Color3.fromRGB(75, 151, 235))
+	for _, suffix in ipairs({ "Label", "Value", "Track" }) do
+		status[Text.Mana .. suffix].Visible = false
+	end
 
 	local heading = panel(root, "Heading", UDim2.new(0.5, -108, 0, 16), UDim2.fromOffset(216, 55))
 	local headingScale = Instance.new("UIScale")
@@ -270,15 +272,6 @@ function Hud.create()
 		end,
 		setClass = function(classId)
 			classLabel.Text = Text.Class[classId] or ""
-			local classSkills = Config.Skills[classId]
-			local showMana = classId == "mage"
-			local showStamina = classSkills ~= nil and not showMana
-			status.Size = UDim2.fromOffset(248, classSkills and 132 or 87)
-			for _, suffix in ipairs({ "Label", "Value", "Track" }) do
-				status[Text.Mana .. suffix].Visible = showMana
-				status[Text.Stamina .. suffix].Visible = showStamina
-			end
-			updateScale()
 		end,
 		setPractice = function(value, classId)
 			value = value or {}
@@ -287,8 +280,15 @@ function Hud.create()
 				or not value.dodged and Text.Practice.Dodge or Text.Practice.Complete
 		end,
 		setHealth = setHealth,
-		setMana = setMana,
-		setStamina = setStamina,
+		setMana = function(current, maximum)
+			local showMana = typeof(maximum) == "number" and maximum > 0
+			setManaValue(current, maximum)
+			status.Size = UDim2.fromOffset(248, showMana and 132 or 87)
+			for _, suffix in ipairs({ "Label", "Value", "Track" }) do
+				status[Text.Mana .. suffix].Visible = showMana
+			end
+			updateScale()
+		end,
 		setCooldowns = function(character)
 			for index, button in ipairs(itemButtons) do
 				local count = character and character:GetAttribute("K0ItemCount" .. index) or 0

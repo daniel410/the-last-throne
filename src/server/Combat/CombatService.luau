@@ -308,11 +308,6 @@ local function setMana(state, value)
 	state.character:SetAttribute("K0Mana", math.floor(state.mana * 10 + 0.5) / 10)
 end
 
-local function setStamina(state, value)
-	state.stamina = math.clamp(value, 0, Config.MaxStamina)
-	state.character:SetAttribute("K0Stamina", math.floor(state.stamina * 10 + 0.5) / 10)
-end
-
 local function startSkill(state, slot, current, targetModel)
 	local skills = Config.Skills[state.baseClassId]
 	if slot > state.slotCount then return end
@@ -323,8 +318,6 @@ local function startSkill(state, slot, current, targetModel)
 	-- Magic costs MP by contract, including future magic-archer abilities.
 	if skill.magic and (type(skill.manaCost) ~= "number" or skill.manaCost <= 0) then return end
 	if skill.magic and (not state.mana or state.mana < skill.manaCost) then updateFeedback(state, "NeedMana"); return end
-	if not skill.magic and (type(skill.staminaCost) ~= "number" or skill.staminaCost <= 0) then return end
-	if not skill.magic and (not state.stamina or state.stamina < skill.staminaCost) then updateFeedback(state, "NeedStamina"); return end
 	if skill.effect == "recall" and (not state.thrownUntil or current >= state.thrownUntil) then
 		updateFeedback(state, "NoAxeToRecall"); return
 	end
@@ -347,8 +340,6 @@ local function startSkill(state, slot, current, targetModel)
 	state.character:SetAttribute("K0SkillReady" .. slot, workspace:GetServerTimeNow() + skill.cooldown)
 	if skill.magic then
 		setMana(state, state.mana - skill.manaCost); state.manaRegenAt = current + Config.ManaRegenDelay
-	else
-		setStamina(state, state.stamina - skill.staminaCost); state.staminaRegenAt = current + Config.StaminaRegenDelay
 	end
 	if skill.effect == "advance" then skillStep(state, direction, 6) end
 	if skill.effect == "retreat" then skillStep(state, -direction, 4) end
@@ -1112,9 +1103,6 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 		state.humanoid.Health = math.min(state.humanoid.MaxHealth,
 			state.humanoid.Health + state.humanoid.MaxHealth * Config.HealthRegenFraction * math.min(dt, 0.25))
 	end
-	if state.stamina and current >= state.staminaRegenAt and state.mode ~= "Dead" then
-		setStamina(state, state.stamina + Config.StaminaRegen * math.min(dt, 0.25))
-	end
 	if state.mana and current >= state.manaRegenAt and state.mode ~= "Dead" then
 		setMana(state, state.mana + Config.ManaRegen * math.min(dt, 0.25))
 	end
@@ -1520,7 +1508,6 @@ local function setupCharacter(player, character)
 			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0,
 			mana = classId == "mage" and Config.MaxMana or nil, manaRegenAt = current,
 			itemCounts = {3, 3},
-			stamina = classId ~= "mage" and Config.MaxStamina or nil, staminaRegenAt = current,
 			skillSlots = context.skillSlots or {1, 2, 3, 0, 0}, slotCount = context.slotCount or 3, skillReadyAt = context.skillReadyAt or {}, setSkillReadyAt = context.setSkillReadyAt,
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
 			combo = 0, lastAttackFinished = -math.huge, lastDodgeStarted = -math.huge, lastGuardStarted = -math.huge,
@@ -1548,8 +1535,9 @@ local function setupCharacter(player, character)
 		character:SetAttribute("K0ItemCount2", state.itemCounts[2])
 		character:SetAttribute("K0MaxMana", state.mana and Config.MaxMana or nil)
 		character:SetAttribute("K0Mana", state.mana)
-		character:SetAttribute("K0MaxStamina", state.stamina and Config.MaxStamina or nil)
-		character:SetAttribute("K0Stamina", state.stamina)
+		-- Clear legacy prototype attributes if an existing character is reused.
+		character:SetAttribute("K0MaxStamina", nil)
+		character:SetAttribute("K0Stamina", nil)
 		character:SetAttribute("K0SkillSlotCount", state.slotCount)
 		character:SetAttribute("K0Sprinting", false)
 		for slot = 1, 5 do

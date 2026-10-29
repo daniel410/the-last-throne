@@ -141,6 +141,10 @@ local function beginEnemy(enemy, state, activeAt)
 	api.beginEnemyAttack(enemy, state, activeAt - enemy.config.attacks[1].windup)
 	return enemy.attack.definition
 end
+local function recoveredHealth(health, dt)
+	-- The production heartbeat applies server HP recovery after combat samples.
+	return math.min(10000, health + 10000 * api.Config.HealthRegenFraction * math.min(dt, 0.25))
+end
 
 local ok, fatal = xpcall(function()
 	local original = production.Source
@@ -229,9 +233,10 @@ return {
 			frame(T + 0.19)
 			near(state.humanoid.Health, 10000, "enemy windup cannot hit")
 			frame(T + 0.2 + definition.active + 0.01, definition.active + 0.02)
-			near(state.humanoid.Health, 10000 - definition.damage, "missed enemy active hits once")
+			local afterHit = recoveredHealth(10000 - definition.damage, definition.active + 0.02)
+			near(state.humanoid.Health, afterHit, "missed enemy active hits once", 0.002)
 			frame(T + 0.2 + definition.active + 0.02)
-			near(state.humanoid.Health, 10000 - definition.damage, "enemy cannot damage same target twice")
+			near(state.humanoid.Health, recoveredHealth(afterHit, 1 / 60), "enemy cannot damage same target twice", 0.002)
 		end)
 	end
 	case("R1-normal-active-cannot-hit-new-target-in-recovery", function()
@@ -270,7 +275,7 @@ return {
 		beginEnemy(enemy, state, T + 0.16)
 		api.acceptAction(state, "BlockStart", nil, T - 0.2)
 		frame(T + 0.27, 0.2)
-		near(state.humanoid.Health, 9984, "current ordinary block reduces Goblin damage")
+		near(state.humanoid.Health, recoveredHealth(9984, 0.2), "current ordinary block reduces Goblin damage", 0.002)
 
 	end)
 	case("R1-cancel-before-active-and-dead-attacker", function()
@@ -350,7 +355,7 @@ return {
 			local enemy = enemyState("Goblin", Vector3.new(0, 0, z))
 			beginEnemy(enemy, state, T + age - 0.001)
 			frame(T + age, age)
-			near(state.humanoid.Health, age == 0.08 and 10000 or 9920, "invulnerability start included and end excluded at current moved position")
+			near(state.humanoid.Health, recoveredHealth(age == 0.08 and 10000 or 9920, age), "invulnerability start included and end excluded at current moved position", 0.002)
 
 		end)
 	end

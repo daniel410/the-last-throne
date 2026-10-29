@@ -245,7 +245,10 @@ function LobbyGui.create(request)
 			for index, slot in ipairs(slotButtons) do
 				local enabled = index <= (selected.practiceAdvanced and 5 or 3)
 				local skill = skills[(selected.skillSlots or {})[index] or 0]
-				slot.Text = tostring(index) .. "  " .. (not enabled and "LOCKED" or skill and string.format("%s   |   %d %s   |   %ds cooldown", skill.name, skill.manaCost or skill.staminaCost, skill.magic and "MP" or "STAMINA", skill.cooldown) or "EMPTY")
+				local description = skill and (skill.magic
+					and string.format(Text.Lobby.MagicSkillFormat, skill.name, skill.manaCost, skill.cooldown)
+					or string.format(Text.Lobby.PhysicalSkillFormat, skill.name, skill.cooldown))
+				slot.Text = tostring(index) .. "  " .. (not enabled and "LOCKED" or description or "EMPTY")
 				slot.Active = enabled and current.canManage and not busy
 				slot.Selectable = slot.Active
 				slot.BackgroundTransparency = slot.Active and 0 or 0.6

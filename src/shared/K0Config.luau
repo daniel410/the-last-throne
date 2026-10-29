@@ -4,9 +4,6 @@ local Config = {
 	HealthRegenFraction = 0.002,
 	AttackPower = 100,
 	MaxMana = 100,
-	MaxStamina = 100,
-	StaminaRegen = 6,
-	StaminaRegenDelay = 1,
 	SprintSpeed = 24,
 	ManaRegen = 10,
 	ManaRegenDelay = 1,
@@ -91,22 +88,22 @@ Config.BasicAttackProfiles = {
 }
 
 -- Session-only training skills. These do not grant levels or permanent unlocks.
--- Every magic skill declares a mana cost; each skill owns its own cooldown.
+-- Physical skills use only their own cooldown; magic also costs mana.
 Config.Skills = {
 	knight = {
-		{ id = "knight.common.bash", staminaCost = 25, name = "SHIELD BASH", cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 4, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash" },
-		{ id = "knight.common.whirlwind", staminaCost = 30, name = "WHIRLWIND", cooldown = 8, windup = 0.25, active = 0.18, recovery = 0.4, damage = 1.0, posture = 18, range = 7, angle = 360, maxHeight = 7, maxTargets = 8, effect = "whirlwind" },
-		{ id = "knight.common.provoke", staminaCost = 20, name = "PROVOKE", cooldown = 12, windup = 0.25, active = 0.1, recovery = 0.3, damage = 0, posture = 0, range = 12, angle = 360, maxHeight = 10, maxTargets = 8, effect = "provoke", provokeDuration = 4, defenseBreakDuration = 4, defenseBreakDamageMultiplier = 1.10 },
+		{ id = "knight.common.bash", name = "SHIELD BASH", cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 4, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash" },
+		{ id = "knight.common.whirlwind", name = "WHIRLWIND", cooldown = 8, windup = 0.25, active = 0.18, recovery = 0.4, damage = 1.0, posture = 18, range = 7, angle = 360, maxHeight = 7, maxTargets = 8, effect = "whirlwind" },
+		{ id = "knight.common.provoke", name = "PROVOKE", cooldown = 12, windup = 0.25, active = 0.1, recovery = 0.3, damage = 0, posture = 0, range = 12, angle = 360, maxHeight = 10, maxTargets = 8, effect = "provoke", provokeDuration = 4, defenseBreakDuration = 4, defenseBreakDamageMultiplier = 1.10 },
 	},
 	elf = {
-		{ id = "elf.common.aimed", staminaCost = 20, name = "AIMED SHOT", cooldown = 6, windup = 0.45, active = 0.10, recovery = 0.30, damage = 1.4, posture = 16, range = 55, angle = 35, maxHeight = 10, maxTargets = 1, effect = "aimed", ranged = true },
-		{ id = "elf.common.rapid", staminaCost = 25, name = "RAPID FIRE", cooldown = 8, windup = 0.24, active = 0.48, recovery = 0.30, damage = 0.55, posture = 5, range = 55, angle = 45, maxHeight = 10, maxTargets = 1, effect = "rapid", ranged = true, shotCount = 3, shotInterval = 0.18 },
-		{ id = "elf.common.multi", staminaCost = 30, name = "MULTI SHOT", cooldown = 10, windup = 0.30, active = 0.10, recovery = 0.35, damage = 0.75, posture = 8, range = 50, angle = 70, maxHeight = 10, maxTargets = 5, effect = "multi", ranged = true },
+		{ id = "elf.common.aimed", name = "AIMED SHOT", cooldown = 6, windup = 0.45, active = 0.10, recovery = 0.30, damage = 1.4, posture = 16, range = 55, angle = 35, maxHeight = 10, maxTargets = 1, effect = "aimed", ranged = true },
+		{ id = "elf.common.rapid", name = "RAPID FIRE", cooldown = 8, windup = 0.24, active = 0.48, recovery = 0.30, damage = 0.55, posture = 5, range = 55, angle = 45, maxHeight = 10, maxTargets = 1, effect = "rapid", ranged = true, shotCount = 3, shotInterval = 0.18 },
+		{ id = "elf.common.multi", name = "MULTI SHOT", cooldown = 10, windup = 0.30, active = 0.10, recovery = 0.35, damage = 0.75, posture = 8, range = 50, angle = 70, maxHeight = 10, maxTargets = 5, effect = "multi", ranged = true },
 	},
 	dwarf = {
-		{ id = "dwarf.common.overhead", staminaCost = 20, name = "OVERHEAD SMASH", cooldown = 6, windup = 0.65, active = 0.18, hitDelay = 0.06, recovery = 0.30, damage = 1.4, posture = 25, range = 5, angle = 80, maxHeight = 7, maxTargets = 1, effect = "overhead" },
-		{ id = "dwarf.common.throw", staminaCost = 20, name = "AXE THROW", cooldown = 7, windup = 0.30, active = 0.10, recovery = 0.30, damage = 1.1, posture = 18, range = 32, angle = 45, maxHeight = 10, maxTargets = 1, effect = "throw", ranged = true },
-		{ id = "dwarf.common.ground", staminaCost = 30, name = "GROUND SLAM", cooldown = 10, windup = 0.35, active = 0.18, hitDelay = 0.06, recovery = 0.40, damage = 1.2, posture = 30, range = 6, angle = 360, maxHeight = 7, maxTargets = 8, effect = "slam" },
+		{ id = "dwarf.common.overhead", name = "OVERHEAD SMASH", cooldown = 6, windup = 0.65, active = 0.18, hitDelay = 0.06, recovery = 0.30, damage = 1.4, posture = 25, range = 5, angle = 80, maxHeight = 7, maxTargets = 1, effect = "overhead" },
+		{ id = "dwarf.common.throw", name = "AXE THROW", cooldown = 7, windup = 0.30, active = 0.10, recovery = 0.30, damage = 1.1, posture = 18, range = 32, angle = 45, maxHeight = 10, maxTargets = 1, effect = "throw", ranged = true },
+		{ id = "dwarf.common.ground", name = "GROUND SLAM", cooldown = 10, windup = 0.35, active = 0.18, hitDelay = 0.06, recovery = 0.40, damage = 1.2, posture = 30, range = 6, angle = 360, maxHeight = 7, maxTargets = 8, effect = "slam" },
 	},
 	mage = {
 		{ id = "mage.common.mana_bolt", name = "MANA BOLT", cooldown = 3, manaCost = 15, magic = true, windup = 0.45, active = 0.12, recovery = 0.45, damage = 1.0, posture = 10, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "mana_bolt", ranged = true },

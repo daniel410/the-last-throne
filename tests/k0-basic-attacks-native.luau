@@ -76,8 +76,12 @@ local function rig(name, parent, position, direction)
 	model.Parent = parent
 	return model, humanoid, root
 end
-local function spawnPlayer(player)
+local function spawnPlayer(player, legacyResourceAttributes)
 	local model = rig("MockCharacter", characters, origin, Vector3.new(0, 0, -1))
+	if legacyResourceAttributes then
+		model:SetAttribute("K0Stamina", 0)
+		model:SetAttribute("K0MaxStamina", 100)
+	end
 	model:SetAttribute("K0SpawnReady", true)
 	if not player then
 		nextId += 1
@@ -204,18 +208,18 @@ return {
 			near(state.humanoid.Health, 0, classId .. " does not regenerate after death")
 		end
 	end)
-	case("physical-skill-stamina-recovers-slowly-after-delay", function()
-		for _, classId in ipairs({ "knight", "elf", "dwarf" }) do
+	case("legacy-resource-attributes-cleared-on-spawn-and-respawn", function()
+		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
 			reset(); api.injectResolver(function() return classId end)
-			local state = spawnPlayer()
-			state.stamina = 40; state.staminaRegenAt = 2
-			api.stepPlayer(state, 1.75, 0.25, true)
-			near(state.stamina, 40, classId .. " respects the recovery delay")
-			for tick = 0, 3 do api.stepPlayer(state, 2 + tick * 0.25, 0.25, true) end
-			near(state.stamina, 46, classId .. " recovers six stamina per second")
-			state.stamina = 99
-			api.stepPlayer(state, 3, 0.25, true)
-			near(state.stamina, 100, classId .. " does not exceed maximum")
+			local state, player = spawnPlayer(nil, true)
+			for life = 1, 2 do
+				if life == 2 then state = spawnPlayer(player, true) end
+				equal(state.stamina, nil, classId .. " has no server resource on life " .. life)
+				equal(state.character:GetAttribute("K0Stamina"), nil, classId .. " clears old value on life " .. life)
+				equal(state.character:GetAttribute("K0MaxStamina"), nil, classId .. " clears old maximum on life " .. life)
+				api.stepPlayer(state, 1, 0.25, true)
+				equal(state.character:GetAttribute("K0Stamina"), nil, classId .. " does not recreate resource on heartbeat")
+			end
 		end
 	end)
 	case("confirmed-hit-feedback-only-for-actual-health-loss", function()
@@ -308,32 +312,41 @@ return {
 			spawnEnemy(3)
 			for slot = 1, 3 do
 				local skill = api.Config.Skills[classId][slot]
-				if skill.effect == "recall" then state.thrownUntil = 100 end
-				state.mode = "Idle"; state.attack = nil
-				local t = (slot - 1) * 1.2
-				local before = skill.magic and state.mana or state.stamina
+				local t = (slot - 1) * 1.5
+				local before = state.mana
 				action(state, "Skill" .. slot, t)
 				equal(state.attack and state.attack.definition, skill, classId .. " accepts its own skill " .. slot)
 				equal(state.skillReadyAt[skill.id], t + skill.cooldown, classId .. " skill cooldown is independent")
-				near(skill.magic and state.mana or state.stamina, before - (skill.manaCost or skill.staminaCost), classId .. " spends its skill resource")
+				if skill.magic then
+					near(state.mana, before - skill.manaCost, classId .. " spends the magic skill's MP")
+				else
+					equal(state.mana, nil, classId .. " physical skill needs no MP")
+					equal(state.stamina, nil, classId .. " physical skill needs no stamina")
+				end
+			end
+			if classId ~= "mage" then
+				local first = api.Config.Skills[classId][1]
+				action(state, "Skill1", 4.5)
+				equal(state.attack, nil, classId .. " cannot reuse a cooling skill")
+				equal(state.character:GetAttribute("K0Feedback"), "SkillCooling", classId .. " receives cooldown feedback")
+				equal(state.skillReadyAt[first.id], first.cooldown, classId .. " rejected recast keeps its deadline")
+				action(state, "Skill1", first.cooldown + 0.01)
+				equal(state.attack and state.attack.definition, first, classId .. " can recast after its deadline")
 			end
 		end
 	end)
 	case("physical-resource-and-action-contract", function()
-		api.injectResolver(function() return "knight" end)
-		local state = spawnPlayer()
-		state.stamina = 0
-		action(state, "Skill1", 0)
-		equal(state.attack, nil, "skill rejected without stamina")
-		equal(state.skillReadyAt[api.Config.Skills.knight[1].id], nil, "rejected skill starts no cooldown")
-		equal(state.character:GetAttribute("K0Feedback"), "NeedStamina", "stamina failure reported")
-		action(state, "SprintStart", 0.1)
-		equal(state.humanoid.WalkSpeed, api.Config.SprintSpeed, "sprint starts at zero stamina")
-		action(state, "SprintEnd", 0.2)
-		equal(state.humanoid.WalkSpeed, api.Config.WalkSpeed, "sprint stops")
-		action(state, "Attack", 0.3)
-		equal(state.mode, "Attack", "basic attack works at zero stamina")
-		equal(state.stamina, 0, "basic attack spends no stamina")
+		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
+			reset(); api.injectResolver(function() return classId end)
+			local state = spawnPlayer()
+			if classId == "mage" then state.mana = 0 end
+			action(state, "SprintStart", 0)
+			equal(state.humanoid.WalkSpeed, api.Config.SprintSpeed, classId .. " can sprint without a resource")
+			action(state, "SprintEnd", 0.1)
+			equal(state.humanoid.WalkSpeed, api.Config.WalkSpeed, classId .. " stops sprinting")
+			action(state, "Attack", 0.2)
+			equal(state.mode, "Attack", classId .. " can attack without a resource")
+		end
 	end)
 	case("server-loadout-enforces-slots", function()
 		api.injectResolver(function(player)
@@ -382,7 +395,6 @@ return {
 		near(outside.humanoid.Health, 10000, "enemy outside radius missed")
 		sample(0.30)
 		near(front.humanoid.Health, 9900, "whirlwind hits only once")
-		near(state.stamina, 70, "whirlwind spends stamina")
 	end)
 	case("provoke-overrides-target-until-expiry", function()
 		api.injectResolver(function() return "knight" end)
@@ -401,7 +413,6 @@ return {
 		near(enemy.defenseBreakUntil, 4.26, "defense weakening lasts four seconds")
 		equal(farEnemy.defenseBreakUntil, nil, "outside enemy is not weakened")
 		near(enemy.humanoid.Health, 10000, "provoke causes no damage")
-		near(knight.stamina, 80, "provoke spends stamina")
 		action(ally, "Attack", 0.5)
 		sample(0.67)
 		equal(enemy.target, knight, "ally damage does not override active provoke")
@@ -429,6 +440,36 @@ return {
 		equal(state.attack, nil, "insufficient mana rejects cast")
 		equal(state.skillReadyAt[api.Config.Skills.mage[2].id], nil, "rejected cast starts no cooldown")
 		equal(state.character:GetAttribute("K0Feedback"), "NeedMana", "mana failure is reported")
+	end)
+	case("mana-recovery-still-respects-delay-and-cap", function()
+		api.injectResolver(function() return "mage" end)
+		local state = spawnPlayer()
+		action(state, "Skill1", 0)
+		api.stepPlayer(state, 0.75, 0.25, true)
+		near(state.mana, 85, "mana does not recover before delay")
+		for tick = 0, 3 do api.stepPlayer(state, 1 + tick * 0.25, 0.25, true) end
+		near(state.mana, 95, "mana recovers at configured rate")
+		state.mana = 99
+		api.stepPlayer(state, 2, 0.25, true)
+		near(state.mana, 100, "mana cannot exceed maximum")
+	end)
+	case("physical-skill-cooldown-survives-respawn", function()
+		local ready = {}
+		api.injectResolver(function(player)
+			return { heroId = "hero-" .. player.UserId, baseClassId = "knight", epoch = 1, characterGeneration = 1,
+				skillReadyAt = table.clone(ready), setSkillReadyAt = function(id, time) ready[id] = time end }
+		end)
+		local first, player = spawnPlayer()
+		action(first, "Skill1", 0)
+		local skill = api.Config.Skills.knight[1]
+		equal(ready[skill.id], skill.cooldown, "session records physical skill deadline")
+		api.setClock(1)
+		local respawned = spawnPlayer(player, true)
+		action(respawned, "Skill1", 1.1)
+		equal(respawned.attack, nil, "respawn does not reset cooldown")
+		equal(respawned.character:GetAttribute("K0Feedback"), "SkillCooling", "respawned hero sees cooldown feedback")
+		action(respawned, "Skill2", 1.2)
+		equal(respawned.attack and respawned.attack.definition.id, api.Config.Skills.knight[2].id, "other physical skill is still available")
 	end)
 	case("skills-resolve-at-their-own-hit-window", function()
 		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
@@ -461,7 +502,6 @@ return {
 		sample(0.46)
 		near(first.humanoid.Health, 10000, "aimed shot ignores nearer decoy")
 		near(second.humanoid.Health, 9860, "aimed shot hits selected target")
-		near(state.stamina, 80, "aimed shot consumes stamina")
 	end)
 	case("rapid-fire-shoots-three-timed-arrows", function()
 		api.injectResolver(function() return "elf" end)
@@ -478,7 +518,6 @@ return {
 		equal(state.arrowSeq, 3, "three arrow snapshots emitted")
 		sample(0.64)
 		near(target.humanoid.Health, 9835, "no extra hit")
-		near(state.stamina, 75, "stamina charged once for burst")
 	end)
 	case("rapid-fire-stops-on-interruption-and-does-not-backfill-stale-shots", function()
 		api.injectResolver(function() return "elf" end)
@@ -543,7 +582,6 @@ return {
 		sample(0.72)
 		near(target.humanoid.Health, 9860, "overhead smash hits target")
 		near(other.humanoid.Health, 10000, "overhead smash hits only one enemy")
-		near(state.stamina, 80, "overhead smash consumes stamina")
 	end)
 	case("dwarf-ground-slam-hits-around-player", function()
 		api.injectResolver(function() return "dwarf" end)
@@ -555,7 +593,6 @@ return {
 		near(front.humanoid.Health, 9880, "slam hits front enemy")
 		near(behind.humanoid.Health, 9880, "slam hits rear enemy")
 		near(distant.humanoid.Health, 10000, "slam ignores outside enemy and distant selected target")
-		near(state.stamina, 70, "slam consumes stamina once")
 	end)
 	case("magic-costs-and-cooldowns-are-independent", function()
 		api.injectResolver(function() return "mage" end)
@@ -831,10 +868,8 @@ return {
 			api.injectResolver(function() return classId end)
 			local state = spawnPlayer()
 			local enemy = spawnEnemy()
-			local before = state.stamina
 			action(state, "BlockStart", 0)
 			equal(state.mode, "Block", "every class can guard")
-			equal(state.stamina, before, "guard spends no stamina")
 			api.beginEnemyAttack(enemy, state, 0)
 			sample(0.61)
 			near(state.humanoid.Health, 984, "guard mitigates frontal Goblin attack")
