@@ -30,7 +30,8 @@ function Icon.create(parent, definition, position, size)
 		glass.BackgroundTransparency=1
 		local mark=Instance.new("TextLabel")
 		mark.Name,mark.Text="SizeMark",definition.potionTier==4 and "XL" or definition.potionSize:sub(1,1)
-		mark.Position,mark.Size=UDim2.new(1,-24,1,-18),UDim2.fromOffset(24,16)
+		mark.AnchorPoint=Vector2.new(.5,.5)
+		mark.Position,mark.Size=UDim2.fromScale(.5,.7),UDim2.fromOffset(24,16)
 		mark.BackgroundTransparency=1
 		mark.TextColor3,mark.TextScaled,mark.Font=Color3.new(1,1,1),false,Enum.Font.GothamBold
 		mark.TextSize,mark.TextStrokeTransparency=12,.3
@@ -56,7 +57,7 @@ function Icon.create(parent, definition, position, size)
 	if tier >= 3 then part(body, "GoldBand", 0, .78, 1, .08, gold) end
 	local mark = Instance.new("TextLabel")
 	mark.Name, mark.BackgroundTransparency = "SizeMark", 1
-	mark.Position, mark.Size = UDim2.fromScale(.2, .27), UDim2.fromScale(.7, .6)
+	mark.Position, mark.Size = UDim2.fromScale(.15, .27), UDim2.fromScale(.7, .6)
 	mark.Text, mark.Font = (tier == 4 and "XL" or definition.potionSize:sub(1, 1)), Enum.Font.GothamBlack
 	mark.TextColor3, mark.TextScaled, mark.TextStrokeTransparency = Color3.new(1, 1, 1), true, .45
 	mark.AutoLocalize, mark.Parent = false, body
