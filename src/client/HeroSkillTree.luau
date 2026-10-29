@@ -121,7 +121,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
   local index=g.skillSlots[slot];local equipped=Config.Skills[classId][index];local active=slot<=Advanced.slotCount(g)
   local col=narrow and (slot-1)%3 or slot-1;local row=narrow and math.floor((slot-1)/3) or 0
   local columns=narrow and 3 or 5;local w=(width-40-(columns-1)*8)/columns
-  local b=Theme.button(load,'Slot'..slot,slot..'  '..(active and (equipped and equipped.name or 'EMPTY') or 'LOCKED'),UDim2.fromOffset(14+col*(w+8),48+row*66),UDim2.fromOffset(w,56),index==selected)
+  local b=Theme.button(load,'Slot'..slot,slot..'  '..(active and (equipped and equipped.name or 'EMPTY') or ('Lv.'..(slot==4 and 5 or 10))),UDim2.fromOffset(14+col*(w+8),48+row*66),UDim2.fromOffset(w,56),index==selected)
   b.Caption.TextSize=10;Theme.enabled(b,editable and active and learned)
   b.Activated:Connect(function() if b.Active then send('SetSkillSlot',{slot=slot,skill=selected}) end end)
  end

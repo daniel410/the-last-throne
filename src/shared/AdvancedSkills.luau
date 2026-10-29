@@ -150,7 +150,7 @@ branch("cryo","mage","Cryo","cryomancer",{
  s("Eternal Tempest",0,80,"ground",1.5,{pulses=3,radius=20,slow=.4,slowDuration=3}),
 })
 function A.get(classId,index) return A.skills[classId] and A.skills[classId][index-3] end
-function A.slotCount(g) return g.stage>=2 and 5 or g.stage>=1 and 4 or 3 end
+function A.slotCount(g) return g.level>=10 and 5 or g.level>=5 and 4 or 3 end
 function A.unlocked(g,classId,index)
  if type(index)~="number" or index%1~=0 or index<1 or index>29 then return false end
  if index<=3 then return true end

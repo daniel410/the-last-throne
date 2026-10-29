@@ -165,7 +165,7 @@ local ok, failure = xpcall(function()
 				check(body:FindFirstChild("SkillDetails") and body:FindFirstChild("CombatLoadout"),"tree keeps detail and loadout controls")
 				check(height>500,"tree reports scrollable content height")
 				check(body.SkillMap.Skill1:FindFirstChild("SkillGlyph")~=nil,"basic skill uses a distinct native action symbol")
-				check(body.CombatLoadout.Slot4.Active==(level==80),"loadout slot eligibility follows completed advancement")
+				check(body.CombatLoadout.Slot4.Active==(level>=5),"loadout slot eligibility follows level")
 			end
 		end
 		body:ClearAllChildren()

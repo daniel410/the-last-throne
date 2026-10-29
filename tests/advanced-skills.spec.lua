@@ -7,6 +7,17 @@ local K=dofile('src/shared/K0Config.luau')
 local checks=0
 local function check(v,label) checks=checks+1;assert(v,label)end
 local function eq(a,b,label)check(a==b,label..': '..tostring(a)..' ~= '..tostring(b))end
+for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
+ for _,case in ipairs({{1,3},{4,3},{5,4},{9,4},{10,5},{19,5},{20,5},{80,5}}) do
+  local g=G.new(case[1]);eq(A.slotCount(g),case[2],'level slot boundary')
+  for slot=4,5 do
+   local changed=G.apply(g,{action='SetSkillSlot',slot=slot,skill=1},classId)
+   eq(changed~=nil,slot<=case[2],'server enforces level slot gate')
+   if changed then check(G.validate(changed,classId),'unadvanced loadout survives validation') end
+  end
+  check(not A.unlocked(g,classId,4),'opening slots does not grant branch skills')
+ end
+end
 local count=0
 for classId,paths in pairs(A.order)do
  eq(#K.Skills[classId],29,'class catalog')
@@ -19,7 +30,7 @@ for classId,paths in pairs(A.order)do
    edge.level=stage*20
    local completed=assert(G.apply(edge,{action='Advance',branch=path,stage=stage},classId))
    eq(completed.stage,stage,'boundary completion')
-   eq(A.slotCount(completed),stage==1 and 4 or 5,'slot opens only on completion')
+   eq(A.slotCount(completed),5,'level slots remain open after advancement')
    for _,d in ipairs(b.skills)do
     if d.level==stage*20 then check(A.unlocked(completed,classId,d.index),'new skill at each completed boundary')end
    end
@@ -37,7 +48,7 @@ for classId,paths in pairs(A.order)do
   check(not G.apply(g,{action='Advance',branch=path,stage=1},classId),'trial required')
   for seq=1,12 do g=assert(G.apply(g,{action='AwardXP',stream='qa',sequence=seq,amount=1,rewardKind='Defeat'},classId))end
   local first=assert(G.apply(g,{action='Advance',branch=path,stage=1},classId))
-  check(G.validate(first,classId),'valid advanced profile');eq(A.slotCount(first),4,'slot4 after completion')
+  check(G.validate(first,classId),'valid advanced profile');eq(A.slotCount(first),5,'five slots before first advancement')
   check(A.unlocked(first,classId,b.skills[1].index),'first path skill learned')
   check(not A.unlocked(first,classId,b.skills[2].index),'mid level remains locked')
   check(not G.apply(first,{action='Advance',branch=path,stage=2},classId),'level40 required')
