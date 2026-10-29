@@ -1,0 +1,12 @@
+{
+  "kind": "transcribed Studio Server execute_luau measurement",
+  "version": "0.20.5",
+  "conditions": "unpublished isolated Studio, single Knight player at training spawn, server sets HP to 500, no incoming damage",
+  "before": 500,
+  "seconds": 5.010737583274022,
+  "after": 504.9962158203125,
+  "gained": 4.9962158203125,
+  "expectedPerSecond": 1,
+  "assertTolerance": 0.5,
+  "pass": true
+}

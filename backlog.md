@@ -193,3 +193,5 @@ v0.25 · 2026-10-28 · [총괄 계획](plan.md) · [역할](agent.md) · [결정
 TLT-028/052/084 일부: 0.20.0에서 TD 원본 배틀 HP 프레임·공통 패널/버튼 셸을 연결하고 좁은 화면의 스킬/액션 행을 분리했다. 입력/쿨다운/물약/MP 계약을 보존했다. [검증 기록](docs/evidence/battle-hud/README.md). 실기기·패드·전체 화면 수용과 정식 성장 연결 전이므로 상위 티켓은 미완료다.
 
 0.20.3 사용자 조정: Dodge V키 제거/R 유지, Attack·Sprint 위치 균형, 아이템/스킬 간격32px와 TD 셸 색상 구분. TLT-028/084 일부 구현이며 [검증](docs/evidence/battle-hud/README.md)에 연결한다.
+
+0.20.4~0.20.5 사용자 조정: TLT-028/084 일부 Attack16px 추가 왼쪽 이동. TLT-005 HP 자연 회복 초당0.2%→0.1% 감속. 서버481개와 단일 Knight 실제 회복 측정 통과. [증거](docs/evidence/battle-hud/README.md). 전체 티켓의 사용자/실기기 수용은 남아 있다.

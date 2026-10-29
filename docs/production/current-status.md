@@ -1,12 +1,12 @@
 # 현재 개발 상태와 다음 작업
 
-2026-10-29 · 총괄 DIR · **로컬 시험 빌드 `0.20.3`** · 게시된 비공개 시험판 `0.18.3`
+2026-10-29 · 총괄 DIR · **로컬 시험 빌드 `0.20.5`** · 게시된 비공개 시험판 `0.18.3`
 
 [최신 결정](../decisions.md) · [액션·스킬 상세](action-and-skill-design.md) · [빌드·게시 증거](../evidence/k0/build.md) · [백로그](../../backlog.md)
 
 ## 현재 실행 가능한 시험판
 
-| 범위 | 0.20.3 구현 | 제한·근거 |
+| 범위 | 0.20.5 구현 | 제한·근거 |
 | --- | --- | --- |
 | 로비·영웅 | Dawnspire에서 네 클래스 영웅 생성/선택·로비 창 접기·Deepwood 진입. 영웅 식별자/불변 클래스와 아이템을 RPG 전용 계정 저장 경로에 연결 | Studio는 세션 보관이며, 실제 게시 저장·재접속 수용은 미검증. 연습 진행·스킬 편성은 세션 전용, 정식 성장/전직 미구현. [장비/저장](../evidence/inventory/README.md) |
 | 장비·가방 | B/BAG 단일 진입, 정확한8슬롯·비교·장착/해제·장신구 대상·클래스/레벨/고유그룹 검증·검색/정렬/잠금. Power/Armor/HP 시험 보너스 적용 | 캐릭터별60칸·장비 수치는 시험값. 고정 슬롯 교환·가득 찬 교환/해제·HP/쿨다운 보존 검사. 새 방어구 외형·판매/제작은 후속. [실제 화면·증거](../evidence/inventory/README.md) |
@@ -17,15 +17,15 @@
 | 공통 액션 | 네 영웅의 기본 공격·Block·Dodge·Sprint, 클릭 표적과 서버 피해 판정. 드워프·엘프·마법사는 무기를 두 손으로 가로로 들어 방어 | PC 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R 회피, Space 점프, X 표적 해제는 시험 배치. 양손 접촉은 R6/R15 동적 리그에서 검사했으나 실제 사용자·다양한 체형은 미검증. [방어](../evidence/k0/2026-10-28-horizontal-block-slime.md) |
 | 스킬 | 직업별 기본 3종, 물리 스킬 개별 쿨다운·마법 MP와 개별 쿨다운, 로비 편성 및 1~5번 하단 슬롯. Stamina는 제거 | 기본 3슬롯, 5슬롯은 PRACTICE ONLY. 실제 Lv20 전직·습득·영구 저장·정식 슬롯 해금은 미구현. [자원 검증](../evidence/k0/2026-10-29-stamina-removal.md) |
 | 스킬 연출 | Axe Throw 투사체의 캐릭터 연결 제거, Multi Shot 5개 시각 화살·서버 확인 타격, Water Ball 물방울·물보라, Ground Slam 도약·착지. Overhead Smash는 머리 위 한 바퀴 후 내려찍기와 확대 타격 효과 | 서버와 격리 Studio 검사 통과. 물리 투척/회수 전체 계약, 모든 실제 Player 시각·다인 수용은 미완료. [연출](../evidence/k0/2026-10-28-combat-and-bgm.md) · [Overhead](../evidence/k0/2026-10-28-overhead-smash.md) |
-| 회복 | 시험값: HP는 최대치의 초당 0.2%, Mage MP는 초당 10. Stamina 회복은 제거 | HP는 전투 중에도 회복하며 기본 Roblox 회복 대체 스크립트가 포함됨. 0.18.9 단일 Player의 제어된 약 5초 측정에서 중복 회복 징후가 없었으나 다른 조건과 체감 밸런스는 미검증. [관측](../evidence/k0/2026-10-29-player-combat-and-slime.md) |
+| 회복 | 시험값: HP는최대치의 초당 0.1%, Mage MP는 초당 10. Stamina 회복은 제거 | HP는 전투 중에도 회복하며 기본 Roblox 회복 대체 스크립트가 포함됨. 0.18.9 단일 Player의 제어된 약 5초 측정에서 중복 회복 징후가 없었으나 다른 조건과 체감 밸런스는 미검증. [관측](../evidence/k0/2026-10-29-player-combat-and-slime.md) |
 | 음악 | TD 일반 BGM `Riftstorm`을 기존 ID로 반복·음량 0.20·1.5초 페이드 | 격리 Studio 로드/재생 상태 확인. 해당 음원은 Restricted이며 별도 RPG Experience에서의 권한·실제 청취는 미검증. [근거](../evidence/k0/2026-10-28-combat-and-bgm.md) |
 
 기본 스킬은 Knight **Shield Bash / Whirlwind / Provoke**, Dwarf **Overhead Smash / Axe Throw / Ground Slam**, Elf **Aimed Shot / Rapid Fire / Multi Shot**, Mage **Mana Bolt / Water Ball / Gravity**다. 광역기는 Whirlwind·Ground Slam·Multi Shot·Gravity다. Overhead Smash 시험 준비 시간은 0.65초이며 서버 타격은 그 후 0.06초다.
 
 ## 빌드·게시와 검증의 경계
 
-- **최신 로컬:** `0.20.3`, 소스 커밋 `32cc0d05e270c30e14c619061cb6e939d242567e`, [빌드 파일](../../builds/0.20.3/TheLastThrone-0.20.3.rbxlx). 빌드 산출물은 Git에서 제외된 로컬 파일이다.
-- **현재 확인된 게시:** 2026-10-28 사용자가 `0.18.3`을 독립 The Last Throne Experience `10773575153`, 시작 Place `70829337938054`에 게시했다. Creator Dashboard의 게시 Place 버전은 **4**, 확인 당시 접근은 Private이며 Git 태그 `v0.18.3`을 해당 빌드 소스에 푸시했다. Roblox의 Place 버전과 게임 빌드 버전은 서로 다르다. `0.18.4~0.20.3`는 게시되지 않았다. [게시 기록](../evidence/k0/build.md).
+- **최신 로컬:** `0.20.5`, 소스 커밋 `aa4d691c69fa81ea6c3bfb3476b44ca5bf6c94f0`, [빌드 파일](../../builds/0.20.5/TheLastThrone-0.20.5.rbxlx). 빌드 산출물은 Git에서 제외된 로컬 파일이다.
+- **현재 확인된 게시:** 2026-10-28 사용자가 `0.18.3`을 독립 The Last Throne Experience `10773575153`, 시작 Place `70829337938054`에 게시했다. Creator Dashboard의 게시 Place 버전은 **4**, 확인 당시 접근은 Private이며 Git 태그 `v0.18.3`을 해당 빌드 소스에 푸시했다. Roblox의 Place 버전과 게임 빌드 버전은 서로 다르다. `0.18.4~0.20.5`는 게시되지 않았다. [게시 기록](../evidence/k0/build.md).
 - **0.18.7 증거:** 격리 Studio 빌드 smoke 458개, 서버 전투 401개, 스킬 자세 35개, 적중 효과 102개, R6/R15 Overhead 회전 경로 6개, 무기 회귀 2,238개 통과. 0.18.6 양손·수평 방어 동적 리그 42개 검사도 통과했다. 이는 실제 게시 클라이언트·실기기·다인·시각적 완성 수용과 구분한다.
 - **0.18.8 증거:** 고정 빌드 smoke 458개, 서버 전투 452개, UI 상태 83개, 타이밍 106개 통과. 격리 Studio의 실제 Player에서 네 직업의 기본3 기술 입력·자원 표시를 부분 확인했다. [자원 검증](../evidence/k0/2026-10-29-stamina-removal.md).
 - **0.18.9 증거:** 고정 빌드 smoke 458개와 UI 상태 85개 통과. 격리 Studio의 실제 Player로 수정된 Lv20/40 슬롯 안내, Knight 액션·회복·물약·사망/리스폰 일부를 확인하고 슬라임 분열 재적중을 발견했다. [Player 기록](../evidence/k0/2026-10-29-player-combat-and-slime.md).

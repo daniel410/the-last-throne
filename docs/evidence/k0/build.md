@@ -499,3 +499,14 @@ TD 배틀 HP 프레임과 공통 패널·버튼 셸을 HUD에 적용했다. 원�
 ## 0.20.3 — 사용자 요청 UI 균형 조정
 
 입력 소스 `32cc0d05e270c30e14c619061cb6e939d242567e`를 origin/main에 고정 후 `rojo build default.project.json --output builds/0.20.3/TheLastThrone-0.20.3.rbxlx` 성공(종료0).1,009,590 bytes, SHA256 `3ad8b612a880f353ed16c8610ac58135f33444d8fb099c2feb44e75b7843561d`. Dodge V 제거/R 유지, Attack16px 왼쪽/Sprint14px 오른쪽, 아이템과 스킬32px 간격·붉은 아이템 셸 적용. GUI101개 통과, 실제 Knight Player에서 V→회피0/R→회피1과 표시·390×700/640×360 Root 배치 확인. [로그·화면·범위](../battle-hud/README.md). 로컬 일반 빌드이며 Roblox 게시·릴리스 태그·실기기 검증은 수행하지 않았다.
+
+## 0.20.4~0.20.5 — Attack 추가 이동·HP 자연 회복 감속
+
+각 소스/VERSION을 커밋·푸시하고 원격 일치 확인 후 Rojo7.7.1 `rojo build default.project.json --output builds/<version>/TheLastThrone-<version>.rbxlx` 성공(종료0). 각각1,009,590 bytes, Git 제외 로컬 산출물이다.
+
+| 버전 | 소스 | SHA256 | 결과 |
+| --- | --- | --- | --- |
+| 0.20.4 | `93373b9520af360825a01197364c0c08e6128e59` | `4e38367dc573e7e6cff00d6cb1bd19c4db98da8d910186dc64903988c1ca8742` | Attack x118→102,실제 Knight Player 위치/비겹침 assert 통과 |
+| 0.20.5 | `aa4d691c69fa81ea6c3bfb3476b44ca5bf6c94f0` | `fa205ba9b64373b9ce72e0fda0fb71dd089c5c3309a639d7e3fcf5c07cbc7f13` | HP 초당0.2%→0.1%,서버481개 통과. 실제 Knight HP500→504.996/5.011초 측정 |
+
+[검증·화면·미검증](../battle-hud/README.md). Studio 격리 시험이며 Roblox 게시·릴리스 태그·실기기 수용을 수행하지 않았다. 다른 작업의 스토리 문서 커밋은 보존했다.

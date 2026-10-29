@@ -40,3 +40,13 @@ TLT-028/084 일부. Dodge의 V 바인딩/힌트를 제거하고 키보드는 R�
 ## 0.20.4 — Attack 추가 이동
 
 사용자 요청으로 Attack x118→102,16px 더 왼쪽. 소스 `93373b9520af360825a01197364c0c08e6128e59`를 푸시/원격 일치 확인 후 Rojo 빌드 성공.1,009,590 bytes, SHA256 `4e38367dc573e7e6cff00d6cb1bd19c4db98da8d910186dc64903988c1ca8742`. 격리 실제 Knight Player에서 x102·Dodge와 수평 비겹침 assert 통과. QA Play 중지/bridge 종료130. 같은 작업 중 추가된 HP 회복 요청은0.20.5로 분리한다. 다른 작업의 숨겨진 퀘스트 문서 커밋은 보존했다.
+
+## 0.20.5 — HP 자연 회복 추가 감속
+
+TLT-005 전투 조정. 사용자 추가 요청으로 HealthRegenFraction을0.002→0.001, 최대 HP의 초당0.2%→0.1%로 절반 감속했다. 최대 HP1000이면 초당2→1이다. 전투 중 회복·최대치 제한·사망 후 회복 없음·기본 Roblox 회복 억제는 유지한다. 회복 대상 네 클래스, 물약과 MP 수치는 그대로다.
+
+소스 `aa4d691c69fa81ea6c3bfb3476b44ca5bf6c94f0`를 푸시하고 원격 일치를 확인한 뒤 Rojo7.7.1 빌드 성공.1,009,590 bytes, SHA256 `fa205ba9b64373b9ce72e0fda0fb71dd089c5c3309a639d7e3fcf5c07cbc7f13`. `run-in-roblox --place builds/0.20.5/TheLastThrone-0.20.5.rbxlx --script tests/k0-basic-attacks-native.luau` 종료0,481개 통과/실패0, 그중 네 직업 회복/최대치/사망12개. [원시 로그](0.20.5-combat.log).
+
+실제 단일 Knight Player 서버에서 HP500으로 설정하고5.0107초 후504.9962, 약4.9962 회복을 측정해 초당1과0.5HP 이내 허용오차 assert 통과. [측정 전사](0.20.5-regen-observation.json). HP 감소 설정은 격리 QA만 적용했다. [실제 화면](0.20.5-pc.png)에서 Attack x102와 HP506/1000 표시 확인. 버튼 누름 도구는 Success였으나 관측 상태는 READY여서 실제 공격 성공 증거로 계산하지 않는다. 다른 직업의 실제 Player 회복·실기기/다인·사용자 체감은 미검증. Play 중지 후 bridge 종료130. 기존203785492 자산 유형 경고가 관측됐다. Roblox 게시·릴리스 태그 없음. 다음 담당: QA 밸런스 체감 및 기기 수용.
+
+0.20.5 QA bridge에는 Studio MaterialManager debug.profileEnd 경고도 관측됐다. 게임 회복 측정 및 서버 검사 통과와 별도 기록한다.

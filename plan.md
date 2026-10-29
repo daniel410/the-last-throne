@@ -36,7 +36,7 @@
 
 컨셉·HTML 동작 보드·정적 계산이 있다는 사실을 게임 기능 완료로 계산하지 않는다. 기존 모델은 메시 재사용 이점이 있지만 근접 액션용 리그·타격·AI까지 대체하지 않는다. 신규 계획 문서의 완성은 G0의 일부 입력이며 게임 게이트 통과가 아니다.
 
-현재 0.20.3의 로비·네 영웅·전투/12개 시험 기술·장비8슬롯·가방/계정 창고와 미수령 원형, 최신 확정 규칙과 미구현 차이는 [현재 개발 상태](docs/production/current-status.md)를 따른다. Studio는 세션 보관이며 실제 게시 저장/재접속·정식 성장 수용은 별도다. [장비 구현 증거](docs/evidence/inventory/README.md)와 [영웅별 스킬 성장 설계](docs/production/hero-skill-progression-design.md)에 다음 검증과 제작 입력을 연결한다.
+현재 0.20.5의 로비·네 영웅·전투/12개 시험 기술·장비8슬롯·가방/계정 창고와 미수령 원형, 최신 확정 규칙과 미구현 차이는 [현재 개발 상태](docs/production/current-status.md)를 따른다. Studio는 세션 보관이며 실제 게시 저장/재접속·정식 성장 수용은 별도다. [장비 구현 증거](docs/evidence/inventory/README.md)와 [영웅별 스킬 성장 설계](docs/production/hero-skill-progression-design.md)에 다음 검증과 제작 입력을 연결한다.
 
 ## 3. 변하지 않을 기준과 검증할 제안
 
