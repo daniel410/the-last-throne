@@ -375,3 +375,10 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 제한 | 실제 플레이의 손 접촉·자세, 네트워크 복제 및 모바일 버튼 수용 미검증. [상세](2026-10-28-two-handed-guard.md) 참고. |
 
 일반 빌드이며 릴리스 태그와 Roblox 게시를 하지 않았다.
+
+### 0.18.3 Roblox 게시 기록
+
+- 2026-10-28 20:24 EDT: 사용자가 Studio의 `TheLastThrone-0.18.3.rbxlx`에서 기존 The Last Throne Experience `10773575153`, 시작 Place `70829337938054`에 게시했다. 자동화는 구 Studio 창만 제어하여 게시 동작은 사용자가 직접 수행했다.
+- Studio Edit에서 Place/Experience ID와 양손 방어 코드 존재를 확인했다. Creator Dashboard의 Version History에서 **게시된 Place 버전 4**와 시간을 확인했다. Experience의 게임 접근과 대상은 확인 당시 Private이었다.
+- Roblox의 Place 버전 4와 게임 빌드 버전 `0.18.3`은 서로 다른 번호다. 빌드 SHA-256은 위의 0.18.3 기록과 같다. 실제 게시된 Roblox 클라이언트에서의 시각·입력·음원 재생 및 제한 자산 권한은 별도 검증 대상이다.
+- 주석 태그 `v0.18.3`은 빌드 입력 커밋 `bc67459207f937b146c988d65a5e43648c73eefb`를 가리키며 원격에 푸시하고 역참조를 확인했다.
