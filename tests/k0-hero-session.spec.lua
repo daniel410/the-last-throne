@@ -81,12 +81,12 @@ local function character(position)
 end
 local first, other = player("First"), player("Other")
 players.list = { first, other }
-local lobbySpawn, tutorialSpawn = {}, {}
+local lobbySpawn, tutorialSpawn, trainingSpawn = {}, {}, {}
 local spawnRequests = {}
 local spawnAvailable = true
 local Service = dofile("src/server/Lobby/HeroSessionService.luau")
 Service.start({
-	lobbySpawn = lobbySpawn, tutorialSpawn = tutorialSpawn,
+	lobbySpawn = lobbySpawn, tutorialSpawn = tutorialSpawn, trainingSpawn = trainingSpawn,
 	lobbyBounds = { center = Vector3.new(0, 96, 512), size = Vector3.new(160, 40, 160) },
 	requestSpawn = function(person, destination, requestId)
 		table.insert(spawnRequests, { player = person, destination = destination, id = requestId })
@@ -246,6 +246,22 @@ local recovery = spawnRequests[#spawnRequests]
 generation = generation + 1
 ready(first, recovery.id, generation)
 check(first.response.snapshot.phase == "Lobby", "failed transition can recover to lobby")
+value,errorCode=request(first,"StartTraining")
+check(errorCode==nil and value.training==true,"lobby can enter training")
+local trainingLoad=spawnRequests[#spawnRequests]
+check(trainingLoad.destination==trainingSpawn,"training has its own server destination")
+generation=generation+1
+local trainingLife=ready(first,trainingLoad.id,generation,Vector3.new(-20,4,56))
+check(Service.getActiveHero(first).training==true,"active hero identifies training route")
+value,errorCode=request(first,"StartTutorial")
+check(errorCode==nil and value.training==false and Service.getCombatContext(first,trainingLife)==nil,"training can enter Deepwood and fences old life")
+local adventureLoad=spawnRequests[#spawnRequests]
+check(adventureLoad.destination==tutorialSpawn,"Deepwood route is distinct from training")
+generation=generation+1;ready(first,adventureLoad.id,generation,Vector3.new(-20,4,56))
+value,errorCode=request(first,"StartTraining")
+check(errorCode==nil and value.training==true,"adventure menu can return to training")
+local lastTraining=spawnRequests[#spawnRequests];generation=generation+1;ready(first,lastTraining.id,generation,Vector3.new(-20,4,56))
+request(first,"ReturnLobby");local finalLobby=spawnRequests[#spawnRequests];generation=generation+1;ready(first,finalLobby.id,generation)
 for index = 1, 30 do remote.OnServerEvent:Fire(first, "CreateHero", "spam-" .. index, "knight") end
 check(first.response.errorCode == "TooFast" and guid == 4, "burst requests are bounded without extra heroes")
 players.PlayerRemoving:Fire(first)

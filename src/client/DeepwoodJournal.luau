@@ -35,7 +35,7 @@ function Journal.start(hud)
  dismiss.Activated:Connect(function() dialog.Visible=false;setOpen(panel.Visible) end)
  retry.Activated:Connect(function() request:FireServer('Retry');setOpen(false) end)
  UIS.InputBegan:Connect(function(input,processed)
-  if not processed and input.KeyCode==Enum.KeyCode.J and current and player:GetAttribute('K0SessionPhase')=='Tutorial' then setOpen(not panel.Visible) end
+  if not processed and input.KeyCode==Enum.KeyCode.J and current and not current.training and player:GetAttribute('K0SessionPhase')=='Tutorial' then setOpen(not panel.Visible) end
  end)
  local function ready(c,g) return current and Progress.available(current.journal,c,g) end
  local function point(c,g)
@@ -44,6 +44,9 @@ function Journal.start(hud)
  end
  local function render()
   if not current then return end
+  if current.training then
+   hud.setStory(nil);target=nil;marker.Adornee=nil;dialog.Visible=false;setOpen(false);return
+  end
   local s=current.journal;coins.Text=string.format('RPG Coins: %d  ·  Story + combat',s.coins+(s.killCoins or 0))
   for _,child in ipairs(list:GetChildren()) do if child:IsA('GuiObject') then child:Destroy() end end
   local first
@@ -87,7 +90,7 @@ function Journal.start(hud)
  local elapsed=0
  RunService.Heartbeat:Connect(function(dt)
   elapsed=elapsed+dt;if elapsed<.2 then return end;elapsed=0
-  local phase=player:GetAttribute('K0SessionPhase');local alive=phase=='Tutorial'
+  local phase=player:GetAttribute('K0SessionPhase');local alive=phase=='Tutorial' and not (current and current.training)
   gui.Enabled=alive;marker.Enabled=alive
   if not alive then panel.Visible=false;dialog.Visible=false;player:SetAttribute('TLTStoryOpen',false);return end
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')

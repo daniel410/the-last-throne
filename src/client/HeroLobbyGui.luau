@@ -153,7 +153,9 @@ function LobbyGui.create(request,onManage)
 	local errorLabel = label(shell, "Message", Text.Lobby.Loading, UDim2.new(0, 18, 1, -151), UDim2.new(1, -36, 0, 36), 12, COLOR.error)
 	local classLock = label(shell, "ClassLock", Text.Lobby.ClassLock, UDim2.new(0, 18, 1, -112), UDim2.new(1, -36, 0, 30), 11, COLOR.muted)
 	local selection = label(shell, "Selection", Text.Lobby.Choose, UDim2.new(0, 18, 1, -76), UDim2.new(1, -242, 0, 58), 12, COLOR.cream)
-	local start = button(shell, "StartTutorial", Text.Lobby.Start, UDim2.new(1, -214, 1, -66), UDim2.fromOffset(196, 46))
+	local training = button(shell, "StartTraining", Text.Lobby.Training, UDim2.new(.3,0,1,-56), UDim2.new(.26,-8,0,44))
+ training.Activated:Connect(function() if not busy and current and current.canStart then request("StartTraining") end end)
+ local start = button(shell, "StartTutorial", Text.Lobby.Start, UDim2.new(1, -214, 1, -66), UDim2.fromOffset(196, 46))
 	start.Activated:Connect(function()
 		if busy or not current then return end
 		if current.phase == "SpawnFailed" then request("ReturnLobby")
@@ -258,6 +260,7 @@ function LobbyGui.create(request,onManage)
 		start.Active = not busy and (current.canStart or current.phase == "SpawnFailed")
 		start.Selectable, start.AutoButtonColor = start.Active, start.Active
 		start.BackgroundTransparency = start.Active and 0 or 0.6
+  training.Active=not busy and current.canStart;training.Selectable=training.Active;training.AutoButtonColor=training.Active;training.BackgroundTransparency=training.Active and 0 or .6
 		if not gui.Enabled and GuiService.SelectedObject and GuiService.SelectedObject:IsDescendantOf(gui) then
 			GuiService.SelectedObject = nil
 		elseif gui.Enabled and UserInputService:GetLastInputType().Name:match("^Gamepad") then
@@ -292,8 +295,10 @@ function LobbyGui.create(request,onManage)
 		classLock.TextSize=10;classLock.Visible=not short
 		errorLabel.Position,errorLabel.Size=UDim2.new(0,22,1,-78),UDim2.new(1,-44,0,20)
 		selection.Visible=false
-		manage.Position,manage.Size=UDim2.new(0,22,1,-56),UDim2.new(.38,-28,0,44);manage.TextSize=compact and 10 or 13
-		start.Position,start.Size=UDim2.new(.4,0,1,-56),UDim2.new(.6,-22,0,44)
+		manage.Position,manage.Size=UDim2.new(0,22,1,-56),UDim2.new(.28,-28,0,44);manage.TextSize=compact and 10 or 13
+		training.Position,training.Size=UDim2.new(.29,0,1,-56),UDim2.new(.25,-8,0,44)
+  training.TextSize=compact and 10 or 13
+  start.Position,start.Size=UDim2.new(.55,0,1,-56),UDim2.new(.45,-22,0,44)
 		start.BackgroundColor3=Color3.fromRGB(20,120,46)
 		explore.Position,explore.Size=UDim2.new(1,-54,0,52),UDim2.fromOffset(44,44)
 		explore.BackgroundColor3=Color3.fromRGB(170,29,46)

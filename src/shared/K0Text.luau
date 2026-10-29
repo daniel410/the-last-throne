@@ -53,6 +53,7 @@ return {
 		Owned = "CLASS LOCKED",
 		NewHero = "NEW HERO",
 		Start = "ENTER DEEPWOOD",
+  Training = "TRAINING",
 		Starting = "ENTERING DEEPWOOD...",
 		Loading = "Loading your lobby character. Please wait.",
 		Returning = "Returning to Hub. Please wait.",

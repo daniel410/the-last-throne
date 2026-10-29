@@ -44,7 +44,7 @@ local function snapshot(state)
 		})
 	end
 	return {
-		revision = state.revision, phase = state.phase, heroes = heroes,
+		revision = state.revision, phase = state.phase, heroes = heroes, training = state.route == "Training",
 		selectedHeroId = state.selectedHeroId, activeHeroId = state.mode == "Tutorial" and state.selectedHeroId or nil,
 		canManage = state.phase == "Lobby" and state.ready and state.profileReady and inventoryReady,
 		canStart = state.phase == "Lobby" and state.ready and state.profileReady and inventoryReady and selectedHero(state) ~= nil,
@@ -62,6 +62,7 @@ end
 local function changed(state)
 	state.revision = state.revision + 1
 	state.player:SetAttribute("K0SessionPhase", state.phase)
+ state.player:SetAttribute("TLTRoute", state.route or "Deepwood")
 	publish(state)
 end
 
@@ -102,7 +103,7 @@ local function transition(state, mode)
 	state.phase = mode == "Tutorial" and "LoadingTutorial" or "ReturningLobby"
 	state.transitionId = state.transitionId + 1
 	changed(state)
-	local destination = mode == "Tutorial" and (settings.tutorialDestination and settings.tutorialDestination(state.player,selectedHero(state).heroId) or settings.tutorialSpawn) or settings.lobbySpawn
+	local destination = mode == "Tutorial" and (state.route == "Training" and (settings.trainingSpawn or settings.tutorialSpawn) or (settings.tutorialDestination and settings.tutorialDestination(state.player,selectedHero(state).heroId) or settings.tutorialSpawn)) or settings.lobbySpawn
 	local ok = settings.requestSpawn(state.player, destination, state.transitionId)
 	if not ok then
 		-- Keep the old life ineligible. The user can safely retry the same route.
@@ -121,7 +122,7 @@ local function validateRequest(action, requestId, argument, extraCount)
 	if action == "SetSkillSlot" then return type(argument) == "string" and argument:match("^[1-5]:[0-3]$") ~= nil end
 	if action == "PracticeAdvance" then return argument == nil end
 	if action == "SelectHero" then return type(argument) == "string" and #argument > 0 and #argument <= 64 end
-	return (action == "GetState" or action == "StartTutorial" or action == "ReturnLobby") and argument == nil
+	return (action == "GetState" or action == "StartTutorial" or action == "StartTraining" or action == "ReturnLobby") and argument == nil
 end
 
 local function consumeToken(state)
@@ -135,6 +136,12 @@ end
 
 local function execute(state, action, argument)
 	if action == "GetState" then return nil end
+ if (action=="StartTutorial" or action=="StartTraining") and state.mode=="Tutorial" then
+  if state.phase~="Tutorial" or not state.ready or not selectedHero(state) or state.busy then return "Busy" end
+  if settings.inventory and not settings.inventory.available(state.player) then return "InventoryUnavailable" end
+  state.route=action=="StartTraining" and "Training" or "Deepwood"
+  return transition(state,"Tutorial")
+ end
 	if action == "ReturnLobby" then
 		if state.phase == "Lobby" then return nil end
 		if state.mode ~= "Tutorial" and state.phase ~= "SpawnFailed" then return "Busy" end
@@ -185,8 +192,9 @@ local function execute(state, action, argument)
 		hero.practiceAdvanced = not hero.practiceAdvanced
 		if not hero.practiceAdvanced then hero.skillSlots[4] = 0; hero.skillSlots[5] = 0 end
 		changed(state)
-	elseif action == "StartTutorial" then
+	elseif action == "StartTutorial" or action == "StartTraining" then
 		if not selectedHero(state) then return "SelectHeroFirst" end
+		state.route = action == "StartTraining" and "Training" or "Deepwood"
 		return transition(state, "Tutorial")
 	end
 	return nil
@@ -306,7 +314,7 @@ function HeroSessionService.getActiveHero(player)
 	local state = sessions[player]
 	local hero = state and selectedHero(state)
 	if not hero or not connected(state) then return nil end
-	return { heroId = hero.heroId, classId = hero.baseClassId,
+	return { heroId = hero.heroId, classId = hero.baseClassId, training = state.route == "Training",
 			skillSlots = { table.unpack(hero.skillSlots) }, practiceAdvanced = hero.practiceAdvanced, epoch = state.epoch }
 end
 

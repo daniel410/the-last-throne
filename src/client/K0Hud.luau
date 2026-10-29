@@ -242,7 +242,7 @@ function Hud.create()
 	local back = Instance.new("TextButton")
 	back.Name = "BackToLobby"
 	back.AnchorPoint = Vector2.zero
-	back.Position = UDim2.fromOffset(10,140)
+	back.Position = UDim2.fromOffset(10,184)
 	back.Size = UDim2.fromOffset(168, 42)
 	back.BackgroundColor3 = COLORS.blue
 	back.BorderSizePixel = 0
@@ -321,7 +321,7 @@ function Hud.create()
 		items = itemButtons,
 		dodge = dodge,
 		back = back,
-		heroMenu=minimap.hero,bagMenu=minimap.bag,journalMenu=minimap.journal,
+		heroMenu=minimap.hero,bagMenu=minimap.bag,journalMenu=minimap.journal,trainingMenu=minimap.training,
 		setVisible = function(visible)
 			gui.Enabled = visible
 			topGui.Enabled=visible
@@ -331,6 +331,12 @@ function Hud.create()
 			classLabel.Text = Text.Class[classId] or ""
 		end,
 		setStory = function(value)
+   if not value then
+    subtitle.Text="TRAINING GROVE"
+    if storyTracker then practice.Title.Text=Text.PracticeTitle;objective.Text=Text.Practice.Move;note.Text=Text.Practice.Note end
+    storyTracker=nil;return
+   end
+   subtitle.Text=Text.Subtitle
    storyTracker=value
    practice.Title.Text=value.title;objective.Text=value.objective;note.Text=value.note
   end,

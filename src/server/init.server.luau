@@ -14,6 +14,7 @@ heroSession.start({
 	inventory = inventory,
 	lobbySpawn = lobby.spawn,
 	tutorialSpawn = deepwood.spawns["DW-01"],
+ trainingSpawn = world.spawn,
  tutorialDestination = story.destination,
 	lobbyBounds = lobby.bounds,
  outpostBounds={center=deepwood.positions['DW-03'],size=Vector3.new(220,24,200)},
@@ -27,7 +28,7 @@ spawnService.start(lobby.spawn, {
  resolveDestination=function(player,previous)
   local phase=player:GetAttribute('K0SessionPhase')
   local h=heroSession.getActiveHero(player)
-  if h and (phase=='Respawning' or phase=='LoadingTutorial' or phase=='Tutorial') then return story.destination(player,h.heroId) end
+  if h and (phase=='Respawning' or phase=='LoadingTutorial' or phase=='Tutorial') then return h.training and world.spawn or story.destination(player,h.heroId) end
   return previous
  end,
 	onLifeStarted = heroSession.onLifeStarted,

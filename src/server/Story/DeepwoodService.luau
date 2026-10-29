@@ -16,7 +16,7 @@ local function active(player) return options.heroSession.getActiveHero(player) e
 local function publish(player,message)
  local h=active(player);if not h then return end
  local s=state(player,h.heroId);if not s then return end
- remote:FireClient(player,{heroId=h.heroId,journal=s,message=message,mode=player:GetAttribute('K0SessionPhase')})
+ remote:FireClient(player,{heroId=h.heroId,training=h.training,journal=s,message=message,mode=player:GetAttribute('K0SessionPhase')})
 end
 function Service.destination(player,heroId)
  local s=state(player,heroId)
