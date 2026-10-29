@@ -72,6 +72,10 @@ King Shaman을 쓰러뜨린 뒤 첫 봉인핵을 확보한다. 승리를 기뻐�
 
 각 선택 이야기는 [빼앗긴 식량 · Goblin King](deepwood-side-story-01-goblin-king.md), [폭포 아래 채석장 · King Ogre와 Cave Slime](deepwood-side-story-02-king-ogre.md), [붉은 전쟁터의 잔당 · Enraged Warlord](deepwood-side-story-03-enraged-warlord.md)이다. 각각 DW-04, DW-05, DW-07 완료 후 선택적으로 열린다. 세 이야기는 기존 일곱 본편 뒤에 추가된 독립 선택 의뢰이지 필수 스토리8~10이 아니다. 보상과 전투 수치는 미정이며 실제 구현 전이다.
 
+### 숨은 퀘스트
+
+기존 DW-S1~S3은 거점에서 받는 선택 의뢰다. 별도로 [숨은 퀘스트 DW-H1~H3](deepwood-hidden-quests.md)을 두어 습지의 Cave Slime 서식지, Goblin King 야영지의 식량 기록, King Ogre 채석장 바깥의 도구를 탐험으로 발견한다. 퀘스트는 단서 조사로 시작하며 발견 후 목표를 기록한다. 모든 숨은 퀘스트는 선택이고 보스 격파·메인 진행·승인 32구간 성장 보상과 독립적이다. 구현/플레이테스트 전 초안이다.
+
 ### 몬스터 10종 활용 리뷰
 
 | TD 현행 엔트리 | 실제 이야기 배치 초안 | 성격과 역할 |
