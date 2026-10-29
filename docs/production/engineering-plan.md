@@ -79,7 +79,7 @@ tests/                  # 정의/불변식/장애/통합 시나리오; 도구는
 | `SkillDefinition` | `abilityId`, `classId`, `pathId`, `requirements`, `resourceCosts`, `cooldown`, `phaseWindows`, `cancelRules`, `hitProfile`, `damageProfile`, `effectIds`, `animationProfileId`, `vfxProfileId`, `descriptionKey` | 기술의 준비/유효/회복·대상 상한·비용·기여 태그 일치. 마법사 입문/추가 원소를 전직 계열과 별도 해금 조건으로 표현 |
 | `EnemyDefinition` | `enemyId`, `modelKey`, `rigProfileId`, `statProfileId`, `actionIds`, `behaviorProfileId`, `leashProfile`, `spawnBudget`, `rewardPolicyId`, `childSpawnPolicy` | 시각 메시 크기와 논리 판정 분리. 자식 Slime/증원/재생성의 보상 중복 정책 명시 |
 | `QuestDefinition` | `questId`, `epicId`, `storyId`, `prerequisites`, `objectiveIds`, `checkpointIds`, `participationPolicyId`, `rewardBudgetRef`, `replayPolicy`, `personalChoiceIds`, `textKeys` | `DS-01`~`HG-07`의 원천ID 보존. 각 목표는 서버 사건·횟수·순서·실패/재시도 정책을 가짐 |
-| `ItemDefinition` | `itemDefinitionId`, `nameKey`, `descriptionKey`, `category`, `slot`, `classRequirements`, `levelRequirement`, `pathRequirement`, `uniqueGroup`, `powerTemplateId`, `bindingPolicy`, `stackPolicy`, `salePolicy`, `visualProfileId` | 9슬롯·요구조건·보호 품목·유료/플레이 획득 공통 성능 템플릿·시각 호환 검사 |
+| `ItemDefinition` | `itemDefinitionId`, `nameKey`, `descriptionKey`, `category`, `slot`, `classRequirements`, `levelRequirement`, `pathRequirement`, `uniqueGroup`, `powerTemplateId`, `bindingPolicy`, `stackPolicy`, `salePolicy`, `visualProfileId` | 8슬롯·요구조건·보호 품목·유료/플레이 획득 공통 성능 템플릿·시각 호환 검사 |
 | `RewardDefinition` | `rewardId`, `sourceVersion`, `sourceHash`, `xp`, `coins`, `itemGrants`, `claimScope`, `participationPolicyId` | [보상 정본](../../assets/balance/story-reward-budget.json) 참조. 그림의 수치나 목표Lv 역산으로 지급값 생성 금지 |
 | `StringEntry` | `key`, `enUS`, `placeholders`, `surface`, `reviewStatus` | 누락·타입·잘림·복수형·입력 방식별 문구. 한국어 기획 제목과 생성 이미지의 글자는 런타임 원문으로 쓰지 않음 |
 
@@ -144,11 +144,11 @@ lease 길이·갱신 주기·저장 큐 상한·재시도 시간은 TLT-041에�
 - 레벨 상승의 전후 차이로 지급량을 계산하고 보상ID를 함께 저장한다. 다중 레벨업/재시도에서 포인트를 다시 만들지 않는다. 파생 전투 능력치는 현재 정의·장비 revision으로 재계산하고 저장된 최종 ATK를 자격으로 신뢰하지 않는다.
 - 장비/스탯 변경이 최대HP·자원을 바꿀 때 현재값 보존/상한 조정 규칙을 정의한다. 교체·초기화·재입장을 회복/쿨다운 초기화 수단으로 만들지 않는다. 최신 결정은 Stamina 제거, 물리 스킬 개별 쿨다운 및 마법 스킬 MP·개별 쿨다운이다. 시험판의 Stamina 상태·비용·회복·HUD·오류와 스탯 연계 제거는 별도 구현 및 검증이 필요하다. 기존 서약/집중/열기와의 통합·계수 및 저장/복구는 미정이며, 행동 비용과 스킬 비용을 혼용하지 않는다.
 
-## 6. 장비9슬롯·소유권·다중 키 복구
+## 6. 장비8슬롯·소유권·다중 키 복구
 
 ### 초기 저장 배치 제안
 
-G3 첫 구현은 **RPG 계정 아이템 원본 한 키 안에 해당 계정의 가방·9슬롯·창고·미수령 상태를 함께 두는 안**을 우선 검증한다. 캐릭터별 화면/용량·귀속은 그대로 분리하며 물리 키 배치만 원자적 교환에 맞춘다. 같은 아이템을 캐릭터 키와 창고 키 양쪽의 독립 소유 사본으로 만들지 않는다.
+G3 첫 구현은 **RPG 계정 아이템 원본 한 키 안에 해당 계정의 가방·8슬롯·창고·미수령 상태를 함께 두는 안**을 우선 검증한다. 캐릭터별 화면/용량·귀속은 그대로 분리하며 물리 키 배치만 원자적 교환에 맞춘다. 같은 아이템을 캐릭터 키와 창고 키 양쪽의 독립 소유 사본으로 만들지 않는다.
 
 이 선택으로 장착 교환·가방↔창고·미수령→컨테이너의 위치 변경은 한 키 안에서 확정할 수 있다. **캐릭터 XP/Coins·리셋·공통 지갑·외부 지급 원천과의 거래는 여전히 다중 키**이며 아래 지속 작업 프로토콜이 필요하다. 캐릭터 세션 잠금만으로 공통 지갑/창고의 동시성이 해결된다고 보지 않는다.
 
@@ -156,7 +156,7 @@ G3 첫 구현은 **RPG 계정 아이템 원본 한 키 안에 해당 계정의 �
 | --- | --- |
 | 아이템 원본 | `instanceId`, `itemDefinitionId`, `definitionVersion`, `ownerUserId`, `binding`, `boundCharacterId?`, `quantity`, `location`, `version`, `locked`, `sourceGrantId`, `createdByOperationId` |
 | 위치 | `kind = bag / equipped / storage / pending / reserved / consumed`, 필요한 `characterId`, `slotId`, `grantId`, `operationId`. 활성 위치는 정확히 하나 |
-| 장착 슬롯 | `weapon`, `offhand`, `head`, `body`, `hands`, `feet`, `accessory1`, `accessory2`, `relic`. 망토 성능 슬롯 추가 없음 |
+| 장착 슬롯 | `weapon`, `offhand`, `head`, `body`, `hands`, `feet`, `accessory1`, `accessory2`. 망토는 의복; 별도 슬롯 없음, 몸통과의 호환·성능 미정 |
 | 변경 명령 | `requestId`, `characterId`, `sessionEpoch`, `instanceId`, `expectedItemVersion`, `expectedInventoryRevision`, `targetLocation`, `quantity`, `requestFingerprint` |
 | 지속 작업 | `operationId`, `kind`, `source`, `target`, `fingerprint`, `phase`, `sourceRevision`, `targetRevision`, `reservedAssets`, `outbox`, `result`, `lastAttemptAt`, `recoveryOwnerEpoch` |
 
@@ -232,7 +232,7 @@ TD Gold / RPG Coins / Command Points는 각 영역에 남긴다. 공유 업적/�
 | 지속 지급 | 구매ID·상품 버전·지급 payload·계정 권리/pending grant를 같은 권리 기록에서 한 번 확정. 아이템 instanceId는 첫 결정 뒤 고정. 구매 당시 캐릭터를 현재 캐릭터로 추측해 자동 장착하지 않음 |
 | 응답 | 지속 지급 권리를 확인한 경우만 `PurchaseGranted`. 저장 실패/불명·미설정·불일치면 `NotProcessedYet`과 관측 기록. 클라이언트 완료 신호로 지급하지 않음 |
 | 후속 수령 | 가방/창고 여유가 있으면 명시적 수령 명령으로 이동. 가득 차면 만료 없는 수령 대기. 같은ID 재시도·TD/RPG 왕복·캐릭터 변경·재접속에서도 한 권리만 존재 |
-| 소비 | 스탯/스킬 리셋권 구매와 거점 소비를 분리. 구매 장비는9슬롯/클래스/레벨·귀속/고유그룹 검사. 포인트·전직 시험·클래스 불변 조건을 우회하지 않음 |
+| 소비 | 스탯/스킬 리셋권 구매와 거점 소비를 분리. 구매 장비는8슬롯/클래스/레벨·귀속/고유그룹 검사. 포인트·전직 시험·클래스 불변 조건을 우회하지 않음 |
 
 현재 TD의 `robux:<PurchaseId>` 수령 기록을 새 RPG 라우터 도입으로 지우지 않는다. 지급 권리 저장과 실제 위치 적용이 나뉘면 §6 outbox·대상 중복 방지·미완료 복구를 사용한다. “PurchaseGranted 후 메모리 큐에만 남은 아이템”은 허용하지 않는다. 유료 미수령 목록의 영구 보존/페이지 분리는 크기 게이트에서 검증한다.
 
@@ -285,7 +285,7 @@ TD Gold / RPG Coins / Command Points는 각 영역에 남긴다. 공유 업적/�
 
 | 검증층 | 필요한 증거 |
 | --- | --- |
-| 정적/순수 규칙 | 정의/참조/영어 키·216노드 비용/선행·9슬롯 호환·스탯/스킬 불변식·XP32구간 정합성. 아직 없는 validator를 실행 완료로 적지 않음 |
+| 정적/순수 규칙 | 정의/참조/영어 키·216노드 비용/선행·8슬롯 호환·스탯/스킬 불변식·XP32구간 정합성. 아직 없는 validator를 실행 완료로 적지 않음 |
 | 서버 계약 | 위조 action/target·NaN/무한/큰 payload·중복/만료 입력·생명/세션 epoch·공격 구간 경계·벽·다중 적중·저장 콜백 재실행 |
 | 장애 주입 | 각 거래 단계 전후의 종료/저장 실패/응답 유실/중복 요청·복구 작업자 경합. 잔액·수량·포인트 보존과 단일 수령을 원천 기록으로 대조 |
 | Studio/엔진 | K0→K3 실제 판정/모션/리그·전멸·재시도·SP·모바일/패드 입력. Teleport/실기기 증거는 별도 |
@@ -306,7 +306,7 @@ TD Gold / RPG Coins / Command Points는 각 영역에 남긴다. 공유 업적/�
 | ENG-02 / TLT-005·006·031~036 | K0 입력/카메라·행동 상태·서버 피해/이동·기본AI. 리그/소켓 표본 선행 | KC-01~08 실제 판정/모션·기기/지연 증거 → Designer/Modeling/QA |
 | ENG-03 / TLT-007·008·009~012·037~040 | 원거리/선택 지원·공명·보스/퀘스트 대표 구간 | 솔로/4인 정상·전멸·재도전·성능 기준선 → Director/Planner |
 | ENG-04 / TLT-013·041·042·050~052 | 캐릭터 lease/epoch·4스탯/별도 스킬·전직/XP/보상 outbox·튜토리얼/표시 | Lv1~80 경계·중복/저장 불명·SP 복구 불변식·en-US 데이터 표시 → QA/Planner |
-| ENG-05 / TLT-043~048 | 아이템 원본·9슬롯·창고/pending·용량·기획 성능/경제표 연결·리셋 다중 키 복구 | 가득 찬 교환/부분 스택·동시 꺼내기·권 소비 중 종료·장기 크기 → QA/Designer |
+| ENG-05 / TLT-043~048 | 아이템 원본·8슬롯·창고/pending·용량·기획 성능/경제표 연결·리셋 다중 키 복구 | 가득 찬 교환/부분 스택·동시 꺼내기·권 소비 중 종료·장기 크기 → QA/Designer |
 | ENG-06 / TLT-016·021~024·049·053 | TD 전수 감사·공통 지갑/receipt·전환/환경·Place 왕복 | 기존 TD 보존·동시 소비·재영수증·구 writer 차단·실제 테스트 클라이언트 → QA/Director |
 | ENG-07 / TLT-014·015·054~059 | 4클래스·8계열·32단계·36+12기술·노드216 기준안 | 같은 투자/장비 예산·솔로/협동·영어/리그 호환 → Planner/Modeling/QA |
 | ENG-08 / TLT-060~083 | 후속 지역·던전·개인/공유 서사·길드/생활·8인 별도 구조 | 지역별 입력/보상/복구·장면별 부하·원천/권한 → 전 역할 |

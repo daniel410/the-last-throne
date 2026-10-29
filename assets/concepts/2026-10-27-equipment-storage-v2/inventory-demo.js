@@ -1,6 +1,6 @@
 (function(root){
 'use strict';
-const slots=['weapon','offhand','head','body','hands','feet','accessory1','accessory2','relic'];
+const slots=['weapon','offhand','head','body','hands','feet','accessory1','accessory2'];
 function createState(){return {level:5,classId:'knight',safe:true,bagCapacity:60,storageCapacity:120,items:[
 {id:'starter',name:'수련 기사의 검',slot:'weapon',location:'equipped',equippedSlot:'weapon',level:1,classId:'knight',qty:1,max:1,locked:true,power:12},
 {id:'shield',name:'수련 방패',slot:'offhand',location:'equipped',equippedSlot:'offhand',level:1,classId:'knight',qty:1,max:1,locked:true,power:3},

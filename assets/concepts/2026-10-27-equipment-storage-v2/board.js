@@ -1,6 +1,6 @@
 'use strict';
 const D=InventoryDemo,$=id=>document.getElementById(id);let state=D.createState(),selected='sword',filter='equipment',storage=false,pending=false;
-const names={weapon:'무기',offhand:'보조',head:'머리',body:'몸통',hands:'손',feet:'발',accessory1:'장신구1',accessory2:'장신구2',relic:'유물',accessory:'장신구',material:'재료',consumable:'소모품'};
+const names={weapon:'무기',offhand:'보조',head:'머리',body:'몸통',hands:'손',feet:'발',accessory1:'장신구1',accessory2:'장신구2',accessory:'장신구',material:'재료',consumable:'소모품'};
 function target(i){return i.slot==='accessory'?$('slotTarget').value:i.slot;}
 function notice(text){$('notice').textContent=text;render();}
 function card(i){const b=document.createElement('button');b.className='item '+(selected===i.id?'selected':'');b.textContent=i.name+'\n'+(i.level?'Lv'+i.level+' · ':'')+(i.qty>1?'×'+i.qty:'')+(i.locked?' · 잠김':'');b.onclick=()=>{selected=i.id;$('qty').value='1';document.body.classList.add('detail-open');render()};return b;}

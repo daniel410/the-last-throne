@@ -9,8 +9,7 @@
     "hands",
     "feet",
     "accessory1",
-    "accessory2",
-    "relic"
+    "accessory2"
   ],
   "capacity_draft": {
     "character_bag": 60,
@@ -29,14 +28,15 @@
     "overflow": "durable pending grant; no automatic expiry for these purchases",
     "capacity_monetization": "not added",
     "equip": "bag to slot, atomic swap; no direct storage equip",
-    "runtime": "none"
+    "runtime": "none",
+    "cloak": "clothing; no separate slot; compatibility and stats undecided"
   },
-  "revision": "2026-10-27-simplified-v2",
+  "revision": "2026-10-29-eight-slot-review",
   "ui": {
     "entry": "bag",
     "default_tab": "equipment",
     "fixed_slot": "automatic; accessory target only",
-    "equipment_slots": "collapsed equipment view; all 9 retained",
+    "equipment_slots": "collapsed equipment view; all 8 retained",
     "details": "collapsed",
     "organize": "collapsed",
     "storage": "hub entry; equipment qty fixed 1; stack quantity only",
