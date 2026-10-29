@@ -50,11 +50,6 @@ function InventoryGui.create(onVisibility, feedback)
 	for index, category in ipairs({"All","Equipment","Consumables","Materials"}) do
 		filterButtons[category] = Theme.button(filters,"Filter_"..category,Text[category],UDim2.new(),UDim2.new())
 	end
-	local search = Instance.new("TextBox")
-	search.Name,search.PlaceholderText,search.Text = "ItemSearch",Text.Search,""
-	search.BackgroundColor3,search.TextColor3,search.PlaceholderColor3=Color.ink,Color.text,Color.muted
-	search.Font,search.TextSize,search.ClearTextOnFocus=Enum.Font.GothamMedium,14,false
-	search.Parent=shell
 	local sort = Theme.button(shell,"SortItems","SORT: NAME",UDim2.new(),UDim2.fromOffset(130,40))
 	local content = Instance.new("Frame"); content.Name="Content"; content.BackgroundTransparency=1; content.Parent=shell
 	local function list(name)
@@ -275,8 +270,7 @@ function InventoryGui.create(onVisibility, feedback)
 		for _, item in ipairs(snapshot and snapshot.items or {}) do
 			local def=Catalog.items[item.definitionId]
 			if item.location.kind==kind and (kind~="bag" and kind~="equipped" or item.location.heroId==snapshot.heroId)
-				and (category=="All" or def.category==category)
-				and (search.Text=="" or string.find(string.lower(def.name),string.lower(search.Text),1,true)) then table.insert(items,item) end
+				and (category=="All" or def.category==category) then table.insert(items,item) end
 		end
 		table.sort(items,function(a,b)
 			local ad,bd=Catalog.items[a.definitionId],Catalog.items[b.definitionId]
@@ -389,10 +383,9 @@ function InventoryGui.create(onVisibility, feedback)
 			button.Position,button.Size=UDim2.fromOffset((index-1)*(fw+6),0),UDim2.fromOffset(fw,compact and 44 or 38)
 			button.Caption.TextSize=compact and 10 or 11; button.Caption.Text=compact and Text.ShortFilters[name] or Text[name]
 		end
-		search.Visible,sort.Visible=organizing,organizing
-		local searchY=compact and 176 or 112
-		search.Position,search.Size=UDim2.fromOffset(20,searchY),UDim2.new(1,-180,0,40)
-		sort.Position,sort.Size=UDim2.new(1,-150,0,searchY),UDim2.fromOffset(130,40)
+		sort.Visible=organizing
+		local sortY=compact and 176 or 112
+		sort.Position,sort.Size=UDim2.new(1,-150,0,sortY),UDim2.fromOffset(130,40)
 		content.Position,content.Size=UDim2.fromOffset(20,top),UDim2.new(1,-40,1,-top-62)
 		footer.Position,footer.Size=UDim2.new(0,20,1,-54),UDim2.new(1,-40,0,42)
 		message.Position,message.Size,message.TextSize=UDim2.new(0,24,1,-51),UDim2.new(1,-48,0,20),11
@@ -456,7 +449,6 @@ function InventoryGui.create(onVisibility, feedback)
 	storageTab.Activated:Connect(function() sourceTab="storage"; mobileDetail=false; resize(); render() end)
 	pendingButton.Activated:Connect(function() sourceTab="pending"; gearMode=false; mobileDetail=false; resize(); render() end)
 	for key,button in pairs(filterButtons) do button.Activated:Connect(function() category=key; selectedId=nil; mobileDetail=false; resize(); render() end) end
-	search:GetPropertyChangedSignal("Text"):Connect(function() render() end)
 	sort.Activated:Connect(function() sortMode=sortMode=="Name" and "Level" or "Name"; sort.Caption.Text="SORT: "..string.upper(sortMode); render() end)
 	shell:GetPropertyChangedSignal("AbsoluteSize"):Connect(function() resize(); render() end)
 	ContextActionService:BindActionAtPriority("InventoryToggle",function(_,state)

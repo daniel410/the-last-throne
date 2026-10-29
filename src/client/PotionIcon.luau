@@ -39,7 +39,7 @@ function Icon.create(parent, definition, position, size)
 		return root
 	end
 	local tier = definition.potionTier
-	local width, height = ({.46, .60, .72, .82})[tier], ({.46, .56, .66, .72})[tier]
+	local width, height = ({.53, .60, .72, .82})[tier], ({.53, .56, .66, .72})[tier]
 	local left, top = .5 - width / 2, .87 - height
 	local silver, gold = Color3.fromRGB(191, 216, 235), Color3.fromRGB(222, 185, 106)
 	part(root, "Neck", .4, top - .13, .2, .2, silver, .2)
