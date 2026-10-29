@@ -454,3 +454,15 @@ Run 모드의 Player 0 smoke는 플레이어 생성 순서를 확인하지 못�
 | 실제 Player와 한계 | 수정된 Lv20/40 안내·연습 전용 버튼 및 Knight 기술 1개를 확인. 0.18.8의 네 직업 검사를 이 빌드 전체의 실플레이 수용으로 간주하지 않는다. 작은 화면·다인·게시 환경·사용자 체감은 미검증. 기존 `203785492` 유형 경고가 재관측됐다. |
 
 일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.
+
+## 0.18.10 — 슬라임 분열 직후 같은 타격의 재적중 수정
+
+| 항목 | 결과 |
+| --- | --- |
+| 입력 소스 | `a054243d2ce4d4c4aa49075f36525e5869afa2f8`, `VERSION=0.18.10`, 빌드 전 origin/main 일치 |
+| 빌드 | Rojo 7.7.1 `rojo build default.project.json --output builds/0.18.10/TheLastThrone-0.18.10.rbxlx`, 종료 0 |
+| 결과물 | 907,341 bytes, SHA-256 `e7e0fdf6ce5ae63ab0be90afa6b06e65515960abbda0449def27a4d90c662b00`. Git 제외 로컬 파일 |
+| 격리 Studio | 고정 빌드 서버 전투 466개·타이밍 106개·smoke 458개 통과, 각 명령 종료 0. smoke 실패·수집 런타임 오류 0. [서버](slime-01810-server.log) · [타이밍](slime-01810-timing.log) · [smoke](slime-01810-smoke.log) |
+| 실제 Player와 한계 | 서버에서 부모 HP를 조절한 단일 Knight Play에서 처치한 검격 뒤 작은 슬라임 둘이 HP 55로 생존하고 다음 검격에 피해를 받았다. Mage의 MP 가득 참·소모 후 물약도 부분 확인했다. 사용자 시각 수용·실기기·다인·MP 부족·게시 환경은 미검증. [상세](2026-10-29-player-combat-and-slime.md). 기존 `203785492` 유형 경고가 재관측됐다. |
+
+일반 빌드이며 Roblox 게시와 릴리스 태그는 수행하지 않았다.

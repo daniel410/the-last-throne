@@ -2,7 +2,7 @@
 
 Throne Defense의 세계관·영웅·타워·맵·몬스터·포탈·왕좌와 3D 자산을 공유하는 Roblox 협동 액션 RPG입니다. 직접 조작 전투, 클래스 안의 전직과 스킬트리, 공명 연계, 탐험과 이야기를 중심으로 최고의 액션 RPG를 목표로 합니다.
 
-**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.18.9 · 비공개 게시 시험판 0.18.3 · Deepwood K0 원형 제작·검증**
+**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.18.10 · 비공개 게시 시험판 0.18.3 · Deepwood K0 원형 제작·검증**
 
 **개발 문서는 한국어, 게임의 UI·퀘스트·대사·아이템·스킬·상품·오류·음성/자막은 영어(en-US)로 제작합니다.**
 
@@ -23,7 +23,7 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 
 | 분야별 상세 계획 | 내용 |
 | --- | --- |
-| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.18.9 시험 구현·게시 상태·미구현 차이·다음 작업/수용 |
+| [현재 개발 상태와 결정](docs/production/current-status.md) | 0.18.10 시험 구현·게시 상태·미구현 차이·다음 작업/수용 |
 | [액션·스킬 설계](docs/production/action-and-skill-design.md) | 공통 액션·물리/마법 자원·전직별 슬롯·키/HUD |
 | [기획·시스템](docs/production/game-systems-plan.md) | 32구간 추적·후반8장 연결·전직/스탯/스킬·장비/경제·동료 |
 | [디자인·월드](docs/production/design-and-world-plan.md) | 승인 컨셉·맵/랜드마크·모바일/패드·가방 v2·접근성 |
@@ -109,7 +109,7 @@ TD 실제 아틀라스를 참조한 공통 보드와 로비HUD·로비 메뉴·�
 
 Deepwood 시험장에서 네 영웅의 공통 공격·방어·회피·달리기와 직업 스킬을 사용할 수 있습니다. 기사의 기본 스킬은 Shield Bash·Whirlwind·Provoke, 마법사는 Mana Bolt·Water Ball·Gravity입니다. 드워프는 Overhead Smash·Axe Throw·Ground Slam, 엘프는 Aimed Shot·Rapid Fire·Multi Shot을 사용합니다. Whirlwind·Gravity·Ground Slam·Multi Shot은 광역기이며 각 기본 스킬에 시험용 동작과 적중 효과가 있습니다. PC는 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R/V 회피, 1~5번 장착 스킬, Space 점프, X 표적 해제입니다. 0.18.8에서 Stamina를 제거해 물리 스킬은 개별 쿨다운만, 마법 스킬은 MP와 개별 쿨다운을 사용합니다. 정식 전직·저장은 미구현이며 5슬롯은 연습 전용입니다. [현재 상태와 검증](docs/production/current-status.md).
 
-우선 작업은 **0.18.9의 네 영웅 플레이 검증을 확장**하고, 제한 자산·배경 음악의 독립 Experience 사용 가능 여부를 확인하는 것입니다. 0.18.8에서 네 영웅의 기본 스킬 시전과 자원 표시, 0.18.9에서 수정된 전직 안내와 기사 기술을 격리 Studio로 일부 확인했습니다. 이어서 정식 영웅 저장·스킬 학습·Lv20/40 전직 완료에 따른 3→4→5 슬롯, 스킬 관리 HUD, Deepwood 첫 스토리 구간을 순서대로 진행합니다. 공개된 정식 서비스가 아니라 비공개 시험 환경이며 최신 0.18.9는 아직 Roblox에 게시되지 않았습니다. 상세 순서와 완료 조건은 [현재 개발 상태](docs/production/current-status.md) 및 [백로그](backlog.md)를 따릅니다.
+우선 작업은 **0.18.10의 네 영웅 플레이 검증을 확장**하고, 제한 자산·배경 음악의 독립 Experience 사용 가능 여부를 확인하는 것입니다. 0.18.8에서 네 영웅의 기본 스킬 시전과 자원 표시, 0.18.9에서 기사 액션·회복 일부, 0.18.10에서 수정된 슬라임 분열과 Mage 물약 일부를 격리 Studio의 실제 Player로 확인했습니다. 이어서 정식 영웅 저장·스킬 학습·Lv20/40 전직 완료에 따른 3→4→5 슬롯, 스킬 관리 HUD, Deepwood 첫 스토리 구간을 순서대로 진행합니다. 공개된 정식 서비스가 아니라 비공개 시험 환경이며 최신 0.18.10은 아직 Roblox에 게시되지 않았습니다. 상세 순서와 완료 조건은 [현재 개발 상태](docs/production/current-status.md) 및 [백로그](backlog.md)를 따릅니다.
 
 ## Deepwood 에픽·상세 시나리오
 

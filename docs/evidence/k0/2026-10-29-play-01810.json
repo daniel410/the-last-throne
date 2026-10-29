@@ -1,0 +1,115 @@
+{
+  "build": "0.18.10",
+  "source_commit": "a054243d2ce4d4c4aa49075f36525e5869afa2f8",
+  "build_sha256": "e7e0fdf6ce5ae63ab0be90afa6b06e65515960abbda0449def27a4d90c662b00",
+  "environment": "Unpublished Studio Play, one R15 Player, tool-generated input; parent and player HP controlled on server",
+  "results": {
+    "entry": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"placeId\":0,\"class\":\"knight\"}"
+        }
+      ],
+      "isError": false
+    },
+    "firstHit": {
+      "setup": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"playerHP\":1000,\"distance\":3.2970774173736574,\"seq\":0,\"enemyHP\":75}"
+          }
+        ],
+        "isError": false
+      },
+      "input": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"events\":{\"spawnTime1\":1793277150.723286,\"spawnTime2\":1793277150.724267,\"spawnSeq1\":1,\"spawnSeq2\":1},\"slimes\":{\"1\":{\"scale\":1,\"maxhp\":220,\"hp\":0,\"name\":\"Slime\"},\"3\":{\"name\":\"SmallSlime\",\"generation\":1,\"scale\":0.5,\"maxhp\":55,\"hp\":55},\"2\":{\"name\":\"SmallSlime\",\"generation\":1,\"scale\":0.5,\"maxhp\":55,\"hp\":55}},\"seq\":1,\"playerHP\":1000}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "nextAttack": {
+      "input": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"events\":{\"spawnTime1\":1793277150.723286,\"deadSeq1\":2,\"deadTime2\":1793277164.97127,\"spawnSeq1\":1,\"deadSeq2\":2,\"spawnTime2\":1793277150.724267,\"deadTime1\":1793277164.970977,\"spawnSeq2\":1},\"slimes\":{\"1\":{\"maxhp\":220,\"name\":\"Slime\",\"hp\":0}},\"seq\":2,\"playerHP\":387.930908203125}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "mageEntry": {
+      "input": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Success"
+          }
+        ],
+        "isError": false
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"state\":\"Idle\",\"maxmana\":100,\"mana\":100,\"phase\":\"Tutorial\",\"class\":\"mage\",\"hp\":1000,\"itemMP\":3}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    "magePotion": {
+      "full": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"feedback\":\"ManaFull\",\"mana\":100,\"count\":3}"
+          }
+        ],
+        "isError": false
+      },
+      "afterCast": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"mana\":80,\"seq\":1,\"count\":3}"
+          }
+        ],
+        "isError": false
+      },
+      "afterPotion": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"feedback\":\"ActionStarted\",\"mana\":100,\"count\":2,\"caption\":\"MP x2\"}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  }
+}

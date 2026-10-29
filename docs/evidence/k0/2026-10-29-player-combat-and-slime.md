@@ -27,8 +27,24 @@
 
 - 수정된 실제 서버 소스의 격리 Studio `tests/k0-basic-attacks-native.luau`: 466개 통과. 기본 검격·Whirlwind의 새끼 보호, 다음 공격·다른 플레이어 공격·연속 사격의 다음 화살은 유효한지 검사했다. Player 신원 모형과 가상 시각을 사용하는 fixture다.
 - `tests/k0-timing-native.luau`: 106개 통과. 첫 명령은 보고서상 통과였으나 종료 코드 1이었고 원인은 확인하지 못했다. 동일 소스의 재실행은 종료 0이었다. `lua tests/k0-rules.spec.lua` 125개, `lua tests/k0-hero-session.spec.lua` 89개 통과.
-- 새 빌드의 해시·고정 빌드 검사와 실제 Player 재검증은 [빌드 기록](build.md)에 별도 기록한다.
+- 고정 빌드 검사와 실제 Player 재검증은 아래와 [빌드 기록](build.md)에 기록한다.
+
+## 0.18.10 고정 빌드와 실제 Player 재검증
+
+입력 소스는 `a054243d2ce4d4c4aa49075f36525e5869afa2f8`, `VERSION=0.18.10`이다. Rojo 7.7.1로 만든 로컬 빌드의 크기는 907,341 bytes, SHA-256은 `e7e0fdf6ce5ae63ab0be90afa6b06e65515960abbda0449def27a4d90c662b00`이다. 빌드 전 소스 커밋과 `origin/main`의 일치를 확인했다. [빌드 파일](../../../builds/0.18.10/TheLastThrone-0.18.10.rbxlx)은 Git에서 제외된 로컬 산출물이다.
+
+- 고정 빌드의 격리 Studio 서버 fixture: `tests/k0-basic-attacks-native.luau` 466개, `tests/k0-timing-native.luau` 106개, `tests/k0-build-smoke.luau` 458개 통과. 각 명령 종료 0, smoke의 실패 및 수집 런타임 오류 0이다. [서버](slime-01810-server.log) · [타이밍](slime-01810-timing.log) · [smoke](slime-01810-smoke.log). 모두 Player 0명의 서버 검사이며, 다른 플레이어와 Rapid Fire 후속 화살은 fixture 조건에서 확인했다.
+- 독립 비게시 Studio Play의 R15 Player 1명이 도구로 보낸 PC 입력으로 Knight를 조작했다. 시험 서버에서 부모 HP를 75, Player HP를 1000으로 설정하고 기본 공격을 1회 입력하자 시퀀스 1에서 생성된 작은 슬라임 두 마리는 각각 HP 55/55, 크기 0.5로 살아 있었다. 두 번째 공격 시퀀스 2에서는 두 자식이 피해를 받고 사망했다. 자식 생존 및 이후 공격 가능 여부를 실제 Player 경로로 확인한 결과다.
+- 같은 빌드에서 Mage를 선택하고 C를 입력했다. MP가 100/100일 때 `ManaFull`, 수량 3을 유지했다. Gravity 사용으로 MP 80이 된 후 C 입력 시 MP 100, 수량 2 및 HUD `MP x2`를 확인했다. 자연 회복과 입력 간 시간은 통제하지 않아 정확한 물약 회복량 측정으로 간주하지 않는다. [실제 Player 속성 관측](2026-10-29-play-01810.json).
+
+고정 빌드 검증 명령은 아래와 같다. 서버 로그에는 Studio `MaterialManager`의 `debug.profileEnd` 경고와 기존 자산 유형 경고가 있으며, smoke의 수집 오류 0과 구분한다.
+
+```sh
+run-in-roblox --place builds/0.18.10/TheLastThrone-0.18.10.rbxlx --script tests/k0-basic-attacks-native.luau
+run-in-roblox --place builds/0.18.10/TheLastThrone-0.18.10.rbxlx --script tests/k0-timing-native.luau
+run-in-roblox --place builds/0.18.10/TheLastThrone-0.18.10.rbxlx --script tests/k0-build-smoke.luau
+```
 
 ## 남은 검증
 
-QA가 수정 빌드의 실제 Player·화면에서 분열 후 생존과 후속 공격을 재검증한다. Mage MP 부족과 물약, 나머지 직업의 전투 흐름, 다인 네트워크·모바일/패드·사용자 관찰은 별도다. 기존 `203785492` 자산 유형 경고는 이 작업에서 출처를 확인하지 못했다. 부모 티켓과 G1/G3를 완료로 표시하지 않는다.
+다음 담당 QA/DES는 나머지 직업과 무기·스킬 전투 흐름, Mage MP 부족, 분열의 화면 가독성과 사용자 조작감을 확인한다. QA/ENG는 다인 네트워크·지연, 모바일/패드, 게시 클라이언트 및 저장/재접속을 별도로 확인한다. HP 중복 회복의 관측은 한 Player의 한 조건에 한정된다. 기존 `203785492` 자산 유형 경고는 이 작업에서 출처를 확인하지 못했다. 부모 티켓과 G1/G3를 완료로 표시하지 않는다.
