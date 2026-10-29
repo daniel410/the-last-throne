@@ -52,7 +52,7 @@ F 감시탑 방향 출구
 
 공통 TD/RPG 프레임·아이콘을 사용해 영웅/장비·스탯·스킬·퀘스트·파티를 연다. 지역 지도에서 감시탑 목표를 확인하고 해금한 안전 거점으로 귀환할 수 있다. 새로운 원정 화면은 기본적으로 해당 경로/개인 진행을 안내하며, 모든 구역을 별도Place/포탈로 바꾸지 않는다.
 
-Goblin King/King Ogre 선택 의뢰는 관심 표시나 소문으로 소개할 수 있으나 메인 다음 단계·장비·레벨의 필수 조건으로 만들지 않는다. Enraged Warlord는 지역 해결 이후 선택 도전으로 남긴다.
+거점에서는 식량을 빼앗긴 주민과 폭포 아래 채석장에 관한 소문을 들을 수 있다. [Goblin King 의뢰](deepwood-side-story-01-goblin-king.md)는 DW-04 후, [King Ogre 의뢰](deepwood-side-story-02-king-ogre.md)는 DW-05 후 열린다. [Enraged Warlord 의뢰](deepwood-side-story-03-enraged-warlord.md)는 지역 결말 후 열린다. 모두 선택이며 메인 다음 단계·장비·레벨의 필수 조건이 아니다.
 
 ## 6. 보상·저장·협동
 
