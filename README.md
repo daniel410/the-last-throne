@@ -53,6 +53,7 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 | 5 | [클래스·전직·스킬트리](docs/class-advancement-and-skill-trees.md) | 플레이어4클래스·8전직 계열·32단계·기술·노드·자격 |
 | 5-1 | [영웅별 스킬 레벨업·트리 설계](docs/production/hero-skill-progression-design.md) | 현재 12기술 기반 강화·8계열 성장·포인트·구현 순서 제안 |
 | 6 | [기본 스탯·전투 능력치](docs/character-stats.md) | 힘·민첩·지력·체력·파생 능력치·성장/배분 초안 |
+| 6-1 | [클래스별 스탯 가이드 영어 초안](docs/player-guides/class-stat-guide.en-US.md) | 네 클래스·8계열 추천 방향과 미확정 항목 |
 | 7 | [기사 전투 상세 명세](docs/knight-combat-spec.md) | 기사 액션·기본 스킬·판정과 전투 성장 초안 |
 | 8 | [마법 분류·단계별 학습](docs/magic-schools-and-learning.md) | 비전/바람/물·Pyro/Cryo·추가 원소·광역·최강 주문 |
 | 9 | [동료·성녀NPC·전술 지원](docs/companions-and-support.md) | 셀레네·선택형AI동료·보호/정화·교단NPC·편성 |
@@ -106,7 +107,7 @@ TD 실제 아틀라스를 참조한 공통 보드와 로비HUD·로비 메뉴·�
 
 ## 다음 구현 작업
 
-Deepwood 시험장에서 네 영웅의 공통 공격·방어·회피·달리기와 직업 스킬을 사용할 수 있습니다. 기사의 기본 스킬은 Shield Bash·Whirlwind·Provoke, 마법사는 Mana Bolt·Water Ball·Gravity입니다. 드워프는 Overhead Smash·Axe Throw·Ground Slam, 엘프는 Aimed Shot·Rapid Fire·Multi Shot을 사용합니다. Whirlwind·Gravity·Ground Slam·Multi Shot은 광역기이며 각 기본 스킬에 시험용 동작과 적중 효과가 있습니다. PC는 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R/V 회피, 1~5번 장착 스킬, Space 점프, X 표적 해제입니다. 물리 스킬은 Stamina, 마법은 MP와 기술별 쿨다운을 사용합니다. 정식 전직·저장은 미구현이며 5슬롯은 연습 전용입니다. [현재 상태와 검증](docs/production/current-status.md).
+Deepwood 시험장에서 네 영웅의 공통 공격·방어·회피·달리기와 직업 스킬을 사용할 수 있습니다. 기사의 기본 스킬은 Shield Bash·Whirlwind·Provoke, 마법사는 Mana Bolt·Water Ball·Gravity입니다. 드워프는 Overhead Smash·Axe Throw·Ground Slam, 엘프는 Aimed Shot·Rapid Fire·Multi Shot을 사용합니다. Whirlwind·Gravity·Ground Slam·Multi Shot은 광역기이며 각 기본 스킬에 시험용 동작과 적중 효과가 있습니다. PC는 왼쪽 클릭 공격, Q/오른쪽 클릭 방어, E 유지 달리기, R/V 회피, 1~5번 장착 스킬, Space 점프, X 표적 해제입니다. 현재 시험판의 물리 스킬은 Stamina, 마법은 MP와 기술별 쿨다운을 사용합니다. 최신 결정은 Stamina 제거이며 시험판에는 아직 반영되지 않았습니다. 정식 전직·저장은 미구현이며 5슬롯은 연습 전용입니다. [현재 상태와 검증](docs/production/current-status.md).
 
 우선 작업은 **0.18.7에서 네 영웅을 실제 플레이로 검증**하고, 제한 자산·배경 음악의 독립 Experience 사용 가능 여부를 확인하는 것입니다. 이어서 정식 영웅 저장·스킬 학습·Lv20/40 전직 완료에 따른 3→4→5 슬롯, 스킬 관리 HUD, Deepwood 첫 스토리 구간을 순서대로 진행합니다. 공개된 정식 서비스가 아니라 비공개 시험 환경이며 최신 0.18.7은 아직 Roblox에 게시되지 않았습니다. 상세 순서와 완료 조건은 [현재 개발 상태](docs/production/current-status.md) 및 [백로그](backlog.md)를 따릅니다.
 

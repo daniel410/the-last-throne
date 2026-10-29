@@ -1,5 +1,7 @@
 > 2026-10-29 세 클래스 최신 초안: [드워프·엘프·마법사 재설계](dwarf-elf-mage-skill-trees-2026-10-29.md). 아래 이전 Lv24/28 기술3개 배치와 예산은 역사적 제안이다.
 
+> 최신 자원 결정: Stamina는 제거한다. 아래의 Stamina 비용·회복·강화 노드는 과거 제안/시험 구현 기록이며 현행 목표가 아니다. 물리 스킬은 개별 쿨다운, 마법 스킬은 MP와 개별 쿨다운을 사용한다. [결정표](../decisions.md).
+
 > 최신 결정: Lv15 공통 궁극기는 삭제했다. 선택 계열은 Lv80 전직 완료 시 궁극기1개를 해금한다. 아래 과거 스킬 수와 궁극기 기술 예산은 재설계 대상이다.
 
 # 영웅별 스킬 레벨업과 스킬트리 설계
@@ -10,7 +12,7 @@
 
 이 문서는 [0.18.7의 실제 세션 기술](../../src/shared/K0Config.luau)을 출발점으로 한 **정식 성장 설계안**이다. 수치·새 영문 기술명·변형·해금 순서와 빌드는 실험 전 제안이다. 정식 레벨·포인트·트리·전직·저장과 아래의 스킬 레벨업은 아직 구현되지 않았다. 현 프로토타입의 모든 기본 기술은 세션에서 즉시 사용 가능하며, 아래의 순차 학습은 정식 성장용 제안이다.
 
-사용자 결정은 네 클래스와 각 3개 기본 스킬, 클래스별 두 계열과 Lv20/40/60/80 전직, 기본 3개·Lv20/40 전직 완료 후 각각 4/5개 전투 슬롯이다. 기본 공격·블록·회피·스프린트는 공통 액션으로 자원을 소비하지 않고 공격·회피에는 별도 쿨다운이 없다. 물리 스킬은 Stamina, 마법 스킬은 MP와 기술별 쿨다운을 사용한다. 원형 엘프는 MP가 없고 마법궁수 전직 완료 후 MP를 추가한다. 궁극기의 별도 슬롯 여부는 미결정이다.
+사용자 결정은 네 클래스와 각 3개 기본 스킬, 클래스별 두 계열과 Lv20/40/60/80 전직, 기본 3개·Lv20/40 전직 완료 후 각각 4/5개 전투 슬롯이다. 기본 공격·블록·회피·스프린트는 공통 액션으로 자원을 소비하지 않고 공격·회피에는 별도 쿨다운이 없다. 최신 결정은 Stamina 제거다. 물리 스킬은 개별 쿨다운, 마법 스킬은 MP와 기술별 쿨다운을 사용한다. 아래 시험판 표의 Stamina 비용은 현행 시험 구현의 기록이며 목표 설계가 아니다. 원형 엘프는 MP가 없고 마법궁수 전직 완료 후 MP를 추가한다. 궁극기의 별도 슬롯 여부는 미결정이다.
 
 기존 [전직 및 트리 설계](../class-advancement-and-skill-trees.md)의 Lv2~80 매 레벨 1SP·총 79SP, 노드당 3랭크·랭크당 1SP, 클래스당 공통 6개와 두 계열 각각 24개, 전체 216개 노드는 기존 **기준안**이다. 스탯 316P와 별도다. 각 기술 자체의 무료 습득과 포인트를 쓰는 강화는 구분한다. 아래는 우선 12개 기본 스킬의 강화와 8계열의 성장 방향을 구체화한 설계이며 216개 노드 전체의 효과가 완성됐다는 뜻은 아니다.
 
@@ -66,9 +68,9 @@ C4는 C1, C5는 C2, C6은 C3을 최소 1랭크 투자해야 한다. 각 행의 �
 
 | 클래스 | C4 | C5 | C6 |
 | --- | --- | --- | --- |
-| Knight | Shield Bash 자세 피해 +2/랭크 | Whirlwind Stamina 비용 −1/랭크 | Provoke 범위 +0.25 stud/랭크 |
-| Elf | Aimed Shot 준비 시간 −2%/랭크 | Rapid Fire Stamina 비용 −1/랭크 | Multi Shot 유효 거리 +1 stud/랭크 |
-| Dwarf | Overhead Smash 자세 피해 +2/랭크 | Axe Throw Stamina 비용 −1/랭크 | Ground Slam 범위 +0.15 stud/랭크 |
+| Knight | Shield Bash 자세 피해 +2/랭크 | Whirlwind 강화 효과 재설계 | Provoke 범위 +0.25 stud/랭크 |
+| Elf | Aimed Shot 준비 시간 −2%/랭크 | Rapid Fire 강화 효과 재설계 | Multi Shot 유효 거리 +1 stud/랭크 |
+| Dwarf | Overhead Smash 자세 피해 +2/랭크 | Axe Throw 강화 효과 재설계 | Ground Slam 범위 +0.15 stud/랭크 |
 | Mage | Mana Bolt MP 비용 −1/랭크 | Water Ball 사거리 +1 stud/랭크 | Gravity 반경 +0.15 stud/랭크 |
 
 C4~C6은 공통 스킬 외 방어·자원·운용 중 하나를 담는 기존 예산에 맞춰 연결한 첫 실험안이다. 예전 문서의 서약·집중·열기는 신규 자원으로 자동 적용하지 않는다. 스킬별 계수와 기존 공통 노드 예시는 이 문서의 제안으로 재검토하되 사용자 승인을 받은 규칙으로 취급하지 않는다.
@@ -83,16 +85,16 @@ C4~C6은 공통 스킬 외 방어·자원·운용 중 하나를 담는 기존 �
 
 | 영웅·계열 | 새 액티브 3개 (가칭, 제안 획득) | Lv40 → Lv60 → Lv80 성장과 기본기 연결 |
 | --- | --- | --- |
-| Knight 강철기사 | Counter Slash Lv20, Iron Guard Lv24, Breaker Charge Lv28 | 방어 후 Counter Slash의 반격 → Shield Bash 자세 피해와 Breaker Charge 연계 → 방어/파쇄 중심 궁극기. Whirlwind와 Provoke로 군중 대응 유지. 모두 물리·Stamina. |
+| Knight 강철기사 | Counter Slash Lv20, Iron Guard Lv24, Breaker Charge Lv28 | 방어 후 Counter Slash의 반격 → Shield Bash 자세 피해와 Breaker Charge 연계 → 방어/파쇄 중심 궁극기. Whirlwind와 Provoke로 군중 대응 유지. 모두 물리·개별 쿨다운. |
 | Knight 성기사 | Oathblade Lv20, Dawn Burst Lv24, Radiant Bulwark Lv28 | Oathblade 표식과 Dawn Burst 연계 → 방어·아군 보호 강화 → 성광 보호 궁극기. Shield Bash/Whirlwind로 전선 유지. 성광 효과가 실제 마법인 기술은 MP 필요; 성기사의 MP 개방·자원 분류는 별도 결정 후 구현. |
-| Elf 명궁 | Precision Volley Lv20, Weakpoint Shot Lv24, Piercing Volley Lv28 | Aimed Shot과 약점 사격 → Rapid Fire/관통 위치 선정 → 정밀 일제사격 궁극기. 세 기본 스킬과 계열 기술 모두 물리·Stamina. |
-| Elf 마법궁수 | Elemental Arrow Lv20, Vine Trap Lv24, Storm Arrow Lv28 | 물리 기본 화살과 속성 표식 → 덩굴 유도와 광역 마법 화살 → 정령 화살비 궁극기. 전직 완료 때 MP 해금; 기본 3개는 Stamina, 새 세 기술의 마법 부분은 MP. |
-| Dwarf 강철 | Armor Splitter Lv20, Returning Echo Lv24, Mountain Strike Lv28 | Overhead Smash 자세 압박 → Axe Throw 회수 경로와 파쇄 연계 → 강한 충격 궁극기. 모두 물리·Stamina. |
-| Dwarf 화약 | Bomb Toss Lv20, Scatter Shot Lv24, Field Mortar Lv28 | Ground Slam으로 공간 확보 → 폭탄·사격·박격포 제압 → 공성 포격 궁극기. 화약 폭발은 물리 기술·Stamina, 무한 탄약 아이템 소모 없음. |
+| Elf 명궁 | Precision Volley Lv20, Weakpoint Shot Lv24, Piercing Volley Lv28 | Aimed Shot과 약점 사격 → Rapid Fire/관통 위치 선정 → 정밀 일제사격 궁극기. 세 기본 스킬과 계열 기술 모두 물리·개별 쿨다운. |
+| Elf 마법궁수 | Elemental Arrow Lv20, Vine Trap Lv24, Storm Arrow Lv28 | 물리 기본 화살과 속성 표식 → 덩굴 유도와 광역 마법 화살 → 정령 화살비 궁극기. 전직 완료 때 MP 해금; 기본 3개는 물리·개별 쿨다운, 마법 기술은 MP·개별 쿨다운. |
+| Dwarf 강철 | Armor Splitter Lv20, Returning Echo Lv24, Mountain Strike Lv28 | Overhead Smash 자세 압박 → Axe Throw 회수 경로와 파쇄 연계 → 강한 충격 궁극기. 모두 물리·개별 쿨다운. |
+| Dwarf 화약 | Bomb Toss Lv20, Scatter Shot Lv24, Field Mortar Lv28 | Ground Slam으로 공간 확보 → 폭탄·사격·박격포 제압 → 공성 포격 궁극기. 화약 폭발은 물리 기술·개별 쿨다운, 무한 탄약 아이템 소모 없음. |
 | Mage Pyro | Ember Lance Lv20, Earth Rise Lv40, Lava Eruption Lv60 | Mana Bolt/Water Ball/Gravity 공통 유지 → 화염+대지 연계 → 대규모 용암 광역 → Lv80 최강 화염 주문. 전부 마법·MP. |
 | Mage Cryo | Frost Lance Lv20, Chain Lightning Lv40, Froststorm Lv60 | Water Ball과 냉기 연계 → 번개·위치 선택 → 대규모 빙뢰 광역 → Lv80 최강 빙결 주문. 전부 마법·MP. |
 
-위의 계열 궁극기와 별도로 기존 공통 궁극기 4개는 제작 예산에 포함되지만, 공통/계열 궁극기 선택 조건과 장착 슬롯은 확정하지 않는다. 성기사의 물리 기술은 Stamina, 마법으로 분류된 기술은 MP라는 원칙을 지킨다. 아직 없는 MP를 임의로 지급하거나 성광이라는 이름만으로 물리/마법을 확정하지 않는다.
+위의 계열 궁극기와 별도로 기존 공통 궁극기 4개는 제작 예산에 포함되지만, 공통/계열 궁극기 선택 조건과 장착 슬롯은 확정하지 않는다. 성기사의 물리 기술은 자원 비용 없이 개별 쿨다운, 마법으로 분류된 기술은 MP와 개별 쿨다운이라는 원칙을 지킨다. 아직 없는 MP를 임의로 지급하거나 성광이라는 이름만으로 물리/마법을 확정하지 않는다.
 
 ### 계열 층과 선행
 
@@ -117,7 +119,7 @@ Lv20 전직 후 4칸, Lv40 전직 후 5칸이 열린다. 기술 학습은 별도
 | 강철기사 전선 | Shield Bash·Whirlwind·Provoke·Counter Slash·Iron Guard. C1/C3과 방어/반격 계열 노드 우선 | 돌진 기술을 빼 기동·단일 추격이 낮다. |
 | 강철기사 파쇄 | Shield Bash·Whirlwind·Counter Slash·Breaker Charge·Iron Guard. C1과 파쇄 노드 우선 | Provoke를 빼 주변 적 강제 유도가 없다. |
 | 명궁 정밀 | Aimed Shot·Rapid Fire·Multi Shot·Weakpoint Shot·Piercing Volley. C1 및 약점 경로 | 다른 계열 기술 한 개를 포기한다. |
-| 마법궁수 제어 | Aimed Shot·Multi Shot·Elemental Arrow·Vine Trap·Storm Arrow. 물리 Stamina와 마법 MP를 따로 관리 | Rapid Fire를 포기하며 자원 두 종류를 관리한다. |
+| 마법궁수 제어 | Aimed Shot·Multi Shot·Elemental Arrow·Vine Trap·Storm Arrow. 물리 쿨다운과 마법 MP를 관리 | Rapid Fire를 포기하며 마법 MP를 관리한다. |
 | 드워프 강철 투척 | Overhead Smash·Axe Throw·Ground Slam·Armor Splitter·Returning Echo. C1/C2와 회수 경로 | Mountain Strike 미장착. |
 | 드워프 화약 공성 | Axe Throw·Ground Slam·Bomb Toss·Scatter Shot·Field Mortar. 공성 및 안전 거리 우선 | Overhead Smash 미장착. |
 | Mage Pyro 지형 | Mana Bolt·Gravity·Ember Lance·Earth Rise·Lava Eruption. 광역 유도·화염/대지 | Water Ball 미장착; Lv60 이후 예시. |
