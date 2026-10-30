@@ -423,3 +423,5 @@ HP 물약 Small100/Medium300/Large500/XL1000,MP Small50/Medium100/Large200/XL500
 2026-10-29 모바일 후속 요청: 아이템·스킬 바는 화면 맨 아래, Block/Dodge/Sprint는 같은 크기로 왼쪽 한 열, Attack은 오른쪽 위의 기존 Sprint 위치로 옮긴다. 앞선 Sprint 상향 배치 제안은 이 최신 요청으로 대체한다.0.30.3에서 터치 전용 배치와 기본 점프 영역 간격을 적용한다.
 
 2026-10-29 마지막 정정 “반대순서”: 위→아래 **Sprint → Block → Dodge**, 동일56px·하단 안전 영역0px, Attack은 오른쪽 위64px로 확정한다. 앞선 Dodge/Block/Sprint 및 Block/Dodge/Sprint 순서는 대체한다.0.30.4 구현·검사로 추적한다.
+
+2026-10-29 Attack 후속 요청 “스프린트 옆에”: Attack64px은 기본적으로 Sprint 오른쪽 같은 높이로 고정한다. 비활성/숨은 모바일 JumpButton은 위치에 영향을 주지 않는다. 터치 점프와 실제 겹치는 경우에는 같은 높이의 Sprint 왼쪽을 사용한다.0.30.5 TLT-028/031/052/084 · ENG/DES → QA.

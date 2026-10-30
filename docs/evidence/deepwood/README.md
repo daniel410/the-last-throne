@@ -2,7 +2,7 @@
 
 2026-10-29 · ENG/DES/QA · TLT-011/028/031/041/043/046/047/050/052/061/084 부분 범위
 
-최신 로컬 빌드는 **0.30.4**, 입력 소스 `de297bcdf27835f9cd040c8c31ac49016548b1ec`다. [버전별 산출물·해시](builds.json) · [실제 Player 관측](player-observations.json) · [TD 몬스터 10종 원본](td-monsters.json). 실제 Roblox 게시와 릴리스 태그는 수행하지 않았다. 확인된 게시판은 계속0.18.3이다.
+최신 로컬 빌드는 **0.30.5**, 입력 소스 `3a999498598bc252ae03e89961fb33abf8f3c52e`다. [버전별 산출물·해시](builds.json) · [실제 Player 관측](player-observations.json) · [TD 몬스터 10종 원본](td-monsters.json). 실제 Roblox 게시와 릴리스 태그는 수행하지 않았다. 확인된 게시판은 계속0.18.3이다.
 
 ## 연결한 플레이 경로
 
@@ -77,3 +77,9 @@ QA/ENG: 최종 빌드에서 네 클래스 솔로·정상 전투로7스토리 완
 사용자의 마지막 “반대순서” 정정에 따라 위→아래 **Sprint → Block → Dodge**, 각각56×56px이다. 세로 열은 하단 안전 영역0px까지 내리고 Attack64px은 오른쪽 위를 유지한다. 데스크톱에도 같은 순서를 적용하며, 터치는 실제 점프 상단이 바뀌면 Attack만 위로 피한다.600px 미만의 하단2줄은 세로 액션 왼쪽으로 배치해 열의 하단 정렬을 유지한다.0.30.3의 Block/Dodge/Sprint 순서는 이 요청으로 대체한다. Play 중 실제 Player GUI에 이 순서·크기·하단0px 적용을 속성으로 확인했다.
 
 최종0.30.4 고정 빌드 GUI native **289개 통과·실패0**([로그](0.30.4-ui.log)). 최신 순서·크기·안전 영역 하단 정렬과5개 주입 화면 크기를 포함한다. Studio 편집 소스에도 최종 HUD를 반영한 뒤 Play를 다시 시작했다.
+
+### 0.30.5 Attack과 Sprint 높이 정렬
+
+최신 사용자 요청으로 Attack은 Sprint 오른쪽 같은 높이(로컬 X90,Y0)에 고정한다. 비활성 TouchGui 아래에서도 JumpButton 자체 Visible=true가 남을 수 있어, 상위 ScreenGui.Enabled/GuiObject.Visible과 실제 사각형 겹침을 함께 검사한다. 입력 방식 변경에도 위치를 초기화한다. 활성 터치 점프와 실제 겹칠 때에는 Y를 유지한 채 Sprint 왼쪽으로 피한다. 실제 Player의 두 Play 창에서 Attack/Sprint 화면 Y값은 각각374.8889/374.8889,604/604로 일치했다. 기존 Play에는 위치 유지 가드를 추가한 시각 미리보기를 사용하며, 고정 빌드0.30.5는 수정된 HUD 소스를 포함한다. 실제 모바일 터치·회전은 미수용이다.
+
+0.30.5 고정 빌드 GUI native **289개 통과·실패0**([로그](0.30.5-ui.log)). 기존5개 주입 모바일 화면 크기에 비활성 ScreenGui 아래 Visible=true인 JumpButton을 추가해 Attack이 Sprint 오른쪽 Y0에 남는지 검사했다.

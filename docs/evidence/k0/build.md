@@ -579,3 +579,7 @@ TD 배틀 HP 프레임과 공통 패널·버튼 셸을 HUD에 적용했다. 원�
 최신0.30.3 입력 `b3bdcb05241de4fb5bbdbba06a992bc292a91dd4`. [모든 산출물 바이트·SHA256·검증 실패 이력](../deepwood/builds.json)을 참조한다. 고정 빌드0.30.1의 native265개 및 UI244개 통과,0.30.2의 모바일 UI 세로 폭 실패1건 뒤0.30.3에서 모바일 GUI native279개를 통과했다. 로비 전용 트레이닝·85% 투명 대화창·초반 바닥 화살표·입력기 독립 F/HOLD와 모바일 하단 바/세로 액션 배치다. 게시/태그는 실행하지 않았다.
 
 최종0.30.4: 입력 `de297bcdf27835f9cd040c8c31ac49016548b1ec`, GUI native289개 통과, Sprint/Block/Dodge 동일 크기·하단0px. [산출물 해시](../deepwood/builds.json), [최종 로그](../deepwood/0.30.4-ui.log). 현재 Studio 편집 소스에 반영하고 Play를 재시작했으며 게시/태그는 수행하지 않았다.
+
+### 0.30.5 Attack/Sprint 정렬 수정
+
+입력 `3a999498598bc252ae03e89961fb33abf8f3c52e`. Attack을 Sprint 옆 같은 높이에 고정하고 숨은 점프 UI의 잘못된 상향 보정을 제외했다. GUI native289개 통과([로그](../deepwood/0.30.5-ui.log)), [산출물 해시](../deepwood/builds.json). 두 실제 Player Play의 Y 정렬을 확인했다. 기존 Play는 시각 미리보기, 고정0.30.5 빌드는 수정된 소스이며 게시/릴리스 태그는 실행하지 않았다.

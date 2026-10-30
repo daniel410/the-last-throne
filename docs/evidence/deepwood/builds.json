@@ -113,5 +113,16 @@
     "success": true,
     "published": false,
     "verification": "GUI native289 pass; final order Sprint Block Dodge; actual Studio Player GUI properties; real mobile touch/rotation not accepted"
+  },
+  {
+    "version": "0.30.5",
+    "source": "3a999498598bc252ae03e89961fb33abf8f3c52e",
+    "path": "builds/0.30.5/TheLastThrone-0.30.5.rbxlx",
+    "bytes": 1367385,
+    "sha256": "278d1f4c9a196bb4286a075ccc15add57eda528c655ea5107cacb9ebe5d24d16",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false,
+    "verification": "GUI native289 pass, disabled ancestor JumpButton regression; live actual Player Y alignment; real mobile touch/rotation not accepted"
   }
 ]

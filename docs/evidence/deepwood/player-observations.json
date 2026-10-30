@@ -108,5 +108,18 @@
       64
     ],
     "coverage": "actual Player GUI properties checked; Edit HUD source synced and Play restarted; GUI native289 pass; real mobile touch not accepted"
+  },
+  "attack_beside_sprint_0_30_5": {
+    "kind": "actual Player GUI properties and live position guard on old Play source; fixed new build separate",
+    "original_studio": {
+      "attack_y": 374.888916015625,
+      "sprint_y": 374.888916015625
+    },
+    "local_0_30_4_preview": {
+      "attack_y": 604,
+      "sprint_y": 604
+    },
+    "touch_enabled": false,
+    "real_mobile_touch_rotation_accepted": false
   }
 }
