@@ -204,7 +204,7 @@ function Service.reveal(player,heroId,zone,x,z)
  if not state or state.closing or not state.profile or not state.profile.heroes[heroId] then return end
  local story=state.profile.heroes[heroId].deepwood
  local cells=story and story.explored and story.explored[zone]
- if cells and cells[(z-1)*12+x] then return end
+ if cells and (cells[tostring((z-1)*12+x)] or cells[(z-1)*12+x]) then return end
  local key=heroId..':'..zone..':'..x..':'..z
  state.revealJobs=state.revealJobs or {};state.revealKeys=state.revealKeys or {}
  if state.revealKeys[key] then return end

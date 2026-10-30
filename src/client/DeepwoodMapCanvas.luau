@@ -1,5 +1,6 @@
 -- Bounded 2D cartography: no Workspace clones, camera or Viewport world.
 local Content=require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent)
+local Progress=require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress)
 local Access=require(game:GetService('ReplicatedStorage').Shared.DeepwoodAccess)
 local Theme=require(script.Parent.TDInventoryTheme)
 local Canvas={}
@@ -58,9 +59,9 @@ function Canvas.create(parent,zoneId,compact)
   for id,row in pairs(rows) do
    local z=Content.zones[id];local cells=journal and journal.explored and journal.explored[id] or {};local allowed=journal and Access.allowed(journal,id)
    local visited=next(cells)~=nil
-   for index,cell in ipairs(row.cells) do cell.BackgroundColor3=cells[index] and Color3.fromRGB(70,110,75) or allowed and Color3.fromRGB(24,41,46) or Color3.fromRGB(7,16,26);cell.BackgroundTransparency=not compact and cells[index] and 1 or 0 end
+   for index,cell in ipairs(row.cells) do cell.BackgroundColor3=Progress.hasCell(cells,index) and Color3.fromRGB(70,110,75) or allowed and Color3.fromRGB(24,41,46) or Color3.fromRGB(7,16,26);cell.BackgroundTransparency=not compact and Progress.hasCell(cells,index) and 1 or 0 end
    row.name.Text=visited and z.name or allowed and 'Unexplored' or 'Locked';row.name.TextColor3=allowed and Theme.color.text or Theme.color.muted
-   row.checkpoint.Visible=visited and cells[(math.floor(.84*12))*12+math.floor(.13*12)+1]==true
+   row.checkpoint.Visible=visited and Progress.hasCell(cells,(math.floor(.84*12))*12+math.floor(.13*12)+1)
   end
   for _,r in ipairs(roads) do
    local delta=Vector2.new(r.delta.X*parent.AbsoluteSize.X,r.delta.Y*parent.AbsoluteSize.Y);r.part.Size=UDim2.fromOffset(delta.Magnitude,3);r.part.Rotation=math.deg(math.atan2(delta.Y,delta.X))

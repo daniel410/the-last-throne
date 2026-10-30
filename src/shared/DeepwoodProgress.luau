@@ -2,6 +2,7 @@
 local Content=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent) or dofile('src/shared/DeepwoodContent.luau')
 local P={}
 function P.copy(v) if type(v)~='table' then return v end local r={} for k,x in pairs(v) do r[k]=P.copy(x) end return r end
+function P.hasCell(cells,index) return cells and (cells[tostring(index)]==true or cells[index]==true) or false end
 function P.new() return {version=1,main=0,flags={},clears={},choice='',coins=0,killCoins=0,activities={},decisions={},explored={}} end
 function P.goal(chapter,id) for _,g in ipairs(chapter.goals) do if g.id==id then return g end end end
 function P.eligible(s,c)
@@ -55,7 +56,10 @@ function P.validate(s)
  for id,cells in pairs(s.explored or {}) do
   local zone=Content.zones[id]
   if not zone or zone.requiresMain>s.main or type(cells)~='table' then return false end
-  for cell,value in pairs(cells) do if type(cell)~='number' or cell%1~=0 or cell<1 or cell>144 or value~=true then return false end end
+  for cell,value in pairs(cells) do
+   local index=tonumber(cell)
+   if (type(cell)~='number' and type(cell)~='string') or not index or index%1~=0 or index<1 or index>144 or type(cell)=='string' and tostring(index)~=cell or type(cell)=='number' and cells[tostring(cell)]~=nil or value~=true then return false end
+  end
  end
  local coins=0
  for _,c in ipairs(Content.chapters) do
@@ -105,8 +109,11 @@ function P.apply(s,chapterId,goalId,choice,stepId)
 end
 function P.reveal(s,id,x,z)
  if not P.validate(s) or not Content.zones[id] or Content.zones[id].requiresMain>s.main or type(x)~='number' or type(z)~='number' or x%1~=0 or z%1~=0 or x<1 or x>12 or z<1 or z>12 then return nil,'InvalidRequest' end
- local n=P.copy(s);n.explored=n.explored or {};n.explored[id]=n.explored[id] or {};local changed=false
- for dx=-1,1 do for dz=-1,1 do local a,b=x+dx,z+dz;if a>=1 and a<=12 and b>=1 and b<=12 then local key=(b-1)*12+a;if not n.explored[id][key] then n.explored[id][key]=true;changed=true end end end end
+ local n=P.copy(s);n.explored=n.explored or {}
+ -- String keys survive Roblox JSON/DataStore serialization of sparse discovery.
+ for zone,values in pairs(n.explored) do local normalized={} for key in pairs(values) do normalized[tostring(key)]=true end;n.explored[zone]=normalized end
+ n.explored[id]=n.explored[id] or {};local changed=false
+ for dx=-1,1 do for dz=-1,1 do local a,b=x+dx,z+dz;if a>=1 and a<=12 and b>=1 and b<=12 then local key=tostring((b-1)*12+a);if not n.explored[id][key] then n.explored[id][key]=true;changed=true end end end end
  return n,nil,not changed
 end
 return P

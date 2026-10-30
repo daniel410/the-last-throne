@@ -29,6 +29,15 @@ local ok,err=xpcall(function()
  decoration:Destroy();actor:Destroy()
 
  local Content=require(RS.Shared.DeepwoodContent)
+ local progress=require(RS.Shared.DeepwoodProgress)
+ local discovered=assert(progress.reveal(progress.new(),'DW-01',2,11))
+ local decoded=Http:JSONDecode(Http:JSONEncode(discovered))
+ check(progress.validate(decoded),'sparse discovery remains valid after real Roblox JSON roundtrip')
+ check(progress.hasCell(decoded.explored['DW-01'],122),'discovered cell survives JSON serialization')
+ local continued=assert(progress.reveal(decoded,'DW-01',7,7))
+ check(progress.hasCell(continued.explored['DW-01'],122) and progress.hasCell(continued.explored['DW-01'],79),'rejoined hero retains old and new discovery')
+ check(continued.coins==0 and continued.main==0,'discovery serialization never advances story or awards coins')
+
  local nav=require(game:GetService('StarterPlayer').StarterPlayerScripts.Client.DeepwoodNavigation)
  local function pos(id) return Vector3.new(table.unpack(Content.zones[id].center)) end
  local journal=require(game:GetService('StarterPlayer').StarterPlayerScripts.Client.DeepwoodJournal)
