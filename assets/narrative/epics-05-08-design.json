@@ -1,0 +1,2278 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-30",
+  "task_id": "TLT-065/late-epics-20261030",
+  "status": "design-draft-not-runtime",
+  "language": "en-US",
+  "scope_note": "26 story designs: 25 main quests and one epilogue. No approved XP or runtime changes.",
+  "sources": [
+    {
+      "registry_key": "model.monsters",
+      "path": "../throne-defense/assets/models/meshy-deepwood-slime-v1/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+      "verified": "file hash and serialized model names only",
+      "rights_status": "RPG permissions, license and fit require verification"
+    },
+    {
+      "registry_key": "model.towers",
+      "path": "../throne-defense/assets/models/meshy-factions-refresh-v1/runtime.rbxmx",
+      "sha256": "8402a11b665bdbe61240e76df62b2a0ca4fd4400ee8e322643f151c00fa6726f",
+      "verified": "file hash and serialized model names only",
+      "rights_status": "RPG permissions, license and fit require verification"
+    }
+  ],
+  "epics": [
+    {
+      "number": 5,
+      "code": "AS",
+      "slug": "aether-spire",
+      "title_ko": "하늘에 남은 다섯 번째 서약",
+      "title_en": "The Fifth Covenant",
+      "level_target": "Lv40→50 목표·XP 미설계",
+      "hook": "사람이 사라진 하늘 도시에서 어제의 웃음만 되풀이된다. 세계를 구할 설계가 남아 있지만, 그것을 읽으려면 먼저 한 사람의 통제권을 포기해야 한다.",
+      "theme": "아는 것과 결정할 권한은 다르다. 이리아가 답을 독점하려는 태도를 바꾼다.",
+      "synopsis": [
+        "Haunted Graveyard의 원본이 가리킨 Aether Spire로 향한다. 도시는 무너진 뒤에도 공중 궤도를 따라 천천히 돌고 있고, 항구에는 오래전 출항 안내가 반복된다. 이리아는 도시의 관제권만 복구하면 왕좌 없이도 세계를 지킬 수 있다고 장담한다. 먼저 고립된 현재의 조사대를 구해 기록과 생존자를 구분한다.",
+        "공중 도서관에는 같은 식사와 작별을 반복하는 시민의 잔향이 있다. 플레이어는 기록이 끝난 뒤의 질문에 답하지 못하는 잔향을 보며 시간 역행과 부활이 불가능함을 배운다. 이리아는 그 안에서 첫 균열의 피난 실패를 발견한다. 다섯 대표가 피난 순서에 합의하지 못했던 실제 위험과, 그 혼란을 빌미로 영구 지휘권을 가져간 왕의 행위가 함께 남아 있다.",
+        "기록 수호체를 돌파하고 찾은 것은 다섯 번째 힘의 핵이 아니라 권한을 나누고 철회하는 절차다. 이리아가 단독 관제를 시험하면 작은 장치 이상이 다른 구역까지 번진다. 일행은 즉시 중단하고 조사대를 안전하게 돌린다. 실수로 사람을 죽여 각성을 강요하지 않고, 고장과 복구를 통해 설계의 한계를 보여 준다.",
+        "리라의 전투 기억으로 만들어진 The First Warden은 마지막 기록을 지킨다. 전투와 권한 대조를 함께 수행하면 왕이 지운 거절의 기록이 열린다. 진짜 리라는 자신의 육신이 이미 사라졌고 결박 밖에서 의식을 계속 유지할 수 없다고 밝힌다. 원하는 것은 누군가 대신 묶이는 생존이 아니라 마지막 말과 안식을 직접 고를 권리다.",
+        "이리아는 단독 운용안을 접고 자기 연구망도 다른 대표가 중단시킬 수 있도록 설계를 수정한다. 짧은 지역 시험을 통과해 Covenant Network의 설계를 확보하지만, 전 대륙 전환에는 각 지역 담당자와 피난 계획이 필요하다. 왕도는 네 핵의 제출을 명령하고 원정대 자격을 박탈한다. 완성된 답을 들고 환영받는 귀환 대신, 답을 실제 사람들에게 증명해야 하는 다음 장으로 넘어간다."
+      ],
+      "choice": {
+        "id": "AS-C1",
+        "a": "시민 기록의 공개 사본을 먼저 남긴다",
+        "b": "도시 안전 관측 기록의 배포를 먼저 한다",
+        "cost_a": "안전 관측 자료 정리가 늦어지고 연구진의 부담이 남는다",
+        "cost_b": "시민 유족이 기록 열람을 더 기다린다",
+        "payoff": "제7장 연락에 시민 기록 보관자 또는 관측 담당자가 등장한다. 양쪽 모두 설계/원본을 보존하며 필수 기능은 같다."
+      },
+      "stories": [
+        {
+          "id": "AS-01",
+          "slug": "falling-quay",
+          "title_ko": "추락하는 하늘 항구",
+          "title_en": "The Falling Quay",
+          "kind": "main",
+          "level_target": "40~41",
+          "synopsis": [
+            "원정 포탈은 도시 중심이 아니라 떨어져 나온 선착장에 닿는다. 하늘 아래 떠 있는 마을 지붕 사이로 오래된 짐꾼의 발소리가 들리지만, 현재 조사대의 구조 신호는 그 반대편에서 온다. 플레이어는 잔향을 따라가면 길을 찾으리라는 추측을 버리고 실제 구조 흔적을 따라간다.",
+            "부유한 돌이 흔들릴 때마다 도시의 옛 경비가 깨어난다. 고정 발판의 닻을 잠그고 접근 위협을 막으면 조사대가 넓은 안전 갑판으로 나온다. 그들은 끊임없이 움직이는 도시에도 고정된 도서관 축이 남아 있다고 알려 준다. 첫 장면은 비극 설명보다 낯선 풍경을 스스로 건너는 경이로 시작한다."
+          ],
+          "phases": [
+            {
+              "objective_id": "AS-01-O1",
+              "action_ko": "현재 조사대의 구조 신호와 경로를 확인한다",
+              "objective_en": "Find the survey team.",
+              "objective_key": "late.as.01.objective.1"
+            },
+            {
+              "objective_id": "AS-01-O2",
+              "action_ko": "안전 닻을 고정하고 갑판의 위협을 해제한다",
+              "objective_en": "Secure the landing anchors.",
+              "objective_key": "late.as.01.objective.2"
+            },
+            {
+              "objective_id": "AS-01-O3",
+              "action_ko": "조사대를 고정 갑판으로 인도한다",
+              "objective_en": "Guide the team to the stable deck.",
+              "objective_key": "late.as.01.objective.3"
+            }
+          ],
+          "encounters": [
+            "AS-M01",
+            "AS-M02"
+          ],
+          "result": "현존 조사대를 구하고 AS-02 도서관 진입로를 확보한다. 시민 잔향은 구조 대상 생존자로 오인하지 않는다.",
+          "checkpoint": "닻 고정과 구조는 유지한다. 추락 시 최근 안전 갑판에서 복귀하고 이미 완료한 구조를 반복하지 않는다.",
+          "dialogue": {
+            "key": "late.as.01.line",
+            "en_US": "That voice has been calling for seven hundred years. Ours started this morning."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "HG-07",
+          "next": "AS-02",
+          "safe_start_id": "AS-01-SP",
+          "file": "docs/aether-spire-story-01-falling-quay.md",
+          "title_key": "late.as.01.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "AS-02",
+          "slug": "suspended-library",
+          "title_ko": "매달린 도서관",
+          "title_en": "The Suspended Library",
+          "kind": "main",
+          "level_target": "41~42",
+          "synopsis": [
+            "도서관은 뒤집힌 서가와 정상 방향의 독서석이 한 공간을 공유한다. 바깥 발판의 중력은 흔들려도 기록 보관실의 바닥은 고정돼 있다. 조사대는 여기서 부상자를 돌보고, 이리아는 네 핵을 중앙 장치에 꽂지 않은 채 복제한 관측 자료를 펼친다.",
+            "아이의 낙서처럼 보이는 옛 도서 표식이 비상 피난 길을 가리킨다. 이리아가 쓸모없는 장식이라던 것을 통해 일행이 안전 통로를 찾자, 지식은 권위 있는 문헌에만 남지 않는다는 작은 마찰이 생긴다. 시민 기록실을 열 준비를 하고 현존 조사대와 재생 기록의 차이를 저널에 남긴다."
+          ],
+          "phases": [
+            {
+              "objective_id": "AS-02-O1",
+              "action_ko": "조사대의 안전 거점을 확인한다",
+              "objective_en": "Check the survey camp.",
+              "objective_key": "late.as.02.objective.1"
+            },
+            {
+              "objective_id": "AS-02-O2",
+              "action_ko": "네 지역의 관측 사본을 대조한다",
+              "objective_en": "Compare the regional records.",
+              "objective_key": "late.as.02.objective.2"
+            },
+            {
+              "objective_id": "AS-02-O3",
+              "action_ko": "시민 기록실의 안전 통로를 연다",
+              "objective_en": "Open the citizens' archive route.",
+              "objective_key": "late.as.02.objective.3"
+            }
+          ],
+          "encounters": [],
+          "result": "안전 거점과 기록 열람 기준을 확정한다. 전투/구매/편성 없이 완료한다.",
+          "checkpoint": "대조/면담 기록을 유지하고 미완료 대화부터 재개한다. 핵 실물은 차단 보관 상태다.",
+          "dialogue": {
+            "key": "late.as.02.line",
+            "en_US": "Keep the sketch. Someone marked the way out before we called it a map."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "AS-01",
+          "next": "AS-03",
+          "safe_start_id": "AS-02-SP",
+          "file": "docs/aether-spire-story-02-suspended-library.md",
+          "title_key": "late.as.02.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "AS-03",
+          "slug": "borrowed-day",
+          "title_ko": "빌려온 하루",
+          "title_en": "A Borrowed Day",
+          "kind": "main",
+          "level_target": "42~44",
+          "synopsis": [
+            "시민의 거리에는 문을 닫으려는 제빵사와 귀가를 기다리는 가족의 같은 오후가 겹친다. 누군가의 마지막 하루를 구할 수 있을 것 같은 순간, 기록은 같은 대사로 돌아간다. 플레이어는 질문이 아닌 주변 생활 도구와 이웃 기록을 대조해 이들이 실제로 남긴 부탁을 찾는다.",
+            "재생을 무한히 강요하는 잔향 장치를 멈추자 흩어진 기억 조각이 폭주한다. 위협을 가라앉히고 사본을 보존하면 시민은 새 대답을 하지 않고 기록 속 마지막 문장을 마친다. 그 작은 종결이 부활 없는 구원의 방식을 보여 주고, 최초 피난 명령이 보관된 관측소를 가리킨다."
+          ],
+          "phases": [
+            {
+              "objective_id": "AS-03-O1",
+              "action_ko": "서로 다른 시민 기록에서 하루의 순서를 대조한다",
+              "objective_en": "Compare the citizens' last day.",
+              "objective_key": "late.as.03.objective.1"
+            },
+            {
+              "objective_id": "AS-03-O2",
+              "action_ko": "폭주한 재생 구역의 위협을 해제한다",
+              "objective_en": "Stop the unstable replay.",
+              "objective_key": "late.as.03.objective.2"
+            },
+            {
+              "objective_id": "AS-03-O3",
+              "action_ko": "마지막 문장과 피난 명령 표식을 보존한다",
+              "objective_en": "Preserve the farewell and the evacuation mark.",
+              "objective_key": "late.as.03.objective.3"
+            }
+          ],
+          "encounters": [
+            "AS-M02",
+            "AS-M03"
+          ],
+          "result": "기억 재생의 한계를 체험하고 AS-04 피난 원본의 위치를 얻는다.",
+          "checkpoint": "사본 확보를 유지하고 재생 순서를 오인해도 무료 재열람한다. 실제 시간을 되돌리거나 보상을 반복하지 않는다.",
+          "dialogue": {
+            "key": "late.as.03.line",
+            "en_US": "It can tell us what happened. It cannot choose what happens next."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "AS-02",
+          "next": "AS-04",
+          "safe_start_id": "AS-03-SP",
+          "file": "docs/aether-spire-story-03-borrowed-day.md",
+          "title_key": "late.as.03.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "AS-04",
+          "slug": "command-observatory",
+          "title_ko": "명령이 갈라진 관측소",
+          "title_en": "The Divided Observatory",
+          "kind": "main",
+          "level_target": "44~46",
+          "synopsis": [
+            "첫 균열의 관측실에는 왕이 무너지는 길에서 주민을 구한 기록과, 서로 다른 피난 명령이 충돌한 기록이 나란히 있다. 시민은 왕 덕분에 살아남았다고 말하면서도 자기 가족이 다음 행렬에서 빠졌다는 이의를 남겼다. 선행의 기록을 지워야 폭정을 비판할 수 있는 구조로 만들지 않는다.",
+            "Archive Custodian은 모순되는 증언을 오류로 분류해 통로를 닫는다. 플레이어는 정면 광선을 피해 교전을 제압하고, 같은 사건의 서로 다른 기록을 보존해 한 줄로 합치려는 검열 명령을 해제한다. 기록에는 임시 지휘를 끝낼 조건과 대표가 권한을 철회할 수 있었던 흔적이 남는다."
+          ],
+          "phases": [
+            {
+              "objective_id": "AS-04-O1",
+              "action_ko": "구조 기록과 배제된 피난 명단을 대조한다",
+              "objective_en": "Compare the rescue and evacuation records.",
+              "objective_key": "late.as.04.objective.1"
+            },
+            {
+              "objective_id": "AS-04-O2",
+              "action_ko": "Archive Custodian을 무력화한다",
+              "objective_en": "Disable the Archive Custodian.",
+              "objective_key": "late.as.04.objective.2"
+            },
+            {
+              "objective_id": "AS-04-O3",
+              "action_ko": "삭제된 권한 철회 조항을 복원한다",
+              "objective_en": "Recover the withdrawal clause.",
+              "objective_key": "late.as.04.objective.3"
+            }
+          ],
+          "encounters": [
+            "AS-M04",
+            "AS-M05",
+            "AS-B01"
+          ],
+          "result": "왕의 공적과 독점의 시작을 모두 확인하고 부분 공동 제어 절차를 얻는다.",
+          "checkpoint": "보스 승리와 조항 복원은 따로 저장한다. 기록 보존 후 접속 종료해도 보스를 반복하지 않는다.",
+          "dialogue": {
+            "key": "late.as.04.line",
+            "en_US": "Both accounts are true. The people he saved were allowed to disagree."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "AS-03",
+          "next": "AS-05",
+          "safe_start_id": "AS-04-SP",
+          "file": "docs/aether-spire-story-04-command-observatory.md",
+          "title_key": "late.as.04.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "AS-05",
+          "slug": "unshared-switch",
+          "title_ko": "혼자만의 정지 버튼",
+          "title_en": "A Switch for Everyone",
+          "kind": "main",
+          "level_target": "46~48",
+          "synopsis": [
+            "이리아는 시간이 없다며 도서관 축의 통제권을 잠시 혼자 맡는다. 국소 시험이 시작되자 작은 지연이 승강기와 안전 닻까지 함께 멈춘다. 플레이어가 차단 절차를 수행하면 조사대는 무사히 고정 바닥으로 돌아오지만, 이리아는 다른 사람이 중단할 수 없는 설계가 왕좌와 닮았음을 보게 된다.",
+            "일행은 고장난 구간을 격리하고 서약의 각 권한이 다른 운영자에게 돌아갈 수 있게 순서를 다시 적는다. 동료의 말에 단순 동의하는 대신 이리아가 자기 서명으로 단독 통제권을 포기한다. 마지막 수호실은 권한을 많이 가진 자가 아니라 반대 의견을 남긴 기록을 확인한 이들에게 열린다."
+          ],
+          "phases": [
+            {
+              "objective_id": "AS-05-O1",
+              "action_ko": "고정 시험 구역에서 국소 연결을 관측한다",
+              "objective_en": "Observe the local connection test.",
+              "objective_key": "late.as.05.objective.1"
+            },
+            {
+              "objective_id": "AS-05-O2",
+              "action_ko": "불안정한 연결을 중단하고 조사대를 확인한다",
+              "objective_en": "Stop the test and check the team.",
+              "objective_key": "late.as.05.objective.2"
+            },
+            {
+              "objective_id": "AS-05-O3",
+              "action_ko": "분리된 중단권을 기록해 수호실을 연다",
+              "objective_en": "Record shared shutdown rights.",
+              "objective_key": "late.as.05.objective.3"
+            }
+          ],
+          "encounters": [
+            "AS-M01",
+            "AS-M04"
+          ],
+          "result": "실패를 회복 가능한 사건으로 경험하고 이리아의 권한 양도를 확정한다.",
+          "checkpoint": "중단 성공과 조사대 안전 확인을 유지한다. 실패 연출 재생이 실제 저장 장치/진행을 되돌리지 않는다.",
+          "dialogue": {
+            "key": "late.as.05.line",
+            "en_US": "If only I can stop it, we have built another throne."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "AS-04",
+          "next": "AS-06",
+          "safe_start_id": "AS-05-SP",
+          "file": "docs/aether-spire-story-05-unshared-switch.md",
+          "title_key": "late.as.05.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "AS-06",
+          "slug": "first-warden",
+          "title_ko": "최초 수호자의 거절",
+          "title_en": "The First Warden's Refusal",
+          "kind": "main",
+          "level_target": "48~50",
+          "synopsis": [
+            "The First Warden은 왕의 검이 아니라 리라가 마지막으로 거절했던 순간의 전투 기억이다. 중앙 권한을 요구하는 옛 명령과 자신을 지키려는 방어가 충돌해 일행을 적으로 분류한다. 플레이어는 예고된 검격에 대응하며 이미 찾은 철회 기록을 각 서약 자리에 순차로 돌려놓는다.",
+            "전투 기억이 잠들면 실제 리라가 짧게 연결된다. 그녀는 자신이 공동 방어에는 참여했지만 영구 결박에는 동의하지 않았다고 말한다. 해방 뒤 계속 살 수 없다는 사실을 숨기지 않고, 자신의 마지막 말을 남길 기회를 부탁한다. 이리아와 일행은 최종 설계로 작은 연결을 재시험해 안전 중단이 작동함을 확인한다. 왕도의 소환령은 이 조용한 성공 직후 도착한다."
+          ],
+          "phases": [
+            {
+              "objective_id": "AS-06-O1",
+              "action_ko": "수호체를 제압하며 권한 철회 기록을 복원한다",
+              "objective_en": "Release the First Warden's sealed refusal.",
+              "objective_key": "late.as.06.objective.1"
+            },
+            {
+              "objective_id": "AS-06-O2",
+              "action_ko": "리라의 증언과 서약망 설계를 보존한다",
+              "objective_en": "Record Lyra's wishes and the covenant design.",
+              "objective_key": "late.as.06.objective.2"
+            },
+            {
+              "objective_id": "AS-06-O3",
+              "action_ko": "안전 중단 시험과 개인 보존 우선순위를 마친다",
+              "objective_en": "Verify the shutdown test and preserve the records.",
+              "objective_key": "late.as.06.objective.3"
+            }
+          ],
+          "encounters": [
+            "AS-M03",
+            "AS-B02"
+          ],
+          "result": "설계·리라의 의사·국소 안전 시험을 확보한다. 핵은 아직 차단 보관이며 DC-01 귀환이 열린다.",
+          "checkpoint": "승리→증언→설계→재시험→개인 선택을 따로 확정한다. 리라는 여기서 소멸하지 않으며 보스 기억과 구분한다.",
+          "dialogue": {
+            "key": "late.as.06.line",
+            "en_US": "I chose to help them. I never chose to stay here forever."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "AS-05",
+          "next": "DC-01",
+          "safe_start_id": "AS-06-SP",
+          "file": "docs/aether-spire-story-06-first-warden.md",
+          "title_key": "late.as.06.title",
+          "quest_xp": null,
+          "quest_coins": null
+        }
+      ],
+      "monsters": [
+        {
+          "id": "AS-M01",
+          "name_en": "Folio Swarm",
+          "name_ko": "떠도는 서책 떼",
+          "name_key": "late.as.m01.name",
+          "kind": "normal",
+          "role": "근거리 군집·방향 전환 유도",
+          "visual": "한 덩어리로 읽히는 접힌 책날개와 커다란 봉인 리본. 작은 글자는 장식이다.",
+          "asset_candidate": {
+            "source_group": "new",
+            "source_model": null,
+            "status": "New candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "날개를 한 방향으로 접고 종이 긁는 소리→직선 돌진→바닥에 펼쳐져 회복한다.",
+          "counterplay": "옆으로 피한 뒤 바닥 회복 중 공격한다. 비행 장식과 별개로 근접 공격 가능 높이에 내려온다.",
+          "story_reason": "침입자를 제자리에 돌려보내려는 도서 운반 자동 장치가 고장났다. 시민 영혼이 아니다.",
+          "defeat_rule": "장치를 정지시켜 책들이 바닥에 쌓인다.",
+          "story_ids": [
+            "AS-01",
+            "AS-05"
+          ]
+        },
+        {
+          "id": "AS-M02",
+          "name_en": "Fractured Sentinel",
+          "name_ko": "깨진 서가 파수꾼",
+          "name_key": "late.as.m02.name",
+          "kind": "normal",
+          "role": "전방 장갑·후방 빈틈",
+          "visual": "등에 책장 고정대, 한쪽 팔이 긴 석조 경비.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "golem",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "긴 팔을 들어 바닥 부채꼴을 표시→쓸기→팔이 바닥에 걸린다.",
+          "counterplay": "정면 장갑을 깎거나 측면 회복 틈을 쓴다. 특수 원소/방패 파괴 스킬은 불필요하다.",
+          "story_reason": "무너진 도서관의 보관 명령을 계속 수행한다.",
+          "defeat_rule": "동력 봉인이 꺼지고 부품이 정지한다.",
+          "story_ids": [
+            "AS-01",
+            "AS-03"
+          ]
+        },
+        {
+          "id": "AS-M03",
+          "name_en": "Memory Mote",
+          "name_ko": "기억의 부스러기",
+          "name_key": "late.as.m03.name",
+          "kind": "normal",
+          "role": "예고 장판·안전 지점 읽기",
+          "visual": "슬라임 원형의 투명 구체와 큰 문장 조각. 타깃은 구체 하나다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "slime",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "안쪽 문장이 모여 바닥 고리를 표시→고리만 폭발→중심이 잠시 안정된다.",
+          "counterplay": "고리 밖 또는 표시된 중심 안전부에서 대응한다. 사망 분열/추가 경험치 반복은 설계하지 않는다.",
+          "story_reason": "기록 재생 에너지가 뭉친 것. 개별 죽은 시민의 영혼과 구분한다.",
+          "defeat_rule": "불안정한 공명이 흩어지고 확보한 기록은 남는다.",
+          "story_ids": [
+            "AS-03",
+            "AS-06"
+          ]
+        },
+        {
+          "id": "AS-M04",
+          "name_en": "Gravity Anchor",
+          "name_ko": "뒤틀린 중력 닻",
+          "name_key": "late.as.m04.name",
+          "kind": "normal",
+          "role": "고정 제어·밀기 압박",
+          "visual": "굵은 돌고리와 아래를 향한 문양. 원경/저품질에서도 선이 보인다.",
+          "asset_candidate": {
+            "source_group": "towers",
+            "source_model": "geomancer",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "고리가 기울고 방향 화살표가 뜸→고정 바닥의 짧은 밀기장→장치가 과열된다.",
+          "counterplay": "밀기 방향을 읽어 넓은 안전 구간으로 이동 후 닻을 공격/차단한다. 절벽 즉사나 카메라 강제 회전은 없다.",
+          "story_reason": "도시를 붙들던 안전 장치의 관제 오류다.",
+          "defeat_rule": "전투용 밀기장이 꺼져도 공통 바닥/안전 갑판은 유지된다.",
+          "story_ids": [
+            "AS-04",
+            "AS-05"
+          ]
+        },
+        {
+          "id": "AS-M05",
+          "name_en": "Oathbound Lexicon",
+          "name_ko": "서약의 검열체",
+          "name_key": "late.as.m05.name",
+          "kind": "normal",
+          "role": "지원형·보호 연결",
+          "visual": "기록 인장 위에 떠 있는 큰 책과 로브 형태의 외피.",
+          "asset_candidate": {
+            "source_group": "towers",
+            "source_model": "arcanist",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "열린 책에서 연결선이 보임→파수꾼 하나의 방어를 강화→책이 닫히며 회복한다.",
+          "counterplay": "연결체를 먼저 제압하거나 강화받은 적의 빈틈을 쓴다. 회복/강화의 무한 중첩은 없다.",
+          "story_reason": "모순되는 기록을 삭제하라는 옛 관제 명령이 형체를 얻었다.",
+          "defeat_rule": "검열 명령을 중단하고 원본은 보존한다.",
+          "story_ids": [
+            "AS-04"
+          ]
+        },
+        {
+          "id": "AS-B01",
+          "name_en": "Archive Custodian",
+          "name_ko": "기록고 수호체",
+          "name_key": "late.as.b01.name",
+          "kind": "mandatory_boss",
+          "role": "필수 중간 보스·모순되는 증언 보존",
+          "visual": "석조 몸체 양쪽에 서로 다른 기록판, 한 개의 큰 광선 렌즈.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "king_ice_golem",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "렌즈의 회전 방향/바닥 선→기록판 사이 광선 쓸기→판 냉각 시 공격 창이 열린다.",
+          "counterplay": "쓸기 뒤 기록 대조를 순차 수행한다. 오래된 기록을 파괴해 정답을 만드는 대신 검열 연결만 해제한다.",
+          "story_reason": "기록의 불일치를 오류로 보고 삭제하려는 수호 장치다.",
+          "defeat_rule": "무력화/원본 보존으로 승리한다. 생명체 처치 표시는 쓰지 않는다.",
+          "story_ids": [
+            "AS-04"
+          ]
+        },
+        {
+          "id": "AS-B02",
+          "name_en": "The First Warden",
+          "name_ko": "최초의 수호체",
+          "name_key": "late.as.b02.name",
+          "kind": "mandatory_boss",
+          "role": "필수 최종 보스·서약 철회 복원",
+          "visual": "리라의 실제 인물과 구분되는 비어 있는 갑옷, 다섯 갈래 봉인 리본과 선명한 검.",
+          "asset_candidate": {
+            "source_group": "new",
+            "source_model": null,
+            "status": "New candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "검의 방향·서약 문양→전방 검격/고정 바닥 구간 변화→기억 명령이 멈추는 틈.",
+          "counterplay": "기본 전투로 약화한 뒤 이미 확보한 철회 기록을 서약 자리에 순차 복원한다. 동시 다섯 발판/필수 동료 없음.",
+          "story_reason": "리라 본인이 아니라 왕이 지운 거절을 품은 전투 기억이다.",
+          "defeat_rule": "전투 기억을 해제하고 실제 리라의 증언으로 이어진다.",
+          "story_ids": [
+            "AS-06"
+          ]
+        },
+        {
+          "id": "AS-X01",
+          "name_en": "Orbit Devourer",
+          "name_ko": "궤도를 삼키는 자",
+          "name_key": "late.as.x01.name",
+          "kind": "optional_boss",
+          "role": "선택 보스·부유 잔해 포식체",
+          "visual": "커다란 구체 주위를 돌과 책 파편이 도는 실루엣.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "lava_slime",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "외곽 잔해가 한 방향으로 줄을 섬→안전 갑판 위 궤도 돌진→돌들이 바닥에 떨어진다.",
+          "counterplay": "기둥 뒤 또는 돌진 옆으로 피하고 착지한 중심을 공격한다. 필수 보스와 별도 탐험 장치.",
+          "story_reason": "도서관 바깥의 남는 공명을 먹는 지역 현상이다.",
+          "defeat_rule": "분산시켜 관측 기록을 회수한다. 설계도/리라 해금과 무관하다.",
+          "story_ids": [],
+          "hidden_quest_id": "AS-Q2",
+          "unlocks_after": "AS-04"
+        }
+      ],
+      "file": "docs/epic-05-aether-spire-story.md",
+      "hidden_quests": [
+        {
+          "id": "AS-Q1",
+          "kind": "records",
+          "name_en": "A Day Kept Safe",
+          "unlocks_after": "AS-02",
+          "source": "prior hidden-quest candidate",
+          "required_boss": null,
+          "name_key": "late.as.q1.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "AS-Q2",
+          "kind": "optional_boss",
+          "name_en": "A Broken Orbit",
+          "unlocks_after": "AS-04",
+          "required_boss": "AS-X01",
+          "name_key": "late.as.q2.title",
+          "quest_xp": null,
+          "quest_coins": null
+        }
+      ],
+      "title_key": "late.as.title"
+    },
+    {
+      "number": 6,
+      "code": "DC",
+      "slug": "divided-citadel",
+      "title_ko": "갈라진 성채",
+      "title_en": "The Divided Citadel",
+      "level_target": "Lv50→60 목표·XP 미설계",
+      "hook": "한때 구했던 성문이 돌아온 영웅을 막는다. 시민을 지키는 왕좌의 빛은 아직 따뜻하지만, 그 빛 아래 누군가의 이름이 지워지고 있다.",
+      "theme": "두려움 속의 선택에도 책임이 남는다. 세렌은 명령보다 주민을, 루칸은 끝내 통제권을 고른다.",
+      "synopsis": [
+        "왕도는 외부 침공과 내부 불신으로 갈라져 있다. 원정대의 자격을 박탈한 루칸은 네 핵을 요구하고 길을 봉쇄한다. 플레이어는 경비를 학살해 왕성을 차지하는 대신, 뒤틀린 포탈에 갇힌 병사와 주민을 함께 구하며 도시 안으로 들어간다.",
+        "병원에서는 왕좌의 비상 가동이 통증을 덜어 주고, 시장에서는 기억을 잃은 상인이 아이와 새로 물품을 정리한다. 가동 중단을 반대하는 주민도 실제 삶을 붙들고 있다. 플레이어는 기록을 공개하는 것과 당장 피난처를 마련하는 일을 병행한다. 물길과 성문, 병원 세 생활권에 최소한의 지원을 확보한다.",
+        "세렌에게 내려온 민간인 진압 명령은 왕과 직접 연결되기 전 루칸의 서명이 찍혀 있다. 세렌은 자기 부대의 과거 책임을 기록에 남기고 명령을 거부한다. 일부 경비는 물러나고, 왕좌의 명령에 묶인 병력과 관제체만 계속 저항한다. 통제당한 인간은 비살상 제압 후 분리하고 포탈 생물과 구분한다.",
+        "피난길이 열리자 루칸은 자기 통치가 무너진다고 느낀다. 그는 왕의 대리인으로 직접 연결하면 성문을 지킬 수 있으리라 판단한다. 결전에서 일행은 주민 대피와 연결 차단을 병행한다. 패배 뒤 풀려난 루칸은 끝의 통제와 그 이전의 은폐가 다른 책임임을 인정한다.",
+        "구금 후 재판 또는 감독 아래 구조 복무 후 재판을 선택한다. 어느 쪽도 권력 복귀나 피해자 용서를 보장하지 않는다. 아우렐리안은 확보한 중앙 연결로 의식을 원형 왕좌에 옮기고 하늘의 균열이 커진다. 도시는 완전한 승전식을 치르는 대신 당장 피난과 연합 준비를 이어 간다."
+      ],
+      "choice": {
+        "id": "DC-C1",
+        "a": "루칸을 구금해 재판에 세운다",
+        "b": "감독 아래 구조 복무를 맡긴 뒤 재판한다",
+        "cost_a": "전선 지식을 즉시 쓰지 못한다",
+        "cost_b": "피해자가 가해자의 복무를 지켜봐야 하며 감독 책임이 생긴다",
+        "payoff": "제7장에는 구금 중 증언서 또는 감독관을 통한 구조 보고로 등장한다. 군사/정치 권력과 필수 지원 격차는 없다."
+      },
+      "stories": [
+        {
+          "id": "DC-01",
+          "slug": "sealed-homecoming",
+          "title_ko": "닫힌 귀환길",
+          "title_en": "A Sealed Homecoming",
+          "kind": "main",
+          "level_target": "50~51",
+          "synopsis": [
+            "프롤로그에서 고쳤던 성문 위에 원정대 수배 명령이 걸렸다. 세렌은 칼을 빼기 전에 경비에게 피난 대열을 보라고 말한다. 그때 성문 바깥 포탈에서 나타난 추적체가 양쪽을 덮치며 누구를 지켜야 하는지가 먼저 드러난다.",
+            "플레이어는 공격 병력을 막고 경비가 민간인을 통과시킬 시간을 번다. 일부 경비는 원정대를 들여보내되 왕성 접근은 허락하지 않는다. 통제와 공포 속에서도 같은 주민을 지키는 이들이 있음을 보여 주고, 도시의 갈등을 단순한 아군/반군 대전으로 만들지 않는다."
+          ],
+          "phases": [
+            {
+              "objective_id": "DC-01-O1",
+              "action_ko": "성문 피난 대열의 안전 구간을 확인한다",
+              "objective_en": "Find a safe passage at the gate.",
+              "objective_key": "late.dc.01.objective.1"
+            },
+            {
+              "objective_id": "DC-01-O2",
+              "action_ko": "포탈 추적체와 명령 경비의 교전을 제압한다",
+              "objective_en": "Secure the evacuation passage.",
+              "objective_key": "late.dc.01.objective.2"
+            },
+            {
+              "objective_id": "DC-01-O3",
+              "action_ko": "안쪽 대피 마당에 도착한다",
+              "objective_en": "Reach the inner refuge.",
+              "objective_key": "late.dc.01.objective.3"
+            }
+          ],
+          "encounters": [
+            "DC-M01",
+            "DC-M04"
+          ],
+          "result": "왕도 생활권에 진입한다. 일반 경비 제압은 사망/처치로 표현하지 않는다.",
+          "checkpoint": "개방한 피난문과 대피 완료를 유지한다. 전멸은 성문 전실에서 복구하며 주민 사망 타이머는 없다.",
+          "dialogue": {
+            "key": "late.dc.01.line",
+            "en_US": "You held this gate with us. We are still trying to keep people alive."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "AS-06",
+          "next": "DC-02",
+          "safe_start_id": "DC-01-SP",
+          "file": "docs/divided-citadel-story-01-sealed-homecoming.md",
+          "title_key": "late.dc.01.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "DC-02",
+          "slug": "hospital-of-light",
+          "title_ko": "빛이 머무는 병원",
+          "title_en": "The Hospital of Borrowed Light",
+          "kind": "main",
+          "level_target": "51~52",
+          "synopsis": [
+            "병원에서는 왕좌의 빛이 약해질 때마다 환자의 통증이 돌아온다. 시장의 상인은 아이에게 잃어버린 기억을 묻지 않고 오늘 보낼 물품을 함께 센다. 플레이어는 두 사람이 다시 관계를 맺는 모습을 보면서도 그 손실을 그대로 두고 떠날 수 없다고 느낀다.",
+            "셀레네와 현지 의료진은 왕좌 없이 제공할 수 있는 돌봄과 피난 인원을 적는다. 플레이어가 병원·주거지·성문 담당자의 필요를 확인하면 먼저 옮길 수 있는 주민과 남아 돌봐야 할 사람이 분명해진다. 상인의 기억을 되돌리는 기적이나 구매 물약을 요구하지 않는다."
+          ],
+          "phases": [
+            {
+              "objective_id": "DC-02-O1",
+              "action_ko": "상인과 아이의 현재 사정을 듣는다",
+              "objective_en": "Speak with the merchant and the child.",
+              "objective_key": "late.dc.02.objective.1"
+            },
+            {
+              "objective_id": "DC-02-O2",
+              "action_ko": "병원과 대피소의 지원 필요를 확인한다",
+              "objective_en": "Check the hospital and refuge needs.",
+              "objective_key": "late.dc.02.objective.2"
+            },
+            {
+              "objective_id": "DC-02-O3",
+              "action_ko": "세 생활권의 피난 계획을 공유한다",
+              "objective_en": "Share the evacuation plan.",
+              "objective_key": "late.dc.02.objective.3"
+            }
+          ],
+          "encounters": [],
+          "result": "전투 없는 거점에서 비상 가동의 이익과 피해를 함께 보고 대체 지원 계획을 얻는다.",
+          "checkpoint": "면담과 피난 계획은 개인 진행으로 보존한다. 셀레네 미편성도 의료진 기록으로 완료한다.",
+          "dialogue": {
+            "key": "late.dc.02.line",
+            "en_US": "I do not remember that day. I can still help her with this one."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "DC-01",
+          "next": "DC-03",
+          "safe_start_id": "DC-02-SP",
+          "file": "docs/divided-citadel-story-02-hospital-of-light.md",
+          "title_key": "late.dc.02.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "DC-03",
+          "slug": "orders-before-the-voice",
+          "title_ko": "목소리 이전의 명령",
+          "title_en": "Orders Before the Voice",
+          "kind": "main",
+          "level_target": "52~54",
+          "synopsis": [
+            "시청 문서고에는 피해 기록이 아니라 지워진 기록의 목록이 남아 있다. 플레이어는 병원 이송 명부와 부대 명령서를 대조해 기억 손실을 보고한 뒤에도 가동을 강화했다는 사실을 확인한다. 문서 날짜는 루칸의 직접 연결 이전이다.",
+            "증거를 옮기는 길을 봉쇄한 경비를 비살상 제압하고 서명 사본을 보존한다. 세렌은 명령을 따랐다는 말로 부대의 책임까지 지울 수 없음을 인정한다. 진압 명령을 받은 그는 검을 내려놓고 부대원들에게 주민 보호를 요청한다. 모두가 따르지는 않아 이후 제압이 필요한 경비도 남는다."
+          ],
+          "phases": [
+            {
+              "objective_id": "DC-03-O1",
+              "action_ko": "명부와 직접 연결 이전의 명령서를 대조한다",
+              "objective_en": "Compare the ledgers and signed orders.",
+              "objective_key": "late.dc.03.objective.1"
+            },
+            {
+              "objective_id": "DC-03-O2",
+              "action_ko": "문서고 봉쇄 병력을 비살상 제압한다",
+              "objective_en": "Disarm the archive cordon.",
+              "objective_key": "late.dc.03.objective.2"
+            },
+            {
+              "objective_id": "DC-03-O3",
+              "action_ko": "서명 사본과 세렌의 명령 거부를 기록한다",
+              "objective_en": "Preserve the orders and Seren's refusal.",
+              "objective_key": "late.dc.03.objective.3"
+            }
+          ],
+          "encounters": [
+            "DC-M01",
+            "DC-M02",
+            "DC-M03"
+          ],
+          "result": "루칸의 책임과 세렌의 선택을 확정하고 물길 피난 경로를 얻는다.",
+          "checkpoint": "증거 사본은 파괴/판매되지 않는다. 진압 거부 장면 이후 끊겨도 이전 교전을 반복하지 않는다.",
+          "dialogue": {
+            "key": "late.dc.03.line",
+            "en_US": "The seal is his. The date is before the king spoke through him."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "DC-02",
+          "next": "DC-04",
+          "safe_start_id": "DC-03-SP",
+          "file": "docs/divided-citadel-story-03-orders-before-the-voice.md",
+          "title_key": "late.dc.03.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "DC-04",
+          "slug": "water-beneath-the-wall",
+          "title_ko": "성벽 아래의 물길",
+          "title_en": "Water Beneath the Wall",
+          "kind": "main",
+          "level_target": "54~56",
+          "synopsis": [
+            "포탈 낙하물로 물길이 막혀 병원과 성문 사이의 피난로가 끊겼다. 드워프 정비공은 중앙 힘을 끊는 대신 구역을 격리하자고 제안하고, 북방 관측자는 물길이 아니라 천장의 균열부터 안정시켜야 함을 짚는다. 제각기 다른 지역의 배움이 같은 도시를 지탱한다.",
+            "수로의 돌진체와 고정 광선 장치를 제압한 뒤 오염 구역을 막고 맑은 물을 우회한다. 주민은 길이 안전해진 다음 짧게 이동한다. 더 많은 환자를 빨리 옮기려고 위험한 호위를 강요하지 않는다. 물이 돌아온 병원에는 왕좌의 빛이 줄어도 계속할 수 있는 돌봄이 생긴다."
+          ],
+          "phases": [
+            {
+              "objective_id": "DC-04-O1",
+              "action_ko": "피난로 위의 균열과 차단 구간을 확인한다",
+              "objective_en": "Inspect the rift above the waterway.",
+              "objective_key": "late.dc.04.objective.1"
+            },
+            {
+              "objective_id": "DC-04-O2",
+              "action_ko": "위협을 해제하고 물길을 우회시킨다",
+              "objective_en": "Clear the route and redirect the water.",
+              "objective_key": "late.dc.04.objective.2"
+            },
+            {
+              "objective_id": "DC-04-O3",
+              "action_ko": "의료진과 주민의 안전 이동을 확인한다",
+              "objective_en": "Confirm the medical evacuation.",
+              "objective_key": "late.dc.04.objective.3"
+            }
+          ],
+          "encounters": [
+            "DC-M04",
+            "DC-M05"
+          ],
+          "result": "왕좌 가동 축소 전 최소 돌봄·물길·피난 기반을 확보한다.",
+          "checkpoint": "수로 격리와 대피 완료는 유지한다. 밸브 재접속 시 이미 완료한 구역을 다시 열지 않는다.",
+          "dialogue": {
+            "key": "late.dc.04.line",
+            "en_US": "Keep one ward supplied. Then we can move the next."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "DC-03",
+          "next": "DC-05",
+          "safe_start_id": "DC-04-SP",
+          "file": "docs/divided-citadel-story-04-water-beneath-the-wall.md",
+          "title_key": "late.dc.04.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "DC-05",
+          "slug": "captains-stair",
+          "title_ko": "명령장의 계단",
+          "title_en": "The Captain's Stair",
+          "kind": "main",
+          "level_target": "56~58",
+          "synopsis": [
+            "왕성 앞 계단은 병원과 성문을 내려다본다. Writbound Captain은 대피를 탈영으로 여기고 길을 막는다. 그는 왕의 명령이 새겨진 장치에 연결됐지만, 부하들이 다칠 때 스스로 방패를 들기도 한다. 완전한 괴물이 아닌 명령에 갇힌 병사로 보여 준다.",
+            "플레이어는 돌진과 방패 반격을 읽어 지휘관을 제압하고, 열려 있는 피난로를 증거로 연결 명령을 차단한다. 부하들은 무기를 내려놓는다. 루칸에게는 대피가 아니라 원정대의 선동이 왕도를 무너뜨린다는 왜곡된 보고가 들어가고, 그는 왕과 직접 연결하기로 결정한다."
+          ],
+          "phases": [
+            {
+              "objective_id": "DC-05-O1",
+              "action_ko": "왕성 접근로의 공격 병력을 제압한다",
+              "objective_en": "Secure the palace approach.",
+              "objective_key": "late.dc.05.objective.1"
+            },
+            {
+              "objective_id": "DC-05-O2",
+              "action_ko": "Writbound Captain을 비살상 제압한다",
+              "objective_en": "Disarm the Writbound Captain.",
+              "objective_key": "late.dc.05.objective.2"
+            },
+            {
+              "objective_id": "DC-05-O3",
+              "action_ko": "명령 연결을 차단하고 대피 완료를 알린다",
+              "objective_en": "Sever the command link and confirm the evacuation.",
+              "objective_key": "late.dc.05.objective.3"
+            }
+          ],
+          "encounters": [
+            "DC-M01",
+            "DC-M02",
+            "DC-M05",
+            "DC-B01"
+          ],
+          "result": "인간 경비를 죽이지 않고 왕성 연결실에 접근한다.",
+          "checkpoint": "지휘관 항복과 명령 차단은 별도 저장한다. 보스 승리 후 끊겨도 대피 확인부터 이어 간다.",
+          "dialogue": {
+            "key": "late.dc.05.line",
+            "en_US": "They are not abandoning the city. They are leaving the line of fire."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "DC-04",
+          "next": "DC-06",
+          "safe_start_id": "DC-05-SP",
+          "file": "docs/divided-citadel-story-05-captains-stair.md",
+          "title_key": "late.dc.05.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "DC-06",
+          "slug": "regents-last-order",
+          "title_ko": "섭정의 마지막 명령",
+          "title_en": "The Regent's Last Order",
+          "kind": "main",
+          "level_target": "58~60",
+          "synopsis": [
+            "연결실의 루칸은 왕도 지도 위에 끊기는 불빛을 본다. 그는 자신의 권한을 버리라는 요구보다 연결하면 모두를 지킬 수 있다는 왕의 약속을 받아들인다. 목소리가 겹치고 갑옷에 왕좌 문장이 번지지만, 직접 연결 이전의 서명은 여전히 그의 것이다.",
+            "피난 완료 구간부터 순서대로 중앙 연결을 끊으며 루칸과 싸운다. 전투 후 통제는 끝나지만 루칸은 책임을 인정해야 한다. 구금 또는 감독 아래 구조 복무를 고르고 두 경우 모두 재판과 공개 증언을 보장한다. 의식이 원형 왕좌로 이동한 왕은 다음 침공을 준비하고, 하늘의 포탈을 바라보는 다섯 연락망이 처음 서로 응답한다."
+          ],
+          "phases": [
+            {
+              "objective_id": "DC-06-O1",
+              "action_ko": "피난 확인 구역부터 중앙 연결을 차단한다",
+              "objective_en": "Sever the evacuated districts' throne links.",
+              "objective_key": "late.dc.06.objective.1"
+            },
+            {
+              "objective_id": "DC-06-O2",
+              "action_ko": "루칸을 제압하고 왕의 직접 연결을 끊는다",
+              "objective_en": "Defeat the Regent and break the king's link.",
+              "objective_key": "late.dc.06.objective.2"
+            },
+            {
+              "objective_id": "DC-06-O3",
+              "action_ko": "증언을 보존하고 감독/구금 절차를 결정한다",
+              "objective_en": "Preserve the testimony and decide Lucan's custody.",
+              "objective_key": "late.dc.06.objective.3"
+            }
+          ],
+          "encounters": [
+            "DC-M05",
+            "DC-B02"
+          ],
+          "result": "루칸의 통치가 끝나고 재판 경로를 기록한다. Lv60 전직 시험을 안전 거점에서 안내하고 FB-01을 연다.",
+          "checkpoint": "승리→연결 차단→증언→개인 처분→원정 안내를 분리한다. 안전 중단 뒤 왕을 이미 처치한 것으로 저장하지 않는다.",
+          "dialogue": {
+            "key": "late.dc.06.line",
+            "en_US": "The king took my voice at the end. The orders before that were mine."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "DC-05",
+          "next": "FB-01",
+          "safe_start_id": "DC-06-SP",
+          "file": "docs/divided-citadel-story-06-regents-last-order.md",
+          "title_key": "late.dc.06.title",
+          "quest_xp": null,
+          "quest_coins": null
+        }
+      ],
+      "monsters": [
+        {
+          "id": "DC-M01",
+          "name_en": "Writbound Guard",
+          "name_ko": "명령에 묶인 경비",
+          "name_key": "late.dc.m01.name",
+          "kind": "normal",
+          "role": "비살상 근접·인간 경비",
+          "visual": "왕도 제복과 팔의 연결 인장. 무기 내린 중립 경비와 타깃 상태를 분리한다.",
+          "asset_candidate": {
+            "source_group": "towers",
+            "source_model": "swordsman",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "검을 어깨 뒤로 빼고 짧게 명령을 외침→정면 베기→발을 다시 딛는다.",
+          "counterplay": "회피·차단 뒤 제압한다. HP 소진은 항복/기절이고 사망/시체/처치 보상을 사용하지 않는다.",
+          "story_reason": "명령을 맹신하거나 왕좌 연결을 강요받는 경비 중 실제 공격하는 병력이다.",
+          "defeat_rule": "무기 회수·연결 해제로 제압 승리1회. 보호된 NPC로 전환한다.",
+          "story_ids": [
+            "DC-01",
+            "DC-03",
+            "DC-05"
+          ]
+        },
+        {
+          "id": "DC-M02",
+          "name_en": "Gate Phalanx",
+          "name_ko": "성문 창병",
+          "name_key": "late.dc.m02.name",
+          "kind": "normal",
+          "role": "비살상 전방 방패·통로 통제",
+          "visual": "큰 방패와 짧고 분명한 창, 발밑 전방 삼각 문양.",
+          "asset_candidate": {
+            "source_group": "towers",
+            "source_model": "lancer",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "방패 고정과 창끝 떨림→정면 찌르기/짧은 밀기→측면이 열린다.",
+          "counterplay": "측면 공간 또는 기본 공격 누적으로 제압한다. 실드 브레이커 직업/완벽 방어 불필요.",
+          "story_reason": "대피 명령과 진압 명령이 충돌한 성문 봉쇄 병력이다.",
+          "defeat_rule": "비살상 항복 후 피난 통로를 열고 재공격하지 않는다.",
+          "story_ids": [
+            "DC-03",
+            "DC-05"
+          ]
+        },
+        {
+          "id": "DC-M03",
+          "name_en": "Command Scribe",
+          "name_ko": "명령의 서기관",
+          "name_key": "late.dc.m03.name",
+          "kind": "normal",
+          "role": "비살상 인간 지원형·적 표식",
+          "visual": "길게 펼친 명령장과 도장, 종교 상징만으로 적대 여부를 구분하지 않는다.",
+          "asset_candidate": {
+            "source_group": "towers",
+            "source_model": "inquisitor",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "명령장을 펼치고 대상 위 인장 표시→경비 한 명의 돌진 예고를 강화→서류를 거둔다.",
+          "counterplay": "서기관을 먼저 제압하거나 표시된 경비 공격 후 틈을 쓴다. 주민/의료진은 타깃이 아니다.",
+          "story_reason": "루칸의 명령을 강행하는 현장 집행자다. 교단 전체가 적이라는 뜻은 아니다.",
+          "defeat_rule": "장부/명령을 보존하고 무장 해제한다. 정화 처형 연출 없음.",
+          "story_ids": [
+            "DC-03"
+          ]
+        },
+        {
+          "id": "DC-M04",
+          "name_en": "Rift Hound",
+          "name_ko": "균열 사냥개",
+          "name_key": "late.dc.m04.name",
+          "kind": "normal",
+          "role": "포탈 생물·직선 돌진",
+          "visual": "Hellhound 원형의 낮은 실루엣과 균열 흔적, 시민 개와 구분한다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "hellhound",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "등의 균열이 벌어지고 목표선 표시→직선 돌진→멈춰 방향을 다시 잡는다.",
+          "counterplay": "옆으로 이동하고 회복 중 공격한다. 이동 흔적의 시각 길이와 서버 사거리 일치가 필요하다.",
+          "story_reason": "도시 포탈로 들어온 적대 생물이다. 인간 경비와 처치 표현을 분리한다.",
+          "defeat_rule": "포탈 생물을 처치한다. 일반 인간 제압과 다른 승리 유형이다.",
+          "story_ids": [
+            "DC-01",
+            "DC-04"
+          ]
+        },
+        {
+          "id": "DC-M05",
+          "name_en": "Throne Conduit",
+          "name_ko": "왕좌의 관제체",
+          "name_key": "late.dc.m05.name",
+          "kind": "normal",
+          "role": "고정/중장갑 장치·광선 제어",
+          "visual": "왕도 석조와 왕관 인장, 굵은 연결관으로 주민 설비와 구분한다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "golem",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "렌즈가 밝아지고 고정 직선 문양→광선 발사→렌즈가 내려가 취약해진다.",
+          "counterplay": "광선 후 공격하거나 접근해 명령 연결을 차단한다. 병원 최소 지원 확인 전 본관제 차단은 잠근다.",
+          "story_reason": "방어 장치가 주민 보호보다 강제 징수 명령을 우선하게 됐다.",
+          "defeat_rule": "전투 연결만 정지하고 이미 마련한 돌봄/물길은 유지한다.",
+          "story_ids": [
+            "DC-04",
+            "DC-05",
+            "DC-06"
+          ]
+        },
+        {
+          "id": "DC-B01",
+          "name_en": "Writbound Captain",
+          "name_ko": "명령장의 지휘관",
+          "name_key": "late.dc.b01.name",
+          "kind": "mandatory_boss",
+          "role": "필수 중간 보스·비살상 지휘관",
+          "visual": "왕도 대형 방패와 계급장, 왕좌 인장이 팔까지 이어진다.",
+          "asset_candidate": {
+            "source_group": "towers",
+            "source_model": "ironwall",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "지휘 방패를 들고 공격 방향을 지시→직선 진격/반격→연결 인장이 드러난다.",
+          "counterplay": "진격을 피하고 인장 노출에 기본 전투로 제압, 피난 완료 신호로 연결을 끊는다.",
+          "story_reason": "대피를 탈영으로 잘못 분류하는 병사. 권한 독점의 현장 피해를 보여 준다.",
+          "defeat_rule": "항복과 명령 차단이 승리이며 인간 사망 목표가 아니다.",
+          "story_ids": [
+            "DC-05"
+          ]
+        },
+        {
+          "id": "DC-B02",
+          "name_en": "Regent Lucan",
+          "name_ko": "섭정 루칸",
+          "name_key": "late.dc.b02.name",
+          "kind": "mandatory_boss",
+          "role": "필수 최종 보스·연결 차단과 책임",
+          "visual": "개인 얼굴과 왕도 지휘복, 연결 후에도 같은 인물임이 보이는 갑옷 변화.",
+          "asset_candidate": {
+            "source_group": "new",
+            "source_model": null,
+            "status": "New candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "왕도 지도 문양과 검 방향→구역 연결 파동/검격→명령이 겹치며 회복 틈.",
+          "counterplay": "대피 완료 구역부터 순차 차단하며 루칸을 약화한다. 피난 미완료 구역을 희생해 전투 단축하는 분기 없음.",
+          "story_reason": "왕과 직접 연결하기로 한 선택과 이전 은폐의 책임을 함께 다룬다.",
+          "defeat_rule": "비살상 제압→연결 차단→증언/개인 처분. 처치 인장/반복 처형 없음.",
+          "story_ids": [
+            "DC-06"
+          ]
+        },
+        {
+          "id": "DC-X01",
+          "name_en": "Cistern Maw",
+          "name_ko": "저수조의 아귀",
+          "name_key": "late.dc.x01.name",
+          "kind": "optional_boss",
+          "role": "선택 보스·도시 생태 위협",
+          "visual": "구형 슬라임 몸체와 돌 배수구 같은 입 테두리.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "slime",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "몸이 크게 부풀며 바닥 배수 방향 표시→물살 밀기→입 테두리 노출.",
+          "counterplay": "물살 옆 안전부로 이동한 뒤 공격한다. 필수 피난 수로와 별도 옆 저수조에서 진행한다.",
+          "story_reason": "불안정한 공명을 먹고 자란 도시 외곽 생물이다.",
+          "defeat_rule": "제압/처치 후 옆 저수조 관측. 본편 의료/대피 기능의 선행이 아니다.",
+          "story_ids": [],
+          "hidden_quest_id": "DC-Q2",
+          "unlocks_after": "DC-04"
+        }
+      ],
+      "file": "docs/epic-06-divided-citadel-story.md",
+      "hidden_quests": [
+        {
+          "id": "DC-Q1",
+          "kind": "records",
+          "name_en": "Names on the Way Home",
+          "unlocks_after": "DC-02",
+          "source": "prior hidden-quest candidate",
+          "required_boss": null,
+          "name_key": "late.dc.q1.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "DC-Q2",
+          "kind": "optional_boss",
+          "name_en": "Beneath the Cistern",
+          "unlocks_after": "DC-04",
+          "required_boss": "DC-X01",
+          "name_key": "late.dc.q2.title",
+          "quest_xp": null,
+          "quest_coins": null
+        }
+      ],
+      "title_key": "late.dc.title"
+    },
+    {
+      "number": 7,
+      "code": "FB",
+      "slug": "five-banners",
+      "title_ko": "다섯 깃발의 원정",
+      "title_en": "The March of Five Banners",
+      "level_target": "Lv60→70 목표·XP 미설계",
+      "hook": "다섯 깃발이 같은 편에 서도 각자 지키고 싶은 집은 다르다. 한 전선이 무너질 때 다른 전선이 무엇을 내줄 수 있는지가 연합의 진짜 시험이다.",
+      "theme": "동의는 서명에서 끝나지 않는다. 철회와 실패도 견디는 협력을 실제 원정으로 증명한다.",
+      "synopsis": [
+        "왕의 의식이 원형 왕좌로 이동한 뒤, 지역 대표들은 공동 방어가 필요하다는 데 동의한다. 그러나 누가 먼저 병력과 정비 인력을 내놓을지는 다툰다. 플레이어는 다섯 지역을 돌며 같은 도장을 받는 대신, 한 회의에서 앞서 확인한 방어 한계와 부담을 함께 펼친다. 각 대표가 거절하거나 중단할 권리와 그때의 피난 절차를 협약에 남긴다.",
+        "보관하던 네 핵은 담당자에게 따로 인계하고 독점 명령을 철회해 각 지역 순환으로 돌린다. 원정대가 호송하는 것은 새 핵이 아니라 신호 중계 수정이다. 적은 수정을 깨뜨리는 것보다 연결을 틀어 중앙 명령으로 되돌리려 한다. 원정은 호송 자체보다 어디까지 믿고 신호를 받을 것인지의 싸움이 된다.",
+        "첫 연결은 성공하지만 다리의 한 구간이 무너지면서 북방 연락이 끊긴다. 다른 지역은 끊긴 곳을 버리거나 살아 있는 사람을 대신 연료로 꽂는 대신 부하를 줄이고 피난을 진행한다. 플레이어가 우회로를 확보하는 동안 정비 담당자는 자기 구역의 생산을 낮춰 버틸 여유를 만든다. 실패를 견디는 방식이 새 서약의 설득력이 된다.",
+        "균열 돌파체 Riftbreaker Behemoth와 왕의 원정 지휘체 Dread Commander가 이동로와 성채를 번갈아 노린다. 플레이어는 원격 전선에 NPC 인원을 계속 투입하는 대신, 순차 작전과 사전 합의한 신호로 각 구간을 처리한다. 묘지에서 처치했을 수 있는 동명 보스와 원정 지휘체는 별개 존재이며 과거 승리를 취소하지 않는다.",
+        "마지막 전투 뒤 연합의 깃발은 상처 입지만 연결은 돌아온다. 야영지에서 주인공은 조각을 가진 자신만 남아 시간을 벌겠다고 한다. 동료들은 자기 담당 구간과 철회 신호를 답하고 주인공은 혼자 짊어지려던 결정을 거둔다. 다음 날의 원정에는 새 힘의 약속보다 돌아오면 고칠 물건과 함께 먹을 식사의 약속이 남는다."
+      ],
+      "choice": {
+        "id": "FB-C1",
+        "a": "서약망 보수 거점을 먼저 넓힌다",
+        "b": "피난·왕복 관측 거점을 먼저 넓힌다",
+        "cost_a": "민간 피난 시설 확장이 늦어진다",
+        "cost_b": "정비 인력이 더 긴 교대와 이동을 감당한다",
+        "payoff": "에필로그의 첫 공동 사업이 정비소 또는 피난 관측소가 된다. 두 경로 모두 최소 방어/피난을 확보하고 최종전 지원은 동등하다."
+      },
+      "stories": [
+        {
+          "id": "FB-01",
+          "slug": "table-of-five",
+          "title_ko": "다섯 자리가 놓인 식탁",
+          "title_en": "A Table for Five",
+          "kind": "main",
+          "level_target": "60~61",
+          "synopsis": [
+            "성채의 식탁에는 서로 다른 길이의 깃발이 놓인다. 대표들은 똑같은 병력을 낼 수 없고, 북방은 잃은 세월을, 드워프는 줄어든 생산량을 먼저 말한다. 플레이어는 각자가 이미 치른 대가를 지우지 않은 채 어떤 지원이 가능한지 확인한다.",
+            "다섯 동료가 자기 세력의 부담과 중단권을 설명한다. 이전 선택은 누가 어떤 편지로 응답하는지를 바꾸지만 필요한 연락은 모두 도착한다. 루칸은 플레이어의 처분에 맞춰 구금 증언서 또는 감독관 보고로만 등장하며 정치적 지휘권을 되찾지 않는다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FB-01-O1",
+              "action_ko": "각 대표의 방어 한계와 맡을 역할을 확인한다",
+              "objective_en": "Hear each delegation's limits.",
+              "objective_key": "late.fb.01.objective.1"
+            },
+            {
+              "objective_id": "FB-01-O2",
+              "action_ko": "권한 철회와 피난 절차를 협약에 남긴다",
+              "objective_en": "Record withdrawal and evacuation procedures.",
+              "objective_key": "late.fb.01.objective.2"
+            },
+            {
+              "objective_id": "FB-01-O3",
+              "action_ko": "분리된 핵 인계 계획을 승인받는다",
+              "objective_en": "Confirm the separate core handovers.",
+              "objective_key": "late.fb.01.objective.3"
+            }
+          ],
+          "encounters": [],
+          "result": "다섯 역할의 본편 기본 지원을 확보한다. 숨은 퀘스트/동료 호감도/재화 지불은 선행이 아니다.",
+          "checkpoint": "대표 확인을 각자 저장한다. 의견 차이를 오답 퍼즐로 처리하거나 반복 기부를 요구하지 않는다.",
+          "dialogue": {
+            "key": "late.fb.01.line",
+            "en_US": "Tell us what you can give up, and what you must still protect."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "DC-06",
+          "next": "FB-02",
+          "safe_start_id": "FB-01-SP",
+          "file": "docs/five-banners-story-01-table-of-five.md",
+          "title_key": "late.fb.01.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FB-02",
+          "slug": "relay-convoy",
+          "title_ko": "왕을 향하지 않는 호송",
+          "title_en": "A Convoy Away from the Throne",
+          "kind": "main",
+          "level_target": "61~63",
+          "synopsis": [
+            "네 핵의 인계는 각 지역 대표의 안전 담당자에게 따로 끝낸다. 플레이어가 싣는 중계 수정은 그 지역들의 신호를 잇기 위한 작은 장치다. 병사들은 왕좌로 돌아가지 않는 호송을 처음 경험하며 누구를 위해 길을 여는지 묻는다.",
+            "포탈 사냥개가 호송을 끊고 표식을 심는 적이 다음 노선을 바꾸려 한다. 플레이어는 정지 지점에서 위협을 해제한 뒤 마차를 보내고, 이동 중에는 탑승 시간 경쟁이나 마차 HP 감소를 강요하지 않는다. 수정이 거대한 힘이 아니라 연결의 신뢰를 담는 물건임을 분명히 한다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FB-02-O1",
+              "action_ko": "지역별 핵 인계 증서와 차단 해제를 확인한다",
+              "objective_en": "Confirm the regional core handovers.",
+              "objective_key": "late.fb.02.objective.1"
+            },
+            {
+              "objective_id": "FB-02-O2",
+              "action_ko": "중계 수정의 정차 구간을 확보한다",
+              "objective_en": "Secure the relay convoy stops.",
+              "objective_key": "late.fb.02.objective.2"
+            },
+            {
+              "objective_id": "FB-02-O3",
+              "action_ko": "안전 신호를 확인해 마차를 전진시킨다",
+              "objective_en": "Advance the convoy on a verified signal.",
+              "objective_key": "late.fb.02.objective.3"
+            }
+          ],
+          "encounters": [
+            "FB-M01",
+            "FB-M03",
+            "FB-M04"
+          ],
+          "result": "네 핵이 중앙이 아닌 지역 순환에 재배치되고 중계 수정이 전선에 도착한다.",
+          "checkpoint": "완료 정차 지점과 인계 증서는 유지한다. 마차가 미접속자를 두고 낭떠러지로 움직이지 않는다.",
+          "dialogue": {
+            "key": "late.fb.02.line",
+            "en_US": "This is a relay, not a fifth core. It carries a message, not a life."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FB-01",
+          "next": "FB-03",
+          "safe_start_id": "FB-02-SP",
+          "file": "docs/five-banners-story-02-relay-convoy.md",
+          "title_key": "late.fb.02.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FB-03",
+          "slug": "answering-lights",
+          "title_ko": "서로 응답하는 불빛",
+          "title_en": "Lights That Answer",
+          "kind": "main",
+          "level_target": "63~64",
+          "synopsis": [
+            "숲·설원·화산·묘지와 관제 기록의 신호가 처음 한 화면에 모인다. 엘프 안내자 또는 고블린 연락자는 각자의 준비로 같은 안전 경로를 열고, 북방의 증언단 또는 피난대는 같은 거점을 다른 방식으로 소개한다. 이전 선택이 사라지지 않되 전투 자격의 격차로 바뀌지 않는다.",
+            "전선의 표식 적은 신호 순서를 흉내 내 중앙 복귀 명령을 삽입한다. 플레이어는 문양과 짧은 영어 메시지를 대조해 위조된 응답을 차단한다. 동시에 다섯 곳을 누를 필요 없이, 한 구간을 확인하면 나머지는 합의된 대기 상태를 유지한다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FB-03-O1",
+              "action_ko": "지역 응답을 문양과 기록으로 대조한다",
+              "objective_en": "Compare the regional responses.",
+              "objective_key": "late.fb.03.objective.1"
+            },
+            {
+              "objective_id": "FB-03-O2",
+              "action_ko": "위조 신호를 보내는 병력을 제압한다",
+              "objective_en": "Stop the forged commands.",
+              "objective_key": "late.fb.03.objective.2"
+            },
+            {
+              "objective_id": "FB-03-O3",
+              "action_ko": "각 지역의 독립 연결을 확인한다",
+              "objective_en": "Confirm the independent links.",
+              "objective_key": "late.fb.03.objective.3"
+            }
+          ],
+          "encounters": [
+            "FB-M02",
+            "FB-M03"
+          ],
+          "result": "정상 연결·위조 신호 구별을 배우고 네 지역이 독립 운용 중임을 확인한다.",
+          "checkpoint": "확인한 연결과 위조 차단은 유지한다. 정답 표시는 소리/색에만 의존하지 않고 재열람한다.",
+          "dialogue": {
+            "key": "late.fb.03.line",
+            "en_US": "A matching light is not enough. Ask who sent it."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FB-02",
+          "next": "FB-04",
+          "safe_start_id": "FB-03-SP",
+          "file": "docs/five-banners-story-03-answering-lights.md",
+          "title_key": "late.fb.03.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FB-04",
+          "slug": "broken-span",
+          "title_ko": "끊어진 다리의 약속",
+          "title_en": "The Broken Span",
+          "kind": "main",
+          "level_target": "64~66",
+          "synopsis": [
+            "연결이 성공한 직후 균열이 다리를 갈라 북방 연락을 삼킨다. 마법사는 부하를 나머지 지역으로 한꺼번에 넘기려 하지만, 그러면 다른 봉인도 흔들릴 수 있다. 일행은 필요한 방어만 남기고 피난을 먼저 시작한다. 시험 실패가 곧 배신의 증거가 되지는 않는다.",
+            "돌파체가 점거한 다리 받침을 확보하고 정비팀의 우회 고정점을 연다. 플레이어가 길을 만들 동안 각 대표는 생산과 관측을 줄여 피난 여유를 내준다. 다시 연결됐을 때 불빛은 이전보다 작지만 안정적이다. 대륙을 한 번에 밝히는 힘보다 실패하고도 버티는 힘을 보여 준다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FB-04-O1",
+              "action_ko": "끊긴 전선의 부하를 줄이고 피난 신호를 보낸다",
+              "objective_en": "Reduce the load and signal evacuation.",
+              "objective_key": "late.fb.04.objective.1"
+            },
+            {
+              "objective_id": "FB-04-O2",
+              "action_ko": "Riftbreaker Behemoth를 돌파한다",
+              "objective_en": "Defeat the Riftbreaker Behemoth.",
+              "objective_key": "late.fb.04.objective.2"
+            },
+            {
+              "objective_id": "FB-04-O3",
+              "action_ko": "우회 고정점을 연결해 연락을 복구한다",
+              "objective_en": "Restore the link through the bypass.",
+              "objective_key": "late.fb.04.objective.3"
+            }
+          ],
+          "encounters": [
+            "FB-M04",
+            "FB-M05",
+            "FB-B01"
+          ],
+          "result": "한 구간의 단절과 안전 복구를 실제 사건으로 검증한다. 누구도 영구 연료로 쓰지 않는다.",
+          "checkpoint": "피난 신호/부하 감소는 유지하고 미완료 보스만 재설정한다. 보스 승리 후 우회 연결부터 재개한다.",
+          "dialogue": {
+            "key": "late.fb.04.line",
+            "en_US": "Smaller lights can hold. Stop trying to make one of them carry the sky."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FB-03",
+          "next": "FB-05",
+          "safe_start_id": "FB-04-SP",
+          "file": "docs/five-banners-story-04-broken-span.md",
+          "title_key": "late.fb.04.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FB-05",
+          "slug": "walls-of-many-hands",
+          "title_ko": "여러 손이 지키는 성벽",
+          "title_en": "Walls Held by Many Hands",
+          "kind": "main",
+          "level_target": "66~68",
+          "synopsis": [
+            "다리를 포기한 적은 성채의 신호 거점을 노린다. 플레이어는 먼저 피난로, 다음 성문, 마지막 중계 마당을 순서대로 지킨다. 다른 전선의 전투는 동료를 추가 소환하는 대신 신호와 원경 연출로 전달해 전선이 크다는 감각을 만든다.",
+            "노동자가 보낸 도구나 보강 자재, 묘지의 조사관이나 추모 주민이 같은 구간을 다른 모습으로 준비한다. 교전은 정해진 공격대 단위로 끝나고 무한 증원으로 시간을 채우지 않는다. 구조한 담당자가 다음 신호를 전하면서 원정 지휘체의 위치가 드러난다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FB-05-O1",
+              "action_ko": "피난로와 성문을 순서대로 확보한다",
+              "objective_en": "Secure the refuge route, then the gate.",
+              "objective_key": "late.fb.05.objective.1"
+            },
+            {
+              "objective_id": "FB-05-O2",
+              "action_ko": "중계 마당의 유한 공격대를 막는다",
+              "objective_en": "Repel the attack on the relay yard.",
+              "objective_key": "late.fb.05.objective.2"
+            },
+            {
+              "objective_id": "FB-05-O3",
+              "action_ko": "담당자를 구조하고 적 지휘 신호를 추적한다",
+              "objective_en": "Rescue the operator and trace the command.",
+              "objective_key": "late.fb.05.objective.3"
+            }
+          ],
+          "encounters": [
+            "FB-M01",
+            "FB-M02",
+            "FB-M03",
+            "FB-M05"
+          ],
+          "result": "성채 최소 방어와 최종 원정로를 유지한다. 수호전을8인 레이드로 바꾸지 않는다.",
+          "checkpoint": "완료한 전선은 유지하고 현재 공격대만 재설정한다. 이탈/재접속으로 이미 막은 전선을 다시 잃지 않는다.",
+          "dialogue": {
+            "key": "late.fb.05.line",
+            "en_US": "The tools arrived before the soldiers. That is why this wall is still here."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FB-04",
+          "next": "FB-06",
+          "safe_start_id": "FB-05-SP",
+          "file": "docs/five-banners-story-05-walls-of-many-hands.md",
+          "title_key": "late.fb.05.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FB-06",
+          "slug": "commander-of-fractures",
+          "title_ko": "갈라진 전선의 지휘관",
+          "title_en": "The Commander of Fractures",
+          "kind": "main",
+          "level_target": "68~70",
+          "synopsis": [
+            "Dread Commander는 왕이 남긴 명령을 갑옷과 전쟁 잔향에 묶어 만든 원정 지휘체다. 그는 이미 쓰러뜨린 누군가가 돌아왔다고 주장하지 않는다. 강제로 같은 목표를 따르게 하는 명령 표식으로 연합의 거점을 서로 공격하게 하려 한다.",
+            "플레이어는 군기의 예고를 읽어 돌진을 피하고, 제7장에서 확인한 신호로 위조 명령을 끊는다. 연결이 잠깐 끊겨도 지역들은 합의된 대기 상태를 지킨다. 지휘체가 무너지면 군기는 빛을 잃고, 성채는 주인공 한 명의 승리가 아니라 서로의 신호를 믿은 준비로 남는다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FB-06-O1",
+              "action_ko": "지휘 군기의 공격 순서를 읽고 접근한다",
+              "objective_en": "Read the command banners and advance.",
+              "objective_key": "late.fb.06.objective.1"
+            },
+            {
+              "objective_id": "FB-06-O2",
+              "action_ko": "Dread Commander와 위조 명령을 무력화한다",
+              "objective_en": "Defeat the Dread Commander and its false orders.",
+              "objective_key": "late.fb.06.objective.2"
+            },
+            {
+              "objective_id": "FB-06-O3",
+              "action_ko": "최종 원정 포탈의 귀환 신호를 확보한다",
+              "objective_en": "Secure the return signal at the final portal.",
+              "objective_key": "late.fb.06.objective.3"
+            }
+          ],
+          "encounters": [
+            "FB-M02",
+            "FB-M03",
+            "FB-B02"
+          ],
+          "result": "원정 지휘체를 처치하고 최종 지역으로 가는 안전 입구·귀환 신호를 확보한다.",
+          "checkpoint": "보스 승리→신호 복구→원정로 개방을 분리한다. HG-S3 선택전 완료 여부로 보스를 대체/생략하지 않는다.",
+          "dialogue": {
+            "key": "late.fb.06.line",
+            "en_US": "Let the line go quiet. They know how to hold until we answer."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FB-05",
+          "next": "FB-07",
+          "safe_start_id": "FB-06-SP",
+          "file": "docs/five-banners-story-06-commander-of-fractures.md",
+          "title_key": "late.fb.06.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FB-07",
+          "slug": "last-shared-supper",
+          "title_ko": "함께 먹는 마지막 저녁",
+          "title_en": "The Last Shared Supper",
+          "kind": "main",
+          "level_target": "70·안전 거점",
+          "synopsis": [
+            "마지막 야영지의 식사는 조금 탄 빵과 지역마다 다른 차다. 브란은 주전자를 고치려다 이미 주민이 고쳐 보냈다는 쪽지를 발견한다. 에린은 귀환길 표식을 바꿔 두었고, 이리아는 도서관의 낙서와 아이의 그림을 같은 주머니에 넣는다.",
+            "주인공은 조각을 가진 자신이 남으면 모두 돌아갈 시간을 벌 수 있다고 말한다. 동료들은 남으라는 부탁 대신 각자 맡을 구간과 철회 신호를 답한다. 플레이어는 단독 희생을 거두고 자기 구간만 맡기로 한다. 마지막 공동 사업의 우선순위를 기록하고 다음 날 돌아올 길부터 확인한다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FB-07-O1",
+              "action_ko": "동료와 지역 담당자의 맡은 구간을 확인한다",
+              "objective_en": "Confirm everyone's part in the operation.",
+              "objective_key": "late.fb.07.objective.1"
+            },
+            {
+              "objective_id": "FB-07-O2",
+              "action_ko": "단독 희생 계획을 거두고 귀환 신호를 약속한다",
+              "objective_en": "Agree on a shared return signal.",
+              "objective_key": "late.fb.07.objective.2"
+            },
+            {
+              "objective_id": "FB-07-O3",
+              "action_ko": "공동 사업 우선순위를 기록하고 출발을 준비한다",
+              "objective_en": "Choose a rebuilding priority and prepare to depart.",
+              "objective_key": "late.fb.07.objective.3"
+            }
+          ],
+          "encounters": [],
+          "result": "개인 FB-C1을 기록하고 FC-01을 연다. 기본 동료 영입/편성은 필수가 아니며 연락으로 장면을 전달한다.",
+          "checkpoint": "대화/개인 선택만 남기고 전투 보상을 만들지 않는다. 로그아웃 후에도 같은 안전 야영지에서 준비한다.",
+          "dialogue": {
+            "key": "late.fb.07.line",
+            "en_US": "You do not have to carry my part. You have to trust me with it."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FB-06",
+          "next": "FC-01",
+          "safe_start_id": "FB-07-SP",
+          "file": "docs/five-banners-story-07-last-shared-supper.md",
+          "title_key": "late.fb.07.title",
+          "quest_xp": null,
+          "quest_coins": null
+        }
+      ],
+      "monsters": [
+        {
+          "id": "FB-M01",
+          "name_en": "Rift Hound",
+          "name_ko": "균열 사냥개",
+          "name_key": "late.fb.m01.name",
+          "kind": "normal",
+          "role": "DC와 같은 계열·호송 측면 압박",
+          "visual": "DC-M04 원형에 전선 구분 표식만 더한다. 새 종으로 세지 않는다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "hellhound",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "호송 정차 구간에서 몸을 낮추고 목표선 표시→측면 돌진→회복한다.",
+          "counterplay": "먼저 위협을 해제한 뒤 마차를 이동시킨다. 비전투 마차의 무한 HP 소모/유료 수리 없음.",
+          "story_reason": "왕의 원정 연결을 따라온 포탈 생물이다.",
+          "defeat_rule": "처치형. 재접속으로 이미 확정한 교전 보상을 반복하지 않는다.",
+          "story_ids": [
+            "FB-02",
+            "FB-05"
+          ]
+        },
+        {
+          "id": "FB-M02",
+          "name_en": "Hollow Standard Bearer",
+          "name_ko": "빈 갑옷의 군기병",
+          "name_key": "late.fb.m02.name",
+          "kind": "normal",
+          "role": "이동 방패·방향 전환 지원",
+          "visual": "빈 갑옷과 커다란 명령 깃발. 망자의 개인 이름/얼굴을 쓰지 않는다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "skeleton_knight",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "군기를 꽂고 앞쪽 부채꼴 표시→아군 장갑 방향을 강화→군기를 뽑는다.",
+          "counterplay": "측면으로 돌아가거나 군기 노출 때 공격한다. 일반 공격으로도 완료할 수 있다.",
+          "story_reason": "과거 해방한 영혼이 아니라 남은 군사 명령이 갑옷을 움직인다.",
+          "defeat_rule": "명령체를 분해한다. HG의 안식을 무효화하지 않는다.",
+          "story_ids": [
+            "FB-03",
+            "FB-05",
+            "FB-06"
+          ]
+        },
+        {
+          "id": "FB-M03",
+          "name_en": "Signal Binder",
+          "name_ko": "신호를 묶는 자",
+          "name_key": "late.fb.m03.name",
+          "kind": "normal",
+          "role": "원거리 지원·위조 응답",
+          "visual": "갈라진 도장 지팡이와 큰 신호 깃발, 두꺼운 연결선.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "volcano_shaman",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "위조 발신 문양/영어 신호 표시→하나의 연결 거점을 교란→발신기 냉각.",
+          "counterplay": "문양 대조 후 발신체를 제압하거나 거점에서 위조 명령을 거부한다. 인터럽트 전용 스킬 불필요.",
+          "story_reason": "왕의 중앙 복귀 명령을 지역 응답처럼 위조하는 적대 술사다.",
+          "defeat_rule": "전투 제압으로 교란을 끝내고 기존 정상 연결은 유지한다.",
+          "story_ids": [
+            "FB-02",
+            "FB-03",
+            "FB-05",
+            "FB-06"
+          ]
+        },
+        {
+          "id": "FB-M04",
+          "name_en": "Breach Brute",
+          "name_ko": "균열 돌파체",
+          "name_key": "late.fb.m04.name",
+          "kind": "normal",
+          "role": "넓은 전방 공격·통로 압박",
+          "visual": "Ogre 체형의 빈 석조 갑각과 한쪽 큰 팔. 고블린 포로/해방 오우거와 다른 존재다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "ogre",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "큰 팔을 바닥에 대고 경로 표시→전방 밀어내기→갑각 이음새 노출.",
+          "counterplay": "옆 공터에서 대응하고 이음새 틈을 공격한다. 좁은 문에서 큰 충돌체로 끼지 않게 한다.",
+          "story_reason": "균열 압력이 모여 만든 전선 파괴 생물이다.",
+          "defeat_rule": "공명체 처치/분산. DW 포로를 다시 지배해 싸우게 하지 않는다.",
+          "story_ids": [
+            "FB-02",
+            "FB-04"
+          ]
+        },
+        {
+          "id": "FB-M05",
+          "name_en": "Siege Golem",
+          "name_ko": "공성 골렘",
+          "name_key": "late.fb.m05.name",
+          "kind": "normal",
+          "role": "원거리 포격·안전 지역 선택",
+          "visual": "등의 포문과 넓게 지면을 딛는 다리, 포격 준비 시 몸통이 낮아진다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "magma_golem",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "포문 개방과 넓은 바닥 문양→고정 지점 포격→열 배출구 개방.",
+          "counterplay": "고정 문양 밖으로 이동한 뒤 배출구를 공격한다. 피난NPC에 무작위 추적 포격하지 않는다.",
+          "story_reason": "원정 지휘체가 재편한 공성 장치다.",
+          "defeat_rule": "동력 장치를 정지한다. 파편은 기본 필수 동선의 충돌을 만들지 않는다.",
+          "story_ids": [
+            "FB-04",
+            "FB-05"
+          ]
+        },
+        {
+          "id": "FB-B01",
+          "name_en": "Riftbreaker Behemoth",
+          "name_ko": "균열 파쇄 거수",
+          "name_key": "late.fb.b01.name",
+          "kind": "mandatory_boss",
+          "role": "필수 중간 보스·단절 전선 복구",
+          "visual": "Caldera Titan 체형을 전선의 석조/균열 갑각으로 파생. 같은 화산 거인 인물이 아니다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "caldera_titan",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "다리 받침을 두드리는 자세와 바닥 띠→넓은 쓸기/일직선 균열→팔 고정 회복.",
+          "counterplay": "안전 발판에서 예고를 읽고 팔 고정 틈에 공격, 승리 뒤 우회 연결을 복구한다.",
+          "story_reason": "연결을 끊어 지역들이 다시 중앙을 찾게 만들려는 돌파 병기다.",
+          "defeat_rule": "처치/정지 뒤 고정된 다리 바닥을 유지한다. 전투 중 물리 절벽 낙하를 강요하지 않는다.",
+          "story_ids": [
+            "FB-04"
+          ]
+        },
+        {
+          "id": "FB-B02",
+          "name_en": "Dread Commander",
+          "name_ko": "공포의 원정 지휘체",
+          "name_key": "late.fb.b02.name",
+          "kind": "mandatory_boss",
+          "role": "필수 최종 보스·거짓 명령 차단",
+          "visual": "TD dread_commander의 갑옷·무기 정체성을 유지하고 원정 인장으로 개체를 구분한다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "dread_commander",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "군기 방향과 발신 문양→돌진/명령 파동→군기 연결이 느슨해진다.",
+          "counterplay": "기본 전투와 신호 대조로 중앙 복귀 명령을 거부한다. 정상 지역이 잠시 대기하는 틈이 공격 창이 된다.",
+          "story_reason": "HG-S3의 선택 개체와 별개. 왕이 남긴 명령으로 조립한 새 원정 지휘체다.",
+          "defeat_rule": "해당 지휘체 처치. 선택전 유무와 관계없이 같은 본편 자격/보상 예산을 따른다.",
+          "story_ids": [
+            "FB-06"
+          ]
+        },
+        {
+          "id": "FB-X01",
+          "name_en": "Standard Eater",
+          "name_ko": "깃발을 삼키는 짐승",
+          "name_key": "late.fb.x01.name",
+          "kind": "optional_boss",
+          "role": "선택 보스·전선 흔적 추적",
+          "visual": "Hellhound 계열에 찢어진 깃발이 걸린 갑각과 굵은 턱을 추가한다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "hellhound",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "먹은 깃발을 털고 지면 선 표시→긴 횡단 돌진→깃대에 걸려 회복한다.",
+          "counterplay": "안전 측면으로 피하고 정지 때 공격한다. 필수 보급 깃발이 아니라 분실된 기념 표식을 회수한다.",
+          "story_reason": "전장의 공명과 천을 모으는 야생 균열 생물이다.",
+          "defeat_rule": "선택 처치 후 표식 회수. 필수 지원 병력/포탈 개방은 독점하지 않는다.",
+          "story_ids": [],
+          "hidden_quest_id": "FB-Q2",
+          "unlocks_after": "FB-04"
+        }
+      ],
+      "file": "docs/epic-07-five-banners-story.md",
+      "hidden_quests": [
+        {
+          "id": "FB-Q1",
+          "kind": "records",
+          "name_en": "The Missing Standard",
+          "unlocks_after": "FB-02",
+          "source": "prior hidden-quest candidate",
+          "required_boss": null,
+          "name_key": "late.fb.q1.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FB-Q2",
+          "kind": "optional_boss",
+          "name_en": "The Banner Thief",
+          "unlocks_after": "FB-04",
+          "required_boss": "FB-X01",
+          "name_key": "late.fb.q2.title",
+          "quest_xp": null,
+          "quest_coins": null
+        }
+      ],
+      "title_key": "late.fb.title"
+    },
+    {
+      "number": 8,
+      "code": "FC",
+      "slug": "fractured-crown",
+      "title_ko": "영원의 왕좌",
+      "title_en": "The Eternal Throne",
+      "level_target": "Lv70→80 목표·최종전 전 안전 전직 안내",
+      "hook": "왕은 잃은 모든 목소리를 돌려주겠다고 한다. 그러나 그 목소리들은 아직 쓰지 않은 내일을 말하지 못한다. 영웅은 왕관을 받는 대신 누군가가 거절할 수 있는 세계를 지킨다.",
+      "theme": "기억하는 것과 붙잡는 것은 다르다. 주인공은 독점 권한과 대신 짊어질 희생을 내려놓는다.",
+      "synopsis": [
+        "The Fractured Crown은 지나온 네 지역과 기억 속 왕도가 균열 위에 겹친 곳이다. 실제로 이동하는 피난대와 재생되는 사람의 형상을 구분하며 첫 귀환 거점을 만든다. 익숙한 장소의 조합은 단순 재탕이 아니라 지역의 다른 상처를 하나의 명령으로 지우려는 왕의 계획을 보여 준다.",
+        "숲의 지배 연결을 끊고 북방의 기억을 대조하며, 화산의 안전 전환과 묘지의 이름 보존을 차례로 적용한다. 왕은 죽은 사람과 소진된 기억의 목소리를 재생해 선택을 흔든다. 주인공은 그들이 기록 이후의 질문에 답하지 못한다는 것을 확인한다. 새로운 진짜 부활을 추가해 앞의 상실을 무효로 만들지 않는다.",
+        "Crown Custodian은 누구도 떠날 수 없는 왕도의 모형을 지킨다. 플레이어는 모형 시민의 이름을 보존하되 강제 반복을 끝내고, 왕의 사적 정원으로 통하는 길을 연다. 최종 전실에서는 안전하게 Lv80 최종 전직 시험을 안내할 수 있게 준비한다. 실제 레벨 획득량은 후속 예산이며 궁극기 사용이나 전직 완료가 문을 여는 조건은 아니다.",
+        "아우렐리안은 후계자가 되면 고통과 전쟁을 끝내겠다고 제안한다. 주인공은 먼저 한 사람이라도 왕의 도움을 거절할 수 있게 해 달라고 요구한다. 왕이 허락하지 않으면서 협상은 끝난다. 최종전은 검과 서약, 지역 권한 강탈, 완전한 정적의 세 단계로 진행한다. 제7장에서 시험한 우회/철회 절차가 독점 명령을 무너뜨린다.",
+        "안전 전환을 확인한 뒤 리라의 결박을 끊는다. 왕이 소멸해도 그녀에게 마지막 버팀목 역할을 맡기지 않는다. 리라는 자기 이름을 남기고 스스로 인사를 끝낸다. 에필로그에서 주민과 대표는 세 협약 중 하나를 정하고 플레이어는 지지와 자신의 역할을 고른다. 작은 균열은 남지만 다섯 지역이 먼저 응답하며 희생 체계가 끝났음을 확인한다."
+      ],
+      "choice": {
+        "id": "FC-C1",
+        "a": "다섯 의회 / 열린 왕관 / 자유 수호자의 서약 중 지지와 자기 역할 선택",
+        "b": "세 경로 모두 같은 필수 성능·장비·레이드 자격",
+        "cost_a": "의회는 조율 지연, 열린 왕관은 권한 감사, 자유 연맹은 지역 지원 격차를 계속 다룬다",
+        "cost_b": "상처·기억 손실·지난 세월은 전부 복구되지 않는다",
+        "payoff": "개인 기념물·대사·주민 담당자·주인공의 직책이 다르다. 공용 서버의 정치체제를 한 사람이 바꾸지 않는다."
+      },
+      "stories": [
+        {
+          "id": "FC-01",
+          "slug": "gate-between-homes",
+          "title_ko": "고향 사이에 열린 문",
+          "title_en": "A Gate Between Homes",
+          "kind": "main",
+          "level_target": "70~72",
+          "synopsis": [
+            "포탈 바깥에는 숲의 뿌리 위에 왕도의 창문이 떠 있고 눈 쌓인 골목 아래 용광로 불빛이 흐른다. 귀환 신호를 먼저 고정해야 일행이 앞으로 갈 수 있다. 들리는 구조 요청 가운데 일부는 실제 피난대이고 일부는 과거 기록의 반복이다.",
+            "플레이어는 현재 신호에 응답하는 피난대를 구하고, 왕의 표식을 쫓는 공명체를 막는다. 안전 거점이 열리면 이전 야영지로 돌아가 정비할 수 있다. 최종 지역이라는 이유로 끝까지 나갈 수 없는 긴 던전을 강요하지 않는다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FC-01-O1",
+              "action_ko": "현존 피난대의 응답을 확인한다",
+              "objective_en": "Identify the living refugees.",
+              "objective_key": "late.fc.01.objective.1"
+            },
+            {
+              "objective_id": "FC-01-O2",
+              "action_ko": "귀환 닻 주변의 위협을 해제한다",
+              "objective_en": "Secure the return anchor.",
+              "objective_key": "late.fc.01.objective.2"
+            },
+            {
+              "objective_id": "FC-01-O3",
+              "action_ko": "전실 안전 거점과 귀환 신호를 연결한다",
+              "objective_en": "Open the refuge and the return signal.",
+              "objective_key": "late.fc.01.objective.3"
+            }
+          ],
+          "encounters": [
+            "FC-M01",
+            "FC-M02"
+          ],
+          "result": "FC 안전 전실을 확보하고 기억/현재 신호 구분을 재확인한다.",
+          "checkpoint": "귀환 닻/구조 확정을 유지한다. 위상 연출은 공통 충돌 바닥을 바꾸지 않는다.",
+          "dialogue": {
+            "key": "late.fc.01.line",
+            "en_US": "If it can answer a new question, listen. If it only repeats, keep moving."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FB-07",
+          "next": "FC-02",
+          "safe_start_id": "FC-01-SP",
+          "file": "docs/fractured-crown-story-01-gate-between-homes.md",
+          "title_key": "late.fc.01.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FC-02",
+          "slug": "root-and-mirror",
+          "title_ko": "뿌리와 거울의 길",
+          "title_en": "The Root and the Mirror",
+          "kind": "main",
+          "level_target": "72~74",
+          "synopsis": [
+            "에린의 숲길이 여왕의 얼음 홀과 겹친다. 왕은 숲의 정찰대를 구해 주는 대신 모든 길을 중앙이 정하겠다고 말하고, 얼음거울은 누구도 다투지 않는 정지된 마을을 비춘다. 서로 다른 보호가 같은 감옥으로 묶이는 풍경이다.",
+            "플레이어는 뿌리 지배 연결을 끊고 거울 속 명령과 지역 신호를 대조한다. 옛 난민을 도왔는지와 상관없이 기본 연락자는 답하며 개인 선택은 인사와 편지로 회수한다. 정상 신호를 남겨 놓고 강제 연결만 철회하면 다음 길이 열린다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FC-02-O1",
+              "action_ko": "뿌리 지배 연결과 지역 방어를 구별한다",
+              "objective_en": "Separate the binding roots from the local seal.",
+              "objective_key": "late.fc.02.objective.1"
+            },
+            {
+              "objective_id": "FC-02-O2",
+              "action_ko": "얼음거울의 위조 명령을 대조한다",
+              "objective_en": "Compare the commands in the ice mirrors.",
+              "objective_key": "late.fc.02.objective.2"
+            },
+            {
+              "objective_id": "FC-02-O3",
+              "action_ko": "지역 통제권을 돌려놓고 통로를 연다",
+              "objective_en": "Return control to the regions and open the passage.",
+              "objective_key": "late.fc.02.objective.3"
+            }
+          ],
+          "encounters": [
+            "FC-M02",
+            "FC-M03"
+          ],
+          "result": "숲/설원의 배움을 합쳐 중앙 강제 연결만 제거한다.",
+          "checkpoint": "해제한 연결과 대조 결과는 유지한다. 틀린 거울을 읽어도 자료 재열람으로 무료 수정한다.",
+          "dialogue": {
+            "key": "late.fc.02.line",
+            "en_US": "A safe road still has to let you turn back."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FC-01",
+          "next": "FC-03",
+          "safe_start_id": "FC-02-SP",
+          "file": "docs/fractured-crown-story-02-root-and-mirror.md",
+          "title_key": "late.fc.02.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FC-03",
+          "slug": "forge-of-names",
+          "title_ko": "이름을 태우는 용광로",
+          "title_en": "The Furnace of Names",
+          "kind": "main",
+          "level_target": "74~76",
+          "synopsis": [
+            "화산 수로가 묘지의 종탑을 감싼다. 왕은 남은 영혼 기록을 태우면 피난대가 따뜻해질 것이라고 제안한다. 한때 살아남기 위해 침묵했던 브란과 증인을 놓지 못했던 베이르의 문제가 같은 공간에서 돌아온다. 베이르 본인을 다시 적으로 소환하지 않는다.",
+            "플레이어는 지역 열원으로 최소 보호를 넘기고 이름의 사본을 보존한다. 그 뒤 강제 연료 연결을 끊는다. 모든 기록을 불사르거나 열원부터 끄는 극단 없이 안전 순서를 지키는 전투다. 문을 지키던 공명체가 사라져도 이름은 저널에 남는다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FC-03-O1",
+              "action_ko": "독립 열원으로 최소 보호를 전환한다",
+              "objective_en": "Transfer minimum protection to the local heat source.",
+              "objective_key": "late.fc.03.objective.1"
+            },
+            {
+              "objective_id": "FC-03-O2",
+              "action_ko": "소실 위험의 이름 기록을 보존한다",
+              "objective_en": "Preserve the threatened names.",
+              "objective_key": "late.fc.03.objective.2"
+            },
+            {
+              "objective_id": "FC-03-O3",
+              "action_ko": "강제 연료 연결을 차단한다",
+              "objective_en": "Sever the forced fuel connection.",
+              "objective_key": "late.fc.03.objective.3"
+            }
+          ],
+          "encounters": [
+            "FC-M01",
+            "FC-M04",
+            "FC-M05"
+          ],
+          "result": "화산/묘지의 해결을 결합해 생명/기억 소모 없이 다음 구간을 연다.",
+          "checkpoint": "열원 전환·사본 보존·강제 연결 차단을 순서대로 확정한다. 미완료 단계부터 이어 가며 원본을 소모품으로 쓰지 않는다.",
+          "dialogue": {
+            "key": "late.fc.03.line",
+            "en_US": "Warmth is not a reason to burn the people we promised to remember."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FC-02",
+          "next": "FC-04",
+          "safe_start_id": "FC-03-SP",
+          "file": "docs/fractured-crown-story-03-forge-of-names.md",
+          "title_key": "late.fc.03.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FC-04",
+          "slug": "court-that-cannot-end",
+          "title_ko": "끝나지 않는 왕의 뜰",
+          "title_en": "The Court That Cannot End",
+          "kind": "main",
+          "level_target": "76~78",
+          "synopsis": [
+            "왕의 뜰에는 재난이 오지 않는 축제가 반복된다. 잃은 사람의 형상은 반갑게 인사하지만 기록 이후의 삶을 묻는 질문에는 같은 말만 한다. 주인공이 바라는 대답을 가짜로 들려준 뒤 마지막에 진짜 부활이라고 뒤집지 않는다.",
+            "Crown Custodian은 떠나려는 형상을 다시 같은 자리로 돌려놓는다. 플레이어는 공격을 피하며 주민 이름의 사본을 남기고 강제 반복 명령을 해제한다. 기록을 지키는 행위와 기록 속에 누군가를 가두는 행위를 분리하면 모형 왕도의 문이 열린다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FC-04-O1",
+              "action_ko": "재생 형상과 현재 응답을 대조한다",
+              "objective_en": "Compare the echoes with the living responses.",
+              "objective_key": "late.fc.04.objective.1"
+            },
+            {
+              "objective_id": "FC-04-O2",
+              "action_ko": "Crown Custodian을 무력화한다",
+              "objective_en": "Disable the Crown Custodian.",
+              "objective_key": "late.fc.04.objective.2"
+            },
+            {
+              "objective_id": "FC-04-O3",
+              "action_ko": "이름을 보존하고 강제 반복을 끝낸다",
+              "objective_en": "Preserve the names and end the forced replay.",
+              "objective_key": "late.fc.04.objective.3"
+            }
+          ],
+          "encounters": [
+            "FC-M02",
+            "FC-M04",
+            "FC-B01"
+          ],
+          "result": "왕의 부활 약속의 한계를 확인하고 최종 안전 전실로 진입한다.",
+          "checkpoint": "수호체 승리와 기록 보존/반복 종료를 분리한다. 재플레이가 풀려난 망자를 다시 가두지 않는다.",
+          "dialogue": {
+            "key": "late.fc.04.line",
+            "en_US": "That is what they said then. It is not what they would choose now."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FC-03",
+          "next": "FC-05",
+          "safe_start_id": "FC-04-SP",
+          "file": "docs/fractured-crown-story-04-court-that-cannot-end.md",
+          "title_key": "late.fc.04.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FC-05",
+          "slug": "oath-before-dawn",
+          "title_ko": "새벽 전의 서약",
+          "title_en": "The Oath Before Dawn",
+          "kind": "main",
+          "level_target": "78→80 목표·안전 전직 안내",
+          "synopsis": [
+            "왕좌가 보이는 전실에서 지역 담당자들은 각자 자기 불빛을 시험한다. 플레이어는 다섯 역할의 신호를 하나씩 확인하고, 끊겼을 때 돌아갈 순서를 연습한다. 최종 작전은 이미 제7장에서 해 본 실패 복구를 다시 확인하는 것이지 갑자기 새로운 기적을 배우는 과정이 아니다.",
+            "안전 공간에서 미완료 전직 시험으로 돌아갈 통로와 성장 안내를 제공한다. Lv80이라도 최종 전직 전에는 궁극기가 열리지 않는다. 시험을 마치지 않거나 궁극기를 쓰지 않아도 본편 문은 열린다. 돌아가고 싶은 이유를 담은 짧은 연락 뒤 왕의 제안을 들으러 나아간다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FC-05-O1",
+              "action_ko": "다섯 역할의 정상/철회 신호를 확인한다",
+              "objective_en": "Verify the five roles and withdrawal signals.",
+              "objective_key": "late.fc.05.objective.1"
+            },
+            {
+              "objective_id": "FC-05-O2",
+              "action_ko": "안전 귀환과 성장 준비 안내를 확인한다",
+              "objective_en": "Check the safe return route and advancement guidance.",
+              "objective_key": "late.fc.05.objective.2"
+            },
+            {
+              "objective_id": "FC-05-O3",
+              "action_ko": "자기 담당 구간을 확인하고 왕좌로 향한다",
+              "objective_en": "Confirm your part and approach the throne.",
+              "objective_key": "late.fc.05.objective.3"
+            }
+          ],
+          "encounters": [],
+          "result": "최종 전투 전 안전 정비·Lv80 전직 안내와 재도전 동선을 확보한다. 레벨을 이벤트 보상으로 강제 설정하지 않는다.",
+          "checkpoint": "준비 확인과 전직 완료는 다른 기록이다. 전직 시험으로 이동해도 본편 단계/보상은 유지한다.",
+          "dialogue": {
+            "key": "late.fc.05.line",
+            "en_US": "We know the way back. Now we know why we are going."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FC-04",
+          "next": "FC-06",
+          "safe_start_id": "FC-05-SP",
+          "file": "docs/fractured-crown-story-05-oath-before-dawn.md",
+          "title_key": "late.fc.05.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FC-06",
+          "slug": "eternal-king",
+          "title_ko": "영원의 왕",
+          "title_en": "The Eternal King",
+          "kind": "main",
+          "level_target": "80 목표·전투 수치 미정",
+          "synopsis": [
+            "왕은 주인공에게 후계자의 자리를 내민다. 모두가 같은 뜻을 따르면 전쟁이 끝난다고 말하지만, 단 한 사람의 거절도 허락하지 않는다. 주인공은 왕이 구한 생명을 부정하지 않으면서도 그 공적으로 살아갈 사람의 선택을 소유할 수 없다고 답한다.",
+            "첫 단계는 검과 서약 공격을 읽는 대결이다. 둘째 단계에서는 지역 권한을 강탈하는 왕에게서 연결 해제·기억 대조·안전 전환·이름 보존으로 통제권을 되찾는다. 셋째 단계의 완전한 정적에도 예고와 문양·자막은 남는다. 지역들이 각자의 핵을 유지하며 강제 명령을 철회하면 왕의 독점이 무너진다.",
+            "아우렐리안의 의식이 소멸한 뒤 새 서약망의 방어 전환을 확인하고 리라의 결박을 끊는다. 그녀는 자기 이름과 마지막 말을 남긴 뒤 인사를 끝낸다. 조각이 사라져도 플레이어가 배워 온 기술과 장비는 남는다. 승리 뒤 접속이 끊겨도 다시 왕을 쓰러뜨릴 필요 없이 인사부터 이어 간다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FC-06-O1",
+              "action_ko": "왕의 제안을 듣고 거절권을 요구한다",
+              "objective_en": "Confront the king's offer.",
+              "objective_key": "late.fc.06.objective.1"
+            },
+            {
+              "objective_id": "FC-06-O2",
+              "action_ko": "세 전투 단계에서 독점 명령을 해제한다",
+              "objective_en": "Defeat the king and release the stolen authority.",
+              "objective_key": "late.fc.06.objective.2"
+            },
+            {
+              "objective_id": "FC-06-O3",
+              "action_ko": "방어 전환을 확인하고 리라의 결박을 끊는다",
+              "objective_en": "Verify the new seals and release Lyra.",
+              "objective_key": "late.fc.06.objective.3"
+            }
+          ],
+          "encounters": [
+            "FC-B02"
+          ],
+          "result": "왕의 독점·영혼 징수를 끝내고 리라의 안식을 확정한다. FC-07 후일담으로 이어진다.",
+          "checkpoint": "미완료 최종 교전만 재설정한다. 승리→전환→결박 해제→인사를 각각 저장하며 완료한 교전 재요구/성장 회수는 없다.",
+          "dialogue": {
+            "key": "late.fc.06.line",
+            "en_US": "Let them refuse you. Start with one person."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FC-05",
+          "next": "FC-07",
+          "safe_start_id": "FC-06-SP",
+          "file": "docs/fractured-crown-story-06-eternal-king.md",
+          "title_key": "late.fc.06.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FC-07",
+          "slug": "world-we-keep",
+          "title_ko": "우리가 지킬 세계",
+          "title_en": "The World We Keep",
+          "kind": "epilogue",
+          "level_target": "80·에필로그",
+          "synopsis": [
+            "성문의 그림은 새로 그려졌지만 상인은 그날을 전부 기억하지 못한다. 아이는 기억을 확인하는 시험 대신 오늘 도울 일을 묻는다. 동결에서 깨어난 북방 사람들은 돌아오지 않을 가족의 자리를 새 이웃과 나누고, 묘지에서는 이름을 읽는 소리가 들린다.",
+            "대표와 주민의 논의는 다섯 의회·열린 왕관·자유 수호자의 세 협약을 마련한다. 플레이어는 지지하는 운영과 자기 역할을 고른다. 모든 안은 영혼 징수 금지·기록 공개·지역 철회권을 지킨다. 새 경보가 울렸을 때 다섯 지역이 먼저 응답하고, 주인공은 혼자 짐을 들기 전에 함께 나설 이들을 본다."
+          ],
+          "phases": [
+            {
+              "objective_id": "FC-07-O1",
+              "action_ko": "돌아온 주민과 각 지역의 남은 상처를 확인한다",
+              "objective_en": "Visit the people and places you helped.",
+              "objective_key": "late.fc.07.objective.1"
+            },
+            {
+              "objective_id": "FC-07-O2",
+              "action_ko": "세 협약 중 지지와 자기 역할을 선택한다",
+              "objective_en": "Choose the covenant you support and your role in it.",
+              "objective_key": "late.fc.07.objective.2"
+            },
+            {
+              "objective_id": "FC-07-O3",
+              "action_ko": "개인 후일담을 기록하고 새 경보에 응답한다",
+              "objective_en": "Record your epilogue and answer the new alarm.",
+              "objective_key": "late.fc.07.objective.3"
+            }
+          ],
+          "encounters": [],
+          "result": "세 결말 중 개인 후일담을 확정한다. 필수 성능/최강 장비/레이드 자격은 동등하며 중앙 희생 체계를 되살리지 않는다.",
+          "checkpoint": "선택 전 끊기면 논의부터, 선택 저장 후 끊기면 후일담부터 재개한다. 회상은 정사를 덮어쓰지 않는다.",
+          "dialogue": {
+            "key": "late.fc.07.line",
+            "en_US": "We do not have to remember the same day to make a new one together."
+          },
+          "optional": "추가 탐험/기록은 본편 필수 조건이 아니다.",
+          "previous": "FC-06",
+          "next": null,
+          "safe_start_id": "FC-07-SP",
+          "file": "docs/fractured-crown-story-07-world-we-keep.md",
+          "title_key": "late.fc.07.title",
+          "quest_xp": null,
+          "quest_coins": null
+        }
+      ],
+      "monsters": [
+        {
+          "id": "FC-M01",
+          "name_en": "Resonance Shard",
+          "name_ko": "공명의 파편",
+          "name_key": "late.fc.m01.name",
+          "kind": "normal",
+          "role": "이동 장판·근접 접근 연습",
+          "visual": "슬라임 원형에 큰 수정 면, 주변의 작은 조각은 비타깃 장식이다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "slime",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "수정 면이 열리고 바닥 문양→짧은 방사 파동→몸체가 불투명해져 노출된다.",
+          "counterplay": "예고 밖으로 이동한 뒤 가까이 공격한다. 반사 피해/필수 마법 해제는 없다.",
+          "story_reason": "왕좌 과잉 징수의 남은 에너지가 모인 공명체다.",
+          "defeat_rule": "분산시키되 수집한 이름/지역 기억은 잃지 않는다.",
+          "story_ids": [
+            "FC-01",
+            "FC-03"
+          ]
+        },
+        {
+          "id": "FC-M02",
+          "name_en": "Borrowed Sentinel",
+          "name_ko": "빌린 왕도의 파수꾼",
+          "name_key": "late.fc.m02.name",
+          "kind": "normal",
+          "role": "전방 장갑·위조 보호 명령",
+          "visual": "Golem 원형 위에 겹친 왕도 창문/왕관 문양.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "golem",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "관절이 잠기고 앞쪽 표시→전방 내려치기/연결 밀기→뒤 관절 노출.",
+          "counterplay": "측면 틈 또는 기본 공격 누적으로 무력화한다. 방어 연결을 모두 파괴할 필요는 없다.",
+          "story_reason": "왕이 기억 속 보호 장치를 본떠 만든 장치다. 실제 구조 주민이 변한 것이 아니다.",
+          "defeat_rule": "정지형. 안전 귀환 닻의 공통 바닥은 유지한다.",
+          "story_ids": [
+            "FC-01",
+            "FC-02",
+            "FC-04"
+          ]
+        },
+        {
+          "id": "FC-M03",
+          "name_en": "Frostmarked Prowler",
+          "name_ko": "서리 문양의 추적자",
+          "name_key": "late.fc.m03.name",
+          "kind": "normal",
+          "role": "추격/옆 회피·거울 구간 압박",
+          "visual": "Ice Wolf 원형에 큰 서약 띠, 발밑 이동 문양.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "ice_wolf",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "몸을 낮추고 목표 문양→직선 도약/짧은 얼음 자국→발을 다시 딛는다.",
+          "counterplay": "옆으로 피하고 착지 틈을 공격한다. 얼음길은 전투 바닥을 통째로 미끄럽게 하지 않는다.",
+          "story_reason": "북방의 실제 개인/여왕이 아니라 왕의 공격 명령으로 만든 전투 잔향이다.",
+          "defeat_rule": "전투 잔향 분산. 북방의 해방/해동을 되돌리지 않는다.",
+          "story_ids": [
+            "FC-02"
+          ]
+        },
+        {
+          "id": "FC-M04",
+          "name_en": "Cinder Effigy",
+          "name_ko": "잿불의 허수아비",
+          "name_key": "late.fc.m04.name",
+          "kind": "normal",
+          "role": "느린 결박/근접·기록 보호 압박",
+          "visual": "Mummy 원형의 붕대를 이름 없는 봉인 띠로 파생, 비어 있는 몸체.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "mummy",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "굵은 띠가 대상 방향으로 펴짐→일직선 결박 타격→매듭이 늘어진다.",
+          "counterplay": "옆으로 회피하거나 기본 공격으로 매듭을 끊는다. 성녀/정화 전용 기술 불필요.",
+          "story_reason": "서약과 열원의 남은 명령이 움직이는 모형. 해방한 망자가 아니다.",
+          "defeat_rule": "명령 해제로 정지한다. 기록 태우기/원본 소모 보상 없음.",
+          "story_ids": [
+            "FC-03",
+            "FC-04"
+          ]
+        },
+        {
+          "id": "FC-M05",
+          "name_en": "Silence Herald",
+          "name_ko": "정적의 전령",
+          "name_key": "late.fc.m05.name",
+          "kind": "normal",
+          "role": "지원형·신호 차폐 예고",
+          "visual": "Lich 외피를 빈 가면과 큰 검은 인장으로 파생. 베이르와 별개다.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "lich",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "인장 안에 문양/자막 경고→짧은 신호 교란 구역→가면이 내려간다.",
+          "counterplay": "차폐 구역 밖에서 대응하거나 전령을 먼저 제압한다. 실제 UI/위험 예고/입력은 지우지 않는다.",
+          "story_reason": "왕의 완전한 정적 명령을 전장에 시험하는 공명 장치다.",
+          "defeat_rule": "신호 교란 종료. 플레이어의 영구 스킬·저널·저장은 건드리지 않는다.",
+          "story_ids": [
+            "FC-03"
+          ]
+        },
+        {
+          "id": "FC-B01",
+          "name_en": "Crown Custodian",
+          "name_ko": "왕관의 수호체",
+          "name_key": "late.fc.b01.name",
+          "kind": "mandatory_boss",
+          "role": "필수 중간 보스·강제 반복 해제",
+          "visual": "Golem 계열 왕관 모형과 바닥에 고정된 큰 재생 고리.",
+          "asset_candidate": {
+            "source_group": "monsters",
+            "source_model": "king_ice_golem",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "왕관 고리 방향/반복 문양→광선/구간 봉쇄→재생 장치 노출.",
+          "counterplay": "전투 약화와 이름 보존 후 반복 명령 해제. 살아 있는 주민이나 영혼을 공격해 약화시키지 않는다.",
+          "story_reason": "왕이 떠날 수 없는 완전한 왕도를 흉내 내 지키는 모형 수호체다.",
+          "defeat_rule": "장치 정지와 사본 보존으로 승리. 옛 여왕/지역 보스의 부활이 아니다.",
+          "story_ids": [
+            "FC-04"
+          ]
+        },
+        {
+          "id": "FC-B02",
+          "name_en": "The Eternal King",
+          "name_ko": "영원의 왕",
+          "name_key": "late.fc.b02.name",
+          "kind": "mandatory_boss",
+          "role": "필수 최종 보스·세 단계",
+          "visual": "Aurelian 개인 얼굴과 검·왕좌 문양. 왕좌의 크기보다 몸의 검 방향을 읽을 수 있게 한다.",
+          "asset_candidate": {
+            "source_group": "new",
+            "source_model": null,
+            "status": "New candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "1단계 검 방향/서약 예고,2단계 지역별 탈취 문양,3단계 정적 경고와 고정 안전 신호를 제공한다.",
+          "counterplay": "검격 대응→지역 권한 회수→철회/우회 신호로 연결. 공격 예고/문양/자막 유지, T궁극기/필수 동료/특정 원소/8인 없음.",
+          "story_reason": "진짜 구국의 왕이 타인의 거절을 허락하지 않는 지배자로 변한 결말이다.",
+          "defeat_rule": "의식 소멸 뒤 방어 전환 확인→Lyra 해방/인사. 전투 승리와 후일담 저장을 분리한다.",
+          "story_ids": [
+            "FC-06"
+          ]
+        },
+        {
+          "id": "FC-X01",
+          "name_en": "Uncrowned Echo",
+          "name_ko": "왕관 없는 잔향",
+          "name_key": "late.fc.x01.name",
+          "kind": "optional_boss",
+          "role": "선택 보스·독점하지 않는 힘의 회상",
+          "visual": "주인공 복제가 아닌 이름 없는 기사형 갑옷과 부러진 왕관 장식.",
+          "asset_candidate": {
+            "source_group": "towers",
+            "source_model": "crusader",
+            "status": "Derived candidate",
+            "fit": "RPG rig, animation, permission, collision and performance unverified"
+          },
+          "attack_telegraph": "검을 들어 문양을 남김→검격/잔상 한 줄→원래 갑옷이 잠시 정지한다.",
+          "counterplay": "원래 갑옷의 회복 틈을 공격한다. 타 클래스 기술을 복사하거나 최종전 기믹을 선해금하지 않는다.",
+          "story_reason": "왕관을 얻지 못한 옛 지휘 권한의 자동 시험체. 새 흑막/후계왕이 아니다.",
+          "defeat_rule": "잔향 정지 뒤 관제 시험 기록을 회수한다. 주민 편지 퀘스트와 별개이며 최강 장비/진엔딩 조건 없음.",
+          "story_ids": [],
+          "hidden_quest_id": "FC-Q2",
+          "unlocks_after": "FC-04"
+        }
+      ],
+      "file": "docs/epic-08-fractured-crown-story.md",
+      "hidden_quests": [
+        {
+          "id": "FC-Q1",
+          "kind": "records",
+          "name_en": "A Letter Beyond the Gate",
+          "unlocks_after": "FC-02",
+          "source": "prior hidden-quest candidate",
+          "required_boss": null,
+          "name_key": "late.fc.q1.title",
+          "quest_xp": null,
+          "quest_coins": null
+        },
+        {
+          "id": "FC-Q2",
+          "kind": "optional_boss",
+          "name_en": "The Uncrowned Trial",
+          "unlocks_after": "FC-04",
+          "required_boss": "FC-X01",
+          "name_key": "late.fc.q2.title",
+          "quest_xp": null,
+          "quest_coins": null
+        }
+      ],
+      "title_key": "late.fc.title"
+    }
+  ],
+  "faction_contract": {
+    "five_banners": [
+      "Knight / Seren",
+      "Elf / Eryn",
+      "Dwarf / Brann",
+      "Mage / Iria",
+      "Clergy / Selene"
+    ],
+    "regional_cores": [
+      "Deepwood",
+      "Frozen Vale",
+      "Ember Caldera",
+      "Haunted Graveyard"
+    ],
+    "northern_queen_role": "regional partner, not a sixth civilization or player class",
+    "aether_spire_role": "shared control rules, not a fifth power core"
+  }
+}

@@ -141,3 +141,57 @@ TLT-001/narrative-20261030. 위55개 표는2026-10-28 당시 기록이며 현재
 | [docs/production/game-systems-plan.md](game-systems-plan.md) | `240eec14cf9f` |
 | [docs/production/narrative-review-2026-10-30.md](narrative-review-2026-10-30.md) | `84be62a9cfb3` |
 | [docs/research/2026-10-30-fantasy-narrative.md](../research/2026-10-30-fantasy-narrative.md) | `6b095afb70c8` |
+
+
+## 8. 2026-10-30 에픽5~8 상세 기획 스냅샷
+
+TLT-065/late-epics-20261030. 앞의 §7은 선행 전체 서사 편집 당시의 스냅샷이며 이후 바뀐 파일의 현재 해시가 아니다. 이번 [후반 설계와 검증](../evidence/epics-05-08/README.md) 범위의46파일 해시는 아래에 기록한다. 이 표 자체는 자기참조 해시에서 제외한다. TD 후보 원천2XML의 전체 해시/권한 한계는 후반 몬스터 설계에 있으며 기존55원천·컨셉 전체를 재검수했다고 주장하지 않는다.
+
+| 변경/추가 원천 | SHA256 앞12자리 |
+| --- | --- |
+| [docs/epic-05-aether-spire-story.md](../epic-05-aether-spire-story.md) | `a50340e7411f` |
+| [docs/epic-06-divided-citadel-story.md](../epic-06-divided-citadel-story.md) | `4fddcfe871da` |
+| [docs/epic-07-five-banners-story.md](../epic-07-five-banners-story.md) | `a5d85aae5ea2` |
+| [docs/epic-08-fractured-crown-story.md](../epic-08-fractured-crown-story.md) | `0a21e180b63c` |
+| [docs/aether-spire-story-01-falling-quay.md](../aether-spire-story-01-falling-quay.md) | `4274bbacce8a` |
+| [docs/aether-spire-story-02-suspended-library.md](../aether-spire-story-02-suspended-library.md) | `1ee0d1a1b692` |
+| [docs/aether-spire-story-03-borrowed-day.md](../aether-spire-story-03-borrowed-day.md) | `c508c43ab378` |
+| [docs/aether-spire-story-04-command-observatory.md](../aether-spire-story-04-command-observatory.md) | `37464f17ba33` |
+| [docs/aether-spire-story-05-unshared-switch.md](../aether-spire-story-05-unshared-switch.md) | `3e52985a15c5` |
+| [docs/aether-spire-story-06-first-warden.md](../aether-spire-story-06-first-warden.md) | `250a0a12245a` |
+| [docs/divided-citadel-story-01-sealed-homecoming.md](../divided-citadel-story-01-sealed-homecoming.md) | `8ef4d2681139` |
+| [docs/divided-citadel-story-02-hospital-of-light.md](../divided-citadel-story-02-hospital-of-light.md) | `cb54177b8303` |
+| [docs/divided-citadel-story-03-orders-before-the-voice.md](../divided-citadel-story-03-orders-before-the-voice.md) | `b158ebe0b98e` |
+| [docs/divided-citadel-story-04-water-beneath-the-wall.md](../divided-citadel-story-04-water-beneath-the-wall.md) | `54c5d18abe6c` |
+| [docs/divided-citadel-story-05-captains-stair.md](../divided-citadel-story-05-captains-stair.md) | `dc2a43650434` |
+| [docs/divided-citadel-story-06-regents-last-order.md](../divided-citadel-story-06-regents-last-order.md) | `3270497516df` |
+| [docs/five-banners-story-01-table-of-five.md](../five-banners-story-01-table-of-five.md) | `2d99bb9a7316` |
+| [docs/five-banners-story-02-relay-convoy.md](../five-banners-story-02-relay-convoy.md) | `48cefe800ab1` |
+| [docs/five-banners-story-03-answering-lights.md](../five-banners-story-03-answering-lights.md) | `621207b0f787` |
+| [docs/five-banners-story-04-broken-span.md](../five-banners-story-04-broken-span.md) | `6d53ac2ea2c0` |
+| [docs/five-banners-story-05-walls-of-many-hands.md](../five-banners-story-05-walls-of-many-hands.md) | `30791c27366b` |
+| [docs/five-banners-story-06-commander-of-fractures.md](../five-banners-story-06-commander-of-fractures.md) | `d53c2474883a` |
+| [docs/five-banners-story-07-last-shared-supper.md](../five-banners-story-07-last-shared-supper.md) | `ed9106bf90cb` |
+| [docs/fractured-crown-story-01-gate-between-homes.md](../fractured-crown-story-01-gate-between-homes.md) | `58d73e53a9d9` |
+| [docs/fractured-crown-story-02-root-and-mirror.md](../fractured-crown-story-02-root-and-mirror.md) | `b7d777cf9290` |
+| [docs/fractured-crown-story-03-forge-of-names.md](../fractured-crown-story-03-forge-of-names.md) | `55aa145035c8` |
+| [docs/fractured-crown-story-04-court-that-cannot-end.md](../fractured-crown-story-04-court-that-cannot-end.md) | `609631807204` |
+| [docs/fractured-crown-story-05-oath-before-dawn.md](../fractured-crown-story-05-oath-before-dawn.md) | `b6148338f49d` |
+| [docs/fractured-crown-story-06-eternal-king.md](../fractured-crown-story-06-eternal-king.md) | `b897b139adc1` |
+| [docs/fractured-crown-story-07-world-we-keep.md](../fractured-crown-story-07-world-we-keep.md) | `1f919198c998` |
+| [assets/narrative/epics-05-08-design.json](../../assets/narrative/epics-05-08-design.json) | `a7a54bfd1ac6` |
+| [docs/epics-05-08-story-design.md](../epics-05-08-story-design.md) | `0cd6568d2c91` |
+| [docs/epics-05-08-content-contract.md](../epics-05-08-content-contract.md) | `cb6a928817e5` |
+| [docs/epics-05-08-monsters.md](../epics-05-08-monsters.md) | `49414429151f` |
+| [docs/research/2026-10-30-late-epics-and-enemies.md](../research/2026-10-30-late-epics-and-enemies.md) | `ec005248772f` |
+| [docs/evidence/epics-05-08/README.md](../evidence/epics-05-08/README.md) | `ab0cfb5f9735` |
+| [docs/evidence/epics-05-08/validation.json](../evidence/epics-05-08/validation.json) | `e40a4774dc98` |
+| [README.md](../../README.md) | `eb2adafffd54` |
+| [plan.md](../../plan.md) | `a203cfc043ff` |
+| [backlog.md](../../backlog.md) | `4970dbfbbbf6` |
+| [the-last-throne-rpg-proposal.md](../../the-last-throne-rpg-proposal.md) | `20b38b4d55e9` |
+| [docs/decisions.md](../decisions.md) | `63f758941eb1` |
+| [docs/CHANGELOG.md](../CHANGELOG.md) | `f99bc04a75bd` |
+| [docs/production/game-systems-plan.md](game-systems-plan.md) | `7da3005a7ce7` |
+| [docs/production/asset-production-plan.md](asset-production-plan.md) | `7c5dd00d3b2b` |
+| [docs/epics-05-08-hidden-quest-review.md](../epics-05-08-hidden-quest-review.md) | `52f125a604f1` |

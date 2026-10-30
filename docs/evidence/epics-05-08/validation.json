@@ -1,0 +1,34 @@
+{
+  "task_id": "TLT-065/late-epics-20261030",
+  "date": "2026-10-30",
+  "scope": "static design/document validation only; no runtime/play acceptance",
+  "baseline_commit": "901b6af",
+  "checks": {
+    "epics": 4,
+    "story_counts": [
+      6,
+      6,
+      7,
+      7
+    ],
+    "main_quests": 25,
+    "epilogue": 1,
+    "safe_starts": 26,
+    "objective_ids": 78,
+    "encounters": 32,
+    "normal": 20,
+    "mandatory_bosses": 8,
+    "optional_bosses": 4,
+    "derived_candidates": 28,
+    "new_candidates": 4,
+    "hidden_quests": 8,
+    "unique_en_US_keys": 174,
+    "verified_source_xmls": 2,
+    "protected_original_files": 34,
+    "scope_files": 47,
+    "local_links": 868,
+    "anchors": 4
+  },
+  "errors": [],
+  "result": "pass"
+}

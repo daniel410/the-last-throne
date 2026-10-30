@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-30 **TLT-065/late-epics-20261030**: [에픽5~8 전체 줄거리·26이야기](docs/epics-05-08-story-design.md)(메인25+에필로그1)와 [몬스터32교전 정의](docs/epics-05-08-monsters.md)를 상세 기획했다. AS6/DC6/FB7/FC7·안전SP26·필수8/선택4보스·숨은 퀘스트8초안. 성장/수치·맵/모델·실제 게임 수용은 후속이며 기존32구간 보상/VERSION·부모 티켓 상태는 유지한다.
+
 > 2026-10-30 **TLT-001/narrative-20261030 서사 개정**: 프롤로그·8장·에필로그를 판타지 소설 관점에서 검토하고 핵 안전/보관·재가동 구분·주민 재등장·동료의 행동/대가·Lyra의 안식·선택 회수를 보강했다. [개정 줄거리](the-last-throne-rpg-proposal.md) · [리뷰·28스토리 인계·검증](docs/production/narrative-review-2026-10-30.md) · [비교 조사](docs/research/2026-10-30-fantasy-narrative.md). 문서 개정이며 런타임/보상/VERSION은 유지한다. 부모 티켓·게이트 완료와 구분한다.
 
 > 2026-10-29 TLT-014/027/041/050/052/061/084 부분 구현: **0.35.2** 다섯 보스전 총 출현7/10/9/8/12마리·시작 호위/체력 구간 증원·공격 준비를 연결했다. 순수 보스96·진행570·퀘스트31, native 서버126개/종료0. [조사/구성](docs/research/2026-10-29-boss-populations.md) · [검증/남은 수용](docs/evidence/deepwood/bosses-0352/README.md). 실제 정상 전투 난이도·4인/모바일 수용은 후속이며 상위 티켓은 In Progress다.
@@ -140,7 +142,7 @@ v0.25 · 2026-10-28 · [총괄 계획](plan.md) · [역할](agent.md) · [결정
 | TLT-062 | P1 / G5 | DES·ENG·ART·PLAN | 013,061 | Frozen Vale FV-01~07. 눈보라/피난처/협곡/기록/궁전·SP7·King Ice Golem/비살상 Queen Ice Elf·증거/임시 거울·Lv20 전직 연결 |
 | TLT-063 | P1 / G5 | DES·ENG·ART·PLAN | 017,062 | Ember Caldera EC-01~07. 승강기/구조/수로/시험·도시 보호막/대체열원·Magma Golem/Inferno Overlord·SP7·보스 후 재접속·Lv30 |
 | TLT-064 | P1 / G5 | DES·ENG·ART·PLAN | 017,063 | Haunted Graveyard HG-01~07. 안개/위상·이름/옛집/기록·Death Knight/Lich Sovereign·안식·SP7·Selene 선택 지원·Lv40 전직 연결 |
-| TLT-065 | P1 / G5 | PLAN·DIR·DES·ENG | 001,017,059 | 에픽5~8·Lv41~80 상세 설계. 고유 시나리오 수·공간/성장/전직·퀘스트/선택/보상·보스·필수/선택·영어/복구 계약 산정. 4에픽 모두7스토리라고 가정하지 않음 |
+| TLT-065 | P1 / G5 | PLAN·DIR·DES·ENG | 001,017,059 | 에픽5~8·Lv41~80 상세 설계. [AS6/DC6/FB7/FC7·26이야기/32교전 초안](docs/epics-05-08-story-design.md) 작성. 성장/전직·XP/Coins·공간/수치·정식 영어/복구 구현 계약과 수용은 후속. 문서로 티켓 완료하지 않음 |
 | TLT-066 | P1 / G5 | DES·ENG·ART·PLAN | 064,065 | Aether Spire 에픽5. 중력/시간/기록·공동 제어 규칙·The First Warden·Lyra·Covenant Network, 카메라/멀미/스트리밍·개인 진행/재접속 |
 | TLT-067 | P1 / G5 | DES·ENG·ART·PLAN | 060,066 | 갈라진 성채 에픽6. 왕도3구역 대피·병원/전선 대안·Lucan 연결 차단·처분의 개인 후일담·TD 기존 서사 보존 |
 | TLT-068 | P1 / G5 | DES·ENG·ART·PLAN | 067,072 | 다섯 깃발 에픽7. 협약·호송·분리 전선/수호전·Dread Commander·이전 선택 지원과 필수 기본 지원·솔로 완결·Lv60 단계 위치 검증 |
