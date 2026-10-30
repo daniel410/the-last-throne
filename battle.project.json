@@ -1,0 +1,111 @@
+{
+  "name": "the-last-throne-battle",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      }
+    },
+    "Players": {
+      "$properties": {
+        "CharacterAutoLoads": false
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "ServerStorage": {
+      "TdMonsterModels": {
+        "$path": "assets/shared/td-monsters/runtime.rbxmx"
+      },
+      "TDPlayerWeaponModels": {
+        "$path": "assets/shared/td-player-weapons/runtime.rbxmx"
+      },
+      "TDKnightShieldModels": {
+        "$path": "assets/shared/td-player-weapons/shield/runtime.rbxmx"
+      },
+      "TDMapModels": {
+        "$path": "assets/shared/td-deepwood-environment/maps.rbxmx"
+      },
+      "TDForestKit": {
+        "$path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx"
+      },
+      "ServerRole": {
+        "$className": "StringValue",
+        "$properties": {
+          "Value": "Battle"
+        }
+      }
+    },
+    "StarterPlayer": {
+      "StarterCharacterScripts": {
+        "Health": {
+          "$path": "src/character/Health.server.lua"
+        }
+      },
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      },
+      "$properties": {
+        "CameraMinZoomDistance": 6,
+        "CameraMaxZoomDistance": 18
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true,
+        "StreamingEnabled": true,
+        "StreamingMinRadius": 64,
+        "StreamingTargetRadius": 384,
+        "StreamOutBehavior": "Opportunistic",
+        "ModelStreamingBehavior": "Improved",
+        "StreamingIntegrityMode": "PauseOutsideLoadedArea"
+      },
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Color": [
+            0.38823,
+            0.37254,
+            0.38823
+          ],
+          "Locked": true,
+          "Position": [
+            0,
+            -10,
+            0
+          ],
+          "Size": [
+            512,
+            20,
+            512
+          ]
+        }
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [
+          0,
+          0,
+          0
+        ],
+        "Brightness": 2,
+        "GlobalShadows": true,
+        "Outlines": false,
+        "Technology": "Voxel"
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    }
+  }
+}

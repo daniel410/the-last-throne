@@ -15,6 +15,7 @@ end
 for classId, name in pairs({knight = "Sword", elf = "Bow", dwarf = "Axe", mage = "Staff"}) do
 	gear(classId .. "_weapon", "Training " .. name, "weapon", classId, {}, name:sub(1, 2):upper())
 	gear(classId .. "_weapon_fine", "Tempered " .. name, "weapon", classId, {power = 10}, name:sub(1, 2):upper(), {rarity = "Uncommon"})
+ gear(classId..'_weapon_veteran',"Veteran's "..name,'weapon',classId,{power=18},name:sub(1,2):upper(),{level=5,rarity='Uncommon',description='A Dawnspire weapon for experienced adventurers. Requires level 5. Available for Gold or Diamonds.'})
 end
 gear("knight_shield", "Training Shield", "offhand", "knight", {}, "SH")
 gear("knight_shield_fine", "Citadel Shield", "offhand", "knight", {armor = 4}, "SH", {rarity = "Uncommon"})

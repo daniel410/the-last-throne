@@ -36,7 +36,7 @@ function Book.create(parent,track)
   for _,v in ipairs(list:GetChildren()) do if v:IsA('GuiObject') then v:Destroy() end end
   for name,b in pairs(buttons) do b.Caption.TextColor3=name==tab and Theme.color.gold or Theme.color.text end
   local s=current.journal
-  coins.Text=string.format('RPG Coins: %d\nConfirmed progress is saved.',s.coins+(s.killCoins or 0))
+  coins.Text=string.format('Gold earned: %d\nConfirmed progress is saved.',s.coins+(s.killCoins or 0))
   if tab=='Main' then
    local c=Log.main(s)
    card('EPIC 1 · THE BLACK ROOTS',{require(RS.Shared.DeepwoodQuestCatalog).epic.promise,string.format('%d / 7 stories completed · Side quests are optional.',s.main)})

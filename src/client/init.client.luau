@@ -8,6 +8,7 @@ local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
+task.spawn(function() require(script.LobbyCommerce).start() end)
 require(script.InteractionPrompts).start()
 require(script.AdventureCamera).start()
 require(script.WorldPresentationBudget).start()
@@ -88,7 +89,7 @@ end
 
 local function combatInputAllowed()
 	local character = player.Character
-	return focused and not GuiService.MenuIsOpen and not UserInputService:GetFocusedTextBox()
+	return focused and not GuiService.MenuIsOpen and not UserInputService:GetFocusedTextBox() and not player:GetAttribute('TLTLobbyPanelOpen') and not player:GetAttribute('TLTTravelLock')
 		and not player:GetAttribute("TLTMapOpen") and not player:GetAttribute("TLTStoryOpen") and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTProgressionOpen")
 		and player:GetAttribute("K0SessionPhase") == "Tutorial"
 		and character and character:GetAttribute("K0SpawnReady") == true

@@ -351,4 +351,5 @@ function Service.start(settings)
   end
  end)
 end
+function Service.hasPendingEvents(player) local q=queues[player];return q and #q.events>0 or false end
 return Service

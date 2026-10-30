@@ -58,6 +58,7 @@ end }
 local function player(name)
 	local result = { Name = name, Parent = players, attributes = {} }
 	function result:SetAttribute(key, value) self.attributes[key] = value end
+	function result:GetAttribute(key) return self.attributes[key] end
 	return result
 end
 local function character(position)

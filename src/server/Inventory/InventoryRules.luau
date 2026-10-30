@@ -1,4 +1,5 @@
 local Story=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
+local Economy=game and require(game:GetService('ReplicatedStorage').Shared.EconomyRules) or dofile('src/shared/EconomyRules.luau')
 -- Pure single-account transitions; no services, clocks, random IDs or side effects.
 local Growth = game and require(game:GetService("ReplicatedStorage").Shared.HeroProgression) or dofile("src/shared/HeroProgression.luau")
 local Rules = {}
@@ -12,7 +13,7 @@ function Rules.integer(value, minimum, maximum)
 	return type(value) == "number" and value == value and value % 1 == 0 and value >= minimum and value <= maximum
 end
 function Rules.new(userId)
-	return {schemaVersion = 1, userId = userId, revision = 0, epoch = 0, heroes = {}, items = {}, operations = {}, operationOrder = {}}
+	return {schemaVersion = 1, userId = userId, revision = 0, epoch = 0, heroes = {}, items = {}, operations = {}, operationOrder = {},wallet={version=1,gold=0,diamonds=0,claims={}}}
 end
 function Rules.count(profile, kind, heroId)
 	local count = 0
@@ -77,6 +78,7 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	return nextProfile
 end
 function Rules.validate(profile, catalog)
+ if profile and profile.wallet~=nil and not Economy.valid(profile.wallet) then return false end
 	if type(profile) ~= "table" or profile.schemaVersion ~= 1 or not Rules.integer(profile.revision, 0, 1e12)
 		or type(profile.heroes) ~= "table" or type(profile.items) ~= "table" or type(profile.operations) ~= "table"
 		or type(profile.operationOrder) ~= "table" or not Rules.integer(profile.epoch, 0, 1e12) then return false end
@@ -248,7 +250,7 @@ function Rules.apply(profile, command, context, catalog)
 end
 -- Legacy account migration preserves roster, classes, items and all ownership.
 function Rules.upgrade(profile)
-	local changed=false
+	local changed=Economy.upgrade(profile)
 	for _,hero in pairs(profile.heroes) do
 		if hero.progression==nil then hero.progression=Growth.new(hero.level); changed=true
 		elseif (hero.progression.version==1 or hero.progression.version==2) then hero.progression=Growth.upgrade(hero.progression); changed=true end
@@ -275,11 +277,13 @@ function Rules.progress(profile,command,context,catalog)
 	if not nextG then return nil,reason end
 	local nextProfile=Rules.copy(profile)
 	if repeated then return nextProfile,nil,true end
+ Economy.upgrade(nextProfile)
 	nextProfile.heroes[command.heroId].progression=nextG
 	nextProfile.heroes[command.heroId].level=nextG.level
  if command.action=='AwardXP' and command.coins~=nil then
   if not Rules.integer(command.coins,0,1000000) then return nil,'InvalidRequest' end
   local h=nextProfile.heroes[command.heroId];h.deepwood=h.deepwood or Story.new();h.deepwood.killCoins=(h.deepwood.killCoins or 0)+command.coins
+  nextProfile.wallet.gold=nextProfile.wallet.gold+command.coins
  end
 	nextProfile.revision=nextProfile.revision+1
 	if command.action~="AwardXP" then
@@ -297,6 +301,8 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId)
  if not journal then return nil,reason end
  if reward.repeated then return Rules.copy(profile),nil,true end
  local n=Rules.copy(profile);local h=n.heroes[heroId];h.deepwood=journal
+ -- Migrate historic earnings before assigning the new journal, then credit only this event.
+ local migrated=Rules.copy(profile);Economy.upgrade(migrated);n.wallet=migrated.wallet;Economy.story(n,reward)
  local g=h.progression or Growth.new(h.level)
  g.xp=g.xp+reward.xp
  while g.level<80 and g.xp>=Growth.xpToNext(g.level) do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end
@@ -331,4 +337,5 @@ function Rules.explore(profile,heroId,zone,x,z)
  local n=Rules.copy(profile);n.heroes[heroId].deepwood=s;n.revision=n.revision+1
  return n
 end
+function Rules.shop(profile,command,context,catalog) return Economy.apply(profile,command,context,catalog,Rules) end
 return Rules

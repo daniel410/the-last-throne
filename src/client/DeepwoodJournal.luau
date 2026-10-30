@@ -156,7 +156,7 @@ function Journal.start(hud)
    if event.kind=='Accepted' then selectedChapter=event.id;selectedGoal=nil
    else
     local key=value.heroId..':'..event.id
-    if not completed[key] then completed[key]=true;hud.showFeedback(event.kind..' complete · '..event.title..'\n'..(event.xp>0 and string.format('+%d XP · +%d Coins',event.xp,event.coins) or event.outcome),8) end
+    if not completed[key] then completed[key]=true;hud.showFeedback(event.kind..' complete · '..event.title..'\n'..(event.xp>0 and string.format('+%d XP · +%d Gold',event.xp,event.coins) or event.outcome),8) end
    end
   end
   render();local guidance=updateTracker();MapState.set(value,guidance and guidance.position)

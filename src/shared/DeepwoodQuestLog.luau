@@ -25,8 +25,8 @@ function Log.phase(s,c)
  return 'Completed',#c.quest.phases,#c.quest.phases
 end
 function Log.reward(c)
- if c.reward.xp==0 and c.reward.coins==0 then return 'No fixed XP or Coins. Combat rewards are earned separately.' end
- return string.format('On story completion: %d XP · %d Coins. Items go to your bag or unclaimed rewards.',c.reward.xp,c.reward.coins)
+ if c.reward.xp==0 and c.reward.coins==0 then return 'No fixed XP or Gold. Combat rewards are earned separately.' end
+ return string.format('On story completion: %d XP · %d Gold. Items go to your bag or unclaimed rewards.',c.reward.xp,c.reward.coins)
 end
 function Log.choices(s,c)
  local rows={}

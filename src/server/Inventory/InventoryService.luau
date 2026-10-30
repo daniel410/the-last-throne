@@ -47,6 +47,7 @@ end
 function Service.close(player)
 	local state = accounts[player]
 	if not state then return end
+ if state.transferPrepared then accounts[player]=nil;return end
 	state.closing = true
 	-- An in-flight committed mutation must settle before releasing its fence.
 	task.spawn(function()
@@ -247,6 +248,7 @@ function Service.snapshot(player)
 		sessionOnly = sessionOnly, heroId = heroId, items = {}, heroes = {}, bagUsed = 0, storageUsed = 0, pending = 0,
 		bagCapacity = Catalog.bagCapacity, storageCapacity = Catalog.storageCapacity, safe = false, atHub = context and context.atHub or false, atStorage = atStorage(player) == true}
 	if not state or not state.profile then return snapshot end
+ local money=Rules.copy(state.profile);require(ReplicatedStorage.Shared.EconomyRules).upgrade(money);snapshot.wallet=money.wallet
 	snapshot.heroes = Rules.copy(state.profile.heroes)
 	snapshot.safe = context and (context.atHub or options.combat.isSafeForEquipment(player)) or false
  snapshot.canInvest=snapshot.ready and snapshot.safe or false
@@ -426,5 +428,49 @@ function Service.start(settings)
 		local deadline = os.clock() + 20
 		while next(accounts) and os.clock() < deadline do task.wait(0.1) end
 	end)
+end
+-- Flush before releasing the account fence. Failure never starts a teleport.
+function Service.prepareTransfer(player)
+ local s=accounts[player];if not s or not s.valid or s.closing then return false end
+ s.closing=true
+ local deadline=os.clock()+15
+ while s.busy and os.clock()<deadline do task.wait(.1) end
+ if s.busy or s.pending or s.growthPending or s.storyPending or s.shopPending or options.storyPending and options.storyPending(player) then s.closing=false;return false end
+ while s.rewards and #s.rewards>0 and os.clock()<deadline do
+  local reason=Service.progress(player,s.rewards[1],true)
+  if not reason then table.remove(s.rewards,1) else s.closing=false;return false end
+ end
+ while s.revealJobs and #s.revealJobs>0 and os.clock()<deadline do
+  local job=s.revealJobs[1];s.busy=true
+  local p,e=store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end);s.busy=false
+  if not p then s.closing=false;s.valid=false;s.errorCode=e;return false end
+  s.profile=p;table.remove(s.revealJobs,1)
+ end
+ if s.rewards and #s.rewards>0 or s.revealJobs and #s.revealJobs>0 or not s.valid then s.closing=false;return false end
+ s.busy=true;local p,e=store:close(player.UserId);s.busy=false
+ if not p then s.closing=false;s.errorCode=e;return false end
+ s.profile=p;s.valid=false;s.transferPrepared=true;publish(player);return true
+end
+function Service.resumeTransfer(player)
+ local s=accounts[player];if not s then return false end
+ if not s.transferPrepared then s.closing=false;return s.valid end
+ local p,e=store:open(player.UserId)
+ if not p then s.errorCode=e;publish(player);return false end
+ s.profile=p;s.valid=true;s.errorCode=nil;s.closing=false;s.transferPrepared=nil;publish(player);return true
+end
+function Service.shop(player,command)
+ local s=accounts[player];if not s or s.busy or s.closing then return 'Busy' end
+ if not s.valid and not (s.shopPending and s.shopPending.requestId==command.requestId) then return s.errorCode or 'Unavailable' end
+ if s.shopPending and s.shopPending.requestId~=command.requestId then return 'Busy' end
+ if s.shopPending then for _,k in ipairs({'action','heroId','offerId','instanceId','itemVersion','revision'}) do if s.shopPending[k]~=command[k] then return 'RequestConflict' end end end
+ s.busy=true;s.shopPending=Rules.copy(command)
+ local p,e=store:transact(player.UserId,function(current)
+  local ctx=options.heroSession.getInventoryContext(player)
+  return Rules.shop(current,command,{atLobby=workspace:GetAttribute('TLTServerRole')~='Battle' and ctx and ctx.heroId==command.heroId and ctx.atHub and player:GetAttribute('K0SessionPhase')=='Lobby'},Catalog)
+ end)
+ if p then s.profile=p;s.valid=true;s.errorCode=nil;s.shopPending=nil
+ elseif e=='SaveUnknown' or e=='AccountBusy' then s.valid=false;s.errorCode=e
+ else s.shopPending=nil end
+ s.busy=false;publish(player,command.requestId,e);return e
 end
 return Service

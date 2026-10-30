@@ -37,6 +37,7 @@ function AccountStore:open(userId)
 		if self.rules.upgrade then profile = self.rules.upgrade(profile) end
 		if not lease or lease.token ~= self.token then profile.epoch = profile.epoch + 1 end
 		profile.lease = {token = self.token, epoch = profile.epoch, expiresAt = time + self.leaseSeconds}
+  profile.release=nil
 		return profile
 	end)
 end
@@ -60,11 +61,13 @@ end
 function AccountStore:close(userId)
 	local profile = self.profiles[userId]
 	if not profile then return end
-	local result, errorCode = self:transact(userId, function(current)
-		current.lease = nil
-		return current
+	local epoch=profile.epoch
+ local result, errorCode = self:update(userId, function(current,time)
+  if current and current.release and current.release.token==self.token and current.release.epoch==epoch and not current.lease then return current end
+  if not current or not current.lease or current.lease.token~=self.token or current.epoch~=epoch or current.lease.expiresAt<=time then return nil,'AccountBusy' end
+  local n=self.rules.copy(current);n.lease=nil;n.release={token=self.token,epoch=epoch};return n
 	end)
-	self.profiles[userId] = nil
+	if result then self.profiles[userId] = nil end
 	return result, errorCode
 end
 return AccountStore

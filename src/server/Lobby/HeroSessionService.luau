@@ -136,6 +136,7 @@ end
 
 local function execute(state, action, argument)
 	if action == "GetState" then return nil end
+ if settings.network then local handled,reason=settings.network.beforeHeroAction(state.player,action);if handled then return reason end end
  if action=="StartTutorial" and state.mode=="Tutorial" then
   if state.phase~="Tutorial" or not state.ready or not selectedHero(state) then return "Busy" end
   if settings.inventory and not settings.inventory.available(state.player) then return "InventoryUnavailable" end
@@ -248,7 +249,13 @@ local function bindPlayer(player)
 	player:SetAttribute("K0SessionPhase", state.phase)
 	if settings.inventory then
 		task.spawn(function()
+   local arrival,arrivalError
+   if settings.network then arrival,arrivalError=settings.network.admitArrival(player) end
+   if arrivalError then player:Kick(arrivalError);return end
 			local roster, errorCode = settings.inventory.open(player)
+   if not roster and errorCode=='AccountBusy' then
+    for _=1,20 do task.wait(.5);if not connected(state) then return end;roster,errorCode=settings.inventory.open(player);if roster or errorCode~='AccountBusy' then break end end
+   end
 			if not connected(state) then return end
 			if roster then
 				for id, stored in pairs(roster) do
@@ -259,6 +266,10 @@ local function bindPlayer(player)
 				end
 				table.sort(state.heroes, function(a,b) return a.heroId < b.heroId end)
 				state.selectedHeroId = state.heroes[1] and state.heroes[1].heroId
+    if arrival then
+     if not state.byId[arrival.heroId] then player:Kick('Your expedition hero could not be loaded. Return to the lobby and retry.');return end
+     state.selectedHeroId=arrival.heroId
+    end
 				state.profileReady = true
 			end
 			changed(state)
@@ -319,6 +330,7 @@ function HeroSessionService.getActiveHero(player)
 end
 
 function HeroSessionService.getCombatContext(player, character)
+ if player:GetAttribute('TLTTravelLock') then return nil end
 	local state = sessions[player]
 	if not state or state.mode ~= "Tutorial" or state.phase ~= "Tutorial" or not validLife(state, character) then return nil end
 	local hero = selectedHero(state)
@@ -428,4 +440,15 @@ function HeroSessionService.start(options)
 	end)
 end
 
+function HeroSessionService.selectForArrival(player,heroId)
+ local state=sessions[player]
+ if not state or state.phase~='Lobby' or not state.byId[heroId] then return false end
+ state.selectedHeroId=heroId;state.epoch=state.epoch+1;changed(state);return true
+end
+function HeroSessionService.enterAdventure(player,heroId)
+ local state=sessions[player];if not state then return false end
+ if not atLobby(state) or not state.byId[heroId] then return false end
+ state.selectedHeroId=heroId;state.route='Deepwood'
+ return transition(state,'Tutorial')==nil
+end
 return HeroSessionService

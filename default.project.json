@@ -32,6 +32,12 @@
       },
       "TDForestKit": {
         "$path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx"
+      },
+      "ServerRole": {
+        "$className": "StringValue",
+        "$properties": {
+          "Value": "Lobby"
+        }
       }
     },
     "StarterPlayer": {
