@@ -102,5 +102,16 @@
     "success": true,
     "published": false,
     "verification": "GUI279 pass, five injected mobile sizes; actual device touch/rotation not accepted"
+  },
+  {
+    "version": "0.30.4",
+    "source": "de297bcdf27835f9cd040c8c31ac49016548b1ec",
+    "path": "builds/0.30.4/TheLastThrone-0.30.4.rbxlx",
+    "bytes": 1366719,
+    "sha256": "09e116cb9586bae134978b3cc7d040931a2d145ab65fd45f7553a44b6cd4d118",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false,
+    "verification": "GUI native289 pass; final order Sprint Block Dodge; actual Studio Player GUI properties; real mobile touch/rotation not accepted"
   }
 ]

@@ -80,5 +80,33 @@
     "navigation_present": true,
     "mobile_rendered_acceptance": false,
     "note": "Local test instance disconnected during final UI follow-up;279 GUI fixture checks do not substitute actual mobile touch/rotation acceptance."
+  },
+  "studio_sync_0_30_3": {
+    "studio_name": "The Last Throne",
+    "place_id": 70829337938054,
+    "mode": "Edit, unposted source sync",
+    "source_files": 62,
+    "backup": "ServerStorage.BeforeDeepwood0303",
+    "environment": "XML properties from pinned sources;61 original mesh assets imported with AssetService.CreateMeshPartAsync because LoadLocalAsset/MeshId writes lack tool capabilities",
+    "td_map_descendants": 79,
+    "td_forest_descendants": 117,
+    "published": false
+  },
+  "final_hud_0_30_4": {
+    "top_to_bottom": [
+      "Sprint",
+      "Block",
+      "Dodge"
+    ],
+    "size_px": [
+      56,
+      56
+    ],
+    "bottom_safe_area_offset_px": 0,
+    "attack_size_px": [
+      64,
+      64
+    ],
+    "coverage": "actual Player GUI properties checked; Edit HUD source synced and Play restarted; GUI native289 pass; real mobile touch not accepted"
   }
 }

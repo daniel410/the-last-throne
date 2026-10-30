@@ -40,6 +40,10 @@
     {
       "version": "0.30.3",
       "valid": true
+    },
+    {
+      "version": "0.30.4",
+      "valid": true
     }
   ],
   "pass": true
