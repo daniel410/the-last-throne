@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+DEEPWOOD_PLACES_NATIVE {"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:6: ramp surface is continuous without a mandatory jump\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:6\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"DEEPWOOD_PLACES_NATIVE","pass":false,"checks":88}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:74: places native failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:74
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

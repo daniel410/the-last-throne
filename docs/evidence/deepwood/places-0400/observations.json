@@ -1,0 +1,24 @@
+{
+  "walletPosition": "956, 130",
+  "bossSize": "{0, 144}, {0, 56}",
+  "mapPosition": "956, -50",
+  "mapSize": "168, 168",
+  "rows": {
+    "Gold": {
+      "text": "Gold  12345",
+      "background": 1
+    },
+    "Diamonds": {
+      "text": "Diamonds  80",
+      "background": 1
+    }
+  },
+  "viewport": "1134, 850",
+  "alwaysOnTop": false,
+  "walletSize": "168, 44",
+  "bossText": "◆ BOSS ◆",
+  "background": 1,
+  "sceneIsSynthetic": true,
+  "bossMaxDistance": 100,
+  "coverage": "Final native models/UI in separate Play fixture; sample wallet and boss health, Scriptable camera, streaming disabled only in review copy. Not a normal combat/physical-device/published acceptance."
+}

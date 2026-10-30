@@ -1,0 +1,122 @@
+{
+  "version": "0.40.2",
+  "source_commit": "0a04d7b98e07e8b0c4eb99d7e7330e90d2273d46",
+  "date": "2026-10-30",
+  "status": "local-build-success-unpublished",
+  "tool": "Rojo 7.7.1",
+  "source_sha256": {
+    "VERSION": "475badcd43c5caa9e8b1f40548b97af6a52bef9a88f333f696b8a0d1c757112a",
+    "src/client/BattleMinimap.luau": "f354bb3db30b4e5263f1fb55aee5d864ec32e1a46214783b60ddc5a65d06aa08",
+    "src/client/LobbyCommerce.luau": "d224b985be4fff95661ad8a9ed85883b7263a60bcc304e3b2ea4bffc0aa8a91e",
+    "src/client/WalletDisplay.luau": "f0a9989c11b2271453d5055278483f642b9437a4ac47558311143e92fda209c4",
+    "src/server/World/DeepwoodPlaces.luau": "8d0c87beac8cacc2b4f5090c102368a73d76d633075ddda017120d0a92e948c2",
+    "src/server/World/DeepwoodWorld.luau": "35c62be1c27dc60476c1d5332c3e48ea650ac8b9347adf241d7dce739609249b",
+    "src/server/World/EnemyHealthBar.luau": "b665aa269dda5375efa7b52c9ccda4b69e3fa65e9a7bfa3923c1ac5d23b990c0",
+    "src/shared/K0Text.luau": "bc8bcbebe44cc311078b7cce4d3236037e9dbac16c7ec1192a23e4846366f716",
+    "src/shared/LobbyText.luau": "f1b0f8c7b3c9c2b3a9c71221a2438f36e0f72e1f6eb1882b1f390dd70b331e16"
+  },
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.40.2/TheLastThrone-Lobby-0.40.2.rbxlx",
+      "bytes": 1611657,
+      "sha256": "570c1e0108457b0e12435db916aa0a7fe19352eedbee78edcffd39bf9983ea71",
+      "result": "success",
+      "command": "rojo build default.project.json --output builds/0.40.2/TheLastThrone-Lobby-0.40.2.rbxlx"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.40.2/TheLastThrone-Battle-0.40.2.rbxlx",
+      "bytes": 1611658,
+      "sha256": "5d103a26bf2ed2fbaf200289b1a96c98e5cba3762dfc5433a9f5467f8106354f",
+      "result": "success",
+      "command": "rojo build battle.project.json --output builds/0.40.2/TheLastThrone-Battle-0.40.2.rbxlx"
+    }
+  ],
+  "native_checks": [
+    {
+      "log": "places.log",
+      "terraces": 9,
+      "groves": 164,
+      "checks": 403,
+      "failures": [],
+      "pass": true,
+      "kind": "DEEPWOOD_PLACES_NATIVE",
+      "runner_exit": 0,
+      "command": "run-in-roblox --place builds/0.40.2/TheLastThrone-Battle-0.40.2.rbxlx --script tests/deepwood-places-native.luau"
+    },
+    {
+      "log": "service.log",
+      "failures": [],
+      "kind": "DEEPWOOD_SERVICE_NATIVE",
+      "pass": true,
+      "checks": 581,
+      "runner_exit": 0,
+      "command": "run-in-roblox --place builds/0.40.2/TheLastThrone-Lobby-0.40.2.rbxlx --script tests/deepwood-service-native.luau"
+    },
+    {
+      "log": "grounded.log",
+      "persistentColliders": 304,
+      "kind": "DEEPWOOD_GROUNDED_NATIVE",
+      "checks": 3351,
+      "boundaries": 749,
+      "failures": [],
+      "pass": true,
+      "worldCreateSeconds": 1.2650373333599418,
+      "runner_exit": 0,
+      "command": "run-in-roblox --place builds/0.40.2/TheLastThrone-Battle-0.40.2.rbxlx --script tests/deepwood-grounded-native.luau"
+    },
+    {
+      "log": "world.log",
+      "coverage": "Actual geometry and TD rigs, server-authoritative story contracts; no real Player/device/published save acceptance",
+      "pass": true,
+      "budgetRestore": {
+        "transparency": 0,
+        "shadow": true,
+        "tracked": 3912,
+        "light": true
+      },
+      "checks": 639,
+      "kind": "DEEPWOOD_NATIVE",
+      "failures": [],
+      "activitySteps": 60,
+      "objectives": 58,
+      "runner_exit": 0,
+      "command": "run-in-roblox --place builds/0.40.2/TheLastThrone-Battle-0.40.2.rbxlx --script tests/deepwood-native.luau"
+    }
+  ],
+  "pure_checks": [
+    {
+      "command": "lua tests/deepwood-progress.spec.lua",
+      "checks": 570,
+      "pass": true
+    },
+    {
+      "command": "lua tests/deepwood-quests.spec.lua",
+      "checks": 31,
+      "pass": true
+    }
+  ],
+  "previous_attempt": {
+    "version": "0.40.0",
+    "source_commit": "1414f12",
+    "result": "native-acceptance-failed",
+    "reason": "Organic terrace radius extended over the top of its ramp, creating an upstand. Fixed by terminating ramp at outer extent with a full-width landing in 0.40.1. Original failed logs retained."
+  },
+  "warnings": [
+    "Existing asset 203785492 type mismatch in native logs."
+  ],
+  "published": false,
+  "release_tag": null,
+  "next_owner": "QA: normal combat walk-through, physical mobile/controller and 4-player performance; user visual acceptance",
+  "visual_fix": {
+    "prior_version": "0.40.1",
+    "result": "native-checks-passed; visual-review-found-coplanar-grass-and-bedrock",
+    "fix": "0.40.2 grass surface separated upward by 0.08 studs. All four native fixtures rerun on final builds."
+  },
+  "visual_observations": "observations.json",
+  "screenshots": [
+    "boss-wallet.png",
+    "ruins-loop.png"
+  ]
+}
