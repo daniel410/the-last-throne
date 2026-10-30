@@ -11,6 +11,7 @@ local ok,err=xpcall(function()
  local source=copy.Source;local first=assert(source:find('local function publish',1,true));local last=assert(source:find('function Service.destination',first,true))
  copy.Source=source:sub(1,first-1).."local function publish(player,message) player.message=message end\n"..source:sub(last);copy.Parent=original.Parent
  local story=require(copy)
+ local combat=require(SSS.Server.Combat.CombatService)
  local character=Instance.new('Model');character.Parent=workspace
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Parent=character;character.PrimaryPart=root
  local human=Instance.new('Humanoid');human.Parent=character;human.MaxHealth=1000;human.Health=1000
@@ -20,14 +21,21 @@ local ok,err=xpcall(function()
  local inventory={storyState=function() return P.copy(profile.heroes.qa.deepwood or P.new()) end,
   storyEvent=function(_,id,c,g,choice) local n,e=Rules.story(profile,id,c,g,choice,Catalog);if n then profile=n end;return e end,
   awardXP=function(_,_,amount) xp=xp+amount end}
- story.start({world=world,enemies=workspace.DeepwoodK0.Enemies,inventory=inventory,heroSession=hero,combat={addStoryEnemy=function() end,setStoryDefeatHandler=function() end}})
+ story.start({world=world,enemies=workspace.DeepwoodK0.Enemies,inventory=inventory,heroSession=hero,combat=combat})
  local function near(c,g) root.Position=world.nodes[c..':'..g].part.Position end
  local function models(key) local r={} for _,m in ipairs(workspace.DeepwoodK0.Enemies:GetChildren()) do if m:GetAttribute('DeepwoodEncounter')==key then table.insert(r,m) end end return r end
  root.Position=Vector3.new(2000,100,2000);story.interact(player,'DW-01','trail_guards');check(#models('DW-01:trail_guards')==0,'remote prompt distance cannot start fight')
  near('DW-01','trail_guards');valid=false;story.interact(player,'DW-01','trail_guards');check(#models('DW-01:trail_guards')==0,'inactive hero cannot start fight');valid=true
  story.interact(player,'DW-01','tracks');check(not inventory.storyState().flags['DW-01:tracks'],'future investigation cannot skip combat')
  near('DW-01','trail_guards');story.interact(player,'DW-01','trail_guards');check(#models('DW-01:trail_guards')==2,'two actual TD goblin rigs')
- for _,m in ipairs(models('DW-01:trail_guards')) do story.defeated(m);story.defeated(m) end;task.wait(.2)
+ local status=story.encounterState(player,'qa')['DW-01:trail_guards']
+ check(status and status.remaining==2,'server reports actual two enemies left')
+ check(next(story.encounterState(player,'another-hero'))==nil,'encounter state never leaks across hero identity')
+ for _,m in ipairs(models('DW-01:trail_guards')) do
+  m:FindFirstChildOfClass('Humanoid').Health=0;task.wait(.05)
+  story.defeated(m);story.defeated(m)
+ end;task.wait(.2)
+ check(story.encounterState(player,'qa')['DW-01:trail_guards'].remaining==0,'real CombatService Died callback updates encounter')
  check(inventory.storyState().flags['DW-01:trail_guards'],'encounter event saves');check(xp==36,'duplicate death does not award XP twice')
  -- Native service walk through every non-combat objective and spawn/defeat group.
  for _,c in ipairs(C.chapters) do if not c.side then for _,g in ipairs(c.goals) do
@@ -47,7 +55,7 @@ local ok,err=xpcall(function()
       for i=1,2 do root.Position=world.folder:FindFirstChild('TemporarySealPillar').Position;check(story.breakPillar(player,key,i),'sequential pillar interaction') end
       check(story.bossDamage(boss,h.MaxHealth)==h.MaxHealth*.35,'boss cannot skip final phase')
      end
-     for _,m in ipairs(models(key)) do story.defeated(m) end
+     for _,m in ipairs(models(key)) do m:FindFirstChildOfClass('Humanoid').Health=0 end
     end
    end
    task.wait(.1)

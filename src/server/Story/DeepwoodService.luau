@@ -13,10 +13,21 @@ local function context(player)
 end
 local function state(player,heroId) return options.inventory.storyState(player,heroId) end
 local function active(player) return options.heroSession.getActiveHero(player) end
+-- Read-only encounter projection: clients can explain the current blocker,
+-- but cannot declare a kill or complete an objective from this data.
+function Service.encounterState(player,heroId)
+ local result={}
+ for key,e in pairs(encounters) do
+  if e.participants[player]==heroId then
+   result[key]={remaining=e.remaining,pillars=e.shield and e.pillars or 0}
+  end
+ end
+ return result
+end
 local function publish(player,message)
  local h=active(player);if not h then return end
  local s=state(player,h.heroId);if not s then return end
- remote:FireClient(player,{heroId=h.heroId,training=h.training,journal=s,message=message,mode=player:GetAttribute('K0SessionPhase')})
+ remote:FireClient(player,{heroId=h.heroId,training=h.training,journal=s,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
 end
 function Service.destination(player,heroId)
  local s=state(player,heroId)

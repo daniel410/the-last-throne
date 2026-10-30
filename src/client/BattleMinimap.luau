@@ -1,5 +1,6 @@
 -- A north-up preview built from the current training field, not a concept screenshot.
 local Workspace=game:GetService('Workspace')
+local Text=require(game:GetService('ReplicatedStorage').Shared.K0Text)
 local Theme=require(script.Parent.TDInventoryTheme)
 local Chrome=require(script.Parent.InventoryChrome)
 local Map={}
@@ -13,7 +14,12 @@ function Map.create(parent)
  local camera=Instance.new('Camera');camera.FieldOfView=10;camera.CFrame=CFrame.lookAt(Vector3.new(0,1029,0),Vector3.zero,Vector3.new(0,0,-1));camera.Parent=view;view.CurrentCamera=camera
  for i,p in ipairs({UDim2.fromScale(.5,0),UDim2.fromScale(1,.5),UDim2.fromScale(.5,1),UDim2.fromScale(0,.5)}) do Chrome.diamond(frame,'MapGem'..i,p,12,Theme.color.gold) end
  local north=Theme.label(frame,'North','N',UDim2.new(.5,-10,0,9),UDim2.fromOffset(20,18),10,Theme.color.text);north.TextXAlignment=Enum.TextXAlignment.Center
- local playerMarker=Theme.label(frame,'PlayerMarker','▲',UDim2.fromScale(.5,.5),UDim2.fromOffset(20,20),18,Color3.fromRGB(98,204,255));playerMarker.AnchorPoint=Vector2.new(.5,.5);playerMarker.TextXAlignment=Enum.TextXAlignment.Center;playerMarker.TextStrokeTransparency=0;playerMarker.TextStrokeColor3=Color3.new(1,1,1);playerMarker.Visible=false;playerMarker.ZIndex=4
+ local playerPulse=Instance.new('Frame');playerPulse.Name='PlayerPulse';playerPulse.AnchorPoint=Vector2.new(.5,.5);playerPulse.BackgroundColor3=Color3.fromRGB(71,232,255);playerPulse.BorderSizePixel=0;playerPulse.Visible=false;playerPulse.ZIndex=4;playerPulse.Parent=frame
+ local pulseCorner=Instance.new('UICorner');pulseCorner.CornerRadius=UDim.new(1,0);pulseCorner.Parent=playerPulse
+ local playerMarker=Theme.label(frame,'PlayerMarker','▲',UDim2.fromScale(.5,.5),UDim2.fromOffset(28,28),24,Color3.fromRGB(92,239,255));playerMarker.AnchorPoint=Vector2.new(.5,.5);playerMarker.TextXAlignment=Enum.TextXAlignment.Center;playerMarker.TextStrokeTransparency=0;playerMarker.TextStrokeColor3=Color3.fromRGB(0,25,40);playerMarker.BackgroundColor3=Color3.fromRGB(0,22,40);playerMarker.BackgroundTransparency=.08;playerMarker.Visible=false;playerMarker.ZIndex=6
+ local markerCorner=Instance.new('UICorner');markerCorner.CornerRadius=UDim.new(1,0);markerCorner.Parent=playerMarker
+ local markerOutline=Instance.new('UIStroke');markerOutline.Color=Color3.new(1,1,1);markerOutline.Thickness=2;markerOutline.Parent=playerMarker
+ local you=Theme.label(frame,'PlayerLabel',Text.MinimapYou,UDim2.fromScale(.5,.5),UDim2.fromOffset(36,14),10,Color3.new(1,1,1));you.AnchorPoint=Vector2.new(.5,.5);you.TextXAlignment=Enum.TextXAlignment.Center;you.TextStrokeColor3=Color3.new(0,0,0);you.TextStrokeTransparency=0;you.ZIndex=7;you.Visible=false
  local caption=Theme.label(frame,'Region','DEEPWOOD',UDim2.new(0,12,1,-30),UDim2.new(1,-24,0,18),9,Theme.color.text);caption.TextXAlignment=Enum.TextXAlignment.Center;caption.TextStrokeTransparency=.2;caption.TextStrokeColor3=Color3.new(0,0,0)
  local menuButton=Theme.button(frame,'MapMenu','≡',UDim2.new(1,-34,0,0),UDim2.fromOffset(40,40));menuButton.Caption.Visible=false
  Theme.icon(menuButton,'settings',UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8))
@@ -34,15 +40,15 @@ function Map.create(parent)
   local now=os.clock();if now-lastUpdate<.1 then return end;lastUpdate=now
   local field=Workspace:FindFirstChild('DeepwoodK0');local source=field and field:FindFirstChild('TerrainBlockout')
   local campaign=Workspace:FindFirstChild('DeepwoodCampaign');local charRoot=character and character:FindFirstChild('HumanoidRootPart')
-  if campaign and charRoot and charRoot.Position.X < 800 and charRoot.Position.Z < 650 and (charRoot.Position-Vector3.new(0,0,0)).Magnitude>100 then
-   local regions=campaign:FindFirstChild('TerrainBlockout');local closest,distance
-   if regions then for _,region in ipairs(regions:GetChildren()) do if region:IsA('Model') then
-    local ground=region:FindFirstChild('ForestGround');local d=ground and (ground.Position-charRoot.Position).Magnitude
-    if d and (not distance or d<distance) then closest=region;distance=d end
-   end end end
-   if closest then source=closest;mapOrigin=closest.ForestGround.Position;mapWidth=math.max(closest.ForestGround.Size.X,closest.ForestGround.Size.Z)*1.1
-    caption.Text=closest.Name;camera.CFrame=CFrame.lookAt(mapOrigin+Vector3.new(0,mapWidth*5.72,0),mapOrigin,Vector3.new(0,0,-1))
-   end
+  local closest,distance
+  local regions=campaign and campaign:FindFirstChild('TerrainBlockout')
+  if regions and charRoot then for _,region in ipairs(regions:GetChildren()) do if region:IsA('Model') then
+   local ground=region:FindFirstChild('ForestGround');local d=ground and (ground.Position-charRoot.Position).Magnitude
+   if d and (not distance or d<distance) then closest=region;distance=d end
+  end end end
+  if closest and distance<charRoot.Position.Magnitude then
+   source=closest;mapOrigin=closest.ForestGround.Position;mapWidth=math.max(closest.ForestGround.Size.X,closest.ForestGround.Size.Z)*1.1
+   caption.Text=closest.Name;camera.CFrame=CFrame.lookAt(mapOrigin+Vector3.new(0,mapWidth*5.72,0),mapOrigin,Vector3.new(0,0,-1))
   else mapOrigin=Vector3.zero;mapWidth=180;caption.Text='TRAINING';camera.CFrame=CFrame.lookAt(Vector3.new(0,1029,0),Vector3.zero,Vector3.new(0,0,-1)) end
   if source and source~=terrain then
    world:ClearAllChildren();terrain=source
@@ -55,7 +61,17 @@ function Map.create(parent)
    frame:SetAttribute('PreviewPartCount',count)
   end
   local root=character and character:FindFirstChild('HumanoidRootPart')
-  if root then point(playerMarker,root.Position);playerMarker.Rotation=math.deg(math.atan2(root.CFrame.LookVector.X,-root.CFrame.LookVector.Z)) else playerMarker.Visible=false end
+  local human=character and character:FindFirstChildOfClass('Humanoid')
+  if root and (not human or human.Health>0) then
+   local offset=Vector2.new(root.Position.X-mapOrigin.X,root.Position.Z-mapOrigin.Z)/mapWidth
+   local clamped=offset.Magnitude>.38
+   if clamped then offset=offset.Unit*.38 end
+   playerMarker.Position=UDim2.fromScale(.5+offset.X,.5+offset.Y);playerMarker.Visible=true;playerMarker:SetAttribute('AtMapEdge',clamped)
+   playerMarker.Rotation=math.deg(math.atan2(root.CFrame.LookVector.X,-root.CFrame.LookVector.Z))
+   playerPulse.Position=playerMarker.Position;playerPulse.Visible=true
+   local phase=(math.sin(now*4)+1)/2;playerPulse.Size=UDim2.fromOffset(32+8*phase,32+8*phase);playerPulse.BackgroundTransparency=.65+.2*phase
+   you.Position=playerMarker.Position+UDim2.fromOffset(0,offset.Y>.25 and -23 or 23);you.Visible=true
+  else playerMarker.Visible=false;playerPulse.Visible=false;you.Visible=false end
   local enemies=field and field:FindFirstChild('Enemies');local present={}
   if enemies then
    for _,enemy in ipairs(enemies:GetChildren()) do

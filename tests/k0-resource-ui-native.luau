@@ -122,6 +122,15 @@ local ok, failure = xpcall(function()
 	local marker=playerGui.DeepwoodTopHud.Root.Minimap.PlayerMarker
 	check(marker.Visible and math.abs(marker.Position.X.Scale-.6)<.001 and math.abs(marker.Position.Y.Scale-.7)<.001,"minimap projects the actual hero position north-up")
 	check(playerGui.DeepwoodTopHud.Root.Minimap.MapPreview.CurrentCamera~=nil and not playerGui.DeepwoodTopHud.Root.Minimap.MapActions.Visible,"map preview is visible while its menu stays collapsed")
+ check(marker.Size.X.Offset==28 and marker.TextSize==24 and marker.ZIndex>3,"larger player arrow sits above enemy dots")
+ local map=playerGui.DeepwoodTopHud.Root.Minimap
+ check(map.PlayerLabel.Visible and map.PlayerLabel.Text=="YOU" and map.PlayerPulse.Visible,"player has a readable YOU label and pulse")
+ mapRoot.Position=Vector3.new(500,3,500);task.wait(.12);hud.setCooldowns(character)
+ check(marker.Visible and marker:GetAttribute('AtMapEdge')==true,"player stays visible outside the local map on a bridge")
+ local offset=Vector2.new(marker.Position.X.Scale-.5,marker.Position.Y.Scale-.5)
+ check(math.abs(offset.Magnitude-.38)<.001,"edge marker remains inside the circular map")
+ local human=Instance.new('Humanoid');human.Parent=character;human.Health=0;task.wait(.12);hud.setCooldowns(character)
+ check(not marker.Visible and not map.PlayerLabel.Visible and not map.PlayerPulse.Visible,"dead hero has no stale position marker")
 	character:Destroy()
 
 	local lobby = copyModule("HeroLobbyGui").create(function() end)

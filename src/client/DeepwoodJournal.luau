@@ -6,7 +6,20 @@ local Content=require(RS.Shared.DeepwoodContent)
 local Progress=require(RS.Shared.DeepwoodProgress)
 local Theme=require(script.Parent.TDInventoryTheme)
 local Navigation=require(script.Parent.DeepwoodNavigation)
+local Text=require(RS.Shared.K0Text)
 local Journal={}
+-- Shared presentation decision for all seven stories and tracked side quests.
+function Journal.guidance(current,target)
+ if not current or current.training or not target or not Progress.available(current.journal,target.chapter,target.goal) then return nil end
+ local goal=target.goal
+ local fight=current.encounters and current.encounters[target.chapter.id..':'..goal.id]
+ local hint=#goal.enemies>0 and Text.StoryBeginEncounter or Text.StoryInteract
+ if fight then
+  hint=(fight.pillars or 0)>0 and string.format(Text.StoryPillarsLeft,fight.pillars)
+   or fight.remaining>0 and string.format(Text.StoryEnemiesLeft,fight.remaining) or Text.StorySaving
+ end
+ return {position=Vector3.new(table.unpack(goal.position)),objective=goal.title,note=hint}
+end
 function Journal.start(hud)
  local player=Players.LocalPlayer
  local remotes=RS:WaitForChild('Remotes');local request=remotes:WaitForChild('DeepwoodRequest');local response=remotes:WaitForChild('DeepwoodState')
@@ -79,7 +92,8 @@ function Journal.start(hud)
   if not target and first then point(first.chapter,first.goal) end
   if not first then marker.Adornee=nil;target=nil end
   if hud.setStory then
-   hud.setStory({title='DEEPWOOD · '..(s.main==7 and 'EPIC COMPLETE' or tostring(s.main+1)..' / 7'),objective=target and target.goal.title or 'The forest is safe. Discover hidden quests or return to Hub.',note='[J] Journal · [F / X / Tap] Interact'})
+   local guidance=Journal.guidance(current,target)
+   hud.setStory({title='DEEPWOOD · '..(s.main==7 and 'EPIC COMPLETE' or tostring(s.main+1)..' / 7'),objective=guidance and guidance.objective or 'The forest is safe. Discover hidden quests or return to Hub.',note=guidance and guidance.note or '[J] Journal'})
   end
   local field=workspace:FindFirstChild('DeepwoodCampaign');local nodes=field and field:FindFirstChild('Objectives')
   if nodes then for _,p in ipairs(nodes:GetChildren()) do
@@ -100,7 +114,8 @@ function Journal.start(hud)
   gui.Enabled=alive;marker.Enabled=alive
   if not alive then navigation.setTarget(nil);panel.Visible=false;dialog.Visible=false;player:SetAttribute('TLTStoryOpen',false);return end
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
-  navigation.setTarget(alive and current and current.journal.main<3 and target and Vector3.new(table.unpack(target.goal.position)) or nil)
+  local guidance=Journal.guidance(current,target)
+  navigation.setTarget(guidance and guidance.position or nil)
   if target and root then waypoint.Text='◆ '..target.goal.title..'\n'..math.floor((root.Position-Vector3.new(table.unpack(target.goal.position))).Magnitude)..' studs' end
   if current and root then
    local c=Content.byId['DW-07'];local g=Progress.goal(c,'restoration')

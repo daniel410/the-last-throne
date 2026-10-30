@@ -16,6 +16,28 @@ local ok,err=xpcall(function()
  local Content=require(RS.Shared.DeepwoodContent)
  local nav=require(game:GetService('StarterPlayer').StarterPlayerScripts.Client.DeepwoodNavigation)
  local function pos(id) return Vector3.new(table.unpack(Content.zones[id].center)) end
+ local journal=require(game:GetService('StarterPlayer').StarterPlayerScripts.Client.DeepwoodJournal)
+ for _,c in ipairs(Content.chapters) do if not c.side then for _,g in ipairs(c.goals) do
+  local state={main=c.number-1,flags={},clears={}}
+  for _,id in ipairs(g.requires) do state.flags[c.id..':'..id]=true end
+  local current={journal=state,training=false};local target={chapter=c,goal=g}
+  local guide=journal.guidance(current,target)
+  check(guide and guide.position==Vector3.new(table.unpack(g.position)),c.id..':'..g.id..' remains guided throughout Epic1')
+  local path=nav.route(pos('DW-01'),guide.position)
+  check(path[#path]==guide.position,g.id..' guide reaches actual objective')
+  if #g.enemies>0 then
+   check(guide.note:find('Hold F',1,true)~=nil,g.id..' explains encounter start')
+   current.encounters={[c.id..':'..g.id]={remaining=2,pillars=0}}
+   check(journal.guidance(current,target).note:find('2 left',1,true)~=nil,g.id..' explains remaining enemies')
+   current.encounters[c.id..':'..g.id]={remaining=2,pillars=2}
+   check(journal.guidance(current,target).note:find('seal pillars',1,true)~=nil,g.id..' explains shield blocker')
+   current.encounters[c.id..':'..g.id]={remaining=0,pillars=0}
+   check(journal.guidance(current,target).note:find('Saving',1,true)~=nil,g.id..' explains pending save')
+  end
+  current.training=true;check(journal.guidance(current,target)==nil,'training has no story guide')
+  current.training=false;state.flags[c.id..':'..g.id]=true
+  check(journal.guidance(current,target)==nil,'completed objective has no stale guide')
+ end end end
  local route=nav.route(pos('DW-01')+Vector3.new(-30,3,45),pos('DW-03'))
  check(#route==5 and route[3]==pos('DW-02'),'guide uses the middle region instead of cutting across cliffs')
  local midpoint=pos('DW-01'):Lerp(pos('DW-02'),.4)

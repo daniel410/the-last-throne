@@ -1,5 +1,11 @@
 -- en-US source text for the K0 training prototype. Keys are language-neutral.
 return {
+ StoryBeginEncounter = "Hold F / X or touch the marker to begin the encounter.",
+ StoryInteract = "Hold F / X or touch the marker to interact.",
+ StoryEnemiesLeft = "Defeat the remaining enemies: %d left.",
+ StoryPillarsLeft = "Break the temporary seal pillars: %d left.",
+ StorySaving = "Saving objective progress. Please wait.",
+ MinimapYou = "YOU",
 	Title = "DEEPWOOD",
  NewSkillFormat = "New Skill Unlocked: %s. Open Skills to review your loadout.",
  Ultimate = "ULTIMATE",
