@@ -170,7 +170,10 @@ function Places.create(world)
    local camp=id=='DW-02' or id=='DW-03' or id=='DW-S1'
    local organic=id=='DW-01' or id=='DW-06' or id=='DW-07'
    local terrace=part(place,'WalkableTerrace',organic and Vector3.new(rise,72*s,64*s) or Vector3.new(72*s,rise,40*s),CFrame.new(p+Vector3.new(0,rise/2,0))*(organic and CFrame.Angles(0,0,math.pi/2) or CFrame.new()),camp and C.wood or (id=='DW-06' or id=='DW-07') and C.root or C.moss,camp and Enum.Material.WoodPlanks or Enum.Material.Slate,true)
-   if organic then terrace.Shape=Enum.PartType.Cylinder;x=26*s end
+   if organic then
+    terrace.Shape=Enum.PartType.Cylinder
+    part(place,'TerraceLanding',Vector3.new(72*s,rise,24*s),p+Vector3.new(0,rise/2,0),terrace.Color,Enum.Material.Slate,true)
+   end
    for _,sign in ipairs({-1,1}) do
     strip(place,'WalkableRamp',p+Vector3.new(sign*(x+run),0,0),p+Vector3.new(sign*x,rise,0),24*s,C.stone,true)
    end

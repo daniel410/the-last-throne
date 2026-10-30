@@ -27,7 +27,7 @@ local ok,err=xpcall(function()
     table.sort(ends,function(a,b)return a.Y<b.Y end)
     for n=0,12 do
      local q=ends[1]:Lerp(ends[2],n/12);local floor=workspace:Raycast(q+Vector3.new(0,10,0),Vector3.new(0,-20,0),params)
-     check(floor and math.abs(floor.Position.Y-q.Y)<.2,'ramp surface is continuous without a mandatory jump')
+     check(floor and math.abs(floor.Position.Y-q.Y)<.2,'ramp surface '..id..' sample '..n..' at '..tostring(q)..' hit '..tostring(floor and floor.Position)..' part '..tostring(floor and floor.Instance:GetFullName()))
     end
     local path=game:GetService('PathfindingService'):CreatePath({AgentRadius=2,AgentHeight=5,AgentCanJump=false})
     path:ComputeAsync(ends[1]+Vector3.new(0,2,0),p+Vector3.new(0,rise+2,0))
