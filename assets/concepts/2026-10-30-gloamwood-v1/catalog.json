@@ -1,0 +1,87 @@
+{
+  "task_id": "TLT-065/gloamwood-concepts-20261030",
+  "date": "2026-10-30",
+  "status": "concept-candidate-not-approved-not-runtime",
+  "epic_number": null,
+  "tool": "built-in image_gen",
+  "generation_calls": 3,
+  "images": [
+    {
+      "file": "gloamwood-environment.png",
+      "title_ko": "어두운 숲 지역 전경",
+      "prompt": "prompts/world.txt",
+      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-490e24b4-a395-4f98-aec1-56a0f2d51051.png",
+      "bytes": 3051297,
+      "width": 1672,
+      "height": 940,
+      "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf",
+      "mode": "new-generation"
+    },
+    {
+      "file": "gloamwood-creatures.png",
+      "title_ko": "몬스터6종 컨셉 보드",
+      "prompt": "prompts/roster.txt",
+      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-68df6b46-8646-4fd6-be7c-b9c15fc39452.png",
+      "bytes": 2044694,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "e92aaaaa2fff67603710d4105c19c0a6b20d259123d1fafdc1e5cd128a7a636d",
+      "mode": "new-generation"
+    },
+    {
+      "file": "widow-queen-lair.png",
+      "title_ko": "거미 여왕의 숲 요새 둥지",
+      "prompt": "prompts/queen.txt",
+      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-7fe08b8b-5dd6-46d1-a20c-cc328ea1f022.png",
+      "bytes": 3077231,
+      "width": 1672,
+      "height": 941,
+      "sha256": "7ff8152a6f0b89499e68018326b8a281e80f01981dc71a0d0afcbcdcc5ce52ee",
+      "mode": "reference-image-transformation"
+    }
+  ],
+  "source_reference": {
+    "path": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/boss-spider-queen-concept.png",
+    "sha256": "ca94ffa70af15f1be1c4e7d1caad8c5f637ecddce08e269b7e5780226a8de311",
+    "role": "Direct visual reference and transformation input for queen image only; unchanged source. World/roster prompts use written style descriptions.",
+    "registry_status": "User-attached TD concept; no registry entry for this exact image found in the reviewed spider/queen search. No new runtime permission verification."
+  },
+  "creatures": [
+    {
+      "label": "WEBLING",
+      "name_en": "Webling",
+      "role_ko": "작은 군집 거미",
+      "board_cell": 1
+    },
+    {
+      "label": "SILKWEAVER",
+      "name_en": "Silkweaver",
+      "role_ko": "거미줄 사냥꾼",
+      "board_cell": 2
+    },
+    {
+      "label": "BARKSTALKER",
+      "name_en": "Barkstalker",
+      "role_ko": "나무껍질 위장 거미",
+      "board_cell": 3
+    },
+    {
+      "label": "GLOOMWING MOTH",
+      "name_en": "Gloomwing Moth",
+      "role_ko": "숲 나방",
+      "board_cell": 4
+    },
+    {
+      "label": "BROODGUARD",
+      "name_en": "Broodguard",
+      "role_ko": "중장갑 호위 거미",
+      "board_cell": 5
+    },
+    {
+      "label": "THE WIDOW QUEEN",
+      "name_en": "The Widow Queen",
+      "role_ko": "거미 여왕",
+      "board_cell": 6
+    }
+  ]
+}

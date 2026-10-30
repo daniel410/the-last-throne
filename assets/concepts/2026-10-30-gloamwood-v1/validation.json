@@ -1,0 +1,18 @@
+{
+  "task_id": "TLT-065/gloamwood-concepts-20261030",
+  "png_count": 3,
+  "total_png_bytes": 8173222,
+  "png_signature_crc_dimensions_hash_and_copy": "pass",
+  "prompt_exact_match": "pass",
+  "source_reference_unchanged": "pass",
+  "creature_concepts": 6,
+  "package_links_checked": 27,
+  "existing_files_unchanged": 522,
+  "existing_unchanged_scope": "tracked docs except explicit integration notes, narrative JSON, balance JSON, central story proposal and VERSION",
+  "visual_review": "all 3 tool output images inspected",
+  "runtime_device_gameplay": "not performed",
+  "gallery_render": "not yet verified in browser",
+  "git_lfs_remote": "verify after staging/push",
+  "git_lfs_staged_pointers": "3 pointers match original SHA256 and size",
+  "gallery_open": "open_in_codex returned queued; browser render not verified"
+}
