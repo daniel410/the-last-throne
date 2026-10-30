@@ -294,6 +294,8 @@ function Hud.create()
 		mapScale.Scale=viewport.X<500 and math.max(.62,scale*.85) or scale
 		back.Size = UDim2.fromOffset(148,36)
 		backCaption.TextSize = 11
+		-- Reset after input-mode changes; a hidden mobile JumpButton must not lift Attack.
+		attack.Position=UDim2.fromOffset(90,0)
 		if UserInputService.TouchEnabled then
 			-- Keep the item/skill row at the bottom between the two thumb controls.
 			skillScale.Scale = math.min(scale, math.max(.35, (viewport.X-280)/528))
@@ -318,9 +320,20 @@ function Hud.create()
 				skillBar.Size=UDim2.fromOffset(528,68)
 				for i,button in ipairs(skillButtons) do button.Position=UDim2.fromOffset((i+1)*72+24,0) end
 			end
-			if jump and jump:IsA('GuiObject') and jump.Visible and jump.AbsoluteSize.Y>0 then
+			local jumpVisible=jump and jump:IsA('GuiObject') and jump.AbsoluteSize.Y>0
+			local ancestor=jump
+			while jumpVisible and ancestor and ancestor~=playerGui do
+				if ancestor:IsA('GuiObject') and not ancestor.Visible or ancestor:IsA('ScreenGui') and not ancestor.Enabled then jumpVisible=false end
+				ancestor=ancestor.Parent
+			end
+			if jumpVisible then
+				local left=root.AbsolutePosition.X+viewport.X-20+(90-172)*scale
 				local top=root.AbsolutePosition.Y+viewport.Y-188*scale
-				attack.Position=UDim2.fromOffset(90,math.min(0,(jump.AbsolutePosition.Y-top-12)/scale-64))
+				local pos,size=jump.AbsolutePosition,jump.AbsoluteSize
+				if left<pos.X+size.X and left+64*scale>pos.X and top<pos.Y+size.Y and top+64*scale>pos.Y then
+					-- Keep Attack beside Sprint; use its left side if jump occupies the right.
+					attack.Position=UDim2.fromOffset(-68,0)
+				end
 			end
 		else
 			skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)

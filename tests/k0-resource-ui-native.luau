@@ -185,6 +185,8 @@ local ok, failure = xpcall(function()
 		check(height>500,"stats view reports scrollable content")
 	end
 	body:Destroy()
+	local inactiveTouch=Instance.new('ScreenGui');inactiveTouch.Name='InactiveTouch';inactiveTouch.Enabled=false;inactiveTouch.Parent=playerGui
+	local staleJump=Instance.new('TextButton');staleJump.Name='JumpButton';staleJump.Size=UDim2.fromOffset(80,80);staleJump.Position=UDim2.fromOffset(20,10);staleJump.Parent=inactiveTouch
 	for _,size in ipairs({Vector2.new(1050,506),Vector2.new(844,390),Vector2.new(740,360),Vector2.new(568,320),Vector2.new(390,844)}) do
 		copyModule('K0Hud',size).create()
 		local mobile=playerGui.DeepwoodTrainingHud.Root
@@ -195,7 +197,7 @@ local ok, failure = xpcall(function()
 		check(actions.Block.Position.X.Offset==actions.Dodge.Position.X.Offset and actions.Dodge.Position.X.Offset==actions.Sprint.Position.X.Offset,'mobile defensive actions form one column')
 		check(actions.Sprint.Position.Y.Offset<actions.Block.Position.Y.Offset and actions.Block.Position.Y.Offset<actions.Dodge.Position.Y.Offset,'mobile order is Sprint Block Dodge')
 		check(actions.Position.Y==UDim.new(1,0),'mobile defensive column reaches the safe bottom edge')
-		check(actions.Attack.Position.Y.Offset==actions.Sprint.Position.Y.Offset,'attack occupies the upper-right action slot')
+		check(actions.Attack.Position==UDim2.fromOffset(90,0),'hidden jump UI cannot lift attack away from the right side of Sprint')
 		local scale=actions.UIScale.Scale
 		local attackBottom=size.Y+actions.Position.Y.Offset-actions.Size.Y.Offset*scale+(actions.Attack.Position.Y.Offset+64)*scale
 		check(attackBottom<size.Y-88,'mobile attack clears the default jump height')
