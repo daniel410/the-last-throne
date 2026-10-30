@@ -11,6 +11,7 @@ local StatsView=require(script.Parent.HeroStatsView)
 local Advanced=require(RS.Shared.AdvancedSkills)
 local Growth=require(RS.Shared.HeroProgression)
 local Config=require(RS.Shared.K0Config)
+local SkillPreview=require(RS.Shared.SkillStatPreview)
 local Gui={}
 local portraits={knight="103255177842108",elf="80894238854345",dwarf="74628903359757",mage="91907986271282"}
 local names={knight="KNIGHT",elf="ELF ARCHER",dwarf="DWARF AXE THROWER",mage="MAGE"}
@@ -85,12 +86,7 @@ function Gui.create(onVisibility)
 		local preview=Growth.copy(g)
 		local spent=0; for k,v in pairs(draft) do preview.stats[k]=preview.stats[k]+v; spent=spent+v end
 		local statPoints,skillPoints=Growth.points(g)
-		local derived=Growth.derived(classId,preview)
-		local equipment=snapshot.stats or {health=0,power=0,armor=0}
-		derived.health=derived.health+(equipment.health or 0)
-		derived.armor=derived.armor+(equipment.armor or 0)
-		derived.physicalPower=math.floor(derived.physicalPower*(1+(equipment.power or 0)/100)+.5)
-		derived.magicPower=math.floor(derived.magicPower*(1+(equipment.power or 0)/100)+.5)
+		local derived=SkillPreview.derived(classId,preview,snapshot.stats)
 		local narrow=body.AbsoluteSize.X<620
 		if tab=="Stats" then
 			local height=StatsView.render(body,hero,snapshot,derived,draft,pending,render,send,resetDraft,function() if pending then remote:FireServer(pending);show("Checking the same save...") end end)

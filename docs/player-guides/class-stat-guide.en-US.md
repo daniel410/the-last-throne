@@ -2,6 +2,16 @@
 
 **Draft for future player guidance.** Stat formulas, starting values, equipment bonuses, and recommended point ratios are still being designed and tested. Class and advancement names marked “working name” may change. This guide describes the planned system, not the current test build.
 
+## Current trial: read your skill's scaling
+
+The Skills panel now identifies the stat used by each skill and shows an estimated damage or barrier value. The Stats panel compares your equipped skills before and after your draft allocation, including equipment and current mastery. Damage is estimated per hit; multi-hit totals assume every hit lands on one target. Enemy bonuses, marks and counters can change the final result.
+
+In the current trial, Knight skills (including Paladin) and all Dwarf skills (including Gunner shots, bombs and artillery) use **STR** for damage. Physical Elf skills use **DEX**. Mage spells and Magic Archer path skills use **INT**. DEX does not currently add attack speed or critical chance. Gunner DEX scaling remains a future design question.
+
+Barriers use the recipient's **Max HP**, including equipment. Your VIT can increase your own barrier; a party barrier uses each ally's own Max HP. INT does not directly increase barrier strength in the current trial. Stats do not change cooldowns or effect duration. Raising Max HP or MP does not refill the resource.
+
+Skill mastery and stat allocation use separate point pools. Canceling a draft leaves your saved stats unchanged. These explanations describe trial rules; the planned directions below are not final point-allocation recommendations.
+
 ## How stats work
 
 Your character has four stats:

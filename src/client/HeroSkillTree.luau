@@ -6,6 +6,8 @@ local Menu=require(script.Parent.HeroMenuChrome)
 local Advanced=require(RS.Shared.AdvancedSkills)
 local Growth=require(RS.Shared.HeroProgression)
 local Config=require(RS.Shared.K0Config)
+local Preview=require(RS.Shared.SkillStatPreview)
+local SkillText=require(RS.Shared.SkillStatText)
 local Glyph=require(script.Parent.SkillGlyph)
 local Tree={}
 local portraits={knight='103255177842108',elf='80894238854345',dwarf='74628903359757',mage='91907986271282'}
@@ -110,7 +112,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local effect=skill.form=='self' and string.format('Barrier: %.0f%% max HP / %gs',skill.shield*100,skill.shieldDuration) or skill.damage>0 and string.format('Damage × %.2f',skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration or 0)
  if skill.guardReduction then effect=effect..string.format(' / %.0f%% guard',skill.guardReduction*100) end
  if skill.pulses and skill.pulses>1 then effect=effect..'  /  '..skill.pulses..' hits' end
- local effectText=effect..(base.description and '\n'..base.description or '')
+ local effectText=effect..'\n'..Preview.scalingText(classId,skill)..'\n'..Preview.effectText(classId,selected,g,snapshot.stats)..'\n'..SkillText.EstimateNote..(base.description and '\n'..base.description or '')
  local effectHeight=math.max(44,TextService:GetTextSize(effectText,12,Enum.Font.GothamMedium,Vector2.new(detailW-36,10000)).Y+4)
  local detailExtra=effectHeight-44
  detail.Size=UDim2.fromOffset(detailW,500+detailExtra)

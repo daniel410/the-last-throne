@@ -78,12 +78,15 @@ function Growth.points(g)
 	local sp=0;for _,rank in ipairs(g.mastery) do sp=sp+rank end
 	return 4*(g.level-1)-spent,(g.level-1)-sp
 end
+function Growth.attackStat(classId,magic)
+	return magic and "INT" or classId=="elf" and "DEX" or "STR"
+end
 function Growth.derived(classId,g)
 	local base=assert(Growth.bases[classId]); local total={}
 	local manaBase=(classId=="elf" and g.branch=="magic_archer" and g.stage>=1) and 80 or base.mana
 	local manaLevels=classId=="elf" and math.max(0,g.level-20)*3 or (g.level-1)*4
 	for _,k in ipairs(Growth.statKeys) do total[k]=base.stats[k]+g.stats[k] end
-	local physical=g.stats[classId=="elf" and "DEX" or "STR"]*2+(g.level-1)*3
+	local physical=g.stats[Growth.attackStat(classId,false)]*2+(g.level-1)*3
 	return {health=base.health+base.healthPerLevel*(g.level-1)+g.stats.VIT*10,
 		mana=manaBase>0 and manaBase+manaLevels+g.stats.INT*3 or 0,
 		physicalPower=100+physical,magicPower=100+(g.level-1)*3+g.stats.INT*2,

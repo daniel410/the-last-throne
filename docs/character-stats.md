@@ -1,5 +1,7 @@
 # 기본 스탯과 전투 능력치
 
+> 2026-10-29 스킬/스탯 안내 갱신: 영웅 스킬 상세에 실제 참조 STR/DEX/INT 또는 최대 HP를 표시하고, 스탯 화면에서 장비·현재 숙련을 반영한 장착 스킬의 투자 전후 예상 피해/보호막을 비교한다. 현재 Gunner·성기사 피해는 STR, 물리 엘프는 DEX, 마법궁수 계열 기술·Mage 주문은 INT다. DEX 공격속도/치명타와 혼합 가중 합산은 미구현이며 아래 초안과 구분한다. [구현·검증](evidence/skill-stat-preview/README.md), [동일 예산 비교·조사](research/2026-10-29-skill-stat-relationship.md).
+
 > 2026-10-29 최신 사용자 결정/0.24.1 시험 구현: Lv1 Knight HP250, Dwarf HP200, Elf HP150, Mage HP100·MP100. 아래 설계 초안과 실제 구현 시험 계수는 구분한다. 서버 성장·포인트 투자와 전투 반영/저장 경로를 구현했으며 [실제 범위·검증](evidence/progression/README.md)을 따른다.
 
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 구현 전 설계
