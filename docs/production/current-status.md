@@ -1,8 +1,14 @@
 # 현재 개발 상태와 다음 작업
 
-2026-10-29 · 총괄 DIR · **로컬 시험 빌드 `0.35.2`** · 게시된 비공개 시험판 `0.18.3`
+2026-10-30 · 총괄 DIR · **로컬 시험 빌드 `0.36.1`** · 게시된 비공개 시험판 `0.18.3`
 
 [작업 종합 정리](work-summary-2026-10-29.md) · [최신 결정](../decisions.md) · [액션·스킬 상세](action-and-skill-design.md) · [빌드·게시 증거](../evidence/k0/build.md) · [백로그](../../backlog.md)
+
+## 재화·로비 상점·솔로/파티 원정 (0.36.0~0.36.1)
+
+RPG Gold/Diamonds 계정 지갑·기존 Coins 이전·본편 초회 계정당2 Diamonds·로비 ARMORY 구매/판매·ADVENTURES 모집/준비/출발·타 로비 합류·예약 전투/15분 리조인·Lobby/Battle 별도 빌드를 구현했다. TD 원본/구조를 참고하고 TD 잔액/Place는 유지한다. 출발 전 전원 영웅 잠금·저장 lease 해제/재개와 개인 티켓을 검사한다. 실제 Studio Player 구매/매각과 지갑/가방 반영을 확인했다.0.36.1 경제26·원정 저장43·서비스11·로비126·전투 부트10 통과. [실행 계약](lobby-economy-and-expeditions.md) · [검증](../evidence/lobby-0361/README.md).
+
+Creator Dashboard에서 RPG 시작 Place 최대 인원20을 저장했다. 별도 전투 Place는 없으며 생성 API가 Studio API 접근 비활성 오류로 실패했다. 일시 허용 여부를 사용자에게 요청한 상태이고 `battlePlaceId=0`이다. 최신 소스는 미게시이며 게시 원정은 설정 안내로 중단한다. 실제 Solo 왕복·타 로비·2~4인·재접속/저장 장애·모바일·20인 부하 수용은 미완료다. 상위 티켓을 Done으로 바꾸지 않는다.
 
 ## 보스 호위·체력 구간별 증원 (0.35.2)
 
@@ -56,8 +62,8 @@
 
 ## 빌드·게시와 검증의 경계
 
-- **최신 로컬:** `0.35.2`, 소스 `e428193` ([정확한 커밋·해시](../evidence/deepwood/bosses-0352/build.json)), [빌드](../../builds/0.35.2/TheLastThrone-0.35.2.rbxlx) · [검증](../evidence/deepwood/bosses-0352/README.md). 산출물은 Git 제외 로컬 파일이다.
-- **현재 확인된 게시:** 2026-10-28 사용자가 `0.18.3`을 독립 The Last Throne Experience `10773575153`, 시작 Place `70829337938054`에 게시했다. Creator Dashboard의 게시 Place 버전은 **4**, 확인 당시 접근은 Private이며 Git 태그 `v0.18.3`을 해당 빌드 소스에 푸시했다. Roblox의 Place 버전과 게임 빌드 버전은 서로 다르다. `0.18.4~0.35.2`의 로컬 빌드는 게시되지 않았다. [게시 기록](../evidence/k0/build.md).
+- **최신 로컬:** `0.36.1`, 소스 `0c793a0` ([커밋·해시](../evidence/lobby-0361/build.json)), [Lobby](../../builds/0.36.1/TheLastThrone-Lobby-0.36.1.rbxlx) / [Battle](../../builds/0.36.1/TheLastThrone-Battle-0.36.1.rbxlx) · [검증](../evidence/lobby-0361/README.md). 산출물은 Git 제외 로컬 파일이다.
+- **현재 확인된 게시:** 2026-10-28 사용자가 `0.18.3`을 독립 The Last Throne Experience `10773575153`, 시작 Place `70829337938054`에 게시했다. Creator Dashboard의 게시 Place 버전은 **4**, 확인 당시 접근은 Private이며 Git 태그 `v0.18.3`을 해당 빌드 소스에 푸시했다. Roblox의 Place 버전과 게임 빌드 버전은 서로 다르다. `0.18.4~0.36.1`의 로컬 빌드는 게시되지 않았다. [게시 기록](../evidence/k0/build.md).
 - **0.18.7 증거:** 격리 Studio 빌드 smoke 458개, 서버 전투 401개, 스킬 자세 35개, 적중 효과 102개, R6/R15 Overhead 회전 경로 6개, 무기 회귀 2,238개 통과. 0.18.6 양손·수평 방어 동적 리그 42개 검사도 통과했다. 이는 실제 게시 클라이언트·실기기·다인·시각적 완성 수용과 구분한다.
 - **0.18.8 증거:** 고정 빌드 smoke 458개, 서버 전투 452개, UI 상태 83개, 타이밍 106개 통과. 격리 Studio의 실제 Player에서 네 직업의 기본3 기술 입력·자원 표시를 부분 확인했다. [자원 검증](../evidence/k0/2026-10-29-stamina-removal.md).
 - **0.18.9 증거:** 고정 빌드 smoke 458개와 UI 상태 85개 통과. 격리 Studio의 실제 Player로 수정된 Lv20/40 슬롯 안내, Knight 액션·회복·물약·사망/리스폰 일부를 확인하고 슬라임 분열 재적중을 발견했다. [Player 기록](../evidence/k0/2026-10-29-player-combat-and-slime.md).

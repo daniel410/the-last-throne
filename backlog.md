@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-30 TLT-003/016/017/021/028/041/044/045/047/049/050/053/084 부분 구현: **0.36.1** RPG Gold/Diamonds·로비 무기 매입/판매·솔로/2~4인 모집·서버 간 합류/예약 전투·15분 리조인 경로와 저장/입장 토큰을 연결했다. 로비 최대 인원20 설정 저장, 실제 Studio 구매/판매·원정 서비스11·로비126·전투 부트10개 통과. [실행 계약](docs/production/lobby-economy-and-expeditions.md) · [검증](docs/evidence/lobby-0361/README.md). 별도 Battle Place 없음/ID0, 생성 API 접근 허용 여부 대기. 미게시·실제 서버 이동/다인/저장 수용 미완료이며 상위 티켓은 완료 처리하지 않는다.
+
 > 2026-10-30 **TLT-065/late-epics-20261030**: [에픽5~8 전체 줄거리·26이야기](docs/epics-05-08-story-design.md)(메인25+에필로그1)와 [몬스터32교전 정의](docs/epics-05-08-monsters.md)를 상세 기획했다. AS6/DC6/FB7/FC7·안전SP26·필수8/선택4보스·숨은 퀘스트8초안. 성장/수치·맵/모델·실제 게임 수용은 후속이며 기존32구간 보상/VERSION·부모 티켓 상태는 유지한다.
 
 > 2026-10-30 **TLT-001/narrative-20261030 서사 개정**: 프롤로그·8장·에필로그를 판타지 소설 관점에서 검토하고 핵 안전/보관·재가동 구분·주민 재등장·동료의 행동/대가·Lyra의 안식·선택 회수를 보강했다. [개정 줄거리](the-last-throne-rpg-proposal.md) · [리뷰·28스토리 인계·검증](docs/production/narrative-review-2026-10-30.md) · [비교 조사](docs/research/2026-10-30-fantasy-narrative.md). 문서 개정이며 런타임/보상/VERSION은 유지한다. 부모 티켓·게이트 완료와 구분한다.

@@ -4,6 +4,10 @@
 
 이 문서는 지금까지의 사용자 결정과 채택한 설계 방향을 정리한다. 상세 전투 수치나 가칭을 사용자 확정 사양으로 취급하지 않는다. 제품 전체는 [개발 기획안](game-design.md), 전체 이야기는 [통합 제안서](../the-last-throne-rpg-proposal.md)를 따른다.
 
+## 2026-10-30 — Gold/Diamonds·로비 무기 상점·원정 서버
+
+사용자 요청으로 RPG 일반 재화 표시를 Gold로 바꾸고 기존 Coins 금액을 보존하며 계정 지갑·Diamonds·무기 구매/판매를 도입했다. TD와 분리한 지갑이며 공통 Diamonds 조정/실제 Robux 상품 계약을 대체하지 않는다. 솔로·2~4인·20명 로비·타 로비 합류·예약 전투·리조인 경로를0.36.1에 구현했다.15분 리조인·가격/2 Diamond 지급·lease/대기 시간은 시험값이다. [실행 계약](production/lobby-economy-and-expeditions.md) · [증거](evidence/lobby-0361/README.md). 로비 최대20명 저장 확인. 사용자 답변상 기존 전투 Place가 없고 새 Place 생성은 API 접근 비활성으로 실패해 일시 허용 여부 대기 중이다. ID0·미게시·실제 게시 이동/저장/다인 수용 미완료다.
+
 ## 1. 사용자 결정
 
 | 항목 | 현재 기준 |
@@ -46,7 +50,7 @@
 | 공통 계정 | 공통 Diamonds·명시된 공통 업적/외형/이벤트는 외부 서버 권위 계약이 검증될 때만 제공. 그 전에는 분리 |
 | 보존 | 기존 TD 잔액·확인된 구매/수령 권리·진행·복구 보존 |
 | 장르별 데이터 | TD 성장/전투와 RPG 클래스/장비/스토리/Coins를 구분 |
-| 일반 재화 | TD Gold / RPG Coins / 임무 내 Command Points를 별도 관리 |
+| 일반 재화 | TD Gold / RPG Gold(종전 Coins) / 임무 내 Command Points를 별도 관리. RPG Diamonds도 TD와 공유 계약 검증 전까지 별도 |
 
 2026-10-28 최신 사용자 결정으로 같은 Experience 방향을 독립 Experience로 대체했다. 기존 TD 제안서는 공유 세계관의 참고만으로 사용한다. 자세한 계약과 도입 조건은 [Experience·지갑 연동](experience-integration.md)을 따른다. 문서에 반영한 방향이며 새 Experience 생성·게시나 운영 데이터 연동을 수행했다는 의미는 아니다.
 

@@ -1,0 +1,18 @@
+$ lua tests/economy.spec.lua
+Economy: 26 checks passed
+$ lua tests/expedition-store.spec.lua
+Expedition store: 43 checks passed
+$ lua tests/inventory.spec.lua
+Inventory: 265 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+$ lua tests/hero-progression.spec.lua
+Hero progression: 81 checks passed
+$ lua tests/deepwood-progress.spec.lua
+Deepwood progression: 515 checks passed
+Deepwood total: 520 checks passed
+Deepwood extended total: 570 checks passed
+$ lua tests/deepwood-quests.spec.lua
+Deepwood quest contract: 31 checks passed
+$ lua tests/deepwood-bosses.spec.lua
+Deepwood bosses: 96 checks passed
+$ lua tests/k0-hero-session.spec.lua
+Hero session: 97 identity, ownership, transitions, four-class, stale-life and boundary checks passed

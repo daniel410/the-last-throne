@@ -1,0 +1,13 @@
+$ baseline0.35.2 lua tests/k0-appearance.spec.lua
+lua: tests/k0-appearance.spec.lua:295: unexpected warning: K0 equipment appearance could not be synchronized: src/server/Cosmetics/KnightAppearance.luau:187: attempt to call a nil value (method 'GetDescendants')
+stack traceback:
+	[C]: in global 'error'
+	tests/k0-appearance.spec.lua:295: in main chunk
+	[C]: in ?
+
+$ baseline0.35.2 lua tests/k0-rules.spec.lua
+lua: [string "K0 actual attack-start contract"]:4: attempt to call a nil value (method 'GetAttribute')
+stack traceback:
+	[string "K0 actual attack-start contract"]:4: in local 'beginEnemyAttack'
+	tests/k0-rules.spec.lua:132: in main chunk
+	[C]: in ?
