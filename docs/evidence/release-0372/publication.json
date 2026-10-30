@@ -1,0 +1,69 @@
+{
+  "version": "0.37.2",
+  "sourceCommit": "623f65aa8af8546290cee0a91947fd67de6d538c",
+  "rojo": "7.7.1",
+  "build": "success",
+  "published": {
+    "Battle": {
+      "placeId": 129388473517823,
+      "placeVersion": 3,
+      "status": "verified published-only dashboard",
+      "publishedLocal": "2026-10-30 12:38 America/Toronto"
+    },
+    "Lobby": {
+      "placeId": 70829337938054,
+      "status": "verified published-only dashboard",
+      "placeVersion": 17,
+      "publishedLocal": "2026-10-30 12:42 America/Toronto"
+    }
+  },
+  "config": {
+    "universeId": 10773575153,
+    "lobbyPlaceId": 70829337938054,
+    "battlePlaceId": 129388473517823
+  },
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "file": "builds/0.37.2/TheLastThrone-Lobby-0.37.2.rbxlx",
+      "bytes": 1562718,
+      "sha256": "b3093ad7c469e2c304cdd54ab666b4a100e1000b5437f6f01b4a2f3b1f3c5884"
+    },
+    {
+      "role": "Battle",
+      "file": "builds/0.37.2/TheLastThrone-Battle-0.37.2.rbxlx",
+      "bytes": 1562719,
+      "sha256": "84c6810d0ef04eb98c886eff5e9408fa9ed6f9b6e87e708d4102a8b07a79d4b9"
+    }
+  ],
+  "audience": "Private",
+  "studioApiAccess": "Off (restored before publication)",
+  "validation": {
+    "dashboard": "both published-only versions and Private overview confirmed",
+    "actualRobloxClient": [
+      "Lobby load",
+      "Knight creation and selection using keyboard UI navigation",
+      "Solo Adventure save/handoff and arrival in Deepwood with Knight equipment and story HUD"
+    ],
+    "knownIssues": [
+      "Production Lobby DeepwoodJournal waits for absent DeepwoodRequest; warning observed, does not block hero creation or outbound solo travel.",
+      "Automated native mouse clicks did not activate controls reliably; keyboard navigation worked. Human mouse acceptance unverified."
+    ],
+    "unverified": [
+      "Battle to Lobby return",
+      "2-4 players and cross-lobby join",
+      "Rejoin and datastore failure recovery",
+      "Mobile and 20-player load",
+      "Complete normal-combat story run"
+    ]
+  },
+  "evidence": {
+    "battle-private-ready.png": "e98dedfa00040a5903015852bc85f983b4507ace903f7cefb180c93cc60158a6",
+    "private-overview.png": "d8b70e883df80a7cacf68e1fce24161a8025ef37de1d93597cb078f241ef6d32",
+    "client-hero-created.png": "c87a351010ff567f1d50b89d2cdf37e8a41f819cf4872a1b9ffa603b9fcd1248",
+    "lobby-published.png": "ac7a3f7488fa738909729715a9e9d2e2b9f5fca61288c928d7f92470d4db8ed1",
+    "client-battle-arrival.png": "da3960eb1067039cecff96775e1bd16945ef20e99b65c41fe5e01b44f146b104",
+    "client-journal-warning.png": "727ffe270db8b5a58871d96e2a5df1cd52d40e362493f8bac56a8de24bf1b962",
+    "battle-published.png": "9fe0310b0f4a122040d2db59215ed79f36c8003d35451984d128de222f904887"
+  }
+}

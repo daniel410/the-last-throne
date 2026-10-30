@@ -1,12 +1,12 @@
 # 현재 개발 상태와 다음 작업
 
-2026-10-30 · 총괄 DIR · **로컬 시험 빌드 `0.37.1`** · 게시된 비공개 시험판 `0.18.3`
+2026-10-30 · 총괄 DIR · **로컬/게시 비공개 시험 빌드 `0.37.2`** · 로비 Place 버전17 / 전투 버전3
 
 [작업 종합 정리](work-summary-2026-10-29.md) · [최신 결정](../decisions.md) · [액션·스킬 상세](action-and-skill-design.md) · [빌드·게시 증거](../evidence/k0/build.md) · [백로그](../../backlog.md)
 
 ## 2026-10-30 — 전투 Place 연결0.37.2
 
-같은 RPG Experience10773575153에 **The Last Throne Battles129388473517823**을 생성하고4인·같은 게임 서버 이동 전용 입장을 저장/재확인했다. 임시 Studio API 접근은403 재시도 뒤 OFF로 복구했고 사용자 자산 사용 권한 승인 후 직접 저장으로 생성했다.0.37.2의 새 목적지·20/4인 설정과 고정 Lobby/Battle, 네이티브 전투10·로비132·원정13 검사 통과. 소스 `623f65a` 원격 일치와 LFS 입력5개/산출물 해시를 기록했다. **두 Place 실제 게시 승인 대기이며0.37.2는 미게시**다. 실제 솔로 왕복·2~4인·타 로비/리조인·저장/실기기 수용은 남아 있다. [증거/최신 빌드](../evidence/battle-place-provisioning/README.md).
+같은 RPG Experience10773575153에 **The Last Throne Battles129388473517823**을 생성하고4인·같은 게임 서버 이동 전용 입장을 저장/재확인했다. 임시 Studio API 접근은403 재시도 뒤 OFF로 복구했고 사용자 자산 사용 권한 승인 후 직접 저장으로 생성했다.0.37.2의 새 목적지·20/4인 설정과 고정 Lobby/Battle, 네이티브 전투10·로비132·원정13 검사 통과. 소스 `623f65a` 원격 일치와 LFS 입력5개/산출물 해시를 기록했다. **사용자 승인 후 두 Place를 비공개 게시하고 실제 클라이언트 Knight 생성→솔로 Deepwood 도착을 확인**했다. 로비의 없는 DeepwoodRequest 대기 경고는 실제 생성/이동을 차단하지 않았으며 ENG 후속 수정이다. 왕복·2~4인·타 로비/리조인·저장 장애/실기기 수용은 남아 있다. [게시 증거](../evidence/release-0372/README.md). [증거/최신 빌드](../evidence/battle-place-provisioning/README.md).
 
 ## 로비 원정 포탈·훈련장·대장간 (0.37.0~0.37.1)
 
@@ -16,7 +16,7 @@
 
 RPG Gold/Diamonds 계정 지갑·기존 Coins 이전·본편 초회 계정당2 Diamonds·로비 ARMORY 구매/판매·ADVENTURES 모집/준비/출발·타 로비 합류·예약 전투/15분 리조인·Lobby/Battle 별도 빌드를 구현했다. TD 원본/구조를 참고하고 TD 잔액/Place는 유지한다. 출발 전 전원 영웅 잠금·저장 lease 해제/재개와 개인 티켓을 검사한다. 실제 Studio Player 구매/매각과 지갑/가방 반영을 확인했다.0.36.1 경제26·원정 저장43·서비스11·로비126·전투 부트10 통과. [실행 계약](lobby-economy-and-expeditions.md) · [검증](../evidence/lobby-0361/README.md).
 
-Creator Dashboard에서 RPG 시작 Place 최대 인원20을 저장했다. 후속0.37.2에서 Battle Place129388473517823 생성·4인/서버 이동 전용 설정·ID 연결을 확인했다. 임시 Studio API 접근은 OFF이며 두 Place 실제 게시 승인 대기다. [과정·검증](../evidence/battle-place-provisioning/README.md). 실제 Solo 왕복·타 로비·2~4인·재접속/저장 장애·모바일·20인 부하 수용은 미완료다. 상위 티켓을 Done으로 바꾸지 않는다.
+Creator Dashboard에서 RPG 시작 Place 최대 인원20을 저장했다. 후속0.37.2에서 Battle Place129388473517823 생성·4인/서버 이동 전용 설정·ID 연결을 확인했다. 임시 Studio API 접근은 OFF이며 두 Place는0.37.2로 비공개 게시했다. [과정·검증](../evidence/battle-place-provisioning/README.md). 실제 Solo 왕복·타 로비·2~4인·재접속/저장 장애·모바일·20인 부하 수용은 미완료다. 상위 티켓을 Done으로 바꾸지 않는다.
 
 ## 보스 호위·체력 구간별 증원 (0.35.2)
 

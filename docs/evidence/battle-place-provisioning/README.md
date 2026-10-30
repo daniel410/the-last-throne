@@ -14,7 +14,7 @@
 6. Roblox가 `Some assets need permission to load`와 **Grant Permissions and Publish**를 표시했다. 자동 승인 검토가 자산 권한 변경의 대상·범위·수신자에 대한 별도 사용자 승인이 없다는 이유로 클릭을 거부했다. 우회하지 않았고 The Last Throne에서 포함 자산을 사용하도록 허용할지 사용자에게 물었다.
 7. 사용자가 대상 Experience의 자산 사용 권한 부여/진행을 명시적으로 승인했다. 같은 창에서 진행한 뒤 Studio와 Dashboard에서 새 Place `129388473517823`을 확인하고 **The Last Throne Battles**로 이름/설명을 저장했다. 최대 방문 인원4·Secure within Universe only를 저장/재열기로 확인했다. 기존 시작 Place는 유지했다. 새 Place 버전1/2는 저장본이며 Published Version 표시는 없다.
 8. `ExpeditionConfig`에 새 ID를 연결하고 VERSION을0.37.2로 증가했다. 소스 커밋 `623f65aa8af8546290cee0a91947fd67de6d538c`을 원격에 푸시/일치 확인 후 Git archive에서 빌드했다.
-9. 검증된0.37.2 Battle을 File → Publish As → The Last Throne 대상으로 준비했다. 자동 승인 검토가 실제 게시의 명시적 승인이 필요하다는 이유로 클릭을 거부했다. 우회하지 않고 로비70829337938054·전투129388473517823 두 Place의0.37.2 게시 승인을 사용자에게 요청했다. 현재0.37.2는 미게시다.
+9. 검증된0.37.2 Battle을 File → Publish As → The Last Throne 대상으로 준비했다. 자동 승인 검토가 실제 게시의 명시적 승인이 필요하다는 이유로 클릭을 거부했다. 우회하지 않고 로비70829337938054·전투129388473517823 두 Place의0.37.2 게시 승인을 사용자에게 요청했다. 이후 사용자가 두 Place 게시를 승인했고 [실제 게시 기록](../release-0372/README.md)처럼 완료했다.
 
 ![임시 Studio API 접근 OFF 복구 확인](studio-api-restored.png)
 
@@ -40,4 +40,4 @@
 
 ![저장된4인 전투·서버 이동 입장 제한](battle-place-access.png)
 
-두 Place의 실제 게시 승인이 남아 있다. 승인 후 검증된 Lobby/Battle을 정확한 RPG Place에 게시하고 게시 버전을 확인한다. 실제 클라이언트 솔로 왕복·2~4인·타 로비·리조인은 별도 수용이다. API 접근은 이미 OFF이며 다시 켤 필요는 현재 없다. TD 전투 Place를 RPG에 이동시키지 않는다. 상위 티켓은 완료 처리하지 않는다.
+후속 사용자 승인으로 두 Place 게시를 완료했다(로비17·전투3·Private). 실제 클라이언트 Knight 생성→솔로 전투 서버 도착까지 확인했으며 [게시 증거](../release-0372/README.md)에 기록했다. 왕복·2~4인·타 로비·리조인은 별도 수용이다. API 접근은 이미 OFF이며 다시 켤 필요는 현재 없다. TD 전투 Place를 RPG에 이동시키지 않는다. 상위 티켓은 완료 처리하지 않는다.
