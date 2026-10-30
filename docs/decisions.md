@@ -4,9 +4,13 @@
 
 이 문서는 지금까지의 사용자 결정과 채택한 설계 방향을 정리한다. 상세 전투 수치나 가칭을 사용자 확정 사양으로 취급하지 않는다. 제품 전체는 [개발 기획안](game-design.md), 전체 이야기는 [통합 제안서](../the-last-throne-rpg-proposal.md)를 따른다.
 
+## 2026-10-30 — 새 RPG 전투 Place 생성과 연결
+
+사용자는 The Last Throne에 포함 자산의 사용 권한 부여/진행을 명시적으로 승인했다. 직접 새 Place 저장 경로로 **The Last Throne Battles129388473517823**을 같은 Experience10773575153에 생성했다. 최대4명·Secure within Universe only를 저장/재확인하고0.37.2의 ExpeditionConfig에 연결했다. 임시 Studio API 접근은 OFF다. 로비20·전투4 빌드와 네이티브10/132/13개 통과를 실제 게시/클라이언트 수용과 구분한다. 두 Place 실제 게시 클릭이 자동 승인 검토에서 별도 명시적 승인 부족으로 거부되어 사용자에게 정확한 두 ID와 버전으로 승인을 요청했다. [과정/검증](evidence/battle-place-provisioning/README.md).
+
 ## 2026-10-30 — 전투 Place 생성의 일시 API 접근 승인
 
-사용자는 Studio API 접근을 전투 Place 생성 동안만 켜고 생성 후 끄는 것을 승인했다. 이어 전체 Studio 강제 종료/재시작을 요청해 RPG 창 선택을 정상화했다. RPG에서 API 접근을 잠시 켜고 Run 서버로 재시도했으나 HTTP403으로 실패했고, 즉시 OFF 저장/재열기로 복구를 확인했다. 검증된 Battle0.37.1의 Save to Roblox As → The Last Throne → Add as a new place는 자산 사용 권한 부여 경고에서 대기 중이다. 자동 승인 검토가 Grant Permissions and Publish를 별도 사용자 승인 부족으로 거부해 사용자에게 정확한 대상 Experience10773575153에 대한 승인을 요청했다. 새 ID/저장·게시 성공은 아직 확인되지 않았으며 TD 설정/Place는 변경하지 않았다. [재시도·복구 증거](evidence/battle-place-provisioning/README.md).
+사용자는 Studio API 접근을 전투 Place 생성 동안만 켜고 생성 후 끄는 것을 승인했다. 이어 전체 Studio 강제 종료/재시작을 요청해 RPG 창 선택을 정상화했다. RPG에서 API 접근을 잠시 켜고 Run 서버로 재시도했으나 HTTP403으로 실패했고, 즉시 OFF 저장/재열기로 복구를 확인했다. 검증된 Battle0.37.1의 Save to Roblox As → The Last Throne → Add as a new place는 자산 사용 권한 부여 경고에서 대기 중이다. 자동 승인 검토가 Grant Permissions and Publish를 별도 사용자 승인 부족으로 거부해 사용자에게 정확한 대상 Experience10773575153에 대한 승인을 요청했다. 당시 대기 후 위 후속 결정처럼 자산 사용 권한 승인을 받아 생성/저장을 확인했다. 실제0.37.2 게시 승인만 남았으며 TD 설정/Place는 변경하지 않았다. [재시도·복구 증거](evidence/battle-place-provisioning/README.md).
 
 ## 2026-10-30 — 로비 컨셉의 세 시설 구현
 

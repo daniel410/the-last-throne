@@ -2,11 +2,13 @@
 
 > **2026-10-30 사용자 지시 · 보류:** 기존 에픽5~8의 줄거리·개별 스토리·몬스터·컨셉 확장은 중단한다. 기존 자료는 참고안으로 보존한다. 에픽1~4는 수정하지 않는다. [어두운 숲·거미 여왕 후보](docs/production/dark-forest-epic-candidate-2026-10-30.md)는 번호/채택 미정의 별도 제안이다.
 
+> 2026-10-30 TLT-021/053/084 부분 구현: **0.37.2** 새 RPG Battle Place `129388473517823` 생성·4인/서버 이동 입장 제한 저장·새 ID 연결·로비/전투 고정 빌드·네이티브10/132/13개 통과. 임시 Studio API 접근은 OFF로 복구했다. **두 RPG Place 실제 게시 승인 대기·클라이언트 이동/다인 미수용**. [생성·해시·검증](docs/evidence/battle-place-provisioning/README.md).
+
 > 2026-10-30 **TLT-065/late-epic-concepts-20261030**: [컨셉 갤러리](assets/concepts/2026-10-30-late-epics-v1/index.html) 지역4장·몬스터8종씩4장,선정8PNG·프롬프트9개를 제작했다. TD 시각 원본8개를 직접 참고하고 FB Signal Binder 셀을 보정했다. 사용자 시각 검토·모델/리그/맵/기기 수용은 후속이며 부모 티켓/빌드/VERSION은 유지한다.
 
 > 2026-10-30 TLT-011/028/040/041/042/053/084 부분 구현: **0.37.1** 로비 원정 포탈·훈련장·대장간을 실제 월드에 배치하고 F/패드 X/터치로 원정 메뉴·선택 영웅 훈련·무기 구매/판매를 연결했다. 실제 Studio F 입력3경로, 훈련 HUD 오표시 수정, 시설194·로비132·원정13 검사 통과. [컨셉 적용](docs/research/2026-10-30-dawnspire-facilities.md) · [검증/최신 빌드](docs/evidence/lobby-landmarks-0370/README.md). 미게시·전투 Place ID0/실제 이동·실기기 수용은 후속이다.
 
-> 2026-10-30 TLT-003/016/017/021/028/041/044/045/047/049/050/053/084 부분 구현: **0.36.1** RPG Gold/Diamonds·로비 무기 매입/판매·솔로/2~4인 모집·서버 간 합류/예약 전투·15분 리조인 경로와 저장/입장 토큰을 연결했다. 로비 최대 인원20 설정 저장, 실제 Studio 구매/판매·원정 서비스11·로비126·전투 부트10개 통과. [실행 계약](docs/production/lobby-economy-and-expeditions.md) · [검증](docs/evidence/lobby-0361/README.md). 별도 Battle Place 없음/ID0. Studio 강제 재시작 후 임시 API 생성403·접근 OFF 복구, 직접 새 Place 저장의 자산 권한 승인 대기([증거](docs/evidence/battle-place-provisioning/README.md)). 미게시·실제 서버 이동/다인/저장 수용 미완료이며 상위 티켓은 완료 처리하지 않는다.
+> 2026-10-30 TLT-003/016/017/021/028/041/044/045/047/049/050/053/084 부분 구현: **0.36.1** RPG Gold/Diamonds·로비 무기 매입/판매·솔로/2~4인 모집·서버 간 합류/예약 전투·15분 리조인 경로와 저장/입장 토큰을 연결했다. 로비 최대 인원20 설정 저장, 실제 Studio 구매/판매·원정 서비스11·로비126·전투 부트10개 통과. [실행 계약](docs/production/lobby-economy-and-expeditions.md) · [검증](docs/evidence/lobby-0361/README.md). 후속0.37.2에서 새 Battle Place 생성·ID 연결, 두 Place 실제 게시 승인 대기([증거](docs/evidence/battle-place-provisioning/README.md)). 미게시·실제 서버 이동/다인/저장 수용 미완료이며 상위 티켓은 완료 처리하지 않는다.
 
 > 2026-10-30 **TLT-065/late-epics-20261030**: [에픽5~8 전체 줄거리·26이야기](docs/epics-05-08-story-design.md)(메인25+에필로그1)와 [몬스터32교전 정의](docs/epics-05-08-monsters.md)를 상세 기획했다. AS6/DC6/FB7/FC7·안전SP26·필수8/선택4보스·숨은 퀘스트8초안. 성장/수치·맵/모델·실제 게임 수용은 후속이며 기존32구간 보상/VERSION·부모 티켓 상태는 유지한다.
 

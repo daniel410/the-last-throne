@@ -1,0 +1,26 @@
+{
+  "version": "0.37.2",
+  "sourceCommit": "623f65aa8af8546290cee0a91947fd67de6d538c",
+  "rojo": "7.7.1",
+  "build": "success",
+  "published": false,
+  "config": {
+    "universeId": 10773575153,
+    "lobbyPlaceId": 70829337938054,
+    "battlePlaceId": 129388473517823
+  },
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "file": "builds/0.37.2/TheLastThrone-Lobby-0.37.2.rbxlx",
+      "bytes": 1562718,
+      "sha256": "b3093ad7c469e2c304cdd54ab666b4a100e1000b5437f6f01b4a2f3b1f3c5884"
+    },
+    {
+      "role": "Battle",
+      "file": "builds/0.37.2/TheLastThrone-Battle-0.37.2.rbxlx",
+      "bytes": 1562719,
+      "sha256": "84c6810d0ef04eb98c886eff5e9408fa9ed6f9b6e87e708d4102a8b07a79d4b9"
+    }
+  ]
+}

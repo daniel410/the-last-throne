@@ -4,7 +4,7 @@
 
 Throne Defense의 세계관·영웅·타워·맵·몬스터·포탈·왕좌와 3D 자산을 공유하는 Roblox 협동 액션 RPG입니다. 직접 조작 전투, 클래스 안의 전직과 스킬트리, 공명 연계, 탐험과 이야기를 중심으로 최고의 액션 RPG를 목표로 합니다.
 
-**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.37.1 · 비공개 게시 시험판 0.18.3 · Deepwood K0 원형 제작·검증**
+**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.37.2 · 비공개 게시 시험판 0.18.3 · Deepwood K0 원형 제작·검증**
 
 **개발 문서는 한국어, 게임의 UI·퀘스트·대사·아이템·스킬·상품·오류·음성/자막은 영어(en-US)로 제작합니다.**
 
@@ -12,9 +12,11 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 
 2026-10-30 [전체 스토리 리뷰와 개선](docs/production/narrative-review-2026-10-30.md)을 반영해 [줄거리 §4~6](the-last-throne-rpg-proposal.md#4-세계의-기원과-중심-갈등)을 개정했습니다. 핵 회수와 재가동의 논리, 주민·동료의 감정선, 복선과 후반 선택 회수를 보강한 문서 개정이며 게임에는 아직 반영하지 않았습니다.
 
+2026-10-30 **0.37.2**: 같은 RPG Experience에 **The Last Throne Battles** `129388473517823`을 생성하고 최대4명·같은 게임 서버 이동 전용 입장을 저장했습니다. 로비20명 설정과 새 전투 ID를 연결한 [Lobby](builds/0.37.2/TheLastThrone-Lobby-0.37.2.rbxlx) / [Battle](builds/0.37.2/TheLastThrone-Battle-0.37.2.rbxlx)을 만들고 네이티브10/132/13개 검사를 통과했습니다. 임시 Studio API 접근은 OFF로 복구했습니다. **실제 두 Place 게시 승인을 기다리며,0.37.2는 아직 미게시입니다.** [과정·증거/해시](docs/evidence/battle-place-provisioning/README.md).
+
 2026-10-30 **0.37.1**: 로비 컨셉의 원정 포탈·훈련장·대장간을 만들었습니다. 가까이에서 **F / 패드 X / 터치**로 원정 메뉴·영웅 훈련·무기 구매/판매에 진입합니다. 실제 Studio 입력과 훈련 안내를 확인했습니다. [최신 로비 빌드](builds/0.37.1/TheLastThrone-Lobby-0.37.1.rbxlx) · [실제 화면/검증](docs/evidence/lobby-landmarks-0370/README.md). 미게시이며 실제 서버 이동은 전투 Place 연결 후 검증이 필요합니다.
 
-2026-10-30 **0.36.1**: Gold/Diamonds 지갑·로비 ARMORY 구매/판매·ADVENTURES 솔로/2~4인·서버 간 파티/리조인 경로를 추가했습니다. [로비 빌드](builds/0.36.1/TheLastThrone-Lobby-0.36.1.rbxlx) · [전투 빌드](builds/0.36.1/TheLastThrone-Battle-0.36.1.rbxlx) · [실행 계약](docs/production/lobby-economy-and-expeditions.md) · [검증/제한](docs/evidence/lobby-0361/README.md). RPG 로비 최대20명 설정은 저장했으며 **Studio 재시작·임시 API 재시도는403으로 실패했고 접근은 OFF로 복구했습니다. 직접 새 Place 저장은 자산 사용 권한 승인 대기입니다.** [재시도/복구](docs/evidence/battle-place-provisioning/README.md). 최신 소스는 미게시이고 실제 서버 간 이동·다인·저장 수용은 남아 있습니다.
+2026-10-30 **0.36.1**: Gold/Diamonds 지갑·로비 ARMORY 구매/판매·ADVENTURES 솔로/2~4인·서버 간 파티/리조인 경로를 추가했습니다. [로비 빌드](builds/0.36.1/TheLastThrone-Lobby-0.36.1.rbxlx) · [전투 빌드](builds/0.36.1/TheLastThrone-Battle-0.36.1.rbxlx) · [실행 계약](docs/production/lobby-economy-and-expeditions.md) · [검증/제한](docs/evidence/lobby-0361/README.md). RPG 로비 최대20명 설정은 저장했으며 **새 전투 Place는 후속0.37.2에서 생성·연결했고 두 Place 실제 게시 승인 대기입니다.** [재시도/복구](docs/evidence/battle-place-provisioning/README.md). 최신 소스는 미게시이고 실제 서버 간 이동·다인·저장 수용은 남아 있습니다.
 
 2026-10-30 [에픽5~8 지역·몬스터 컨셉 갤러리](assets/concepts/2026-10-30-late-epics-v1/index.html)를 제작했습니다. 지역4장과32교전 설계를 담은8종 보드4장, 총8장의 검토용 이미지이며 최종 모델/맵·런타임 수용과 구분합니다.
 

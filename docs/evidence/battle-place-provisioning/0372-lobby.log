@@ -1,0 +1,1 @@
+LOBBY_SERVICES_NATIVE {"coverage":"Native compiler, GUI objects, TD weapon display, Player doubles for 20/4 admission; no published teleport or real concurrent clients","checks":132,"failures":[],"pass":true,"kind":"LOBBY_SERVICES_NATIVE"}

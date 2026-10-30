@@ -4,6 +4,10 @@
 
 [작업 종합 정리](work-summary-2026-10-29.md) · [최신 결정](../decisions.md) · [액션·스킬 상세](action-and-skill-design.md) · [빌드·게시 증거](../evidence/k0/build.md) · [백로그](../../backlog.md)
 
+## 2026-10-30 — 전투 Place 연결0.37.2
+
+같은 RPG Experience10773575153에 **The Last Throne Battles129388473517823**을 생성하고4인·같은 게임 서버 이동 전용 입장을 저장/재확인했다. 임시 Studio API 접근은403 재시도 뒤 OFF로 복구했고 사용자 자산 사용 권한 승인 후 직접 저장으로 생성했다.0.37.2의 새 목적지·20/4인 설정과 고정 Lobby/Battle, 네이티브 전투10·로비132·원정13 검사 통과. 소스 `623f65a` 원격 일치와 LFS 입력5개/산출물 해시를 기록했다. **두 Place 실제 게시 승인 대기이며0.37.2는 미게시**다. 실제 솔로 왕복·2~4인·타 로비/리조인·저장/실기기 수용은 남아 있다. [증거/최신 빌드](../evidence/battle-place-provisioning/README.md).
+
 ## 로비 원정 포탈·훈련장·대장간 (0.37.0~0.37.1)
 
 안뜰 왼쪽 뒤 보라 포탈·왼쪽 앞 과녁/허수아비 훈련장·오른쪽 파란 지붕/화로/모루 대장간을 추가했다. F/패드 X/터치로 원정 메뉴·선택 영웅 훈련·기존 무기 구매/판매를 연결하고 서버 거리/생명/준비/로비/이동 검사를 적용했다. 실제 Studio Player의 F 입력3경로와0.37.1의 훈련 HUD 오표시 수정을 확인했다. 시설194·로비132·원정13·순수 경제/저장/성장/세션 회귀 통과. [컨셉/설계](../research/2026-10-30-dawnspire-facilities.md) · [고정 빌드·화면·남은 수용](../evidence/lobby-landmarks-0370/README.md). 현재 시설은 시험 구현이며 전체 왕성 컨셉·제작/강화·실기기·게시 이동 수용은 후속이다.
@@ -12,7 +16,7 @@
 
 RPG Gold/Diamonds 계정 지갑·기존 Coins 이전·본편 초회 계정당2 Diamonds·로비 ARMORY 구매/판매·ADVENTURES 모집/준비/출발·타 로비 합류·예약 전투/15분 리조인·Lobby/Battle 별도 빌드를 구현했다. TD 원본/구조를 참고하고 TD 잔액/Place는 유지한다. 출발 전 전원 영웅 잠금·저장 lease 해제/재개와 개인 티켓을 검사한다. 실제 Studio Player 구매/매각과 지갑/가방 반영을 확인했다.0.36.1 경제26·원정 저장43·서비스11·로비126·전투 부트10 통과. [실행 계약](lobby-economy-and-expeditions.md) · [검증](../evidence/lobby-0361/README.md).
 
-Creator Dashboard에서 RPG 시작 Place 최대 인원20을 저장했다. 사용자 지시로 Studio들을 강제 종료/재시작해 올바른 RPG 설정 창을 열었다. 승인된 임시 Studio API 접근을 켜고 생성 재시도했으나 HTTP403으로 실패했고 OFF 저장/재열기로 복구를 확인했다. 검증 Battle0.37.1을 RPG에 새 Place로 저장하는 직접 경로는 자산 사용 권한 경고에서 대기 중이다. 자동 승인 검토가 권한 부여 클릭을 거부해 사용자에게 대상/범위를 명시한 승인을 요청했다. 새 ID/저장·게시 성공은 미확인이며 `battlePlaceId=0`이다. [재시도·복구 증거](../evidence/battle-place-provisioning/README.md). 최신 소스는 미게시이며 게시 원정은 설정 안내로 중단한다. 실제 Solo 왕복·타 로비·2~4인·재접속/저장 장애·모바일·20인 부하 수용은 미완료다. 상위 티켓을 Done으로 바꾸지 않는다.
+Creator Dashboard에서 RPG 시작 Place 최대 인원20을 저장했다. 후속0.37.2에서 Battle Place129388473517823 생성·4인/서버 이동 전용 설정·ID 연결을 확인했다. 임시 Studio API 접근은 OFF이며 두 Place 실제 게시 승인 대기다. [과정·검증](../evidence/battle-place-provisioning/README.md). 실제 Solo 왕복·타 로비·2~4인·재접속/저장 장애·모바일·20인 부하 수용은 미완료다. 상위 티켓을 Done으로 바꾸지 않는다.
 
 ## 보스 호위·체력 구간별 증원 (0.35.2)
 
@@ -66,7 +70,7 @@ Creator Dashboard에서 RPG 시작 Place 최대 인원20을 저장했다. 사용
 
 ## 빌드·게시와 검증의 경계
 
-- **최신 로컬:** `0.37.1`, 소스 `17f49ee` ([커밋·해시](../evidence/lobby-landmarks-0370/0371-build.json)), [Lobby](../../builds/0.37.1/TheLastThrone-Lobby-0.37.1.rbxlx) / [Battle](../../builds/0.37.1/TheLastThrone-Battle-0.37.1.rbxlx) · [검증](../evidence/lobby-landmarks-0370/README.md). 산출물은 Git 제외 로컬 파일이다.
+- **최신 로컬:** `0.37.2`, 소스 `623f65a` ([커밋·해시](../evidence/battle-place-provisioning/0372-build.json)), [Lobby](../../builds/0.37.2/TheLastThrone-Lobby-0.37.2.rbxlx) / [Battle](../../builds/0.37.2/TheLastThrone-Battle-0.37.2.rbxlx) · [검증](../evidence/battle-place-provisioning/README.md). 산출물은 Git 제외 로컬 파일이다.
 - **현재 확인된 게시:** 2026-10-28 사용자가 `0.18.3`을 독립 The Last Throne Experience `10773575153`, 시작 Place `70829337938054`에 게시했다. Creator Dashboard의 게시 Place 버전은 **4**, 확인 당시 접근은 Private이며 Git 태그 `v0.18.3`을 해당 빌드 소스에 푸시했다. Roblox의 Place 버전과 게임 빌드 버전은 서로 다르다. `0.18.4~0.37.1`의 로컬 빌드는 게시되지 않았다. [게시 기록](../evidence/k0/build.md).
 - **0.18.7 증거:** 격리 Studio 빌드 smoke 458개, 서버 전투 401개, 스킬 자세 35개, 적중 효과 102개, R6/R15 Overhead 회전 경로 6개, 무기 회귀 2,238개 통과. 0.18.6 양손·수평 방어 동적 리그 42개 검사도 통과했다. 이는 실제 게시 클라이언트·실기기·다인·시각적 완성 수용과 구분한다.
 - **0.18.8 증거:** 고정 빌드 smoke 458개, 서버 전투 452개, UI 상태 83개, 타이밍 106개 통과. 격리 Studio의 실제 Player에서 네 직업의 기본3 기술 입력·자원 표시를 부분 확인했다. [자원 검증](../evidence/k0/2026-10-29-stamina-removal.md).
