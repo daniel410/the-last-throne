@@ -234,8 +234,8 @@ function Hud.create()
 		icon.TextXAlignment = Enum.TextXAlignment.Center
 		skillButtons[index], skillHints[index] = button, key
 	end
-	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(8, 132), 56)
-	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(8, 0), 56)
+	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(8, 0), 56)
+	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(8, 132), 56)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(90, 0), 64)
 	local minimap=MiniMap.create(topRoot)
 	local mapScale=Instance.new("UIScale");mapScale.Parent=minimap.frame
@@ -301,9 +301,9 @@ function Hud.create()
 			local jump=playerGui:FindFirstChild('JumpButton',true)
 			actions.Size=UDim2.fromOffset(172,188)
 			actions.Position=UDim2.new(1,-20,1,0)
-			dodge.Position=UDim2.fromOffset(8,0);dodge.Size=UDim2.fromOffset(56,56)
+			dodge.Position=UDim2.fromOffset(8,132);dodge.Size=UDim2.fromOffset(56,56)
 			block.Position=UDim2.fromOffset(8,66);block.Size=UDim2.fromOffset(56,56)
-			sprint.Position=UDim2.fromOffset(8,132);sprint.Size=UDim2.fromOffset(56,56)
+			sprint.Position=UDim2.fromOffset(8,0);sprint.Size=UDim2.fromOffset(56,56)
 			attack.Position=UDim2.fromOffset(90,0);attack.Size=UDim2.fromOffset(64,64)
 			if viewport.X<600 then
 				-- Two bottom rows preserve readable touch targets on narrow displays.
