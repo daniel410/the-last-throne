@@ -1,0 +1,25 @@
+{
+  "kind": "skills-0310-document-check",
+  "build_and_native_results": [
+    {
+      "version": "0.31.0",
+      "build_bytes_sha256": "pass"
+    },
+    {
+      "version": "0.31.1",
+      "build_bytes_sha256": "pass"
+    },
+    {
+      "log": "0.31.1-combat.log",
+      "checks": 873,
+      "pass": true
+    },
+    {
+      "log": "0.31.1-ui.log",
+      "checks": 295,
+      "pass": true
+    }
+  ],
+  "checked_relevant_local_links": 27,
+  "pass": true
+}

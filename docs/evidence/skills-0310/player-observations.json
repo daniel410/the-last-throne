@@ -1,0 +1,46 @@
+{
+  "environment": "Studio MCP source preview synced from fixed0.31.0, actual Player; Studio session adapter only",
+  "source_files": 13,
+  "backup": "ServerStorage.BeforeSkills0310",
+  "qa_level": 15,
+  "class": "knight",
+  "growth_granted_for_qa": true,
+  "normal_progression_acceptance": false,
+  "tree_nodes": 19,
+  "new_common_indices": [
+    30,
+    31,
+    32
+  ],
+  "new_common_unlocked": [
+    true,
+    true,
+    true
+  ],
+  "ultimate_visible": false,
+  "equipped_slot4": "knight_driving_thrust",
+  "equipped_slot5": "knight_guarded_strike",
+  "guarded_strike": {
+    "activated_by": "actual HUD Skill5 click",
+    "phases": [
+      "Windup",
+      "Active",
+      "Recovery"
+    ],
+    "max_shield_arm_translation_studs": 1.3136298656463623,
+    "cooldown_remaining_after_observation": 10.965494871139526
+  },
+  "driving_thrust": {
+    "activated_by": "actual HUD Skill4 click",
+    "movement_studs": 2,
+    "cooldown_remaining_after_observation": 6.965878963470459
+  },
+  "keyboard_probe": "MCP keyboard focus produced a basic Attack and SkillBusy; not counted as successful skill usage. Subsequent actual HUD clicks succeeded.",
+  "unverified": [
+    "published storage/rejoin",
+    "durable cooldowns across server reconnect",
+    "real mobile/gamepad",
+    "4 players",
+    "final balance/art"
+  ]
+}

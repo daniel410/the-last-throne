@@ -1,0 +1,24 @@
+[
+  {
+    "version": "0.31.0",
+    "source": "d815deba33ef5b94cb9fc4059b0c2016b93fd4fc",
+    "path": "builds/0.31.0/TheLastThrone-0.31.0.rbxlx",
+    "bytes": 1378787,
+    "sha256": "8af1c0c4201429fb0708208c6d5e7066d7efd10489f287c5b05b993a2548c38d",
+    "tool": "Rojo7.7.1",
+    "success": true,
+    "published": false,
+    "release_tag": false
+  },
+  {
+    "version": "0.31.1",
+    "source": "b98954e76640a7bac78899cb8fc290027d696616",
+    "path": "builds/0.31.1/TheLastThrone-0.31.1.rbxlx",
+    "bytes": 1382042,
+    "sha256": "94e59afac7f981f39686ea83a12db8d0dec2de245f945366436af363e3d1d7fd",
+    "tool": "Rojo7.7.1",
+    "success": true,
+    "published": false,
+    "release_tag": false
+  }
+]

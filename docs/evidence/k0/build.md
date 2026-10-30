@@ -583,3 +583,12 @@ TD 배틀 HP 프레임과 공통 패널·버튼 셸을 HUD에 적용했다. 원�
 ### 0.30.5 Attack/Sprint 정렬 수정
 
 입력 `3a999498598bc252ae03e89961fb33abf8f3c52e`. Attack을 Sprint 옆 같은 높이에 고정하고 숨은 점프 UI의 잘못된 상향 보정을 제외했다. GUI native289개 통과([로그](../deepwood/0.30.5-ui.log)), [산출물 해시](../deepwood/builds.json). 두 실제 Player Play의 Y 정렬을 확인했다. 기존 Play는 시각 미리보기, 고정0.30.5 빌드는 수정된 소스이며 게시/릴리스 태그는 실행하지 않았다.
+
+## 신규 공통 기술·전용 궁극기·방패 동작 (0.31.0)
+
+입력 소스 `d815deba33ef5b94cb9fc4059b0c2016b93fd4fc`. [산출물·SHA256](../skills-0310/build.json), [전투867·GUI292·동작61·저장1402 검사 및 실제 Player 범위](../skills-0310/README.md). Rojo7.7.1 성공, 로컬 일반 빌드이며 Roblox 게시/릴리스 태그는 수행하지 않았다.
+
+
+## Provoke 공격 약화·상태 표시 (0.31.1)
+
+입력 소스 `b98954e76640a7bac78899cb8fc290027d696616`, VERSION0.31.1. `rojo build default.project.json -o builds/0.31.1/TheLastThrone-0.31.1.rbxlx` 성공(Rojo7.7.1). 1,382,042bytes, SHA-256 `94e59afac7f981f39686ea83a12db8d0dec2de245f945366436af363e3d1d7fd`. [기록](../skills-0310/builds.json) · [전투873·GUI295 및 Studio 확인 범위](../skills-0310/README.md). 원본 Studio 편집 소스를 동기화하고 Play를 재시작했다. 로컬 일반 빌드이며 게시/릴리스 태그는 수행하지 않았다.
