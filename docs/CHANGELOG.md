@@ -1,5 +1,9 @@
 # 기획 변경 이력
 
+## 2026-10-30 — RPG 전투 Place 연결 (0.37.2)
+
+TLT-021/053/084. 사용자 요청으로 Studio를 강제 종료/재시작하고 임시 API 접근 생성 재시도403 뒤 OFF 복구를 확인했다. 사용자 승인 후 직접 새 Place 저장 경로로 The Last Throne Battles `129388473517823`을 같은 RPG Experience `10773575153`에 생성했다. ExpeditionConfig에 새 ID를 연결하고0.37.2 빌드를 준비한다. [과정/권한/검증](evidence/battle-place-provisioning/README.md). TD 목적지/잔액은 변경하지 않는다. 실제 게시/클라이언트 이동 수용은 증거 기록과 구분한다.
+
 ## 2026-10-30 — 후반4에픽 지역·몬스터 컨셉8장
 
 TLT-065/late-epic-concepts-20261030. 기존 TD 시각 원본을 참고해 Aether Spire·귀환 Dawnspire·다섯 깃발 원정·The Fractured Crown의 지역4장과 에픽별8종 보드4장을 내장 image_gen으로 제작했다. FB Signal Binder 셀은 Lich 대신 Volcano Shaman 계열로 보정했다. [갤러리](../assets/concepts/2026-10-30-late-epics-v1/index.html) · [프롬프트·검토](../assets/concepts/2026-10-30-late-epics-v1/README.md). 선정8PNG/프롬프트9개·원본/해시를 보존하며 사용자 검토 전 컨셉이다. 실제 모델/맵·게임 소스/보상/VERSION·빌드/게시/태그는 이번 범위에서 변경하지 않았다.
