@@ -1,6 +1,6 @@
 # The Last Throne / 최후의 왕좌
 
-> 2026-10-30 **0.40.2 / TLT-028/031/052/061/084 부분 구현:** Deepwood 지역별 장소·선택 경사로/순환길·숲 군집·굽은 연결 흙길, 서버 판정 BOSS 머리 위 배지, 미니맵 아래 투명 Gold/Diamonds 표시. [비교 조사](docs/research/2026-10-30-deepwood-places.md) · [검증/남은 수용](docs/evidence/deepwood/places-0400/README.md). 전투 Place 버전4만 게시됐고 로비는 자산 권한 승인 대기 중이며 상위 티켓은 In Progress다.
+> 2026-10-30 **0.40.2 / TLT-028/031/052/061/084 부분 구현:** Deepwood 지역별 장소·선택 경사로/순환길·숲 군집·굽은 연결 흙길, 서버 판정 BOSS 머리 위 배지, 미니맵 아래 투명 Gold/Diamonds 표시. [비교 조사](docs/research/2026-10-30-deepwood-places.md) · [검증/남은 수용](docs/evidence/deepwood/places-0400/README.md). 로비 버전18·전투 버전4가 비공개 게시됐으며 상위 티켓은 In Progress다. [게시 증거](docs/evidence/release-0402/README.md).
 
 
 > 2026-10-30 **0.39.0 / TLT-005/031/050/061/084 부분 구현:** Deepwood 연속 지반·폭96studs 열린 숲길/흙 경사·길 벽/난간 제거·밝은 낮/먼 배경 페이드·서버 이탈/낙하 복구·카메라 지면/충돌 제한. [대안 조사](docs/research/2026-10-30-grounded-deepwood.md) · [검증/남은 수용](docs/evidence/deepwood/grounded-0390/README.md). 미게시이며 정상 완주·실기기/4인·최종 미술 수용은 후속이다.
@@ -14,7 +14,7 @@
 
 Throne Defense의 세계관·영웅·타워·맵·몬스터·포탈·왕좌와 3D 자산을 공유하는 Roblox 협동 액션 RPG입니다. 직접 조작 전투, 클래스 안의 전직과 스킬트리, 공명 연계, 탐험과 이야기를 중심으로 최고의 액션 RPG를 목표로 합니다.
 
-**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.40.2 · 비공개 게시 시험판 0.37.2 · Deepwood K0 원형 제작·검증**
+**문서 묶음 v0.25 + 2026-10-29 전투 결정 정리 · 최신 로컬 시험 빌드 0.40.2 · 비공개 게시 시험판 0.40.2 · Deepwood K0 원형 제작·검증**
 
 **개발 문서는 한국어, 게임의 UI·퀘스트·대사·아이템·스킬·상품·오류·음성/자막은 영어(en-US)로 제작합니다.**
 
