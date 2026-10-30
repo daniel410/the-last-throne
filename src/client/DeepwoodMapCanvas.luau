@@ -23,9 +23,25 @@ function Canvas.create(parent,zoneId,compact)
  end end
  for id,z in pairs(Content.zones) do if not zoneId or id==zoneId then
   local a=point(z.center[1]-z.size[1]/2,z.center[3]-z.size[2]/2);local size=Vector2.new(z.size[1]/width,z.size[2]/height)
-  local zone=rect('Region',a,size,Color3.fromRGB(25,43,43),2);local cells={}
+  local zone=rect('Region',a,size,Color3.fromRGB(44,78,51),2);local cells={}
+  if compact then zone.BackgroundTransparency=1
+  else local stroke=Instance.new('UIStroke');stroke.Color=Color3.fromRGB(72,90,91);stroke.Thickness=1;stroke.Parent=zone end
+  if not compact then
+   -- The authored broad trail and investigation paths, hidden by unexplored cells.
+   local previous=point(z.center[1]-z.size[1]*.37,z.center[3]+z.size[2]*.34)
+   for _,chapter in ipairs(Content.chapters) do if chapter.zone==id and not chapter.side then for _,goal in ipairs(chapter.goals) do if not goal.zone and not goal.optional then
+    local nextPoint=point(goal.position[1],goal.position[3]);local delta=nextPoint-previous
+    local path=rect('LocalTrail',previous,Vector2.new(delta.Magnitude,.002),Color3.fromRGB(167,151,104),2);path.AnchorPoint=Vector2.new(0,.5)
+    table.insert(roads,{part=path,delta=delta,zone=id});previous=nextPoint
+   end end end end
+  end
   for zz=1,12 do for x=1,12 do
-   cells[(zz-1)*12+x]=rect('FogCell',a+Vector2.new((x-1)/12*size.X,(zz-1)/12*size.Y),Vector2.new(size.X/12+.0005,size.Y/12+.0005),Color3.fromRGB(7,16,26),3)
+   local origin=a+Vector2.new((x-1)/12*size.X,(zz-1)/12*size.Y);local extent=Vector2.new(size.X/12+.0005,size.Y/12+.0005)
+   local cell=rect('FogCell',origin,extent,Color3.fromRGB(7,16,26),3);cells[(zz-1)*12+x]=cell
+   if compact then
+    local inside=true;for _,corner in ipairs({origin,origin+extent,origin+Vector2.new(extent.X,0),origin+Vector2.new(0,extent.Y)}) do if (corner-Vector2.new(.5,.5)).Magnitude>.48 then inside=false end end
+    cell.Visible=inside
+   end
   end end
   local center=point(z.center[1],z.center[3])
   local name=Theme.label(parent,'Place','Unexplored',UDim2.fromScale(center.X,center.Y),UDim2.fromOffset(compact and 0 or 158,compact and 0 or 38),11,Theme.color.text);name.AnchorPoint=Vector2.new(.5,.5);name.TextXAlignment=Enum.TextXAlignment.Center;name.TextStrokeTransparency=.1;name.ZIndex=5;name.Visible=not compact
@@ -42,13 +58,14 @@ function Canvas.create(parent,zoneId,compact)
   for id,row in pairs(rows) do
    local z=Content.zones[id];local cells=journal and journal.explored and journal.explored[id] or {};local allowed=journal and Access.allowed(journal,id)
    local visited=next(cells)~=nil
-   for index,cell in ipairs(row.cells) do cell.BackgroundColor3=cells[index] and Color3.fromRGB(70,110,75) or allowed and Color3.fromRGB(24,41,46) or Color3.fromRGB(7,16,26) end
+   for index,cell in ipairs(row.cells) do cell.BackgroundColor3=cells[index] and Color3.fromRGB(70,110,75) or allowed and Color3.fromRGB(24,41,46) or Color3.fromRGB(7,16,26);cell.BackgroundTransparency=not compact and cells[index] and 1 or 0 end
    row.name.Text=visited and z.name or allowed and 'Unexplored' or 'Locked';row.name.TextColor3=allowed and Theme.color.text or Theme.color.muted
    row.checkpoint.Visible=visited and cells[(math.floor(.84*12))*12+math.floor(.13*12)+1]==true
   end
   for _,r in ipairs(roads) do
    local delta=Vector2.new(r.delta.X*parent.AbsoluteSize.X,r.delta.Y*parent.AbsoluteSize.Y);r.part.Size=UDim2.fromOffset(delta.Magnitude,3);r.part.Rotation=math.deg(math.atan2(delta.Y,delta.X))
-   r.part.Visible=journal and Access.allowed(journal,r.edge[1]) and Access.allowed(journal,r.edge[2]) and (journal.explored or {})[r.edge[1]]~=nil end
+   if r.zone then r.part.Visible=journal and (journal.explored or {})[r.zone]~=nil
+   else r.part.Visible=journal and Access.allowed(journal,r.edge[1]) and Access.allowed(journal,r.edge[2]) and (journal.explored or {})[r.edge[1]]~=nil end end
   if root then located(pin,root.Position);pin.Rotation=math.deg(math.atan2(root.CFrame.LookVector.X,-root.CFrame.LookVector.Z)) else pin.Visible=false end
   if target then located(objective,target) else objective.Visible=false end
  end}

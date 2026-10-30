@@ -15,6 +15,7 @@ function Map.create(parent)
  local view=Instance.new('Frame');view.Name='MapPreview';view.Position=UDim2.fromOffset(8,8);view.Size=UDim2.new(1,-16,1,-16);view.BackgroundColor3=Color3.fromRGB(27,61,36);view.ClipsDescendants=true;view.BorderSizePixel=0;view.Parent=frame
  local curve=Instance.new('UICorner');curve.CornerRadius=UDim.new(1,0);curve.Parent=view
  local atlas,regionId
+ local function clearScene() for _,child in ipairs(view:GetChildren()) do if not child:IsA('UICorner') then child:Destroy() end end end
  for i,p in ipairs({UDim2.fromScale(.5,0),UDim2.fromScale(1,.5),UDim2.fromScale(.5,1),UDim2.fromScale(0,.5)}) do Chrome.diamond(frame,'MapGem'..i,p,12,Theme.color.gold) end
  local north=Theme.label(frame,'North','N',UDim2.new(.5,-10,0,9),UDim2.fromOffset(20,18),10,Theme.color.text);north.TextXAlignment=Enum.TextXAlignment.Center
  local playerPulse=Instance.new('Frame');playerPulse.Name='PlayerPulse';playerPulse.AnchorPoint=Vector2.new(.5,.5);playerPulse.BackgroundColor3=Color3.fromRGB(71,232,255);playerPulse.BorderSizePixel=0;playerPulse.Visible=false;playerPulse.ZIndex=4;playerPulse.Parent=frame
@@ -48,10 +49,10 @@ function Map.create(parent)
   local id=inAdventure and Access.region(charRoot.Position.X,charRoot.Position.Z) or nil
   if id then
    local z=Content.zones[id];mapOrigin=Vector3.new(table.unpack(z.center));mapWidth=math.max(z.size[1],z.size[2])*168/152;caption.Text=z.name
-   if regionId~=id then view:ClearAllChildren();atlas=Canvas.create(view,id,true);atlas.pin.Visible=false;regionId=id end
+   if regionId~=id then clearScene();atlas=Canvas.create(view,id,true);atlas.pin.Visible=false;regionId=id end
    atlas.update(State.current,nil,State.target)
   else
-   if regionId then view:ClearAllChildren();regionId=nil;atlas=nil end
+   if regionId then clearScene();regionId=nil;atlas=nil end
    mapOrigin=Vector3.zero;mapWidth=180;caption.Text='TRAINING'
   end
   fullMap.Visible=inAdventure~=nil and inAdventure~=false
