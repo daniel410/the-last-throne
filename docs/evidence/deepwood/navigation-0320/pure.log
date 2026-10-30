@@ -1,0 +1,3 @@
+lua tests/deepwood-progress.spec.lua
+Deepwood progression: 273 checks passed
+Deepwood total: 278 checks passed

@@ -1,0 +1,12 @@
+{
+  "version": "0.32.0",
+  "source": "5e1fdd6ab1895a984725dcc4e754d77da815500e",
+  "path": "builds/0.32.0/TheLastThrone-0.32.0.rbxlx",
+  "bytes": 1386538,
+  "sha256": "740141f2ab0081f6c22a2fbdf6d4bc8cb1ecdeb4d64652c94a6453f0de46142d",
+  "tool": "Rojo 7.7.1",
+  "success": true,
+  "published": false,
+  "release_tag": false,
+  "verification": "world505/service58/UI324/pure278 pass; real Player first encounter via holdF/basic attack advances to supply inspection; mobile/published/full normal-play acceptance pending"
+}

@@ -1,0 +1,53 @@
+{
+  "environment": "Roblox Studio, original The Last Throne place70829337938054, Studio session inventory",
+  "initial": {
+    "mode": "Edit",
+    "players": 0,
+    "previous_user_blocker": "unavailable"
+  },
+  "steps": [
+    {
+      "action": "actual lobby buttons createKnight and ENTER DEEPWOOD",
+      "phase": "Tutorial",
+      "route": "Deepwood",
+      "guideVisibleParts": 20,
+      "playerMarkerVisible": true,
+      "YOUVisible": true,
+      "note": "Hold F / X or touch the marker to begin the encounter."
+    },
+    {
+      "action": "MCP navigation helper then holdF600ms",
+      "goblins": 2,
+      "eachHealth": 225,
+      "note": "Defeat the remaining enemies: 2 left.",
+      "limitation": "MCP navigation helper was later corrected by server movement checks; not normal keyboard movement evidence"
+    },
+    {
+      "action": "observation pause",
+      "result": "hero died and respawned at checkpoint withHP250"
+    },
+    {
+      "action": "W+D3300ms, real enemy selection and basic attack UI clicks",
+      "liveEncounterEnemies": 0,
+      "heroHealth": 62.22886657714844,
+      "objective": "Inspect the abandoned supplies",
+      "note": "Hold F / X or touch the marker to interact."
+    },
+    {
+      "action": "read-only real server Script snapshot",
+      "state": {
+        "training": false,
+        "main": 0,
+        "trailGuardsComplete": true,
+        "class": "knight",
+        "suppliesComplete": false
+      }
+    }
+  ],
+  "not_verified": [
+    "previous user blocker exact condition",
+    "full seven-story normal combat playthrough",
+    "actual mobile/gamepad/four-player input",
+    "published account persistence"
+  ]
+}

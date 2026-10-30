@@ -599,3 +599,8 @@ TD 배틀 HP 프레임과 공통 패널·버튼 셸을 HUD에 적용했다. 원�
 - 0.31.2 입력 `76e4076e226bf9b856e86181e90ffb7ea98bb1d0`, 전투927개·227사례 통과.
 - 최신0.31.3 입력 `3cf49c4be2337d52883df913b9223dff86443e53`, GUI319개 통과. 전투 소스는0.31.2와 같아 해당 증거를 재사용한다.
 - 두 버전 모두 `rojo build default.project.json -o builds/<version>/TheLastThrone-<version>.rbxlx` 성공(Rojo7.7.1). [바이트·SHA256](../skills-0310/builds.json), [범위·한계](../skills-0310/README.md). 원본 Studio 편집 소스 동기화/Play 재시작 완료, 게시/릴리스 태그 없음.
+
+
+## 에픽1 전체 안내·위치 표시·진행 상태 (0.32.0)
+
+입력 `5e1fdd6ab1895a984725dcc4e754d77da815500e`, VERSION0.32.0. `rojo build default.project.json -o builds/0.32.0/TheLastThrone-0.32.0.rbxlx` 성공(Rojo7.7.1).1,386,538bytes, SHA-256 `740141f2ab0081f6c22a2fbdf6d4bc8cb1ecdeb4d64652c94a6453f0de46142d`. [빌드 기록](../deepwood/navigation-0320/build.json), [World505·Service58·GUI324·실제 Player 범위](../deepwood/navigation-0320/README.md). 원본 Studio 소스 보존/동기화·Play 확인, 게시/태그 없음.

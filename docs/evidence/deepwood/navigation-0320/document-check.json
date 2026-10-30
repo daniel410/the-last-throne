@@ -1,0 +1,23 @@
+{
+  "kind": "navigation0320-document-check",
+  "build_bytes_sha256": "pass",
+  "native_reports": [
+    {
+      "log": "world.log",
+      "checks": 505,
+      "pass": true
+    },
+    {
+      "log": "service.log",
+      "checks": 58,
+      "pass": true
+    },
+    {
+      "log": "ui.log",
+      "checks": 324,
+      "pass": true
+    }
+  ],
+  "relevant_local_links": 18,
+  "pass": true
+}

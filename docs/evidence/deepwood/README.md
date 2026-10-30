@@ -2,7 +2,7 @@
 
 2026-10-29 · ENG/DES/QA · TLT-011/028/031/041/043/046/047/050/052/061/084 부분 범위
 
-최신 로컬 빌드는 **0.30.5**, 입력 소스 `3a999498598bc252ae03e89961fb33abf8f3c52e`다. [버전별 산출물·해시](builds.json) · [실제 Player 관측](player-observations.json) · [TD 몬스터 10종 원본](td-monsters.json). 실제 Roblox 게시와 릴리스 태그는 수행하지 않았다. 확인된 게시판은 계속0.18.3이다.
+최신 Deepwood 로컬 빌드는 **0.32.0**, 입력 소스 `5e1fdd6ab1895a984725dcc4e754d77da815500e`다. [에픽1 전체 안내·미니맵 위치·스토리 진행 조사](navigation-0320/README.md). 아래0.30.x 기록은 이전 캠페인 제작 이력이다. [버전별 산출물·해시](builds.json) · [실제 Player 관측](player-observations.json) · [TD 몬스터 10종 원본](td-monsters.json). 실제 Roblox 게시와 릴리스 태그는 수행하지 않았다. 확인된 게시판은 계속0.18.3이다.
 
 ## 연결한 플레이 경로
 
