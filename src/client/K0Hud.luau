@@ -389,11 +389,12 @@ function Hud.create()
 		end,
 		setStory = function(value)
    if not value then
-    subtitle.Text="TRAINING GROVE"
+    headingTitle.Text=Text.TrainingTitle
+    subtitle.Text=Text.TrainingSubtitle
     if storyTracker then practice.Title.Text=Text.PracticeTitle;objective.Text=Text.Practice.Move;note.Text=Text.Practice.Note end
     storyTracker=nil;return
    end
-   subtitle.Text=Text.Subtitle
+   headingTitle.Text=Text.Title;subtitle.Text=Text.Subtitle
    storyTracker=value
    practice.Title.Text=value.title;objective.Text=value.objective;note.Text=value.note
   end,

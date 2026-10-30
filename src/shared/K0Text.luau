@@ -11,6 +11,8 @@ return {
  NavigationOff = "Navigation Trail: OFF",
  MinimapYou = "YOU",
 	Title = "DEEPWOOD",
+ TrainingTitle = "TRAINING GROUNDS",
+ TrainingSubtitle = "HERO PRACTICE",
  NewSkillFormat = "New Skill Unlocked: %s. Open Skills to review your loadout.",
  Ultimate = "ULTIMATE",
  EnemyAttackDown = "▼ ATK -%d%%  %.1fs",

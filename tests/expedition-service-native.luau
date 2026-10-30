@@ -16,7 +16,7 @@ local ok,err=xpcall(function()
   if self.fail[p.UserId] then error('simulated travel failure') end
  end]],1)
  source=source:gsub("local C=require%(RS.Shared.ExpeditionConfig%)","local C=table.clone(require(RS.Shared.ExpeditionConfig));C.battlePlaceId=123",1)
- local first=assert(source:find('local function publish',1,true));local last=assert(source:find('local function advertise',first,true))
+ local first=assert(source:find('local function publish',1,true));local last=assert(source:find('function Service.openMenu',first,true) or source:find('local function advertise',first,true))
  source=source:sub(1,first-1).."local function publish(p,e,open) p.notice=e;p.menuOpen=open end\n"..source:sub(last)
  source=source:gsub('return Service%s*$',[[
  function Service.qaPlayers(list) Players.list=list;for _,p in ipairs(list) do p.Parent=Players end end

@@ -104,6 +104,10 @@ function Journal.start(hud)
   if main then return Log.target(s,main,selectedChapter==main.id and selectedGoal or nil) end
  end
  local function updateTracker()
+  if not current or current.training or player:GetAttribute('TLTRoute')=='Training' then
+   if hud.setStory then hud.setStory(nil) end
+   return nil
+  end
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   local guidance=Journal.guidance(current,target,root and root.Position)
   if hud.setStory then
