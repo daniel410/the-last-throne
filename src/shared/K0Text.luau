@@ -1,5 +1,6 @@
 -- en-US source text for the K0 training prototype. Keys are language-neutral.
 return {
+ EnemyBossBadge = "◆ BOSS ◆",
  AvailableGrowth = "%d STAT POINTS  /  %d SKILL POINTS  [H]",
  LevelUpGrowth = "LEVEL %d!  +%d stat points  /  +%d skill points. Open HERO [H] to invest.",
  StoryBeginEncounter = "Hold F / X or touch the marker to begin the encounter.",

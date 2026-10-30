@@ -71,7 +71,7 @@ function World.create()
  local existing=Workspace:FindFirstChild('DeepwoodCampaign')
  if existing then
   require(script.Parent.DeepwoodGroundedWorld).create(existing)
-  if World.current then return World.current end
+  if World.current then require(script.Parent.DeepwoodPlaces).create(World.current);return World.current end
   local result={folder=existing,terrain=existing:FindFirstChild('TerrainBlockout'),nodes={},spawns={},positions={}}
   for id,z in pairs(Content.zones) do result.spawns[id]=existing:FindFirstChild(id..'_SP');result.positions[id]=vec(z.center) end
   for _,p in ipairs(existing:WaitForChild('Objectives'):GetChildren()) do
@@ -84,6 +84,7 @@ function World.create()
    local c=Content.byId[p:GetAttribute('ChapterId')];local g=c and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress).goal(c,p:GetAttribute('GoalId'))
    for _,step in ipairs(g and g.activity and g.activity.steps or {}) do if step.id==p:GetAttribute('StepId') then result.activityNodes[c.id..':'..g.id..':'..step.id]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g,step=step} end end
   end end else require(script.Parent.DeepwoodActivityWorld).create(result) end
+  require(script.Parent.DeepwoodPlaces).create(result)
   World.current=result;return result
  end
  local root=Instance.new('Model');root.Name='DeepwoodCampaign';root.Parent=Workspace
@@ -185,6 +186,7 @@ function World.create()
  root:SetAttribute("DeepwoodReady",true)
  World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions}
  require(script.Parent.DeepwoodActivityWorld).create(World.current)
+ require(script.Parent.DeepwoodPlaces).create(World.current)
  return World.current
 end
 return World

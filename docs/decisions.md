@@ -576,3 +576,7 @@ HP 물약 Small100/Medium300/Large500/XL1000,MP Small50/Medium100/Large200/XL500
 사용자는 지네 이름에 Venomcoil을 사용하고 지네 킹을 더 왕답게 만들도록 교정했다. 현재 일반 지네는 **Venomcoil Centipede**,지네 보스는 **Venomcoil King**이며 위 중간안의 Venom Centipede/Venom Matriarch보다 우선한다. 일반5종/보스3종 분류와 일반 엔트 제외는 유지한다.
 
 **TLT-065/gloamwood-venomcoil-king-v5-20261030**의 [현재 보드](../assets/concepts/2026-10-30-gloamwood-v1/index.html)는 기존 얼굴/보라 눈을 이어가면서 킹의 왕관형3갈래 머리 갑각·큰 목 갑주·금빛 테두리·앞몸통을 치켜든 자세를 강화했다. 여왕/엔트의 보존과 일반 지네 이름표 수정은 참조 편집으로 요청했다. 얼굴/배경/다른 셀 픽셀 동일성은 미검증이며2~3k tris는 실제 메시가 없는 제작 목표다.1~4·보상/VERSION·기존5~8 보류/새 에픽 번호 미정은 유지한다.
+
+## 2026-10-30 장소별 탐험·보스 표시·투명 잔액
+
+사용자 요청에 따라 Deepwood의 장소별 고도/순환 경로와 환경 서사를 강화하고 서버가 판정한 보스의 머리 위에 영어 BOSS 배지를 표시한다. Gold/Diamonds 상단 패널은 제거하고 미니맵 아래에 배경 없는 원본 아이콘과 잔액으로 표시한다. 0.40.0의 [조사와 구현 선택](research/2026-10-30-deepwood-places.md), [검증 범위](evidence/deepwood/places-0400/README.md)를 참조한다. 기존 스토리 좌표·승인 보상·지반/낙하 보호·밝은 낮·연결 길 벽 제거를 유지한다. 미게시이며 전체 지형 재배치·신규 보상·상위 티켓 완료를 뜻하지 않는다.

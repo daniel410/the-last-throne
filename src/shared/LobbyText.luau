@@ -1,4 +1,5 @@
 return {
+ Gold='Gold', Diamonds='Diamonds',
  InvalidRequest='That request was not valid. Refresh and try again.',Busy='Please wait for the current action to finish.',
  Unavailable='Your saved account is unavailable. Rejoin before trading.',SaveUnknown='Saving is not confirmed. Retry the same transaction.',
  AccountBusy='Your account is still open in another server. Wait and retry.',Changed='Your inventory changed. Refresh and choose the item again.',

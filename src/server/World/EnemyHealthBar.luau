@@ -1,6 +1,7 @@
 -- Event-driven enemy health display, following TD's green/yellow/red thresholds.
 -- The server's Humanoid remains the only health authority.
 local EnemyHealthBar = {}
+local Text = require(game:GetService("ReplicatedStorage").Shared.K0Text)
 
 local function healthColor(ratio)
 	if ratio <= 0.25 then return Color3.fromRGB(230, 80, 80) end
@@ -32,6 +33,20 @@ function EnemyHealthBar.attach(model, humanoid)
 	name.TextColor3, name.TextStrokeTransparency = Color3.fromRGB(255, 246, 220), 0.2
 	name.AutoLocalize = false
 	name.Parent = gui
+	local badge = Instance.new("TextLabel")
+	badge.Name, badge.Text = "BossBadge", Text.EnemyBossBadge
+	badge.AnchorPoint, badge.Position = Vector2.new(0.5, 0), UDim2.fromScale(0.5, 0)
+	badge.Size = UDim2.fromOffset(76, 18)
+	badge.BackgroundColor3, badge.BorderSizePixel = Color3.fromRGB(75, 22, 25), 0
+	badge.Font, badge.TextSize = Enum.Font.GothamBold, 12
+	badge.TextColor3 = Color3.fromRGB(255, 218, 127)
+	badge.AutoLocalize = false
+	badge.Parent = gui
+	local border = Instance.new("UIStroke")
+	border.Color, border.Thickness, border.ApplyStrokeMode = Color3.fromRGB(222, 178, 84), 1, Enum.ApplyStrokeMode.Border
+	border.Parent = badge
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius, corner.Parent = UDim.new(0, 4), badge
 	local bg = Instance.new("Frame")
 	bg.Name, bg.Position, bg.Size = "HpBg", UDim2.fromOffset(0, 15), UDim2.new(1, 0, 0, 14)
 	bg.BackgroundColor3, bg.BackgroundTransparency, bg.BorderSizePixel = Color3.fromRGB(15, 15, 15), 0.25, 0
@@ -46,6 +61,16 @@ function EnemyHealthBar.attach(model, humanoid)
 	value.AutoLocalize = false
 	value.ZIndex = 2
 	value.Parent = bg
+	local function refreshRank()
+		local boss = model:GetAttribute("StoryBoss") == true
+		badge.Visible = boss
+		gui.Size = UDim2.fromOffset(boss and 144 or 96, boss and 56 or 30)
+		gui.StudsOffsetWorldSpace = Vector3.new(0, height - footOffset + 1.45 + (boss and 0.9 or 0), 0)
+		name.Position = UDim2.fromOffset(0, boss and 22 or 0)
+		name.Size = UDim2.new(1, 0, 0, boss and 17 or 13)
+		name.TextSize = boss and 12 or 10
+		bg.Position = UDim2.fromOffset(0, boss and 41 or 15)
+	end
 	local function refresh()
 		local maximum = math.max(0, humanoid.MaxHealth)
 		local current = math.clamp(humanoid.Health, 0, maximum)
@@ -57,6 +82,9 @@ function EnemyHealthBar.attach(model, humanoid)
 	end
 	humanoid.HealthChanged:Connect(refresh)
 	humanoid:GetPropertyChangedSignal("MaxHealth"):Connect(refresh)
+	model:GetAttributeChangedSignal("StoryBoss"):Connect(refreshRank)
+	humanoid:GetPropertyChangedSignal("DisplayName"):Connect(function() name.Text = humanoid.DisplayName end)
+	refreshRank()
 	refresh()
 	return gui
 end

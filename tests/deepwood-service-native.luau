@@ -23,7 +23,13 @@ local ok,err=xpcall(function()
   awardXP=function(_,_,amount) xp=xp+amount end}
  story.start({world=world,enemies=workspace.DeepwoodK0.Enemies,inventory=inventory,heroSession=hero,combat=combat})
  local function near(c,g) root.Position=world.nodes[c..':'..g].part.Position end
- local function models(key) local r={} for _,m in ipairs(workspace.DeepwoodK0.Enemies:GetChildren()) do if m:GetAttribute('DeepwoodEncounter')==key then table.insert(r,m) end end return r end
+ local seenBossBadges={}
+ local function models(key) local r={} for _,m in ipairs(workspace.DeepwoodK0.Enemies:GetChildren()) do if m:GetAttribute('DeepwoodEncounter')==key then
+   local bar=m:FindFirstChild('EnemyHealthBar')
+   check(bar and bar.BossBadge.Visible==(m:GetAttribute('StoryBoss')==true),'actual story boss badge excludes bodyguards')
+   if m:GetAttribute('StoryBoss') then seenBossBadges[m:GetAttribute('EnemyKind')]=true end
+   table.insert(r,m)
+  end end return r end
  local function reinforceBoss(boss,key,initial,total,gates)
   check(#models(key)==initial,key..' starts with its bodyguard group')
   local h=boss:FindFirstChildOfClass('Humanoid');h.MaxHealth=boss:GetAttribute('StoryHealth');h.Health=h.MaxHealth
@@ -144,6 +150,7 @@ local ok,err=xpcall(function()
   end end
   check(inventory.storyState().clears[c.id],c.id..' still requires resident report')
  end
+ for _,kind in ipairs({'Warlord','KingShaman','GoblinKing','KingOgre','EnragedWarlord'})do check(seenBossBadges[kind],kind..' actual encounter has a boss badge')end
  check(inventory.storyState().coins==2290,'more enemies do not change fixed quest Coins')
  local savedProfile=profile;profile=Rules.addHero(Rules.new(92),'qa','knight',Catalog)
  root.Position=world.spawns['DW-01'].Position;gate.update(player);local safe=root.Position;local health=human.Health
