@@ -1,5 +1,9 @@
 # 기획 변경 이력
 
+## 2026-10-30 · 0.38.0 전체 지도·Mage 밸런스 시험 개선
+
+지형/랜드마크와 실제 연결선·지역명/탐험/잠금 상태·진행 목록·확대/FIT/내 위치 이동을 추가하고 안전 영역/작은 화면 배치를 조정했다. Mage 공격 주문 계수1.4배·MP 자연 회복 초당0.15%를 적용했다. 두 Place 로컬 빌드·검증을 완료했으며 미게시다. [근거](research/2026-10-30-atlas-and-mage-balance.md) · [화면/검증/제한](evidence/deepwood/atlas-0380/README.md).
+
 ## 2026-10-30 — Venomcoil 이름 복구·King 외형 강화 v5
 
 TLT-065/gloamwood-venomcoil-king-v5-20261030. 최신 사용자 교정으로 지네 이름을 Venomcoil Centipede로 복구하고 보스는 Venomcoil King으로 지정했다. 왕관형3갈래 머리 갑각·금빛 테두리·넓은 목 갑주·치켜든 앞몸통을 추가한 [새 보스 보드](../assets/concepts/2026-10-30-gloamwood-v1/gloamwood-bosses-blocky-v5.png)와 일반 이름표를 수정했다.5일반/3보스·블록형/얼굴 유지·2~3k tris 목표는 유지하며 실제 메시/게임 빌드/게시 변경은 없다.

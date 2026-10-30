@@ -1,0 +1,98 @@
+{
+  "version": "0.38.0",
+  "date": "2026-10-30",
+  "timezone": "America/Toronto",
+  "status": "local-build-success-unpublished",
+  "source_commit": "598f5a35f7c86cf3c4e270364444d66a3252a3e7",
+  "tool": "Rojo 7.7.1",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.38.0/TheLastThrone-Lobby-0.38.0.rbxlx",
+      "bytes": 1577611,
+      "sha256": "8ca511bed823dce31bb5b023776c14da2e53ac3f0a5decc6ff64c7c7f1423feb",
+      "command": "rojo build default.project.json --output builds/0.38.0/TheLastThrone-Lobby-0.38.0.rbxlx",
+      "result": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.38.0/TheLastThrone-Battle-0.38.0.rbxlx",
+      "bytes": 1577612,
+      "sha256": "3edf0dd96ef6a70124e20041c816341e64427861e8e283f30d98ceb5cd9c3725",
+      "command": "rojo build battle.project.json --output builds/0.38.0/TheLastThrone-Battle-0.38.0.rbxlx",
+      "result": "success"
+    }
+  ],
+  "source_sha256": {
+    "VERSION": "8ca1b0be262e3278f47eb53b592f649318b926a5ce9d6a4ceca65ce4e8be8629",
+    "src/client/DeepwoodCartography.luau": "22da79f960cf2b2ddc63375536497eb54ca77d3a2c6bbf24d986671992850f4f",
+    "src/client/DeepwoodMap.luau": "9f106b9fbfca95359b6dc576147fbb116a547ddd418791639bf84f1aff3f8d03",
+    "src/client/DeepwoodMapCanvas.luau": "db69ceb31efd3ed3fb704f3cf0edfed7cdab8a5692b1cf5aa256514a3f407716",
+    "src/shared/K0Config.luau": "1ac5f7e4abc57be66ddb7157d98fc178caa6eed4a5a29bdd8ed5fe05a4a5543c",
+    "src/shared/K0Text.luau": "41864c0dd935647e3dca205d0fe627eabba94be5a90db4e9016b6386282e5da1"
+  },
+  "engine_checks": [
+    {
+      "log": "combat.log",
+      "kind": "K0_BASIC_ATTACK_NATIVE",
+      "checks": 927,
+      "engine_result": "pass",
+      "failures": [],
+      "artifact": "temporary precommit validation place; same Config/Canvas inputs"
+    },
+    {
+      "log": "ui.log",
+      "kind": "K0_RESOURCE_UI_NATIVE",
+      "checks": 4757,
+      "engine_result": "pass",
+      "failures": [],
+      "artifact": "temporary precommit validation place; same Config/Canvas inputs"
+    },
+    {
+      "log": "layout.log",
+      "kind": "DEEPWOOD_ATLAS_NATIVE",
+      "checks": 91,
+      "engine_result": "pass",
+      "failures": [],
+      "artifact": "final battle build"
+    },
+    {
+      "log": "battle.log",
+      "kind": "BATTLE_BOOTSTRAP_NATIVE",
+      "checks": 10,
+      "engine_result": "pass",
+      "failures": [],
+      "artifact": "final battle build"
+    }
+  ],
+  "pure_checks": [
+    {
+      "command": "lua tests/skill-stat-preview.spec.lua",
+      "checks": 861,
+      "pass": true
+    },
+    {
+      "command": "lua tests/advanced-skills.spec.lua",
+      "checks": 1435,
+      "pass": true
+    },
+    {
+      "command": "lua tests/hero-progression.spec.lua",
+      "checks": 81,
+      "pass": true
+    }
+  ],
+  "warnings": [
+    "Existing asset 203785492 type warning.",
+    "Final local-place imports emitted Roblox TexturePack HTTP 429 auto-upload warnings; no new texture assets were intentionally uploaded.",
+    "Studio MaterialManager plugin diagnostics appear in battle log.",
+    "run-in-roblox wrapper returned exit 1 for final layout run despite explicit native pass=true result; retained separately from engine assertions."
+  ],
+  "publishing": false,
+  "release_tag": null,
+  "visuals": {
+    "pc.png": "Studio Play, synthetic 2/7 story and 20% exploration data; actual GUI",
+    "phone.png": "Studio Play iPhone 17 Pro landscape emulation; synthetic progress; not a physical phone"
+  },
+  "next_owner": "QA: actual Mage solo combat pacing, phone/controller input, 4-player and final art acceptance"
+}
