@@ -71,6 +71,20 @@ for classId,paths in pairs(A.order)do
  end
 end
 eq(count,104,'96 branch actives +8 ultimates')
+local provokeDescendants=0
+for _,path in ipairs(A.order.knight) do
+ for _,d in ipairs(A.branches[path].skills) do
+  if d.root==3 then
+   provokeDescendants=provokeDescendants+1
+   eq(d.attackDownMultiplier,.85,'Provoke descendant attack reduction')
+   eq(d.attackDownDuration,3,'Provoke descendant bounded duration')
+   eq(d.defenseBreakDuration,3,'Provoke descendant vulnerability')
+   check(d.description:find('15%%') and d.description:find('10%%'),'English descendant effect text')
+  end
+ end
+end
+eq(provokeDescendants,8,'all eight Provoke root descendants')
+
 local old=G.new();old.version=1;old.branch=nil;old.stage=nil;old.battleWins=nil;for i=4,32 do old.mastery[i]=nil end
 local p=assert(R.addHero(R.new(42),'hero','mage',C));p.heroes.hero.progression=old
 check(R.validate(p,C),'legacy basic profile accepted')

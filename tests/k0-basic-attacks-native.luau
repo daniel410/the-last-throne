@@ -221,6 +221,20 @@ return {
 				equal(state.skillReadyAt[definition.id],definition.cooldown,"own stable cooldown")
 				if definition.magic then near(state.mana,before-definition.manaCost,"magic uses MP") end
 				if definition.shield then equal(state.branchShield.amount>0,true,"attack grants server shield") end
+    if descriptor.attackDownDuration then
+     near(enemy.attackDownMultiplier,.85,"Provoke descendant weakens actual enemy attack")
+     near(enemy.attackDownUntil,definition.windup+(definition.pulses-1)*definition.interval+.01+3,"last pulse refreshes three seconds")
+     near(enemy.defenseBreakUntil,enemy.attackDownUntil,"descendant vulnerability matches duration")
+     near(enemy.model:GetAttribute("K0AttackDownMultiplier"),.85,"descendant status is replicated")
+     local function hit(time)
+      local before=state.humanoid.Health
+      api.applyPlayerHit(enemy,state,{origin=enemy.root.Position,direction=(state.root.Position-enemy.root.Position).Unit,definition=enemy.config.attacks[1],hits={}},time)
+      return before-state.humanoid.Health
+     end
+     state.branchShield=nil
+     near(hit(enemy.attackDownUntil-.01),math.floor(enemy.config.attacks[1].damage*.85+.5),"descendant actually lowers enemy hit")
+     near(hit(enemy.attackDownUntil+.01),enemy.config.attacks[1].damage,"descendant reduction expires")
+    end
 			end)
 		end
 	end
@@ -689,6 +703,29 @@ return {
   api.resetEnemy(enemy)
   equal(enemy.attackDownUntil,nil,'reset clears server debuff')
   equal(enemy.model:GetAttribute('K0AttackDownUntil'),nil,'reset clears replicated debuff')
+ end)
+ case("provoke-descendant-refresh-is-nonstacking-and-keeps-longer-base",function()
+  local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+  local growth=G.new(80);growth.branch="steel_knight";growth.stage=4;growth.skillSlots={3,6,0,0,0}
+  api.injectResolver(function(player) return {heroId="hero-"..player.UserId,baseClassId="knight",epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5} end)
+  local state=spawnPlayer();local enemy=spawnEnemy(3)
+  action(state,"Skill1",0);sample(.26)
+  api.clearAction(state);state.mode="Idle"
+  action(state,"Skill2",.7,nil,enemy.model);sample(1.01)
+  near(enemy.attackDownMultiplier,.85,"base and branch never multiply reduction")
+  near(enemy.attackDownUntil,4.26,"short branch does not shorten base debuff")
+  near(enemy.defenseBreakUntil,4.26,"short branch does not shorten base vulnerability")
+ end)
+ case("provoke-descendant-debuff-needs-real-hit-and-respects-cover",function()
+  local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+  local growth=G.new(80);growth.branch="steel_knight";growth.stage=4;growth.skillSlots={10,0,0,0,0}
+  api.injectResolver(function(player) return {heroId="hero-"..player.UserId,baseClassId="knight",epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5} end)
+  local state=spawnPlayer();local target=spawnEnemy(3);local blocked=spawnEnemy(7)
+  local wall=Instance.new("Part");wall.Name="Wall";wall.Anchored=true;wall.Size=Vector3.new(12,8,1);wall.CFrame=CFrame.new(origin+Vector3.new(0,0,-5));wall.Parent=fixture
+  action(state,"Skill1",0,nil,target.model);sample(.31)
+  near(target.attackDownMultiplier,.85,"visible target weakened")
+  equal(blocked.attackDownMultiplier,nil,"wall blocks inherited debuff")
+  near(blocked.humanoid.Health,10000,"wall blocks inherited damage")
  end)
 	case("gravity-area-respects-cover", function()
 		api.injectResolver(function() return "mage" end)

@@ -24,6 +24,10 @@ local function branch(id,classId,name,icon,rows)
   d.maxTargets=d.maxTargets or (d.form=="projectile" and 1 or 8);d.maxHeight=12;d.posture=d.posture or 15
   d.magic=classId=="mage" or id=="magic_archer"
   if d.magic then d.manaCost=d.manaCost or (d.ultimate and 80 or 16+d.stage*4) end
+  if classId=="knight" and d.root==3 then
+   d.attackDownMultiplier=.85;d.attackDownDuration=3;d.defenseBreakDuration=3
+   d.description=(d.description and d.description.." " or "").."On hit, reduce enemy attack damage by 15% and make them take 10% more damage for 3 seconds. Does not stack with Provoke."
+  end
   d.effect="advanced";d.ranged=d.form=="projectile" or d.form=="line" or d.form=="ground" or d.form=="chain"
   d.glyph=(id==A.order[classId][1] and "A" or "B")..string.format("%02d",i)
   table.insert(A.skills[classId],d)

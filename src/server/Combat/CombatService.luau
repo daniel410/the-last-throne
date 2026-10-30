@@ -635,6 +635,21 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	end
 end
 
+-- Provoke and its descendants refresh one shared, non-stacking status.
+-- Keep a longer existing application when a shorter branch pulse lands.
+local function applyProvokeDebuffs(enemy, definition, current)
+ if definition.attackDownDuration then
+  enemy.attackDownUntil=math.max(enemy.attackDownUntil or 0,current+definition.attackDownDuration)
+  enemy.attackDownMultiplier=definition.attackDownMultiplier
+  enemy.model:SetAttribute("K0AttackDownUntil",workspace:GetServerTimeNow()+enemy.attackDownUntil-current)
+  enemy.model:SetAttribute("K0AttackDownMultiplier",enemy.attackDownMultiplier)
+ end
+ if definition.defenseBreakDuration then
+  enemy.defenseBreakUntil=math.max(enemy.defenseBreakUntil or 0,current+definition.defenseBreakDuration)
+  enemy.model:SetAttribute("K0DefenseBreakUntil",workspace:GetServerTimeNow()+enemy.defenseBreakUntil-current)
+ end
+end
+
 local function damageEnemy(state, enemy, attack, current)
 	if attack.hits[enemy.model] then return end
 	attack.hits[enemy.model] = true
@@ -688,6 +703,7 @@ local function damageEnemy(state, enemy, attack, current)
 	end
 	if enemy.humanoid.Health > 0 then
 		if applied>0 and d.advanced then
+   applyProvokeDebuffs(enemy,d,current)
 			if d.mark then enemy.branchMarks=enemy.branchMarks or {};enemy.branchMarks[state.heroId]={kind=d.mark,expires=current+8};enemy.model:SetAttribute("K0BranchMark",d.mark) end
 			if d.wet then enemy.model:SetAttribute("K0WetUntil",workspace:GetServerTimeNow()+3) end
 			if d.slow and enemy.kind~="Ogre" and not enemy.model:GetAttribute("StoryBoss") then enemy.gravityUntil=current+(d.slowDuration or 2);enemy.gravityMultiplier=d.slow;enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+(d.slowDuration or 2)) end
@@ -1115,12 +1131,7 @@ local function processCombatSamples(current, requiredState)
 					for index = 1, math.min(attack.maxTargets, #candidates) do
 						local enemy = candidates[index]
 						enemy.provokedBy, enemy.provokeUntil = state, current + attack.definition.provokeDuration
-      enemy.attackDownUntil=current+attack.definition.attackDownDuration
-      enemy.attackDownMultiplier=attack.definition.attackDownMultiplier
-      enemy.model:SetAttribute('K0AttackDownUntil',workspace:GetServerTimeNow()+attack.definition.attackDownDuration)
-      enemy.model:SetAttribute('K0AttackDownMultiplier',enemy.attackDownMultiplier)
-						enemy.defenseBreakUntil = current + attack.definition.defenseBreakDuration
-						enemy.model:SetAttribute("K0DefenseBreakUntil", workspace:GetServerTimeNow() + attack.definition.defenseBreakDuration)
+      applyProvokeDebuffs(enemy,attack.definition,current)
 						enemy.target = state
 						enemy.model:SetAttribute("K0ProvokeUntil", workspace:GetServerTimeNow() + attack.definition.provokeDuration)
 						if not enemy.attack and enemy.mode ~= "Exposed" then setEnemyState(enemy, "Chase") end
