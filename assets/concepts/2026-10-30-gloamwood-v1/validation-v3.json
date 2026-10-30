@@ -1,0 +1,43 @@
+{
+  "task_id": "TLT-065/gloamwood-blocky-bosses-20261030",
+  "active_images": 4,
+  "normal_concepts": 6,
+  "boss_concepts": 3,
+  "new_png_count_this_work": 3,
+  "new_png_bytes": 6372719,
+  "new_png_names": [
+    "gloamwood-creatures-v2.png",
+    "gloamwood-normals-blocky-v3.png",
+    "gloamwood-bosses-blocky-v3.png"
+  ],
+  "active_image_dimensions": {
+    "gloamwood-environment.png": [
+      1672,
+      940
+    ],
+    "gloamwood-normals-blocky-v3.png": [
+      1536,
+      1024
+    ],
+    "gloamwood-bosses-blocky-v3.png": [
+      2048,
+      768
+    ],
+    "widow-queen-lair.png": [
+      1672,
+      941
+    ]
+  },
+  "png_signature_crc_dimensions_bytes_sha256_and_copy": "pass for 4 active and 2 historical PNGs",
+  "reference_hashes_unchanged": "pass",
+  "removed_two_not_in_active_roster_or_gallery": "pass",
+  "normal_ent_and_centipede_preserved_boss_variants_added": "pass",
+  "queen_rank_boss": "pass",
+  "modeling_target_range_and_component_sums": "pass for 9; measured counts null and mesh files null",
+  "prompt_exact_match": "pass",
+  "package_links_checked": 38,
+  "out_of_scope_tracked_files_unchanged": 950,
+  "visual_review": "All generated outputs viewed. Boss first draft rejected for detail; refined cuboid limbs/bodies selected. Face identity visually similar; pixel equality not tested.",
+  "gallery_browser_render": "not verified",
+  "runtime_rig_ai_tris_measurement_device": "not performed"
+}

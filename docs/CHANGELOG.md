@@ -1,5 +1,13 @@
 # 기획 변경 이력
 
+## 2026-10-30 — Venomcoil 이름 복구·King 외형 강화 v5
+
+TLT-065/gloamwood-venomcoil-king-v5-20261030. 최신 사용자 교정으로 지네 이름을 Venomcoil Centipede로 복구하고 보스는 Venomcoil King으로 지정했다. 왕관형3갈래 머리 갑각·금빛 테두리·넓은 목 갑주·치켜든 앞몸통을 추가한 [새 보스 보드](../assets/concepts/2026-10-30-gloamwood-v1/gloamwood-bosses-blocky-v5.png)와 일반 이름표를 수정했다.5일반/3보스·블록형/얼굴 유지·2~3k tris 목표는 유지하며 실제 메시/게임 빌드/게시 변경은 없다.
+
+## 2026-10-30 — Gloamwood 일반5종/보스3종 컨셉 v4
+
+TLT-065/gloamwood-roster-v4-20261030. 최신 사용자 구성에 따라 일반 엔트를 제외하고 Webling·Silkweaver·Barkstalker·Gloambat·Venom Centipede를 일반, Widow Queen·Ancient Hollowbark·Venom Matriarch를 보스로 새 보드2장에 구분했다. [갤러리](../assets/concepts/2026-10-30-gloamwood-v1/index.html)·현재8종의 모델링 목표를 동기화했다. 얼굴 인상/블록형 몸체·2~3k tris 목표를 유지하며 실제 모델/실측·게임 빌드/게시 작업은 없다.
+
 ## 2026-10-30 — 0.37.2 두 RPG Place 비공개 게시
 
 TLT-021/053/084. 사용자가 정확한 두 RPG Place에0.37.2 게시를 승인했다. 시작70829337938054는 Roblox 버전17, 전투129388473517823은 버전3으로 게시하고 Dashboard 게시 전용 이력과 Private 유지를 확인했다. 실제 클라이언트 Knight 생성→SOLO ADVENTURE→Deepwood 도착을 확인했다. 로비 전투 신호 대기 경고는 남아 있으며 영웅 생성/이동을 차단하지 않았다. 왕복·2~4인·타 로비/리조인·저장 장애·실기기 수용은 후속이다. [게시/해시/증거](evidence/release-0372/README.md). TD는 변경하지 않는다.

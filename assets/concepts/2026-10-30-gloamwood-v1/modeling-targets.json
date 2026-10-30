@@ -1,5 +1,5 @@
 {
-  "task_id": "TLT-065/gloamwood-blocky-bosses-20261030",
+  "task_id": "TLT-065/gloamwood-venomcoil-king-v5-20261030",
   "status": "modeling-targets-not-measured",
   "target_tris_per_creature": {
     "min": 2000,
@@ -75,20 +75,6 @@
       "rig_status": "not-created"
     },
     {
-      "name_en": "Hollowbark Ent",
-      "rank": "normal",
-      "target_total_tris": 2400,
-      "allocation_proposal": {
-        "head_and_face": 550,
-        "torso_or_body_segments": 650,
-        "limbs_wings_or_roots": 900,
-        "surface_silhouette_details": 300
-      },
-      "measured_tris": null,
-      "mesh_file": null,
-      "rig_status": "not-created"
-    },
-    {
       "name_en": "Venomcoil Centipede",
       "rank": "normal",
       "target_total_tris": 2350,
@@ -103,7 +89,7 @@
       "rig_status": "not-created"
     },
     {
-      "name_en": "The Widow Queen",
+      "name_en": "Widow Queen",
       "rank": "boss",
       "target_total_tris": 2600,
       "allocation_proposal": {
@@ -131,7 +117,7 @@
       "rig_status": "not-created"
     },
     {
-      "name_en": "Venomcoil Matriarch",
+      "name_en": "Venomcoil King",
       "rank": "boss",
       "target_total_tris": 2750,
       "allocation_proposal": {

@@ -1,0 +1,23 @@
+{
+  "task_id": "TLT-065/gloamwood-roster-v4-20261030",
+  "normal_count": 5,
+  "boss_count": 3,
+  "active_images": 4,
+  "new_images": 2,
+  "new_png_bytes": 3937678,
+  "png_crc_size_dimensions_hash_copy": "pass for 4 active and 4 historical PNGs",
+  "exact_requested_rank_sets": "pass",
+  "normal_ent_excluded": "pass",
+  "current_names_and_gallery_links": "pass",
+  "modeling_target_sums_2000_3000_and_actuals_null": "pass for 8",
+  "current_prompts_exact_match": "pass",
+  "package_links_checked": 36,
+  "out_of_scope_tracked_files_unchanged": 968,
+  "concurrent_foreign_docs_preserved_excluded_from_count": [
+    "docs/evidence/battle-place-provisioning/README.md",
+    "docs/production/current-status.md"
+  ],
+  "visual_review": "Both generated outputs viewed; 5 normal cells and 3 boss cells, labels and blocky identity checked",
+  "gallery_browser_render": "not verified",
+  "runtime_rig_actual_tris_device": "not performed"
+}

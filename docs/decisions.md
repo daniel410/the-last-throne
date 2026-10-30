@@ -554,3 +554,17 @@ HP 물약 Small100/Medium300/Large500/XL1000,MP Small50/Medium100/Large200/XL500
 이어진 사용자 지시로 Widow Queen을 보스급으로 강화하고 일반 엔트/지네 외에 보스 엔트/지네를 각각1종 추가했다. 현재는 **일반6종+보스3종**이다. 얼굴 인상을 최대한 유지하고 몸통/팔다리를 블록형으로, **모델당2,000~3,000 tris 목표**로 제작 방향을 갱신한다. 이 최신 구성이 위의7종 중간안보다 우선한다. 나방/중장갑 호위는 계속 제외한다.
 
 **TLT-065/gloamwood-blocky-bosses-20261030**의 [일반/보스 새 보드](../assets/concepts/2026-10-30-gloamwood-v1/index.html)와 [모델링 목표](../assets/concepts/2026-10-30-gloamwood-v1/modeling-targets.json)를 참조한다. 새 이름 Ancient Hollowbark·Venomcoil Matriarch는 영문 가칭이다. 보스 첫 시안은 몸/장식이 복잡해 얼굴을 이어가면서 큰 블록으로 보정했다. 2~3k는 실측/검증 결과가 아니고 실제 모델/삼각형 수는 미생성/null이다. 얼굴 픽셀 동일/후면·관절/기기 성능도 미검증이다. 필수/선택 보스 배치/수치·후반 본편 채택/번호는 확정하지 않는다. 에픽1~4·보상·게임 소스/VERSION과 기존5~8 보류는 유지한다.
+
+
+## 2026-10-30 현재 몬스터 구성 확정 · 일반5종/보스3종 v4
+
+최신 사용자 요청의 분류를 반영해 현재 후보의 일반은 Webling·Silkweaver·Barkstalker·Gloambat·Venom Centipede,보스는 Widow Queen·Ancient Hollowbark·Venom Matriarch로 지정한다. 일반 Hollowbark Ent는 현재 목록/모델링 대상에서 제외하고 엔트는 보스로만 둔다. Gloambat·Ancient Hollowbark는 기존 영문 표기를 유지하고 지네 명칭은 사용자 표기에 맞춰 정리했다. 위의9종 구성/이전 이름보다 이8종 구성이 우선한다.
+
+**TLT-065/gloamwood-roster-v4-20261030**에서 [일반5종/보스3종 새 보드](../assets/concepts/2026-10-30-gloamwood-v1/index.html)와 [모델링 목표](../assets/concepts/2026-10-30-gloamwood-v1/modeling-targets.json)를 갱신했다. 얼굴 인상 유지·블록형 몸통/팔다리·모델당2~3k tris 목표는 유지하며 실제 메시/실측·후면/리그/기기 수용은 없다. 기존1~4·보상/VERSION·5~8 보류는 유지하고 보스 필수/선택 배치나 새 에픽 번호/본편 채택까지 확정하지 않는다.
+
+
+## 2026-10-30 Venomcoil 표기 교정·King 컨셉 강화 · v5
+
+사용자는 지네 이름에 Venomcoil을 사용하고 지네 킹을 더 왕답게 만들도록 교정했다. 현재 일반 지네는 **Venomcoil Centipede**,지네 보스는 **Venomcoil King**이며 위 중간안의 Venom Centipede/Venom Matriarch보다 우선한다. 일반5종/보스3종 분류와 일반 엔트 제외는 유지한다.
+
+**TLT-065/gloamwood-venomcoil-king-v5-20261030**의 [현재 보드](../assets/concepts/2026-10-30-gloamwood-v1/index.html)는 기존 얼굴/보라 눈을 이어가면서 킹의 왕관형3갈래 머리 갑각·큰 목 갑주·금빛 테두리·앞몸통을 치켜든 자세를 강화했다. 여왕/엔트의 보존과 일반 지네 이름표 수정은 참조 편집으로 요청했다. 얼굴/배경/다른 셀 픽셀 동일성은 미검증이며2~3k tris는 실제 메시가 없는 제작 목표다.1~4·보상/VERSION·기존5~8 보류/새 에픽 번호 미정은 유지한다.

@@ -1,10 +1,10 @@
 {
-  "task_id": "TLT-065/gloamwood-blocky-bosses-20261030",
+  "task_id": "TLT-065/gloamwood-venomcoil-king-v5-20261030",
   "date": "2026-10-30",
   "status": "concept-candidate-not-approved-not-runtime",
   "epic_number": null,
   "tool": "built-in image_gen",
-  "generation_calls": 7,
+  "generation_calls": 11,
   "images": [
     {
       "file": "gloamwood-environment.png",
@@ -18,26 +18,26 @@
       "mode": "new-generation"
     },
     {
-      "file": "gloamwood-normals-blocky-v3.png",
-      "title_ko": "일반 몬스터6종 · 블록형 모델링 컨셉",
-      "prompt": "prompts/normals-blocky-v3.txt",
-      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-c0a2d25e-2052-4a6c-9f5f-c3ac4bc59b0f.png",
-      "bytes": 1980376,
+      "file": "gloamwood-normals-blocky-v5.png",
+      "title_ko": "일반 몬스터5종 · Venomcoil 표기 수정 v5",
+      "prompt": "prompts/normals-blocky-v5.txt",
+      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-537a8b80-fea1-427b-a85e-a892183aba6a.png",
+      "bytes": 1855175,
       "width": 1536,
       "height": 1024,
-      "sha256": "40275485e7e7d13e3c4ab1d7283660e3d3d2f16ae3130f9b4eccab4481759fca",
-      "mode": "reference-image-blocky-modeling-redesign"
+      "sha256": "fd18227e375f9285d5781765fd2d429d924c9c4dd2ed095230f68ebe6fb42fb2",
+      "mode": "reference-image-name-correction-and-king-redesign"
     },
     {
-      "file": "gloamwood-bosses-blocky-v3.png",
-      "title_ko": "보스3종 · 블록형 모델링 컨셉",
-      "prompt": "prompts/bosses-blocky-v3-refinement.txt",
-      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-5bae9119-dc8b-4a31-93a5-0dd185b549d0.png",
-      "bytes": 2120029,
+      "file": "gloamwood-bosses-blocky-v5.png",
+      "title_ko": "보스3종 · Venomcoil King 강화 v5",
+      "prompt": "prompts/bosses-blocky-v5.txt",
+      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-5660d002-6f09-441d-ba9a-cf88bebd4812.png",
+      "bytes": 2119922,
       "width": 2048,
       "height": 768,
-      "sha256": "791c267e3acea5bc01b0e8cd61c1a1079104e494e620dd7fe464cde5aa5901b0",
-      "mode": "reference-image-blocky-modeling-redesign"
+      "sha256": "a21623c6d71d093115c3f13d341e2292ea1fc6affd6d655dc28be340621edfa7",
+      "mode": "reference-image-name-correction-and-king-redesign"
     },
     {
       "file": "widow-queen-lair.png",
@@ -64,7 +64,7 @@
       "name_en": "Webling",
       "role_ko": "작은 군집 거미",
       "rank": "normal",
-      "board_file": "gloamwood-normals-blocky-v3.png",
+      "board_file": "gloamwood-normals-blocky-v5.png",
       "board_cell": 1
     },
     {
@@ -72,7 +72,7 @@
       "name_en": "Silkweaver",
       "role_ko": "거미줄 사냥꾼",
       "rank": "normal",
-      "board_file": "gloamwood-normals-blocky-v3.png",
+      "board_file": "gloamwood-normals-blocky-v5.png",
       "board_cell": 2
     },
     {
@@ -80,7 +80,7 @@
       "name_en": "Barkstalker",
       "role_ko": "나무껍질 위장 거미",
       "rank": "normal",
-      "board_file": "gloamwood-normals-blocky-v3.png",
+      "board_file": "gloamwood-normals-blocky-v5.png",
       "board_cell": 3
     },
     {
@@ -88,31 +88,23 @@
       "name_en": "Gloambat",
       "role_ko": "박쥐",
       "rank": "normal",
-      "board_file": "gloamwood-normals-blocky-v3.png",
+      "board_file": "gloamwood-normals-blocky-v5.png",
       "board_cell": 4
-    },
-    {
-      "label": "HOLLOWBARK ENT",
-      "name_en": "Hollowbark Ent",
-      "role_ko": "일반 엔트",
-      "rank": "normal",
-      "board_file": "gloamwood-normals-blocky-v3.png",
-      "board_cell": 5
     },
     {
       "label": "VENOMCOIL CENTIPEDE",
       "name_en": "Venomcoil Centipede",
       "role_ko": "일반 지네",
       "rank": "normal",
-      "board_file": "gloamwood-normals-blocky-v3.png",
-      "board_cell": 6
+      "board_file": "gloamwood-normals-blocky-v5.png",
+      "board_cell": 5
     },
     {
-      "label": "THE WIDOW QUEEN",
-      "name_en": "The Widow Queen",
+      "label": "WIDOW QUEEN",
+      "name_en": "Widow Queen",
       "role_ko": "거미 여왕 보스",
       "rank": "boss",
-      "board_file": "gloamwood-bosses-blocky-v3.png",
+      "board_file": "gloamwood-bosses-blocky-v5.png",
       "board_cell": 1
     },
     {
@@ -120,15 +112,15 @@
       "name_en": "Ancient Hollowbark",
       "role_ko": "엔트 보스",
       "rank": "boss",
-      "board_file": "gloamwood-bosses-blocky-v3.png",
+      "board_file": "gloamwood-bosses-blocky-v5.png",
       "board_cell": 2
     },
     {
-      "label": "VENOMCOIL MATRIARCH",
-      "name_en": "Venomcoil Matriarch",
-      "role_ko": "지네 보스",
+      "label": "VENOMCOIL KING",
+      "name_en": "Venomcoil King",
+      "role_ko": "왕관형 갑각의 지네 킹 보스",
       "rank": "boss",
-      "board_file": "gloamwood-bosses-blocky-v3.png",
+      "board_file": "gloamwood-bosses-blocky-v5.png",
       "board_cell": 3
     }
   ],
@@ -156,9 +148,57 @@
       "sha256": "5784b890865cd27d18f3ba4d9e6c78e087d87d3c02c0698846cbedb6ff89293a",
       "mode": "reference-image-roster-revision",
       "status": "superseded-by-blocky-normal-and-boss-sheets"
+    },
+    {
+      "file": "gloamwood-normals-blocky-v3.png",
+      "title_ko": "일반 몬스터6종 · 블록형 모델링 컨셉",
+      "prompt": "prompts/normals-blocky-v3.txt",
+      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-c0a2d25e-2052-4a6c-9f5f-c3ac4bc59b0f.png",
+      "bytes": 1980376,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "40275485e7e7d13e3c4ab1d7283660e3d3d2f16ae3130f9b4eccab4481759fca",
+      "mode": "reference-image-blocky-modeling-redesign",
+      "status": "superseded-by-explicit-five-normal-three-boss-roster"
+    },
+    {
+      "file": "gloamwood-bosses-blocky-v3.png",
+      "title_ko": "보스3종 · 블록형 모델링 컨셉",
+      "prompt": "prompts/bosses-blocky-v3-refinement.txt",
+      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-5bae9119-dc8b-4a31-93a5-0dd185b549d0.png",
+      "bytes": 2120029,
+      "width": 2048,
+      "height": 768,
+      "sha256": "791c267e3acea5bc01b0e8cd61c1a1079104e494e620dd7fe464cde5aa5901b0",
+      "mode": "reference-image-blocky-modeling-redesign",
+      "status": "superseded-by-explicit-five-normal-three-boss-roster"
+    },
+    {
+      "file": "gloamwood-normals-blocky-v4.png",
+      "title_ko": "일반 몬스터5종 · 블록형 컨셉 v4",
+      "prompt": "prompts/normals-blocky-v4.txt",
+      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-8d553255-143f-49c8-8d7f-b854c2aacfee.png",
+      "bytes": 1868211,
+      "width": 1536,
+      "height": 1024,
+      "sha256": "df1669416216991be043bab458e4ac0487713ba7aba44a00976a7f85aff2b626",
+      "mode": "reference-image-roster-classification-edit",
+      "status": "superseded-by-venomcoil-king-correction"
+    },
+    {
+      "file": "gloamwood-bosses-blocky-v4.png",
+      "title_ko": "보스3종 · 블록형 컨셉 v4",
+      "prompt": "prompts/bosses-blocky-v4.txt",
+      "original_generated_path": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-161c4800-f6b5-4d9a-993d-7456f1f5b7ac.png",
+      "bytes": 2069467,
+      "width": 2048,
+      "height": 768,
+      "sha256": "4a551e2dde27494d668b0bcc3516887f5ac6f2e8dca249708287786fcc92f434",
+      "mode": "reference-image-roster-classification-edit",
+      "status": "superseded-by-venomcoil-king-correction"
     }
   ],
-  "revision": 3,
+  "revision": 5,
   "revision_calls": 1,
   "board_revision_reference": {
     "file": "gloamwood-creatures.png",
@@ -167,7 +207,8 @@
   },
   "removed_from_active_roster": [
     "Gloomwing Moth",
-    "Broodguard"
+    "Broodguard",
+    "Hollowbark Ent"
   ],
   "revision_calls_this_work": 4,
   "modeling_contract": "modeling-targets.json",
@@ -179,14 +220,20 @@
   },
   "revision_inputs": [
     {
-      "file": "gloamwood-creatures-v2.png",
-      "role": "Normal sheet identity reference and initial boss ent/centipede reference",
-      "sha256": "5784b890865cd27d18f3ba4d9e6c78e087d87d3c02c0698846cbedb6ff89293a"
+      "file": "gloamwood-normals-blocky-v4.png",
+      "sha256": "df1669416216991be043bab458e4ac0487713ba7aba44a00976a7f85aff2b626",
+      "role": "Keep normal five; correct Venomcoil Centipede label"
     },
     {
-      "file": "widow-queen-lair.png",
-      "role": "Queen face reference for boss redesign",
-      "sha256": "7ff8152a6f0b89499e68018326b8a281e80f01981dc71a0d0afcbcdcc5ce52ee"
+      "file": "gloamwood-bosses-blocky-v4.png",
+      "sha256": "4a551e2dde27494d668b0bcc3516887f5ac6f2e8dca249708287786fcc92f434",
+      "role": "Keep queen/ent; redesign only right centipede as regal Venomcoil King"
     }
-  ]
+  ],
+  "current_name_aliases": {
+    "Venom Centipede": "Venomcoil Centipede",
+    "Venom Matriarch": "Venomcoil King",
+    "Venomcoil Matriarch": "Venomcoil King",
+    "The Widow Queen": "Widow Queen"
+  }
 }
