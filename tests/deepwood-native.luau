@@ -60,6 +60,7 @@ local ok,err=xpcall(function()
   check(node.part.Position==Vector3.new(table.unpack(g.position))+Vector3.new(0,1,0),g.id..' geometry anchor')
  end end
  report.objectives=count
+ for _,p in ipairs(game:GetService('ServerStorage').TDMapModels:GetDescendants()) do if p:IsA('MeshPart') then check(p.RenderFidelity==Enum.RenderFidelity.Automatic,'TD source uses native Automatic fidelity') end end
  local activityCount=0
  for _,node in pairs(world.activityNodes) do
   activityCount+=1;local p=node.part.Position;local ground=field.TerrainBlockout[node.chapter.zone].ForestGround

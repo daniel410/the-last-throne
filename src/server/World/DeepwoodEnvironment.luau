@@ -6,7 +6,7 @@ local function place(template,parent,name,position,height)
  assert(template and template:IsA('Model'),'Pinned TD environment model missing: '..name)
  local copy=template:Clone();copy.Name=name
  for _,p in ipairs(copy:GetDescendants()) do
-  if p:IsA('BasePart') then assert(p:IsA('MeshPart') and p.MeshId~='','Expected original TD MeshPart');p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p:SetAttribute('TLTDecorative',true);p.RenderFidelity=Enum.RenderFidelity.Automatic
+  if p:IsA('BasePart') then assert(p:IsA('MeshPart') and p.MeshId~='','Expected original TD MeshPart');p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p:SetAttribute('TLTDecorative',true)
   elseif p:IsA('LuaSourceContainer') then error('Executable content in pinned TD environment') end
  end
  local _,size=copy:GetBoundingBox();copy:ScaleTo(copy:GetScale()*height/size.Y)
