@@ -1,0 +1,25 @@
+{
+  "source": "e428193",
+  "mappedLfs": [
+    {
+      "path": "assets/shared/td-monsters/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5"
+    },
+    {
+      "path": "assets/shared/td-player-weapons/runtime.rbxmx",
+      "sha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9"
+    },
+    {
+      "path": "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+      "sha256": "77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823"
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/maps.rbxmx",
+      "sha256": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39"
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+      "sha256": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5"
+    }
+  ]
+}

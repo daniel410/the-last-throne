@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-29 TLT-014/027/041/050/052/061/084 부분 구현: **0.35.2** 다섯 보스전 총 출현7/10/9/8/12마리·시작 호위/체력 구간 증원·공격 준비를 연결했다. 순수 보스96·진행570·퀘스트31, native 서버126개/종료0. [조사/구성](docs/research/2026-10-29-boss-populations.md) · [검증/남은 수용](docs/evidence/deepwood/bosses-0352/README.md). 실제 정상 전투 난이도·4인/모바일 수용은 후속이며 상위 티켓은 In Progress다.
+
 > 2026-10-29 TLT-001/011/018/025/026/028/050/052/061/084 부분 구현: **0.34.0~0.35.1** 에픽/메인 퀘스트/국면/활동 구분·선택 수주와 보고·현장 단서 자유 순서·본편 필수 기본 추적·3탭 저널·완료 결과를 연결했다. 실제 Player의 LATER 무변경/발견 수락·보고 선행 안내 확인. [리서치](docs/research/2026-10-29-quest-structure.md) · [실행 계약](docs/production/quest-and-story-flow.md) · [증거/남은 수용](docs/evidence/deepwood/quest-flow-0351/README.md). 상위 티켓은 In Progress이며7스토리 정상 전투·4인/실기기/게시 저장 수용은 후속이다.
 
 > 2026-10-29 TLT-014/015/027/028/031/040/042/050/052/061/084 부분 구현: **0.33.5** 안전 야외 성장 투자·본편57/선택3 하위 단계·호위/조사/대화/룬·개인 탐험2D 지도·선행 지역 잠금·X/Z2.2배·줌 제한·스트리밍/거리 예산. [RPG 조사](docs/research/2026-10-29-rpg-exploration-and-rendering.md) · [검증과 남은 수용](docs/evidence/deepwood/adventure-0335/README.md). 실제 Lv2 야외 투자/서버 경계/줌 확인. 전체 정상 전투·실기기/4인·게시 저장·성능 개선량은 미검증이며 상위 티켓을 Done으로 바꾸지 않는다.

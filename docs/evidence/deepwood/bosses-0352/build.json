@@ -1,0 +1,10 @@
+{
+  "version": "0.35.2",
+  "sourceCommit": "e4281931e23d0554e46a33eea46759cc735b08b8",
+  "file": "builds/0.35.2/TheLastThrone-0.35.2.rbxlx",
+  "bytes": 1483901,
+  "sha256": "b858f307cb1479944a6676e2fb8a5b1fdb5b125f3e5cae407cf47b5e2a698b7b",
+  "source": "Git archive; LFS archive contains hydrated runtime assets",
+  "build": "success",
+  "published": false
+}

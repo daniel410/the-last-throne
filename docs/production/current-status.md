@@ -1,8 +1,12 @@
 # 현재 개발 상태와 다음 작업
 
-2026-10-29 · 총괄 DIR · **로컬 시험 빌드 `0.35.1`** · 게시된 비공개 시험판 `0.18.3`
+2026-10-29 · 총괄 DIR · **로컬 시험 빌드 `0.35.2`** · 게시된 비공개 시험판 `0.18.3`
 
 [작업 종합 정리](work-summary-2026-10-29.md) · [최신 결정](../decisions.md) · [액션·스킬 상세](action-and-skill-design.md) · [빌드·게시 증거](../evidence/k0/build.md) · [백로그](../../backlog.md)
+
+## 보스 호위·체력 구간별 증원 (0.35.2)
+
+사용자 후속 지시로 보스 포함 총 출현을 Warlord7·King Shaman10·Goblin King9·King Ogre8·Enraged Warlord12마리로 확대했다. 시작 호위와 유한 체력 구간 증원·공격 준비 시간을 사용하며 기존 국면과 초회 보상은 유지한다. 추가 정상 처치의 XP/Coins는 기존 공식으로 지급된다. 고정 입력 순수 보스96·진행570·퀘스트31, native 서버126·월드615개/실행기 종료0을 확인했다. Player/계정 대역 및 직접 사망 시험이며 정상 전투 난이도 수용과 구분한다. [조사/구성](../research/2026-10-29-boss-populations.md) · [검증/다음 담당](../evidence/deepwood/bosses-0352/README.md). 솔로 네 클래스/4인·모바일 성능·전멸률/소요 시간은 QA 후속이다.
 
 ## 메인 스토리·선택 수주·보고·저널 (0.34.0~0.35.1)
 
@@ -52,8 +56,8 @@
 
 ## 빌드·게시와 검증의 경계
 
-- **최신 로컬:** `0.35.1`, 소스 `813690b` ([정확한 커밋·해시](../evidence/deepwood/quest-flow-0351/build.json)), [빌드](../../builds/0.35.1/TheLastThrone-0.35.1.rbxlx) · [검증](../evidence/deepwood/quest-flow-0351/README.md). 산출물은 Git 제외 로컬 파일이다.
-- **현재 확인된 게시:** 2026-10-28 사용자가 `0.18.3`을 독립 The Last Throne Experience `10773575153`, 시작 Place `70829337938054`에 게시했다. Creator Dashboard의 게시 Place 버전은 **4**, 확인 당시 접근은 Private이며 Git 태그 `v0.18.3`을 해당 빌드 소스에 푸시했다. Roblox의 Place 버전과 게임 빌드 버전은 서로 다르다. `0.18.4~0.35.1`의 로컬 빌드는 게시되지 않았다. [게시 기록](../evidence/k0/build.md).
+- **최신 로컬:** `0.35.2`, 소스 `e428193` ([정확한 커밋·해시](../evidence/deepwood/bosses-0352/build.json)), [빌드](../../builds/0.35.2/TheLastThrone-0.35.2.rbxlx) · [검증](../evidence/deepwood/bosses-0352/README.md). 산출물은 Git 제외 로컬 파일이다.
+- **현재 확인된 게시:** 2026-10-28 사용자가 `0.18.3`을 독립 The Last Throne Experience `10773575153`, 시작 Place `70829337938054`에 게시했다. Creator Dashboard의 게시 Place 버전은 **4**, 확인 당시 접근은 Private이며 Git 태그 `v0.18.3`을 해당 빌드 소스에 푸시했다. Roblox의 Place 버전과 게임 빌드 버전은 서로 다르다. `0.18.4~0.35.2`의 로컬 빌드는 게시되지 않았다. [게시 기록](../evidence/k0/build.md).
 - **0.18.7 증거:** 격리 Studio 빌드 smoke 458개, 서버 전투 401개, 스킬 자세 35개, 적중 효과 102개, R6/R15 Overhead 회전 경로 6개, 무기 회귀 2,238개 통과. 0.18.6 양손·수평 방어 동적 리그 42개 검사도 통과했다. 이는 실제 게시 클라이언트·실기기·다인·시각적 완성 수용과 구분한다.
 - **0.18.8 증거:** 고정 빌드 smoke 458개, 서버 전투 452개, UI 상태 83개, 타이밍 106개 통과. 격리 Studio의 실제 Player에서 네 직업의 기본3 기술 입력·자원 표시를 부분 확인했다. [자원 검증](../evidence/k0/2026-10-29-stamina-removal.md).
 - **0.18.9 증거:** 고정 빌드 smoke 458개와 UI 상태 85개 통과. 격리 Studio의 실제 Player로 수정된 Lv20/40 슬롯 안내, Knight 액션·회복·물약·사망/리스폰 일부를 확인하고 슬라임 분열 재적중을 발견했다. [Player 기록](../evidence/k0/2026-10-29-player-combat-and-slime.md).

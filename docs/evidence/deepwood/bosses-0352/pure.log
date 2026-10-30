@@ -1,0 +1,13 @@
+$ lua tests/deepwood-bosses.spec.lua
+Deepwood bosses: 96 checks passed
+
+
+$ lua tests/deepwood-progress.spec.lua
+Deepwood progression: 515 checks passed
+Deepwood total: 520 checks passed
+Deepwood extended total: 570 checks passed
+
+
+$ lua tests/deepwood-quests.spec.lua
+Deepwood quest contract: 31 checks passed
+
