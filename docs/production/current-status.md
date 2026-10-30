@@ -12,7 +12,7 @@
 
 RPG Gold/Diamonds 계정 지갑·기존 Coins 이전·본편 초회 계정당2 Diamonds·로비 ARMORY 구매/판매·ADVENTURES 모집/준비/출발·타 로비 합류·예약 전투/15분 리조인·Lobby/Battle 별도 빌드를 구현했다. TD 원본/구조를 참고하고 TD 잔액/Place는 유지한다. 출발 전 전원 영웅 잠금·저장 lease 해제/재개와 개인 티켓을 검사한다. 실제 Studio Player 구매/매각과 지갑/가방 반영을 확인했다.0.36.1 경제26·원정 저장43·서비스11·로비126·전투 부트10 통과. [실행 계약](lobby-economy-and-expeditions.md) · [검증](../evidence/lobby-0361/README.md).
 
-Creator Dashboard에서 RPG 시작 Place 최대 인원20을 저장했다. 별도 전투 Place는 없으며 생성 API가 Studio API 접근 비활성 오류로 실패했다. 사용자가 생성 동안 Studio API 접근을 켜고 완료 후 끄는 것을 승인했다. 자동 UI는 TD 창만 선택해 RPG 설정을 변경하지 못했으며, RPG 창에서 직접 켜고 Save하는 조작을 사용자에게 요청했다. 아직 API 접근을 켜지 않았고 `battlePlaceId=0`이다. 최신 소스는 미게시이며 게시 원정은 설정 안내로 중단한다. 실제 Solo 왕복·타 로비·2~4인·재접속/저장 장애·모바일·20인 부하 수용은 미완료다. 상위 티켓을 Done으로 바꾸지 않는다.
+Creator Dashboard에서 RPG 시작 Place 최대 인원20을 저장했다. 사용자 지시로 Studio들을 강제 종료/재시작해 올바른 RPG 설정 창을 열었다. 승인된 임시 Studio API 접근을 켜고 생성 재시도했으나 HTTP403으로 실패했고 OFF 저장/재열기로 복구를 확인했다. 검증 Battle0.37.1을 RPG에 새 Place로 저장하는 직접 경로는 자산 사용 권한 경고에서 대기 중이다. 자동 승인 검토가 권한 부여 클릭을 거부해 사용자에게 대상/범위를 명시한 승인을 요청했다. 새 ID/저장·게시 성공은 미확인이며 `battlePlaceId=0`이다. [재시도·복구 증거](../evidence/battle-place-provisioning/README.md). 최신 소스는 미게시이며 게시 원정은 설정 안내로 중단한다. 실제 Solo 왕복·타 로비·2~4인·재접속/저장 장애·모바일·20인 부하 수용은 미완료다. 상위 티켓을 Done으로 바꾸지 않는다.
 
 ## 보스 호위·체력 구간별 증원 (0.35.2)
 

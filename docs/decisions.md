@@ -6,7 +6,7 @@
 
 ## 2026-10-30 — 전투 Place 생성의 일시 API 접근 승인
 
-사용자는 The Last Throne의 Studio API 접근을 전투 Place 생성 동안만 켜고 생성 후 끄는 것을 승인했다. 자동 UI는 TD Studio 창만 선택하여 RPG 토글을 변경하지 못했다. API 접근은 실제로 켜지 않았고 Place도 아직 생성하지 않았다. 사용자에게 RPG Studio에서 직접 토글/Save 후 알려 달라고 요청했다. 이는 재승인 요청이 아니라 UI 선택 한계를 해소하는 조작 요청이다. 생성 후 비활성 복구를 반드시 확인하며 TD 설정/Place는 변경하지 않는다.
+사용자는 Studio API 접근을 전투 Place 생성 동안만 켜고 생성 후 끄는 것을 승인했다. 이어 전체 Studio 강제 종료/재시작을 요청해 RPG 창 선택을 정상화했다. RPG에서 API 접근을 잠시 켜고 Run 서버로 재시도했으나 HTTP403으로 실패했고, 즉시 OFF 저장/재열기로 복구를 확인했다. 검증된 Battle0.37.1의 Save to Roblox As → The Last Throne → Add as a new place는 자산 사용 권한 부여 경고에서 대기 중이다. 자동 승인 검토가 Grant Permissions and Publish를 별도 사용자 승인 부족으로 거부해 사용자에게 정확한 대상 Experience10773575153에 대한 승인을 요청했다. 새 ID/저장·게시 성공은 아직 확인되지 않았으며 TD 설정/Place는 변경하지 않았다. [재시도·복구 증거](evidence/battle-place-provisioning/README.md).
 
 ## 2026-10-30 — 로비 컨셉의 세 시설 구현
 
@@ -14,7 +14,7 @@
 
 ## 2026-10-30 — Gold/Diamonds·로비 무기 상점·원정 서버
 
-사용자 요청으로 RPG 일반 재화 표시를 Gold로 바꾸고 기존 Coins 금액을 보존하며 계정 지갑·Diamonds·무기 구매/판매를 도입했다. TD와 분리한 지갑이며 공통 Diamonds 조정/실제 Robux 상품 계약을 대체하지 않는다. 솔로·2~4인·20명 로비·타 로비 합류·예약 전투·리조인 경로를0.36.1에 구현했다.15분 리조인·가격/2 Diamond 지급·lease/대기 시간은 시험값이다. [실행 계약](production/lobby-economy-and-expeditions.md) · [증거](evidence/lobby-0361/README.md). 로비 최대20명 저장 확인. 사용자 답변상 기존 전투 Place가 없고 새 Place 생성은 API 접근 비활성으로 실패해 일시 허용 여부 대기 중이다. ID0·미게시·실제 게시 이동/저장/다인 수용 미완료다.
+사용자 요청으로 RPG 일반 재화 표시를 Gold로 바꾸고 기존 Coins 금액을 보존하며 계정 지갑·Diamonds·무기 구매/판매를 도입했다. TD와 분리한 지갑이며 공통 Diamonds 조정/실제 Robux 상품 계약을 대체하지 않는다. 솔로·2~4인·20명 로비·타 로비 합류·예약 전투·리조인 경로를0.36.1에 구현했다.15분 리조인·가격/2 Diamond 지급·lease/대기 시간은 시험값이다. [실행 계약](production/lobby-economy-and-expeditions.md) · [증거](evidence/lobby-0361/README.md). 로비 최대20명 저장 확인. 사용자 답변상 기존 전투 Place가 없고 새 Place 생성의 API403 재시도/접근 OFF 복구 후 자산 사용 권한 승인 대기 중이다. ID0·미게시·실제 게시 이동/저장/다인 수용 미완료다.
 
 ## 1. 사용자 결정
 
