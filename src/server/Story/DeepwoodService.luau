@@ -90,12 +90,30 @@ local function destroyEncounter(e)
  for _,m in ipairs(e.models) do if m.Parent then m:Destroy() end end
  for _,p in ipairs(e.parts or {}) do if p.Parent then p:Destroy() end end
 end
-local function support(e,kind,level,offset)
+local function support(e,kind,level,offset,delay)
  local p=e.position+offset;local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,1,1)
  m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y-1,0));m:SetAttribute('DeepwoodEncounter',e.key)
  m:SetAttribute('StoryLevel',level);m:SetAttribute('StoryHealth',100+level*25);m:SetAttribute('StoryDamage',10+level)
- m:FindFirstChildOfClass('Humanoid').DisplayName=kind=='Shaman' and 'Goblin Shaman' or 'Goblin'
+ m:FindFirstChildOfClass('Humanoid').DisplayName=({Shaman='Goblin Shaman',Orc='Orc Warrior',Goblin='Goblin'})[kind] or kind
+ m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+delay)
  table.insert(e.models,m);e.remaining=e.remaining+1;options.combat.addStoryEnemy(m)
+end
+local function reinforce(e,health)
+ local profile=e.goal.bossEncounter;if not profile then return end
+ e.reinforcements=e.reinforcements or {}
+ for index,wave in ipairs(profile.waves) do
+  if health<=wave.health and not e.reinforcements[index] then
+   e.reinforcements[index]=true
+   local total=0;for _,spec in ipairs(wave.enemies) do total+=spec.count end
+   local n=0
+   for _,spec in ipairs(wave.enemies) do for _=1,spec.count do
+    n+=1;local angle=(n-1)*math.pi*2/total+index*.7
+    local radius=spec.kind=='Shaman' and 27 or 22
+    support(e,spec.kind,spec.level,Vector3.new(math.cos(angle)*radius,0,math.sin(angle)*radius),1.25+n*.18)
+   end end
+   for player in pairs(e.participants) do publish(player,'Reinforcements! '..total..' guards are joining the battle. Reposition before they attack.') end
+  end
+ end
 end
 local function pillar(e,index)
  local p=Instance.new('Part');p.Name='TemporarySealPillar';p.Size=Vector3.new(4,9,4);p.Position=e.position+Vector3.new(index==1 and -22 or 22,3,0)
@@ -122,18 +140,15 @@ function Service.bossDamage(model,damage)
  if e.shield then return 0 end
  local humanoid=model:FindFirstChildOfClass('Humanoid');local hp,max=humanoid.Health,humanoid.MaxHealth
  local kind=model:GetAttribute('EnemyKind')
- if kind=='Warlord' and not e.reinforced and hp-damage<=max*.5 then
-  e.reinforced=true;support(e,'Shaman',9,Vector3.new(-20,0,12))
-  for p in pairs(e.participants) do publish(p,'The Warlord calls a shaman! Clear the support or move to the flank.') end
- end
  if kind=='KingShaman' then
-  if not e.reinforced then e.reinforced=true;support(e,'Goblin',11,Vector3.new(-18,0,12));support(e,'Goblin',11,Vector3.new(18,0,12)) end
   if not e.phase2 and hp-damage<=max*.7 then
+   reinforce(e,.7)
    e.phase2=true;e.shield=true;e.pillars=2;model:SetAttribute('StoryShield',true);model:SetAttribute('StoryPhase',2)
    pillar(e,1);pillar(e,2)
    for p in pairs(e.participants) do publish(p,'King Shaman is shielded. Break both temporary pillars, one at a time.') end
    return math.max(0,hp-max*.7)
   elseif not e.phase3 and hp-damage<=max*.35 then
+   reinforce(e,.35)
    e.phase3=true;e.nextHazard=os.clock()+2;model:SetAttribute('StoryPhase',3)
    for p,heroId in pairs(e.participants) do
     local s=state(p,heroId)
@@ -145,6 +160,7 @@ function Service.bossDamage(model,damage)
    return math.max(0,hp-max*.35)
   end
  end
+ reinforce(e,math.max(0,hp-damage)/max)
  return damage
 end
 local function floorHazard(e)
@@ -178,6 +194,7 @@ local function spawnWave(e)
   m:SetAttribute('StoryLevel',spec.level);m:SetAttribute('StoryBoss',boss)
   m:SetAttribute('StoryHealth',math.floor((boss and 1000+spec.level*100 or 100+spec.level*25)*(boss and ({1,1.7,2.3,2.8})[e.partySize] or 1)))
   m:SetAttribute('StoryDamage',boss and 28+spec.level*2 or 10+spec.level)
+  if e.goal.bossEncounter then m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1+index*.12) end
   m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or kind
   table.insert(e.models,m);e.remaining=e.remaining+1;if boss then e.boss=m end;options.combat.addStoryEnemy(m)
  end end

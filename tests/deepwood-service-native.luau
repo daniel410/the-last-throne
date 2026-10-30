@@ -24,6 +24,20 @@ local ok,err=xpcall(function()
  story.start({world=world,enemies=workspace.DeepwoodK0.Enemies,inventory=inventory,heroSession=hero,combat=combat})
  local function near(c,g) root.Position=world.nodes[c..':'..g].part.Position end
  local function models(key) local r={} for _,m in ipairs(workspace.DeepwoodK0.Enemies:GetChildren()) do if m:GetAttribute('DeepwoodEncounter')==key then table.insert(r,m) end end return r end
+ local function reinforceBoss(boss,key,initial,total,gates)
+  check(#models(key)==initial,key..' starts with its bodyguard group')
+  local h=boss:FindFirstChildOfClass('Humanoid');h.MaxHealth=boss:GetAttribute('StoryHealth');h.Health=h.MaxHealth
+  story.bossDamage(boss,0);check(#models(key)==initial,'no reinforcements before health gate')
+  for _,gate in ipairs(gates) do
+   local hit=story.bossDamage(boss,h.Health-h.MaxHealth*gate+.001);h.Health-=hit
+   local count=#models(key);story.bossDamage(boss,0)
+   check(#models(key)==count,'repeated damage cannot duplicate a reinforcement wave')
+  end
+  check(#models(key)==total,key..' finite complete population')
+  check(story.encounterState(player,'qa')[key].remaining==total,'remaining includes every guard')
+  local paused=0;for _,m in ipairs(models(key)) do if not m:GetAttribute('StoryBoss') and (m:GetAttribute('StoryPauseUntil') or 0)>workspace:GetServerTimeNow() then paused+=1 end end
+  check(paused>0,'reinforcements give time to reposition before attacking')
+ end
  root.Position=Vector3.new(2000,100,2000);story.interact(player,'DW-01','trail_guards');check(#models('DW-01:trail_guards')==0,'remote prompt distance cannot start fight')
  near('DW-01','trail_guards');valid=false;story.interact(player,'DW-01','trail_guards');check(#models('DW-01:trail_guards')==0,'inactive hero cannot start fight');valid=true
  story.interact(player,'DW-01','tracks');check(not inventory.storyState().flags['DW-01:tracks'],'future investigation cannot skip combat')
@@ -63,13 +77,17 @@ local ok,err=xpcall(function()
     elseif #g.enemies>0 then
      local key=c.id..':'..g.id;local boss
      for _,m in ipairs(models(key)) do if m:GetAttribute('StoryBoss') then boss=m end end
+     if boss and g.id=='warlord' then reinforceBoss(boss,key,4,7,{.5}) end
      if boss and g.id=='king_shaman' then
+      check(#models(key)==4,'King Shaman starts with three guards')
       local h=boss:FindFirstChildOfClass('Humanoid');h.MaxHealth=boss:GetAttribute('StoryHealth');h.Health=h.MaxHealth
       local cap=story.bossDamage(boss,h.MaxHealth);check(cap==h.MaxHealth*.3,'boss cannot skip shield phase');h.Health=h.Health-cap
+      check(#models(key)==7,'shield phase adds three guards without skipping final wave')
       check(story.bossDamage(boss,99999)==0,'shield denies damage')
       check(not story.breakPillar(player,key,1),'pillar distance independently checked')
       for i=1,2 do root.Position=world.folder:FindFirstChild('TemporarySealPillar').Position;check(story.breakPillar(player,key,i),'sequential pillar interaction') end
       check(story.bossDamage(boss,h.MaxHealth)==h.MaxHealth*.35,'boss cannot skip final phase')
+      check(#models(key)==10,'final phase adds the last three guards')
      end
      for _=1,3 do
       for _,m in ipairs(models(key)) do m:FindFirstChildOfClass('Humanoid').Health=0 end
@@ -107,6 +125,26 @@ local ok,err=xpcall(function()
  check(inventory.storyState().accepted['DW-Q1'] and inventory.storyState().flags['DW-Q1:waterproof_log'],'accepting discovery records clue once')
  near('DW-Q1','marsh_report');story.interact(player,'DW-Q1','marsh_report');task.wait(.1)
  check(inventory.storyState().clears['DW-Q1'],'reporting optional discovery completes quest')
+ -- Optional bosses use real TD rigs and the same server death/reward path.
+ for _,spec in ipairs({{'DW-Q2','goblin_king',6,9,{.5}},{'DW-Q3','king_ogre',5,8,{.5}},{'DW-Q4','enraged_warlord',6,12,{.6,.3}}}) do
+  local c=C.byId[spec[1]]
+  if not P.accepted(inventory.storyState(),c) then near(c.id,'request');story.interact(player,c.id,'request');check(story.acceptQuest(player,c.id),'optional boss quest accepted');task.wait(.1) end
+  for _,g in ipairs(c.goals) do if not g.optional then
+   near(c.id,g.id);story.interact(player,c.id,g.id);task.wait(.05)
+   if g.id==spec[2] then
+    local key=c.id..':'..g.id;local boss
+    for _,m in ipairs(models(key)) do if m:GetAttribute('StoryBoss') then boss=m end end
+    reinforceBoss(assert(boss),key,spec[3],spec[4],spec[5])
+    boss:FindFirstChildOfClass('Humanoid').Health=0;task.wait(.1)
+    check(not inventory.storyState().flags[key],'boss death alone cannot skip surviving guards')
+    for _,m in ipairs(models(key)) do m:FindFirstChildOfClass('Humanoid').Health=0;story.defeated(m);story.defeated(m) end
+    task.wait(.15)
+   end
+   check(inventory.storyState().flags[c.id..':'..g.id],c.id..g.id..' saves after all guards fall')
+  end end
+  check(inventory.storyState().clears[c.id],c.id..' still requires resident report')
+ end
+ check(inventory.storyState().coins==2290,'more enemies do not change fixed quest Coins')
  local savedProfile=profile;profile=Rules.addHero(Rules.new(92),'qa','knight',Catalog)
  root.Position=world.spawns['DW-01'].Position;gate.update(player);local safe=root.Position;local health=human.Health
  root.Position=Vector3.new(table.unpack(C.zones['DW-02'].center));gate.update(player)

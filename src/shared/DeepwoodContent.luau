@@ -1052,4 +1052,6 @@ for id,info in pairs({['DW-S1']={'Goblin King Camp',4},['DW-S2']={'Waterfall Qua
 
 local Quests=game and require(script.Parent.DeepwoodQuestCatalog) or dofile('src/shared/DeepwoodQuestCatalog.luau')
 Quests.install(Content)
+local Bosses=game and require(script.Parent.DeepwoodBossEncounters) or dofile('src/shared/DeepwoodBossEncounters.luau')
+Bosses.install(Content)
 return Content
