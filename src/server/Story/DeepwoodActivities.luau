@@ -26,7 +26,8 @@ function Engine.create(o)
  function api.projection(player,heroId)
   local result={};local a=attempts[player]
   if a and a.heroId==heroId then result[a.c.id..':'..a.g.id]={actorPosition=a.actor.PrimaryPart.Position,status=a.status} end
-  local d=dialogs[player]
+  local d=dialogs[player];local ctx,root=o.context(player)
+  if d and (not ctx or ctx.heroId~=d.heroId or not root or (root.Position-Vector3.new(table.unpack(d.g.position))).Magnitude>16) then dialogs[player]=nil;d=nil end
   return result,d and d.heroId==heroId and {chapter=d.c.id,goal=d.g.id,step=d.step.id,text=d.step.text,choices=d.step.choices} or nil
  end
  function api.interact(player,node)

@@ -63,6 +63,13 @@ function Journal.start(hud)
  local left=Theme.button(dialog,'Sanctuary','',UDim2.new(0,12,1,-50),UDim2.new(.5,-18,0,38));left.Visible=false
  local right=Theme.button(dialog,'Share','',UDim2.new(.5,6,1,-50),UDim2.new(.5,-18,0,38));right.Visible=false
  local dialogKind,offerShown,dialogToken=nil,nil,0
+ local function layoutDialogue(text)
+  local camera=workspace.CurrentCamera;if not camera then return end
+  local width=math.min(680,camera.ViewportSize.X-20)
+  local height=game:GetService('TextService'):GetTextSize(text,13,Enum.Font.GothamMedium,Vector2.new(width-32,2000)).Y+78
+  dialog.Size=UDim2.fromOffset(width,math.min(camera.ViewportSize.Y*.65,math.max(160,height)))
+  dialog.Position=UDim2.new(.5,0,1,-math.min(195,camera.ViewportSize.Y*.2))
+ end
  local navigation=Navigation.start();local gates=Gates.create()
  local marker=Instance.new('BillboardGui');marker.Name='DeepwoodWaypoint';marker.Size=UDim2.fromOffset(190,55);marker.AlwaysOnTop=true;marker.StudsOffset=Vector3.new(0,6,0);marker.MaxDistance=2400;marker.Parent=player:WaitForChild('PlayerGui')
  local anchor=Instance.new('Part');anchor.Name='PersonalWaypoint';anchor.Anchored=true;anchor.Size=Vector3.one;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanTouch=false;anchor.CanQuery=false;anchor.Parent=workspace
@@ -70,7 +77,7 @@ function Journal.start(hud)
  setOpen=function(open) panel.Visible=open;player:SetAttribute('TLTStoryOpen',open or (dialog.Visible and left.Visible)) end
  local function closeDialogue() dialog.Visible=false;dialogKind=nil;dialogToken+=1;setOpen(panel.Visible) end
  local function showDialogue(text,kind,first,second)
-  dialogToken+=1;local token=dialogToken;dialog.Visible=true;dialogKind=kind;prose.Text=text
+  dialogToken+=1;local token=dialogToken;dialog.Visible=true;dialogKind=kind;prose.Text=text;layoutDialogue(text)
   left.Visible=first~=nil;right.Visible=second~=nil;dismiss.Visible=not first
   if first then left.Caption.Text=first;right.Caption.Text=second end
   setOpen(panel.Visible)
@@ -158,7 +165,11 @@ function Journal.start(hud)
   if value.questOffer then
    local c=Content.byId[value.questOffer.id]
    if offerShown~=c.id then offerShown=c.id;showDialogue('OPTIONAL · '..c.title..'\n'..c.quest.brief..'\n'..Log.reward(c),'offer',value.questOffer.discovery and 'ACCEPT & RECOVER CLUE' or 'ACCEPT QUEST','LATER') end
-  else offerShown=nil end
+  else
+   offerShown=nil
+   if dialogKind=='offer' then closeDialogue();hud.showFeedback('This request is no longer nearby. Return to the resident or clue.',4) end
+  end
+  if not value.dialogue and dialogKind=='dialogue' then closeDialogue();hud.showFeedback('Return to the resident to continue the conversation.',4) end
   if value.dialogue and value.dialogue.choices then showDialogue(value.dialogue.text,'dialogue',value.dialogue.choices[1].title,value.dialogue.choices[2].title) end
  end)
  local elapsed=0
@@ -180,7 +191,7 @@ function Journal.start(hud)
  local function resize()
   local camera=workspace.CurrentCamera;if not camera then return end
   panel.Size=UDim2.fromOffset(math.min(680,camera.ViewportSize.X-20),math.min(540,camera.ViewportSize.Y-24))
-  dialog.Size=UDim2.fromOffset(math.min(680,camera.ViewportSize.X-20),210)
+  layoutDialogue(prose.Text)
   render()
  end
  if workspace.CurrentCamera then workspace.CurrentCamera:GetPropertyChangedSignal('ViewportSize'):Connect(resize) end;resize()

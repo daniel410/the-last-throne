@@ -89,7 +89,10 @@ local ok,err=xpcall(function()
  local quest=C.byId['DW-Q2'];local questStart=quest.goals[1]
  near(quest.id,'request');story.interact(player,quest.id,'request')
  check(not inventory.storyState().flags[quest.id..':'..questStart.id],'hearing NPC request never executes field clue')
- local beforeAccept=profile.revision;root.Position+=Vector3.new(100,0,0)
+ local beforeAccept=profile.revision
+ local originalCharacter=player.Character;local replacement=originalCharacter:Clone();player.Character=replacement
+ check(not story.acceptQuest(player,quest.id),'offer does not survive character replacement');player.Character=originalCharacter;replacement:Destroy()
+ root.Position+=Vector3.new(100,0,0)
  check(not story.acceptQuest(player,quest.id),'cannot accept offer after leaving NPC')
  near(quest.id,'request');check(story.acceptQuest(player,quest.id),'nearby current hero can accept request');task.wait(.1)
  check(P.accepted(inventory.storyState(),quest) and not inventory.storyState().flags[quest.id..':'..questStart.id],'NPC acceptance and field completion remain separate')
