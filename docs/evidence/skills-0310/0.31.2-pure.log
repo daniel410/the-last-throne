@@ -1,0 +1,2 @@
+lua tests/advanced-skills.spec.lua
+Advanced skills: 1435 checks passed

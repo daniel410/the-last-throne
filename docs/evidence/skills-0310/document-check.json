@@ -10,6 +10,14 @@
       "build_bytes_sha256": "pass"
     },
     {
+      "version": "0.31.2",
+      "build_bytes_sha256": "pass"
+    },
+    {
+      "version": "0.31.3",
+      "build_bytes_sha256": "pass"
+    },
+    {
       "log": "0.31.1-combat.log",
       "checks": 873,
       "pass": true
@@ -18,8 +26,21 @@
       "log": "0.31.1-ui.log",
       "checks": 295,
       "pass": true
+    },
+    {
+      "log": "0.31.2-combat.log",
+      "checks": 927,
+      "pass": true
+    },
+    {
+      "log": "0.31.3-ui.log",
+      "checks": 319,
+      "pass": true
+    },
+    {
+      "0.31.3_reused_combat_source_matches_0.31.2": true
     }
   ],
-  "checked_relevant_local_links": 27,
+  "checked_relevant_local_links": 33,
   "pass": true
 }

@@ -592,3 +592,10 @@ TD 배틀 HP 프레임과 공통 패널·버튼 셸을 HUD에 적용했다. 원�
 ## Provoke 공격 약화·상태 표시 (0.31.1)
 
 입력 소스 `b98954e76640a7bac78899cb8fc290027d696616`, VERSION0.31.1. `rojo build default.project.json -o builds/0.31.1/TheLastThrone-0.31.1.rbxlx` 성공(Rojo7.7.1). 1,382,042bytes, SHA-256 `94e59afac7f981f39686ea83a12db8d0dec2de245f945366436af363e3d1d7fd`. [기록](../skills-0310/builds.json) · [전투873·GUI295 및 Studio 확인 범위](../skills-0310/README.md). 원본 Studio 편집 소스를 동기화하고 Play를 재시작했다. 로컬 일반 빌드이며 게시/릴리스 태그는 수행하지 않았다.
+
+
+## Provoke 파생 기술·설명 배치 (0.31.2~0.31.3)
+
+- 0.31.2 입력 `76e4076e226bf9b856e86181e90ffb7ea98bb1d0`, 전투927개·227사례 통과.
+- 최신0.31.3 입력 `3cf49c4be2337d52883df913b9223dff86443e53`, GUI319개 통과. 전투 소스는0.31.2와 같아 해당 증거를 재사용한다.
+- 두 버전 모두 `rojo build default.project.json -o builds/<version>/TheLastThrone-<version>.rbxlx` 성공(Rojo7.7.1). [바이트·SHA256](../skills-0310/builds.json), [범위·한계](../skills-0310/README.md). 원본 Studio 편집 소스 동기화/Play 재시작 완료, 게시/릴리스 태그 없음.
