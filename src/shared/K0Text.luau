@@ -7,6 +7,8 @@ return {
  StoryEnemiesLeft = "Defeat the remaining enemies: %d left.",
  StoryPillarsLeft = "Break the temporary seal pillars: %d left.",
  StorySaving = "Saving objective progress. Please wait.",
+ NavigationOn = "Navigation Trail: ON",
+ NavigationOff = "Navigation Trail: OFF",
  MinimapYou = "YOU",
 	Title = "DEEPWOOD",
  NewSkillFormat = "New Skill Unlocked: %s. Open Skills to review your loadout.",

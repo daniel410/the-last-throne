@@ -2,6 +2,7 @@ local Players=game:GetService('Players')
 local UIS=game:GetService('UserInputService')
 local Run=game:GetService('RunService')
 local Theme=require(script.Parent.TDInventoryTheme)
+local Text=require(game:GetService('ReplicatedStorage').Shared.K0Text)
 local State=require(script.Parent.DeepwoodMapState)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
 local Map={}
@@ -11,9 +12,20 @@ function Map.start(button)
  local panel=Theme.frame(gui,'WorldMap',UDim2.fromScale(.5,.5),UDim2.fromOffset(800,650));panel.AnchorPoint=Vector2.new(.5,.5);panel.BackgroundTransparency=.15;panel.Visible=false
  Theme.label(panel,'Title','DEEPWOOD · WORLD MAP',UDim2.fromOffset(16,10),UDim2.new(1,-84,0,32),18,Theme.color.gold)
  local close=Theme.button(panel,'Close','X',UDim2.new(1,-54,0,8),UDim2.fromOffset(42,42))
- local area=Instance.new('Frame');area.Name='Atlas';area.Position=UDim2.fromOffset(18,60);area.Size=UDim2.new(1,-36,1,-132);area.BackgroundColor3=Color3.fromRGB(8,17,27);area.BorderSizePixel=0;area.ClipsDescendants=true;area.Parent=panel
+ local area=Instance.new('Frame');area.Name='Atlas';area.Position=UDim2.fromOffset(18,60);area.Size=UDim2.new(1,-36,1,-184);area.BackgroundColor3=Color3.fromRGB(8,17,27);area.BorderSizePixel=0;area.ClipsDescendants=true;area.Parent=panel
  local atlas=Canvas.create(area)
- local legend=Theme.label(panel,'Legend','▲ YOU   ◆ CURRENT OBJECTIVE   ◇ CHECKPOINT\nGreen: explored · Dark: unexplored · Locked: finish the previous story',UDim2.new(0,18,1,-65),UDim2.new(1,-36,0,52),12)
+ local legend=Theme.label(panel,'Legend','▲ YOU   ◆ CURRENT OBJECTIVE   ◇ CHECKPOINT\nGreen: explored · Dark: unexplored · Locked: finish the previous story',UDim2.new(0,18,1,-117),UDim2.new(1,-36,0,52),12)
+ local navigation=Theme.button(panel,'NavigationTrail','',UDim2.new(0,18,1,-58),UDim2.new(1,-36,0,44))
+ local function refreshNavigation()
+  local enabled=player:GetAttribute('TLTNavigationEnabled')~=false
+  navigation.Caption.Text=enabled and Text.NavigationOn or Text.NavigationOff
+  navigation:SetAttribute('Enabled',enabled)
+ end
+ navigation.Activated:Connect(function()
+  player:SetAttribute('TLTNavigationEnabled',player:GetAttribute('TLTNavigationEnabled')==false)
+ end)
+ player:GetAttributeChangedSignal('TLTNavigationEnabled'):Connect(refreshNavigation)
+ refreshNavigation()
  local function open(value)
   value=value and State.current and not State.current.training and player:GetAttribute('K0SessionPhase')=='Tutorial'
   panel.Visible=value==true;player:SetAttribute('TLTMapOpen',panel.Visible)

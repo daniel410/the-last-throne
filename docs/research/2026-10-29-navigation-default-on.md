@@ -21,3 +21,9 @@
 `tests/navigation-always-on-native.luau`는 실제 Roblox Heartbeat/Part/Raycast에 LocalPlayer 대역을 주입해60/10/6/1/0studs의 화살표 표시, 목표 없음/훈련장/사망 숨김을 검사한다. 게임 빌드·게시·실기기·실제 사용자 수용과 구분한다. 기존 미커밋 서버/퀘스트 작업은 이번 커밋에 포함하지 않는다. 상위 티켓은 In Progress다.
 
 실행: `python3 tests/make_k0_source_probe.py --output-dir /private/tmp/tlt-navigation-always-on --test-script tests/navigation-always-on-native.luau` 후 `run-in-roblox --place /private/tmp/tlt-navigation-always-on/tlt-k0-qa-empty.rbxlx --script /private/tmp/tlt-navigation-always-on/source-probe.luau`. 결과 exit0, `NAVIGATION_ALWAYS_ON PASS: 5 distances, no target, training, death`. 기존203785492 자산 종류 경고가 있었으며 검사 실패는 없었다. `git diff --check` 통과. 게임 빌드를 생성하지 않아 VERSION/릴리스 태그는 변경하지 않았다.
+
+## 후속 적용: 선택형 끄기 옵션
+
+사용자의 “그래 적용해줘” 요청으로 전체 지도(M/터치 지도 버튼) 하단에 `Navigation Trail: ON/OFF` 버튼을 추가했다. 기존 별도 설정 화면이 없어 지도에서 길 안내를 제어하도록 배치했다. 기본ON,44px 높이의 선택 가능한 버튼이다. OFF는 바닥 화살표만 숨기며 목표 표식·목표 설명·지도 목표는 기존 경로 그대로다. `TLTNavigationEnabled` 클라이언트 표시 속성을 사용하므로 같은 접속의 리스폰/영웅 전환에는 유지되며 재접속은 기본ON이다. 계정 영구 저장은 추가하지 않는다. 서버 진행/보상은 변경하지 않는다.
+
+검증: `python3 tests/make_k0_source_probe.py --output-dir /private/tmp/tlt-navigation-toggle-ui --test-script tests/navigation-always-on-native.luau` 후 `run-in-roblox --place /private/tmp/tlt-navigation-toggle-ui/tlt-k0-qa-empty.rbxlx --script /private/tmp/tlt-navigation-toggle-ui/source-probe.luau`. 최초 실행은 샌드박스의 플러그인 파일 생성 제한으로 실패했고 권한을 적용한 재실행은 exit0/PASS였다.5개 거리·OFF/ON 시각 파트·목표 없음/훈련장/사망 숨김, 지도 버튼 기본ON/속성 변경에 따른OFF/ON 문구·44px/Selectable 검사를 통과했다. 기존203785492 자산 종류 경고가 있었다. 실제 클릭/터치/패드 입력·실제 화면 겹침·게시/실기기 수용은 미검증이다. 게임 빌드가 아닌 격리 소스 fixture이므로 VERSION/릴리스 태그를 생성하지 않았다. 다음 담당 QA가 실제 지도에서 입력과 작은 화면 배치를 확인한다.

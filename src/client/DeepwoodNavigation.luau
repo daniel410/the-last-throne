@@ -70,7 +70,7 @@ function Navigation.start()
   elapsed+=dt;if elapsed<1/30 then return end;elapsed=0
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   local human=player.Character and player.Character:FindFirstChildOfClass('Humanoid')
-  if not target or not root or not human or human.Health<=0 or player:GetAttribute('K0SessionPhase')~='Tutorial' or player:GetAttribute('TLTRoute')=='Training' then hide();return end
+  if player:GetAttribute('TLTNavigationEnabled')==false or not target or not root or not human or human.Health<=0 or player:GetAttribute('K0SessionPhase')~='Tutorial' or player:GetAttribute('TLTRoute')=='Training' then hide();return end
   if surfacesDirty or not origin or (root.Position-origin).Magnitude>4 or lastTarget~=target then
    surfacesDirty=false;origin=root.Position;lastTarget=target;route=Navigation.route(origin,target)
    local surfaces={};local field=workspace:FindFirstChild('DeepwoodCampaign');local terrain=field and field:FindFirstChild('TerrainBlockout')
