@@ -4,6 +4,7 @@ local SSS=game.ServerScriptService
 local report={kind='EXPEDITION_SERVICE_NATIVE',checks=0,failures={}}
 local function check(v,m) report.checks+=1;assert(v,m) end
 local ok,err=xpcall(function()
+ if not game.ReplicatedStorage:FindFirstChild('Remotes') then local remotes=Instance.new('Folder');remotes.Name='Remotes';remotes.Parent=game.ReplicatedStorage end
  local original=SSS.Server.Network.ExpeditionService;local module=original:Clone();module.Name='ExpeditionServiceQA'
  local source=module.Source
  source=source:gsub("local Players=game:GetService%('Players'%)",[[local removal=Instance.new('BindableEvent');local Players={PlayerRemoving=removal.Event,list={}}
@@ -50,7 +51,9 @@ local ok,err=xpcall(function()
  check(calls[1].data.ticket~=calls[2].data.ticket and calls[1].data.runId==calls[2].data.runId,'individual tickets share one server manifest')
  check(locks[1] and locks[2],'all heroes locked across every save yield')
  check(prepared[p1]==1 and prepared[p2]==1,'every account fence released once before departure')
- local oldTicket=calls[2].data.ticket
+ local oldTicket
+ for _,call in ipairs(calls) do if call.userId==p2.UserId then oldTicket=call.data.ticket end end
+ assert(oldTicket,'second member dispatched')
  service.qaFail(p2);service.qaRetry(p2);service.qaRetry(p2);service.qaRetry(p2)
  check(resumed[p2]==1 and not resumed[p1],'partial failure resumes only the player who stayed')
  check(not p2:GetAttribute('TLTTravelLock') and p2.notice=='TravelFailed','exhausted retry restores lobby control')
