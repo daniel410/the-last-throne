@@ -8,7 +8,7 @@
 | --- | --- |
 | [SKILL.md](skills/the-last-throne-production/SKILL.md) | 기존 결정 확인 → 역할별 제작 → 통합 → 증거 기반 완료 절차 |
 | [agents/openai.yaml](skills/the-last-throne-production/agents/openai.yaml) | 스킬 표시명·설명·호출 예시 메타데이터 |
-| [agent.md](agent.md) | 여섯 역할과 산출물·핸드오프 |
+| [agent.md](agent.md) | 일곱 역할과 산출물·핸드오프 |
 | [plan.md](plan.md) | 전체 제품·단계·품질·미결정 기준 |
 | [backlog.md](backlog.md) | 작업ID·우선순위·의존·수용 조건·상태 |
 | [Git·빌드·릴리스·LFS 규칙](docs/development-workflow.md) | 작업별 커밋/푸시·세 자리 빌드 버전·릴리스 태그·대용량 자산 저장 |

@@ -23,6 +23,10 @@ description: The Last Throne의 기존 서사·승인 컨셉·성장·공유 자
 | 구현·연동 | [기술 제작 계획](../../docs/production/engineering-plan.md), [Experience 계약](../../docs/experience-integration.md), [기사 전투](../../docs/knight-combat-spec.md) |
 | 수용·출시 | [QA 계획](../../docs/production/qa-and-release-plan.md), 티켓 수용 조건·빌드/데이터/자산 버전 |
 
+## 기능 리서치
+
+신규 기능 설계·기존 기능 개선 시 [리서치 역할](../../agents/roles/researcher.md)을 적용한다. 인기 RPG·Roblox 비교 사례의 현재 출처와 확인일을 기록하고 관찰 사실·해석·제안을 구분한다. 기존 보고를 재사용하되 최신성을 확인하고, 적용 아이디어·비용/위험·최소 실험·수용 조건을 담당자에게 전달한다. 단순 오탈자나 원인이 명확한 결함 수정은 별도 조사 없이 진행할 수 있다. 조사 문서는 `docs/research/YYYY-MM-DD-<topic>.md`에 원래 작업ID로 연결하며 제품 결정과 구현 완료를 대신하지 않는다.
+
 ## 제작 시 지킬 구분
 
 - 클래스4·클래스별2계열·20/40/60/80 전직, 성녀NPC, 스탯316/별도 스킬79 기준을 보존한다. 수치 제안과 사용자 결정은 공통 지침에서 구분한다.

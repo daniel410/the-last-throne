@@ -16,7 +16,7 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 | --- | --- |
 | [plan.md](plan.md) | 전체 제품·8장 제작 범위·G0~G8·품질·일정/비용 산정·미결정 |
 | [backlog.md](backlog.md) | 기존24개ID를 보존한100개 작업·우선순위·담당·의존·수용 조건 |
-| [agent.md](agent.md) | 총괄 디렉터·기획·디자인·3D 모델링·엔지니어·QA의 역할과 핸드오프 |
+| [agent.md](agent.md) | 총괄 디렉터·리서치·기획·디자인·3D 모델링·엔지니어·QA의 역할과 핸드오프 |
 | [AGENTS.md](AGENTS.md) | 이후 작업에서 적용할 저장소 공통 지침·한국어 문서/영어 게임 계약 |
 | [skill.md](skill.md) | 프로젝트 스킬 진입점·사용법·검증 명령 |
 | [실제 SKILL.md](skills/the-last-throne-production/SKILL.md) | 기존 원천과 제작/검증/백로그를 연결하는 재사용 지침 |
