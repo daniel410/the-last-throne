@@ -46,3 +46,7 @@ FB 첫 보드에서 Signal Binder가 지정한 Volcano Shaman 대신 Lich를 닮
 ### 실제 정적 검사 결과
 
 `python3 /private/tmp/tlt-validate-concepts.py` 종료0.선정PNG8개의 서명/모든 청크CRC·바이트/크기·원본 복사/결과SHA256이 일치했고,프롬프트9개·참고 이미지8개 해시와32고유 교전ID 매핑을 확인했다. 총PNG23,268,516바이트다. [구조화 검사 결과](validation.json)에 최종 문서/갤러리 링크·앵커 수를 보존한다. `git diff --check` 종료0. VERSION·보상 정본·후반 설계JSON·기존 승인UI 기록4파일은HEAD 대비 바이트 불변이다. PNG8개를LFS 포인터로 선별 스테이징하고 푸시 결과/원격 커밋을 최종 보고한다. 로컬 갤러리는 파일 패널 열기를 요청했으나 도구가queued로 응답해 실제 브라우저 렌더/사용성 검증으로 기록하지 않는다.
+
+### 원격 마감 상태
+
+컨셉 산출물 커밋은 `bfe103e`다. `git push origin main`은 SSH `Permission denied (publickey)`로 실패했고,기존 키를 등록한 같은 셸의 재시도에서는 LFS의 `Unable to verify locks`도 관찰됐다. 훅/잠금 검증을 끄지 않았으며 원격의 API 지원 여부를 오류 문구만으로 확정하지 않는다. 같은 저장소에 기존 HTTPS 자격 증명으로도 시도했으나 자격 증명이 없어 실패했다. **원격 커밋 반영·8PNG LFS 전송 성공은 확인하지 못했다.** 로컬 이미지/프롬프트·LFS 객체와 커밋은 보존했다. 다음 담당은 GitHub 인증이 정상인 세션에서 `git push origin main`을 재실행하고8개 LFS 업로드/원격 커밋을 확인한다. 게임 빌드/게시/릴리스와 무관한 Git 마감 잔여다.
