@@ -1,0 +1,11 @@
+{
+  "version": "0.35.1",
+  "sourceCommit": "813690b81774a8167f3bad79fcb78c885fd7513d",
+  "file": "builds/0.35.1/TheLastThrone-0.35.1.rbxlx",
+  "bytes": 1480855,
+  "sha256": "5cc5666ea48a834ab6f522a7f14892cc0e7798f6a27e301c91db1509ca6284b8",
+  "source": "Git archive of commit; mapped LFS verified",
+  "rojo": "7.7.1",
+  "build": "success",
+  "published": false
+}

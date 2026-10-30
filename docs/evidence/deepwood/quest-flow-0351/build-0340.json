@@ -1,0 +1,11 @@
+{
+  "version": "0.34.0",
+  "sourceCommit": "9ef8813e4e39d9e905ac4b85786efb69f79fc6ed",
+  "file": "builds/0.34.0/TheLastThrone-0.34.0.rbxlx",
+  "bytes": 1471788,
+  "sha256": "950b41c5f58f588e413f94ac3b5825aa0ab31d6ba53b95d94126b7bf65dd775b",
+  "source": "/tmp/tlt-quest-0340-source exported from Git commit; mapped LFS bytes checked against pointer SHA256",
+  "rojo": "7.7.1",
+  "build": "success",
+  "published": false
+}

@@ -1,0 +1,56 @@
+{
+  "build": "0.35.1",
+  "source": "813690b",
+  "studio": "9b3dbe3e-ea69-488f-87a1-2d20a3e3feaf",
+  "scope": "Actual Studio Player; Knight created and entered using normal UI. Keyboard movement and F interaction; no XP/progress injection.",
+  "route": {
+    "start": [
+      -1700.4818,
+      3.0963,
+      -730.8824
+    ],
+    "afterMovement": [
+      -1636.4268,
+      3.0963,
+      -713.0833
+    ],
+    "input": "D 4 seconds; S 1.1 seconds; F 0.8 seconds; LATER; F 0.8 seconds; ACCEPT & RECOVER CLUE; J; SIDE QUESTS"
+  },
+  "afterLater": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"choice\":\"\",\"clears\":[],\"explored\":{\"DW-01\":{\"134\":true,\"123\":true,\"133\":true,\"121\":true,\"109\":true,\"135\":true,\"110\":true,\"122\":true,\"111\":true}},\"coins\":0,\"flags\":[],\"main\":0,\"version\":1,\"killCoins\":0,\"activities\":[],\"decisions\":[],\"clues\":[],\"accepted\":[]}"
+      }
+    ],
+    "isError": false
+  },
+  "afterAccept": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"choice\":\"\",\"clears\":[],\"explored\":{\"DW-01\":{\"134\":true,\"123\":true,\"133\":true,\"121\":true,\"109\":true,\"135\":true,\"110\":true,\"122\":true,\"111\":true}},\"coins\":0,\"flags\":{\"DW-Q1:waterproof_log\":true},\"accepted\":{\"DW-Q1\":true},\"version\":1,\"clues\":[],\"decisions\":[],\"activities\":[],\"killCoins\":0,\"main\":0}"
+      }
+    ],
+    "isError": false
+  },
+  "journal": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"Players.Robloxianb1b5e7p5p.PlayerGui.DeepwoodJournal.Journal.Coins\":\"RPG Coins: 0\\nConfirmed progress is saved.\",\"Players.Robloxianb1b5e7p5p.PlayerGui.DeepwoodJournal.Journal.Title\":\"QUEST JOURNAL\",\"Players.Robloxianb1b5e7p5p.PlayerGui.DeepwoodJournal.Journal.ChronicleTab.Caption\":\"CHRONICLE\",\"Players.Robloxianb1b5e7p5p.PlayerGui.DeepwoodJournal.Journal.Chapters.QuestCard.Line\":\"Continue the main story to reach Supply Survivor.\",\"Players.Robloxianb1b5e7p5p.PlayerGui.DeepwoodJournal.Journal.MainTab.Caption\":\"MAIN STORY\",\"Players.Robloxianb1b5e7p5p.PlayerGui.DeepwoodJournal.Journal.Chapters.QuestCard.Track.Caption\":\"CONTINUE MAIN STORY\",\"Players.Robloxianb1b5e7p5p.PlayerGui.DeepwoodJournal.Journal.SideTab.Caption\":\"SIDE QUESTS\",\"Players.Robloxianb1b5e7p5p.PlayerGui.DeepwoodJournal.Journal.Close.Caption\":\"X\",\"Players.Robloxianb1b5e7p5p.PlayerGui.DeepwoodJournal.Journal.Retry.Caption\":\"RETURN TO CHECKPOINT\"}"
+      }
+    ],
+    "isError": false
+  },
+  "observations": [
+    "LATER leaves accepted/flags empty, main=0, coins=0.",
+    "Field ACCEPT & RECOVER CLUE records DW-Q1 acceptance and waterproof_log only; main=0/coins=0.",
+    "Rendered side journal displays Waiting for story 2, named Supply Survivor, zero fixed rewards and CONTINUE MAIN STORY.",
+    "Earlier actual Main tab displayed story identity, purpose, phase 1/3 and mandatory checklist."
+  ],
+  "limitations": [
+    "Studio session only; published save/reconnect and multiplayer not tested.",
+    "No full seven-story normal combat playthrough or device/fun acceptance."
+  ]
+}

@@ -1,0 +1,10 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+Failed to upload TexturePack (Reason: PublishService AssetUpload failed. Info: single part asset create call failed HTTP StatusCode: 429, Message: {
+  "code": "RESOURCE_EXHAUSTED",
+  "message": "Rate limit exceeded for TexturePack uploads and will reset at 2026-10-30 03:40:10Z. Please try again later."
+}). PBR textures may not be visible in game. Change a TextureId property to retry.
+Failed to upload TexturePack (Reason: PublishService AssetUpload failed. Info: single part asset create call failed HTTP StatusCode: 429, Message: {
+  "code": "RESOURCE_EXHAUSTED",
+  "message": "Rate limit exceeded for TexturePack uploads and will reset at 2026-10-30 03:40:10Z. Please try again later."
+}). PBR textures may not be visible in game. Change a TextureId property to retry.
+DEEPWOOD_SERVICE_NATIVE {"failures":[],"kind":"DEEPWOOD_SERVICE_NATIVE","pass":true,"checks":76}

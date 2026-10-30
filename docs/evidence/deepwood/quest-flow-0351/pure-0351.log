@@ -1,0 +1,26 @@
+Deepwood progression: 515 checks passed
+Deepwood total: 520 checks passed
+Deepwood extended total: 570 checks passed
+Deepwood quest contract: 31 checks passed
+Inventory: 265 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+Hero progression: 81 checks passed
+Advanced skills: 1435 checks passed
+HYBRID magic_archer Lv20 DEX=76 INT=0 starter=476 branch=259
+HYBRID magic_archer Lv20 DEX=38 INT=38 starter=359 branch=384
+HYBRID magic_archer Lv20 DEX=0 INT=76 starter=242 branch=510
+HYBRID gunner Lv20 STR=76 DEX=0 starter=476 branch=544
+HYBRID gunner Lv20 STR=38 DEX=38 starter=359 branch=410
+HYBRID gunner Lv20 STR=0 DEX=76 starter=242 branch=276
+HYBRID magic_archer Lv40 DEX=156 INT=0 starter=815 branch=358
+HYBRID magic_archer Lv40 DEX=78 INT=78 starter=574 branch=615
+HYBRID magic_archer Lv40 DEX=0 INT=156 starter=334 branch=873
+HYBRID gunner Lv40 STR=156 DEX=0 starter=815 branch=931
+HYBRID gunner Lv40 STR=78 DEX=78 starter=574 branch=656
+HYBRID gunner Lv40 STR=0 DEX=156 starter=334 branch=382
+HYBRID magic_archer Lv80 DEX=316 INT=0 starter=1492 branch=556
+HYBRID magic_archer Lv80 DEX=158 INT=158 starter=1006 branch=1077
+HYBRID magic_archer Lv80 DEX=0 INT=316 starter=519 branch=1599
+HYBRID gunner Lv80 STR=316 DEX=0 starter=1492 branch=1705
+HYBRID gunner Lv80 STR=158 DEX=158 starter=1006 branch=1149
+HYBRID gunner Lv80 STR=0 DEX=316 starter=519 branch=593
+Skill stat preview: 855 checks passed
