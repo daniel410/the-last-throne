@@ -39,7 +39,7 @@ local ok,err=xpcall(function()
  check(not Access.allowed(person(prompt.Parent.Position,'Lobby',{TLTTravelLock=true}),prompt),'departing hero cannot enter facility')
  local dead=person(prompt.Parent.Position);dead.Character.Humanoid.Health=0;check(not Access.allowed(dead,prompt),'dead life denied')
  local unready=person(prompt.Parent.Position);unready.Character:SetAttribute('K0SpawnReady',false);check(not Access.allowed(unready,prompt),'unready spawn denied')
- local copy=SSS.Server.Lobby.FacilityService:Clone();copy.Name='FacilityServiceQA';copy.Source=copy.Source:gsub('remote:FireClient%(player,{error=errorCode}%)','player.notice=errorCode');copy.Parent=SSS.Server.Lobby
+ local copy=SSS.Server.Lobby.FacilityService:Clone();copy.Name='FacilityServiceQA';copy.Source=copy.Source:gsub('remote:FireClient%(player,{error=errorCode}%)','S.qaNotice=errorCode');copy.Parent=SSS.Server.Lobby
  local bindings={};local function proxy(original)
   local e=Instance.new('BindableEvent');e.Parent=scratch;table.insert(bindings,e)
   local p={Triggered=e.Event,Enabled=true,Parent=original.Parent,MaxActivationDistance=original.MaxActivationDistance}
@@ -47,10 +47,13 @@ local ok,err=xpcall(function()
   return {prompt=p},e
  end
  local portal,pe=proxy(prompt);local training,te=proxy(facilities.training:FindFirstChildWhichIsA('ProximityPrompt',true));local opened,entered=0,0
- require(copy).start({facilities={portal=portal,training=training},expedition={openMenu=function() opened+=1 end},heroSession={startTraining=function() entered+=1;return 'SelectHeroFirst' end}})
+ local service=require(copy)
+ service.start({facilities={portal=portal,training=training},expedition={openMenu=function() opened+=1 end},heroSession={startTraining=function() entered+=1;return 'SelectHeroFirst' end}})
  pe:Fire(person(prompt.Parent.Position));task.wait();check(opened==1,'portal dispatches adventure menu instead of auto launch')
  pe:Fire(person(prompt.Parent.Position+Vector3.new(50,0,0)));task.wait();check(opened==1,'spoofed prompt cannot dispatch')
- local trainee=person(training.prompt.Parent.Position);te:Fire(trainee);task.wait();check(entered==1 and trainee.notice=='SelectHeroFirst','training dispatch preserves actionable hero error')
+ -- BindableEvent copies tables across its boundary; record the outgoing notice
+ -- in the QA service rather than inspecting the original Player double table.
+ local trainee=person(training.prompt.Parent.Position);te:Fire(trainee);task.wait();check(entered==1 and service.qaNotice=='SelectHeroFirst','training dispatch preserves actionable hero error')
  copy:Destroy();scratch:Destroy()
 end,debug.traceback)
 if not ok then table.insert(report.failures,tostring(err)) end
