@@ -13,6 +13,21 @@ local ok,err=xpcall(function()
  Run:Run()
  local field=assert(waitFor(function() local m=workspace:FindFirstChild('DeepwoodCampaign');return m and m:GetAttribute('DeepwoodReady') and m end,25),'campaign bootstrap did not complete')
  local world=require(SSS.Server.World.DeepwoodWorld).create()
+ local client=game:GetService('StarterPlayer').StarterPlayerScripts.Client
+ local actor=Instance.new('Model');local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Position=Vector3.new(0,1000,0);root.Parent=actor;actor.Parent=workspace
+ local decoration=Instance.new('Part');decoration.Anchored=true;decoration.Position=root.Position+Vector3.new(10,0,0);decoration:SetAttribute('TLTDecorative',true);decoration.CastShadow=true;decoration.Parent=workspace
+ local light=Instance.new('PointLight');light.Enabled=true;light:SetAttribute('TLTDecorative',true);light.Parent=decoration
+ local budget=client.WorldPresentationBudget:Clone();budget.Name='BudgetStreamQA';budget.Source=budget.Source:gsub("local Players=game:GetService%('Players'%)","local Players={LocalPlayer={Character=script.Character.Value}}")
+ local value=Instance.new('ObjectValue');value.Name='Character';value.Value=actor;value.Parent=budget;budget.Parent=client
+ require(budget).start();task.wait(.6)
+ check(decoration.CastShadow and light.Enabled,'near decoration keeps authored presentation')
+ root.Position+=Vector3.new(500,0,0);task.wait(.6)
+ check(not decoration.CastShadow and not light.Enabled and decoration.LocalTransparencyModifier==1,'distant decoration spends no optional light or shadow work')
+ decoration.Parent=nil;task.wait(.1);decoration.Parent=workspace;task.wait(.6)
+ root.Position=decoration.Position;task.wait(.6)
+ check(decoration.CastShadow and light.Enabled and decoration.LocalTransparencyModifier==0,'stream-out and return restores authored properties')
+ decoration:Destroy();actor:Destroy()
+
  local Content=require(RS.Shared.DeepwoodContent)
  local nav=require(game:GetService('StarterPlayer').StarterPlayerScripts.Client.DeepwoodNavigation)
  local function pos(id) return Vector3.new(table.unpack(Content.zones[id].center)) end

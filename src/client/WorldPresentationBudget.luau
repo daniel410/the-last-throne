@@ -4,9 +4,12 @@ local Players=game:GetService('Players')
 local Budget={}
 function Budget.start()
  local tracked={}
+ -- Stream-out unparents instances without destroying them. Keep authored values
+ -- weakly so stream-in never mistakes our distant override for the original.
+ local originals=setmetatable({},{__mode='k'})
  local function add(v)
-  if v:IsA('BasePart') and v:GetAttribute('TLTDecorative') then tracked[v]={shadow=v.CastShadow}
-  elseif (v:IsA('Light') or v:IsA('ParticleEmitter')) and v:GetAttribute('TLTDecorative') then tracked[v]={enabled=v.Enabled} end
+  if v:IsA('BasePart') and v:GetAttribute('TLTDecorative') then originals[v]=originals[v] or {shadow=v.CastShadow};tracked[v]=originals[v]
+  elseif (v:IsA('Light') or v:IsA('ParticleEmitter')) and v:GetAttribute('TLTDecorative') then originals[v]=originals[v] or {enabled=v.Enabled};tracked[v]=originals[v] end
  end
  for _,v in ipairs(workspace:GetDescendants()) do add(v) end
  workspace.DescendantAdded:Connect(add)
