@@ -561,10 +561,10 @@ return {
 		equal(state.character:GetAttribute("K0Stamina"), nil, "no stamina attribute is created")
 		near(state.mana, 85, "server charges the configured mana cost")
 		sample(0.46)
-		near(enemy.humanoid.Health, 9900, "server resolves Arcane Bolt damage")
+		near(enemy.humanoid.Health, 9860, "server resolves strengthened Mana Bolt damage")
 		equal(type(state.character:GetAttribute("K0SpellVisual")), "string", "server publishes spell visual snapshot")
 		sample(0.50)
-		near(enemy.humanoid.Health, 9900, "one spell cannot hit the same enemy twice")
+		near(enemy.humanoid.Health, 9860, "one spell cannot hit the same enemy twice")
 		action(state, "CastArcane", 1.1)
 		equal(state.character:GetAttribute("K0Feedback"), "SkillCooling", "early recast reports cooldown")
 		equal(state.spellSeq, 1, "early recast emits no new spell")
@@ -637,9 +637,9 @@ return {
 		action(state, "Skill3", 0, nil, target.model)
 		near(state.mana, 80, "gravity consumes mana")
 		sample(0.41)
-		near(target.humanoid.Health, 9930, "gravity deals server damage")
+		near(target.humanoid.Health, 9902, "gravity deals strengthened server damage")
 		near(target.humanoid.WalkSpeed, target.config.walkSpeed * 0.5, "gravity slows target")
-		near(other.humanoid.Health, 9930, "gravity damages nearby enemy")
+		near(other.humanoid.Health, 9902, "gravity damages nearby enemy")
 		near(other.humanoid.WalkSpeed, other.config.walkSpeed * 0.5, "gravity slows nearby enemy")
 		near(distant.humanoid.Health, 10000, "gravity does not hit outside radius")
 		equal(type(state.character:GetAttribute("K0GravityAreaVisual")), "string", "gravity area published after valid target")
@@ -736,7 +736,7 @@ return {
 		wall.Position = origin + Vector3.new(0, 0, -10); wall.Parent = fixture
 		action(state, "Skill3", 0, nil, target.model)
 		sample(0.41)
-		near(target.humanoid.Health, 9930, "target hit before wall")
+		near(target.humanoid.Health, 9902, "target hit before wall")
 		near(blocked.humanoid.Health, 10000, "wall blocks gravity area")
 	end)
 	case("mana-rejection-does-not-spend-or-start-cooldown", function()
@@ -755,21 +755,21 @@ return {
 		api.stepPlayer(state, 0.75, 0.25, true)
 		near(state.mana, 85, "mana does not recover before delay")
 		for tick = 0, 3 do api.stepPlayer(state, 1 + tick * 0.25, 0.25, true) end
-		near(state.mana, 85.1, "100 MP recovers only 0.1 per second")
+		near(state.mana, 85.15, "100 MP recovers 0.15 per second")
 		state.mana = 99.99
 		api.stepPlayer(state, 2, 0.25, true)
 		near(state.mana, 100, "mana cannot exceed maximum")
 	end)
-	case("magic-archer-mana-and-health-share-slow-percentage",function()
+	case("magic-archer-mana-regeneration-fifty-percent-faster-than-health",function()
 		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
 		local growth=G.new(20);growth.branch="magic_archer";growth.stage=1;growth.battleWins=3
 		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="elf",epoch=1,characterGeneration=1,growth=growth}end)
 		local state=spawnPlayer();state.mana=40;state.manaRegenAt=0;state.humanoid.Health=state.humanoid.MaxHealth-10
 		local health=state.humanoid.Health
 		for tick=1,4 do api.stepPlayer(state,tick*.25,.25,true)end
-		near(state.mana,40.08,"80 MP recovers 0.08 per second")
+		near(state.mana,40.12,"80 MP recovers 0.12 per second")
 		local hpRate=(state.humanoid.Health-health)/state.humanoid.MaxHealth
-		assert(math.abs(hpRate-(state.mana-40)/state.maxMana)<.00001,"HP and MP recover the same percentage")
+		assert(math.abs(hpRate*1.5-(state.mana-40)/state.maxMana)<.00001,"MP percentage regeneration is 50% faster than HP")
 	end)
 	case("physical-skill-cooldown-survives-respawn", function()
 		local ready = {}

@@ -5,7 +5,7 @@ local Config = {
 	AttackPower = 100,
 	MaxMana = 100,
 	SprintSpeed = 24,
-	ManaRegenFraction = 0.001,
+	ManaRegenFraction = 0.0015,
 	ManaRegenDelay = 1,
 	WalkSpeed = 16,
 	GuardSpeed = 8,
@@ -115,4 +115,13 @@ Config.Skills = {
 local Advanced=game and require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
 for classId,skills in pairs(Advanced.skills) do for _,skill in ipairs(skills) do table.insert(Config.Skills[classId],skill) end end
 for classId,skills in pairs(Advanced.common) do for _,skill in ipairs(skills) do table.insert(Config.Skills[classId],skill) end end
+-- One shared projection for authoritative damage, HUD previews and mastery.
+-- Copy appended definitions so requiring Config never mutates AdvancedSkills.
+Config.MageSpellDamageMultiplier = 1.4
+for index, definition in ipairs(Config.Skills.mage) do
+	local skill = {}
+	for key, value in pairs(definition) do skill[key] = value end
+	if skill.magic and skill.damage > 0 then skill.damage = skill.damage * Config.MageSpellDamageMultiplier end
+	Config.Skills.mage[index] = skill
+end
 return Config

@@ -1,5 +1,7 @@
 # The Last Throne 통합 개발 계획
 
+> 2026-10-30 **0.38.0 / TLT-005/028/052/061/084 부분 구현:** 전체 지도를 지형·랜드마크·이야기 목록·지역 상태/탐험률·확대/FIT/내 위치 이동으로 개편하고 Mage 공격 주문 계수40%·MP 자연 회복50% 상향을 시험 적용했다. [근거](docs/research/2026-10-30-atlas-and-mage-balance.md) · [검증·남은 수용](docs/evidence/deepwood/atlas-0380/README.md). 미게시이며 정상 전투 난이도·실기기/4인·사용자 미술 수용은 후속이다.
+
 > 2026-10-30 **TLT-065/gloamwood-venomcoil-king-v5-20261030**: [어두운 숲 갤러리](assets/concepts/2026-10-30-gloamwood-v1/index.html)를 **일반5종+보스3종**으로 갱신했다. 일반 지네는 Venomcoil Centipede,보스는 Venomcoil King으로 바로잡고 왕관형 머리 갑각/큰 목 갑주/금빛 테두리로 킹 외형을 강화했다. 얼굴 인상/블록형 몸체·모델당2~3k tris 목표 유지. 현재4PNG,실제 메시/실측 없음.1~4 유지/기존5~8 보류.
 
 > **2026-10-30 사용자 지시 · 보류:** 기존 에픽5~8의 줄거리·개별 스토리·몬스터·컨셉 확장은 중단한다. 기존 자료는 참고안으로 보존한다. 에픽1~4는 수정하지 않는다. [어두운 숲·거미 여왕 후보](docs/production/dark-forest-epic-candidate-2026-10-30.md)는 번호/채택 미정의 별도 제안이다.

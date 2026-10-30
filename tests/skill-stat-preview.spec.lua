@@ -7,6 +7,13 @@ local P=dofile('src/shared/SkillStatPreview.luau')
 local n=0
 local function check(v,label)n=n+1;assert(v,label)end
 local function eq(a,b,label)check(a==b,label..': '..tostring(a)..' ~= '..tostring(b))end
+local mage=G.new(1)
+eq(P.value('mage',1,mage).damage,140,'Mana Bolt now rewards spending 15 MP with 140 damage')
+eq(P.value('mage',2,mage).damage,119,'Water Ball gains damage without losing its lower mana cost')
+eq(P.value('mage',3,mage).damage,98,'Gravity retains area utility with stronger damage')
+eq(K.Skills.mage[2].manaCost,12,'Water Ball retains its mana cost')
+eq(P.value('mage',32,mage).damage,0,'Arcane Ward stays a non-damaging barrier')
+eq(A.common.mage[1].damage,1,'shared catalog load never compounds the spell bonus')
 local g=G.new(10)
 eq(P.value('knight',1,g).damage,102,'ordinary Shield Bash estimate')
 local draft=G.copy(g);draft.stats.STR=4
