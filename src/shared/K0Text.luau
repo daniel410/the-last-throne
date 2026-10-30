@@ -1,6 +1,8 @@
 -- en-US source text for the K0 training prototype. Keys are language-neutral.
 return {
 	Title = "DEEPWOOD",
+ NewSkillFormat = "New Skill Unlocked: %s. Open Skills to review your loadout.",
+ Ultimate = "ULTIMATE",
 	Subtitle = "THE BLACK ROOTS",
 	TrailSign = "DEEPWOOD\nTRAINING FIELD  >",
 	ClassKnight = "KNIGHT",
@@ -113,6 +115,7 @@ return {
 		TargetBlocked = "Target is out of range or blocked. Move closer and try again.",
 		TargetUnavailable = "Target is no longer available. Select another enemy.",
 		SkillBusy = "Finish your action, then use the skill again.",
+		UltimateLocked = "Complete your Level 80 advancement to unlock your ultimate.",
 		SkillCooling = "Skill is recharging. Try again shortly.",
 		NeedMana = "Not enough mana. Wait, then cast again.",
 		NoAxeToRecall = "Throw your axe before recalling it.",

@@ -40,12 +40,13 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  end
  local top=narrow and 174 or 116
  local treeWidth=narrow and width-8 or math.floor(width*.65)
- local treeHeight=750
+ local treeHeight=876
  local map=Menu.frame(body,'SkillMap',UDim2.fromOffset(4,top),UDim2.fromOffset(treeWidth,treeHeight))
- local rows={{stage=0,indices={}},{stage=1,indices={}},{stage=2,indices={}},{stage=3,indices={}},{stage=4,indices={}}}
+ local rows={{stage=0,indices={}},{stage=0,early=true,indices={}},{stage=1,indices={}},{stage=2,indices={}},{stage=3,indices={}},{stage=4,indices={}}}
  for index,base in ipairs(Config.Skills[classId]) do
   if index<=3 then table.insert(rows[1].indices,index)
-  elseif base.branch==path then table.insert(rows[base.stage+1].indices,index) end
+  elseif base.common then table.insert(rows[2].indices,index)
+  elseif base.branch==path then table.insert(rows[base.stage+2].indices,index) end
  end
  label(map,'MapTitle','BASIC SKILLS  →  '..string.upper(Advanced.branches[path].name),16,10,treeWidth-32,28,13,Theme.color.gold)
  local positions={}
@@ -55,7 +56,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
   local count=#row.indices
   local left=treeWidth<440 and 58 or 76
   local available=treeWidth-left-20
-  local tag=Menu.plaque(map,'Stage'..row.stage,row.stage==0 and 'BASE' or 'Lv.'..row.stage*20,UDim2.fromOffset(8,y+8),UDim2.fromOffset(left-12,34));tag.Caption.TextSize=treeWidth<440 and 9 or 11;tag.Caption.Position=UDim2.fromOffset(2,0);tag.Caption.Size=UDim2.new(1,-4,1,0);tag.Caption.TextWrapped=false
+  local tag=Menu.plaque(map,'Stage'..(row.early and 'Early' or row.stage),row.early and 'Lv.5–15' or row.stage==0 and 'BASE' or 'Lv.'..row.stage*20,UDim2.fromOffset(8,y+8),UDim2.fromOffset(left-12,34));tag.Caption.TextSize=treeWidth<440 and 9 or 11;tag.Caption.Position=UDim2.fromOffset(2,0);tag.Caption.Size=UDim2.new(1,-4,1,0);tag.Caption.TextWrapped=false
   for order,index in ipairs(row.indices) do
    local base=Config.Skills[classId][index]
    positions[index]=Vector2.new(left+available*(order-.5)/math.max(count,1),y+size/2)
@@ -70,7 +71,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
     if previous==0 then previous=2 end
     for stage=row.stage-1,1,-1 do
      local found
-     for _,candidate in ipairs(rows[stage+1].indices) do if Config.Skills[classId][candidate].root==base.root then found=candidate;break end end
+     for _,candidate in ipairs(rows[stage+2].indices) do if Config.Skills[classId][candidate].root==base.root then found=candidate;break end end
      if found then previous=found;break end
     end
     local a,b=positions[previous],positions[index]
@@ -104,11 +105,12 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local detailIcon=Menu.node(detail,'SelectedSkillIcon','',UDim2.new(.5,-44,0,84),88,learned,true)
  local symbol=table.clone(base);symbol.root=selected<=3 and selected or base.root;Glyph.draw(detailIcon,classId,symbol,66,learned)
  local rank=label(detail,'Mastery','MASTERY  '..(1+g.mastery[selected])..' / 4',12,196,detailW-24,28,15,Theme.color.gold);rank.TextXAlignment=Enum.TextXAlignment.Center
- local effect=skill.damage>0 and string.format('Damage × %.2f',skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration)
+ local effect=skill.form=='self' and string.format('Barrier: %.0f%% max HP / %gs',skill.shield*100,skill.shieldDuration) or skill.damage>0 and string.format('Damage × %.2f',skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration or 0)
+ if skill.guardReduction then effect=effect..string.format(' / %.0f%% guard',skill.guardReduction*100) end
  if skill.pulses and skill.pulses>1 then effect=effect..'  /  '..skill.pulses..' hits' end
- label(detail,'Effect',effect,18,238,detailW-36,30,14,Theme.color.text)
+ label(detail,'Effect',effect..(base.description and '\n'..base.description or ''),18,226,detailW-36,66,12,Theme.color.text)
  label(detail,'Cost',string.format('%gs cooldown%s',skill.cooldown,skill.manaCost and '  /  '..skill.manaCost..' MP' or ''),18,274,detailW-36,30,12,Theme.color.silver)
- label(detail,'Requirements',learned and 'LEARNED  /  Select a combat slot below to equip.' or string.format('LOCKED  /  Level %d + advancement stage %d\nPreview only. Complete this path first.',base.level or 1,base.stage or 0),18,310,detailW-36,66,12,learned and Theme.color.green or Theme.color.muted)
+ label(detail,'Requirements',learned and (base.ultimate and 'LEARNED  /  Dedicated ultimate button. Does not use slots 1–5.' or 'LEARNED  /  Select a combat slot below to equip.') or base.common and string.format('LOCKED  /  Reach Level %d. No advancement required.',base.level) or string.format('LOCKED  /  Level %d + advancement stage %d\nPreview only. Complete this path first.',base.level or 1,base.stage or 0),18,310,detailW-36,66,12,learned and Theme.color.green or Theme.color.muted)
  local train=Theme.button(detail,'Train','+1 MASTERY  /  1 SP',UDim2.fromOffset(14,386),UDim2.new(1,-28,0,44),true)
  Theme.enabled(train,editable and learned and points>0 and g.mastery[selected]<3)
  train.Activated:Connect(function() if train.Active then send('TrainSkill',{skill=selected}) end end)
@@ -122,11 +124,11 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
   local col=narrow and (slot-1)%3 or slot-1;local row=narrow and math.floor((slot-1)/3) or 0
   local columns=narrow and 3 or 5;local w=(width-40-(columns-1)*8)/columns
   local b=Theme.button(load,'Slot'..slot,slot..'  '..(active and (equipped and equipped.name or 'EMPTY') or ('Lv.'..(slot==4 and 5 or 10))),UDim2.fromOffset(14+col*(w+8),48+row*66),UDim2.fromOffset(w,56),index==selected)
-  b.Caption.TextSize=10;Theme.enabled(b,editable and active and learned)
+  b.Caption.TextSize=10;Theme.enabled(b,editable and active and learned and not base.ultimate)
   b.Activated:Connect(function() if b.Active then send('SetSkillSlot',{slot=slot,skill=selected}) end end)
  end
  local finish=loadY+(narrow and 200 or 120)+12
- label(body,'PathNote','Path names are provisional. Lv.20 / 40 advancements open slots 4 / 5. The Lv.80 ultimate uses a combat slot.',8,finish,width-16,42,11,Theme.color.muted)
+ label(body,'PathNote','Path names are provisional. Slots 4 / 5 open at Lv.5 / 10. The Lv.80 ultimate has a separate button, shown only after its final advancement.',8,finish,width-16,42,11,Theme.color.muted)
  if pending then
   local retry=Theme.button(body,'RetrySave','RETRY SAVE',UDim2.fromOffset(8,finish+50),UDim2.fromOffset(width-16,44))
   retry.Activated:Connect(state.retry)

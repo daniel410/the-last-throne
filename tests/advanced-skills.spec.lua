@@ -20,7 +20,7 @@ for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
 end
 local count=0
 for classId,paths in pairs(A.order)do
- eq(#K.Skills[classId],29,'class catalog')
+ eq(#K.Skills[classId],32,'class catalog')
  for _,path in ipairs(paths)do
   local b=A.branches[path];eq(#b.skills,13,'12 actives + ultimate');local roots={0,0,0};local ids={}
   for stage=1,4 do
@@ -59,7 +59,7 @@ for classId,paths in pairs(A.order)do
    g=assert(G.apply(g,{action='Advance',branch=path,stage=stage},classId))
    check(A.unlocked(g,classId,b.skills[stage==2 and 5 or stage==3 and 9 or 13].index),'stage grants skill')
   end
-  local learned=0;for i=1,29 do if A.unlocked(g,classId,i)then learned=learned+1 end end;eq(learned,16,'selected path16')
+  local learned=0;for i=1,32 do if A.unlocked(g,classId,i)then learned=learned+1 end end;eq(learned,19,'selected path19')
   eq(A.slotCount(g),5,'max5 slots')
   local advancedIndex=b.skills[1].index
   g=assert(G.apply(g,{action='SetSkillSlot',slot=5,skill=advancedIndex},classId));eq(g.skillSlots[5],advancedIndex,'path skill equips')
@@ -71,10 +71,10 @@ for classId,paths in pairs(A.order)do
  end
 end
 eq(count,104,'96 branch actives +8 ultimates')
-local old=G.new();old.version=1;old.branch=nil;old.stage=nil;old.battleWins=nil;for i=4,29 do old.mastery[i]=nil end
+local old=G.new();old.version=1;old.branch=nil;old.stage=nil;old.battleWins=nil;for i=4,32 do old.mastery[i]=nil end
 local p=assert(R.addHero(R.new(42),'hero','mage',C));p.heroes.hero.progression=old
 check(R.validate(p,C),'legacy basic profile accepted')
-local upgraded=R.upgrade(p);eq(upgraded.heroes.hero.progression.version,2,'v1 to v2');eq(upgraded.heroes.hero.progression.mastery[29],0,'new slots initialized');eq(upgraded.heroes.hero.level,1,'level preserved')
+local upgraded=R.upgrade(p);eq(upgraded.heroes.hero.progression.version,3,'v1 to v3');eq(upgraded.heroes.hero.progression.mastery[29],0,'new slots initialized');eq(upgraded.heroes.hero.level,1,'level preserved')
 local g=G.new(80);for seq=1,12 do g=assert(G.apply(g,{action='AwardXP',stream='qa',sequence=seq,amount=1,rewardKind='Defeat'},'mage'))end
 for stage=1,4 do g=assert(G.apply(g,{action='Advance',branch='pyro',stage=stage},'mage'))end
 for _,d in ipairs(A.branches.pyro.skills)do
@@ -104,4 +104,39 @@ local recovered=assert(store:transact(42,function(current)return R.progress(curr
 eq(recovered.heroes.hero.progression.stage,1,'replay does not advance twice')
 eq(recovered.heroes.hero.progression.branch,'pyro','path survives unknown response')
 check(R.validate(recovered,C),'all item and growth ownership invariants preserved')
+for classId,common in pairs(A.common) do
+ eq(#common,3,'three new common skills')
+ for i,d in ipairs(common) do
+  eq(d.index,29+i,'append-only common index')
+  for _,level in ipairs({4,5,9,10,14,15,19,20,80}) do
+   local g=G.new(level)
+   eq(A.unlocked(g,classId,d.index),level>=d.level,'common level eligibility without advancement')
+   local equipped,reason=G.apply(g,{action='SetSkillSlot',slot=1,skill=d.index},classId)
+   eq(equipped~=nil,level>=d.level,'server common equip boundary')
+   if equipped then check(G.validate(equipped,classId),'common loadout validates') else eq(reason,'SkillLocked','locked common denied') end
+  end
+  check(d.magic== (classId=='mage'),'common resource classification')
+ end
+end
+for classId,paths in pairs(A.order) do
+ for _,path in ipairs(paths) do
+  local old=G.new(80);old.version=2;old.branch=path;old.stage=4;old.battleWins=12
+  for i=30,32 do old.mastery[i]=nil end
+  old.mastery[1]=2;old.mastery[A.branches[path].skills[1].index]=3
+  local ultimate=A.branches[path].skills[13].index
+  old.skillSlots={ultimate,2,3,0,0}
+  check(G.validate(old,classId),'old ultimate loadout remains loadable')
+  local migrated=G.upgrade(old)
+  eq(migrated.version,3,'upgrade to schema3');eq(migrated.skillSlots[1],0,'move legacy ultimate out of normal slots')
+  eq(migrated.skillSlots[2],2,'preserve ordinary slot');eq(migrated.mastery[1],2,'preserve basic mastery')
+  eq(migrated.mastery[A.branches[path].skills[1].index],3,'preserve branch mastery indices')
+  eq(A.ultimate(migrated,classId),ultimate,'derive dedicated ultimate from the final branch')
+  local bad,reason=G.apply(migrated,{action='SetSkillSlot',slot=1,skill=ultimate},classId)
+  eq(bad,nil,'ultimate cannot occupy normal slots');eq(reason,'UltimateSeparate','actionable ultimate rejection')
+  eq(G.points(old),G.points(migrated),'stat points unchanged')
+  local _,beforeSP=G.points(old);local _,afterSP=G.points(migrated);eq(beforeSP,afterSP,'all spent skill points preserved')
+  check(G.validate(G.upgrade(migrated),classId),'upgrade is idempotent')
+  migrated.stage=3;eq(A.ultimate(migrated,classId),nil,'level80 alone does not grant ultimate')
+ end
+end
 print('Advanced skills: '..checks..' checks passed')

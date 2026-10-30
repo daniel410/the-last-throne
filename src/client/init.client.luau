@@ -275,6 +275,15 @@ local function bindCharacter(character)
 		local message = Text.Feedback[character:GetAttribute("K0Feedback")]
 		if message then hud.showFeedback(message) end
 	end
+ local lastLevel=character:GetAttribute('K0Level')
+ table.insert(characterConnections,character:GetAttributeChangedSignal('K0Level'):Connect(function()
+  local level=character:GetAttribute('K0Level');local classId=character:GetAttribute('K0ClassId')
+  if level and lastLevel then
+   local names={};for _,d in ipairs(require(ReplicatedStorage.Shared.AdvancedSkills).common[classId] or {}) do if d.level>lastLevel and d.level<=level then table.insert(names,d.name) end end
+   if #names>0 then hud.showFeedback(string.format(Text.NewSkillFormat,table.concat(names,', ')),6) end
+  end
+  lastLevel=level
+ end))
 	local function updateClass()
 		hud.setClass(character:GetAttribute("K0ClassId"))
 	end
@@ -312,6 +321,7 @@ if player.Character then bindCharacter(player.Character) end
 hud.attack.InputBegan:Connect(startAttack)
 hud.attack.InputEnded:Connect(endAttack)
 hud.dodge.Activated:Connect(dodge)
+hud.ultimate.Activated:Connect(function() if combatInputAllowed() then sendAction("Ultimate") end end)
 for slot, button in ipairs(hud.skills) do
 	button.Activated:Connect(function() useSkill(slot) end)
 end
@@ -370,6 +380,8 @@ UserInputService.InputBegan:Connect(function(input, processed)
 		useSkill(3)
 	elseif input.KeyCode == Enum.KeyCode.Four or input.KeyCode == Enum.KeyCode.DPadLeft then
 		useSkill(4)
+	elseif input.KeyCode == Enum.KeyCode.T or input.KeyCode == Enum.KeyCode.DPadUp then
+		sendAction("Ultimate")
 	elseif input.KeyCode == Enum.KeyCode.Five or input.KeyCode == Enum.KeyCode.DPadRight then
 		useSkill(5)
 	end

@@ -91,7 +91,7 @@ Config.BasicAttackProfiles = {
 -- Physical skills use only their own cooldown; magic also costs mana.
 Config.Skills = {
 	knight = {
-		{ id = "knight.common.bash", name = "SHIELD BASH", cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 4, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash" },
+		{ id = "knight.common.bash", name = "SHIELD BASH", requiresShield = true, cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 4, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash" },
 		{ id = "knight.common.whirlwind", name = "WHIRLWIND", cooldown = 8, windup = 0.25, active = 0.18, recovery = 0.4, damage = 1.0, posture = 18, range = 7, angle = 360, maxHeight = 7, maxTargets = 8, effect = "whirlwind" },
 		{ id = "knight.common.provoke", name = "PROVOKE", cooldown = 12, windup = 0.25, active = 0.1, recovery = 0.3, damage = 0, posture = 0, range = 12, angle = 360, maxHeight = 10, maxTargets = 8, effect = "provoke", provokeDuration = 4, defenseBreakDuration = 4, defenseBreakDamageMultiplier = 1.10 },
 	},
@@ -114,4 +114,5 @@ Config.Skills = {
 
 local Advanced=game and require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
 for classId,skills in pairs(Advanced.skills) do for _,skill in ipairs(skills) do table.insert(Config.Skills[classId],skill) end end
+for classId,skills in pairs(Advanced.common) do for _,skill in ipairs(skills) do table.insert(Config.Skills[classId],skill) end end
 return Config

@@ -149,12 +149,45 @@ branch("cryo","mage","Cryo","cryomancer",{
  s("Hailfall",3,73,"ground",.85,{pulses=4,interval=.5,slow=.6,slowDuration=2}),
  s("Eternal Tempest",0,80,"ground",1.5,{pulses=3,radius=20,slow=.4,slowDuration=3}),
 })
-function A.get(classId,index) return A.skills[classId] and A.skills[classId][index-3] end
+-- Append-only indices preserve all existing branch investments and loadouts.
+A.common={}
+local function common(classId,id,name,root,level,form,damage,extra)
+ local d=s(name,root,level,form,damage,extra)
+ d.id=id;d.index=30+#(A.common[classId] or {});d.common=true;d.advanced=true;d.stage=0;d.ultimate=false
+ d.magic=classId=='mage';d.effect='advanced';d.element=d.element or (d.magic and 'arcane' or 'steel')
+ d.pulses=d.pulses or 1;d.interval=d.interval or .3;d.windup=d.windup or .25;d.active=.12+(d.pulses-1)*d.interval;d.recovery=d.recovery or .3
+ d.cooldown=d.cooldown or 8;d.range=d.range or 6;d.radius=d.radius or 4;d.angle=d.angle or 80;d.maxHeight=8;d.maxTargets=d.maxTargets or 3;d.posture=d.posture or 12
+ d.ranged=form=='line' or form=='projectile' or form=='ground';d.glyph=d.glyph or string.upper(id:match('_([^_]+)$'):sub(1,2))
+ if d.magic then d.manaCost=d.manaCost or 16 end
+ A.common[classId]=A.common[classId] or {};table.insert(A.common[classId],d)
+end
+common('knight','knight_driving_thrust','Driving Thrust',1,5,'line',1.15,{move=2,range=6,maxTargets=1,posture=20,glyph='DT',description='Step forward and thrust at one enemy in a narrow line.'})
+common('knight','knight_crescent_cut','Crescent Cut',2,10,'cone',1.05,{range=6,angle=110,maxTargets=5,cooldown=7,glyph='CC',description='Cut once through enemies in front of you.'})
+common('knight','knight_guarded_strike','Guarded Strike',3,15,'melee',.95,{range=5,maxTargets=1,requiresShield=true,guardReduction=.25,guardDuration=3,cooldown=12,glyph='GS',description='Strike while reducing incoming damage by 25% for 3 seconds.'})
+common('elf','elf_retreating_shot','Retreating Shot',1,5,'projectile',.9,{move=-3,range=40,angle=25,maxTargets=1,glyph='RS',description='Fire one arrow and take a short step backward. Does not grant invulnerability.'})
+common('elf','elf_pinning_shot','Pinning Shot',2,10,'projectile',.85,{range=40,angle=25,maxTargets=1,slow=.55,slowDuration=2,cooldown=9,glyph='PS',description='Fire an arrow that slows ordinary enemies for 2 seconds.'})
+common('elf','elf_arrow_screen','Arrow Screen',3,15,'ground',.45,{range=9,radius=4,pulses=3,interval=.5,maxTargets=4,cooldown=12,glyph='AS',description='Rain physical arrows onto a nearby area three times.'})
+common('dwarf','dwarf_hooking_chop','Hooking Chop',1,5,'melee',1.05,{range=5,maxTargets=1,posture=40,windup=.2,cooldown=7,glyph='HC',description='Hook one enemy with a quick axe chop that pressures posture.'})
+common('dwarf','dwarf_low_sweep','Low Sweep',3,10,'cone',.95,{range=6,angle=110,slow=.6,slowDuration=2,maxTargets=4,glyph='LS',description='Sweep your axe low across nearby enemies, briefly slowing ordinary foes.'})
+common('dwarf','dwarf_braced_throw','Braced Throw',2,15,'line',1.35,{range=26,braced=true,windup=.55,maxTargets=4,cooldown=10,glyph='BT',description='Brace in place and throw an axe through a narrow line of enemies.'})
+common('mage','mage_wind_lance','Wind Lance',1,5,'line',1.0,{element='wind',range=30,maxTargets=3,manaCost=14,cooldown=6,glyph='WL',description='Send a small piercing wind lance through aligned enemies.'})
+common('mage','mage_tidal_ring','Tidal Ring',2,10,'area',.85,{element='water',range=5,slow=.65,slowDuration=2,wet=true,maxTargets=5,manaCost=18,cooldown=9,glyph='TR',description='Release a small ring of water around you, wetting and slowing ordinary foes.'})
+common('mage','mage_arcane_ward','Arcane Ward',3,15,'self',0,{shield=.18,shieldDuration=3,maxTargets=0,manaCost=22,cooldown=14,glyph='AW',description='Create a personal barrier worth 18% of maximum health for 3 seconds. Does not heal or restore MP.'})
+A.maxIndex=32
+function A.get(classId,index)
+ if index>=30 then return A.common[classId] and A.common[classId][index-29] end
+ return A.skills[classId] and A.skills[classId][index-3]
+end
+function A.ultimate(g,classId)
+ local b=A.branches[g.branch]
+ if g.level>=80 and g.stage==4 and b and b.classId==classId then return b.skills[#b.skills].index end
+end
+function A.isUltimate(classId,index) local d=A.get(classId,index);return d and d.ultimate==true end
 function A.slotCount(g) return g.level>=10 and 5 or g.level>=5 and 4 or 3 end
 function A.unlocked(g,classId,index)
- if type(index)~="number" or index%1~=0 or index<1 or index>29 then return false end
+ if type(index)~="number" or index%1~=0 or index<1 or index>A.maxIndex then return false end
  if index<=3 then return true end
  local d=A.get(classId,index)
- return d~=nil and d.branch==g.branch and g.stage>=d.stage and g.level>=d.level
+ return d~=nil and g.level>=d.level and (d.common or d.branch==g.branch and g.stage>=d.stage)
 end
 return A

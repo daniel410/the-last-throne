@@ -15,6 +15,8 @@ end
 assert(groundSlam and overheadSmash, "Dwarf skill configuration is missing")
 
 local Visual = {}
+local shieldSkills={}
+for _,d in ipairs(Config.Skills.knight) do if d.requiresShield or d.shield or d.counterPosture or d.name:find("SHIELD",1,true) then shieldSkills[d.id]=true end end
 local started = false
 local effects = {}
 local seenShots = {}
@@ -197,7 +199,7 @@ function Visual.samplePose(classId, phase, combo, attackKind, skillId)
 		-- Tilt the blade forward while standing without changing the TD grip.
 		return CFrame.Angles(math.rad(-25), 0, 0)
 	end
-	if classId == "dwarf" and skillId == "dwarf.common.throw" then
+	if classId == "dwarf" and (skillId == "dwarf.common.throw" or skillId=="dwarf_braced_throw") then
 		if phase == "Windup" then return CFrame.Angles(math.rad(-95), 0, math.rad(20)) end
 		if phase == "Active" then return CFrame.Angles(math.rad(-135), 0, 0) end
 		if phase == "Recovery" then return CFrame.Angles(math.rad(-85), 0, 0) end
@@ -412,7 +414,7 @@ function Visual.renderArms(character, dt)
 			if skillId == "mage.common.water_ball" then
 				right = CFrame.Angles(math.rad(windup and 45 or active and 85 or 45), math.rad(windup and -20 or 0), math.rad(-10))
 				left = CFrame.Angles(math.rad(windup and 55 or active and 70 or 25), math.rad(15), math.rad(15))
-			elseif skillId == "mage.common.gravity" then
+			elseif skillId == "mage.common.gravity" or skillId=="mage_tidal_ring" or skillId=="mage_arcane_ward" then
 				right = CFrame.Angles(math.rad(windup and 110 or active and 90 or 45), math.rad(-10), math.rad(-20))
 				left = CFrame.Angles(math.rad(windup and 100 or active and 85 or 25), math.rad(15), math.rad(20))
 				torso = CFrame.Angles(math.rad(active and -8 or 5), 0, 0)
@@ -425,22 +427,33 @@ function Visual.renderArms(character, dt)
 			local progress = type(startedAt) == "number" and math.clamp((Workspace:GetServerTimeNow() - startedAt - 0.25) / 0.18, 0, 1) or 0.5
 			torso = CFrame.Angles(0, phase == "Active" and -2 * math.pi * progress or math.rad(phase == "Windup" and 45 or 0), 0)
 		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.provoke" then
-			local pitch = phase == "Windup" and 80 or phase == "Active" and 120 or 65
+			local pitch = phase == "Windup" and 95 or phase == "Active" and 150 or 75
 			left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 			right = CFrame.Angles(math.rad(phase == "Windup" and 50 or phase == "Active" and 85 or 35), 0, math.rad(-15))
-		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.bash" then
-			local windup,active=phase=="Windup",phase=="Active"
-			left=CFrame.new(0,0,active and -.9 or windup and .18 or -.3)*CFrame.Angles(0,math.rad(windup and -100 or active and -55 or -65),0)*CFrame.Angles(math.rad(windup and 75 or active and 140 or 100),0,0)
-			right=CFrame.Angles(math.rad(active and 70 or 35),0,math.rad(-20))
-			torso=CFrame.new(0,0,active and -.28 or windup and .12 or -.12)*CFrame.Angles(math.rad(active and -18 or windup and 10 or -6),math.rad(windup and -22 or active and 14 or 6),0)
-			leftHipPose=CFrame.Angles(math.rad(active and -24 or 8),0,0)
-			rightHipPose=CFrame.Angles(math.rad(active and 12 or -8),0,0)
+  elseif classId=='knight' and shieldSkills[skillId] then
+   local windup,active=phase=='Windup',phase=='Active'
+   left=CFrame.new(-.12,active and .12 or .2,active and -1.35 or windup and .35 or -.35)
+    *CFrame.Angles(0,math.rad(windup and -120 or active and -45 or -65),0)
+    *CFrame.Angles(math.rad(windup and 65 or active and 150 or 100),0,math.rad(active and -10 or 8))
+   right=CFrame.Angles(math.rad(active and 95 or 45),math.rad(windup and 35 or active and -45 or 0),math.rad(-20))
+   torso=CFrame.new(0,0,active and -.45 or windup and .2 or -.12)
+    *CFrame.Angles(math.rad(active and -25 or windup and 14 or -6),math.rad(windup and -35 or active and 28 or 6),0)
+   leftHipPose=CFrame.Angles(math.rad(active and -32 or 12),0,0)
+   rightHipPose=CFrame.Angles(math.rad(active and 18 or -12),0,0)
+  elseif skillId=='knight_driving_thrust' then
+   local windup,active=phase=='Windup',phase=='Active'
+   right=CFrame.new(0,0,active and -.75 or 0)*CFrame.Angles(math.rad(active and 85 or 55),math.rad(windup and 30 or 0),0)
+   torso=CFrame.Angles(math.rad(active and -12 or 5),0,0)
+  elseif skillId=='knight_crescent_cut' or skillId=='dwarf_low_sweep' or skillId=='dwarf_hooking_chop' then
+   local low=skillId=='dwarf_low_sweep'
+   right=CFrame.Angles(math.rad(low and 35 or 70),math.rad(phase=='Windup' and 65 or phase=='Active' and -65 or 0),0)
+   torso=CFrame.Angles(math.rad(low and -15 or 0),math.rad(phase=='Active' and -18 or 10),0)
 		elseif classId == "knight" then
 			local side = character:GetAttribute("K0Combo") == 2 and -1 or 1
 			local pitch = phase == "Windup" and 60 or phase == "Active" and 60 or 20
 			local yaw = phase == "Windup" and 60 * side or phase == "Active" and -60 * side or 0
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
-		elseif classId == "dwarf" and skillId == "dwarf.common.throw" then
+		elseif classId == "dwarf" and (skillId == "dwarf.common.throw" or skillId=="dwarf_braced_throw") then
 			local pitch = phase == "Windup" and 145 or phase == "Active" and 78 or 40
 			right = CFrame.Angles(math.rad(pitch), math.rad(phase == "Windup" and -25 or 0), 0)
 			rightElbow = CFrame.Angles(math.rad(phase == "Windup" and -45 or 0), 0, 0)
@@ -921,9 +934,9 @@ function Visual.renderCharacter(character, dt)
 	if classId == "knight" and character:GetAttribute("K0AttackPhase") == "Active" then
 		local skillId, seq = character:GetAttribute("K0SkillId"), character:GetAttribute("K0AttackSeq")
 		local root = character:FindFirstChild("HumanoidRootPart")
-		if root and seq and seenSkillEffects[character] ~= seq and (skillId == "knight.common.whirlwind" or skillId == "knight.common.provoke" or skillId == "knight.common.bash") then
+		if root and seq and seenSkillEffects[character] ~= seq and (skillId == "knight.common.whirlwind" or skillId == "knight.common.provoke" or shieldSkills[skillId]) then
 			seenSkillEffects[character] = seq
-			if skillId=="knight.common.bash" then shieldBashPulse(root)
+			if shieldSkills[skillId] then shieldBashPulse(root)
 			else areaPulse(root.Position, skillId == "knight.common.whirlwind" and Color3.fromRGB(255, 222, 151) or Color3.fromRGB(255, 147, 75), skillId == "knight.common.whirlwind" and 7 or 12) end
 		end
 	end

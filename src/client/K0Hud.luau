@@ -237,6 +237,8 @@ function Hud.create()
 	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(8, 0), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(8, 132), 56)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(90, 0), 64)
+	local ultimate,ultimateHint=action(actions,'Ultimate',Text.Ultimate,'T',UDim2.fromOffset(90,-76),64)
+	ultimate.Visible=false
 	local minimap=MiniMap.create(topRoot)
 	local mapScale=Instance.new("UIScale");mapScale.Parent=minimap.frame
 	local back = Instance.new("TextButton")
@@ -370,6 +372,7 @@ function Hud.create()
 		block = block,
 		sprint = sprint,
 		skills = skillButtons,
+		ultimate = ultimate,
 		items = itemButtons,
 		dodge = dodge,
 		back = back,
@@ -435,6 +438,17 @@ function Hud.create()
 				button.TDButtonArt.ImageTransparency = count > 0 and 0 or .45
 				button.ItemCount.TextColor3 = count > 0 and COLORS.cream or COLORS.muted
 			end
+   local ultimateId=character and character:GetAttribute('K0UltimateId')
+   local ultimateSkill
+   for _,d in ipairs(Config.Skills[character and character:GetAttribute('K0ClassId')] or {}) do if d.id==ultimateId and d.ultimate then ultimateSkill=d end end
+   -- No locked placeholder or reserved combat slot before the final advancement.
+   ultimate.Visible=ultimateSkill~=nil
+   if ultimateSkill then
+    local remaining=math.max(0,(character:GetAttribute('K0UltimateReady') or 0)-Workspace:GetServerTimeNow())
+    ultimate.Active=remaining<=0;ultimate.Caption.Text=remaining>0 and string.format('%.1fs',remaining) or Text.Ultimate
+    ultimateHint.Text=UserInputService.TouchEnabled and 'TAP' or UserInputService.GamepadEnabled and 'D-PAD UP' or 'T'
+    ultimate.TDButtonArt.ImageTransparency=remaining>0 and .45 or 0
+   end
 			for index, button in ipairs(skillButtons) do
 				local classId = character and character:GetAttribute("K0ClassId")
 				local equipped = character and character:GetAttribute("K0EquippedSkill" .. index)

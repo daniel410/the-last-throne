@@ -16,20 +16,37 @@ function Growth.copy(t)
 end
 function Growth.xpToNext(level) return level<Growth.maxLevel and Growth.xpBase+Growth.xpPerLevel*(level-1) or 0 end
 function Growth.new(level)
- local ranks={};for i=1,29 do ranks[i]=0 end
- return {version=2,revision=0,level=level or 1,xp=0,stats={STR=0,DEX=0,INT=0,VIT=0},
+ local ranks={};for i=1,32 do ranks[i]=0 end
+ return {version=3,revision=0,level=level or 1,xp=0,stats={STR=0,DEX=0,INT=0,VIT=0},
   mastery=ranks,skillSlots={1,2,3,0,0},rewardStream="",rewardSequence=0,branch="",stage=0,battleWins=0}
 end
 function Growth.upgrade(g)
  if type(g)~="table" then return g end
- if g.version~=1 then return Growth.copy(g) end
- local result=Growth.copy(g);result.version=2;result.branch="";result.stage=0;result.battleWins=0
- if type(result.mastery)=="table" then for i=4,29 do result.mastery[i]=0 end end
+ local result=Growth.copy(g)
+ if g.version==1 then
+  result.version=2;result.branch="";result.stage=0;result.battleWins=0
+  if type(result.mastery)=="table" then for i=4,29 do result.mastery[i]=0 end end
+ end
+ if result.version==2 then
+  if type(result.mastery)=="table" then
+   -- Version 2 never owned these indices. Reject ambiguous saved data.
+   for i=30,32 do if result.mastery[i]~=nil then return result end end
+   for i=30,32 do result.mastery[i]=0 end
+  end
+  local branch=Advanced.branches[result.branch]
+  local classId=branch and branch.classId
+  if classId and type(result.skillSlots)=="table" then
+   for slot,index in pairs(result.skillSlots) do
+    if type(index)=="number" and Advanced.isUltimate(classId,index) and Advanced.unlocked(result,classId,index) then result.skillSlots[slot]=0 end
+   end
+  end
+  result.version=3
+ end
  return result
 end
 function Growth.validate(g,classId)
- if type(g)=="table" and g.version==1 then g=Growth.upgrade(g) end
- if type(g)~="table" or g.version~=2 or not Growth.integer(g.revision,0,1e12) or not Growth.integer(g.level,1,80)
+ if type(g)=="table" and (g.version==1 or g.version==2) then g=Growth.upgrade(g) end
+ if type(g)~="table" or g.version~=3 or not Growth.integer(g.revision,0,1e12) or not Growth.integer(g.level,1,80)
   or not Growth.integer(g.xp,0,math.max(0,Growth.xpToNext(g.level)-1)) or type(g.stats)~="table"
   or type(g.mastery)~="table" or type(g.skillSlots)~="table" or type(g.rewardStream)~="string" or #g.rewardStream>64
   or not Growth.integer(g.rewardSequence,0,1e12) or not Growth.integer(g.stage,0,4) or not Growth.integer(g.battleWins,0,1e12) then return false end
@@ -41,17 +58,17 @@ function Growth.validate(g,classId)
  for _,k in ipairs(Growth.statKeys) do if not Growth.integer(g.stats[k],0,316) then return false end;spent=spent+g.stats[k] end
  if spent>4*(g.level-1) then return false end
  local sp=0
- for k,v in pairs(g.mastery) do if not Growth.integer(k,1,29) or not Growth.integer(v,0,3) then return false end end
- for i=1,29 do
+ for k,v in pairs(g.mastery) do if not Growth.integer(k,1,32) or not Growth.integer(v,0,3) then return false end end
+ for i=1,32 do
   if not Growth.integer(g.mastery[i],0,3) or g.mastery[i]>0 and not Advanced.unlocked(g,resolvedClass,i) then return false end
   sp=sp+g.mastery[i]
  end
  if sp>g.level-1 then return false end
  local seen={}
- for k,v in pairs(g.skillSlots) do if not Growth.integer(k,1,5) or not Growth.integer(v,0,29) then return false end end
+ for k,v in pairs(g.skillSlots) do if not Growth.integer(k,1,5) or not Growth.integer(v,0,32) then return false end end
  for i=1,5 do
   local v=g.skillSlots[i]
-  if not Growth.integer(v,0,29) or i>Advanced.slotCount(g) and v~=0 or v>0 and (seen[v] or not Advanced.unlocked(g,resolvedClass,v)) then return false end
+  if not Growth.integer(v,0,32) or i>Advanced.slotCount(g) and v~=0 or v>0 and (seen[v] or not Advanced.unlocked(g,resolvedClass,v) or Advanced.isUltimate(resolvedClass,v)) then return false end
   if v>0 then seen[v]=true end
  end
  return true
@@ -78,6 +95,7 @@ function Growth.skill(classId,index,base,g)
 	if index==1 and (classId=="knight" or classId=="dwarf") then skill.posture=skill.posture+(classId=="knight" and 3 or 2)*rank end
 	if index==3 and classId=="knight" then skill.provokeDuration=skill.provokeDuration+.2*rank end
 	if index==3 and classId=="mage" then skill.slowDuration=skill.slowDuration+.2*rank end
+	if skill.shield and skill.form=="self" then skill.shield=skill.shield*(1+.04*rank) end
 	skill.masteryRank=rank
 	return skill
 end
@@ -106,14 +124,15 @@ function Growth.apply(g,command,classId)
 		end
 		local points=Growth.points(g); if cost<=0 or cost>points then return nil,"NotEnoughStatPoints" end
 	elseif command.action=="TrainSkill" then
-		if not Growth.integer(command.skill,1,29) then return nil,"InvalidRequest" end
+		if not Growth.integer(command.skill,1,32) then return nil,"InvalidRequest" end
 		if not Advanced.unlocked(g,classId or (Advanced.branches[g.branch] or {}).classId or "knight",command.skill) then return nil,"SkillLocked" end
 		local _,points=Growth.points(g)
 		if points<1 then return nil,"NotEnoughSkillPoints" end
 		if nextG.mastery[command.skill]>=3 then return nil,"SkillMaxRank" end
 		nextG.mastery[command.skill]=nextG.mastery[command.skill]+1
 	elseif command.action=="SetSkillSlot" then
-		if not Growth.integer(command.slot,1,Advanced.slotCount(g)) or not Growth.integer(command.skill,0,29) then return nil,"InvalidRequest" end
+		if not Growth.integer(command.slot,1,Advanced.slotCount(g)) or not Growth.integer(command.skill,0,32) then return nil,"InvalidRequest" end
+		if command.skill>0 and Advanced.isUltimate(classId or (Advanced.branches[g.branch] or {}).classId or "knight",command.skill) then return nil,"UltimateSeparate" end
 		if command.skill>0 and not Advanced.unlocked(g,classId or (Advanced.branches[g.branch] or {}).classId or "knight",command.skill) then return nil,"SkillLocked" end
 		if command.skill>0 then for i,v in ipairs(nextG.skillSlots) do if i~=command.slot and v==command.skill then nextG.skillSlots[i]=nextG.skillSlots[command.slot] end end end
 		nextG.skillSlots[command.slot]=command.skill

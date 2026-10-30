@@ -5,7 +5,7 @@ local Debris=game:GetService("Debris")
 local Config=require(RS.Shared.K0Config)
 local Visual={}
 local byId={};for _,list in pairs(Config.Skills) do for _,d in ipairs(list) do byId[d.id]=d end end
-local colors={steel=Color3.fromRGB(255,215,133),holy=Color3.fromRGB(255,239,167),gun=Color3.fromRGB(255,210,80),bomb=Color3.fromRGB(255,133,57),shell=Color3.fromRGB(255,87,55),nature=Color3.fromRGB(104,238,157),fire=Color3.fromRGB(255,101,41),earth=Color3.fromRGB(235,173,91),water=Color3.fromRGB(73,178,255),frost=Color3.fromRGB(141,234,255),lightning=Color3.fromRGB(222,198,255)}
+local colors={wind=Color3.fromRGB(180,255,218),arcane=Color3.fromRGB(180,153,255),steel=Color3.fromRGB(255,215,133),holy=Color3.fromRGB(255,239,167),gun=Color3.fromRGB(255,210,80),bomb=Color3.fromRGB(255,133,57),shell=Color3.fromRGB(255,87,55),nature=Color3.fromRGB(104,238,157),fire=Color3.fromRGB(255,101,41),earth=Color3.fromRGB(235,173,91),water=Color3.fromRGB(73,178,255),frost=Color3.fromRGB(141,234,255),lightning=Color3.fromRGB(222,198,255)}
 local active=0
 local function part(name,color,shape,size,cf,life)
  if active>=64 then return nil end
@@ -61,6 +61,8 @@ function Visual.start()
    disc(center,d.radius,color,.5,false)
    if d.element=="shell" then segment(center+Vector3.new(0,18,0),center,color,.25,.6)
    elseif d.element=="earth" then for i=-1,1 do local p=part("EarthSpike",color,Enum.PartType.Block,Vector3.new(1,4,1),CFrame.new(center+Vector3.new(i*2,0,0)),.5);if p then Tween:Create(p,TweenInfo.new(.5),{Transparency=1}):Play() end end end
+  elseif d.form=="self" then
+   local p=part("ArcaneWard",color,Enum.PartType.Ball,Vector3.new(6,7,6),CFrame.new(origin),.5);if p then p.Transparency=.8;Tween:Create(p,TweenInfo.new(.5),{Transparency=1}):Play() end
   elseif d.form=="area" or d.form=="cone" then disc(origin,d.form=="area" and d.range or math.min(d.range,10),color,.35,false)
   else segment(d.returning and pulse==2 and center or origin,d.returning and pulse==2 and origin or center,color,.35,d.form=="line" and .4 or .2) end
   if d.shield and character and character:FindFirstChild("HumanoidRootPart") then disc(character.HumanoidRootPart.Position,3,color,.5,false) end

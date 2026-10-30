@@ -15,6 +15,9 @@ local skills = {
 	elf = {"elf.common.aimed", "elf.common.rapid", "elf.common.multi"},
 	mage = {"mage.common.mana_bolt", "mage.common.water_ball", "mage.common.gravity"},
 }
+local Advanced=require(game.ReplicatedStorage.Shared.AdvancedSkills)
+for classId,list in pairs(Advanced.common) do for _,d in ipairs(list) do table.insert(skills[classId],d.id) end end
+table.insert(skills.knight,Advanced.branches.steel_knight.skills[1].id)
 local windup = require(game:GetService("ReplicatedStorage").Shared.K0Config).Skills.dwarf[1].windup
 for index = 0, 4 do
 	local angle = visual.overheadSpinAngle(10, 10 + windup * index / 4)
@@ -38,7 +41,7 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 				character:SetAttribute("K0SkillId", skillId)
 				character:SetAttribute("K0AttackSeq", index)
 				character:SetAttribute("K0RapidShotCount", 3)
-				local selected = assert(joint(character, (classId == "knight" and (index == 1 or index == 3)) and "Left" or classId == "elf" and "Left" or "Right"))
+				local selected = assert(joint(character, (classId == "knight" and (index == 1 or index == 3 or index==6 or index==7)) and "Left" or classId == "elf" and "Left" or "Right"))
 				character:SetAttribute("K0AttackPhase", "Windup")
 				for _ = 1, 18 do visual.renderArms(character, 1/60); visual.renderCharacter(character, 1/60) end
 				local wind = selected.Transform

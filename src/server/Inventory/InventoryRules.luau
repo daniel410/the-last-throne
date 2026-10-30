@@ -251,7 +251,7 @@ function Rules.upgrade(profile)
 	local changed=false
 	for _,hero in pairs(profile.heroes) do
 		if hero.progression==nil then hero.progression=Growth.new(hero.level); changed=true
-		elseif hero.progression.version==1 then hero.progression=Growth.upgrade(hero.progression); changed=true end
+		elseif (hero.progression.version==1 or hero.progression.version==2) then hero.progression=Growth.upgrade(hero.progression); changed=true end
 	end
 	if changed then profile.revision=profile.revision+1 end
 	return profile

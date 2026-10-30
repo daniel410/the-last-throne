@@ -130,6 +130,13 @@ local ok, failure = xpcall(function()
 		check(bar.Position.Y.Offset+bar.Size.Y.Offset<=status.Size.Y.Offset-16 or resource=="MANA" and not bar.Visible,"resource frame clears the lower rail")
 		check(bar.TDResourceFrame.Position==UDim2.new() and bar.TDResourceFrame.Size==UDim2.fromScale(1,1),"resource artwork never extends beyond its track")
 	end
+ check(not root.Actions.Ultimate.Visible,'ultimate button hidden for an unqualified hero')
+ character:SetAttribute('K0UltimateId',require(game.ReplicatedStorage.Shared.AdvancedSkills).branches.steel_knight.skills[13].id)
+ hud.setCooldowns(character)
+ check(root.Actions.Ultimate.Visible,'server-granted ultimate reveals the separate button')
+ character:SetAttribute('K0UltimateId','')
+ hud.setCooldowns(character)
+ check(not root.Actions.Ultimate.Visible,'switching to an unqualified hero hides ultimate again')
 	local config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
 	for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
 		local hero = { heroId = "test", classId = classId, skillSlots = {1, 2, 3, 0, 0}, practiceAdvanced = false }
@@ -166,7 +173,7 @@ local ok, failure = xpcall(function()
 				local height=tree.render(body,h,{ready=true,atHub=true},{path=path,selected=1},function() end,function() end,nil)
 				local count=0
 				for _,node in ipairs(body.SkillMap:GetChildren()) do if node:GetAttribute("SkillIndex") then count+=1 end end
-				check(count==16,classId.." selected branch has exactly sixteen actual skill nodes")
+				check(count==19,classId.." selected branch has exactly nineteen actual skill nodes")
 				check(body:FindFirstChild("SkillDetails") and body:FindFirstChild("CombatLoadout"),"tree keeps detail and loadout controls")
 				check(height>500,"tree reports scrollable content height")
 				check(body.SkillMap.Skill1:FindFirstChild("SkillGlyph")~=nil,"basic skill uses a distinct native action symbol")

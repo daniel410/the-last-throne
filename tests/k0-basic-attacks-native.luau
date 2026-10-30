@@ -203,19 +203,21 @@ return {
 		end)
 	end
 	for classId in pairs({knight=true,dwarf=true,elf=true,mage=true}) do
-		for skillIndex=4,29 do
+		for skillIndex=4,32 do
 			local descriptor=require(game.ReplicatedStorage.Shared.K0Config).Skills[classId][skillIndex]
 			case("branch-cast-"..descriptor.id,function()
 				local G=require(game.ReplicatedStorage.Shared.HeroProgression)
-				local growth=G.new(80);growth.branch=descriptor.branch;growth.stage=4;growth.battleWins=12;growth.skillSlots={skillIndex,0,0,0,0}
+				local growth=G.new(80);growth.branch=descriptor.branch or "";growth.stage=descriptor.common and 0 or 4;growth.battleWins=12;growth.skillSlots={descriptor.ultimate and 0 or skillIndex,0,0,0,0}
 				api.injectResolver(function(player) return {heroId="hero-"..player.UserId,baseClassId=classId,epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5} end)
 				local state=spawnPlayer();local enemy=spawnEnemy(3)
 				local before=state.mana
-				action(state,"Skill1",0,nil,enemy.model)
-				assert(state.attack,"qualified branch skill must cast")
+				action(state,descriptor.ultimate and "Ultimate" or "Skill1",0,nil,enemy.model)
+				assert(state.attack,"qualified branch/common skill must cast")
+				if descriptor.braced then equal(state.humanoid.WalkSpeed,0,"braced throw prevents walking during cast") end
+				if descriptor.guardReduction then equal(state.guardReduction,.25,"guarded strike grants bounded damage reduction") end
 				local definition=state.attack.definition
 				for pulse=1,definition.pulses do sample(definition.windup+(pulse-1)*definition.interval+.01) end
-				equal(enemy.humanoid.Health<10000,true,"branch skill deals actual damage")
+				equal(enemy.humanoid.Health<10000,descriptor.form~="self","attack damages; pure ward never damages")
 				equal(state.skillReadyAt[definition.id],definition.cooldown,"own stable cooldown")
 				if definition.magic then near(state.mana,before-definition.manaCost,"magic uses MP") end
 				if definition.shield then equal(state.branchShield.amount>0,true,"attack grants server shield") end

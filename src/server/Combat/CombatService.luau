@@ -106,7 +106,7 @@ local function setPlayerState(state, name)
 	local speed = state.sprinting and Config.SprintSpeed or Config.WalkSpeed
 	if name ~= "Idle" then state.sprinting = false; state.character:SetAttribute("K0Sprinting", false) end
 	if name == "Attack" then
-		speed = Config.AttackSpeed
+		speed = state.attack and state.attack.definition.braced and 0 or Config.AttackSpeed
 	elseif name == "Block" then
 		speed = Config.GuardSpeed
 	elseif name == "Dodge" or name == "Stunned" or name == "Dead" then
@@ -301,6 +301,7 @@ end
 
 -- This movement is server-resolved, bounded and cannot cross a wall or edge.
 local function skillStep(state, direction, distance)
+	if distance<0 then direction=-direction;distance=-distance end
 	local params = rayParams({ state.character })
 	local hit = workspace:Blockcast(state.root.CFrame, state.root.Size * 0.9, direction * distance, params)
 	if hit then distance = math.max(0, math.min(distance, hit.Distance - 0.15)) end
@@ -317,14 +318,31 @@ local function setMana(state, value)
 	state.character:SetAttribute("K0Mana", math.floor(state.mana * 10 + 0.5) / 10)
 end
 
+local function publishSkills(state,current)
+ local c=state.character
+ c:SetAttribute('K0SkillSlotCount',state.slotCount)
+ for slot=1,5 do
+  local d=slot<=state.slotCount and Config.Skills[state.baseClassId][state.skillSlots[slot] or 0]
+  c:SetAttribute('K0EquippedSkill'..slot,d and d.id or '')
+  c:SetAttribute('K0SkillReady'..slot,d and workspace:GetServerTimeNow()+math.max(0,(state.skillReadyAt[d.id] or current)-current) or 0)
+ end
+ local index=state.growth and Advanced.ultimate(state.growth,state.baseClassId)
+ local d=index and Config.Skills[state.baseClassId][index]
+ c:SetAttribute('K0UltimateId',d and d.id or '')
+ c:SetAttribute('K0UltimateReady',d and workspace:GetServerTimeNow()+math.max(0,(state.skillReadyAt[d.id] or current)-current) or 0)
+end
+
 local function startSkill(state, slot, current, targetModel)
 	local skills = Config.Skills[state.baseClassId]
-	if slot > state.slotCount then return end
-	local skillIndex=state.skillSlots[slot] or 0
+	if slot~=0 and slot > state.slotCount then return end
+	local skillIndex=slot==0 and state.growth and Advanced.ultimate(state.growth,state.baseClassId) or state.skillSlots[slot] or 0
+	if slot==0 and not skillIndex then return end
+	if slot~=0 and Advanced.isUltimate(state.baseClassId,skillIndex) then return end
 	if state.growth and not Advanced.unlocked(state.growth,state.baseClassId,skillIndex) then return end
 	local skill = skills and skills[skillIndex]
 	if skill and state.growth then skill=Growth.skill(state.baseClassId,state.skillSlots[slot],skill,state.growth) end
-	if not skill then return end
+	if not skill then if slot==0 then updateFeedback(state,"UltimateLocked") end;return end
+	if skill.requiresShield and state.inventoryManaged and not (state.equipment and state.equipment.offhand) then updateFeedback(state,"EquipShield");return end
 	if state.mode ~= "Idle" then updateFeedback(state, "SkillBusy"); return end
 	if current < (state.skillReadyAt[skill.id] or -math.huge) then updateFeedback(state, "SkillCooling"); return end
 	-- Magic costs MP by contract, including future magic-archer abilities.
@@ -350,17 +368,18 @@ local function startSkill(state, slot, current, targetModel)
 	state.skillReadyAt[skill.id] = current + skill.cooldown
 	state.lastEquipmentCombat = current
 	if state.setSkillReadyAt then state.setSkillReadyAt(skill.id, state.skillReadyAt[skill.id]) end
-	state.character:SetAttribute("K0SkillReady" .. slot, workspace:GetServerTimeNow() + skill.cooldown)
+	state.character:SetAttribute((slot==0 and "K0UltimateReady" or "K0SkillReady" .. slot), workspace:GetServerTimeNow() + skill.cooldown)
 	if skill.magic then
 		setMana(state, state.mana - skill.manaCost); state.manaRegenAt = current + Config.ManaRegenDelay
 	end
 	local advancedCast=skill.advanced and AdvancedCombat.snapshot(state,skill,direction,targetModel,enemyStates,unobstructed)
 	if skill.move then skillStep(state,direction,skill.move) end
+	if skill.guardReduction then state.guardedUntil=current+skill.guardDuration;state.guardReduction=skill.guardReduction end
 	if skill.shield then
 		for _,friend in pairs(playerStates) do
 			if alive(friend) and (friend==state or skill.partyShield and (friend.root.Position-state.root.Position).Magnitude<=10 and unobstructed(state.root.Position,friend.root.Position,state.character,friend.character)) then
 				local amount=friend.humanoid.MaxHealth*skill.shield
-				friend.branchShield={amount=math.max(amount,friend.branchShield and friend.branchShield.expires>current and friend.branchShield.amount or 0),expires=current+4}
+				friend.branchShield={amount=math.max(amount,friend.branchShield and friend.branchShield.expires>current and friend.branchShield.amount or 0),expires=current+(skill.shieldDuration or 4)}
 				friend.character:SetAttribute("K0Shield",friend.branchShield.amount)
 			end
 		end
@@ -468,9 +487,9 @@ local function acceptAction(state, action, direction, current, targetModel)
 	end
 	local inventoryContext = readCombatContext(state.player, state.character)
 	if inventoryContext and inventoryContext.inventoryLocked and action ~= "BlockEnd" and action ~= "SprintEnd" then return end
-	if state.inventoryManaged and (action == "Attack" or action:match("^Skill") or action == "CastArcane" or action == "BlockStart") then
+	if state.inventoryManaged and (action == "Attack" or action:match("^Skill") or action == "Ultimate" or action == "CastArcane" or action == "BlockStart") then
 		if not state.equipment or not state.equipment.weapon then updateFeedback(state, "EquipWeapon"); return end
-		if state.baseClassId == "knight" and (action == "BlockStart" or action == "Skill1") and not state.equipment.offhand then updateFeedback(state, "EquipShield"); return end
+		if state.baseClassId == "knight" and action == "BlockStart" and not state.equipment.offhand then updateFeedback(state, "EquipShield"); return end
 	end
 	if action == "Item1" or action == "Item2" then
 		if state.inventoryManaged then updateFeedback(state, "InventoryItemOnly"); return end
@@ -517,6 +536,7 @@ local function acceptAction(state, action, direction, current, targetModel)
 		startSkill(state, 1, current, targetModel)
 		return
 	end
+	if action=="Ultimate" then startSkill(state,0,current,targetModel);return end
 	local skillSlot = action:match("^Skill([12345])$")
 	if skillSlot then startSkill(state, tonumber(skillSlot), current, targetModel); return end
 	if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" then
@@ -598,6 +618,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 		setPlayerState(playerState, "Stunned")
 		updateFeedback(playerState, "Interrupted")
 	end
+	if playerState.guardedUntil and current<playerState.guardedUntil then multiplier=multiplier*(1-playerState.guardReduction) end
 	if playerState.rallyUntil and current < playerState.rallyUntil then multiplier = multiplier * 0.8 end
 	local damage = math.max(1, math.floor(attack.definition.damage * multiplier + 0.5))
 	damage = math.max(1, damage - (playerState.equipment and playerState.equipment.armor or 0) - (playerState.derived and playerState.derived.armor or 0))
@@ -667,7 +688,8 @@ local function damageEnemy(state, enemy, attack, current)
 	if enemy.humanoid.Health > 0 then
 		if applied>0 and d.advanced then
 			if d.mark then enemy.branchMarks=enemy.branchMarks or {};enemy.branchMarks[state.heroId]={kind=d.mark,expires=current+8};enemy.model:SetAttribute("K0BranchMark",d.mark) end
-			if d.slow and enemy.kind~="Ogre" then enemy.gravityUntil=current+(d.slowDuration or 2);enemy.gravityMultiplier=d.slow;enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+(d.slowDuration or 2)) end
+			if d.wet then enemy.model:SetAttribute("K0WetUntil",workspace:GetServerTimeNow()+3) end
+			if d.slow and enemy.kind~="Ogre" and not enemy.model:GetAttribute("StoryBoss") then enemy.gravityUntil=current+(d.slowDuration or 2);enemy.gravityMultiplier=d.slow;enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+(d.slowDuration or 2)) end
 			if d.taunt and enemy.kind~="Ogre" then enemy.provokedBy=state;enemy.provokeUntil=current+d.taunt;enemy.model:SetAttribute("K0ProvokeUntil",workspace:GetServerTimeNow()+d.taunt) end
 			if d.push and enemy.kind~="Ogre" then
 				local push=horizontalUnit(enemy.root.Position-state.root.Position,attack.direction)*d.push
@@ -1674,6 +1696,7 @@ local function setupCharacter(player, character)
 			character:SetAttribute("K0EquippedSkill" .. slot, skill and skill.id or "")
 			character:SetAttribute("K0SkillReady" .. slot, skill and workspace:GetServerTimeNow() + math.max(0, (state.skillReadyAt[skill.id] or current) - current) or 0)
 		end
+		publishSkills(state,current)
 		character:SetAttribute("K0Combo", 0)
 		character:SetAttribute("K0AttackPhase", "None")
 		character:SetAttribute("K0Invulnerable", false)
@@ -1715,6 +1738,9 @@ function CombatService.refreshEquipment(player, equipment)
 	if context and context.growth then
 		leveledUp=state.growth~=nil and context.growth.level>state.growth.level
 		state.growth=context.growth
+		state.skillSlots=context.skillSlots or state.growth.skillSlots
+		state.slotCount=Advanced.slotCount(state.growth)
+		publishSkills(state,now())
 		state.derived=Growth.derived(state.baseClassId,state.growth)
 		state.maxMana=state.derived.mana
 		if state.maxMana>0 then setMana(state,leveledUp and state.maxMana or math.min(state.mana or 0,state.maxMana)) else state.mana=nil end
@@ -1811,12 +1837,12 @@ function CombatService.start(enemies, serverContextResolver, awardXP)
 		if not state or not alive(state) or type(action) ~= "string" or #action > 16 or select("#", ...) > 0 or not validDirection(direction) then
 			return
 		end
-		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" and action ~= "SprintStart" and action ~= "SprintEnd" and action ~= "Item1" and action ~= "Item2" and not action:match("^Skill[12345]$") then
+		if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" and action ~= "BlockEnd" and action ~= "CastArcane" and action ~= "SprintStart" and action ~= "SprintEnd" and action ~= "Item1" and action ~= "Item2" and action ~= "Ultimate" and not action:match("^Skill[12345]$") then
 			return
 		end
 		if targetModel ~= nil then
 			if typeof(targetModel) ~= "Instance" or not enemyStates[targetModel]
-				or not (action == "Attack" or action:match("^Skill[12345]$") or (action == "CastArcane" and state.baseClassId == "mage")) then return end
+				or not (action == "Attack" or action == "Ultimate" or action:match("^Skill[12345]$") or (action == "CastArcane" and state.baseClassId == "mage")) then return end
 		end
 		local current = now()
 		-- Releasing guard is always safe and must not be dropped after a burst.

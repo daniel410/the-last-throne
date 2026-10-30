@@ -17,6 +17,7 @@ function AdvancedCombat.snapshot(state,skill,direction,target,enemies,clear)
 end
 function AdvancedCombat.resolve(state,attack,current,services,pulse)
  local d=attack.definition
+ if d.form=="self" then services.visual(state,d,state.root.Position,state.root.Position,pulse,{});return end
  if d.pulseMove then services.move(state,attack.direction,d.pulseMove) end
  local cast=attack.advancedCast
  local origin=d.returning and cast.origin or state.root.Position
