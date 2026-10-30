@@ -280,7 +280,11 @@ local function bindCharacter(character)
   local level=character:GetAttribute('K0Level');local classId=character:GetAttribute('K0ClassId')
   if level and lastLevel then
    local names={};for _,d in ipairs(require(ReplicatedStorage.Shared.AdvancedSkills).common[classId] or {}) do if d.level>lastLevel and d.level<=level then table.insert(names,d.name) end end
-   if #names>0 then hud.showFeedback(string.format(Text.NewSkillFormat,table.concat(names,', ')),6) end
+   if level>lastLevel then
+    local notice=string.format(Text.LevelUpGrowth,level,4*(level-lastLevel),level-lastLevel)
+    if #names>0 then notice=notice.."\n"..string.format(Text.NewSkillFormat,table.concat(names,', ')) end
+    hud.showFeedback(notice,8)
+   end
   end
   lastLevel=level
  end))
@@ -476,6 +480,7 @@ end
 player:GetAttributeChangedSignal("TLTRoute"):Connect(routeCaption);routeCaption()
 hud.back.Activated:Connect(function() requestHero("ReturnLobby") end)
 hud.heroMenu.Activated:Connect(function() growthGui.open("Stats") end)
+hud.growthPoints.Activated:Connect(function() growthGui.open("Stats") end)
 hud.bagMenu.Activated:Connect(function() inventory.open() end)
 
 local function updateSessionView()

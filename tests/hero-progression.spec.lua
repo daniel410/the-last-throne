@@ -48,4 +48,17 @@ local store=S.new(adapter,R,C,function()return 1000 end,function()end,'fence-a')
 local loaded=assert(store:open(42));loaded=assert(store:transact(42,function(cur)return R.addHero(cur,'hero','mage',C)end))
 lose=true;local missing,unknown=store:transact(42,function(cur)return R.progress(cur,award,{serverReward=true},C)end);check(not missing,'unknown fail closed');eq(unknown,'SaveUnknown','unknown distinguished')
 lose=false;local recovered=assert(store:transact(42,function(cur)return R.progress(cur,award,{serverReward=true},C)end));eq(recovered.heroes.hero.progression.level,2,'unknown XP replay once');eq(recovered.heroes.hero.progression.xp,0,'no duplicate remainder')
+local field=assert(R.addHero(R.new(55),'field','knight',C))
+field=assert(R.progress(field,{action='AwardXP',heroId='field',stream='field',sequence=1,amount=225},{serverReward=true},C))
+local statCommand={action='AllocateStats',heroId='field',requestId='field-stats',revision=field.revision,stats={STR=4}}
+local blocked,why=R.progress(field,statCommand,{atHub=false,canInvest=false},C)
+eq(blocked,nil,'unsafe field investment denied');eq(why,'UnsafeGrowth','actionable unsafe reason')
+field=assert(R.progress(field,statCommand,{atHub=false,canInvest=true},C))
+eq(field.heroes.field.progression.stats.STR,4,'safe field stats persist')
+local train={action='TrainSkill',heroId='field',requestId='field-mastery',revision=field.revision,skill=1}
+field=assert(R.progress(field,train,{atHub=false,canInvest=true},C));eq(field.heroes.field.progression.mastery[1],1,'safe field mastery persists')
+local repeatedField,_,receipt=R.progress(field,train,{atHub=false,canInvest=false},C);check(receipt,'same confirmed investment recovers after safety lost');eq(repeatedField.revision,field.revision,'no duplicate SP spend')
+local a,b=G.points(field.heroes.field.progression);eq(a,4,'remaining stats exact');eq(b,1,'remaining skill points exact')
+local loadout={action='SetSkillSlot',heroId='field',requestId='field-loadout',revision=field.revision,slot=1,skill=2}
+local noLoadout,gate=R.progress(field,loadout,{atHub=false,canInvest=true},C);eq(noLoadout,nil,'safe investment never grants field loadout permission');eq(gate,'WaitForLobby','loadout stays at Hub')
 print('Hero progression: '..n..' checks passed')

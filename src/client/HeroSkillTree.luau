@@ -23,6 +23,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local width=math.max(280,body.AbsoluteSize.X-8)
  local narrow=width<760
  local editable=snapshot.ready and snapshot.atHub and not pending
+ local canTrain=snapshot.ready and (snapshot.atHub or snapshot.canInvest) and not pending
  local _,points=Growth.points(g)
  local path=state.path or (g.branch~='' and g.branch or Advanced.order[classId][1])
  if not Advanced.branches[path] or Advanced.branches[path].classId~=classId then path=Advanced.order[classId][1] end
@@ -117,7 +118,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  label(detail,'Cost',string.format('%gs cooldown%s',skill.cooldown,skill.manaCost and '  /  '..skill.manaCost..' MP' or ''),18,274+detailExtra,detailW-36,30,12,Theme.color.silver)
  label(detail,'Requirements',learned and (base.ultimate and 'LEARNED  /  Dedicated ultimate button. Does not use slots 1–5.' or 'LEARNED  /  Select a combat slot below to equip.') or base.common and string.format('LOCKED  /  Reach Level %d. No advancement required.',base.level) or string.format('LOCKED  /  Level %d + advancement stage %d\nPreview only. Complete this path first.',base.level or 1,base.stage or 0),18,310+detailExtra,detailW-36,66,12,learned and Theme.color.green or Theme.color.muted)
  local train=Theme.button(detail,'Train','+1 MASTERY  /  1 SP',UDim2.fromOffset(14,386+detailExtra),UDim2.new(1,-28,0,44),true)
- Theme.enabled(train,editable and learned and points>0 and g.mastery[selected]<3)
+ Theme.enabled(train,canTrain and learned and points>0 and g.mastery[selected]<3)
  train.Activated:Connect(function() if train.Active then send('TrainSkill',{skill=selected}) end end)
  local hint=learned and (g.mastery[selected]>=3 and 'Maximum mastery reached.' or 'Mastery strengthens this skill. Skills are learned automatically when eligible.') or 'Locked nodes remain available to inspect.'
  label(detail,'MasteryHint',hint,18,442+detailExtra,detailW-36,44,11,Theme.color.muted)

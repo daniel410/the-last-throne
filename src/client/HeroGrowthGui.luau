@@ -14,7 +14,7 @@ local Config=require(RS.Shared.K0Config)
 local Gui={}
 local portraits={knight="103255177842108",elf="80894238854345",dwarf="74628903359757",mage="91907986271282"}
 local names={knight="KNIGHT",elf="ELF ARCHER",dwarf="DWARF AXE THROWER",mage="MAGE"}
-local errors={SkillLocked="Reach the required level and complete any listed advancement first.",UltimateSeparate="Your ultimate uses its own button. Choose a regular skill for slots 1–5.",InvalidAdvancement="This advancement is unavailable. Review your current path.",LevelRequired="Reach the required hero level before advancing.",TrialRequired="Defeat more training foes to complete this advancement trial.",Busy="A save is in progress. Try again shortly.",Changed="Your hero changed. Review the refreshed values and try again.",WaitForLobby="Return to Hub to invest points or change skills.",NotEnoughStatPoints="Not enough stat points. Clear your draft and try again.",NotEnoughSkillPoints="Earn another level to gain a skill point.",SkillMaxRank="This basic skill has reached level 4.",SaveUnknown="Save confirmation is pending. Press RETRY SAVE to check the same request.",AccountBusy="This account is active elsewhere. Rejoin to load safely.",Unavailable="Hero data is unavailable. Rejoin to load safely.",InvalidRequest="This change was rejected. Refresh your hero and try again.",Incompatible="Hero data could not be loaded safely. Rejoin and try again."}
+local errors={UnsafeGrowth="Move away from enemies and wait five seconds after combat to invest points.",SkillLocked="Reach the required level and complete any listed advancement first.",UltimateSeparate="Your ultimate uses its own button. Choose a regular skill for slots 1–5.",InvalidAdvancement="This advancement is unavailable. Review your current path.",LevelRequired="Reach the required hero level before advancing.",TrialRequired="Defeat more training foes to complete this advancement trial.",Busy="A save is in progress. Try again shortly.",Changed="Your hero changed. Review the refreshed values and try again.",WaitForLobby="Return to Hub to invest points or change skills.",NotEnoughStatPoints="Not enough stat points. Clear your draft and try again.",NotEnoughSkillPoints="Earn another level to gain a skill point.",SkillMaxRank="This basic skill has reached level 4.",SaveUnknown="Save confirmation is pending. Press RETRY SAVE to check the same request.",AccountBusy="This account is active elsewhere. Rejoin to load safely.",Unavailable="Hero data is unavailable. Rejoin to load safely.",InvalidRequest="This change was rejected. Refresh your hero and try again.",Incompatible="Hero data could not be loaded safely. Rejoin and try again."}
 function Gui.create(onVisibility)
 	local player=Players.LocalPlayer
 	local gui=Instance.new("ScreenGui"); gui.Name="HeroGrowthGui"; gui.ResetOnSpawn=false; gui.DisplayOrder=55; gui.Parent=player:WaitForChild("PlayerGui")
@@ -79,7 +79,7 @@ function Gui.create(onVisibility)
 			treeState.retry=function() if pending then remote:FireServer(pending);show("Checking the same save...") end end
 			local height=SkillTree.render(body,hero,snapshot,treeState,send,render,pending)
 			body.CanvasSize=UDim2.fromOffset(0,height)
-			if not snapshot.atHub and not pending then show("Return to Hub to invest points or change skills.") end
+			if not snapshot.atHub and not pending then show(snapshot.canInvest and "You can invest points here. Return to Hub to change your loadout or advance." or errors.UnsafeGrowth) end
 			return
 		end
 		local preview=Growth.copy(g)
@@ -95,7 +95,7 @@ function Gui.create(onVisibility)
 		if tab=="Stats" then
 			local height=StatsView.render(body,hero,snapshot,derived,draft,pending,render,send,resetDraft,function() if pending then remote:FireServer(pending);show("Checking the same save...") end end)
 			body.CanvasSize=UDim2.fromOffset(0,height)
-			if not snapshot.atHub and not pending then show("Return to Hub to invest points or change skills.") end
+			if not snapshot.atHub and not pending then show(snapshot.canInvest and "You can invest points here. Return to Hub to change your loadout or advance." or errors.UnsafeGrowth) end
 			return
 		end
 		local portraitWidth=narrow and 110 or math.floor(body.AbsoluteSize.X*.37)
@@ -136,7 +136,7 @@ function Gui.create(onVisibility)
 			retry.Activated:Connect(function() if pending then remote:FireServer(pending); show("Checking the same save...") end end)
 		end
 		body.CanvasSize=UDim2.fromOffset(0,(narrow and 172 or 0)+(tab=="Stats" and (pending and 550 or 496) or (content:GetAttribute("ContentHeight") or 706)+(pending and 50 or 0)))
-		if not snapshot.atHub and not pending then show("Return to Hub to invest points or change skills.") end
+		if not snapshot.atHub and not pending then show(snapshot.canInvest and "You can invest points here. Return to Hub to change your loadout or advance." or errors.UnsafeGrowth) end
 	end
 	advanceTab.Activated:Connect(function() tab="Advance";body.CanvasPosition=Vector2.zero;render() end)
 	statsTab.Activated:Connect(function() tab="Stats";body.CanvasPosition=Vector2.zero; render() end)
@@ -161,6 +161,7 @@ function Gui.create(onVisibility)
 		if opened then render() end
 	end)
 	remotes:WaitForChild("K0HeroState").OnClientEvent:Connect(function() if opened then getState() end end)
+ task.spawn(function() while gui.Parent do task.wait(2);if opened and not pending then getState() end end end)
 	return {open=function(which) tab=which or "Stats"; visible(true) end,close=function() visible(false) end,isOpen=function() return opened end}
 end
 return Gui

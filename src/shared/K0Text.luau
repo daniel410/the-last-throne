@@ -1,5 +1,7 @@
 -- en-US source text for the K0 training prototype. Keys are language-neutral.
 return {
+ AvailableGrowth = "%d STAT POINTS  /  %d SKILL POINTS  [H]",
+ LevelUpGrowth = "LEVEL %d!  +%d stat points  /  +%d skill points. Open HERO [H] to invest.",
  StoryBeginEncounter = "Hold F / X or touch the marker to begin the encounter.",
  StoryInteract = "Hold F / X or touch the marker to interact.",
  StoryEnemiesLeft = "Defeat the remaining enemies: %d left.",

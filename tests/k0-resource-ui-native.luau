@@ -100,6 +100,11 @@ local ok, failure = xpcall(function()
 	hud.setCooldowns(character)
 	check(not root.SkillBar.Skill1.Cooldown.Visible and root.SkillBar.Skill1.Icon.Visible, "ready skill clears stale countdown")
 	check(root.SkillBar.Skill5.Caption.Text == "EMPTY", "practice slot count does not invent an ability")
+ character:SetAttribute('K0StatPoints',4);character:SetAttribute('K0SkillPoints',1);hud.setCooldowns(character)
+ check(status.GrowthPoints.Visible and status.GrowthPoints.Text:find('4 STAT POINTS',1,true) and status.GrowthPoints.Text:find('1 SKILL POINTS',1,true),'earned growth points are visible in combat HUD')
+ character:SetAttribute('K0StatPoints',0);character:SetAttribute('K0SkillPoints',0);hud.setCooldowns(character)
+ check(not status.GrowthPoints.Visible,'spent points do not leave a stale HUD notice')
+
 	local catalog = require(game:GetService("ReplicatedStorage").Shared.ItemCatalog)
 	local icons = require(client.PotionIcon)
 	for _, id in ipairs(catalog.potions) do
@@ -192,6 +197,14 @@ local ok, failure = xpcall(function()
   end
  end
 
+ body:ClearAllChildren()
+ local fieldGrowth=growth.new(2);local fieldHero={heroId='field',baseClassId='knight',progression=fieldGrowth}
+ local fieldSnapshot={ready=true,atHub=false,canInvest=true,items={}}
+ statsView.render(body,fieldHero,fieldSnapshot,growth.derived('knight',fieldGrowth),{STR=0,DEX=0,INT=0,VIT=0},nil,function() end,function() end,function() end,function() end)
+ check(body.StatAllocation.STR.Plus.Active,'safe field enables stat investment')
+ body:ClearAllChildren();tree.render(body,fieldHero,fieldSnapshot,{path='steel_knight',selected=1},function() end,function() end,nil)
+ check(body.SkillDetails.Train.Active,'safe field enables skill-point investment')
+ check(not body.CombatLoadout.Slot1.Active,'field investment does not enable field loadout editing')
 	for _,classId in ipairs({"knight","elf","dwarf","mage"}) do
 		for _,path in ipairs(advanced.order[classId]) do
 			for _,level in ipairs({1,80}) do

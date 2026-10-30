@@ -162,7 +162,8 @@ function Hud.create()
 	local state = text(status, "State", Text.State.Idle, UDim2.new(1, -109, 0, 5), UDim2.fromOffset(95, 12), 10, COLORS.muted)
 	state.TextXAlignment = Enum.TextXAlignment.Right
 	local xpLabel=text(status,"XP","",UDim2.fromOffset(14,19),UDim2.new(1,-28,0,12),10,COLORS.gold)
-	local setHealth = bar(status, Text.Health, 32, COLORS.red)
+	local growthPoints=Instance.new("TextButton");growthPoints.Name="GrowthPoints";growthPoints.BackgroundTransparency=1;growthPoints.Size=UDim2.new(1,0,0,26);growthPoints.Position=UDim2.new(0,0,1,3);growthPoints.TextColor3=COLORS.gold;growthPoints.Font=Enum.Font.GothamBold;growthPoints.TextSize=10;growthPoints.TextStrokeTransparency=.2;growthPoints.AutoLocalize=false;growthPoints.Visible=false;growthPoints.Parent=status
+ local setHealth = bar(status, Text.Health, 32, COLORS.red)
 	local setManaValue = bar(status, Text.Mana, 77, Color3.fromRGB(75, 151, 235))
 	for _, suffix in ipairs({ "Label", "Value", "Track" }) do
 		status[Text.Mana .. suffix].Visible = false
@@ -342,7 +343,7 @@ function Hud.create()
 			if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end
 		end
   practice.Size = UDim2.fromOffset(status.Size.X.Offset, 112)
-  practice.Position = UDim2.fromOffset(status.Position.X.Offset, 16 + status.Size.Y.Offset * scale + 8)
+  practice.Position = UDim2.fromOffset(status.Position.X.Offset, 16 + status.Size.Y.Offset * scale + 8 + (growthPoints.Visible and 30*scale or 0))
 		-- On narrow screens, keep the title clear of the status panel.
 		heading.Visible = viewport.X >= 860
 	end
@@ -369,6 +370,7 @@ function Hud.create()
 
 	return {
 		attack = attack,
+  growthPoints = growthPoints,
 		block = block,
 		sprint = sprint,
 		skills = skillButtons,
@@ -416,6 +418,11 @@ function Hud.create()
 			if gui.Enabled then minimap.update(character) end
 			if character then
 				classLabel.Text=Text.Class[character:GetAttribute("K0ClassId")] or ""
+    local st,kp=character:GetAttribute("K0StatPoints") or 0,character:GetAttribute("K0SkillPoints") or 0
+    local showPoints=st>0 or kp>0
+    local changed=growthPoints.Visible~=showPoints
+    growthPoints.Visible=showPoints;growthPoints.Text=string.format(Text.AvailableGrowth,st,kp)
+    if changed then updateScale() end
 				local level=character:GetAttribute("K0Level") or 1
 				local needed=character:GetAttribute("K0XPToNext") or 100
 				xpLabel.Text=needed>0 and string.format("LV %d   xp %d/%d",level,character:GetAttribute("K0XP") or 0,needed)

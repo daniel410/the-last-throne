@@ -116,14 +116,20 @@ function Service.progress(player, command, serverReward)
 		command=Growth.copy(pending)
 	end
 	local initial=options.heroSession.getInventoryContext(player)
-	if not serverReward and (not initial or initial.heroId~=command.heroId or not initial.atHub or options.heroSession.isBusy(player)) then return "WaitForLobby" end
+	local investment=command.action=="AllocateStats" or command.action=="TrainSkill"
+ if not serverReward then
+  if not initial or initial.heroId~=command.heroId or options.heroSession.isBusy(player) then return "WaitForLobby" end
+  if not initial.atHub and not (investment and options.combat.isSafeForEquipment(player)) then return investment and "UnsafeGrowth" or "WaitForLobby" end
+ end
 	state.busy=true
 	state.growthPending=Growth.copy(command)
 	local profile,errorCode=store:transact(player.UserId,function(current)
 		local context={serverReward=serverReward==true}
 		if not serverReward then
 			local latest=options.heroSession.getInventoryContext(player)
-			context.atHub=latest and initial and latest.heroId==initial.heroId and latest.generation==initial.generation and latest.atHub
+			local sameLife=latest and initial and latest.heroId==initial.heroId and latest.generation==initial.generation
+   context.atHub=sameLife and latest.atHub
+   context.canInvest=sameLife and investment and options.combat.isSafeForEquipment(player)
 		end
 		return Rules.progress(current,command,context,Catalog)
 	end)
@@ -201,6 +207,7 @@ function Service.snapshot(player)
 	if not state or not state.profile then return snapshot end
 	snapshot.heroes = Rules.copy(state.profile.heroes)
 	snapshot.safe = context and (context.atHub or options.combat.isSafeForEquipment(player)) or false
+ snapshot.canInvest=snapshot.ready and snapshot.safe or false
 	for _, item in pairs(state.profile.items) do
 		local loc = item.location
 		if loc.kind == "storage" or loc.kind == "pending" or loc.heroId == heroId then table.insert(snapshot.items, Rules.copy(item)) end

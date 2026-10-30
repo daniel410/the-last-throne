@@ -13,7 +13,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
  local width=math.max(280,body.AbsoluteSize.X-8);local narrow=width<760
  local g,classId=hero.progression,hero.baseClassId
  local points=Growth.points(g);local spent=0;for _,v in pairs(draft) do spent+=v end
- local editable=snapshot.ready and snapshot.atHub and not pending
+ local editable=snapshot.ready and (snapshot.atHub or snapshot.canInvest) and not pending
  local leftW=narrow and width-8 or math.floor(width*.48)
  local left=Menu.frame(body,'HeroEquipment',UDim2.fromOffset(4,4),UDim2.fromOffset(leftW,560))
  local heading=Menu.plaque(left,'HeroTitle',string.upper(Catalog.classes[classId])..'  /  Lv. '..g.level,UDim2.fromOffset(10,10),UDim2.new(1,-20,0,46));heading.Caption.TextSize=18
