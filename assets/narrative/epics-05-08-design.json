@@ -2,7 +2,9 @@
   "schema_version": 1,
   "date": "2026-10-30",
   "task_id": "TLT-065/late-epics-20261030",
-  "status": "design-draft-not-runtime",
+  "status": "on-hold-by-user",
+  "hold_date": "2026-10-30",
+  "hold_reason": "User paused the previous epics 5-8, including story, enemies and concepts. Preserve epics 1-4. Dark forest is an unnumbered candidate, not an approved replacement.",
   "language": "en-US",
   "scope_note": "26 story designs: 25 main quests and one epilogue. No approved XP or runtime changes.",
   "sources": [

@@ -1,5 +1,7 @@
 # 에픽5~8 공통 제작·진행·성장 계약
 
+> **2026-10-30 사용자 지시 · 보류:** 기존 에픽5~8의 줄거리·개별 스토리·몬스터·컨셉 확장은 중단한다. 기존 자료는 참고안으로 보존한다. 에픽1~4는 수정하지 않는다. [어두운 숲·거미 여왕 후보](production/dark-forest-epic-candidate-2026-10-30.md)는 번호/채택 미정의 별도 제안이다.
+
 2026-10-30 · TLT-065/late-epics-20261030 · 신규 상세 기획 초안, 게임 구현 전
 
 [전체 목차](epics-05-08-story-design.md) · [몬스터](epics-05-08-monsters.md) · [기존 서사 리뷰](production/narrative-review-2026-10-30.md) · [현재 퀘스트 엔진](production/quest-and-story-flow.md)
