@@ -1,5 +1,6 @@
 -- Visual progression map over the actual skill catalog, never concept-image rules.
 local RS=game:GetService('ReplicatedStorage')
+local TextService=game:GetService('TextService')
 local Theme=require(script.Parent.TDInventoryTheme)
 local Menu=require(script.Parent.HeroMenuChrome)
 local Advanced=require(RS.Shared.AdvancedSkills)
@@ -108,15 +109,19 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local effect=skill.form=='self' and string.format('Barrier: %.0f%% max HP / %gs',skill.shield*100,skill.shieldDuration) or skill.damage>0 and string.format('Damage × %.2f',skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration or 0)
  if skill.guardReduction then effect=effect..string.format(' / %.0f%% guard',skill.guardReduction*100) end
  if skill.pulses and skill.pulses>1 then effect=effect..'  /  '..skill.pulses..' hits' end
- label(detail,'Effect',effect..(base.description and '\n'..base.description or ''),18,226,detailW-36,66,12,Theme.color.text)
- label(detail,'Cost',string.format('%gs cooldown%s',skill.cooldown,skill.manaCost and '  /  '..skill.manaCost..' MP' or ''),18,274,detailW-36,30,12,Theme.color.silver)
- label(detail,'Requirements',learned and (base.ultimate and 'LEARNED  /  Dedicated ultimate button. Does not use slots 1–5.' or 'LEARNED  /  Select a combat slot below to equip.') or base.common and string.format('LOCKED  /  Reach Level %d. No advancement required.',base.level) or string.format('LOCKED  /  Level %d + advancement stage %d\nPreview only. Complete this path first.',base.level or 1,base.stage or 0),18,310,detailW-36,66,12,learned and Theme.color.green or Theme.color.muted)
- local train=Theme.button(detail,'Train','+1 MASTERY  /  1 SP',UDim2.fromOffset(14,386),UDim2.new(1,-28,0,44),true)
+ local effectText=effect..(base.description and '\n'..base.description or '')
+ local effectHeight=math.max(44,TextService:GetTextSize(effectText,12,Enum.Font.GothamMedium,Vector2.new(detailW-36,10000)).Y+4)
+ local detailExtra=effectHeight-44
+ detail.Size=UDim2.fromOffset(detailW,500+detailExtra)
+ label(detail,'Effect',effectText,18,226,detailW-36,effectHeight,12,Theme.color.text)
+ label(detail,'Cost',string.format('%gs cooldown%s',skill.cooldown,skill.manaCost and '  /  '..skill.manaCost..' MP' or ''),18,274+detailExtra,detailW-36,30,12,Theme.color.silver)
+ label(detail,'Requirements',learned and (base.ultimate and 'LEARNED  /  Dedicated ultimate button. Does not use slots 1–5.' or 'LEARNED  /  Select a combat slot below to equip.') or base.common and string.format('LOCKED  /  Reach Level %d. No advancement required.',base.level) or string.format('LOCKED  /  Level %d + advancement stage %d\nPreview only. Complete this path first.',base.level or 1,base.stage or 0),18,310+detailExtra,detailW-36,66,12,learned and Theme.color.green or Theme.color.muted)
+ local train=Theme.button(detail,'Train','+1 MASTERY  /  1 SP',UDim2.fromOffset(14,386+detailExtra),UDim2.new(1,-28,0,44),true)
  Theme.enabled(train,editable and learned and points>0 and g.mastery[selected]<3)
  train.Activated:Connect(function() if train.Active then send('TrainSkill',{skill=selected}) end end)
  local hint=learned and (g.mastery[selected]>=3 and 'Maximum mastery reached.' or 'Mastery strengthens this skill. Skills are learned automatically when eligible.') or 'Locked nodes remain available to inspect.'
- label(detail,'MasteryHint',hint,18,442,detailW-36,44,11,Theme.color.muted)
- local loadY=math.max(top+treeHeight,narrow and detailY+500 or 0)+24
+ label(detail,'MasteryHint',hint,18,442+detailExtra,detailW-36,44,11,Theme.color.muted)
+ local loadY=math.max(top+treeHeight,narrow and detailY+500+detailExtra or 0)+24
  local load=Menu.frame(body,'CombatLoadout',UDim2.fromOffset(4,loadY),UDim2.fromOffset(width-8,narrow and 200 or 120))
  label(load,'Heading','COMBAT LOADOUT  /  SELECT A SLOT TO EQUIP '..base.name,14,8,width-36,32,12,Theme.color.gold)
  for slot=1,5 do

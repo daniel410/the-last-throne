@@ -169,6 +169,20 @@ local ok, failure = xpcall(function()
 	local growth=require(game:GetService("ReplicatedStorage").Shared.HeroProgression)
 	local advanced=require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills)
 	local body=Instance.new("Frame");body.Size=UDim2.fromOffset(1160,700);body.Parent=playerGui
+ for _,path in ipairs(advanced.order.knight) do
+  for _,d in ipairs(advanced.branches[path].skills) do
+   if d.root==3 then
+    body:ClearAllChildren()
+    local g=growth.new(80);g.branch=path;g.stage=4
+    tree.render(body,{baseClassId="knight",progression=g},{ready=true,atHub=true},{path=path,selected=d.index},function() end,function() end,nil)
+    local details=body.SkillDetails
+    check(details.Effect.Text:find("15%%") and details.Effect.Text:find("10%%"),"descendant detail explains inherited debuffs")
+    check(details.Effect.Position.Y.Offset+details.Effect.Size.Y.Offset<=details.Cost.Position.Y.Offset,"wrapped effect never overlaps cooldown cost")
+    check(details.MasteryHint.Position.Y.Offset+details.MasteryHint.Size.Y.Offset<=details.Size.Y.Offset,"expanded details retain mastery hint")
+   end
+  end
+ end
+
 	for _,classId in ipairs({"knight","elf","dwarf","mage"}) do
 		for _,path in ipairs(advanced.order[classId]) do
 			for _,level in ipairs({1,80}) do
