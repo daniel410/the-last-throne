@@ -1,5 +1,9 @@
 # 기획 변경 이력
 
+## 2026-10-30 — 후반4에픽 지역·몬스터 컨셉8장
+
+TLT-065/late-epic-concepts-20261030. 기존 TD 시각 원본을 참고해 Aether Spire·귀환 Dawnspire·다섯 깃발 원정·The Fractured Crown의 지역4장과 에픽별8종 보드4장을 내장 image_gen으로 제작했다. FB Signal Binder 셀은 Lich 대신 Volcano Shaman 계열로 보정했다. [갤러리](../assets/concepts/2026-10-30-late-epics-v1/index.html) · [프롬프트·검토](../assets/concepts/2026-10-30-late-epics-v1/README.md). 선정8PNG/프롬프트9개·원본/해시를 보존하며 사용자 검토 전 컨셉이다. 실제 모델/맵·게임 소스/보상/VERSION·빌드/게시/태그는 이번 범위에서 변경하지 않았다.
+
 ## 2026-10-30 — Dawnspire 원정 포탈·훈련장·대장간 (0.37.0~0.37.1)
 
 TLT-011/028/040/041/042/053/084. 보라 석조 포탈/회전 룬·과녁/허수아비/울타리 훈련장·파란 지붕/화로/모루/TD 무기 전시 대장간을 추가하고 F/패드 X/터치로 기존 원정 메뉴·영웅 훈련·무기 구매/판매에 연결했다. 접근 길·간판·서버 거리/생명/여행 검사를 적용했다. 실제 Player에서 세 F 입력을 확인하고 훈련의 잘못된 에픽 완료 문구를0.37.1에서 수정했다. 시설194·로비132·원정13 통과. [원천](research/2026-10-30-dawnspire-facilities.md) · [화면/고정 빌드/검증/제한](evidence/lobby-landmarks-0370/README.md). 미게시·실기기/20명 부하·실제 전투 Place 연결 수용은 후속이다.

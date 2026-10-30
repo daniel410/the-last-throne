@@ -1,5 +1,7 @@
 # 에픽5~8 몬스터·보스 구상
 
+> 2026-10-30 [지역4장·몬스터8종씩4장 컨셉 갤러리](../assets/concepts/2026-10-30-late-epics-v1/index.html) · [원본/프롬프트·시각 검토](../assets/concepts/2026-10-30-late-epics-v1/README.md). 사용자 검토 전 생성 컨셉이며 게임 모델/실행 완성을 뜻하지 않는다.
+
 2026-10-30 · TLT-065/late-epics-20261030 · 전체32교전 정의, 모델/AI 미구현
 
 [전체 스토리](epics-05-08-story-design.md) · [공통 계약](epics-05-08-content-contract.md) · [기획 데이터](../assets/narrative/epics-05-08-design.json) · [TD 공유 레지스트리](../assets/shared/td-asset-registry.json)

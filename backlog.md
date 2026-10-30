@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-30 **TLT-065/late-epic-concepts-20261030**: [컨셉 갤러리](assets/concepts/2026-10-30-late-epics-v1/index.html) 지역4장·몬스터8종씩4장,선정8PNG·프롬프트9개를 제작했다. TD 시각 원본8개를 직접 참고하고 FB Signal Binder 셀을 보정했다. 사용자 시각 검토·모델/리그/맵/기기 수용은 후속이며 부모 티켓/빌드/VERSION은 유지한다.
+
 > 2026-10-30 TLT-011/028/040/041/042/053/084 부분 구현: **0.37.1** 로비 원정 포탈·훈련장·대장간을 실제 월드에 배치하고 F/패드 X/터치로 원정 메뉴·선택 영웅 훈련·무기 구매/판매를 연결했다. 실제 Studio F 입력3경로, 훈련 HUD 오표시 수정, 시설194·로비132·원정13 검사 통과. [컨셉 적용](docs/research/2026-10-30-dawnspire-facilities.md) · [검증/최신 빌드](docs/evidence/lobby-landmarks-0370/README.md). 미게시·전투 Place ID0/실제 이동·실기기 수용은 후속이다.
 
 > 2026-10-30 TLT-003/016/017/021/028/041/044/045/047/049/050/053/084 부분 구현: **0.36.1** RPG Gold/Diamonds·로비 무기 매입/판매·솔로/2~4인 모집·서버 간 합류/예약 전투·15분 리조인 경로와 저장/입장 토큰을 연결했다. 로비 최대 인원20 설정 저장, 실제 Studio 구매/판매·원정 서비스11·로비126·전투 부트10개 통과. [실행 계약](docs/production/lobby-economy-and-expeditions.md) · [검증](docs/evidence/lobby-0361/README.md). 별도 Battle Place 없음/ID0, 생성 API 접근 허용 여부 대기. 미게시·실제 서버 이동/다인/저장 수용 미완료이며 상위 티켓은 완료 처리하지 않는다.

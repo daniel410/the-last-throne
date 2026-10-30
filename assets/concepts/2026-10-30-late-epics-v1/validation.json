@@ -1,0 +1,18 @@
+{
+  "task_id": "TLT-065/late-epic-concepts-20261030",
+  "date": "2026-10-30",
+  "scope": "PNG integrity, provenance, document links and design mapping; visual suitability reviewed separately; no runtime acceptance",
+  "selected_png": 8,
+  "generation_calls": 9,
+  "reference_images": 8,
+  "saved_prompts": 9,
+  "roster_design_ids": 32,
+  "png_total_bytes": 23268516,
+  "protected_files_unchanged": 4,
+  "scope_files": 34,
+  "markdown_links": 713,
+  "anchors": 7,
+  "gallery_links": 44,
+  "errors": [],
+  "result": "pass"
+}

@@ -195,3 +195,44 @@ TLT-065/late-epics-20261030. 앞의 §7은 선행 전체 서사 편집 당시의
 | [docs/production/game-systems-plan.md](game-systems-plan.md) | `7da3005a7ce7` |
 | [docs/production/asset-production-plan.md](asset-production-plan.md) | `7c5dd00d3b2b` |
 | [docs/epics-05-08-hidden-quest-review.md](../epics-05-08-hidden-quest-review.md) | `52f125a604f1` |
+
+
+## 9. 2026-10-30 후반 지역·몬스터 컨셉 스냅샷
+
+TLT-065/late-epic-concepts-20261030. [갤러리](../../assets/concepts/2026-10-30-late-epics-v1/index.html)와 제작 기록의8PNG·프롬프트9개·입력/출력 해시를 연결한다. 앞의 §8은 당시 서사 상세화 스냅샷이며 아래는 이번 변경33파일의 현재 해시다. 표 자체는 자기참조에서 제외한다. 이미지 픽셀의 컨셉 적합성과 정적 무결성을 확인했으며 사용자 승인·RPG 모델/리그/기기 실행·원본 권한 검증을 뜻하지 않는다.
+
+| 변경/추가 원천 | SHA256 앞12자리 |
+| --- | --- |
+| [README.md](../../README.md) | `6a198e8bb9f7` |
+| [plan.md](../../plan.md) | `5cb19e2b7d3b` |
+| [backlog.md](../../backlog.md) | `dc3cb1ac9b23` |
+| [docs/decisions.md](../decisions.md) | `6e323e2864c2` |
+| [docs/CHANGELOG.md](../CHANGELOG.md) | `ebf39a67866f` |
+| [docs/epic-05-aether-spire-story.md](../epic-05-aether-spire-story.md) | `492cb82962f1` |
+| [docs/epic-06-divided-citadel-story.md](../epic-06-divided-citadel-story.md) | `2485a136447e` |
+| [docs/epic-07-five-banners-story.md](../epic-07-five-banners-story.md) | `a09f15ce1344` |
+| [docs/epic-08-fractured-crown-story.md](../epic-08-fractured-crown-story.md) | `9b4c9ceac778` |
+| [docs/epics-05-08-story-design.md](../epics-05-08-story-design.md) | `2c6d407f03bc` |
+| [docs/epics-05-08-monsters.md](../epics-05-08-monsters.md) | `7bb108ce0c00` |
+| [docs/production/design-and-world-plan.md](design-and-world-plan.md) | `d574a6ef8a30` |
+| [assets/concepts/2026-10-30-late-epics-v1/README.md](../../assets/concepts/2026-10-30-late-epics-v1/README.md) | `e610b2efb01e` |
+| [assets/concepts/2026-10-30-late-epics-v1/catalog.json](../../assets/concepts/2026-10-30-late-epics-v1/catalog.json) | `e40a9c442b13` |
+| [assets/concepts/2026-10-30-late-epics-v1/index.html](../../assets/concepts/2026-10-30-late-epics-v1/index.html) | `16a667a9f603` |
+| [assets/concepts/2026-10-30-late-epics-v1/monsters/epic-05-roster.png](../../assets/concepts/2026-10-30-late-epics-v1/monsters/epic-05-roster.png) | `ea275a541fae` |
+| [assets/concepts/2026-10-30-late-epics-v1/monsters/epic-06-roster.png](../../assets/concepts/2026-10-30-late-epics-v1/monsters/epic-06-roster.png) | `b06d9d105df7` |
+| [assets/concepts/2026-10-30-late-epics-v1/monsters/epic-07-roster.png](../../assets/concepts/2026-10-30-late-epics-v1/monsters/epic-07-roster.png) | `6cff7622e929` |
+| [assets/concepts/2026-10-30-late-epics-v1/monsters/epic-08-roster.png](../../assets/concepts/2026-10-30-late-epics-v1/monsters/epic-08-roster.png) | `dab0880b94fb` |
+| [assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-05.txt](../../assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-05.txt) | `dbd2c5aef7bb` |
+| [assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-06.txt](../../assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-06.txt) | `1cad886a4c7e` |
+| [assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-07-revision-01.txt](../../assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-07-revision-01.txt) | `2334ec079f89` |
+| [assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-07.txt](../../assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-07.txt) | `762360441cc5` |
+| [assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-08.txt](../../assets/concepts/2026-10-30-late-epics-v1/prompts/monsters-08.txt) | `9d64588d5859` |
+| [assets/concepts/2026-10-30-late-epics-v1/prompts/world-05.txt](../../assets/concepts/2026-10-30-late-epics-v1/prompts/world-05.txt) | `f671792d12a8` |
+| [assets/concepts/2026-10-30-late-epics-v1/prompts/world-06.txt](../../assets/concepts/2026-10-30-late-epics-v1/prompts/world-06.txt) | `884054457676` |
+| [assets/concepts/2026-10-30-late-epics-v1/prompts/world-07.txt](../../assets/concepts/2026-10-30-late-epics-v1/prompts/world-07.txt) | `64b15e57f33d` |
+| [assets/concepts/2026-10-30-late-epics-v1/prompts/world-08.txt](../../assets/concepts/2026-10-30-late-epics-v1/prompts/world-08.txt) | `55d0f0d8a5c5` |
+| [assets/concepts/2026-10-30-late-epics-v1/world/epic-05-aether-spire.png](../../assets/concepts/2026-10-30-late-epics-v1/world/epic-05-aether-spire.png) | `84d3e99334fd` |
+| [assets/concepts/2026-10-30-late-epics-v1/world/epic-06-divided-citadel.png](../../assets/concepts/2026-10-30-late-epics-v1/world/epic-06-divided-citadel.png) | `35dc58b98ebc` |
+| [assets/concepts/2026-10-30-late-epics-v1/world/epic-07-five-banners.png](../../assets/concepts/2026-10-30-late-epics-v1/world/epic-07-five-banners.png) | `79a026964c05` |
+| [assets/concepts/2026-10-30-late-epics-v1/world/epic-08-fractured-crown.png](../../assets/concepts/2026-10-30-late-epics-v1/world/epic-08-fractured-crown.png) | `05ba3343dc98` |
+| [assets/concepts/2026-10-30-late-epics-v1/validation.json](../../assets/concepts/2026-10-30-late-epics-v1/validation.json) | `b36fd401186a` |

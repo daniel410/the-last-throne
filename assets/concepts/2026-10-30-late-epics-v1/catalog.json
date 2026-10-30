@@ -1,0 +1,286 @@
+{
+  "task_id": "TLT-065/late-epic-concepts-20261030",
+  "date": "2026-10-30",
+  "version": "concept-v1",
+  "status": "generated-concepts-user-review-pending",
+  "mode": "built-in image_gen with inspected local visual references",
+  "generation_calls": 9,
+  "selected_images": 8,
+  "world_images": 4,
+  "roster_boards": 4,
+  "monster_designs_shown": 32,
+  "developer_language": "ko-KR",
+  "in_image_labels": "en-US",
+  "design_source": "assets/narrative/epics-05-08-design.json",
+  "design_sha256": "a7a54bfd1ac6a445af0939f8df3fbe432455bf71cd4713f51dff8bf17c16a90f",
+  "source_registry": "assets/shared/td-asset-registry.json",
+  "source_references": [
+    {
+      "key": "dawnspire",
+      "path": "assets/concepts/2026-10-27-shared-ui-v2/world/dawnspire-lobby-v1.png",
+      "sha256": "632c6889ea176807b3a3ab0fc49694e9ea82e85488283b02f171c18afd9850ef",
+      "role": "visual reference, not edit target",
+      "status": "viewed; no new runtime permissions claimed"
+    },
+    {
+      "key": "deepwood",
+      "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+      "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d",
+      "role": "visual reference, not edit target",
+      "status": "viewed; no new runtime permissions claimed"
+    },
+    {
+      "key": "forest",
+      "path": "../throne-defense/assets/ui/monster-catalog-v2/forest-board.png",
+      "sha256": "68e5247d847a7eb5fbd866629a81ceeee5af745b267737612132bd00dc0e23e3",
+      "role": "visual reference, not edit target",
+      "status": "viewed; no new runtime permissions claimed"
+    },
+    {
+      "key": "snow",
+      "path": "../throne-defense/assets/ui/monster-catalog-v2/snow-board.png",
+      "sha256": "b4478834336943198f29ca4a8b03f5863a3675a433a960d6baaf0fa0656a9e30",
+      "role": "visual reference, not edit target",
+      "status": "viewed; no new runtime permissions claimed"
+    },
+    {
+      "key": "volcano",
+      "path": "../throne-defense/assets/ui/monster-catalog-v2/volcano-board.png",
+      "sha256": "f9368c7cd0d1c6d4c7a9ef1fcbbfb3e3dc0122e367bfbf2924ada701776f6d1d",
+      "role": "visual reference, not edit target",
+      "status": "viewed; no new runtime permissions claimed"
+    },
+    {
+      "key": "cemetery",
+      "path": "../throne-defense/assets/ui/monster-catalog-v2/cemetery-board.png",
+      "sha256": "a0671cd5b0c2f0b51bebed30771026c49882ec3126002f64a6fedd99c3a85dec",
+      "role": "visual reference, not edit target",
+      "status": "viewed; no new runtime permissions claimed"
+    },
+    {
+      "key": "knights",
+      "path": "../throne-defense/assets/concepts/towers/knights-roster-distinction-v1.png",
+      "sha256": "a3ab58b3ce3ae4f12bc9071939248ef911239470169a78b653d3667fee1a0963",
+      "role": "visual reference, not edit target",
+      "status": "viewed; no new runtime permissions claimed"
+    },
+    {
+      "key": "scribe",
+      "path": "../throne-defense/assets/concepts/towers/blocky-v1/priests/inquisitor.png",
+      "sha256": "a94dfd160d3fa16d88fdaad0791fd837433febf8184a9fdbee213f22d4a6139f",
+      "role": "visual reference, not edit target",
+      "status": "viewed; no new runtime permissions claimed"
+    }
+  ],
+  "assets": [
+    {
+      "id": "world-05",
+      "epic": 5,
+      "kind": "world",
+      "path": "world/epic-05-aether-spire.png",
+      "prompt": "prompts/world-05.txt",
+      "reference_paths": [
+        "assets/concepts/2026-10-27-shared-ui-v2/world/dawnspire-lobby-v1.png",
+        "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png"
+      ],
+      "monster_ids": [],
+      "sha256": "84d3e99334fd0f0b0fd26802ff5211194180ad536b32aea0bac224d87940be0e",
+      "bytes": 3114313,
+      "width": 1672,
+      "height": 941,
+      "generated_source": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-f66bc97b-3b2c-433e-b7d8-3624dc355eb3.png",
+      "visual_review": "reviewed in image_gen output; concept suitability only",
+      "status": "concept-review-pending"
+    },
+    {
+      "id": "world-06",
+      "epic": 6,
+      "kind": "world",
+      "path": "world/epic-06-divided-citadel.png",
+      "prompt": "prompts/world-06.txt",
+      "reference_paths": [
+        "assets/concepts/2026-10-27-shared-ui-v2/world/dawnspire-lobby-v1.png",
+        "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png"
+      ],
+      "monster_ids": [],
+      "sha256": "35dc58b98ebc09c8e538bb55e360209b37e1848be3bd562a1dd44dd288c55927",
+      "bytes": 3220316,
+      "width": 1672,
+      "height": 941,
+      "generated_source": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-1e58f0bc-2ff9-42d5-bef8-11c1e8b0047c.png",
+      "visual_review": "reviewed in image_gen output; concept suitability only",
+      "status": "concept-review-pending"
+    },
+    {
+      "id": "world-07",
+      "epic": 7,
+      "kind": "world",
+      "path": "world/epic-07-five-banners.png",
+      "prompt": "prompts/world-07.txt",
+      "reference_paths": [
+        "assets/concepts/2026-10-27-shared-ui-v2/world/dawnspire-lobby-v1.png",
+        "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png"
+      ],
+      "monster_ids": [],
+      "sha256": "79a026964c0578feb000bc646b7759a5da7d571337b1d73528ab240c82ff2462",
+      "bytes": 3200380,
+      "width": 1672,
+      "height": 941,
+      "generated_source": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-f211bc4b-c128-4af3-8e91-91dd16e1590d.png",
+      "visual_review": "reviewed in image_gen output; concept suitability only",
+      "status": "concept-review-pending"
+    },
+    {
+      "id": "world-08",
+      "epic": 8,
+      "kind": "world",
+      "path": "world/epic-08-fractured-crown.png",
+      "prompt": "prompts/world-08.txt",
+      "reference_paths": [
+        "assets/concepts/2026-10-27-shared-ui-v2/world/dawnspire-lobby-v1.png",
+        "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png"
+      ],
+      "monster_ids": [],
+      "sha256": "05ba3343dc98d2b75cc021a8157c7ae172765ddccb9155632f94cd297d722423",
+      "bytes": 3296707,
+      "width": 1672,
+      "height": 941,
+      "generated_source": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-d3601099-976b-4fa6-a6ff-0a6532a93c4e.png",
+      "visual_review": "reviewed in image_gen output; concept suitability only",
+      "status": "concept-review-pending"
+    },
+    {
+      "id": "monsters-05",
+      "epic": 5,
+      "kind": "monsters",
+      "path": "monsters/epic-05-roster.png",
+      "prompt": "prompts/monsters-05.txt",
+      "reference_paths": [
+        "../throne-defense/assets/ui/monster-catalog-v2/snow-board.png",
+        "../throne-defense/assets/ui/monster-catalog-v2/volcano-board.png",
+        "../throne-defense/assets/concepts/towers/knights-roster-distinction-v1.png"
+      ],
+      "monster_ids": [
+        "AS-M01",
+        "AS-M02",
+        "AS-M03",
+        "AS-M04",
+        "AS-M05",
+        "AS-B01",
+        "AS-B02",
+        "AS-X01"
+      ],
+      "sha256": "ea275a541fae583fb22d4adf9864fcaf7e317f1ddf257790af5bb6063f997c47",
+      "bytes": 2701886,
+      "width": 1774,
+      "height": 887,
+      "generated_source": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-4c741791-5a5e-42c0-a00e-320c559df7a3.png",
+      "visual_review": "reviewed in image_gen output; concept suitability only",
+      "status": "concept-review-pending"
+    },
+    {
+      "id": "monsters-06",
+      "epic": 6,
+      "kind": "monsters",
+      "path": "monsters/epic-06-roster.png",
+      "prompt": "prompts/monsters-06.txt",
+      "reference_paths": [
+        "../throne-defense/assets/concepts/towers/knights-roster-distinction-v1.png",
+        "../throne-defense/assets/concepts/towers/blocky-v1/priests/inquisitor.png",
+        "../throne-defense/assets/ui/monster-catalog-v2/cemetery-board.png",
+        "../throne-defense/assets/ui/monster-catalog-v2/volcano-board.png"
+      ],
+      "monster_ids": [
+        "DC-M01",
+        "DC-M02",
+        "DC-M03",
+        "DC-M04",
+        "DC-M05",
+        "DC-B01",
+        "DC-B02",
+        "DC-X01"
+      ],
+      "sha256": "b06d9d105df7dacca284df9d7ff8ad770058f9d9b4041238dedb8009d4ca01f6",
+      "bytes": 2606699,
+      "width": 1536,
+      "height": 1024,
+      "generated_source": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-e6142b04-b4fa-4f8d-b21f-4bbd8a313b48.png",
+      "visual_review": "reviewed in image_gen output; concept suitability only",
+      "status": "concept-review-pending"
+    },
+    {
+      "id": "monsters-07",
+      "epic": 7,
+      "kind": "monsters",
+      "path": "monsters/epic-07-roster.png",
+      "prompt": "prompts/monsters-07.txt",
+      "reference_paths": [
+        "../throne-defense/assets/ui/monster-catalog-v2/cemetery-board.png",
+        "../throne-defense/assets/ui/monster-catalog-v2/forest-board.png",
+        "../throne-defense/assets/ui/monster-catalog-v2/volcano-board.png"
+      ],
+      "monster_ids": [
+        "FB-M01",
+        "FB-M02",
+        "FB-M03",
+        "FB-M04",
+        "FB-M05",
+        "FB-B01",
+        "FB-B02",
+        "FB-X01"
+      ],
+      "sha256": "6cff7622e929fa91999a51e25fac4f821b02544fa8eacd7fb1c600be6f23ddb3",
+      "bytes": 2566379,
+      "width": 1774,
+      "height": 887,
+      "generated_source": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-d9cfc1c3-bd96-41d7-918b-7109066be39f.png",
+      "visual_review": "reviewed in image_gen output; concept suitability only",
+      "status": "concept-review-pending",
+      "revision_prompt": "prompts/monsters-07-revision-01.txt",
+      "revision_reason": "Signal Binder가 리치로 표현된 첫 결과에서 해당 셀만 TD Volcano Shaman 계열로 보정했다.",
+      "initial_generated_source": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-43ae1e16-0e30-4790-af2e-a3724b303df3.png"
+    },
+    {
+      "id": "monsters-08",
+      "epic": 8,
+      "kind": "monsters",
+      "path": "monsters/epic-08-roster.png",
+      "prompt": "prompts/monsters-08.txt",
+      "reference_paths": [
+        "../throne-defense/assets/ui/monster-catalog-v2/snow-board.png",
+        "../throne-defense/assets/ui/monster-catalog-v2/cemetery-board.png",
+        "../throne-defense/assets/ui/monster-catalog-v2/volcano-board.png",
+        "../throne-defense/assets/concepts/towers/knights-roster-distinction-v1.png"
+      ],
+      "monster_ids": [
+        "FC-M01",
+        "FC-M02",
+        "FC-M03",
+        "FC-M04",
+        "FC-M05",
+        "FC-B01",
+        "FC-B02",
+        "FC-X01"
+      ],
+      "sha256": "dab0880b94fb0f96d722ba099b4a322decfa6c7ca69af46923eb6c33898430ab",
+      "bytes": 2561836,
+      "width": 1774,
+      "height": 887,
+      "generated_source": "/Users/daniel/.codex/generated_images/01a18af8-c814-7da2-a0b8-96c380ee6afc/exec-d141ec31-25c2-4cb5-b959-f8a2077b4cbf.png",
+      "visual_review": "reviewed in image_gen output; concept suitability only",
+      "status": "concept-review-pending"
+    }
+  ],
+  "limitations": [
+    "AI concept images are not source models, rigs, gameplay screenshots or final UI.",
+    "Original source licenses and per-Experience mesh rights still require the project asset audit.",
+    "Generated labels, dimensions and scene proportions are not runtime data or approved balance.",
+    "Individual roster cells are visual concepts, not 32 separate production assets.",
+    "First Warden ribbons and detailed weapon/part geometry require production turnarounds."
+  ],
+  "path_conventions": {
+    "asset_and_prompt_paths": "relative to this concept directory",
+    "source_reference_and_design_paths": "relative to repository root",
+    "generated_source": "local image_gen provenance; not a runtime dependency"
+  }
+}

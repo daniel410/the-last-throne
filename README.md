@@ -14,6 +14,8 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 
 2026-10-30 **0.36.1**: Gold/Diamonds 지갑·로비 ARMORY 구매/판매·ADVENTURES 솔로/2~4인·서버 간 파티/리조인 경로를 추가했습니다. [로비 빌드](builds/0.36.1/TheLastThrone-Lobby-0.36.1.rbxlx) · [전투 빌드](builds/0.36.1/TheLastThrone-Battle-0.36.1.rbxlx) · [실행 계약](docs/production/lobby-economy-and-expeditions.md) · [검증/제한](docs/evidence/lobby-0361/README.md). RPG 로비 최대20명 설정은 저장했으며 **새 전투 Place 생성은 Studio API 접근 비활성으로 차단되어 설정 허용 여부를 기다립니다.** 최신 소스는 미게시이고 실제 서버 간 이동·다인·저장 수용은 남아 있습니다.
 
+2026-10-30 [에픽5~8 지역·몬스터 컨셉 갤러리](assets/concepts/2026-10-30-late-epics-v1/index.html)를 제작했습니다. 지역4장과32교전 설계를 담은8종 보드4장, 총8장의 검토용 이미지이며 최종 모델/맵·런타임 수용과 구분합니다.
+
 ## 개발 계획과 에이전트
 
 프롤로그·8장·에필로그의 전체 구상과 앞의32구간에 이어 [후반4에픽·26이야기](docs/epics-05-08-story-design.md)를 상세 기획했습니다. 후반은 메인25개+에필로그1개, 몬스터 교전32정의(일반20·필수 보스8·선택 보스4)이며 새 형상/AI 완성 수가 아닙니다. 후반 XP/Coins·맵/모델·게임 구현/수용은 미완료이고 승인된 보상 정본은 기존32구간을 유지합니다. 첫 구현은 **Deepwood 기사 K0 기본 전투**이며 전투→대표 구간→RPG 기반→전체 클래스/본편→후반 콘텐츠→출시 품질 순으로 검증합니다.
