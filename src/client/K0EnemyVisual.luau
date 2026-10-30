@@ -4,6 +4,20 @@ local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 
 local EnemyVisual = {}
+local Text=require(game:GetService('ReplicatedStorage').Shared.K0Text)
+local Config=require(game:GetService('ReplicatedStorage').Shared.K0Config)
+function EnemyVisual.statusText(model,current)
+ local lines={}
+ local attackUntil=model:GetAttribute('K0AttackDownUntil')
+ if type(attackUntil)=='number' and attackUntil>current then
+  table.insert(lines,string.format(Text.EnemyAttackDown,math.round((1-(model:GetAttribute('K0AttackDownMultiplier') or 1))*100),attackUntil-current))
+ end
+ local defenseUntil=model:GetAttribute('K0DefenseBreakUntil')
+ if type(defenseUntil)=='number' and defenseUntil>current then
+  table.insert(lines,string.format(Text.EnemyVulnerable,math.round((Config.Skills.knight[3].defenseBreakDamageMultiplier-1)*100),defenseUntil-current))
+ end
+ return table.concat(lines,'\n')
+end
 
 local function legTransform(angle, part)
 	-- Conservative clearance of the source mesh's bounding box during its
@@ -22,8 +36,14 @@ function EnemyVisual.start()
 		if not enemies then return end
 		local gravityEffects = {}
 		local provokeEffects = {}
+  local debuffLabels={}
 		RunService.RenderStepped:Connect(function(dt)
 			local alpha = math.clamp(dt * 15, 0, 1)
+   local current=Workspace:GetServerTimeNow()
+   for model,billboard in pairs(debuffLabels) do
+    local human=model:FindFirstChildOfClass('Humanoid')
+    if model.Parent~=enemies or not human or human.Health<=0 or EnemyVisual.statusText(model,current)=='' then billboard:Destroy();debuffLabels[model]=nil end
+   end
 			for model, effect in pairs(gravityEffects) do
 				if model.Parent ~= enemies or not model:GetAttribute("K0GravityUntil") then
 					effect:Destroy()
@@ -58,6 +78,17 @@ function EnemyVisual.start()
 					glow.Parent = model
 					gravityEffects[model] = glow
 				end
+    local status=EnemyVisual.statusText(model,current)
+    local anchor=model:FindFirstChild('HumanoidRootPart')
+    local human=model:FindFirstChildOfClass('Humanoid')
+    if status~='' and anchor and human and human.Health>0 then
+     local billboard=debuffLabels[model]
+     if not billboard then
+      billboard=Instance.new('BillboardGui');billboard.Name='CombatDebuffs';billboard.Adornee=anchor;billboard.Size=UDim2.fromOffset(210,40);billboard.StudsOffset=Vector3.new(0,5.8,0);billboard.MaxDistance=100;billboard.AlwaysOnTop=false;billboard.Parent=anchor
+      local label=Instance.new('TextLabel');label.Name='Status';label.Size=UDim2.fromScale(1,1);label.BackgroundTransparency=1;label.TextColor3=Color3.fromRGB(255,209,115);label.TextStrokeColor3=Color3.new();label.TextStrokeTransparency=.15;label.TextSize=12;label.Font=Enum.Font.GothamBold;label.AutoLocalize=false;label.Parent=billboard;debuffLabels[model]=billboard
+     end
+     billboard.Status.Text=status
+    end
 				local torso = model:FindFirstChild("Torso")
 				local root = model:FindFirstChild("HumanoidRootPart")
 				if not torso or not root then continue end

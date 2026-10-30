@@ -620,6 +620,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	end
 	if playerState.guardedUntil and current<playerState.guardedUntil then multiplier=multiplier*(1-playerState.guardReduction) end
 	if playerState.rallyUntil and current < playerState.rallyUntil then multiplier = multiplier * 0.8 end
+	if enemy.attackDownUntil and current<enemy.attackDownUntil then multiplier=multiplier*enemy.attackDownMultiplier end
 	local damage = math.max(1, math.floor(attack.definition.damage * multiplier + 0.5))
 	damage = math.max(1, damage - (playerState.equipment and playerState.equipment.armor or 0) - (playerState.derived and playerState.derived.armor or 0))
 	if playerState.branchShield and playerState.branchShield.expires>current then
@@ -1114,6 +1115,10 @@ local function processCombatSamples(current, requiredState)
 					for index = 1, math.min(attack.maxTargets, #candidates) do
 						local enemy = candidates[index]
 						enemy.provokedBy, enemy.provokeUntil = state, current + attack.definition.provokeDuration
+      enemy.attackDownUntil=current+attack.definition.attackDownDuration
+      enemy.attackDownMultiplier=attack.definition.attackDownMultiplier
+      enemy.model:SetAttribute('K0AttackDownUntil',workspace:GetServerTimeNow()+attack.definition.attackDownDuration)
+      enemy.model:SetAttribute('K0AttackDownMultiplier',enemy.attackDownMultiplier)
 						enemy.defenseBreakUntil = current + attack.definition.defenseBreakDuration
 						enemy.model:SetAttribute("K0DefenseBreakUntil", workspace:GetServerTimeNow() + attack.definition.defenseBreakDuration)
 						enemy.target = state
@@ -1339,6 +1344,9 @@ local function resetEnemy(enemy)
 	enemy.lastAttacker = nil
 	enemy.provokedBy, enemy.provokeUntil = nil, nil
 	enemy.defenseBreakUntil = nil
+	enemy.attackDownUntil,enemy.attackDownMultiplier=nil,nil
+	enemy.model:SetAttribute("K0AttackDownUntil",nil)
+	enemy.model:SetAttribute("K0AttackDownMultiplier",nil)
 	enemy.model:SetAttribute("K0DefenseBreakUntil", nil)
 	enemy.model:SetAttribute("K0ProvokeUntil", nil)
 	enemy.pattern = 0
@@ -1355,6 +1363,10 @@ local function resetEnemy(enemy)
 end
 
 local function stepEnemy(enemy, current, dt)
+ if enemy.attackDownUntil and current>=enemy.attackDownUntil then
+  enemy.attackDownUntil,enemy.attackDownMultiplier=nil,nil
+  enemy.model:SetAttribute('K0AttackDownUntil',nil);enemy.model:SetAttribute('K0AttackDownMultiplier',nil)
+ end
  if (enemy.model:GetAttribute('StoryPauseUntil') or 0)>workspace:GetServerTimeNow() then stopEnemy(enemy);return end
 	if not enemyAlive(enemy) then
 		return

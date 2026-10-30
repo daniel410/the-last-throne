@@ -93,7 +93,7 @@ Config.Skills = {
 	knight = {
 		{ id = "knight.common.bash", name = "SHIELD BASH", requiresShield = true, cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 4, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash" },
 		{ id = "knight.common.whirlwind", name = "WHIRLWIND", cooldown = 8, windup = 0.25, active = 0.18, recovery = 0.4, damage = 1.0, posture = 18, range = 7, angle = 360, maxHeight = 7, maxTargets = 8, effect = "whirlwind" },
-		{ id = "knight.common.provoke", name = "PROVOKE", cooldown = 12, windup = 0.25, active = 0.1, recovery = 0.3, damage = 0, posture = 0, range = 12, angle = 360, maxHeight = 10, maxTargets = 8, effect = "provoke", provokeDuration = 4, defenseBreakDuration = 4, defenseBreakDamageMultiplier = 1.10 },
+		{ id = "knight.common.provoke", name = "PROVOKE", cooldown = 12, windup = 0.25, active = 0.1, recovery = 0.3, damage = 0, posture = 0, range = 12, angle = 360, maxHeight = 10, maxTargets = 8, effect = "provoke", provokeDuration = 4, attackDownDuration = 4, attackDownMultiplier = 0.85, defenseBreakDuration = 4, description = "Taunt foes, reduce their attack damage by 15%, and make them take 10% more damage for 4 seconds.", defenseBreakDamageMultiplier = 1.10 },
 	},
 	elf = {
 		{ id = "elf.common.aimed", name = "AIMED SHOT", cooldown = 6, windup = 0.45, active = 0.10, recovery = 0.30, damage = 1.4, posture = 16, range = 55, angle = 35, maxHeight = 10, maxTargets = 1, effect = "aimed", ranged = true },

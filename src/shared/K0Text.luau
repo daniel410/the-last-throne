@@ -3,6 +3,8 @@ return {
 	Title = "DEEPWOOD",
  NewSkillFormat = "New Skill Unlocked: %s. Open Skills to review your loadout.",
  Ultimate = "ULTIMATE",
+ EnemyAttackDown = "▼ ATK -%d%%  %.1fs",
+ EnemyVulnerable = "▲ DAMAGE TAKEN +%d%%  %.1fs",
 	Subtitle = "THE BLACK ROOTS",
 	TrailSign = "DEEPWOOD\nTRAINING FIELD  >",
 	ClassKnight = "KNIGHT",

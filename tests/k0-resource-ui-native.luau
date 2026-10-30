@@ -41,6 +41,12 @@ end } }]]
 end
 
 local ok, failure = xpcall(function()
+ local enemy=Instance.new('Model');enemy:SetAttribute('K0AttackDownUntil',14);enemy:SetAttribute('K0AttackDownMultiplier',.85);enemy:SetAttribute('K0DefenseBreakUntil',14)
+ local enemyVisual=require(client.K0EnemyVisual)
+ check(enemyVisual.statusText(enemy,10):find('ATK %-15%%')~=nil,'provoke attack reduction is visible')
+ check(enemyVisual.statusText(enemy,10):find('DAMAGE TAKEN %+10%%')~=nil,'provoke vulnerability is accurate')
+ check(enemyVisual.statusText(enemy,14)=='','debuff text disappears on expiry')
+ enemy:Destroy()
 	local hud = copyModule("K0Hud").create()
 	local status = playerGui.DeepwoodTrainingHud.Root.Status
 	local label, value, track = status.MANALabel, status.MANAValue, status.MANATrack

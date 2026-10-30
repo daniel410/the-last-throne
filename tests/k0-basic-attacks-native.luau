@@ -137,7 +137,7 @@ return {
    end
  end,
  setupCharacter=setupCharacter, readCombatContext=readCombatContext,
- clearAction=clearAction, processCombatSamples=processCombatSamples, stepPlayer=stepPlayer, stepEnemy=stepEnemy, closestTarget=closestTarget,
+ applyPlayerHit=applyPlayerHit, resetEnemy=resetEnemy, clearAction=clearAction, processCombatSamples=processCombatSamples, stepPlayer=stepPlayer, stepEnemy=stepEnemy, closestTarget=closestTarget,
  start=CombatService.start, startAttack=startAttack, beginEnemyAttack=beginEnemyAttack, registerEnemy=registerEnemy,
  refreshEquipment=CombatService.refreshEquipment, canUseInventoryItem=CombatService.canUseInventoryItem, applyInventoryItem=CombatService.applyInventoryItem,
  remote=qaRemote, heartbeat=qaHeartbeat
@@ -673,6 +673,23 @@ return {
 		equal(api.closestTarget(enemy, 4.27), ally, "target returns to attacker after provoke expires")
 		equal(enemy.model:GetAttribute("K0ProvokeUntil"), nil, "provoke marker cleared")
 	end)
+ case('provoke-attack-debuff-actually-reduces-damage-and-expires',function()
+  api.injectResolver(function() return 'knight' end)
+  local knight=spawnPlayer();local enemy=spawnEnemy(3)
+  action(knight,'Skill3',0);sample(.26)
+  near(enemy.attackDownMultiplier,.85,'provoke applies15percent reduction')
+  near(enemy.attackDownUntil,4.26,'debuff is bounded to4seconds')
+  local function hit(time)
+   local before=knight.humanoid.Health
+   api.applyPlayerHit(enemy,knight,{origin=enemy.root.Position,direction=(knight.root.Position-enemy.root.Position).Unit,definition=enemy.config.attacks[1],hits={}},time)
+   return before-knight.humanoid.Health
+  end
+  equal(hit(1),math.floor(enemy.config.attacks[1].damage*.85+.5),'real server enemy hit is weakened')
+  equal(hit(4.27),enemy.config.attacks[1].damage,'damage returns after expiry')
+  api.resetEnemy(enemy)
+  equal(enemy.attackDownUntil,nil,'reset clears server debuff')
+  equal(enemy.model:GetAttribute('K0AttackDownUntil'),nil,'reset clears replicated debuff')
+ end)
 	case("gravity-area-respects-cover", function()
 		api.injectResolver(function() return "mage" end)
 		local state = spawnPlayer()
