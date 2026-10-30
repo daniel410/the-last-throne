@@ -291,9 +291,9 @@ function Rules.progress(profile,command,context,catalog)
 	return nextProfile
 end
 -- Journal, first-clear receipt, Coins and quest XP commit in one account write.
-function Rules.story(profile,heroId,chapterId,goalId,choice,catalog)
+function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId)
  local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
- local journal,reason,reward=Story.apply(hero.deepwood or Story.new(),chapterId,goalId,choice)
+ local journal,reason,reward=Story.apply(hero.deepwood or Story.new(),chapterId,goalId,choice,stepId)
  if not journal then return nil,reason end
  if reward.repeated then return Rules.copy(profile),nil,true end
  local n=Rules.copy(profile);local h=n.heroes[heroId];h.deepwood=journal
@@ -313,6 +313,14 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog)
  if chapterId=='DW-05' and goalId=='warlord' then grant('warlord_seal',1,'bossseal') end
  if chapterId=='DW-07' and goalId=='king_shaman' then grant('king_shaman_seal',1,'bossseal') end
  if not Rules.validate(n,catalog) then return nil,'Incompatible' end
+ return n
+end
+function Rules.explore(profile,heroId,zone,x,z)
+ local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
+ local s,reason,repeated=Story.reveal(hero.deepwood or Story.new(),zone,x,z)
+ if not s then return nil,reason end
+ if repeated then return Rules.copy(profile),nil,true end
+ local n=Rules.copy(profile);n.heroes[heroId].deepwood=s;n.revision=n.revision+1
  return n
 end
 return Rules

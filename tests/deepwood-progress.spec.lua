@@ -13,12 +13,29 @@ for _,c in ipairs(C.chapters) do if not c.side then
  for _,g in ipairs(c.goals) do if not g.optional then
   check(P.available(s,c,g),c.id..g.id..' eligible')
   local choice=g.choice and 'shared' or nil
-  local nextS,err,r=P.apply(s,c.id,g.id,choice);check(nextS and not err,'progress accepted');check(P.validate(nextS),'journal valid')
-  local updated,reason=Rules.story(profile,'hero',c.id,g.id,choice,Catalog);check(updated and not reason,'atomic account mutation')
+  local nextS,err,r,updated,reason
+  if g.activity and g.activity.steps then
+   check(not P.apply(s,c.id,g.id,choice),'cannot skip spatial activity')
+   local steps=g.activity.steps
+   if #steps>1 then check(not P.apply(s,c.id,g.id,nil,steps[2].id),'cannot start with later step') end
+   for i,step in ipairs(steps) do
+    local answer=step.choices and step.choices[1].id
+    if step.choices then check(not P.apply(s,c.id,g.id,'forged',step.id),'invalid answer rejected') end
+    nextS,err,r=P.apply(s,c.id,g.id,answer,step.id);check(nextS and not err,'activity substep accepted');check(P.validate(nextS),'saved substep valid')
+    updated,reason=Rules.story(profile,'hero',c.id,g.id,answer,Catalog,step.id);check(updated and not reason,'substep atomic account mutation')
+    local replay=Rules.story(updated,'hero',c.id,g.id,answer,Catalog,step.id);check(replay.revision==updated.revision,'substep retry cannot duplicate receipt')
+    if i<#steps then check(r.xp==0 and r.coins==0 and not nextS.flags[c.id..':'..g.id],'partial activity gives no completion reward') end
+    profile=updated;s=nextS;totalXP=totalXP+r.xp;totalCoins=totalCoins+r.coins
+   end
+  else
+   nextS,err,r=P.apply(s,c.id,g.id,choice);check(nextS and not err,'progress accepted');check(P.validate(nextS),'journal valid')
+   updated,reason=Rules.story(profile,'hero',c.id,g.id,choice,Catalog);check(updated and not reason,'atomic account mutation')
+   totalXP=totalXP+r.xp;totalCoins=totalCoins+r.coins
+  end
   local duplicate=Rules.story(updated,'hero',c.id,g.id,choice,Catalog)
   check(duplicate.revision==updated.revision,'duplicate no second account write')
   check(duplicate.heroes.hero.progression.xp==updated.heroes.hero.progression.xp,'duplicate XP receipt')
-  profile=updated;s=nextS;totalXP=totalXP+r.xp;totalCoins=totalCoins+r.coins
+  profile=updated;s=nextS
  end end
 end end
 check(s.main==7 and s.choice=='shared','epic ending')
@@ -70,3 +87,28 @@ check(reward.heroes.retry.deepwood.killCoins==(before or 0)+5,'combat Coins atom
 local repeated=assert(Rules.progress(reward,command,{serverReward=true},Catalog))
 check(repeated.heroes.retry.deepwood.killCoins==reward.heroes.retry.deepwood.killCoins,'combat Coins duplicate sequence denied')
 print('Deepwood total: '..checks..' checks passed')
+
+local Access=dofile('src/shared/DeepwoodAccess.luau')
+for id,z in pairs(C.zones) do
+ check(Access.region(z.center[1],z.center[3])==id,'region nearest anchor')
+ check(not Access.allowed({main=z.requiresMain-1},id),'preceding story required')
+ check(Access.allowed({main=z.requiresMain},id),'region opens after required story')
+ local x,y=Access.cell(id,z.center[1],z.center[3]);check(x==7 and y==7,'server discovery grid')
+end
+local fog=P.new();check(not P.reveal(fog,'DW-02',1,1),'locked region cannot be revealed')
+fog=assert(P.reveal(fog,'DW-01',6,6));local known=0;for _ in pairs(fog.explored['DW-01']) do known=known+1 end
+check(known==9,'reveal local neighborhood without revealing whole region')
+local copy,reason,repeated=P.reveal(fog,'DW-01',6,6);check(repeated and copy.coins==0,'fog replay immutable reward')
+check(not P.reveal(fog,'DW-01',0,4) and not P.reveal(fog,'DW-01',13,4),'bounded fog cells')
+local forged=P.copy(fog);forged.explored['DW-02']={[1]=true};check(not P.validate(forged),'forged locked fog denied')
+local legacy=P.copy(s);legacy.activities=nil;legacy.decisions=nil;legacy.explored=nil;check(P.validate(legacy),'old completed journal does not reset')
+local partial=assert(store:transact(93,function(p) return Rules.story(p,'retry','DW-01','supplies',nil,Catalog,'manifest') end))
+check(not partial.heroes.retry.deepwood.flags['DW-01:supplies'],'saved first clue does not complete activity')
+failAfterCommit=true
+local unknown=store:transact(93,function(p) return Rules.story(p,'retry','DW-01','supplies',nil,Catalog,'bindings') end)
+check(not unknown,'partial clue unknown result')
+failAfterCommit=false
+local resumed=assert(store:transact(93,function(p) return Rules.story(p,'retry','DW-01','supplies',nil,Catalog,'bindings') end))
+check(resumed.heroes.retry.deepwood.activities['DW-01:supplies']==2,'unknown clue retry resumes exact step')
+check(not resumed.heroes.retry.deepwood.flags['DW-01:supplies'],'retry cannot auto complete final clue')
+print('Deepwood extended total: '..checks..' checks passed')

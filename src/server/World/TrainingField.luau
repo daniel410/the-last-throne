@@ -110,6 +110,7 @@ end
 
 local function makeEnemy(parent, kind, x, z, scale, visualMultiplier)
 	local model = Instance.new("Model")
+ model.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
 	model.Name = kind
 	model:SetAttribute("EnemyKind", kind)
 	local isGoblin = kind == "Goblin"

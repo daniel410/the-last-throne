@@ -7,18 +7,33 @@ local Progress=require(RS.Shared.DeepwoodProgress)
 local Theme=require(script.Parent.TDInventoryTheme)
 local Navigation=require(script.Parent.DeepwoodNavigation)
 local Text=require(RS.Shared.K0Text)
+local MapState=require(script.Parent.DeepwoodMapState)
+local Gates=require(script.Parent.DeepwoodGates)
 local Journal={}
 -- Shared presentation decision for all seven stories and tracked side quests.
 function Journal.guidance(current,target)
  if not current or current.training or not target or not Progress.available(current.journal,target.chapter,target.goal) then return nil end
  local goal=target.goal
  local fight=current.encounters and current.encounters[target.chapter.id..':'..goal.id]
- local hint=#goal.enemies>0 and Text.StoryBeginEncounter or Text.StoryInteract
+ local step=Progress.nextStep(current.journal,target.chapter,goal)
+ local a=goal.activity
+ local destination=Vector3.new(table.unpack(goal.position))
+ local hint=#goal.enemies>0 and (a and a.mode=='battle' and 'Approach the ambush area. Stay alert for the raiders.' or Text.StoryBeginEncounter) or Text.StoryInteract
+ if step then
+  local count=(current.journal.activities or {})[target.chapter.id..':'..goal.id] or 0
+  hint=string.format('%d / %d · %s',count+1,#a.steps,step.title)
+  if a.mode=='sequence' then hint=a.clue
+  elseif a.mode=='escort' then
+   local attempt=current.activities and current.activities[target.chapter.id..':'..goal.id]
+   if attempt then destination=attempt.actorPosition;hint=attempt.status else hint='Speak to '..a.actor..' to begin the escort.' end
+  elseif a.mode~='dialogue' then destination=Vector3.new(table.unpack(step.position)) end
+ end
  if fight then
   hint=(fight.pillars or 0)>0 and string.format(Text.StoryPillarsLeft,fight.pillars)
    or fight.remaining>0 and string.format(Text.StoryEnemiesLeft,fight.remaining) or Text.StorySaving
+  if fight.waves and fight.waves>1 then hint=string.format('Wave %d / %d · %s',fight.wave,fight.waves,hint) end
  end
- return {position=Vector3.new(table.unpack(goal.position)),objective=goal.title,note=hint}
+ return {position=destination,objective=goal.title,note=hint}
 end
 function Journal.start(hud)
  local player=Players.LocalPlayer
@@ -42,12 +57,21 @@ function Journal.start(hud)
  local shared=Theme.button(dialog,'Share','SHARE WITH REFUGEES',UDim2.new(1,-282,1,-46),UDim2.fromOffset(270,36));shared.Visible=false
  local current,target,lastMessage,selectedChapter
  local navigation=Navigation.start()
+ local gates=Gates.create()
  local marker=Instance.new('BillboardGui');marker.Name='DeepwoodWaypoint';marker.Size=UDim2.fromOffset(190,55);marker.AlwaysOnTop=true;marker.StudsOffset=Vector3.new(0,6,0);marker.MaxDistance=2400;marker.Parent=player:WaitForChild("PlayerGui")
+ local anchor=Instance.new('Part');anchor.Name='PersonalWaypoint';anchor.Anchored=true;anchor.Size=Vector3.one;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanTouch=false;anchor.CanQuery=false;anchor.Parent=workspace
  local waypoint=Theme.label(marker,'Waypoint','',UDim2.new(),UDim2.fromScale(1,1),12,Theme.color.gold);waypoint.TextXAlignment=Enum.TextXAlignment.Center;waypoint.TextStrokeTransparency=.15
  local function setOpen(open)
   panel.Visible=open;player:SetAttribute('TLTStoryOpen',open or (dialog.Visible and sanctuary.Visible))
  end
- local function choose(v) request:FireServer('Choose',v);dialog.Visible=false;setOpen(false) end
+ local function choose(v)
+  local d=current and current.dialogue
+  if d and d.choices then
+   local answer=d.choices[v=='sanctuary' and 1 or 2]
+   if answer then request:FireServer('Answer',d.chapter..':'..d.goal..':'..d.step..':'..answer.id) end
+  else request:FireServer('Choose',v) end
+  dialog.Visible=false;setOpen(false)
+ end
  sanctuary.Activated:Connect(function() choose('sanctuary') end);shared.Activated:Connect(function() choose('shared') end)
  if hud.journalMenu then hud.journalMenu.Activated:Connect(function() setOpen(true) end) end
  close.Activated:Connect(function() setOpen(false) end)
@@ -75,7 +99,7 @@ function Journal.start(hud)
    if discovered then
     local completed=s.clears[c.id];local active=Progress.eligible(s,c)
     local row=Theme.frame(list,c.id,UDim2.new(),UDim2.new(1,-10,0,completed and 54 or active and 136 or 54))
-    Theme.label(row,'Chapter',c.id..'  '..c.title..(completed and '  ✓' or not active and '  ·  LOCKED' or ''),UDim2.fromOffset(12,5),UDim2.new(1,-24,0,30),14,completed and Theme.color.green or Theme.color.gold)
+    Theme.label(row,'Chapter',c.title..(completed and '  ✓' or not active and '  ·  LOCKED' or ''),UDim2.fromOffset(12,5),UDim2.new(1,-24,0,30),14,completed and Theme.color.green or Theme.color.gold)
     if active then
      local nextGoal
      local done=0;for _,g in ipairs(c.goals) do if s.flags[c.id..':'..g.id] then done=done+1 end;if ready(c,g) and not nextGoal then nextGoal=g end end
@@ -98,13 +122,26 @@ function Journal.start(hud)
   local field=workspace:FindFirstChild('DeepwoodCampaign');local nodes=field and field:FindFirstChild('Objectives')
   if nodes then for _,p in ipairs(nodes:GetChildren()) do
    local c=Content.byId[p:GetAttribute('ChapterId')];local g=c and Progress.goal(c,p:GetAttribute('GoalId'));local prompt=p:FindFirstChildOfClass('ProximityPrompt')
-   if prompt and g then prompt.Enabled=ready(c,g) end
+   if prompt and g then prompt.Enabled=ready(c,g) and (not g.activity or g.activity.mode=='dialogue' or g.activity.mode=='escort') end
   end end
  end
  response.OnClientEvent:Connect(function(value)
-  current=value;render()
+  current=value;gates.update(value);render()
+  local guidance=Journal.guidance(current,target);MapState.set(value,guidance and guidance.position)
+  if value.notice and hud.showFeedback then hud.showFeedback(value.notice,4) end
+  local field=workspace:FindFirstChild('DeepwoodCampaign');local steps=field and field:FindFirstChild('AdventureActivities')
+  if steps then for _,p in ipairs(steps:GetChildren()) do if p:IsA('BasePart') and p:GetAttribute('StepId') then
+   local c=Content.byId[p:GetAttribute('ChapterId')];local g=c and Progress.goal(c,p:GetAttribute('GoalId'));local prompt=p:FindFirstChildOfClass('ProximityPrompt')
+   local nextStep=g and Progress.nextStep(value.journal,c,g)
+   if prompt then prompt.Enabled=nextStep~=nil and (g.activity.mode=='sequence' or nextStep.id==p:GetAttribute('StepId')) end
+  end end end
   if value.message and value.message~=lastMessage then
    lastMessage=value.message;prose.Text=value.message;dialog.Visible=true;dismiss.Visible=true;sanctuary.Visible=false;shared.Visible=false;setOpen(panel.Visible)
+  end
+  if value.dialogue and value.dialogue.choices then
+   prose.Text=value.dialogue.text;dialog.Visible=true;dismiss.Visible=false;sanctuary.Visible=true;shared.Visible=true
+   sanctuary.Caption.Text=value.dialogue.choices[1].title;shared.Caption.Text=value.dialogue.choices[2].title;setOpen(panel.Visible)
+
   end
  end)
  local elapsed=0
@@ -116,11 +153,14 @@ function Journal.start(hud)
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   local guidance=Journal.guidance(current,target)
   navigation.setTarget(guidance and guidance.position or nil)
-  if target and root then waypoint.Text='◆ '..target.goal.title..'\n'..math.floor((root.Position-Vector3.new(table.unpack(target.goal.position))).Magnitude)..' studs' end
+  MapState.target=guidance and guidance.position or nil
+  if target and root then
+   if guidance then anchor.Position=guidance.position;marker.Adornee=anchor end
+   waypoint.Text='◆ '..target.goal.title..'\n'..math.floor((root.Position-(guidance and guidance.position or anchor.Position)).Magnitude)..' studs' end
   if current and root then
    local c=Content.byId['DW-07'];local g=Progress.goal(c,'restoration')
    local near=ready(c,g) and (root.Position-Vector3.new(table.unpack(g.position))).Magnitude<14
-   if near then prose.Text=g.text;dialog.Visible=true;dismiss.Visible=false;sanctuary.Visible=true;shared.Visible=true;setOpen(panel.Visible) end
+   if near then sanctuary.Caption.Text='ELVEN SANCTUARY';shared.Caption.Text='SHARE WITH REFUGEES';prose.Text=g.text;dialog.Visible=true;dismiss.Visible=false;sanctuary.Visible=true;shared.Visible=true;setOpen(panel.Visible) end
   end
  end)
  local function resize()

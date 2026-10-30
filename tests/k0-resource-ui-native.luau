@@ -126,9 +126,10 @@ local ok, failure = xpcall(function()
 	task.wait(.12);hud.setCooldowns(character)
 	local marker=playerGui.DeepwoodTopHud.Root.Minimap.PlayerMarker
 	check(marker.Visible and math.abs(marker.Position.X.Scale-.6)<.001 and math.abs(marker.Position.Y.Scale-.7)<.001,"minimap projects the actual hero position north-up")
-	check(playerGui.DeepwoodTopHud.Root.Minimap.MapPreview.CurrentCamera~=nil and not playerGui.DeepwoodTopHud.Root.Minimap.MapActions.Visible,"map preview is visible while its menu stays collapsed")
+	check(playerGui.DeepwoodTopHud.Root.Minimap.MapPreview:IsA('Frame') and not playerGui.DeepwoodTopHud.Root.Minimap.MapActions.Visible,"2D map is visible while its menu stays collapsed")
  check(marker.Size.X.Offset==28 and marker.TextSize==24 and marker.ZIndex>3,"larger player arrow sits above enemy dots")
  local map=playerGui.DeepwoodTopHud.Root.Minimap
+ check(map.WorldMap.Position.X.Offset<0 and map.WorldMap.Position.Y.Offset<=0,'full map button sits at minimap upper-left vertex')
  check(map.PlayerLabel.Visible and map.PlayerLabel.Text=="YOU" and map.PlayerPulse.Visible,"player has a readable YOU label and pulse")
  mapRoot.Position=Vector3.new(500,3,500);task.wait(.12);hud.setCooldowns(character)
  check(marker.Visible and marker:GetAttribute('AtMapEdge')==true,"player stays visible outside the local map on a bridge")

@@ -44,11 +44,21 @@
         "Client": {
           "$path": "src/client"
         }
+      },
+      "$properties": {
+        "CameraMinZoomDistance": 6,
+        "CameraMaxZoomDistance": 18
       }
     },
     "Workspace": {
       "$properties": {
-        "FilteringEnabled": true
+        "FilteringEnabled": true,
+        "StreamingEnabled": true,
+        "StreamingMinRadius": 64,
+        "StreamingTargetRadius": 384,
+        "StreamOutBehavior": "Opportunistic",
+        "ModelStreamingBehavior": "Improved",
+        "StreamingIntegrityMode": "PauseOutsideLoadedArea"
       },
       "Baseplate": {
         "$className": "Part",

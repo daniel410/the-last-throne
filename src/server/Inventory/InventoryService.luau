@@ -52,6 +52,14 @@ function Service.close(player)
 	task.spawn(function()
 		while state.busy do task.wait(0.1) end
 		local deadline=os.clock()+10
+        while accounts[player]==state and state.revealJobs and #state.revealJobs>0 and os.clock()<deadline do
+            local job=state.revealJobs[1];state.busy=true
+            local profile,reason=store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end)
+            if profile then state.profile,state.valid,state.errorCode=profile,true,nil;state.revealPending=nil;table.remove(state.revealJobs,1)
+            elseif reason~='SaveUnknown' and reason~='AccountBusy' then break end
+            state.busy=false;if reason then task.wait(.5) end
+        end
+        state.busy=false
 		while accounts[player]==state and state.rewards and #state.rewards>0 and os.clock()<deadline do
 			local reason=Service.progress(player,state.rewards[1],true)
 			if not reason then table.remove(state.rewards,1)
@@ -172,15 +180,15 @@ function Service.storyState(player,heroId)
  local state=accounts[player];local hero=state and state.profile and state.profile.heroes[heroId]
  return hero and Rules.copy(hero.deepwood or require(ReplicatedStorage.Shared.DeepwoodProgress).new())
 end
-function Service.storyEvent(player,heroId,chapterId,goalId,choice)
+function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId)
  local state=accounts[player]
  if not state or state.busy or state.closing then return 'Busy' end
- local key=heroId..':'..chapterId..':'..goalId..':'..tostring(choice)
+ local key=heroId..':'..chapterId..':'..goalId..':'..tostring(choice)..':'..tostring(stepId)
  if state.storyPending and state.storyPending~=key then return 'Busy' end
  if not state.valid and state.storyPending~=key then return state.errorCode or 'Unavailable' end
  state.busy=true;state.storyPending=key
  local profile,reason=store:transact(player.UserId,function(current)
-  return Rules.story(current,heroId,chapterId,goalId,choice,Catalog)
+  return Rules.story(current,heroId,chapterId,goalId,choice,Catalog,stepId)
  end)
  if profile then
   state.profile,state.valid,state.errorCode=profile,true,nil;state.storyPending=nil
@@ -188,6 +196,39 @@ function Service.storyEvent(player,heroId,chapterId,goalId,choice)
  elseif reason=='SaveUnknown' or reason=='AccountBusy' then state.valid,state.errorCode=false,reason
  else state.storyPending=nil end
  state.busy=false;publish(player,nil,reason);return reason
+end
+-- Monotonic fog discovery. Server positions enqueue cells; unknown writes retry
+-- the same job and never replace a failed load with a new journal.
+function Service.reveal(player,heroId,zone,x,z)
+ local state=accounts[player]
+ if not state or state.closing or not state.profile or not state.profile.heroes[heroId] then return end
+ local story=state.profile.heroes[heroId].deepwood
+ local cells=story and story.explored and story.explored[zone]
+ if cells and cells[(z-1)*12+x] then return end
+ local key=heroId..':'..zone..':'..x..':'..z
+ state.revealJobs=state.revealJobs or {};state.revealKeys=state.revealKeys or {}
+ if state.revealKeys[key] then return end
+ state.revealKeys[key]=true;table.insert(state.revealJobs,{key=key,heroId=heroId,zone=zone,x=x,z=z})
+ if state.revealRunning then return end;state.revealRunning=true
+ task.spawn(function()
+  while accounts[player]==state and #state.revealJobs>0 and not state.closing do
+   local job=state.revealJobs[1]
+   if state.busy or not state.valid and state.revealPending~=job.key then task.wait(.25)
+   else
+    state.busy=true;state.revealPending=job.key
+    local profile,reason=store:transact(player.UserId,function(current) return Rules.explore(current,job.heroId,job.zone,job.x,job.z) end)
+    if profile then
+     state.profile,state.valid,state.errorCode=profile,true,nil;state.revealPending=nil
+     state.revealKeys[job.key]=nil;table.remove(state.revealJobs,1)
+    elseif reason=='SaveUnknown' or reason=='AccountBusy' then state.valid,state.errorCode=false,reason
+    else state.revealPending=nil;state.revealKeys[job.key]=nil;table.remove(state.revealJobs,1) end
+    state.busy=false
+    if profile then publish(player) end
+    if reason then task.wait(1) end
+   end
+  end
+  state.revealRunning=false
+ end)
 end
 local function atStorage(player)
 	local context = options.heroSession.getInventoryContext(player)

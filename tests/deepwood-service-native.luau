@@ -19,7 +19,7 @@ local ok,err=xpcall(function()
  local valid=true;local xp=0
  local hero={getActiveHero=function() return {heroId='qa'} end,getCombatContext=function() return valid and {heroId='qa'} end,restartAdventure=function() return true end}
  local inventory={storyState=function() return P.copy(profile.heroes.qa.deepwood or P.new()) end,
-  storyEvent=function(_,id,c,g,choice) local n,e=Rules.story(profile,id,c,g,choice,Catalog);if n then profile=n end;return e end,
+  storyEvent=function(_,id,c,g,choice,stepId) local n,e=Rules.story(profile,id,c,g,choice,Catalog,stepId);if n then profile=n end;return e end,
   awardXP=function(_,_,amount) xp=xp+amount end}
  story.start({world=world,enemies=workspace.DeepwoodK0.Enemies,inventory=inventory,heroSession=hero,combat=combat})
  local function near(c,g) root.Position=world.nodes[c..':'..g].part.Position end
@@ -44,7 +44,23 @@ local ok,err=xpcall(function()
    if g.choice then check(story.destination(player,'qa')==world.spawns['DW-03'],'core aftercare resumes at outpost');inventory.storyEvent(nil,'qa',c.id,g.id,'shared')
    else
     story.interact(player,c.id,g.id)
-    if #g.enemies>0 then
+    if g.activity and g.activity.steps then
+     if g.activity.mode=='escort' then
+      local actor=assert(world.folder:FindFirstChild(g.activity.actor),'escort starts a resident')
+      local initial=actor.PrimaryPart.Position;root.Position=initial+Vector3.new(60,0,0);story.stepActivities(.25)
+      check(actor.PrimaryPart.Position==initial,'resident waits when player falls behind')
+      for _=1,1600 do
+       if inventory.storyState().flags[c.id..':'..g.id] then break end
+       if not actor.Parent then break end
+       root.Position=actor.PrimaryPart.Position+Vector3.new(2,0,0);story.stepActivities(.25);task.wait(.001)
+      end
+     else
+      for _,step in ipairs(g.activity.steps) do
+       root.Position=world.activityNodes[c.id..':'..g.id..':'..step.id].part.Position
+       story.interactStep(player,c.id,g.id,step.id,step.choices and step.choices[1].id);task.wait(.03)
+      end
+     end
+    elseif #g.enemies>0 then
      local key=c.id..':'..g.id;local boss
      for _,m in ipairs(models(key)) do if m:GetAttribute('StoryBoss') then boss=m end end
      if boss and g.id=='king_shaman' then
@@ -55,7 +71,10 @@ local ok,err=xpcall(function()
       for i=1,2 do root.Position=world.folder:FindFirstChild('TemporarySealPillar').Position;check(story.breakPillar(player,key,i),'sequential pillar interaction') end
       check(story.bossDamage(boss,h.MaxHealth)==h.MaxHealth*.35,'boss cannot skip final phase')
      end
-     for _,m in ipairs(models(key)) do m:FindFirstChildOfClass('Humanoid').Health=0 end
+     for _=1,3 do
+      for _,m in ipairs(models(key)) do m:FindFirstChildOfClass('Humanoid').Health=0 end
+      task.wait(.1)
+     end
     end
    end
    task.wait(.1)
@@ -64,6 +83,15 @@ local ok,err=xpcall(function()
  end end end
  local s=inventory.storyState();check(s.main==7 and s.choice=='shared','native server full main chain')
  check(s.coins==2290,'first-clear Coins exact');check(profile.items['qa-DW-07-bossseal'].quantity==1,'seal once')
+ local Access=require(RS.Shared.DeepwoodAccess)
+ local gate=require(SSS.Server.Story.DeepwoodRegionAccess).create({heroSession=hero,inventory=inventory,world=world,combat={relocateForStoryGate=function(_,pivot) character:PivotTo(pivot) end},notice=function() end})
+ local savedProfile=profile;profile=Rules.addHero(Rules.new(92),'qa','knight',Catalog)
+ root.Position=world.spawns['DW-01'].Position;gate.update(player);local safe=root.Position;local health=human.Health
+ root.Position=Vector3.new(table.unpack(C.zones['DW-02'].center));gate.update(player)
+ check((root.Position-safe).Magnitude<1,'server returns hero who bypasses region gate')
+ check(human.Health==health,'gate does not heal or damage hero')
+ check(not Access.allowed(inventory.storyState(),'DW-02'),'gate cannot manufacture completion')
+ profile=savedProfile;gate.remove(player)
  character:Destroy();copy:Destroy()
 end,debug.traceback)
 if not ok then table.insert(report.failures,tostring(err)) end

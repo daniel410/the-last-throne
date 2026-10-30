@@ -22,11 +22,11 @@ local ok,err=xpcall(function()
   for _,id in ipairs(g.requires) do state.flags[c.id..':'..id]=true end
   local current={journal=state,training=false};local target={chapter=c,goal=g}
   local guide=journal.guidance(current,target)
-  check(guide and guide.position==Vector3.new(table.unpack(g.position)),c.id..':'..g.id..' remains guided throughout Epic1')
+  check(guide and guide.position==Vector3.new(table.unpack(g.activity and g.activity.steps and g.activity.mode~='dialogue' and g.activity.mode~='escort' and g.activity.steps[1].position or g.position)),c.id..':'..g.id..' remains guided throughout Epic1')
   local path=nav.route(pos('DW-01'),guide.position)
   check(path[#path]==guide.position,g.id..' guide reaches actual objective')
   if #g.enemies>0 then
-   check(guide.note:find('Hold F',1,true)~=nil,g.id..' explains encounter start')
+   check(guide.note:find(g.activity and 'Approach' or 'Hold F',1,true)~=nil,g.id..' explains encounter start')
    current.encounters={[c.id..':'..g.id]={remaining=2,pillars=0}}
    check(journal.guidance(current,target).note:find('2 left',1,true)~=nil,g.id..' explains remaining enemies')
    current.encounters[c.id..':'..g.id]={remaining=2,pillars=2}
@@ -50,6 +50,9 @@ local ok,err=xpcall(function()
   check(ground and ground.Position.X==z.center[1] and ground.Position.Z==z.center[3],id..' layout anchor')
   local spawn=world.spawns[id];check(spawn and spawn.Enabled and spawn.Neutral,id..' safe checkpoint')
  end
+ check(workspace.StreamingEnabled and workspace.StreamingTargetRadius==384,'streaming configuration applied')
+ check(game:GetService('StarterPlayer').CameraMaxZoomDistance==18,'bounded camera configured')
+ check(Content.runtimeScale==2.2,'world lengths expanded 2.2 times')
  local count=0
  for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
   count+=1;local node=world.nodes[c.id..':'..g.id]
@@ -57,6 +60,12 @@ local ok,err=xpcall(function()
   check(node.part.Position==Vector3.new(table.unpack(g.position))+Vector3.new(0,1,0),g.id..' geometry anchor')
  end end
  report.objectives=count
+ local activityCount=0
+ for _,node in pairs(world.activityNodes) do
+  activityCount+=1;local p=node.part.Position;local ground=field.TerrainBlockout[node.chapter.zone].ForestGround
+  check(math.abs(p.X-ground.Position.X)<=ground.Size.X/2 and math.abs(p.Z-ground.Position.Z)<=ground.Size.Z/2,'activity stays on authored ground')
+ end
+ report.activitySteps=activityCount
  local appearance=require(SSS.Server.World.TdMonsterAppearance)
  local rig=require(SSS.Server.World.TrainingField)
  local combat=require(SSS.Server.Combat.CombatService)

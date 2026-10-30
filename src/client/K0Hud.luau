@@ -378,7 +378,7 @@ function Hud.create()
 		items = itemButtons,
 		dodge = dodge,
 		back = back,
-		heroMenu=minimap.hero,bagMenu=minimap.bag,journalMenu=minimap.journal,
+		mapMenu=minimap.fullMap,heroMenu=minimap.hero,bagMenu=minimap.bag,journalMenu=minimap.journal,
 		setVisible = function(visible)
 			gui.Enabled = visible
 			topGui.Enabled=visible

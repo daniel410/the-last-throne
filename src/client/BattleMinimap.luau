@@ -3,15 +3,18 @@ local Workspace=game:GetService('Workspace')
 local Text=require(game:GetService('ReplicatedStorage').Shared.K0Text)
 local Theme=require(script.Parent.TDInventoryTheme)
 local Chrome=require(script.Parent.InventoryChrome)
+local State=require(script.Parent.DeepwoodMapState)
+local Access=require(game:GetService('ReplicatedStorage').Shared.DeepwoodAccess)
+local Content=require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent)
+local Canvas=require(script.Parent.DeepwoodMapCanvas)
 local Map={}
 function Map.create(parent)
  local frame=Instance.new('Frame');frame.Name='Minimap';frame.AnchorPoint=Vector2.new(1,0);frame.Position=UDim2.new(1,-10,0,8);frame.Size=UDim2.fromOffset(168,168);frame.BackgroundColor3=Color3.fromRGB(7,22,35);frame.BorderSizePixel=0;frame.Parent=parent
  local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(1,0);corner.Parent=frame
  local outline=Instance.new('UIStroke');outline.Color=Theme.color.silver;outline.Thickness=5;outline.Parent=frame
- local view=Instance.new('ViewportFrame');view.Name='MapPreview';view.Position=UDim2.fromOffset(5,5);view.Size=UDim2.new(1,-10,1,-10);view.BackgroundColor3=Color3.fromRGB(27,61,36);view.BorderSizePixel=0;view.Ambient=Color3.fromRGB(210,221,215);view.LightColor=Color3.new(1,1,1);view.LightDirection=Vector3.new(-1,-3,-1);view.Parent=frame
+ local view=Instance.new('Frame');view.Name='MapPreview';view.Position=UDim2.fromOffset(8,8);view.Size=UDim2.new(1,-16,1,-16);view.BackgroundColor3=Color3.fromRGB(27,61,36);view.ClipsDescendants=true;view.BorderSizePixel=0;view.Parent=frame
  local curve=Instance.new('UICorner');curve.CornerRadius=UDim.new(1,0);curve.Parent=view
- local world=Instance.new('WorldModel');world.Name='MapScene';world.Parent=view
- local camera=Instance.new('Camera');camera.FieldOfView=10;camera.CFrame=CFrame.lookAt(Vector3.new(0,1029,0),Vector3.zero,Vector3.new(0,0,-1));camera.Parent=view;view.CurrentCamera=camera
+ local atlas,regionId
  for i,p in ipairs({UDim2.fromScale(.5,0),UDim2.fromScale(1,.5),UDim2.fromScale(.5,1),UDim2.fromScale(0,.5)}) do Chrome.diamond(frame,'MapGem'..i,p,12,Theme.color.gold) end
  local north=Theme.label(frame,'North','N',UDim2.new(.5,-10,0,9),UDim2.fromOffset(20,18),10,Theme.color.text);north.TextXAlignment=Enum.TextXAlignment.Center
  local playerPulse=Instance.new('Frame');playerPulse.Name='PlayerPulse';playerPulse.AnchorPoint=Vector2.new(.5,.5);playerPulse.BackgroundColor3=Color3.fromRGB(71,232,255);playerPulse.BorderSizePixel=0;playerPulse.Visible=false;playerPulse.ZIndex=4;playerPulse.Parent=frame
@@ -21,6 +24,7 @@ function Map.create(parent)
  local markerOutline=Instance.new('UIStroke');markerOutline.Color=Color3.new(1,1,1);markerOutline.Thickness=2;markerOutline.Parent=playerMarker
  local you=Theme.label(frame,'PlayerLabel',Text.MinimapYou,UDim2.fromScale(.5,.5),UDim2.fromOffset(36,14),10,Color3.new(1,1,1));you.AnchorPoint=Vector2.new(.5,.5);you.TextXAlignment=Enum.TextXAlignment.Center;you.TextStrokeColor3=Color3.new(0,0,0);you.TextStrokeTransparency=0;you.ZIndex=7;you.Visible=false
  local caption=Theme.label(frame,'Region','DEEPWOOD',UDim2.new(0,12,1,-30),UDim2.new(1,-24,0,18),9,Theme.color.text);caption.TextXAlignment=Enum.TextXAlignment.Center;caption.TextStrokeTransparency=.2;caption.TextStrokeColor3=Color3.new(0,0,0)
+ local fullMap=Theme.button(frame,'WorldMap','M',UDim2.fromOffset(-8,-4),UDim2.fromOffset(40,40));fullMap.ZIndex=10
  local menuButton=Theme.button(frame,'MapMenu','≡',UDim2.new(1,-34,0,0),UDim2.fromOffset(40,40));menuButton.Caption.Visible=false
  Theme.icon(menuButton,'settings',UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8))
  local menu=Theme.frame(frame,'MapActions',UDim2.new(1,-168,0,199),UDim2.fromOffset(168,194));menu.Visible=false
@@ -30,7 +34,7 @@ function Map.create(parent)
  journal.Activated:Connect(function() menu.Visible=false end)
  menuButton.Activated:Connect(function() menu.Visible=not menu.Visible end)
  hero.Activated:Connect(function() menu.Visible=false end);bag.Activated:Connect(function() menu.Visible=false end)
- local terrain,enemyMarkers,lastUpdate=nil,{},-math.huge
+ local enemyMarkers,lastUpdate={},-math.huge
  local mapOrigin=Vector3.zero;local mapWidth=180
  local function point(marker,position)
   local x,z=(position.X-mapOrigin.X)/mapWidth,(position.Z-mapOrigin.Z)/mapWidth
@@ -38,28 +42,20 @@ function Map.create(parent)
  end
  local function update(character)
   local now=os.clock();if now-lastUpdate<.1 then return end;lastUpdate=now
-  local field=Workspace:FindFirstChild('DeepwoodK0');local source=field and field:FindFirstChild('TerrainBlockout')
-  local campaign=Workspace:FindFirstChild('DeepwoodCampaign');local charRoot=character and character:FindFirstChild('HumanoidRootPart')
-  local closest,distance
-  local regions=campaign and campaign:FindFirstChild('TerrainBlockout')
-  if regions and charRoot then for _,region in ipairs(regions:GetChildren()) do if region:IsA('Model') then
-   local ground=region:FindFirstChild('ForestGround');local d=ground and (ground.Position-charRoot.Position).Magnitude
-   if d and (not distance or d<distance) then closest=region;distance=d end
-  end end end
-  if closest and distance<charRoot.Position.Magnitude then
-   source=closest;mapOrigin=closest.ForestGround.Position;mapWidth=math.max(closest.ForestGround.Size.X,closest.ForestGround.Size.Z)*1.1
-   caption.Text=closest.Name;camera.CFrame=CFrame.lookAt(mapOrigin+Vector3.new(0,mapWidth*5.72,0),mapOrigin,Vector3.new(0,0,-1))
-  else mapOrigin=Vector3.zero;mapWidth=180;caption.Text='TRAINING';camera.CFrame=CFrame.lookAt(Vector3.new(0,1029,0),Vector3.zero,Vector3.new(0,0,-1)) end
-  if source and source~=terrain then
-   world:ClearAllChildren();terrain=source
-   local count=0
-   for _,part in ipairs(source:GetDescendants()) do
-    if part:IsA('BasePart') and part.Transparency<1 and count<100 then
-     local copy=Instance.new('Part');copy.Name=part.Name;copy.Size,copy.CFrame,copy.Color=part.Size,part.CFrame,(part:IsA('MeshPart') and Color3.fromRGB(94,139,72) or part.Color);copy.Shape=part:IsA('Part') and part.Shape or Enum.PartType.Block;copy.Material=Enum.Material.SmoothPlastic;copy.Anchored=true;copy.CanCollide=false;copy.CanTouch=false;copy.CanQuery=false;copy.Parent=world;count+=1
-    end
-   end
-   frame:SetAttribute('PreviewPartCount',count)
+  local field=Workspace:FindFirstChild('DeepwoodK0')
+  local charRoot=character and character:FindFirstChild('HumanoidRootPart')
+  local inAdventure=State.current and not State.current.training and charRoot
+  local id=inAdventure and Access.region(charRoot.Position.X,charRoot.Position.Z) or nil
+  if id then
+   local z=Content.zones[id];mapOrigin=Vector3.new(table.unpack(z.center));mapWidth=math.max(z.size[1],z.size[2]);caption.Text=z.name
+   if regionId~=id then view:ClearAllChildren();atlas=Canvas.create(view,id,true);atlas.pin.Visible=false;regionId=id end
+   atlas.update(State.current,nil,State.target)
+  else
+   if regionId then view:ClearAllChildren();regionId=nil;atlas=nil end
+   mapOrigin=Vector3.zero;mapWidth=180;caption.Text='TRAINING'
   end
+  fullMap.Visible=inAdventure~=nil and inAdventure~=false
+  frame:SetAttribute('PreviewPartCount',0)
   local root=character and character:FindFirstChild('HumanoidRootPart')
   local human=character and character:FindFirstChildOfClass('Humanoid')
   if root and (not human or human.Health>0) then
@@ -88,6 +84,6 @@ function Map.create(parent)
   end
   for enemy,marker in pairs(enemyMarkers) do if not present[enemy] then marker:Destroy();enemyMarkers[enemy]=nil end end
  end
- return {frame=frame,menu=menu,hero=hero,bag=bag,journal=journal,update=update}
+ return {frame=frame,menu=menu,hero=hero,bag=bag,journal=journal,fullMap=fullMap,update=update}
 end
 return Map

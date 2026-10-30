@@ -53,7 +53,9 @@ end
 function Navigation.start()
  local player=Players.LocalPlayer
  local folder=Instance.new('Folder');folder.Name='DeepwoodNavigation';folder.Parent=workspace
- local arrows={};local target,route,origin,lastTarget;local elapsed=0
+ local arrows={};local target,route,origin,lastTarget;local elapsed=0;local surfacesDirty=true
+ local added=workspace.DescendantAdded:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
+ local removed=workspace.DescendantRemoving:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
  local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Include
  for i=1,20 do
   local pair={}
@@ -70,8 +72,8 @@ function Navigation.start()
   local human=player.Character and player.Character:FindFirstChildOfClass('Humanoid')
   if not target or not root or not human or human.Health<=0 or player:GetAttribute('K0SessionPhase')~='Tutorial' or player:GetAttribute('TLTRoute')=='Training' then hide();return end
   if (flat(root.Position-target)).Magnitude<7 then hide();return end
-  if not origin or (root.Position-origin).Magnitude>4 or lastTarget~=target then
-   origin=root.Position;lastTarget=target;route=Navigation.route(origin,target)
+  if surfacesDirty or not origin or (root.Position-origin).Magnitude>4 or lastTarget~=target then
+   surfacesDirty=false;origin=root.Position;lastTarget=target;route=Navigation.route(origin,target)
    local surfaces={};local field=workspace:FindFirstChild('DeepwoodCampaign');local terrain=field and field:FindFirstChild('TerrainBlockout')
    if terrain then for _,p in ipairs(terrain:GetDescendants()) do if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name:match('^ConnectedPath_')) then table.insert(surfaces,p) end end end
    params.FilterDescendantsInstances=surfaces
@@ -93,6 +95,6 @@ function Navigation.start()
    else for _,p in ipairs(pair) do p.Transparency=1 end end
   end
  end)
- return {setTarget=function(value) target=value;if not value then hide() end end,destroy=function() connection:Disconnect();folder:Destroy() end}
+ return {setTarget=function(value) target=value;if not value then hide() end end,destroy=function() connection:Disconnect();added:Disconnect();removed:Disconnect();folder:Destroy() end}
 end
 return Navigation

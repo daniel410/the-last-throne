@@ -9,6 +9,8 @@ local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 require(script.InteractionPrompts).start()
+require(script.AdventureCamera).start()
+require(script.WorldPresentationBudget).start()
 local StarterGui=game:GetService("StarterGui")
 local function hideDefaultHealth()
 	task.spawn(function()
@@ -26,6 +28,7 @@ local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Te
 local Targeting = require(script.K0Targeting)
 local hud = require(script.K0Hud).create()
 hud.setVisible(false)
+require(script.DeepwoodMap).start(hud.mapMenu)
 require(script.K0BackgroundMusic).start()
 require(script.K0Telegraphs).start()
 require(script.K0SwordVisual).start()
@@ -86,7 +89,7 @@ end
 local function combatInputAllowed()
 	local character = player.Character
 	return focused and not GuiService.MenuIsOpen and not UserInputService:GetFocusedTextBox()
-		and not player:GetAttribute("TLTStoryOpen") and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTProgressionOpen")
+		and not player:GetAttribute("TLTMapOpen") and not player:GetAttribute("TLTStoryOpen") and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTProgressionOpen")
 		and player:GetAttribute("K0SessionPhase") == "Tutorial"
 		and character and character:GetAttribute("K0SpawnReady") == true
 		and character:GetAttribute("K0State") ~= nil and character:GetAttribute("K0State") ~= "Dead"

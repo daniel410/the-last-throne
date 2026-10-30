@@ -33,7 +33,7 @@ end
 local function lamp(parent,p)
  part(parent,'LanternPost',Vector3.new(.8,7,.8),p+Vector3.new(0,3.5,0),C.wood,Enum.Material.Wood,true)
  local b=ball(parent,'Lantern',Vector3.new(1.5,2,1.5),p+Vector3.new(0,7,0),C.gold,Enum.Material.Neon)
- local light=Instance.new('PointLight');light.Color=Color3.fromRGB(255,211,133);light.Range=15;light.Brightness=.7;light.Parent=b
+ local light=Instance.new('PointLight');light.Color=Color3.fromRGB(255,211,133);light.Range=15;light.Brightness=.7;light:SetAttribute('TLTDecorative',true);light.Parent=b
 end
 local function banner(parent,p)
  part(parent,'BannerPole',Vector3.new(.7,13,.7),p+Vector3.new(0,6.5,0),C.wood,Enum.Material.Wood,true)
@@ -77,6 +77,12 @@ function World.create()
    local c=Content.byId[p:GetAttribute('ChapterId')];local goalId=p:GetAttribute('GoalId')
    if c then for _,g in ipairs(c.goals) do if g.id==goalId then result.nodes[c.id..':'..(p.Name:match('_request$') and 'request' or g.id)]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g} end end end
   end
+  result.activityNodes={}
+  local activityFolder=existing:FindFirstChild('AdventureActivities')
+  if activityFolder then for _,p in ipairs(activityFolder:GetChildren()) do if p:IsA('BasePart') and p:GetAttribute('StepId') then
+   local c=Content.byId[p:GetAttribute('ChapterId')];local g=c and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress).goal(c,p:GetAttribute('GoalId'))
+   for _,step in ipairs(g and g.activity and g.activity.steps or {}) do if step.id==p:GetAttribute('StepId') then result.activityNodes[c.id..':'..g.id..':'..step.id]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g,step=step} end end
+  end end else require(script.Parent.DeepwoodActivityWorld).create(result) end
   World.current=result;return result
  end
  local root=Instance.new('Model');root.Name='DeepwoodCampaign';root.Parent=Workspace
@@ -93,6 +99,17 @@ function World.create()
   part(region,'BroadStoneTrail',Vector3.new(sx*.78,.12,16),center+Vector3.new(0,.06,0),C.path,Enum.Material.Cobblestone,false)
   for i=0,13 do
    local a=i*math.pi*2/14;tree(region,center+Vector3.new(math.cos(a)*(sx/2-12),0,math.sin(a)*(sz/2-12)),1+(i%3)*.15,id=='DW-06' or id=='DW-07')
+  end
+  -- Fill the expanded perimeter with pinned TD trees while keeping authored routes open.
+  for i=1,24 do
+   local x=((i*73)%101)/100*sx*.82-sx*.41;local zz=((i*47)%97)/96*sz*.82-sz*.41
+   local candidate=center+Vector3.new(x,0,zz);local clear=math.abs(zz)>30
+   for _,chapter in ipairs(Content.chapters) do if chapter.zone==id then for _,goal in ipairs(chapter.goals) do
+    if (candidate-vec(goal.position)).Magnitude<48 then clear=false end
+    for _,step in ipairs(goal.activity and goal.activity.steps or {}) do if (candidate-vec(step.position)).Magnitude<30 then clear=false end end
+   end end end
+   if (candidate-(center+Vector3.new(-sx*.37,0,sz*.34))).Magnitude<28 then clear=false end
+   if clear then tree(region,candidate,.85+(i%3)*.15,id=='DW-06' or id=='DW-07') end
   end
   for _,x in ipairs({-sx*.34,sx*.34}) do lamp(region,center+Vector3.new(x,0,40)) end
   local spawn=Instance.new('SpawnLocation');spawn.Name=id..'_SP';spawn.Size=Vector3.new(12,.3,12);spawn.Position=center+Vector3.new(-sx*.37,.15,sz*.34)
@@ -158,6 +175,8 @@ function World.create()
   interactions[c.id..':request']={part=p,prompt=prompt,chapter=c,goal=g}
  end end
  root:SetAttribute("DeepwoodReady",true)
- World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions};return World.current
+ World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions}
+ require(script.Parent.DeepwoodActivityWorld).create(World.current)
+ return World.current
 end
 return World

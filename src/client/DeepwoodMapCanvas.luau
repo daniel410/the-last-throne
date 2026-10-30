@@ -1,0 +1,55 @@
+-- Bounded 2D cartography: no Workspace clones, camera or Viewport world.
+local Content=require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent)
+local Access=require(game:GetService('ReplicatedStorage').Shared.DeepwoodAccess)
+local Theme=require(script.Parent.TDInventoryTheme)
+local Canvas={}
+function Canvas.create(parent,zoneId,compact)
+ local minX,minZ,maxX,maxZ=math.huge,math.huge,-math.huge,-math.huge
+ for id,z in pairs(Content.zones) do if not zoneId or id==zoneId then
+  minX=math.min(minX,z.center[1]-z.size[1]/2);maxX=math.max(maxX,z.center[1]+z.size[1]/2)
+  minZ=math.min(minZ,z.center[3]-z.size[2]/2);maxZ=math.max(maxZ,z.center[3]+z.size[2]/2)
+ end end
+ local width,height=maxX-minX,maxZ-minZ
+ local function point(x,z) return Vector2.new((x-minX)/width,(z-minZ)/height) end
+ local function rect(name,a,b,color,zindex)
+  local f=Instance.new('Frame');f.Name=name;f.BorderSizePixel=0;f.BackgroundColor3=color;f.Position=UDim2.fromScale(a.X,a.Y);f.Size=UDim2.fromScale(b.X,b.Y);f.ZIndex=zindex or 1;f.Parent=parent;return f
+ end
+ local rows={};local roads={}
+ if not zoneId then for _,edge in ipairs(Access.edges) do
+  local a,b=Content.zones[edge[1]],Content.zones[edge[2]];local first,second=point(a.center[1],a.center[3]),point(b.center[1],b.center[3]);local delta=second-first
+  -- Normalized square canvas keeps bridge bearings stable through resize.
+  local f=rect('Road',first,Vector2.new(delta.Magnitude,.004),Color3.fromRGB(156,142,97));f.AnchorPoint=Vector2.new(0,.5);f.Rotation=math.deg(math.atan2(delta.Y,delta.X));table.insert(roads,{part=f,edge=edge,delta=delta})
+ end end
+ for id,z in pairs(Content.zones) do if not zoneId or id==zoneId then
+  local a=point(z.center[1]-z.size[1]/2,z.center[3]-z.size[2]/2);local size=Vector2.new(z.size[1]/width,z.size[2]/height)
+  local zone=rect('Region',a,size,Color3.fromRGB(25,43,43),2);local cells={}
+  for zz=1,12 do for x=1,12 do
+   cells[(zz-1)*12+x]=rect('FogCell',a+Vector2.new((x-1)/12*size.X,(zz-1)/12*size.Y),Vector2.new(size.X/12+.0005,size.Y/12+.0005),Color3.fromRGB(7,16,26),3)
+  end end
+  local center=point(z.center[1],z.center[3])
+  local name=Theme.label(parent,'Place','Unexplored',UDim2.fromScale(center.X,center.Y),UDim2.fromOffset(compact and 0 or 158,compact and 0 or 38),11,Theme.color.text);name.AnchorPoint=Vector2.new(.5,.5);name.TextXAlignment=Enum.TextXAlignment.Center;name.TextStrokeTransparency=.1;name.ZIndex=5;name.Visible=not compact
+  local checkpoint=Theme.label(parent,'Checkpoint','◇',UDim2.fromScale(center.X-z.size[1]*.37/width,center.Y+z.size[2]*.34/height),UDim2.fromOffset(18,18),16,Theme.color.silver);checkpoint.AnchorPoint=Vector2.new(.5,.5);checkpoint.ZIndex=6;checkpoint.Visible=false
+  rows[id]={cells=cells,name=name,checkpoint=checkpoint,zone=zone}
+ end end
+ local objective=Theme.label(parent,'Objective','◆',UDim2.new(),UDim2.fromOffset(20,20),18,Theme.color.gold);objective.AnchorPoint=Vector2.new(.5,.5);objective.ZIndex=8;objective.Visible=false
+ local pin=Theme.label(parent,'You','▲',UDim2.new(),UDim2.fromOffset(26,26),24,Color3.fromRGB(87,241,255));pin.AnchorPoint=Vector2.new(.5,.5);pin.TextStrokeTransparency=0;pin.TextXAlignment=Enum.TextXAlignment.Center;pin.ZIndex=9;pin.Visible=false
+ local function located(marker,position)
+  local p=point(position.X,position.Z);marker.Position=UDim2.fromScale(math.clamp(p.X,.035,.965),math.clamp(p.Y,.035,.965));marker.Visible=p.X>=0 and p.X<=1 and p.Y>=0 and p.Y<=1
+ end
+ return {pin=pin,aspect=width/height,update=function(current,root,target)
+  local journal=current and current.journal
+  for id,row in pairs(rows) do
+   local z=Content.zones[id];local cells=journal and journal.explored and journal.explored[id] or {};local allowed=journal and Access.allowed(journal,id)
+   local visited=next(cells)~=nil
+   for index,cell in ipairs(row.cells) do cell.BackgroundColor3=cells[index] and Color3.fromRGB(70,110,75) or allowed and Color3.fromRGB(24,41,46) or Color3.fromRGB(7,16,26) end
+   row.name.Text=visited and z.name or allowed and 'Unexplored' or 'Locked';row.name.TextColor3=allowed and Theme.color.text or Theme.color.muted
+   row.checkpoint.Visible=visited and cells[(math.floor(.84*12))*12+math.floor(.13*12)+1]==true
+  end
+  for _,r in ipairs(roads) do
+   local delta=Vector2.new(r.delta.X*parent.AbsoluteSize.X,r.delta.Y*parent.AbsoluteSize.Y);r.part.Size=UDim2.fromOffset(delta.Magnitude,3);r.part.Rotation=math.deg(math.atan2(delta.Y,delta.X))
+   r.part.Visible=journal and Access.allowed(journal,r.edge[1]) and Access.allowed(journal,r.edge[2]) and (journal.explored or {})[r.edge[1]]~=nil end
+  if root then located(pin,root.Position);pin.Rotation=math.deg(math.atan2(root.CFrame.LookVector.X,-root.CFrame.LookVector.Z)) else pin.Visible=false end
+  if target then located(objective,target) else objective.Visible=false end
+ end}
+end
+return Canvas

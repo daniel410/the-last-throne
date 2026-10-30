@@ -1743,6 +1743,16 @@ end
 
 -- Resolver is supplied only by the trusted hero session server. It must return
 -- nil or a non-yielding {heroId, baseClassId, epoch, characterGeneration}.
+-- Trusted story gate correction keeps HP/MP and synchronizes movement validation.
+function CombatService.relocateForStoryGate(player,pivot)
+ local state=playerStates[player]
+ if not alive(state) or player.Character~=state.character or typeof(pivot)~='CFrame' then return false end
+ clearAction(state);state.queued=nil;setPlayerState(state,'Idle')
+ state.character:PivotTo(pivot);state.root.AssemblyLinearVelocity=Vector3.zero
+ state.lastMotionPosition=state.root.Position;state.lastSafePivot=state.character:GetPivot();state.lastMotionAt=now();state.movementBudget=Config.MovementBudget
+ return true
+end
+
 function CombatService.isSafeForEquipment(player)
 	local state = playerStates[player]
 	if not alive(state) or not finiteVector(state.root.Position) or state.mode ~= "Idle" or state.sprinting or now() - (state.lastEquipmentCombat or -math.huge) < 5 then return false end

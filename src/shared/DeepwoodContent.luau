@@ -1030,6 +1030,14 @@ local Content = {
 }
 -- Keep the connected campaign separate from the preserved K0 training grove.
 -- Relative masterplan coordinates are preserved; runtime translation is -2000 Z.
+Content.runtimeScale = 2.2
+for _,zone in pairs(Content.zones) do
+ zone.center[1]=zone.center[1]*Content.runtimeScale;zone.center[3]=zone.center[3]*Content.runtimeScale
+ zone.size[1]=zone.size[1]*Content.runtimeScale;zone.size[2]=zone.size[2]*Content.runtimeScale
+end
+for _,chapter in ipairs(Content.chapters) do for _,goal in ipairs(chapter.goals) do
+ goal.position[1]=goal.position[1]*Content.runtimeScale;goal.position[3]=goal.position[3]*Content.runtimeScale
+end end
 Content.origin = {0, 0, -2000}
 for _,zone in pairs(Content.zones) do zone.center[3] = zone.center[3] + Content.origin[3] end
 for _,chapter in ipairs(Content.chapters) do
@@ -1037,4 +1045,9 @@ for _,chapter in ipairs(Content.chapters) do
 end
 Content.byId = {}
 for _,chapter in ipairs(Content.chapters) do Content.byId[chapter.id] = chapter end
+local Adventure=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodAdventure) or dofile('src/shared/DeepwoodAdventure.luau')
+Adventure.install(Content)
+for _,chapter in ipairs(Content.chapters) do if not chapter.side then Content.zones[chapter.zone].name=chapter.title;Content.zones[chapter.zone].requiresMain=chapter.number-1 end end
+for id,info in pairs({['DW-S1']={'Goblin King Camp',4},['DW-S2']={'Waterfall Quarry',5},['DW-S3']={'Red Battlefield',7}}) do Content.zones[id].name=info[1];Content.zones[id].requiresMain=info[2] end
+
 return Content
