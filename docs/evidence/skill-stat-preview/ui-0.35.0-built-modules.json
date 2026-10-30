@@ -1,0 +1,14 @@
+{
+  "build": "0.35.0",
+  "sourceCommit": "7c05448420150c25e206057cc9b1ae66ffd065d2",
+  "method": "Extract Shared and Client ModuleScript Source directly from the immutable rbxlx; mount in an empty unpublished Studio Edit fixture, then execute the committed native UI test. No Player, world bootstrap, rendered client or device acceptance.",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"coverage\":\"Native GUI constructors and measured text; no real Player, rendered client or device\",\"checks\":1252,\"failures\":[],\"pass\":true,\"kind\":\"SKILL_STAT_UI_NATIVE\"}"
+      }
+    ],
+    "isError": false
+  }
+}

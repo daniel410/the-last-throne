@@ -1,0 +1,11 @@
+{
+  "version": "0.35.0",
+  "sourceCommit": "7c05448420150c25e206057cc9b1ae66ffd065d2",
+  "command": "rojo build default.project.json -o /Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.35.0/TheLastThrone-0.35.0.rbxlx",
+  "file": "builds/0.35.0/TheLastThrone-0.35.0.rbxlx",
+  "success": true,
+  "inputManifest": "inputs-0.35.0.json",
+  "rojo": "Rojo 7.7.1",
+  "bytes": 1479931,
+  "sha256": "ef4d9948667a0c3d7a7f97237cc7b9950124206ae35258966f0646626bd01c02"
+}

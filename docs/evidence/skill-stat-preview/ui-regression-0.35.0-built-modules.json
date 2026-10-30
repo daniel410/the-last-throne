@@ -1,0 +1,13 @@
+{
+  "build": "0.35.0",
+  "method": "Committed resource/UI regression executed on Shared and Client ModuleScript Source extracted from the immutable rbxlx in an empty native Studio fixture.",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"coverage\":\"Actual GUI constructors and state refresh, native GUI instances, LocalPlayer double; no rendered client or device\",\"checks\":1888,\"failures\":[],\"pass\":true,\"kind\":\"K0_RESOURCE_UI_NATIVE\"}"
+      }
+    ],
+    "isError": false
+  }
+}

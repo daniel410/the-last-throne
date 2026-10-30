@@ -1,0 +1,6 @@
+thread '<unnamed>' panicked at 'called `Result::unwrap()` on an `Err` value: failed to create file `/Users/daniel/Documents/Roblox/Plugins/run_in_roblox-50312.rbxmx`
+
+Caused by:
+    Operation not permitted (os error 1)', src/main.rs:75:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+[ERROR run_in_roblox] receiving on a closed channel

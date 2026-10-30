@@ -2,6 +2,8 @@
 
 2026-10-29 · TLT-014/015/027/042/052/054~056 · ENG/DES/리서치 → QA.
 
+로컬 시험 빌드 **0.35.0**, 입력 소스 `7c05448420150c25e206057cc9b1ae66ffd065d2`. [빌드](../../../builds/0.35.0/TheLastThrone-0.35.0.rbxlx) · [크기·해시·도구·결과](build-0.35.0.json) · [전체 입력 해시](inputs-0.35.0.json). Roblox 게시·릴리스 태그는 만들지 않았다.
+
 ## 변경과 근거
 
 사용자 요청에 따라 스킬 상세에 STR/DEX/INT 또는 받는 사람의 최대 HP를 표시한다. 스탯 화면의 장착 스킬·해금된 전용 궁극기에는 현재→투자 초안의1회 피해·다단 합계·자기 보호막 변화와 차이를 표시한다. 아군 보호막은 각 아군의 HP기준이라고 안내한다. 장비·숙련을 적용하며 현재 저장/카탈로그를 수정하지 않는다. 적 취약·표식·반격 등의 상황 보정은 제외했다고 설명한다.
@@ -18,10 +20,17 @@
 | `lua tests/hero-progression.spec.lua` | **81개 통과**.316P/79SP·안전 투자·중복 저장/소유 회귀. |
 | `lua tests/advanced-skills.spec.lua` | **1,435개 통과**. 슬롯·해금·8계열·숙련·이전 회귀. |
 | `python3 tests/make_k0_source_probe.py --output-dir /private/tmp/tlt-skill-stat-preview --test-script tests/skill-stat-ui-native.luau` 후 `run-in-roblox` | **1,252개 통과**. 폭1160/740/390/280·4클래스8계열·장착/전용 궁극기·텍스트 높이·상세/버튼/스크롤·저장 대기 재시도. 소스 fixture이며 게임 빌드·실제 Player/실기기 수용과 구분한다. |
+| 확정 커밋 추출본에서 위 순수3검사 재실행 | **855 /81 /1,435개 통과**. [미리보기](skill-stat-preview.spec.lua.log), [성장](hero-progression.spec.lua.log), [계열](advanced-skills.spec.lua.log). |
+| 확정 커밋+실제 LFS자산 해시 확인 후 `rojo build default.project.json -o builds/0.35.0/TheLastThrone-0.35.0.rbxlx` | **성공**,1,479,931bytes. SHA256 `ef4d9948667a0c3d7a7f97237cc7b9950124206ae35258966f0646626bd01c02`. [로그](build-0.35.0.log). |
+| 빌드 XML의 Shared/Client 모듈을 빈 Studio Edit fixture에 옮기고 확정 소스의 `tests/skill-stat-ui-native.luau` 실행 | **1,252개 통과**. [결과](ui-0.35.0-built-modules.json). 최종 추가한 Lv2/Power+5%의87피해 반올림 조건 포함. 실제 Player·월드 부팅·시각 렌더 수용과 구분한다. |
+| 같은 빌드 모듈에서 확정 소스의 `tests/k0-resource-ui-native.luau` 실행 | **1,888개 통과**. [결과](ui-regression-0.35.0-built-modules.json). 기존 HUD/성장/지도/모바일 구조 회귀이며 실제 터치 조작 증거가 아니다. |
+| 직렬화된 UI/Shared51모듈 SHA256 ↔ 확정 커밋 입력 비교 | **전부 일치**. [목록](built-ui-modules-0.35.0.json). 임시 Shared/Client는 검사 후 제거했다. |
 
 최초 동일 예산 테스트는 전직에 필요한 `battleWins`가 fixture에 없어 유효성 검사에서 실패했다. 실제 전직 조건을 충족하는 fixture로 수정했고 제품 자격 검사는 완화하지 않았다. 기존203785492 음원 타입 경고는 이번 GUI assertion과 구분한다.
 
-동시에 진행된 퀘스트 변경은 별도 커밋으로 보존했다. 해당 작업의0.34.0 예약/소스 확정 후 이 기능의 새 빌드 버전0.35.0을 예약한다. 게임 빌드는 확정 커밋에서 추출한 소스로 만들고 해시를 별도 기록한다. 상위 티켓은 부분 구현 상태이며 완료로 바꾸지 않는다.
+최종 빌드의 `run-in-roblox` 직접 실행은 처음에 플러그인 폴더의 샌드박스 권한으로, 권한을 허용한 재시도는 다른 실제 Play 세션의50312포트 점유로 실패했다. [권한 실패](ui-0.35.0-sandbox-failure.log), [포트 실패](ui-0.35.0-port-failure.log). 해당 세션을 종료하지 않았다. 대신 비어 있는 별도 Studio의 Edit DataModel에 **빌드 XML에서 추출한51개 ModuleScript Source**를 임시로 생성해 두 GUI검사를 실행했다. XML의 소스 속성을 읽는 최초 준비 코드와 임시 마운트 명령에 형식 오류가 있어 실행 전에 수정했으며, 최종 마운트와 검사는 성공했다. 이 방법은 GUI코드/엔진 측정의 증거이며 전체 게임 부팅을 통과시켰다는 뜻이 아니다.
+
+동시에 진행된 퀘스트 변경은 별도 커밋으로 보존했다. 해당 작업의0.34.0 예약/소스 확정 후 이 기능의 새 버전0.35.0을 예약해 빌드했다. 소스 `7c05448`의 src/tests/default.project.json/VERSION과 프로젝트에 연결된 LFS자산만 `/private/tmp/tlt-skill-stat-0350`으로 추출해 빌드/검증했고 작업 중 변경을 섞지 않았다. [원래 기능 커밋](https://github.com/daniel410/the-last-throne/commit/f6e442a7924aa9dcd6dba09960fa411bfd92c4cd)과 [버전 고정 커밋](https://github.com/daniel410/the-last-throne/commit/7c05448420150c25e206057cc9b1ae66ffd065d2)은 원격 main에 푸시했다. 상위 티켓은 부분 구현 상태이며 완료로 바꾸지 않는다.
 
 ## 미검증과 다음 담당
 
