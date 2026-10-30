@@ -1,0 +1,30 @@
+[
+  {
+    "path": "src/server/World/LobbyWorld.luau",
+    "sha256": "2ae5cc5aa7911745d85b508a5608f1ceac5724125da9bafce48907af6c5d9aef"
+  },
+  {
+    "path": "src/server/World/LobbyLandmarks.luau",
+    "sha256": "f12ffce4784bf715e512e590c68b97684a506bea5e2b72cc43e13d84cae58e48"
+  },
+  {
+    "path": "src/server/World/LobbyArchitecture.luau",
+    "sha256": "37a5e78169372ce6d6862f359a21013ea322d2d4b36142e1a447bebe8bb1725e"
+  },
+  {
+    "path": "src/server/World/WeaponMerchant.luau",
+    "sha256": "18abd79c1af9960f28782f19010b330c285619e6be941ec477d30c72632777c7"
+  },
+  {
+    "path": "src/server/init.server.luau",
+    "sha256": "e07ae2e4cc281a36583db9798a0a97df13fd2c06b88590f55cc9139fcd6dbf88"
+  },
+  {
+    "path": "src/server/Lobby/FacilityAccess.luau",
+    "sha256": "c27f5fe8cc9692e9801033435290f862c0490f098c474af41ae2a653c86737dc"
+  },
+  {
+    "path": "src/server/Lobby/FacilityService.luau",
+    "sha256": "7c1f7c2379193ddf6465c21fc27b9f137e14b5962782ff0eb25f199a9b972066"
+  }
+]

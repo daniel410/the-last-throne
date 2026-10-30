@@ -1,0 +1,44 @@
+{
+  "builds": [
+    "0.37.0",
+    "0.37.1"
+  ],
+  "environment": "Actual Studio Player; local unpublished RPG build, Studio session inventory; F/key and normal UI clicks",
+  "placement": "QA server repositions the character to each approach; walking between facilities was not tested as normal input",
+  "observations": [
+    {
+      "build": "0.37.0",
+      "input": "Create Knight / close Heroes / F at ExpeditionPortal",
+      "result": "Expedition panel visible; Armory false; solo and 2/3/4 party choices"
+    },
+    {
+      "build": "0.37.0",
+      "input": "Close expedition / F at Blacksmith",
+      "result": "Armory visible; Expedition false"
+    },
+    {
+      "build": "0.37.0",
+      "input": "Close armory / F at TrainingGround",
+      "result": "phase Tutorial; route Training; class knight; position -20,3.0963,56; found incorrect EPIC 1 COMPLETE label"
+    },
+    {
+      "build": "0.37.1",
+      "input": "Create Knight / close Heroes / F at TrainingGround",
+      "result": {
+        "phase": "Tutorial",
+        "route": "Training",
+        "class": "knight",
+        "headings": [
+          "TRAINING GROUNDS",
+          "HERO PRACTICE"
+        ],
+        "falseCompletionLabels": 0
+      }
+    }
+  ],
+  "limits": [
+    "No published teleport, four simultaneous clients, mobile, persistent save or final art acceptance",
+    "Blacksmith menu opened here; actual buy/sell regression acceptance also uses 0.36.0 evidence",
+    "MCP privileged require creates a different module context; initial QA read of InventoryService.snapshot errored; subsequent ordinary server Script confirmed real inventory ready and selected Knight; not a bootstrap failure"
+  ]
+}

@@ -1,0 +1,9 @@
+EXPEDITION_SERVICE_NATIVE {"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:45: attempt to call a nil value\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:45\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:7\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"EXPEDITION_SERVICE_NATIVE","pass":false,"checks":0}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:69: Expedition service fixture failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:69
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

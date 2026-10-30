@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+LOBBY_LANDMARKS_NATIVE {"coverage":"Native world, raycast approaches, original prompt dispatch/access with Player doubles; no real client or teleport acceptance","checks":194,"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:5: training dispatch preserves actionable hero error\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:5\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:6\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"LOBBY_LANDMARKS_NATIVE"}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:60: Lobby landmark fixture failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:60
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
