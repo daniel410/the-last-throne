@@ -27,6 +27,6 @@ RPG 계정 지갑의 표시 재화는 **Gold / Diamonds**다. 종전 Coins/처�
 
 ## 배포와 다음 수용
 
-확인된 RPG Experience는 `10773575153`, 로비 Place는 `70829337938054`다. **2026-10-30 Creator Dashboard의 최대 방문 인원을50→20으로 저장하고 재확인했다.** 접근 공개 범위는 변경하지 않았다. 사용자 답변으로 기존 전투 Place가 없음을 확인했다. 새 전투 Place 생성은 Roblox의 `Studio API access is not enabled` 오류로 실패했다. Studio API 접근의 일시 허용 여부를 사용자에게 요청했으며, 응답 전에는 켜지 않는다. 현재 `ExpeditionConfig.battlePlaceId=0`이고 실제 게시 원정은 설정 오류로 안전하게 중단한다.
+확인된 RPG Experience는 `10773575153`, 로비 Place는 `70829337938054`다. **2026-10-30 Creator Dashboard의 최대 방문 인원을50→20으로 저장하고 재확인했다.** 접근 공개 범위는 변경하지 않았다. 사용자 답변으로 기존 전투 Place가 없음을 확인했다. 새 전투 Place 생성은 Roblox의 `Studio API access is not enabled` 오류로 실패했다. 사용자가 Studio API 접근을 생성 동안만 허용하고 완료 후 끄는 것을 승인했다. 다만 자동 UI가 TD Studio 창만 선택해 RPG 설정 토글에 도달하지 못했다. 실제 API 접근은 켜지 않았으며, 사용자에게 RPG 창에서 직접 켜고 Save하는 조작을 요청했다. 생성 후 비활성 복구 확인까지 필요하다. 현재 `ExpeditionConfig.battlePlaceId=0`이고 실제 게시 원정은 설정 오류로 안전하게 중단한다.
 
 다음 담당 DIR/ENG는 승인된 방법으로 **같은 RPG Experience 안에 새 전투 Place**를 만들고 ID를 기록한다. TD의 기존 `Throne Defense Battles`를 이동시키면 안 된다. 전투 Place 최대 인원을4로 설정하고 ID를 ExpeditionConfig에 반영해 새 버전·소스 커밋·고정 빌드·검증을 만든다. 임시 API 설정을 허용했다면 생성 후 원래 값으로 복구한다. 검증된 Lobby/Battle 산출물을 각 RPG Place에 게시하고 실제 Roblox 클라이언트에서 솔로 왕복·타 로비 합류·2~4인 동시 출발·부분 이동 실패·저장 장애·재접속·의도적 복귀를 확인한다. Studio 통과만으로 이 게이트를 완료하지 않는다.
