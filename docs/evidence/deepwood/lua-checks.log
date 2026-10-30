@@ -1,0 +1,13 @@
+lua tests/deepwood-progress.spec.lua
+Deepwood progression: 273 checks passed
+Deepwood total: 278 checks passed
+lua tests/inventory.spec.lua
+Inventory: 265 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+lua tests/hero-progression.spec.lua
+Hero progression: 71 checks passed
+lua tests/advanced-skills.spec.lua
+Advanced skills: 946 checks passed
+lua tests/k0-hero-session.spec.lua
+Hero session: 97 identity, ownership, transitions, four-class, stale-life and boundary checks passed
+lua tests/k0-spawn.spec.lua
+K0 spawn lifecycle: 4 players, retry/backoff, late Humanoid, per-player routes, load races, stale lives, respawn and leave passed

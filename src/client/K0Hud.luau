@@ -194,12 +194,12 @@ function Hud.create()
 	actions.BackgroundTransparency = 1
 	actions.AnchorPoint = Vector2.new(1, 1)
 	-- Preserve space for Roblox's default mobile jump control.
-	actions.Position = UDim2.new(1, UserInputService.TouchEnabled and -100 or -20, 1, -22)
-	actions.Size = UDim2.fromOffset(226, 163)
+	actions.Position = UDim2.new(1, -20, 1, 0)
+	actions.Size = UDim2.fromOffset(172, 188)
 	actions.Parent = root
 	local actionScale = Instance.new("UIScale")
 	actionScale.Parent = actions
-	local block, blockHint = action(actions, "Block", Text.Block, Text.HintHold, UDim2.fromOffset(6, 6), 56)
+	local block, blockHint = action(actions, "Block", Text.Block, Text.HintHold, UDim2.fromOffset(8, 66), 56)
 	local skillBar = Instance.new("Frame")
 	skillBar.Name = "SkillBar"
 	skillBar.BackgroundTransparency = 1
@@ -234,9 +234,9 @@ function Hud.create()
 		icon.TextXAlignment = Enum.TextXAlignment.Center
 		skillButtons[index], skillHints[index] = button, key
 	end
-	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(92, 6), 56)
-	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(0, 91), 68)
-	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(76, 71), 88)
+	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(8, 132), 56)
+	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(8, 0), 56)
+	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(90, 0), 64)
 	local minimap=MiniMap.create(topRoot)
 	local mapScale=Instance.new("UIScale");mapScale.Parent=minimap.frame
 	local back = Instance.new("TextButton")
@@ -299,14 +299,10 @@ function Hud.create()
 			skillScale.Scale = math.min(scale, math.max(.35, (viewport.X-280)/528))
 			skillBar.Position = UDim2.new(.5, 0, 1, -12)
 			local jump=playerGui:FindFirstChild('JumpButton',true)
-			local clearance=24
-			if jump and jump:IsA('GuiObject') and jump.Visible and jump.AbsoluteSize.Y>0 then
-				clearance=math.max(clearance,root.AbsolutePosition.Y+viewport.Y-jump.AbsolutePosition.Y+12-124*scale)
-			end
 			actions.Size=UDim2.fromOffset(172,188)
-			actions.Position=UDim2.new(1,-20,1,-clearance)
-			block.Position=UDim2.fromOffset(8,0);block.Size=UDim2.fromOffset(56,56)
-			dodge.Position=UDim2.fromOffset(8,66);dodge.Size=UDim2.fromOffset(56,56)
+			actions.Position=UDim2.new(1,-20,1,0)
+			dodge.Position=UDim2.fromOffset(8,0);dodge.Size=UDim2.fromOffset(56,56)
+			block.Position=UDim2.fromOffset(8,66);block.Size=UDim2.fromOffset(56,56)
 			sprint.Position=UDim2.fromOffset(8,132);sprint.Size=UDim2.fromOffset(56,56)
 			attack.Position=UDim2.fromOffset(90,0);attack.Size=UDim2.fromOffset(64,64)
 			if viewport.X<600 then
@@ -315,10 +311,16 @@ function Hud.create()
 				skillScale.Scale=math.min(scale,(viewport.X-40)/288)
 				for i,button in ipairs(itemButtons) do button.Position=UDim2.fromOffset((i-1)*72,0) end
 				for i,button in ipairs(skillButtons) do local slot=i+1;button.Position=UDim2.fromOffset((slot%4)*72,math.floor(slot/4)*72) end
-				actions.Position=UDim2.new(1,-20,1,-math.max(clearance,140*skillScale.Scale+24))
+				-- Keep the column at the bottom and place the compact bar to its left.
+				skillScale.Scale=math.min(skillScale.Scale,math.max(.3,(viewport.X-172*scale-48)/288))
+				skillBar.Position=UDim2.new(0,12+(288*skillScale.Scale)/2,1,-12)
 			else
 				skillBar.Size=UDim2.fromOffset(528,68)
 				for i,button in ipairs(skillButtons) do button.Position=UDim2.fromOffset((i+1)*72+24,0) end
+			end
+			if jump and jump:IsA('GuiObject') and jump.Visible and jump.AbsoluteSize.Y>0 then
+				local top=root.AbsolutePosition.Y+viewport.Y-188*scale
+				attack.Position=UDim2.fromOffset(90,math.min(0,(jump.AbsolutePosition.Y-top-12)/scale-64))
 			end
 		else
 			skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)

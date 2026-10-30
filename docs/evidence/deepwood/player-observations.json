@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-29",
+  "environment": "Studio MCP; single actual Player; session adapter; source preview matching 0.29.1 game source, opened from 0.28.1 local build, not published",
+  "tracker": {
+    "hp_width": 248,
+    "objective_width": 248,
+    "hp_x": 16,
+    "objective_x": 16,
+    "background_transparency": 1,
+    "panel_art": false
+  },
+  "training_round_trip": {
+    "route_before": "Training",
+    "training_position": [
+      -17.23,
+      3.1,
+      53.0
+    ],
+    "training_title": "CONTROLS TUTORIAL",
+    "menu_from_training": "DEEPWOOD",
+    "adventure_position": [
+      -771.66,
+      3.1,
+      -1423.69
+    ],
+    "returned_route": "Training",
+    "returned_position": [
+      -21.65,
+      3.1,
+      58.06
+    ],
+    "superseded_by": "0.30.1 lobby-only training entry; previous round trip is historical evidence"
+  },
+  "first_encounter_0_28_0": {
+    "entry": "actual lobby create/start buttons and keyboard movement/F",
+    "models": 2,
+    "kind": "Goblin",
+    "template": "goblin",
+    "max_health_each": 225,
+    "result": "encounter began; normal-combat full clear not accepted; player died during observation; blocking announcement fixed in 0.28.1"
+  },
+  "session_qa": {
+    "coverage": "Server QA placement, healing and forced enemy defeats; not normal movement/combat acceptance",
+    "confirmed_objectives": [
+      "DW-01:trail_guards",
+      "DW-01:supplies"
+    ],
+    "result": "stopped at DW-01:supply_guards; Player was back in Lobby when inspected. Whole Player campaign completion not verified."
+  },
+  "not_verified": [
+    "published saves/rejoin",
+    "4-player and devices",
+    "full normal-combat campaign clear",
+    "final cinematic/environment art acceptance",
+    "repeat quest runs and reconnecting to an existing party attempt"
+  ],
+  "dialog_preview": {
+    "background_transparency": 0.85,
+    "panel_art": false,
+    "text_stroke": 0.2,
+    "coverage": "live source preview; dialogue was closed during final navigation screenshot"
+  },
+  "navigation_preview": {
+    "visible_chevrons": 17,
+    "goal": "DW-01:supply_guards",
+    "coverage": "actual Player source preview follows server journal; native regional route assertions separate"
+  },
+  "invariant_prompt": {
+    "localized_key_string": "ㄹ",
+    "displayed_key": "F",
+    "method": "HOLD",
+    "held_key_ms": 650,
+    "triggered": true
+  },
+  "final_build_0_30_3": {
+    "environment": "unpublished fixed local build; actual Studio Player at Lobby, desktop touch=false,1134x850",
+    "training_menu_present": false,
+    "dialog_background_transparency": 0.85,
+    "waypoint_present": true,
+    "navigation_present": true,
+    "mobile_rendered_acceptance": false,
+    "note": "Local test instance disconnected during final UI follow-up;279 GUI fixture checks do not substitute actual mobile touch/rotation acceptance."
+  }
+}

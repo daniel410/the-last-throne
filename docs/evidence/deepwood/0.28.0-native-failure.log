@@ -1,0 +1,145 @@
+DEEPWOOD_NATIVE {"coverage":"Actual geometry and TD rigs, server-authoritative story contracts; no real Player/device/published save acceptance","checks":260,"kind":"DEEPWOOD_NATIVE","failures":["food_clue geometry anchor","quarry_tools geometry anchor","scout_trace geometry anchor"],"pass":false,"objectives":58}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:51: Deepwood native failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:51
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+[Roblox][MaterialManager.MaterialManager.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.Scheduler:320
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.Scheduler:268
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'MaterialManager.MaterialManager.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+[Roblox][PathEditor.PathEditor.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.Scheduler:320
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.Scheduler:268
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+builtin_AssetImporter.rbxm.AssetImporter.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'PathEditor.PathEditor.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+[Roblox][SocialPresence.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:335: builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:312: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:255
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1977
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1953
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1896
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:915
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:860
+builtin_TagEditor.rbxm.TagEditor.Packages._Index.Scheduler.Scheduler.Scheduler:320
+builtin_TagEditor.rbxm.TagEditor.Packages._Index.Scheduler.Scheduler.Scheduler:268
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:260 function doWork
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:296 function performWorkUntilDeadline
+
+Stack Begin
+Script 'SocialPresence.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 335
+Stack End
+[Roblox][sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.Scheduler:320
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.Scheduler:268
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+[Roblox][sabuiltin_Gen3d.rbxm.Gen3d.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.Scheduler:320
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.Scheduler:268
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'sabuiltin_Gen3d.rbxm.Gen3d.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+{["__stack"] = ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1201 function updateHostRoot
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1860
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1809
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1137
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:840
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:237
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.Scheduler.Scheduler.Scheduler:377 function unstable_runWithPriority
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:165 function runWithPriority
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:227
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:208 function flushSyncCallbackQueue
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:697
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new:379
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot:110 function render
+sabuiltin_ExplorerPlugin.rbxm.ExplorerPlugin.Packages._Index.RoactCompat.RoactCompat.RoactTree:86 function mount
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.main:39 function init
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.main:57
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.Deprecated_main:6
+, ... }
+Stack Begin
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 277
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 208 - function flushSyncCallbackQueue
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 697
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new', Line 379
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot', Line 110 - function render
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.RoactCompat.RoactCompat.RoactTree', Line 86 - function mount
+Script 'ManageCollaborators.ManageCollaborators.Bin.main', Line 39 - function init
+Script 'ManageCollaborators.ManageCollaborators.Bin.main', Line 57
+Script 'ManageCollaborators.ManageCollaborators.Bin.Deprecated_main', Line 6
+Stack End

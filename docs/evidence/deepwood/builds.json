@@ -1,0 +1,106 @@
+[
+  {
+    "version": "0.28.0",
+    "source": "3878d06d8736cc26d1fba533b3815736fea737ea",
+    "path": "builds/0.28.0/TheLastThrone-0.28.0.rbxlx",
+    "bytes": 1350709,
+    "sha256": "f2412a85110cc79f5cacc059a48374cc0d25e90c3d9e743d8b66e1b33d4e3bfe",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.28.1",
+    "source": "4b986b1431df7fe03d5ba879a92bb80b00083dce",
+    "path": "builds/0.28.1/TheLastThrone-0.28.1.rbxlx",
+    "bytes": 1351626,
+    "sha256": "25ed2a76b353efaf9898b001e1bb38406819afa4863e42dc5e35a9cf620620db",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.28.2",
+    "source": "7f165d741f381ef78c73d5970b00d4cdad9bc224",
+    "path": "builds/0.28.2/TheLastThrone-0.28.2.rbxlx",
+    "bytes": 1351681,
+    "sha256": "8e18b3406ee7bf8488462a91084798923cc45807fce7fe8d46119689fe19abca",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.29.0",
+    "source": "590abe58043adad1c4a09d3476d770392b8b408c",
+    "path": "builds/0.29.0/TheLastThrone-0.29.0.rbxlx",
+    "bytes": 1354239,
+    "sha256": "56b2024253558204cd11603d7f6c793529861f2d3c721f0f2874e9783a878fec",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.29.1",
+    "source": "680e9d0b0aee51f6cb79e292ff0743975061bc9c",
+    "path": "builds/0.29.1/TheLastThrone-0.29.1.rbxlx",
+    "bytes": 1354739,
+    "sha256": "2429e7a1910efae5364415deae127b79fd431f4ca9904f39059f144838b51feb",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.29.2",
+    "source": "5c408e1bc6c85efc31703593e8b717c795f1c2c9",
+    "path": "builds/0.29.2/TheLastThrone-0.29.2.rbxlx",
+    "bytes": 1359180,
+    "sha256": "9a151a8a15620dd8614520f99b138785ad9e4ad67747dde76a1bfdb6b5e4227e",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false
+  },
+  {
+    "version": "0.30.0",
+    "source": "833931d5761ed06081f2918498cf81c205e8cd13",
+    "path": "builds/0.30.0/TheLastThrone-0.30.0.rbxlx",
+    "bytes": 1364560,
+    "sha256": "01be83d876bbf6a9e00db3d298839033701f0b98a5b6f730d1973bc1fd1a314a",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false,
+    "verification": "native fail: initial region test placed its origin on a bridge; valid forward shortcut made the assertion incorrect; fixture corrected in 0.30.1"
+  },
+  {
+    "version": "0.30.1",
+    "source": "1cb30d7e11af98b363d2a613b619ee29f362b46d",
+    "path": "builds/0.30.1/TheLastThrone-0.30.1.rbxlx",
+    "bytes": 1364560,
+    "sha256": "01be83d876bbf6a9e00db3d298839033701f0b98a5b6f730d1973bc1fd1a314a",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false,
+    "verification": "native265 pass; GUI244 pass"
+  },
+  {
+    "version": "0.30.2",
+    "source": "e0a45c3fc56823b502b3e943b1b415d5f9848897",
+    "path": "builds/0.30.2/TheLastThrone-0.30.2.rbxlx",
+    "bytes": 1365852,
+    "sha256": "dfbd4b59005fed4131769e339b35bc0e687567af224f2c1f2423cf64b8c8d307",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false,
+    "verification": "native UI:269 checks,1 failure for portrait row width; latest requested column layout and narrow two-row fallback in0.30.3"
+  },
+  {
+    "version": "0.30.3",
+    "source": "b3bdcb05241de4fb5bbdbba06a992bc292a91dd4",
+    "path": "builds/0.30.3/TheLastThrone-0.30.3.rbxlx",
+    "bytes": 1366595,
+    "sha256": "82707e4906eb20e77e2adde53b75af4a5a14ad6db339e619fe318b54e7e6434c",
+    "tool": "Rojo 7.7.1",
+    "success": true,
+    "published": false,
+    "verification": "GUI279 pass, five injected mobile sizes; actual device touch/rotation not accepted"
+  }
+]

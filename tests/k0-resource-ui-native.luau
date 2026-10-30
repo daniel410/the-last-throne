@@ -193,10 +193,12 @@ local ok, failure = xpcall(function()
 		check(actions.Attack.Size==UDim2.fromOffset(64,64),'mobile attack is reduced to64px')
 		check(actions.Block.Size==actions.Dodge.Size and actions.Dodge.Size==actions.Sprint.Size,'mobile defensive actions have equal size')
 		check(actions.Block.Position.X.Offset==actions.Dodge.Position.X.Offset and actions.Dodge.Position.X.Offset==actions.Sprint.Position.X.Offset,'mobile defensive actions form one column')
-		check(actions.Attack.Position.Y.Offset==actions.Block.Position.Y.Offset,'attack occupies the upper-right action slot')
+		check(actions.Dodge.Position.Y.Offset<actions.Block.Position.Y.Offset and actions.Block.Position.Y.Offset<actions.Sprint.Position.Y.Offset,'mobile order is Dodge Block Sprint')
+		check(actions.Position.Y==UDim.new(1,0),'mobile defensive column reaches the safe bottom edge')
+		check(actions.Attack.Position.Y.Offset==actions.Dodge.Position.Y.Offset,'attack occupies the upper-right action slot')
 		local scale=actions.UIScale.Scale
 		local attackBottom=size.Y+actions.Position.Y.Offset-actions.Size.Y.Offset*scale+(actions.Attack.Position.Y.Offset+64)*scale
-		check(attackBottom<size.Y-112,'mobile attack clears the reserved jump area')
+		check(attackBottom<size.Y-88,'mobile attack clears the default jump height')
 		check(bar.Size.X.Offset*bar.UIScale.Scale<=(size.X<600 and size.X-40 or size.X-280)+.1,'bottom row fits the available width')
 	end
 

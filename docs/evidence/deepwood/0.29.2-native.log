@@ -1,0 +1,65 @@
+DEEPWOOD_NATIVE {"coverage":"Actual geometry and TD rigs, server-authoritative story contracts; no real Player/device/published save acceptance","checks":261,"kind":"DEEPWOOD_NATIVE","failures":[],"pass":true,"objectives":58}
+[Roblox][ManageCollaborators.ManageCollaborators.Packages._Index.Console.Console.makeConsoleImpl] Error: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.
+{["__stack"] = builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.React.React.ReactHooks:127 function useState
+builtin_MaterialPicker.rbxm.MaterialPicker.Packages._Index.StudioFoundation.StudioFoundation.Contexts.StudioThemeContextProvider:33 function StudioThemeContextProvider
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHooks.new:3196 function renderWithHooks
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:209 function renderWithHooks
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1577 function mountIndeterminateComponent
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3485 function beginWork
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1860
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1809
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1137
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:840
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:237
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.Scheduler.Scheduler.Scheduler:377 function unstable_runWithPriority
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:165 function runWithPriority
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:227
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:208 function flushSyncCallbackQueue
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:697
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new:379
+builtin_DraftsWidget.rbxm.DraftsWidget.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot:110 function render
+builtin_MaterialPicker.rbxm.MaterialPicker.Packages._Index.RoactCompat.RoactCompat.RoactTree:86 function mount
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.main:39 function init
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.main:57
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.Deprecated_main:6
+, ... }
+Stack Begin
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 277
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 208 - function flushSyncCallbackQueue
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 697
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new', Line 379
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot', Line 110 - function render
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.RoactCompat.RoactCompat.RoactTree', Line 86 - function mount
+Script 'ManageCollaborators.ManageCollaborators.Bin.main', Line 39 - function init
+Script 'ManageCollaborators.ManageCollaborators.Bin.main', Line 57
+Script 'ManageCollaborators.ManageCollaborators.Bin.Deprecated_main', Line 6
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+debug.profileEnd() - No active profile annotation. At: Stack Begin
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.RobloxReactProfiling', Line 65 - function profileend
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.RobloxReactProfiling', Line 215 - function profileCommitAfter
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 2107
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.Scheduler.Scheduler.Scheduler', Line 377 - function unstable_runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 165 - function runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 2103
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 1173
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 840
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 237
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.Scheduler.Scheduler.Scheduler', Line 377 - function unstable_runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 165 - function runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 227
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 208 - function flushSyncCallbackQueue
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 697
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new', Line 379
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot', Line 110 - function render
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.RoactCompat.RoactCompat.RoactTree', Line 86 - function mount
+Script 'builtin_Toolbox.rbxm.Toolbox.Bin.main', Line 394 - function main
+Script 'builtin_Toolbox.rbxm.Toolbox.Bin.main', Line 635
+Script 'builtin_Toolbox.rbxm.Toolbox.Bin.loader', Line 132
+Stack End

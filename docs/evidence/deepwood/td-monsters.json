@@ -1,0 +1,195 @@
+{
+  "captured": "2026-10-29",
+  "runtime": "assets/shared/td-monsters/runtime.rbxmx",
+  "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+  "runtime_unchanged": true,
+  "permission": "User requested TD original reuse; independent published Experience permissions remain unverified.",
+  "models": {
+    "Goblin": {
+      "template": "goblin",
+      "parts": {
+        "LegL": {
+          "mesh": "rbxassetid://78392327157438",
+          "texture": "rbxassetid://134919664038207"
+        },
+        "LegR": {
+          "mesh": "rbxassetid://100268725310905",
+          "texture": "rbxassetid://134919664038207"
+        },
+        "ArmL": {
+          "mesh": "rbxassetid://127402469282462",
+          "texture": "rbxassetid://134919664038207"
+        },
+        "ArmR": {
+          "mesh": "rbxassetid://106102430341786",
+          "texture": "rbxassetid://134919664038207"
+        },
+        "Body": {
+          "mesh": "rbxassetid://77403549111699",
+          "texture": "rbxassetid://134919664038207"
+        }
+      }
+    },
+    "Slime": {
+      "template": "slime",
+      "parts": {
+        "Body": {
+          "mesh": "rbxassetid://84245584635347",
+          "texture": "rbxassetid://75994104212849"
+        }
+      }
+    },
+    "Orc": {
+      "template": "orc",
+      "parts": {
+        "LegL": {
+          "mesh": "rbxassetid://122434686618387",
+          "texture": "rbxassetid://140427201929012"
+        },
+        "LegR": {
+          "mesh": "rbxassetid://108357424176147",
+          "texture": "rbxassetid://140427201929012"
+        },
+        "ArmL": {
+          "mesh": "rbxassetid://80036546875989",
+          "texture": "rbxassetid://140427201929012"
+        },
+        "ArmR": {
+          "mesh": "rbxassetid://126087041396792",
+          "texture": "rbxassetid://140427201929012"
+        },
+        "Body": {
+          "mesh": "rbxassetid://91974284442570",
+          "texture": "rbxassetid://140427201929012"
+        }
+      }
+    },
+    "Ogre": {
+      "template": "ogre",
+      "parts": {
+        "LegL": {
+          "mesh": "rbxassetid://76243711635467",
+          "texture": "rbxassetid://90412861785322"
+        },
+        "LegR": {
+          "mesh": "rbxassetid://77089513742534",
+          "texture": "rbxassetid://90412861785322"
+        },
+        "ArmL": {
+          "mesh": "rbxassetid://108622715572697",
+          "texture": "rbxassetid://90412861785322"
+        },
+        "ArmR": {
+          "mesh": "rbxassetid://98353562560509",
+          "texture": "rbxassetid://90412861785322"
+        },
+        "Body": {
+          "mesh": "rbxassetid://98618217378067",
+          "texture": "rbxassetid://90412861785322"
+        }
+      }
+    },
+    "Shaman": {
+      "template": "shaman",
+      "parts": {
+        "ArmL": {
+          "mesh": "rbxassetid://79061189243126",
+          "texture": "rbxassetid://110464126686829"
+        },
+        "ArmR": {
+          "mesh": "rbxassetid://106211798202686",
+          "texture": "rbxassetid://110464126686829"
+        },
+        "Body": {
+          "mesh": "rbxassetid://72825574101431",
+          "texture": "rbxassetid://110464126686829"
+        }
+      }
+    },
+    "Warlord": {
+      "template": "warlord",
+      "parts": {
+        "LegL": {
+          "mesh": "rbxassetid://113288177312219",
+          "texture": "rbxassetid://70983800028303"
+        },
+        "LegR": {
+          "mesh": "rbxassetid://85194624847004",
+          "texture": "rbxassetid://70983800028303"
+        },
+        "ArmL": {
+          "mesh": "rbxassetid://110547420071386",
+          "texture": "rbxassetid://70983800028303"
+        },
+        "ArmR": {
+          "mesh": "rbxassetid://129543694981309",
+          "texture": "rbxassetid://70983800028303"
+        },
+        "Body": {
+          "mesh": "rbxassetid://79543398563213",
+          "texture": "rbxassetid://70983800028303"
+        }
+      }
+    },
+    "GoblinKing": {
+      "template": "king",
+      "parts": {
+        "ArmL": {
+          "mesh": "rbxassetid://115525535275335",
+          "texture": "rbxassetid://107887865682210"
+        },
+        "ArmR": {
+          "mesh": "rbxassetid://94788855345392",
+          "texture": "rbxassetid://107887865682210"
+        },
+        "Body": {
+          "mesh": "rbxassetid://136696243531682",
+          "texture": "rbxassetid://107887865682210"
+        }
+      }
+    },
+    "KingOgre": {
+      "template": "king_ogre",
+      "parts": {
+        "ArmL": {
+          "mesh": "rbxassetid://81997969705023",
+          "texture": "rbxassetid://89273545762978"
+        },
+        "ArmR": {
+          "mesh": "rbxassetid://128493874886698",
+          "texture": "rbxassetid://89273545762978"
+        },
+        "Body": {
+          "mesh": "rbxassetid://102193288964321",
+          "texture": "rbxassetid://89273545762978"
+        }
+      }
+    },
+    "EnragedWarlord": {
+      "template": "warlord:enraged",
+      "parts": {
+        "Body": {
+          "mesh": "rbxassetid://75442551944048",
+          "texture": "rbxassetid://75143165537216"
+        }
+      }
+    },
+    "KingShaman": {
+      "template": "king_shaman",
+      "parts": {
+        "ArmL": {
+          "mesh": "rbxassetid://114693137164270",
+          "texture": "rbxassetid://106850396400535"
+        },
+        "ArmR": {
+          "mesh": "rbxassetid://108902593554384",
+          "texture": "rbxassetid://106850396400535"
+        },
+        "Body": {
+          "mesh": "rbxassetid://113962829570237",
+          "texture": "rbxassetid://106850396400535"
+        }
+      }
+    }
+  }
+}
