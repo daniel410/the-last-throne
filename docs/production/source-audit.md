@@ -6,9 +6,9 @@
 
 - [현재 통합 제안서](../../the-last-throne-rpg-proposal.md): 프롤로그·8장·에필로그, Aetheria/Lumia·다섯 문명·동료·세 결말·전체 콘텐츠. 최신 사용자 결정과 충돌하면 결정표/상세 사양이 우선한다.
 - [최초 제안 보관본](../archive/the-last-throne-rpg-proposal-initial-2026-10-26.md), [보관 안내](../archive/README.md): 변경 전 기록이며 현행 플레이어 클래스/수익화/영어 언어 계약의 정본으로 쓰지 않는다.
-- [TD 업데이트 제안서](../../../throne-defense/docs/throne-chronicles-rpg-proposal.md), [TD 이야기](../../../throne-defense/docs/storyline.md): 공유 세계관·자산 원형의 읽기 전용 참고. 같은 Experience 제안은 2026-10-28 독립 Experience 사용자 결정으로 대체한다. 오래된5플레이어 클래스/직업명은 현행 RPG의4클래스 결정으로 대체한다.
+- [TD 업데이트 제안서](../../../throne-defense/docs/throne-chronicles-rpg-proposal.md), TD 이야기의 당시 참조 경로 `../../../throne-defense/docs/storyline.md`(2026-10-30 현재 파일 없음·검토 불가): 공유 세계관·자산 원형의 읽기 전용 참고. 같은 Experience 제안은 2026-10-28 독립 Experience 사용자 결정으로 대체한다. 오래된5플레이어 클래스/직업명은 현행 RPG의4클래스 결정으로 대체한다.
 
-## 2. 기존 상세 문서 55개
+## 2. 기존 상세 문서 55개 · 2026-10-28 스냅샷
 
 파일별 내용을 담당 분야의 제작 입력으로 연결했다. 개별 스토리의 영어 표시명은 원문에 없는 경우 번역 제안으로 별도 작성한다.
 
@@ -113,3 +113,31 @@
 - [OpenAI Subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents): 역할 지침과 자동 발견용 커스텀 에이전트 설정의 구분.
 
 확인일2026-10-28. 플랫폼 API/제약은 실제 구현 시 공식 문서의 해당 버전/환경을 다시 확인한다.
+
+
+## 7. 2026-10-30 서사 개정 변경분 스냅샷
+
+TLT-001/narrative-20261030. 위55개 표는2026-10-28 당시 기록이며 현재의 전수 해시 통과를 주장하지 않는다. 이번 범위의 내용/검증은 [서사 리뷰](narrative-review-2026-10-30.md)에 있다. 아래20개는 이번 편집을 마친 파일의 SHA256 앞12자리다. 이 표 자체는 자기참조 해시에서 제외한다. 보상/시나리오 JSON·게임 소스·빌드 버전은 이번 작업에서 변경하지 않았다.
+
+| 변경 원천 | SHA256 앞12자리 |
+| --- | --- |
+| [README.md](../../README.md) | `ae142c7ba2fe` |
+| [plan.md](../../plan.md) | `499ea0b6cf5f` |
+| [backlog.md](../../backlog.md) | `1b48a9284d49` |
+| [the-last-throne-rpg-proposal.md](../../the-last-throne-rpg-proposal.md) | `3215409e9f54` |
+| [docs/decisions.md](../decisions.md) | `56f4a8758b3b` |
+| [docs/CHANGELOG.md](../CHANGELOG.md) | `0089189f6cc3` |
+| [docs/epic-01-deepwood-story.md](../epic-01-deepwood-story.md) | `5cde002dfe67` |
+| [docs/epic-02-frozen-vale-story.md](../epic-02-frozen-vale-story.md) | `22a2d742094d` |
+| [docs/epic-03-ember-caldera-story.md](../epic-03-ember-caldera-story.md) | `24a819ba7c92` |
+| [docs/epic-04-haunted-graveyard-story.md](../epic-04-haunted-graveyard-story.md) | `b7eeda19078a` |
+| [docs/epics-01-04-review.md](../epics-01-04-review.md) | `e78f03e1a42d` |
+| [docs/prologue-dawnspire-tutorial.md](../prologue-dawnspire-tutorial.md) | `377f2d5d3941` |
+| [docs/story-07-black-root-altar.md](../story-07-black-root-altar.md) | `22664e2f72dd` |
+| [docs/frozen-vale-story-07-ice-mirror-palace.md](../frozen-vale-story-07-ice-mirror-palace.md) | `f07a0116fecf` |
+| [docs/ember-caldera-story-07-great-furnace.md](../ember-caldera-story-07-great-furnace.md) | `6806b0f1c571` |
+| [docs/haunted-graveyard-story-07-testimony-vault.md](../haunted-graveyard-story-07-testimony-vault.md) | `a3654c4cee0a` |
+| [docs/production/quest-and-story-flow.md](quest-and-story-flow.md) | `a5250981de44` |
+| [docs/production/game-systems-plan.md](game-systems-plan.md) | `240eec14cf9f` |
+| [docs/production/narrative-review-2026-10-30.md](narrative-review-2026-10-30.md) | `84be62a9cfb3` |
+| [docs/research/2026-10-30-fantasy-narrative.md](../research/2026-10-30-fantasy-narrative.md) | `6b095afb70c8` |

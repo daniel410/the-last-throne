@@ -1,5 +1,7 @@
 # 에픽1~4 · 전체 줄거리/28스토리 재검토
 
+> 2026-10-30 후속: 아래 R1/R2/R5/R6의 서사 부분은 [전체 서사 개정](production/narrative-review-2026-10-30.md)에서 핵 보관/가동 구분·지역별 인물 행동·선택 회수로 구체화했다. 아래는 당시 검토 기록이며 권고의 게임 구현·수용 완료를 뜻하지 않는다. 성장/리조인·상태 계약은 별도 후속이다.
+
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 문서 리뷰 완료, 제작 수용/플레이테스트 아님
 
 [Deepwood](epic-01-deepwood-story.md) · [Frozen Vale](epic-02-frozen-vale-story.md) · [Ember Caldera](epic-03-ember-caldera-story.md) · [Haunted Graveyard](epic-04-haunted-graveyard-story.md)

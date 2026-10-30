@@ -1,5 +1,7 @@
 # The Last Throne 통합 개발 계획
 
+> 2026-10-30 **TLT-001/narrative-20261030 서사 개정**: 프롤로그·8장·에필로그를 판타지 소설 관점에서 검토하고 핵 안전/보관·재가동 구분·주민 재등장·동료의 행동/대가·Lyra의 안식·선택 회수를 보강했다. [개정 줄거리](the-last-throne-rpg-proposal.md) · [리뷰·28스토리 인계·검증](docs/production/narrative-review-2026-10-30.md) · [비교 조사](docs/research/2026-10-30-fantasy-narrative.md). 문서 개정이며 런타임/보상/VERSION은 유지한다. 부모 티켓·게이트 완료와 구분한다.
+
 > 2026-10-29 TLT-014/027/041/050/052/061/084 부분 구현: **0.35.2** 다섯 보스전 총 출현7/10/9/8/12마리·시작 호위/체력 구간 증원·공격 준비를 연결했다. 순수 보스96·진행570·퀘스트31, native 서버126개/종료0. [조사/구성](docs/research/2026-10-29-boss-populations.md) · [검증/남은 수용](docs/evidence/deepwood/bosses-0352/README.md). 실제 정상 전투 난이도·4인/모바일 수용은 후속이며 상위 티켓은 In Progress다.
 
 > 2026-10-29 TLT-001/011/018/025/026/028/050/052/061/084 부분 구현: **0.34.0~0.35.1** 에픽/메인 퀘스트/국면/활동 구분·선택 수주와 보고·현장 단서 자유 순서·본편 필수 기본 추적·3탭 저널·완료 결과를 연결했다. 실제 Player의 LATER 무변경/발견 수락·보고 선행 안내 확인. [리서치](docs/research/2026-10-29-quest-structure.md) · [실행 계약](docs/production/quest-and-story-flow.md) · [증거/남은 수용](docs/evidence/deepwood/quest-flow-0351/README.md). 상위 티켓은 In Progress이며7스토리 정상 전투·4인/실기기/게시 저장 수용은 후속이다.
