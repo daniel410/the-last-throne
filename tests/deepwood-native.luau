@@ -17,14 +17,18 @@ local ok,err=xpcall(function()
  local actor=Instance.new('Model');local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Position=Vector3.new(0,1000,0);root.Parent=actor;actor.Parent=workspace
  local decoration=Instance.new('Part');decoration.Anchored=true;decoration.Position=root.Position+Vector3.new(10,0,0);decoration:SetAttribute('TLTDecorative',true);decoration.CastShadow=true;decoration.Parent=workspace
  local light=Instance.new('PointLight');light.Enabled=true;light:SetAttribute('TLTDecorative',true);light.Parent=decoration
- local budget=client.WorldPresentationBudget:Clone();budget.Name='BudgetStreamQA';budget.Source=budget.Source:gsub("local Players=game:GetService%('Players'%)","local Players={LocalPlayer={Character=script.Character.Value}}")
+ local budget=client.WorldPresentationBudget:Clone();budget.Name='BudgetStreamQA';budget.Source=budget.Source:gsub("local Players=game:GetService%('Players'%)","local Players={LocalPlayer={Character=script.Character.Value,GetAttribute=function(_,key)if key=='K0SessionPhase' then return 'Tutorial' end end}}")
  local value=Instance.new('ObjectValue');value.Name='Character';value.Value=actor;value.Parent=budget;budget.Parent=client
  require(budget).start();task.wait(.6)
  check(decoration.CastShadow and light.Enabled,'near decoration keeps authored presentation')
+ root.Position=decoration.Position+Vector3.new(300,0,0);task.wait(.6)
+ check(decoration.LocalTransparencyModifier==0 and not decoration.CastShadow and not light.Enabled,'bright far background retains silhouettes until its fade distance')
  root.Position+=Vector3.new(500,0,0);task.wait(.6)
  check(not decoration.CastShadow and not light.Enabled and decoration.LocalTransparencyModifier==1,'distant decoration spends no optional light or shadow work')
  decoration.Parent=nil;task.wait(.1);decoration.Parent=workspace;task.wait(.6)
- root.Position=decoration.Position;task.wait(.6)
+ root.Position=decoration.Position
+ waitFor(function() return decoration.CastShadow and light.Enabled and decoration.LocalTransparencyModifier==0 end,3)
+ report.budgetRestore={shadow=decoration.CastShadow,light=light.Enabled,transparency=decoration.LocalTransparencyModifier,tracked=workspace:GetAttribute('TLTLoadedDecorations')}
  check(decoration.CastShadow and light.Enabled and decoration.LocalTransparencyModifier==0,'stream-out and return restores authored properties')
  decoration:Destroy();actor:Destroy()
 

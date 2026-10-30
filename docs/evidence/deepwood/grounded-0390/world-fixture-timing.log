@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+DEEPWOOD_NATIVE {"coverage":"Actual geometry and TD rigs, server-authoritative story contracts; no real Player/device/published save acceptance","pass":false,"checks":637,"kind":"DEEPWOOD_NATIVE","failures":["stream-out and return restores authored properties"],"activitySteps":60,"objectives":58}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:118: Deepwood native failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:118
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

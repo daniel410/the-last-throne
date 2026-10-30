@@ -1,0 +1,29 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA:22: attempt to call missing method 'GetAttribute' of table
+Stack Begin
+Script 'StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA', Line 22
+Stack End
+StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA:22: attempt to call missing method 'GetAttribute' of table
+Stack Begin
+Script 'StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA', Line 22
+Stack End
+StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA:22: attempt to call missing method 'GetAttribute' of table
+Stack Begin
+Script 'StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA', Line 22
+Stack End
+StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA:22: attempt to call missing method 'GetAttribute' of table
+Stack Begin
+Script 'StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA', Line 22
+Stack End
+StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA:22: attempt to call missing method 'GetAttribute' of table
+Stack Begin
+Script 'StarterPlayer.StarterPlayerScripts.Client.BudgetStreamQA', Line 22
+Stack End
+DEEPWOOD_NATIVE {"coverage":"Actual geometry and TD rigs, server-authoritative story contracts; no real Player/device/published save acceptance","pass":false,"checks":636,"kind":"DEEPWOOD_NATIVE","failures":["distant decoration spends no optional light or shadow work"],"activitySteps":60,"objectives":58}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:116: Deepwood native failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:116
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

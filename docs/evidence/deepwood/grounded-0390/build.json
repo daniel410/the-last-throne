@@ -1,0 +1,131 @@
+{
+  "version": "0.39.0",
+  "date": "2026-10-30",
+  "timezone": "America/Toronto",
+  "status": "local-build-success-unpublished",
+  "source_commit": "e67dc4112eda436eab4d41af79f20d864b4a9134",
+  "tool": "Rojo 7.7.1",
+  "source_sha256": {
+    "src/shared/DeepwoodBounds.luau": "734fec1206754dbf5f30887ddc94318d568ca8090a91a2eac91d0e03fe547f0e",
+    "src/shared/K0Text.luau": "983f16ad0b69c0c00aeed745b8a0a7facba0771851f73d390e0cb0b570ee9214",
+    "src/client/AdventureCamera.luau": "7c0dc23cb291b5546a6dce5557ca926a453e2f5422597723449f007b4f46ede4",
+    "src/client/DeepwoodAtmosphere.luau": "e9349e7bad8b12cbc86e03575b3005a63b904eafac00ea661a79b1c4a87afd69",
+    "src/client/WorldPresentationBudget.luau": "69104c7d45e4ae8f0062589fd71eab65071850eed1fa49404e3fb4587a8a9b55",
+    "src/client/init.client.luau": "50baaac0191543232376c0f947bdb59d8a3e1d4734167c3b0bd348ccc04b4d4d",
+    "src/server/World/DeepwoodGroundedWorld.luau": "f4200e934b76228203a999c080b886276862467ad8477c7dfa67ccbb0c2c2a3a",
+    "src/server/World/DeepwoodWorld.luau": "fe90496a089e11da06d30a429ee9094cc7b482864273cd0ccf825df247bc0537",
+    "src/server/Story/DeepwoodRegionAccess.luau": "cd92a1c5c617509d4f83aabbc21644ebc5c6257b9db079b70cf2282b57ebebfe",
+    "src/server/Story/DeepwoodService.luau": "3b195c66051a9abab7edf839bc405136152d8fa3b64f2a778da9fd51b629489a",
+    "src/server/Combat/CombatService.luau": "65f4b76b58de45da44c3cb2bcdfd9e2802a58abf9cc2030bc25fbacf9c833633",
+    "VERSION": "f7ada3982d4e3ce9f5b135992938383496e4dbfda2468d51dd676d1dd86f24a0"
+  },
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.39.0/TheLastThrone-Lobby-0.39.0.rbxlx",
+      "sha256": "97952a328f5d10bd9b261bf2bf3351904e6979b93eb10170f09475ae208b4fed",
+      "bytes": 1594658,
+      "command": "rojo build default.project.json --output builds/0.39.0/TheLastThrone-Lobby-0.39.0.rbxlx",
+      "result": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.39.0/TheLastThrone-Battle-0.39.0.rbxlx",
+      "sha256": "8324ecbf73a9ac9b08fb5ec1929c1522f32e732eeafd6db81a794d4ddfc33a99",
+      "bytes": 1594659,
+      "command": "rojo build battle.project.json --output builds/0.39.0/TheLastThrone-Battle-0.39.0.rbxlx",
+      "result": "success"
+    }
+  ],
+  "native_checks": [
+    {
+      "kind": "DEEPWOOD_GROUNDED_NATIVE",
+      "checks": 3350,
+      "pass": true,
+      "failures": [],
+      "log": "grounded.log",
+      "script": "tests/deepwood-grounded-native.luau",
+      "script_sha256": "11fc9434396848cdcb4b650439a31695daddb654c87e2d6a3e5fcaba820b859d",
+      "artifact": "Battle",
+      "runner_exit_code": 0
+    },
+    {
+      "kind": "DEEPWOOD_NATIVE",
+      "checks": 637,
+      "pass": true,
+      "failures": [],
+      "log": "world.log",
+      "script": "tests/deepwood-native.luau",
+      "script_sha256": "67a7f1de8e305cbc26ad225e8139bfce3644c7a3217c2f9e222acd6e2356c5fe",
+      "artifact": "Battle",
+      "runner_exit_code": 0
+    },
+    {
+      "kind": "BATTLE_BOOTSTRAP_NATIVE",
+      "checks": 10,
+      "pass": true,
+      "failures": [],
+      "log": "battle.log",
+      "script": "tests/battle-bootstrap-native.luau",
+      "script_sha256": "e913f79d199041f7e451b80d9ee78c6e3181cedb5676428168f965a2b9487c77",
+      "artifact": "Battle",
+      "runner_exit_code": 0
+    },
+    {
+      "kind": "DEEPWOOD_SERVICE_NATIVE",
+      "checks": 126,
+      "pass": true,
+      "failures": [],
+      "log": "service.log",
+      "script": "tests/deepwood-service-native.luau",
+      "script_sha256": "ede66829c86687a085407f10ad05d9861330411bab780efa11d573db694a18c4",
+      "artifact": "Lobby",
+      "runner_exit_code": 0
+    }
+  ],
+  "pure_checks": [
+    {
+      "command": "lua tests/deepwood-progress.spec.lua",
+      "checks": 570,
+      "pass": true
+    },
+    {
+      "command": "lua tests/deepwood-quests.spec.lua",
+      "checks": 31,
+      "pass": true
+    }
+  ],
+  "runtime_metrics": {
+    "persistent_simple_colliders": 304,
+    "clearing_boundary_parts": 749,
+    "trail_side_boundary_parts": 0,
+    "trail_grass_width": 96,
+    "central_path_width": 24,
+    "generation_seconds_observed": 1.1327714999206364,
+    "generation_timing_note": "one isolated engine fixture; not a device FPS/latency acceptance result"
+  },
+  "service_artifact_note": "Service test used /tmp/tlt-ground-validation.rbxlx; its SHA256 equals the final Lobby artifact exactly.",
+  "initial_failed_qa": [
+    {
+      "log": "world-fixture-initial.log",
+      "cause": "QA Player facade lacked GetAttribute newly read by scenery budget."
+    },
+    {
+      "log": "world-fixture-timing.log",
+      "cause": "The QA fixed 0.6s stream-return wait was shorter than actual state restoration. Replaced with bounded condition wait and recorded actual restored fields."
+    }
+  ],
+  "warnings": [
+    "Existing Roblox asset 203785492 type warning retained."
+  ],
+  "published": false,
+  "release_tag": null,
+  "observations": "observations.json",
+  "not_verified": [
+    "normal full-story combat completion",
+    "published client",
+    "physical mobile and controller input",
+    "four-player streaming and performance",
+    "final art acceptance by user"
+  ]
+}
