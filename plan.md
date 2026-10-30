@@ -1,6 +1,6 @@
 # The Last Throne 통합 개발 계획
 
-> 2026-10-30 **0.40.1 / TLT-028/031/052/061/084 부분 구현:** Deepwood 지역별 장소·선택 경사로/순환길·숲 군집·굽은 연결 흙길, 서버 판정 BOSS 머리 위 배지, 미니맵 아래 투명 Gold/Diamonds 표시. [비교 조사](docs/research/2026-10-30-deepwood-places.md) · [검증/남은 수용](docs/evidence/deepwood/places-0400/README.md). 미게시이며 상위 티켓은 In Progress다.
+> 2026-10-30 **0.40.2 / TLT-028/031/052/061/084 부분 구현:** Deepwood 지역별 장소·선택 경사로/순환길·숲 군집·굽은 연결 흙길, 서버 판정 BOSS 머리 위 배지, 미니맵 아래 투명 Gold/Diamonds 표시. [비교 조사](docs/research/2026-10-30-deepwood-places.md) · [검증/남은 수용](docs/evidence/deepwood/places-0400/README.md). 미게시이며 상위 티켓은 In Progress다.
 
 
 > 2026-10-30 **0.39.0 / TLT-005/031/050/061/084 부분 구현:** Deepwood 연속 지반·폭96studs 열린 숲길/흙 경사·길 벽/난간 제거·밝은 낮/먼 배경 페이드·서버 이탈/낙하 복구·카메라 지면/충돌 제한. [대안 조사](docs/research/2026-10-30-grounded-deepwood.md) · [검증/남은 수용](docs/evidence/deepwood/grounded-0390/README.md). 미게시이며 정상 완주·실기기/4인·최종 미술 수용은 후속이다.

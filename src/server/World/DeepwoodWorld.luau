@@ -70,6 +70,11 @@ end
 function World.create()
  local existing=Workspace:FindFirstChild('DeepwoodCampaign')
  if existing then
+  for id,z in pairs(Content.zones) do
+   local terrain=existing:FindFirstChild('TerrainBlockout');local region=terrain and terrain:FindFirstChild(id)
+   local ground=region and region:FindFirstChild('ForestGround')
+   if ground then ground.Position=vec(z.center)-Vector3.new(0,.12,0) end
+  end
   require(script.Parent.DeepwoodGroundedWorld).create(existing)
   if World.current then require(script.Parent.DeepwoodPlaces).create(World.current);return World.current end
   local result={folder=existing,terrain=existing:FindFirstChild('TerrainBlockout'),nodes={},spawns={},positions={}}
@@ -97,7 +102,7 @@ function World.create()
   local center=vec(z.center);local sx,sz=z.size[1],z.size[2]
   part(region,'MossyLimestoneCliff',Vector3.new(sx,34,sz),center-Vector3.new(0,17,0),id=='DW-07' and C.dark or C.stone,nil,true)
   for i=0,5 do local angle=i*math.pi/3;Env.cliff(region,center+Vector3.new(math.cos(angle)*(sx/2-22),-38,math.sin(angle)*(sz/2-22)),34) end
-  part(region,'ForestGround',Vector3.new(sx,.4,sz),center-Vector3.new(0,.2,0),id=='DW-07' and C.dark or C.grass,Enum.Material.Grass,true)
+  part(region,'ForestGround',Vector3.new(sx,.4,sz),center-Vector3.new(0,.12,0),id=='DW-07' and C.dark or C.grass,Enum.Material.Grass,true)
   part(region,'BroadStoneTrail',Vector3.new(sx*.78,.12,16),center+Vector3.new(0,.06,0),C.path,Enum.Material.Cobblestone,false)
   for i=0,13 do
    local a=i*math.pi*2/14;tree(region,center+Vector3.new(math.cos(a)*(sx/2-12),0,math.sin(a)*(sz/2-12)),1+(i%3)*.15,id=='DW-06' or id=='DW-07')
