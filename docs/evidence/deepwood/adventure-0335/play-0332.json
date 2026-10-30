@@ -1,0 +1,29 @@
+{
+  "growth": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"story\":{\"choice\":\"\",\"clears\":[],\"explored\":{\"DW-01\":{\"122\":true,\"111\":true,\"134\":true,\"133\":true,\"109\":true,\"135\":true,\"110\":true,\"121\":true,\"123\":true}},\"coins\":0,\"flags\":[],\"version\":1,\"decisions\":[],\"activities\":[],\"killCoins\":0,\"main\":0},\"growth\":{\"stats\":{\"INT\":0,\"DEX\":0,\"STR\":4,\"VIT\":0},\"battleWins\":0,\"xp\":0,\"rewardStream\":\"de50f4aa-59f9-4282-8932-cc8b4fd1a0de\",\"stage\":0,\"revision\":3,\"version\":3,\"rewardSequence\":1,\"mastery\":[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"level\":2,\"skillSlots\":[1,2,3,0,0],\"branch\":\"\"},\"canInvest\":true}"
+      }
+    ],
+    "isError": false
+  },
+  "gate": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"healthAfter\":265,\"healthBefore\":265,\"moved\":true,\"distanceFromLockedCenter\":952.6844482421875,\"serverDecorations\":996,\"corrected\":true}"
+      }
+    ],
+    "isError": false
+  },
+  "client": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"phase\":\"Tutorial\",\"mapCaption\":\"Goblin Forest Trail\",\"minZoom\":6,\"cameraDistance\":17.99999237060547,\"maxZoom\":18,\"hiddenDecorations\":68,\"cameraType\":\"Custom\",\"points\":0,\"skillPoints\":0,\"loadedDecorations\":115}"
+      }
+    ],
+    "isError": false
+  }
+}

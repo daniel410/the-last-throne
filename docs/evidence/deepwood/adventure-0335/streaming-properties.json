@@ -1,0 +1,8 @@
+{
+  "StreamingEnabled": "true",
+  "StreamingMinRadius": "64",
+  "StreamingTargetRadius": "384",
+  "ModelStreamingBehavior": "2",
+  "StreamOutBehavior": "2",
+  "StreamingIntegrityMode": "3"
+}

@@ -119,3 +119,7 @@ TD의 거목·석조 포탈·수정 왕좌·돌길·이끼 바위·초지·절�
 필수 보스는 Orc Warlord와 King Shaman이다. Goblin King·King Ogre·Enraged Warlord의 세 지역은 선택 콘텐츠다. 일반Ogre 교전을 King Ogre 보스전으로 바꾸지 않는다. 새 시나리오의 배치·레벨·보상은 지역 블록아웃 및 성장 시뮬레이션에서 조정한다.
 
 [7스토리 맵 공간 제작안](deepwood-map-design.md)에 구역 중심/크기·높이·전투 여유·스토리 연결 방식을 구체화했다. [전체 배치도와 구역별 검토 보드](../assets/maps/deepwood-v1/index.html)는 구현 전 설계 초안이다.
+
+## 2026-10-29 확장 런타임 시험 (0.33.5)
+
+기존 레이아웃 JSON/컨셉 원본은 보존한다. 런타임은0.32.0 대비 X/Z 지역 길이·중심 간격2.2배/면적4.84배, 높이·영웅·적·사거리는 기존 크기다. 본편 활동 하위 단계/개인 지역 잠금·탐험 지도·거리 예산은 [구현/검증](evidence/deepwood/adventure-0335/README.md)과 [RPG 비교 조사](research/2026-10-29-rpg-exploration-and-rendering.md)를 따른다. 이동 시간을 늘린 것만으로 재미/목표 플레이시간 수용을 완료하지 않는다.

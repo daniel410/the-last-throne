@@ -1,0 +1,9 @@
+DEEPWOOD_NATIVE {"coverage":"Actual geometry and TD rigs, server-authoritative story contracts; no real Player/device/published save acceptance","checks":334,"failures":["DW-04:link_record remains guided throughout Epic1","DW-06:ancient_network remains guided throughout Epic1","DW-07:stabilize remains guided throughout Epic1","DW-S1 layout anchor","DW-03 layout anchor","DW-05 layout anchor","DW-02 layout anchor","DW-01 layout anchor","DW-07 layout anchor","DW-04 layout anchor","StreamingTargetRadius is not a valid member of Workspace 50312.rbxmx.run-in-roblox-plugin.Main:54\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:10\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"DEEPWOOD_NATIVE"}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:92: Deepwood native failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:92
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

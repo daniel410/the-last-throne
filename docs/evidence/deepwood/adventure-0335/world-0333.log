@@ -1,0 +1,34 @@
+DEEPWOOD_NATIVE {"coverage":"Actual geometry and TD rigs, server-authoritative story contracts; no real Player/device/published save acceptance","pass":true,"checks":602,"kind":"DEEPWOOD_NATIVE","failures":[],"activitySteps":60,"objectives":58}
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+{["__stack"] = ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1201 function updateHostRoot
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1860
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1809
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1137
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:840
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:237
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.Scheduler:377 function unstable_runWithPriority
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:165 function runWithPriority
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:227
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:208 function flushSyncCallbackQueue
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:697
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new:379
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot:110 function render
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.RoactCompat.RoactCompat.RoactTree:86 function mount
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.main:39 function init
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.main:57
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.Deprecated_main:6
+, ... }
+Stack Begin
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 277
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 208 - function flushSyncCallbackQueue
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 697
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new', Line 379
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot', Line 110 - function render
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.RoactCompat.RoactCompat.RoactTree', Line 86 - function mount
+Script 'ManageCollaborators.ManageCollaborators.Bin.main', Line 39 - function init
+Script 'ManageCollaborators.ManageCollaborators.Bin.main', Line 57
+Script 'ManageCollaborators.ManageCollaborators.Bin.Deprecated_main', Line 6
+Stack End

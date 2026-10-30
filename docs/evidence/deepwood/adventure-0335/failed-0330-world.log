@@ -1,0 +1,16 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+The current thread cannot write 'RenderFidelity' (lacking capability PluginOrOpenCloud)
+Stack Begin
+Script 'ServerScriptService.Server.World.DeepwoodEnvironment', Line 9 - function place
+Script 'ServerScriptService.Server.World.DeepwoodEnvironment', Line 22 - function cliff
+Script 'ServerScriptService.Server.World.DeepwoodWorld', Line 97 - function create
+Script 'ServerScriptService.Server', Line 2
+Stack End
+DEEPWOOD_NATIVE {"coverage":"Actual geometry and TD rigs, server-authoritative story contracts; no real Player/device/published save acceptance","checks":71,"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:15: campaign bootstrap did not complete\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:15\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:10\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"DEEPWOOD_NATIVE"}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:91: Deepwood native failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:91
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

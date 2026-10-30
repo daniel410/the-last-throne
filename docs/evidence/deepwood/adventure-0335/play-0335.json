@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ambushEnemyCount\":2,\"version\":\"0.33.5\",\"phase\":\"Tutorial\",\"root\":\"-1615.7176513671875, 3.096320152282715, -817.0037841796875\",\"health\":250,\"caption\":\"Goblin Forest Trail\",\"loadedDecorations\":101}"
+    }
+  ],
+  "isError": false
+}

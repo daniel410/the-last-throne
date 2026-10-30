@@ -1,0 +1,72 @@
+[
+  {
+    "version": "0.32.1",
+    "sourceCommit": "57e5ba4cc30e94d6605331196a3a0131df1a715b",
+    "file": "builds/0.32.1/TheLastThrone-0.32.1.rbxlx",
+    "bytes": 1388850,
+    "sha256": "2ae73f1dd950a063b81902515c20323ead259ea986ef8b63184afdbf82a29cfe",
+    "build": "Rojo success",
+    "engine": "see README evidence",
+    "published": false
+  },
+  {
+    "version": "0.33.0",
+    "sourceCommit": "65c22db3591d2df1c2c9a5c1041d822a267871b2",
+    "file": "builds/0.33.0/TheLastThrone-0.33.0.rbxlx",
+    "bytes": 1445905,
+    "sha256": "adf7c2af74048e915b3488d705be041568bae3046d71d597f5feb375fad8145c",
+    "build": "Rojo success",
+    "engine": "failed",
+    "published": false
+  },
+  {
+    "version": "0.33.1",
+    "sourceCommit": "40c0ee0c3f39320ea561b9e443f4d78566426dc7",
+    "file": "builds/0.33.1/TheLastThrone-0.33.1.rbxlx",
+    "bytes": 1445858,
+    "sha256": "c98ff7bc766932b9b48b838354c0e6fd3b6df1c9becc26cc56c9e97b7e639e8f",
+    "build": "Rojo success",
+    "engine": "failed",
+    "published": false
+  },
+  {
+    "version": "0.33.2",
+    "sourceCommit": "8b9f9feba218b360a7fa5d1ff66c102efef8ecb5",
+    "file": "builds/0.33.2/TheLastThrone-0.33.2.rbxlx",
+    "bytes": 1446101,
+    "sha256": "b979d03a333add9833e6a660d763ea275990b29d0f409832f6e305434a21076c",
+    "build": "Rojo success",
+    "engine": "see README evidence",
+    "published": false
+  },
+  {
+    "version": "0.33.3",
+    "sourceCommit": "ff0740c84e53c19d4d940ebffd40bc72e510d9c5",
+    "file": "builds/0.33.3/TheLastThrone-0.33.3.rbxlx",
+    "bytes": 1447556,
+    "sha256": "2b2a54687620923094044d2067048363b5741d9425932fa64109b3a1314b5f31",
+    "build": "Rojo success",
+    "engine": "see README evidence",
+    "published": false
+  },
+  {
+    "version": "0.33.4",
+    "sourceCommit": "0f7765ed5bd523b74558526387552a6369634842",
+    "file": "builds/0.33.4/TheLastThrone-0.33.4.rbxlx",
+    "bytes": 1447846,
+    "sha256": "467c700cca1811ac9d3fb19ec403f2927961212f7579d6632dee42d9eb70a1c5",
+    "build": "Rojo success",
+    "engine": "see README evidence",
+    "published": false
+  },
+  {
+    "version": "0.33.5",
+    "sourceCommit": "e07c5d3ed0f5e0c31f71f1633a2e827356ff9bbe",
+    "file": "builds/0.33.5/TheLastThrone-0.33.5.rbxlx",
+    "bytes": 1448555,
+    "sha256": "1235e270b4d24de6c9c512b203665a738a208b74a3e0fa2c297719d0b708afe8",
+    "build": "Rojo success",
+    "engine": "see README evidence",
+    "published": false
+  }
+]
