@@ -1,4 +1,4 @@
--- A north-up preview built from the current training field, not a concept screenshot.
+-- A bounded north-up 2D atlas with personal discovery and semantic markers.
 local Workspace=game:GetService('Workspace')
 local Text=require(game:GetService('ReplicatedStorage').Shared.K0Text)
 local Theme=require(script.Parent.TDInventoryTheme)
@@ -47,7 +47,7 @@ function Map.create(parent)
   local inAdventure=State.current and not State.current.training and charRoot
   local id=inAdventure and Access.region(charRoot.Position.X,charRoot.Position.Z) or nil
   if id then
-   local z=Content.zones[id];mapOrigin=Vector3.new(table.unpack(z.center));mapWidth=math.max(z.size[1],z.size[2]);caption.Text=z.name
+   local z=Content.zones[id];mapOrigin=Vector3.new(table.unpack(z.center));mapWidth=math.max(z.size[1],z.size[2])*168/152;caption.Text=z.name
    if regionId~=id then view:ClearAllChildren();atlas=Canvas.create(view,id,true);atlas.pin.Visible=false;regionId=id end
    atlas.update(State.current,nil,State.target)
   else

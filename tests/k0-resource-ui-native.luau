@@ -47,6 +47,24 @@ local ok, failure = xpcall(function()
  check(enemyVisual.statusText(enemy,10):find('DAMAGE TAKEN %+10%%')~=nil,'provoke vulnerability is accurate')
  check(enemyVisual.statusText(enemy,14)=='','debuff text disappears on expiry')
  enemy:Destroy()
+ local atlasParent=Instance.new('Frame');atlasParent.Size=UDim2.fromOffset(700,500);atlasParent.Parent=playerGui
+ local atlas=require(client.DeepwoodMapCanvas).create(atlasParent)
+ local content=require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent)
+ local progress=require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress)
+ local journal=progress.new();local mapHero=Instance.new('Part');mapHero.CFrame=CFrame.new(Vector3.new(table.unpack(content.zones['DW-01'].center)))
+ atlas.update({journal=journal},mapHero,mapHero.Position)
+ check(atlas.pin.Visible and atlas.objective.Visible,'world map projects actual hero and objective')
+ check(atlas.rows['DW-01'].name.Text=='Unexplored' and atlas.rows['DW-02'].name.Text=='Locked','map distinguishes accessible unknown and story lock')
+ journal=assert(progress.reveal(journal,'DW-01',6,6));atlas.update({journal=journal},mapHero,nil)
+ check(atlas.rows['DW-01'].name.Text==content.zones['DW-01'].name and not atlas.objective.Visible,'visited region uses friendly name and stale target clears')
+ check(atlas.rows['DW-01'].cells[66].BackgroundColor3~=atlas.rows['DW-01'].cells[1].BackgroundColor3,'discovery clears only nearby fog')
+ atlas.update({journal=progress.new()},nil,nil)
+ check(not atlas.pin.Visible and atlas.rows['DW-01'].name.Text=='Unexplored','hero switch clears previous discovery and pin')
+ for _,d in ipairs(atlasParent:GetDescendants()) do
+  if d:IsA('TextLabel') then check(not d.Text:find('DW%-'),'development map IDs are absent from text') end
+  check(not d:IsA('ViewportFrame') and not d:IsA('BasePart'),'full map never clones the 3D world')
+ end
+ atlasParent:Destroy();mapHero:Destroy()
 	local hud = copyModule("K0Hud").create()
 	local status = playerGui.DeepwoodTrainingHud.Root.Status
 	local label, value, track = status.MANALabel, status.MANAValue, status.MANATrack

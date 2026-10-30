@@ -9,6 +9,7 @@ function Canvas.create(parent,zoneId,compact)
   minX=math.min(minX,z.center[1]-z.size[1]/2);maxX=math.max(maxX,z.center[1]+z.size[1]/2)
   minZ=math.min(minZ,z.center[3]-z.size[2]/2);maxZ=math.max(maxZ,z.center[3]+z.size[2]/2)
  end end
+ if compact then local size=math.max(maxX-minX,maxZ-minZ);local cx,cz=(minX+maxX)/2,(minZ+maxZ)/2;minX,maxX=cx-size/2,cx+size/2;minZ,maxZ=cz-size/2,cz+size/2 end
  local width,height=maxX-minX,maxZ-minZ
  local function point(x,z) return Vector2.new((x-minX)/width,(z-minZ)/height) end
  local function rect(name,a,b,color,zindex)
@@ -36,7 +37,7 @@ function Canvas.create(parent,zoneId,compact)
  local function located(marker,position)
   local p=point(position.X,position.Z);marker.Position=UDim2.fromScale(math.clamp(p.X,.035,.965),math.clamp(p.Y,.035,.965));marker.Visible=p.X>=0 and p.X<=1 and p.Y>=0 and p.Y<=1
  end
- return {pin=pin,aspect=width/height,update=function(current,root,target)
+ return {pin=pin,objective=objective,rows=rows,aspect=width/height,update=function(current,root,target)
   local journal=current and current.journal
   for id,row in pairs(rows) do
    local z=Content.zones[id];local cells=journal and journal.explored and journal.explored[id] or {};local allowed=journal and Access.allowed(journal,id)

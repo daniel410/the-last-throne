@@ -22,7 +22,7 @@ function Journal.guidance(current,target)
  if step then
   local count=(current.journal.activities or {})[target.chapter.id..':'..goal.id] or 0
   hint=string.format('%d / %d · %s',count+1,#a.steps,step.title)
-  if a.mode=='sequence' then hint=a.clue
+  if a.mode=='sequence' then hint=a.clue;destination=Vector3.new(table.unpack(step.position))
   elseif a.mode=='escort' then
    local attempt=current.activities and current.activities[target.chapter.id..':'..goal.id]
    if attempt then destination=attempt.actorPosition;hint=attempt.status else hint='Speak to '..a.actor..' to begin the escort.' end
