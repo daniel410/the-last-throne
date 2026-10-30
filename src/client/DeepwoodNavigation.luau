@@ -71,13 +71,14 @@ function Navigation.start()
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   local human=player.Character and player.Character:FindFirstChildOfClass('Humanoid')
   if not target or not root or not human or human.Health<=0 or player:GetAttribute('K0SessionPhase')~='Tutorial' or player:GetAttribute('TLTRoute')=='Training' then hide();return end
-  if (flat(root.Position-target)).Magnitude<7 then hide();return end
   if surfacesDirty or not origin or (root.Position-origin).Magnitude>4 or lastTarget~=target then
    surfacesDirty=false;origin=root.Position;lastTarget=target;route=Navigation.route(origin,target)
    local surfaces={};local field=workspace:FindFirstChild('DeepwoodCampaign');local terrain=field and field:FindFirstChild('TerrainBlockout')
    if terrain then for _,p in ipairs(terrain:GetDescendants()) do if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name:match('^ConnectedPath_')) then table.insert(surfaces,p) end end end
    params.FilterDescendantsInstances=surfaces
   end
+  -- Keep an arrival chevron visible until the active objective changes.
+  local arrival=flat(target-root.Position).Magnitude<12
   local phase=(os.clock()*5)%6
   for i,pair in ipairs(arrows) do
    local remaining=5+(i-1)*6+phase;local position,direction
@@ -85,6 +86,10 @@ function Navigation.start()
     local delta=route[j]-route[j-1];local length=delta.Magnitude
     if length>0 and remaining<=length then position=route[j-1]+delta.Unit*remaining;direction=flat(delta).Unit;break end
     remaining-=length
+   end
+   if arrival and i==1 then
+    position=target;direction=flat(target-root.Position)
+    direction=direction.Magnitude>.1 and direction.Unit or Vector3.new(0,0,-1)
    end
    local hit=position and workspace:Raycast(position+Vector3.new(0,7,0),Vector3.new(0,-16,0),params)
    if hit and direction and direction.Magnitude>.1 then
