@@ -25,7 +25,7 @@ local function offer(p)
  local run,why=store.readRun(r.runId);if not run or run.closed then return nil,why or 'RejoinExpired' end
  return r
 end
-local function publish(p,errorCode)
+local function publish(p,errorCode,open)
  if p.Parent~=Players or not remote then return end
  local localParty=parties[p];local party=localParty and store.readParty(localParty.id)
  local list={}
@@ -42,7 +42,12 @@ local function publish(p,errorCode)
  end
  local r=offer(p)
  remote:FireClient(p,{role=role,studio=studio,configured=C.battlePlaceId>0,capacity=role=='Lobby' and C.lobbyCapacity or C.battleCapacity,
-  population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt} or nil})
+  population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt} or nil})
+end
+function Service.openMenu(p)
+ if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then return 'WaitForLobby' end
+ if Service.isBusy(p) then return 'Busy' end
+ publish(p,nil,true)
 end
 local function advertise(id)
  local p=store.readParty(id);if not p then return end

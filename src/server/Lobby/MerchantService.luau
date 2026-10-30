@@ -1,4 +1,5 @@
 local RS=game:GetService('ReplicatedStorage')
+local Access=require(script.Parent.FacilityAccess)
 local S={}
 function S.start(options)
  local remote=Instance.new('RemoteEvent');remote.Name='ArmoryRequest';remote.Parent=RS.Remotes
@@ -6,7 +7,7 @@ function S.start(options)
  local last={}
  local function publish(p,id,reason,open) update:FireClient(p,{inventory=options.inventory.snapshot(p),requestId=id,error=reason,open=open}) end
  if options.merchant then options.merchant.prompt.Triggered:Connect(function(p)
-  if p:GetAttribute('K0SessionPhase')=='Lobby' and options.inventory.ready(p) then publish(p,nil,nil,true) end
+  if Access.allowed(p,options.merchant.prompt) and options.inventory.ready(p) then publish(p,nil,nil,true) end
  end) end
  remote.OnServerEvent:Connect(function(p,c,...)
   if os.clock()-(last[p] or -math.huge)<.2 then return end;last[p]=os.clock()

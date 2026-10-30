@@ -39,6 +39,8 @@ combat.start(world.enemies,heroSession.getCombatContext,inventory.awardXP)
 if role=='Battle' or Run:IsStudio() then previewWorld() end
 local merchant=role=='Lobby' and require(script.World.WeaponMerchant).create(lobby) or nil
 require(script.Lobby.MerchantService).start({inventory=inventory,merchant=merchant})
+local facilities=role=='Lobby' and require(script.World.LobbyLandmarks).create(lobby) or nil
+require(script.Lobby.FacilityService).start({facilities=facilities,heroSession=heroSession,expedition=expedition})
 spawnService.start(lobby.spawn,{
  resolveDestination=function(player,previous)
   local phase=player:GetAttribute('K0SessionPhase');local h=heroSession.getActiveHero(player)

@@ -9,6 +9,7 @@ local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 task.spawn(function() require(script.LobbyCommerce).start() end)
+task.spawn(function() require(script.LobbyLandmarkVisuals).start() end)
 require(script.InteractionPrompts).start()
 require(script.AdventureCamera).start()
 require(script.WorldPresentationBudget).start()

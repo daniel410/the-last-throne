@@ -99,7 +99,7 @@ return {
 			ClassAlreadyCreated = "You already have this hero. Select their card to continue.",
 			RosterFull = "Your prototype roster is full. Select an existing hero.",
 			HeroNotOwned = "That hero is not in your roster. Select one of your hero cards.",
-			SelectHeroFirst = "Create or select a hero before starting the tutorial.",
+			SelectHeroFirst = "Create or select a hero in HEROES before entering training or an adventure.",
 			Busy = "A character is already loading. Please wait.",
 			SpawnUnavailable = "A character could not start. Use Retry Lobby or rejoin to retry.",
 			Unavailable = "The lobby could not connect. Rejoin to retry.",

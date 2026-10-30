@@ -6,7 +6,7 @@ local Workspace = game:GetService("Workspace")
 local LobbyWorld = {}
 local MODEL_NAME = "DawnspireLobbyPrototype"
 local OWNER_ATTRIBUTE = "TLTLobbyWorld"
-local VERSION = 1
+local VERSION = 2
 local ORIGIN = Vector3.new(0, 96, 512)
 local SPAWN_OFFSET = Vector3.new(0, 0.1, 24)
 local FLOOR_SIZE = Vector3.new(160, 4, 160)
@@ -31,7 +31,7 @@ local COLORS = {
 -- They label scenery only and never imply a clickable selector or a teleport.
 local LABELS = {
 	title = { key = "lobby.world.title", text = "DAWNSPIRE" },
-	subtitle = { key = "lobby.world.subtitle", text = "Hero Training Courtyard" },
+	subtitle = { key = "lobby.world.subtitle", text = "Adventures / Training / Blacksmith" },
 	knight = { key = "lobby.world.knight", text = "Knight" },
 	elf = { key = "lobby.world.elf", text = "Elf Archer" },
 	dwarf = { key = "lobby.world.dwarf", text = "Dwarf Axe Thrower" },
@@ -180,10 +180,19 @@ local function courtyard(model)
 		lamp(scenery, x, 5)
 		lamp(scenery, x, 42)
 	end
+	-- Class banners frame the rear porch, leaving the facility approaches clear.
 	banner(scenery, -39, COLORS.blue, LABELS.knight)
 	banner(scenery, -13, COLORS.green, LABELS.elf)
 	banner(scenery, 13, COLORS.copper, LABELS.dwarf)
 	banner(scenery, 39, COLORS.violet, LABELS.mage)
+	for _,child in ipairs(scenery:GetChildren()) do
+		if child:IsA('Model') and child.Name:sub(1,7)=='Banner_' then child:PivotTo(child:GetPivot()+Vector3.new(0,0,-27)) end
+	end
+	for _,spec in ipairs({{'PortalPath',Vector3.new(43,.05,9),Vector3.new(-22,.18,-20)},
+		{'TrainingPath',Vector3.new(42,.05,9),Vector3.new(-23,.18,44)},
+		{'SmithPath',Vector3.new(37,.05,9),Vector3.new(24,.18,23)}}) do
+		part(scenery,spec[1],spec[2],spec[3],COLORS.stoneLight,Enum.Material.Cobblestone,false)
+	end
 
 	-- An open, purely decorative porch gives the arrival view a focal point.
 	for _, x in ipairs({ -42, 42 }) do

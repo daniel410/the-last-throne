@@ -235,6 +235,7 @@ local function handleRequest(player, action, requestId, argument, ...)
 	table.insert(state.requestOrder, requestId)
 	if #state.requestOrder > 32 then state.requests[table.remove(state.requestOrder, 1)] = nil end
 	publish(state, requestId, errorCode)
+	return errorCode
 end
 
 local function bindPlayer(player)
@@ -440,6 +441,10 @@ function HeroSessionService.start(options)
 	end)
 end
 
+-- World entry uses the same ownership, party, request rate and life gates as UI.
+function HeroSessionService.startTraining(player)
+ return handleRequest(player,'StartTraining','training-'..HttpService:GenerateGUID(false))
+end
 function HeroSessionService.selectForArrival(player,heroId)
  local state=sessions[player]
  if not state or state.phase~='Lobby' or not state.byId[heroId] then return false end

@@ -17,7 +17,7 @@ local ok,err=xpcall(function()
  end]],1)
  source=source:gsub("local C=require%(RS.Shared.ExpeditionConfig%)","local C=table.clone(require(RS.Shared.ExpeditionConfig));C.battlePlaceId=123",1)
  local first=assert(source:find('local function publish',1,true));local last=assert(source:find('local function advertise',first,true))
- source=source:sub(1,first-1).."local function publish(p,e) p.notice=e end\n"..source:sub(last)
+ source=source:sub(1,first-1).."local function publish(p,e,open) p.notice=e;p.menuOpen=open end\n"..source:sub(last)
  source=source:gsub('return Service%s*$',[[
  function Service.qaPlayers(list) Players.list=list;for _,p in ipairs(list) do p.Parent=Players end end
  function Service.qaCommand(p,c) last[p]=-math.huge;return handle(p,c) end
@@ -41,6 +41,8 @@ local ok,err=xpcall(function()
   end,resumeTransfer=function(p) resumed[p]=(resumed[p] or 0)+1;return true end}
  local hero={getActiveHero=function(p) return {heroId='h'..p.UserId,classId='knight'} end,getInventoryContext=function(p) return {heroId='h'..p.UserId,atHub=true} end,refresh=function() end}
  service.start({role='Lobby',inventory=inventory,heroSession=hero})
+ service.openMenu(p1);check(p1.menuOpen==true,'world portal opens expedition menu without starting travel')
+ p1.attrs.K0SessionPhase='Tutorial';check(service.openMenu(p1)=='WaitForLobby','portal menu is lobby-only');p1.attrs.K0SessionPhase='Lobby'
  service.qaCommand(p1,{action='Create',target=2});local party=assert(service.qaParty(p1))
  service.qaCommand(p2,{action='Join',id=party.id})
  service.qaCommand(p1,{action='Ready',ready=true});service.qaCommand(p2,{action='Ready',ready=true})

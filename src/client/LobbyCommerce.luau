@@ -42,6 +42,7 @@ function M.start()
  end)
  remotes:WaitForChild('ExpeditionState').OnClientEvent:Connect(function(s)
   expedition.render(s,s.error and (Text[s.error] or Text.NetworkUnavailable))
+  if s.open then expedition.panel.Visible=true;armory.panel.Visible=false end
   if s.travelling then expedition.panel.Visible=true;armory.panel.Visible=false end
  end)
  local function phase()
