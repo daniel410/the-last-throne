@@ -49,4 +49,8 @@ fail=true;local result,reason=store:transact(12,function(v) return R.shop(v,comm
 fail=false;result=assert(store:transact(12,function(v) return R.shop(v,command,{atLobby=true},C) end));check(result.wallet.gold==750 and result.items['shop-unknown'],'same request recovers exact debit and grant')
 fail=true;check(not store:close(12) and store.profiles[12]~=nil,'unknown lease release retains recovery state')
 fail=false
+local released=assert(store:close(12));check(not released.lease,'unknown release retries the same epoch without a second debit')
+local nextServer=Store.new(store.adapter,R,C,function() return 100 end,function() end,'next-server')
+local reopened=assert(nextServer:open(12));check(reopened.wallet.gold==750 and reopened.epoch>result.epoch,'destination reopens durable items and wallet under a new fence')
+check(not store:transact(12,function(v) return v end),'source cannot mutate after successful handoff')
 print('Economy: '..checks..' checks passed')

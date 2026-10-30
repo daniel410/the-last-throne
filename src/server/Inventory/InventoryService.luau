@@ -448,7 +448,12 @@ function Service.prepareTransfer(player)
  end
  if s.rewards and #s.rewards>0 or s.revealJobs and #s.revealJobs>0 or not s.valid then s.closing=false;return false end
  s.busy=true;local p,e=store:close(player.UserId);s.busy=false
- if not p then s.closing=false;s.errorCode=e;return false end
+ if not p then
+  -- A release may have committed without acknowledgement. Reacquire only if
+  -- no other server owns the account; never continue on the old cached fence.
+  local restored,reason=store:open(player.UserId)
+  s.closing=false;s.profile=restored or s.profile;s.valid=restored~=nil;s.errorCode=reason or e;publish(player);return false
+ end
  s.profile=p;s.valid=false;s.transferPrepared=true;publish(player);return true
 end
 function Service.resumeTransfer(player)

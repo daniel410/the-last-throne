@@ -101,9 +101,9 @@ function Service.admitArrival(p)
  p:SetAttribute('TLTTravelLock',true)
  return {heroId=admitted[p].heroId}
 end
-local function startRun(p,party)
+local function startRunLocked(p,party,runId)
  if not studio and C.battlePlaceId<=0 then return nil,'Configuration' end
- local members={};local participants={};local runId=guid()
+ local members={};local participants={}
  if party then
   local frozen,e=store.freeze(party.id,p.UserId,runId);if not frozen then store.launchStatus(party.id,runId,'forming');return nil,e end
   for uid,m in pairs(frozen.members) do
@@ -144,6 +144,25 @@ local function startRun(p,party)
   send(person,{kind='battle',reservedId=r.reservedId,placeId=r.placeId,data={runId=r.id,ticket=m.ticket}},true)
  end
  return true
+end
+local function startRun(p,party)
+ -- Lock every local participant before the first MemoryStore/DataStore yield.
+ -- A hero/ready change cannot race an already frozen departure roster.
+ local locked={};local candidates={p}
+ if party then
+  candidates={}
+  for person,mine in pairs(parties) do if mine.id==party.id and person.Parent==Players then table.insert(candidates,person) end end
+ end
+ for _,person in ipairs(candidates) do if person~=p and (busy[person] or travel[person]) then return nil,'Busy' end end
+ for _,person in ipairs(candidates) do locked[person]={previous=busy[person]};busy[person]=true end
+ local runId=guid();local ok,result,reason=pcall(startRunLocked,p,party,runId)
+ for person,lock in pairs(locked) do busy[person]=lock.previous end
+ if not ok then
+  local moving=false;for person in pairs(locked) do if travel[person] then moving=true else unlock(person) end end
+  if party then store.launchStatus(party.id,runId,moving and 'launched' or 'forming') end
+  return nil,'NetworkUnavailable'
+ end
+ return result,reason
 end
 function Service.solo(p)
  if role~='Lobby' or parties[p] then return 'AlreadyParty' end
