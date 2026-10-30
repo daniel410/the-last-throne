@@ -17,7 +17,7 @@ for _,c in ipairs(C.chapters) do if not c.side then
   if g.activity and g.activity.steps then
    check(not P.apply(s,c.id,g.id,choice),'cannot skip spatial activity')
    local steps=g.activity.steps
-   if #steps>1 then check(not P.apply(s,c.id,g.id,nil,steps[2].id),'cannot start with later step') end
+   if #steps>1 and g.activity.mode~='investigate' then check(not P.apply(s,c.id,g.id,nil,steps[2].id),'ordered activity cannot start with later step') end
    for i,step in ipairs(steps) do
     local answer=step.choices and step.choices[1].id
     if step.choices then check(not P.apply(s,c.id,g.id,'forged',step.id),'invalid answer rejected') end
@@ -46,7 +46,7 @@ check(profile.items['hero-DW-07-bossseal'].quantity==1,'king seal once')
 check(profile.items['hero-DW-01-equipment'].location.kind=='pending','bag full safe grant')
 check(not profile.heroes.hero.deepwood.flags['DW-07:rescue_captives'],'rescue optional')
 local after=P.apply(s,'DW-07','restoration','sanctuary');check(after.choice=='shared','ending immutable on duplicate')
-for _,c in ipairs(C.chapters) do if c.side then for _,g in ipairs(c.goals) do
+for _,c in ipairs(C.chapters) do if c.side then s=assert(P.accept(s,c.id));for _,g in ipairs(c.goals) do
  if not g.optional then s=assert(P.apply(s,c.id,g.id));check(P.validate(s),'side preserves bounded journal') end
 end end end
 check(s.coins==2290 and s.main==7,'side rewards not invented')
@@ -101,7 +101,7 @@ check(known==9,'reveal local neighborhood without revealing whole region')
 local copy,reason,repeated=P.reveal(fog,'DW-01',6,6);check(repeated and copy.coins==0,'fog replay immutable reward')
 check(not P.reveal(fog,'DW-01',0,4) and not P.reveal(fog,'DW-01',13,4),'bounded fog cells')
 local forged=P.copy(fog);forged.explored['DW-02']={[1]=true};check(not P.validate(forged),'forged locked fog denied')
-local legacy=P.copy(s);legacy.activities=nil;legacy.decisions=nil;legacy.explored=nil;check(P.validate(legacy),'old completed journal does not reset')
+local legacy=P.copy(s);legacy.activities=nil;legacy.decisions=nil;legacy.explored=nil;legacy.clues=nil;check(P.validate(legacy),'old completed journal does not reset')
 local partial=assert(store:transact(93,function(p) return Rules.story(p,'retry','DW-01','supplies',nil,Catalog,'manifest') end))
 check(not partial.heroes.retry.deepwood.flags['DW-01:supplies'],'saved first clue does not complete activity')
 failAfterCommit=true

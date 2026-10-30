@@ -1050,4 +1050,6 @@ Adventure.install(Content)
 for _,chapter in ipairs(Content.chapters) do if not chapter.side then Content.zones[chapter.zone].name=chapter.title;Content.zones[chapter.zone].requiresMain=chapter.number-1 end end
 for id,info in pairs({['DW-S1']={'Goblin King Camp',4},['DW-S2']={'Waterfall Quarry',5},['DW-S3']={'Red Battlefield',7}}) do Content.zones[id].name=info[1];Content.zones[id].requiresMain=info[2] end
 
+local Quests=game and require(script.Parent.DeepwoodQuestCatalog) or dofile('src/shared/DeepwoodQuestCatalog.luau')
+Quests.install(Content)
 return Content

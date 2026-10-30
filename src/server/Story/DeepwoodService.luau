@@ -4,12 +4,16 @@ local RunService=game:GetService('RunService')
 local Content=require(ReplicatedStorage.Shared.DeepwoodContent)
 local Progress=require(ReplicatedStorage.Shared.DeepwoodProgress)
 local Rig=require(script.Parent.Parent.World.TrainingField)
+local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
 local Service={}
+local offers={}
 local activities,access
 local options,remote,encounters,queues,lastRequest={},{},{},{},{}
 local function context(player)
  local c=options.heroSession.getCombatContext(player,player.Character)
  local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
+ local human=player.Character and player.Character:FindFirstChildOfClass('Humanoid')
+ if not human or human.Health<=0 then return nil,root end
  return c,root
 end
 local function state(player,heroId) return options.inventory.storyState(player,heroId) end
@@ -25,12 +29,14 @@ function Service.encounterState(player,heroId)
  end
  return result
 end
-local function publish(player,message,notice)
+local function publish(player,message,notice,completion)
  local h=active(player);if not h then return end
  local s=state(player,h.heroId);if not s then return end
  local activityState,dialogue
  if activities then activityState,dialogue=activities.projection(player,h.heroId) end
- remote:FireClient(player,{notice=notice,activities=activityState,dialogue=dialogue,heroId=h.heroId,training=h.training,journal=s,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
+ local offer=offers[player];local ctx,root=context(player)
+ if offer and (not ctx or ctx.heroId~=offer.heroId or player.Character~=offer.character or not root or (root.Position-offer.node.part.Position).Magnitude>16) then offers[player]=nil;offer=nil end
+ remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,heroId=h.heroId,training=h.training,journal=s,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
 end
 function Service.destination(player,heroId)
  local s=state(player,heroId)
@@ -46,7 +52,7 @@ local function enqueue(player,heroId,c,g,choice,stepId)
  if q.running then return end;q.running=true
  task.spawn(function()
   while player.Parent==Players and #q.events>0 do
-   local e=q.events[1];local reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId)
+   local e=q.events[1];local before=state(player,e.heroId);local reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId)
    if reason=='Busy' or reason=='SaveUnknown' then
     publish(player,'Saving progress. Please wait; the same event will retry.');task.wait(1)
    elseif reason then
@@ -54,12 +60,18 @@ local function enqueue(player,heroId,c,g,choice,stepId)
     q.keys[e.key]=nil;table.remove(q.events,1)
    else
     q.keys[e.key]=nil;table.remove(q.events,1)
+    local after=state(player,e.heroId)
+    if e.g.id=='@accept' then
+     publish(player,nil,'Optional quest accepted: '..e.c.title,{kind='Accepted',id=e.c.id})
+    else
     local text=e.g.text
     if e.stepId then for _,step in ipairs(e.g.activity.steps) do if step.id==e.stepId then
      text=step.text
      for _,answer in ipairs(step.choices or {}) do if answer.id==e.choice then text=answer.text end end
     end end end
-    publish(player,text~='' and text or 'Objective complete. Follow the next marker.')
+    local complete=after and after.clears[e.c.id] and before and not before.clears[e.c.id]
+    publish(player,text~='' and text or nil,nil,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=e.c.reward.xp,coins=e.c.reward.coins,outcome=e.c.quest.outcome} or nil)
+    end
    end
   end
   q.running=false
@@ -191,7 +203,37 @@ local function begin(player,node,automatic)
  e.waveFirst=1;e.waveLast=math.ceil(#e.pendingSpecs/e.waveCount);spawnWave(e)
  for ally in pairs(e.participants) do publish(ally,g.activity and g.activity.intro or 'Encounter started. Watch enemy attack warnings and use the open ground.') end
 end
+local function offerQuest(player,node,discovery)
+ local ctx,root=context(player);local hero=active(player)
+ if not ctx or not root or not hero or hero.training or (root.Position-node.part.Position).Magnitude>16 then return end
+ local journal=state(player,ctx.heroId)
+ if not journal or not Progress.canAccept(journal,node.chapter) then return end
+ offers[player]={heroId=ctx.heroId,character=player.Character,node=node,discovery=discovery};publish(player)
+end
+function Service.acceptQuest(player,id)
+ local offer=offers[player];local ctx,root=context(player)
+ if not offer or offer.node.chapter.id~=id or not ctx or ctx.heroId~=offer.heroId or player.Character~=offer.character or not root or (root.Position-offer.node.part.Position).Magnitude>16 then return false end
+ local journal=state(player,ctx.heroId)
+ if not journal or not Progress.canAccept(journal,offer.node.chapter) then return false end
+ offers[player]=nil
+ enqueue(player,ctx.heroId,offer.node.chapter,{id='@accept'},offer.discovery)
+ return true
+end
 local function interact(player,node)
+ if node.chapter.side then
+  local ctx,root=context(player);local hero=active(player)
+  if not ctx or not root or not hero or hero.training or (root.Position-node.part.Position).Magnitude>16 then return end
+  local journal=state(player,ctx.heroId);if not journal then return end
+  if node.offer then
+   if Progress.canAccept(journal,node.chapter) then offerQuest(player,node,false)
+   elseif Progress.accepted(journal,node.chapter) then
+    local report=Progress.goal(node.chapter,node.chapter.quest.turnIn)
+    if Progress.available(journal,node.chapter,report) then enqueue(player,ctx.heroId,node.chapter,report)
+    else publish(player,journal.clears[node.chapter.id] and node.chapter.quest.outcome or node.chapter.quest.brief) end
+   else publish(player,nil,'Continue the main story before taking this request.') end
+   return
+  elseif node.goal==node.chapter.goals[1] and Progress.canAccept(journal,node.chapter) then offerQuest(player,node,true);return end
+ end
  local ctx=eligible(player,node.chapter,node.goal,16,node.part.Position)
  if not ctx then publish(player,'Complete the earlier objectives and move closer to this marker.');return end
  if activities and activities.interact(player,node) then return end
@@ -245,8 +287,10 @@ function Service.start(settings)
  end
  request.OnServerEvent:Connect(function(player,action,argument,...)
   if select('#',...)~=0 or type(action)~='string' or argument~=nil and type(argument)~='string' then return end
-  local t=os.clock();if t-(lastRequest[player] or 0)<.4 then return end;lastRequest[player]=t
-  if action=='Answer' and argument and #argument<=160 then activities.answer(player,argument)
+  local t=os.clock();local gap=(action=='AcceptQuest' or action=='LaterQuest') and .05 or .4;if t-(lastRequest[player] or 0)<gap then return end;lastRequest[player]=t
+  if action=='AcceptQuest' and argument and #argument<=16 then Service.acceptQuest(player,argument)
+  elseif action=='LaterQuest' and offers[player] and offers[player].node.chapter.id==argument then offers[player]=nil;publish(player)
+  elseif action=='Answer' and argument and #argument<=160 then activities.answer(player,argument)
   elseif action=='GetState' and argument==nil then publish(player)
   elseif action=='Retry' and argument==nil then
    local ctx=context(player);if ctx then options.heroSession.restartAdventure(player) end
@@ -257,7 +301,7 @@ function Service.start(settings)
   end
  end)
  options.combat.setStoryDefeatHandler(Service.defeated,Service.bossDamage)
- Players.PlayerRemoving:Connect(function(p) activities.remove(p);access.remove(p);queues[p]=nil;lastRequest[p]=nil;for _,e in pairs(encounters) do e.participants[p]=nil end end)
+ Players.PlayerRemoving:Connect(function(p) activities.remove(p);access.remove(p);offers[p]=nil;queues[p]=nil;lastRequest[p]=nil;for _,e in pairs(encounters) do e.participants[p]=nil end end)
  local activityElapsed=0
  RunService.Heartbeat:Connect(function(dt)
   activityElapsed+=dt;if activityElapsed<.2 then return end

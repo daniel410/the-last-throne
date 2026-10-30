@@ -3,10 +3,28 @@ local Content=game and require(game:GetService('ReplicatedStorage').Shared.Deepw
 local P={}
 function P.copy(v) if type(v)~='table' then return v end local r={} for k,x in pairs(v) do r[k]=P.copy(x) end return r end
 function P.hasCell(cells,index) return cells and (cells[tostring(index)]==true or cells[index]==true) or false end
-function P.new() return {version=1,main=0,flags={},clears={},choice='',coins=0,killCoins=0,activities={},decisions={},explored={}} end
+function P.new() return {version=1,main=0,flags={},clears={},choice='',coins=0,killCoins=0,activities={},decisions={},explored={},accepted={},clues={}} end
 function P.goal(chapter,id) for _,g in ipairs(chapter.goals) do if g.id==id then return g end end end
+function P.accepted(s,c)
+ if not c.side then return true end
+ if (s.accepted or {})[c.id] or s.clears[c.id] then return true end
+ -- Pre-contract saves already in progress must never lose their quest.
+ for _,g in ipairs(c.goals) do if s.flags[c.id..':'..g.id] then return true end end
+ return false
+end
+function P.canAccept(s,c) return c and c.side and s.main>=c.minMain and not P.accepted(s,c) end
+function P.accept(s,id,discovery)
+ if not P.validate(s) then return nil,'Incompatible' end
+ local c=Content.byId[id]
+ if not c or not c.side then return nil,'InvalidRequest' end
+ if P.accepted(s,c) then return P.copy(s),nil,true end
+ if not P.canAccept(s,c) then return nil,'StoryLocked' end
+ local n=P.copy(s);n.accepted=n.accepted or {};n.accepted[id]=true
+ if discovery then local result,reason=P.apply(n,id,c.goals[1].id);return result,reason,false end
+ return n
+end
 function P.eligible(s,c)
- if c.side then return s.main>=c.minMain and not s.clears[c.id] end
+ if c.side then return s.main>=c.minMain and P.accepted(s,c) and not s.clears[c.id] end
  return s.main+1==c.number and not s.clears[c.id]
 end
 function P.available(s,c,g)
@@ -15,9 +33,15 @@ function P.available(s,c,g)
  for _,id in ipairs(g.requires) do if not s.flags[c.id..':'..id] then return false end end
  return true
 end
+function P.collected(s,c,g,index)
+ local key=c.id..':'..g.id
+ local clues=(s.clues or {})[key]
+ if g.activity and g.activity.mode=='investigate' and clues then return clues[g.activity.steps[index].id]==true end
+ return index<=((s.activities or {})[key] or 0)
+end
 function P.nextStep(s,c,g)
  if not P.available(s,c,g) or not g.activity or not g.activity.steps then return nil end
- return g.activity.steps[((s.activities or {})[c.id..':'..g.id] or 0)+1]
+ for index,step in ipairs(g.activity.steps) do if not P.collected(s,c,g,index) then return step end end
 end
 function P.validate(s)
  if type(s)~='table' or s.version~=1 or type(s.flags)~='table' or type(s.clears)~='table'
@@ -51,6 +75,21 @@ function P.validate(s)
    for _,answer in ipairs(step.choices or {}) do if answer.id==value then found=true end end
   end end
   if not found then return false end
+ end
+ if s.accepted~=nil and type(s.accepted)~='table' or s.clues~=nil and type(s.clues)~='table' then return false end
+ for id,value in pairs(s.accepted or {}) do
+  local c=Content.byId[id];if not c or not c.side or value~=true or s.main<c.minMain then return false end
+ end
+ for key,values in pairs(s.clues or {}) do
+  local cid,gid;if type(key)=='string' then cid,gid=key:match('^([^:]+):(.+)$') end
+  local c=cid and Content.byId[cid];local g=c and P.goal(c,gid)
+  if not g or not g.activity or g.activity.mode~='investigate' or type(values)~='table' then return false end
+  local count=0
+  for sid,value in pairs(values) do
+   local found=false;for _,step in ipairs(g.activity.steps) do if step.id==sid then found=true end end
+   if not found or value~=true then return false end;count=count+1
+  end
+  if count<1 or count~=((s.activities or {})[key] or 0) then return false end
  end
  if s.explored~=nil and type(s.explored)~='table' then return false end
  for id,cells in pairs(s.explored or {}) do
@@ -86,8 +125,13 @@ function P.apply(s,chapterId,goalId,choice,stepId)
   local expected=g.activity.steps[count+1]
   local index
   for i,step in ipairs(g.activity.steps) do if step.id==stepId then index=i end end
-  if index and index<=count then return n,nil,{xp=0,coins=0,repeated=true} end
-  if not expected or not index or expected.id~=stepId then return nil,'ActivityIncomplete' end
+  if index and P.collected(s,c,g,index) then return n,nil,{xp=0,coins=0,repeated=true} end
+  if not expected or not index or g.activity.mode~='investigate' and expected.id~=stepId then return nil,'ActivityIncomplete' end
+  if g.activity.mode=='investigate' then
+   n.clues=n.clues or {};n.clues[key]=n.clues[key] or {}
+   if not (s.clues or {})[key] then for i=1,count do n.clues[key][g.activity.steps[i].id]=true end end
+   n.clues[key][stepId]=true
+  end
   if expected.choices then
    local valid=false;for _,answer in ipairs(expected.choices) do if answer.id==choice then valid=true end end
    if not valid then return nil,'ChooseAnswer' end

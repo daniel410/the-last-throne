@@ -75,7 +75,7 @@ function World.create()
   for id,z in pairs(Content.zones) do result.spawns[id]=existing:FindFirstChild(id..'_SP');result.positions[id]=vec(z.center) end
   for _,p in ipairs(existing:WaitForChild('Objectives'):GetChildren()) do
    local c=Content.byId[p:GetAttribute('ChapterId')];local goalId=p:GetAttribute('GoalId')
-   if c then for _,g in ipairs(c.goals) do if g.id==goalId then result.nodes[c.id..':'..(p.Name:match('_request$') and 'request' or g.id)]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g} end end end
+   if c then for _,g in ipairs(c.goals) do if g.id==goalId then result.nodes[c.id..':'..(p.Name:match('_request$') and 'request' or g.id)]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g,offer=p:GetAttribute('QuestOffer')==true} end end end
   end
   result.activityNodes={}
   local activityFolder=existing:FindFirstChild('AdventureActivities')
@@ -164,15 +164,20 @@ function World.create()
   p:SetAttribute('ChapterId',c.id);p:SetAttribute('GoalId',g.id)
   ball(p,'ObjectiveGem',Vector3.new(1.4,2,1.4),p.Position+Vector3.new(0,2,0),#g.enemies>0 and C.gold or C.violet,Enum.Material.Neon)
   local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.Name='StoryInteract';prompt.ActionText=#g.enemies>0 and 'Begin encounter' or 'Interact';prompt.ObjectText=g.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
+  if c.side and g.id==c.quest.turnIn then
+   p.Transparency=1;p.ObjectiveGem.Transparency=1
+   if not c.quest.offerPosition then npc(nodes,vec(g.position),c.quest.giver,false) end
+  end
   interactions[c.id..':'..g.id]={part=p,prompt=prompt,chapter=c,goal=g}
  end end
- -- Resident and field starts share the exact same first-goal receipt.
+ -- A request offers a quest; it never completes the field investigation.
  for index,c in ipairs(Content.chapters) do if c.side and c.id~='DW-Q1' then
   local g=c.goals[1];local p=part(nodes,c.id..'_request',Vector3.new(3,2,3),positions['DW-03']+Vector3.new((index-9)*18,1,72),C.blue,Enum.Material.Slate,false)
   p:SetAttribute('ChapterId',c.id);p:SetAttribute('GoalId',g.id)
-  label(p,c.id=='DW-Q4' and 'Outpost Scout' or 'Outpost Resident')
-  local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ActionText='Hear request';prompt.ObjectText=c.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
-  interactions[c.id..':request']={part=p,prompt=prompt,chapter=c,goal=g}
+  p.Transparency=1;p:SetAttribute('QuestOffer',true)
+  npc(nodes,p.Position-Vector3.new(0,1,0),c.quest.giver,false)
+  local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ActionText='Talk';prompt.ObjectText=c.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
+  interactions[c.id..':request']={part=p,prompt=prompt,chapter=c,goal=g,offer=true}
  end end
  root:SetAttribute("DeepwoodReady",true)
  World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions}

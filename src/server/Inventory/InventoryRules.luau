@@ -315,6 +315,14 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId)
  if not Rules.validate(n,catalog) then return nil,'Incompatible' end
  return n
 end
+function Rules.acceptQuest(profile,heroId,chapterId,discovery)
+ local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
+ local journal,reason,repeated=Story.accept(hero.deepwood or Story.new(),chapterId,discovery)
+ if not journal then return nil,reason end
+ if repeated then return Rules.copy(profile),nil,true end
+ local n=Rules.copy(profile);n.heroes[heroId].deepwood=journal;n.revision=n.revision+1
+ return n
+end
 function Rules.explore(profile,heroId,zone,x,z)
  local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
  local s,reason,repeated=Story.reveal(hero.deepwood or Story.new(),zone,x,z)

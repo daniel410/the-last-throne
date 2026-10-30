@@ -188,6 +188,7 @@ function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId)
  if not state.valid and state.storyPending~=key then return state.errorCode or 'Unavailable' end
  state.busy=true;state.storyPending=key
  local profile,reason=store:transact(player.UserId,function(current)
+  if goalId=='@accept' then return Rules.acceptQuest(current,heroId,chapterId,choice==true) end
   return Rules.story(current,heroId,chapterId,goalId,choice,Catalog,stepId)
  end)
  if profile then

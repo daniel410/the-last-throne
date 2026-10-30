@@ -48,7 +48,7 @@ function Engine.create(o)
   local ctx,s=current(player,c,g,node.part.Position)
   if not ctx then return end
   local step=Progress.nextStep(s,c,g)
-  if not step or step.id~=sid then o.publish(player,g.activity.clue or 'Follow the evidence in order.');return end
+  if not step or g.activity.mode~='investigate' and step.id~=sid then o.publish(player,g.activity.clue or 'Follow the evidence in order.');return end
   if g.activity.mode=='escort' then return end
   if step.choices then
    local valid=false;for _,v in ipairs(step.choices) do if v.id==choice then valid=true end end

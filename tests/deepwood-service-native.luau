@@ -19,7 +19,7 @@ local ok,err=xpcall(function()
  local valid=true;local xp=0
  local hero={getActiveHero=function() return {heroId='qa'} end,getCombatContext=function() return valid and {heroId='qa'} end,restartAdventure=function() return true end}
  local inventory={storyState=function() return P.copy(profile.heroes.qa.deepwood or P.new()) end,
-  storyEvent=function(_,id,c,g,choice,stepId) local n,e=Rules.story(profile,id,c,g,choice,Catalog,stepId);if n then profile=n end;return e end,
+  storyEvent=function(_,id,c,g,choice,stepId) local n,e;if g=='@accept' then n,e=Rules.acceptQuest(profile,id,c,choice==true) else n,e=Rules.story(profile,id,c,g,choice,Catalog,stepId) end;if n then profile=n end;return e end,
   awardXP=function(_,_,amount) xp=xp+amount end}
  story.start({world=world,enemies=workspace.DeepwoodK0.Enemies,inventory=inventory,heroSession=hero,combat=combat})
  local function near(c,g) root.Position=world.nodes[c..':'..g].part.Position end
@@ -85,6 +85,25 @@ local ok,err=xpcall(function()
  check(s.coins==2290,'first-clear Coins exact');check(profile.items['qa-DW-07-bossseal'].quantity==1,'seal once')
  local Access=require(RS.Shared.DeepwoodAccess)
  local gate=require(SSS.Server.Story.DeepwoodRegionAccess).create({heroSession=hero,inventory=inventory,world=world,combat={relocateForStoryGate=function(_,pivot) character:PivotTo(pivot) end},notice=function() end})
+ -- Offers do not execute field goals; acceptance is proximity- and hero-bound.
+ local quest=C.byId['DW-Q2'];local questStart=quest.goals[1]
+ near(quest.id,'request');story.interact(player,quest.id,'request')
+ check(not inventory.storyState().flags[quest.id..':'..questStart.id],'hearing NPC request never executes field clue')
+ local beforeAccept=profile.revision;root.Position+=Vector3.new(100,0,0)
+ check(not story.acceptQuest(player,quest.id),'cannot accept offer after leaving NPC')
+ near(quest.id,'request');check(story.acceptQuest(player,quest.id),'nearby current hero can accept request');task.wait(.1)
+ check(P.accepted(inventory.storyState(),quest) and not inventory.storyState().flags[quest.id..':'..questStart.id],'NPC acceptance and field completion remain separate')
+ check(profile.revision==beforeAccept+1,'one accepted request changes account once')
+ check(not story.acceptQuest(player,quest.id),'replayed offer token is consumed')
+ near(quest.id,'request');story.interact(player,quest.id,'request');task.wait(.05)
+ check(not inventory.storyState().flags[quest.id..':'..questStart.id],'talking to active quest giver cannot skip fieldwork')
+ -- Discovery is accepted only at the actual clue and atomically records that clue.
+ near('DW-Q1','waterproof_log');story.interact(player,'DW-Q1','waterproof_log')
+ check(not inventory.storyState().flags['DW-Q1:waterproof_log'],'reading a discovery opens an optional offer')
+ check(story.acceptQuest(player,'DW-Q1'),'field clue can be accepted');task.wait(.1)
+ check(inventory.storyState().accepted['DW-Q1'] and inventory.storyState().flags['DW-Q1:waterproof_log'],'accepting discovery records clue once')
+ near('DW-Q1','marsh_report');story.interact(player,'DW-Q1','marsh_report');task.wait(.1)
+ check(inventory.storyState().clears['DW-Q1'],'reporting optional discovery completes quest')
  local savedProfile=profile;profile=Rules.addHero(Rules.new(92),'qa','knight',Catalog)
  root.Position=world.spawns['DW-01'].Position;gate.update(player);local safe=root.Position;local health=human.Health
  root.Position=Vector3.new(table.unpack(C.zones['DW-02'].center));gate.update(player)
