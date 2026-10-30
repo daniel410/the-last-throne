@@ -1,5 +1,13 @@
 # 기획 변경 이력
 
+## 2026-10-30 — 일반6종/보스3종 블록형 컨셉 v3
+
+TLT-065/gloamwood-blocky-bosses-20261030. 연속 사용자 요청으로 여왕을 보스급으로 강화하고 엔트/지네 보스를 각1종 추가, 얼굴 인상을 유지하면서 몸통/팔다리를 블록형으로 단순화했다. [일반6종/보스3종 보드](../assets/concepts/2026-10-30-gloamwood-v1/index.html)와 모델당2~3k tris의 배분 목표를 저장했다. 보스 초안의 장식을 줄이는 보정1회 포함. 실제 메시/리그·삼각형 수 실측은 없고 후보 목록/갤러리만 갱신했다. 전경/여왕 분위기·1~4/보상/게임 소스/VERSION/기존5~8 보류 유지.
+
+## 2026-10-30 — Gloamwood 몬스터7종 보드 v2
+
+TLT-065/gloamwood-roster-v2-20261030. 사용자 지시로 Gloomwing Moth·Broodguard를 제외하고 박쥐 Gloambat·엔트 Hollowbark Ent·지네 Venomcoil Centipede를 추가했다. [7종 보드](../assets/concepts/2026-10-30-gloamwood-v1/gloamwood-creatures-v2.png)로 갤러리와 현재 몬스터 목록을 교체하고 기존 보드는 이력으로 보존했다. 전경/여왕 단독 이미지·에픽1~4·보상·게임 소스/VERSION 유지. 미술 컨셉 수정이며 실제 모델/AI·게임 빌드/게시 없음.
+
 ## 2026-10-30 — 어두운 숲 지역·몬스터·거미 여왕 컨셉3장
 
 TLT-065/gloamwood-concepts-20261030. 새 숲 후보의 지역 전경1장·몬스터6종 보드1장·첨부 거미 여왕 원본을 숲 요새로 변환한 단독 장면1장을 built-in image_gen으로 제작했다. [갤러리](../assets/concepts/2026-10-30-gloamwood-v1/index.html)에 PNG·프롬프트/원본해시·검토/미검증을 보존한다. 기존5~8 보류와1~4 보존을 유지하며 에픽 번호/본편 채택·리그/AI·맵 완성/기기 수용을 뜻하지 않는다. 게임 빌드/게시/릴리스 태그 없음.

@@ -1,0 +1,21 @@
+{
+  "task_id": "TLT-065/gloamwood-roster-v2-20261030",
+  "active_images": 3,
+  "active_creature_concepts": 7,
+  "new_png_count": 1,
+  "new_png_bytes": 2272314,
+  "new_png_dimensions": [
+    1672,
+    941
+  ],
+  "png_signature_crc_size_hash_copy": "pass for 3 active and 1 historical PNG",
+  "active_roster_excludes_removed_two": "pass",
+  "active_roster_adds_requested_three": "pass",
+  "gallery_current_board_and_labels": "pass",
+  "current_prompts_exact_match": "pass",
+  "local_links_checked": 28,
+  "out_of_scope_tracked_files_unchanged": 950,
+  "visual_review": "7 cells inspected in generated tool output; previous 4 identities retained; bat/ent/centipede and removal verified visually",
+  "gallery_browser_render": "not verified",
+  "runtime_rig_ai_gameplay_device": "not performed"
+}

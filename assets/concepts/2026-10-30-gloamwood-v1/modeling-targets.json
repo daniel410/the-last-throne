@@ -1,0 +1,148 @@
+{
+  "task_id": "TLT-065/gloamwood-blocky-bosses-20261030",
+  "status": "modeling-targets-not-measured",
+  "target_tris_per_creature": {
+    "min": 2000,
+    "max": 3000
+  },
+  "counting_scope": "Complete visible LOD0 creature, all render meshes/submeshes including head, teeth, body, legs, wings and foliage combined. Instances count per rendered occurrence; do not report a single reused piece as the whole creature.",
+  "actual_3d_model_created": false,
+  "face_policy": "Preserve eye placement/color, expression, skull emblem and fang identity as closely as possible. Pixel-identical faces have not been verified. Use texture details for markings and fine bark/chitin instead of unnecessary geometry.",
+  "body_policy": "Broad cuboid torso/body segments, simple rectangular limb pieces, few joints and wedge ends. Bosses use heavier proportions and scale within the same per-model budget.",
+  "centipede_policy": "Aim for 10-12 repeated body segments with one pair of simple two-piece legs each. Exact segment count and rigs require mesh/animation verification.",
+  "acceptance": [
+    "Measure triangles on triangulated export of all visible parts, not PNGs, quads or a single prototype segment.",
+    "Record actual total, component subtotals, export file/hash and runtime import version.",
+    "Check eyes/fangs/face at gameplay distance and compare to references.",
+    "Test spider/centipede legs, bat wings and ent roots in walking/attack poses; preserve silhouette without self intersections.",
+    "Do not add geometry merely to reach 2000 on simpler creatures; document any lower-budget proposal separately."
+  ],
+  "creatures": [
+    {
+      "name_en": "Webling",
+      "rank": "normal",
+      "target_total_tris": 2200,
+      "allocation_proposal": {
+        "head_and_face": 450,
+        "torso_or_body_segments": 650,
+        "limbs_wings_or_roots": 900,
+        "surface_silhouette_details": 200
+      },
+      "measured_tris": null,
+      "mesh_file": null,
+      "rig_status": "not-created"
+    },
+    {
+      "name_en": "Silkweaver",
+      "rank": "normal",
+      "target_total_tris": 2300,
+      "allocation_proposal": {
+        "head_and_face": 400,
+        "torso_or_body_segments": 600,
+        "limbs_wings_or_roots": 1100,
+        "surface_silhouette_details": 200
+      },
+      "measured_tris": null,
+      "mesh_file": null,
+      "rig_status": "not-created"
+    },
+    {
+      "name_en": "Barkstalker",
+      "rank": "normal",
+      "target_total_tris": 2400,
+      "allocation_proposal": {
+        "head_and_face": 500,
+        "torso_or_body_segments": 600,
+        "limbs_wings_or_roots": 1100,
+        "surface_silhouette_details": 200
+      },
+      "measured_tris": null,
+      "mesh_file": null,
+      "rig_status": "not-created"
+    },
+    {
+      "name_en": "Gloambat",
+      "rank": "normal",
+      "target_total_tris": 2300,
+      "allocation_proposal": {
+        "head_and_face": 500,
+        "torso_or_body_segments": 400,
+        "limbs_wings_or_roots": 1200,
+        "surface_silhouette_details": 200
+      },
+      "measured_tris": null,
+      "mesh_file": null,
+      "rig_status": "not-created"
+    },
+    {
+      "name_en": "Hollowbark Ent",
+      "rank": "normal",
+      "target_total_tris": 2400,
+      "allocation_proposal": {
+        "head_and_face": 550,
+        "torso_or_body_segments": 650,
+        "limbs_wings_or_roots": 900,
+        "surface_silhouette_details": 300
+      },
+      "measured_tris": null,
+      "mesh_file": null,
+      "rig_status": "not-created"
+    },
+    {
+      "name_en": "Venomcoil Centipede",
+      "rank": "normal",
+      "target_total_tris": 2350,
+      "allocation_proposal": {
+        "head_and_face": 500,
+        "torso_or_body_segments": 800,
+        "limbs_wings_or_roots": 900,
+        "surface_silhouette_details": 150
+      },
+      "measured_tris": null,
+      "mesh_file": null,
+      "rig_status": "not-created"
+    },
+    {
+      "name_en": "The Widow Queen",
+      "rank": "boss",
+      "target_total_tris": 2600,
+      "allocation_proposal": {
+        "head_and_face": 700,
+        "torso_or_body_segments": 650,
+        "limbs_wings_or_roots": 1000,
+        "surface_silhouette_details": 250
+      },
+      "measured_tris": null,
+      "mesh_file": null,
+      "rig_status": "not-created"
+    },
+    {
+      "name_en": "Ancient Hollowbark",
+      "rank": "boss",
+      "target_total_tris": 2750,
+      "allocation_proposal": {
+        "head_and_face": 650,
+        "torso_or_body_segments": 800,
+        "limbs_wings_or_roots": 1000,
+        "surface_silhouette_details": 300
+      },
+      "measured_tris": null,
+      "mesh_file": null,
+      "rig_status": "not-created"
+    },
+    {
+      "name_en": "Venomcoil Matriarch",
+      "rank": "boss",
+      "target_total_tris": 2750,
+      "allocation_proposal": {
+        "head_and_face": 650,
+        "torso_or_body_segments": 900,
+        "limbs_wings_or_roots": 1000,
+        "surface_silhouette_details": 200
+      },
+      "measured_tris": null,
+      "mesh_file": null,
+      "rig_status": "not-created"
+    }
+  ]
+}
