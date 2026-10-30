@@ -9,6 +9,7 @@ return {
  StorySaving = "Saving objective progress. Please wait.",
  NavigationOn = "Navigation Trail: ON",
  NavigationOff = "Navigation Trail: OFF",
+ ForestBoundaryReturn = "The forest edge is blocked. Follow the marked trail.",
  MinimapYou = "YOU",
  Map = {
   Title = "DEEPWOOD · WORLD MAP",

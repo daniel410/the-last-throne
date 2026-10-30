@@ -70,6 +70,7 @@ end
 function World.create()
  local existing=Workspace:FindFirstChild('DeepwoodCampaign')
  if existing then
+  require(script.Parent.DeepwoodGroundedWorld).create(existing)
   if World.current then return World.current end
   local result={folder=existing,terrain=existing:FindFirstChild('TerrainBlockout'),nodes={},spawns={},positions={}}
   for id,z in pairs(Content.zones) do result.spawns[id]=existing:FindFirstChild(id..'_SP');result.positions[id]=vec(z.center) end
@@ -143,9 +144,10 @@ function World.create()
   end
  end
  local function bridge(a,b)
-  local first,second=positions[a],positions[b];local delta=second-first;local midpoint=(first+second)/2
-  local cf=CFrame.lookAt(midpoint,second);part(terrain,'ConnectedPath_'..a..'_'..b,Vector3.new(24,2,delta.Magnitude+10),cf-Vector3.new(0,1.2,0),C.path,Enum.Material.Cobblestone,true)
-  for _,x in ipairs({-12,12}) do part(terrain,'BridgeParapet',Vector3.new(1.5,3,delta.Magnitude),cf*CFrame.new(x,1.5,0),C.moss,nil,true) end
+  local start,finish=require(game:GetService('ReplicatedStorage').Shared.DeepwoodBounds).ends({a,b})
+  local first,second=vec(start),vec(finish);local delta=second-first;local midpoint=(first+second)/2
+  local cf=CFrame.lookAt(midpoint,second);part(terrain,'ConnectedPath_'..a..'_'..b,Vector3.new(24,2,delta.Magnitude+4),cf-Vector3.new(0,.9,0),C.path,Enum.Material.Cobblestone,true)
+  -- Broad grass shoulders provide safety; no parapets enclose the trail.
  end
  for i=1,6 do bridge(string.format('DW-%02d',i),string.format('DW-%02d',i+1)) end
  bridge('DW-03','DW-S1');bridge('DW-03','DW-S2');bridge('DW-05','DW-S3')
@@ -179,6 +181,7 @@ function World.create()
   local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ActionText='Talk';prompt.ObjectText=c.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
   interactions[c.id..':request']={part=p,prompt=prompt,chapter=c,goal=g,offer=true}
  end end
+ require(script.Parent.DeepwoodGroundedWorld).create(root)
  root:SetAttribute("DeepwoodReady",true)
  World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions}
  require(script.Parent.DeepwoodActivityWorld).create(World.current)

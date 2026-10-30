@@ -1,0 +1,61 @@
+{
+  "environment": "unpublished temporary Studio Play place; default Roblox avatar and synthetic story/identity facade; no account saving",
+  "daylight": {
+    "clock_time": 14,
+    "fog_start": 180,
+    "fog_end": 340,
+    "dark_color_grade": false
+  },
+  "pass": {
+    "grass_width_studs": 96,
+    "central_path_studs": 24,
+    "trail_walls": 0,
+    "parapets": 0,
+    "generated_scene_version": 2
+  },
+  "keyboard": {
+    "input": "W held for 1500ms",
+    "position_after": [
+      175.77488708496094,
+      21.196317672729492,
+      -1373.5992431640625
+    ],
+    "health": 100
+  },
+  "camera": {
+    "actual_wheel_zoom_out_distance": 18,
+    "forced_under_floor_result": {
+      "distance": 17.70924949645996,
+      "pitch_degrees": 22.000124374856675,
+      "camera_y": 29.330354690551758,
+      "ground_y": 18
+    },
+    "forced_overhead_result": {
+      "distance": 18,
+      "pitch_degrees": 71.99999334600217,
+      "camera_y": 39.81533432006836
+    }
+  },
+  "server_rescue": {
+    "injected_position": [
+      10175.7734375,
+      -98.8046875,
+      -1373.6015625
+    ],
+    "observed_after_seconds": 0.35,
+    "recovered_position": [
+      175.77345275878906,
+      21.1953125,
+      -1373.6015625
+    ],
+    "health_before": 100,
+    "health_after": 100
+  },
+  "not_verified": [
+    "normal story completion",
+    "published client",
+    "physical mobile/controller input",
+    "4 player performance",
+    "final user art acceptance"
+  ]
+}

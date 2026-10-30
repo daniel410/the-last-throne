@@ -1748,7 +1748,7 @@ function CombatService.relocateForStoryGate(player,pivot)
  local state=playerStates[player]
  if not alive(state) or player.Character~=state.character or typeof(pivot)~='CFrame' then return false end
  clearAction(state);state.queued=nil;setPlayerState(state,'Idle')
- state.character:PivotTo(pivot);state.root.AssemblyLinearVelocity=Vector3.zero
+ state.character:PivotTo(pivot);state.root.AssemblyLinearVelocity=Vector3.zero;state.root.AssemblyAngularVelocity=Vector3.zero
  state.lastMotionPosition=state.root.Position;state.lastSafePivot=state.character:GetPivot();state.lastMotionAt=now();state.movementBudget=Config.MovementBudget
  return true
 end
