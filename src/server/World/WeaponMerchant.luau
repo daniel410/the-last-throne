@@ -39,11 +39,7 @@ function W.create(lobby)
  A.light(coals,C.fire,18,1.5)
  local fire=Instance.new('Fire');fire.Name='ForgeFire';fire.Color=C.fire;fire.SecondaryColor=C.gold;fire.Heat=2;fire.Size=3;fire.Parent=coals
  local sparks=Instance.new('ParticleEmitter');sparks.Name='ForgeSparks';sparks.Texture='rbxasset://textures/particles/sparkles_main.dds';sparks.Rate=4;sparks.Lifetime=NumberRange.new(.4,.9);sparks.Speed=NumberRange.new(2,4);sparks.SpreadAngle=Vector2.new(15,15);sparks.Color=ColorSequence.new(C.fire);sparks.LightEmission=1;sparks.Size=NumberSequence.new(.13);sparks:SetAttribute('TLTDecorative',true);sparks.Parent=coals
- make('Merchant',Vector3.new(2.4,2.5,1.4),Vector3.new(0,2.9,4),C.wood,Enum.Material.Fabric)
- local head=make('MerchantHead',Vector3.new(1.7,1.7,1.7),Vector3.new(0,5,4),Color3.fromRGB(219,183,132));head.Shape=Enum.PartType.Ball
- make('SmithApron',Vector3.new(1.8,2,.2),Vector3.new(0,2.8,4.8),C.dark,Enum.Material.Fabric)
- for _,x in ipairs({-1.6,1.6}) do make('SmithArm',Vector3.new(.8,2,.8),Vector3.new(x,3,4),Color3.fromRGB(219,183,132)) end
- make('OrangeBeard',Vector3.new(1.6,1.2,.7),Vector3.new(0,4.4,4.8),Color3.fromRGB(173,91,35))
+ local smith=require(script.Parent.NPCVisual).create(model,'aldric',origin+Vector3.new(0,0,4),{yaw=math.pi})
  for _,x in ipairs({-10,10}) do
   local barrel=make('SupplyBarrel',Vector3.new(3.5,3,3),Vector3.new(x,1.8,7),C.wood,Enum.Material.Wood,false,CFrame.Angles(0,0,math.pi/2));barrel.Shape=Enum.PartType.Cylinder
  end
@@ -54,6 +50,7 @@ function W.create(lobby)
   clone:ScaleTo(.65);clone:PivotTo(CFrame.new(origin+Vector3.new(-6+n*2.5,5,9)));clone.Parent=model
  end end end
  model.Parent=lobby.folder
- return {model=model,prompt=A.prompt(counter,Spec),counter=counter}
+ local prompt=A.prompt(counter,Spec);prompt.ObjectText='Aldric · Blacksmith'
+ return {model=model,prompt=prompt,counter=counter,npc=smith}
 end
 return W

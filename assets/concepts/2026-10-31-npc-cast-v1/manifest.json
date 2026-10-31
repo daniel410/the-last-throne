@@ -1,0 +1,95 @@
+{
+  "id": "npc-cast-v1-20261031",
+  "generator": "built-in image_gen",
+  "storySource": "docs/production/five-epic-adventure-story-2026-10-30.md",
+  "characterCount": 30,
+  "style": "smooth expressive face, cuboid torso and segmented limbs",
+  "boards": [
+    {
+      "region": "dawnspire",
+      "file": "dawnspire.png",
+      "sha256": "46fb1db9a11570bdb4b9a0f7ecf50885b1558ecce6dbbdd8ce7782dfd80d18b0",
+      "prompt": "dawnspire.prompt.txt",
+      "promptSha256": "654dd6dcaa2b5b9dba6bbf41b5386955ca8a77106b9e28e759f59611819237ff",
+      "characters": [
+        "aldric",
+        "mira",
+        "rowan",
+        "tessa",
+        "oren",
+        "selene",
+        "nia"
+      ]
+    },
+    {
+      "region": "deepwood",
+      "file": "deepwood.png",
+      "sha256": "847741776709e1834fb9d76041a55e7f7fde520e737a701f4a9724b699871c05",
+      "prompt": "deepwood.prompt.txt",
+      "promptSha256": "4ec7fd1b471dda3134a4b690d6d43d247716615e208995331946b2d9cca47677",
+      "characters": [
+        "eryn",
+        "liora",
+        "tobin",
+        "pip",
+        "fen"
+      ]
+    },
+    {
+      "region": "frozen-vale",
+      "file": "frozen-vale.png",
+      "sha256": "b822286cdd0c263394c487332ba26d246d349176a4e1d4352e48d6ec24a486c8",
+      "prompt": "frozen-vale.prompt.txt",
+      "promptSha256": "e557c3419649b93571a2134eed80f322f71fd6670cb33e36a07da28150417768",
+      "characters": [
+        "freya",
+        "haldor",
+        "nessa",
+        "ivo",
+        "ylva"
+      ]
+    },
+    {
+      "region": "ember-caldera",
+      "file": "ember-caldera.png",
+      "sha256": "828c148d51b2a2ee7b59d7571ec83c85c679d1d2ca3282cf6a23ca8ae037f308",
+      "prompt": "ember-caldera.prompt.txt",
+      "promptSha256": "6f499a2f1167ef199661f1b58115aac8dd6ce2821ff60942b0f8587caad88dc8",
+      "characters": [
+        "brann",
+        "dagna",
+        "orik",
+        "ketta",
+        "suri"
+      ]
+    },
+    {
+      "region": "gloamwood",
+      "file": "gloamwood.png",
+      "sha256": "0c13355f98ebdc33d0fcf44d7908408561afd7aaf7ab1603582994e1b06e6c89",
+      "prompt": "gloamwood.prompt.txt",
+      "promptSha256": "9a864495922928ad6c920e967cd6c05d36668695028004195af04a1db213cc7d",
+      "characters": [
+        "maeve",
+        "finn",
+        "tali",
+        "wispkeeper"
+      ]
+    },
+    {
+      "region": "haunted-graveyard",
+      "file": "haunted-graveyard.png",
+      "sha256": "526bfad46ba76c3bf8a0898429d11aa65f527220f38bb0a9879eaebaff6f7407",
+      "prompt": "haunted-graveyard.prompt.txt",
+      "promptSha256": "14a581443414a535c26c6a366b1e66ba9d89d81b9659174e1dd8b930e2ecb3c9",
+      "characters": [
+        "lumi",
+        "garrick",
+        "elowen",
+        "rook"
+      ]
+    }
+  ],
+  "runtime": "native Part character prototypes, not image-to-mesh conversions",
+  "published": false
+}

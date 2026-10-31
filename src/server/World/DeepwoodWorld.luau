@@ -56,16 +56,8 @@ local function cage(parent,p)
  for _,x in ipairs({-4,4}) do for _,z in ipairs({-4,4}) do part(parent,'CageBar',Vector3.new(.6,9,.6),p+Vector3.new(x,4.5,z),C.wood,Enum.Material.Wood,true) end end
  ball(parent,'CaptiveSpirit',Vector3.new(3,4,3),p+Vector3.new(0,4,0),Color3.fromRGB(112,230,194),Enum.Material.Neon)
 end
-local function npc(parent,p,name,goblin)
- local m=Instance.new('Model');m.Name=name;m.Parent=parent
- if goblin then
-  m=Rig.makeEnemy(parent,'Goblin',p.X,p.Z,1,1.2);m.Name=name;m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('EnemyKind',nil)
-  for _,d in ipairs(m:GetDescendants()) do if d:IsA('BasePart') then d.Anchored=true;d.CanCollide=false;d.CanQuery=false end end
-  m:FindFirstChildOfClass('Humanoid').DisplayDistanceType=Enum.HumanoidDisplayDistanceType.None
-  label(m.PrimaryPart,name..' · FRIENDLY');return
- end
- local body=part(m,'Body',Vector3.new(2.5,3,1.4),p+Vector3.new(0,2.5,0),goblin and C.leaf or C.blue,Enum.Material.Fabric,false)
- ball(m,'Head',Vector3.new(1.6,1.6,1.6),p+Vector3.new(0,5,0),Color3.fromRGB(230,203,145));label(body,name)
+local function npc(parent,p,name,_goblin)
+ return require(script.Parent.NPCVisual).actor(parent,name,p)
 end
 function World.create()
  local existing=Workspace:FindFirstChild('DeepwoodCampaign')
@@ -131,7 +123,7 @@ function World.create()
   elseif id=='DW-03' then
    tree(region,center+Vector3.new(0,0,-45),3.4,false);banner(region,center+Vector3.new(-12,0,-22));banner(region,center+Vector3.new(12,0,-22))
    part(region,'OutpostDeck',Vector3.new(35,1,24),center+Vector3.new(0,.5,-28),C.wood,Enum.Material.Wood,true)
-   npc(region,center+Vector3.new(0,0,-5),'Eryn',false);npc(region,center+Vector3.new(-45,0,50),'Quartermaster',false)
+   npc(region,center+Vector3.new(0,0,-5),'Eryn',false);npc(region,center+Vector3.new(-45,0,50),'Quartermaster',false);npc(region,center+Vector3.new(-64,0,35),'Fen',false)
   elseif id=='DW-04' then
    for _,x in ipairs({-15,15}) do for _,zz in ipairs({-18,18}) do part(region,'WatchtowerPillar',Vector3.new(5,42,5),center+Vector3.new(x,21,zz),C.stone,nil,true) end end
    part(region,'WatchtowerCrown',Vector3.new(38,5,44),center+Vector3.new(0,43,0),C.moss,nil,false);cage(region,center+Vector3.new(0,0,-25));banner(region,center+Vector3.new(20,0,20))

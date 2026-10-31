@@ -41,6 +41,9 @@ local merchant=role=='Lobby' and require(script.World.WeaponMerchant).create(lob
 require(script.Lobby.MerchantService).start({inventory=inventory,merchant=merchant})
 local facilities=role=='Lobby' and require(script.World.LobbyLandmarks).create(lobby) or nil
 require(script.Lobby.FacilityService).start({facilities=facilities,heroSession=heroSession,expedition=expedition})
+local residents=role=='Lobby' and require(script.World.LobbyResidents).create(lobby,facilities,prompts[1]) or nil
+require(script.Lobby.NPCService).start({residents=residents,inventory=inventory})
+task.spawn(function() require(script.World.NPCCast).templates() end)
 spawnService.start(lobby.spawn,{
  resolveDestination=function(player,previous)
   local phase=player:GetAttribute('K0SessionPhase');local h=heroSession.getActiveHero(player)

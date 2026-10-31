@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "note": "Narrative coverage is a placement plan, not proof of a playable map. Existing quest/escort aliases drive Deepwood positions. Future region anchors must be real authored CFrames supplied to NPCCast.region. Repeated identities are scene appearances, not extra AI companions.",
+  "regions": {
+    "dawnspire": {
+      "state": "runtime",
+      "areas": {
+        "forge": [
+          "aldric"
+        ],
+        "arms-stall": [
+          "mira"
+        ],
+        "training-ground": [
+          "rowan"
+        ],
+        "expedition-portal": [
+          "tessa"
+        ],
+        "account-storage": [
+          "oren"
+        ],
+        "village-square": [
+          "selene",
+          "nia"
+        ]
+      }
+    },
+    "deepwood": {
+      "state": "runtime",
+      "areas": {
+        "DW-01": [
+          "eryn"
+        ],
+        "DW-02": [
+          "tobin",
+          "selene"
+        ],
+        "DW-03": [
+          "eryn",
+          "liora",
+          "fen",
+          "selene"
+        ],
+        "DW-04": [
+          "tobin"
+        ],
+        "DW-05": [
+          "tobin"
+        ],
+        "DW-06": [
+          "pip"
+        ],
+        "DW-07": [
+          "eryn",
+          "tobin"
+        ],
+        "side-quest-givers": [
+          "tobin",
+          "liora",
+          "fen",
+          "eryn"
+        ]
+      }
+    },
+    "frozen-vale": {
+      "state": "anchor-contract-only",
+      "areas": {
+        "FV-01-blizzard-gate": [
+          "freya"
+        ],
+        "FV-02-ember-refuge": [
+          "haldor",
+          "nessa",
+          "ivo"
+        ],
+        "FV-03-wolf-ravine": [
+          "freya",
+          "ivo"
+        ],
+        "FV-04-subglacial-archive": [
+          "ylva"
+        ],
+        "FV-05-silent-battlefield": [
+          "nessa"
+        ],
+        "FV-06-citadel-gate": [
+          "freya"
+        ],
+        "FV-07-ice-mirror-palace": [
+          "ylva",
+          "freya"
+        ]
+      }
+    },
+    "ember-caldera": {
+      "state": "anchor-contract-only",
+      "areas": {
+        "EC-01-ash-gate": [
+          "suri"
+        ],
+        "EC-02-forge-city": [
+          "brann",
+          "ketta"
+        ],
+        "EC-03-collapsed-mine": [
+          "orik"
+        ],
+        "EC-04-coolant-canals": [
+          "dagna"
+        ],
+        "EC-05-design-vault": [
+          "brann",
+          "dagna"
+        ],
+        "EC-06-testworks": [
+          "dagna",
+          "suri"
+        ],
+        "EC-07-great-furnace": [
+          "brann",
+          "orik"
+        ]
+      }
+    },
+    "gloamwood": {
+      "state": "anchor-contract-only",
+      "areas": {
+        "trailhead": [
+          "maeve",
+          "finn"
+        ],
+        "webbed-scout-camp": [
+          "tali"
+        ],
+        "centipede-path": [
+          "finn"
+        ],
+        "old-ent-grove": [
+          "wispkeeper"
+        ],
+        "queen-nest-rescue": [
+          "maeve",
+          "tali"
+        ],
+        "hidden-graveyard-exit": [
+          "maeve",
+          "finn",
+          "tali"
+        ]
+      }
+    },
+    "haunted-graveyard": {
+      "state": "anchor-contract-only",
+      "areas": {
+        "HG-01-mist-gate": [
+          "rook",
+          "garrick"
+        ],
+        "HG-02-lantern-chapel": [
+          "elowen",
+          "selene"
+        ],
+        "HG-03-nameless-cemetery": [
+          "garrick",
+          "lumi"
+        ],
+        "HG-04-forgotten-village": [
+          "lumi"
+        ],
+        "HG-05-bell-tower": [
+          "rook",
+          "eryn"
+        ],
+        "HG-06-royal-tomb-gate": [
+          "brann",
+          "maeve",
+          "rook"
+        ],
+        "HG-07-vault-and-final-approach": [
+          "lumi",
+          "elowen",
+          "selene"
+        ]
+      }
+    }
+  }
+}

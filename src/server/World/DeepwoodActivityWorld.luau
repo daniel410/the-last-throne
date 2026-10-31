@@ -9,23 +9,7 @@ local function label(p,text)
  local t=Instance.new('TextLabel');t.Size=UDim2.fromScale(1,1);t.BackgroundTransparency=1;t.Text=text;t.Font=Enum.Font.GothamBold;t.TextSize=12;t.TextColor3=Color3.fromRGB(255,232,166);t.TextStrokeTransparency=.2;t.TextWrapped=true;t.AutoLocalize=false;t.Parent=g
 end
 function W.actor(parent,name,position,spirit)
- if name=='Selene' then return require(script.Parent.SeleneVisual).create(parent,position) end
- local m=Instance.new('Model');m.Name=name
- local root=part(m,'ActorRoot',Vector3.new(1,1,1),position,Color3.new());root.Transparency=1;m.PrimaryPart=root;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
- if spirit then
-  local orb=part(m,'Spirit',Vector3.new(2,3,2),position+Vector3.new(0,3,0),Color3.fromRGB(97,238,203),Enum.PartType.Ball);orb.Material=Enum.Material.Neon
-  local light=Instance.new('PointLight');light.Color=orb.Color;light.Brightness=.6;light.Range=10;light.Parent=orb
- else
-  local coat=Color3.fromRGB(45,104,92);local skin=Color3.fromRGB(220,186,139)
-  part(m,'Torso',Vector3.new(2,2.3,1.1),position+Vector3.new(0,3.2,0),coat)
-  local head=part(m,'Head',Vector3.new(1.4,1.4,1.4),position+Vector3.new(0,5,0),skin,Enum.PartType.Ball)
-  local face=Instance.new('Decal');face.Texture='rbxasset://textures/face.png';face.Face=Enum.NormalId.Front;face.Parent=head
-  for _,side in ipairs({-1,1}) do
-   part(m,'Arm',Vector3.new(.7,2.2,.8),position+Vector3.new(side*1.4,3.1,0),coat)
-   part(m,'Leg',Vector3.new(.8,2,.9),position+Vector3.new(side*.55,1,0),Color3.fromRGB(47,51,61))
-  end
- end
- label(root,name);m.Parent=parent;return m
+ return require(script.Parent.NPCVisual).actor(parent,name,position,spirit)
 end
 local function prop(parent,step,p)
  local kind=step.kind
