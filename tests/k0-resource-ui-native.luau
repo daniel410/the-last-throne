@@ -263,6 +263,18 @@ local ok, failure = xpcall(function()
 		check(not body.StatAllocation.ApplyPoints.Active,"empty draft cannot be confirmed")
 		check(height>500,"stats view reports scrollable content")
 	end
+ local xpCharacter=Instance.new('Model');xpCharacter:SetAttribute('K0ClassId','knight')
+ for _,case in ipairs({{1,0,'TOTAL XP 0 / 100'},{1,99,'TOTAL XP 99 / 100'},{2,0,'TOTAL XP 100 / 225'},{3,15,'TOTAL XP 240 / 375'},{80,0,'TOTAL XP 84925 (MAX)'}}) do
+  body:ClearAllChildren()
+  local g=growth.new(case[1]);g.xp=case[2]
+  statsView.render(body,{heroId='xp',baseClassId='knight',progression=g},{ready=true,atHub=true,items={}},growth.derived('knight',g),{STR=0,DEX=0,INT=0,VIT=0},nil,function()end,function()end,function()end,function()end)
+  check(body.HeroEquipment.XP.Text==case[3],'hero window displays cumulative XP: '..case[3])
+  xpCharacter:SetAttribute('K0Level',case[1]);xpCharacter:SetAttribute('K0XP',case[2]);hud.setCooldowns(xpCharacter)
+  check(status.XP.Text=='LV '..case[1]..'   '..case[3],'HUD matches cumulative hero XP')
+  local measured=game:GetService('TextService'):GetTextSize(status.XP.Text,status.XP.TextSize,status.XP.Font,Vector2.new(10000,10000))
+  check(measured.X<=220,'cumulative XP fits existing HUD label')
+ end
+ xpCharacter:Destroy()
 	body:Destroy()
 	local inactiveTouch=Instance.new('ScreenGui');inactiveTouch.Name='InactiveTouch';inactiveTouch.Enabled=false;inactiveTouch.Parent=playerGui
 	local staleJump=Instance.new('TextButton');staleJump.Name='JumpButton';staleJump.Size=UDim2.fromOffset(80,80);staleJump.Position=UDim2.fromOffset(20,10);staleJump.Parent=inactiveTouch

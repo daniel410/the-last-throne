@@ -1,5 +1,8 @@
 -- en-US source text for the K0 training prototype. Keys are language-neutral.
 return {
+ TotalXP = "TOTAL XP %d / %d",
+ TotalXPMax = "TOTAL XP %d (MAX)",
+ LevelXP = "LV %d   %s",
  EnemyBossBadge = "◆ BOSS ◆",
  AvailableGrowth = "%d STAT POINTS  /  %d SKILL POINTS  [H]",
  LevelUpGrowth = "LEVEL %d!  +%d stat points  /  +%d skill points. Open HERO [H] to invest.",

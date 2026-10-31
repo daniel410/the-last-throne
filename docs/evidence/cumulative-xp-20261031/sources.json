@@ -1,0 +1,6 @@
+{
+  "src/shared/HeroProgression.luau": "9d40992ad7c0099646894dd4cf018063520b7c4280292b825b4506258e6debb5",
+  "src/shared/K0Text.luau": "ad84be62e6e8de506a177a30fe35a401fb742e9a6ef08c13c35ef6865c41abc1",
+  "src/client/HeroStatsView.luau": "2a94e6184d3f29e6cf4d6c3fd9a0bc5afd297c860c1e04031dc8ced8fe9d869a",
+  "src/client/K0Hud.luau": "8bcd9fee22552efa5e8cb40bd29ed0db4589f40dc9c058d00011d689633e20b8"
+}

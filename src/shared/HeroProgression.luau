@@ -15,6 +15,12 @@ function Growth.copy(t)
 	local n={}; for k,v in pairs(t) do n[k]=Growth.copy(v) end; return n
 end
 function Growth.xpToNext(level) return level<Growth.maxLevel and Growth.xpBase+Growth.xpPerLevel*(level-1) or 0 end
+-- Display cumulative progression XP without changing saved within-level XP.
+function Growth.xpAtLevel(level)
+ local completed=level-1
+ return completed*Growth.xpBase+Growth.xpPerLevel*completed*(completed-1)/2
+end
+function Growth.totalXP(g) return Growth.xpAtLevel(g.level)+g.xp end
 function Growth.new(level)
  local ranks={};for i=1,32 do ranks[i]=0 end
  return {version=3,revision=0,level=level or 1,xp=0,stats={STR=0,DEX=0,INT=0,VIT=0},

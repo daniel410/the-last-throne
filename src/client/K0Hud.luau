@@ -5,6 +5,7 @@ local UserInputService = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
 local Config = require(ReplicatedStorage.Shared.K0Config)
+local Growth = require(ReplicatedStorage.Shared.HeroProgression)
 
 local Theme = require(script.Parent.TDInventoryTheme)
 local BattleArt = require(ReplicatedStorage.Shared.TDUI.BattleChromeArtAssets)
@@ -425,9 +426,9 @@ function Hud.create()
     growthPoints.Visible=showPoints;growthPoints.Text=string.format(Text.AvailableGrowth,st,kp)
     if changed then updateScale() end
 				local level=character:GetAttribute("K0Level") or 1
-				local needed=character:GetAttribute("K0XPToNext") or 100
-				xpLabel.Text=needed>0 and string.format("LV %d   xp %d/%d",level,character:GetAttribute("K0XP") or 0,needed)
-					or string.format("LV %d   xp MAX",level)
+				local total=Growth.totalXP({level=level,xp=character:GetAttribute("K0XP") or 0})
+				local progress=level<Growth.maxLevel and string.format(Text.TotalXP,total,Growth.xpAtLevel(level+1)) or string.format(Text.TotalXPMax,total)
+				xpLabel.Text=string.format(Text.LevelXP,level,progress)
 			end
 			for index, button in ipairs(itemButtons) do
 				local count = character and character:GetAttribute("K0ItemCount" .. index) or 0

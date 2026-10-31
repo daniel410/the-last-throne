@@ -6,6 +6,7 @@ local Glyph=require(script.Parent.SkillGlyph)
 local Catalog=require(RS.Shared.ItemCatalog)
 local Text=require(RS.Shared.InventoryText)
 local Growth=require(RS.Shared.HeroProgression)
+local GrowthText=require(RS.Shared.K0Text)
 local Preview=require(RS.Shared.SkillStatPreview)
 local SkillText=require(RS.Shared.SkillStatText)
 local Config=require(RS.Shared.K0Config)
@@ -31,7 +32,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
   if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8)) end
   local caption=Theme.label(cell,'SlotName',Text.Slots[slot],UDim2.new(0,-6,1,4),UDim2.new(1,12,0,26),9,Theme.color.silver);caption.TextXAlignment=Enum.TextXAlignment.Center
  end
- local xp=g.level==80 and 'XP MAX' or string.format('xp %d/%d',g.xp,Growth.xpToNext(g.level))
+ local xp=g.level==Growth.maxLevel and string.format(GrowthText.TotalXPMax,Growth.totalXP(g)) or string.format(GrowthText.TotalXP,Growth.totalXP(g),Growth.xpAtLevel(g.level+1))
  local xpLabel=Theme.label(left,'XP',xp,UDim2.new(0,12,1,-42),UDim2.new(1,-24,0,28),14,Theme.color.gold);xpLabel.TextXAlignment=Enum.TextXAlignment.Center
  local x=narrow and 4 or leftW+24;local y=narrow and 584 or 4;local rw=narrow and width-8 or width-x-4
  local right=Menu.frame(body,'StatAllocation',UDim2.fromOffset(x,y),UDim2.fromOffset(rw,616))

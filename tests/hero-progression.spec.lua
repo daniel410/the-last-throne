@@ -88,4 +88,20 @@ for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
  local denied,reason=R.progress(account,advance,{atHub=false,canInvest=true},C)
  eq(denied,nil,'safe field never allows advancement');eq(reason,'WaitForLobby','advancement still needs Hub')
 end
+local cumulative=G.new()
+local expected=0
+for level=1,79 do
+ eq(G.totalXP(cumulative),expected,'total matches all past rewards at level '..level)
+ local cost=G.xpToNext(level)
+ local almost=assert(G.apply(cumulative,{action='AwardXP',stream='cumulative',sequence=2*level-1,amount=cost-1}))
+ eq(G.totalXP(almost),expected+cost-1,'total grows within level')
+ cumulative=assert(G.apply(almost,{action='AwardXP',stream='cumulative',sequence=2*level,amount=1}))
+ expected=expected+cost
+ eq(cumulative.level,level+1,'boundary levels up')
+ eq(cumulative.xp,0,'saved remainder resets as before')
+ eq(G.totalXP(cumulative),expected,'display total never resets at level up')
+ eq(G.xpAtLevel(level+1),expected,'next target is cumulative')
+end
+eq(G.totalXP(assert(G.apply(G.new(),{action='AwardXP',stream='multi',sequence=1,amount=240}))),240,'multi-level reward remains fully visible')
+eq(G.totalXP(recovered.heroes.hero.progression),100,'recovered unknown reward has one cumulative grant')
 print('Hero progression: '..n..' checks passed')
