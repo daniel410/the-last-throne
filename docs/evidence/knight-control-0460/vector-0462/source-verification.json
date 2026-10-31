@@ -1,0 +1,206 @@
+{
+  "source_commit": "d892ad2a5de84c3ebc05981e34b602fcd29e2b4b",
+  "version": "0.46.2",
+  "artifacts": [
+    {
+      "path": "builds/0.46.2/TheLastThrone-Lobby-0.46.2.rbxlx",
+      "sha256": "dfff706a0e21f9c0ecaacb64a2296fd32b3fbbee8aa9e61a2059203d159fcf49",
+      "modules": [
+        {
+          "file": "src/client/LobbyWallet.luau",
+          "sha256": "b7b455607337c3f5cd030e13b5781c0404a5e161a8ee0e9f661aae4c12936537",
+          "match": true
+        },
+        {
+          "file": "src/client/K0HitEffects.luau",
+          "sha256": "5300752525b42caacbb4789eef0808744d4f60a67d211363eb003fd30c55c18a",
+          "match": true
+        },
+        {
+          "file": "src/client/K0EnemyControlEffects.luau",
+          "sha256": "22b5c00c5da0447289f30010e93e461ceb722d23a68ff63d46fb980d334cbefb",
+          "match": true
+        },
+        {
+          "file": "src/client/K0EnemyMotion.luau",
+          "sha256": "4dfa03a8862f29905f48d14bd03b83a280fc6d98ef132dbcbd916a1c395a4560",
+          "match": true
+        },
+        {
+          "file": "src/client/K0EnemyClips.luau",
+          "sha256": "54044404298eae2c3ff2a037f7996e587830e4fc6e353c05230a951d8ce68bfe",
+          "match": true
+        },
+        {
+          "file": "src/client/K0EnemyVisual.luau",
+          "sha256": "952c6bd1d65a60c0d82c8caf7ebdd8c19e9512a53f04f37ec7655aa0c0d1ce12",
+          "match": true
+        },
+        {
+          "file": "src/client/BattleMinimap.luau",
+          "sha256": "ca00b2754b054d7ddcfe669e74ae8ef2879a3fd60132c376813c7f329c542e2c",
+          "match": true
+        },
+        {
+          "file": "src/client/HeroGrowthGui.luau",
+          "sha256": "f82498b7577ee56d4f8f935694433037d3c098ff41611156ba00c3fd4225aa5f",
+          "match": true
+        },
+        {
+          "file": "src/client/InventoryGui.luau",
+          "sha256": "9b2021c364c8c56b3f26776e75249238b052819822cf36fc723da4b882b986ae",
+          "match": true
+        },
+        {
+          "file": "src/client/K0Hud.luau",
+          "sha256": "abb51ceeca228e5402c93843417f101be9e727ee14d1cee0ecfd33e1c93435f9",
+          "match": true
+        },
+        {
+          "file": "src/client/TopMenuLayout.luau",
+          "sha256": "1e51918039981c21d03160279c0d9dc979768eaf5f8e228ade7ccdbc04d22180",
+          "match": true
+        },
+        {
+          "file": "src/shared/NavigationText.luau",
+          "sha256": "c6e59b12cdb1c5a3a6b6cee8bd02119478094a489ce91f2c2e43ba2d3cb89983",
+          "match": true
+        },
+        {
+          "file": "src/shared/K0Text.luau",
+          "sha256": "06e668a805bf38c9b0f082bb1e77c72d0042c76edf8f6e31f92ddc06487795da",
+          "match": true
+        },
+        {
+          "file": "src/shared/K0Config.luau",
+          "sha256": "f3349e5641ef5eccbb63bb8fd6e48074854f62c0e6d9998080cc1f43a2f67d3c",
+          "match": true
+        },
+        {
+          "file": "src/shared/AdvancedSkills.luau",
+          "sha256": "7e923d7fd19ff9507b90198be1936d4e7ae02836ed00c3fbf9ddf70e20030072",
+          "match": true
+        },
+        {
+          "file": "src/shared/DeepwoodEncounterBalance.luau",
+          "sha256": "759497fbf9fdcd1a338c03b7aaa64afbbcda0b80bb517860bad91e31787d4c0e",
+          "match": true
+        },
+        {
+          "file": "src/server/Combat/CombatService.luau",
+          "sha256": "7e658aa75ffd5cc3abe7bfda61055da90532d7c45ed07cc15935cd8f57122ebc",
+          "match": true
+        },
+        {
+          "file": "src/server/Story/DeepwoodService.luau",
+          "sha256": "cbea3c374680cd79fac59161da7a1a15eabb067bf349a46c43d90b32202566b7",
+          "match": true
+        }
+      ],
+      "refinedModelsIncluded": true
+    },
+    {
+      "path": "builds/0.46.2/TheLastThrone-Battle-0.46.2.rbxlx",
+      "sha256": "1749349920c56489050b1122e04dae881beed5494e40d8bb6b8e9cb1a12989f7",
+      "modules": [
+        {
+          "file": "src/client/LobbyWallet.luau",
+          "sha256": "b7b455607337c3f5cd030e13b5781c0404a5e161a8ee0e9f661aae4c12936537",
+          "match": true
+        },
+        {
+          "file": "src/client/K0HitEffects.luau",
+          "sha256": "5300752525b42caacbb4789eef0808744d4f60a67d211363eb003fd30c55c18a",
+          "match": true
+        },
+        {
+          "file": "src/client/K0EnemyControlEffects.luau",
+          "sha256": "22b5c00c5da0447289f30010e93e461ceb722d23a68ff63d46fb980d334cbefb",
+          "match": true
+        },
+        {
+          "file": "src/client/K0EnemyMotion.luau",
+          "sha256": "4dfa03a8862f29905f48d14bd03b83a280fc6d98ef132dbcbd916a1c395a4560",
+          "match": true
+        },
+        {
+          "file": "src/client/K0EnemyClips.luau",
+          "sha256": "54044404298eae2c3ff2a037f7996e587830e4fc6e353c05230a951d8ce68bfe",
+          "match": true
+        },
+        {
+          "file": "src/client/K0EnemyVisual.luau",
+          "sha256": "952c6bd1d65a60c0d82c8caf7ebdd8c19e9512a53f04f37ec7655aa0c0d1ce12",
+          "match": true
+        },
+        {
+          "file": "src/client/BattleMinimap.luau",
+          "sha256": "ca00b2754b054d7ddcfe669e74ae8ef2879a3fd60132c376813c7f329c542e2c",
+          "match": true
+        },
+        {
+          "file": "src/client/HeroGrowthGui.luau",
+          "sha256": "f82498b7577ee56d4f8f935694433037d3c098ff41611156ba00c3fd4225aa5f",
+          "match": true
+        },
+        {
+          "file": "src/client/InventoryGui.luau",
+          "sha256": "9b2021c364c8c56b3f26776e75249238b052819822cf36fc723da4b882b986ae",
+          "match": true
+        },
+        {
+          "file": "src/client/K0Hud.luau",
+          "sha256": "abb51ceeca228e5402c93843417f101be9e727ee14d1cee0ecfd33e1c93435f9",
+          "match": true
+        },
+        {
+          "file": "src/client/TopMenuLayout.luau",
+          "sha256": "1e51918039981c21d03160279c0d9dc979768eaf5f8e228ade7ccdbc04d22180",
+          "match": true
+        },
+        {
+          "file": "src/shared/NavigationText.luau",
+          "sha256": "c6e59b12cdb1c5a3a6b6cee8bd02119478094a489ce91f2c2e43ba2d3cb89983",
+          "match": true
+        },
+        {
+          "file": "src/shared/K0Text.luau",
+          "sha256": "06e668a805bf38c9b0f082bb1e77c72d0042c76edf8f6e31f92ddc06487795da",
+          "match": true
+        },
+        {
+          "file": "src/shared/K0Config.luau",
+          "sha256": "f3349e5641ef5eccbb63bb8fd6e48074854f62c0e6d9998080cc1f43a2f67d3c",
+          "match": true
+        },
+        {
+          "file": "src/shared/AdvancedSkills.luau",
+          "sha256": "7e923d7fd19ff9507b90198be1936d4e7ae02836ed00c3fbf9ddf70e20030072",
+          "match": true
+        },
+        {
+          "file": "src/shared/DeepwoodEncounterBalance.luau",
+          "sha256": "759497fbf9fdcd1a338c03b7aaa64afbbcda0b80bb517860bad91e31787d4c0e",
+          "match": true
+        },
+        {
+          "file": "src/server/Combat/CombatService.luau",
+          "sha256": "7e658aa75ffd5cc3abe7bfda61055da90532d7c45ed07cc15935cd8f57122ebc",
+          "match": true
+        },
+        {
+          "file": "src/server/Story/DeepwoodService.luau",
+          "sha256": "cbea3c374680cd79fac59161da7a1a15eabb067bf349a46c43d90b32202566b7",
+          "match": true
+        }
+      ],
+      "refinedModelsIncluded": true
+    }
+  ],
+  "tests": {
+    "tests/enemy-streaming-presentation-native.luau": "64432ee41a2985b96336ba64b3c9775622e6ada22a994e9ae9060c164e78c577",
+    "tests/knight-stun-and-control-effects-native.luau": "64315e12870bc2468bb6625f370acdf4791d25dfe0c78c82133cf51698d595a3"
+  },
+  "story_budget_and_TD_runtime_meshes_unchanged": true,
+  "published": false
+}
