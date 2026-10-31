@@ -1,5 +1,8 @@
 # The Last Throne 통합 개발 계획
 
+> 2026-10-31 **0.53.0 / TLT-028/061/084 구현:** 로비 MAPS를5에픽 분류와 배틀 공용 지도 화면으로 교체한다. 구현된30지역은 잠금/진행 상태와 해금 조건을 표시하고 후속2에픽은 LOCKED / COMING SOON으로 구분한다. [검증·빌드·미검증](docs/evidence/lobby-atlas-0530/README.md). 로컬 시험판·미게시.
+
+
 > 2026-10-31 **0.52.0 / TLT-028/043/046/061/084 구현:** 대장간 WEAPONS / ARMOR / ACCESSORIES 구매·판매 분류와 신규 Lv10 장비12종, TD 포탈 목적지 아이콘을 연결한다. [검증·빌드·한계](docs/evidence/blacksmith-0520/README.md). 로컬 시험판·미게시.
 
 

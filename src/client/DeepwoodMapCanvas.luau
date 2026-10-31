@@ -9,7 +9,7 @@ local Art=require(script.Parent.DeepwoodCartography)
 local Canvas={}
 function Canvas.create(parent,zoneId,compact,onSelect)
  local minX,minZ,maxX,maxZ=math.huge,math.huge,-math.huge,-math.huge
- local ids={};for id in pairs(Content.zones) do if not zoneId or id==zoneId then table.insert(ids,id) end end;table.sort(ids)
+ local ids={};for id in pairs(Content.zones) do if not zoneId or id==zoneId or type(zoneId)=='table' and zoneId[id] then table.insert(ids,id) end end;table.sort(ids)
  for _,id in ipairs(ids) do local z=Content.zones[id]
   minX=math.min(minX,z.center[1]-z.size[1]/2);maxX=math.max(maxX,z.center[1]+z.size[1]/2)
   minZ=math.min(minZ,z.center[3]-z.size[2]/2);maxZ=math.max(maxZ,z.center[3]+z.size[2]/2)
@@ -38,12 +38,14 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   end
  end
  for _,id in ipairs(ids) do Art.region(parent,id,Content.zones[id],point,width,height,compact) end
- if not zoneId then for _,edge in ipairs(Access.edges) do
+ local included={};for _,id in ipairs(ids)do included[id]=true end
+ if type(zoneId)~='string' then for _,edge in ipairs(Access.edges) do
+  if included[edge[1]] and included[edge[2]] then
   local a,b=Content.zones[edge[1]],Content.zones[edge[2]];local first,second=point(a.center[1],a.center[3]),point(b.center[1],b.center[3])
   line('BridgeShadow',first,second,Color3.fromRGB(8,19,22),10,2)
   line('BridgeStone',first,second,Color3.fromRGB(86,106,83),7,2)
   line('Road',first,second,Theme.color.gold,2.5,4,edge)
- end end
+ end end end
  local function selectRegion(id)
   for key,row in pairs(rows) do row.outline.Transparency=key==id and .05 or .7 end
   if onSelect then onSelect(id) end
@@ -72,7 +74,7 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   local outline=Instance.new('UIStroke');outline.Color=Theme.color.gold;outline.Transparency=.7;outline.Parent=caption
   local status=label('RegionStatus','',center+Vector2.new(0,size.Y*.20),UDim2.fromOffset(160,16),9,Theme.color.muted)
   status.Position+=UDim2.fromOffset(0,27);status.Visible=not compact
-  local number=tonumber(id:match('DW%-(%d+)'))
+  local chapter=Content.byId[id];local number=chapter and not chapter.side and chapter.number
   local badge=label('StoryOrder',number and string.format(Text.Main,number) or Text.Side,center-Vector2.new(0,size.Y*.37),UDim2.fromOffset(100,16),9,Theme.color.gold)
   badge.Visible=not compact
   local checkpoint=label('Checkpoint','◇',point(z.center[1]-z.size[1]*.37,z.center[3]+z.size[2]*.34),UDim2.fromOffset(18,18),17,Theme.color.silver,10);checkpoint.Visible=false
