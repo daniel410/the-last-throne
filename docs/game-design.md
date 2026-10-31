@@ -1,5 +1,7 @@
 # The Last Throne — Roblox 액션 RPG 개발 기획안
 
+> **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → Frozen Vale → Ember Caldera → 어둠의 숲(Gloamwood, 영문 가칭) → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](production/five-epic-adventure-story-2026-10-30.md)를 따른다.
+
 문서 버전: 0.25 · 갱신일: 2026-10-28, America/Toronto  
 게임명: **The Last Throne** · 한국어명: **최후의 왕좌**  
 기획 기반: [현재 통합 제안서](../the-last-throne-rpg-proposal.md) · [기획 결정](decisions.md) · [Throne Defense](../../throne-defense/GOAL.md)

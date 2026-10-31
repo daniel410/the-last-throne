@@ -597,3 +597,7 @@ HP 물약 Small100/Medium300/Large500/XL1000,MP Small50/Medium100/Large200/XL500
 TLT-001/065 / five-epic-story-update-20261030. 사용자 요청에 따라 승인 개요를 통합 제안서 §4~7과 README·plan·게임 설계·시스템 계획·백로그에 반영했다. Deepwood → Frozen Vale → Ember Caldera → Gloamwood → Haunted Graveyard 순서와 Dawnspire 귀환을 따른다. 기존 8에픽 통합 원고는 [보관본](archive/eight-epic-proposal-before-five-epics-2026-10-30.md)에 남겼다. 과거 지역 상세안·시나리오 JSON은 이번 작업에서 개정하지 않았으며 승인 개요와 충돌하는 서사는 후속 개정 대상이다.
 
 보상 정본·안정ID·게임 코드·VERSION·게시 상태는 유지한다. 새 성장/전직 배치와 상세 영어 원고·실행/실기기 수용은 후속이다. [검증과 인계](evidence/five-epic-story-update-20261030.md)를 따른다.
+
+## 2026-10-30 5에픽 줄거리 표현 재정리 · 사용자 정정
+
+TLT-001/065. 사용자는 어둠의 숲을 새 에픽에 넣고 총5에픽만으로, 10~15세 Roblox 사용자에게 더 쉽고 긍정적인 내용으로 쓰기로 했음을 재확인했다. 승인 개요와 통합 제안서의 줄거리 자체를 도움·우정·용기·회복 중심으로 다시 썼다. 지역별 성공과 친구들의 보답을 명확히 하고 어둠의 숲을 에픽4로 명시했다. 프롤로그/귀환은 별도 에픽이 아니다. 기존 보상/안정ID·런타임·VERSION은 유지한다. 상세 영어 원고와 게임/연령대 수용은 후속이다.
