@@ -235,6 +235,9 @@ function InventoryGui.create(onVisibility, feedback)
 			if actionForSelection then primary.Caption.Text=Text[actionForSelection]; Theme.enabled(primary,not pending and snapshot.ready and snapshot.safe and snapshot.atStorage) end
 			return
 		end
+		if item.location.kind=="pending" and not snapshot.atHub then
+			detailLabel("ActionBlockedReason",Text.ClaimHubOnly,y,56,13,Color.error);y=y+60
+		end
 		if item.location.kind=="equipped" then
 			detailLabel("EquippedStatus",string.format(Text.EquippedSlot,Text.Slots[item.location.slot]),y,26,13,Color.gold);y=y+30
 		end
@@ -242,7 +245,7 @@ function InventoryGui.create(onVisibility, feedback)
 			detailLabel("ActionBlockedReason",Text.EquipHint,y,64,13,Color.error);y=y+68
 		elseif def.slot and item.location.kind=="bag" and def.classId and hero and def.classId~=hero.baseClassId then
 			detailLabel("ActionBlockedReason",Text.Errors.WrongClass,y,56,13,Color.error);y=y+60
-		elseif def.slot and hero and hero.level<(def.level or 1) then
+		elseif def.slot and item.location.kind=="bag" and hero and hero.level<(def.level or 1) then
 			detailLabel("ActionBlockedReason",Text.Errors.LevelRequired,y,48,13,Color.error);y=y+52
 		end
 		local heading=detailLabel("ItemName",def.name,y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
@@ -384,10 +387,10 @@ function InventoryGui.create(onVisibility, feedback)
 		heroLabel.Text=hero and Catalog.classes[hero.baseClassId].."  •  LV "..hero.level or ""
 		title.Text=storageMode and Text.StorageTitle or Navigation.gearBag
 		portrait.Image=hero and portraits[hero.baseClassId] or ""
-		portrait.ImageTransparency=gearMode and .35 or 0
+		portrait.ImageTransparency=.35
 		equipmentSlots:ClearAllChildren()
-		equipmentSlots.Visible=gearMode
-		if gearMode and hero then
+		equipmentSlots.Visible=true
+		if hero then
 			for index,slot in ipairs(Catalog.slots) do
 				local item
 				for _,candidate in ipairs(snapshot.items) do if candidate.location.kind=="equipped" and candidate.location.heroId==snapshot.heroId and candidate.location.slot==slot then item=candidate end end
@@ -406,7 +409,12 @@ function InventoryGui.create(onVisibility, feedback)
 		else renderList(bag,"bag") end
 		renderList(storage,"storage")
 		renderDetails()
-		if not pending and snapshot then setMessage(not hero and Text.SelectHero or snapshot.safe and Text.Safe or Text.Combat) end
+		if not pending and snapshot then
+			local status=not hero and Text.SelectHero or not snapshot.ready and Text.Errors.Unavailable
+				or sourceTab=="pending" and (snapshot.atHub and Text.ClaimReady or Text.ClaimHubOnly)
+				or snapshot.safe and Text.Safe or Text.Combat
+			setMessage(status)
+		end
 		if focusName then
 			local restored=gui:FindFirstChild(focusName,true)
 			if restored and restored:IsA("GuiButton") and restored.Visible and restored.Selectable then GuiService.SelectedObject=restored end
@@ -437,6 +445,7 @@ function InventoryGui.create(onVisibility, feedback)
 		local listWidth=cw-heroWidth-detailWidth-24
 		local filterLeft,filterWidth=20+heroWidth+12,listWidth
 		gear.Parent=compact and shell or heroPanel
+		gear.Visible=compact and not storageMode and sourceTab~="pending"
 		gear.Position,gear.Size=UDim2.new(0,12,1,-54),UDim2.new(1,-24,0,42)
 		gear.Caption.TextSize=12
 		if storageMode then filterLeft,filterWidth=20,cw end
@@ -495,10 +504,16 @@ function InventoryGui.create(onVisibility, feedback)
 		claimsOverlay.Visible=opened and sourceTab=="pending"
 		content.Parent=sourceTab=="pending" and claimsPanel or shell
 		message.Parent=sourceTab=="pending" and claimsPanel or shell
+		retry.Parent=sourceTab=="pending" and claimsPanel or shell
+		retry.Position,retry.Size=UDim2.new(1,-212,1,-66),UDim2.fromOffset(188,42)
 		if sourceTab=="pending" then
 			claimsTitle.Text=Text.Pending.." ("..tostring(snapshot and snapshot.pending or 0)..")"
 			content.Position,content.Size=UDim2.fromOffset(18,74),UDim2.new(1,-36,1,-130)
 			message.Position,message.Size=UDim2.new(0,20,1,-48),UDim2.new(1,-40,0,36)
+			if retry.Visible then
+				retry.Position,retry.Size=UDim2.new(1,-154,1,-49),UDim2.fromOffset(134,38)
+				message.Size=UDim2.new(1,-184,0,36)
+			end
 			heroPanel.Visible,storage.panel.Visible=false,false
 			if claimsPanel.AbsoluteSize.X<700 then
 				bag.panel.Position,bag.panel.Size=UDim2.new(),UDim2.fromScale(1,1)
@@ -527,7 +542,7 @@ function InventoryGui.create(onVisibility, feedback)
 		renderDetails()
 		task.delay(8,function()
 			if pending~=value then return end
-			retry.Visible=true; message.Size=UDim2.new(1,-254,0,32); setMessage(Text.Uncertain,true)
+			retry.Visible=true; resize(); setMessage(Text.Uncertain,true)
 		end)
 	end
 	primary.Activated:Connect(function() if actionForSelection then command(actionForSelection,accessorySlot,actionForSelection=="Claim" and "bag" or nil) end end)
@@ -591,7 +606,7 @@ function InventoryGui.create(onVisibility, feedback)
 			-- A newer broadcast must not discard the acknowledgement that settles
 			-- our request. Keep its newer data while processing the request result.
 			if snapshot and value.revision<snapshot.revision then value=snapshot end
-			local changed=not snapshot or snapshot.revision~=value.revision or snapshot.heroId~=value.heroId or snapshot.safe~=value.safe or snapshot.atStorage~=value.atStorage or snapshot.ready~=value.ready
+			local changed=not snapshot or snapshot.revision~=value.revision or snapshot.heroId~=value.heroId or snapshot.safe~=value.safe or snapshot.atHub~=value.atHub or snapshot.atStorage~=value.atStorage or snapshot.ready~=value.ready
 			snapshot=value
 			badge.Text, badge.Visible=tostring(value.pending),value.pending>0
 			local completed=pending and requestId==pending.requestId and errorCode~="Busy"

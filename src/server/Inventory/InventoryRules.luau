@@ -175,9 +175,9 @@ function Rules.apply(profile, command, context, catalog)
 	if not def or loc.kind ~= "storage" and loc.kind ~= "pending" and loc.heroId ~= hero.heroId then return nil, "NotOwned" end
 	if item.binding == "character" and item.boundHeroId ~= hero.heroId then return nil, "BoundHero" end
 	local action = command.action
+	if action == "Claim" and not context.atHub then return nil, "ClaimHubOnly" end
 	if action ~= "Lock" and action ~= "Use" and not context.safe then return nil, "InCombat" end
 	if (action == "Deposit" or action == "Withdraw") and not context.atStorage then return nil, "StorageOnly" end
-	if action == "Claim" and not context.atHub then return nil, "StorageOnly" end
 	if action == "Lock" and loc.kind ~= "bag" and loc.kind ~= "equipped" then return nil, "BagOnly" end
 	local nextProfile = Rules.copy(profile)
 	local target = nextProfile.items[item.instanceId]

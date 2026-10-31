@@ -109,6 +109,13 @@ equal(R.count(p,"bag","hero-knight"),60,"full bag swap works")
 denied,reason=apply(p,find(p,"knight_weapon_fine","equipped"),"Unequip")
 equal(reason,"BagFull","full bag unequip denied"); check(R.equipped(p,"hero-knight","weapon")~=nil,"failed unequip preserves equipment")
 local pendingGear=find(p,"health_potion","pending")
+for _,safeState in ipairs({true,false}) do
+	local blocked,why=apply(p,pendingGear,"Claim",{quantity=1,destination="bag"},{safe=safeState,atHub=false,atStorage=false})
+	equal(blocked,nil,"field claim cannot bypass the lobby requirement")
+	equal(why,"ClaimHubOnly","claim explains the lobby requirement even during combat")
+end
+local hubClaim,hubError=apply(p,pendingGear,"Claim",{quantity=1,destination="bag"},{safe=true,atHub=true,atStorage=false})
+check(hubClaim~=nil and hubError==nil,"claim works anywhere in the lobby without the storage chest")
 pendingGear.definitionId,pendingGear.quantity="traveler_gloves",1
 valid(p)
 denied,reason=apply(p,pendingGear,"Claim",{quantity=1,destination="bag"})
