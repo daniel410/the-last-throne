@@ -1,0 +1,10 @@
+import fs from 'node:fs';import crypto from 'node:crypto';
+const folder='assets/animations/shield-bash-v1';
+const r=JSON.parse(fs.readFileSync('docs/evidence/shield-bash-0463/01-author-result.json'));
+const output=r.content.filter(c=>c.type==='text').map(c=>c.text).join('\n');const line=output.split('\n').find(l=>l.startsWith('TLT_SHIELD_EXPORT '));if(!line)throw Error(output.slice(-1000));
+const data=JSON.parse(line.slice('TLT_SHIELD_EXPORT '.length));const json=JSON.stringify(data)+'\n';fs.writeFileSync(folder+'/clip.json',json);
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const lua=v=>Array.isArray(v)?'{'+v.map(lua).join(',')+'}':v&&typeof v==='object'?'{'+Object.entries(v).map(([k,v])=>'['+JSON.stringify(k)+']='+lua(v)).join(',')+'}':JSON.stringify(v);
+fs.writeFileSync('src/client/K0ShieldBashClip.luau','-- Blender MCP sampled native Bezier channels; edit shield-bash-v1 source.\nreturn '+lua({sourceSha256:hash(json),...data})+'\n');
+fs.writeFileSync(folder+'/manifest.json',JSON.stringify({version:1,authoring:'Blender MCP internal bpy; Knight_ShieldBash_Leading armature action',nativeFrameOrder:data.order,contact:.2,scope:'Presentation only; original shield/sword mesh, PBR, hand sockets and server hit timing unchanged',files:Object.fromEntries(['shield-bash.blend','clip.json'].map(f=>[f,{sha256:hash(fs.readFileSync(folder+'/'+f)),bytes:fs.statSync(folder+'/'+f).size}]))},null,2)+'\n');
+console.log(JSON.stringify({samples:data.samples.length,channels:data.channels.length,sourceSha256:hash(json)}));

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "authoring": "Blender MCP internal bpy; Knight_ShieldBash_Leading armature action",
+  "nativeFrameOrder": "Yaw * Pitch * Roll",
+  "contact": 0.2,
+  "scope": "Presentation only; original shield/sword mesh, PBR, hand sockets and server hit timing unchanged",
+  "files": {
+    "shield-bash.blend": {
+      "sha256": "8a2f2f2a40af40afafdb7d2e1ff83a4fcc4171e205229e7067b62b7e75480b5b",
+      "bytes": 86666872
+    },
+    "clip.json": {
+      "sha256": "7508f958e96f0ad3a148bf37db15cf429d95633e8a967c751486428c31c013a9",
+      "bytes": 26931
+    }
+  }
+}

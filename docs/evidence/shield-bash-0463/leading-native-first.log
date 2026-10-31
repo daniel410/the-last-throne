@@ -1,0 +1,9 @@
+SHIELD_BASH_LEADING_NATIVE {"checks":5,"samples":[],"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8: source meshes retained\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"SHIELD_BASH_LEADING_NATIVE"}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:41: Shield-first contact failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:41
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
