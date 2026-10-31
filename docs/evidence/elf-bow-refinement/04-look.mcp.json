@@ -1,0 +1,27 @@
+{
+  "name": "look",
+  "arguments": {
+    "mode": "frames",
+    "target": [
+      "elf_Rig"
+    ],
+    "frames": [
+      0,
+      12,
+      32,
+      46,
+      48,
+      50,
+      54,
+      60
+    ],
+    "view": [
+      7,
+      10,
+      4
+    ],
+    "shading": "material",
+    "max_size": 1600,
+    "user_prompt": "다음은 엘프 활 무기 3d모델링 개선해줘\n리서치해서 자연스러운 활 시위당기는 액션 발사액션 개선해야해 최고의 3d모델링 작없해줘"
+  }
+}

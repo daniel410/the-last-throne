@@ -8,6 +8,8 @@ local ContentProvider = game:GetService("ContentProvider")
 local Workspace = game:GetService("Workspace")
 local Config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
 local MeleeMotion = require(script.Parent.K0MeleeMotion)
+local BowMotion = require(script.Parent.K0BowMotion)
+local BowGeometry = require(game.ReplicatedStorage.Shared.ElfBowGeometry)
 local groundSlam, overheadSmash
 for _, skill in ipairs(Config.Skills.dwarf) do
 	if skill.id == "dwarf.common.ground" then groundSlam = skill
@@ -27,12 +29,11 @@ local seenSpells = {}
 local seenSkillEffects = {}
 local seenGravityAreas = {}
 local spells = {}
-local bowRest = {}
 local armPoses = {}
 local groundSlamJoints = {}
 local weaponPoses = {}
 local knightLoads = {}
-local elfIK = {}
+local elfIK = setmetatable({},{__mode="k"})
 local blockIK = {}
 local MELEE = {
 	knight = { grip = "SwordGrip", joint = "K0SwordJoint" },
@@ -230,12 +231,13 @@ end
 
 -- R15's two-segment arm can actually reach the drawn nock. The target follows
 -- the source arrow through its local draw transform; R6 retains the pose fallback.
-local function updateElfIK(character, mode, phase, dt)
+local function updateElfIK(character, mode, phase, dt, bowPose)
 	local state = elfIK[character]
 	local isElf = character:GetAttribute("K0ClassId") == "elf"
-	local isDrawing = isElf and mode == "Attack" and (phase == "Windup" or phase == "Active")
+	local isDrawing = isElf and (bowPose and bowPose.ikWeight>0 or mode == "Attack" and not bowPose and (phase == "Windup" or phase == "Active"))
 	if not isDrawing then
 		if state and state.control.Parent then
+			if bowPose then state.weight=0;state.control.Weight=0;state.control.Enabled=false;return false end
 			-- Block has its own right-hand control; never blend the bow draw into it.
 			if mode == "Block" then state.weight = 0; state.control.Weight = 0; state.control.Enabled = false; return false end
 			if isElf then
@@ -258,6 +260,7 @@ local function updateElfIK(character, mode, phase, dt)
 		or not stringJoint or not stringJoint:IsA("Motor6D") then return false end
 	if not state or state.arrow ~= arrow or not state.control.Parent then
 		if state then
+			if state.pole and state.pole.Parent then state.pole:Destroy() end
 			if state.control.Parent then state.control:Destroy() end
 			if state.target.Parent then state.target:Destroy() end
 		end
@@ -265,19 +268,24 @@ local function updateElfIK(character, mode, phase, dt)
 		target.Name = "K0BowNockTarget"
 		-- Compensate for the R15 arm's joint constraints so the hand itself
 		-- reaches the string's middle height during the draw.
-		local middleY = stringJoint.C0.Position.Y - arrowJoint.C0.Position.Y
-		target.Position = Vector3.new(0, middleY - 0.475, arrow.Size.Z * 0.155)
+		target.Position = Vector3.new(.06,-.06,arrow.Size.Z*.5-.08)
 		target.Parent = arrow
 		local control = Instance.new("IKControl")
 		control.Name = "K0BowDrawIK"
 		control.Type = Enum.IKControlType.Position
 		control.ChainRoot, control.EndEffector, control.Target = upper, hand, target
 		control.SmoothTime, control.Weight = 0.04, 1
+		local upperTorso=character:FindFirstChild("UpperTorso")
+		if upperTorso then
+			local pole=Instance.new("Attachment");pole.Name="K0BowElbowPole";pole.Position=Vector3.new(1.5,.7,.8);pole.Parent=upperTorso
+			control.Pole=pole
+		end
 		control.Parent = humanoid
-		state = { control = control, target = target, arrow = arrow, weight = 1 }
+		state = { control = control, target = target, arrow = arrow, pole=control.Pole, weight = 1 }
 		elfIK[character] = state
 	end
-	state.weight, state.control.Weight, state.control.Enabled = 1, 1, true
+	state.weight = bowPose and bowPose.ikWeight or 1
+	state.control.Weight,state.control.Enabled=state.weight,true
 	return true
 end
 
@@ -376,10 +384,12 @@ function Visual.renderArms(character, dt, now)
 	local kind = character:GetAttribute("K0AttackKind")
 	local skillId = character:GetAttribute("K0SkillId")
 	local motion = MeleeMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
-	if classId == "elf" then phase = Visual.bowPhase(character, phase, Workspace:GetServerTimeNow()) end
+	local bowPose=BowMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
+	motion=motion or bowPose
+	if classId == "elf" then phase = Visual.bowPhase(character, phase, now or Workspace:GetServerTimeNow()) end
 	local right, left, rightElbow, torso, rightHipPose, rightKneePose, leftHipPose, leftKneePose
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
-	local usesIK = updateElfIK(character, mode, phase, elapsed)
+	local usesIK = updateElfIK(character, mode, phase, elapsed,bowPose)
 	local blockHand = updateBlockHand(character, classId, mode)
 	if mode == "Dead" or character:GetAttribute("TLTDeathFalling") then
 		left=CFrame.Angles(math.rad(20),0,math.rad(12));right=CFrame.Angles(math.rad(15),0,math.rad(-12))
@@ -575,7 +585,7 @@ function Visual.renderArms(character, dt, now)
 		end
 		apply(neck, neckPose)
 	end
-	if right and rightShoulder and (classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane") or (mode == "Block" and classId ~= "knight")) then
+	if right and rightShoulder and (bowPose or classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane") or (mode == "Block" and classId ~= "knight")) then
 		-- Classic R6 shoulders use a different joint basis from R15. Express
 		-- these strokes in torso axes so both rigs travel the same way.
 		local basis = rightShoulder.C0.Rotation
@@ -642,6 +652,15 @@ local function emitArrow(character, first, last, payload, showImpact, fanOffset)
 	local shaft = arrowPart(model, "Shaft", Vector3.new(0.10, 0.10, 1.6), Color3.fromRGB(133, 86, 46), Enum.Material.Wood)
 	local tip = arrowPart(model, "Arrowhead", Vector3.new(0.20, 0.20, 0.35), Color3.fromRGB(220, 226, 232), Enum.Material.Metal)
 	local feather = arrowPart(model, "Fletching", Vector3.new(0.27, 0.06, 0.35), Color3.fromRGB(234, 234, 213), Enum.Material.SmoothPlastic)
+	local source=character:FindFirstChild("NockedArrow",true)
+	local sourceLength=0
+	if source and source:IsA("MeshPart") then
+		shaft:Destroy();shaft=source:Clone();shaft.Name="Shaft"
+		for _,child in ipairs(shaft:GetChildren()) do if not child:IsA("SurfaceAppearance") then child:Destroy() end end
+		shaft.Anchored=true;shaft.CanCollide=false;shaft.CanTouch=false;shaft.CanQuery=false
+		shaft.Transparency=0;shaft.LocalTransparencyModifier=0;shaft.Parent=model
+		tip.Transparency,feather.Transparency=1,1;sourceLength=shaft.Size.Z
+	end
 	local tipTrail = Instance.new("Attachment"); tipTrail.Position = Vector3.new(0, 0, -0.5); tipTrail.Parent = shaft
 	local tailTrail = Instance.new("Attachment"); tailTrail.Position = Vector3.new(0, 0, 0.5); tailTrail.Parent = shaft
 	local trail = Instance.new("Trail")
@@ -650,7 +669,7 @@ local function emitArrow(character, first, last, payload, showImpact, fanOffset)
 	trail.Transparency, trail.Lifetime, trail.LightEmission = NumberSequence.new(0.25), 0.16, 0.5
 	trail.Parent = shaft
 	local pose = CFrame.lookAt(first, last)
-	shaft.CFrame = pose
+	shaft.CFrame = pose*CFrame.new(0,0,sourceLength*.5)
 	tip.CFrame = pose * CFrame.new(0, 0, -0.93)
 	feather.CFrame = pose * CFrame.new(0, 0, 0.70)
 	model.Parent = workspace
@@ -659,6 +678,7 @@ local function emitArrow(character, first, last, payload, showImpact, fanOffset)
 		owner = Players:GetPlayerFromCharacter(character), payload = payload, showImpact = showImpact ~= false, fanOffset = fanOffset or 0,
 		first = first, direction = (last - first).Unit, distance = distance, elapsed = 0,
 		duration = math.clamp(distance / 100, 0.12, 0.55) }
+	arrow.sourceLength=sourceLength
 	table.insert(arrows, arrow)
 	return arrow
 end
@@ -723,7 +743,7 @@ local function advanceArrows(dt)
 				if sideways.Magnitude > 0.001 then position += sideways.Unit * arrow.fanOffset * math.sin(math.pi * progress) end
 			end
 			local pose = CFrame.lookAt(position, position + arrow.direction)
-			arrow.shaft.CFrame = pose
+			arrow.shaft.CFrame = pose*CFrame.new(0,0,(arrow.sourceLength or 0)*.5)
 			arrow.tip.CFrame = pose * CFrame.new(0, 0, -0.93)
 			arrow.feather.CFrame = pose * CFrame.new(0, 0, 0.70)
 			if arrow.elapsed >= arrow.duration then
@@ -876,28 +896,19 @@ local function advanceSpells(dt)
 	end
 end
 
-local function drawBow(model, phase, elapsed, skillId)
+local function drawBow(model, phase, elapsed, skillId, pose)
 	local stringPart, arrow = model:FindFirstChild("String"), model:FindFirstChild("NockedArrow")
 	local stringJoint = stringPart and stringPart:FindFirstChild("StringVisualJoint")
 	local arrowJoint = arrow and arrow:FindFirstChild("NockedArrowVisualJoint")
 	if not stringPart or not stringPart:IsA("BasePart") or not stringJoint or not stringJoint:IsA("Motor6D")
 		or not arrow or not arrow:IsA("BasePart") or not arrowJoint or not arrowJoint:IsA("Motor6D") then return end
-	local state = bowRest[model]
-	if not state or state.part ~= stringPart or state.arrow ~= arrow then
-		state = { part = stringPart, arrow = arrow, size = stringPart.Size, arrowTransparency = arrow.Transparency, draw = 0 }
-		bowRest[model] = state
-	end
-	local target = phase == "Windup" and (skillId == "elf.common.aimed" and 0.62 or skillId == "elf.common.rapid" and 0.38 or 0.48) or 0
-	local speed = phase == "Windup" and 12 or 35
-	state.draw = state.draw + (target - state.draw) * math.clamp(elapsed * speed, 0, 1)
+	local attacking=model.Parent and model.Parent:GetAttribute("K0State")=="Attack"
+	local amount=pose and pose.draw or (attacking and phase=="Windup" and .85 or 0)
 	local unequipped = model.Parent and model.Parent:GetAttribute("TLTEquippedWeapon") == ""
-	arrow.Transparency = (unequipped or phase == "Active" or phase == "Recovery") and 1 or (arrow:GetAttribute("TLTEquipmentRestTransparency") or state.arrowTransparency)
-	-- The TD string mesh is unusually deep at rest. Keep a relaxed baseline;
-	-- only the same draw amount that moves the arrow pulls its nock back.
-	local depth = state.size.Z * 0.48 + state.draw
-	stringPart.Size = Vector3.new(state.size.X, state.size.Y, depth)
-	stringJoint.Transform = CFrame.new(0, 0, (depth - state.size.Z) / 2)
-	arrowJoint.Transform = CFrame.new(0, 0, state.draw)
+	local dead=model.Parent and (model.Parent:GetAttribute("K0State")=="Dead" or model.Parent:GetAttribute("TLTDeathFalling"))
+	local nocked=pose and pose.nocked or (not pose and phase~="Active" and phase~="Recovery")
+	arrow.Transparency = (unequipped or dead or not nocked) and 1 or (arrow:GetAttribute("TLTEquipmentRestTransparency") or arrow:GetAttribute("ElfArrowRestTransparency") or 0)
+	BowGeometry.pose(model,amount,not unequipped and not dead)
 end
 
 -- Native fixtures may call this directly without installing a class-selection
@@ -915,10 +926,19 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and dt or 1 / 60
 	local character = model.Parent
 	local skillId = character and character:GetAttribute("K0SkillId")
-	if classId == "elf" and character then phase = Visual.bowPhase(character, phase, Workspace:GetServerTimeNow()) end
+	if classId == "elf" and character then phase = Visual.bowPhase(character, phase, now or Workspace:GetServerTimeNow()) end
 	local target = Visual.samplePose(classId, phase, combo, attackKind, skillId)
 	local motion = character and MeleeMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
+	local bowPose=character and BowMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
+	motion=motion or bowPose
 	if motion then target = motion.weapon end
+	if bowPose and joint.Part0 then
+		local root=character:FindFirstChild("HumanoidRootPart")
+		if root then
+			local basis=(joint.Part0.CFrame*joint.C0).Rotation
+			target=basis:Inverse()*root.CFrame.Rotation*CFrame.Angles(0,0,math.rad(bowPose.angles.weapon.Z))
+		end
+	end
 	if character and character:GetAttribute("K0State") == "Block" then
 		if classId == "elf" or classId == "dwarf" or classId == "mage" then
 			local root = character:FindFirstChild("HumanoidRootPart")
@@ -949,7 +969,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	weaponPoses[joint] = pose
 	joint.Transform = pose
 	if classId == "elf" then
-		drawBow(model, phase, elapsed, skillId)
+		drawBow(model, phase, elapsed, skillId,bowPose)
 		clearEffect(model)
 	else
 		local effect = meleeEffect(model, joint, classId)
@@ -990,7 +1010,6 @@ function Visual.renderCharacter(character, dt, now)
 			if seq and finite(x) and finite(y) and finite(z) then areaPulse(Vector3.new(x, y, z), Color3.fromRGB(126, 65, 211), 6) end
 		end
 	end
-	if classId == "elf" then consumeArrow(character); consumeMultiShot(character) end
 	if classId == "mage" or classId == "dwarf" then consumeSpell(character) end
 	local rendered = 0
 	for _, model in ipairs(character:GetChildren()) do
@@ -1010,6 +1029,7 @@ function Visual.renderCharacter(character, dt, now)
 			clearEffect(model)
 		end
 	end
+	if classId == "elf" then consumeArrow(character); consumeMultiShot(character) end
 	return rendered
 end
 

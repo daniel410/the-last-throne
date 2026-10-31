@@ -26,12 +26,13 @@ local server=Instance.new("Folder");server.Name="Server";server.Parent=game.Serv
 local cosmetics=Instance.new("Folder");cosmetics.Name="Cosmetics";cosmetics.Parent=server
 local client=Instance.new("LocalScript");client.Name="Client";client.Disabled=true;client.Parent=game.StarterPlayer.StarterPlayerScripts
 `;
-for(const [parent,folder,names]of [['shared','src/shared',['K0Config','AdvancedSkills']],['cosmetics','src/server/Cosmetics',['WeaponAppearance','WoodenStaffBuilder']],['client','src/client',['K0MeleeMotion','K0MeleeClips','K0SwordVisual']]])for(const name of names){
+for(const [parent,folder,names]of [['shared','src/shared',['K0Config','AdvancedSkills','ElfBowClip','ElfBowGeometry']],['cosmetics','src/server/Cosmetics',['WeaponAppearance','WoodenStaffBuilder']],['client','src/client',['K0MeleeMotion','K0MeleeClips','K0BowMotion','K0SwordVisual']]])for(const name of names){
  const path=folder+'/'+name+'.luau',bytes=fs.readFileSync(path),source=bytes.toString();if(source.includes(']===]'))throw new Error('Unsafe source delimiter');inputs[path]=hash(bytes);
  code+=`do local m=Instance.new("ModuleScript");m.Name="${name}";m.Source=[===[${source}]===];m.Parent=${parent} end\n`;
 }
-const testPaths=['tests/k0-melee-curves-native.luau','tests/k0-melee-blender-native.luau','tests/k0-dwarf-motion-native.luau'];
+const testPaths=['tests/k0-melee-curves-native.luau','tests/k0-melee-blender-native.luau','tests/k0-dwarf-motion-native.luau','tests/k0-elf-bow-native.luau'];
+{const path='tests/elf-bow-golden.luau',bytes=fs.readFileSync(path);inputs[path]=hash(bytes);code+='local BowGolden=(function()\n'+bytes.toString()+'\nend)()\n';}
 for(const path of testPaths){const bytes=fs.readFileSync(path);inputs[path]=hash(bytes);code+='\n'+bytes.toString()+'\n';}
 fs.writeFileSync(out+'/source-probe.luau',code);
 fs.writeFileSync(out+'/source-manifest.json',JSON.stringify(inputs,null,2)+'\n');
-console.log(JSON.stringify({place:out+'/tlt-k0-qa-empty.rbxlx',script:out+'/source-probe.luau',modules:7,tests:testPaths.length}));
+console.log(JSON.stringify({place:out+'/tlt-k0-qa-empty.rbxlx',script:out+'/source-probe.luau',modules:10,tests:testPaths.length}));

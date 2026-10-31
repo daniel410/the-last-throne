@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: 04:24:12 | INFO: Starting glTF 2.0 export\n04:24:12 | INFO: Extracting primitive: Bow\n04:24:12 | INFO: Primitives created: 1\n04:24:12 | INFO: Extracting primitive: NockedArrow\n04:24:12 | INFO: Primitives created: 1\n04:24:12 | INFO: Extracting primitive: LowerString\n04:24:12 | INFO: Primitives created: 1\n04:24:12 | INFO: Extracting primitive: UpperString\n04:24:12 | INFO: Primitives created: 1\n04:24:12 | INFO: Finished glTF 2.0 export in 0.026807069778442383 s\n\nInfo: No new files have been packed\nInfo: Saved as \"elf-bow-refined.blend\"\n{\"saved\": \"/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/elf-bow-v1/elf-bow-refined.blend\", \"scene\": \"TLT_Elf_Bow_Authoring\", \"action\": \"Elf_Draw_Anchor_Release\", \"stringStrands\": 2, \"drivers\": 0}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: 04:24:12 | INFO: Starting glTF 2.0 export\n04:24:12 | INFO: Extracting primitive: Bow\n04:24:12 | INFO: Primitives created: 1\n04:24:12 | INFO: Extracting primitive: NockedArrow\n04:24:12 | INFO: Primitives created: 1\n04:24:12 | INFO: Extracting primitive: LowerString\n04:24:12 | INFO: Primitives created: 1\n04:24:12 | INFO: Extracting primitive: UpperString\n04:24:12 | INFO: Primitives created: 1\n04:24:12 | INFO: Finished glTF 2.0 export in 0.026807069778442383 s\n\nInfo: No new files have been packed\nInfo: Saved as \"elf-bow-refined.blend\"\n{\"saved\": \"/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/elf-bow-v1/elf-bow-refined.blend\", \"scene\": \"TLT_Elf_Bow_Authoring\", \"action\": \"Elf_Draw_Anchor_Release\", \"stringStrands\": 2, \"drivers\": 0}\n"
+  },
+  "isError": false
+}

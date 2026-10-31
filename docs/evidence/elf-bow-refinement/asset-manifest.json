@@ -1,0 +1,31 @@
+{
+  "source": "TD original bow retained; derived string, arrow alignment and Blender motion",
+  "newUploads": 0,
+  "files": [
+    {
+      "path": "assets/shared/td-player-weapons/source/ElfBow-td-derived-review.glb",
+      "bytes": 156916,
+      "sha256": "e8e51d71bceab81e7dfbb727f1a32cdd4904f0368661bb5e2f6ea0e88b350167"
+    },
+    {
+      "path": "assets/shared/td-player-weapons/runtime.rbxmx",
+      "bytes": 22436,
+      "sha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9"
+    },
+    {
+      "path": "assets/animations/elf-bow-v1/elf-bow-refined.blend",
+      "bytes": 20432355,
+      "sha256": "c3445b47491329889cef86ff3d9c9b3393aa0a510805c69f22536e9c6250d724"
+    },
+    {
+      "path": "assets/animations/elf-bow-v1/elf-bow-refined.glb",
+      "bytes": 327492,
+      "sha256": "365104ed5d9767236d066a3062b0c16f896da0b0cbaf36fce739224b50f9a8d6"
+    },
+    {
+      "path": "assets/animations/elf-bow-v1/clip.json",
+      "bytes": 114596,
+      "sha256": "f25c8f6464505f822ecc59965d70a22315ece414a423c3649fbf94d103229d7f"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 -- Presentation-only equipment. Class selection, ownership and combat stay with
 -- their server owners; this adapter never grants a class or changes hit geometry.
 local ServerStorage = game:GetService("ServerStorage")
+local BowGeometry = require(game:GetService("ReplicatedStorage").Shared.ElfBowGeometry)
 
 local Appearance = {}
 local OWNED = "TLTPlayerWeaponPart"
@@ -167,6 +168,7 @@ local function buildTd(spec)
 				blade = copy
 			end
 		end
+		if spec.template == "ElfBow" then BowGeometry.install(model,grip) end
 		if blade then addSwordTrail(blade) end
 		return { model = model, grip = grip, trailPart = blade, tip = tip, sourceKey = spec.sourceKey }
 	end)
@@ -235,12 +237,14 @@ end
 
 local function attachedResult(model, classId, hand)
 	local spec = SPECS[classId]
+	if classId=="elf" and model:GetAttribute("ElfBowRigVersion")~=BowGeometry.version then return nil end
 	if model:GetAttribute("WeaponClassId") ~= classId or model:GetAttribute("WeaponSourceKey") ~= spec.sourceKey
 		or model:GetAttribute("WeaponVisualVersion") ~= VERSION then return nil end
 	local grip = model:FindFirstChild(spec.gripName)
 	local joint = grip and grip:FindFirstChild(spec.jointName)
 	if not grip or not grip:IsA("BasePart") or grip:GetAttribute(OWNED) ~= true
 		or not joint or not joint:IsA("Motor6D") or joint.Part0 ~= hand or joint.Part1 ~= grip then return nil end
+	if classId=="elf" and not BowGeometry.valid(model,grip) then return nil end
 	local names = model:GetAttribute("WeaponPartNames")
 	local expectedCount = model:GetAttribute("WeaponPartCount")
 	if type(names) ~= "string" or #names == 0 or #names > 2048
@@ -362,6 +366,7 @@ function Appearance.attachInto(appearanceModel, character, classId, hands)
 		appearanceModel:SetAttribute("WeaponClassId", classId)
 		appearanceModel:SetAttribute("WeaponSourceKey", spec.sourceKey)
 		appearanceModel:SetAttribute("WeaponVisualVersion", VERSION)
+		appearanceModel:SetAttribute("ElfBowRigVersion",classId=="elf" and BowGeometry.version or nil)
 		appearanceModel:SetAttribute("WeaponPartNames", table.concat(names, "|"))
 		appearanceModel:SetAttribute("WeaponPartCount", #names)
 		for _, child in ipairs(owned) do child:Destroy() end

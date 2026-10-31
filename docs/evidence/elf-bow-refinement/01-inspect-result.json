@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: 04:01:08 | INFO: Data are loaded, start creating Blender stuff\n04:01:08 | INFO: Blender create Mesh node Bow\n04:01:08 | INFO: Blender create Mesh node String\n04:01:08 | INFO: Blender create Mesh node NockedArrow\n04:01:08 | INFO: glTF import finished in 0.02s\n{\"scene\": \"TLT_Elf_Bow_Authoring\", \"objects\": [{\"name\": \"ElfSource_NockedArrow\", \"vertices\": 300, \"polygons\": 100, \"bounds\": [[-0.10509777069091797, 0.061033010482788086], [-2.405609130859375, 1.4486234188079834], [0.29761528968811035, 0.45551037788391113]]}, {\"name\": \"ElfSource_Bow\", \"vertices\": 3768, \"polygons\": 1256, \"bounds\": [[-0.07532602548599243, 0.07532590627670288], [-0.12108325958251953, 0.306887149810791], [-1.8637943267822266, 1.8637938499450684]]}, {\"name\": \"ElfSource_String\", \"vertices\": 168, \"polygons\": 56, \"bounds\": [[-0.025631725788116455, 0.00913691520690918], [-2.3784289360046387, 0.10572457313537598], [-1.8121380805969238, 1.8131985664367676]]}]}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: 04:01:08 | INFO: Data are loaded, start creating Blender stuff\n04:01:08 | INFO: Blender create Mesh node Bow\n04:01:08 | INFO: Blender create Mesh node String\n04:01:08 | INFO: Blender create Mesh node NockedArrow\n04:01:08 | INFO: glTF import finished in 0.02s\n{\"scene\": \"TLT_Elf_Bow_Authoring\", \"objects\": [{\"name\": \"ElfSource_NockedArrow\", \"vertices\": 300, \"polygons\": 100, \"bounds\": [[-0.10509777069091797, 0.061033010482788086], [-2.405609130859375, 1.4486234188079834], [0.29761528968811035, 0.45551037788391113]]}, {\"name\": \"ElfSource_Bow\", \"vertices\": 3768, \"polygons\": 1256, \"bounds\": [[-0.07532602548599243, 0.07532590627670288], [-0.12108325958251953, 0.306887149810791], [-1.8637943267822266, 1.8637938499450684]]}, {\"name\": \"ElfSource_String\", \"vertices\": 168, \"polygons\": 56, \"bounds\": [[-0.025631725788116455, 0.00913691520690918], [-2.3784289360046387, 0.10572457313537598], [-1.8121380805969238, 1.8131985664367676]]}]}\n"
+  },
+  "isError": false
+}

@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "code": "import bpy,json\ns=bpy.data.scenes.new('TLT_Elf_Bow_Authoring');bpy.context.window.scene=s\nbefore=set(bpy.data.objects)\nbpy.ops.import_scene.gltf(filepath='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/shared/td-player-weapons/source/ElfBow-td-derived-review.glb')\nobjects=[o for o in set(bpy.data.objects)-before if o.type=='MESH']\nfor o in objects:o.name='ElfSource_'+o.name\nprint(json.dumps({'scene':s.name,'objects':[{'name':o.name,'vertices':len(o.data.vertices),'polygons':len(o.data.polygons),'bounds':[[min((o.matrix_world@v.co)[i] for v in o.data.vertices),max((o.matrix_world@v.co)[i] for v in o.data.vertices)] for i in range(3)]} for o in objects]}))",
+    "user_prompt": "다음은 엘프 활 무기 3d모델링 개선해줘\n리서치해서 자연스러운 활 시위당기는 액션 발사액션 개선해야해 최고의 3d모델링 작없해줘"
+  }
+}

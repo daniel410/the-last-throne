@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: {\"scene\": \"TLT_Elf_Bow_Authoring\", \"action\": \"Elf_Draw_Anchor_Release\", \"fcurves\": 25, \"bowTriangles\": 1256, \"stringStrands\": 2, \"arrowLength\": 2.7, \"nockBrace\": 0.35, \"drawDistance\": 0.86, \"keyframes\": 250}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: {\"scene\": \"TLT_Elf_Bow_Authoring\", \"action\": \"Elf_Draw_Anchor_Release\", \"fcurves\": 25, \"bowTriangles\": 1256, \"stringStrands\": 2, \"arrowLength\": 2.7, \"nockBrace\": 0.35, \"drawDistance\": 0.86, \"keyframes\": 250}\n"
+  },
+  "isError": false
+}
