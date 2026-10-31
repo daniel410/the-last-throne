@@ -1,5 +1,8 @@
 # The Last Throne 통합 개발 계획
 
+> 2026-10-31 **0.40.4 / TLT-005/032/033/055/057/084 부분 구현:** Monster Hunter Wilds 검·방패와 God of War 도끼 실제 영상 비교를 바탕으로 타격 관성·회복 중 연격 연결·전투 준비 자세·보조 팔/머리 동작을 개선했다. [영상 비교](docs/research/2026-10-31-sword-axe-motion-video-review.md) · [검증/남은 수용](docs/evidence/melee-motion-0404/README.md). 미게시이며 상위 티켓은 In Progress다.
+
+
 > 2026-10-31 **0.40.3 / TLT-005/032/033/055/057/084 부분 구현:** 기사 사선베기·되베기·내려베기와 드워프 도끼 사선 내려찍기를 서버 시각 기반 연속 곡선으로 개선했다. [3D 원본/전투 조사](docs/research/2026-10-31-sword-axe-motion.md) · [검증/남은 수용](docs/evidence/melee-motion-0403/README.md). 로컬 시험판이며 게시판은0.40.2다. 상위 티켓은 In Progress다.
 
 > **Priest 수녀 Selene:** NPC·선택형 동행 서포터로 회복/보호/정화를 돕는다. Dawnspire 첫 만남 후 Deepwood 초반 구조 완료·안전한 야영지 도착 시 무료 해금하고 야영지에서 동행을 선택한다. TD 영웅과 타워의 외형·모델·무기·연출을 재사용하며 기존 동행 슬롯과 플레이어4클래스를 유지한다. [서사/자산 적용](docs/production/five-epic-adventure-story-2026-10-30.md#priest-수녀와-td-영웅타워-재사용).

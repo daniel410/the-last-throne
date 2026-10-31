@@ -565,6 +565,16 @@ function Visual.renderArms(character, dt, now)
 	applyLeg("Left", leftHipPose, leftKneePose)
 	local rightShoulder, elbow = armJoint(character, "Right", "Shoulder"), armJoint(character, "Right", "Elbow")
 	apply(armJoint(character, "Right", "Wrist"), motion and motion.wrist)
+	apply(armJoint(character, "Left", "Elbow"), motion and motion.leftElbow)
+	local neck = character:FindFirstChild("Neck", true)
+	if neck and (neck:IsA("Motor6D") or neck:IsA("AnimationConstraint")) then
+		local neckPose = motion and motion.neck
+		if neckPose then
+			local basis = neck.C0.Rotation
+			neckPose = basis:Inverse() * neckPose * basis
+		end
+		apply(neck, neckPose)
+	end
 	if right and rightShoulder and (classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane") or (mode == "Block" and classId ~= "knight")) then
 		-- Classic R6 shoulders use a different joint basis from R15. Express
 		-- these strokes in torso axes so both rigs travel the same way.

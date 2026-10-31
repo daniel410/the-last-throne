@@ -79,7 +79,7 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 				local loaded = sample(d.windup*.45, 1/60)
 				local finish = sample(total, 1/60)
 				local initial = sample(0, 1/60)
-				check((finish-initial).Magnitude < .001, "Returns to guard by action end")
+				check(finish.Z < -1.5 and (finish-initial).Magnitude > .15, "Ends combat-ready instead of dropping to neutral")
 				check(hit.Z < -3 and math.abs(hit.X) < 1.6, "Contact passes through target corridor in front")
 				check(minY > -3.4, "Blade stays above floor on default rig")
 				check(maxReach < 6.5, "Compact arc stays near combat reach")
@@ -94,12 +94,39 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 					local after = sample(boundary+.00001, 1/144)
 					check((after-before).Magnitude < .01, "No discontinuity at curve boundary")
 				end
-				local low = sample(impact, 1/30)
+				local beforeContact=sample(impact-.0005,1/60)
+                local contact=sample(impact,1/60)
+                local afterContact=sample(impact+.0005,1/60)
+                local arriving,leaving=(contact-beforeContact)/.0005,(afterContact-contact)/.0005
+                check(arriving.Magnitude>5 and leaving.Magnitude>5,"Blade carries momentum through contact")
+                check(arriving.Unit:Dot(leaving.Unit)>.99,"Contact does not reverse or freeze the blade")
+                check((arriving-leaving).Magnitude/math.max(arriving.Magnitude,leaving.Magnitude)<.12,"Contact velocity stays continuous")
+                local low = sample(impact, 1/30)
 				local high = sample(impact, 1/144)
 				check((low-high).Magnitude < .0001, "30/144Hz observers agree at hit time")
 				table.insert(report.samples, {rig=rig.Name,class=classId,combo=combo,impact=vec(hit),loaded=vec(loaded),minY=minY,maxStep=maxStep,maxReach=maxReach,points=points})
 			end
-			character:SetAttribute("K0SkillId", classId == "knight" and "knight.common.bash" or "dwarf.common.throw")
+			-- Accepted recovery cancel: position and angular velocity continue from
+            -- the outgoing stroke, evaluated at the shared server timestamp.
+            character:SetAttribute("K0Combo",1);character:SetAttribute("K0AttackStartedAt",200)
+            local d=Config.BasicAttackProfiles[classId].attacks[1]
+            local transition=d.windup+d.active+d.recovery-.10
+            local a=Motion.forCharacter(character,200+transition-.0005)
+            local b=Motion.forCharacter(character,200+transition)
+            character:SetAttribute("K0AttackStartedAt",200+transition)
+            character:SetAttribute("K0Combo",classId=="knight" and 2 or 1)
+            local c=Motion.forCharacter(character,200+transition)
+            local e=Motion.forCharacter(character,200+transition+.0005)
+            for _,channel in ipairs({"right","elbow","wrist","torso","weapon"}) do
+             check((b.angles[channel]-c.angles[channel]).Magnitude<.001,"Chained attack preserves entry pose")
+             local v0=(b.angles[channel]-a.angles[channel])/.0005
+             local v1=(e.angles[channel]-c.angles[channel])/.0005
+             check((v0-v1).Magnitude<35,"Chained attack preserves outgoing momentum")
+            end
+            character:SetAttribute("K0State","Idle");character:SetAttribute("K0AttackStartedAt",nil)
+            check(Motion.forCharacter(character,201.5)==nil,"Idle releases the procedural layer after settling")
+            character:SetAttribute("K0State","Attack");character:SetAttribute("K0AttackStartedAt",202)
+            character:SetAttribute("K0SkillId", classId == "knight" and "knight.common.bash" or "dwarf.common.throw")
 			check(Motion.forCharacter(character,100.1) == nil, "Skills retain authored specialist motion")
 			character:SetAttribute("K0SkillId",nil); character:SetAttribute("K0State","Dodge")
 			check(Motion.forCharacter(character,100.1) == nil, "Dodge cancels melee curve immediately")
