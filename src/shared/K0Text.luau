@@ -20,6 +20,7 @@ return {
  NavigationOn = "Navigation Trail: ON",
  NavigationOff = "Navigation Trail: OFF",
  ForestBoundaryReturn = "The forest edge is blocked. Follow the marked trail.",
+ StoryRegionEntering = "ENTERING REGION",
  MinimapYou = "YOU",
  Map = {
   Title = "ADVENTURE · WORLD MAP",

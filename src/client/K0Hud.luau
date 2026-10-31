@@ -160,6 +160,7 @@ function Hud.create()
 	root.BackgroundTransparency = 1
 	root.Size = UDim2.fromScale(1, 1)
 	root.Parent = gui
+ require(script.Parent.StoryRegionNotice).create(root,Players.LocalPlayer)
  require(script.Parent.DeathPenaltyNotice).create(root,Players.LocalPlayer)
 
 	local topGui=Instance.new("ScreenGui")
