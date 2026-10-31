@@ -45,14 +45,18 @@ local ok,err=xpcall(function()
  local residents=require(World.LobbyResidents).create(lobby,facilities,storagePrompt)
  check(residents.selene.model:GetAttribute('TDSourceModel')=='nun' and residents.selene.prompt.Parent==residents.selene.model.PrimaryPart,'lobby uses TD model with working prompt anchor')
  check(merchant.npc:GetAttribute('NPCId')=='aldric' and merchant.prompt.ObjectText=='Aldric · Blacksmith','smith replaces old placeholder and retains trade prompt')
- check(residents.mira.prompt.ActionText=='Browse weapons','merchant uses existing weapon shop')
+ check(residents.mira.prompt.ActionText=='Buy or sell supplies','merchant uses current supplies service')
  check(storagePrompt.ObjectText=='Oren · Account Storage' and facilities.training.prompt.ObjectText=='Rowan · Hero Trainer','storage/training facility identity')
  local deepwood=require(World.DeepwoodWorld).create();local count=0;local pip=false;local eryn=false
  for _,v in ipairs(deepwood.folder:GetDescendants()) do if v:IsA('Model') and v:GetAttribute('TLTNPC') then
   count+=1;pip=pip or v:GetAttribute('NPCId')=='pip';eryn=eryn or v:GetAttribute('NPCId')=='eryn'
   check(not v:GetAttribute('EnemyKind'),'friendly actors are not combat enemies')
  end end
- check(count>10 and pip and eryn,'Deepwood quest, refugee, survivor and camp art is connected')
+ check(pip and eryn,'Deepwood refugee and scout art is connected')
+ for _,id in ipairs({'eryn','liora','fen','pip','selene'})do
+  local matches=0;for _,m in ipairs(deepwood.folder:GetDescendants())do if m:IsA('Model') and m:GetAttribute('NPCActorIdentity')=='npc:'..id then matches+=1 end end
+  check(matches==1,'one shared static actor for '..id)
+ end
  report.deepwoodActors=count
  folder:Destroy()
 end,debug.traceback)

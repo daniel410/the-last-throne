@@ -56,12 +56,15 @@ local function cage(parent,p)
  for _,x in ipairs({-4,4}) do for _,z in ipairs({-4,4}) do part(parent,'CageBar',Vector3.new(.6,9,.6),p+Vector3.new(x,4.5,z),C.wood,Enum.Material.Wood,true) end end
  ball(parent,'CaptiveSpirit',Vector3.new(3,4,3),p+Vector3.new(0,4,0),Color3.fromRGB(112,230,194),Enum.Material.Neon)
 end
-local function npc(parent,p,name,_goblin)
- return require(script.Parent.NPCVisual).actor(parent,name,p)
+local function npc(parent,p,name,_goblin,role)
+ local world=parent
+ while world.Parent and world.Name~='DeepwoodCampaign' do world=world.Parent end
+ return require(script.Parent.NPCActors).acquire(world,name,p,{role=role or 'scene'})
 end
 function World.create()
  local existing=Workspace:FindFirstChild('DeepwoodCampaign')
  if existing then
+  require(script.Parent.NPCActors).reconcile(existing)
   for id,z in pairs(Content.zones) do
    local terrain=existing:FindFirstChild('TerrainBlockout');local region=terrain and terrain:FindFirstChild(id)
    local ground=region and region:FindFirstChild('ForestGround')
@@ -69,11 +72,18 @@ function World.create()
   end
   require(script.Parent.DeepwoodGroundedWorld).create(existing)
   if World.current then require(script.Parent.DeepwoodPlaces).create(World.current);return World.current end
-  local result={folder=existing,terrain=existing:FindFirstChild('TerrainBlockout'),nodes={},spawns={},positions={},seleneCamp=vec(Content.byId['DW-03'].goals[1].position)+Vector3.new(8,0,0)}
+  local result={folder=existing,terrain=existing:FindFirstChild('TerrainBlockout'),nodes={},spawns={},positions={},seleneCamp=vec(Content.byId['DW-03'].goals[1].position)}
   for id,z in pairs(Content.zones) do result.spawns[id]=existing:FindFirstChild(id..'_SP');result.positions[id]=vec(z.center) end
   for _,p in ipairs(existing:WaitForChild('Objectives'):GetChildren()) do
    local c=Content.byId[p:GetAttribute('ChapterId')];local goalId=p:GetAttribute('GoalId')
-   if c then for _,g in ipairs(c.goals) do if g.id==goalId then result.nodes[c.id..':'..(p.Name:match('_request$') and 'request' or g.id)]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g,offer=p:GetAttribute('QuestOffer')==true} end end end
+   if c then for _,g in ipairs(c.goals) do if g.id==goalId then
+    local offer=p.Name:match('_request$')~=nil
+    if c.side and (offer or g.id==c.quest.turnIn) then
+     local position=offer and c.quest.offerPosition or g.position
+     if position then p.Position=vec(position)+(offer and Vector3.zero or Vector3.new(0,1,0)) end
+    end
+    result.nodes[c.id..':'..(offer and 'request' or g.id)]={part=p,prompt=p:FindFirstChildOfClass('ProximityPrompt'),chapter=c,goal=g,offer=p:GetAttribute('QuestOffer')==true}
+   end end end
   end
   result.activityNodes={}
   local activityFolder=existing:FindFirstChild('AdventureActivities')
@@ -166,26 +176,27 @@ function World.create()
   local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.Name='StoryInteract';prompt.ActionText=#g.enemies>0 and 'Begin encounter' or 'Interact';prompt.ObjectText=g.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
   if c.side and g.id==c.quest.turnIn then
    p.Transparency=1;p.ObjectiveGem.Transparency=1
-   if not c.quest.offerPosition then npc(nodes,vec(g.position),c.quest.giver,false) end
+   if not c.quest.offerPosition then npc(nodes,vec(g.position),c.quest.giver,false,'quest') end
   end
   interactions[c.id..':'..g.id]={part=p,prompt=prompt,chapter=c,goal=g}
  end end
  -- A request offers a quest; it never completes the field investigation.
  for index,c in ipairs(Content.chapters) do if c.side and c.id~='DW-Q1' then
-  local g=c.goals[1];local p=part(nodes,c.id..'_request',Vector3.new(3,2,3),positions['DW-03']+Vector3.new((index-9)*18,1,72),C.blue,Enum.Material.Slate,false)
+  local g=c.goals[1];local p=part(nodes,c.id..'_request',Vector3.new(3,2,3),vec(c.quest.offerPosition),C.blue,Enum.Material.Slate,false)
   p:SetAttribute('ChapterId',c.id);p:SetAttribute('GoalId',g.id)
   p.Transparency=1;p:SetAttribute('QuestOffer',true)
-  npc(nodes,p.Position-Vector3.new(0,1,0),c.quest.giver,false)
+  npc(nodes,p.Position-Vector3.new(0,1,0),c.quest.giver,false,'quest')
   local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ActionText='Talk';prompt.ObjectText=c.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
   interactions[c.id..':request']={part=p,prompt=prompt,chapter=c,goal=g,offer=true}
  end end
  require(script.Parent.DeepwoodGroundedWorld).create(root)
  root:SetAttribute("DeepwoodReady",true)
- World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions,seleneCamp=vec(Content.byId['DW-03'].goals[1].position)+Vector3.new(8,0,0)}
+ World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions,seleneCamp=vec(Content.byId['DW-03'].goals[1].position)}
  require(script.Parent.DeepwoodActivityWorld).create(World.current)
  local portal=Env.portal(root,positions['DW-07']+Vector3.new(0,0,-110));portal.Name='MonsterPortal'
  portal:SetAttribute('StoryPortal',true)
  require(script.Parent.DeepwoodPlaces).create(World.current)
+ root:SetAttribute('NPCActorRegistryVersion',1)
  return World.current
 end
 return World

@@ -18,13 +18,16 @@ local ok,e=xpcall(function()
  check(workspace:GetAttribute('TLTServerRole')==report.role,'role boot completed')
  local campaign=workspace:FindFirstChild('DeepwoodCampaign');check(campaign~=nil,'campaign created')
  local cast=0;for _,v in ipairs(campaign:GetDescendants()) do if v:IsA('Model') and v:GetAttribute('TLTNPC') then cast+=1 end end
- check(cast>=15,'authored quest NPCs use new visual system')
+ for _,id in ipairs({'eryn','liora','fen','pip','selene'})do
+  local matches=0;for _,m in ipairs(campaign:GetDescendants())do if m:IsA('Model') and m:GetAttribute('NPCActorIdentity')=='npc:'..id and m:GetAttribute('NPCActorRole')=='static' then matches+=1 end end
+  check(matches==1,'one shared static actor for '..id)
+ end
  local lobby=workspace:FindFirstChild('DawnspireLobbyPrototype')
  if report.role=='Lobby' then
   check(lobby~=nil and #lobby.DawnspireResidents:GetChildren()==6,'lobby has six service/resident characters')
   check(lobby.DawnspireWeaponMerchant.Aldric:GetAttribute('NPCId')=='aldric','forge uses new smith')
   local residents=lobby.DawnspireResidents
-  check(residents.Mira.ActorRoot.NPCInteract.ActionText=='Browse weapons','Mira exposes real weapon service')
+  check(residents.Mira.ActorRoot.NPCInteract.ActionText=='Buy or sell supplies','Mira exposes current supplies service')
   check(residents.Selene.ActorRoot.NPCInteract.ActionText=='Talk' and residents.Nia.ActorRoot.NPCInteract.ActionText=='Talk','resident conversations available')
   check(residents.Selene:GetAttribute('TDSourceModel')=='nun' and residents.Selene:FindFirstChild('Body'):IsA('MeshPart'),'lobby loads original TD priest meshes')
   local cf,size=residents.Selene:GetBoundingBox()

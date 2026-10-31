@@ -136,13 +136,12 @@ function V.create(parent,id,position,options)
  m:ScaleTo(scale);m:PivotTo(CFrame.new(position)*CFrame.Angles(0,options.yaw or 0,0));m.Parent=parent;return m
 end
 -- Authored aliases preserve quest/escort IDs and labels while gaining the shared art system.
-local aliases={['Quartermaster']='liora',['Outpost Storekeeper']='liora',['Quarry Foreman']='fen',['Outpost Scout']='eryn',['Supply Survivor']='tobin',['Wounded Scout']='tobin',['Freed Prisoner']='tobin',['Villager']='tobin',['Goblin Refugee']='pip',['Freed Forest Spirit']='wispkeeper',['Herbalist']='fen',['Outpost Quartermaster']='liora',['Scout Captain']='eryn'}
 function V.actor(parent,name,position,spirit)
- local id=aliases[name] or (spirit and 'wispkeeper') or 'tobin'
- for _,c in ipairs(Catalog.characters) do if c.name==name then id=c.id;break end end
+ local id,identity,named=require(game.ReplicatedStorage.Shared.NPCIdentity).resolve(name,spirit)
  local model=V.create(parent,id,position,{name=name})
+ model:SetAttribute('NPCActorIdentity',identity)
  model:SetAttribute('NPCStoryAlias',name)
- if name~=Catalog.byId[id].name then model.PrimaryPart.NPCLabel.TextLabel.Text=name end
+ if not named then model.PrimaryPart.NPCLabel.TextLabel.Text=name end
  return model
 end
 return V

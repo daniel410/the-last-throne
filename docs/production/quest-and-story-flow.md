@@ -37,9 +37,9 @@
 | 퀘스트 | 수주/발견 | 보고 | 예외 |
 | --- | --- | --- | --- |
 | Supplies in the Marsh | 숲길의 방수 기록 발견/선택 | Supply Survivor | 기록은 초기에 찾을 수 있지만 보고는 본편2 이후다. Waiting for story 2로 설명하고 본편을 안내한다. |
-| The Stolen Food | Outpost Storekeeper 또는 실제 현장 음식 자루 | 같은 주민 | 본편4 이후. NPC 대화만으로 음식 단서를 획득하지 못함 |
-| Quarry Below the Falls | Quarry Foreman 또는 현장 도구 | 같은 주민 | 본편5 이후. 선택 동굴 전투를 필수로 바꾸지 않음 |
-| Remnants of the Red Battlefield | Outpost Scout 또는 현장 흔적 | 같은 주민 | 본편7 이후. 완료 에픽을 되돌리지 않음 |
+| The Stolen Food | Liora(보급 담당) 또는 실제 현장 음식 자루 | 같은 주민 | 본편4 이후. NPC 대화만으로 음식 단서를 획득하지 못함 |
+| Quarry Below the Falls | Fen(약초사·채석장 조사 담당) 또는 현장 도구 | 같은 주민 | 본편5 이후. 선택 동굴 전투를 필수로 바꾸지 않음 |
+| Remnants of the Red Battlefield | Eryn(정찰대장) 또는 현장 흔적 | 같은 주민 | 본편7 이후. 완료 에픽을 되돌리지 않음 |
 
 수주/선행·대상 영웅·살아 있는 현재 캐릭터·16studs 근접은 서버가 검증한다. 수주 토큰은 선택창을 열어 준 그 영웅/그 위치에만 유효하고 사용 후 소비된다. 늦은 저장 응답은 같은 수주/단서 사건을 재시도한다. 새 프로필이나0진행으로 덮어쓰지 않는다. 이미 진행/완료된 이전 저장은 플래그에서 수주 상태를 유추해 보존한다.
 

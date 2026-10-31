@@ -38,8 +38,9 @@ return CombatService
   active=function() return hero end,context=function(p) return p.Character and hero,roots[p] end,state=function(p) return journals[p] end,
   players=function() local r={};for i=1,count do table.insert(r,active[i]) end;return r end,publish=function() end,
   select=function(p,_,follow) journals[p]=assert(P.selectSelene(journals[p],follow));selectionCount+=1 end})
- check(folder.SeleneCamp:GetAttribute('NPCId')=='selene' and folder.SeleneCamp:GetAttribute('TDSourceModel')=='nun','original TD nun mounted as Selene')
- local meshes=0;for _,v in ipairs(folder.SeleneCamp:GetDescendants()) do if v:IsA('MeshPart') then
+ local campActor=folder.NPCActors:FindFirstChild('Selene')
+ check(campActor and campActor:GetAttribute('NPCId')=='selene' and campActor:GetAttribute('TDSourceModel')=='nun','original TD nun mounted as shared Selene actor')
+ local meshes=0;for _,v in ipairs(campActor:GetDescendants()) do if v:IsA('MeshPart') then
   meshes+=1;local original=game.ServerStorage.TDSeleneModels.nun:FindFirstChild(v.Name,true)
   check(original and original.MeshId==v.MeshId and original.TextureID==v.TextureID and original.Color==v.Color,'original TD mesh, texture and color preserved')
  end end

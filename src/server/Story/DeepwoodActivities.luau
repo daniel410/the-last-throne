@@ -21,7 +21,7 @@ function Engine.create(o)
   if attempts[player] then remove(player) end
   local count=(s.activities or {})[c.id..':'..g.id] or 0
   local p=count>0 and g.activity.steps[count].position or g.position
-  attempts[player]={heroId=ctx.heroId,c=c,g=g,actor=Actors.actor(o.world.folder,g.activity.actor,Vector3.new(table.unpack(p)),g.activity.spirit),status='Follow the rescued resident.'}
+  attempts[player]={heroId=ctx.heroId,c=c,g=g,actor=Actors.actor(o.world.folder,g.activity.actor,Vector3.new(table.unpack(p)),g.activity.spirit,{dynamic=true,role='escort',ownerUserId=player.UserId}),status='Follow the rescued resident.'}
  end
  function api.projection(player,heroId)
   local result={};local a=attempts[player]

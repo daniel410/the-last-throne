@@ -4,18 +4,25 @@ local Pathfinding=game:GetService('PathfindingService')
 local Progress=require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress)
 local Budget=require(game:GetService('ReplicatedStorage').Shared.SeleneSupport)
 local Visual=require(script.Parent.Parent.World.SeleneVisual)
+local Actors=require(script.Parent.Parent.World.NPCActors)
 local M={}
 function M.create(o)
  local api={};local followers={};local cooldowns={};local status={};local lastSelect={}
  local camp=o.world.seleneCamp or o.world.positions['DW-03']+Vector3.new(-45,0,45)
- -- The story actor at the report marker uses the same TD model. This one owns selection.
- local npc=Visual.create(o.world.folder,camp,'SeleneCamp')
- local function prompt(name,action,offset,follow)
-  local anchor=Instance.new('Attachment');anchor.Name=name;anchor.Position=Vector3.new(offset,0,0);anchor.Parent=npc.PrimaryPart
+ -- The rescue report and companion selection share the actual camp actor.
+ local npc=Actors.acquire(o.world.folder,'Selene',camp,{role='camp',priority=20})
+ npc:SetAttribute('SeleneCampPosition',camp)
+ local function prompt(model,name,action,offset,follow)
+  local old=model.PrimaryPart:FindFirstChild(name);if old then old:Destroy() end
+  local anchor=Instance.new('Attachment');anchor.Name=name;anchor.Position=Vector3.new(offset,0,0);anchor.Parent=model.PrimaryPart
   local p=Instance.new('ProximityPrompt');p.Name=name;p.Style=Enum.ProximityPromptStyle.Custom;p.ObjectText='Selene · Priest';p.ActionText=action;p.HoldDuration=.4;p.MaxActivationDistance=12;p.RequiresLineOfSight=false;p.KeyboardKeyCode=Enum.KeyCode.F;p.GamepadKeyCode=Enum.KeyCode.ButtonX;p.Parent=anchor
   p.Triggered:Connect(function(player) api.select(player,follow) end)
  end
- prompt('Invite','Invite Selene',-3,true);prompt('Rest','Ask Selene to rest',3,false)
+ local function selectionPrompts(model)
+  model:SetAttribute('SeleneCampPosition',camp)
+  prompt(model,'Invite','Invite Selene',-3,true);prompt(model,'Rest','Ask Selene to rest',3,false)
+ end
+ selectionPrompts(npc)
  local function remove(player)
   local f=followers[player];if f then f.model:Destroy();followers[player]=nil end
  end
@@ -55,6 +62,9 @@ function M.create(o)
      -- Spawn only at camp or on a new life/rejoin beside the owner's confirmed checkpoint.
      f={heroId=ctx.heroId,character=player.Character,model=Visual.create(o.world.folder,root.Position-root.CFrame.LookVector*10-Vector3.new(0,3,0),'Selene_'..player.UserId),nextPath=0};followers[player]=f
      f.model:SetAttribute('OwnerUserId',player.UserId)
+     f.model:SetAttribute('NPCActorIdentity','npc:selene')
+     selectionPrompts(f.model)
+     Actors.tag(f.model,'companion')
     end
     local position=f.model.PrimaryPart.Position;local distance=(position-root.Position).Magnitude
     local target=root.Position-root.CFrame.LookVector*10-Vector3.new(0,3,0);local formationDistance=(target-position).Magnitude

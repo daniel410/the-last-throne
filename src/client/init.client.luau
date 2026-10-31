@@ -11,6 +11,7 @@ local player = Players.LocalPlayer
 task.spawn(function() require(script.LobbyCommerce).start() end)
 task.spawn(function() require(script.LobbyLandmarkVisuals).start() end)
 task.spawn(function() require(script.NPCDialogue).start() end)
+require(script.NPCPresentation).start()
 require(script.InteractionPrompts).start()
 require(script.AdventureCamera).start()
 require(script.DeepwoodAtmosphere).start()

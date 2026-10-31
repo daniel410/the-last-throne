@@ -12,15 +12,18 @@ Q.stories={
 }
 Q.side={
  ['DW-Q1']={giver='Supply Survivor',brief='A waterproof log may identify the missing supply workers. Recover it and bring it back to a survivor.',outcome='The supply record and the missing workers\' names are preserved.',turnIn='marsh_report'},
- ['DW-Q2']={giver='Outpost Storekeeper',brief='Stolen food and prisoners are being held at the goblin camp. Recover the stores and return with news of the captives.',outcome='The stolen stores and the camp captives are accounted for at the outpost.',turnIn='food_report'},
- ['DW-Q3']={giver='Quarry Foreman',brief='The abandoned quarry still has working transport equipment. Investigate it and report what can be recovered.',outcome='The quarry transport record is preserved for the outpost.',turnIn='quarry_report'},
- ['DW-Q4']={giver='Outpost Scout',brief='A scout vanished near the old battlefield. Follow the trace, clear the danger, and report a safe return route.',outcome='The missing scout\'s trail and the safe return route are recorded.',turnIn='battlefield_report'},
+ ['DW-Q2']={giver='Liora',brief='Stolen food and prisoners are being held at the goblin camp. Recover the stores and return with news of the captives.',outcome='The stolen stores and the camp captives are accounted for at the outpost.',turnIn='food_report'},
+ ['DW-Q3']={giver='Fen',brief='The abandoned quarry still has working transport equipment. Investigate it and report what can be recovered.',outcome='The quarry transport record is preserved for the outpost.',turnIn='quarry_report'},
+ ['DW-Q4']={giver='Eryn',brief='A scout vanished near the old battlefield. Follow the trace, clear the danger, and report a safe return route.',outcome='The missing scout\'s trail and the safe return route are recorded.',turnIn='battlefield_report'},
 }
 function Q.install(content)
  for index,c in ipairs(content.chapters) do
   c.quest=c.side and Q.side[c.id] or Q.stories[c.id]
   if c.side and c.id~='DW-Q1' then
-   local p=content.zones['DW-03'].center;c.quest.offerPosition={p[1]+(index-9)*18,p[2]+1,p[3]+72}
+   -- Named quest roles live at their existing character, not at a second body.
+   local offsets={['DW-Q2']={-45,50},['DW-Q3']={-64,35},['DW-Q4']={0,0}}
+   local p=content.zones['DW-03'].center;local offset=assert(offsets[c.id])
+   c.quest.offerPosition={p[1]+offset[1],p[2]+1,p[3]+offset[2]}
    for _,g in ipairs(c.goals) do if g.id==c.quest.turnIn then g.position={table.unpack(c.quest.offerPosition)};g.position[2]=p[2] end end
   end
  end

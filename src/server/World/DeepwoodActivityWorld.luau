@@ -8,12 +8,19 @@ local function label(p,text)
  local g=Instance.new('BillboardGui');g.Name='ActivityLabel';g.Size=UDim2.fromOffset(220,48);g.StudsOffset=Vector3.new(0,5,0);g.MaxDistance=65;g.Parent=p
  local t=Instance.new('TextLabel');t.Size=UDim2.fromScale(1,1);t.BackgroundTransparency=1;t.Text=text;t.Font=Enum.Font.GothamBold;t.TextSize=12;t.TextColor3=Color3.fromRGB(255,232,166);t.TextStrokeTransparency=.2;t.TextWrapped=true;t.AutoLocalize=false;t.Parent=g
 end
-function W.actor(parent,name,position,spirit)
- return require(script.Parent.NPCVisual).actor(parent,name,position,spirit)
+function W.actor(parent,name,position,spirit,options)
+ options=options or {}
+ local Actors=require(script.Parent.NPCActors)
+ if options.dynamic then
+  local model=require(script.Parent.NPCVisual).actor(parent,name,position,spirit)
+  return Actors.tag(model,options.role or 'escort',options.ownerUserId)
+ end
+ return Actors.acquire(options.world or parent,name,position,{spirit=spirit,role=options.role or 'dialogue',priority=30})
 end
 local function prop(parent,step,p)
  local kind=step.kind
- if kind=='actor' then return W.actor(parent,step.title,p).PrimaryPart end
+ -- An interaction title ("Ask...", "Set out...") is not an NPC identity.
+ if kind=='actor' then if step.actor then return W.actor(parent,step.actor,p).PrimaryPart end;return end
  if kind=='rune' then
   local x=part(parent,'RunePedestal',Vector3.new(5,1,5),p+Vector3.new(0,.5,0),Color3.fromRGB(99,115,119),Enum.PartType.Cylinder);x.CFrame=x.CFrame*CFrame.Angles(0,0,math.pi/2)
   local gem=part(parent,'RuneLight',Vector3.new(1.5,2,1.5),p+Vector3.new(0,2,0),Color3.fromRGB(103,181,221),Enum.PartType.Ball);gem.Material=Enum.Material.Neon;return gem
@@ -41,7 +48,7 @@ function W.create(world)
   if a then
    node.part.Transparency=1;local gem=node.part:FindFirstChild('ObjectiveGem');if gem then gem.Transparency=1 end
    node.prompt.Enabled=a.mode=='dialogue' or a.mode=='escort'
-   if a.actor and a.mode=='dialogue' then W.actor(folder,a.actor,Vector3.new(table.unpack(g.position)),a.spirit) end
+   if a.actor and a.mode=='dialogue' then W.actor(folder,a.actor,Vector3.new(table.unpack(g.position)),a.spirit,{world=world.folder,role='dialogue'}) end
    if a.steps then
     for _,step in ipairs(a.steps) do
      local p=Vector3.new(table.unpack(step.position));local anchor=part(folder,c.id..'_'..g.id..'_'..step.id,Vector3.new(1,1,1),p+Vector3.new(0,1,0),Color3.new());anchor.Transparency=1
