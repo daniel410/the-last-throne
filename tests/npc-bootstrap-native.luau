@@ -4,7 +4,14 @@ local Run=game:GetService('RunService')
 local report={kind='NPC_BOOTSTRAP_NATIVE',role=game.ServerStorage.ServerRole.Value,checks=0,failures={}}
 local function check(v,m) report.checks+=1;assert(v,m) end
 local ok,e=xpcall(function()
- Run:Run();task.wait(3)
+ Run:Run()
+ local deadline=os.clock()+30
+ repeat
+  task.wait(.1)
+  local templates=game.ServerStorage:FindFirstChild('NPCCastV1')
+  local remotes=game.ReplicatedStorage:FindFirstChild('Remotes')
+  if templates and #templates:GetChildren()==30 and remotes and remotes:FindFirstChild('NPCDialogue') then break end
+ until os.clock()>=deadline
  check(game.ServerStorage:FindFirstChild('NPCCastV1') and #game.ServerStorage.NPCCastV1:GetChildren()==30,'runtime builds full private template library')
  check(game.ServerStorage.NPCCastV1.selene:GetAttribute('TDSourceModel')=='nun','template library uses TD Selene')
  check(game.ReplicatedStorage.Remotes:FindFirstChild('NPCDialogue')~=nil,'server initializes NPC dialogue remote')

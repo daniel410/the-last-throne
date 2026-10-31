@@ -1,0 +1,16 @@
+{
+  "studio_file": "TheLastThrone-Lobby-0.43.2.rbxlx",
+  "place_id": 0,
+  "players": 1,
+  "role": "Lobby",
+  "template_count": 30,
+  "selene_source": "nun",
+  "selene_position": [
+    25,
+    96,
+    532
+  ],
+  "visual_evidence": "local-play-0432.png",
+  "scope": "Actual local Play startup and NPC visual observation; hero creation, transactions and normal combat input not exercised",
+  "published": false
+}

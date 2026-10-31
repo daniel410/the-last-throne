@@ -1,0 +1,7 @@
+{
+  "test": "tests/npc-bootstrap-native.luau",
+  "sha256": "37eb8361ebb7dbd09bc72660a3e01be5f55d9e103533cc71ac7c9f5558415dc8",
+  "execution": "Roblox Studio MCP execute_luau, Edit; appended return report",
+  "artifacts": "build-0432.json",
+  "published": false
+}
