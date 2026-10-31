@@ -37,7 +37,6 @@ function InventoryGui.create(onVisibility, feedback)
 	local shell = Theme.frame(shade,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-24))
 	shell.AnchorPoint = Vector2.new(.5,.5)
 	local constraint = Instance.new("UISizeConstraint"); constraint.MaxSize = Vector2.new(1160,760); constraint.Parent = shell
- require(script.Parent.LobbyPanelLayout).bind(shell,player)
 	local plaque=Theme.sprite(shell,"TitlePlaque","shellDetails",UDim2.new(.5,-150,0,-24),UDim2.fromOffset(300,58)); plaque.SliceScale=.32
 	Theme.label(shell,"Eyebrow",Text.Eyebrow,UDim2.fromOffset(24,14),UDim2.new(1,-130,0,18),11,Color.silver)
 	local title = Theme.label(shell,"Title",Navigation.gearBag,UDim2.fromOffset(24,35),UDim2.new(1,-140,0,35),26,Color.gold)
@@ -75,6 +74,8 @@ function InventoryGui.create(onVisibility, feedback)
 	portrait.Name,portrait.BackgroundTransparency,portrait.ScaleType="HeroPortrait",1,Enum.ScaleType.Crop
 	portrait.Position,portrait.Size,portrait.Parent=UDim2.fromOffset(5,40),UDim2.new(1,-10,1,-108),heroPanel
 	local portraits={knight="rbxassetid://103255177842108",elf="rbxassetid://80894238854345",dwarf="rbxassetid://74628903359757",mage="rbxassetid://91907986271282"}
+	local selectHero=Theme.button(heroPanel,"SelectHero",Navigation.selectHero,UDim2.new(.5,-85,.5,-22),UDim2.fromOffset(170,44),true)
+	selectHero.Visible=false
 	heroLabel.Parent=heroPanel
 	gear.Parent=heroPanel
 	local equipmentSlots=Instance.new("Frame"); equipmentSlots.Name="EquipmentSlots"; equipmentSlots.BackgroundTransparency=1; equipmentSlots.Size=UDim2.fromScale(1,1); equipmentSlots.Parent=heroPanel
@@ -170,6 +171,10 @@ function InventoryGui.create(onVisibility, feedback)
 			if previousFocus and previousFocus.Parent and previousFocus.Visible then GuiService.SelectedObject=previousFocus else GuiService.SelectedObject=nil end
 		end
 	end
+	selectHero.Activated:Connect(function()
+		setOpen(false)
+		require(script.Parent.LobbyMenuBridge):Fire("Heroes")
+	end)
 	player:GetAttributeChangedSignal("TLTProgressionOpen"):Connect(showLauncher)
 	player:GetAttributeChangedSignal("TLTSettingsOpen"):Connect(showLauncher)
 	player:GetAttributeChangedSignal("K0SessionPhase"):Connect(showLauncher)
@@ -384,6 +389,7 @@ function InventoryGui.create(onVisibility, feedback)
 		local focus=GuiService.SelectedObject
 		local focusName=focus and focus:IsDescendantOf(gui) and focus.Name
 		local hero=snapshot and snapshot.heroes[snapshot.heroId]
+		selectHero.Visible=snapshot ~= nil and snapshot.ready and not hero and player:GetAttribute("K0SessionPhase")=="Lobby"
 		heroLabel.Text=hero and Catalog.classes[hero.baseClassId].."  •  LV "..hero.level or ""
 		title.Text=storageMode and Text.StorageTitle or Navigation.gearBag
 		portrait.Image=hero and portraits[hero.baseClassId] or ""
@@ -410,7 +416,7 @@ function InventoryGui.create(onVisibility, feedback)
 		renderList(storage,"storage")
 		renderDetails()
 		if not pending and snapshot then
-			local status=not hero and Text.SelectHero or not snapshot.ready and Text.Errors.Unavailable
+			local status=not snapshot.ready and Text.Errors.Unavailable or not hero and Text.SelectHero
 				or sourceTab=="pending" and (snapshot.atHub and Text.ClaimReady or Text.ClaimHubOnly)
 				or snapshot.safe and Text.Safe or Text.Combat
 			setMessage(status)

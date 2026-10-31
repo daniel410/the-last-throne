@@ -36,7 +36,7 @@ local ok,err=xpcall(function()
  player:SetAttribute('K0SessionPhase','ReturningLobby');task.wait()
  check(invGui.OpenBag.Visible and growthGui.OpenHero.Visible and settingsGui.OpenSettings.Visible,'non-lobby launcher visibility is preserved')
  player:SetAttribute('K0SessionPhase','Lobby');task.wait()
- local panels={armory.panel,items.panel,diamonds.panel,navigation.panel,expedition.panel,invShade.InventoryPanel,growthShade.InventoryPanel,settingsShade.SettingsPanel,invShade.ClaimsOverlay.ClaimsPopup}
+ local panels={armory.panel,items.panel,diamonds.panel,navigation.panel,expedition.panel,settingsShade.SettingsPanel,invShade.ClaimsOverlay.ClaimsPopup}
  local atlas=require(client.LobbyAtlas).create(navigation.panel)
  for _,size in ipairs({Vector2.new(1280,800),Vector2.new(750,323),Vector2.new(390,780)})do
   host.Size=UDim2.fromOffset(size.X,size.Y);heroShade.Size=host.Size;invShade.Size=host.Size;growthShade.Size=host.Size;settingsShade.Size=host.Size;task.wait(.1)
@@ -45,6 +45,12 @@ local ok,err=xpcall(function()
    check((panel.AbsoluteSize-h).Magnitude<1,'same size as HEROES: '..panel.Name..' at '..tostring(size))
    check((panel.AbsolutePosition-hero.AbsolutePosition).Magnitude<1,'same position as HEROES: '..panel.Name..' at '..tostring(size))
   end
+  local lobbyBagSize,lobbyBagPosition=invShade.InventoryPanel.AbsoluteSize,invShade.InventoryPanel.AbsolutePosition
+  local lobbyGrowthSize,lobbyGrowthPosition=growthShade.InventoryPanel.AbsoluteSize,growthShade.InventoryPanel.AbsolutePosition
+  player:SetAttribute('K0SessionPhase','Tutorial');task.wait()
+  check((invShade.InventoryPanel.AbsoluteSize-lobbyBagSize).Magnitude<1 and (invShade.InventoryPanel.AbsolutePosition-lobbyBagPosition).Magnitude<1,'bag matches battle layout at '..tostring(size))
+  check((growthShade.InventoryPanel.AbsoluteSize-lobbyGrowthSize).Magnitude<1 and (growthShade.InventoryPanel.AbsolutePosition-lobbyGrowthPosition).Magnitude<1,'growth matches battle layout at '..tostring(size))
+  player:SetAttribute('K0SessionPhase','Lobby');task.wait()
   check(armory.panel.Offers.AbsoluteSize.Y>0,'blacksmith has scrollable stock')
   check(items.panel.Offers.AbsoluteSize.Y>0,'item shop has scrollable stock')
   check(diamonds.panel.Offers.AbsoluteSize.Y>0,'diamond shop has scrollable stock')
@@ -61,7 +67,8 @@ local ok,err=xpcall(function()
  check(growthShade.InventoryPanel.UISizeConstraint.MaxSize==Vector2.new(1240,800),'battle growth size restored')
  check(settingsShade.SettingsPanel.UISizeConstraint.MaxSize==Vector2.new(620,520),'battle settings size restored')
  player:SetAttribute('K0SessionPhase','Lobby');task.wait()
- check(invShade.InventoryPanel.UISizeConstraint.MaxSize==Vector2.new(800,510),'lobby size restored after phase switch')
+ check(invShade.InventoryPanel.UISizeConstraint.MaxSize==Vector2.new(1160,760),'bag retains battle size in lobby')
+ check(growthShade.InventoryPanel.UISizeConstraint.MaxSize==Vector2.new(1240,800),'growth retains battle size in lobby')
 end,debug.traceback)
 for _,name in ipairs({'SizeQA','HeroLobbyGui','InventoryGui','HeroGrowthGui','GameSettings'})do local g=game.CoreGui:FindFirstChild(name);if g then g:Destroy()end end
 for _,m in ipairs(modules)do m:Destroy()end

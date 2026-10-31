@@ -25,7 +25,6 @@ function Gui.create(onVisibility)
 	local overlay=Instance.new("Frame"); overlay.Name="Overlay"; overlay.Size=UDim2.fromScale(1,1); overlay.BackgroundColor3=Color3.new(0,0,0); overlay.BackgroundTransparency=.25; overlay.Visible=false; overlay.Active=true; overlay.Parent=gui
 	local panel=Menu.frame(overlay,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-40)); panel.AnchorPoint=Vector2.new(.5,.5)
 	local limit=Instance.new("UISizeConstraint"); limit.MaxSize=Vector2.new(1240,800); limit.Parent=panel
- require(script.Parent.LobbyPanelLayout).bind(panel,player)
 	local title=Menu.plaque(panel,"TitlePlaque",Navigation.statsSkills,UDim2.new(.5,-180,0,-24),UDim2.fromOffset(360,58))
 	local close=Theme.button(panel,"Close","X",UDim2.new(1,-62,0,10),UDim2.fromOffset(44,44))
 	local statsTab=Theme.button(panel,"StatsTab","STATS",UDim2.fromOffset(18,54),UDim2.new(1/3,-16,0,38))
@@ -77,7 +76,15 @@ function Gui.create(onVisibility)
 		for _,child in ipairs(body:GetChildren()) do child:Destroy() end
 		local hero=snapshot and snapshot.heroes[snapshot.heroId]
 		local g=hero and hero.progression
-		if not g then label(body,"Loading","Select a hero in Hub to view growth.",12,70); body.CanvasSize=UDim2.fromOffset(0,100); return end
+		if not g then
+			local needsHero=snapshot and snapshot.ready and not snapshot.heroId
+			label(body,"Loading",needsHero and Navigation.selectHeroGrowth or Navigation.loadingHero,12,70)
+			if needsHero and player:GetAttribute("K0SessionPhase")=="Lobby" then
+				local choose=Theme.button(body,"SelectHero",Navigation.selectHero,UDim2.fromOffset(12,90),UDim2.fromOffset(180,44),true)
+				choose.Activated:Connect(function() visible(false); require(script.Parent.LobbyMenuBridge):Fire("Heroes") end)
+			end
+			body.CanvasSize=UDim2.fromOffset(0,150); return
+		end
 		local classId=hero.baseClassId
 		title.Caption.Text=Navigation.statsSkills
 		for _,entry in ipairs({{statsTab,"Stats"},{skillsTab,"Skills"},{advanceTab,"Advance"}}) do entry[1].TDButtonArt.ImageColor3=tab==entry[2] and Color3.fromRGB(132,206,255) or Color3.new(1,1,1) end
