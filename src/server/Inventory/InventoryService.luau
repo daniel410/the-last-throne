@@ -14,6 +14,12 @@ local token = HttpService:GenerateGUID(false)
 local sessionOnly = RunService:IsStudio()
 local started = false
 
+local function deathNotice(player,id,status,lost)
+ player:SetAttribute('TLTDeathXPLost',lost)
+ player:SetAttribute('TLTDeathXPState',status)
+ -- Commit the notification last so clients never combine an old amount with a new death.
+ player:SetAttribute('TLTDeathXPNotice',id..':'..status)
+end
 local function publish(player, requestId, errorCode)
 	if stateRemote and player.Parent == Players then stateRemote:FireClient(player, Service.snapshot(player), requestId, errorCode) end
 end
@@ -145,6 +151,10 @@ function Service.progress(player, command, serverReward)
 	if profile then
 		state.profile,state.valid,state.errorCode=profile,true,nil
 		state.growthPending=nil
+  if command.action=='DeathPenalty' then
+   local receipt=profile.operations[command.requestId]
+   if receipt and state.latestDeathId==command.requestId then deathNotice(player,command.requestId,'Saved',receipt.xpLost or 0) end
+  end
 		Service.refreshCharacter(player)
 		options.heroSession.refresh(player)
 	elseif errorCode=="SaveUnknown" or errorCode=="AccountBusy" then
@@ -153,6 +163,23 @@ function Service.progress(player, command, serverReward)
 	state.busy=false
 	publish(player,command.requestId,errorCode)
 	return errorCode
+end
+local function runGrowthQueue(player,state)
+	if state.rewardWorker then return end
+	state.rewardWorker=true
+	task.spawn(function()
+		while accounts[player]==state and #state.rewards>0 and not state.closing do
+			local command=state.rewards[1]
+			local reason=Service.progress(player,command,true)
+			if not reason then table.remove(state.rewards,1)
+			elseif reason=="Busy" or reason=="SaveUnknown" or state.pending and state.errorCode=="SaveUnknown" then task.wait(1)
+			else
+    if command.action=='DeathPenalty' then deathNotice(player,command.requestId,'Unavailable',nil) end
+    break
+   end
+		end
+		state.rewardWorker=false
+	end)
 end
 function Service.awardXP(player,heroId,amount,defeat,coins)
 	local state=accounts[player]
@@ -163,18 +190,23 @@ function Service.awardXP(player,heroId,amount,defeat,coins)
 	local sequence=(state.rewardSequences[heroId] or (saved.rewardStream==token and saved.rewardSequence or 0))+1
 	state.rewardSequences[heroId]=sequence
 	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,coins=coins or 0,rewardKind=defeat and "Defeat" or nil,stream=token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
-	if state.rewardWorker then return end
-	state.rewardWorker=true
-	task.spawn(function()
-		while accounts[player]==state and #state.rewards>0 and not state.closing do
-			local command=state.rewards[1]
-			local reason=Service.progress(player,command,true)
-			if not reason then table.remove(state.rewards,1)
-			elseif reason=="Busy" or reason=="SaveUnknown" or state.pending and state.errorCode=="SaveUnknown" then task.wait(1)
-			else break end
-		end
-		state.rewardWorker=false
-	end)
+ runGrowthQueue(player,state)
+end
+-- Called only by the server's validated death lifecycle, never a client remote.
+function Service.penalizeDeath(player,heroId,deathId,training)
+ if type(deathId)~='string' or #deathId<1 or #deathId>64 or not deathId:match('^[%w_-]+$') or type(training)~='boolean' then return end
+ local state=accounts[player]
+ if state then state.latestDeathId=deathId end
+ if training then deathNotice(player,deathId,'Training',0);return end
+ if not state or not state.profile or not state.profile.heroes[heroId] or state.closing then deathNotice(player,deathId,'Unavailable',nil);return end
+ state.rewards=state.rewards or {}
+ for _,job in ipairs(state.rewards) do if job.requestId==deathId then return end end
+ if state.profile.operations[deathId] then
+  deathNotice(player,deathId,'Saved',state.profile.operations[deathId].xpLost or 0);return
+ end
+ deathNotice(player,deathId,'Saving',nil)
+ table.insert(state.rewards,{action='DeathPenalty',heroId=heroId,requestId=deathId,training=false})
+ runGrowthQueue(player,state)
 end
 -- Server-only story command; never accepted by InventoryRequest/ProgressionRequest.
 function Service.storyState(player,heroId)

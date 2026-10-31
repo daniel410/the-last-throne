@@ -86,7 +86,7 @@ function Rules.validate(profile, catalog)
 	if #profile.operationOrder > 96 then return false end
 	for id, operation in pairs(profile.operations) do
 		if type(id) ~= "string" or #id > 64 or type(operation) ~= "table" or type(operation.fingerprint) ~= "string"
-			or not Rules.integer(operation.revision, 0, profile.revision) or operation.lifeToken ~= nil and type(operation.lifeToken) ~= "string" then return false end
+			or not Rules.integer(operation.revision, 0, profile.revision) or operation.xpLost~=nil and not Rules.integer(operation.xpLost,0,1e12) or operation.lifeToken ~= nil and type(operation.lifeToken) ~= "string" then return false end
 	end
 	if profile.lease and (type(profile.lease) ~= "table" or type(profile.lease.token) ~= "string"
 		or not Rules.integer(profile.lease.expiresAt, 0, 1e12) or profile.lease.epoch ~= profile.epoch) then return false end
@@ -266,12 +266,14 @@ function Rules.progress(profile,command,context,catalog)
 	local fingerprint=table.concat({"growth",command.action,command.heroId,tostring(command.skill or ""),tostring(command.slot or ""),tostring(command.branch or ""),tostring(command.stage or ""),
 		tostring(command.stats and command.stats.STR or 0),tostring(command.stats and command.stats.DEX or 0),
 		tostring(command.stats and command.stats.INT or 0),tostring(command.stats and command.stats.VIT or 0)},"|")
+	local death=command.action=="DeathPenalty"
+ if death and (context.serverReward~=true or command.training~=false or type(command.requestId)~="string" or #command.requestId<1 or #command.requestId>64 or not command.requestId:match("^[%w_-]+$")) then return nil,"InvalidRequest" end
 	if command.action~="AwardXP" then
 		local previous=profile.operations[command.requestId]
 		if previous then if previous.fingerprint~=fingerprint then return nil,"RequestConflict" end; return Rules.copy(profile),nil,true end
-		if command.revision~=profile.revision then return nil,"Changed" end
+		if not death and command.revision~=profile.revision then return nil,"Changed" end
 		local investment=command.action=="AllocateStats" or command.action=="TrainSkill" or command.action=="SetSkillSlot"
-  if not context.atHub and not (investment and context.canInvest) then return nil,investment and "UnsafeGrowth" or "WaitForLobby" end
+  if not death and not context.atHub and not (investment and context.canInvest) then return nil,investment and "UnsafeGrowth" or "WaitForLobby" end
 	elseif context.serverReward~=true then return nil,"InvalidRequest" end
 	local nextG,reason,repeated=Growth.apply(g,command,hero.baseClassId)
 	if not nextG then return nil,reason end
@@ -287,7 +289,7 @@ function Rules.progress(profile,command,context,catalog)
  end
 	nextProfile.revision=nextProfile.revision+1
 	if command.action~="AwardXP" then
-		nextProfile.operations[command.requestId]={fingerprint=fingerprint,revision=nextProfile.revision}
+		nextProfile.operations[command.requestId]={fingerprint=fingerprint,revision=nextProfile.revision,xpLost=death and g.xp-nextG.xp or nil}
 		table.insert(nextProfile.operationOrder,command.requestId)
 		if #nextProfile.operationOrder>96 then nextProfile.operations[table.remove(nextProfile.operationOrder,1)]=nil end
 	end

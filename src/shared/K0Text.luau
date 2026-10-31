@@ -1,5 +1,9 @@
 -- en-US source text for the K0 training prototype. Keys are language-neutral.
 return {
+ DeathXPLost = "You lost %d XP. Your level is protected.",
+ DeathXPTraining = "Training: no XP lost.",
+ DeathXPSaving = "Checking your death XP penalty...",
+ DeathXPUnavailable = "XP penalty could not be confirmed. Rejoin to refresh your hero.",
  TotalXP = "TOTAL XP %d / %d",
  TotalXPMax = "TOTAL XP %d (MAX)",
  LevelXP = "LV %d   %s",

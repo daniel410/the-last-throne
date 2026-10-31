@@ -86,14 +86,15 @@ local lobbySpawn, tutorialSpawn, trainingSpawn = {}, {}, {}
 local spawnRequests = {}
 local spawnAvailable = true
 local Service = dofile("src/server/Lobby/HeroSessionService.luau")
-Service.start({
+local sessionOptions={
 	lobbySpawn = lobbySpawn, tutorialSpawn = tutorialSpawn, trainingSpawn = trainingSpawn,
 	lobbyBounds = { center = Vector3.new(0, 96, 512), size = Vector3.new(160, 40, 160) },
 	requestSpawn = function(person, destination, requestId)
 		table.insert(spawnRequests, { player = person, destination = destination, id = requestId })
 		return spawnAvailable
 	end,
-})
+}
+Service.start(sessionOptions)
 local remote = replicated:FindFirstChild("Remotes"):FindFirstChild("K0HeroRequest")
 local checks = 0
 local function check(value, message) checks = checks + 1; assert(value, message) end
@@ -225,7 +226,13 @@ generation = generation + 1
 local life = ready(first, load.id, generation, Vector3.new(-20, 4, 56))
 local beforeDeath = Service.getCombatContext(first, life)
 check(beforeDeath.skillReadyAt["test.skill"] == 12345, "hero cooldown survives lobby and tutorial transition")
+local deathCalls={}
+sessionOptions.inventory={available=function()return true end,penalizeDeath=function(p,id,key,training)table.insert(deathCalls,{player=p,heroId=id,key=key,training=training})end}
+life:FindFirstChildOfClass('Humanoid').Health=0
 Service.onLifeEnded(first, life, generation, load.id, "Died")
+Service.onLifeEnded(first, life, generation, load.id, "Died")
+check(#deathCalls==1 and deathCalls[1].heroId==heroes.knight and deathCalls[1].training==false,'one verified adventure death enqueues one penalty')
+sessionOptions.inventory=nil
 check(Service.getCombatContext(first, life) == nil, "death immediately revokes old context")
 generation = generation + 1
 local respawned = ready(first, load.id, generation, Vector3.new(-20, 4, 56))
@@ -265,10 +272,15 @@ check(spawnRequests[#spawnRequests]==adventureLoad,"rejected training request do
 request(first,"ReturnLobby");local lobbyAgain=spawnRequests[#spawnRequests];generation=generation+1;ready(first,lobbyAgain.id,generation)
 value,errorCode=request(first,"StartTraining")
 check(errorCode==nil and value.training==true,"training remains available after returning to lobby")
-local lastTraining=spawnRequests[#spawnRequests];generation=generation+1;ready(first,lastTraining.id,generation,Vector3.new(-20,4,56))
+local lastTraining=spawnRequests[#spawnRequests];generation=generation+1;local lastTrainingLife=ready(first,lastTraining.id,generation,Vector3.new(-20,4,56))
+sessionOptions.inventory={available=function()return true end,penalizeDeath=function(p,id,key,training)table.insert(deathCalls,{training=training})end}
+lastTrainingLife:FindFirstChildOfClass('Humanoid').Health=0
+Service.onLifeEnded(first,lastTrainingLife,generation,lastTraining.id,'Died')
+check(#deathCalls==2 and deathCalls[2].training==true,'training death carries explicit exemption')
+sessionOptions.inventory=nil
 request(first,"ReturnLobby");local finalLobby=spawnRequests[#spawnRequests];generation=generation+1;ready(first,finalLobby.id,generation)
 for index = 1, 30 do remote.OnServerEvent:Fire(first, "CreateHero", "spam-" .. index, "knight") end
-check(first.response.errorCode == "TooFast" and guid == 4, "burst requests are bounded without extra heroes")
+check(first.response.errorCode == "TooFast" and guid == 6, "burst requests are bounded without extra heroes")
 players.PlayerRemoving:Fire(first)
 first.Parent = nil
 check(Service.getActiveHero(first) == nil and Service.getCombatContext(first, first.Character) == nil, "leaving discards prototype roster and context")

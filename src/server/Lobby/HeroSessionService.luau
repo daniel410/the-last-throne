@@ -368,9 +368,16 @@ end
 function HeroSessionService.onLifeEnded(player, character, generation, requestId, reason)
 	local state = sessions[player]
 	if not state or state.character ~= character or state.generation ~= generation or state.transitionId ~= requestId then return end
+ local hero=selectedHero(state)
+ local human=character:FindFirstChildOfClass('Humanoid')
+ local penalize=reason=='Died' and state.mode=='Tutorial' and state.ready and hero and human and human.Health<=0 and not character:GetAttribute('TLTDeathPenaltyHandled')
+ if penalize then character:SetAttribute('TLTDeathPenaltyHandled',true) end
 	invalidateLife(state)
 	state.phase = state.mode == "Tutorial" and (reason=="Died" and "Respawning" or "LoadingTutorial") or "LoadingLobby"
 	changed(state)
+ if penalize and settings.inventory and settings.inventory.penalizeDeath then
+  settings.inventory.penalizeDeath(player,hero.heroId,'death_'..HttpService:GenerateGUID(false),state.route=='Training')
+ end
 end
 
 function HeroSessionService.onReady(player, character, generation, requestId)

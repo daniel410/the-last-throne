@@ -150,6 +150,7 @@ function Hud.create()
 	root.BackgroundTransparency = 1
 	root.Size = UDim2.fromScale(1, 1)
 	root.Parent = gui
+ require(script.Parent.DeathPenaltyNotice).create(root,Players.LocalPlayer)
 
 	local topGui=Instance.new("ScreenGui")
 	topGui.Name,topGui.ResetOnSpawn,topGui.DisplayOrder="DeepwoodTopHud",false,1

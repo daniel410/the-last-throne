@@ -21,6 +21,8 @@ function Growth.xpAtLevel(level)
  return completed*Growth.xpBase+Growth.xpPerLevel*completed*(completed-1)/2
 end
 function Growth.totalXP(g) return Growth.xpAtLevel(g.level)+g.xp end
+-- Lose only within-level progress: 10%, rounded up, never an earned level.
+function Growth.deathXPLoss(g) return math.ceil(g.xp/10) end
 function Growth.new(level)
  local ranks={};for i=1,32 do ranks[i]=0 end
  return {version=3,revision=0,level=level or 1,xp=0,stats={STR=0,DEX=0,INT=0,VIT=0},
@@ -125,6 +127,9 @@ function Growth.apply(g,command,classId)
 			nextG.xp=nextG.xp-Growth.xpToNext(nextG.level); nextG.level=nextG.level+1
 		end
 		if nextG.level==80 then nextG.xp=0 end
+	elseif command.action=="DeathPenalty" then
+  if command.training~=false then return nil,"InvalidRequest" end
+  nextG.xp=math.max(0,g.xp-Growth.deathXPLoss(g))
 	elseif command.action=="AllocateStats" then
 		if type(command.stats)~="table" then return nil,"InvalidRequest" end
 		local cost=0; for k,v in pairs(command.stats) do

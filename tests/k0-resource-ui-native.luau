@@ -24,7 +24,10 @@ local function copyModule(name, mobileViewport)
 	local original = assert(client:FindFirstChild(name))
 	local replacement = [[local Players = { LocalPlayer = { WaitForChild = function(_, name)
   assert(name == "PlayerGui"); return script.FixturePlayerGui.Value
-end } }]]
+end,
+ GetAttribute=function(_,name) return script.FixturePlayerGui.Value:GetAttribute(name) end,
+ GetAttributeChangedSignal=function(_,name) return script.FixturePlayerGui.Value:GetAttributeChangedSignal(name) end,
+} }]]
 	local source, count = original.Source:gsub('local Players = game:GetService%("Players"%)', function() return replacement end)
 	assert(count == 1, name .. " LocalPlayer binding changed")
 	if mobileViewport then
@@ -67,6 +70,16 @@ local ok, failure = xpcall(function()
  atlasParent:Destroy();mapHero:Destroy()
 	local hud = copyModule("K0Hud").create()
 	local status = playerGui.DeepwoodTrainingHud.Root.Status
+ playerGui:SetAttribute('TLTDeathXPState','Saving');playerGui:SetAttribute('TLTDeathXPNotice','death-test:Saving');task.wait()
+ local deathNotice=playerGui.DeepwoodTrainingHud.Root.DeathPenaltyNotice
+ check(deathNotice.Visible and deathNotice.Message.Text:find('Checking',1,true),'pending penalty never invents a lost amount')
+ playerGui:SetAttribute('TLTDeathXPLost',4);playerGui:SetAttribute('TLTDeathXPState','Saved');playerGui:SetAttribute('TLTDeathXPNotice','death-test:Saved');task.wait()
+ check(deathNotice.Message.Text=='You lost 4 XP. Your level is protected.','confirmed death receipt shows exact XP loss')
+ playerGui:SetAttribute('TLTDeathXPState','Training');playerGui:SetAttribute('TLTDeathXPNotice','training:Training');task.wait()
+ check(deathNotice.Message.Text=='Training: no XP lost.','training exemption is explicit')
+ playerGui:SetAttribute('TLTDeathXPState',nil);playerGui:SetAttribute('TLTDeathXPNotice','reset');task.wait()
+ check(not deathNotice.Visible,'unknown notice does not leave a stale death message')
+
 	local label, value, track = status.MANALabel, status.MANAValue, status.MANATrack
 	check(not label.Visible and not value.Visible and not track.Visible, "empty hero has no mana bar")
 	check(status.Size.Y.Offset == 100, "empty status panel fits one bar")
