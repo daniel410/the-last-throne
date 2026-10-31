@@ -1,6 +1,6 @@
 # 지역 이동 로딩 이미지 v1
 
-2026-10-31 · 이미지 생성 도구로 제작한 로컬 산출물. 서버 이동 화면 연결과 Roblox 이미지 업로드는 아직 완료되지 않았다.
+2026-10-31 · 이미지 생성 도구로 제작한 원본. Roblox 이미지 등록과 로컬 이동 화면 코드 연결을 완료했으며 게시 클라이언트 검증은 남아 있다.
 
 | 지역 | 파일 | SHA-256 | 참고 원본 |
 | --- | --- | --- | --- |
@@ -10,4 +10,6 @@
 
 프롬프트 공통: 참조 이미지의 블록형 판타지 스타일로 지역 풍경을 넓은 로딩 배경으로 제작하고 글자·로고·UI·타워 배치 표식을 제외. Deepwood는 거목과 폭포·돌다리, Frozen Vale은 설송과 빙하·피난처·얼음성, Ember Caldera는 현무암 절벽의 드워프 대장간 도시와 화산을 지정했다. 이미지 속 글자와 수치를 게임 콘텐츠로 사용하지 않는다.
 
-Roblox의 Place 썸네일 화면은 검색/상세용이다. 서버 이동용 화면은 이미지 자산을 Roblox에 등록하고 클라이언트에서 이동 전에 `TeleportService:SetTeleportGui`를 설정하는 별도 구현이 필요하다. 같은 Experience 내부 이동에서만 사용자 지정 화면이 유지되며 실제 게시 클라이언트 검증이 필요하다. [Roblox 문서](https://create.roblox.com/docs/projects/teleport). 다음 담당: 엔지니어링/QA.
+Roblox의 Place 썸네일 화면은 검색/상세용이다. 서버 이동용 화면은 등록된 이미지 자산과 클라이언트 `TeleportService:SetTeleportGui` 구현을 사용한다. 세 이미지 중 하나를 무작위로 선택한다. 같은 Experience 내부 이동에서만 사용자 지정 화면이 유지되며 실제 게시 클라이언트 검증이 필요하다. [Roblox 문서](https://create.roblox.com/docs/projects/teleport). 다음 담당: 엔지니어링/QA.
+
+구현·자산 ID·검증 상태: [이동 로딩 증거](../../../docs/evidence/travel-loading-20261031/README.md).

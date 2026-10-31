@@ -8,6 +8,7 @@ local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
+require(script.TravelLoadingScreen).start(player)
 task.spawn(function() require(script.LobbyCommerce).start() end)
 task.spawn(function() require(script.LobbyLandmarkVisuals).start() end)
 task.spawn(function() require(script.NPCDialogue).start() end)
