@@ -6,10 +6,11 @@ local Text=require(RS.Shared.LobbyText)
 local Wallet=require(script.Parent.WalletDisplay)
 local M={}
 function M.start()
- local p=Players.LocalPlayer;local remotes=RS:WaitForChild('Remotes')
+ local p=Players.LocalPlayer
+ require(script.Parent.LobbyWallet).start(p)
+ local remotes=RS:WaitForChild('Remotes')
  local shopRequest=remotes:WaitForChild('ArmoryRequest');local networkRequest=remotes:WaitForChild('ExpeditionRequest')
  local gui=Instance.new('ScreenGui');gui.Name='LobbyServices';gui.ResetOnSpawn=false;gui.DisplayOrder=48;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=p:WaitForChild('PlayerGui')
- local wallet=Wallet.create(gui);wallet.AnchorPoint=Vector2.new(1,0);wallet.Position=UDim2.new(1,-12,0,12)
  local shopButton=T.button(gui,'OpenArmory','ARMORY',UDim2.new(1,-172,1,-60),UDim2.fromOffset(156,44))
  local partyButton=T.button(gui,'OpenExpedition','ADVENTURES',UDim2.new(0,16,1,-60),UDim2.fromOffset(156,44))
  local latest,pending
@@ -47,7 +48,6 @@ function M.start()
  local function phase()
   local lobby=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle'
   shopButton.Visible=lobby;partyButton.Visible=lobby
-  wallet.Visible=lobby
   if not lobby then armory.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(phase);phase()
