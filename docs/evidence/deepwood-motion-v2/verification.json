@@ -1,0 +1,64 @@
+{
+  "source_commit": "4b9e4caac484bcc3dc2bb5a8d72e42cd0a27ef4e",
+  "version": "0.49.0",
+  "artifact": {
+    "role": "Battle",
+    "path": "builds/0.49.0/TheLastThrone-Battle-0.49.0.rbxlx",
+    "command": [
+      "rojo",
+      "build",
+      "battle.project.json",
+      "-o",
+      "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.49.0/TheLastThrone-Battle-0.49.0.rbxlx"
+    ],
+    "success": true,
+    "bytes": 3766105,
+    "sha256": "c47e8cf005f6cacae55973014ccafe00570398968387ee64be694b0056ec3893"
+  },
+  "suite_source_sha256": "c7fa2badf14738384a29712e23328c510a844f8646fbc6bde242c0ed906f8a77",
+  "command": "run-in-roblox --place builds/0.49.0/TheLastThrone-Battle-0.49.0.rbxlx --script /tmp/tlt-deepwood-fixed-suite.luau",
+  "tests": [
+    "tests/deepwood-monster-motion-native.luau",
+    "tests/deepwood-monster-refinement-native.luau",
+    "tests/enemy-streaming-presentation-native.luau",
+    "tests/k0-timing-native.luau",
+    "tests/k0-basic-attacks-native.luau",
+    "tests/knight-stun-and-control-effects-native.luau"
+  ],
+  "reports": [
+    {
+      "kind": "DEEPWOOD_MONSTER_MOTION_NATIVE",
+      "checks": 9553,
+      "pass": true
+    },
+    {
+      "kind": "DEEPWOOD_REFINEMENT_NATIVE",
+      "checks": 3122,
+      "pass": true
+    },
+    {
+      "kind": "ENEMY_STREAMING_PRESENTATION_NATIVE",
+      "checks": 10,
+      "pass": true
+    },
+    {
+      "kind": "K0_TIMING_NATIVE",
+      "checks": 110,
+      "pass": true
+    },
+    {
+      "kind": "K0_BASIC_ATTACK_NATIVE",
+      "checks": 947,
+      "pass": true
+    },
+    {
+      "kind": "KNIGHT_STUN_CONTROL_EFFECTS_NATIVE",
+      "checks": 296,
+      "pass": true
+    }
+  ],
+  "native_checks": 14038,
+  "static_checks": 134,
+  "passed": true,
+  "published": false
+}

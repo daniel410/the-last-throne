@@ -1,0 +1,54 @@
+{
+  "version": "0.49.0",
+  "source_commit": "4b9e4caac484bcc3dc2bb5a8d72e42cd0a27ef4e",
+  "tool": "Rojo 7.7.1",
+  "source_stage": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-deepwood-pinned-7cfp81zl",
+  "lfs_inputs_verified": {
+    "assets/shared/td-monsters/runtime.rbxmx": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+    "assets/shared/td-player-weapons/runtime.rbxmx": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9",
+    "assets/shared/td-player-weapons/shield/runtime.rbxmx": "77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823",
+    "assets/shared/td-deepwood-environment/maps.rbxmx": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39",
+    "assets/shared/td-deepwood-environment/forest-kit.rbxmx": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5",
+    "assets/shared/td-selene/runtime.rbxmx": "b72058845b8fe9c14d9532d1519baa415b610c0e7bd3cf2ff2c0ff6cb28e6ef6",
+    "assets/shared/td-refined-player-weapons/runtime.rbxmx": "499dc06be05428916bfc5ad86a9e521eaf1c7376215d88bbd5d6fc40bea87ff8"
+  },
+  "uncommitted_changes_excluded": [
+    "src/client/LobbyLandmarkVisuals.luau",
+    "src/server/Network/ExpeditionService.luau",
+    "src/server/World/LobbyLandmarks.luau",
+    "src/shared/ExpeditionConfig.luau",
+    "src/shared/LobbyText.luau"
+  ],
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.49.0/TheLastThrone-Lobby-0.49.0.rbxlx",
+      "command": [
+        "rojo",
+        "build",
+        "default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.49.0/TheLastThrone-Lobby-0.49.0.rbxlx"
+      ],
+      "success": true,
+      "bytes": 3766104,
+      "sha256": "b78cab293e59fbc4b283e2374759dc6a77aa79e48a58d07535a2fe933faabc77"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.49.0/TheLastThrone-Battle-0.49.0.rbxlx",
+      "command": [
+        "rojo",
+        "build",
+        "battle.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.49.0/TheLastThrone-Battle-0.49.0.rbxlx"
+      ],
+      "success": true,
+      "bytes": 3766105,
+      "sha256": "c47e8cf005f6cacae55973014ccafe00570398968387ee64be694b0056ec3893"
+    }
+  ],
+  "published": false,
+  "release_tag": null
+}
