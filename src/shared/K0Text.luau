@@ -1,5 +1,6 @@
 -- en-US source text for the K0 training prototype. Keys are language-neutral.
 return {
+ DeathNoticeConfirm = "OK",
  DeathXPLost = "You lost %d XP. Your level is protected.",
  DeathXPTraining = "Training: no XP lost.",
  DeathXPSaving = "Checking your death XP penalty...",
