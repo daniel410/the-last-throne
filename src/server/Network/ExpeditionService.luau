@@ -71,6 +71,10 @@ local function retryTravel(p,attempt)
    leaving[p]=nil
    if resumed and admitted[p] and battleRun then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,true) end
   end
+  if attempt.kind=='defense' then
+   local notice=RS.Remotes:FindFirstChild('LobbyFacilityState')
+   if notice then notice:FireClient(p,{error=resumed and 'DefenseTravelFailed' or 'DefenseResumeFailed'}) end
+  end
   publish(p,'TravelFailed');return
  end
  local options=Instance.new('TeleportOptions')
@@ -84,6 +88,16 @@ local function send(p,attempt,prepared)
  if not prepared and not o.inventory.prepareTransfer(p) then return false,'Unavailable' end
  p:SetAttribute('TLTTravelLock',true);attempt.tries=0;travel[p]=attempt;publish(p)
  retryTravel(p,attempt);return true
+end
+function Service.travelToDefense(p)
+ if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then return 'WaitForLobby' end
+ if Service.isBusy(p) then return 'Busy' end
+ if parties[p] then return 'LeavePartyForDefense' end
+ if studio then return 'DefenseStudioUnavailable' end
+ busy[p]=true
+ local ok,reason=send(p,{kind='defense',placeId=103116209434833,data={}})
+ busy[p]=nil
+ if not ok then return reason end
 end
 function Service.isBusy(p) return travel[p]~=nil or busy[p]==true end
 function Service.admitArrival(p)

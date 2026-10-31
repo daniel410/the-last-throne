@@ -1,5 +1,9 @@
 return {
  Gold='Gold', Diamonds='Diamonds',
+ LeavePartyForDefense='Leave your party before travelling to Throne Defense. Travel is individual.',
+ DefenseTravelFailed='Travel failed. Your account is ready; use the portal to try again.',
+ DefenseResumeFailed='Travel failed and your account could not reopen. Rejoin to restore your progress.',
+ DefenseStudioUnavailable='Travel is available in the published game. Return to the lobby and try there.',
  InvalidRequest='That request was not valid. Refresh and try again.',Busy='Please wait for the current action to finish.',
  Unavailable='Your saved account is unavailable. Rejoin before trading.',SaveUnknown='Saving is not confirmed. Retry the same transaction.',
  AccountBusy='Your account is still open in another server. Wait and retry.',Changed='Your inventory changed. Refresh and choose the item again.',

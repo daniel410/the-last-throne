@@ -31,6 +31,18 @@ local function portal(lobby)
  local anchor=make('PortalInteraction',Vector3.new(2,2,1),Vector3.new(0,2,6),C.gold);anchor.Transparency=1
  return {model=m,prompt=A.prompt(anchor,spec),anchor=anchor}
 end
+local function defense(lobby)
+ local spec=Specs.defense;local m=model(lobby.folder,'ThroneDefenseGateway');local make=A.builder(m,lobby.origin+spec.offset)
+ make('Dais',Vector3.new(17,.4,10),Vector3.new(0,.2,0),C.dark,Enum.Material.Slate,true)
+ for _,x in ipairs({-7,7}) do make('Pillar',Vector3.new(2,12,2),Vector3.new(x,6,-3),C.pale,Enum.Material.Marble) end
+ make('Lintel',Vector3.new(16,2,2),Vector3.new(0,12,-3),C.gold,Enum.Material.Metal)
+ local veil=make('DefenseVeil',Vector3.new(12,10,.4),Vector3.new(0,6,-3),C.purple,Enum.Material.Neon);veil.Transparency=.45
+ local sign=make('DefenseSign',Vector3.new(20,3,.5),Vector3.new(0,15,-3),C.blue,Enum.Material.Wood);A.sign(sign,spec)
+ local lore=make('KingdomStory',Vector3.new(20,4,.5),Vector3.new(0,3,4),C.blue,Enum.Material.Wood)
+ A.sign(lore,{title='ONE KINGDOM · TWO FRONTS',subtitle='COMMAND THE DEFENSE. EXPLORE AS A HERO.',key='lobby.story.sharedKingdom'})
+ local anchor=make('DefenseInteraction',Vector3.new(2,2,1),Vector3.new(0,2,6),C.gold);anchor.Transparency=1
+ return {model=m,prompt=A.prompt(anchor,spec),anchor=anchor}
+end
 local function training(lobby)
  local spec=Specs.training;local m=model(lobby.folder,'DawnspireTrainingGround');local make=A.builder(m,lobby.origin+spec.offset)
  make('TrainingSand',Vector3.new(32,.22,31),Vector3.new(0,.12,0),Color3.fromRGB(170,143,96),Enum.Material.Sand,true)
@@ -57,6 +69,6 @@ local function training(lobby)
  return {model=m,prompt=A.prompt(anchor,spec),anchor=anchor}
 end
 function W.create(lobby)
- return {portal=portal(lobby),training=training(lobby)}
+ return {portal=portal(lobby),training=training(lobby),defense=defense(lobby)}
 end
 return W

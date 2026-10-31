@@ -13,6 +13,7 @@ function S.start(options)
  end
  if options.facilities then
   bind(options.facilities.portal,function(player) return options.expedition.openMenu(player) end)
+  bind(options.facilities.defense,function(player) return options.expedition.travelToDefense(player) end)
   bind(options.facilities.training,function(player) return options.heroSession.startTraining(player) end)
  end
  game.Players.PlayerRemoving:Connect(function(player) last[player]=nil end)
