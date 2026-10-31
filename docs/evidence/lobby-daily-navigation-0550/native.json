@@ -1,0 +1,108 @@
+{
+  "version": "0.55.0",
+  "sourceCommit": "71ebf52be1cea97b0cd551f08b0427b9c73efa8c",
+  "environment": "isolated Studio Edit and fresh local Studio Play session with session-only account; no published data",
+  "guiReports": [
+    {
+      "test": "diamond-gold-exchange-ui-native",
+      "kind": "DIAMOND_GOLD_UI_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 8
+    },
+    {
+      "test": "lobby-top-menu-native",
+      "kind": "LOBBY_TOP_MENU_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 26
+    },
+    {
+      "test": "lobby-quest-journal-native",
+      "kind": "LOBBY_QUEST_JOURNAL_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 24
+    },
+    {
+      "test": "expedition-solo-order-native",
+      "kind": "EXPEDITION_SOLO_ORDER_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 47
+    },
+    {
+      "test": "daily-login-ui-native",
+      "kind": "DAILY_LOGIN_UI_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 27
+    },
+    {
+      "test": "lobby-navigation-icon-native",
+      "kind": "LOBBY_NAVIGATION_ICON_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 5
+    },
+    {
+      "test": "lobby-panel-size-native",
+      "kind": "LOBBY_PANEL_SIZE_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 90
+    },
+    {
+      "test": "shop-affordability-native",
+      "kind": "SHOP_AFFORDABILITY_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 11
+    }
+  ],
+  "playSmoke": {
+    "kind": "DAILY_LOGIN_CLIENT_SMOKE",
+    "failures": [],
+    "pass": true,
+    "checks": 9
+  },
+  "serverRegression": [
+    {
+      "test": "daily-login.spec.lua",
+      "checks": 73,
+      "pass": true
+    },
+    {
+      "test": "diamond-gold-exchange.spec.lua",
+      "checks": 15,
+      "pass": true
+    },
+    {
+      "test": "economy.spec.lua",
+      "checks": 42,
+      "pass": true
+    },
+    {
+      "test": "starter-potions-and-shop.spec.lua",
+      "checks": 170,
+      "pass": true
+    },
+    {
+      "test": "blacksmith-stock.spec.lua",
+      "checks": 181,
+      "pass": true
+    }
+  ],
+  "runtimeObservation": {
+    "phase": "Lobby",
+    "topMenu": true,
+    "oldLaunchersVisible": false,
+    "dailyButton": true,
+    "questPanelConstructed": true
+  },
+  "limitations": [
+    "Published clients, real DataStore failures/concurrency, physical devices, gamepad and user visual acceptance not tested",
+    "Pre-existing asset 203785492 emitted type mismatch warnings",
+    "Studio Play stopped and QA fixtures cleaned; some QA Studio Edit windows remain open because app focus changed while closing them"
+  ]
+}
