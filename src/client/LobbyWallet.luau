@@ -8,7 +8,7 @@ function M.create(player,parent,world)
  gui.Name="LobbyWallet";gui.ResetOnSpawn=false;gui.DisplayOrder=70
  gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=parent
  local wallet=Wallet.create(gui)
- wallet.AnchorPoint=Vector2.new(1,0);wallet.Position=UDim2.new(1,-12,0,12)
+ wallet.AnchorPoint=Vector2.new(1,0);wallet.Position=UDim2.new(1,-12,0,72)
  local function refresh()
   local phase=player:GetAttribute("K0SessionPhase")
   gui.Enabled=world:GetAttribute("TLTServerRole")~="Battle"

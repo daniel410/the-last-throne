@@ -19,7 +19,7 @@ function Wallet.create(parent)
  for i,item in ipairs({{'Gold','gold',Theme.color.gold},{'Diamonds','diamonds',Color3.fromRGB(164,221,255)}}) do
   Theme.icon(frame,item[2],UDim2.fromOffset(2,(i-1)*28),UDim2.fromOffset(24,24))
   local label=Theme.label(frame,item[1],'',UDim2.fromOffset(32,(i-1)*28),UDim2.new(1,-34,0,26),17,item[3])
-  label.Font=Enum.Font.GothamBold;label.TextXAlignment=Enum.TextXAlignment.Right;label.TextWrapped=false;label.TextScaled=true;label.TextStrokeTransparency=.25;label.TextStrokeColor3=Color3.fromRGB(15,24,30)
+  label.Font=Enum.Font.GothamBold;label.TextXAlignment=Enum.TextXAlignment.Left;label.TextWrapped=false;label.TextScaled=true;label.TextStrokeTransparency=.25;label.TextStrokeColor3=Color3.fromRGB(15,24,30)
   local limits=Instance.new('UITextSizeConstraint');limits.MinTextSize=12;limits.MaxTextSize=17;limits.Parent=label
  end
  views[frame]=true;render(frame);return frame

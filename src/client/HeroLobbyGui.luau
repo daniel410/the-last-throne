@@ -75,8 +75,8 @@ function LobbyGui.create(request,onManage)
 	local minimized, suppressed = false, false
 	local reopen = button(gui, "OpenHeroes", "HEROES", UDim2.fromOffset(14,10), UDim2.fromOffset(120,44))
 	reopen.Visible = false
-	-- Reserve the top 68 pixels for the lobby wallet, including the raised title plaque.
-	local shell=Menu.frame(shade,"HeroPanel",UDim2.new(.5,0,.5,33),UDim2.new(1,-80,1,-114))
+	-- Leave space above the panel for the lobby buttons and wallet.
+	local shell=Menu.frame(shade,"HeroPanel",UDim2.new(.5,0,.5,58),UDim2.new(1,-80,1,-164))
 	shell.AnchorPoint=Vector2.new(.5,.5)
 	local constraint=Instance.new("UISizeConstraint");constraint.MaxSize=Vector2.new(1100,660);constraint.Parent=shell
 	local explore = button(shell, "ExploreCourtyard", "X", UDim2.new(1,-58,0,12), UDim2.fromOffset(40,40))
