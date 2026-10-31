@@ -72,7 +72,7 @@ function Journal.start(hud)
   dialog.Position=UDim2.new(.5,0,1,-math.min(195,camera.ViewportSize.Y*.2))
  end
  local navigation=Navigation.start();local gates=Gates.create()
- local marker=Instance.new('BillboardGui');marker.Name='DeepwoodWaypoint';marker.Size=UDim2.fromOffset(190,55);marker.AlwaysOnTop=true;marker.StudsOffset=Vector3.new(0,6,0);marker.MaxDistance=2400;marker.Parent=player:WaitForChild('PlayerGui')
+ local marker=Instance.new('BillboardGui');marker.Name='DeepwoodWaypoint';marker.ResetOnSpawn=false;marker.Size=UDim2.fromOffset(190,55);marker.AlwaysOnTop=true;marker.StudsOffset=Vector3.new(0,6,0);marker.MaxDistance=2400;marker.Parent=player:WaitForChild('PlayerGui')
  local anchor=Instance.new('Part');anchor.Name='PersonalWaypoint';anchor.Anchored=true;anchor.Size=Vector3.one;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanTouch=false;anchor.CanQuery=false;anchor.Parent=workspace
  local waypoint=Theme.label(marker,'Waypoint','',UDim2.new(),UDim2.fromScale(1,1),12,Theme.color.gold);waypoint.TextXAlignment=Enum.TextXAlignment.Center;waypoint.TextStrokeTransparency=.15
  setOpen=function(open) panel.Visible=open;player:SetAttribute('TLTStoryOpen',open or (dialog.Visible and left.Visible)) end

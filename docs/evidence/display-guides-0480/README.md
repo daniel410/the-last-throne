@@ -1,4 +1,4 @@
-# 에픽 공격 범위 / Settings · 0.48.0
+# 에픽 공격 범위 / Settings · 0.48.1
 
 - 작업: TLT-028/031/061/084 부분 구현 / ENG·DES·QA 자체 검증. 상위 티켓은 In Progress를 유지한다.
 - 변경: Y=0에 고정된 공격 선을 실제 지면에 투영해 트레이닝·Deepwood 에픽과 경사에 표시한다. SETTINGS에 Enemy Attack Ranges / Navigation Trail / Objective Markers를 추가한다. 기본ON, 즉시 반영, 같은 접속의 리스폰·메뉴 재생성에 유지, 재접속 시 초기화다. 기존 지도 내비 토글과 연동한다. [조사/적용 판단](../../research/2026-10-31-display-guides-settings.md).
@@ -8,3 +8,5 @@
 - 소스 검증: `tests/display-guides-native.luau`를 격리 native fixture에서 실행해 **50개 통과/실패0**. 기본ON·독립 토글·메뉴 재생성/모달 종료·지반18고도·경사·트레이닝0고도·일반/방어불가·보스 경고OFF/ON·스트리밍·거리 정리를 확인했다. 기존 거대 K0EnemyClips의Source 주입 한도 때문에 이번 검사에 필요한 shared/client 모듈만 임시 runner로 주입했으며 게임 빌드 결과와 구분한다. 기존203785492 자산 유형 경고는 유지한다.
 - 빌드·실제 화면/최종 회귀 결과는 후속 검증 기록에 덧붙인다. Roblox 게시·릴리스 태그는 요청 범위에 포함하지 않는다.
 - 미검증: 실기기·4인·게시 클라이언트·후반 에픽의 미구현 맵·사용자 가독성 수용. 다음 담당 QA/사용자가 실제 Deepwood에서 표시와 메뉴를 확인한다.
+
+실제 화면 검사에서 목표 BillboardGui의 기본 ResetOnSpawn 때문에 첫 모험 진입 시 표식이 삭제되는 기존 결함을 확인했다. ResetOnSpawn=false로 수정해 표식의 수명을 저널/설정과 맞춘0.48.1을 새 버전으로 빌드한다. 앞선0.48.0 빌드 파일은 덮어쓰지 않고 유지한다.

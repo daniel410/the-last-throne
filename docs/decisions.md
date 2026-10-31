@@ -2,7 +2,7 @@
 
 ## 2026-10-31 — 에픽 공격 범위와 표시 설정
 
-사용자 요청으로 트레이닝과 에픽에 같은 몬스터 공격 범위 안내를 제공하고 SETTINGS 메뉴에서 공격 범위·내비게이션을 켜고 끈다. 0.48.0 시험 구현은 공격 범위를 실제 지면에 투영하고 Enemy Attack Ranges / Navigation Trail / Objective Markers 세 항목을 기본ON으로 제공한다. 로비 상단/전투 미니맵 메뉴에서 열며 기존 지도 내비 토글과 연동한다. 같은 접속의 리스폰/메뉴 재생성에는 유지하고 재접속 초기화는 기존 내비 설정 계약을 따른다. 서버 피해·범위·진행·저장·TD는 변경하지 않는다. [조사](research/2026-10-31-display-guides-settings.md) · [검증/남은 수용](evidence/display-guides-0480/README.md). Roblox 게시 승인을 추가로 해석하지 않는다.
+사용자 요청으로 트레이닝과 에픽에 같은 몬스터 공격 범위 안내를 제공하고 SETTINGS 메뉴에서 공격 범위·내비게이션을 켜고 끈다. 0.48.1 시험 구현은 공격 범위를 실제 지면에 투영하고 Enemy Attack Ranges / Navigation Trail / Objective Markers 세 항목을 기본ON으로 제공한다. 로비 상단/전투 미니맵 메뉴에서 열며 기존 지도 내비 토글과 연동한다. 같은 접속의 리스폰/메뉴 재생성에는 유지하고 재접속 초기화는 기존 내비 설정 계약을 따른다. 서버 피해·범위·진행·저장·TD는 변경하지 않는다. [조사](research/2026-10-31-display-guides-settings.md) · [검증/남은 수용](evidence/display-guides-0480/README.md). Roblox 게시 승인을 추가로 해석하지 않는다.
 
 ## 2026-10-31 — 영웅·몬스터 피격 표시와 게시 승인
 

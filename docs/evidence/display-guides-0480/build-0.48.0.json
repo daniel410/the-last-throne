@@ -1,0 +1,64 @@
+{
+  "version": "0.48.0",
+  "source_commit": "09dba34e96d594117086ae3f50d95602a1e2ef27",
+  "stage": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-0480-pinned-uuha5nks",
+  "tool": "Rojo 7.7.1",
+  "lfs_materialized": [],
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.48.0/TheLastThrone-Lobby-0.48.0.rbxlx",
+      "command": [
+        "rojo",
+        "build",
+        "default.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.48.0/TheLastThrone-Lobby-0.48.0.rbxlx"
+      ],
+      "success": true,
+      "bytes": 2274572,
+      "sha256": "445386e0cbb283fd1be3df76b1c92b318ab77e241458c24046be50e7ed2a71d8"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.48.0/TheLastThrone-Battle-0.48.0.rbxlx",
+      "command": [
+        "rojo",
+        "build",
+        "battle.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.48.0/TheLastThrone-Battle-0.48.0.rbxlx"
+      ],
+      "success": true,
+      "bytes": 2274573,
+      "sha256": "e5f798c909423d6d1df16bfb1b827f6dc287ffa002bc7410ee4d8ef263ff3732"
+    }
+  ],
+  "published": false,
+  "release_tag": null,
+  "status": "local-build-success-unpublished",
+  "lfs_verified_against_committed_oid": [
+    "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+    "assets/shared/td-deepwood-environment/maps.rbxmx",
+    "assets/shared/td-monsters/runtime.rbxmx",
+    "assets/shared/td-monsters/source/Meshy_AI_Goblin_Bladebearer_20261025_texture_da014fd3.glb",
+    "assets/shared/td-monsters/source/Meshy_AI_Grimfang_the_Bonecrusher_20261025_texture_5d91642a.glb",
+    "assets/shared/td-monsters/source/Meshy_AI_Grumpy_Green_Slime_1026021945_texture.glb",
+    "assets/shared/td-monsters/source/Meshy_AI_Ironhide_Warlord_20261025_texture_3545c9fe.glb",
+    "assets/shared/td-player-weapons/runtime.rbxmx",
+    "assets/shared/td-player-weapons/shield/ColorMap.png",
+    "assets/shared/td-player-weapons/shield/back.png",
+    "assets/shared/td-player-weapons/shield/front.png",
+    "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+    "assets/shared/td-player-weapons/shield/shield-mesh-only.glb",
+    "assets/shared/td-player-weapons/shield/shield-textured-review.glb",
+    "assets/shared/td-player-weapons/shield/side.png",
+    "assets/shared/td-player-weapons/shield/three-quarter.png",
+    "assets/shared/td-player-weapons/source/DwarfAxe-td-derived-review.glb",
+    "assets/shared/td-player-weapons/source/ElfBow-td-derived-review.glb",
+    "assets/shared/td-player-weapons/source/KnightSword-td-derived-review.glb",
+    "assets/shared/td-refined-player-weapons/refined-weapon-review.blend",
+    "assets/shared/td-refined-player-weapons/runtime.rbxmx",
+    "assets/shared/td-selene/runtime.rbxmx"
+  ]
+}
