@@ -15,6 +15,17 @@
 - `lua tests/deepwood-encounter-balance.spec.lua`:1,312개 통과. 전체 구성·보스1명·양의 정수 분배/XP·Gold 총합 보존·기존 레벨과1~4인 HP/피해 증가.
 - `lua tests/deepwood-bosses.spec.lua`:96개 통과.
 - `lua tests/hero-progression.spec.lua`:656개 통과. 누적XP와 기존 저장/성장 계약.
-- 고정 소스 빌드와 최종 엔진 검사는 후속 기록에 추가한다. 현재 이 문단은 아직 빌드/엔진 성공을 뜻하지 않는다.
+- 고정 소스 `cdf5391` / Rojo7.7.1의0.41.3 Lobby·Battle 빌드 성공. [명령/입력 커밋/바이트/해시](build.json). Git 커밋만 별도 임시 폴더로 추출했으며, 두 산출물의 주요11개 모듈과 기존 모션 소스를 고정 커밋과 대조했다. [결과](source-verification.json).
+- `tests/deepwood-service-native.luau` / 최종 Battle: **3,919개 통과**, 실제6명 첫교전·5보스/증원·레벨/HP 인접 배치·서버 진행·중복 처치·첫교전XP36/Gold10 보존. [로그](service.log).
+- `tests/k0-resource-ui-native.luau` / 최종 Battle: **4,804개 통과**, 영웅 창/HUD의 누적XP0/99/100/240/84925 표시·폭 실측과 기존 스킬/모바일 UI 회귀. [원시 로그](ui-world-first-failed.log).
+- `tests/deepwood-places-native.luau` / 최종 Battle: **405개 통과**, 지형/장소와 훈련Lv1·지연 레벨17 갱신·보스/일반 전환·HP와 이름/레벨 분리·피격/사망 표시. [최종 로그](places.log).
+- `tests/k0-build-smoke.luau` / 최종 Lobby: **542개 통과**, 전체 모듈 로드·기본 전투/체력바·4종 사망/리스폰·실제 메시/텍스처 로드. 런타임 오류0. [최종 로그](smoke.log).
+- `lua tests/deepwood-progress.spec.lua`:570개 통과. `lua tests/deepwood-quests.spec.lua`:31개 통과.
+
+UI/장소 묶음의 첫 실행은 UI4,804개를 통과한 뒤 기존96px 전체 바 폭을 가정한 장소 검사에서 실패했다. HP 자체96px는 보존하고 왼쪽 레벨44px가 추가돼 전체140px가 되는 새 계약으로 검사만 수정해 최종405개를 통과했다. 게임 소스/산출물은 재빌드하거나 덮어쓰지 않았다. 최초 XML 소스 확인 스크립트는 Source를 ProtectedString으로만 찾아 중단했으며, 실제 Rojo string Source도 읽도록 수정한 대조에서11개 모듈이 일치했다. 기존203785492 자산 유형 경고를 보존한다.
+
+엔진 검사에서는 Player/계정/입력은 대역이며 실제 소비자 플레이 수용과 구분한다.
 
 실제 계정 저장·낮은 레벨 영웅 정상 완주·게시 클라이언트·실기기/4인 성능·최종 사용자 난이도/레벨 표시 수용은 미검증이다. 상위 티켓은 미완료로 유지한다. Roblox 게시와 릴리스 태그는 이번 범위에 포함하지 않는다.
+
+스모크 첫 시도는 로비 생성을 요구하는 검사를 Battle에 실행했고, 월드 생성 직후 Remotes 초기화 전에 조회해 실패했다. [최초 로그](smoke-first-wrong-role.log). 게임 소스 변경 없이 검사가 K0Action 생성을최대30초 기다리게 하고 올바른 Lobby에 실행해542개를 통과했다. 시작 시 Studio MaterialManager의 profile 주석 메시지는 원시 로그에 보존됐으나 수집된 게임 런타임 오류는0이다. [검증 요약](verification.json).

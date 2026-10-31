@@ -1,0 +1,10 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+K0_RESOURCE_UI_NATIVE {"coverage":"Actual GUI constructors and state refresh, native GUI instances, LocalPlayer double; no rendered client or device","checks":4804,"failures":[],"pass":true,"kind":"K0_RESOURCE_UI_NATIVE"}
+DEEPWOOD_PLACES_NATIVE {"terraces":9,"groves":164,"checks":404,"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:314: ordinary display keeps compact dimensions\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:314\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:316\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"DEEPWOOD_PLACES_NATIVE"}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:384: places native failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:384
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

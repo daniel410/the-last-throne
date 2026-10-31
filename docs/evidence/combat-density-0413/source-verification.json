@@ -1,0 +1,17 @@
+{
+  "source_commit": "cdf539130d24b21dc426d3ff6eb890e9d9e63539",
+  "results": [
+    {
+      "role": "Lobby",
+      "modules_verified": 11,
+      "pinned_melee_sources": true,
+      "xp_and_previous_ui_navigation_fixes": true
+    },
+    {
+      "role": "Battle",
+      "modules_verified": 11,
+      "pinned_melee_sources": true,
+      "xp_and_previous_ui_navigation_fixes": true
+    }
+  ]
+}

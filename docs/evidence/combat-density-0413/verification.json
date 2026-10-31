@@ -1,0 +1,57 @@
+{
+  "version": "0.41.3",
+  "source_commit": "cdf539130d24b21dc426d3ff6eb890e9d9e63539",
+  "native": [
+    {
+      "kind": "DEEPWOOD_SERVICE_NATIVE",
+      "checks": 3919,
+      "pass": true,
+      "log": "service.log"
+    },
+    {
+      "kind": "DEEPWOOD_PLACES_NATIVE",
+      "checks": 405,
+      "pass": true,
+      "log": "places.log"
+    },
+    {
+      "kind": "K0_NATIVE_SMOKE",
+      "checks": 542,
+      "pass": true,
+      "log": "smoke.log"
+    },
+    {
+      "kind": "K0_RESOURCE_UI_NATIVE",
+      "checks": 4804,
+      "pass": true,
+      "log": "ui-world-first-failed.log"
+    }
+  ],
+  "pure": [
+    {
+      "command": "lua tests/deepwood-encounter-balance.spec.lua",
+      "checks": 1312,
+      "pass": true
+    },
+    {
+      "command": "lua tests/deepwood-bosses.spec.lua",
+      "checks": 96,
+      "pass": true
+    },
+    {
+      "command": "lua tests/hero-progression.spec.lua",
+      "checks": 656,
+      "pass": true
+    },
+    {
+      "command": "lua tests/deepwood-progress.spec.lua",
+      "checks": 570,
+      "pass": true
+    },
+    {
+      "command": "lua tests/deepwood-quests.spec.lua",
+      "checks": 31,
+      "pass": true
+    }
+  ]
+}
