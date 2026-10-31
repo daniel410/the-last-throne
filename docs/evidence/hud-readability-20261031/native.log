@@ -1,0 +1,3 @@
+WALLET_READABILITY_NATIVE pass: 0 / 89 / 1234567 / 1000000000, unavailable, anchor, menu
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+K0_RESOURCE_UI_NATIVE {"coverage":"Actual GUI constructors and state refresh, native GUI instances, LocalPlayer double; no rendered client or device","checks":4757,"failures":[],"pass":true,"kind":"K0_RESOURCE_UI_NATIVE"}

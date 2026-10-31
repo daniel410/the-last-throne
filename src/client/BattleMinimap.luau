@@ -26,10 +26,10 @@ function Map.create(parent)
  local you=Theme.label(frame,'PlayerLabel',Text.MinimapYou,UDim2.fromScale(.5,.5),UDim2.fromOffset(36,14),10,Color3.new(1,1,1));you.AnchorPoint=Vector2.new(.5,.5);you.TextXAlignment=Enum.TextXAlignment.Center;you.TextStrokeColor3=Color3.new(0,0,0);you.TextStrokeTransparency=0;you.ZIndex=7;you.Visible=false
  local caption=Theme.label(frame,'Region','DEEPWOOD',UDim2.new(0,12,1,-30),UDim2.new(1,-24,0,18),9,Theme.color.text);caption.TextXAlignment=Enum.TextXAlignment.Center;caption.TextStrokeTransparency=.2;caption.TextStrokeColor3=Color3.new(0,0,0)
  local fullMap=Theme.button(frame,'WorldMap','M',UDim2.fromOffset(-8,-4),UDim2.fromOffset(40,40));fullMap.ZIndex=10
- local wallet=require(script.Parent.WalletDisplay).create(frame);wallet.Position=UDim2.new(0,0,1,12)
+ local wallet=require(script.Parent.WalletDisplay).create(frame);wallet.AnchorPoint=Vector2.new(1,0);wallet.Position=UDim2.new(1,0,1,12)
  local menuButton=Theme.button(frame,'MapMenu','≡',UDim2.new(1,-34,0,0),UDim2.fromOffset(40,40));menuButton.Caption.Visible=false
  Theme.icon(menuButton,'settings',UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8))
- local menu=Theme.frame(frame,'MapActions',UDim2.new(1,-168,0,240),UDim2.fromOffset(168,194));menu.Visible=false
+ local menu=Theme.frame(frame,'MapActions',UDim2.new(1,-168,0,248),UDim2.fromOffset(168,194));menu.Visible=false
  local hero=Theme.button(menu,'Hero','HERO [H]',UDim2.fromOffset(10,8),UDim2.fromOffset(148,36))
  local bag=Theme.button(menu,'Bag','BAG [B]',UDim2.fromOffset(10,52),UDim2.fromOffset(148,36))
  local journal=Theme.button(menu,'Journal','JOURNAL [J]',UDim2.fromOffset(10,96),UDim2.fromOffset(148,36))

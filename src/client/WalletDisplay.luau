@@ -15,12 +15,12 @@ function Wallet.update(snapshot)
  for frame in pairs(views) do if frame.Parent then render(frame) end end
 end
 function Wallet.create(parent)
- local frame=Instance.new('Frame');frame.Name='Wallet';frame.BackgroundTransparency=1;frame.BorderSizePixel=0;frame.Size=UDim2.fromOffset(168,44);frame.Active=false;frame.Parent=parent
+ local frame=Instance.new('Frame');frame.Name='Wallet';frame.BackgroundTransparency=1;frame.BorderSizePixel=0;frame.Size=UDim2.fromOffset(208,56);frame.Active=false;frame.Parent=parent
  for i,item in ipairs({{'Gold','gold',Theme.color.gold},{'Diamonds','diamonds',Color3.fromRGB(164,221,255)}}) do
-  Theme.icon(frame,item[2],UDim2.fromOffset(2,(i-1)*22),UDim2.fromOffset(20,20))
-  local label=Theme.label(frame,item[1],'',UDim2.fromOffset(26,(i-1)*22),UDim2.new(1,-28,0,20),13,item[3])
-  label.TextXAlignment=Enum.TextXAlignment.Right;label.TextWrapped=false;label.TextScaled=true;label.TextStrokeTransparency=.25;label.TextStrokeColor3=Color3.fromRGB(15,24,30)
-  local limits=Instance.new('UITextSizeConstraint');limits.MinTextSize=9;limits.MaxTextSize=13;limits.Parent=label
+  Theme.icon(frame,item[2],UDim2.fromOffset(2,(i-1)*28),UDim2.fromOffset(24,24))
+  local label=Theme.label(frame,item[1],'',UDim2.fromOffset(32,(i-1)*28),UDim2.new(1,-34,0,26),17,item[3])
+  label.Font=Enum.Font.GothamBold;label.TextXAlignment=Enum.TextXAlignment.Right;label.TextWrapped=false;label.TextScaled=true;label.TextStrokeTransparency=.25;label.TextStrokeColor3=Color3.fromRGB(15,24,30)
+  local limits=Instance.new('UITextSizeConstraint');limits.MinTextSize=12;limits.MaxTextSize=17;limits.Parent=label
  end
  views[frame]=true;render(frame);return frame
 end

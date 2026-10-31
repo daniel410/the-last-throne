@@ -182,7 +182,7 @@ function Hud.create()
 	subtitle.TextXAlignment = Enum.TextXAlignment.Center
 	subtitle.TextStrokeTransparency=.35;subtitle.TextStrokeColor3=Color3.new(0,0,0)
 
-	local feedback = text(root, "Feedback", "", UDim2.new(0.5, 0, 0.55, 0), UDim2.new(0.8, 0, 0, 52), 16, COLORS.cream)
+	local feedback = text(root, "Feedback", "", UDim2.new(0.5, 0, 0.55, 0), UDim2.new(0.8, 0, 0, 52), 20, COLORS.cream)
 	feedback.AnchorPoint = Vector2.new(0.5, 0.5)
 	feedback.TextXAlignment = Enum.TextXAlignment.Center
 	feedback.TextWrapped = true
@@ -272,10 +272,10 @@ function Hud.create()
  practice.Parent = root
 	local practiceScale = Instance.new("UIScale")
 	practiceScale.Parent = practice
-	text(practice, "Title", Text.PracticeTitle, UDim2.fromOffset(12, 8), UDim2.new(1, -24, 0, 18), 11, COLORS.gold)
-	local objective = text(practice, "Objective", Text.Practice.Move, UDim2.fromOffset(12, 30), UDim2.new(1, -24, 0, 42), 12)
+	text(practice, "Title", Text.PracticeTitle, UDim2.fromOffset(12, 8), UDim2.new(1, -24, 0, 18), 14, COLORS.gold)
+	local objective = text(practice, "Objective", Text.Practice.Move, UDim2.fromOffset(12, 30), UDim2.new(1, -24, 0, 42), 15)
 	objective.TextWrapped = true
-	local note = text(practice, "Note", Text.Practice.Note, UDim2.fromOffset(12, 76), UDim2.new(1, -24, 0, 28), 10, COLORS.muted)
+	local note = text(practice, "Note", Text.Practice.Note, UDim2.fromOffset(12, 76), UDim2.new(1, -24, 0, 28), 12, COLORS.muted)
 	note.TextWrapped = true
  for _,label in ipairs(practice:GetChildren()) do if label:IsA("TextLabel") then
   label.TextStrokeColor3 = Color3.new(0,0,0)
