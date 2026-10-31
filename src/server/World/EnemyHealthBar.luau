@@ -19,7 +19,7 @@ function EnemyHealthBar.attach(model, humanoid)
 	local gui = Instance.new("BillboardGui")
 	gui.Name = "EnemyHealthBar"
 	gui.Adornee = root
-	gui.Size = UDim2.fromOffset(96, 30)
+	gui.Size = UDim2.fromOffset(140, 30)
 	local height = model:GetAttribute("TdMonsterTargetHeight") or 4
 	local footOffset = root.Size.Y * 1.5
 	gui.StudsOffsetWorldSpace = Vector3.new(0, height - footOffset + 1.45, 0)
@@ -61,15 +61,27 @@ function EnemyHealthBar.attach(model, humanoid)
 	value.AutoLocalize = false
 	value.ZIndex = 2
 	value.Parent = bg
-	local function refreshRank()
+	local level = Instance.new("TextLabel")
+ level.Name, level.BackgroundTransparency = "EnemyLevel", 1
+ level.Size = UDim2.fromOffset(40,14)
+ level.Font, level.TextSize = Enum.Font.GothamBold, 12
+ level.TextColor3, level.TextStrokeTransparency = Color3.fromRGB(255,218,127), 0.2
+ level.AutoLocalize = false
+ level.Parent = gui
+ local function refreshLevel()
+  level.Text=string.format(Text.EnemyLevel,model:GetAttribute("StoryLevel") or 1)
+ end
+ local function refreshRank()
 		local boss = model:GetAttribute("StoryBoss") == true
 		badge.Visible = boss
-		gui.Size = UDim2.fromOffset(boss and 144 or 96, boss and 56 or 30)
+		gui.Size = UDim2.fromOffset(boss and 188 or 140, boss and 56 or 30)
 		gui.StudsOffsetWorldSpace = Vector3.new(0, height - footOffset + 1.45 + (boss and 0.9 or 0), 0)
 		name.Position = UDim2.fromOffset(0, boss and 22 or 0)
 		name.Size = UDim2.new(1, 0, 0, boss and 17 or 13)
 		name.TextSize = boss and 12 or 10
-		bg.Position = UDim2.fromOffset(0, boss and 41 or 15)
+		bg.Position = UDim2.fromOffset(44, boss and 41 or 15)
+  bg.Size = UDim2.new(1,-44,0,14)
+  level.Position = UDim2.fromOffset(0,boss and 41 or 15)
 	end
 	local function refresh()
 		local maximum = math.max(0, humanoid.MaxHealth)
@@ -80,11 +92,13 @@ function EnemyHealthBar.attach(model, humanoid)
 		fill.BackgroundColor3 = healthColor(ratio)
 		value.Text = string.format("%d / %d", math.ceil(current), math.ceil(maximum))
 	end
+	model:GetAttributeChangedSignal("StoryLevel"):Connect(refreshLevel)
 	humanoid.HealthChanged:Connect(refresh)
 	humanoid:GetPropertyChangedSignal("MaxHealth"):Connect(refresh)
 	model:GetAttributeChangedSignal("StoryBoss"):Connect(refreshRank)
 	humanoid:GetPropertyChangedSignal("DisplayName"):Connect(function() name.Text = humanoid.DisplayName end)
 	refreshRank()
+ refreshLevel()
 	refresh()
 	return gui
 end

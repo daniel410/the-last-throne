@@ -16,11 +16,11 @@ local ok,err=xpcall(function()
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Parent=character;character.PrimaryPart=root
  local human=Instance.new('Humanoid');human.Parent=character;human.MaxHealth=1000;human.Health=1000
  local player={UserId=911,Parent=Players,Character=character,GetAttribute=function() return 'Tutorial' end}
- local valid=true;local xp=0;local unknownSelene=false
+ local valid=true;local xp,gold=0,0;local unknownSelene=false
  local hero={getActiveHero=function() return {heroId='qa'} end,getCombatContext=function() return valid and {heroId='qa'} end,restartAdventure=function() return true end}
  local inventory={storyState=function() return P.copy(profile.heroes.qa.deepwood or P.new()) end,
   storyEvent=function(_,id,c,g,choice,stepId) local n,e;if g=='@selene' then if unknownSelene then unknownSelene=false;return 'SaveUnknown' end;n,e=Rules.selectSelene(profile,id,choice) elseif g=='@accept' then n,e=Rules.acceptQuest(profile,id,c,choice==true) else n,e=Rules.story(profile,id,c,g,choice,Catalog,stepId) end;if n then profile=n end;return e end,
-  awardXP=function(_,_,amount) xp=xp+amount end}
+  awardXP=function(_,_,amount,_,coins) xp=xp+amount;gold=gold+(coins or 0) end}
  story.start({world=world,enemies=workspace.DeepwoodK0.Enemies,inventory=inventory,heroSession=hero,combat=combat})
  local function near(c,g) root.Position=world.nodes[c..':'..g].part.Position end
  root.Position=world.seleneCamp+Vector3.new(0,3,0);check(not story.selectSelene(player,true),'cannot recruit at camp before rescue report')
@@ -28,6 +28,8 @@ local ok,err=xpcall(function()
  local function models(key) local r={} for _,m in ipairs(workspace.DeepwoodK0.Enemies:GetChildren()) do if m:GetAttribute('DeepwoodEncounter')==key then
    local bar=m:FindFirstChild('EnemyHealthBar')
    check(bar and bar.BossBadge.Visible==(m:GetAttribute('StoryBoss')==true),'actual story boss badge excludes bodyguards')
+   check(bar.EnemyLevel.Text=='Lv.'..m:GetAttribute('StoryLevel'),'overhead level matches server combat level')
+   check(bar.EnemyLevel.Position.Y.Offset==bar.HpBg.Position.Y.Offset and bar.EnemyLevel.Size.X.Offset<=bar.HpBg.Position.X.Offset,'level sits beside HP without overlap')
    if m:GetAttribute('StoryBoss') then seenBossBadges[m:GetAttribute('EnemyKind')]=true end
    table.insert(r,m)
   end end return r end
@@ -48,16 +50,16 @@ local ok,err=xpcall(function()
  root.Position=Vector3.new(2000,100,2000);story.interact(player,'DW-01','trail_guards');check(#models('DW-01:trail_guards')==0,'remote prompt distance cannot start fight')
  near('DW-01','trail_guards');valid=false;story.interact(player,'DW-01','trail_guards');check(#models('DW-01:trail_guards')==0,'inactive hero cannot start fight');valid=true
  story.interact(player,'DW-01','tracks');check(not inventory.storyState().flags['DW-01:tracks'],'future investigation cannot skip combat')
- near('DW-01','trail_guards');story.interact(player,'DW-01','trail_guards');check(#models('DW-01:trail_guards')==2,'two actual TD goblin rigs')
+ near('DW-01','trail_guards');story.interact(player,'DW-01','trail_guards');check(#models('DW-01:trail_guards')==6,'six actual TD goblin rigs')
  local status=story.encounterState(player,'qa')['DW-01:trail_guards']
- check(status and status.remaining==2,'server reports actual two enemies left')
+ check(status and status.remaining==6,'server reports all six enemies left')
  check(next(story.encounterState(player,'another-hero'))==nil,'encounter state never leaks across hero identity')
  for _,m in ipairs(models('DW-01:trail_guards')) do
   m:FindFirstChildOfClass('Humanoid').Health=0;task.wait(.05)
   story.defeated(m);story.defeated(m)
  end;task.wait(.2)
  check(story.encounterState(player,'qa')['DW-01:trail_guards'].remaining==0,'real CombatService Died callback updates encounter')
- check(inventory.storyState().flags['DW-01:trail_guards'],'encounter event saves');check(xp==36,'duplicate death does not award XP twice')
+ check(inventory.storyState().flags['DW-01:trail_guards'],'encounter event saves');check(xp==36 and gold==10,'larger group preserves original total XP/Gold and duplicate death pays once')
  -- Native service walk through every non-combat objective and spawn/defeat group.
  for _,c in ipairs(C.chapters) do if not c.side then for _,g in ipairs(c.goals) do
   if not g.optional and not inventory.storyState().flags[c.id..':'..g.id] then
@@ -84,17 +86,17 @@ local ok,err=xpcall(function()
     elseif #g.enemies>0 then
      local key=c.id..':'..g.id;local boss
      for _,m in ipairs(models(key)) do if m:GetAttribute('StoryBoss') then boss=m end end
-     if boss and g.id=='warlord' then reinforceBoss(boss,key,4,7,{.5}) end
+     if boss and g.id=='warlord' then reinforceBoss(boss,key,10,19,{.5}) end
      if boss and g.id=='king_shaman' then
-      check(#models(key)==4,'King Shaman starts with three guards')
+      check(#models(key)==10,'King Shaman starts with nine guards')
       local h=boss:FindFirstChildOfClass('Humanoid');h.MaxHealth=boss:GetAttribute('StoryHealth');h.Health=h.MaxHealth
       local cap=story.bossDamage(boss,h.MaxHealth);check(cap==h.MaxHealth*.3,'boss cannot skip shield phase');h.Health=h.Health-cap
-      check(#models(key)==7,'shield phase adds three guards without skipping final wave')
+      check(#models(key)==19,'shield phase adds nine guards without skipping final wave')
       check(story.bossDamage(boss,99999)==0,'shield denies damage')
       check(not story.breakPillar(player,key,1),'pillar distance independently checked')
       for i=1,2 do root.Position=world.folder:FindFirstChild('TemporarySealPillar').Position;check(story.breakPillar(player,key,i),'sequential pillar interaction') end
       check(story.bossDamage(boss,h.MaxHealth)==h.MaxHealth*.35,'boss cannot skip final phase')
-      check(#models(key)==10,'final phase adds the last three guards')
+      check(#models(key)==28,'final phase adds the last nine guards')
      end
      for _=1,3 do
       for _,m in ipairs(models(key)) do m:FindFirstChildOfClass('Humanoid').Health=0 end
@@ -152,7 +154,7 @@ local ok,err=xpcall(function()
    if g.id==spec[2] then
     local key=c.id..':'..g.id;local boss
     for _,m in ipairs(models(key)) do if m:GetAttribute('StoryBoss') then boss=m end end
-    reinforceBoss(assert(boss),key,spec[3],spec[4],spec[5])
+    reinforceBoss(assert(boss),key,1+(spec[3]-1)*3,1+(spec[4]-1)*3,spec[5])
     boss:FindFirstChildOfClass('Humanoid').Health=0;task.wait(.1)
     check(not inventory.storyState().flags[key],'boss death alone cannot skip surviving guards')
     for _,m in ipairs(models(key)) do m:FindFirstChildOfClass('Humanoid').Health=0;story.defeated(m);story.defeated(m) end

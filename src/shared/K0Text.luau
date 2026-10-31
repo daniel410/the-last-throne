@@ -3,6 +3,7 @@ return {
  TotalXP = "TOTAL XP %d / %d",
  TotalXPMax = "TOTAL XP %d (MAX)",
  LevelXP = "LV %d   %s",
+ EnemyLevel = "Lv.%d",
  EnemyBossBadge = "◆ BOSS ◆",
  AvailableGrowth = "%d STAT POINTS  /  %d SKILL POINTS  [H]",
  LevelUpGrowth = "LEVEL %d!  +%d stat points  /  +%d skill points. Open HERO [H] to invest.",

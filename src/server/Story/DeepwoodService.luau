@@ -3,6 +3,7 @@ local ReplicatedStorage=game:GetService('ReplicatedStorage')
 local RunService=game:GetService('RunService')
 local Content=require(ReplicatedStorage.Shared.DeepwoodContent)
 local Progress=require(ReplicatedStorage.Shared.DeepwoodProgress)
+local Balance=require(ReplicatedStorage.Shared.DeepwoodEncounterBalance)
 local Rig=require(script.Parent.Parent.World.TrainingField)
 local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
 local Text=require(ReplicatedStorage.Shared.K0Text)
@@ -91,10 +92,18 @@ local function destroyEncounter(e)
  for _,m in ipairs(e.models) do if m.Parent then m:Destroy() end end
  for _,p in ipairs(e.parts or {}) do if p.Parent then p:Destroy() end end
 end
-local function support(e,kind,level,offset,delay)
+local function applyBalance(model,spec,partySize)
+ local health,damage=Balance.stats(spec.kind,spec.level,partySize)
+ local xp,gold=Balance.rewards(spec)
+ model:SetAttribute('StoryLevel',spec.level);model:SetAttribute('StoryBoss',Balance.isBoss(spec.kind))
+ model:SetAttribute('StoryHealth',health);model:SetAttribute('StoryDamage',damage)
+ model:SetAttribute('StoryRewardXP',xp);model:SetAttribute('StoryRewardGold',gold)
+end
+local function support(e,spec,offset,delay)
+ local kind=spec.kind
  local p=e.position+offset;local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,1,1)
  m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y-1,0));m:SetAttribute('DeepwoodEncounter',e.key)
- m:SetAttribute('StoryLevel',level);m:SetAttribute('StoryHealth',100+level*25);m:SetAttribute('StoryDamage',10+level)
+ applyBalance(m,spec,e.partySize)
  m:FindFirstChildOfClass('Humanoid').DisplayName=({Shaman='Goblin Shaman',Orc='Orc Warrior',Goblin='Goblin'})[kind] or kind
  m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+delay)
  table.insert(e.models,m);e.remaining=e.remaining+1;options.combat.addStoryEnemy(m)
@@ -105,13 +114,12 @@ local function reinforce(e,health)
  for index,wave in ipairs(profile.waves) do
   if health<=wave.health and not e.reinforcements[index] then
    e.reinforcements[index]=true
-   local total=0;for _,spec in ipairs(wave.enemies) do total+=spec.count end
-   local n=0
-   for _,spec in ipairs(wave.enemies) do for _=1,spec.count do
-    n+=1;local angle=(n-1)*math.pi*2/total+index*.7
+   local specs=Balance.expand(wave.enemies);local total=#specs
+   for n,spec in ipairs(specs) do
+    local angle=(n-1)*math.pi*2/total+index*.7
     local radius=spec.kind=='Shaman' and 27 or 22
-    support(e,spec.kind,spec.level,Vector3.new(math.cos(angle)*radius,0,math.sin(angle)*radius),1.25+n*.18)
-   end end
+    support(e,spec,Vector3.new(math.cos(angle)*radius,0,math.sin(angle)*radius),1.25+n*.18)
+   end
    for player in pairs(e.participants) do publish(player,'Reinforcements! '..total..' guards are joining the battle. Reposition before they attack.') end
   end
  end
@@ -186,15 +194,13 @@ local function spawnWave(e)
  local index=0
  for n=1,total do local spec=e.pendingSpecs[n]
   if n>=e.waveFirst and n<=e.waveLast then
-  index=index+1;local a=index*math.pi*2/math.max(1,total)
+  index=index+1;local a=index*math.pi*2/math.max(1,e.waveLast-e.waveFirst+1)
   local p=position+Vector3.new(math.cos(a)*13,-1,math.sin(a)*13)
-  local kind=spec.kind;local boss=kind=='Warlord' or kind=='GoblinKing' or kind=='KingOgre' or kind=='EnragedWarlord' or kind=='KingShaman'
+  local kind=spec.kind;local boss=Balance.isBoss(kind)
   local scale=(kind=='Ogre' or kind=='KingOgre') and 1.8 or 1
   local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,boss and 1.3 or 1)
   m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
-  m:SetAttribute('StoryLevel',spec.level);m:SetAttribute('StoryBoss',boss)
-  m:SetAttribute('StoryHealth',math.floor((boss and 1000+spec.level*100 or 100+spec.level*25)*(boss and ({1,1.7,2.3,2.8})[e.partySize] or 1)))
-  m:SetAttribute('StoryDamage',boss and 28+spec.level*2 or 10+spec.level)
+  applyBalance(m,spec,e.partySize)
   if e.goal.bossEncounter then m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1+index*.12) end
   m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or kind
   table.insert(e.models,m);e.remaining=e.remaining+1;if boss then e.boss=m end;options.combat.addStoryEnemy(m)
@@ -215,9 +221,8 @@ local function begin(player,node,automatic)
   local ally=eligible(p,c,g,65,position)
   if ally and count<4 then e.participants[p]=ally.heroId;count=count+1 end
  end end
- e.partySize=count;e.pendingSpecs={}
- for _,spec in ipairs(g.enemies) do for _=1,spec.count do table.insert(e.pendingSpecs,spec) end end
- e.waveCount=math.min(g.activity and g.activity.waves or 1,#e.pendingSpecs);e.wave=1
+ e.partySize=count;e.pendingSpecs=Balance.expand(g.enemies)
+ e.waveCount=math.min(math.max(g.activity and g.activity.waves or 1,math.ceil(#e.pendingSpecs/Balance.maxWaveSize)),#e.pendingSpecs);e.wave=1
  e.waveFirst=1;e.waveLast=math.ceil(#e.pendingSpecs/e.waveCount);spawnWave(e)
  for ally in pairs(e.participants) do publish(ally,g.activity and g.activity.intro or 'Encounter started. Watch enemy attack warnings and use the open ground.') end
 end
@@ -281,7 +286,7 @@ function Service.defeated(model,_winner)
   local ctx=eligible(p,e.chapter,e.goal,100,e.position)
   if ctx and ctx.heroId==heroId then
    local level=model:GetAttribute('StoryLevel') or 1;local multiplier=model:GetAttribute('StoryBoss') and 5 or 1
-   options.inventory.awardXP(p,heroId,(8+2*level)*multiplier,true,(3+math.floor(level/2))*(model:GetAttribute("StoryBoss") and 10 or 1))
+   options.inventory.awardXP(p,heroId,model:GetAttribute('StoryRewardXP') or (8+2*level)*multiplier,true,model:GetAttribute('StoryRewardGold') or (3+math.floor(level/2))*(model:GetAttribute('StoryBoss') and 10 or 1))
    if e.remaining==0 and e.wave==e.waveCount then enqueue(p,heroId,e.chapter,e.goal) end
   end
  end

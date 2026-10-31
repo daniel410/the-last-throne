@@ -293,7 +293,7 @@ local ok, err = xpcall(function()
 	local healthRoot = Instance.new("Part"); healthRoot.Name = "HumanoidRootPart"; healthRoot.Anchored = true; healthRoot.Parent = healthRig
 	local healthHumanoid = Instance.new("Humanoid"); healthHumanoid.MaxHealth = 100; healthHumanoid.Health = 100; healthHumanoid.Parent = healthRig
 	local healthBar = require(ServerScriptService.Server.World.EnemyHealthBar).attach(healthRig, healthHumanoid)
-	check(healthBar.Size == UDim2.fromOffset(96, 30) and healthBar.HpBg.Size.Y.Offset == 14, "overhead bar uses compact dimensions")
+	check(healthBar.Size == UDim2.fromOffset(140, 30) and healthBar.HpBg.Size.Y.Offset == 14, "overhead bar leaves room for level beside compact HP")
 	check(math.abs(healthBar.StudsOffsetWorldSpace.Y - (4 - healthRoot.Size.Y * 1.5 + 1.45)) < 0.001, "health bar has additional clearance above the head")
 	local fill, value = healthBar.HpBg.HpFill, healthBar.HpBg.HpValue
 	for _, sample in ipairs({ { 75, Color3.fromRGB(90, 220, 90) }, { 50, Color3.fromRGB(230, 200, 70) }, { 25, Color3.fromRGB(230, 80, 80) } }) do

@@ -58,6 +58,8 @@ local ok,err=xpcall(function()
  local human=Instance.new('Humanoid');human.RequiresNeck=false;human.Parent=rig
  local bar=require(SSS.Server.World.EnemyHealthBar).attach(rig,human)
  check(not bar.BossBadge.Visible,'ordinary enemies have no boss badge')
+ check(bar.EnemyLevel.Text=='Lv.1','training enemy has default level1')
+ rig:SetAttribute('StoryLevel',17);check(waitFor(function()return bar.EnemyLevel.Text=='Lv.17'end),'late server level updates displayed level')
  rig:SetAttribute('StoryBoss',true);check(waitFor(function()return bar.BossBadge.Visible end),'late replicated boss rank updates its badge')
  check(bar.BossBadge.Text==require(Shared.K0Text).EnemyBossBadge and bar.BossBadge.Position.Y.Offset==0,'English badge above name and health')
  check(bar.EnemyName.Position.Y.Offset>=bar.BossBadge.Size.Y.Offset,'boss name does not overlap badge')
