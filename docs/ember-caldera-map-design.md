@@ -1,5 +1,7 @@
 # Ember Caldera 맵 디자인 · 에픽3 공간 제작안
 
+> **2026-10-31 0.51.0 로컬 시험 구현:** 최신5에픽 줄거리의 광부 구조·냉각 장치 복구·Inferno Overlord 격파·어둠의 숲 추적 방향을 구현했다. 아래 과거 상세안과 현재 적용 상태를 구분하며 [구현/원본/검증/미검증](evidence/ember-caldera-0510/README.md)을 따른다. 기존 안정ID·고정 보상을 유지한다.
+
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 신규 공간 설계 제안, Studio 구현 전
 
 [에픽 전체/7시나리오](epic-03-ember-caldera-story.md) · [전체/구역별 보드](../assets/maps/ember-caldera-v1/index.html) · [전체 지도](../assets/maps/ember-caldera-v1/ember-caldera-masterplan.svg) · [좌표 데이터](../assets/maps/ember-caldera-v1/layout.json) · [원본 출처/해시](../assets/maps/ember-caldera-v1/source-references.json)

@@ -136,7 +136,7 @@ function Map.start(button)
   if lastRevision~=State.revision then
    lastRevision=State.revision;local discovered=0
    for _,row in pairs(atlas.rows) do discovered+=row.name:GetAttribute('ExploredPercent') or 0 end
-   progress.Text=string.format(Text.Map.Progress,math.clamp(State.current.journal.main,0,Content.mainCount),math.floor(discovered/20))
+   progress.Text=string.format(Text.Map.Progress,math.clamp(State.current.journal.main,0,Content.mainCount),math.floor(discovered/30))
    for i,item in ipairs(chapters) do
     local done=State.current.journal.main>=i;local active=State.current.journal.main==i-1
     item.status.Text=done and Text.Map.Complete or active and Text.Map.Current or Text.Map.Locked

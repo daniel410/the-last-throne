@@ -1,0 +1,288 @@
+{
+  "key": "caldera_titan",
+  "kind": "caldera_titan",
+  "variant": null,
+  "sourceFile": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Molten_Titan_20261025_texture_ec6584a7.glb",
+  "sourceSha256": "5342ce785cba367563dc84b63a5229fc56629fcc56271a03c96e35cb41ab5932",
+  "normalization": {
+    "sourceHeight": 0.9477539956569672,
+    "sourceFeetOrigin": [
+      0.0019529908895492554,
+      -0.4748539924621582,
+      -0.0009764954447746277
+    ],
+    "normalRepairVertexIndices": [],
+    "sourceTriangles": 3184
+  },
+  "triangles": 4672,
+  "parts": [
+    {
+      "name": "LegL",
+      "anchor": "LegL",
+      "size": [
+        0.3637304773599684,
+        0.15000000000000002,
+        0.44564623316112995
+      ],
+      "localCF": [
+        -0.20479100893116256,
+        0.07500000000000001,
+        0.0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.20479100893116256,
+        0.15000000000000002,
+        0.0
+      ],
+      "triangles": 234,
+      "sourceSurfaceTriangles": 197,
+      "jointCapTriangles": 37
+    },
+    {
+      "name": "LegR",
+      "anchor": "LegR",
+      "size": [
+        0.39119295469292187,
+        0.15000000000000002,
+        0.44564623316112995
+      ],
+      "localCF": [
+        0.21903822416932348,
+        0.07500000000000001,
+        0.0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.21903822416932348,
+        0.15000000000000002,
+        0.0
+      ],
+      "triangles": 252,
+      "sourceSurfaceTriangles": 212,
+      "jointCapTriangles": 40
+    },
+    {
+      "name": "ArmL",
+      "anchor": "ArmL",
+      "size": [
+        0.2772128391291099,
+        0.62,
+        0.3472430743263799
+      ],
+      "localCF": [
+        -0.3686064195645549,
+        0.47000000000000003,
+        0.009016048911387312,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.3686064195645549,
+        0.78,
+        0.009016048911387312
+      ],
+      "triangles": 785,
+      "sourceSurfaceTriangles": 668,
+      "jointCapTriangles": 117
+    },
+    {
+      "name": "ArmR",
+      "anchor": "ArmR",
+      "size": [
+        0.26742444871910614,
+        0.6200000000000001,
+        0.3075734968081698
+      ],
+      "localCF": [
+        0.3637122243595531,
+        0.4700000000000001,
+        -0.014425159412272695,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.3637122243595531,
+        0.7800000000000001,
+        -0.014425159412272695
+      ],
+      "triangles": 815,
+      "sourceSurfaceTriangles": 686,
+      "jointCapTriangles": 129
+    },
+    {
+      "name": "Body",
+      "anchor": "Body",
+      "size": [
+        0.800724275888987,
+        0.8500000000000001,
+        0.39361162909231484
+      ],
+      "localCF": [
+        0.01566038147897622,
+        0.575,
+        0.023956634604188315,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.01566038147897622,
+        1.0,
+        0.023956634604188315
+      ],
+      "triangles": 2586,
+      "sourceSurfaceTriangles": 2163,
+      "jointCapTriangles": 423
+    }
+  ],
+  "cutDiagnostics": [
+    {
+      "cut": "biped-hip",
+      "loops": 5,
+      "capTrianglesEachSide": 77,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.15,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmL0",
+      "loops": 7,
+      "capTrianglesEachSide": 87,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0.23,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmL1",
+      "loops": 2,
+      "capTrianglesEachSide": 6,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.16,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmL2",
+      "loops": 1,
+      "capTrianglesEachSide": 22,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.78,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmR0",
+      "loops": 3,
+      "capTrianglesEachSide": 83,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.23,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmR1",
+      "loops": 2,
+      "capTrianglesEachSide": 15,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.16,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmR2",
+      "loops": 2,
+      "capTrianglesEachSide": 31,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.78,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    }
+  ],
+  "ownershipOverrides": [],
+  "sourceSurfaceArea": 3.3641606933193744,
+  "maxSourceTriangleAreaError": 5.637851296924623e-18,
+  "coverageStatus": "all source faces preserved exactly once",
+  "meshOnlySha256": "ca637ee8fe1078fefbc58f72eb6a3a02e2f381d76100af04c94cbb121603aa27",
+  "texturedReviewSha256": "eb77647b85885208ed3974babb189e5bda9e6f85aa39f11a1da912645e006ef1",
+  "walkReviewSha256": "648ca9f3f1c5b8414bc29962eb99853d0db1a8ff1e7fd529d49b6c8595126450",
+  "colorMapSha256": "c2deba68d166e29d6c43b0e1af93a18fe9ec811ae9410c6946ed18863ad68113",
+  "textureDimensions": [
+    512,
+    512
+  ],
+  "status": "local geometry candidate; visual joint acceptance and upload pending"
+}

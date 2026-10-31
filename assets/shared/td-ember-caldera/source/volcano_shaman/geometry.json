@@ -1,0 +1,204 @@
+{
+  "key": "volcano_shaman",
+  "kind": "volcano_shaman",
+  "variant": null,
+  "sourceFile": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Emberstone_Shaman_20261025_texture_c9b1fb0a.glb",
+  "sourceSha256": "06699d69fea21c5dcfff6d9e059089efdc2ffe2b0cc6a809db414c2376c83847",
+  "normalization": {
+    "sourceHeight": 0.9555659890174866,
+    "sourceFeetOrigin": [
+      -0.02050749957561493,
+      -0.4777829945087433,
+      0.02050749957561493
+    ],
+    "normalRepairVertexIndices": [],
+    "sourceTriangles": 3194
+  },
+  "triangles": 4864,
+  "parts": [
+    {
+      "name": "ArmL",
+      "anchor": "ArmL",
+      "size": [
+        0.15882489027857685,
+        0.3950561838176331,
+        0.2885233368404919
+      ],
+      "localCF": [
+        -0.3194124451392884,
+        0.5075280919088165,
+        0.11301988815718546,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.3194124451392884,
+        0.705056183817633,
+        0.11301988815718546
+      ],
+      "triangles": 454,
+      "sourceSurfaceTriangles": 344,
+      "jointCapTriangles": 110
+    },
+    {
+      "name": "ArmR",
+      "anchor": "ArmR",
+      "size": [
+        0.20430265104773118,
+        0.831820860836679,
+        0.32089882867963715
+      ],
+      "localCF": [
+        0.34215132552386557,
+        0.5723373807826551,
+        0.06055207476894112,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.34215132552386557,
+        0.9882478112009946,
+        0.06055207476894112
+      ],
+      "triangles": 1294,
+      "sourceSurfaceTriangles": 1013,
+      "jointCapTriangles": 281
+    },
+    {
+      "name": "Body",
+      "anchor": "Body",
+      "size": [
+        0.6544410683633346,
+        1.0,
+        0.4883231093357498
+      ],
+      "localCF": [
+        -0.0072205341816672375,
+        0.5,
+        -0.055531501050292115,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.0072205341816672375,
+        1.0,
+        -0.055531501050292115
+      ],
+      "triangles": 3116,
+      "sourceSurfaceTriangles": 2715,
+      "jointCapTriangles": 401
+    }
+  ],
+  "cutDiagnostics": [
+    {
+      "cut": "owned-staff",
+      "loops": 6,
+      "capTrianglesEachSide": 96,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.32,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmL0",
+      "loops": 10,
+      "capTrianglesEachSide": 112,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0.24,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmL1",
+      "loops": 3,
+      "capTrianglesEachSide": 24,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.31,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmR0",
+      "loops": 9,
+      "capTrianglesEachSide": 113,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.24,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    },
+    {
+      "cut": "ArmR1",
+      "loops": 4,
+      "capTrianglesEachSide": 23,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.31,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": []
+    }
+  ],
+  "ownershipOverrides": [
+    {
+      "anchor": "ArmR",
+      "region": "signed x >= 0.32; all Y",
+      "reason": "entire tall staff outside torso; lower robe stays Body"
+    }
+  ],
+  "sourceSurfaceArea": 2.770940560239977,
+  "maxSourceTriangleAreaError": 5.204170427930421e-18,
+  "coverageStatus": "all source faces preserved exactly once",
+  "meshOnlySha256": "582762a8b933be83c73872ab13af1958f4a6c27a998a1a89004e20522d273671",
+  "texturedReviewSha256": "650e87c73a0fee2d6534644a3f2acde3292a4997173e4e02df4451d618324d81",
+  "walkReviewSha256": "274f84f140e24b7f8d67be351ee4fc005a5fc4f4b4d9c0f9f1dc42ad3711626a",
+  "colorMapSha256": "f82b229efeabb71509915b1b618626e28ac14e8de9deacfd052ab519295e4cbf",
+  "textureDimensions": [
+    512,
+    512
+  ],
+  "status": "local geometry candidate; visual joint acceptance and upload pending"
+}

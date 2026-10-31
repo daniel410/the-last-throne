@@ -1,7 +1,8 @@
 -- Local accents follow the original mesh's Blender-authored tip socket.
 -- They never add hitboxes, replicated parts, damage or impact claims.
 local Sockets=require(game:GetService('ReplicatedStorage').Shared.EnemyRigSockets)
-local FrozenRigs=require(game:GetService('ReplicatedStorage').Shared.FrozenValeRigs)
+local FrozenRigs=table.clone(require(game:GetService('ReplicatedStorage').Shared.FrozenValeRigs))
+for kind,spec in pairs(require(game.ReplicatedStorage.Shared.EmberCalderaRigs))do FrozenRigs[kind]=spec end
 local Weapon={}
 local function point(part,v)return part.Size*Vector3.new(v[1],v[2],v[3])end
 function Weapon.bind(model)
@@ -14,7 +15,7 @@ function Weapon.bind(model)
  local b=Instance.new('Attachment');b.Name='K0BladeBase';b.Position=point(part,spec.base);b.Parent=part
  -- Attachments must be direct BasePart children to follow the physical mesh.
  local trail=Instance.new('Trail');trail.Name='WeaponEdge';trail.Attachment0=a;trail.Attachment1=b
- trail.Color=ColorSequence.new(spec.caster and Color3.fromRGB(123,224,190) or Color3.fromRGB(224,231,214))
+ trail.Color=ColorSequence.new(spec.element=='fire' and Color3.fromRGB(255,183,105) or spec.caster and Color3.fromRGB(123,224,190) or Color3.fromRGB(224,231,214))
  trail.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.65),NumberSequenceKeypoint.new(.6,.84),NumberSequenceKeypoint.new(1,1)})
  trail.Lifetime=.09;trail.MinLength=.04;trail.LightEmission=.25;trail.FaceCamera=true;trail.Enabled=false;trail.Parent=folder
  local shards={}
@@ -22,7 +23,7 @@ function Weapon.bind(model)
   for i=1,3 do
    local shard=Instance.new('WedgePart');shard.Name='FocusShard'..i
    shard.Size=Vector3.new(.05,.12,.075)*(model:GetAttribute('TdMonsterTargetHeight') or 5)*.25
-   shard.Material=Enum.Material.Neon;shard.Color=Color3.fromRGB(94,221,169)
+   shard.Material=Enum.Material.Neon;shard.Color=spec.element=='fire' and Color3.fromRGB(255,151,74) or Color3.fromRGB(94,221,169)
    shard.Anchored=true;shard.CanCollide=false;shard.CanTouch=false;shard.CanQuery=false;shard.CastShadow=false;shard.Transparency=1;shard.Parent=folder
    table.insert(shards,shard)
   end

@@ -396,7 +396,7 @@ function Hud.create()
     if storyTracker then practice.Title.Text=Text.PracticeTitle;objective.Text=Text.Practice.Move;note.Text=Text.Practice.Note end
     storyTracker=nil;return
    end
-   headingTitle.Text=value.region=='Frozen Vale' and 'FROZEN VALE' or Text.Title;subtitle.Text=value.region=='Frozen Vale' and 'BEYOND THE BLIZZARD' or Text.Subtitle
+   headingTitle.Text=value.region=='Ember Caldera' and 'EMBER CALDERA' or value.region=='Frozen Vale' and 'FROZEN VALE' or Text.Title;subtitle.Text=value.region=='Ember Caldera' and 'THE GREAT FURNACE' or value.region=='Frozen Vale' and 'BEYOND THE BLIZZARD' or Text.Subtitle
    storyTracker=value
    practice.Title.Text=value.title;objective.Text=value.objective;note.Text=value.note
   end,

@@ -12,4 +12,6 @@ function A.cell(id,x,z)
 end
 local F=game and require(script.Parent.FrozenValeContent) or dofile('src/shared/FrozenValeContent.luau')
 for _,edge in ipairs(F.edges)do table.insert(A.edges,edge)end
+local E=game and require(script.Parent.EmberCalderaContent) or dofile('src/shared/EmberCalderaContent.luau')
+for _,edge in ipairs(E.edges)do table.insert(A.edges,edge)end
 return A

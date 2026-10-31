@@ -1,0 +1,67 @@
+{
+  "key": "magma_worm",
+  "kind": "magma_worm",
+  "variant": null,
+  "sourceFile": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Molten_Maw_20261025_texture_6a9e2a0f.glb",
+  "sourceSha256": "5254048b3bf36196f3d5d88143a2e1c666bc1ac59f8affc3eb6890026d4f79b3",
+  "normalization": {
+    "sourceHeight": 0.6787110269069672,
+    "sourceFeetOrigin": [
+      -0.0603024959564209,
+      -0.3332520127296448,
+      -0.037353500723838806
+    ],
+    "normalRepairVertexIndices": [],
+    "sourceTriangles": 3114
+  },
+  "triangles": 3114,
+  "parts": [
+    {
+      "name": "Body",
+      "anchor": "Body",
+      "size": [
+        1.4151073759747126,
+        1.0,
+        1.1474824779725687
+      ],
+      "localCF": [
+        0.08740979696679901,
+        0.5,
+        0.05647470292898016,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.08740979696679901,
+        1.0,
+        0.05647470292898016
+      ],
+      "triangles": 3114,
+      "sourceSurfaceTriangles": 3114,
+      "jointCapTriangles": 0
+    }
+  ],
+  "cutDiagnostics": [],
+  "ownershipOverrides": [],
+  "sourceSurfaceArea": 5.355311898300978,
+  "maxSourceTriangleAreaError": 0.0,
+  "coverageStatus": "all source faces preserved exactly once",
+  "meshOnlySha256": "d94f7f8f07d88a47ed2c5179a87d8fbf55fa8e8cba4afa7a60c138d861b28500",
+  "texturedReviewSha256": "a0cbe587748b5dec7a3091c28689e5ca17aa6357931feab8f436c95e26bacbb2",
+  "walkReviewSha256": "a0cbe587748b5dec7a3091c28689e5ca17aa6357931feab8f436c95e26bacbb2",
+  "colorMapSha256": "bc8e85110affef43be728c44c4c9052159aa830a6d9a002c1386ce550ba929e1",
+  "textureDimensions": [
+    512,
+    512
+  ],
+  "animationPolicy": "Reviewed rigid anchors; partial lower-leg or whole-island motion as recorded",
+  "partitionProfile": null,
+  "status": "local geometry candidate; visual joint acceptance and upload pending"
+}

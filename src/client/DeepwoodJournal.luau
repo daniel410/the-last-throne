@@ -112,12 +112,12 @@ function Journal.start(hud)
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   local guidance=Journal.guidance(current,target,root and root.Position)
   if hud.setStory then
-   local title='EPIC 2 COMPLETE'
+   local title='EPIC '..#Content.epics..' COMPLETE'
    if target then
     if target.chapter.side then title=target.offer and 'OPTIONAL REQUEST' or 'SIDE QUEST · '..Log.status(current.journal,target.chapter)
     else local _,index,total=Log.phase(current.journal,target.chapter);title=string.format('MAIN STORY %d / 7 · PHASE %d / %d',(target.chapter.number-1)%7+1,index,total) end
    end
-   hud.setStory({region=current.journal.main>=7 and 'Frozen Vale' or 'Deepwood',title=title,objective=guidance and guidance.objective or 'Explore optional requests or return to the lobby.',note=guidance and guidance.note or '[J] Chronicle'})
+   hud.setStory({region=Content.epics[target and target.chapter.epic or math.min(#Content.epics,math.floor(current.journal.main/7)+1)].region,title=title,objective=guidance and guidance.objective or 'Explore optional requests or return to the lobby.',note=guidance and guidance.note or '[J] Chronicle'})
   end
   return guidance
  end
@@ -127,6 +127,7 @@ function Journal.start(hud)
   if current.training then hud.setStory(nil);target=nil;marker.Adornee=nil;closeDialogue();setOpen(false);return end
   target=selectTarget();book.render(current);updateTracker();promptsDirty=true
   require(script.Parent.DeepwoodStoryPresentation).update(current.journal)
+  require(script.Parent.EmberCalderaPresentation).update(current.journal)
  end
  local function updatePrompts()
   local world=workspace:FindFirstChild('DeepwoodCampaign');if not world or not current then return end

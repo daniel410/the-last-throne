@@ -58,7 +58,7 @@ story('FV-06','Frost Citadel Gate',6,{-320,92,-6600},{500,680},'Release the two 
  goal('king_golem','Calm King Ice Golem',30,-80,{enemy('KingIceGolem',19)}),
  goal('palace_road','Reach the palace road',-70,-120,nil,'The guardian lowers its arms and rests. Ylva waves you toward the palace.','travel'),
 })
-story('FV-07','Ice Mirror Palace',7,{-850,100,-7080},{450,900},'Stop the false alarm, calm the palace guardian, and reopen the northern road.','The storm has eased and the villages are reunited! The crystal convoy went to Ember Caldera. That expedition is still being prepared.',{
+story('FV-07','Ice Mirror Palace',7,{-850,100,-7080},{450,900},'Stop the false alarm, calm the palace guardian, and reopen the northern road.','The storm has eased and the villages are reunited! The crystal convoy went to Ember Caldera. The safe route to that expedition is open.',{
  goal('hall','Clear the mirror hall',-100,90,{enemy('IceGolem',19,2),enemy('IceElf',19,2)}),
  goal('mirror_west','Restore the first signal mirror',-80,0,nil,'The first mirror sends a gentle blue signal across the valley.'),
  goal('mirror_east','Restore the second signal mirror',70,0,nil,'The second mirror reconnects the shelters. One guardian still hears the false alarm.'),

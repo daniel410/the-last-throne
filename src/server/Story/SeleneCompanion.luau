@@ -25,6 +25,8 @@ function M.create(o)
  selectionPrompts(npc)
  local refuge=o.world.refugeCompanionCamp
  if refuge then selectionPrompts(refuge);refuge:SetAttribute('SeleneCampPosition',refuge.PrimaryPart.Position) end
+ local forge=o.world.emberCompanionCamp
+ if forge then selectionPrompts(forge);forge:SetAttribute('SeleneCampPosition',forge.PrimaryPart.Position)end
  local function remove(player)
   local f=followers[player];if f then f.model:Destroy();followers[player]=nil end
  end
@@ -33,7 +35,7 @@ function M.create(o)
   local hero=o.active(player);local ctx,root=o.context(player)
   if type(following)~='boolean' or not hero or hero.training or not ctx or ctx.heroId~=hero.heroId or not root then return false end
   local s=o.state(player,ctx.heroId)
-  local atCamp=(root.Position-camp).Magnitude<=16 or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16
+  local atCamp=(root.Position-camp).Magnitude<=16 or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or forge and s and s.main>=15 and (root.Position-forge.PrimaryPart.Position).Magnitude<=16
   if not atCamp then return false end
   if not Progress.seleneUnlocked(s) then o.publish(player,'Help the convoy reach camp, then finish the rescue report with Selene.');return false end
   local time=o.clock and o.clock() or os.clock()

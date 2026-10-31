@@ -12,8 +12,8 @@ function Navigation.start()
  local player=Players.LocalPlayer
  local folder=Instance.new('Folder');folder.Name='DeepwoodNavigation';folder.Parent=workspace
  local arrows={};local target;local elapsed=0;local surfacesDirty=true
- local added=workspace.DescendantAdded:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
- local removed=workspace.DescendantRemoving:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
+ local added=workspace.DescendantAdded:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
+ local removed=workspace.DescendantRemoving:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
  local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Include
  for i=1,20 do
   local pair={}
@@ -32,7 +32,7 @@ function Navigation.start()
   if surfacesDirty then
    surfacesDirty=false
    local surfaces={};local field=workspace:FindFirstChild('DeepwoodCampaign');local terrain=field and field:FindFirstChild('TerrainBlockout')
-   if terrain then for _,p in ipairs(terrain:GetDescendants()) do if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_')) then table.insert(surfaces,p) end end end
+   if terrain then for _,p in ipairs(terrain:GetDescendants()) do if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_')) then table.insert(surfaces,p) end end end
    params.FilterDescendantsInstances=surfaces
   end
   local route=Navigation.route(root.Position,target)

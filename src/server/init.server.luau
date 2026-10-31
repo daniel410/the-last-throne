@@ -24,6 +24,8 @@ if deepwood then
  chest.Parent.Name='DeepwoodAccountStorage';prompt.ObjectText='Elder Tree Storage';table.insert(chests,chest);table.insert(prompts,prompt)
  local refugeChest,refugePrompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions['FV-02']+Vector3.new(45,0,75)})
  refugeChest.Parent.Name='FrozenValeAccountStorage';refugePrompt.ObjectText='Refuge Storage';table.insert(chests,refugeChest);table.insert(prompts,refugePrompt)
+ local forgeChest,forgePrompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions['EC-02']+Vector3.new(45,0,80)})
+ forgeChest.Parent.Name='EmberCalderaAccountStorage';forgePrompt.ObjectText='Forge City Storage';table.insert(chests,forgeChest);table.insert(prompts,forgePrompt)
 end
 inventory.start({chests=chests,prompts=prompts,heroSession=heroSession,combat=combat,storyPending=story.hasPendingEvents})
 local function previewWorld()

@@ -19,6 +19,7 @@ local SPECS = {
 }
 
 for kind,spec in pairs(FrozenRigs)do SPECS[kind]=spec end
+for kind,spec in pairs(require(game.ReplicatedStorage.Shared.EmberCalderaRigs))do SPECS[kind]=spec end
 local function templateFor(kind)
 	local spec = SPECS[kind]
 	assert(spec, "Unsupported TD monster kind: " .. tostring(kind))

@@ -1,0 +1,65 @@
+{
+  "key": "lava_slime",
+  "kind": "lava_slime",
+  "variant": null,
+  "sourceFile": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Molten_Grumble_20261025_texture_982cb7a0.glb",
+  "sourceSha256": "4327746eb57174aa6279a385cf36cc9f07700bcaeadf44c2dbbf2abaa70fac30",
+  "normalization": {
+    "sourceHeight": 0.5366210043430328,
+    "sourceFeetOrigin": [
+      0.0021974891424179077,
+      -0.2673340141773224,
+      0.0
+    ],
+    "normalRepairVertexIndices": [],
+    "sourceTriangles": 3062
+  },
+  "triangles": 3062,
+  "parts": [
+    {
+      "name": "Body",
+      "anchor": "Body",
+      "size": [
+        1.790718189529242,
+        1.0,
+        1.784350594437536
+      ],
+      "localCF": [
+        0.0,
+        0.5,
+        0.0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "triangles": 3062,
+      "sourceSurfaceTriangles": 3062,
+      "jointCapTriangles": 0
+    }
+  ],
+  "cutDiagnostics": [],
+  "ownershipOverrides": [],
+  "sourceSurfaceArea": 8.351437837366275,
+  "maxSourceTriangleAreaError": 0.0,
+  "coverageStatus": "all source faces preserved exactly once",
+  "meshOnlySha256": "fd8206a7bd3b55bc70d4463eaec807f4d2bf469e39711a3af5163e6820ee578f",
+  "texturedReviewSha256": "16bb51806e52e622e442a38edfdce22ccc94e950c67a50a9dfa38ac86159bd59",
+  "walkReviewSha256": "16bb51806e52e622e442a38edfdce22ccc94e950c67a50a9dfa38ac86159bd59",
+  "colorMapSha256": "29c2415a4d557e5781b041c1ea2222e02ab8990e33adf30ad16eb3671f83f8b3",
+  "textureDimensions": [
+    512,
+    512
+  ],
+  "status": "local geometry candidate; visual joint acceptance and upload pending"
+}

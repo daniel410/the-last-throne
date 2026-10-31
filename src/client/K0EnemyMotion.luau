@@ -4,6 +4,7 @@ local Workspace=game:GetService('Workspace')
 local BaseClips=require(script.Parent.K0EnemyClips)
 local Clips=table.clone(BaseClips);Clips.models=table.clone(BaseClips.models)
 for kind,profile in pairs(require(script.Parent.FrozenValeClips).models)do Clips.models[kind]=profile end
+for kind,profile in pairs(require(script.Parent.EmberCalderaClips).models)do Clips.models[kind]=profile end
 local HitReaction=require(script.Parent.K0EnemyHitReaction)
 local WeaponMotion=require(script.Parent.K0EnemyWeaponMotion)
 local Motion={}
@@ -102,8 +103,8 @@ function Motion.step(s,dt,current)
  if not s.profile.hasLegs then
   -- Robes/one-piece bodies keep their lower bound planted. Slime scales from
   -- its feet, with authored lift above that baseline; no collision resizing.
-  local scale=s.kind=='Slime' and Vector3.new(b[7],b[8],b[9]) or nil
-  local offset=s.bodyBottom-lowest(bodyInRoot,s.bodyPoints,scale,s.bodyCenter)+(s.kind=='Slime' and b[2]*s.height or 0)
+  local scale=(s.kind=='Slime' or s.profile.squash) and Vector3.new(b[7],b[8],b[9]) or nil
+  local offset=s.bodyBottom-lowest(bodyInRoot,s.bodyPoints,scale,s.bodyCenter)+((s.kind=='Slime' or s.profile.squash or s.profile.lift) and b[2]*s.height or 0)
   rootFrame=CFrame.new(0,offset,0)*rootFrame
   bodyInRoot=s.joint.C0*rootFrame*s.joint.C1:Inverse()
   if scale then s.body.Size=s.bodySize*scale end

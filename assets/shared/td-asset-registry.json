@@ -453,6 +453,15 @@
       "manifest": "assets/shared/td-frozen-vale/manifest.json",
       "animation_manifest": "assets/animations/frozen-vale-v1/manifest.json",
       "audit_status": "10 original TD templates pinned; local Studio rig/motion tests; published permissions/device acceptance remain unverified"
+    },
+    {
+      "key": "model.ember-caldera-monsters-v1",
+      "kind": "model-source-derivative",
+      "source_path": "../throne-defense/assets/models/meshy-deepwood-slime-v1/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+      "manifest": "assets/shared/td-ember-caldera/manifest.json",
+      "animation_manifest": "assets/animations/ember-caldera-v1/manifest.json",
+      "audit_status": "10 pinned original TD volcano templates and local Blender MCP motions; published asset permissions/device acceptance separate"
     }
   ]
 }

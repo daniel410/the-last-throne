@@ -1,0 +1,411 @@
+{
+  "key": "magma_imp",
+  "kind": "magma_imp",
+  "variant": null,
+  "sourceFile": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Infernal_Emberclaw_20261025_texture_9fe1a306.glb",
+  "sourceSha256": "8e36f88652231f9360e4e3d063f120ec9bdeba07a6436cb030d5c1859291f173",
+  "normalization": {
+    "sourceHeight": 0.5234380066394806,
+    "sourceFeetOrigin": [
+      -0.02124050259590149,
+      -0.26196300983428955,
+      0.11157250194810331
+    ],
+    "normalRepairVertexIndices": [],
+    "sourceTriangles": 3127
+  },
+  "triangles": 5297,
+  "parts": [
+    {
+      "name": "LegL",
+      "anchor": "LegL",
+      "size": [
+        0.4897380472697469,
+        0.15000000000000002,
+        0.6172205960207023
+      ],
+      "localCF": [
+        -0.24486902363487345,
+        0.07500000000000001,
+        -0.16588757639658208,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.24486902363487345,
+        0.15000000000000002,
+        -0.16588757639658208
+      ],
+      "triangles": 451,
+      "sourceSurfaceTriangles": 312,
+      "jointCapTriangles": 139
+    },
+    {
+      "name": "LegR",
+      "anchor": "LegR",
+      "size": [
+        0.4897380472697469,
+        0.1490676775035279,
+        0.35074641312049615
+      ],
+      "localCF": [
+        0.24486902363487345,
+        0.07546616124823607,
+        0.04850717776230075,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.24486902363487345,
+        0.15000000000000002,
+        0.04850717776230075
+      ],
+      "triangles": 301,
+      "sourceSurfaceTriangles": 262,
+      "jointCapTriangles": 39
+    },
+    {
+      "name": "ArmL",
+      "anchor": "ArmL",
+      "size": [
+        0.6140662612273691,
+        0.8250895454485867,
+        0.8184155406062048
+      ],
+      "localCF": [
+        -0.5670331306136845,
+        0.5748581907950662,
+        -0.24036544324252027,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.5670331306136845,
+        0.9874029635193595,
+        -0.24036544324252027
+      ],
+      "triangles": 982,
+      "sourceSurfaceTriangles": 743,
+      "jointCapTriangles": 239
+    },
+    {
+      "name": "ArmR",
+      "anchor": "ArmR",
+      "size": [
+        0.6952239239361488,
+        0.8390657986246037,
+        0.5057081002483412
+      ],
+      "localCF": [
+        0.6076119619680744,
+        0.5795328993123018,
+        -0.011138056858483625,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.6076119619680744,
+        0.9990657986246037,
+        -0.011138056858483625
+      ],
+      "triangles": 896,
+      "sourceSurfaceTriangles": 779,
+      "jointCapTriangles": 117
+    },
+    {
+      "name": "Body",
+      "anchor": "Body",
+      "size": [
+        1.1408853380330422,
+        0.9844847260884046,
+        0.941230859276808
+      ],
+      "localCF": [
+        -0.25604775880705666,
+        0.5077576369557977,
+        -0.21688432793995444,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.25604775880705666,
+        1.0,
+        -0.21688432793995444
+      ],
+      "triangles": 2667,
+      "sourceSurfaceTriangles": 2119,
+      "jointCapTriangles": 548
+    }
+  ],
+  "cutDiagnostics": [
+    {
+      "cut": "biped-hip",
+      "loops": 7,
+      "capTrianglesEachSide": 112,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.15,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "biped-sides",
+      "loops": 1,
+      "capTrianglesEachSide": 1,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmL0",
+      "loops": 9,
+      "capTrianglesEachSide": 81,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0.26,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmL1",
+      "loops": 1,
+      "capTrianglesEachSide": 20,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.16,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR0",
+      "loops": 9,
+      "capTrianglesEachSide": 105,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.26,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR1",
+      "loops": 2,
+      "capTrianglesEachSide": 10,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.16,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "owned-Body-from-LegL0",
+      "loops": 3,
+      "capTrianglesEachSide": 17,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0.1,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "owned-Body-from-LegL1",
+      "loops": 1,
+      "capTrianglesEachSide": 19,
+      "planeNormal": [
+        0,
+        0,
+        -1
+      ],
+      "planeOffset": 0.18,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "owned-Body-from-ArmL1",
+      "loops": 6,
+      "capTrianglesEachSide": 68,
+      "planeNormal": [
+        0,
+        0,
+        -1
+      ],
+      "planeOffset": 0.18,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "owned-Body-from-ArmL2",
+      "loops": 3,
+      "capTrianglesEachSide": 15,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.45,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    }
+  ],
+  "ownershipOverrides": [
+    {
+      "anchor": "Body",
+      "planes": [
+        [
+          [
+            -1,
+            0,
+            0
+          ],
+          0.1
+        ],
+        [
+          [
+            0,
+            0,
+            -1
+          ],
+          0.18
+        ],
+        [
+          [
+            0,
+            -1,
+            0
+          ],
+          -0.45
+        ]
+      ],
+      "reason": "entire low rear tail remains Body; excludes rear toes and upper wing"
+    }
+  ],
+  "sourceSurfaceArea": 5.064478491764355,
+  "maxSourceTriangleAreaError": 2.7755575615628914e-17,
+  "coverageStatus": "all source faces preserved exactly once",
+  "meshOnlySha256": "9d57d928c9341ed941015858ea1d4ab3f6f70d4308cb38eeb23fddf72126af21",
+  "texturedReviewSha256": "cb089482a38271c81596880f2ff9f9fe50f5f8966dd259e6aeb909f95bad139e",
+  "walkReviewSha256": "ffe614f6d410787d8dda970fc9bd01d7fa3c2130bb0a7d8fdea95064a34075c6",
+  "colorMapSha256": "64b87a8489add7100faa59256b37909b5ac9954b098fc73e612d4dd8c2732648",
+  "textureDimensions": [
+    512,
+    512
+  ],
+  "animationPolicy": "Reviewed rigid anchors; partial lower-leg or whole-island motion as recorded",
+  "partitionProfile": {
+    "hip": 0.15,
+    "arm_low": 0.16,
+    "arm_x": 0.26,
+    "arm_top": 1.01,
+    "wing_policy": "entire side wing and same-side arm share one rigid assembly",
+    "equipment_regions": [
+      {
+        "anchor": "Body",
+        "planes": [
+          [
+            [
+              -1,
+              0,
+              0
+            ],
+            0.1
+          ],
+          [
+            [
+              0,
+              0,
+              -1
+            ],
+            0.18
+          ],
+          [
+            [
+              0,
+              -1,
+              0
+            ],
+            -0.45
+          ]
+        ],
+        "reason": "entire low rear tail remains Body; excludes rear toes and upper wing"
+      }
+    ]
+  },
+  "status": "local geometry candidate; visual joint acceptance and upload pending"
+}

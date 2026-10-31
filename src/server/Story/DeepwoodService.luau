@@ -28,7 +28,7 @@ function Service.encounterState(player,heroId)
   if e.participants[player]==heroId then
    local ctx,root=context(player)
    result[key]={wave=e.wave,waves=e.waveCount,remaining=e.remaining,pillars=e.shield and e.pillars or 0,
-    position={e.position.X,e.position.Y,e.position.Z},boss=e.goal.bossEncounter~=nil or e.chapter.epic==2 and e.boss~=nil,active=not e.completed and ctx~=nil and ctx.heroId==heroId and root~=nil and (root.Position-e.position).Magnitude<=110}
+    position={e.position.X,e.position.Y,e.position.Z},boss=e.goal.bossEncounter~=nil or (e.chapter.epic or 1)>=2 and e.boss~=nil,active=not e.completed and ctx~=nil and ctx.heroId==heroId and root~=nil and (root.Position-e.position).Magnitude<=110}
   end
  end
  return result
@@ -46,7 +46,7 @@ function Service.destination(player,heroId)
  local s=state(player,heroId)
  local c=Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
  if s and s.main==6 and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
- if s and s.main==Content.mainCount then return options.world.spawns['FV-02'] end
+ if s and s.main==Content.mainCount then return options.world.spawns[Content.epics[#Content.epics].hub] end
  return options.world.spawns[c.zone]
 end
 local function enqueue(player,heroId,c,g,choice,stepId)
@@ -66,6 +66,10 @@ local function enqueue(player,heroId,c,g,choice,stepId)
    else
     q.keys[e.key]=nil;table.remove(q.events,1)
     local after=state(player,e.heroId)
+    if e.g.travelTo then
+     local ctx=context(player);local destination=options.world.spawns[e.g.travelTo]
+     if ctx and ctx.heroId==e.heroId and destination then options.combat.relocateForStoryGate(player,destination.CFrame+Vector3.new(0,4,0))end
+    end
     if e.g.id=='@accept' then
      publish(player,nil,'Optional quest accepted: '..e.c.title,{kind='Accepted',id=e.c.id})
     else
@@ -150,6 +154,16 @@ function Service.bossDamage(model,damage)
   task.defer(function()if encounters[e.key]==e then Service.defeated(model)end end)
   return math.max(0,hp-max*.1)
  end
+ if kind=='InfernoOverlord' then
+  if not e.phase2 and hp-damage<=max*.65 then
+   reinforce(e,.65);e.phase2=true;e.nextHazard=os.clock()+2;model:SetAttribute('StoryPhase',2)
+   for p in pairs(e.participants)do publish(p,'The furnace is heating up. Step away from the orange warning circles!')end
+   return math.max(0,hp-max*.65)
+  elseif not e.phase3 and hp-damage<=max*.30 then
+   reinforce(e,.30);e.phase3=true;model:SetAttribute('StoryPhase',3)
+   return math.max(0,hp-max*.30)
+  end
+ end
  if kind=='KingShaman' then
   if not e.phase2 and hp-damage<=max*.7 then
    reinforce(e,.7)
@@ -176,7 +190,7 @@ end
 local function floorHazard(e)
  if not e.boss or not e.boss.Parent or e.boss:FindFirstChildOfClass('Humanoid').Health<=0 then return end
  local pos=e.position+Vector3.new(math.sin(os.clock())*18,-.7,math.cos(os.clock())*18)
- local p=Instance.new('Part');p.Name='CorruptionWarning';p.Shape=Enum.PartType.Cylinder;p.Size=Vector3.new(.15,14,14);p.CFrame=CFrame.new(pos)*CFrame.Angles(0,0,math.pi/2);p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.Color=Color3.fromRGB(180,65,240);p.Material=Enum.Material.Neon;p.Transparency=.5;p.Parent=options.world.folder
+ local p=Instance.new('Part');p.Name=e.chapter.epic==3 and 'FurnaceHeatWarning' or 'CorruptionWarning';p.Shape=Enum.PartType.Cylinder;p.Size=Vector3.new(.15,14,14);p.CFrame=CFrame.new(pos)*CFrame.Angles(0,0,math.pi/2);p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.Color=e.chapter.epic==3 and Color3.fromRGB(255,145,55) or Color3.fromRGB(180,65,240);p.Material=Enum.Material.Neon;p.Transparency=.5;p.Parent=options.world.folder
  e.parts=e.parts or {};table.insert(e.parts,p)
  task.delay(2,function()
   if encounters[e.key]==e then
@@ -364,7 +378,7 @@ function Service.start(settings)
    local present=false
    for p,heroId in pairs(e.participants) do local ctx,root=context(p);if ctx and ctx.heroId==heroId and root and (root.Position-e.position).Magnitude<110 then present=true end end
    if present then e.lastPresent=os.clock() end
-   if e.phase3 and os.clock()>=(e.nextHazard or math.huge) then e.nextHazard=os.clock()+6;floorHazard(e) end
+   if (e.phase3 or e.chapter.epic==3 and e.phase2) and not e.completed and os.clock()>=(e.nextHazard or math.huge) then e.nextHazard=os.clock()+6;floorHazard(e) end
    if os.clock()-e.lastPresent>8 then destroyEncounter(e) end
   end
  end)

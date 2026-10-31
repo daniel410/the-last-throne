@@ -47,6 +47,9 @@
       },
       "FrozenValeModels": {
         "$path": "assets/shared/td-frozen-vale/runtime.rbxmx"
+      },
+      "EmberCalderaModels": {
+        "$path": "assets/shared/td-ember-caldera/runtime.rbxmx"
       }
     },
     "StarterPlayer": {

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "authoring": "Live Blender MCP 5.2; isolated scene; custom-property F-curves evaluated to 201 samples; SCENE GLB review export at 120fps",
+  "species": 10,
+  "logicalClips": 70,
+  "actions": 350,
+  "samples": 201,
+  "sourceManifest": "assets/shared/td-ember-caldera/manifest.json",
+  "files": {
+    "clips.json": "8bde1987c8990276a5b3419c1f416b1546f2bb419d2fd8769b8de9d298ace8ff",
+    "sockets.json": "f3da4006c60515b2d96456e1b1297fe4b04c595b7748b25dcd2d1443e57be2f4",
+    "ember-caldera-motion.glb": "3ee0ed9e8287ba8437fb69009fafbf6d580f703715389f818949a0e75737e8c7"
+  },
+  "review": {
+    "animations": 42,
+    "meshes": 38,
+    "nodes": 106
+  },
+  "originalBlenderFilePreserved": true,
+  "newAssetsUploaded": false
+}

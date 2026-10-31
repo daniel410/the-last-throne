@@ -1,5 +1,9 @@
 # 현재 기획 결정과 미확정 항목
 
+## 2026-10-31 — 다음 에픽 Ember Caldera 로컬 구현
+
+사용자의 다음 에픽 제작 요청을 승인5에픽 순서의 Ember Caldera로 해석한다. EC-01~07 안정ID·고정3883XP/4640Gold를 유지하고 광부 구조/냉각 복구/Magma Golem·Inferno Overlord/작업장 재가동·Veyr/열쇠 추적을 구현한다. 기존 요청의 TD 원본 재사용·Blender MCP 동작 제작 방식을 이어 화산10종에 적용한다. Frozen Vale의 비살상 수호수와 구분해 화산 보스는 격파 전투를 사용한다. 미확정 선택 퀘스트 고정 예산은0의 시험값을 유지하며 처치 보상은 별도다. 게시 범위를 확대하지 않고0.51.0 로컬 시험판으로 검증한다. [증거·한계](evidence/ember-caldera-0510/README.md).
+
 ## 2026-10-31 — Frozen Vale 구현·TD 설원10종 파생 동작
 
 사용자는 다음 에픽 Frozen Vale 구현과 TD10개3D 모델의 Blender MCP 움직임/무기 개선·적용을 요청했다. 최신5에픽 줄거리에 맞춰 FV-01~07을 주민 구조/피난처 연결/수호수 진정/Ember Caldera행 단서로 구현한다. King Ice Golem·Queen Ice Elf를 비살상 수호수 전투에 사용하며3선택 보스로 TD 설원10종을 모두 연결한다. 기존 안정ID/고정 보상을 유지하고 선택 퀘스트의 새 고정 예산은 배정하지 않는다. 이번0.50.0은 로컬 시험 적용이며 기존 게시 상태를 유지한다. [제작·검증·미검증](evidence/frozen-vale-0500/README.md).

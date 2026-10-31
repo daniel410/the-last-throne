@@ -1,0 +1,428 @@
+{
+  "version": 1,
+  "tdCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "sourcePath": "assets/models/meshy-deepwood-slime-v1/runtime.rbxmx",
+  "sourceSha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+  "permission": "User-requested reuse from the shared TD repository. Published RPG asset permissions require separate verification.",
+  "models": {
+    "Imp": {
+      "template": "imp",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/imp/textured-review.glb",
+          "sha256": "e917da747350e9c2623fdfbf8e8f9dcd7a3a889efe02fd1cf90d68e099ba1143"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/imp/geometry.json",
+          "sha256": "78f613faef0b9ba5f2a3355241f2f433f836fe72d5404c1daa0a85e5da0f32f4"
+        }
+      },
+      "triangles": 5046,
+      "pivots": {
+        "LegL": [
+          -0.2495635181134919,
+          0.15000000000000002,
+          -0.07460716522031453
+        ],
+        "LegR": [
+          0.2064234128533784,
+          0.15000000000000002,
+          0.0329319098809033
+        ],
+        "ArmL": [
+          -0.5937865573375325,
+          0.9705668323486161,
+          -0.05802749928672571
+        ],
+        "ArmR": [
+          0.5217974629112019,
+          0.870854640799225,
+          0.06724179222310937
+        ],
+        "Body": [
+          0.14455435914686202,
+          1.0,
+          -0.04581099618892903
+        ]
+      },
+      "targetHeight": 4.55
+    },
+    "LavaSlime": {
+      "template": "lava_slime",
+      "parts": [
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/lava_slime/textured-review.glb",
+          "sha256": "16bb51806e52e622e442a38edfdce22ccc94e950c67a50a9dfa38ac86159bd59"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/lava_slime/geometry.json",
+          "sha256": "759ec77ebe1d3e6023044dd87dfdca7954736517b785b2c2b58fe1c48f37b4b3"
+        }
+      },
+      "triangles": 3062,
+      "pivots": {
+        "Body": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "targetHeight": 1.5
+    },
+    "Golem": {
+      "template": "golem",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/golem/textured-review.glb",
+          "sha256": "55502857fe73a5c81c03b134af2c7759cfb0b0cf7a941f6c4b73300389e0367f"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/golem/geometry.json",
+          "sha256": "a5f80b356f0ad430cd4e5e9f510a7a2b102b6cc948b41df8244eb23d7233284f"
+        }
+      },
+      "triangles": 4786,
+      "pivots": {
+        "LegL": [
+          -0.24611221774882422,
+          0.15000000000000002,
+          -0.026315952302033582
+        ],
+        "LegR": [
+          0.2482055403292103,
+          0.15000000000000002,
+          0.023025920966750435
+        ],
+        "ArmL": [
+          -0.41613662497389947,
+          0.7800000000000001,
+          0.0013637416701953453
+        ],
+        "ArmR": [
+          0.4002872832922782,
+          0.7800000000000001,
+          0.016447081189923066
+        ],
+        "Body": [
+          -0.027181748739851797,
+          1.0,
+          -0.0034377731108715948
+        ]
+      },
+      "targetHeight": 5.4875
+    },
+    "MagmaWorm": {
+      "template": "magma_worm",
+      "parts": [
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/magma_worm/textured-review.glb",
+          "sha256": "a0cbe587748b5dec7a3091c28689e5ca17aa6357931feab8f436c95e26bacbb2"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/magma_worm/geometry.json",
+          "sha256": "5363c97f5a2637a73b9e386546c04b65bf3a03827bbc0c9a9f152bc2124a7099"
+        }
+      },
+      "triangles": 3114,
+      "pivots": {
+        "Body": [
+          0.08740979696679901,
+          1.0,
+          0.05647470292898016
+        ]
+      },
+      "targetHeight": 3.0
+    },
+    "VolcanoShaman": {
+      "template": "volcano_shaman",
+      "parts": [
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/volcano_shaman/textured-review.glb",
+          "sha256": "650e87c73a0fee2d6534644a3f2acde3292a4997173e4e02df4451d618324d81"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/volcano_shaman/geometry.json",
+          "sha256": "ef84e4cfd78c85802e42e7ad7cc16afc128f02c86868cc2f1640c767269bca3a"
+        }
+      },
+      "triangles": 4864,
+      "pivots": {
+        "ArmL": [
+          -0.3194124451392884,
+          0.705056183817633,
+          0.11301988815718546
+        ],
+        "ArmR": [
+          0.34215132552386557,
+          0.9882478112009946,
+          0.06055207476894112
+        ],
+        "Body": [
+          -0.0072205341816672375,
+          1.0,
+          -0.055531501050292115
+        ]
+      },
+      "targetHeight": 5.232499999999999
+    },
+    "MagmaImp": {
+      "template": "magma_imp",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/magma_imp/textured-review.glb",
+          "sha256": "cb089482a38271c81596880f2ff9f9fe50f5f8966dd259e6aeb909f95bad139e"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/magma_imp/geometry.json",
+          "sha256": "88d8199d38581a13da4e7f173f54fc3cd785ef2e1a3aab9367627f2da928e571"
+        }
+      },
+      "triangles": 5297,
+      "pivots": {
+        "LegL": [
+          -0.24486902363487345,
+          0.15000000000000002,
+          -0.16588757639658208
+        ],
+        "LegR": [
+          0.24486902363487345,
+          0.15000000000000002,
+          0.04850717776230075
+        ],
+        "ArmL": [
+          -0.5670331306136845,
+          0.9874029635193595,
+          -0.24036544324252027
+        ],
+        "ArmR": [
+          0.6076119619680744,
+          0.9990657986246037,
+          -0.011138056858483625
+        ],
+        "Body": [
+          -0.25604775880705666,
+          1.0,
+          -0.21688432793995444
+        ]
+      },
+      "targetHeight": 6.2375
+    },
+    "MagmaGolem": {
+      "template": "magma_golem",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/magma_golem/textured-review.glb",
+          "sha256": "11ad4ef9adbf1b67ec524010a9c4174063403b4fbdd0a72d43f34a83c5c90ab1"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/magma_golem/geometry.json",
+          "sha256": "e282609af948831989cac317c29744b358f30b1be28afcda5f223a3790959abd"
+        }
+      },
+      "triangles": 4717,
+      "pivots": {
+        "LegL": [
+          -0.28264820217475617,
+          0.15000000000000002,
+          -0.008161664230549093
+        ],
+        "LegR": [
+          0.2877873939126459,
+          0.15000000000000002,
+          0.006650434903260727
+        ],
+        "ArmL": [
+          -0.41805361279125935,
+          0.7800000000000001,
+          0.035973737902286904
+        ],
+        "ArmR": [
+          0.4047521341091024,
+          0.7800000000000001,
+          0.031118315352012024
+        ],
+        "Body": [
+          0.0006042444905057787,
+          1.0,
+          -0.030229678960173256
+        ]
+      },
+      "targetHeight": 6.2375
+    },
+    "InfernoOverlord": {
+      "template": "inferno_overlord",
+      "parts": [
+        "Body",
+        "ArmL",
+        "ArmR",
+        "LegL",
+        "LegR"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/inferno_overlord/textured-review.glb",
+          "sha256": "5fb18cf5f649d191be2945227635eca5bcf9d1af16e9b0bdc96816b937ed2f07"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/inferno_overlord/geometry.json",
+          "sha256": "7a43c833861d617083c78b713bff9addbd837c8f75dd54d2021435b65cc06fc0"
+        }
+      },
+      "triangles": 2918,
+      "pivots": {
+        "Body": [
+          -0.1170207992832995,
+          0.9780152052118353,
+          -0.14503554781327088
+        ],
+        "ArmL": [
+          -0.5251773682828862,
+          1.0,
+          0.013120285977213264
+        ],
+        "ArmR": [
+          0.1773053633259184,
+          0.9992912124323435,
+          -0.06453891948897861
+        ],
+        "LegL": [
+          -0.3943260243601465,
+          0.27021275011610757,
+          0.02907799481252689
+        ],
+        "LegR": [
+          0.21631254847916065,
+          0.21560227831872333,
+          -0.1648939041455502
+        ]
+      },
+      "targetHeight": 7.484999999999999
+    },
+    "CalderaTitan": {
+      "template": "caldera_titan",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/caldera_titan/textured-review.glb",
+          "sha256": "eb77647b85885208ed3974babb189e5bda9e6f85aa39f11a1da912645e006ef1"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/caldera_titan/geometry.json",
+          "sha256": "d871f78e5177fabdcb837126e096daa65856c8216ef8f3ae75692625c5c791c7"
+        }
+      },
+      "triangles": 4672,
+      "pivots": {
+        "LegL": [
+          -0.20479100893116256,
+          0.15000000000000002,
+          0.0
+        ],
+        "LegR": [
+          0.21903822416932348,
+          0.15000000000000002,
+          0.0
+        ],
+        "ArmL": [
+          -0.3686064195645549,
+          0.78,
+          0.009016048911387312
+        ],
+        "ArmR": [
+          0.3637122243595531,
+          0.7800000000000001,
+          -0.014425159412272695
+        ],
+        "Body": [
+          0.01566038147897622,
+          1.0,
+          0.023956634604188315
+        ]
+      },
+      "targetHeight": 9.35625
+    },
+    "KingVolcanoShaman": {
+      "template": "king_volcano_shaman",
+      "parts": [
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/king_volcano_shaman/textured-review.glb",
+          "sha256": "a6d69371352cb6f7653e5f419528cac28a3e31a6ff001cdaea2c50183b1d1b68"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/king_volcano_shaman/geometry.json",
+          "sha256": "89e041554cff5cb349c9635fa48ac7f6d57126af594d3d727471ab3e5da8148d"
+        }
+      },
+      "triangles": 4738,
+      "pivots": {
+        "ArmL": [
+          -0.33184558041133205,
+          0.6226999322871648,
+          0.007548192186837485
+        ],
+        "ArmR": [
+          0.3492585912609877,
+          0.9483644385919474,
+          -0.019877043988729942
+        ],
+        "Body": [
+          -0.01826681665423699,
+          1.0,
+          -0.06825149155461804
+        ]
+      },
+      "targetHeight": 8.10875
+    }
+  },
+  "runtimeSha256": "429c541b1c46c99e6765272e52d984114df73f87284af6d9130b722783d615fb"
+}

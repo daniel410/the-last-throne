@@ -114,7 +114,7 @@ local ok,err=xpcall(function()
   check(inventory.storyState().main==n,'correct checkpoint advancement')
   if n==8 then root.Position=world.refugeCompanionCamp.PrimaryPart.Position;check(story.selectSelene(player,true),'safe refuge companion selection');task.wait(.1);check(inventory.storyState().seleneFollowing,'companion preference saved at refuge')end
  end
- check(story.destination(player,'qa')==world.spawns['FV-02'],'completed adventure resumes at safe refuge')
+ check(story.destination(player,'qa')==world.spawns['EC-01'],'completed Frozen Vale resumes at next epic')
  check(inventory.storyState().coins==5650 and P.validate(inventory.storyState()),'canonical story reward once, compatible journal')
  check(xp>0 and gold>0,'actual battle server rewards')
  -- Optional quest acceptance is personal and distinct from reports.

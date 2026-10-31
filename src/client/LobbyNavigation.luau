@@ -28,9 +28,9 @@ function M.create(parent,actions)
    local journal=hero.deepwood or Progress.new()
    if kind=='Quest' then
     local chapter=Log.main(journal)
-    body.Text=chapter and string.format('MAIN STORY · %s\n\n%s\n\nStories completed: %d / 14\n\nEnter an adventure to track objectives and view the full journal.',chapter.quest.title,chapter.quest.brief,journal.main) or 'Deepwood and Frozen Vale stories complete.\n\nEnter an adventure to view your full journal.'
+    body.Text=chapter and string.format('MAIN STORY · %s\n\n%s\n\nStories completed: %d / 21\n\nEnter an adventure to track objectives and view the full journal.',chapter.quest.title,chapter.quest.brief,journal.main) or 'The first three expeditions are complete.\n\nEnter an adventure to view your full journal.'
    else
-    local lines={'DAWNSPIRE → DEEPWOOD → FROZEN VALE','', 'Your progress opens new regions:', ''}
+    local lines={'DEEPWOOD → FROZEN VALE → EMBER CALDERA','', 'Your progress opens new regions:', ''}
     for i=1,Content.mainCount do local id=Content.mainChapters[i].id;local z=Content.zones[id];table.insert(lines,string.format('%s  %s',Access.allowed(journal,id) and 'OPEN' or 'LOCKED',z.name)) end
     table.insert(lines,'\nEnter an adventure to explore the full map.');body.Text=table.concat(lines,'\n')
    end
