@@ -43,6 +43,19 @@ end
 assert(pairsChecked>0,'moving player keeps visible direct guidance')
 player:SetAttribute('TLTNavigationEnabled',false);task.wait(.1);assert(visible()==0,'option hides trail')
 player:SetAttribute('TLTNavigationEnabled',true);task.wait(.1);assert(visible()>0,'option restores trail')
+-- Story paths use persistent support outside TerrainBlockout after older roads
+-- have been disabled; goals can be much higher than the current floor.
+ground:Destroy()
+local foundation=Instance.new('Folder');foundation.Name='GroundedForest';foundation.Parent=field
+local support=Instance.new('Part');support.Name='TrailSupport_4';support.Anchored=true;support.Size=Vector3.new(200,1,200);support.Parent=foundation
+root.Position=Vector3.new(0,3,0);nav.setTarget(Vector3.new(80,150,0));task.wait(.2)
+assert(visible()>0,'story 4 support and a high destination still show navigation')
+local projected=false
+for _,p in ipairs(workspace.DeepwoodNavigation:GetChildren())do if p.Transparency<1 and math.abs(p.Position.Y-.64)<.3 then projected=true;break end end
+assert(projected,'guide projects onto persistent story path')
+support:Destroy();task.wait(.2);assert(visible()>0,'guide remains visible while ground is not streamed')
+player:SetAttribute('TLTNavigationEnabled',false);task.wait(.1);assert(visible()==0,'settings also hide the fallback')
+player:SetAttribute('TLTNavigationEnabled',true);task.wait(.1);assert(visible()>0,'settings restore the fallback')
 nav.setTarget(nil);task.wait(.1);assert(visible()==0,'stale guide')
 nav.setTarget(Vector3.new(6,3,0));player:SetAttribute('TLTRoute','Training');task.wait(.1);assert(visible()==0,'training guide')
 player:SetAttribute('TLTRoute',nil);human.Health=0;task.wait(.1);assert(visible()==0,'dead guide')
@@ -60,4 +73,4 @@ assert(toggle.Caption.Text=='Navigation Trail: OFF','map reflects off')
 player:SetAttribute('TLTNavigationEnabled',true);task.wait(.1)
 assert(toggle.Caption.Text=='Navigation Trail: ON','map reflects on')
 nav.destroy();Run:Stop()
-print('NAVIGATION_ALWAYS_ON PASS: 5 distances, moving-player direct bearing, toggle off/on, no target, training, death')
+print('NAVIGATION_ALWAYS_ON PASS: distance, direct bearing, story support and elevation, streamed-floor fallback, settings, training and death')

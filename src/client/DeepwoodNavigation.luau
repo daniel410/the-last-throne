@@ -4,6 +4,11 @@ local RunService=game:GetService('RunService')
 local Settings=require(script.Parent.GameSettings)
 local Navigation={}
 local function flat(p) return Vector3.new(p.X,0,p.Z) end
+local function isSurface(p)
+ return p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround'
+  or p.Name=='TrailEmbankment' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_')
+  or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_'))
+end
 -- Direction guidance points at the objective; roads and region centers do not alter it.
 function Navigation.route(origin,destination)
  return {origin,destination}
@@ -12,8 +17,8 @@ function Navigation.start()
  local player=Players.LocalPlayer
  local folder=Instance.new('Folder');folder.Name='DeepwoodNavigation';folder.Parent=workspace
  local arrows={};local target;local elapsed=0;local surfacesDirty=true
- local added=workspace.DescendantAdded:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
- local removed=workspace.DescendantRemoving:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
+ local added=workspace.DescendantAdded:Connect(function(p) if isSurface(p) then surfacesDirty=true end end)
+ local removed=workspace.DescendantRemoving:Connect(function(p) if isSurface(p) then surfacesDirty=true end end)
  local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Include
  for i=1,20 do
   local pair={}
@@ -31,14 +36,16 @@ function Navigation.start()
   if not Settings.enabled(player,'navigation') or not target or not root or not human or human.Health<=0 or player:GetAttribute('K0SessionPhase')~='Tutorial' or player:GetAttribute('TLTRoute')=='Training' then hide();return end
   if surfacesDirty then
    surfacesDirty=false
-   local surfaces={};local field=workspace:FindFirstChild('DeepwoodCampaign');local terrain=field and field:FindFirstChild('TerrainBlockout')
-   if terrain then for _,p in ipairs(terrain:GetDescendants()) do if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_')) then table.insert(surfaces,p) end end end
+   local surfaces={};local field=workspace:FindFirstChild('DeepwoodCampaign')
+   if field then for _,p in ipairs(field:GetDescendants()) do if isSurface(p) then table.insert(surfaces,p) end end end
    params.FilterDescendantsInstances=surfaces
   end
-  local route=Navigation.route(root.Position,target)
+  local destination=Vector3.new(target.X,root.Position.Y,target.Z)
+  local route=Navigation.route(root.Position,destination)
   -- Keep an arrival chevron visible until the active objective changes.
   local arrival=flat(target-root.Position).Magnitude<12
   local phase=(os.clock()*5)%6
+  local firstVisible=false
   for i,pair in ipairs(arrows) do
    local remaining=5+(i-1)*6+phase;local position,direction
    for j=2,#route do
@@ -47,16 +54,28 @@ function Navigation.start()
     remaining-=length
    end
    if arrival and i==1 then
-    position=target;direction=flat(target-root.Position)
+    position=destination;direction=flat(target-root.Position)
     direction=direction.Magnitude>.1 and direction.Unit or Vector3.new(0,0,-1)
    end
-   local hit=position and workspace:Raycast(position+Vector3.new(0,7,0),Vector3.new(0,-16,0),params)
+   local hit=position and workspace:Raycast(position+Vector3.new(0,50,0),Vector3.new(0,-120,0),params)
    if hit and direction and direction.Magnitude>.1 then
     local cf=CFrame.lookAt(hit.Position+Vector3.new(0,.14,0),hit.Position+Vector3.new(0,.14,0)+direction)
+    if i==1 then firstVisible=true end
     for j,p in ipairs(pair) do local sign=j==1 and -1 or 1
      p.CFrame=cf*CFrame.new(sign*.48,0,.48)*CFrame.Angles(0,sign*math.pi/4,0);p.Transparency=.15+.5*(i/20)
     end
    else for _,p in ipairs(pair) do p.Transparency=1 end end
+  end
+  if not firstVisible then
+   -- Keep a local bearing even while nearby floor geometry is streaming in.
+   local direction=flat(target-root.Position)
+   if direction.Magnitude<.1 then direction=flat(root.CFrame.LookVector) end
+   if direction.Magnitude<.1 then direction=Vector3.new(0,0,-1)else direction=direction.Unit end
+   local hit=workspace:Raycast(root.Position+Vector3.new(0,8,0),Vector3.new(0,-24,0),params)
+   local floor=hit and hit.Position.Y or root.Position.Y-math.max(root.Size.Y*1.5,root.Size.Y*.5+human.HipHeight)
+   local origin=Vector3.new(root.Position.X,floor+.14,root.Position.Z)+direction*2
+   local cf=CFrame.lookAt(origin,origin+direction)
+   for j,p in ipairs(arrows[1])do local sign=j==1 and -1 or 1;p.CFrame=cf*CFrame.new(sign*.48,0,.48)*CFrame.Angles(0,sign*math.pi/4,0);p.Transparency=.2 end
   end
  end)
  return {setTarget=function(value) target=value;if not value then hide() end end,destroy=function() connection:Disconnect();added:Disconnect();removed:Disconnect();folder:Destroy() end}
