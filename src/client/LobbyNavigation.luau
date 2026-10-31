@@ -43,7 +43,7 @@ function M.create(parent,actions)
    art=T.sprite(button,'NavigationIcon','shop',UDim2.fromOffset(12,0),UDim2.fromOffset(64,48),LobbyArt)
   else
    art=Instance.new('ImageLabel');art.Name='NavigationIcon';art.BackgroundTransparency=1
-   art.Image='rbxassetid://137280207574223'
+   art.Image=id=='Blacksmith' and 'rbxassetid://97662984602605' or 'rbxassetid://137280207574223'
    -- Roblox renders the 2172x724 upload at 1024x341.
    art.ImageRectOffset=Vector2.new(math.round((index-1)*204.8),70)
    art.ImageRectSize=Vector2.new(math.round(index*204.8)-art.ImageRectOffset.X,190)
