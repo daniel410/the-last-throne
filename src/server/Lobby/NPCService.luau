@@ -10,7 +10,7 @@ function S.start(options)
    if os.clock()-(last[player] or -math.huge)<.6 or not Access.allowed(player,entry.prompt) then return end
    last[player]=os.clock()
    if id=='mira' then
-    if options.inventory.ready(player) then RS.Remotes.ArmoryState:FireClient(player,{inventory=options.inventory.snapshot(player),open=true}) end
+    if options.inventory.ready(player) then RS.Remotes.ArmoryState:FireClient(player,{inventory=options.inventory.snapshot(player),open=true,store='items'}) end
    else
     local c=Catalog.byId[id];remote:FireClient(player,{id=id,name=c.name,role=c.role,key=c.textKey,text=c.greeting})
    end

@@ -4,7 +4,7 @@ return {
  Unavailable='Your saved account is unavailable. Rejoin before trading.',SaveUnknown='Saving is not confirmed. Retry the same transaction.',
  AccountBusy='Your account is still open in another server. Wait and retry.',Changed='Your inventory changed. Refresh and choose the item again.',
  RequestConflict='This request was already used for another action. Refresh and try again.',HeroNotOwned='Select one of your own heroes.',
- ShopLobbyOnly='Return to the Dawnspire lobby to trade.',CannotSell='Unequip and unlock an eligible weapon before selling. Starter equipment cannot be sold.',
+ ShopLobbyOnly='Return to the Dawnspire lobby to trade.',CannotSell='Unequip and unlock an eligible item before selling. Starter gear cannot be sold.',
  BagFull='Your bag is full. Make room before buying.',NotEnoughGold='You need more Gold. Earn Gold through adventures or sell an eligible weapon.',
  NotEnoughDiamonds='You need more Diamonds. Each first main-story clear awards 2 Diamonds per account.',
  Configuration='Battle travel is not configured yet. Training is available in the lobby.',

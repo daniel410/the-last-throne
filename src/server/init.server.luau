@@ -42,6 +42,7 @@ require(script.Lobby.MerchantService).start({inventory=inventory,merchant=mercha
 local facilities=role=='Lobby' and require(script.World.LobbyLandmarks).create(lobby) or nil
 require(script.Lobby.FacilityService).start({facilities=facilities,heroSession=heroSession,expedition=expedition})
 local residents=role=='Lobby' and require(script.World.LobbyResidents).create(lobby,facilities,prompts[1]) or nil
+if role=='Lobby' then require(script.World.ItemShop).create(lobby) end
 require(script.Lobby.NPCService).start({residents=residents,inventory=inventory})
 task.spawn(function() require(script.World.NPCCast).templates() end)
 spawnService.start(lobby.spawn,{

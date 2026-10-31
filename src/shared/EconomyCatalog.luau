@@ -16,7 +16,8 @@ end
 for _,resource in ipairs({'health','mana'}) do
  for tier,size in ipairs({'','_medium','_large','_xl'}) do
   local id=resource..'_potion'..size
-  table.insert(C.offers,{id=id,definitionId=id,currency='gold',price=(resource=='health' and {20,50,80,150} or {15,30,60,120})[tier]})
+  local price=(resource=='health' and {20,50,80,150} or {15,30,60,120})[tier]
+  table.insert(C.offers,{id=id,definitionId=id,currency='gold',price=price});C.sell[id]=math.floor(price/5)
  end
 end
 C.categories={{id='All',label='ALL'},{id='Weapons',label='WEAPONS'},{id='Armor',label='ARMOR'},{id='Accessories',label='ACCESSORIES'},{id='Potions',label='POTIONS'}}

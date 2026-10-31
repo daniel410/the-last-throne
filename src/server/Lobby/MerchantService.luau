@@ -12,7 +12,7 @@ function S.start(options)
  remote.OnServerEvent:Connect(function(p,c,...)
   if os.clock()-(last[p] or -math.huge)<.2 then return end;last[p]=os.clock()
   if select('#',...)~=0 or type(c)~='table' then return end
-  local allowed={action=true,requestId=true,heroId=true,revision=true,offerId=true,instanceId=true,itemVersion=true}
+  local allowed={store=true,action=true,requestId=true,heroId=true,revision=true,offerId=true,instanceId=true,itemVersion=true}
   for k,v in pairs(c) do if not allowed[k] or type(v)~='string' and type(v)~='number' then publish(p,nil,'InvalidRequest');return end end
   if type(c.requestId)~='string' or #c.requestId>64 or not c.requestId:match('^[%w_-]+$') then return end
   if c.action=='GetState' then publish(p,c.requestId,nil,c.open);return end

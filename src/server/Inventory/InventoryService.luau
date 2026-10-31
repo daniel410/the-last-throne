@@ -500,7 +500,7 @@ function Service.shop(player,command)
  local s=accounts[player];if not s or s.busy or s.closing then return 'Busy' end
  if not s.valid and not (s.shopPending and s.shopPending.requestId==command.requestId) then return s.errorCode or 'Unavailable' end
  if s.shopPending and s.shopPending.requestId~=command.requestId then return 'Busy' end
- if s.shopPending then for _,k in ipairs({'action','heroId','offerId','instanceId','itemVersion','revision'}) do if s.shopPending[k]~=command[k] then return 'RequestConflict' end end end
+ if s.shopPending then for _,k in ipairs({'store','action','heroId','offerId','instanceId','itemVersion','revision'}) do if s.shopPending[k]~=command[k] then return 'RequestConflict' end end end
  s.busy=true;s.shopPending=Rules.copy(command)
  local p,e=store:transact(player.UserId,function(current)
   local ctx=options.heroSession.getInventoryContext(player)

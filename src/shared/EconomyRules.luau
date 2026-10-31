@@ -25,20 +25,28 @@ function E.story(p,reward)
  end
 end
 function E.sellPrice(item)
- if type(item.sourceGrantId)=='string' and item.sourceGrantId:sub(1,8)=='starter:' then return nil end
+ if type(item.sourceGrantId)=='string' and item.sourceGrantId:sub(1,8)=='starter:' and not item.definitionId:match('^%a+_potion') then return nil end
  return Catalog.sell[item.definitionId]
 end
 function E.apply(p,cmd,context,items,R)
  local fingerprint=table.concat({'shop',cmd.action or '',cmd.heroId or '',cmd.offerId or '',cmd.instanceId or '',tostring(cmd.itemVersion),tostring(cmd.revision)},'|')
+ if cmd.store~=nil then fingerprint=fingerprint..'|'..tostring(cmd.store) end
  local previous=p.operations[cmd.requestId]
  if previous then if previous.fingerprint~=fingerprint then return nil,'RequestConflict' end;return R.copy(p),nil,true end
  if not context.atLobby then return nil,'ShopLobbyOnly' end
+ if cmd.store~=nil and cmd.store~='blacksmith' and cmd.store~='items' and cmd.store~='diamonds' then return nil,'InvalidRequest' end
+ local function allowed(def,offer)
+  if cmd.store=='blacksmith' then return def.slot=='weapon' and (not offer or offer.currency=='gold') end
+  if cmd.store=='items' then return def.slot~='weapon' and (not offer or offer.currency=='gold') end
+  if cmd.store=='diamonds' then return offer and offer.currency=='diamonds' end
+  return true -- legacy client compatibility
+ end
  if cmd.revision~=p.revision then return nil,'Changed' end
  local hero=p.heroes[cmd.heroId];if not hero then return nil,'HeroNotOwned' end
  local n=R.copy(p);E.upgrade(n)
  if cmd.action=='Buy' then
   local offer=Catalog.offer(cmd.offerId);if not offer then return nil,'InvalidRequest' end
-  local definition=items.items[offer.definitionId];if not definition then return nil,'InvalidRequest' end
+  local definition=items.items[offer.definitionId];if not definition or not allowed(definition,offer) then return nil,'InvalidRequest' end
   local stack
   if definition.restore then
    for _,item in pairs(n.items) do
@@ -58,8 +66,10 @@ function E.apply(p,cmd,context,items,R)
   local item=n.items[cmd.instanceId]
   if not item or item.ownerUserId~=p.userId or item.version~=cmd.itemVersion then return nil,'Changed' end
   if item.location.kind~='bag' or item.location.heroId~=cmd.heroId or item.locked then return nil,'CannotSell' end
-  local value=E.sellPrice(item);if not value then return nil,'CannotSell' end
-  n.items[cmd.instanceId]=nil;n.wallet.gold=n.wallet.gold+value
+  local definition=items.items[item.definitionId]
+  local value=E.sellPrice(item);if not definition or not allowed(definition,nil) or not value then return nil,'CannotSell' end
+  if item.quantity>1 then item.quantity=item.quantity-1;item.version=item.version+1 else n.items[cmd.instanceId]=nil end
+  n.wallet.gold=n.wallet.gold+value
  else return nil,'InvalidRequest' end
  n.revision=n.revision+1
  n.operations[cmd.requestId]={fingerprint=fingerprint,revision=n.revision}

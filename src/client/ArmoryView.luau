@@ -8,10 +8,17 @@ local Artwork=require(script.Parent.ItemArtwork)
 local Impact=require(RS.Shared.EquipmentImpact)
 local ItemText=require(RS.Shared.InventoryText)
 local V={}
-function V.create(parent,send,diamondOnly)
- local panel=Menu.frame(parent,'Armory',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
+function V.create(parent,send,diamondOnly,store)
+ store=store or "all"
+ local function allowed(d,offer)
+  if diamondOnly then return offer and offer.currency=="diamonds" end
+  if store=="blacksmith" then return d.slot=="weapon" and (not offer or offer.currency=="gold") end
+  if store=="items" then return d.slot~="weapon" and (not offer or offer.currency=="gold") end
+  return true
+ end
+ local panel=Menu.frame(parent,diamondOnly and 'DiamondShop' or store=='items' and 'ItemShop' or 'Armory',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(950,700);cap.Parent=panel
- T.label(panel,'Title',diamondOnly and 'DIAMOND SHOP' or 'DAWNSPIRE SUPPLIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,28),22,T.color.gold)
+ T.label(panel,'Title',diamondOnly and 'DIAMOND SHOP' or store=='blacksmith' and 'BLACKSMITH' or store=='items' and 'ITEM SHOP' or 'DAWNSPIRE SUPPLIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,28),22,T.color.gold)
  local close=T.button(panel,'Close','X',UDim2.new(1,-62,0,12),UDim2.fromOffset(44,44));close.Activated:Connect(function() panel.Visible=false end)
  local balance=T.label(panel,'Balance','Loading your saved wallet...',UDim2.fromOffset(20,46),UDim2.new(1,-40,0,26),15)
  local buy=T.button(panel,'BuyTab','BUY',UDim2.fromOffset(16,82),UDim2.new(.5,-20,0,44))
@@ -42,7 +49,7 @@ function V.create(parent,send,diamondOnly)
    if not armed then
     pending=nil;command(mode,fields);armed=true;b.Caption.Text='CONFIRM · '..caption
    elseif pending==fields then
-    local c={action=fields.action,heroId=fields.heroId,revision=fields.revision,offerId=fields.offerId,instanceId=fields.instanceId,itemVersion=fields.itemVersion}
+    local c={store=diamondOnly and 'diamonds' or store~='all' and store or nil,action=fields.action,heroId=fields.heroId,revision=fields.revision,offerId=fields.offerId,instanceId=fields.instanceId,itemVersion=fields.itemVersion}
     notice.Text='Saving transaction...';T.enabled(b,false);send(c);pending=nil
    else armed=false;b.Caption.Text=caption end
   end)
@@ -57,8 +64,7 @@ function V.create(parent,send,diamondOnly)
    local offers=table.clone(Catalog.offers)
    table.sort(offers,function(a,b) local da,db=Items.items[a.definitionId],Items.items[b.definitionId];if (da.restore~=nil)~=(db.restore~=nil) then return da.restore~=nil end;if da.restore and db.restore then if da.restore~=db.restore then return da.restore=='health' end;return da.potionTier<db.potionTier end;local aa=da.classId==class;local bb=db.classId==class;if aa~=bb then return aa end;return a.id<b.id end)
    for _,offer in ipairs(offers) do
-    if diamondOnly and offer.currency~='diamonds' then continue end
-    local d=Items.items[offer.definitionId];if category~='All' and Catalog.category(d)~=category then continue end;local hero=state.heroes and state.heroes[state.heroId]
+    local d=Items.items[offer.definitionId];if not allowed(d,offer) then continue end;if category~='All' and Catalog.category(d)~=category then continue end;local hero=state.heroes and state.heroes[state.heroId]
     local description
     if d.restore then
      local owned=0;for _,item in ipairs(state.items or {}) do if item.definitionId==d.id and item.location.kind=='bag' and item.location.heroId==state.heroId then owned+=item.quantity end end
@@ -78,20 +84,23 @@ function V.create(parent,send,diamondOnly)
    local n=0
    for _,item in ipairs(state.items or {}) do
     local price=Economy.sellPrice(item)
-    if price and (category=='All' or Catalog.category(Items.items[item.definitionId])==category) and item.location.kind=='bag' and item.location.heroId==state.heroId and not item.locked then
+    if price and allowed(Items.items[item.definitionId]) and (category=='All' or Catalog.category(Items.items[item.definitionId])==category) and item.location.kind=='bag' and item.location.heroId==state.heroId and not item.locked then
      n+=1;local d=Items.items[item.definitionId]
-     local fit=d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
+     local fit=d.restore and ItemText.AllClasses or d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
      row(item.instanceId,d.name,fit..'\nSell one item permanently. You receive Gold; Diamonds are not refunded.',d,'SELL · '..price..' Gold',{instanceId=item.instanceId,itemVersion=item.version,review=d.name..' for '..price..' Gold'})
     end
    end
-   if n==0 then T.label(scroll,'Empty','Nothing to sell in this category. Unequip and unlock purchased gear in BAG. Starter gear and potions cannot be sold.',UDim2.new(),UDim2.new(1,-16,0,100),14) end
+   if n==0 then T.label(scroll,'Empty','Nothing to sell in this category. Unequip and unlock purchased gear in BAG. Starter gear cannot be sold.',UDim2.new(),UDim2.new(1,-16,0,100),14) end
   end
   notice.Text=message or 'Prices are shown before confirmation. Each first main-story clear awards 2 Diamonds per account.'
  end
  local function selectCategory(id)
   for _,entry in ipairs(Catalog.categories)do if entry.id==id then category=id;render();return end end
  end
- for _,entry in ipairs(Catalog.categories)do local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
+ for _,entry in ipairs(Catalog.categories)do
+  if store=='blacksmith' and entry.id~='All' and entry.id~='Weapons' then continue end
+  if store=='items' and entry.id=='Weapons' then continue end
+  local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
  buy.Activated:Connect(function() mode='Buy';render() end);sell.Activated:Connect(function() mode='Sell';render() end)
  return {panel=panel,render=render,notice=notice,selectCategory=selectCategory,setMode=function(value) if value=="Buy" or value=="Sell" then mode=value;render() end end}
 end

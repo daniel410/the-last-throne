@@ -11,7 +11,6 @@ function M.start()
  local remotes=RS:WaitForChild('Remotes')
  local shopRequest=remotes:WaitForChild('ArmoryRequest');local networkRequest=remotes:WaitForChild('ExpeditionRequest')
  local gui=Instance.new('ScreenGui');gui.Name='LobbyServices';gui.ResetOnSpawn=false;gui.DisplayOrder=48;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=p:WaitForChild('PlayerGui')
- local shopButton=T.button(gui,'OpenArmory','ARMORY',UDim2.new(1,-172,1,-60),UDim2.fromOffset(156,44))
  local diamondButton=T.button(gui,'OpenDiamondShop','DIAMOND SHOP',UDim2.new(1,-414,0,0),UDim2.fromOffset(128,44))
  require(script.Parent.TopMenuLayout).bind(gui,diamondButton,3)
  diamondButton.Caption.TextScaled=true
@@ -19,30 +18,47 @@ function M.start()
  local latest,pending
  local armory=require(script.Parent.ArmoryView).create(gui,function(command)
   command.requestId=Http:GenerateGUID(false):gsub('%-','');pending=command;shopRequest:FireServer(command)
- end)
+ end,false,'blacksmith')
+ local items=require(script.Parent.ArmoryView).create(gui,function(command)
+  command.requestId=Http:GenerateGUID(false):gsub('%-','');pending=command;shopRequest:FireServer(command)
+ end,false,'items')
  local diamonds=require(script.Parent.ArmoryView).create(gui,function(command)
   command.requestId=Http:GenerateGUID(false):gsub('%-','');pending=command;shopRequest:FireServer(command)
  end,true)
  local expedition=require(script.Parent.ExpeditionView).create(gui,function(command) networkRequest:FireServer(command) end)
  local message=''
+ local navigation
  local function lock()
-  local open=armory.panel.Visible or diamonds.panel.Visible or expedition.panel.Visible;p:SetAttribute('TLTLobbyPanelOpen',open)
+  local open=(navigation and navigation.panel.Visible) or armory.panel.Visible or items.panel.Visible or diamonds.panel.Visible or expedition.panel.Visible;p:SetAttribute('TLTLobbyPanelOpen',open)
  end
- armory.panel:GetPropertyChangedSignal('Visible'):Connect(lock);diamonds.panel:GetPropertyChangedSignal('Visible'):Connect(lock);expedition.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
- shopButton.Activated:Connect(function() diamonds.panel.Visible=false;expedition.panel.Visible=false;armory.panel.Visible=not armory.panel.Visible;shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')}) end)
- diamondButton.Activated:Connect(function() armory.panel.Visible=false;expedition.panel.Visible=false;diamonds.panel.Visible=not diamonds.panel.Visible;shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')}) end)
- partyButton.Activated:Connect(function() diamonds.panel.Visible=false;armory.panel.Visible=false;expedition.panel.Visible=not expedition.panel.Visible;networkRequest:FireServer({action='GetState'}) end)
+ armory.panel:GetPropertyChangedSignal('Visible'):Connect(lock);items.panel:GetPropertyChangedSignal('Visible'):Connect(lock);diamonds.panel:GetPropertyChangedSignal('Visible'):Connect(lock);expedition.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
+ local function closePanels()
+  armory.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;expedition.panel.Visible=false
+ end
+ navigation=require(script.Parent.LobbyNavigation).create(gui,{
+  close=closePanels,
+  open=function(kind)
+   local target=kind=='Blacksmith' and armory or items;local wasOpen=target.panel.Visible
+   closePanels();target.panel.Visible=not wasOpen
+   shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')})
+  end,
+ })
+ navigation.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
+ diamondButton.Activated:Connect(function() local wasOpen=diamonds.panel.Visible;closePanels();navigation.panel.Visible=false;diamonds.panel.Visible=not wasOpen;shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')}) end)
+ partyButton.Activated:Connect(function() local wasOpen=expedition.panel.Visible;closePanels();navigation.panel.Visible=false;expedition.panel.Visible=not wasOpen;networkRequest:FireServer({action='GetState'}) end)
  local function inventory(s)
   if latest and s.revision<latest.revision then return end
   latest=s
+  navigation.update(s)
   Wallet.update(s)
   if armory.panel.Visible then armory.render(s,message) end
+  if items.panel.Visible then items.render(s,message) end
   if diamonds.panel.Visible then diamonds.render(s,message) end
  end
  remotes:WaitForChild('InventoryState').OnClientEvent:Connect(function(s) inventory(s) end)
  remotes:WaitForChild('ArmoryState').OnClientEvent:Connect(function(data)
-  if data.open then diamonds.panel.Visible=false;armory.panel.Visible=true;expedition.panel.Visible=false end
-  message=data.error and (Text[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and weapon are saved.' or ''
+  if data.open then closePanels();navigation.panel.Visible=false;(data.store=='items' and items or armory).panel.Visible=true end
+  message=data.error and (Text[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and items are saved.' or ''
   if data.error=='SaveUnknown' and pending then
    local exact=pending;task.delay(2,function() if pending==exact then shopRequest:FireServer(exact) end end)
   elseif data.requestId==(pending and pending.requestId) then pending=nil end
@@ -50,13 +66,13 @@ function M.start()
  end)
  remotes:WaitForChild('ExpeditionState').OnClientEvent:Connect(function(s)
   expedition.render(s,s.error and (Text[s.error] or Text.NetworkUnavailable))
-  if s.open then diamonds.panel.Visible=false;expedition.panel.Visible=true;armory.panel.Visible=false end
-  if s.travelling then diamonds.panel.Visible=false;expedition.panel.Visible=true;armory.panel.Visible=false end
+  if s.open then closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true end
+  if s.travelling then closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true end
  end)
  local function phase()
   local lobby=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle'
-  shopButton.Visible=lobby;partyButton.Visible=lobby;diamondButton.Visible=lobby
-  if not lobby then diamonds.panel.Visible=false;armory.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
+  navigation.rail.Visible=lobby;partyButton.Visible=lobby;diamondButton.Visible=lobby
+  if not lobby then navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(phase);phase()
  task.spawn(function()
