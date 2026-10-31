@@ -2,7 +2,9 @@
 local Theme=require(script.Parent.TDInventoryTheme)
 local Text=require(game:GetService('ReplicatedStorage').Shared.LobbyText)
 local Wallet={}
-local views=setmetatable({},{__mode='k'})
+-- Keep Instance wrappers alive until their views are destroyed. Weak keys can
+-- disappear during GC even while Roblox still parents the GUI in PlayerGui.
+local views={}
 local current
 local function render(frame)
  local wallet=current and current.ready and current.wallet
@@ -22,6 +24,8 @@ function Wallet.create(parent)
   label.Font=Enum.Font.GothamBold;label.TextXAlignment=Enum.TextXAlignment.Left;label.TextWrapped=false;label.TextScaled=true;label.TextStrokeTransparency=.25;label.TextStrokeColor3=Color3.fromRGB(15,24,30)
   local limits=Instance.new('UITextSizeConstraint');limits.MinTextSize=12;limits.MaxTextSize=17;limits.Parent=label
  end
- views[frame]=true;render(frame);return frame
+ views[frame]=true
+ frame.Destroying:Connect(function() views[frame]=nil end)
+ render(frame);return frame
 end
 return Wallet
