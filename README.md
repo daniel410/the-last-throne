@@ -34,11 +34,11 @@ Throne Defense와 세계관·원본 자산을 공유하지만, **독립 Roblox E
 
 ## 개발 계획과 에이전트
 
-프롤로그·8장·에필로그의 전체 구상과 앞의32구간에 이어 [후반4에픽·26이야기](docs/epics-05-08-story-design.md)를 상세 기획했습니다. 후반은 메인25개+에필로그1개, 몬스터 교전32정의(일반20·필수 보스8·선택 보스4)이며 새 형상/AI 완성 수가 아닙니다. 후반 XP/Coins·맵/모델·게임 구현/수용은 미완료이고 승인된 보상 정본은 기존32구간을 유지합니다. 첫 구현은 **Deepwood 기사 K0 기본 전투**이며 전투→대표 구간→RPG 기반→전체 클래스/본편→후반 콘텐츠→출시 품질 순으로 검증합니다.
+본편은 **프롤로그 → Deepwood → Frozen Vale → Ember Caldera → Gloamwood → Haunted Graveyard → Dawnspire 귀환**으로 완결합니다. [승인 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)와 [갱신된 통합 제안서](the-last-throne-rpg-proposal.md)에 주민 구조·왕관의 심장 추적·Veyr 최종전을 반영했습니다. 기존 8에픽 후반안은 참고 자료이며 새 지역의 상세 시나리오·성장/보상·게임 적용은 후속입니다. 첫 제작·전투 검증은 Deepwood 기사 K0입니다.
 
 | 파일 | 내용 |
 | --- | --- |
-| [plan.md](plan.md) | 전체 제품·8장 제작 범위·G0~G8·품질·일정/비용 산정·미결정 |
+| [plan.md](plan.md) | 전체 제품·5에픽 제작 범위·G0~G8·품질·일정/비용 산정·미결정 |
 | [backlog.md](backlog.md) | 기존24개ID를 보존한100개 작업·우선순위·담당·의존·수용 조건 |
 | [agent.md](agent.md) | 총괄 디렉터·리서치·기획·디자인·3D 모델링·엔지니어·QA의 역할과 핸드오프 |
 | [AGENTS.md](AGENTS.md) | 이후 작업에서 적용할 저장소 공통 지침·한국어 문서/영어 게임 계약 |

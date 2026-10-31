@@ -591,3 +591,9 @@ HP 물약 Small100/Medium300/Large500/XL1000,MP Small50/Medium100/Large200/XL500
 기억 착취·강제 희생·통치 체제 중심 서사와 이전 에픽1~4 줄거리 보존 조건은 이번 방향으로 대체한다. 기존 후반 AS/DC/FB/FC는 본편에 사용하지 않으며 자료는 보존한다. 이번 승인 대상은 전체 개요이며 세부 대사·퀘스트·성장/보상 재편·런타임 완료가 아니다. 기존 보상 정본·게임 소스·VERSION·빌드/게시·태그는 변경하지 않는다. 다음 PLAN/DES는 상세 시나리오/기존ID 대응·Lv1~80 및 전직 배치를 정리하고 ENG/QA로 인계한다. 상위 티켓은 완료 처리하지 않는다.
 
 검증은 해당 Markdown의 로컬 링크 존재와 `git diff --check`로 제한한다. 실제 연령대의 이해도·재미와 게임 실행은 후속 수용이다.
+
+## 2026-10-30 승인 5에픽 줄거리의 본문 반영
+
+TLT-001/065 / five-epic-story-update-20261030. 사용자 요청에 따라 승인 개요를 통합 제안서 §4~7과 README·plan·게임 설계·시스템 계획·백로그에 반영했다. Deepwood → Frozen Vale → Ember Caldera → Gloamwood → Haunted Graveyard 순서와 Dawnspire 귀환을 따른다. 기존 8에픽 통합 원고는 [보관본](archive/eight-epic-proposal-before-five-epics-2026-10-30.md)에 남겼다. 과거 지역 상세안·시나리오 JSON은 이번 작업에서 개정하지 않았으며 승인 개요와 충돌하는 서사는 후속 개정 대상이다.
+
+보상 정본·안정ID·게임 코드·VERSION·게시 상태는 유지한다. 새 성장/전직 배치와 상세 영어 원고·실행/실기기 수용은 후속이다. [검증과 인계](evidence/five-epic-story-update-20261030.md)를 따른다.
