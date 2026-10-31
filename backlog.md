@@ -1,6 +1,6 @@
 # The Last Throne 실행 백로그
 
-> **Priest 수녀 Selene:** NPC·선택형 동행 서포터로 회복/보호/정화를 돕는다. TD 영웅과 타워의 외형·모델·무기·연출을 재사용하며 기존 동행 슬롯과 플레이어4클래스를 유지한다. [서사/자산 적용](docs/production/five-epic-adventure-story-2026-10-30.md#priest-수녀와-td-영웅타워-재사용).
+> **Priest 수녀 Selene:** NPC·선택형 동행 서포터로 회복/보호/정화를 돕는다. Dawnspire 첫 만남 후 Deepwood 초반 구조 완료·안전한 야영지 도착 시 무료 해금하고 야영지에서 동행을 선택한다. TD 영웅과 타워의 외형·모델·무기·연출을 재사용하며 기존 동행 슬롯과 플레이어4클래스를 유지한다. [서사/자산 적용](docs/production/five-epic-adventure-story-2026-10-30.md#priest-수녀와-td-영웅타워-재사용).
 
 > **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → Frozen Vale → Ember Caldera → 어둠의 숲(Gloamwood, 영문 가칭) → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 따른다.
 
@@ -187,7 +187,7 @@ TLT-001/065: [승인 개요](docs/production/five-epic-adventure-story-2026-10-3
 | TLT-069 | P1 / G5 | DES·ENG·ART·PLAN | 068 | The Fractured Crown 에픽8. 혼합 지역/균열·The Eternal King3단계·서약망/봉인·최종 정적에도 예고/자막 유지·Lv80 단계/리조인 |
 | TLT-070 | P1 / G5 | PLAN·DES·ENG·ART | 069 | 에필로그3서약·개인 세계 변화·저널/NPC/기념물·Lyra 해방·습득 기술/장비 보존. 특정 결말만 성능/레이드 해금하지 않음 |
 | TLT-071 | P1 / G5 | PLAN·ENG·DES·ART | 050,061,065 | 주요6던전 제작·수용. 각 공간/환경 규칙/적 조합/보스/체크포인트·목표 보상·영어·초회/반복·솔로 본편 경로. 실제 산출물6개 목록/버전 확보 |
-| TLT-072 | P1 / G5 | PLAN·ENG·ART·DES | 016,050,059 | Seren/Eryn/Brann/Iria/Selene 주요5동료 개인 이야기·관계·영입/편성·명령/복귀·수량/어그로. 성녀NPC/선택지원·인원별AI 상한·없어도 본편 진행 |
+| TLT-072 | P1 / G5 | PLAN·ENG·ART·DES | 016,050,059 | Seren/Eryn/Brann/Iria/Selene 주요5동료 개인 이야기·관계·영입/편성·명령/복귀·수량/어그로. Selene는 Dawnspire 첫 만남→Deepwood 초반 구조 완료/야영지 도착→무료 동료 해금→선택 편성. 유료/숨은 퀘스트 불필요. 개인 해금/재보고/저장 실패·인원별AI 상한·미동행 완주 검증 |
 | TLT-073 | P1 / G5 | QA·PLAN·DES·ENG | 060,061,062,063,064 | 32기존구간 독립 통합 수용. Lv1→40·XP/Coins·SP/재시작/리조인·전멸/보스후 재접속·개인 선택/기여/초회·영어/기기, 비구매 기본 경로 관측 |
 | TLT-074 | P0 / G5 | QA·DIR·PLAN·ENG | 059,065,066,067,068,069,070,071,072,073 | 프롤로그→8장→에필로그 독립 완주. 반복 사냥/유료 구매/8인 레이드 없이 본편 결말·성장/전직·동료/지역 변화·저장/분기·영어·실제 시간 기록 |
 
