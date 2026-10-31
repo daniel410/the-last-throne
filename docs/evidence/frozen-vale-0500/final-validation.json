@@ -1,0 +1,45 @@
+{
+  "sourceCommit": "c53e47eb1d13536b15e419b126b895831448e704",
+  "native": {
+    "checks": {
+      "frozenVale": 4083,
+      "deepwoodRefinement": 3122,
+      "combatTiming": 110,
+      "basicAttacks": 947,
+      "questUI": 5,
+      "atlas": 91,
+      "seleneSupport": 33,
+      "frozenValeUI": 40
+    },
+    "total": 8431,
+    "pass": true,
+    "scope": "Unpublished local Studio native geometry/GUI and server callbacks with fake Player/account dependencies. No real player input/published or device acceptance."
+  },
+  "luaSpecs": {
+    "total": 24,
+    "passed": 22,
+    "knownBaselineFixtureFailures": [
+      "tests/k0-appearance.spec.lua",
+      "tests/k0-rules.spec.lua"
+    ],
+    "baselineEvidence": "baseline-fixture-errors.json"
+  },
+  "assetsStatic": {
+    "frozenVale": 71,
+    "originalTDRegression": 134,
+    "frozenValeProgression": 460
+  },
+  "blender": {
+    "species": 10,
+    "logicalClips": 70,
+    "actions": 350,
+    "samplesPerChannel": 201
+  },
+  "unverified": [
+    "Real normal-combat complete playthrough and Lv20 pacing",
+    "Mobile/gamepad and 4 players plus 1 AI performance",
+    "Published asset permissions and real account save failures",
+    "Final visual and balance acceptance"
+  ],
+  "published": false
+}

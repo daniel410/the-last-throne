@@ -1,5 +1,7 @@
 # Frozen Vale 맵 디자인 · 에픽2 공간 제작안
 
+> **2026-10-31 0.50.0 로컬 시험 구현:** 최신5에픽 승인에 따른 구조·피난처 연결·수호수 진정 이야기를 구현했다. 아래 과거 상세안과 실제 런타임은 구분하며 [구현·자산·검증·미검증](evidence/frozen-vale-0500/README.md)을 현재 적용 기록으로 삼는다. 기존 안정ID와 고정 보상은 유지한다.
+
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 신규 공간 디자인 제안, Studio 구현 전
 
 [에픽 줄거리·7시나리오](epic-02-frozen-vale-story.md) · [전체/구역별 검토 보드](../assets/maps/frozen-vale-v1/index.html) · [전체 지도](../assets/maps/frozen-vale-v1/frozen-vale-masterplan.svg) · [좌표 데이터](../assets/maps/frozen-vale-v1/layout.json) · [원본 출처/해시](../assets/maps/frozen-vale-v1/source-references.json)
