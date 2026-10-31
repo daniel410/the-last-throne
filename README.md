@@ -1,5 +1,8 @@
 # The Last Throne / 최후의 왕좌
 
+> 2026-10-31 **0.44.0 / TLT-005/028/031/043/046/050/052/061/073/084 부분 구현:** Deepwood 일반 적231→462명·진행별2~9명 유한 증원, TD 보스 음악, Mage 전용 최초MP 물약·8종 물약/장비 상점 카테고리, 가방 실제 능력치 증감, 검/도끼/지팡이 최신TD PBR 모델과 개선 엘프 활을 실제 장착 경로에 연결했다. [조사](docs/research/2026-10-31-deepwood-supplies-and-refined-weapons.md) · [제작/검증/미검증](docs/evidence/deepwood-pacing-0440/README.md). 로컬 시험판이며 게시·실기기/난이도·최종 미술 수용은 후속이다.
+
+
 > 2026-10-31 **0.43.3 / TLT-005/032/033/055/057/084 부분 구현:** Blender MCP로 마법사 지팡이 기본 타격·발사·물 구체·광역·보호·강한 시전6개 Action을 제작하고 모든 Mage 기술에 연결했다. 서버 시각 곡선·원소 초점 충전·현재 지팡이 끝 발사를 적용했으며 무기 네이티브29,549개 검사를 통과했다. [공식 RPG 비교/적용](docs/research/2026-10-31-mage-staff-casting.md) · [제작/검증/남은 수용](docs/evidence/mage-staff-refinement/README.md). 게시·실기기·최종 미술 수용은 후속이다.
 
 > **2026-10-31 0.43.2 / Selene TD 원본 복원·NPC 로컬 적용:** Selene의 로비·대화·야영지·동행·라이브러리를 기존 TD 성녀 nun 메시/텍스처로 통일한다. 새 NPC와 함께 로컬 Studio 빌드에 적용하며 사용자 선택에 따라 미게시를 유지한다. [검증/범위](docs/evidence/selene-td-0431/README.md).

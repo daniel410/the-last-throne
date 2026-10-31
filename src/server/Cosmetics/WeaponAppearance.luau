@@ -9,12 +9,12 @@ local SHIELD_OWNED = "TLTPlayerShieldPart"
 local SHIELD_SOURCE = "td:SwordsmanShield"
 local SHIELD_MESH = "rbxassetid://86935256146675"
 local SHIELD_TEXTURE = "rbxassetid://97596525220590"
-local VERSION = 1
+local VERSION = 2
 local SPECS = {
-	knight = { template = "KnightSword", parts = { "Weapon" }, gripName = "SwordGrip", jointName = "K0SwordJoint", sourceKey = "td:KnightSword" },
+	knight = { template = "KnightSword", parts = { "Weapon" }, gripName = "SwordGrip", jointName = "K0SwordJoint", sourceKey = "td:v2:AzureOathblade" },
 	elf = { template = "ElfBow", parts = { "Bow", "String", "NockedArrow" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:ElfBow" },
-	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:DwarfAxe" },
-	mage = { gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "authored:WoodenStaff" },
+	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:Embercleaver" },
+	mage = { template="MageStaff", parts={"Weapon"}, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:EmberCrownStaff" },
 }
 
 local function finite(value)
@@ -89,8 +89,8 @@ local function addSwordTrail(blade)
 end
 
 local function buildTd(spec)
-	local folder = ServerStorage:FindFirstChild("TDPlayerWeaponModels")
-	assert(folder and folder:IsA("Folder"), "Missing ServerStorage.TDPlayerWeaponModels")
+	local folder = ServerStorage:FindFirstChild("TDRefinedPlayerWeaponModels")
+	assert(folder and folder:IsA("Folder"), "Missing ServerStorage.TDRefinedPlayerWeaponModels")
 	local source = folder:FindFirstChild(spec.template)
 	assert(source and source:IsA("Model"), "Missing TD weapon template: " .. spec.template)
 	local sourceGrip = gripFor(source)
@@ -205,7 +205,6 @@ function Appearance.build(classId)
 	local spec = SPECS[classId]
 	if not spec then return nil, "unsupported_class" end
 	local ok, result = pcall(function()
-		if classId == "mage" then return buildStaff(spec) end
 		return buildTd(spec)
 	end)
 	if not ok then return nil, tostring(result) end

@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: 10:08:24 | INFO: Data are loaded, start creating Blender stuff\n10:08:24 | INFO: Blender create Mesh node 0\n10:08:24 | INFO: glTF import finished in 0.09s\n10:08:24 | INFO: Data are loaded, start creating Blender stuff\n10:08:24 | INFO: Blender create Mesh node 0\n10:08:24 | INFO: glTF import finished in 0.03s\n10:08:24 | INFO: Data are loaded, start creating Blender stuff\n10:08:24 | INFO: Blender create Mesh node 0\n10:08:24 | INFO: glTF import finished in 0.04s\n[{\"class\": \"knight\", \"objects\": [\"Refined_knight_Mesh_0\"], \"triangles\": 12047}, {\"class\": \"dwarf\", \"objects\": [\"Refined_dwarf_Mesh_0.001\"], \"triangles\": 10289}, {\"class\": \"mage\", \"objects\": [\"Refined_mage_Mesh_0.002\"], \"triangles\": 13767}]\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: 10:08:24 | INFO: Data are loaded, start creating Blender stuff\n10:08:24 | INFO: Blender create Mesh node 0\n10:08:24 | INFO: glTF import finished in 0.09s\n10:08:24 | INFO: Data are loaded, start creating Blender stuff\n10:08:24 | INFO: Blender create Mesh node 0\n10:08:24 | INFO: glTF import finished in 0.03s\n10:08:24 | INFO: Data are loaded, start creating Blender stuff\n10:08:24 | INFO: Blender create Mesh node 0\n10:08:24 | INFO: glTF import finished in 0.04s\n[{\"class\": \"knight\", \"objects\": [\"Refined_knight_Mesh_0\"], \"triangles\": 12047}, {\"class\": \"dwarf\", \"objects\": [\"Refined_dwarf_Mesh_0.001\"], \"triangles\": 10289}, {\"class\": \"mage\", \"objects\": [\"Refined_mage_Mesh_0.002\"], \"triangles\": 13767}]\n"
+  },
+  "isError": false
+}

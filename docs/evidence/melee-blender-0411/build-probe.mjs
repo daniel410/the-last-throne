@@ -6,7 +6,7 @@ fs.mkdirSync(out,{recursive:true});
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const item=(cls,name,props='',children='')=>`<Item class="${cls}"><Properties><string name="Name">${name}</string>${props}</Properties>${children}</Item>`;
 const inputs={};
-const assets=[['assets/shared/td-player-weapons','TDPlayerWeaponModels'],['assets/shared/td-player-weapons/shield','TDKnightShieldModels']];
+const assets=[['assets/shared/td-refined-player-weapons','TDRefinedPlayerWeaponModels'],['assets/shared/td-player-weapons','TDPlayerWeaponModels'],['assets/shared/td-player-weapons/shield','TDKnightShieldModels']];
 let models='';
 for(const [folder,name] of assets){
  const manifest=JSON.parse(fs.readFileSync(folder+'/manifest.json','utf8'));

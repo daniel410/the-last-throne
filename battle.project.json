@@ -41,6 +41,9 @@
       },
       "TDSeleneModels": {
         "$path": "assets/shared/td-selene/runtime.rbxmx"
+      },
+      "TDRefinedPlayerWeaponModels": {
+        "$path": "assets/shared/td-refined-player-weapons/runtime.rbxmx"
       }
     },
     "StarterPlayer": {

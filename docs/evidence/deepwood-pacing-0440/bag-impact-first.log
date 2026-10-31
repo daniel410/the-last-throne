@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+INVENTORY_IMPACT_NATIVE {"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:24: assertion failed!\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:24\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:17\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"INVENTORY_IMPACT_NATIVE","pass":false,"checks":0}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:34: Bag stat display failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:34
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

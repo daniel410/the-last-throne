@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "user_prompt": "검과 도끼, 마법사 지팡이등 모든 영웅의 3D 모델  개선된 새 모델로 교체해줘 플레이어에 플레이에 반영해줘",
+    "code": "import bpy,json\nbpy.context.window.scene=bpy.data.scenes['TLT_Refined_Weapon_Source_Review']\nbpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/shared/td-refined-player-weapons/refined-weapon-review.blend')\nprint(json.dumps({'saved':bpy.data.filepath,'scope':'Refined weapon review scene active; prior animation authoring scenes preserved'}))"
+  }
+}

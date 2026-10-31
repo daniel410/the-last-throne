@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: Info: No new files have been packed\nInfo: Saved as \"refined-weapon-review.blend\"\n{\"saved\": \"/Users/daniel/Workspace/project/roblox/the-last-throne/assets/shared/td-refined-player-weapons/refined-weapon-review.blend\", \"scope\": \"Refined weapon review scene active; prior animation authoring scenes preserved\"}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: Info: No new files have been packed\nInfo: Saved as \"refined-weapon-review.blend\"\n{\"saved\": \"/Users/daniel/Workspace/project/roblox/the-last-throne/assets/shared/td-refined-player-weapons/refined-weapon-review.blend\", \"scope\": \"Refined weapon review scene active; prior animation authoring scenes preserved\"}\n"
+  },
+  "isError": false
+}

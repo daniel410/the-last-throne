@@ -1,0 +1,155 @@
+{
+  "date": "2026-10-31",
+  "source_project": "../throne-defense",
+  "source_path": "../throne-defense/assets/models/meshy-hero-weapons-v2/runtime.rbxmx",
+  "source_sha256": "f79917ba97d5700f79966d0c23943d503f78b524a1215821d1a9f3d463382189",
+  "visualVersion": 2,
+  "folderName": "TDRefinedPlayerWeaponModels",
+  "newUploads": 0,
+  "files": {
+    "runtime": {
+      "sha256": "a75c688bc300544138b5a9459d3c9b428cd75ca0bff4a8757063092480f1c75d",
+      "bytes": 24621
+    },
+    "blender": {
+      "sha256": "e1cee815b274119463601acb4a239392eb0126c18165da512395733d3bf2217f",
+      "bytes": 61751271,
+      "scene": "TLT_Refined_Weapon_Source_Review",
+      "authoring": "Blender MCP internal bpy API"
+    }
+  },
+  "models": [
+    {
+      "hero": "knight",
+      "triangles": 12047,
+      "markers": {
+        "HeroWeaponVersion": 1,
+        "HeroWeaponSource": "Meshy standalone Azure Oathblade / 6a55244cb6ff",
+        "WeaponTipPosition": [
+          -0.0008854677096195029,
+          2.932499959205927,
+          0.0000018149193301564281
+        ]
+      },
+      "size": [
+        1.188979947547466,
+        3.450000041073011,
+        0.37033962254505415
+      ],
+      "cf": [
+        0,
+        1.207500046821039,
+        0.0062019004262587885,
+        -1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "meshId": "rbxassetid://136222429214301",
+      "maps": {
+        "ColorMap": "rbxassetid://135817467959691",
+        "NormalMap": "rbxassetid://88137398162448",
+        "RoughnessMap": "rbxassetid://117369678822550",
+        "MetalnessMap": "rbxassetid://73862716013891"
+      }
+    },
+    {
+      "hero": "dwarf",
+      "triangles": 10289,
+      "markers": {
+        "HeroWeaponVersion": 1,
+        "HeroWeaponSource": "Meshy standalone Embercleaver / 8808189e9570",
+        "WeaponTipPosition": [
+          0.17403694678537107,
+          2.4000000241507564,
+          -0.0024613832513735723
+        ]
+      },
+      "size": [
+        1.5581329521298102,
+        3.199999965393232,
+        0.39897275095177775
+      ],
+      "cf": [
+        0.4457659364282449,
+        0.799999991348308,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "meshId": "rbxassetid://137793778150208",
+      "maps": {
+        "ColorMap": "rbxassetid://140324822314230",
+        "NormalMap": "rbxassetid://130758498585726",
+        "RoughnessMap": "rbxassetid://77520736594148",
+        "MetalnessMap": "rbxassetid://90110750958832"
+      }
+    },
+    {
+      "hero": "mage",
+      "triangles": 13767,
+      "markers": {
+        "HeroWeaponVersion": 1,
+        "HeroWeaponSource": "Meshy standalone Ember Crown Torch / 3c4a17334fea",
+        "WeaponTipPosition": [
+          -0.1108842641056782,
+          3.0000002652251396,
+          0.004108615645906033
+        ]
+      },
+      "size": [
+        0.7987661810136117,
+        4.000000186528382,
+        0.8317878173094021
+      ],
+      "cf": [
+        -0.01745215049494986,
+        1.0000000466320955,
+        -0.005052061938224661,
+        -1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "meshId": "rbxassetid://94265479758423",
+      "maps": {
+        "ColorMap": "rbxassetid://95054729252796",
+        "NormalMap": "rbxassetid://105943220113876",
+        "RoughnessMap": "rbxassetid://118492639836323",
+        "MetalnessMap": "rbxassetid://137810503625295"
+      }
+    }
+  ],
+  "elf": {
+    "source": "assets/shared/td-player-weapons/runtime.rbxmx",
+    "sha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9",
+    "note": "Original mesh/PBR plus current runtime bow/string/nock refinement"
+  },
+  "placement": {
+    "dwarf": "Rigid 180 degree native Y rotation around grip to align the new cutting edge with the existing authored swing socket. No vertex/UV/texture edit."
+  },
+  "permission": "User authorizes replacement with improved TD originals; real RPG client permission still needs verification",
+  "source_commit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "validation": {
+    "native_checks": 116,
+    "studio_mesh_fetch": "Success for all four class mesh IDs",
+    "published_client": "unverified"
+  }
+}

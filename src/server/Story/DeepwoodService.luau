@@ -26,7 +26,9 @@ function Service.encounterState(player,heroId)
  local result={}
  for key,e in pairs(encounters) do
   if e.participants[player]==heroId then
-   result[key]={wave=e.wave,waves=e.waveCount,remaining=e.remaining,pillars=e.shield and e.pillars or 0}
+   local ctx,root=context(player)
+   result[key]={wave=e.wave,waves=e.waveCount,remaining=e.remaining,pillars=e.shield and e.pillars or 0,
+    position={e.position.X,e.position.Y,e.position.Z},boss=e.goal.bossEncounter~=nil,active=not e.completed and ctx~=nil and ctx.heroId==heroId and root~=nil and (root.Position-e.position).Magnitude<=110}
   end
  end
  return result
@@ -99,30 +101,19 @@ local function applyBalance(model,spec,partySize)
  model:SetAttribute('StoryHealth',health);model:SetAttribute('StoryDamage',damage)
  model:SetAttribute('StoryRewardXP',xp);model:SetAttribute('StoryRewardGold',gold)
 end
-local function support(e,spec,offset,delay)
- local kind=spec.kind
- local p=e.position+offset;local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,1,1)
- m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y-1,0));m:SetAttribute('DeepwoodEncounter',e.key)
- applyBalance(m,spec,e.partySize)
- m:FindFirstChildOfClass('Humanoid').DisplayName=({Shaman='Goblin Shaman',Orc='Orc Warrior',Goblin='Goblin'})[kind] or kind
- m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+delay)
- table.insert(e.models,m);e.remaining=e.remaining+1;options.combat.addStoryEnemy(m)
-end
+local spawnWave
 local function reinforce(e,health)
  local profile=e.goal.bossEncounter;if not profile then return end
  e.reinforcements=e.reinforcements or {}
  for index,wave in ipairs(profile.waves) do
   if health<=wave.health and not e.reinforcements[index] then
    e.reinforcements[index]=true
-   local specs=Balance.expand(wave.enemies);local total=#specs
-   for n,spec in ipairs(specs) do
-    local angle=(n-1)*math.pi*2/total+index*.7
-    local radius=spec.kind=='Shaman' and 27 or 22
-    support(e,spec,Vector3.new(math.cos(angle)*radius,0,math.sin(angle)*radius),1.25+n*.18)
-   end
-   for player in pairs(e.participants) do publish(player,'Reinforcements! '..total..' guards are joining the battle. Reposition before they attack.') end
+   local specs=Balance.expand(wave.enemies)
+   for _,batch in ipairs(Balance.waves(specs,e.packSize,1)) do table.insert(e.batches,batch) end
+   for player in pairs(e.participants) do publish(player,'Reinforcements are gathering. Clear the current guards before the next group arrives.') end
   end
  end
+ if e.guardsRemaining==0 and e.nextWave<=#e.batches then spawnWave(e) end
 end
 local function pillar(e,index)
  local p=Instance.new('Part');p.Name='TemporarySealPillar';p.Size=Vector3.new(4,9,4);p.Position=e.position+Vector3.new(index==1 and -22 or 22,3,0)
@@ -188,23 +179,23 @@ local function floorHazard(e)
  end)
 end
 
-local function spawnWave(e)
- local position=e.position
- local total=0 for _,spec in ipairs(e.pendingSpecs) do total=total+1 end
- local index=0
- for n=1,total do local spec=e.pendingSpecs[n]
-  if n>=e.waveFirst and n<=e.waveLast then
-  index=index+1;local a=index*math.pi*2/math.max(1,e.waveLast-e.waveFirst+1)
-  local p=position+Vector3.new(math.cos(a)*13,-1,math.sin(a)*13)
+spawnWave=function(e)
+ local batch=e.batches[e.nextWave];if not batch then return end
+ e.nextWave=e.nextWave+1;e.wave=e.wave+1
+ for index,spec in ipairs(batch) do
+  local a=index*math.pi*2/#batch
+  local p=e.position+Vector3.new(math.cos(a)*13,-1,math.sin(a)*13)
   local kind=spec.kind;local boss=Balance.isBoss(kind)
   local scale=(kind=='Ogre' or kind=='KingOgre') and 1.8 or 1
   local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,boss and 1.3 or 1)
   m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
-  applyBalance(m,spec,e.partySize)
-  if e.goal.bossEncounter then m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1+index*.12) end
+  m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize)
+  m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1.25+index*.12)
   m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or kind
-  table.insert(e.models,m);e.remaining=e.remaining+1;if boss then e.boss=m end;options.combat.addStoryEnemy(m)
- end end
+  table.insert(e.models,m);e.remaining=e.remaining+1
+  if boss then e.boss=m else e.guardsRemaining=e.guardsRemaining+1 end
+  options.combat.addStoryEnemy(m)
+ end
 end
 local function begin(player,node,automatic)
  local c,g=node.chapter,node.goal;local position=node.part.Position
@@ -221,9 +212,12 @@ local function begin(player,node,automatic)
   local ally=eligible(p,c,g,65,position)
   if ally and count<4 then e.participants[p]=ally.heroId;count=count+1 end
  end end
- e.partySize=count;e.pendingSpecs=Balance.expand(g.enemies)
- e.waveCount=math.min(math.max(g.activity and g.activity.waves or 1,math.ceil(#e.pendingSpecs/Balance.maxWaveSize)),#e.pendingSpecs);e.wave=1
- e.waveFirst=1;e.waveLast=math.ceil(#e.pendingSpecs/e.waveCount);spawnWave(e)
+ e.partySize=count;e.packSize=Balance.packSize(c,g);e.batches=Balance.waves(Balance.expand(g.enemies),e.packSize)
+ e.waveCount=#e.batches;e.wave=0;e.nextWave=1;e.guardsRemaining=0
+ for _,stage in ipairs(g.bossEncounter and g.bossEncounter.waves or {}) do
+  e.waveCount=e.waveCount+#Balance.waves(Balance.expand(stage.enemies),e.packSize,1)
+ end
+ spawnWave(e)
  for ally in pairs(e.participants) do publish(ally,g.activity and g.activity.intro or 'Encounter started. Watch enemy attack warnings and use the open ground.') end
 end
 local function offerQuest(player,node,discovery)
@@ -281,20 +275,24 @@ function Service.defeated(model,_winner)
  local owned=false for _,m in ipairs(e.models) do if m==model then owned=true end end
  if not owned then return end
  e.dead=e.dead or {};e.dead[model]=true;e.remaining=e.remaining-1
+ if model==e.boss then reinforce(e,0) else e.guardsRemaining=e.guardsRemaining-1 end
+ local complete=e.remaining==0 and e.nextWave>#e.batches and e.wave==e.waveCount
  -- Per-attempt kill XP is a server reward, distinct from the quest's fixed XP.
  for p,heroId in pairs(e.participants) do
   local ctx=eligible(p,e.chapter,e.goal,100,e.position)
   if ctx and ctx.heroId==heroId then
    local level=model:GetAttribute('StoryLevel') or 1;local multiplier=model:GetAttribute('StoryBoss') and 5 or 1
    options.inventory.awardXP(p,heroId,model:GetAttribute('StoryRewardXP') or (8+2*level)*multiplier,true,model:GetAttribute('StoryRewardGold') or (3+math.floor(level/2))*(model:GetAttribute('StoryBoss') and 10 or 1))
-   if e.remaining==0 and e.wave==e.waveCount then enqueue(p,heroId,e.chapter,e.goal) end
+   if complete then enqueue(p,heroId,e.chapter,e.goal) end
   end
  end
- if e.remaining==0 then
-  if e.wave<e.waveCount then
-   e.wave+=1;e.waveFirst=e.waveLast+1;e.waveLast=math.ceil(#e.pendingSpecs*e.wave/e.waveCount);spawnWave(e)
-   for p in pairs(e.participants) do publish(p,'Reinforcements are approaching from the trees. Hold the supply road!') end
-  else task.delay(3,function() destroyEncounter(e) end) end
+ if complete then
+  e.completed=true
+  for p in pairs(e.participants) do publish(p,'The encounter is clear.') end
+  task.delay(3,function() destroyEncounter(e) end)
+ elseif e.guardsRemaining==0 and e.nextWave<=#e.batches then
+  spawnWave(e)
+  for p in pairs(e.participants) do publish(p,'The next group is approaching. Watch their attack warnings!') end
  end
 end
 function Service.start(settings)

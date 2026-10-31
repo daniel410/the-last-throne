@@ -29,12 +29,18 @@ local function apply(p,item,action,extra,context)
 	if nextP then valid(nextP) end
 	return nextP,errorCode,command,repeated
 end
--- Six distinct definitions retain the original saved Small potion IDs.
+local function buyStock(p,id,count)
+ p.wallet.gold=1000
+ for i=1,count do sequence=sequence+1;p=assert(R.shop(p,{action='Buy',requestId='fixture-stock-'..sequence,heroId='hero-knight',revision=p.revision,offerId=id},{atLobby=true},C)) end
+ return p
+end
+-- Eight distinct definitions retain the original saved Small potion IDs.
 equal(#C.potions,8,"eight potion variants")
 for _,id in ipairs(C.potions) do
 	local def=C.items[id]
 	equal(def.amount,(def.restore=="health" and {100,300,500,1000} or {50,100,200,500})[def.potionTier],"user-approved restore amount")
 	local sample=profile()
+ if def.restore=="mana" then sample=buyStock(sample,id,def.potionTier==1 and 3 or def.potionTier==2 and 2 or 1) end
 	equal(def.iconKey,id,"variant owns a distinct icon identity")
 	equal(def.maxStack,99,"potions share the 99-stack contract")
 	equal(R.quantity(sample,"hero-knight",id),def.potionTier==1 and 3 or def.potionTier==2 and 2 or 1,"training stock per tier")
@@ -188,7 +194,7 @@ local stale=request(p,hp,"Use")
 denied,reason=R.apply(used,stale,safe,C)
 equal(reason,"Changed","concurrent old revision rejected")
 
-p=profile()
+p=buyStock(profile(),"mana_potion",3)
 local mana=find(p,"mana_potion","bag")
 p=assert(apply(p,mana,"Assign",{slot=1}))
 equal(p.heroes['hero-knight'].quickSlots[1],"mana_potion","quick slot accepts an owned potion")
@@ -201,7 +207,7 @@ local lastPotion=find(p,"health_potion","bag")
 lastPotion.quantity=1
 p=assert(apply(p,lastPotion,"Use"))
 equal(R.quantity(p,"hero-knight","health_potion"),0,"last potion consumes the stack")
-equal(p.heroes['hero-knight'].quickSlots[2],"mana_potion","consuming another potion preserves assignment")
+equal(p.heroes['hero-knight'].quickSlots[2],"health_potion_medium","consuming another potion preserves assignment")
 
 -- Discard removes only the requested owned, unlocked bag quantity and is replay-safe.
 p=profile()

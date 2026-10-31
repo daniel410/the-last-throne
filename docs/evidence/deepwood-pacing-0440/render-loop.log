@@ -1,0 +1,2 @@
+WEAPON_RENDER_LOOP_NATIVE {"coverage":"Production start PreSimulation/RenderStepped callbacks in native engine with controlled frame signals","error":"","pass":true,"checks":3}
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

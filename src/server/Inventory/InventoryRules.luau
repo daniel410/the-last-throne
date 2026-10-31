@@ -58,7 +58,7 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	if not catalog.classes[classId] then return nil, "InvalidRequest" end
 	for _, hero in pairs(profile.heroes) do if hero.baseClassId == classId then return nil, "ClassAlreadyCreated" end end
 	local nextProfile = Rules.copy(profile)
-	nextProfile.heroes[heroId] = {heroId = heroId, baseClassId = classId, level = 1, progression = Growth.new(), quickSlots = {"health_potion", "mana_potion"}}
+	nextProfile.heroes[heroId] = {heroId = heroId, baseClassId = classId, level = 1, progression = Growth.new(), quickSlots = {"health_potion", classId=="mage" and "mana_potion" or "health_potion_medium"}}
 	local n = 0
 	local function add(definitionId, quantity, location)
 		n = n + 1
@@ -68,8 +68,8 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	if classId == "knight" then add("knight_shield", 1, {kind = "equipped", heroId = heroId, slot = "offhand"}) end
 	add(classId .. "_weapon_fine", 1)
 	for _, id in ipairs(catalog.kit) do add(id, 1) end
-	add("health_potion", 3); add("mana_potion", 3)
-	for _, resource in ipairs({"health", "mana"}) do
+	add("health_potion", 3); if classId=="mage" then add("mana_potion", 3) end
+	for _, resource in ipairs(classId=="mage" and {"health", "mana"} or {"health"}) do
 		add(resource .. "_potion_medium", 2); add(resource .. "_potion_large", 1); add(resource .. "_potion_xl", 1)
 	end
 	add("iron_ore", 24); add("soft_hide", 8)

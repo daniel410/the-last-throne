@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-31",
+  "source_project": "../throne-defense",
+  "source_commit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "title": "Throne Under Siege",
+  "assetId": 120016858360297,
+  "normalAssetId": 73105938035554,
+  "volume": 0.2,
+  "fadeSeconds": 1.5,
+  "permission_basis": "User requests reuse of TD boss background music; original TD upload/config reused; TD unchanged",
+  "rpg_experience_playback": "Local Studio asset fetch Success; IsLoaded true; TimeLength 60 seconds. Published RPG client permission/listening unverified.",
+  "files": [
+    {
+      "source_path": "../throne-defense/src/Shared/Config.lua",
+      "bytes": 75014,
+      "sha256": "5a9a392fd1ba8ba5dda2049c383eed714e70c1f2fe95e022b2fff48e06589d6e"
+    },
+    {
+      "source_path": "../throne-defense/src/Client/Bgm.client.lua",
+      "bytes": 5264,
+      "sha256": "a512f00c6f923dacecf27eadfa833fb7aea772e5f108853ec726ea516b39cd52"
+    },
+    {
+      "source_path": "../throne-defense/assets/audio/README.md",
+      "bytes": 13726,
+      "sha256": "1c5510b0be06fd3098e62c19ca0f1182cc1ed3aa83c32e47f8ac9b603a91fb2a"
+    },
+    {
+      "source_path": "../throne-defense/assets/audio/throne-under-siege.wav",
+      "bytes": 10584044,
+      "sha256": "1f23cc64d2585c3f79bdcd3f6a699ac46fcd9077601fc0e28d85babb7c2bffd4"
+    },
+    {
+      "source_path": "../throne-defense/assets/audio/throne-under-siege.m4a",
+      "bytes": 1429575,
+      "sha256": "df4a0cddb40b30bcf7c9a01ef2a485b577e942ea14c6768232c6d87760f029e9"
+    }
+  ]
+}

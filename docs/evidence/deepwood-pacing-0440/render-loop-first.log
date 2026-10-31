@@ -1,0 +1,15 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+WEAPON_RENDER_LOOP_NATIVE {"coverage":"Production start PreSimulation/RenderStepped callbacks in native engine with controlled frame signals","error":"StarterPlayer.StarterPlayerScripts.Client.WeaponFrameLoopQA:1077: invalid argument #1 to 'pairs' (table expected, got nil)\nStarterPlayer.StarterPlayerScripts.Client.WeaponFrameLoopQA:1077\nStarterPlayer.StarterPlayerScripts.Client.WeaponFrameLoopQA:1093 function qaStep\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:17\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:15\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","pass":false,"checks":0}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:21: StarterPlayer.StarterPlayerScripts.Client.WeaponFrameLoopQA:1077: invalid argument #1 to 'pairs' (table expected, got nil)
+StarterPlayer.StarterPlayerScripts.Client.WeaponFrameLoopQA:1077
+StarterPlayer.StarterPlayerScripts.Client.WeaponFrameLoopQA:1093 function qaStep
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:17
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:15
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:21
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

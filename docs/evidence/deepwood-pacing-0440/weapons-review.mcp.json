@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "user_prompt": "검과 도끼, 마법사 지팡이등 모든 영웅의 3D 모델  개선된 새 모델로 교체해줘 플레이어에 플레이에 반영해줘",
+    "code": "import bpy,json,math\nfrom mathutils import Vector\ns=bpy.data.scenes.new('TLT_Refined_Weapon_Source_Review');bpy.context.window.scene=s\nout=[]\nfor i,kind in enumerate(['knight','dwarf','mage']):\n before=set(bpy.data.objects);bpy.ops.import_scene.gltf(filepath='/Users/daniel/Workspace/project/roblox/throne-defense/assets/models/meshy-hero-weapons-v2/derived/'+kind+'/textured-review.glb')\n objects=list(set(bpy.data.objects)-before)\n roots=[o for o in objects if not o.parent or o.parent not in objects]\n for o in roots:o.location.x+=i*5\n for o in objects:o.name='Refined_'+kind+'_'+o.name\n out.append({'class':kind,'objects':[o.name for o in objects],'triangles':sum(len(o.data.polygons) for o in objects if o.type=='MESH')})\nprint(json.dumps(out))"
+  }
+}

@@ -1073,7 +1073,6 @@ function Visual.start()
 		end
 		-- Keep animation baselines alive while the engine instance exists, and
 		-- explicitly release them once a model, joint or character is removed.
-		for model in pairs(bowRest) do if not model:IsDescendantOf(game) then bowRest[model] = nil end end
 		for model in pairs(knightLoads) do if not model:IsDescendantOf(game) then knightLoads[model] = nil end end
 		for joint in pairs(armPoses) do if not joint:IsDescendantOf(game) then armPoses[joint] = nil; groundSlamJoints[joint] = nil end end
 		for joint in pairs(weaponPoses) do if not joint:IsDescendantOf(game) then weaponPoses[joint] = nil end end

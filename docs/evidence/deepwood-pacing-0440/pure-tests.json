@@ -1,0 +1,81 @@
+[
+  {
+    "command": "lua tests/deepwood-encounter-balance.spec.lua",
+    "status": 0,
+    "output": [
+      "Deepwood encounter balance: 3103 checks passed; authored enemies 82 -> 467"
+    ]
+  },
+  {
+    "command": "lua tests/deepwood-bosses.spec.lua",
+    "status": 0,
+    "output": [
+      "Deepwood bosses: 96 checks passed"
+    ]
+  },
+  {
+    "command": "lua tests/deepwood-progress.spec.lua",
+    "status": 0,
+    "output": [
+      "Deepwood progression: 515 checks passed",
+      "Deepwood total: 520 checks passed",
+      "Deepwood extended total: 570 checks passed"
+    ]
+  },
+  {
+    "command": "lua tests/deepwood-quests.spec.lua",
+    "status": 0,
+    "output": [
+      "Deepwood quest contract: 31 checks passed"
+    ]
+  },
+  {
+    "command": "lua tests/hero-progression.spec.lua",
+    "status": 0,
+    "output": [
+      "Hero progression: 656 checks passed"
+    ]
+  },
+  {
+    "command": "lua tests/inventory.spec.lua",
+    "status": 0,
+    "output": [
+      "Inventory: 265 ownership, capacity, stacking, idempotency, binding and recovery checks passed"
+    ]
+  },
+  {
+    "command": "lua tests/economy.spec.lua",
+    "status": 0,
+    "output": [
+      "Economy: 26 checks passed"
+    ]
+  },
+  {
+    "command": "lua tests/starter-potions-and-shop.spec.lua",
+    "status": 0,
+    "output": [
+      "Starter potions and shop: 170 checks passed"
+    ]
+  },
+  {
+    "command": "lua tests/equipment-impact.spec.lua",
+    "status": 0,
+    "output": [
+      "Equipment impact: 44 checks passed"
+    ]
+  },
+  {
+    "command": "lua tests/deepwood-music-policy.spec.lua",
+    "status": 0,
+    "output": [
+      "Deepwood music policy: 13 checks passed"
+    ]
+  },
+  {
+    "command": "lua tests/skill-stat-preview.spec.lua",
+    "status": 0,
+    "output": [
+      "Skill stat preview: 954 checks passed"
+    ]
+  }
+]

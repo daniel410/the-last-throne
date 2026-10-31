@@ -6,6 +6,8 @@ local GuiService = game:GetService("GuiService")
 local ContextActionService = game:GetService("ContextActionService")
 local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
 local Text = require(ReplicatedStorage.Shared.InventoryText)
+local EquipmentImpact = require(ReplicatedStorage.Shared.EquipmentImpact)
+local CombatText = require(ReplicatedStorage.Shared.CombatStatText)
 local BaseTheme = require(script.Parent.TDInventoryTheme)
 local Chrome = require(script.Parent.InventoryChrome)
 local Artwork = require(script.Parent.ItemArtwork)
@@ -265,6 +267,13 @@ function InventoryGui.create(onVisibility, feedback)
 				lines[#lines+1]=string.format("%s   %d%s → %d%s   (%+d%s)",Text.Stats[key],before,suffix,after,suffix,after-before,suffix)
 			end
 			detailLabel("Comparison",table.concat(lines,"\n"),y,94,13,Color.text); y=y+100
+			local impact,reason=EquipmentImpact.compare(hero,snapshot.items,item,compareSlot,Catalog)
+			if impact then
+				detailLabel("ActualStatChanges",EquipmentImpact.text(impact),y,160,13,Color.silver);y=y+166
+				detailLabel("ActualStatNote",CombatText.EquipmentNote,y,52,11,Color.muted);y=y+58
+			else
+				detailLabel("ActualStatChanges",reason=="ChooseAccessory" and Text.ChooseAccessory or reason=="WrongClass" and Text.Errors.WrongClass or Text.Loading,y,56,12,Color.muted);y=y+62
+			end
 		end
 		if expandedDetails then detailLabel("DescriptionText",def.description,y,70,13,Color.muted); y=y+76 end
 		local more=Theme.button(detailScroll,"ToggleDetails",expandedDetails and Text.LessDetails or Text.MoreDetails,UDim2.fromOffset(0,y),UDim2.new(1,-6,0,36))

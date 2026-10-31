@@ -38,13 +38,22 @@ function E.apply(p,cmd,context,items,R)
  local n=R.copy(p);E.upgrade(n)
  if cmd.action=='Buy' then
   local offer=Catalog.offer(cmd.offerId);if not offer then return nil,'InvalidRequest' end
-  if R.count(n,'bag',cmd.heroId)>=items.bagCapacity then return nil,'BagFull' end
+  local definition=items.items[offer.definitionId];if not definition then return nil,'InvalidRequest' end
+  local stack
+  if definition.restore then
+   for _,item in pairs(n.items) do
+    if item.definitionId==offer.definitionId and item.location.kind=='bag' and item.location.heroId==cmd.heroId
+     and not item.locked and item.quantity<definition.maxStack and (not stack or item.instanceId<stack.instanceId) then stack=item end
+   end
+  end
+  if not stack and R.count(n,'bag',cmd.heroId)>=items.bagCapacity then return nil,'BagFull' end
   if n.wallet[offer.currency]<offer.price then return nil,offer.currency=='gold' and 'NotEnoughGold' or 'NotEnoughDiamonds' end
   local id='shop-'..cmd.requestId
   if n.items[id] then return nil,'Changed' end
   n.wallet[offer.currency]=n.wallet[offer.currency]-offer.price
-  n.items[id]={instanceId=id,definitionId=offer.definitionId,definitionVersion=items.version,ownerUserId=p.userId,quantity=1,version=1,binding='account',locked=false,
-   location={kind='bag',heroId=cmd.heroId},sourceGrantId='shop:'..cmd.requestId}
+  if stack then stack.quantity=stack.quantity+1;stack.version=stack.version+1
+  else n.items[id]={instanceId=id,definitionId=offer.definitionId,definitionVersion=items.version,ownerUserId=p.userId,quantity=1,version=1,binding='account',locked=false,
+   location={kind='bag',heroId=cmd.heroId},sourceGrantId='shop:'..cmd.requestId} end
  elseif cmd.action=='Sell' then
   local item=n.items[cmd.instanceId]
   if not item or item.ownerUserId~=p.userId or item.version~=cmd.itemVersion then return nil,'Changed' end

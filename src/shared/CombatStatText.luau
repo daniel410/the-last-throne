@@ -1,5 +1,6 @@
 -- en-US combat stat breakdown. Numeric values use the server's existing formulas.
 return {
+ EquipmentPreview='ACTUAL STATS IF EQUIPPED',EquipmentNote='Attack is before skill multipliers. Max HP / MP changes do not refill resources.',
  Title='COMBAT STATS',Current='Current stats · Equipped gear included',
  HeroAndGear='Hero %s  +  Gear %s',Draft='DRAFT %s → %s (%s)',
  Labels={physicalPower='Physical Attack',magicPower='Magic Attack',armor='Defense',health='Max HP',mana='Max MP'},

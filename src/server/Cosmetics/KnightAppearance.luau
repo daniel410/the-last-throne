@@ -80,8 +80,8 @@ local function buildAppearance(character, rightHand, leftHand, classId)
 			makePart(model, grip, "SwordEdge", Vector3.new(0.07, 1.55, 0.17),
 				CFrame.new(0.205, 1.27, 0), EDGE, Enum.Material.Metal)
 		else
-			model:SetAttribute("UsesTdPlayerWeapon", classId ~= "mage")
-			model:SetAttribute("UsesAuthoredPlayerWeapon", classId == "mage")
+			model:SetAttribute("UsesTdPlayerWeapon", true)
+			model:SetAttribute("UsesAuthoredPlayerWeapon", false)
 		end
 
 		if classId == "knight" then

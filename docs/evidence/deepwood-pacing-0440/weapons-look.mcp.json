@@ -1,0 +1,18 @@
+{
+  "name": "look",
+  "arguments": {
+    "mode": "angles",
+    "target": [
+      "Refined_knight_Mesh_0",
+      "Refined_dwarf_Mesh_0.001",
+      "Refined_mage_Mesh_0.002"
+    ],
+    "views": [
+      "front",
+      "three_quarter"
+    ],
+    "shading": "material",
+    "max_size": 1600,
+    "user_prompt": "검과 도끼, 마법사 지팡이등 모든 영웅의 3D 모델  개선된 새 모델로 교체해줘 플레이어에 플레이에 반영해줘"
+  }
+}

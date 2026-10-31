@@ -427,6 +427,23 @@
       "manifest": "assets/shared/td-level-up-effect/manifest.json",
       "runtime_path": "src/server/Combat/HeroLevelUpEffect.luau",
       "image_ids_found_in_source": []
+    },
+    {
+      "key": "audio.td-boss-under-siege",
+      "kind": "audio-source",
+      "source_path": "../throne-defense/src/Shared/Config.lua",
+      "sha256": "5a9a392fd1ba8ba5dda2049c383eed714e70c1f2fe95e022b2fff48e06589d6e",
+      "asset_id": 120016858360297,
+      "manifest": "assets/shared/td-boss-music/manifest.json",
+      "audit_status": "TD original verified; Studio fetch Success / 60 seconds; published RPG permission/listening unverified"
+    },
+    {
+      "key": "models.refined-player-weapons-v2",
+      "kind": "model-source",
+      "source_path": "../throne-defense/assets/models/meshy-hero-weapons-v2/runtime.rbxmx",
+      "sha256": "f79917ba97d5700f79966d0c23943d503f78b524a1215821d1a9f3d463382189",
+      "manifest": "assets/shared/td-refined-player-weapons/manifest.json",
+      "audit_status": "Reviewed v2 sword/axe/staff uploads reused; original Elf geometry plus refined draw rig; R6/R15 native lifecycle verified; real client/device acceptance separate"
     }
   ]
 }

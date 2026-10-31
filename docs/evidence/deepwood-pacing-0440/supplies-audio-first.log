@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+DEEPWOOD_SUPPLIES_AUDIO_NATIVE {"coverage":"Native Sound/Tween/GUI and production modules; no physical listening/device or purchase input","audio":[],"checks":139,"kind":"DEEPWOOD_SUPPLIES_AUDIO_NATIVE","pass":false,"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:6: unready boss audio retains normal music volume\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:6\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"]}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:53: Supplies/audio native state checks failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:53
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

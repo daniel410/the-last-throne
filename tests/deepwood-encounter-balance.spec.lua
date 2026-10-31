@@ -10,17 +10,17 @@ for _,chapter in ipairs(C.chapters)do for _,goal in ipairs(chapter.goals)do
   local expectedCount,xp,gold=0,0,0
   for _,spec in ipairs(specs)do
    local boss=B.isBoss(spec.kind)
-   expectedCount=expectedCount+spec.count*(boss and 1 or 3)
+   expectedCount=expectedCount+spec.count*(boss and 1 or 6)
    xp=xp+(8+2*spec.level)*(boss and 5 or 1)*spec.count
    gold=gold+(3+math.floor(spec.level/2))*(boss and 10 or 1)*spec.count
    original=original+spec.count
   end
   local plan=B.expand(specs);expanded=expanded+#plan
-  check(#plan==expectedCount,'density triples guards and preserves single bosses')
+  check(#plan==expectedCount,'normal population doubles the previous three-copy trial; bosses stay unique')
   local actualXP,actualGold=0,0
   for _,spec in ipairs(plan)do
    local x,g=B.rewards(spec);actualXP=actualXP+x;actualGold=actualGold+g
-   check(x>=1 and g>=1 and x%1==0 and g%1==0,'integer positive split rewards')
+   check(x>=1 and g>=0 and x%1==0 and g%1==0,'integer XP and nonnegative Gold preserve the finite reward budget')
    for party=1,4 do
     local hp,damage=B.stats(spec.kind,spec.level,party)
     local boss=B.isBoss(spec.kind)
@@ -30,8 +30,18 @@ for _,chapter in ipairs(C.chapters)do for _,goal in ipairs(chapter.goals)do
    end
   end
   check(actualXP==xp and actualGold==gold,'whole group keeps original XP and Gold budget')
+  local waves=B.waves(plan,B.packSize(chapter,goal),specs~=goal.enemies and goal.bossEncounter and 1 or nil)
+  local seen,count={},0
+  for _,batch in ipairs(waves) do
+   check(#batch>=1 and #batch<=B.packSize(chapter,goal),'every finite pack respects its story cap')
+   for _,unit in ipairs(batch) do check(not seen[unit],'no duplicated unit across packs');seen[unit]=true;count=count+1 end
+  end
+  check(count==#plan,'all planned enemies appear exactly once across the finite waves')
  end
 end end
+check(original==82 and expanded==467,'231 normal enemies become 462; five unique bosses unchanged')
 check(#B.expand({{kind='Warlord',level=10,count=1}})==1,'boss never multiplied')
 local hp,damage=B.stats('Goblin',5,1);check(hp==338 and damage==23,'early guard tuning')
+local early=C.byId['DW-01'];check(B.packSize(early,early.goals[1])==2,'first encounter teaches two at once')
+for _,row in ipairs({{'DW-04','courtyard',4},{'DW-04','west_link',5},{'DW-04','east_link',6},{'DW-07','corridor',7},{'DW-07','outer_west',8},{'DW-07','outer_east',9}}) do local c=C.byId[row[1]];local g;for _,x in ipairs(c.goals) do if x.id==row[2] then g=x end end;check(#B.waves(B.expand(g.enemies),B.packSize(c,g))[1]==row[3],'story progressively introduces the requested group size') end
 print('Deepwood encounter balance: '..n..' checks passed; authored enemies '..original..' -> '..expanded)
