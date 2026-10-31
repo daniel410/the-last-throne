@@ -1,6 +1,7 @@
 -- Local straight-line direction guidance; never moves the hero.
 local Players=game:GetService('Players')
 local RunService=game:GetService('RunService')
+local Settings=require(script.Parent.GameSettings)
 local Navigation={}
 local function flat(p) return Vector3.new(p.X,0,p.Z) end
 -- Direction guidance points at the objective; roads and region centers do not alter it.
@@ -27,7 +28,7 @@ function Navigation.start()
   elapsed+=dt;if elapsed<1/30 then return end;elapsed=0
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   local human=player.Character and player.Character:FindFirstChildOfClass('Humanoid')
-  if player:GetAttribute('TLTNavigationEnabled')==false or not target or not root or not human or human.Health<=0 or player:GetAttribute('K0SessionPhase')~='Tutorial' or player:GetAttribute('TLTRoute')=='Training' then hide();return end
+  if not Settings.enabled(player,'navigation') or not target or not root or not human or human.Health<=0 or player:GetAttribute('K0SessionPhase')~='Tutorial' or player:GetAttribute('TLTRoute')=='Training' then hide();return end
   if surfacesDirty then
    surfacesDirty=false
    local surfaces={};local field=workspace:FindFirstChild('DeepwoodCampaign');local terrain=field and field:FindFirstChild('TerrainBlockout')

@@ -95,6 +95,7 @@ local function combatInputAllowed()
 	local character = player.Character
 	return focused and not GuiService.MenuIsOpen and not UserInputService:GetFocusedTextBox() and not player:GetAttribute('TLTLobbyPanelOpen') and not player:GetAttribute('TLTTravelLock')
 		and not player:GetAttribute("TLTMapOpen") and not player:GetAttribute("TLTStoryOpen") and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTProgressionOpen")
+		and not player:GetAttribute("TLTSettingsOpen")
 		and player:GetAttribute("K0SessionPhase") == "Tutorial"
 		and character and character:GetAttribute("K0SpawnReady") == true
 		and character:GetAttribute("K0State") ~= nil and character:GetAttribute("K0State") ~= "Dead"
@@ -481,6 +482,15 @@ growthGui = require(script.HeroGrowthGui).create(function(opened)
 	end
 	lobby.setSuppressed(opened)
 end)
+local settingsGui=require(script.SettingsGui).create(player,function(opened)
+ if opened then
+  if inventory.isOpen() then inventory.close() end
+  if growthGui.isOpen() then growthGui.close() end
+  endBlock();endSprint();clearAttacks();clearTarget()
+ end
+ lobby.setSuppressed(opened or inventory.isOpen() or growthGui.isOpen())
+end)
+hud.settingsMenu.Activated:Connect(settingsGui.open)
 local function routeCaption()
  local training=player:GetAttribute("TLTRoute")=="Training"
  if training then hud.setStory(nil) end

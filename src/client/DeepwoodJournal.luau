@@ -10,6 +10,7 @@ local Navigation=require(script.Parent.DeepwoodNavigation)
 local Text=require(RS.Shared.K0Text)
 local MapState=require(script.Parent.DeepwoodMapState)
 local Gates=require(script.Parent.DeepwoodGates)
+local Settings=require(script.Parent.GameSettings)
 local Journal={}
 function Journal.guidance(current,target,origin)
  if not current or current.training or not target then return nil end
@@ -181,7 +182,7 @@ function Journal.start(hud)
  RunService.Heartbeat:Connect(function(dt)
   elapsed+=dt;if elapsed<.2 then return end;elapsed=0
   local alive=player:GetAttribute('K0SessionPhase')=='Tutorial' and current and not current.training
-  gui.Enabled=alive==true;marker.Enabled=alive==true
+  gui.Enabled=alive==true;marker.Enabled=alive==true and Settings.enabled(player,'waypoints')
   if not alive then navigation.setTarget(nil);panel.Visible=false;closeDialogue();return end
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart');local guidance=updateTracker()
   navigation.setTarget(guidance and guidance.position);MapState.target=guidance and guidance.position

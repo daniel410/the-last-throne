@@ -55,7 +55,7 @@ function Gui.create(onVisibility)
 	end
 	local function showLaunch()
 		local phase=player:GetAttribute("K0SessionPhase")
-		launch.Visible=not opened and not player:GetAttribute("TLTInventoryOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
+		launch.Visible=not opened and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function visible(value)
 		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end
@@ -67,6 +67,7 @@ function Gui.create(onVisibility)
 		else CAS:UnbindAction("HeroGrowthMovement") end
 	end
 	player:GetAttributeChangedSignal("TLTInventoryOpen"):Connect(showLaunch)
+	player:GetAttributeChangedSignal("TLTSettingsOpen"):Connect(showLaunch)
 	player:GetAttributeChangedSignal("K0SessionPhase"):Connect(showLaunch)
 	local function label(parent,name,text,y,height,size,color)
 		return Theme.label(parent,name,text,UDim2.fromOffset(12,y),UDim2.new(1,-24,0,height),size or 14,color)

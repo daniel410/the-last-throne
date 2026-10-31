@@ -148,7 +148,7 @@ function InventoryGui.create(onVisibility, feedback)
 	end
 	local function showLauncher()
 		local phase=player:GetAttribute("K0SessionPhase")
-		launcher.Visible=not opened and not player:GetAttribute("TLTProgressionOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
+		launcher.Visible=not opened and not player:GetAttribute("TLTProgressionOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function setOpen(value)
 		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end
@@ -169,6 +169,7 @@ function InventoryGui.create(onVisibility, feedback)
 		end
 	end
 	player:GetAttributeChangedSignal("TLTProgressionOpen"):Connect(showLauncher)
+	player:GetAttributeChangedSignal("TLTSettingsOpen"):Connect(showLauncher)
 	player:GetAttributeChangedSignal("K0SessionPhase"):Connect(showLauncher)
 	local function choose(item)
 		selectedId,accessorySlot,quantity,quantityBox=item.instanceId,nil,1,nil
