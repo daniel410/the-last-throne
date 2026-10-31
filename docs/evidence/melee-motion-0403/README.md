@@ -34,6 +34,6 @@ macOS Studio Play에서 두 원본 메시의 표시와 준비/타격 자세를 �
 
 고정 소스 커밋 `d3196e076fe2b7c50dffb1c0d6cc014e35dcc198`에서 **0.40.3 Lobby/Battle 모두 Rojo7.7.1 빌드 성공**. 각 파일의 새 모션/렌더러/CombatService 소스3개를 고정 소스와 대조해 일치했고 SHA256을 [빌드 기록](build.json)에 보존했다. 최종 Battle에서 `tests/battle-bootstrap-native.luau` **10개 통과**로 전투 역할·월드·Remote 초기화를 확인했다. [시작 검사](battle-bootstrap.log). 비공개 게시판은0.40.2이며 이 작업은 Roblox 게시/릴리스 태그를 수행하지 않는다.
 
-별도로 실행한 구 통합 `k0-build-smoke`는 모듈101개를 로드했으나 TrainingField 생성 직후 Remote를 확인하는 구간에서 실패했다. 이 스크립트는 후속 경로에서 Dawnspire 로비도 요구해 분리 Battle 장면과 수용 범위가 다르다. 성공으로 세지 않으며 실패 원문은 [보존 로그](build-smoke.log)에 있다. 전투 역할의 실제 시작은 위 역할 전용 검사로 별도 검증했다.
+별도로 실행한 구 통합 `k0-build-smoke`는 모듈101개를 로드했으나 TrainingField 생성 직후 Remote를 확인하는 구간에서 실패했다. 이 스크립트는 후속 경로에서 Dawnspire 로비도 요구해 분리 Battle 장면과 수용 범위가 다르다. 성공으로 세지 않으며 실패 원문은 [보존 로그](build-smoke.log)에 있다(줄 끝 공백만 정규화). 전투 역할의 실제 시작은 위 역할 전용 검사로 별도 검증했다.
 
 QA/DES의 다음 확인은 정식 영웅 외형을 착용한 정상 기본 공격3연격·이동 중 베기·방어/회피 취소, 모바일/패드, 실제 서버 지연·4인 관전자, 다양한 아바타 비율과 최종 사용자 미술 수용이다. 전체 모션/리그 티켓은 In Progress를 유지한다. 복구는 해당 소스 커밋의 변경을 되돌려 기존 단계별 포즈 경로로 복귀할 수 있다.

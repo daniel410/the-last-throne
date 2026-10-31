@@ -6,7 +6,7 @@ user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
 Stack Begin
 Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
 Stack End
-[Roblox][KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+[Roblox][KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293:
 ------ Error caught by React ------
 attempt to call a nil value
 ------ Error caught by React ------
@@ -27,7 +27,7 @@ KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.
 Stack Begin
 Script 'KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
 Stack End
-[Roblox][sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+[Roblox][sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293:
 ------ Error caught by React ------
 attempt to call a nil value
 ------ Error caught by React ------
@@ -48,7 +48,7 @@ sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.S
 Stack Begin
 Script 'sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
 Stack End
-[Roblox][WindControl.WindControl.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+[Roblox][WindControl.WindControl.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293:
 ------ Error caught by React ------
 attempt to call a nil value
 ------ Error caught by React ------
@@ -69,7 +69,7 @@ sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.S
 Stack Begin
 Script 'WindControl.WindControl.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
 Stack End
-[Roblox][SocialPresence.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:335: builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:312: 
+[Roblox][SocialPresence.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:335: builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:312:
 ------ Error caught by React ------
 attempt to call a nil value
 ------ Error caught by React ------
@@ -90,7 +90,7 @@ builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.f
 Stack Begin
 Script 'SocialPresence.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 335
 Stack End
-[Roblox][sabuiltin_Gen3d.rbxm.Gen3d.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+[Roblox][sabuiltin_Gen3d.rbxm.Gen3d.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293:
 ------ Error caught by React ------
 attempt to call a nil value
 ------ Error caught by React ------
