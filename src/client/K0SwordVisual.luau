@@ -9,6 +9,8 @@ local Workspace = game:GetService("Workspace")
 local Config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
 local MeleeMotion = require(script.Parent.K0MeleeMotion)
 local BowMotion = require(script.Parent.K0BowMotion)
+local MageMotion = require(script.Parent.K0MageMotion)
+local MageFocus = require(script.Parent.K0MageFocus)
 local BowGeometry = require(game.ReplicatedStorage.Shared.ElfBowGeometry)
 local groundSlam, overheadSmash
 for _, skill in ipairs(Config.Skills.dwarf) do
@@ -385,7 +387,8 @@ function Visual.renderArms(character, dt, now)
 	local skillId = character:GetAttribute("K0SkillId")
 	local motion = MeleeMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
 	local bowPose=BowMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
-	motion=motion or bowPose
+	local magePose=character and MageMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
+	motion=motion or bowPose or magePose
 	if classId == "elf" then phase = Visual.bowPhase(character, phase, now or Workspace:GetServerTimeNow()) end
 	local right, left, rightElbow, torso, rightHipPose, rightKneePose, leftHipPose, leftKneePose
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
@@ -585,7 +588,7 @@ function Visual.renderArms(character, dt, now)
 		end
 		apply(neck, neckPose)
 	end
-	if right and rightShoulder and (bowPose or classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane") or (mode == "Block" and classId ~= "knight")) then
+	if right and rightShoulder and (motion or classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane") or (mode == "Block" and classId ~= "knight")) then
 		-- Classic R6 shoulders use a different joint basis from R15. Express
 		-- these strokes in torso axes so both rigs travel the same way.
 		local basis = rightShoulder.C0.Rotation
@@ -819,6 +822,11 @@ local function consumeSpell(character)
 	if not first then return end
 	local classId = character:GetAttribute("K0ClassId")
 	first = weaponOrigin(character, first, last, classId)
+	if classId == "mage" then
+		for _, model in ipairs(character:GetChildren()) do
+			if model:IsA("Model") and classFor(model)=="mage" then MageFocus.flash(model) end
+		end
+	end
 	if #spells >= 32 then table.remove(spells, 1).part:Destroy() end
 	local skillId = character:GetAttribute("K0SkillId")
 	local color = classId == "dwarf" and Color3.fromRGB(255, 155, 65)
@@ -916,11 +924,12 @@ end
 function Visual.render(model, phase, combo, dt, attackKind, now)
 	local classId = classFor(model)
 	local spec = MELEE[classId]
-	if not spec then clearEffect(model); return false end
+	if not spec then clearEffect(model); MageFocus.clear(model); return false end
 	local grip = model:FindFirstChild(spec.grip)
 	local joint = grip and grip:FindFirstChild(spec.joint)
 	if not grip or not grip:IsA("BasePart") or not joint or not joint:IsA("Motor6D") or joint.Part1 ~= grip then
 		clearEffect(model)
+		MageFocus.clear(model)
 		return false
 	end
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and dt or 1 / 60
@@ -930,7 +939,8 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	local target = Visual.samplePose(classId, phase, combo, attackKind, skillId)
 	local motion = character and MeleeMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
 	local bowPose=character and BowMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
-	motion=motion or bowPose
+	local magePose=character and MageMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
+	motion=motion or bowPose or magePose
 	if motion then target = motion.weapon end
 	if bowPose and joint.Part0 then
 		local root=character:FindFirstChild("HumanoidRootPart")
@@ -968,6 +978,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	local pose = motion and target or (weaponPoses[joint] or CFrame.new()):Lerp(target, math.clamp(elapsed * 22, 0, 1))
 	weaponPoses[joint] = pose
 	joint.Transform = pose
+	if classId == "mage" then MageFocus.render(model,motion,not character or character:GetAttribute("TLTEquippedWeapon")=="") end
 	if classId == "elf" then
 		drawBow(model, phase, elapsed, skillId,bowPose)
 		clearEffect(model)
@@ -1010,7 +1021,7 @@ function Visual.renderCharacter(character, dt, now)
 			if seq and finite(x) and finite(y) and finite(z) then areaPulse(Vector3.new(x, y, z), Color3.fromRGB(126, 65, 211), 6) end
 		end
 	end
-	if classId == "mage" or classId == "dwarf" then consumeSpell(character) end
+	if classId == "dwarf" then consumeSpell(character) end
 	local rendered = 0
 	for _, model in ipairs(character:GetChildren()) do
 		if model:IsA("Model") and classFor(model) == classId then
@@ -1025,10 +1036,13 @@ function Visual.renderCharacter(character, dt, now)
 				end
 			end
 			if character:GetAttribute("TLTEquippedWeapon") == "" then clearEffect(model) end
-		elseif model:IsA("Model") and effects[model] then
-			clearEffect(model)
+		elseif model:IsA("Model") then
+			MageFocus.clear(model)
+			if effects[model] then clearEffect(model) end
 		end
 	end
+	-- The staff joint must be current before resolving the server-approved muzzle.
+	if classId == "mage" then consumeSpell(character) end
 	if classId == "elf" then consumeArrow(character); consumeMultiShot(character) end
 	return rendered
 end

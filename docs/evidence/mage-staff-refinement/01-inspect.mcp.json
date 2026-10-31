@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "code": "import bpy,json\nprint(json.dumps({\"file\":bpy.data.filepath,\"scenes\":[s.name for s in bpy.data.scenes],\"rig\":[{\"name\":b.name,\"parent\":b.parent.name if b.parent else None} for b in bpy.data.objects[\"knight_Rig\"].data.bones],\"children\":[o.name for o in bpy.data.objects[\"knight_Rig\"].children]}))",
+    "user_prompt": "다음은 마법사야, 마법사 지팡이로 공격 액션도 훨씬 많이 개선해야해, 마법을 쏘는 액션도 개선해. 리서치해 서 마법사들이 마법 지팡이 움직임을 배워, "
+  }
+}

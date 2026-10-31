@@ -1,5 +1,7 @@
 # The Last Throne / 최후의 왕좌
 
+> 2026-10-31 **0.43.3 / TLT-005/032/033/055/057/084 부분 구현:** Blender MCP로 마법사 지팡이 기본 타격·발사·물 구체·광역·보호·강한 시전6개 Action을 제작하고 모든 Mage 기술에 연결했다. 서버 시각 곡선·원소 초점 충전·현재 지팡이 끝 발사를 적용했으며 무기 네이티브29,549개 검사를 통과했다. [공식 RPG 비교/적용](docs/research/2026-10-31-mage-staff-casting.md) · [제작/검증/남은 수용](docs/evidence/mage-staff-refinement/README.md). 게시·실기기·최종 미술 수용은 후속이다.
+
 > **2026-10-31 0.43.2 / Selene TD 원본 복원·NPC 로컬 적용:** Selene의 로비·대화·야영지·동행·라이브러리를 기존 TD 성녀 nun 메시/텍스처로 통일한다. 새 NPC와 함께 로컬 Studio 빌드에 적용하며 사용자 선택에 따라 미게시를 유지한다. [검증/범위](docs/evidence/selene-td-0431/README.md).
 
 > **2026-10-31 0.43.0 / NPC 캐스트 시험 적용:** 로비와 승인5에픽에 필요한30명·6개 컨셉 보드를 제작하고 둥근 얼굴/블록 몸체 원형을 로비·Deepwood에 연결했다. 후반4개 지역은 모델 라이브러리/배치 계약이며 실제 맵 배치는 후속이다. [캐스트·서사 리뷰](docs/production/npc-cast-and-story-coverage-2026-10-31.md) · [컨셉 갤러리](assets/concepts/2026-10-31-npc-cast-v1/index.html) · [검증/미검증](docs/evidence/npc-cast-0430/README.md). 게시·실기기·최종 미술 수용은 미완료다.

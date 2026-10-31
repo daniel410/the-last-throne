@@ -1,0 +1,53 @@
+{
+  "authoring": "Blender MCP mcp-for-blender 2.2.6 safe mode",
+  "actions": 6,
+  "fcurves": 222,
+  "keyframes": 1554,
+  "files": [
+    {
+      "path": "assets/animations/mage-staff-v1/mage-staff-casting.blend",
+      "bytes": 20479892,
+      "sha256": "91d986d5a667206fc9c28d93aa8a975adabfd3ffbd965619a986623b5b5bea46"
+    },
+    {
+      "path": "assets/animations/mage-staff-v1/mage-staff-review.glb",
+      "bytes": 134756,
+      "sha256": "e44b00d9ca3c0c23dc1bd4696a4dd46ade5e7c4b89efe32f39533c6e992b01ea"
+    },
+    {
+      "path": "assets/animations/mage-staff-v1/blender-curves.json",
+      "bytes": 180093,
+      "sha256": "22b4accd4a8cbca1d302de9acb05882d1b4a9860ede398fb65a9e2ae4ab26d71"
+    },
+    {
+      "path": "docs/evidence/mage-staff-refinement/blender-arcane-frames.png",
+      "bytes": 1323275,
+      "sha256": "3a863c85dec60f9f300115822ca595a43a096a5d0bce07f57ae77c00d7d7c2a0"
+    },
+    {
+      "path": "docs/evidence/mage-staff-refinement/blender-elemental_heavy-frames.png",
+      "bytes": 1047354,
+      "sha256": "0a8da5fcf9f1cddc2ed79e850f96a2678552abb3ac04095a249f13260ecef670"
+    },
+    {
+      "path": "docs/evidence/mage-staff-refinement/blender-ground_area-frames.png",
+      "bytes": 1052271,
+      "sha256": "dd20df39ccae1cf1a911e4f0f3b00290acd28a02bdcba4304d65e7d646e12146"
+    },
+    {
+      "path": "docs/evidence/mage-staff-refinement/blender-staff_strike-frames.png",
+      "bytes": 1059455,
+      "sha256": "d6708b2838ff95ab087259efb8938ce6aac0687347317d52ef39a660549f2184"
+    },
+    {
+      "path": "docs/evidence/mage-staff-refinement/blender-ward-frames.png",
+      "bytes": 1037985,
+      "sha256": "41b16b45ac83d23e53343e9d3141abbc5d245d8a682bebf9c09fb91ed64a0192"
+    },
+    {
+      "path": "docs/evidence/mage-staff-refinement/blender-water_orb-frames.png",
+      "bytes": 1041926,
+      "sha256": "99cc4f0d78d3e7ecee6411baeb787c686efe50b5ffd2931f875d9fc54d7d3ee2"
+    }
+  ]
+}

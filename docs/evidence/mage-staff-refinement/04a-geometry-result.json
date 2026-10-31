@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: {\"repaired\": \"rigid cylinder coordinates baked before skinning\", \"segments\": 10}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: {\"repaired\": \"rigid cylinder coordinates baked before skinning\", \"segments\": 10}\n"
+  },
+  "isError": false
+}

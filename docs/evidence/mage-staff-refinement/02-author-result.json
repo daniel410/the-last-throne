@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: {\"scene\": \"TLT_Mage_Staff_Authoring\", \"clips\": [\"staff_strike\", \"arcane_bolt\", \"water_orb\", \"ground_area\", \"ward\", \"elemental_heavy\"], \"fcurvesPerAction\": 37, \"keyframesPerAction\": 259, \"staffParts\": 12}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: {\"scene\": \"TLT_Mage_Staff_Authoring\", \"clips\": [\"staff_strike\", \"arcane_bolt\", \"water_orb\", \"ground_area\", \"ward\", \"elemental_heavy\"], \"fcurvesPerAction\": 37, \"keyframesPerAction\": 259, \"staffParts\": 12}\n"
+  },
+  "isError": false
+}

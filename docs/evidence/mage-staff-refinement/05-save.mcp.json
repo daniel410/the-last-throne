@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "code": "import bpy,json\ns=bpy.data.scenes['TLT_Mage_Staff_Authoring'];bpy.context.window.scene=s;rig=bpy.data.objects['mage_Rig'];rig.animation_data.action=bpy.data.actions['Mage_arcane_bolt'];s.frame_set(39)\nbpy.ops.object.select_all(action='DESELECT');rig.select_set(True)\nfor o in rig.children:o.select_set(True)\nbpy.context.view_layer.objects.active=rig\nbpy.ops.export_scene.gltf(filepath='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/mage-staff-v1/mage-staff-review.glb',export_format='GLB',use_selection=True,use_active_scene=True,export_animations=False,export_current_frame=True)\nbpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/mage-staff-v1/mage-staff-casting.blend')\nprint(json.dumps({'file':bpy.data.filepath,'actions':[a.name for a in bpy.data.actions if a.name.startswith('Mage_')],'review':'static release pose; full curves retained in blend'}))",
+    "user_prompt": "다음은 마법사야, 마법사 지팡이로 공격 액션도 훨씬 많이 개선해야해, 마법을 쏘는 액션도 개선해. 리서치해 서 마법사들이 마법 지팡이 움직임을 배워, "
+  }
+}

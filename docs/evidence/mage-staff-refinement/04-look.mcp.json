@@ -1,0 +1,38 @@
+{
+  "name": "look",
+  "arguments": {
+    "mode": "frames",
+    "target": [
+      "mage_Rig",
+      "MageStaff_WoodenShaft",
+      "MageStaff_HandWrap",
+      "MageStaff_WrapBand0",
+      "MageStaff_WrapBand1",
+      "MageStaff_WrapBand2",
+      "MageStaff_FootCap",
+      "MageStaff_LeftFork",
+      "MageStaff_LeftProng",
+      "MageStaff_RightFork",
+      "MageStaff_RightProng",
+      "MageStaff_WoodKnot",
+      "MageStaff_SmallCrystal"
+    ],
+    "frames": [
+      0,
+      12,
+      29,
+      39,
+      44,
+      49,
+      60
+    ],
+    "view": [
+      7,
+      10,
+      5
+    ],
+    "shading": "material",
+    "max_size": 1800,
+    "user_prompt": "다음은 마법사야, 마법사 지팡이로 공격 액션도 훨씬 많이 개선해야해, 마법을 쏘는 액션도 개선해. 리서치해 서 마법사들이 마법 지팡이 움직임을 배워, "
+  }
+}
