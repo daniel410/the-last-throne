@@ -79,6 +79,7 @@ function LobbyGui.create(request,onManage)
 	local shell=Menu.frame(shade,"HeroPanel",UDim2.new(.5,0,.5,58),UDim2.new(1,-120,1,-164))
 	shell.AnchorPoint=Vector2.new(.5,.5)
 	local constraint=Instance.new("UISizeConstraint");constraint.MaxSize=Vector2.new(800,510);constraint.Parent=shell
+ require(script.Parent.LobbyPanelLayout).bind(shell)
 	local explore = button(shell, "ExploreCourtyard", "X", UDim2.new(1,-58,0,12), UDim2.fromOffset(40,40))
 	explore.Activated:Connect(function() minimized=true; shade.Visible=false; reopen.Visible=not suppressed end)
 	reopen.Activated:Connect(function() minimized=false; shade.Visible=not suppressed; reopen.Visible=false end)

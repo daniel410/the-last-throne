@@ -37,6 +37,7 @@ function InventoryGui.create(onVisibility, feedback)
 	local shell = Theme.frame(shade,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-24))
 	shell.AnchorPoint = Vector2.new(.5,.5)
 	local constraint = Instance.new("UISizeConstraint"); constraint.MaxSize = Vector2.new(1160,760); constraint.Parent = shell
+ require(script.Parent.LobbyPanelLayout).bind(shell,player)
 	local plaque=Theme.sprite(shell,"TitlePlaque","shellDetails",UDim2.new(.5,-150,0,-24),UDim2.fromOffset(300,58)); plaque.SliceScale=.32
 	Theme.label(shell,"Eyebrow",Text.Eyebrow,UDim2.fromOffset(24,14),UDim2.new(1,-130,0,18),11,Color.silver)
 	local title = Theme.label(shell,"Title",Navigation.gearBag,UDim2.fromOffset(24,35),UDim2.new(1,-140,0,35),26,Color.gold)
@@ -125,6 +126,7 @@ function InventoryGui.create(onVisibility, feedback)
 	claimsOverlay.Parent=shade
 	local claimsPanel=Chrome.frame(claimsOverlay,"ClaimsPopup",UDim2.fromScale(.5,.5),UDim2.new(1,-48,1,-64));claimsPanel.AnchorPoint=Vector2.new(.5,.5)
 	local claimsLimit=Instance.new("UISizeConstraint");claimsLimit.MaxSize=Vector2.new(980,680);claimsLimit.Parent=claimsPanel
+ require(script.Parent.LobbyPanelLayout).bind(claimsPanel,player)
 	local claimsTitle=Theme.label(claimsPanel,"ClaimsTitle",Text.Pending,UDim2.fromOffset(20,12),UDim2.new(1,-92,0,42),24,Color.gold)
 	closeClaims.Parent=claimsPanel;closeClaims.Caption.Text="X";closeClaims.Caption.TextSize=24
 	local snapshot,remote,pending,selectedId,accessorySlot,actionForSelection,quantityBox

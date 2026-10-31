@@ -4,6 +4,7 @@ local V={}
 function V.create(parent,send)
  local panel=Menu.frame(parent,'Expedition',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(950,700);cap.Parent=panel
+ require(script.Parent.LobbyPanelLayout).bind(panel,game.Players.LocalPlayer)
  T.label(panel,'Title','ADVENTURES & PARTIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,30),20,T.color.gold)
  local close=T.button(panel,'Close','X',UDim2.new(1,-62,0,12),UDim2.fromOffset(44,44));close.Activated:Connect(function() panel.Visible=false end)
  local description=T.label(panel,'Description','Solo or a private expedition with 2-4 heroes.',UDim2.fromOffset(20,48),UDim2.new(1,-40,0,44),12)

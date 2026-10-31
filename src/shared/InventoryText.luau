@@ -1,4 +1,5 @@
 return {
+ ShopInsufficient="Need %d more %s", ShopShortfall="\nPrice: %d %s · Need %d more.",
 	RestoreAmount = "Restores up to %d %s", MoreDetails = "DETAILS  >", LessDetails = "LESS DETAILS",
 	Bag = "BAG", Title = "Hero Bag", StorageTitle = "Hub Storage", EquipmentTitle = "Equipped Gear",
 	Eyebrow = "THE LAST THRONE  /  EQUIPMENT & ITEMS", Close = "CLOSE", ViewGear = "VIEW GEAR", ViewBag = "BACK TO BAG",

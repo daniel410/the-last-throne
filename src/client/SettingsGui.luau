@@ -15,6 +15,7 @@ function M.create(player,onVisibility)
  local shade=Instance.new('Frame');shade.Name='Overlay';shade.Size=UDim2.fromScale(1,1);shade.BackgroundColor3=Color3.new();shade.BackgroundTransparency=.3;shade.Active=true;shade.Visible=false;shade.Parent=gui
  local panel=Theme.frame(shade,'SettingsPanel',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-80));panel.AnchorPoint=Vector2.new(.5,.5)
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(620,520);cap.Parent=panel
+ require(script.Parent.LobbyPanelLayout).bind(panel,player)
  Theme.label(panel,'Title',Text.Title,UDim2.fromOffset(20,12),UDim2.new(1,-104,0,38),24,Theme.color.gold)
  local close=Theme.button(panel,'Close',Text.Close,UDim2.new(1,-90,0,12),UDim2.fromOffset(76,44))
  Theme.label(panel,'Description',Text.Description,UDim2.fromOffset(20,60),UDim2.new(1,-40,0,28),14)

@@ -13,7 +13,8 @@ function V.create(parent,send,diamondOnly,store)
  local function allowed(d,offer)return Catalog.allowed(diamondOnly and 'diamonds' or store,d,offer)end
  local panel=Menu.frame(parent,diamondOnly and 'DiamondShop' or store=='items' and 'ItemShop' or 'Armory',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(950,700);cap.Parent=panel
- T.label(panel,'Title',diamondOnly and 'DIAMOND SHOP' or store=='blacksmith' and 'BLACKSMITH' or store=='items' and 'ITEM SHOP' or 'DAWNSPIRE SUPPLIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,28),22,T.color.gold)
+ require(script.Parent.LobbyPanelLayout).bind(panel)
+ local title=T.label(panel,'Title',diamondOnly and 'DIAMOND SHOP' or store=='blacksmith' and 'BLACKSMITH' or store=='items' and 'ITEM SHOP' or 'DAWNSPIRE SUPPLIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,28),22,T.color.gold)
  local close=T.button(panel,'Close','X',UDim2.new(1,-62,0,12),UDim2.fromOffset(44,44));close.Activated:Connect(function() panel.Visible=false end)
  local balance=T.label(panel,'Balance','Loading your saved wallet...',UDim2.fromOffset(20,46),UDim2.new(1,-40,0,26),15)
  local buy=T.button(panel,'BuyTab','BUY',UDim2.fromOffset(16,82),UDim2.new(.5,-20,0,44))
@@ -24,6 +25,24 @@ function V.create(parent,send,diamondOnly,store)
  local notice=T.label(panel,'Notice','Choose an item to review its price.',UDim2.new(0,20,1,-82),UDim2.new(1,-40,0,64),12)
  local categories=Instance.new('Frame');categories.Name='Categories';categories.Position=UDim2.fromOffset(16,132);categories.Size=UDim2.new(1,-32,0,96);categories.BackgroundTransparency=1;categories.Parent=panel
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.new(1/3,-6,0,44);grid.CellPadding=UDim2.fromOffset(6,6);grid.Parent=categories
+ local function resize()
+  local short=panel.AbsoluteSize.Y<420
+  title.Position=UDim2.fromOffset(20,short and 4 or 12)
+  close.Position=UDim2.new(1,-62,0,short and 4 or 12)
+  balance.Position=UDim2.fromOffset(20,short and 42 or 46)
+  balance.Size=UDim2.new(1,-40,0,short and 20 or 26)
+  buy.Position=UDim2.fromOffset(16,short and 66 or 82)
+  sell.Position=UDim2.new(.5,4,0,short and 66 or 82)
+  local y=short and (diamondOnly and 66 or 114)or 132
+  categories.Position=UDim2.fromOffset(16,y)
+  local top=y+106
+  scroll.Position=UDim2.fromOffset(16,top)
+  local bottom=short and 48 or 92
+  scroll.Size=UDim2.new(1,-32,1,-top-bottom)
+  notice.Position=UDim2.new(0,20,1,-bottom+4)
+  notice.Size=UDim2.new(1,-40,0,bottom-8)
+ end
+ panel:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize);resize()
  local state,mode,pending,category={},'Buy',nil,'All'
  local categoryButtons={}
  local render
@@ -32,14 +51,20 @@ function V.create(parent,send,diamondOnly,store)
   fields.action=action;fields.heroId=state.heroId;fields.revision=state.revision;pending=fields
   notice.Text='CONFIRM: '..fields.review..' Press the same button again to complete the trade.'
  end
- local function row(name,title,description,def,caption,fields)
+ local function row(name,title,description,def,caption,fields,shortfall,currency)
   local card=T.frame(scroll,name,UDim2.new(),UDim2.new(1,-8,0,184))
   Artwork.create(card,def,UDim2.fromOffset(10,12),UDim2.fromOffset(62,66))
   T.label(card,'Name',title,UDim2.fromOffset(82,8),UDim2.new(1,-94,0,28),16,T.color.gold)
   T.label(card,'Details',description,UDim2.fromOffset(82,38),UDim2.new(1,-94,0,92),12)
   local b=T.button(card,'Trade',caption,UDim2.new(0,14,1,-52),UDim2.new(1,-28,0,44))
+  local insufficient=shortfall and shortfall>0
+  if insufficient then
+   b.Caption.Text=string.format(ItemText.ShopInsufficient,shortfall,currency)
+   b:SetAttribute('InsufficientFunds',true);T.enabled(b,false)
+  end
   local armed=false
   b.Activated:Connect(function()
+   if insufficient then return end
    if not state.ready or not state.heroId then notice.Text='Select a hero and wait for your account to load.';return end
    if not armed then
     pending=nil;command(mode,fields);armed=true;b.Caption.Text='CONFIRM · '..caption
@@ -72,8 +97,12 @@ function V.create(parent,send,diamondOnly,store)
      local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,d.slot=='accessory' and 'accessory1' or nil,Items)
      if impact and d.slot~='accessory' then description=description..'\n'..Impact.summary(impact) end
     end
-    local caption=string.format('BUY · %d %s',offer.price,offer.currency=='gold' and 'Gold' or 'Diamonds')
-    row(offer.id,d.name,description,d,caption,{offerId=offer.id,review=d.name..' for '..offer.price..' '..offer.currency})
+    local currency=offer.currency=='gold' and 'Gold' or 'Diamonds'
+    local amount=state.wallet and state.wallet[offer.currency]
+    local shortfall=type(amount)=='number' and math.max(0,offer.price-amount) or nil
+    if shortfall and shortfall>0 then description=description..string.format(ItemText.ShopShortfall,offer.price,currency,shortfall) end
+    local caption=string.format('BUY · %d %s',offer.price,currency)
+    row(offer.id,d.name,description,d,caption,{offerId=offer.id,review=d.name..' for '..offer.price..' '..offer.currency},shortfall,currency)
    end
   else
    local n=0

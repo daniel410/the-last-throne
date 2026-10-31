@@ -14,13 +14,13 @@ function M.create(parent,actions)
  local camera=workspace.CurrentCamera;if camera then camera:GetPropertyChangedSignal('ViewportSize'):Connect(resize) end;resize()
  local panel=T.frame(parent,'LobbyGuide',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(1100,850);cap.Parent=panel
+ require(script.Parent.LobbyPanelLayout).bind(panel)
  local title=T.label(panel,'Title','',UDim2.fromOffset(20,12),UDim2.new(1,-85,0,34),20,T.color.gold)
  local close=T.button(panel,'Close','X',UDim2.new(1,-60,0,10),UDim2.fromOffset(44,44));close.Activated:Connect(function() panel.Visible=false end)
  local body=T.label(panel,'Contents','',UDim2.fromOffset(24,60),UDim2.new(1,-48,1,-80),15,T.color.text);body.TextYAlignment=Enum.TextYAlignment.Top
  local atlas=require(script.Parent.LobbyAtlas).create(panel)
  local snapshot
  local function guide(kind)
-  panel.Size=kind=='Maps' and UDim2.new(1,-24,1,-24)or UDim2.new(1,-32,1,-100)
   body.Visible=kind~='Maps';atlas.root.Visible=kind=='Maps'
   if kind=='Maps'then title.Text='ADVENTURE MAPS';atlas.show(snapshot);panel.Visible=true;return end
   title.Text=kind=='Quest' and 'QUEST JOURNAL' or 'ADVENTURE MAPS'
