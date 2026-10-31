@@ -1,0 +1,21 @@
+{
+  "source_commit": "c6dc8785227e3c19fc0705b0b4c231194f7d6642",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "modulesVerified": [
+        "K0MeleeMotion",
+        "K0MeleeClips",
+        "K0SwordVisual"
+      ]
+    },
+    {
+      "role": "Battle",
+      "modulesVerified": [
+        "K0MeleeMotion",
+        "K0MeleeClips",
+        "K0SwordVisual"
+      ]
+    }
+  ]
+}
