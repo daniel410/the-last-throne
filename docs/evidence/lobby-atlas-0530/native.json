@@ -1,0 +1,45 @@
+{
+  "version": "0.53.0",
+  "sourceCommit": "7620e85feadaa0d4a0ca48b8bca789dc74ef5148",
+  "environment": "isolated Studio Edit; local final Lobby build; no players or saved state",
+  "reports": [
+    {
+      "test": "lobby-atlas-native",
+      "kind": "LOBBY_ATLAS_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 66
+    },
+    {
+      "test": "deepwood-atlas-native",
+      "kind": "DEEPWOOD_ATLAS_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 91
+    },
+    {
+      "test": "battle-menu-native",
+      "kind": "BATTLE_MENU_NATIVE",
+      "pass": true,
+      "checks": 62
+    },
+    {
+      "test": "blacksmith-native",
+      "iconLoaded": true,
+      "checks": 68,
+      "kind": "BLACKSMITH_NATIVE",
+      "failures": [],
+      "pass": true,
+      "iconFetch": {
+        "1": {
+          "status": "Enum.AssetFetchStatus.Success",
+          "id": "rbxthumb://type=GameIcon&id=10770905829&w=150&h=150"
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Published client and physical device inputs not tested",
+    "QA GUI fixtures destroyed; Studio Edit windows retained because native app selection resolved an existing shared window rather than the newly opened QA window"
+  ]
+}
