@@ -105,6 +105,15 @@ local ok, failure = xpcall(function()
 	end
 
 	local root = playerGui.DeepwoodTrainingHud.Root
+	for _,name in ipairs({'Item1','Item2','Skill1','Skill2','Skill3','Skill4','Skill5'}) do
+		local hint=root.SkillBar[name].Hint
+		check(hint.Font==Enum.Font.GothamBlack and hint.TextColor3==Color3.new(1,1,1) and hint.BackgroundTransparency<.2,'quick key is bold and high contrast: '..name)
+		check(hint:FindFirstChildOfClass('UITextSizeConstraint').MaxTextSize==14 and hint.ZIndex>=5,'quick key is larger and above the icon: '..name)
+	end
+	hud.setHints('R2','L2','B','L3',{'Y','X','L1','LEFT','RIGHT'})
+	check(root.SkillBar.Skill4.Hint.Text=='LEFT' and root.SkillBar.Skill4.Hint.Size.X.Offset==43,'long gamepad key fits its badge')
+	hud.setHints('CLICK','Q','R','E',{'1','2','3','4','5'})
+	check(root.SkillBar.Skill4.Hint.Size.X.Offset==21 and root.SkillBar.Skill4.Hint.Text=='4','keyboard key returns to compact badge')
 	check(status.TDPanelArt.Image ~= "", "status uses original TD panel")
 	check(status.HEALTHTrack.TDResourceFrame.Image == "rbxassetid://97570429280107", "health uses pinned TD battle chrome")
 	check(root.Actions.Attack.TDButtonArt:GetAttribute("TDArtKey") == "shellUpgrade", "primary attack uses TD green shell")

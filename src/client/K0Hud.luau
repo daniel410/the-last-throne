@@ -132,6 +132,16 @@ local function action(parent, name, caption, hint, position, diameter)
 	return button, key
 end
 
+local function quickKey(label)
+	label.Position=UDim2.fromOffset(3,2);label.Size=UDim2.fromOffset(21,19)
+	label.BackgroundColor3=Color3.fromRGB(11,18,29);label.BackgroundTransparency=.12
+	label.Font=Enum.Font.GothamBlack;label.TextColor3=Color3.new(1,1,1)
+	label.TextSize=14;label.TextScaled=true;label.TextXAlignment=Enum.TextXAlignment.Center
+	label.TextStrokeColor3=Color3.new(0,0,0);label.TextStrokeTransparency=.1;label.ZIndex=5
+	local limit=Instance.new('UITextSizeConstraint');limit.MinTextSize=9;limit.MaxTextSize=14;limit.Parent=label
+	round(label,4)
+end
+
 function Hud.create()
 	local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 	local old = playerGui:FindFirstChild("DeepwoodTrainingHud")
@@ -218,7 +228,7 @@ function Hud.create()
 		button.UICorner.CornerRadius = UDim.new(0, 8)
 		button.Caption.Position, button.Caption.Size = UDim2.fromOffset(2, 47), UDim2.new(1, -4, 0, 14)
 		button.Caption.TextSize = 9
-		button.Hint.Position, button.Hint.Size = UDim2.fromOffset(4, 2), UDim2.fromOffset(16, 14)
+		quickKey(button.Hint)
 		local count = text(button, "ItemCount", "x0", UDim2.new(1, -32, 0, 2), UDim2.fromOffset(28, 14), 11)
 		count.TextXAlignment, count.TextStrokeTransparency = Enum.TextXAlignment.Right, .3
 		itemButtons[index] = button
@@ -231,8 +241,7 @@ function Hud.create()
 		button.Caption.Position = UDim2.fromOffset(3, 36)
 		button.Caption.Size = UDim2.new(1, -6, 0, 25)
 		button.Caption.TextWrapped = true
-		key.Position = UDim2.fromOffset(4, 2)
-		key.Size = UDim2.fromOffset(19, 16)
+		quickKey(key)
 		local icon = text(button, "Icon", "", UDim2.new(0.5, -15, 0, 5), UDim2.fromOffset(30, 28), 17, COLORS.gold)
 		icon.TextXAlignment = Enum.TextXAlignment.Center
 		skillButtons[index], skillHints[index] = button, key
@@ -489,7 +498,10 @@ function Hud.create()
 		setHints = function(attackText, blockText, dodgeText, sprintText, keys)
 			attackHint.Text, blockHint.Text, dodgeHint.Text = attackText, blockText, dodgeText
 			sprintHint.Text = sprintText or "E"
-			for index, hint in ipairs(skillHints) do hint.Text = keys and keys[index] or tostring(index) end
+			for index, hint in ipairs(skillHints) do
+				hint.Text = keys and keys[index] or tostring(index)
+				hint.Size=UDim2.fromOffset(#hint.Text>2 and 43 or 21,19)
+			end
 		end,
 		showFeedback = function(value, duration)
 			feedbackSequence += 1
