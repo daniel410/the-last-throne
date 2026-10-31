@@ -26,7 +26,7 @@ TD ForestKit 포탈을 제단에 추가했다. 완료자의 에너지에만 Loca
 | `python3 scripts/simulate_story_progression.py --output /private/tmp/tlt-0410-progression.json` | 기존 정본 계산 실행 성공. 기존32구간의결과이며 새5에픽 전체Lv1~80 수용 증거가 아님 |
 | `tests/selene-support-native.luau` source probe / 미게시 빈Place·네이티브 엔진·신원/계정/시계 대역 | 32검사 통과. 실제TD모델·서버 회복/보호/기절 해제·거리/개인 해금·슬롯1/2/3/4·쿨다운/재편성·실제경로 이동·개인 포탈 에너지. [결과](selene-result.json)·[입력해시](selene-source-manifest.json) |
 
-전체 시나리오 네이티브 최종 재검사 **589개 통과**. 구조/호위·실제TD 보스/증원·선택 보고·초반 무료 해금·미확정 저장/동일 선택 재시도를 포함한다. [결과](story-result.json)·[입력해시](story-source-manifest.json). 퀘스트 저널의실제GUI 생성·탭/목표/보상/보고 안내5검사도 통과했다. [UI결과](ui-result.json). 빌드 결과는 마감 시 추가 기록한다. 첫 전체 엔진 실행은581검사를 통과했고, 개인 영입/저장 재시도를 추가한 검사에서 재구성 월드의야영지 참조 누락을 찾아 복구 경로를 수정했다. 초기 컴파일/정적 통과를 해당 새 경로의통과로 대신하지 않는다.
+전체 시나리오 네이티브 최종 재검사 **589개 통과**. 구조/호위·실제TD 보스/증원·선택 보고·초반 무료 해금·미확정 저장/동일 선택 재시도를 포함한다. [결과](story-result.json)·[입력해시](story-source-manifest.json). 퀘스트 저널의실제GUI 생성·탭/목표/보상/보고 안내5검사도 통과했다. [UI결과](ui-result.json). 고정 소스의 로비/전투 빌드 성공과 전투 부트10검사 통과를 아래 기록했다. 첫 전체 엔진 실행은581검사를 통과했고, 개인 영입/저장 재시도를 추가한 검사에서 재구성 월드의야영지 참조 누락을 찾아 복구 경로를 수정했다. 초기 컴파일/정적 통과를 해당 새 경로의통과로 대신하지 않는다.
 
 검사 도구: `python3 tests/make_k0_source_probe.py --output-dir <임시폴더> --test-script <검사파일>` 후 출력의빈Place/runner로 `run-in-roblox` 실행. 이 환경은 실제 Roblox 엔진과원본 메시를 사용하지만 실제Player 입력/운영DataStore·게시 클라이언트·실기기/네트워크 테스트가 아니다. 추종 대형 검사에서 신원 대역의기본4studs 폭Part가 광선을 가로막는 문제를 찾아 실제HRP와같은2studs 폭으로 수정했고 최종32검사를 통과했다. 저장 fence를잃은AccountBusy는 무한재시도하지 않고 기존오류/재접속 경로를 유지한다.
 
@@ -34,7 +34,9 @@ TD ForestKit 포탈을 제단에 추가했다. 완료자의 에너지에만 Loca
 
 ## 빌드·미검증·인계
 
-소스와VERSION을 커밋 고정한 후 `python3 docs/evidence/deepwood/adventure-0410/build.py`로 Lobby/Battle을 만든다. 빌드는 `build.json`에 정확한소스커밋·명령·산출물SHA-256·성공/실패를 남기며 기존파일을 덮지 않는다. Roblox 게시/릴리스태그는 이번 범위에 포함하지 않는다. 게시판은0.40.2다.
+소스 `5fa08e54e51503963e377559c9cd6617946637f8`와VERSION을 커밋/원격 고정한 후 `python3 docs/evidence/deepwood/adventure-0410/build.py`로 **Lobby/Battle 둘 다 성공**했다. 빌드는 `build.json`에 정확한소스커밋·명령·산출물SHA-256·성공/실패를 남기며 기존파일을 덮지 않는다. Roblox 게시/릴리스태그는 이번 범위에 포함하지 않는다. 게시판은0.40.2다. [명령/빌드 SHA-256](build.json) · [전투 부트10검사](battle-bootstrap-result.json). 새TD수녀 모델은LFS 포인터로 커밋됐고 원격 전송1/1·7.8KB 성공을 확인했다.
+
+[로비0.41.0](../../../../builds/0.41.0/TheLastThrone-Lobby-0.41.0.rbxlx) · [전투0.41.0](../../../../builds/0.41.0/TheLastThrone-Battle-0.41.0.rbxlx).
 
 미검증: 네클래스정상 전투입력으로7스토리완주·실제4인+AI1·모바일/패드·기기성능/네트워크·라이브 저장/재접속·초보자의이해도/재미. 수녀의정식 보행/시전 리그·대표선택UI·모든상태정화·다른동료와복합 편성·Dawnspire 프롤로그 습격/첫만남 연출·Frozen Vale입장은 후속이다. 수용 증거 없이 상위티켓을 완료하지 않는다.
 
