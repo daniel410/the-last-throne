@@ -6,6 +6,7 @@ local PathfindingService = game:GetService("PathfindingService")
 
 local Advanced=require(ReplicatedStorage.Shared.AdvancedSkills)
 local LevelUpEffect=require(script.Parent.HeroLevelUpEffect)
+local EnemyDeathFall=require(script.Parent.EnemyDeathFall)
 local AdvancedCombat=require(script.Parent.AdvancedCombat)
 local advancedEffectRemote
 local Growth = require(ReplicatedStorage.Shared.HeroProgression)
@@ -1599,6 +1600,7 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 		warn("K0 skipped enemy without a supported kind, Humanoid or HumanoidRootPart:", model:GetFullName())
 		return nil
 	end
+	EnemyDeathFall.prepare(humanoid,kind)
 	local spawnPivot = savedPivot or model:GetPivot()
 	local template = savedTemplate or model:Clone()
 	if not savedId then
@@ -1655,6 +1657,7 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 		resetEnemyAttack(enemy)
 		setEnemyState(enemy, "Dead")
 		enemy.pathToken = enemy.pathToken + 1
+  EnemyDeathFall.play(model,kind,enemyFolder)
   if model:GetAttribute('DeepwoodEncounter') then
    task.delay(2,function() enemyStates[model]=nil;if model.Parent then model:Destroy() end end)
 		elseif splitGroup then
