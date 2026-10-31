@@ -37,15 +37,21 @@ function Effects.update(s,current)
  s.marker:SetAttribute('SourceClass',class);return true
 end
 function Effects.start(enemies)
- local states={};local function add(m)local s=Effects.bind(m);if s then states[m]=s end end
- for _,m in ipairs(enemies:GetChildren())do add(m)end
- enemies.ChildAdded:Connect(function(m)task.defer(add,m)end)
- enemies.ChildRemoved:Connect(function(m)local s=states[m];if s then Effects.clear(s);states[m]=nil end end)
+ local states,pending={},{}
+ local function queue(m)
+  if states[m] or pending[m] or m.Parent~=enemies then return end;pending[m]=true
+  task.defer(function()pending[m]=nil;if m.Parent==enemies and not states[m]then local s=Effects.bind(m);if s then states[m]=s end end end)
+ end
+ local added=enemies.ChildAdded:Connect(queue)
+ local descendants=enemies.DescendantAdded:Connect(function(o)local m=o;while m.Parent and m.Parent~=enemies do m=m.Parent end;if m.Parent==enemies then queue(m)end end)
+ local removed=enemies.ChildRemoved:Connect(function(m)local s=states[m];if s then Effects.clear(s);states[m]=nil end;pending[m]=nil end)
+ for _,m in ipairs(enemies:GetChildren())do queue(m)end
  local elapsed=0
- RunService.Heartbeat:Connect(function(dt)
+ local heartbeat=RunService.Heartbeat:Connect(function(dt)
   elapsed+=dt;if elapsed<1/30 then return end;elapsed=0
   local current=Workspace:GetServerTimeNow()
   for m,s in pairs(states)do if not m.Parent then Effects.clear(s);states[m]=nil else Effects.update(s,current)end end
  end)
+ return function()added:Disconnect();descendants:Disconnect();removed:Disconnect();heartbeat:Disconnect();for _,s in pairs(states)do Effects.clear(s)end;table.clear(states);table.clear(pending)end
 end
 return Effects

@@ -77,7 +77,7 @@ function Gui.create(onVisibility)
 		local g=hero and hero.progression
 		if not g then label(body,"Loading","Select a hero in Hub to view growth.",12,70); body.CanvasSize=UDim2.fromOffset(0,100); return end
 		local classId=hero.baseClassId
-		title.Caption.Text=tab=="Skills" and "SKILLS" or tab=="Advance" and "ADVANCEMENT" or "HERO STATS"
+		title.Caption.Text=Navigation.statsSkills
 		for _,entry in ipairs({{statsTab,"Stats"},{skillsTab,"Skills"},{advanceTab,"Advance"}}) do entry[1].TDButtonArt.ImageColor3=tab==entry[2] and Color3.fromRGB(132,206,255) or Color3.new(1,1,1) end
 		if tab=="Skills" then
 			treeState.retry=function() if pending then remote:FireServer(pending);show("Checking the same save...") end end

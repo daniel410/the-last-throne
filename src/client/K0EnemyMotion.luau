@@ -111,11 +111,16 @@ function Motion.step(s,dt,current)
  end
 end
 function Motion.start(enemies)
- local rigs={};local function add(m)local s=Motion.bind(m);if s then rigs[m]=s end end
- for _,m in ipairs(enemies:GetChildren())do add(m)end
- enemies.ChildAdded:Connect(function(m)task.defer(add,m)end)
- enemies.ChildRemoved:Connect(function(m)rigs[m]=nil end)
- RunService.PreSimulation:Connect(function(dt)
+ local rigs,pending={},{}
+ local function queue(m)
+  if rigs[m] or pending[m] or m.Parent~=enemies then return end;pending[m]=true
+  task.defer(function()pending[m]=nil;if m.Parent==enemies and not rigs[m] then local s=Motion.bind(m);if s then rigs[m]=s end end end)
+ end
+ local added=enemies.ChildAdded:Connect(queue)
+ local descendants=enemies.DescendantAdded:Connect(function(o)local m=o;while m.Parent and m.Parent~=enemies do m=m.Parent end;if m.Parent==enemies then queue(m)end end)
+ local removed=enemies.ChildRemoved:Connect(function(m)rigs[m]=nil;pending[m]=nil end)
+ for _,m in ipairs(enemies:GetChildren())do queue(m)end
+ local frameConnection=RunService.PreSimulation:Connect(function(dt)
   local current=Workspace:GetServerTimeNow();local camera=Workspace.CurrentCamera
   for model,s in pairs(rigs)do
    if not model.Parent then rigs[model]=nil
@@ -123,5 +128,6 @@ function Motion.start(enemies)
    else s.position=s.root.Position end
   end
  end)
+ return function()added:Disconnect();descendants:Disconnect();removed:Disconnect();frameConnection:Disconnect();table.clear(rigs);table.clear(pending)end
 end
 return Motion

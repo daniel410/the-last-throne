@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+ENEMY_STREAMING_PRESENTATION_NATIVE {"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9: late rig gets authored motion without manual rebinding\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:12\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"ENEMY_STREAMING_PRESENTATION_NATIVE","pass":false,"checks":3}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:37: Late streaming presentation failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:37
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

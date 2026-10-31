@@ -23,17 +23,16 @@ function EnemyVisual.statusText(model,current)
  return table.concat(lines,'\n')
 end
 
-function EnemyVisual.start()
-	task.spawn(function()
-		local field = Workspace:WaitForChild("DeepwoodK0", 30)
-		local enemies = field and field:WaitForChild("Enemies", 10)
-		if not enemies then return end
-  require(script.Parent.K0EnemyMotion).start(enemies)
-  require(script.Parent.K0EnemyControlEffects).start(enemies)
+local started=false
+local mounted=setmetatable({},{__mode='k'})
+local function mount(enemies)
+  if mounted[enemies] then return end;mounted[enemies]=true
+  local stopMotion=require(script.Parent.K0EnemyMotion).start(enemies)
+  local stopControl=require(script.Parent.K0EnemyControlEffects).start(enemies)
 		local gravityEffects = {}
 		local provokeEffects = {}
   local debuffLabels={}
-		RunService.RenderStepped:Connect(function(dt)
+		local render=RunService.RenderStepped:Connect(function(dt)
    local current=Workspace:GetServerTimeNow()
    for model,billboard in pairs(debuffLabels) do
     local human=model:FindFirstChildOfClass('Humanoid')
@@ -87,7 +86,20 @@ function EnemyVisual.start()
 
 			end
 		end)
-	end)
+ local ancestry
+ ancestry=enemies.AncestryChanged:Connect(function()
+  if enemies:IsDescendantOf(Workspace) then return end
+  render:Disconnect();ancestry:Disconnect();stopMotion();stopControl();mounted[enemies]=nil
+  for _,set in ipairs({gravityEffects,provokeEffects,debuffLabels})do for _,v in pairs(set)do v:Destroy()end end
+ end)
+end
+function EnemyVisual.start()
+ if started then return end;started=true
+ local function discover(o)
+  if o.Name=='Enemies' and o:IsA('Folder') and o.Parent and o.Parent.Name=='DeepwoodK0' then mount(o)end
+ end
+ Workspace.DescendantAdded:Connect(discover)
+ local field=Workspace:FindFirstChild('DeepwoodK0');local enemies=field and field:FindFirstChild('Enemies');if enemies then discover(enemies)end
 end
 
 return EnemyVisual

@@ -39,7 +39,7 @@ function InventoryGui.create(onVisibility, feedback)
 	local constraint = Instance.new("UISizeConstraint"); constraint.MaxSize = Vector2.new(1160,760); constraint.Parent = shell
 	local plaque=Theme.sprite(shell,"TitlePlaque","shellDetails",UDim2.new(.5,-150,0,-24),UDim2.fromOffset(300,58)); plaque.SliceScale=.32
 	Theme.label(shell,"Eyebrow",Text.Eyebrow,UDim2.fromOffset(24,14),UDim2.new(1,-130,0,18),11,Color.silver)
-	local title = Theme.label(shell,"Title",Text.Title,UDim2.fromOffset(24,35),UDim2.new(1,-140,0,35),26,Color.gold)
+	local title = Theme.label(shell,"Title",Navigation.gearBag,UDim2.fromOffset(24,35),UDim2.new(1,-140,0,35),26,Color.gold)
 	title.Font = Enum.Font.GothamBlack
 	title.Parent=plaque; title.TextXAlignment=Enum.TextXAlignment.Center
 	local close = Theme.button(shell,"CloseBag","X",UDim2.new(1,-68,0,18),UDim2.fromOffset(44,44))
@@ -378,7 +378,7 @@ function InventoryGui.create(onVisibility, feedback)
 		local focusName=focus and focus:IsDescendantOf(gui) and focus.Name
 		local hero=snapshot and snapshot.heroes[snapshot.heroId]
 		heroLabel.Text=hero and Catalog.classes[hero.baseClassId].."  •  LV "..hero.level or ""
-		title.Text=storageMode and Text.StorageTitle or Text.Title
+		title.Text=storageMode and Text.StorageTitle or Navigation.gearBag
 		portrait.Image=hero and portraits[hero.baseClassId] or ""
 		portrait.ImageTransparency=gearMode and .35 or 0
 		equipmentSlots:ClearAllChildren()

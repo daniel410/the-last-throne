@@ -12,9 +12,12 @@ function M.create(player,parent,world)
  local function refresh()
   local phase=player:GetAttribute("K0SessionPhase")
   gui.Enabled=world:GetAttribute("TLTServerRole")~="Battle"
+   and not player:GetAttribute('TLTProgressionOpen') and not player:GetAttribute('TLTInventoryOpen')
    and (phase==nil or phase=="Lobby" or phase=="LoadingLobby" or phase=="ReturningLobby")
  end
  player:GetAttributeChangedSignal("K0SessionPhase"):Connect(refresh)
+ player:GetAttributeChangedSignal('TLTProgressionOpen'):Connect(refresh)
+ player:GetAttributeChangedSignal('TLTInventoryOpen'):Connect(refresh)
  world:GetAttributeChangedSignal("TLTServerRole"):Connect(refresh)
  refresh()
  return gui
