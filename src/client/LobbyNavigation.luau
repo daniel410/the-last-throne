@@ -5,10 +5,10 @@ local Bridge=require(script.Parent.LobbyMenuBridge)
 local LobbyArt=require(RS.Shared.TDUI.LobbyHomeArtAssets)
 local M={}
 function M.create(parent,actions)
- local rail=Instance.new('Frame');rail.Name='LobbyNavigation';rail.BackgroundTransparency=1;rail.AnchorPoint=Vector2.new(0,.5);rail.Position=UDim2.new(0,10,.5,0);rail.Size=UDim2.fromOffset(88,476);rail.Parent=parent
- local list=Instance.new('UIListLayout');list.Padding=UDim.new(0,4);list.Parent=rail
+ local rail=Instance.new('Frame');rail.Name='LobbyNavigation';rail.BackgroundTransparency=1;rail.AnchorPoint=Vector2.new(0,.5);rail.Position=UDim2.new(0,10,.5,-30);rail.Size=UDim2.fromOffset(180,268);rail.Parent=parent
+ local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.fromOffset(88,64);grid.CellPadding=UDim2.fromOffset(4,4);grid.FillDirectionMaxCells=2;grid.SortOrder=Enum.SortOrder.LayoutOrder;grid.Parent=rail
  local scale=Instance.new('UIScale');scale.Parent=rail
- local function resize() local camera=workspace.CurrentCamera;if camera then scale.Scale=math.min(1,math.max(.4,(camera.ViewportSize.Y-8)/476)) end end
+ local function resize() local camera=workspace.CurrentCamera;if camera then scale.Scale=math.min(1,math.max(.4,(camera.ViewportSize.Y-84)/268)) end end
  local camera=workspace.CurrentCamera;if camera then camera:GetPropertyChangedSignal('ViewportSize'):Connect(resize) end;resize()
  local panel=T.frame(parent,'LobbyGuide',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(1100,850);cap.Parent=panel
@@ -49,8 +49,8 @@ function M.create(parent,actions)
  end
  for index,entry in ipairs({{'Heroes','HEROES'},{'ItemShop','ITEM SHOP'},{'Blacksmith','BLACKSMITH'},{'Quest','QUEST'},{'Maps','MAPS'},{'DiamondShop','DIAMOND SHOP'},{'LoginRewards','LOGIN REWARDS'}}) do
   local b=T.button(rail,entry[1],entry[2],UDim2.new(),UDim2.fromOffset(88,64))
-  -- Navigation artwork already includes its own frame. Keep the hit target, not a second shell.
-  b.BackgroundTransparency=1;b.TDButtonArt.Visible=false
+  -- The login icon is unframed; the other navigation artwork includes its own frame.
+  b.LayoutOrder=index;b.BackgroundTransparency=1;b.TDButtonArt.Visible=entry[1]=='LoginRewards';b.TDButtonArt.ZIndex=2
   b.Caption.Position=UDim2.new(0,2,.65,0);b.Caption.Size=UDim2.new(1,-4,.32,0);b.Caption.TextSize=10;b.Caption.TextScaled=entry[1]=='DiamondShop';b.Caption.ZIndex=4
   icon(b,entry[1],index);b.Activated:Connect(function()
    panel.Visible=false
