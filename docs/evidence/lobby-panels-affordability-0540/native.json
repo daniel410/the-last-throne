@@ -1,0 +1,59 @@
+{
+  "version": "0.54.0",
+  "sourceCommit": "b2e4c6117c0140b1a09d28b3ba01035e37f8e014",
+  "environment": "isolated Studio Edit on final Lobby build; native GUI with local player facade; no saved progress or client inputs",
+  "reports": [
+    {
+      "test": "lobby-panel-size-native",
+      "kind": "LOBBY_PANEL_SIZE_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 88
+    },
+    {
+      "test": "shop-affordability-native",
+      "kind": "SHOP_AFFORDABILITY_NATIVE",
+      "failures": [],
+      "pass": true,
+      "checks": 11
+    }
+  ],
+  "priorRegression": [
+    {
+      "test": "blacksmith-native",
+      "checks": 68,
+      "pass": true
+    },
+    {
+      "test": "lobby-atlas-native",
+      "checks": 66,
+      "pass": true
+    },
+    {
+      "test": "display-guides-native",
+      "checks": 50,
+      "pass": true
+    }
+  ],
+  "serverRegression": [
+    {
+      "test": "economy.spec.lua",
+      "checks": 42,
+      "pass": true
+    },
+    {
+      "test": "starter-potions-and-shop.spec.lua",
+      "checks": 170,
+      "pass": true
+    },
+    {
+      "test": "blacksmith-stock.spec.lua",
+      "checks": 181,
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "Published client, physical device, gamepad, and user visual acceptance not tested",
+    "QA GUI fixtures were destroyed; QA Studio Edit sessions remain open because safely selecting their windows separately from user sessions was unavailable"
+  ]
+}
