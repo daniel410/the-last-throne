@@ -1,0 +1,92 @@
+{
+  "version": "0.47.0",
+  "source_commit": "57fcfbf5698898984b1f8297e37f262cf51142a1",
+  "test_source_commit": "fe69d2fb184b094574dd5a6f56220a02df62af67",
+  "release_tag": "v0.47.0",
+  "universe_id": 10773575153,
+  "audience": "Private (unchanged)",
+  "published": [
+    {
+      "role": "Lobby",
+      "place_id": 70829337938054,
+      "place_version": 19,
+      "published_local": "2026-10-31 12:52 America/Toronto",
+      "verified": "Creator Dashboard Show published only; current version row checked"
+    },
+    {
+      "role": "Battle",
+      "place_id": 129388473517823,
+      "place_version": 5,
+      "published_local": "2026-10-31 12:59 America/Toronto",
+      "verified": "Creator Dashboard Show published only; current version row checked"
+    }
+  ],
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.47.0/TheLastThrone-Lobby-0.47.0.rbxlx",
+      "bytes": 2260299,
+      "sha256": "526cb463f40ca48151b238b9a91dd0652cb2c21c009387aa115948eec519d806",
+      "command": [
+        "rojo",
+        "build",
+        "default.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.47.0/TheLastThrone-Lobby-0.47.0.rbxlx"
+      ],
+      "result": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.47.0/TheLastThrone-Battle-0.47.0.rbxlx",
+      "bytes": 2260300,
+      "sha256": "1273d93eb08d035018885215972b75b072e54efb8d34674542987ac4e1004b05",
+      "command": [
+        "rojo",
+        "build",
+        "battle.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.47.0/TheLastThrone-Battle-0.47.0.rbxlx"
+      ],
+      "result": "success"
+    }
+  ],
+  "native": {
+    "passed": 10727,
+    "components": {
+      "server": 947,
+      "hit_effects": 102,
+      "monster_motion": 9553,
+      "shield": 86,
+      "player_feedback": 39
+    },
+    "initial_tween_wait_failure": "0.5-second fixed sleep was flaky after full suite; completion predicate up to 2 seconds passed on same immutable build in final-feedback-native.log; gameplay/source/artifact bytes unchanged",
+    "runtime_build_source": "57fcfbf5698898984b1f8297e37f262cf51142a1",
+    "test_source": "fe69d2fb184b094574dd5a6f56220a02df62af67"
+  },
+  "client_validation": {
+    "environment": "Local Studio Play of fixed Lobby 0.47.0; normal CreateHero, StartTraining, MoveTo, enemy hit and Skill1",
+    "actual_enemy_damage": 80,
+    "centre_opacity": 0.037800014,
+    "edge_opacity": 0.151199996,
+    "grunt_count": 1,
+    "sound_loaded": true,
+    "sound_playing": true,
+    "monster_impact_rays": 2,
+    "published_Roblox_client": "Not run in this release task; no published audio/device/teleport acceptance claimed"
+  },
+  "asset_permission_prompt": "Grant Permissions and Publish performed for existing TLT destination only; no new sound uploads",
+  "rollback": "Existing published Lobby18/Battle4 remain in version history; restore in Dashboard then publish in Studio if rollback is needed",
+  "unverified": [
+    "Published Roblox client audio/render/teleport acceptance",
+    "Subjective sound loudness and visual acceptance",
+    "Mobile/gamepad/multiplayer performance"
+  ],
+  "evidence": {
+    "lobby-published.jpg": "d449fd669a7e226523fc9c60f790f69dbcbf186e42aaba51b5d1647545f12b0f",
+    "battle-published.jpg": "7015fd1f97ffd3bf6dba5fa0942626703b0575a3c2e1cf3eb50a6d9f2ce01b5a",
+    "lobby-published-ax.txt": "9abf8605921c9ca7e1d6b6909d11437f235a9355d58126be48c1dec2cca91689",
+    "battle-published-ax.txt": "9340f70119036b71ebc4b0a8e5df369235ea6f12d22d85e8e5fa205cb610648c",
+    "private-overview-ax.txt": "ef50b984bf1e03905d218af69cbfa1c8784011ef87c4f5da01d9909ee331a1bd"
+  }
+}

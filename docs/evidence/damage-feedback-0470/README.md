@@ -19,4 +19,17 @@
 
 ## 빌드·게시
 
-입력 소스 고정·Lobby/Battle 빌드·검증 후 실제 기존 RPG 두 Place에 게시한다. 최종 결과와 태그/대상 버전은 publication 기록에 추가한다. 이 문서를 작성했다는 이유로 게시 성공이나 실제 클라이언트 청음/실기기 수용을 주장하지 않는다. 다음 QA는 게시 클라이언트/음량·시각 사용자 수용, 터치·패드·다인 성능을 확인한다.
+고정 소스 **57fcfbf5698898984b1f8297e37f262cf51142a1**에서 두 빌드 성공.24개 embedded 핵심 모듈과5개 검증 입력 해시를 확인했다. 최종 시험 입력은 **fe69d2fb184b094574dd5a6f56220a02df62af67**다. 고정 소스 뒤의 변경은 QA 대기 조건만이며 게임 소스/산출물 바이트를 바꾸지 않았다.
+
+고정 Battle에서 서버947 + 타격102 + 실제10종 몬스터9,553 + 방패86 검사가 통과했다. 같은 묶음의 피격 GUI fade 검사는0.5초 고정 sleep이 끝났을 때 아직 Tween이 종료되지 않아 실패했다. `fade-wait-initial.log`/`final-native.log`에 보존했다. 실제 완료를 기다리는2초 상한 predicate로 QA 대기를 수정한 뒤 **같은 고정 파일**에서 피격39검사 통과(`final-feedback-native.log`). 합계 **10,727검사 통과**이며 초기 전체 묶음을 모두 성공으로 바꾸어 보고하지 않는다.
+
+정상 Studio Client의 CreateHero(Knight) → StartTraining → 실제 이동 → Goblin 피격 → Shield Bash 반격으로74프레임 관찰했다(`client-observation.json`). 실제 적용 피해80, 신음1회·Sound 로드/재생/TimePosition 증가, 중앙 적색3.78%·가장자리15.12% 및 fade, 몬스터 섬광/윤곽·교차 광선2개를 확인했다. 최초 spawn 관찰 HP100은 스탯 적용 이전 값이며 피해 직전 HP로 사용하지 않는다. 첫 피격 후170 + 서버 확정 피해80에서 직전250을 유도했다. 이후 약0.31 회복이 관찰됐다. 생명/루트/피해/시각을 덮어쓴 QA가 아니다. 실제 스피커 청음의 주관적 품질로 간주하지 않는다.
+
+| 게시 대상 | Place ID | Roblox 게시 버전 | 현지 시각 |
+| --- | --- | --- | --- |
+| Lobby |70829337938054|19|2026-10-31 12:52|
+| Battle |129388473517823|5|2026-10-31 12:59|
+
+두 파일을 Studio Publish As에서 **기존 The Last Throne Experience10773575153의 해당 Place**에 게시했다. 자산 권한 게시 안내를 적용하고, Manage Audience의 테스트 준비 완료/기존 제한 범위를 확인했다. Dashboard **Show published only**에서도 위 현재 게시본을 확인했다. 기존 Private 공개 범위와 TD Place/잔액/상품은 보존한다. [게시 상세·SHA·복구](publication.json)와 `lobby-published.jpg`/`battle-published.jpg`에 증거를 남긴다. Roblox 원격 파일의 압축/메타데이터까지 로컬 원시 바이트와 같다고 주장하지 않는다.
+
+주석 태그 `v0.47.0`은 실제 빌드 소스57fcfbf에 연결한다. 새 공개 출시/상위 게이트 전체 완료를 뜻하지 않는다. 다음 QA는 게시 Roblox 클라이언트의 음량·시각·Teleport/저장, 실기기/다인 성능을 확인한다. 이번 정상 플레이 관찰은 Studio Client이며 게시 클라이언트 실기기 수용과 구분한다.

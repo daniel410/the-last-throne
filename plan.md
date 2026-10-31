@@ -1,5 +1,7 @@
 # The Last Throne 통합 개발 계획
 
+> 2026-10-31 **0.47.0 게시 완료:** 영웅 피격 신음·약한 붉은 효과, 몬스터 타격/몸 반응과 Shield Bash 방패 선행 수정을 기존 RPG Lobby **버전19** / Battle **버전5**에 게시했다. Private 유지. [게시·검증 기록](docs/evidence/damage-feedback-0470/README.md).
+
 > 2026-10-31 **0.47.0 / TLT-005/032/033/084:** 실제 피해에 짧은 피격 신음·약한 붉은 가장자리 효과를 추가하고, 몬스터 접촉면 섬광·국소 몸 반응을 강화한다. Shield Bash 방패 선행 수정도 포함한다. [구현·검증·게시 기록](docs/evidence/damage-feedback-0470/README.md)을 따른다.
 
 > 2026-10-31 **0.46.3 / TLT-005/032 수정:** Shield Bash에서 방패 팔의 좌표축을 보정하고 검을 거둬 방패가 먼저 닿도록 Blender MCP 동작을 교체한다. 실제 R6/R15 메시 경계·30/144Hz 접촉 및 복귀 검증은 [기록](docs/evidence/shield-bash-0463/README.md)을 따른다. 로컬 시험판, 미게시.

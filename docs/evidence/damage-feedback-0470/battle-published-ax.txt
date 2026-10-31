@@ -1,0 +1,123 @@
+Browser tab: 2058918134, Title: "The Last Throne Battles / Version History", URL: "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history".
+1 AXWebArea The Last Throne Battles / Version History, URL: create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history
+	2 container
+		3 container
+			4 link Description: CREATOR, Value: create.roblox.com/
+			5 link Description: Home, Value: create.roblox.com/
+			6 link Description: Creations, Value: create.roblox.com/dashboard/creations
+			7 link Description: Learn, Value: create.roblox.com/docs/
+			8 link Description: Store, Value: create.roblox.com/store/
+			9 link Description: Forum, Value: devforum.roblox.com/
+			10 link Description: Updates, Value: create.roblox.com/updates
+			11 link Description: Finances, Value: create.roblox.com/dashboard/devex
+			12 link Description: Analytics, Value: create.roblox.com/dashboard/analytics
+			13 link Description: Ads, Value: create.roblox.com/advertise
+			14 button All tools
+			15 link Description: Roblox.com, Value: roblox.com/
+			16 button Studio
+			17 button Hide sidebar
+			18 link Description: Back to Places, Value: create.roblox.com/dashboard/creations/experiences/10773575153/places
+			75 content list
+				76 container
+					77 image The Last Throne Battles
+					78 text The Last Throne Battles
+					79 button more
+			19 outline mui-tree-view-1
+				20 row Basic Settings, Value: 0, ID: mui-tree-view-1-basicSettings
+					21 container
+						22 link Description: Basic Settings, Value: create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/configure
+				23 row Icon, Value: 0, ID: mui-tree-view-1-icon
+					24 container
+						25 link Description: Icon, Value: create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/icon
+				26 row Thumbnails, Value: 0, ID: mui-tree-view-1-thumbnails
+					27 container
+						28 link Description: Thumbnails, Value: create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/thumbnails
+				29 row Videos New, Value: 0, ID: mui-tree-view-1-videos
+					30 container
+						31 link Description: Videos New, Value: create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/videos
+				32 row Access, Value: 0, ID: mui-tree-view-1-access
+					33 container
+						34 link Description: Access, Value: create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/access
+				35 row Version History, Value: 1, ID: mui-tree-view-1-versionHistory
+					36 container
+						37 link Description: Version History, Value: create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history
+				38 row Permissions, Value: 0, ID: mui-tree-view-1-permissions
+					39 container
+						40 link Description: Permissions, Value: create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/permissions
+		41 button menu
+		42 container Description: breadcrumb, ID: navigation-breadcrumbs
+			43 content list
+				44 link Description: Creations, Value: create.roblox.com/dashboard/creations
+				80 link Description: The Last Throne, Value: create.roblox.com/dashboard/creations/experiences/10773575153/overview
+				81 link Description: Places, Value: create.roblox.com/dashboard/creations/experiences/10773575153/places
+				82 text The Last Throne Battles
+				83 text Version History
+		47 button Search
+		48 button Notifications
+		49 pop up button (collapsed) Robloxianb1b5e7p5p, Secondary Actions: Expand
+			84 image Robloxianb1b5e7p5p
+		50 container applayout-scroll-container
+			51 container creator-hub-main-content
+				52 heading Version History, Value: 1
+					53 text Version History
+				85 text Choosing to restore a previous version will only save the version. In order to publish the previous version, open and publish it in Studio.
+				86 container
+					87 checkbox (settable, integer) Description: Show published only, Value: 1
+					88 text Show published only
+				89 table
+					90 row
+						91 cell
+							92 text Version
+						93 cell
+							94 text Last Updated (in local time)
+						95 cell
+							96 text Published Version
+					97 row
+						98 cell
+							99 text 5
+						100 cell
+							101 text October 31, 2026 at 12:59 PM
+					102 row
+						103 cell
+							104 text 4
+						105 cell
+							106 text October 30, 2026 at 6:04 PM
+						107 cell
+							108 button Restore
+					109 row
+						110 cell
+							111 text 3
+						112 cell
+							113 text October 30, 2026 at 12:38 PM
+						114 cell
+							115 button Restore
+					116 row
+						117 cell
+							118 container
+								119 text Rows per page:
+								120 combo box (collapsed) Rows per page: 10, Value: 10, Secondary Actions: Expand
+									121 text 10
+								122 text 1-3
+								123 button (disabled) Go to previous page
+								124 button (disabled) Go to next page
+			56 text ©2026 Roblox Corporation. All rights reserved.
+			57 container
+				58 link Description: Terms, Value: roblox.com/info/terms
+				59 text ·
+				60 link Description: Privacy, Value: roblox.com/info/privacy
+				61 text ·
+				62 link Description: Accessibility, Value: roblox.com/info/accessibility
+				63 text ·
+				64 link Description: Support, Value: roblox.com/info/help
+				65 text ·
+				66 button Your Privacy Choices
+			67 container
+				68 link Description: X, Value: x.com/Roblox
+				69 link Description: Facebook, Value: facebook.com/Roblox/
+				70 link Description: LinkedIn, Value: linkedin.com/company/roblox
+				71 link Description: Instagram, Value: instagram.com/roblox/
+				72 link Description: YouTube, Value: youtube.com/@RobloxCreators
+			73 link Description: English, Value: roblox.com/my/account
+		74 text /dashboard/creations/experiences/10773575153/places/129388473517823/version-history
+
+The focused UI element is 87 checkbox (settable, integer) Description: Show published only, Value: 1
