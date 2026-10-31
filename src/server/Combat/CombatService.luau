@@ -424,7 +424,7 @@ local function startSkill(state, slot, current, targetModel)
 	state.character:SetAttribute("K0AttackPhase", "Windup")
 	state.attackSeq = state.attackSeq + 1
 	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
-	if skill.advanced and advancedEffectRemote then advancedEffectRemote:FireAllClients(state.character,skill.id,state.root.Position,advancedCast.center,0) end
+	if skill.advanced and advancedEffectRemote then advancedEffectRemote:FireAllClients(state.character,skill.id,state.root.Position,advancedCast.center,0,nil,state.attackSeq) end
 	updateFeedback(state, "ActionStarted")
 end
 
@@ -1126,7 +1126,7 @@ local function processCombatSamples(current, requiredState)
 				if sample.advancedIndex then
 					attack.advancedFired=math.max(attack.advancedFired or 0,sample.advancedIndex)
 					AdvancedCombat.resolve(state,attack,current,{enemies=enemyStates,clear=unobstructed,damage=damageEnemy,move=skillStep,
-						visual=function(actor,d,origin,center,pulse,points) if advancedEffectRemote then advancedEffectRemote:FireAllClients(actor.character,d.id,origin,center,pulse,points) end end},sample.advancedIndex)
+						visual=function(actor,d,origin,center,pulse,points) if advancedEffectRemote then advancedEffectRemote:FireAllClients(actor.character,d.id,origin,center,pulse,points,actor.attackSeq,workspace:GetServerTimeNow(),actor.character:GetAttribute("K0AttackStartedAt")) end end},sample.advancedIndex)
 				elseif sample.rapidIndex then
 					attack.rapidFired = math.max(attack.rapidFired or 0, sample.rapidIndex)
 					state.character:SetAttribute("K0RapidShotAt", workspace:GetServerTimeNow())

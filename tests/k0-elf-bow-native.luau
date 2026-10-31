@@ -87,6 +87,79 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}) do
     check((arrow.Transparency==0)==expected.nocked,"Nocked arrow visibility follows release/redraw")
    end
   end
+  -- Cone-shaped elf skills still fire the bow even though their server hit
+  -- geometry is not flagged ranged. Both branches and the ultimate use it.
+  local cones=0
+  for _,d in ipairs(Config.Skills.elf) do
+   if d.form=="cone" and not d.ranged then
+    cones+=1
+    character:SetAttribute("K0State","Dodge");Bow.forCharacter(character,299)
+    character:SetAttribute("K0State","Attack");character:SetAttribute("K0SkillId",d.id)
+    character:SetAttribute("K0AttackStartedAt",300)
+    local pose=assert(Bow.forCharacter(character,300+d.windup*.5),"Cone skill must use the bow motion")
+    check(math.abs(pose.time-.4)<.00001 and pose.nocked and pose.draw>0,"Cone skill draws on the server action timeline")
+    character:SetAttribute("K0State","Block")
+    check(Bow.forCharacter(character,301)==nil,"Cone skill draw cancels on block")
+   end
+  end
+  check(cones>0,"Cone skill coverage must not be empty")
+  local volley
+  for _,d in ipairs(Config.Skills.elf) do if d.name=="GRAND VOLLEY" then volley=d end end
+  assert(volley and volley.pulses==3,"Grand Volley pulse definition")
+  character:SetAttribute("K0State","Dodge");Bow.forCharacter(character,399)
+  character:SetAttribute("K0State","Attack");character:SetAttribute("K0SkillId",volley.id)
+  character:SetAttribute("K0AttackStartedAt",400);character:SetAttribute("K0AttackSeq",77)
+  local due=400+volley.windup
+  local waiting=assert(Bow.forCharacter(character,due+.01))
+  check(waiting.nocked and waiting.time==.8,"Unconfirmed advanced pulse holds the drawn arrow")
+  Bow.confirmPulse(character,volley.id,1,76,due,400,due+.01)
+  check(Bow.forCharacter(character,due+.02).nocked,"Old action sequence cannot release")
+  for pulse=1,3 do
+   local at=due+(pulse-1)*volley.interval
+   Bow.confirmPulse(character,volley.id,pulse,77,at,400,at+.02)
+   local released=assert(Bow.forCharacter(character,at+.03))
+   check(not released.nocked and released.time>=.8,"Confirmed advanced pulse releases the arrow")
+   Bow.confirmPulse(character,volley.id,pulse,77,at,400,at+.05)
+   if pulse<3 then
+    local redraw=assert(Bow.forCharacter(character,at+.12))
+    check(redraw.nocked and redraw.time<.8,"Arrow is re-nocked for the next confirmed pulse")
+   end
+  end
+  -- The pulse event may arrive before the action attributes replicate.
+  character:SetAttribute("K0State","Idle");character:SetAttribute("K0AttackSeq",77)
+  Bow.confirmPulse(character,volley.id,1,78,500+volley.windup,500,500+volley.windup+.02)
+  character:SetAttribute("K0State","Attack");character:SetAttribute("K0AttackStartedAt",500)
+  character:SetAttribute("K0AttackSeq",78)
+  local reordered=assert(Bow.forCharacter(character,500+volley.windup+.03))
+  check(not reordered.nocked and reordered.time>=.8,"Pulse survives attributes arriving later")
+  -- A new sequence may replicate before its start time, and small clock
+  -- skew can put the confirmed server time just ahead of local server time.
+  character:SetAttribute("K0AttackSeq",80);character:SetAttribute("K0AttackStartedAt",500)
+  Bow.confirmPulse(character,volley.id,1,80,700+volley.windup,700,700+volley.windup+.02)
+  character:SetAttribute("K0AttackStartedAt",700)
+  check(not Bow.forCharacter(character,700+volley.windup+.03).nocked,"Pulse survives a stale start attribute")
+  character:SetAttribute("K0AttackSeq",81);character:SetAttribute("K0AttackStartedAt",800)
+  local future=800+volley.windup
+  Bow.confirmPulse(character,volley.id,1,81,future+.1,800,future)
+  check(Bow.forCharacter(character,future).nocked,"Future pulse waits for bounded clock skew")
+  check(not Bow.forCharacter(character,future+.11).nocked,"Queued pulse uses the server firing time")
+  -- Repeated rendering must not extend a pending event's lifetime.
+  character:SetAttribute("K0AttackSeq",82);character:SetAttribute("K0AttackStartedAt",800)
+  Bow.confirmPulse(character,volley.id,1,82,900+volley.windup,900,900+volley.windup+.01)
+  Bow.forCharacter(character,900+volley.windup+.5)
+  Bow.forCharacter(character,900+volley.windup+1.5)
+  character:SetAttribute("K0AttackStartedAt",900)
+  check(Bow.forCharacter(character,900+volley.windup+2.02).time==0,"Expired pending pulse cannot affect a later observation")
+  character:SetAttribute("K0State","Dodge");Bow.forCharacter(character,599)
+  character:SetAttribute("K0State","Attack");character:SetAttribute("K0AttackStartedAt",600)
+  character:SetAttribute("K0AttackSeq",79)
+  local delayed=600+volley.windup
+  Bow.confirmPulse(character,volley.id,1,79,delayed,600,delayed+.1)
+  local caughtUp=assert(Bow.forCharacter(character,delayed+.1))
+  check(caughtUp.nocked and caughtUp.time<.8,"Delayed event uses the server firing time, not receipt time")
+  character:SetAttribute("K0State","Dodge")
+  Bow.confirmPulse(character,volley.id,3,77,due+.7,400,due+.7)
+  check(Bow.forCharacter(character,due+.7)==nil,"Cancelled volley cannot restart from a late pulse")
   character:SetAttribute("K0SkillId",nil);character:SetAttribute("K0State","Attack");character:SetAttribute("K0AttackStartedAt",200)
   Visual.renderArms(character,1/60,200.21);fk();Visual.renderCharacter(character,1/60,200.21);fk()
   if rig==Enum.HumanoidRigType.R15 then
