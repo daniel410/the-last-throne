@@ -1,0 +1,35 @@
+{
+  "version": "0.41.5",
+  "source_commit": "cd6f36c3bc60b03973eea8d4d98599211509511c",
+  "native": [
+    {
+      "kind": "SKILL_STAT_UI_NATIVE",
+      "checks": 2877,
+      "pass": true
+    },
+    {
+      "kind": "K0_RESOURCE_UI_NATIVE",
+      "checks": 4804,
+      "pass": true
+    }
+  ],
+  "pure": [
+    {
+      "command": "lua tests/skill-stat-preview.spec.lua",
+      "checks": 954,
+      "pass": true
+    },
+    {
+      "command": "lua tests/hero-progression.spec.lua",
+      "checks": 656,
+      "pass": true
+    },
+    {
+      "command": "lua tests/inventory.spec.lua",
+      "checks": 265,
+      "pass": true
+    }
+  ],
+  "rendered_preview": "not verified: separate review Studio remained at a file picker; no active user game modified",
+  "published": false
+}

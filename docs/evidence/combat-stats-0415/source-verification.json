@@ -1,0 +1,15 @@
+{
+  "source_commit": "cd6f36c3bc60b03973eea8d4d98599211509511c",
+  "results": [
+    {
+      "role": "Lobby",
+      "modules_verified": 5,
+      "pass": true
+    },
+    {
+      "role": "Battle",
+      "modules_verified": 5,
+      "pass": true
+    }
+  ]
+}
