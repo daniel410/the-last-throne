@@ -1,0 +1,6 @@
+{
+  "assets/animations/melee-blender-v1/melee-attacks.blend": "00ee6a9befc96480b87914b30a1ebc40719f54650b93db506228109cd5d9325d",
+  "assets/animations/melee-blender-v1/curves.json": "3c52bee31d0eb53a43e651cad8df814440dbd1305baac473cbcf26e7ecc7d892",
+  "src/client/K0MeleeClips.luau": "3350db2e4ae47edf8067b11f79f482c64ce4d7f448273f7e81c065da01fd7fbe",
+  "src/client/K0MeleeMotion.luau": "33ebe19ea4a524f831a3b8e99afaa93198081cd405430c1a6a08fe438c343039"
+}

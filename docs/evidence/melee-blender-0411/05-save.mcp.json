@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "code": "import bpy,json\nscene=bpy.data.scenes['TLT_Melee_Authoring'];bpy.context.window.scene=scene\nfor name in ['Knight_Forehand','Knight_Return','Knight_Finisher','Dwarf_HeavyCut']:bpy.data.actions[name].use_fake_user=True\nscene.frame_set(4)\nbpy.ops.file.pack_all()\npath='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/melee-attacks.blend'\nbpy.ops.wm.save_as_mainfile(filepath=path,check_existing=True)\nprint(json.dumps({'saved':bpy.data.filepath,'scene':scene.name,'actions':[a.name for a in bpy.data.actions if a.get('motion_source')=='Blender MCP native armature F-curves'],'fps':scene.render.fps}))\n",
+    "user_prompt": "Python으로 구현하지말고 Blender mcp연결해서 map 서버로 개선하봐"
+  }
+}

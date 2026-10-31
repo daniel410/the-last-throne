@@ -8,54 +8,17 @@ local function rotation(x, y, z)
 	return CFrame.Angles(math.rad(x or 0), math.rad(y or 0), math.rad(z or 0))
 end
 
-local channels = { "right", "left", "elbow", "leftElbow", "wrist", "neck", "torso", "rightHip", "leftHip", "rightKnee", "leftKnee", "weapon" }
+local Clips = require(script.Parent.K0MeleeClips)
+local channels = Clips.channels
+local rest, guard = {}, {}
 local function angles(x,y,z) return Vector3.new(x or 0,y or 0,z or 0) end
-local function pose(right, elbow, wrist, torso, left, weapon, hips)
-	return {
-		right = angles(unpack(right)), elbow = angles(elbow), wrist = angles(unpack(wrist)),
-		leftElbow = angles(24), neck = angles(-torso[1]*.25,-torso[2]*.5,-torso[3]*.35),
-		torso = angles(unpack(torso)), left = angles(unpack(left)), weapon = angles(unpack(weapon)),
-		rightHip = angles(hips and hips[1] or 0), leftHip = angles(hips and hips[2] or 0),
-		rightKnee = angles(hips and hips[3] or 0), leftKnee = angles(hips and hips[4] or 0),
-	}
+for classId, source in pairs(Clips.rest) do
+ rest[classId], guard[classId] = {}, {}
+ for _, channel in ipairs(channels) do
+  rest[classId][channel] = angles(unpack(source[channel]))
+  guard[classId][channel] = angles(unpack(Clips.guard[classId][channel]))
+ end
 end
-
-local rest = {
-	knight = pose({0,0,0}, 0, {0,0,0}, {0,0,0}, {0,0,0}, {-25,0,0}),
-	dwarf = pose({0,0,0}, 0, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}),
-}
--- Combat-ready finish keeps the shield and free hand engaged between cuts.
-local guard = {
-	knight = pose({28,5,-7}, 18, {-3,0,0}, {0,0,0}, {30,-35,8}, {-90,0,0}, {0,0,0,0}),
-	dwarf = pose({32,0,-10}, 20, {-3,0,0}, {2,0,-2}, {20,8,14}, {-85,0,0}, {0,0,0,0}),
-}
-for _,p in pairs(rest) do p.leftElbow=Vector3.zero; p.neck=Vector3.zero end
--- Poses are in torso axes, converted into each rig's actual shoulder basis by
--- the renderer. Elbow flexion stays on its hinge; the wrist never spins the axe.
-local strokes = {
-	knight = {
-		{ -- Descending forehand; shield stays near the chest, clear of the blade.
-			load = pose({75,-15,-10}, 30, {-5,0,-5}, {4,-18,-3}, {24,-20,8}, {-110,0,0}, {5,-7,3,5}),
-			hit = pose({60,10,-5}, 12, {3,0,4}, {-6,5,3}, {30,-22,10}, {-112,0,0}, {-7,7,6,2}),
-			follow = pose({45,45,10}, 18, {5,0,6}, {-8,16,4}, {26,-16,8}, {-102,0,0}, {-8,8,7,2}),
-		},
-		{ -- Return cut: load on the left and unwind toward the sword side.
-			load = pose({55,55,15}, 30, {-5,0,5}, {4,20,3}, {28,-20,12}, {-105,0,0}, {-6,6,4,2}),
-			hit = pose({55,5,-8}, 12, {3,0,-4}, {-4,0,-3}, {30,-20,8}, {-110,0,0}, {6,-7,2,6}),
-			follow = pose({75,-40,-20}, 22, {5,0,-6}, {-4,-20,-4}, {24,-15,8}, {-100,0,0}, {8,-8,2,6}),
-		},
-		{ -- Committed diagonal finisher, rather than repeating the first sweep.
-			load = pose({120,-8,-12}, 35, {-5,0,-4}, {6,-12,-3}, {32,-22,10}, {-100,0,0}, {6,-9,4,7}),
-			hit = pose({60,15,0}, 10, {4,0,3}, {-10,6,2}, {36,-24,10}, {-118,0,0}, {-10,10,9,3}),
-			follow = pose({40,28,10}, 18, {6,0,5}, {-10,16,3}, {28,-18,8}, {-108,0,0}, {-12,10,10,3}),
-		},
-	},
-	dwarf = {{
-		load = pose({114,8,-24}, 40, {-5,0,-4}, {10,9,-5}, {42,10,20}, {-91,0,0}, {7,-9,7,9}),
-		hit = pose({82,22,-14}, 12, {4,0,3}, {-7,5,4}, {30,-10,18}, {-145,0,0}, {-9,9,10,4}),
-		follow = pose({65,40,-8}, 18, {6,0,5}, {-10,16,5}, {22,-6,15}, {-130,0,0}, {-10,10,11,4}),
-	}},
-}
 
 -- Monotone cubic Hermite in authored angle space. Unlike per-segment ease-in/
 -- ease-out, the blade retains velocity through contact. Slopes are shared by
@@ -92,21 +55,50 @@ end
 
 local function definitionFor(classId,combo)
  local profile=Config.BasicAttackProfiles[classId]
- if not strokes[classId] or not profile then return nil end
+ if not Clips.clips[classId] or not profile then return nil end
  local index=math.clamp(math.floor(tonumber(combo) or 1),1,#profile.attacks)
- return profile.attacks[index],strokes[classId][index]
+ return profile.attacks[index],Clips.clips[classId][index]
 end
 
+-- The exported Bezier handles have one-third interval lengths, so each
+-- Blender segment is exactly a cubic Hermite segment in seconds/degrees.
+local function sampleAxis(keys, age)
+ local segment=1
+ for i=1,#keys-1 do if age>=keys[i][1] then segment=i end end
+ local a,b=keys[segment],keys[segment+1]
+ local span=b[1]-a[1]
+ local u=math.clamp((age-a[1])/span,0,1)
+ local u2,u3=u*u,u*u*u
+ return (2*u3-3*u2+1)*a[2]+(u3-2*u2+u)*span*a[3]
+  +(-2*u3+3*u2)*b[2]+(u3-u2)*span*b[3]
+end
 function Motion.sample(classId, combo, age, entry, entrySlope)
- local definition,stroke=definitionFor(classId,combo)
+ local definition,clip=definitionFor(classId,combo)
  if not definition or type(age)~="number" or age~=age then return nil end
  local w,a,r=definition.windup,definition.active,definition.recovery
- local impact=w+(definition.hitDelay or 0)
- local followAt=w+a+r*.15
- local total=w+a+r
- local values={entry or rest[classId],stroke.load,stroke.hit,stroke.follow,guard[classId]}
- local times={0,w*.45,impact,followAt,total}
- local result=frame(values,times,age,entrySlope)
+ local total,impact=w+a+r,w+(definition.hitDelay or 0)
+ -- Retiming anchors preserve contact if combat timing is adjusted later.
+ local current={0,w*.45,impact,w+a+r*.15,total}
+ local authored={0,clip.entryUntil,clip.windup+clip.hitDelay,clip.windup+clip.active+clip.recovery*.15,clip.duration}
+ local section=1
+ for i=1,4 do if age>=current[i] then section=i end end
+ local ratio=math.clamp((age-current[section])/(current[section+1]-current[section]),0,1)
+ local time=authored[section]+(authored[section+1]-authored[section])*ratio
+ local result={angles={}}
+ local opening=w*.45
+ local u=math.clamp(age/opening,0,1);local u2,u3=u*u,u*u*u
+ for _,channel in ipairs(channels) do
+  local v={}
+  for axis,name in ipairs({"X","Y","Z"}) do
+   local value=sampleAxis(clip.curves[channel][axis],time)
+   if entry and age<opening then
+    value+=(2*u3-3*u2+1)*(entry[channel][name]-rest[classId][channel][name])
+     +(u3-2*u2+u)*opening*(entrySlope and entrySlope[channel][name] or 0)
+   end
+   v[axis]=value
+  end
+  result.angles[channel]=angles(unpack(v));result[channel]=rotation(unpack(v))
+ end
  result.cutting=age>=w*.45 and age<=w+a and age<total
  return result
 end
@@ -127,7 +119,7 @@ end
 function Motion.forCharacter(character, now)
  local classId=character:GetAttribute("K0ClassId")
  local mode=character:GetAttribute("K0State")
- if not strokes[classId] or (mode~="Attack" and mode~="Idle")
+ if not Clips.clips[classId] or (mode~="Attack" and mode~="Idle")
   or character:GetAttribute("K0SkillId")~=nil or character:GetAttribute("TLTDeathFalling") then
   actions[character]=nil;return nil
  end

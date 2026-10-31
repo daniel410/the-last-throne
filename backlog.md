@@ -1,5 +1,8 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-31 **0.41.1 / TLT-005/032/033/055/057/084 부분 구현:** Blender MCP에서 기사3타·드워프 도끼 공격의 R15 리그와144개 F-curve를 편집하고 게임에 연결했다. [Blender 원본](assets/animations/melee-blender-v1/melee-attacks.blend) · [검증/남은 수용](docs/evidence/melee-blender-0411/README.md). 미게시이며 최종 미술·실기기 수용은 후속이다.
+
+
 > **2026-10-31 0.41.0 / TLT-001/016/050/061/072 부분 구현:** Deepwood7시나리오를 보급대 구조·Eryn과 협력·포탈 폐쇄·Frozen Vale행 단서로 개정했다. DW-03 구조 보고 후 Selene 무료 해금/야영지 편성·TD 수녀 모델·경로 추종·제한 지원을 추가했다.4인도 AI최대1명 허용. [시나리오/계약](docs/production/deepwood-five-epic-scenarios.md) · [검증/빌드/남은 수용](docs/evidence/deepwood/adventure-0410/README.md). 로컬 시험 구현이며 게시판은0.40.2, 상위 티켓은 In Progress다.
 
 > **2026-10-31 최신 동행 지시:** 일반4인 파티에도 추가 AI동료를 허용한다. 현재 구현 상한은 파티 전체1명이며 Selene도 포함한다. 인원별 AI상한은1/2/3/4인에2/2/1/1, 인간 플레이어 정원은4명으로 유지한다. 4인+AI1의 실제 기기 성능·밸런스 수용은 후속이다.

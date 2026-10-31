@@ -14,7 +14,18 @@ Studio Play에서 반복 공격과 준비/접촉/회복 자세, 전후 카메라
 
 ## 검증·빌드
 
-소스 고정 후 별도 스냅샷에서 최종 검사·빌드를 실행하며 명령·결과·해시는 이 문서와 build.json에 추가한다. 작업 공간에서 동시에 진행 중인 스토리/Selene 수정은 빌드 입력에 포함하지 않는다.
+고정 소스 커밋 `14b9601edefb1dace9f25d859976a1c86ed82a8e`을 별도 스냅샷으로 추출해 검사·빌드했다. 작업 공간에서 동시에 진행 중인 스토리/Selene 수정은 포함하지 않았다.
+
+| 명령/조건 | 결과 |
+| --- | --- |
+| 고정 스냅샷에서 `python3 tests/make_k0_source_probe.py --output-dir /private/tmp/tlt-melee-0404-curves --test-script tests/k0-melee-curves-native.luau` 후 출력 경로로 `run-in-roblox` / 실제 TD 메시·방패·R6/R15 | **3,204개 통과**. 접촉 전후 칼끝 속도/방향 연속·연격 진입 자세/속도·준비 자세/휴식 해제·실제 관절과 무기/방패 기하·30/144Hz 일치·스킬/회피/사망 취소. [원시 로그](curves.log) |
+| 같은 고정 소스 probe / `tests/k0-block-guard-native.luau` | **42개 통과**. 기존 Elf/Dwarf/Mage R6/R15 방어 자세·손 접점·복귀. [로그](guard.log) |
+| `rojo build default.project.json` / `rojo build battle.project.json` | **0.40.4 Lobby/Battle 성공**. 모션/렌더러/서버3개 소스를 XML에서 다시 읽어 고정 소스와 일치 확인. [해시/명령](build.json) |
+| 생성된 Battle / `tests/battle-bootstrap-native.luau` | **10개 통과**. 역할·월드·Remote 시작. [로그](battle-bootstrap.log) |
+
+전방 운동학 검사는 실제 Roblox 관절·원본 무기/방패를 사용하지만 GPU/정상 Player 입력 검사가 아니다. 검날 중심선과 방패 OBB 검사는 모든 메시 삼각형 사이의 비관통을 보증하지 않는다. 원본 자산 유형 경고는 로그에 보존했다. 새 서버 전투 변경은 없으며 이전0.40.3의933개 전투 서비스 검사를 이번 결과로 다시 세지 않는다. 0.40.4는 로컬 미게시 빌드이며 릴리스 태그는 만들지 않았다.
+
+이후 사용자는 Blender MCP 기반 편집으로 방향을 지정했다. 위0.40.4는 그 지시 전의 Luau 개선 기준본이며 Blender 제작 완료로 보고하지 않는다.
 
 ## 남은 수용
 

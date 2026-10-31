@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: 02:31:43 | INFO: Data are loaded, start creating Blender stuff\n02:31:43 | INFO: Blender create Mesh node Weapon\n02:31:43 | INFO: glTF import finished in 0.01s\n02:31:43 | INFO: Data are loaded, start creating Blender stuff\n02:31:43 | INFO: Blender create Mesh node Shield\n02:31:43 | INFO: glTF import finished in 0.01s\n02:31:43 | INFO: Data are loaded, start creating Blender stuff\n02:31:43 | INFO: Blender create Mesh node Weapon\n02:31:43 | INFO: glTF import finished in 0.00s\n{\"scene\": \"TLT_Melee_Authoring\", \"objects\": 40, \"rigs\": {\"knight\": 16, \"dwarf\": 16}, \"weapons\": [\"knight_TD_OriginalWeapon\", \"knight_TD_OriginalShield\", \"dwarf_TD_OriginalWeapon\"]}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: 02:31:43 | INFO: Data are loaded, start creating Blender stuff\n02:31:43 | INFO: Blender create Mesh node Weapon\n02:31:43 | INFO: glTF import finished in 0.01s\n02:31:43 | INFO: Data are loaded, start creating Blender stuff\n02:31:43 | INFO: Blender create Mesh node Shield\n02:31:43 | INFO: glTF import finished in 0.01s\n02:31:43 | INFO: Data are loaded, start creating Blender stuff\n02:31:43 | INFO: Blender create Mesh node Weapon\n02:31:43 | INFO: glTF import finished in 0.00s\n{\"scene\": \"TLT_Melee_Authoring\", \"objects\": 40, \"rigs\": {\"knight\": 16, \"dwarf\": 16}, \"weapons\": [\"knight_TD_OriginalWeapon\", \"knight_TD_OriginalShield\", \"dwarf_TD_OriginalWeapon\"]}\n"
+  },
+  "isError": false
+}

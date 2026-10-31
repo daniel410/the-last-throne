@@ -1,0 +1,56 @@
+{
+  "version": "0.40.4",
+  "date": "2026-10-31",
+  "source_commit": "14b9601edefb1dace9f25d859976a1c86ed82a8e",
+  "tool": "Rojo 7.7.1",
+  "status": "local-build-success-unpublished",
+  "isolated_snapshot": "/private/tmp/tlt-melee-0404-source",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.40.4/TheLastThrone-Lobby-0.40.4.rbxlx",
+      "bytes": 1621711,
+      "sha256": "c4ee69740597b89f65cc475e5f736aad9a8c7faaed20de6516669daa1de21ce0",
+      "result": "success",
+      "command": "rojo build default.project.json --output /Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.40.4/TheLastThrone-Lobby-0.40.4.rbxlx",
+      "source_modules_verified": 3
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.40.4/TheLastThrone-Battle-0.40.4.rbxlx",
+      "bytes": 1621712,
+      "sha256": "ecbaff9634d602a605e7c4607fed7ea4527c94dcb52edd5418d7f63a58aa0271",
+      "result": "success",
+      "command": "rojo build battle.project.json --output /Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.40.4/TheLastThrone-Battle-0.40.4.rbxlx",
+      "source_modules_verified": 3
+    }
+  ],
+  "published": false,
+  "release_tag": null,
+  "source_sha256": {
+    "VERSION": "b5ef20402575ae74e37726230e19cd5f5f79d3a9d5bfa86a398026909c108eb7",
+    "src/client/K0MeleeMotion.luau": "d7ad5fc93e93939860db1942e3bd6c9d2d95fd16caa590d6e5d106201076dc84",
+    "src/client/K0SwordVisual.luau": "0ba4b3c2cec9939d77d8bcc9a9379ab42c1f0d203c23b6c6cde77a3a4f6de258",
+    "src/server/Combat/CombatService.luau": "ad012acc7aea204fa54fd67be6971b11270e2409d410c0bc4adb6298b2ef535d"
+  },
+  "native_checks": [
+    {
+      "log": "curves.log",
+      "kind": "K0_MELEE_CURVES_NATIVE",
+      "checks": 3204,
+      "pass": true
+    },
+    {
+      "log": "guard.log",
+      "kind": "K0_BLOCK_GUARD_NATIVE",
+      "checks": 42,
+      "pass": true
+    },
+    {
+      "log": "battle-bootstrap.log",
+      "kind": "BATTLE_BOOTSTRAP_NATIVE",
+      "checks": 10,
+      "pass": true
+    }
+  ]
+}

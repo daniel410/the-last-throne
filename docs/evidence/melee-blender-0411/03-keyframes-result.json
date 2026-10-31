@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: {\"actions\": [{\"name\": \"Knight_Forehand\", \"fcurves\": 36, \"contact_frame\": 9.6, \"duration_frames\": 25.200000000000003}, {\"name\": \"Knight_Return\", \"fcurves\": 36, \"contact_frame\": 10.799999999999999, \"duration_frames\": 27.6}, {\"name\": \"Knight_Finisher\", \"fcurves\": 36, \"contact_frame\": 15.600000000000001, \"duration_frames\": 37.2}, {\"name\": \"Dwarf_HeavyCut\", \"fcurves\": 36, \"contact_frame\": 13.2, \"duration_frames\": 25.200000000000003}], \"frame\": 13, \"keyframe_policy\": \"shared Bezier tangents at contact; body leads arm, weapon settles last\"}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: {\"actions\": [{\"name\": \"Knight_Forehand\", \"fcurves\": 36, \"contact_frame\": 9.6, \"duration_frames\": 25.200000000000003}, {\"name\": \"Knight_Return\", \"fcurves\": 36, \"contact_frame\": 10.799999999999999, \"duration_frames\": 27.6}, {\"name\": \"Knight_Finisher\", \"fcurves\": 36, \"contact_frame\": 15.600000000000001, \"duration_frames\": 37.2}, {\"name\": \"Dwarf_HeavyCut\", \"fcurves\": 36, \"contact_frame\": 13.2, \"duration_frames\": 25.200000000000003}], \"frame\": 13, \"keyframe_policy\": \"shared Bezier tangents at contact; body leads arm, weapon settles last\"}\n"
+  },
+  "isError": false
+}

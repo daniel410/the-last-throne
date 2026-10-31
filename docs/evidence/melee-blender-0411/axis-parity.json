@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: {\"native_tip\": [0.8523962497711182, 2.8568804264068604, -4.862347602844238, 1.0], \"blender_tip\": [0.8523967266082764, 4.86234712600708, 2.8568804264068604, 1.0], \"bone_errors\": {\"Root\": 0.0, \"Waist\": 8.195638656616211e-08, \"RightShoulder\": 4.76837158203125e-07, \"RightElbow\": 4.76837158203125e-07, \"RightWrist\": 4.76837158203125e-07, \"WeaponSocket\": 4.76837158203125e-07}, \"weapon_vertices\": 552}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: {\"native_tip\": [0.8523962497711182, 2.8568804264068604, -4.862347602844238, 1.0], \"blender_tip\": [0.8523967266082764, 4.86234712600708, 2.8568804264068604, 1.0], \"bone_errors\": {\"Root\": 0.0, \"Waist\": 8.195638656616211e-08, \"RightShoulder\": 4.76837158203125e-07, \"RightElbow\": 4.76837158203125e-07, \"RightWrist\": 4.76837158203125e-07, \"WeaponSocket\": 4.76837158203125e-07}, \"weapon_vertices\": 552}\n"
+  },
+  "isError": false
+}
