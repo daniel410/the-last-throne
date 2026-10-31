@@ -53,7 +53,10 @@ function M.create(parent,actions)
   art.ZIndex=3
  end
  for index,entry in ipairs({{'Heroes','HEROES'},{'ItemShop','ITEM SHOP'},{'Blacksmith','BLACKSMITH'},{'Quest','QUEST'},{'Maps','MAPS'},{'DiamondShop','DIAMOND SHOP'}}) do
-  local b=T.button(rail,entry[1],entry[2],UDim2.new(),UDim2.fromOffset(88,64));b.Caption.Position=UDim2.new(0,2,.65,0);b.Caption.Size=UDim2.new(1,-4,.32,0);b.Caption.TextSize=10;b.Caption.TextScaled=entry[1]=='DiamondShop';b.Caption.ZIndex=4
+  local b=T.button(rail,entry[1],entry[2],UDim2.new(),UDim2.fromOffset(88,64))
+  -- Navigation artwork already includes its own frame. Keep the hit target, not a second shell.
+  b.BackgroundTransparency=1;b.TDButtonArt.Visible=false
+  b.Caption.Position=UDim2.new(0,2,.65,0);b.Caption.Size=UDim2.new(1,-4,.32,0);b.Caption.TextSize=10;b.Caption.TextScaled=entry[1]=='DiamondShop';b.Caption.ZIndex=4
   icon(b,entry[1],index);b.Activated:Connect(function()
    panel.Visible=false
    if entry[1]=='Heroes' then actions.close();Bridge:Fire('Heroes')
