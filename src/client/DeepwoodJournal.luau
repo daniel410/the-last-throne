@@ -57,9 +57,9 @@ function Journal.start(hud)
  local current,target,selectedChapter,selectedGoal,lastMessage,render,setOpen,track
  local book=require(script.Parent.DeepwoodQuestBook).create(gui,function(id,goal) track(id,goal) end)
  local panel=book.panel
- local dialog=Theme.frame(gui,'StoryMessage',UDim2.new(.5,0,1,-195),UDim2.fromOffset(620,160));dialog.AnchorPoint=Vector2.new(.5,1);dialog.Visible=false;dialog.BackgroundTransparency=.85
+ local dialog=Theme.frame(gui,'StoryMessage',UDim2.new(.5,0,1,-195),UDim2.fromOffset(620,160));dialog.AnchorPoint=Vector2.new(.5,1);dialog.Visible=false;dialog.BackgroundTransparency=.3
  dialog.TDPanelArt:Destroy();dialog:FindFirstChildOfClass('UIStroke').Transparency=1
- local prose=Theme.label(dialog,'Dialogue','',UDim2.fromOffset(16,8),UDim2.new(1,-32,1,-64),16);prose.TextStrokeColor3=Color3.new(0,0,0);prose.TextStrokeTransparency=.2
+ local prose=Theme.label(dialog,'Dialogue','',UDim2.fromOffset(16,8),UDim2.new(1,-32,1,-64),16);prose.Font=Enum.Font.GothamBold;prose.TextColor3=Color3.new(1,1,1);prose.TextStrokeColor3=Color3.new(0,0,0);prose.TextStrokeTransparency=.1
  local dismiss=Theme.button(dialog,'Continue','CONTINUE',UDim2.new(1,-150,1,-50),UDim2.fromOffset(136,38))
  local left=Theme.button(dialog,'Sanctuary','',UDim2.new(0,12,1,-50),UDim2.new(.5,-18,0,38));left.Visible=false
  local right=Theme.button(dialog,'Share','',UDim2.new(.5,6,1,-50),UDim2.new(.5,-18,0,38));right.Visible=false

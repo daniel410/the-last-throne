@@ -105,6 +105,10 @@ local ok, failure = xpcall(function()
 	end
 
 	local root = playerGui.DeepwoodTrainingHud.Root
+	check(root.Feedback.Font==Enum.Font.GothamBlack and root.Feedback.BackgroundTransparency<.31 and root.Feedback.TextStrokeTransparency<.11,'temporary feedback uses bold high-contrast text')
+	check(root.Practice.Title.TextSize==15 and root.Practice.Objective.TextSize==16 and root.Practice.Note.TextSize==13,'story tracker text is slightly larger')
+	check(root.Practice.Objective.Position.Y.Offset+root.Practice.Objective.Size.Y.Offset<=root.Practice.Note.Position.Y.Offset,'story tracker text areas do not overlap')
+	check(playerGui.DeepwoodTopHud.Root.Heading.Title.TextSize==17,'top region heading is larger')
 	for _,name in ipairs({'Item1','Item2','Skill1','Skill2','Skill3','Skill4','Skill5'}) do
 		local hint=root.SkillBar[name].Hint
 		check(hint.Font==Enum.Font.GothamBlack and hint.TextColor3==Color3.new(1,1,1) and hint.BackgroundTransparency<.2,'quick key is bold and high contrast: '..name)

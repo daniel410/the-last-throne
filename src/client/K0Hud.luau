@@ -188,10 +188,10 @@ function Hud.create()
 	local headingOutline=heading:FindFirstChildOfClass("UIStroke");if headingOutline then headingOutline.Transparency=1 end
 	local headingScale = Instance.new("UIScale")
 	headingScale.Parent = heading
-	local headingTitle = text(heading, "Title", Text.Title, UDim2.fromOffset(8, 6), UDim2.new(1, -16, 0, 20), 15, COLORS.gold)
+	local headingTitle = text(heading, "Title", Text.Title, UDim2.fromOffset(8, 5), UDim2.new(1, -16, 0, 24), 17, COLORS.gold)
 	headingTitle.TextXAlignment = Enum.TextXAlignment.Center
 	headingTitle.TextStrokeTransparency=.25;headingTitle.TextStrokeColor3=Color3.new(0,0,0)
-	local subtitle = text(heading, "Subtitle", Text.Subtitle, UDim2.fromOffset(8, 28), UDim2.new(1, -16, 0, 16), 10, COLORS.muted)
+	local subtitle = text(heading, "Subtitle", Text.Subtitle, UDim2.fromOffset(8, 30), UDim2.new(1, -16, 0, 16), 10, COLORS.muted)
 	subtitle.TextXAlignment = Enum.TextXAlignment.Center
 	subtitle.TextStrokeTransparency=.35;subtitle.TextStrokeColor3=Color3.new(0,0,0)
 
@@ -199,7 +199,11 @@ function Hud.create()
 	feedback.AnchorPoint = Vector2.new(0.5, 0.5)
 	feedback.TextXAlignment = Enum.TextXAlignment.Center
 	feedback.TextWrapped = true
-	feedback.TextStrokeTransparency = 0.3
+	feedback.Font=Enum.Font.GothamBlack;feedback.TextColor3=Color3.new(1,1,1)
+	feedback.TextStrokeColor3=Color3.new(0,0,0);feedback.TextStrokeTransparency=0.1
+	feedback.BackgroundColor3=COLORS.ink;feedback.BackgroundTransparency=.3
+	local feedbackLimit=Instance.new('UISizeConstraint');feedbackLimit.MaxSize=Vector2.new(620,52);feedbackLimit.Parent=feedback
+	round(feedback,6)
 	feedback.Visible = false
 	local feedbackSequence = 0
 
@@ -278,16 +282,16 @@ function Hud.create()
 	local practice = Instance.new("Frame")
  practice.Name = "Practice"
  practice.Position = UDim2.fromOffset(16, 162)
- practice.Size = UDim2.fromOffset(248, 112)
+ practice.Size = UDim2.fromOffset(248, 120)
  practice.BackgroundTransparency = 1
  practice.BorderSizePixel = 0
  practice.Parent = root
 	local practiceScale = Instance.new("UIScale")
 	practiceScale.Parent = practice
-	text(practice, "Title", Text.PracticeTitle, UDim2.fromOffset(12, 8), UDim2.new(1, -24, 0, 18), 14, COLORS.gold)
-	local objective = text(practice, "Objective", Text.Practice.Move, UDim2.fromOffset(12, 30), UDim2.new(1, -24, 0, 42), 15)
+	text(practice, "Title", Text.PracticeTitle, UDim2.fromOffset(12, 8), UDim2.new(1, -24, 0, 20), 15, COLORS.gold)
+	local objective = text(practice, "Objective", Text.Practice.Move, UDim2.fromOffset(12, 31), UDim2.new(1, -24, 0, 48), 16)
 	objective.TextWrapped = true
-	local note = text(practice, "Note", Text.Practice.Note, UDim2.fromOffset(12, 76), UDim2.new(1, -24, 0, 28), 12, COLORS.muted)
+	local note = text(practice, "Note", Text.Practice.Note, UDim2.fromOffset(12, 83), UDim2.new(1, -24, 0, 34), 13, COLORS.cream)
 	note.TextWrapped = true
  for _,label in ipairs(practice:GetChildren()) do if label:IsA("TextLabel") then
   label.TextStrokeColor3 = Color3.new(0,0,0)
@@ -354,7 +358,7 @@ function Hud.create()
 			skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)
 			if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end
 		end
-  practice.Size = UDim2.fromOffset(status.Size.X.Offset, 112)
+  practice.Size = UDim2.fromOffset(status.Size.X.Offset, 120)
   practice.Position = UDim2.fromOffset(status.Position.X.Offset, 16 + status.Size.Y.Offset * scale + 8 + (growthPoints.Visible and 30*scale or 0))
 		-- On narrow screens, keep the title clear of the status panel.
 		heading.Visible = viewport.X >= 860

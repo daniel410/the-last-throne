@@ -9,9 +9,9 @@ function Notice.create(parent,player)
  local size=Instance.new('UISizeConstraint');size.MaxSize=Vector2.new(420,76);size.Parent=frame
  local title=Theme.label(frame,'Heading',Text.StoryRegionEntering,UDim2.fromOffset(12,5),UDim2.new(1,-24,0,22),12,Theme.color.gold)
  title.Font=Enum.Font.GothamBold;title.TextXAlignment=Enum.TextXAlignment.Center;title.ZIndex=9
- local name=Theme.label(frame,'RegionName','',UDim2.fromOffset(12,27),UDim2.new(1,-24,0,40),20,Theme.color.text)
+ local name=Theme.label(frame,'RegionName','',UDim2.fromOffset(12,27),UDim2.new(1,-24,0,40),22,Theme.color.text)
  name.Font=Enum.Font.GothamBlack;name.TextXAlignment=Enum.TextXAlignment.Center;name.TextScaled=true;name.TextStrokeTransparency=.25;name.ZIndex=9
- local limit=Instance.new('UITextSizeConstraint');limit.MinTextSize=12;limit.MaxTextSize=20;limit.Parent=name
+ local limit=Instance.new('UITextSizeConstraint');limit.MinTextSize=12;limit.MaxTextSize=22;limit.Parent=name
  local last,token=nil,0
  local function refresh()
   local id=player:GetAttribute('TLTStoryRegion')

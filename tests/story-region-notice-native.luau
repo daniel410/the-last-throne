@@ -14,6 +14,7 @@ local ok,err=xpcall(function()
  local human=Instance.new('Humanoid');human.RequiresNeck=false;human.Parent=character
  local player={Character=character,GetAttribute=function(_,k)return attrs:GetAttribute(k)end,SetAttribute=function(_,k,v)attrs:SetAttribute(k,v)end,GetAttributeChangedSignal=function(_,k)return attrs:GetAttributeChangedSignal(k)end}
  local frame=Notice.create(gui,player);local changes={};local state={main=0};local hero={heroId='qa',training=false}
+ check(frame.RegionName:FindFirstChildOfClass('UITextSizeConstraint').MaxTextSize==22,'region entry name uses the larger text size')
  local spawns={};for id,z in pairs(Content.zones)do spawns[id]={CFrame=CFrame.new(table.unpack(z.center))}end
  local gate=Gate.create({heroSession={getActiveHero=function()return hero end},inventory={storyState=function()return state end},world={spawns=spawns},combat={relocateForStoryGate=function(_,cf)character:PivotTo(cf)end},notice=function()end,regionChanged=function(_,id)table.insert(changes,id or 'cleared');attrs:SetAttribute('TLTStoryRegion',id)end})
  local function move(id)local c=Content.zones[id].center;root.Position=Vector3.new(c[1],c[2]+4,c[3])end
