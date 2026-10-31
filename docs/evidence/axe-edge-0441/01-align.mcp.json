@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "user_prompt": "도끼 3d 모델링이 도끼 칼날로 공격하지 않고 옆면으로 공격하고 있네. 고쳐줘",
+    "code": "import bpy,json,math\nfrom mathutils import Matrix,Vector\ns=bpy.data.scenes.new('TLT_Axe_Cutting_Edge_v1');bpy.context.window.scene=s\nsource=next(o for o in bpy.data.objects if o.type=='MESH' and o.name.startswith('Refined_dwarf_'))\naxe=source.copy();axe.data=source.data.copy();s.collection.objects.link(axe);axe.name='Embercleaver_Edge_Aligned';axe.parent=None;axe.matrix_world=Matrix.Identity(4);axe.rotation_euler.z=math.radians(45)\n# Roblox +Y maps to Blender +Z. Current RPG source was 180deg; delta -135deg gives 45deg.\nyaw=math.radians(-135);c=math.cos(yaw);q=math.sin(yaw)\nrotation=[[c,0,q],[0,1,0],[-q,0,c]]\nreport={'version':1,'deltaNativeYawDegrees':-135,'totalSourceYawDegrees':45,'rotation':rotation,'cuttingDirection':[math.sqrt(.5),0,-math.sqrt(.5)],'faceNormal':[-math.sqrt(.5),0,-math.sqrt(.5)],'edgePointOld':[-.7,2.2,0],'scope':'Rigid source placement only; mesh/PBR and player hand/action curves preserved'}\nbpy.ops.wm.save_as_mainfile(filepath='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/axe-edge-v1/axe-edge-alignment.blend')\nprint(json.dumps(report))"
+  }
+}

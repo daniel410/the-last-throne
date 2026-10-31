@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-31",
+  "source": "TD Embercleaver v2; assets/shared/td-refined-player-weapons/runtime.rbxmx",
+  "authoring": "Blender MCP internal bpy; rigid yaw correction, no mesh/UV/PBR recreation",
+  "files": {
+    "alignment.json": {
+      "sha256": "bfdcea9d6102c8c786492c1a9241acef40fcf05fb1404bf7431746abeac47a4e",
+      "bytes": 596
+    },
+    "axe-edge-alignment.blend": {
+      "sha256": "ebc2bc35ac89f82be341041819bbe6bbf95ba7225bfc60572b18bba0b4031831",
+      "bytes": 62257230
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "look",
+  "arguments": {
+    "mode": "angles",
+    "target": [
+      "Embercleaver_Edge_Aligned"
+    ],
+    "views": [
+      "front",
+      "three_quarter"
+    ],
+    "shading": "material",
+    "max_size": 1024
+  }
+}

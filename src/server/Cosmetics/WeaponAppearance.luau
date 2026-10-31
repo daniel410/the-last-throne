@@ -13,7 +13,7 @@ local VERSION = 2
 local SPECS = {
 	knight = { template = "KnightSword", parts = { "Weapon" }, gripName = "SwordGrip", jointName = "K0SwordJoint", sourceKey = "td:v2:AzureOathblade" },
 	elf = { template = "ElfBow", parts = { "Bow", "String", "NockedArrow" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:ElfBow" },
-	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:Embercleaver" },
+	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:Embercleaver:edge1" },
 	mage = { template="MageStaff", parts={"Weapon"}, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:EmberCrownStaff" },
 }
 
@@ -121,6 +121,11 @@ local function buildTd(spec)
 		model.PrimaryPart = grip
 		attachmentCopy(sourceGrip, grip, "GripSocket")
 		local tip = attachmentCopy(sourceGrip, grip, "WeaponTip")
+		if spec.template == "DwarfAxe" then
+			for _, name in ipairs({"AxeCuttingEdge", "AxeCuttingDirection", "AxeFaceNormal"}) do
+				assert(attachmentCopy(sourceGrip, grip, name), "Missing reviewed axe cutting marker: " .. name)
+			end
+		end
 		if not tip then
 			local position = marker(source, "WeaponTip") or marker(source, "WeaponTipPosition")
 			if position ~= nil then

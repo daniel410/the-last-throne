@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: Info: Saved as \"axe-edge-alignment.blend\"\n{\"version\": 1, \"deltaNativeYawDegrees\": -135, \"totalSourceYawDegrees\": 45, \"rotation\": [[-0.7071067811865475, 0, -0.7071067811865476], [0, 1, 0], [0.7071067811865476, 0, -0.7071067811865475]], \"cuttingDirection\": [0.7071067811865476, 0, -0.7071067811865476], \"faceNormal\": [-0.7071067811865476, 0, -0.7071067811865476], \"edgePointOld\": [-0.7, 2.2, 0], \"scope\": \"Rigid source placement only; mesh/PBR and player hand/action curves preserved\"}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: Info: Saved as \"axe-edge-alignment.blend\"\n{\"version\": 1, \"deltaNativeYawDegrees\": -135, \"totalSourceYawDegrees\": 45, \"rotation\": [[-0.7071067811865475, 0, -0.7071067811865476], [0, 1, 0], [0.7071067811865476, 0, -0.7071067811865475]], \"cuttingDirection\": [0.7071067811865476, 0, -0.7071067811865476], \"faceNormal\": [-0.7071067811865476, 0, -0.7071067811865476], \"edgePointOld\": [-0.7, 2.2, 0], \"scope\": \"Rigid source placement only; mesh/PBR and player hand/action curves preserved\"}\n"
+  },
+  "isError": false
+}

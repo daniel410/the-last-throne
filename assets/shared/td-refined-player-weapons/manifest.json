@@ -8,8 +8,8 @@
   "newUploads": 0,
   "files": {
     "runtime": {
-      "sha256": "a75c688bc300544138b5a9459d3c9b428cd75ca0bff4a8757063092480f1c75d",
-      "bytes": 24621
+      "sha256": "499dc06be05428916bfc5ad86a9e521eaf1c7376215d88bbd5d6fc40bea87ff8",
+      "bytes": 25734
     },
     "blender": {
       "sha256": "e1cee815b274119463601acb4a239392eb0126c18165da512395733d3bf2217f",
@@ -143,7 +143,7 @@
     "note": "Original mesh/PBR plus current runtime bow/string/nock refinement"
   },
   "placement": {
-    "dwarf": "Rigid 180 degree native Y rotation around grip to align the new cutting edge with the existing authored swing socket. No vertex/UV/texture edit."
+    "dwarf": "Source native yaw 45 degrees; delta -135 from 0.44.0. Blender MCP exported cutting edge/face axes. Original mesh/PBR and hand/action curves unchanged."
   },
   "permission": "User authorizes replacement with improved TD originals; real RPG client permission still needs verification",
   "source_commit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
@@ -151,5 +151,10 @@
     "native_checks": 116,
     "studio_mesh_fetch": "Success for all four class mesh IDs",
     "published_client": "unverified"
+  },
+  "edgeAlignment": {
+    "revision": 1,
+    "blender": "assets/animations/axe-edge-v1/axe-edge-alignment.blend",
+    "alignment": "assets/animations/axe-edge-v1/alignment.json"
   }
 }
