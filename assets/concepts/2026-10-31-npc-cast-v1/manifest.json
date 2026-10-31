@@ -91,5 +91,12 @@
     }
   ],
   "runtime": "native Part character prototypes, not image-to-mesh conversions",
-  "published": false
+  "published": false,
+  "runtimeOverrides": {
+    "selene": {
+      "source": "assets/shared/td-selene/runtime.rbxmx",
+      "model": "nun",
+      "reason": "2026-10-31 user requested original TD priest model; generated Selene concept is superseded"
+    }
+  }
 }

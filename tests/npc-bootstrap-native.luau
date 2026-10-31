@@ -6,6 +6,7 @@ local function check(v,m) report.checks+=1;assert(v,m) end
 local ok,e=xpcall(function()
  Run:Run();task.wait(3)
  check(game.ServerStorage:FindFirstChild('NPCCastV1') and #game.ServerStorage.NPCCastV1:GetChildren()==30,'runtime builds full private template library')
+ check(game.ServerStorage.NPCCastV1.selene:GetAttribute('TDSourceModel')=='nun','template library uses TD Selene')
  check(game.ReplicatedStorage.Remotes:FindFirstChild('NPCDialogue')~=nil,'server initializes NPC dialogue remote')
  check(workspace:GetAttribute('TLTServerRole')==report.role,'role boot completed')
  local campaign=workspace:FindFirstChild('DeepwoodCampaign');check(campaign~=nil,'campaign created')
@@ -18,6 +19,7 @@ local ok,e=xpcall(function()
   local residents=lobby.DawnspireResidents
   check(residents.Mira.ActorRoot.NPCInteract.ActionText=='Browse weapons','Mira exposes real weapon service')
   check(residents.Selene.ActorRoot.NPCInteract.ActionText=='Talk' and residents.Nia.ActorRoot.NPCInteract.ActionText=='Talk','resident conversations available')
+  check(residents.Selene:GetAttribute('TDSourceModel')=='nun' and residents.Selene:FindFirstChild('Body'):IsA('MeshPart'),'lobby loads original TD priest meshes')
  else check(not lobby,'battle does not construct public lobby NPCs') end
  -- All source parses at plugin security, including the client UI path not run without a Player.
  for _,container in ipairs({game.ServerScriptService.Server,game.StarterPlayer.StarterPlayerScripts.Client}) do

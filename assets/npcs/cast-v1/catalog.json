@@ -102,7 +102,8 @@
       "greeting": "I am helping the convoy in Deepwood. Bring everyone safely to camp, then invite me along.",
       "nameKey": "npc.selene.name",
       "roleKey": "npc.selene.role",
-      "accent": "DFC17C"
+      "accent": "DFC17C",
+      "visualSource": "ServerStorage.TDSeleneModels.nun"
     },
     {
       "id": "nia",

@@ -4,6 +4,7 @@ local V={}
 local function color(hex) return Color3.fromHex(hex) end
 function V.create(parent,id,position,options)
  options=options or {};local c=assert(Catalog.byId[id],'Unknown NPC identity: '..tostring(id))
+ if id=='selene' then return require(script.Parent.SeleneVisual).create(parent,position,options.name,options) end
  local m=Instance.new('Model');m.Name=options.name or c.name
  m:SetAttribute('TLTNPC',true);m:SetAttribute('NPCId',id);m:SetAttribute('NPCRegion',c.region);m:SetAttribute('NPCVisualVersion',1)
  m:SetAttribute('NPCNameKey',c.nameKey);m:SetAttribute('NPCRoleKey',c.roleKey)

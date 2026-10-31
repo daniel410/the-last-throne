@@ -38,9 +38,12 @@ return CombatService
   active=function() return hero end,context=function(p) return p.Character and hero,roots[p] end,state=function(p) return journals[p] end,
   players=function() local r={};for i=1,count do table.insert(r,active[i]) end;return r end,publish=function() end,
   select=function(p,_,follow) journals[p]=assert(P.selectSelene(journals[p],follow));selectionCount+=1 end})
- check(folder.SeleneCamp:GetAttribute('NPCId')=='selene','authored Selene cast identity mounted')
- local face=folder.SeleneCamp:FindFirstChild('FaceRig');check(face and face.Head:FindFirstChildOfClass('SpecialMesh').MeshType==Enum.MeshType.Sphere,'Selene smooth face')
- check(folder.SeleneCamp.Torso.Shape==Enum.PartType.Block,'Selene block body')
+ check(folder.SeleneCamp:GetAttribute('NPCId')=='selene' and folder.SeleneCamp:GetAttribute('TDSourceModel')=='nun','original TD nun mounted as Selene')
+ local meshes=0;for _,v in ipairs(folder.SeleneCamp:GetDescendants()) do if v:IsA('MeshPart') then
+  meshes+=1;local original=game.ServerStorage.TDSeleneModels.nun:FindFirstChild(v.Name,true)
+  check(original and original.MeshId==v.MeshId and original.TextureID==v.TextureID and original.Color==v.Color,'original TD mesh, texture and color preserved')
+ end end
+ check(meshes==3,'original TD body and both arms reused')
  root.Position=center+Vector3.new(100,3,0);check(not companion.select(player,true) and selectionCount==0,'distance cannot invite')
  root.Position=center+Vector3.new(0,3,0);local old=journals[player];journals[player]=P.new();check(not companion.select(player,true),'rescue gate enforced at camp');journals[player]=old
  check(companion.select(player,true) and journals[player].seleneFollowing,'nearby unlocked hero can select')

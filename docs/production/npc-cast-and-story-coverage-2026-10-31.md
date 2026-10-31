@@ -23,7 +23,7 @@
 
 로비 대장간의 기존 단순 상인 몸체를 Aldric으로 교체하고6명 주민을 추가한다. Mira는 기존 ArmoryState/서버 구매·판매 흐름으로 진입한다. 가격·상품·재화·저장은 새로 만들지 않는다. Rowan/Tessa/Oren은 기존 시설과 연결된 식별자를 제공한다. 가까운 NPC가 입력을 빼앗지 않도록 새 prompt는 Mira/Selene/Nia에만 두고 시설 prompt를 중복 생성하지 않는다. Selene/Nia의 원격 대화는 서버의 살아 있는 영웅·거리·Lobby·이동 잠금 판정을 통과해야 열린다.
 
-기존 TD nun 모델은 `assets/shared/td-selene`에 보존한다. 새 외형 지시는 이번 요청을 우선해 Selene도 공통 블록 몸/둥근 얼굴과 ivory/lavender/gold·Priest 소품을 사용한다. 실제 TD 메시 재사용을 주장하지 않고 `TDDesignLineage`로 원형 계보를 기록한다. 이전 TD 외형 전용 검증은 새 형태 검증으로 바꾸되 무료 영입·거리·중복 회복·재영입 쿨다운·인원/영웅 변경 검증은 유지한다.
+**2026-10-31 최신 사용자 수정:** Selene는 기존 TD 성녀 `assets/shared/td-selene`의 `nun` 원본3D 모델을 사용한다. 공통 native 얼굴/몸체 생성에서 제외하고 로비·대화·야영지·동행·라이브러리를 동일 TD 메시/텍스처 경로로 통일했다. 생성 이미지의 Selene는 이전 컨셉이며 런타임 기준이 아니다. 무료 영입·거리·중복 회복·재영입 쿨다운·인원/영웅 변경 검증을 유지한다. [복원/로컬 적용 기록](../evidence/selene-td-0431/README.md).
 
 후반4개 에픽 모델은 서버 저장소와 별도 로컬 미술 쇼케이스에 존재한다. 실제 지역 맵이 없으므로 전체 맵 배치를 완료했다고 보고하지 않는다. `NPCCast.region(parent, region, anchors)`는 실제 CFrame 앵커를 모두 검증한 다음에만 생성한다. placement-plan은 장소별 등장 계약이며 보상/퀘스트/성장 데이터를 변경하지 않는다.
 

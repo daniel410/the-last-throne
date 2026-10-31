@@ -12,17 +12,24 @@ local ok,err=xpcall(function()
   local model=templates:FindFirstChild(c.id);check(model~=nil,'template exists: '..c.id)
   check(model:GetAttribute('NPCId')==c.id and model.PrimaryPart~=nil,'stable NPC identity and movement root')
   check(not model:FindFirstChildOfClass('Humanoid'),'static cast does not consume AI actors')
-  check(model.FaceRig.Head:FindFirstChildOfClass('SpecialMesh').MeshType==Enum.MeshType.Sphere and model.FaceRig:FindFirstChild('Nose') and model.FaceRig:FindFirstChild('Smile'),'smooth sculpted face with nose and smile')
-  check(model.Torso.Shape==Enum.PartType.Block,'rectangular body')
+  if c.id=='selene' then check(model:GetAttribute('TDSourceModel')=='nun','Selene template uses original TD nun')
+  else
+   check(model.FaceRig.Head:FindFirstChildOfClass('SpecialMesh').MeshType==Enum.MeshType.Sphere and model.FaceRig:FindFirstChild('Nose') and model.FaceRig:FindFirstChild('Smile'),'smooth sculpted face with nose and smile')
+   check(model.Torso.Shape==Enum.PartType.Block,'rectangular body')
+  end
   local limbs=0
   for _,v in ipairs(model:GetDescendants()) do
    check(not v:IsA('LuaSourceContainer'),'art contains no scripts')
    if v:IsA('BasePart') then
     report.parts+=1;check(v.Anchored and not v.CanCollide and not v.CanTouch and not v.CanQuery,'art does not obstruct combat or travel')
-    if v.Name:find('Arm') or v.Name:find('Leg') or v.Name=='Hand' or v.Name=='Boot' then limbs+=1;check(v.Shape==Enum.PartType.Block,'limb is cuboid') end
+    if c.id~='selene' and (v.Name:find('Arm') or v.Name:find('Leg') or v.Name=='Hand' or v.Name=='Boot') then limbs+=1;check(v.Shape==Enum.PartType.Block,'limb is cuboid') end
+    if c.id=='selene' and v:IsA('MeshPart') then
+     local original=game.ServerStorage.TDSeleneModels.nun:FindFirstChild(v.Name,true)
+     check(original and original.MeshId==v.MeshId and original.TextureID==v.TextureID,'Selene template retains TD mesh and texture')
+    end
    end
   end
-  check(limbs==12,'full segmented block limbs');report.characters+=1
+  if c.id~='selene' then check(limbs==12,'full segmented block limbs') end;report.characters+=1
  end
  local bad=pcall(function() Cast.region(folder,'frozen-vale',{}) end)
  check(not bad and #folder:GetChildren()==0,'missing region anchors fail before creating partial NPCs')
@@ -32,9 +39,11 @@ local ok,err=xpcall(function()
  check(scout.PrimaryPart.NPCLabel.TextLabel.Text=='Wounded Scout','quest alias label preserved')
  local selene=require(World.SeleneVisual).create(folder,Vector3.new(20,50,20),'SeleneCamp')
  check(selene.Name=='SeleneCamp' and selene:GetAttribute('NPCId')=='selene','camp/follower identity unchanged')
+ check(selene:GetAttribute('TDSourceModel')=='nun','camp uses original TD model')
  local lobby=require(World.LobbyWorld).create();local merchant=require(World.WeaponMerchant).create(lobby)
  local facilities=require(World.LobbyLandmarks).create(lobby);local _,storagePrompt=require(World.StorageChest).create(lobby)
  local residents=require(World.LobbyResidents).create(lobby,facilities,storagePrompt)
+ check(residents.selene.model:GetAttribute('TDSourceModel')=='nun' and residents.selene.prompt.Parent==residents.selene.model.PrimaryPart,'lobby uses TD model with working prompt anchor')
  check(merchant.npc:GetAttribute('NPCId')=='aldric' and merchant.prompt.ObjectText=='Aldric · Blacksmith','smith replaces old placeholder and retains trade prompt')
  check(residents.mira.prompt.ActionText=='Browse weapons','merchant uses existing weapon shop')
  check(storagePrompt.ObjectText=='Oren · Account Storage' and facilities.training.prompt.ObjectText=='Rowan · Hero Trainer','storage/training facility identity')
