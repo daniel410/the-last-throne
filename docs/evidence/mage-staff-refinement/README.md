@@ -40,7 +40,11 @@ Action별12관절/무기 채널과 float 초점 속성으로37 F-curve·259 keyf
 
 수동 FK 검사는 관절을 끊고 C0·Transform·C1로 개별 부품을 배치하는 독립 기하 검사다. 이를 실제 Animator/IK 물리 시뮬레이션이나 게시 클라이언트 수용으로 보고하지 않는다. 후반 다중 pulse는 기존 서버 active 시간 동안 시전을 유지하는6가족 동작이며 매 pulse마다 별도 full-body 동작을 추가하지 않는다.
 
-빌드 입력은 이 변경과 VERSION을 커밋한 뒤 고정한다. 빌드/소스 포함 검증 결과는 후속 증거 커밋에서 같은 문서에 연결한다. 실제 Roblox 게시·릴리스 태그는 이 로컬 개선 작업의 완료 근거에 포함하지 않는다.
+[고정 소스 빌드](build.json)는 `cbbce56176fe7fde8c459242373fad382d76ff3c`의 VERSION0.43.3과 Git/LFS 입력만 임시 디렉터리에 추출해 Rojo7.7.1로 생성했다. Lobby·Battle 두 산출물이 성공했고 [빌드 스크립트](build.mjs)와 [소스 포함 대조](source-verification.json)를 남겼다. 네이티브 입력24개가 소스 커밋과 같고, 두 빌드의 Mage/무기·설정7모듈 원문이 고정 소스와 일치한다. 이 변경에서 서버 Combat·K0Config·AdvancedSkills가 바뀌지 않았음도 확인했다. 작업 트리의 다른 동시 변경은 빌드에 섞지 않았다.
+
+추가 Battle 시작 검사는 상대/절대 경로2회 모두 Studio가 온라인이 되기 전 연결 대기에서 만료되어 실행되지 않았다. [구조화 상태](battle-startup-result.json) · [첫 시도](battle-startup-first.log) · [두 번째 시도](battle-bootstrap.log). 이 검사0개를 통과로 세지 않으며, 무기 전용 네이티브29,549개 통과와 구분한다. 다음 QA는 Studio 연결 복구 후 고정0.43.3 Battle 산출물에서 `tests/battle-bootstrap-native.luau`를 재실행한다.
+
+소스 커밋은 `origin/main`에 푸시하고 원격 SHA 일치를 확인했으며8개 LFS 객체 약27MB 전송이 성공했다. 실제 Roblox 게시·릴리스 태그는 실행하지 않았다.
 
 ## 미검증과 다음 담당
 

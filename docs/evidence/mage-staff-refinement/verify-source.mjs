@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+const evidence='docs/evidence/mage-staff-refinement',build=JSON.parse(fs.readFileSync(evidence+'/build.json'));
+const git=(...a)=>execFileSync('git',a,{maxBuffer:32*1024*1024});
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const pinned=file=>{let b=git('show',build.source_commit+':'+file);if(b.toString().startsWith('version https://git-lfs.github.com/spec/v1\n')){const oid=b.toString().match(/oid sha256:(\w+)/)[1];b=fs.readFileSync(file);if(hash(b)!==oid)throw Error('LFS mismatch '+file);}return b;};
+const native=JSON.parse(fs.readFileSync(evidence+'/probe-source-manifest.json'));
+const inputs=Object.entries(native).map(([file,sha256])=>{if(hash(pinned(file))!==sha256)throw Error('Native input differs from pinned source '+file);return{file,sha256,match:true};});
+const moduleFiles=['src/client/K0MageClips.luau','src/client/K0MageMotion.luau','src/client/K0MageFocus.luau','src/client/K0SwordVisual.luau','src/shared/K0Config.luau','src/shared/AdvancedSkills.luau','src/server/Cosmetics/WoodenStaffBuilder.luau'];
+const artifacts=build.artifacts.map(a=>{const bytes=fs.readFileSync(a.path);if(hash(bytes)!==a.sha256)throw Error('Artifact changed');const xml=bytes.toString();const modules=moduleFiles.map(file=>{const name=file.split('/').at(-1).replace('.luau',''),at=xml.indexOf('<string name="Name">'+name+'</string>');if(at<0)throw Error('Missing '+name);const start=xml.lastIndexOf('<Item ',at),end=xml.indexOf('</Item>',at);const item=xml.slice(start,end);const source=item.match(/<(?:string|ProtectedString) name="Source"><!\[CDATA\[([\s\S]*?)\]\]><\/(?:string|ProtectedString)>/);if(!source||source[1]!==pinned(file).toString())throw Error('Embedded source mismatch '+name);return{file,sha256:hash(Buffer.from(source[1])),match:true};});return{path:a.path,sha256:a.sha256,modules};});
+const protectedPaths=['src/shared/K0Config.luau','src/shared/AdvancedSkills.luau','src/server/Combat'];
+const diff=git('diff',build.source_commit+'^',build.source_commit,'--',...protectedPaths).toString();if(diff)throw Error('Unexpected combat contract change');
+const report={source_commit:build.source_commit,version:build.version,native_inputs:inputs,artifacts,combat_contract_unchanged:true,published:false};fs.writeFileSync(evidence+'/source-verification.json',JSON.stringify(report,null,2)+'\n');
+fs.writeFileSync('/private/tmp/tlt-mage-battle-bootstrap.luau',pinned('tests/battle-bootstrap-native.luau'));
+console.log(JSON.stringify({nativeInputs:inputs.length,artifacts:artifacts.length,embeddedModules:moduleFiles.length,pass:true}));

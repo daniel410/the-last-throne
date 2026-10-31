@@ -1,0 +1,212 @@
+{
+  "source_commit": "cbbce56176fe7fde8c459242373fad382d76ff3c",
+  "version": "0.43.3",
+  "native_inputs": [
+    {
+      "file": "assets/shared/td-player-weapons/runtime.rbxmx",
+      "sha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9",
+      "match": true
+    },
+    {
+      "file": "assets/shared/td-player-weapons/manifest.json",
+      "sha256": "59d281c6eb901dd27704d89fe74e4b8ed3e2634d253cb5c3679e7538af3d018d",
+      "match": true
+    },
+    {
+      "file": "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+      "sha256": "77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823",
+      "match": true
+    },
+    {
+      "file": "assets/shared/td-player-weapons/shield/manifest.json",
+      "sha256": "2ac68374a9b683c5235b4b84c5a7e984eceaf06764a0485ee799912ef225e294",
+      "match": true
+    },
+    {
+      "file": "src/shared/K0Config.luau",
+      "sha256": "1ac5f7e4abc57be66ddb7157d98fc178caa6eed4a5a29bdd8ed5fe05a4a5543c",
+      "match": true
+    },
+    {
+      "file": "src/shared/AdvancedSkills.luau",
+      "sha256": "0f99d8e953715fb72ee29f425b3592c5963a0869f6839fe967e340977019d719",
+      "match": true
+    },
+    {
+      "file": "src/shared/ElfBowClip.luau",
+      "sha256": "4b8d5050327baaae3b03387aba87cb37c8f6068362c5318c71f6e7ad415ac688",
+      "match": true
+    },
+    {
+      "file": "src/shared/ElfBowGeometry.luau",
+      "sha256": "cba7f3d381707d62fc1acb61f7d985f21fa4a57b04bf060a9d09f93e9d39e1f4",
+      "match": true
+    },
+    {
+      "file": "src/server/Cosmetics/WeaponAppearance.luau",
+      "sha256": "a3b39813c544137b9315ee83c00657fbc3d2ebbc9c70b79c3e1d0ed88377eb4c",
+      "match": true
+    },
+    {
+      "file": "src/server/Cosmetics/WoodenStaffBuilder.luau",
+      "sha256": "4203de269557e0af9b582438d611adcc24d453e698823fe7eb2692c286e0634b",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MeleeMotion.luau",
+      "sha256": "c991aa782b4a4b8b1fee557b40a882f9bdae46551ec5da8ea49248d01160d059",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MeleeClips.luau",
+      "sha256": "83e85083c768e821d0bd2306e7dea142dd6a467bdfbc6db3bdbac2780ab5c03a",
+      "match": true
+    },
+    {
+      "file": "src/client/K0BowMotion.luau",
+      "sha256": "9b9163252c79a13d617387ee59df57696c21931cc9b28d6e47e667a80815d00c",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MageClips.luau",
+      "sha256": "1d8a43abbfffda561612ffcce450ae12bcc19bb19f445a5007a84aa1c1d95976",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MageMotion.luau",
+      "sha256": "b3caaeb82af67b7e2b5a0bbb34e4f0a07c1eaedb620af9855c0432124914c52e",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MageFocus.luau",
+      "sha256": "6021e0178bcb37cd903786b39f9eaa3db0d61322ae386cbe7983437216db78a8",
+      "match": true
+    },
+    {
+      "file": "src/client/K0SwordVisual.luau",
+      "sha256": "b601988da4afbcf6a3d3be0aab020492f5776fb042387c30cd65aed31fb39a4c",
+      "match": true
+    },
+    {
+      "file": "tests/elf-bow-golden.luau",
+      "sha256": "a613e2ecd9df6d65f61815d4120d7d869bdd4a4989bc56a49b110d447fed3d4e",
+      "match": true
+    },
+    {
+      "file": "tests/mage-staff-golden.luau",
+      "sha256": "7d42499030e45fc1c9a65bfff369229c67d983a250172a5e2cd1188a87c947c9",
+      "match": true
+    },
+    {
+      "file": "tests/k0-melee-curves-native.luau",
+      "sha256": "97af1944c6a6608820b41dc753dcd206ff31d45b591f61798336e286a1fee4b7",
+      "match": true
+    },
+    {
+      "file": "tests/k0-melee-blender-native.luau",
+      "sha256": "0de2591f3294479c0e65df59108bb9f9c39ea7589bcecc447ab92cefebcf26de",
+      "match": true
+    },
+    {
+      "file": "tests/k0-dwarf-motion-native.luau",
+      "sha256": "884ae249e97fff0fc666b0f32dc4a23431989d38baf0efa05d782d710102674d",
+      "match": true
+    },
+    {
+      "file": "tests/k0-elf-bow-native.luau",
+      "sha256": "f92dbb7d5daeb1375cf0714e7ab8e2a59b66f32a205fee180b4e432693b1fded",
+      "match": true
+    },
+    {
+      "file": "tests/k0-mage-staff-native.luau",
+      "sha256": "b0a7a951ed1db800d8503365a8ace53aceaa07bc1c2579b2ce587111a252d50c",
+      "match": true
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "builds/0.43.3/TheLastThrone-Lobby-0.43.3.rbxlx",
+      "sha256": "43ac355f0b0b28897bedff186c18ee4b9b25d22ef78526e27bc57581c8861a7f",
+      "modules": [
+        {
+          "file": "src/client/K0MageClips.luau",
+          "sha256": "1d8a43abbfffda561612ffcce450ae12bcc19bb19f445a5007a84aa1c1d95976",
+          "match": true
+        },
+        {
+          "file": "src/client/K0MageMotion.luau",
+          "sha256": "b3caaeb82af67b7e2b5a0bbb34e4f0a07c1eaedb620af9855c0432124914c52e",
+          "match": true
+        },
+        {
+          "file": "src/client/K0MageFocus.luau",
+          "sha256": "6021e0178bcb37cd903786b39f9eaa3db0d61322ae386cbe7983437216db78a8",
+          "match": true
+        },
+        {
+          "file": "src/client/K0SwordVisual.luau",
+          "sha256": "b601988da4afbcf6a3d3be0aab020492f5776fb042387c30cd65aed31fb39a4c",
+          "match": true
+        },
+        {
+          "file": "src/shared/K0Config.luau",
+          "sha256": "1ac5f7e4abc57be66ddb7157d98fc178caa6eed4a5a29bdd8ed5fe05a4a5543c",
+          "match": true
+        },
+        {
+          "file": "src/shared/AdvancedSkills.luau",
+          "sha256": "0f99d8e953715fb72ee29f425b3592c5963a0869f6839fe967e340977019d719",
+          "match": true
+        },
+        {
+          "file": "src/server/Cosmetics/WoodenStaffBuilder.luau",
+          "sha256": "4203de269557e0af9b582438d611adcc24d453e698823fe7eb2692c286e0634b",
+          "match": true
+        }
+      ]
+    },
+    {
+      "path": "builds/0.43.3/TheLastThrone-Battle-0.43.3.rbxlx",
+      "sha256": "487a7049b33dd7bbfea9078a4a243ea98a6be89edcb5073590199e6bd7172459",
+      "modules": [
+        {
+          "file": "src/client/K0MageClips.luau",
+          "sha256": "1d8a43abbfffda561612ffcce450ae12bcc19bb19f445a5007a84aa1c1d95976",
+          "match": true
+        },
+        {
+          "file": "src/client/K0MageMotion.luau",
+          "sha256": "b3caaeb82af67b7e2b5a0bbb34e4f0a07c1eaedb620af9855c0432124914c52e",
+          "match": true
+        },
+        {
+          "file": "src/client/K0MageFocus.luau",
+          "sha256": "6021e0178bcb37cd903786b39f9eaa3db0d61322ae386cbe7983437216db78a8",
+          "match": true
+        },
+        {
+          "file": "src/client/K0SwordVisual.luau",
+          "sha256": "b601988da4afbcf6a3d3be0aab020492f5776fb042387c30cd65aed31fb39a4c",
+          "match": true
+        },
+        {
+          "file": "src/shared/K0Config.luau",
+          "sha256": "1ac5f7e4abc57be66ddb7157d98fc178caa6eed4a5a29bdd8ed5fe05a4a5543c",
+          "match": true
+        },
+        {
+          "file": "src/shared/AdvancedSkills.luau",
+          "sha256": "0f99d8e953715fb72ee29f425b3592c5963a0869f6839fe967e340977019d719",
+          "match": true
+        },
+        {
+          "file": "src/server/Cosmetics/WoodenStaffBuilder.luau",
+          "sha256": "4203de269557e0af9b582438d611adcc24d453e698823fe7eb2692c286e0634b",
+          "match": true
+        }
+      ]
+    }
+  ],
+  "combat_contract_unchanged": true,
+  "published": false
+}

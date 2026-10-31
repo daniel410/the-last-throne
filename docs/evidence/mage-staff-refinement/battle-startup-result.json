@@ -1,0 +1,22 @@
+{
+  "version": "0.43.3",
+  "source_commit": "cbbce56176fe7fde8c459242373fad382d76ff3c",
+  "status": "infrastructure-timeout-before-execution",
+  "checks_executed": 0,
+  "attempts": [
+    {
+      "place": "builds/0.43.3/TheLastThrone-Battle-0.43.3.rbxlx",
+      "log": "battle-startup-first.log",
+      "result": "Studio online timeout"
+    },
+    {
+      "place": "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.43.3/TheLastThrone-Battle-0.43.3.rbxlx",
+      "log": "battle-bootstrap.log",
+      "result": "Studio online timeout"
+    }
+  ],
+  "native_motion_checks": 29549,
+  "native_motion_pass": true,
+  "published": false,
+  "release_tag": null
+}
