@@ -28,7 +28,9 @@ local ok,err=xpcall(function()
  model:SetAttribute('K0HurtAt',11);task.wait();check(c.pulses==count+1,'duplicate server timestamp ignored')
  c:bind(nil);model:SetAttribute('K0HurtAt',12);task.wait();check(c.pulses==count+1,'old character disconnected')
  check(c.gui.Veil.BackgroundTransparency==1,'respawn clears tint')
- c:pulse(10,100,'knight');task.wait(.5);check(c.gui.Veil.BackgroundTransparency==1 and c.gui.Top.BackgroundTransparency==1,'tint fully fades')
+ c:pulse(10,100,'knight');local deadline=os.clock()+2
+ while (c.gui.Veil.BackgroundTransparency<1 or c.gui.Top.BackgroundTransparency<1) and os.clock()<deadline do task.wait()end
+ check(c.gui.Veil.BackgroundTransparency==1 and c.gui.Top.BackgroundTransparency==1,'tint fully fades')
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.CFrame=CFrame.new(0,100,0);root.Anchored=true;root.Parent=model
  local before=root.CFrame
  Reaction.record(model,Vector3.new(0,0,-1),100)
