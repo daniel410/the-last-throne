@@ -7,6 +7,7 @@ local TweenService = game:GetService("TweenService")
 local ContentProvider = game:GetService("ContentProvider")
 local Workspace = game:GetService("Workspace")
 local Config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
+local MeleeMotion = require(script.Parent.K0MeleeMotion)
 local groundSlam, overheadSmash
 for _, skill in ipairs(Config.Skills.dwarf) do
 	if skill.id == "dwarf.common.ground" then groundSlam = skill
@@ -368,12 +369,13 @@ end
 
 -- Avatar arms are presentation-only. PreSimulation runs after animation
 -- evaluation for both classic Motor6D and modern AnimationConstraint rigs.
-function Visual.renderArms(character, dt)
+function Visual.renderArms(character, dt, now)
 	local classId = character:GetAttribute("K0ClassId")
 	local mode = character:GetAttribute("K0State")
 	local phase = character:GetAttribute("K0AttackPhase")
 	local kind = character:GetAttribute("K0AttackKind")
 	local skillId = character:GetAttribute("K0SkillId")
+	local motion = MeleeMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
 	if classId == "elf" then phase = Visual.bowPhase(character, phase, Workspace:GetServerTimeNow()) end
 	local right, left, rightElbow, torso, rightHipPose, rightKneePose, leftHipPose, leftKneePose
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
@@ -482,6 +484,16 @@ function Visual.renderArms(character, dt)
 			right = CFrame.Angles(0, math.rad(yaw), 0) * CFrame.Angles(math.rad(pitch), 0, 0)
 		end
 	end
+	if motion then
+		right, left, rightElbow, torso = motion.right, motion.left, motion.elbow, motion.torso
+		local humanoid = character:FindFirstChildOfClass("Humanoid")
+		-- Walking attacks keep the Animator's footfalls. The planted weight
+		-- shift is only appropriate while standing on the ground.
+		if not humanoid or (humanoid.MoveDirection.Magnitude < 0.1 and humanoid.FloorMaterial ~= Enum.Material.Air) then
+			rightHipPose, leftHipPose = motion.rightHip, motion.leftHip
+			rightKneePose, leftKneePose = motion.rightKnee, motion.leftKnee
+		end
+	end
 	local function apply(joint, target)
 		if not joint then return end
 		local previous = armPoses[joint]
@@ -489,13 +501,15 @@ function Visual.renderArms(character, dt)
 		local pose = previous and previous.pose or CFrame.new()
 		local returning = target == nil and ((previous and previous.returning or 0) + elapsed) or 0
 		local speed = classId == "elf" and (phase == "Active" and 30 or phase == "Recovery" and 9 or 12) or 24
-		pose = pose:Lerp(target or CFrame.new(), math.clamp(elapsed * speed, 0, 1))
+		-- The authored curve already supplies acceleration/deceleration. A second
+		-- frame-rate-dependent filter would delay the visible strike after the hit.
+		pose = motion and target or pose:Lerp(target or CFrame.new(), math.clamp(elapsed * speed, 0, 1))
 		if not target and returning >= 0.25 then pose = CFrame.new(); armPoses[joint] = nil
 		else armPoses[joint] = { pose = pose, returning = returning } end
 		joint.Transform = pose
 	end
 	local leftShoulder = armJoint(character, "Left", "Shoulder")
-	if left and leftShoulder and mode == "Block" and classId ~= "knight" then
+	if left and leftShoulder and (motion or (mode == "Block" and classId ~= "knight")) then
 		local basis = leftShoulder.C0.Rotation
 		left = basis:Inverse() * left * basis
 	end
@@ -530,7 +544,11 @@ function Visual.renderArms(character, dt)
 		local root = character:FindFirstChild("HumanoidRootPart")
 		local rootJoint = root and root:FindFirstChild("RootJoint")
 		if rootJoint and rootJoint:IsA("Motor6D") then
-			local rootPose = classId == "knight" and (skillId == "knight.common.whirlwind" or skillId == "knight.common.bash") and torso or nil
+			local rootPose = motion and torso or classId == "knight" and (skillId == "knight.common.whirlwind" or skillId == "knight.common.bash") and torso or nil
+			if motion and rootPose then
+				local basis = rootJoint.C0.Rotation
+				rootPose = basis:Inverse() * rootPose * basis
+			end
 			if not slamming then apply(rootJoint, rootPose) end
 		end
 	end
@@ -546,6 +564,7 @@ function Visual.renderArms(character, dt)
 	applyLeg("Right", rightHipPose, rightKneePose)
 	applyLeg("Left", leftHipPose, leftKneePose)
 	local rightShoulder, elbow = armJoint(character, "Right", "Shoulder"), armJoint(character, "Right", "Elbow")
+	apply(armJoint(character, "Right", "Wrist"), motion and motion.wrist)
 	if right and rightShoulder and (classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane") or (mode == "Block" and classId ~= "knight")) then
 		-- Classic R6 shoulders use a different joint basis from R15. Express
 		-- these strokes in torso axes so both rigs travel the same way.
@@ -873,7 +892,7 @@ end
 
 -- Native fixtures may call this directly without installing a class-selection
 -- flow or making a preview character a persistent RPG character.
-function Visual.render(model, phase, combo, dt, attackKind)
+function Visual.render(model, phase, combo, dt, attackKind, now)
 	local classId = classFor(model)
 	local spec = MELEE[classId]
 	if not spec then clearEffect(model); return false end
@@ -888,6 +907,8 @@ function Visual.render(model, phase, combo, dt, attackKind)
 	local skillId = character and character:GetAttribute("K0SkillId")
 	if classId == "elf" and character then phase = Visual.bowPhase(character, phase, Workspace:GetServerTimeNow()) end
 	local target = Visual.samplePose(classId, phase, combo, attackKind, skillId)
+	local motion = character and MeleeMotion.forCharacter(character, now or Workspace:GetServerTimeNow())
+	if motion then target = motion.weapon end
 	if character and character:GetAttribute("K0State") == "Block" then
 		if classId == "elf" or classId == "dwarf" or classId == "mage" then
 			local root = character:FindFirstChild("HumanoidRootPart")
@@ -914,7 +935,7 @@ function Visual.render(model, phase, combo, dt, attackKind)
 			end
 		end
 	end
-	local pose = (weaponPoses[joint] or CFrame.new()):Lerp(target, math.clamp(elapsed * 22, 0, 1))
+	local pose = motion and target or (weaponPoses[joint] or CFrame.new()):Lerp(target, math.clamp(elapsed * 22, 0, 1))
 	weaponPoses[joint] = pose
 	joint.Transform = pose
 	if classId == "elf" then
@@ -923,13 +944,13 @@ function Visual.render(model, phase, combo, dt, attackKind)
 	else
 		local effect = meleeEffect(model, joint, classId)
 		if effect then
-			effect.trail.Enabled = attackKind ~= "Arcane" and (phase == "Active" or (classId == "dwarf" and skillId == "dwarf.common.overhead" and phase == "Windup"))
+			effect.trail.Enabled = motion and motion.cutting or not motion and attackKind ~= "Arcane" and (phase == "Active" or (classId == "dwarf" and skillId == "dwarf.common.overhead" and phase == "Windup"))
 		end
 	end
 	return true
 end
 
-function Visual.renderCharacter(character, dt)
+function Visual.renderCharacter(character, dt, now)
 	local classId = character:GetAttribute("K0ClassId") or "knight"
 	if classId == "knight" and character:GetAttribute("K0AttackPhase") == "Active" then
 		local skillId, seq = character:GetAttribute("K0SkillId"), character:GetAttribute("K0AttackSeq")
@@ -964,7 +985,7 @@ function Visual.renderCharacter(character, dt)
 	local rendered = 0
 	for _, model in ipairs(character:GetChildren()) do
 		if model:IsA("Model") and classFor(model) == classId then
-			if Visual.render(model, character:GetAttribute("K0AttackPhase"), character:GetAttribute("K0Combo"), dt, character:GetAttribute("K0AttackKind")) then
+			if Visual.render(model, character:GetAttribute("K0AttackPhase"), character:GetAttribute("K0Combo"), dt, character:GetAttribute("K0AttackKind"), now) then
 				rendered = rendered + 1
 			end
 			for _, name in ipairs({"K0LocalSwordFallback", "K0LocalShieldFallback"}) do

@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-31 **0.40.3 / TLT-005/032/033/055/057/084 부분 구현:** 기사 사선베기·되베기·내려베기와 드워프 도끼 사선 내려찍기를 서버 시각 기반 연속 곡선으로 개선했다. [3D 원본/전투 조사](docs/research/2026-10-31-sword-axe-motion.md) · [검증/남은 수용](docs/evidence/melee-motion-0403/README.md). 로컬 시험판이며 게시판은0.40.2다. 상위 티켓은 In Progress다.
+
 > **Priest 수녀 Selene:** NPC·선택형 동행 서포터로 회복/보호/정화를 돕는다. Dawnspire 첫 만남 후 Deepwood 초반 구조 완료·안전한 야영지 도착 시 무료 해금하고 야영지에서 동행을 선택한다. TD 영웅과 타워의 외형·모델·무기·연출을 재사용하며 기존 동행 슬롯과 플레이어4클래스를 유지한다. [서사/자산 적용](docs/production/five-epic-adventure-story-2026-10-30.md#priest-수녀와-td-영웅타워-재사용).
 
 > **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → Frozen Vale → Ember Caldera → 어둠의 숲(Gloamwood, 영문 가칭) → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 따른다.

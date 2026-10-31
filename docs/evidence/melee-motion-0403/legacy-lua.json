@@ -1,0 +1,34 @@
+[
+  {
+    "test": "tests/k0-rules.spec.lua",
+    "same_failure": true,
+    "runs": [
+      {
+        "scope": "current",
+        "exit": 1,
+        "output": "lua: [string \"K0 actual attack-start contract\"]:4: attempt to call a nil value (method 'GetAttribute')\nstack traceback:\n\t[string \"K0 actual attack-start contract\"]:4: in local 'beginEnemyAttack'\n\ttests/k0-rules.spec.lua:132: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "scope": "baseline HEAD 9f99798",
+        "exit": 1,
+        "output": "lua: [string \"K0 actual attack-start contract\"]:4: attempt to call a nil value (method 'GetAttribute')\nstack traceback:\n\t[string \"K0 actual attack-start contract\"]:4: in local 'beginEnemyAttack'\n\ttests/k0-rules.spec.lua:132: in main chunk\n\t[C]: in ?\n"
+      }
+    ]
+  },
+  {
+    "test": "tests/k0-appearance.spec.lua",
+    "same_failure": true,
+    "runs": [
+      {
+        "scope": "current",
+        "exit": 1,
+        "output": "lua: tests/k0-appearance.spec.lua:295: unexpected warning: K0 equipment appearance could not be synchronized: src/server/Cosmetics/KnightAppearance.luau:187: attempt to call a nil value (method 'GetDescendants')\nstack traceback:\n\t[C]: in global 'error'\n\ttests/k0-appearance.spec.lua:295: in main chunk\n\t[C]: in ?\n"
+      },
+      {
+        "scope": "baseline HEAD 9f99798",
+        "exit": 1,
+        "output": "lua: tests/k0-appearance.spec.lua:295: unexpected warning: K0 equipment appearance could not be synchronized: src/server/Cosmetics/KnightAppearance.luau:187: attempt to call a nil value (method 'GetDescendants')\nstack traceback:\n\t[C]: in global 'error'\n\ttests/k0-appearance.spec.lua:295: in main chunk\n\t[C]: in ?\n"
+      }
+    ]
+  }
+]

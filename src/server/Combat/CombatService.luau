@@ -141,6 +141,7 @@ local function clearAction(state)
 	state.guardStarted = nil
 	state.character:SetAttribute("K0AttackPhase", "None")
 	state.character:SetAttribute("K0AttackKind", nil)
+	state.character:SetAttribute("K0AttackStartedAt", nil)
 	state.character:SetAttribute("K0SkillId", nil)
 	state.character:SetAttribute("K0Invulnerable", false)
 end
@@ -295,6 +296,7 @@ local function startAttack(state, current, targetModel)
 	}
 	setPlayerState(state, "Attack")
 	state.character:SetAttribute("K0AttackKind", "Basic")
+	state.character:SetAttribute("K0AttackStartedAt", workspace:GetServerTimeNow())
 	state.character:SetAttribute("K0AttackPhase", "Windup")
 	updateFeedback(state, "ActionStarted")
 end
@@ -403,6 +405,7 @@ local function startSkill(state, slot, current, targetModel)
 	setPlayerState(state, "Attack")
 	state.character:SetAttribute("K0SkillId", skill.id)
 	state.character:SetAttribute("K0SkillStartedAt", workspace:GetServerTimeNow())
+	state.character:SetAttribute("K0AttackStartedAt", state.character:GetAttribute("K0SkillStartedAt"))
 	if skill.effect == "rapid" then
 		state.character:SetAttribute("K0RapidShotCount", 0)
 		state.character:SetAttribute("K0RapidShotAt", nil)
@@ -1180,6 +1183,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 			state.attack = nil
 			restoreAutoRotate(state)
 			state.character:SetAttribute("K0AttackKind", nil)
+			state.character:SetAttribute("K0AttackStartedAt", nil)
 			state.character:SetAttribute("K0SkillId", nil)
 			setPlayerState(state, "Idle")
 		end
