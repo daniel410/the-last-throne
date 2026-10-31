@@ -3,7 +3,10 @@
 local Run=game:GetService('RunService')
 local Workspace=game:GetService('Workspace')
 local Bounds=require(game:GetService('ReplicatedStorage').Shared.CampaignBounds)
-local Camera={min=6,max=18,minPitch=math.rad(22),maxPitch=math.rad(72),radius=.6}
+local Camera={min=6,max=22,lobbyMax=18,minPitch=math.rad(22),maxPitch=math.rad(72),radius=.6}
+function Camera.maximum(phase)
+ return phase=='Tutorial' and Camera.max or Camera.lobbyMax
+end
 function Camera.constrain(focus,position,geometry)
  local offset=position-focus;local distance=math.clamp(offset.Magnitude,.75,Camera.max)
  local horizontal=Vector3.new(offset.X,0,offset.Z)
@@ -41,11 +44,13 @@ function Camera.start()
  local p=game:GetService('Players').LocalPlayer
  local function apply()
   if p.CameraMinZoomDistance~=Camera.min then p.CameraMinZoomDistance=Camera.min end
-  if p.CameraMaxZoomDistance~=Camera.max then p.CameraMaxZoomDistance=Camera.max end
+  local maximum=Camera.maximum(p:GetAttribute('K0SessionPhase'))
+  if p.CameraMaxZoomDistance~=maximum then p.CameraMaxZoomDistance=maximum end
  end
  apply();p.CharacterAdded:Connect(apply)
  p:GetPropertyChangedSignal('CameraMinZoomDistance'):Connect(apply)
  p:GetPropertyChangedSignal('CameraMaxZoomDistance'):Connect(apply)
+ p:GetAttributeChangedSignal('K0SessionPhase'):Connect(apply)
  Run:BindToRenderStep('DeepwoodGroundedCamera',Enum.RenderPriority.Camera.Value+2,function()
   Camera.update(p.Character,p:GetAttribute('K0SessionPhase')=='Tutorial' and p:GetAttribute('TLTRoute')~='Training')
  end)

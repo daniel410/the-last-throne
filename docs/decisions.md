@@ -1,5 +1,9 @@
 # 현재 기획 결정과 미확정 항목
 
+## 2026-10-31 — 배틀 카메라 줌 아웃 조정
+
+사용자는 배틀에서 조금 더 멀리 줌 아웃하도록 요청했다. 0.58.2 시험 빌드는 배틀 최대 줌을 18에서 22studs로 늘리고 로비 최대 18studs, 최소 6studs 및 모험 카메라의 회전·충돌 보정은 유지한다. 기존 [카메라 조사](research/2026-10-30-grounded-deepwood.md)를 따르며 실제 기기·맵 차폐 수용은 후속이다. [검증](evidence/battle-camera-zoom-0582/README.md).
+
 ## 2026-10-31 — RPG 로그인 보상과 Gold 교환
 
 사용자는 TD 방식 로그인 보상과 Diamonds로 구매하는 Gold 상품을 요청하고, 최종7일 보상을 **20/20/20/50/50/50/100 RPG Gold**로 정했다. TD와 같이 UTC 날짜마다 수령 가능하며 마지막 수령 후48시간 이내에 다른 UTC 날짜에 수령하면 다음 칸, 그 이후에는1일 차로 돌아간다. 7일 차 다음은1일 차다. 지급과 수령 기록은 RPG 계정 단일 저장키에서 확정하며 TD 잔액/기록은 공유하지 않는다. TD의 10 Diamonds→100 Battle Gold 상품 비율을 참고해 RPG에서는 10 RPG Diamonds→100 계정 RPG Gold 상품을 제공한다. RPG 영구 계정 Gold와 TD 한 판 Gold는 별개이며 가격/경제 수용은 후속이다. [구현·근거](evidence/lobby-daily-navigation-0550/README.md).
