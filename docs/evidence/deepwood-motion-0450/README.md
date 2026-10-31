@@ -32,3 +32,9 @@ Blender5.2의 Action API 변경(fcurves→layer/strip/channelbag, group_name)과
 고정 빌드·실제 Client 입력·추가 검증은 최종 기록에 덧붙인다. 미검증: 실기기/네트워크 다인 성능, 서버↔클라이언트 지연 시각 수용, 지형 발 IK·분할 메시 경계의 최종 미술,5초 보스 스턴 밸런스. 실제 Roblox 게시/릴리스 태그는 수행하지 않는다. 다음 담당은 QA/DES다.
 
 추가 `tests/k0-basic-attacks-native.luau`는933개를 통과했다(기본기/계열·중복 타격/서버 범위·영웅 전환 회귀). Blender 최종 [Goblin 공격 검토](blender-attack.png)는 부모 행렬 오류 수정 후 원본 파츠가 맞물리는 상태를 확인했다. 곡선 JSON SHA256은 수정 전후 동일한6bd7dd81bb7d13f87170619e8d1b96b2c4eebf875a59f51fc0a554d7389f15bd다.
+
+## 고정 빌드 마감
+
+소스380f7b0f614ea937dc43c7d667de1435fa66fb68, VERSION0.45.0을 커밋·원격 main에 푸시했고 LFS3개88MB 전송이 성공했다. [Lobby/Battle 빌드와 SHA256](build.json)은 성공, [소스 대조](source-verification.json)는 두 산출물의 핵심15개 모듈·테스트7개 입력·기존 보상 정본/TD 런타임 메시 불변을 확인했다.
+
+고정 Battle0.45.0에서 모션9,525 / 드워프 스턴36 / 타이밍110 / 기본기933 / 도끼 날150 / 새 무기116 / 스토리2,463 = **13,333개**를 모두 통과했다([최종 로그](final-native.log)). 사용자 후속 기사 방패 스턴·효과 요청은0.46.0으로 이어지므로 실제 Client 화면 확인은 그 최신 빌드에서 통합 검토한다.0.45.0의 실제 Client 검증을 한 것으로 기록하지 않는다. 게시/태그는 없다.

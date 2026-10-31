@@ -1,4 +1,4 @@
--- Temporary poses for the R6 control rig and its welded TD visual pieces.
+-- Status and debuff presentation accompanying the Blender-authored TD rig motion.
 -- Server state remains authoritative.
 local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
@@ -10,6 +10,8 @@ function EnemyVisual.statusText(model,current)
  local lines={}
  local stunUntil=model:GetAttribute('K0EnemyStunUntil')
  if type(stunUntil)=='number' and stunUntil>current then table.insert(lines,string.format(Text.EnemyStunned,stunUntil-current)) end
+ local tauntUntil=model:GetAttribute('K0ProvokeUntil')
+ if type(tauntUntil)=='number' and tauntUntil>current then table.insert(lines,string.format(Text.EnemyTaunted,tauntUntil-current)) end
  local attackUntil=model:GetAttribute('K0AttackDownUntil')
  if type(attackUntil)=='number' and attackUntil>current then
   table.insert(lines,string.format(Text.EnemyAttackDown,math.round((1-(model:GetAttribute('K0AttackDownMultiplier') or 1))*100),attackUntil-current))
@@ -27,6 +29,7 @@ function EnemyVisual.start()
 		local enemies = field and field:WaitForChild("Enemies", 10)
 		if not enemies then return end
   require(script.Parent.K0EnemyMotion).start(enemies)
+  require(script.Parent.K0EnemyControlEffects).start(enemies)
 		local gravityEffects = {}
 		local provokeEffects = {}
   local debuffLabels={}
@@ -76,7 +79,7 @@ function EnemyVisual.start()
     if status~='' and anchor and human and human.Health>0 then
      local billboard=debuffLabels[model]
      if not billboard then
-      billboard=Instance.new('BillboardGui');billboard.Name='CombatDebuffs';billboard.Adornee=anchor;billboard.Size=UDim2.fromOffset(210,40);billboard.StudsOffset=Vector3.new(0,5.8,0);billboard.MaxDistance=100;billboard.AlwaysOnTop=false;billboard.Parent=anchor
+      billboard=Instance.new('BillboardGui');billboard.Name='CombatDebuffs';billboard.Adornee=anchor;billboard.Size=UDim2.fromOffset(210,68);billboard.StudsOffsetWorldSpace=Vector3.new(0,(model:GetAttribute('TdMonsterTargetHeight') or 7)-anchor.Size.Y*1.5+4.0+(model:GetAttribute('StoryBoss') and .9 or 0),0);billboard.MaxDistance=100;billboard.AlwaysOnTop=false;billboard.Parent=anchor
       local label=Instance.new('TextLabel');label.Name='Status';label.Size=UDim2.fromScale(1,1);label.BackgroundTransparency=1;label.TextColor3=Color3.fromRGB(255,209,115);label.TextStrokeColor3=Color3.new();label.TextStrokeTransparency=.15;label.TextSize=12;label.Font=Enum.Font.GothamBold;label.AutoLocalize=false;label.Parent=billboard;debuffLabels[model]=billboard
      end
      billboard.Status.Text=status

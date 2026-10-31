@@ -1,0 +1,9 @@
+KNIGHT_STUN_CONTROL_EFFECTS_NATIVE {"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:5: eleven base/derived/common shield-root skills stun\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:5\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:20\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"KNIGHT_STUN_CONTROL_EFFECTS_NATIVE","pass":false,"checks":62}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:72: Knight control effects failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:72
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

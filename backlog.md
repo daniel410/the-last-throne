@@ -1,5 +1,8 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-31 **0.46.0 / TLT-005/031/032/033/050/057/061/084 부분 구현:** 기사 Shield Bash/방패 기반11개 기술5초 스턴과 기사·드워프 몬스터 제어 표식·계열별 피격 효과를 추가한다. 최종 메뉴 입력 H: STATS & SKILLS / T: 궁극기 / B: GEAR & BAG을 유지한다. [근거/검증/미검증](docs/evidence/knight-control-0460/README.md). 로컬 시험판이며 게시·실기기·밸런스/미술 수용은 후속이다.
+
+
 > 2026-10-31 **0.45.0 / TLT-005/031/032/033/050/057/061/084 부분 구현:** Blender MCP 몬스터10종의 이동·공격·스턴 동작, 드워프 Ground Slam 계열5초 스턴, DW-01 Goblin→Slime→Goblin→혼합 웨이브와 STATS & SKILLS[H] / GEAR & BAG[B]·궁극기[T]를 반영한다. [조사](docs/research/2026-10-31-deepwood-monster-motion.md) · [검증/미검증](docs/evidence/deepwood-motion-0450/README.md). 로컬 시험판이며 게시·실기기·최종 미술/밸런스 수용은 후속이다.
 
 

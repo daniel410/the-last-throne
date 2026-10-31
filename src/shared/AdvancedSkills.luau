@@ -28,7 +28,7 @@ local function branch(id,classId,name,icon,rows)
    d.attackDownMultiplier=.85;d.attackDownDuration=3;d.defenseBreakDuration=3
    d.description=(d.description and d.description.." " or "").."On hit, reduce enemy attack damage by 15% and make them take 10% more damage for 3 seconds. Does not stack with Provoke."
   end
-  if classId=="dwarf" and d.root==3 then d.stunDuration=5;d.description=(d.description and d.description.." " or "").."Stun enemies hit for 5 seconds. Further hits refresh the duration." end
+  if classId=="dwarf" and d.root==3 or classId=="knight" and (d.root==1 or d.requiresShield) then d.stunDuration=5;d.description=(d.description and d.description.." " or "").."Stun enemies hit for 5 seconds. Further hits refresh the duration." end
   d.effect="advanced";d.ranged=d.form=="projectile" or d.form=="line" or d.form=="ground" or d.form=="chain"
   d.glyph=(id==A.order[classId][1] and "A" or "B")..string.format("%02d",i)
   table.insert(A.skills[classId],d)
@@ -164,6 +164,7 @@ local function common(classId,id,name,root,level,form,damage,extra)
  d.cooldown=d.cooldown or 8;d.range=d.range or 6;d.radius=d.radius or 4;d.angle=d.angle or 80;d.maxHeight=8;d.maxTargets=d.maxTargets or 3;d.posture=d.posture or 12
  d.ranged=form=='line' or form=='projectile' or form=='ground';d.glyph=d.glyph or string.upper(id:match('_([^_]+)$'):sub(1,2))
  if d.magic then d.manaCost=d.manaCost or 16 end
+ if classId=='knight' and (root==1 or d.requiresShield) then d.stunDuration=5;d.description=(d.description and d.description..' ' or '')..'Stun enemies hit for 5 seconds. Further hits refresh the duration.' end
  A.common[classId]=A.common[classId] or {};table.insert(A.common[classId],d)
 end
 common('knight','knight_driving_thrust','Driving Thrust',1,5,'line',1.15,{move=2,range=6,maxTargets=1,posture=20,glyph='DT',description='Step forward and thrust at one enemy in a narrow line.'})

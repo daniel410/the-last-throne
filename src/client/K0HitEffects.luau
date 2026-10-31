@@ -35,6 +35,20 @@ local skillProfiles = {
 	["mage.common.water_ball"] = { class = "mage", color = Color3.fromRGB(69, 155, 255), secondary = Color3.fromRGB(174, 232, 255), shape = "water" },
 	["mage.common.gravity"] = { class = "mage", color = Color3.fromRGB(126, 65, 211), secondary = Color3.fromRGB(214, 169, 255), shape = "gravity" },
 }
+-- Resolve every authored Knight/Dwarf descendant, including common Lv5/10/15
+-- skills. The confirmed server skill ID selects presentation, never damage.
+local Config=require(ReplicatedStorage.Shared.K0Config)
+for _,classId in ipairs({'knight','dwarf'})do
+ local function add(d)
+  if skillProfiles[d.id] then return end
+  local shield=classId=='knight' and (d.root==1 or d.requiresShield)
+  local shape=classId=='knight' and (shield and 'shield' or d.root==3 and 'weaken' or 'sweep')
+   or (d.root==3 and 'shockwave' or d.root==2 and 'axe' or 'chop')
+  if d.branch=='gunner' then shape=(d.element=='bomb' or d.element=='shell') and 'shockwave' or 'precision' end
+  skillProfiles[d.id]={class=classId,shape=shape,color=shield and Color3.fromRGB(100,208,255) or profiles[classId].color,secondary=profiles[classId].secondary}
+ end
+ for index,d in ipairs(Config.Skills[classId])do local base=table.clone(d);base.root=base.root or index;add(base)end
+end
 
 local function finite(value)
 	return type(value) == "number" and value == value and math.abs(value) < 10000000

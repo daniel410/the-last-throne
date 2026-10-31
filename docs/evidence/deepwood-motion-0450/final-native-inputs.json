@@ -1,0 +1,9 @@
+{
+  "tests/deepwood-monster-motion-native.luau": "c6329db9a9c1459d0ff534064aa1a21255c899914c52982c06743be3a829464e",
+  "tests/dwarf-stun-native.luau": "3f3f3170e0ca564482e145fd83f680dfbf3fde1c9093e94d2f6e6b353b5f2188",
+  "tests/k0-timing-native.luau": "25785de3d0be4cd3c7b36cb767c2efbe65b8231668acc6180fd97a9fa278e07c",
+  "tests/k0-basic-attacks-native.luau": "0fc8879833c19f2ca2b21689af26afff7dd7b1c3f1d3a9e88f64eb8cb76c86c4",
+  "tests/axe-cutting-edge-native.luau": "9288ac1a70e05b33f8092056a3057f8f80eebe7d78656743a6a90388ef5a84d2",
+  "tests/refined-player-weapons-native.luau": "aff97400a3f9689ee69209bc15e4586cf58f713c747d94b8f0616152855cf1d6",
+  "tests/deepwood-service-native.luau": "094a37405ba1453ab706cf30b2b9e10953a2241c271689a074e95e39cd8e45f7"
+}
