@@ -1,0 +1,2 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+SKILL_STAT_UI_NATIVE {"coverage":"Native GUI constructors and measured text; no real Player, rendered client or device","checks":2877,"failures":[],"pass":true,"kind":"SKILL_STAT_UI_NATIVE"}

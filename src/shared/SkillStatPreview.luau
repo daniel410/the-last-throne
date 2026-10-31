@@ -15,6 +15,33 @@ function Preview.derived(classId,g,equipment)
 	d.magicPower=d.magicPower*(1+(equipment.power or 0)/100)
 	return d
 end
+-- Separate saved values from an unconfirmed point draft; never mutate either.
+function Preview.breakdown(classId,g,equipment,draftGrowth)
+ local hero=Growth.derived(classId,g)
+ local current=Preview.derived(classId,g,equipment)
+ local after=draftGrowth and Preview.derived(classId,draftGrowth,equipment)
+ local rows={}
+ for _,key in ipairs({'physicalPower','magicPower','armor','health','mana'}) do
+  table.insert(rows,{key=key,hero=hero[key],gear=current[key]-hero[key],total=current[key],draft=after and after[key]})
+ end
+ return rows
+end
+function Preview.gearSources(heroId,items,catalog)
+ local equipped={}
+ for _,item in ipairs(items or {}) do
+  local loc=item.location
+  if loc and loc.kind=='equipped' and loc.heroId==heroId and catalog.items[item.definitionId] then equipped[loc.slot]=item end
+ end
+ local result={}
+ for _,slot in ipairs(catalog.slots) do
+  local item=equipped[slot]
+  if item then
+   local definition=catalog.items[item.definitionId]
+   table.insert(result,{slot=slot,definitionId=item.definitionId,name=definition.name,stats=Growth.copy(definition.stats or {})})
+  end
+ end
+ return result
+end
 function Preview.scalingText(classId,skill)
 	local lines={}
 	if skill.damage>0 then

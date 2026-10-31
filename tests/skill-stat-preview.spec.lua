@@ -81,4 +81,35 @@ for _,level in ipairs({20,40,80}) do
   end
  end
 end
+for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
+ local saved=G.new(10);saved.stats.VIT=4;saved.stats[G.attackStat(classId,false)]=saved.stats[G.attackStat(classId,false)]+4
+ local draft=G.copy(saved);draft.stats.STR=draft.stats.STR+4;draft.stats.INT=draft.stats.INT+4;draft.stats.VIT=draft.stats.VIT+4
+ local gear={power=18,armor=6,health=40}
+ local current=P.derived(classId,saved,gear);local after=P.derived(classId,draft,gear)
+ for _,row in ipairs(P.breakdown(classId,saved,gear,draft)) do
+  check(math.abs(row.total-(row.hero+row.gear))<.000001,'total decomposes into hero and equipped gear')
+  eq(row.total,current[row.key],'current total follows server formula')
+  eq(row.draft,after[row.key],'draft target follows same formula')
+  if row.key=='physicalPower' or row.key=='magicPower' then check(math.abs(row.gear-row.hero*.18)<.000001,'power is percentage bonus, not flat points') end
+  if row.key=='armor' then eq(row.gear,6,'armor is a flat gear bonus') end
+  if row.key=='health' then eq(row.gear,40,'HP is a flat gear bonus') end
+  if row.key=='mana' then eq(row.gear,0,'equipment never advertises unsupported MP bonus') end
+ end
+ eq(saved.stats.VIT,4,'breakdown does not allocate saved points')
+ eq(gear.power,18,'breakdown does not mutate gear')
+end
+local C=dofile('src/shared/ItemCatalog.luau')
+local items={
+ {definitionId='knight_weapon_fine',location={kind='equipped',heroId='mine',slot='weapon'}},
+ {definitionId='traveler_hood',location={kind='equipped',heroId='mine',slot='head'}},
+ {definitionId='traveler_coat',location={kind='bag',heroId='mine'}},
+ {definitionId='copper_ring',location={kind='equipped',heroId='other',slot='accessory1'}},
+ {definitionId='amber_charm',location={kind='storage'}},
+}
+local sources=P.gearSources('mine',items,C)
+eq(#sources,2,'only active hero equipped sources count')
+eq(sources[1].definitionId,'knight_weapon_fine','sources follow stable slot order')
+eq(sources[1].stats.power,10,'weapon source retains percent units')
+eq(sources[2].stats.armor,2,'defense source retains flat units')
+sources[1].stats.power=999;eq(C.items.knight_weapon_fine.stats.power,10,'source details cannot change item catalog')
 print('Skill stat preview: '..n..' checks passed')

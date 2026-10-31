@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+SKILL_STAT_UI_NATIVE {"coverage":"Native GUI constructors and measured text; no real Player, rendered client or device","checks":50,"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:481: Workspace.Frame.CombatStats.GearDetails.Caption text fits height\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:481 function textFits\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:523\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:492\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"SKILL_STAT_UI_NATIVE"}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:567: skill/stat UI fixture failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:567
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

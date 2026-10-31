@@ -36,6 +36,7 @@ function Gui.create(onVisibility)
 	local snapshot,pending
 	local tab="Stats"
 	local treeState={selected=1}
+ local statState={gearExpanded=false}
 	local selectedBranch
 	local draft={STR=0,DEX=0,INT=0,VIT=0}
 	local opened=false
@@ -89,7 +90,7 @@ function Gui.create(onVisibility)
 		local derived=SkillPreview.derived(classId,preview,snapshot.stats)
 		local narrow=body.AbsoluteSize.X<620
 		if tab=="Stats" then
-			local height=StatsView.render(body,hero,snapshot,derived,draft,pending,render,send,resetDraft,function() if pending then remote:FireServer(pending);show("Checking the same save...") end end)
+			local height=StatsView.render(body,hero,snapshot,derived,draft,pending,render,send,resetDraft,function() if pending then remote:FireServer(pending);show("Checking the same save...") end end,statState)
 			body.CanvasSize=UDim2.fromOffset(0,height)
 			if not snapshot.atHub and not pending then show(snapshot.canInvest and "You can invest points and change your loadout here. Return to Hub to advance." or errors.UnsafeGrowth) end
 			return

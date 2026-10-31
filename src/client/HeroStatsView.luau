@@ -10,17 +10,22 @@ local GrowthText=require(RS.Shared.K0Text)
 local Preview=require(RS.Shared.SkillStatPreview)
 local SkillText=require(RS.Shared.SkillStatText)
 local Config=require(RS.Shared.K0Config)
+local CombatStats=require(script.Parent.CombatStatsView)
+local CombatText=require(RS.Shared.CombatStatText)
 local TextService=game:GetService('TextService')
 local View={}
 local portraits={knight='103255177842108',elf='80894238854345',dwarf='74628903359757',mage='91907986271282'}
 local full={STR='Strength',DEX='Dexterity',INT='Intelligence',VIT='Vitality'}
-function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetDraft,openBag)
+function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetDraft,openBag,statState)
  local width=math.max(280,body.AbsoluteSize.X-8);local narrow=width<760
  local g,classId=hero.progression,hero.baseClassId
  local points=Growth.points(g);local spent=0;for _,v in pairs(draft) do spent+=v end
  local editable=snapshot.ready and (snapshot.atHub or snapshot.canInvest) and not pending
  local leftW=narrow and width-8 or math.floor(width*.48)
- local left=Menu.frame(body,'HeroEquipment',UDim2.fromOffset(4,4),UDim2.fromOffset(leftW,560))
+ local x=narrow and 4 or leftW+24;local rw=narrow and width-8 or width-x-4
+ local summaryHeight=CombatStats.render(body,hero,snapshot,draft,UDim2.fromOffset(x,4),rw,statState,redraw)
+ local leftY=narrow and summaryHeight+24 or 4
+ local left=Menu.frame(body,'HeroEquipment',UDim2.fromOffset(4,leftY),UDim2.fromOffset(leftW,560))
  local heading=Menu.plaque(left,'HeroTitle',string.upper(Catalog.classes[classId])..'  /  Lv. '..g.level,UDim2.fromOffset(10,10),UDim2.new(1,-20,0,46));heading.Caption.TextSize=18
  local image=Instance.new('ImageLabel');image.Name='HeroPortrait';image.BackgroundTransparency=1;image.Position=UDim2.fromOffset(70,66);image.Size=UDim2.new(1,-140,1,-116);image.Image='rbxassetid://'..portraits[classId];image.ScaleType=Enum.ScaleType.Crop;image.Parent=left
  local slotSize=narrow and 50 or 62
@@ -34,7 +39,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
  end
  local xp=g.level==Growth.maxLevel and string.format(GrowthText.TotalXPMax,Growth.totalXP(g)) or string.format(GrowthText.TotalXP,Growth.totalXP(g),Growth.xpAtLevel(g.level+1))
  local xpLabel=Theme.label(left,'XP',xp,UDim2.new(0,12,1,-42),UDim2.new(1,-24,0,28),14,Theme.color.gold);xpLabel.TextXAlignment=Enum.TextXAlignment.Center
- local x=narrow and 4 or leftW+24;local y=narrow and 584 or 4;local rw=narrow and width-8 or width-x-4
+ local y=narrow and leftY+580 or summaryHeight+24
  local right=Menu.frame(body,'StatAllocation',UDim2.fromOffset(x,y),UDim2.fromOffset(rw,616))
  Theme.label(right,'Points','AVAILABLE STAT POINTS  '..(points-spent),UDim2.fromOffset(18,12),UDim2.new(1,-36,0,36),16,Theme.color.gold)
  for i,key in ipairs(Growth.statKeys) do
@@ -51,7 +56,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
   minus.Activated:Connect(function() if minus.Active then draft[key]-=1;redraw() end end)
   plus.Activated:Connect(function() if plus.Active then draft[key]+=1;redraw() end end)
  end
- Theme.label(right,'Derived',string.format('POWER %d   MAGIC %d   ARMOR %d',math.floor(derived.physicalPower+.5),math.floor(derived.magicPower+.5),derived.armor),UDim2.fromOffset(18,426),UDim2.new(1,-36,0,28),12,Theme.color.silver)
+ Theme.label(right,'Derived',CombatText.Above,UDim2.fromOffset(18,426),UDim2.new(1,-36,0,32),12,Theme.color.silver)
  for i,entry in ipairs({{'MAX HP',derived.health,Color3.fromRGB(214,48,68)},{'MAX MP',derived.mana,Color3.fromRGB(61,148,255)}}) do
   local box=Menu.frame(right,'Resource'..i,UDim2.new((i-1)*.5,12,0,470),UDim2.new(.5,-24,0,58))
   Theme.label(box,'Value',entry[1]..'  '..entry[2],UDim2.fromOffset(10,2),UDim2.new(1,-20,0,24),12,entry[2]>0 and Theme.color.text or Theme.color.muted)
@@ -62,7 +67,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
  cancel.Caption.TextSize=12;Theme.enabled(apply,editable and spent>0)
  cancel.Activated:Connect(function() resetDraft();redraw() end)
  apply.Activated:Connect(function() if apply.Active then send('AllocateStats',{stats=Growth.copy(draft)}) end end)
- local bottom=y+636
+ local bottom=math.max(y+636,leftY+580)
  local note=Theme.label(body,'StatNote',SkillText.StatNote,UDim2.fromOffset(12,bottom),UDim2.fromOffset(width-24,50),11,Theme.color.muted)
  bottom+=58
  if pending then
