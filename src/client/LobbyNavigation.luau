@@ -13,7 +13,7 @@ function M.create(parent,actions)
   if camera then
    local viewport=camera.ViewportSize
    -- Narrow screens need room above the rail for the top wallet and menu.
-   local top=viewport.X<456 and 72 or 8
+   local top=viewport.X<530 and 72 or 8
    local available=viewport.Y-60-top
    scale.Scale=math.min(1,math.max(.4,available/268))
    rail.Position=UDim2.new(0,10,0,top+available/2)

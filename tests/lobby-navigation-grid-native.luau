@@ -4,7 +4,7 @@ local gui=Instance.new('ScreenGui');gui.Name='NavigationGridQA';gui.IgnoreGuiIns
 local report={kind='LOBBY_NAVIGATION_GRID_NATIVE',checks=0,failures={}}
 local function check(value,message) report.checks+=1;assert(value,message) end
 local ok,err=xpcall(function()
- for _,viewport in ipairs({Vector2.new(1280,800),Vector2.new(750,323),Vector2.new(390,317)}) do
+ for _,viewport in ipairs({Vector2.new(1280,800),Vector2.new(750,323),Vector2.new(529,323),Vector2.new(530,323),Vector2.new(390,317)}) do
   local host=Instance.new('Frame');host.Size=UDim2.fromOffset(viewport.X,viewport.Y);host.Parent=gui
   local copy=Instance.new('ModuleScript');copy.Name='NavigationGridFixture';copy.Parent=client
   local signal=Instance.new('BindableEvent');signal.Name='CameraChanged';signal.Parent=copy
@@ -27,7 +27,7 @@ local ok,err=xpcall(function()
   end
   local last=buttons[7]
   local first=buttons[1]
-  check(first.AbsolutePosition.Y>=64 or buttons[2].AbsolutePosition.X+buttons[2].AbsoluteSize.X<=viewport.X-266,'navigation clears the top wallet')
+  check(first.AbsolutePosition.Y>=64 or buttons[2].AbsolutePosition.X+buttons[2].AbsoluteSize.X<=viewport.X-340,'navigation clears the top wallet')
   check(last.AbsolutePosition.Y>=buttons[5].AbsolutePosition.Y+buttons[5].AbsoluteSize.Y-1,'last icon has its own row')
   check(last.AbsolutePosition.Y+last.AbsoluteSize.Y<=viewport.Y-60,'navigation clears bottom action')
   check(last.TDButtonArt.Visible,'login reward background is visible')

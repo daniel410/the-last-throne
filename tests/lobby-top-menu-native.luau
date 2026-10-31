@@ -11,7 +11,9 @@ local ok,err=xpcall(function()
  view=require(client.LobbyTopMenu).create(facade,actions)
  local menuButton=view.gui.Menu
  check(wallet.Wallet.Position.Y.Offset==menuButton.Position.Y.Offset,'wallet and menu align at the top')
- check(wallet.Wallet.Position.X.Offset<=menuButton.Position.X.Offset,'wallet ends before the menu button')
+ check(wallet.Wallet.Position.X.Offset<=menuButton.Position.X.Offset-8,'wallet clears the menu button')
+ check(menuButton.Size==UDim2.fromOffset(112,44) and menuButton.Caption.Text=='MENU','TD lobby menu size and label')
+ check(menuButton:FindFirstChild('TDIcon_settings')~=nil and menuButton.TDButtonArt.SliceScale==.25,'TD lobby menu artwork')
  check(view.gui.Enabled and not view.menu.Visible and wallet.Enabled,'lobby menu starts closed and wallet visible')
  for i,id in ipairs({'Hero','Bag','Journal','Settings'})do
   local b=view.buttons[id];check(b.Selectable and b.Active,'menu action selectable '..id)

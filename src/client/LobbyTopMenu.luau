@@ -5,8 +5,12 @@ local UIS=game:GetService('UserInputService')
 local M={}
 function M.create(player,actions)
  local gui=Instance.new('ScreenGui');gui.Name='LobbyTopMenu';gui.ResetOnSpawn=false;gui.DisplayOrder=75;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=player:WaitForChild('PlayerGui')
- local toggle=T.button(gui,'Menu','≡',UDim2.new(1,-50,0,8),UDim2.fromOffset(40,40));toggle.Caption.Visible=false
- T.icon(toggle,'settings',UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8))
+ local toggle=T.button(gui,'Menu','MENU',UDim2.new(1,-124,0,8),UDim2.fromOffset(112,44))
+ toggle:SetAttribute('ChromeControl','menu');toggle.TDButtonArt.SliceScale=.25
+ toggle.Caption.Position=UDim2.fromOffset(24,4);toggle.Caption.Size=UDim2.new(1,-36,1,-8)
+ toggle.Caption.TextSize=14;toggle.Caption.TextColor3=Color3.new(1,1,1)
+ toggle.Caption.TextStrokeColor3=Color3.fromRGB(8,16,30);toggle.Caption.TextStrokeTransparency=.1
+ T.icon(toggle,'settings',UDim2.new(0,2,.5,-10),UDim2.fromOffset(20,20))
  local menu=T.frame(gui,'Actions',UDim2.new(1,-178,0,56),UDim2.fromOffset(168,192));menu.Visible=false
  local buttons={}
  for i,row in ipairs({{'Hero',Navigation.statsButton},{'Bag',Navigation.bagButton},{'Journal','JOURNAL [J]'},{'Settings',Navigation.settings}})do

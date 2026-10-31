@@ -9,7 +9,7 @@ function M.create(player,parent,world)
  gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=parent
  local wallet=Wallet.create(gui)
  -- The lobby has no minimap: align the balances beside the top menu.
- wallet.AnchorPoint=Vector2.new(1,0);wallet.Position=UDim2.new(1,-58,0,8)
+ wallet.AnchorPoint=Vector2.new(1,0);wallet.Position=UDim2.new(1,-132,0,8)
  local function refresh()
   local phase=player:GetAttribute("K0SessionPhase")
   gui.Enabled=world:GetAttribute("TLTServerRole")~="Battle"
