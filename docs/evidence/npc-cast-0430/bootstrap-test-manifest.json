@@ -1,0 +1,6 @@
+{
+  "test": "tests/npc-bootstrap-native.luau",
+  "sha256": "e827405e40c3e3b88f44c5bac06ab127d0dc25b8225ce9abfdf8f79eee6ef176",
+  "artifacts": "build.json",
+  "coverage": "actual frozen artifact native startup + authored NPC/facility wiring + client module compilation; no real Player input or persistence"
+}

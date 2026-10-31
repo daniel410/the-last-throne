@@ -1,0 +1,7 @@
+{
+  "role": "Lobby",
+  "checks": 97,
+  "kind": "NPC_BOOTSTRAP_NATIVE",
+  "pass": true,
+  "failures": []
+}
