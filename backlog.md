@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> **2026-10-30 최신 본편 승인 · TLT-001/065:** 10~15세 대상 [다섯 에픽 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 현재 서사 기준으로 삼는다. Deepwood → Frozen Vale → Ember Caldera → 어두운 숲 → Haunted Graveyard 순서로 Veyr의 침공을 막고 왕관의 심장을 되찾아 완결한다. 기존 심오한 서사/에픽1~4 줄거리 보존 조건과 8에픽 계획보다 이 승인이 우선한다. 아래 과거 기록·상세안은 참고 자료이며 세부 시나리오/성장·보상/게임 반영은 후속이다. 기존 보상 정본과 안정ID는 자동 변경하지 않는다.
+
 > 2026-10-30 **0.40.2 / TLT-028/031/052/061/084 부분 구현:** Deepwood 지역별 장소·선택 경사로/순환길·숲 군집·굽은 연결 흙길, 서버 판정 BOSS 머리 위 배지, 미니맵 아래 투명 Gold/Diamonds 표시. [비교 조사](docs/research/2026-10-30-deepwood-places.md) · [검증/남은 수용](docs/evidence/deepwood/places-0400/README.md). 로비 버전18·전투 버전4가 비공개 게시됐으며 상위 티켓은 In Progress다. [게시 증거](docs/evidence/release-0402/README.md).
 
 
