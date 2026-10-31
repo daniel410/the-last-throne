@@ -8,6 +8,10 @@ for _,class in ipairs({'knight','elf','dwarf','mage'}) do
 end
 table.insert(C.offers,{id='knight_shield_fine',definitionId='knight_shield_fine',currency='gold',price=250})
 C.sell.knight_shield_fine=50
+-- Provisional Diamond Shop assortment; prices and balance require playtesting.
+for _,row in ipairs({{'knight_shield_fine',5},{'traveler_hood',2},{'traveler_coat',3},{'traveler_gloves',2},{'traveler_boots',2},{'copper_ring',4},{'amber_charm',4},{'veteran_hood',6}}) do
+ table.insert(C.offers,{id=row[1]..'_diamond',definitionId=row[1],currency='diamonds',price=row[2]})
+end
 -- Gold prices are provisional; all classes may buy for their bag/shared storage.
 for _,resource in ipairs({'health','mana'}) do
  for tier,size in ipairs({'','_medium','_large','_xl'}) do

@@ -19,6 +19,13 @@ local starter=R.copy(sell);starter.instanceId='hero-starter-3';starter.requestId
 local diamond=R.copy(buy);diamond.requestId='diamond';diamond.offerId='mage_weapon_veteran_diamond';diamond.revision=sold.revision
 local paid=assert(R.shop(sold,diamond,{atLobby=true},C));check(paid.wallet.gold==520 and paid.wallet.diamonds==10,'Diamond price is server-owned; other-class purchase allowed')
 check(paid.items['shop-diamond'].definitionId=='mage_weapon_veteran','premium delivery uses same equip/class/level rules')
+local offers=dofile('src/shared/EconomyCatalog.luau')
+for _,id in ipairs({'knight_shield_fine_diamond','traveler_hood_diamond','traveler_coat_diamond','traveler_gloves_diamond','traveler_boots_diamond','copper_ring_diamond','amber_charm_diamond','veteran_hood_diamond'}) do
+ local offer=assert(offers.offer(id));local command={action='Buy',requestId='test-'..id,heroId='hero',revision=p.revision,offerId=id}
+ local result=assert(R.shop(p,command,{atLobby=true},C))
+ check(result.wallet.diamonds==p.wallet.diamonds-offer.price and result.items['shop-'..command.requestId].definitionId==offer.definitionId,'Diamond offer spends and grants '..id)
+ local duplicate=assert(R.shop(result,command,{atLobby=true},C));check(duplicate.wallet.diamonds==result.wallet.diamonds and duplicate.revision==result.revision,'Diamond offer retry is idempotent '..id)
+end
 local poor=R.copy(p);poor.wallet.gold=0;poor.wallet.diamonds=0
 check(not R.shop(poor,buy,{atLobby=true},C) and not R.shop(poor,diamond,{atLobby=true},C),'insufficient balances cannot grant gear')
 local full=R.copy(p)

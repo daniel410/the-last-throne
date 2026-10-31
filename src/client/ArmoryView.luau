@@ -7,14 +7,15 @@ local Menu=require(script.Parent.HeroMenuChrome)
 local Artwork=require(script.Parent.ItemArtwork)
 local Impact=require(RS.Shared.EquipmentImpact)
 local V={}
-function V.create(parent,send)
+function V.create(parent,send,diamondOnly)
  local panel=Menu.frame(parent,'Armory',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(950,700);cap.Parent=panel
- T.label(panel,'Title','DAWNSPIRE SUPPLIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,28),22,T.color.gold)
+ T.label(panel,'Title',diamondOnly and 'DIAMOND SHOP' or 'DAWNSPIRE SUPPLIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,28),22,T.color.gold)
  local close=T.button(panel,'Close','X',UDim2.new(1,-62,0,12),UDim2.fromOffset(44,44));close.Activated:Connect(function() panel.Visible=false end)
  local balance=T.label(panel,'Balance','Loading your saved wallet...',UDim2.fromOffset(20,46),UDim2.new(1,-40,0,26),15)
  local buy=T.button(panel,'BuyTab','BUY',UDim2.fromOffset(16,82),UDim2.new(.5,-20,0,44))
  local sell=T.button(panel,'SellTab','SELL',UDim2.new(.5,4,0,82),UDim2.new(.5,-20,0,44))
+ if diamondOnly then buy.Visible=false;sell.Visible=false end
  local scroll=Instance.new('ScrollingFrame');scroll.Name='Offers';scroll.Position=UDim2.fromOffset(16,238);scroll.Size=UDim2.new(1,-32,1,-330);scroll.BackgroundTransparency=1;scroll.BorderSizePixel=0;scroll.ScrollBarThickness=6;scroll.AutomaticCanvasSize=Enum.AutomaticSize.Y;scroll.CanvasSize=UDim2.new();scroll.Parent=panel
  local layout=Instance.new('UIListLayout');layout.Padding=UDim.new(0,10);layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.Parent=scroll
  local notice=T.label(panel,'Notice','Choose a weapon or potion to review its price.',UDim2.new(0,20,1,-82),UDim2.new(1,-40,0,64),12)
@@ -55,6 +56,7 @@ function V.create(parent,send)
    local offers=table.clone(Catalog.offers)
    table.sort(offers,function(a,b) local da,db=Items.items[a.definitionId],Items.items[b.definitionId];if (da.restore~=nil)~=(db.restore~=nil) then return da.restore~=nil end;if da.restore and db.restore then if da.restore~=db.restore then return da.restore=='health' end;return da.potionTier<db.potionTier end;local aa=da.classId==class;local bb=db.classId==class;if aa~=bb then return aa end;return a.id<b.id end)
    for _,offer in ipairs(offers) do
+    if diamondOnly and offer.currency~='diamonds' then continue end
     local d=Items.items[offer.definitionId];if category~='All' and Catalog.category(d)~=category then continue end;local hero=state.heroes and state.heroes[state.heroId]
     local description
     if d.restore then
