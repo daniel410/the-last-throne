@@ -78,7 +78,7 @@ function LobbyGui.create(request,onManage)
 	-- Leave space above the panel for the lobby buttons and wallet.
 	local shell=Menu.frame(shade,"HeroPanel",UDim2.new(.5,0,.5,58),UDim2.new(1,-120,1,-164))
 	shell.AnchorPoint=Vector2.new(.5,.5)
-	local constraint=Instance.new("UISizeConstraint");constraint.MaxSize=Vector2.new(900,560);constraint.Parent=shell
+	local constraint=Instance.new("UISizeConstraint");constraint.MaxSize=Vector2.new(800,510);constraint.Parent=shell
 	local explore = button(shell, "ExploreCourtyard", "X", UDim2.new(1,-58,0,12), UDim2.fromOffset(40,40))
 	explore.Activated:Connect(function() minimized=true; shade.Visible=false; reopen.Visible=not suppressed end)
 	reopen.Activated:Connect(function() minimized=false; shade.Visible=not suppressed; reopen.Visible=false end)
@@ -234,7 +234,7 @@ function LobbyGui.create(request,onManage)
 			view.mark.Visible=isSelected==true
 			view.border.Color = isSelected and Color3.fromRGB(89,202,255) or Theme.color.silver
 			view.border.Thickness = isSelected and 4 or 2
-			view.status.Text = owned and Text.Lobby.Owned or Text.Lobby.NewHero
+			view.status.Text = owned and (type(owned.level) == "number" and string.format(Text.Lobby.HeroLevel, owned.level) or Text.Lobby.HeroLevelUnavailable) or Text.Lobby.NewHero
 		end
 		manage.Visible = selected ~= nil and current.phase == "Lobby"
 		manage.Active = selected ~= nil and current.canManage and not busy

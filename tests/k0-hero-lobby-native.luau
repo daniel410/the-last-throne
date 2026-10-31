@@ -231,6 +231,14 @@ local ok, fatal = xpcall(function()
 			equal(state.byClass[classId].baseClassId, classId, "original class remains immutable")
 		end
 		local view = session.snapshot(state)
+		equal(view.heroes[1].level, 1, "session-only hero starts at level one")
+		local levels = {[state.heroes[1].heroId]=12, [state.heroes[2].heroId]=45}
+		options.inventory = {available=function() return true end, growth=function(_, id) return levels[id] and {level=levels[id]} or nil end}
+		local savedView = session.snapshot(state)
+		equal(savedView.heroes[1].level, 12, "first hero level comes from its saved progression")
+		equal(savedView.heroes[2].level, 45, "second hero keeps its own saved level")
+		equal(savedView.heroes[3].level, nil, "missing progression is not displayed as level one")
+		options.inventory = nil
 		view.heroes[1].classId, view.heroes[1].practice.attacked = "mage", true
 		view.heroes[2] = nil
 		equal(state.heroes[1].baseClassId, "knight", "snapshot cannot mutate hero class")

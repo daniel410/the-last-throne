@@ -37,8 +37,10 @@ local function snapshot(state)
 	local inventoryReady = settings.inventory == nil or settings.inventory.available(state.player)
 	local heroes = {}
 	for _, hero in ipairs(state.heroes) do
+		local growth = settings.inventory and settings.inventory.growth and settings.inventory.growth(state.player, hero.heroId)
 		table.insert(heroes, {
 			heroId = hero.heroId, classId = hero.baseClassId,
+			level = growth and growth.level or (not settings.inventory and 1 or nil),
 			skillSlots = { table.unpack(hero.skillSlots) }, practiceAdvanced = hero.practiceAdvanced,
 			practice = { moved = hero.practice.moved, attacked = hero.practice.attacked, dodged = hero.practice.dodged },
 		})

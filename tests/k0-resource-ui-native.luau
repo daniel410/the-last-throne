@@ -171,6 +171,16 @@ local ok, failure = xpcall(function()
 	character:Destroy()
 
 	local lobby = copyModule("HeroLobbyGui").create(function() end)
+	local cards = playerGui.HeroLobbyGui.Shade.HeroPanel.HeroCards
+	lobby.setState({phase="Lobby", heroes={
+		{heroId="k", classId="knight", level=12, skillSlots={1,2,3}},
+		{heroId="e", classId="elf", level=45, skillSlots={1,2,3}},
+		{heroId="d", classId="dwarf", skillSlots={1,2,3}},
+	}, canManage=true, canStart=false})
+	check(cards.knight.Ownership.Text == "LEVEL 12" and cards.elf.Ownership.Text == "LEVEL 45", "each owned card shows its own level")
+	check(cards.dwarf.Ownership.Text == "LEVEL —" and cards.mage.Ownership.Text == "NEW HERO", "unknown levels and uncreated heroes remain distinct")
+	lobby.setState({phase="Lobby", heroes={{heroId="k", classId="knight", level=13, skillSlots={1,2,3}}}, canManage=true, canStart=false})
+	check(cards.knight.Ownership.Text == "LEVEL 13", "level display refreshes with the server snapshot")
 	local panel = playerGui.HeroLobbyGui.Shade.HeroPanel.SkillManagement
 	local slots = panel.SkillSlots
 	check(string.find(panel.Instructions.Text, "level 20 advancement for slot 4", 1, true) ~= nil, "slot 4 requires the level 20 advancement")

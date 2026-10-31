@@ -92,6 +92,8 @@ return {
 		Select = "SELECT HERO",
 		Selected = "SELECTED",
 		Owned = "CLASS LOCKED",
+		HeroLevel = "LEVEL %d",
+		HeroLevelUnavailable = "LEVEL —",
 		NewHero = "NEW HERO",
 		Start = "SOLO ADVENTURE",
   Training = "TRAINING",
