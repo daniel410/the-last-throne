@@ -9,6 +9,9 @@ local wallet,view
 local ok,err=xpcall(function()
  wallet=require(client.LobbyWallet).create(facade,game.CoreGui,workspace)
  view=require(client.LobbyTopMenu).create(facade,actions)
+ local menuButton=view.gui.Menu
+ check(wallet.Wallet.Position.Y.Offset==menuButton.Position.Y.Offset,'wallet and menu align at the top')
+ check(wallet.Wallet.Position.X.Offset<=menuButton.Position.X.Offset,'wallet ends before the menu button')
  check(view.gui.Enabled and not view.menu.Visible and wallet.Enabled,'lobby menu starts closed and wallet visible')
  for i,id in ipairs({'Hero','Bag','Journal','Settings'})do
   local b=view.buttons[id];check(b.Selectable and b.Active,'menu action selectable '..id)

@@ -26,6 +26,8 @@ local ok,err=xpcall(function()
    if index>1 then check(left.AbsolutePosition.Y>=buttons[index-2].AbsolutePosition.Y+buttons[index-2].AbsoluteSize.Y-1,'rows do not overlap') end
   end
   local last=buttons[7]
+  local first=buttons[1]
+  check(first.AbsolutePosition.Y>=64 or buttons[2].AbsolutePosition.X+buttons[2].AbsoluteSize.X<=viewport.X-266,'navigation clears the top wallet')
   check(last.AbsolutePosition.Y>=buttons[5].AbsolutePosition.Y+buttons[5].AbsoluteSize.Y-1,'last icon has its own row')
   check(last.AbsolutePosition.Y+last.AbsoluteSize.Y<=viewport.Y-60,'navigation clears bottom action')
   check(last.TDButtonArt.Visible,'login reward background is visible')

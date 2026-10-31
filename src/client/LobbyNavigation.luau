@@ -8,7 +8,17 @@ function M.create(parent,actions)
  local rail=Instance.new('Frame');rail.Name='LobbyNavigation';rail.BackgroundTransparency=1;rail.AnchorPoint=Vector2.new(0,.5);rail.Position=UDim2.new(0,10,.5,-30);rail.Size=UDim2.fromOffset(180,268);rail.Parent=parent
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.fromOffset(88,64);grid.CellPadding=UDim2.fromOffset(4,4);grid.FillDirectionMaxCells=2;grid.SortOrder=Enum.SortOrder.LayoutOrder;grid.Parent=rail
  local scale=Instance.new('UIScale');scale.Parent=rail
- local function resize() local camera=workspace.CurrentCamera;if camera then scale.Scale=math.min(1,math.max(.4,(camera.ViewportSize.Y-84)/268)) end end
+ local function resize()
+  local camera=workspace.CurrentCamera
+  if camera then
+   local viewport=camera.ViewportSize
+   -- Narrow screens need room above the rail for the top wallet and menu.
+   local top=viewport.X<456 and 72 or 8
+   local available=viewport.Y-60-top
+   scale.Scale=math.min(1,math.max(.4,available/268))
+   rail.Position=UDim2.new(0,10,0,top+available/2)
+  end
+ end
  local camera=workspace.CurrentCamera;if camera then camera:GetPropertyChangedSignal('ViewportSize'):Connect(resize) end;resize()
  local panel=T.frame(parent,'LobbyGuide',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(1100,850);cap.Parent=panel
