@@ -2,7 +2,7 @@
 
 2026-10-31 · TLT-005/032/033/055/057/084 부분 구현 · ART/ENG → QA/DES
 
-사용자는 별도 Python 구현 대신 Blender MCP 연결을 요청했고, 후속 답변으로 **Blender MCP 내부 API 사용**을 선택했다. Blender5.2.0 LTS에 MCP for Blender2.2.6을 설치·등록하고 실제 MCP stdio 요청으로 장면 조회·리그 생성·Action 키프레임 편집·곡선 평가·다각도 화면·원본 저장을 수행했다. 연결만 등록한 결과와 구분한다. [연결 상태](connection-status.json) · [실행 요청과 응답](03-keyframes.mcp.json).
+사용자는 별도 Python 구현 대신 Blender MCP 연결을 요청했고, 후속 답변으로 **Blender MCP 내부 API 사용**을 선택했다. Blender5.2.0 LTS에 MCP for Blender2.2.6을 설치·등록하고 실제 MCP stdio 요청으로 장면 조회·리그 생성·Action 키프레임 편집·곡선 평가·다각도 화면·원본 저장을 수행했다. 연결만 등록한 결과와 구분한다. [연결 상태](connection-status.json) · [키프레임 편집 요청](03-keyframes.mcp.json) · [응답](03-keyframes-result.json).
 
 ## 원본과 동작
 
@@ -29,8 +29,12 @@ Blender MCP에서 실제 F-curve의 key·접선과 `fcurve.evaluate` 기준132�
 
 모션 전용 native fixture는 현재7개 모듈과 원본 무기/방패를 읽으며 전체 서버/스토리 실행을 포함하지 않는다. 검날 중심선과 방패 OBB 검사는 모든 메시 삼각형의 충돌 검사가 아니다. 무기/상체 곡선 검증이며 바닥 위 하체 이동의 정상 입력 수용은 별도다. 기존 자산203785492 유형 경고는 로그에 남긴다. [0.40.4 선행 결과](../melee-motion-0404/README.md)의42개 방어 검사는 그 버전의 결과이며 이번에 다시 센 검사와 구분한다.
 
+### 비교 장면 재현
+
+`node docs/evidence/melee-blender-0411/build-comparison.mjs`는 `/private/tmp/tlt-melee-blender-comparison.rbxlx`를 만든다. 기존 비교 사양의 Lua만 읽으며 Python을 실행하지 않는다. Studio Play에서 Space/1~5/C/V/F를 사용한다. 현행 Candidate에는 Blender 곡선 모듈을 포함한다. 게임 빌드/게시와 분리한 검토 장면이다.
+
 ## 빌드·인계
 
-동시에 진행된 스토리 작업이0.41.0으로 커밋돼 다음 버전은 **0.41.1**로 예약했다. 그 작업의 코드를 이 변경으로 재작성하지 않았다. 최종 빌드의 고정 커밋/해시와 역할 시작 검사는 build.json에 추가한다. Roblox 게시·릴리스 태그는 이번 범위가 아니다.
+동시에 진행된 스토리 작업이0.41.0으로 커밋돼 다음 버전은 **0.41.1**로 예약했다. 그 작업의 코드를 이 변경으로 재작성하지 않았다. 고정 소스 커밋 `603fda14965e692ee79d12f2cc6779af61c150f1`에서 **0.41.1 Lobby/Battle Rojo7.7.1 빌드 성공**. 두 산출물의 모션·곡선·렌더러·전투 모듈4개를 고정 소스와 다시 대조했다. [빌드/해시](build.json) · 최종 Battle 역할 시작 **10개 통과**([로그](battle-bootstrap.log)). 최초 XML 대조 도구가 CDATA 경계를 소스로 읽어 실패했으나 검사기를 보정해 같은 Lobby 파일을 재검증했고 덮어쓰지 않았다. Roblox 게시·릴리스 태그는 이번 범위가 아니다.
 
 정상 전투의 이동/방어/회피 전환, 모바일·패드,4인 관전자·실제 네트워크 지연·다양한 아바타 비율·최종 사용자 미술 수용은 남아 있다. 상위 티켓은 In Progress다. 다음 담당은 QA/DES다. 복구 시 이전 모션 모듈로 되돌릴 수 있고 원본 모델에는 변경이 없다.

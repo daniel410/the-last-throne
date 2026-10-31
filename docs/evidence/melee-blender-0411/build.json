@@ -1,0 +1,55 @@
+{
+  "version": "0.41.1",
+  "date": "2026-10-31",
+  "source_commit": "603fda14965e692ee79d12f2cc6779af61c150f1",
+  "tool": "Rojo 7.7.1",
+  "status": "local-build-success-unpublished",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.41.1/TheLastThrone-Lobby-0.41.1.rbxlx",
+      "bytes": 1659131,
+      "sha256": "bb3d9588d9802d5f37c942a88eb5041a669f47df6b15d9eaaa86a5368fca2474",
+      "result": "success",
+      "command": "rojo build default.project.json --output /Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.41.1/TheLastThrone-Lobby-0.41.1.rbxlx",
+      "source_modules_verified": 4
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.41.1/TheLastThrone-Battle-0.41.1.rbxlx",
+      "bytes": 1659132,
+      "sha256": "ca6e9c7172068976853bad218b69efdc8bb46b99a9d9a89ace2b6211c1483e90",
+      "result": "success",
+      "command": "rojo build battle.project.json --output /Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.41.1/TheLastThrone-Battle-0.41.1.rbxlx",
+      "source_modules_verified": 4
+    }
+  ],
+  "source_sha256": {
+    "VERSION": "afc21992ae05c8db56bc53b1097ff7a879bf62bf164a38249cc9f32d4a1f7b3e",
+    "src/client/K0MeleeMotion.luau": "33ebe19ea4a524f831a3b8e99afaa93198081cd405430c1a6a08fe438c343039",
+    "src/client/K0MeleeClips.luau": "3350db2e4ae47edf8067b11f79f482c64ce4d7f448273f7e81c065da01fd7fbe",
+    "src/client/K0SwordVisual.luau": "0ba4b3c2cec9939d77d8bcc9a9379ab42c1f0d203c23b6c6cde77a3a4f6de258",
+    "src/server/Combat/CombatService.luau": "fd54376afa35426b526b39163664acc24bcab2b373fb2237f19ceef49dc7fcdd"
+  },
+  "published": false,
+  "release_tag": null,
+  "verification_note": "First XML inspection treated CDATA delimiters as source bytes and failed. Corrected the inspection parser; the existing Lobby artifact was retained without rebuilding or overwriting it.",
+  "native_checks": [
+    {
+      "kind": "K0_MELEE_CURVES_NATIVE",
+      "checks": 3204,
+      "pass": true
+    },
+    {
+      "kind": "K0_MELEE_BLENDER_NATIVE",
+      "checks": 1584,
+      "pass": true,
+      "maxDegreesError": 0.000030517578125
+    },
+    {
+      "kind": "BATTLE_BOOTSTRAP_NATIVE",
+      "checks": 10,
+      "pass": true
+    }
+  ]
+}
