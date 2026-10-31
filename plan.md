@@ -1,5 +1,8 @@
 # The Last Throne 통합 개발 계획
 
+> 2026-10-31 **0.51.1 / TLT-028/031/061/084 수정:** 배틀 추가 메뉴에서 RETURN TO LOBBY가 SETTINGS를 가리던 동일 좌표 배치를 수정했다. [재현·검증·빌드](docs/evidence/battle-settings-0511/README.md). 로컬 시험판·미게시.
+
+
 > 2026-10-31 **0.51.0 / TLT-063/057/084 부분 구현:** Ember Caldera7본편·4선택 퀘스트/3선택 지역·TD 화산10종과 Blender MCP70동작을 연결한다. 광부 호위·냉각 장치·저장 후 승강기 이동·Inferno Overlord 단계/유한 증원·도시 복구·창고/동료 편성·어둠의 숲행 단서를 포함한다. [구현·검증·남은 수용](docs/evidence/ember-caldera-0510/README.md). 로컬 시험판·미게시이며 정상 전투 완주/Lv30·실기기/4인+AI·최종 미술/밸런스는 후속이다.
 
 > 2026-10-31 **0.50.0 / TLT-062/057/084 부분 구현:** Frozen Vale7본편·4선택 퀘스트/3선택 지역·TD 설원10종과 Blender MCP70동작·무기/네발 보행을 로컬 런타임에 연결한다. [구현·검증·남은 수용](docs/evidence/frozen-vale-0500/README.md). 미게시이며 정상 전투 완주/실기기·4인+AI·최종 미술/난이도 수용은 후속이다.
