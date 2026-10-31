@@ -1,0 +1,145 @@
+K0_NATIVE_SMOKE {"players":0,"checks":113,"spawnCoverage":"Spawn instance only; initial Player placement and respawn require real Play","assetLoads":[],"pass":false,"enemies":[],"assetCoverage":"Actual TD MeshParts in isolated Studio; published RPG permissions and visible Play presentation require separate evidence","compiledModules":["ReplicatedStorage.Shared.AdvancedSkills","ReplicatedStorage.Shared.DeepwoodAccess","ReplicatedStorage.Shared.DeepwoodAdventure","ReplicatedStorage.Shared.DeepwoodBossEncounters","ReplicatedStorage.Shared.DeepwoodBounds","ReplicatedStorage.Shared.DeepwoodContent","ReplicatedStorage.Shared.DeepwoodProgress","ReplicatedStorage.Shared.DeepwoodQuestCatalog","ReplicatedStorage.Shared.DeepwoodQuestLog","ReplicatedStorage.Shared.EconomyCatalog","ReplicatedStorage.Shared.EconomyRules","ReplicatedStorage.Shared.ExpeditionConfig","ReplicatedStorage.Shared.Hello","ReplicatedStorage.Shared.HeroProgression","ReplicatedStorage.Shared.InventoryText","ReplicatedStorage.Shared.ItemCatalog","ReplicatedStorage.Shared.ItemSpriteAtlas","ReplicatedStorage.Shared.K0Config","ReplicatedStorage.Shared.K0Text","ReplicatedStorage.Shared.LobbyFacilities","ReplicatedStorage.Shared.LobbyText","ReplicatedStorage.Shared.SkillStatPreview","ReplicatedStorage.Shared.SkillStatText","ReplicatedStorage.Shared.TDUI.BattleChromeArtAssets","ReplicatedStorage.Shared.TDUI.StatusWindowArtAssets","ReplicatedStorage.Shared.TDUI.UIIconAssets","ServerScriptService.Server.Combat.AdvancedCombat","ServerScriptService.Server.Combat.CombatService","ServerScriptService.Server.Combat.HeroLevelUpEffect","ServerScriptService.Server.Combat.K0Rules","ServerScriptService.Server.Cosmetics.HeroPalette","ServerScriptService.Server.Cosmetics.KnightAppearance","ServerScriptService.Server.Cosmetics.WeaponAppearance","ServerScriptService.Server.Cosmetics.WoodenStaffBuilder","ServerScriptService.Server.Inventory.AccountStore","ServerScriptService.Server.Inventory.InventoryRules","ServerScriptService.Server.Inventory.InventoryService","ServerScriptService.Server.Lobby.FacilityAccess","ServerScriptService.Server.Lobby.FacilityService","ServerScriptService.Server.Lobby.HeroSessionService","ServerScriptService.Server.Lobby.MerchantService","ServerScriptService.Server.Network.ExpeditionService","ServerScriptService.Server.Network.ExpeditionStore","ServerScriptService.Server.Spawn.HeroDeathFall","ServerScriptService.Server.Spawn.SpawnService","ServerScriptService.Server.Story.DeepwoodActivities","ServerScriptService.Server.Story.DeepwoodRegionAccess","ServerScriptService.Server.Story.DeepwoodService","ServerScriptService.Server.World.DeepwoodActivityWorld","ServerScriptService.Server.World.DeepwoodEnvironment","ServerScriptService.Server.World.DeepwoodGroundedWorld","ServerScriptService.Server.World.DeepwoodPlaces","ServerScriptService.Server.World.DeepwoodWorld","ServerScriptService.Server.World.EnemyHealthBar","ServerScriptService.Server.World.LobbyArchitecture","ServerScriptService.Server.World.LobbyLandmarks","ServerScriptService.Server.World.LobbyWorld","ServerScriptService.Server.World.StorageChest","ServerScriptService.Server.World.TdMonsterAppearance","ServerScriptService.Server.World.TrainingField","ServerScriptService.Server.World.WeaponMerchant","StarterPlayer.StarterPlayerScripts.Client.AdvancedSkillVisual","StarterPlayer.StarterPlayerScripts.Client.AdventureCamera","StarterPlayer.StarterPlayerScripts.Client.ArmoryView","StarterPlayer.StarterPlayerScripts.Client.BattleMinimap","StarterPlayer.StarterPlayerScripts.Client.DeepwoodAtmosphere","StarterPlayer.StarterPlayerScripts.Client.DeepwoodCartography","StarterPlayer.StarterPlayerScripts.Client.DeepwoodGates","StarterPlayer.StarterPlayerScripts.Client.DeepwoodJournal","StarterPlayer.StarterPlayerScripts.Client.DeepwoodMap","StarterPlayer.StarterPlayerScripts.Client.DeepwoodMapCanvas","StarterPlayer.StarterPlayerScripts.Client.DeepwoodMapState","StarterPlayer.StarterPlayerScripts.Client.DeepwoodNavigation","StarterPlayer.StarterPlayerScripts.Client.DeepwoodQuestBook","StarterPlayer.StarterPlayerScripts.Client.ExpeditionView","StarterPlayer.StarterPlayerScripts.Client.HeroDeathCamera","StarterPlayer.StarterPlayerScripts.Client.HeroGrowthGui","StarterPlayer.StarterPlayerScripts.Client.HeroLobbyGui","StarterPlayer.StarterPlayerScripts.Client.HeroMenuChrome","StarterPlayer.StarterPlayerScripts.Client.HeroSkillTree","StarterPlayer.StarterPlayerScripts.Client.HeroStatsView","StarterPlayer.StarterPlayerScripts.Client.InteractionPrompts","StarterPlayer.StarterPlayerScripts.Client.InventoryChrome","StarterPlayer.StarterPlayerScripts.Client.InventoryGui","StarterPlayer.StarterPlayerScripts.Client.ItemArtwork","StarterPlayer.StarterPlayerScripts.Client.ItemSprites","StarterPlayer.StarterPlayerScripts.Client.K0BackgroundMusic","StarterPlayer.StarterPlayerScripts.Client.K0EnemyVisual","StarterPlayer.StarterPlayerScripts.Client.K0HitEffects","StarterPlayer.StarterPlayerScripts.Client.K0Hud","StarterPlayer.StarterPlayerScripts.Client.K0MeleeMotion","StarterPlayer.StarterPlayerScripts.Client.K0SwordVisual","StarterPlayer.StarterPlayerScripts.Client.K0Targeting","StarterPlayer.StarterPlayerScripts.Client.K0Telegraphs","StarterPlayer.StarterPlayerScripts.Client.LobbyCommerce","StarterPlayer.StarterPlayerScripts.Client.LobbyLandmarkVisuals","StarterPlayer.StarterPlayerScripts.Client.PotionIcon","StarterPlayer.StarterPlayerScripts.Client.SkillGlyph","StarterPlayer.StarterPlayerScripts.Client.TDInventoryTheme","StarterPlayer.StarterPlayerScripts.Client.WalletDisplay","StarterPlayer.StarterPlayerScripts.Client.WorldPresentationBudget"],"combatCoverage":"Four idle enemy presets and death/respawn only; real Player aggro, attacks and damage require Play","lobbyCoverage":"Dawnspire scene floor/bounds/spawn and native request/state remote creation only; actual Player lobby selection/start/UI and combat safety require separate evidence","respawns":[],"kind":"K0_NATIVE_SMOKE","runtimeErrors":[],"failures":["server creates K0Action RemoteEvent","Remotes is not a valid member of ReplicatedStorage 50312.rbxmx.run-in-roblox-plugin.Main:194\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:148\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"]}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:390: K0 native smoke failed; see K0_NATIVE_SMOKE report
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:390
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+[Roblox][KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.Scheduler:320
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.Scheduler:268
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'KnowledgeTutorials.KnowledgeTutorials.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+[Roblox][sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.Scheduler:320
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.Scheduler:268
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+[Roblox][WindControl.WindControl.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.Scheduler:320
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.Scheduler:268
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'WindControl.WindControl.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+[Roblox][SocialPresence.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:335: builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:312: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:255
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1977
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1953
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1896
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:915
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:860
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.Scheduler:320
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.Scheduler:268
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:260 function doWork
+builtin_SocialPresence.rbxm.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:296 function performWorkUntilDeadline
+
+Stack Begin
+Script 'SocialPresence.SocialPresence.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 335
+Stack End
+[Roblox][sabuiltin_Gen3d.rbxm.Gen3d.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293: 
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+builtin_LayeredClothingEditor.rbxm.LayeredClothingEditor.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.Scheduler:320
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.Scheduler:268
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+sabuiltin_Assistant.rbxm.Assistant.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'sabuiltin_Gen3d.rbxm.Gen3d.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
+{["__stack"] = ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1201 function updateHostRoot
+ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1860
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1809
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1137
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:840
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:237
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.Scheduler.Scheduler.Scheduler:377 function unstable_runWithPriority
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:165 function runWithPriority
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:227
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new:208 function flushSyncCallbackQueue
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:697
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new:379
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot:110 function render
+sabuiltin_VisualizationModes.rbxm.VisualizationModes.Packages._Index.RoactCompat.RoactCompat.RoactTree:86 function mount
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.main:39 function init
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.main:57
+builtin_ManageCollaborators.rbxm.ManageCollaborators.Bin.Deprecated_main:6
+, ... }
+Stack Begin
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 277
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 208 - function flushSyncCallbackQueue
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 697
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new', Line 379
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot', Line 110 - function render
+Script 'ManageCollaborators.ManageCollaborators.Packages._Index.RoactCompat.RoactCompat.RoactTree', Line 86 - function mount
+Script 'ManageCollaborators.ManageCollaborators.Bin.main', Line 39 - function init
+Script 'ManageCollaborators.ManageCollaborators.Bin.main', Line 57
+Script 'ManageCollaborators.ManageCollaborators.Bin.Deprecated_main', Line 6
+Stack End

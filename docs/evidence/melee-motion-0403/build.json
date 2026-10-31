@@ -1,0 +1,73 @@
+{
+  "version": "0.40.3",
+  "date": "2026-10-31",
+  "source_commit": "d3196e076fe2b7c50dffb1c0d6cc014e35dcc198",
+  "tool": "Rojo 7.7.1",
+  "status": "local-build-success-unpublished",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.40.3/TheLastThrone-Lobby-0.40.3.rbxlx",
+      "bytes": 1618122,
+      "sha256": "b91f156ea006b66f0291db3e13d0aeef63d84337d7534169ebd54165786cc9ae",
+      "result": "success",
+      "command": "rojo build default.project.json --output builds/0.40.3/TheLastThrone-Lobby-0.40.3.rbxlx",
+      "source_modules_verified": 3
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.40.3/TheLastThrone-Battle-0.40.3.rbxlx",
+      "bytes": 1618123,
+      "sha256": "2d6537ae0822035a365379a54253f23616b1d0749d974b1d36523056c333f92a",
+      "result": "success",
+      "command": "rojo build battle.project.json --output builds/0.40.3/TheLastThrone-Battle-0.40.3.rbxlx",
+      "source_modules_verified": 3
+    }
+  ],
+  "native_checks": [
+    {
+      "log": "curves.log",
+      "kind": "K0_MELEE_CURVES_NATIVE",
+      "checks": 3070,
+      "pass": true
+    },
+    {
+      "log": "server.log",
+      "kind": "K0_BASIC_ATTACK_NATIVE",
+      "checks": 933,
+      "pass": true
+    },
+    {
+      "log": "guard.log",
+      "kind": "K0_BLOCK_GUARD_NATIVE",
+      "checks": 42,
+      "pass": true
+    },
+    {
+      "log": "battle-bootstrap.log",
+      "kind": "BATTLE_BOOTSTRAP_NATIVE",
+      "checks": 10,
+      "pass": true,
+      "command": "run-in-roblox --place builds/0.40.3/TheLastThrone-Battle-0.40.3.rbxlx --script tests/battle-bootstrap-native.luau"
+    }
+  ],
+  "source_sha256": {
+    "VERSION": "35f9401670788d9bed1d0c9986ee31fedeffcde53d7932217906b37af26c8637",
+    "src/client/K0MeleeMotion.luau": "67909e36cdbabf4674cdc0d32545a40ed23597b5d98967e2be4d65cd1c61c07c",
+    "src/client/K0SwordVisual.luau": "03800271260d5162a080300d68bb595f5fc6745b202a7f6a65267481fbc8047f",
+    "src/server/Combat/CombatService.luau": "ad012acc7aea204fa54fd67be6971b11270e2409d410c0bc4adb6298b2ef535d"
+  },
+  "published": false,
+  "release_tag": null,
+  "legacy_smoke": {
+    "pass": false,
+    "log": "build-smoke.log",
+    "compiled_modules": 101,
+    "failures": [
+      "server creates K0Action RemoteEvent",
+      "Remotes is not a valid member of ReplicatedStorage 50312.rbxmx.run-in-roblox-plugin.Main:194\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:148\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"
+    ],
+    "runtime_errors": [],
+    "note": "Legacy combined lobby/training smoke checks remotes immediately after TrainingField and also expects Dawnspire; role-aware Battle bootstrap passes separately. Do not interpret legacy smoke as PASS."
+  }
+}
