@@ -53,7 +53,9 @@ return CombatService
  companion.select(player,false);companion.update(.2);check(not folder:FindFirstChild('Selene_1'),'rest removes follower')
  companion.select(player,true);companion.update(.2);check(calls==1,'reinvite cannot reset cooldown')
  for i=2,4 do journals[active[i]]=assert(P.selectSelene(journals[active[i]],true)) end
- count=2;companion.update(.2);check(folder:FindFirstChild('Selene_1') and folder:FindFirstChild('Selene_2'),'two players may have two total supporters')
+ count=2;local callsBeforeParty=calls;companion.update(.2)
+ check(folder:FindFirstChild('Selene_1') and not folder:FindFirstChild('Selene_2'),'two-player party has only one actual supporter')
+ check(calls==callsBeforeParty,'no hidden second supporter grants healing')
  count=3;companion.update(.2);check(folder:FindFirstChild('Selene_1') and not folder:FindFirstChild('Selene_2'),'three players have only one total supporter')
  count=4;companion.update(.2);check(folder:FindFirstChild('Selene_1'),'four players may have one supporter');for i=2,4 do check(not folder:FindFirstChild('Selene_'..i),'four players cannot exceed one supporter') end
  check(journals[active[2]].seleneFollowing and companion.projection(active[2]):find('slots are full',1,true),'unselected owners retain preference and see slot explanation')

@@ -1,0 +1,63 @@
+{
+  "version": "0.48.2",
+  "source_commit": "2c20f16d4c6fa97415cbc3d8061d6fb1b8da1de7",
+  "stage": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-display-pinned-onqzskz7",
+  "tool": "Rojo 7.7.1",
+  "lfs_verified_against_committed_oid": [
+    "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+    "assets/shared/td-deepwood-environment/maps.rbxmx",
+    "assets/shared/td-monsters/runtime.rbxmx",
+    "assets/shared/td-monsters/source/Meshy_AI_Goblin_Bladebearer_20261025_texture_da014fd3.glb",
+    "assets/shared/td-monsters/source/Meshy_AI_Grimfang_the_Bonecrusher_20261025_texture_5d91642a.glb",
+    "assets/shared/td-monsters/source/Meshy_AI_Grumpy_Green_Slime_1026021945_texture.glb",
+    "assets/shared/td-monsters/source/Meshy_AI_Ironhide_Warlord_20261025_texture_3545c9fe.glb",
+    "assets/shared/td-player-weapons/runtime.rbxmx",
+    "assets/shared/td-player-weapons/shield/ColorMap.png",
+    "assets/shared/td-player-weapons/shield/back.png",
+    "assets/shared/td-player-weapons/shield/front.png",
+    "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+    "assets/shared/td-player-weapons/shield/shield-mesh-only.glb",
+    "assets/shared/td-player-weapons/shield/shield-textured-review.glb",
+    "assets/shared/td-player-weapons/shield/side.png",
+    "assets/shared/td-player-weapons/shield/three-quarter.png",
+    "assets/shared/td-player-weapons/source/DwarfAxe-td-derived-review.glb",
+    "assets/shared/td-player-weapons/source/ElfBow-td-derived-review.glb",
+    "assets/shared/td-player-weapons/source/KnightSword-td-derived-review.glb",
+    "assets/shared/td-refined-player-weapons/refined-weapon-review.blend",
+    "assets/shared/td-refined-player-weapons/runtime.rbxmx",
+    "assets/shared/td-selene/runtime.rbxmx"
+  ],
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.48.2/TheLastThrone-Lobby-0.48.2.rbxlx",
+      "command": [
+        "rojo",
+        "build",
+        "default.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.48.2/TheLastThrone-Lobby-0.48.2.rbxlx"
+      ],
+      "success": true,
+      "bytes": 2284702,
+      "sha256": "ee276e196f76b2bd7b55d3e084235cb41e8d3c1344628293f067aae20dd2f0a1"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.48.2/TheLastThrone-Battle-0.48.2.rbxlx",
+      "command": [
+        "rojo",
+        "build",
+        "battle.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.48.2/TheLastThrone-Battle-0.48.2.rbxlx"
+      ],
+      "success": true,
+      "bytes": 2284703,
+      "sha256": "e96b64723fb917eb8c93c386ab7e2d4499b6786b44043a778278e405b5996fab"
+    }
+  ],
+  "published": false,
+  "release_tag": null,
+  "status": "local-build-success-unpublished"
+}

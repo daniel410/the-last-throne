@@ -49,7 +49,7 @@ function M.create(o)
    end
   end
   table.sort(chosen,function(a,b) return a.UserId<b.UserId end)
-  local allowed={};for i=1,math.min(#chosen,Budget.limit(#population)) do allowed[chosen[i]]=true end
+  local allowed={};for i=1,math.min(#chosen,Budget.runtimeCap,Budget.limit(#population)) do allowed[chosen[i]]=true end
   for player in pairs(followers) do if not allowed[player] then remove(player) end end
   for _,player in ipairs(population) do
    local hero=o.active(player);local ctx,root=o.context(player);local s=o.state(player,hero.heroId)
