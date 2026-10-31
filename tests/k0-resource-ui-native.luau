@@ -223,7 +223,18 @@ local ok, failure = xpcall(function()
  check(body.StatAllocation.STR.Plus.Active,'safe field enables stat investment')
  body:ClearAllChildren();tree.render(body,fieldHero,fieldSnapshot,{path='steel_knight',selected=1},function() end,function() end,nil)
  check(body.SkillDetails.Train.Active,'safe field enables skill-point investment')
- check(not body.CombatLoadout.Slot1.Active,'field investment does not enable field loadout editing')
+ check(body.CombatLoadout.Slot1.Active,'safe field permits loadout editing')
+ for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
+  for _,case in ipairs({{4,30,false},{5,30,true},{10,31,true},{15,32,true}}) do
+   body:ClearAllChildren()
+   local hero={heroId='field',baseClassId=classId,progression=growth.new(case[1])}
+   tree.render(body,hero,fieldSnapshot,{selected=case[2]},function() end,function() end,nil)
+   check(body.CombatLoadout.Slot4.Active==case[3],classId..' slot4 follows level and selected common skill')
+   body:ClearAllChildren()
+   tree.render(body,hero,{ready=true,atHub=false,canInvest=false},{selected=case[2]},function() end,function() end,nil)
+   check(not body.CombatLoadout.Slot4.Active,'unsafe field disables loadout')
+  end
+ end
 	for _,classId in ipairs({"knight","elf","dwarf","mage"}) do
 		for _,path in ipairs(advanced.order[classId]) do
 			for _,level in ipairs({1,80}) do

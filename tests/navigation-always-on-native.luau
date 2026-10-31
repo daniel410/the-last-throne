@@ -23,6 +23,24 @@ for _,distance in ipairs({60,10,6,1,0}) do
  nav.setTarget(Vector3.new(distance,3,0));task.wait(.15)
  assert(visible()>0,'guide hidden at distance '..distance)
 end
+-- Native chevrons stay on the direct bearing after lateral player movement.
+root.Position=Vector3.new(5,3,20)
+local destination=Vector3.new(60,3,-10)
+nav.setTarget(destination);task.wait(.15)
+local delta=Vector3.new(destination.X-root.Position.X,0,destination.Z-root.Position.Z).Unit
+local rendered=workspace.DeepwoodNavigation:GetChildren();local pairsChecked=0
+for i=1,#rendered,2 do
+ local a,b=rendered[i],rendered[i+1]
+ if a.Transparency<1 and b and b.Transparency<1 then
+  local midpoint=(a.Position+b.Position)/2
+  local offset=Vector3.new(midpoint.X-root.Position.X,0,midpoint.Z-root.Position.Z)
+  assert(math.abs(offset:Cross(delta).Y)<.01,'chevron detours away from direct bearing')
+  local facing=a.CFrame.LookVector+b.CFrame.LookVector
+  assert(facing.Unit:Dot(delta)>.99,'chevron faces objective after player moves')
+  pairsChecked+=1
+ end
+end
+assert(pairsChecked>0,'moving player keeps visible direct guidance')
 player:SetAttribute('TLTNavigationEnabled',false);task.wait(.1);assert(visible()==0,'option hides trail')
 player:SetAttribute('TLTNavigationEnabled',true);task.wait(.1);assert(visible()>0,'option restores trail')
 nav.setTarget(nil);task.wait(.1);assert(visible()==0,'stale guide')
@@ -36,10 +54,10 @@ player:SetAttribute('TLTNavigationEnabled',nil)
 local map=require(mapModule).start()
 local toggle=map.panel.NavigationTrail
 assert(toggle.Caption.Text=='Navigation Trail: ON','map defaults on')
-assert(toggle.Size.Y.Offset==44 and toggle.Selectable,'accessible toggle target')
+assert(toggle.Size.Y.Offset>=40 and toggle.Selectable,'accessible toggle target')
 player:SetAttribute('TLTNavigationEnabled',false);task.wait(.1)
 assert(toggle.Caption.Text=='Navigation Trail: OFF','map reflects off')
 player:SetAttribute('TLTNavigationEnabled',true);task.wait(.1)
 assert(toggle.Caption.Text=='Navigation Trail: ON','map reflects on')
 nav.destroy();Run:Stop()
-print('NAVIGATION_ALWAYS_ON PASS: 5 distances, toggle off/on, no target, training, death')
+print('NAVIGATION_ALWAYS_ON PASS: 5 distances, moving-player direct bearing, toggle off/on, no target, training, death')

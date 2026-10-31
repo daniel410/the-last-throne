@@ -60,5 +60,32 @@ field=assert(R.progress(field,train,{atHub=false,canInvest=true},C));eq(field.he
 local repeatedField,_,receipt=R.progress(field,train,{atHub=false,canInvest=false},C);check(receipt,'same confirmed investment recovers after safety lost');eq(repeatedField.revision,field.revision,'no duplicate SP spend')
 local a,b=G.points(field.heroes.field.progression);eq(a,4,'remaining stats exact');eq(b,1,'remaining skill points exact')
 local loadout={action='SetSkillSlot',heroId='field',requestId='field-loadout',revision=field.revision,slot=1,skill=2}
-local noLoadout,gate=R.progress(field,loadout,{atHub=false,canInvest=true},C);eq(noLoadout,nil,'safe investment never grants field loadout permission');eq(gate,'WaitForLobby','loadout stays at Hub')
+local noLoadout,gate=R.progress(field,loadout,{atHub=false,canInvest=false},C)
+eq(noLoadout,nil,'combat denies loadout changes');eq(gate,'UnsafeGrowth','unsafe loadout has actionable error')
+field=assert(R.progress(field,loadout,{atHub=false,canInvest=true},C))
+eq(field.heroes.field.progression.skillSlots[1],2,'safe field loadout persists')
+local again,_,loadoutReceipt=R.progress(field,loadout,{atHub=false,canInvest=false},C)
+check(loadoutReceipt,'confirmed loadout retry survives safety loss');eq(again.revision,field.revision,'loadout retry does not write twice')
+for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
+ local account=assert(R.addHero(R.new(99),'new-skill',classId,C))
+ local hero=account.heroes['new-skill']
+ hero.progression=G.new(4);hero.level=4
+ local cmd={action='SetSkillSlot',heroId='new-skill',requestId='locked-four',revision=account.revision,slot=4,skill=30}
+ check(not R.progress(account,cmd,{atHub=false,canInvest=true},C),classId..' slot4 locked before level5')
+ for _,case in ipairs({{5,4,30},{10,5,31},{15,4,32}}) do
+  hero=account.heroes['new-skill'];hero.progression=G.new(case[1]);hero.level=case[1]
+  cmd={action='SetSkillSlot',heroId='new-skill',requestId='equip-'..case[1],revision=account.revision,slot=case[2],skill=case[3]}
+  local beforeStats,beforeSP=G.points(hero.progression)
+  local denied,reason=R.progress(account,cmd,{atHub=false,canInvest=false},C)
+  eq(denied,nil,'combat denies new skill');eq(reason,'UnsafeGrowth','combat reason')
+  account=assert(R.progress(account,cmd,{atHub=false,canInvest=true},C))
+  local saved=account.heroes['new-skill'].progression
+  eq(saved.skillSlots[case[2]],case[3],classId..' learned common skill equips in safe field')
+  eq(saved.skillSlots[1],1,'existing first skill preserved');check(G.validate(saved,classId),'saved loadout validates')
+  local afterStats,afterSP=G.points(saved);eq(afterStats,beforeStats,'equip does not spend stats');eq(afterSP,beforeSP,'equip does not spend SP')
+ end
+ local advance={action='Advance',heroId='new-skill',requestId='field-advance',revision=account.revision,branch='steel_knight',stage=1}
+ local denied,reason=R.progress(account,advance,{atHub=false,canInvest=true},C)
+ eq(denied,nil,'safe field never allows advancement');eq(reason,'WaitForLobby','advancement still needs Hub')
+end
 print('Hero progression: '..n..' checks passed')

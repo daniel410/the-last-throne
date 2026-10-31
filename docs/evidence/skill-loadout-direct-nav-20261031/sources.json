@@ -1,0 +1,7 @@
+{
+  "src/client/DeepwoodNavigation.luau": "bc652db99fdf41d2506b9f5312de33b65ee0a79d797c4d025be8258a0a8fd0d4",
+  "src/client/HeroGrowthGui.luau": "d9103be554d36c7ea2074e104518cf08a05425882ebc859a7d1463a9eff65f31",
+  "src/client/HeroSkillTree.luau": "a3c77a6b08d19969541853d0f269c9c972b34f57e9b6efaa76bd153e041b89dc",
+  "src/server/Inventory/InventoryRules.luau": "0956c36a3cd68d4cd12d76e880ccc0ff814b6055f67dc6f4844252bad21d0b34",
+  "src/server/Inventory/InventoryService.luau": "c6c00f449aa282165080efe7bb405b9fbbbdf9ee5535add45992cb37e4f24339"
+}

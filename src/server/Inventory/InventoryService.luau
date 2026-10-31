@@ -125,7 +125,7 @@ function Service.progress(player, command, serverReward)
 		command=Growth.copy(pending)
 	end
 	local initial=options.heroSession.getInventoryContext(player)
-	local investment=command.action=="AllocateStats" or command.action=="TrainSkill"
+	local investment=command.action=="AllocateStats" or command.action=="TrainSkill" or command.action=="SetSkillSlot"
  if not serverReward then
   if not initial or initial.heroId~=command.heroId or options.heroSession.isBusy(player) then return "WaitForLobby" end
   if not initial.atHub and not (investment and options.combat.isSafeForEquipment(player)) then return investment and "UnsafeGrowth" or "WaitForLobby" end

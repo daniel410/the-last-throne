@@ -1,59 +1,16 @@
--- Local visual guidance follows the authored region bridges; never moves the hero.
+-- Local straight-line direction guidance; never moves the hero.
 local Players=game:GetService('Players')
 local RunService=game:GetService('RunService')
-local Content=require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent)
 local Navigation={}
-local function vector(p) return Vector3.new(table.unpack(p)) end
 local function flat(p) return Vector3.new(p.X,0,p.Z) end
-local edges={}
-for i=1,6 do table.insert(edges,{string.format('DW-%02d',i),string.format('DW-%02d',i+1)}) end
-for _,edge in ipairs({{'DW-03','DW-S1'},{'DW-03','DW-S2'},{'DW-05','DW-S3'}}) do table.insert(edges,edge) end
-local function nearest(p)
- local best,distance
- for id,z in pairs(Content.zones) do local d=(flat(p)-flat(vector(z.center))).Magnitude
-  if not distance or d<distance then best=id;distance=d end
- end
- return best
-end
-local function chain(a,b)
- local queue={a};local previous={[a]=false};local index=1
- while queue[index] do
-  local id=queue[index];index+=1;if id==b then break end
-  for _,edge in ipairs(edges) do
-   local nextId=edge[1]==id and edge[2] or edge[2]==id and edge[1]
-   if nextId and previous[nextId]==nil then previous[nextId]=id;table.insert(queue,nextId) end
-  end
- end
- local result={b};local id=b
- while previous[id] do id=previous[id];table.insert(result,1,id) end
- return result
-end
+-- Direction guidance points at the objective; roads and region centers do not alter it.
 function Navigation.route(origin,destination)
- local a,b=nearest(origin),nearest(destination)
- local points={origin}
- if a~=b then
-  -- While on a bridge, continue toward the endpoint leading to the destination.
-  local bridgeEnd,bestDistance
-  for _,edge in ipairs(edges) do
-   local first,second=vector(Content.zones[edge[1]].center),vector(Content.zones[edge[2]].center)
-   local delta=flat(second-first);local t=flat(origin-first):Dot(delta)/delta:Dot(delta)
-   if t>0 and t<1 then
-    local projected=first:Lerp(second,t);local distance=(origin-projected).Magnitude
-    if distance<15 and (not bestDistance or distance<bestDistance) then
-     bestDistance=distance
-     bridgeEnd=#chain(edge[1],b)<#chain(edge[2],b) and edge[1] or edge[2]
-    end
-   end
-  end
-  for _,id in ipairs(chain(bridgeEnd or a,b)) do table.insert(points,vector(Content.zones[id].center)) end
- end
- table.insert(points,destination)
- return points
+ return {origin,destination}
 end
 function Navigation.start()
  local player=Players.LocalPlayer
  local folder=Instance.new('Folder');folder.Name='DeepwoodNavigation';folder.Parent=workspace
- local arrows={};local target,route,origin,lastTarget;local elapsed=0;local surfacesDirty=true
+ local arrows={};local target;local elapsed=0;local surfacesDirty=true
  local added=workspace.DescendantAdded:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
  local removed=workspace.DescendantRemoving:Connect(function(p) if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name:match('^ConnectedPath_')) then surfacesDirty=true end end)
  local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Include
@@ -71,12 +28,13 @@ function Navigation.start()
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   local human=player.Character and player.Character:FindFirstChildOfClass('Humanoid')
   if player:GetAttribute('TLTNavigationEnabled')==false or not target or not root or not human or human.Health<=0 or player:GetAttribute('K0SessionPhase')~='Tutorial' or player:GetAttribute('TLTRoute')=='Training' then hide();return end
-  if surfacesDirty or not origin or (root.Position-origin).Magnitude>4 or lastTarget~=target then
-   surfacesDirty=false;origin=root.Position;lastTarget=target;route=Navigation.route(origin,target)
+  if surfacesDirty then
+   surfacesDirty=false
    local surfaces={};local field=workspace:FindFirstChild('DeepwoodCampaign');local terrain=field and field:FindFirstChild('TerrainBlockout')
    if terrain then for _,p in ipairs(terrain:GetDescendants()) do if p:IsA('BasePart') and (p.Name=='ForestGround' or p.Name:match('^ConnectedPath_')) then table.insert(surfaces,p) end end end
    params.FilterDescendantsInstances=surfaces
   end
+  local route=Navigation.route(root.Position,target)
   -- Keep an arrival chevron visible until the active objective changes.
   local arrival=flat(target-root.Position).Magnitude<12
   local phase=(os.clock()*5)%6

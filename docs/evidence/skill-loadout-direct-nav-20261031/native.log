@@ -1,0 +1,3 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+K0_RESOURCE_UI_NATIVE {"coverage":"Actual GUI constructors and state refresh, native GUI instances, LocalPlayer double; no rendered client or device","checks":4789,"failures":[],"pass":true,"kind":"K0_RESOURCE_UI_NATIVE"}
+DEEPWOOD_NATIVE {"coverage":"Actual geometry and TD rigs, server-authoritative story contracts; no real Player/device/published save acceptance","pass":true,"budgetRestore":{"transparency":0,"shadow":true,"tracked":3922,"light":true},"checks":645,"kind":"DEEPWOOD_NATIVE","failures":[],"activitySteps":60,"objectives":58}

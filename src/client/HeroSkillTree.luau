@@ -24,7 +24,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local g,classId=hero.progression,hero.baseClassId
  local width=math.max(280,body.AbsoluteSize.X-8)
  local narrow=width<760
- local editable=snapshot.ready and snapshot.atHub and not pending
+ local editable=snapshot.ready and (snapshot.atHub or snapshot.canInvest) and not pending
  local canTrain=snapshot.ready and (snapshot.atHub or snapshot.canInvest) and not pending
  local _,points=Growth.points(g)
  local path=state.path or (g.branch~='' and g.branch or Advanced.order[classId][1])

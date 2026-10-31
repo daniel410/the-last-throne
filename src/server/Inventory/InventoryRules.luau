@@ -270,7 +270,7 @@ function Rules.progress(profile,command,context,catalog)
 		local previous=profile.operations[command.requestId]
 		if previous then if previous.fingerprint~=fingerprint then return nil,"RequestConflict" end; return Rules.copy(profile),nil,true end
 		if command.revision~=profile.revision then return nil,"Changed" end
-		local investment=command.action=="AllocateStats" or command.action=="TrainSkill"
+		local investment=command.action=="AllocateStats" or command.action=="TrainSkill" or command.action=="SetSkillSlot"
   if not context.atHub and not (investment and context.canInvest) then return nil,investment and "UnsafeGrowth" or "WaitForLobby" end
 	elseif context.serverReward~=true then return nil,"InvalidRequest" end
 	local nextG,reason,repeated=Growth.apply(g,command,hero.baseClassId)
