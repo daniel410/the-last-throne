@@ -1,0 +1,13 @@
+{
+  "iconLoaded": true,
+  "checks": 68,
+  "kind": "BLACKSMITH_NATIVE",
+  "failures": [],
+  "pass": true,
+  "iconFetch": {
+    "1": {
+      "status": "Enum.AssetFetchStatus.Success",
+      "id": "rbxthumb://type=GameIcon&id=10770905829&w=150&h=150"
+    }
+  }
+}
