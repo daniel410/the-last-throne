@@ -1,0 +1,3 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+DEATH_XP_SERVICE_NATIVE {"coverage":"Actual inventory queue and session store; fake Player; no real network/DataStore","pass":true,"checks":15}
+K0_RESOURCE_UI_NATIVE {"coverage":"Actual GUI constructors and state refresh, native GUI instances, LocalPlayer double; no rendered client or device","checks":4808,"failures":[],"pass":true,"kind":"K0_RESOURCE_UI_NATIVE"}

@@ -1,0 +1,53 @@
+{
+  "version": "0.42.0",
+  "source_commit": "ca5de0439271467d0af55a235d587d3f04afe8ab",
+  "native": [
+    {
+      "kind": "DEATH_XP_SERVICE_NATIVE",
+      "checks": 15,
+      "pass": true,
+      "log": "native.log"
+    },
+    {
+      "kind": "K0_RESOURCE_UI_NATIVE",
+      "checks": 4808,
+      "pass": true,
+      "log": "native.log"
+    },
+    {
+      "kind": "BATTLE_BOOTSTRAP_NATIVE",
+      "checks": 10,
+      "pass": true,
+      "log": "bootstrap.log"
+    }
+  ],
+  "pure": [
+    {
+      "command": "lua tests/death-xp-penalty.spec.lua",
+      "checks": 3575,
+      "pass": true
+    },
+    {
+      "command": "lua tests/k0-hero-session.spec.lua",
+      "checks": 99,
+      "pass": true
+    },
+    {
+      "command": "lua tests/hero-progression.spec.lua",
+      "checks": 656,
+      "pass": true
+    },
+    {
+      "command": "lua tests/inventory.spec.lua",
+      "checks": 265,
+      "pass": true
+    },
+    {
+      "command": "lua tests/advanced-skills.spec.lua",
+      "checks": 1435,
+      "pass": true
+    }
+  ],
+  "published": false,
+  "real_player_device_datastore_acceptance": false
+}
