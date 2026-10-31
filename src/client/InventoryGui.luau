@@ -128,6 +128,7 @@ function InventoryGui.create(onVisibility, feedback)
 	local claimsTitle=Theme.label(claimsPanel,"ClaimsTitle",Text.Pending,UDim2.fromOffset(20,12),UDim2.new(1,-92,0,42),24,Color.gold)
 	closeClaims.Parent=claimsPanel;closeClaims.Caption.Text="X";closeClaims.Caption.TextSize=24
 	local snapshot,remote,pending,selectedId,accessorySlot,actionForSelection,quantityBox
+	local busyRetry, busyAttempts = nil, 0
 	local opened,storageMode,gearMode,mobileDetail=false,false,false,false
 	local category,sourceTab,sortMode="Equipment","bag","Name"
 	local expandedDetails=false
@@ -518,7 +519,7 @@ function InventoryGui.create(onVisibility, feedback)
 	end
 	send=function(value)
 		if not remote or pending then return end
-		pending=value; retry.Visible=false; setMessage(Text.Waiting)
+		pending=value; busyRetry=nil; busyAttempts=0; retry.Visible=false; setMessage(Text.Waiting)
 		remote:FireServer(value)
 		renderDetails()
 		task.delay(8,function()
@@ -582,12 +583,11 @@ function InventoryGui.create(onVisibility, feedback)
 		end
 		return Enum.ContextActionResult.Sink
 	end,false,4100,Enum.KeyCode.ButtonB)
-	task.spawn(function()
-		local remotes=ReplicatedStorage:WaitForChild("Remotes")
-		remote=remotes:WaitForChild("InventoryRequest")
-		remotes:WaitForChild("InventoryState").OnClientEvent:Connect(function(value,requestId,errorCode)
+	local function receiveInventory(value,requestId,errorCode)
 			if type(value)~="table" or type(value.items)~="table" or type(value.revision)~="number" then return end
-			if snapshot and value.revision<snapshot.revision then return end
+			-- A newer broadcast must not discard the acknowledgement that settles
+			-- our request. Keep its newer data while processing the request result.
+			if snapshot and value.revision<snapshot.revision then value=snapshot end
 			local changed=not snapshot or snapshot.revision~=value.revision or snapshot.heroId~=value.heroId or snapshot.safe~=value.safe or snapshot.atStorage~=value.atStorage or snapshot.ready~=value.ready
 			snapshot=value
 			badge.Text, badge.Visible=tostring(value.pending),value.pending>0
@@ -603,7 +603,22 @@ function InventoryGui.create(onVisibility, feedback)
 			if changed then render() elseif completed then renderDetails() end
 			if errorCode then setMessage(Text.Errors[errorCode] or Text.Errors.Unavailable,true)
 			elseif completed and not pending then setMessage(equipped and Text.GearApplied or Text.SavedAction) end
-		end)
+			-- Busy has not settled this request. Retry its exact identity instead of
+			-- leaving the hidden bag pending forever and dropping every potion input.
+			if pending and requestId==pending.requestId and errorCode=="Busy" and busyRetry~=pending then
+				local exact=pending
+				busyRetry=exact;busyAttempts+=1
+				task.delay(math.min(.25*2^math.min(busyAttempts,3),2),function()
+					if busyRetry~=exact then return end
+					busyRetry=nil
+					if gui.Parent and pending==exact and remote then remote:FireServer(exact) end
+				end)
+			end
+	end
+	task.spawn(function()
+		local remotes=ReplicatedStorage:WaitForChild("Remotes")
+		remote=remotes:WaitForChild("InventoryRequest")
+		remotes:WaitForChild("InventoryState").OnClientEvent:Connect(receiveInventory)
 		remotes:WaitForChild("InventoryOpenStorage").OnClientEvent:Connect(function()
 			storageMode,gearMode,sourceTab,mobileDetail=true,false,"bag",false
 			setOpen(true)
@@ -618,7 +633,9 @@ function InventoryGui.create(onVisibility, feedback)
 		close=function() setOpen(false) end,
 		refresh=requestState,
 		use=function(slot)
-			if pending or not snapshot or not snapshot.ready or not snapshot.heroId then return end
+			if pending then setMessage(Text.Waiting,true);return end
+			if not snapshot or not snapshot.ready then setMessage(Text.Errors.Unavailable,true);requestState();return end
+			if not snapshot.heroId then setMessage(Text.Errors.HeroNotOwned,true);return end
 			local hero=snapshot.heroes[snapshot.heroId]
 			local definitionId=hero and hero.quickSlots[slot]
 			for _,item in ipairs(snapshot.items) do
