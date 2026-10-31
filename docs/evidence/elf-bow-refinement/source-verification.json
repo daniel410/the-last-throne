@@ -1,0 +1,34 @@
+{
+  "source_commit": "6a2ed6c6f307278527c5bdadaf82ef0a9ee23e96",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "modulesVerified": [
+        "src/client/K0BowMotion.luau",
+        "src/client/K0SwordVisual.luau",
+        "src/server/Cosmetics/WeaponAppearance.luau",
+        "src/shared/ElfBowClip.luau",
+        "src/shared/ElfBowGeometry.luau"
+      ]
+    },
+    {
+      "role": "Battle",
+      "modulesVerified": [
+        "src/client/K0BowMotion.luau",
+        "src/client/K0SwordVisual.luau",
+        "src/server/Cosmetics/WeaponAppearance.luau",
+        "src/shared/ElfBowClip.luau",
+        "src/shared/ElfBowGeometry.luau"
+      ]
+    }
+  ],
+  "reviewGlb": {
+    "meshes": [
+      "Bow",
+      "NockedArrow",
+      "LowerString",
+      "UpperString"
+    ],
+    "animations": 0
+  }
+}
