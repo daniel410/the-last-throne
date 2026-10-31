@@ -1,0 +1,48 @@
+{
+  "version": "0.44.0",
+  "source_commit": "30074afc2fbc68d7c7c885ef80808333ce9d2c63",
+  "tool": "Rojo 7.7.1",
+  "stage": "/private/tmp/tlt-0440-pinned-g3Byvu",
+  "lfs_materialized": [
+    "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+    "assets/shared/td-deepwood-environment/maps.rbxmx",
+    "assets/shared/td-monsters/runtime.rbxmx",
+    "assets/shared/td-player-weapons/runtime.rbxmx",
+    "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+    "assets/shared/td-refined-player-weapons/runtime.rbxmx",
+    "assets/shared/td-selene/runtime.rbxmx"
+  ],
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.44.0/TheLastThrone-Lobby-0.44.0.rbxlx",
+      "bytes": 1816435,
+      "sha256": "87bd349f1dc1b20c6944d68d100e49bf194bde341c255f0a853adc7c874d314a",
+      "command": [
+        "rojo",
+        "build",
+        "default.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.44.0/TheLastThrone-Lobby-0.44.0.rbxlx"
+      ],
+      "result": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.44.0/TheLastThrone-Battle-0.44.0.rbxlx",
+      "bytes": 1816436,
+      "sha256": "17f8db3195af074476deeb7dfd723e087194ac2f43df09c54852600373afe060",
+      "command": [
+        "rojo",
+        "build",
+        "battle.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.44.0/TheLastThrone-Battle-0.44.0.rbxlx"
+      ],
+      "result": "success"
+    }
+  ],
+  "published": false,
+  "release_tag": null,
+  "status": "local-build-success-unpublished"
+}

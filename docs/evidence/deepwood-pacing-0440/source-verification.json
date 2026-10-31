@@ -1,0 +1,294 @@
+{
+  "source_commit": "30074afc2fbc68d7c7c885ef80808333ce9d2c63",
+  "version": "0.44.0",
+  "artifacts": [
+    {
+      "path": "builds/0.44.0/TheLastThrone-Lobby-0.44.0.rbxlx",
+      "sha256": "87bd349f1dc1b20c6944d68d100e49bf194bde341c255f0a853adc7c874d314a",
+      "modules": [
+        {
+          "file": "src/client/ArmoryView.luau",
+          "sha256": "cb809bee4195be8ca3b94d6060e85c4bf9f69d62d4ec8e1aaa61ba5b634ef3d4",
+          "match": true
+        },
+        {
+          "file": "src/client/InventoryGui.luau",
+          "sha256": "46ebd02ff7a0d33126dd7af312c41112ad80d4934db5862692e9de54bb32f25d",
+          "match": true
+        },
+        {
+          "file": "src/client/K0BackgroundMusic.luau",
+          "sha256": "37ce8d3928f048c32956e531b337aca3b6c5f155fb783270154bd564802d319b",
+          "match": true
+        },
+        {
+          "file": "src/client/K0SwordVisual.luau",
+          "sha256": "77b83c64ca60e8325515b1bafaf0c0970ab666042c2ad94688aac75380c2b6e4",
+          "match": true
+        },
+        {
+          "file": "src/server/Cosmetics/WeaponAppearance.luau",
+          "sha256": "a184a13f87e829c45eeca793fdd2ed0c58b5065fbc4863cc2524cb828ab25471",
+          "match": true
+        },
+        {
+          "file": "src/server/Cosmetics/KnightAppearance.luau",
+          "sha256": "98423a333ed6c82de67e29324113343a85fc31b8b10df5703f526b69aaee2aae",
+          "match": true
+        },
+        {
+          "file": "src/server/Inventory/InventoryRules.luau",
+          "sha256": "da336307ccd243679eca05f0ed5654e86ab6df4bc568c99ad5814c0cced6dba6",
+          "match": true
+        },
+        {
+          "file": "src/server/Story/DeepwoodService.luau",
+          "sha256": "16ccc01933196f1fb807475e08c34c41e8263979e3ded62a6f952b1ffe37a80e",
+          "match": true
+        },
+        {
+          "file": "src/shared/CombatStatText.luau",
+          "sha256": "5f7b9ef770cfeebf57e2bec65a6432c2ec6378094963a12910a47539b7890de1",
+          "match": true
+        },
+        {
+          "file": "src/shared/DeepwoodEncounterBalance.luau",
+          "sha256": "12af035045aea3c823dcbb512ca165affdfd99c019c4b9cbcc64d0b3f79d4959",
+          "match": true
+        },
+        {
+          "file": "src/shared/DeepwoodMusicPolicy.luau",
+          "sha256": "cc52d2926148c27983b0512dfd9ff888b4631c0ba0546d1be8b7e94b3748752f",
+          "match": true
+        },
+        {
+          "file": "src/shared/EquipmentImpact.luau",
+          "sha256": "e71d138d709cb412fc90a31dc87d0bca9269b30a2a48172c90febe15b93c223d",
+          "match": true
+        },
+        {
+          "file": "src/shared/EconomyCatalog.luau",
+          "sha256": "4425f2594a4938bf47f96f0e946071dd5537f707fd3f57d9362d6754ed6405b3",
+          "match": true
+        },
+        {
+          "file": "src/shared/EconomyRules.luau",
+          "sha256": "a281af341e644d0b893aa1bb589b90d193230761313263e16224ccefe4b0a876",
+          "match": true
+        }
+      ],
+      "refinedModelsIncluded": true
+    },
+    {
+      "path": "builds/0.44.0/TheLastThrone-Battle-0.44.0.rbxlx",
+      "sha256": "17f8db3195af074476deeb7dfd723e087194ac2f43df09c54852600373afe060",
+      "modules": [
+        {
+          "file": "src/client/ArmoryView.luau",
+          "sha256": "cb809bee4195be8ca3b94d6060e85c4bf9f69d62d4ec8e1aaa61ba5b634ef3d4",
+          "match": true
+        },
+        {
+          "file": "src/client/InventoryGui.luau",
+          "sha256": "46ebd02ff7a0d33126dd7af312c41112ad80d4934db5862692e9de54bb32f25d",
+          "match": true
+        },
+        {
+          "file": "src/client/K0BackgroundMusic.luau",
+          "sha256": "37ce8d3928f048c32956e531b337aca3b6c5f155fb783270154bd564802d319b",
+          "match": true
+        },
+        {
+          "file": "src/client/K0SwordVisual.luau",
+          "sha256": "77b83c64ca60e8325515b1bafaf0c0970ab666042c2ad94688aac75380c2b6e4",
+          "match": true
+        },
+        {
+          "file": "src/server/Cosmetics/WeaponAppearance.luau",
+          "sha256": "a184a13f87e829c45eeca793fdd2ed0c58b5065fbc4863cc2524cb828ab25471",
+          "match": true
+        },
+        {
+          "file": "src/server/Cosmetics/KnightAppearance.luau",
+          "sha256": "98423a333ed6c82de67e29324113343a85fc31b8b10df5703f526b69aaee2aae",
+          "match": true
+        },
+        {
+          "file": "src/server/Inventory/InventoryRules.luau",
+          "sha256": "da336307ccd243679eca05f0ed5654e86ab6df4bc568c99ad5814c0cced6dba6",
+          "match": true
+        },
+        {
+          "file": "src/server/Story/DeepwoodService.luau",
+          "sha256": "16ccc01933196f1fb807475e08c34c41e8263979e3ded62a6f952b1ffe37a80e",
+          "match": true
+        },
+        {
+          "file": "src/shared/CombatStatText.luau",
+          "sha256": "5f7b9ef770cfeebf57e2bec65a6432c2ec6378094963a12910a47539b7890de1",
+          "match": true
+        },
+        {
+          "file": "src/shared/DeepwoodEncounterBalance.luau",
+          "sha256": "12af035045aea3c823dcbb512ca165affdfd99c019c4b9cbcc64d0b3f79d4959",
+          "match": true
+        },
+        {
+          "file": "src/shared/DeepwoodMusicPolicy.luau",
+          "sha256": "cc52d2926148c27983b0512dfd9ff888b4631c0ba0546d1be8b7e94b3748752f",
+          "match": true
+        },
+        {
+          "file": "src/shared/EquipmentImpact.luau",
+          "sha256": "e71d138d709cb412fc90a31dc87d0bca9269b30a2a48172c90febe15b93c223d",
+          "match": true
+        },
+        {
+          "file": "src/shared/EconomyCatalog.luau",
+          "sha256": "4425f2594a4938bf47f96f0e946071dd5537f707fd3f57d9362d6754ed6405b3",
+          "match": true
+        },
+        {
+          "file": "src/shared/EconomyRules.luau",
+          "sha256": "a281af341e644d0b893aa1bb589b90d193230761313263e16224ccefe4b0a876",
+          "match": true
+        }
+      ],
+      "refinedModelsIncluded": true
+    }
+  ],
+  "native_inputs": [
+    {
+      "file": "assets/shared/td-refined-player-weapons/runtime.rbxmx",
+      "sha256": "a75c688bc300544138b5a9459d3c9b428cd75ca0bff4a8757063092480f1c75d",
+      "match": true
+    },
+    {
+      "file": "assets/shared/td-refined-player-weapons/manifest.json",
+      "sha256": "0d08a21ed1ba31c6f33ed80ae321a9587755d8a076e613bdfe5521499566e83c",
+      "match": true
+    },
+    {
+      "file": "assets/shared/td-player-weapons/runtime.rbxmx",
+      "sha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9",
+      "match": true
+    },
+    {
+      "file": "assets/shared/td-player-weapons/manifest.json",
+      "sha256": "59d281c6eb901dd27704d89fe74e4b8ed3e2634d253cb5c3679e7538af3d018d",
+      "match": true
+    },
+    {
+      "file": "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+      "sha256": "77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823",
+      "match": true
+    },
+    {
+      "file": "assets/shared/td-player-weapons/shield/manifest.json",
+      "sha256": "2ac68374a9b683c5235b4b84c5a7e984eceaf06764a0485ee799912ef225e294",
+      "match": true
+    },
+    {
+      "file": "src/shared/K0Config.luau",
+      "sha256": "1ac5f7e4abc57be66ddb7157d98fc178caa6eed4a5a29bdd8ed5fe05a4a5543c",
+      "match": true
+    },
+    {
+      "file": "src/shared/AdvancedSkills.luau",
+      "sha256": "0f99d8e953715fb72ee29f425b3592c5963a0869f6839fe967e340977019d719",
+      "match": true
+    },
+    {
+      "file": "src/shared/ElfBowClip.luau",
+      "sha256": "4b8d5050327baaae3b03387aba87cb37c8f6068362c5318c71f6e7ad415ac688",
+      "match": true
+    },
+    {
+      "file": "src/shared/ElfBowGeometry.luau",
+      "sha256": "cba7f3d381707d62fc1acb61f7d985f21fa4a57b04bf060a9d09f93e9d39e1f4",
+      "match": true
+    },
+    {
+      "file": "src/server/Cosmetics/WeaponAppearance.luau",
+      "sha256": "a184a13f87e829c45eeca793fdd2ed0c58b5065fbc4863cc2524cb828ab25471",
+      "match": true
+    },
+    {
+      "file": "src/server/Cosmetics/WoodenStaffBuilder.luau",
+      "sha256": "4203de269557e0af9b582438d611adcc24d453e698823fe7eb2692c286e0634b",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MeleeMotion.luau",
+      "sha256": "c991aa782b4a4b8b1fee557b40a882f9bdae46551ec5da8ea49248d01160d059",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MeleeClips.luau",
+      "sha256": "83e85083c768e821d0bd2306e7dea142dd6a467bdfbc6db3bdbac2780ab5c03a",
+      "match": true
+    },
+    {
+      "file": "src/client/K0BowMotion.luau",
+      "sha256": "9b9163252c79a13d617387ee59df57696c21931cc9b28d6e47e667a80815d00c",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MageClips.luau",
+      "sha256": "1d8a43abbfffda561612ffcce450ae12bcc19bb19f445a5007a84aa1c1d95976",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MageMotion.luau",
+      "sha256": "b3caaeb82af67b7e2b5a0bbb34e4f0a07c1eaedb620af9855c0432124914c52e",
+      "match": true
+    },
+    {
+      "file": "src/client/K0MageFocus.luau",
+      "sha256": "6021e0178bcb37cd903786b39f9eaa3db0d61322ae386cbe7983437216db78a8",
+      "match": true
+    },
+    {
+      "file": "src/client/K0SwordVisual.luau",
+      "sha256": "77b83c64ca60e8325515b1bafaf0c0970ab666042c2ad94688aac75380c2b6e4",
+      "match": true
+    },
+    {
+      "file": "tests/elf-bow-golden.luau",
+      "sha256": "a613e2ecd9df6d65f61815d4120d7d869bdd4a4989bc56a49b110d447fed3d4e",
+      "match": true
+    },
+    {
+      "file": "tests/mage-staff-golden.luau",
+      "sha256": "7d42499030e45fc1c9a65bfff369229c67d983a250172a5e2cd1188a87c947c9",
+      "match": true
+    },
+    {
+      "file": "tests/k0-melee-curves-native.luau",
+      "sha256": "97af1944c6a6608820b41dc753dcd206ff31d45b591f61798336e286a1fee4b7",
+      "match": true
+    },
+    {
+      "file": "tests/k0-melee-blender-native.luau",
+      "sha256": "0de2591f3294479c0e65df59108bb9f9c39ea7589bcecc447ab92cefebcf26de",
+      "match": true
+    },
+    {
+      "file": "tests/k0-dwarf-motion-native.luau",
+      "sha256": "884ae249e97fff0fc666b0f32dc4a23431989d38baf0efa05d782d710102674d",
+      "match": true
+    },
+    {
+      "file": "tests/k0-elf-bow-native.luau",
+      "sha256": "f92dbb7d5daeb1375cf0714e7ab8e2a59b66f32a205fee180b4e432693b1fded",
+      "match": true
+    },
+    {
+      "file": "tests/k0-mage-staff-native.luau",
+      "sha256": "b0a7a951ed1db800d8503365a8ace53aceaa07bc1c2579b2ce587111a252d50c",
+      "match": true
+    }
+  ],
+  "protected_combat_and_story_budget_unchanged": true,
+  "published": false
+}

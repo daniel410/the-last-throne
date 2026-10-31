@@ -1,0 +1,144 @@
+{
+  "source_commit": "30074afc2fbc68d7c7c885ef80808333ce9d2c63",
+  "version": "0.44.0",
+  "studio": "541e9f56-b400-40e1-8ab5-9bf91b630ade",
+  "file": "builds/0.44.0/TheLastThrone-Lobby-0.44.0.rbxlx",
+  "scope": "Real Studio Client and normal gameplay remote requests; session-only inventory, no published Roblox client",
+  "mage": {
+    "phase": "Tutorial",
+    "class": "mage",
+    "audio": {
+      "TLTBossMusic": {
+        "loaded": true,
+        "playing": false,
+        "volume": 0
+      },
+      "TLTBackgroundMusic": {
+        "loaded": true,
+        "playing": true,
+        "volume": 0.20000000298023224
+      }
+    },
+    "weapons": [
+      {
+        "visible": true,
+        "surface": true,
+        "name": "Weapon",
+        "mesh": "rbxassetid://94265479758423"
+      }
+    ]
+  },
+  "mage_attack": {
+    "class": "mage",
+    "state": "Attack",
+    "attackChanged": true,
+    "focus": true,
+    "mesh": "rbxassetid://94265479758423"
+  },
+  "classes": [
+    {
+      "state": "Attack",
+      "class": "knight",
+      "attackChanged": true,
+      "meshes": {
+        "SwordBlade": "rbxassetid://136222429214301"
+      }
+    },
+    {
+      "state": "Attack",
+      "class": "elf",
+      "attackChanged": true,
+      "meshes": {
+        "String": "rbxassetid://108052120766619",
+        "Bow": "rbxassetid://83795343518288",
+        "NockedArrow": "rbxassetid://77202496614276"
+      }
+    },
+    {
+      "state": "Attack",
+      "class": "dwarf",
+      "attackChanged": true,
+      "meshes": {
+        "Weapon": "rbxassetid://137793778150208"
+      }
+    }
+  ],
+  "starterInventory": {
+    "heroes": [
+      {
+        "id": "bc433711-1ed6-4eaa-b947-b829e1417bf3",
+        "class": "elf",
+        "mpPotions": 0
+      },
+      {
+        "id": "4a525d66-34f1-4dd1-9d7d-5947610faf20",
+        "class": "knight",
+        "mpPotions": 0
+      },
+      {
+        "id": "5a75b49a-5a98-4790-9239-6fc0bcc205f4",
+        "class": "dwarf",
+        "mpPotions": 0
+      },
+      {
+        "id": "7d06323f-e673-4e92-9803-7da1b9d41c48",
+        "class": "mage",
+        "mpPotions": 7
+      }
+    ],
+    "mode": "Studio session"
+  },
+  "temporalAudio": {
+    "before": {
+      "normal": 0.20000000298023224,
+      "boss": 0
+    },
+    "boss": {
+      "normal": 0,
+      "boss": 0.20000000298023224,
+      "bossPlaying": true,
+      "normalPlaying": false
+    },
+    "after": {
+      "normal": 0.20000000298023224,
+      "boss": 0,
+      "bossPlaying": false,
+      "normalPlaying": true
+    },
+    "scope": "Studio Client temporal crossfade using production create() and isolated sound names; no boss progress or physical listening",
+    "pass": true
+  },
+  "inputChecks": [
+    "OpenArmory actual button",
+    "Category_Potions actual button",
+    "Close armory / OpenBag actual buttons",
+    "Select Tempered Axe actual item button",
+    "Scroll details to display all five stat rows"
+  ],
+  "screenshots": [
+    "client-dwarf.jpg",
+    "client-potion-shop.jpg",
+    "client-bag-impact.jpg",
+    "client-bag-impact-full.jpg"
+  ],
+  "diagnostics": {
+    "manualServerSnapshotProbe": "Failed: plugin require() uses separate module state; InventoryService settings nil. Used legitimate InventoryRequest/InventoryState client flow instead; production inventory and heroes work.",
+    "console": {
+      "content": [
+        {
+          "type": "text",
+          "text": "ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type\nContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type\nContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type\nServerScriptService.Server.Inventory.InventoryService:278: attempt to index nil with 'heroSession'\nStack Begin\nScript 'ServerScriptService.Server.Inventory.InventoryService', Line 278 - function snapshot\nScript 'AssistantCommand', Line 1\nStack End"
+        }
+      ],
+      "isError": false
+    },
+    "recurringBowRestError": false
+  },
+  "unverified": [
+    "Published RPG client permissions",
+    "Physical listening",
+    "Funded shop purchase through actual input",
+    "Device/party FPS and normal Deepwood combat balance",
+    "Final art acceptance"
+  ]
+}

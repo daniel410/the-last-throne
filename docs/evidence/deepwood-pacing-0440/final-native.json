@@ -1,0 +1,78 @@
+{
+  "source_commit": "30074afc2fbc68d7c7c885ef80808333ce9d2c63",
+  "version": "0.44.0",
+  "cases": [
+    {
+      "name": "motion",
+      "command": [
+        "run-in-roblox",
+        "--place",
+        "/private/tmp/tlt-final-0440-motion-qa/tlt-k0-qa-empty.rbxlx",
+        "--script",
+        "/private/tmp/tlt-final-0440-motion-qa/source-probe.luau"
+      ],
+      "status": 0,
+      "log": "docs/evidence/deepwood-pacing-0440/final-motion.log"
+    },
+    {
+      "name": "bootstrap",
+      "command": [
+        "run-in-roblox",
+        "--place",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.44.0/TheLastThrone-Battle-0.44.0.rbxlx",
+        "--script",
+        "tests/battle-bootstrap-native.luau"
+      ],
+      "status": 0,
+      "log": "docs/evidence/deepwood-pacing-0440/final-bootstrap.log"
+    },
+    {
+      "name": "supplies-audio",
+      "command": [
+        "run-in-roblox",
+        "--place",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.44.0/TheLastThrone-Battle-0.44.0.rbxlx",
+        "--script",
+        "tests/deepwood-supplies-audio-native.luau"
+      ],
+      "status": 0,
+      "log": "docs/evidence/deepwood-pacing-0440/final-supplies-audio.log"
+    },
+    {
+      "name": "bag-impact",
+      "command": [
+        "run-in-roblox",
+        "--place",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.44.0/TheLastThrone-Battle-0.44.0.rbxlx",
+        "--script",
+        "tests/inventory-impact-native.luau"
+      ],
+      "status": 0,
+      "log": "docs/evidence/deepwood-pacing-0440/final-bag-impact.log"
+    },
+    {
+      "name": "refined-weapons",
+      "command": [
+        "run-in-roblox",
+        "--place",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.44.0/TheLastThrone-Battle-0.44.0.rbxlx",
+        "--script",
+        "tests/refined-player-weapons-native.luau"
+      ],
+      "status": 0,
+      "log": "docs/evidence/deepwood-pacing-0440/final-refined-weapons.log"
+    },
+    {
+      "name": "render-loop",
+      "command": [
+        "run-in-roblox",
+        "--place",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.44.0/TheLastThrone-Battle-0.44.0.rbxlx",
+        "--script",
+        "tests/weapon-render-loop-native.luau"
+      ],
+      "status": 0,
+      "log": "docs/evidence/deepwood-pacing-0440/final-render-loop.log"
+    }
+  ]
+}
