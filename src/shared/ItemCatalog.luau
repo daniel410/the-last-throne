@@ -26,6 +26,20 @@ gear("traveler_boots", "Traveler's Boots", "feet", nil, {armor = 2}, "FT")
 gear("copper_ring", "Copper Ring", "accessory", nil, {power = 5}, "RG", {uniqueGroup = "copper_ring"})
 gear("amber_charm", "Amber Charm", "accessory", nil, {health = 60}, "CH", {rarity = "Uncommon"})
 gear("veteran_hood", "Veteran's Hood", "head", nil, {armor = 6}, "HD", {level = 5, rarity = "Uncommon"})
+-- Provisional Lv10 forge stock. Existing stable definitions/rewards stay intact.
+for classId,name in pairs({knight='Sword',elf='Bow',dwarf='Axe',mage='Staff'})do
+ gear(classId..'_weapon_forged','Dawnforge '..name,'weapon',classId,{power=24},name:sub(1,2):upper(),{level=10,rarity='Rare',description='Forged in Dawnspire for seasoned adventurers. Requires level 10.'})
+end
+for _,row in ipairs({
+ {'sentinel_shield','Sentinel Shield','offhand','knight',{armor=8},'SH'},
+ {'sentinel_helm','Sentinel Helm','head',false,{armor=8},'HD'},
+ {'sentinel_mail','Sentinel Mail','body',false,{health=80,armor=7},'BD'},
+ {'sentinel_gauntlets','Sentinel Gauntlets','hands',false,{power=5,armor=3},'HN'},
+ {'sentinel_boots','Sentinel Boots','feet',false,{armor=7},'FT'},
+ {'ruby_ring','Ruby Ring','accessory',false,{power=10},'RG'},
+ {'guardian_charm','Guardian Charm','accessory',false,{health=100,armor=2},'CH'},
+ {'storm_pendant','Storm Pendant','accessory',false,{power=6,health=50},'CH'},
+})do gear(row[1],row[2],row[3],row[4]or nil,row[5],row[6],{level=10,rarity='Rare',description='Dawnspire forge equipment. Requires level 10. Balance values are provisional.',uniqueGroup=row[3]=='accessory' and row[1]or nil})end
 -- Stable IDs/schema; potion restore amounts follow the latest user balance decision.
 Catalog.potions = {}
 for _, resource in ipairs({"health", "mana"}) do

@@ -10,12 +10,7 @@ local ItemText=require(RS.Shared.InventoryText)
 local V={}
 function V.create(parent,send,diamondOnly,store)
  store=store or "all"
- local function allowed(d,offer)
-  if diamondOnly then return offer and offer.currency=="diamonds" end
-  if store=="blacksmith" then return d.slot=="weapon" and (not offer or offer.currency=="gold") end
-  if store=="items" then return d.slot~="weapon" and (not offer or offer.currency=="gold") end
-  return true
- end
+ local function allowed(d,offer)return Catalog.allowed(diamondOnly and 'diamonds' or store,d,offer)end
  local panel=Menu.frame(parent,diamondOnly and 'DiamondShop' or store=='items' and 'ItemShop' or 'Armory',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(950,700);cap.Parent=panel
  T.label(panel,'Title',diamondOnly and 'DIAMOND SHOP' or store=='blacksmith' and 'BLACKSMITH' or store=='items' and 'ITEM SHOP' or 'DAWNSPIRE SUPPLIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,28),22,T.color.gold)
@@ -26,7 +21,7 @@ function V.create(parent,send,diamondOnly,store)
  if diamondOnly then buy.Visible=false;sell.Visible=false end
  local scroll=Instance.new('ScrollingFrame');scroll.Name='Offers';scroll.Position=UDim2.fromOffset(16,238);scroll.Size=UDim2.new(1,-32,1,-330);scroll.BackgroundTransparency=1;scroll.BorderSizePixel=0;scroll.ScrollBarThickness=6;scroll.AutomaticCanvasSize=Enum.AutomaticSize.Y;scroll.CanvasSize=UDim2.new();scroll.Parent=panel
  local layout=Instance.new('UIListLayout');layout.Padding=UDim.new(0,10);layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.Parent=scroll
- local notice=T.label(panel,'Notice','Choose a weapon or potion to review its price.',UDim2.new(0,20,1,-82),UDim2.new(1,-40,0,64),12)
+ local notice=T.label(panel,'Notice','Choose an item to review its price.',UDim2.new(0,20,1,-82),UDim2.new(1,-40,0,64),12)
  local categories=Instance.new('Frame');categories.Name='Categories';categories.Position=UDim2.fromOffset(16,132);categories.Size=UDim2.new(1,-32,0,96);categories.BackgroundTransparency=1;categories.Parent=panel
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.new(1/3,-6,0,44);grid.CellPadding=UDim2.fromOffset(6,6);grid.Parent=categories
  local state,mode,pending,category={},'Buy',nil,'All'
@@ -71,7 +66,7 @@ function V.create(parent,send,diamondOnly,store)
      description=string.format('Restores up to %d %s · In bag: %d\n%s',d.amount,d.restore=='health' and 'HP' or 'MP',owned,d.restore=='mana' and 'Requires an MP pool. Assign to Z / C from BAG.' or 'Delivered to your bag. Assign to Z / C from BAG.')
     else
      local fit=d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
-     description=string.format('%s · Lv%d · Power +%d%s\n%s',fit,d.level or 1,d.stats.power or 0,d.stats.armor and ' · Armor +'..d.stats.armor or '',d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
+     description=string.format('%s · Lv%d · Power +%d%s%s\n%s',fit,d.level or 1,d.stats.power or 0,d.stats.armor and ' · Armor +'..d.stats.armor or '',d.stats.health and ' · HP +'..d.stats.health or '',d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
     end
     if not d.restore then
      local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,d.slot=='accessory' and 'accessory1' or nil,Items)
@@ -98,7 +93,7 @@ function V.create(parent,send,diamondOnly,store)
   for _,entry in ipairs(Catalog.categories)do if entry.id==id then category=id;render();return end end
  end
  for _,entry in ipairs(Catalog.categories)do
-  if store=='blacksmith' and entry.id~='All' and entry.id~='Weapons' then continue end
+  if store=='blacksmith' and entry.id~='All' and entry.id~='Weapons' and entry.id~='Armor' and entry.id~='Accessories' then continue end
   if store=='items' and entry.id=='Weapons' then continue end
   local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
  buy.Activated:Connect(function() mode='Buy';render() end);sell.Activated:Connect(function() mode='Sell';render() end)

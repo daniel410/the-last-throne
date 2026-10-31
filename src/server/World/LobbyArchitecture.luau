@@ -13,8 +13,12 @@ function A.builder(model,origin)
 end
 function A.sign(part,spec)
  local gui=Instance.new('SurfaceGui');gui.Name='FacilitySign';gui.Face=Enum.NormalId.Back;gui.SizingMode=Enum.SurfaceGuiSizingMode.PixelsPerStud;gui.PixelsPerStud=40;gui.LightInfluence=0;gui.AutoLocalize=false;gui.Parent=part
+ if spec.icon then
+  local icon=Instance.new('ImageLabel');icon.Name='DestinationIcon';icon.Image=spec.icon;icon.ScaleType=Enum.ScaleType.Fit;icon.BackgroundTransparency=1;icon.Position=UDim2.fromScale(.02,.08);icon.Size=UDim2.fromScale(.14,.84);icon.Parent=gui
+  local aspect=Instance.new('UIAspectRatioConstraint');aspect.AspectRatio=1;aspect.Parent=icon
+ end
  for i,s in ipairs({{spec.title,.08,.47,A.color.gold},{spec.subtitle,.57,.3,A.color.cream}}) do
-  local t=Instance.new('TextLabel');t.Name=i==1 and 'Title' or 'Subtitle';t.Position=UDim2.fromScale(.04,s[2]);t.Size=UDim2.fromScale(.92,s[3]);t.BackgroundTransparency=1
+  local t=Instance.new('TextLabel');t.Name=i==1 and 'Title' or 'Subtitle';t.Position=UDim2.fromScale(spec.icon and .18 or .04,s[2]);t.Size=UDim2.fromScale(spec.icon and .78 or .92,s[3]);t.BackgroundTransparency=1
   t.Text=s[1];t.TextColor3=s[4];t.TextScaled=true;t.Font=Enum.Font.GothamBold;t.AutoLocalize=false;t:SetAttribute('TextKey',spec.key..(i==1 and '.title' or '.subtitle'));t.Parent=gui
  end
 end

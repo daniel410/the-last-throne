@@ -1,5 +1,8 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-31 **0.52.0 / TLT-028/043/046/061/084 구현:** 대장간 WEAPONS / ARMOR / ACCESSORIES 구매·판매 분류와 신규 Lv10 장비12종, TD 포탈 목적지 아이콘을 연결한다. [검증·빌드·한계](docs/evidence/blacksmith-0520/README.md). 로컬 시험판·미게시.
+
+
 > 2026-10-31 **0.51.1 / TLT-028/031/061/084 수정:** 배틀 추가 메뉴에서 RETURN TO LOBBY가 SETTINGS를 가리던 동일 좌표 배치를 수정했다. [재현·검증·빌드](docs/evidence/battle-settings-0511/README.md). 로컬 시험판·미게시.
 
 

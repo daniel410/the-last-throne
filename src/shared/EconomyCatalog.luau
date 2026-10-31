@@ -30,5 +30,15 @@ end
 for _,row in ipairs({{'traveler_hood',80},{'traveler_coat',120},{'traveler_gloves',80},{'traveler_boots',80},{'copper_ring',150},{'amber_charm',150},{'veteran_hood',250}}) do
  table.insert(C.offers,{id=row[1],definitionId=row[1],currency='gold',price=row[2]});C.sell[row[1]]=math.floor(row[2]/5)
 end
+-- Blacksmith additions: Gold-only trial stock, never story reward replacements.
+for _,row in ipairs({{'knight_weapon_forged',950},{'elf_weapon_forged',950},{'dwarf_weapon_forged',950},{'mage_weapon_forged',950},{'sentinel_shield',500},{'sentinel_helm',400},{'sentinel_mail',650},{'sentinel_gauntlets',400},{'sentinel_boots',400},{'ruby_ring',550},{'guardian_charm',550},{'storm_pendant',550}})do
+ table.insert(C.offers,{id=row[1],definitionId=row[1],currency='gold',price=row[2]});C.sell[row[1]]=math.floor(row[2]/5)
+end
+function C.allowed(store,definition,offer)
+ if store=='diamonds' then return offer and offer.currency=='diamonds' end
+ if store=='blacksmith' then return definition.category=='Equipment' and (not offer or offer.currency=='gold') end
+ if store=='items' then return definition.slot~='weapon' and (not offer or offer.currency=='gold') end
+ return true
+end
 function C.offer(id) for _,v in ipairs(C.offers) do if v.id==id then return v end end end
 return C

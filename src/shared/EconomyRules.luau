@@ -35,12 +35,7 @@ function E.apply(p,cmd,context,items,R)
  if previous then if previous.fingerprint~=fingerprint then return nil,'RequestConflict' end;return R.copy(p),nil,true end
  if not context.atLobby then return nil,'ShopLobbyOnly' end
  if cmd.store~=nil and cmd.store~='blacksmith' and cmd.store~='items' and cmd.store~='diamonds' then return nil,'InvalidRequest' end
- local function allowed(def,offer)
-  if cmd.store=='blacksmith' then return def.slot=='weapon' and (not offer or offer.currency=='gold') end
-  if cmd.store=='items' then return def.slot~='weapon' and (not offer or offer.currency=='gold') end
-  if cmd.store=='diamonds' then return offer and offer.currency=='diamonds' end
-  return true -- legacy client compatibility
- end
+ local function allowed(def,offer)return Catalog.allowed(cmd.store,def,offer)end
  if cmd.revision~=p.revision then return nil,'Changed' end
  local hero=p.heroes[cmd.heroId];if not hero then return nil,'HeroNotOwned' end
  local n=R.copy(p);E.upgrade(n)
