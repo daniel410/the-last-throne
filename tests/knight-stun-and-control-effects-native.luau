@@ -41,6 +41,7 @@ local ok,err=xpcall(function()
   local s=assert(Fx.bind(m));local stamp=workspace:GetServerTimeNow();m:SetAttribute('K0EnemyStunUntil',stamp+5)
   local hp,cf,walk=h.Health,r.CFrame,h.WalkSpeed
   check(Fx.update(s,stamp) and #s.stars==3,'three orbiting shield stun stars')
+  check(s.stars[1].StunStar.Star.Text=='' and #s.stars[1].StunStar.Star:GetChildren()==4,'vector star rays do not depend on font glyph support')
   local marker=s.marker;local old=s.stars[1].Position;Fx.update(s,stamp+.5)
   check(s.marker==marker and #s.stars==3 and s.stars[1].Position~=old,'stars orbit without duplication')
   check(s.stars[1].StunStar.Star.TextColor3.B>s.stars[1].StunStar.Star.TextColor3.R,'knight uses cyan stars')

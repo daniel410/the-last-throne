@@ -21,7 +21,11 @@ function Effects.update(s,current)
   for i=1,3 do
    local a=Instance.new('Attachment');a.Name='StunOrbit'..i;a.Parent=s.root
    local gui=Instance.new('BillboardGui');gui.Name='StunStar';gui.Adornee=a;gui.Size=UDim2.fromOffset(25,25);gui.MaxDistance=100;gui.AlwaysOnTop=false;gui.Parent=a
-   local star=Instance.new('TextLabel');star.Name='Star';star.BackgroundTransparency=1;star.Size=UDim2.fromScale(1,1);star.Font=Enum.Font.GothamBold;star.Text='✦';star.TextSize=25;star.TextStrokeTransparency=.25;star.AutoLocalize=false;star.Parent=gui
+   local star=Instance.new('TextLabel');star.Name='Star';star.BackgroundTransparency=1;star.Size=UDim2.fromScale(1,1);star.Text='';star.AutoLocalize=false;star.Parent=gui
+   -- GUI rays avoid platform-dependent star glyph fallback squares.
+   for ray=1,4 do
+    local line=Instance.new('Frame');line.Name='Ray'..ray;line.AnchorPoint=Vector2.new(.5,.5);line.Position=UDim2.fromScale(.5,.5);line.Size=UDim2.fromOffset(3,ray%2==0 and 16 or 23);line.Rotation=(ray-1)*45;line.BorderSizePixel=0;line.Parent=star
+   end
    table.insert(s.stars,a)
   end
  end
@@ -32,7 +36,8 @@ function Effects.update(s,current)
   local angle=current*3.8+(i-1)*math.pi*2/3
   a.Position=Vector3.new(math.cos(angle)*radius,height+.12*math.sin(angle*2),math.sin(angle)*radius)
   local star=a.StunStar.Star;star.TextColor3=color;star.Rotation=-current*90+(i-1)*120
-  star.TextTransparency=math.clamp((.18-(untilTime-current))/.18,0,1)
+  local fade=math.clamp((.18-(untilTime-current))/.18,0,1)
+  for _,ray in ipairs(star:GetChildren())do ray.BackgroundColor3=color;ray.BackgroundTransparency=fade end
  end
  s.marker:SetAttribute('SourceClass',class);return true
 end

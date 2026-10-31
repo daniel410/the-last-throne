@@ -33,3 +33,13 @@
 `tests/enemy-streaming-presentation-native.luau`는 늦은 폴더/빈 모델→파츠 도착→표식·곡선 적용→스트림 아웃 정리→재진입을2회 검증해10개 통과했다. 최초 fixture는 카메라를 대상에서260stud 밖에 두어 의도된 거리 생략으로 실패했고, 검토 대상 가까이에 카메라를 놓아 수정했다(최초 로그 보존). 거리 제한을 완화하지 않았다.
 
 메뉴가 열린 실제 [첫 화면](client-stats-first.jpg)에서 render가 제목을 HERO STATS로 되돌리고 지갑이 메뉴 위를 덮는 문제도 확인했다. 최종 제목을 STATS & SKILLS / GEAR & BAG으로 유지하고 두 메뉴에서 외부 지갑을 숨긴다. 최종 키 H/T/B는 유지한다.0.46.0 결과물을 덮어쓰지 않고0.46.1을 별도로 빌드한다. 최종 Client 증거는 후속 절에 기록한다.
+
+### 0.46.1 고정 결과와 실제 Client
+
+소스2f5081ad314f76a279d52129549851739fc52727의 [두 빌드](streaming-0461/build.json)와 [18모듈/7테스트 대조](streaming-0461/source-verification.json)가 통과했다. 고정 Battle에서 기존11,000개+스트리밍10개=11,010개 통과([로그](streaming-0461/final-native.log)). 실제 Lobby Client의 H/B 키는 새 제목으로 열리고 외부 지갑이 숨는다([화면](streaming-0461/client-stats.jpg)); T는 메뉴를 열지 않으며 Lv1 궁극기는 숨는다.
+
+정상 기사 생성/훈련/이동/Shield Bash에서 HP300→220, 스턴/속도0/표식3개를45표본에서 관찰하고 만료 직후 Windup/속도10/표식0을 확인했다([계측](streaming-0461/client-knight-observation.json)). 실제 모터도 새 곡선을 적용한다. MCP 검사 도구가 플레이 카메라를 Fixed로 복원해260stud 밖 포즈 평가를 생략하는 경우가 있었으며, 정상 Custom/Humanoid 카메라로 되돌려 검증했다. 제품의 거리 제한은 바꾸지 않았다.
+
+### 0.46.2 도형 별 수정
+
+[실제 첫 타격 화면](streaming-0461/client-knight-glyph-first.jpg)에서 ✦ 글자가 일부 렌더러에서 사각형으로 표시됨을 확인했다. 외부 글꼴/텍스처에 의존하지 않는 GUI ray4개의 도형 별로 교체하고 색·회전·만료 fade를 유지한다. native 제어 검사는 글꼴 미사용·ray4개를 포함해296개를 통과했다. 기존0.46.1 산출물을 덮어쓰지 않고0.46.2로 별도 빌드한다.
