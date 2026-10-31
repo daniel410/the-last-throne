@@ -32,6 +32,7 @@ player.CharacterAdded:Connect(hideDefaultHealth)
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
 local Targeting = require(script.K0Targeting)
 local hud = require(script.K0Hud).create()
+require(script.SkillUnlockNotice).start(player)
 hud.setVisible(false)
 require(script.DeepwoodMap).start(hud.mapMenu)
 require(script.K0BackgroundMusic).start()
@@ -287,12 +288,10 @@ local function bindCharacter(character)
 	end
  local lastLevel=character:GetAttribute('K0Level')
  table.insert(characterConnections,character:GetAttributeChangedSignal('K0Level'):Connect(function()
-  local level=character:GetAttribute('K0Level');local classId=character:GetAttribute('K0ClassId')
+  local level=character:GetAttribute('K0Level')
   if level and lastLevel then
-   local names={};for _,d in ipairs(require(ReplicatedStorage.Shared.AdvancedSkills).common[classId] or {}) do if d.level>lastLevel and d.level<=level then table.insert(names,d.name) end end
    if level>lastLevel then
     local notice=string.format(Text.LevelUpGrowth,level,4*(level-lastLevel),level-lastLevel)
-    if #names>0 then notice=notice.."\n"..string.format(Text.NewSkillFormat,table.concat(names,', ')) end
     hud.showFeedback(notice,8)
    end
   end
