@@ -21,4 +21,21 @@
 
 ## 빌드 및 남은 수용
 
-입력 소스 커밋 고정 후 Lobby/Battle 0.46.3 빌드와 source/hash 검증을 진행한다. 아래 기록에 최종 결과를 추가한다. 실제 게시·릴리스 태그는 이 작업에 포함하지 않으며, 실기기/멀티플레이 지연 및 사용자 동작 수용은 후속이다.
+입력 소스 커밋 **c879d0d5f293dd36c63046e738a2a7121bdac5cf** 고정 후 Lobby/Battle **0.46.3** 빌드 성공. 두 산출물의 핵심 모듈21개·검증 입력2개가 고정 커밋과 일치한다(`source-verification.json`). 서버 Combat/Config/AdvancedSkills, 보상 정본과 원본 몬스터·무기 메시는 이전 커밋과 같다. 고정 Battle에서 **3,290 native 검사 통과**, `final-native.log`.
+
+| 산출물 | SHA-256 |
+| --- | --- |
+| Lobby | b126388baeb6c3e727c6909bffa821dc97da846166ebd46c8c817a0be013842b |
+| Battle | 1f91bee91681198ed601f174814385a83dbe26e8b3a37209dd80d79250125181 |
+
+## 정상 Client 확인
+
+고정 Lobby 0.46.3 파일을 별도 CLI QA Studio로 열고 Studio MCP Play를 시작했다(PlaceId0). 정상 CreateHero(knight) → StartTraining → Humanoid.MoveTo 동쪽 우회로 → 선택한 Goblin을 대상으로 Skill1 요청했다. 루트/HP/스킬 시각/서버 판정은 덮어쓰지 않았다. `client-observe.luau` / `client-observation.json`에160개 Heartbeat 관찰을 보존한다.
+
+- 실제 R15 플레이어, 최신 AzureOathblade/기존 TD 방패 확인.
+- 실제 Active .2403/.2542/.2708/.2880초에서 방패가 검 전체 경계보다 최소 **1.6572stud** 앞, 방패 앞면 dot **0.9178**.
+- 정상 피해 Goblin HP **300→220**, 실제 서버 스턴 기간 **4.99993초** 확인.
+- `client-contact-pose.jpg`: 정상 accepted cast의 **.2403초 자세를 Client 전용 복제 스틸로 기록**했다. 짧은 Active 장면을 검토하기 위한 정지 화면이며, 실시간 발동 장면/실기기 수용으로 주장하지 않는다. 촬영 동안 UI를 숨기고 카메라만 바꿨으며 이후 UI/카메라 복원·복제 스틸 제거 완료. 배경은 로비 복귀 후 스트리밍이 해제된 위치의 하늘이므로 맵 시각 수용 증거가 아니다.
+- 검증 후 동일 Studio에서 다른 로컬 QA가 진행 중인 것이 확인되어 플레이 상태와 창을 보존했다. 소유한 CLI 대기 프로세스만 종료했으며 파일/Studio 플레이는 종료하지 않았다.
+
+다음 담당은 QA/사용자이며 실기기·멀티플레이 지연·사용자 동작 수용은 후속이다. 실제 게시·릴리스 태그는 생성하지 않았다.

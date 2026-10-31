@@ -1,0 +1,1661 @@
+{
+  "beforeHealth": 300,
+  "weaponSource": "td:v2:AzureOathblade",
+  "samples": [
+    {
+      "age": -1,
+      "health": 300,
+      "enemyState": "Windup",
+      "phase": "None",
+      "faceDot": 0.1877172887325287,
+      "gap": 0.09114789962768555,
+      "time": 1793464364.962979
+    },
+    {
+      "age": -1,
+      "health": 300,
+      "enemyState": "Windup",
+      "phase": "None",
+      "faceDot": 0.1883932650089264,
+      "gap": 0.09444093704223633,
+      "time": 1793464364.979462
+    },
+    {
+      "age": -1,
+      "health": 300,
+      "enemyState": "Windup",
+      "phase": "None",
+      "faceDot": 0.18906599283218384,
+      "gap": 0.09773111343383789,
+      "time": 1793464364.996093
+    },
+    {
+      "age": 0.03960895538330078,
+      "skill": "knight.common.bash",
+      "time": 1793464365.014905,
+      "gap": 0.6856341361999512,
+      "phase": "Windup",
+      "faceDot": 0.6970405578613281,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.05485796928405762,
+      "skill": "knight.common.bash",
+      "time": 1793464365.030154,
+      "gap": 0.6583549976348877,
+      "phase": "Windup",
+      "faceDot": 0.9207812547683716,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.07154393196105957,
+      "skill": "knight.common.bash",
+      "time": 1793464365.04684,
+      "gap": 0.5901422500610352,
+      "phase": "Windup",
+      "faceDot": 0.9842007756233215,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.08854007720947266,
+      "skill": "knight.common.bash",
+      "time": 1793464365.063836,
+      "gap": 0.6215606331825256,
+      "phase": "Windup",
+      "faceDot": 0.9934322834014893,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.1040959358215332,
+      "skill": "knight.common.bash",
+      "time": 1793464365.079392,
+      "gap": 0.7042334675788879,
+      "phase": "Windup",
+      "faceDot": 0.994450569152832,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.12098407745361328,
+      "skill": "knight.common.bash",
+      "time": 1793464365.09628,
+      "gap": 0.839749276638031,
+      "phase": "Windup",
+      "faceDot": 0.9922075867652893,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.1376960277557373,
+      "skill": "knight.common.bash",
+      "time": 1793464365.112992,
+      "gap": 0.966941773891449,
+      "phase": "Windup",
+      "faceDot": 0.9840304851531982,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.1545240879058838,
+      "skill": "knight.common.bash",
+      "time": 1793464365.12982,
+      "gap": 1.072820782661438,
+      "phase": "Windup",
+      "faceDot": 0.9685500264167786,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.17070889472961426,
+      "skill": "knight.common.bash",
+      "time": 1793464365.146005,
+      "gap": 1.3439162969589233,
+      "phase": "Windup",
+      "faceDot": 0.946633517742157,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.18767404556274414,
+      "skill": "knight.common.bash",
+      "time": 1793464365.16297,
+      "gap": 1.583520770072937,
+      "phase": "Windup",
+      "faceDot": 0.9249764084815979,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.20390796661376953,
+      "skill": "knight.common.bash",
+      "time": 1793464365.179204,
+      "gap": 1.6572004556655884,
+      "phase": "Windup",
+      "faceDot": 0.9178093075752258,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "age": 0.22118592262268066,
+      "skill": "knight.common.bash",
+      "time": 1793464365.196482,
+      "gap": 1.6572004556655884,
+      "phase": "Windup",
+      "faceDot": 0.9178093075752258,
+      "enemyState": "Windup",
+      "health": 300
+    },
+    {
+      "phase": "Active",
+      "faceDot": 0.9178093075752258,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.24030089378356934,
+      "time": 1793464365.215597,
+      "gap": 1.6572004556655884,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Active",
+      "faceDot": 0.9178093075752258,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.25419187545776367,
+      "time": 1793464365.229488,
+      "gap": 1.6572004556655884,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Active",
+      "faceDot": 0.9178093075752258,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.2707839012145996,
+      "time": 1793464365.24608,
+      "gap": 1.6572004556655884,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Active",
+      "faceDot": 0.9178093075752258,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.2879829406738281,
+      "time": 1793464365.263279,
+      "gap": 1.6571998596191406,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Active",
+      "faceDot": 0.9180282950401306,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.3040120601654053,
+      "time": 1793464365.279308,
+      "gap": 1.653490424156189,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Active",
+      "faceDot": 0.9207200407981873,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.32140207290649414,
+      "time": 1793464365.296698,
+      "gap": 1.6062859296798706,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.9257477521896362,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.3379709720611572,
+      "time": 1793464365.313267,
+      "gap": 1.5102649927139282,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.9318537712097168,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.3543839454650879,
+      "time": 1793464365.32968,
+      "gap": 1.3776986598968506,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.9381441473960876,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.37122106552124023,
+      "time": 1793464365.346517,
+      "gap": 1.2151365280151367,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.9433278441429138,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.38795900344848633,
+      "time": 1793464365.363255,
+      "gap": 1.0417518615722656,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.9466717839241028,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.405163049697876,
+      "time": 1793464365.380459,
+      "gap": 0.8656061887741089,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.9471279382705688,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.4213888645172119,
+      "time": 1793464365.396685,
+      "gap": 0.7166533470153809,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.9439945220947266,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.43781399726867676,
+      "time": 1793464365.41311,
+      "gap": 0.5981142520904541,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.9357579350471497,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.4544339179992676,
+      "time": 1793464365.42973,
+      "gap": 0.5251560211181641,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.9197218418121338,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.47110605239868164,
+      "time": 1793464365.446402,
+      "gap": 0.5094573497772217,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.8919815421104431,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.48805689811706543,
+      "time": 1793464365.463353,
+      "gap": 0.5399794578552246,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.851216733455658,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.5047340393066406,
+      "time": 1793464365.48003,
+      "gap": 0.5956244468688965,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.7978155016899109,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.520866870880127,
+      "time": 1793464365.496163,
+      "gap": 0.6477398872375488,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.7255268692970276,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.5380740165710449,
+      "time": 1793464365.51337,
+      "gap": 0.6660857200622559,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.6442167162895203,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.5544328689575195,
+      "time": 1793464365.529729,
+      "gap": 0.6157267093658447,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.5519431829452515,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.5706450939178467,
+      "time": 1793464365.545941,
+      "gap": 0.4760744571685791,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.4478239417076111,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.5880708694458008,
+      "time": 1793464365.563367,
+      "gap": 0.22255229949951172,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.3502321243286133,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.6041460037231445,
+      "time": 1793464365.579442,
+      "gap": -0.09645915031433105,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.25092971324920654,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.6213538646697998,
+      "time": 1793464365.59665,
+      "gap": -0.49253392219543457,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.16764797270298004,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.6373410224914551,
+      "time": 1793464365.612637,
+      "gap": -0.8730428218841553,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.09564348310232162,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.6539609432220459,
+      "time": 1793464365.629257,
+      "gap": -1.2328026294708252,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.03722789138555527,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.6722240447998047,
+      "time": 1793464365.64752,
+      "gap": -1.5424739122390747,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0.008663676679134369,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.687532901763916,
+      "time": 1793464365.662829,
+      "gap": -1.6991198658943176,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.704848051071167,
+      "time": 1793464365.680144,
+      "gap": -1.7472824454307556,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "phase": "Recovery",
+      "faceDot": 0,
+      "stunUntil": 1793464370.17523,
+      "health": 220,
+      "age": 0.7212519645690918,
+      "time": 1793464365.696548,
+      "gap": -1.7472824454307556,
+      "skill": "knight.common.bash",
+      "enemyState": "Stunned"
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.713211,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814917564392,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.729488,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814917564392,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.746592,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814321517944,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.763946,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814321517944,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.814002,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472823858261108,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.829649,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814321517944,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.846437,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814321517944,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.863002,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472813725471497,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.879501,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814321517944,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.896306,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814917564392,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.912575,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814917564392,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.92929,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814917564392,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.946321,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0,
+      "gap": -1.7472814917564392,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.963165,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.20627251267433167,
+      "gap": -2.376048892736435,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.979813,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.2151867151260376,
+      "gap": -2.395504951477051,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464365.996291,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.2240668684244156,
+      "gap": -2.4143394231796265,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.013832,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.2775231897830963,
+      "gap": -0.08188915252685547,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.029564,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.5875853300094604,
+      "gap": 0.1591203212738037,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.046638,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.7413964867591858,
+      "gap": -0.058855295181274414,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.063245,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8135830760002136,
+      "gap": -0.19344806671142578,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.079462,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8480821847915649,
+      "gap": -0.24769806861877441,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.096504,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8652278184890747,
+      "gap": -0.296877384185791,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.112984,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8740358352661133,
+      "gap": -0.331479549407959,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.129301,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8785997033119202,
+      "gap": -0.3517119884490967,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.146532,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8809065818786621,
+      "gap": -0.3628053665161133,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.163373,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8819571733474731,
+      "gap": -0.36783862113952637,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.180864,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8815262913703918,
+      "gap": -0.36429548263549805,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.196975,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8806849122047424,
+      "gap": -0.35813212394714355,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.213357,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.87959885597229,
+      "gap": -0.3502223491668701,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.229965,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8790892362594604,
+      "gap": -0.3466041088104248,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.246028,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8784879446029663,
+      "gap": -0.3423936367034912,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.263725,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8778327703475952,
+      "gap": -0.3378016948699951,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.279187,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8771421909332275,
+      "gap": -0.3331298828125,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.296927,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.876432478427887,
+      "gap": -0.32829833030700684,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.313144,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8757119178771973,
+      "gap": -0.3233518600463867,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.329841,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8749860525131226,
+      "gap": -0.31851983070373535,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.346972,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8742572665214539,
+      "gap": -0.3136317729949951,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.363224,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8735268712043762,
+      "gap": -0.3087034225463867,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.37922,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8728018999099731,
+      "gap": -0.3039546012878418,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.396824,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.872077226638794,
+      "gap": -0.29918527603149414,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.413027,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8713534474372864,
+      "gap": -0.29439759254455566,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.430448,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8699451684951782,
+      "gap": -0.2855052947998047,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.446273,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8685428500175476,
+      "gap": -0.2766079902648926,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.464044,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8671470880508423,
+      "gap": -0.26770687103271484,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.479997,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8664804100990295,
+      "gap": -0.2636585235595703,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.496012,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8658146262168884,
+      "gap": -0.25961875915527344,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.513607,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.865151047706604,
+      "gap": -0.2555882930755615,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.530531,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8645159006118774,
+      "gap": -0.2518470287322998,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.546087,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8638821244239807,
+      "gap": -0.24811840057373047,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.563444,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8632499575614929,
+      "gap": -0.24440360069274902,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.57958,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8626522421836853,
+      "gap": -0.24098610877990723,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.597244,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8620560765266418,
+      "gap": -0.23758554458618164,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.61312,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.861461341381073,
+      "gap": -0.23420238494873047,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.629948,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8609078526496887,
+      "gap": -0.23112106323242188,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.646737,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8603554964065552,
+      "gap": -0.2280573844909668,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.663398,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.859804630279541,
+      "gap": -0.22500920295715332,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.680267,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8588523268699646,
+      "gap": -0.21981525421142578,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.696439,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.857904314994812,
+      "gap": -0.21468496322631836,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.713426,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.856959879398346,
+      "gap": -0.20961833000183105,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.730255,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8565759658813477,
+      "gap": -0.20751714706420898,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.74602,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8561930060386658,
+      "gap": -0.2054283618927002,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.763183,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8558105826377869,
+      "gap": -0.203352689743042,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.780494,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8554956912994385,
+      "gap": -0.20154833793640137,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.796759,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8551819324493408,
+      "gap": -0.19975566864013672,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.813903,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.4489050507545471,
+      "gap": 0.23777985572814941,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.829881,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.12057237327098846,
+      "gap": 0.017862796783447266,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.847812,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.061107464134693146,
+      "gap": -0.3886415958404541,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.863275,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.15490275621414185,
+      "gap": -0.692264199256897,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.880144,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.20376543700695038,
+      "gap": -0.9028830528259277,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.896543,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.23013430833816528,
+      "gap": -1.0368311405181885,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.913312,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.24485650658607483,
+      "gap": -1.1185206174850464,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.930394,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.2530670166015625,
+      "gap": -1.1668365001678467,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.946176,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.2577897906303406,
+      "gap": -1.194534420967102,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.964482,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.26052233576774597,
+      "gap": -1.209655523300171,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.980689,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.2618940472602844,
+      "gap": -1.221437692642212,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464366.996711,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.26258453726768494,
+      "gap": -1.2286219596862793,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.013632,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.26288339495658875,
+      "gap": -1.2331228256225586,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.030033,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.26270899176597595,
+      "gap": -1.2376271486282349,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.046859,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.2627006769180298,
+      "gap": -1.2433099746704102,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.063868,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3332764804363251,
+      "gap": -2.3212638199329376,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.07916,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3324964642524719,
+      "gap": -2.32536144554615,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.097218,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3317173719406128,
+      "gap": -2.3294665664434433,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.113485,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3309393525123596,
+      "gap": -2.3335841447114944,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.130261,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.32996585965156555,
+      "gap": -2.339528903365135,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.146585,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3289943039417267,
+      "gap": -2.345484435558319,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.164493,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3280239701271057,
+      "gap": -2.351451560854912,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.180014,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.32686591148376465,
+      "gap": -2.3589610159397125,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.19608,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.32570984959602356,
+      "gap": -2.3664860874414444,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.212332,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3248441517353058,
+      "gap": -2.3721375465393066,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.229448,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3217121362686157,
+      "gap": -2.3925758749246597,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.245878,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3188781440258026,
+      "gap": -2.411181092262268,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.262692,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3160548508167267,
+      "gap": -2.4182332307100296,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.279311,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3143882751464844,
+      "gap": -2.420444503426552,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.296244,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.31272420287132263,
+      "gap": -2.422636389732361,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.312459,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.31106239557266235,
+      "gap": -2.4248072803020477,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.329207,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.3092397451400757,
+      "gap": -2.427071988582611,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.346079,
+      "age": -1,
+      "phase": "None",
+      "faceDot": -0.307419091463089,
+      "gap": -2.4293108880519867,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.36308,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.20822212100028992,
+      "gap": 0.06650614738464355,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.379361,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.5316856503486633,
+      "gap": 0.21322226524353027,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.396382,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.6998471617698669,
+      "gap": 0.0746297836303711,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.412995,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.7823648452758789,
+      "gap": 0.006740093231201172,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.430311,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8237943053245544,
+      "gap": -0.08552980422973633,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.446959,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8456082940101624,
+      "gap": -0.16010189056396484,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.463235,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8577352166175842,
+      "gap": -0.21293187141418457,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.479323,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8658012747764587,
+      "gap": -0.25539469718933105,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.496943,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8711154460906982,
+      "gap": -0.2860107421875,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.513517,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8749080300331116,
+      "gap": -0.3090503215789795,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.529802,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.876946210861206,
+      "gap": -0.32161998748779297,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.546374,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8785005807876587,
+      "gap": -0.33143019676208496,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.563935,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8797726035118103,
+      "gap": -0.3395497798919678,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.580173,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8808636665344238,
+      "gap": -0.34654903411865234,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.59671,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8818566203117371,
+      "gap": -0.35289883613586426,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.612562,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8827919960021973,
+      "gap": -0.35883092880249023,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.630545,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8836712837219238,
+      "gap": -0.36432933807373047,
+      "health": 220
+    },
+    {
+      "stunUntil": 1793464370.17523,
+      "enemyState": "Stunned",
+      "time": 1793464367.646815,
+      "age": -1,
+      "phase": "None",
+      "faceDot": 0.8845306038856506,
+      "gap": -0.3696298599243164,
+      "health": 220
+    }
+  ],
+  "rig": "R15",
+  "done": true,
+  "snapshotted": true,
+  "snapshotAge": 0.24030089378356934,
+  "snapshotPosition": "-17.32440185546875, 11.096319198608398, 8.43829345703125",
+  "afterHealth": 220,
+  "shieldSource": "td:SwordsmanShield",
+  "requestedAt": 1793464358.662876,
+  "parts": {
+    "shield": "Shield",
+    "sword": "SwordBlade"
+  },
+  "verification": {
+    "rig": "R15",
+    "source_commit": "c879d0d5f293dd36c63046e738a2a7121bdac5cf",
+    "build": "0.46.3",
+    "normal_input": true,
+    "samples": 160,
+    "activeSamples": 4,
+    "minGap": 1.6571998596191406,
+    "minFaceDot": 0.9178093075752258,
+    "health": [
+      300,
+      220
+    ],
+    "stunDuration": 4.999933958053589,
+    "snapshotAge": 0.24030089378356934
+  }
+}
