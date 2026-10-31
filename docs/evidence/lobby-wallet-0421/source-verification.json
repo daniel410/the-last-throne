@@ -1,0 +1,25 @@
+{
+  "source_commit": "8dfe627193f3a05f9960ccd8301c6a52eead67ac",
+  "checks": [
+    {
+      "role": "Lobby",
+      "module": "LobbyWallet",
+      "matches": true
+    },
+    {
+      "role": "Lobby",
+      "module": "LobbyCommerce",
+      "matches": true
+    },
+    {
+      "role": "Battle",
+      "module": "LobbyWallet",
+      "matches": true
+    },
+    {
+      "role": "Battle",
+      "module": "LobbyCommerce",
+      "matches": true
+    }
+  ]
+}
