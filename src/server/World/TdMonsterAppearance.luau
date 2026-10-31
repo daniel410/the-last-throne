@@ -1,6 +1,7 @@
 -- TD Meshy runtime templates, mounted as presentation on K0's independent R6 rig.
 -- No MeshId or texture is assigned at runtime: validated MeshParts are cloned.
 local ServerStorage = game:GetService("ServerStorage")
+local RigSockets = require(game:GetService("ReplicatedStorage").Shared.EnemyRigSockets)
 
 local Appearance = {}
 local SPECS = {
@@ -129,6 +130,13 @@ function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 	for partName, joint in pairs(joints) do
 		local part = visual:FindFirstChild(partName)
 		local pivotPosition = part.Position + part.CFrame.UpVector * (part.Size.Y / 2)
+		local socketSpec = RigSockets[kind]
+		local shoulder = socketSpec and socketSpec.shoulders[partName == "ArmR" and "weapon" or partName == "ArmL" and "off" or ""]
+		if shoulder then
+			-- Weapon heads can extend above the shoulder. Anatomical pivots are
+			-- authored in the normalized source model, not its weapon bounds.
+			pivotPosition = feet:PointToWorldSpace(Vector3.new(shoulder[1], shoulder[2], shoulder[3]) * height)
+		end
 		local pivot = CFrame.new(pivotPosition) * root.CFrame.Rotation
 		joint.C0 = joint.Part0.CFrame:ToObjectSpace(pivot)
 		joint.C1 = joint.Part1.CFrame:ToObjectSpace(pivot)

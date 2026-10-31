@@ -1,0 +1,33 @@
+[
+  {
+    "log": "tlt-deepwood-v2-refinement.log",
+    "result": {
+      "checks": 1,
+      "failures": [
+        "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:12: Goblin shoulder X uses anatomical source\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:12\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:14\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"
+      ],
+      "pass": false,
+      "kind": "DEEPWOOD_REFINEMENT_NATIVE"
+    }
+  },
+  {
+    "log": "tlt-deepwood-v2-refinement2.log",
+    "result": {
+      "checks": 26,
+      "failures": [
+        "user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:12: Goblin Attack weapon head advances toward target, -0.4299074245823754\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:12\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:14\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"
+      ],
+      "pass": false,
+      "kind": "DEEPWOOD_REFINEMENT_NATIVE"
+    }
+  },
+  {
+    "log": "tlt-deepwood-v2-refinement3.log",
+    "result": {
+      "checks": 3115,
+      "failures": [],
+      "pass": true,
+      "kind": "DEEPWOOD_REFINEMENT_NATIVE"
+    }
+  }
+]

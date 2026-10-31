@@ -1,5 +1,7 @@
 # The Last Throne 통합 개발 계획
 
+> 2026-10-31 **0.49.0 / TLT-005/032/033/055/057/084 부분 구현:** Blender MCP로 Deepwood10종70동작·어깨 회전축·무기8종 끝점/궤적·주술사 시전 초점을 개선했다. [제작·검증·미검증](docs/evidence/deepwood-motion-v2/README.md). 로컬 시험판·미게시이며 원본의 일체형 메시/스키닝 한계와 실기기·다인/최종 미술 수용은 남아 있다.
+
 > 2026-10-31 **0.47.0 게시 완료:** 영웅 피격 신음·약한 붉은 효과, 몬스터 타격/몸 반응과 Shield Bash 방패 선행 수정을 기존 RPG Lobby **버전19** / Battle **버전5**에 게시했다. Private 유지. [게시·검증 기록](docs/evidence/damage-feedback-0470/README.md).
 
 > 2026-10-31 **0.47.0 / TLT-005/032/033/084:** 실제 피해에 짧은 피격 신음·약한 붉은 가장자리 효과를 추가하고, 몬스터 접촉면 섬광·국소 몸 반응을 강화한다. Shield Bash 방패 선행 수정도 포함한다. [구현·검증·게시 기록](docs/evidence/damage-feedback-0470/README.md)을 따른다.

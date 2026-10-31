@@ -1,0 +1,56 @@
+{
+  "version": 2,
+  "authoring": "Blender 5.2.0 LTS, Blender MCP execute_blender_code / bpy; 10 original TD rigid mesh hierarchies",
+  "logicalClips": 70,
+  "controllerActions": 350,
+  "samplesPerChannel": 201,
+  "impactPhase": 0.62,
+  "kinds": [
+    "Goblin",
+    "Orc",
+    "Ogre",
+    "Shaman",
+    "Warlord",
+    "GoblinKing",
+    "KingOgre",
+    "EnragedWarlord",
+    "KingShaman",
+    "Slime"
+  ],
+  "reuse": "Original TD meshes and packed textures preserved; derived anatomical pivots, curves and mesh-normalized tip sockets. No external model generation or asset upload.",
+  "sourceManifest": "../deepwood-monsters-v1/sources.json",
+  "sourceFiles": {
+    "assets/shared/td-monsters/runtime.rbxmx": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+    "assets/animations/deepwood-monsters-v1/deepwood-motion.blend": "bd6517ace45ec598fe3711675d4308fac4cada9a9a81e45e5a1fb36330243675",
+    "assets/animations/deepwood-monsters-v1/clips.json": "6bd7dd81bb7d13f87170619e8d1b96b2c4eebf875a59f51fc0a554d7389f15bd"
+  },
+  "files": {
+    "deepwood-motion.blend": {
+      "sha256": "92f2aae64dd86801b73a9ce5193df2caa3d7731649263772000fbb00455b3f85",
+      "bytes": 9874451
+    },
+    "clips.json": {
+      "sha256": "fb5c93594d283b28856cf6611d67ecd0dab161ba8989af30685a772a296b3978",
+      "bytes": 1842640
+    },
+    "weapon-sockets.json": {
+      "sha256": "621b754a29b77b09c02ca1b1ca8171f9943937c2dc682290167beadd4bbde3c2",
+      "bytes": 850
+    }
+  },
+  "reviewTimeline": {
+    "Idle": 0,
+    "Walk": 140,
+    "Attack": 280,
+    "AttackAlt": 420,
+    "Heavy": 560,
+    "HeavyAlt": 700,
+    "Stunned": 840
+  },
+  "limitations": [
+    "EnragedWarlord remains a single rigid mesh; armored body-slam replaces independent arm motion.",
+    "Robed bosses retain existing lower-body segmentation; no new knees, elbows, skinning or terrain IK.",
+    "Server timings, hitboxes, damage and reward budgets unchanged.",
+    "No published client, mobile or multiplayer performance acceptance."
+  ]
+}

@@ -3,6 +3,7 @@ local RunService=game:GetService('RunService')
 local Workspace=game:GetService('Workspace')
 local Clips=require(script.Parent.K0EnemyClips)
 local HitReaction=require(script.Parent.K0EnemyHitReaction)
+local WeaponMotion=require(script.Parent.K0EnemyWeaponMotion)
 local Motion={}
 local channels={'body','weapon','off','rightLeg','leftLeg'}
 local names={weapon='Left Shoulder',off='Right Shoulder',rightLeg='Right Hip',leftLeg='Left Hip'}
@@ -13,9 +14,9 @@ local function mix(a,b,t)
 end
 function Motion.sample(kind,clip,phase)
  local profile=Clips.models[kind] or Clips.models.Goblin
- local data=profile.clips[clip];local f=clamp(phase,0,1)*60;local n=math.min(60,math.floor(f));local a=f-n;local out={}
+ local data=profile.clips[clip] or profile.clips.Attack;local count=Clips.samples-1;local f=clamp(phase,0,1)*count;local n=math.min(count,math.floor(f));local a=f-n;local out={}
  for _,ch in ipairs(channels)do
-  out[ch]={};local x,y=data[ch][n+1],data[ch][math.min(n+2,61)]
+  out[ch]={};local x,y=data[ch][n+1],data[ch][math.min(n+2,Clips.samples)]
   for i,v in ipairs(x)do out[ch][i]=v+(y[i]-v)*a end
  end
  return out
@@ -56,13 +57,14 @@ function Motion.bind(model)
    end
   end
  end
+ s.weaponFX=WeaponMotion.bind(model)
  return s
 end
 function Motion.step(s,dt,current)
  dt=clamp(dt,0,.25)
  local delta=s.root.Position-s.position;local distance=Vector3.new(delta.X,0,delta.Z).Magnitude;s.position=s.root.Position
  local state=s.model:GetAttribute('K0EnemyState');local alive=s.model:FindFirstChildOfClass('Humanoid')
- if state=='Dead' or not alive or alive.Health<=0 then return end
+ if state=='Dead' or not alive or alive.Health<=0 then WeaponMotion.hide(s.weaponFX);return end
  local stunned=(s.model:GetAttribute('K0EnemyStunUntil') or 0)>current
  local moving=not stunned and state=='Chase' and distance<math.max(3,s.height*1.5)
  local speed=dt>0 and distance/dt or 0
@@ -75,15 +77,21 @@ function Motion.step(s,dt,current)
   s.clock=clock;s.attack=nil
   if type(clock)=='string' then
    local v=string.split(clock,'|');local start,w,a,r=tonumber(v[2]),tonumber(v[3]),tonumber(v[4]),tonumber(v[5])
-   if start and w and a and r and w>0 and a>0 and r>0 then s.attack={start=start,w=w,a=a,r=r,clip=v[6]=='1' and 'Heavy' or 'Attack'}end
+   if start and w and a and r and w>0 and a>0 and r>0 then
+    local clip=v[6]=='1' and 'Heavy' or 'Attack'
+    if (tonumber(v[1]) or 1)%2==0 then clip..='Alt'end
+    s.attack={start=start,w=w,a=a,r=r,clip=clip,heavy=v[6]=='1'}
+   end
   end
  end
+ local attackActive=not stunned and state~='Exposed' and s.attack and (state=='Windup' or state=='Active' or state=='Recovery')
+ local attackPhase=0
  if stunned or state=='Exposed' then target=Motion.sample(s.kind,'Stunned',(current*.65+s.seed)%1)
  elseif s.attack and (state=='Windup' or state=='Active' or state=='Recovery') then
-  local a=s.attack;target=Motion.sample(s.kind,a.clip,Motion.attackPhase(current-a.start,a.w,a.a,a.r))
+  local a=s.attack;attackPhase=Motion.attackPhase(current-a.start,a.w,a.a,a.r);target=Motion.sample(s.kind,a.clip,attackPhase)
  end
  -- Attack timing is sampled directly; smoothing it would delay the impact.
- if s.attack and not stunned and (state=='Windup' or state=='Active' or state=='Recovery') then s.pose=target else s.pose=mix(s.pose,target,1-math.exp(-dt*16))end
+ if attackActive then s.pose=target else s.pose=mix(s.pose,target,1-math.exp(-dt*16))end
  local p=s.pose;local b=p.body;local look=s.root.CFrame.LookVector
  local cross=s.look:Cross(look).Y;s.look=look;s.turn=s.turn+(clamp(cross/math.max(dt,.001),-2,2)-s.turn)*(1-math.exp(-dt*9))
  local rootFrame=CFrame.new(b[1]*s.height,b[2]*s.height,b[3]*s.height)*frame(b,4)*CFrame.Angles(0,0,-s.turn*.025*s.move)
@@ -111,6 +119,13 @@ function Motion.step(s,dt,current)
   end
   motor.Transform=transform
  end
+ WeaponMotion.step(s.weaponFX,attackPhase,attackActive,s.attack and s.attack.heavy,clock,current,s.viewDistance or 0,distance>math.max(3,s.height*1.5))
+end
+function Motion.unbind(s)
+ WeaponMotion.destroy(s.weaponFX);s.weaponFX=nil
+ if s.body.Parent then s.body.Size=s.bodySize end
+ if s.joint.Parent then s.joint.Transform=CFrame.identity end
+ for _,motor in pairs(s.joints)do if motor.Parent then motor.Transform=CFrame.identity end end
 end
 function Motion.start(enemies)
  local rigs,pending={},{}
@@ -120,16 +135,19 @@ function Motion.start(enemies)
  end
  local added=enemies.ChildAdded:Connect(queue)
  local descendants=enemies.DescendantAdded:Connect(function(o)local m=o;while m.Parent and m.Parent~=enemies do m=m.Parent end;if m.Parent==enemies then queue(m)end end)
- local removed=enemies.ChildRemoved:Connect(function(m)rigs[m]=nil;pending[m]=nil end)
+ local removed=enemies.ChildRemoved:Connect(function(m)if rigs[m]then Motion.unbind(rigs[m])end;rigs[m]=nil;pending[m]=nil end)
  for _,m in ipairs(enemies:GetChildren())do queue(m)end
  local frameConnection=RunService.PreSimulation:Connect(function(dt)
   local current=Workspace:GetServerTimeNow();local camera=Workspace.CurrentCamera
   for model,s in pairs(rigs)do
-   if not model.Parent then rigs[model]=nil
-   elseif not camera or (camera.CFrame.Position-s.root.Position).Magnitude<260 then Motion.step(s,dt,current)
-   else s.position=s.root.Position end
+   if not model.Parent then Motion.unbind(s);rigs[model]=nil
+   else
+    s.viewDistance=camera and (camera.CFrame.Position-s.root.Position).Magnitude or 0
+    if s.viewDistance<260 then Motion.step(s,dt,current)
+    else s.position=s.root.Position;WeaponMotion.hide(s.weaponFX)end
+   end
   end
  end)
- return function()added:Disconnect();descendants:Disconnect();removed:Disconnect();frameConnection:Disconnect();table.clear(rigs);table.clear(pending)end
+ return function()added:Disconnect();descendants:Disconnect();removed:Disconnect();frameConnection:Disconnect();for _,s in pairs(rigs)do Motion.unbind(s)end;table.clear(rigs);table.clear(pending)end
 end
 return Motion

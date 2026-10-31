@@ -1,0 +1,547 @@
+{
+  "kind": "TLT_TD_MONSTER_ASSETS_STATIC",
+  "checks": [
+    {
+      "id": "manifest/schema-v1",
+      "pass": true
+    },
+    {
+      "id": "manifest/runtime-and-four-originals",
+      "pass": true
+    },
+    {
+      "id": "manifest/four-selected-models",
+      "pass": true
+    },
+    {
+      "id": "runtime/LFS-materialized",
+      "pass": true
+    },
+    {
+      "id": "runtime/captured-SHA256",
+      "pass": true
+    },
+    {
+      "id": "runtime/size-and-LFS-declaration",
+      "pass": true
+    },
+    {
+      "id": "runtime/TD-source-present",
+      "pass": true
+    },
+    {
+      "id": "runtime/TD-byte-identical-copy",
+      "pass": true
+    },
+    {
+      "id": "goblin/LFS-materialized",
+      "pass": true
+    },
+    {
+      "id": "goblin/captured-SHA256",
+      "pass": true
+    },
+    {
+      "id": "goblin/size-and-LFS-declaration",
+      "pass": true
+    },
+    {
+      "id": "goblin/TD-source-present",
+      "pass": true
+    },
+    {
+      "id": "goblin/TD-byte-identical-copy",
+      "pass": true
+    },
+    {
+      "id": "goblin/original-GLB-v2-header",
+      "pass": true
+    },
+    {
+      "id": "goblin/original-GLB-mesh-JSON",
+      "pass": true
+    },
+    {
+      "id": "goblin/GLB-self-contained-resources",
+      "pass": true
+    },
+    {
+      "id": "ogre/LFS-materialized",
+      "pass": true
+    },
+    {
+      "id": "ogre/captured-SHA256",
+      "pass": true
+    },
+    {
+      "id": "ogre/size-and-LFS-declaration",
+      "pass": true
+    },
+    {
+      "id": "ogre/TD-source-present",
+      "pass": true
+    },
+    {
+      "id": "ogre/TD-byte-identical-copy",
+      "pass": true
+    },
+    {
+      "id": "ogre/original-GLB-v2-header",
+      "pass": true
+    },
+    {
+      "id": "ogre/original-GLB-mesh-JSON",
+      "pass": true
+    },
+    {
+      "id": "ogre/GLB-self-contained-resources",
+      "pass": true
+    },
+    {
+      "id": "slime/LFS-materialized",
+      "pass": true
+    },
+    {
+      "id": "slime/captured-SHA256",
+      "pass": true
+    },
+    {
+      "id": "slime/size-and-LFS-declaration",
+      "pass": true
+    },
+    {
+      "id": "slime/TD-source-present",
+      "pass": true
+    },
+    {
+      "id": "slime/TD-byte-identical-copy",
+      "pass": true
+    },
+    {
+      "id": "slime/original-GLB-v2-header",
+      "pass": true
+    },
+    {
+      "id": "slime/original-GLB-mesh-JSON",
+      "pass": true
+    },
+    {
+      "id": "slime/GLB-self-contained-resources",
+      "pass": true
+    },
+    {
+      "id": "orc/LFS-materialized",
+      "pass": true
+    },
+    {
+      "id": "orc/captured-SHA256",
+      "pass": true
+    },
+    {
+      "id": "orc/size-and-LFS-declaration",
+      "pass": true
+    },
+    {
+      "id": "orc/TD-source-present",
+      "pass": true
+    },
+    {
+      "id": "orc/TD-byte-identical-copy",
+      "pass": true
+    },
+    {
+      "id": "orc/original-GLB-v2-header",
+      "pass": true
+    },
+    {
+      "id": "orc/original-GLB-mesh-JSON",
+      "pass": true
+    },
+    {
+      "id": "orc/GLB-self-contained-resources",
+      "pass": true
+    },
+    {
+      "id": "assets/shared/td-monsters/runtime.rbxmx/effective-git-LFS-attributes",
+      "pass": true
+    },
+    {
+      "id": "assets/shared/td-monsters/source/Meshy_AI_Goblin_Bladebearer_20261025_texture_da014fd3.glb/effective-git-LFS-attributes",
+      "pass": true
+    },
+    {
+      "id": "assets/shared/td-monsters/source/Meshy_AI_Grimfang_the_Bonecrusher_20261025_texture_5d91642a.glb/effective-git-LFS-attributes",
+      "pass": true
+    },
+    {
+      "id": "assets/shared/td-monsters/source/Meshy_AI_Grumpy_Green_Slime_1026021945_texture.glb/effective-git-LFS-attributes",
+      "pass": true
+    },
+    {
+      "id": "assets/shared/td-monsters/source/Meshy_AI_Ironhide_Warlord_20261025_texture_3545c9fe.glb/effective-git-LFS-attributes",
+      "pass": true
+    },
+    {
+      "id": "XML/single-model-folder",
+      "pass": true
+    },
+    {
+      "id": "XML/original-folder-name",
+      "pass": true
+    },
+    {
+      "id": "XML/no-executable-scripts",
+      "pass": true
+    },
+    {
+      "id": "XML/unique-instance-references",
+      "pass": true
+    },
+    {
+      "id": "XML/no-dangling-instance-references",
+      "pass": true
+    },
+    {
+      "id": "XML/full-43-model-source-preserved",
+      "pass": true
+    },
+    {
+      "id": "goblin/exact-original-mesh-parts",
+      "pass": true
+    },
+    {
+      "id": "goblin/original-TargetHeight",
+      "pass": true
+    },
+    {
+      "id": "goblin/manifest-original-link",
+      "pass": true
+    },
+    {
+      "id": "goblin/manifest-part-coverage",
+      "pass": true
+    },
+    {
+      "id": "goblin/Body/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "goblin/Body/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "goblin/Body/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "goblin/Body/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "goblin/ArmL/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "goblin/ArmL/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "goblin/ArmL/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "goblin/ArmL/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "goblin/ArmR/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "goblin/ArmR/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "goblin/ArmR/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "goblin/ArmR/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "goblin/LegL/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "goblin/LegL/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "goblin/LegL/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "goblin/LegL/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "goblin/LegR/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "goblin/LegR/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "goblin/LegR/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "goblin/LegR/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "ogre/exact-original-mesh-parts",
+      "pass": true
+    },
+    {
+      "id": "ogre/original-TargetHeight",
+      "pass": true
+    },
+    {
+      "id": "ogre/manifest-original-link",
+      "pass": true
+    },
+    {
+      "id": "ogre/manifest-part-coverage",
+      "pass": true
+    },
+    {
+      "id": "ogre/Body/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "ogre/Body/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "ogre/Body/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "ogre/Body/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "ogre/ArmL/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "ogre/ArmL/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "ogre/ArmL/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "ogre/ArmL/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "ogre/ArmR/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "ogre/ArmR/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "ogre/ArmR/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "ogre/ArmR/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "ogre/LegL/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "ogre/LegL/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "ogre/LegL/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "ogre/LegL/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "ogre/LegR/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "ogre/LegR/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "ogre/LegR/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "ogre/LegR/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "slime/exact-original-mesh-parts",
+      "pass": true
+    },
+    {
+      "id": "slime/original-TargetHeight",
+      "pass": true
+    },
+    {
+      "id": "slime/manifest-original-link",
+      "pass": true
+    },
+    {
+      "id": "slime/manifest-part-coverage",
+      "pass": true
+    },
+    {
+      "id": "slime/Body/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "slime/Body/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "slime/Body/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "slime/Body/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "orc/exact-original-mesh-parts",
+      "pass": true
+    },
+    {
+      "id": "orc/original-TargetHeight",
+      "pass": true
+    },
+    {
+      "id": "orc/manifest-original-link",
+      "pass": true
+    },
+    {
+      "id": "orc/manifest-part-coverage",
+      "pass": true
+    },
+    {
+      "id": "orc/Body/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "orc/Body/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "orc/Body/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "orc/Body/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "orc/ArmL/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "orc/ArmL/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "orc/ArmL/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "orc/ArmL/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "orc/ArmR/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "orc/ArmR/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "orc/ArmR/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "orc/ArmR/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "orc/LegL/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "orc/LegL/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "orc/LegL/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "orc/LegL/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "orc/LegR/original-content-IDs",
+      "pass": true
+    },
+    {
+      "id": "orc/LegR/manifest-geometry-and-rotation",
+      "pass": true
+    },
+    {
+      "id": "orc/LegR/original-anchor",
+      "pass": true
+    },
+    {
+      "id": "orc/LegR/serialized-template-physics",
+      "pass": true
+    },
+    {
+      "id": "Rojo/actual-TD-runtime-mount",
+      "pass": true
+    },
+    {
+      "id": "Rojo/spawn-loading-regression",
+      "pass": true
+    },
+    {
+      "id": "Rojo/serialized-MeshPart-source",
+      "pass": true
+    }
+  ],
+  "failures": [],
+  "not_run": [],
+  "coverage": "Vendored bytes/schema/XML/LFS/Rojo only; no Studio, asset fetch, visible render, Player, performance or published access",
+  "td_source_comparison": "executed",
+  "pass": true,
+  "check_count": 134
+}
