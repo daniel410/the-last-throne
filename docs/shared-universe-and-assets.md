@@ -1,5 +1,7 @@
 # Throne Defense와 공유할 세계관·캐릭터·3D 자산
 
+> **2026-10-30 사용자 재확인:** Priest 수녀 Selene는 이야기 NPC이자 선택 가능한 동행 서포터다. TD의 Priest 영웅(`priestess`)·Light Nun 등 타워 자산을 재사용한다. 회복·보호·정화로 돕고 기존 인원별 동행 슬롯을 따른다. 플레이어는4클래스이며 수녀 전직/트리는 없다. [현재 5에픽 줄거리](production/five-epic-adventure-story-2026-10-30.md)에 지역별 역할을 반영했다. 아래 과거의 심오한 인물 서사보다 현재의 쉬운 우정·구조 모험을 우선한다.
+
 버전0.24 · 갱신 기준2026-10-27 · [기획 본문](game-design.md) · [업데이트 제안서](../../throne-defense/docs/throne-chronicles-rpg-proposal.md)
 
 초기 자산 목록·파일 후보의 조사 기준은 **2026-10-26**이다. **2026-10-27**에 공통 UI/이미지와 default.project.json의 실제3D 소스 경로를 추가 조사해 [공유 원본 레지스트리](../assets/shared/td-asset-registry.json)에 기록했다. 파일/소스 연결 확인과 새 업로드·RPG 런타임 적용은 구분한다. 사용자 결정과 활용 제안은 [기획 결정표](decisions.md)에서 구분한다.

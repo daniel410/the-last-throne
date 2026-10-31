@@ -1,5 +1,7 @@
 # The Last Throne 통합 개발 계획
 
+> **Priest 수녀 Selene:** NPC·선택형 동행 서포터로 회복/보호/정화를 돕는다. TD 영웅과 타워의 외형·모델·무기·연출을 재사용하며 기존 동행 슬롯과 플레이어4클래스를 유지한다. [서사/자산 적용](docs/production/five-epic-adventure-story-2026-10-30.md#priest-수녀와-td-영웅타워-재사용).
+
 > **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → Frozen Vale → Ember Caldera → 어둠의 숲(Gloamwood, 영문 가칭) → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 따른다.
 
 > **2026-10-30 최신 본편 승인 · TLT-001/065:** 10~15세 대상 [다섯 에픽 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 현재 서사 기준으로 삼는다. Deepwood → Frozen Vale → Ember Caldera → 어두운 숲 → Haunted Graveyard 순서로 Veyr의 침공을 막고 왕관의 심장을 되찾아 완결한다. 기존 심오한 서사/에픽1~4 줄거리 보존 조건과 8에픽 계획보다 이 승인이 우선한다. 아래 과거 기록·상세안은 참고 자료이며 세부 시나리오/성장·보상/게임 반영은 후속이다. 기존 보상 정본과 안정ID는 자동 변경하지 않는다.
