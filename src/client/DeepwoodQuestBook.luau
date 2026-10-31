@@ -1,6 +1,6 @@
 local RS=game:GetService('ReplicatedStorage')
 local TextService=game:GetService('TextService')
-local Content=require(RS.Shared.DeepwoodContent)
+local Content=require(RS.Shared.CampaignContent)
 local P=require(RS.Shared.DeepwoodProgress)
 local Log=require(RS.Shared.DeepwoodQuestLog)
 local Theme=require(script.Parent.TDInventoryTheme)
@@ -39,10 +39,11 @@ function Book.create(parent,track)
   coins.Text=string.format('Gold earned: %d\nConfirmed progress is saved.',s.coins+(s.killCoins or 0))
   if tab=='Main' then
    local c=Log.main(s)
-   card('EPIC 1 · FRIENDS OF THE FOREST',{require(RS.Shared.DeepwoodQuestCatalog).epic.promise,string.format('%d / 7 stories completed · Side quests are optional.',s.main)})
+   local epic=s.main>=7 and 2 or 1
+   card(epic==2 and 'EPIC 2 · BEYOND THE BLIZZARD' or 'EPIC 1 · FRIENDS OF THE FOREST',{epic==2 and 'Rescue the travelers, reconnect the shelters, and calm the ice guardians.' or require(RS.Shared.DeepwoodQuestCatalog).epic.promise,string.format('%d / 7 stories completed · Side quests are optional.',math.clamp(s.main-(epic-1)*7,0,7))})
    if c then
     local phase,index,total=Log.phase(s,c)
-    card(string.format('MAIN STORY %d / 7 · %s',c.number,c.quest.title),{c.quest.brief,string.format('Phase %d / %d · %s',index,total,phase),Log.reward(c)},function() track(c.id) end,'TRACK MAIN STORY')
+    card(string.format('MAIN STORY %d / 7 · %s',(c.number-1)%7+1,c.quest.title),{c.quest.brief,string.format('Phase %d / %d · %s',index,total,phase),Log.reward(c)},function() track(c.id) end,'TRACK MAIN STORY')
     local currentPhase=c.quest.phases[index];local lines={}
     for _,id in ipairs(currentPhase.goals) do local g=P.goal(c,id);table.insert(lines,(s.flags[c.id..':'..id] and '✓ ' or '□ ')..g.title) end
     card('CURRENT PHASE',lines)
@@ -56,10 +57,10 @@ function Book.create(parent,track)
      card('OPTIONAL · '..g.title,{'This does not block the main story.','Rescuing the altar captives creates an opening during King Shaman\'s final phase.'},function() track(c.id,g.id) end,'TRACK OPTIONAL RESCUE')
     end end
     card('NEXT STORY',{'Complete this story to open the next region. Combat alone may not finish an investigation, rescue, or report.'})
-   else card('EPIC COMPLETE',{'The convoy is home and the portal is closed! The next clue leads north to Frozen Vale. That expedition is not available yet. Finish side quests or return to the lobby.'}) end
+   else card('EPIC COMPLETE',{'The northern roads are open! The crystal convoy went to Ember Caldera. That expedition is still being prepared. Finish optional guardian challenges or return to the lobby.'}) end
    card('SELENE · PRIEST',{current.selene or (P.seleneUnlocked(s) and 'Available · Invite Selene at the elder tree camp.' or 'Help the convoy reach camp, then report to Selene to unlock her for free.')})
   elseif tab=='Side' then
-   card('OPTIONAL STORIES',{'Discover a field clue or speak to a resident. Read the request, then choose ACCEPT or LATER.','Accepted quests never block the seven main stories. Report to the named resident when the work is done.'})
+   card('OPTIONAL STORIES',{'Discover a field clue or speak to a resident. Read the request, then choose ACCEPT or LATER.','Accepted quests never block the main stories. Report to the named resident when the work is done.'})
    local count=0
    for _,c in ipairs(Content.chapters) do if c.side and s.main>=c.minMain and not s.clears[c.id] and (c.id~='DW-Q1' or P.accepted(s,c)) then
     count+=1;local status=Log.status(s,c)

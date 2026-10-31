@@ -12,6 +12,7 @@ function Art.shape(parent,name,x,y,w,h,color,layer,round)
 end
 function Art.region(parent,id,z,point,width,height,compact)
  local center=point(z.center[1],z.center[3]);local sx,sy=z.size[1]/width,z.size[2]/height
+ local frozen=id:sub(1,3)=='FV-'
  local corrupt=id=='DW-06' or id=='DW-07' or id=='DW-S3'
  local ground=corrupt and C.corrupt or C.forest
  local function blob(name,x,y,w,h,color,layer)
@@ -21,7 +22,7 @@ function Art.region(parent,id,z,point,width,height,compact)
  blob('CliffShadow',0,.035,1.03,1.02,C.ink,2)
  blob('LimestoneContour',0,.012,1,1,C.cliff,2)
  blob('MossContour',0,0,.96,.96,corrupt and C.corrupt or C.rim,2)
- blob('ForestFloor',0,-.015,.90,.90,ground,2)
+ blob('ForestFloor',0,-.015,.90,.90,frozen and Color3.fromRGB(166,206,222) or ground,2)
  for i=1,8 do local a=i*math.pi/4
   blob('CanopyContour',math.cos(a)*.28,math.sin(a)*.29,.42,.40,ground,2)
  end

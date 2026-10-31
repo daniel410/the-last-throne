@@ -1,10 +1,11 @@
 -- Local accents follow the original mesh's Blender-authored tip socket.
 -- They never add hitboxes, replicated parts, damage or impact claims.
 local Sockets=require(game:GetService('ReplicatedStorage').Shared.EnemyRigSockets)
+local FrozenRigs=require(game:GetService('ReplicatedStorage').Shared.FrozenValeRigs)
 local Weapon={}
 local function point(part,v)return part.Size*Vector3.new(v[1],v[2],v[3])end
 function Weapon.bind(model)
- local spec=Sockets[model:GetAttribute('EnemyKind')]
+ local kind=model:GetAttribute('EnemyKind');local spec=Sockets[kind] or FrozenRigs[kind] and FrozenRigs[kind].socket
  local visual=model:FindFirstChild('TdMonsterVisual');local part=visual and visual:FindFirstChild('ArmR')
  if not spec or not part then return nil end
  for _,name in ipairs({'K0WeaponPresentation','K0BladeTip','K0BladeBase'})do local old=part:FindFirstChild(name);if old then old:Destroy()end end

@@ -1,7 +1,9 @@
 -- Local presentation from Blender MCP curves. The server owns roots and hits.
 local RunService=game:GetService('RunService')
 local Workspace=game:GetService('Workspace')
-local Clips=require(script.Parent.K0EnemyClips)
+local BaseClips=require(script.Parent.K0EnemyClips)
+local Clips=table.clone(BaseClips);Clips.models=table.clone(BaseClips.models)
+for kind,profile in pairs(require(script.Parent.FrozenValeClips).models)do Clips.models[kind]=profile end
 local HitReaction=require(script.Parent.K0EnemyHitReaction)
 local WeaponMotion=require(script.Parent.K0EnemyWeaponMotion)
 local Motion={}
@@ -50,9 +52,9 @@ function Motion.bind(model)
   bodyPoints=corners(body,torso),bodyCenter=torso.CFrame:PointToObjectSpace(body.Position),pose=Motion.sample(kind,'Idle',seed%1)}
  local rest=joint.C0*joint.C1:Inverse();s.bodyBottom=lowest(rest,s.bodyPoints)
  for ch,name in pairs(names)do
-  local motor=torso:FindFirstChild(name);local part=visual:FindFirstChild(meshNames[ch])
+  local motor=torso:FindFirstChild(name);local part=visual:FindFirstChild(profile.quadruped and ({weapon='LegFR',off='LegFL',rightLeg='LegBL',leftLeg='LegBR'})[ch] or meshNames[ch])
   if motor and part then s.joints[ch]=motor
-   if ch=='rightLeg' or ch=='leftLeg'then
+   if profile.quadruped or ch=='rightLeg' or ch=='leftLeg'then
     local points=corners(part,motor.Part1);s.legs[ch]={points=points,bottom=lowest(rest*motor.C0*motor.C1:Inverse(),points)}
    end
   end
@@ -111,7 +113,7 @@ function Motion.step(s,dt,current)
   local transform=frame(p[ch]);local leg=s.legs[ch]
   if leg then
    local cf=bodyInRoot*motor.C0*transform*motor.C1:Inverse()
-   local swing=ch=='rightLeg' and math.max(0,math.sin(s.phase*math.pi*2)) or math.max(0,-math.sin(s.phase*math.pi*2))
+   local swing=(ch=='rightLeg' or s.profile.quadruped and ch=='weapon') and math.max(0,math.sin(s.phase*math.pi*2)) or math.max(0,-math.sin(s.phase*math.pi*2))
    local lift=swing*swing*.025*s.height*s.move
    local correction=leg.bottom+lift-lowest(cf,leg.points)
    local localUp=(bodyInRoot*motor.C0).UpVector.Y

@@ -23,14 +23,18 @@ function M.create(o)
   prompt(model,'Invite','Invite Selene',-3,true);prompt(model,'Rest','Ask Selene to rest',3,false)
  end
  selectionPrompts(npc)
+ local refuge=o.world.refugeCompanionCamp
+ if refuge then selectionPrompts(refuge);refuge:SetAttribute('SeleneCampPosition',refuge.PrimaryPart.Position) end
  local function remove(player)
   local f=followers[player];if f then f.model:Destroy();followers[player]=nil end
  end
  function api.remove(player) remove(player);cooldowns[player]=nil;status[player]=nil;lastSelect[player]=nil end
  function api.select(player,following)
   local hero=o.active(player);local ctx,root=o.context(player)
-  if type(following)~='boolean' or not hero or hero.training or not ctx or ctx.heroId~=hero.heroId or not root or (root.Position-camp).Magnitude>16 then return false end
+  if type(following)~='boolean' or not hero or hero.training or not ctx or ctx.heroId~=hero.heroId or not root then return false end
   local s=o.state(player,ctx.heroId)
+  local atCamp=(root.Position-camp).Magnitude<=16 or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16
+  if not atCamp then return false end
   if not Progress.seleneUnlocked(s) then o.publish(player,'Help the convoy reach camp, then finish the rescue report with Selene.');return false end
   local time=o.clock and o.clock() or os.clock()
   if time-(lastSelect[player] or -math.huge)<.4 then return false end
@@ -53,7 +57,7 @@ function M.create(o)
   for player in pairs(followers) do if not allowed[player] then remove(player) end end
   for _,player in ipairs(population) do
    local hero=o.active(player);local ctx,root=o.context(player);local s=o.state(player,hero.heroId)
-   status[player]=not Progress.seleneUnlocked(s) and 'Meet Selene after the convoy rescue.' or not s.seleneFollowing and 'Available · Invite Selene at the elder tree camp.' or not allowed[player] and 'Resting · Party companion slots are full.' or 'Following · Healing, protection and cleansing support.'
+   status[player]=not Progress.seleneUnlocked(s) and 'Meet Selene after the convoy rescue.' or not s.seleneFollowing and 'Available · Invite Selene at a safe companion camp.' or not allowed[player] and 'Resting · Party companion slots are full.' or 'Following · Healing, protection and cleansing support.'
    if not allowed[player] or not ctx or ctx.heroId~=hero.heroId or not root then remove(player)
    else
     local f=followers[player]

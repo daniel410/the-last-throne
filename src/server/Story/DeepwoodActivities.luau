@@ -1,6 +1,6 @@
 -- Server-owned activity attempts. Saved substeps remain in the personal journal.
 local Players=game:GetService('Players')
-local Content=require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent)
+local Content=require(game:GetService('ReplicatedStorage').Shared.CampaignContent)
 local Progress=require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress)
 local Actors=require(script.Parent.Parent.World.DeepwoodActivityWorld)
 local Engine={}

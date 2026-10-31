@@ -1,8 +1,8 @@
 -- North-up cartography projected from authoritative campaign coordinates.
 local Shared=game:GetService('ReplicatedStorage').Shared
-local Content=require(Shared.DeepwoodContent)
+local Content=require(Shared.CampaignContent)
 local Progress=require(Shared.DeepwoodProgress)
-local Access=require(Shared.DeepwoodAccess)
+local Access=require(Shared.CampaignAccess)
 local Text=require(Shared.K0Text).Map
 local Theme=require(script.Parent.TDInventoryTheme)
 local Art=require(script.Parent.DeepwoodCartography)

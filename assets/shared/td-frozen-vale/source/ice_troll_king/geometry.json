@@ -1,0 +1,500 @@
+{
+  "key": "ice_troll_king",
+  "kind": "ice_troll_king",
+  "variant": null,
+  "sourceFile": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Frostfang_Colossus_20261025_texture_40d91e2d.glb",
+  "sourceSha256": "cb92e1abc460cdb9208bdb80e264a7ed0c5cd18f8bc3cc00eb87c44a7126f4a8",
+  "normalization": {
+    "sourceHeight": 0.7944340109825134,
+    "sourceFeetOrigin": [
+      0.0004884898662567139,
+      -0.39917001128196716,
+      -0.1528320023790002
+    ],
+    "normalRepairVertexIndices": [],
+    "sourceTriangles": 3195
+  },
+  "triangles": 6467,
+  "parts": [
+    {
+      "name": "LegL",
+      "anchor": "LegL",
+      "size": [
+        0.5141364775388116,
+        0.22000000000000003,
+        0.3669329206728704
+      ],
+      "localCF": [
+        -0.2570682387694058,
+        0.11000000000000001,
+        -0.05285775046852992,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.2570682387694058,
+        0.22000000000000003,
+        -0.05285775046852992
+      ],
+      "triangles": 359,
+      "sourceSurfaceTriangles": 289,
+      "jointCapTriangles": 70
+    },
+    {
+      "name": "LegR",
+      "anchor": "LegR",
+      "size": [
+        0.5249392537077908,
+        0.2193857097979794,
+        0.43959384230686227
+      ],
+      "localCF": [
+        0.2624696268538954,
+        0.11030714510101033,
+        0.009152243406267038,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.2624696268538954,
+        0.22000000000000003,
+        0.009152243406267038
+      ],
+      "triangles": 599,
+      "sourceSurfaceTriangles": 431,
+      "jointCapTriangles": 168
+    },
+    {
+      "name": "ArmL",
+      "anchor": "ArmL",
+      "size": [
+        0.5377992127856993,
+        0.6246838706937696,
+        0.9190315367798518
+      ],
+      "localCF": [
+        -0.3349724213710417,
+        0.36765806465311535,
+        0.27650131841560077,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.3349724213710417,
+        0.6800000000000002,
+        0.27650131841560077
+      ],
+      "triangles": 1360,
+      "sourceSurfaceTriangles": 1036,
+      "jointCapTriangles": 324
+    },
+    {
+      "name": "ArmR",
+      "anchor": "ArmR",
+      "size": [
+        0.37264224691487513,
+        0.5200000000000002,
+        0.4701900791138255
+      ],
+      "localCF": [
+        0.41632112345743755,
+        0.42000000000000004,
+        -0.029502126325675768,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.41632112345743755,
+        0.6800000000000002,
+        -0.029502126325675768
+      ],
+      "triangles": 1342,
+      "sourceSurfaceTriangles": 946,
+      "jointCapTriangles": 396
+    },
+    {
+      "name": "Body",
+      "anchor": "Body",
+      "size": [
+        0.9416099812798109,
+        0.78,
+        0.7000606637365305
+      ],
+      "localCF": [
+        0.04578984815196374,
+        0.61,
+        0.0018440816018227557,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.04578984815196374,
+        1.0,
+        0.0018440816018227557
+      ],
+      "triangles": 2807,
+      "sourceSurfaceTriangles": 2141,
+      "jointCapTriangles": 666
+    }
+  ],
+  "cutDiagnostics": [
+    {
+      "cut": "biped-hip",
+      "loops": 16,
+      "capTrianglesEachSide": 218,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.22,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "biped-sides",
+      "loops": 3,
+      "capTrianglesEachSide": 8,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmL0",
+      "loops": 8,
+      "capTrianglesEachSide": 97,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0.23,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmL1",
+      "loops": 4,
+      "capTrianglesEachSide": 38,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.24,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmL2",
+      "loops": 1,
+      "capTrianglesEachSide": 25,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.68,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR0",
+      "loops": 7,
+      "capTrianglesEachSide": 94,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.23,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR1",
+      "loops": 7,
+      "capTrianglesEachSide": 62,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.24,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR2",
+      "loops": 1,
+      "capTrianglesEachSide": 28,
+      "planeNormal": [
+        0,
+        -1,
+        0
+      ],
+      "planeOffset": -0.68,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "owned-ArmL-from-Body0",
+      "loops": 2,
+      "capTrianglesEachSide": 16,
+      "planeNormal": [
+        0,
+        0,
+        1
+      ],
+      "planeOffset": 0.3,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "owned-ArmR-from-LegR0",
+      "loops": 5,
+      "capTrianglesEachSide": 31,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.45,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "owned-ArmR-from-LegR1",
+      "loops": 2,
+      "capTrianglesEachSide": 15,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.16,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "owned-ArmR-from-Body0",
+      "loops": 4,
+      "capTrianglesEachSide": 27,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.45,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    }
+  ],
+  "ownershipOverrides": [
+    {
+      "anchor": "ArmL",
+      "planes": [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          0.3
+        ],
+        [
+          [
+            -1,
+            0,
+            0
+          ],
+          -0.18
+        ],
+        [
+          [
+            0,
+            -1,
+            0
+          ],
+          -0.62
+        ]
+      ],
+      "reason": "complete forward club in left hand; upper head and rear feet excluded"
+    },
+    {
+      "anchor": "ArmR",
+      "planes": [
+        [
+          [
+            1,
+            0,
+            0
+          ],
+          0.45
+        ],
+        [
+          [
+            0,
+            1,
+            0
+          ],
+          0.16
+        ],
+        [
+          [
+            0,
+            -1,
+            0
+          ],
+          -0.45
+        ]
+      ],
+      "reason": "complete low right fingertips; outer toe soles lie below region"
+    }
+  ],
+  "sourceSurfaceArea": 4.341435642604459,
+  "maxSourceTriangleAreaError": 6.938893903907228e-18,
+  "coverageStatus": "all source faces preserved exactly once",
+  "meshOnlySha256": "ee95d45eb77ca19c539d8335b9e629124cf853151ef744d3c2c8008848ae29c3",
+  "texturedReviewSha256": "22e8f2af463e7b0a6e379b5a6aa868ce12b3f02685b0d28bc4815923df9c3adf",
+  "walkReviewSha256": "e073733c0e6f87a8969e7eb1b459a8958402623cdba55583853f9d025fef254f",
+  "colorMapSha256": "3f9278fe2b015c26aed505ef86947f24d78e2e80d6012b3db6e3eb3bbedb0b8a",
+  "textureDimensions": [
+    512,
+    512
+  ],
+  "animationPolicy": "Reviewed rigid anchors; partial lower-leg or whole-island motion as recorded",
+  "partitionProfile": {
+    "hip": 0.22,
+    "arm_low": 0.24,
+    "arm_x": 0.23,
+    "arm_top": 0.68,
+    "equipment_regions": [
+      {
+        "anchor": "ArmL",
+        "planes": [
+          [
+            [
+              0,
+              0,
+              1
+            ],
+            0.3
+          ],
+          [
+            [
+              -1,
+              0,
+              0
+            ],
+            -0.18
+          ],
+          [
+            [
+              0,
+              -1,
+              0
+            ],
+            -0.62
+          ]
+        ],
+        "reason": "complete forward club in left hand; upper head and rear feet excluded"
+      },
+      {
+        "anchor": "ArmR",
+        "planes": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            0.45
+          ],
+          [
+            [
+              0,
+              1,
+              0
+            ],
+            0.16
+          ],
+          [
+            [
+              0,
+              -1,
+              0
+            ],
+            -0.45
+          ]
+        ],
+        "reason": "complete low right fingertips; outer toe soles lie below region"
+      }
+    ]
+  },
+  "status": "local geometry candidate; visual joint acceptance and upload pending"
+}

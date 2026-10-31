@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "tdCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "sourcePath": "assets/models/meshy-deepwood-slime-v1/runtime.rbxmx",
+  "sourceSha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+  "permission": "User-requested reuse from the shared TD repository. Published RPG asset permissions require separate verification.",
+  "models": {
+    "IceWolf": {
+      "template": "ice_wolf",
+      "parts": [
+        "LegFL",
+        "LegBL",
+        "LegFR",
+        "LegBR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_wolf/textured-review.glb",
+          "sha256": "5233883d1e04bd38293c8391b96a660a82af785098947c0bc5e9fbc9c3d9f9b4"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_wolf/geometry.json",
+          "sha256": "eb351c8439ba0504526600b998bbaf9b63d16be0f8cb99d3bbf16797ba249b07"
+        }
+      },
+      "triangles": 4444,
+      "pivots": {
+        "LegFL": [
+          -0.10750707475367899,
+          0.32000000000000006,
+          0.3819772123856987
+        ],
+        "LegBL": [
+          -0.44035218857003683,
+          0.32000000000000006,
+          -0.5417049503024999
+        ],
+        "LegFR": [
+          0.30398486193906965,
+          0.32000000000000006,
+          0.3530005204764856
+        ],
+        "LegBR": [
+          0.29101025539481784,
+          0.32000000000000006,
+          -0.3507870274574205
+        ],
+        "Body": [
+          -0.05236344401746901,
+          1.0,
+          -0.08201957037402913
+        ]
+      },
+      "targetHeight": 3.5999999999999996
+    },
+    "IceTroll": {
+      "template": "ice_troll",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_troll/textured-review.glb",
+          "sha256": "d6c2e9c102b0dfab09a3590977255185fbaae61af2d40193e4824d0bc2945700"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_troll/geometry.json",
+          "sha256": "79b355add77345393e408d4c4cbc5dde809546d9695ea806b61bc9b10c1ac4d2"
+        }
+      },
+      "triangles": 6289,
+      "pivots": {
+        "LegL": [
+          -0.22495500442971628,
+          0.22000000000000003,
+          0.006795883775845529
+        ],
+        "LegR": [
+          0.302055538647423,
+          0.22000000000000006,
+          0.0048744430726080645
+        ],
+        "ArmL": [
+          -0.38854555208119407,
+          0.6800000000000002,
+          -0.06002458169842778
+        ],
+        "ArmR": [
+          0.4296369966783627,
+          0.6800000000000002,
+          0.08968260095247776
+        ],
+        "Body": [
+          0.0810304755535825,
+          1.0,
+          0.03149398382762708
+        ]
+      },
+      "targetHeight": 5.4875
+    },
+    "IceBear": {
+      "template": "ice_bear",
+      "parts": [
+        "LegFL",
+        "LegBL",
+        "LegFR",
+        "LegBR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_bear/textured-review.glb",
+          "sha256": "134ac7a01bc221040077d76df0f62c8d2f8db9913c0444def83999d8947d76a1"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_bear/geometry.json",
+          "sha256": "f64e9560243047e3b08674a3c159707a9545bf923805f5be8d6ed931a98f5787"
+        }
+      },
+      "triangles": 4964,
+      "pivots": {
+        "LegFL": [
+          -0.1819699372459443,
+          0.36000000000000004,
+          0.3407057444320569
+        ],
+        "LegBL": [
+          -0.3377319628376625,
+          0.36000000000000004,
+          -0.3378053918925965
+        ],
+        "LegFR": [
+          0.3377319628376625,
+          0.36000000000000004,
+          0.33820790322314687
+        ],
+        "LegBR": [
+          0.25637161228399385,
+          0.36000000000000004,
+          -0.34665407906807727
+        ],
+        "Body": [
+          -0.031486227815466644,
+          1.0,
+          0.084758181243268
+        ]
+      },
+      "targetHeight": 4.859999999999999
+    },
+    "IceGolem": {
+      "template": "ice_golem",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_golem/textured-review.glb",
+          "sha256": "fda1aee0e238d191c99a0b8015f720112dd2934e07be363726cc8e1832877941"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_golem/geometry.json",
+          "sha256": "b2898fbfab040466307cb03e7f93c4ea98ead17169660fd9f8728d6ca058fe46"
+        }
+      },
+      "triangles": 5258,
+      "pivots": {
+        "LegL": [
+          -0.25517021941240403,
+          0.15000000000000002,
+          0.057372050216135465
+        ],
+        "LegR": [
+          0.29334488829414984,
+          0.15000000000000002,
+          -0.08739119222482322
+        ],
+        "ArmL": [
+          -0.45172480809537746,
+          0.7800000000000001,
+          0.023349824239779826
+        ],
+        "ArmR": [
+          0.43504705004105115,
+          0.7800000000000001,
+          -0.1434284230489785
+        ],
+        "Body": [
+          0.03835867251236544,
+          1.0,
+          -0.08705782456682105
+        ]
+      },
+      "targetHeight": 5.4875
+    },
+    "IceElf": {
+      "template": "ice_elf",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_elf/textured-review.glb",
+          "sha256": "0ecc10001c374019f930727b790880e28f96e88612f41da1ceaf4bcdea4edd4e"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_elf/geometry.json",
+          "sha256": "f57bda81fe478764b2f467d33f77296f2bc61a91251b38e543d310f9ef1480db"
+        }
+      },
+      "triangles": 5445,
+      "pivots": {
+        "LegL": [
+          -0.2861775956888597,
+          0.2700000000000001,
+          -0.050852609090555716
+        ],
+        "LegR": [
+          0.17389058912426794,
+          0.27,
+          -0.05496961818727341
+        ],
+        "ArmL": [
+          -0.34418098545242615,
+          0.7300000000000001,
+          -0.11560415550151251
+        ],
+        "ArmR": [
+          0.4378116155811401,
+          0.73,
+          -0.006079155083732746
+        ],
+        "Body": [
+          0.17756255504773621,
+          1.0,
+          -0.03842459542642036
+        ]
+      },
+      "targetHeight": 4.55
+    },
+    "IceTrollKing": {
+      "template": "ice_troll_king",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_troll_king/textured-review.glb",
+          "sha256": "22e8f2af463e7b0a6e379b5a6aa868ce12b3f02685b0d28bc4815923df9c3adf"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ice_troll_king/geometry.json",
+          "sha256": "ae9567bd4f1dad8dec5becdf43581d65fe548aa1b85ea15ee1ead94cbc71b146"
+        }
+      },
+      "triangles": 6467,
+      "pivots": {
+        "LegL": [
+          -0.2570682387694058,
+          0.22000000000000003,
+          -0.05285775046852992
+        ],
+        "LegR": [
+          0.2624696268538954,
+          0.22000000000000003,
+          0.009152243406267038
+        ],
+        "ArmL": [
+          -0.3349724213710417,
+          0.6800000000000002,
+          0.27650131841560077
+        ],
+        "ArmR": [
+          0.41632112345743755,
+          0.6800000000000002,
+          -0.029502126325675768
+        ],
+        "Body": [
+          0.04578984815196374,
+          1.0,
+          0.0018440816018227557
+        ]
+      },
+      "targetHeight": 7.796875
+    },
+    "KingIceBear": {
+      "template": "king_ice_bear",
+      "parts": [
+        "LegFL",
+        "LegBL",
+        "LegFR",
+        "LegBR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/king_ice_bear/textured-review.glb",
+          "sha256": "4db5ffa2de9579f498c9cd7d1a524d1c7a1040449a5b1f23ed0ec521aaa16138"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/king_ice_bear/geometry.json",
+          "sha256": "936d656e3cd8b87d8b8606fb80c14e0c1a80b625df6b7cce5945252a52b3c7a4"
+        }
+      },
+      "triangles": 5356,
+      "pivots": {
+        "LegFL": [
+          -0.3692400190396238,
+          0.36000000000000004,
+          0.41296880386791834
+        ],
+        "LegBL": [
+          -0.3995301285382922,
+          0.36000000000000004,
+          -0.4129688038679183
+        ],
+        "LegFR": [
+          0.3995301285382922,
+          0.36000000000000004,
+          0.4052896798572653
+        ],
+        "LegBR": [
+          0.34599572244360943,
+          0.36000000000000004,
+          -0.388707429053632
+        ],
+        "Body": [
+          0.026877376698125066,
+          1.0,
+          0.04479561047095992
+        ]
+      },
+      "targetHeight": 6.839999999999999
+    },
+    "KingIceGolem": {
+      "template": "king_ice_golem",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/king_ice_golem/textured-review.glb",
+          "sha256": "3123af4569eb05b185f5be987b666bb4486b1580aa7227ce86d4c0dda8edff02"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/king_ice_golem/geometry.json",
+          "sha256": "0298173dc04da6b45383c8838add730a7c845f2c00a03fe6b0bb948895f3a306"
+        }
+      },
+      "triangles": 4762,
+      "pivots": {
+        "LegL": [
+          -0.25597060825459467,
+          0.15000000000000002,
+          0.06797280761402058
+        ],
+        "LegR": [
+          0.24556066733986015,
+          0.15000000000000002,
+          -0.07348472231218443
+        ],
+        "ArmL": [
+          -0.41307126598804866,
+          0.78,
+          0.0024493308051638657
+        ],
+        "ArmR": [
+          0.4149079463950431,
+          0.7800000000000001,
+          -0.044702973601669346
+        ],
+        "Body": [
+          -0.00765460727937739,
+          1.0,
+          -0.048990232241277104
+        ]
+      },
+      "targetHeight": 6.2375
+    },
+    "QueenIceElf": {
+      "template": "queen_ice_elf",
+      "parts": [
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/queen_ice_elf/textured-review.glb",
+          "sha256": "3f5e03dc71deb5bdf03ebbc62a1423498484fd668422b781db2e79b860923a17"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/queen_ice_elf/geometry.json",
+          "sha256": "f57a304574600a76428820d6a881cdbf6d2d3aa3e3c6cc2fd2ef485544d5570c"
+        }
+      },
+      "triangles": 4872,
+      "pivots": {
+        "ArmL": [
+          -0.284082983455556,
+          0.7190691749878606,
+          0.0775097626604278
+        ],
+        "ArmR": [
+          0.37446675291131826,
+          1.0,
+          -0.03546978879361565
+        ],
+        "Body": [
+          -0.10234880525178286,
+          0.9831844418368988,
+          -0.05859132559697319
+        ]
+      },
+      "targetHeight": 6.2375
+    },
+    "AncientGlacierKing": {
+      "template": "ancient_glacier_king",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "files": {
+        "textured-review.glb": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ancient_glacier_king/textured-review.glb",
+          "sha256": "e2d451c6e112d45343214bbd754073e8d8aabd364f08490b42792e4a2be206df"
+        },
+        "geometry.json": {
+          "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ancient_glacier_king/geometry.json",
+          "sha256": "e9fa2d92e3ac0f5343a28e0bb7261a9496fa146706b03243424a41805b200a29"
+        }
+      },
+      "triangles": 5744,
+      "pivots": {
+        "LegL": [
+          -0.175,
+          0.15000000000000002,
+          0.0012322051426691127
+        ],
+        "LegR": [
+          0.175,
+          0.15000000000000002,
+          0.0
+        ],
+        "ArmL": [
+          -0.43924498660273587,
+          0.7800000000000001,
+          -0.04138063849626525
+        ],
+        "ArmR": [
+          0.3998118648051521,
+          0.7800000000000001,
+          -0.013554891176608852
+        ],
+        "Body": [
+          -0.02813049979035681,
+          1.0,
+          -0.11491063789780473
+        ]
+      },
+      "targetHeight": 9.98
+    }
+  },
+  "runtimeSha256": "ebb5af6690ac7f042e1ecf0dd1cece8674a1fec9e2d4774d1efdae4381f09d11"
+}

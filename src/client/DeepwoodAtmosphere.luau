@@ -15,6 +15,7 @@ local function clearOwned()
  if sky then sky:Destroy();sky=nil end
  if correction then correction:Destroy();correction=nil end
 end
+profiles.FrozenVale={FogStart=145,FogEnd=380,FogColor=Color3.fromRGB(207,229,243),Brightness=3.1,Ambient=Color3.fromRGB(150,173,194),OutdoorAmbient=Color3.fromRGB(185,209,228),ClockTime=12,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(12,26,43)}
 function Mood.update(mode)
  -- Preserve the previous boolean API used by scenery tests and other callers.
  if mode==true then mode='Deepwood' elseif mode==false then mode=nil end
@@ -51,9 +52,12 @@ function Mood.start()
  local function apply()
   local phase=p:GetAttribute('K0SessionPhase')
   local lobby=workspace:GetAttribute('TLTServerRole')~='Battle' and (phase=='Lobby' or phase=='LoadingLobby' or phase=='ReturningLobby')
-  Mood.update(lobby and 'Lobby' or phase=='Tutorial' and p:GetAttribute('TLTRoute')~='Training' and 'Deepwood' or nil)
+  local root=p.Character and p.Character:FindFirstChild('HumanoidRootPart')
+  local region=root and root.Position.Z<-3800 and 'FrozenVale' or 'Deepwood'
+  Mood.update(lobby and 'Lobby' or phase=='Tutorial' and p:GetAttribute('TLTRoute')~='Training' and region or nil)
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(apply);p:GetAttributeChangedSignal('TLTRoute'):Connect(apply)
- workspace:GetAttributeChangedSignal('TLTServerRole'):Connect(apply);apply()
+ workspace:GetAttributeChangedSignal('TLTServerRole'):Connect(apply)
+ local elapsed=0;game:GetService('RunService').Heartbeat:Connect(function(dt)elapsed=elapsed+dt;if elapsed>.5 then elapsed=0;apply()end end);apply()
 end
 return Mood

@@ -44,6 +44,9 @@
       },
       "TDRefinedPlayerWeaponModels": {
         "$path": "assets/shared/td-refined-player-weapons/runtime.rbxmx"
+      },
+      "FrozenValeModels": {
+        "$path": "assets/shared/td-frozen-vale/runtime.rbxmx"
       }
     },
     "StarterPlayer": {

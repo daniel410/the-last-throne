@@ -444,6 +444,15 @@
       "sha256": "f79917ba97d5700f79966d0c23943d503f78b524a1215821d1a9f3d463382189",
       "manifest": "assets/shared/td-refined-player-weapons/manifest.json",
       "audit_status": "Reviewed v2 sword/axe/staff uploads reused; original Elf geometry plus refined draw rig; R6/R15 native lifecycle verified; real client/device acceptance separate"
+    },
+    {
+      "key": "model.frozen-vale-monsters-v1",
+      "kind": "model-source-derivative",
+      "source_path": "../throne-defense/assets/models/meshy-deepwood-slime-v1/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+      "manifest": "assets/shared/td-frozen-vale/manifest.json",
+      "animation_manifest": "assets/animations/frozen-vale-v1/manifest.json",
+      "audit_status": "10 original TD templates pinned; local Studio rig/motion tests; published permissions/device acceptance remain unverified"
     }
   ]
 }

@@ -2,7 +2,7 @@
 -- camera. Death/cutscene cameras keep their own authority.
 local Run=game:GetService('RunService')
 local Workspace=game:GetService('Workspace')
-local Bounds=require(game:GetService('ReplicatedStorage').Shared.DeepwoodBounds)
+local Bounds=require(game:GetService('ReplicatedStorage').Shared.CampaignBounds)
 local Camera={min=6,max=18,minPitch=math.rad(22),maxPitch=math.rad(72),radius=.6}
 function Camera.constrain(focus,position,geometry)
  local offset=position-focus;local distance=math.clamp(offset.Magnitude,.75,Camera.max)

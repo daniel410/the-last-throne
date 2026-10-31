@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "authoring": "Live Blender 5.2 MCP; separate Frozen Vale scene; bpy Actions and native F-curves",
+  "logicalClips": 70,
+  "actions": 350,
+  "species": 10,
+  "samples": 201,
+  "sourceManifest": "assets/shared/td-frozen-vale/manifest.json",
+  "files": {
+    "frozen-vale-motion.blend": "c226ef5d061237b548d8ef5e17f9cdd18faf070d5394d0b5b5d46dc70281bea7",
+    "clips.json": "0b8455062aa2f1a329e70c5ce2215add7ab0d882fd74567191063081d0f318a9",
+    "sockets.json": "010119618953d372ccfb31fcab30fbc7a051265cd486884b4a38bc12120fff4d"
+  },
+  "sourcePreserved": true,
+  "uploadedNewAssets": false
+}

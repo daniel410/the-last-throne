@@ -25,7 +25,7 @@ function V.create(parent,send)
     T.label(scroll,'PartyTitle','PARTY · '..#p.members..' / '..p.target..' · '..p.status,UDim2.new(),UDim2.new(1,-8,0,34),16,T.color.gold)
     local me=game.Players.LocalPlayer and game.Players.LocalPlayer.UserId;local ready=false
     for _,m in ipairs(p.members) do
-     T.label(scroll,'Member'..m.userId,string.format('%s%s · %s Lv%d · Story %d · %s',m.userId==p.hostId and 'LEADER · ' or '',m.name,m.classId,m.level,math.min(7,m.main+1),not m.arrived and 'Travelling' or m.ready and 'READY' or 'Not ready'),UDim2.new(),UDim2.new(1,-8,0,48),13)
+     T.label(scroll,'Member'..m.userId,string.format('%s%s · %s Lv%d · Story %d · %s',m.userId==p.hostId and 'LEADER · ' or '',m.name,m.classId,m.level,math.min(14,m.main+1),not m.arrived and 'Travelling' or m.ready and 'READY' or 'Not ready'),UDim2.new(),UDim2.new(1,-8,0,48),13)
      if m.userId==me then ready=m.ready end
     end
     if p.status=='forming' then

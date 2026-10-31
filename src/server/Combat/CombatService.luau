@@ -1587,6 +1587,8 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
   if kind=='Shaman' then source={{name='Melee',windup=1.25,active=.18,recovery=1.3,range=18,angle=35,blockable=true}}
   elseif kind=='KingShaman' then source={{name='Melee',windup=1.2,active=.2,recovery=1.3,range=22,angle=35,blockable=true},{name='Unblockable',windup=1.6,active=.15,recovery=1.8,range=10,angle=360,blockable=false}}
   elseif kind=='Warlord' or kind=='EnragedWarlord' or kind=='KingOgre' then source={{name='Melee',windup=1.1,active=.15,recovery=1.1,range=7,angle=100,blockable=true},{name='Unblockable',windup=1.5,active=.2,recovery=1.5,range=12,angle=50,blockable=false}} end
+  local frozen=require(game:GetService('ReplicatedStorage').Shared.FrozenValeCombat).profiles[kind]
+  if frozen then source=frozen.attacks;config.walkSpeed=frozen.speed end
   for _,attack in ipairs(source) do
    local a=table.clone(attack);a.damage=damage;table.insert(config.attacks,a)
   end

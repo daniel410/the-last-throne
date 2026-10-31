@@ -1,6 +1,6 @@
-local Access=require(game:GetService('ReplicatedStorage').Shared.DeepwoodAccess)
-local Content=require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent)
-local Bounds=require(game:GetService('ReplicatedStorage').Shared.DeepwoodBounds)
+local Access=require(game:GetService('ReplicatedStorage').Shared.CampaignAccess)
+local Content=require(game:GetService('ReplicatedStorage').Shared.CampaignContent)
+local Bounds=require(game:GetService('ReplicatedStorage').Shared.CampaignBounds)
 local Gate={}
 function Gate.create(o)
  local safe,lastNotice,lastReveal={},{},{}
@@ -15,7 +15,7 @@ function Gate.create(o)
   local supported,floor=Bounds.supported(pos.X,pos.Y,pos.Z)
   if not supported then
    local saved=safe[player]
-   local spawn=o.world.spawns[Content.chapters[math.min(7,s.main+1)].zone]
+   local spawn=o.world.spawns[Content.mainChapters[math.min(Content.mainCount,s.main+1)].zone]
    local pivot=saved and saved.heroId==hero.heroId and saved.character==player.Character and saved.pivot or spawn.CFrame+Vector3.new(0,4,0)
    o.combat.relocateForStoryGate(player,pivot)
    if o.boundaryNotice and os.clock()-(lastNotice[player] or -math.huge)>3 then lastNotice[player]=os.clock();o.boundaryNotice(player) end
@@ -28,7 +28,7 @@ function Gate.create(o)
    if o.inventory.reveal and os.clock()-(lastReveal[player] or -math.huge)>2 then lastReveal[player]=os.clock();o.inventory.reveal(player,hero.heroId,id,x,z) end
   else
    local saved=safe[player]
-   local spawn=o.world.spawns[Content.chapters[math.min(7,s.main+1)].zone]
+   local spawn=o.world.spawns[Content.mainChapters[math.min(Content.mainCount,s.main+1)].zone]
    local pivot=saved and saved.heroId==hero.heroId and saved.character==player.Character and saved.pivot or spawn.CFrame+Vector3.new(0,4,0)
    o.combat.relocateForStoryGate(player,pivot)
    if os.clock()-(lastNotice[player] or -math.huge)>3 then lastNotice[player]=os.clock();o.notice(player,Content.zones[id].requiresMain,Content.zones[id].name) end

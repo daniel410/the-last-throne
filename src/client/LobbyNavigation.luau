@@ -1,10 +1,10 @@
 -- Illustrated navigation tiles; Diamond Shop uses the original TD lobby artwork.
 local RS=game:GetService('ReplicatedStorage')
 local T=require(script.Parent.TDInventoryTheme)
-local Content=require(RS.Shared.DeepwoodContent)
+local Content=require(RS.Shared.CampaignContent)
 local Progress=require(RS.Shared.DeepwoodProgress)
 local Log=require(RS.Shared.DeepwoodQuestLog)
-local Access=require(RS.Shared.DeepwoodAccess)
+local Access=require(RS.Shared.CampaignAccess)
 local Bridge=require(script.Parent.LobbyMenuBridge)
 local LobbyArt=require(RS.Shared.TDUI.LobbyHomeArtAssets)
 local M={}
@@ -21,17 +21,17 @@ function M.create(parent,actions)
  local body=T.label(panel,'Contents','',UDim2.fromOffset(24,60),UDim2.new(1,-48,1,-80),15,T.color.text);body.TextYAlignment=Enum.TextYAlignment.Top
  local snapshot
  local function guide(kind)
-  title.Text=kind=='Quest' and 'QUEST JOURNAL' or 'DEEPWOOD MAPS'
+  title.Text=kind=='Quest' and 'QUEST JOURNAL' or 'ADVENTURE MAPS'
   local hero=snapshot and snapshot.heroId and snapshot.heroes and snapshot.heroes[snapshot.heroId]
   if not hero then body.Text='Select a hero to view their adventure progress.'
   else
    local journal=hero.deepwood or Progress.new()
    if kind=='Quest' then
     local chapter=Log.main(journal)
-    body.Text=chapter and string.format('MAIN STORY · %s\n\n%s\n\nStories completed: %d / 7\n\nEnter an adventure to track objectives and view the full journal.',chapter.quest.title,chapter.quest.brief,journal.main) or 'Deepwood main stories complete.\n\nEnter an adventure to view your full journal.'
+    body.Text=chapter and string.format('MAIN STORY · %s\n\n%s\n\nStories completed: %d / 14\n\nEnter an adventure to track objectives and view the full journal.',chapter.quest.title,chapter.quest.brief,journal.main) or 'Deepwood and Frozen Vale stories complete.\n\nEnter an adventure to view your full journal.'
    else
-    local lines={'DAWNSPIRE → DEEPWOOD','', 'Your progress opens new regions:', ''}
-    for i=1,7 do local id=string.format('DW-%02d',i);local z=Content.zones[id];table.insert(lines,string.format('%s  %s',Access.allowed(journal,id) and 'OPEN' or 'LOCKED',z.name)) end
+    local lines={'DAWNSPIRE → DEEPWOOD → FROZEN VALE','', 'Your progress opens new regions:', ''}
+    for i=1,Content.mainCount do local id=Content.mainChapters[i].id;local z=Content.zones[id];table.insert(lines,string.format('%s  %s',Access.allowed(journal,id) and 'OPEN' or 'LOCKED',z.name)) end
     table.insert(lines,'\nEnter an adventure to explore the full map.');body.Text=table.concat(lines,'\n')
    end
   end

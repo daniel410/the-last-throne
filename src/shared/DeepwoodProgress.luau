@@ -1,5 +1,5 @@
 -- Pure, bounded first-clear journal. Only trusted server events enter apply().
-local Content=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent) or dofile('src/shared/DeepwoodContent.luau')
+local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local P={}
 function P.copy(v) if type(v)~='table' then return v end local r={} for k,x in pairs(v) do r[k]=P.copy(x) end return r end
 function P.hasCell(cells,index) return cells and (cells[tostring(index)]==true or cells[index]==true) or false end
@@ -55,8 +55,8 @@ function P.nextStep(s,c,g)
 end
 function P.validate(s)
  if type(s)~='table' or s.version~=1 or type(s.flags)~='table' or type(s.clears)~='table'
- or type(s.main)~='number' or s.main%1~=0 or s.main<0 or s.main>7
- or type(s.coins)~='number' or s.coins%1~=0 or s.coins<0 or s.coins>2290
+ or type(s.main)~='number' or s.main%1~=0 or s.main<0 or s.main>Content.mainCount
+ or type(s.coins)~='number' or s.coins%1~=0 or s.coins<0 or s.coins>Content.maxStoryGold
  or s.killCoins~=nil and (type(s.killCoins)~='number' or s.killCoins%1~=0 or s.killCoins<0 or s.killCoins>1e12)
  or (s.choice~='' and s.choice~='sanctuary' and s.choice~='shared') then return false end
  for key,v in pairs(s.flags) do

@@ -1,6 +1,6 @@
 -- Trial adventure tuning. Authored levels and fixed story rewards remain canonical.
 local Balance={density=6,normalHealth=1.5,normalDamage=1.5,bossHealth=1.35,bossDamage=1.25,maxWaveSize=9}
-local bosses={Warlord=true,GoblinKing=true,KingOgre=true,EnragedWarlord=true,KingShaman=true}
+local bosses={Warlord=true,GoblinKing=true,KingOgre=true,EnragedWarlord=true,KingShaman=true,IceTrollKing=true,KingIceBear=true,KingIceGolem=true,QueenIceElf=true,AncientGlacierKing=true}
 function Balance.isBoss(kind) return bosses[kind]==true end
 -- Double the previous three-copy population, split into finite story-paced packs.
 local packSizes={
@@ -12,7 +12,7 @@ local packSizes={
  ['DW-07:corridor']=7,['DW-07:outer_west']=8,['DW-07:outer_east']=9,['DW-07:king_shaman']=9,
  ['DW-Q1:marsh_slimes']=4,['DW-Q2:goblin_king']=6,['DW-Q3:quarry_slimes']=7,['DW-Q3:king_ogre']=8,['DW-Q4:enraged_warlord']=9,
 }
-function Balance.packSize(chapter,goal) return packSizes[chapter.id..':'..goal.id] or Balance.maxWaveSize end
+function Balance.packSize(chapter,goal) return chapter.epic==2 and (chapter.side and 5 or math.min(8,chapter.number-5)) or packSizes[chapter.id..':'..goal.id] or Balance.maxWaveSize end
 function Balance.expand(specs)
  local result={}
  -- Interleave source units so later packs also contain mixed enemy roles.

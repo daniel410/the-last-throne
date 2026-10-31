@@ -1,6 +1,6 @@
 local RS=game:GetService('ReplicatedStorage')
-local Content=require(RS.Shared.DeepwoodContent)
-local Access=require(RS.Shared.DeepwoodAccess)
+local Content=require(RS.Shared.CampaignContent)
+local Access=require(RS.Shared.CampaignAccess)
 local Gates={}
 function Gates.create()
  local folder=Instance.new('Folder');folder.Name='PersonalStoryGates';folder.Parent=workspace

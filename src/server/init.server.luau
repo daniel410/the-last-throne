@@ -10,7 +10,7 @@ local inventory=require(script.Inventory.InventoryService)
 local combat=require(script.Combat.CombatService)
 local expedition=require(script.Network.ExpeditionService)
 local deepwood,lobby,storyStarted
-if role=='Battle' or Run:IsStudio() then deepwood=require(script.World.DeepwoodWorld).create() end
+if role=='Battle' or Run:IsStudio() then deepwood=require(script.World.CampaignWorld).create() end
 if role=='Lobby' then lobby=require(script.World.LobbyWorld).create()
 else
  local sp=deepwood.spawns['DW-01'];lobby={spawn=sp,origin=sp.Position,bounds={center=sp.Position,size=Vector3.new(220,40,220)}}
@@ -22,10 +22,12 @@ end
 if deepwood then
  local chest,prompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions['DW-03']+Vector3.new(-55,0,-10)})
  chest.Parent.Name='DeepwoodAccountStorage';prompt.ObjectText='Elder Tree Storage';table.insert(chests,chest);table.insert(prompts,prompt)
+ local refugeChest,refugePrompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions['FV-02']+Vector3.new(45,0,75)})
+ refugeChest.Parent.Name='FrozenValeAccountStorage';refugePrompt.ObjectText='Refuge Storage';table.insert(chests,refugeChest);table.insert(prompts,refugePrompt)
 end
 inventory.start({chests=chests,prompts=prompts,heroSession=heroSession,combat=combat,storyPending=story.hasPendingEvents})
 local function previewWorld()
- if not deepwood then deepwood=require(script.World.DeepwoodWorld).create() end
+ if not deepwood then deepwood=require(script.World.CampaignWorld).create() end
  if not storyStarted then story.start({world=deepwood,enemies=world.enemies,inventory=inventory,heroSession=heroSession,combat=combat});storyStarted=true end
 end
 expedition.start({role=role,heroSession=heroSession,inventory=inventory,previewWorld=previewWorld})

@@ -2,7 +2,7 @@ local Players=game:GetService('Players')
 local RS=game:GetService('ReplicatedStorage')
 local UIS=game:GetService('UserInputService')
 local RunService=game:GetService('RunService')
-local Content=require(RS.Shared.DeepwoodContent)
+local Content=require(RS.Shared.CampaignContent)
 local Progress=require(RS.Shared.DeepwoodProgress)
 local Log=require(RS.Shared.DeepwoodQuestLog)
 local Theme=require(script.Parent.TDInventoryTheme)
@@ -112,12 +112,12 @@ function Journal.start(hud)
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   local guidance=Journal.guidance(current,target,root and root.Position)
   if hud.setStory then
-   local title='EPIC 1 COMPLETE'
+   local title='EPIC 2 COMPLETE'
    if target then
     if target.chapter.side then title=target.offer and 'OPTIONAL REQUEST' or 'SIDE QUEST · '..Log.status(current.journal,target.chapter)
-    else local _,index,total=Log.phase(current.journal,target.chapter);title=string.format('MAIN STORY %d / 7 · PHASE %d / %d',target.chapter.number,index,total) end
+    else local _,index,total=Log.phase(current.journal,target.chapter);title=string.format('MAIN STORY %d / 7 · PHASE %d / %d',(target.chapter.number-1)%7+1,index,total) end
    end
-   hud.setStory({title=title,objective=guidance and guidance.objective or 'Explore optional requests or return to the lobby.',note=guidance and guidance.note or '[J] Chronicle'})
+   hud.setStory({region=current.journal.main>=7 and 'Frozen Vale' or 'Deepwood',title=title,objective=guidance and guidance.objective or 'Explore optional requests or return to the lobby.',note=guidance and guidance.note or '[J] Chronicle'})
   end
   return guidance
  end
@@ -138,7 +138,7 @@ function Journal.start(hud)
      prompt.Enabled=s.main>=c.minMain and not s.clears[c.id];prompt.ActionText=Log.status(s,c)=='Ready to report' and 'Report' or 'Talk'
      prompt.ObjectText=c.quest.giver..' · '..Log.status(s,c)
     elseif c.side and g==c.goals[1] and Progress.canAccept(s,c) then prompt.Enabled=true;prompt.ActionText='Read clue';prompt.ObjectText='Optional discovery · '..c.title
-    elseif c.side and g.id==c.quest.turnIn and c.quest.offerPosition then prompt.Enabled=false
+    elseif c.side and g.id==c.quest.turnIn and c.quest.offerPosition and not c.quest.discoveryOnly then prompt.Enabled=false
     else prompt.Enabled=Progress.available(s,c,g) and (not g.activity or g.activity.mode=='dialogue' or g.activity.mode=='escort');if c.side and g.id==c.quest.turnIn then prompt.ActionText='Report';prompt.ObjectText=c.quest.giver end end
    end
   end

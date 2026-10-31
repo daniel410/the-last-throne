@@ -1,7 +1,7 @@
 local Players=game:GetService('Players')
 local ReplicatedStorage=game:GetService('ReplicatedStorage')
 local RunService=game:GetService('RunService')
-local Content=require(ReplicatedStorage.Shared.DeepwoodContent)
+local Content=require(ReplicatedStorage.Shared.CampaignContent)
 local Progress=require(ReplicatedStorage.Shared.DeepwoodProgress)
 local Balance=require(ReplicatedStorage.Shared.DeepwoodEncounterBalance)
 local Rig=require(script.Parent.Parent.World.TrainingField)
@@ -28,7 +28,7 @@ function Service.encounterState(player,heroId)
   if e.participants[player]==heroId then
    local ctx,root=context(player)
    result[key]={wave=e.wave,waves=e.waveCount,remaining=e.remaining,pillars=e.shield and e.pillars or 0,
-    position={e.position.X,e.position.Y,e.position.Z},boss=e.goal.bossEncounter~=nil,active=not e.completed and ctx~=nil and ctx.heroId==heroId and root~=nil and (root.Position-e.position).Magnitude<=110}
+    position={e.position.X,e.position.Y,e.position.Z},boss=e.goal.bossEncounter~=nil or e.chapter.epic==2 and e.boss~=nil,active=not e.completed and ctx~=nil and ctx.heroId==heroId and root~=nil and (root.Position-e.position).Magnitude<=110}
   end
  end
  return result
@@ -44,8 +44,9 @@ local function publish(player,message,notice,completion)
 end
 function Service.destination(player,heroId)
  local s=state(player,heroId)
- local c=Content.chapters[math.min(7,(s and s.main or 0)+1)]
- if s and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
+ local c=Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
+ if s and s.main==6 and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
+ if s and s.main==Content.mainCount then return options.world.spawns['FV-02'] end
  return options.world.spawns[c.zone]
 end
 local function enqueue(player,heroId,c,g,choice,stepId)
@@ -135,11 +136,20 @@ function Service.breakPillar(player,key,index)
  return true
 end
 function Service.bossDamage(model,damage)
+ if model:GetAttribute('StoryPacified') then return 0 end
  local e=encounters[model:GetAttribute('DeepwoodEncounter')]
  if not e or e.boss~=model then return damage end
  if e.shield then return 0 end
  local humanoid=model:FindFirstChildOfClass('Humanoid');local hp,max=humanoid.Health,humanoid.MaxHealth
  local kind=model:GetAttribute('EnemyKind')
+ if e.chapter.epic==2 and model:GetAttribute('StoryBoss') and hp-damage<=max*.1 then
+  model:SetAttribute('StoryPacified',true);model:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+3600)
+  model:SetAttribute('K0EnemyState','Idle');model:SetAttribute('K0EnemyAttackClock',nil);model:SetAttribute('K0Telegraph','None')
+  local root=model:FindFirstChild('HumanoidRootPart');if root then root.Anchored=true end
+  humanoid.WalkSpeed=0;humanoid.DisplayName=(Text.Enemy[kind] or kind)..' · Resting'
+  task.defer(function()if encounters[e.key]==e then Service.defeated(model)end end)
+  return math.max(0,hp-max*.1)
+ end
  if kind=='KingShaman' then
   if not e.phase2 and hp-damage<=max*.7 then
    reinforce(e,.7)
@@ -191,7 +201,7 @@ spawnWave=function(e)
   m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
   m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize)
   m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1.25+index*.12)
-  m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or kind
+  m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or Text.Enemy[kind] or kind
   table.insert(e.models,m);e.remaining=e.remaining+1
   if boss then e.boss=m else e.guardsRemaining=e.guardsRemaining+1 end
   options.combat.addStoryEnemy(m)
@@ -305,10 +315,10 @@ function Service.start(settings)
 
  local request=Instance.new('RemoteEvent');request.Name='DeepwoodRequest';request.Parent=ReplicatedStorage.Remotes
  for _,node in pairs(options.world.nodes) do
-  node.prompt.Triggered:Connect(function(player)
+  if node.prompt then node.prompt.Triggered:Connect(function(player)
    local t=os.clock();if t-(lastRequest[player] or 0)<.4 then return end;lastRequest[player]=t
    interact(player,node)
-  end)
+  end) end
  end
  request.OnServerEvent:Connect(function(player,action,argument,...)
   if select('#',...)~=0 or type(action)~='string' or argument~=nil and type(argument)~='string' then return end

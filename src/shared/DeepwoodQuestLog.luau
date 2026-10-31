@@ -1,7 +1,7 @@
-local Content=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent) or dofile('src/shared/DeepwoodContent.luau')
+local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local P=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
 local Log={}
-function Log.main(s) return s.main<7 and Content.chapters[s.main+1] or nil end
+function Log.main(s) return s.main<Content.mainCount and Content.mainChapters[s.main+1] or nil end
 function Log.target(s,c,optionalId)
  if not c then return nil end
  if optionalId then local g=P.goal(c,optionalId);if g and g.optional and P.available(s,c,g) then return {chapter=c,goal=g} end end

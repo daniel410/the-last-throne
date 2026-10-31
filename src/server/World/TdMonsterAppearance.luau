@@ -3,6 +3,7 @@
 local ServerStorage = game:GetService("ServerStorage")
 local RigSockets = require(game:GetService("ReplicatedStorage").Shared.EnemyRigSockets)
 
+local FrozenRigs=require(game:GetService('ReplicatedStorage').Shared.FrozenValeRigs)
 local Appearance = {}
 local SPECS = {
 	Goblin = { template = "goblin", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
@@ -17,10 +18,11 @@ local SPECS = {
 	Slime = { template = "slime", parts = { "Body" } },
 }
 
+for kind,spec in pairs(FrozenRigs)do SPECS[kind]=spec end
 local function templateFor(kind)
 	local spec = SPECS[kind]
 	assert(spec, "Unsupported TD monster kind: " .. tostring(kind))
-	local folder = ServerStorage:FindFirstChild("TdMonsterModels")
+	local folder = ServerStorage:FindFirstChild(spec.folder or "TdMonsterModels")
 	assert(folder and folder:IsA("Folder"), "Missing ServerStorage.TdMonsterModels runtime folder")
 	local template = folder:FindFirstChild(spec.template)
 	assert(template and template:IsA("Model"), "Missing TD monster template: " .. spec.template)
@@ -72,6 +74,7 @@ function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 	local torso = rig:FindFirstChild("Torso")
 	local anchors = { Body = torso and torso:IsA("BasePart") and torso or root }
 	local joints = {}
+ local quadruped=sources.LegFL~=nil
 	if kind ~= "Slime" then
 		-- TD templates face +Z; the Roblox humanoid faces -Z. Rotating the
 		-- template 180 degrees swaps which R6-side controls each source limb.
@@ -79,11 +82,12 @@ function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 		anchors.ArmR = rig:FindFirstChild("Left Arm")
 		anchors.LegL = rig:FindFirstChild("Right Leg")
 		anchors.LegR = rig:FindFirstChild("Left Leg")
+  if quadruped then anchors.LegFL=anchors.ArmL;anchors.LegFR=anchors.ArmR;anchors.LegBL=anchors.LegL;anchors.LegBR=anchors.LegR end
 		for _, name in ipairs(spec.parts) do
 			assert(anchors[name] and anchors[name]:IsA("BasePart"), "Missing R6 visual anchor for " .. kind .. ": " .. name)
 		end
 		assert(torso and torso:IsA("BasePart"), "Missing R6 torso for " .. kind)
-		local jointNames = { ArmL = "Right Shoulder", ArmR = "Left Shoulder", LegL = "Right Hip", LegR = "Left Hip" }
+		local jointNames = { ArmL = "Right Shoulder", ArmR = "Left Shoulder", LegL = "Right Hip", LegR = "Left Hip",LegFL="Right Shoulder",LegFR="Left Shoulder",LegBL="Right Hip",LegBR="Left Hip" }
 		for partName, jointName in pairs(jointNames) do
    if not sources[partName] then continue end
 			local joint = torso:FindFirstChild(jointName)
@@ -130,7 +134,9 @@ function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 	for partName, joint in pairs(joints) do
 		local part = visual:FindFirstChild(partName)
 		local pivotPosition = part.Position + part.CFrame.UpVector * (part.Size.Y / 2)
-		local socketSpec = RigSockets[kind]
+		local authored=spec.pivots and spec.pivots[partName]
+  if authored then pivotPosition=feet:PointToWorldSpace(Vector3.new(table.unpack(authored))*height) end
+  local socketSpec = RigSockets[kind]
 		local shoulder = socketSpec and socketSpec.shoulders[partName == "ArmR" and "weapon" or partName == "ArmL" and "off" or ""]
 		if shoulder then
 			-- Weapon heads can extend above the shoulder. Anatomical pivots are

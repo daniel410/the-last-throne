@@ -316,6 +316,9 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId)
   if not n.items[instanceId] then insertItem(n,instanceId,id,quantity,{kind='pending'},catalog,'story:'..heroId..':'..chapterId..':'..suffix) end
  end
  if reward.chapter=='DW-01' or reward.chapter=='DW-05' then grant(h.baseClassId..'_weapon_fine',1,'equipment')
+ elseif reward.chapter=='FV-05' then grant(h.baseClassId..'_weapon_fine',1,'equipment')
+ elseif reward.chapter=='FV-01' or reward.chapter=='FV-06' then grant('traveler_coat',1,'equipment')
+ elseif reward.chapter=='FV-03' or reward.chapter=='FV-04' then grant('iron_ore',5,'materials')
  elseif reward.chapter=='DW-02' then grant('traveler_coat',1,'equipment')
  elseif reward.chapter=='DW-04' or reward.chapter=='DW-06' then grant('iron_ore',5,'materials') end
  if chapterId=='DW-05' and goalId=='warlord' then grant('warlord_seal',1,'bossseal') end

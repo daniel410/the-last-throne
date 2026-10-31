@@ -4,8 +4,8 @@ local Run=game:GetService('RunService')
 local Shared=game:GetService('ReplicatedStorage').Shared
 local Theme=require(script.Parent.TDInventoryTheme)
 local Text=require(Shared.K0Text)
-local Content=require(Shared.DeepwoodContent)
-local Access=require(Shared.DeepwoodAccess)
+local Content=require(Shared.CampaignContent)
+local Access=require(Shared.CampaignAccess)
 local State=require(script.Parent.DeepwoodMapState)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
 local Map={}
@@ -26,19 +26,19 @@ function Map.start(button)
   selected=id;local z=Content.zones[id];local journal=State.current and State.current.journal
   local message=Text.Map.Discover
   if journal and not Access.allowed(journal,id) then
-   local previous=Content.byId[string.format('DW-%02d',z.requiresMain)]
+   local previous=Content.mainChapters[z.requiresMain]
    message=string.format(Text.Map.Unlock,previous and previous.title or Text.Map.Title)
   elseif journal and journal.explored and journal.explored[id] then message=Text.Map.Ready end
   detail.Text=string.format(Text.Map.Detail,z.name,message)
  end
  local atlas=Canvas.create(scene,nil,false,describe)
- local journey=Instance.new('Frame');journey.Name='Journey';journey.BackgroundColor3=Color3.fromRGB(12,26,32);journey.BackgroundTransparency=.15;journey.BorderSizePixel=0;journey.Position=UDim2.new(1,-214,0,96);journey.Size=UDim2.new(0,196,1,-232);journey.Parent=panel
+ local journey=Instance.new('ScrollingFrame');journey.AutomaticCanvasSize=Enum.AutomaticSize.Y;journey.CanvasSize=UDim2.new();journey.ScrollBarThickness=4;journey.Name='Journey';journey.BackgroundColor3=Color3.fromRGB(12,26,32);journey.BackgroundTransparency=.15;journey.BorderSizePixel=0;journey.Position=UDim2.new(1,-214,0,96);journey.Size=UDim2.new(0,196,1,-232);journey.Parent=panel
  Theme.label(journey,'Title',Text.Map.Journey,UDim2.fromOffset(14,12),UDim2.new(1,-28,0,20),13,Theme.color.gold)
  Theme.label(journey,'Hint',Text.Map.JourneyHint,UDim2.fromOffset(14,36),UDim2.new(1,-28,0,30),10,Theme.color.muted)
  local chapters={}
- for i=1,7 do
-  local id=string.format('DW-%02d',i);local item=Instance.new('TextButton');item.Name='Story'..i;item.Text='';item.AutoLocalize=false;item.BackgroundColor3=Color3.fromRGB(23,45,48);item.BackgroundTransparency=.2;item.BorderSizePixel=0
-  item.Position=UDim2.new(0,10,(i-1)/7,70-(i-1)*10);item.Size=UDim2.new(1,-20,1/7,-12);item.Parent=journey
+ for i=1,Content.mainCount do
+  local id=Content.mainChapters[i].id;local item=Instance.new('TextButton');item.Name='Story'..i;item.Text='';item.AutoLocalize=false;item.BackgroundColor3=Color3.fromRGB(23,45,48);item.BackgroundTransparency=.2;item.BorderSizePixel=0
+  item.Position=UDim2.fromOffset(10,70+(i-1)*66);item.Size=UDim2.new(1,-20,0,60);item.Parent=journey
   local name=Theme.label(item,'Name',string.format('%02d  %s',i,Content.zones[id].name),UDim2.fromOffset(10,2),UDim2.new(1,-20,.65,-2),11,Theme.color.text)
   local status=Theme.label(item,'Status','',UDim2.new(0,10,.65,0),UDim2.new(1,-20,.35,-2),9,Theme.color.muted)
   item.Activated:Connect(function() atlas.select(id) end);chapters[i]={button=item,name=name,status=status}
@@ -136,7 +136,7 @@ function Map.start(button)
   if lastRevision~=State.revision then
    lastRevision=State.revision;local discovered=0
    for _,row in pairs(atlas.rows) do discovered+=row.name:GetAttribute('ExploredPercent') or 0 end
-   progress.Text=string.format(Text.Map.Progress,math.clamp(State.current.journal.main,0,7),math.floor(discovered/10))
+   progress.Text=string.format(Text.Map.Progress,math.clamp(State.current.journal.main,0,Content.mainCount),math.floor(discovered/20))
    for i,item in ipairs(chapters) do
     local done=State.current.journal.main>=i;local active=State.current.journal.main==i-1
     item.status.Text=done and Text.Map.Complete or active and Text.Map.Current or Text.Map.Locked

@@ -1,5 +1,5 @@
 -- Native scene props for authored activities; objective anchors themselves are invisible.
-local Content=require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent)
+local Content=require(game:GetService('ReplicatedStorage').Shared.CampaignContent)
 local W={}
 local function part(parent,name,size,p,color,shape)
  local x=Instance.new('Part');x.Name=name;x.Size=size;x.Position=p;x.Color=color;x.Material=Enum.Material.Slate;x.Anchored=true;x.CanCollide=false;x.CanTouch=false;x.CanQuery=false;if shape then x.Shape=shape end;x.Parent=parent;return x
@@ -41,11 +41,12 @@ local function prop(parent,step,p)
  end
 end
 function W.create(world)
- local folder=Instance.new('Folder');folder.Name='AdventureActivities';folder.Parent=world.folder
- local nodes={};world.activityNodes=nodes
+ local folder=world.folder:FindFirstChild('AdventureActivities') or Instance.new('Folder');folder.Name='AdventureActivities';folder.Parent=world.folder
+ local nodes=world.activityNodes or {};world.activityNodes=nodes
  for _,c in ipairs(Content.chapters) do if not c.side then for _,g in ipairs(c.goals) do
   local a=g.activity;local node=world.nodes[c.id..':'..g.id]
-  if a then
+  if a and node and not node.activityBuilt then
+   node.activityBuilt=true
    node.part.Transparency=1;local gem=node.part:FindFirstChild('ObjectiveGem');if gem then gem.Transparency=1 end
    node.prompt.Enabled=a.mode=='dialogue' or a.mode=='escort'
    if a.actor and a.mode=='dialogue' then W.actor(folder,a.actor,Vector3.new(table.unpack(g.position)),a.spirit,{world=world.folder,role='dialogue'}) end

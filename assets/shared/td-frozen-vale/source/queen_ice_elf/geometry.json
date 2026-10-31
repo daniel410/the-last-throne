@@ -1,0 +1,218 @@
+{
+  "key": "queen_ice_elf",
+  "kind": "queen_ice_elf",
+  "variant": null,
+  "sourceFile": "assets/models/meshy-blocky-monsters-v1/source/Meshy_AI_Frost_Crystal_Empress_20261025_texture_0ad04841.glb",
+  "sourceSha256": "7d51bed66751f380bce0e8f88d31dca08a79b8dd20be90ecad749e48cc19a362",
+  "normalization": {
+    "sourceHeight": 0.9291990101337433,
+    "sourceFeetOrigin": [
+      0.005859494209289551,
+      -0.46850600838661194,
+      0.05346649885177612
+    ],
+    "normalRepairVertexIndices": [
+      2098,
+      2099,
+      2100,
+      4835,
+      4836,
+      4837
+    ],
+    "sourceTriangles": 3140
+  },
+  "triangles": 4872,
+  "parts": [
+    {
+      "name": "ArmL",
+      "anchor": "ArmL",
+      "size": [
+        0.08816596691111209,
+        0.3190691749878606,
+        0.32422439549763793
+      ],
+      "localCF": [
+        -0.284082983455556,
+        0.5595345874939304,
+        0.0775097626604278,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.284082983455556,
+        0.7190691749878606,
+        0.0775097626604278
+      ],
+      "triangles": 369,
+      "sourceSurfaceTriangles": 283,
+      "jointCapTriangles": 86
+    },
+    {
+      "name": "ArmR",
+      "anchor": "ArmR",
+      "size": [
+        0.26893350582263653,
+        0.9900161151451092,
+        0.5459799295962682
+      ],
+      "localCF": [
+        0.37446675291131826,
+        0.5049919424274454,
+        -0.03546978879361565,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        0.37446675291131826,
+        1.0,
+        -0.03546978879361565
+      ],
+      "triangles": 1102,
+      "sourceSurfaceTriangles": 873,
+      "jointCapTriangles": 229
+    },
+    {
+      "name": "Body",
+      "anchor": "Body",
+      "size": [
+        0.8446976105035658,
+        0.9831844418368988,
+        0.8360480192515767
+      ],
+      "localCF": [
+        -0.10234880525178286,
+        0.4915922209184494,
+        -0.05859132559697319,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "pivot": [
+        -0.10234880525178286,
+        0.9831844418368988,
+        -0.05859132559697319
+      ],
+      "triangles": 3401,
+      "sourceSurfaceTriangles": 2910,
+      "jointCapTriangles": 491
+    }
+  ],
+  "cutDiagnostics": [
+    {
+      "cut": "owned-staff",
+      "loops": 7,
+      "capTrianglesEachSide": 102,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.32,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmL0",
+      "loops": 9,
+      "capTrianglesEachSide": 156,
+      "planeNormal": [
+        -1,
+        0,
+        0
+      ],
+      "planeOffset": 0.24,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmL1",
+      "loops": 1,
+      "capTrianglesEachSide": 4,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.4,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR0",
+      "loops": 6,
+      "capTrianglesEachSide": 118,
+      "planeNormal": [
+        1,
+        0,
+        0
+      ],
+      "planeOffset": 0.24,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    },
+    {
+      "cut": "ArmR1",
+      "loops": 1,
+      "capTrianglesEachSide": 15,
+      "planeNormal": [
+        0,
+        1,
+        0
+      ],
+      "planeOffset": 0.4,
+      "openBoundaries": 0,
+      "resolvedContourCrossings": 0,
+      "sourceOpeningBridges": [],
+      "nonVolumetricSourceSheetCuts": []
+    }
+  ],
+  "ownershipOverrides": [
+    {
+      "anchor": "ArmR",
+      "region": "signed x >= 0.32; all Y",
+      "reason": "entire tall staff outside torso; lower robe stays Body"
+    }
+  ],
+  "sourceSurfaceArea": 3.737109598093213,
+  "maxSourceTriangleAreaError": 1.0408340855860843e-17,
+  "coverageStatus": "all source faces preserved exactly once",
+  "meshOnlySha256": "29524fb76d56b1743be466a79335b966dee8f2908caf30762745926eea7b57fe",
+  "texturedReviewSha256": "3f5e03dc71deb5bdf03ebbc62a1423498484fd668422b781db2e79b860923a17",
+  "walkReviewSha256": "87e47b134ffa5e3c6f21cf0363f1617b125d0a6a91130009d65331c49c7d2824",
+  "colorMapSha256": "b4ee6208a58ee6eaf48162c3891279523e62f5d872fb754f2e51644d0bbd65d9",
+  "textureDimensions": [
+    512,
+    512
+  ],
+  "animationPolicy": "Reviewed rigid anchors; partial lower-leg or whole-island motion as recorded",
+  "partitionProfile": null,
+  "status": "local geometry candidate; visual joint acceptance and upload pending"
+}

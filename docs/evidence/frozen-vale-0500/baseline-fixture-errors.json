@@ -1,0 +1,15 @@
+{
+  "commit": "67528de492e22e8eed1ccdb71a91d9a9c1803524",
+  "results": [
+    {
+      "test": "k0-appearance.spec.lua",
+      "exit": 1,
+      "output": "lua: tests/k0-appearance.spec.lua:295: unexpected warning: K0 equipment appearance could not be synchronized: src/server/Cosmetics/KnightAppearance.luau:187: attempt to call a nil value (method 'GetDescendants')\nstack traceback:\n\t[C]: in global 'error'\n\ttests/k0-appearance.spec.lua:295: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "test": "k0-rules.spec.lua",
+      "exit": 1,
+      "output": "lua: [string \"K0 actual attack-start contract\"]:4: attempt to call a nil value (method 'GetAttribute')\nstack traceback:\n\t[string \"K0 actual attack-start contract\"]:4: in local 'beginEnemyAttack'\n\ttests/k0-rules.spec.lua:132: in main chunk\n\t[C]: in ?\n"
+    }
+  ]
+}
