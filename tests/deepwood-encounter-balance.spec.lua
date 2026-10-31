@@ -42,6 +42,12 @@ end end
 check(original==82 and expanded==467,'231 normal enemies become 462; five unique bosses unchanged')
 check(#B.expand({{kind='Warlord',level=10,count=1}})==1,'boss never multiplied')
 local hp,damage=B.stats('Goblin',5,1);check(hp==338 and damage==23,'early guard tuning')
+for party,multiplier in ipairs({1,1.5,2,2.5}) do
+ local hp,damage=B.stats('Goblin',5,party)
+ check(hp==math.floor(225*1.5*multiplier+.5) and damage==23,'normal enemy scales health with party size without increasing damage')
+ local bossHP,bossDamage=B.stats('Warlord',10,party)
+ check(bossHP==math.floor(2000*1.35*({1,1.7,2.3,2.8})[party]+.5) and bossDamage==60,'boss tuning remains unchanged')
+end
 local early=C.byId['DW-01'];check(B.packSize(early,early.goals[1])==2,'first encounter teaches two at once')
 for _,row in ipairs({{'DW-04','courtyard',4},{'DW-04','west_link',5},{'DW-04','east_link',6},{'DW-07','corridor',7},{'DW-07','outer_west',8},{'DW-07','outer_east',9}}) do local c=C.byId[row[1]];local g;for _,x in ipairs(c.goals) do if x.id==row[2] then g=x end end;check(#B.waves(B.expand(g.enemies),B.packSize(c,g))[1]==row[3],'story progressively introduces the requested group size') end
 print('Deepwood encounter balance: '..n..' checks passed; authored enemies '..original..' -> '..expanded)

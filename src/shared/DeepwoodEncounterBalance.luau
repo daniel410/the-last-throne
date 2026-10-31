@@ -55,7 +55,7 @@ function Balance.rewards(spec)
 end
 function Balance.stats(kind,level,partySize)
  local boss=Balance.isBoss(kind)
- local party=boss and ({1,1.7,2.3,2.8})[partySize or 1] or 1
+ local party=(boss and {1,1.7,2.3,2.8} or {1,1.5,2,2.5})[partySize or 1]
  local health=(boss and 1000+level*100 or 100+level*25)*party*(boss and Balance.bossHealth or Balance.normalHealth)
  local damage=(boss and 28+level*2 or 10+level)*(boss and Balance.bossDamage or Balance.normalDamage)
  return math.floor(health+.5),math.floor(damage+.5)
