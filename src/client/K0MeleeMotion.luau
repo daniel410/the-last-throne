@@ -53,7 +53,15 @@ local function frame(values, times, age, entrySlope)
  return result
 end
 
-local function definitionFor(classId,combo)
+local function definitionFor(classId,combo,skillId)
+ if skillId then
+  local clip=Clips.skills and Clips.skills[skillId]
+  if not clip or clip.classId~=classId then return nil end
+  for _,skill in ipairs(Config.Skills[classId] or {}) do
+   if skill.id==skillId then return skill,clip end
+  end
+  return nil
+ end
  local profile=Config.BasicAttackProfiles[classId]
  if not Clips.clips[classId] or not profile then return nil end
  local index=math.clamp(math.floor(tonumber(combo) or 1),1,#profile.attacks)
@@ -72,8 +80,8 @@ local function sampleAxis(keys, age)
  return (2*u3-3*u2+1)*a[2]+(u3-2*u2+u)*span*a[3]
   +(-2*u3+3*u2)*b[2]+(u3-u2)*span*b[3]
 end
-function Motion.sample(classId, combo, age, entry, entrySlope)
- local definition,clip=definitionFor(classId,combo)
+function Motion.sample(classId, combo, age, entry, entrySlope, skillId)
+ local definition,clip=definitionFor(classId,combo,skillId)
  if not definition or type(age)~="number" or age~=age then return nil end
  local w,a,r=definition.windup,definition.active,definition.recovery
  local total,impact=w+a+r,w+(definition.hitDelay or 0)
@@ -99,7 +107,7 @@ function Motion.sample(classId, combo, age, entry, entrySlope)
   end
   result.angles[channel]=angles(unpack(v));result[channel]=rotation(unpack(v))
  end
- result.cutting=age>=w*.45 and age<=w+a and age<total
+ result.cutting=not definition.ranged and age>=w*.45 and age<=w+a and age<total
  return result
 end
 
@@ -107,10 +115,10 @@ end
 -- attack accepted during recovery. A late observer needs no frame history to
 -- reproduce an isolated strike, and playback never accumulates frame delta.
 local function presentation(record, now)
- local d=definitionFor(record.classId,record.combo)
+ local d=definitionFor(record.classId,record.combo,record.skillId)
  local total=d.windup+d.active+d.recovery
  local age=now-record.started
- if age<=total then return Motion.sample(record.classId,record.combo,age,record.entry,record.entrySlope) end
+ if age<=total then return Motion.sample(record.classId,record.combo,age,record.entry,record.entrySlope,record.skillId) end
  local result=frame({guard[record.classId],guard[record.classId],rest[record.classId]}, {0,.10,.42}, age-total)
  result.cutting=false
  return result
@@ -119,21 +127,22 @@ end
 function Motion.forCharacter(character, now)
  local classId=character:GetAttribute("K0ClassId")
  local mode=character:GetAttribute("K0State")
+ local skillId=character:GetAttribute("K0SkillId")
  if not Clips.clips[classId] or (mode~="Attack" and mode~="Idle")
-  or character:GetAttribute("K0SkillId")~=nil or character:GetAttribute("TLTDeathFalling") then
+  or (skillId and not definitionFor(classId,1,skillId)) or character:GetAttribute("TLTDeathFalling") then
   actions[character]=nil;return nil
  end
  local previous=actions[character]
  if mode=="Idle" then
   if not previous or previous.classId~=classId then return nil end
-  local d=definitionFor(classId,previous.combo)
+  local d=definitionFor(classId,previous.combo,previous.skillId)
   if now-previous.started>d.windup+d.active+d.recovery+.42 then actions[character]=nil;return nil end
   return presentation(previous,now)
  end
  local started=character:GetAttribute("K0AttackStartedAt")
  local combo=character:GetAttribute("K0Combo")
  if type(started)~="number" then actions[character]=nil;return nil end
- if not previous or previous.started~=started or previous.classId~=classId or previous.combo~=combo then
+ if not previous or previous.started~=started or previous.classId~=classId or previous.combo~=combo or previous.skillId~=skillId then
   local entry,entrySlope=rest[classId],nil
   if previous and previous.classId==classId and started>=previous.started then
    entry=presentation(previous,started).angles
@@ -141,10 +150,10 @@ function Motion.forCharacter(character, now)
    entrySlope={}
    for _,channel in ipairs(channels) do entrySlope[channel]=(after.angles[channel]-before.angles[channel])/.0002 end
   end
-  previous={classId=classId,combo=combo,started=started,entry=entry,entrySlope=entrySlope}
+  previous={classId=classId,combo=combo,skillId=skillId,started=started,entry=entry,entrySlope=entrySlope}
   actions[character]=previous
  end
- return Motion.sample(classId,combo,now-started,previous.entry,previous.entrySlope)
+ return Motion.sample(classId,combo,now-started,previous.entry,previous.entrySlope,skillId)
 end
 
 return Motion

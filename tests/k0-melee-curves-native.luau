@@ -127,7 +127,7 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
             check(Motion.forCharacter(character,201.5)==nil,"Idle releases the procedural layer after settling")
             character:SetAttribute("K0State","Attack");character:SetAttribute("K0AttackStartedAt",202)
             character:SetAttribute("K0SkillId", classId == "knight" and "knight.common.bash" or "dwarf.common.throw")
-			check(Motion.forCharacter(character,100.1) == nil, "Skills retain authored specialist motion")
+			check((Motion.forCharacter(character,202.1) ~= nil) == (classId == "dwarf"), "Dwarf throw uses Blender; Knight specialist keeps its own motion")
 			character:SetAttribute("K0SkillId",nil); character:SetAttribute("K0State","Dodge")
 			check(Motion.forCharacter(character,100.1) == nil, "Dodge cancels melee curve immediately")
 			character:SetAttribute("K0State","Dead")

@@ -30,7 +30,8 @@ for(const [parent,folder,names]of [['shared','src/shared',['K0Config','AdvancedS
  const path=folder+'/'+name+'.luau',bytes=fs.readFileSync(path),source=bytes.toString();if(source.includes(']===]'))throw new Error('Unsafe source delimiter');inputs[path]=hash(bytes);
  code+=`do local m=Instance.new("ModuleScript");m.Name="${name}";m.Source=[===[${source}]===];m.Parent=${parent} end\n`;
 }
-for(const path of ['tests/k0-melee-curves-native.luau','tests/k0-melee-blender-native.luau']){const bytes=fs.readFileSync(path);inputs[path]=hash(bytes);code+='\n'+bytes.toString()+'\n';}
+const testPaths=['tests/k0-melee-curves-native.luau','tests/k0-melee-blender-native.luau','tests/k0-dwarf-motion-native.luau'];
+for(const path of testPaths){const bytes=fs.readFileSync(path);inputs[path]=hash(bytes);code+='\n'+bytes.toString()+'\n';}
 fs.writeFileSync(out+'/source-probe.luau',code);
 fs.writeFileSync(out+'/source-manifest.json',JSON.stringify(inputs,null,2)+'\n');
-console.log(JSON.stringify({place:out+'/tlt-k0-qa-empty.rbxlx',script:out+'/source-probe.luau',modules:7,tests:2}));
+console.log(JSON.stringify({place:out+'/tlt-k0-qa-empty.rbxlx',script:out+'/source-probe.luau',modules:7,tests:testPaths.length}));

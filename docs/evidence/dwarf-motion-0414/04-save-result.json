@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: Info: No new files have been packed\nInfo: Saved as \"dwarf-refinement.blend\"\n{\"saved\": \"/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/dwarf-refinement.blend\", \"actions\": [\"Dwarf_AxeThrow\", \"Dwarf_GroundSlam\", \"Dwarf_HeavyCut\", \"Dwarf_OverheadSmash\", \"Knight_Finisher\", \"Knight_Forehand\", \"Knight_Return\"]}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: Info: No new files have been packed\nInfo: Saved as \"dwarf-refinement.blend\"\n{\"saved\": \"/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/dwarf-refinement.blend\", \"actions\": [\"Dwarf_AxeThrow\", \"Dwarf_GroundSlam\", \"Dwarf_HeavyCut\", \"Dwarf_OverheadSmash\", \"Knight_Finisher\", \"Knight_Forehand\", \"Knight_Return\"]}\n"
+  },
+  "isError": false
+}

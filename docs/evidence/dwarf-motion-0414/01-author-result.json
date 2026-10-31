@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: {\"actions\": [{\"name\": \"Dwarf_HeavyCut\", \"skillId\": null, \"keys\": 252, \"contact\": 0.22}, {\"name\": \"Dwarf_OverheadSmash\", \"skillId\": \"dwarf.common.overhead\", \"keys\": 252, \"contact\": 0.71}, {\"name\": \"Dwarf_GroundSlam\", \"skillId\": \"dwarf.common.ground\", \"keys\": 252, \"contact\": 0.41}, {\"name\": \"Dwarf_AxeThrow\", \"skillId\": \"dwarf.common.throw\", \"keys\": 252, \"contact\": 0.3}], \"classId\": \"dwarf\", \"knightActionsPreserved\": true}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: {\"actions\": [{\"name\": \"Dwarf_HeavyCut\", \"skillId\": null, \"keys\": 252, \"contact\": 0.22}, {\"name\": \"Dwarf_OverheadSmash\", \"skillId\": \"dwarf.common.overhead\", \"keys\": 252, \"contact\": 0.71}, {\"name\": \"Dwarf_GroundSlam\", \"skillId\": \"dwarf.common.ground\", \"keys\": 252, \"contact\": 0.41}, {\"name\": \"Dwarf_AxeThrow\", \"skillId\": \"dwarf.common.throw\", \"keys\": 252, \"contact\": 0.3}], \"classId\": \"dwarf\", \"knightActionsPreserved\": true}\n"
+  },
+  "isError": false
+}

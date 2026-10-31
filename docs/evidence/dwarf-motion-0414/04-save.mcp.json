@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "code": "import bpy,json\ns=bpy.data.scenes['TLT_Melee_Authoring'];bpy.context.window.scene=s\nbpy.data.objects['dwarf_Rig'].animation_data.action=bpy.data.actions['Dwarf_HeavyCut'];s.frame_set(7)\nbpy.ops.file.pack_all()\nbpy.ops.wm.save_as_mainfile(filepath='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/dwarf-refinement.blend',check_existing=True)\nprint(json.dumps({'saved':bpy.data.filepath,'actions':[a.name for a in bpy.data.actions if a.get('motion_source')]}))",
+    "user_prompt": "도끼는 드워프 영웅의 무기야 드워프 영웅의 무기움직임도 개선해줘"
+  }
+}

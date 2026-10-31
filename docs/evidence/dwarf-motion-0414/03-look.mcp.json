@@ -1,0 +1,22 @@
+{
+  "name": "look",
+  "arguments": {
+    "mode": "frames",
+    "target": [
+      "dwarf_Rig"
+    ],
+    "frames": [
+      0,
+      3,
+      7,
+      11,
+      13,
+      18,
+      25
+    ],
+    "view": "three_quarter",
+    "shading": "material",
+    "max_size": 1400,
+    "user_prompt": "도끼는 드워프 영웅의 무기야 드워프 영웅의 무기움직임도 개선해줘"
+  }
+}

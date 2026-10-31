@@ -1,0 +1,16 @@
+{
+  "assets/shared/td-player-weapons/runtime.rbxmx": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9",
+  "assets/shared/td-player-weapons/manifest.json": "59d281c6eb901dd27704d89fe74e4b8ed3e2634d253cb5c3679e7538af3d018d",
+  "assets/shared/td-player-weapons/shield/runtime.rbxmx": "77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823",
+  "assets/shared/td-player-weapons/shield/manifest.json": "2ac68374a9b683c5235b4b84c5a7e984eceaf06764a0485ee799912ef225e294",
+  "src/shared/K0Config.luau": "1ac5f7e4abc57be66ddb7157d98fc178caa6eed4a5a29bdd8ed5fe05a4a5543c",
+  "src/shared/AdvancedSkills.luau": "0f99d8e953715fb72ee29f425b3592c5963a0869f6839fe967e340977019d719",
+  "src/server/Cosmetics/WeaponAppearance.luau": "3878cc32d8c69efe4c7035ed39b690d9c58ee4d6bbec30c2d3e22ee875e92ecd",
+  "src/server/Cosmetics/WoodenStaffBuilder.luau": "4203de269557e0af9b582438d611adcc24d453e698823fe7eb2692c286e0634b",
+  "src/client/K0MeleeMotion.luau": "c991aa782b4a4b8b1fee557b40a882f9bdae46551ec5da8ea49248d01160d059",
+  "src/client/K0MeleeClips.luau": "83e85083c768e821d0bd2306e7dea142dd6a467bdfbc6db3bdbac2780ab5c03a",
+  "src/client/K0SwordVisual.luau": "0ba4b3c2cec9939d77d8bcc9a9379ab42c1f0d203c23b6c6cde77a3a4f6de258",
+  "tests/k0-melee-curves-native.luau": "97af1944c6a6608820b41dc753dcd206ff31d45b591f61798336e286a1fee4b7",
+  "tests/k0-melee-blender-native.luau": "0de2591f3294479c0e65df59108bb9f9c39ea7589bcecc447ab92cefebcf26de",
+  "tests/k0-dwarf-motion-native.luau": "884ae249e97fff0fc666b0f32dc4a23431989d38baf0efa05d782d710102674d"
+}

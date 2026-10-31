@@ -1,5 +1,8 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-31 **0.41.4 / TLT-005/032/033/055/057/084 부분 구현:** 드워프 도끼 기본기와 내려찍기·투척·지면 강타를 Blender MCP 전용4 Action으로 개선하고 기술ID/서버 시각에 연결했다. [검증/남은 수용](docs/evidence/dwarf-motion-0414/README.md). 네이티브7,618개 검사 통과. 게시·실기기/최종 미술 수용은 미완료다.
+
+
 > 2026-10-31 **0.41.1 / TLT-005/032/033/055/057/084 부분 구현:** Blender MCP에서 기사3타·드워프 도끼 공격의 R15 리그와144개 F-curve를 편집하고 게임에 연결했다. [Blender 원본](assets/animations/melee-blender-v1/melee-attacks.blend) · [검증/남은 수용](docs/evidence/melee-blender-0411/README.md). 미게시이며 최종 미술·실기기 수용은 후속이다.
 
 
