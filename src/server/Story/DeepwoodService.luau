@@ -5,6 +5,7 @@ local Content=require(ReplicatedStorage.Shared.CampaignContent)
 local Progress=require(ReplicatedStorage.Shared.DeepwoodProgress)
 local Balance=require(ReplicatedStorage.Shared.DeepwoodEncounterBalance)
 local Rig=require(script.Parent.Parent.World.TrainingField)
+local Sizing=require(script.Parent.Parent.World.StoryMonsterSizing)
 local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
 local Text=require(ReplicatedStorage.Shared.K0Text)
 local Service={}
@@ -210,8 +211,8 @@ spawnWave=function(e)
   local a=index*math.pi*2/#batch
   local p=e.position+Vector3.new(math.cos(a)*13,-1,math.sin(a)*13)
   local kind=spec.kind;local boss=Balance.isBoss(kind)
-  local scale=(kind=='Ogre' or kind=='KingOgre') and 1.8 or 1
-  local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,boss and 1.3 or 1)
+  local scale,visual=Sizing.forStory(kind,boss)
+  local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,visual)
   m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
   m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize)
   m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1.25+index*.12)
