@@ -223,7 +223,16 @@ end
 
 local function resetEnemyAttack(enemy)
 	enemy.attack = nil
+ enemy.model:SetAttribute("K0EnemyAttackClock",nil)
 	enemy.model:SetAttribute("K0Telegraph", "None")
+end
+
+local function stunEnemy(enemy,duration,current)
+ if type(duration)~='number' or duration<=0 or not enemyAlive(enemy) then return end
+ enemy.stunUntil=math.max(enemy.stunUntil or 0,current+duration)
+ enemy.model:SetAttribute('K0EnemyStunUntil',workspace:GetServerTimeNow()+enemy.stunUntil-current)
+ resetEnemyAttack(enemy);enemy.pathToken=enemy.pathToken+1;enemy.pathPending=false;enemy.waypoints=nil
+ enemy.humanoid.WalkSpeed=0;stopEnemy(enemy);setEnemyState(enemy,'Stunned')
 end
 
 local function damagePosture(enemy, amount, current)
@@ -731,7 +740,7 @@ local function damageEnemy(state, enemy, attack, current)
 			enemy.humanoid.WalkSpeed = enemy.config.walkSpeed * enemy.gravityMultiplier
 			enemy.model:SetAttribute("K0GravityUntil", workspace:GetServerTimeNow() + attack.definition.slowDuration)
 		end
-		if not enemy.attack and enemy.mode ~= "Exposed" then setEnemyState(enemy, "Chase") end
+		if not enemy.attack and enemy.mode ~= "Exposed" and not enemy.stunUntil then setEnemyState(enemy, "Chase") end
 		local posture=d.posture
 		if d.advanced then
 			if attack.branchMarked then posture=posture+(d.markPosture or 0) end
@@ -739,6 +748,7 @@ local function damageEnemy(state, enemy, attack, current)
 			if d.counterPosture and attack.counterDamage>0 then posture=posture+d.counterPosture end
 		end
 		damagePosture(enemy,posture,current)
+  if applied>0 and attack.isSkill and state.baseClassId=="dwarf" and d.stunDuration then stunEnemy(enemy,d.stunDuration,current) end
 	end
 	updateFeedback(state, "Hit")
 end
@@ -1334,6 +1344,7 @@ local function beginEnemyAttack(enemy, target, current)
 	enemy.target = target
 	enemy.attackSeq = enemy.attackSeq + 1
 	enemy.model:SetAttribute("K0AttackSeq", enemy.attackSeq)
+ enemy.model:SetAttribute("K0EnemyAttackClock",string.format("%d|%.6f|%.6f|%.6f|%.6f|%d",enemy.attackSeq,workspace:GetServerTimeNow(),definition.windup,definition.active,definition.recovery,definition.blockable==false and 1 or 0))
 	enemy.model:SetAttribute("K0Telegraph", definition.name)
 	enemy.model:SetAttribute("K0AttackOrigin", enemy.root.Position)
 	enemy.model:SetAttribute("K0AttackDirection", direction)
@@ -1364,6 +1375,7 @@ local function resetEnemy(enemy)
 	enemy.model:SetAttribute("K0AttackDownMultiplier",nil)
 	enemy.model:SetAttribute("K0DefenseBreakUntil", nil)
 	enemy.model:SetAttribute("K0ProvokeUntil", nil)
+	enemy.stunUntil=nil;enemy.model:SetAttribute('K0EnemyStunUntil',nil)
 	enemy.pattern = 0
 	enemy.posture = enemy.config.posture
 	enemy.postureImmuneUntil = 0
@@ -1391,6 +1403,12 @@ local function stepEnemy(enemy, current, dt)
 		enemy.humanoid.WalkSpeed = enemy.config.walkSpeed
 		enemy.model:SetAttribute("K0GravityUntil", nil)
 	end
+ if enemy.stunUntil then
+  if current<enemy.stunUntil then enemy.humanoid.WalkSpeed=0;stopEnemy(enemy);setEnemyState(enemy,'Stunned');return end
+  enemy.stunUntil=nil;enemy.model:SetAttribute('K0EnemyStunUntil',nil)
+  enemy.humanoid.WalkSpeed=enemy.config.walkSpeed*((enemy.gravityUntil and current<enemy.gravityUntil)and(enemy.gravityMultiplier or 1)or 1)
+  setEnemyState(enemy,enemy.exposedUntil and enemy.posture<=0 and 'Exposed' or 'Idle')
+ end
 	if enemy.mode == "Exposed" then
 		if current >= enemy.exposedUntil then
 			enemy.posture = enemy.config.posture
@@ -1597,6 +1615,7 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	model:SetAttribute("K0MaxPosture", config.posture)
 	model:SetAttribute("K0Telegraph", "None")
 	model:SetAttribute("K0AttackSeq", 0)
+ model:SetAttribute("K0EnemyMotionSeed",(savedId*.61803398875)%1)
 	setEnemyState(enemy, "Idle")
 	pcall(function() root:SetNetworkOwner(nil) end)
 	if splitGroup then
@@ -1614,6 +1633,7 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	humanoid.Died:Connect(function()
 		if enemy.deathHandled then return end
 		enemy.deathHandled = true
+  enemy.stunUntil=nil;model:SetAttribute("K0EnemyStunUntil",nil)
 		local winner=enemy.lastAttacker
 		if not model:GetAttribute("DeepwoodEncounter") and not splitGroup and rewardHandler and winner and playerStates[winner.player]==winner and winner.player.Parent==Players then
 			-- Trial training levels; approved XP formula 8 + 2 * enemy level.

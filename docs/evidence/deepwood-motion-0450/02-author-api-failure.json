@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Error executing code: Communication error with Blender: {\"exception_type\": \"TypeError\", \"message\": \"ActionChannelbagFCurves.new(): was called with invalid keyword argument(s) (action_group), expected (data_path, index, group_name)\", \"traceback\": \"Traceback (most recent call last):\\n  File \\\"/Users/daniel/Library/Application Support/Blender/5.2/scripts/addons/blender_mcp.py\\\", line 2333, in execute_code\\n    exec(code, namespace)\\n    ~~~~^^^^^^^^^^^^^^^^^\\n  File \\\"<string>\\\", line 72, in <module>\\n  File \\\"<string>\\\", line 17, in curve\\nTypeError: ActionChannelbagFCurves.new(): was called with invalid keyword argument(s) (action_group), expected (data_path, index, group_name)\\n\"}"
+    }
+  ],
+  "structuredContent": {
+    "result": "Error executing code: Communication error with Blender: {\"exception_type\": \"TypeError\", \"message\": \"ActionChannelbagFCurves.new(): was called with invalid keyword argument(s) (action_group), expected (data_path, index, group_name)\", \"traceback\": \"Traceback (most recent call last):\\n  File \\\"/Users/daniel/Library/Application Support/Blender/5.2/scripts/addons/blender_mcp.py\\\", line 2333, in execute_code\\n    exec(code, namespace)\\n    ~~~~^^^^^^^^^^^^^^^^^\\n  File \\\"<string>\\\", line 72, in <module>\\n  File \\\"<string>\\\", line 17, in curve\\nTypeError: ActionChannelbagFCurves.new(): was called with invalid keyword argument(s) (action_group), expected (data_path, index, group_name)\\n\"}"
+  },
+  "isError": false
+}

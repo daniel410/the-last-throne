@@ -1,0 +1,9 @@
+DWARF_STUN_NATIVE {"failures":["ServerScriptService.Server.Combat.DwarfStunQA:94: attempt to perform arithmetic (add) on nil and number\nServerScriptService.Server.Combat.DwarfStunQA:94 function damageEnemy\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:20 function hit\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:22\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:15\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"DWARF_STUN_NATIVE","pass":false,"checks":0}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:36: Dwarf stun native failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:36
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

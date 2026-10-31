@@ -35,6 +35,16 @@ function Balance.waves(specs,packSize,reserved)
  if boss then waves[1]=waves[1] or {};table.insert(waves[1],1,boss) end
  return waves
 end
+-- Preserve each unit's original level/reward share while varying the first story.
+function Balance.encounterWaves(chapter,goal)
+ local waves=Balance.waves(Balance.expand(goal.enemies),Balance.packSize(chapter,goal))
+ if chapter.id=='DW-01' then
+  for n,batch in ipairs(waves) do for index,spec in ipairs(batch) do
+   if n%4==2 or n%4==0 and index%2==0 then spec.kind='Slime' end
+  end end
+ end
+ return waves
+end
 local function share(amount,spec)
  local copies=spec.rewardCopies or 1
  return math.floor(amount/copies)+((spec.rewardIndex or 1)<=amount%copies and 1 or 0)

@@ -212,7 +212,7 @@ local function begin(player,node,automatic)
   local ally=eligible(p,c,g,65,position)
   if ally and count<4 then e.participants[p]=ally.heroId;count=count+1 end
  end end
- e.partySize=count;e.packSize=Balance.packSize(c,g);e.batches=Balance.waves(Balance.expand(g.enemies),e.packSize)
+ e.partySize=count;e.packSize=Balance.packSize(c,g);e.batches=Balance.encounterWaves(c,g)
  e.waveCount=#e.batches;e.wave=0;e.nextWave=1;e.guardsRemaining=0
  for _,stage in ipairs(g.bossEncounter and g.bossEncounter.waves or {}) do
   e.waveCount=e.waveCount+#Balance.waves(Balance.expand(stage.enemies),e.packSize,1)

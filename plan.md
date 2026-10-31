@@ -1,5 +1,8 @@
 # The Last Throne 통합 개발 계획
 
+> 2026-10-31 **0.45.0 / TLT-005/031/032/033/050/057/061/084 부분 구현:** Blender MCP 몬스터10종의 이동·공격·스턴 동작, 드워프 Ground Slam 계열5초 스턴, DW-01 Goblin→Slime→Goblin→혼합 웨이브와 STATS & SKILLS[H] / GEAR & BAG[B]·궁극기[T]를 반영한다. [조사](docs/research/2026-10-31-deepwood-monster-motion.md) · [검증/미검증](docs/evidence/deepwood-motion-0450/README.md). 로컬 시험판이며 게시·실기기·최종 미술/밸런스 수용은 후속이다.
+
+
 > 2026-10-31 **0.44.1 / TLT-005/032/033/055/057/084 부분 수정:** 드워프 도끼가 넓은 옆면으로 타격하던 방향을 Blender MCP로 보정했다. R6/R15 기본기·내려찍기·지면 강타의 실제 날 진행 방향과 메시 두께 축을 계측한다. [근거/검증/남은 수용](docs/evidence/axe-edge-0441/README.md). 로컬 시험판이며 게시·실기기·사용자 미술 수용은 후속이다.
 
 

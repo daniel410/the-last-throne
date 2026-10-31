@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "user_prompt": "deepwood 몬스터들의 공격 움직임을 자연스럽게 개선해줘",
+    "code": "import bpy,json\ns=bpy.data.scenes['TLT_Monster_Motion_Authoring'];bpy.context.window.scene=s\nfor kind in ['Goblin','Orc','Ogre','Shaman','Warlord','GoblinKing','KingOgre','EnragedWarlord','KingShaman','Slime']:\n for ch in ['Body','weapon','off','rightLeg','leftLeg']:\n  obj=bpy.data.objects.get(kind+'_'+ch)\n  if obj:\n   channel='body' if ch=='Body' else ch\n   actions=[a for a in bpy.data.actions if a.name.startswith(kind+'_Attack_'+channel)]\n   if actions:obj.animation_data.action=actions[-1]\ns.frame_set(30)\nbpy.ops.wm.save_as_mainfile(filepath='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/deepwood-monsters-v1/deepwood-motion.blend')\nprint(json.dumps({'scene':s.name,'objects':len(s.objects),'preview':'Attack frame30/60','fps':s.render.fps}))"
+  }
+}

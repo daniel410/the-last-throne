@@ -35,8 +35,14 @@ local ok,err=xpcall(function()
   end end return r end
  local function drain(key)
   local count=0
-  for _=1,100 do
+  for wave=1,100 do
    local alive=models(key);if #alive==0 then break end
+   if key=="DW-01:trail_guards" and wave<=4 then
+    local kinds={} for _,m in ipairs(alive)do kinds[m:GetAttribute("EnemyKind")]=true end
+    local expected=wave==2 and "Slime" or "Goblin"
+    check(kinds[expected],"actual first-story wave includes expected kind: "..wave)
+    check(wave==4 and kinds.Slime or wave~=4 and not kinds[expected=="Slime" and "Goblin" or "Slime"],"actual first four waves alternate Goblin / Slime / Goblin / mixed")
+   end
    local c,g=key:match('([^:]+):(.+)');local chapter=C.byId[c];local goal=P.goal(chapter,g)
    check(#alive<=Balance.packSize(chapter,goal),'live pack never exceeds story size, including boss')
    for _,m in ipairs(alive) do

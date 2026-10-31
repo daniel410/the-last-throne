@@ -1,0 +1,334 @@
+{
+  "Goblin": {
+    "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/goblin/textured-review.glb",
+    "parts": [
+      {
+        "name": "LegL",
+        "pivot": [
+          -0.19576898914479435,
+          0.22000000000000003,
+          0.06743587298172117
+        ]
+      },
+      {
+        "name": "LegR",
+        "pivot": [
+          0.19576898914479435,
+          0.22000000000000003,
+          -0.05410234803984461
+        ]
+      },
+      {
+        "name": "ArmL",
+        "pivot": [
+          -0.34564113512302286,
+          0.655338262875624,
+          0.14360184023350997
+        ]
+      },
+      {
+        "name": "ArmR",
+        "pivot": [
+          0.4064099854520444,
+          0.6238891552200837,
+          0.1289745639737106
+        ]
+      },
+      {
+        "name": "Body",
+        "pivot": [
+          0.06489316734241138,
+          0.9999999999999999,
+          0.03769264522735569
+        ]
+      }
+    ],
+    "sha256": "e1c1ce18c39ddd0e26b53674d1a17cbe9781bacb7d1d793cdd1446f00361bffe"
+  },
+  "Orc": {
+    "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/orc/textured-review.glb",
+    "parts": [
+      {
+        "name": "LegL",
+        "pivot": [
+          -0.182205520267523,
+          0.22000000000000003,
+          0.01269185290081333
+        ]
+      },
+      {
+        "name": "LegR",
+        "pivot": [
+          0.182205520267523,
+          0.22000000000000003,
+          -0.04009735226350526
+        ]
+      },
+      {
+        "name": "ArmL",
+        "pivot": [
+          -0.37134782986875464,
+          0.8941112802082484,
+          0.02224055799356202
+        ]
+      },
+      {
+        "name": "ArmR",
+        "pivot": [
+          0.39045950021628695,
+          0.8429373639200468,
+          0.09839863271865354
+        ]
+      },
+      {
+        "name": "Body",
+        "pivot": [
+          -0.016281847493471113,
+          1,
+          -0.04261392090737033
+        ]
+      }
+    ],
+    "sha256": "acf18044590d0f312de9d628c7f8b3a79e9a5f0921b84f811ad21b332ff9edeb"
+  },
+  "Ogre": {
+    "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/ogre/textured-review.glb",
+    "parts": [
+      {
+        "name": "LegL",
+        "pivot": [
+          -0.22780853285898217,
+          0.22000000000000003,
+          0.01165363577507593
+        ]
+      },
+      {
+        "name": "LegR",
+        "pivot": [
+          0.17982456140350878,
+          0.22000000000000003,
+          -0.03309297544568464
+        ]
+      },
+      {
+        "name": "ArmL",
+        "pivot": [
+          -0.38767550552100466,
+          0.7695272004141304,
+          0.023934343053513593
+        ]
+      },
+      {
+        "name": "ArmR",
+        "pivot": [
+          0.4115239387646056,
+          0.7800000000000001,
+          0.02914411068015052
+        ]
+      },
+      {
+        "name": "Body",
+        "pivot": [
+          0.010720304504120343,
+          1,
+          0.015076486687911173
+        ]
+      }
+    ],
+    "sha256": "9c8a2bb9c55d152f32a46888320b2650e6b01d527e3512be9857d3c3fedcfe8f"
+  },
+  "Shaman": {
+    "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/shaman/textured-review.glb",
+    "parts": [
+      {
+        "name": "ArmL",
+        "pivot": [
+          -0.3387442474990152,
+          0.5750432819693593,
+          0.1954130409337248
+        ]
+      },
+      {
+        "name": "ArmR",
+        "pivot": [
+          0.4265442906629268,
+          0.9693720049661866,
+          0.019165077003686998
+        ]
+      },
+      {
+        "name": "Body",
+        "pivot": [
+          0.008101299319730637,
+          1,
+          -0.015313483438271325
+        ]
+      }
+    ],
+    "sha256": "0ffd0fd2a24c494eaa02c411de3249e38218d4c731f586f312627061516eb3b8"
+  },
+  "Warlord": {
+    "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/warlord/textured-review.glb",
+    "parts": [
+      {
+        "name": "LegL",
+        "pivot": [
+          -0.2907129396250369,
+          0.22000000000000003,
+          -0.07347576654224423
+        ]
+      },
+      {
+        "name": "LegR",
+        "pivot": [
+          0.22823425759441118,
+          0.22000000000000003,
+          -0.04111609495518545
+        ]
+      },
+      {
+        "name": "ArmL",
+        "pivot": [
+          -0.49301870519683244,
+          0.7382168254244994,
+          -0.14875166750845506
+        ]
+      },
+      {
+        "name": "ArmR",
+        "pivot": [
+          0.44027458236309736,
+          0.7800000000000001,
+          0.04085387539118336
+        ]
+      },
+      {
+        "name": "Body",
+        "pivot": [
+          -0.0584268887061159,
+          1,
+          -0.003734960167475404
+        ]
+      }
+    ],
+    "sha256": "390234de9c3e561344f6f06db0a00c1f8834e67b9ce3c3dd1d69681a460718df"
+  },
+  "GoblinKing": {
+    "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/king/textured-review.glb",
+    "parts": [
+      {
+        "name": "ArmL",
+        "pivot": [
+          -0.34257403531310066,
+          0.7026617687798825,
+          0.0945851288230571
+        ]
+      },
+      {
+        "name": "ArmR",
+        "pivot": [
+          0.39605416052319786,
+          0.9938591289887463,
+          -0.13925974041941125
+        ]
+      },
+      {
+        "name": "Body",
+        "pivot": [
+          -0.07680145007468678,
+          1,
+          -0.08853613415433598
+        ]
+      }
+    ],
+    "sha256": "8da2fe0fd473b42c543234f0ad5825a69f958434a392bca7038cc3e6b0ce8728"
+  },
+  "KingOgre": {
+    "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/king_ogre/textured-review.glb",
+    "parts": [
+      {
+        "name": "ArmL",
+        "pivot": [
+          -0.4213398047810927,
+          0.7684173178322105,
+          0.043952939038062966
+        ]
+      },
+      {
+        "name": "ArmR",
+        "pivot": [
+          0.43982887361934564,
+          1,
+          -0.09249257606727251
+        ]
+      },
+      {
+        "name": "Body",
+        "pivot": [
+          0,
+          0.9844589023663743,
+          -0.04340804763069983
+        ]
+      }
+    ],
+    "sha256": "e4404542fcd8d5af61e67add8c221366573f0193afa8e68f812483b7c997704b"
+  },
+  "EnragedWarlord": {
+    "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/warlord-enraged/textured-review.glb",
+    "parts": [
+      {
+        "name": "Body",
+        "pivot": [
+          -0.08725486046499475,
+          1,
+          0.01209191746974142
+        ]
+      }
+    ],
+    "sha256": "2894a416121063031b6078d23e03e601eb11fac8d3c981210f0e5719bb98d27e"
+  },
+  "KingShaman": {
+    "path": "../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/king_shaman/textured-review.glb",
+    "parts": [
+      {
+        "name": "ArmL",
+        "pivot": [
+          -0.36121262342217997,
+          0.5698119416909445,
+          0.2786186818977259
+        ]
+      },
+      {
+        "name": "ArmR",
+        "pivot": [
+          0.43425885163325256,
+          0.9946089685986225,
+          0.021294230198679417
+        ]
+      },
+      {
+        "name": "Body",
+        "pivot": [
+          -0.08835567751323037,
+          1,
+          0.04716967396608532
+        ]
+      }
+    ],
+    "sha256": "8ddeeb89cc9ce782a43615747aaac4e8ea090e5e7cd526b1de24a133ac81ca5b"
+  },
+  "Slime": {
+    "path": "../throne-defense/assets/models/meshy-deepwood-slime-v1/derived/slime/textured-review.glb",
+    "parts": [
+      {
+        "name": "Body",
+        "pivot": [
+          -0.00043662078825024153,
+          0.9999999999999999,
+          -0.00020314319843028894
+        ]
+      }
+    ],
+    "sha256": "6fff8180d7bf670ca00a7d08e56b9706482980fb117a0b498d0417fcc5092ae3"
+  }
+}

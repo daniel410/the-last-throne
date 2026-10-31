@@ -28,6 +28,7 @@ local function branch(id,classId,name,icon,rows)
    d.attackDownMultiplier=.85;d.attackDownDuration=3;d.defenseBreakDuration=3
    d.description=(d.description and d.description.." " or "").."On hit, reduce enemy attack damage by 15% and make them take 10% more damage for 3 seconds. Does not stack with Provoke."
   end
+  if classId=="dwarf" and d.root==3 then d.stunDuration=5;d.description=(d.description and d.description.." " or "").."Stun enemies hit for 5 seconds. Further hits refresh the duration." end
   d.effect="advanced";d.ranged=d.form=="projectile" or d.form=="line" or d.form=="ground" or d.form=="chain"
   d.glyph=(id==A.order[classId][1] and "A" or "B")..string.format("%02d",i)
   table.insert(A.skills[classId],d)
@@ -172,7 +173,7 @@ common('elf','elf_retreating_shot','Retreating Shot',1,5,'projectile',.9,{move=-
 common('elf','elf_pinning_shot','Pinning Shot',2,10,'projectile',.85,{range=40,angle=25,maxTargets=1,slow=.55,slowDuration=2,cooldown=9,glyph='PS',description='Fire an arrow that slows ordinary enemies for 2 seconds.'})
 common('elf','elf_arrow_screen','Arrow Screen',3,15,'ground',.45,{range=9,radius=4,pulses=3,interval=.5,maxTargets=4,cooldown=12,glyph='AS',description='Rain physical arrows onto a nearby area three times.'})
 common('dwarf','dwarf_hooking_chop','Hooking Chop',1,5,'melee',1.05,{range=5,maxTargets=1,posture=40,windup=.2,cooldown=7,glyph='HC',description='Hook one enemy with a quick axe chop that pressures posture.'})
-common('dwarf','dwarf_low_sweep','Low Sweep',3,10,'cone',.95,{range=6,angle=110,slow=.6,slowDuration=2,maxTargets=4,glyph='LS',description='Sweep your axe low across nearby enemies, briefly slowing ordinary foes.'})
+common('dwarf','dwarf_low_sweep','Low Sweep',3,10,'cone',.95,{range=6,angle=110,slow=.6,slowDuration=2,stunDuration=5,maxTargets=4,glyph='LS',description='Sweep low to stun enemies hit for 5 seconds and briefly slow ordinary foes.'})
 common('dwarf','dwarf_braced_throw','Braced Throw',2,15,'line',1.35,{range=26,braced=true,windup=.55,maxTargets=4,cooldown=10,glyph='BT',description='Brace in place and throw an axe through a narrow line of enemies.'})
 common('mage','mage_wind_lance','Wind Lance',1,5,'line',1.0,{element='wind',range=30,maxTargets=3,manaCost=14,cooldown=6,glyph='WL',description='Send a small piercing wind lance through aligned enemies.'})
 common('mage','mage_tidal_ring','Tidal Ring',2,10,'area',.85,{element='water',range=5,slow=.65,slowDuration=2,wet=true,maxTargets=5,manaCost=18,cooldown=9,glyph='TR',description='Release a small ring of water around you, wetting and slowing ordinary foes.'})

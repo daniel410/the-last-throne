@@ -7,6 +7,7 @@ local ContextActionService = game:GetService("ContextActionService")
 local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
 local Text = require(ReplicatedStorage.Shared.InventoryText)
 local EquipmentImpact = require(ReplicatedStorage.Shared.EquipmentImpact)
+local Navigation = require(ReplicatedStorage.Shared.NavigationText)
 local CombatText = require(ReplicatedStorage.Shared.CombatStatText)
 local BaseTheme = require(script.Parent.TDInventoryTheme)
 local Chrome = require(script.Parent.InventoryChrome)
@@ -25,7 +26,7 @@ function InventoryGui.create(onVisibility, feedback)
 	gui.Name, gui.ResetOnSpawn, gui.DisplayOrder = "InventoryGui", false, 60
 	gui.ScreenInsets, gui.ZIndexBehavior = Enum.ScreenInsets.CoreUISafeInsets, Enum.ZIndexBehavior.Sibling
 	gui.Parent = playerGui
-	local launcher = Theme.button(gui,"OpenBag",Text.Bag .. "  [B]",UDim2.new(1,-142,0,0),UDim2.fromOffset(128,44))
+	local launcher = Theme.button(gui,"OpenBag",Navigation.bagButton,UDim2.new(1,-142,0,0),UDim2.fromOffset(128,44))
 	require(script.Parent.TopMenuLayout).bind(gui,launcher,1)
 	local badge = Theme.label(launcher,"UnclaimedBadge","",UDim2.new(1,-30,0,-8),UDim2.fromOffset(32,24),12,Color.gold)
 	badge.Visible = false

@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Code executed successfully: Info: Saved as \"deepwood-motion.blend\"\n{\"scene\": \"TLT_Monster_Motion_Authoring\", \"objects\": 94, \"preview\": \"Attack frame30/60\", \"fps\": 60}\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Code executed successfully: Info: Saved as \"deepwood-motion.blend\"\n{\"scene\": \"TLT_Monster_Motion_Authoring\", \"objects\": 94, \"preview\": \"Attack frame30/60\", \"fps\": 60}\n"
+  },
+  "isError": false
+}

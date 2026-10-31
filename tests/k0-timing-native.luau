@@ -300,6 +300,18 @@ return {
 		equal(enemy.humanoid.Health <= 0, true, "earlier sword kills enemy")
 		near(state.humanoid.Health, 10000, "killed enemy loses later pending hit")
 	end)
+	case("R1-ground-slam-stun-cancels-later-queued-enemy-hit", function()
+		local state, enemy = playerState(false), enemyState("Goblin")
+		beginSword(state, 1)
+		state.baseClassId = "dwarf"; contexts[state.player].baseClassId = "dwarf"
+		state.attack.isSkill = true; state.attack.definition = api.Config.Skills.dwarf[3]
+		beginEnemy(enemy, state, T + 0.42) -- Ground Slam contact is T+0.41.
+		api.processCombatSamples(T + 0.50)
+		equal(enemy.mode, "Stunned", "earlier Ground Slam keeps stun state")
+		near(enemy.stunUntil, T + 5.50, "five seconds from resolved server impact")
+		near(state.humanoid.Health, 10000, "cancelled queued enemy attack cannot deal damage")
+		equal(enemy.model:GetAttribute("K0EnemyAttackClock"), nil, "cancelled attack removes observer clock")
+	end)
 	case("R1-pending-earlier-enemy-stun-cancels-sword", function()
 		local state, enemy = playerState(), enemyState("Goblin")
 		beginSword(state, 1)

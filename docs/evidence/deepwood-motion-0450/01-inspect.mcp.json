@@ -1,0 +1,7 @@
+{
+  "name": "execute_blender_code",
+  "arguments": {
+    "user_prompt": "deepwood 몬스터들의 움직임들 3d모델링 최대한 개선해줘, 거는거, 공격하는거 움직이느거 최대한 자연스러워야해",
+    "code": "import bpy,json\ns=bpy.data.scenes.new('TLT_Monster_Motion_Authoring');bpy.context.window.scene=s;s.render.fps=60\nbefore=set(bpy.data.objects);bpy.ops.import_scene.gltf(filepath=\"/Users/daniel/Workspace/project/roblox/throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/goblin/textured-review.glb\")\nprint(json.dumps([{'name':o.name,'type':o.type,'bounds':[list(v) for v in o.bound_box]} for o in set(bpy.data.objects)-before]))"
+  }
+}

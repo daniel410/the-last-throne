@@ -7,6 +7,7 @@ local State=require(script.Parent.DeepwoodMapState)
 local Access=require(game:GetService('ReplicatedStorage').Shared.DeepwoodAccess)
 local Content=require(game:GetService('ReplicatedStorage').Shared.DeepwoodContent)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
+local Navigation=require(game.ReplicatedStorage.Shared.NavigationText)
 local Map={}
 function Map.create(parent)
  local frame=Instance.new('Frame');frame.Name='Minimap';frame.AnchorPoint=Vector2.new(1,0);frame.Position=UDim2.new(1,-10,0,8);frame.Size=UDim2.fromOffset(168,168);frame.BackgroundColor3=Color3.fromRGB(7,22,35);frame.BorderSizePixel=0;frame.Parent=parent
@@ -30,8 +31,9 @@ function Map.create(parent)
  local menuButton=Theme.button(frame,'MapMenu','≡',UDim2.new(1,-34,0,0),UDim2.fromOffset(40,40));menuButton.Caption.Visible=false
  Theme.icon(menuButton,'settings',UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8))
  local menu=Theme.frame(frame,'MapActions',UDim2.new(1,-168,0,248),UDim2.fromOffset(168,194));menu.Visible=false
- local hero=Theme.button(menu,'Hero','HERO [H]',UDim2.fromOffset(10,8),UDim2.fromOffset(148,36))
- local bag=Theme.button(menu,'Bag','BAG [B]',UDim2.fromOffset(10,52),UDim2.fromOffset(148,36))
+ local hero=Theme.button(menu,'Hero',Navigation.statsButton,UDim2.fromOffset(10,8),UDim2.fromOffset(148,36))
+ local bag=Theme.button(menu,'Bag',Navigation.bagButton,UDim2.fromOffset(10,52),UDim2.fromOffset(148,36))
+ for _,b in ipairs({hero,bag}) do b.Caption.TextScaled=true;local cap=Instance.new('UITextSizeConstraint');cap.MaxTextSize=13;cap.MinTextSize=9;cap.Parent=b.Caption end
  local journal=Theme.button(menu,'Journal','JOURNAL [J]',UDim2.fromOffset(10,96),UDim2.fromOffset(148,36))
  journal.Activated:Connect(function() menu.Visible=false end)
  menuButton.Activated:Connect(function() menu.Visible=not menu.Visible end)

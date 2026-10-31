@@ -12,6 +12,7 @@ local Advanced=require(RS.Shared.AdvancedSkills)
 local Growth=require(RS.Shared.HeroProgression)
 local Config=require(RS.Shared.K0Config)
 local SkillPreview=require(RS.Shared.SkillStatPreview)
+local Navigation=require(RS.Shared.NavigationText)
 local Gui={}
 local portraits={knight="103255177842108",elf="80894238854345",dwarf="74628903359757",mage="91907986271282"}
 local names={knight="KNIGHT",elf="ELF ARCHER",dwarf="DWARF AXE THROWER",mage="MAGE"}
@@ -19,12 +20,12 @@ local errors={UnsafeGrowth="Move away from enemies and wait five seconds after c
 function Gui.create(onVisibility)
 	local player=Players.LocalPlayer
 	local gui=Instance.new("ScreenGui"); gui.Name="HeroGrowthGui"; gui.ResetOnSpawn=false; gui.DisplayOrder=55; gui.Parent=player:WaitForChild("PlayerGui")
-	local launch=Theme.button(gui,"OpenHero","HERO [H]",UDim2.new(1,-278,0,0),UDim2.fromOffset(128,44))
+	local launch=Theme.button(gui,"OpenHero",Navigation.statsButton,UDim2.new(1,-278,0,0),UDim2.fromOffset(128,44))
 	require(script.Parent.TopMenuLayout).bind(gui,launch,2)
 	local overlay=Instance.new("Frame"); overlay.Name="Overlay"; overlay.Size=UDim2.fromScale(1,1); overlay.BackgroundColor3=Color3.new(0,0,0); overlay.BackgroundTransparency=.25; overlay.Visible=false; overlay.Active=true; overlay.Parent=gui
 	local panel=Menu.frame(overlay,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-40)); panel.AnchorPoint=Vector2.new(.5,.5)
 	local limit=Instance.new("UISizeConstraint"); limit.MaxSize=Vector2.new(1240,800); limit.Parent=panel
-	local title=Menu.plaque(panel,"TitlePlaque","HERO",UDim2.new(.5,-180,0,-24),UDim2.fromOffset(360,58))
+	local title=Menu.plaque(panel,"TitlePlaque",Navigation.statsSkills,UDim2.new(.5,-180,0,-24),UDim2.fromOffset(360,58))
 	local close=Theme.button(panel,"Close","X",UDim2.new(1,-62,0,10),UDim2.fromOffset(44,44))
 	local statsTab=Theme.button(panel,"StatsTab","STATS",UDim2.fromOffset(18,54),UDim2.new(1/3,-16,0,38))
 	local skillsTab=Theme.button(panel,"SkillsTab","SKILLS",UDim2.new(1/3,6,0,54),UDim2.new(1/3,-16,0,38))
@@ -145,7 +146,7 @@ function Gui.create(onVisibility)
 	CAS:BindAction("HeroGrowthToggle",function(_,state)
 		if state==Enum.UserInputState.Begin and not game:GetService("UserInputService"):GetFocusedTextBox() then visible(not opened) end
 		return Enum.ContextActionResult.Sink
-	end,false,Enum.KeyCode.H)
+	end,false,Enum.KeyCode[Navigation.statsKey])
 	remotes:WaitForChild("InventoryState").OnClientEvent:Connect(function(value,requestId,reason)
 		if type(value)~="table" or type(value.heroes)~="table" or snapshot and value.revision<snapshot.revision then return end
 		local changed=not snapshot or snapshot.revision~=value.revision or snapshot.heroId~=value.heroId

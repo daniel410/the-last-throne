@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "authoring": "Blender 5.2 / MCP for Blender 2.2.6 internal API; rigid controllers",
+  "logicalClips": 50,
+  "controllerActions": 250,
+  "kinds": [
+    "Goblin",
+    "Orc",
+    "Ogre",
+    "Shaman",
+    "Warlord",
+    "GoblinKing",
+    "KingOgre",
+    "EnragedWarlord",
+    "KingShaman",
+    "Slime"
+  ],
+  "files": {
+    "deepwood-motion.blend": {
+      "sha256": "bd6517ace45ec598fe3711675d4308fac4cada9a9a81e45e5a1fb36330243675",
+      "bytes": 86655059
+    },
+    "clips.json": {
+      "sha256": "6bd7dd81bb7d13f87170619e8d1b96b2c4eebf875a59f51fc0a554d7389f15bd",
+      "bytes": 366619
+    }
+  },
+  "limitations": "Existing TD part segmentation preserved. Robed/body-only templates do not gain independent leg/arm geometry. Runtime alters presentation only; native server rig and damage remain authoritative."
+}

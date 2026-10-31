@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+const dir='assets/animations/deepwood-monsters-v1';
+const result=JSON.parse(fs.readFileSync('docs/evidence/deepwood-motion-0450/02-author-result.json'));
+if(result.isError)throw Error('Blender failed');
+const output=result.content.filter(c=>c.type==='text').map(c=>c.text).join('\n');
+const marker='TLT_MONSTER_EXPORT ';
+const line=output.split('\n').find(v=>v.startsWith(marker));if(!line)throw Error(output.slice(-1500));
+const data=JSON.parse(line.slice(marker.length));
+const json=JSON.stringify(data)+'\n';fs.writeFileSync(dir+'/clips.json',json);
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const lua=v=>Array.isArray(v)?'{'+v.map(lua).join(',')+'}':v&&typeof v==='object'?'{'+Object.entries(v).map(([k,v])=>'['+JSON.stringify(k)+']='+lua(v)).join(',')+'}':JSON.stringify(v);
+fs.writeFileSync('src/client/K0EnemyClips.luau','-- Blender MCP sampled Bezier curves; source: assets/animations/deepwood-monsters-v1/clips.json\nreturn '+lua({sourceSha256:sha(json),...data})+'\n');
+fs.writeFileSync(dir+'/manifest.json',JSON.stringify({version:1,authoring:'Blender 5.2 / MCP for Blender 2.2.6 internal API; rigid controllers',logicalClips:50,controllerActions:250,kinds:Object.keys(data.models),files:Object.fromEntries(['deepwood-motion.blend','clips.json'].map(file=>[file,{sha256:sha(fs.readFileSync(dir+'/'+file)),bytes:fs.statSync(dir+'/'+file).size}])),limitations:'Existing TD part segmentation preserved. Robed/body-only templates do not gain independent leg/arm geometry. Runtime alters presentation only; native server rig and damage remain authoritative.'},null,2)+'\n');
+console.log(JSON.stringify({kinds:Object.keys(data.models).length,clips:50,sha256:sha(json),runtimeBytes:fs.statSync('src/client/K0EnemyClips.luau').size}));

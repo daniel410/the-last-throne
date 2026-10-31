@@ -103,7 +103,7 @@ Config.Skills = {
 	dwarf = {
 		{ id = "dwarf.common.overhead", name = "OVERHEAD SMASH", cooldown = 6, windup = 0.65, active = 0.18, hitDelay = 0.06, recovery = 0.30, damage = 1.4, posture = 25, range = 5, angle = 80, maxHeight = 7, maxTargets = 1, effect = "overhead" },
 		{ id = "dwarf.common.throw", name = "AXE THROW", cooldown = 7, windup = 0.30, active = 0.10, recovery = 0.30, damage = 1.1, posture = 18, range = 32, angle = 45, maxHeight = 10, maxTargets = 1, effect = "throw", ranged = true },
-		{ id = "dwarf.common.ground", name = "GROUND SLAM", cooldown = 10, windup = 0.35, active = 0.18, hitDelay = 0.06, recovery = 0.40, damage = 1.2, posture = 30, range = 6, angle = 360, maxHeight = 7, maxTargets = 8, effect = "slam" },
+		{ id = "dwarf.common.ground", name = "GROUND SLAM", cooldown = 10, windup = 0.35, active = 0.18, hitDelay = 0.06, recovery = 0.40, damage = 1.2, posture = 30, range = 6, angle = 360, maxHeight = 7, maxTargets = 8, effect = "slam", stunDuration = 5, description = "Slam nearby enemies and stun targets hit for 5 seconds." },
 	},
 	mage = {
 		{ id = "mage.common.mana_bolt", name = "MANA BOLT", cooldown = 3, manaCost = 15, magic = true, windup = 0.45, active = 0.12, recovery = 0.45, damage = 1.0, posture = 10, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "mana_bolt", ranged = true },

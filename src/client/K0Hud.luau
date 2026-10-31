@@ -240,7 +240,7 @@ function Hud.create()
 	local sprint, sprintHint = action(actions, "Sprint", Text.Sprint, "E", UDim2.fromOffset(8, 0), 56)
 	local dodge, dodgeHint = action(actions, "Dodge", Text.Dodge, Text.HintR, UDim2.fromOffset(8, 132), 56)
 	local attack, attackHint = action(actions, "Attack", Text.Attack, Text.HintClick, UDim2.fromOffset(90, 0), 64)
-	local ultimate,ultimateHint=action(actions,'Ultimate',Text.Ultimate,'T',UDim2.fromOffset(90,-76),64)
+	local ultimate,ultimateHint=action(actions,'Ultimate',Text.Ultimate,require(game.ReplicatedStorage.Shared.NavigationText).ultimateKey,UDim2.fromOffset(90,-76),64)
 	ultimate.Visible=false
 	local minimap=MiniMap.create(topRoot)
 	local mapScale=Instance.new("UIScale");mapScale.Parent=minimap.frame

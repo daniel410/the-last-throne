@@ -391,7 +391,7 @@ UserInputService.InputBegan:Connect(function(input, processed)
 		useSkill(3)
 	elseif input.KeyCode == Enum.KeyCode.Four or input.KeyCode == Enum.KeyCode.DPadLeft then
 		useSkill(4)
-	elseif input.KeyCode == Enum.KeyCode.T or input.KeyCode == Enum.KeyCode.DPadUp then
+	elseif input.KeyCode == Enum.KeyCode[require(game.ReplicatedStorage.Shared.NavigationText).ultimateKey] or input.KeyCode == Enum.KeyCode.DPadUp then
 		sendAction("Ultimate")
 	elseif input.KeyCode == Enum.KeyCode.Five or input.KeyCode == Enum.KeyCode.DPadRight then
 		useSkill(5)
