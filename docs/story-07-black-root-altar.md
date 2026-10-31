@@ -1,5 +1,58 @@
 # 에픽1 Deepwood · 스토리7 검은 뿌리의 제단
 
+2026-10-31 · 0.41.0 시험 구현 · TLT-061/072. [승인5에픽](production/five-epic-adventure-story-2026-10-30.md)에 맞춘 현재 시나리오는 아래와 같다. [전체 구현 계약/인계](production/deepwood-five-epic-scenarios.md)와 [검증](evidence/deepwood/adventure-0410/README.md)을 함께 따른다. 기존ID·좌표·보상을 보존한다.
+
+## DW-07 · The Forest Is Safe Again
+
+King Shaman을 격파하고 Frozen Vale행 왕관의 심장 운반 명령서를 발견한다. 포탈을 닫고 보급품을 회수한 뒤 야영지에서 구조 성공을 기뻐한다.
+
+완료 보상: **134 XP / 650 Gold**. 보상 정본 불변.
+
+| 저장 목표ID | 영어 목표 | 진행 방식 |
+| --- | --- | --- |
+| `corridor` | Clear the root corridor | battle |
+| `rescue_captives` | Free the altar captives | escort · 선택 구조 |
+| `outer_west` | Disable the western corruption device | battle |
+| `outer_east` | Disable the eastern corruption device | battle |
+| `king_shaman` | Defeat King Shaman | battle |
+| `core_record` | Find the northbound delivery orders | investigate |
+| `stabilize` | Shut down the monster portal | sequence |
+| `separate` | Collect the orders and recovered supplies | mechanism |
+| `restoration` | Celebrate the rescue with Eryn | choice |
+
+목표 대사/단서와 단계:
+
+**rescue_captives**
+
+- `cage` — Guide the captives out: The captives are free! They open a path for a trapped ogre too.
+- `cover` — Guide everyone behind cover: The friendly ogre waits for a chance to help you.
+- `safety` — Reach the safe return path: Everyone is safe! The freed ogre will help during the final battle.
+
+**core_record**
+
+- `purpose` — Find the delivery label: The label says Crownheart. The stolen crystal was carried through this camp!
+- `cost` — Read the northbound orders: Orders: Take the Crownheart north through Frozen Vale.
+- `replacement` — Share the clue with Eryn: Eryn: We know where to look next! First, let us close this monster portal.
+
+**stabilize**
+
+- `spring` — Turn off the SPRING switch: The first portal switch is off.
+- `roots` — Turn off the ROOTS switch: The second portal switch is off. The portal is shrinking!
+- `shelter` — Turn off the SHELTER switch: Only one switch left. We can do it!
+- `return` — Turn off the RETURN switch: The monster portal closes. The forest is safe again!
+
+**separate**
+
+- `clamp` — Open the supply crate: The convoy's missing supplies are inside.
+- `isolate` — Collect the food and medicine: The supplies can go back to the village.
+- `secure` — Take the delivery orders: You have the northern route. Return to Eryn and celebrate the rescue!
+
+**restoration** — Eryn: Our friends and supplies are home! Shall we help the forest camp or deliver supplies to the village first? Both groups will get help. Then we can follow the Crownheart trail to Frozen Vale!
+
+
+<details>
+<summary>이전 시나리오 기록 · 충돌하는 서사는 현재 본문으로 대체</summary>
+
 > 2026-10-29 구현 갱신: 본 문서를 기준으로 **0.30.4 최초 캠페인 원형**에 목표·연결 지형·TD 원본 몬스터·서버 진행을 연결했다. 아래 수용 목록과 세부 제안 전체가 완료된 것은 아니다. [실제 범위·빌드·검증·남은 작업](evidence/deepwood/README.md)을 우선 확인한다. 맵 상대 좌표에는 기존 트레이닝장과 분리하는 런타임 Z -2000 이동을 적용했다.
 
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 승인 줄거리 기반 상세 제작 초안, 구현 전
@@ -87,3 +140,5 @@ TD King Shaman·Goblin·Orc Warrior·Goblin Shaman·Ogre와 Deepwood 제단/뿌�
 ## 2026-10-30 서사 보강 · 구현 인계
 
 [2026-10-30 전체 서사 개정](production/narrative-review-2026-10-30.md)에 따른 장면/인과관계 개정안이다. 기존 지역 안정화 단계에서 해제한 뿌리 연결을 지역 순환으로 돌리고 정령 회복·경계 봉인 유지 확인 뒤 핵을 분리한다. 중앙과 차단한 원정대 보관은 왕도 기록 보고와 별개이며 즉시 장착하지 않는다. 원정대가 네 핵 검증을 마친 뒤 장착한다는 초반 계획을 유지한다. 실제 장치/저장/재접속·영어 전체 원고·플레이 검증은 후속이다. 기존 단계 안에서 구현하며 목표 수·보상 정본을 바꾸지 않는다.
+
+</details>

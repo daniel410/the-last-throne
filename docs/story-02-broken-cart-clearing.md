@@ -1,5 +1,44 @@
 # 에픽1 Deepwood · 스토리2 무너진 수레 공터
 
+2026-10-31 · 0.41.0 시험 구현 · TLT-061/072. [승인5에픽](production/five-epic-adventure-story-2026-10-30.md)에 맞춘 현재 시나리오는 아래와 같다. [전체 구현 계약/인계](production/deepwood-five-epic-scenarios.md)와 [검증](evidence/deepwood/adventure-0410/README.md)을 함께 따른다. 기존ID·좌표·보상을 보존한다.
+
+## DW-02 · Friends to the Rescue
+
+Selene와 함께 부상자/생존자를 돕고 안전한 피난처와 전초기지로 이어지는 길을 확보한다.
+
+완료 보상: **163 XP / 240 Gold**. 보상 정본 불변.
+
+| 저장 목표ID | 영어 목표 | 진행 방식 |
+| --- | --- | --- |
+| `cart_guards` | Secure the broken cart | battle |
+| `survivors` | Help the convoy survivors | escort |
+| `escape_guards` | Clear the evacuation route | battle |
+| `testimony` | Find the route to the safe camp | investigate |
+| `clearing_exit` | Reach the outpost road | trail |
+
+목표 대사/단서와 단계:
+
+**survivors**
+
+- `shelter` — Guide the survivors behind the wall: Selene: I will care for the wounded. Let us get everyone to the shelter.
+- `crossing` — Lead everyone around the cart: Survivor: Thank you for coming! Some of our friends are still in the ruins.
+- `safety` — Reach the lantern shelter: Everyone is safe at the shelter! Clear the road so they can reach camp.
+
+**testimony**
+
+- `crest` — Find the convoy captain's badge: This is the convoy captain's badge. The survivors saw the captain taken toward the ruins.
+- `ritual` — Find the raiders' portal sign: A purple portal sign marks the raiders' route. Eryn will help us follow it.
+- `witness` — Ask for the safe camp route: Selene: Follow the lanterns to the elder tree camp. I will meet you there with our friends.
+
+**clearing_exit**
+
+- `road` — Follow the safe-route lanterns: The lanterns show the safe route home.
+- `outpost` — Reach the elder tree camp road: The camp is ahead. Tell Selene that everyone is safe!
+
+
+<details>
+<summary>이전 시나리오 기록 · 충돌하는 서사는 현재 본문으로 대체</summary>
+
 > 2026-10-29 구현 갱신: 본 문서를 기준으로 **0.30.4 최초 캠페인 원형**에 목표·연결 지형·TD 원본 몬스터·서버 진행을 연결했다. 아래 수용 목록과 세부 제안 전체가 완료된 것은 아니다. [실제 범위·빌드·검증·남은 작업](evidence/deepwood/README.md)을 우선 확인한다. 맵 상대 좌표에는 기존 트레이닝장과 분리하는 런타임 Z -2000 이동을 적용했다.
 
 2026-10-29 수정 · 상태: 이야기/배치 제작 초안, 구현·플레이 검증 전 · 작업 TLT-061
@@ -33,3 +72,5 @@ B의 Goblin Lv6 두 마리와 D의 별도 소규모 Goblin 교전을 초안으�
 기존 승인 초회 퀘스트XP163 (**163**), Coins **240**, 클래스용 방어구 1개와 반복 퀘스트 XP **40**, Coins **72**는 유지한다. 기존 필수 전투 XP **62**와 처치 Coins **18**은 오우거를 포함한 옛 배치의 예산이다. 새 고블린 배치의 처치 수와 XP/Coins가 정해지지 않았으므로 총 XP 225, 총 Coins 258 및 완료 Lv7은 **이전 가정의 결과이며 변경 후 미검증**이다. 승인 XP를 임의 재조정하거나 차액을 자동 지급하지 않는다. TLT-061/065에서 새 필수 처치 구성과 보상 정본을 검토하고 성장 시뮬레이션 및 사용자 수용을 거쳐 확정한다.
 
 TD Goblin과 수레·돌길·바위 원본을 후보로 조사한다. 오우거 실루엣은 원본 권한과 성능 확인 후 환경 연출로 제작한다. 네 클래스 솔로·동료 0, 1~4인, 위협 분리, 대피/재접속, 보상 중복 및 실제 플레이 난도를 검증해야 한다. 게임에 표시할 목표·대사는 별도 en-US 원문으로 작성한다.
+
+</details>

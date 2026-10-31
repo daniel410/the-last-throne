@@ -77,7 +77,7 @@ function World.create()
   end
   require(script.Parent.DeepwoodGroundedWorld).create(existing)
   if World.current then require(script.Parent.DeepwoodPlaces).create(World.current);return World.current end
-  local result={folder=existing,terrain=existing:FindFirstChild('TerrainBlockout'),nodes={},spawns={},positions={}}
+  local result={folder=existing,terrain=existing:FindFirstChild('TerrainBlockout'),nodes={},spawns={},positions={},seleneCamp=vec(Content.byId['DW-03'].goals[1].position)+Vector3.new(8,0,0)}
   for id,z in pairs(Content.zones) do result.spawns[id]=existing:FindFirstChild(id..'_SP');result.positions[id]=vec(z.center) end
   for _,p in ipairs(existing:WaitForChild('Objectives'):GetChildren()) do
    local c=Content.byId[p:GetAttribute('ChapterId')];local goalId=p:GetAttribute('GoalId')
@@ -131,7 +131,7 @@ function World.create()
   elseif id=='DW-03' then
    tree(region,center+Vector3.new(0,0,-45),3.4,false);banner(region,center+Vector3.new(-12,0,-22));banner(region,center+Vector3.new(12,0,-22))
    part(region,'OutpostDeck',Vector3.new(35,1,24),center+Vector3.new(0,.5,-28),C.wood,Enum.Material.Wood,true)
-   npc(region,center+Vector3.new(0,0,-5),'Erin',false);npc(region,center+Vector3.new(-45,0,50),'Quartermaster',false)
+   npc(region,center+Vector3.new(0,0,-5),'Eryn',false);npc(region,center+Vector3.new(-45,0,50),'Quartermaster',false)
   elseif id=='DW-04' then
    for _,x in ipairs({-15,15}) do for _,zz in ipairs({-18,18}) do part(region,'WatchtowerPillar',Vector3.new(5,42,5),center+Vector3.new(x,21,zz),C.stone,nil,true) end end
    part(region,'WatchtowerCrown',Vector3.new(38,5,44),center+Vector3.new(0,43,0),C.moss,nil,false);cage(region,center+Vector3.new(0,0,-25));banner(region,center+Vector3.new(20,0,20))
@@ -189,8 +189,10 @@ function World.create()
  end end
  require(script.Parent.DeepwoodGroundedWorld).create(root)
  root:SetAttribute("DeepwoodReady",true)
- World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions}
+ World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions,seleneCamp=vec(Content.byId['DW-03'].goals[1].position)+Vector3.new(8,0,0)}
  require(script.Parent.DeepwoodActivityWorld).create(World.current)
+ local portal=Env.portal(root,positions['DW-07']+Vector3.new(0,0,-110));portal.Name='MonsterPortal'
+ portal:SetAttribute('StoryPortal',true)
  require(script.Parent.DeepwoodPlaces).create(World.current)
  return World.current
 end

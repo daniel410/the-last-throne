@@ -38,6 +38,9 @@
         "$properties": {
           "Value": "Lobby"
         }
+      },
+      "TDSeleneModels": {
+        "$path": "assets/shared/td-selene/runtime.rbxmx"
       }
     },
     "StarterPlayer": {

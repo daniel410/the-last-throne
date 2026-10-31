@@ -1,5 +1,43 @@
 # 에픽1 Deepwood · 스토리1 고블린 숲길
 
+2026-10-31 · 0.41.0 시험 구현 · TLT-061/072. [승인5에픽](production/five-epic-adventure-story-2026-10-30.md)에 맞춘 현재 시나리오는 아래와 같다. [전체 구현 계약/인계](production/deepwood-five-epic-scenarios.md)와 [검증](evidence/deepwood/adventure-0410/README.md)을 함께 따른다. 기존ID·좌표·보상을 보존한다.
+
+## DW-01 · The Missing Supply Convoy
+
+보급품과 수레 흔적을 조사하고 Eryn의 안내를 따라 사라진 보급대를 찾는다.
+
+완료 보상: **140 XP / 150 Gold**. 보상 정본 불변.
+
+| 저장 목표ID | 영어 목표 | 진행 방식 |
+| --- | --- | --- |
+| `trail_guards` | Clear the trail ambush | battle |
+| `supplies` | Find the convoy supplies | investigate |
+| `supply_guards` | Secure the supply trail | battle |
+| `tracks` | Follow the convoy trail | trail |
+| `trail_exit` | Reach the clearing approach | travel |
+
+목표 대사/단서와 단계:
+
+**supplies**
+
+- `manifest` — Read the convoy packing list: The convoy was carrying food and medicine for the village. Let us bring the supplies back.
+- `bindings` — Find the loose travel ropes: Someone untied these ropes and escaped. Look for the survivors by the clearing.
+- `resin` — Find the convoy wheel marks: The wheel marks lead to a broken cart. Eryn has marked the way!
+
+**tracks**
+
+- `drag_marks` — Follow the broken branches: The convoy came this way. Keep following the trail.
+- `heavy_prints` — Find the large footprints: An ogre passed here. Watch for its big swings!
+- `scout_sign` — Find Eryn's trail mark: Eryn: This way! I can hear people calling from the clearing.
+
+**trail_exit**
+
+- `approach` — Reach the overlook above the clearing: Smoke rises from a broken cart. Someone below is calling for help.
+
+
+<details>
+<summary>이전 시나리오 기록 · 충돌하는 서사는 현재 본문으로 대체</summary>
+
 > 2026-10-29 구현 갱신: 본 문서를 기준으로 **0.30.4 최초 캠페인 원형**에 목표·연결 지형·TD 원본 몬스터·서버 진행을 연결했다. 아래 수용 목록과 세부 제안 전체가 완료된 것은 아니다. [실제 범위·빌드·검증·남은 작업](evidence/deepwood/README.md)을 우선 확인한다. 맵 상대 좌표에는 기존 트레이닝장과 분리하는 런타임 Z -2000 이동을 적용했다.
 
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 사용자 승인 시나리오 기준, 구현 전
@@ -100,3 +138,5 @@ Deepwood 전체는 권장Lv5~12 기준안이며 이 첫 스토리는Lv5~6 입문
 ## 반영된 성장 예산 · v0.21
 
 초회 퀘스트XP **140**, 퀘스트Coins **150**, 필수 전투XP 예산 **60**다. 초회 총XP **200**, 처치 포함 총Coins **168**이며 선택 소비 전 유입량이다. 순서대로 진행할 때 예상 완료Lv **6**다. 반복 퀘스트XP는25% 정수 내림 **35**, 반복 퀘스트Coins는 **45**다. 처치/보스 보상은 별도 유효 참여/수령 기록을 따른다. [성장 기준표](story-progression-budget.md)의 XP곡선·필수 처치 가정·개인 지급 규칙을 함께 적용한다. 기존 퍼센트 보상 대신 고정 정수XP를 사용하며 사용자 승인으로 기획에 반영했고 런타임/실제 플레이 검증은 아직이다.
+
+</details>

@@ -125,6 +125,7 @@ function Journal.start(hud)
   if not current then return end
   if current.training then hud.setStory(nil);target=nil;marker.Adornee=nil;closeDialogue();setOpen(false);return end
   target=selectTarget();book.render(current);updateTracker();promptsDirty=true
+  require(script.Parent.DeepwoodStoryPresentation).update(current.journal)
  end
  local function updatePrompts()
   local world=workspace:FindFirstChild('DeepwoodCampaign');if not world or not current then return end
@@ -189,7 +190,7 @@ function Journal.start(hud)
   if promptsDirty then promptsDirty=false;updatePrompts() end
   if root then
    local c=Content.byId['DW-07'];local g=Progress.goal(c,'restoration')
-   if Progress.available(current.journal,c,g) and (root.Position-Vector3.new(table.unpack(g.position))).Magnitude<14 and dialogKind~='restoration' then showDialogue(g.text,'restoration','ELVEN SANCTUARY','SHARE WITH REFUGEES') end
+   if Progress.available(current.journal,c,g) and (root.Position-Vector3.new(table.unpack(g.position))).Magnitude<14 and dialogKind~='restoration' then showDialogue(g.text,'restoration','HELP THE FOREST CAMP','DELIVER VILLAGE SUPPLIES') end
   end
  end)
  local function resize()

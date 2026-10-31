@@ -1,5 +1,7 @@
 # 현재 개발 상태와 다음 작업
 
+> **2026-10-31 0.41.0 / TLT-001/016/050/061/072 부분 구현:** Deepwood7시나리오를 보급대 구조·Eryn과 협력·포탈 폐쇄·Frozen Vale행 단서로 개정했다. DW-03 구조 보고 후 Selene 무료 해금/야영지 편성·TD 수녀 모델·경로 추종·제한 지원을 추가했다.4인도 AI최대1명 허용. [시나리오/계약](deepwood-five-epic-scenarios.md) · [검증/빌드/남은 수용](../evidence/deepwood/adventure-0410/README.md). 로컬 시험 구현이며 게시판은0.40.2, 상위 티켓은 In Progress다.
+
 > 2026-10-31 **0.40.4 / TLT-005/032/033/055/057/084 부분 구현:** Monster Hunter Wilds 검·방패와 God of War 도끼 실제 영상 비교를 바탕으로 타격 관성·회복 중 연격 연결·전투 준비 자세·보조 팔/머리 동작을 개선했다. [영상 비교](../research/2026-10-31-sword-axe-motion-video-review.md) · [검증/남은 수용](../evidence/melee-motion-0404/README.md). 미게시이며 상위 티켓은 In Progress다.
 
 

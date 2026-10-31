@@ -1,5 +1,43 @@
 # 에픽1 Deepwood · 스토리5 오크 점령지
 
+2026-10-31 · 0.41.0 시험 구현 · TLT-061/072. [승인5에픽](production/five-epic-adventure-story-2026-10-30.md)에 맞춘 현재 시나리오는 아래와 같다. [전체 구현 계약/인계](production/deepwood-five-epic-scenarios.md)와 [검증](evidence/deepwood/adventure-0410/README.md)을 함께 따른다. 기존ID·좌표·보상을 보존한다.
+
+## DW-05 · Bring the Workers Home
+
+노동자를 구조하고 신호 장치와 Orc Warlord를 물리친다. 명령서로 King Shaman의 제단을 알아낸다.
+
+완료 보상: **247 XP / 450 Gold**. 보상 정본 불변.
+
+| 저장 목표ID | 영어 목표 | 진행 방식 |
+| --- | --- | --- |
+| `ruin_guards` | Clear the prison approach | battle |
+| `prison_guards` | Secure the prisoner cages | battle |
+| `prisoners` | Guide the convoy workers to safety | escort |
+| `first_ogre` | Defeat the ogre at the barracks | battle |
+| `barracks` | Stop the barracks signal device | battle |
+| `warlord` | Defeat the Orc Warlord | battle |
+| `transfer` | Find King Shaman's orders | investigate |
+
+목표 대사/단서와 단계:
+
+**prisoners**
+
+- `cage` — Guide the workers out of the cages: Worker: The captain is still ahead. Thank you for helping us!
+- `cover` — Guide everyone behind cover: The workers wait safely behind the wall while the patrol passes.
+- `refuge` — Reach the scout shelter: Everyone reaches the shelter. Stop the signal device, then face the Warlord!
+
+**barracks** — The raiders can no longer call for help. The way to the Warlord is open.
+
+**transfer**
+
+- `names` — Check the convoy worker list: The list helps us check who is safely home and who still needs help.
+- `orders` — Read King Shaman's orders: King Shaman ordered the convoy workers taken to the Black Root Altar.
+- `route` — Find the safe altar route: The map passes a forest village. The families there may know a safe way through.
+
+
+<details>
+<summary>이전 시나리오 기록 · 충돌하는 서사는 현재 본문으로 대체</summary>
+
 > 2026-10-29 구현 갱신: 본 문서를 기준으로 **0.30.4 최초 캠페인 원형**에 목표·연결 지형·TD 원본 몬스터·서버 진행을 연결했다. 아래 수용 목록과 세부 제안 전체가 완료된 것은 아니다. [실제 범위·빌드·검증·남은 작업](evidence/deepwood/README.md)을 우선 확인한다. 맵 상대 좌표에는 기존 트레이닝장과 분리하는 런타임 Z -2000 이동을 적용했다.
 
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 승인 줄거리 기반 상세 제작 초안, 구현 전
@@ -59,3 +97,5 @@ A 진입 체크포인트 → B 유적 입구
 ## 반영된 성장 예산 · v0.21
 
 초회 퀘스트XP **247**, 퀘스트Coins **450**, 필수 전투XP 예산 **322**다. 초회 총XP **569**, 처치 포함 총Coins **579**이며 선택 소비 전 유입량이다. 순서대로 진행할 때 예상 완료Lv **10**다. 반복 퀘스트XP는25% 정수 내림 **61**, 반복 퀘스트Coins는 **135**다. 처치/보스 보상은 별도 유효 참여/수령 기록을 따른다. [성장 기준표](story-progression-budget.md)의 XP곡선·필수 처치 가정·개인 지급 규칙을 함께 적용한다. 기존 퍼센트 보상 대신 고정 정수XP를 사용하며 사용자 승인으로 기획에 반영했고 런타임/실제 플레이 검증은 아직이다.
+
+</details>

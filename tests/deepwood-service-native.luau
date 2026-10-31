@@ -15,14 +15,15 @@ local ok,err=xpcall(function()
  local character=Instance.new('Model');character.Parent=workspace
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Parent=character;character.PrimaryPart=root
  local human=Instance.new('Humanoid');human.Parent=character;human.MaxHealth=1000;human.Health=1000
- local player={Parent=Players,Character=character,GetAttribute=function() return 'Tutorial' end}
- local valid=true;local xp=0
+ local player={UserId=911,Parent=Players,Character=character,GetAttribute=function() return 'Tutorial' end}
+ local valid=true;local xp=0;local unknownSelene=false
  local hero={getActiveHero=function() return {heroId='qa'} end,getCombatContext=function() return valid and {heroId='qa'} end,restartAdventure=function() return true end}
  local inventory={storyState=function() return P.copy(profile.heroes.qa.deepwood or P.new()) end,
-  storyEvent=function(_,id,c,g,choice,stepId) local n,e;if g=='@accept' then n,e=Rules.acceptQuest(profile,id,c,choice==true) else n,e=Rules.story(profile,id,c,g,choice,Catalog,stepId) end;if n then profile=n end;return e end,
+  storyEvent=function(_,id,c,g,choice,stepId) local n,e;if g=='@selene' then if unknownSelene then unknownSelene=false;return 'SaveUnknown' end;n,e=Rules.selectSelene(profile,id,choice) elseif g=='@accept' then n,e=Rules.acceptQuest(profile,id,c,choice==true) else n,e=Rules.story(profile,id,c,g,choice,Catalog,stepId) end;if n then profile=n end;return e end,
   awardXP=function(_,_,amount) xp=xp+amount end}
  story.start({world=world,enemies=workspace.DeepwoodK0.Enemies,inventory=inventory,heroSession=hero,combat=combat})
  local function near(c,g) root.Position=world.nodes[c..':'..g].part.Position end
+ root.Position=world.seleneCamp+Vector3.new(0,3,0);check(not story.selectSelene(player,true),'cannot recruit at camp before rescue report')
  local seenBossBadges={}
  local function models(key) local r={} for _,m in ipairs(workspace.DeepwoodK0.Enemies:GetChildren()) do if m:GetAttribute('DeepwoodEncounter')==key then
    local bar=m:FindFirstChild('EnemyHealthBar')
@@ -61,7 +62,7 @@ local ok,err=xpcall(function()
  for _,c in ipairs(C.chapters) do if not c.side then for _,g in ipairs(c.goals) do
   if not g.optional and not inventory.storyState().flags[c.id..':'..g.id] then
    near(c.id,g.id)
-   if g.choice then check(story.destination(player,'qa')==world.spawns['DW-03'],'core aftercare resumes at outpost');inventory.storyEvent(nil,'qa',c.id,g.id,'shared')
+   if g.choice then check(story.destination(player,'qa')==world.spawns['DW-03'],'supply return resumes at outpost');inventory.storyEvent(nil,'qa',c.id,g.id,'shared')
    else
     story.interact(player,c.id,g.id)
     if g.activity and g.activity.steps then
@@ -103,6 +104,17 @@ local ok,err=xpcall(function()
    end
    task.wait(.1)
    check(inventory.storyState().flags[c.id..':'..g.id],c.id..g.id..' service objective saved')
+   if c.id=='DW-03' and g.id=='report' then
+    check(P.seleneUnlocked(inventory.storyState()) and not inventory.storyState().seleneFollowing,'saved rescue unlocks without forced selection')
+    root.Position=world.seleneCamp+Vector3.new(0,3,0);unknownSelene=true
+    check(story.selectSelene(player,true),'camp invite accepted for current owner');task.wait(.15)
+    check(not inventory.storyState().seleneFollowing,'unacknowledged preference is not published as selected')
+    task.wait(1.1);check(inventory.storyState().seleneFollowing,'same queued preference retries after unknown save')
+    local beforeRest=profile.revision
+    check(story.selectSelene(player,false),'rest accepted at camp');task.wait(.15)
+    check(not inventory.storyState().seleneFollowing and P.seleneUnlocked(inventory.storyState()),'rest retains recruitment')
+    check(profile.revision==beforeRest+1,'rest commits one personal preference write')
+   end
   end
  end end end
  local s=inventory.storyState();check(s.main==7 and s.choice=='shared','native server full main chain')

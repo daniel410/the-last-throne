@@ -34,7 +34,7 @@ function Log.choices(s,c)
   local picked=(s.decisions or {})[c.id..':'..g.id..':'..step.id]
   for _,answer in ipairs(step.choices or {}) do if answer.id==picked then table.insert(rows,answer.title) end end
  end end
- if c.id=='DW-07' and s.choice~='' then table.insert(rows,s.choice=='sanctuary' and 'Restore the Elven Sanctuary' or 'Share restoration with the refugees') end
+ if c.id=='DW-07' and s.choice~='' then table.insert(rows,s.choice=='sanctuary' and 'Help the forest camp first' or 'Deliver village supplies first') end
  return rows
 end
 return Log

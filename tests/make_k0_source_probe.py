@@ -194,7 +194,7 @@ lines.append('print("K0_SOURCE_PROBE_INPUTS " .. ' + quote(json.dumps(manifest, 
 lines.append(test_script.read_text())
 # Import optional pinned TD environment models from their actual serialized bytes.
 server_storage = next(item for item in fixture_xml.findall('Item') if item.find("./Properties/string[@name='Name']") is not None and item.find("./Properties/string[@name='Name']").text == 'ServerStorage')
-for mount in ('TDMapModels', 'TDForestKit'):
+for mount in ('TDMapModels', 'TDForestKit', 'TDSeleneModels'):
     entry = project_tree.get('ServerStorage', {}).get(mount)
     if entry:
         path = project / entry['$path']

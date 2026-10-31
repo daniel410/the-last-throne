@@ -1,5 +1,49 @@
 # 에픽1 Deepwood · 스토리4 버려진 감시탑
 
+2026-10-31 · 0.41.0 시험 구현 · TLT-061/072. [승인5에픽](production/five-epic-adventure-story-2026-10-30.md)에 맞춘 현재 시나리오는 아래와 같다. [전체 구현 계약/인계](production/deepwood-five-epic-scenarios.md)와 [검증](evidence/deepwood/adventure-0410/README.md)을 함께 따른다. 기존ID·좌표·보상을 보존한다.
+
+## DW-04 · The Watchtower Rescue
+
+포탈 장치2개를 끄고 숲의 친구를 구한다. 경로 표식을 확인해 실종 노동자들이 있는 폐허를 찾는다.
+
+완료 보상: **200 XP / 320 Gold**. 보상 정본 불변.
+
+| 저장 목표ID | 영어 목표 | 진행 방식 |
+| --- | --- | --- |
+| `courtyard` | Clear the watchtower courtyard | battle |
+| `west_link` | Stop the western portal device | battle |
+| `east_link` | Stop the eastern portal device | battle |
+| `spirit` | Free the trapped forest friend | escort |
+| `link_record` | Find the raiders' route map | sequence |
+| `shortcut` | Open the outpost shortcut | mechanism |
+
+목표 대사/단서와 단계:
+
+**west_link** — One device is off! Stop the other one to open the cage.
+
+**east_link** — Both devices are off. Our friend can go free!
+
+**spirit**
+
+- `cage` — Open the forest friend's cage: The portal devices are off. The cage can open!
+- `spring` — Open the safe return path: The path to the forest spring is open. Our friend can head home.
+- `release` — Guide the forest friend home: The forest friend is free and follows the lanterns toward camp.
+
+**link_record**
+
+- `leaf` — Read the raiders' route map: The raiders marked the occupied ruins. The missing workers must be there.
+- `rain` — Find the prison camp mark: Eryn: More friends need our help. Let us take the safe route to the ruins.
+- `root` — Mark the safe ruins approach: The route is marked. Let us bring the convoy workers home!
+
+**shortcut**
+
+- `counterweight` — Open the return gate: The gate is open. Our rescued friends have a shorter way home.
+- `lantern` — Light the return-route lantern: The way back to camp is bright again!
+
+
+<details>
+<summary>이전 시나리오 기록 · 충돌하는 서사는 현재 본문으로 대체</summary>
+
 > 2026-10-29 구현 갱신: 본 문서를 기준으로 **0.30.4 최초 캠페인 원형**에 목표·연결 지형·TD 원본 몬스터·서버 진행을 연결했다. 아래 수용 목록과 세부 제안 전체가 완료된 것은 아니다. [실제 범위·빌드·검증·남은 작업](evidence/deepwood/README.md)을 우선 확인한다. 맵 상대 좌표에는 기존 트레이닝장과 분리하는 런타임 Z -2000 이동을 적용했다.
 
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 승인 줄거리 기반 상세 제작 초안, 구현 전
@@ -54,3 +98,5 @@ TD의 Goblin·Orc Warrior·Goblin Shaman 원본 모델과 감시탑/숲 키트, 
 ## 반영된 성장 예산 · v0.21
 
 초회 퀘스트XP **200**, 퀘스트Coins **320**, 필수 전투XP 예산 **140**다. 초회 총XP **340**, 처치 포함 총Coins **360**이며 선택 소비 전 유입량이다. 순서대로 진행할 때 예상 완료Lv **8**다. 반복 퀘스트XP는25% 정수 내림 **50**, 반복 퀘스트Coins는 **96**다. 처치/보스 보상은 별도 유효 참여/수령 기록을 따른다. [성장 기준표](story-progression-budget.md)의 XP곡선·필수 처치 가정·개인 지급 규칙을 함께 적용한다. 기존 퍼센트 보상 대신 고정 정수XP를 사용하며 사용자 승인으로 기획에 반영했고 런타임/실제 플레이 검증은 아직이다.
+
+</details>

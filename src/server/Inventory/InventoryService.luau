@@ -190,6 +190,7 @@ function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId)
  state.busy=true;state.storyPending=key
  local profile,reason=store:transact(player.UserId,function(current)
   if goalId=='@accept' then return Rules.acceptQuest(current,heroId,chapterId,choice==true) end
+  if goalId=='@selene' then return Rules.selectSelene(current,heroId,choice) end
   return Rules.story(current,heroId,chapterId,goalId,choice,Catalog,stepId)
  end)
  if profile then

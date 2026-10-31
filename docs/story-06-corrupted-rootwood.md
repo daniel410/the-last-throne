@@ -1,5 +1,49 @@
 # 에픽1 Deepwood · 스토리6 오염된 뿌리숲
 
+2026-10-31 · 0.41.0 시험 구현 · TLT-061/072. [승인5에픽](production/five-epic-adventure-story-2026-10-30.md)에 맞춘 현재 시나리오는 아래와 같다. [전체 구현 계약/인계](production/deepwood-five-epic-scenarios.md)와 [검증](evidence/deepwood/adventure-0410/README.md)을 함께 따른다. 기존ID·좌표·보상을 보존한다.
+
+## DW-06 · A Safe Path for Everyone
+
+고블린 가족들도 돕고 포탈 장치3개와 길 표식을 정리해 모두에게 안전한 귀환로를 연다.
+
+완료 보상: **227 XP / 380 Gold**. 보상 정본 불변.
+
+| 저장 목표ID | 영어 목표 | 진행 방식 |
+| --- | --- | --- |
+| `refugees` | Help the families by the forest path | dialogue |
+| `root_west` | Disable the western root device | battle |
+| `root_east` | Disable the eastern root device | battle |
+| `root_depth` | Disable the deep root device | battle |
+| `ancient_network` | Light the safe route markers | sequence |
+| `altar_path` | Follow the safe route to the altar | trail |
+
+목표 대사/단서와 단계:
+
+**refugees**
+
+- `listen` — Hear the village families: Villager: We need a safe path too. Can you help us stop those portal devices?
+  - `shelter` — Offer a safe place at camp: Villager: Thank you! We will show you where the portal devices are.
+  - `testimony` — Ask how to help the village: Villager: Stop the three portal devices and light the safe-route signs.
+- `erin_response` — Plan the rescue with Eryn: Eryn: Of course. Everyone deserves a safe way home!
+- `map` — Find the three portal devices: The families mark the devices on your map. We can clear the path together.
+
+**ancient_network**
+
+- `shelter` — Light the SHELTER marker: A shelter sign lights the way for the families.
+- `water` — Light the WATER marker: The water sign points toward the safe stream crossing.
+- `roots` — Light the ROOTS marker: The roots sign marks the bend in the path.
+- `star` — Light the STAR marker: All four signs are lit! The families can find their way home.
+
+**altar_path**
+
+- `safe_root` — Follow the quiet forest path: The portal devices are off. The path is safe again.
+- `overlook` — Reach the altar overlook: The monster portal is ahead. Two outer devices protect King Shaman.
+- `approach` — Reach the sheltered altar path: We can rescue the remaining captives here. Their help is welcome, but you can win either way.
+
+
+<details>
+<summary>이전 시나리오 기록 · 충돌하는 서사는 현재 본문으로 대체</summary>
+
 > 2026-10-29 구현 갱신: 본 문서를 기준으로 **0.30.4 최초 캠페인 원형**에 목표·연결 지형·TD 원본 몬스터·서버 진행을 연결했다. 아래 수용 목록과 세부 제안 전체가 완료된 것은 아니다. [실제 범위·빌드·검증·남은 작업](evidence/deepwood/README.md)을 우선 확인한다. 맵 상대 좌표에는 기존 트레이닝장과 분리하는 런타임 Z -2000 이동을 적용했다.
 
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 승인 줄거리 기반 상세 제작 초안, 구현 전
@@ -56,3 +100,5 @@ TD Goblin 원본을 중립 주민으로 활용하고 Orc Warrior·Goblin Shaman�
 ## 반영된 성장 예산 · v0.21
 
 초회 퀘스트XP **227**, 퀘스트Coins **380**, 필수 전투XP 예산 **142**다. 초회 총XP **369**, 처치 포함 총Coins **420**이며 선택 소비 전 유입량이다. 순서대로 진행할 때 예상 완료Lv **11**다. 반복 퀘스트XP는25% 정수 내림 **56**, 반복 퀘스트Coins는 **114**다. 처치/보스 보상은 별도 유효 참여/수령 기록을 따른다. [성장 기준표](story-progression-budget.md)의 XP곡선·필수 처치 가정·개인 지급 규칙을 함께 적용한다. 기존 퍼센트 보상 대신 고정 정수XP를 사용하며 사용자 승인으로 기획에 반영했고 런타임/실제 플레이 검증은 아직이다.
+
+</details>

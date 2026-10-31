@@ -9,6 +9,7 @@ local function label(p,text)
  local t=Instance.new('TextLabel');t.Size=UDim2.fromScale(1,1);t.BackgroundTransparency=1;t.Text=text;t.Font=Enum.Font.GothamBold;t.TextSize=12;t.TextColor3=Color3.fromRGB(255,232,166);t.TextStrokeTransparency=.2;t.TextWrapped=true;t.AutoLocalize=false;t.Parent=g
 end
 function W.actor(parent,name,position,spirit)
+ if name=='Selene' then return require(script.Parent.SeleneVisual).create(parent,position) end
  local m=Instance.new('Model');m.Name=name
  local root=part(m,'ActorRoot',Vector3.new(1,1,1),position,Color3.new());root.Transparency=1;m.PrimaryPart=root;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
  if spirit then

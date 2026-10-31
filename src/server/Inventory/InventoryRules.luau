@@ -337,5 +337,13 @@ function Rules.explore(profile,heroId,zone,x,z)
  local n=Rules.copy(profile);n.heroes[heroId].deepwood=s;n.revision=n.revision+1
  return n
 end
+-- Preference shares the account fence with the rescue journal; no XP/Gold or new receipt.
+function Rules.selectSelene(profile,heroId,following)
+ local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
+ local journal,reason,repeated=Story.selectSelene(hero.deepwood or Story.new(),following)
+ if not journal then return nil,reason end
+ if repeated then return Rules.copy(profile),nil,true end
+ local n=Rules.copy(profile);n.heroes[heroId].deepwood=journal;n.revision=n.revision+1;return n
+end
 function Rules.shop(profile,command,context,catalog) return Economy.apply(profile,command,context,catalog,Rules) end
 return Rules

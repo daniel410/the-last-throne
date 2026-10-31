@@ -4,6 +4,16 @@ local P={}
 function P.copy(v) if type(v)~='table' then return v end local r={} for k,x in pairs(v) do r[k]=P.copy(x) end return r end
 function P.hasCell(cells,index) return cells and (cells[tostring(index)]==true or cells[index]==true) or false end
 function P.new() return {version=1,main=0,flags={},clears={},choice='',coins=0,killCoins=0,activities={},decisions={},explored={},accepted={},clues={}} end
+-- Recruitment is derived from the existing personal rescue report, including old saves.
+function P.seleneUnlocked(s) return s and s.flags and s.flags['DW-03:report']==true or false end
+function P.selectSelene(s,following)
+ if not P.validate(s) then return nil,'Incompatible' end
+ if type(following)~='boolean' then return nil,'InvalidRequest' end
+ if not P.seleneUnlocked(s) then return nil,'StoryLocked' end
+ local n=P.copy(s)
+ if (s.seleneFollowing==true)==following then return n,nil,true end
+ n.seleneFollowing=following;return n
+end
 function P.goal(chapter,id) for _,g in ipairs(chapter.goals) do if g.id==id then return g end end end
 function P.accepted(s,c)
  if not c.side then return true end
@@ -57,6 +67,7 @@ function P.validate(s)
   if not c.side and c.number>s.main+1 or c.side and s.main<c.minMain then return false end
   for _,r in ipairs(g.requires) do if not s.flags[c.id..':'..r] then return false end end
  end
+ if s.seleneFollowing~=nil and type(s.seleneFollowing)~='boolean' or s.seleneFollowing==true and not P.seleneUnlocked(s) then return false end
  if s.activities~=nil and type(s.activities)~='table' or s.decisions~=nil and type(s.decisions)~='table' then return false end
  for key,count in pairs(s.activities or {}) do
   local cid,gid

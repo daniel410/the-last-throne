@@ -1,5 +1,7 @@
 # The Last Throne — Roblox 액션 RPG 개발 기획안
 
+> **2026-10-31 최신 동행 계약:** 일반4인 파티도 AI동료를 파티 전체 최대1명 추가 편성한다. 인간1/2/3/4명에 AI최대2/2/1/1을 적용하며4인+AI1의 성능/밸런스는 별도 수용한다.
+
 > **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → Frozen Vale → Ember Caldera → 어둠의 숲(Gloamwood, 영문 가칭) → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](production/five-epic-adventure-story-2026-10-30.md)를 따른다.
 
 문서 버전: 0.25 · 갱신일: 2026-10-28, America/Toronto  

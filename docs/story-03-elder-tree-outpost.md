@@ -1,5 +1,46 @@
 # 에픽1 Deepwood · 스토리3 거목 전초기지
 
+2026-10-31 · 0.41.0 시험 구현 · TLT-061/072. [승인5에픽](production/five-epic-adventure-story-2026-10-30.md)에 맞춘 현재 시나리오는 아래와 같다. [전체 구현 계약/인계](production/deepwood-five-epic-scenarios.md)와 [검증](evidence/deepwood/adventure-0410/README.md)을 함께 따른다. 기존ID·좌표·보상을 보존한다.
+
+## DW-03 · New Friends at Camp
+
+주민이 야영지에 도착했음을 Selene에게 보고하고 무료 동료 해금한다. 동행은 선택이며 Eryn과 다음 구조를 계획한다.
+
+완료 보상: **62 XP / 100 Gold**. 보상 정본 불변.
+
+| 저장 목표ID | 영어 목표 | 진행 방식 |
+| --- | --- | --- |
+| `report` | Bring the rescue news to Selene | dialogue |
+| `erin` | Meet Eryn at the camp | dialogue |
+| `watchtower_order` | Plan the next rescue with Eryn | investigate |
+
+목표 대사/단서와 단계:
+
+**report**
+
+- `account` — Tell Selene the rescue news: Selene: Everyone made it to camp! You helped us bring them home.
+  - `survivors` — Help everyone settle in: Selene: Warm beds and medicine are ready. Everyone can rest now!
+  - `road` — Check the safe road: Selene: The road is safe. The next group can reach us too!
+- `missing` — Welcome Selene as a friend: Selene: I would like to help on your journey. You can invite me at this camp whenever you are ready. Selene is now available as a free companion.
+
+**erin**
+
+- `trust` — Meet Eryn at camp: Eryn: You brought our friends home! Let us find the rest of the convoy together.
+  - `truth` — Let us find the missing workers: Eryn: Together, we will bring them home!
+  - `people` — Let us stop the monster portal: Eryn: Yes! Our friends will have a safe forest again.
+- `signal` — Plan the watchtower rescue: Eryn: The raiders are building a monster portal. We can stop their devices and free our friends.
+- `agreement` — Make a rescue plan together: Eryn: We will bring our friends home and stop that portal!
+
+**watchtower_order**
+
+- `map` — Find the watchtower on the map: Eryn marks a safe route to the watchtower.
+- `ward` — Prepare for the rescue: Eryn: Watch for the purple portal devices. Stop them to open the cage.
+- `departure` — Set out with your friends: The rescue plan is ready. Follow the lanterns toward the watchtower!
+
+
+<details>
+<summary>이전 시나리오 기록 · 충돌하는 서사는 현재 본문으로 대체</summary>
+
 > 2026-10-29 구현 갱신: 본 문서를 기준으로 **0.30.4 최초 캠페인 원형**에 목표·연결 지형·TD 원본 몬스터·서버 진행을 연결했다. 아래 수용 목록과 세부 제안 전체가 완료된 것은 아니다. [실제 범위·빌드·검증·남은 작업](evidence/deepwood/README.md)을 우선 확인한다. 맵 상대 좌표에는 기존 트레이닝장과 분리하는 런타임 Z -2000 이동을 적용했다.
 
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 승인 줄거리 기반 상세 제작 초안, 구현 전
@@ -74,3 +115,5 @@ F 감시탑 방향 출구
 ## 반영된 성장 예산 · v0.21
 
 초회 퀘스트XP **62**, 퀘스트Coins **100**, 필수 전투XP 예산 **0**다. 초회 총XP **62**, 처치 포함 총Coins **100**이며 선택 소비 전 유입량이다. 순서대로 진행할 때 예상 완료Lv **7**다. 거점 대화 반복XP/Coins는0이다. 처치/보스 보상은 별도 유효 참여/수령 기록을 따른다. [성장 기준표](story-progression-budget.md)의 XP곡선·필수 처치 가정·개인 지급 규칙을 함께 적용한다. 기존 퍼센트 보상 대신 고정 정수XP를 사용하며 사용자 승인으로 기획에 반영했고 런타임/실제 플레이 검증은 아직이다.
+
+</details>

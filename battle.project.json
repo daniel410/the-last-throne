@@ -38,6 +38,9 @@
         "$properties": {
           "Value": "Battle"
         }
+      },
+      "TDSeleneModels": {
+        "$path": "assets/shared/td-selene/runtime.rbxmx"
       }
     },
     "StarterPlayer": {

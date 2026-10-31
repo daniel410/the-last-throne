@@ -1818,6 +1818,23 @@ function CombatService.applyInventoryItem(player, definition, character)
 	elseif definition.restore == "mana" and state.mana then setMana(state, state.mana + definition.amount) end
 end
 
+-- Called only by the server-owned, proximity/slot-validated supporter service.
+function CombatService.applySeleneSupport(player,heroId,danger)
+ local state=playerStates[player]
+ if not state or not alive(state) then return nil end
+ local ctx=contextResolver(player,state.character)
+ if not ctx or ctx.heroId~=heroId then return nil end
+ local budget=require(ReplicatedStorage.Shared.SeleneSupport)
+ local action=budget.action(state.humanoid.Health,state.humanoid.MaxHealth,state.mode=='Stunned',danger)
+ if action=='Cleanse' then state.stunnedUntil=0;setPlayerState(state,'Idle')
+ elseif action=='Heal' then state.humanoid.Health=math.min(state.humanoid.MaxHealth,state.humanoid.Health+math.max(1,math.floor(state.humanoid.MaxHealth*budget.healFraction)))
+ elseif action=='Protect' then
+  local current=now();local old=state.branchShield and state.branchShield.expires>current and state.branchShield or nil
+  state.branchShield={amount=math.max(math.floor(state.humanoid.MaxHealth*budget.shieldFraction),old and old.amount or 0),expires=math.max(current+budget.shieldDuration,old and old.expires or 0)}
+  state.character:SetAttribute('K0Shield',state.branchShield.amount)
+ end
+ return action
+end
 function CombatService.addStoryEnemy(model) return registerEnemy(model) end
 function CombatService.setStoryDefeatHandler(callback,damageCallback) storyDefeatHandler=callback;storyDamageHandler=damageCallback end
 function CombatService.start(enemies, serverContextResolver, awardXP)

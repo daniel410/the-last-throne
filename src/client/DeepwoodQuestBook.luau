@@ -39,7 +39,7 @@ function Book.create(parent,track)
   coins.Text=string.format('Gold earned: %d\nConfirmed progress is saved.',s.coins+(s.killCoins or 0))
   if tab=='Main' then
    local c=Log.main(s)
-   card('EPIC 1 · THE BLACK ROOTS',{require(RS.Shared.DeepwoodQuestCatalog).epic.promise,string.format('%d / 7 stories completed · Side quests are optional.',s.main)})
+   card('EPIC 1 · FRIENDS OF THE FOREST',{require(RS.Shared.DeepwoodQuestCatalog).epic.promise,string.format('%d / 7 stories completed · Side quests are optional.',s.main)})
    if c then
     local phase,index,total=Log.phase(s,c)
     card(string.format('MAIN STORY %d / 7 · %s',c.number,c.quest.title),{c.quest.brief,string.format('Phase %d / %d · %s',index,total,phase),Log.reward(c)},function() track(c.id) end,'TRACK MAIN STORY')
@@ -56,7 +56,8 @@ function Book.create(parent,track)
      card('OPTIONAL · '..g.title,{'This does not block the main story.','Rescuing the altar captives creates an opening during King Shaman\'s final phase.'},function() track(c.id,g.id) end,'TRACK OPTIONAL RESCUE')
     end end
     card('NEXT STORY',{'Complete this story to open the next region. Combat alone may not finish an investigation, rescue, or report.'})
-   else card('EPIC COMPLETE',{'Your restoration choice and completed quests are in the Chronicle. You can finish accepted side quests or return to the lobby.'}) end
+   else card('EPIC COMPLETE',{'The convoy is home and the portal is closed! The next clue leads north to Frozen Vale. That expedition is not available yet. Finish side quests or return to the lobby.'}) end
+   card('SELENE · PRIEST',{current.selene or (P.seleneUnlocked(s) and 'Available · Invite Selene at the elder tree camp.' or 'Help the convoy reach camp, then report to Selene to unlock her for free.')})
   elseif tab=='Side' then
    card('OPTIONAL STORIES',{'Discover a field clue or speak to a resident. Read the request, then choose ACCEPT or LATER.','Accepted quests never block the seven main stories. Report to the named resident when the work is done.'})
    local count=0

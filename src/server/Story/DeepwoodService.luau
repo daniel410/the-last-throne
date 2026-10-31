@@ -8,7 +8,7 @@ local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
 local Text=require(ReplicatedStorage.Shared.K0Text)
 local Service={}
 local offers={}
-local activities,access
+local activities,access,companion
 local options,remote,encounters,queues,lastRequest={},{},{},{},{}
 local function context(player)
  local c=options.heroSession.getCombatContext(player,player.Character)
@@ -37,7 +37,7 @@ local function publish(player,message,notice,completion)
  if activities then activityState,dialogue=activities.projection(player,h.heroId) end
  local offer=offers[player];local ctx,root=context(player)
  if offer and (not ctx or ctx.heroId~=offer.heroId or player.Character~=offer.character or not root or (root.Position-offer.node.part.Position).Magnitude>16) then offers[player]=nil;offer=nil end
- remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,heroId=h.heroId,training=h.training,journal=s,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
+ remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),heroId=h.heroId,training=h.training,journal=s,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
 end
 function Service.destination(player,heroId)
  local s=state(player,heroId)
@@ -47,7 +47,7 @@ function Service.destination(player,heroId)
 end
 local function enqueue(player,heroId,c,g,choice,stepId)
  queues[player]=queues[player] or {events={},keys={}}
- local q=queues[player];local key=heroId..':'..c.id..':'..g.id..':'..tostring(stepId)
+ local q=queues[player];local key=heroId..':'..c.id..':'..g.id..':'..tostring(stepId)..':'..tostring(choice)
  if q.keys[key] then return end
  q.keys[key]=true;table.insert(q.events,{heroId=heroId,c=c,g=g,choice=choice,stepId=stepId,key=key})
  if q.running then return end;q.running=true
@@ -65,7 +65,7 @@ local function enqueue(player,heroId,c,g,choice,stepId)
     if e.g.id=='@accept' then
      publish(player,nil,'Optional quest accepted: '..e.c.title,{kind='Accepted',id=e.c.id})
     else
-    local text=e.g.text
+    local text=e.g.id=='@selene' and (e.choice and 'Selene is ready! She will follow while a party companion slot is available.' or 'Selene will rest at camp. You can invite her again here.') or e.g.text
     if e.stepId then for _,step in ipairs(e.g.activity.steps) do if step.id==e.stepId then
      text=step.text
      for _,answer in ipairs(step.choices or {}) do if answer.id==e.choice then text=answer.text end end
@@ -268,6 +268,8 @@ function Service.interactStep(player,chapterId,goalId,stepId,choice)
  return activities.interactStep(player,chapterId,goalId,stepId,choice)
 end
 function Service.stepActivities(dt) activities.update(dt) end
+function Service.selectSelene(player,following) return companion.select(player,following) end
+function Service.stepCompanion(dt) companion.update(dt) end
 function Service.defeated(model,_winner)
  local key=model:GetAttribute('DeepwoodEncounter');local e=encounters[key]
  if not e or e.dead and e.dead[model] then return end
@@ -293,6 +295,8 @@ end
 function Service.start(settings)
  options=settings;remote=Instance.new('RemoteEvent');remote.Name='DeepwoodState';remote.Parent=ReplicatedStorage.Remotes
  activities=require(script.Parent.DeepwoodActivities).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,enqueue=enqueue,publish=publish})
+ companion=require(script.Parent.SeleneCompanion).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,
+  select=function(player,heroId,following) enqueue(player,heroId,Content.byId['DW-03'],{id='@selene'},following) end})
  access=require(script.Parent.DeepwoodRegionAccess).create({heroSession=options.heroSession,inventory=options.inventory,world=options.world,combat=options.combat,notice=function(p,required,name) publish(p,nil,string.format('Complete Story %d before entering %s.',required,name)) end,boundaryNotice=function(p) publish(p,nil,Text.ForestBoundaryReturn) end})
  for _,node in pairs(options.world.activityNodes or {}) do if node.prompt then node.prompt.Triggered:Connect(function(p) Service.interactStep(p,node.chapter.id,node.goal.id,node.step.id) end) end end
 
@@ -319,7 +323,7 @@ function Service.start(settings)
   end
  end)
  options.combat.setStoryDefeatHandler(Service.defeated,Service.bossDamage)
- Players.PlayerRemoving:Connect(function(p) activities.remove(p);access.remove(p);offers[p]=nil;queues[p]=nil;lastRequest[p]=nil;for _,e in pairs(encounters) do e.participants[p]=nil end end)
+ Players.PlayerRemoving:Connect(function(p) activities.remove(p);access.remove(p);companion.remove(p);offers[p]=nil;queues[p]=nil;lastRequest[p]=nil;for _,e in pairs(encounters) do e.participants[p]=nil end end)
  local activityElapsed=0
  RunService.Heartbeat:Connect(function(dt)
   activityElapsed+=dt;if activityElapsed<.2 then return end
@@ -337,7 +341,7 @@ function Service.start(settings)
     end end end end
    end
   end
-  activities.update(tick)
+  activities.update(tick);companion.update(tick)
  end)
  local elapsed=0
  RunService.Heartbeat:Connect(function(dt)
