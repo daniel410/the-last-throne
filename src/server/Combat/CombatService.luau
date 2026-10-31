@@ -641,7 +641,15 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 		playerState.branchShield.amount=playerState.branchShield.amount-absorbed;damage=damage-absorbed
 		playerState.character:SetAttribute("K0Shield",playerState.branchShield.amount)
 	end
+	local healthBefore = playerState.humanoid.Health
 	playerState.humanoid:TakeDamage(damage)
+	local applied = math.max(0, healthBefore - math.max(0, playerState.humanoid.Health))
+	if applied > 0 then
+		-- Committed health loss only: guards, barriers and ForceFields may absorb it.
+		playerState.character:SetAttribute("K0HurtDamage", applied)
+		playerState.character:SetAttribute("K0HurtMaxHealth", playerState.humanoid.MaxHealth)
+		playerState.character:SetAttribute("K0HurtAt", workspace:GetServerTimeNow())
+	end
 	playerState.lastEquipmentCombat = current
 	if playerState.humanoid.Health <= 0 then
 		markDead(playerState)

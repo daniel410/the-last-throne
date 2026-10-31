@@ -3,6 +3,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Debris = game:GetService("Debris")
 local TweenService = game:GetService("TweenService")
+local HitReaction = require(script.Parent.K0EnemyHitReaction)
 
 local HitEffects = {}
 local started = false
@@ -90,6 +91,12 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	end
 	for i = #active, 1, -1 do if not active[i].Parent then table.remove(active, i) end end
 	if #active >= MAX_ACTIVE then table.remove(active, 1):Destroy() end
+	local flat = typeof(direction) == "Vector3" and finite(direction.X) and finite(direction.Y) and finite(direction.Z)
+		and Vector3.new(direction.X, 0, direction.Z) or Vector3.new(0, 0, -1)
+	if flat.Magnitude < .001 then flat = Vector3.new(0, 0, -1) end
+	flat = flat.Unit
+	-- Root-centred sparks were hidden inside the opaque monster body.
+	position = position - flat * .8 + Vector3.new(0, .45, 0)
 	local holder = part(workspace, "K0HitEffect", position, Vector3.new(0.1, 0.1, 0.1), profile.color)
 	holder.Transparency = 1
 	if skill then holder:SetAttribute("K0SkillEffectId", skillId) end
@@ -98,15 +105,23 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	local scale = enemyKind == "Ogre" and 1.3 or 1
 	if model and model:GetAttribute("SlimeSplitGeneration") == 1 then scale = 0.7 end
 	local impactScale = skill and skill.shape == "chop" and 1.5 or 1
+	HitReaction.record(model, flat)
 	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.25 * scale * impactScale, profile.secondary)
 	TweenService:Create(flash, TweenInfo.new(0.20, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-		{ Size = Vector3.one * 1.1 * scale * impactScale, Transparency = 1 }):Play()
+		{ Size = Vector3.one * 1.65 * scale * impactScale, Transparency = 1 }):Play()
 	if model and model:IsDescendantOf(workspace) then
 		local highlight = Instance.new("Highlight")
 		highlight.Name, highlight.Adornee = "K0HitFlash", model
-		highlight.FillColor, highlight.FillTransparency, highlight.OutlineTransparency = profile.secondary, 0.55, 1
+		highlight.FillColor, highlight.FillTransparency, highlight.OutlineTransparency = profile.secondary, 0.32, 0.35
+		highlight.OutlineColor = profile.color
 		highlight.DepthMode, highlight.Parent = Enum.HighlightDepthMode.Occluded, holder
-		TweenService:Create(highlight, TweenInfo.new(0.15), { FillTransparency = 1 }):Play()
+		TweenService:Create(highlight, TweenInfo.new(0.18), { FillTransparency = 1, OutlineTransparency = 1 }):Play()
+	end
+	for index = 1, 2 do
+		local ray = part(holder, "K0ContactRay", position, Vector3.new(.08, 1.5, .08) * scale, profile.secondary)
+		ray.Shape = Enum.PartType.Block
+		ray.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(index == 1 and 35 or -55))
+		TweenService:Create(ray, TweenInfo.new(.17), {Size = ray.Size * 1.4, Transparency = 1}):Play()
 	end
 	if skill then
 		local accent = part(holder, "K0SkillImpact", position, Vector3.new(0.12, 0.45, 0.45) * scale, skill.color)
@@ -161,7 +176,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		local angle = (index - 1) * (math.pi * 2 / 5) + 0.35
 		local offset = Vector3.new(math.cos(angle), 0.45 + (index % 2) * 0.4, math.sin(angle)) * scale
 		local particle = part(holder, slime and "K0GelDroplet" or "K0ImpactSpark", position,
-			Vector3.one * (slime and 0.18 or 0.1) * scale, particleColor)
+			Vector3.one * (slime and 0.24 or 0.15) * scale, particleColor)
 		if not slime and classId ~= "mage" then
 			particle.Shape = Enum.PartType.Block
 			if classId == "elf" then particle.Size = Vector3.new(0.06, 0.22, 0.06) * scale end

@@ -485,6 +485,35 @@ return {
 			near(state.humanoid.Health, 0, classId .. " does not regenerate after death")
 		end
 	end)
+
+ case("hurt-feedback-only-for-actual-player-health-loss", function()
+  for _,mode in ipairs({"Hit","Barrier","ForceField","Dodge","PerfectBlock"})do
+   reset();api.injectResolver(function()return "knight"end)
+   local state=spawnPlayer();local enemy=spawnEnemy();local time=1
+   if mode=="Barrier"then state.branchShield={amount=10000,expires=10}
+   elseif mode=="ForceField"then local ff=Instance.new("ForceField");ff.Parent=state.character
+   elseif mode=="Dodge"then state.mode="Dodge";state.dodge={started=.85}
+   elseif mode=="PerfectBlock"then state.mode="Block";state.guardStarted=.85 end
+   local before=state.humanoid.Health
+   local attack={origin=enemy.root.Position,direction=(state.root.Position-enemy.root.Position).Unit,definition=enemy.config.attacks[1],hits={}}
+   api.applyPlayerHit(enemy,state,attack,time)
+   local applied=before-state.humanoid.Health
+   if mode=="Hit"then
+    equal(applied>0,true,"enemy really damages hero")
+    near(state.character:GetAttribute("K0HurtDamage"),applied,"feedback contains exact applied damage")
+    equal(type(state.character:GetAttribute("K0HurtAt")),"number","server stamps committed hit")
+    near(state.character:GetAttribute("K0HurtMaxHealth"),state.humanoid.MaxHealth,"server captures current max health")
+    local at=state.character:GetAttribute("K0HurtAt")
+    api.applyPlayerHit(enemy,state,attack,time+.01)
+    equal(state.character:GetAttribute("K0HurtAt"),at,"same hit cannot repeat feedback")
+    state.humanoid.Health=state.humanoid.MaxHealth
+    equal(state.character:GetAttribute("K0HurtAt"),at,"healing cannot fake damage")
+   else
+    near(applied,0,mode.." absorbs all damage")
+    equal(state.character:GetAttribute("K0HurtAt"),nil,mode.." produces no hurt feedback")
+   end
+  end
+ end)
 	case("legacy-resource-attributes-cleared-on-spawn-and-respawn", function()
 		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
 			reset(); api.injectResolver(function() return classId end)

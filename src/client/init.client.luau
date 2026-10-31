@@ -38,6 +38,7 @@ require(script.K0Telegraphs).start()
 require(script.K0SwordVisual).start()
 require(script.K0EnemyVisual).start()
 require(script.K0HitEffects).start()
+require(script.K0PlayerHitFeedback).start()
 local actionRemote
 local heldBlock = false
 local heldSprint = false

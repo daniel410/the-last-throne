@@ -2,6 +2,7 @@
 assert(game.PlaceId==0,'Unpublished local fixture required')
 local Run=game:GetService('RunService');local started=not Run:IsRunning();if started then Run:Run();task.wait(1)end
 local Motion=require(game.StarterPlayer.StarterPlayerScripts.Client.K0EnemyMotion)
+local Reaction=require(game.StarterPlayer.StarterPlayerScripts.Client.K0EnemyHitReaction)
 local Clips=require(game.StarterPlayer.StarterPlayerScripts.Client.K0EnemyClips)
 local Field=require(game.ServerScriptService.Server.World.TrainingField)
 local report={kind='DEEPWOOD_MONSTER_MOTION_NATIVE',checks=0,failures={},maxFootError=0}
@@ -52,6 +53,16 @@ local ok,err=xpcall(function()
    local q=assert(Motion.bind(m));for f=1,hz do root.CFrame=initial*CFrame.new(0,0,-6*f/hz);Motion.step(q,1/hz,300+f/hz)end;table.insert(phases,q.phase)
   end
   near(phases[1],phases[2],'distance-driven gait independent of frame rate',.0005)
+  m:SetAttribute('K0EnemyState','Idle');root.CFrame=initial
+  local recoil=assert(Motion.bind(m));Reaction.record(m,root.CFrame.LookVector,400);Motion.step(recoil,1/60,400.025)
+  check(root.CFrame==initial and human.Health==health,kind..' hit reaction preserves server root/health')
+  local bodyInRoot=recoil.joint.C0*recoil.joint.Transform*recoil.joint.C1:Inverse()
+  for ch,leg in pairs(recoil.legs)do
+   local motor=recoil.joints[ch];local cf=bodyInRoot*motor.C0*motor.Transform*motor.C1:Inverse()
+   local bottom=math.huge;for _,v in ipairs(leg.points)do bottom=math.min(bottom,cf:PointToWorldSpace(v).Y)end
+   check(bottom>=leg.bottom-.001,kind..' flinch keeps feet above ground')
+  end
+  check(Reaction.sample(m,400.2)==CFrame.identity,kind..' hit reaction fully expires')
   m:Destroy()
  end
  near(Motion.attackPhase(1.2,1.2,.15,1.4),.62,'impact anchor');near(Motion.attackPhase(1.35,1.2,.15,1.4),.78,'follow-through anchor');near(Motion.attackPhase(2.75,1.2,.15,1.4),1,'recovery ends at rest')

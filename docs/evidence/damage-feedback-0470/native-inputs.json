@@ -1,0 +1,7 @@
+{
+  "tests/k0-basic-attacks-native.luau": "e4f479dcc37b5ede087bc5f7ab057effe19d178726a5d0a04ac9def792a0c587",
+  "tests/k0-hit-effects-native.luau": "a25ef2b22f5fe01e891c451a1905ee00e6d4b06d8356daa15455cea6ad4e1cd4",
+  "tests/deepwood-monster-motion-native.luau": "c6329db9a9c1459d0ff534064aa1a21255c899914c52982c06743be3a829464e",
+  "tests/shield-bash-leading-native.luau": "841a58dbb916fc0c16bc2086a4c01441ea423512c20f1bd394bc2a0fc3a375c9",
+  "tests/damage-feedback-native.luau": "2c92abbf63d0503e7d61c369242b1f90de09fa748290ee01ee1aec7fe8d258ea"
+}

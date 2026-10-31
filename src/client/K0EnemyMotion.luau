@@ -2,6 +2,7 @@
 local RunService=game:GetService('RunService')
 local Workspace=game:GetService('Workspace')
 local Clips=require(script.Parent.K0EnemyClips)
+local HitReaction=require(script.Parent.K0EnemyHitReaction)
 local Motion={}
 local channels={'body','weapon','off','rightLeg','leftLeg'}
 local names={weapon='Left Shoulder',off='Right Shoulder',rightLeg='Right Hip',leftLeg='Left Hip'}
@@ -86,6 +87,7 @@ function Motion.step(s,dt,current)
  local p=s.pose;local b=p.body;local look=s.root.CFrame.LookVector
  local cross=s.look:Cross(look).Y;s.look=look;s.turn=s.turn+(clamp(cross/math.max(dt,.001),-2,2)-s.turn)*(1-math.exp(-dt*9))
  local rootFrame=CFrame.new(b[1]*s.height,b[2]*s.height,b[3]*s.height)*frame(b,4)*CFrame.Angles(0,0,-s.turn*.025*s.move)
+ rootFrame=rootFrame*HitReaction.sample(s.model,current)
  local bodyInRoot=s.joint.C0*rootFrame*s.joint.C1:Inverse()
  if not s.profile.hasLegs then
   -- Robes/one-piece bodies keep their lower bound planted. Slime scales from
