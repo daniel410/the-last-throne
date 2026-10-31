@@ -13,20 +13,27 @@ function M.start()
  local shopRequest=remotes:WaitForChild('ArmoryRequest');local networkRequest=remotes:WaitForChild('ExpeditionRequest')
  local gui=Instance.new('ScreenGui');gui.Name='LobbyServices';gui.ResetOnSpawn=false;gui.DisplayOrder=48;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=p:WaitForChild('PlayerGui')
  local partyButton=T.button(gui,'OpenExpedition','ADVENTURES',UDim2.new(0,16,1,-60),UDim2.fromOffset(156,44))
- local latest,pending
- local armory=require(script.Parent.ArmoryView).create(gui,function(command)
-  command.requestId=Http:GenerateGUID(false):gsub('%-','');pending=command;shopRequest:FireServer(command)
- end,false,'blacksmith')
- local items=require(script.Parent.ArmoryView).create(gui,function(command)
-  command.requestId=Http:GenerateGUID(false):gsub('%-','');pending=command;shopRequest:FireServer(command)
- end,false,'items')
- local diamonds=require(script.Parent.ArmoryView).create(gui,function(command)
-  command.requestId=Http:GenerateGUID(false):gsub('%-','');pending=command;shopRequest:FireServer(command)
- end,true)
+ local latest,pending,inventory
+ local message=''
+ local function trade(command)
+  if pending then return end
+  command.requestId=Http:GenerateGUID(false):gsub('%-','');pending=command;message='Saving transaction...'
+  shopRequest:FireServer(command)
+  if latest then inventory(latest) end
+  -- A lost reply or a transient Busy/SaveUnknown must reuse the exact ID.
+  task.spawn(function()
+   while pending==command and gui.Parent do
+    task.wait(2)
+    if pending==command and gui.Parent then shopRequest:FireServer(command) end
+   end
+  end)
+ end
+ local armory=require(script.Parent.ArmoryView).create(gui,trade,false,'blacksmith')
+ local items=require(script.Parent.ArmoryView).create(gui,trade,false,'items')
+ local diamonds=require(script.Parent.ArmoryView).create(gui,trade,true)
  local expedition=require(script.Parent.ExpeditionView).create(gui,function(command) networkRequest:FireServer(command) end)
  local dailyRequest=remotes:WaitForChild('DailyLoginRequest')
  local daily=require(script.Parent.DailyLoginGui).create(gui,function(command) dailyRequest:FireServer(command) end)
- local message=''
  local navigation
  remotes:WaitForChild('DailyLoginState').OnClientEvent:Connect(function(data)
   daily.receive(data)
@@ -50,22 +57,20 @@ function M.start()
  })
  navigation.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
  partyButton.Activated:Connect(function() local wasOpen=expedition.panel.Visible;closePanels();navigation.panel.Visible=false;expedition.panel.Visible=not wasOpen;networkRequest:FireServer({action='GetState'}) end)
- local function inventory(s)
-  if latest and s.revision<latest.revision then return end
+ inventory=function(s)
+  if latest and s.revision<latest.revision then s=latest end
   latest=s
   navigation.update(s)
   Wallet.update(s)
-  if armory.panel.Visible then armory.render(s,message) end
-  if items.panel.Visible then items.render(s,message) end
-  if diamonds.panel.Visible then diamonds.render(s,message) end
+  if armory.panel.Visible then armory.render(s,message,pending~=nil) end
+  if items.panel.Visible then items.render(s,message,pending~=nil) end
+  if diamonds.panel.Visible then diamonds.render(s,message,pending~=nil) end
  end
  remotes:WaitForChild('InventoryState').OnClientEvent:Connect(function(s) inventory(s) end)
  remotes:WaitForChild('ArmoryState').OnClientEvent:Connect(function(data)
   if data.open then closePanels();navigation.panel.Visible=false;(data.store=='items' and items or armory).panel.Visible=true end
   message=data.error and (Text[data.error] or InventoryText[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and items are saved.' or ''
-  if data.error=='SaveUnknown' and pending then
-   local exact=pending;task.delay(2,function() if pending==exact then shopRequest:FireServer(exact) end end)
-  elseif data.requestId==(pending and pending.requestId) then pending=nil end
+  if data.requestId==(pending and pending.requestId) and data.error~='SaveUnknown' and data.error~='Busy' and data.error~='AccountBusy' then pending=nil end
   inventory(data.inventory)
  end)
  remotes:WaitForChild('ExpeditionState').OnClientEvent:Connect(function(s)

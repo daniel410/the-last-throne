@@ -10,7 +10,10 @@ function S.start(options)
   if Access.allowed(p,options.merchant.prompt) and options.inventory.ready(p) then publish(p,nil,nil,true) end
  end) end
  remote.OnServerEvent:Connect(function(p,c,...)
-  if os.clock()-(last[p] or -math.huge)<.2 then return end;last[p]=os.clock()
+  if os.clock()-(last[p] or -math.huge)<.2 then
+   if type(c)=='table' and c.action~='GetState' and type(c.requestId)=='string' and #c.requestId<=64 and c.requestId:match('^[%w_-]+$') then publish(p,c.requestId,'Busy') end
+   return
+  end;last[p]=os.clock()
   if select('#',...)~=0 or type(c)~='table' then return end
   local allowed={store=true,action=true,requestId=true,heroId=true,revision=true,offerId=true,instanceId=true,itemVersion=true}
   for k,v in pairs(c) do if not allowed[k] or type(v)~='string' and type(v)~='number' then publish(p,nil,'InvalidRequest');return end end

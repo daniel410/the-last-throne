@@ -44,6 +44,7 @@ function V.create(parent,send,diamondOnly,store)
  end
  panel:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize);resize()
  local state,mode,pending,category={},'Buy',nil,'All'
+ local transactionPending=false
  local categoryButtons={}
  local render
  local function command(action,fields)
@@ -62,10 +63,10 @@ function V.create(parent,send,diamondOnly,store)
   if insufficient then
    b.Caption.Text=string.format(ItemText.ShopInsufficient,shortfall,currency)
    b:SetAttribute('InsufficientFunds',true);T.enabled(b,false)
-  end
+  elseif transactionPending then T.enabled(b,false) end
   local armed=false
   b.Activated:Connect(function()
-   if insufficient then return end
+   if insufficient or transactionPending then return end
    if not state.ready or not state.heroId then notice.Text='Select a hero and wait for your account to load.';return end
    if not armed then
     pending=nil;command(mode,fields);armed=true;b.Caption.Text='CONFIRM · '..caption
@@ -75,8 +76,8 @@ function V.create(parent,send,diamondOnly,store)
    else armed=false;b.Caption.Text=caption end
   end)
  end
- render=function(snapshot,message)
-  state=snapshot or state;pending=nil
+ render=function(snapshot,message,saving)
+  state=snapshot or state;pending=nil;if saving~=nil then transactionPending=saving==true end
   for id,b in pairs(categoryButtons)do b.Caption.Text=(category==id and '[X] ' or '')..b:GetAttribute('CategoryLabel') end
   local w=state.wallet;balance.Text=w and string.format('Gold: %d     Diamonds: %d',w.gold,w.diamonds) or 'Wallet unavailable. Rejoin before trading.'
   for _,child in ipairs(scroll:GetChildren()) do if child:IsA('GuiObject') then child:Destroy() end end
