@@ -1,5 +1,8 @@
 # The Last Throne 실행 백로그
 
+> 2026-10-31 **0.55.0 / TLT-028/031/043/046/048/050/061/084:** TD 방식7일 로그인 Gold 보상, Diamonds→RPG Gold 상품, 로비 퀘스트·상단 메뉴·솔로 순서·아이콘을 구현한다. [검증·빌드·한계](docs/evidence/lobby-daily-navigation-0550/README.md). 로컬 시험판·미게시.
+
+
 > 2026-10-31 **0.54.0 / TLT-028/031/043/046/061/084 수정:** 로비 메뉴 창을 HEROES와 같은 크기로 통일하고 구매 불가 상품에 부족액과 비활성 버튼을 표시한다. [구현·검증·빌드](docs/evidence/lobby-panels-affordability-0540/README.md). 로컬 시험판·미게시.
 
 

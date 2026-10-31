@@ -1,5 +1,10 @@
 # 현재 기획 결정과 미확정 항목
 
+## 2026-10-31 — RPG 로그인 보상과 Gold 교환
+
+사용자는 TD 방식 로그인 보상과 Diamonds로 구매하는 Gold 상품을 요청하고, 최종7일 보상을 **20/20/20/50/50/50/100 RPG Gold**로 정했다. TD와 같이 UTC 날짜마다 수령 가능하며 마지막 수령 후48시간 이내에 다른 UTC 날짜에 수령하면 다음 칸, 그 이후에는1일 차로 돌아간다. 7일 차 다음은1일 차다. 지급과 수령 기록은 RPG 계정 단일 저장키에서 확정하며 TD 잔액/기록은 공유하지 않는다. TD의 10 Diamonds→100 Battle Gold 상품 비율을 참고해 RPG에서는 10 RPG Diamonds→100 계정 RPG Gold 상품을 제공한다. RPG 영구 계정 Gold와 TD 한 판 Gold는 별개이며 가격/경제 수용은 후속이다. [구현·근거](evidence/lobby-daily-navigation-0550/README.md).
+
+
 ## 2026-10-31 — 다음 에픽 Ember Caldera 로컬 구현
 
 사용자의 다음 에픽 제작 요청을 승인5에픽 순서의 Ember Caldera로 해석한다. EC-01~07 안정ID·고정3883XP/4640Gold를 유지하고 광부 구조/냉각 복구/Magma Golem·Inferno Overlord/작업장 재가동·Veyr/열쇠 추적을 구현한다. 기존 요청의 TD 원본 재사용·Blender MCP 동작 제작 방식을 이어 화산10종에 적용한다. Frozen Vale의 비살상 수호수와 구분해 화산 보스는 격파 전투를 사용한다. 미확정 선택 퀘스트 고정 예산은0의 시험값을 유지하며 처치 보상은 별도다. 게시 범위를 확대하지 않고0.51.0 로컬 시험판으로 검증한다. [증거·한계](evidence/ember-caldera-0510/README.md).

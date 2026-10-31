@@ -496,6 +496,29 @@ function Service.resumeTransfer(player)
  if not p then s.errorCode=e;publish(player);return false end
  s.profile=p;s.valid=true;s.errorCode=nil;s.closing=false;s.transferPrepared=nil;publish(player);return true
 end
+-- The claim is committed with the RPG account wallet and retried with the same server time.
+function Service.dailyStatus(player)
+ local s=accounts[player]
+ if not s or not s.profile then return {status='Loading'} end
+ if not s.valid then return {status=s.errorCode or 'Unavailable',retryPending=s.dailyPending~=nil} end
+ local daily=require(ReplicatedStorage.Shared.DailyLogin)
+ local day,canClaim=daily.compute(s.profile.dailyLogin,os.time())
+ return {status=s.busy and 'Busy' or 'Ready',day=day,canClaim=canClaim and not s.busy,record=Rules.copy(s.profile.dailyLogin),rewards=daily.rewards}
+end
+function Service.claimDaily(player,requestId)
+ local s=accounts[player]
+ if not s or s.busy or s.closing then return 'Busy' end
+ if workspace:GetAttribute('TLTServerRole')=='Battle' or player:GetAttribute('K0SessionPhase')~='Lobby' then return 'LobbyOnly' end
+ if s.dailyPending and s.dailyPending.requestId~=requestId then return 'Busy' end
+ if not s.valid and not (s.dailyPending and s.dailyPending.requestId==requestId) then return s.errorCode or 'Unavailable' end
+ local pending=s.dailyPending or {requestId=requestId,claimAt=os.time()};s.dailyPending=pending;s.busy=true
+ local profile,reason,replayed=store:transact(player.UserId,function(current) return Rules.claimDaily(current,pending.claimAt,pending.requestId) end)
+ if profile then s.profile=profile;s.valid=true;s.errorCode=nil;s.dailyPending=nil
+ elseif reason=='SaveUnknown' or reason=='AccountBusy' then s.valid=false;s.errorCode=reason
+ else s.dailyPending=nil end
+ s.busy=false;publish(player,requestId,reason)
+ return reason,replayed
+end
 function Service.shop(player,command)
  local s=accounts[player];if not s or s.busy or s.closing then return 'Busy' end
  if not s.valid and not (s.shopPending and s.shopPending.requestId==command.requestId) then return s.errorCode or 'Unavailable' end

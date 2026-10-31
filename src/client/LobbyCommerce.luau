@@ -3,6 +3,7 @@ local RS=game:GetService('ReplicatedStorage')
 local Http=game:GetService('HttpService')
 local T=require(script.Parent.TDInventoryTheme)
 local Text=require(RS.Shared.LobbyText)
+local InventoryText=require(RS.Shared.InventoryText)
 local Wallet=require(script.Parent.WalletDisplay)
 local M={}
 function M.start()
@@ -23,18 +24,25 @@ function M.start()
   command.requestId=Http:GenerateGUID(false):gsub('%-','');pending=command;shopRequest:FireServer(command)
  end,true)
  local expedition=require(script.Parent.ExpeditionView).create(gui,function(command) networkRequest:FireServer(command) end)
+ local dailyRequest=remotes:WaitForChild('DailyLoginRequest')
+ local daily=require(script.Parent.DailyLoginGui).create(gui,function(command) dailyRequest:FireServer(command) end)
  local message=''
  local navigation
+ remotes:WaitForChild('DailyLoginState').OnClientEvent:Connect(function(data)
+  daily.receive(data)
+  if navigation and type(data)=='table' and type(data.state)=='table' then navigation.dailyAvailable(data.state.status=='Ready' and data.state.canClaim==true)end
+ end)
  local function lock()
-  local open=(navigation and navigation.panel.Visible) or armory.panel.Visible or items.panel.Visible or diamonds.panel.Visible or expedition.panel.Visible;p:SetAttribute('TLTLobbyPanelOpen',open)
+  local open=(navigation and navigation.panel.Visible) or armory.panel.Visible or items.panel.Visible or diamonds.panel.Visible or expedition.panel.Visible or daily.panel.Visible;p:SetAttribute('TLTLobbyPanelOpen',open)
  end
- armory.panel:GetPropertyChangedSignal('Visible'):Connect(lock);items.panel:GetPropertyChangedSignal('Visible'):Connect(lock);diamonds.panel:GetPropertyChangedSignal('Visible'):Connect(lock);expedition.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
+ armory.panel:GetPropertyChangedSignal('Visible'):Connect(lock);items.panel:GetPropertyChangedSignal('Visible'):Connect(lock);diamonds.panel:GetPropertyChangedSignal('Visible'):Connect(lock);expedition.panel:GetPropertyChangedSignal('Visible'):Connect(lock);daily.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
  local function closePanels()
-  armory.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;expedition.panel.Visible=false
+  armory.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;expedition.panel.Visible=false;daily.panel.Visible=false
  end
  navigation=require(script.Parent.LobbyNavigation).create(gui,{
   close=closePanels,
   open=function(kind)
+   if kind=='LoginRewards' then local wasOpen=daily.panel.Visible;closePanels();if not wasOpen then daily.open()end;return end
    local target=kind=='Blacksmith' and armory or kind=='DiamondShop' and diamonds or items;local wasOpen=target.panel.Visible
    closePanels();target.panel.Visible=not wasOpen
    shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')})
@@ -54,7 +62,7 @@ function M.start()
  remotes:WaitForChild('InventoryState').OnClientEvent:Connect(function(s) inventory(s) end)
  remotes:WaitForChild('ArmoryState').OnClientEvent:Connect(function(data)
   if data.open then closePanels();navigation.panel.Visible=false;(data.store=='items' and items or armory).panel.Visible=true end
-  message=data.error and (Text[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and items are saved.' or ''
+  message=data.error and (Text[data.error] or InventoryText[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and items are saved.' or ''
   if data.error=='SaveUnknown' and pending then
    local exact=pending;task.delay(2,function() if pending==exact then shopRequest:FireServer(exact) end end)
   elseif data.requestId==(pending and pending.requestId) then pending=nil end
@@ -68,11 +76,14 @@ function M.start()
  local function phase()
   local lobby=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle'
   navigation.rail.Visible=lobby;partyButton.Visible=lobby
-  if not lobby then navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
+  if lobby then task.delay(.3,function()if p.Parent and p:GetAttribute('K0SessionPhase')=='Lobby'then dailyRequest:FireServer({action='GetState'})end end)end
+  if not lobby then navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;daily.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(phase);phase()
  task.spawn(function()
+  local ticks=0
   while gui.Parent do
+   ticks+=1;if ticks%6==0 and p:GetAttribute('K0SessionPhase')=='Lobby'then dailyRequest:FireServer({action='GetState'})end
    if p:GetAttribute('K0SessionPhase')=='Lobby' then networkRequest:FireServer({action='GetState'}) end
    task.wait(10)
   end

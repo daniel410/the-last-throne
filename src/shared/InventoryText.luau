@@ -1,4 +1,6 @@
 return {
+ BalanceLimit="Your Gold balance is at its limit. Spend some Gold before exchanging Diamonds.",
+ GoldCategory="GOLD", GoldBundle="%d Gold", GoldDescription="Adds %d Gold to your RPG account wallet. Available across your heroes.",
  ShopInsufficient="Need %d more %s", ShopShortfall="\nPrice: %d %s · Need %d more.",
 	RestoreAmount = "Restores up to %d %s", MoreDetails = "DETAILS  >", LessDetails = "LESS DETAILS",
 	Bag = "BAG", Title = "Hero Bag", StorageTitle = "Hub Storage", EquipmentTitle = "Equipped Gear",

@@ -40,6 +40,13 @@ function E.apply(p,cmd,context,items,R)
  local hero=p.heroes[cmd.heroId];if not hero then return nil,'HeroNotOwned' end
  local n=R.copy(p);E.upgrade(n)
  if cmd.action=='Buy' then
+  local exchange=Catalog.goldOffer(cmd.offerId)
+  if exchange then
+   if cmd.store~='diamonds' then return nil,'InvalidRequest' end
+   if n.wallet.diamonds<exchange.price then return nil,'NotEnoughDiamonds' end
+   if n.wallet.gold+exchange.amount>1e12 then return nil,'BalanceLimit' end
+   n.wallet.diamonds=n.wallet.diamonds-exchange.price;n.wallet.gold=n.wallet.gold+exchange.amount
+  else
   local offer=Catalog.offer(cmd.offerId);if not offer then return nil,'InvalidRequest' end
   local definition=items.items[offer.definitionId];if not definition or not allowed(definition,offer) then return nil,'InvalidRequest' end
   local stack
@@ -57,6 +64,7 @@ function E.apply(p,cmd,context,items,R)
   if stack then stack.quantity=stack.quantity+1;stack.version=stack.version+1
   else n.items[id]={instanceId=id,definitionId=offer.definitionId,definitionVersion=items.version,ownerUserId=p.userId,quantity=1,version=1,binding='account',locked=false,
    location={kind='bag',heroId=cmd.heroId},sourceGrantId='shop:'..cmd.requestId} end
+  end
  elseif cmd.action=='Sell' then
   local item=n.items[cmd.instanceId]
   if not item or item.ownerUserId~=p.userId or item.version~=cmd.itemVersion then return nil,'Changed' end

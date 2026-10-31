@@ -491,6 +491,12 @@ local settingsGui=require(script.SettingsGui).create(player,function(opened)
  end
  lobby.setSuppressed(opened or inventory.isOpen() or growthGui.isOpen())
 end)
+require(script.LobbyTopMenu).create(player,{
+ Hero=function()growthGui.open('Stats')end,
+ Bag=inventory.open,
+ Journal=function()require(script.LobbyMenuBridge):Fire('Quest')end,
+ Settings=settingsGui.open,
+})
 hud.settingsMenu.Activated:Connect(settingsGui.open)
 local function routeCaption()
  local training=player:GetAttribute("TLTRoute")=="Training"

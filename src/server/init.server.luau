@@ -28,6 +28,7 @@ if deepwood then
  forgeChest.Parent.Name='EmberCalderaAccountStorage';forgePrompt.ObjectText='Forge City Storage';table.insert(chests,forgeChest);table.insert(prompts,forgePrompt)
 end
 inventory.start({chests=chests,prompts=prompts,heroSession=heroSession,combat=combat,storyPending=story.hasPendingEvents})
+require(script.Lobby.DailyLoginService).start(inventory)
 local function previewWorld()
  if not deepwood then deepwood=require(script.World.CampaignWorld).create() end
  if not storyStarted then story.start({world=deepwood,enemies=world.enemies,inventory=inventory,heroSession=heroSession,combat=combat});storyStarted=true end

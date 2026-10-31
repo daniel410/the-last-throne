@@ -26,7 +26,7 @@ function M.create(player,onVisibility)
  local function connect(signal,callback) table.insert(connections,signal:Connect(callback)) end
  local function showLauncher()
   local phase=player:GetAttribute('K0SessionPhase')
-  launcher.Visible=not opened and phase~='Tutorial' and phase~='LoadingTutorial' and phase~='Respawning'
+  launcher.Visible=not opened and phase~='Lobby' and phase~='Tutorial' and phase~='LoadingTutorial' and phase~='Respawning'
    and not player:GetAttribute('TLTInventoryOpen') and not player:GetAttribute('TLTProgressionOpen')
  end
  local function setOpen(value)

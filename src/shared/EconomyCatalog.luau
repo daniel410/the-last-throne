@@ -1,4 +1,4 @@
-local C={version=1,storyDiamonds=2,offers={},sell={}}
+local C={version=1,storyDiamonds=2,offers={},sell={},goldOffers={{id='rpg_gold_100_diamond',currency='diamonds',price=10,amount=100}}}
 for _,class in ipairs({'knight','elf','dwarf','mage'}) do
  local fine=class..'_weapon_fine';local veteran=class..'_weapon_veteran'
  table.insert(C.offers,{id=fine,definitionId=fine,currency='gold',price=250})
@@ -41,4 +41,5 @@ function C.allowed(store,definition,offer)
  return true
 end
 function C.offer(id) for _,v in ipairs(C.offers) do if v.id==id then return v end end end
+function C.goldOffer(id) for _,v in ipairs(C.goldOffers)do if v.id==id then return v end end end
 return C

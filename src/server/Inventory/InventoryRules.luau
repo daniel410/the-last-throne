@@ -2,6 +2,7 @@ local Story=game and require(game:GetService('ReplicatedStorage').Shared.Deepwoo
 local Economy=game and require(game:GetService('ReplicatedStorage').Shared.EconomyRules) or dofile('src/shared/EconomyRules.luau')
 -- Pure single-account transitions; no services, clocks, random IDs or side effects.
 local Growth = game and require(game:GetService("ReplicatedStorage").Shared.HeroProgression) or dofile("src/shared/HeroProgression.luau")
+local Daily=game and require(game:GetService('ReplicatedStorage').Shared.DailyLogin) or dofile('src/shared/DailyLogin.luau')
 local Rules = {}
 function Rules.copy(value)
 	if type(value) ~= "table" then return value end
@@ -14,6 +15,19 @@ function Rules.integer(value, minimum, maximum)
 end
 function Rules.new(userId)
 	return {schemaVersion = 1, userId = userId, revision = 0, epoch = 0, heroes = {}, items = {}, operations = {}, operationOrder = {},wallet={version=1,gold=0,diamonds=0,claims={}}}
+end
+-- The trusted server fixes request time; calendar record and Gold share one account write.
+function Rules.claimDaily(profile,now,requestId)
+ if not Rules.integer(now,0,1e12) or type(requestId)~='string' or #requestId==0 or #requestId>64 or not requestId:match('^[%w_-]+$') then return nil,'InvalidRequest' end
+ local record=profile.dailyLogin
+ if record and record.requestId==requestId then return Rules.copy(profile),nil,true end
+ local day,canClaim=Daily.compute(record,now)
+ if not canClaim then return nil,'AlreadyClaimed' end
+ local n=Rules.copy(profile);Economy.upgrade(n)
+ local amount=Daily.rewards[day]
+ if n.wallet.gold+amount>1e12 then return nil,'BalanceLimit' end
+ n.wallet.gold=n.wallet.gold+amount;n.dailyLogin={day=day,lastClaim=now,amount=amount,requestId=requestId};n.revision=n.revision+1
+ return n
 end
 function Rules.count(profile, kind, heroId)
 	local count = 0
@@ -78,6 +92,7 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	return nextProfile
 end
 function Rules.validate(profile, catalog)
+ if profile and profile.dailyLogin~=nil and not Daily.valid(profile.dailyLogin) then return false end
  if profile and profile.wallet~=nil and not Economy.valid(profile.wallet) then return false end
 	if type(profile) ~= "table" or profile.schemaVersion ~= 1 or not Rules.integer(profile.revision, 0, 1e12)
 		or type(profile.heroes) ~= "table" or type(profile.items) ~= "table" or type(profile.operations) ~= "table"

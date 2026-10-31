@@ -1,16 +1,14 @@
 -- Illustrated navigation tiles; Diamond Shop uses the original TD lobby artwork.
 local RS=game:GetService('ReplicatedStorage')
 local T=require(script.Parent.TDInventoryTheme)
-local Progress=require(RS.Shared.DeepwoodProgress)
-local Log=require(RS.Shared.DeepwoodQuestLog)
 local Bridge=require(script.Parent.LobbyMenuBridge)
 local LobbyArt=require(RS.Shared.TDUI.LobbyHomeArtAssets)
 local M={}
 function M.create(parent,actions)
- local rail=Instance.new('Frame');rail.Name='LobbyNavigation';rail.BackgroundTransparency=1;rail.Position=UDim2.new(0,10,.5,-204);rail.Size=UDim2.fromOffset(88,408);rail.Parent=parent
+ local rail=Instance.new('Frame');rail.Name='LobbyNavigation';rail.BackgroundTransparency=1;rail.AnchorPoint=Vector2.new(0,.5);rail.Position=UDim2.new(0,10,.5,0);rail.Size=UDim2.fromOffset(88,476);rail.Parent=parent
  local list=Instance.new('UIListLayout');list.Padding=UDim.new(0,4);list.Parent=rail
  local scale=Instance.new('UIScale');scale.Parent=rail
- local function resize() local camera=workspace.CurrentCamera;if camera then scale.Scale=math.min(1,math.max(.65,(camera.ViewportSize.Y-92)/408)) end end
+ local function resize() local camera=workspace.CurrentCamera;if camera then scale.Scale=math.min(1,math.max(.4,(camera.ViewportSize.Y-8)/476)) end end
  local camera=workspace.CurrentCamera;if camera then camera:GetPropertyChangedSignal('ViewportSize'):Connect(resize) end;resize()
  local panel=T.frame(parent,'LobbyGuide',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(1100,850);cap.Parent=panel
@@ -19,27 +17,25 @@ function M.create(parent,actions)
  local close=T.button(panel,'Close','X',UDim2.new(1,-60,0,10),UDim2.fromOffset(44,44));close.Activated:Connect(function() panel.Visible=false end)
  local body=T.label(panel,'Contents','',UDim2.fromOffset(24,60),UDim2.new(1,-48,1,-80),15,T.color.text);body.TextYAlignment=Enum.TextYAlignment.Top
  local atlas=require(script.Parent.LobbyAtlas).create(panel)
+ local journal=require(script.Parent.LobbyQuestJournal).create(panel)
  local snapshot
  local function guide(kind)
-  body.Visible=kind~='Maps';atlas.root.Visible=kind=='Maps'
-  if kind=='Maps'then title.Text='ADVENTURE MAPS';atlas.show(snapshot);panel.Visible=true;return end
-  title.Text=kind=='Quest' and 'QUEST JOURNAL' or 'ADVENTURE MAPS'
-  local hero=snapshot and snapshot.heroId and snapshot.heroes and snapshot.heroes[snapshot.heroId]
-  if not hero then body.Text='Select a hero to view their adventure progress.'
-  else
-   local journal=hero.deepwood or Progress.new()
-   if kind=='Quest' then
-    local chapter=Log.main(journal)
-    body.Text=chapter and string.format('MAIN STORY · %s\n\n%s\n\nStories completed: %d / 21\n\nEnter an adventure to track objectives and view the full journal.',chapter.quest.title,chapter.quest.brief,journal.main) or 'The first three expeditions are complete.\n\nEnter an adventure to view your full journal.'
-
-   end
-  end
+  body.Visible=false;atlas.root.Visible=kind=='Maps';journal.root.Visible=kind=='Quest'
+  title.Text=kind=='Quest' and require(RS.Shared.LobbyQuestText).Title or 'ADVENTURE MAPS'
+  if kind=='Maps'then atlas.show(snapshot)else journal.show(snapshot)end
   panel.Visible=true
  end
+ Bridge.Event:Connect(function(action)if action=='Quest'then actions.close();guide('Quest')end end)
  local function icon(button,id,index)
   local art
-  if id=='DiamondShop' then
+  if id=='LoginRewards' then
+   art=T.icon(button,'login_rewards',UDim2.fromOffset(12,0),UDim2.fromOffset(64,48))
+  elseif id=='DiamondShop' then
    art=T.sprite(button,'NavigationIcon','shop',UDim2.fromOffset(12,0),UDim2.fromOffset(64,48),LobbyArt)
+   -- The source includes a separate caption beneath the artwork. The rail
+   -- already supplies that caption, so fit only the icon area.
+   local crop=LobbyArt.regions.shop
+   art.ImageRectSize=Vector2.new(art.ImageRectSize.X,math.round(crop.height*crop.captionY*LobbyArt.renderHeight/LobbyArt.height))
   else
    art=Instance.new('ImageLabel');art.Name='NavigationIcon';art.BackgroundTransparency=1
    art.Image=id=='Blacksmith' and 'rbxassetid://97662984602605' or 'rbxassetid://137280207574223'
@@ -51,7 +47,7 @@ function M.create(parent,actions)
   end
   art.ZIndex=3
  end
- for index,entry in ipairs({{'Heroes','HEROES'},{'ItemShop','ITEM SHOP'},{'Blacksmith','BLACKSMITH'},{'Quest','QUEST'},{'Maps','MAPS'},{'DiamondShop','DIAMOND SHOP'}}) do
+ for index,entry in ipairs({{'Heroes','HEROES'},{'ItemShop','ITEM SHOP'},{'Blacksmith','BLACKSMITH'},{'Quest','QUEST'},{'Maps','MAPS'},{'DiamondShop','DIAMOND SHOP'},{'LoginRewards','LOGIN REWARDS'}}) do
   local b=T.button(rail,entry[1],entry[2],UDim2.new(),UDim2.fromOffset(88,64))
   -- Navigation artwork already includes its own frame. Keep the hit target, not a second shell.
   b.BackgroundTransparency=1;b.TDButtonArt.Visible=false
@@ -63,6 +59,7 @@ function M.create(parent,actions)
    else actions.open(entry[1]) end
   end)
  end
- return {rail=rail,panel=panel,update=function(s) snapshot=s;atlas.update(s) end}
+ return {rail=rail,panel=panel,showGuide=guide,update=function(s) snapshot=s;atlas.update(s);journal.update(s) end,
+  dailyAvailable=function(available)local b=rail:FindFirstChild('LoginRewards');if b then b.Caption.Text=available and 'LOGIN REWARDS !'or 'LOGIN REWARDS' end end}
 end
 return M

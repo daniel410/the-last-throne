@@ -56,7 +56,7 @@ function Gui.create(onVisibility)
 	end
 	local function showLaunch()
 		local phase=player:GetAttribute("K0SessionPhase")
-		launch.Visible=not opened and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
+		launch.Visible=not opened and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Lobby" and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function visible(value)
 		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end
@@ -163,6 +163,7 @@ function Gui.create(onVisibility)
 	end)
 	remotes:WaitForChild("K0HeroState").OnClientEvent:Connect(function() if opened then getState() end end)
  task.spawn(function() while gui.Parent do task.wait(2);if opened and not pending then getState() end end end)
+ showLaunch()
 	return {open=function(which) tab=which or "Stats"; visible(true) end,close=function() visible(false) end,isOpen=function() return opened end}
 end
 return Gui

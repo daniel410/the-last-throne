@@ -53,7 +53,8 @@ function V.create(parent,send,diamondOnly,store)
  end
  local function row(name,title,description,def,caption,fields,shortfall,currency)
   local card=T.frame(scroll,name,UDim2.new(),UDim2.new(1,-8,0,184))
-  Artwork.create(card,def,UDim2.fromOffset(10,12),UDim2.fromOffset(62,66))
+  if def.currencyArt then T.icon(card,'gold',UDim2.fromOffset(10,12),UDim2.fromOffset(62,66))
+  else Artwork.create(card,def,UDim2.fromOffset(10,12),UDim2.fromOffset(62,66)) end
   T.label(card,'Name',title,UDim2.fromOffset(82,8),UDim2.new(1,-94,0,28),16,T.color.gold)
   T.label(card,'Details',description,UDim2.fromOffset(82,38),UDim2.new(1,-94,0,92),12)
   local b=T.button(card,'Trade',caption,UDim2.new(0,14,1,-52),UDim2.new(1,-28,0,44))
@@ -81,6 +82,16 @@ function V.create(parent,send,diamondOnly,store)
   for _,child in ipairs(scroll:GetChildren()) do if child:IsA('GuiObject') then child:Destroy() end end
   local class=state.heroId and state.heroes and state.heroes[state.heroId] and state.heroes[state.heroId].baseClassId
   if mode=='Buy' then
+   if diamondOnly and (category=='All' or category=='Gold')then
+    for _,offer in ipairs(Catalog.goldOffers)do
+     local title=string.format(ItemText.GoldBundle,offer.amount)
+     local description=string.format(ItemText.GoldDescription,offer.amount)
+     local balance=state.wallet and state.wallet.diamonds
+     local shortfall=type(balance)=='number' and math.max(0,offer.price-balance)or nil
+     if shortfall and shortfall>0 then description=description..string.format(ItemText.ShopShortfall,offer.price,'Diamonds',shortfall)end
+     row(offer.id,title,description,{currencyArt=true},string.format('BUY · %d Diamonds',offer.price),{offerId=offer.id,review=title..' for '..offer.price..' Diamonds'},shortfall,'Diamonds')
+    end
+   end
    local offers=table.clone(Catalog.offers)
    table.sort(offers,function(a,b) local da,db=Items.items[a.definitionId],Items.items[b.definitionId];if (da.restore~=nil)~=(db.restore~=nil) then return da.restore~=nil end;if da.restore and db.restore then if da.restore~=db.restore then return da.restore=='health' end;return da.potionTier<db.potionTier end;local aa=da.classId==class;local bb=db.classId==class;if aa~=bb then return aa end;return a.id<b.id end)
    for _,offer in ipairs(offers) do
@@ -119,12 +130,16 @@ function V.create(parent,send,diamondOnly,store)
   notice.Text=message or 'Prices are shown before confirmation. Each first main-story clear awards 2 Diamonds per account.'
  end
  local function selectCategory(id)
+  if diamondOnly and id=='Gold'then category=id;render();return end
   for _,entry in ipairs(Catalog.categories)do if entry.id==id then category=id;render();return end end
  end
  for _,entry in ipairs(Catalog.categories)do
   if store=='blacksmith' and entry.id~='All' and entry.id~='Weapons' and entry.id~='Armor' and entry.id~='Accessories' then continue end
   if store=='items' and entry.id=='Weapons' then continue end
   local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
+ if diamondOnly then
+  local b=T.button(categories,'Category_Gold',ItemText.GoldCategory,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',ItemText.GoldCategory);categoryButtons.Gold=b;b.Activated:Connect(function()selectCategory('Gold')end)
+ end
  buy.Activated:Connect(function() mode='Buy';render() end);sell.Activated:Connect(function() mode='Sell';render() end)
  return {panel=panel,render=render,notice=notice,selectCategory=selectCategory,setMode=function(value) if value=="Buy" or value=="Sell" then mode=value;render() end end}
 end

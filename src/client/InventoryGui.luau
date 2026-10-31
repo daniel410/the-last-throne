@@ -150,7 +150,7 @@ function InventoryGui.create(onVisibility, feedback)
 	end
 	local function showLauncher()
 		local phase=player:GetAttribute("K0SessionPhase")
-		launcher.Visible=not opened and not player:GetAttribute("TLTProgressionOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
+		launcher.Visible=not opened and not player:GetAttribute("TLTProgressionOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Lobby" and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function setOpen(value)
 		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end
@@ -629,6 +629,7 @@ function InventoryGui.create(onVisibility, feedback)
 		requestState()
 		while gui.Parent do task.wait(2); if opened and not pending then requestState() end end
 	end)
+	showLauncher()
 	resize()
 	return {
 		open=function() storageMode,sourceTab=false,"bag";setOpen(true) end,

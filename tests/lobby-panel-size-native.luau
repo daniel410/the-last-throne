@@ -32,6 +32,10 @@ local ok,err=xpcall(function()
  local inventory=copy('InventoryGui').create()
  local invGui=game.CoreGui.InventoryGui;local growthGui=game.CoreGui.HeroGrowthGui;local settingsGui=game.CoreGui.GameSettings
  local invShade=invGui.InventoryOverlay;local growthShade=growthGui.Overlay;local settingsShade=settingsGui.Overlay
+ check(not invGui.OpenBag.Visible and not growthGui.OpenHero.Visible and not settingsGui.OpenSettings.Visible,'individual top launchers are hidden in the lobby: '..tostring(invGui.OpenBag.Visible)..' / '..tostring(growthGui.OpenHero.Visible)..' / '..tostring(settingsGui.OpenSettings.Visible))
+ player:SetAttribute('K0SessionPhase','ReturningLobby');task.wait()
+ check(invGui.OpenBag.Visible and growthGui.OpenHero.Visible and settingsGui.OpenSettings.Visible,'non-lobby launcher visibility is preserved')
+ player:SetAttribute('K0SessionPhase','Lobby');task.wait()
  local panels={armory.panel,items.panel,diamonds.panel,navigation.panel,expedition.panel,invShade.InventoryPanel,growthShade.InventoryPanel,settingsShade.SettingsPanel,invShade.ClaimsOverlay.ClaimsPopup}
  local atlas=require(client.LobbyAtlas).create(navigation.panel)
  for _,size in ipairs({Vector2.new(1280,800),Vector2.new(750,323),Vector2.new(390,780)})do
