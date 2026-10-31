@@ -6,6 +6,7 @@ local T=require(script.Parent.TDInventoryTheme)
 local Menu=require(script.Parent.HeroMenuChrome)
 local Artwork=require(script.Parent.ItemArtwork)
 local Impact=require(RS.Shared.EquipmentImpact)
+local ItemText=require(RS.Shared.InventoryText)
 local V={}
 function V.create(parent,send,diamondOnly)
  local panel=Menu.frame(parent,'Armory',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
@@ -63,8 +64,8 @@ function V.create(parent,send,diamondOnly)
      local owned=0;for _,item in ipairs(state.items or {}) do if item.definitionId==d.id and item.location.kind=='bag' and item.location.heroId==state.heroId then owned+=item.quantity end end
      description=string.format('Restores up to %d %s · In bag: %d\n%s',d.amount,d.restore=='health' and 'HP' or 'MP',owned,d.restore=='mana' and 'Requires an MP pool. Assign to Z / C from BAG.' or 'Delivered to your bag. Assign to Z / C from BAG.')
     else
-     local fit=d.classId==class and 'Your class' or Items.classes[d.classId] or 'All classes'
-     description=string.format('%s · Lv%d · Power +%d%s\n%s',fit,d.level or 1,d.stats.power or 0,d.stats.armor and ' · Armor +'..d.stats.armor or '',hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.')
+     local fit=d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
+     description=string.format('%s · Lv%d · Power +%d%s\n%s',fit,d.level or 1,d.stats.power or 0,d.stats.armor and ' · Armor +'..d.stats.armor or '',d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
     end
     if not d.restore then
      local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,d.slot=='accessory' and 'accessory1' or nil,Items)
@@ -79,7 +80,8 @@ function V.create(parent,send,diamondOnly)
     local price=Economy.sellPrice(item)
     if price and (category=='All' or Catalog.category(Items.items[item.definitionId])==category) and item.location.kind=='bag' and item.location.heroId==state.heroId and not item.locked then
      n+=1;local d=Items.items[item.definitionId]
-     row(item.instanceId,d.name,'Sell one item permanently. You receive Gold; Diamonds are not refunded.',d,'SELL · '..price..' Gold',{instanceId=item.instanceId,itemVersion=item.version,review=d.name..' for '..price..' Gold'})
+     local fit=d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
+     row(item.instanceId,d.name,fit..'\nSell one item permanently. You receive Gold; Diamonds are not refunded.',d,'SELL · '..price..' Gold',{instanceId=item.instanceId,itemVersion=item.version,review=d.name..' for '..price..' Gold'})
     end
    end
    if n==0 then T.label(scroll,'Empty','Nothing to sell in this category. Unequip and unlock purchased gear in BAG. Starter gear and potions cannot be sold.',UDim2.new(),UDim2.new(1,-16,0,100),14) end

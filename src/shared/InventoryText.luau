@@ -19,7 +19,7 @@ return {
 	EquippedSlot = "Equipped: %s", GearApplied = "Equipment updated. Your equipped slots are shown on the left.",
 	CharacterBound = "HERO BOUND", Equipped = "EQUIPPED", BagTab = "HERO BAG", StorageTab = "SHARED STORAGE", Pending = "UNCLAIMED",
 	Quantity = "Quantity", ChooseAccessory = "Choose the accessory slot to replace.", Accessory1 = "ACCESSORY 1", Accessory2 = "ACCESSORY 2",
-	Compatible = "Available to all classes", Level = "Requires level %d", Class = "%s only", Current = "CURRENT", Selected = "SELECTED",
+	Compatible = "Equippable by: All classes", AllClasses = "Available to all classes", Level = "Requires level %d", Class = "Equippable by: %s only", OtherClassPurchase = "You can buy this for another hero; your current hero cannot equip it.", Current = "CURRENT", Selected = "SELECTED",
 	Details = "DETAILS", BagCount = "BAG  %d / %d", StorageCount = "STORAGE  %d / %d", StatsHint = "Changing equipment does not restore health.",
 	Stats = {power = "Power", armor = "Armor", health = "Max HP"},
 	Slots = {weapon="Weapon", offhand="Offhand", head="Head", body="Body", hands="Hands", feet="Feet", accessory1="Accessory 1", accessory2="Accessory 2"},

@@ -211,6 +211,10 @@ function InventoryGui.create(onVisibility, feedback)
 		if storageMode and not compact and sourceTab~="pending" then
 			Artwork.create(detailScroll,def,UDim2.fromOffset(0,0),UDim2.fromOffset(90,90))
 			local name=detailLabel("ItemName",def.name,0,36,20,Color.text); name.Position=UDim2.fromOffset(106,0); name.Size=UDim2.new(1,-112,0,36)
+			if def.slot then
+				local requirement=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or Text.Compatible
+				local label=detailLabel("Requirements",requirement,42,44,12,Color.silver); label.Position=UDim2.fromOffset(106,40); label.Size=UDim2.new(1,-112,0,44)
+			end
 			local loc=item.location.kind
 			actionForSelection=loc=="storage" and "Withdraw" or loc=="pending" and "Claim" or loc=="bag" and "Deposit" or nil
 			if item.quantity>1 and actionForSelection then
@@ -238,8 +242,8 @@ function InventoryGui.create(onVisibility, feedback)
 		end
 		local heading=detailLabel("ItemName",def.name,y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
 		Artwork.create(detailScroll,def,UDim2.fromOffset(12,y),UDim2.new(1,-32,0,156)); y=y+160
-		local classText=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or Text.Compatible
-		detailLabel("Requirements",classText.."  •  "..string.format(Text.Level,def.level or 1),y,28,11,Color.muted); y=y+32
+		local classText=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or (def.slot and Text.Compatible or Text.AllClasses)
+		detailLabel("Requirements",classText.."  •  "..string.format(Text.Level,def.level or 1),y,48,13,Color.silver); y=y+52
 		if def.restore then detailLabel("RestoreAmount",string.format(Text.RestoreAmount,def.amount,def.glyph),y,30,16,def.restore=="health" and Color.error or Color.silver); y=y+34 end
 		if expandedDetails then
 			detailLabel("Rarity",string.upper(def.rarity).."  •  "..string.upper(def.category),y,22,11,Color.silver); y=y+26
