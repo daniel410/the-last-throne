@@ -26,7 +26,7 @@ local function branch(id,classId,name,icon,rows)
   if d.magic then d.manaCost=d.manaCost or (d.ultimate and 80 or 16+d.stage*4) end
   if classId=="knight" and d.root==3 then
    d.attackDownMultiplier=.85;d.attackDownDuration=3;d.defenseBreakDuration=3
-   d.description=(d.description and d.description.." " or "").."On hit, reduce enemy attack damage by 15% and make them take 10% more damage for 3 seconds. Does not stack with Provoke."
+   d.description=(d.description and d.description.." " or "").."Enemies hit deal 15% less damage and take 10% more damage for 3 seconds. Does not stack with Provoke."
   end
   if classId=="dwarf" and d.root==3 or classId=="knight" and (d.root==1 or d.requiresShield) then d.stunDuration=5;d.description=(d.description and d.description.." " or "").."Stun enemies hit for 5 seconds. Further hits refresh the duration." end
   d.effect="advanced";d.ranged=d.form=="projectile" or d.form=="line" or d.form=="ground" or d.form=="chain"
@@ -169,7 +169,7 @@ local function common(classId,id,name,root,level,form,damage,extra)
 end
 common('knight','knight_driving_thrust','Driving Thrust',1,5,'line',1.15,{move=2,range=6,maxTargets=1,posture=20,glyph='DT',description='Step forward and thrust at one enemy in a narrow line.'})
 common('knight','knight_crescent_cut','Crescent Cut',2,10,'cone',1.05,{range=6,angle=110,maxTargets=5,cooldown=7,glyph='CC',description='Cut once through enemies in front of you.'})
-common('knight','knight_guarded_strike','Guarded Strike',3,15,'melee',.95,{range=5,maxTargets=1,requiresShield=true,guardReduction=.25,guardDuration=3,cooldown=12,glyph='GS',description='Strike while reducing incoming damage by 25% for 3 seconds.'})
+common('knight','knight_guarded_strike','Guarded Strike',3,15,'melee',.95,{range=5,maxTargets=1,requiresShield=true,guardReduction=.25,guardDuration=3,cooldown=12,glyph='GS',description='Strike an enemy. You take 25% less damage for 3 seconds.'})
 common('elf','elf_retreating_shot','Retreating Shot',1,5,'projectile',.9,{move=-3,range=40,angle=25,maxTargets=1,glyph='RS',description='Fire one arrow and take a short step backward. Does not grant invulnerability.'})
 common('elf','elf_pinning_shot','Pinning Shot',2,10,'projectile',.85,{range=40,angle=25,maxTargets=1,slow=.55,slowDuration=2,cooldown=9,glyph='PS',description='Fire an arrow that slows ordinary enemies for 2 seconds.'})
 common('elf','elf_arrow_screen','Arrow Screen',3,15,'ground',.45,{range=9,radius=4,pulses=3,interval=.5,maxTargets=4,cooldown=12,glyph='AS',description='Rain physical arrows onto a nearby area three times.'})

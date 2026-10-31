@@ -31,6 +31,10 @@ eq(#P.equipped(G.new(80),'knight'),3,'empty slots and locked ultimate not shown'
 local provoke=P.value('knight',3,g)
 eq(provoke.damage,0,'utility skill never advertises fake damage')
 check(P.effectText('knight',3,g):find('4.0s',1,true),'taunt duration shown')
+check(P.scalingText('knight',K.Skills.knight[3]):find('no direct damage to enemies',1,true),'utility makes the target explicit')
+local guardText=P.effectText('knight',32,G.new(15))
+check(guardText:find('Damage dealt to an enemy per hit',1,true) and guardText:find('You take 25% less damage for 3s',1,true),'guard clearly distinguishes damage dealt from damage taken')
+check(K.Skills.knight[3].description:find('They deal 15% less damage and take 10% more damage',1,true),'provoke identifies both enemy effects')
 local rapid=P.value('elf',2,g)
 eq(rapid.hits,3,'rapid fire hit count')
 eq(rapid.totalDamage,rapid.damage*3,'total sums individually rounded server hits')
@@ -54,6 +58,7 @@ for classId,paths in pairs(A.order) do
    local value=P.value(classId,index,hero,{power=13,health=37})
    local more=G.copy(hero);more.stats[G.attackStat(classId,base.magic)]=4
    if base.damage>0 then
+    check(P.effectText(classId,index,hero):find('Damage dealt to an enemy per hit',1,true),'every damaging skill identifies its enemy target')
     check(P.value(classId,index,more,{power=13,health=37}).damage>value.damage,'correct damage stat raises per-hit damage')
     check(P.scalingText(classId,base):find(G.attackStat(classId,base.magic),1,true),'tooltip agrees with active damage stat')
    end

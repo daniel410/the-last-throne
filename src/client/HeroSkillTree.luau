@@ -109,8 +109,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local detailIcon=Menu.node(detail,'SelectedSkillIcon','',UDim2.new(.5,-44,0,84),88,learned,true)
  local symbol=table.clone(base);symbol.root=selected<=3 and selected or base.root;Glyph.draw(detailIcon,classId,symbol,66,learned)
  local rank=label(detail,'Mastery','MASTERY  '..(1+g.mastery[selected])..' / 4',12,196,detailW-24,28,15,Theme.color.gold);rank.TextXAlignment=Enum.TextXAlignment.Center
- local effect=skill.form=='self' and string.format('Barrier: %.0f%% max HP / %gs',skill.shield*100,skill.shieldDuration) or skill.damage>0 and string.format('Damage × %.2f',skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration or 0)
- if skill.guardReduction then effect=effect..string.format(' / %.0f%% guard',skill.guardReduction*100) end
+ local effect=skill.form=='self' and string.format('Barrier: %.0f%% max HP / %gs',skill.shield*100,skill.shieldDuration) or skill.damage>0 and string.format(SkillText.DamageMultiplier,skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration or 0)
  if skill.pulses and skill.pulses>1 then effect=effect..'  /  '..skill.pulses..' hits' end
  local effectText=effect..'\n'..Preview.scalingText(classId,skill)..'\n'..Preview.effectText(classId,selected,g,snapshot.stats)..'\n'..SkillText.EstimateNote..(base.description and '\n'..base.description or '')
  local effectHeight=math.max(44,TextService:GetTextSize(effectText,12,Enum.Font.GothamMedium,Vector2.new(detailW-36,10000)).Y+4)

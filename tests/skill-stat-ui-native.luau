@@ -62,6 +62,8 @@ local ok,failure=xpcall(function()
      task.wait()
      local detail=body.SkillDetails
      check(detail.Effect.Text:find(P.scalingText(classId,K.Skills[classId][entry]),1,true)~=nil,'skill detail shows true scaling')
+     if K.Skills[classId][entry].damage>0 then check(detail.Effect.Text:find('Damage dealt to an enemy per hit',1,true) and detail.Effect.Text:find('Damage dealt: your attack power',1,true),'skill detail identifies outgoing damage')end
+     if classId=='knight' and entry==32 then check(detail.Effect.Text:find('You take 25% less damage',1,true),'guard identifies damage received by the hero')end
      check(detail.Effect.Position.Y.Offset+detail.Effect.Size.Y.Offset<=detail.Cost.Position.Y.Offset,'effects clear cost')
      check(detail.MasteryHint.Position.Y.Offset+detail.MasteryHint.Size.Y.Offset<=detail.Size.Y.Offset,'mastery hint stays in panel')
      check(treeHeight>detail.Position.Y.Offset+detail.Size.Y.Offset,'scroll canvas includes details')
