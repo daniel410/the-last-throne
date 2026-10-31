@@ -1,0 +1,57 @@
+{
+  "version": "0.51.0",
+  "sourceCommit": "fb68f8611b98c8389d0d81ce849390b30f1ff893",
+  "native": {
+    "checks": {
+      "emberCaldera": 4300,
+      "frozenValeRegression": 4083,
+      "deepwoodMotionRegression": 3122,
+      "combatTiming": 110,
+      "basicAttacks": 947,
+      "questUI": 5,
+      "atlasFourViewports": 91,
+      "seleneSupport": 33,
+      "emberCalderaUI": 40
+    },
+    "total": 12731,
+    "pass": true,
+    "scope": "Actual local Studio world/TD meshes/Motor6D/GUI/server callbacks with fake Player/account/transport dependencies; no real input/device/published acceptance"
+  },
+  "luaSpecs": {
+    "total": 25,
+    "passed": 23,
+    "baselineFixtureFailures": [
+      "tests/k0-appearance.spec.lua",
+      "tests/k0-rules.spec.lua"
+    ],
+    "baselineCommit": "4b695024b6fbab5c78214c89290ac2f1809cba19"
+  },
+  "static": {
+    "emberProgression": 598,
+    "emberPinnedAssets": 71,
+    "frozenProgression": 460,
+    "frozenPinnedAssets": 71
+  },
+  "blender": {
+    "species": 10,
+    "logicalClips": 70,
+    "actions": 350,
+    "samplesPerChannel": 201,
+    "reviewGLB": {
+      "meshes": 38,
+      "nodes": 106,
+      "animationTracks": 42,
+      "durationSeconds": 8,
+      "fps": 120
+    }
+  },
+  "published": false,
+  "releaseTag": null,
+  "unverified": [
+    "Real normal-combat complete playthrough and Lv30 pacing",
+    "Actual player lift transport/input and published teleport",
+    "Real account save outages/reconnects",
+    "Mobile/gamepad and four players plus AI performance",
+    "Published asset permissions and final visual/balance acceptance"
+  ]
+}

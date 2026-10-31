@@ -1,0 +1,35 @@
+{
+  "version": "0.51.0",
+  "sourceCommit": "fb68f8611b98c8389d0d81ce849390b30f1ff893",
+  "sourceDirectory": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-ember-fixed-5bgwduo4",
+  "inputPolicy": "git archive of sourceCommit; mounted LFS blobs verified against committed OIDs; unrelated working changes excluded",
+  "inputs": {
+    "assets/shared/td-monsters/runtime.rbxmx": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+    "assets/shared/td-player-weapons/runtime.rbxmx": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9",
+    "assets/shared/td-player-weapons/shield/runtime.rbxmx": "77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823",
+    "assets/shared/td-deepwood-environment/maps.rbxmx": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39",
+    "assets/shared/td-deepwood-environment/forest-kit.rbxmx": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5",
+    "assets/shared/td-selene/runtime.rbxmx": "b72058845b8fe9c14d9532d1519baa415b610c0e7bd3cf2ff2c0ff6cb28e6ef6",
+    "assets/shared/td-refined-player-weapons/runtime.rbxmx": "499dc06be05428916bfc5ad86a9e521eaf1c7376215d88bbd5d6fc40bea87ff8",
+    "assets/shared/td-frozen-vale/runtime.rbxmx": "ebb5af6690ac7f042e1ecf0dd1cece8674a1fec9e2d4774d1efdae4381f09d11",
+    "assets/shared/td-ember-caldera/runtime.rbxmx": "429c541b1c46c99e6765272e52d984114df73f87284af6d9130b722783d615fb"
+  },
+  "tool": "Rojo 7.7.1",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.51.0/TheLastThrone-Lobby-0.51.0.rbxlx",
+      "sha256": "df8a9b9f38d406e829e4c5b42815b8000c2033dde8caca6027440663c7d0c32a",
+      "bytes": 6988101
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.51.0/TheLastThrone-Battle-0.51.0.rbxlx",
+      "sha256": "235257faf931b2bf6752e7488329c7ab92b4df4cf86fc3388f9626b37fe6ec35",
+      "bytes": 6988102
+    }
+  ],
+  "result": "success",
+  "published": false,
+  "releaseTag": null
+}
