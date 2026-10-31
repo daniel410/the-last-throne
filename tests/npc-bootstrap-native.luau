@@ -20,6 +20,11 @@ local ok,e=xpcall(function()
   check(residents.Mira.ActorRoot.NPCInteract.ActionText=='Browse weapons','Mira exposes real weapon service')
   check(residents.Selene.ActorRoot.NPCInteract.ActionText=='Talk' and residents.Nia.ActorRoot.NPCInteract.ActionText=='Talk','resident conversations available')
   check(residents.Selene:GetAttribute('TDSourceModel')=='nun' and residents.Selene:FindFirstChild('Body'):IsA('MeshPart'),'lobby loads original TD priest meshes')
+  local cf,size=residents.Selene:GetBoundingBox()
+  for _,part in ipairs(lobby.DawnspireWeaponMerchant:GetChildren()) do if part:IsA('BasePart') and part.Name=='CanopyPost' then
+   local d=cf.Position-part.Position;local half=(size+part.Size)/2
+   check(math.abs(d.X)>half.X or math.abs(d.Y)>half.Y or math.abs(d.Z)>half.Z,'TD Selene clears every forge post')
+  end end
  else check(not lobby,'battle does not construct public lobby NPCs') end
  -- All source parses at plugin security, including the client UI path not run without a Player.
  for _,container in ipairs({game.ServerScriptService.Server,game.StarterPlayer.StarterPlayerScripts.Client}) do

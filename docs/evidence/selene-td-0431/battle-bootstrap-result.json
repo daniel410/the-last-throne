@@ -1,0 +1,7 @@
+{
+  "role": "Battle",
+  "checks": 95,
+  "kind": "NPC_BOOTSTRAP_NATIVE",
+  "pass": true,
+  "failures": []
+}

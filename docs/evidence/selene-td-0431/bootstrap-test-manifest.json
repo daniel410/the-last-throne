@@ -1,0 +1,7 @@
+{
+  "test": "tests/npc-bootstrap-native.luau",
+  "sha256": "3970784858a54299e213148999ed5e98a8f99248e959f5daa0267b7ca45516a0",
+  "artifacts": "build.json",
+  "published": false,
+  "scope": "User selected local Studio builds only"
+}

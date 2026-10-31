@@ -1,7 +1,7 @@
 local Visual=require(script.Parent.NPCVisual)
 local Catalog=require(game:GetService('ReplicatedStorage').Shared.NPCCatalog)
 local R={}
-local positions={mira=Vector3.new(47,0,-33),rowan=Vector3.new(-37,0,42),tessa=Vector3.new(-29,0,-24),oren=Vector3.new(18,0,25),selene=Vector3.new(29,0,16),nia=Vector3.new(23,0,13)}
+local positions={mira=Vector3.new(47,0,-33),rowan=Vector3.new(-37,0,42),tessa=Vector3.new(-29,0,-24),oren=Vector3.new(18,0,25),selene=Vector3.new(25,0,20),nia=Vector3.new(23,0,13)}
 function R.create(lobby,facilities,storagePrompt)
  local old=lobby.folder:FindFirstChild('DawnspireResidents');if old then old:Destroy() end
  local folder=Instance.new('Folder');folder.Name='DawnspireResidents';folder.Parent=lobby.folder

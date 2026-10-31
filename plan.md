@@ -1,6 +1,6 @@
 # The Last Throne 통합 개발 계획
 
-> **2026-10-31 0.43.1 / Selene TD 원본 복원·NPC 로컬 적용:** Selene의 로비·대화·야영지·동행·라이브러리를 기존 TD 성녀 nun 메시/텍스처로 통일한다. 새 NPC와 함께 로컬 Studio 빌드에 적용하며 사용자 선택에 따라 미게시를 유지한다. [검증/범위](docs/evidence/selene-td-0431/README.md).
+> **2026-10-31 0.43.2 / Selene TD 원본 복원·NPC 로컬 적용:** Selene의 로비·대화·야영지·동행·라이브러리를 기존 TD 성녀 nun 메시/텍스처로 통일한다. 새 NPC와 함께 로컬 Studio 빌드에 적용하며 사용자 선택에 따라 미게시를 유지한다. [검증/범위](docs/evidence/selene-td-0431/README.md).
 
 > **2026-10-31 0.43.0 / NPC 캐스트 시험 적용:** 로비와 승인5에픽에 필요한30명·6개 컨셉 보드를 제작하고 둥근 얼굴/블록 몸체 원형을 로비·Deepwood에 연결했다. 후반4개 지역은 모델 라이브러리/배치 계약이며 실제 맵 배치는 후속이다. [캐스트·서사 리뷰](docs/production/npc-cast-and-story-coverage-2026-10-31.md) · [컨셉 갤러리](assets/concepts/2026-10-31-npc-cast-v1/index.html) · [검증/미검증](docs/evidence/npc-cast-0430/README.md). 게시·실기기·최종 미술 수용은 미완료다.
 
