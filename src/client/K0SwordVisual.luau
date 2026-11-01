@@ -835,12 +835,15 @@ local function consumeSpell(character)
 		or skillId == "mage.common.water_ball" and Color3.fromRGB(70, 170, 255)
 		or skillId == "mage.common.gravity" and Color3.fromRGB(126, 65, 211)
 		or Color3.fromRGB(160, 224, 255)
-	local orb
+	local orb, launchRotation
 	if classId == "dwarf" then
 		for _, model in ipairs(character:GetChildren()) do
 			if model:IsA("Model") and classFor(model) == "dwarf" then
 				local weapon = model:FindFirstChild("Weapon")
-				if weapon and weapon:IsA("BasePart") then orb = weapon:Clone(); break end
+				if weapon and weapon:IsA("BasePart") then
+					launchRotation = weapon.CFrame.Rotation
+					orb = weapon:Clone(); break
+				end
 			end
 		end
 	end
@@ -878,6 +881,7 @@ local function consumeSpell(character)
 	local distance = (last - first).Magnitude
 	table.insert(spells, { part = orb, character = character, owner = Players:GetPlayerFromCharacter(character),
 		payload = payload, first = first, direction = (last - first).Unit, distance = distance, elapsed = 0, waterDroplets = waterDroplets,
+		launchRotation = launchRotation,
 		duration = math.clamp(distance / 75, 0.15, 0.60) })
 end
 
@@ -893,7 +897,13 @@ local function advanceSpells(dt)
 		else
 			spell.elapsed = spell.elapsed + elapsed
 			local position = spell.first + spell.direction * spell.distance * math.min(1, spell.elapsed / spell.duration)
-			spell.part.CFrame = CFrame.lookAt(position, position + spell.direction) * (spell.character:GetAttribute("K0ClassId") == "dwarf" and CFrame.Angles(spell.elapsed * 20, 0, 0) or CFrame.new())
+			if spell.launchRotation then
+				-- Keep the release pose, then tumble around the flight frame's lateral axis.
+				local flightFrame = CFrame.lookAt(position, position + spell.direction)
+				spell.part.CFrame = CFrame.new(position) * CFrame.fromAxisAngle(flightFrame.RightVector, spell.elapsed * 20) * spell.launchRotation
+			else
+				spell.part.CFrame = CFrame.lookAt(position, position + spell.direction)
+			end
 			for i, droplet in ipairs(spell.waterDroplets or {}) do
 				local angle = spell.elapsed * 12 + i * 2 * math.pi / 5
 				droplet.Position = position + Vector3.new(math.cos(angle) * 0.9, math.sin(angle * 1.3) * 0.55, math.sin(angle) * 0.9)

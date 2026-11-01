@@ -1025,10 +1025,12 @@ local ok, fatal = xpcall(function()
 		character:SetAttribute("K0ClassId", "dwarf")
 		character:SetAttribute("K0SkillId", "dwarf.common.throw")
 		local p = root.Position
+		local releaseRotation = assert(model:FindFirstChild("Weapon")).CFrame.Rotation
 		character:SetAttribute("K0SpellVisual", string.format("1|%.3f|%.3f|%.3f|%.3f|%.3f|%.3f", p.X, p.Y, p.Z, p.X, p.Y, p.Z - 10))
 		clientVisual.renderCharacter(character, 1 / 30)
 		local axe = workspace:FindFirstChild("K0VisualThrownAxe")
 		check(axe ~= nil and axe.Anchored and not axe.CanCollide, "thrown visual exists and is harmless")
+		if axe then check(axe.CFrame.Rotation:FuzzyEq(releaseRotation, 0.0001), "thrown axe preserves the hand release orientation") end
 		if axe then
 			for _, item in ipairs(axe:GetDescendants()) do
 				check(not item:IsA("WeldConstraint") and not item:IsA("JointInstance") and not item:IsA("Constraint"), "projectile has no physical connections")
