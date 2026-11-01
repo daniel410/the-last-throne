@@ -9,18 +9,26 @@ local wallet,view
 local ok,err=xpcall(function()
  wallet=require(client.LobbyWallet).create(facade,game.CoreGui,workspace)
  view=require(client.LobbyTopMenu).create(facade,actions)
+ view.resize(Vector2.new(1280,720))
  local menuButton=view.gui.Menu
  check(wallet.Wallet.Position.Y.Offset==menuButton.Position.Y.Offset+menuButton.Size.Y.Offset+8,'wallet sits below MENU with 8px gap')
  check(wallet.Wallet.AnchorPoint.X==1 and wallet.Wallet.Position.X.Offset==menuButton.Position.X.Offset+menuButton.Size.X.Offset,'wallet and MENU share the right edge')
  check(menuButton.Size==UDim2.fromOffset(112,44) and menuButton.Caption.Text=='MENU','TD lobby menu size and label')
  check(menuButton:FindFirstChild('TDIcon_settings')~=nil and menuButton.TDButtonArt.SliceScale==.25,'TD lobby menu artwork')
  check(view.gui.Enabled and not view.menu.Visible and wallet.Enabled,'lobby menu starts closed and wallet visible')
+ check(view.menu.Size==UDim2.fromOffset(232,336) and math.abs(view.menu.TDPanelArt.SliceScale-.45)<.00001,'TD panel width and border')
+ check(view.menu.MenuList.Category_SUPPLIES.Text=='SUPPLIES' and view.menu.MenuList.Category_PROGRESS.Text=='PROGRESS' and view.menu.MenuList.Category_MORE.Text=='MORE','TD section headings')
+ check(view.buttons.Bag.LayoutOrder<view.buttons.Hero.LayoutOrder and view.buttons.Hero.LayoutOrder<view.buttons.Journal.LayoutOrder and view.buttons.Journal.LayoutOrder<view.buttons.Settings.LayoutOrder,'supply/progress/more grouping')
  for i,id in ipairs({'Hero','Bag','Journal','Settings'})do
   local b=view.buttons[id];check(b.Selectable and b.Active,'menu action selectable '..id)
-  check(b.Position.Y.Offset==8+(i-1)*44,'battle menu order '..id)
-  check(b.Position.Y.Offset+b.Size.Y.Offset<=view.menu.Size.Y.Offset,'row fits menu '..id)
+  check(b.Parent==view.menu.MenuList and b.Size==UDim2.new(1,-8,0,52),'TD menu-list row dimensions '..id)
+  check(math.abs(b.TDButtonArt.SliceScale-.45)<.00001 and b.Caption.TextSize==16,'TD menu-list artwork and type '..id)
+  check(b.Caption.Position.X.Offset==60 and b:FindFirstChild('TDIcon_'..({Hero='hero',Bag='bag',Journal='quests',Settings='settings'})[id])~=nil,'TD left emblem and inset '..id)
   view.toggle();check(view.menu.Visible and not wallet.Enabled,'opening menu hides overlapping wallet')
   view.choose(id);check(calls[#calls]==id and not view.menu.Visible and wallet.Enabled,'action closes menu and restores wallet')
+ end
+ for _,size in ipairs({Vector2.new(1920,1080),Vector2.new(1280,720),Vector2.new(844,390),Vector2.new(390,844)})do
+  view.resize(size);check(view.menu.Size.X.Offset<=size.X-24 and view.menu.Size.Y.Offset+56<=size.Y-12,'menu fits '..tostring(size))
  end
  view.toggle();check(not wallet.Enabled,'MENU click hides balances')
  view.toggle();check(wallet.Enabled,'closing MENU restores balances')

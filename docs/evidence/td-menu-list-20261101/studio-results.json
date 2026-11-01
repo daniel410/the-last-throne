@@ -1,0 +1,33 @@
+{
+  "native": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"kind\":\"LOBBY_TOP_MENU_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":45}"
+      }
+    ],
+    "isError": false
+  },
+  "play": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"allTextFits\":true,\"artLoaded\":true,\"rows\":{\"1\":\"Bag\",\"4\":\"Settings\",\"3\":\"Journal\",\"2\":\"Hero\"},\"nativeBackgroundsHidden\":true,\"walletHidden\":true,\"open\":true,\"viewport\":\"1392, 707\"}"
+      }
+    ],
+    "isError": false
+  },
+  "settings_action": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"settingsCallbackPassed\":true,\"close\":[]}"
+      }
+    ],
+    "isError": false
+  },
+  "local_studio": "696923ee-5d53-4560-862b-c2f625dcc2f2",
+  "base_document": "TheLastThrone-Lobby-0.58.16.rbxlx",
+  "patched_module": "LobbyTopMenu",
+  "published": false
+}

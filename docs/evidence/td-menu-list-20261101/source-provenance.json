@@ -1,0 +1,42 @@
+{
+  "observed": "2026-11-01",
+  "read_only_td_sources": [
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/throne-defense/src/client/UIController.lua",
+      "sha256": "cd2b22a9a1317dfea2ccbe084184654d92b19f00d7a2a54d18650e766e7bac5c"
+    },
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/throne-defense/src/client/UILayout.lua",
+      "sha256": "ebb75bac741fa0fcf3e1c7abaed3740ea7ca3056e93769b8aa2b93689259bfd5"
+    },
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/throne-defense/src/client/StatusWindowArt.lua",
+      "sha256": "93e90dc11fae3031db6292f3434a0520179256f53f99e5cb9422a71150da697a"
+    }
+  ],
+  "reused": [
+    "Shared.TDUI.StatusWindowArtAssets panel/shellDetails",
+    "Shared.TDUI.UIIconAssets hero/quests/settings",
+    "Shared.TDUI.LobbyHomeArtAssets navigationBodies.shop (bag emblem)"
+  ],
+  "layout": {
+    "width": 232,
+    "padding": 16,
+    "row_height": 52,
+    "row_gap": 6,
+    "category_height": 20,
+    "category_font": "GothamBold",
+    "category_size": 14,
+    "category_color": [
+      205,
+      183,
+      129
+    ],
+    "button_font": "GothamBold",
+    "button_size": 16,
+    "emblem_size": 40,
+    "caption_left": 60,
+    "caption_right": 24,
+    "slice_scale": 0.45
+  }
+}
