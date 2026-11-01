@@ -11,4 +11,6 @@
 
 `rojo build default.project.json` 및 `rojo build battle.project.json` 성공. Battle 격리 네이티브 시작 검사 10개, 투척 장식의 한정 fixture 12개 통과. 기존 자산 `203785492`의 유형 불일치 경고는 남는다. 실제 클라이언트·기기·다인 검증은 하지 않았다.
 
-게시 요청에 따라 Battle 파일을 Studio에서 열었고 MCP 목록에서 정확한 파일명을 확인했다. 그러나 UI 제어는 별도로 열린 Throne Defense 창에 고정되어 게시 대상 선택을 검증할 수 없었다. Roblox 게시 성공은 확인하지 못했고 두 Place 모두 게시하지 않았다. 로컬 빌드만 있으며 릴리스 태그도 만들지 않았다. 다음 담당은 Studio에서 해당 0.58.5 파일을 직접 활성화하여 The Last Throne Experience `10773575153`의 Battle `129388473517823`과 Lobby `70829337938054`에 각각 게시하고 버전 이력에서 확인한다.
+초기 게시 시도에서는 UI 제어가 다른 Studio 창에 고정되어 게시하지 못했다. 이후 사용자의 Studio 강제 종료·재게시 지시에 따라 고정 빌드를 각각 열고 The Last Throne Experience `10773575153`에 게시했다. Creator Dashboard의 Show published only에서 Battle `129388473517823` 버전 **6** (10월31일 22:52), Lobby `70829337938054` 버전 **20** (22:54)을 확인했다. 시간대는 America/Toronto다. 게시 후 파일 SHA-256도 위 값과 일치한다. Experience는 비공개 테스트 상태다. 자산 권한 안내에서 Grant Permissions and Publish를 실행했으며 개별 자산 목록은 표시되지 않았다.
+
+게시된 클라이언트에서의 실제 조작·Place 이동·다인 및 실기기 수용은 미검증이다. 비공개 테스트 게시로 정식 릴리스 태그는 만들지 않았다. 다음 담당은 QA다.
