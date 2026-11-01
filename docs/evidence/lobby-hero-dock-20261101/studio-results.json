@@ -1,0 +1,42 @@
+{
+  "native": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"status\":\"passed\",\"kind\":\"LOBBY_HERO_DOCK_NATIVE\",\"checks\":47}"
+      }
+    ],
+    "isError": false
+  },
+  "play": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"dockHidden\":true,\"phase\":\"Lobby\",\"panels\":{\"1\":\"Expedition\"},\"playOpensAdventure\":true}"
+      }
+    ],
+    "isError": false
+  },
+  "studio_id": "696923ee-5d53-4560-862b-c2f625dcc2f2",
+  "base_document": "TheLastThrone-Lobby-0.58.16.rbxlx",
+  "patched_modules": [
+    "HeroLobbyGui",
+    "LobbyHeroDock",
+    "TDLobbyDockArt",
+    "TDLobbySelectionCheck",
+    "LobbyCommerce"
+  ],
+  "viewport": [
+    1392,
+    707
+  ],
+  "desktop_clicks": [
+    "CreateHero knight",
+    "CreateHero mage",
+    "PLAY opens Expedition",
+    "Close Expedition",
+    "SelectHero existing knight"
+  ],
+  "all_portraits_loaded": true,
+  "published": false
+}

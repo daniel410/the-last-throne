@@ -12,7 +12,7 @@ function M.start()
  local remotes=RS:WaitForChild('Remotes')
  local shopRequest=remotes:WaitForChild('ArmoryRequest');local networkRequest=remotes:WaitForChild('ExpeditionRequest')
  local gui=Instance.new('ScreenGui');gui.Name='LobbyServices';gui.ResetOnSpawn=false;gui.DisplayOrder=48;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=p:WaitForChild('PlayerGui')
- local partyButton=T.button(gui,'OpenExpedition','ADVENTURES',UDim2.new(0,16,1,-60),UDim2.fromOffset(156,44))
+
  local latest,pending,inventory
  local message=''
  local function trade(command)
@@ -56,7 +56,11 @@ function M.start()
   end,
  })
  navigation.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
- partyButton.Activated:Connect(function() local wasOpen=expedition.panel.Visible;closePanels();navigation.panel.Visible=false;expedition.panel.Visible=not wasOpen;networkRequest:FireServer({action='GetState'}) end)
+ require(script.Parent.LobbyMenuBridge).Event:Connect(function(action)
+  if action~='Play' or p:GetAttribute('K0SessionPhase')~='Lobby' or workspace:GetAttribute('TLTServerRole')=='Battle' then return end
+  closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true
+  networkRequest:FireServer({action='GetState'})
+ end)
  local rejoinButton=require(script.Parent.LobbyRejoinButton).create(gui,function()
   closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true
   networkRequest:FireServer({action='GetState'})
@@ -85,14 +89,14 @@ function M.start()
  local function phase()
   local lobby=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle'
   local showNavigation=lobby and not p:GetAttribute('TLTHeroSelectionOpen')
-  navigation.rail.Visible=showNavigation;partyButton.Visible=showNavigation;rejoinButton.Visible=showNavigation
+  navigation.rail.Visible=showNavigation;rejoinButton.Visible=showNavigation
   if lobby then task.delay(.3,function()if p.Parent and p:GetAttribute('K0SessionPhase')=='Lobby'then dailyRequest:FireServer({action='GetState'})end end)end
   if not lobby then navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;daily.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(phase)
  p:GetAttributeChangedSignal('TLTHeroSelectionOpen'):Connect(function()
   local visible=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle' and not p:GetAttribute('TLTHeroSelectionOpen')
-  navigation.rail.Visible=visible;partyButton.Visible=visible;rejoinButton.Visible=visible
+  navigation.rail.Visible=visible;rejoinButton.Visible=visible
  end)
  phase()
  task.spawn(function()

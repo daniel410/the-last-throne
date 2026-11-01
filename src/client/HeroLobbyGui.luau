@@ -73,7 +73,8 @@ function LobbyGui.create(request,onManage)
 	shade.BorderSizePixel = 0
 	shade.Active = true
 	shade.Parent = gui
-	local minimized, suppressed = false, false
+	local minimized, suppressed = true, false
+	shade.Visible=false
 	local function syncHeroOpen()
 		Players.LocalPlayer:SetAttribute("TLTHeroSelectionOpen", gui.Enabled and shade.Visible)
 	end
@@ -117,6 +118,19 @@ function LobbyGui.create(request,onManage)
 	local current
 	local busy = false
 	local refresh
+	local dock=require(script.Parent.LobbyHeroDock).create(gui,Players.LocalPlayer,function(classId)
+		if busy or not current or not current.canManage then return end
+		local owned
+		for _,hero in ipairs(current.heroes) do if hero.classId==classId then owned=hero end end
+		request(owned and "SelectHero" or "CreateHero",owned and owned.heroId or classId)
+	end,function()
+		if busy or not current then return end
+		if current.canStart then require(script.Parent.LobbyMenuBridge):Fire("Play")
+		else minimized=false;shade.Visible=not suppressed end
+	end)
+	local inventoryRemote=ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("InventoryState")
+	local inventoryConnection=inventoryRemote.OnClientEvent:Connect(dock.inventory)
+	gui.Destroying:Connect(function() inventoryConnection:Disconnect() end)
 	for index, classId in ipairs(CLASS_ORDER) do
 		local card = Instance.new("Frame")
 		card.Name, card.LayoutOrder = classId, index
@@ -125,11 +139,11 @@ function LobbyGui.create(request,onManage)
 		local border=card:FindFirstChildOfClass("UIStroke")
 		local selectedMark=label(card,"SelectedMark","✓",UDim2.fromOffset(12,10),UDim2.fromOffset(40,40),32,COLOR.gold)
 		selectedMark.ZIndex=3;selectedMark.Visible=false
-		local image = Instance.new("ImageLabel")
+		local image = classId=="mage" and Theme.icon(card,"arcanist",UDim2.new(),UDim2.new()) or Instance.new("ImageLabel")
 		image.Name = "Portrait"
 		image.BackgroundTransparency = 1
 		image.Position, image.Size = UDim2.fromOffset(9, 9), UDim2.new(1,-18,1,-142)
-		image.Image = PORTRAITS[classId]
+		if classId~="mage" then image.Image = PORTRAITS[classId] end
 		image.ScaleType = Enum.ScaleType.Crop
 		image.Parent = card
 		local fallback = label(card, "PortraitFallback", Text.Class[classId], UDim2.fromOffset(12,20), UDim2.new(1,-24,1,-152), 14, COLOR.gold)
@@ -224,6 +238,7 @@ function LobbyGui.create(request,onManage)
 	refresh = function()
 		if not current then return end
 		gui.Enabled = current.phase ~= "Tutorial" and current.phase~="Respawning" and current.phase~="LoadingTutorial"
+		dock.update(current,busy)
 		shade.Visible = not minimized and not suppressed
 		shell.SessionNotice.Text = current.inventoryMode == "RPG test save"
 			and "Hero level, stats, skills and items are saved. Control practice resets."
@@ -337,11 +352,13 @@ function LobbyGui.create(request,onManage)
 	return {
 		setSuppressed = function(value)
 			suppressed=value
+			dock.suppress(value)
 			shade.Visible=not value and not minimized
 		end,
 		setState = function(value, errorCode)
 			if type(value) ~= "table" or type(value.heroes) ~= "table" then return end
 			current = value
+			if value.phase=="SpawnFailed" then minimized=false end
 			if errorCode then errorLabel.Text = Text.Lobby.Errors[errorCode] or Text.Lobby.Errors.InvalidRequest
 			elseif value.phase == "LoadingLobby" then errorLabel.Text = Text.Lobby.Loading
 			elseif value.phase == "ReturningLobby" then errorLabel.Text = Text.Lobby.Returning
@@ -349,6 +366,7 @@ function LobbyGui.create(request,onManage)
 			elseif value.phase == "SpawnFailed" then errorLabel.Text = Text.Lobby.Errors.SpawnUnavailable
 			else errorLabel.Text = "" end
 			refresh()
+			if errorCode then dock.error(errorLabel.Text) end
 		end,
 		setBusy = function(value)
 			busy = value
@@ -356,6 +374,7 @@ function LobbyGui.create(request,onManage)
 			refresh()
 		end,
 		showError = function(errorCode)
+			dock.error(Text.Lobby.Errors[errorCode] or Text.Lobby.Errors.InvalidRequest)
 			errorLabel.Text = Text.Lobby.Errors[errorCode] or Text.Lobby.Errors.InvalidRequest
 		end,
 	}

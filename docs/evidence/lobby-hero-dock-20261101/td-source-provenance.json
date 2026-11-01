@@ -1,0 +1,43 @@
+{
+  "observed": "2026-11-01",
+  "read_only_repository": "/Users/daniel/Workspace/project/roblox/throne-defense",
+  "td_head": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "sources": [
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/throne-defense/src/client/LobbyHomeUI.lua",
+      "sha256": "1bcc2fdc30e0b7308fab8f3925fb64aa07545b93b6158c36b257a7aaa71d98ac"
+    },
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/throne-defense/src/client/LobbyHomeArt.lua",
+      "sha256": "28b696e5a7a24ee44b1abae07f62213edb712b6796839a7696d0b7a86817e777"
+    },
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/throne-defense/src/client/SelectionCheck.lua",
+      "sha256": "f0839c7eaf7a769dc84dd278f663701fd7e5656d87a7aa5c8d42bd90cb366aad"
+    },
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/throne-defense/src/shared/UIIconAssets.lua",
+      "sha256": "f8cbf2854e6cc32d0cd8bc79f1b58ed1b241c29ae778c65b56654e7c62086bc5"
+    }
+  ],
+  "derived_modules": {
+    "TDLobbyDockArt": "TD LobbyHomeArt crop/atlas/enamel/play subset; Shared.TDUI profile path adaptation",
+    "TDLobbySelectionCheck": "byte-identical TD SelectionCheck"
+  },
+  "portraits": {
+    "knight": "103255177842108",
+    "elf": "80894238854345",
+    "dwarf": "74628903359757",
+    "mage": {
+      "atlas": "115948760578578",
+      "key": "arcanist",
+      "render_crop": [
+        341,
+        341,
+        341,
+        341
+      ]
+    }
+  },
+  "play_atlas": "135608370136189"
+}
