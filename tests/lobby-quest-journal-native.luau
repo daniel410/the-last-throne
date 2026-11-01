@@ -35,6 +35,16 @@ local ok,err=xpcall(function()
  nav.showGuide('Maps');check(nav.panel.LobbyAtlas.Visible and not nav.panel.LobbyQuestJournal.Visible,'map and journal views switch cleanly')
  require(client.LobbyMenuBridge):Fire('Quest');task.wait()
  check(nav.panel.LobbyQuestJournal.Visible and not nav.panel.LobbyAtlas.Visible,'top menu journal event opens the same journal')
- for _,size in ipairs({Vector2.new(800,510),Vector2.new(726,299),Vector2.new(270,510)})do host.Size=UDim2.fromOffset(size.X,size.Y);task.wait();check(list.AbsoluteSize.X>0 and list.AbsoluteSize.Y>0,'quest list scrolls at supported sizes')end
+ for _,size in ipairs({Vector2.new(800,510),Vector2.new(726,299),Vector2.new(270,510)})do
+  host.Size=UDim2.fromOffset(size.X,size.Y);task.wait()
+  check(list.AbsoluteSize.X>0 and list.AbsoluteSize.Y>0,'quest list scrolls at supported sizes')
+  local tabs=view.root.EpicCategories
+  for i=1,5 do
+   local b=tabs:FindFirstChild('Epic'..i)
+   check(b and b.AbsoluteSize.X>=44 and b.AbsoluteSize.Y>=44,'epic button touch size '..i)
+   check(b.AbsolutePosition.X>=tabs.AbsolutePosition.X and b.AbsolutePosition.X+b.AbsoluteSize.X<=tabs.AbsolutePosition.X+tabs.AbsoluteSize.X+1,'epic button visible '..i)
+   check(b.AbsolutePosition.Y+b.AbsoluteSize.Y<=view.root.Summary.AbsolutePosition.Y,'epic button overlaps summary '..i)
+  end
+ end
 end,debug.traceback)
 gui:Destroy();if not ok then table.insert(report.failures,tostring(err))end;report.pass=ok;return report

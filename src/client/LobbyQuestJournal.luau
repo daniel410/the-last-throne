@@ -9,7 +9,7 @@ local Journal={}
 local epics={{'Deepwood','DW-'},{'Frozen Vale','FV-'},{'Ember Caldera','EC-'},{'Gloamwood',false},{'Haunted Graveyard',false}}
 function Journal.create(panel)
  local root=Instance.new('Frame');root.Name='LobbyQuestJournal';root.Position=UDim2.fromOffset(16,60);root.Size=UDim2.new(1,-32,1,-72);root.BackgroundTransparency=1;root.Visible=false;root.Parent=panel
- local tabs=Instance.new('ScrollingFrame');tabs.Name='EpicCategories';tabs.Size=UDim2.new(1,0,0,48);tabs.BackgroundTransparency=1;tabs.BorderSizePixel=0;tabs.ScrollBarThickness=3;tabs.ScrollingDirection=Enum.ScrollingDirection.X;tabs.CanvasSize=UDim2.fromOffset(#epics*174,0);tabs.Parent=root
+ local tabs=Instance.new('ScrollingFrame');tabs.Name='EpicCategories';tabs.Size=UDim2.new(1,0,0,48);tabs.BackgroundTransparency=1;tabs.BorderSizePixel=0;tabs.ScrollBarThickness=0;tabs.ScrollingDirection=Enum.ScrollingDirection.X;tabs.CanvasSize=UDim2.new();tabs.Parent=root
  local summary=T.label(root,'Summary','',UDim2.fromOffset(4,50),UDim2.new(1,-8,0,24),12,T.color.gold)
  local list=Instance.new('ScrollingFrame');list.Name='Quests';list.Position=UDim2.fromOffset(0,78);list.Size=UDim2.new(1,0,1,-78);list.BackgroundTransparency=1;list.BorderSizePixel=0;list.ScrollBarThickness=5;list.AutomaticCanvasSize=Enum.AutomaticSize.Y;list.CanvasSize=UDim2.new();list.Parent=root
  local layout=Instance.new('UIListLayout');layout.Padding=UDim.new(0,8);layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.Parent=list
@@ -54,9 +54,30 @@ function Journal.create(panel)
   list.CanvasPosition=reset and Vector2.zero or previous
  end
  for i,spec in ipairs(epics)do
-  local b=T.button(tabs,'Epic'..i,spec[1]:upper(),UDim2.fromOffset((i-1)*174,0),UDim2.fromOffset(168,44));b.Caption.TextSize=10;buttons[i]=b
+  local b=T.button(tabs,'Epic'..i,spec[1]:upper(),UDim2.new(),UDim2.fromOffset(44,44));b.Caption.TextSize=10;b.Caption.TextWrapped=true
+  b.Caption.Position,b.Caption.Size=UDim2.fromOffset(3,2),UDim2.new(1,-6,1,-4);buttons[i]=b
   b.Activated:Connect(function()epic=i;render(true)end)
  end
+ local function resizeTabs()
+  local width=root.AbsoluteSize.X
+  if width<=0 then return end
+  local columns=if width<520 then 3 else 5
+  local gap=6
+  local buttonWidth=math.max(44,math.floor((width-gap*(columns-1))/columns))
+  local rows=math.ceil(#buttons/columns)
+  local tabHeight=rows*44+(rows-1)*gap
+  tabs.Size=UDim2.new(1,0,0,tabHeight)
+  tabs.CanvasSize=UDim2.fromOffset(math.max(width,buttonWidth*columns+gap*(columns-1)),0)
+  for i,b in ipairs(buttons)do
+   local index=i-1
+   b.Position=UDim2.fromOffset((index%columns)*(buttonWidth+gap),math.floor(index/columns)*(44+gap))
+   b.Size=UDim2.fromOffset(buttonWidth,44)
+  end
+  summary.Position=UDim2.fromOffset(4,tabHeight+2)
+  local listTop=tabHeight+30
+  list.Position,list.Size=UDim2.fromOffset(0,listTop),UDim2.new(1,0,1,-listTop)
+ end
+ root:GetPropertyChangedSignal('AbsoluteSize'):Connect(resizeTabs);resizeTabs()
  return {root=root,show=function(s)snapshot=s;root.Visible=true;render(true)end,update=function(s)snapshot=s;if root.Visible then render(false)end end,
   selectEpic=function(i)if epics[i]then epic=i;render(true)end end}
 end
