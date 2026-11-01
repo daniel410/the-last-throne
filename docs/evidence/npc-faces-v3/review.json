@@ -1,0 +1,387 @@
+{
+  "version": 3,
+  "reviewer": "Codex direct visual inspection",
+  "accepted": false,
+  "excluded": [
+    "selene"
+  ],
+  "characters": [
+    {
+      "id": "aldric",
+      "beforePage": "before/page-1.png",
+      "afterPage": "after/page-1.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "수염이 원화의 넓고 거친 결 대신 매끈한 턱받이처럼 보임. 앞머리도 한 덩어리.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://70384375684202"
+    },
+    {
+      "id": "mira",
+      "beforePage": "before/page-1.png",
+      "afterPage": "after/page-1.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "단발 볼륨과 웨이브 부족. 옆머리 하단이 귀마개처럼 보이고 원화의 컬/귀걸이 표현 부족.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://94912631892457"
+    },
+    {
+      "id": "rowan",
+      "beforePage": "before/page-1.png",
+      "afterPage": "after/page-1.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "회색 앞머리가 납작한 판처럼 보임. 턱수염 윤곽과 원화의 강한 성인 인상이 부족.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://105410587081973"
+    },
+    {
+      "id": "tessa",
+      "beforePage": "before/page-1.png",
+      "afterPage": "after/page-1.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "높은 포니테일의 곡선과 연결이 단순함. 앞머리가 원화의 옆가르마와 다름.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://136789112787678"
+    },
+    {
+      "id": "oren",
+      "beforePage": "before/page-1.png",
+      "afterPage": "after/page-1.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "옆머리 원반은 축소했지만 연속된 노인 헤어라인과 수염 형상이 부족.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://80881757958269"
+    },
+    {
+      "id": "nia",
+      "beforePage": "before/page-2.png",
+      "afterPage": "after/page-2.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "아이 전용 얼굴형과 머리 가르마 부족. 땋은 머리가 구슬형 조합으로 보임.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://93036930189104"
+    },
+    {
+      "id": "eryn",
+      "beforePage": "before/page-2.png",
+      "afterPage": "after/page-2.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "엘프 귀 끝이 뾰족하지 않고 앞머리 실루엣이 원화의 풍성한 가르마와 다름.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://115854005536784"
+    },
+    {
+      "id": "liora",
+      "beforePage": "before/page-2.png",
+      "afterPage": "after/page-2.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "은빛 굵은 앞땋기 대신 뒤쪽 단순 줄로 보임. 귀/잔머리 세부 부족.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://126023079543512"
+    },
+    {
+      "id": "tobin",
+      "beforePage": "before/page-2.png",
+      "afterPage": "after/page-2.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "원화의 헝클어진 머리 대신 납작한 앞머리와 큰 윗머리 두 덩어리.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://76861019285099"
+    },
+    {
+      "id": "pip",
+      "beforePage": "before/page-2.png",
+      "afterPage": "after/page-2.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "고블린의 큰 삼각 귀와 민머리 실루엣 대신 사람형 짧은 머리가 남음.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://86125406455831"
+    },
+    {
+      "id": "fen",
+      "beforePage": "before/page-3.png",
+      "afterPage": "after/page-3.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "얇아진 옆머리도 조각처럼 보임. 흰 수염이 자연스러운 털 대신 띠 모양.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://123949279056478"
+    },
+    {
+      "id": "freya",
+      "beforePage": "before/page-3.png",
+      "afterPage": "after/page-3.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "흰 땋은 머리의 풍성함과 여러 갈래 곡선 부족. 앞머리 가르마 다름.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://130071058873073"
+    },
+    {
+      "id": "haldor",
+      "beforePage": "before/page-3.png",
+      "afterPage": "after/page-3.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "긴 다갈래 수염 대신 매끈한 수염 덩어리. 회색 머리 실루엣 부족.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://139263391583545"
+    },
+    {
+      "id": "nessa",
+      "beforePage": "before/page-3.png",
+      "afterPage": "after/page-3.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "원화의 높은 묶음과 곱슬 헤어 실루엣 대신 짧은 덩어리 포니테일.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://129198687562408"
+    },
+    {
+      "id": "ivo",
+      "beforePage": "before/page-3.png",
+      "afterPage": "after/page-3.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "원화의 풍성한 곱슬 컬 대신 두 덩어리 윗머리. 성긴 실루엣.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://125833478784453"
+    },
+    {
+      "id": "ylva",
+      "beforePage": "before/page-4.png",
+      "afterPage": "after/page-4.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "금발의 긴 옆가르마와 앞쪽 땋기, 뾰족한 귀 재현 부족.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://134925474688483"
+    },
+    {
+      "id": "brann",
+      "beforePage": "before/page-4.png",
+      "afterPage": "after/page-4.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "긴 수염의 땋은 결/여러 갈래 대신 매끈한 턱받이와 끝 덩어리. 눈썹 경계도 남음.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://140537905825232"
+    },
+    {
+      "id": "dagna",
+      "beforePage": "before/page-4.png",
+      "afterPage": "after/page-4.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "고글/번은 있으나 곱슬 모발과 고글 스트랩/금속 세부 부족.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://125056170121378"
+    },
+    {
+      "id": "orik",
+      "beforePage": "before/page-4.png",
+      "afterPage": "after/page-4.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "안전모 작업등은 추가했으나 안전모 셸과 넓은 회색 수염이 원화와 다름.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://80603254997393"
+    },
+    {
+      "id": "ketta",
+      "beforePage": "before/page-4.png",
+      "afterPage": "after/page-4.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "단발을 추가했지만 원화의 느슨한 웨이브와 옆가르마 대신 귀마개 같은 옆면.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://108851621162770"
+    },
+    {
+      "id": "suri",
+      "beforePage": "before/page-5.png",
+      "afterPage": "after/page-5.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "은발 짧은 웨이브와 귀걸이 대신 균일한 앞머리/단발 덩어리.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://103532161400844"
+    },
+    {
+      "id": "maeve",
+      "beforePage": "before/page-5.png",
+      "afterPage": "after/page-5.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "흰 웨이브 보브와 길고 뾰족한 귀 부족. 원화의 강한 눈매도 약함.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://114517655914810"
+    },
+    {
+      "id": "finn",
+      "beforePage": "before/page-5.png",
+      "afterPage": "after/page-5.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "헝클어진 붉은 머리 대신 정돈된 앞머리. 넓은 눈썹/헤어라인 일부 겹침.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://74987210726549"
+    },
+    {
+      "id": "tali",
+      "beforePage": "before/page-5.png",
+      "afterPage": "after/page-5.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "원화의 높이 묶은 어두운 머리와 흘러내리는 옆가닥 부족.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://77391080171968"
+    },
+    {
+      "id": "wispkeeper",
+      "beforePage": "before/page-5.png",
+      "afterPage": "after/page-5.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "풍성하고 긴 은발/유기적인 나뭇가지 관 대신 짧은 머리와 막대 장식.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://129350555676453"
+    },
+    {
+      "id": "lumi",
+      "beforePage": "before/page-6.png",
+      "afterPage": "after/page-6.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "원화의 높은 곱슬 묶음 대신 짧은 옆가르마. 유령 인상은 색에 의존.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://113630923650725"
+    },
+    {
+      "id": "garrick",
+      "beforePage": "before/page-6.png",
+      "afterPage": "after/page-6.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "높은 모자와 넓은 챙 대신 낮은 모자. 흰 수염도 띠 모양.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://121157343411478"
+    },
+    {
+      "id": "elowen",
+      "beforePage": "before/page-6.png",
+      "afterPage": "after/page-6.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "원화의 굵은 앞땋기와 머리 장식 부족. 짧고 균일한 앞머리.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://92134456728879"
+    },
+    {
+      "id": "rook",
+      "beforePage": "before/page-6.png",
+      "afterPage": "after/page-6.png",
+      "viewsReviewed": [
+        "front",
+        "60 degrees"
+      ],
+      "commonDefectCorrected": "floating face panel removed; Decal attached to actual sphere",
+      "remaining": "원화의 풍성한 검은 곱슬과 짧은 수염 대신 매끈한 머리 덩어리.",
+      "visualAccepted": false,
+      "texture": "rbxassetid://107799166014853"
+    }
+  ]
+}

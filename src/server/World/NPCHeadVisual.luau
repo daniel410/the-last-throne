@@ -1,4 +1,4 @@
--- Blender-authored round heads and a shared transparent face atlas.
+-- Blender-authored round heads and individual decals projected onto the head surface.
 local Recipes = require(game:GetService('ReplicatedStorage').Shared.NPCHeadRecipes)
 local Head = {}
 
@@ -20,21 +20,10 @@ function Head.create(model, id, spirit)
   part.Parent = rig
   if p.name == 'Head' then rig.PrimaryPart = part end
  end
- local carrier = Instance.new('Part'); carrier.Name = 'FaceDecalCarrier'
- carrier.Size = Vector3.new(1.72, 1.86, .02); carrier.CFrame = CFrame.new(0, 5.18, -.673)
- carrier.Transparency = 1; carrier.Anchored = true; carrier.CanCollide = false
- carrier.CanTouch = false; carrier.CanQuery = false; carrier.CastShadow = false
- carrier:SetAttribute('TLTDecorative', true); carrier.Parent = rig
- local gui = Instance.new('SurfaceGui'); gui.Name = 'FaceDecal'; gui.Face = Enum.NormalId.Front
- gui.CanvasSize = Vector2.new(Recipes.tileSize, Recipes.tileSize)
- gui.AlwaysOnTop = false; gui.LightInfluence = 1; gui.MaxDistance = 90
- gui.Parent = carrier
- local image = Instance.new('ImageLabel'); image.Name = 'Expression'; image.BackgroundTransparency = 1
- image.Size = UDim2.fromScale(1, 1); image.Image = Recipes.atlas
- image.ImageRectSize = Vector2.new(Recipes.tileSize, Recipes.tileSize)
- image.ImageRectOffset = Vector2.new(recipe.tile % 5, math.floor(recipe.tile / 5)) * Recipes.tileSize
- image.ImageTransparency = spirit and .12 or 0; image.Parent = gui
- model:SetAttribute('NPCFaceAtlas', Recipes.atlas); model:SetAttribute('NPCFaceTile', recipe.tile)
+ local decal = Instance.new('Decal'); decal.Name = 'FaceDecal'
+ decal.Face = Enum.NormalId.Front; decal.Texture = recipe.face
+ decal.Transparency = spirit and .12 or 0; decal.Parent = rig.PrimaryPart
+ model:SetAttribute('NPCFaceTexture', recipe.face); model:SetAttribute('NPCFaceTile', recipe.tile)
  return rig
 end
 

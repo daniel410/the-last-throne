@@ -1,0 +1,155 @@
+{
+  "version": 3,
+  "visualAccepted": false,
+  "sourceAtlas": "assets/npcs/faces-v2/face-atlas.png",
+  "sourceAtlasSha256": "cf1f2bc43c39575b81e972daabdd3b8ef9a208d972375259945474034ceed629",
+  "derivation": "Blender pixel crop, unchanged RGBA 229x229 cells",
+  "authoring": "Blender MCP",
+  "characters": {
+    "aldric": {
+      "texture": "rbxassetid://70384375684202",
+      "file": "aldric.png",
+      "sha256": "dbfbf9f5976f17cc04a2187ecbf62ae5c73ae7d40e47aad75bfe7fef014afc24"
+    },
+    "mira": {
+      "texture": "rbxassetid://94912631892457",
+      "file": "mira.png",
+      "sha256": "6aee26184b47d3f9c91a2560f9a3743a731b70b892c9a8c18b4c479ed58b2ad5"
+    },
+    "rowan": {
+      "texture": "rbxassetid://105410587081973",
+      "file": "rowan.png",
+      "sha256": "d116ecd394064e621ee00e081d290720b3c7a0027abf92d44818f5f3b20f66ea"
+    },
+    "tessa": {
+      "texture": "rbxassetid://136789112787678",
+      "file": "tessa.png",
+      "sha256": "02b133c2606820ce42c7db716082556e0b48759cdf6be2e59e209468693ed100"
+    },
+    "oren": {
+      "texture": "rbxassetid://80881757958269",
+      "file": "oren.png",
+      "sha256": "d4140c6f7327ebd9c59a7eaeb3a39f42c22497873b50a4c8fe67c7d2385da97e"
+    },
+    "nia": {
+      "texture": "rbxassetid://93036930189104",
+      "file": "nia.png",
+      "sha256": "ec4e44b70c8ebec47513d13f8ba25f785ff5e253ea8dcbb958e01f236d25d334"
+    },
+    "eryn": {
+      "texture": "rbxassetid://115854005536784",
+      "file": "eryn.png",
+      "sha256": "ec8ae7a358043f0685504167700909d5e509d2e72cef06546b5c702a5ad48e80"
+    },
+    "liora": {
+      "texture": "rbxassetid://126023079543512",
+      "file": "liora.png",
+      "sha256": "2edeb170906148e8d02e91fbf271290046382caa7d8cd798fcb1b87744a4b9c4"
+    },
+    "tobin": {
+      "texture": "rbxassetid://76861019285099",
+      "file": "tobin.png",
+      "sha256": "eb47b5ef4fdb6c55394510c53f4fba0dfd358d9d88323a413df540b4a1a11476"
+    },
+    "pip": {
+      "texture": "rbxassetid://86125406455831",
+      "file": "pip.png",
+      "sha256": "3b3ffff95310cf2a4803280936cb485a7b2e1874bb3de0b2bd744565ff6e5e3b"
+    },
+    "fen": {
+      "texture": "rbxassetid://123949279056478",
+      "file": "fen.png",
+      "sha256": "f9ea0dcdb52bd7bfa3547825f31f4bbc397a25868f40b4bf5c33e5d8f2aca5c4"
+    },
+    "freya": {
+      "texture": "rbxassetid://130071058873073",
+      "file": "freya.png",
+      "sha256": "ba7069f9d822022c35ff1173a76ddc39c2812704eb8ca9b3b7ded6a051ad28ea"
+    },
+    "haldor": {
+      "texture": "rbxassetid://139263391583545",
+      "file": "haldor.png",
+      "sha256": "6fdff6e84f3d79765f209f92ac14a717b564f600ff0178763c9c322d857db3b3"
+    },
+    "nessa": {
+      "texture": "rbxassetid://129198687562408",
+      "file": "nessa.png",
+      "sha256": "3d32373c5f3feae9506ccc70f8fcd078812874e4ad78e585a022717c0339e3e6"
+    },
+    "ivo": {
+      "texture": "rbxassetid://125833478784453",
+      "file": "ivo.png",
+      "sha256": "0919d7dfa1ab15e0301a6692d9a6dd5c6d56aff88214990b0246bcfb2fcb612d"
+    },
+    "ylva": {
+      "texture": "rbxassetid://134925474688483",
+      "file": "ylva.png",
+      "sha256": "d9c12c1fe12aae0e5b32d216002f64937ee23562d54667de27d8a4a9ac46ae88"
+    },
+    "brann": {
+      "texture": "rbxassetid://140537905825232",
+      "file": "brann.png",
+      "sha256": "9db4bac391284b3366a02ca9e6b3f8224b0bfc175c7fc75ff76881c874b9315d"
+    },
+    "dagna": {
+      "texture": "rbxassetid://125056170121378",
+      "file": "dagna.png",
+      "sha256": "536159f283b20b288cc2de8f6c4ff6eecd4632ccf02a08338188e21aea70f6e1"
+    },
+    "orik": {
+      "texture": "rbxassetid://80603254997393",
+      "file": "orik.png",
+      "sha256": "ee8b2b4b2038d8f02aa0c720a5210c9a2c6814945ec284cebcc6f813c87c1c49"
+    },
+    "ketta": {
+      "texture": "rbxassetid://108851621162770",
+      "file": "ketta.png",
+      "sha256": "431747604605c1dcedc0c3b6eb45cf8bf9e18ac71eeadde85db119e95cf8d05c"
+    },
+    "suri": {
+      "texture": "rbxassetid://103532161400844",
+      "file": "suri.png",
+      "sha256": "03e8cc26eebc6dfd5fd99198d802e94b0775bbb7b59728e4715b652a8246f4ae"
+    },
+    "maeve": {
+      "texture": "rbxassetid://114517655914810",
+      "file": "maeve.png",
+      "sha256": "5f26e67d6735f4ff0ee493f19078386862c284229bd0abb7269dfb7147048a69"
+    },
+    "finn": {
+      "texture": "rbxassetid://74987210726549",
+      "file": "finn.png",
+      "sha256": "2c879a451f7316086f053bbde40e15c21ad2afa9ca3eb224dfc96a2f5bf9d012"
+    },
+    "tali": {
+      "texture": "rbxassetid://77391080171968",
+      "file": "tali.png",
+      "sha256": "69d42c185611c77f1df042cddea3bf79f86870396e917ede740c3e0d6099d81c"
+    },
+    "wispkeeper": {
+      "texture": "rbxassetid://129350555676453",
+      "file": "wispkeeper.png",
+      "sha256": "9d2bfe204d4d4e511e334fb532dc8966a96c736085702819afbcdf4b93a604a5"
+    },
+    "lumi": {
+      "texture": "rbxassetid://113630923650725",
+      "file": "lumi.png",
+      "sha256": "7a84fb299bffdffbbd835d10e60ee5a417bd601a55b7634393c44bdc2cfc0031"
+    },
+    "garrick": {
+      "texture": "rbxassetid://121157343411478",
+      "file": "garrick.png",
+      "sha256": "81b0602fe56a7816b73fc64e4dc8243f5f0c6a1b4542164eb3cc167b69c28be0"
+    },
+    "elowen": {
+      "texture": "rbxassetid://92134456728879",
+      "file": "elowen.png",
+      "sha256": "9925662ab8718ebcc3c99c0a65447a66fe8562553489090974e636b5eec7b4e0"
+    },
+    "rook": {
+      "texture": "rbxassetid://107799166014853",
+      "file": "rook.png",
+      "sha256": "a07c5280480bb8bc188a77b73205146f91cae73d68246b46e88b53d7aee0c2d2"
+    }
+  }
+}

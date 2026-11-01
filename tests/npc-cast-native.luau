@@ -15,10 +15,11 @@ local ok,err=xpcall(function()
   if c.id=='selene' then check(model:GetAttribute('TDSourceModel')=='nun','Selene template uses original TD nun')
   else
    check(model.FaceRig.Head:FindFirstChildOfClass('SpecialMesh').MeshType==Enum.MeshType.Sphere,'round head')
-   check(model:GetAttribute('NPCVisualVersion')==2 and model.FaceRig:FindFirstChild('EyeWhite')==nil and model.FaceRig:FindFirstChild('Nose')==nil,'no protruding facial primitives')
-   local face=model.FaceRig.FaceDecalCarrier.FaceDecal
-   check(not face.AlwaysOnTop and face.Expression.Image=='rbxassetid://119430151832611','lit face atlas with world occlusion')
-   check(face.Expression.ImageRectSize==Vector2.new(229,229),'isolated face atlas tile')
+   check(model:GetAttribute('NPCVisualVersion')==3 and model.FaceRig:FindFirstChild('EyeWhite')==nil and model.FaceRig:FindFirstChild('Nose')==nil,'no protruding facial primitives')
+   local face=model.FaceRig.Head:FindFirstChild('FaceDecal')
+   check(face and face:IsA('Decal') and face.Face==Enum.NormalId.Front,'face projects on head surface')
+   check(face.Texture==model:GetAttribute('NPCFaceTexture') and face.Texture:match('^rbxassetid://%d+$'),'individual face texture')
+   check(model.FaceRig:FindFirstChild('FaceDecalCarrier')==nil,'no floating face panel')
    check(model.Torso.Shape==Enum.PartType.Block,'rectangular body')
   end
   local limbs=0
