@@ -22,6 +22,8 @@ local ok,err=xpcall(function()
   view.toggle();check(view.menu.Visible and not wallet.Enabled,'opening menu hides overlapping wallet')
   view.choose(id);check(calls[#calls]==id and not view.menu.Visible and wallet.Enabled,'action closes menu and restores wallet')
  end
+ player:SetAttribute('TLTHeroSelectionOpen',true);check(not view.gui.Enabled and not wallet.Enabled,'hero selection hides menu and wallet')
+ player:SetAttribute('TLTHeroSelectionOpen',false);check(view.gui.Enabled and wallet.Enabled,'closing hero selection restores menu and wallet')
  view.toggle();player:SetAttribute('TLTInventoryOpen',true);check(not view.gui.Enabled and not view.menu.Visible,'opening bag closes menu')
  player:SetAttribute('TLTInventoryOpen',false);check(view.gui.Enabled,'menu returns after closing bag')
  view.toggle();player:SetAttribute('TLTLobbyPanelOpen',true);check(not view.gui.Enabled and not player:GetAttribute('TLTLobbyTopMenuOpen'),'lobby overlay closes menu')

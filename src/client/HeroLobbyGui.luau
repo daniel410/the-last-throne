@@ -61,6 +61,7 @@ function LobbyGui.create(request,onManage)
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "HeroLobbyGui"
 	gui.ResetOnSpawn = false
+	gui.ScreenInsets = Enum.ScreenInsets.CoreUISafeInsets
 	gui.DisplayOrder = 30
 	gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	gui.Parent = playerGui
@@ -73,6 +74,13 @@ function LobbyGui.create(request,onManage)
 	shade.Active = true
 	shade.Parent = gui
 	local minimized, suppressed = false, false
+	local function syncHeroOpen()
+		Players.LocalPlayer:SetAttribute("TLTHeroSelectionOpen", gui.Enabled and shade.Visible)
+	end
+	shade:GetPropertyChangedSignal("Visible"):Connect(syncHeroOpen)
+	gui:GetPropertyChangedSignal("Enabled"):Connect(syncHeroOpen)
+	gui.Destroying:Connect(function() Players.LocalPlayer:SetAttribute("TLTHeroSelectionOpen", false) end)
+	syncHeroOpen()
 	-- Leave space above the panel for the lobby buttons and wallet.
 	local shell=Menu.frame(shade,"HeroPanel",UDim2.new(.5,0,.5,58),UDim2.new(1,-120,1,-164))
 	shell.AnchorPoint=Vector2.new(.5,.5)
@@ -131,7 +139,7 @@ function LobbyGui.create(request,onManage)
 		local role=label(card,"Role",({knight="Sword & Shield",elf="Bow & Arrow",dwarf="Axe Thrower",mage="Arcane & Elements"})[classId],UDim2.new(0,10,1,-99),UDim2.new(1,-20,0,24),11,COLOR.muted);role.TextXAlignment=Enum.TextXAlignment.Center
 		local status=label(card,"Ownership",Text.Lobby.NewHero,UDim2.new(0,10,1,-76),UDim2.new(1,-20,0,20),10,COLOR.gold);status.TextXAlignment=Enum.TextXAlignment.Center
 		local choose=button(card,"ChooseHero",Text.Lobby.Create,UDim2.new(0,10,1,-52),UDim2.new(1,-20,0,42))
-		cardViews[classId]={button=choose,border=border,status=status,mark=selectedMark,portrait=image}
+		cardViews[classId]={button=choose,border=border,status=status,mark=selectedMark,portrait=image,plaque=plaque,role=role,fallback=fallback}
 		choose.Activated:Connect(function()
 			if busy or not current or not current.canManage then return end
 			local existing
@@ -278,30 +286,47 @@ function LobbyGui.create(request,onManage)
 		local width,height=shell.AbsoluteSize.X,shell.AbsoluteSize.Y
 		local compact=width<720
 		local short=height<480
-		titlePlaque.Position=UDim2.new(.5,-math.min(200,width*.36),0,-22)
-		titlePlaque.Size=UDim2.fromOffset(math.min(400,width*.72),56)
+		titlePlaque.Position=short and UDim2.new(.5,-math.min(150,width*.3),0,2) or UDim2.new(.5,-math.min(200,width*.36),0,-22)
+		titlePlaque.Size=short and UDim2.fromOffset(math.min(300,width*.6),40) or UDim2.fromOffset(math.min(400,width*.72),56)
 		titlePlaque.Caption.TextSize=compact and 17 or 24
 		subtitle.Position,subtitle.Size=UDim2.fromOffset(22,38),UDim2.new(1,-86,0,24)
 		subtitle.Text="CHOOSE YOUR HERO  /  Begin your adventure."
 		subtitle.Visible=not short
-		shell.SessionNotice.Position,shell.SessionNotice.Size=UDim2.fromOffset(22,short and 36 or 65),UDim2.new(1,-44,0,28)
+		shell.SessionNotice.Visible=not short
+		shell.SessionNotice.Position,shell.SessionNotice.Size=UDim2.fromOffset(22,65),UDim2.new(1,-44,0,28)
 		shell.SessionNotice.TextSize=10
 		roster.Visible=false
-		cards.Position=UDim2.fromOffset(22,short and 72 or 104)
-		cards.Size=UDim2.new(1,-44,1,short and -170 or -218)
+		cards.Position=UDim2.fromOffset(22,short and 48 or 104)
+		cards.Size=UDim2.new(1,-44,1,short and -112 or -218)
+		cards.ScrollingDirection=short and Enum.ScrollingDirection.X or Enum.ScrollingDirection.Y
+		cards.AutomaticCanvasSize=short and Enum.AutomaticSize.X or Enum.AutomaticSize.Y
+		grid.FillDirectionMaxCells=short and 4 or 0
 		local columns=compact and 2 or 4
-		grid.CellSize=UDim2.new(1/columns,-(columns==4 and 12 or 9),0,compact and 282 or math.max(260,cards.AbsoluteSize.Y-8))
-		grid.CellPadding=UDim2.fromOffset(14,16)
+		grid.CellSize=short and UDim2.new(.32,-10,1,-8) or UDim2.new(1/columns,-(columns==4 and 12 or 9),0,compact and 282 or math.max(260,cards.AbsoluteSize.Y-8))
+		grid.CellPadding=UDim2.fromOffset(10,16)
+		for _,view in pairs(cardViews) do
+		 view.portrait.Size=UDim2.new(1,-18,1,short and -90 or -142)
+		 view.fallback.Size=UDim2.new(1,-24,1,short and -100 or -152)
+		 view.plaque.Position=UDim2.new(0,0,1,short and -83 or -146)
+		 view.plaque.Size=UDim2.new(1,0,0,short and 28 or 48)
+		 view.plaque.Caption.TextSize=short and 14 or 20
+		 view.role.Visible=not short
+		 view.status.Position=UDim2.new(0,10,1,short and -56 or -76)
+		 view.status.Size=UDim2.new(1,-20,0,short and 14 or 20)
+		 view.button.Position=UDim2.new(0,10,1,short and -42 or -52)
+		 view.button.Size=UDim2.new(1,-20,0,short and 38 or 42)
+		end
 		classLock.Position,classLock.Size=UDim2.new(0,22,1,-106),UDim2.new(1,-44,0,28)
 		classLock.TextSize=10;classLock.Visible=not short
 		errorLabel.Position,errorLabel.Size=UDim2.new(0,22,1,-78),UDim2.new(1,-44,0,20)
+		if short then errorLabel.Position=UDim2.new(0,22,1,-64);errorLabel.Size=UDim2.new(1,-44,0,14) end
 		selection.Visible=false
 		manage.Position,manage.Size=UDim2.new(0,22,1,-56),UDim2.new(.28,-28,0,44);manage.TextSize=compact and 10 or 13
 		training.Position,training.Size=UDim2.new(.29,0,1,-56),UDim2.new(.25,-8,0,44)
   training.TextSize=compact and 10 or 13
   start.Position,start.Size=UDim2.new(.55,0,1,-56),UDim2.new(.45,-22,0,44)
 		start.BackgroundColor3=Color3.fromRGB(20,120,46)
-		explore.Position,explore.Size=UDim2.new(1,-54,0,52),UDim2.fromOffset(44,44)
+		explore.Position,explore.Size=UDim2.new(1,-54,0,short and 4 or 52),UDim2.fromOffset(44,44)
 		explore.BackgroundColor3=Color3.fromRGB(170,29,46)
 	end
 

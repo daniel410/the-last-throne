@@ -20,11 +20,14 @@ end
 local gui=Instance.new('ScreenGui');gui.Name='SizeQA';gui.Parent=game.CoreGui
 local host=Instance.new('Frame');host.Name='Host';host.BackgroundTransparency=1;host.Parent=gui
 local ok,err=xpcall(function()
- copy('HeroLobbyGui').create(function()end)
+ local heroController=copy('HeroLobbyGui').create(function()end)
  local heroGui=game.CoreGui.HeroLobbyGui;local heroShade=heroGui.Shade;local hero=heroShade.HeroPanel
  check(not heroGui:FindFirstChild('OpenHeroes'),'standalone HEROES launcher removed')
  require(client.LobbyMenuBridge):Fire('Heroes');task.wait()
  check(heroShade.Visible,'existing HEROES navigation still opens the panel')
+ check(player:GetAttribute('TLTHeroSelectionOpen')==true,'visible hero panel suppresses lobby chrome')
+ heroController.setSuppressed(true);check(not player:GetAttribute('TLTHeroSelectionOpen'),'suppression restores lobby chrome')
+ heroController.setSuppressed(false);check(player:GetAttribute('TLTHeroSelectionOpen'),'restored panel suppresses lobby chrome again')
  local armory=require(client.ArmoryView).create(host,function()end,false,'blacksmith')
  local items=require(client.ArmoryView).create(host,function()end,false,'items')
  local diamonds=require(client.ArmoryView).create(host,function()end,true)
@@ -61,6 +64,14 @@ local ok,err=xpcall(function()
   check(atlas.root.Atlas.AbsolutePosition.Y+atlas.root.Atlas.AbsoluteSize.Y<=atlas.root.RegionDetail.AbsolutePosition.Y+1,'map and detail do not overlap')
   check(expedition.panel.PartyList.AbsoluteSize.Y>0,'party list has usable scroll area')
   check(hero.HeroCards.AbsoluteSize.Y>0,'hero cards remain visible')
+  if size.Y<400 then
+   local cards=hero.HeroCards;local card=cards.knight
+   check(cards.ScrollingDirection==Enum.ScrollingDirection.X and cards.AutomaticCanvasSize==Enum.AutomaticSize.X,'short screen uses horizontal hero scrolling')
+   check(card.AbsoluteSize.Y<=cards.AbsoluteSize.Y and card.ChooseHero.AbsolutePosition.Y+card.ChooseHero.AbsoluteSize.Y<=cards.AbsolutePosition.Y+cards.AbsoluteSize.Y,'hero choice fits the card viewport')
+   check(card.ChooseHero.AbsoluteSize.Y>=38,'hero selection remains touch sized')
+   check(hero.TitlePlaque.AbsolutePosition.Y>=hero.AbsolutePosition.Y,'short screen title stays inside panel')
+   check(hero.ExploreCourtyard.AbsolutePosition.Y+hero.ExploreCourtyard.AbsoluteSize.Y<=cards.AbsolutePosition.Y,'close button stays above cards')
+  end
   check(invShade.InventoryPanel.Content.AbsoluteSize.Y>0,'bag content remains visible')
   check(growthShade.InventoryPanel.Content.AbsoluteSize.Y>0,'growth content remains visible')
   check(settingsShade.SettingsPanel.Options.AbsoluteSize.Y>0,'settings options remain visible')

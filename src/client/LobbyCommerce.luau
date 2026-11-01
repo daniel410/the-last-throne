@@ -80,11 +80,17 @@ function M.start()
  end)
  local function phase()
   local lobby=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle'
-  navigation.rail.Visible=lobby;partyButton.Visible=lobby
+  local showNavigation=lobby and not p:GetAttribute('TLTHeroSelectionOpen')
+  navigation.rail.Visible=showNavigation;partyButton.Visible=showNavigation
   if lobby then task.delay(.3,function()if p.Parent and p:GetAttribute('K0SessionPhase')=='Lobby'then dailyRequest:FireServer({action='GetState'})end end)end
   if not lobby then navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;daily.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
  end
- p:GetAttributeChangedSignal('K0SessionPhase'):Connect(phase);phase()
+ p:GetAttributeChangedSignal('K0SessionPhase'):Connect(phase)
+ p:GetAttributeChangedSignal('TLTHeroSelectionOpen'):Connect(function()
+  local visible=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle' and not p:GetAttribute('TLTHeroSelectionOpen')
+  navigation.rail.Visible=visible;partyButton.Visible=visible
+ end)
+ phase()
  task.spawn(function()
   local ticks=0
   while gui.Parent do
