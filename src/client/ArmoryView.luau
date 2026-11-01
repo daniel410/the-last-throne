@@ -19,7 +19,7 @@ function V.create(parent,send,diamondOnly,store)
  local panel=Menu.frame(parent,diamondOnly and 'DiamondShop' or store=='items' and 'ItemShop' or 'Armory',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(950,700);cap.Parent=panel
  require(script.Parent.LobbyPanelLayout).bind(panel)
- local title=T.label(panel,'Title',diamondOnly and 'DIAMOND SHOP' or store=='blacksmith' and 'BLACKSMITH' or store=='items' and 'ITEM SHOP' or 'DAWNSPIRE SUPPLIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,28),22,T.color.gold)
+ local title=T.label(panel,'Title',diamondOnly and 'DIAMOND SHOP' or store=='blacksmith' and 'BLACKSMITH' or store=='items' and 'POTION SHOP' or 'DAWNSPIRE SUPPLIES',UDim2.fromOffset(20,12),UDim2.new(1,-88,0,28),22,T.color.gold)
  local close=T.button(panel,'Close','X',UDim2.new(1,-62,0,12),UDim2.fromOffset(44,44));close.Activated:Connect(function() panel.Visible=false end)
  local balance=T.label(panel,'Balance','Loading your saved wallet...',UDim2.fromOffset(20,46),UDim2.new(1,-40,0,26),15)
  local buy=T.button(panel,'BuyTab','BUY',UDim2.fromOffset(16,82),UDim2.new(.5,-20,0,44))
@@ -29,23 +29,26 @@ function V.create(parent,send,diamondOnly,store)
  local layout=Instance.new('UIListLayout');layout.Padding=UDim.new(0,10);layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.Parent=scroll
  local notice=T.label(panel,'Notice','Choose an item to review its price.',UDim2.new(0,20,1,-82),UDim2.new(1,-40,0,64),12)
  local categories=Instance.new('Frame');categories.Name='Categories';categories.Position=UDim2.fromOffset(16,132);categories.Size=UDim2.new(1,-32,0,96);categories.BackgroundTransparency=1;categories.Parent=panel
- local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.new(1/3,-6,0,44);grid.CellPadding=UDim2.fromOffset(6,6);grid.Parent=categories
+ local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.new(1/3,-6,0,44);grid.CellPadding=UDim2.fromOffset(6,6);grid.SortOrder=if store=='items' or store=='blacksmith' then Enum.SortOrder.LayoutOrder else Enum.SortOrder.Name;grid.Parent=categories
  local function resize()
   local short=panel.AbsoluteSize.Y<420
   title.Position=UDim2.fromOffset(20,short and 4 or 12)
   close.Position=UDim2.new(1,-62,0,short and 4 or 12)
   balance.Position=UDim2.fromOffset(20,short and 42 or 46)
   balance.Size=UDim2.new(1,-40,0,short and 20 or 26)
-  if store=='blacksmith' or store=='items' then
+  if (store=='blacksmith' or store=='items') and short then
    balance.Size=UDim2.new(.5,-24,0,short and 20 or 26)
    buy.Position,buy.Size=UDim2.new(.5,0,0,short and 38 or 42),UDim2.new(.25,-10,0,44)
    sell.Position,sell.Size=UDim2.new(.75,0,0,short and 38 or 42),UDim2.new(.25,-16,0,44)
+  elseif store=='blacksmith' or store=='items' then
+   buy.Position,buy.Size=UDim2.new(.25,0,0,82),UDim2.new(.25,-6,0,44)
+   sell.Position,sell.Size=UDim2.new(.5,6,0,82),UDim2.new(.25,-6,0,44)
   else
    buy.Position=UDim2.fromOffset(16,short and 66 or 82)
    sell.Position=UDim2.new(.5,4,0,short and 66 or 82)
   end
   local compactStore=store=='blacksmith' or store=='items'
-  local y=if compactStore then (if short then 88 else 92) else (if short then (if diamondOnly then 66 else 114) else 132)
+  local y=if compactStore then (if short then 88 else 132) else (if short then (if diamondOnly then 66 else 114) else 132)
   categories.Position=UDim2.fromOffset(16,y)
   if compactStore then categories.Size=UDim2.new(1,-32,0,44) end
   local top=y+(if compactStore then 54 else 106)
@@ -156,9 +159,9 @@ function V.create(parent,send,diamondOnly,store)
   for _,entry in ipairs(Catalog.categories)do if entry.id==id then category=id;render();return end end
  end
  local displayedCategories=if store=='items' then {{id='Potions',label='POTIONS'},{id='Accessories',label='ACCESSORIES'},{id='Etc',label='ETC'}} else Catalog.categories
- for _,entry in ipairs(displayedCategories)do
+ for index,entry in ipairs(displayedCategories)do
   if store=='blacksmith' and entry.id~='Weapons' and entry.id~='Armor' and entry.id~='Accessories' then continue end
-  local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
+  local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.LayoutOrder=index;b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
  if diamondOnly then
   local b=T.button(categories,'Category_Gold',ItemText.GoldCategory,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',ItemText.GoldCategory);categoryButtons.Gold=b;b.Activated:Connect(function()selectCategory('Gold')end)
  end

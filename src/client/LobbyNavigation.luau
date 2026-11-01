@@ -74,7 +74,7 @@ function M.create(parent,actions)
   art.Position=UDim2.fromScale(0,0);art.Size=UDim2.fromScale(1,1)
   art.ZIndex=3
  end
- for index,entry in ipairs({{'Heroes','HEROES'},{'ItemShop','ITEM SHOP'},{'Blacksmith','BLACKSMITH'},{'Quest','QUEST'},{'Maps','MAPS'},{'DiamondShop','DIAMOND SHOP'},{'LoginRewards','LOGIN REWARDS'}}) do
+ for index,entry in ipairs({{'Heroes','HEROES'},{'ItemShop','POTION SHOP'},{'Blacksmith','BLACKSMITH'},{'Quest','QUEST'},{'Maps','MAPS'},{'DiamondShop','DIAMOND SHOP'},{'LoginRewards','LOGIN REWARDS'}}) do
   local b=T.button(rail,entry[1],entry[2],UDim2.new(),UDim2.fromOffset(88,64))
   -- The login icon is unframed; the other navigation artwork includes its own frame.
   b.LayoutOrder=index;b.BackgroundTransparency=1;b.TDButtonArt.Visible=entry[1]=='LoginRewards';b.TDButtonArt.ZIndex=2
