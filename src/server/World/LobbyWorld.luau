@@ -6,10 +6,10 @@ local Workspace = game:GetService("Workspace")
 local LobbyWorld = {}
 local MODEL_NAME = "DawnspireLobbyPrototype"
 local OWNER_ATTRIBUTE = "TLTLobbyWorld"
-local VERSION = 2
+local VERSION = 3
 local ORIGIN = Vector3.new(0, 96, 512)
 local SPAWN_OFFSET = Vector3.new(0, 0.1, 24)
-local FLOOR_SIZE = Vector3.new(160, 4, 160)
+local FLOOR_SIZE = Vector3.new(200, 4, 200)
 local BOUNDARY_HEIGHT = 32
 
 local COLORS = {
@@ -88,10 +88,10 @@ end
 
 local function safetySpecs()
 	return {
-		{ name = "West", size = Vector3.new(4, BOUNDARY_HEIGHT, 160), offset = Vector3.new(-78, BOUNDARY_HEIGHT / 2, 0) },
-		{ name = "East", size = Vector3.new(4, BOUNDARY_HEIGHT, 160), offset = Vector3.new(78, BOUNDARY_HEIGHT / 2, 0) },
-		{ name = "North", size = Vector3.new(160, BOUNDARY_HEIGHT, 4), offset = Vector3.new(0, BOUNDARY_HEIGHT / 2, -78) },
-		{ name = "South", size = Vector3.new(160, BOUNDARY_HEIGHT, 4), offset = Vector3.new(0, BOUNDARY_HEIGHT / 2, 78) },
+		{ name = "West", size = Vector3.new(4, BOUNDARY_HEIGHT, FLOOR_SIZE.Z), offset = Vector3.new(-98, BOUNDARY_HEIGHT / 2, 0) },
+		{ name = "East", size = Vector3.new(4, BOUNDARY_HEIGHT, FLOOR_SIZE.Z), offset = Vector3.new(98, BOUNDARY_HEIGHT / 2, 0) },
+		{ name = "North", size = Vector3.new(FLOOR_SIZE.X, BOUNDARY_HEIGHT, 4), offset = Vector3.new(0, BOUNDARY_HEIGHT / 2, -98) },
+		{ name = "South", size = Vector3.new(FLOOR_SIZE.X, BOUNDARY_HEIGHT, 4), offset = Vector3.new(0, BOUNDARY_HEIGHT / 2, 98) },
 	}
 end
 
@@ -110,17 +110,17 @@ local function enclosure(model)
 	walls.Name = "CitadelWalls"
 	walls.Parent = model
 	for _, spec in ipairs({
-		{ "WestWall", Vector3.new(4, 14, 152), Vector3.new(-76, 7, 0) },
-		{ "EastWall", Vector3.new(4, 14, 152), Vector3.new(76, 7, 0) },
-		{ "NorthWall", Vector3.new(152, 14, 4), Vector3.new(0, 7, -76) },
-		{ "SouthWall", Vector3.new(152, 14, 4), Vector3.new(0, 7, 76) },
+		{ "WestWall", Vector3.new(4, 14, 192), Vector3.new(-96, 7, 0) },
+		{ "EastWall", Vector3.new(4, 14, 192), Vector3.new(96, 7, 0) },
+		{ "NorthWall", Vector3.new(192, 14, 4), Vector3.new(0, 7, -96) },
+		{ "SouthWall", Vector3.new(192, 14, 4), Vector3.new(0, 7, 96) },
 	}) do
 		-- The transparent enclosure owns the continuous collision contract.
 		-- Ornamenting a visible wall never opens a gap in that enclosure.
 		part(walls, spec[1], spec[2], spec[3], COLORS.stoneDark, Enum.Material.Slate, false)
 	end
-	for _, x in ipairs({ -71, 71 }) do
-		for _, z in ipairs({ -71, 71 }) do
+	for _, x in ipairs({ -91, 91 }) do
+		for _, z in ipairs({ -91, 91 }) do
 			part(walls, "CornerTower", Vector3.new(10, 17, 10), Vector3.new(x, 8.5, z), COLORS.stone, Enum.Material.Slate, false)
 			part(walls, "TowerCap", Vector3.new(11, 1, 11), Vector3.new(x, 17.5, z), COLORS.stoneLight, Enum.Material.Slate, false)
 		end
@@ -162,7 +162,7 @@ local function courtyard(model)
 	local scenery = Instance.new("Folder")
 	scenery.Name = "CourtyardScenery"
 	scenery.Parent = model
-	part(scenery, "InnerPlaza", Vector3.new(104, 0.08, 104), Vector3.new(0, 0.04, 0), COLORS.plaza, Enum.Material.Cobblestone, false)
+	part(scenery, "InnerPlaza", Vector3.new(176, 0.08, 144), Vector3.new(0, 0.04, 0), COLORS.plaza, Enum.Material.Cobblestone, false)
 	part(scenery, "ArrivalCarpet", Vector3.new(12, 0.04, 65), Vector3.new(0, 0.1, 11.5), COLORS.blue, Enum.Material.Fabric, false)
 	for _, x in ipairs({ -6.3, 6.3 }) do
 		part(scenery, "CarpetBorder", Vector3.new(0.35, 0.03, 65), Vector3.new(x, 0.13, 11.5), COLORS.gold, Enum.Material.Metal, false)
@@ -190,7 +190,7 @@ local function courtyard(model)
 	end
 	for _,spec in ipairs({{'PortalPath',Vector3.new(43,.05,9),Vector3.new(-22,.18,-20)},
 		{'TrainingPath',Vector3.new(42,.05,9),Vector3.new(-23,.18,44)},
-		{'SmithPath',Vector3.new(37,.05,9),Vector3.new(24,.18,23)}}) do
+		{'SmithPath',Vector3.new(76,.05,9),Vector3.new(43.5,.18,23)}}) do
 		part(scenery,spec[1],spec[2],spec[3],COLORS.stoneLight,Enum.Material.Cobblestone,false)
 	end
 
@@ -229,7 +229,7 @@ local function resultFor(model)
 		folder = model,
 		spawn = spawn,
 		origin = ORIGIN,
-		bounds = { center = ORIGIN, size = Vector3.new(160, 40, 160) },
+		bounds = { center = ORIGIN, size = Vector3.new(FLOOR_SIZE.X, 40, FLOOR_SIZE.Z) },
 	}
 end
 

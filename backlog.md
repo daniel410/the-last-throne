@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> **2026-11-01 0.58.10 / TLT-028/061/084:** 로비200×200 확장, 아이템 상점·Mira를 대장간 오른쪽으로 이전하고 접근 길·성벽·안전 경계를 조정했다. [검증/미검증](docs/evidence/lobby-shop-layout-20261101/README.md). 로컬 시험판·미게시.
+
 > **2026-11-01 0.58.8 / TLT-031/057/061/084:** Selene 제외29명을 컨셉과 개별 대조해 머리 비율·가르마/땋기/단발·수염·귀/모자를 다시 제작했다. [컨셉 대조 미리보기](docs/evidence/npc-heads-v4/index.html) · [검증/한계](docs/evidence/npc-heads-v4/README.md). 블록 몸체 유지, 미게시·최종 미술/실기기 수용 후속.
 
 
