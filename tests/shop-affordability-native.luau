@@ -16,6 +16,14 @@ local ok,err=xpcall(function()
  local diamond=View.create(gui,function()sends+=1 end,true)
  local snapshot={ready=true,heroId='hero',heroes=p.heroes,items={},revision=p.revision,wallet={gold=19,diamonds=9}}
  stock.render(snapshot);blacksmith.render(snapshot);diamond.render(snapshot)
+ for _,id in ipairs({'Potions','Accessories','Etc'})do check(stock.panel.Categories:FindFirstChild('Category_'..id)~=nil,'item shop category '..id)end
+ check(not stock.panel.Categories:FindFirstChild('Category_All') and not stock.panel.Categories:FindFirstChild('Category_Armor'),'item shop has only requested categories')
+ check(stock.panel.Categories.Category_Potions.Caption.Text:find('[X]',1,true)~=nil,'Potions selected initially')
+ stock.selectCategory('All');check(stock.panel.Offers:FindFirstChild('health_potion')~=nil,'All is rejected')
+ stock.selectCategory('Etc');check(not stock.panel.Offers:FindFirstChild('traveler_hood') and stock.panel.Offers:FindFirstChild('Empty')~=nil,'Etc excludes armor and shows empty state')
+ stock.selectCategory('Accessories');check(stock.panel.Offers:FindFirstChild('copper_ring')~=nil and not stock.panel.Offers:FindFirstChild('traveler_hood'),'accessories filtered')
+ stock.selectCategory('Potions')
+ check(stock.panel.BuyTab.Size.Y.Offset==44 and stock.panel.SellTab.Position.Y.Offset<stock.panel.Categories.Position.Y.Offset,'trade controls retain touch height above categories')
  local potion=stock.panel.Offers.health_potion;local b=potion.Trade
  check(not b.Active and not b.Selectable and b:GetAttribute('InsufficientFunds'),'unaffordable potion is disabled')
  check(b.Caption.Text=='Need 1 more Gold','potion states exact shortfall')

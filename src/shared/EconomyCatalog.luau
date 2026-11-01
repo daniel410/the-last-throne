@@ -37,7 +37,7 @@ end
 function C.allowed(store,definition,offer)
  if store=='diamonds' then return offer and offer.currency=='diamonds' end
  if store=='blacksmith' then return definition.category=='Equipment' and (not offer or offer.currency=='gold') end
- if store=='items' then return definition.slot~='weapon' and (not offer or offer.currency=='gold') end
+ if store=='items' then return (definition.category~='Equipment' or definition.slot=='accessory') and (not offer or offer.currency=='gold') end
  return true
 end
 function C.offer(id) for _,v in ipairs(C.offers) do if v.id==id then return v end end end

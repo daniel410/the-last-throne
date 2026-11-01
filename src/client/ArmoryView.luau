@@ -11,6 +11,11 @@ local V={}
 function V.create(parent,send,diamondOnly,store)
  store=store or "all"
  local function allowed(d,offer)return Catalog.allowed(diamondOnly and 'diamonds' or store,d,offer)end
+ local function itemCategory(d)
+  local id=Catalog.category(d)
+  if store=='items' and id~='Potions' and id~='Accessories' then return 'Etc' end
+  return id
+ end
  local panel=Menu.frame(parent,diamondOnly and 'DiamondShop' or store=='items' and 'ItemShop' or 'Armory',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(950,700);cap.Parent=panel
  require(script.Parent.LobbyPanelLayout).bind(panel)
@@ -31,7 +36,7 @@ function V.create(parent,send,diamondOnly,store)
   close.Position=UDim2.new(1,-62,0,short and 4 or 12)
   balance.Position=UDim2.fromOffset(20,short and 42 or 46)
   balance.Size=UDim2.new(1,-40,0,short and 20 or 26)
-  if store=='blacksmith' then
+  if store=='blacksmith' or store=='items' then
    balance.Size=UDim2.new(.5,-24,0,short and 20 or 26)
    buy.Position,buy.Size=UDim2.new(.5,0,0,short and 38 or 42),UDim2.new(.25,-10,0,44)
    sell.Position,sell.Size=UDim2.new(.75,0,0,short and 38 or 42),UDim2.new(.25,-16,0,44)
@@ -39,10 +44,11 @@ function V.create(parent,send,diamondOnly,store)
    buy.Position=UDim2.fromOffset(16,short and 66 or 82)
    sell.Position=UDim2.new(.5,4,0,short and 66 or 82)
   end
-  local y=if store=='blacksmith' then (if short then 88 else 92) else (if short then (if diamondOnly then 66 else 114) else 132)
+  local compactStore=store=='blacksmith' or store=='items'
+  local y=if compactStore then (if short then 88 else 92) else (if short then (if diamondOnly then 66 else 114) else 132)
   categories.Position=UDim2.fromOffset(16,y)
-  if store=='blacksmith' then categories.Size=UDim2.new(1,-32,0,44) end
-  local top=y+(if store=='blacksmith' then 54 else 106)
+  if compactStore then categories.Size=UDim2.new(1,-32,0,44) end
+  local top=y+(if compactStore then 54 else 106)
   scroll.Position=UDim2.fromOffset(16,top)
   local bottom=short and 48 or 92
   scroll.Size=UDim2.new(1,-32,1,-top-bottom)
@@ -50,7 +56,7 @@ function V.create(parent,send,diamondOnly,store)
   notice.Size=UDim2.new(1,-40,0,bottom-8)
  end
  panel:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize);resize()
- local state,mode,pending,category={},'Buy',nil,if store=='blacksmith' then 'Weapons' else 'All'
+ local state,mode,pending,category={},'Buy',nil,if store=='blacksmith' then 'Weapons' elseif store=='items' then 'Potions' else 'All'
  local transactionPending=false
  local categoryButtons={}
  local render
@@ -103,7 +109,7 @@ function V.create(parent,send,diamondOnly,store)
    local offers=table.clone(Catalog.offers)
    table.sort(offers,function(a,b) local da,db=Items.items[a.definitionId],Items.items[b.definitionId];if (da.restore~=nil)~=(db.restore~=nil) then return da.restore~=nil end;if da.restore and db.restore then if da.restore~=db.restore then return da.restore=='health' end;return da.potionTier<db.potionTier end;local aa=da.classId==class;local bb=db.classId==class;if aa~=bb then return aa end;return a.id<b.id end)
    for _,offer in ipairs(offers) do
-    local d=Items.items[offer.definitionId];if not allowed(d,offer) then continue end;if category~='All' and Catalog.category(d)~=category then continue end;local hero=state.heroes and state.heroes[state.heroId]
+    local d=Items.items[offer.definitionId];if not allowed(d,offer) then continue end;if category~='All' and itemCategory(d)~=category then continue end;local hero=state.heroes and state.heroes[state.heroId]
     local description
     if d.restore then
      local owned=0;for _,item in ipairs(state.items or {}) do if item.definitionId==d.id and item.location.kind=='bag' and item.location.heroId==state.heroId then owned+=item.quantity end end
@@ -123,11 +129,14 @@ function V.create(parent,send,diamondOnly,store)
     local caption=string.format('BUY · %d %s',offer.price,currency)
     row(offer.id,d.name,description,d,caption,{offerId=offer.id,review=d.name..' for '..offer.price..' '..offer.currency},shortfall,currency)
    end
+   local hasOffers=false
+   for _,child in ipairs(scroll:GetChildren()) do if child:IsA('GuiObject') then hasOffers=true;break end end
+   if not hasOffers then T.label(scroll,'Empty','No items available in this category.',UDim2.new(),UDim2.new(1,-16,0,60),14) end
   else
    local n=0
    for _,item in ipairs(state.items or {}) do
     local price=Economy.sellPrice(item)
-    if price and allowed(Items.items[item.definitionId]) and (category=='All' or Catalog.category(Items.items[item.definitionId])==category) and item.location.kind=='bag' and item.location.heroId==state.heroId and not item.locked then
+    if price and allowed(Items.items[item.definitionId]) and (category=='All' or itemCategory(Items.items[item.definitionId])==category) and item.location.kind=='bag' and item.location.heroId==state.heroId and not item.locked then
      n+=1;local d=Items.items[item.definitionId]
      local fit=d.restore and ItemText.AllClasses or d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
      row(item.instanceId,d.name,fit..'\nSell one item permanently. You receive Gold; Diamonds are not refunded.',d,'SELL · '..price..' Gold',{instanceId=item.instanceId,itemVersion=item.version,review=d.name..' for '..price..' Gold'})
@@ -139,12 +148,16 @@ function V.create(parent,send,diamondOnly,store)
  end
  local function selectCategory(id)
   if store=='blacksmith' and id~='Weapons' and id~='Armor' and id~='Accessories' then return end
+  if store=='items' then
+   if id=='Potions' or id=='Accessories' or id=='Etc' then category=id;render() end
+   return
+  end
   if diamondOnly and id=='Gold'then category=id;render();return end
   for _,entry in ipairs(Catalog.categories)do if entry.id==id then category=id;render();return end end
  end
- for _,entry in ipairs(Catalog.categories)do
+ local displayedCategories=if store=='items' then {{id='Potions',label='POTIONS'},{id='Accessories',label='ACCESSORIES'},{id='Etc',label='ETC'}} else Catalog.categories
+ for _,entry in ipairs(displayedCategories)do
   if store=='blacksmith' and entry.id~='Weapons' and entry.id~='Armor' and entry.id~='Accessories' then continue end
-  if store=='items' and entry.id=='Weapons' then continue end
   local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
  if diamondOnly then
   local b=T.button(categories,'Category_Gold',ItemText.GoldCategory,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',ItemText.GoldCategory);categoryButtons.Gold=b;b.Activated:Connect(function()selectCategory('Gold')end)
