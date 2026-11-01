@@ -25,6 +25,28 @@ local function textFits(root)
  end
 end
 local ok,failure=xpcall(function()
+ -- Path switching must visibly replace the detail, including before advancement.
+ for classId,paths in pairs(A.order) do
+  local g=G.new(1)
+  local hero={heroId='qa',baseClassId=classId,progression=g}
+  local snapshot={ready=true,atHub=true,stats={power=0}}
+  local state={selected=1,path=paths[1]}
+  local savedSlots=table.concat(g.skillSlots,',')
+  for _,ordinal in ipairs({1,4,13}) do
+   state.selected=ordinal==1 and 1 or A.branches[paths[1]].skills[ordinal].index
+   for _,path in ipairs({paths[2],paths[1]}) do
+    Tree.selectPath(classId,state,path)
+    body:ClearAllChildren();body.Size=UDim2.fromOffset(1160,700);task.wait()
+    Tree.render(body,hero,snapshot,state,function()error('preview sent a save')end,function()end,nil)
+    local expected=A.branches[path].skills[ordinal]
+    check(body.SkillDetails.SkillTitle.Caption.Text==expected.name,'path switch updates selected skill title')
+    check(body.SkillDetails.Effect.Text:find(A.branches[path].name,1,true)~=nil,'detail identifies preview path')
+    check(body.SkillDetails.Requirements.Text:find('LOCKED',1,true)~=nil,'level one path preview remains locked')
+    check(not body.SkillDetails.Train.Active,'preview cannot train locked skills')
+    check(g.branch=='' and g.stage==0 and table.concat(g.skillSlots,',')==savedSlots,'browsing preserves saved path and loadout')
+   end
+  end
+ end
  for _,width in ipairs({1160,740,390,280}) do
   body.Size=UDim2.fromOffset(width,700);task.wait()
   for classId,paths in pairs(A.order) do

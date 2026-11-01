@@ -20,6 +20,21 @@ local function line(p,n,a,b,active)
  local v=Instance.new('Frame');v.Name=n;v.AnchorPoint=Vector2.new(.5,.5);v.Position=UDim2.fromOffset((a.X+b.X)/2,(a.Y+b.Y)/2);v.Size=UDim2.fromOffset((a-b).Magnitude,active and 3 or 2);v.Rotation=math.deg(math.atan2(b.Y-a.Y,b.X-a.X));v.BackgroundColor3=active and Color3.fromRGB(63,178,255) or Color3.fromRGB(75,94,117);v.BorderSizePixel=0;v.Parent=p
  return v
 end
+-- Browse the corresponding path skill without changing the saved progression/loadout.
+function Tree.selectPath(classId,state,path)
+ local branch=Advanced.branches[path]
+ if not branch or branch.classId~=classId then return end
+ local ordinal=1
+ local selected=Config.Skills[classId][state.selected or 1]
+ local previous=selected and selected.branch and Advanced.branches[selected.branch]
+ if previous then
+  for i,skill in ipairs(previous.skills) do
+   if skill.index==state.selected then ordinal=i;break end
+  end
+ end
+ state.path=path
+ state.selected=branch.skills[ordinal].index
+end
 function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local g,classId=hero.progression,hero.baseClassId
  local width=math.max(280,body.AbsoluteSize.X-8)
@@ -40,7 +55,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local branchWidth=narrow and (width-40)/2 or math.min(170,(width-390)/2)
  for i,id in ipairs(Advanced.order[classId]) do
   local b=Theme.button(header,'Path'..i,Advanced.branches[id].name,UDim2.fromOffset(narrow and 12+(i-1)*(branchWidth+8) or width-24-(3-i)*branchWidth-(2-i)*8,narrow and 96 or 24),UDim2.fromOffset(branchWidth,42),id==path)
-  b.Caption.TextSize=12;b.Activated:Connect(function() state.path=id;state.selected=1;redraw() end)
+  b.Caption.TextSize=12;b.Activated:Connect(function() Tree.selectPath(classId,state,id);redraw() end)
  end
  local top=narrow and 174 or 116
  local treeWidth=narrow and width-8 or math.floor(width*.65)
@@ -111,7 +126,8 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local rank=label(detail,'Mastery','MASTERY  '..(1+g.mastery[selected])..' / 4',12,196,detailW-24,28,15,Theme.color.gold);rank.TextXAlignment=Enum.TextXAlignment.Center
  local effect=skill.form=='self' and string.format('Barrier: %.0f%% max HP / %gs',skill.shield*100,skill.shieldDuration) or skill.damage>0 and string.format(SkillText.DamageMultiplier,skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration or 0)
  if skill.pulses and skill.pulses>1 then effect=effect..'  /  '..skill.pulses..' hits' end
- local effectText=effect..'\n'..Preview.scalingText(classId,skill)..'\n'..Preview.effectText(classId,selected,g,snapshot.stats)..'\n'..SkillText.EstimateNote..(base.description and '\n'..base.description or '')
+ local pathContext=base.branch and string.format(SkillText.PathPreview,Advanced.branches[base.branch].name) or SkillText.SharedSkill
+ local effectText=pathContext..'\n'..effect..'\n'..Preview.scalingText(classId,skill)..'\n'..Preview.effectText(classId,selected,g,snapshot.stats)..'\n'..SkillText.EstimateNote..(base.description and '\n'..base.description or '')
  local effectHeight=math.max(44,TextService:GetTextSize(effectText,12,Enum.Font.GothamMedium,Vector2.new(detailW-36,10000)).Y+4)
  local detailExtra=effectHeight-44
  detail.Size=UDim2.fromOffset(detailW,500+detailExtra)

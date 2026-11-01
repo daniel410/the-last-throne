@@ -1,5 +1,7 @@
 -- en-US skill/stat explanation keys. Estimates describe the current rules.
 return {
+	PathPreview = "%s path skill. Browsing does not change your saved path.",
+	SharedSkill = "Common skill: shared by both paths; its effects stay the same.",
 	Scaling = "Your damage dealt scales with %s.",
 	NoDamageScaling = "Deals no direct damage to enemies; offensive stats do not change this effect.",
 	SelfBarrierScaling = "Barrier scales with your Max HP (VIT + equipment).",
