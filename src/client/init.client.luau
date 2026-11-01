@@ -496,6 +496,8 @@ end)
 require(script.LobbyTopMenu).create(player,{
  Hero=function()growthGui.open('Stats')end,
  Bag=inventory.open,
+ DiamondShop=function()require(script.LobbyMenuBridge):Fire('DiamondShop')end,
+ LoginRewards=function()require(script.LobbyMenuBridge):Fire('LoginRewards')end,
  Journal=function()require(script.LobbyMenuBridge):Fire('Quest')end,
  Settings=settingsGui.open,
 })

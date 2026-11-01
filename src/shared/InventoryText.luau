@@ -22,7 +22,7 @@ return {
 	CombatLocked = "COMBAT LOCKED", EquipHint = "Return to Hub or move away from enemies and wait 5 seconds before equipping.",
 	EquippedSlot = "Equipped: %s", GearApplied = "Equipment updated. Your equipped slots are shown on the left.",
 	CharacterBound = "HERO BOUND", Equipped = "EQUIPPED", BagTab = "HERO BAG", StorageTab = "SHARED STORAGE", Pending = "UNCLAIMED",
-	Quantity = "Quantity", ChooseAccessory = "Choose the accessory slot to replace.", Accessory1 = "ACCESSORY 1", Accessory2 = "ACCESSORY 2",
+	StackQuantity = "QUANTITY: %d", Quantity = "Quantity", ChooseAccessory = "Choose the accessory slot to replace.", Accessory1 = "ACCESSORY 1", Accessory2 = "ACCESSORY 2",
 	Compatible = "Equippable by: All classes", AllClasses = "Available to all classes", Level = "Requires level %d", Class = "Equippable by: %s only", OtherClassPurchase = "You can buy this for another hero; your current hero cannot equip it.", Current = "CURRENT", Selected = "SELECTED",
 	Details = "DETAILS", BagCount = "BAG  %d / %d", StorageCount = "STORAGE  %d / %d", StatsHint = "Changing equipment does not restore health.",
 	Stats = {power = "Power", armor = "Armor", health = "Max HP"},

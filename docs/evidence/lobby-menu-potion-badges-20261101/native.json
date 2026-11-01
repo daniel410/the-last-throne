@@ -1,0 +1,52 @@
+{
+  "native": {
+    "inventory-potion-badges": 75,
+    "lobby-top-menu": 59,
+    "daily-login-ui": 27,
+    "deepwood-quest-ui": 5,
+    "lobby-quest-journal": 69,
+    "inventory-mobile-layout": 13,
+    "inventory-claims-gear": 12,
+    "battle-menu": 62
+  },
+  "native_total": 322,
+  "lua": {
+    "inventory": 271,
+    "daily-login": 73
+  },
+  "play": {
+    "diamond_shop_click_opened_existing_panel": true,
+    "login_rewards_click_opened_existing_panel": true,
+    "quest_click_title": "QUEST",
+    "all_six_menu_captions_fit": true,
+    "desktop_menu": [
+      232,
+      452
+    ],
+    "mobile_menu": [
+      232,
+      255
+    ],
+    "mobile_menu_canvas": [
+      232,
+      452
+    ],
+    "mobile_actual_viewport": [
+      750,
+      381
+    ],
+    "last_mobile_entry_scroll_reachable": true,
+    "potion_detail_key": "Quick slot: Z",
+    "potion_detail_quantity": "QUANTITY: 99",
+    "potion_detail_text_size": 16,
+    "actual_account_writes": false
+  },
+  "limits": [
+    "Local synthetic snapshots and no account service; actual claims/purchases not attempted.",
+    "Fixture omitted InventoryOpenStorage remote; an infinite-yield warning appeared after InventoryState subscription. Inventory ownership rendering and all menu clicks were still verified.",
+    "Existing asset type/HTTP502 warnings occurred; new TD menu icons and potion artwork rendered in captures.",
+    "Initial new badge fixture retained Equipment filter; corrected to All before all75 checks passed.",
+    "Initial QA clone attempted writing an unchanged1405275-character module Source and was rejected; only changed Sources were assigned in the successful run."
+  ],
+  "real_device_verified": false
+}

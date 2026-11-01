@@ -6,7 +6,7 @@ return {
   {id='Gear',label='GEAR'},
   {id='Skills',label='EFFECTS'},
  },
- mobileHero='STATS & SKILLS',mobileBag='GEAR & BAG',mobileJournal='JOURNAL',
+ mobileHero='STATS & SKILLS',mobileBag='GEAR & BAG',mobileJournal='QUEST',quest='QUEST',questButton='QUEST [J]',diamondShop='Diamond Shop',loginRewards='Login Rewards',
  statsSkills='STATS & SKILLS',gearBag='GEAR & BAG',settings='SETTINGS',
  statsKey='H',bagKey='B',ultimateKey='T',
  statsButton='STATS & SKILLS\n[H]',bagButton='GEAR & BAG\n[B]',

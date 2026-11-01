@@ -34,7 +34,7 @@ function Map.create(parent)
  local hero=Theme.button(menu,'Hero',Navigation.statsButton,UDim2.fromOffset(10,8),UDim2.fromOffset(148,36))
  local bag=Theme.button(menu,'Bag',Navigation.bagButton,UDim2.fromOffset(10,52),UDim2.fromOffset(148,36))
  for _,b in ipairs({hero,bag}) do b.Caption.TextScaled=true;local cap=Instance.new('UITextSizeConstraint');cap.MaxTextSize=13;cap.MinTextSize=9;cap.Parent=b.Caption end
- local journal=Theme.button(menu,'Journal','JOURNAL [J]',UDim2.fromOffset(10,96),UDim2.fromOffset(148,36))
+ local journal=Theme.button(menu,'Journal',Navigation.questButton,UDim2.fromOffset(10,96),UDim2.fromOffset(148,36))
  local settings=Theme.button(menu,'Settings',Navigation.settings,UDim2.fromOffset(10,140),UDim2.fromOffset(148,44))
  settings.Activated:Connect(function() menu.Visible=false end)
  journal.Activated:Connect(function() menu.Visible=false end)

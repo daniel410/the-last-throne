@@ -46,18 +46,18 @@ function M.start()
  local function closePanels()
   armory.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;expedition.panel.Visible=false;daily.panel.Visible=false
  end
- navigation=require(script.Parent.LobbyNavigation).create(gui,{
-  close=closePanels,
-  open=function(kind)
-   if kind=='LoginRewards' then local wasOpen=daily.panel.Visible;closePanels();if not wasOpen then daily.open()end;return end
-   local target=kind=='Blacksmith' and armory or kind=='DiamondShop' and diamonds or items;local wasOpen=target.panel.Visible
-   closePanels();target.panel.Visible=not wasOpen
-   shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')})
-  end,
- })
+ local function openStore(kind)
+  if kind=='LoginRewards' then local wasOpen=daily.panel.Visible;closePanels();if not wasOpen then daily.open()end;return end
+  local target=kind=='Blacksmith' and armory or kind=='DiamondShop' and diamonds or items;local wasOpen=target.panel.Visible
+  closePanels();target.panel.Visible=not wasOpen
+  shopRequest:FireServer({action='GetState',requestId=Http:GenerateGUID(false):gsub('%-','')})
+ end
+ navigation=require(script.Parent.LobbyNavigation).create(gui,{close=closePanels,open=openStore})
  navigation.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
  require(script.Parent.LobbyMenuBridge).Event:Connect(function(action)
-  if action~='Play' or p:GetAttribute('K0SessionPhase')~='Lobby' or workspace:GetAttribute('TLTServerRole')=='Battle' then return end
+  if p:GetAttribute('K0SessionPhase')~='Lobby' or workspace:GetAttribute('TLTServerRole')=='Battle' then return end
+  if action=='DiamondShop' or action=='LoginRewards' then navigation.panel.Visible=false;openStore(action);return end
+  if action~='Play' then return end
   closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true
   networkRequest:FireServer({action='GetState'})
  end)

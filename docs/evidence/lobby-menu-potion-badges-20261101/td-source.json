@@ -1,0 +1,26 @@
+{
+  "read_only_sources": [
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/throne-defense/src/Client/UIController.lua",
+      "sha256": "cd2b22a9a1317dfea2ccbe084184654d92b19f00d7a2a54d18650e766e7bac5c"
+    },
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/throne-defense/src/Shared/UIIconAssets.lua",
+      "sha256": "f8cbf2854e6cc32d0cd8bc79f1b58ed1b241c29ae778c65b56654e7c62086bc5"
+    },
+    {
+      "path": "/Users/daniel/Workspace/project/roblox/the-last-throne/src/shared/TDUI/UIIconAssets.luau",
+      "sha256": "b6de17e2c894b51e527c27109db1c4598739a87e517b3e6b6a7dec23c936330b"
+    }
+  ],
+  "menu_source_lines": [
+    623,
+    629
+  ],
+  "reused_icon_keys": [
+    "shop",
+    "login_rewards"
+  ],
+  "selected_atlas_and_regions_match_current_td": true,
+  "td_modified": false
+}

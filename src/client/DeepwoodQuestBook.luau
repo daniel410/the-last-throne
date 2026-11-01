@@ -4,10 +4,11 @@ local Content=require(RS.Shared.CampaignContent)
 local P=require(RS.Shared.DeepwoodProgress)
 local Log=require(RS.Shared.DeepwoodQuestLog)
 local Theme=require(script.Parent.TDInventoryTheme)
+local Navigation=require(RS.Shared.NavigationText)
 local Book={}
 function Book.create(parent,track)
  local panel=Theme.frame(parent,'Journal',UDim2.fromScale(.5,.5),UDim2.fromOffset(680,540));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
- Theme.label(panel,'Title','QUEST JOURNAL',UDim2.fromOffset(18,12),UDim2.new(1,-80,0,30),18,Theme.color.gold)
+ Theme.label(panel,'Title',Navigation.quest,UDim2.fromOffset(18,12),UDim2.new(1,-80,0,30),18,Theme.color.gold)
  local close=Theme.button(panel,'Close','X',UDim2.new(1,-52,0,12),UDim2.fromOffset(40,40))
  local tab='Main';local last
  local buttons={}

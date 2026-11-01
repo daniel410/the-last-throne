@@ -2,6 +2,7 @@
 local T=require(script.Parent.TDInventoryTheme)
 local BagIcon=require(game.ReplicatedStorage.Shared.GearBagIcon)
 local UIS=game:GetService('UserInputService')
+local Navigation=require(game.ReplicatedStorage.Shared.NavigationText)
 local M={}
 function M.create(player,actions)
  local gui=Instance.new('ScreenGui');gui.Name='LobbyTopMenu';gui.ResetOnSpawn=false;gui.DisplayOrder=75;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=player:WaitForChild('PlayerGui')
@@ -11,7 +12,7 @@ function M.create(player,actions)
  toggle.Caption.TextSize=14;toggle.Caption.TextColor3=Color3.new(1,1,1)
  toggle.Caption.TextStrokeColor3=Color3.fromRGB(8,16,30);toggle.Caption.TextStrokeTransparency=.1
  T.icon(toggle,'settings',UDim2.new(0,2,.5,-10),UDim2.fromOffset(20,20))
- local menu=T.frame(gui,'Actions',UDim2.new(1,-244,0,56),UDim2.fromOffset(232,336));menu.Visible=false
+ local menu=T.frame(gui,'Actions',UDim2.new(1,-244,0,56),UDim2.fromOffset(232,452));menu.Visible=false
  menu.TDPanelArt.SliceScale=.45
  local list=Instance.new('ScrollingFrame');list.Name='MenuList';list.Size=UDim2.fromScale(1,1);list.BackgroundTransparency=1;list.BorderSizePixel=0
  list.ScrollBarThickness=4;list.ScrollingDirection=Enum.ScrollingDirection.Y;list.AutomaticCanvasSize=Enum.AutomaticSize.Y;list.CanvasSize=UDim2.new();list.Parent=menu
@@ -35,9 +36,11 @@ function M.create(player,actions)
  artBackground(menu,menu.TDPanelArt)
  local buttons={}
  local entries={
-  {'SUPPLIES','Bag','Gear & Bag','bag'},
-  {'PROGRESS','Hero','Stats & Skills','hero'},
-  {'','Journal','Journal [J]','quests'},
+  {'SUPPLIES','DiamondShop',Navigation.diamondShop,'shop'},
+  {'','Bag','Gear & Bag','bag'},
+  {'PROGRESS','LoginRewards',Navigation.loginRewards,'login_rewards'},
+  {'','Hero','Stats & Skills','hero'},
+  {'','Journal',Navigation.questButton,'quests'},
   {'MORE','Settings','Settings','settings'},
  }
  for i,row in ipairs(entries)do
@@ -63,7 +66,7 @@ function M.create(player,actions)
  local function resize(size)
   size=size or gui.AbsoluteSize
   local w=math.min(232,math.max(1,size.X-24))
-  local h=math.min(336,math.max(1,size.Y-68))
+  local h=math.min(452,math.max(1,size.Y-68))
   menu.Size=UDim2.fromOffset(w,h);menu.Position=UDim2.new(1,-w-12,0,56)
  end
  local open=false

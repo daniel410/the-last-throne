@@ -15,6 +15,15 @@ local Artwork = require(script.Parent.ItemArtwork)
 local Theme = setmetatable({frame=Chrome.frame},{__index=BaseTheme})
 local PotionIcon = require(script.Parent.PotionIcon)
 local Color = Theme.color
+local function itemBadge(card,name,text,position,size,color,textSize)
+ local badge=Theme.label(card,name,text,position,size,textSize or 14,color or Color.text)
+ badge.BackgroundColor3=Color.ink;badge.BackgroundTransparency=0
+ badge.Font=Enum.Font.GothamBold;badge.TextXAlignment=Enum.TextXAlignment.Center
+ badge.TextWrapped=false;badge.ZIndex=card.ZIndex+5
+ local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(0,5);corner.Parent=badge
+ local stroke=Instance.new('UIStroke');stroke.ApplyStrokeMode=Enum.ApplyStrokeMode.Border;stroke.Color=color or Color.silver;stroke.Thickness=1;stroke.Parent=badge
+ return badge
+end
 local InventoryGui = {}
 local function potionKeys(hero,definitionId)
  local keys={}
@@ -264,8 +273,10 @@ function InventoryGui.create(onVisibility, feedback)
 		local heading=detailLabel("ItemName",def.name,y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
   if def.restore and item.location.kind=="bag" then
    local keys=potionKeys(hero,item.definitionId)
-   detailLabel("QuickSlotStatus",keys~="" and string.format(Text.QuickSlotAssigned,keys) or Text.QuickSlotUnassigned,y,30,13,keys~="" and Color.gold or Color.muted)
-   y=y+34
+   local status=detailLabel("QuickSlotStatus",keys~="" and string.format(Text.QuickSlotAssigned,keys) or Text.QuickSlotUnassigned,y,30,16,keys~="" and Color.gold or Color.muted)
+   status.Font=Enum.Font.GothamBold;y=y+34
+   local count=detailLabel("PotionQuantity",string.format(Text.StackQuantity,item.quantity),y,28,16,Color.text)
+   count.Font=Enum.Font.GothamBold;y=y+32
   end
 		Artwork.create(detailScroll,def,UDim2.fromOffset(12,y),UDim2.new(1,-32,0,156)); y=y+160
 		local classText=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or (def.slot and Text.Compatible or Text.AllClasses)
@@ -394,14 +405,16 @@ function InventoryGui.create(onVisibility, feedback)
     if def.restore and kind=="bag" then
      local keys=potionKeys(snapshot.heroes[snapshot.heroId],item.definitionId)
      if keys~="" then
-      local assigned=Theme.label(card,"QuickSlotBadge",keys,UDim2.new(0,4,.45,0),UDim2.fromOffset(36,15),10,Color.gold)
-      assigned.TextStrokeTransparency=.15
+      itemBadge(card,"QuickSlotBadge",keys,UDim2.new(0,6,.68,-28),UDim2.fromOffset(keys=="Z / C" and 54 or 30,24),Color.gold,16)
      end
     end
 				local flag=def.category=="Materials" and "x"..item.quantity or ""
 				if def.restore then flag="x"..item.quantity end
 				if item.locked then flag="LOCK  "..flag end
-				local count=Theme.label(card,"ItemStatus",flag,UDim2.fromOffset(4,3),UDim2.new(1,-8,0,15),10,Color.silver); count.TextXAlignment=Enum.TextXAlignment.Right; count.TextStrokeTransparency=.3
+				if flag~="" then
+     local count=itemBadge(card,"ItemStatus",flag,item.locked and UDim2.fromOffset(6,6) or UDim2.new(1,-6,0,6),item.locked and UDim2.new(1,-12,0,24) or UDim2.fromOffset(50,24),Color.text,item.locked and 12 or 14)
+     if not item.locked then count.AnchorPoint=Vector2.new(1,0) end
+    end
 				card.Activated:Connect(function() choose(item) end)
 			else
 				local empty=Theme.label(card,"EmptyMark","◇",UDim2.fromScale(.25,.25),UDim2.fromScale(.5,.5),22,Color3.fromRGB(40,62,83)); empty.TextXAlignment=Enum.TextXAlignment.Center

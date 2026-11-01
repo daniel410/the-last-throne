@@ -1,0 +1,8 @@
+{
+  "fixture": "/private/tmp/tlt-skills-advancement-qa/SkillsAdvancementQA.rbxlx",
+  "pid": 34356,
+  "play_stopped": true,
+  "default_viewport_restored": true,
+  "termination": "SIGTERM left the generated fixture process running; SIGKILL targeted only confirmed QA PID after evidence was saved.",
+  "user_studio_retained": "TheLastThrone-Lobby-0.58.34.rbxlx"
+}
