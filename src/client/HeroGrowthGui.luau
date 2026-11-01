@@ -35,8 +35,9 @@ function Gui.create(onVisibility)
 	local message=Theme.label(panel,"Message","",UDim2.new(0,18,1,-54),UDim2.new(1,-36,0,42),12,Theme.color.muted)
 	local function resizeChrome()
 		local width,height=panel.AbsoluteSize.X,panel.AbsoluteSize.Y
-		local mobile=width<600 or (UIS.TouchEnabled and width<1000) or height<400
+		local mobile=width<600 or UIS.TouchEnabled or height<400
 		local short=height>0 and mobile
+		panel.Size=mobile and UDim2.new(1,-24,1,-16) or UDim2.new(1,-24,1,-40)
 		local wide=short and width>=600
 		if short then
 			title.Position=UDim2.fromOffset(wide and 10 or 12,2)
@@ -49,8 +50,8 @@ function Gui.create(onVisibility)
 			for i,b in ipairs({statsTab,skillsTab,advanceTab}) do
 			 b.Position=UDim2.fromOffset(left+(i-1)*(w+6),y);b.Size=UDim2.fromOffset(w,44);b.Caption.TextSize=12
 			end
-			local top=wide and 50 or 94
-			body.Position=UDim2.fromOffset(12,top);body.Size=UDim2.new(1,-24,1,-top-52)
+			local top=wide and 48 or 94
+			body.Position=UDim2.fromOffset(12,top);body.Size=UDim2.new(1,-24,1,-top-(message.Text~="" and 52 or 8))
 			message.Position=UDim2.new(0,14,1,-48);message.Size=UDim2.new(1,-28,0,44);message.TextSize=12
 		else
 			title.Position=UDim2.new(.5,-180,0,-24);title.Size=UDim2.fromOffset(360,58);title.Caption.TextSize=22
@@ -76,7 +77,7 @@ function Gui.create(onVisibility)
 	local opened=false
 	local render
 	local function getState() inventoryRemote:FireServer({action="GetState",requestId=Http:GenerateGUID(false)}) end
-	local function show(text) message.Text=text end
+	local function show(text) message.Text=text;resizeChrome() end
 	local function resetDraft() draft={STR=0,DEX=0,INT=0,VIT=0} end
 	local function send(action,args)
 		if pending or not snapshot or not snapshot.ready or not snapshot.heroId then return end
@@ -106,6 +107,7 @@ function Gui.create(onVisibility)
 	end
 	render=function()
 		for _,child in ipairs(body:GetChildren()) do child:Destroy() end
+		body.ScrollingEnabled=true
 		local hero=snapshot and snapshot.heroes[snapshot.heroId]
 		local g=hero and hero.progression
 		if not g then
@@ -133,7 +135,7 @@ function Gui.create(onVisibility)
 		local derived=SkillPreview.derived(classId,preview,snapshot.stats)
 		local narrow=body.AbsoluteSize.X<620
 		if tab=="Stats" then
-			statState.mobile=panel.AbsoluteSize.X<600 or (UIS.TouchEnabled and panel.AbsoluteSize.X<1000) or panel.AbsoluteSize.Y<400
+			statState.mobile=panel.AbsoluteSize.X<600 or UIS.TouchEnabled or panel.AbsoluteSize.Y<400
 			local height=StatsView.render(body,hero,snapshot,derived,draft,pending,render,send,resetDraft,function() if pending then remote:FireServer(pending);show("Checking the same save...") end end,statState)
 			body.CanvasSize=UDim2.fromOffset(0,height)
 			if not snapshot.atHub and not pending then show(snapshot.canInvest and "You can invest points and change your loadout here. Return to Hub to advance." or errors.UnsafeGrowth) end

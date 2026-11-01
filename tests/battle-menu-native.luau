@@ -18,12 +18,11 @@ local ok,err=xpcall(function()
  check(hud.settingsMenu.Caption.Text=='SETTINGS','English settings caption')
  check(hud.settingsMenu.Active and hud.settingsMenu.Selectable,'settings accepts pointer and gamepad')
  local rows={hud.heroMenu,hud.bagMenu,hud.journalMenu,hud.settingsMenu,hud.back}
- local scale=game.CoreGui.DeepwoodTopHud.Root.Minimap:FindFirstChildOfClass('UIScale')
+ local scale=menu.Parent:FindFirstChildOfClass('UIScale')
  for _,value in ipairs({1,.72,.62})do
   scale.Scale=value;task.wait()
   for i,a in ipairs(rows)do
    check(a.Visible,'visible row '..a.Name)
-   if menu:GetAttribute('MobileLayout') then check(a.AbsoluteSize.Y>=44,'touch height survives HUD scale '..a.Name) end
    local p,s=a.AbsolutePosition,a.AbsoluteSize
    local mp,ms=menu.AbsolutePosition,menu.AbsoluteSize
    check(p.X>=mp.X-.1 and p.Y>=mp.Y-.1 and p.X+s.X<=mp.X+ms.X+.1 and p.Y+s.Y<=mp.Y+ms.Y+.1,'row fits menu '..a.Name)

@@ -1,6 +1,7 @@
 -- Illustrated navigation tiles; Diamond Shop uses the original TD lobby artwork.
 local RS=game:GetService('ReplicatedStorage')
 local T=require(script.Parent.TDInventoryTheme)
+local Sizing=require(script.Parent.LobbyNavigationSizing)
 local Bridge=require(script.Parent.LobbyMenuBridge)
 local LobbyArt=require(RS.Shared.TDUI.LobbyHomeArtAssets)
 local M={}
@@ -9,17 +10,32 @@ function M.create(parent,actions)
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.fromOffset(88,64);grid.CellPadding=UDim2.fromOffset(4,4);grid.FillDirectionMaxCells=2;grid.SortOrder=Enum.SortOrder.LayoutOrder;grid.Parent=rail
  local scale=Instance.new('UIScale');scale.Parent=rail
  local function resize()
-  local camera=workspace.CurrentCamera
-  if camera then
-   local viewport=camera.ViewportSize
-   -- Narrow screens need room above the rail for the top wallet and menu.
-   local top=viewport.X<530 and 72 or 8
-   local available=viewport.Y-60-top
-   scale.Scale=math.min(1,math.max(.4,available/268))
-   rail.Position=UDim2.new(0,10,0,top+available/2)
+  local viewport=parent.AbsoluteSize
+  if viewport.X<=0 or viewport.Y<=0 then return end
+  local metrics=Sizing.measure(viewport.X,viewport.Y)
+  grid.CellSize=UDim2.fromOffset(metrics.width,metrics.height)
+  grid.CellPadding=UDim2.fromOffset(metrics.gap,metrics.rowGap)
+  local height=4*metrics.height+3*metrics.rowGap
+  rail.Size=UDim2.fromOffset(2*metrics.width+metrics.gap,height)
+  scale.Scale=1
+  for _,b in ipairs(rail:GetChildren()) do
+   if b:IsA('TextButton') then
+    local textSize=metrics.height<64 and 14 or metrics.width<100 and 16 or math.clamp(math.floor(metrics.width*.17),18,34)
+    local captionH=math.max(metrics.height*.32,textSize+6)
+    b.Caption.Position=UDim2.fromOffset(0,math.min(metrics.height-captionH,metrics.height*.65))
+    b.Caption.Size=UDim2.new(1,0,0,captionH);b.Caption.TextSize=textSize;b.Caption.TextScaled=true
+    local textLimit=b.Caption:FindFirstChildOfClass('UITextSizeConstraint')
+    if not textLimit then textLimit=Instance.new('UITextSizeConstraint');textLimit.Parent=b.Caption end
+    textLimit.MinTextSize=9;textLimit.MaxTextSize=textSize
+   end
   end
+  local top=viewport.X<530 and 72 or 8
+  local available=viewport.Y-12-top
+  rail.Position=UDim2.new(0,10,0,top+available/2)
  end
- local camera=workspace.CurrentCamera;if camera then camera:GetPropertyChangedSignal('ViewportSize'):Connect(resize) end;resize()
+ local resizeConnection=parent:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize)
+ rail.Destroying:Connect(function() resizeConnection:Disconnect() end)
+ resize()
  local panel=T.frame(parent,'LobbyGuide',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(1100,850);cap.Parent=panel
  require(script.Parent.LobbyPanelLayout).bind(panel)
@@ -55,6 +71,7 @@ function M.create(parent,actions)
    art.Position=UDim2.fromOffset(12,0);art.Size=UDim2.fromOffset(64,48)
    art.ScaleType=Enum.ScaleType.Fit;art.Parent=button
   end
+  art.Position=UDim2.fromScale(0,0);art.Size=UDim2.fromScale(1,1)
   art.ZIndex=3
  end
  for index,entry in ipairs({{'Heroes','HEROES'},{'ItemShop','ITEM SHOP'},{'Blacksmith','BLACKSMITH'},{'Quest','QUEST'},{'Maps','MAPS'},{'DiamondShop','DIAMOND SHOP'},{'LoginRewards','LOGIN REWARDS'}}) do
@@ -69,6 +86,7 @@ function M.create(parent,actions)
    else actions.open(entry[1]) end
   end)
  end
+ resize()
  return {rail=rail,panel=panel,showGuide=guide,update=function(s) snapshot=s;atlas.update(s);journal.update(s) end,
   dailyAvailable=function(available)local b=rail:FindFirstChild('LoginRewards');if b then b.Caption.Text=available and 'LOGIN REWARDS !'or 'LOGIN REWARDS' end end}
 end

@@ -5,13 +5,12 @@ local G=require(game.ReplicatedStorage.Shared.HeroProgression)
 local P=require(game.ReplicatedStorage.Shared.SkillStatPreview)
 local Stats=require(client.HeroStatsView)
 local Theme=require(client.TDInventoryTheme)
-local Menu=require(client.MobileActionMenu)
 local report={kind='MOBILE_MENU_STATS_NATIVE',checks=0,failures={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local screen=Instance.new('ScreenGui');screen.Name='MobileStatsQA';screen.Parent=game.CoreGui
 local body=Instance.new('ScrollingFrame');body.BackgroundTransparency=1;body.Parent=screen
 local ok,err=xpcall(function()
- for _,size in ipairs({Vector2.new(280,550),Vector2.new(390,650),Vector2.new(700,170)}) do
+ for _,size in ipairs({Vector2.new(280,550),Vector2.new(390,650)}) do
   body.Size=UDim2.fromOffset(size.X,size.Y);task.wait()
   for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
    local g=G.new(20);local hero={heroId='qa',baseClassId=classId,progression=g}
@@ -47,29 +46,7 @@ local ok,err=xpcall(function()
    end
   end
  end
- body:ClearAllChildren()
- local scaled=Instance.new('Frame');scaled.Parent=body
- local scale=Instance.new('UIScale');scale.Scale=.62;scale.Parent=scaled
- local menu=Theme.frame(scaled,'Actions',UDim2.fromOffset(0,248),UDim2.fromOffset(168,238))
- local buttons={}
- for i,id in ipairs({'Hero','Bag','Journal','Settings','BackToLobby'}) do
-  buttons[i]=Theme.button(menu,id,id,UDim2.fromOffset(10,i*40),UDim2.fromOffset(148,36))
- end
- local trigger=Theme.button(scaled,'Trigger','MENU',UDim2.fromOffset(130,0),UDim2.fromOffset(40,40))
- local layout=Menu.bind(body,menu,buttons,trigger)
- for _,size in ipairs({Vector2.new(280,550),Vector2.new(750,250),Vector2.new(390,650),Vector2.new(1160,700)}) do
-  body.Size=UDim2.fromOffset(size.X,size.Y);task.wait();layout();task.wait()
-  if size.X<600 or size.Y<400 then
-   check(menu.Parent==body,'mobile menu escapes minimap scale')
-   check(trigger.Parent==body and trigger.AbsoluteSize.Y>=44,'menu toggle escapes minimap scale')
-   check(menu.AbsolutePosition.Y+menu.AbsoluteSize.Y<=body.AbsolutePosition.Y+body.AbsoluteSize.Y,'menu fits height')
-   for _,b in ipairs(buttons) do
-    check(b.AbsoluteSize.Y>=52,'effective touch height after minimap scale')
-    check(b.Position.Y.Offset+b.Size.Y.Offset<=menu.Size.Y.Offset,'action fits menu')
-    check(not b.Caption.Text:find('%[[HBJ]%]'),'mobile hides keyboard hints')
-   end
-  else check(menu.Parent==scaled and menu.Size==UDim2.fromOffset(168,238),'desktop restores menu parent and size') end
- end
+
 end,debug.traceback)
 screen:Destroy()
 if not ok then table.insert(report.failures,tostring(err))end

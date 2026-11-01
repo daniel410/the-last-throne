@@ -11,6 +11,7 @@ local Preview=require(RS.Shared.SkillStatPreview)
 local SkillText=require(RS.Shared.SkillStatText)
 local Config=require(RS.Shared.K0Config)
 local Navigation=require(RS.Shared.NavigationText)
+local MobileView=require(script.Parent.MobileHeroStatsView)
 local CombatStats=require(script.Parent.CombatStatsView)
 local CombatText=require(RS.Shared.CombatStatText)
 local TextService=game:GetService('TextService')
@@ -19,6 +20,7 @@ local portraits={knight='103255177842108',elf='80894238854345',dwarf='7462890335
 local full={STR='Strength',DEX='Dexterity',INT='Intelligence',VIT='Vitality'}
 function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetDraft,openBag,statState)
  statState=statState or {}
+ if statState.mobile and body.AbsoluteSize.X>=600 then return MobileView.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetDraft,openBag,statState) end
  local mobile=statState.mobile==true
  local section=statState.section or 'Combat'
  local width=math.max(240,body.AbsoluteSize.X-8);local narrow=mobile or width<760

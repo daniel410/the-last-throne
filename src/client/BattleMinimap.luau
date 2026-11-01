@@ -41,7 +41,7 @@ function Map.create(parent)
  menuButton.Activated:Connect(function()
   local camera=Workspace.CurrentCamera
   local scale=frame.AbsoluteSize.Y/168
-  if camera and scale>0 and not menu:GetAttribute('MobileLayout') then
+  if camera and scale>0 then
    local available=(camera.ViewportSize.Y-frame.AbsolutePosition.Y-12)/scale-menu.Size.Y.Offset
    menu.Position=UDim2.new(1,-168,0,math.max(0,math.min(248,available)))
   end
@@ -98,6 +98,6 @@ function Map.create(parent)
   end
   for enemy,marker in pairs(enemyMarkers) do if not present[enemy] then marker:Destroy();enemyMarkers[enemy]=nil end end
  end
- return {frame=frame,menu=menu,menuButton=menuButton,hero=hero,bag=bag,journal=journal,settings=settings,fullMap=fullMap,update=update}
+ return {frame=frame,menu=menu,hero=hero,bag=bag,journal=journal,settings=settings,fullMap=fullMap,update=update}
 end
 return Map

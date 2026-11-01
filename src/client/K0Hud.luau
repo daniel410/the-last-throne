@@ -278,7 +278,6 @@ function Hud.create()
 	back.Text = ""
 	local backCaption = text(back, "Caption", Text.BackToLobby, UDim2.fromOffset(10, 0), UDim2.new(1, -20, 1, 0), 12)
 	backCaption.TextXAlignment = Enum.TextXAlignment.Center
-	local layoutMobileMenu=require(script.Parent.MobileActionMenu).bind(topRoot,minimap.menu,{minimap.hero,minimap.bag,minimap.journal,minimap.settings,back},minimap.menuButton)
 	local storyTracker
 	local practice = Instance.new("Frame")
  practice.Name = "Practice"
@@ -314,7 +313,6 @@ function Hud.create()
 		mapScale.Scale=viewport.X<500 and math.max(.62,scale*.85) or scale
 		back.Size = UDim2.fromOffset(148,36)
 		backCaption.TextSize = 11
-		layoutMobileMenu()
 		-- Reset after input-mode changes; a hidden mobile JumpButton must not lift Attack.
 		attack.Position=UDim2.fromOffset(90,0)
 		if UserInputService.TouchEnabled then

@@ -1,0 +1,83 @@
+{
+  "checked_at": "2026-11-01",
+  "source": "/Users/daniel/Workspace/project/roblox/throne-defense/src/Client/LobbyHomeUI.lua",
+  "td_commit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "source_sha256": "68dd05f96e6e4bd85e576c34ee0faf1a88df14b1ffd4a3d4d25a7f0400c62b25",
+  "function": "local function navigationMetrics(w: number,h: number)\n local short,large=h<500,w>=1500 and h>=700\n local landscape=w>=548 and h<400\n local tile=math.clamp(math.floor(math.min(w*.112,h*.2)),92,190)\n if short then tile=math.clamp(math.floor((h-148)/2)-12,64,84) end\n if w<600 then\n  tile=math.min(110,math.floor((w-48)/3))\n  if short then tile=64 end\n end\n local width,height=tile,tile\n if large then width=math.floor(math.min(w*.115,228));height=math.floor(width*1.19) end\n -- Shrink the fitted artwork by 22%; reserve enough caption width for TOWERS at 14px.\n width,height=math.max(64,math.floor(width*.78)),math.max(44,math.floor(height*.78))\n local gap=10\n if large then gap=16 end\n local rowGap,columns=16,2\n if short and w<600 then rowGap=10 end\n if landscape then width,height,gap,rowGap,columns=64,48,8,4,2 end\n local x,y=12,math.max(100,math.floor(h*.19))\n if large then x=math.floor(w*.0284);y=math.max(100,math.floor(h*.155)) end\n if short then y=66 end\n if landscape then y=68 end\n if short and w<600 then y=12 end\n return {width=width,height=height,step=width+gap,rowGap=rowGap,x=x,y=y,large=large,columns=columns,compactLandscape=landscape}\nend\n",
+  "scope": "read-only size rule comparison; TD working tree not modified",
+  "coordinate_system": "same safe GUI root.AbsoluteSize; raw device resolution is recorded separately",
+  "examples": [
+    {
+      "safe_root": [
+        1280,
+        720
+      ],
+      "tile": [
+        111,
+        111
+      ],
+      "gap": 10,
+      "row_gap": 16
+    },
+    {
+      "safe_root": [
+        1280,
+        662
+      ],
+      "tile": [
+        102,
+        102
+      ],
+      "gap": 10,
+      "row_gap": 16
+    },
+    {
+      "safe_root": [
+        750,
+        323
+      ],
+      "tile": [
+        64,
+        48
+      ],
+      "gap": 8,
+      "row_gap": 4
+    },
+    {
+      "safe_root": [
+        750,
+        265
+      ],
+      "tile": [
+        64,
+        48
+      ],
+      "gap": 8,
+      "row_gap": 4
+    },
+    {
+      "safe_root": [
+        750,
+        332
+      ],
+      "tile": [
+        64,
+        48
+      ],
+      "gap": 8,
+      "row_gap": 4
+    },
+    {
+      "safe_root": [
+        1920,
+        1080
+      ],
+      "tile": [
+        171,
+        203
+      ],
+      "gap": 16,
+      "row_gap": 16
+    }
+  ]
+}

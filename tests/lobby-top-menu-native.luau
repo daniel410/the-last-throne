@@ -17,9 +17,7 @@ local ok,err=xpcall(function()
  check(view.gui.Enabled and not view.menu.Visible and wallet.Enabled,'lobby menu starts closed and wallet visible')
  for i,id in ipairs({'Hero','Bag','Journal','Settings'})do
   local b=view.buttons[id];check(b.Selectable and b.Active,'menu action selectable '..id)
-  if view.menu:GetAttribute('MobileLayout') then
-   check(b.Size.Y.Offset>=44,'mobile action touch height '..id)
-  else check(b.Position.Y.Offset==8+(i-1)*44,'desktop menu order '..id) end
+  check(b.Position.Y.Offset==8+(i-1)*44,'battle menu order '..id)
   check(b.Position.Y.Offset+b.Size.Y.Offset<=view.menu.Size.Y.Offset,'row fits menu '..id)
   view.toggle();check(view.menu.Visible and not wallet.Enabled,'opening menu hides overlapping wallet')
   view.choose(id);check(calls[#calls]==id and not view.menu.Visible and wallet.Enabled,'action closes menu and restores wallet')

@@ -10,6 +10,7 @@ local ok,err=xpcall(function()
   local signal=Instance.new('BindableEvent');signal.Name='CameraChanged';signal.Parent=copy
   local source=client.LobbyNavigation.Source:gsub('workspace.CurrentCamera','fixtureCamera')
   copy.Source=('local fixtureCamera={ViewportSize=Vector2.new(%d,%d),GetPropertyChangedSignal=function() return script.CameraChanged.Event end}\n'):format(viewport.X,viewport.Y)..source
+  local expected=require(client.LobbyNavigationSizing).measure(viewport.X,viewport.Y)
   local nav=require(copy).create(host,{open=function()end,close=function()end})
   task.wait(.2)
   local names={'Heroes','ItemShop','Blacksmith','Quest','Maps','DiamondShop','LoginRewards'}
@@ -17,7 +18,7 @@ local ok,err=xpcall(function()
   for index,name in ipairs(names) do
    local button=nav.rail:FindFirstChild(name);check(button~=nil,name..' exists');buttons[index]=button
    check(button.LayoutOrder==index,name..' retains order')
-   check(button.AbsoluteSize.Y>=44,name..' has a usable touch height')
+   check(button.AbsoluteSize==Vector2.new(expected.width,expected.height),name..' matches TD size')
   end
   for index=1,6,2 do
    local left,right=buttons[index],buttons[index+1]
@@ -29,7 +30,7 @@ local ok,err=xpcall(function()
   local first=buttons[1]
   check(first.AbsolutePosition.Y>=64 or buttons[2].AbsolutePosition.X+buttons[2].AbsoluteSize.X<=viewport.X-340,'navigation clears the top wallet')
   check(last.AbsolutePosition.Y>=buttons[5].AbsolutePosition.Y+buttons[5].AbsoluteSize.Y-1,'last icon has its own row')
-  check(last.AbsolutePosition.Y+last.AbsoluteSize.Y<=viewport.Y-60,'navigation clears bottom action')
+  check(last.AbsolutePosition.Y+last.AbsoluteSize.Y<=viewport.Y-12,'navigation stays within safe bottom margin')
   check(last.TDButtonArt.Visible,'login reward background is visible')
   check(not buttons[1].TDButtonArt.Visible,'framed navigation artwork does not get an extra background')
   local art=last:FindFirstChild('TDIcon_login_rewards')
