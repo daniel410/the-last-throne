@@ -1,5 +1,8 @@
 # The Last Throne / 최후의 왕좌
 
+> **2026-11-01 0.58.6 / TLT-031/057/061/084:** Selene를 제외한29명 NPC의 얼굴을 컨셉 기반 투명 표정 아틀라스와 Blender MCP 머리/헤어로 개선했다. 블록 몸체 유지. [검증·미검증](docs/evidence/npc-faces-v2/README.md). 로컬 시험판·미게시, 최종 미술/실기기 수용은 후속.
+
+
 > 2026-10-31 **0.55.0 / TLT-028/031/043/046/048/050/061/084:** TD 방식7일 로그인 Gold 보상, Diamonds→RPG Gold 상품, 로비 퀘스트·상단 메뉴·솔로 순서·아이콘을 구현한다. [검증·빌드·한계](docs/evidence/lobby-daily-navigation-0550/README.md). 로컬 시험판·미게시.
 
 

@@ -14,7 +14,11 @@ local ok,err=xpcall(function()
   check(not model:FindFirstChildOfClass('Humanoid'),'static cast does not consume AI actors')
   if c.id=='selene' then check(model:GetAttribute('TDSourceModel')=='nun','Selene template uses original TD nun')
   else
-   check(model.FaceRig.Head:FindFirstChildOfClass('SpecialMesh').MeshType==Enum.MeshType.Sphere and model.FaceRig:FindFirstChild('Nose') and model.FaceRig:FindFirstChild('Smile'),'smooth sculpted face with nose and smile')
+   check(model.FaceRig.Head:FindFirstChildOfClass('SpecialMesh').MeshType==Enum.MeshType.Sphere,'round head')
+   check(model:GetAttribute('NPCVisualVersion')==2 and model.FaceRig:FindFirstChild('EyeWhite')==nil and model.FaceRig:FindFirstChild('Nose')==nil,'no protruding facial primitives')
+   local face=model.FaceRig.FaceDecalCarrier.FaceDecal
+   check(not face.AlwaysOnTop and face.Expression.Image=='rbxassetid://119430151832611','lit face atlas with world occlusion')
+   check(face.Expression.ImageRectSize==Vector2.new(229,229),'isolated face atlas tile')
    check(model.Torso.Shape==Enum.PartType.Block,'rectangular body')
   end
   local limbs=0
