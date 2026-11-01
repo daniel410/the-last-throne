@@ -1,0 +1,31 @@
+{
+  "topMenu": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"kind\":\"LOBBY_TOP_MENU_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":34}"
+      }
+    ],
+    "isError": false
+  },
+  "wallet": {
+    "content": [
+      {
+        "type": "text",
+        "text": "nil"
+      }
+    ],
+    "isError": false
+  },
+  "walletFixtureAssertedChecks": 19,
+  "play": {
+    "position": {
+      "xScale": 1,
+      "xOffset": -12,
+      "y": 60
+    },
+    "gapBelowMenu": 8,
+    "menuOpenHidesBalances": true,
+    "menuCloseRestoresBalances": true
+  }
+}
