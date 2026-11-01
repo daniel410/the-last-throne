@@ -1,0 +1,16 @@
+{
+  "created": "2026-11-01",
+  "tool": "built-in image_gen",
+  "asset": "gear-bag.png",
+  "sha256": "458ad6376b0ea67779a271c9b843bc63afaa94cf8e0efe119aaa5f6dcb66148e",
+  "width": 1254,
+  "height": 1254,
+  "transparent_background": true,
+  "roblox_image_id": 97083585932775,
+  "creator_user_id": 9156786071,
+  "studio_preload": "Success",
+  "reference": "User screenshot 2026-11-01 at 12.32.36 PM; style reference only",
+  "prompt_file": "prompt.txt",
+  "integration": "LobbyTopMenu Gear & Bag, 40x40; existing TD button frame, caption inset, menu size and actions retained",
+  "published_place_validation": false
+}

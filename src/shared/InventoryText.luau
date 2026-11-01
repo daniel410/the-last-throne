@@ -16,7 +16,7 @@ return {
 	Safe = "Equipment changes available", Combat = "In combat — browse and compare only", HubHint = "Shared storage opens at the Hub chest.",
 	ClaimHubOnly = "Return to the lobby to claim unclaimed items.", ClaimReady = "Select an item to claim it to your bag.",
 	Equip = "EQUIP", Unequip = "UNEQUIP", Use = "USE POTION", Deposit = "STORE", Withdraw = "WITHDRAW", Claim = "CLAIM TO BAG",
-	AssignZ = "ASSIGN Z", AssignC = "ASSIGN C", Lock = "LOCK ITEM", Unlock = "UNLOCK ITEM", Locked = "LOCKED", Bound = "ACCOUNT BOUND",
+	AssignZ = "ASSIGN Z", AssignC = "ASSIGN C", AssignedQuick = "ASSIGNED %s", QuickSlotAssigned = "Quick slot: %s", QuickSlotUnassigned = "Not assigned to a quick slot", Lock = "LOCK ITEM", Unlock = "UNLOCK ITEM", Locked = "LOCKED", Bound = "ACCOUNT BOUND",
 	Discard = "DISCARD", DiscardConfirm = "Discard %d × %s? This cannot be undone.", ConfirmDiscard = "CONFIRM DISCARD", Cancel = "CANCEL",
 	LockHint = "Locked items cannot be discarded. You can still equip, use or store them.", DiscardHint = "Permanently removes items from your bag. No item is dropped for other players.",
 	CombatLocked = "COMBAT LOCKED", EquipHint = "Return to Hub or move away from enemies and wait 5 seconds before equipping.",

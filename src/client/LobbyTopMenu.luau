@@ -1,6 +1,6 @@
 -- TD menu-list art and spacing over the existing RPG actions.
 local T=require(script.Parent.TDInventoryTheme)
-local HomeArt=require(game.ReplicatedStorage.Shared.TDUI.LobbyHomeArtAssets)
+local BagIcon=require(game.ReplicatedStorage.Shared.GearBagIcon)
 local UIS=game:GetService('UserInputService')
 local M={}
 function M.create(player,actions)
@@ -49,8 +49,9 @@ function M.create(player,actions)
   b.TDButtonArt.SliceScale=.45
   local emblem
   if row[4]=='bag' then
-   local source=HomeArt.overrides.shop or HomeArt
-   emblem=T.sprite(b,'TDIcon_bag','bag',UDim2.new(0,10,.5,0),UDim2.fromOffset(40,40),{image=source.image,width=source.width,height=source.height,renderWidth=source.renderWidth,renderHeight=source.renderHeight,regions={bag=HomeArt.navigationBodies.shop}})
+   emblem=Instance.new('ImageLabel');emblem.Name='TDIcon_bag';emblem.Image=BagIcon.image
+   emblem.BackgroundTransparency=1;emblem.ScaleType=Enum.ScaleType.Fit
+   emblem.Position=UDim2.new(0,10,.5,0);emblem.Size=UDim2.fromOffset(40,40);emblem.Parent=b
   else emblem=T.icon(b,row[4],UDim2.new(0,10,.5,0),UDim2.fromOffset(40,40))end
   emblem.AnchorPoint=Vector2.new(0,.5)
   artBackground(b,b.TDButtonArt)

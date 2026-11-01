@@ -1,0 +1,27 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+BAG_ASSIGNMENT_INSPECTION {"error":"ServerStorage.BagMenuQA:13: list displays assignment away from quantity/lock row\nServerStorage.BagMenuQA:13\nServerStorage.BagMenuQA:14\n","pass":false,"checks":6}
+ServerStorage.BagMenuQA:44: ServerStorage.BagMenuQA:13: list displays assignment away from quantity/lock row
+ServerStorage.BagMenuQA:13
+ServerStorage.BagMenuQA:14
+
+Stack Begin
+Script 'ServerStorage.BagMenuQA', Line 44
+Stack End
+Requested module experienced an error while loading
+Stack Begin
+Script 'AssistantCommand', Line 937
+Stack End
+BAG_ASSIGNMENT_INSPECTION {"pass":true,"checks":12}
+Module code did not return exactly one value
+Stack Begin
+Script 'AssistantCommand', Line 45
+Stack End
+INVENTORY_MOBILE_LAYOUT_NATIVE {"failures":[],"kind":"INVENTORY_MOBILE_LAYOUT_NATIVE","pass":true,"checks":13}
+POTION_REQUEST_RECOVERY_NATIVE {"failures":[],"kind":"POTION_REQUEST_RECOVERY_NATIVE","pass":true,"checks":12}
+BAG_MENU_QA {"failures":[],"kind":"LOBBY_TOP_MENU_NATIVE","pass":true,"checks":45}
+Eyebrow is not a valid member of Frame "InventoryPanel"
+Stack Begin
+Script 'PotionRequestQA', Line 460
+Script 'PotionRequestQA', Line 613
+Stack End
+BAG_ASSIGNMENT_INSPECTION {"pass":true,"checks":12}

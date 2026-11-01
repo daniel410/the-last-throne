@@ -16,6 +16,13 @@ local Theme = setmetatable({frame=Chrome.frame},{__index=BaseTheme})
 local PotionIcon = require(script.Parent.PotionIcon)
 local Color = Theme.color
 local InventoryGui = {}
+local function potionKeys(hero,definitionId)
+ local keys={}
+ for index,key in ipairs({"Z","C"}) do
+  if hero and hero.quickSlots and hero.quickSlots[index]==definitionId then table.insert(keys,key) end
+ end
+ return table.concat(keys," / ")
+end
 
 function InventoryGui.create(onVisibility, feedback)
 	local player = Players.LocalPlayer
@@ -254,6 +261,11 @@ function InventoryGui.create(onVisibility, feedback)
 			detailLabel("ActionBlockedReason",Text.Errors.LevelRequired,y,48,13,Color.error);y=y+52
 		end
 		local heading=detailLabel("ItemName",def.name,y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
+  if def.restore and item.location.kind=="bag" then
+   local keys=potionKeys(hero,item.definitionId)
+   detailLabel("QuickSlotStatus",keys~="" and string.format(Text.QuickSlotAssigned,keys) or Text.QuickSlotUnassigned,y,30,13,keys~="" and Color.gold or Color.muted)
+   y=y+34
+  end
 		Artwork.create(detailScroll,def,UDim2.fromOffset(12,y),UDim2.new(1,-32,0,156)); y=y+160
 		local classText=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or (def.slot and Text.Compatible or Text.AllClasses)
 		detailLabel("Requirements",classText.."  •  "..string.format(Text.Level,def.level or 1),y,48,13,Color.silver); y=y+52
@@ -318,9 +330,12 @@ function InventoryGui.create(onVisibility, feedback)
 		end
 		if def.restore and loc=="bag" and not storageMode then
 			for index=1,2 do
-				local button=Theme.button(detailScroll,"AssignQuick"..index,Text[index==1 and "AssignZ" or "AssignC"],UDim2.new((index-1)*.5,0,0,y),UDim2.new(.5,-5,0,44))
-				button.Activated:Connect(function() command("Assign",index) end)
-				Theme.enabled(button,not pending and snapshot.ready and snapshot.safe)
+				local assigned=hero and hero.quickSlots[index]==item.definitionId
+    local caption=assigned and string.format(Text.AssignedQuick,index==1 and "Z" or "C") or Text[index==1 and "AssignZ" or "AssignC"]
+				local button=Theme.button(detailScroll,"AssignQuick"..index,caption,UDim2.new((index-1)*.5,0,0,y),UDim2.new(.5,-5,0,44),assigned)
+    button.Caption.TextColor3=assigned and Color.gold or Color.text
+				button.Activated:Connect(function() if button.Active then command("Assign",index) end end)
+				Theme.enabled(button,not pending and snapshot.ready and snapshot.safe and not assigned)
 			end
 			y=y+50
 		end
@@ -374,6 +389,14 @@ function InventoryGui.create(onVisibility, feedback)
 				Artwork.create(card,def,UDim2.fromOffset(7,3),UDim2.new(1,-14,.67,-3))
 				local name=Theme.label(card,"ItemName",def.name,UDim2.new(0,4,.68,0),UDim2.new(1,-8,.3,-2),10,Color.text)
 				name.TextXAlignment=Enum.TextXAlignment.Center
+
+    if def.restore and kind=="bag" then
+     local keys=potionKeys(snapshot.heroes[snapshot.heroId],item.definitionId)
+     if keys~="" then
+      local assigned=Theme.label(card,"QuickSlotBadge",keys,UDim2.new(0,4,.45,0),UDim2.fromOffset(36,15),10,Color.gold)
+      assigned.TextStrokeTransparency=.15
+     end
+    end
 				local flag=def.category=="Materials" and "x"..item.quantity or ""
 				if def.restore then flag="x"..item.quantity end
 				if item.locked then flag="LOCK  "..flag end
