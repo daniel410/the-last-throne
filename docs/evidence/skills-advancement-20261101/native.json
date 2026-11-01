@@ -1,0 +1,63 @@
+{
+  "integration": {
+    "advance_tab_removed": true,
+    "stats_skills_only": true,
+    "preview_path": "paladin",
+    "preview_sends_no_advance": true,
+    "review_sends_no_advance": true,
+    "confirm_advance_requests": 1,
+    "acknowledged_stage": 1,
+    "acknowledged_path": "paladin",
+    "unlocked_skill": "OATHBLADE",
+    "next_stage_level": 40,
+    "next_stage_disabled": true,
+    "actual_account_writes": false
+  },
+  "native": {
+    "skill-advancement-native": 888,
+    "skill-stat-ui-native": 3200,
+    "mobile-landscape-details-native": 972,
+    "mobile-menu-stats-native": 920
+  },
+  "lua": {
+    "advanced-skills": 1435,
+    "hero-progression": 656,
+    "skill-stat-preview": 1368
+  },
+  "mobile": {
+    "device_preset": "iPhone 17 Pro",
+    "actual_viewport": [
+      750,
+      381
+    ],
+    "panel": [
+      726,
+      307
+    ],
+    "body": [
+      702,
+      251
+    ],
+    "tab_sizes": [
+      [
+        227,
+        44
+      ],
+      [
+        227,
+        44
+      ]
+    ],
+    "advancement_text_fits": true,
+    "advance_button_scroll_reachable": true,
+    "loadout_scroll_reachable": true,
+    "stats_round_trip": true,
+    "legacy_advance_alias_opens_skills": true,
+    "default_viewport_restored": true
+  },
+  "notes": [
+    "Device Simulator first orientation call on default desktop rejected; activated phone then set landscape successfully.",
+    "Initial mobile check incorrectly expected the whole advancement card to fit at its top; scrolling to the button itself verified reachability."
+  ],
+  "actual_device_verified": false
+}

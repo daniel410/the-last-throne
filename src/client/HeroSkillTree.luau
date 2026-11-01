@@ -9,6 +9,7 @@ local Config=require(RS.Shared.K0Config)
 local Preview=require(RS.Shared.SkillStatPreview)
 local SkillText=require(RS.Shared.SkillStatText)
 local Glyph=require(script.Parent.SkillGlyph)
+local Advancement=require(script.Parent.SkillAdvancementView)
 local Tree={}
 local portraits={knight='103255177842108',elf='80894238854345',dwarf='74628903359757',mage='91907986271282'}
 local classNames={knight='Knight',elf='Elf Archer',dwarf='Dwarf Axe Thrower',mage='Mage'}
@@ -33,6 +34,7 @@ function Tree.selectPath(classId,state,path)
   end
  end
  state.path=path
+ state.advanceConfirmation=nil
  state.selected=branch.skills[ordinal].index
 end
 function Tree.render(body,hero,snapshot,state,send,redraw,pending)
@@ -58,6 +60,8 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
   b.Caption.TextSize=12;b.Activated:Connect(function() Tree.selectPath(classId,state,id);redraw() end)
  end
  local top=narrow and 174 or 116
+ local advancementHeight=Advancement.render(body,hero,snapshot,state,send,redraw,pending,top,width)
+ top+=advancementHeight+16
  local treeWidth=narrow and width-8 or math.floor(width*.65)
  local treeHeight=876
  local map=Menu.frame(body,'SkillMap',UDim2.fromOffset(4,top),UDim2.fromOffset(treeWidth,treeHeight))

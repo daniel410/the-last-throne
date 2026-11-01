@@ -1,0 +1,28 @@
+-- en-US advancement copy used inside the skill tree.
+return {
+ heading='PATH & ADVANCEMENT',
+ preview='PREVIEW · %s',saved='SAVED PATH · %s',
+ identity='Your base class stays permanent. Browsing a path does not save a choice.',
+ pathLocked='Preview only. Your saved path is %s. Return to that path to advance.',
+ next='NEXT ADVANCEMENT · LEVEL %d · STAGE %d / 4',
+ requirements='Hero level: %d / %d  ·  Recorded enemy defeats: %d / %d',
+ unlocks='SKILLS IN THIS STAGE (learned at their listed levels)',
+ milestones='Advancement levels: 20 / 40 / 60 / 80',
+ hub='Return to Hub to complete advancement.',
+ ready='Requirements met. Review this path before advancing.',
+ locked='Reach the required level and enemy defeat count to advance.',
+ saving='Saving hero… Wait for confirmation or use RETRY SAVE below.',
+ complete='FINAL ADVANCEMENT COMPLETE · Your ultimate has its own button.',
+ advance='ADVANCE TO STAGE %d',confirm='CONFIRM · %s · STAGE %d',
+ review='This saves %s as your path. Later stages keep this path. Press CONFIRM to continue.',
+ roles={
+  steel_knight='Sword-and-shield strikes, enemy control, and party protection.',
+  paladin='Oath marks, radiant attacks, and party shields.',
+  iron_axe='Heavy axe strikes, armor fractures, and returning throws.',
+  gunner='Ranged shots, bombs, and artillery.',
+  marksman='Precise bow attacks, weakpoint marks, and volleys.',
+  magic_archer='Magical arrows and elemental effects. Uses MP after advancement.',
+  pyro='Fire attacks, earth spells, and large area attacks.',
+  cryo='Ice attacks, lightning spells, and crowd control.',
+ },
+}
