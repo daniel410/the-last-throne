@@ -22,6 +22,9 @@ local host=Instance.new('Frame');host.Name='Host';host.BackgroundTransparency=1;
 local ok,err=xpcall(function()
  copy('HeroLobbyGui').create(function()end)
  local heroGui=game.CoreGui.HeroLobbyGui;local heroShade=heroGui.Shade;local hero=heroShade.HeroPanel
+ check(not heroGui:FindFirstChild('OpenHeroes'),'standalone HEROES launcher removed')
+ require(client.LobbyMenuBridge):Fire('Heroes');task.wait()
+ check(heroShade.Visible,'existing HEROES navigation still opens the panel')
  local armory=require(client.ArmoryView).create(host,function()end,false,'blacksmith')
  local items=require(client.ArmoryView).create(host,function()end,false,'items')
  local diamonds=require(client.ArmoryView).create(host,function()end,true)

@@ -73,18 +73,15 @@ function LobbyGui.create(request,onManage)
 	shade.Active = true
 	shade.Parent = gui
 	local minimized, suppressed = false, false
-	local reopen = button(gui, "OpenHeroes", "HEROES", UDim2.fromOffset(14,10), UDim2.fromOffset(120,44))
-	reopen.Visible = false
 	-- Leave space above the panel for the lobby buttons and wallet.
 	local shell=Menu.frame(shade,"HeroPanel",UDim2.new(.5,0,.5,58),UDim2.new(1,-120,1,-164))
 	shell.AnchorPoint=Vector2.new(.5,.5)
 	local constraint=Instance.new("UISizeConstraint");constraint.MaxSize=Vector2.new(800,510);constraint.Parent=shell
  require(script.Parent.LobbyPanelLayout).bind(shell)
 	local explore = button(shell, "ExploreCourtyard", "X", UDim2.new(1,-58,0,12), UDim2.fromOffset(40,40))
-	explore.Activated:Connect(function() minimized=true; shade.Visible=false; reopen.Visible=not suppressed end)
-	reopen.Activated:Connect(function() minimized=false; shade.Visible=not suppressed; reopen.Visible=false end)
+	explore.Activated:Connect(function() minimized=true; shade.Visible=false end)
 	require(script.Parent.LobbyMenuBridge).Event:Connect(function(action)
-		if action=="Heroes" then minimized=false;shade.Visible=not suppressed;reopen.Visible=false end
+		if action=="Heroes" then minimized=false;shade.Visible=not suppressed end
 	end)
 	local titlePlaque=Menu.plaque(shell,"TitlePlaque","THE LAST THRONE",UDim2.new(.5,-200,0,-26),UDim2.fromOffset(400,64))
 	local subtitle = label(shell, "Subtitle", Text.Lobby.Subtitle, UDim2.fromOffset(18, 46), UDim2.new(1, -36, 0, 23), 13, COLOR.cream)
@@ -220,7 +217,6 @@ function LobbyGui.create(request,onManage)
 		if not current then return end
 		gui.Enabled = current.phase ~= "Tutorial" and current.phase~="Respawning" and current.phase~="LoadingTutorial"
 		shade.Visible = not minimized and not suppressed
-		reopen.Visible = minimized and not suppressed
 		shell.SessionNotice.Text = current.inventoryMode == "RPG test save"
 			and "Hero level, stats, skills and items are saved. Control practice resets."
 			or "Studio session: heroes, equipment and items reset when this test ends."
@@ -317,7 +313,6 @@ function LobbyGui.create(request,onManage)
 		setSuppressed = function(value)
 			suppressed=value
 			shade.Visible=not value and not minimized
-			reopen.Visible=not value and minimized
 		end,
 		setState = function(value, errorCode)
 			if type(value) ~= "table" or type(value.heroes) ~= "table" then return end
