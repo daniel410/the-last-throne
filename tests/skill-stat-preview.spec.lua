@@ -29,11 +29,11 @@ for _,branch in ipairs(A.order.mage) do
  end
 end
 eq(K.Skills.mage[3].areaRadius,10,'gravity radius is expanded')
-eq(K.Skills.mage[3].slowMultiplier,0,'gravity stops movement')
+eq(K.Skills.mage[3].slowMultiplier,0.3,'gravity reduces movement by 70 percent')
 eq(P.value('mage',3,mage).skill.slowDuration,10,'gravity starts at ten seconds')
 local mastered=G.copy(mage);mastered.mastery[3]=3
 eq(P.value('mage',3,mastered).skill.slowDuration,10.6,'mastery adds duration above ten seconds')
-check(P.effectText('mage',3,mage):find('movement speed: %-100%% for 10s')~=nil,'preview explains immobilization and duration')
+check(P.effectText('mage',3,mage):find('movement speed: %-70%% for 10s')~=nil,'preview explains slow and duration')
 eq(P.value('mage',32,mage).damage,0,'Arcane Ward stays a non-damaging barrier')
 eq(A.common.mage[1].damage,1,'shared catalog load never compounds the spell bonus')
 for _,entry in ipairs(A.common.mage) do
