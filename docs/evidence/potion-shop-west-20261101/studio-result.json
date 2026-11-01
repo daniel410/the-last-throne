@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"shopSize\":\"14.40000057220459, 12.300000190734863, 6\",\"trainingCenter\":\"-47, 102.95001220703125, 555\",\"portalCenter\":\"-43, 108.95397186279297, 482\",\"coverage\":\"Studio Play server geometry and route raycasts; not player walking or transactions\",\"shopCenter\":\"-47, 102.1500015258789, 516\",\"checks\":64}"
+    }
+  ],
+  "isError": false
+}

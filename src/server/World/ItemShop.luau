@@ -16,6 +16,8 @@ function M.create(lobby)
   local bottle=make('Potion'..i,Vector3.new(.65,1,.65),Vector3.new(-1.5+i*1.5,3.8,.15),color,Enum.Material.Glass);bottle.Shape=Enum.PartType.Ball
   make('BottleNeck'..i,Vector3.new(.25,.35,.25),Vector3.new(-1.5+i*1.5,4.45,.15),C.gold,Enum.Material.Wood)
  end
+ model.WorldPivot=CFrame.new(lobby.origin+Spec.offset)
+ model:ScaleTo(Spec.scale or 1)
  return model
 end
 return M

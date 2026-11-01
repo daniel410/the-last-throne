@@ -189,8 +189,10 @@ local function courtyard(model)
 		if child:IsA('Model') and child.Name:sub(1,7)=='Banner_' then child:PivotTo(child:GetPivot()+Vector3.new(0,0,-27)) end
 	end
 	for _,spec in ipairs({{'PortalPath',Vector3.new(43,.05,9),Vector3.new(-22,.18,-20)},
-		{'TrainingPath',Vector3.new(42,.05,9),Vector3.new(-23,.18,44)},
-		{'SmithPath',Vector3.new(76,.05,9),Vector3.new(43.5,.18,23)}}) do
+		{'TrainingPath',Vector3.new(42,.05,9),Vector3.new(-23,.18,56)},
+		{'TrainingApproach',Vector3.new(12,.05,16),Vector3.new(0,.18,50)},
+		{'PotionShopPath',Vector3.new(46,.05,8),Vector3.new(-23,.18,15)},
+		{'SmithPath',Vector3.new(37,.05,9),Vector3.new(24,.18,23)}}) do
 		part(scenery,spec[1],spec[2],spec[3],COLORS.stoneLight,Enum.Material.Cobblestone,false)
 	end
 
