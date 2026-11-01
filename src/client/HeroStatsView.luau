@@ -24,7 +24,9 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
  local leftW=narrow and width-8 or math.floor(width*.48)
  local x=narrow and 4 or leftW+24;local rw=narrow and width-8 or width-x-4
  local summaryHeight=CombatStats.render(body,hero,snapshot,draft,UDim2.fromOffset(x,4),rw,statState,redraw)
- local leftY=narrow and summaryHeight+24 or 4
+ local short=narrow and body.AbsoluteSize.Y<260
+ local allocationY=summaryHeight+24
+ local leftY=narrow and (short and allocationY+636 or summaryHeight+24) or 4
  local left=Menu.frame(body,'HeroEquipment',UDim2.fromOffset(4,leftY),UDim2.fromOffset(leftW,560))
  local heading=Menu.plaque(left,'HeroTitle',string.upper(Catalog.classes[classId])..'  /  Lv. '..g.level,UDim2.fromOffset(10,10),UDim2.new(1,-20,0,46));heading.Caption.TextSize=18
  local image=Instance.new('ImageLabel');image.Name='HeroPortrait';image.BackgroundTransparency=1;image.Position=UDim2.fromOffset(70,66);image.Size=UDim2.new(1,-140,1,-116);image.Image='rbxassetid://'..portraits[classId];image.ScaleType=Enum.ScaleType.Crop;image.Parent=left
@@ -39,7 +41,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
  end
  local xp=g.level==Growth.maxLevel and string.format(GrowthText.TotalXPMax,Growth.totalXP(g)) or string.format(GrowthText.TotalXP,Growth.totalXP(g),Growth.xpAtLevel(g.level+1))
  local xpLabel=Theme.label(left,'XP',xp,UDim2.new(0,12,1,-42),UDim2.new(1,-24,0,28),14,Theme.color.gold);xpLabel.TextXAlignment=Enum.TextXAlignment.Center
- local y=narrow and leftY+580 or summaryHeight+24
+ local y=narrow and (short and allocationY or leftY+580) or summaryHeight+24
  local right=Menu.frame(body,'StatAllocation',UDim2.fromOffset(x,y),UDim2.fromOffset(rw,616))
  Theme.label(right,'Points','AVAILABLE STAT POINTS  '..(points-spent),UDim2.fromOffset(18,12),UDim2.new(1,-36,0,36),16,Theme.color.gold)
  for i,key in ipairs(Growth.statKeys) do

@@ -91,6 +91,14 @@ local ok,failure=xpcall(function()
   check(summary.Size.Y.Offset+summary.Position.Y.Offset<height,'expanded details stay inside outer scroll canvas')
   textFits(body)
  end
+ body.Size=UDim2.fromOffset(700,200);body:ClearAllChildren();task.wait()
+ local mobileGrowth=G.new(20);local mobileHero={heroId='qa',baseClassId='knight',progression=mobileGrowth}
+ local mobileSnapshot={ready=true,atHub=true,items={},stats={power=0,health=0,armor=0}}
+ Stats.render(body,mobileHero,mobileSnapshot,P.derived('knight',mobileGrowth,mobileSnapshot.stats),{STR=0,DEX=0,INT=0,VIT=0},nil,function()end,function()end,function()end,function()end)
+ check(body.StatAllocation.Position.Y.Offset<body.HeroEquipment.Position.Y.Offset,'short screen puts stat allocation ahead of the large portrait')
+ body:ClearAllChildren();Tree.render(body,mobileHero,mobileSnapshot,{selected=1},function()end,function()end,nil)
+ check(body.SkillDetails.Position.Y.Offset==body.SkillMap.Position.Y.Offset,'short wide screen places skill details beside the tree')
+ check(body.SkillDetails.Position.X.Offset>=body.SkillMap.Position.X.Offset+body.SkillMap.Size.X.Offset,'skill tree and details do not overlap')
  local g=G.new(2);body:ClearAllChildren()
  Stats.render(body,{heroId='qa',baseClassId='knight',progression=g},{ready=true,atHub=false,canInvest=false,items={}},P.derived('knight',g),{STR=4,DEX=0,INT=0,VIT=0},{},function()end,function()end,function()end,function()end)
  check(not body.StatAllocation.ApplyPoints.Active,'pending unsafe draft cannot submit')

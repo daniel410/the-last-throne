@@ -72,6 +72,15 @@ local ok,err=xpcall(function()
    check(hero.TitlePlaque.AbsolutePosition.Y>=hero.AbsolutePosition.Y,'short screen title stays inside panel')
    check(hero.ExploreCourtyard.AbsolutePosition.Y+hero.ExploreCourtyard.AbsoluteSize.Y<=cards.AbsolutePosition.Y,'close button stays above cards')
   end
+  if size.Y<400 then
+   local bagPanel=invShade.InventoryPanel;local bagContent=bagPanel.Content;local bagScroll=bagContent.BagItems.Items
+   local growthPanel=growthShade.InventoryPanel;local growthContent=growthPanel.Content
+   check(bagContent.AbsoluteSize.Y>=160,'short bag reserves substantial space for items')
+   check(bagScroll.AbsoluteSize.Y>=110,'short bag shows a full touch-sized item row')
+   check(growthContent.AbsoluteSize.Y>=180,'short growth reserves substantial space for content')
+   check(growthPanel.StatsTab.AbsolutePosition.Y+growthPanel.StatsTab.AbsoluteSize.Y<=growthContent.AbsolutePosition.Y,'growth tabs clear content')
+   check(bagPanel.Filters.AbsolutePosition.Y+bagPanel.Filters.AbsoluteSize.Y<=bagContent.AbsolutePosition.Y,'bag filters clear content')
+  end
   check(invShade.InventoryPanel.Content.AbsoluteSize.Y>0,'bag content remains visible')
   check(growthShade.InventoryPanel.Content.AbsoluteSize.Y>0,'growth content remains visible')
   check(settingsShade.SettingsPanel.Options.AbsoluteSize.Y>0,'settings options remain visible')

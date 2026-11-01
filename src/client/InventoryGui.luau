@@ -401,7 +401,9 @@ function InventoryGui.create(onVisibility, feedback)
 				local item
 				for _,candidate in ipairs(snapshot.items) do if candidate.location.kind=="equipped" and candidate.location.heroId==snapshot.heroId and candidate.location.slot==slot then item=candidate end end
 				local right=index>4; local row=(index-1)%4
-				local cell=Chrome.card(equipmentSlots,"EquipSlot_"..slot,UDim2.new(right and 1 or 0,right and -60 or 8,0,54+row*62),UDim2.fromOffset(52,54),item and selectedId==item.instanceId,item~=nil)
+				local short=shell.AbsoluteSize.Y>0 and shell.AbsoluteSize.Y<400
+				local slotPosition=short and UDim2.new(((index-1)%4+.5)/4,-26,0,34+math.floor((index-1)/4)*60) or UDim2.new(right and 1 or 0,right and -60 or 8,0,54+row*62)
+				local cell=Chrome.card(equipmentSlots,"EquipSlot_"..slot,slotPosition,UDim2.fromOffset(52,54),item and selectedId==item.instanceId,item~=nil)
 				if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(4,1),UDim2.fromOffset(44,38)); cell.Activated:Connect(function() choose(item) end) end
 				local caption=Theme.label(cell,"SlotLabel",Text.Slots[slot],UDim2.fromOffset(0,38),UDim2.fromOffset(52,14),8,Color.silver); caption.TextXAlignment=Enum.TextXAlignment.Center
 			end
@@ -428,7 +430,10 @@ function InventoryGui.create(onVisibility, feedback)
 	end
 	resize=function()
 		local width,height=shell.AbsoluteSize.X,shell.AbsoluteSize.Y
-		compact=width<900
+		compact=width<900 or height<400
+		local short=height>0 and height<400
+		portrait.Visible=not short
+		local wideShort=short and width>=600
 		shell.Eyebrow.Visible=false
 		plaque.Position,plaque.Size=UDim2.new(.5,compact and -108 or -150,0,-20),UDim2.fromOffset(compact and 216 or 300,54)
 		title.Position,title.Size,title.TextSize=UDim2.fromOffset(12,4),UDim2.new(1,-24,1,-8),compact and 19 or 26
@@ -467,10 +472,27 @@ function InventoryGui.create(onVisibility, feedback)
 			if storageMode or sourceTab=="pending" then top=top+50 end
 		end
 		filters.Position,filters.Size=UDim2.fromOffset(filterLeft,compact and 124 or 68),UDim2.fromOffset(filterWidth,compact and 44 or 38)
+		if short then
+			plaque.Position,plaque.Size=wideShort and UDim2.fromOffset(12,2) or UDim2.new(.5,-90,0,2),UDim2.fromOffset(180,40)
+			title.TextSize=15
+			close.Position=UDim2.new(1,-52,0,1)
+			local x=wideShort and 198 or 12
+			local w=wideShort and (width-258)/3 or (width-40)/3
+			local y=wideShort and 0 or 44
+			gear.Position,gear.Size=UDim2.fromOffset(x,y),UDim2.fromOffset(w,42)
+			sort.Position,sort.Size=UDim2.fromOffset(x+w+4,y),UDim2.fromOffset(w,42)
+			pendingButton.Position,pendingButton.Size=UDim2.fromOffset(x+2*(w+4),y),UDim2.fromOffset(w,42)
+			filters.Position,filters.Size=UDim2.fromOffset(12,wideShort and 44 or 88),UDim2.new(1,-24,0,40)
+			filterWidth=width-24
+			top=wideShort and 88 or 132
+			if storageMode then top+=44 end
+		end
+		filters.Visible=not (short and not storageMode and sourceTab~="pending" and (gearMode or mobileDetail))
+		if short and not filters.Visible then top=wideShort and 44 or 88 end
 		local fw=(filterWidth-18)/4
 		for index,name in ipairs({"All","Equipment","Consumables","Materials"}) do
 			local button=filterButtons[name]
-			button.Position,button.Size=UDim2.fromOffset((index-1)*(fw+6),0),UDim2.fromOffset(fw,compact and 44 or 38)
+			button.Position,button.Size=UDim2.fromOffset((index-1)*(fw+6),0),UDim2.fromOffset(fw,short and 40 or compact and 44 or 38)
 			button.Caption.TextSize=compact and 10 or 11; button.Caption.Text=compact and Text.ShortFilters[name] or Text[name]
 		end
 		sort.Visible=true
@@ -478,12 +500,29 @@ function InventoryGui.create(onVisibility, feedback)
 		footer.Position,footer.Size=UDim2.new(0,20,1,-54),UDim2.new(1,-40,0,42)
 		message.Position,message.Size,message.TextSize=UDim2.new(0,24,1,-51),UDim2.new(1,-48,0,20),11
 		mode.Position,mode.TextSize=UDim2.new(0,24,1,-28),9
+		if short then
+			content.Position,content.Size=UDim2.fromOffset(12,top),UDim2.new(1,-24,1,-top-34)
+			footer.Position,footer.Size=UDim2.new(0,12,1,-31),UDim2.new(1,-24,0,26)
+			message.Position,message.Size,message.TextSize=UDim2.new(0,16,1,-30),UDim2.new(1,-32,0,24),10
+			mode.Visible=false
+		else mode.Visible=true end
 		local tabs=compact and (storageMode or sourceTab=="pending")
 		bagTab.Visible,storageTab.Visible=tabs,tabs and storageMode
 		bagTab.Position,bagTab.Size=UDim2.fromOffset(20,top-48),UDim2.fromOffset((cw-8)/2,42)
 		storageTab.Position,storageTab.Size=UDim2.fromOffset(28+(cw-8)/2,top-48),UDim2.fromOffset((cw-8)/2,42)
+		if short and storageMode then
+			bagTab.Position,storageTab.Position=UDim2.fromOffset(12,top-42),UDim2.fromOffset(20+(cw-8)/2,top-42)
+		end
 		detailScroll.Position,detailScroll.Size=UDim2.fromOffset(12,12),UDim2.new(1,-24,1,-132)
 		primary.Position,primary.Size=UDim2.new(0,12,1,-110),UDim2.new(1,-24,0,46)
+		lockItem.Position,lockItem.Size=UDim2.new(0,12,1,-58),UDim2.new(.5,-16,0,44)
+		discard.Position,discard.Size=UDim2.new(.5,4,1,-58),UDim2.new(.5,-16,0,44)
+		if short then
+			detailScroll.Size=UDim2.new(1,-24,1,-62)
+			primary.Position,primary.Size=UDim2.new(0,8,1,-48),UDim2.new(1/3,-12,0,40)
+			lockItem.Position,lockItem.Size=UDim2.new(1/3,4,1,-48),UDim2.new(1/3,-8,0,40)
+			discard.Position,discard.Size=UDim2.new(2/3,4,1,-48),UDim2.new(1/3,-12,0,40)
+		end
 		if compact then
 			heroPanel.Position,heroPanel.Size=UDim2.new(),UDim2.fromScale(1,1)
 			heroPanel.Visible=gearMode and not mobileDetail and not storageMode
@@ -514,14 +553,14 @@ function InventoryGui.create(onVisibility, feedback)
 		retry.Position,retry.Size=UDim2.new(1,-212,1,-66),UDim2.fromOffset(188,42)
 		if sourceTab=="pending" then
 			claimsTitle.Text=Text.Pending.." ("..tostring(snapshot and snapshot.pending or 0)..")"
-			content.Position,content.Size=UDim2.fromOffset(18,74),UDim2.new(1,-36,1,-130)
+			content.Position,content.Size=UDim2.fromOffset(18,short and 56 or 74),UDim2.new(1,-36,1,short and -92 or -130)
 			message.Position,message.Size=UDim2.new(0,20,1,-48),UDim2.new(1,-40,0,36)
 			if retry.Visible then
 				retry.Position,retry.Size=UDim2.new(1,-154,1,-49),UDim2.fromOffset(134,38)
 				message.Size=UDim2.new(1,-184,0,36)
 			end
 			heroPanel.Visible,storage.panel.Visible=false,false
-			if claimsPanel.AbsoluteSize.X<700 then
+			if compact or claimsPanel.AbsoluteSize.X<700 then
 				bag.panel.Position,bag.panel.Size=UDim2.new(),UDim2.fromScale(1,1)
 				details.Position,details.Size=UDim2.new(),UDim2.fromScale(1,1)
 				bag.panel.Visible,details.Visible=not mobileDetail,mobileDetail
@@ -536,7 +575,7 @@ function InventoryGui.create(onVisibility, feedback)
 			view.heading.TextSize,view.heading.TextXAlignment=12,Enum.TextXAlignment.Right
 			view.scroll.Position,view.scroll.Size=UDim2.fromOffset(10,36),UDim2.new(1,-20,1,-46)
 			local available=math.max(70,view.panel.AbsoluteSize.X-24)
-			local columns=math.clamp(math.floor((available+8)/94),2,4)
+			local columns=math.clamp(math.floor((available+8)/94),2,short and 7 or 4)
 			local cell=math.floor((available-(columns-1)*8)/columns)
 			view.grid.CellSize=UDim2.fromOffset(cell,cell)
 		end

@@ -19,7 +19,7 @@ local names={knight="KNIGHT",elf="ELF ARCHER",dwarf="DWARF AXE THROWER",mage="MA
 local errors={UnsafeGrowth="Move away from enemies and wait five seconds after combat to invest points or change skills.",SkillLocked="Reach the required level and complete any listed advancement first.",UltimateSeparate="Your ultimate uses its own button. Choose a regular skill for slots 1–5.",InvalidAdvancement="This advancement is unavailable. Review your current path.",LevelRequired="Reach the required hero level before advancing.",TrialRequired="Defeat more training foes to complete this advancement trial.",Busy="A save is in progress. Try again shortly.",Changed="Your hero changed. Review the refreshed values and try again.",WaitForLobby="Return to Hub and select your hero before trying this action.",NotEnoughStatPoints="Not enough stat points. Clear your draft and try again.",NotEnoughSkillPoints="Earn another level to gain a skill point.",SkillMaxRank="This basic skill has reached level 4.",SaveUnknown="Save confirmation is pending. Press RETRY SAVE to check the same request.",AccountBusy="This account is active elsewhere. Rejoin to load safely.",Unavailable="Hero data is unavailable. Rejoin to load safely.",InvalidRequest="This change was rejected. Refresh your hero and try again.",Incompatible="Hero data could not be loaded safely. Rejoin and try again."}
 function Gui.create(onVisibility)
 	local player=Players.LocalPlayer
-	local gui=Instance.new("ScreenGui"); gui.Name="HeroGrowthGui"; gui.ResetOnSpawn=false; gui.DisplayOrder=55; gui.Parent=player:WaitForChild("PlayerGui")
+	local gui=Instance.new("ScreenGui"); gui.Name="HeroGrowthGui"; gui.ResetOnSpawn=false; gui.ScreenInsets=Enum.ScreenInsets.CoreUISafeInsets; gui.DisplayOrder=55; gui.Parent=player:WaitForChild("PlayerGui")
 	local launch=Theme.button(gui,"OpenHero",Navigation.statsButton,UDim2.new(1,-278,0,0),UDim2.fromOffset(128,44))
 	require(script.Parent.TopMenuLayout).bind(gui,launch,2)
 	local overlay=Instance.new("Frame"); overlay.Name="Overlay"; overlay.Size=UDim2.fromScale(1,1); overlay.BackgroundColor3=Color3.new(0,0,0); overlay.BackgroundTransparency=.25; overlay.Visible=false; overlay.Active=true; overlay.Parent=gui
@@ -32,6 +32,36 @@ function Gui.create(onVisibility)
 	local advanceTab=Theme.button(panel,"AdvanceTab","ADVANCE",UDim2.new(2/3,-6,0,54),UDim2.new(1/3,-12,0,38))
 	local body=Instance.new("ScrollingFrame"); body.Name="Content"; body.Position=UDim2.fromOffset(18,104); body.Size=UDim2.new(1,-36,1,-166); body.BackgroundTransparency=1; body.BorderSizePixel=0; body.ScrollBarThickness=5; body.Parent=panel
 	local message=Theme.label(panel,"Message","",UDim2.new(0,18,1,-54),UDim2.new(1,-36,0,42),12,Theme.color.muted)
+	local function resizeChrome()
+		local width,height=panel.AbsoluteSize.X,panel.AbsoluteSize.Y
+		local short=height>0 and height<400
+		local wide=short and width>=600
+		if short then
+			title.Position=wide and UDim2.fromOffset(10,2) or UDim2.new(.5,-95,0,2)
+			title.Size=UDim2.fromOffset(190,40);title.Caption.TextSize=15
+			close.Position=UDim2.new(1,-52,0,1)
+			local left=wide and 205 or 12
+			local available=wide and width-265 or width-24
+			local y=wide and 1 or 44
+			local w=(available-12)/3
+			for i,b in ipairs({statsTab,skillsTab,advanceTab}) do
+			 b.Position=UDim2.fromOffset(left+(i-1)*(w+6),y);b.Size=UDim2.fromOffset(w,40);b.Caption.TextSize=12
+			end
+			local top=wide and 48 or 90
+			body.Position=UDim2.fromOffset(12,top);body.Size=UDim2.new(1,-24,1,-top-34)
+			message.Position=UDim2.new(0,14,1,-31);message.Size=UDim2.new(1,-28,0,26);message.TextSize=10
+		else
+			title.Position=UDim2.new(.5,-180,0,-24);title.Size=UDim2.fromOffset(360,58);title.Caption.TextSize=22
+			close.Position=UDim2.new(1,-62,0,10)
+			statsTab.Position,statsTab.Size=UDim2.fromOffset(18,54),UDim2.new(1/3,-16,0,38)
+			skillsTab.Position,skillsTab.Size=UDim2.new(1/3,6,0,54),UDim2.new(1/3,-16,0,38)
+			advanceTab.Position,advanceTab.Size=UDim2.new(2/3,-6,0,54),UDim2.new(1/3,-12,0,38)
+			body.Position,body.Size=UDim2.fromOffset(18,104),UDim2.new(1,-36,1,-166)
+			message.Position,message.Size,message.TextSize=UDim2.new(0,18,1,-54),UDim2.new(1,-36,0,42),12
+		end
+	end
+	panel:GetPropertyChangedSignal("AbsoluteSize"):Connect(resizeChrome)
+	resizeChrome()
 	local remotes=RS:WaitForChild("Remotes")
 	local remote=remotes:WaitForChild("HeroProgressionRequest")
 	local inventoryRemote=remotes:WaitForChild("InventoryRequest")
