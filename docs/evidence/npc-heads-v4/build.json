@@ -1,0 +1,68 @@
+{
+  "version": "0.58.8",
+  "sourceCommit": "8c55dca4731144d9233ce4e5e33e17257b8c511b",
+  "sourceFreeze": "git archive; referenced LFS SHA256 verified against committed pointers",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.58.8/TheLastThrone-Lobby-0.58.8.rbxlx",
+      "sha256": "d0efc43f9266054568e20a82f69b37c448a83b3f186fb5d6027cf67c8cb7907a",
+      "bytes": 7497034,
+      "status": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.58.8/TheLastThrone-Battle-0.58.8.rbxlx",
+      "sha256": "1e15f1b2807c131128f48fd5e6158fc59845c5f47640ebcfbc8eb328ec8760cc",
+      "bytes": 7497035,
+      "status": "success"
+    }
+  ],
+  "tests": {
+    "cast": {
+      "deepwoodActors": 8,
+      "failures": [],
+      "checks": 9882,
+      "characters": 30,
+      "kind": "NPC_CAST_NATIVE",
+      "pass": true,
+      "parts": 3716
+    },
+    "battleBootstrap": {
+      "role": "Battle",
+      "checks": 136,
+      "kind": "NPC_BOOTSTRAP_NATIVE",
+      "pass": true,
+      "failures": []
+    }
+  },
+  "commands": [
+    "rojo build <frozen>/default.project.json -o builds/0.58.8/TheLastThrone-Lobby-0.58.8.rbxlx",
+    "rojo build <frozen>/battle.project.json -o builds/0.58.8/TheLastThrone-Battle-0.58.8.rbxlx",
+    "run-in-roblox --place <Lobby artifact> --script tests/npc-cast-native.luau",
+    "run-in-roblox --place <Battle artifact> --script tests/npc-bootstrap-native.luau"
+  ],
+  "studioPreview": {
+    "mode": "Edit",
+    "models": 29,
+    "uniqueImageFetchSuccess": 30,
+    "stage": "v4 before final four bob wave adjustments"
+  },
+  "visualReview": {
+    "characters": 29,
+    "views": [
+      "front",
+      "60deg"
+    ],
+    "userAccepted": false,
+    "record": "review.json"
+  },
+  "published": false,
+  "warnings": [
+    "TD source asset 203785492 type mismatch"
+  ],
+  "git": {
+    "sourceRemoteVerified": true,
+    "lfs": "38/38, 125 MB uploaded; fsck OK"
+  }
+}
