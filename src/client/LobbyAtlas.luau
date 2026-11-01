@@ -12,9 +12,9 @@ function M.create(parent)
  local tabs=Instance.new('ScrollingFrame');tabs.Name='EpicCategories';tabs.Size=UDim2.new(1,0,0,48);tabs.BackgroundTransparency=1;tabs.BorderSizePixel=0;tabs.ScrollBarThickness=3;tabs.ScrollingDirection=Enum.ScrollingDirection.X;tabs.CanvasSize=UDim2.fromOffset(#epics*174,0);tabs.Parent=root
  local area=Instance.new('ScrollingFrame');area.Name='Atlas';area.Position=UDim2.fromOffset(0,78);area.Size=UDim2.new(1,0,1,-154);area.BackgroundColor3=Color3.fromRGB(12,26,31);area.BorderSizePixel=0;area.ScrollBarThickness=5;area.CanvasSize=UDim2.new();area.Parent=root
  local scene=Instance.new('Frame');scene.Name='Cartography';scene.BackgroundTransparency=1;scene.Parent=area
- local summary=T.label(root,'Progress','',UDim2.fromOffset(2,51),UDim2.new(1,-128,0,23),11,T.color.gold)
- local fit=T.button(root,'Fit','FIT',UDim2.new(1,-120,0,50),UDim2.fromOffset(56,24))
- local zoomButton=T.button(root,'Zoom','ZOOM',UDim2.new(1,-58,0,50),UDim2.fromOffset(58,24))
+ local summary=T.label(root,'Progress','',UDim2.fromOffset(2,51),UDim2.new(1,-158,0,23),11,T.color.gold)
+ local fit=T.button(root,'Fit','FIT',UDim2.new(1,-150,0,50),UDim2.fromOffset(64,24))
+ local zoomButton=T.button(root,'Zoom','ZOOM',UDim2.new(1,-80,0,50),UDim2.fromOffset(80,24))
  local detail=T.label(root,'RegionDetail','',UDim2.new(0,4,1,-70),UDim2.new(1,-8,0,46),12,T.color.gold)
  local hint=T.label(root,'Hint','Select a region for unlock details. Drag to explore the map.',UDim2.new(0,4,1,-23),UDim2.new(1,-8,0,22),10,T.color.muted)
  local buttons,snapshot,atlas,selected={},nil,nil,nil

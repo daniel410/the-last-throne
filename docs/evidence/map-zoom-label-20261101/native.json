@@ -1,0 +1,26 @@
+{
+  "kind": "LOBBY_ATLAS_NATIVE",
+  "checks": 72,
+  "pass": true,
+  "failures": [],
+  "environment": "Existing project Studio Play Client; temporary GUI and source clone",
+  "sizes": [
+    [
+      1000,
+      750
+    ],
+    [
+      366,
+      756
+    ],
+    [
+      643,
+      293
+    ]
+  ],
+  "zoom_button_width": 80,
+  "caption_width": 52,
+  "live_gui_updated": true,
+  "fixture_removed": true,
+  "real_device_verified": false
+}
