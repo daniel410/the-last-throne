@@ -1,0 +1,15 @@
+0.745.0.7451137_20261101T171559Z_Studio_573a2_last.log
+2026-11-01T17:16:39.046Z,40.046135,6ea03000,12 [DFLog::HttpTraceError] HttpResponse(#277 0x38f64bb00) time:2014.3ms (net:0.0ms timeInRetryQueue:0.0ms)status:429 Too Many Requests bodySize:0 url:{ "https://apis.roblox.com/publish/v1/Scripts" } ip: external:0 numberOfTimesRetried:0
+2026-11-01T17:16:39.046Z,40.046280,6e8eb000,12 [DFLog::HttpTraceError] HttpResponse(#278 0x38f646700) time:2014.4ms (net:0.0ms timeInRetryQueue:0.0ms)status:429 Too Many Requests bodySize:0 url:{ "https://apis.roblox.com/publish/v1/Scripts" } ip: external:0 numberOfTimesRetried:0
+2026-11-01T17:16:39.046Z,40.046307,6ea03000,6,Error [DFLog::VersionHistory] Commit Failure: Publish Assets - Http status error (429) HTTP 429 (Too Many Requests)
+2026-11-01T17:16:39.046Z,40.046352,6ea8f000,12 [DFLog::HttpTraceError] HttpResponse(#279 0x38f644300) time:2014.4ms (net:0.0ms timeInRetryQueue:0.0ms)status:429 Too Many Requests bodySize:0 url:{ "https://apis.roblox.com/publish/v1/Scripts" } ip: external:0 numberOfTimesRetried:0
+2026-11-01T17:16:39.046Z,40.046345,6e8eb000,6,Error [DFLog::VersionHistory] Commit Failure: Publish Assets - Http status error (429) HTTP 429 (Too Many Requests)
+2026-11-01T17:16:39.046Z,40.046410,6ea8f000,6,Error [DFLog::VersionHistory] Commit Failure: Publish Assets - Http status error (429) HTTP 429 (Too Many Requests)
+
+0.745.0.7451137_20261101T171419Z_Studio_f72f3_last.log
+2026-11-01T17:15:23.309Z,64.309380,6cd6b000,12 [DFLog::HttpTraceError] HttpResponse(#304 0x38f512b00) time:2390.2ms (net:0.0ms timeInRetryQueue:0.0ms)status:429 Too Many Requests bodySize:0 url:{ "https://apis.roblox.com/publish/v1/Scripts" } ip: external:0 numberOfTimesRetried:0
+2026-11-01T17:15:23.309Z,64.309486,6cf0f000,12 [DFLog::HttpTraceError] HttpResponse(#305 0x38f511300) time:2390.3ms (net:0.0ms timeInRetryQueue:0.0ms)status:429 Too Many Requests bodySize:0 url:{ "https://apis.roblox.com/publish/v1/Scripts" } ip: external:0 numberOfTimesRetried:0
+2026-11-01T17:15:23.309Z,64.309532,6cd6b000,6,Error [DFLog::VersionHistory] Commit Failure: Publish Assets - Http status error (429) HTTP 429 (Too Many Requests)
+2026-11-01T17:15:23.309Z,64.309570,6cf0f000,6,Error [DFLog::VersionHistory] Commit Failure: Publish Assets - Http status error (429) HTTP 429 (Too Many Requests)
+2026-11-01T17:15:23.309Z,64.309601,6ce83000,12 [DFLog::HttpTraceError] HttpResponse(#306 0x38f51e500) time:2390.3ms (net:0.0ms timeInRetryQueue:0.0ms)status:429 Too Many Requests bodySize:0 url:{ "https://apis.roblox.com/publish/v1/Scripts" } ip: external:0 numberOfTimesRetried:0
+2026-11-01T17:15:23.309Z,64.309662,6cd6b000,12 [DFLog::HttpTraceError] HttpResponse(#307 0x38f51c700) time:2390.4ms (net:0.0ms timeInRetryQueue:0.0ms)status:429 Too Many Requests bodySize:0 url:{ "https://apis.roblox.com/publish/v1/Scripts" } ip: external:0 numberOfTimesRetried:0

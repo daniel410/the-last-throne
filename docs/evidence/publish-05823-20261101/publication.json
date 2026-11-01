@@ -1,0 +1,67 @@
+{
+  "version": "0.58.23",
+  "source_commit": "04b51272addb939cc452dce18f61c3e50f4b2594",
+  "release_tag": "v0.58.23",
+  "universe_id": 10773575153,
+  "audience": "Private; existing test access unchanged",
+  "method": "Roblox Studio Publish As; existing places; Grant Permissions and Publish",
+  "published": [
+    {
+      "role": "Lobby",
+      "place_id": 70829337938054,
+      "place_version": 21,
+      "published_local": "2026-11-01 12:15 America/Toronto"
+    },
+    {
+      "role": "Battle",
+      "place_id": 129388473517823,
+      "place_version": 7,
+      "published_local": "2026-11-01 12:16 America/Toronto"
+    }
+  ],
+  "verification": "Creator Dashboard Show published only; latest rows verified",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.58.23/TheLastThrone-Lobby-0.58.23.rbxlx",
+      "bytes": 7562899,
+      "sha256": "593c57e41a70171fac32caeb8c9f89eae4032ca44a6820b183dba4a6a5ad5322",
+      "command": [
+        "rojo",
+        "build",
+        "default.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.58.23/TheLastThrone-Lobby-0.58.23.rbxlx"
+      ],
+      "result": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.58.23/TheLastThrone-Battle-0.58.23.rbxlx",
+      "bytes": 7562900,
+      "sha256": "24df15a5e3920b35e70c7aef9f52953c55e6983d81de73866b75999079197600",
+      "command": [
+        "rojo",
+        "build",
+        "battle.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.58.23/TheLastThrone-Battle-0.58.23.rbxlx"
+      ],
+      "result": "success"
+    }
+  ],
+  "unverified": [
+    "Published Roblox client gameplay, script completeness, teleport, saving and device acceptance"
+  ],
+  "warnings": [
+    "Studio script asset upload requests returned HTTP 429. Both place publications appeared in published-only history; script upload success is not independently verified."
+  ],
+  "rollback": "Restore previous published Lobby20/Battle6 in Creator Dashboard, then publish in Studio.",
+  "evidence": {
+    "audience.png": "073e3e566e9edb3df67102f8eea1c980d6258db6348497671fe15fc5b2efa5fc",
+    "lobby-published-ax.txt": "6ce65a0336d1754736b87ebb777004f43f034538022b425892981457a98780e8",
+    "battle-published-ax.txt": "9301095a51874c706ec8d98e606d89556e9e45cf516ad6276c2a36564f860c6d",
+    "lobby-published.png": "c8a315be0cce17adc65ac58d5908d30217f47ce07bd6cb999281c77ab82febe4",
+    "battle-published.png": "dcebdc62d609dc4581aae68ef12d1d64bbe80a35c3e9a883f06cc0cbe253f14a"
+  }
+}
