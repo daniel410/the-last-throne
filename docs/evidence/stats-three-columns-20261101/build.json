@@ -1,0 +1,52 @@
+{
+  "version": "0.58.34",
+  "source_commit": "dd9369bc342c7d34823d21ea49ccd4aa150978a3",
+  "tool": "Rojo 7.7.1",
+  "stage": "/private/tmp/tlt-skill-path-pinned-osudtkl4",
+  "lfs_materialized": [],
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.58.34/TheLastThrone-Lobby-0.58.34.rbxlx",
+      "bytes": 7590488,
+      "sha256": "96a5f440b6f9346b2170fd5ab409f758c83676c8e0407665ea45ef312824e4ad",
+      "command": [
+        "rojo",
+        "build",
+        "default.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.58.34/TheLastThrone-Lobby-0.58.34.rbxlx"
+      ],
+      "result": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.58.34/TheLastThrone-Battle-0.58.34.rbxlx",
+      "bytes": 7590489,
+      "sha256": "6a27ef4cba132c4e6900dcff7d53c8941403f7551290f57948b209a8afadbe30",
+      "command": [
+        "rojo",
+        "build",
+        "battle.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.58.34/TheLastThrone-Battle-0.58.34.rbxlx"
+      ],
+      "result": "success"
+    }
+  ],
+  "published": false,
+  "release_tag": null,
+  "status": "local-build-success-unpublished",
+  "native": {
+    "skillStatUI": {
+      "pass": true,
+      "checks": 3200
+    },
+    "mobileMenuStats": {
+      "pass": true,
+      "checks": 920,
+      "invocation": "tests/mobile-menu-stats-native.luau wrapped to print and assert returned report"
+    },
+    "coverage": "GUI constructors and measured geometry/text; no real button input or rendered/device acceptance"
+  }
+}
