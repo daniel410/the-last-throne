@@ -31,11 +31,18 @@ function V.create(parent,send,diamondOnly,store)
   close.Position=UDim2.new(1,-62,0,short and 4 or 12)
   balance.Position=UDim2.fromOffset(20,short and 42 or 46)
   balance.Size=UDim2.new(1,-40,0,short and 20 or 26)
-  buy.Position=UDim2.fromOffset(16,short and 66 or 82)
-  sell.Position=UDim2.new(.5,4,0,short and 66 or 82)
-  local y=short and (diamondOnly and 66 or 114)or 132
+  if store=='blacksmith' then
+   balance.Size=UDim2.new(.5,-24,0,short and 20 or 26)
+   buy.Position,buy.Size=UDim2.new(.5,0,0,short and 38 or 42),UDim2.new(.25,-10,0,44)
+   sell.Position,sell.Size=UDim2.new(.75,0,0,short and 38 or 42),UDim2.new(.25,-16,0,44)
+  else
+   buy.Position=UDim2.fromOffset(16,short and 66 or 82)
+   sell.Position=UDim2.new(.5,4,0,short and 66 or 82)
+  end
+  local y=if store=='blacksmith' then (if short then 88 else 92) else (if short then (if diamondOnly then 66 else 114) else 132)
   categories.Position=UDim2.fromOffset(16,y)
-  local top=y+106
+  if store=='blacksmith' then categories.Size=UDim2.new(1,-32,0,44) end
+  local top=y+(if store=='blacksmith' then 54 else 106)
   scroll.Position=UDim2.fromOffset(16,top)
   local bottom=short and 48 or 92
   scroll.Size=UDim2.new(1,-32,1,-top-bottom)
@@ -43,7 +50,7 @@ function V.create(parent,send,diamondOnly,store)
   notice.Size=UDim2.new(1,-40,0,bottom-8)
  end
  panel:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize);resize()
- local state,mode,pending,category={},'Buy',nil,'All'
+ local state,mode,pending,category={},'Buy',nil,if store=='blacksmith' then 'Weapons' else 'All'
  local transactionPending=false
  local categoryButtons={}
  local render
@@ -131,11 +138,12 @@ function V.create(parent,send,diamondOnly,store)
   notice.Text=message or 'Prices are shown before confirmation. Each first main-story clear awards 2 Diamonds per account.'
  end
  local function selectCategory(id)
+  if store=='blacksmith' and id~='Weapons' and id~='Armor' and id~='Accessories' then return end
   if diamondOnly and id=='Gold'then category=id;render();return end
   for _,entry in ipairs(Catalog.categories)do if entry.id==id then category=id;render();return end end
  end
  for _,entry in ipairs(Catalog.categories)do
-  if store=='blacksmith' and entry.id~='All' and entry.id~='Weapons' and entry.id~='Armor' and entry.id~='Accessories' then continue end
+  if store=='blacksmith' and entry.id~='Weapons' and entry.id~='Armor' and entry.id~='Accessories' then continue end
   if store=='items' and entry.id=='Weapons' then continue end
   local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
  if diamondOnly then

@@ -11,6 +11,12 @@ local ok,err=xpcall(function()
  local view=require(client.ArmoryView).create(gui,function()end,false,'blacksmith')
  local p=R.addHero(R.new(81),'h','knight',I);local items={};for _,v in pairs(p.items)do table.insert(items,v)end
  view.render({ready=true,heroId='h',heroes=p.heroes,items=items,wallet=p.wallet,revision=p.revision});view.panel.Visible=true
+ check(not view.panel.Categories:FindFirstChild('Category_All'),'blacksmith must not show All')
+ check(view.panel.Categories.Category_Weapons.Caption.Text:find('[X]',1,true)~=nil,'Weapons selected initially')
+ view.selectCategory('All')
+ check(view.panel.Categories.Category_Weapons.Caption.Text:find('[X]',1,true)~=nil,'All cannot be selected through the public API')
+ check(view.panel.BuyTab.Size.Y.Offset==44 and view.panel.SellTab.Size.Y.Offset==44,'trade tabs retain touch height')
+ check(view.panel.BuyTab.Position.Y.Offset<view.panel.Categories.Position.Y.Offset and view.panel.SellTab.Position.Y.Offset<view.panel.Categories.Position.Y.Offset,'trade tabs above categories')
  for _,cat in ipairs({'Weapons','Armor','Accessories'})do
   check(view.panel.Categories:FindFirstChild('Category_'..cat)~=nil,'category button '..cat)
   view.selectCategory(cat)
