@@ -1,0 +1,18 @@
+{
+  "version": "0.58.10",
+  "sourceCommit": "5c3c220c049f7b10871df50772f4ed53cc4bdd9c",
+  "project": "default.project.json",
+  "command": [
+    "rojo",
+    "build",
+    "default.project.json",
+    "-o",
+    "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.58.10/TheLastThrone-Lobby-0.58.10.rbxlx"
+  ],
+  "success": true,
+  "artifact": "builds/0.58.10/TheLastThrone-Lobby-0.58.10.rbxlx",
+  "sha256": "49919e3b33ea3911769fe5343ce55484c98b0ea0b02c2aee4370931eb5273b2d",
+  "scope": "Committed source only; unrelated working-tree changes excluded",
+  "studioChecks": 54,
+  "published": false
+}

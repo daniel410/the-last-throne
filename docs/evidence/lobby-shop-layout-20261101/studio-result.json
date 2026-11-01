@@ -1,0 +1,27 @@
+{
+  "checks": 54,
+  "result": "passed",
+  "studio": "TheLastThrone-Lobby-0.58.9.rbxlx",
+  "updatedModuleVersion": "0.58.10",
+  "floor": [
+    200,
+    4,
+    200
+  ],
+  "shopCounter": [
+    75,
+    97.5,
+    518
+  ],
+  "mira": [
+    75,
+    96,
+    523
+  ],
+  "forgeCenter": [
+    45,
+    104.10836791992188,
+    518
+  ],
+  "coverage": "Server native scene geometry and raycasts; not normal player walking or trading"
+}
