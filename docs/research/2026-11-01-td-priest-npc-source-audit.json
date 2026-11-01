@@ -1,0 +1,189 @@
+{
+  "checked_on": "2026-11-01",
+  "scope": "read-only local XML inventory; no Studio/client/permission/performance acceptance",
+  "source_project_head": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "source_worktree_has_changes": true,
+  "project_path": "../throne-defense/default.project.json",
+  "project_sha256": "1a0024368d59875b8636756ca8b5b9e8081ab6c8d6ab1b398ac467b1c68327f9",
+  "source_path": "../throne-defense/assets/models/blender-mcp-rapid-v2/runtime.rbxmx",
+  "source_sha256": "8d5c66f001dd1a59081ac91e43a7115be6b6af6d63102ec9d90436de29473ad6",
+  "source_bytes": 226671,
+  "registry_model_towers_path": "../throne-defense/assets/models/meshy-factions-refresh-v1/runtime.rbxmx",
+  "registry_path_matches_current_project": false,
+  "models": {
+    "nun": {
+      "classes": {
+        "Model": 1,
+        "NumberValue": 2,
+        "MeshPart": 3,
+        "StringValue": 6,
+        "Vector3Value": 2
+      },
+      "resources": [
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://130126651435934"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://113363552204383"
+        },
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://102120239802795"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://113363552204383"
+        },
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://104419813105955"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://113363552204383"
+        }
+      ],
+      "serialized_model_sha256": "2cf560f8b6838fe0bebd084911a1d4aac702c4043502798d1457637daf1160e4"
+    },
+    "blessing": {
+      "classes": {
+        "Model": 1,
+        "NumberValue": 1,
+        "MeshPart": 3,
+        "StringValue": 6,
+        "Vector3Value": 1
+      },
+      "resources": [
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://109802886250070"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://74863603904173"
+        },
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://115538140822048"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://74863603904173"
+        },
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://127146603595206"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://74863603904173"
+        }
+      ],
+      "serialized_model_sha256": "4cf6a0aa24664ade5b3500a0acd8ec3369c4c22c2ca131095573a5f0692b7b51"
+    },
+    "cantor": {
+      "classes": {
+        "Model": 1,
+        "NumberValue": 1,
+        "MeshPart": 1,
+        "StringValue": 4,
+        "Vector3Value": 1
+      },
+      "resources": [
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://101437789511725"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://72578772131617"
+        }
+      ],
+      "serialized_model_sha256": "6f54a0b068d7cae16abcd081757ac27ed79d4f89c7b0a66b3985b3929946b3b6"
+    },
+    "judge": {
+      "classes": {
+        "Model": 1,
+        "NumberValue": 1,
+        "MeshPart": 2,
+        "StringValue": 5,
+        "Vector3Value": 1
+      },
+      "resources": [
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://108809635736825"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://79494776083447"
+        },
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://99780316031445"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://79494776083447"
+        }
+      ],
+      "serialized_model_sha256": "3fe5ae5961ecf26723fe22644e8feefc1cbb645e62fb3b19e6f511095fef1890"
+    },
+    "inquisitor": {
+      "classes": {
+        "Model": 1,
+        "NumberValue": 2,
+        "MeshPart": 2,
+        "StringValue": 5,
+        "Vector3Value": 2
+      },
+      "resources": [
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://118740795010390"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://76736841559969"
+        },
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://114519889978699"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://76736841559969"
+        }
+      ],
+      "serialized_model_sha256": "e56765fc881d5586e76819463c4029fe70f31b0a992dfd013e895c90a27cd374"
+    },
+    "grand": {
+      "classes": {
+        "Model": 1,
+        "NumberValue": 2,
+        "MeshPart": 1,
+        "StringValue": 4,
+        "Vector3Value": 2
+      },
+      "resources": [
+        {
+          "property": "MeshId",
+          "value": "rbxassetid://109627235087690"
+        },
+        {
+          "property": "TextureID",
+          "value": "rbxassetid://113092222583557"
+        }
+      ],
+      "serialized_model_sha256": "ccb273ae594b5d8c3f7eb9adf3bad68721cfdbae49dd09a03672cbaf9b363349"
+    }
+  },
+  "acceptance_pending": [
+    "RPG asset permissions and actual loads",
+    "visual comparison including TD runtime decorations",
+    "rig and motion compatibility",
+    "device and multiplayer performance"
+  ]
+}
