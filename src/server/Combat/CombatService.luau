@@ -237,6 +237,28 @@ local function stunEnemy(enemy,duration,current,classId)
  enemy.humanoid.WalkSpeed=0;stopEnemy(enemy);setEnemyState(enemy,'Stunned')
 end
 
+-- A confirmed hit can stop an ordinary enemy's uncommitted windup. Keep the
+-- ordered sample time: an earlier player hit must cancel a queued enemy hit
+-- even when both windows are processed after a short server stall.
+local function interruptEnemyOnHit(enemy, attack, current)
+ local pending = enemy.attack
+ local impactAt = attack.resolvedSampleAt or current
+ if not pending or not pending.started or pending.sampledActive
+  or impactAt < pending.started or impactAt > pending.started + pending.definition.windup
+  or current < (enemy.hitInterruptImmuneUntil or 0)
+  or enemy.kind == "Ogre" or enemy.model:GetAttribute("StoryBoss")
+  or enemy.mode == "Exposed" or (enemy.stunUntil and current < enemy.stunUntil) then return end
+ resetEnemyAttack(enemy)
+ enemy.hitReactUntil = current + Config.Enemy.HitStun
+ enemy.hitInterruptImmuneUntil = current + Config.Enemy.HitInterruptImmunity
+ enemy.model:SetAttribute("K0EnemyHitUntil", workspace:GetServerTimeNow() + Config.Enemy.HitStun)
+ enemy.pathToken += 1
+ enemy.pathPending, enemy.waypoints = false, nil
+ enemy.humanoid.WalkSpeed = 0
+ stopEnemy(enemy)
+ setEnemyState(enemy, "Staggered")
+end
+
 local function damagePosture(enemy, amount, current)
 	if current < enemy.postureImmuneUntil or enemy.mode == "Exposed" or not enemyAlive(enemy) then
 		return
@@ -623,14 +645,6 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 			playerState.counter.expires = current + Config.Guard.counterDuration
 		end
 		updateFeedback(playerState, "Blocked")
-	else
-		playerState.queued = nil
-		playerState.counter = nil
-		clearAction(playerState)
-		resetCombo(playerState)
-		playerState.stunnedUntil = current + Config.HitStun
-		setPlayerState(playerState, "Stunned")
-		updateFeedback(playerState, "Interrupted")
 	end
 	if playerState.guardedUntil and current<playerState.guardedUntil then multiplier=multiplier*(1-playerState.guardReduction) end
 	if playerState.rallyUntil and current < playerState.rallyUntil then multiplier = multiplier * 0.8 end
@@ -646,6 +660,14 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	playerState.humanoid:TakeDamage(damage)
 	local applied = math.max(0, healthBefore - math.max(0, playerState.humanoid.Health))
 	if applied > 0 then
+  if result ~= "Blocked" and playerState.humanoid.Health > 0 then
+   playerState.queued, playerState.counter = nil, nil
+   clearAction(playerState)
+   resetCombo(playerState)
+   playerState.stunnedUntil = current + Config.HitStun
+   setPlayerState(playerState, "Stunned")
+   updateFeedback(playerState, "Interrupted")
+  end
 		-- Committed health loss only: guards, barriers and ForceFields may absorb it.
 		playerState.character:SetAttribute("K0HurtDamage", applied)
 		playerState.character:SetAttribute("K0HurtMaxHealth", playerState.humanoid.MaxHealth)
@@ -724,6 +746,7 @@ local function damageEnemy(state, enemy, attack, current)
 		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, attack.isSkill and attack.definition.id or nil)
 	end
 	if enemy.humanoid.Health > 0 then
+  if applied > 0 then interruptEnemyOnHit(enemy, attack, current) end
 		if applied>0 and d.advanced then
    applyProvokeDebuffs(enemy,d,current)
 			if d.mark then enemy.branchMarks=enemy.branchMarks or {};enemy.branchMarks[state.heroId]={kind=d.mark,expires=current+8};enemy.model:SetAttribute("K0BranchMark",d.mark) end
@@ -754,7 +777,7 @@ local function damageEnemy(state, enemy, attack, current)
 			enemy.humanoid.WalkSpeed = enemy.config.walkSpeed * enemy.gravityMultiplier
 			enemy.model:SetAttribute("K0GravityUntil", workspace:GetServerTimeNow() + attack.definition.slowDuration)
 		end
-		if not enemy.attack and enemy.mode ~= "Exposed" and not enemy.stunUntil then setEnemyState(enemy, "Chase") end
+		if not enemy.attack and enemy.mode ~= "Exposed" and not enemy.stunUntil and not enemy.hitReactUntil then setEnemyState(enemy, "Chase") end
 		local posture=d.posture
 		if d.advanced then
 			if attack.branchMarked then posture=posture+(d.markPosture or 0) end
@@ -1128,6 +1151,7 @@ local function processCombatSamples(current, requiredState)
 			local state = sample.player
 			if validPlayers[state] and alive(state) and state.mode == "Attack" and state.attack == attack then
 				attack.sampledActive = true
+    attack.resolvedSampleAt = sample.at
 				if sample.advancedIndex then
 					attack.advancedFired=math.max(attack.advancedFired or 0,sample.advancedIndex)
 					AdvancedCombat.resolve(state,attack,current,{enemies=enemyStates,clear=unobstructed,damage=damageEnemy,move=skillStep,
@@ -1390,6 +1414,8 @@ local function resetEnemy(enemy)
 	enemy.model:SetAttribute("K0DefenseBreakUntil", nil)
 	enemy.model:SetAttribute("K0ProvokeUntil", nil)
 	enemy.stunUntil=nil;enemy.model:SetAttribute('K0EnemyStunUntil',nil);enemy.model:SetAttribute('K0EnemyStunClass',nil)
+	enemy.hitReactUntil, enemy.hitInterruptImmuneUntil = nil, nil
+ enemy.model:SetAttribute("K0EnemyHitUntil", nil)
 	enemy.pattern = 0
 	enemy.posture = enemy.config.posture
 	enemy.postureImmuneUntil = 0
@@ -1422,6 +1448,14 @@ local function stepEnemy(enemy, current, dt)
   enemy.stunUntil=nil;enemy.model:SetAttribute('K0EnemyStunUntil',nil);enemy.model:SetAttribute('K0EnemyStunClass',nil)
   enemy.humanoid.WalkSpeed=enemy.config.walkSpeed*((enemy.gravityUntil and current<enemy.gravityUntil)and(enemy.gravityMultiplier or 1)or 1)
   setEnemyState(enemy,enemy.exposedUntil and enemy.posture<=0 and 'Exposed' or 'Idle')
+ end
+ if enemy.hitReactUntil then
+  if current < enemy.hitReactUntil and enemy.mode ~= "Exposed" then
+   enemy.humanoid.WalkSpeed=0;stopEnemy(enemy);setEnemyState(enemy,"Staggered");return
+  end
+  enemy.hitReactUntil=nil;enemy.model:SetAttribute("K0EnemyHitUntil",nil)
+  enemy.humanoid.WalkSpeed=enemy.config.walkSpeed*((enemy.gravityUntil and current<enemy.gravityUntil)and(enemy.gravityMultiplier or 1)or 1)
+  if enemy.mode == "Staggered" then setEnemyState(enemy,"Idle") end
  end
 	if enemy.mode == "Exposed" then
 		if current >= enemy.exposedUntil then
@@ -1650,6 +1684,7 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	humanoid.Died:Connect(function()
 		if enemy.deathHandled then return end
 		enemy.deathHandled = true
+  enemy.hitReactUntil=nil;model:SetAttribute("K0EnemyHitUntil",nil)
   enemy.stunUntil=nil;model:SetAttribute("K0EnemyStunUntil",nil);model:SetAttribute("K0EnemyStunClass",nil)
 		local winner=enemy.lastAttacker
 		if not model:GetAttribute("DeepwoodEncounter") and not splitGroup and rewardHandler and winner and playerStates[winner.player]==winner and winner.player.Parent==Players then

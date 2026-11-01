@@ -117,6 +117,7 @@ local context = setmetatable({
 	horizontalUnit = function(_, fallback) return fallback end,
 	stopEnemy = function(enemy) enemy.stopped = true end,
 	setEnemyState = function(enemy, state) enemy.mode = state end,
+ workspace = { GetServerTimeNow = function() return 0 end },
 }, { __index = _G })
 local chunk, loadError = load("local lastGoblinStart=-math.huge\n" .. beginSource .. "\nreturn beginEnemyAttack,function() return lastGoblinStart end", "K0 actual attack-start contract", "t", context)
 assert(chunk, loadError)
@@ -125,7 +126,7 @@ local function mockEnemy(kind)
 	local attributes = {}
 	return { kind = kind, config = assert(Config.Enemy[kind]), pattern = 0, attackSeq = 0, pathToken = 0,
 		root = { Position = 0, CFrame = { LookVector = "forward" } },
-		model = { SetAttribute = function(_, key, value) attributes[key] = value end }, attributes = attributes }
+		model = { GetAttribute = function(_, key) return attributes[key] end, SetAttribute = function(_, key, value) attributes[key] = value end }, attributes = attributes }
 end
 local target = { root = { Position = 1 } }
 local orcEnemy = mockEnemy("Orc")

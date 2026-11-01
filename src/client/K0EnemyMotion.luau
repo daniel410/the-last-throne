@@ -69,6 +69,7 @@ function Motion.step(s,dt,current)
  local state=s.model:GetAttribute('K0EnemyState');local alive=s.model:FindFirstChildOfClass('Humanoid')
  if state=='Dead' or not alive or alive.Health<=0 then WeaponMotion.hide(s.weaponFX);return end
  local stunned=(s.model:GetAttribute('K0EnemyStunUntil') or 0)>current
+  or (s.model:GetAttribute('K0EnemyHitUntil') or 0)>current
  local moving=not stunned and state=='Chase' and distance<math.max(3,s.height*1.5)
  local speed=dt>0 and distance/dt or 0
  if moving then s.phase=(s.phase+distance/(s.height*s.profile.stride))%1 end

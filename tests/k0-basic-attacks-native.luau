@@ -322,6 +322,95 @@ return {
 		equal(state.character:GetAttribute("K0AttackStartedAt"), nil, "cancel clears animation clock")
 	end)
 
+
+ for _, classId in ipairs({"knight", "dwarf"}) do
+  for combo, reach in ipairs(classId == "knight" and {5.5, 5.5, 6} or {5.5}) do
+   for _, targeted in ipairs({false, true}) do
+    case(classId.."-reach-"..combo.."-targeted-"..tostring(targeted), function()
+     api.injectResolver(function() return classId end)
+     local state = spawnPlayer()
+     local function strike(distance, wall)
+      enemies:ClearAllChildren();table.clear(api.enemyStates)
+      local enemy = spawnEnemy(distance)
+      if wall then
+       local part=Instance.new("Part");part.Name="Wall";part.Anchored=true
+       part.Size=Vector3.new(12,8,1);part.Position=origin+Vector3.new(0,0,-3);part.Parent=fixture
+      end
+      state.combo=combo-1;state.lastAttackFinished=0
+      api.startAttack(state,0,targeted and enemy.model or nil)
+      local d=state.attack.definition
+      sample(d.windup+(d.hitDelay or 0)+.001)
+      return enemy.humanoid.Health
+     end
+     near(strike(reach-.05),10000-({75,90,120})[combo],"new outer reach hits with original damage")
+     near(strike(reach+.05),10000,"outside new reach misses")
+     near(strike(reach-.05,true),10000,"wall still blocks extended reach")
+    end)
+   end
+  end
+ end
+ case("ordinary-windup-interrupt-removes-queued-damage",function()
+  api.injectResolver(function()return "knight"end)
+  local state=spawnPlayer();local enemy=spawnEnemy(3,"Orc")
+  enemy.postureImmuneUntil=math.huge
+  api.beginEnemyAttack(enemy,state,0)
+  local oldAttack=enemy.attack
+  -- Both windows are due on this sample; the sword's earlier hit wins.
+  oldAttack.definition=table.clone(oldAttack.definition);oldAttack.definition.windup=.2
+  action(state,"Attack",0);local hp=state.humanoid.Health;sample(.25)
+  equal(enemy.attack,nil,"windup attack really cancelled")
+  equal(enemy.mode,"Staggered","server enters short hit reaction")
+  near(state.humanoid.Health,hp,"cancelled queued attack causes no ghost damage")
+  equal(enemy.model:GetAttribute("K0EnemyAttackClock"),nil,"cancel also clears visible weapon attack")
+  equal(enemy.model:GetAttribute("K0Telegraph"),"None","cancel removes warning")
+  api.stepEnemy(enemy,.499,1/60);equal(enemy.mode,"Staggered","reaction lasts .25 seconds")
+  api.stepEnemy(enemy,.5,1/60);equal(enemy.hitReactUntil,nil,"reaction expires")
+  near(enemy.humanoid.WalkSpeed,enemy.config.walkSpeed,"movement restored")
+  api.beginEnemyAttack(enemy,state,.5);local nextAttack=enemy.attack
+  api.startAttack(state,.5);sample(.67)
+  equal(enemy.attack,nextAttack,"short immunity prevents endless basic-hit interruption")
+  api.resetEnemy(enemy);equal(enemy.hitInterruptImmuneUntil,nil,"reset clears immunity")
+  equal(enemy.model:GetAttribute("K0EnemyHitUntil"),nil,"reset clears presentation")
+ end)
+ case("ordinary-hit-respects-committed-attacks-and-bosses",function()
+  for _,variant in ipairs({"boss","active","zero-damage"})do
+   reset();api.injectResolver(function()return "knight"end)
+   local state=spawnPlayer();local enemy=spawnEnemy(5)
+   enemy.postureImmuneUntil=math.huge
+   if variant=="boss" then enemy.model:SetAttribute("StoryBoss",true) end
+   if variant=="zero-damage" then local ff=Instance.new("ForceField");ff.Parent=enemy.model end
+   api.beginEnemyAttack(enemy,state,0);local pending=enemy.attack
+   if variant=="active" then pending.sampledActive=true end
+   action(state,"Attack",0);sample(.17)
+   equal(enemy.attack,pending,variant.." does not gain a basic interruption")
+   equal(enemy.hitReactUntil,nil,variant.." has no artificial stagger")
+  end
+ end)
+ case("fully-absorbed-hit-does-not-interrupt-hero",function()
+  api.injectResolver(function()return "knight"end)
+  local state=spawnPlayer();local enemy=spawnEnemy(3,"Orc")
+  action(state,"Attack",0);local pending=state.attack
+  state.branchShield={amount=1000,expires=10}
+  local attack={origin=enemy.root.Position,direction=Vector3.new(0,0,1),definition=enemy.config.attacks[1],hits={}}
+  local hp=state.humanoid.Health
+  api.applyPlayerHit(enemy,state,attack,.1)
+  near(state.humanoid.Health,hp,"barrier absorbs damage")
+  equal(state.attack,pending,"fully absorbed hit preserves hero action")
+  equal(state.character:GetAttribute("K0HurtAt"),nil,"fully absorbed hit creates no body or screen pulse")
+ end)
+ case("orc-shield-bash-at-extended-range",function()
+  api.injectResolver(function()return "knight"end)
+  local state=spawnPlayer();local enemy=spawnEnemy(4.8,"Orc")
+  api.beginEnemyAttack(enemy,state,0)
+  action(state,"Skill1",0);sample(.21)
+  equal(enemy.humanoid.Health<10000,true,"Orc receives Shield Bash at 4.8 studs")
+  near(enemy.stunUntil,5.21,"Orc receives the full five-second shield stun")
+  equal(enemy.mode,"Stunned","Orc is stunned")
+  equal(enemy.attack,nil,"Orc pending attack cancelled")
+  near(enemy.humanoid.WalkSpeed,0,"Orc cannot move while stunned")
+  api.stepEnemy(enemy,5.209,1/60);equal(enemy.mode,"Stunned","Orc cannot resume early")
+  api.stepEnemy(enemy,5.21,1/60);equal(enemy.stunUntil,nil,"Orc resumes after expiry")
+ end)
 	case("knight-can-hit-low-slime-once", function()
 		api.injectResolver(function() return "knight" end)
 		local state = spawnPlayer()

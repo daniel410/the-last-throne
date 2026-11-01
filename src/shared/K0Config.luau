@@ -17,9 +17,9 @@ local Config = {
 	AttackMaxTargets = 3,
 	AttackHeight = 7,
 	Attacks = {
-		{ windup = 0.16, active = 0.10, recovery = 0.16, damage = 0.75, posture = 12, range = 4.5, angle = 100 },
-		{ windup = 0.18, active = 0.10, recovery = 0.18, damage = 0.90, posture = 14, range = 4.5, angle = 110 },
-		{ windup = 0.26, active = 0.12, recovery = 0.24, damage = 1.20, posture = 24, range = 5.0, angle = 100 },
+		{ windup = 0.16, active = 0.10, recovery = 0.16, damage = 0.75, posture = 12, range = 5.5, angle = 100 },
+		{ windup = 0.18, active = 0.10, recovery = 0.18, damage = 0.90, posture = 14, range = 5.5, angle = 110 },
+		{ windup = 0.26, active = 0.12, recovery = 0.24, damage = 1.20, posture = 24, range = 6.0, angle = 100 },
 	},
 	Guard = { raiseTime = 0.10, perfectTime = 0.15, cooldown = 0.40, angle = 120, damageMultiplier = 0.2, counterDuration = 1.5 },
 	Dodge = { duration = 0.65, moveDuration = 0.30, distance = 7, invulnerableStart = 0.08, invulnerableEnd = 0.28 },
@@ -52,6 +52,8 @@ local Config = {
 				{ name = "Unblockable", windup = 1.50, active = 0.15, recovery = 1.60, range = 8, angle = 360, damage = 180, blockable = false },
 			},
 		},
+		HitStun = 0.25,
+		HitInterruptImmunity = 1.25,
 		PostureDelay = 4,
 		PostureRegenFraction = 0.10,
 		PostureImmunity = 3,
@@ -81,7 +83,7 @@ Config.BasicAttackProfiles = {
 	},
 	dwarf = {
 		id = "dwarf.axe.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,
-		attacks = {{ windup = 0.16, active = 0.10, hitDelay = 0.06, recovery = 0.16, damage = 0.75, posture = 12, range = 4.5, angle = 100 }},
+		attacks = {{ windup = 0.16, active = 0.10, hitDelay = 0.06, recovery = 0.16, damage = 0.75, posture = 12, range = 5.5, angle = 100 }},
 	},
 	mage = {
 		id = "mage.staff.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,
@@ -93,7 +95,7 @@ Config.BasicAttackProfiles = {
 -- Physical skills use only their own cooldown; magic also costs mana.
 Config.Skills = {
 	knight = {
-		{ id = "knight.common.bash", name = "SHIELD BASH", requiresShield = true, cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 4, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash", stunDuration = 5, description = "Strike with your shield and stun enemies hit for 5 seconds." },
+		{ id = "knight.common.bash", name = "SHIELD BASH", requiresShield = true, cooldown = 10, windup = 0.20, active = 0.10, recovery = 0.40, damage = 0.8, posture = 55, range = 5, angle = 80, maxHeight = 7, maxTargets = 3, effect = "bash", stunDuration = 5, description = "Strike with your shield and stun enemies hit for 5 seconds." },
 		{ id = "knight.common.whirlwind", name = "WHIRLWIND", cooldown = 8, windup = 0.25, active = 0.18, recovery = 0.4, damage = 1.0, posture = 18, range = 7, angle = 360, maxHeight = 7, maxTargets = 8, effect = "whirlwind" },
 		{ id = "knight.common.provoke", name = "PROVOKE", cooldown = 12, windup = 0.25, active = 0.1, recovery = 0.3, damage = 0, posture = 0, range = 12, angle = 360, maxHeight = 10, maxTargets = 8, effect = "provoke", provokeDuration = 4, attackDownDuration = 4, attackDownMultiplier = 0.85, defenseBreakDuration = 4, description = "Taunt enemies. They deal 15% less damage and take 10% more damage for 4 seconds.", defenseBreakDamageMultiplier = 1.10 },
 	},
@@ -103,7 +105,7 @@ Config.Skills = {
 		{ id = "elf.common.multi", name = "MULTI SHOT", cooldown = 10, windup = 0.30, active = 0.10, recovery = 0.35, damage = 0.75, posture = 8, range = 50, angle = 70, maxHeight = 10, maxTargets = 5, effect = "multi", ranged = true },
 	},
 	dwarf = {
-		{ id = "dwarf.common.overhead", name = "OVERHEAD SMASH", cooldown = 6, windup = 0.65, active = 0.18, hitDelay = 0.06, recovery = 0.30, damage = 1.4, posture = 25, range = 5, angle = 80, maxHeight = 7, maxTargets = 1, effect = "overhead" },
+		{ id = "dwarf.common.overhead", name = "OVERHEAD SMASH", cooldown = 6, windup = 0.65, active = 0.18, hitDelay = 0.06, recovery = 0.30, damage = 1.4, posture = 25, range = 6, angle = 80, maxHeight = 7, maxTargets = 1, effect = "overhead" },
 		{ id = "dwarf.common.throw", name = "AXE THROW", cooldown = 7, windup = 0.30, active = 0.10, recovery = 0.30, damage = 1.1, posture = 18, range = 32, angle = 45, maxHeight = 10, maxTargets = 1, effect = "throw", ranged = true },
 		{ id = "dwarf.common.ground", name = "GROUND SLAM", cooldown = 10, windup = 0.35, active = 0.18, hitDelay = 0.06, recovery = 0.40, damage = 1.2, posture = 30, range = 6, angle = 360, maxHeight = 7, maxTargets = 8, effect = "slam", stunDuration = 5, description = "Slam nearby enemies and stun targets hit for 5 seconds." },
 	},

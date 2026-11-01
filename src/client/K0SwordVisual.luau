@@ -21,6 +21,7 @@ for _, skill in ipairs(Config.Skills.dwarf) do
 end
 assert(groundSlam and overheadSmash, "Dwarf skill configuration is missing")
 
+local HitFeedback = require(script.Parent.K0PlayerHitFeedback)
 local Visual = {}
 local shieldSkills={}
 for _,d in ipairs(Config.Skills.knight) do if d.requiresShield or d.shield or d.counterPosture or d.name:find("SHIELD",1,true) then shieldSkills[d.id]=true end end
@@ -510,6 +511,8 @@ function Visual.renderArms(character, dt, now)
 			rightKneePose, leftKneePose = motion.rightKnee, motion.leftKnee
 		end
 	end
+ local hurtPose = HitFeedback.bodyPose(character, now or Workspace:GetServerTimeNow())
+ if hurtPose then torso = (torso or CFrame.identity) * hurtPose end
 	local function apply(joint, target)
 		if not joint then return end
 		local previous = armPoses[joint]
@@ -560,8 +563,8 @@ function Visual.renderArms(character, dt, now)
 		local root = character:FindFirstChild("HumanoidRootPart")
 		local rootJoint = root and root:FindFirstChild("RootJoint")
 		if rootJoint and rootJoint:IsA("Motor6D") then
-			local rootPose = motion and torso or classId == "knight" and (skillId == "knight.common.whirlwind" or skillId == "knight.common.bash") and torso or nil
-			if motion and rootPose then
+			local rootPose = hurtPose and torso or motion and torso or classId == "knight" and (skillId == "knight.common.whirlwind" or skillId == "knight.common.bash") and torso or nil
+			if (motion or hurtPose) and rootPose then
 				local basis = rootJoint.C0.Rotation
 				rootPose = basis:Inverse() * rootPose * basis
 			end

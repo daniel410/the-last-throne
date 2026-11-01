@@ -4,6 +4,17 @@ local TweenService = game:GetService("TweenService")
 local Feedback = {}
 local pitches = {knight = .98, dwarf = .88, elf = 1.08, mage = 1.02}
 
+-- Observers use the same committed health-loss timestamp as the local overlay.
+function Feedback.bodyPose(character, current)
+    local at = character:GetAttribute("K0HurtAt")
+    if type(at) ~= "number" or character:GetAttribute("K0State") == "Dead"
+        or character:GetAttribute("TLTDeathFalling") then return nil end
+    local age = current - at
+    if age < 0 or age >= .22 then return nil end
+    local weight = age < .035 and age / .035 or ((.22 - age) / .185) ^ 2
+    return CFrame.Angles(math.rad(-9 * weight), 0, math.rad(3 * weight))
+end
+
 function Feedback.create(parent)
     local gui = Instance.new("ScreenGui")
     gui.Name, gui.IgnoreGuiInset, gui.ResetOnSpawn, gui.DisplayOrder = "K0PlayerHitFeedback", true, false, 85

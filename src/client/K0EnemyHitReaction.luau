@@ -1,4 +1,4 @@
--- Visual flinch only. It never interrupts attacks, moves server roots or stuns.
+-- Local flinch composes with server-owned interruption; it never moves roots.
 local Workspace = game:GetService("Workspace")
 local Reaction = {}
 local hits = setmetatable({}, {__mode = "k"})
