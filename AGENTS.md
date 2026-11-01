@@ -17,7 +17,7 @@ Throne Defense와 세계관·메뉴·아이콘·이미지·3D 원본을 공유�
 
 ## 유지할 제품 계약
 
-- 플레이어는 Knight, Elf Archer, Dwarf Axe Thrower, Mage의 4클래스다. 최초 클래스는 불변이다. Priest/Selene는 NPC·선택형 지원이며 플레이어 전직/트리를 만들지 않는다.
+- 플레이어는 Knight, Elf Archer, Dwarf Axe Thrower, Mage의 4클래스다. 최초 클래스는 불변이다. Priestess/Selene는 NPC·선택형 지원이며 플레이어 전직/트리를 만들지 않는다.
 - 클래스별 2계열, Lv20/40/60/80 전직을 유지한다. 강철기사 이외의 상위 전직 이름과 신규 영문 번역은 가칭으로 표시한다.
 - STR/DEX/INT/VIT의 스탯 포인트는 `4 × (level - 1)`, Lv80 총316이다. 스킬포인트 기준안 `level - 1`, 총79와 별도다. 기본 능력치·파생 능력치·배분 포인트를 혼용하지 않는다.
 - Mage는 비전/바람 훈련과 기초 물 → Lv20 Pyro/Cryo → Lv40 Pyro 대지/Cryo 번개 → Lv60 대규모 광역 → Lv80 최강 주문의 성장 방향을 지킨다.

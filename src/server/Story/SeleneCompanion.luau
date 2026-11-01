@@ -15,7 +15,7 @@ function M.create(o)
  local function prompt(model,name,action,offset,follow)
   local old=model.PrimaryPart:FindFirstChild(name);if old then old:Destroy() end
   local anchor=Instance.new('Attachment');anchor.Name=name;anchor.Position=Vector3.new(offset,0,0);anchor.Parent=model.PrimaryPart
-  local p=Instance.new('ProximityPrompt');p.Name=name;p.Style=Enum.ProximityPromptStyle.Custom;p.ObjectText='Selene · Priest';p.ActionText=action;p.HoldDuration=.4;p.MaxActivationDistance=12;p.RequiresLineOfSight=false;p.KeyboardKeyCode=Enum.KeyCode.F;p.GamepadKeyCode=Enum.KeyCode.ButtonX;p.Parent=anchor
+  local p=Instance.new('ProximityPrompt');p.Name=name;p.Style=Enum.ProximityPromptStyle.Custom;p.ObjectText='Selene · Priestess';p.ActionText=action;p.HoldDuration=.4;p.MaxActivationDistance=12;p.RequiresLineOfSight=false;p.KeyboardKeyCode=Enum.KeyCode.F;p.GamepadKeyCode=Enum.KeyCode.ButtonX;p.Parent=anchor
   p.Triggered:Connect(function(player) api.select(player,follow) end)
  end
  local function selectionPrompts(model)

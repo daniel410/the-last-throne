@@ -58,7 +58,7 @@ function Book.create(parent,track)
     end end
     card('NEXT STORY',{'Complete this story to open the next region. Combat alone may not finish an investigation, rescue, or report.'})
    else card('EPIC COMPLETE',{'The city is safe and the workshops are running again! The key was taken toward Gloamwood. That expedition is still being prepared. Finish optional quests or return to the lobby.'}) end
-   card('SELENE · PRIEST',{current.selene or (P.seleneUnlocked(s) and 'Available · Invite Selene at the elder tree camp.' or 'Help the convoy reach camp, then report to Selene to unlock her for free.')})
+   card('SELENE · PRIESTESS',{current.selene or (P.seleneUnlocked(s) and 'Available · Invite Selene at the elder tree camp.' or 'Help the convoy reach camp, then report to Selene to unlock her for free.')})
   elseif tab=='Side' then
    card('OPTIONAL STORIES',{'Discover a field clue or speak to a resident. Read the request, then choose ACCEPT or LATER.','Accepted quests never block the main stories. Report to the named resident when the work is done.'})
    local count=0

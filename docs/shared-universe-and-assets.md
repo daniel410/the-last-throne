@@ -1,6 +1,6 @@
 # Throne Defense와 공유할 세계관·캐릭터·3D 자산
 
-> **2026-10-30 사용자 재확인:** Priest 수녀 Selene는 이야기 NPC이자 선택 가능한 동행 서포터다. TD의 Priest 영웅(`priestess`)·Light Nun 등 타워 자산을 재사용한다. 회복·보호·정화로 돕고 기존 인원별 동행 슬롯을 따른다. 플레이어는4클래스이며 수녀 전직/트리는 없다. [현재 5에픽 줄거리](production/five-epic-adventure-story-2026-10-30.md)에 지역별 역할을 반영했다. 아래 과거의 심오한 인물 서사보다 현재의 쉬운 우정·구조 모험을 우선한다.
+> **2026-10-30 사용자 재확인:** Priestess 수녀 Selene는 이야기 NPC이자 선택 가능한 동행 서포터다. TD의 Priestess 영웅(`priestess`)·Light Nun 등 타워 자산을 재사용한다. 회복·보호·정화로 돕고 기존 인원별 동행 슬롯을 따른다. 플레이어는4클래스이며 수녀 전직/트리는 없다. [현재 5에픽 줄거리](production/five-epic-adventure-story-2026-10-30.md)에 지역별 역할을 반영했다. 아래 과거의 심오한 인물 서사보다 현재의 쉬운 우정·구조 모험을 우선한다.
 
 버전0.24 · 갱신 기준2026-10-27 · [기획 본문](game-design.md) · [업데이트 제안서](../../throne-defense/docs/throne-chronicles-rpg-proposal.md)
 
@@ -73,9 +73,9 @@ Throne Defense의 기존 게시본과 저장을 이 기획 작업으로 수정�
 | `elf` | Elf Archer · Bow & Arrow | 엘프 궁수·녹색·활/화살, 명궁/마법궁수 |
 | `dwarf` | Dwarf Axe Thrower · Axe | 드워프·갈색/주황·투척 도끼 원형, 강철/화약. 화약 계열은 보조 총포·폭탄 활용 |
 | `mage` | Mage · Wand | 비전/바람+기초 물 입문,20 Pyro/Cryo,40 Pyro 대지/Cryo 번개,60 광역,80 최강 주문 |
-| `priestess` | Priest · Holy Lantern | 성녀·백금·성광/등불. RPG 플레이어 클래스가 아닌 교단NPC·선택형 지원 동료 |
+| `priestess` | Priestess · Holy Lantern | 성녀·백금·성광/등불. RPG 플레이어 클래스가 아닌 교단NPC·선택형 지원 동료 |
 
-TD 타워 팩션의 `wizard`는 플레이어 영웅의 `mage`에 대응한다. `priestess`는 표시명이 Priest여도 기존 키다. RPG 내부 ID는 별도 명명하되 명시적 대응표를 두고 표시명을 저장 키로 사용하지 않는다. `priestess`는 TD 키로 보존하고 RPG에서는NPC 원형/동료ID에 대응하며 플레이어 생성용 `baseClassId`에 포함하지 않는다. 타 클래스의 키를 전직 계열로 기록해서는 안 된다.
+TD 타워 팩션의 `wizard`는 플레이어 영웅의 `mage`에 대응한다. `priestess`는 표시명이 Priestess여도 기존 키다. RPG 내부 ID는 별도 명명하되 명시적 대응표를 두고 표시명을 저장 키로 사용하지 않는다. `priestess`는 TD 키로 보존하고 RPG에서는NPC 원형/동료ID에 대응하며 플레이어 생성용 `baseClassId`에 포함하지 않는다. 타 클래스의 키를 전직 계열로 기록해서는 안 된다.
 
 RPG 플레이어 원형4종과 세렌·에린·브란·이리아·셀레네5명은 각각 **플레이어 클래스와 개인 인물**이다. 성녀 셀레네는 주요 서사 인물·선택형 지원 동료로 유지한다. 리그·장비 키트를 공유할 수 있지만, 초상·얼굴·음성·개인 행동을 구분한다.
 
@@ -101,8 +101,8 @@ RPG 플레이어 원형4종과 세렌·에린·브란·이리아·셀레네5명�
 | 마법사 | Lv20 Cryo 전직 | Cryomancer | 빙결 교관·주력 서리 주문 표현 |
 | 마법사 | Lv40 Pyro 대지 학습 | Geomancer | 대지 교관·지형/분출 표현 |
 | 마법사 | Lv40 Cryo 번개 학습 | Voltmancer | 번개 교관·연쇄 주문 표현 |
-| 성녀NPC | 심판·정화 지원 역할 | Judgment Priest / Inquisitor / High Priest | 성광·정화·심문 표현, 교단 인물·지원군 |
-| 성녀NPC | 축복·보호 지원 역할 | Light Nun / Blessing Priest / Holy Cantor | 보호·축복 표현, 치유 시설·교단 NPC |
+| 성녀NPC | 심판·정화 지원 역할 | Judgment Priestess / Inquisitor / High Priestess | 성광·정화·심문 표현, 교단 인물·지원군 |
+| 성녀NPC | 축복·보호 지원 역할 | Light Nun / Blessing Priestess / Holy Cantor | 보호·축복 표현, 치유 시설·교단 NPC |
 
 **Crusader는 Paladin과 함께 성기사 계열**이라는 사용자 결정을 따른다. 기존 회전 공격은 RPG에서 성광을 두른 근접 광역으로 발전시키는 후보이며, 기존 TD의 공격 속성·역할·코드를 바꾼 것이 아니다. 성기사는 계속 기사 클래스에 속하며 NPC 성녀의 지원 기술/성장을 가져오지 않는다.
 

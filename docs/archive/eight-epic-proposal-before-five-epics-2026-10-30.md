@@ -57,7 +57,7 @@
 
 ## 3 Throne Defense에서 이어받을 정체성
 
-기존 제품의 핵심 기반은 수정 왕좌, 보라 포탈, Knight·Elf Archer·Dwarf Axe Thrower·Mage·Priest의 다섯 영웅, 다섯 팩션의 타워, 숲·설원·화산·묘지 테마다. RPG에서는 영웅의 직접 행동과 세계 탐험이 중심이 된다.
+기존 제품의 핵심 기반은 수정 왕좌, 보라 포탈, Knight·Elf Archer·Dwarf Axe Thrower·Mage·Priestess의 다섯 영웅, 다섯 팩션의 타워, 숲·설원·화산·묘지 테마다. RPG에서는 영웅의 직접 행동과 세계 탐험이 중심이 된다.
 
 | 기존 기반 | 새 RPG에서의 발전 |
 | --- | --- |

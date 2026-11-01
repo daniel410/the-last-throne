@@ -13,18 +13,18 @@ Selene는 기존 `nun` 모델과 무료 영입·선택 동행 역할을 유지�
 - [공유 레지스트리](../../assets/shared/td-asset-registry.json)의 `model.towers`는 `../throne-defense/assets/models/meshy-factions-refresh-v1/runtime.rbxmx`를 가리킨다.
 - 현재 TD `default.project.json`의 `ServerStorage.TowerModels`는 **`../throne-defense/assets/models/blender-mcp-rapid-v2/runtime.rbxmx`**를 참조한다. 레지스트리 경로와 다르므로 옛 경로를 최신으로 간주하면 안 된다.
 - 현재 파일 SHA-256: `8d5c66f001dd1a59081ac91e43a7115be6b6af6d63102ec9d90436de29473ad6`, 226,671 bytes. 로컬 XML에서 여섯 원형을 모두 확인했다. 상세 부품/리소스·소스 커밋·프로젝트 해시는 [원본 감사 JSON](2026-11-01-td-priest-npc-source-audit.json)에 기록했다. TD 작업 트리에 변경이 있으므로 커밋ID만으로 현재 바이트를 대표하지 않는다.
-- `src/Shared/Config.lua`의 Priest 목록은 `nun`, `blessing`, `judge`, `cantor`, `inquisitor`, `grand`다. 아래 영어 직함은 TD의 기존 명칭이다.
+- `src/Shared/Config.lua`의 Priestess 목록은 `nun`, `blessing`, `judge`, `cantor`, `inquisitor`, `grand`다. 아래 영어 직함은 RPG의 최신 Priestess 통일 표기다. TD 원문 명칭은 별도 원본에 보존한다.
 - 별도의 `towers-priests-design-v1` Blender/GLB 6종도 존재하지만 manifest는 `local review not Studio integration`이라고 명시한다. 이 미적용 후보를 현재 TD 런타임 모델과 혼동하지 않는다.
 - Selene의 현행 RPG 자산은 [별도 manifest](../../assets/shared/td-selene/manifest.json)에 고정된 기존 `nun`이다. 이번 조사로 자동 교체하지 않는다.
 
 | TD 키 / 기존 명칭 | 현재 XML의 MeshPart 수 | 재사용 판단 |
 | --- | ---: | --- |
 | `nun` / Light Nun | 3 | Selene 현행 적용 유지 |
-| `blessing` / Blessing Priest | 3 | 추가 고정 NPC 후보 |
-| `judge` / Judgment Priest | 2 | 추가 조사 NPC 후보 |
+| `blessing` / Blessing Priestess | 3 | 추가 고정 NPC 후보 |
+| `judge` / Judgment Priestess | 2 | 추가 조사 NPC 후보 |
 | `cantor` / Holy Cantor | 1 | 추가 의식 NPC 후보 |
 | `inquisitor` / Inquisitor | 2 | 추가 추적 NPC 후보 |
-| `grand` / High Priest | 1 | 추가 고위 교단 NPC 후보 |
+| `grand` / High Priestess | 1 | 추가 고위 교단 NPC 후보 |
 
 MeshPart 수는 삼각형 수·메모리·성능 수치가 아니다. XML에서 외부 메시/텍스처 참조를 확인한 것이며 실제 Roblox 로드, 권한, 시각 수용, 보행 리그 완성을 검증한 결과가 아니다. TD는 `VisualFactoryTowerMeshes.lua` 등에서 별도 장식과 자세를 더할 수 있어 XML 복제만으로 실제 TD 화면과 완전히 같다고 단정하지 않는다.
 
@@ -34,11 +34,11 @@ MeshPart 수는 삼각형 수·메모리·성능 수치가 아니다. XML에서 
 
 | 성녀 | 등장 장소 제안 | 플레이어가 하는 일 → 반응 | 기존 인물과의 역할 구분 |
 | --- | --- | --- | --- |
-| **Blessing Priest** `blessing` | Dawnspire 귀환 거점·예배소 | 구조 소식을 전하고 주민을 위한 축복에 참여 → 주민이 안도하고 다음 모험을 응원 | Tessa의 원정 출발, Mira의 거래, Selene의 동행 선택은 유지. 초안은 대화/연출이며 전투 능력치 강화 없음 |
-| **Judgment Priest** `judge` | Ember Caldera 구조 후 안전 구역 | 광부를 구한 뒤 오염 흔적을 함께 확인 → Veyr의 침공 흔적을 밝히고 안전한 작업장 회복을 돕는 짧은 정화 연출 | Brann/Orik은 구조, Dagna는 냉각 장치 수리 담당을 유지. 성녀는 저주·오염 조사 담당 |
+| **Blessing Priestess** `blessing` | Dawnspire 귀환 거점·예배소 | 구조 소식을 전하고 주민을 위한 축복에 참여 → 주민이 안도하고 다음 모험을 응원 | Tessa의 원정 출발, Mira의 거래, Selene의 동행 선택은 유지. 초안은 대화/연출이며 전투 능력치 강화 없음 |
+| **Judgment Priestess** `judge` | Ember Caldera 구조 후 안전 구역 | 광부를 구한 뒤 오염 흔적을 함께 확인 → Veyr의 침공 흔적을 밝히고 안전한 작업장 회복을 돕는 짧은 정화 연출 | Brann/Orik은 구조, Dagna는 냉각 장치 수리 담당을 유지. 성녀는 저주·오염 조사 담당 |
 | **Holy Cantor** `cantor` | Frozen Vale 피난처 | 흩어진 주민이 돌아왔음을 알리고 의식에 참여 → 따뜻한 빛과 짧은 성가로 쉼터가 되살아나는 장면 | Haldor는 피난처 운영, Nessa는 의무, Ylva는 수호수 돌봄 유지. 성가는 정서적 회복과 의식 표현 |
 | **Inquisitor** `inquisitor` | Gloamwood 정찰 캠프 | 끊어진 밧줄·발자국 등 단서를 함께 확인 → 속임수 표식과 안전한 구조 경로를 설명 | Maeve/Finn의 정찰·Tali 구조를 돕는 조사자. 심문·고문 대신 실종자 찾기와 환영 판별로 연령대에 맞춤 |
-| **High Priest** `grand` | Haunted Graveyard 최종 봉인 장소·완결 후 Dawnspire | Elowen의 기록과 친구들의 도움을 모아 준비 완료를 알림 → 전투 이후 왕관의 심장 회복·봉인 의식·귀환 축제를 이끔 | Elowen은 기록, Garrick은 길 안내, Selene는 주민/선택 동료 지원. 주인공의 Veyr 저지·심장 회수 업적을 빼앗지 않음 |
+| **High Priestess** `grand` | Haunted Graveyard 최종 봉인 장소·완결 후 Dawnspire | Elowen의 기록과 친구들의 도움을 모아 준비 완료를 알림 → 전투 이후 왕관의 심장 회복·봉인 의식·귀환 축제를 이끔 | Elowen은 기록, Garrick은 길 안내, Selene는 주민/선택 동료 지원. 주인공의 Veyr 저지·심장 회수 업적을 빼앗지 않음 |
 
 이렇게 배치하면 **설린느는 함께 걷는 친구, 다른 성녀들은 각 지역에서 도움을 주고받는 사람들**이 된다. 최종 의식에 다섯 명을 모두 실물로 소환하기보다 대사·지역 회복 결과로 연대감을 회수하는 편을 우선 검토한다.
 

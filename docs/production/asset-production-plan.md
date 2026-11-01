@@ -66,8 +66,8 @@ XML 3종에 Script/LocalScript/ModuleScript가 없는 것도 정적 확인했다
 | Dwarf 화약/지원 | `gunner` Gunner / `mortar` Mortar / `grenadier` Grenadier / `runesmith` Runesmith | 총포·폭탄·포대·제작 NPC. Mortar 몸체를 플레이어에 강제 대응하지 않음 |
 | Mage 입문 | `arcanist` Arcanist / `zephyrmancer` Zephyrmancer | 비전/바람 교관·지팡이·로브 후보. 기초 물 VFX 부족분은 신규 |
 | Mage 두 계열/추가 학습 | `pyromancer` Pyromancer / `cryomancer` Cryomancer / `geomancer` Geomancer / `voltmancer` Voltmancer | Pyro/Cryo와 Lv40 대지/번개 학습의 장식·효과. 6개 독립 전직으로 만들지 않음 |
-| Priest 축복/보호 | `nun` Light Nun / `blessing` Blessing Priest / `cantor` Holy Cantor | Selene/교단 NPC와 치유 시설, 등불·백금 복장 |
-| Priest 심판/정화 | `judge` Judgment Priest / `inquisitor` Inquisitor / `grand` High Priest | 교단 인물·의식/지원 기술. 플레이어 성녀 트리 제작 없음 |
+| Priestess 축복/보호 | `nun` Light Nun / `blessing` Blessing Priestess / `cantor` Holy Cantor | Selene/교단 NPC와 치유 시설, 등불·백금 복장 |
+| Priestess 심판/정화 | `judge` Judgment Priestess / `inquisitor` Inquisitor / `grand` High Priestess | 교단 인물·의식/지원 기술. 플레이어 성녀 트리 제작 없음 |
 
 ### 몬스터 40엔트리와 작업 묶음
 
