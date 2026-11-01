@@ -1,0 +1,23 @@
+{
+  "version": "0.58.25",
+  "sourceCommit": "f2dc46dde8f425cdfd6fb0f41e56bfd4b3f4474e",
+  "status": "success",
+  "tests": {
+    "motion": 314,
+    "support": 36,
+    "lobbyBootstrap": 153,
+    "battleBootstrap": 145,
+    "size": 17,
+    "recruitment": 23
+  },
+  "artifacts": {
+    "Lobby": {
+      "path": "builds/0.58.25/TheLastThrone-Lobby-0.58.25.rbxlx",
+      "sha256": "63b6a69608a5ee6139564eef3d0fee3695deed09d513ce607355c674acba01c9"
+    },
+    "Battle": {
+      "path": "builds/0.58.25/TheLastThrone-Battle-0.58.25.rbxlx",
+      "sha256": "cdcaa0e3dedcbbfd7f247f890e02f5abbbcca02662d73b5db87ca1cbd3d3416a"
+    }
+  }
+}

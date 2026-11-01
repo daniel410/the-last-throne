@@ -79,7 +79,7 @@ function View.bind(model,resolveCharacter)
     local pose=body
     if p.shoulder then
      local left=p.part.Name=='ArmL'
-     local swing=math.sin(self.phase)*(left and -.13 or .08)*weight
+     local swing=math.sin(self.phase)*(left and .13 or -.08)*weight
      local rotation=CFrame.Angles(swing-(left and .72 or .13)*cast,0,(left and -.18 or .06)*cast)
      pose=body*CFrame.new(p.shoulder)*rotation*CFrame.new(-p.shoulder)
     elseif p.hip then

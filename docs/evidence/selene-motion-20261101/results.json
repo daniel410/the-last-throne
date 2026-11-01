@@ -1,9 +1,8 @@
 {
   "failures": [],
   "pass": true,
-  "checks": 314,
+  "checks": 317,
   "recruitmentChecks": 23,
   "fixture": "tools/prepare-npc-preview.py",
-  "command": "run-in-roblox --place /tmp/tlt-npc-cast-v1/tlt-npc-cast-preview.rbxlx --script tests/selene-motion-native.luau",
   "scope": "isolated engine fixture; not published client or device acceptance"
 }

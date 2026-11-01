@@ -60,6 +60,10 @@ local ok,err=xpcall(function()
   local right=model.LegR.CFrame.Position-(model.PrimaryPart.CFrame*model.LegR:GetAttribute('SeleneRest')).Position
   check(left.Z*right.Z<0,'feet stride in opposite directions at '..fps..'Hz')
   check(math.min(left.Y,right.Y)<.01 and math.max(left.Y,right.Y)>.02,'stance stays planted while swing foot lifts at '..fps..'Hz')
+  local armBefore=model.ArmR.Position.Z;local footBefore=model.LegL.Position.Z
+  view.phase+=math.pi;view:update(0,1)
+  check((model.ArmR.Position.Z-armBefore)*(model.LegL.Position.Z-footBefore)<0,'same-side lantern arm counter-swings against foot at '..fps..'Hz')
+  view.phase-=math.pi;view:update(0,1)
   for _,action in ipairs({'Heal','Protect','Cleanse'}) do
    local health=h.Health
    view:play(10,action,12,character);view:update(1/fps,10.4)
