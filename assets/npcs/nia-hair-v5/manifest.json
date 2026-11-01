@@ -1,0 +1,9 @@
+{
+  "id": "nia-connected-hair-v5",
+  "source": "assets/npcs/heads-v4/heads.json",
+  "sourceSha256": "cfcd671cf650f0e54677d71bd6626387eb0101c97f07a37fe0c7b6459d4b204c",
+  "recipeSha256": "46e47614dd1ab2e93a0de46b259e748a8566c9c56a93041ba404662a914198ff",
+  "parts": 80,
+  "unchanged": "face, head, ears, body, identity, quests and other NPCs",
+  "blenderSha256": "2dd1a1622354563e702961fce5ddb09e65742777ff552f87efdc55899200ca5a"
+}
