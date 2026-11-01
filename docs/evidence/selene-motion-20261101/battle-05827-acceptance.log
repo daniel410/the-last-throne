@@ -1,0 +1,4 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+NPC_BOOTSTRAP_NATIVE {"role":"Battle","checks":145,"kind":"NPC_BOOTSTRAP_NATIVE","pass":true,"failures":[]}
+SELENE_SIZE_NATIVE {"heights":{"selene":4.800015449523926,"R15":5.457310676574707,"R6":5},"checks":17,"kind":"SELENE_SIZE_NATIVE","pass":true,"failures":[]}
+SELENE_MOTION_NATIVE {"failures":[],"pass":true,"checks":317}

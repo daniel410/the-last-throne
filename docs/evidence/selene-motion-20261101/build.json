@@ -1,0 +1,53 @@
+{
+  "version": "0.58.27",
+  "sourceCommit": "7089e721766cf86be1d6e9d54929908a81de7ad2",
+  "status": "success",
+  "tool": "Rojo 7.7.1",
+  "sourceCheckout": "git archive 7089e72; materialize project-referenced LFS assets after matching pinned oid",
+  "commands": [
+    "rojo build default.project.json --output builds/0.58.27/TheLastThrone-Lobby-0.58.27.rbxlx",
+    "rojo build battle.project.json --output builds/0.58.27/TheLastThrone-Battle-0.58.27.rbxlx"
+  ],
+  "artifacts": {
+    "Lobby": {
+      "path": "builds/0.58.27/TheLastThrone-Lobby-0.58.27.rbxlx",
+      "sha256": "42a248030d4aa245960863820e6f1139f21461677fc48c1d8f3e5d49fc10feea"
+    },
+    "Battle": {
+      "path": "builds/0.58.27/TheLastThrone-Battle-0.58.27.rbxlx",
+      "sha256": "b2a3bb2476ce5e2fe9a6df2bb25c89c488a8572e14e93a93bd6078e63fc1bb47"
+    }
+  },
+  "nativeBattle": {
+    "NPC_BOOTSTRAP_NATIVE": {
+      "role": "Battle",
+      "checks": 145,
+      "kind": "NPC_BOOTSTRAP_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    "SELENE_SIZE_NATIVE": {
+      "heights": {
+        "selene": 4.800015449523926,
+        "R15": 5.457310676574707,
+        "R6": 5
+      },
+      "checks": 17,
+      "kind": "SELENE_SIZE_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    "SELENE_MOTION_NATIVE": {
+      "failures": [],
+      "pass": true,
+      "checks": 317
+    }
+  },
+  "publication": "not requested; not performed",
+  "releaseTag": "not created",
+  "testSources": {
+    "tests/npc-bootstrap-native.luau": "b863949a293586eda25dcd47eb902a667e32c178e01b640548790d0c007bb7fd",
+    "tests/selene-size-native.luau": "07b4179dd0f8be443ceab3b49ccfd8b051d1d30667a6f106b369c6baf3c119a5",
+    "tests/selene-motion-native.luau": "00d56b1cd19314b94c02502c56c9634abe6c7614886b36e7e7f633d93349a207"
+  }
+}
