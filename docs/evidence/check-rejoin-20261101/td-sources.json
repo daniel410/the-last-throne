@@ -1,0 +1,7 @@
+{
+  "src/client/RejoinUI.lua": "9a04eeeac50f3b39492527ceee989d27b8ae992027b0b6c80cd27a6d9b27c6cf",
+  "src/client/UILayout.lua": "ebb75bac741fa0fcf3e1c7abaed3740ea7ca3056e93769b8aa2b93689259bfd5",
+  "src/client/StatusWindowArt.lua": "93e90dc11fae3031db6292f3434a0520179256f53f99e5cb9422a71150da697a",
+  "src/shared/StatusWindowArtAssets.lua": "c6927fe3f15902818046f72f9d902e6aacfb38e9c6c5bddce4578dac9238163a",
+  "src/shared/BattleChromeArtAssets.lua": "118045fa68c1419eef26235b5a0321bc98f539ff3e7549cd0e5facd6d7355a77"
+}

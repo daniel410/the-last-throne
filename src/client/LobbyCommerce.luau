@@ -57,6 +57,10 @@ function M.start()
  })
  navigation.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
  partyButton.Activated:Connect(function() local wasOpen=expedition.panel.Visible;closePanels();navigation.panel.Visible=false;expedition.panel.Visible=not wasOpen;networkRequest:FireServer({action='GetState'}) end)
+ local rejoinButton=require(script.Parent.LobbyRejoinButton).create(gui,function()
+  closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true
+  networkRequest:FireServer({action='GetState'})
+ end)
  inventory=function(s)
   if latest and s.revision<latest.revision then s=latest end
   latest=s
@@ -81,14 +85,14 @@ function M.start()
  local function phase()
   local lobby=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle'
   local showNavigation=lobby and not p:GetAttribute('TLTHeroSelectionOpen')
-  navigation.rail.Visible=showNavigation;partyButton.Visible=showNavigation
+  navigation.rail.Visible=showNavigation;partyButton.Visible=showNavigation;rejoinButton.Visible=showNavigation
   if lobby then task.delay(.3,function()if p.Parent and p:GetAttribute('K0SessionPhase')=='Lobby'then dailyRequest:FireServer({action='GetState'})end end)end
   if not lobby then navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;daily.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(phase)
  p:GetAttributeChangedSignal('TLTHeroSelectionOpen'):Connect(function()
   local visible=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle' and not p:GetAttribute('TLTHeroSelectionOpen')
-  navigation.rail.Visible=visible;partyButton.Visible=visible
+  navigation.rail.Visible=visible;partyButton.Visible=visible;rejoinButton.Visible=visible
  end)
  phase()
  task.spawn(function()

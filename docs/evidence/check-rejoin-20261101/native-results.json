@@ -1,0 +1,34 @@
+{
+  "launcher": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"result\":\"passed\",\"checks\":10}"
+      }
+    ],
+    "isError": false
+  },
+  "existingTopMenu": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"kind\":\"LOBBY_TOP_MENU_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":32}"
+      }
+    ],
+    "isError": false
+  },
+  "playerClick": {
+    "visible": true,
+    "position": [
+      12,
+      12
+    ],
+    "size": [
+      136,
+      44
+    ],
+    "expeditionOpened": true,
+    "getStateReceived": true,
+    "automaticTravelRequested": false
+  }
+}

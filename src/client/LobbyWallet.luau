@@ -9,7 +9,20 @@ function M.create(player,parent,world)
  gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=parent
  local wallet=Wallet.create(gui)
  -- The lobby has no minimap: align the balances beside the top menu.
- wallet.AnchorPoint=Vector2.new(1,0);wallet.Position=UDim2.new(1,-132,0,8)
+ local function resize()
+  local width=gui.AbsoluteSize.X
+  if width>0 and width<500 then
+   -- Keep TD's left rejoin launcher and the right menu clear on narrow screens.
+   wallet.AnchorPoint=Vector2.zero;wallet.Position=UDim2.fromOffset(160,8)
+   wallet.Size=UDim2.fromOffset(math.max(68,width-292),56)
+  else
+   wallet.AnchorPoint=Vector2.new(1,0);wallet.Position=UDim2.new(1,-132,0,8)
+   wallet.Size=UDim2.fromOffset(208,56)
+  end
+ end
+ local sizing=gui:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize)
+ gui.Destroying:Connect(function()sizing:Disconnect()end)
+ resize()
  local function refresh()
   local phase=player:GetAttribute("K0SessionPhase")
   gui.Enabled=world:GetAttribute("TLTServerRole")~="Battle"
