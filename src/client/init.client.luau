@@ -284,8 +284,9 @@ local function bindCharacter(character)
 		if value then hud.setState(Text.State[value] or Text.State.Idle) end
 	end
 	local function showFeedback()
-		local message = Text.Feedback[character:GetAttribute("K0Feedback")]
-		if message then hud.showFeedback(message) end
+		local feedbackKind = character:GetAttribute("K0Feedback")
+		local message = Text.Feedback[feedbackKind]
+		if message then hud.showFeedback(message, nil, feedbackKind == "Hit") end
 	end
  local lastLevel=character:GetAttribute('K0Level')
  table.insert(characterConnections,character:GetAttributeChangedSignal('K0Level'):Connect(function()

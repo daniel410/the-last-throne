@@ -508,10 +508,11 @@ function Hud.create()
 				hint.Size=UDim2.fromOffset(#hint.Text>2 and 43 or 21,19)
 			end
 		end,
-		showFeedback = function(value, duration)
+		showFeedback = function(value, duration, transparentBackground)
 			feedbackSequence += 1
 			local sequence = feedbackSequence
 			feedback.Text = value
+			feedback.BackgroundTransparency = if transparentBackground then 1 else .6
 			feedback.Visible = true
 			task.delay(duration or 1.2, function()
 				if feedbackSequence == sequence and feedback.Parent then feedback.Visible = false end
