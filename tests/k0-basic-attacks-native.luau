@@ -213,7 +213,14 @@ return {
 				local before=state.mana
 				action(state,descriptor.ultimate and "Ultimate" or "Skill1",0,nil,enemy.model)
 				assert(state.attack,"qualified branch/common skill must cast")
-				if classId=="mage" and descriptor.magic then near(state.attack.attackPower,(100+79*3),"mage advanced skills retain their original magic attack") end
+				if classId=="mage" and descriptor.magic then
+     near(state.attack.attackPower,(100+79*3),"mage advanced skills retain their original magic attack")
+     local authored=require(game.ReplicatedStorage.Shared.AdvancedSkills).get(classId,skillIndex)
+     if descriptor.damage>0 then
+      local factor=authored.root>=1 and authored.root<=3 and not authored.ultimate and 2 or 1
+      near(descriptor.damage,authored.damage*1.4*factor,"server uses inherited starter damage for linked skills")
+     end
+    end
 				if descriptor.braced then equal(state.humanoid.WalkSpeed,0,"braced throw prevents walking during cast") end
 				if descriptor.guardReduction then equal(state.guardReduction,.25,"guarded strike grants bounded damage reduction") end
 				local definition=state.attack.definition

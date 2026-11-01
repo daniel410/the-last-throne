@@ -21,11 +21,12 @@ for _,branch in ipairs(A.order.mage) do
  for _,entry in ipairs(A.branches[branch].skills) do
   local skill=K.Skills.mage[entry.index]
   check(skill.magic and skill.damage>0,'future mage skill remains magic')
-  check(math.abs(skill.damage-entry.damage*1.4)<.0000001,'future skill retains pre-change damage coefficient')
+  local multiplier=entry.root>0 and 2 or 1
+  check(math.abs(skill.damage-entry.damage*1.4*multiplier)<.0000001,'root descendants inherit damage; ultimate stays unchanged')
   local advanced=G.new(80);advanced.branch=branch;advanced.stage=4
   local value=P.value('mage',entry.index,advanced,{power=10})
   local oldPower=(100+79*3)*1.1
-  eq(value.damage,math.max(1,math.floor(oldPower*value.skill.damage+.5)),branch..' skill retains original damage power')
+  eq(value.damage,math.max(1,math.floor(oldPower*value.skill.damage+.5)),branch..' skill uses shared magic attack and inherited coefficient')
  end
 end
 eq(K.Skills.mage[3].areaRadius,10,'gravity radius is expanded')
@@ -38,7 +39,7 @@ eq(P.value('mage',32,mage).damage,0,'Arcane Ward stays a non-damaging barrier')
 eq(A.common.mage[1].damage,1,'shared catalog load never compounds the spell bonus')
 for _,entry in ipairs(A.common.mage) do
  local skill=K.Skills.mage[entry.index]
- if entry.magic and entry.damage>0 then check(math.abs(skill.damage-entry.damage*1.4)<.0000001,'later common skill retains original coefficient') end
+ if entry.magic and entry.damage>0 then check(math.abs(skill.damage-entry.damage*1.4*2)<.0000001,'damaging common descendant inherits base boost') end
 end
 local g=G.new(10)
 eq(P.value('knight',1,g).damage,102,'ordinary Shield Bash estimate')

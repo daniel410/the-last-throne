@@ -125,7 +125,9 @@ for index, definition in ipairs(Config.Skills.mage) do
 	local skill = {}
 	for key, value in pairs(definition) do skill[key] = value end
 	if skill.magic and skill.damage > 0 then
-		skill.damage = skill.damage * Config.MageSpellDamageMultiplier * (boostedStarterSpells[skill.id] and 2 or 1)
+		-- Root 1–3 spells inherit the corresponding starter spell damage update.
+		local inherited = boostedStarterSpells[skill.id] or (skill.advanced and skill.root and skill.root >= 1 and skill.root <= 3 and not skill.ultimate)
+		skill.damage = skill.damage * Config.MageSpellDamageMultiplier * (inherited and 2 or 1)
 	end
 	Config.Skills.mage[index] = skill
 end
