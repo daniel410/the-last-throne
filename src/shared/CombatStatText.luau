@@ -1,5 +1,6 @@
 -- en-US combat stat breakdown. Numeric values use the server's existing formulas.
 return {
+ AvailablePoints='AVAILABLE STAT POINTS  %d',
  EquipmentPreview='ACTUAL STATS IF EQUIPPED',EquipmentNote='Attack is before skill multipliers. Max HP / MP changes do not refill resources.',
  Title='COMBAT STATS',Current='Current stats · Equipped gear included',
  HeroAndGear='Hero %s  +  Gear %s',Draft='DRAFT %s → %s (%s)',
@@ -12,5 +13,6 @@ return {
  HeroNote='Hero includes your class, level and assigned points. Bag and storage items do not add stats.',
  DefenseNote='Attack values are power ratings; each skill has its own damage multiplier. Defense subtracts damage per hit, to a minimum of 1. Temporary combat effects are not included.',
  DraftNote='DRAFT is unsaved. Confirm your points below to apply it.',
+ Beside='Combat totals include equipped gear bonuses.',
  Above='Combat stat totals and gear bonuses are shown above.',
 }

@@ -61,7 +61,9 @@ local ok,failure=xpcall(function()
     task.wait()
     check(body:FindFirstChild('SkillPreview0')~=nil,'dedicated unlocked ultimate preview')
     local summary=body.CombatStats
-    check(summary.Position.Y.Offset==4,'combat totals appear at the top')
+    check(body.AvailableStatPoints.Position.Y.Offset==4,'available stat points appear first')
+    check(body.AvailableStatPoints.Caption.Text:find(tostring(G.points(g)-16),1,true)~=nil,'available points subtract the unsaved draft')
+    check(summary.Position.Y.Offset>=body.AvailableStatPoints.Position.Y.Offset+body.AvailableStatPoints.Size.Y.Offset,'combat totals clear top point banner')
     check(summary.GearDetails.Size.Y.Offset>=44 and summary.GearDetails.Selectable,'gear details are touch and gamepad accessible')
     local current=P.derived(classId,g,snapshot.stats)
     for _,entry in ipairs(P.breakdown(classId,g,snapshot.stats,after))do
@@ -70,7 +72,11 @@ local ok,failure=xpcall(function()
      check(row.Breakdown.Text:find('Hero',1,true) and row.Breakdown.Text:find('Gear',1,true),'hero and gear sources are explicit')
      check(row.Draft.Text:find('DRAFT',1,true),'unsaved change is labeled separately')
     end
-    check(body.StatAllocation.Position.Y.Offset>=summary.Position.Y.Offset+summary.Size.Y.Offset,'allocation never overlaps totals')
+    if width>=968 then
+     check(body.HeroEquipment.Position.Y.Offset==summary.Position.Y.Offset and body.StatAllocation.Position.Y.Offset==summary.Position.Y.Offset,'all three panels start together')
+     check(body.StatAllocation.Position.X.Offset>=summary.Position.X.Offset+summary.Size.X.Offset,'allocation sits beside combat totals')
+     check(body.HeroEquipment.Size.X.Offset<body.CombatStats.Size.X.Offset,'equipment image column is smaller')
+    else check(body.StatAllocation.Position.Y.Offset>=summary.Position.Y.Offset+summary.Size.Y.Offset,'stacked allocation clears totals') end
     if width<768 then check(body.HeroEquipment.Position.Y.Offset>=summary.Position.Y.Offset+summary.Size.Y.Offset,'narrow screen stacks gear below totals')end
     check(body.SkillPreview1.Estimate.Text:find('scales with',1,true)~=nil,'starter scaling visible')
     check(body.SkillPreview1.Estimate.Text:find(' %-> ')~=nil,'draft shows actual damage delta')
