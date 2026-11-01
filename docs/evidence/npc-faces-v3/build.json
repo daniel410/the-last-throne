@@ -1,0 +1,58 @@
+{
+  "version": "0.58.7",
+  "sourceCommit": "fb8991d9e2d423756032b092c03b5c391881abca",
+  "sourceFreeze": "git archive; referenced LFS inputs SHA256 verified against committed pointers",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.58.7/TheLastThrone-Lobby-0.58.7.rbxlx",
+      "sha256": "239498fc825adb09d4d2fe071a982858b1cb7485fb6caf6b72268bed33f771f4",
+      "bytes": 7120546,
+      "status": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.58.7/TheLastThrone-Battle-0.58.7.rbxlx",
+      "sha256": "37c6b09ba0829d6f98261436dabd483291b3b68ac9035cf9db6888a1abb46483",
+      "bytes": 7120547,
+      "status": "success"
+    }
+  ],
+  "tests": {
+    "cast": {
+      "pass": true,
+      "checks": 3574,
+      "characters": 30,
+      "parts": 1230,
+      "source": "fixed Lobby artifact"
+    },
+    "battleBootstrap": {
+      "pass": true,
+      "checks": 136,
+      "source": "fixed Battle artifact"
+    }
+  },
+  "studioPreview": {
+    "mode": "Edit",
+    "models": 29,
+    "individualDecalFetchSuccess": 29
+  },
+  "visualReview": {
+    "characters": 29,
+    "views": [
+      "front",
+      "60deg"
+    ],
+    "accepted": false,
+    "record": "review.json"
+  },
+  "published": false,
+  "warnings": [
+    "TD source asset 203785492 type mismatch",
+    "Studio MaterialManager profiling warning in Battle test; native assertions pass"
+  ],
+  "git": {
+    "sourceRemoteVerified": true,
+    "lfs": "43/43, 102 MB uploaded; fsck OK"
+  }
+}
