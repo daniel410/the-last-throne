@@ -15,7 +15,7 @@ Selene를 제외한29명의 돌출된 눈·코·입·볼을 제거하고 컨셉6
 
 연결 Studio의 Edit 모드, Lobby Place70829337938054에 격리 검토 폴더 `TLTNPCFaceReviewV2`를 만들었다.29모델/29표정/29 `ImageLabel.IsLoaded=true`를 확인했다. 게임 게시·실제 Player 검증을 뜻하지 않는다. 검토용 모듈은 ServerStorage의 `TLTNPCFaceReviewModules`에 분리했다.
 
-`git diff --check` 통과. [조사/채택 이유](../../research/2026-11-01-npc-face-decals.md). 빌드0.58.6의 소스 커밋·산출물 해시는 `build.json`에 기록한다. 무관한 로비/이동 및 이전 Blender 미커밋 변경은 포함하지 않는다.
+0.58.6 고정 산출물에서 `tests/npc-bootstrap-native.luau` 실행: Lobby **144개**, Battle **136개** 시작/소스 컴파일 검사 통과. `git diff --check`와 `git lfs fsck` 통과. 소스 커밋 `9edade4` 원격main 일치 및 LFS4/4·88MB 전송 성공 확인. [조사/채택 이유](../../research/2026-11-01-npc-face-decals.md). 빌드0.58.6의 소스 커밋·산출물 해시는 `build.json`에 기록한다. 무관한 로비/이동 및 이전 Blender 미커밋 변경은 포함하지 않는다.
 
 ## 남은 수용
 

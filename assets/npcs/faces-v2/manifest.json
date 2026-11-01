@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "status": "local-tested-not-published",
+  "sourceConceptManifest": "assets/concepts/2026-10-31-npc-cast-v1/manifest.json",
+  "excluded": [
+    "selene"
+  ],
+  "imageGenerator": "built-in image_gen",
+  "authoring": "Blender MCP, Blender 5.2.0 LTS",
+  "atlasAsset": "rbxassetid://119430151832611",
+  "layout": {
+    "columns": 5,
+    "rows": 6,
+    "cellPixels": 229,
+    "characters": 29
+  },
+  "files": {
+    "assets/npcs/faces-v2/face-atlas.png": {
+      "sha256": "cf1f2bc43c39575b81e972daabdd3b8ef9a208d972375259945474034ceed629",
+      "bytes": 2333716
+    },
+    "assets/npcs/faces-v2/heads.json": {
+      "sha256": "9ea1fcd201830abb97685b50704c88634978bf207a6ca82f73e5826e8650f7d3",
+      "bytes": 134715
+    },
+    "assets/npcs/faces-v2/npc-heads-v2.blend": {
+      "sha256": "828d5d1b796dff31e80f1b3c39dec97f90fccca1eea691f7b5c229685358d211",
+      "bytes": 84934291
+    }
+  }
+}

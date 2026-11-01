@@ -1,0 +1,51 @@
+{
+  "version": "0.58.6",
+  "sourceCommit": "9edade44ef7cc9499000e1ded7d6a80862eaaa90",
+  "source": "git archive with referenced LFS objects verified against committed OIDs",
+  "commands": [
+    "rojo build default.project.json",
+    "rojo build battle.project.json"
+  ],
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.58.6/TheLastThrone-Lobby-0.58.6.rbxlx",
+      "sha256": "3a5be855baa6a804296ca8a0550f05b045a9ec917041bdc4aae1f127c3157cab",
+      "bytes": 7121406,
+      "status": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.58.6/TheLastThrone-Battle-0.58.6.rbxlx",
+      "sha256": "106a0e261f267a8bb9209538347925bab0d229a4a6e0948980fd0948e3301c08",
+      "bytes": 7121407,
+      "status": "success"
+    }
+  ],
+  "published": false,
+  "studioImageLoad": {
+    "placeId": 70829337938054,
+    "mode": "Edit",
+    "models": 29,
+    "loadedImages": 29,
+    "asset": "rbxassetid://119430151832611"
+  },
+  "tests": {
+    "castNative": {
+      "pass": true,
+      "checks": 3780,
+      "characters": 30,
+      "parts": 1309
+    },
+    "lobbyBootstrap": {
+      "pass": true,
+      "checks": 144,
+      "log": "lobby-bootstrap.log"
+    },
+    "battleBootstrap": {
+      "pass": true,
+      "checks": 136,
+      "log": "battle-bootstrap.log"
+    }
+  }
+}
