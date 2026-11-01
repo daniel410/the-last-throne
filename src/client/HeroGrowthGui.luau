@@ -22,6 +22,7 @@ function Gui.create(onVisibility)
 	local player=Players.LocalPlayer
 	local gui=Instance.new("ScreenGui"); gui.Name="HeroGrowthGui"; gui.ResetOnSpawn=false; gui.ScreenInsets=Enum.ScreenInsets.CoreUISafeInsets; gui.DisplayOrder=55; gui.Parent=player:WaitForChild("PlayerGui")
 	local launch=Theme.button(gui,"OpenHero",Navigation.statsButton,UDim2.new(1,-278,0,0),UDim2.fromOffset(128,44))
+	launch.Visible=false -- Hidden before any constructor waits or phase replication.
 	require(script.Parent.TopMenuLayout).bind(gui,launch,2)
 	local overlay=Instance.new("Frame"); overlay.Name="Overlay"; overlay.Size=UDim2.fromScale(1,1); overlay.BackgroundColor3=Color3.new(0,0,0); overlay.BackgroundTransparency=.25; overlay.Visible=false; overlay.Active=true; overlay.Parent=gui
 	local panel=Menu.frame(overlay,"InventoryPanel",UDim2.fromScale(.5,.5),UDim2.new(1,-24,1,-40)); panel.AnchorPoint=Vector2.new(.5,.5)
@@ -90,7 +91,7 @@ function Gui.create(onVisibility)
 	end
 	local function showLaunch()
 		local phase=player:GetAttribute("K0SessionPhase")
-		launch.Visible=not opened and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Lobby" and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
+		launch.Visible=phase~=nil and phase~="LoadingLobby" and phase~="ReturningLobby" and not opened and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Lobby" and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function visible(value)
 		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end

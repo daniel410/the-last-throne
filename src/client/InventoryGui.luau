@@ -34,6 +34,7 @@ function InventoryGui.create(onVisibility, feedback)
 	gui.ScreenInsets, gui.ZIndexBehavior = Enum.ScreenInsets.CoreUISafeInsets, Enum.ZIndexBehavior.Sibling
 	gui.Parent = playerGui
 	local launcher = Theme.button(gui,"OpenBag",Navigation.bagButton,UDim2.new(1,-142,0,0),UDim2.fromOffset(128,44))
+	launcher.Visible=false -- Hidden before any constructor waits or phase replication.
 	require(script.Parent.TopMenuLayout).bind(gui,launcher,1)
 	local badge = Theme.label(launcher,"UnclaimedBadge","",UDim2.new(1,-30,0,-8),UDim2.fromOffset(32,24),12,Color.gold)
 	badge.Visible = false
@@ -158,7 +159,7 @@ function InventoryGui.create(onVisibility, feedback)
 	end
 	local function showLauncher()
 		local phase=player:GetAttribute("K0SessionPhase")
-		launcher.Visible=not opened and not player:GetAttribute("TLTProgressionOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Lobby" and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
+		launcher.Visible=phase~=nil and phase~="LoadingLobby" and phase~="ReturningLobby" and not opened and not player:GetAttribute("TLTProgressionOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Lobby" and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function setOpen(value)
 		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end

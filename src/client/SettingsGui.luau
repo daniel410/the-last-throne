@@ -11,6 +11,7 @@ function M.create(player,onVisibility)
  local old=parent:FindFirstChild('GameSettings');if old then old:Destroy() end
  local gui=Instance.new('ScreenGui');gui.Name='GameSettings';gui.ResetOnSpawn=false;gui.DisplayOrder=80;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=parent
  local launcher=Theme.button(gui,'OpenSettings',Text.Title,UDim2.new(),UDim2.fromOffset(156,44))
+ launcher.Visible=false -- Hidden before any constructor waits or phase replication.
  require(script.Parent.TopMenuLayout).bind(gui,launcher,3)
  local shade=Instance.new('Frame');shade.Name='Overlay';shade.Size=UDim2.fromScale(1,1);shade.BackgroundColor3=Color3.new();shade.BackgroundTransparency=.3;shade.Active=true;shade.Visible=false;shade.Parent=gui
  local panel=Theme.frame(shade,'SettingsPanel',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-80));panel.AnchorPoint=Vector2.new(.5,.5)
@@ -26,7 +27,7 @@ function M.create(player,onVisibility)
  local function connect(signal,callback) table.insert(connections,signal:Connect(callback)) end
  local function showLauncher()
   local phase=player:GetAttribute('K0SessionPhase')
-  launcher.Visible=not opened and phase~='Lobby' and phase~='Tutorial' and phase~='LoadingTutorial' and phase~='Respawning'
+  launcher.Visible=not opened and phase~=nil and phase~='LoadingLobby' and phase~='ReturningLobby' and phase~='Lobby' and phase~='Tutorial' and phase~='LoadingTutorial' and phase~='Respawning'
    and not player:GetAttribute('TLTInventoryOpen') and not player:GetAttribute('TLTProgressionOpen')
  end
  local function setOpen(value)

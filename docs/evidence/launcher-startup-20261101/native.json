@@ -1,0 +1,31 @@
+{
+  "kind": "LAUNCHER_STARTUP_NATIVE",
+  "checks": 30,
+  "pass": true,
+  "modules": [
+    "InventoryGui",
+    "HeroGrowthGui",
+    "SettingsGui"
+  ],
+  "source": "tests/launcher-startup-native.luau",
+  "environment": "Existing Studio Play Client; actual constructor prefixes; isolated fake player; no account requests",
+  "constructor_delay_ms": 150,
+  "before": {
+    "pass": false,
+    "checks": 1,
+    "error": "hidden during delayed constructor: InventoryGui"
+  },
+  "phases": [
+    "nil",
+    "LoadingLobby",
+    "Lobby",
+    "ReturningLobby",
+    "LoadingTutorial",
+    "Tutorial",
+    "Respawning"
+  ],
+  "preserved_fallback": "SpawnFailed",
+  "fixture_removed": true,
+  "existing_play_stopped": false,
+  "real_device_verified": false
+}
