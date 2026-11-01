@@ -1,5 +1,6 @@
 -- Illustrated navigation tiles; Diamond Shop uses the original TD lobby artwork.
 local RS=game:GetService('ReplicatedStorage')
+local TextService=game:GetService('TextService')
 local T=require(script.Parent.TDInventoryTheme)
 local Sizing=require(script.Parent.LobbyNavigationSizing)
 local Bridge=require(script.Parent.LobbyMenuBridge)
@@ -21,12 +22,22 @@ function M.create(parent,actions)
   for _,b in ipairs(rail:GetChildren()) do
    if b:IsA('TextButton') then
     local textSize=metrics.height<64 and 14 or metrics.width<100 and 16 or math.clamp(math.floor(metrics.width*.17),18,34)
-    local captionH=math.max(metrics.height*.32,textSize+6)
-    b.Caption.Position=UDim2.fromOffset(0,math.min(metrics.height-captionH,metrics.height*.65))
-    b.Caption.Size=UDim2.new(1,0,0,captionH);b.Caption.TextSize=textSize;b.Caption.TextScaled=true
-    local textLimit=b.Caption:FindFirstChildOfClass('UITextSizeConstraint')
-    if not textLimit then textLimit=Instance.new('UITextSizeConstraint');textLimit.Parent=b.Caption end
-    textLimit.MinTextSize=9;textLimit.MaxTextSize=textSize
+    local label=b.Caption
+    local bounds=TextService:GetTextSize(label.Text,textSize,Enum.Font.GothamBlack,Vector2.new(10000,1000))
+    -- TD uses fixed-size, outlined text. Fit RPG's longer names on one line.
+    label.TextSize=math.min(textSize,math.floor(textSize*(metrics.width-2)/math.max(1,bounds.X)))
+    local compact=metrics.height<64
+    label.TextScaled=compact;label.TextWrapped=compact
+    if compact then
+     label.TextSize=textSize
+     local limit=label:FindFirstChildOfClass('UITextSizeConstraint') or Instance.new('UITextSizeConstraint')
+     limit.MinTextSize=9;limit.MaxTextSize=textSize;limit.Parent=label
+    end
+    local captionY=compact and .65 or (b:GetAttribute('NavigationCaptionY') or .79)
+    local captionH=b:GetAttribute('NavigationCaptionH') or .19
+    local height=math.max(metrics.height*(compact and .32 or captionH),label.TextSize+6)
+    label.Position=UDim2.fromOffset(0,math.max(0,math.min(metrics.height-height,metrics.height*captionY)))
+    label.Size=UDim2.new(1,0,0,height)
    end
   end
   local top=viewport.X<530 and 72 or 8
@@ -58,10 +69,9 @@ function M.create(parent,actions)
    art=T.icon(button,'login_rewards',UDim2.fromOffset(12,0),UDim2.fromOffset(64,48))
   elseif id=='DiamondShop' then
    art=T.sprite(button,'NavigationIcon','shop',UDim2.fromOffset(12,0),UDim2.fromOffset(64,48),LobbyArt)
-   -- The source includes a separate caption beneath the artwork. The rail
-   -- already supplies that caption, so fit only the icon area.
    local crop=LobbyArt.regions.shop
-   art.ImageRectSize=Vector2.new(art.ImageRectSize.X,math.round(crop.height*crop.captionY*LobbyArt.renderHeight/LobbyArt.height))
+   button:SetAttribute('NavigationCaptionY',crop.captionY)
+   button:SetAttribute('NavigationCaptionH',crop.captionH)
   else
    art=Instance.new('ImageLabel');art.Name='NavigationIcon';art.BackgroundTransparency=1
    art.Image=id=='Blacksmith' and 'rbxassetid://97662984602605' or 'rbxassetid://137280207574223'
@@ -78,7 +88,11 @@ function M.create(parent,actions)
   local b=T.button(rail,entry[1],entry[2],UDim2.new(),UDim2.fromOffset(88,64))
   -- The login icon is unframed; the other navigation artwork includes its own frame.
   b.LayoutOrder=index;b.BackgroundTransparency=1;b.TDButtonArt.Visible=entry[1]=='LoginRewards';b.TDButtonArt.ZIndex=2
-  b.Caption.Position=UDim2.new(0,2,.65,0);b.Caption.Size=UDim2.new(1,-4,.32,0);b.Caption.TextSize=10;b.Caption.TextScaled=entry[1]=='DiamondShop';b.Caption.ZIndex=4
+  b.Caption.Font=Enum.Font.GothamBlack;b.Caption.TextColor3=Color3.new(1,1,1)
+  b.Caption.TextStrokeColor3=Color3.new(0,0,0);b.Caption.TextStrokeTransparency=0
+  b.Caption.TextScaled=false;b.Caption.TextWrapped=false;b.Caption.ZIndex=4
+  b:SetAttribute('NavigationCaptionY',entry[1]=='LoginRewards' and .78 or .80)
+  b:SetAttribute('NavigationCaptionH',entry[1]=='LoginRewards' and .20 or .18)
   icon(b,entry[1],index);b.Activated:Connect(function()
    panel.Visible=false
    if entry[1]=='Heroes' then actions.close();Bridge:Fire('Heroes')
@@ -88,6 +102,6 @@ function M.create(parent,actions)
  end
  resize()
  return {rail=rail,panel=panel,showGuide=guide,update=function(s) snapshot=s;atlas.update(s);journal.update(s) end,
-  dailyAvailable=function(available)local b=rail:FindFirstChild('LoginRewards');if b then b.Caption.Text=available and 'LOGIN REWARDS !'or 'LOGIN REWARDS' end end}
+  dailyAvailable=function(available)local b=rail:FindFirstChild('LoginRewards');if b then b.Caption.Text=available and 'LOGIN REWARDS !'or 'LOGIN REWARDS';resize() end end}
 end
 return M
