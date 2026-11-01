@@ -1,0 +1,24 @@
+{
+  "version": "0.58.31",
+  "sourceCommit": "c8c60dbfdd4a8019d24c47ee7f7127447f216aa7",
+  "sourceFreeze": "git archive; project-referenced LFS bytes verified against pointer SHA256",
+  "artifact": {
+    "path": "/tmp/TheLastThrone-Lobby-0.58.31.rbxlx",
+    "sha256": "9c72b8fdbf5ee6c409fd5d32ddbde5fe05b6595b34c1e8f5342413f6b1e6ebab",
+    "bytes": 7588205,
+    "status": "success"
+  },
+  "niaNative": {
+    "pass": true,
+    "checks": 86,
+    "parts": 80,
+    "scale": 0.74
+  },
+  "castNative": {
+    "pass": false,
+    "checksBeforeFailure": 1044,
+    "failure": "Selene template retains TD mesh and texture; prior test assumes the original unsegmented Selene model"
+  },
+  "published": false,
+  "releaseTag": null
+}
