@@ -15,7 +15,7 @@ local ok,err=xpcall(function()
   if c.id=='selene' then check(model:GetAttribute('TDSourceModel')=='nun','Selene template uses original TD nun')
   else
    check(model.FaceRig.Head:FindFirstChildOfClass('SpecialMesh').MeshType==Enum.MeshType.Sphere,'round head')
-   check(model:GetAttribute('NPCVisualVersion')==3 and model.FaceRig:FindFirstChild('EyeWhite')==nil and model.FaceRig:FindFirstChild('Nose')==nil,'no protruding facial primitives')
+   check(model:GetAttribute('NPCVisualVersion')==4 and model.FaceRig:FindFirstChild('EyeWhite')==nil and model.FaceRig:FindFirstChild('Nose')==nil,'no protruding facial primitives')
    local face=model.FaceRig.Head:FindFirstChild('FaceDecal')
    check(face and face:IsA('Decal') and face.Face==Enum.NormalId.Front,'face projects on head surface')
    check(face.Texture==model:GetAttribute('NPCFaceTexture') and face.Texture:match('^rbxassetid://%d+$'),'individual face texture')

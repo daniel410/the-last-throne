@@ -1,0 +1,995 @@
+{
+  "version": 4,
+  "characters": [
+    {
+      "id": "aldric",
+      "name": "Aldric",
+      "region": "dawnspire",
+      "crop": [
+        110,
+        110,
+        230
+      ],
+      "boardSize": [
+        1916,
+        821
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/dawnspire.png",
+      "portrait": "portraits/aldric.png",
+      "previous": "../npc-faces-v3/after/page-1.png",
+      "previousColumn": 0,
+      "change": "드워프 얼굴 폭, 높게 넘긴 붉은 머리, 연결된 긴 수염과 표면 결을 조정했습니다.",
+      "profile": {
+        "style": "swept",
+        "width": 1.86,
+        "height": 1.72,
+        "beard": 1.05,
+        "part": 0.25,
+        "sweep": 1,
+        "note": "Raised ginger sweep and broad pointed beard"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "mira",
+      "name": "Mira",
+      "region": "dawnspire",
+      "crop": [
+        365,
+        105,
+        235
+      ],
+      "boardSize": [
+        1916,
+        821
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/dawnspire.png",
+      "portrait": "portraits/mira.png",
+      "previous": "../npc-faces-v3/after/page-1.png",
+      "previousColumn": 1,
+      "change": "짙은 옆가르마 단발의 길이와 옆면 웨이브, 금빛 귀걸이를 추가했습니다.",
+      "profile": {
+        "style": "bob",
+        "width": 1.64,
+        "height": 1.76,
+        "length": 1.38,
+        "part": 0.3,
+        "sweep": -1,
+        "earrings": true,
+        "note": "Side parted dark wavy bob"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "rowan",
+      "name": "Rowan",
+      "region": "dawnspire",
+      "crop": [
+        610,
+        75,
+        235
+      ],
+      "boardSize": [
+        1916,
+        821
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/dawnspire.png",
+      "portrait": "portraits/rowan.png",
+      "previous": "../npc-faces-v3/after/page-1.png",
+      "previousColumn": 2,
+      "change": "회색 짧은 머리와 가까이 깎은 수염으로 분리했습니다. 튀어나온 턱 부품은 제거했습니다.",
+      "profile": {
+        "style": "cropped",
+        "width": 1.72,
+        "height": 1.77,
+        "beard": 0.24,
+        "part": 0.22,
+        "sweep": -1,
+        "note": "Short brushed-back grey hair and close jaw beard"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "tessa",
+      "name": "Tessa",
+      "region": "dawnspire",
+      "crop": [
+        860,
+        100,
+        250
+      ],
+      "boardSize": [
+        1916,
+        821
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/dawnspire.png",
+      "portrait": "portraits/tessa.png",
+      "previous": "../npc-faces-v3/after/page-1.png",
+      "previousColumn": 3,
+      "change": "높은 붉은 포니테일과 얼굴 옆으로 내려오는 곡선 가닥을 만들었습니다.",
+      "profile": {
+        "style": "pony",
+        "width": 1.62,
+        "height": 1.77,
+        "length": 1.55,
+        "part": 0.18,
+        "sweep": 1,
+        "note": "High ginger ponytail with curved face framing locks"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "oren",
+      "name": "Oren",
+      "region": "dawnspire",
+      "crop": [
+        1115,
+        105,
+        245
+      ],
+      "boardSize": [
+        1916,
+        821
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/dawnspire.png",
+      "portrait": "portraits/oren.png",
+      "previous": "../npc-faces-v3/after/page-1.png",
+      "previousColumn": 4,
+      "change": "민머리와 얇은 회색 옆머리, 짧고 연결된 흰 수염을 조정했습니다.",
+      "profile": {
+        "style": "bald",
+        "width": 1.76,
+        "height": 1.72,
+        "beard": 0.43,
+        "note": "Bald crown, thin grey temple hair, rounded close beard"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "nia",
+      "name": "Nia",
+      "region": "dawnspire",
+      "crop": [
+        1700,
+        245,
+        230
+      ],
+      "boardSize": [
+        1916,
+        821
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/dawnspire.png",
+      "portrait": "portraits/nia.png",
+      "previous": "../npc-faces-v3/after/page-2.png",
+      "previousColumn": 0,
+      "change": "아이 얼굴 비율과 옆가르마, 앞쪽으로 이어지는 세 갈래 땋기를 조정했습니다.",
+      "profile": {
+        "style": "braid",
+        "width": 1.64,
+        "height": 1.74,
+        "length": 1.7,
+        "part": 0.18,
+        "sweep": -1,
+        "note": "Dark side-part hair and long braid"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "eryn",
+      "name": "Eryn",
+      "region": "deepwood",
+      "crop": [
+        90,
+        0,
+        260
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/deepwood.png",
+      "portrait": "portraits/eryn.png",
+      "previous": "../npc-faces-v3/after/page-2.png",
+      "previousColumn": 1,
+      "change": "갈색 중간 길이 레이어와 뾰족한 엘프 귀의 길이/폭을 조정했습니다.",
+      "profile": {
+        "style": "layered",
+        "width": 1.62,
+        "height": 1.77,
+        "length": 0.95,
+        "part": 0.3,
+        "sweep": -1,
+        "ear": 0.544,
+        "note": "Brown swept medium layers and pointed elf ears"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "liora",
+      "name": "Liora",
+      "region": "deepwood",
+      "crop": [
+        480,
+        0,
+        260
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/deepwood.png",
+      "portrait": "portraits/liora.png",
+      "previous": "../npc-faces-v3/after/page-2.png",
+      "previousColumn": 2,
+      "change": "은빛 굵은 땋은 머리를 어깨 앞쪽으로 옮겨 칼라에 끊기지 않게 했습니다.",
+      "profile": {
+        "style": "braid",
+        "width": 1.64,
+        "height": 1.77,
+        "length": 1.87,
+        "part": 0.27,
+        "sweep": -1,
+        "ear": 0.512,
+        "note": "Thick silver braid over front shoulder"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "tobin",
+      "name": "Tobin",
+      "region": "deepwood",
+      "crop": [
+        860,
+        0,
+        270
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/deepwood.png",
+      "portrait": "portraits/tobin.png",
+      "previous": "../npc-faces-v3/after/page-2.png",
+      "previousColumn": 3,
+      "change": "균일한 앞머리 대신 불규칙한 검은 왕관 컬과 느슨한 끝가닥을 만들었습니다.",
+      "profile": {
+        "style": "messy",
+        "width": 1.65,
+        "height": 1.76,
+        "part": 0.12,
+        "sweep": 1,
+        "note": "Tousled irregular dark crown and fringe"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "pip",
+      "name": "Pip",
+      "region": "deepwood",
+      "crop": [
+        1200,
+        70,
+        340
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/deepwood.png",
+      "portrait": "portraits/pip.png",
+      "previous": "../npc-faces-v3/after/page-2.png",
+      "previousColumn": 4,
+      "change": "사람형 헤어를 제거하고 넓고 낮은 녹색 얼굴과 큰 삼각 귀로 바꿨습니다.",
+      "profile": {
+        "style": "bare",
+        "width": 1.78,
+        "height": 1.57,
+        "ear": 0.75,
+        "note": "Bare green scalp and large triangular ears; no human haircut"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "fen",
+      "name": "Fen",
+      "region": "deepwood",
+      "crop": [
+        1650,
+        0,
+        290
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/deepwood.png",
+      "portrait": "portraits/fen.png",
+      "previous": "../npc-faces-v3/after/page-3.png",
+      "previousColumn": 0,
+      "change": "뒤로 물러난 흰 옆머리와 짧고 연결된 수염, 머릿결 표면을 조정했습니다.",
+      "profile": {
+        "style": "receding",
+        "width": 1.72,
+        "height": 1.75,
+        "beard": 0.6,
+        "note": "Receding white wisps and textured short beard"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "freya",
+      "name": "Freya",
+      "region": "frozen-vale",
+      "crop": [
+        80,
+        30,
+        270
+      ],
+      "boardSize": [
+        1881,
+        836
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/frozen-vale.png",
+      "portrait": "portraits/freya.png",
+      "previous": "../npc-faces-v3/after/page-3.png",
+      "previousColumn": 1,
+      "change": "양쪽 흰 앞땋기와 곡선 가르마를 만들고 땋기를 가슴 앞쪽으로 연결했습니다.",
+      "profile": {
+        "style": "twin_braid",
+        "width": 1.65,
+        "height": 1.77,
+        "length": 1.85,
+        "part": 0.1,
+        "sweep": -1,
+        "note": "White side-part and two front braids"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "haldor",
+      "name": "Haldor",
+      "region": "frozen-vale",
+      "crop": [
+        475,
+        110,
+        290
+      ],
+      "boardSize": [
+        1881,
+        836
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/frozen-vale.png",
+      "portrait": "portraits/haldor.png",
+      "previous": "../npc-faces-v3/after/page-3.png",
+      "previousColumn": 2,
+      "change": "회색 긴 수염에 앞쪽 땋기와 금빛 묶음을 추가하고 얼굴 폭을 조정했습니다.",
+      "profile": {
+        "style": "swept",
+        "width": 1.88,
+        "height": 1.69,
+        "beard": 1.4,
+        "braidedBeard": true,
+        "part": 0.2,
+        "sweep": -1,
+        "note": "Grey brushed-back crown and three long beard plaits"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "nessa",
+      "name": "Nessa",
+      "region": "frozen-vale",
+      "crop": [
+        845,
+        25,
+        280
+      ],
+      "boardSize": [
+        1881,
+        836
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/frozen-vale.png",
+      "portrait": "portraits/nessa.png",
+      "previous": "../npc-faces-v3/after/page-3.png",
+      "previousColumn": 3,
+      "change": "높게 묶은 어두운 곱슬 번과 양쪽 느슨한 관자놀이 가닥을 추가했습니다.",
+      "profile": {
+        "style": "curly_bun",
+        "width": 1.64,
+        "height": 1.77,
+        "part": 0.15,
+        "sweep": -1,
+        "note": "High dark curled bun and loose face framing curls"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "ivo",
+      "name": "Ivo",
+      "region": "frozen-vale",
+      "crop": [
+        1175,
+        20,
+        280
+      ],
+      "boardSize": [
+        1881,
+        836
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/frozen-vale.png",
+      "portrait": "portraits/ivo.png",
+      "previous": "../npc-faces-v3/after/page-3.png",
+      "previousColumn": 4,
+      "change": "짧고 풍성한 검은 윗머리 컬과 불규칙한 앞가닥을 추가했습니다.",
+      "profile": {
+        "style": "curly",
+        "width": 1.68,
+        "height": 1.75,
+        "part": 0.1,
+        "sweep": 1,
+        "note": "Full short dark ringlets"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "ylva",
+      "name": "Ylva",
+      "region": "frozen-vale",
+      "crop": [
+        1510,
+        35,
+        300
+      ],
+      "boardSize": [
+        1881,
+        836
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/frozen-vale.png",
+      "portrait": "portraits/ylva.png",
+      "previous": "../npc-faces-v3/after/page-4.png",
+      "previousColumn": 0,
+      "change": "금발 옆가르마와 굵은 앞땋기, 뾰족한 귀를 조정했습니다.",
+      "profile": {
+        "style": "braid",
+        "width": 1.62,
+        "height": 1.79,
+        "length": 1.88,
+        "part": 0.33,
+        "sweep": -1,
+        "ear": 0.528,
+        "note": "Blonde long side sweep with front braid"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "brann",
+      "name": "Brann",
+      "region": "ember-caldera",
+      "crop": [
+        90,
+        55,
+        310
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/ember-caldera.png",
+      "portrait": "portraits/brann.png",
+      "previous": "../npc-faces-v3/after/page-4.png",
+      "previousColumn": 1,
+      "change": "높은 붉은 가르마와 긴 수염, 앞쪽 땋기 및 금빛 묶음을 추가했습니다.",
+      "profile": {
+        "style": "swept",
+        "width": 1.9,
+        "height": 1.72,
+        "beard": 1.43,
+        "braidedBeard": true,
+        "part": 0.22,
+        "sweep": 1,
+        "note": "High auburn swept crown and long braided beard"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "dagna",
+      "name": "Dagna",
+      "region": "ember-caldera",
+      "crop": [
+        450,
+        25,
+        300
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/ember-caldera.png",
+      "portrait": "portraits/dagna.png",
+      "previous": "../npc-faces-v3/after/page-4.png",
+      "previousColumn": 2,
+      "change": "높은 검은 번, 고글, 느슨한 양옆 가닥과 금빛 귀걸이를 추가했습니다.",
+      "profile": {
+        "style": "curly_bun",
+        "width": 1.77,
+        "height": 1.69,
+        "part": 0.15,
+        "sweep": -1,
+        "goggles": true,
+        "earrings": true,
+        "note": "High dark curly bun with brass goggles"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "orik",
+      "name": "Orik",
+      "region": "ember-caldera",
+      "crop": [
+        865,
+        55,
+        300
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/ember-caldera.png",
+      "portrait": "portraits/orik.png",
+      "previous": "../npc-faces-v3/after/page-4.png",
+      "previousColumn": 3,
+      "change": "안전모와 작업등을 만들고 모자 착용 높이 및 닫힌 정수리 형상을 교정했습니다.",
+      "profile": {
+        "style": "hardhat",
+        "width": 1.82,
+        "height": 1.7,
+        "beard": 0.65,
+        "note": "Rounded orange safety helmet with lamp, grey cheek beard"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "ketta",
+      "name": "Ketta",
+      "region": "ember-caldera",
+      "crop": [
+        1260,
+        35,
+        300
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/ember-caldera.png",
+      "portrait": "portraits/ketta.png",
+      "previous": "../npc-faces-v3/after/page-4.png",
+      "previousColumn": 4,
+      "change": "짧은 공통 헤어를 짙은 웨이브 단발과 옆가르마, 귀걸이로 바꿨습니다.",
+      "profile": {
+        "style": "bob",
+        "width": 1.79,
+        "height": 1.71,
+        "length": 1.3,
+        "part": 0.3,
+        "sweep": -1,
+        "earrings": true,
+        "note": "Loose dark side parted bob"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "suri",
+      "name": "Suri",
+      "region": "ember-caldera",
+      "crop": [
+        1630,
+        20,
+        310
+      ],
+      "boardSize": [
+        1983,
+        793
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/ember-caldera.png",
+      "portrait": "portraits/suri.png",
+      "previous": "../npc-faces-v3/after/page-5.png",
+      "previousColumn": 0,
+      "change": "은빛 단발의 길이와 웨이브 및 귀걸이를 조정했습니다.",
+      "profile": {
+        "style": "bob",
+        "width": 1.64,
+        "height": 1.76,
+        "length": 1.1,
+        "part": 0.24,
+        "sweep": 1,
+        "earrings": true,
+        "note": "Short silver wavy bob"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "maeve",
+      "name": "Maeve",
+      "region": "gloamwood",
+      "crop": [
+        75,
+        0,
+        340
+      ],
+      "boardSize": [
+        1774,
+        887
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/gloamwood.png",
+      "portrait": "portraits/maeve.png",
+      "previous": "../npc-faces-v3/after/page-5.png",
+      "previousColumn": 1,
+      "change": "은빛 옆가르마 단발과 뾰족한 귀의 비율을 조정했습니다.",
+      "profile": {
+        "style": "bob",
+        "width": 1.62,
+        "height": 1.78,
+        "length": 1.25,
+        "part": 0.32,
+        "sweep": -1,
+        "ear": 0.576,
+        "note": "Swept silver bob, long pointed ears"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "finn",
+      "name": "Finn",
+      "region": "gloamwood",
+      "crop": [
+        520,
+        15,
+        300
+      ],
+      "boardSize": [
+        1774,
+        887
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/gloamwood.png",
+      "portrait": "portraits/finn.png",
+      "previous": "../npc-faces-v3/after/page-5.png",
+      "previousColumn": 2,
+      "change": "붉은 머리에 불규칙한 컬과 느슨한 앞가닥을 추가했습니다.",
+      "profile": {
+        "style": "messy",
+        "width": 1.65,
+        "height": 1.76,
+        "part": 0.16,
+        "sweep": 1,
+        "note": "Loose tousled ginger fringe"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "tali",
+      "name": "Tali",
+      "region": "gloamwood",
+      "crop": [
+        950,
+        15,
+        300
+      ],
+      "boardSize": [
+        1774,
+        887
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/gloamwood.png",
+      "portrait": "portraits/tali.png",
+      "previous": "../npc-faces-v3/after/page-5.png",
+      "previousColumn": 3,
+      "change": "높은 검은 번과 긴 관자놀이 가닥, 엘프 귀를 조정했습니다.",
+      "profile": {
+        "style": "bun",
+        "width": 1.62,
+        "height": 1.77,
+        "part": 0.24,
+        "sweep": -1,
+        "ear": 0.536,
+        "note": "High black bun with long loose temple locks"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "wispkeeper",
+      "name": "Wispkeeper",
+      "region": "gloamwood",
+      "crop": [
+        1345,
+        0,
+        400
+      ],
+      "boardSize": [
+        1774,
+        887
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/gloamwood.png",
+      "portrait": "portraits/wispkeeper.png",
+      "previous": "../npc-faces-v3/after/page-5.png",
+      "previousColumn": 4,
+      "change": "긴 은빛 레이어를 어깨 앞으로 이어 붙이고 갈라진 가지/잎 관을 만들었습니다.",
+      "profile": {
+        "style": "long",
+        "width": 1.64,
+        "height": 1.77,
+        "length": 2.65,
+        "part": 0.2,
+        "sweep": -1,
+        "ear": 0.44,
+        "crown": true,
+        "note": "Long flowing white waves and branching leaf crown"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "lumi",
+      "name": "Lumi",
+      "region": "haunted-graveyard",
+      "crop": [
+        70,
+        15,
+        350
+      ],
+      "boardSize": [
+        1774,
+        887
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/haunted-graveyard.png",
+      "portrait": "portraits/lumi.png",
+      "previous": "../npc-faces-v3/after/page-6.png",
+      "previousColumn": 0,
+      "change": "짧은 공통 헤어를 높은 흰 곱슬 번과 양쪽 느슨한 가닥으로 바꿨습니다.",
+      "profile": {
+        "style": "curly_bun",
+        "width": 1.66,
+        "height": 1.76,
+        "part": 0.22,
+        "sweep": -1,
+        "note": "High pale curled bun and large loose curls"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "garrick",
+      "name": "Garrick",
+      "region": "haunted-graveyard",
+      "crop": [
+        450,
+        0,
+        460
+      ],
+      "boardSize": [
+        1774,
+        887
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/haunted-graveyard.png",
+      "portrait": "portraits/garrick.png",
+      "previous": "../npc-faces-v3/after/page-6.png",
+      "previousColumn": 1,
+      "change": "높은 모자와 넓은 챙을 만들고 이마에 맞도록 착용 높이를 교정했습니다.",
+      "profile": {
+        "style": "hat",
+        "width": 1.76,
+        "height": 1.74,
+        "beard": 0.76,
+        "note": "Tall plum hat with wide curved brim, white beard"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "elowen",
+      "name": "Elowen",
+      "region": "haunted-graveyard",
+      "crop": [
+        920,
+        20,
+        340
+      ],
+      "boardSize": [
+        1774,
+        887
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/haunted-graveyard.png",
+      "portrait": "portraits/elowen.png",
+      "previous": "../npc-faces-v3/after/page-6.png",
+      "previousColumn": 2,
+      "change": "굵은 은빛 앞땋기와 금빛 잎 서클릿, 귀걸이를 추가했습니다.",
+      "profile": {
+        "style": "braid",
+        "width": 1.64,
+        "height": 1.79,
+        "length": 1.95,
+        "part": 0.3,
+        "sweep": -1,
+        "ear": 0.52,
+        "circlet": true,
+        "earrings": true,
+        "note": "Thick silver front braid and gold leaf circlet"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    },
+    {
+      "id": "rook",
+      "name": "Rook",
+      "region": "haunted-graveyard",
+      "crop": [
+        1360,
+        20,
+        340
+      ],
+      "boardSize": [
+        1774,
+        887
+      ],
+      "concept": "../../../assets/concepts/2026-10-31-npc-cast-v1/haunted-graveyard.png",
+      "portrait": "portraits/rook.png",
+      "previous": "../npc-faces-v3/after/page-6.png",
+      "previousColumn": 3,
+      "change": "풍성한 검은 컬과 얕은 수염을 적용하고 점처럼 튀어나온 턱 부품을 제거했습니다.",
+      "profile": {
+        "style": "curly",
+        "width": 1.69,
+        "height": 1.77,
+        "beard": 0.15,
+        "part": 0.12,
+        "sweep": -1,
+        "note": "Full dark curled crown with subtle close jaw beard"
+      },
+      "reviewed": [
+        "concept board",
+        "isolated front",
+        "isolated 60 degree"
+      ],
+      "remaining": "매끈한 분할 형상과 일부 연결선/원화의 미세 모발 표현 차이는 남아 있습니다. 최종 사용자 수용 및 실기기 성능은 후속입니다."
+    }
+  ],
+  "userAccepted": false,
+  "excluded": [
+    "selene"
+  ]
+}

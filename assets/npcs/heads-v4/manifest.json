@@ -1,0 +1,38 @@
+{
+  "version": 4,
+  "sourceConceptManifest": "assets/concepts/2026-10-31-npc-cast-v1/manifest.json",
+  "hairSurface": "rbxassetid://100424123930098",
+  "faceOverrides": {
+    "rowan": "rbxassetid://80058755053302",
+    "rook": "rbxassetid://123904750786988"
+  },
+  "hairTextureGenerator": "built-in image_gen",
+  "faces": "original v3 crops; Rowan/Rook stubble painted with Blender pixels",
+  "geometry": "Blender-authored curve segment frames and accessory triangles",
+  "files": {
+    "assets/npcs/heads-v4/hair-fibers.png": {
+      "sha256": "ee804ffc6f67b58e76a62d3078533856877d0de2dc951b5daffc4452b7bc69e3",
+      "bytes": 2177865
+    },
+    "assets/npcs/heads-v4/heads.json": {
+      "sha256": "cfcd671cf650f0e54677d71bd6626387eb0101c97f07a37fe0c7b6459d4b204c",
+      "bytes": 400837
+    },
+    "assets/npcs/heads-v4/npc-heads-v4.blend": {
+      "sha256": "039deb1167488d9da298721a0f72c4727cdeda20c9e3cbd2e69f8e954ce6ec9e",
+      "bytes": 98683967
+    },
+    "assets/npcs/heads-v4/profiles.json": {
+      "sha256": "b23933c4bb85936cad3d856404e468e7d843de50e4d798e3a1745cd998fabd2c",
+      "bytes": 5533
+    },
+    "assets/npcs/heads-v4/rook-face.png": {
+      "sha256": "be858fef6828170b200498c38585c0a7e9ee2f90f0100516fecf2204e85896a8",
+      "bytes": 84335
+    },
+    "assets/npcs/heads-v4/rowan-face.png": {
+      "sha256": "702b357837f1152c6dea4b7f539064eceb2fc94bdbc00616b5cad4dc537ba123",
+      "bytes": 73358
+    }
+  }
+}

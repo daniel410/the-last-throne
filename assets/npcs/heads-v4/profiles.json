@@ -1,0 +1,263 @@
+{
+  "aldric": {
+    "style": "swept",
+    "width": 1.86,
+    "height": 1.72,
+    "beard": 1.05,
+    "part": 0.25,
+    "sweep": 1,
+    "note": "Raised ginger sweep and broad pointed beard"
+  },
+  "mira": {
+    "style": "bob",
+    "width": 1.64,
+    "height": 1.76,
+    "length": 1.38,
+    "part": 0.3,
+    "sweep": -1,
+    "earrings": true,
+    "note": "Side parted dark wavy bob"
+  },
+  "rowan": {
+    "style": "cropped",
+    "width": 1.72,
+    "height": 1.77,
+    "beard": 0.24,
+    "part": 0.22,
+    "sweep": -1,
+    "note": "Short brushed-back grey hair and close jaw beard"
+  },
+  "tessa": {
+    "style": "pony",
+    "width": 1.62,
+    "height": 1.77,
+    "length": 1.55,
+    "part": 0.18,
+    "sweep": 1,
+    "note": "High ginger ponytail with curved face framing locks"
+  },
+  "oren": {
+    "style": "bald",
+    "width": 1.76,
+    "height": 1.72,
+    "beard": 0.43,
+    "note": "Bald crown, thin grey temple hair, rounded close beard"
+  },
+  "nia": {
+    "style": "braid",
+    "width": 1.64,
+    "height": 1.74,
+    "length": 1.7,
+    "part": 0.18,
+    "sweep": -1,
+    "note": "Dark side-part hair and long braid"
+  },
+  "eryn": {
+    "style": "layered",
+    "width": 1.62,
+    "height": 1.77,
+    "length": 0.95,
+    "part": 0.3,
+    "sweep": -1,
+    "ear": 0.544,
+    "note": "Brown swept medium layers and pointed elf ears"
+  },
+  "liora": {
+    "style": "braid",
+    "width": 1.64,
+    "height": 1.77,
+    "length": 1.87,
+    "part": 0.27,
+    "sweep": -1,
+    "ear": 0.512,
+    "note": "Thick silver braid over front shoulder"
+  },
+  "tobin": {
+    "style": "messy",
+    "width": 1.65,
+    "height": 1.76,
+    "part": 0.12,
+    "sweep": 1,
+    "note": "Tousled irregular dark crown and fringe"
+  },
+  "pip": {
+    "style": "bare",
+    "width": 1.78,
+    "height": 1.57,
+    "ear": 0.75,
+    "note": "Bare green scalp and large triangular ears; no human haircut"
+  },
+  "fen": {
+    "style": "receding",
+    "width": 1.72,
+    "height": 1.75,
+    "beard": 0.6,
+    "note": "Receding white wisps and textured short beard"
+  },
+  "freya": {
+    "style": "twin_braid",
+    "width": 1.65,
+    "height": 1.77,
+    "length": 1.85,
+    "part": 0.1,
+    "sweep": -1,
+    "note": "White side-part and two front braids"
+  },
+  "haldor": {
+    "style": "swept",
+    "width": 1.88,
+    "height": 1.69,
+    "beard": 1.4,
+    "braidedBeard": true,
+    "part": 0.2,
+    "sweep": -1,
+    "note": "Grey brushed-back crown and three long beard plaits"
+  },
+  "nessa": {
+    "style": "curly_bun",
+    "width": 1.64,
+    "height": 1.77,
+    "part": 0.15,
+    "sweep": -1,
+    "note": "High dark curled bun and loose face framing curls"
+  },
+  "ivo": {
+    "style": "curly",
+    "width": 1.68,
+    "height": 1.75,
+    "part": 0.1,
+    "sweep": 1,
+    "note": "Full short dark ringlets"
+  },
+  "ylva": {
+    "style": "braid",
+    "width": 1.62,
+    "height": 1.79,
+    "length": 1.88,
+    "part": 0.33,
+    "sweep": -1,
+    "ear": 0.528,
+    "note": "Blonde long side sweep with front braid"
+  },
+  "brann": {
+    "style": "swept",
+    "width": 1.9,
+    "height": 1.72,
+    "beard": 1.43,
+    "braidedBeard": true,
+    "part": 0.22,
+    "sweep": 1,
+    "note": "High auburn swept crown and long braided beard"
+  },
+  "dagna": {
+    "style": "curly_bun",
+    "width": 1.77,
+    "height": 1.69,
+    "part": 0.15,
+    "sweep": -1,
+    "goggles": true,
+    "earrings": true,
+    "note": "High dark curly bun with brass goggles"
+  },
+  "orik": {
+    "style": "hardhat",
+    "width": 1.82,
+    "height": 1.7,
+    "beard": 0.65,
+    "note": "Rounded orange safety helmet with lamp, grey cheek beard"
+  },
+  "ketta": {
+    "style": "bob",
+    "width": 1.79,
+    "height": 1.71,
+    "length": 1.3,
+    "part": 0.3,
+    "sweep": -1,
+    "earrings": true,
+    "note": "Loose dark side parted bob"
+  },
+  "suri": {
+    "style": "bob",
+    "width": 1.64,
+    "height": 1.76,
+    "length": 1.1,
+    "part": 0.24,
+    "sweep": 1,
+    "earrings": true,
+    "note": "Short silver wavy bob"
+  },
+  "maeve": {
+    "style": "bob",
+    "width": 1.62,
+    "height": 1.78,
+    "length": 1.25,
+    "part": 0.32,
+    "sweep": -1,
+    "ear": 0.576,
+    "note": "Swept silver bob, long pointed ears"
+  },
+  "finn": {
+    "style": "messy",
+    "width": 1.65,
+    "height": 1.76,
+    "part": 0.16,
+    "sweep": 1,
+    "note": "Loose tousled ginger fringe"
+  },
+  "tali": {
+    "style": "bun",
+    "width": 1.62,
+    "height": 1.77,
+    "part": 0.24,
+    "sweep": -1,
+    "ear": 0.536,
+    "note": "High black bun with long loose temple locks"
+  },
+  "wispkeeper": {
+    "style": "long",
+    "width": 1.64,
+    "height": 1.77,
+    "length": 2.65,
+    "part": 0.2,
+    "sweep": -1,
+    "ear": 0.44,
+    "crown": true,
+    "note": "Long flowing white waves and branching leaf crown"
+  },
+  "lumi": {
+    "style": "curly_bun",
+    "width": 1.66,
+    "height": 1.76,
+    "part": 0.22,
+    "sweep": -1,
+    "note": "High pale curled bun and large loose curls"
+  },
+  "garrick": {
+    "style": "hat",
+    "width": 1.76,
+    "height": 1.74,
+    "beard": 0.76,
+    "note": "Tall plum hat with wide curved brim, white beard"
+  },
+  "elowen": {
+    "style": "braid",
+    "width": 1.64,
+    "height": 1.79,
+    "length": 1.95,
+    "part": 0.3,
+    "sweep": -1,
+    "ear": 0.52,
+    "circlet": true,
+    "earrings": true,
+    "note": "Thick silver front braid and gold leaf circlet"
+  },
+  "rook": {
+    "style": "curly",
+    "width": 1.69,
+    "height": 1.77,
+    "beard": 0.15,
+    "part": 0.12,
+    "sweep": -1,
+    "note": "Full dark curled crown with subtle close jaw beard"
+  }
+}
