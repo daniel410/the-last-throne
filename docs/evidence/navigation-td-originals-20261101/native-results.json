@@ -1,0 +1,20 @@
+{
+  "icons": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"kind\":\"LOBBY_NAVIGATION_ICON_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":33}"
+      }
+    ],
+    "isError": false
+  },
+  "grid": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"kind\":\"LOBBY_NAVIGATION_GRID_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":285}"
+      }
+    ],
+    "isError": false
+  }
+}

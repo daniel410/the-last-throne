@@ -462,6 +462,16 @@
       "manifest": "assets/shared/td-ember-caldera/manifest.json",
       "animation_manifest": "assets/animations/ember-caldera-v1/manifest.json",
       "audit_status": "10 pinned original TD volcano templates and local Blender MCP motions; published asset permissions/device acceptance separate"
+    },
+    {
+      "key": "ui.rpg-navigation-td-v2",
+      "kind": "derived-ui-adapter",
+      "source_path": "../throne-defense/src/shared/LobbyHomeArtAssets.lua",
+      "sha256": "074ffaf9692296bd50da3e88462cc958c9cf54621d5338874574a7064318ec14",
+      "date": "2026-11-01",
+      "role": "Current TD body crops/shared Maps plaque and four original navigation pictures; three RPG subjects derived with imagegen",
+      "audit_status": "source hashes and Studio local fetch verified; published ACL/real-device/user-art acceptance pending",
+      "manifest": "assets/ui/lobby-navigation-td-v2/manifest.json"
     }
   ]
 }

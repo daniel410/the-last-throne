@@ -19,6 +19,9 @@ local ok,err=xpcall(function()
    local button=nav.rail:FindFirstChild(name);check(button~=nil,name..' exists');buttons[index]=button
    check(button.LayoutOrder==index,name..' retains order')
    check(button.AbsoluteSize==Vector2.new(expected.width,expected.height),name..' matches TD size')
+   check(button.Caption.TextFits,name..' caption fits')
+   check(button.Caption.TextSize>=10,name..' caption remains readable')
+   check(button.NavigationPlaqueArt.Image==buttons[1].NavigationPlaqueArt.Image,name..' same TD plaque')
   end
   for index=1,6,2 do
    local left,right=buttons[index],buttons[index+1]
@@ -31,11 +34,11 @@ local ok,err=xpcall(function()
   check(first.AbsolutePosition.Y>=64 or buttons[2].AbsolutePosition.X+buttons[2].AbsoluteSize.X<=viewport.X-340,'navigation clears the top wallet')
   check(last.AbsolutePosition.Y>=buttons[5].AbsolutePosition.Y+buttons[5].AbsoluteSize.Y-1,'last icon has its own row')
   check(last.AbsolutePosition.Y+last.AbsoluteSize.Y<=viewport.Y-12,'navigation stays within safe bottom margin')
-  check(last.TDButtonArt.Visible,'login reward background is visible')
+  check(last.NavigationPlaqueArt.Image=='rbxassetid://127394633978202','login uses TD shared plaque')
   check(not buttons[1].TDButtonArt.Visible,'framed navigation artwork does not get an extra background')
-  local art=last:FindFirstChild('TDIcon_login_rewards')
+  local art=last.PictureViewport:FindFirstChild('NavigationIcon')
   check(art~=nil and art.ZIndex>last.TDButtonArt.ZIndex and last.Caption.ZIndex>art.ZIndex,'icon and caption appear above the background')
-  nav.dailyAvailable(true);check(last.Caption.Text=='LOGIN REWARDS !','available reward indicator remains visible')
+  nav.dailyAvailable(true);check(last.Caption.Text:find('!',1,true)~=nil and last:GetAttribute('NavigationLabel')=='LOGIN REWARDS !','available reward indicator remains visible')
   host:Destroy();copy:Destroy()
  end
 end,debug.traceback)

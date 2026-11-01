@@ -13,6 +13,6 @@ function S.measure(w,h)
  local gap,rowGap=large and 16 or 10,16
  if short and w<600 then rowGap=10 end
  if landscape then width,height,gap,rowGap=64,48,8,4 end
- return {width=width,height=height,gap=gap,rowGap=rowGap}
+ return {width=width,height=height,gap=gap,rowGap=rowGap,large=large}
 end
 return S

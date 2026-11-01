@@ -5,17 +5,23 @@ local report={kind='LOBBY_NAVIGATION_ICON_NATIVE',checks=0,failures={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local ok,err=xpcall(function()
  local nav=require(client.LobbyNavigation).create(gui,{open=function()end,close=function()end})
- local shop=nav.rail.DiamondShop.NavigationIcon
+ local shop=nav.rail.DiamondShop.PictureViewport.NavigationIcon
  local function fittedWidth(img)
   local crop=img.ImageRectSize;local target=img.AbsoluteSize
   return math.min(target.X,target.Y*crop.X/crop.Y)
  end
- local hero=nav.rail.Heroes.NavigationIcon
+ local hero=nav.rail.Heroes.PictureViewport.NavigationIcon
  check(shop.Image=='rbxassetid://135608370136189','uses original TD shop image')
- check(shop.ImageRectSize.Y<336,'source caption excluded from fit')
- check(math.abs(fittedWidth(shop)-fittedWidth(hero))<4,'fitted visual width matches other navigation icons')
- check(shop.AbsoluteSize==hero.AbsoluteSize,'navigation icon hit-area layout remains consistent')
- check(nav.rail.LoginRewards:FindFirstChild('TDIcon_login_rewards')~=nil,'TD login reward icon is connected')
+ check(hero.Image=='rbxassetid://101441413467224','uses actual TD hero override')
+ check(nav.rail.Maps.PictureViewport.NavigationIcon.Image=='rbxassetid://127394633978202','uses actual TD map')
+ check(shop.ImageRectSize.Y==262,'TD body crop excludes original plaque')
+ for _,entry in ipairs(nav.rail:GetChildren())do if entry:IsA('TextButton')then
+  check(entry.NavigationPlaqueArt.Image=='rbxassetid://127394633978202','same Maps nameplate for every entry')
+  check(entry.NavigationPlaqueArt.Position==UDim2.fromScale(.01,.7),'TD plaque position')
+  check(entry.PictureViewport.Size==UDim2.fromScale(.98,.72),'TD picture geometry')
+  check(entry.Caption.Position==UDim2.fromScale(0,.7),'caption on TD plaque')
+ end end
+ check(nav.rail.LoginRewards.PictureViewport.NavigationIcon.Image=='rbxassetid://96946740539077','new RPG-only subjects use matching TD frame')
 end,debug.traceback)
 gui:Destroy();if not ok then table.insert(report.failures,tostring(err))end;report.pass=ok
 return report

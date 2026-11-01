@@ -1,0 +1,38 @@
+{
+  "created": "2026-11-01",
+  "mode": "built-in imagegen with transparent background",
+  "reference": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/ui/lobby-navigation-v3/hero.png",
+  "referenceSha256": "8137e8025955eaca929fc044e1067236ff0d3450f76d4eb8a6c9c64440e2d3a2",
+  "sourceFiles": {
+    "src/client/LobbyHomeArt.lua": "28b696e5a7a24ee44b1abae07f62213edb712b6796839a7696d0b7a86817e777",
+    "src/client/LobbyHomeUI.lua": "34a532e011b959889a3a990de3d88e6f65a237bbc79b7feb9eb062e4edd0711b",
+    "src/shared/LobbyHomeArtAssets.lua": "074ffaf9692296bd50da3e88462cc958c9cf54621d5338874574a7064318ec14",
+    "assets/ui/lobby-navigation-v3/hero.png": "8137e8025955eaca929fc044e1067236ff0d3450f76d4eb8a6c9c64440e2d3a2"
+  },
+  "rpgAtlas": {
+    "path": "assets/ui/lobby-navigation-td-v2/rpg-icons.png",
+    "sha256": "a92f0f278e5d61c7ffbe96a03703304b05c4558bd910f5b5538a5a7d547f4f7b",
+    "assetId": "96946740539077",
+    "width": 2172,
+    "height": 724,
+    "renderWidth": 1024,
+    "renderHeight": 341,
+    "creatorId": 9156786071,
+    "assetTypeId": 1,
+    "isPublicDomain": false,
+    "accessVerification": "Owner/type/non-public-domain verified by MarketplaceService. Restricted/collaborator/Experience ACL not independently verified. Local ContentProvider fetch succeeded."
+  },
+  "commonMenuMapping": {
+    "Heroes": "hero",
+    "Quest": "quests",
+    "Maps": "maps",
+    "DiamondShop": "shop"
+  },
+  "rpgMenuMapping": {
+    "ItemShop": "new potion icon",
+    "Blacksmith": "new anvil/sword/hammer icon",
+    "LoginRewards": "new calendar/reward icon"
+  },
+  "plaque": "TD navigationPlaque Maps asset127394633978202; identical crop/position across all7",
+  "published": false
+}
