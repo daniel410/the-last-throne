@@ -8,10 +8,25 @@ local n=0
 local function check(v,label)n=n+1;assert(v,label)end
 local function eq(a,b,label)check(a==b,label..': '..tostring(a)..' ~= '..tostring(b))end
 local mage=G.new(1)
-eq(P.value('mage',1,mage).damage,140,'Mana Bolt now rewards spending 15 MP with 140 damage')
-eq(P.value('mage',2,mage).damage,119,'Water Ball gains damage without losing its lower mana cost')
-eq(P.value('mage',3,mage).damage,98,'Gravity retains area utility with stronger damage')
+eq(P.value('mage',1,mage).damage,280,'Mana Bolt doubles its previous damage')
+eq(P.value('mage',2,mage).damage,238,'Water Ball doubles its previous damage')
+eq(P.value('mage',3,mage).damage,196,'Gravity doubles its previous damage')
 eq(K.Skills.mage[2].manaCost,12,'Water Ball retains its mana cost')
+eq(G.derived('mage',mage).magicPower,200,'mage magic attack is doubled')
+eq(G.derived('elf',mage).magicPower,100,'elf magic attack is unchanged')
+local mageInt=G.new(2);mageInt.stats.INT=4
+eq(G.derived('mage',mageInt).magicPower,222,'mage level and INT contributions double')
+check(P.statHint('mage','INT',mageInt):find('+4 magic power',1,true),'mage INT hint matches actual scaling')
+for _,branch in ipairs(A.order.mage) do
+ for _,entry in ipairs(A.branches[branch].skills) do
+  local skill=K.Skills.mage[entry.index]
+  check(skill.magic and skill.damage>0,'future mage skill uses doubled magic attack')
+  local advanced=G.new(80);advanced.branch=branch;advanced.stage=4
+  local value=P.value('mage',entry.index,advanced,{power=10})
+  local oldPower=(100+79*3)*1.1
+  eq(value.damage,math.max(1,math.floor(oldPower*2*value.skill.damage+.5)),branch..' skill uses doubled damage power')
+ end
+end
 eq(P.value('mage',32,mage).damage,0,'Arcane Ward stays a non-damaging barrier')
 eq(A.common.mage[1].damage,1,'shared catalog load never compounds the spell bonus')
 local g=G.new(10)

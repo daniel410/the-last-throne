@@ -213,6 +213,7 @@ return {
 				local before=state.mana
 				action(state,descriptor.ultimate and "Ultimate" or "Skill1",0,nil,enemy.model)
 				assert(state.attack,"qualified branch/common skill must cast")
+				if classId=="mage" and descriptor.magic then near(state.attack.attackPower,(100+79*3)*2,"every mage branch uses doubled magic attack") end
 				if descriptor.braced then equal(state.humanoid.WalkSpeed,0,"braced throw prevents walking during cast") end
 				if descriptor.guardReduction then equal(state.guardReduction,.25,"guarded strike grants bounded damage reduction") end
 				local definition=state.attack.definition
@@ -601,10 +602,10 @@ return {
 		equal(state.character:GetAttribute("K0Stamina"), nil, "no stamina attribute is created")
 		near(state.mana, 85, "server charges the configured mana cost")
 		sample(0.46)
-		near(enemy.humanoid.Health, 9860, "server resolves strengthened Mana Bolt damage")
+		near(enemy.humanoid.Health, 9720, "server resolves doubled Mana Bolt damage")
 		equal(type(state.character:GetAttribute("K0SpellVisual")), "string", "server publishes spell visual snapshot")
 		sample(0.50)
-		near(enemy.humanoid.Health, 9860, "one spell cannot hit the same enemy twice")
+		near(enemy.humanoid.Health, 9720, "one spell cannot hit the same enemy twice")
 		action(state, "CastArcane", 1.1)
 		equal(state.character:GetAttribute("K0Feedback"), "SkillCooling", "early recast reports cooldown")
 		equal(state.spellSeq, 1, "early recast emits no new spell")
@@ -677,9 +678,9 @@ return {
 		action(state, "Skill3", 0, nil, target.model)
 		near(state.mana, 80, "gravity consumes mana")
 		sample(0.41)
-		near(target.humanoid.Health, 9902, "gravity deals strengthened server damage")
+		near(target.humanoid.Health, 9804, "gravity deals doubled server damage")
 		near(target.humanoid.WalkSpeed, target.config.walkSpeed * 0.5, "gravity slows target")
-		near(other.humanoid.Health, 9902, "gravity damages nearby enemy")
+		near(other.humanoid.Health, 9804, "gravity damages nearby enemy")
 		near(other.humanoid.WalkSpeed, other.config.walkSpeed * 0.5, "gravity slows nearby enemy")
 		near(distant.humanoid.Health, 10000, "gravity does not hit outside radius")
 		equal(type(state.character:GetAttribute("K0GravityAreaVisual")), "string", "gravity area published after valid target")
@@ -776,7 +777,7 @@ return {
 		wall.Position = origin + Vector3.new(0, 0, -10); wall.Parent = fixture
 		action(state, "Skill3", 0, nil, target.model)
 		sample(0.41)
-		near(target.humanoid.Health, 9902, "target hit before wall")
+		near(target.humanoid.Health, 9804, "target hit before wall")
 		near(blocked.humanoid.Health, 10000, "wall blocks gravity area")
 	end)
 	case("mana-rejection-does-not-spend-or-start-cooldown", function()
@@ -795,7 +796,7 @@ return {
 		api.stepPlayer(state, 0.75, 0.25, true)
 		near(state.mana, 85, "mana does not recover before delay")
 		for tick = 0, 3 do api.stepPlayer(state, 1 + tick * 0.25, 0.25, true) end
-		near(state.mana, 85.15, "100 MP recovers 0.15 per second")
+		near(state.mana, 85.30, "100 MP recovers 0.30 per second")
 		state.mana = 99.99
 		api.stepPlayer(state, 2, 0.25, true)
 		near(state.mana, 100, "mana cannot exceed maximum")
@@ -1038,7 +1039,7 @@ return {
 			equal(state.humanoid.AutoRotate, false, "movement cannot turn a targeted swing away")
 			local definition = state.attack.definition
 			sample(definition.windup + (definition.hitDelay or 0) + 0.01)
-			near(selected.humanoid.Health, 9925, "selected side enemy takes server damage")
+			near(selected.humanoid.Health, classId=="mage" and 9850 or 9925, "selected side enemy takes server damage")
 			near(decoy.humanoid.Health, 10000, "enemy outside aimed cone is not hit")
 			api.stepPlayer(state, 0.8, 0)
 			equal(state.humanoid.AutoRotate, true, "normal auto rotation returns when the swing ends")
@@ -1182,9 +1183,9 @@ return {
 			equal(state.character:GetAttribute("K0AttackSeq"), 1, "first attack sequence")
 			local impact = profile.attacks[1].windup + (profile.attacks[1].hitDelay or 0)
 			sample(impact + 0.01)
-			near(enemy.humanoid.Health, 9925, "melee hit and no Knight counter bonus")
+			near(enemy.humanoid.Health, classId=="mage" and 9850 or 9925, "melee hit and no Knight counter bonus")
 			sample(impact + 0.02)
-			near(enemy.humanoid.Health, 9925, "same window cannot hit twice")
+			near(enemy.humanoid.Health, classId=="mage" and 9850 or 9925, "same window cannot hit twice")
 			equal(#fixture:GetDescendants(), beforeCount, "melee does not create a projectile")
 			action(state, "Attack", 0.301)
 			equal(state.queued and state.queued.action, "Attack", "second attack buffers")
@@ -1218,9 +1219,9 @@ return {
 			local enemy = spawnEnemy()
 			action(state, "Attack", 0)
 			sample(0.27)
-			near(enemy.humanoid.Health, 9925, "one delayed sample recovers skipped active window")
+			near(enemy.humanoid.Health, classId=="mage" and 9850 or 9925, "one delayed sample recovers skipped active window")
 			sample(0.28)
-			near(enemy.humanoid.Health, 9925, "recovery cannot hit twice")
+			near(enemy.humanoid.Health, classId=="mage" and 9850 or 9925, "recovery cannot hit twice")
 		end)
 		case(classId .. "-common-guard", function()
 			api.injectResolver(function() return classId end)

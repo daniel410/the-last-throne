@@ -2,6 +2,7 @@
 -- and mastery effects are trial balance. XP mirrors story-reward-budget.json.
 local Advanced=game and require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
 local Growth={maxLevel=80,xpBase=100,xpPerLevel=25,statKeys={"STR","DEX","INT","VIT"}}
+Growth.MageMagicPowerMultiplier=2
 Growth.bases={
 	knight={health=250,healthPerLevel=15,mana=0,stats={STR=12,DEX=6,INT=4,VIT=12}},
 	dwarf={health=200,healthPerLevel=13,mana=0,stats={STR=11,DEX=7,INT=4,VIT=10}},
@@ -97,7 +98,7 @@ function Growth.derived(classId,g)
 	local physical=g.stats[Growth.attackStat(classId,false)]*2+(g.level-1)*3
 	return {health=base.health+base.healthPerLevel*(g.level-1)+g.stats.VIT*10,
 		mana=manaBase>0 and manaBase+manaLevels+g.stats.INT*3 or 0,
-		physicalPower=100+physical,magicPower=100+(g.level-1)*3+g.stats.INT*2,
+		physicalPower=100+physical,magicPower=(100+(g.level-1)*3+g.stats.INT*2)*(classId=="mage" and Growth.MageMagicPowerMultiplier or 1),
 		armor=math.floor(g.stats.VIT/4),totalStats=total}
 end
 function Growth.skill(classId,index,base,g)

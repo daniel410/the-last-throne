@@ -54,7 +54,7 @@ function Preview.statHint(classId,key,g)
 	local t=Text.StatHints
 	if key=="VIT" then return t.Vitality end
 	if key=="INT" then
-		if Growth.derived(classId,g).mana>0 then return t.Magic end
+		if Growth.derived(classId,g).mana>0 then return classId=="mage" and t.MageMagic or t.Magic end
 		return classId=="elf" and t.FutureMagic or t.UnusedMagic
 	end
 	if key==Growth.attackStat(classId,false) and classId~="mage" then return t.Physical end

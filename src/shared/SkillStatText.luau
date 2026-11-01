@@ -25,6 +25,7 @@ return {
 		UnusedPhysical = "Does not increase this hero's bow or spell damage.",
 		UnusedDexterity = "No damage, attack speed or critical bonus for this hero.",
 		Magic = "+2 magic power and +3 Max MP per invested point.",
+		MageMagic = "+4 magic power and +3 Max MP per invested point.",
 		FutureMagic = "Used by magic skills after Magic Archer advancement.",
 		UnusedMagic = "Does not increase this hero's current skill effects.",
 		Vitality = "+10 Max HP; +1 armor per 4 invested points.",
