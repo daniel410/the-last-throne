@@ -1,0 +1,10 @@
+{
+  "src/client/SelenePresentation.luau": "a06d4c2cc58834f9b468afe929acd71ae24596d5c071df7ee4984223340595dd",
+  "src/server/World/SeleneVisual.luau": "b88875cc50e911ba2cb4c0975c638fcfdeba9640ec5bd0166f06f3b2084bc591",
+  "src/server/Story/SeleneFollow.luau": "7b9d334eab69ac8bb8e4aca92a615d88a72cad9444ade314c3af0ebfb8cecd68",
+  "src/server/Story/SeleneCompanion.luau": "4948c94a0d7230d6a95e3969de7097fb2c067142101910bf88a369b07ca9d1e9",
+  "src/server/Story/DeepwoodService.luau": "a300857f2f504e9ad988ebee265f032cfddd46c4166b92ac858eff445741342f",
+  "assets/shared/td-selene-articulated/runtime.rbxmx": "82c2faa94940f2d154aea7e34bb01be2138da06e003e12c06b669ef244afd9c4",
+  "tests/selene-motion-native.luau": "3ec3754a0fd074e74df345bf2b67f1c49c65584f2bd0a0896fd2401eccb19eb2",
+  "tests/selene-support-native.luau": "58d166fa9f92c63e410ab5275a535afd92815db8c9c3e71b5966af8477d631e4"
+}

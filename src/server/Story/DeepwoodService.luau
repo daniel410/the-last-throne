@@ -293,7 +293,7 @@ function Service.interactStep(player,chapterId,goalId,stepId,choice)
 end
 function Service.stepActivities(dt) activities.update(dt) end
 function Service.selectSelene(player,following) return companion.select(player,following) end
-function Service.stepCompanion(dt) companion.update(dt) end
+function Service.stepCompanion(dt) companion.update(dt);companion.stepMotion(dt) end
 function Service.defeated(model,_winner)
  local key=model:GetAttribute('DeepwoodEncounter');local e=encounters[key]
  if not e or e.dead and e.dead[model] then return end
@@ -323,7 +323,7 @@ end
 function Service.start(settings)
  options=settings;remote=Instance.new('RemoteEvent');remote.Name='DeepwoodState';remote.Parent=ReplicatedStorage.Remotes
  activities=require(script.Parent.DeepwoodActivities).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,enqueue=enqueue,publish=publish})
- companion=require(script.Parent.SeleneCompanion).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,
+ companion=require(script.Parent.SeleneCompanion).create({frameDriven=true,active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,
   select=function(player,heroId,following) enqueue(player,heroId,Content.byId['DW-03'],{id='@selene'},following) end})
  access=require(script.Parent.DeepwoodRegionAccess).create({heroSession=options.heroSession,inventory=options.inventory,world=options.world,combat=options.combat,notice=function(p,required,name) publish(p,nil,string.format('Complete Story %d before entering %s.',required,name)) end,boundaryNotice=function(p) publish(p,nil,Text.ForestBoundaryReturn) end,regionChanged=function(p,id) p:SetAttribute('TLTStoryRegion',id) end})
  for _,node in pairs(options.world.activityNodes or {}) do if node.prompt then node.prompt.Triggered:Connect(function(p) Service.interactStep(p,node.chapter.id,node.goal.id,node.step.id) end) end end
@@ -354,6 +354,7 @@ function Service.start(settings)
  Players.PlayerRemoving:Connect(function(p) activities.remove(p);access.remove(p);companion.remove(p);offers[p]=nil;queues[p]=nil;lastRequest[p]=nil;for _,e in pairs(encounters) do e.participants[p]=nil end end)
  local activityElapsed=0
  RunService.Heartbeat:Connect(function(dt)
+  companion.stepMotion(dt)
   activityElapsed+=dt;if activityElapsed<.2 then return end
   local tick=activityElapsed;activityElapsed=0
   for _,p in ipairs(Players:GetPlayers()) do

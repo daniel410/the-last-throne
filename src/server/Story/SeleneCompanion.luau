@@ -1,6 +1,6 @@
 -- Per-owner supporter. Journal unlock/preference is durable; actors and support are session-only.
 local Players=game:GetService('Players')
-local Pathfinding=game:GetService('PathfindingService')
+local Follow=require(script.Parent.SeleneFollow)
 local Progress=require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress)
 local Budget=require(game:GetService('ReplicatedStorage').Shared.SeleneSupport)
 local Visual=require(script.Parent.Parent.World.SeleneVisual)
@@ -42,6 +42,14 @@ function M.create(o)
   if time-(lastSelect[player] or -math.huge)<.4 then return false end
   lastSelect[player]=time;o.select(player,ctx.heroId,following);return true
  end
+ function api.stepMotion(dt)
+  for _,f in pairs(followers) do
+   if f.root and f.root.Parent and f.params and f.model.Parent then
+    local casting=workspace:GetServerTimeNow()-(f.model:GetAttribute('SupportAt') or -math.huge)<.9
+    Follow.step(f,f.root,dt,f.params,f.hold or casting)
+   end
+  end
+ end
  function api.projection(player) return status[player] end
  function api.update(dt)
   dt=math.min(dt,.25)
@@ -68,41 +76,27 @@ function M.create(o)
      -- Spawn only at camp or on a new life/rejoin beside the owner's confirmed checkpoint.
      f={heroId=ctx.heroId,character=player.Character,model=Visual.create(o.world.folder,root.Position-root.CFrame.LookVector*10-Vector3.new(0,3,0),'Selene_'..player.UserId),nextPath=0};followers[player]=f
      f.model:SetAttribute('OwnerUserId',player.UserId)
+     local spawnGround=Follow.ground(f.model.PrimaryPart.Position,Follow.params(f.model,player.Character,o.enemies))
+     if spawnGround then f.model:PivotTo(CFrame.new(spawnGround)*root.CFrame.Rotation) end
      f.model:SetAttribute('NPCActorIdentity','npc:selene')
      selectionPrompts(f.model)
      Actors.tag(f.model,'companion')
     end
     local position=f.model.PrimaryPart.Position;local distance=(position-root.Position).Magnitude
-    local target=root.Position-root.CFrame.LookVector*10-Vector3.new(0,3,0);local formationDistance=(target-position).Magnitude
+    local params=Follow.params(f.model,player.Character,o.enemies)
+    local danger=false
+    for _,enemy in ipairs(o.enemies:GetChildren()) do
+     local h=enemy:FindFirstChildOfClass('Humanoid');local r=enemy:FindFirstChild('HumanoidRootPart')
+     if h and h.Health>0 and r and (r.Position-position).Magnitude<12 then danger=true;break end
+    end
+    local casting=workspace:GetServerTimeNow()-(f.model:GetAttribute('SupportAt') or -math.huge)<.9
+    f.root=root;f.params=params;f.hold=danger
+    if not o.frameDriven then Follow.step(f,root,dt,params,danger or casting) end
+    position=f.model.PrimaryPart.Position;distance=(position-root.Position).Magnitude
     if distance>100 then
      status[player]='Waiting · Return to Selene or rejoin at your checkpoint.'
     else
-     if os.clock()>=f.nextPath and not f.computing and formationDistance>4 then
-      f.nextPath=os.clock()+Budget.pathRefresh;f.computing=true
-      task.spawn(function()
-       local path=Pathfinding:CreatePath({AgentRadius=2,AgentHeight=6,AgentCanJump=false,WaypointSpacing=5})
-       local ok=pcall(function() path:ComputeAsync(position,target) end)
-       if followers[player]==f and ok and path.Status==Enum.PathStatus.Success then f.waypoints=path:GetWaypoints();f.index=2 end
-       f.computing=false;path:Destroy()
-      end)
-     end
-     local point=f.waypoints and f.waypoints[f.index or 2]
-     if point and formationDistance>3 then
-      local delta=point.Position-position
-      if delta.Magnitude<2 then f.index=(f.index or 2)+1
-      else
-       local nextPos=position+delta.Unit*math.min(delta.Magnitude,dt*Budget.followSpeed)
-       local facing=Vector3.new(delta.X,0,delta.Z)
-       if facing.Magnitude>.01 then f.model:PivotTo(CFrame.lookAt(nextPos,nextPos+facing)) end
-      end
-     end
-     local danger=false
-     for _,enemy in ipairs(o.enemies:GetChildren()) do
-      local h=enemy:FindFirstChildOfClass('Humanoid');local r=enemy:FindFirstChild('HumanoidRootPart')
-      if h and h.Health>0 and r and (r.Position-position).Magnitude<12 then danger=true;break end
-     end
-     -- Stop while threatened; recalculate next tick rather than treating a blocked route as a teleport.
-     if danger then f.waypoints=nil;status[player]='Keeping back · Move away from nearby enemies.' end
+     if danger then status[player]='Keeping back · Move away from nearby enemies.' end
      cooldowns[player]=cooldowns[player] or {}
      local ready=cooldowns[player][ctx.heroId] or 0
      if distance<=Budget.range and not danger and os.clock()>=ready and o.combat.applySeleneSupport then
@@ -110,8 +104,17 @@ function M.create(o)
       if not workspace:Raycast(position+Vector3.new(0,3,0),root.Position-(position+Vector3.new(0,3,0)),params) then
        local nearEnemy=false
        for _,enemy in ipairs(o.enemies:GetChildren()) do local r=enemy:FindFirstChild('HumanoidRootPart');local h=enemy:FindFirstChildOfClass('Humanoid');if r and h and h.Health>0 and (r.Position-root.Position).Magnitude<24 then nearEnemy=true;break end end
+       local humanoid=player.Character and player.Character:FindFirstChildOfClass('Humanoid')
+       f.missingHealth=humanoid and math.max(0,humanoid.MaxHealth-humanoid.Health) or 0
        local action=o.combat.applySeleneSupport(player,ctx.heroId,nearEnemy)
-       if action then cooldowns[player][ctx.heroId]=os.clock()+Budget.cooldown;f.model:SetAttribute('LastSupport',action);f.model:SetAttribute('SupportAt',workspace:GetServerTimeNow()) end
+       if action then
+        cooldowns[player][ctx.heroId]=os.clock()+Budget.cooldown
+        f.model:SetAttribute('LastSupport',action)
+        f.model:SetAttribute('SupportTargetUserId',player.UserId)
+        local humanoid=player.Character and player.Character:FindFirstChildOfClass('Humanoid')
+        f.model:SetAttribute('SupportAmount',action=='Heal' and humanoid and math.min(math.max(1,math.floor(humanoid.MaxHealth*Budget.healFraction)),f.missingHealth or 0) or 0)
+        f.model:SetAttribute('SupportAt',workspace:GetServerTimeNow())
+       end
       end
      end
     end

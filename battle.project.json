@@ -50,6 +50,9 @@
       },
       "EmberCalderaModels": {
         "$path": "assets/shared/td-ember-caldera/runtime.rbxmx"
+      },
+      "SeleneArticulatedModels": {
+        "$path": "assets/shared/td-selene-articulated/runtime.rbxmx"
       }
     },
     "StarterPlayer": {

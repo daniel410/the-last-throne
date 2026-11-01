@@ -34,17 +34,17 @@ return CombatService
  local enemies=Instance.new('Folder');enemies.Parent=folder
  local selectionCount=0;local calls=0;local selectionTime=0
  local fakeCombat={applySeleneSupport=function(...) calls+=1;return combat.applySeleneSupport(...) end}
- local companion=require(SSS.Server.Story.SeleneCompanion).create({clock=function() selectionTime+=1;return selectionTime end,world={folder=folder,positions={['DW-03']=center+Vector3.new(45,0,-45)}},enemies=enemies,combat=fakeCombat,
+ local companion=require(SSS.Server.Story.SeleneCompanion).create({frameDriven=true,clock=function() selectionTime+=1;return selectionTime end,world={folder=folder,positions={['DW-03']=center+Vector3.new(45,0,-45)}},enemies=enemies,combat=fakeCombat,
   active=function() return hero end,context=function(p) return p.Character and hero,roots[p] end,state=function(p) return journals[p] end,
   players=function() local r={};for i=1,count do table.insert(r,active[i]) end;return r end,publish=function() end,
   select=function(p,_,follow) journals[p]=assert(P.selectSelene(journals[p],follow));selectionCount+=1 end})
  local campActor=folder.NPCActors:FindFirstChild('Selene')
  check(campActor and campActor:GetAttribute('NPCId')=='selene' and campActor:GetAttribute('TDSourceModel')=='nun','original TD nun mounted as shared Selene actor')
  local meshes=0;for _,v in ipairs(campActor:GetDescendants()) do if v:IsA('MeshPart') then
-  meshes+=1;local original=game.ServerStorage.TDSeleneModels.nun:FindFirstChild(v.Name,true)
+  meshes+=1;local original=game.ServerStorage.SeleneArticulatedModels.nun:FindFirstChild(v.Name,true)
   check(original and original.MeshId==v.MeshId and original.TextureID==v.TextureID and original.Color==v.Color,'original TD mesh, texture and color preserved')
  end end
- check(meshes==3,'original TD body and both arms reused')
+ check(meshes==6,'articulated TD head, robe, feet and original arms reused')
  root.Position=center+Vector3.new(100,3,0);check(not companion.select(player,true) and selectionCount==0,'distance cannot invite')
  root.Position=center+Vector3.new(0,3,0);local old=journals[player];journals[player]=P.new();check(not companion.select(player,true),'rescue gate enforced at camp');journals[player]=old
  check(companion.select(player,true) and journals[player].seleneFollowing,'nearby unlocked hero can select')
@@ -62,7 +62,7 @@ return CombatService
  count=1;companion.update(.2);check(folder:FindFirstChild('Selene_1'),'slot returns when party shrinks')
  local follower=folder:FindFirstChild('Selene_1');local start=follower.PrimaryPart.Position
  root.Position+=Vector3.new(28,0,0)
- for _=1,50 do companion.update(.25);task.wait(.08) end
+ for _=1,50 do companion.update(.25);companion.stepMotion(.25);task.wait(.08) end
  check((follower.PrimaryPart.Position-start).Magnitude>10,'native pathfinding moves the cast supporter toward its owner')
  check((follower.PrimaryPart.Position-root.Position).Magnitude<12,'follower reaches a support distance')
  player.Character=nil;companion.update(.2);check(not folder:FindFirstChild('Selene_1'),'character switch removes old actor')
