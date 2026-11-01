@@ -4,7 +4,7 @@ local Navigation=require(game.ReplicatedStorage.Shared.NavigationText)
 local UIS=game:GetService('UserInputService')
 local M={}
 function M.create(player,actions)
- local gui=Instance.new('ScreenGui');gui.Name='LobbyTopMenu';gui.ResetOnSpawn=false;gui.DisplayOrder=75;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=player:WaitForChild('PlayerGui')
+ local gui=Instance.new('ScreenGui');gui.Name='LobbyTopMenu';gui.ResetOnSpawn=false;gui.ScreenInsets=Enum.ScreenInsets.CoreUISafeInsets;gui.DisplayOrder=75;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=player:WaitForChild('PlayerGui')
  local toggle=T.button(gui,'Menu','MENU',UDim2.new(1,-124,0,8),UDim2.fromOffset(112,44))
  toggle:SetAttribute('ChromeControl','menu');toggle.TDButtonArt.SliceScale=.25
  toggle.Caption.Position=UDim2.fromOffset(24,4);toggle.Caption.Size=UDim2.new(1,-36,1,-8)
@@ -18,10 +18,14 @@ function M.create(player,actions)
   if i<=2 then b.Caption.TextScaled=true;local cap=Instance.new('UITextSizeConstraint');cap.MinTextSize=9;cap.MaxTextSize=13;cap.Parent=b.Caption end
   buttons[row[1]]=b
  end
+ local layout=require(script.Parent.MobileActionMenu).bind(gui,menu,{buttons.Hero,buttons.Bag,buttons.Journal,buttons.Settings})
  local open=false
  local function setOpen(value)
   open=value==true and gui.Enabled;menu.Visible=open;player:SetAttribute('TLTLobbyTopMenuOpen',open)
   if open then
+   layout()
+  end
+  if open and not menu:GetAttribute('MobileLayout') then
    local y=math.max(0,math.min(56,gui.AbsoluteSize.Y-menu.Size.Y.Offset-8))
    menu.Position=UDim2.new(1,-178,0,y)
   end
