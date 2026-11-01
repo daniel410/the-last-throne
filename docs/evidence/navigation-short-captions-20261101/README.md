@@ -9,3 +9,5 @@ BLACKSMITH는 이름표의 사선 테두리를 피하도록 텍스트 너비를 
 Studio Edit/CoreGui의 기존 배치 검사300개 통과:1280×800/750×323/529×323/530×323/390×317에서 전체 메뉴 크기·순서·텍스트 수용, BLACKSMITH의 내부 폭, 세 요청 캡션, 보상 가능/불가 전환 후 REWORDS 유지와 느낌표 없음. 결과는 native-result.json, 재현은 tests/lobby-navigation-grid-native.luau를 따른다. 실제 빌드 소스/해시는 build.json에 기록한다.
 
 실기기·실제 보상 수령·게시 수용은 미검증이다. 다음 담당 QA는 실제 클라이언트에서 아이콘 글씨와 기존 상세창 제목을 확인한다.
+
+실제 Play의100×100 아이콘에서 BLACKSMITH13px/텍스트폭79px(내부허용82px), PORTION/DIAMOND/REWORDS18px와 TextFits=true를 확인했다. 상세창/간판 소스는 이번 변경에 포함하지 않았다.
