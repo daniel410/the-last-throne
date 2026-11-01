@@ -69,6 +69,8 @@ function Gui.create(onVisibility)
 	local remote=remotes:WaitForChild("HeroProgressionRequest")
 	local inventoryRemote=remotes:WaitForChild("InventoryRequest")
 	local snapshot,pending
+ local loadoutRetried=false
+ local feedback=false
 	local tab="Stats"
 	local treeState={selected=1}
  local statState={gearExpanded=false}
@@ -79,11 +81,11 @@ function Gui.create(onVisibility)
 	local function getState() inventoryRemote:FireServer({action="GetState",requestId=Http:GenerateGUID(false)}) end
 	local function show(text) message.Text=text;resizeChrome() end
 	local function resetDraft() draft={STR=0,DEX=0,INT=0,VIT=0} end
-	local function send(action,args)
+	local function send(action,args,retried)
 		if pending or not snapshot or not snapshot.ready or not snapshot.heroId then return end
 		local cmd={action=action,heroId=snapshot.heroId,revision=snapshot.revision,requestId=Http:GenerateGUID(false)}
 		for k,v in pairs(args or {}) do cmd[k]=v end
-		pending=cmd; remote:FireServer(cmd); show("Saving hero..."); render()
+		pending=cmd;loadoutRetried=retried==true;feedback=true; remote:FireServer(cmd); show("Saving hero..."); render()
 		task.delay(10,function() if pending==cmd then show(errors.SaveUnknown); render() end end)
 	end
 	local function showLaunch()
@@ -96,7 +98,7 @@ function Gui.create(onVisibility)
 		if onVisibility then onVisibility(value) end
 		if value then
 			CAS:BindActionAtPriority("HeroGrowthMovement",function() return Enum.ContextActionResult.Sink end,false,4000,Enum.KeyCode.W,Enum.KeyCode.A,Enum.KeyCode.S,Enum.KeyCode.D,Enum.KeyCode.Space,Enum.KeyCode.Thumbstick1)
-			getState(); render()
+			feedback=false;show("");getState(); render()
 		else CAS:UnbindAction("HeroGrowthMovement") end
 	end
 	player:GetAttributeChangedSignal("TLTInventoryOpen"):Connect(showLaunch)
@@ -126,7 +128,7 @@ function Gui.create(onVisibility)
 			treeState.retry=function() if pending then remote:FireServer(pending);show("Checking the same save...") end end
 			local height=SkillTree.render(body,hero,snapshot,treeState,send,render,pending)
 			body.CanvasSize=UDim2.fromOffset(0,height)
-			if not snapshot.atHub and not pending then show(snapshot.canInvest and "You can invest points and change your loadout here. Return to Hub to advance." or errors.UnsafeGrowth) end
+			if not snapshot.atHub and not pending and not feedback then show(snapshot.canInvest and "You can invest points and change your loadout here. Return to Hub to advance." or errors.UnsafeGrowth) end
 			return
 		end
 		local preview=Growth.copy(g)
@@ -138,7 +140,7 @@ function Gui.create(onVisibility)
 			statState.mobile=panel.AbsoluteSize.X<600 or UIS.TouchEnabled or panel.AbsoluteSize.Y<400
 			local height=StatsView.render(body,hero,snapshot,derived,draft,pending,render,send,resetDraft,function() if pending then remote:FireServer(pending);show("Checking the same save...") end end,statState)
 			body.CanvasSize=UDim2.fromOffset(0,height)
-			if not snapshot.atHub and not pending then show(snapshot.canInvest and "You can invest points and change your loadout here. Return to Hub to advance." or errors.UnsafeGrowth) end
+			if not snapshot.atHub and not pending and not feedback then show(snapshot.canInvest and "You can invest points and change your loadout here. Return to Hub to advance." or errors.UnsafeGrowth) end
 			return
 		end
 		local portraitWidth=narrow and 110 or math.floor(body.AbsoluteSize.X*.37)
@@ -179,7 +181,7 @@ function Gui.create(onVisibility)
 			retry.Activated:Connect(function() if pending then remote:FireServer(pending); show("Checking the same save...") end end)
 		end
 		body.CanvasSize=UDim2.fromOffset(0,(narrow and 172 or 0)+(tab=="Stats" and (pending and 550 or 496) or (content:GetAttribute("ContentHeight") or 706)+(pending and 50 or 0)))
-		if not snapshot.atHub and not pending then show(snapshot.canInvest and "You can invest points and change your loadout here. Return to Hub to advance." or errors.UnsafeGrowth) end
+		if not snapshot.atHub and not pending and not feedback then show(snapshot.canInvest and "You can invest points and change your loadout here. Return to Hub to advance." or errors.UnsafeGrowth) end
 	end
 	advanceTab.Activated:Connect(function() tab="Advance";body.CanvasPosition=Vector2.zero;render() end)
 	statsTab.Activated:Connect(function() tab="Stats";body.CanvasPosition=Vector2.zero; render() end)
@@ -191,18 +193,35 @@ function Gui.create(onVisibility)
 		if state==Enum.UserInputState.Begin and not game:GetService("UserInputService"):GetFocusedTextBox() then visible(not opened) end
 		return Enum.ContextActionResult.Sink
 	end,false,Enum.KeyCode[Navigation.statsKey])
-	remotes:WaitForChild("InventoryState").OnClientEvent:Connect(function(value,requestId,reason)
-		if type(value)~="table" or type(value.heroes)~="table" or snapshot and value.revision<snapshot.revision then return end
-		local changed=not snapshot or snapshot.revision~=value.revision or snapshot.heroId~=value.heroId
-		if snapshot and snapshot.heroId~=value.heroId then treeState={selected=1} end
-		snapshot=value
-		if pending and requestId==pending.requestId then
-			if reason~="SaveUnknown" and reason~="Busy" then pending=nil end
-			show(reason and (errors[reason] or "Change rejected. Refresh your hero and try again.") or "Hero saved.")
-		end
-		if changed then resetDraft() end
-		if opened then render() end
-	end)
+ local function receiveInventory(value,requestId,reason)
+  if type(value)~="table" or type(value.heroes)~="table" then return end
+  local profileChanged=not snapshot or value.revision>snapshot.revision or value.revision==snapshot.revision and snapshot.heroId~=value.heroId
+  local changed=profileChanged or value.revision==snapshot.revision and (
+   snapshot.ready~=value.ready or snapshot.atHub~=value.atHub or snapshot.canInvest~=value.canInvest)
+  -- A late acknowledgement must settle its request without rolling back newer XP.
+  if not snapshot or value.revision>=snapshot.revision then
+   if snapshot and snapshot.heroId~=value.heroId then treeState={selected=1} end
+   snapshot=value
+  end
+  if profileChanged then resetDraft() end
+  local acknowledged=pending and requestId==pending.requestId
+  if acknowledged then
+   local command=pending
+   if reason~="SaveUnknown" and reason~="Busy" then pending=nil end
+   -- XP can advance the account revision between selecting a skill and saving it.
+   -- Changed confirms rejection, so rebase this exact loadout choice once.
+   if reason=="Changed" and command.action=="SetSkillSlot" and not loadoutRetried
+    and snapshot.ready and snapshot.heroId==command.heroId and (snapshot.atHub or snapshot.canInvest) then
+    send(command.action,{slot=command.slot,skill=command.skill},true)
+    return
+   end
+   feedback=true
+   show(reason and (errors[reason] or "Change rejected. Refresh your hero and try again.") or "Hero saved.")
+  end
+  -- Polling unchanged state must not destroy a button between press and release.
+  if opened and (changed or acknowledged) then render() end
+ end
+ remotes:WaitForChild("InventoryState").OnClientEvent:Connect(receiveInventory)
 	remotes:WaitForChild("K0HeroState").OnClientEvent:Connect(function() if opened then getState() end end)
  task.spawn(function() while gui.Parent do task.wait(2);if opened and not pending then getState() end end end)
  showLaunch()

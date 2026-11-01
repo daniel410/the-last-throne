@@ -1,0 +1,13 @@
+SKILL_LOADOUT_RECOVERY_NATIVE {"error":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:235: late rejection rebases once against newest revision\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:235\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:236\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","pass":false,"checks":3}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:280: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:235: late rejection rebases once against newest revision
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:235
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:236
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:280
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

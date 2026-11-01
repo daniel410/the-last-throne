@@ -1,0 +1,12 @@
+SKILL_LOADOUT_RECOVERY_NATIVE {"error":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:235: unchanged polls retain pressed slot buttons\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:235\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:236\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","pass":false,"checks":1}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:280: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:235: unchanged polls retain pressed slot buttons
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:235
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:236
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:280
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
