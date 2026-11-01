@@ -54,7 +54,7 @@ function Preview.statHint(classId,key,g)
 	local t=Text.StatHints
 	if key=="VIT" then return t.Vitality end
 	if key=="INT" then
-		if Growth.derived(classId,g).mana>0 then return classId=="mage" and t.MageMagic or t.Magic end
+		if Growth.derived(classId,g).mana>0 then return t.Magic end
 		return classId=="elf" and t.FutureMagic or t.UnusedMagic
 	end
 	if key==Growth.attackStat(classId,false) and classId~="mage" then return t.Physical end
@@ -89,6 +89,9 @@ function Preview.effectText(classId,index,g,equipment,draftGrowth)
 	if v.barrier then
 		table.insert(lines,comparison(Text.SelfBarrier,v.barrier,after and after.barrier))
 		if v.skill.partyShield then table.insert(lines,string.format(Text.AllyBarrier,v.skill.shield*100)) end
+	end
+	if v.skill.slowMultiplier ~= nil and v.skill.slowDuration then
+		table.insert(lines,string.format(Text.MovementSlow,(1-v.skill.slowMultiplier)*100,v.skill.slowDuration))
 	end
 	if v.skill.provokeDuration then table.insert(lines,string.format(Text.Taunt,v.skill.provokeDuration)) end
 	if v.skill.guardReduction then table.insert(lines,string.format(Text.Guard,v.skill.guardReduction*100,v.skill.guardDuration)) end

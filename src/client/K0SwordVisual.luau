@@ -14,6 +14,7 @@ local MageMotion = require(script.Parent.K0MageMotion)
 local MageFocus = require(script.Parent.K0MageFocus)
 local BowGeometry = require(game.ReplicatedStorage.Shared.ElfBowGeometry)
 local groundSlam, overheadSmash
+local gravity = Config.Skills.mage[3]
 for _, skill in ipairs(Config.Skills.dwarf) do
 	if skill.id == "dwarf.common.ground" then groundSlam = skill
 	elseif skill.id == "dwarf.common.overhead" then overheadSmash = skill end
@@ -1031,7 +1032,7 @@ function Visual.renderCharacter(character, dt, now)
 			seenGravityAreas[character] = payload
 			local seq, x, y, z = payload:match("^(%d+)|([%d%.%-]+)|([%d%.%-]+)|([%d%.%-]+)$")
 			x, y, z = tonumber(x), tonumber(y), tonumber(z)
-			if seq and finite(x) and finite(y) and finite(z) then areaPulse(Vector3.new(x, y, z), Color3.fromRGB(126, 65, 211), 6) end
+			if seq and finite(x) and finite(y) and finite(z) then areaPulse(Vector3.new(x, y, z), Color3.fromRGB(126, 65, 211), gravity.areaRadius) end
 		end
 	end
 	if classId == "dwarf" then consumeSpell(character) end

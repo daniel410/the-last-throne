@@ -296,7 +296,7 @@ local function startAttack(state, current, targetModel)
 	state.attack = {
 		started = current,
 		definition = profile.attacks[nextCombo],
-		attackPower = (state.derived and (state.baseClassId=="mage" and state.derived.magicPower or state.derived.physicalPower) or profile.attackPower * (state.baseClassId=="mage" and Growth.MageMagicPowerMultiplier or 1)) * (1 + (state.equipment and state.equipment.power or 0) / 100),
+		attackPower = (state.derived and (state.baseClassId=="mage" and state.derived.magicPower or state.derived.physicalPower) or profile.attackPower) * (1 + (state.equipment and state.equipment.power or 0) / 100),
 		maxTargets = profile.maxTargets,
 		maxHeight = profile.maxHeight,
 		direction = direction,
@@ -406,7 +406,7 @@ local function startSkill(state, slot, current, targetModel)
 		state.thrownUntil = nil; state.thrownTarget = nil; state.thrownPosition = nil
 	end
 	state.attack = {
-		started = current, definition = skill, advancedCast=advancedCast, attackPower = (state.derived and (skill.magic and state.derived.magicPower or state.derived.physicalPower) or state.attackProfile.attackPower * (state.baseClassId=="mage" and skill.magic and Growth.MageMagicPowerMultiplier or 1)) * (1 + (state.equipment and state.equipment.power or 0) / 100),
+		started = current, definition = skill, advancedCast=advancedCast, attackPower = (state.derived and (skill.magic and state.derived.magicPower or state.derived.physicalPower) or state.attackProfile.attackPower) * (1 + (state.equipment and state.equipment.power or 0) / 100),
 		maxTargets = skill.maxTargets, maxHeight = skill.maxHeight, isSpell = skill.magic,
 		isSkill = true, ranged = skill.ranged, direction = direction, recallFrom = recallFrom,
 		hits = {}, hitCount = 0, counterDamage = nil, sampledActive = false, targetModel = targetModel,

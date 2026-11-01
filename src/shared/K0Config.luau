@@ -110,7 +110,7 @@ Config.Skills = {
 	mage = {
 		{ id = "mage.common.mana_bolt", name = "MANA BOLT", cooldown = 3, manaCost = 15, magic = true, windup = 0.45, active = 0.12, recovery = 0.45, damage = 1.0, posture = 10, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "mana_bolt", ranged = true },
 		{ id = "mage.common.water_ball", name = "WATER BALL", cooldown = 5, manaCost = 12, magic = true, windup = 0.35, active = 0.12, recovery = 0.35, damage = 0.85, posture = 8, range = 40, angle = 45, maxHeight = 10, maxTargets = 1, effect = "water", ranged = true },
-		{ id = "mage.common.gravity", name = "GRAVITY", cooldown = 8, manaCost = 20, magic = true, windup = 0.4, active = 0.12, recovery = 0.4, damage = 0.7, posture = 15, range = 40, angle = 45, maxHeight = 10, maxTargets = 8, effect = "gravity", areaRadius = 6, ranged = true, slowDuration = 3, slowMultiplier = 0.5 },
+		{ id = "mage.common.gravity", name = "GRAVITY", cooldown = 8, manaCost = 20, magic = true, windup = 0.4, active = 0.12, recovery = 0.4, damage = 0.7, posture = 15, range = 40, angle = 45, maxHeight = 10, maxTargets = 8, effect = "gravity", areaRadius = 10, ranged = true, slowDuration = 10, slowMultiplier = 0, description = "Stop enemies moving in the area; they can still attack." },
 	},
 }
 
@@ -120,10 +120,13 @@ for classId,skills in pairs(Advanced.common) do for _,skill in ipairs(skills) do
 -- One shared projection for authoritative damage, HUD previews and mastery.
 -- Copy appended definitions so requiring Config never mutates AdvancedSkills.
 Config.MageSpellDamageMultiplier = 1.4
+local boostedStarterSpells = { ["mage.common.mana_bolt"]=true, ["mage.common.water_ball"]=true, ["mage.common.gravity"]=true }
 for index, definition in ipairs(Config.Skills.mage) do
 	local skill = {}
 	for key, value in pairs(definition) do skill[key] = value end
-	if skill.magic and skill.damage > 0 then skill.damage = skill.damage * Config.MageSpellDamageMultiplier end
+	if skill.magic and skill.damage > 0 then
+		skill.damage = skill.damage * Config.MageSpellDamageMultiplier * (boostedStarterSpells[skill.id] and 2 or 1)
+	end
 	Config.Skills.mage[index] = skill
 end
 return Config

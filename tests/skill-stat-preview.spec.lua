@@ -12,23 +12,34 @@ eq(P.value('mage',1,mage).damage,280,'Mana Bolt doubles its previous damage')
 eq(P.value('mage',2,mage).damage,238,'Water Ball doubles its previous damage')
 eq(P.value('mage',3,mage).damage,196,'Gravity doubles its previous damage')
 eq(K.Skills.mage[2].manaCost,12,'Water Ball retains its mana cost')
-eq(G.derived('mage',mage).magicPower,200,'mage magic attack is doubled')
+eq(G.derived('mage',mage).magicPower,100,'mage magic attack remains at the original value')
 eq(G.derived('elf',mage).magicPower,100,'elf magic attack is unchanged')
 local mageInt=G.new(2);mageInt.stats.INT=4
-eq(G.derived('mage',mageInt).magicPower,222,'mage level and INT contributions double')
-check(P.statHint('mage','INT',mageInt):find('+4 magic power',1,true),'mage INT hint matches actual scaling')
+eq(G.derived('mage',mageInt).magicPower,111,'mage level and INT contributions unchanged')
+check(P.statHint('mage','INT',mageInt):find('+2 magic power',1,true),'mage INT hint matches actual scaling')
 for _,branch in ipairs(A.order.mage) do
  for _,entry in ipairs(A.branches[branch].skills) do
   local skill=K.Skills.mage[entry.index]
-  check(skill.magic and skill.damage>0,'future mage skill uses doubled magic attack')
+  check(skill.magic and skill.damage>0,'future mage skill remains magic')
+  check(math.abs(skill.damage-entry.damage*1.4)<.0000001,'future skill retains pre-change damage coefficient')
   local advanced=G.new(80);advanced.branch=branch;advanced.stage=4
   local value=P.value('mage',entry.index,advanced,{power=10})
   local oldPower=(100+79*3)*1.1
-  eq(value.damage,math.max(1,math.floor(oldPower*2*value.skill.damage+.5)),branch..' skill uses doubled damage power')
+  eq(value.damage,math.max(1,math.floor(oldPower*value.skill.damage+.5)),branch..' skill retains original damage power')
  end
 end
+eq(K.Skills.mage[3].areaRadius,10,'gravity radius is expanded')
+eq(K.Skills.mage[3].slowMultiplier,0,'gravity stops movement')
+eq(P.value('mage',3,mage).skill.slowDuration,10,'gravity starts at ten seconds')
+local mastered=G.copy(mage);mastered.mastery[3]=3
+eq(P.value('mage',3,mastered).skill.slowDuration,10.6,'mastery adds duration above ten seconds')
+check(P.effectText('mage',3,mage):find('movement speed: %-100%% for 10s')~=nil,'preview explains immobilization and duration')
 eq(P.value('mage',32,mage).damage,0,'Arcane Ward stays a non-damaging barrier')
 eq(A.common.mage[1].damage,1,'shared catalog load never compounds the spell bonus')
+for _,entry in ipairs(A.common.mage) do
+ local skill=K.Skills.mage[entry.index]
+ if entry.magic and entry.damage>0 then check(math.abs(skill.damage-entry.damage*1.4)<.0000001,'later common skill retains original coefficient') end
+end
 local g=G.new(10)
 eq(P.value('knight',1,g).damage,102,'ordinary Shield Bash estimate')
 local draft=G.copy(g);draft.stats.STR=4

@@ -1,0 +1,11 @@
+assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'isolated fixture only')
+local visual=require(game.StarterPlayer.StarterPlayerScripts.Client.K0SwordVisual)
+local config=require(game.ReplicatedStorage.Shared.K0Config)
+local character=Instance.new('Model');character.Name='GravityVisualQA';character.Parent=workspace
+character:SetAttribute('K0ClassId','mage');character:SetAttribute('K0GravityAreaVisual','77|100|500|200')
+visual.renderCharacter(character,1/60)
+local ring=workspace:FindFirstChild('K0SkillArea')
+assert(ring,'gravity effect exists');task.wait(.28)
+assert(ring.Parent and ring.Size.Y>config.Skills.mage[3].areaRadius*1.5,'gravity pulse reaches the expanded radius')
+print('GRAVITY_VISUAL_NATIVE pass=true radius='..config.Skills.mage[3].areaRadius..' diameter='..ring.Size.Y)
+character:Destroy();ring:Destroy()
