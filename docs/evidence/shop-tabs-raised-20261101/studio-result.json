@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"coverage\":\"Temporary cloned view in Edit CoreGui; not player interaction\",\"checks\":16,\"results\":{\"1\":{\"panel\":\"800, 510\",\"walletFits\":true,\"store\":\"items\",\"buy\":\"440, 200\"},\"2\":{\"panel\":\"800, 510\",\"walletFits\":true,\"store\":\"blacksmith\",\"buy\":\"440, 200\"}}}"
+    }
+  ],
+  "isError": false
+}
