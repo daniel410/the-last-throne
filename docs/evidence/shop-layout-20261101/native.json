@@ -1,0 +1,76 @@
+{
+  "kind": "SHOP_LAYOUT_NATIVE",
+  "pass": true,
+  "checks": 167,
+  "environment": "Existing Studio Play Client; isolated GUI fixtures, no trade requests",
+  "source": "tests/shop-layout-native.luau",
+  "cases": [
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "panel": [
+        800,
+        510
+      ],
+      "list": [
+        768,
+        353
+      ],
+      "columns": 2
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "panel": [
+        800,
+        366
+      ],
+      "list": [
+        768,
+        208
+      ],
+      "columns": 2
+    },
+    {
+      "viewport": [
+        750,
+        323
+      ],
+      "panel": [
+        726,
+        299
+      ],
+      "list": [
+        694,
+        141
+      ],
+      "columns": 2
+    },
+    {
+      "viewport": [
+        568,
+        320
+      ],
+      "panel": [
+        544,
+        296
+      ],
+      "list": [
+        512,
+        138
+      ],
+      "columns": 1
+    }
+  ],
+  "regression": {
+    "economy": 42,
+    "blacksmith-stock": 181,
+    "starter-potions-and-shop": 172,
+    "item-shop-categories": "pass"
+  },
+  "real_device_verified": false
+}

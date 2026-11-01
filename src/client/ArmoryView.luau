@@ -7,6 +7,7 @@ local Menu=require(script.Parent.HeroMenuChrome)
 local Artwork=require(script.Parent.ItemArtwork)
 local Impact=require(RS.Shared.EquipmentImpact)
 local ItemText=require(RS.Shared.InventoryText)
+local TextService=game:GetService('TextService')
 local V={}
 function V.create(parent,send,diamondOnly,store)
  store=store or "all"
@@ -26,8 +27,8 @@ function V.create(parent,send,diamondOnly,store)
  local sell=T.button(panel,'SellTab','SELL',UDim2.new(.5,4,0,82),UDim2.new(.5,-20,0,44))
  if diamondOnly then buy.Visible=false;sell.Visible=false end
  local scroll=Instance.new('ScrollingFrame');scroll.Name='Offers';scroll.Position=UDim2.fromOffset(16,238);scroll.Size=UDim2.new(1,-32,1,-330);scroll.BackgroundTransparency=1;scroll.BorderSizePixel=0;scroll.ScrollBarThickness=6;scroll.AutomaticCanvasSize=Enum.AutomaticSize.Y;scroll.CanvasSize=UDim2.new();scroll.Parent=panel
- local layout=Instance.new('UIListLayout');layout.Padding=UDim.new(0,10);layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.Parent=scroll
- local notice=T.label(panel,'Notice','Choose an item to review its price.',UDim2.new(0,20,1,-82),UDim2.new(1,-40,0,64),12)
+ local layout=Instance.new('UIGridLayout');layout.CellPadding=UDim2.fromOffset(10,10);layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.Parent=scroll
+ local notice=T.label(panel,'Notice','',UDim2.new(0,20,1,-82),UDim2.new(1,-40,0,64),12)
  local categories=Instance.new('Frame');categories.Name='Categories';categories.Position=UDim2.fromOffset(16,132);categories.Size=UDim2.new(1,-32,0,96);categories.BackgroundTransparency=1;categories.Parent=panel
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.new(1/3,-6,0,44);grid.CellPadding=UDim2.fromOffset(6,6);grid.SortOrder=if store=='items' or store=='blacksmith' then Enum.SortOrder.LayoutOrder else Enum.SortOrder.Name;grid.Parent=categories
  local function resize()
@@ -55,12 +56,25 @@ function V.create(parent,send,diamondOnly,store)
   if compactStore then categories.Size=UDim2.new(1,-32,0,44) end
   local top=y+(if compactStore then 54 else 106)
   scroll.Position=UDim2.fromOffset(16,top)
-  local bottom=short and 48 or 92
+  -- Reserve space only for an actual confirmation, save status, or error.
+  local noticeHeight=0
+  if notice.Text~='' then
+   noticeHeight=TextService:GetTextSize(notice.Text,notice.TextSize,notice.Font,Vector2.new(math.max(1,panel.AbsoluteSize.X-40),1000)).Y+8
+  end
+  local bottom=16+noticeHeight
+  notice.Visible=noticeHeight>0
+  -- Desktop uses two cards across; short mobile windows have their own layout.
+  local columns=panel.AbsoluteSize.X>=640 and 2 or 1
+  local cardHeight=short and 224 or 244
+  layout.FillDirectionMaxCells=columns
+  layout.CellSize=UDim2.new(1/columns,-(8+10*(columns-1))/columns,0,cardHeight)
+  panel:SetAttribute('ShopLayout',short and 'MobileLandscape' or 'Desktop')
   scroll.Size=UDim2.new(1,-32,1,-top-bottom)
   notice.Position=UDim2.new(0,20,1,-bottom+4)
   notice.Size=UDim2.new(1,-40,0,bottom-8)
  end
- panel:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize);resize()
+ panel:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize)
+ notice:GetPropertyChangedSignal('Text'):Connect(resize);resize()
  local state,mode,pending,category={},'Buy',nil,if store=='blacksmith' then 'Weapons' elseif store=='items' then 'Potions' else 'All'
  local transactionPending=false
  local categoryButtons={}
@@ -72,10 +86,11 @@ function V.create(parent,send,diamondOnly,store)
  end
  local function row(name,title,description,def,caption,fields,shortfall,currency)
   local card=T.frame(scroll,name,UDim2.new(),UDim2.new(1,-8,0,184))
+  card.LayoutOrder=#scroll:GetChildren()
   if def.currencyArt then T.icon(card,'gold',UDim2.fromOffset(10,12),UDim2.fromOffset(62,66))
   else Artwork.create(card,def,UDim2.fromOffset(10,12),UDim2.fromOffset(62,66)) end
-  T.label(card,'Name',title,UDim2.fromOffset(82,8),UDim2.new(1,-94,0,28),16,T.color.gold)
-  T.label(card,'Details',description,UDim2.fromOffset(82,38),UDim2.new(1,-94,0,92),12)
+  T.label(card,'Name',title,UDim2.fromOffset(82,8),UDim2.new(1,-94,0,64),16,T.color.gold)
+  T.label(card,'Details',description,UDim2.fromOffset(14,80),UDim2.new(1,-28,1,-140),12)
   local b=T.button(card,'Trade',caption,UDim2.new(0,14,1,-52),UDim2.new(1,-28,0,44))
   local insufficient=shortfall and shortfall>0
   if insufficient then
@@ -149,7 +164,7 @@ function V.create(parent,send,diamondOnly,store)
    end
    if n==0 then T.label(scroll,'Empty','Nothing to sell in this category. Unequip and unlock purchased gear in BAG. Starter gear cannot be sold.',UDim2.new(),UDim2.new(1,-16,0,100),14) end
   end
-  notice.Text=message or 'Prices are shown before confirmation. Each first main-story clear awards 2 Diamonds per account.'
+  notice.Text=message or ''
  end
  local function selectCategory(id)
   if store=='blacksmith' and id~='Weapons' and id~='Armor' and id~='Accessories' then return end
