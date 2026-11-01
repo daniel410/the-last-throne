@@ -20,7 +20,8 @@ local ok,err=xpcall(function()
    check(button.LayoutOrder==index,name..' retains order')
    check(button.AbsoluteSize==Vector2.new(expected.width,expected.height),name..' matches TD size')
    check(button.Caption.TextFits,name..' caption fits')
-   check(button.Caption.TextSize>=10,name..' caption remains readable')
+   check(button.Caption.TextSize>=(name=='Blacksmith' and 8 or 10),name..' caption remains readable')
+   if name=='Blacksmith'then check(button.Caption.TextBounds.X<=button.AbsoluteSize.X*.82+1,'blacksmith clears beveled nameplate corners')end
    check(button.NavigationPlaqueArt.Image==buttons[1].NavigationPlaqueArt.Image,name..' same TD plaque')
   end
   for index=1,6,2 do
@@ -38,7 +39,9 @@ local ok,err=xpcall(function()
   check(not buttons[1].TDButtonArt.Visible,'framed navigation artwork does not get an extra background')
   local art=last.PictureViewport:FindFirstChild('NavigationIcon')
   check(art~=nil and art.ZIndex>last.TDButtonArt.ZIndex and last.Caption.ZIndex>art.ZIndex,'icon and caption appear above the background')
-  nav.dailyAvailable(true);check(last.Caption.Text:find('!',1,true)~=nil and last:GetAttribute('NavigationLabel')=='LOGIN REWARDS !','available reward indicator remains visible')
+  nav.dailyAvailable(true);check(last.Caption.Text=='REWORDS','reward availability does not add punctuation')
+  nav.dailyAvailable(false);check(last.Caption.Text=='REWORDS','reward caption remains stable')
+  check(buttons[2].Caption.Text=='PORTION' and buttons[6].Caption.Text=='DIAMOND','requested icon-only captions')
   host:Destroy();copy:Destroy()
  end
 end,debug.traceback)

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"kind\":\"LOBBY_NAVIGATION_GRID_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":300}"
+    }
+  ],
+  "isError": false
+}
