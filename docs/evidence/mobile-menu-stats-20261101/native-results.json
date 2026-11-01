@@ -1,0 +1,17 @@
+{
+  "source_commit": "094412ec5d62b78fe94203728caf8517fcc87169",
+  "environment": "isolated Studio Edit fixture; PlaceId=0; no Players; synthetic GUI hosts",
+  "tests": {
+    "mobile-menu-stats-native": 1435,
+    "skill-stat-ui-native": 3000,
+    "lobby-top-menu-native": 32,
+    "battle-menu-native": 77,
+    "lobby-panel-size-native": 100
+  },
+  "checks": 4644,
+  "pass": true,
+  "compile": "pass",
+  "device_acceptance": "not run",
+  "visual_acceptance": "not run",
+  "published": false
+}
