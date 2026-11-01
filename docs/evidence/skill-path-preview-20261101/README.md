@@ -9,3 +9,5 @@ Steel Knight/Paladin 버튼을 눌러도 선택 노드를 공통1번으로 되�
 변경: HeroSkillTree, SkillStatText, 기존 skill-stat-ui-native 회귀 검사. 4클래스×양 계열×첫/중간/궁극기 전환 후 실제 생성된 상세 제목·계열 표시·잠금·훈련 금지·저장 상태 보존을 검사한다. 기존 전체 스킬/스탯 UI 검사도 실행한다.
 
 고정 소스 빌드·엔진 검사 결과는 build.json과 skill-stat-ui-native.log에 기록한다. 네이티브 GUI 생성/텍스트 검사는 실제 버튼 클릭·렌더 화면/실기기·게시 클라이언트 수용과 구분한다. 후자는 미검증이며 상위 티켓은 진행 중이다. 다음 QA는 데스크톱/모바일 가로에서 계열 버튼을 실제 눌러 수용한다. Roblox 게시/릴리스 태그 없음.
+
+고정 소스0dfbabb / 0.58.33 Lobby·Battle 빌드 성공. 확장된 skill-stat-ui-native3,120개 통과. 기존 TD203785492 자산 유형 경고는 별도다.
