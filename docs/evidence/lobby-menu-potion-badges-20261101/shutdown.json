@@ -4,5 +4,8 @@
   "play_stopped": true,
   "default_viewport_restored": true,
   "termination": "SIGTERM left the generated fixture process running; SIGKILL targeted only confirmed QA PID after evidence was saved.",
-  "user_studio_retained": "TheLastThrone-Lobby-0.58.34.rbxlx"
+  "user_studio_retained": "TheLastThrone-Lobby-0.58.34.rbxlx",
+  "pid_exited": true,
+  "qa_studio_disconnected": true,
+  "user_studio_retained_verified": true
 }

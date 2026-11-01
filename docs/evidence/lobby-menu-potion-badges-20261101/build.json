@@ -1,0 +1,40 @@
+{
+  "version": "0.58.36",
+  "source_commit": "1b524cdb7adcd50e57157930fc529d4fff2f5d77",
+  "tool": "Rojo 7.7.1",
+  "stage": "/private/tmp/tlt-05836-pinned-obsy5ifk",
+  "lfs_materialized": [],
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.58.36/TheLastThrone-Lobby-0.58.36.rbxlx",
+      "bytes": 7593904,
+      "sha256": "2a685201262fcb9a321dabaa4f6f8b7edb487f3e38390590e780bb7f3034e5e5",
+      "command": [
+        "rojo",
+        "build",
+        "default.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.58.36/TheLastThrone-Lobby-0.58.36.rbxlx"
+      ],
+      "result": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.58.36/TheLastThrone-Battle-0.58.36.rbxlx",
+      "bytes": 7593905,
+      "sha256": "d4b9d4f99f153935e787c76283f405dcf977828d5d0946320a83e215e1ca3b34",
+      "command": [
+        "rojo",
+        "build",
+        "battle.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.58.36/TheLastThrone-Battle-0.58.36.rbxlx"
+      ],
+      "result": "success"
+    }
+  ],
+  "published": false,
+  "release_tag": null,
+  "status": "local-build-success-unpublished"
+}
