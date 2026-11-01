@@ -41,14 +41,16 @@ function V.create(parent,send,diamondOnly,store)
    buy.Position,buy.Size=UDim2.new(.5,0,0,short and 38 or 42),UDim2.new(.25,-10,0,44)
    sell.Position,sell.Size=UDim2.new(.75,0,0,short and 38 or 42),UDim2.new(.25,-16,0,44)
   elseif store=='blacksmith' or store=='items' then
-   buy.Position,buy.Size=UDim2.new(.25,0,0,82),UDim2.new(.25,-6,0,44)
-   sell.Position,sell.Size=UDim2.new(.5,6,0,82),UDim2.new(.25,-6,0,44)
+   balance.Position=UDim2.fromOffset(20,37)
+   balance.Size=UDim2.new(.25,-24,0,44)
+   buy.Position,buy.Size=UDim2.new(.25,0,0,37),UDim2.new(.25,-6,0,44)
+   sell.Position,sell.Size=UDim2.new(.5,6,0,37),UDim2.new(.25,-6,0,44)
   else
    buy.Position=UDim2.fromOffset(16,short and 66 or 82)
    sell.Position=UDim2.new(.5,4,0,short and 66 or 82)
   end
   local compactStore=store=='blacksmith' or store=='items'
-  local y=if compactStore then (if short then 88 else 132) else (if short then (if diamondOnly then 66 else 114) else 132)
+  local y=if compactStore then (if short then 88 else 87) else (if short then (if diamondOnly then 66 else 114) else 132)
   categories.Position=UDim2.fromOffset(16,y)
   if compactStore then categories.Size=UDim2.new(1,-32,0,44) end
   local top=y+(if compactStore then 54 else 106)
