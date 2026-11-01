@@ -34,9 +34,22 @@ end
 local function defense(lobby)
  local spec=Specs.defense;local m=model(lobby.folder,'ThroneDefenseGateway');local make=A.builder(m,lobby.origin+spec.offset)
  make('Dais',Vector3.new(17,.4,10),Vector3.new(0,.2,0),C.dark,Enum.Material.Slate,true)
- for _,x in ipairs({-7,7}) do make('Pillar',Vector3.new(2,12,2),Vector3.new(x,6,-3),C.pale,Enum.Material.Marble) end
- make('Lintel',Vector3.new(16,2,2),Vector3.new(0,12,-3),C.gold,Enum.Material.Metal)
- local veil=make('DefenseVeil',Vector3.new(12,10,.4),Vector3.new(0,6,-3),C.purple,Enum.Material.Neon);veil.Transparency=.45
+ for _,x in ipairs({-7,7}) do
+  make('DefenseFoot',Vector3.new(3.4,1,3.5),Vector3.new(x,.5,-3),C.pale,Enum.Material.Marble)
+  make('DefensePillar',Vector3.new(2.2,6.5,2.5),Vector3.new(x,3.75,-3),C.stone,Enum.Material.Marble)
+  make('DefenseGoldBand',Vector3.new(2.5,.4,2.8),Vector3.new(x,5.6,-3),C.gold,Enum.Material.Metal)
+ end
+ for i=0,19 do
+  local angle=i*math.pi*2/20;local radius=6.9
+  make('DefenseArchStone',Vector3.new(1.6,2.2,2.6),Vector3.new(math.cos(angle)*radius,7.3+math.sin(angle)*radius,-3),i%2==0 and C.pale or C.stone,Enum.Material.Marble,false,CFrame.Angles(0,0,angle))
+  make('DefenseRim',Vector3.new(.25,1.9,.35),Vector3.new(math.cos(angle)*5.85,7.3+math.sin(angle)*5.85,-1.55),C.gold,Enum.Material.Neon,false,CFrame.Angles(0,0,angle))
+ end
+ local veil=make('DefenseVeil',Vector3.new(.15,11.4,11.4),Vector3.new(0,7.3,-2.5),C.purple,Enum.Material.Neon,false,CFrame.Angles(0,math.pi/2,0));veil.Shape=Enum.PartType.Cylinder;veil.Transparency=.48
+ A.light(veil,C.purple,19,1.1)
+ local inner=make('DefenseVeilInner',Vector3.new(.1,8.4,8.4),Vector3.new(0,7.3,-2.35),C.blue,Enum.Material.Neon,false,CFrame.Angles(0,math.pi/2,0));inner.Shape=Enum.PartType.Cylinder;inner.Transparency=.72
+ for i=1,5 do
+  local angle=i*math.pi*2/5;local rune=make('DefenseRune',Vector3.new(.35,.85,.25),Vector3.new(math.cos(angle)*4.8,7.3+math.sin(angle)*4.8,-1.3),C.cream,Enum.Material.Neon,false,CFrame.Angles(0,0,angle))
+ end
  local sign=make('DefenseSign',Vector3.new(20,3,.5),Vector3.new(0,15,-3),C.blue,Enum.Material.Wood);A.sign(sign,spec)
  local lore=make('KingdomStory',Vector3.new(20,4,.5),Vector3.new(0,3,4),C.blue,Enum.Material.Wood)
  A.sign(lore,{title='ONE KINGDOM · TWO FRONTS',subtitle='COMMAND THE DEFENSE. EXPLORE AS A HERO.',key='lobby.story.sharedKingdom'})

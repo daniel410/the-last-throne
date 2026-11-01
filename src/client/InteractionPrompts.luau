@@ -16,7 +16,7 @@ function UI.start()
  Prompts.PromptShown:Connect(function(prompt,inputType)
   if prompt.Style~=Enum.ProximityPromptStyle.Custom then return end
   remove(prompt)
-  local gui=Instance.new('BillboardGui');gui.Name='InteractionPrompt';gui.Adornee=prompt.Parent;gui.Size=UDim2.fromOffset(340,88);gui.AlwaysOnTop=true;gui.Active=true;gui.StudsOffsetWorldSpace=Vector3.new(0,2.5,0);gui.Parent=guiParent
+  local gui=Instance.new('BillboardGui');gui.Name='InteractionPrompt';gui.AutoLocalize=false;gui.Adornee=prompt.Parent;gui.Size=UDim2.fromOffset(340,88);gui.AlwaysOnTop=true;gui.Active=true;gui.StudsOffsetWorldSpace=Vector3.new(0,2.5,0);gui.Parent=guiParent
   local frame=Instance.new('Frame');frame.Size=UDim2.fromScale(1,1);frame.BackgroundColor3=Color3.fromRGB(8,16,28);frame.BackgroundTransparency=.18;frame.BorderSizePixel=0;frame.Parent=gui
   local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(0,12);corner.Parent=frame
   local function label(name,text,position,size,fontSize,color)

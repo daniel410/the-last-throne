@@ -5,12 +5,12 @@ local function check(v,m) report.checks+=1;assert(v,m) end
 local ok,err=xpcall(function()
  Run:Run();task.wait(3)
  local lobby=workspace.DawnspireLobbyPrototype
- local facilities={portal=lobby.DawnspireExpeditionPortal,training=lobby.DawnspireTrainingGround,forge=lobby.DawnspireWeaponMerchant}
+ local facilities={portal=lobby.DawnspireExpeditionPortal,training=lobby.DawnspireTrainingGround,forge=lobby.DawnspireWeaponMerchant,defense=lobby.ThroneDefenseGateway}
  for name,m in pairs(facilities) do
   local prompt=m:FindFirstChildWhichIsA('ProximityPrompt',true)
   check(prompt and prompt.Style==Enum.ProximityPromptStyle.Custom,name..' has cross-input entry')
   check(prompt.KeyboardKeyCode==Enum.KeyCode.F and prompt.GamepadKeyCode==Enum.KeyCode.ButtonX,name..' stable input')
-  check(m:FindFirstChild('FacilitySign',true).Title.Text==({portal='EXPEDITIONS',training='TRAINING GROUNDS',forge='BLACKSMITH'})[name],name..' English sign')
+  check(m:FindFirstChild('FacilitySign',true).Title.Text==({portal='EXPEDITIONS',training='TRAINING GROUNDS',forge='BLACKSMITH',defense='THRONE DEFENSE'})[name],name..' English sign')
   for _,v in ipairs(m:GetDescendants()) do
    if v:IsA('BasePart') then check(v.Anchored,name..' no loose physics') end
    if v:IsA('LuaSourceContainer') then error('Executable source in facility scenery') end
@@ -20,6 +20,9 @@ local ok,err=xpcall(function()
   check(workspace:Raycast(start,Vector3.new(0,-12,0),params)~=nil,name..' grounded walk-up')
   check(workspace:Raycast(start,Vector3.new(0,0,-6),params)==nil,name..' approach has no solid obstruction')
  end
+ local defenseVeil=facilities.defense.DefenseVeil
+ check(defenseVeil.Shape==Enum.PartType.Cylinder and math.abs(defenseVeil.CFrame.RightVector.Z)>.99,'defense gateway has a vertical circular veil')
+ check(facilities.defense:FindFirstChild('DefenseArchStone') and facilities.defense:FindFirstChild('DefenseRim'),'defense gateway has a stone arch and glowing rim')
  local veil=facilities.portal.PortalVeil
  check(math.abs(veil.CFrame.RightVector.Z)>.99,'portal disk stands vertically facing the courtyard')
  check(facilities.forge:FindFirstChild('TDWeaponDisplay1')~=nil,'shared TD weapons displayed at new forge')
