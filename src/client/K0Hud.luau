@@ -201,7 +201,7 @@ function Hud.create()
 	feedback.TextWrapped = true
 	feedback.Font=Enum.Font.GothamBlack;feedback.TextColor3=Color3.new(1,1,1)
 	feedback.TextStrokeColor3=Color3.new(0,0,0);feedback.TextStrokeTransparency=0.1
-	feedback.BackgroundColor3=COLORS.ink;feedback.BackgroundTransparency=.3
+	feedback.BackgroundColor3=COLORS.ink;feedback.BackgroundTransparency=.6
 	local feedbackLimit=Instance.new('UISizeConstraint');feedbackLimit.MaxSize=Vector2.new(620,52);feedbackLimit.Parent=feedback
 	round(feedback,6)
 	feedback.Visible = false
