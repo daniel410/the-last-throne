@@ -1,0 +1,20 @@
+{
+  "id": "storage-travel-chest-v1",
+  "classification": "New user-reference-directed model",
+  "referenceSource": "/Users/daniel/Downloads/media-generation-medieval-large-travel-storage-0-d30663d5-e4c2-412b-ac1b-02bb23ba0199.webp",
+  "referenceSha256": "ff9ddcada34ca000c50af32ed177b36b00e2ed1800ae8b48d8e475b49bc60977",
+  "runtime": "153 native Roblox Parts from StorageChestGeometry; 1 collision body",
+  "blenderExport": {
+    "file": "travel-storage-chest.glb",
+    "meshes": 153,
+    "triangles": 5336,
+    "notes": "Blender bevel/material preview; procedural grain is not baked into GLB or native Roblox"
+  },
+  "artAcceptance": "Pending user review; reference interpreted in game style, not a photoreal texture reproduction",
+  "files": {
+    "geometry.json": "798b8f8651c926ffb4e0e7bd7fb90ee9b458f870c16d313507a72a63fbb4fbe5",
+    "preview.png": "afb5852e4f0ec3bcb3478e5efa8525ab862518bd105e702511bbd2230e585c05",
+    "reference.webp": "ff9ddcada34ca000c50af32ed177b36b00e2ed1800ae8b48d8e475b49bc60977",
+    "travel-storage-chest.glb": "5b349c7a78ec26c78e666206e1e0a6a196f7178c7e17faba26fa36b7f2da65bc"
+  }
+}

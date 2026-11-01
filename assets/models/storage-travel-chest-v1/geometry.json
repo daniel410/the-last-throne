@@ -1,0 +1,3376 @@
+{
+  "id": "storage-travel-chest-v1",
+  "dimensions": [
+    6.25,
+    3.3,
+    3.9
+  ],
+  "parts": [
+    {
+      "name": "Chest",
+      "size": [
+        5.6,
+        2.8,
+        3.05
+      ],
+      "position": [
+        0,
+        1.4,
+        0
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": true
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        0.31,
+        -1.55
+      ],
+      "color": [
+        104,
+        75,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        0.31,
+        1.55
+      ],
+      "color": [
+        116,
+        85,
+        53
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        -2.82,
+        0.31,
+        0
+      ],
+      "color": [
+        96,
+        68,
+        42
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        2.82,
+        0.31,
+        0
+      ],
+      "color": [
+        96,
+        68,
+        42
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        0.8500000000000001,
+        -1.55
+      ],
+      "color": [
+        116,
+        85,
+        53
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        0.8500000000000001,
+        1.55
+      ],
+      "color": [
+        96,
+        68,
+        42
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        -2.82,
+        0.8500000000000001,
+        0
+      ],
+      "color": [
+        124,
+        92,
+        58
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        2.82,
+        0.8500000000000001,
+        0
+      ],
+      "color": [
+        124,
+        92,
+        58
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        1.3900000000000001,
+        -1.55
+      ],
+      "color": [
+        96,
+        68,
+        42
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        1.3900000000000001,
+        1.55
+      ],
+      "color": [
+        124,
+        92,
+        58
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        -2.82,
+        1.3900000000000001,
+        0
+      ],
+      "color": [
+        109,
+        78,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        2.82,
+        1.3900000000000001,
+        0
+      ],
+      "color": [
+        109,
+        78,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        1.9300000000000002,
+        -1.55
+      ],
+      "color": [
+        124,
+        92,
+        58
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        1.9300000000000002,
+        1.55
+      ],
+      "color": [
+        109,
+        78,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        -2.82,
+        1.9300000000000002,
+        0
+      ],
+      "color": [
+        104,
+        75,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        2.82,
+        1.9300000000000002,
+        0
+      ],
+      "color": [
+        104,
+        75,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        2.47,
+        -1.55
+      ],
+      "color": [
+        109,
+        78,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodPlank",
+      "size": [
+        5.6,
+        0.51,
+        0.09
+      ],
+      "position": [
+        0,
+        2.47,
+        1.55
+      ],
+      "color": [
+        104,
+        75,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        -2.82,
+        2.47,
+        0
+      ],
+      "color": [
+        116,
+        85,
+        53
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndPlank",
+      "size": [
+        0.09,
+        0.51,
+        3.1
+      ],
+      "position": [
+        2.82,
+        2.47,
+        0
+      ],
+      "color": [
+        116,
+        85,
+        53
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidJoint",
+      "size": [
+        5.78,
+        0.1,
+        3.23
+      ],
+      "position": [
+        0,
+        2.85,
+        0
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidPlank",
+      "size": [
+        0.8,
+        0.3,
+        3.2
+      ],
+      "position": [
+        -2.46,
+        3.05,
+        0
+      ],
+      "color": [
+        116,
+        85,
+        53
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidPlank",
+      "size": [
+        0.8,
+        0.3,
+        3.2
+      ],
+      "position": [
+        -1.6400000000000001,
+        3.05,
+        0
+      ],
+      "color": [
+        96,
+        68,
+        42
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidPlank",
+      "size": [
+        0.8,
+        0.3,
+        3.2
+      ],
+      "position": [
+        -0.8200000000000001,
+        3.05,
+        0
+      ],
+      "color": [
+        124,
+        92,
+        58
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidPlank",
+      "size": [
+        0.8,
+        0.3,
+        3.2
+      ],
+      "position": [
+        0.0,
+        3.05,
+        0
+      ],
+      "color": [
+        109,
+        78,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidPlank",
+      "size": [
+        0.8,
+        0.3,
+        3.2
+      ],
+      "position": [
+        0.8199999999999998,
+        3.05,
+        0
+      ],
+      "color": [
+        104,
+        75,
+        47
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidPlank",
+      "size": [
+        0.8,
+        0.3,
+        3.2
+      ],
+      "position": [
+        1.6399999999999997,
+        3.05,
+        0
+      ],
+      "color": [
+        116,
+        85,
+        53
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidPlank",
+      "size": [
+        0.8,
+        0.3,
+        3.2
+      ],
+      "position": [
+        2.46,
+        3.05,
+        0
+      ],
+      "color": [
+        96,
+        68,
+        42
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRail",
+      "size": [
+        5.86,
+        0.23,
+        0.09
+      ],
+      "position": [
+        0,
+        0.43,
+        -1.64
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRail",
+      "size": [
+        5.86,
+        0.23,
+        0.09
+      ],
+      "position": [
+        0,
+        0.43,
+        1.64
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndIronRail",
+      "size": [
+        0.09,
+        0.23,
+        3.35
+      ],
+      "position": [
+        -2.93,
+        0.43,
+        0
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndIronRail",
+      "size": [
+        0.09,
+        0.23,
+        3.35
+      ],
+      "position": [
+        2.93,
+        0.43,
+        0
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRail",
+      "size": [
+        5.86,
+        0.23,
+        0.09
+      ],
+      "position": [
+        0,
+        2.29,
+        -1.64
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRail",
+      "size": [
+        5.86,
+        0.23,
+        0.09
+      ],
+      "position": [
+        0,
+        2.29,
+        1.64
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndIronRail",
+      "size": [
+        0.09,
+        0.23,
+        3.35
+      ],
+      "position": [
+        -2.93,
+        2.29,
+        0
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndIronRail",
+      "size": [
+        0.09,
+        0.23,
+        3.35
+      ],
+      "position": [
+        2.93,
+        2.29,
+        0
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CornerIron",
+      "size": [
+        0.36,
+        2.82,
+        0.1
+      ],
+      "position": [
+        -2.73,
+        1.42,
+        -1.65
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CornerIron",
+      "size": [
+        0.36,
+        2.82,
+        0.1
+      ],
+      "position": [
+        -2.73,
+        1.42,
+        1.65
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CornerIron",
+      "size": [
+        0.36,
+        2.82,
+        0.1
+      ],
+      "position": [
+        2.73,
+        1.42,
+        -1.65
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CornerIron",
+      "size": [
+        0.36,
+        2.82,
+        0.1
+      ],
+      "position": [
+        2.73,
+        1.42,
+        1.65
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CornerReturn",
+      "size": [
+        0.1,
+        2.82,
+        0.37
+      ],
+      "position": [
+        -2.94,
+        1.42,
+        -1.43
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CornerReturn",
+      "size": [
+        0.1,
+        2.82,
+        0.37
+      ],
+      "position": [
+        -2.94,
+        1.42,
+        1.43
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CornerReturn",
+      "size": [
+        0.1,
+        2.82,
+        0.37
+      ],
+      "position": [
+        2.94,
+        1.42,
+        -1.43
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CornerReturn",
+      "size": [
+        0.1,
+        2.82,
+        0.37
+      ],
+      "position": [
+        2.94,
+        1.42,
+        1.43
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidCornerCap",
+      "size": [
+        0.5,
+        0.11,
+        0.51
+      ],
+      "position": [
+        -2.68,
+        3.24,
+        -1.38
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidCornerCap",
+      "size": [
+        0.5,
+        0.11,
+        0.51
+      ],
+      "position": [
+        -2.68,
+        3.24,
+        1.38
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidCornerCap",
+      "size": [
+        0.5,
+        0.11,
+        0.51
+      ],
+      "position": [
+        2.68,
+        3.24,
+        -1.38
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidCornerCap",
+      "size": [
+        0.5,
+        0.11,
+        0.51
+      ],
+      "position": [
+        2.68,
+        3.24,
+        1.38
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LeatherStrap",
+      "size": [
+        0.25,
+        3.12,
+        0.075
+      ],
+      "position": [
+        -1.72,
+        1.65,
+        -1.72
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LeatherStrap",
+      "size": [
+        0.25,
+        3.12,
+        0.075
+      ],
+      "position": [
+        -1.72,
+        1.65,
+        1.72
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidLeatherStrap",
+      "size": [
+        0.25,
+        0.07,
+        3.5
+      ],
+      "position": [
+        -1.72,
+        3.26,
+        0
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleSide",
+      "size": [
+        0.065,
+        0.4,
+        0.1
+      ],
+      "position": [
+        -1.91,
+        1.92,
+        1.8
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleSide",
+      "size": [
+        0.065,
+        0.4,
+        0.1
+      ],
+      "position": [
+        -1.53,
+        1.92,
+        1.8
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleRail",
+      "size": [
+        0.44,
+        0.065,
+        0.1
+      ],
+      "position": [
+        -1.72,
+        1.72,
+        1.8
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleRail",
+      "size": [
+        0.44,
+        0.065,
+        0.1
+      ],
+      "position": [
+        -1.72,
+        2.12,
+        1.8
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleTongue",
+      "size": [
+        0.055,
+        0.32,
+        0.075
+      ],
+      "position": [
+        -1.72,
+        1.95,
+        1.86
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "StrapHole",
+      "size": [
+        0.045,
+        0.055,
+        0.012
+      ],
+      "position": [
+        -1.72,
+        0.74,
+        1.764
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "SmoothPlastic",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "StrapHole",
+      "size": [
+        0.045,
+        0.055,
+        0.012
+      ],
+      "position": [
+        -1.72,
+        0.98,
+        1.764
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "SmoothPlastic",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "StrapHole",
+      "size": [
+        0.045,
+        0.055,
+        0.012
+      ],
+      "position": [
+        -1.72,
+        1.22,
+        1.764
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "SmoothPlastic",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LeatherStrap",
+      "size": [
+        0.25,
+        3.12,
+        0.075
+      ],
+      "position": [
+        1.72,
+        1.65,
+        -1.72
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LeatherStrap",
+      "size": [
+        0.25,
+        3.12,
+        0.075
+      ],
+      "position": [
+        1.72,
+        1.65,
+        1.72
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidLeatherStrap",
+      "size": [
+        0.25,
+        0.07,
+        3.5
+      ],
+      "position": [
+        1.72,
+        3.26,
+        0
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleSide",
+      "size": [
+        0.065,
+        0.4,
+        0.1
+      ],
+      "position": [
+        1.53,
+        1.92,
+        1.8
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleSide",
+      "size": [
+        0.065,
+        0.4,
+        0.1
+      ],
+      "position": [
+        1.91,
+        1.92,
+        1.8
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleRail",
+      "size": [
+        0.44,
+        0.065,
+        0.1
+      ],
+      "position": [
+        1.72,
+        1.72,
+        1.8
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleRail",
+      "size": [
+        0.44,
+        0.065,
+        0.1
+      ],
+      "position": [
+        1.72,
+        2.12,
+        1.8
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "BuckleTongue",
+      "size": [
+        0.055,
+        0.32,
+        0.075
+      ],
+      "position": [
+        1.72,
+        1.95,
+        1.86
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "StrapHole",
+      "size": [
+        0.045,
+        0.055,
+        0.012
+      ],
+      "position": [
+        1.72,
+        0.74,
+        1.764
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "SmoothPlastic",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "StrapHole",
+      "size": [
+        0.045,
+        0.055,
+        0.012
+      ],
+      "position": [
+        1.72,
+        0.98,
+        1.764
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "SmoothPlastic",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "StrapHole",
+      "size": [
+        0.045,
+        0.055,
+        0.012
+      ],
+      "position": [
+        1.72,
+        1.22,
+        1.764
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "SmoothPlastic",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "DiagonalTravelHarness",
+      "size": [
+        0.2,
+        1.8139459749397169,
+        0.065
+      ],
+      "position": [
+        -0.75,
+        1.04,
+        1.73
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": -2.1679729848875744,
+      "solid": false
+    },
+    {
+      "name": "DiagonalTravelHarness",
+      "size": [
+        0.2,
+        1.8139459749397169,
+        0.065
+      ],
+      "position": [
+        0.75,
+        1.04,
+        1.73
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": 2.1679729848875744,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        -2.73,
+        0.43,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        -1.08,
+        0.43,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        0,
+        0.43,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        1.08,
+        0.43,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        2.73,
+        0.43,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        -2.73,
+        2.29,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        -1.08,
+        2.29,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        0,
+        2.29,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        1.08,
+        2.29,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        2.73,
+        2.29,
+        -1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        -2.73,
+        0.43,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        -1.08,
+        0.43,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        0,
+        0.43,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        1.08,
+        0.43,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        2.73,
+        0.43,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        -2.73,
+        2.29,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        -1.08,
+        2.29,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        0,
+        2.29,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        1.08,
+        2.29,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "IronRivet",
+      "size": [
+        0.115,
+        0.115,
+        0.07
+      ],
+      "position": [
+        2.73,
+        2.29,
+        1.71
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        -3.0,
+        0.43,
+        -1.38
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        -3.0,
+        0.43,
+        0
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        -3.0,
+        0.43,
+        1.38
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        -3.0,
+        2.29,
+        -1.38
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        -3.0,
+        2.29,
+        0
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        -3.0,
+        2.29,
+        1.38
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        3.0,
+        0.43,
+        -1.38
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        3.0,
+        0.43,
+        0
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        3.0,
+        0.43,
+        1.38
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        3.0,
+        2.29,
+        -1.38
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        3.0,
+        2.29,
+        0
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "EndRivet",
+      "size": [
+        0.07,
+        0.115,
+        0.115
+      ],
+      "position": [
+        3.0,
+        2.29,
+        1.38
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LockHasp",
+      "size": [
+        0.32,
+        1.0,
+        0.12
+      ],
+      "position": [
+        0,
+        2.52,
+        1.77
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HaspRivet",
+      "size": [
+        0.13,
+        0.13,
+        0.07
+      ],
+      "position": [
+        0,
+        2.19,
+        1.86
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HaspRivet",
+      "size": [
+        0.13,
+        0.13,
+        0.07
+      ],
+      "position": [
+        0,
+        2.68,
+        1.86
+      ],
+      "color": [
+        85,
+        65,
+        47
+      ],
+      "material": "Metal",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "Padlock",
+      "size": [
+        0.64,
+        0.68,
+        0.23
+      ],
+      "position": [
+        0,
+        1.47,
+        1.94
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LockShackle",
+      "size": [
+        0.09,
+        0.37,
+        0.1
+      ],
+      "position": [
+        -0.23,
+        1.96,
+        1.91
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LockShackle",
+      "size": [
+        0.09,
+        0.37,
+        0.1
+      ],
+      "position": [
+        0.23,
+        1.96,
+        1.91
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "ShackleArch",
+      "size": [
+        0.09,
+        0.15,
+        0.1
+      ],
+      "position": [
+        0.22216294004648574,
+        2.18952838037358,
+        1.91
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": -1.3089969389957472,
+      "solid": false
+    },
+    {
+      "name": "ShackleArch",
+      "size": [
+        0.09,
+        0.15,
+        0.1
+      ],
+      "position": [
+        0.16263455967290594,
+        2.292634559672906,
+        1.91
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": -0.7853981633974483,
+      "solid": false
+    },
+    {
+      "name": "ShackleArch",
+      "size": [
+        0.09,
+        0.15,
+        0.1
+      ],
+      "position": [
+        0.05952838037357977,
+        2.352162940046486,
+        1.91
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": -0.26179938779914935,
+      "solid": false
+    },
+    {
+      "name": "ShackleArch",
+      "size": [
+        0.09,
+        0.15,
+        0.1
+      ],
+      "position": [
+        -0.05952838037357975,
+        2.352162940046486,
+        1.91
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0.26179938779914935,
+      "solid": false
+    },
+    {
+      "name": "ShackleArch",
+      "size": [
+        0.09,
+        0.15,
+        0.1
+      ],
+      "position": [
+        -0.1626345596729059,
+        2.292634559672906,
+        1.91
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0.7853981633974483,
+      "solid": false
+    },
+    {
+      "name": "ShackleArch",
+      "size": [
+        0.09,
+        0.15,
+        0.1
+      ],
+      "position": [
+        -0.2221629400464857,
+        2.18952838037358,
+        1.91
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 1.308996938995747,
+      "solid": false
+    },
+    {
+      "name": "Keyhole",
+      "size": [
+        0.08,
+        0.1,
+        0.013
+      ],
+      "position": [
+        0,
+        1.5,
+        2.062
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "SmoothPlastic",
+      "shape": "Ball",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "KeyholeStem",
+      "size": [
+        0.04,
+        0.14,
+        0.013
+      ],
+      "position": [
+        0,
+        1.41,
+        2.062
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "SmoothPlastic",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HandleBracket",
+      "size": [
+        0.12,
+        0.32,
+        0.24
+      ],
+      "position": [
+        -3.01,
+        1.61,
+        -0.49
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HandleBracket",
+      "size": [
+        0.12,
+        0.32,
+        0.24
+      ],
+      "position": [
+        -3.01,
+        1.61,
+        0.49
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HandleUpright",
+      "size": [
+        0.12,
+        0.35,
+        0.1
+      ],
+      "position": [
+        -3.0551499999999994,
+        1.43,
+        -0.42
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HandleUpright",
+      "size": [
+        0.12,
+        0.35,
+        0.1
+      ],
+      "position": [
+        -3.0551499999999994,
+        1.43,
+        0.42
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CarryingGrip",
+      "size": [
+        0.14,
+        0.13,
+        0.94
+      ],
+      "position": [
+        -3.0551499999999994,
+        1.24,
+        0
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HandleBracket",
+      "size": [
+        0.12,
+        0.32,
+        0.24
+      ],
+      "position": [
+        3.01,
+        1.61,
+        -0.49
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HandleBracket",
+      "size": [
+        0.12,
+        0.32,
+        0.24
+      ],
+      "position": [
+        3.01,
+        1.61,
+        0.49
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HandleUpright",
+      "size": [
+        0.12,
+        0.35,
+        0.1
+      ],
+      "position": [
+        3.0551499999999994,
+        1.43,
+        -0.42
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "HandleUpright",
+      "size": [
+        0.12,
+        0.35,
+        0.1
+      ],
+      "position": [
+        3.0551499999999994,
+        1.43,
+        0.42
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "CarryingGrip",
+      "size": [
+        0.14,
+        0.13,
+        0.94
+      ],
+      "position": [
+        3.0551499999999994,
+        1.24,
+        0
+      ],
+      "color": [
+        103,
+        67,
+        39
+      ],
+      "material": "Fabric",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "RearHinge",
+      "size": [
+        0.4,
+        0.6,
+        0.12
+      ],
+      "position": [
+        -1.3,
+        2.73,
+        -1.75
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "RearHinge",
+      "size": [
+        0.4,
+        0.6,
+        0.12
+      ],
+      "position": [
+        1.3,
+        2.73,
+        -1.75
+      ],
+      "color": [
+        60,
+        57,
+        52
+      ],
+      "material": "Metal",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.5305188637118933,
+        0.014,
+        0.009
+      ],
+      "position": [
+        -1.0595467061704313,
+        0.30993316873758325,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.5277908945353945,
+        0.014,
+        0.009
+      ],
+      "position": [
+        0.12194118177984326,
+        0.23553749660450657,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.2803609872054725,
+        0.014,
+        0.009
+      ],
+      "position": [
+        0.828784310288694,
+        0.3474665031399394,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.4646292894481006,
+        0.014,
+        0.009
+      ],
+      "position": [
+        1.4855267303222437,
+        0.8170151605044715,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.33333978648127555,
+        0.014,
+        0.009
+      ],
+      "position": [
+        -1.3005947743187027,
+        0.7996425586065786,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.4923318730712958,
+        0.014,
+        0.009
+      ],
+      "position": [
+        1.487175624430627,
+        0.735172583812659,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.21686764571148634,
+        0.014,
+        0.009
+      ],
+      "position": [
+        -0.09908879437382678,
+        1.3795017187032557,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.5235409421778283,
+        0.014,
+        0.009
+      ],
+      "position": [
+        -1.2615568990401604,
+        1.3072323775515595,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.3389034281623353,
+        0.014,
+        0.009
+      ],
+      "position": [
+        0.6956317704990242,
+        1.2214483704642027,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.39325453914927105,
+        0.014,
+        0.009
+      ],
+      "position": [
+        0.7764542924811968,
+        1.8635984160731387,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.3643387259518741,
+        0.014,
+        0.009
+      ],
+      "position": [
+        -1.2205761846049659,
+        1.7998427252653373,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.18510074997617304,
+        0.014,
+        0.009
+      ],
+      "position": [
+        0.9601874607611927,
+        1.830461257983175,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.19623943406800967,
+        0.014,
+        0.009
+      ],
+      "position": [
+        1.7721195405530095,
+        2.3796947069305125,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.1916566710056368,
+        0.014,
+        0.009
+      ],
+      "position": [
+        0.6836625979304984,
+        2.3689172440929323,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "WoodSplit",
+      "size": [
+        0.3831335113427184,
+        0.014,
+        0.009
+      ],
+      "position": [
+        -0.8708800231958955,
+        2.457599010138034,
+        1.601
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidWear",
+      "size": [
+        0.025,
+        0.008,
+        0.6750814511852375
+      ],
+      "position": [
+        -2.4,
+        3.204,
+        -0.36773534388102
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidWear",
+      "size": [
+        0.025,
+        0.008,
+        1.0236363174121546
+      ],
+      "position": [
+        -1.5999999999999999,
+        3.204,
+        0.3408840700039676
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidWear",
+      "size": [
+        0.025,
+        0.008,
+        0.5894835369573794
+      ],
+      "position": [
+        -0.7999999999999998,
+        3.204,
+        0.39108459806779683
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidWear",
+      "size": [
+        0.025,
+        0.008,
+        0.9729862778741541
+      ],
+      "position": [
+        4.440892098500626e-16,
+        3.204,
+        -0.3808996625915826
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidWear",
+      "size": [
+        0.025,
+        0.008,
+        0.943958279247426
+      ],
+      "position": [
+        0.8000000000000003,
+        3.204,
+        0.257621897232849
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidWear",
+      "size": [
+        0.025,
+        0.008,
+        0.9827884351716493
+      ],
+      "position": [
+        1.6,
+        3.204,
+        0.2184596831281055
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    },
+    {
+      "name": "LidWear",
+      "size": [
+        0.025,
+        0.008,
+        0.7012136166761551
+      ],
+      "position": [
+        2.400000000000001,
+        3.204,
+        -0.09378765552627022
+      ],
+      "color": [
+        47,
+        34,
+        24
+      ],
+      "material": "Wood",
+      "shape": "Block",
+      "angle": 0,
+      "solid": false
+    }
+  ]
+}

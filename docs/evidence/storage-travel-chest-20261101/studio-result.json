@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"coverage\":\"Studio Play visual geometry and storage prompt/API; not persistent inventory transactions\",\"model\":\"DawnspireAccountStorage\",\"collisionBodies\":1,\"checks\":630,\"parts\":153}"
+    }
+  ],
+  "isError": false
+}
