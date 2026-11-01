@@ -23,6 +23,16 @@ for _,branch in ipairs(A.order.mage) do
   check(skill.magic and skill.damage>0,'future mage skill remains magic')
   local multiplier=entry.root>0 and 2 or 1
   check(math.abs(skill.damage-entry.damage*1.4*multiplier)<.0000001,'root descendants inherit damage; ultimate stays unchanged')
+  if entry.root==3 then
+   eq(skill.slow,0.3,'gravity descendant inherits slow')
+   eq(skill.slowDuration,10,'gravity descendant inherits duration')
+   check(skill.inheritedGravity,'gravity descendant declares inherited effect')
+   check((skill.form=='ground' and skill.radius>=10) or (skill.form=='area' and skill.range>=10),'gravity descendant has at least radius ten')
+   if entry.form=='ground' then check(skill.radius>=entry.radius,'larger authored area is preserved') end
+   local mastered=G.new(80);mastered.mastery[entry.index]=3
+   eq(G.skill('mage',entry.index,skill,mastered).slowDuration,10.6,'gravity descendant mastery extends duration')
+   check(P.effectText('mage',entry.index,mastered):find('movement speed: %-70%% for 10.6s')~=nil,'gravity descendant effect preview matches')
+  else check(not skill.inheritedGravity,'other skills do not inherit gravity') end
   local advanced=G.new(80);advanced.branch=branch;advanced.stage=4
   local value=P.value('mage',entry.index,advanced,{power=10})
   local oldPower=(100+79*3)*1.1

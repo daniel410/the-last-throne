@@ -129,6 +129,13 @@ for index, definition in ipairs(Config.Skills.mage) do
 		local inherited = boostedStarterSpells[skill.id] or (skill.advanced and skill.root and skill.root >= 1 and skill.root <= 3 and not skill.ultimate)
 		skill.damage = skill.damage * Config.MageSpellDamageMultiplier * (inherited and 2 or 1)
 	end
+	-- Gravity descendants inherit its slow and minimum area, retaining larger authored areas.
+	if skill.advanced and skill.root == 3 and not skill.ultimate and skill.damage > 0 then
+		skill.inheritedGravity = true
+		skill.slow, skill.slowDuration = 0.3, 10
+		if skill.form == "ground" then skill.radius = math.max(skill.radius, 10)
+		elseif skill.form == "area" then skill.range = math.max(skill.range, 10) end
+	end
 	Config.Skills.mage[index] = skill
 end
 return Config

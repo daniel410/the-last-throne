@@ -105,7 +105,7 @@ function Growth.skill(classId,index,base,g)
 	skill.damage=skill.damage*(1+(Growth.mastery[classId][index] or .04)*rank)
 	if index==1 and (classId=="knight" or classId=="dwarf") then skill.posture=skill.posture+(classId=="knight" and 3 or 2)*rank end
 	if index==3 and classId=="knight" then skill.provokeDuration=skill.provokeDuration+.2*rank end
-	if index==3 and classId=="mage" then skill.slowDuration=skill.slowDuration+.2*rank end
+	if classId=="mage" and (index==3 or skill.inheritedGravity) then skill.slowDuration=skill.slowDuration+.2*rank end
 	if skill.shield and skill.form=="self" then skill.shield=skill.shield*(1+.04*rank) end
 	skill.masteryRank=rank
 	return skill

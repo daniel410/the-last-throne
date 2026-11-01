@@ -90,8 +90,10 @@ function Preview.effectText(classId,index,g,equipment,draftGrowth)
 		table.insert(lines,comparison(Text.SelfBarrier,v.barrier,after and after.barrier))
 		if v.skill.partyShield then table.insert(lines,string.format(Text.AllyBarrier,v.skill.shield*100)) end
 	end
-	if v.skill.slowMultiplier ~= nil and v.skill.slowDuration then
-		table.insert(lines,string.format(Text.MovementSlow,(1-v.skill.slowMultiplier)*100,v.skill.slowDuration))
+	local slowMultiplier=v.skill.slowMultiplier
+	if slowMultiplier==nil and v.skill.inheritedGravity then slowMultiplier=v.skill.slow end
+	if slowMultiplier ~= nil and v.skill.slowDuration then
+		table.insert(lines,string.format(Text.MovementSlow,(1-slowMultiplier)*100,v.skill.slowDuration))
 	end
 	if v.skill.provokeDuration then table.insert(lines,string.format(Text.Taunt,v.skill.provokeDuration)) end
 	if v.skill.guardReduction then table.insert(lines,string.format(Text.Guard,v.skill.guardReduction*100,v.skill.guardDuration)) end

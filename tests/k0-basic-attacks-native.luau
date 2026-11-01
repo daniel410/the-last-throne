@@ -226,6 +226,11 @@ return {
 				local definition=state.attack.definition
 				for pulse=1,definition.pulses do sample(definition.windup+(pulse-1)*definition.interval+.01) end
 				equal(enemy.humanoid.Health<10000,descriptor.form~="self","attack damages; pure ward never damages")
+    if descriptor.inheritedGravity then
+     near(enemy.humanoid.WalkSpeed,enemy.config.walkSpeed*.3,"inherited gravity applies slow immediately")
+     near(enemy.gravityUntil,definition.windup+(definition.pulses-1)*definition.interval+.01+10,"inherited gravity lasts ten seconds after last hit")
+     equal(type(enemy.model:GetAttribute("K0GravityUntil")),"number","inherited gravity status replicated")
+    end
 				equal(state.skillReadyAt[definition.id],definition.cooldown,"own stable cooldown")
 				if definition.magic then near(state.mana,before-definition.manaCost,"magic uses MP") end
 				if definition.shield then equal(state.branchShield.amount>0,true,"attack grants server shield") end
@@ -676,6 +681,22 @@ return {
 		equal(state.skillReadyAt["knight.common.provoke"], 12.1, "cooldown follows skill identity")
 		equal(state.character:GetAttribute("K0EquippedSkill1"), "knight.common.whirlwind", "replicated equipped skill matches trusted slot")
 	end)
+	case("gravity-descendant-radius-and-boss-slow",function()
+  local G=require(game.ReplicatedStorage.Shared.HeroProgression)
+  local index
+  for i,d in ipairs(api.Config.Skills.mage) do if d.id=="mage.cryo.frost_ring" then index=i end end
+  assert(index,"Frost Ring exists")
+  local growth=G.new(80);growth.branch="cryo";growth.stage=4;growth.skillSlots={index,0,0,0,0}
+  api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="mage",epoch=1,characterGeneration=1,growth=growth,skillSlots=growth.skillSlots,slotCount=5} end)
+  local state=spawnPlayer();local target=spawnEnemy(3);local boss=spawnEnemy(9,"Ogre");boss.model:SetAttribute("StoryBoss",true)
+  local outside=spawnEnemy(11)
+  action(state,"Skill1",0,nil,target.model);local hitAt=state.attack.definition.windup+.01;sample(hitAt)
+  near(boss.humanoid.WalkSpeed,boss.config.walkSpeed*.3,"gravity descendant slows boss inside expanded area")
+  near(boss.gravityUntil,hitAt+10,"boss receives ten-second slow")
+  equal(outside.gravityUntil,nil,"outside enemy is not slowed")
+  api.stepEnemy(boss,hitAt+9.99,0);near(boss.humanoid.WalkSpeed,boss.config.walkSpeed*.3,"slow persists until expiry")
+  api.stepEnemy(boss,hitAt+10.01,0);near(boss.humanoid.WalkSpeed,boss.config.walkSpeed,"boss speed restores at expiry")
+ end)
 	case("gravity-slows-nearby-targets-and-expires", function()
 		api.injectResolver(function() return "mage" end)
 		local state = spawnPlayer()

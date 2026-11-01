@@ -728,7 +728,11 @@ local function damageEnemy(state, enemy, attack, current)
    applyProvokeDebuffs(enemy,d,current)
 			if d.mark then enemy.branchMarks=enemy.branchMarks or {};enemy.branchMarks[state.heroId]={kind=d.mark,expires=current+8};enemy.model:SetAttribute("K0BranchMark",d.mark) end
 			if d.wet then enemy.model:SetAttribute("K0WetUntil",workspace:GetServerTimeNow()+3) end
-			if d.slow and enemy.kind~="Ogre" and not enemy.model:GetAttribute("StoryBoss") then enemy.gravityUntil=current+(d.slowDuration or 2);enemy.gravityMultiplier=d.slow;enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+(d.slowDuration or 2)) end
+			if d.slow and (d.inheritedGravity or (enemy.kind~="Ogre" and not enemy.model:GetAttribute("StoryBoss"))) then
+    enemy.gravityUntil=current+(d.slowDuration or 2);enemy.gravityMultiplier=d.slow
+    if d.inheritedGravity and not (enemy.stunUntil and current<enemy.stunUntil) then enemy.humanoid.WalkSpeed=enemy.config.walkSpeed*d.slow end
+    enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+(d.slowDuration or 2))
+   end
 			if d.taunt and enemy.kind~="Ogre" then enemy.provokedBy=state;enemy.provokeUntil=current+d.taunt;enemy.model:SetAttribute("K0ProvokeUntil",workspace:GetServerTimeNow()+d.taunt) end
 			if d.push and enemy.kind~="Ogre" then
 				local push=horizontalUnit(enemy.root.Position-state.root.Position,attack.direction)*d.push
