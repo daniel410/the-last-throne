@@ -59,5 +59,4 @@ try:
 finally:
  bpy.context.window.scene=previous_scene
 bpy.ops.render.render(write_still=True,scene=scene.name)
-print(json.dumps({'scene':scene.name,'parts':len(data['parts']),'blend':root+'/travel-storage-chest.glb','preview':root+'/preview.png'}))
-
+print(json.dumps({'scene':scene.name,'parts':len(data['parts']),'glb':root+'/travel-storage-chest.glb','preview':root+'/preview.png'}))
