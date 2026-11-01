@@ -1,0 +1,549 @@
+{
+  "source": "042a567 menu modules + 0.58.9 remaining modules, isolated fixture",
+  "objects": {
+    "DeepwoodTopHud.Root.Minimap.MapMenu.TDButtonArt": {
+      "absoluteSize": "28.8000011, 28.8000011",
+      "parent": "MapMenu",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "715.519958, -50",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "LobbyTopMenu.Menu.TDButtonArt": {
+      "absoluteSize": "112, 44",
+      "parent": "Menu",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "1156, 8",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapMenu": {
+      "absoluteSize": "28.8000011, 28.8000011",
+      "position": "{1, -34}, {0, 0}",
+      "parent": "Minimap",
+      "absolutePosition": "715.519958, -50",
+      "class": "TextButton",
+      "size": "{0, 40}, {0, 40}"
+    },
+    "LobbyTopMenu.Actions.Bag.TDButtonArt": {
+      "absoluteSize": "148, 36",
+      "parent": "Bag",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "1112, 108",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Journal": {
+      "absoluteSize": "106.560005, 25.920002",
+      "position": "{0, 10}, {0, 96}",
+      "parent": "MapActions",
+      "absolutePosition": "626.23999, 197.680008",
+      "class": "TextButton",
+      "size": "{0, 148}, {0, 36}"
+    },
+    "DeepwoodTopHud.Root.Minimap.Wallet.Gold": {
+      "absoluteSize": "125.280006, 18.7200012",
+      "position": "{0, 32}, {0, 0}",
+      "parent": "Wallet",
+      "absolutePosition": "613.279968, 79.6000061",
+      "class": "TextLabel",
+      "size": "{1, -34}, {0, 26}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Journal.Caption": {
+      "absoluteSize": "86.4000015, 23.0400009",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "Journal",
+      "absolutePosition": "636.320007, 199.119995",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.BackToLobby.UIScale": {
+      "scale": 1
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Hero": {
+      "absoluteSize": "106.560005, 25.920002",
+      "position": "{0, 10}, {0, 8}",
+      "parent": "MapActions",
+      "absolutePosition": "626.23999, 134.320023",
+      "class": "TextButton",
+      "size": "{0, 148}, {0, 36}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.BackToLobby.Caption": {
+      "absoluteSize": "92.1600037, 25.920002",
+      "position": "{0, 10}, {0, 0}",
+      "parent": "BackToLobby",
+      "absolutePosition": "633.440002, 265.360046",
+      "class": "TextLabel",
+      "size": "{1, -20}, {1, 0}"
+    },
+    "LobbyTopMenu.Actions.Bag": {
+      "absoluteSize": "148, 36",
+      "position": "{0, 10}, {0, 52}",
+      "parent": "Actions",
+      "absolutePosition": "1112, 108",
+      "class": "TextButton",
+      "size": "{0, 148}, {0, 36}"
+    },
+    "LobbyTopMenu.Actions.Hero.Caption": {
+      "absoluteSize": "120, 32",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "Hero",
+      "absolutePosition": "1126, 66",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "LobbyTopMenu.Actions.TDPanelArt": {
+      "absoluteSize": "168, 192",
+      "parent": "Actions",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "251, 239",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "1102, 56",
+      "scaleType": "Slice",
+      "cropOffset": "513, 730",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "LobbyTopMenu.Actions.Settings": {
+      "absoluteSize": "148, 44",
+      "position": "{0, 10}, {0, 140}",
+      "parent": "Actions",
+      "absolutePosition": "1112, 196",
+      "class": "TextButton",
+      "size": "{0, 148}, {0, 44}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapGem2": {
+      "absoluteSize": "8.64000034, 8.64000034",
+      "position": "{1, 0}, {0.5, 0}",
+      "parent": "Minimap",
+      "absolutePosition": "735.679993, 6.16000366",
+      "class": "Frame",
+      "size": "{0, 12}, {0, 12}"
+    },
+    "DeepwoodTopHud.Root.Minimap.PlayerMarker": {
+      "absoluteSize": "20.1599998, 20.1599998",
+      "position": "{0.5, 0}, {0.5, 0}",
+      "parent": "Minimap",
+      "absolutePosition": "669.439941, 0.400001526",
+      "class": "TextLabel",
+      "size": "{0, 28}, {0, 28}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Bag": {
+      "absoluteSize": "106.560005, 25.920002",
+      "position": "{0, 10}, {0, 52}",
+      "parent": "MapActions",
+      "absolutePosition": "626.23999, 166.000031",
+      "class": "TextButton",
+      "size": "{0, 148}, {0, 36}"
+    },
+    "DeepwoodTopHud.Root.Minimap.North": {
+      "absoluteSize": "14.4000006, 12.960001",
+      "position": "{0.5, -10}, {0, 9}",
+      "parent": "Minimap",
+      "absolutePosition": "672.320007, -43.5200005",
+      "class": "TextLabel",
+      "size": "{0, 20}, {0, 18}"
+    },
+    "LobbyTopMenu.Actions.Journal.Caption": {
+      "absoluteSize": "120, 32",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "Journal",
+      "absolutePosition": "1126, 154",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapPreview": {
+      "absoluteSize": "109.440002, 109.440002",
+      "position": "{0, 8}, {0, 8}",
+      "parent": "Minimap",
+      "absolutePosition": "624.800049, -44.2399979",
+      "class": "Frame",
+      "size": "{1, -16}, {1, -16}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Hero.Caption": {
+      "absoluteSize": "86.4000015, 23.0400009",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "Hero",
+      "absolutePosition": "636.320007, 135.760025",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapMenu.Caption": {
+      "absoluteSize": "8.64000034, 25.920002",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "MapMenu",
+      "absolutePosition": "725.599976, -48.5599976",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "LobbyTopMenu.Actions.Settings.TDButtonArt": {
+      "absoluteSize": "148, 44",
+      "parent": "Settings",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "1112, 196",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.Wallet": {
+      "absoluteSize": "149.76001, 40.3199997",
+      "position": "{1, 0}, {1, 12}",
+      "parent": "Minimap",
+      "absolutePosition": "590.23999, 79.6000061",
+      "class": "Frame",
+      "size": "{0, 208}, {0, 56}"
+    },
+    "LobbyTopMenu.Actions.Bag.Caption": {
+      "absoluteSize": "120, 32",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "Bag",
+      "absolutePosition": "1126, 110",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "LobbyTopMenu.Actions.Journal": {
+      "absoluteSize": "148, 36",
+      "position": "{0, 10}, {0, 96}",
+      "parent": "Actions",
+      "absolutePosition": "1112, 152",
+      "class": "TextButton",
+      "size": "{0, 148}, {0, 36}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Settings.Caption": {
+      "absoluteSize": "86.4000015, 28.8000011",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "Settings",
+      "absolutePosition": "636.320007, 230.800049",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "LobbyTopMenu.Actions.Journal.TDButtonArt": {
+      "absoluteSize": "148, 36",
+      "parent": "Journal",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "1112, 152",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Hero.TDButtonArt": {
+      "absoluteSize": "106.560005, 25.920002",
+      "parent": "Hero",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "626.23999, 134.320023",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.Region": {
+      "absoluteSize": "103.680008, 12.960001",
+      "position": "{0, 12}, {1, -30}",
+      "parent": "Minimap",
+      "absolutePosition": "627.679993, 49.3600006",
+      "class": "TextLabel",
+      "size": "{1, -24}, {0, 18}"
+    },
+    "DeepwoodTopHud.Root.Minimap.Wallet.TDIcon_gold": {
+      "absoluteSize": "17.2800007, 17.2800007",
+      "parent": "Wallet",
+      "class": "ImageLabel",
+      "image": "rbxassetid://96768305100708",
+      "cropSize": "256, 256",
+      "position": "{0, 2}, {0, 0}",
+      "absolutePosition": "591.679993, 79.6000061",
+      "scaleType": "Fit",
+      "cropOffset": "0, 768",
+      "size": "{0, 24}, {0, 24}"
+    },
+    "LobbyTopMenu.Menu.TDIcon_settings": {
+      "absoluteSize": "20, 20",
+      "parent": "Menu",
+      "class": "ImageLabel",
+      "image": "rbxassetid://101463603654402",
+      "cropSize": "1024, 1024",
+      "position": "{0, 2}, {0.5, -10}",
+      "absolutePosition": "1158, 20",
+      "scaleType": "Fit",
+      "cropOffset": "0, 0",
+      "size": "{0, 20}, {0, 20}"
+    },
+    "LobbyTopMenu.Menu.Caption": {
+      "absoluteSize": "76, 36",
+      "position": "{0, 24}, {0, 4}",
+      "parent": "Menu",
+      "absolutePosition": "1180, 12",
+      "class": "TextLabel",
+      "size": "{1, -36}, {1, -8}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Settings.TDButtonArt": {
+      "absoluteSize": "106.560005, 31.6800003",
+      "parent": "Settings",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "626.23999, 229.360046",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.BackToLobby.TDButtonArt": {
+      "absoluteSize": "106.560005, 25.920002",
+      "parent": "BackToLobby",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "626.23999, 265.360046",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapGem1": {
+      "absoluteSize": "8.64000034, 8.64000034",
+      "position": "{0.5, 0}, {0, 0}",
+      "parent": "Minimap",
+      "absolutePosition": "675.199951, -54.3199997",
+      "class": "Frame",
+      "size": "{0, 12}, {0, 12}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapGem4": {
+      "absoluteSize": "8.64000034, 8.64000034",
+      "position": "{0, 0}, {0.5, 0}",
+      "parent": "Minimap",
+      "absolutePosition": "614.719971, 6.16000366",
+      "class": "Frame",
+      "size": "{0, 12}, {0, 12}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Settings": {
+      "absoluteSize": "106.560005, 31.6800003",
+      "position": "{0, 10}, {0, 140}",
+      "parent": "MapActions",
+      "absolutePosition": "626.23999, 229.360046",
+      "class": "TextButton",
+      "size": "{0, 148}, {0, 44}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions": {
+      "absoluteSize": "120.960007, 171.360001",
+      "position": "{1, -168}, {0, 248}",
+      "parent": "Minimap",
+      "absolutePosition": "619.039978, 128.560028",
+      "class": "Frame",
+      "size": "{0, 168}, {0, 238}"
+    },
+    "DeepwoodTopHud.Root.Minimap.Wallet.Diamonds": {
+      "absoluteSize": "125.280006, 18.7200012",
+      "position": "{0, 32}, {0, 28}",
+      "parent": "Wallet",
+      "absolutePosition": "613.279968, 99.7600098",
+      "class": "TextLabel",
+      "size": "{1, -34}, {0, 26}"
+    },
+    "DeepwoodTopHud.Root.Minimap.Wallet.TDIcon_diamonds": {
+      "absoluteSize": "17.2800007, 17.2800007",
+      "parent": "Wallet",
+      "class": "ImageLabel",
+      "image": "rbxassetid://97570429280107",
+      "cropSize": "251, 222",
+      "position": "{0, 2}, {0, 28}",
+      "absolutePosition": "591.679993, 99.7600098",
+      "scaleType": "Fit",
+      "cropOffset": "772, 249",
+      "size": "{0, 24}, {0, 24}"
+    },
+    "LobbyTopMenu.Actions": {
+      "absoluteSize": "168, 192",
+      "position": "{1, -178}, {0, 56}",
+      "parent": "LobbyTopMenu",
+      "absolutePosition": "1102, 56",
+      "class": "Frame",
+      "size": "{0, 168}, {0, 192}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapMenu.TDIcon_settings": {
+      "absoluteSize": "23.0400009, 23.0400009",
+      "parent": "MapMenu",
+      "class": "ImageLabel",
+      "image": "rbxassetid://101463603654402",
+      "cropSize": "1024, 1024",
+      "position": "{0, 4}, {0, 4}",
+      "absolutePosition": "718.399963, -47.1199989",
+      "scaleType": "Fit",
+      "cropOffset": "0, 0",
+      "size": "{1, -8}, {1, -8}"
+    },
+    "DeepwoodTopHud.Root.Minimap": {
+      "absoluteSize": "120.960007, 120.960007",
+      "position": "{1, -10}, {0, 8}",
+      "parent": "Root",
+      "absolutePosition": "619.039978, -50",
+      "class": "Frame",
+      "size": "{0, 168}, {0, 168}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Bag.TDButtonArt": {
+      "absoluteSize": "106.560005, 25.920002",
+      "parent": "Bag",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "626.23999, 166.000031",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "LobbyTopMenu.Actions.Settings.Caption": {
+      "absoluteSize": "120, 40",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "Settings",
+      "absolutePosition": "1126, 198",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Journal.TDButtonArt": {
+      "absoluteSize": "106.560005, 25.920002",
+      "parent": "Journal",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "626.23999, 197.680008",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.BackToLobby": {
+      "absoluteSize": "106.560005, 25.920002",
+      "position": "{0, 10}, {0, 190}",
+      "parent": "MapActions",
+      "absolutePosition": "626.23999, 265.360046",
+      "class": "TextButton",
+      "size": "{0, 148}, {0, 36}"
+    },
+    "DeepwoodTopHud.Root.Minimap.WorldMap.Caption": {
+      "absoluteSize": "8.64000034, 25.920002",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "WorldMap",
+      "absolutePosition": "623.359985, -51.4400024",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "LobbyTopMenu.Menu": {
+      "absoluteSize": "112, 44",
+      "position": "{1, -124}, {0, 8}",
+      "parent": "LobbyTopMenu",
+      "absolutePosition": "1156, 8",
+      "class": "TextButton",
+      "size": "{0, 112}, {0, 44}"
+    },
+    "DeepwoodTopHud.Root.Minimap.WorldMap": {
+      "absoluteSize": "28.8000011, 28.8000011",
+      "position": "{0, -8}, {0, -4}",
+      "parent": "Minimap",
+      "absolutePosition": "613.279968, -52.8800011",
+      "class": "TextButton",
+      "size": "{0, 40}, {0, 40}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.Bag.Caption": {
+      "absoluteSize": "86.4000015, 23.0400009",
+      "position": "{0, 14}, {0, 2}",
+      "parent": "Bag",
+      "absolutePosition": "636.320007, 167.440033",
+      "class": "TextLabel",
+      "size": "{1, -28}, {1, -4}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapGem3": {
+      "absoluteSize": "8.64000034, 8.64000034",
+      "position": "{0.5, 0}, {1, 0}",
+      "parent": "Minimap",
+      "absolutePosition": "675.199951, 66.640007",
+      "class": "Frame",
+      "size": "{0, 12}, {0, 12}"
+    },
+    "DeepwoodTopHud.Root.Minimap.PlayerPulse": {
+      "absoluteSize": "0, 0",
+      "position": "{0, 0}, {0, 0}",
+      "parent": "Minimap",
+      "absolutePosition": "619.039978, -50",
+      "class": "Frame",
+      "size": "{0, 0}, {0, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.WorldMap.TDButtonArt": {
+      "absoluteSize": "28.8000011, 28.8000011",
+      "parent": "WorldMap",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "613.279968, -52.8800011",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "LobbyTopMenu.Actions.Hero": {
+      "absoluteSize": "148, 36",
+      "position": "{0, 10}, {0, 8}",
+      "parent": "Actions",
+      "absolutePosition": "1112, 64",
+      "class": "TextButton",
+      "size": "{0, 148}, {0, 36}"
+    },
+    "DeepwoodTopHud.Root.Minimap.MapActions.TDPanelArt": {
+      "absoluteSize": "120.960007, 171.360001",
+      "parent": "MapActions",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "251, 239",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "619.039978, 128.560028",
+      "scaleType": "Slice",
+      "cropOffset": "513, 730",
+      "size": "{1, 0}, {1, 0}"
+    },
+    "DeepwoodTopHud.Root.Minimap.PlayerLabel": {
+      "absoluteSize": "25.920002, 10.0799999",
+      "position": "{0.5, 0}, {0.5, 0}",
+      "parent": "Minimap",
+      "absolutePosition": "666.559937, 5.44000244",
+      "class": "TextLabel",
+      "size": "{0, 36}, {0, 14}"
+    },
+    "DeepwoodTopHud.Root.Minimap.UIScale": {
+      "scale": 0.7200000286102295
+    },
+    "LobbyTopMenu.Actions.Hero.TDButtonArt": {
+      "absoluteSize": "148, 36",
+      "parent": "Hero",
+      "class": "ImageLabel",
+      "image": "rbxassetid://126012242626142",
+      "cropSize": "254, 102",
+      "position": "{0, 0}, {0, 0}",
+      "absolutePosition": "1112, 64",
+      "scaleType": "Slice",
+      "cropOffset": "514, 64",
+      "size": "{1, 0}, {1, 0}"
+    }
+  },
+  "touch": true,
+  "viewport": "750, 323"
+}

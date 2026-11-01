@@ -1,0 +1,19 @@
+{
+  "studio_id": "0e4e362c-efbf-4559-8013-cc53ab0f243e",
+  "pid": 78838,
+  "command": "/Applications/RobloxStudio.app/Contents/MacOS/RobloxStudio -task EditFile -localPlaceFile /tmp/TLT-MobileDesktopQA-0589.rbxlx",
+  "simulation": "stopped",
+  "play": "Game Stopped",
+  "last_mode": "Edit",
+  "production_saved": false,
+  "temporary_changes": "fixture and copied UI modules only; screenshots and test sources preserved in repository",
+  "term_sent": true,
+  "kill_sent_after_term": true,
+  "process_absent": true,
+  "qa_studio_absent_from_connection_list": true,
+  "remaining_studio_ids": [
+    "96a612ae-a1be-4e54-b815-cd3dd38e7f44",
+    "879395be-84d6-4226-915e-d928c5ec5611",
+    "2fe07fee-53f4-4ed4-8ee7-b125cbd73f61"
+  ]
+}

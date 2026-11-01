@@ -1,0 +1,56 @@
+{
+  "version": "0.58.11",
+  "source_commit": "2088c723b931ff5c5e5c0cda9574b2e7ba8c1b7a",
+  "fixture_base": "0.58.9",
+  "checks": [
+    {
+      "path": "src/client/MobileHeroStatsView.luau",
+      "sha256": "239d4d0bf59d1176d1f777736f820d9976c5c7124660d857efc2cd7400ef02bb",
+      "studio_sha256": "239d4d0bf59d1176d1f777736f820d9976c5c7124660d857efc2cd7400ef02bb",
+      "match": true
+    },
+    {
+      "path": "src/client/LobbyTopMenu.luau",
+      "sha256": "f4371c8ce3fb3346fef3f61dce0efcd9dbf57894b94da61aeefb4c7ac5b56130",
+      "studio_sha256": "f4371c8ce3fb3346fef3f61dce0efcd9dbf57894b94da61aeefb4c7ac5b56130",
+      "match": true
+    },
+    {
+      "path": "src/client/HeroGrowthGui.luau",
+      "sha256": "96a3bd6c64bf69d0351b359546ab346884bf408da19341feadafc8af1e002947",
+      "studio_sha256": "96a3bd6c64bf69d0351b359546ab346884bf408da19341feadafc8af1e002947",
+      "match": true
+    },
+    {
+      "path": "src/client/HeroStatsView.luau",
+      "sha256": "f205199e0f18053efb7432ef55aa11dc49e8f339edeb51b40d869b2e584db966",
+      "studio_sha256": "f205199e0f18053efb7432ef55aa11dc49e8f339edeb51b40d869b2e584db966",
+      "match": true
+    },
+    {
+      "path": "src/client/LobbyNavigationSizing.luau",
+      "sha256": "632003c5fdae06470777ebd15d145f4c35a2c2ed074c9af02e3fe2bc68bfb104",
+      "studio_sha256": "632003c5fdae06470777ebd15d145f4c35a2c2ed074c9af02e3fe2bc68bfb104",
+      "match": true
+    },
+    {
+      "path": "src/client/LobbyNavigation.luau",
+      "sha256": "4eb35e9cf387cb28c460a0a69ae8ae8649a8680938392789e78f5113816d5efa",
+      "studio_sha256": "4eb35e9cf387cb28c460a0a69ae8ae8649a8680938392789e78f5113816d5efa",
+      "match": true
+    },
+    {
+      "path": "src/client/K0Hud.luau",
+      "sha256": "d641d84f3af0215ccf0df1e1b29ac8e56a4ee96c5eccbb8e99e249d55e51d7d5",
+      "studio_sha256": "d641d84f3af0215ccf0df1e1b29ac8e56a4ee96c5eccbb8e99e249d55e51d7d5",
+      "match": true
+    },
+    {
+      "path": "src/client/BattleMinimap.luau",
+      "sha256": "2668eeeffb6b3513a6a0a259a6a12aa987ce5a6fc9992b240079db3a4ee273e9",
+      "studio_sha256": "2668eeeffb6b3513a6a0a259a6a12aa987ce5a6fc9992b240079db3a4ee273e9",
+      "match": true
+    }
+  ],
+  "all_match": true
+}

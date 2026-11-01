@@ -1,0 +1,98 @@
+[
+  {
+    "name": "mobile-landscape-details-native",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kind\":\"MOBILE_LANDSCAPE_DETAILS_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":972}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "name": "mobile-menu-stats-native",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kind\":\"MOBILE_MENU_STATS_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":920}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "name": "lobby-navigation-grid-native",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kind\":\"LOBBY_NAVIGATION_GRID_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":180}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "name": "skill-stat-ui-native",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "nil"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "name": "lobby-panel-size-native",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kind\":\"LOBBY_PANEL_SIZE_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":100}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "name": "lobby-top-menu-native",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kind\":\"LOBBY_TOP_MENU_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":32}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "name": "battle-menu-native",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kind\":\"BATTLE_MENU_NATIVE\",\"pass\":true,\"checks\":62}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "name": "lobby-navigation-icon-native",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kind\":\"LOBBY_NAVIGATION_ICON_NATIVE\",\"failures\":[],\"pass\":true,\"checks\":5}"
+        }
+      ],
+      "isError": false
+    }
+  }
+]

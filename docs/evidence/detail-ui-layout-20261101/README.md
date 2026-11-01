@@ -20,3 +20,11 @@
 QA가 별도 Studio의 실제 Play client와 Device Simulator에서 데스크톱1280×720, 모바일750×323 / iPhone13 가로844×390을 검사한다. 0.58.9 기준선에서 확인한 세로 쌓기 결함과 후속 수용 결과를 [독립 QA 기록](../mobile-desktop-studio-qa-20261101/README.md)에 구분했다.
 
 소스와 VERSION을 먼저 커밋한 후 `python3 docs/evidence/detail-ui-layout-20261101/build.py`로 고정 소스 Lobby/Battle을 빌드한다. 실제 성공/실패·입력 커밋·산출물 해시는 build.json을 따른다. 새 릴리스 태그·Roblox 게시·TD 운영 코드·live DataStore 변경은 포함하지 않는다. 실기기·공식 서버 저장/멀티플레이 수용은 별도다.
+
+## 최종 수용·마감
+
+고정 소스 `2088c723b931ff5c5e5c0cda9574b2e7ba8c1b7a` / 0.58.11에서 Rojo 7.7.1 Lobby·Battle 빌드 성공. [build.json](build.json)에 산출물 SHA-256과 명령을 보존했다. QA fixture의8개 UI Source가 이 고정 소스와 바이트 일치한다.
+
+[독립 QA 후속 보고](../mobile-desktop-studio-qa-20261101/FOLLOWUP.md): 실제 Studio Play 데스크톱1280×720·모바일 가로750×323/844×390의 상세 UI 입력·기하·스크롤·닫기, 기존 기본 메뉴, TD 크기 규칙 수용13사례 Pass. Native8종 합계5,271개 통과. 원래0.58.9의 초기 배분 행 숨김과 시안/게임 불일치를 수정 후 Verified로 구분했다.
+
+QA PID78838은 시뮬레이터 중지·Play 중지·Edit 확인 후 해당 임시 fixture만 종료했으며 프로세스와 MCP 연결 소멸까지 확인했다. 다른 작업의 Studio는 유지했다. [종료 증거](../mobile-desktop-studio-qa-20261101/shutdown.json). 원본 TD나 live DataStore·Roblox 게시에는 변경이 없다. 실제 휴대폰·게시 클라이언트·정상 계정 저장·성능/멀티플레이 수용은 남아 있다.
