@@ -801,16 +801,19 @@ return {
 		api.stepPlayer(state, 2, 0.25, true)
 		near(state.mana, 100, "mana cannot exceed maximum")
 	end)
-	case("magic-archer-mana-regeneration-fifty-percent-faster-than-health",function()
+	case("magic-archer-mana-regeneration-doubled",function()
 		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
 		local growth=G.new(20);growth.branch="magic_archer";growth.stage=1;growth.battleWins=3
 		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="elf",epoch=1,characterGeneration=1,growth=growth}end)
 		local state=spawnPlayer();state.mana=40;state.manaRegenAt=0;state.humanoid.Health=state.humanoid.MaxHealth-10
 		local health=state.humanoid.Health
 		for tick=1,4 do api.stepPlayer(state,tick*.25,.25,true)end
-		near(state.mana,40.12,"80 MP recovers 0.12 per second")
+		near(state.mana,40.24,"80 MP recovers 0.24 per second")
 		local hpRate=(state.humanoid.Health-health)/state.humanoid.MaxHealth
-		assert(math.abs(hpRate*1.5-(state.mana-40)/state.maxMana)<.00001,"MP percentage regeneration is 50% faster than HP")
+		assert(math.abs(hpRate*3-(state.mana-40)/state.maxMana)<.00001,"MP percentage regeneration is three times HP")
+		state.mana=40;state.manaRegenAt=3
+		api.stepPlayer(state,2,.25,true);near(state.mana,40,"elf MP waits for regeneration delay")
+		state.mana=79.99;api.stepPlayer(state,3,.25,true);near(state.mana,80,"elf MP cannot exceed maximum")
 	end)
 	case("physical-skill-cooldown-survives-respawn", function()
 		local ready = {}

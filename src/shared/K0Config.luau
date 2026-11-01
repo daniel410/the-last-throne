@@ -7,6 +7,7 @@ local Config = {
 	SprintSpeed = 24,
 	ManaRegenFraction = 0.0015,
 	MageManaRegenMultiplier = 2,
+	ElfManaRegenMultiplier = 2,
 	ManaRegenDelay = 1,
 	WalkSpeed = 16,
 	GuardSpeed = 8,

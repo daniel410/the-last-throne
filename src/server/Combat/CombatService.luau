@@ -1253,7 +1253,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 			state.humanoid.Health + state.humanoid.MaxHealth * Config.HealthRegenFraction * math.min(dt, 0.25))
 	end
 	if state.mana and current >= state.manaRegenAt and state.mode ~= "Dead" then
-		setMana(state, state.mana + (state.maxMana or Config.MaxMana) * Config.ManaRegenFraction * (state.baseClassId=="mage" and Config.MageManaRegenMultiplier or 1) * math.min(dt, 0.25))
+		setMana(state, state.mana + (state.maxMana or Config.MaxMana) * Config.ManaRegenFraction * (state.baseClassId=="mage" and Config.MageManaRegenMultiplier or state.baseClassId=="elf" and Config.ElfManaRegenMultiplier or 1) * math.min(dt, 0.25))
 	end
 	return consumedAction
 end
