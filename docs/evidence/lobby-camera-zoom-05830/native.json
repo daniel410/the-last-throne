@@ -1,0 +1,12 @@
+{
+  "kind": "ADVENTURE_CAMERA_ZOOM_NATIVE",
+  "checks": 10,
+  "pass": true,
+  "failures": [],
+  "environment": "Existing Studio Play Client, temporary camera module and isolated collision geometry",
+  "lobby_max_before": 18,
+  "lobby_max_after": 22,
+  "minimum": 6,
+  "battle_max": 22,
+  "actual_device_verified": false
+}

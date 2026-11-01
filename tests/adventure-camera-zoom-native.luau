@@ -6,7 +6,7 @@ local function check(v,m)report.checks+=1;assert(v,m)end
 local fixture=Instance.new('Folder');fixture.Name='CameraZoomQA';fixture.Parent=workspace
 local ok,err=xpcall(function()
  check(Camera.maximum('Tutorial')==22,'battle zoom extends to 22 studs')
- for _,phase in ipairs({'Lobby','LoadingLobby','ReturningLobby','Respawning'})do check(Camera.maximum(phase)==18,phase..' retains lobby zoom limit')end
+ for _,phase in ipairs({'Lobby','LoadingLobby','ReturningLobby','Respawning'})do check(Camera.maximum(phase)==22,phase..' uses the expanded lobby zoom limit')end
  check(Camera.min==6,'minimum zoom remains unchanged')
  local focus=Vector3.new(20000,1000,20000)
  local old=Camera.constrain(focus,focus+Vector3.new(0,10,40),{})
