@@ -1,0 +1,26 @@
+MELEE_FEEDBACK_REAL_RIGS_NATIVE {"failures":[],"kind":"MELEE_FEEDBACK_REAL_RIGS_NATIVE","pass":true,"checks":31}
+SHIELD_BASH_LEADING_NATIVE {"checks":86,"samples":[{"dt":0.03333333333333333,"gap":0.7470662593841553,"faceDot":0.9196508526802063,"age":0.195,"rig":"R6"},{"dt":0.03333333333333333,"gap":0.7495729923248291,"faceDot":0.9178090691566467,"age":0.2,"rig":"R6"},{"dt":0.03333333333333333,"gap":0.7495729923248291,"faceDot":0.9178090691566467,"age":0.25,"rig":"R6"},{"dt":0.03333333333333333,"gap":0.7495729923248291,"faceDot":0.9178090691566467,"age":0.299,"rig":"R6"},{"dt":0.006944444444444444,"gap":0.7470662593841553,"faceDot":0.9196508526802063,"age":0.195,"rig":"R6"},{"dt":0.006944444444444444,"gap":0.7495729923248291,"faceDot":0.9178090691566467,"age":0.2,"rig":"R6"},{"dt":0.006944444444444444,"gap":0.7495729923248291,"faceDot":0.9178090691566467,"age":0.25,"rig":"R6"},{"dt":0.006944444444444444,"gap":0.7495729923248291,"faceDot":0.9178090691566467,"age":0.299,"rig":"R6"},{"dt":0.03333333333333333,"gap":1.4160696268081666,"faceDot":0.9196507930755615,"age":0.195,"rig":"R15"},{"dt":0.03333333333333333,"gap":1.4329333305358887,"faceDot":0.917809247970581,"age":0.2,"rig":"R15"},{"dt":0.03333333333333333,"gap":1.4329333305358887,"faceDot":0.917809247970581,"age":0.25,"rig":"R15"},{"dt":0.03333333333333333,"gap":1.4329333305358887,"faceDot":0.917809247970581,"age":0.299,"rig":"R15"},{"dt":0.006944444444444444,"gap":1.4160696268081666,"faceDot":0.9196507930755615,"age":0.195,"rig":"R15"},{"dt":0.006944444444444444,"gap":1.4329333305358887,"faceDot":0.917809247970581,"age":0.2,"rig":"R15"},{"dt":0.006944444444444444,"gap":1.4329333305358887,"faceDot":0.917809247970581,"age":0.25,"rig":"R15"},{"dt":0.006944444444444444,"gap":1.4329333305358887,"faceDot":0.917809247970581,"age":0.299,"rig":"R15"}],"failures":[],"pass":true,"kind":"SHIELD_BASH_LEADING_NATIVE"}
+debug.profileEnd() - No active profile annotation. At: Stack Begin
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.RobloxReactProfiling', Line 65 - function profileend
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.RobloxReactProfiling', Line 215 - function profileCommitAfter
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 2107
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.Scheduler.Scheduler.Scheduler', Line 377 - function unstable_runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 165 - function runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 2103
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 1173
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 840
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 237
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.Scheduler.Scheduler.Scheduler', Line 377 - function unstable_runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 165 - function runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 227
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 208 - function flushSyncCallbackQueue
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 697
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new', Line 379
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot', Line 110 - function render
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.RoactCompat.RoactCompat.RoactTree', Line 86 - function mount
+Script 'builtin_Toolbox.rbxm.Toolbox.Bin.main', Line 394 - function main
+Script 'builtin_Toolbox.rbxm.Toolbox.Bin.main', Line 635
+Script 'builtin_Toolbox.rbxm.Toolbox.Bin.loader', Line 132
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+DEEPWOOD_MONSTER_MOTION_NATIVE {"maxFootError":0.00000762939453125,"checks":9553,"kind":"DEEPWOOD_MONSTER_MOTION_NATIVE","pass":true,"failures":[]}

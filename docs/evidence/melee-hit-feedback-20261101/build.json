@@ -1,0 +1,26 @@
+{
+  "version": "0.58.37",
+  "source_commit": "1afe188b58b8c8f7e80ad7a887457dcc35184e38",
+  "rojo": "Rojo 7.7.1",
+  "result": "success",
+  "artifacts": [
+    {
+      "path": "builds/0.58.37/TheLastThrone-Battle-0.58.37.rbxlx",
+      "sha256": "c48da4af60e3e4ff52c8b1c3a0633f5e2e75398dc2eceabeecef3b01c99c72aa",
+      "bytes": 7596833
+    },
+    {
+      "path": "builds/0.58.37/TheLastThrone-Lobby-0.58.37.rbxlx",
+      "sha256": "146b4683cbbdbd7389babaacc37818fcf2342ab393edf5452a29d9489e58cc89",
+      "bytes": 7596832
+    }
+  ],
+  "native_checks_passed": 11244,
+  "lua_rule_checks_passed": 125,
+  "legacy_failures": [
+    "k0-melee-motion-native: R6/dwarf/1 overhead height",
+    "k0-melee-motion-native: R15/dwarf/1 overhead height"
+  ],
+  "legacy_failure_comparison": "Identical failures on previous 0.58.36 Battle build; both test command exits 1.",
+  "published": false
+}
