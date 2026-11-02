@@ -79,7 +79,7 @@ Config.BasicAttackProfiles = {
 	},
 	elf = {
 		id = "elf.bow.basic", attackPower = 100, maxTargets = 1, maxHeight = 10,
-		attacks = {{ windup = 0.22, active = 0.08, recovery = 0.30, damage = 0.70, posture = 8, range = 55, angle = 45 }},
+		attacks = {{ windup = 0.44, active = 0.16, recovery = 0.60, damage = 0.70, posture = 8, range = 55, angle = 45 }},
 	},
 	dwarf = {
 		id = "dwarf.axe.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,
@@ -87,7 +87,7 @@ Config.BasicAttackProfiles = {
 	},
 	mage = {
 		id = "mage.staff.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,
-		attacks = {{ windup = 0.16, active = 0.10, recovery = 0.16, damage = 0.75, posture = 12, range = 4.5, angle = 100 }},
+		attacks = {{ windup = 0.32, active = 0.20, recovery = 0.32, damage = 0.75, posture = 12, range = 4.5, angle = 100 }},
 	},
 }
 
