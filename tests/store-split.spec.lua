@@ -23,7 +23,7 @@ assert(stack and stack.quantity>1)
 local command={store='items',action='Sell',requestId='sellpotion',heroId='hero',revision=p.revision,instanceId=stack.instanceId,itemVersion=stack.version}
 local sold=assert(R.shop(p,command,{atLobby=true},C))
 check(sold.items[stack.instanceId].quantity==stack.quantity-1 and sold.items[stack.instanceId].version==stack.version+1,'sale removes one from stack')
-check(sold.wallet.gold==p.wallet.gold+4,'sale credits one potion price')
+check(sold.wallet.gold==p.wallet.gold+5,'sale credits one potion price')
 local repeated=assert(R.shop(sold,command,{atLobby=true},C))
 check(repeated.wallet.gold==sold.wallet.gold and repeated.items[stack.instanceId].quantity==stack.quantity-1,'retry does not sell twice')
 local wrong=R.copy(command);wrong.store='blacksmith';wrong.requestId='wrong-store';check(not R.shop(p,wrong,{atLobby=true},C),'blacksmith rejects selling potion')

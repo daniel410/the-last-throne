@@ -14,7 +14,7 @@ local ok,err=xpcall(function()
  local stock=View.create(gui,function()sends+=1 end,false,'items')
  local blacksmith=View.create(gui,function()sends+=1 end,false,'blacksmith')
  local diamond=View.create(gui,function()sends+=1 end,true)
- local snapshot={ready=true,heroId='hero',heroes=p.heroes,items={},revision=p.revision,wallet={gold=19,diamonds=9}}
+ local snapshot={ready=true,heroId='hero',heroes=p.heroes,items={},revision=p.revision,wallet={gold=24,diamonds=9}}
  stock.render(snapshot);blacksmith.render(snapshot);diamond.render(snapshot)
  for _,id in ipairs({'Potions','Accessories','Etc'})do check(stock.panel.Categories:FindFirstChild('Category_'..id)~=nil,'item shop category '..id)end
  check(not stock.panel.Categories:FindFirstChild('Category_All') and not stock.panel.Categories:FindFirstChild('Category_Armor'),'item shop has only requested categories')
@@ -27,15 +27,15 @@ local ok,err=xpcall(function()
  local potion=stock.panel.Offers.health_potion;local b=potion.Trade
  check(not b.Active and not b.Selectable and b:GetAttribute('InsufficientFunds'),'unaffordable potion is disabled')
  check(b.Caption.Text=='Need 1 more Gold','potion states exact shortfall')
- check(potion.Details.Text:find('Price: 20 Gold',1,true)~=nil,'price remains visible')
+ check(potion.Details.Text:find('Price: 25 Gold',1,true)~=nil,'price remains visible')
  local weapon=blacksmith.panel.Offers.knight_weapon_fine
- check(not weapon.Trade.Active and weapon.Trade.Caption.Text=='Need 231 more Gold','equipment shows its Gold shortfall')
+ check(not weapon.Trade.Active and weapon.Trade.Caption.Text=='Need 226 more Gold','equipment shows its Gold shortfall')
  local premium=diamond.panel.Offers.knight_weapon_veteran_diamond
  check(not premium.Trade.Active and premium.Trade.Caption.Text=='Need 1 more Diamonds','diamond offer uses diamond balance')
- snapshot.wallet.gold=20;snapshot.wallet.diamonds=10
+ snapshot.wallet.gold=25;snapshot.wallet.diamonds=10
  stock.render(snapshot);diamond.render(snapshot)
  check(stock.panel.Offers.health_potion.Trade.Active and stock.panel.Offers.health_potion.Trade.Selectable,'exact Gold enables purchase')
- check(stock.panel.Offers.health_potion.Trade.Caption.Text=='BUY · 20 Gold','affordable price is restored')
+ check(stock.panel.Offers.health_potion.Trade.Caption.Text=='BUY · 25 Gold','affordable price is restored')
  stock.render(snapshot,nil,true)
  check(not stock.panel.Offers.health_potion.Trade.Active,'trade disabled while a purchase is being confirmed')
  stock.selectCategory('Potions')
@@ -44,9 +44,9 @@ local ok,err=xpcall(function()
  check(stock.panel.Offers.health_potion.Trade.Active,'completed transaction enables another affordable purchase')
  check(diamond.panel.Offers.knight_weapon_veteran_diamond.Trade.Active,'exact Diamond balance enables purchase')
  snapshot.wallet.gold=0;stock.render(snapshot)
- check(not stock.panel.Offers.health_potion.Trade.Active and stock.panel.Offers.health_potion.Trade.Caption.Text=='Need 20 more Gold','lower wallet disables purchase again')
+ check(not stock.panel.Offers.health_potion.Trade.Active and stock.panel.Offers.health_potion.Trade.Caption.Text=='Need 25 more Gold','lower wallet disables purchase again')
  snapshot.wallet=nil;stock.render(snapshot)
- check(stock.panel.Offers.health_potion.Trade.Caption.Text=='BUY · 20 Gold','unknown balance is not presented as zero')
+ check(stock.panel.Offers.health_potion.Trade.Caption.Text=='BUY · 25 Gold','unknown balance is not presented as zero')
  check(sends==0,'rendering never submits a trade')
 end,debug.traceback)
 gui:Destroy();module:Destroy();if not ok then table.insert(report.failures,tostring(err))end

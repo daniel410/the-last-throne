@@ -44,10 +44,10 @@ local buy={action='Buy',requestId='unknown-potion',heroId='h',revision=db['accou
 fail=true;local result,err=store:transact(91,function(v)return R.shop(v,buy,{atLobby=true},C) end)
 check(not result and err=='SaveUnknown','unknown potion save is not treated as a failed purchase')
 fail=false;result=assert(store:transact(91,function(v)return R.shop(v,buy,{atLobby=true},C) end))
-check(result.wallet.gold==80 and R.quantity(result,'h','health_potion')==4,'same request recovers one debit and one stacked potion')
+check(result.wallet.gold==75 and R.quantity(result,'h','health_potion')==4,'same request recovers one debit and one stacked potion')
 local second={action='Buy',requestId='second-potion',heroId='h',revision=result.revision,offerId='health_potion',store='items'}
 local nextPurchase=assert(R.shop(result,second,{atLobby=true},C))
-check(nextPurchase.wallet.gold==60 and R.quantity(nextPurchase,'h','health_potion')==5,'a new request can purchase the same potion again')
+check(nextPurchase.wallet.gold==50 and R.quantity(nextPurchase,'h','health_potion')==5,'a new request can purchase the same potion again')
 local replay,_,duplicate=R.shop(nextPurchase,second,{atLobby=true},C)
-check(duplicate and replay.wallet.gold==60 and R.quantity(replay,'h','health_potion')==5,'retrying the second request does not duplicate it')
+check(duplicate and replay.wallet.gold==50 and R.quantity(replay,'h','health_potion')==5,'retrying the second request does not duplicate it')
 print('Starter potions and shop: '..checks..' checks passed')

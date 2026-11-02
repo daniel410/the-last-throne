@@ -27,7 +27,7 @@ local ok,err=xpcall(function()
    check(not card.Trade.Active,'unaffordable purchase disabled')
   end
   local fullHeight=scroll.AbsoluteSize.Y
-  view.notice.Text='CONFIRM: Extra Large Health Potion for 150 Gold. Press the same button again to complete the trade.';task.wait(.1)
+  view.notice.Text='CONFIRM: Extra Large Health Potion for 200 Gold. Press the same button again to complete the trade.';task.wait(.1)
   check(view.notice.Visible and view.notice.TextFits,'confirmation visible and fits')
   check(scroll.AbsoluteSize.Y<fullHeight,'confirmation gets measured space')
   view.notice.Text='';task.wait(.1)

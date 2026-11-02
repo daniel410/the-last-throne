@@ -22,7 +22,7 @@ end
 for _,resource in ipairs({'health','mana'}) do
  for tier,size in ipairs({'','_medium','_large','_xl'}) do
   local id=resource..'_potion'..size
-  local price=(resource=='health' and {20,50,80,150} or {15,30,60,120})[tier]
+  local price=(resource=='health' and {25,60,100,200} or {20,40,80,160})[tier]
   table.insert(C.offers,{id=id,definitionId=id,currency='gold',price=price});C.sell[id]=math.floor(price/5)
  end
 end
