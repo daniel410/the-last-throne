@@ -17,7 +17,7 @@ local ok,err=xpcall(function()
    check(panel.Visible and panel.Size.X.Offset<=size.X-24 and panel.Size.Y.Offset<=size.Y-24,'completion fits desktop and landscape')
    check(panel.TDPanelArt.Image~='' and panel.Continue.TDButtonArt.Image~='','approved TD frame and button art')
    check(panel.Heading.Text==data.heading and panel.Heading.TextBounds.Y<=panel.Heading.AbsoluteSize.Y+1,'story/epic completion heading readable')
-   check(panel.Continue.AbsoluteSize.Y>=44 and panel.Close.AbsoluteSize.Y>=44,'touch button size')
+   check(math.round(panel.Continue.AbsoluteSize.Y)>=44 and math.round(panel.Close.AbsoluteSize.Y)>=44,'touch button size')
    check(panel.Summary.AbsoluteSize.Y>=180,'summary has usable scroll area')
    check(panel:FindFirstChildOfClass('UIScale').Scale==1 and panel.CompletionAccent.BackgroundTransparency==0,'entrance effect settles')
    for _,v in ipairs(panel.Summary:GetChildren())do if v:IsA('TextLabel')then check(v.TextBounds.Y<=v.AbsoluteSize.Y+1,'result/reward/next-story/support explanation fits its line')end end

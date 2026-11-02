@@ -1,0 +1,28 @@
+{
+  "version": "0.61.2",
+  "source_commit": "d02aefa3900c0cacbea4f8edbab1ece478bcf31a",
+  "tool": "Rojo 7.7.1",
+  "build_result": "success",
+  "artifacts": [
+    {
+      "path": "builds/0.61.2/TheLastThrone-Battle-0.61.2.rbxlx",
+      "bytes": 7676656,
+      "sha256": "cb3d86913e72aee2a9cac29ba5dc4271e9d61a44ba9b2a9004165f88aac6a186"
+    },
+    {
+      "path": "builds/0.61.2/TheLastThrone-Lobby-0.61.2.rbxlx",
+      "bytes": 7676655,
+      "sha256": "ad481cdb80848e774e928499c1518cdeb571c9cc164b5cb84ce9919179ec380c"
+    }
+  ],
+  "native_assertions": {
+    "passed": 253,
+    "failed": 0,
+    "runner_exit_code": 1,
+    "runner_limitation": "Existing asset type warning and TexturePack HTTP429 background errors; not an asset-upload acceptance."
+  },
+  "lua_checks": 214,
+  "studio_edit_modules": 3,
+  "published": false,
+  "release_tag": false
+}
