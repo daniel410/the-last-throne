@@ -458,7 +458,7 @@ function Hud.create()
 					button.Caption.Text = definition.potionSize .. " " .. definition.glyph
 					button.Caption.TextColor3 = definition.restore == "health" and Color3.fromRGB(255, 210, 195) or Color3.fromRGB(181, 235, 255)
 				end
-				button.ItemCount.Text = "x" .. tostring(count)
+				button.ItemCount.Text = count > 99 and "99+" or "x" .. tostring(count)
 				button.TDButtonArt.ImageTransparency = count > 0 and 0 or .45
 				button.ItemCount.TextColor3 = count > 0 and COLORS.cream or COLORS.muted
 			end
