@@ -1,6 +1,8 @@
 local T=require(script.Parent.TDInventoryTheme)
 local Menu=require(script.Parent.HeroMenuChrome)
 local Text=require(game.ReplicatedStorage.Shared.ExpeditionText)
+local D=require(game.ReplicatedStorage.Shared.Difficulty)
+local AT=require(game.ReplicatedStorage.Shared.AdventureText)
 local V={}
 function V.create(parent,send)
  local panel=Menu.frame(parent,'Expedition',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-100));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
@@ -14,6 +16,7 @@ function V.create(parent,send)
  local layout=Instance.new('UIListLayout');layout.Padding=UDim.new(0,10);layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.Parent=scroll
  local notice=T.label(panel,'Notice','Select your hero before starting or joining.',UDim2.new(0,20,1,-68),UDim2.new(1,-40,0,52),12)
  local nextOrder=0
+ local missionList=false
  local function ordered(item) nextOrder+=1;item.LayoutOrder=nextOrder;return item end
  local function action(name,caption,data)
   local b=ordered(T.button(scroll,name,caption,UDim2.new(),UDim2.new(1,-8,0,48)));b.Activated:Connect(function() if b.Active then send(data);notice.Text='Please wait...' end end);return b
@@ -25,8 +28,32 @@ function V.create(parent,send)
   if s.travelling then ordered(T.label(scroll,'Travelling','Saving complete. Travelling to your expedition...',UDim2.new(),UDim2.new(1,-8,0,80),16))
   elseif s.role=='Battle' then ordered(T.label(scroll,'Battle','Use the map menu to return to the lobby. If disconnected, rejoin this expedition from the lobby within 15 minutes.',UDim2.new(),UDim2.new(1,-8,0,100),14))
   else
+   local selected=s.selection or {missionId='DW-01',difficultyId='Easy'}
+   local me=game.Players.LocalPlayer.UserId
+   local canConfigure=not s.party or s.party.hostId==me and s.party.status=='forming'
+   ordered(T.label(scroll,'DifficultyTitle',string.format(AT.MissionTitle,selected.missionId,selected.difficultyId),UDim2.new(),UDim2.new(1,-8,0,36),15,T.color.gold))
+   ordered(T.label(scroll,'ReplayHint',AT.Repeat,UDim2.new(),UDim2.new(1,-8,0,40),12))
+   local selectedMission
+   for _,mission in ipairs(s.missions or {})do if mission.id==selected.missionId then selectedMission=mission end end
+   for _,mode in ipairs(D.order)do
+    local access=selectedMission and selectedMission.modes[mode]
+    local caption=(mode==selected.difficultyId and '[X] 'or '')..mode..' · Lv'..(access and access.level or D.modes[mode].level)
+    if access and not access.allowed then caption=caption..AT.Locked end
+    local b=action('Mode'..mode,caption,{action='Configure',missionId=selected.missionId,difficultyId=mode})
+    T.enabled(b,canConfigure)
+   end
+   local access=selectedMission and selectedMission.modes[selected.difficultyId]
+   if access and not access.allowed then ordered(T.label(scroll,'Blocked',AT[access.reason]or AT.StoryRequired,UDim2.new(),UDim2.new(1,-8,0,54),12))end
+   ordered(T.label(scroll,'MissionTitle',AT.MissionList,UDim2.new(),UDim2.new(1,-8,0,34),13,T.color.gold))
+   local toggle=ordered(T.button(scroll,'ToggleMissions',missionList and AT.HideMissions or AT.ChangeMission,UDim2.new(),UDim2.new(1,-8,0,44)))
+   toggle.Activated:Connect(function()missionList=not missionList;render(s,message)end)
+   for _,mission in ipairs(missionList and s.missions or {})do
+    local info=mission.modes[selected.difficultyId]
+    local b=action('Mission'..mission.id,(mission.id==selected.missionId and '[X] 'or '')..mission.id..' · '..mission.title..(info and not info.allowed and AT.Locked or ''),{action='Configure',missionId=mission.id,difficultyId=selected.difficultyId})
+    T.enabled(b,canConfigure)
+   end
    local solo=action('Solo',s.party and Text.SoloParty or Text.Solo,{action='Solo'})
-   if s.party then T.enabled(solo,false) end
+   if s.party or access and not access.allowed then T.enabled(solo,false)end
    if s.rejoin then action('Rejoin','REJOIN EXPEDITION · up to 15 minutes',{action='Rejoin'}) end
    if s.party then
     local p=s.party
@@ -38,7 +65,7 @@ function V.create(parent,send)
     end
     if p.status=='forming' then
      action('Ready',ready and 'NOT READY' or 'READY',{action='Ready',ready=not ready})
-     if p.hostId==me then action('Launch','START PARTY ADVENTURE',{action='Launch'}) end
+     if p.hostId==me then action('Launch','START PARTY ADVENTURE',{action='Launch'})end
     end
     action('Leave','LEAVE PARTY',{action='Leave'})
    else

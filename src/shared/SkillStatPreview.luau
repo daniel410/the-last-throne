@@ -1,3 +1,4 @@
+local Enhance=game and require(game:GetService('ReplicatedStorage').Shared.Enhancement)or dofile('src/shared/Enhancement.luau')
 -- Read-only projection of normal server skill outcomes. Never awards or saves.
 local Shared=game and game:GetService("ReplicatedStorage").Shared
 local Growth=Shared and require(Shared.HeroProgression) or dofile("src/shared/HeroProgression.luau")
@@ -37,7 +38,7 @@ function Preview.gearSources(heroId,items,catalog)
   local item=equipped[slot]
   if item then
    local definition=catalog.items[item.definitionId]
-   table.insert(result,{slot=slot,definitionId=item.definitionId,name=definition.name,stats=Growth.copy(definition.stats or {})})
+   table.insert(result,{slot=slot,definitionId=item.definitionId,name=Enhance.name(definition,item),stats=Enhance.stats(definition,item)})
   end
  end
  return result

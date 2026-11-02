@@ -1,3 +1,5 @@
+local Enhancement=game and require(game:GetService('ReplicatedStorage').Shared.Enhancement)or dofile('src/shared/Enhancement.luau')
+local Adventure=game and require(game:GetService('ReplicatedStorage').Shared.AdventureRules)or dofile('src/shared/AdventureRules.luau')
 local Story=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
 local Economy=game and require(game:GetService('ReplicatedStorage').Shared.EconomyRules) or dofile('src/shared/EconomyRules.luau')
 -- Pure single-account transitions; no services, clocks, random IDs or side effects.
@@ -53,7 +55,7 @@ function Rules.stats(profile, heroId, catalog)
 	local result = {power = 0, armor = 0, health = 0, weapon = false, offhand = false}
 	for _, item in pairs(profile.items) do
 		if item.location.kind == "equipped" and item.location.heroId == heroId then
-			for key, value in pairs(catalog.items[item.definitionId].stats or {}) do result[key] = result[key] + value end
+			for key, value in pairs(Enhancement.stats(catalog.items[item.definitionId],item)) do result[key] = result[key] + value end
 			if item.location.slot == "weapon" or item.location.slot == "offhand" then result[item.location.slot] = item.definitionId end
 		end
 	end
@@ -110,6 +112,7 @@ function Rules.validate(profile, catalog)
 	for id, hero in pairs(profile.heroes) do
 		if type(hero) ~= "table" or id ~= hero.heroId or type(id) ~= "string" or not catalog.classes[hero.baseClassId]
 			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, 80) or type(hero.quickSlots) ~= "table" then return false end
+		if not Adventure.valid(hero) then return false end
 		if hero.deepwood~=nil and not Story.validate(hero.deepwood) then return false end
 		if hero.progression ~= nil and (not Growth.validate(hero.progression,hero.baseClassId) or hero.level ~= hero.progression.level) then return false end
 		for index = 1, 2 do
@@ -122,6 +125,7 @@ function Rules.validate(profile, catalog)
 	for id, item in pairs(profile.items) do
 		if type(item) ~= "table" then return false end
 		local def, loc = catalog.items[item.definitionId], item.location
+		if def and not Enhancement.valid(item,def) then return false end
 		if not def or item.instanceId ~= id or type(id) ~= "string" or item.ownerUserId ~= profile.userId
 			or item.definitionVersion ~= catalog.version or not Rules.integer(item.version, 1, 1e12)
 			or not Rules.integer(item.quantity, 1, def.maxStack) or type(loc) ~= "table" or type(item.locked) ~= "boolean"
@@ -292,12 +296,18 @@ function Rules.progress(profile,command,context,catalog)
 		local investment=command.action=="AllocateStats" or command.action=="TrainSkill" or command.action=="SetSkillSlot"
   if not death and not context.atHub and not (investment and context.canInvest) then return nil,investment and "UnsafeGrowth" or "WaitForLobby" end
 	elseif context.serverReward~=true then return nil,"InvalidRequest" end
-	local nextG,reason,repeated=Growth.apply(g,command,hero.baseClassId)
+	local expedition=hero.expeditions and hero.expeditions.active
+ if command.action=='AwardXP'and command.runId then
+  if not expedition or expedition.runId~=command.runId or type(command.killId)~='string'or #command.killId>100 then return nil,'AdventureChanged'end
+  if expedition.kills[command.killId]then return Rules.copy(profile),nil,true end
+ end
+ local nextG,reason,repeated=Growth.apply(g,command,hero.baseClassId)
 	if not nextG then return nil,reason end
 	local nextProfile=Rules.copy(profile)
 	if repeated then return nextProfile,nil,true end
  Economy.upgrade(nextProfile)
-	nextProfile.heroes[command.heroId].progression=nextG
+	if command.action=='AwardXP'and command.runId then nextProfile.heroes[command.heroId].expeditions.active.kills[command.killId]=true end
+ nextProfile.heroes[command.heroId].progression=nextG
 	nextProfile.heroes[command.heroId].level=nextG.level
  if command.action=='AwardXP' and command.coins~=nil then
   if not Rules.integer(command.coins,0,1000000) then return nil,'InvalidRequest' end
@@ -374,5 +384,11 @@ function Rules.supportPass(profile,command,context,catalog)
  local n=Rules.copy(profile);Economy.upgrade(n)
  return Pass.apply(n,command,context,Rules,catalog)
 end
-function Rules.shop(profile,command,context,catalog) return Economy.apply(profile,command,context,catalog,Rules) end
+function Rules.shop(profile,command,context,catalog)
+ if command.action=='Enhance'or command.action=='Recover'or command.action=='ExchangeCore'or command.action=='OpenCache'then
+  local Forge=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentTransactions)or dofile('src/shared/EquipmentTransactions.luau')
+  return Forge.apply(profile,command,context,catalog,Rules)
+ end
+ return Economy.apply(profile,command,context,catalog,Rules)
+end
 return Rules

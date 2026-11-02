@@ -1,3 +1,4 @@
+local Enhance=require(game:GetService('ReplicatedStorage').Shared.Enhancement)
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
@@ -237,7 +238,7 @@ function InventoryGui.create(onVisibility, feedback)
 		local hero=snapshot.heroes[snapshot.heroId]
 		if storageMode and not compact and sourceTab~="pending" then
 			Artwork.create(detailScroll,def,UDim2.fromOffset(0,0),UDim2.fromOffset(90,90))
-			local name=detailLabel("ItemName",def.name,0,36,20,Color.text); name.Position=UDim2.fromOffset(106,0); name.Size=UDim2.new(1,-112,0,36)
+			local name=detailLabel("ItemName",Enhance.name(def,item),0,36,20,Color.text); name.Position=UDim2.fromOffset(106,0); name.Size=UDim2.new(1,-112,0,36)
 			if def.slot then
 				local requirement=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or Text.Compatible
 				local label=detailLabel("Requirements",requirement,42,44,12,Color.silver); label.Position=UDim2.fromOffset(106,40); label.Size=UDim2.new(1,-112,0,44)
@@ -270,7 +271,7 @@ function InventoryGui.create(onVisibility, feedback)
 		elseif def.slot and item.location.kind=="bag" and hero and hero.level<(def.level or 1) then
 			detailLabel("ActionBlockedReason",Text.Errors.LevelRequired,y,48,13,Color.error);y=y+52
 		end
-		local heading=detailLabel("ItemName",def.name,y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
+		local heading=detailLabel("ItemName",Enhance.name(def,item),y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
   if def.restore and item.location.kind=="bag" then
    local keys=potionKeys(hero,item.definitionId)
    local status=detailLabel("QuickSlotStatus",keys~="" and string.format(Text.QuickSlotAssigned,keys) or Text.QuickSlotUnassigned,y,30,16,keys~="" and Color.gold or Color.muted)
@@ -300,13 +301,13 @@ function InventoryGui.create(onVisibility, feedback)
 			local compareSlot=def.slot=="accessory" and accessorySlot or def.slot
 			local current
 			for _, other in ipairs(snapshot.items) do
-				if other.location.kind=="equipped" and other.location.heroId==snapshot.heroId and other.location.slot==compareSlot then current=Catalog.items[other.definitionId] end
+				if other.location.kind=="equipped" and other.location.heroId==snapshot.heroId and other.location.slot==compareSlot then current={stats=Enhance.stats(Catalog.items[other.definitionId],other)} end
 			end
 			local lines={Text.Current.."  →  "..Text.Selected}
 			for _, key in ipairs({"power","armor","health"}) do
-				local before,after=current and current.stats[key] or 0,def.stats[key] or 0
+				local before,after=current and current.stats[key] or 0,Enhance.stats(def,item)[key] or 0
 				local suffix=key=="power" and "%" or ""
-				lines[#lines+1]=string.format("%s   %d%s → %d%s   (%+d%s)",Text.Stats[key],before,suffix,after,suffix,after-before,suffix)
+				lines[#lines+1]=string.format("%s   %.2f%s → %.2f%s   (%+.2f%s)",Text.Stats[key],before,suffix,after,suffix,after-before,suffix)
 			end
 			detailLabel("Comparison",table.concat(lines,"\n"),y,94,13,Color.text); y=y+100
 			local impact,reason=EquipmentImpact.compare(hero,snapshot.items,item,compareSlot,Catalog)
@@ -399,7 +400,7 @@ function InventoryGui.create(onVisibility, feedback)
 			card.LayoutOrder=index
 			if def then
 				Artwork.create(card,def,UDim2.fromOffset(7,3),UDim2.new(1,-14,.67,-3))
-				local name=Theme.label(card,"ItemName",def.name,UDim2.new(0,4,.68,0),UDim2.new(1,-8,.3,-2),10,Color.text)
+				local name=Theme.label(card,"ItemName",Enhance.name(def,item),UDim2.new(0,4,.68,0),UDim2.new(1,-8,.3,-2),10,Color.text)
 				name.TextXAlignment=Enum.TextXAlignment.Center
 
     if def.restore and kind=="bag" then

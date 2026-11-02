@@ -8,6 +8,7 @@ local Rig=require(script.Parent.Parent.World.TrainingField)
 local Sizing=require(script.Parent.Parent.World.StoryMonsterSizing)
 local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
 local Text=require(ReplicatedStorage.Shared.K0Text)
+local Difficulty=require(ReplicatedStorage.Shared.Difficulty)
 local Service={}
 local offers={}
 local activities,access,companion
@@ -28,7 +29,7 @@ function Service.encounterState(player,heroId)
  for key,e in pairs(encounters) do
   if e.participants[player]==heroId then
    local ctx,root=context(player)
-   result[key]={wave=e.wave,waves=e.waveCount,remaining=e.remaining,pillars=e.shield and e.pillars or 0,
+   result[e.chapter.id..':'..e.goal.id]={wave=e.wave,waves=e.waveCount,remaining=e.remaining,pillars=e.shield and e.pillars or 0,
     position={e.position.X,e.position.Y,e.position.Z},boss=e.goal.bossEncounter~=nil or (e.chapter.epic or 1)>=2 and e.boss~=nil,active=not e.completed and ctx~=nil and ctx.heroId==heroId and root~=nil and (root.Position-e.position).Magnitude<=110}
   end
  end
@@ -41,11 +42,12 @@ local function publish(player,message,notice,completion)
  if activities then activityState,dialogue=activities.projection(player,h.heroId) end
  local offer=offers[player];local ctx,root=context(player)
  if offer and (not ctx or ctx.heroId~=offer.heroId or player.Character~=offer.character or not root or (root.Position-offer.node.part.Position).Magnitude>16) then offers[player]=nil;offer=nil end
- remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),supporter=companion and companion.details(player),heroId=h.heroId,training=h.training,journal=s,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
+ remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),supporter=companion and companion.details(player),heroId=h.heroId,training=h.training,journal=s,expedition=options.inventory.expedition(player,h.heroId),encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
 end
 function Service.destination(player,heroId)
  local s=state(player,heroId)
- local c=Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
+ local a=options.inventory.expedition(player,heroId)
+ local c=a and Content.byId[a.missionId]or Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
  if s and s.main==6 and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
  if s and s.main==Content.mainCount then return options.world.spawns[Content.epics[#Content.epics].hub] end
  return options.world.spawns[c.zone]
@@ -54,11 +56,11 @@ local function enqueue(player,heroId,c,g,choice,stepId)
  queues[player]=queues[player] or {events={},keys={}}
  local q=queues[player];local key=heroId..':'..c.id..':'..g.id..':'..tostring(stepId)..':'..tostring(choice)
  if q.keys[key] then return end
- q.keys[key]=true;table.insert(q.events,{heroId=heroId,c=c,g=g,choice=choice,stepId=stepId,key=key})
+ q.keys[key]=true;table.insert(q.events,{heroId=heroId,c=c,g=g,choice=choice,stepId=stepId,key=key,runId=(options.inventory.expedition(player,heroId)or {}).runId})
  if q.running then return end;q.running=true
  task.spawn(function()
   while player.Parent==Players and #q.events>0 do
-   local e=q.events[1];local before=state(player,e.heroId);local reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId)
+   local e=q.events[1];local before=state(player,e.heroId);local reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId,e.runId)
    if reason=='Busy' or reason=='SaveUnknown' then
     publish(player,'Saving progress. Please wait; the same event will retry.');task.wait(1)
    elseif reason then
@@ -80,7 +82,10 @@ local function enqueue(player,heroId,c,g,choice,stepId)
      for _,answer in ipairs(step.choices or {}) do if answer.id==e.choice then text=answer.text end end
     end end end
     local complete=after and after.clears[e.c.id] and before and not before.clears[e.c.id]
-    publish(player,text~='' and text or nil,nil,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=e.c.reward.xp,coins=e.c.reward.coins,outcome=e.c.quest.outcome} or nil)
+    local run=options.inventory.expedition(player,e.heroId)
+    local repeatReward=run and not run.firstClear and require(ReplicatedStorage.Shared.AdventureRepeatRewards)[e.c.id]
+    local mode=run and Difficulty.modes[run.difficultyId]or Difficulty.modes.Easy
+    publish(player,text~='' and text or nil,nil,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=repeatReward and math.floor(repeatReward.xp*mode.xp)or e.c.reward.xp,coins=repeatReward and math.floor(repeatReward.gold*mode.gold)or e.c.reward.coins,outcome=e.c.quest.outcome} or nil)
     end
    end
   end
@@ -100,10 +105,10 @@ local function destroyEncounter(e)
  for _,m in ipairs(e.models) do if m.Parent then m:Destroy() end end
  for _,p in ipairs(e.parts or {}) do if p.Parent then p:Destroy() end end
 end
-local function applyBalance(model,spec,partySize)
- local health,damage=Balance.stats(spec.kind,spec.level,partySize)
+local function applyBalance(model,spec,partySize,difficulty)
+ local health,damage,level=Balance.stats(spec.kind,spec.level,partySize,difficulty)
  local xp,gold=Balance.rewards(spec)
- model:SetAttribute('StoryLevel',spec.level);model:SetAttribute('StoryBoss',Balance.isBoss(spec.kind))
+ model:SetAttribute('StoryLevel',level or spec.level);model:SetAttribute('StoryBoss',Balance.isBoss(spec.kind))
  model:SetAttribute('StoryHealth',health);model:SetAttribute('StoryDamage',damage)
  model:SetAttribute('StoryRewardXP',xp);model:SetAttribute('StoryRewardGold',gold)
 end
@@ -155,6 +160,10 @@ function Service.bossDamage(model,damage)
   task.defer(function()if encounters[e.key]==e then Service.defeated(model)end end)
   return math.max(0,hp-max*.1)
  end
+ if e.difficultyId=='Hell'and not e.hellPhase and hp-damage<=max*.15 then
+  e.hellPhase=true;e.nextHazard=os.clock()+2;model:SetAttribute('StoryHellPhase',true)
+  for player in pairs(e.participants)do publish(player,require(ReplicatedStorage.Shared.AdventureText).FinalSurge)end
+ end
  if kind=='InfernoOverlord' then
   if not e.phase2 and hp-damage<=max*.65 then
    reinforce(e,.65);e.phase2=true;e.nextHazard=os.clock()+2;model:SetAttribute('StoryPhase',2)
@@ -197,7 +206,7 @@ local function floorHazard(e)
   if encounters[e.key]==e then
    for ally,heroId in pairs(e.participants) do local ctx,root=context(ally)
     if ctx and ctx.heroId==heroId and root and (Vector3.new(root.Position.X,pos.Y,root.Position.Z)-pos).Magnitude<7
-     and not ally.Character:GetAttribute('K0Invulnerable') then ally.Character:FindFirstChildOfClass('Humanoid'):TakeDamage(32) end
+     and not ally.Character:GetAttribute('K0Invulnerable') then ally.Character:FindFirstChildOfClass('Humanoid'):TakeDamage(math.floor(32*(Difficulty.modes[e.difficultyId]or Difficulty.modes.Easy).damage+.5)) end
    end
   end
   p:Destroy()
@@ -214,7 +223,14 @@ spawnWave=function(e)
   local scale,visual=Sizing.forStory(kind,boss)
   local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,visual)
   m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
-  m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize)
+  e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',e.goal.id..'_'..e.spawnCount)
+  m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize,e.difficultyId)
+  if not boss and (e.difficultyId=='Insane'or e.difficultyId=='Hell')and index==1 then
+   m:SetAttribute('StoryElite','Armored');m:SetAttribute('StoryHealth',math.floor(m:GetAttribute('StoryHealth')*1.15+.5))
+  end
+  if not boss and e.difficultyId=='Hell'and index==2 then
+   m:SetAttribute('StoryElite','Empowered');m:SetAttribute('StoryDamage',math.floor(m:GetAttribute('StoryDamage')*1.1+.5))
+  end
   m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1.25+index*.12)
   m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or Text.Enemy[kind] or kind
   table.insert(e.models,m);e.remaining=e.remaining+1
@@ -225,17 +241,19 @@ end
 local function begin(player,node,automatic)
  local c,g=node.chapter,node.goal;local position=node.part.Position
  local ctx=eligible(player,c,g,automatic and 36 or 16,position);if not ctx then publish(player,'Complete the earlier objectives and move closer to this marker.');return end
- local key=c.id..':'..g.id;local e=encounters[key]
+ local run=options.inventory.expedition(player,ctx.heroId)
+ local key=c.id..':'..g.id..':'..(run and run.runId or 'legacy');local e=encounters[key]
  if e then
   local n=0 for _ in pairs(e.participants) do n=n+1 end
   if not e.participants[player] and n>=4 then publish(player,'This encounter already has four heroes. Wait for the next attempt.');return end
   e.participants[player]=ctx.heroId;publish(player,'Encounter joined. Defeat the remaining guards.');return end
- e={key=key,chapter=c,goal=g,position=position,models={},participants={[player]=ctx.heroId},remaining=0,started=os.clock(),lastPresent=os.clock()};encounters[key]=e
+ e={key=key,runId=run and run.runId,difficultyId=run and run.difficultyId,chapter=c,goal=g,position=position,models={},participants={[player]=ctx.heroId},remaining=0,started=os.clock(),lastPresent=os.clock()};encounters[key]=e
  -- Eligible nearby allies can help through combat, protection or interaction.
  local count=1
  for _,p in ipairs(Players:GetPlayers()) do if p~=player then
   local ally=eligible(p,c,g,65,position)
-  if ally and count<4 then e.participants[p]=ally.heroId;count=count+1 end
+  local other=ally and options.inventory.expedition(p,ally.heroId)
+  if ally and count<4 and (other and other.runId or nil)==e.runId then e.participants[p]=ally.heroId;count=count+1 end
  end end
  e.partySize=count;e.packSize=Balance.packSize(c,g);e.batches=Balance.encounterWaves(c,g)
  e.waveCount=#e.batches;e.wave=0;e.nextWave=1;e.guardsRemaining=0
@@ -308,7 +326,7 @@ function Service.defeated(model,_winner)
   local ctx=eligible(p,e.chapter,e.goal,100,e.position)
   if ctx and ctx.heroId==heroId then
    local level=model:GetAttribute('StoryLevel') or 1;local multiplier=model:GetAttribute('StoryBoss') and 5 or 1
-   options.inventory.awardXP(p,heroId,model:GetAttribute('StoryRewardXP') or (8+2*level)*multiplier,true,model:GetAttribute('StoryRewardGold') or (3+math.floor(level/2))*(model:GetAttribute('StoryBoss') and 10 or 1))
+   options.inventory.awardXP(p,heroId,model:GetAttribute('StoryRewardXP') or (8+2*level)*multiplier,true,model:GetAttribute('StoryRewardGold') or (3+math.floor(level/2))*(model:GetAttribute('StoryBoss') and 10 or 1),e.runId,model:GetAttribute('StoryKillId'))
    if complete then enqueue(p,heroId,e.chapter,e.goal) end
   end
  end
@@ -364,7 +382,7 @@ function Service.start(settings)
    if hero and not hero.training and ctx and root then
     local s=state(p,ctx.heroId)
     if s then for _,c in ipairs(Content.chapters) do if not c.side then for _,g in ipairs(c.goals) do
-     if g.activity and g.activity.mode=='battle' and Progress.available(s,c,g) and not encounters[c.id..':'..g.id] then
+     if g.activity and g.activity.mode=='battle' and Progress.available(s,c,g) and not encounters[c.id..':'..g.id..':'..((options.inventory.expedition(p,ctx.heroId)or {}).runId or 'legacy')] then
       local node=options.world.nodes[c.id..':'..g.id]
       if (root.Position-node.part.Position).Magnitude<32 then begin(p,node,true) end
      end
@@ -381,7 +399,7 @@ function Service.start(settings)
    local present=false
    for p,heroId in pairs(e.participants) do local ctx,root=context(p);if ctx and ctx.heroId==heroId and root and (root.Position-e.position).Magnitude<110 then present=true end end
    if present then e.lastPresent=os.clock() end
-   if (e.phase3 or e.chapter.epic==3 and e.phase2) and not e.completed and os.clock()>=(e.nextHazard or math.huge) then e.nextHazard=os.clock()+6;floorHazard(e) end
+   if (e.phase3 or e.hellPhase or e.chapter.epic==3 and e.phase2) and not e.completed and os.clock()>=(e.nextHazard or math.huge) then e.nextHazard=os.clock()+(e.hellPhase and 4 or 6);floorHazard(e) end
    if os.clock()-e.lastPresent>8 then destroyEncounter(e) end
   end
  end)

@@ -1,3 +1,4 @@
+local Difficulty=game and require(script.Parent.Difficulty)or dofile('src/shared/Difficulty.luau')
 -- Trial adventure tuning. Authored levels and fixed story rewards remain canonical.
 local Balance={density=6,normalHealth=1.5,normalDamage=1.5,bossHealth=1.35,bossDamage=1.25,maxWaveSize=9}
 local bosses={Warlord=true,GoblinKing=true,KingOgre=true,EnragedWarlord=true,KingShaman=true,IceTrollKing=true,KingIceBear=true,KingIceGolem=true,QueenIceElf=true,AncientGlacierKing=true,MagmaImp=true,MagmaGolem=true,InfernoOverlord=true,CalderaTitan=true,KingVolcanoShaman=true}
@@ -53,7 +54,8 @@ function Balance.rewards(spec)
  local boss=Balance.isBoss(spec.kind)
  return share((8+2*spec.level)*(boss and 5 or 1),spec),share((3+math.floor(spec.level/2))*(boss and 10 or 1),spec)
 end
-function Balance.stats(kind,level,partySize)
+function Balance.stats(kind,level,partySize,mode)
+ if mode then return Difficulty.stats(kind,level,partySize,Balance.isBoss(kind),mode)end
  local boss=Balance.isBoss(kind)
  local party=(boss and {1,1.7,2.3,2.8} or {1,1.5,2,2.5})[partySize or 1]
  local health=(boss and 1000+level*100 or 100+level*25)*party*(boss and Balance.bossHealth or Balance.normalHealth)

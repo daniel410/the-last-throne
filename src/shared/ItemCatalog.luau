@@ -63,4 +63,9 @@ Catalog.kit = {"traveler_hood", "traveler_coat", "traveler_gloves", "traveler_bo
 for _,id in ipairs({'warlord_seal','king_shaman_seal'}) do
  Catalog.items[id]={id=id,name=id=='warlord_seal' and 'Orc Warlord Seal' or 'King Shaman Seal',category='Materials',maxStack=99,glyph='SE',rarity='Uncommon',description='A personal trophy from the Deepwood campaign. Collect from Unclaimed at Hub.'}
 end
+Catalog.items.forge_core={id='forge_core',name='Forge Core',category='Materials',maxStack=999,glyph='FC',rarity='Rare',description='Enhancement material. Earn from harder missions or exchange Iron Ore at the blacksmith.'}
+for _,tier in ipairs({1,5,10})do
+ local id='equipment_cache_'..tier
+ Catalog.items[id]={id=id,name='Level '..tier..' Equipment Cache',category='Materials',maxStack=99,glyph='EQ',rarity='Rare',cacheTier=tier,description='Claim to your bag, then choose equipment at the blacksmith. Repeat missions to earn more caches.'}
+end
 return Catalog

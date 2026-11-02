@@ -181,7 +181,7 @@ local function runGrowthQueue(player,state)
 		state.rewardWorker=false
 	end)
 end
-function Service.awardXP(player,heroId,amount,defeat,coins)
+function Service.awardXP(player,heroId,amount,defeat,coins,runId,killId)
 	local state=accounts[player]
 	if not state or not state.valid or state.closing or not state.profile.heroes[heroId] then return end
 	state.rewards=state.rewards or {}
@@ -189,7 +189,7 @@ function Service.awardXP(player,heroId,amount,defeat,coins)
 	local saved=state.profile.heroes[heroId].progression
 	local sequence=(state.rewardSequences[heroId] or (saved.rewardStream==token and saved.rewardSequence or 0))+1
 	state.rewardSequences[heroId]=sequence
-	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,coins=coins or 0,rewardKind=defeat and "Defeat" or nil,stream=token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
+	table.insert(state.rewards,{action="AwardXP",heroId=heroId,amount=amount,coins=coins or 0,runId=runId,killId=killId,rewardKind=defeat and "Defeat" or nil,stream=token,sequence=sequence,requestId="xp_"..heroId.."_"..sequence})
  runGrowthQueue(player,state)
 end
 -- Called only by the server's validated death lifecycle, never a client remote.
@@ -211,6 +211,8 @@ end
 -- Server-only story command; never accepted by InventoryRequest/ProgressionRequest.
 function Service.storyState(player,heroId)
  local state=accounts[player];local hero=state and state.profile and state.profile.heroes[heroId]
+ local a=hero and hero.expeditions and hero.expeditions.active
+ if a and player:GetAttribute('K0SessionPhase')=='Tutorial'then local projection=Rules.copy(a.journal);projection.expeditionMission=a.missionId;projection.seleneUnlocked=require(ReplicatedStorage.Shared.DeepwoodProgress).seleneUnlocked(hero.deepwood);projection.seleneFollowing=hero.deepwood and hero.deepwood.seleneFollowing;return projection end
  return hero and Rules.copy(hero.deepwood or require(ReplicatedStorage.Shared.DeepwoodProgress).new())
 end
 -- All support Gold and entitlement changes use the same account fence as items.
@@ -256,16 +258,17 @@ function Service.endSupport(player,heroId)
  if not v or not v.active then return nil end
  return Service.supportPass(player,{action='End',heroId=heroId,requestId='end_'..v.contractId})
 end
-function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId)
+function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId,runId)
  local state=accounts[player]
  if not state or state.busy or state.closing then return 'Busy' end
- local key=heroId..':'..chapterId..':'..goalId..':'..tostring(choice)..':'..tostring(stepId)
+ local key=heroId..':'..chapterId..':'..goalId..':'..tostring(choice)..':'..tostring(stepId)..':'..tostring(runId)
  if state.storyPending and state.storyPending~=key then return 'Busy' end
  if not state.valid and state.storyPending~=key then return state.errorCode or 'Unavailable' end
  state.busy=true;state.storyPending=key
  local profile,reason=store:transact(player.UserId,function(current)
   if goalId=='@accept' then return Rules.acceptQuest(current,heroId,chapterId,choice==true) end
   if goalId=='@selene' then return Rules.selectSelene(current,heroId,choice) end
+  if runId then return require(ReplicatedStorage.Shared.AdventureRules).event(current,heroId,chapterId,goalId,choice,stepId,Rules,Catalog,runId)end
   return Rules.story(current,heroId,chapterId,goalId,choice,Catalog,stepId)
  end)
  if profile then
@@ -511,7 +514,7 @@ function Service.prepareTransfer(player)
  s.closing=true
  local deadline=os.clock()+15
  while s.busy and os.clock()<deadline do task.wait(.1) end
- if s.busy or s.pending or s.growthPending or s.storyPending or s.shopPending or options.storyPending and options.storyPending(player) then s.closing=false;return false end
+ if s.busy or s.pending or s.growthPending or s.storyPending or s.shopPending or s.expeditionPending or options.storyPending and options.storyPending(player) then s.closing=false;return false end
  while s.rewards and #s.rewards>0 and os.clock()<deadline do
   local reason=Service.progress(player,s.rewards[1],true)
   if not reason then table.remove(s.rewards,1) else s.closing=false;return false end
@@ -572,9 +575,35 @@ function Service.shop(player,command)
   local ctx=options.heroSession.getInventoryContext(player)
   return Rules.shop(current,command,{atLobby=workspace:GetAttribute('TLTServerRole')~='Battle' and ctx and ctx.heroId==command.heroId and ctx.atHub and player:GetAttribute('K0SessionPhase')=='Lobby'},Catalog)
  end)
- if p then s.profile=p;s.valid=true;s.errorCode=nil;s.shopPending=nil
+ if p then s.profile=p;s.valid=true;s.errorCode=nil;s.shopPending=nil;Service.refreshCharacter(player);options.heroSession.refresh(player)
  elseif e=='SaveUnknown' or e=='AccountBusy' then s.valid=false;s.errorCode=e
  else s.shopPending=nil end
  s.busy=false;publish(player,command.requestId,e);return e
+end
+-- Server-only durable run binding. No client can choose or complete a run here.
+function Service.expeditionHero(player)
+ local s=accounts[player];local ctx=options.heroSession.getInventoryContext(player)
+ return s and s.valid and ctx and Rules.copy(s.profile.heroes[ctx.heroId])or nil
+end
+function Service.expedition(player,heroId)
+ local s=accounts[player];local h=s and s.profile and s.profile.heroes[heroId]
+ return h and h.expeditions and Rules.copy(h.expeditions.active)or nil
+end
+function Service.beginExpedition(player,heroId,missionId,difficultyId,runId)
+ local s=accounts[player];if not s or s.busy or s.closing then return 'Busy'end
+ local pending=s.expeditionPending
+ if pending and (pending.runId~=runId or pending.heroId~=heroId)then return 'Busy'end
+ if not s.valid and not pending then return s.errorCode or 'Unavailable'end
+ local cmd=pending or {heroId=heroId,missionId=missionId,difficultyId=difficultyId,runId=runId,revision=s.profile.revision}
+ s.expeditionPending=cmd;s.busy=true
+ local p,e=store:transact(player.UserId,function(current)
+  return require(ReplicatedStorage.Shared.AdventureRules).begin(current,cmd.heroId,cmd.missionId,cmd.difficultyId,cmd.runId,cmd.revision,Rules,Catalog)
+ end)
+ if p then s.profile,s.valid,s.errorCode,s.expeditionPending=p,true,nil,nil
+ elseif e=='SaveUnknown'or e=='AccountBusy'then s.valid,s.errorCode=false,e
+ else s.expeditionPending=nil end
+ s.busy=false;publish(player,nil,e)
+ if s.expeditionPending then task.delay(1,function()if accounts[player]==s and not s.closing then Service.beginExpedition(player,cmd.heroId,cmd.missionId,cmd.difficultyId,cmd.runId)end end)end
+ return e
 end
 return Service

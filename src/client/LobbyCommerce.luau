@@ -3,6 +3,7 @@ local RS=game:GetService('ReplicatedStorage')
 local Http=game:GetService('HttpService')
 local T=require(script.Parent.TDInventoryTheme)
 local Text=require(RS.Shared.LobbyText)
+local AdventureText=require(RS.Shared.AdventureText)
 local InventoryText=require(RS.Shared.InventoryText)
 local Wallet=require(script.Parent.WalletDisplay)
 local M={}
@@ -13,6 +14,7 @@ function M.start()
  local shopRequest=remotes:WaitForChild('ArmoryRequest');local networkRequest=remotes:WaitForChild('ExpeditionRequest')
  local gui=Instance.new('ScreenGui');gui.Name='LobbyServices';gui.ResetOnSpawn=false;gui.DisplayOrder=48;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=p:WaitForChild('PlayerGui')
 
+ require(script.Parent.AdventureReplay).start(gui)
  local latest,pending,inventory
  local message=''
  local function trade(command)
@@ -77,12 +79,12 @@ function M.start()
  remotes:WaitForChild('InventoryState').OnClientEvent:Connect(function(s) inventory(s) end)
  remotes:WaitForChild('ArmoryState').OnClientEvent:Connect(function(data)
   if data.open then closePanels();navigation.panel.Visible=false;(data.store=='items' and items or armory).panel.Visible=true end
-  message=data.error and (Text[data.error] or InventoryText[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and items are saved.' or ''
+  message=data.error and (AdventureText[data.error] or Text[data.error] or InventoryText[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and items are saved.' or ''
   if data.requestId==(pending and pending.requestId) and data.error~='SaveUnknown' and data.error~='Busy' and data.error~='AccountBusy' then pending=nil end
   inventory(data.inventory)
  end)
  remotes:WaitForChild('ExpeditionState').OnClientEvent:Connect(function(s)
-  expedition.render(s,s.error and (Text[s.error] or Text.NetworkUnavailable))
+  expedition.render(s,s.error and (AdventureText[s.error] or Text[s.error] or Text.NetworkUnavailable))
   if s.open then closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true end
   if s.travelling then closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true end
  end)

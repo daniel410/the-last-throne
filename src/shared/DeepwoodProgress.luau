@@ -5,7 +5,7 @@ function P.copy(v) if type(v)~='table' then return v end local r={} for k,x in p
 function P.hasCell(cells,index) return cells and (cells[tostring(index)]==true or cells[index]==true) or false end
 function P.new() return {version=1,main=0,flags={},clears={},choice='',coins=0,killCoins=0,activities={},decisions={},explored={},accepted={},clues={}} end
 -- Recruitment is derived from the existing personal rescue report, including old saves.
-function P.seleneUnlocked(s) return s and s.flags and s.flags['DW-03:report']==true or false end
+function P.seleneUnlocked(s) return s and (s.seleneUnlocked==true or s.flags and s.flags['DW-03:report']==true)or false end
 function P.selectSelene(s,following)
  if not P.validate(s) then return nil,'Incompatible' end
  if type(following)~='boolean' then return nil,'InvalidRequest' end
@@ -22,7 +22,7 @@ function P.accepted(s,c)
  for _,g in ipairs(c.goals) do if s.flags[c.id..':'..g.id] then return true end end
  return false
 end
-function P.canAccept(s,c) return c and c.side and s.main>=c.minMain and not P.accepted(s,c) end
+function P.canAccept(s,c) return (not s.expeditionMission or c and s.expeditionMission==c.id)and c and c.side and s.main>=c.minMain and not P.accepted(s,c) end
 function P.accept(s,id,discovery)
  if not P.validate(s) then return nil,'Incompatible' end
  local c=Content.byId[id]
@@ -34,6 +34,7 @@ function P.accept(s,id,discovery)
  return n
 end
 function P.eligible(s,c)
+ if s.expeditionMission and s.expeditionMission~=c.id then return false end
  if c.side then return s.main>=c.minMain and P.accepted(s,c) and not s.clears[c.id] end
  return s.main+1==c.number and not s.clears[c.id]
 end

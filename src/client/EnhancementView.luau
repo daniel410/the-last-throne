@@ -1,0 +1,58 @@
+local RS=game:GetService('ReplicatedStorage')
+local T=require(script.Parent.TDInventoryTheme)
+local Artwork=require(script.Parent.ItemArtwork)
+local E=require(RS.Shared.Enhancement)
+local C=require(RS.Shared.ItemCatalog)
+local Text=require(RS.Shared.AdventureText)
+local V={}
+function V.render(scroll,s,send,saving,notice)
+ local hero=s.heroId and s.heroes and s.heroes[s.heroId]
+ local function amount(id)
+  local q=0;for _,item in ipairs(s.items or {})do if item.definitionId==id and not item.locked and item.location.kind=='bag'and item.location.heroId==s.heroId then q=q+item.quantity end end
+  return q
+ end
+ local ore,cores=amount('iron_ore'),amount('forge_core')
+ local function card(id,def,title,description,actions)
+  local box=T.frame(scroll,id,UDim2.new(),UDim2.new(1,-8,0,304));box.LayoutOrder=#scroll:GetChildren()
+  Artwork.create(box,def,UDim2.fromOffset(10,10),UDim2.fromOffset(54,54))
+  T.label(box,'Name',title,UDim2.fromOffset(74,8),UDim2.new(1,-86,0,56),15,T.color.gold)
+  T.label(box,'Description',description,UDim2.fromOffset(12,70),UDim2.new(1,-24,1,-182),12)
+  for index,a in ipairs(actions)do
+   local b=T.button(box,'Action'..index,a.title,UDim2.new(0,12,1,-108+(index-1)*50),UDim2.new(1,-24,0,44))
+   T.enabled(b,not saving and s.ready and hero~=nil and a.enabled~=false)
+   local armedRevision
+   b.Activated:Connect(function()
+    if saving or not s.ready or not hero or a.enabled==false then return end
+    if armedRevision~=s.revision then armedRevision=s.revision;b.Caption.Text=Text.Confirm..a.title;notice.Text=a.review or description;return end
+    local cmd={store='blacksmith',action=a.action,heroId=s.heroId,revision=s.revision,instanceId=a.instanceId,itemVersion=a.itemVersion,offerId=a.offerId}
+    T.enabled(b,false);send(cmd)
+   end)
+  end
+ end
+ card('CoreExchange',C.items.forge_core,Text.ForgeMaterials,string.format(Text.ExchangeInfo,ore,cores),{{title=Text.ExchangeButton,action='ExchangeCore',enabled=ore>=5 and s.wallet and s.wallet.gold>=50}})
+ for _,item in ipairs(s.items or {})do
+  local def=C.items[item.definitionId]
+  if item.location.heroId==s.heroId and not item.locked and (item.location.kind=='bag'or item.location.kind=='equipped')then
+   if E.supported(def)then
+    local n=item.enhancementLevel or 0;local cost=E.cost(def,n+1);local before=E.stats(def,item)
+    local after=E.stats(def,{enhancementLevel=math.min(E.cap(def),n+1)})
+    local lines={Text.Success}
+    for _,key in ipairs({'power','armor','health'})do if (before[key]or 0)>0 then table.insert(lines,string.format(Text.StatChange,key=='power'and Text.Power or key=='armor'and Text.Armor or Text.Health,before[key],after[key]))end end
+    table.insert(lines,string.format(Text.EnhanceCost,E.cap(def),cost.gold,cost.ore,cost.cores))
+    table.insert(lines,string.format(Text.MaterialBag,ore,cores))
+    local paid=item.enhancementPaid or {ore=0,cores=0};local ro,rc=math.floor(paid.ore*.8),math.floor(paid.cores*.8)
+    local enough=s.wallet and s.wallet.gold>=cost.gold and ore>=cost.ore and cores>=cost.cores
+    card(item.instanceId,def,E.name(def,item),table.concat(lines,'\n'),{
+     {title=n>=E.cap(def)and Text.MaxEnhancement or enough and Text.Enhance or Text.MoreMaterials,action='Enhance',instanceId=item.instanceId,itemVersion=item.version,enabled=n<E.cap(def)and enough},
+     {title=Text.Recover,action='Recover',instanceId=item.instanceId,itemVersion=item.version,enabled=ro+rc>0,review=string.format(Text.RecoveryReview,E.name(def,item),ro,rc)}})
+   elseif def.cacheTier then
+    local choices={};for _,choice in pairs(C.items)do if choice.slot and (choice.level or 1)==def.cacheTier and E.supported(choice)and (not choice.classId or choice.classId==hero.baseClassId)then table.insert(choices,choice)end end
+    table.sort(choices,function(a,b)return a.id<b.id end)
+    for _,choice in ipairs(choices)do
+     card(item.instanceId..choice.id,choice,choice.name,string.format(Text.CacheInfo,def.name),{{title=Text.ChooseEquipment,action='OpenCache',instanceId=item.instanceId,itemVersion=item.version,offerId=choice.id}})
+    end
+   end
+  end
+ end
+end
+return V

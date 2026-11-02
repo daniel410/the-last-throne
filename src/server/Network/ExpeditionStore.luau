@@ -76,7 +76,8 @@ function Store.new(map,clock,config)
    local m=p.members[tostring(member.userId)]
    if not m or m.token~=member.token or not m.arrived then return nil,'PartyChanged' end
    if p.status~='forming' then return p end
-   local changed=m.heroId~=member.heroId or m.main~=member.main
+   local changed=m.heroId~=member.heroId or m.main~=member.main or m.level~=member.level
+   if changed and p.missionId then for _,other in pairs(p.members)do other.ready=false end end
    member.arrived=true;member.ready=not changed and (ready==nil and m.ready or ready) or false
    member.expiresAt=clock()+C.partyLease;p.members[tostring(member.userId)]=member;p.expiresAt=clock()+C.partyLease;return p
   end)
@@ -89,6 +90,17 @@ function Store.new(map,clock,config)
    if size(p.members)==0 then p.status='closed' end;p.expiresAt=clock()+C.partyLease;return p
   end)
  end
+ function S.configure(id,leader,missionId,difficultyId)
+  return update('party:'..id,C.partyLease,function(p)
+   if not p or p.hostId~=leader then return nil,'LeaderOnly'end
+   if p.status~='forming'then return nil,'PartyChanged'end
+   if p.missionId~=missionId or p.difficultyId~=difficultyId then
+    p.missionId=missionId;p.difficultyId=difficultyId
+    for _,m in pairs(p.members)do m.ready=false end
+   end
+   p.expiresAt=clock()+C.partyLease;return p
+  end)
+ end
  function S.freeze(id,leader,runId)
   return update('party:'..id,C.partyLease,function(p)
    if not p or p.hostId~=leader then return nil,'LeaderOnly' end;prune(p)
@@ -96,7 +108,7 @@ function Store.new(map,clock,config)
    if size(p.members)~=p.target then return nil,'NotReady' end
    local main
    for _,m in pairs(p.members) do
-    if not m.arrived or not m.ready or m.expiresAt<=clock() or (main~=nil and main~=m.main) then return nil,'NotReady' end
+    if not m.arrived or not m.ready or m.expiresAt<=clock() or (not p.missionId and main~=nil and main~=m.main) then return nil,'NotReady' end
     main=m.main
    end
    p.status='launching';p.runId=runId;p.expiresAt=clock()+C.partyLease;return p

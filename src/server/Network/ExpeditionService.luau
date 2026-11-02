@@ -5,7 +5,10 @@ local Run=game:GetService('RunService')
 local Teleport=game:GetService('TeleportService')
 local C=require(RS.Shared.ExpeditionConfig)
 local Store=require(script.Parent.ExpeditionStore)
+local Difficulty=require(RS.Shared.Difficulty)
+local Content=require(RS.Shared.CampaignContent)
 local Service={}
+local selections={}
 local o,store,remote,index,role,job
 local parties,travel,arrivals,admitted,busy,last,leaving={},{},{},{},{},{},{}
 local battleRun,battleStarted,runHealthy=nil,nil,true
@@ -25,6 +28,13 @@ local function offer(p)
  local run,why=store.readRun(r.runId);if not run or run.closed then return nil,why or 'RejoinExpired' end
  return r
 end
+local function selection(p)
+ if selections[p]then return selections[p]end
+ local h=o.inventory.expeditionHero(p)
+ local a=h and h.expeditions and h.expeditions.active
+ local c=Content.mainChapters[math.min(Content.mainCount,(h and h.deepwood and h.deepwood.main or 0)+1)]
+ return {missionId=a and a.missionId or c.id,difficultyId=a and a.difficultyId or 'Easy'}
+end
 local function publish(p,errorCode,open)
  if p.Parent~=Players or not remote then return end
  local localParty=parties[p];local party=localParty and store.readParty(localParty.id)
@@ -36,13 +46,21 @@ local function publish(p,errorCode,open)
  -- Reserved destination IDs, membership fences and admission tickets stay server-only.
  local clean
  if party then
-  clean={id=party.id,hostId=party.hostId,target=party.target,status=party.status,members={}}
+  clean={id=party.id,hostId=party.hostId,target=party.target,status=party.status,missionId=party.missionId,difficultyId=party.difficultyId,members={}}
   for _,m in pairs(party.members) do table.insert(clean.members,{userId=m.userId,name=m.name,classId=m.classId,level=m.level,main=m.main,ready=m.ready,arrived=m.arrived}) end
   table.sort(clean.members,function(a,b) return a.userId<b.userId end)
  end
  local r=offer(p)
+ local choice=party and {missionId=party.missionId,difficultyId=party.difficultyId}or selection(p)
+ local hero=o.inventory.expeditionHero(p);local missions={}
+ for _,c in ipairs(Content.chapters)do
+  local allowed={};for _,mode in ipairs(Difficulty.order)do local ok,why=Difficulty.allowed(hero,c.id,mode);allowed[mode]={allowed=ok,reason=why,level=math.max(Difficulty.entry(c),Difficulty.modes[mode].level)}end
+  table.insert(missions,{id=c.id,title=c.quest and c.quest.title or c.title,combat=Difficulty.combat(c),modes=allowed})
+ end
+ local activeHero=o.heroSession.getActiveHero(p)
+ local expedition=activeHero and o.inventory.expedition(p,activeHero.heroId)
  remote:FireClient(p,{role=role,studio=studio,configured=C.battlePlaceId>0,capacity=role=='Lobby' and C.lobbyCapacity or C.battleCapacity,
-  population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt} or nil})
+  selection=choice,missions=missions,expedition=expedition,population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt} or nil})
 end
 function Service.openMenu(p)
  if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then return 'WaitForLobby' end
@@ -108,13 +126,14 @@ function Service.admitArrival(p)
  end
  local data=p:GetJoinData();local t=data.TeleportData
  if role=='Lobby' then
+  if sourceValid(data)and type(t)=='table'and t.returning==true and t.replay==true then p:SetAttribute('TLTReplayRequested',true)end
   if sourceValid(data) and type(t)=='table' and type(t.partyId)=='string' and #t.partyId<=64 and type(t.token)=='string' and #t.token<=64 then arrivals[p]=t end
   return nil
  end
  if studio then return nil end
  if game.PrivateServerId=='' or game.PrivateServerOwnerId~=0 or not sourceValid(data) or type(t)~='table' or type(t.runId)~='string' or #t.runId>64 or type(t.ticket)~='string' or #t.ticket>64 then return nil,'Join an adventure from the Dawnspire lobby.' end
  local r,e=store.admit(t.runId,p.UserId,t.ticket,job)
- if not r or r.placeId~=game.PlaceId or count(r.members)>4 then return nil,'Your expedition could not be verified. Return to the lobby and rejoin.' end
+ if not r or r.placeId~=game.PlaceId or count(r.members)>4 or r.rulesVersion~=Difficulty.version or not Content.byId[r.missionId]or not Difficulty.modes[r.difficultyId]then return nil,'Your expedition could not be verified. Return to the lobby and rejoin.' end
  if battleRun and battleRun.id~=r.id then return nil,'This battle server belongs to another expedition.' end
  battleRun=r;battleStarted=battleStarted or os.clock();admitted[p]=r.members[tostring(p.UserId)]
  p:SetAttribute('TLTTravelLock',true)
@@ -122,13 +141,14 @@ function Service.admitArrival(p)
 end
 local function startRunLocked(p,party,runId)
  if not studio and C.battlePlaceId<=0 then return nil,'Configuration' end
- local members={};local participants={}
+ local members={};local participants={};local chosen=selection(p)
  if party then
   local frozen,e=store.freeze(party.id,p.UserId,runId);if not frozen then store.launchStatus(party.id,runId,'forming');return nil,e end
+  chosen={missionId=frozen.missionId,difficultyId=frozen.difficultyId}
   for uid,m in pairs(frozen.members) do
    local person=Players:GetPlayerByUserId(tonumber(uid));local known=person and parties[person];local current=person and member(person,m.token)
    local fence=store.membership(tonumber(uid))
-   if not person or not known or known.id~=party.id or not current or current.heroId~=m.heroId or current.main~=m.main or not fence or fence.id~=party.id or fence.token~=m.token or travel[person] then
+   if not person or not known or known.id~=party.id or not current or current.heroId~=m.heroId or current.main~=m.main or current.level~=m.level or not fence or fence.id~=party.id or fence.token~=m.token or travel[person] then
     store.launchStatus(party.id,runId,'forming');return nil,'NotReady'
    end
    table.insert(participants,person);members[uid]={heroId=m.heroId,ticket=guid()}
@@ -137,12 +157,20 @@ local function startRunLocked(p,party,runId)
   local m=member(p,'solo');if not m then return nil,'NotReady' end
   participants={p};members[tostring(p.UserId)]={heroId=m.heroId,ticket=guid()}
  end
+ for _,person in ipairs(participants)do
+  local h=o.inventory.expeditionHero(person);local allowed,why=Difficulty.allowed(h,chosen.missionId,chosen.difficultyId)
+  if not allowed then if party then store.launchStatus(party.id,runId,'forming')end;return nil,why end
+ end
+ for _,person in ipairs(participants)do
+  local why=o.inventory.beginExpedition(person,members[tostring(person.UserId)].heroId,chosen.missionId,chosen.difficultyId,runId)
+  if why then if party then store.launchStatus(party.id,runId,'forming')end;return nil,why end
+ end
  if studio then
   if party then store.launchStatus(party.id,runId,'forming') end
   for _,person in ipairs(participants) do o.previewWorld();o.heroSession.enterAdventure(person,members[tostring(person.UserId)].heroId) end
   return true
  end
- local r,e=store.createRun({id=runId,ticket=guid(),reservedId=Http:GenerateGUID(false),members=members,placeId=C.battlePlaceId})
+ local r,e=store.createRun({id=runId,ticket=guid(),reservedId=Http:GenerateGUID(false),members=members,placeId=C.battlePlaceId,missionId=chosen.missionId,difficultyId=chosen.difficultyId,rulesVersion=Difficulty.version})
  if not r then if party then store.launchStatus(party.id,runId,'forming') end;return nil,e end
  local prepared={}
  for _,person in ipairs(participants) do
@@ -193,11 +221,12 @@ function Service.returnLobby(p)
  if role~='Battle' or not admitted[p] or not battleRun then return true,'Busy' end
  if travel[p] then return true,'Busy' end
  local m=admitted[p]
+ local replay=o.inventory.expedition(p,m.heroId)
  if not o.inventory.prepareTransfer(p) then return true,'Unavailable' end
  local saved=store.finish(p.UserId,battleRun.id,m.ticket)
  if not saved then unlock(p);return true,'NetworkUnavailable' end
  leaving[p]=true
- local ok,e=send(p,{kind='return',placeId=C.lobbyPlaceId,data={returning=true}},true)
+ local ok,e=send(p,{kind='return',placeId=C.lobbyPlaceId,data={returning=true,replay=replay and replay.completed==true or false}},true)
  return true,e
 end
 function Service.beforeHeroAction(p,action)
@@ -210,7 +239,7 @@ function Service.beforeHeroAction(p,action)
 end
 local function handle(p,c,...)
  if select('#',...)~=0 or type(c)~='table' or type(c.action)~='string' or #c.action>16 then return end
- for k,v in pairs(c) do if k~='action' and k~='id' and k~='target' and k~='ready' then return end;if type(v)~='string' and type(v)~='number' and type(v)~='boolean' then return end end
+ for k,v in pairs(c) do if k~='action' and k~='id' and k~='target' and k~='ready' and k~='missionId' and k~='difficultyId' then return end;if type(v)~='string' and type(v)~='number' and type(v)~='boolean' then return end end
  if c.id~=nil and (type(c.id)~='string' or #c.id>64 or not c.id:match('^[%w_-]+$')) then return end
  if c.ready~=nil and type(c.ready)~='boolean' then return end
  if os.clock()-(last[p] or -math.huge)<.35 then return end;last[p]=os.clock()
@@ -221,7 +250,12 @@ local function handle(p,c,...)
  busy[p]=true
  local success,e=pcall(function()
   local mine=parties[p]
-  if c.action=='Create' or c.action=='Join' then
+  if c.action=='Configure'then
+   if not Content.byId[c.missionId]or not Difficulty.modes[c.difficultyId]then return 'InvalidMission'end
+   if mine then
+    local _,why=store.configure(mine.id,p.UserId,c.missionId,c.difficultyId);if why then return why end
+   else selections[p]={missionId=c.missionId,difficultyId=c.difficultyId}end
+  elseif c.action=='Create' or c.action=='Join' then
    if mine then return 'AlreadyParty' end
    local id=c.action=='Create' and guid() or c.id
    if not id then return 'InvalidRequest' end
@@ -229,6 +263,7 @@ local function handle(p,c,...)
    local fence,why=store.claimMembership(p.UserId,id,token);if not fence then store.releaseMembership(p.UserId,id,token);return why end
    local party
    if c.action=='Create' then party,why=store.create(id,m,c.target,job,C.lobbyPlaceId)
+    if party then local chosen=selection(p);party,why=store.configure(id,p.UserId,chosen.missionId,chosen.difficultyId)end
    else
     party,why=store.readParty(id)
     if party and party.jobId~=job then m.arrived=false end
@@ -284,7 +319,7 @@ function Service.start(options)
   if admitted[p] and battleRun and not leaving[p] then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,false) end
   local mine=parties[p]
   if mine and not travel[p] then store.remove(mine.id,p.UserId,mine.token);store.releaseMembership(p.UserId,mine.id,mine.token);advertise(mine.id) end
-  parties[p]=nil;travel[p]=nil;arrivals[p]=nil;admitted[p]=nil;last[p]=nil;busy[p]=nil;leaving[p]=nil
+  parties[p]=nil;travel[p]=nil;arrivals[p]=nil;admitted[p]=nil;last[p]=nil;busy[p]=nil;leaving[p]=nil;selections[p]=nil
  end)
  task.spawn(function()
   local ticks=0
@@ -295,7 +330,12 @@ function Service.start(options)
    end
    for _,p in ipairs(Players:GetPlayers()) do
     if admitted[p] and not travel[p] then
-     if p:GetAttribute('K0SessionPhase')=='Lobby' and o.inventory.ready(p) then o.heroSession.enterAdventure(p,admitted[p].heroId) end
+     if p:GetAttribute('K0SessionPhase')=='Lobby' and o.inventory.ready(p) then
+      local verified=Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
+      if not verified then
+       p:Kick('Your expedition could not be verified. Rejoin from the Dawnspire lobby.')
+      else o.heroSession.enterAdventure(p,admitted[p].heroId)end
+     end
      local arrived=count(admitted);local complete=arrived>=count(battleRun.members) or os.clock()-battleStarted>=30
      p:SetAttribute('TLTTravelLock',not runHealthy or not complete)
      if ticks%10==0 and runHealthy then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,false) end

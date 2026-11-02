@@ -1,5 +1,7 @@
 # The Last Throne 통합 개발 계획
 
+> **2026-11-02 / 0.62.0 · TLT-027/028/029/041/043/044/045/052/061/073/082/084:** 난이도 선택·전원 자격/원정 고정·별도 반복 저널/보상·Hell Play Again·대장간 강화/회수/코어 교환/상자 선택을 현재3지역과 장비군에 시험 연결했다. [구현·검증·한계](docs/evidence/difficulty-enhancement-20261102/README.md). D1~D4/E2~E3의 원형 경로이며 D5/E4 고레벨 콘텐츠·D6/E5 실서버/기기 수용과 상위 티켓은 미완료다.
+
 > **2026-11-02 난이도·보상·입장·강화 계획 / TLT-027/028/029/041/043/044/045/052/061/073/082/084:** [4단계 난이도 계획](docs/production/difficulty-rewards-and-entry-plan-2026-11-02.md)과 [장비 강화 계획](docs/production/equipment-enhancement-plan-2026-11-02.md)을 연결했다. Easy 모드 최소Lv1·Hell 무제한 반복 플레이/새 원정마다 반복 보상은 사용자 확정이며, Hard/Insane/Hell 하한20/40/80·반복 보상·재료/상자 진도·+10/성공100%·재료 회수는 추천 시험값이다. D1~D6/E1~E5 순으로 데이터→입장/거래→TD UI→고레벨 확장→독립 수용한다. 계획만 작성했으며 기존 승인XP·런타임·VERSION은 유지한다. [조사/한계](docs/research/2026-11-02-difficulty-rewards-enhancement.md).
 
 > **2026-11-02 / TLT-031/057/061/084 · 0.59.0:** Selene 제외 NPC29명에 관절·교차 보행·평지 접지·소품 부착·대기 시선을 추가했다. [검증/미검증](docs/evidence/npc-motion-20261102/README.md). 로컬 개선본·미게시, 실제 플레이/실기기·최종 미술 수용은 후속.
