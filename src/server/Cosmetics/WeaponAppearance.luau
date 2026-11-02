@@ -14,7 +14,7 @@ local SPECS = {
 	knight = { template = "KnightSword", parts = { "Weapon" }, gripName = "SwordGrip", jointName = "K0SwordJoint", sourceKey = "td:v2:AzureOathblade" },
 	elf = { template = "ElfBow", parts = { "Bow", "String", "NockedArrow" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:ElfBow" },
 	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:Embercleaver:edge1" },
-	mage = { template="MageStaff", parts={"Weapon"}, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:EmberCrownStaff" },
+	mage = { gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "authored:WoodenStaff" },
 }
 
 local function finite(value)
@@ -210,7 +210,7 @@ function Appearance.build(classId)
 	local spec = SPECS[classId]
 	if not spec then return nil, "unsupported_class" end
 	local ok, result = pcall(function()
-		return buildTd(spec)
+		return classId == "mage" and buildStaff(spec) or buildTd(spec)
 	end)
 	if not ok then return nil, tostring(result) end
 	result.model:SetAttribute("WeaponClassId", classId)

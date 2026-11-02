@@ -4,6 +4,7 @@ local Tween=game:GetService("TweenService")
 local Debris=game:GetService("Debris")
 local Config=require(RS.Shared.K0Config)
 local BowMotion=require(script.Parent.K0BowMotion)
+local WindLance=require(script.Parent.WindLanceVisual)
 local Visual={}
 local byId={};for _,list in pairs(Config.Skills) do for _,d in ipairs(list) do byId[d.id]=d end end
 local colors={wind=Color3.fromRGB(180,255,218),arcane=Color3.fromRGB(180,153,255),steel=Color3.fromRGB(255,215,133),holy=Color3.fromRGB(255,239,167),gun=Color3.fromRGB(255,210,80),bomb=Color3.fromRGB(255,133,57),shell=Color3.fromRGB(255,87,55),nature=Color3.fromRGB(104,238,157),fire=Color3.fromRGB(255,101,41),earth=Color3.fromRGB(235,173,91),water=Color3.fromRGB(73,178,255),frost=Color3.fromRGB(141,234,255),lightning=Color3.fromRGB(222,198,255)}
@@ -47,6 +48,10 @@ function Visual.start()
  RS:WaitForChild("Remotes"):WaitForChild("K0AdvancedEffect").OnClientEvent:Connect(function(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt)
   local d=byId[id];if not d or not d.advanced or typeof(origin)~="Vector3" or typeof(center)~="Vector3" then return end
   if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
+  if id=='mage_wind_lance' then
+   WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup)
+   return
+  end
   local color=colors[d.element] or colors.steel
   if pulse==0 then
    if character then firearm(character,d) end

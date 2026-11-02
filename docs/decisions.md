@@ -1,5 +1,9 @@
 # 현재 기획 결정과 미확정 항목
 
+## 2026-11-02 — Wind Lance 바람 연출·기본 Mage 나무 지팡이
+
+사용자 요청으로 Wind Lance의 준비 회오리·나선 기류·창끝·짧은 적중 바람을 보강하고 기본 Mage 외형을 기존 WoodenStaffBuilder로 복원한다. 기존0.44.0의 기본 Mage→EmberCrownStaff 연결을 대체한다. Pyro 원본은 보존하며 전직별 자동 장비 교체/성능 변경은 추가하지 않는다. Wind Lance 안정ID·30stud/최대3대상·MP14/쿨다운6초와 서버 피해/시각 판정은 유지한다. [조사/선택 근거](research/2026-11-02-wind-lance-and-apprentice-staff.md) · [구현/검증/미검증](evidence/mage-wind-lance-20261102/README.md). TLT-005/032/033/055/057/084 · 로컬 개선본·미게시, 실제 플레이/실기기/최종 미술 수용 후속.
+
 ## 2026-11-02 — 물약 가격 인상 적용 승인
 
 사용자가 추천 가격 적용을 승인했다. Small/Medium/Large/XL 순서로 HP 물약25/60/100/200 Gold, MP 물약20/40/80/160 Gold를 적용한다. 기존 매각가20% 규칙에 따라 HP5/12/20/40, MP4/8/16/32 Gold다. 회복량·기본 지급·상품ID·Gold/Diamonds 교환·이야기 보상은 유지한다. [검증과 한계](evidence/potion-prices-20261102/README.md). TLT-017/028/043/045/084 · ENG → QA. 소스 검증이며 빌드/Studio·게시/실기기 밸런스 수용은 후속이다.

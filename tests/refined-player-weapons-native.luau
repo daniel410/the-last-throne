@@ -2,7 +2,7 @@
 local Players=game:GetService('Players');local SS=game:GetService('ServerStorage')
 local modules=game.ServerScriptService.Server.Cosmetics;local A=require(modules.WeaponAppearance)
 local V=require(game.StarterPlayer.StarterPlayerScripts.Client.K0SwordVisual)
-local expected={knight={'SwordBlade','136222429214301','td:v2:AzureOathblade'},dwarf={'Weapon','137793778150208','td:v2:Embercleaver:edge1'},mage={'Weapon','94265479758423','td:v2:EmberCrownStaff'},elf={'Bow','83795343518288','td:ElfBow'}}
+local expected={knight={'SwordBlade','136222429214301','td:v2:AzureOathblade'},dwarf={'Weapon','137793778150208','td:v2:Embercleaver:edge1'},mage={'WoodenShaft',nil,'authored:WoodenStaff'},elf={'Bow','83795343518288','td:ElfBow'}}
 local report={kind='REFINED_PLAYER_WEAPONS_NATIVE',checks=0,failures={},assetLoads={},coverage='Native R6/R15 new PBR meshes, production appearance observers, re-equip/repair/respawn with Player identity fixtures; no real account or published client'}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local function waitFor(fn)local t=os.clock();repeat local v=fn();if v then return v end;task.wait(.03)until os.clock()-t>4 end
@@ -19,8 +19,14 @@ local ok,err=xpcall(function()
    lifecycle.bind(player);lifecycle.bind(player)
    local model=assert(waitFor(function()return appearance(first)end),'appearance attaches')
    check(model:GetAttribute('WeaponVisualVersion')==2 and model:GetAttribute('WeaponSourceKey')==spec[3],'actual player appearance selects reviewed v2 source')
-   local part=assert(model:FindFirstChild(spec[1]));check(part:IsA('MeshPart') and part.MeshId=='rbxassetid://'..spec[2],'live class uses replacement mesh')
-   check(part:FindFirstChildOfClass('SurfaceAppearance')~=nil,'replacement PBR is attached')
+   local part=assert(model:FindFirstChild(spec[1]))
+   if class=='mage' then
+    check(part:IsA('Part') and part.Material==Enum.Material.Wood,'base Mage uses apprentice wooden shaft')
+    check(not model:FindFirstChild('Weapon') and model:FindFirstChild('LeftFork')~=nil,'Pyro mesh is absent from default Mage')
+   else
+    check(part:IsA('MeshPart') and part.MeshId=='rbxassetid://'..spec[2],'live class uses replacement mesh')
+    check(part:FindFirstChildOfClass('SurfaceAppearance')~=nil,'replacement PBR is attached')
+   end
    check(A.isAttached(model,first,class),'replacement validates complete rig/socket ownership')
    table.insert(preload,part)
    local total=0;for _,p in ipairs(model:GetChildren())do if p:IsA('BasePart') and p:GetAttribute('TLTPlayerWeaponPart')then total+=1;check(p.Massless and not p.Anchored and not p.CanCollide and not p.CanTouch and not p.CanQuery,'new weapon parts cannot change collision/hit authority')end end
