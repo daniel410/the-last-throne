@@ -15,6 +15,7 @@ local storyDefeatHandler
 local rewardHandler
 local Config = require(ReplicatedStorage.Shared.K0Config)
 local Rules = require(script.Parent.K0Rules)
+local DodgeRules = require(ReplicatedStorage.Shared.DodgeRules)
 local EnemyHealthBar = require(script.Parent.Parent.World.EnemyHealthBar)
 local Text = require(ReplicatedStorage.Shared.K0Text)
 
@@ -145,6 +146,9 @@ local function clearAction(state)
 	state.character:SetAttribute("K0AttackStartedAt", nil)
 	state.character:SetAttribute("K0SkillId", nil)
 	state.character:SetAttribute("K0Invulnerable", false)
+	state.character:SetAttribute("K0DodgeKind", nil)
+	state.character:SetAttribute("K0DodgeStartedAt", nil)
+	state.character:SetAttribute("K0DodgeSide", nil)
 end
 
 local function resetCombo(state)
@@ -467,6 +471,7 @@ local function startGuard(state, current)
 end
 
 local function startDodge(state, direction, current)
+	local rolling = state.mode == "Dodge" and DodgeRules.canRoll(state.dodge, current, Config.Dodge.doubleTapWindow)
 	-- The short server-owned move prevents a client from extending the dodge.
 	-- A previous dodge may have reached its end before the heartbeat cleaned it up.
 	releaseDodgeOwnership(state)
@@ -481,10 +486,19 @@ local function startDodge(state, direction, current)
 	state.queued = nil
 	resetCombo(state)
 	local fallback = -horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1))
-	local travel = direction and horizontalUnit(direction, fallback) or fallback
-	state.dodge = { started = current, direction = travel, moved = 0 }
+	local side = 1
+	local travel = fallback
+	if rolling then
+		local right = horizontalUnit(state.root.CFrame.RightVector, Vector3.new(1, 0, 0))
+		side = DodgeRules.rollSide(direction and horizontalUnit(direction, right):Dot(right) or 0)
+		travel = right * side
+	end
+	state.dodge = { started = current, direction = travel, moved = 0, kind = rolling and "SideRoll" or "Backstep", side = side }
 	state.lastDodgeStarted = current
 	state.dodgeSeq = (state.dodgeSeq or 0) + 1
+	state.character:SetAttribute("K0DodgeKind", state.dodge.kind)
+	state.character:SetAttribute("K0DodgeStartedAt", workspace:GetServerTimeNow())
+	state.character:SetAttribute("K0DodgeSide", side)
 	state.character:SetAttribute("K0DodgeSeq", state.dodgeSeq)
 	setPlayerState(state, "Dodge")
 	updateFeedback(state, "ActionStarted")
@@ -579,6 +593,12 @@ local function acceptAction(state, action, direction, current, targetModel)
 	local skillSlot = action:match("^Skill([12345])$")
 	if skillSlot then startSkill(state, tonumber(skillSlot), current, targetModel); return end
 	if action ~= "Attack" and action ~= "Dodge" and action ~= "BlockStart" then
+		return
+	end
+	-- The second press can replace only its own recent backstep. A roll cannot
+	-- restart itself or accumulate invulnerability from repeated presses.
+	if action == "Dodge" and state.mode == "Dodge" and DodgeRules.canRoll(state.dodge, current, Config.Dodge.doubleTapWindow) then
+		startDodge(state, direction, current)
 		return
 	end
 	if action == "BlockStart" and state.mode == "Block" then

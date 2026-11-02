@@ -1,0 +1,9 @@
+{
+  "src/shared/DodgeRules.luau": "87c847814e5bfcfc5734abc3a29a899d73c7ecce21d4a03f5d38dffbd044d9f9",
+  "src/shared/K0Config.luau": "1a21eec4ab45f1d8e9659ed6ba16754f48f6c566160491c6179bb2f1dd2e35b0",
+  "src/shared/K0Text.luau": "ba994f50a7acbcf456947bb6a9e98ee721bde7c48ab7586b5378b66e561e3485",
+  "src/server/Combat/CombatService.luau": "2cfd751a17c57669eb47e64fbf83edd981b1529885804f87ea44d0fb65dc8e2c",
+  "src/client/K0SwordVisual.luau": "6e996500388372c1c8c0accf76ee7f8199900650db7d8e174bff1233704e3e5c",
+  "tests/dodge-double-tap.spec.lua": "b5e9b0a441a33e914fff0aa7478647e483dff5263188138f3502d59f20057100",
+  "tests/dodge-double-tap-native.luau": "8b5704282f0ca114dc188056977da29b1f4b2f2ca4a82f1d834c1b2a652ada8c"
+}

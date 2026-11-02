@@ -89,7 +89,7 @@ return {
 		Move = "Move away from the blue spawn pad.",
 		Attack = "Select an enemy and attack, or face an enemy to swing.",
 		ElfAttack = "Click an enemy to target and shoot, or face an enemy to fire.",
-		Dodge = "Use Dodge to practice avoiding an attack.",
+		Dodge = "Tap Dodge to step back. Double-tap to roll sideways; move left or right to choose a side.",
 		Complete = "Controls practiced! Explore the grove and test your hero.",
 		Note = "Training foes grant hero XP. No story rewards.",
 	},

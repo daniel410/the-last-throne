@@ -22,7 +22,7 @@ local Config = {
 		{ windup = 0.26, active = 0.12, recovery = 0.24, damage = 1.20, posture = 24, range = 6.0, angle = 100 },
 	},
 	Guard = { raiseTime = 0.10, perfectTime = 0.15, cooldown = 0.40, angle = 120, damageMultiplier = 0.2, counterDuration = 1.5 },
-	Dodge = { duration = 0.65, moveDuration = 0.30, distance = 7, invulnerableStart = 0.08, invulnerableEnd = 0.28 },
+	Dodge = { duration = 0.65, moveDuration = 0.30, distance = 7, invulnerableStart = 0.08, invulnerableEnd = 0.28, doubleTapWindow = 0.30 },
 	HitStun = 0.25,
 	SlimeSplit = { count = 2, sizeMultiplier = 0.5, healthMultiplier = 0.25 },
 	Enemy = {

@@ -23,6 +23,7 @@ assert(groundSlam and overheadSmash, "Dwarf skill configuration is missing")
 
 local HitFeedback = require(script.Parent.K0PlayerHitFeedback)
 local Visual = {}
+local DodgeRules = require(game.ReplicatedStorage.Shared.DodgeRules)
 local shieldSkills={}
 for _,d in ipairs(Config.Skills.knight) do if d.requiresShield or d.shield or d.counterPosture or d.name:find("SHIELD",1,true) then shieldSkills[d.id]=true end end
 local started = false
@@ -398,6 +399,15 @@ function Visual.renderArms(character, dt, now)
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and math.min(dt, 0.1) or 1 / 60
 	local usesIK = updateElfIK(character, mode, phase, elapsed,bowPose)
 	local blockHand = updateBlockHand(character, classId, mode)
+	local rolling = mode == "Dodge" and character:GetAttribute("K0DodgeKind") == "SideRoll"
+	local rollAngle, rollDrop, rollTuck = 0, 0, 0
+	if rolling then
+		local startedAt = character:GetAttribute("K0DodgeStartedAt")
+		if type(startedAt) == "number" then
+			rollAngle, rollDrop, rollTuck = DodgeRules.rollPose((now or Workspace:GetServerTimeNow()) - startedAt,
+				Config.Dodge.duration - 0.1, character:GetAttribute("K0DodgeSide") == -1 and -1 or 1)
+		end
+	end
 	if mode == "Dead" or character:GetAttribute("TLTDeathFalling") then
 		left=CFrame.Angles(math.rad(20),0,math.rad(12));right=CFrame.Angles(math.rad(15),0,math.rad(-12))
 	elseif mode == "Dodge" then
@@ -406,6 +416,11 @@ function Visual.renderArms(character, dt, now)
 		local leftStep = type(seq) == "number" and seq > 0 and seq % 2 == 0
 		local hip, knee = CFrame.Angles(math.rad(-42), 0, 0), CFrame.Angles(math.rad(15), 0, 0)
 		if leftStep then leftHipPose, leftKneePose = hip, knee else rightHipPose, rightKneePose = hip, knee end
+		if rolling then
+			right, left = CFrame.Angles(math.rad(70 * rollTuck), 0, math.rad(-15 * rollTuck)), CFrame.Angles(math.rad(70 * rollTuck), 0, math.rad(15 * rollTuck))
+			rightHipPose, leftHipPose = CFrame.Angles(math.rad(-65 * rollTuck), 0, 0), CFrame.Angles(math.rad(-65 * rollTuck), 0, 0)
+			rightKneePose, leftKneePose = CFrame.Angles(math.rad(110 * rollTuck), 0, 0), CFrame.Angles(math.rad(110 * rollTuck), 0, 0)
+		end
 	elseif classId == "knight" and mode == "Block" then
 		left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
 	elseif mode == "Block" then
@@ -544,7 +559,14 @@ function Visual.renderArms(character, dt, now)
 	local rootJoint = lowerTorso and lowerTorso:FindFirstChild("Root") or (rootPart and rootPart:FindFirstChild("RootJoint"))
 	local slamming = classId == "dwarf" and mode == "Attack" and skillId == "dwarf.common.ground"
 	if rootJoint and (rootJoint:IsA("Motor6D") or rootJoint:IsA("AnimationConstraint")) then
-		if slamming then
+		if rolling then
+			-- Roll the visual rig, leaving the authoritative physics root upright.
+			local basis = rootJoint.C0.Rotation
+			local pose = basis:Inverse() * CFrame.new(0, rollDrop, 0) * CFrame.Angles(0, 0, rollAngle) * basis
+			rootJoint.Transform = pose
+			armPoses[rootJoint] = { pose = pose, returning = 0 }
+			groundSlamJoints[rootJoint] = true
+		elseif slamming then
 			local lift = Visual.groundSlamLift(phase, character:GetAttribute("K0SkillStartedAt"), Workspace:GetServerTimeNow())
 			local basis = rootJoint.C0.Rotation
 			local pose = basis:Inverse() * CFrame.new(0, lift, 0) * basis
@@ -568,7 +590,7 @@ function Visual.renderArms(character, dt, now)
 				local basis = rootJoint.C0.Rotation
 				rootPose = basis:Inverse() * rootPose * basis
 			end
-			if not slamming then apply(rootJoint, rootPose) end
+			if not slamming and not rolling then apply(rootJoint, rootPose) end
 		end
 	end
 	local function applyLeg(side, pose, kneePose)
