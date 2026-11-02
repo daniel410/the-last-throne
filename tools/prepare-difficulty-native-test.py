@@ -143,9 +143,10 @@ local ok,result=xpcall(function()
   armory.panel.Size=UDim2.fromOffset(size.X-40,size.Y-40);armory.render(snapshot);armory.setMode('Enhance');task.wait(.1)
   for _,b in ipairs(armory.panel:GetDescendants())do if b:IsA('TextButton')and b.Visible then assert(b.AbsoluteSize.Y>=43,'touch target below44 '..b.Name)end end
  end
- return {pure='94 account and replay checks passed in native Luau',service='durable begin, first/repeat completion, forge/equip and equipment stats passed',forgeButtons=forgeButtons,ui='four modes, locked entry, enhancement and desktop/mobile controls passed'}
+ return {pure='95 account and replay checks passed in native Luau',service='durable begin, first/repeat completion, forge/equip and equipment stats passed',forgeButtons=forgeButtons,ui='four modes, locked entry, enhancement and desktop/mobile controls passed'}
 end,debug.traceback)
 gui:Destroy();signal:Destroy();assert(ok,result);return result
 ''')
+(root/'builds').mkdir(exist_ok=True)
 (root/'builds/difficulty-native-smoke.luau').write_text('\n'.join(lines))
 print(json.dumps({'files':len(sources),'bytes':sum(len(s)for s in sources.values())}))

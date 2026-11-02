@@ -299,7 +299,17 @@ function Rules.progress(profile,command,context,catalog)
 	local expedition=hero.expeditions and hero.expeditions.active
  if command.action=='AwardXP'and command.runId then
   if not expedition or expedition.runId~=command.runId or type(command.killId)~='string'or #command.killId>100 then return nil,'AdventureChanged'end
-  if expedition.kills[command.killId]then return Rules.copy(profile),nil,true end
+  if expedition.kills[command.killId]then
+   -- A newly queued duplicate still consumes its stream position, never its reward.
+   if type(command.stream)~='string'or #command.stream<1 or #command.stream>64 or not Rules.integer(command.sequence,1,1e12)then return nil,'InvalidRequest'end
+   local old=g.rewardStream==command.stream and g.rewardSequence or 0
+   if command.sequence<=old then return Rules.copy(profile),nil,true end
+   if command.sequence~=old+1 then return nil,'Changed'end
+   local n=Rules.copy(profile);local growth=n.heroes[command.heroId].progression
+   growth.rewardStream=command.stream;growth.rewardSequence=command.sequence;growth.revision=growth.revision+1;n.revision=n.revision+1
+   if not Rules.validate(n,catalog)then return nil,'Incompatible'end
+   return n,nil,true
+  end
  end
  local nextG,reason,repeated=Growth.apply(g,command,hero.baseClassId)
 	if not nextG then return nil,reason end

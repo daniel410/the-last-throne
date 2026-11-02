@@ -87,6 +87,7 @@ local nextRun='kill-ledger';result=assert(A.begin(result,'hero','DW-01','Hell',n
 local kill={action='AwardXP',heroId='hero',amount=50,coins=5,rewardKind='Defeat',stream='kill-test',sequence=1,requestId='kill1',runId=nextRun,killId='trail_guards_1'}
 local money=result.wallet.gold;result=assert(R.progress(result,kill,{serverReward=true},C));eq(result.wallet.gold,money+5,'server kill credits once')
 kill.sequence=2;kill.requestId='kill2';result=assert(R.progress(result,kill,{serverReward=true},C));eq(result.wallet.gold,money+5,'respawned same run enemy cannot be farmed twice')
+kill.sequence=3;kill.requestId='kill3';kill.killId='trail_guards_2';result=assert(R.progress(result,kill,{serverReward=true},C));eq(result.wallet.gold,money+10,'a duplicate kill does not block subsequent reward stream')
 local replay=assert(A.begin(result,'hero','DW-01','Hell',nextRun,result.revision-1,R,C));eq(replay.revision,result.revision,'unknown run creation recovers before stale revision rejection')
 local no,why=A.begin(result,'hero','DW-01','Hell','old-request',0,R,C);check(not no and why=='Changed','evicted old departure cannot overwrite newer run')
 local manifest={id=nextRun,missionId='DW-01',difficultyId='Hell',rulesVersion=D.version}
