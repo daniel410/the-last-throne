@@ -100,7 +100,7 @@ local function combatInputAllowed()
 	local character = player.Character
 	return focused and not GuiService.MenuIsOpen and not UserInputService:GetFocusedTextBox() and not player:GetAttribute('TLTLobbyPanelOpen') and not player:GetAttribute('TLTTravelLock')
 		and not player:GetAttribute("TLTMapOpen") and not player:GetAttribute("TLTStoryOpen") and not player:GetAttribute("TLTInventoryOpen") and not player:GetAttribute("TLTProgressionOpen")
-		and not player:GetAttribute("TLTSettingsOpen")
+		and not player:GetAttribute("TLTSettingsOpen") and not player:GetAttribute("TLTSupporterOpen")
 		and player:GetAttribute("K0SessionPhase") == "Tutorial"
 		and character and character:GetAttribute("K0SpawnReady") == true
 		and character:GetAttribute("K0State") ~= nil and character:GetAttribute("K0State") ~= "Dead"

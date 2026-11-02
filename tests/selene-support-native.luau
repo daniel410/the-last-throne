@@ -32,14 +32,16 @@ return CombatService
  state.branchShield={amount=40,expires=20};combat.applySeleneSupport(player,'qa',true);check(state.branchShield.amount==40 and state.branchShield.expires==20,'stronger Paladin shield preserved')
  state.mode='Stunned';state.stunnedUntil=12;check(combat.applySeleneSupport(player,'qa',true)=='Cleanse' and state.mode=='Idle','cleanse current interrupt')
  local enemies=Instance.new('Folder');enemies.Parent=folder
- local selectionCount=0;local calls=0;local selectionTime=0
+ local selectionCount=0;local calls=0;local selectionTime=0;local notices={}
  local fakeCombat={applySeleneSupport=function(...) calls+=1;return combat.applySeleneSupport(...) end}
  local companion=require(SSS.Server.Story.SeleneCompanion).create({frameDriven=true,clock=function() selectionTime+=1;return selectionTime end,world={folder=folder,positions={['DW-03']=center+Vector3.new(45,0,-45)}},enemies=enemies,combat=fakeCombat,
   active=function() return hero end,context=function(p) return p.Character and hero,roots[p] end,state=function(p) return journals[p] end,
-  players=function() local r={};for i=1,count do table.insert(r,active[i]) end;return r end,publish=function() end,
+  players=function() local r={};for i=1,count do table.insert(r,active[i]) end;return r end,publish=function() end,notice=function(p,text)table.insert(notices,text)end,
   select=function(p,_,follow) journals[p]=assert(P.selectSelene(journals[p],follow));selectionCount+=1 end})
  local campActor=folder.NPCActors:FindFirstChild('Selene')
  check(campActor and campActor:GetAttribute('NPCId')=='selene' and campActor:GetAttribute('TDSourceModel')=='nun','original TD nun mounted as shared Selene actor')
+ check(campActor.PrimaryPart.SupporterDetails.SupporterDetails.KeyboardKeyCode==Enum.KeyCode.G,'camp offers a separate read-only details interaction')
+ check(companion.details(player).cost==0 and companion.details(player).durationSeconds==false,'details show free recruitment without a timer')
  local meshes=0;for _,v in ipairs(campActor:GetDescendants()) do if v:IsA('MeshPart') then
   meshes+=1;local original=game.ServerStorage.SeleneArticulatedModels.nun:FindFirstChild(v.Name,true)
   check(original and original.MeshId==v.MeshId and original.TextureID==v.TextureID and original.Color==v.Color,'original TD mesh, texture and color preserved')
@@ -51,6 +53,8 @@ return CombatService
  h.Health=40;companion.update(.2);check(folder:FindFirstChild('Selene_1')~=nil,'one follower spawned');check(calls==1 and h.Health==52,'service grants support only once ready')
  companion.update(.2);check(calls==1,'support cooldown suppresses repeated updates')
  companion.select(player,false);companion.update(.2);check(not folder:FindFirstChild('Selene_1'),'rest removes follower')
+ check(notices[#notices]==require(RS.Shared.SupporterText).ended,'explicit rest sends end notice with free re-invitation instructions')
+ local noticeCount=#notices;companion.update(.2);check(#notices==noticeCount,'unchanged rested state does not repeat end notice')
  companion.select(player,true);companion.update(.2);check(calls==1,'reinvite cannot reset cooldown')
  for i=2,4 do journals[active[i]]=assert(P.selectSelene(journals[active[i]],true)) end
  count=2;local callsBeforeParty=calls;companion.update(.2)
@@ -59,13 +63,16 @@ return CombatService
  count=3;companion.update(.2);check(folder:FindFirstChild('Selene_1') and not folder:FindFirstChild('Selene_2'),'three players have only one total supporter')
  count=4;companion.update(.2);check(folder:FindFirstChild('Selene_1'),'four players may have one supporter');for i=2,4 do check(not folder:FindFirstChild('Selene_'..i),'four players cannot exceed one supporter') end
  check(journals[active[2]].seleneFollowing and companion.projection(active[2]):find('slots are full',1,true),'unselected owners retain preference and see slot explanation')
+ check(companion.details(active[2]).key=='PartyFull','detail explains party slot pause')
  count=1;companion.update(.2);check(folder:FindFirstChild('Selene_1'),'slot returns when party shrinks')
+ local savedMain=journals[player].main;journals[player].main=4;companion.update(.2);check(folder:FindFirstChild('Selene_1') and companion.details(player).following,'Story 4 does not end the selected companion');journals[player].main=savedMain
  local follower=folder:FindFirstChild('Selene_1');local start=follower.PrimaryPart.Position
  root.Position+=Vector3.new(28,0,0)
  for _=1,50 do companion.update(.25);companion.stepMotion(.25);task.wait(.08) end
  check((follower.PrimaryPart.Position-start).Magnitude>10,'native pathfinding moves the cast supporter toward its owner')
  check((follower.PrimaryPart.Position-root.Position).Magnitude<12,'follower reaches a support distance')
  player.Character=nil;companion.update(.2);check(not folder:FindFirstChild('Selene_1'),'character switch removes old actor')
+ check(companion.details(player).key=='Respawning' and journals[player].seleneFollowing,'death pause explains respawn and preserves follow selection')
  -- Client completion presentation never destroys the shared portal.
  local campaign=workspace:WaitForChild('DeepwoodCampaign');local portal=campaign:WaitForChild('MonsterPortal')
  local energy

@@ -13,7 +13,7 @@ function R.create(lobby,facilities,storagePrompt)
   result[id]={model=npc}
   if id=='mira' or id=='selene' or id=='nia' then
    local p=Instance.new('ProximityPrompt');p.Name='NPCInteract';p.Style=Enum.ProximityPromptStyle.Custom
-   p.ObjectText=Catalog.byId[id].name..' · '..Catalog.byId[id].role;p.ActionText=id=='mira' and 'Buy or sell supplies' or 'Talk'
+   p.ObjectText=Catalog.byId[id].name..' · '..Catalog.byId[id].role;p.ActionText=id=='mira' and 'Buy or sell supplies' or id=='selene' and require(game.ReplicatedStorage.Shared.SupporterText).view or 'Talk'
    p.KeyboardKeyCode=Enum.KeyCode.F;p.GamepadKeyCode=Enum.KeyCode.ButtonX;p.HoldDuration=0;p.MaxActivationDistance=10;p.RequiresLineOfSight=false;p.Parent=npc.PrimaryPart
    result[id].prompt=p
   end

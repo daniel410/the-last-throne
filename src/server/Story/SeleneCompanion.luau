@@ -5,9 +5,14 @@ local Progress=require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgr
 local Budget=require(game:GetService('ReplicatedStorage').Shared.SeleneSupport)
 local Visual=require(script.Parent.Parent.World.SeleneVisual)
 local Actors=require(script.Parent.Parent.World.NPCActors)
+local RS=game:GetService('ReplicatedStorage')
+local Info=require(RS.Shared.SupporterInfo)
+local Text=Info.text
 local M={}
 function M.create(o)
  local api={};local followers={};local cooldowns={};local status={};local lastSelect={}
+ local reasonKeys,noticeState,noticeTimes={},{},{}
+ local remote=RS.Remotes:FindFirstChild('NPCDialogue') or Instance.new('RemoteEvent');remote.Name='NPCDialogue';remote.Parent=RS.Remotes
  local camp=o.world.seleneCamp or o.world.positions['DW-03']+Vector3.new(-45,0,45)
  -- The rescue report and companion selection share the actual camp actor.
  local npc=Actors.acquire(o.world.folder,'Selene',camp,{role='camp',priority=20})
@@ -21,6 +26,12 @@ function M.create(o)
  local function selectionPrompts(model)
   model:SetAttribute('SeleneCampPosition',camp)
   prompt(model,'Invite','Invite Selene',-3,true);prompt(model,'Rest','Ask Selene to rest',3,false)
+  local old=model.PrimaryPart:FindFirstChild('SupporterDetails');if old then old:Destroy()end
+  local anchor=Instance.new('Attachment');anchor.Name='SupporterDetails';anchor.Position=Vector3.new(0,4,0);anchor.Parent=model.PrimaryPart
+  local p=Instance.new('ProximityPrompt');p.Name='SupporterDetails';p.Style=Enum.ProximityPromptStyle.Custom;p.ObjectText='Selene · Priestess';p.ActionText=Text.view
+  p.KeyboardKeyCode=Enum.KeyCode.G;p.GamepadKeyCode=Enum.KeyCode.ButtonY;p.MaxActivationDistance=12;p.RequiresLineOfSight=false;p.Parent=anchor
+  p.Triggered:Connect(function(player)api.inspect(player,model)end)
+
  end
  selectionPrompts(npc)
  local refuge=o.world.refugeCompanionCamp
@@ -30,7 +41,18 @@ function M.create(o)
  local function remove(player)
   local f=followers[player];if f then f.model:Destroy();followers[player]=nil end
  end
- function api.remove(player) remove(player);cooldowns[player]=nil;status[player]=nil;lastSelect[player]=nil end
+ function api.remove(player) remove(player);cooldowns[player]=nil;status[player]=nil;lastSelect[player]=nil;reasonKeys[player]=nil;noticeState[player]=nil;noticeTimes[player]=nil end
+ function api.details(player)
+  local h=o.active(player);local s=h and o.state(player,h.heroId)
+  return Info.project(s,status[player],s and reasonKeys[player] or 'Unknown')
+ end
+ function api.inspect(player,model)
+  local h=o.active(player);local ctx,root=o.context(player)
+  if not h or h.training or not ctx or ctx.heroId~=h.heroId or not root or not model or not model:IsDescendantOf(o.world.folder) or not model.PrimaryPart or (root.Position-model.PrimaryPart.Position).Magnitude>14 then return false end
+  local now=o.clock and o.clock() or os.clock()
+  if now-(lastSelect[player] or -math.huge)<.4 then return false end;lastSelect[player]=now
+  remote:FireClient(player,{supporter=api.details(player)});return true
+ end
  function api.select(player,following)
   local hero=o.active(player);local ctx,root=o.context(player)
   if type(following)~='boolean' or not hero or hero.training or not ctx or ctx.heroId~=hero.heroId or not root then return false end
@@ -68,7 +90,12 @@ function M.create(o)
   for _,player in ipairs(population) do
    local hero=o.active(player);local ctx,root=o.context(player);local s=o.state(player,hero.heroId)
    status[player]=not Progress.seleneUnlocked(s) and 'Meet Selene after the convoy rescue.' or not s.seleneFollowing and 'Available · Invite Selene at a safe companion camp.' or not allowed[player] and 'Resting · Party companion slots are full.' or 'Following · Healing, protection and cleansing support.'
-   if not allowed[player] or not ctx or ctx.heroId~=hero.heroId or not root then remove(player)
+   reasonKeys[player]=not Progress.seleneUnlocked(s) and 'Locked' or not s.seleneFollowing and 'Available' or not allowed[player] and 'PartyFull' or 'Following'
+   if not allowed[player] or not ctx or ctx.heroId~=hero.heroId or not root then
+    if allowed[player] then
+     reasonKeys[player]=o.phase and o.phase(player)=='Lobby' and 'AtLobby' or 'Respawning';status[player]=Text[reasonKeys[player]]
+    end
+    remove(player)
    else
     local f=followers[player]
     if f and (f.heroId~=ctx.heroId or f.character~=player.Character) then remove(player);f=nil end
@@ -94,19 +121,20 @@ function M.create(o)
     if not o.frameDriven then Follow.step(f,root,dt,params,danger or casting) end
     position=f.model.PrimaryPart.Position;distance=(position-root.Position).Magnitude
     if distance>100 then
-     status[player]='Waiting · Return to Selene or rejoin at your checkpoint.'
+     status[player]='Waiting · Return to Selene or rejoin at your checkpoint.';reasonKeys[player]='Distance'
     else
-     if danger then status[player]='Keeping back · Move away from nearby enemies.' end
+     if danger then status[player]='Keeping back · Move away from nearby enemies.';reasonKeys[player]='Threat'
+     elseif distance>Budget.range then status[player]=string.format(Text.Range,Budget.range);reasonKeys[player]='Range' end
      cooldowns[player]=cooldowns[player] or {}
      local ready=cooldowns[player][ctx.heroId] or 0
-     if distance<=Budget.range and not danger and os.clock()>=ready and o.combat.applySeleneSupport then
+     if distance<=Budget.range and not danger then
       local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude;params.FilterDescendantsInstances={f.model,player.Character,o.enemies}
       if not workspace:Raycast(position+Vector3.new(0,3,0),root.Position-(position+Vector3.new(0,3,0)),params) then
        local nearEnemy=false
        for _,enemy in ipairs(o.enemies:GetChildren()) do local r=enemy:FindFirstChild('HumanoidRootPart');local h=enemy:FindFirstChildOfClass('Humanoid');if r and h and h.Health>0 and (r.Position-root.Position).Magnitude<24 then nearEnemy=true;break end end
        local humanoid=player.Character and player.Character:FindFirstChildOfClass('Humanoid')
        f.missingHealth=humanoid and math.max(0,humanoid.MaxHealth-humanoid.Health) or 0
-       local action=o.combat.applySeleneSupport(player,ctx.heroId,nearEnemy)
+       local action=os.clock()>=ready and o.combat.applySeleneSupport and o.combat.applySeleneSupport(player,ctx.heroId,nearEnemy)
        if action then
         cooldowns[player][ctx.heroId]=os.clock()+Budget.cooldown
         f.model:SetAttribute('LastSupport',action)
@@ -115,9 +143,17 @@ function M.create(o)
         f.model:SetAttribute('SupportAmount',action=='Heal' and humanoid and math.min(math.max(1,math.floor(humanoid.MaxHealth*Budget.healFraction)),f.missingHealth or 0) or 0)
         f.model:SetAttribute('SupportAt',workspace:GetServerTimeNow())
        end
+      else
+       reasonKeys[player]='Blocked';status[player]=Text.Blocked
       end
      end
     end
+   end
+   local key=reasonKeys[player];local previous=noticeState[player];noticeState[player]=key
+   local message=Info.transition(previous,key)
+   local now=o.clock and o.clock() or os.clock()
+   if message and o.notice and (key=='Available' or now-(noticeTimes[player] or -math.huge)>=4) then
+    noticeTimes[player]=now;o.notice(player,message)
    end
   end
  end

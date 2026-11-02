@@ -1,9 +1,10 @@
 local RS=game:GetService('ReplicatedStorage')
 local Catalog=require(RS.Shared.NPCCatalog)
+local Info=require(RS.Shared.SupporterInfo)
 local Access=require(script.Parent.FacilityAccess)
 local S={}
 function S.start(options)
- local remote=Instance.new('RemoteEvent');remote.Name='NPCDialogue';remote.Parent=RS.Remotes
+ local remote=RS.Remotes:FindFirstChild('NPCDialogue') or Instance.new('RemoteEvent');remote.Name='NPCDialogue';remote.Parent=RS.Remotes
  local last={}
  for id,entry in pairs(options.residents or {}) do if entry.prompt then
   entry.prompt.Triggered:Connect(function(player)
@@ -12,7 +13,12 @@ function S.start(options)
    if id=='mira' then
     if options.inventory.ready(player) then RS.Remotes.ArmoryState:FireClient(player,{inventory=options.inventory.snapshot(player),open=true,store='items'}) end
    else
-    local c=Catalog.byId[id];remote:FireClient(player,{id=id,name=c.name,role=c.role,key=c.textKey,text=c.greeting})
+    local c=Catalog.byId[id];local supporter
+    if id=='selene' then
+     local snapshot=options.inventory.snapshot(player);local h=snapshot.ready and snapshot.heroId and snapshot.heroes[snapshot.heroId]
+     supporter=Info.project(h and (h.deepwood or {flags={}}),nil,nil,true)
+    end
+    remote:FireClient(player,{id=id,name=c.name,role=c.role,key=c.textKey,text=c.greeting,supporter=supporter})
    end
   end)
  end end
