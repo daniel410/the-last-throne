@@ -293,6 +293,8 @@ local ok, fatal = xpcall(function()
 		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
 			local hero = state.byClass[classId]
 			equal(send(player, "SelectHero", hero.heroId).errorCode, nil, "server selects owned hero")
+   equal(player.Character:GetAttribute("K0ClassId"),classId,"lobby appearance follows selected class")
+   equal(session.service.getCombatContext(player,player.Character),nil,"lobby weapon grants no combat context")
 			local count = player.loads
 			local id = beginTutorial(player)
 			nearDestination(player, tutorialSpawn)
@@ -312,6 +314,7 @@ local ok, fatal = xpcall(function()
 			ready(player, "Lobby")
 			nearDestination(player, lobbySpawn)
 			equal(player.loads, count + 2, "one start and one return create exactly two lives")
+   equal(player.Character:GetAttribute("K0ClassId"),classId,"return restores selected lobby weapon class")
 			equal(session.service.getCombatContext(player, player.Character), nil, "returned lobby is combat-ineligible")
 			equal(state.byClass[classId].baseClassId, classId, "hero class survives another hero's session")
 		end

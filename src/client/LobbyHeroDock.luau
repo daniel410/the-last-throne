@@ -8,7 +8,7 @@ local M={}
 local ORDER={'knight','elf','dwarf','mage'}
 local NAMES={knight='Knight',elf='Elf',dwarf='Dwarf',mage='Mage'}
 local PORTRAITS={knight='rbxassetid://103255177842108',elf='rbxassetid://80894238854345',dwarf='rbxassetid://74628903359757'}
-local TEXT={play='PLAY',heroes='HEROES',choose='Select a hero to begin.',loading='Loading Hero Progress...',waiting='Saving hero selection...',level='Hero Lv. %d',xp='%d / %d XP',max='MAX XP'}
+local TEXT={play='PLAY',heroes='HEROES',choose='Select a hero to begin.',loading='Loading Hero Progress...',waiting='Saving hero selection...',level='%s Hero Lv.%d',xp='%d / %d XP',max='MAX XP'}
 local BLOCKERS={'TLTHeroSelectionOpen','TLTInventoryOpen','TLTProgressionOpen','TLTSettingsOpen','TLTLobbyPanelOpen','TLTLobbyTopMenuOpen','TLTTravelLock'}
 local function caption(parent,name,text)
  local label=Instance.new('TextLabel')
@@ -45,6 +45,7 @@ function M.create(parent,player,chooseHero,playAction,world)
   local name=caption(card,'HeroName',NAMES[classId]);name.Position=UDim2.new(0,2,1,-18);name.Size=UDim2.new(1,-4,0,18);name.TextSize=14;name.Font=Enum.Font.GothamBold
   name.BackgroundColor3=Color3.fromRGB(12,27,54);name.BackgroundTransparency=.15;name.ZIndex=image.ZIndex+1
   local marker=caption(card,'HeroSelectedMarker','');marker.Position=UDim2.new(1,-24,0,1);marker.Size=UDim2.fromOffset(20,20);marker.ZIndex=name.ZIndex+1;Check.apply(marker);marker.Visible=false
+  local selectedTag=caption(card,'HeroSelectedTag','SELECTED');selectedTag.Position=UDim2.fromOffset(4,3);selectedTag.Size=UDim2.new(1,-8,0,17);selectedTag.TextSize=10;selectedTag.TextColor3=Color3.fromRGB(12,27,54);selectedTag.TextStrokeTransparency=1;selectedTag.BackgroundColor3=Color3.fromRGB(255,215,90);selectedTag.BackgroundTransparency=0;selectedTag.ZIndex=marker.ZIndex+1;selectedTag.Visible=false
   card.Activated:Connect(function() if allowed() and state.canManage then chooseHero(classId) end end)
   cards[classId]=card
  end
@@ -65,7 +66,7 @@ function M.create(parent,player,chooseHero,playAction,world)
   local deckW=4*portraitW+3*spacing
   local playH=short and 44 or w<600 and 48 or large and 72 or 58
   local playSlotH=short and 52 or w<600 and 60 or large and 90 or 72
-  local progressH=short and 24 or w<600 and 30 or 28
+  local progressH=large and 58 or 48
   local portraitY=playSlotH+24
   local progressY=portraitY+portraitH+(short and 4 or 10)
   local deckH=progressY+progressH
@@ -75,13 +76,12 @@ function M.create(parent,player,chooseHero,playAction,world)
   playTitle.TextSize=short and 26 or w<600 and 30 or large and 51 or 38
   heading.Position=UDim2.fromOffset(0,playSlotH+3);heading.Size=UDim2.new(1,0,0,18)
   for i,classId in ipairs(ORDER) do cards[classId].Position=UDim2.fromOffset((i-1)*(portraitW+spacing),portraitY);cards[classId].Size=UDim2.fromOffset(portraitW,portraitH) end
-  local levelW=w<600 and 78 or short and 94 or large and 168 or 130
   local amountW=w<600 and 94 or short and 108 or large and 176 or 144
   local gap=w<600 and 6 or 12
-  track.Position=UDim2.fromOffset(levelW+gap,progressY+math.floor((progressH-18)/2));track.Size=UDim2.fromOffset(math.max(24,deckW-levelW-amountW-gap*2),18)
-  xp.Position=UDim2.fromOffset(0,progressY);xp.Size=UDim2.fromOffset(track.Visible and levelW or deckW,progressH);xp.TextXAlignment=Enum.TextXAlignment.Left;xp.TextWrapped=true
-  amount.Position=UDim2.fromOffset(deckW-amountW,progressY);amount.Size=UDim2.fromOffset(amountW,progressH);amount.TextXAlignment=Enum.TextXAlignment.Right
-  xp.TextSize=(w<600 or short) and 14 or large and 22 or 18;amount.TextSize=xp.TextSize
+  track.Position=UDim2.fromOffset(0,progressY+progressH-20);track.Size=UDim2.fromOffset(math.max(24,deckW-amountW-gap),18)
+  xp.Position=UDim2.fromOffset(0,progressY);xp.Size=UDim2.fromOffset(deckW,progressH-22);xp.TextXAlignment=Enum.TextXAlignment.Center;xp.TextWrapped=false
+  amount.Position=UDim2.fromOffset(deckW-amountW,progressY+progressH-22);amount.Size=UDim2.fromOffset(amountW,22);amount.TextXAlignment=Enum.TextXAlignment.Right
+  xp.TextSize=(w<600 or short) and 16 or large and 22 or 18;amount.TextSize=(w<600 or short) and 14 or large and 20 or 16
  end
  local function render()
   root.Visible=allowed() or busy and state~=nil and state.phase=='Lobby' and not suppressed
@@ -90,15 +90,20 @@ function M.create(parent,player,chooseHero,playAction,world)
   for _,classId in ipairs(ORDER) do
    local card=cards[classId];local selected=false
    for _,hero in ipairs(state and state.heroes or {}) do if hero.classId==classId and hero.heroId==state.selectedHeroId then selected=true end end
-   card:SetAttribute('HeroSelected',selected);card.HeroSelectedMarker.Visible=selected
-   card.HeroSelectionBorder.Color=selected and Color3.fromRGB(80,160,255) or Color3.fromRGB(255,190,0);card.HeroSelectionBorder.Thickness=selected and 3 or 1
+   card:SetAttribute('HeroSelected',selected);card.HeroSelectedMarker.Visible=selected;card.HeroSelectedTag.Visible=selected
+   card.HeroName.BackgroundColor3=selected and Color3.fromRGB(255,215,90) or Color3.fromRGB(12,27,54)
+   card.HeroName.TextColor3=selected and Color3.fromRGB(12,27,54) or Color3.new(1,1,1);card.HeroName.TextStrokeTransparency=selected and 1 or 0
+   card.HeroPortrait.ImageColor3=selected and Color3.new(1,1,1) or Color3.fromRGB(185,195,210)
+   card.HeroSelectionBorder.Color=selected and Color3.fromRGB(255,225,115) or Color3.fromRGB(120,145,175);card.HeroSelectionBorder.Thickness=selected and 5 or 1
    card.Active=allowed() and state.canManage==true;card.Selectable=card.Active;card.AutoButtonColor=card.Active
   end
   play.Active=allowed();play.Selectable=play.Active;play.AutoButtonColor=play.Active
   local hero=inventory and inventory.ready and state and inventory.heroes[state.selectedHeroId]
   local g=hero and hero.progression
   local ready=g~=nil and inventory.heroId==state.selectedHeroId
-  xp.Text=notice or (busy and TEXT.waiting) or (ready and string.format(TEXT.level,g.level)) or (state and not state.selectedHeroId and TEXT.choose) or TEXT.loading
+  local selectedClass
+  for _,entry in ipairs(state and state.heroes or {}) do if entry.heroId==state.selectedHeroId then selectedClass=entry.classId;break end end
+  xp.Text=notice or (busy and TEXT.waiting) or (ready and string.format(TEXT.level,NAMES[selectedClass] or 'Hero',g.level)) or (state and not state.selectedHeroId and TEXT.choose) or TEXT.loading
   track.Visible=ready and not busy and not notice;amount.Visible=track.Visible
   xp:SetAttribute('ProgressReady',track.Visible)
   if ready then local max=Growth.xpToNext(g.level);amount.Text=g.level>=Growth.maxLevel and TEXT.max or string.format(TEXT.xp,g.xp,max);fill.Size=UDim2.fromScale(max>0 and math.clamp(g.xp/max,0,1) or 0,1) end

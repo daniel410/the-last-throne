@@ -15,13 +15,14 @@ local ok,err=xpcall(function()
  local count=0;for _ in pairs(view.cards) do count+=1 end
  check(count==4 and view.cards.priestess==nil,'four player classes, no priestess')
  check(view.cards.knight.HeroSelectedMarker.Visible and not view.cards.mage.HeroSelectedMarker.Visible,'selected hero only marked')
- check(view.cards.knight.HeroSelectionBorder.Thickness==3,'same selected blue TD border')
+ check(view.cards.knight.HeroSelectionBorder.Thickness==5,'strong selected gold border')
+ check(view.cards.knight.HeroSelectedTag.Visible and not view.cards.mage.HeroSelectedTag.Visible,'selection has explicit text beyond color/check')
  local mage=view.cards.mage.HeroPortrait
  check(mage.Image=='rbxassetid://115948760578578' and mage.ImageRectOffset==Vector2.new(341,341) and mage.ImageRectSize==Vector2.new(341,341),'original TD Arcanist atlas crop')
  check(view.play.CitadelButtonArt:GetAttribute('CitadelAtlasKey')=='play','original TD PLAY atlas')
  view.inventory({revision=2,ready=true,heroId='h1',heroes={h1={progression={level=1,xp=25}}}})
  local dock=view.root.HomeDock
- check(dock.HomeHeroProgress.Text=='Hero Lv. 1' and dock.HomeXPAmount.Text=='25 / 100 XP','actual RPG growth labels')
+ check(dock.HomeHeroProgress.Text=='Knight Hero Lv.1' and dock.HomeXPAmount.Text=='25 / 100 XP','actual RPG growth labels')
  check(dock.HomeXPTrack.HomeXPFill.Size==UDim2.fromScale(.25,1),'actual RPG XP fraction')
  view.inventory({revision=1,ready=true,heroId='h1',heroes={h1={progression={level=1,xp=0}}}})
  check(dock.HomeXPAmount.Text=='25 / 100 XP','stale inventory snapshot ignored')

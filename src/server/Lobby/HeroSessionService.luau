@@ -62,6 +62,15 @@ local function publish(state, requestId, errorCode)
 end
 
 local function changed(state)
+ -- Lobby presentation follows the confirmed roster, without granting combat eligibility.
+ local character=state.character
+ if state.mode=="Lobby" and character and state.player.Character==character then
+  local hero=selectedHero(state)
+  local equipment=hero and settings.inventory and settings.inventory.stats(state.player,hero.heroId)
+  character:SetAttribute("TLTEquippedWeapon",equipment and equipment.weapon or (settings.inventory and "" or nil))
+  character:SetAttribute("TLTEquippedOffhand",equipment and equipment.offhand or (settings.inventory and "" or nil))
+  character:SetAttribute("K0ClassId",hero and hero.baseClassId or nil)
+ end
 	state.revision = state.revision + 1
 	state.player:SetAttribute("K0SessionPhase", state.phase)
  state.player:SetAttribute("TLTRoute", state.route or "Deepwood")
