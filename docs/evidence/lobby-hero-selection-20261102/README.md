@@ -9,7 +9,12 @@
 ## 검증
 
 - `lua tests/k0-hero-session.spec.lua`: 기존 미커밋 시험 변경을 보존한 채104검사 통과.
-- 네이티브 HUD/생명주기 검증 결과와 고정 커밋 빌드는 별도 로그/JSON 참조.
+- 네이티브 HUD48검사 통과: 4뷰포트·금색 선택 테두리/SELECTED·클래스 포함 레벨·이전XP 숨김·입력 잠금. [전체 로그](native.log).
+- 네 클래스 선택/귀환 전용 생명주기49검사 통과(선택 사례48+초기화1): 실제 HeroSessionService/SpawnService, native rig와 Player/load/전송 대역. [로그](selected-lifecycle.log). 기존 시험의 case 실행기를 이번 사례만 선택하도록 /tmp 사본에서 필터했다.
+- 실제 WeaponAppearance/KnightAppearance와 R6 관절에 클래스별 무기를 부착·교체하고 해제 상태를 검사한29검사 통과: [로그](weapons-native.log). 실클라이언트 렌더 수용과 구분한다.
+- 기존 전체 native 생명주기 시험은267검사에서 `StartTutorial` 반복 요청의 과거 기대값 WaitForLobby와 현재 재시작 허용(nil)이 달라1사례 실패했다. 이번 변경과 별개인 기존 기대값 불일치로 기록하며 전체 통과로 보고하지 않는다. 구형 테스트 의미를 이번 UI 작업에서 바꾸지 않았다.
+- Rojo7.7.1로 소스 cc865253ef6f36663fca41dca9d8a29f7cdc5221을 고정한0.61.1 Lobby/Battle 빌드 성공. [해시/명령](build.json). 다른 미커밋 작업은 제외했다. 일반 빌드이며 릴리스 태그/Roblox 게시는 하지 않았다.
+- Studio 로그의 기존 `rbxassetid://203785492` 유형 불일치는 별도 자산 경고다. 이번 체크의 실패로 숨기거나 새 초상/무기 로딩 성공으로 해석하지 않는다.
 - 구형 make_k0_source_probe 실행은 전체 runner가 Studio Source 200,000자 제한을 넘어 실행하지 못했다. 실제 빌드와 짧은 시험 스크립트를 직접 사용해 재검증한다.
 
 실제 사용자 로비 화면, 게시 클라이언트, 터치/패드·실기기, 최종 미술 수용은 후속이다. 현재 열려 있던 게시 Battle 문서에는 변경하지 않았다. 다음 담당 QA: 네 클래스 선택·장비 해제/재장착·귀환·재접속, 모바일 가로 식별성 수용.

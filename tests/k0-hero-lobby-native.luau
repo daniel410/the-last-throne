@@ -286,6 +286,17 @@ local ok, fatal = xpcall(function()
 		equal(#state.requestOrder, 32, "idempotency cache is bounded")
 		equal(send(player, "CreateHero", "knight", "evicted_create").errorCode, "ClassAlreadyCreated", "evicted request cannot bypass one-per-class invariant")
 	end)
+ case("lobby-selected-presentation-four-classes",function()
+  local player,state=newSession()
+  for _,classId in ipairs({"knight","elf","dwarf","mage"}) do create(player,classId) end
+  for _,classId in ipairs({"knight","elf","dwarf","mage"}) do
+   equal(send(player,"SelectHero",state.byClass[classId].heroId).errorCode,nil,"select lobby hero")
+   equal(player.Character:GetAttribute("K0ClassId"),classId,"selected lobby class drives weapon")
+   equal(session.service.getCombatContext(player,player.Character),nil,"held lobby weapon cannot grant combat")
+   beginTutorial(player);returnLobby(player)
+   equal(player.Character:GetAttribute("K0ClassId"),classId,"returned lobby restores selected weapon")
+  end
+ end)
 	case("four-hero-start-return-and-profile-identity", function()
 		local player, state = newSession()
 		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do create(player, classId) end
