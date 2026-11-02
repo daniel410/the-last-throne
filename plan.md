@@ -1,5 +1,7 @@
 # The Last Throne 통합 개발 계획
 
+> **2026-11-02 난이도·보상·입장·강화 계획 / TLT-027/028/029/041/043/044/045/052/061/073/082/084:** [4단계 난이도 계획](docs/production/difficulty-rewards-and-entry-plan-2026-11-02.md)과 [장비 강화 계획](docs/production/equipment-enhancement-plan-2026-11-02.md)을 연결했다. 모드 하한5/20/40/80·반복 보상·재료/상자 진도·+10/성공100%·재료 회수는 추천 시험값이다. D1~D6/E1~E5 순으로 데이터→입장/거래→TD UI→고레벨 확장→독립 수용한다. 계획만 작성했으며 기존 승인XP·런타임·VERSION은 유지한다. [조사/한계](docs/research/2026-11-02-difficulty-rewards-enhancement.md).
+
 > **2026-11-02 / TLT-031/057/061/084 · 0.59.0:** Selene 제외 NPC29명에 관절·교차 보행·평지 접지·소품 부착·대기 시선을 추가했다. [검증/미검증](docs/evidence/npc-motion-20261102/README.md). 로컬 개선본·미게시, 실제 플레이/실기기·최종 미술 수용은 후속.
 
 > **2026-11-01 / TLT-028/031/050/052/084 · 0.58.35:** 사용자 승인으로 ADVANCE 탭을 SKILLS에 통합한다. 계열 특징·전직 조건·해금 기술·확인/완료를 기술 트리와 함께 제공하며 기존 서버 조건은 유지한다. [구현·검증·미검증](docs/evidence/skills-advancement-20261101/README.md). 로컬 시험판·미게시, 상위 티켓 수용은 후속.
