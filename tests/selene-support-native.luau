@@ -40,7 +40,7 @@ return CombatService
   select=function(p,_,follow) journals[p]=assert(P.selectSelene(journals[p],follow));selectionCount+=1 end})
  local campActor=folder.NPCActors:FindFirstChild('Selene')
  check(campActor and campActor:GetAttribute('NPCId')=='selene' and campActor:GetAttribute('TDSourceModel')=='nun','original TD nun mounted as shared Selene actor')
- check(campActor.PrimaryPart.SupporterDetails.SupporterDetails.KeyboardKeyCode==Enum.KeyCode.G,'camp offers a separate read-only details interaction')
+ check(campActor.PrimaryPart.SupporterDetails.SupporterDetails.KeyboardKeyCode==Enum.KeyCode.G and campActor.PrimaryPart.SupporterDetails.SupporterDetails.GamepadKeyCode==Enum.KeyCode.ButtonR3,'camp offers a separate read-only details interaction')
  check(companion.details(player).cost==0 and companion.details(player).durationSeconds==false,'details show free recruitment without a timer')
  local meshes=0;for _,v in ipairs(campActor:GetDescendants()) do if v:IsA('MeshPart') then
   meshes+=1;local original=game.ServerStorage.SeleneArticulatedModels.nun:FindFirstChild(v.Name,true)

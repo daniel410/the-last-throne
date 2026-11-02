@@ -4,7 +4,7 @@
 
 - 실제 정본: `DeepwoodProgress.seleneUnlocked`는DW-03:report, `seleneFollowing`은 영웅 저널에 저장된다. `SeleneCompanion`에는 스토리4 종료나 유료 만료 시각이 없다. 야영지 재선택·새 생명/재접속 자동 복귀와 파티 전체1명 상한이 구현되어 있다. 적이 셀렌느 근처에 있거나 거리/시야가 맞지 않으면 지원 동작이 멈추므로 이를 기간 만료와 구별해야 한다.
 - RPG 비교: [ESO 공식 동료 안내](https://help.elderscrollsonline.com/app/answers/detail/a_id/53198/~/companions---the-elder-scrolls-online)는 관련 퀘스트를 마치면 동료 수집물을 얻고 Collections → Allies → Companions에서 활성화하는 흐름을 설명한다. 우리 게임에서는 해금과 현재 편성을 나누고 재활성화 위치를 명시하는 데 참고한다. ESO의 콘텐츠 접근 가격·그룹 인원 규칙을 가져오지 않으며 직접 플레이 증거가 아니다.
-- Roblox 적용: [공식 Proximity prompts](https://create.roblox.com/docs/ui/proximity-prompts)는 대상/행동/입력 표기와 키·패드·터치 입력, 키별 표시 구분을 제공한다. 기존 Invite/Rest와 구분되는 G/패드Y 상세 보기 및 TD 프레임·버튼·nun 초상을 재사용한다. 실제 선택/피해/저장 권한은 서버에 남긴다.
+- Roblox 적용: [공식 Proximity prompts](https://create.roblox.com/docs/ui/proximity-prompts)는 대상/행동/입력 표기와 키·패드·터치 입력, 키별 표시 구분을 제공한다. 기존 Invite/Rest와 구분되는 G/패드R3 상세 보기 및 TD 프레임·버튼·nun 초상을 재사용한다. 실제 선택/피해/저장 권한은 서버에 남긴다.
 
 채택: 읽기 전용 상세창과 지원 상태/전환 안내부터 구현한다. 셀렌느는 무료·기간 제한 없음으로 명시한다. 휴식은 종료+무료 재초대, 거리/적/시야/슬롯/리스폰은 일시 중단과 복구 방법을 보여준다. 다른 서포터의 고용 상품·가격·사용시간은 사용자 선택과 별도 거래 설계가 필요하므로 임의 생성하지 않는다.
 

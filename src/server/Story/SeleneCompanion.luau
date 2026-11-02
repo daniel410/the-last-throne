@@ -29,7 +29,7 @@ function M.create(o)
   local old=model.PrimaryPart:FindFirstChild('SupporterDetails');if old then old:Destroy()end
   local anchor=Instance.new('Attachment');anchor.Name='SupporterDetails';anchor.Position=Vector3.new(0,4,0);anchor.Parent=model.PrimaryPart
   local p=Instance.new('ProximityPrompt');p.Name='SupporterDetails';p.Style=Enum.ProximityPromptStyle.Custom;p.ObjectText='Selene · Priestess';p.ActionText=Text.view
-  p.KeyboardKeyCode=Enum.KeyCode.G;p.GamepadKeyCode=Enum.KeyCode.ButtonY;p.MaxActivationDistance=12;p.RequiresLineOfSight=false;p.Parent=anchor
+  p.KeyboardKeyCode=Enum.KeyCode.G;p.GamepadKeyCode=Enum.KeyCode.ButtonR3;p.MaxActivationDistance=12;p.RequiresLineOfSight=false;p.Parent=anchor
   p.Triggered:Connect(function(player)api.inspect(player,model)end)
 
  end
