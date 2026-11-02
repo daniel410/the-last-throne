@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "64bb6ef1d66305bbba105642dab5288666807529",
+  "version": "0.60.2",
+  "nativeChecks": 12803,
+  "staticChecks": 190,
+  "native": {
+    "DEEPWOOD_WEAPON_OWNERSHIP_NATIVE": {
+      "checks": 108,
+      "pass": true,
+      "log": "frozen-native.log"
+    },
+    "DEEPWOOD_REFINEMENT_NATIVE": {
+      "checks": 3122,
+      "pass": true,
+      "log": "frozen-native.log"
+    },
+    "DEEPWOOD_MONSTER_MOTION_NATIVE": {
+      "checks": 9553,
+      "pass": true,
+      "log": "frozen-native.log"
+    },
+    "ENEMY_STREAMING_PRESENTATION_NATIVE": {
+      "checks": 10,
+      "pass": true,
+      "log": "frozen-native.log"
+    },
+    "BATTLE_BOOTSTRAP_NATIVE": {
+      "checks": 10,
+      "pass": true,
+      "log": "battle-bootstrap.log"
+    }
+  },
+  "published": false,
+  "actualPlayerCombatVerified": false,
+  "mobileMultiplayerVerified": false,
+  "userArtAccepted": false,
+  "gameplayContract": "Damage, timings, rewards, target heights and story IDs unchanged",
+  "userApproval": "2026-11-02: upload and local integration approved in this chat",
+  "preview": "Studio Edit isolated static contact pose; imported real meshes and textures",
+  "nextOwner": "QA/ART: actual encounter and device acceptance"
+}
