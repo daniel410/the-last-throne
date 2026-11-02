@@ -1,0 +1,99 @@
+{
+  "version": "0.59.0",
+  "sourceCommit": "d7446b73871db48f39dd98038c7a1a853764ea13",
+  "frozenSource": "/tmp/tlt-npc-motion-freeze-d7446b7",
+  "sourceFreeze": "git archive; project-referenced LFS SHA256 verified against committed pointers",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.59.0/TheLastThrone-Lobby-0.59.0.rbxlx",
+      "status": "success",
+      "sha256": "cb9762dd8640ebfe00384b1aab40e2823a7632d14b9a13bd3ee2a009c5577d24",
+      "bytes": 7610233
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.59.0/TheLastThrone-Battle-0.59.0.rbxlx",
+      "status": "success",
+      "sha256": "0ce7b7a96e7e51789424e45f4aa8f06166f484ae03b18b8eb1e36dda4b1995c1",
+      "bytes": 7610234
+    }
+  ],
+  "published": false,
+  "tests": {
+    "frozen-motion": {
+      "characters": 29,
+      "pass": true,
+      "checks": 183948,
+      "log": "frozen-motion-native.log"
+    },
+    "cast": {
+      "deepwoodActors": 8,
+      "failures": [],
+      "checks": 9855,
+      "characters": 30,
+      "kind": "NPC_CAST_NATIVE",
+      "pass": true,
+      "parts": 3710,
+      "log": "cast-native.log"
+    },
+    "roles": {
+      "failures": [],
+      "kind": "NPC_ROLE_UNIFICATION_NATIVE",
+      "pass": true,
+      "checks": 42,
+      "log": "roles-native.log"
+    },
+    "selene": {
+      "failures": [],
+      "pass": true,
+      "checks": 317,
+      "log": "selene-native.log"
+    },
+    "battle": {
+      "role": "Battle",
+      "checks": 148,
+      "kind": "NPC_BOOTSTRAP_NATIVE",
+      "pass": true,
+      "failures": [],
+      "log": "battle-native.log"
+    },
+    "lobby": {
+      "role": "Lobby",
+      "checks": 156,
+      "kind": "NPC_BOOTSTRAP_NATIVE",
+      "pass": true,
+      "failures": [],
+      "log": "lobby-native.log"
+    }
+  },
+  "testInputs": {
+    "npc-motion-native.luau": "186e370bd6b5bdc534864ad0656662a64f962911dac500691deacb28db6feb5d",
+    "npc-cast-native.luau": "21b78d33f3b628af9cd8b72e9a6a13ffcd428b630f04ca609f873d6acdbde61c",
+    "npc-role-unification-native.luau": "30bf3698e48f4ef921f09923d42a9a00cbdca3ec70847f21f1d10713384846ef",
+    "selene-motion-native.luau": "00d56b1cd19314b94c02502c56c9634abe6c7614886b36e7e7f633d93349a207",
+    "npc-bootstrap-native.luau": "b863949a293586eda25dcd47eb902a667e32c178e01b640548790d0c007bb7fd"
+  },
+  "testFixtureCorrection": "npc-cast-native compares unchanged Selene against the existing six-mesh pinned derivative, rather than the obsolete three-mesh TD input; no product build input changed",
+  "commands": [
+    "git archive d7446b73871db48f39dd98038c7a1a853764ea13; materialize project-referenced LFS with pointer SHA256 verification",
+    "rojo build <frozen>/default.project.json -o builds/0.59.0/TheLastThrone-Lobby-0.59.0.rbxlx",
+    "rojo build <frozen>/battle.project.json -o builds/0.59.0/TheLastThrone-Battle-0.59.0.rbxlx",
+    "run-in-roblox --place <frozen Lobby artifact> --script tests/<NPC motion/cast/roles/Selene/bootstrap>",
+    "run-in-roblox --place <frozen Battle artifact> --script tests/npc-bootstrap-native.luau"
+  ],
+  "preview": {
+    "image": "walk-review.png",
+    "mode": "isolated engine plugin fixture",
+    "characters": [
+      "aldric",
+      "eryn",
+      "nia",
+      "lumi"
+    ],
+    "pose": "static sample of runtime motion math",
+    "userArtAccepted": false,
+    "runnerSessionsClosed": true,
+    "originalUserBattleStudioUnchanged": true
+  }
+}

@@ -12,7 +12,9 @@ local ok,err=xpcall(function()
   local model=templates:FindFirstChild(c.id);check(model~=nil,'template exists: '..c.id)
   check(model:GetAttribute('NPCId')==c.id and model.PrimaryPart~=nil,'stable NPC identity and movement root')
   check(not model:FindFirstChildOfClass('Humanoid'),'static cast does not consume AI actors')
-  if c.id=='selene' then check(model:GetAttribute('TDSourceModel')=='nun','Selene template uses original TD nun')
+  if c.id=='selene' then
+   check(model:GetAttribute('TDSourceModel')=='nun','Selene template uses TD nun lineage')
+   check(model:GetAttribute('SeleneArticulated')==true,'Selene retains existing articulated TD derivative')
   else
    check(model.FaceRig.Head:FindFirstChildOfClass('SpecialMesh').MeshType==Enum.MeshType.Sphere,'round head')
    check(model:GetAttribute('NPCVisualVersion')==4 and model.FaceRig:FindFirstChild('EyeWhite')==nil and model.FaceRig:FindFirstChild('Nose')==nil,'no protruding facial primitives')
@@ -29,8 +31,8 @@ local ok,err=xpcall(function()
     report.parts+=1;check(v.Anchored and not v.CanCollide and not v.CanTouch and not v.CanQuery,'art does not obstruct combat or travel')
     if c.id~='selene' and (v.Name:find('Arm') or v.Name:find('Leg') or v.Name=='Hand' or v.Name=='Boot') then limbs+=1;check(v.Shape==Enum.PartType.Block,'limb is cuboid') end
     if c.id=='selene' and v:IsA('MeshPart') then
-     local original=game.ServerStorage.TDSeleneModels.nun:FindFirstChild(v.Name,true)
-     check(original and original.MeshId==v.MeshId and original.TextureID==v.TextureID,'Selene template retains TD mesh and texture')
+     local original=game.ServerStorage.SeleneArticulatedModels.nun:FindFirstChild(v.Name,true)
+     check(original and original.MeshId==v.MeshId and original.TextureID==v.TextureID,'Selene template retains pinned articulated TD mesh and texture')
     end
    end
   end
