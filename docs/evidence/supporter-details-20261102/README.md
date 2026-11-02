@@ -16,3 +16,13 @@
 `lua tests/supporter-info.spec.lua`:39개, `lua tests/selene-recruitment.spec.lua`:23개 통과. 0.59.1 로컬 Lobby에 변경 소스만 주입한 격리 시험에서 상세UI721·서포트40·NPC역할51개 통과(`source-native.log`). 기존 자산203785492의 유형 불일치 경고는 남는다. 이후 종료/중복/리스폰 추가 검사와 고정0.60.1 빌드를 검증한다.
 
 UI 검사는 네이티브 인스턴스의 TD 자산 경로·텍스트 경계·1280×720/844×390/667×375 레이아웃 검사다. 실제 화면 수동 미술 수용·실기기·패드/터치 입력·게시 Experience 이동·4인 성능은 미검증이며 상위 티켓을 완료로 바꾸지 않는다. 다음 담당은 QA다.
+
+## 고정 빌드·최종 결과
+
+- 최초0.60.0 소스 `dd3378e6d6b7d8d44830ff38b7588820e5507b45`, 최종0.60.1 소스 `4c963daebe14042e7c4144775d4f42af0c0107c3`. 별도 detached worktree에서 `rojo build default.project.json` / `rojo build battle.project.json`로 각 Lobby/Battle 빌드 성공. [버전별 바이트·SHA256·소스](builds.json). 첫 빌드 뒤 패드Y가 기존 Skill1과 겹칠 가능성을 발견해 상세 입력을R3로 분리하고 새 버전을 사용했다.
+- 최종 Lobby에 `run-in-roblox --place builds/0.60.1/TheLastThrone-Lobby-0.60.1.rbxlx --script /tmp/tlt-supporter-details-final-suite.luau`: 종료0, **815개 통과**(상세UI721+서포트43+NPC역할51), 실패0. `final-native.log`. 앞선0.60.0 고정815개도 `fixed-native.log`에 보존한다. 테스트 묶음은 해당 소스의 세 native 파일을 순서대로 do 블록에 넣은 입력이다.
+- Lua 순수 투영39+기존 영입23개 통과. 소스/시험 입력의 저장은 Git 커밋으로 고정했다. 스토리4 동행 유지·휴식 종료 메시지·중복 안내 억제·재초대 후 쿨다운 유지·리스폰 선호 보존·파티 제한을 포함한다.
+- 현재 열린 Battle Studio(Place129388473517823)의 **Edit 소스9개**에 변경을 적용했다. 처음 문맥 패치의 중복 컨텍스트 때문에 preflight가 실패했으며 아무 소스도 변경하지 않았다. 실제 원본이 Git 기준과 동일함을 확인하고 SeleneCompanion의 전체 기준 일치 검사를 거쳐 적용했다. 입력R3 수정도 반영했다. 새 Play부터 동작하며 실제 Place 게시나 릴리스 태그는 실행하지 않았다.
+- CoreGui 상세창 인스턴스로 확인한 nun 초상은 승인 TD 이미지 `rbxassetid://99890504888739`다. Edit 화면 캡처는3D 뷰포트만 반환해 GUI의 시각 수용 증거로 사용하지 않았다. 임시 미리보기 GUI는 제거했다. 기존 사용자 Studio를 종료하지 않았다.
+
+남은 검증: 실제 플레이에서 상세 prompt/닫기/재동행의 키·패드·터치 입력, 수동 미술 검토·실기기 가로 화면·게시된 두 Experience의 전환/재접속·다인 성능. 가격/기간제 상품은 미정이며 셀렌느의 무료 동행을 바꾸지 않는다. 다음 담당은 QA다.

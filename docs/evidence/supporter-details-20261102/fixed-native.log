@@ -1,0 +1,4 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+SUPPORTER_DETAILS_NATIVE {"failures":[],"kind":"SUPPORTER_DETAILS_NATIVE","pass":true,"checks":721}
+SELENE_SUPPORT_NATIVE {"failures":[],"pass":true,"checks":43}
+NPC_ROLE_UNIFICATION_NATIVE {"failures":[],"kind":"NPC_ROLE_UNIFICATION_NATIVE","pass":true,"checks":51}

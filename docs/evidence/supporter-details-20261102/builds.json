@@ -1,0 +1,41 @@
+{
+  "current_version": "0.60.1",
+  "tool": "Rojo 7.7.1",
+  "builds": [
+    {
+      "version": "0.60.0",
+      "source_commit": "dd3378e6d6b7d8d44830ff38b7588820e5507b45",
+      "result": "success",
+      "artifacts": [
+        {
+          "path": "builds/0.60.0/TheLastThrone-Battle-0.60.0.rbxlx",
+          "sha256": "2dbf9467d969423cffedb206e0c9646684bba3a23e9fcb4bd43ac0d84c619b2d",
+          "bytes": 7624175
+        },
+        {
+          "path": "builds/0.60.0/TheLastThrone-Lobby-0.60.0.rbxlx",
+          "sha256": "af35e9879e997af32cffbbb6608e418db9401ab72dbaba04a90b6867341258ca",
+          "bytes": 7624174
+        }
+      ]
+    },
+    {
+      "version": "0.60.1",
+      "source_commit": "4c963daebe14042e7c4144775d4f42af0c0107c3",
+      "result": "success",
+      "artifacts": [
+        {
+          "path": "builds/0.60.1/TheLastThrone-Battle-0.60.1.rbxlx",
+          "sha256": "9f8c89d389c45c96eeb564acd30eca1c5493ce85e2a1a5a62220bc9409e2f6bd",
+          "bytes": 7624735
+        },
+        {
+          "path": "builds/0.60.1/TheLastThrone-Lobby-0.60.1.rbxlx",
+          "sha256": "8aa4fd3978c36ffea548eed9d8edf9224beb89c4af02b4856167161ae568f947",
+          "bytes": 7624734
+        }
+      ]
+    }
+  ],
+  "published": false
+}
