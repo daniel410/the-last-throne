@@ -27,7 +27,7 @@ if deepwood then
  local forgeChest,forgePrompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions['EC-02']+Vector3.new(45,0,80)})
  forgeChest.Parent.Name='EmberCalderaAccountStorage';forgePrompt.ObjectText='Forge City Storage';table.insert(chests,forgeChest);table.insert(prompts,forgePrompt)
 end
-inventory.start({chests=chests,prompts=prompts,heroSession=heroSession,combat=combat,storyPending=story.hasPendingEvents})
+inventory.start({chests=chests,prompts=prompts,heroSession=heroSession,combat=combat,storyPending=story.hasPendingEvents,supportCampAccess=story.supportCampAccess})
 require(script.Lobby.DailyLoginService).start(inventory)
 local function previewWorld()
  if not deepwood then deepwood=require(script.World.CampaignWorld).create() end

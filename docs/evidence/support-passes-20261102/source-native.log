@@ -1,0 +1,11 @@
+Enhancement is not a valid member of Folder "ReplicatedStorage.Shared"
+Stack Begin
+Script 'ServerScriptService.Server.Inventory.InventoryRules', Line 1
+Stack End
+Requested module experienced an error while loading
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:2553
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

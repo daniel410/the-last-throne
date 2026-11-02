@@ -3,6 +3,7 @@ local Economy=game and require(game:GetService('ReplicatedStorage').Shared.Econo
 -- Pure single-account transitions; no services, clocks, random IDs or side effects.
 local Growth = game and require(game:GetService("ReplicatedStorage").Shared.HeroProgression) or dofile("src/shared/HeroProgression.luau")
 local Daily=game and require(game:GetService('ReplicatedStorage').Shared.DailyLogin) or dofile('src/shared/DailyLogin.luau')
+local Pass=game and require(game:GetService('ReplicatedStorage').Shared.SupportPassRules) or dofile('src/shared/SupportPassRules.luau')
 local Rules = {}
 function Rules.copy(value)
 	if type(value) ~= "table" then return value end
@@ -92,6 +93,7 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	return nextProfile
 end
 function Rules.validate(profile, catalog)
+ if profile and not Pass.valid(profile) then return false end
  if profile and profile.dailyLogin~=nil and not Daily.valid(profile.dailyLogin) then return false end
  if profile and profile.wallet~=nil and not Economy.valid(profile.wallet) then return false end
 	if type(profile) ~= "table" or profile.schemaVersion ~= 1 or not Rules.integer(profile.revision, 0, 1e12)
@@ -367,6 +369,10 @@ function Rules.selectSelene(profile,heroId,following)
  if not journal then return nil,reason end
  if repeated then return Rules.copy(profile),nil,true end
  local n=Rules.copy(profile);n.heroes[heroId].deepwood=journal;n.revision=n.revision+1;return n
+end
+function Rules.supportPass(profile,command,context,catalog)
+ local n=Rules.copy(profile);Economy.upgrade(n)
+ return Pass.apply(n,command,context,Rules,catalog)
 end
 function Rules.shop(profile,command,context,catalog) return Economy.apply(profile,command,context,catalog,Rules) end
 return Rules

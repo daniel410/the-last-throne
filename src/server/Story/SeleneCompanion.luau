@@ -12,6 +12,7 @@ local M={}
 function M.create(o)
  local api={};local followers={};local cooldowns={};local status={};local lastSelect={}
  local reasonKeys,noticeState,noticeTimes={},{},{}
+ local activatingOwner
  local remote=RS.Remotes:FindFirstChild('NPCDialogue') or Instance.new('RemoteEvent');remote.Name='NPCDialogue';remote.Parent=RS.Remotes
  local camp=o.world.seleneCamp or o.world.positions['DW-03']+Vector3.new(-45,0,45)
  -- The rescue report and companion selection share the actual camp actor.
@@ -41,10 +42,12 @@ function M.create(o)
  local function remove(player)
   local f=followers[player];if f then f.model:Destroy();followers[player]=nil end
  end
- function api.remove(player) remove(player);cooldowns[player]=nil;status[player]=nil;lastSelect[player]=nil;reasonKeys[player]=nil;noticeState[player]=nil;noticeTimes[player]=nil end
+ function api.remove(player) if activatingOwner==player then activatingOwner=nil end;remove(player);cooldowns[player]=nil;status[player]=nil;lastSelect[player]=nil;reasonKeys[player]=nil;noticeState[player]=nil;noticeTimes[player]=nil end
  function api.details(player)
   local h=o.active(player);local s=h and o.state(player,h.heroId)
-  return Info.project(s,status[player],s and reasonKeys[player] or 'Unknown')
+  local pass=o.passState and h and o.passState(player,h.heroId) or nil
+  local data=Info.project(s,status[player],s and reasonKeys[player] or 'Unknown',false,pass)
+  return data
  end
  function api.inspect(player,model)
   local h=o.active(player);local ctx,root=o.context(player)
@@ -52,6 +55,12 @@ function M.create(o)
   local now=o.clock and o.clock() or os.clock()
   if now-(lastSelect[player] or -math.huge)<.4 then return false end;lastSelect[player]=now
   remote:FireClient(player,{supporter=api.details(player)});return true
+ end
+ function api.atCamp(player,heroId)
+  local hero=o.active(player);local ctx,root=o.context(player)
+  if not hero or hero.training or not ctx or ctx.heroId~=heroId or not root then return false end
+  local s=o.state(player,heroId)
+  return (root.Position-camp).Magnitude<=16 or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or forge and s and s.main>=15 and (root.Position-forge.PrimaryPart.Position).Magnitude<=16 or false
  end
  function api.select(player,following)
   local hero=o.active(player);local ctx,root=o.context(player)
@@ -62,7 +71,23 @@ function M.create(o)
   if not Progress.seleneUnlocked(s) then o.publish(player,'Help the convoy reach camp, then finish the rescue report with Selene.');return false end
   local time=o.clock and o.clock() or os.clock()
   if time-(lastSelect[player] or -math.huge)<.4 then return false end
-  lastSelect[player]=time;o.select(player,ctx.heroId,following);return true
+  lastSelect[player]=time
+  if following then
+   if not o.activate or not o.passState then o.publish(player,Text.SupportPassRequired);return false end
+   local pass=o.passState(player,ctx.heroId)
+   if not pass or not pass.active then
+    for owner in pairs(followers)do if owner~=player then o.publish(player,Text.PartyFull);return false end end
+   end
+   if activatingOwner and activatingOwner~=player then o.publish(player,Text.PartyFull);return false end
+   activatingOwner=player
+   local ok,reason=pcall(o.activate,player,ctx.heroId)
+   if not ok then activatingOwner=nil;o.publish(player,Text.Unavailable);return false end
+   if reason then
+    if reason~='SaveUnknown' and reason~='AccountBusy' then activatingOwner=nil end
+    o.publish(player,Text[reason] or Text.Unavailable);return false
+   end
+  end
+  o.select(player,ctx.heroId,following);return true
  end
  function api.stepMotion(dt)
   for _,f in pairs(followers) do
@@ -81,7 +106,8 @@ function M.create(o)
    if hero and not hero.training then
     table.insert(population,player)
     local s=o.state(player,hero.heroId)
-    if s and Progress.seleneUnlocked(s) and s.seleneFollowing then table.insert(chosen,player) end
+    local pass=o.passState and o.passState(player,hero.heroId)
+    if s and Progress.seleneUnlocked(s) and s.seleneFollowing and pass and pass.active then table.insert(chosen,player) end
    end
   end
   table.sort(chosen,function(a,b) return a.UserId<b.UserId end)
@@ -91,6 +117,8 @@ function M.create(o)
    local hero=o.active(player);local ctx,root=o.context(player);local s=o.state(player,hero.heroId)
    status[player]=not Progress.seleneUnlocked(s) and 'Meet Selene after the convoy rescue.' or not s.seleneFollowing and 'Available · Invite Selene at a safe companion camp.' or not allowed[player] and 'Resting · Party companion slots are full.' or 'Following · Healing, protection and cleansing support.'
    reasonKeys[player]=not Progress.seleneUnlocked(s) and 'Locked' or not s.seleneFollowing and 'Available' or not allowed[player] and 'PartyFull' or 'Following'
+   local pass=o.passState and o.passState(player,hero.heroId)
+   if Progress.seleneUnlocked(s) and (not pass or not pass.active) then reasonKeys[player]=not pass and 'SupportChecking' or pass.credits>0 and 'SupportReady' or 'SupportPassRequired';status[player]=Text[reasonKeys[player]] end
    if not allowed[player] or not ctx or ctx.heroId~=hero.heroId or not root then
     if allowed[player] then
      reasonKeys[player]=o.phase and o.phase(player)=='Lobby' and 'AtLobby' or 'Respawning';status[player]=Text[reasonKeys[player]]
@@ -151,10 +179,15 @@ function M.create(o)
    end
    local key=reasonKeys[player];local previous=noticeState[player];noticeState[player]=key
    local message=Info.transition(previous,key)
+   if previous and previous~=key and (key=='SupportReady' or key=='SupportPassRequired') then message=Text.SupportEnded end
    local now=o.clock and o.clock() or os.clock()
    if message and o.notice and (key=='Available' or now-(noticeTimes[player] or -math.huge)>=4) then
     noticeTimes[player]=now;o.notice(player,message)
    end
+  end
+  if activatingOwner then
+   local h=o.active(activatingOwner);local pass=h and o.passState and o.passState(activatingOwner,h.heroId)
+   if followers[activatingOwner] or not h or pass and not pass.active then activatingOwner=nil end
   end
  end
  return api

@@ -54,8 +54,10 @@ function View.create(player,world,readState)
      if object:IsA('ProximityPrompt') and (object.Name=='Invite' or object.Name=='Rest') then
       local camp=model:GetAttribute('SeleneCampPosition')
       local unlocked=journal and journal.flags['DW-03:report']==true
+      local pass=state and state.supporter and state.supporter.pass
+      local following=journal and journal.seleneFollowing==true and (not pass or pass.active==true)
       enabled=enabled and unlocked and root and typeof(camp)=='Vector3' and (root.Position-camp).Magnitude<=16
-       and (object.Name=='Rest' and journal.seleneFollowing==true or object.Name=='Invite' and journal.seleneFollowing~=true)
+       and (object.Name=='Rest' and following or object.Name=='Invite' and not following)
      end
      object.Enabled=enabled==true
     end

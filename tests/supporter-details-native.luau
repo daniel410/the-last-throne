@@ -25,6 +25,16 @@ local ok,err=xpcall(function()
    api:dismiss();check(not panel.Visible,'close hides the detail')
   end
  end
+ for _,size in ipairs({Vector2.new(1280,720),Vector2.new(844,390),Vector2.new(667,375)})do
+  local data=Info.project(journal,nil,'SupportReady',true,{credits=5,active=false,story=4});data.balance=1000;data.canBuy=true;data.heroId='qa';data.revision=1
+  api:setPending(false);api:open(data);api:resize(size.X,size.Y);task.wait(.1)
+  check(api.panel.Buy1.Visible and api.panel.Buy5.Visible and api.panel.Buy10.Visible,'one/five/ten story packs are explicit')
+  check(api.panel.Buy1.Active and api.panel.Buy5.Active and not api.panel.Buy10.Active,'affordability follows 200/1000/2000 Gold')
+  check(api.panel.PurchaseTerms.Visible and api.panel.PurchaseTerms.TextBounds.Y<=api.panel.PurchaseTerms.AbsoluteSize.Y+1,'mandatory per-story and expiry terms fit above purchase buttons')
+  check(api.panel.Information.AbsoluteSize.Y>=60,'mobile purchase terms leave a usable scrolling detail area')
+  for _,n in ipairs({1,5,10})do check(api.panel['Buy'..n].AbsoluteSize.Y>=44,'pack buttons meet touch height')end
+  api:setPending(true);check(not api.panel.Buy1.Active and not api.panel.Buy5.Active,'pending receipt blocks duplicate purchases')
+ end
 end,debug.traceback)
 if not ok then table.insert(report.failures,tostring(err))end
 api:destroy();if started then Run:Stop()end

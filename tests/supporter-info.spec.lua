@@ -6,13 +6,13 @@ for _,main in ipairs({3,4,7,14,21})do
  local journal={main=main,flags={['DW-03:report']=true},seleneFollowing=true}
  local copy=Info.project(journal)
  check(copy.unlocked and copy.following,'Story '..main..' retains selection')
- check(copy.cost==0 and copy.durationSeconds==false,'no recurring payment or time limit')
+ check(copy.cost==200 and copy.durationSeconds==false,'story credit costs 200 Gold without a real-time timer')
  check(Info.project(journal,nil,nil,true).key=='Selected','lobby explains selected preference rather than active healing')
  check(journal.seleneFollowing and journal.main==main,'projection cannot mutate saved progress')
 end
 check(Info.transition(nil,'Following')==nil,'initial snapshot is quiet')
 check(Info.transition('Following','Following')==nil,'unchanged state is quiet')
-check(Info.transition('Following','Available'):find('Invite Selene',1,true),'rest explains free re-invitation')
+check(Info.transition('Following','Available'):find('Invite Selene',1,true),'rest explains re-invitation within the paid story')
 for _,reason in ipairs({'PartyFull','Respawning','Distance','Range','Threat','Blocked','AtLobby'})do
  local message=Info.transition('Following',reason)
  check(type(message)=='string' and #message>25,'stop reason includes next action: '..reason)

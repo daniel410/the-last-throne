@@ -13,7 +13,16 @@ function D.start()
  local title=label('Speaker',UDim2.fromOffset(18,14),UDim2.new(1,-96,0,25),Enum.Font.GothamBold,17)
  local text=label('Dialogue',UDim2.fromOffset(18,50),UDim2.new(1,-36,1,-64),Enum.Font.Gotham,16)
  local close=Instance.new('TextButton');close.Name='Close';close.Text='CLOSE';close.AutoLocalize=false;close.Font=Enum.Font.GothamBold;close.TextSize=12;close.TextColor3=Color3.fromRGB(247,237,212);close.BackgroundColor3=Color3.fromRGB(47,65,84);close.Size=UDim2.fromOffset(68,44);close.Position=UDim2.new(1,-76,0,4);close.Parent=panel
- local details=require(script.Parent.SupporterDetails).create(Players.LocalPlayer:WaitForChild('PlayerGui'))
+ local pending,details
+ local request=RS:WaitForChild('Remotes'):WaitForChild('SupporterPassRequest')
+ details=require(script.Parent.SupporterDetails).create(Players.LocalPlayer:WaitForChild('PlayerGui'),function(offer,data)
+  if pending then return end
+  local command={requestId=game:GetService('HttpService'):GenerateGUID(false):gsub('%-',''),revision=data.revision,heroId=data.heroId,offerId=offer.id}
+  pending=command;details:setPending(true)
+  task.spawn(function()
+   while pending==command and Players.LocalPlayer.Parent do request:FireServer(command);task.wait(2)end
+  end)
+ end)
  local previous
  local function dismiss()
   panel.Visible=false
@@ -24,14 +33,17 @@ function D.start()
  close.Activated:Connect(dismiss)
  UIS.InputBegan:Connect(function(input) if panel.Visible and (input.KeyCode==Enum.KeyCode.ButtonB or input.KeyCode==Enum.KeyCode.Escape) then dismiss() end end)
  RS:WaitForChild('Remotes'):WaitForChild('NPCDialogue').OnClientEvent:Connect(function(data)
-  if data.supporter then dismiss();details:open(data.supporter);return end
+  if data.supporter then
+   if pending and data.requestId==pending.requestId and data.error~='Busy' and data.error~='SaveUnknown' and data.error~='AccountBusy' then pending=nil end
+   dismiss();details:open(data.supporter);details:setPending(pending~=nil);return
+  end
   title.Text=data.name..' · '..data.role;text.Text=data.text;panel.Visible=true
   if UIS.GamepadEnabled then previous=game:GetService('GuiService').SelectedObject;game:GetService('GuiService').SelectedObject=close end
  end)
  Players.LocalPlayer:GetAttributeChangedSignal('K0SessionPhase'):Connect(function()dismiss();details:dismiss()end)
  Players.LocalPlayer.CharacterRemoving:Connect(function()details:dismiss()end)
  local function bindStory(remote)
-  if remote.Name=='DeepwoodState' and remote:IsA('RemoteEvent')then remote.OnClientEvent:Connect(function(value)details:update(value.supporter)end)end
+  if remote.Name=='DeepwoodState' and remote:IsA('RemoteEvent')then remote.OnClientEvent:Connect(function(value)if Players.LocalPlayer:GetAttribute('K0SessionPhase')=='Tutorial' then details:update(value.supporter)end end)end
  end
  for _,remote in ipairs(RS.Remotes:GetChildren())do bindStory(remote)end
  RS.Remotes.ChildAdded:Connect(bindStory)

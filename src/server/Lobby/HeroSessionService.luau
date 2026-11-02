@@ -138,6 +138,10 @@ end
 
 local function execute(state, action, argument)
 	if action == "GetState" then return nil end
+ if action=='ReturnLobby' and state.mode=='Tutorial' and selectedHero(state) and settings.inventory and settings.inventory.endSupport then
+  local reason=settings.inventory.endSupport(state.player,selectedHero(state).heroId)
+  if reason then return 'InventoryUnavailable' end
+ end
  if settings.network then local handled,reason=settings.network.beforeHeroAction(state.player,action);if handled then return reason end end
  if action=="StartTutorial" and state.mode=="Tutorial" then
   if state.phase~="Tutorial" or not state.ready or not selectedHero(state) then return "Busy" end

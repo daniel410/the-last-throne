@@ -53,6 +53,7 @@ local ok,err=xpcall(function()
  local hero={heroId='qa',training=false};local enemies=Instance.new('Folder');enemies.Parent=scratch
  companion=require(game.ServerScriptService.Server.Story.SeleneCompanion).create({world=world,enemies=enemies,combat={},players=function()return {owner}end,
   active=function()return hero end,context=function()return hero,root end,state=function()return journal end,
+  passState=function()return {credits=0,active=true,story=journal.main+1}end,activate=function()return nil end,
   publish=function()end,select=function(_,_,following)journal.seleneFollowing=following end})
  check(identityCount(world.folder,'npc:selene')==1 and camp:GetAttribute('NPCRole_camp') and camp:GetAttribute('NPCRole_dialogue'),'camp selection reuses actual rescue-report model')
  companion.update(.1);local follower=assert(world.folder:FindFirstChild('Selene_91'))

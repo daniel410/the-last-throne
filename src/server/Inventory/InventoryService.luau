@@ -213,6 +213,49 @@ function Service.storyState(player,heroId)
  local state=accounts[player];local hero=state and state.profile and state.profile.heroes[heroId]
  return hero and Rules.copy(hero.deepwood or require(ReplicatedStorage.Shared.DeepwoodProgress).new())
 end
+-- All support Gold and entitlement changes use the same account fence as items.
+function Service.supportState(player,heroId)
+ local s=accounts[player]
+ if not s or not s.valid or not s.profile then return nil end
+ return require(ReplicatedStorage.Shared.SupportPassRules).view(s.profile,heroId)
+end
+function Service.supportPass(player,command)
+ local s=accounts[player];if not s or s.busy or s.closing then return 'Busy' end
+ if s.supportPending and s.supportPending.requestId~=command.requestId then return 'Busy' end
+ if not s.valid and not s.supportPending then return s.errorCode or 'Unavailable' end
+ if s.supportPending then
+  for _,k in ipairs({'action','heroId','offerId','revision','story','scope'})do if s.supportPending[k]~=command[k]then return 'RequestConflict' end end
+ end
+ s.busy=true;s.supportPending=Rules.copy(command)
+ local p,e=store:transact(player.UserId,function(current)
+  local inv=options.heroSession.getInventoryContext(player)
+  local combat=options.heroSession.getCombatContext(player,player.Character)
+  local ctx={atLobby=workspace:GetAttribute('TLTServerRole')~='Battle' and player:GetAttribute('K0SessionPhase')=='Lobby' and inv and inv.heroId==command.heroId and inv.atHub,
+   inAdventure=combat and combat.heroId==command.heroId,hasCampAccess=false,serverEnd=command.action=='End',maxStories=require(ReplicatedStorage.Shared.CampaignContent).mainCount}
+  if ctx.inAdventure and options.supportCampAccess then ctx.hasCampAccess=options.supportCampAccess(player,command.heroId) end
+  return Rules.supportPass(current,command,ctx,Catalog)
+ end)
+ if p then s.profile,s.valid,s.errorCode,s.supportPending=p,true,nil,nil
+ elseif e=='SaveUnknown' or e=='AccountBusy' then s.valid,s.errorCode=false,e
+ else s.supportPending=nil end
+ s.busy=false;publish(player,command.requestId,e)
+ if (e=='SaveUnknown' or e=='AccountBusy') and command.action~='Buy' then
+  task.delay(1,function()if accounts[player]==s and not s.closing and s.supportPending and s.supportPending.requestId==command.requestId then Service.supportPass(player,command)end end)
+ end
+ return e
+end
+function Service.activateSupport(player,heroId)
+ local s=accounts[player];local v=s and s.profile and require(ReplicatedStorage.Shared.SupportPassRules).view(s.profile,heroId)
+ if not v then return 'Unavailable' end
+ local pending=s.supportPending
+ local cmd=pending and pending.action=='Activate' and pending or {action='Activate',heroId=heroId,story=v.story,scope=v.scope,requestId=HttpService:GenerateGUID(false):gsub('%-','')}
+ return Service.supportPass(player,cmd)
+end
+function Service.endSupport(player,heroId)
+ local s=accounts[player];local v=s and s.profile and require(ReplicatedStorage.Shared.SupportPassRules).view(s.profile,heroId)
+ if not v or not v.active then return nil end
+ return Service.supportPass(player,{action='End',heroId=heroId,requestId='end_'..v.contractId})
+end
 function Service.storyEvent(player,heroId,chapterId,goalId,choice,stepId)
  local state=accounts[player]
  if not state or state.busy or state.closing then return 'Busy' end

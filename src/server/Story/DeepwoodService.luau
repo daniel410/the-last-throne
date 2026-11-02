@@ -74,7 +74,7 @@ local function enqueue(player,heroId,c,g,choice,stepId)
     if e.g.id=='@accept' then
      publish(player,nil,'Optional quest accepted: '..e.c.title,{kind='Accepted',id=e.c.id})
     else
-    local text=e.g.id=='@selene' and (e.choice and 'Selene is ready! She will follow while a party companion slot is available.' or require(ReplicatedStorage.Shared.SupporterText).ended) or e.g.text
+    local text=e.g.id=='@selene' and (e.choice and require(ReplicatedStorage.Shared.SupporterText).started or require(ReplicatedStorage.Shared.SupporterText).ended) or e.g.text
     if e.stepId then for _,step in ipairs(e.g.activity.steps) do if step.id==e.stepId then
      text=step.text
      for _,answer in ipairs(step.choices or {}) do if answer.id==e.choice then text=answer.text end end
@@ -292,6 +292,7 @@ function Service.interactStep(player,chapterId,goalId,stepId,choice)
  return activities.interactStep(player,chapterId,goalId,stepId,choice)
 end
 function Service.stepActivities(dt) activities.update(dt) end
+function Service.supportCampAccess(player,heroId)return companion and companion.atCamp(player,heroId)==true end
 function Service.selectSelene(player,following) return companion.select(player,following) end
 function Service.stepCompanion(dt) companion.update(dt);companion.stepMotion(dt) end
 function Service.defeated(model,_winner)
@@ -323,7 +324,7 @@ end
 function Service.start(settings)
  options=settings;remote=Instance.new('RemoteEvent');remote.Name='DeepwoodState';remote.Parent=ReplicatedStorage.Remotes
  activities=require(script.Parent.DeepwoodActivities).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,enqueue=enqueue,publish=publish})
- companion=require(script.Parent.SeleneCompanion).create({frameDriven=true,active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,phase=function(p)return p:GetAttribute('K0SessionPhase')end,notice=function(p,message)publish(p,nil,message)end,
+ companion=require(script.Parent.SeleneCompanion).create({frameDriven=true,active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,activate=options.inventory.activateSupport,passState=options.inventory.supportState,phase=function(p)return p:GetAttribute('K0SessionPhase')end,notice=function(p,message)publish(p,nil,message)end,
   select=function(player,heroId,following) enqueue(player,heroId,Content.byId['DW-03'],{id='@selene'},following) end})
  access=require(script.Parent.DeepwoodRegionAccess).create({heroSession=options.heroSession,inventory=options.inventory,world=options.world,combat=options.combat,notice=function(p,required,name) publish(p,nil,string.format('Complete Story %d before entering %s.',required,name)) end,boundaryNotice=function(p) publish(p,nil,Text.ForestBoundaryReturn) end,regionChanged=function(p,id) p:SetAttribute('TLTStoryRegion',id) end})
  for _,node in pairs(options.world.activityNodes or {}) do if node.prompt then node.prompt.Triggered:Connect(function(p) Service.interactStep(p,node.chapter.id,node.goal.id,node.step.id) end) end end
