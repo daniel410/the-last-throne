@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-02",
+  "timezone": "America/Toronto",
+  "status": "local test builds succeeded; not published",
+  "builds": [
+    {
+      "version": "0.62.0",
+      "sourceCommit": "8a083a055a7e379384d5806929682fe8b0bcaa61",
+      "source": "isolated git archive; excludes other working-tree changes",
+      "rojo": "Rojo 7.7.1",
+      "artifacts": [
+        {
+          "role": "Lobby",
+          "path": "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.62.0/TheLastThrone-Lobby-0.62.0.rbxlx",
+          "bytes": 7717931,
+          "sha256": "e618ecec3d19883f737e780c4185d03b14372146b41b5ed5a5250ce33c46fafb",
+          "status": "success"
+        },
+        {
+          "role": "Battle",
+          "path": "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.62.0/TheLastThrone-Battle-0.62.0.rbxlx",
+          "bytes": 7717932,
+          "sha256": "c74cc4042265dde3d2c647b1e7b7ad1545552bdd371c61cd15453c79f3986c24",
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "version": "0.62.1",
+      "sourceCommit": "354ef892ef9833ec5a3579e824be9dee9c12c14b",
+      "source": "isolated git archive; excludes other working-tree changes",
+      "rojo": "Rojo 7.7.1",
+      "artifacts": [
+        {
+          "role": "Lobby",
+          "path": "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.62.1/TheLastThrone-Lobby-0.62.1.rbxlx",
+          "bytes": 7718650,
+          "sha256": "62d705d15b143feaf487dcaf56e250ca1e18473ae9437975010acc380f168f35",
+          "status": "success"
+        },
+        {
+          "role": "Battle",
+          "path": "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.62.1/TheLastThrone-Battle-0.62.1.rbxlx",
+          "bytes": 7718651,
+          "sha256": "37ea6334e7b94895ecebc1385f35377a8461a37a497b3c88883c28718d77e9d0",
+          "status": "success"
+        }
+      ]
+    }
+  ],
+  "validatedFinalVersion": "0.62.1",
+  "finalNative": "frozen-native.json",
+  "lua": "frozen-lua.log",
+  "compiler": "frozen-compile.log"
+}

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"forgeButtons\":17,\"service\":\"durable begin, first/repeat completion, forge/equip and equipment stats passed\",\"ui\":\"four modes, locked entry, enhancement and desktop/mobile controls passed\",\"pure\":\"95 account and replay checks passed in native Luau\"}"
+    }
+  ],
+  "isError": false
+}
