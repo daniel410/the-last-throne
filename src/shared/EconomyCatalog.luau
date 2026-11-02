@@ -1,4 +1,10 @@
-local C={version=1,storyDiamonds=2,offers={},sell={},goldOffers={{id='rpg_gold_100_diamond',currency='diamonds',price=10,amount=100}}}
+-- Fixed trial rate: 1 Diamond buys 50 RPG account Gold; no bundle bonus.
+-- Retire the 100-Gold SKU rather than changing its promised amount under the same ID.
+local C={version=2,storyDiamonds=2,offers={},sell={},goldOffers={
+ {id='rpg_gold_500_diamond',currency='diamonds',price=10,amount=500},
+ {id='rpg_gold_1000_diamond',currency='diamonds',price=20,amount=1000},
+ {id='rpg_gold_2000_diamond',currency='diamonds',price=40,amount=2000},
+}}
 for _,class in ipairs({'knight','elf','dwarf','mage'}) do
  local fine=class..'_weapon_fine';local veteran=class..'_weapon_veteran'
  table.insert(C.offers,{id=fine,definitionId=fine,currency='gold',price=250})
@@ -30,9 +36,14 @@ end
 for _,row in ipairs({{'traveler_hood',80},{'traveler_coat',120},{'traveler_gloves',80},{'traveler_boots',80},{'copper_ring',150},{'amber_charm',150},{'veteran_hood',250}}) do
  table.insert(C.offers,{id=row[1],definitionId=row[1],currency='gold',price=row[2]});C.sell[row[1]]=math.floor(row[2]/5)
 end
--- Blacksmith additions: Gold-only trial stock, never story reward replacements.
+-- Blacksmith additions: trial stock, never story reward replacements.
 for _,row in ipairs({{'knight_weapon_forged',950},{'elf_weapon_forged',950},{'dwarf_weapon_forged',950},{'mage_weapon_forged',950},{'sentinel_shield',500},{'sentinel_helm',400},{'sentinel_mail',650},{'sentinel_gauntlets',400},{'sentinel_boots',400},{'ruby_ring',550},{'guardian_charm',550},{'storm_pendant',550}})do
  table.insert(C.offers,{id=row[1],definitionId=row[1],currency='gold',price=row[2]});C.sell[row[1]]=math.floor(row[2]/5)
+end
+-- The same Lv10 gear is available for either currency; no exclusive stats.
+for _,class in ipairs({'knight','elf','dwarf','mage'})do
+ local id=class..'_weapon_forged'
+ table.insert(C.offers,{id=id..'_diamond',definitionId=id,currency='diamonds',price=18})
 end
 function C.allowed(store,definition,offer)
  if store=='diamonds' then return offer and offer.currency=='diamonds' end
