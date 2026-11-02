@@ -1,0 +1,58 @@
+{
+  "version": "0.59.1",
+  "sourceCommit": "7259444122f3dc170ba0eb6a9ca6b511d4445815",
+  "frozenSource": "/tmp/tlt-npc-motion-freeze-7259444",
+  "sourceFreeze": "git archive; project-referenced LFS SHA256 verified against committed pointers",
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.59.1/TheLastThrone-Lobby-0.59.1.rbxlx",
+      "status": "success",
+      "sha256": "6c2ccaf17ec210a791212cf8d7ea69f8ed4f89e466d697adcfd541c501bf404c",
+      "bytes": 7610233
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.59.1/TheLastThrone-Battle-0.59.1.rbxlx",
+      "status": "success",
+      "sha256": "3a83064378e48980cf6f28d3ccc8c27f95e370b6fb72593ef0ae6d324c9f8a43",
+      "bytes": 7610234
+    }
+  ],
+  "published": false,
+  "tests": {
+    "selene": {
+      "failures": [],
+      "pass": true,
+      "checks": 317,
+      "log": "speed-selene-native.log"
+    },
+    "roles": {
+      "failures": [],
+      "kind": "NPC_ROLE_UNIFICATION_NATIVE",
+      "pass": true,
+      "checks": 42,
+      "log": "speed-roles-native.log"
+    }
+  },
+  "adjustment": {
+    "escortStudsPerSecond": {
+      "before": 6,
+      "after": 7
+    },
+    "seleneBaseFollowSpeed": {
+      "before": 12,
+      "after": 14
+    },
+    "seleneMaxFollowSpeed": {
+      "before": 28,
+      "after": 32
+    }
+  },
+  "commands": [
+    "rojo build <frozen>/default.project.json -o builds/0.59.1/TheLastThrone-Lobby-0.59.1.rbxlx",
+    "rojo build <frozen>/battle.project.json -o builds/0.59.1/TheLastThrone-Battle-0.59.1.rbxlx",
+    "run-in-roblox --place builds/0.59.1/TheLastThrone-Battle-0.59.1.rbxlx --script tests/selene-motion-native.luau",
+    "run-in-roblox --place builds/0.59.1/TheLastThrone-Battle-0.59.1.rbxlx --script tests/npc-role-unification-native.luau"
+  ]
+}
