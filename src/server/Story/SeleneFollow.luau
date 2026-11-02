@@ -52,7 +52,7 @@ function Follow.step(f,root,dt,params,hold)
   end
  end
  local delta=point and flat(point-position) or Vector3.zero
- local desired=delta.Magnitude>.1 and math.min(Budget.followSpeed,12+math.max(0,separation-12)*.8,math.sqrt(2*28*math.max(0,gap-1))) or 0
+ local desired=delta.Magnitude>.1 and math.min(Budget.followSpeed,14+math.max(0,separation-12)*.8,math.sqrt(2*28*math.max(0,gap-1))) or 0
  f.speed=math.max(0,(f.speed or 0)+math.clamp(desired-(f.speed or 0),-40*dt,28*dt))
  local nextPosition=position
  if delta.Magnitude>.1 and f.speed>.01 then

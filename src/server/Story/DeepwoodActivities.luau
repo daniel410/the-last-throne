@@ -97,7 +97,7 @@ function Engine.create(o)
       a.waiting=nil
       local target=Vector3.new(table.unpack(step.position));local delta=target-pos
       if delta.Magnitude<=1 then a.waiting=step.id;o.enqueue(p,ctx.heroId,a.c,a.g,nil,step.id)
-      else local nextPos=pos+delta.Unit*math.min(delta.Magnitude,dt*6);local flat=Vector3.new(delta.X,0,delta.Z);a.actor:PivotTo(flat.Magnitude>.01 and CFrame.lookAt(nextPos,nextPos+flat) or CFrame.new(nextPos)) end
+      else local nextPos=pos+delta.Unit*math.min(delta.Magnitude,dt*7);local flat=Vector3.new(delta.X,0,delta.Z);a.actor:PivotTo(flat.Magnitude>.01 and CFrame.lookAt(nextPos,nextPos+flat) or CFrame.new(nextPos)) end
      end
     end
    end

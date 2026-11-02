@@ -34,7 +34,7 @@ local ok,err=xpcall(function()
   local pos=model.PrimaryPart.Position
   maximumStep=math.max(maximumStep,(pos-previous).Magnitude)
   check(math.abs(pos.Y-500)<.01,'feet follow actual ground')
-  check((pos-previous).Magnitude<=28*.05+.001,'no position teleport')
+  check((pos-previous).Magnitude<=require(game.ReplicatedStorage.Shared.SeleneSupport).followSpeed*.05+.001,'no position teleport')
   previous=pos
  end
  check((model.PrimaryPart.Position-root.Position).Magnitude<12,'reaches support formation')
