@@ -207,6 +207,23 @@ for classIndex, classId in ipairs({ "knight", "dwarf", "mage", "elf" }) do
 	local practiced
 	for _, hero in ipairs(value.heroes) do if hero.heroId == heroes[classId] then practiced = hero.practice end end
 	check(practiced.moved and practiced.attacked and practiced.dodged, "tutorial observes server movement and accepted combat actions")
+	if classIndex == 1 then
+		local calls = {}; local deny = true
+		sessionOptions.inventory = { busy = function() return false end, available = function() return true end, endSupport = function(person, heroId)
+			check(person == first and heroId == heroes.knight, "support ends for the selected owned hero")
+			table.insert(calls, "end"); return deny and "SaveUnknown" or nil
+		end }
+		sessionOptions.network = { beforeHeroAction = function(_, action)
+			check(action == "ReturnLobby", "support return test reaches the correct network action")
+			table.insert(calls, "network"); return true, nil
+		end }
+		local blocked, why = request(first, "ReturnLobby", nil, "support-save-unknown")
+		check(why == "InventoryUnavailable" and blocked.phase == "Tutorial" and #calls == 1, "unknown support save blocks return before network transfer")
+		deny = false
+		request(first, "ReturnLobby", nil, "support-save-confirmed")
+		check(calls[2] == "end" and calls[3] == "network", "saved support ends before an intercepted network return")
+		sessionOptions.inventory = nil; sessionOptions.network = nil
+	end
 	value = request(first, "ReturnLobby", nil, "return-" .. classId)
 	check(Service.getCombatContext(first, actor) == nil and value.phase == "ReturningLobby", "return revokes combat synchronously")
 	local returnRequest = spawnRequests[#spawnRequests]

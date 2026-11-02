@@ -1,0 +1,20 @@
+{
+  "version": "0.61.0",
+  "source_commit": "0fb64a272d88276b1214938e08d2888b4ee65c4c",
+  "tool": "Rojo 7.7.1",
+  "result": "success",
+  "artifacts": [
+    {
+      "path": "builds/0.61.0/TheLastThrone-Battle-0.61.0.rbxlx",
+      "sha256": "353aa88e202c980d1ce2fcf99dd65677b4c8e25afdbe5c4836936e5f1a6c6a46",
+      "bytes": 7666565
+    },
+    {
+      "path": "builds/0.61.0/TheLastThrone-Lobby-0.61.0.rbxlx",
+      "sha256": "a2637333bcf61882db24f6955872b8cdd2c350afdb5dc49242691f8b130e8fe2",
+      "bytes": 7666564
+    }
+  ],
+  "published": false,
+  "release_tag": false
+}

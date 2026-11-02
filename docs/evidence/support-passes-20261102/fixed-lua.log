@@ -1,0 +1,5 @@
+Support passes: 30 checks passed
+Supporter info: 39 checks passed
+Selene recruitment: 23 checks passed
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+Hero session: 104 identity, ownership, transitions, four-class, stale-life and boundary checks passed
