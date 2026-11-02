@@ -11,6 +11,7 @@ local Text=require(RS.Shared.K0Text)
 local MapState=require(script.Parent.DeepwoodMapState)
 local Gates=require(script.Parent.DeepwoodGates)
 local Settings=require(script.Parent.GameSettings)
+local Completion=require(RS.Shared.StoryCompletion)
 local Journal={}
 function Journal.guidance(current,target,origin)
  if not current or current.training or not target then return nil end
@@ -57,6 +58,9 @@ function Journal.start(hud)
  local current,target,selectedChapter,selectedGoal,lastMessage,render,setOpen,track
  local book=require(script.Parent.DeepwoodQuestBook).create(gui,function(id,goal) track(id,goal) end)
  local panel=book.panel
+ local completionView=require(script.Parent.StoryCompletionView).create(gui,function(id)
+  if id then book.setTab('Main');track(id,nil) else setOpen(true)end
+ end)
  local dialog=Theme.frame(gui,'StoryMessage',UDim2.new(.5,0,1,-195),UDim2.fromOffset(620,160));dialog.AnchorPoint=Vector2.new(.5,1);dialog.Visible=false;dialog.BackgroundTransparency=.6
  dialog.TDPanelArt:Destroy();dialog:FindFirstChildOfClass('UIStroke').Transparency=1
  local prose=Theme.label(dialog,'Dialogue','',UDim2.fromOffset(16,8),UDim2.new(1,-32,1,-64),16);prose.Font=Enum.Font.GothamBold;prose.TextColor3=Color3.new(1,1,1);prose.TextStrokeColor3=Color3.new(0,0,0);prose.TextStrokeTransparency=.1
@@ -155,20 +159,26 @@ function Journal.start(hud)
  end
  workspace.DescendantAdded:Connect(function(v) if v:IsA('ProximityPrompt') then promptsDirty=true end end)
  local completed={}
+ local supportedStories={}
  response.OnClientEvent:Connect(function(value)
-  if current and current.heroId~=value.heroId then selectedChapter=nil;selectedGoal=nil;lastMessage=nil;offerShown=nil;closeDialogue();book.setTab('Main') end
+  if current and current.heroId~=value.heroId then completionView:dismiss();selectedChapter=nil;selectedGoal=nil;lastMessage=nil;offerShown=nil;closeDialogue();book.setTab('Main') end
+  local previous=current
+  local pass=value.supporter and value.supporter.pass
+  if pass and pass.active then supportedStories[value.heroId]=pass.story end
   current=value;gates.update(value)
   local event=value.completion
   if event then
    if event.kind=='Accepted' then selectedChapter=event.id;selectedGoal=nil
    else
-    local key=value.heroId..':'..event.id
-    if not completed[key] then completed[key]=true;hud.showFeedback(event.kind..' complete · '..event.title..'\n'..(event.xp>0 and string.format('+%d XP · +%d Gold',event.xp,event.coins) or event.outcome),8) end
+    local remembered=supportedStories[value.heroId]
+    local supportBefore=remembered and {heroId=value.heroId,supporter={pass={active=true,story=remembered}}} or previous
+    local summary=Completion.project(value,supportBefore)
+    if summary and not completed[summary.key] then completed[summary.key]=true;closeDialogue();completionView:show(summary)end
    end
   end
   render();local guidance=updateTracker();MapState.set(value,guidance and guidance.position)
   if value.notice and hud.showFeedback then hud.showFeedback(value.notice,4) end
-  if value.message and value.message~=lastMessage then lastMessage=value.message;showDialogue(value.message,'message') end
+  if not event and value.message and value.message~=lastMessage then lastMessage=value.message;showDialogue(value.message,'message') end
   if value.questOffer then
    local c=Content.byId[value.questOffer.id]
    if offerShown~=c.id then offerShown=c.id;showDialogue('OPTIONAL · '..c.title..'\n'..c.quest.brief..'\n'..Log.reward(c),'offer',value.questOffer.discovery and 'ACCEPT & RECOVER CLUE' or 'ACCEPT QUEST','LATER') end
@@ -184,7 +194,7 @@ function Journal.start(hud)
   elapsed+=dt;if elapsed<.2 then return end;elapsed=0
   local alive=player:GetAttribute('K0SessionPhase')=='Tutorial' and current and not current.training
   gui.Enabled=alive==true;marker.Enabled=alive==true and Settings.enabled(player,'waypoints')
-  if not alive then navigation.setTarget(nil);panel.Visible=false;closeDialogue();return end
+  if not alive then table.clear(supportedStories);completionView:dismiss();navigation.setTarget(nil);panel.Visible=false;closeDialogue();return end
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart');local guidance=updateTracker()
   navigation.setTarget(guidance and guidance.position);MapState.target=guidance and guidance.position
   marker.Adornee=guidance and anchor or nil
