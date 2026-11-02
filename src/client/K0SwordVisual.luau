@@ -400,12 +400,12 @@ function Visual.renderArms(character, dt, now)
 	local usesIK = updateElfIK(character, mode, phase, elapsed,bowPose)
 	local blockHand = updateBlockHand(character, classId, mode)
 	local rolling = mode == "Dodge" and character:GetAttribute("K0DodgeKind") == "SideRoll"
-	local rollAngle, rollDrop, rollTuck = 0, 0, 0
+	local rollAngle, rollLift, rollTuck = 0, 0, 0
 	if rolling then
 		local startedAt = character:GetAttribute("K0DodgeStartedAt")
 		if type(startedAt) == "number" then
-			rollAngle, rollDrop, rollTuck = DodgeRules.rollPose((now or Workspace:GetServerTimeNow()) - startedAt,
-				Config.Dodge.duration - 0.1, character:GetAttribute("K0DodgeSide") == -1 and -1 or 1)
+			rollAngle, rollLift, rollTuck = DodgeRules.rollPose((now or Workspace:GetServerTimeNow()) - startedAt,
+				Config.Dodge.sideRoll.moveDuration, character:GetAttribute("K0DodgeSide") == -1 and -1 or 1, Config.Dodge.sideRoll.jumpHeight)
 		end
 	end
 	if mode == "Dead" or character:GetAttribute("TLTDeathFalling") then
@@ -562,7 +562,7 @@ function Visual.renderArms(character, dt, now)
 		if rolling then
 			-- Roll the visual rig, leaving the authoritative physics root upright.
 			local basis = rootJoint.C0.Rotation
-			local pose = basis:Inverse() * CFrame.new(0, rollDrop, 0) * CFrame.Angles(0, 0, rollAngle) * basis
+			local pose = basis:Inverse() * CFrame.new(0, rollLift, 0) * CFrame.Angles(0, 0, rollAngle) * basis
 			rootJoint.Transform = pose
 			armPoses[rootJoint] = { pose = pose, returning = 0 }
 			groundSlamJoints[rootJoint] = true

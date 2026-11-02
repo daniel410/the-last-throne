@@ -57,13 +57,17 @@ local ok,err=xpcall(function()
      for frame=0,math.ceil(config.Dodge.duration*hz)do
       local age=math.min(config.Dodge.duration,frame/hz)
       visual.renderArms(character,1/hz,started+age)
-      local angle,drop=rules.rollPose(age,config.Dodge.duration-.1,side)
+      local angle,drop=rules.rollPose(age,config.Dodge.sideRoll.moveDuration,side,config.Dodge.sideRoll.jumpHeight)
       local basis=joint.C0.Rotation
       local expected=basis:Inverse()*CFrame.new(0,drop,0)*CFrame.Angles(0,0,angle)*basis
       frameNear(joint.Transform,expected,'root animation '..rigType.Name..' '..classId)
       frameNear(root.CFrame,physicsBefore,'physics root stays upright')
      end
     end
+    visual.renderArms(character,1/60,started+config.Dodge.sideRoll.moveDuration/2)
+    local bodyPose=joint.C0.Rotation*joint.Transform*joint.C0.Rotation:Inverse()
+    near(bodyPose.Position.Y,2.5,'jump apex independently measured')
+    local _,halfTurn=bodyPose:ToAxisAngle();near(math.abs(halfTurn),math.pi,'airborne half roll')
     character:SetAttribute('K0State','Idle')
     for _=1,45 do visual.renderArms(character,1/60,started+1)end
     frameNear(joint.Transform,CFrame.identity,'roll restores neutral')
@@ -74,7 +78,7 @@ local ok,err=xpcall(function()
    -- Actual server sweep still blocks walls and ledges, including side rolls.
    for _,blocked in ipairs({'wall','ledge'})do
     api.clearAction(s);s.mode='Idle';root.CFrame=CFrame.new(10000,4,10000)
-    if blocked=='ledge' then root.CFrame=CFrame.new(10105,4,10000)end
+    if blocked=='ledge' then root.CFrame=CFrame.new(10094,4,10000)end
     api.acceptAction(s,'Dodge',nil,30);api.acceptAction(s,'Dodge',Vector3.xAxis,30.1)
     local wall
     if blocked=='wall' then
@@ -82,22 +86,24 @@ local ok,err=xpcall(function()
     end
     local before=root.Position;api.moveDodge(s,30.4)
     check(s.dodge.blocked,'collision/ledge stops roll')
-    check((root.Position-before).Magnitude<config.Dodge.distance,'cannot cross obstacle')
+    check((root.Position-before).Magnitude<config.Dodge.sideRoll.distance,'cannot cross obstacle')
     if wall then wall:Destroy()end
    end
    api.clearAction(s);s.mode='Idle';root.CFrame=CFrame.new(10000,4,10000)
+   local beforeBack=root.Position
    api.acceptAction(s,'Dodge',nil,40);api.moveDodge(s,40.1)
+   near((root.Position-beforeBack).Magnitude,7/3,'backstep retains original travel speed')
    check(character:GetAttribute('K0Invulnerable')==true,'backstep invulnerability')
    api.acceptAction(s,'Dodge',Vector3.xAxis,40.15)
    local before=root.Position
    api.moveDodge(s,40.35)
    check(character:GetAttribute('K0Invulnerable')==true,'roll invulnerability')
-   api.moveDodge(s,40.45)
-   near((root.Position-before).Magnitude,config.Dodge.distance,'free side roll distance')
-   local moved=root.Position;api.moveDodge(s,40.45)
+   api.moveDodge(s,40.15+config.Dodge.sideRoll.moveDuration)
+   near((root.Position-before).Magnitude,config.Dodge.sideRoll.distance,'free side roll distance')
+   local moved=root.Position;api.moveDodge(s,40.15+config.Dodge.sideRoll.moveDuration)
    near((root.Position-moved).Magnitude,0,'repeated sample cannot move twice')
    check(character:GetAttribute('K0Invulnerable')==false,'roll invulnerability expires')
-   api.acceptAction(s,'Skill1',nil,40.46)
+   api.acceptAction(s,'Skill1',nil,40.71)
    check(s.attack and s.attack.isSkill and s.dodge==nil,'ready skill interrupts side roll')
    check(character:GetAttribute('K0DodgeKind')==nil,'skill clears roll presentation')
    for _,mode in ipairs({'Dead','Stunned'})do

@@ -1024,7 +1024,8 @@ local function moveDodge(state, current)
 		return
 	end
 	local elapsed = current - dodge.started
-	local targetDistance = Config.Dodge.distance * math.min(1, elapsed / Config.Dodge.moveDuration)
+	local movement = dodge.kind == "SideRoll" and Config.Dodge.sideRoll or Config.Dodge
+	local targetDistance = movement.distance * math.min(1, elapsed / movement.moveDuration)
 	local distance = math.max(0, targetDistance - dodge.moved)
 	if distance > 0 and not dodge.blocked then
 		local direction = dodge.direction * distance
