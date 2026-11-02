@@ -18,3 +18,5 @@ Wind Lance의 기존 연녹색 직선 대신 다음을 추가했다.
 검증: `tests/wind-lance-visual-native.luau`는 실제 epoch 서버 시각, 지팡이 끝·서버 끝점·회전 기류, 프레임률30/60/144, 중복/과거/취소/거리/동시성/정리를 확인한다. 최초 미리보기에서 좌표 상한을 시각에도 적용한 문제를 발견해 분리했고 실제 서버 시각 회귀를 추가했다. `tests/refined-player-weapons-native.luau`는4클래스 R6/R15 lifecycle138개 통과. `tests/mage-staff-golden.luau`를 MageGolden으로 결합한 `tests/k0-mage-staff-native.luau`는 Blender 독립 표본과 기본/전체 Mage 시전17,087개 통과. 최종 고정 소스의 정확한 결과·빌드·해시는 `results.json`/`build.json`에 기록한다. 다른 미커밋 로비/이동/난이도/인벤토리/지원 작업은 포함하지 않는다.
 
 미검증: 실제 입력·네트워크에서의 전투 가독성, 저품질 그래픽·모바일·4인 동시 성능, 사용자 최종 미술 수용. Studio 기본 자산203785492의 기존 유형 경고는 범위 밖이다. 상위 티켓 In Progress를 유지한다. 다음 QA/DES가 새 Battle 빌드에서 나무 지팡이·Wind Lance를 실제 시전해 수용한다. Roblox 게시/릴리스 태그는 수행하지 않는다.
+
+고정 마감: 소스 `3e8eae783f77da0af327bfd529d2a709d0202378`를 git archive로 격리하고11개 입력 LFS OID를 대조해 Lobby/Battle **0.60.3** 빌드 성공. 해당 Battle에서 Wind Lance98·4클래스 장착138·Mage17,087·시작10, 총 **17,333개** 통과. 첫 실행은 다른 runner와50312포트 충돌로 테스트 전 실패했으며, 종료 후 재실행해 통과했다. 고정 산출물과 해시는 build.json, 수용 범위는 results.json에 기록한다.

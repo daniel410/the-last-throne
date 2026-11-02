@@ -1,0 +1,36 @@
+{
+  "version": "0.60.3",
+  "sourceCommit": "3e8eae783f77da0af327bfd529d2a709d0202378",
+  "tests": {
+    "WIND_LANCE_VISUAL_NATIVE": {
+      "pass": true,
+      "checks": 98,
+      "log": "frozen-native.log"
+    },
+    "REFINED_PLAYER_WEAPONS_NATIVE": {
+      "pass": true,
+      "checks": 138,
+      "log": "frozen-native.log"
+    },
+    "K0_MAGE_STAFF_NATIVE": {
+      "pass": true,
+      "checks": 17087,
+      "log": "frozen-native.log"
+    },
+    "BATTLE_BOOTSTRAP_NATIVE": {
+      "pass": true,
+      "checks": 10,
+      "log": "frozen-native.log"
+    }
+  },
+  "nativeChecks": 17333,
+  "published": false,
+  "newAssetUploads": 0,
+  "serverBalanceChanged": false,
+  "actualPlayerInputVerified": false,
+  "mobileMultiplayerVerified": false,
+  "userArtAccepted": false,
+  "preview": "isolated Studio Edit R6 fixture; paused effect at release +0.08 seconds; original camera restored and fixtures removed",
+  "runnerFailure": "First fixed runner collided with another test on port50312; no product test ran. Retried after listener finished; all four suites passed. See runner-port-conflict.log.",
+  "nextOwner": "QA/DES: real cast, low graphics and device acceptance"
+}

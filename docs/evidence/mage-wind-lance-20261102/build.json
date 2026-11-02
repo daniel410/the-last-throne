@@ -1,0 +1,84 @@
+{
+  "version": "0.60.3",
+  "sourceCommit": "3e8eae783f77da0af327bfd529d2a709d0202378",
+  "freeze": "/tmp/tlt-wind-staff-freeze-3e8eae7",
+  "sourceFreeze": "git archive; referenced LFS verified against committed pointer OID",
+  "lfsVerified": [
+    {
+      "path": "assets/shared/td-selene-articulated/runtime.rbxmx",
+      "sha256": "82c2faa94940f2d154aea7e34bb01be2138da06e003e12c06b669ef244afd9c4"
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+      "sha256": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5"
+    },
+    {
+      "path": "assets/shared/td-ember-caldera/runtime.rbxmx",
+      "sha256": "429c541b1c46c99e6765272e52d984114df73f87284af6d9130b722783d615fb"
+    },
+    {
+      "path": "assets/shared/td-selene/runtime.rbxmx",
+      "sha256": "b72058845b8fe9c14d9532d1519baa415b610c0e7bd3cf2ff2c0ff6cb28e6ef6"
+    },
+    {
+      "path": "assets/shared/td-frozen-vale/runtime.rbxmx",
+      "sha256": "ebb5af6690ac7f042e1ecf0dd1cece8674a1fec9e2d4774d1efdae4381f09d11"
+    },
+    {
+      "path": "assets/shared/td-player-weapons/runtime.rbxmx",
+      "sha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9"
+    },
+    {
+      "path": "assets/shared/deepwood-weapon-repair/runtime.rbxmx",
+      "sha256": "fa9e8f6ee37b1de35e5510749755e7058d6619ef3d5792fce73e5d6607cb4207"
+    },
+    {
+      "path": "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+      "sha256": "77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823"
+    },
+    {
+      "path": "assets/shared/td-monsters/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5"
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/maps.rbxmx",
+      "sha256": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39"
+    },
+    {
+      "path": "assets/shared/td-refined-player-weapons/runtime.rbxmx",
+      "sha256": "499dc06be05428916bfc5ad86a9e521eaf1c7376215d88bbd5d6fc40bea87ff8"
+    }
+  ],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Lobby",
+      "command": [
+        "rojo",
+        "build",
+        "/tmp/tlt-wind-staff-freeze-3e8eae7/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.60.3/TheLastThrone-Lobby-0.60.3.rbxlx"
+      ],
+      "status": "success",
+      "path": "builds/0.60.3/TheLastThrone-Lobby-0.60.3.rbxlx",
+      "sha256": "e5e65f7121b655660df225cd682fb1c32333796ea8569f3be4f2e05144026af2",
+      "bytes": 7649475
+    },
+    {
+      "role": "Battle",
+      "command": [
+        "rojo",
+        "build",
+        "/tmp/tlt-wind-staff-freeze-3e8eae7/battle.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.60.3/TheLastThrone-Battle-0.60.3.rbxlx"
+      ],
+      "status": "success",
+      "path": "builds/0.60.3/TheLastThrone-Battle-0.60.3.rbxlx",
+      "sha256": "e83c0e879d42579db75cb4e02bfdf0ac96e77c798a6f247bac0ce54d23921fab",
+      "bytes": 7649476
+    }
+  ]
+}
