@@ -7,7 +7,7 @@ local Weapon={}
 local function point(part,v)return part.Size*Vector3.new(v[1],v[2],v[3])end
 function Weapon.bind(model)
  local kind=model:GetAttribute('EnemyKind');local spec=Sockets[kind] or FrozenRigs[kind] and FrozenRigs[kind].socket
- local visual=model:FindFirstChild('TdMonsterVisual');local part=visual and visual:FindFirstChild('ArmR')
+ local visual=model:FindFirstChild('TdMonsterVisual');local part=visual and visual:FindFirstChild(model:GetAttribute('TdWeaponPart') or model:GetAttribute('TdWeaponArm') or 'ArmR')
  if not spec or not part then return nil end
  for _,name in ipairs({'K0WeaponPresentation','K0BladeTip','K0BladeBase'})do local old=part:FindFirstChild(name);if old then old:Destroy()end end
  local folder=Instance.new('Folder');folder.Name='K0WeaponPresentation';folder.Parent=part
@@ -29,7 +29,7 @@ function Weapon.bind(model)
   end
  end
  local root=model:FindFirstChild('HumanoidRootPart');local torso=model:FindFirstChild('Torso')
- local shoulder=torso and torso:FindFirstChild('Left Shoulder')
+ local shoulder=torso and torso:FindFirstChild(model:GetAttribute('TdWeaponShoulder') or 'Left Shoulder')
  return {folder=folder,part=part,a=a,b=b,trail=trail,shards=shards,position=part.Position,clock=nil,
   root=root,rootJoint=root and root:FindFirstChild('RootJoint'),shoulder=shoulder,
   socketInArm=shoulder and shoulder.Part1.CFrame:ToObjectSpace(part.CFrame)*a.CFrame}

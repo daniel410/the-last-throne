@@ -8,9 +8,9 @@ local Appearance = {}
 local SPECS = {
 	Goblin = { template = "goblin", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
 	Orc = { template = "orc", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
-	Ogre = { template = "ogre", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
+	Ogre = { template = "ogre", folder = "DeepwoodWeaponRepairModels", weaponPart = "Weapon", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR", "Weapon" } },
 	Shaman = {template = "shaman", parts = {"Body", "ArmL", "ArmR"}},
- Warlord = {template = "warlord", parts = {"Body", "ArmL", "ArmR", "LegL", "LegR"}},
+ Warlord = {template = "warlord", folder = "DeepwoodWeaponRepairModels", weaponArm = "ArmL", reverseWeaponSwing = true, parts = {"Body", "ArmL", "ArmR", "LegL", "LegR"}},
  GoblinKing = {template = "king", parts = {"Body", "ArmL", "ArmR"}},
  KingOgre = {template = "king_ogre", parts = {"Body", "ArmL", "ArmR"}},
  EnragedWarlord = {template = "warlord:enraged", parts = {"Body"}},
@@ -83,6 +83,7 @@ function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 		anchors.ArmR = rig:FindFirstChild("Left Arm")
 		anchors.LegL = rig:FindFirstChild("Right Leg")
 		anchors.LegR = rig:FindFirstChild("Left Leg")
+  anchors.Weapon = anchors[spec.weaponArm or "ArmR"]
   if quadruped then anchors.LegFL=anchors.ArmL;anchors.LegFR=anchors.ArmR;anchors.LegBL=anchors.LegL;anchors.LegBR=anchors.LegR end
 		for _, name in ipairs(spec.parts) do
 			assert(anchors[name] and anchors[name]:IsA("BasePart"), "Missing R6 visual anchor for " .. kind .. ": " .. name)
@@ -138,7 +139,9 @@ function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 		local authored=spec.pivots and spec.pivots[partName]
   if authored then pivotPosition=feet:PointToWorldSpace(Vector3.new(table.unpack(authored))*height) end
   local socketSpec = RigSockets[kind]
-		local shoulder = socketSpec and socketSpec.shoulders[partName == "ArmR" and "weapon" or partName == "ArmL" and "off" or ""]
+		local weaponArm = spec.weaponArm or "ArmR"
+  local offArm = weaponArm == "ArmR" and "ArmL" or "ArmR"
+  local shoulder = socketSpec and socketSpec.shoulders[partName == weaponArm and "weapon" or partName == offArm and "off" or ""]
 		if shoulder then
 			-- Weapon heads can extend above the shoulder. Anatomical pivots are
 			-- authored in the normalized source model, not its weapon bounds.
@@ -159,7 +162,10 @@ function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 	rig:SetAttribute("TdMonsterTargetHeight", height)
 	rig:SetAttribute("TdMonsterVisualMultiplier", multiplier)
 	rig:SetAttribute("TdMonsterScale", scale)
-	rig:SetAttribute("TdWeaponShoulder", kind == "Slime" and "None" or "Left Shoulder")
+	rig:SetAttribute("TdWeaponArm", spec.weaponArm or "ArmR")
+ rig:SetAttribute("TdWeaponPart", spec.weaponPart or spec.weaponArm or "ArmR")
+ rig:SetAttribute("TdWeaponSwingReversed", spec.reverseWeaponSwing == true)
+ rig:SetAttribute("TdWeaponShoulder", kind == "Slime" and "None" or spec.weaponArm == "ArmL" and "Right Shoulder" or "Left Shoulder")
 	return visual
 end
 

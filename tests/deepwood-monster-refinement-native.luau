@@ -14,7 +14,7 @@ local ok,err=xpcall(function()
   local model=Field.makeEnemy(folder,kind,14000+index*30,10000,1,1)
   local root=model.HumanoidRootPart;root.Anchored=true
   local s=assert(Motion.bind(model));local health=model.Humanoid.Health;local initial=root.CFrame
-  local visual=model.TdMonsterVisual;local mesh=visual:FindFirstChild('ArmR')
+  local visual=model.TdMonsterVisual;local mesh=visual:FindFirstChild(model:GetAttribute('TdWeaponPart') or model:GetAttribute('TdWeaponArm') or 'ArmR')
   local meshOffset=mesh and s.joints.weapon.Part1.CFrame:ToObjectSpace(mesh.CFrame)
   local function tip()
    local fx=s.weaponFX

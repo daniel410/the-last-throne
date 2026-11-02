@@ -53,6 +53,9 @@
       },
       "SeleneArticulatedModels": {
         "$path": "assets/shared/td-selene-articulated/runtime.rbxmx"
+      },
+      "DeepwoodWeaponRepairModels": {
+        "$path": "assets/shared/deepwood-weapon-repair/runtime.rbxmx"
       }
     },
     "StarterPlayer": {
