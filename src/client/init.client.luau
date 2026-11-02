@@ -136,6 +136,14 @@ local function sendAction(action, direction)
 		return
 	end
 	if actionRemote and (action == "BlockEnd" or action == "SprintEnd" or combatInputAllowed()) then
+		if action == "Ultimate" or action == "CastArcane" or action:match("^Skill[12345]$") then
+			-- Stop held-action retries from immediately replacing the requested
+			-- skill. Keep release bookkeeping so a rejected cast can still unblock.
+			table.clear(attackInputs)
+			attackGeneration += 1
+			blockGeneration += 1
+			sprintGeneration += 1
+		end
 		local character = player.Character
 		local classId = character and character:GetAttribute("K0ClassId")
 		local canTarget = action == "Attack" or action:match("^Skill[12345]$") or (action == "CastArcane" and classId == "mage")

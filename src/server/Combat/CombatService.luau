@@ -378,7 +378,9 @@ local function startSkill(state, slot, current, targetModel)
 	if skill and state.growth then skill=Growth.skill(state.baseClassId,state.skillSlots[slot],skill,state.growth) end
 	if not skill then if slot==0 then updateFeedback(state,"UltimateLocked") end;return end
 	if skill.requiresShield and state.inventoryManaged and not (state.equipment and state.equipment.offhand) then updateFeedback(state,"EquipShield");return end
-	if state.mode ~= "Idle" then updateFeedback(state, "SkillBusy"); return end
+	-- A ready skill takes over ordinary actions immediately. Validate all costs
+	-- before clearAction so a rejected cast leaves the current action intact.
+	if state.mode ~= "Idle" and state.mode ~= "Attack" and state.mode ~= "Block" and state.mode ~= "Dodge" then return end
 	if current < (state.skillReadyAt[skill.id] or -math.huge) then updateFeedback(state, "SkillCooling"); return end
 	-- Magic costs MP by contract, including future magic-archer abilities.
 	if skill.magic and (type(skill.manaCost) ~= "number" or skill.manaCost <= 0) then return end
@@ -398,6 +400,7 @@ local function startSkill(state, slot, current, targetModel)
 		end
 	end
 	clearAction(state)
+	setPlayerState(state, "Idle")
 	state.queued = nil
 	resetCombo(state)
 	state.skillReadyAt[skill.id] = current + skill.cooldown
@@ -1999,7 +2002,8 @@ function CombatService.start(enemies, serverContextResolver, awardXP)
 			state.queued = nil
 		end
 		local consumed = stepPlayer(state, current, 0, true)
-		if consumed and Rules.priority(action) <= Rules.priority(consumed) then
+		local skillIntent = action == "Ultimate" or action:match("^Skill[12345]$") or (action == "CastArcane" and state.baseClassId == "mage")
+		if consumed and not skillIntent and Rules.priority(action) <= Rules.priority(consumed) then
 			return
 		end
 		acceptAction(state, action, direction, current, targetModel)
