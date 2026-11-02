@@ -88,7 +88,12 @@ function V.create(parent,id,position,options)
   local gui=Instance.new('BillboardGui');gui.Name='NPCLabel';gui.Size=UDim2.fromOffset(220,44);gui.StudsOffset=Vector3.new(0,7.3,0);gui.MaxDistance=55;gui.Parent=root
   local t=Instance.new('TextLabel');t.Size=UDim2.fromScale(1,1);t.BackgroundTransparency=1;t.Text=c.name..' · '..c.role;t.Font=Enum.Font.GothamBold;t.TextSize=12;t.TextColor3=accent;t.TextStrokeTransparency=.2;t.AutoLocalize=false;t.Parent=gui
  end
- m:ScaleTo(scale);m:PivotTo(CFrame.new(position)*CFrame.Angles(0,options.yaw or 0,0));m.Parent=parent;return m
+ require(script.Parent.NPCArticulation).prepare(m,c,width)
+ m:ScaleTo(scale)
+ require(script.Parent.NPCArticulation).capture(m)
+ m:PivotTo(CFrame.new(position)*CFrame.Angles(0,options.yaw or 0,0));m.Parent=parent
+ game:GetService('CollectionService'):AddTag(m,'TLTAnimatedNPC')
+ return m
 end
 -- Authored aliases preserve quest/escort IDs and labels while gaining the shared art system.
 function V.actor(parent,name,position,spirit)
