@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "task": "TLT-031/057/061/062/063/084 story-props-20261102",
+  "source": "tools/author-story-props.py -> geometry.json and StoryPropGeometry.luau",
+  "blenderSource": "tools/author-story-props-blender.py; Blender 5.2 LTS; safe mode",
+  "coordinateContract": "Roblox Y-up; Blender x,-z,y; floor pivot; studs preserved as review units",
+  "runtime": "StoryProps native multipart models; GLB is matching authored review/source geometry, not uploaded MeshParts",
+  "permissions": "New local project-authored geometry. Existing TD environments/characters and source files unchanged. No third-party asset or generated credit usage.",
+  "regions": [
+    "Deepwood",
+    "FrozenVale",
+    "EmberCaldera"
+  ],
+  "notImplemented": [
+    "Gloamwood map",
+    "HauntedGraveyard map",
+    "full terrain/building replacement",
+    "final mobile/4-player+AI performance and art acceptance"
+  ],
+  "models": [
+    {
+      "id": "SupplyCrate",
+      "status": "New",
+      "purpose": "Recovered village food and medicine; plank lid, diagonal braces and delivery seal.",
+      "nativeParts": 22,
+      "glb": "assets/models/story-props-v1/SupplyCrate.glb",
+      "bytes": 33288,
+      "sha256": "9f8af2edfef1ab73d9b11ea64021067eeaa9f9bc38433d2755910035f9cda49b"
+    },
+    {
+      "id": "TravelBindings",
+      "status": "New",
+      "purpose": "Untied convoy travel ropes with cut ends and a discarded wooden fastening peg.",
+      "nativeParts": 39,
+      "glb": "assets/models/story-props-v1/TravelBindings.glb",
+      "bytes": 60760,
+      "sha256": "d94c403915c8b4035a380d978c1a760d0f683eaca98abccd2a294d0e9638f35c"
+    },
+    {
+      "id": "LedgerDesk",
+      "status": "New",
+      "purpose": "Convoy manifests, northern orders and Eryn rescue maps; readable book, ink and compass.",
+      "nativeParts": 38,
+      "glb": "assets/models/story-props-v1/LedgerDesk.glb",
+      "bytes": 59872,
+      "sha256": "d723c250e694c1db5315948542e2230e230d8b2eef55aeb93520156b54e5602c"
+    },
+    {
+      "id": "ConvoyBadge",
+      "status": "New",
+      "purpose": "A captain badge on the convoy blue cloth; distinct from paperwork.",
+      "nativeParts": 6,
+      "glb": "assets/models/story-props-v1/ConvoyBadge.glb",
+      "bytes": 10416,
+      "sha256": "c5b671e02227e3b6ac024dd693a7d42fb902aed651e6606a0064b0d6dac7e6f6"
+    },
+    {
+      "id": "CartWreck",
+      "status": "New",
+      "purpose": "Ambushed relief convoy; detached fourth wheel, wooden spokes, broken tow shafts and recoverable cargo.",
+      "nativeParts": 124,
+      "glb": "assets/models/story-props-v1/CartWreck.glb",
+      "bytes": 190208,
+      "sha256": "1543a4773e26ec26d9ffc232955cf8819947cb3e777f31fe9204c37b67a0bc9a"
+    },
+    {
+      "id": "PrisonCage",
+      "status": "New",
+      "purpose": "Raider prison enclosure: bars on every side, hinged gate and padlock; captive NPC remains independent.",
+      "nativeParts": 59,
+      "glb": "assets/models/story-props-v1/PrisonCage.glb",
+      "bytes": 88528,
+      "sha256": "919ddc77722e0526195494c991fc9849669c7d3e78a28a0387f23b5ac655199a"
+    },
+    {
+      "id": "GateWinch",
+      "status": "New",
+      "purpose": "Return gate/lift mechanism; rope drum, ratchet teeth, safety pawl and hand crank.",
+      "nativeParts": 97,
+      "glb": "assets/models/story-props-v1/GateWinch.glb",
+      "bytes": 144304,
+      "sha256": "56fc3055145060719d1be4663c6f27542ae58f90da8b5a38c3901c54e54334c1"
+    },
+    {
+      "id": "CoolantValve",
+      "status": "New",
+      "purpose": "Dagna coolant circuits: bolted pipe flanges, brass handwheel and pressure gauge.",
+      "nativeParts": 70,
+      "glb": "assets/models/story-props-v1/CoolantValve.glb",
+      "bytes": 129640,
+      "sha256": "e0f0dd3473e1ad410282364ba7f17521696e0ffb0b7964193042f22d68ac1353"
+    },
+    {
+      "id": "RouteLantern",
+      "status": "New",
+      "purpose": "Survivor route lantern: iron bracket, hood, glass enclosure and candle; no floating glowing sphere.",
+      "nativeParts": 23,
+      "glb": "assets/models/story-props-v1/RouteLantern.glb",
+      "bytes": 37444,
+      "sha256": "ccb8de5308d642ad889d5327879f0d41e55d12a7a22a48e6b66f2b8c1b566d28"
+    },
+    {
+      "id": "SealWaystone",
+      "status": "New",
+      "purpose": "Safe-route signs and rune switches; a carved stone sign with an inlaid geometric route glyph.",
+      "nativeParts": 10,
+      "glb": "assets/models/story-props-v1/SealWaystone.glb",
+      "bytes": 16428,
+      "sha256": "15ff4f3c78f2e7a7727a3f67a161dc30e170fedd70f78fb1af5302e86b8f3026"
+    },
+    {
+      "id": "PortalAnchor",
+      "status": "New",
+      "purpose": "King Shaman portal power socket; stepped altar, six stone blocks, brass collar and clamped crystal.",
+      "nativeParts": 30,
+      "glb": "assets/models/story-props-v1/PortalAnchor.glb",
+      "bytes": 48088,
+      "sha256": "20d8f1626b5a8a70803bfb8c6db1f821cdee1f91ca5af44d2a1b54b72301c0d9"
+    },
+    {
+      "id": "TrailEvidence",
+      "status": "New",
+      "purpose": "Convoy wheel ruts, boot heels and broken branches, grounded in the trail rather than luminous residue.",
+      "nativeParts": 16,
+      "glb": "assets/models/story-props-v1/TrailEvidence.glb",
+      "bytes": 25204,
+      "sha256": "8c237e603b355eeafd937e88af495a81314c2ed75a8ab3ae780cffbce4bba08b"
+    },
+    {
+      "id": "RuinedArch",
+      "status": "New",
+      "purpose": "Occupied cloister gateway built from staggered stone courses, voussoirs, capitals and a keystone.",
+      "nativeParts": 26,
+      "glb": "assets/models/story-props-v1/RuinedArch.glb",
+      "bytes": 40404,
+      "sha256": "1b0df89820c592248a7131b91e0037dcca3e1b5c799f743a721b55b25f04d060"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+STORY_PROPS_NATIVE {"models":{"TrailEvidence":16,"ConvoyBadge":6,"SupplyCrate":22,"RouteLantern":23,"CartWreck":124,"TravelBindings":39,"SealWaystone":10,"GateWinch":97,"LedgerDesk":38,"PrisonCage":59,"CoolantValve":70,"PortalAnchor":30,"RuinedArch":26},"regions":[true,true,true],"failures":[],"checks":11456,"placedModels":351,"kind":"STORY_PROPS_NATIVE","pass":true,"placedParts":9306}

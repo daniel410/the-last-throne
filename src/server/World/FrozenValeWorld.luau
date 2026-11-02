@@ -15,10 +15,11 @@ local function part(parent,name,size,cf,color,material,solid)
  p.Parent=parent;return p
 end
 local function beacon(parent,pos)
- part(parent,'ShelterLanternPost',Vector3.new(1,7,1),pos+Vector3.new(0,3.5,0),stone,Enum.Material.Wood)
- local gem=part(parent,'WarmShelterLight',Vector3.new(2,2,2),pos+Vector3.new(0,7,0),gold,Enum.Material.Neon);gem.Shape=Enum.PartType.Ball
- local light=Instance.new('PointLight');light.Color=gold;light.Range=18;light.Brightness=.8;light:SetAttribute('TLTDecorative',true);light.Parent=gem
+ local model=require(script.Parent.StoryProps).build(parent,'RouteLantern',pos,{theme='FrozenVale'})
+ local flame=model:FindFirstChild('SmallFlame')
+ local light=Instance.new('PointLight');light.Color=Color3.fromRGB(247,205,131);light.Range=16;light.Brightness=.65;light:SetAttribute('TLTDecorative',true);light.Parent=flame
 end
+
 local function arch(parent,pos,height,width)
  for _,x in ipairs({-width/2,width/2})do part(parent,'IceCitadelPillar',Vector3.new(6,height,7),pos+Vector3.new(x,height/2,0),stone,Enum.Material.Slate,true)end
  part(parent,'IceCitadelLintel',Vector3.new(width+6,5,8),pos+Vector3.new(0,height,0),ice,Enum.Material.Ice,true)

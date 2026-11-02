@@ -11,10 +11,11 @@ local function part(parent,name,size,cf,color,material,solid)
  p.Parent=parent;return p
 end
 local function lamp(parent,p)
- part(parent,'IronLampPost',Vector3.new(1,6,1),p+Vector3.new(0,3,0),C.iron,Enum.Material.Metal)
- local flame=part(parent,'ForgeLamp',Vector3.new(2,2,2),p+Vector3.new(0,6,0),C.brass,Enum.Material.Neon);flame.Shape=Enum.PartType.Ball
- local l=Instance.new('PointLight');l.Color=C.brass;l.Range=16;l.Brightness=.65;l:SetAttribute('TLTDecorative',true);l.Parent=flame
+ local model=require(script.Parent.StoryProps).build(parent,'RouteLantern',p,{theme='EmberCaldera'})
+ local flame=model:FindFirstChild('SmallFlame')
+ local light=Instance.new('PointLight');light.Color=Color3.fromRGB(247,205,131);light.Range=16;light.Brightness=.65;light:SetAttribute('TLTDecorative',true);light.Parent=flame
 end
+
 local function gate(parent,p,width,height)
  for _,x in ipairs({-width/2,width/2})do part(parent,'ForgePillar',Vector3.new(7,height,9),p+Vector3.new(x,height/2,0),C.iron,Enum.Material.Metal,true)end
  part(parent,'ForgeGateLintel',Vector3.new(width+7,6,9),p+Vector3.new(0,height,0),C.basalt,Enum.Material.Basalt,true)
@@ -73,7 +74,7 @@ function W.create(world)
   local prompt=Instance.new('ProximityPrompt');prompt.Name='StoryInteract';prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ActionText=#g.enemies>0 and 'Begin encounter' or 'Interact';prompt.ObjectText=g.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
   world.nodes[c.id..':'..g.id]={part=p,prompt=prompt,chapter=c,goal=g}
   if g.activity and g.activity.mode=='mechanism'then
-   local wheel=part(props,'CoolingControl',Vector3.new(3,3,1),v(g.position)+Vector3.new(5,2,0),C.brass,Enum.Material.Metal);wheel.Shape=Enum.PartType.Cylinder;wheel:SetAttribute('StoryVisualKey',c.id..':'..g.id)
+   local wheel=part(props,'CoolingControl',Vector3.new(3,3,1),v(g.position)+Vector3.new(5,2,0),C.brass,Enum.Material.Metal);wheel.Shape=Enum.PartType.Cylinder;wheel:SetAttribute('StoryVisualKey',c.id..':'..g.id);wheel.Transparency=1;wheel:SetAttribute('StoryBlockoutProxy',true)
   end
  end end
  world.emberReady=true;world.folder:SetAttribute('EmberCalderaReady',true);return world

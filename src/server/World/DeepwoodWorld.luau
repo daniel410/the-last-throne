@@ -56,6 +56,21 @@ local function cage(parent,p)
  for _,x in ipairs({-4,4}) do for _,z in ipairs({-4,4}) do part(parent,'CageBar',Vector3.new(.6,9,.6),p+Vector3.new(x,4.5,z),C.wood,Enum.Material.Wood,true) end end
  ball(parent,'CaptiveSpirit',Vector3.new(3,4,3),p+Vector3.new(0,4,0),Color3.fromRGB(112,230,194),Enum.Material.Neon)
 end
+-- Preserve authored collision exactly while replacing only the visible blockout.
+local function dressed(legacy,key)
+ return function(parent,p)
+  local before={};for _,child in ipairs(parent:GetChildren()) do before[child]=true end
+  legacy(parent,p)
+  for _,child in ipairs(parent:GetChildren()) do if not before[child] and child:IsA('BasePart') then
+   child.Transparency=1;child.CastShadow=false;child:SetAttribute('StoryBlockoutProxy',true)
+  end end
+  return require(script.Parent.StoryProps).build(parent,key,p)
+ end
+end
+lamp=dressed(lamp,'RouteLantern')
+cart=dressed(cart,'CartWreck')
+cage=dressed(cage,'PrisonCage')
+arch=dressed(arch,'RuinedArch')
 local function npc(parent,p,name,_goblin,role)
  local world=parent
  while world.Parent and world.Name~='DeepwoodCampaign' do world=world.Parent end

@@ -5,7 +5,7 @@ local Content=require(Shared.DeepwoodContent)
 local Bounds=require(Shared.DeepwoodBounds)
 local Access=require(Shared.DeepwoodAccess)
 local Env=require(script.Parent.DeepwoodEnvironment)
-local Places={version=1}
+local Places={version=2}
 local C={earth=Color3.fromRGB(128,116,77),stone=Color3.fromRGB(137,148,119),moss=Color3.fromRGB(101,126,79),wood=Color3.fromRGB(105,76,46),gold=Color3.fromRGB(219,176,82),cloth=Color3.fromRGB(38,86,133),root=Color3.fromRGB(73,68,66),water=Color3.fromRGB(104,182,186)}
 local themes={['DW-01']='Old Pilgrim Grove',['DW-02']='Scattered Caravan',['DW-03']='Ranger Overlook',['DW-04']='Ruined Cloister',['DW-05']='Occupied Courtyard',['DW-06']='Root Sanctuary',['DW-07']='Broken Seal Circle',['DW-S1']='Stolen Supply Camp',['DW-S2']='Quarry Watercourse',['DW-S3']='Fallen Standard Ridge'}
 local function part(parent,name,size,cf,color,material,solid)
@@ -71,9 +71,9 @@ local function flag(parent,p,color)
  part(parent,'TornStandard',Vector3.new(5,7,.2),CFrame.new(p+Vector3.new(2.5,10,0))*CFrame.Angles(0,.3,.08),color,Enum.Material.Fabric,false)
 end
 local function crate(parent,p,size)
- part(parent,'WeatheredCargo',Vector3.one*size,p+Vector3.new(0,size/2,0),C.wood,Enum.Material.Wood,false)
- for _,x in ipairs({-.36,.36}) do part(parent,'IronCargoBand',Vector3.new(.2,size+.1,size+.1),p+Vector3.new(x*size,size/2,0),C.root,Enum.Material.Metal,false) end
+ return require(script.Parent.StoryProps).build(parent,'SupplyCrate',p,{scale=size/2.7})
 end
+
 local function scatter(world,parent,id,terrace)
  local zone=Content.zones[id];local center=Vector3.new(table.unpack(zone.center));local anchors,lanes,props=reservations(world,id)
  local candidates={}
@@ -131,8 +131,10 @@ local function dress(parent,id,p,s)
   end
   for _,x in ipairs({-25,25}) do stone('BrokenCloisterWall',x,3,16,14,6,4,true) end
   stone('CloisterLintel',-13.5,17,-17,31,3,5,false)
+  require(script.Parent.StoryProps).build(parent,'RuinedArch',p+Vector3.new(0,0,-17)*s,{scale=s*.7})
   if id=='DW-05' then flag(parent,p+Vector3.new(26,0,10)*s,Color3.fromRGB(129,52,43)) end
  elseif id=='DW-06' or id=='DW-07' then
+  require(script.Parent.StoryProps).build(parent,'PortalAnchor',p+Vector3.new(0,0,-10)*s,{scale=s*1.6})
   for i=1,8 do
    local a=i*math.pi/4;local q=p+Vector3.new(math.cos(a)*29,0,math.sin(a)*17)*s
    if math.abs(math.cos(a))<.8 then
