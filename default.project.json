@@ -51,6 +51,9 @@
       "EmberCalderaModels": {
         "$path": "assets/shared/td-ember-caldera/runtime.rbxmx"
       },
+      "SeleneRepairedModels": {
+        "$path": "assets/shared/selene-repaired/runtime.rbxm"
+      },
       "SeleneArticulatedModels": {
         "$path": "assets/shared/td-selene-articulated/runtime.rbxmx"
       },

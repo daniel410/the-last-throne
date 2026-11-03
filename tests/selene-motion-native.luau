@@ -21,12 +21,17 @@ local ok,err=xpcall(function()
  local meshes=0
  for _,p in ipairs(model:GetDescendants()) do if p:IsA('MeshPart') then
   meshes+=1;check(typeof(p:GetAttribute('SeleneRest'))=='CFrame','every mesh has stable rest space')
-  local source=game.ServerStorage.SeleneArticulatedModels.nun:FindFirstChild(p.Name,true)
+  local source=game.ServerStorage.SeleneRepairedModels.nun:FindFirstChild(p.Name,true)
   check(source and source.MeshId==p.MeshId and source.TextureID==p.TextureID,'pinned TD appearance remains exact')
  end end
- check(meshes==6,'TD-derived six-piece articulated silhouette')
+ check(meshes==3,'intact TD three-mesh surface')
+ local bones={}
+ for _,b in model:GetDescendants()do if b:IsA('Bone')then bones[b.Name]=b end end
+ local count=0;for _ in bones do count+=1 end
+ check(count==15,'continuous 15-bone skin')
+ check(not model:FindFirstChild('LegL') and not model:FindFirstChild('Head'),'no segmented replacement pieces')
  check(model.ArmL:GetAttribute('SeleneRest').Position.X<0,'canonical left sleeve remains on original side')
- check(model.Head:GetAttribute('SeleneRest').LookVector.Z>.99,'segmented hood retains corrected front orientation')
+ check(model:GetAttribute('SeleneSkinned')==true,'new skin contract enabled')
  root.Position+=Vector3.new(28,0,0)
  local previous=model.PrimaryPart.Position;local maximumStep=0
  for i=1,100 do
@@ -53,30 +58,33 @@ local ok,err=xpcall(function()
  model:SetAttribute('SeleneMoveSpeed',12)
  for _,fps in ipairs({30,60,144}) do
   local view=Presentation.bind(model,function()return character end);check(view~=nil,'bind actual articulated model')
-  local rest=model.PrimaryPart.CFrame*model.ArmL:GetAttribute('SeleneRest')
+  local rest=bones.UpperL.Transform
   for i=1,math.floor(fps*.36) do view:update(1/fps,i/fps) end
-  check((model.ArmL.CFrame.Position-rest.Position).Magnitude>.02,'shoulder gait moves visible sleeve at '..fps..'Hz')
-  local left=model.LegL.CFrame.Position-(model.PrimaryPart.CFrame*model.LegL:GetAttribute('SeleneRest')).Position
-  local right=model.LegR.CFrame.Position-(model.PrimaryPart.CFrame*model.LegR:GetAttribute('SeleneRest')).Position
+  check(bones.UpperL.Transform~=rest,'shoulder gait deforms the skin at '..fps..'Hz')
+  local left=view.skin.basis.LegL:VectorToWorldSpace(bones.LegL.Transform.Position)
+  local right=view.skin.basis.LegR:VectorToWorldSpace(bones.LegR.Transform.Position)
   check(left.Z*right.Z<0,'feet stride in opposite directions at '..fps..'Hz')
   check(math.min(left.Y,right.Y)<.01 and math.max(left.Y,right.Y)>.02,'stance stays planted while swing foot lifts at '..fps..'Hz')
-  local armBefore=model.ArmR.Position.Z;local footBefore=model.LegL.Position.Z
+  local before=bones.LegL.Transform
   view.phase+=math.pi;view:update(0,1)
-  check((model.ArmR.Position.Z-armBefore)*(model.LegL.Position.Z-footBefore)<0,'same-side lantern arm counter-swings against foot at '..fps..'Hz')
+  check(bones.LegL.Transform~=before,'opposite stride deforms the existing foot at '..fps..'Hz')
   view.phase-=math.pi;view:update(0,1)
   for _,action in ipairs({'Heal','Protect','Cleanse'}) do
    local health=h.Health
    view:play(10,action,12,character);view:update(1/fps,10.4)
-   check(view.effect and view.effect.beam.Attachment0.Parent==model.ArmL,'effect originates at animated healing hand')
+   check(view.effect and view.effect.beam.Attachment0.Parent==model.VisualRoot,'effect originates at animated healing hand')
+   local expected=require(game.StarterPlayer.StarterPlayerScripts.Client.SeleneSkinMotion).hand(view.skin)
+   check((view.effect.source.WorldPosition-expected.Position).Magnitude<.001,'healing socket tracks the transformed palm')
    check(view.effect.beam.Attachment1.Parent==root,'effect tracks actual recipient')
    check(#view.effect.ring==24,'bounded readable ground ring')
    check(view.effect.label.Text==(action=='Heal' and '+12 HP' or action=='Protect' and 'PROTECTED' or 'CLEANSED'),'distinct actual support result')
    check(h.Health==health,'presentation cannot grant health')
    view:update(1/fps,14)
    check(view.effect==nil,'all effect references cleaned at expiry')
-   check(not root:FindFirstChild('SeleneSupportRecipient') and not model.ArmL:FindFirstChild('SeleneHealingHand'),'recipient and caster attachments cleaned')
+   check(not root:FindFirstChild('SeleneSupportRecipient') and not model.VisualRoot:FindFirstChild('SeleneHealingHand'),'recipient and caster attachments cleaned')
   end
   view:play(20,'Heal',12,character);view:destroy();check(view.effect==nil,'stream out cleans active effect')
+  for _,b in bones do check(b.Transform==CFrame.identity,'stream out resets skin pose')end
  end
  local eventView=Presentation.bind(model,function()return character end)
  model:SetAttribute('SupportTargetUserId',1);model:SetAttribute('LastSupport','Heal');model:SetAttribute('SupportAmount',12);model:SetAttribute('SupportAt',30)
@@ -90,4 +98,4 @@ local ok,err=xpcall(function()
  check(not workspace:FindFirstChild('SeleneSupportEffect'),'no leaked effect containers')
 end,debug.traceback)
 folder:Destroy();if not ok then table.insert(report.failures,err) end
-report.pass=ok;print('SELENE_MOTION_NATIVE '..game.HttpService:JSONEncode(report));assert(ok,err)
+report.pass=ok;workspace:SetAttribute('SeleneMotionQAReport',game.HttpService:JSONEncode(report));print('SELENE_MOTION_NATIVE '..game.HttpService:JSONEncode(report));assert(ok,err)

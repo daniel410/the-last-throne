@@ -12,7 +12,7 @@ local ok,err=xpcall(function()
   local root=model.PrimaryPart
   check((root.Position-ground).Magnitude<.001,'actor anchor preserved: '..case.name)
   check(not root.CanCollide and not root.CanQuery and not root.CanTouch,'root remains inert')
-  local copy=model:Clone();copy.PrimaryPart=nil;copy.ActorRoot:Destroy();copy.Parent=folder
+  local copy=model:Clone();copy.PrimaryPart=nil;copy.ActorRoot:Destroy();copy.VisualRoot:Destroy();copy.Parent=folder
   local cf,size=copy:GetBoundingBox();local scale=case.options.scale or 1
   check(math.abs(size.Y-4.8*scale)<.01,'visible mesh height: '..case.name)
   check(math.abs(cf.Position.Y-size.Y/2-ground.Y)<.01,'visible mesh rests on the ground')
@@ -28,4 +28,4 @@ local ok,err=xpcall(function()
  end
 end,debug.traceback)
 folder:Destroy();if not ok then table.insert(report.failures,tostring(err)) end
-report.pass=ok;print('SELENE_SIZE_NATIVE '..game:GetService('HttpService'):JSONEncode(report));assert(ok,'Selene size fixture failed')
+report.pass=ok;workspace:SetAttribute('SeleneSizeQAReport',game.HttpService:JSONEncode(report));print('SELENE_SIZE_NATIVE '..game:GetService('HttpService'):JSONEncode(report));assert(ok,'Selene size fixture failed')

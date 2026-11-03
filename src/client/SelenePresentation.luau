@@ -2,6 +2,7 @@
 local Run=game:GetService('RunService')
 local Players=game:GetService('Players')
 local Tags=game:GetService('CollectionService')
+local Skin=require(script.Parent.SeleneSkinMotion)
 local View={}
 local GOLD=Color3.fromRGB(255,223,132)
 local MINT=Color3.fromRGB(145,255,200)
@@ -30,16 +31,17 @@ function View.bind(model,resolveCharacter)
   local rest=p:IsA('BasePart') and p:GetAttribute('SeleneRest')
   if rest then table.insert(record.parts,{part=p,rest=rest,shoulder=p:GetAttribute('SeleneShoulder'),hip=p:GetAttribute('SeleneHip')}) end
  end
- if #record.parts<6 then return end -- Atomic stream-in; retry when ready.
+ record.skin=Skin.bind(model,root)
+ if #record.parts~=4 or not record.skin then return end -- Atomic stream-in; retry when ready.
  function record:play(at,action,amount,character)
   clearEffect(self)
   local targetRoot=character and character:FindFirstChild('HumanoidRootPart')
   local humanoid=character and character:FindFirstChildOfClass('Humanoid')
-  local arm=model:FindFirstChild('ArmL',true)
+  local arm=self.skin.visual
   if not arm or not targetRoot or not humanoid or humanoid.Health<=0 then return end
   local folder=Instance.new('Folder');folder.Name='SeleneSupportEffect';folder.Parent=workspace
   local color=action=='Heal' and MINT or action=='Protect' and GOLD or Color3.fromRGB(187,224,255)
-  local source=Instance.new('Attachment');source.Name='SeleneHealingHand';source.Position=Vector3.new(0,-arm.Size.Y*.32,0);source.Parent=arm
+  local source=Instance.new('Attachment');source.Name='SeleneHealingHand';source.CFrame=arm.CFrame:ToObjectSpace(Skin.hand(self.skin));source.Parent=arm
   local target=Instance.new('Attachment');target.Name='SeleneSupportRecipient';target.Parent=targetRoot
   emitter(source,GOLD):Emit(12);emitter(target,color):Emit(action=='Heal' and 32 or 24)
   local beam=Instance.new('Beam');beam.Name='BlessingLink';beam.Attachment0=source;beam.Attachment1=target
@@ -68,32 +70,11 @@ function View.bind(model,resolveCharacter)
   local weight=math.clamp(self.speed/13,0,1)
   local supportAt=model:GetAttribute('SupportAt')
   local age=supportAt and now-supportAt or math.huge
-  local cast=age>=0 and age<1.25 and math.sin(math.clamp(age/1.25,0,1)*math.pi)^.65 or 0
-  local breath=math.sin(now*2.1)*.009
-  -- Separate hood, robe, feet and sleeves retain the TD silhouette.
-  -- Foot lift occurs only during swing; stance feet do not inherit torso bob.
-  local body=CFrame.new(0,breath+.035*weight*(1-math.cos(self.phase*2)),0)
-   *CFrame.Angles(-.025*weight-.025*cast,math.sin(self.phase)*.018*weight,math.sin(self.phase)*.022*weight)
-  for _,p in ipairs(self.parts) do
-   if p.part.Parent then
-    local pose=body
-    if p.shoulder then
-     local left=p.part.Name=='ArmL'
-     local swing=math.sin(self.phase)*(left and .13 or -.08)*weight
-     local rotation=CFrame.Angles(swing-(left and .72 or .13)*cast,0,(left and -.18 or .06)*cast)
-     pose=body*CFrame.new(p.shoulder)*rotation*CFrame.new(-p.shoulder)
-    elseif p.hip then
-     local stride=self.phase+(p.part.Name=='LegL' and 0 or math.pi)
-     local swing=math.sin(stride)
-     pose=CFrame.new(0,math.max(0,swing)*.16*weight,-swing*.3*weight)
-      *CFrame.new(p.hip)*CFrame.Angles(swing*.09*weight,0,0)*CFrame.new(-p.hip)
-    elseif p.part.Name=='Head' then
-     local neck=Vector3.new(0,3.25,0)*(model:GetAttribute('SeleneMotionScale') or 1)
-     pose=body*CFrame.new(neck)*CFrame.Angles(.035*cast,math.sin(now*.7)*.025*(1-weight),0)*CFrame.new(-neck)
-    end
-    p.part.CFrame=self.cf*pose*p.rest
-   end
+  local cast=age>=0 and age<1.25 and math.sin(math.clamp(age/1.25,0,1)*math.pi)^2 or 0
+  for _,p in ipairs(self.parts)do
+   if p.part.Parent then p.part.CFrame=self.cf*p.rest end
   end
+  Skin.step(self.skin,self.phase,weight,cast,now)
   -- Only a fresh server-confirmed event may display support. Late stream-in
   -- does not replay an old heal; a not-yet-streamed recipient gets a short retry.
   if supportAt and supportAt~=self.seen then
@@ -109,6 +90,7 @@ function View.bind(model,resolveCharacter)
    if t>e.duration or not e.root.Parent or not alive or alive.Health<=0 or root.LocalTransparencyModifier>=1 then clearEffect(self);return end
    local fade=math.clamp((t-e.duration+.5)/.5,0,1)
    e.beam.Transparency=NumberSequence.new(math.clamp(.2+t*.8,.2,1));e.light.Brightness=1.5*(1-fade)
+   e.source.CFrame=self.skin.visual.CFrame:ToObjectSpace(Skin.hand(self.skin))
    e.glow.CFrame=e.source.WorldCFrame;e.glow.Transparency=math.clamp(t,0,1)
    local h=e.character:FindFirstChildOfClass('Humanoid')
    local foot=e.root.Position.Y-(h and h.HipHeight+e.root.Size.Y*.5 or 3)+.08
@@ -124,6 +106,7 @@ function View.bind(model,resolveCharacter)
  end
  function record:destroy()
   clearEffect(self)
+  Skin.reset(self.skin)
   for _,p in ipairs(self.parts) do if p.part.Parent and root.Parent then p.part.CFrame=root.CFrame*p.rest end end
  end
  return record

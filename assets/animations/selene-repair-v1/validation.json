@@ -1,0 +1,21 @@
+{
+  "workId": "TLT-016/057/061/072/084",
+  "stage": "GLB authoring validation; runtime status is recorded separately",
+  "sourceSha256": "343aa570e5cc459a3b3896ca1c5c6c31103b4b82a5305dc9459883a0f31cce9e",
+  "candidateSha256": "1c8249ed0e0af0bc38c187f7a6e920b53b7dfee15dee5523ceed4279334bcdf3",
+  "bytes": 767256,
+  "meshes": 3,
+  "bones": 15,
+  "triangles": 2989,
+  "vertices": 3917,
+  "restSurfaceAndUVPreserved": true,
+  "surfaceComparisonDecimalPlaces": 4,
+  "normalizedWeights": true,
+  "animationTracks": 0,
+  "sourceTextureSha256": [
+    "9296218ba66cffc0059a510d5f25833f657190477db41864afb5241b35548b47"
+  ],
+  "candidateTextureSha256": [
+    "9296218ba66cffc0059a510d5f25833f657190477db41864afb5241b35548b47"
+  ]
+}
