@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"1\":{\"panel\":{\"1\":800,\"2\":510},\"canvas\":816,\"root\":{\"1\":1108,\"2\":707},\"easyImage\":\"rbxassetid://126012242626142\",\"name\":\"desktop1108x707\",\"scroll\":{\"1\":768,\"2\":332},\"hellActive\":true,\"solo\":{\"y\":426,\"height\":48,\"visibleAtTop\":false,\"active\":true},\"easyLoaded\":true},\"3\":{\"panel\":{\"1\":800,\"2\":510},\"canvas\":1046,\"root\":{\"1\":1108,\"2\":707},\"easyImage\":\"rbxassetid://126012242626142\",\"name\":\"party-not-ready-lockedHell\",\"scroll\":{\"1\":768,\"2\":332},\"launch\":{\"y\":882,\"height\":48,\"visibleAtTop\":false,\"active\":true},\"hellActive\":true,\"solo\":{\"y\":490,\"height\":48,\"visibleAtTop\":false,\"active\":false},\"easyLoaded\":true},\"2\":{\"panel\":{\"1\":800,\"2\":366},\"canvas\":816,\"root\":{\"1\":844,\"2\":390},\"easyImage\":\"rbxassetid://126012242626142\",\"name\":\"mobile844x390\",\"scroll\":{\"1\":768,\"2\":188},\"hellActive\":true,\"solo\":{\"y\":426,\"height\":48,\"visibleAtTop\":false,\"active\":true},\"easyLoaded\":true}}"
+    }
+  ],
+  "isError": false
+}
