@@ -1,5 +1,7 @@
 # 아이템·장비·리셋권 수익화 계획
 
+> **2026-11-03 등급 설계 후속:** [아이템 등급 계획](production/item-rarity-plan-2026-11-03.md)은 기존 Common/Uncommon/Rare를 유지하고 Epic/Legendary/Unique를 확장하는 추천안이다. 무료 확정 획득·동일 세대 예산·Unique 효과·강화 연계를 정의하며 기존 상품 가격/등급/권리와 확정 판매 방향은 유지한다. 새 등급 판매 정책·수치·상품ID를 확정하거나 런타임에 반영한 것은 아니다.
+
 문서 묶음 v0.24 · 2026-10-27, America/Toronto · 상태: 사용자 요구 반영, 신규 상품/가격/수치 제안·출시 전
 
 [정본 아이템 카탈로그](../assets/economy/item-catalog-v1.json) · [프롤로그 안내](prologue-dawnspire-tutorial.md) · [성장 예산](story-progression-budget.md) · [공통 지갑/결제](experience-integration.md)
