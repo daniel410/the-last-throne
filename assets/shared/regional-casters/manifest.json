@@ -1,0 +1,59 @@
+{
+  "task": "MR-01",
+  "date": "2026-11-03",
+  "uploaded": true,
+  "localRuntimeConnected": true,
+  "published": false,
+  "releaseTag": null,
+  "models": [
+    {
+      "kind": "QueenIceElf",
+      "targetHeight": 6.2375,
+      "modelAssetId": 123995081544370,
+      "bodyMeshId": 87082222255321,
+      "staffMeshId": 98788108850990,
+      "textureId": 116018092489297,
+      "sourceGlbSha256": "12c22698d65d224c2857cdd9a58bdcf898754f807983fcafae710b0c964ec256",
+      "bones": 9,
+      "clips": 10,
+      "creatorType": "User",
+      "creatorId": 9156786071,
+      "creatorName": "Robloxianb1b5e7p5p"
+    },
+    {
+      "kind": "VolcanoShaman",
+      "targetHeight": 5.2325,
+      "modelAssetId": 136821843369834,
+      "bodyMeshId": 117483065629295,
+      "staffMeshId": 77540020824267,
+      "textureId": 131610066809992,
+      "sourceGlbSha256": "0f4d11e8731c953d52ea3c6469c326a21d2dfae1cc12ede6cf5d7ef7b9952c01",
+      "bones": 9,
+      "clips": 10,
+      "creatorType": "User",
+      "creatorId": 9156786071,
+      "creatorName": "Robloxianb1b5e7p5p"
+    },
+    {
+      "kind": "KingVolcanoShaman",
+      "targetHeight": 8.10875,
+      "modelAssetId": 117336003053779,
+      "bodyMeshId": 119163831733699,
+      "staffMeshId": 112698580463422,
+      "textureId": 105871246621076,
+      "sourceGlbSha256": "887cefa69ed66ef9f5ead1a7d9d0c14bf09023479ded04babaaf54f498039163",
+      "bones": 9,
+      "clips": 10,
+      "creatorType": "User",
+      "creatorId": 9156786071,
+      "creatorName": "Robloxianb1b5e7p5p"
+    }
+  ],
+  "files": {
+    "runtime.rbxm": "c8d132f86aeda0bddd0b070407856dadeccb8c4c1866ce53a9a7516f9bcee9cf",
+    "imported.rbxm": "861ce9615fd5552ee4219fc9fdc10c2d18ee32251d4b6fa4cca1d833453c380a"
+  },
+  "rightsEvidence": "Studio Me import; user inventory Model results and GetProductInfo for six meshes and three images match User 9156786071; local engine ContentProvider fetch succeeds; published Experience permission remains unverified",
+  "serialization": "Roblox SerializationService engine-generated RBXM; shared Bone and Motor6D associations preserved",
+  "runtimeCoordinateBasis": "Roblox importer (-X,+Y,-Z); rest-relative retargeted Pose transforms; no additional visual yaw"
+}

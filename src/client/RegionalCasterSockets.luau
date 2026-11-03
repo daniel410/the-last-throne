@@ -1,0 +1,2 @@
+-- Original normalized GLB staff head; converted through the imported rest Bone.
+return {["QueenIceElf"]={tip=Vector3.new(0.358854498,0.959091303,0.0254336819),base=Vector3.new(0.358854498,0.839091303,0.0254336819)},["VolcanoShaman"]={tip=Vector3.new(0.306923774,0.968421277,0.122432777),base=Vector3.new(0.306923774,0.848421277,0.122432777)},["KingVolcanoShaman"]={tip=Vector3.new(0.287435982,0.919552165,0.142687777),base=Vector3.new(0.287435982,0.799552165,0.142687777)}}

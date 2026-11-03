@@ -7,6 +7,7 @@ for kind,profile in pairs(require(script.Parent.FrozenValeClips).models)do Clips
 for kind,profile in pairs(require(script.Parent.EmberCalderaClips).models)do Clips.models[kind]=profile end
 local HitReaction=require(script.Parent.K0EnemyHitReaction)
 local WeaponMotion=require(script.Parent.K0EnemyWeaponMotion)
+local CasterMotion=require(script.Parent.RegionalCasterMotion)
 local Motion={}
 local channels={'body','weapon','off','rightLeg','leftLeg'}
 local names={weapon='Left Shoulder',off='Right Shoulder',rightLeg='Right Hip',leftLeg='Left Hip'}
@@ -64,11 +65,21 @@ function Motion.bind(model)
    end
   end
  end
- s.weaponFX=WeaponMotion.bind(model)
+ s.caster=CasterMotion.bind(model,visual,s.height)
+ if model:GetAttribute('TdSkinnedCaster') and not s.caster then return nil end
+ s.weaponFX=WeaponMotion.bind(model,s.caster)
  return s
 end
 function Motion.step(s,dt,current)
  dt=clamp(dt,0,.25)
+ if s.caster then
+  local humanoid=s.model:FindFirstChildOfClass('Humanoid')
+  if not humanoid or humanoid.Health<=0 or s.model:GetAttribute('K0EnemyState')=='Dead'then WeaponMotion.hide(s.weaponFX);return end
+  local phase,active,heavy,clock,jumped=CasterMotion.step(s.caster,s,dt,current,Motion.attackPhase)
+  s.caster.bones.Root.Transform=s.caster.pose.Root*HitReaction.sample(s.model,current)
+  WeaponMotion.step(s.weaponFX,phase,active,heavy,clock,current,s.viewDistance or 0,jumped)
+  return
+ end
  local delta=s.root.Position-s.position;local distance=Vector3.new(delta.X,0,delta.Z).Magnitude;s.position=s.root.Position
  local state=s.model:GetAttribute('K0EnemyState');local alive=s.model:FindFirstChildOfClass('Humanoid')
  if state=='Dead' or not alive or alive.Health<=0 then WeaponMotion.hide(s.weaponFX);return end
@@ -143,6 +154,7 @@ function Motion.step(s,dt,current)
  WeaponMotion.step(s.weaponFX,attackPhase,attackActive,s.attack and s.attack.heavy,clock,current,s.viewDistance or 0,distance>math.max(3,s.height*1.5))
 end
 function Motion.unbind(s)
+ CasterMotion.reset(s.caster)
  WeaponMotion.destroy(s.weaponFX);s.weaponFX=nil
  if s.body.Parent then s.body.Size=s.bodySize end
  if s.joint.Parent then s.joint.Transform=CFrame.identity end

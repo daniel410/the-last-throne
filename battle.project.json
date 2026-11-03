@@ -56,6 +56,9 @@
       },
       "DeepwoodWeaponRepairModels": {
         "$path": "assets/shared/deepwood-weapon-repair/runtime.rbxmx"
+      },
+      "RegionalCasterModels": {
+        "$path": "assets/shared/regional-casters/runtime.rbxm"
       }
     },
     "StarterPlayer": {

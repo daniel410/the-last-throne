@@ -5,14 +5,15 @@ local FrozenRigs=table.clone(require(game:GetService('ReplicatedStorage').Shared
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.EmberCalderaRigs))do FrozenRigs[kind]=spec end
 local Weapon={}
 local function point(part,v)return part.Size*Vector3.new(v[1],v[2],v[3])end
-function Weapon.bind(model)
+function Weapon.bind(model,caster)
  local kind=model:GetAttribute('EnemyKind');local spec=Sockets[kind] or FrozenRigs[kind] and FrozenRigs[kind].socket
  local visual=model:FindFirstChild('TdMonsterVisual');local part=visual and visual:FindFirstChild(model:GetAttribute('TdWeaponPart') or model:GetAttribute('TdWeaponArm') or 'ArmR')
  if not spec or not part then return nil end
  for _,name in ipairs({'K0WeaponPresentation','K0BladeTip','K0BladeBase'})do local old=part:FindFirstChild(name);if old then old:Destroy()end end
  local folder=Instance.new('Folder');folder.Name='K0WeaponPresentation';folder.Parent=part
- local a=Instance.new('Attachment');a.Name='K0BladeTip';a.Position=point(part,spec.tip);a.Parent=part
- local b=Instance.new('Attachment');b.Name='K0BladeBase';b.Position=point(part,spec.base);b.Parent=part
+ local socketPart=caster and visual.VisualRoot or part
+ local a=Instance.new('Attachment');a.Name='K0BladeTip';a.Position=point(part,spec.tip);a.Parent=socketPart
+ local b=Instance.new('Attachment');b.Name='K0BladeBase';b.Position=point(part,spec.base);b.Parent=socketPart
  -- Attachments must be direct BasePart children to follow the physical mesh.
  local trail=Instance.new('Trail');trail.Name='WeaponEdge';trail.Attachment0=a;trail.Attachment1=b
  trail.Color=ColorSequence.new(spec.element=='fire' and Color3.fromRGB(255,183,105) or spec.caster and Color3.fromRGB(123,224,190) or Color3.fromRGB(224,231,214))
@@ -31,11 +32,16 @@ function Weapon.bind(model)
  local root=model:FindFirstChild('HumanoidRootPart');local torso=model:FindFirstChild('Torso')
  local shoulder=torso and torso:FindFirstChild(model:GetAttribute('TdWeaponShoulder') or 'Left Shoulder')
  return {folder=folder,part=part,a=a,b=b,trail=trail,shards=shards,position=part.Position,clock=nil,
-  root=root,rootJoint=root and root:FindFirstChild('RootJoint'),shoulder=shoulder,
+  root=root,rootJoint=root and root:FindFirstChild('RootJoint'),shoulder=not caster and shoulder or nil,caster=caster,
   socketInArm=shoulder and shoulder.Part1.CFrame:ToObjectSpace(part.CFrame)*a.CFrame}
 end
 function Weapon.step(s,phase,active,heavy,clock,current,distance,discontinuity)
  if not s or not s.folder.Parent then return end
+ if s.caster then
+  local c=s.caster;local cf=c.bones.Staff.TransformedWorldCFrame
+  s.a.CFrame=s.a.Parent.CFrame:ToObjectSpace(cf*CFrame.new(c.tip))
+  s.b.CFrame=s.b.Parent.CFrame:ToObjectSpace(cf*CFrame.new(c.base))
+ end
  local jumped=discontinuity or (s.part.Position-s.position).Magnitude>math.max(3,s.part.Size.Magnitude);s.position=s.part.Position
  if jumped or s.clock~=clock then s.trail:Clear();s.clock=clock end
  -- Short trails only during the actual downswing/follow-through. No idle glow.

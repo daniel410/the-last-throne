@@ -38,7 +38,12 @@ local ok,err=xpcall(function()
     m:SetAttribute('K0EnemyAttackClock',(clip:find('Alt')and'2'or'1')..'|3000|1|0.2|0.8|'..(clip:find('Heavy')and'1'or'0'))
     Motion.step(q,1/hz,3001);table.insert(poses,q.pose)
     local hit=Motion.sample(kind,clip,.62)
-    for _,ch in ipairs(Clips.channels)do for i,v in ipairs(hit[ch])do check(math.abs(q.pose[ch][i]-v)<.001,kind..' exact contact at '..hz..'Hz')end end
+    if q.caster then
+     local target=require(Client.RegionalCasterMotion).sample(kind,clip,.62,q.height)
+     for name,cf in target do local delta=cf:Inverse()*q.caster.bones[name].Transform;local _,angle=delta:ToAxisAngle();check(delta.Position.Magnitude<.0001 and math.abs(angle)<.002,kind..' imported exact contact '..name)end
+    else
+     for _,ch in ipairs(Clips.channels)do for i,v in ipairs(hit[ch])do check(math.abs(q.pose[ch][i]-v)<.001,kind..' exact contact at '..hz..'Hz')end end
+    end
     check(root.CFrame==original and m.Humanoid.Health==hp,'pose cannot change server root/health')
     Motion.unbind(q)
    end
@@ -93,11 +98,9 @@ local ok,err=xpcall(function()
  end
  local profile=Clips.models.LavaSlime
  for _,channels in pairs(profile.clips)do for _,v in ipairs(channels.body)do check(math.abs(v[7]*v[8]*v[9]-1)<.025,'lava volume preserved while compressing')end end
- for _,kind in ipairs({'QueenIceElf','VolcanoShaman','KingVolcanoShaman'})do
-  local ready,hit=Motion.sample(kind,'Attack',.4).body,Motion.sample(kind,'Attack',.62).body
-  check(math.abs(ready[4]-hit[4])>3,kind..' body still visibly delivers the cast')
-  for _,channels in pairs(Clips.models[kind].clips)do for _,ch in ipairs({'weapon','off'})do for _,v in ipairs(channels[ch])do check(math.abs(v[1])+math.abs(v[2])+math.abs(v[3])<.001,kind..' staff and robe seam use common body anchor')end end end
- end
+ -- Imported caster articulation, seams and interruption are covered against GLB
+ -- skinning fixtures in regional-caster-runtime-native.luau.
+
 end,debug.traceback)
 if not ok then table.insert(report.failures,tostring(err))end
 folder:Destroy();Run:Stop();report.pass=#report.failures==0

@@ -39,13 +39,18 @@ local ok,err=xpcall(function()
    local heavy=sequence>=3;local clip=(heavy and 'Heavy' or 'Attack')..(sequence%2==0 and 'Alt' or '')
    model:SetAttribute('K0EnemyState','Windup');model:SetAttribute('K0EnemyAttackClock',sequence..'|500|1.2|.15|1.4|'..(heavy and '1' or '0'))
    Motion.step(s,1/hz,500.96)
-   local before=s.joints.weapon and s.joints.weapon.Transform
+   local before=s.caster and s.caster.bones.ForearmR.Transform or s.joints.weapon and s.joints.weapon.Transform
    Motion.step(s,1/hz,501.2)
-   for _,ch in ipairs(Clips.channels)do for i,value in ipairs(Motion.sample(kind,clip,.62)[ch])do check(math.abs(s.pose[ch][i]-value)<.0001,kind..' exact server contact at '..hz..'Hz')end end
+   if s.caster then
+    local pose=require(Client.RegionalCasterMotion).sample(kind,clip,.62,s.height)
+    for name,cf in pose do local delta=cf:Inverse()*s.caster.bones[name].Transform;local _,angle=delta:ToAxisAngle();check(delta.Position.Magnitude<.0001 and math.abs(angle)<.002,kind..' imported Bone contact '..name)end
+   else
+    for _,ch in ipairs(Clips.channels)do for i,value in ipairs(Motion.sample(kind,clip,.62)[ch])do check(math.abs(s.pose[ch][i]-value)<.0001,kind..' exact server contact at '..hz..'Hz')end end
+   end
    if spec.socket then
     check(s.weaponFX and s.weaponFX.trail.Enabled,kind..' actual moving weapon trail')
-    local delta=(before:Inverse()*s.joints.weapon.Transform);local _,angle=delta:ToAxisAngle()
-    if kind=='VolcanoShaman'or kind=='KingVolcanoShaman'then check(math.abs(angle)<.001,kind..' split source staff retains its common body anchor')else check(math.abs(angle)>.05,kind..' weapon advances at contact')end
+    local delta=(before:Inverse()*(s.caster and s.caster.bones.ForearmR.Transform or s.joints.weapon.Transform));local _,angle=delta:ToAxisAngle()
+    if s.caster then check(math.abs(angle)>.01,kind..' skinned elbow advances at contact')else check(math.abs(angle)>.05,kind..' weapon advances at contact')end
     check(s.weaponFX.a.Position.Magnitude>0,kind..' authored tip follows original mesh')
    end
    Motion.step(s,1/hz,503)

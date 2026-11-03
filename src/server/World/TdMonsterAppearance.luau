@@ -5,6 +5,7 @@ local RigSockets = require(game:GetService("ReplicatedStorage").Shared.EnemyRigS
 
 local FrozenRigs=require(game:GetService('ReplicatedStorage').Shared.FrozenValeRigs)
 local Appearance = {}
+local RegionalCasters = require(script.Parent.RegionalCasterAppearance)
 local SPECS = {
 	Goblin = { template = "goblin", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
 	Orc = { template = "orc", parts = { "Body", "ArmL", "ArmR", "LegL", "LegR" } },
@@ -52,6 +53,7 @@ local function templateFor(kind)
 end
 
 function Appearance.describe(kind)
+	if RegionalCasters.supports(kind) then return RegionalCasters.describe(kind) end
 	local spec, height, _, scale = templateFor(kind)
 	local names = {}
 	for _, name in ipairs(spec.parts) do table.insert(names, name) end
@@ -61,6 +63,7 @@ end
 function Appearance.attach(rig, kind, footOffset, visualMultiplier)
 	assert(rig and rig:IsA("Model"), "TD monster visual requires a Model rig")
 	assert(not rig:FindFirstChild("TdMonsterVisual"), "TD monster visual already attached")
+	if RegionalCasters.supports(kind) then return RegionalCasters.attach(rig,kind,footOffset,visualMultiplier) end
 	local root = rig:FindFirstChild("HumanoidRootPart")
 	assert(root and root:IsA("BasePart"), "TD monster rig needs HumanoidRootPart")
 	local spec, sourceHeight, sources, scale = templateFor(kind)
