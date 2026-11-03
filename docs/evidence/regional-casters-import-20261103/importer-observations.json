@@ -1,0 +1,38 @@
+{
+  "workId": "MR-01",
+  "sourceRevision": "regional-casters-v2",
+  "method": "native Studio Import Preview via computer use; final Import not clicked",
+  "models": {
+    "QueenIceElf": {
+      "v2FileGeneralWarningsObserved": false,
+      "clipsDisplayed": 10
+    },
+    "VolcanoShaman": {
+      "v2FileGeneralWarningsObserved": false,
+      "clipsDisplayed": 10
+    },
+    "KingVolcanoShaman": {
+      "v2FileGeneralWarningsObserved": false,
+      "clipsDisplayed": 10
+    }
+  },
+  "settings": {
+    "creator": "Me",
+    "rigType": "Custom",
+    "keepZeroInfluenceBones": true,
+    "addToWorkspace": true,
+    "importAsPackage": false
+  },
+  "uploaded": false,
+  "gameConnected": false,
+  "approval": "pending explicit user response",
+  "sha256": {
+    "tools/prepare-regional-caster-import.py": "008050b80078ea3565ce8140aa24bc24eae1a64ff630ef9eba5aac086cedcca0",
+    "tests/regional-caster-import.spec.py": "780443f2f8a5efa5fda633da40b04aedf46b7d8699283546e03b101278ea2ca7"
+  },
+  "settingsCheckedOn": [
+    "QueenIceElf",
+    "KingVolcanoShaman"
+  ],
+  "previewClosedWithoutImport": true
+}

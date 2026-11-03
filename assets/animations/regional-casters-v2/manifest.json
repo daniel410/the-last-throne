@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "workId": "MR-01",
+  "status": "Roblox importer revision; no upload performed by this script",
+  "uploaded": false,
+  "models": {
+    "QueenIceElf": {
+      "source": "assets/animations/regional-casters-v1/QueenIceElf-rigged.glb",
+      "sourceSha256": "8d0b9de270c9d0ab3a5bfa9d0237461db7e5aeb72adf46f31b889cb2412047ec",
+      "file": "QueenIceElf-rigged.glb",
+      "sha256": "12c22698d65d224c2857cdd9a58bdcf898754f807983fcafae710b0c964ec256",
+      "removedConstantScaleTracks": 90,
+      "geometryAndSkinBinaryUnchanged": true
+    },
+    "VolcanoShaman": {
+      "source": "assets/animations/regional-casters-v1/VolcanoShaman-rigged.glb",
+      "sourceSha256": "b0b58f6c3388798f7ea25514bb5947b4a2b442d977d3b55170e7ed43edc4faba",
+      "file": "VolcanoShaman-rigged.glb",
+      "sha256": "0f4d11e8731c953d52ea3c6469c326a21d2dfae1cc12ede6cf5d7ef7b9952c01",
+      "removedConstantScaleTracks": 90,
+      "geometryAndSkinBinaryUnchanged": true
+    },
+    "KingVolcanoShaman": {
+      "source": "assets/animations/regional-casters-v1/KingVolcanoShaman-rigged.glb",
+      "sourceSha256": "eface6984c5ae83272899729ace6799fe578b1f7bf5f62c6c79e06b1ee61676b",
+      "file": "KingVolcanoShaman-rigged.glb",
+      "sha256": "887cefa69ed66ef9f5ead1a7d9d0c14bf09023479ded04babaaf54f498039163",
+      "removedConstantScaleTracks": 90,
+      "geometryAndSkinBinaryUnchanged": true
+    }
+  }
+}

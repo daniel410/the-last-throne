@@ -1,0 +1,71 @@
+{
+  "workId": "MR-01",
+  "scope": "import-ready GLB CPU skinning; not Roblox skin rendering",
+  "checks": 41780,
+  "pass": true,
+  "models": {
+    "QueenIceElf": {
+      "checks": 15047,
+      "sha256": "12c22698d65d224c2857cdd9a58bdcf898754f807983fcafae710b0c964ec256",
+      "gripPairs": 135,
+      "maxGripGap": 1.8938642627727856e-06,
+      "maxFootMotion": 0,
+      "maxStaffLengthError": 2.4255800812333916e-08,
+      "triangles": 4864,
+      "clips": [
+        "Attack",
+        "AttackAlt",
+        "Exposed",
+        "Heavy",
+        "HeavyAlt",
+        "Idle",
+        "Interrupted",
+        "Return",
+        "Stunned",
+        "Walk"
+      ]
+    },
+    "VolcanoShaman": {
+      "checks": 14314,
+      "sha256": "0f4d11e8731c953d52ea3c6469c326a21d2dfae1cc12ede6cf5d7ef7b9952c01",
+      "gripPairs": 53,
+      "maxGripGap": 1.9393445107785195e-07,
+      "maxFootMotion": 0,
+      "maxStaffLengthError": 5.238778855165549e-09,
+      "triangles": 4472,
+      "clips": [
+        "Attack",
+        "AttackAlt",
+        "Exposed",
+        "Heavy",
+        "HeavyAlt",
+        "Idle",
+        "Interrupted",
+        "Return",
+        "Stunned",
+        "Walk"
+      ]
+    },
+    "KingVolcanoShaman": {
+      "checks": 12413,
+      "sha256": "887cefa69ed66ef9f5ead1a7d9d0c14bf09023479ded04babaaf54f498039163",
+      "gripPairs": 27,
+      "maxGripGap": 1.1163885387126203e-07,
+      "maxFootMotion": 0,
+      "maxStaffLengthError": 8.749815627595581e-08,
+      "triangles": 4403,
+      "clips": [
+        "Attack",
+        "AttackAlt",
+        "Exposed",
+        "Heavy",
+        "HeavyAlt",
+        "Idle",
+        "Interrupted",
+        "Return",
+        "Stunned",
+        "Walk"
+      ]
+    }
+  }
+}
