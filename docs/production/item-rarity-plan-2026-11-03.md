@@ -1,5 +1,7 @@
 # 아이템 등급 도입 계획
 
+> **2026-11-03 추가 결정:** 강화 재료는 사용자 지시로 **보석·마석**을 사용한다. 보석은 Diamonds와 별도 재료로 설계하고 등급·강화 단계는 분리한다. [강화 재료 최신 계약](equipment-enhancement-plan-2026-11-02.md)을 따른다. 적용 단계/소모량/획득량·Gold 수수료는 제안이며 런타임 반영은 후속이다.
+
 2026-11-03 · TLT-027/028/029/041/043/044/045/052/073/082/084 · RESEARCH/PLAN → ENG/DES/ART → QA
 
 상태: **등급 도입은 사용자 요청, 아래 6단계·계수·획득량·고유 효과는 추천안**이다. 이번 산출물은 계획이며 게임 구현·가격 변경·게시 승인이 아니다. [조사](../research/2026-11-03-item-rarity.md), [강화](equipment-enhancement-plan-2026-11-02.md), [난이도·반복 보상](difficulty-rewards-and-entry-plan-2026-11-02.md), [상품](../items-and-monetization.md), [가방](../equipment-bag-and-storage.md)과 연결한다.
