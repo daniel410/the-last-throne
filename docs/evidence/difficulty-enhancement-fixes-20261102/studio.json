@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "526ee0ae8e24bfd4783a5d98ec1c99f93a6ac557",
+  "studioId": "0fc2283e-f042-4c81-8750-0422aee83559",
+  "mode": "Edit",
+  "scope": "isolated runner; no live datastore, no Teleport",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"forgeButtons\":17,\"service\":\"durable begin, first/repeat completion, forge/equip and equipment stats passed\",\"ui\":\"four modes, locked entry, enhancement and desktop/mobile controls passed\",\"pure\":\"difficulty, enhancement, departure recovery and store checks passed in native Luau\"}"
+      }
+    ],
+    "isError": false
+  }
+}

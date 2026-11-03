@@ -12,7 +12,7 @@ FV-Q1/EC-Q1 원정은 필수 보고의 main8/15 조건까지 확인한다. 퀘�
 - 난이도/강화111검사: 선택 퀘스트 두 종류의 차단/허용 경계 및 실제 완주, 초회/반복 탐색 projection·복사 격리·미해금 구역 숨김 포함.
 - 네이티브 Luau 컴파일, Studio Edit 격리 runner: 실제 InventoryService의 탐색 저장→storyState 노출, 초회/반복 저장·강화/장착 능력치 및 TD 상세 UI/모바일 크기 검사 통과. 실제 사용자/월드/Live DataStore를 사용하지 않았다. 임시 GUI/실행 task 정리 완료. 사용자가 이미 열어 둔 Studio는 보존했다.
 - `python3 scripts/simulate_story_progression.py --output /tmp/tlt-review-fixes/progression.json`: 승인 계산 최종Lv40/XP0, quest XP13,795, Gold19,652 유지.
-- 빌드 소스·해시는 후속 `build.json`, `build.log`, Studio 결과 파일로 고정한다. 기존 미커밋 TD 이동/로비/애니메이션 변경은 이번 커밋과 빌드에 포함하지 않는다.
+- 소스 `526ee0ae8e24bfd4783a5d98ec1c99f93a6ac557`을 git archive로 격리한 뒤 Lobby/Battle Rojo7.7.1 빌드 모두 성공했다. 산출물 해시는 `build.json`, 명령/출력은 `build.log`, 동일 고정 소스의 Studio 결과는 `studio.json`으로 기록했다. 고정 소스에서111/42/43 관련 검사 및 변경6모듈 네이티브 컴파일도 재확인했다. 기존 미커밋 TD 이동/로비/애니메이션 변경은 이번 커밋과 빌드에 포함하지 않는다.
 
 ## 미검증·인계
 
