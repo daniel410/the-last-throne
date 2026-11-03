@@ -5,6 +5,7 @@ function W.create()
  require(script.Parent.EmberCalderaWorld).create(world)
  require(script.Parent.LateEpicWorld).create(world)
  require(script.Parent.DeepwoodActivityWorld).create(world)
+ require(script.Parent.EpicWorldArt).create(world)
  return world
 end
 return W

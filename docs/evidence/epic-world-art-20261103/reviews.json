@@ -1,0 +1,42 @@
+[
+  {
+    "epic": "Deepwood",
+    "before": "사각 평지와 반복 나무, 옆면 노출, 지역을 기억할 풍경 부족",
+    "change": "기존 TD 숲·거목에 자연 지형 가장자리, 능선, 폭포, 감시탑·수도원·뿌리 성역을 추가",
+    "reference": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+    "referenceSha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d",
+    "visualReview": "native Studio entrance before/after, regional mood near view, final-zone view; not real-player acceptance"
+  },
+  {
+    "epic": "FrozenVale",
+    "before": "동그란 눈더미·네모 기둥·나무 구체로 설원/빙하가 읽히지 않음",
+    "change": "삼단 설송, 눈 덮인 골짜기·푸른 얼음 암벽, 석조 요새와 피난처 대비",
+    "reference": "../throne-defense/assets/concepts/maps-battle-target-v1/snow.png",
+    "referenceSha256": "e67b1502ef0ba7c6d56a0b57253ab20b44fa8e82f04e14d19621e2e3acf218db",
+    "visualReview": "native Studio entrance before/after, regional mood near view, final-zone view; not real-player acceptance"
+  },
+  {
+    "epic": "EmberCaldera",
+    "before": "검은 플랫폼과 외곽 구체, 산업 시설의 실루엣 부족",
+    "change": "현무암 지형·외곽 용암 수로·용광로 굴뚝·가공장·상부 배관과 지역 원형을 조합",
+    "reference": "../throne-defense/assets/concepts/maps-battle-target-v1/volcano.png",
+    "referenceSha256": "907400eaad2d8dea84d89e2321622c2f71a601d2f53bdaf422056c24d6ae1a4b",
+    "visualReview": "native Studio entrance before/after, regional mood near view, final-zone view; not real-player acceptance"
+  },
+  {
+    "epic": "Gloamwood",
+    "before": "각진 가로수와 넓은 빈 평지, 어두운 숲/거미 둥지의 구분 부족",
+    "change": "짙은 수관 군락·뒤틀린 줄기/뿌리·큰 거미줄·숲 피난처·숨은 묘지 문을 구성",
+    "reference": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+    "referenceSha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf",
+    "visualReview": "native Studio entrance before/after, regional mood near view, final-zone view; not real-player acceptance"
+  },
+  {
+    "epic": "HauntedGraveyard",
+    "before": "기둥/작은 돌의 반복, 묘역·성소·왕릉의 장소 구분 부족",
+    "change": "입체 묘비·묘역 테두리·죽은 나무·예배당·종탑·왕릉 탑·민트 등불과 석조 입구를 추가",
+    "reference": "../throne-defense/assets/concepts/maps-battle-target-v1/cemetery.png",
+    "referenceSha256": "683d4339e3a36ce0e5cc469cccc7b505b2d463f3c8ddd9a5a24ccb10c6cb1872",
+    "visualReview": "native Studio entrance before/after, regional mood near view, final-zone view; not real-player acceptance"
+  }
+]

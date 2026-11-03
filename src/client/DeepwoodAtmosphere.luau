@@ -15,10 +15,10 @@ local function clearOwned()
  if sky then sky:Destroy();sky=nil end
  if correction then correction:Destroy();correction=nil end
 end
-profiles.FrozenVale={FogStart=145,FogEnd=380,FogColor=Color3.fromRGB(207,229,243),Brightness=3.1,Ambient=Color3.fromRGB(150,173,194),OutdoorAmbient=Color3.fromRGB(185,209,228),ClockTime=12,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(12,26,43)}
-profiles.EmberCaldera={FogStart=170,FogEnd=420,FogColor=Color3.fromRGB(191,163,147),Brightness=3,Ambient=Color3.fromRGB(161,146,134),OutdoorAmbient=Color3.fromRGB(194,177,158),ClockTime=14,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(30,15,8)}
-profiles.Gloamwood={FogStart=160,FogEnd=420,FogColor=Color3.fromRGB(130,153,165),Brightness=2.6,Ambient=Color3.fromRGB(117,140,145),OutdoorAmbient=Color3.fromRGB(151,179,167),ClockTime=16,ExposureCompensation=.15,ColorShift_Top=Color3.fromRGB(14,24,30)}
-profiles.HauntedGraveyard={FogStart=160,FogEnd=420,FogColor=Color3.fromRGB(158,169,191),Brightness=2.6,Ambient=Color3.fromRGB(130,144,167),OutdoorAmbient=Color3.fromRGB(170,186,202),ClockTime=16.5,ExposureCompensation=.15,ColorShift_Top=Color3.fromRGB(21,22,35)}
+profiles.FrozenVale={FogStart=180,FogEnd=620,FogColor=Color3.fromRGB(207,229,243),Brightness=3.1,Ambient=Color3.fromRGB(150,173,194),OutdoorAmbient=Color3.fromRGB(185,209,228),ClockTime=12,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(12,26,43)}
+profiles.EmberCaldera={FogStart=165,FogEnd=600,FogColor=Color3.fromRGB(146,123,121),Brightness=3,Ambient=Color3.fromRGB(161,146,134),OutdoorAmbient=Color3.fromRGB(194,177,158),ClockTime=14,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(30,15,8)}
+profiles.Gloamwood={FogStart=165,FogEnd=700,FogColor=Color3.fromRGB(109,139,141),Brightness=2.6,Ambient=Color3.fromRGB(117,140,145),OutdoorAmbient=Color3.fromRGB(151,179,167),ClockTime=15.5,ExposureCompensation=.15,ColorShift_Top=Color3.fromRGB(14,24,30)}
+profiles.HauntedGraveyard={FogStart=180,FogEnd=760,FogColor=Color3.fromRGB(120,137,163),Brightness=2.6,Ambient=Color3.fromRGB(130,144,167),OutdoorAmbient=Color3.fromRGB(170,186,202),ClockTime=15.8,ExposureCompensation=.18,ColorShift_Top=Color3.fromRGB(21,22,35)}
 function Mood.update(mode)
  -- Preserve the previous boolean API used by scenery tests and other callers.
  if mode==true then mode='Deepwood' elseif mode==false then mode=nil end
@@ -46,7 +46,7 @@ function Mood.update(mode)
  -- Atmosphere overrides distance fog, so retain FogStart/FogEnd for Deepwood.
  sky=Instance.new('Sky');sky.Name='TLTClearDaySky';sky.CelestialBodiesShown=true;sky.StarCount=0;sky.Parent=Lighting
  correction=Instance.new('ColorCorrectionEffect');correction.Name='TLTVividDaylight'
- correction.Brightness=.025;correction.Contrast=.025;correction.Saturation=.24
+ correction.Brightness=.025;correction.Contrast=(mode=='Lobby' or mode=='Deepwood') and .025 or .045;correction.Saturation=(mode=='Lobby' or mode=='Deepwood') and .24 or (mode=='Gloamwood' or mode=='HauntedGraveyard') and .06 or .18
  correction.TintColor=Color3.fromRGB(244,250,255);correction.Parent=Lighting
  current=mode
 end

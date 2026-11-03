@@ -28,8 +28,9 @@ function Budget.start()
      local distance=(p.Position-root.Position).Magnitude
      if v:IsA('BasePart') then
       v.CastShadow=original.shadow and distance<100
-      v.LocalTransparencyModifier=distance>sceneryLimit and 1 or 0
-      if distance>sceneryLimit then hidden+=1 end
+      local limit=math.clamp(tonumber(v:GetAttribute('TLTSceneryDistance')) or sceneryLimit,sceneryLimit,900)
+      v.LocalTransparencyModifier=distance>limit and 1 or 0
+      if distance>limit then hidden+=1 end
      else v.Enabled=original.enabled and distance<100;if not v.Enabled then disabled+=1 end end
     end
    else tracked[v]=nil end

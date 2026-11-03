@@ -31,4 +31,11 @@ function Env.portal(parent,position)
  assert(#source:GetChildren()>0,'TD Forest kit portal pieces missing')
  local result=place(source,parent,'TDArrivalPortal',position,22);source:Destroy();return result
 end
+-- Existing pinned TD map templates; no external asset insertion.
+function Env.asset(parent,name,position,height)
+ local allowed={CliffRock=true,SnowCliff=true,VolcanoCliff=true,CemeteryCliff=true,SnowTree=true,ForestTree=true,ForestLandmark=true,SnowLandmark=true,VolcanoLandmark=true,CemeteryLandmark=true}
+ assert(allowed[name],'Unsupported pinned scenery template')
+ local models=Storage:FindFirstChild('TDMapModels')
+ return place(models and models:FindFirstChild(name),parent,name,position,height)
+end
 return Env

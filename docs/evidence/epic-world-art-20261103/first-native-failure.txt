@@ -1,0 +1,4 @@
+Candidate native contract failed: terrain cannot cover safe floor at -57.19999694824219, 18, -1762.4000244140625.
+Cause: a scenery skirt from a neighbouring elevated Deepwood site intersected a lower authoritative clearing. Fix: carve the campaign's existing clearing and ramp footprint out of generated scenery Terrain above the original floor. Existing Part collision is never carved or moved. Re-run the full native ground/collision test on a fresh generated layer.
+
+Daylight mock regression initially caught a shared saturation change affecting Lobby/Deepwood. Their previous .24 saturation and .025 contrast were restored; regional changes remain scoped to the other epics.
