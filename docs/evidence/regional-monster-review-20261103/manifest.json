@@ -1,0 +1,32 @@
+{
+  "capture": "actual local TD MeshParts and K0EnemyMotion motor matrices; original GLB vertices normalized to native sizes",
+  "reviewScript": "tools/review-deepwood-model-blender.py",
+  "species": 20,
+  "rawPoseRenders": 280,
+  "published": false,
+  "files": {
+    "before.json": "5a3e85a71e941f775b3c3def32d14c52d0cdee48e95af73ec94541858448202e",
+    "after.json": "fe942e4048b25d09906cd55175c5ea70dfd997d04688f2f90ae74f450b0a6d19",
+    "index.html": "15666665da85087d3c13ace7b9873c29b4ef61f170f499416784bcff7daa018b",
+    "IceWolf-comparison.png": "4613b4cd6bd37a9048f826cbe9310c828413bc764767a0aef868f1503f9c18d1",
+    "IceTroll-comparison.png": "b98c4305b58e319cdba99e5bb5492380b682e05c4416af7f0ac7282acc7606f2",
+    "IceBear-comparison.png": "70bc97dd22596e110caf9034e5052d4f6c1978a722230a0b56dfc1586c228cb1",
+    "IceGolem-comparison.png": "e3f535dfe33424cca01bc8358f7dc44df02c309aa53d280adc72af99cb3394b6",
+    "IceElf-comparison.png": "a56f4d1bfa71e45d17d650fa21e138b34c9f8b5ae30c65264dbc8a91b0d96f99",
+    "IceTrollKing-comparison.png": "6aeab0d99bcef1d43f83b6ad0ea89597f5fd105ce338151726e53a17eaad9d64",
+    "KingIceBear-comparison.png": "da28fa559633cd844d6e295096ebdc0b39f923e5269ed359a063a221b5e23047",
+    "KingIceGolem-comparison.png": "f0f0109d800924ea94ba32279b92fb9ed0ea9e6b788291f6dc4c7036f40b80cb",
+    "QueenIceElf-comparison.png": "92f06c5487fdfba7d7e7263702d32d46c7fb0427c82e9482b8ed261fdb826ac0",
+    "AncientGlacierKing-comparison.png": "22501bb73436dbf7dc03881d5018f92cd32301355d5e23a259172f570e209e6b",
+    "Imp-comparison.png": "05eee6ea6736b20e4bfee1126046848d486956ce1d8382674ea76381b43d6b76",
+    "LavaSlime-comparison.png": "7828e0a30abef710a2e3d0102b1906480f00d77d57e731968eac257d3c7a32ed",
+    "Golem-comparison.png": "10806cdd3e1271e36085652deccf048a755fc3bb7ce1cb758f1e3edea0cde99b",
+    "MagmaWorm-comparison.png": "c3b4cf7a1d79cc6255f7e5537508ebc7918ddd3a09893c800717072b35f35c3f",
+    "VolcanoShaman-comparison.png": "95d0454870dd653c8cd710856a94e5186a36328f371d5310caeecfd36c388ed8",
+    "MagmaImp-comparison.png": "65af47332fc4829040a6bb4c9093b603d7b22e89f21a5798f756453a14e64aaf",
+    "MagmaGolem-comparison.png": "c8e1a1e671572e0cec30603ca1d1e30072eeff1ab2fb0b40db0039031084e57a",
+    "InfernoOverlord-comparison.png": "e7dcb6f24bfd9d137b5d238eb83f67e586c1aa132dd8275a8bcc7a81c677fd50",
+    "CalderaTitan-comparison.png": "081ff985ef4b88f749f587f74b522e2d36aad1daf2a8fe32947b43bdc606cc6d",
+    "KingVolcanoShaman-comparison.png": "9b6b2f1cb08ad017a44d4881ce3b3b31838e95648afac15e18b9f34d9c5271fd"
+  }
+}

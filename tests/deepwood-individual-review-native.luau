@@ -69,7 +69,7 @@ local ok,err=xpcall(function()
   end
   Motion.unbind(s);m:Destroy()
  end
- local frozen=require(Client.FrozenValeClips);check(not frozen.models.IceWolf.reviewedGait,'other epic authored gait contracts unchanged')
+ local frozen=require(Client.FrozenValeClips);check(frozen.models.IceWolf.reviewedGait,'reviewed quadruped gait is shared with Frozen Vale')
 end,debug.traceback)
 if not ok then table.insert(report.failures,tostring(err))end
 folder:Destroy();Run:Stop();report.pass=#report.failures==0

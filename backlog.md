@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> **2026-11-03 / TLT-005/032/033/055/057/084 · 0.62.7:** Frozen Vale·Ember Caldera 각10종의 보행/공격을 개별 리뷰해 보폭·대각 발 위상·공격 중 접지·임프 어깨 축·Ice Troll King 무기 팔·슬라임/웜 변형을 수정했다. [20종 전후·검증·한계](docs/evidence/regional-monster-review-20261103/README.md). 주술사3종은 접합 보존을 위해 팔 고정/몸통 시전이며 완전 독립 리깅·실기기·최종 미술 수용은 후속, 로컬 개선본·미게시.
+
 > **2026-11-02 / 0.62.1 난이도·강화 부분 구현:** D1~D4/E2~E3의 현재3지역·Lv1/5/10 장비 경로, Hell 반복·중복 방지·강화 계정 거래/TD UI를 연결했다. [재현·검증·남은 수용](docs/evidence/difficulty-enhancement-20261102/README.md). 고레벨 장비/Lv41~80 성장·후반2에픽, 실제 클라이언트 이동/저장·4인+AI·기기·최종 밸런스는 후속이며 관련 상위ID는 미완료다.
 
 > **2026-11-02 난이도·보상·입장·강화 후속 작업:** [D1~D6](docs/production/difficulty-rewards-and-entry-plan-2026-11-02.md)와 [E1~E5](docs/production/equipment-enhancement-plan-2026-11-02.md)를 TLT-027/028/029/041/043/044/045/052/061/073/082/084의 하위작업으로 연결한다. 계획 작성만 완료, 구현/수용 미완료. 먼저 임무별 하한·Lv41~80 무료 성장·장비/Gold 곡선과 Easy 재료 수급을 고정하고 서버 자격·멱등 지급/강화·Hell Play Again/새 원정 상태·TD 상세 UI를 구현한다. Easy 모드 최소Lv1·Hell 무제한 반복 플레이/매회 반복 보상은 사용자 확정이고 나머지 수치/정책은 시험 제안이며 기존 승인 보상 정본은 유지한다.

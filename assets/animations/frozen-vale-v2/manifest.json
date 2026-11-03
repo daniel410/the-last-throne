@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "authoring": "Blender 5.2 native custom-property F-curves; isolated scenes; 201 evaluated samples",
+  "species": 10,
+  "logicalClips": 70,
+  "actions": 350,
+  "sourceManifest": "assets/shared/td-frozen-vale/manifest.json",
+  "uploadedNewAssets": false,
+  "files": {
+    "authoring-keys.json": "daab641aeed789b363909b7cddd1bef2eb2227b7748bda4bd5095f3387a16e59",
+    "clips.json": "7d974c349d619f6bab93b07d3df4ead7616b9d6d9fe16f457d158aca4a3c9942"
+  }
+}

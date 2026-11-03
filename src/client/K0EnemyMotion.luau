@@ -129,7 +129,8 @@ function Motion.step(s,dt,current)
    if s.profile.reviewedGait then
     -- Stance occupies 60% of each leg's cycle; only the returning foot lifts.
     -- A previous chase phase must never lift a foot during attacks or stuns.
-    local phase=(s.phase+(ch=='leftLeg' and .5 or 0))%1
+    local opposite=ch=='leftLeg' or (s.profile.quadruped and ch=='off')
+    local phase=(s.phase+(opposite and .5 or 0))%1
     local returning=phase>.6 and math.sin((phase-.6)/.4*math.pi) or 0
     lift=(moving and not attackActive and not stunned and state~='Exposed') and returning*returning*.025*s.height*s.move or 0
    end

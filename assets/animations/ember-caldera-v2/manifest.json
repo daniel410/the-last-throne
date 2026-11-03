@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "authoring": "Blender 5.2 native custom-property F-curves; isolated scenes; 201 evaluated samples",
+  "species": 10,
+  "logicalClips": 70,
+  "actions": 350,
+  "sourceManifest": "assets/shared/td-ember-caldera/manifest.json",
+  "uploadedNewAssets": false,
+  "files": {
+    "authoring-keys.json": "199419778e3c3df4dae60931bfa9641f9695bccf481ddcc25adbe164a8ed5f87",
+    "clips.json": "aab79801f80593bd1a209d73c9fed09351ed218be6714820a91989d176213aa4"
+  }
+}

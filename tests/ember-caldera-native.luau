@@ -45,7 +45,7 @@ local ok,err=xpcall(function()
    if spec.socket then
     check(s.weaponFX and s.weaponFX.trail.Enabled,kind..' actual moving weapon trail')
     local delta=(before:Inverse()*s.joints.weapon.Transform);local _,angle=delta:ToAxisAngle()
-    check(math.abs(angle)>.05,kind..' weapon advances at contact')
+    if kind=='VolcanoShaman'or kind=='KingVolcanoShaman'then check(math.abs(angle)<.001,kind..' split source staff retains its common body anchor')else check(math.abs(angle)>.05,kind..' weapon advances at contact')end
     check(s.weaponFX.a.Position.Magnitude>0,kind..' authored tip follows original mesh')
    end
    Motion.step(s,1/hz,503)

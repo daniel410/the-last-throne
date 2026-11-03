@@ -1,0 +1,7 @@
+ContentId: rbxassethash://45a84a576ad52cab4163fe70de30a0c0 failed due to: Could not find asset with hash 45a84a576ad52cab4163fe70de30a0c0 and type RuntimePropertySet
+ContentId: rbxassethash://e3f17049d801a9aba2a3fecb56bcba72 failed due to: Could not find asset with hash e3f17049d801a9aba2a3fecb56bcba72 and type RuntimePropertySet
+ContentId: rbxassethash://9f652390a8f570eb1c9c469037d6382b failed due to: Could not find asset with hash 9f652390a8f570eb1c9c469037d6382b and type RuntimePropertySet
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Could not find asset with hash e03089ac0c0daafd08cbe278f0bd2771 and type RuntimePropertySet
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Could not find asset with hash 76ce1126a1b938ce199c09f0734eefec and type RuntimePropertySet
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+FROZEN_VALE_NATIVE {"checks":3931,"weapons":[],"failures":["ServerScriptService.Server.Story.FrozenValeServiceQA:41: attempt to call a nil value\nServerScriptService.Server.Story.FrozenValeServiceQA:41 function destination\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:87\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:10\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"FROZEN_VALE_NATIVE"}
