@@ -1,0 +1,11 @@
+{
+  "testSimulationsStopped": true,
+  "taskStudioProcessesClosed": [
+    20598,
+    20691,
+    21009
+  ],
+  "existingUserStudiosTouched": false,
+  "buildArtifactsUnmodified": true,
+  "temporaryHTTPServerStopped": true
+}

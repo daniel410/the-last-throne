@@ -1,0 +1,222 @@
+[
+  {
+    "test": "advanced-skills.spec.lua",
+    "result": "pass",
+    "output": "Advanced skills: 1435 checks passed\n"
+  },
+  {
+    "test": "blacksmith-stock.spec.lua",
+    "result": "pass",
+    "output": "Blacksmith stock: 189 checks passed\n"
+  },
+  {
+    "test": "daily-login.spec.lua",
+    "result": "pass",
+    "output": "Daily login: 73 checks passed\n"
+  },
+  {
+    "test": "daylight-atmosphere.spec.lua",
+    "result": "pass",
+    "output": "Daylight profile transitions: 8 checks passed\n"
+  },
+  {
+    "test": "death-xp-penalty.spec.lua",
+    "result": "pass",
+    "output": "Death XP penalty: 3575 checks passed\n"
+  },
+  {
+    "test": "deepwood-bosses.spec.lua",
+    "result": "pass",
+    "output": "Deepwood bosses: 96 checks passed\n"
+  },
+  {
+    "test": "deepwood-encounter-balance.spec.lua",
+    "result": "pass",
+    "output": "Deepwood encounter balance: 3111 checks passed; authored enemies 82 -> 467\n"
+  },
+  {
+    "test": "deepwood-music-policy.spec.lua",
+    "result": "pass",
+    "output": "Deepwood music policy: 13 checks passed\n"
+  },
+  {
+    "test": "deepwood-progress.spec.lua",
+    "result": "pass",
+    "output": "Deepwood progression: 515 checks passed\nDeepwood total: 520 checks passed\nDeepwood extended total: 570 checks passed\n"
+  },
+  {
+    "test": "deepwood-quests.spec.lua",
+    "result": "pass",
+    "output": "Deepwood quest contract: 31 checks passed\n"
+  },
+  {
+    "test": "diamond-gold-exchange.spec.lua",
+    "result": "pass",
+    "output": "Diamond Gold exchange: 25 checks passed\n"
+  },
+  {
+    "test": "diamond-weapons.spec.lua",
+    "result": "pass",
+    "output": "Diamond weapons: 53 checks passed\n"
+  },
+  {
+    "test": "difficulty-balance.spec.lua",
+    "result": "pass",
+    "output": "Difficulty balance: 2629 checks passed\n"
+  },
+  {
+    "test": "difficulty-enhancement.spec.lua",
+    "result": "pass",
+    "output": "Difficulty/enhancement: 125 checks passed\n"
+  },
+  {
+    "test": "dodge-double-tap.spec.lua",
+    "result": "pass",
+    "output": "Dodge double tap: 971 checks passed\n"
+  },
+  {
+    "test": "dwarf-stun-and-first-story.spec.lua",
+    "result": "pass",
+    "output": "Dwarf stun/first story: 57 checks passed\n"
+  },
+  {
+    "test": "economy.spec.lua",
+    "result": "pass",
+    "output": "Economy: 42 checks passed\n"
+  },
+  {
+    "test": "ember-caldera.spec.lua",
+    "result": "pass",
+    "output": "EMBER_CALDERA_STATIC 598 checks passed\n"
+  },
+  {
+    "test": "enhancement-probability.spec.lua",
+    "result": "pass",
+    "output": "Enhancement probability: 2857 checks passed (including 90000 outcome boundaries)\n"
+  },
+  {
+    "test": "equipment-impact.spec.lua",
+    "result": "pass",
+    "output": "Equipment impact: 44 checks passed\n"
+  },
+  {
+    "test": "expedition-departure.spec.lua",
+    "result": "pass",
+    "output": "Expedition departure: 42 checks passed\n"
+  },
+  {
+    "test": "expedition-presentation.spec.lua",
+    "result": "pass",
+    "output": "Expedition presentation: 17 checks passed\n"
+  },
+  {
+    "test": "expedition-store.spec.lua",
+    "result": "pass",
+    "output": "Expedition store: 43 checks passed\n"
+  },
+  {
+    "test": "frozen-vale.spec.lua",
+    "result": "pass",
+    "output": "FROZEN_VALE_STATIC 460 checks passed\n"
+  },
+  {
+    "test": "hero-progression.spec.lua",
+    "result": "pass",
+    "output": "Hero progression: 656 checks passed\n"
+  },
+  {
+    "test": "inventory.spec.lua",
+    "result": "pass",
+    "output": "Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed\n"
+  },
+  {
+    "test": "item-shop-categories.spec.lua",
+    "result": "pass",
+    "output": "item-shop-categories: category mapping and buy/sell filter PASS; native UI NOT RUN\n"
+  },
+  {
+    "test": "k0-appearance.spec.lua",
+    "result": "fail",
+    "output": "lua: tests/k0-appearance.spec.lua:295: unexpected warning: K0 equipment appearance could not be synchronized: src/server/Cosmetics/KnightAppearance.luau:187: attempt to call a nil value (method 'GetDescendants')\nstack traceback:\n\t[C]: in global 'error'\n\ttests/k0-appearance.spec.lua:295: in main chunk\n\t[C]: in ?\n"
+  },
+  {
+    "test": "k0-hero-palette.spec.lua",
+    "result": "pass",
+    "output": "PASS HeroPalette Lua mock lifecycle: delayed/current appearance, four palettes, neutral/unsupported, class restore, BodyColors replacement, late old event, life/player cleanup, idempotent start. Not Studio/device QA.\n"
+  },
+  {
+    "test": "k0-hero-session.spec.lua",
+    "result": "pass",
+    "output": "Hero session: 104 identity, ownership, transitions, four-class, stale-life and boundary checks passed\n"
+  },
+  {
+    "test": "k0-rules.spec.lua",
+    "result": "pass",
+    "output": "K0 rules: 125 checks passed\n"
+  },
+  {
+    "test": "k0-spawn.spec.lua",
+    "result": "pass",
+    "output": "K0 spawn lifecycle: 4 players, retry/backoff, late Humanoid, per-player routes, load races, stale lives, respawn and leave passed\n"
+  },
+  {
+    "test": "late-epics-adventures.spec.lua",
+    "result": "pass",
+    "output": "LATE_EPICS_ADVENTURES 186 checks passed\n"
+  },
+  {
+    "test": "late-epics.spec.lua",
+    "result": "pass",
+    "output": "LATE_EPICS_STATIC 954 checks passed\n"
+  },
+  {
+    "test": "reward-materials.spec.lua",
+    "result": "pass",
+    "output": "Reward materials: 41 checks passed\n"
+  },
+  {
+    "test": "selene-recruitment.spec.lua",
+    "result": "pass",
+    "output": "Selene recruitment: 23 checks passed\n"
+  },
+  {
+    "test": "skill-action-interrupt.spec.lua",
+    "result": "pass",
+    "output": "Skill action interrupt: 1221 checks passed\n"
+  },
+  {
+    "test": "skill-stat-preview.spec.lua",
+    "result": "pass",
+    "output": "HYBRID magic_archer Lv20 DEX=76 INT=0 starter=476 branch=259\nHYBRID magic_archer Lv20 DEX=38 INT=38 starter=359 branch=384\nHYBRID magic_archer Lv20 DEX=0 INT=76 starter=242 branch=510\nHYBRID gunner Lv20 STR=76 DEX=0 starter=476 branch=544\nHYBRID gunner Lv20 STR=38 DEX=38 starter=359 branch=410\nHYBRID gunner Lv20 STR=0 DEX=76 starter=242 branch=276\nHYBRID magic_archer Lv40 DEX=156 INT=0 starter=815 branch=358\nHYBRID magic_archer Lv40 DEX=78 INT=78 starter=574 branch=615\nHYBRID magic_archer Lv40 DEX=0 INT=156 starter=334 branch=873\nHYBRID gunner Lv40 STR=156 DEX=0 starter=815 branch=931\nHYBRID gunner Lv40 STR=78 DEX=78 starter=574 branch=656\nHYBRID gunner Lv40 STR=0 DEX=156 starter=334 branch=382\nHYBRID magic_archer Lv80 DEX=316 INT=0 starter=1492 branch=556\nHYBRID magic_archer Lv80 DEX=158 INT=158 starter=1006 branch=1077\nHYBRID magic_archer Lv80 DEX=0 INT=316 starter=519 branch=1599\nHYBRID gunner Lv80 STR=316 DEX=0 starter=1492 branch=1705\nHYBRID gunner Lv80 STR=158 DEX=158 starter=1006 branch=1149\nHYBRID gunner Lv80 STR=0 DEX=316 starter=519 branch=593\nSkill stat preview: 1368 checks passed\n"
+  },
+  {
+    "test": "starter-potions-and-shop.spec.lua",
+    "result": "pass",
+    "output": "Starter potions and shop: 172 checks passed\n"
+  },
+  {
+    "test": "store-split.spec.lua",
+    "result": "pass",
+    "output": "Store split: 14 checks passed\n"
+  },
+  {
+    "test": "story-completion.spec.lua",
+    "result": "pass",
+    "output": "Story completion: 356 checks passed\n"
+  },
+  {
+    "test": "support-passes.spec.lua",
+    "result": "pass",
+    "output": "Support passes: 30 checks passed\n"
+  },
+  {
+    "test": "supporter-info.spec.lua",
+    "result": "pass",
+    "output": "Supporter info: 39 checks passed\n"
+  },
+  {
+    "test": "travel-attempt.spec.lua",
+    "result": "pass",
+    "output": "Travel attempt: 8 checks passed\n"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "tests/late-epics-native.luau": "5ac1076d4f5b7d6a7875f12f749fbabfa5867a5f4cebd7ec1fc8250264d7cb62",
+  "tests/late-epics-presentation-native.luau": "a607aa6dbeb2608d3abd7df117e5fe8d4143e346dc013547b1e2d0cc177c7579",
+  "tests/lobby-atlas-native.luau": "9055ba284c7eb70e8339406cbddf293a8ac33b2852c8fd551bcc64e6e89b5f88",
+  "tests/lobby-quest-journal-native.luau": "e564c3a91b15611b9657f0f5b35f35788cc11dee2026e1f4828a5738685e2401"
+}

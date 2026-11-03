@@ -30,3 +30,22 @@
 ![Gloamwood 임시 블록 모델 실제 렌더](gloamwood-prototypes.png)
 
 ![기존 TD 언데드 모델 실제 렌더](haunted-td-models.png)
+
+## 최종0.65.1 결과
+
+고정 입력 소스 `d454bc7fe17a4f78059b15974808faaa8bd9a44a`의 Lobby/Battle 빌드가 모두 성공했다. [최종 빌드·SHA256](build-0651.json). 초기 미커밋 로비/이동 변경은 Git archive와 LFS OID 대조로 빌드에서 제외했다. 일반 로컬 빌드이며 게시/릴리스 태그는 없다.
+
+| 검증 | 결과·증거 |
+| --- | --- |
+| 실제 Studio 지반/연결길/19종/30·60·144Hz/서버14임무·저장 실패 재시도·호위·보스 단계/장치·확정 보상 | 1,934 PASS, [native-0651.json](native-0651.json) |
+| TD 원본 UI를 사용하는 로비 지도/퀘스트·진행 잠금·영문·세 화면 크기 | 88+71 PASS, 같은 JSON의ui |
+| 포탈/회수 심장 개인 상태·늦은 스트리밍·영웅 변경/귀환 왕좌·영문 환영 | 7 PASS, 같은 JSON의ui |
+| 새35개 본편 순차 진행/저장 복사/중복/보상·지형 | 954 PASS, `lua tests/late-epics.spec.lua` |
+| 실제 원정별 계정 트랜잭션·새14임무 초회·GW/HG 재플레이·영구 결말 보존 | 186 PASS, `lua tests/late-epics-adventures.spec.lua` |
+| 전체 Lua 테스트 | 44개 중43 PASS, [최종 결과](lua-tests-final.json).1개 기사 외형 mock 오류는 기존HEAD에서도 재현 |
+| 전체 게임 Luau 컴파일 | 293/293 PASS, [최종 결과](compile-final.json) |
+| TD 언데드 추출 | 기존10템플릿/11EnemyKind·메시ID/해시·스크립트 비반입 PASS |
+
+합계2,100개의 엔진 검사가 통과했지만 가상 플레이어/계정과 직접 피해 주입을 사용했다. 실제 사용자 조작·라이브 계정 저장·정상 전투 완주·난이도/재미·실기기/다인·게시된 두 Experience 이동과 메시 권한은 여전히 미검증이다. [fixture 해시](fixture-hashes.json)로 재현 입력을 고정했다. QA 후 두 시험 시뮬레이션을 중지하고 이 작업이 연 Studio 프로세스만 종료했다. [정리](cleanup.json). 원본 빌드4개의 해시는 QA 전후 같으며 기존 사용자 Studio 작업은 종료하지 않았다.
+
+소스 커밋2개는 origin/main 반영과 LFS1개115KB+미리보기2개190KB 전송을 확인했다. 최종 증거는 별도 커밋·푸시로 마감한다. 다음 담당과 미수용 범위는 위와 같으며 TLT-064/065/057/061/084는 In Progress를 유지한다.
