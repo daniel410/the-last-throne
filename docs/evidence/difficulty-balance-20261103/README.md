@@ -57,6 +57,12 @@ DW01 반복 완료 예시(처치 Gold 별도):
 - 관련16개 Lua 회귀 스위트 합계8951검사 PASS. [로그](tests.log).
 - `python3 scripts/audit_difficulty_balance.py --output /tmp/tlt-balance-20261103/after.json`:33임무×4모드×솔로/4인=264행. [이전](before.json)·[이후](after.json). 완료시간/효율 실측이 아닌 유한 적/증원/정예 포함 계획 예산이다.
 - `python3 scripts/simulate_story_progression.py --output /tmp/tlt-balance-20261103/progression.json`:승인 스토리 성장 정본 Lv40/XP0/퀘스트XP13795 유지. 이 계산기의 과거 Gold 합계를 신규 난이도 경제 실측으로 취급하지 않는다.
-- 변경 Luau 컴파일, 네이티브 `DeepwoodService.applyBalance` 연결2880개체/17280속성 검사, 실제 InventoryService 모의 저장 거래·순수 모듈·TD 강화 UI 검사, 원정 UI67검사를 별도 실행한다. 고정 소스 실행 결과/빌드는 후속 증거 파일에 기록한다.
+- 변경 Luau 컴파일, 네이티브 `DeepwoodService.applyBalance` 연결2880개체/17280속성 검사, 실제 InventoryService 모의 저장 거래·순수 모듈·TD 강화 UI 검사, 원정 UI67검사를 별도 실행한다. 고정 소스의 세 네이티브 실행 모두 PASS. [결과](native.json).
 
 미검증: 게시된 Lobby↔Battle 이동/실 DataStore·재접속·실제 협동 플레이·4인+AI 성능·모바일 터치/패드·최종 미술/경제 수용. 현재 장비는Lv1/5/10 중심이며 적Lv106까지의 무료 성장/장비와 후반2에픽 완성은 별도다. 높은 배율이 적정 클리어시간/강화 공급을 보장한다는 주장은 하지 않는다. 다음 담당 ENG는 별도 +9 확률 강화와 후반 장비/성장 연결, QA는 게시 테스트 Experience와 실제 기기 수용을 맡는다. 상위 티켓 완료 처리/Roblox 게시/릴리스 태그는 하지 않는다.
+
+## 고정 소스 빌드와 화면
+
+소스 `1090ef3a9989906e6ea9eea7f54b02b1045cd569`를 `git archive`로 추출해 Rojo7.7.1로 Lobby/Battle 0.63.0 빌드 모두 성공했다. [버전·명령·해시](build.json) · [빌드 로그](build.log). 작업 중인 TD 이동·랜드마크·애니메이션 변경은 포함하지 않았다.
+
+Studio Edit의 실제 TD 프레임/버튼/영웅 초상으로 렌더한 시험 화면이다. 모의 Lv80 영웅·솔로 DW01 Hell이며 실제 계정/멀티/기기 수용 증거는 아니다. [몬스터 레벨/HP](hell-enemies.jpg) · [Gold·보석·마석과 레벨 구간](hell-materials.jpg). 임시 GUI/이벤트는 검증 후 제거했다.
