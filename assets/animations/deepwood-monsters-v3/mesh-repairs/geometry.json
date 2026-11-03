@@ -1,0 +1,270 @@
+{
+  "Shaman": {
+    "source": "the-last-throne/../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/shaman/textured-review.glb",
+    "sourceSha256": "0ffd0fd2a24c494eaa02c411de3249e38218d4c731f586f312627061516eb3b8",
+    "planes": [
+      [
+        [
+          1,
+          0,
+          0
+        ],
+        0.265
+      ],
+      [
+        [
+          0,
+          0,
+          1
+        ],
+        0.025
+      ]
+    ],
+    "movedTriangles": 559,
+    "surfaceAreaError": 0.0,
+    "parts": [
+      {
+        "name": "ArmL",
+        "center": [
+          -0.3387442474990152,
+          0.48752164098467965,
+          0.1954130409337248
+        ],
+        "size": [
+          0.0774884968996048,
+          0.1750432848930359,
+          0.19965913891792297
+        ],
+        "triangles": 218
+      },
+      {
+        "name": "ArmR",
+        "center": [
+          0.3769783585246349,
+          0.4846860025970355,
+          0.019165077003686998
+        ],
+        "size": [
+          0.3522204577595552,
+          0.969372005194071,
+          0.26743757724761963
+        ],
+        "triangles": 1787
+      },
+      {
+        "name": "Body",
+        "center": [
+          0.008101299319730637,
+          0.5005101710557938,
+          -0.015313483438271325
+        ],
+        "size": [
+          0.7037973999977112,
+          0.9989796578884125,
+          0.6212350130081177
+        ],
+        "triangles": 2761
+      }
+    ],
+    "status": "local candidate; Roblox mesh upload pending"
+  },
+  "GoblinKing": {
+    "source": "the-last-throne/../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/king/textured-review.glb",
+    "sourceSha256": "8da2fe0fd473b42c543234f0ad5825a69f958434a392bca7038cc3e6b0ce8728",
+    "planes": [
+      [
+        [
+          1,
+          0,
+          0
+        ],
+        0.235
+      ]
+    ],
+    "movedTriangles": 1081,
+    "surfaceAreaError": 0.0,
+    "parts": [
+      {
+        "name": "ArmL",
+        "center": [
+          -0.34257403531310066,
+          0.5513308843899413,
+          0.09458512882305709
+        ],
+        "size": [
+          0.04514807090163231,
+          0.3026617765426636,
+          0.33457285165786743
+        ],
+        "triangles": 133
+      },
+      {
+        "name": "ArmR",
+        "center": [
+          0.3075740279787817,
+          0.49692956460867016,
+          -0.1177070123858614
+        ],
+        "size": [
+          0.32906859164313074,
+          0.9938591292173403,
+          0.5348002761602402
+        ],
+        "triangles": 1819
+      },
+      {
+        "name": "Body",
+        "center": [
+          -0.12930145135570276,
+          0.5,
+          -0.08853613415433598
+        ],
+        "size": [
+          0.7286029027114055,
+          1.0,
+          0.7200613617897034
+        ],
+        "triangles": 2568
+      }
+    ],
+    "status": "local candidate; Roblox mesh upload pending"
+  },
+  "KingOgre": {
+    "source": "the-last-throne/../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/king_ogre/textured-review.glb",
+    "sourceSha256": "e4404542fcd8d5af61e67add8c221366573f0193afa8e68f812483b7c997704b",
+    "planes": [
+      [
+        [
+          1,
+          0,
+          0
+        ],
+        0.2
+      ],
+      [
+        [
+          0,
+          1,
+          0
+        ],
+        0.68
+      ]
+    ],
+    "movedTriangles": 287,
+    "surfaceAreaError": 0.0,
+    "parts": [
+      {
+        "name": "ArmL",
+        "center": [
+          -0.4213398047810927,
+          0.47611675647721485,
+          0.043952939038062966
+        ],
+        "size": [
+          0.16267961263656616,
+          0.584601104259491,
+          0.45764562487602234
+        ],
+        "triangles": 372
+      },
+      {
+        "name": "ArmR",
+        "center": [
+          0.3698288750871558,
+          0.5999464356114739,
+          -0.10518692879479274
+        ],
+        "size": [
+          0.3396577501743116,
+          0.8001071214675903,
+          0.39794032546160174
+        ],
+        "triangles": 891
+      },
+      {
+        "name": "Body",
+        "center": [
+          0.0,
+          0.4707929387129418,
+          -0.04340804763069983
+        ],
+        "size": [
+          0.6966776251792908,
+          0.941585898399353,
+          0.621651291847229
+        ],
+        "triangles": 3136
+      }
+    ],
+    "status": "local candidate; Roblox mesh upload pending"
+  },
+  "KingShaman": {
+    "source": "the-last-throne/../throne-defense/assets/models/meshy-blocky-monsters-v1/runtime/king_shaman/textured-review.glb",
+    "sourceSha256": "8ddeeb89cc9ce782a43615747aaac4e8ea090e5e7cd526b1de24a133ac81ca5b",
+    "planes": [
+      [
+        [
+          1,
+          0,
+          0
+        ],
+        0.2
+      ],
+      [
+        [
+          0,
+          0,
+          1
+        ],
+        0.145
+      ]
+    ],
+    "movedTriangles": 754,
+    "surfaceAreaError": 0.0,
+    "parts": [
+      {
+        "name": "ArmL",
+        "center": [
+          -0.36121262342217997,
+          0.48490597084547227,
+          0.2786186818977259
+        ],
+        "size": [
+          0.08242524415254593,
+          0.16981194913387299,
+          0.2400670051574707
+        ],
+        "triangles": 233
+      },
+      {
+        "name": "ArmR",
+        "center": [
+          0.364690159031666,
+          0.4973044862263358,
+          0.03702703170802846
+        ],
+        "size": [
+          0.36765508146457915,
+          0.9946089724526715,
+          0.5090932976254791
+        ],
+        "triangles": 1844
+      },
+      {
+        "name": "Body",
+        "center": [
+          -0.08835567751323037,
+          0.500482154183922,
+          0.04716967396608529
+        ],
+        "size": [
+          0.8567113280296326,
+          0.999035691632156,
+          0.7072774171829224
+        ],
+        "triangles": 3346
+      }
+    ],
+    "status": "local candidate; Roblox mesh upload pending"
+  }
+}

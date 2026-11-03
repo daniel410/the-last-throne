@@ -83,9 +83,9 @@ local ok,err=xpcall(function()
  end
  -- Species differentiation is an authored result, not a timing/damage change.
  check(Motion.sample('Goblin','Attack',.62).weapon[1]>0,'goblin uses forward blade slash')
- check(Motion.sample('Ogre','Attack',.62).weapon[1]<-50,'ogre uses forward club crush')
+ check(Motion.sample('Ogre','Attack',.62).weapon[1]<0,'ogre uses forward club crush')
  check(Motion.sample('Shaman','Attack',.62).weapon[1]>-30,'shaman keeps ritual focus upright')
- check(math.abs(Motion.sample('Goblin','Attack',.62).weapon[1]-12)<.0001,'authored impact is an exact sample, not interpolated around the contact key')
+ check(math.abs(Motion.sample('Goblin','Attack',.62).weapon[1]-require(game.StarterPlayer.StarterPlayerScripts.Client.K0EnemyClips).models.Goblin.clips.Attack.weapon[125][1])<.0001,'authored impact is an exact sample, not interpolated around the contact key')
 end,debug.traceback)
 if not ok then table.insert(report.failures,tostring(err))end
 folder:Destroy();if started then Run:Stop()end

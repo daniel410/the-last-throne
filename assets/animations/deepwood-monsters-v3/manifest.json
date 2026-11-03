@@ -1,0 +1,70 @@
+{
+  "version": 3,
+  "authoring": "Blender 5.2 LTS via MCP; 350 custom-property actions / 70 logical clips / 201 samples",
+  "sourceSha256": "38f92a18d334b2dcbf04a4cc61b2fffc5ea464e34aec9701c4f10f78a896ee91",
+  "base": "assets/animations/deepwood-monsters-v2/clips.json; original TD source hashes retained in v1/sources.json",
+  "runtime": "src/client/K0EnemyClips.luau and K0EnemyMotion.luau; existing v2/weapon-repair socket contract retained",
+  "gameplay": "No server AI timing, root, damage, hitbox, rewards or ownership changes",
+  "geometryStatus": "Four local mesh repair candidates; not uploaded or connected. Separate user approval pending.",
+  "geometryModels": [
+    "GoblinKing",
+    "KingOgre",
+    "KingShaman",
+    "Shaman"
+  ],
+  "geometryMeshCount": 8,
+  "logicalClips": 70,
+  "controllerActions": 350,
+  "impactPhase": 0.62,
+  "files": {
+    "authoring-keys.json": {
+      "sha256": "b2d0b0385618ffac8500920c64965f186438f393ca352cbc15c8a3792fffa9b1",
+      "bytes": 188930
+    },
+    "clips.json": {
+      "sha256": "38f92a18d334b2dcbf04a4cc61b2fffc5ea464e34aec9701c4f10f78a896ee91",
+      "bytes": 2124107
+    },
+    "mesh-repairs/GoblinKing-import.glb": {
+      "sha256": "686a45d1d972d3a6ccddff18e79bf9202e5574b794e43d7ed3974bb2c789daf3",
+      "bytes": 694432
+    },
+    "mesh-repairs/GoblinKing-review.glb": {
+      "sha256": "ce8bb1410b1a91e17e5eba7c8b8e6777c05511206fb85d81ffdade8a27383be7",
+      "bytes": 702372
+    },
+    "mesh-repairs/KingOgre-import.glb": {
+      "sha256": "2fb91c7c1f3ee29cb2223f456f33e53f9a8ae6b6e9cc793012b1417e0c1ed833",
+      "bytes": 727236
+    },
+    "mesh-repairs/KingOgre-review.glb": {
+      "sha256": "f5ad44ac0682cefdb993c6ee0283239e5479ebde17ebdccfd6a57edd84b81eab",
+      "bytes": 747196
+    },
+    "mesh-repairs/KingShaman-import.glb": {
+      "sha256": "1d7f35d1b3b78ceaedc7c65bf41edc4097b61883939cee465ba240b65f7c2127",
+      "bytes": 753124
+    },
+    "mesh-repairs/KingShaman-review.glb": {
+      "sha256": "8ebed6b02f5716a1ecdd45477a3e8ec5838a32f65afa5ef98b041651f664fd0c",
+      "bytes": 766764
+    },
+    "mesh-repairs/Shaman-import.glb": {
+      "sha256": "55ee3595d3920598feb3beb64e97d214f27f39af6d1fa06668298bddb9560953",
+      "bytes": 752656
+    },
+    "mesh-repairs/Shaman-review.glb": {
+      "sha256": "63884cd2bce57992f9c4083cea39facfe43dc8233d87b325558abdb0f2168a37",
+      "bytes": 766016
+    },
+    "mesh-repairs/geometry.json": {
+      "sha256": "93edbbf70d64d16b678abf3f70c9cd45d509b0140cb09321fbf649e3c4f9bb93",
+      "bytes": 5856
+    }
+  },
+  "limitations": [
+    "EnragedWarlord remains one rigid mesh; no independent leg or elbow skinning added.",
+    "Shaman/GoblinKing/KingShaman original partial off-arm stays joined instead of making a false full-arm gesture.",
+    "Flat-floor stance tests do not certify terrain IK, mobile, four-player performance or final art acceptance."
+  ]
+}

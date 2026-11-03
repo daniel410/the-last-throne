@@ -99,7 +99,10 @@ function Motion.step(s,dt,current)
   local a=s.attack;attackPhase=Motion.attackPhase(current-a.start,a.w,a.a,a.r);target=Motion.sample(s.kind,a.clip,attackPhase)
  end
  -- Attack timing is sampled directly; smoothing it would delay the impact.
- if attackActive then s.pose=target else s.pose=mix(s.pose,target,1-math.exp(-dt*16))end
+ -- Reviewed gaits are already continuous distance samples. A second pose lerp
+ -- shifts the feet behind their stance phase at running speed and causes skating.
+ if attackActive or (s.profile.reviewedGait and moving and speed>.2) then s.pose=target
+ else s.pose=mix(s.pose,target,1-math.exp(-dt*16))end
  local p=s.pose;local b=p.body;local look=s.root.CFrame.LookVector
  local cross=s.look:Cross(look).Y;s.look=look;s.turn=s.turn+(clamp(cross/math.max(dt,.001),-2,2)-s.turn)*(1-math.exp(-dt*9))
  local rootFrame=CFrame.new(b[1]*s.height,b[2]*s.height,b[3]*s.height)*frame(b,4)*CFrame.Angles(0,0,-s.turn*.025*s.move)
@@ -123,6 +126,13 @@ function Motion.step(s,dt,current)
    local cf=bodyInRoot*motor.C0*transform*motor.C1:Inverse()
    local swing=(ch=='rightLeg' or s.profile.quadruped and ch=='weapon') and math.max(0,math.sin(s.phase*math.pi*2)) or math.max(0,-math.sin(s.phase*math.pi*2))
    local lift=swing*swing*.025*s.height*s.move
+   if s.profile.reviewedGait then
+    -- Stance occupies 60% of each leg's cycle; only the returning foot lifts.
+    -- A previous chase phase must never lift a foot during attacks or stuns.
+    local phase=(s.phase+(ch=='leftLeg' and .5 or 0))%1
+    local returning=phase>.6 and math.sin((phase-.6)/.4*math.pi) or 0
+    lift=(moving and not attackActive and not stunned and state~='Exposed') and returning*returning*.025*s.height*s.move or 0
+   end
    local correction=leg.bottom+lift-lowest(cf,leg.points)
    local localUp=(bodyInRoot*motor.C0).UpVector.Y
    transform=CFrame.new(0,correction/math.max(.5,localUp),0)*transform
