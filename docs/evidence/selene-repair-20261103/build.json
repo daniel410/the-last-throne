@@ -1,0 +1,110 @@
+{
+  "version": "0.63.1",
+  "sourceCommit": "bf20711c68bd636b4a5eb7683372f660977b67ac",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-mr01-freeze-bf20711c-k6rfz73d",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Lobby",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-mr01-freeze-bf20711c-k6rfz73d/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.63.1/TheLastThrone-Lobby-0.63.1.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-Lobby-0.63.1.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.63.1/TheLastThrone-Lobby-0.63.1.rbxlx",
+      "sha256": "6f251404bd1701103eb2bb68c4b83e2ea8aa5402f2268816a455f901c9967da6",
+      "bytes": 10942335
+    },
+    {
+      "role": "Battle",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-mr01-freeze-bf20711c-k6rfz73d/battle.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.63.1/TheLastThrone-Battle-0.63.1.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne-battle'\nBuilt project to TheLastThrone-Battle-0.63.1.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.63.1/TheLastThrone-Battle-0.63.1.rbxlx",
+      "sha256": "f728e79119ef1c5c0a096953c609fa5221e38fada858aa2c8b58d28db4beac82",
+      "bytes": 10942336
+    }
+  ],
+  "lfsInputAudit": [
+    {
+      "path": "assets/shared/deepwood-weapon-repair/runtime.rbxmx",
+      "sha256": "fa9e8f6ee37b1de35e5510749755e7058d6619ef3d5792fce73e5d6607cb4207",
+      "bytes": 15693
+    },
+    {
+      "path": "assets/shared/regional-casters/runtime.rbxm",
+      "sha256": "c8d132f86aeda0bddd0b070407856dadeccb8c4c1866ce53a9a7516f9bcee9cf",
+      "bytes": 76203
+    },
+    {
+      "path": "assets/shared/td-selene-articulated/runtime.rbxmx",
+      "sha256": "82c2faa94940f2d154aea7e34bb01be2138da06e003e12c06b669ef244afd9c4",
+      "bytes": 8566
+    },
+    {
+      "path": "assets/shared/td-player-weapons/runtime.rbxmx",
+      "sha256": "8171ad84e021935e16f108eec89bd2beb465ee88b4924c02d6dd8f64173b04c9",
+      "bytes": 22436
+    },
+    {
+      "path": "assets/shared/td-selene/runtime.rbxmx",
+      "sha256": "b72058845b8fe9c14d9532d1519baa415b610c0e7bd3cf2ff2c0ff6cb28e6ef6",
+      "bytes": 7793
+    },
+    {
+      "path": "assets/shared/td-monsters/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+      "bytes": 548546
+    },
+    {
+      "path": "assets/shared/td-frozen-vale/runtime.rbxmx",
+      "sha256": "ebb5af6690ac7f042e1ecf0dd1cece8674a1fec9e2d4774d1efdae4381f09d11",
+      "bytes": 146330
+    },
+    {
+      "path": "assets/shared/td-ember-caldera/runtime.rbxmx",
+      "sha256": "429c541b1c46c99e6765272e52d984114df73f87284af6d9130b722783d615fb",
+      "bytes": 133380
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+      "sha256": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5",
+      "bytes": 72228
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/maps.rbxmx",
+      "sha256": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39",
+      "bytes": 50089
+    },
+    {
+      "path": "assets/shared/selene-repaired/runtime.rbxm",
+      "sha256": "f5b63ee4ebf0f8b74e5443dd071d9ce90a78b8d0030f1bf0573dc11be3bc6cc9",
+      "bytes": 36535
+    },
+    {
+      "path": "assets/shared/td-refined-player-weapons/runtime.rbxmx",
+      "sha256": "499dc06be05428916bfc5ad86a9e521eaf1c7376215d88bbd5d6fc40bea87ff8",
+      "bytes": 25734
+    },
+    {
+      "path": "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+      "sha256": "77f316e479808e6f39e42ba28eb10ad3d7553bc76141315df8fc03ac4c03f823",
+      "bytes": 5001
+    }
+  ],
+  "lfsInputAuditStatus": "PASS; checked frozen bytes against committed LFS pointers"
+}

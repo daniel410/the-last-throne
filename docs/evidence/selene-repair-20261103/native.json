@@ -1,0 +1,31 @@
+{
+  "bones": {
+    "vertices": 3917,
+    "checks": 7866,
+    "faces": 2989,
+    "pass": true
+  },
+  "motion": {
+    "failures": [],
+    "pass": true,
+    "checks": 361
+  },
+  "sourceChecks": 3,
+  "size": {
+    "heights": {
+      "selene": 4.80000114440918,
+      "R15": 5.457310676574707,
+      "R6": 5
+    },
+    "checks": 17,
+    "kind": "SELENE_SIZE_NATIVE",
+    "pass": true,
+    "failures": []
+  },
+  "sourceCommit": "bf20711c68bd636b4a5eb7683372f660977b67ac",
+  "version": "0.63.1",
+  "totalChecks": 8247,
+  "clientPlay": "Start request did not leave Edit mode; canceled after waiting; unverified",
+  "visualEvidence": "Local Studio Run/Heartbeat controlled poses; twelve actual native captures",
+  "standaloneLuaChecks": 23
+}
