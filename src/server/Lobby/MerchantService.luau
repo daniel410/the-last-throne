@@ -20,7 +20,7 @@ function S.start(options)
   if type(c.requestId)~='string' or #c.requestId>64 or not c.requestId:match('^[%w_-]+$') then return end
   if c.action=='GetState' then publish(p,c.requestId,nil,c.open);return end
   local function integer(v) return type(v)=='number' and v==v and v%1==0 and v>=0 and v<=1e12 end
-  if (c.action~='Buy' and c.action~='Sell' and c.action~='Enhance'and c.action~='Recover'and c.action~='ExchangeCore'and c.action~='OpenCache') or not integer(c.revision) or type(c.heroId)~='string' or #c.heroId>64
+  if (c.action~='Buy' and c.action~='Sell' and c.action~='Enhance'and c.action~='Recover'and c.action~='ExchangeCore'and c.action~='ExchangeStone'and c.action~='ConvertOre'and c.action~='ConvertCore'and c.action~='OpenCache') or not integer(c.revision) or type(c.heroId)~='string' or #c.heroId>64
    or (c.action=='Enhance'or c.action=='Recover'or c.action=='OpenCache')and (type(c.instanceId)~='string'or #c.instanceId>100 or not integer(c.itemVersion))
    or c.action=='OpenCache'and (type(c.offerId)~='string'or #c.offerId>80)
    or c.action=='Buy' and (type(c.offerId)~='string' or #c.offerId>80) or c.action=='Sell' and (type(c.instanceId)~='string' or #c.instanceId>100 or not integer(c.itemVersion)) then publish(p,c.requestId,'InvalidRequest');return end

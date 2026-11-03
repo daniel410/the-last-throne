@@ -395,7 +395,7 @@ function Rules.supportPass(profile,command,context,catalog)
  return Pass.apply(n,command,context,Rules,catalog)
 end
 function Rules.shop(profile,command,context,catalog)
- if command.action=='Enhance'or command.action=='Recover'or command.action=='ExchangeCore'or command.action=='OpenCache'then
+ if command.action=='Enhance'or command.action=='Recover'or command.action=='ExchangeCore'or command.action=='ExchangeStone'or command.action=='ConvertOre'or command.action=='ConvertCore'or command.action=='OpenCache'then
   local Forge=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentTransactions)or dofile('src/shared/EquipmentTransactions.luau')
   return Forge.apply(profile,command,context,catalog,Rules)
  end

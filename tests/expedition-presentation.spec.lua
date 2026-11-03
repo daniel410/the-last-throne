@@ -10,11 +10,11 @@ check(first.id=='DW-01'and #first.title>0 and #first.region>0 and #first.objecti
 check(first.modes.Easy.allowed and first.modes.Easy.level==1,'Easy Lv1 visible')
 check(first.modes.Hard.reason=='DifficultyLevel'and first.modes.Hard.level==20,'mode level reason')
 check(first.modes.Easy.firstXP==140 and first.modes.Easy.firstGold==150,'first story reward remains canonical')
-check(first.modes.Easy.repeatGold==45 and first.modes.Easy.ore==6,'repeat and forge summary match run rules')
+check(first.modes.Easy.repeatGold==45 and first.modes.Easy.gems==6 and first.modes.Easy.stones==1,'repeat and forge summary match run rules')
 hero.level=80;hero.progression=G.new(80)
 hero.expeditions={version=1,clears={['DW-01']={Easy=true,Hard=true,Insane=true}},cacheProgress={}}
 local hell=P.missions(hero)[1].modes.Hell
-check(hell.allowed and hell.repeatGold==135 and hell.cores==3 and hell.cache==4 and hell.xpCapped,'Hell repeat values and cap')
+check(hell.allowed and hell.repeatGold==393 and hell.stones==10 and hell.gems==28 and hell.cache==4 and hell.xpCapped,'Hell repeat values and cap')
 local party={id='party',hostId=42,target=2,status='forming',missionId='DW-01',difficultyId='Hell',members={['42']={userId=42,heroId='h',name='Knight',classId='knight',main=0,level=80,arrived=true,ready=true},['43']={userId=43,heroId='h2',name='Mage',classId='mage',main=0,level=1,arrived=true,ready=true}}}
 local other=R.copy(hero);other.level=1;other.progression=G.new(1)
 local function view()return P.party(party,function(m)return m.userId==42 and hero or other end)end

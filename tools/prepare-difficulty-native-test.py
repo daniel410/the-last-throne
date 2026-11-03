@@ -2,7 +2,7 @@
 from pathlib import Path
 import re,json
 root=Path.cwd()
-seeds=['src/server/Network/ExpeditionService.luau','tests/expedition-presentation.spec.lua','tests/expedition-departure.spec.lua','tests/expedition-store.spec.lua','tests/difficulty-enhancement.spec.lua','src/client/ArmoryView.luau','src/client/ExpeditionView.luau','src/server/Inventory/InventoryService.luau','src/client/AdventureReplay.luau']
+seeds=['tests/reward-materials.spec.lua','src/server/Story/DeepwoodService.luau','tests/difficulty-balance.spec.lua','src/server/Network/ExpeditionService.luau','tests/expedition-presentation.spec.lua','tests/expedition-departure.spec.lua','tests/expedition-store.spec.lua','tests/difficulty-enhancement.spec.lua','src/client/ArmoryView.luau','src/client/ExpeditionView.luau','src/server/Inventory/InventoryService.luau','src/client/AdventureReplay.luau']
 sources={}
 def add(path):
  if path in sources:return
@@ -33,6 +33,8 @@ pure('tests/difficulty-enhancement.spec.lua')
 pure('tests/expedition-departure.spec.lua')
 pure('tests/expedition-store.spec.lua')
 pure('tests/expedition-presentation.spec.lua')
+pure('tests/difficulty-balance.spec.lua')
+pure('tests/reward-materials.spec.lua')
 local tree={};local nodes={}
 for path in pairs(sources)do
  local parent=tree
@@ -116,6 +118,16 @@ local serviceOK,serviceError=xpcall(function()
  fakeRemotes.InventoryRequest.event:Fire(actor,{action='Equip',heroId='service-hero',requestId='service-equip',revision=s.revision,instanceId=item.instanceId,itemVersion=item.version})
  task.wait(.1)
  assert(math.abs(inventory.stats(actor,'service-hero').power-10.3)<.00001,'enhanced equipment not reflected in service stats: '..tostring(inventory.stats(actor,'service-hero').power)..' error='..tostring(lastInventoryError))
+ local function quantity(snapshot,id)local q=0;for _,v in ipairs(snapshot.items)do if v.definitionId==id and v.location.kind=='bag'then q+=v.quantity end end;return q end
+ s=inventory.snapshot(actor);local beforeGem,beforeStone,beforeGold,beforeDiamonds=quantity(s,'enhancement_gem'),quantity(s,'magic_stone'),s.wallet.gold,s.wallet.diamonds
+ assert(not inventory.shop(actor,{action='ExchangeStone',store='blacksmith',heroId='service-hero',requestId='service-stone',revision=s.revision}))
+ s=inventory.snapshot(actor);assert(quantity(s,'enhancement_gem')==beforeGem-5 and quantity(s,'magic_stone')==beforeStone+1 and s.wallet.gold==beforeGold-50 and s.wallet.diamonds==beforeDiamonds,'new exchange not isolated from Diamonds')
+ local oldOre=quantity(s,'iron_ore');local gems=quantity(s,'enhancement_gem')
+ assert(not inventory.shop(actor,{action='ConvertOre',store='blacksmith',heroId='service-hero',requestId='service-convert',revision=s.revision}))
+ s=inventory.snapshot(actor);assert(quantity(s,'iron_ore')==oldOre-1 and quantity(s,'enhancement_gem')==gems+1,'explicit old material conversion failed')
+ for _,v in ipairs(s.items)do if v.instanceId==item.instanceId then item=v;break end end
+ assert(not inventory.shop(actor,{action='Recover',store='blacksmith',heroId='service-hero',requestId='service-recover',revision=s.revision,instanceId=item.instanceId,itemVersion=item.version}))
+ assert(math.abs(inventory.stats(actor,'service-hero').power-10)<.00001,'new ledger recovery failed')
 end,debug.traceback)
 for _,thread in ipairs(threads)do pcall(task.cancel,thread)end
 for _,event in ipairs(events)do event:Destroy()end
@@ -149,7 +161,7 @@ local ok,result=xpcall(function()
   armory.panel.Size=UDim2.fromOffset(size.X-40,size.Y-40);armory.render(snapshot);armory.setMode('Enhance');task.wait(.1)
   for _,b in ipairs(armory.panel:GetDescendants())do if b:IsA('TextButton')and b.Visible then assert(b.AbsoluteSize.Y>=43,'touch target below44 '..b.Name)end end
  end
- return {pure='difficulty, enhancement, departure recovery and store checks passed in native Luau',service='durable begin, first/repeat completion, forge/equip and equipment stats passed',forgeButtons=forgeButtons,ui='four modes, locked entry, enhancement and desktop/mobile controls passed'}
+ return {pure='difficulty, enhancement, departure recovery and store checks passed in native Luau',service='durable begin, first/repeat completion, gem/stone exchange, conversion, forge/equip and recovery passed',forgeButtons=forgeButtons,ui='four modes, locked entry, enhancement and desktop/mobile controls passed'}
 end,debug.traceback)
 gui:Destroy();signal:Destroy();assert(ok,result);return result
 ''')

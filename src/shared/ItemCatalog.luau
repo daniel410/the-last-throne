@@ -56,16 +56,18 @@ for _, resource in ipairs({"health", "mana"}) do
 	end
 end
 Catalog.items.iron_ore = {id = "iron_ore", name = "Iron Ore", category = "Materials", maxStack = 999,
-	glyph = "FE", rarity = "Common", description = "Crafting material. Keep it in your bag or shared storage."}
+	glyph = "FE", rarity = "Common", description = "Legacy crafting material. Keep it, or explicitly convert one to one Enhancement Gem at the blacksmith."}
 Catalog.items.soft_hide = {id = "soft_hide", name = "Soft Hide", category = "Materials", maxStack = 999,
 	glyph = "LH", rarity = "Common", description = "Crafting material. Crafting is not available yet."}
 Catalog.kit = {"traveler_hood", "traveler_coat", "traveler_gloves", "traveler_boots", "copper_ring", "amber_charm", "veteran_hood"}
 for _,id in ipairs({'warlord_seal','king_shaman_seal'}) do
  Catalog.items[id]={id=id,name=id=='warlord_seal' and 'Orc Warlord Seal' or 'King Shaman Seal',category='Materials',maxStack=99,glyph='SE',rarity='Uncommon',description='A personal trophy from the Deepwood campaign. Collect from Unclaimed at Hub.'}
 end
-Catalog.items.forge_core={id='forge_core',name='Forge Core',category='Materials',maxStack=999,glyph='FC',rarity='Rare',description='Enhancement material. Earn from harder missions or exchange Iron Ore at the blacksmith.'}
+Catalog.items.forge_core={id='forge_core',name='Forge Core',category='Materials',maxStack=999,glyph='FC',rarity='Rare',description='Legacy forge material. Keep it, or explicitly convert one to one Magic Stone at the blacksmith.'}
 for _,tier in ipairs({1,5,10})do
  local id='equipment_cache_'..tier
  Catalog.items[id]={id=id,name='Level '..tier..' Equipment Cache',category='Materials',maxStack=99,glyph='EQ',rarity='Rare',cacheTier=tier,description='Claim to your bag, then choose equipment at the blacksmith. Repeat missions to earn more caches.'}
 end
+Catalog.items.enhancement_gem={id='enhancement_gem',name='Enhancement Gem',category='Materials',maxStack=999,glyph='EG',rarity='Uncommon',description='Earned crafting material for equipment enhancement. Separate from Diamonds. Higher-level missions and difficulties award more.'}
+Catalog.items.magic_stone={id='magic_stone',name='Magic Stone',category='Materials',maxStack=999,glyph='MS',rarity='Rare',description='Earned material used from enhancement +4 onward. Complete combat missions or exchange Enhancement Gems at the blacksmith.'}
 return Catalog

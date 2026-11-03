@@ -15,21 +15,25 @@ function E.stats(def,item)
  return result
 end
 function E.cost(def,level)
- return {gold=20*level*level*math.max(1,math.ceil((def.level or 1)/10)),ore=2*level,cores=math.max(0,level-3)}
+ return {gold=20*level*level*math.max(1,math.ceil((def.level or 1)/10)),ore=2*level,cores=math.max(0,level-3),gems=2*level,stones=math.max(0,level-3)}
 end
 function E.valid(item,def)
  local n=item.enhancementLevel
- if n==nil then return item.enhancementPaid==nil end
+ if n==nil then return item.enhancementPaid==nil and item.enhancementPaidV2==nil end
  if not E.supported(def)or type(n)~='number'or n%1~=0 or n<0 or n>E.cap(def)then return false end
- local paid=item.enhancementPaid
- if paid~=nil then
-  if type(paid)~='table'then return false end
-  local total={ore=0,cores=0}
-  for step=1,n do local c=E.cost(def,step);total.ore=total.ore+c.ore;total.cores=total.cores+c.cores end
-  for _,key in ipairs({'ore','cores'})do
-   if type(paid[key])~='number'or paid[key]%1~=0 or paid[key]<0 or paid[key]>total[key]then return false end
+ local total={gems=0,stones=0}
+ for step=1,n do local cost=E.cost(def,step);total.gems=total.gems+cost.gems;total.stones=total.stones+cost.stones end
+ local old=item.enhancementPaid;local paid=item.enhancementPaidV2
+ for _,ledger in ipairs({{value=old,keys={'ore','cores'}},{value=paid,keys={'gems','stones'}}})do
+  if ledger.value~=nil then
+   if type(ledger.value)~='table'then return false end
+   for index,key in ipairs(ledger.keys)do
+    local value=ledger.value[key];local cap=index==1 and total.gems or total.stones
+    if type(value)~='number'or value%1~=0 or value<0 or value>cap then return false end
+   end
   end
  end
+ if ((old and old.ore or 0)+(paid and paid.gems or 0))>total.gems or ((old and old.cores or 0)+(paid and paid.stones or 0))>total.stones then return false end
  return true
 end
 function E.name(def,item)return def.name..((item and (item.enhancementLevel or 0)>0)and ' +'..item.enhancementLevel or '')end

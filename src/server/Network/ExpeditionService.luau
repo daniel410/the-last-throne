@@ -30,7 +30,7 @@ local function offer(p)
   local a=o.inventory.expedition(p,heroId);return a and a.runId
  end);if not r then return nil,e end
  local run,why=store.readRun(r.runId);if not run or run.closed then return nil,why or 'RejoinExpired' end
- return r
+ return r,nil,run
 end
 local function selection(p)
  if selections[p]then return selections[p]end
@@ -55,13 +55,13 @@ local function publish(p,errorCode,open,requestId)
   if not ctx or not ctx.atHub or ctx.heroId~=m.heroId or not fence or fence.id~=party.id or fence.token~=m.token or travel[person]then return nil end
   return o.inventory.expeditionHero(person)
  end)
- local r=offer(p)
+ local r,_,rejoinRun=offer(p)
  local choice=party and {missionId=party.missionId,difficultyId=party.difficultyId}or selection(p)
- local hero=o.inventory.expeditionHero(p);local missions=Presentation.missions(hero)
+ local hero=o.inventory.expeditionHero(p);local missions=Presentation.missions(hero,clean and clean.target or 1)
  local activeHero=o.heroSession.getActiveHero(p)
  local expedition=activeHero and o.inventory.expedition(p,activeHero.heroId)
  remote:FireClient(p,{role=role,studio=studio,configured=C.battlePlaceId>0,capacity=role=='Lobby' and C.lobbyCapacity or C.battleCapacity,
-  requestId=requestId,busy=busy[p]==true,hero=hero and {classId=hero.baseClassId,level=hero.level},selection=choice,missions=missions,expedition=expedition,population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt} or nil})
+  requestId=requestId,busy=busy[p]==true,hero=hero and {classId=hero.baseClassId,level=hero.level},selection=choice,missions=missions,expedition=expedition,population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt,rulesVersion=rejoinRun and rejoinRun.rulesVersion} or nil})
 end
 function Service.openMenu(p)
  if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then return 'WaitForLobby' end
@@ -134,7 +134,7 @@ function Service.admitArrival(p)
  if studio then return nil end
  if game.PrivateServerId=='' or game.PrivateServerOwnerId~=0 or not sourceValid(data) or type(t)~='table' or type(t.runId)~='string' or #t.runId>64 or type(t.ticket)~='string' or #t.ticket>64 then return nil,'Join an adventure from the Dawnspire lobby.' end
  local r,e=store.admit(t.runId,p.UserId,t.ticket,job)
- if not r or r.placeId~=game.PlaceId or count(r.members)>4 or r.rulesVersion~=Difficulty.version or not Content.byId[r.missionId]or not Difficulty.modes[r.difficultyId]then return nil,'Your expedition could not be verified. Return to the lobby and rejoin.' end
+ if not r or r.placeId~=game.PlaceId or count(r.members)>4 or not Difficulty.compatible(r.rulesVersion) or not Content.byId[r.missionId]or not Difficulty.modes[r.difficultyId]then return nil,'Your expedition could not be verified. Return to the lobby and rejoin.' end
  if battleRun and battleRun.id~=r.id then return nil,'This battle server belongs to another expedition.' end
  battleRun=r;battleStarted=battleStarted or os.clock();admitted[p]=r.members[tostring(p.UserId)]
  p:SetAttribute('TLTTravelLock',true)
@@ -336,7 +336,7 @@ function Service.start(options)
       if not verified and runHealthy and store.departure(p.UserId,battleRun.id,m.ticket)then
        -- Only a server-staged departure may replace the old checkpoint. A rejoin
        -- can verify an existing run but cannot restart a superseded journal.
-       local why=o.inventory.beginExpedition(p,m.heroId,battleRun.missionId,battleRun.difficultyId,battleRun.id)
+       local why=o.inventory.beginExpedition(p,m.heroId,battleRun.missionId,battleRun.difficultyId,battleRun.id,battleRun.rulesVersion)
        verified=not why and Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
       end
       if verified and runHealthy then

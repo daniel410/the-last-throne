@@ -56,7 +56,15 @@ function Artwork.create(parent,def,position,size)
 	elseif slot=="accessory" then
 		for i=1,12 do local a=i*math.pi/6; p("Ring",.38,.18,.22,math.sin(a)*.78,math.cos(a)*.78,0,gold,-i*30) end
 		p("Stone",.62,.68,.4,0,.72,-.16,def.id=="amber_charm" and Color3.fromRGB(255,157,40) or blue,45)
-	elseif def.id=="iron_ore" then
+	elseif def.id=="enhancement_gem" then
+  p("GemBody",1.1,1.4,.85,0,0,0,Color3.fromRGB(60,212,151),45,"wedge")
+  p("GemCrown",1.1,.6,.85,0,.65,0,Color3.fromRGB(139,255,202),-45,"wedge")
+  p("GemFacet",.18,1.05,.9,-.28,.05,-.12,Color3.fromRGB(205,255,234),35)
+ elseif def.id=="magic_stone" then
+  p("RuneStone",1.2,1.7,.85,0,0,0,Color3.fromRGB(137,81,220),18)
+  p("RuneTop",1.2,.65,.85,0,1.05,0,Color3.fromRGB(188,135,255),18,"wedge")
+  p("RuneMark",.12,.9,.92,0,0,-.08,Color3.fromRGB(108,239,255),18)
+ elseif def.id=="iron_ore" then
 		p("Ore",1.4,1.3,1,0,-.25,0,metal,28,"wedge");p("OreFragment",.8,.9,.8,.8,-.45,0,Color3.fromRGB(128,150,172),-20,"wedge")
 	else
 		p("Hide",1.7,2,.12,0,0,0,Color3.fromRGB(164,114,65),-15)

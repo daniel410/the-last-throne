@@ -50,16 +50,28 @@ local function share(amount,spec)
  local copies=spec.rewardCopies or 1
  return math.floor(amount/copies)+((spec.rewardIndex or 1)<=amount%copies and 1 or 0)
 end
-function Balance.rewards(spec)
+function Balance.rewards(spec,mode,version)
  local boss=Balance.isBoss(spec.kind)
- return share((8+2*spec.level)*(boss and 5 or 1),spec),share((3+math.floor(spec.level/2))*(boss and 10 or 1),spec)
+ local m=version~=1 and mode and assert(Difficulty.mode(mode,version),'Unsupported reward rules')or {xp=1,gold=1}
+ -- Scale the original whole-unit budget before splitting its six finite copies.
+ return share(math.floor((8+2*spec.level)*(boss and 5 or 1)*m.xp),spec),share(math.floor((3+math.floor(spec.level/2))*(boss and 10 or 1)*(mode and version~=1 and Difficulty.goldMultiplier(spec.level,mode,version)or m.gold)),spec)
 end
-function Balance.stats(kind,level,partySize,mode)
- if mode then return Difficulty.stats(kind,level,partySize,Balance.isBoss(kind),mode)end
+function Balance.stats(kind,level,partySize,mode,version)
+ if mode then return Difficulty.stats(kind,level,partySize,Balance.isBoss(kind),mode,version)end
  local boss=Balance.isBoss(kind)
  local party=(boss and {1,1.7,2.3,2.8} or {1,1.5,2,2.5})[partySize or 1]
  local health=(boss and 1000+level*100 or 100+level*25)*party*(boss and Balance.bossHealth or Balance.normalHealth)
  local damage=(boss and 28+level*2 or 10+level)*(boss and Balance.bossDamage or Balance.normalDamage)
  return math.floor(health+.5),math.floor(damage+.5)
+end
+-- Elite adjustments share a single path with the runtime and entry preview.
+function Balance.unitStats(spec,partySize,mode,version,index)
+ local hp,damage,level=Balance.stats(spec.kind,spec.level,partySize,mode,version)
+ local elite
+ if not Balance.isBoss(spec.kind)then
+  if (mode=='Insane'or mode=='Hell')and index==1 then hp=math.floor(hp*1.15+.5);elite='Armored' end
+  if mode=='Hell'and index==2 then damage=math.floor(damage*1.1+.5);elite='Empowered' end
+ end
+ return hp,damage,level,elite
 end
 return Balance

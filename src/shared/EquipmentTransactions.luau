@@ -48,6 +48,15 @@ function F.apply(profile,c,context,C,R)
   if p.wallet.gold<50 then return nil,'NotEnoughGold'end
   if not F.consume(p,c.heroId,'iron_ore',5)then return nil,'EnhancementMaterials'end
   p.wallet.gold=p.wallet.gold-50;F.grant(p,R,C,c.heroId,'forge_core',1,'forge-'..c.requestId)
+ elseif c.action=='ExchangeStone'then
+  if p.wallet.gold<50 then return nil,'NotEnoughGold'end
+  if not F.consume(p,c.heroId,'enhancement_gem',5)then return nil,'EnhancementMaterials'end
+  p.wallet.gold=p.wallet.gold-50;F.grant(p,R,C,c.heroId,'magic_stone',1,'stone-'..c.requestId)
+ elseif c.action=='ConvertOre'or c.action=='ConvertCore'then
+  local source=c.action=='ConvertOre'and 'iron_ore'or 'forge_core'
+  local target=c.action=='ConvertOre'and 'enhancement_gem'or 'magic_stone'
+  if not F.consume(p,c.heroId,source,1)then return nil,'EnhancementMaterials'end
+  F.grant(p,R,C,c.heroId,target,1,'convert-'..c.requestId)
  elseif c.action=='Enhance'or c.action=='Recover'or c.action=='OpenCache'then
   if not item or item.version~=c.itemVersion or item.ownerUserId~=p.userId then return nil,'Changed'end
   if item.locked then return nil,'ItemLocked'end
@@ -64,15 +73,18 @@ function F.apply(profile,c,context,C,R)
     if level>=E.cap(def)then return nil,'EnhancementMax'end
     local cost=E.cost(def,level+1)
     if p.wallet.gold<cost.gold then return nil,'NotEnoughGold'end
-    if not F.consume(p,c.heroId,'iron_ore',cost.ore)or not F.consume(p,c.heroId,'forge_core',cost.cores)then return nil,'EnhancementMaterials'end
+    if not F.consume(p,c.heroId,'enhancement_gem',cost.gems)or not F.consume(p,c.heroId,'magic_stone',cost.stones)then return nil,'EnhancementMaterials'end
     p.wallet.gold=p.wallet.gold-cost.gold;item.enhancementLevel=level+1
-    local paid=item.enhancementPaid or {ore=0,cores=0};item.enhancementPaid={ore=paid.ore+cost.ore,cores=paid.cores+cost.cores}
+    local paid=item.enhancementPaidV2 or {gems=0,stones=0};item.enhancementPaidV2={gems=paid.gems+cost.gems,stones=paid.stones+cost.stones}
    else
-    local paid=item.enhancementPaid or {ore=0,cores=0};local ore,cores=math.floor(paid.ore*.8),math.floor(paid.cores*.8)
-    if ore+cores==0 then return nil,'NoRecovery'end
-    item.enhancementLevel=0;item.enhancementPaid={ore=0,cores=0}
-    if not F.grant(p,R,C,c.heroId,'iron_ore',ore,'recover-'..c.requestId..'-ore',false,true)
-     or not F.grant(p,R,C,c.heroId,'forge_core',cores,'recover-'..c.requestId..'-core',false,true)then return nil,'BagFull'end
+    local paid=item.enhancementPaid or {ore=0,cores=0};local modern=item.enhancementPaidV2 or {gems=0,stones=0}
+    local returns={iron_ore=math.floor(paid.ore*.8),forge_core=math.floor(paid.cores*.8),enhancement_gem=math.floor(modern.gems*.8),magic_stone=math.floor(modern.stones*.8)}
+    local sum=0;for _,amount in pairs(returns)do sum=sum+amount end
+    if sum==0 then return nil,'NoRecovery'end
+    item.enhancementLevel=0;item.enhancementPaid={ore=0,cores=0};item.enhancementPaidV2={gems=0,stones=0}
+    for _,id in ipairs({'iron_ore','forge_core','enhancement_gem','magic_stone'})do
+     if not F.grant(p,R,C,c.heroId,id,returns[id],'recover-'..c.requestId..'-'..id,false,true)then return nil,'BagFull'end
+    end
     -- Recovery must fit in the bag; no destructive partial result on refusal.
     for key,v in pairs(p.items)do if not profile.items[key]and v.location.kind=='pending'then return nil,'BagFull'end end
    end

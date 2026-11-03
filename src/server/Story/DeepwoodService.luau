@@ -60,7 +60,7 @@ local function enqueue(player,heroId,c,g,choice,stepId)
  if q.running then return end;q.running=true
  task.spawn(function()
   while player.Parent==Players and #q.events>0 do
-   local e=q.events[1];local before=state(player,e.heroId);local reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId,e.runId)
+   local e=q.events[1];local before=state(player,e.heroId);local growthBefore=options.inventory.growth and options.inventory.growth(player,e.heroId);local reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId,e.runId)
    if reason=='Busy' or reason=='SaveUnknown' then
     publish(player,'Saving progress. Please wait; the same event will retry.');task.wait(1)
    elseif reason then
@@ -83,9 +83,9 @@ local function enqueue(player,heroId,c,g,choice,stepId)
     end end end
     local complete=after and after.clears[e.c.id] and before and not before.clears[e.c.id]
     local run=options.inventory.expedition(player,e.heroId)
-    local repeatReward=run and not run.firstClear and require(ReplicatedStorage.Shared.AdventureRepeatRewards)[e.c.id]
-    local mode=run and Difficulty.modes[run.difficultyId]or Difficulty.modes.Easy
-    publish(player,text~='' and text or nil,nil,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=repeatReward and math.floor(repeatReward.xp*mode.xp)or e.c.reward.xp,coins=repeatReward and math.floor(repeatReward.gold*mode.gold)or e.c.reward.coins,outcome=e.c.quest.outcome} or nil)
+    local reward=run and not run.firstClear and Difficulty.completion(e.c,run.difficultyId,run.balanceVersion or 1)or {xp=e.c.reward.xp,gold=e.c.reward.coins}
+    local xp=growthBefore and growthBefore.level>=80 and 0 or reward.xp
+    publish(player,text~='' and text or nil,nil,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=xp,coins=reward.gold,outcome=e.c.quest.outcome} or nil)
     end
    end
   end
@@ -105,12 +105,12 @@ local function destroyEncounter(e)
  for _,m in ipairs(e.models) do if m.Parent then m:Destroy() end end
  for _,p in ipairs(e.parts or {}) do if p.Parent then p:Destroy() end end
 end
-local function applyBalance(model,spec,partySize,difficulty)
- local health,damage,level=Balance.stats(spec.kind,spec.level,partySize,difficulty)
- local xp,gold=Balance.rewards(spec)
+local function applyBalance(model,spec,partySize,difficulty,version,index)
+ local health,damage,level,elite=Balance.unitStats(spec,partySize,difficulty,version,index)
+ local xp,gold=Balance.rewards(spec,difficulty,version)
  model:SetAttribute('StoryLevel',level or spec.level);model:SetAttribute('StoryBoss',Balance.isBoss(spec.kind))
  model:SetAttribute('StoryHealth',health);model:SetAttribute('StoryDamage',damage)
- model:SetAttribute('StoryRewardXP',xp);model:SetAttribute('StoryRewardGold',gold)
+ model:SetAttribute('StoryRewardXP',xp);model:SetAttribute('StoryRewardGold',gold);model:SetAttribute('StoryElite',elite)
 end
 local spawnWave
 local function reinforce(e,health)
@@ -206,7 +206,7 @@ local function floorHazard(e)
   if encounters[e.key]==e then
    for ally,heroId in pairs(e.participants) do local ctx,root=context(ally)
     if ctx and ctx.heroId==heroId and root and (Vector3.new(root.Position.X,pos.Y,root.Position.Z)-pos).Magnitude<7
-     and not ally.Character:GetAttribute('K0Invulnerable') then ally.Character:FindFirstChildOfClass('Humanoid'):TakeDamage(math.floor(32*(Difficulty.modes[e.difficultyId]or Difficulty.modes.Easy).damage+.5)) end
+     and not ally.Character:GetAttribute('K0Invulnerable') then ally.Character:FindFirstChildOfClass('Humanoid'):TakeDamage(math.floor(32*(Difficulty.mode(e.difficultyId or 'Easy',e.rulesVersion)or Difficulty.modes.Easy).damage+.5)) end
    end
   end
   p:Destroy()
@@ -224,13 +224,7 @@ spawnWave=function(e)
   local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,visual)
   m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
   e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',e.goal.id..'_'..e.spawnCount)
-  m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize,e.difficultyId)
-  if not boss and (e.difficultyId=='Insane'or e.difficultyId=='Hell')and index==1 then
-   m:SetAttribute('StoryElite','Armored');m:SetAttribute('StoryHealth',math.floor(m:GetAttribute('StoryHealth')*1.15+.5))
-  end
-  if not boss and e.difficultyId=='Hell'and index==2 then
-   m:SetAttribute('StoryElite','Empowered');m:SetAttribute('StoryDamage',math.floor(m:GetAttribute('StoryDamage')*1.1+.5))
-  end
+  m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize,e.difficultyId,e.rulesVersion,index)
   m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1.25+index*.12)
   m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or Text.Enemy[kind] or kind
   table.insert(e.models,m);e.remaining=e.remaining+1
@@ -247,7 +241,7 @@ local function begin(player,node,automatic)
   local n=0 for _ in pairs(e.participants) do n=n+1 end
   if not e.participants[player] and n>=4 then publish(player,'This encounter already has four heroes. Wait for the next attempt.');return end
   e.participants[player]=ctx.heroId;publish(player,'Encounter joined. Defeat the remaining guards.');return end
- e={key=key,runId=run and run.runId,difficultyId=run and run.difficultyId,chapter=c,goal=g,position=position,models={},participants={[player]=ctx.heroId},remaining=0,started=os.clock(),lastPresent=os.clock()};encounters[key]=e
+ e={key=key,runId=run and run.runId,difficultyId=run and run.difficultyId,rulesVersion=run and(run.balanceVersion or 1),chapter=c,goal=g,position=position,models={},participants={[player]=ctx.heroId},remaining=0,started=os.clock(),lastPresent=os.clock()};encounters[key]=e
  -- Eligible nearby allies can help through combat, protection or interaction.
  local count=1
  for _,p in ipairs(Players:GetPlayers()) do if p~=player then

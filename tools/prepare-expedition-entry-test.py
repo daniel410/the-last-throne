@@ -52,7 +52,7 @@ view.showTab('Details')
 hero.level=80;hero.progression=G.new(80);hero.expeditions={version=1,clears={['DW-01']={Easy=true,Hard=true,Insane=true}},cacheProgress={}}
 state.hero.level=80;state.missions=P.missions(hero);state.selection.difficultyId='Hell';state.requestId=nil;show()
 check(button('Solo').Active,'eligible Hell remains repeatable')
-check(button('RepeatReward').Text:find('135 Gold',1,true)and button('RepeatReward').Text:find('0 XP',1,true),'reward projection reflects mode and level cap')
+check(button('RepeatReward').Text:find('393 Gold',1,true)and button('RepeatReward').Text:find('0 XP',1,true),'reward projection reflects mode and level cap')
 check(button('HellRepeat').Text:find('without a daily limit',1,true),'Hell unlimited repeat explained')
 local other=R.copy(hero);other.level=1;other.progression=G.new(1)
 local party={id='party',hostId=42,target=2,status='forming',missionId='DW-01',difficultyId='Hell',members={['42']={userId=42,name='Knight',classId='knight',level=80,main=0,ready=true,arrived=true},['43']={userId=43,name='Mage',classId='mage',level=1,main=0,ready=true,arrived=true}}}
@@ -109,7 +109,7 @@ clock+=1;command(p2,{action='Ready',ready=true,requestId='ready2'})
 check(latest(p1).party.launchAllowed and latest(p2).party.launchAllowed,'all ready eligibility sent to both members')
 clock+=1;command(p1,{action='Configure',missionId='DW-01',difficultyId='Easy',requestId='changed'})
 check(not latest(p2).party.launchAllowed and not latest(p2).party.members[1].ready,'configuration change immediately invalidates party readiness')
-_G.TLTExpeditionEntryTest={gui=gui,signal=signal,root=root,view=view,state=state,party=party,partyView=partyView,hero=hero,other=other}
+_G.TLTExpeditionEntryTest={gui=gui,signal=signal,root=root,view=view,state=state,party=party,partyView=partyView,hero=hero,other=other,projection=P}
 return {checks=n,measurements=measures,scope='native GUI with server projection fixtures; no live account, remote or Teleport'}
 end,debug.traceback)
 if not ok then gui:Destroy();signal:Destroy();error(result)end

@@ -36,19 +36,19 @@ local g=p.heroes.hero.progression;p.heroes.hero.level=80;p.heroes.hero.progressi
 for _,mode in ipairs({'Hard','Insane'})do
  p=assert(A.begin(p,'hero','DW-01',mode,mode,p.revision,R,C));p=complete(p,mode)
 end
-local beforeHell=p.wallet.gold;local coreBefore=R.quantity(p,'hero','forge_core')
+local beforeHell=p.wallet.gold;local coreBefore=R.quantity(p,'hero','magic_stone')
 for run=1,3 do
  local id='hell'..run;p=assert(A.begin(p,'hero','DW-01','Hell',id,p.revision,R,C))
  local wrong,reason=A.event(p,'hero','DW-01','trail_guards',nil,nil,R,C,'forged')
  check(not wrong and reason=='AdventureChanged','foreign run cannot complete objectives')
  p=complete(p,id)
- local gold=p.wallet.gold;local cores=R.quantity(p,'hero','forge_core')
+ local gold=p.wallet.gold;local cores=R.quantity(p,'hero','magic_stone')
  p=assert(A.event(p,'hero','DW-01',Content.byId['DW-01'].goals[#Content.byId['DW-01'].goals].id,nil,nil,R,C,id))
- eq(p.wallet.gold,gold,'same run cannot recredit Gold');eq(R.quantity(p,'hero','forge_core'),cores,'same run cannot recredit cores')
+ eq(p.wallet.gold,gold,'same run cannot recredit Gold');eq(R.quantity(p,'hero','magic_stone'),cores,'same run cannot recredit cores')
  eq(p.heroes.hero.progression.xp,0,'level80 never accumulates XP')
 end
-eq(p.wallet.gold-beforeHell,3*135,'three fresh Hell clears each credit repeat Gold')
-eq(R.quantity(p,'hero','forge_core')-coreBefore,9,'three Hell clears credit three material rewards')
+eq(p.wallet.gold-beforeHell,3*393,'three fresh Hell clears each credit repeat Gold')
+eq(R.quantity(p,'hero','magic_stone')-coreBefore,30,'three Hell clears credit three material rewards')
 eq(p.wallet.diamonds,originalDiamonds,'replays never regrant story Diamonds')
 eq(p.heroes.hero.deepwood.main,1,'replays preserve canonical story')
 eq(p.heroes.hero.deepwood.coins,150,'replays preserve original story budget')
@@ -62,14 +62,14 @@ local item=find(p,'knight_weapon_fine');local id=item.instanceId
 for level=1,3 do
  item=p.items[id];local cmd={action='Enhance',store='blacksmith',requestId='enhance'..level,heroId='hero',revision=p.revision,instanceId=id,itemVersion=item.version}
  local oldGold=p.wallet.gold;p=assert(R.shop(p,cmd,{atLobby=true},C));eq(p.wallet.gold,oldGold-20*level*level,'exact enhancement Gold cost')
- local q=R.quantity(p,'hero','iron_ore');p=assert(R.shop(p,cmd,{atLobby=true},C));eq(R.quantity(p,'hero','iron_ore'),q,'retry consumes no extra ore')
+ local q=R.quantity(p,'hero','enhancement_gem');p=assert(R.shop(p,cmd,{atLobby=true},C));eq(R.quantity(p,'hero','enhancement_gem'),q,'retry consumes no extra ore')
 end
 eq(C.items.knight_weapon_fine.stats.power,10,'item definition never overwritten')
 check(math.abs(E.stats(C.items.knight_weapon_fine,p.items[id]).power-10.9)<.00001,'three upgrades add9% to equipment only')
 local old=p.wallet.gold;local cmd={action='Enhance',store='blacksmith',requestId='cap',heroId='hero',revision=p.revision,instanceId=id,itemVersion=p.items[id].version}
 local no,why=R.shop(p,cmd,{atLobby=true},C);check(not no and why=='EnhancementMax','level1 equipment cannot exceed+3');eq(p.wallet.gold,old,'failed upgrade costs nothing')
-local ore=R.quantity(p,'hero','iron_ore');cmd.action='Recover';cmd.requestId='recover';p=assert(R.shop(p,cmd,{atLobby=true},C));eq(p.items[id].enhancementLevel,0,'recovery preserves equipment at+0');eq(R.quantity(p,'hero','iron_ore'),ore+9,'recover floor80% of actually paid12ore')
-p=assert(R.shop(p,cmd,{atLobby=true},C));eq(R.quantity(p,'hero','iron_ore'),ore+9,'recovery retry creates no extra materials')
+local ore=R.quantity(p,'hero','enhancement_gem');cmd.action='Recover';cmd.requestId='recover';p=assert(R.shop(p,cmd,{atLobby=true},C));eq(p.items[id].enhancementLevel,0,'recovery preserves equipment at+0');eq(R.quantity(p,'hero','enhancement_gem'),ore+9,'recover floor80% of actually paid12ore')
+p=assert(R.shop(p,cmd,{atLobby=true},C));eq(R.quantity(p,'hero','enhancement_gem'),ore+9,'recovery retry creates no extra materials')
 cmd.requestId='recover-again';cmd.revision=p.revision;cmd.itemVersion=p.items[id].version;local no,why=R.shop(p,cmd,{atLobby=true},C);check(not no and why=='NoRecovery','zero ledger cannot refund twice')
 check(R.validate(p,C),'forge and replay maintain ownership invariants')
 -- Unknown save after the write committed retries the same operation and recovers once.
@@ -98,18 +98,19 @@ manifest.difficultyId='Hell';manifest.rulesVersion=99;check(not D.verifyRun(resu
 local high=R.copy(C);high.items.test_80={id='test_80',name='Test Sword',category='Equipment',slot='weapon',classId='knight',stats={power=24},level=80,maxStack=1}
 local full=new();full.heroes.hero.level=80;full.heroes.hero.progression=Growth.new(80);full.wallet.gold=100000
 local hitem=find(full,'knight_weapon_fine');hitem.definitionId='test_80'
-find(full,'iron_ore').quantity=110
-full.items.cores={instanceId='cores',definitionId='forge_core',definitionVersion=1,ownerUserId=42,quantity=28,version=1,binding='account',locked=false,location={kind='bag',heroId='hero'}}
+full.items.gems={instanceId='gems',definitionId='enhancement_gem',definitionVersion=1,ownerUserId=42,quantity=110,version=1,binding='account',locked=false,location={kind='bag',heroId='hero'}}
+full.items.cores={instanceId='cores',definitionId='magic_stone',definitionVersion=1,ownerUserId=42,quantity=28,version=1,binding='account',locked=false,location={kind='bag',heroId='hero'}}
 for step=1,10 do
  local item=full.items[hitem.instanceId];full=assert(R.shop(full,{action='Enhance',store='blacksmith',heroId='hero',requestId='high'..step,revision=full.revision,instanceId=item.instanceId,itemVersion=item.version},{atLobby=true},high))
 end
-eq(full.wallet.gold,38400,'Lv80 +10 costs61600 Gold exactly');eq(R.quantity(full,'hero','iron_ore'),0,'+10 consumes110 ore');eq(R.quantity(full,'hero','forge_core'),0,'+10 consumes28 cores')
+eq(full.wallet.gold,38400,'Lv80 +10 costs61600 Gold exactly');eq(R.quantity(full,'hero','enhancement_gem'),0,'+10 consumes110 ore');eq(R.quantity(full,'hero','magic_stone'),0,'+10 consumes28 cores')
 check(math.abs(E.stats(high.items.test_80,full.items[hitem.instanceId]).power-31.2)<1e-9,'+10 adds30% once to base stats')
 -- Partial material shortage and foreign locations never mutate the source account.
 local q=new();q.wallet.gold=1000;local gear=find(q,'knight_weapon_fine');gear.enhancementLevel=0
 local bad={action='Enhance',store='blacksmith',heroId='hero',requestId='short',revision=q.revision,instanceId=gear.instanceId,itemVersion=gear.version}
-find(q,'iron_ore').locked=true;local no,why=R.shop(q,bad,{atLobby=true},C);check(not no and why=='EnhancementMaterials','locked ore cannot pay');eq(q.wallet.gold,1000,'shortage leaves Gold unchanged')
-find(q,'iron_ore').locked=false;gear.location={kind='storage'};local no,why=R.shop(q,bad,{atLobby=true},C);check(not no and why=='BagOnly','storage target cannot enhance directly')
+q.items.gems={instanceId='gems',definitionId='enhancement_gem',definitionVersion=1,ownerUserId=42,quantity=10,version=1,binding='account',locked=false,location={kind='bag',heroId='hero'}}
+find(q,'enhancement_gem').locked=true;local no,why=R.shop(q,bad,{atLobby=true},C);check(not no and why=='EnhancementMaterials','locked ore cannot pay');eq(q.wallet.gold,1000,'shortage leaves Gold unchanged')
+find(q,'enhancement_gem').locked=false;gear.location={kind='storage'};local no,why=R.shop(q,bad,{atLobby=true},C);check(not no and why=='BagOnly','storage target cannot enhance directly')
 local no,why=R.shop(q,bad,{atLobby=false},C);check(not no and why=='ShopLobbyOnly','remote forge outside lobby rejected')
 -- Explicit party selections clear everyone's readiness and are leader-only.
 local Match=dofile('src/server/Network/ExpeditionStore.luau');local cfg=dofile('src/shared/ExpeditionConfig.luau');local db={}

@@ -1,18 +1,18 @@
 -- Server-authored entry summaries. These projections grant no gameplay rights.
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
-local D,Content,Repeat=load('Difficulty'),load('CampaignContent'),load('AdventureRepeatRewards')
+local D,Content,Summary=load('Difficulty'),load('CampaignContent'),load('EncounterSummary')
 local P={}
-function P.missions(hero)
+function P.missions(hero,players)
  local list={}
  for _,c in ipairs(Content.chapters)do
   local modes={};local combat=D.combat(c)
   for _,mode in ipairs(D.order)do
    local m=D.modes[mode];local ok,why=D.allowed(hero,c.id,mode)
-   local base=Repeat[c.id]or {xp=math.floor(c.reward.xp*.25),gold=math.floor(c.reward.coins*.30)}
+   local reward=D.completion(c,mode)
    modes[mode]={allowed=ok,reason=why,level=math.max(D.entry(c),m.level),previous=m.previous,
     storyMain=D.requiredMain(c),firstClear=not(hero and hero.deepwood and hero.deepwood.clears[c.id]),
-    firstXP=c.reward.xp,firstGold=c.reward.coins,repeatXP=math.floor(base.xp*m.xp),repeatGold=math.floor(base.gold*m.gold),
-    xpCapped=hero and hero.level>=80 or false,ore=combat and m.ore or 0,cores=combat and m.cores or 0,cache=combat and m.cache or 0,
+    firstXP=c.reward.xp,firstGold=c.reward.coins,repeatXP=reward.xp,repeatGold=reward.gold,
+    xpCapped=hero and hero.level>=80 or false,ore=reward.ore,cores=reward.cores,gems=reward.gems,stones=reward.stones,rewardLevel=reward.rewardLevel,rewardBand=reward.rewardBand,cache=reward.cache,encounter=Summary.mission(c,mode,players),
     hp=m.hp,damage=m.damage,bossHP=m.bossHP,bossDamage=m.bossDamage}
   end
   local epic=Content.epics[c.epic or 1]

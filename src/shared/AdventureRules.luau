@@ -1,5 +1,5 @@
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
-local D,P,G,Content,Repeat,F=load('Difficulty'),load('DeepwoodProgress'),load('HeroProgression'),load('CampaignContent'),load('AdventureRepeatRewards'),load('EquipmentTransactions')
+local D,P,G,Content,F=load('Difficulty'),load('DeepwoodProgress'),load('HeroProgression'),load('CampaignContent'),load('EquipmentTransactions')
 local A={}
 local function integer(n,min,max)return type(n)=='number'and n%1==0 and n>=min and n<=max end
 function A.valid(hero)
@@ -9,7 +9,7 @@ function A.valid(hero)
  for tier,n in pairs(e.cacheProgress)do if (tier~='1'and tier~='5'and tier~='10')or not integer(n,0,3)then return false end end
  local a=e.active
  if a~=nil then
-  if type(a)~='table'or type(a.runId)~='string'or #a.runId<1 or #a.runId>64 or not a.runId:match('^[%w_-]+$')or not Content.byId[a.missionId]or not D.modes[a.difficultyId]or a.version~=D.version or type(a.completed)~='boolean'or type(a.firstClear)~='boolean'or not P.validate(a.journal)or type(a.kills)~='table'then return false end
+  if type(a)~='table'or type(a.runId)~='string'or #a.runId<1 or #a.runId>64 or not a.runId:match('^[%w_-]+$')or not Content.byId[a.missionId]or not D.modes[a.difficultyId]or a.version~=1 or (a.balanceVersion~=nil and not D.compatible(a.balanceVersion)) or type(a.completed)~='boolean'or type(a.firstClear)~='boolean'or not P.validate(a.journal)or type(a.kills)~='table'then return false end
   local n=0;for key,v in pairs(a.kills)do if type(key)~='string'or #key>100 or v~=true then return false end;n=n+1 end;if n>4096 then return false end
   if a.completed~=(a.journal.clears[a.missionId]==true)then return false end
  end
@@ -52,7 +52,7 @@ local function resetJournal(base,c)
  if c.side then s.accepted[c.id]=true end
  return s
 end
-function A.begin(profile,heroId,missionId,mode,runId,revision,R,C)
+function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned'end
  local old=hero.expeditions and hero.expeditions.active
  if old and old.runId==runId then
@@ -61,13 +61,14 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C)
  end
  if revision~=profile.revision then return nil,'Changed'end
  if type(runId)~='string'or #runId==0 or #runId>64 or not runId:match('^[%w_-]+$')then return nil,'InvalidRequest'end
+ version=version or D.version;if not D.compatible(version)then return nil,'AdventureChanged'end
  local ok,why=D.allowed(hero,missionId,mode);if not ok then return nil,why end
  local p=R.copy(profile);local h=p.heroes[heroId];local c=Content.byId[missionId]
  h.expeditions=h.expeditions or {version=1,clears={},cacheProgress={}}
  local first=not (h.deepwood and h.deepwood.clears[missionId])
  local journal=first and P.copy(h.deepwood or P.new())or resetJournal(h.deepwood or P.new(),c)
  if c.side then journal.accepted=journal.accepted or {};journal.accepted[c.id]=true;if first then h.deepwood=P.copy(journal)end end
- h.expeditions.active={version=D.version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills={}}
+ h.expeditions.active={version=1,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills={}}
  p.revision=p.revision+1
  if not R.validate(p,C)then return nil,'Incompatible'end
  return p
@@ -89,10 +90,9 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
  local h=p.heroes[heroId];local e=h.expeditions;local a=e.active;a.journal=journal
  if journal.clears[chapterId]and not a.completed then
   a.completed=true;e.clears[chapterId]=e.clears[chapterId]or {};e.clears[chapterId][a.difficultyId]=true
-  local m=D.modes[a.difficultyId]
+  local reward=D.completion(c,a.difficultyId,a.balanceVersion or 1)
   if not a.firstClear then
-   local base=Repeat[chapterId]or {xp=math.floor(c.reward.xp*.25),gold=math.floor(c.reward.coins*.30)}
-   local xp,gold=math.floor(base.xp*m.xp),math.floor(base.gold*m.gold)
+   local xp,gold=reward.xp,reward.gold
    h.progression.xp=h.progression.xp+xp
    while h.level<80 and h.progression.xp>=G.xpToNext(h.level)do h.progression.xp=h.progression.xp-G.xpToNext(h.level);h.level=h.level+1 end
    if h.level==80 then h.progression.xp=0 end
@@ -100,9 +100,11 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   end
   if D.combat(c)then
    local prefix='run-'..a.runId..'-'..heroId
-   F.grant(p,R,C,heroId,'iron_ore',m.ore,prefix..'-ore')
-   F.grant(p,R,C,heroId,'forge_core',m.cores,prefix..'-core')
-   local tier=tostring(D.tier(c));local progress=(e.cacheProgress[tier]or 0)+m.cache
+   F.grant(p,R,C,heroId,'iron_ore',reward.ore,prefix..'-ore')
+   F.grant(p,R,C,heroId,'forge_core',reward.cores,prefix..'-core')
+   F.grant(p,R,C,heroId,'enhancement_gem',reward.gems,prefix..'-gem')
+   F.grant(p,R,C,heroId,'magic_stone',reward.stones,prefix..'-stone')
+   local tier=tostring(D.tier(c));local progress=(e.cacheProgress[tier]or 0)+reward.cache
    local caches=math.floor(progress/4);e.cacheProgress[tier]=progress%4
    F.grant(p,R,C,heroId,'equipment_cache_'..tier,caches,prefix..'-cache')
   end

@@ -11,7 +11,7 @@ function V.render(scroll,s,send,saving,notice)
   local q=0;for _,item in ipairs(s.items or {})do if item.definitionId==id and not item.locked and item.location.kind=='bag'and item.location.heroId==s.heroId then q=q+item.quantity end end
   return q
  end
- local ore,cores=amount('iron_ore'),amount('forge_core')
+ local ore,cores=amount('enhancement_gem'),amount('magic_stone')
  local function card(id,def,title,description,actions)
   local box=T.frame(scroll,id,UDim2.new(),UDim2.new(1,-8,0,304));box.LayoutOrder=#scroll:GetChildren()
   Artwork.create(box,def,UDim2.fromOffset(10,10),UDim2.fromOffset(54,54))
@@ -29,7 +29,9 @@ function V.render(scroll,s,send,saving,notice)
    end)
   end
  end
- card('CoreExchange',C.items.forge_core,Text.ForgeMaterials,string.format(Text.ExchangeInfo,ore,cores),{{title=Text.ExchangeButton,action='ExchangeCore',enabled=ore>=5 and s.wallet and s.wallet.gold>=50}})
+ card('StoneExchange',C.items.magic_stone,Text.ForgeMaterials,string.format(Text.ExchangeInfo,ore,cores),{{title=Text.ExchangeButton,action='ExchangeStone',enabled=ore>=5 and s.wallet and s.wallet.gold>=50}})
+ if amount('iron_ore')>0 then card('LegacyOre',C.items.iron_ore,Text.ConvertOre,Text.ConvertReview,{{title=Text.ConvertOre,review=Text.ConvertReview,action='ConvertOre'}})end
+ if amount('forge_core')>0 then card('LegacyCore',C.items.forge_core,Text.ConvertCore,Text.ConvertReview,{{title=Text.ConvertCore,review=Text.ConvertReview,action='ConvertCore'}})end
  for _,item in ipairs(s.items or {})do
   local def=C.items[item.definitionId]
   if item.location.heroId==s.heroId and not item.locked and (item.location.kind=='bag'or item.location.kind=='equipped')then
@@ -38,13 +40,13 @@ function V.render(scroll,s,send,saving,notice)
     local after=E.stats(def,{enhancementLevel=math.min(E.cap(def),n+1)})
     local lines={Text.Success}
     for _,key in ipairs({'power','armor','health'})do if (before[key]or 0)>0 then table.insert(lines,string.format(Text.StatChange,key=='power'and Text.Power or key=='armor'and Text.Armor or Text.Health,before[key],after[key]))end end
-    table.insert(lines,string.format(Text.EnhanceCost,E.cap(def),cost.gold,cost.ore,cost.cores))
+    table.insert(lines,string.format(Text.EnhanceCost,E.cap(def),cost.gold,cost.gems,cost.stones))
     table.insert(lines,string.format(Text.MaterialBag,ore,cores))
-    local paid=item.enhancementPaid or {ore=0,cores=0};local ro,rc=math.floor(paid.ore*.8),math.floor(paid.cores*.8)
-    local enough=s.wallet and s.wallet.gold>=cost.gold and ore>=cost.ore and cores>=cost.cores
+    local paid=item.enhancementPaid or {ore=0,cores=0};local modern=item.enhancementPaidV2 or {gems=0,stones=0};local ro,rc=math.floor(paid.ore*.8),math.floor(paid.cores*.8);local rg,rs=math.floor(modern.gems*.8),math.floor(modern.stones*.8)
+    local enough=s.wallet and s.wallet.gold>=cost.gold and ore>=cost.gems and cores>=cost.stones
     card(item.instanceId,def,E.name(def,item),table.concat(lines,'\n'),{
      {title=n>=E.cap(def)and Text.MaxEnhancement or enough and Text.Enhance or Text.MoreMaterials,action='Enhance',instanceId=item.instanceId,itemVersion=item.version,enabled=n<E.cap(def)and enough},
-     {title=Text.Recover,action='Recover',instanceId=item.instanceId,itemVersion=item.version,enabled=ro+rc>0,review=string.format(Text.RecoveryReview,E.name(def,item),ro,rc)}})
+     {title=Text.Recover,action='Recover',instanceId=item.instanceId,itemVersion=item.version,enabled=ro+rc+rg+rs>0,review=string.format(Text.RecoveryReview,E.name(def,item),rg,rs,ro,rc)}})
    elseif def.cacheTier then
     local choices={};for _,choice in pairs(C.items)do if choice.slot and (choice.level or 1)==def.cacheTier and E.supported(choice)and (not choice.classId or choice.classId==hero.baseClassId)then table.insert(choices,choice)end end
     table.sort(choices,function(a,b)return a.id<b.id end)

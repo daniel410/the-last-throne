@@ -143,12 +143,21 @@ function V.create(parent,send)
    T.label(card,'Objective',string.format(Text.Objective,mission and mission.objective or ''),UDim2.fromOffset(60,4),UDim2.new(1,-70,1,-8),14)
    if access then
     if blocked then line('Blocked',blocked,36,T.color.error)end
+    local encounter=access.encounter
+    if encounter then
+     for _,entry in ipairs({{'normal','Enemies'},{'boss','Bosses'}})do
+      local row=encounter[entry[1]]
+      if row then line(entry[2],string.format(Text[entry[2]],row.levelMin,row.levelMax,row.hpMin,row.hpMax,encounter.players),36,T.color.gold)end
+     end
+     line('DefeatRewards',string.format(Text.Defeats,access.xpCapped and 0 or encounter.xp,encounter.gold),36)
+    end
+    if s.rejoin and s.rejoin.rulesVersion==1 then line('OriginalRules',Text.OriginalRules,36,T.color.muted)end
     line('Risk',string.format(Text.Risk,access.hp or 1,access.damage or 1,access.bossHP or 1,access.bossDamage or 1),32)
     line('RiskNote',Text.RiskNote,28,T.color.muted)
     line('FirstReward',string.format(Text.First,access.xpCapped and 0 or access.firstXP or 0,access.firstGold or 0)..(access.firstClear and ''or Text.Claimed),40,access.firstClear and T.color.gold or T.color.muted)
     line('RepeatReward',string.format(Text.Repeat,access.xpCapped and 0 or access.repeatXP or 0,access.repeatGold or 0),32,T.color.gold)
     if access.xpCapped then line('XPCap',Text.Capped,28)end
-    if (access.cache or 0)>0 then line('Materials',string.format(Text.Materials,access.ore,access.cores,access.cache),40);line('Equipment',Text.Equipment,32)end
+    if (access.cache or 0)>0 then line('Materials',string.format(Text.Materials,access.gems,access.stones,access.cache),40);line('Equipment',Text.Equipment,32);line('RewardBand',string.format(Text.RewardBand,access.rewardBand or 1),36)end
     if selected.difficultyId=='Hell'then line('HellRepeat',Text.RepeatHell,44,T.color.gold)end
    end
    if s.studio then line('Studio',Text.Studio,36,T.color.muted)end
