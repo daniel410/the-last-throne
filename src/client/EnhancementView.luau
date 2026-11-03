@@ -18,13 +18,13 @@ function V.render(scroll,s,send,saving,notice)
   T.label(box,'Name',title,UDim2.fromOffset(74,8),UDim2.new(1,-86,0,56),15,T.color.gold)
   T.label(box,'Description',description,UDim2.fromOffset(12,70),UDim2.new(1,-24,1,-182),12)
   for index,a in ipairs(actions)do
-   local b=T.button(box,'Action'..index,a.title,UDim2.new(0,12,1,-108+(index-1)*50),UDim2.new(1,-24,0,44))
+   local b=T.button(box,'Action'..index,a.title,UDim2.new(0,12,1,-108+(index-1)*50),UDim2.new(1,-24,0,44),a.action=='Enhance')
    T.enabled(b,not saving and s.ready and hero~=nil and a.enabled~=false)
    local armedRevision
    b.Activated:Connect(function()
     if saving or not s.ready or not hero or a.enabled==false then return end
     if armedRevision~=s.revision then armedRevision=s.revision;b.Caption.Text=Text.Confirm..a.title;notice.Text=a.review or description;return end
-    local cmd={store='blacksmith',action=a.action,heroId=s.heroId,revision=s.revision,instanceId=a.instanceId,itemVersion=a.itemVersion,offerId=a.offerId}
+    local cmd={store='blacksmith',action=a.action,heroId=s.heroId,revision=s.revision,instanceId=a.instanceId,itemVersion=a.itemVersion,offerId=a.offerId,rulesVersion=a.rulesVersion,expectedLevel=a.expectedLevel}
     T.enabled(b,false);send(cmd)
    end)
   end
@@ -37,15 +37,15 @@ function V.render(scroll,s,send,saving,notice)
   if item.location.heroId==s.heroId and not item.locked and (item.location.kind=='bag'or item.location.kind=='equipped')then
    if E.supported(def)then
     local n=item.enhancementLevel or 0;local cost=E.cost(def,n+1);local before=E.stats(def,item)
-    local after=E.stats(def,{enhancementLevel=math.min(E.cap(def),n+1)})
-    local lines={Text.Success}
+    local after=E.stats(def,{enhancementLevel=math.max(n,math.min(E.cap(def),n+1))})
+    local lines={n>=E.cap(def)and Text.MaxEnhancement or string.format(Text.Success,E.successPercent(n+1),100-E.successPercent(n+1))}
     for _,key in ipairs({'power','armor','health'})do if (before[key]or 0)>0 then table.insert(lines,string.format(Text.StatChange,key=='power'and Text.Power or key=='armor'and Text.Armor or Text.Health,before[key],after[key]))end end
     table.insert(lines,string.format(Text.EnhanceCost,E.cap(def),cost.gold,cost.gems,cost.stones))
     table.insert(lines,string.format(Text.MaterialBag,ore,cores))
     local paid=item.enhancementPaid or {ore=0,cores=0};local modern=item.enhancementPaidV2 or {gems=0,stones=0};local ro,rc=math.floor(paid.ore*.8),math.floor(paid.cores*.8);local rg,rs=math.floor(modern.gems*.8),math.floor(modern.stones*.8)
     local enough=s.wallet and s.wallet.gold>=cost.gold and ore>=cost.gems and cores>=cost.stones
     card(item.instanceId,def,E.name(def,item),table.concat(lines,'\n'),{
-     {title=n>=E.cap(def)and Text.MaxEnhancement or enough and Text.Enhance or Text.MoreMaterials,action='Enhance',instanceId=item.instanceId,itemVersion=item.version,enabled=n<E.cap(def)and enough},
+     {rulesVersion=E.version,expectedLevel=n,title=n>=E.cap(def)and Text.MaxEnhancement or enough and Text.Enhance or Text.MoreMaterials,action='Enhance',instanceId=item.instanceId,itemVersion=item.version,enabled=n<E.cap(def)and enough},
      {title=Text.Recover,action='Recover',instanceId=item.instanceId,itemVersion=item.version,enabled=ro+rc+rg+rs>0,review=string.format(Text.RecoveryReview,E.name(def,item),rg,rs,ro,rc)}})
    elseif def.cacheTier then
     local choices={};for _,choice in pairs(C.items)do if choice.slot and (choice.level or 1)==def.cacheTier and E.supported(choice)and (not choice.classId or choice.classId==hero.baseClassId)then table.insert(choices,choice)end end

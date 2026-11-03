@@ -1,8 +1,9 @@
 -- Pure enhancement math shared by the authoritative reducer and UI.
-local E={version=1,rate=.03,keys={power=true,armor=true,health=true}}
-function E.cap(def)
- local level=def.level or 1
- return level>=60 and 10 or level>=40 and 9 or level>=20 and 7 or level>=10 and 5 or 3
+local E={version=2,rate=.03,keys={power=true,armor=true,health=true}}
+function E.cap(def)return 9 end
+function E.successPercent(target)return 110-10*target end
+function E.succeeds(target,roll)
+ return type(roll)=='number'and roll%1==0 and roll>=0 and roll<10000 and roll<E.successPercent(target)*100
 end
 function E.supported(def)
  if not def or not def.slot then return false end
@@ -15,12 +16,12 @@ function E.stats(def,item)
  return result
 end
 function E.cost(def,level)
- return {gold=20*level*level*math.max(1,math.ceil((def.level or 1)/10)),ore=2*level,cores=math.max(0,level-3),gems=2*level,stones=math.max(0,level-3)}
+ return {gold=0,ore=2*level,cores=math.max(0,level-3),gems=2*level,stones=math.max(0,level-3)}
 end
 function E.valid(item,def)
  local n=item.enhancementLevel
  if n==nil then return item.enhancementPaid==nil and item.enhancementPaidV2==nil end
- if not E.supported(def)or type(n)~='number'or n%1~=0 or n<0 or n>E.cap(def)then return false end
+ if not E.supported(def)or type(n)~='number'or n%1~=0 or n<0 or n>math.max(E.cap(def),(def.level or 1)>=60 and 10 or 0)then return false end
  local total={gems=0,stones=0}
  for step=1,n do local cost=E.cost(def,step);total.gems=total.gems+cost.gems;total.stones=total.stones+cost.stones end
  local old=item.enhancementPaid;local paid=item.enhancementPaidV2

@@ -10,6 +10,7 @@ local ItemText=require(RS.Shared.InventoryText)
 local TextService=game:GetService('TextService')
 local Forge=require(script.Parent.EnhancementView)
 local Enhance=require(RS.Shared.Enhancement)
+local AdventureText=require(RS.Shared.AdventureText)
 local V={}
 function V.create(parent,send,diamondOnly,store)
  store=store or "all"
@@ -32,10 +33,14 @@ function V.create(parent,send,diamondOnly,store)
  local layout=Instance.new('UIGridLayout');layout.CellPadding=UDim2.fromOffset(10,10);layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.Parent=scroll
  local notice=T.label(panel,'Notice','',UDim2.new(0,20,1,-82),UDim2.new(1,-40,0,64),12)
  local enhance=T.button(panel,'EnhanceTab','ENHANCE',UDim2.new(.75,6,0,37),UDim2.new(.25,-22,0,44));enhance.Visible=store=='blacksmith'
+ local guide=require(script.Parent.EnhancementGuide).create(panel)
+ local help=T.button(panel,'EnhancementHelp',AdventureText.EnhancementHelp,UDim2.new(1,-242,0,12),UDim2.fromOffset(174,44));help.Visible=store=='blacksmith'
+ if store=='blacksmith' then title.Size=UDim2.new(1,-270,0,28) end
  local categories=Instance.new('Frame');categories.Name='Categories';categories.Position=UDim2.fromOffset(16,132);categories.Size=UDim2.new(1,-32,0,96);categories.BackgroundTransparency=1;categories.Parent=panel
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.new(1/3,-6,0,44);grid.CellPadding=UDim2.fromOffset(6,6);grid.SortOrder=if store=='items' or store=='blacksmith' then Enum.SortOrder.LayoutOrder else Enum.SortOrder.Name;grid.Parent=categories
  local function resize()
   local short=panel.AbsoluteSize.Y<420
+  help.Position=UDim2.new(1,-242,0,short and 4 or 12)
   enhance.Position=UDim2.new(.75,6,0,short and 38 or 37)
   title.Position=UDim2.fromOffset(20,short and 4 or 12)
   close.Position=UDim2.new(1,-62,0,short and 4 or 12)
@@ -56,11 +61,16 @@ function V.create(parent,send,diamondOnly,store)
    buy.Position=UDim2.fromOffset(16,short and 66 or 82)
    sell.Position=UDim2.new(.5,4,0,short and 66 or 82)
   end
+  if store=='blacksmith'then
+   local tabY=short and 52 or 60
+   buy.Position=UDim2.new(.25,0,0,tabY);sell.Position=UDim2.new(.5,6,0,tabY);enhance.Position=UDim2.new(.75,6,0,tabY)
+   balance.Position=UDim2.fromOffset(20,tabY)
+  end
   local compactStore=store=='blacksmith' or store=='items'
-  local y=if compactStore then (if short then 88 else 87) else (if short then (if diamondOnly then 66 else 114) else 132)
+  local y=if store=='blacksmith'then (if short then 102 else 110)elseif compactStore then (if short then 88 else 87) else (if short then (if diamondOnly then 66 else 114) else 132)
   categories.Position=UDim2.fromOffset(16,y)
   if compactStore then categories.Size=UDim2.new(1,-32,0,44) end
-  local top=y+(if compactStore then 54 else 106)
+  local top=y+(if panel:GetAttribute('EnhancementMode') or panel:GetAttribute('EnhancementGuideMode')then 0 elseif compactStore then 54 else 106)
   scroll.Position=UDim2.fromOffset(16,top)
   -- Reserve space only for an actual confirmation, save status, or error.
   local noticeHeight=0
@@ -76,6 +86,7 @@ function V.create(parent,send,diamondOnly,store)
   layout.CellSize=UDim2.new(1/columns,-(8+10*(columns-1))/columns,0,cardHeight)
   panel:SetAttribute('ShopLayout',short and 'MobileLandscape' or 'Desktop')
   scroll.Size=UDim2.new(1,-32,1,-top-bottom)
+  guide.scroll.Position=scroll.Position;guide.scroll.Size=scroll.Size;guide.resize()
   notice.Position=UDim2.new(0,20,1,-bottom+4)
   notice.Size=UDim2.new(1,-40,0,bottom-8)
  end
@@ -116,12 +127,16 @@ function V.create(parent,send,diamondOnly,store)
   end)
  end
  render=function(snapshot,message,saving)
-  state=snapshot or state;pending=nil;categories.Visible=mode~='Enhance';panel:SetAttribute('EnhancementMode',mode=='Enhance');resize();if saving~=nil then transactionPending=saving==true end
+  state=snapshot or state;pending=nil;categories.Visible=mode~='Enhance'and mode~='Guide';panel:SetAttribute('EnhancementMode',mode=='Enhance');panel:SetAttribute('EnhancementGuideMode',mode=='Guide');guide.scroll.Visible=mode=='Guide';scroll.Visible=mode~='Guide'
+  for id,b in pairs({Buy=buy,Sell=sell,Enhance=enhance})do b.TDButtonArt.ImageColor3=mode==id and Color3.fromRGB(160,220,255)or Color3.new(1,1,1);b.Caption.Text=(mode==id and '[X] 'or '')..id:upper() end
+  resize();if saving~=nil then transactionPending=saving==true end
   for id,b in pairs(categoryButtons)do b.Caption.Text=(category==id and '[X] ' or '')..b:GetAttribute('CategoryLabel') end
   local w=state.wallet;balance.Text=w and string.format('Gold: %d     Diamonds: %d',w.gold,w.diamonds) or 'Wallet unavailable. Rejoin before trading.'
   for _,child in ipairs(scroll:GetChildren()) do if child:IsA('GuiObject') then child:Destroy() end end
   local class=state.heroId and state.heroes and state.heroes[state.heroId] and state.heroes[state.heroId].baseClassId
-  if mode=='Enhance'then
+  if mode=='Guide'then
+   guide.resize()
+  elseif mode=='Enhance'then
    Forge.render(scroll,state,send,transactionPending,notice)
   elseif mode=='Buy' then
    if diamondOnly and (category=='All' or category=='Gold')then
@@ -190,8 +205,9 @@ function V.create(parent,send,diamondOnly,store)
  if diamondOnly then
   local b=T.button(categories,'Category_Gold',ItemText.GoldCategory,UDim2.new(),UDim2.new());b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',ItemText.GoldCategory);categoryButtons.Gold=b;b.Activated:Connect(function()selectCategory('Gold')end)
  end
+ help.Activated:Connect(function()mode=mode=='Guide'and 'Enhance'or 'Guide';render()end)
  enhance.Activated:Connect(function()mode='Enhance';render()end)
  buy.Activated:Connect(function() mode='Buy';render() end);sell.Activated:Connect(function() mode='Sell';render() end)
- return {panel=panel,render=render,notice=notice,selectCategory=selectCategory,setMode=function(value) if value=="Buy" or value=="Sell" or value=="Enhance" and store=="blacksmith" then mode=value;render() end end}
+ return {panel=panel,render=render,notice=notice,selectCategory=selectCategory,setMode=function(value) if value=="Buy" or value=="Sell" or (value=="Enhance" or value=="Guide") and store=="blacksmith" then mode=value;render() end end}
 end
 return V

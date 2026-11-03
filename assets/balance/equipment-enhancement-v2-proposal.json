@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "status": "design_proposal",
-  "runtimeApplied": false,
+  "status": "local_trial_runtime",
+  "runtimeApplied": true,
   "maxLevel": 9,
   "gemItemId": "enhancement_gem",
   "magicStoneItemId": "magic_stone",
@@ -81,5 +81,6 @@
       "magicStonesPerAttempt": 6,
       "bonusPercent": 27
     }
-  ]
+  ],
+  "runtimeVersion": "0.64.0"
 }

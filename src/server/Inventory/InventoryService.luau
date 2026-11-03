@@ -569,16 +569,21 @@ function Service.shop(player,command)
  local s=accounts[player];if not s or s.busy or s.closing then return 'Busy' end
  if not s.valid and not (s.shopPending and s.shopPending.requestId==command.requestId) then return s.errorCode or 'Unavailable' end
  if s.shopPending and s.shopPending.requestId~=command.requestId then return 'Busy' end
- if s.shopPending then for _,k in ipairs({'store','action','heroId','offerId','instanceId','itemVersion','revision'}) do if s.shopPending[k]~=command[k] then return 'RequestConflict' end end end
- s.busy=true;s.shopPending=Rules.copy(command)
+ if s.shopPending then for _,k in ipairs({'store','action','heroId','offerId','instanceId','itemVersion','revision','rulesVersion','expectedLevel'}) do if s.shopPending[k]~=command[k] then return 'RequestConflict' end end end
+ s.busy=true
+ if not s.shopPending then
+  s.shopPending=Rules.copy(command)
+  s.shopPending.enhancementRoll=Random.new():NextInteger(0,9999)
+ end
+ local enhancementRoll=s.shopPending.enhancementRoll
  local p,e=store:transact(player.UserId,function(current)
   local ctx=options.heroSession.getInventoryContext(player)
-  return Rules.shop(current,command,{atLobby=workspace:GetAttribute('TLTServerRole')~='Battle' and ctx and ctx.heroId==command.heroId and ctx.atHub and player:GetAttribute('K0SessionPhase')=='Lobby'},Catalog)
+  return Rules.shop(current,command,{enhancementRoll=enhancementRoll,atLobby=workspace:GetAttribute('TLTServerRole')~='Battle' and ctx and ctx.heroId==command.heroId and ctx.atHub and player:GetAttribute('K0SessionPhase')=='Lobby'},Catalog)
  end)
  if p then s.profile=p;s.valid=true;s.errorCode=nil;s.shopPending=nil;Service.refreshCharacter(player);options.heroSession.refresh(player)
  elseif e=='SaveUnknown' or e=='AccountBusy' then s.valid=false;s.errorCode=e
  else s.shopPending=nil end
- s.busy=false;publish(player,command.requestId,e);return e
+ s.busy=false;publish(player,command.requestId,e);return e,p and p.operations[command.requestId] and p.operations[command.requestId].enhancementOutcome
 end
 -- Server-only durable run binding. No client can choose or complete a run here.
 function Service.expeditionHero(player)

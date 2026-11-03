@@ -98,7 +98,7 @@ function Rules.validate(profile, catalog)
  if profile and not Pass.valid(profile) then return false end
  if profile and profile.dailyLogin~=nil and not Daily.valid(profile.dailyLogin) then return false end
  if profile and profile.wallet~=nil and not Economy.valid(profile.wallet) then return false end
-	if type(profile) ~= "table" or profile.schemaVersion ~= 1 or not Rules.integer(profile.revision, 0, 1e12)
+	if type(profile) ~= "table" or (profile.schemaVersion ~= 1 and profile.schemaVersion ~= 2) or not Rules.integer(profile.revision, 0, 1e12)
 		or type(profile.heroes) ~= "table" or type(profile.items) ~= "table" or type(profile.operations) ~= "table"
 		or type(profile.operationOrder) ~= "table" or not Rules.integer(profile.epoch, 0, 1e12) then return false end
 	local classes, slots, heroCount = {}, {}, 0

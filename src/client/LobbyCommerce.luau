@@ -79,7 +79,8 @@ function M.start()
  remotes:WaitForChild('InventoryState').OnClientEvent:Connect(function(s) inventory(s) end)
  remotes:WaitForChild('ArmoryState').OnClientEvent:Connect(function(data)
   if data.open then closePanels();navigation.panel.Visible=false;(data.store=='items' and items or armory).panel.Visible=true end
-  message=data.error and (AdventureText[data.error] or Text[data.error] or InventoryText[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and items are saved.' or ''
+  local outcome=data.enhancementOutcome
+  message=not data.error and outcome and string.format(outcome.success and AdventureText.EnhancementSucceeded or AdventureText.EnhancementFailed,outcome.level) or data.error and (AdventureText[data.error] or Text[data.error] or InventoryText[data.error] or Text.Unavailable) or data.requestId and data.requestId==(pending and pending.requestId) and 'Trade complete. Your wallet and items are saved.' or ''
   if data.requestId==(pending and pending.requestId) and data.error~='SaveUnknown' and data.error~='Busy' and data.error~='AccountBusy' then pending=nil end
   inventory(data.inventory)
  end)

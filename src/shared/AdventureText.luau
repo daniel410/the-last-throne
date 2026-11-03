@@ -1,4 +1,15 @@
 return {
+ EnhancementChanged='Enhancement rules or item level changed. Reopen the forge and review the new attempt.',
+ EnhancementSucceeded='Enhancement succeeded! Equipment is now +%d. Materials and result are saved.',
+ EnhancementFailed='Enhancement failed. Equipment stays +%d. Attempt materials were consumed. Result saved.',
+ EnhancementHelp='ENHANCEMENT GUIDE',
+ EnhancementHelpIntro='Enhance supported equipment from +0 to +9. Each level adds 3% of its base Power, Armor and HP, up to 27%. Other stats and special effects do not change.',
+ EnhancementHelpRules='Each attempt uses the listed Gems and Magic Stones. No Gold or Diamonds are charged for attempts. Gems are separate from Diamonds. Failure consumes the attempt materials but keeps your equipment and its level. Each attempt has the same chance for that target level; there is no pity bonus or guaranteed number of attempts.',
+ EnhancementHelpRecovery='RECOVER MATERIALS resets equipment to +0 and returns 80% of materials spent on successful enhancements, rounded down by material type. Materials spent on failures are not returned. Old Ore and Cores are returned in their original types. Previously spent Gold is not refunded.',
+ EnhancementHelpExchange='Earn Gems and Magic Stones in combat missions. Exchange 5 Gems + 50 Gold for 1 Magic Stone. Old Ore and Cores can be converted one at a time. Claim rewards into this hero’s bag and unlock materials before use.',
+ EnhancementHelpSaving='Press ENHANCE, review the chance and cost, then press CONFIRM. Wait for the saved success or failure result. A network retry retrieves the same attempt; it does not create another roll. No automatic repeat attempts.',
+ EnhancementGuideStage='+%d   |   %d%% success / %d%% failure\n%d Gems + %d Magic Stones   |   +%d%% base stats',
+
  MissionTitle='MISSION & DIFFICULTY · %s · %s',MissionList='SELECT MISSION · completed missions can be replayed',
  ChangeMission='CHANGE MISSION',HideMissions='HIDE MISSION LIST',Locked=' · LOCKED',StoryRequired='Complete the earlier story first.',
  Confirm='CONFIRM · ',ForgeMaterials='GEMS & MAGIC STONES',ConvertOre='CONVERT 1 ORE → 1 GEM',ConvertCore='CONVERT 1 CORE → 1 MAGIC STONE',ConvertReview='Convert one old material to one new material? This is optional and cannot be undone.',ExchangeInfo='In bag: %d Enhancement Gems · %d Magic Stones\nExchange 5 Gems + 50 Gold for 1 Magic Stone.\nHigher-level combat missions award more. Gems are separate from Diamonds.',
@@ -20,7 +31,7 @@ return {
  CacheChoice='Choose equipment from this cache\'s level tier for your hero.',
  EnhancementSaving='Saving your enhancement. Please wait.',
  Enhance='ENHANCE',Recover='RECOVER MATERIALS',Exchange='EXCHANGE: 5 GEMS + 50 GOLD → 1 MAGIC STONE',
- Success='Success Rate: 100% · No destruction or downgrade',
+ Success='Success: %d%% / Failure: %d%%\nFailure consumes materials. Item and level are kept.',
  Repeat='Replay completed missions for Gold, equipment and enhancement materials.',
  PlayAgain='PLAY AGAIN · RETURN TO LOBBY',
 }

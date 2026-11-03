@@ -39,8 +39,8 @@ for _,v in pairs(p.items)do if v.definitionId=='knight_weapon_fine'and v.locatio
 item.enhancementLevel=1;item.enhancementPaid={ore=2,cores=0}
 check(R.validate(p,C),'legacy investment ledger still validates')
 local ore=quantity('iron_ore');gems=quantity('enhancement_gem')
-local enhance=command('Enhance','enhance');enhance.instanceId=item.instanceId;enhance.itemVersion=item.version
-p=assert(R.shop(p,enhance,{atLobby=true},C));item=p.items[item.instanceId]
+local enhance=command('Enhance','enhance');enhance.instanceId=item.instanceId;enhance.itemVersion=item.version;enhance.expectedLevel=1;enhance.rulesVersion=2
+p=assert(R.shop(p,enhance,{atLobby=true,enhancementRoll=0},C));item=p.items[item.instanceId]
 check(quantity('iron_ore')==ore and quantity('enhancement_gem')==gems-4,'new upgrade consumes new gems while preserving old stock')
 check(item.enhancementPaid.ore==2 and item.enhancementPaidV2.gems==4,'separate old and modern ledgers retained')
 local recover=command('Recover','recover');recover.instanceId=item.instanceId;recover.itemVersion=item.version

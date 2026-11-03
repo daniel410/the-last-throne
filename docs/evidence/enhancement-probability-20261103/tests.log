@@ -1,0 +1,19 @@
+enhancement-probability: Enhancement probability: 2857 checks passed (including 90000 outcome boundaries)
+
+difficulty-enhancement: Difficulty/enhancement: 111 checks passed
+
+reward-materials: Reward materials: 41 checks passed
+
+inventory: Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+
+economy: Economy: 42 checks passed
+
+blacksmith-stock: Blacksmith stock: 189 checks passed
+
+store-split: Store split: 14 checks passed
+
+equipment-impact: Equipment impact: 44 checks passed
+
+difficulty-balance: Difficulty balance: 2385 checks passed
+
+expedition-store: Expedition store: 43 checks passed
