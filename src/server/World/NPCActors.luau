@@ -16,7 +16,7 @@ function A.acquire(world,name,position,options)
  if not folder then folder=Instance.new('Folder');folder.Name='NPCActors';folder.Parent=world end
  local model
  for _,candidate in ipairs(folder:GetChildren())do
-  if candidate:GetAttribute('NPCActorIdentity')==identity and candidate.PrimaryPart
+  if candidate:GetAttribute('NPCActorIdentity')==identity and candidate:GetAttribute('NPCActorScope')==options.scope and candidate.PrimaryPart
    and (named or (candidate.PrimaryPart.Position-position).Magnitude<24) then model=candidate;break end
  end
  local priority=options.priority or 10
@@ -25,6 +25,7 @@ function A.acquire(world,name,position,options)
  elseif priority>(model:GetAttribute('NPCActorPriority') or 0) then
   model:PivotTo(CFrame.new(position));model:SetAttribute('NPCActorPriority',priority)
  end
+ model:SetAttribute('NPCActorScope',options.scope)
  model:SetAttribute('NPCRole_'..(options.role or 'scene'),true)
  return A.tag(model,'static')
 end

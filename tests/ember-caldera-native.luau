@@ -163,7 +163,7 @@ local ok,err=xpcall(function()
   check(inventory.storyState().main==n,'correct checkpoint advancement')
   if n==15 then root.Position=world.emberCompanionCamp.PrimaryPart.Position;check(story.selectSelene(player,true),'safe refuge companion selection');task.wait(.1);check(inventory.storyState().seleneFollowing,'companion preference saved at refuge')end
  end
- check(story.destination(player,'qa')==world.spawns['EC-02'],'completed Ember Caldera resumes at safe forge')
+ check(story.destination(player,'qa')==world.spawns['GW-01'],'completed Ember Caldera resumes at next epic')
  check(inventory.storyState().coins==10290 and P.validate(inventory.storyState()),'canonical story reward once, compatible journal')
  check(xp>0 and gold>0,'actual battle server rewards')
  -- Optional quest acceptance is personal and distinct from reports.

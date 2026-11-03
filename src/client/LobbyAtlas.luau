@@ -6,7 +6,7 @@ local Progress=require(Shared.DeepwoodProgress)
 local T=require(script.Parent.TDInventoryTheme)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
 local M={}
-local epics={{'Deepwood','DW-'},{'Frozen Vale','FV-'},{'Ember Caldera','EC-'},{'Gloamwood',false},{'Haunted Graveyard',false}}
+local epics={{'Deepwood','DW-'},{'Frozen Vale','FV-'},{'Ember Caldera','EC-'},{'Gloamwood','GW-'},{'Haunted Graveyard','HG-'}}
 function M.create(parent)
  local root=Instance.new('Frame');root.Name='LobbyAtlas';root.Position=UDim2.fromOffset(16,60);root.Size=UDim2.new(1,-32,1,-72);root.BackgroundTransparency=1;root.Visible=false;root.Parent=parent
  local tabs=Instance.new('ScrollingFrame');tabs.Name='EpicCategories';tabs.Size=UDim2.new(1,0,0,48);tabs.BackgroundTransparency=1;tabs.BorderSizePixel=0;tabs.ScrollBarThickness=3;tabs.ScrollingDirection=Enum.ScrollingDirection.X;tabs.CanvasSize=UDim2.fromOffset(#epics*174,0);tabs.Parent=root

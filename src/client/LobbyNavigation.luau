@@ -76,7 +76,7 @@ function M.create(parent,actions)
   end)
  end
  resize()
- return {rail=rail,panel=panel,showGuide=guide,update=function(s) snapshot=s;atlas.update(s);journal.update(s) end,
+ return {rail=rail,panel=panel,showGuide=guide,update=function(s) snapshot=s;atlas.update(s);journal.update(s);require(script.Parent.DawnspireHomecoming).update(s) end,
   dailyAvailable=function(available)local b=rail:FindFirstChild('LoginRewards');if b then b:SetAttribute('RewardAvailable',available);resize() end end}
 end
 return M

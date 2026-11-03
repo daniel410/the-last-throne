@@ -14,4 +14,6 @@ local F=game and require(script.Parent.FrozenValeContent) or dofile('src/shared/
 for _,edge in ipairs(F.edges)do table.insert(A.edges,edge)end
 local E=game and require(script.Parent.EmberCalderaContent) or dofile('src/shared/EmberCalderaContent.luau')
 for _,edge in ipairs(E.edges)do table.insert(A.edges,edge)end
+local L=game and require(script.Parent.LateEpicContent) or dofile('src/shared/LateEpicContent.luau')
+for _,edge in ipairs(L.edges)do table.insert(A.edges,edge)end
 return A

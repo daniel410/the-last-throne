@@ -141,7 +141,7 @@ function Service.breakPillar(player,key,index)
  if not ctx or not root or e.participants[player]~=ctx.heroId or (root.Position-p.Position).Magnitude>16 then return false end
  e.pillarParts[index]=nil;e.pillars=e.pillars-1;p:Destroy()
  if e.pillars==0 then e.shield=false;e.boss:SetAttribute('StoryShield',false)
-  for ally in pairs(e.participants) do publish(ally,'The shield is broken. King Shaman is vulnerable!') end
+  for ally in pairs(e.participants) do publish(ally,'The shield is broken. '..(e.boss:GetAttribute('EnemyKind')=='Veyr' and 'Veyr' or 'King Shaman')..' is vulnerable!') end
  end
  return true
 end
@@ -164,22 +164,22 @@ function Service.bossDamage(model,damage)
   e.hellPhase=true;e.nextHazard=os.clock()+2;model:SetAttribute('StoryHellPhase',true)
   for player in pairs(e.participants)do publish(player,require(ReplicatedStorage.Shared.AdventureText).FinalSurge)end
  end
- if kind=='InfernoOverlord' then
+ if kind=='InfernoOverlord' or kind=='WidowQueen' then
   if not e.phase2 and hp-damage<=max*.65 then
    reinforce(e,.65);e.phase2=true;e.nextHazard=os.clock()+2;model:SetAttribute('StoryPhase',2)
-   for p in pairs(e.participants)do publish(p,'The furnace is heating up. Step away from the orange warning circles!')end
+   for p in pairs(e.participants)do publish(p,kind=='WidowQueen' and 'The queen calls more spiders. Step away from the violet warning circles!' or 'The furnace is heating up. Step away from the orange warning circles!')end
    return math.max(0,hp-max*.65)
   elseif not e.phase3 and hp-damage<=max*.30 then
    reinforce(e,.30);e.phase3=true;model:SetAttribute('StoryPhase',3)
    return math.max(0,hp-max*.30)
   end
  end
- if kind=='KingShaman' then
+ if kind=='KingShaman' or kind=='Veyr' then
   if not e.phase2 and hp-damage<=max*.7 then
    reinforce(e,.7)
    e.phase2=true;e.shield=true;e.pillars=2;model:SetAttribute('StoryShield',true);model:SetAttribute('StoryPhase',2)
    pillar(e,1);pillar(e,2)
-   for p in pairs(e.participants) do publish(p,'King Shaman is shielded. Break both temporary pillars, one at a time.') end
+   for p in pairs(e.participants) do publish(p,kind=='Veyr' and 'Veyr is shielded. Break both throne links, one at a time.' or 'King Shaman is shielded. Break both temporary pillars, one at a time.') end
    return math.max(0,hp-max*.7)
   elseif not e.phase3 and hp-damage<=max*.35 then
    reinforce(e,.35)
@@ -393,7 +393,7 @@ function Service.start(settings)
    local present=false
    for p,heroId in pairs(e.participants) do local ctx,root=context(p);if ctx and ctx.heroId==heroId and root and (root.Position-e.position).Magnitude<110 then present=true end end
    if present then e.lastPresent=os.clock() end
-   if (e.phase3 or e.hellPhase or e.chapter.epic==3 and e.phase2) and not e.completed and os.clock()>=(e.nextHazard or math.huge) then e.nextHazard=os.clock()+(e.hellPhase and 4 or 6);floorHazard(e) end
+   if (e.phase3 or e.hellPhase or (e.chapter.epic==3 or e.chapter.epic==4) and e.phase2) and not e.completed and os.clock()>=(e.nextHazard or math.huge) then e.nextHazard=os.clock()+(e.hellPhase and 4 or 6);floorHazard(e) end
    if os.clock()-e.lastPresent>8 then destroyEncounter(e) end
   end
  end)

@@ -17,6 +17,8 @@ local function clearOwned()
 end
 profiles.FrozenVale={FogStart=145,FogEnd=380,FogColor=Color3.fromRGB(207,229,243),Brightness=3.1,Ambient=Color3.fromRGB(150,173,194),OutdoorAmbient=Color3.fromRGB(185,209,228),ClockTime=12,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(12,26,43)}
 profiles.EmberCaldera={FogStart=170,FogEnd=420,FogColor=Color3.fromRGB(191,163,147),Brightness=3,Ambient=Color3.fromRGB(161,146,134),OutdoorAmbient=Color3.fromRGB(194,177,158),ClockTime=14,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(30,15,8)}
+profiles.Gloamwood={FogStart=160,FogEnd=420,FogColor=Color3.fromRGB(130,153,165),Brightness=2.6,Ambient=Color3.fromRGB(117,140,145),OutdoorAmbient=Color3.fromRGB(151,179,167),ClockTime=16,ExposureCompensation=.15,ColorShift_Top=Color3.fromRGB(14,24,30)}
+profiles.HauntedGraveyard={FogStart=160,FogEnd=420,FogColor=Color3.fromRGB(158,169,191),Brightness=2.6,Ambient=Color3.fromRGB(130,144,167),OutdoorAmbient=Color3.fromRGB(170,186,202),ClockTime=16.5,ExposureCompensation=.15,ColorShift_Top=Color3.fromRGB(21,22,35)}
 function Mood.update(mode)
  -- Preserve the previous boolean API used by scenery tests and other callers.
  if mode==true then mode='Deepwood' elseif mode==false then mode=nil end
@@ -54,7 +56,7 @@ function Mood.start()
   local phase=p:GetAttribute('K0SessionPhase')
   local lobby=workspace:GetAttribute('TLTServerRole')~='Battle' and (phase=='Lobby' or phase=='LoadingLobby' or phase=='ReturningLobby')
   local root=p.Character and p.Character:FindFirstChild('HumanoidRootPart')
-  local region=root and root.Position.Z<-7600 and 'EmberCaldera' or root and root.Position.Z<-3800 and 'FrozenVale' or 'Deepwood'
+  local region=root and root.Position.Z<-15000 and 'HauntedGraveyard' or root and root.Position.Z<-11200 and 'Gloamwood' or root and root.Position.Z<-7600 and 'EmberCaldera' or root and root.Position.Z<-3800 and 'FrozenVale' or 'Deepwood'
   Mood.update(lobby and 'Lobby' or phase=='Tutorial' and p:GetAttribute('TLTRoute')~='Training' and region or nil)
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(apply);p:GetAttributeChangedSignal('TLTRoute'):Connect(apply)

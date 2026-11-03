@@ -60,7 +60,7 @@ rescue.activity={mode='escort',actor='Orik',steps={
  {id='supports',title='Guide Orik past the braced supports',text='Orik: The supports are holding. The exit is just ahead!',kind='arrival',position={340,116,-9135}},
  {id='exit',title='Reach the safe mine exit with Orik',text='The miners are safe! The crew will bring everyone back to the city.',kind='arrival',position={430,116,-8975}},
 }}
-local final=story('EC-07','Great Furnace',7,{-880,148,-10980},{843,1200},'Defeat Inferno Overlord, restart the safe furnace, and follow the stolen Crownheart.','The city is safe and the workshops are running again! The enemy carried the key toward Gloamwood. That expedition is still being prepared.',{
+local final=story('EC-07','Great Furnace',7,{-880,148,-10980},{843,1200},'Defeat Inferno Overlord, restart the safe furnace, and follow the stolen Crownheart.','The city is safe and the workshops are running again! The enemy carried the key toward Gloamwood. Follow the scout lanterns into Gloamwood.',{
  goal('furnace_guards','Clear the furnace approach',-110,90,{enemy('Imp',28,3),enemy('VolcanoShaman',29)}),
  goal('coolant_west','Connect the western emergency cooler',-85,10,nil,'The first emergency cooler is connected. The crew is staying behind the safety line.'),
  goal('coolant_east','Connect the eastern emergency cooler',80,10,nil,'Both coolers are ready. Stop Inferno Overlord before the furnace overheats!'),

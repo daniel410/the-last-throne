@@ -132,6 +132,7 @@ function Journal.start(hud)
   target=selectTarget();book.render(current);updateTracker();promptsDirty=true
   require(script.Parent.DeepwoodStoryPresentation).update(current.journal)
   require(script.Parent.EmberCalderaPresentation).update(current.journal)
+  require(script.Parent.LateEpicPresentation).update(current.journal)
  end
  local function updatePrompts()
   local world=workspace:FindFirstChild('DeepwoodCampaign');if not world or not current then return end

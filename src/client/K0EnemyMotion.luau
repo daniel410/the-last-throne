@@ -5,6 +5,10 @@ local BaseClips=require(script.Parent.K0EnemyClips)
 local Clips=table.clone(BaseClips);Clips.models=table.clone(BaseClips.models)
 for kind,profile in pairs(require(script.Parent.FrozenValeClips).models)do Clips.models[kind]=profile end
 for kind,profile in pairs(require(script.Parent.EmberCalderaClips).models)do Clips.models[kind]=profile end
+-- Late-epic prototypes reuse reviewed movement curves until dedicated clips replace them.
+local aliases={Webling='Slime',Silkweaver='Slime',Barkstalker='Ogre',Gloambat='Slime',VenomcoilCentipede='Slime',AncientHollowbark='KingOgre',VenomcoilKing='Slime',WidowQueen='Slime',Zombie='Orc',Skeleton='Goblin',Ghoul='Ogre',Mummy='GoblinKing',Hellhound='IceWolf',SkeletonKnight='Orc',DeathKnight='Orc',Lich='KingShaman',LichSovereign='KingShaman',DreadCommander='EnragedWarlord',Veyr='EnragedWarlord'}
+for kind,source in pairs(aliases)do Clips.models[kind]=Clips.models[source]end
+local GloamMotion=require(script.Parent.GloamwoodMotion)
 local HitReaction=require(script.Parent.K0EnemyHitReaction)
 local WeaponMotion=require(script.Parent.K0EnemyWeaponMotion)
 local CasterMotion=require(script.Parent.RegionalCasterMotion)
@@ -65,6 +69,7 @@ function Motion.bind(model)
    end
   end
  end
+ s.gloam=GloamMotion.bind(model)
  s.caster=CasterMotion.bind(model,visual,s.height)
  if model:GetAttribute('TdSkinnedCaster') and not s.caster then return nil end
  s.weaponFX=WeaponMotion.bind(model,s.caster)
@@ -109,6 +114,7 @@ function Motion.step(s,dt,current)
  elseif s.attack and (state=='Windup' or state=='Active' or state=='Recovery') then
   local a=s.attack;attackPhase=Motion.attackPhase(current-a.start,a.w,a.a,a.r);target=Motion.sample(s.kind,a.clip,attackPhase)
  end
+ GloamMotion.step(s.gloam,s.model,current,moving,attackActive and attackPhase or nil)
  -- Attack timing is sampled directly; smoothing it would delay the impact.
  -- Reviewed gaits are already continuous distance samples. A second pose lerp
  -- shifts the feet behind their stance phase at running speed and causes skating.

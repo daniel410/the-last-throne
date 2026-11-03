@@ -1,0 +1,341 @@
+{
+  "version": 1,
+  "tdCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "sourcePath": "assets/models/meshy-deepwood-slime-v1/runtime.rbxmx",
+  "sourceSha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+  "runtimeSha256": "acf141586d952c8c5705fe4f06537666f58087709a6f31a5f86388640e9b26fe",
+  "permission": "2026-11-03 explicit user request to reuse existing TD 3D models. Published RPG asset access remains to be tested.",
+  "models": {
+    "Zombie": {
+      "template": "zombie",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "geometrySha256": "bcf22eab61591af33fa7d57ff64856ce0773466b8540439a5b4e1901eee5bd24",
+      "triangles": 4634,
+      "targetHeight": 4.6,
+      "pivots": {
+        "LegL": [
+          -0.23068680891001814,
+          0.22000000000000003,
+          -0.1551550101131127
+        ],
+        "LegR": [
+          0.23068680891001814,
+          0.22000000000000003,
+          0.049049706836392704
+        ],
+        "ArmL": [
+          -0.4148318631494019,
+          0.7800000000000001,
+          0.09821511619765202
+        ],
+        "ArmR": [
+          0.46878622258280356,
+          0.7800000000000001,
+          -0.04943090558726672
+        ],
+        "Body": [
+          0.10728451154186341,
+          0.9999999999999999,
+          0.036887242135598436
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "Skeleton": {
+      "template": "skeleton",
+      "parts": [
+        "Body",
+        "ArmL",
+        "ArmR",
+        "LegL",
+        "LegR"
+      ],
+      "geometrySha256": "bed17d2bf24ec96b57cf6140df0090b89ef3764f1f17c8f17ac34947f2ad01fc",
+      "triangles": 2825,
+      "targetHeight": 4.8,
+      "pivots": {
+        "Body": [
+          -0.014268420299002618,
+          1.0,
+          0.09928660710767147
+        ],
+        "ArmL": [
+          -0.41646849063458646,
+          0.9625442604704876,
+          0.029726436563385167
+        ],
+        "ArmR": [
+          0.28418558665929605,
+          0.7324608099474684,
+          0.2363254568946254
+        ],
+        "LegL": [
+          -0.26516061387110756,
+          0.36682459060901845,
+          -0.10344836048019068
+        ],
+        "LegR": [
+          0.2892392308321473,
+          0.3995244047384477,
+          0.18668215334078964
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "Ghoul": {
+      "template": "ghoul",
+      "parts": [
+        "Body"
+      ],
+      "geometrySha256": "f5c4804b5b841a2b93e2a4fc3a108de61116168627c43bf31e23788e2a51b7ae",
+      "triangles": 2889,
+      "targetHeight": 4.55,
+      "pivots": {
+        "Body": [
+          0.12101382862280424,
+          1.0,
+          -0.06811604806492869
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "Mummy": {
+      "template": "mummy",
+      "parts": [
+        "Body",
+        "ArmL",
+        "ArmR"
+      ],
+      "geometrySha256": "0db5db82831195cf6fa13673919fd39f530ad585138d1cd66a8da63d0cfd43a2",
+      "triangles": 2670,
+      "targetHeight": 4.83,
+      "pivots": {
+        "Body": [
+          -0.03043975117293196,
+          1.0,
+          -0.06034935012885238
+        ],
+        "ArmL": [
+          -0.3692434685091772,
+          0.6855478881215209,
+          0.06537881301025683
+        ],
+        "ArmR": [
+          0.3962415094383517,
+          0.6633136846809722,
+          0.04870315841041785
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "Hellhound": {
+      "template": "hellhound",
+      "parts": [
+        "LegFL",
+        "LegBL",
+        "LegFR",
+        "LegBR",
+        "Body"
+      ],
+      "geometrySha256": "417a5fdca66c1d2a045cb9f6133043c39493544fcb368c134d08f3854736513e",
+      "triangles": 4293,
+      "targetHeight": 3.5999999999999996,
+      "pivots": {
+        "LegFL": [
+          -0.20787713906811167,
+          0.32000000000000006,
+          0.4058816353544211
+        ],
+        "LegBL": [
+          -0.21435702919750804,
+          0.32000000000000006,
+          -0.3734681163303226
+        ],
+        "LegFR": [
+          0.20837433531455232,
+          0.32000000000000006,
+          0.40382094106954686
+        ],
+        "LegBR": [
+          0.21435702919750804,
+          0.32000000000000006,
+          -0.3534393404301269
+        ],
+        "Body": [
+          0.000498215527650836,
+          1.0,
+          -0.11914238104942632
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "SkeletonKnight": {
+      "template": "skeleton_knight",
+      "parts": [
+        "LegL",
+        "LegR",
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "geometrySha256": "21d5297ef7a45abc176325fed1bc967fc2f05c9c630a5d3de13eb95a70bb8b5a",
+      "triangles": 4578,
+      "targetHeight": 5.925624999999999,
+      "pivots": {
+        "LegL": [
+          -0.17680409628801938,
+          0.22000000000000003,
+          -0.06211349659203726
+        ],
+        "LegR": [
+          0.18633995493216102,
+          0.22000000000000003,
+          -0.03247397858333806
+        ],
+        "ArmL": [
+          -0.3325772037804532,
+          0.9979372327274663,
+          0.06444059377863663
+        ],
+        "ArmR": [
+          0.31608236464704137,
+          0.7494843003165144,
+          0.010089585754261915
+        ],
+        "Body": [
+          0.05324737709380395,
+          1.0,
+          0.004123973272652251
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "DeathKnight": {
+      "template": "death_knight",
+      "parts": [
+        "Body",
+        "LegL",
+        "LegR"
+      ],
+      "geometrySha256": "77a881531f499ea11a493c4856084da74e6ead0f28a34aed325b6a57d807efd9",
+      "triangles": 3022,
+      "targetHeight": 6.2375,
+      "pivots": {
+        "Body": [
+          0.054643994780099764,
+          1.0,
+          -0.013853683018172358
+        ],
+        "LegL": [
+          -0.18881481028789213,
+          0.3078504939699041,
+          -0.11493074974827301
+        ],
+        "LegR": [
+          0.20112908069328056,
+          0.31452094237419154,
+          0.06926633648176457
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "Lich": {
+      "template": "lich",
+      "parts": [
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "geometrySha256": "f7b2787cf2b66e4e0d0c0d1ce122fd0ea63f966b075e9b3d825b13713151f567",
+      "triangles": 3504,
+      "targetHeight": 6.2375,
+      "pivots": {
+        "ArmL": [
+          -0.3698723042206456,
+          0.9933329859022808,
+          0.10979585970563716
+        ],
+        "ArmR": [
+          0.28526689090896673,
+          0.4187946648962285,
+          0.019513705991133133
+        ],
+        "Body": [
+          -0.010384575657572004,
+          1.0,
+          -0.027948918871249714
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "LichSovereign": {
+      "template": "lich_sovereign",
+      "parts": [
+        "ArmL",
+        "ArmR",
+        "Body"
+      ],
+      "geometrySha256": "d2daa21629820b2d9b4aa9d42838aaa4c4dd7e520efc796f21ca4392314e5e03",
+      "triangles": 3749,
+      "targetHeight": 7.796875,
+      "pivots": {
+        "ArmL": [
+          -0.3409949245595938,
+          0.9135356262475844,
+          -0.11948708479148229
+        ],
+        "ArmR": [
+          0.3632076755331858,
+          0.7013166179745092,
+          -0.05853444592753239
+        ],
+        "Body": [
+          0.049260137062262566,
+          0.9999999999999999,
+          -0.14489813541288052
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "DreadCommander": {
+      "template": "dread_commander",
+      "parts": [
+        "Body"
+      ],
+      "geometrySha256": "4e7d24e09f712895679ae73c5ff35ca33522a5997d1ce88503f75a6984792ed3",
+      "triangles": 2892,
+      "targetHeight": 8.7325,
+      "pivots": {
+        "Body": [
+          0.04612388924756611,
+          1.0,
+          0.021780804221046918
+        ]
+      },
+      "role": "existing TD undead model"
+    },
+    "Veyr": {
+      "template": "dread_commander",
+      "parts": [
+        "Body"
+      ],
+      "geometrySha256": "4e7d24e09f712895679ae73c5ff35ca33522a5997d1ce88503f75a6984792ed3",
+      "triangles": 2892,
+      "targetHeight": 8.7325,
+      "pivots": {
+        "Body": [
+          0.04612388924756611,
+          1.0,
+          0.021780804221046918
+        ]
+      },
+      "role": "Veyr uses existing TD Dread Commander model"
+    }
+  }
+}

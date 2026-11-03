@@ -1,0 +1,6 @@
+{
+  "test": "k0-appearance.spec.lua",
+  "source": "3479100d505f3c49f7cd7f8af9de75b43cdf20a0",
+  "returncode": 1,
+  "output": "lua: tests/k0-appearance.spec.lua:295: unexpected warning: K0 equipment appearance could not be synchronized: src/server/Cosmetics/KnightAppearance.luau:187: attempt to call a nil value (method 'GetDescendants')\nstack traceback:\n\t[C]: in global 'error'\n\ttests/k0-appearance.spec.lua:295: in main chunk\n\t[C]: in ?\n"
+}

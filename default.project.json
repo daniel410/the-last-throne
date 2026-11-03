@@ -62,6 +62,9 @@
       },
       "RegionalCasterModels": {
         "$path": "assets/shared/regional-casters/runtime.rbxm"
+      },
+      "HauntedGraveyardModels": {
+        "$path": "assets/shared/td-haunted-graveyard/runtime.rbxmx"
       }
     },
     "StarterPlayer": {

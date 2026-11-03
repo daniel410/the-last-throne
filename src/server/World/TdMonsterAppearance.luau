@@ -21,6 +21,8 @@ local SPECS = {
 
 for kind,spec in pairs(FrozenRigs)do SPECS[kind]=spec end
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.EmberCalderaRigs))do SPECS[kind]=spec end
+for kind,spec in pairs(require(game.ReplicatedStorage.Shared.HauntedGraveyardRigs))do SPECS[kind]=spec end
+local Gloamwood=require(script.Parent.GloamwoodAppearance)
 local function templateFor(kind)
 	local spec = SPECS[kind]
 	assert(spec, "Unsupported TD monster kind: " .. tostring(kind))
@@ -53,6 +55,7 @@ local function templateFor(kind)
 end
 
 function Appearance.describe(kind)
+ if Gloamwood.supports(kind)then return Gloamwood.describe(kind)end
 	if RegionalCasters.supports(kind) then return RegionalCasters.describe(kind) end
 	local spec, height, _, scale = templateFor(kind)
 	local names = {}
@@ -61,6 +64,7 @@ function Appearance.describe(kind)
 end
 
 function Appearance.attach(rig, kind, footOffset, visualMultiplier)
+ if Gloamwood.supports(kind)then return Gloamwood.attach(rig,kind,footOffset,visualMultiplier)end
 	assert(rig and rig:IsA("Model"), "TD monster visual requires a Model rig")
 	assert(not rig:FindFirstChild("TdMonsterVisual"), "TD monster visual already attached")
 	if RegionalCasters.supports(kind) then return RegionalCasters.attach(rig,kind,footOffset,visualMultiplier) end

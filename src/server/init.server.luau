@@ -26,6 +26,10 @@ if deepwood then
  refugeChest.Parent.Name='FrozenValeAccountStorage';refugePrompt.ObjectText='Refuge Storage';table.insert(chests,refugeChest);table.insert(prompts,refugePrompt)
  local forgeChest,forgePrompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions['EC-02']+Vector3.new(45,0,80)})
  forgeChest.Parent.Name='EmberCalderaAccountStorage';forgePrompt.ObjectText='Forge City Storage';table.insert(chests,forgeChest);table.insert(prompts,forgePrompt)
+ for _,id in ipairs({'GW-03','HG-02'})do
+  local lateChest,latePrompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions[id]+Vector3.new(45,0,80)})
+  lateChest.Parent.Name=id..'AccountStorage';latePrompt.ObjectText=id=='GW-03' and 'Lantern Refuge Storage' or 'Keeper Shelter Storage';table.insert(chests,lateChest);table.insert(prompts,latePrompt)
+ end
 end
 inventory.start({chests=chests,prompts=prompts,heroSession=heroSession,combat=combat,storyPending=story.hasPendingEvents,supportCampAccess=story.supportCampAccess})
 require(script.Lobby.DailyLoginService).start(inventory)

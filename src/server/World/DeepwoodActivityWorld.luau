@@ -15,9 +15,10 @@ function W.actor(parent,name,position,spirit,options)
   local model=require(script.Parent.NPCVisual).actor(parent,name,position,spirit)
   return Actors.tag(model,options.role or 'escort',options.ownerUserId)
  end
- return Actors.acquire(options.world or parent,name,position,{spirit=spirit,role=options.role or 'dialogue',priority=30})
+ return Actors.acquire(options.world or parent,name,position,{spirit=spirit,role=options.role or 'dialogue',priority=30,scope=options.scope})
 end
 local function prop(parent,chapter,goal,step,p)
+ if chapter=='HG-07' and goal=='crownheart' then return end
  local kind=step.kind
  -- An interaction title ("Ask...", "Set out...") is not an NPC identity.
  if kind=='actor' then if step.actor then return W.actor(parent,step.actor,p).PrimaryPart end;return end
@@ -37,7 +38,7 @@ function W.create(world)
    node.activityBuilt=true
    node.part.Transparency=1;local gem=node.part:FindFirstChild('ObjectiveGem');if gem then gem.Transparency=1 end
    node.prompt.Enabled=a.mode=='dialogue' or a.mode=='escort'
-   if a.actor and a.mode=='dialogue' then W.actor(folder,a.actor,Vector3.new(table.unpack(g.position)),a.spirit,{world=world.folder,role='dialogue'}) end
+   if a.actor and a.mode=='dialogue' then W.actor(folder,a.actor,Vector3.new(table.unpack(g.position)),a.spirit,{world=world.folder,role='dialogue',scope=(c.epic or 1)>=4 and c.zone or nil}) end
    if a.steps then
     for _,step in ipairs(a.steps) do
      local p=Vector3.new(table.unpack(step.position));local anchor=part(folder,c.id..'_'..g.id..'_'..step.id,Vector3.new(1,1,1),p+Vector3.new(0,1,0),Color3.new());anchor.Transparency=1

@@ -60,7 +60,8 @@ function D.combat(c)
  for _,g in ipairs(c and c.goals or {})do if #(g.enemies or {})>0 then return true end end
  return false
 end
-function D.entry(c)return levels[c.number] or (c.epic==3 and 20 or c.epic==2 and 12 or 1)end
+-- Late-epic entry stays at Lv27 until a mandatory-route growth budget is accepted.
+function D.entry(c)return levels[c.number] or ((c.epic or 1)>=4 and 27 or c.epic==3 and 20 or c.epic==2 and 12 or 1)end
 function D.tier(c)return D.entry(c)>=10 and 10 or D.entry(c)>=5 and 5 or 1 end
 -- An isolated side expedition cannot advance another main chapter to unlock its report.
 function D.requiredMain(c)

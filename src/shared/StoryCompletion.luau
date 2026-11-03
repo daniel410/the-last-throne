@@ -7,7 +7,7 @@ local M={text={story='STORY COMPLETE',side='SIDE QUEST COMPLETE',epic='EPIC COMP
  route='Follow the gold waypoint to the next objective. Open QUEST [J] to review the steps.',
  travel='Your journey continues in %s. Follow the gold waypoint to the marked objective.',
  mission='Return to Lobby, choose %s on the adventure map, then start that story. Completing this story does not start the next mission automatically.',
- endTitle='CURRENT ADVENTURE COMPLETE',endBody='You have completed all currently playable main stories. Explore optional requests or return to the lobby. Later epic adventures are not available yet.',
+ endTitle='THE CROWNHEART IS HOME',endBody='You saved all five regions with your friends! Return to Lobby to restore the Dawnspire throne and celebrate. You can still explore optional quests and replay adventures.',
  support='SELENE SUPPORT ENDED · Invite her at a safe companion camp to use 1 saved story credit. If none remain, buy more from Selene in the lobby. No automatic renewal.',
  follow='TRACK NEXT STORY',review='REVIEW QUESTS',close='CLOSE'}}
 function M.project(value,previous)
