@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "fa8ac0382c4af0c5d1cef28b12db62ee22712935",
+  "fixtureSha256": "120f0c263b82f27070be72020869e729a1e899b23f6a799a17e6c65c397d0573",
+  "tests": [
+    "epic-world-art-native.luau",
+    "haunted-monster-motion-native.luau",
+    "frozen-vale-native.luau",
+    "ember-caldera-native.luau",
+    "regional-individual-review-native.luau",
+    "deepwood-individual-review-native.luau",
+    "enemy-streaming-presentation-native.luau",
+    "battle-bootstrap-native.luau",
+    "late-epics-native.luau"
+  ],
+  "scope": "native edit/Run engine; fake account/player and manual damage for story fixtures; no real device/client/save acceptance"
+}

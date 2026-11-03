@@ -1,0 +1,592 @@
+{
+  "version": "0.66.0",
+  "sourceCommit": "fa8ac0382c4af0c5d1cef28b12db62ee22712935",
+  "pass": true,
+  "results": [
+    {
+      "groundSamples": 4789,
+      "checks": 86749,
+      "siteParts": 17794,
+      "pass": true,
+      "totalDescendants": 34566,
+      "sites": {
+        "GW-03": {
+          "landmark": "Root Refuge",
+          "theme": "Gloamwood",
+          "parts": 383
+        },
+        "EC-S1": {
+          "landmark": "Workers Quarter",
+          "theme": "EmberCaldera",
+          "parts": 207
+        },
+        "DW-03": {
+          "landmark": "Ranger Sanctuary",
+          "theme": "Deepwood",
+          "parts": 272
+        },
+        "FV-05": {
+          "landmark": "Frozen Procession",
+          "theme": "FrozenVale",
+          "parts": 443
+        },
+        "DW-01": {
+          "landmark": "Pilgrim Watch",
+          "theme": "Deepwood",
+          "parts": 299
+        },
+        "FV-S2": {
+          "landmark": "Hearth Refuge",
+          "theme": "FrozenVale",
+          "parts": 651
+        },
+        "GW-07": {
+          "landmark": "Hidden Cemetery Gate",
+          "theme": "Gloamwood",
+          "parts": 369
+        },
+        "EC-03": {
+          "landmark": "Braced Mine",
+          "theme": "EmberCaldera",
+          "parts": 179
+        },
+        "EC-S2": {
+          "landmark": "Workers Quarter",
+          "theme": "EmberCaldera",
+          "parts": 205
+        },
+        "GW-01": {
+          "landmark": "Lantern Ruins",
+          "theme": "Gloamwood",
+          "parts": 385
+        },
+        "FV-02": {
+          "landmark": "Hearth Refuge",
+          "theme": "FrozenVale",
+          "parts": 753
+        },
+        "FV-S3": {
+          "landmark": "Hearth Refuge",
+          "theme": "FrozenVale",
+          "parts": 687
+        },
+        "FV-04": {
+          "landmark": "Relay Watch",
+          "theme": "FrozenVale",
+          "parts": 495
+        },
+        "HG-03": {
+          "landmark": "Garden of Names",
+          "theme": "HauntedGraveyard",
+          "parts": 564
+        },
+        "HG-02": {
+          "landmark": "Keepers Shelter",
+          "theme": "HauntedGraveyard",
+          "parts": 630
+        },
+        "GW-05": {
+          "landmark": "Venomcoil Burrow",
+          "theme": "Gloamwood",
+          "parts": 358
+        },
+        "DW-S3": {
+          "landmark": "Convoy Ruins",
+          "theme": "Deepwood",
+          "parts": 326
+        },
+        "EC-07": {
+          "landmark": "Great Furnace",
+          "theme": "EmberCaldera",
+          "parts": 181
+        },
+        "DW-05": {
+          "landmark": "Occupied Watchtower",
+          "theme": "Deepwood",
+          "parts": 281
+        },
+        "FV-03": {
+          "landmark": "Blue Ice Gorge",
+          "theme": "FrozenVale",
+          "parts": 513
+        },
+        "FV-06": {
+          "landmark": "Sentinel Citadel",
+          "theme": "FrozenVale",
+          "parts": 589
+        },
+        "EC-04": {
+          "landmark": "Cooling Aqueduct",
+          "theme": "EmberCaldera",
+          "parts": 183
+        },
+        "FV-01": {
+          "landmark": "Glacier Gate",
+          "theme": "FrozenVale",
+          "parts": 652
+        },
+        "EC-S3": {
+          "landmark": "Workers Quarter",
+          "theme": "EmberCaldera",
+          "parts": 203
+        },
+        "HG-06": {
+          "landmark": "Crownheart Bastion",
+          "theme": "HauntedGraveyard",
+          "parts": 542
+        },
+        "HG-07": {
+          "landmark": "Last Throne",
+          "theme": "HauntedGraveyard",
+          "parts": 683
+        },
+        "EC-06": {
+          "landmark": "Heatworks",
+          "theme": "EmberCaldera",
+          "parts": 177
+        },
+        "DW-S2": {
+          "landmark": "Convoy Ruins",
+          "theme": "Deepwood",
+          "parts": 305
+        },
+        "EC-01": {
+          "landmark": "Freight Foundry",
+          "theme": "EmberCaldera",
+          "parts": 201
+        },
+        "EC-02": {
+          "landmark": "Workers Quarter",
+          "theme": "EmberCaldera",
+          "parts": 201
+        },
+        "FV-S1": {
+          "landmark": "Hearth Refuge",
+          "theme": "FrozenVale",
+          "parts": 705
+        },
+        "DW-07": {
+          "landmark": "Broken Seal",
+          "theme": "Deepwood",
+          "parts": 289
+        },
+        "EC-05": {
+          "landmark": "Engineers Archive",
+          "theme": "EmberCaldera",
+          "parts": 180
+        },
+        "GW-02": {
+          "landmark": "Webbed Watch",
+          "theme": "Gloamwood",
+          "parts": 387
+        },
+        "HG-05": {
+          "landmark": "Royal Gate",
+          "theme": "HauntedGraveyard",
+          "parts": 585
+        },
+        "DW-06": {
+          "landmark": "Elder Roots",
+          "theme": "Deepwood",
+          "parts": 260
+        },
+        "DW-02": {
+          "landmark": "Convoy Ruins",
+          "theme": "Deepwood",
+          "parts": 268
+        },
+        "HG-01": {
+          "landmark": "Mist Chapel",
+          "theme": "HauntedGraveyard",
+          "parts": 601
+        },
+        "GW-04": {
+          "landmark": "Hollowbark Grove",
+          "theme": "Gloamwood",
+          "parts": 369
+        },
+        "GW-06": {
+          "landmark": "Widow Nest",
+          "theme": "Gloamwood",
+          "parts": 351
+        },
+        "HG-04": {
+          "landmark": "Fallen Belfry",
+          "theme": "HauntedGraveyard",
+          "parts": 564
+        },
+        "DW-S1": {
+          "landmark": "Convoy Ruins",
+          "theme": "Deepwood",
+          "parts": 308
+        },
+        "FV-07": {
+          "landmark": "Mirror Palace",
+          "theme": "FrozenVale",
+          "parts": 717
+        },
+        "DW-04": {
+          "landmark": "Lost Cloister",
+          "theme": "Deepwood",
+          "parts": 293
+        }
+      },
+      "reusedMeshInstances": 4438,
+      "kind": "EPIC_WORLD_ART_NATIVE",
+      "failures": [],
+      "generationSeconds": 4.843896416714415
+    },
+    {
+      "checks": 380138,
+      "failures": [],
+      "species": {
+        "DeathKnight": {
+          "maxStoppedFootLift": 2.384185791015625e-7,
+          "stanceSlipHeightFraction": 0.007515030060120241,
+          "source": "death_knight"
+        },
+        "SkeletonKnight": {
+          "maxStoppedFootLift": 2.384185791015625e-7,
+          "bladeForwardTravel": {
+            "HeavyAlt": 1.9750690460205078,
+            "AttackAlt": 1.7847110033035278,
+            "Heavy": 2.4508509635925293,
+            "Attack": 2.2059781551361084
+          },
+          "source": "skeleton_knight",
+          "stanceSlipHeightFraction": 0.007745754667229196
+        },
+        "Hellhound": {
+          "maxStoppedFootLift": 0,
+          "stanceSlipHeightFraction": 0.012478298611111112,
+          "source": "hellhound"
+        },
+        "Skeleton": {
+          "maxStoppedFootLift": 2.384185791015625e-7,
+          "bladeForwardTravel": {
+            "HeavyAlt": 1.3982086181640625,
+            "AttackAlt": 1.2684398293495178,
+            "Heavy": 2.1949970424175262,
+            "Attack": 1.9673004150390625
+          },
+          "source": "skeleton",
+          "stanceSlipHeightFraction": 0.012613932291666668
+        },
+        "Lich": {
+          "source": "lich",
+          "maxStoppedFootLift": 0
+        },
+        "Veyr": {
+          "source": "dread_commander",
+          "maxStoppedFootLift": 0
+        },
+        "DreadCommander": {
+          "source": "dread_commander",
+          "maxStoppedFootLift": 0
+        },
+        "Ghoul": {
+          "source": "ghoul",
+          "maxStoppedFootLift": 0
+        },
+        "LichSovereign": {
+          "source": "lich_sovereign",
+          "maxStoppedFootLift": 0
+        },
+        "Mummy": {
+          "source": "mummy",
+          "maxStoppedFootLift": 0
+        },
+        "Zombie": {
+          "maxStoppedFootLift": 2.384185791015625e-7,
+          "stanceSlipHeightFraction": 0.009553328804347826,
+          "source": "zombie"
+        }
+      },
+      "pass": true,
+      "kind": "HAUNTED_MONSTER_MOTION_NATIVE"
+    },
+    {
+      "weapons": [],
+      "checks": 4056,
+      "scope": "motion-and-story",
+      "kind": "FROZEN_VALE_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "weapons": [],
+      "checks": 4114,
+      "scope": "motion-and-story",
+      "kind": "EMBER_CALDERA_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "checks": 7033,
+      "species": {
+        "IceBear": {
+          "maxStoppedFootLift": 7.152557373046875e-7,
+          "stanceSlipHeightFraction": 0.00904224537037037
+        },
+        "CalderaTitan": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.006680026720106881
+        },
+        "MagmaImp": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.009080661322645291
+        },
+        "IceElf": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.01201923076923077
+        },
+        "KingIceGolem": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.009080661322645291
+        },
+        "IceGolem": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.009787870159453304
+        },
+        "VolcanoShaman": {
+          "maxStoppedFootLift": 0
+        },
+        "LavaSlime": {
+          "maxStoppedFootLift": 0
+        },
+        "AncientGlacierKing": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.006066821142284569
+        },
+        "IceWolf": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.013292100694444446
+        },
+        "IceTroll": {
+          "maxStoppedFootLift": 2.384185791015625e-7,
+          "stanceSlipHeightFraction": 0.0067625284738041
+        },
+        "MagmaGolem": {
+          "maxStoppedFootLift": 2.384185791015625e-7,
+          "stanceSlipHeightFraction": 0.009393787575150301
+        },
+        "Golem": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.009787870159453304
+        },
+        "QueenIceElf": {
+          "maxStoppedFootLift": 0
+        },
+        "IceTrollKing": {
+          "maxStoppedFootLift": 2.384185791015625e-7,
+          "stanceSlipHeightFraction": 0.008517034068136272,
+          "clubForwardTravel": 6.890719801187515
+        },
+        "KingIceBear": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.005853664108187135
+        },
+        "InfernoOverlord": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.01891804442217769
+        },
+        "MagmaWorm": {
+          "maxStoppedFootLift": 0
+        },
+        "Imp": {
+          "maxStoppedFootLift": 2.384185791015625e-7,
+          "stanceSlipHeightFraction": 0.011589972527472528
+        },
+        "KingVolcanoShaman": {
+          "maxStoppedFootLift": 0
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "kind": "REGIONAL_INDIVIDUAL_REVIEW_NATIVE"
+    },
+    {
+      "checks": 2813,
+      "species": {
+        "EnragedWarlord": {
+          "maxStoppedFootLift": 0
+        },
+        "Shaman": {
+          "maxStoppedFootLift": 0
+        },
+        "KingShaman": {
+          "maxStoppedFootLift": 0
+        },
+        "Orc": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.006156589673913044
+        },
+        "Ogre": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.006295196280991735
+        },
+        "GoblinKing": {
+          "maxStoppedFootLift": 0
+        },
+        "KingOgre": {
+          "maxStoppedFootLift": 0
+        },
+        "Warlord": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.006810238486842105
+        },
+        "Slime": {
+          "maxStoppedFootLift": 0
+        },
+        "Goblin": {
+          "maxStoppedFootLift": 4.76837158203125e-7,
+          "stanceSlipHeightFraction": 0.007052951388888889
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "kind": "DEEPWOOD_INDIVIDUAL_REVIEW_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "ENEMY_STREAMING_PRESENTATION_NATIVE",
+      "pass": true,
+      "checks": 10
+    },
+    {
+      "coverage": "Native battle-role startup; no real Player admission or published teleport",
+      "checks": 10,
+      "failures": [],
+      "pass": true,
+      "kind": "BATTLE_BOOTSTRAP_NATIVE"
+    },
+    {
+      "ok": true,
+      "checks": 1939,
+      "scope": "real-engine-with-fake-account-and-player",
+      "finalMain": 35,
+      "models": [
+        {
+          "prototype": false,
+          "kind": "DeathKnight",
+          "template": "death_knight",
+          "parts": 3
+        },
+        {
+          "prototype": false,
+          "kind": "SkeletonKnight",
+          "template": "skeleton_knight",
+          "parts": 5
+        },
+        {
+          "prototype": true,
+          "kind": "AncientHollowbark",
+          "template": "AncientHollowbark",
+          "parts": 10
+        },
+        {
+          "prototype": false,
+          "kind": "Hellhound",
+          "template": "hellhound",
+          "parts": 5
+        },
+        {
+          "prototype": false,
+          "kind": "Skeleton",
+          "template": "skeleton",
+          "parts": 5
+        },
+        {
+          "prototype": true,
+          "kind": "Gloambat",
+          "template": "Gloambat",
+          "parts": 9
+        },
+        {
+          "prototype": false,
+          "kind": "Zombie",
+          "template": "zombie",
+          "parts": 5
+        },
+        {
+          "prototype": true,
+          "kind": "Barkstalker",
+          "template": "Barkstalker",
+          "parts": 10
+        },
+        {
+          "prototype": false,
+          "kind": "DreadCommander",
+          "template": "dread_commander",
+          "parts": 1
+        },
+        {
+          "prototype": true,
+          "kind": "WidowQueen",
+          "template": "WidowQueen",
+          "parts": 25
+        },
+        {
+          "prototype": false,
+          "kind": "LichSovereign",
+          "template": "lich_sovereign",
+          "parts": 3
+        },
+        {
+          "prototype": true,
+          "kind": "Webling",
+          "template": "Webling",
+          "parts": 22
+        },
+        {
+          "prototype": false,
+          "kind": "Veyr",
+          "template": "dread_commander",
+          "parts": 1
+        },
+        {
+          "prototype": false,
+          "kind": "Lich",
+          "template": "lich",
+          "parts": 3
+        },
+        {
+          "prototype": false,
+          "kind": "Mummy",
+          "template": "mummy",
+          "parts": 3
+        },
+        {
+          "prototype": false,
+          "kind": "Ghoul",
+          "template": "ghoul",
+          "parts": 1
+        },
+        {
+          "prototype": true,
+          "kind": "Silkweaver",
+          "template": "Silkweaver",
+          "parts": 22
+        },
+        {
+          "prototype": true,
+          "kind": "VenomcoilKing",
+          "template": "VenomcoilKing",
+          "parts": 38
+        },
+        {
+          "prototype": true,
+          "kind": "VenomcoilCentipede",
+          "template": "VenomcoilCentipede",
+          "parts": 35
+        }
+      ],
+      "scopedMaeves": 2,
+      "finalGold": 16570,
+      "kind": "LATE_EPICS_NATIVE"
+    }
+  ],
+  "warnings": [
+    "ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type"
+  ]
+}
