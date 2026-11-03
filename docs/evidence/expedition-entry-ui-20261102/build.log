@@ -1,0 +1,7 @@
+$ rojo build default.project.json -o /Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.62.5/TheLastThrone-Lobby-0.62.5.rbxlx
+Building project 'the-last-throne'
+Built project to TheLastThrone-Lobby-0.62.5.rbxlx
+
+$ rojo build battle.project.json -o /Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.62.5/TheLastThrone-Battle-0.62.5.rbxlx
+Building project 'the-last-throne-battle'
+Built project to TheLastThrone-Battle-0.62.5.rbxlx

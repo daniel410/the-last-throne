@@ -18,8 +18,16 @@ TD 원본 panel·제목 plaque·닫기·영웅 초상·SelectionCheck를 재사�
 - `tools/prepare-expedition-entry-test.py`: 실제 GUI/네트워크 handler + fixture 서비스/시계/메모리 map으로67검사. PC1108×707·844×390·667×375의 고정 출발/44px 터치/난이도 행/잠긴 caption 레이어, 빠른 두 번째 명령 차단, 오래된 ack 거부, Busy→동일ID GetState 복구, full mission list, Hell/Lv80 보상, 멤버별 이유와 전원 준비 출발, 미설정/이동/저장 상태를 검증한다. 성공 Configure의 정상 ack·서버 rate-limit 응답·파티 변경 전파도 실제 handler로 확인한다.
 - `tools/prepare-difficulty-native-test.py`: 기존 실제 InventoryService 저장·초회/반복·탐색·강화·장착 능력치/상세 UI를 격리 실행한다.
 - 네이티브 Luau 컴파일 및 성장 정본 계산: 최종Lv40/XP0, quest XP13,795·Gold19,652 유지.
-- 소스 고정 뒤 Lobby/Battle 빌드 결과·SHA256·Studio 결과·캡처를 추가 기록한다. 캡처는 실제 UI fixture 렌더이며 모바일은 고정 컨테이너, 실제 기기/시뮬레이터 결과가 아니다.
+- 소스 `baf073c356a5ca701347f463da3324dec015a785`을 git archive로 격리해 Lobby/Battle Rojo7.7.1 빌드 모두 성공했다. `build.json`에 산출물 크기/SHA256, `build.log`에 명령/출력, `studio.json`에 동일 고정 소스의67개 UI/handler 검사와 기존 InventoryService 회귀 결과를 기록했다. 변경5모듈 컴파일 및 presentation17검사도 고정 소스로 재확인했다. 캡처는 실제 UI fixture 렌더이며 모바일은 고정 컨테이너, 실제 기기/시뮬레이터 결과가 아니다.
 
 ## 미검증·인계
 
 QA 후속: 게시된 각 테스트 Experience의 실제 파티·Teleport/저장 장애·재접속·지연/연속 탭, 모바일 safe area/글자 크기·패드 포커스, 사용자 미술/사용성 수용. 현재 고레벨 본편/장비와 최종 밸런스 범위를 확대하지 않았고 상위 티켓 완료·게시·릴리스를 선언하지 않는다. 기존 다른 작업의 TD 이동/로비/몬스터/애니메이션 미커밋 변경은 이번 커밋과 고정 빌드에서 제외한다.
+
+## 화면과 정리
+
+- [PC](desktop.jpg): Easy/Lv1·잠금3모드·고정 녹색 출발·원본 TD 프레임/선택 체크.
+- [모바일 가로](mobile-landscape.jpg):844×390 고정 컨테이너.4모드와44px 출발이 동시에 보인다. 화면 밖 바닥은 테스트 캔버스 밖이다.
+- [파티](party.jpg): 방장Lv80 Hell 자격 충족·동료Lv1/미준비 fixture. 멤버 행의 Reach Lv80과 비활성 고정 출발을 확인했다. 실제2인 네트워크 접속 증거가 아니다.
+- 검증 중667×375의 본문 높이와 잠긴 버튼 텍스트 레이어 문제를 발견해 수정한 뒤 전체67검사를 다시 통과시켰다.
+- 테스트 후 임시 ScreenGui/BindableEvent와 전역 fixture를 제거했고 StarterGui에 임시 화면이 없는 것을 확인했다. 기존 사용자 Studio는 Edit 상태로 보존했다. 이번 작업의 신규 LFS 파일은 검증 캡처3개다.

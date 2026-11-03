@@ -1,0 +1,24 @@
+{
+  "sourceCommit": "baf073c356a5ca701347f463da3324dec015a785",
+  "version": "0.62.5",
+  "studioId": "0fc2283e-f042-4c81-8750-0422aee83559",
+  "mode": "Edit",
+  "entry": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"scope\":\"native GUI with server projection fixtures; no live account, remote or Teleport\",\"measurements\":{\"1\":{\"panel\":{\"1\":800,\"2\":510},\"scrollHeight\":228,\"startHeight\":44,\"root\":{\"1\":1108,\"2\":707},\"startY\":460},\"3\":{\"panel\":{\"1\":643,\"2\":351},\"scrollHeight\":93,\"startHeight\":44,\"root\":{\"1\":667,\"2\":375},\"startY\":301},\"2\":{\"panel\":{\"1\":800,\"2\":366},\"scrollHeight\":108,\"startHeight\":44,\"root\":{\"1\":844,\"2\":390},\"startY\":316}},\"checks\":67}"
+      }
+    ],
+    "isError": false
+  },
+  "regression": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"forgeButtons\":17,\"service\":\"durable begin, first/repeat completion, forge/equip and equipment stats passed\",\"ui\":\"four modes, locked entry, enhancement and desktop/mobile controls passed\",\"pure\":\"difficulty, enhancement, departure recovery and store checks passed in native Luau\"}"
+      }
+    ],
+    "isError": false
+  }
+}
