@@ -1,0 +1,7 @@
+{
+  "checks": 1902,
+  "scope": "Bone hierarchy and exported key poses; no imported candidate mesh or skin deformation",
+  "failures": [],
+  "pass": true,
+  "kind": "REGIONAL_CASTER_BONES_NATIVE"
+}

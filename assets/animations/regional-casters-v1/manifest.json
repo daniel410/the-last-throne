@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "workId": "MR-01",
+  "status": "local skinned candidates; runtime integration and final art acceptance pending",
+  "gameVersionUnchanged": "0.62.7",
+  "newGameBuild": false,
+  "uploaded": false,
+  "published": false,
+  "runtimeSourceCommit": "bcc5e0492c0f866245a4dc8641cd9813f0654f49",
+  "research": "docs/research/2026-11-03-regional-caster-rigging.md",
+  "models": {
+    "QueenIceElf": {
+      "source": "assets/animations/regional-casters-v1/inputs/QueenIceElf.glb",
+      "sourceSha256": "7d51bed66751f380bce0e8f88d31dca08a79b8dd20be90ecad749e48cc19a362",
+      "partitionedSha256": "69b4658c4ddf4c00d864f9a7689ae294890f545b3701fb18c84a0965d2e89edd",
+      "riggedFile": "QueenIceElf-rigged.glb",
+      "riggedSha256": "8d0b9de270c9d0ab3a5bfa9d0237461db7e5aeb72adf46f31b889cb2412047ec",
+      "triangles": 4864,
+      "bones": 9,
+      "clips": [
+        "Attack",
+        "AttackAlt",
+        "Exposed",
+        "Heavy",
+        "HeavyAlt",
+        "Idle",
+        "Interrupted",
+        "Return",
+        "Stunned",
+        "Walk"
+      ],
+      "gripPairs": 135,
+      "maxGripGap": 1.8979973416742743e-06,
+      "sourceSurfaceAreaErrorBeforeCaps": 0.0
+    },
+    "VolcanoShaman": {
+      "source": "assets/animations/regional-casters-v1/inputs/VolcanoShaman.glb",
+      "sourceSha256": "06699d69fea21c5dcfff6d9e059089efdc2ffe2b0cc6a809db414c2376c83847",
+      "partitionedSha256": "b3fa65091811353612f80ca9f66f0fc79bdcc699f8278270a1a4094038dd79ea",
+      "riggedFile": "VolcanoShaman-rigged.glb",
+      "riggedSha256": "b0b58f6c3388798f7ea25514bb5947b4a2b442d977d3b55170e7ed43edc4faba",
+      "triangles": 4472,
+      "bones": 9,
+      "clips": [
+        "Attack",
+        "AttackAlt",
+        "Exposed",
+        "Heavy",
+        "HeavyAlt",
+        "Idle",
+        "Interrupted",
+        "Return",
+        "Stunned",
+        "Walk"
+      ],
+      "gripPairs": 53,
+      "maxGripGap": 1.933877701524215e-07,
+      "sourceSurfaceAreaErrorBeforeCaps": 0.0
+    },
+    "KingVolcanoShaman": {
+      "source": "assets/animations/regional-casters-v1/inputs/KingVolcanoShaman.glb",
+      "sourceSha256": "2c431128fda96bb37c325d91b760bc1afba8eb63fea35d8f0deabacf8f7bbf44",
+      "partitionedSha256": "3f85006c15da5f68a9dc54777530aa8231d178f1ad8e62a43388da4939c70e33",
+      "riggedFile": "KingVolcanoShaman-rigged.glb",
+      "riggedSha256": "eface6984c5ae83272899729ace6799fe578b1f7bf5f62c6c79e06b1ee61676b",
+      "triangles": 4403,
+      "bones": 9,
+      "clips": [
+        "Attack",
+        "AttackAlt",
+        "Exposed",
+        "Heavy",
+        "HeavyAlt",
+        "Idle",
+        "Interrupted",
+        "Return",
+        "Stunned",
+        "Walk"
+      ],
+      "gripPairs": 27,
+      "maxGripGap": 1.1198226711968149e-07,
+      "sourceSurfaceAreaErrorBeforeCaps": 0.0
+    }
+  },
+  "sourceScripts": {
+    "tools/prepare-regional-caster-meshes.py": "59975bd2e41d76b9d61694693a9003c0eecdeacc685d10624ebadfa01868ee51",
+    "tools/author-regional-casters-blender.py": "eaf426f6aa29eb049e233066a6f8130375886fe122b9f48c40e0269185638a16",
+    "tools/render-regional-caster-baseline-blender.py": "a6317fc3740c8431219ab125fe2974d65cd009b87edefdbe59affec45a249cf0",
+    "tools/assemble-regional-caster-review.py": "8cabb6c1906386627a2ea5d116e92e4ce6d5b2dd1d58751cd50d6be19c268482",
+    "tools/assemble-regional-caster-bone-suite.py": "b70299e73a3a09ed6eb0aed60303211f4442c57c1d7a33e8b49086a5a72ddfb3",
+    "tests/regional-caster-rigs.spec.py": "48c179d72aea39eb9ac58afef009b9197de23187949f0785095391d940b3a131",
+    "tests/regional-caster-bones-native.luau": "405a8d503ff25bcf072f37a76620a0600396e7f05c91547afdd99d20cf111bd0"
+  },
+  "reviewRenders": 192,
+  "comparisonSheets": 6,
+  "cpuChecks": 41774,
+  "nativeBoneChecks": 1902,
+  "nativeBoneFixtureSha256": "db90203b4b6c0712047a25fdb8a05012b0748a28b43503168c6d1ce0a98169ab",
+  "baselineCaptureSha256": "fe942e4048b25d09906cd55175c5ea70dfd997d04688f2f90ae74f450b0a6d19"
+}

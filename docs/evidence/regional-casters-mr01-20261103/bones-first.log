@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+REGIONAL_CASTER_BONES_NATIVE {"checks":646,"scope":"Bone hierarchy and exported key poses; no imported candidate mesh or skin deformation","failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8: VolcanoShaman Idle ForearmL rotation\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"REGIONAL_CASTER_BONES_NATIVE"}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:52: MR-01 Bone contract failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:52
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

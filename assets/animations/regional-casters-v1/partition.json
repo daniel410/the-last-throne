@@ -1,0 +1,180 @@
+{
+  "QueenIceElf": {
+    "source": "assets/animations/regional-casters-v1/inputs/QueenIceElf.glb",
+    "sourceSha256": "7d51bed66751f380bce0e8f88d31dca08a79b8dd20be90ecad749e48cc19a362",
+    "normalization": {
+      "sourceHeight": 0.9291990101337433,
+      "sourceFeetOrigin": [
+        0.005859494209289551,
+        -0.46850600838661194,
+        0.05346649885177612
+      ],
+      "normalRepairVertexIndices": [
+        2098,
+        2099,
+        2100,
+        4835,
+        4836,
+        4837
+      ],
+      "sourceTriangles": 3140
+    },
+    "sourceTriangles": 3140,
+    "partitioned": [
+      {
+        "name": "Skin",
+        "center": [
+          -0.00788205234046463,
+          0.4915922209184494,
+          -0.05859132559697319
+        ],
+        "size": [
+          1.0336311163262022,
+          0.9831844418368988,
+          0.8360480192515767
+        ],
+        "triangles": 3815
+      },
+      {
+        "name": "Staff",
+        "center": [
+          0.320765165706795,
+          0.6124472832477053,
+          0.14925762815432095
+        ],
+        "size": [
+          0.24706617880515036,
+          0.7751054335045895,
+          0.30166742776390737
+        ],
+        "triangles": 731
+      }
+    ],
+    "surfaceAreaError": 0.0,
+    "partitionedSha256": "69b4658c4ddf4c00d864f9a7689ae294890f545b3701fb18c84a0965d2e89edd",
+    "staffPrism": [
+      0.18,
+      0.17,
+      -0.375,
+      0.36,
+      0.021,
+      0.7,
+      0.23,
+      0.025
+    ]
+  },
+  "VolcanoShaman": {
+    "source": "assets/animations/regional-casters-v1/inputs/VolcanoShaman.glb",
+    "sourceSha256": "06699d69fea21c5dcfff6d9e059089efdc2ffe2b0cc6a809db414c2376c83847",
+    "normalization": {
+      "sourceHeight": 0.9555659890174866,
+      "sourceFeetOrigin": [
+        -0.02050749957561493,
+        -0.4777829945087433,
+        0.02050749957561493
+      ],
+      "normalRepairVertexIndices": [],
+      "sourceTriangles": 3194
+    },
+    "sourceTriangles": 3194,
+    "partitioned": [
+      {
+        "name": "Skin",
+        "center": [
+          -0.013030496944903741,
+          0.5,
+          -0.021205749570367805
+        ],
+        "size": [
+          0.7715887866673461,
+          1.0,
+          0.5569746122955984
+        ],
+        "triangles": 3155
+      },
+      {
+        "name": "Staff",
+        "center": [
+          0.3471513255238656,
+          0.4949235056254166,
+          0.13800074455437986
+        ],
+        "size": [
+          0.19430265104773115,
+          0.986648611151156,
+          0.16600148910875973
+        ],
+        "triangles": 821
+      }
+    ],
+    "surfaceAreaError": 0.0,
+    "partitionedSha256": "b3fa65091811353612f80ca9f66f0fc79bdcc699f8278270a1a4094038dd79ea",
+    "staffPrism": [
+      0.293,
+      0.035,
+      -0.09,
+      -0.1,
+      0.033,
+      0.66,
+      0.25,
+      -0.055
+    ]
+  },
+  "KingVolcanoShaman": {
+    "source": "assets/animations/regional-casters-v1/inputs/KingVolcanoShaman.glb",
+    "sourceSha256": "2c431128fda96bb37c325d91b760bc1afba8eb63fea35d8f0deabacf8f7bbf44",
+    "normalization": {
+      "sourceHeight": 0.9550780057907104,
+      "sourceFeetOrigin": [
+        -0.008789002895355225,
+        -0.47729501128196716,
+        0.0642089955508709
+      ],
+      "normalRepairVertexIndices": [],
+      "sourceTriangles": 3178
+    },
+    "sourceTriangles": 3178,
+    "partitioned": [
+      {
+        "name": "Skin",
+        "center": [
+          0.0023008634166586106,
+          0.5,
+          -0.06825149155461804
+        ],
+        "size": [
+          0.7719840484786455,
+          1.0,
+          0.5628828193502688
+        ],
+        "triangles": 3633
+      },
+      {
+        "name": "Staff",
+        "center": [
+          0.32425859126098777,
+          0.47443770263143936,
+          0.13486590783309116
+        ],
+        "size": [
+          0.1485171825219755,
+          0.9478534719210163,
+          0.1388524459260186
+        ],
+        "triangles": 521
+      }
+    ],
+    "surfaceAreaError": 0.0,
+    "partitionedSha256": "3f85006c15da5f68a9dc54777530aa8231d178f1ad8e62a43388da4939c70e33",
+    "staffPrism": [
+      0.3,
+      0.035,
+      -0.13,
+      -0.04,
+      0.032,
+      0.68,
+      0.25,
+      -0.055
+    ]
+  }
+}
