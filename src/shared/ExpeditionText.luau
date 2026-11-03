@@ -13,7 +13,7 @@ return {
  Materials='Completion: %d Iron Ore · %d Forge Cores · %d/4 equipment cache progress.',
  Equipment='Equipment has the same tier and stats on every difficulty.',
  Risk='Enemy HP ×%.2f / Damage ×%.2f · Boss HP ×%.2f / Damage ×%.2f',
- RiskNote='Trial modifiers; enemy level and party size also affect combat stats.',
+ RiskNote='Enemy level and party size also affect combat stats.',
  RepeatHell='Hell can be replayed without a daily limit. Each new completed run earns repeat rewards.',
  Objective='First objective: %s',Rejoin='REJOIN',Leave='LEAVE PARTY',Refresh='REFRESH',
  NoParties='No open parties. Create one for other heroes to join.',Recruiting='RECRUITING PARTIES',
