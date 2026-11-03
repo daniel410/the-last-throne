@@ -1,0 +1,128 @@
+{
+  "ok": true,
+  "result": {
+    "ok": true,
+    "checks": 1930,
+    "scope": "real-engine-with-fake-account-and-player",
+    "finalMain": 35,
+    "models": [
+      {
+        "prototype": false,
+        "kind": "DeathKnight",
+        "template": "death_knight",
+        "parts": 3
+      },
+      {
+        "prototype": false,
+        "kind": "SkeletonKnight",
+        "template": "skeleton_knight",
+        "parts": 5
+      },
+      {
+        "prototype": true,
+        "kind": "AncientHollowbark",
+        "template": "AncientHollowbark",
+        "parts": 10
+      },
+      {
+        "prototype": false,
+        "kind": "Hellhound",
+        "template": "hellhound",
+        "parts": 5
+      },
+      {
+        "prototype": false,
+        "kind": "Skeleton",
+        "template": "skeleton",
+        "parts": 5
+      },
+      {
+        "prototype": true,
+        "kind": "Gloambat",
+        "template": "Gloambat",
+        "parts": 9
+      },
+      {
+        "prototype": false,
+        "kind": "Zombie",
+        "template": "zombie",
+        "parts": 5
+      },
+      {
+        "prototype": true,
+        "kind": "Barkstalker",
+        "template": "Barkstalker",
+        "parts": 10
+      },
+      {
+        "prototype": false,
+        "kind": "DreadCommander",
+        "template": "dread_commander",
+        "parts": 1
+      },
+      {
+        "prototype": true,
+        "kind": "WidowQueen",
+        "template": "WidowQueen",
+        "parts": 25
+      },
+      {
+        "prototype": false,
+        "kind": "LichSovereign",
+        "template": "lich_sovereign",
+        "parts": 3
+      },
+      {
+        "prototype": true,
+        "kind": "Webling",
+        "template": "Webling",
+        "parts": 22
+      },
+      {
+        "prototype": false,
+        "kind": "Veyr",
+        "template": "dread_commander",
+        "parts": 1
+      },
+      {
+        "prototype": false,
+        "kind": "Lich",
+        "template": "lich",
+        "parts": 3
+      },
+      {
+        "prototype": false,
+        "kind": "Mummy",
+        "template": "mummy",
+        "parts": 3
+      },
+      {
+        "prototype": false,
+        "kind": "Ghoul",
+        "template": "ghoul",
+        "parts": 1
+      },
+      {
+        "prototype": true,
+        "kind": "Silkweaver",
+        "template": "Silkweaver",
+        "parts": 22
+      },
+      {
+        "prototype": true,
+        "kind": "VenomcoilKing",
+        "template": "VenomcoilKing",
+        "parts": 38
+      },
+      {
+        "prototype": true,
+        "kind": "VenomcoilCentipede",
+        "template": "VenomcoilCentipede",
+        "parts": 35
+      }
+    ],
+    "scopedMaeves": 2,
+    "finalGold": 16570,
+    "kind": "LATE_EPICS_NATIVE"
+  }
+}

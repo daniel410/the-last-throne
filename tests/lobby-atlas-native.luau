@@ -22,7 +22,9 @@ local ok,err=xpcall(function()
  check(not view.rows()['FV-02'].name:GetAttribute('Accessible'),'Frozen Vale later story remains locked')
  view.selectEpic(3);check(countRows(false)==10,'all Ember Caldera regions visible while locked')
  view.update(snap(14));check(view.rows()['EC-01'].name:GetAttribute('Accessible'),'Ember opens after Frozen Vale')
- for _,i in ipairs({4,5})do view.selectEpic(i);check(countRows(nil)==0 and view.root.Progress.Text:find('COMING SOON',1,true)~=nil,'future epic is explicitly unavailable')end
+ for _,i in ipairs({4,5})do view.selectEpic(i);check(countRows(false)==7,'late epic has seven gated regions')end
+ view.update(snap(21));view.selectEpic(4);check(view.rows()['GW-01'].name:GetAttribute('Accessible')and not view.rows()['GW-02'].name:GetAttribute('Accessible'),'Gloamwood opens after EC')
+ view.update(snap(28));view.selectEpic(5);check(view.rows()['HG-01'].name:GetAttribute('Accessible')and not view.rows()['HG-02'].name:GetAttribute('Accessible'),'HG opens after Gloamwood')
  view.selectEpic(1);view.update(snap(21));check(countRows(true)==10,'complete story unlocks entire Deepwood')
  for _,size in ipairs({Vector2.new(1000,750),Vector2.new(366,756),Vector2.new(643,293)})do
   host.Size=UDim2.fromOffset(size.X,size.Y);task.wait()
@@ -38,7 +40,7 @@ local ok,err=xpcall(function()
  local Canvas=require(client.DeepwoodMapCanvas)
  local f=Instance.new('Frame');f.Size=UDim2.fromOffset(1000,750);f.Parent=gui
  local all=Canvas.create(f,nil,false);all.update({journal={main=0,explored={}}})
- local n=0;for _ in pairs(all.rows)do n+=1 end;check(n==30,'battle overview retains all30 regions')
+ local n=0;for _ in pairs(all.rows)do n+=1 end;check(n==44,'battle overview includes all44 regions')
  f:ClearAllChildren();local single=Canvas.create(f,'FV-01',true);single.update({journal={main=7,explored={}}});check(single.rows['FV-01']~=nil,'battle minimap retains single-region mode')
 end,debug.traceback)
 gui:Destroy();if not ok then table.insert(report.failures,tostring(err))end;report.pass=ok

@@ -10,6 +10,7 @@ local ok,err=xpcall(function()
  require(Server.World.TrainingField).create()
  local world=require(Server.World.CampaignWorld).create()
  check(world.lateEpicsReady and #world.lateCompanionCamps==2,'late world bootstrap and companion camps')
+ for _,entry in ipairs(world.lateCompanionCamps)do check(entry.model:GetAttribute('TLTNPC')and entry.model:GetAttribute('LateEpicCamp'),'Selene appears at late safe camps without requiring recruitment')end
  local late=require(RS.Shared.LateEpicContent);local Bounds=require(RS.Shared.CampaignBounds)
  local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Include;params.FilterDescendantsInstances={world.terrain};params.RespectCanCollide=true
  for id,z in pairs(late.zones)do
@@ -49,7 +50,7 @@ local ok,err=xpcall(function()
  local original=Server.Story.DeepwoodService;local copy=original:Clone();copy.Name='LateEpicServiceQA'
  local source=copy.Source;local first=assert(source:find('local function publish',1,true));local last=assert(source:find('function Service.destination',first,true))
  copy.Source=source:sub(1,first-1)..'local function publish(player,message)player.message=message end\n'..source:sub(last);copy.Parent=original.Parent
- local story=require(copy);local combat=table.clone(require(Server.Combat.CombatService));local faults={'SaveUnknown','Busy'};local retries=0;local xp,gold=0,0;local activeMission
+ local story=require(copy);local combat=table.clone(require(Server.Combat.CombatService));if not RS:FindFirstChild('Remotes')then combat.start(workspace.DeepwoodK0.Enemies,function()return nil end)end;local faults={'SaveUnknown','Busy'};local retries=0;local xp,gold=0,0;local activeMission
  local character=Instance.new('Model');character.Parent=folder
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Parent=character;character.PrimaryPart=root
  local human=Instance.new('Humanoid');human.MaxHealth=1000;human.Health=1000;human.Parent=character

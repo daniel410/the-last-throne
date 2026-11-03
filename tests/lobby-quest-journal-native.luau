@@ -28,7 +28,9 @@ local ok,err=xpcall(function()
  check(list['Quest_FV-Q1']:GetAttribute('QuestStatus')=='LOCKED' and list['Quest_FV-Q1'].Hint.Text:find('Discover',1,true)~=nil,'undiscovered quest stays locked with discovery hint')
  view.selectEpic(3);check(count(list)==11 and list['Quest_EC-01']:GetAttribute('QuestStatus')=='LOCKED','Ember quests visible and locked')
  journal.main=14;view.update(snapshot);check(list['Quest_EC-01']:GetAttribute('QuestStatus')=='IN PROGRESS','Ember main unlock uses story boundary')
- for _,i in ipairs({4,5})do view.selectEpic(i);check(count(list)==0 and view.root.Summary.Text=='LOCKED · COMING SOON','future epic has no invented quests')end
+ for _,i in ipairs({4,5})do view.selectEpic(i);check(count(list)==7,'late epic has seven main quests')end
+ journal.main=21;view.selectEpic(4);view.update(snapshot);check(list['Quest_GW-01']:GetAttribute('QuestStatus')=='IN PROGRESS','GW follows EC')
+ journal.main=28;view.selectEpic(5);view.update(snapshot);check(list['Quest_HG-01']:GetAttribute('QuestStatus')=='IN PROGRESS','HG follows GW')
  local nav=require(client.LobbyNavigation).create(gui,{open=function()end,close=function()end})
  nav.update(snapshot);nav.showGuide('Quest')
  check(nav.panel.Visible and nav.panel.LobbyQuestJournal.Visible and not nav.panel.LobbyAtlas.Visible,'quest button opens the journal in the shared lobby panel')

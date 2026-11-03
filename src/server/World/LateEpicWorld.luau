@@ -50,8 +50,8 @@ function W.create(world)
   if not forest then arch(region,center+Vector3.new(0,0,145),stone,95)end
   for _,x in ipairs({-155,155})do require(script.Parent.StoryProps).build(region,'RouteLantern',center+Vector3.new(x,0,80),{theme=forest and 'Gloamwood' or 'HauntedGraveyard'})end
   if id=='GW-03' or id=='HG-02' then
-   local camp=Instance.new('Model');camp.Name=id..'CompanionCamp';camp.Parent=region
-   camp.PrimaryPart=part(camp,'CampBoard',Vector3.new(5,4,1),center+Vector3.new(-45,2,80),Color3.fromRGB(181,148,82),true,Enum.Material.Wood)
+   local camp=require(script.Parent.NPCActors).acquire(world.folder,'Selene',center+Vector3.new(-45,0,80),{scope=id,role='camp',priority=20})
+   camp:SetAttribute('LateEpicCamp',id)
    table.insert(world.lateCompanionCamps,{model=camp,requiresMain=z.requiresMain})
    for _,x in ipairs({-90,90})do
     part(region,'ShelterRoof',Vector3.new(48,3,38),center+Vector3.new(x,18,100),Color3.fromRGB(78,87,101))
