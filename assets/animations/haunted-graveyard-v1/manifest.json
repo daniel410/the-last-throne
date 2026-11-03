@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "authoring": "Blender 5.2 MCP F-curves; 201 evaluated samples per channel; user scene preserved",
+  "species": 10,
+  "runtimeKinds": 11,
+  "logicalClips": 77,
+  "actions": 385,
+  "impactPhase": 0.62,
+  "uploadedNewAssets": false,
+  "modelsSource": "assets/shared/td-haunted-graveyard/manifest.json",
+  "files": {
+    "authoring-keys.json": "9767bebb46eac311b261135af036ad4aaa17093f69cc6ac5aba45281c987080a",
+    "clips.json": "981f27006f5108f0aa9dfb56812b0d44b12bb7ee2c003245553d06afde84c566",
+    "rigs.json": "fe83c0a2ae3423ec7df688702242f26b02d4a29eb67dcaa029ae643a0172538f",
+    "source-models.json": "763b036e795f3ae81e2f207998d84e4b97775227037bb761b5c65aac2ec7ea46"
+  },
+  "modules": {
+    "src/client/HauntedGraveyardClips/DreadCommander.luau": "2bdd2a6140513408072877f81c715a7aa9f5ce8ff366b4ae4e3c170f996d3d84",
+    "src/client/HauntedGraveyardClips/Hellhound.luau": "93199562fd2a65e5dc9b0357b854608a01863e9186c5c8d65a508d08875ad41e",
+    "src/client/HauntedGraveyardClips/Skeleton.luau": "65bad8232ed98e88b205ed9bbcb51a755fcd330573d7eff26493193edd590e97",
+    "src/client/HauntedGraveyardClips/SkeletonKnight.luau": "c3468f0e0e239321a9c34c5f8d358cf716bf68cbfa938e457769cfe5648267ff",
+    "src/client/HauntedGraveyardClips/LichSovereign.luau": "d1f4f30f5d0f2dbf8e8f9467d75fa836c1c81f660331708d33a0502ca9e281bc",
+    "src/client/HauntedGraveyardClips/Lich.luau": "f8a3e38a8cdafc590974f8424e97b36dbe71f6fbf2d8233d49b417109c5be58a",
+    "src/client/HauntedGraveyardClips/Veyr.luau": "40deca19495e33687b24536be0cd6e9e9f6b7dc3aa378289c85766ae583b818d",
+    "src/client/HauntedGraveyardClips/Mummy.luau": "17a11fa8dfb733a7b80d09eb6ddb7f3d10f6d822d6b669d95d5f8b23573ac6b5",
+    "src/client/HauntedGraveyardClips/Zombie.luau": "e11353aa29710784ccd668a9f46c49e117ff96147c1d364ae06b0c7d06f21bdb",
+    "src/client/HauntedGraveyardClips/DeathKnight.luau": "02f4fbfecf9d91888517149152c7f6552bf0225c30091d4c0d7cce344d7d90c5",
+    "src/client/HauntedGraveyardClips/Ghoul.luau": "70e24f8f14c516f1d633a355857972bc030ca9b60a1a03f2a1008ab0b2d55a7e",
+    "src/client/HauntedGraveyardClips/init.luau": "bdfbb32ff16d7e502f00e99302be7bc82f152e895bf32e1f31f02bc50d205e1c"
+  }
+}

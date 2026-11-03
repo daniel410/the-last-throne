@@ -1,5 +1,8 @@
 # The Last Throne / 최후의 왕좌
 
+> **2026-11-03 / TLT-032/033/055/057/064/084 · 0.65.2:** Haunted Graveyard TD10모델/Veyr11종을 각각 전후 리뷰해 전용77클립·검 팔/소켓·지팡이 접합·보행/전신 예고·하단 표면 접지를 교정했다. [개별 비교·검증·원본 한계](docs/evidence/haunted-monster-review-20261103/README.md). 로컬 개선본·미게시이며 일체형의 완전 관절·경사/실기기/사용자 미술 수용은 후속이다.
+
+
 > **2026-11-03 / TLT-064/065/057/084 · 0.65.1:** Gloamwood7·Haunted Graveyard7을 기존21개 뒤에 연결해5에픽35개 본편을 로컬 시험 구현한다. HG는 기존TD 언데드10모델(Veyr는Dread Commander 공유), GW는 사용자 지시의 임시8종 블록 모델이며 후속 교체한다. 기존HG 고정 보상/안정ID 보존·GW 고정 예산 임시0. [구현·검증·미검증](docs/evidence/late-epics-20261103/README.md). 고정 Lobby/Battle 빌드와 엔진2,100검사 PASS·미게시. 정상 전투/실계정/실기기/4인+AI·최종 성장/미술/밸런스 수용 후속.
 
 

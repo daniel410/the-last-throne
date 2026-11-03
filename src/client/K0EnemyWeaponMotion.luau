@@ -3,6 +3,7 @@
 local Sockets=require(game:GetService('ReplicatedStorage').Shared.EnemyRigSockets)
 local FrozenRigs=table.clone(require(game:GetService('ReplicatedStorage').Shared.FrozenValeRigs))
 for kind,spec in pairs(require(game.ReplicatedStorage.Shared.EmberCalderaRigs))do FrozenRigs[kind]=spec end
+for kind,spec in pairs(require(game.ReplicatedStorage.Shared.HauntedGraveyardRigs))do FrozenRigs[kind]=spec end
 local Weapon={}
 local function point(part,v)return part.Size*Vector3.new(v[1],v[2],v[3])end
 function Weapon.bind(model,caster)
@@ -25,7 +26,7 @@ function Weapon.bind(model,caster)
    local shard=Instance.new('WedgePart');shard.Name='FocusShard'..i
    shard.Size=Vector3.new(.05,.12,.075)*(model:GetAttribute('TdMonsterTargetHeight') or 5)*.25
    shard.Material=Enum.Material.Neon;shard.Color=spec.element=='fire' and Color3.fromRGB(255,151,74) or Color3.fromRGB(94,221,169)
-   shard.Anchored=true;shard.CanCollide=false;shard.CanTouch=false;shard.CanQuery=false;shard.CastShadow=false;shard.Transparency=1;shard.Parent=folder
+   shard.Anchored=true;shard.Massless=true;shard.CanCollide=false;shard.CanTouch=false;shard.CanQuery=false;shard.CastShadow=false;shard.Transparency=1;shard.Parent=folder
    table.insert(shards,shard)
   end
  end

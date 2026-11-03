@@ -6,8 +6,14 @@ local Clips=table.clone(BaseClips);Clips.models=table.clone(BaseClips.models)
 for kind,profile in pairs(require(script.Parent.FrozenValeClips).models)do Clips.models[kind]=profile end
 for kind,profile in pairs(require(script.Parent.EmberCalderaClips).models)do Clips.models[kind]=profile end
 -- Late-epic prototypes reuse reviewed movement curves until dedicated clips replace them.
-local aliases={Webling='Slime',Silkweaver='Slime',Barkstalker='Ogre',Gloambat='Slime',VenomcoilCentipede='Slime',AncientHollowbark='KingOgre',VenomcoilKing='Slime',WidowQueen='Slime',Zombie='Orc',Skeleton='Goblin',Ghoul='Ogre',Mummy='GoblinKing',Hellhound='IceWolf',SkeletonKnight='Orc',DeathKnight='Orc',Lich='KingShaman',LichSovereign='KingShaman',DreadCommander='EnragedWarlord',Veyr='EnragedWarlord'}
+local aliases={Webling='Slime',Silkweaver='Slime',Barkstalker='Ogre',Gloambat='Slime',VenomcoilCentipede='Slime',AncientHollowbark='KingOgre',VenomcoilKing='Slime',WidowQueen='Slime'}
 for kind,source in pairs(aliases)do Clips.models[kind]=Clips.models[source]end
+local HauntedClips=require(script.Parent.HauntedGraveyardClips)
+local function profileFor(kind)
+ local profile=Clips.models[kind] or HauntedClips.get(kind)
+ if profile then Clips.models[kind]=profile end
+ return profile
+end
 local GloamMotion=require(script.Parent.GloamwoodMotion)
 local HitReaction=require(script.Parent.K0EnemyHitReaction)
 local WeaponMotion=require(script.Parent.K0EnemyWeaponMotion)
@@ -21,7 +27,7 @@ local function mix(a,b,t)
  local out={} for _,ch in ipairs(channels)do out[ch]={};for i,v in ipairs(a[ch])do out[ch][i]=v+(b[ch][i]-v)*t end end return out
 end
 function Motion.sample(kind,clip,phase)
- local profile=Clips.models[kind] or Clips.models.Goblin
+ local profile=profileFor(kind) or Clips.models.Goblin
  local data=profile.clips[clip] or profile.clips.Attack;local count=Clips.samples-1;local f=clamp(phase,0,1)*count;local n=math.min(count,math.floor(f));local a=f-n;local out={}
  for _,ch in ipairs(channels)do
   out[ch]={};local x,y=data[ch][n+1],data[ch][math.min(n+2,Clips.samples)]
@@ -42,6 +48,15 @@ local function corners(part,anchor)
  for x=-1,1,2 do for y=-1,1,2 do for z=-1,1,2 do table.insert(out,cf:PointToWorldSpace(part.Size*Vector3.new(x,y,z)*.5))end end end
  return out
 end
+-- Fused HG bodies use bounded TD lower-surface samples instead of empty bbox corners.
+local function groundPoints(part,anchor,profile)
+ if not profile.groundPoints then return corners(part,anchor)end
+ local points={}
+ for _,v in ipairs(profile.groundPoints)do
+  table.insert(points,anchor.CFrame:PointToObjectSpace(part.CFrame:PointToWorldSpace(part.Size*Vector3.new(table.unpack(v)))))
+ end
+ return points
+end
 local function lowest(cf,points,scale,center)
  local bottom=math.huge
  for _,v in ipairs(points)do bottom=math.min(bottom,cf:PointToWorldSpace(scale and center+(v-center)*scale or v).Y)end
@@ -51,11 +66,11 @@ function Motion.bind(model)
  local root=model:FindFirstChild('HumanoidRootPart');local torso=model:FindFirstChild('Torso');local visual=model:FindFirstChild('TdMonsterVisual')
  local joint=root and root:FindFirstChild('RootJoint');local body=visual and visual:FindFirstChild('Body')
  if not root or not torso or not joint or not body then return nil end
- local kind=model:GetAttribute('EnemyKind');local profile=Clips.models[kind];if not profile then return nil end
+ local kind=model:GetAttribute('EnemyKind');local profile=profileFor(kind);if not profile then return nil end
  local seed=model:GetAttribute('K0EnemyMotionSeed') or (math.abs(root.Position.X*.13+root.Position.Z*.17)%1)
  local s={model=model,root=root,torso=torso,joint=joint,kind=kind,profile=profile,height=model:GetAttribute('TdMonsterTargetHeight') or 5,
   phase=seed%1,seed=seed,position=root.Position,look=root.CFrame.LookVector,move=0,turn=0,joints={},legs={},body=body,bodySize=body.Size,
-  bodyPoints=corners(body,torso),bodyCenter=torso.CFrame:PointToObjectSpace(body.Position),pose=Motion.sample(kind,'Idle',seed%1)}
+  bodyPoints=groundPoints(body,torso,profile),bodyCenter=torso.CFrame:PointToObjectSpace(body.Position),pose=Motion.sample(kind,'Idle',seed%1)}
  local rest=joint.C0*joint.C1:Inverse();s.bodyBottom=lowest(rest,s.bodyPoints)
  for ch,name in pairs(names)do
   local weaponArm=model:GetAttribute('TdWeaponArm') or 'ArmR'

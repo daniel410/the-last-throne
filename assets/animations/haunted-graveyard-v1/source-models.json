@@ -1,0 +1,46 @@
+{
+  "Zombie": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/zombie/textured-review.glb",
+    "sha256": "ea40b559798903bb002cc368cfb5d4881c354a9c63043833024b8d419763442c"
+  },
+  "Skeleton": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/skeleton/textured-review.glb",
+    "sha256": "8535e8e8b0daf61aa76ed52956a34ee35fb4795b92ab97edb823aa9f2c235b79"
+  },
+  "Ghoul": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/ghoul/textured-review.glb",
+    "sha256": "0dcd8da44aedff12d46c6c553f7433e0108e0c07b7960358e727dbc8e14dc8d3"
+  },
+  "Mummy": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/mummy/textured-review.glb",
+    "sha256": "6943b6bb323ac5e336d96dc68384a7c6cfb11e20001414ba811b570fdc348994"
+  },
+  "Hellhound": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/hellhound/textured-review.glb",
+    "sha256": "b47ad85a4fc8ed587a788301f877fdefe9841c7fa492206d55f0c0a08a688866"
+  },
+  "SkeletonKnight": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/skeleton_knight/textured-review.glb",
+    "sha256": "66a35c95e3a5245cac3f227de6bc404e2518d1a725602034b55e156b66883468"
+  },
+  "DeathKnight": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/death_knight/textured-review.glb",
+    "sha256": "38ae45fc75ebdc1eec0e24761e62a85748745a38025a818a605b5817b11adfc4"
+  },
+  "Lich": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/lich/textured-review.glb",
+    "sha256": "5c74dcdf874bf394b299cdf7083966b175b661e36888931acfa8a3f6aa2716d3"
+  },
+  "LichSovereign": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/lich_sovereign/textured-review.glb",
+    "sha256": "5cb11c0fa597b0185184ebc9313b231b6a1c9a8a6542915ecdc2c09a8f2eaf7e"
+  },
+  "DreadCommander": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/dread_commander/textured-review.glb",
+    "sha256": "16e6a4a3467bb4fa0f7b7f2dca04ce3fdc8a63ec9a6f8a8149ded2aa5afe503a"
+  },
+  "Veyr": {
+    "tdPath": "assets/models/meshy-blocky-monsters-v1/runtime/dread_commander/textured-review.glb",
+    "sha256": "16e6a4a3467bb4fa0f7b7f2dca04ce3fdc8a63ec9a6f8a8149ded2aa5afe503a"
+  }
+}
