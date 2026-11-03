@@ -14,13 +14,27 @@ function D.combat(c)
 end
 function D.entry(c)return levels[c.number] or (c.epic==3 and 20 or c.epic==2 and 12 or 1)end
 function D.tier(c)return D.entry(c)>=10 and 10 or D.entry(c)>=5 and 5 or 1 end
+-- An isolated side expedition cannot advance another main chapter to unlock its report.
+function D.requiredMain(c)
+ local main=c.side and c.minMain or c.number-1
+ if c.side then
+  for _,g in ipairs(c.goals)do
+   if not g.optional then
+    main=math.max(main,g.minMain or 0)
+    local zone=Content.zones[g.zone or c.zone]
+    if zone then main=math.max(main,zone.requiresMain or 0)end
+   end
+  end
+ end
+ return main
+end
 function D.allowed(hero,id,mode)
  local c,m=Content.byId[id],D.modes[mode]
  if not hero or not c or not m then return false,'InvalidMission' end
  if mode~='Easy' and not D.combat(c)then return false,'CombatMissionOnly' end
  if hero.level<math.max(m.level,D.entry(c))then return false,'DifficultyLevel' end
  local s=hero.deepwood or {main=0,clears={}}
- if c.side and s.main<c.minMain or not c.side and s.main<c.number-1 then return false,'StoryLocked' end
+ if s.main<D.requiredMain(c)then return false,'StoryLocked' end
  if m.previous then
   local clears=hero.expeditions and hero.expeditions.clears or {}
   local prior=clears[id] or {}

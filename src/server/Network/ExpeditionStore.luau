@@ -134,13 +134,36 @@ function Store.new(map,clock,config)
    if not run or run.ticket~=ticket then return nil,'PartyChanged' end;run.closed=true;return run
   end)
  end
+ -- A departure ticket is tentative. Keep the old rejoin capability until the
+ -- destination has durably begun the new run. No account rollback is needed.
+ function S.stageOffer(uid,run,heroId,ticket)
+  return update('rejoin:'..uid,C.rejoinSeconds,function(old)
+   old=old or {}
+   old.pending={runId=run.id,heroId=heroId,ticket=ticket,expiresAt=clock()+C.rejoinSeconds}
+   old.expiresAt=math.max(old.expiresAt or 0,old.pending.expiresAt)
+   return old
+  end)
+ end
+ function S.departure(uid,id,ticket)
+  local r,e=read('rejoin:'..uid);local p=r and r.pending
+  if not p or p.expiresAt<=clock()or p.runId~=id or p.ticket~=ticket then return nil,e or 'RejoinExpired'end
+  local run,why=S.readRun(id)
+  if not run or run.closed then return nil,why or 'RejoinExpired'end
+  return p
+ end
  function S.offer(uid,run,heroId,ticket,replace)
   return update('rejoin:'..uid,C.rejoinSeconds,function(old)
    if not replace and (not old or old.runId~=run.id or old.ticket~=ticket or old.finished) then return nil,'RejoinExpired' end
-   return {runId=run.id,heroId=heroId,ticket=ticket,expiresAt=clock()+C.rejoinSeconds}
+   return {runId=run.id,heroId=heroId,ticket=ticket,expiresAt=clock()+C.rejoinSeconds,pending=not replace and old and old.pending or nil}
   end)
  end
- function S.rejoin(uid) local r,e=read('rejoin:'..uid);return r and not r.finished and r or nil,e end
+ function S.rejoin(uid,activeRun)
+  local r,e=read('rejoin:'..uid);if not r then return nil,e end
+  -- Recover a committed begin even if the destination lost the promotion reply.
+  local pending=r.pending
+  if pending and pending.expiresAt>clock()and activeRun and activeRun(pending.heroId)==pending.runId then return pending end
+  return r.runId and not r.finished and r or nil
+ end
  function S.finish(uid,id,ticket)
   return update('rejoin:'..uid,C.rejoinSeconds,function(old)
    if not old or old.runId~=id or old.ticket~=ticket then return nil,'RejoinExpired' end
@@ -148,8 +171,10 @@ function Store.new(map,clock,config)
   end)
  end
  function S.admit(id,uid,ticket,job)
-  local offer,e=S.rejoin(uid)
-  if not offer or offer.runId~=id or offer.ticket~=ticket then return nil,e or 'RejoinExpired' end
+  local offer,e=read('rejoin:'..uid)
+  local pending=offer and offer.pending
+  if pending and pending.runId==id and pending.ticket==ticket and pending.expiresAt>clock()then offer=pending end
+  if not offer or offer.finished or offer.runId~=id or offer.ticket~=ticket then return nil,e or 'RejoinExpired' end
   return update('run:'..id,C.rejoinSeconds,function(run)
    local m=run and run.members[tostring(uid)]
    if not m or m.ticket~=ticket or run.closed then return nil,'RejoinExpired' end

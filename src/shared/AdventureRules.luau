@@ -15,6 +15,23 @@ function A.valid(hero)
  end
  return true
 end
+-- Fog is hero-wide; replay objective journals must not hide newly saved discovery.
+function A.projection(hero)
+ local a=hero and hero.expeditions and hero.expeditions.active
+ if not a then return nil end
+ local view=P.copy(a.journal)
+ for id,cells in pairs(hero.deepwood and hero.deepwood.explored or {})do
+  local zone=Content.zones[id]
+  if zone and zone.requiresMain<=view.main then
+   view.explored[id]=view.explored[id]or {}
+   for cell,revealed in pairs(cells)do view.explored[id][cell]=revealed end
+  end
+ end
+ view.expeditionMission=a.missionId
+ view.seleneUnlocked=P.seleneUnlocked(hero.deepwood)
+ view.seleneFollowing=hero.deepwood and hero.deepwood.seleneFollowing
+ return view
+end
 local function resetJournal(base,c)
  local s=P.copy(base)
  for _,key in ipairs({'accepted','activities','decisions','explored','clues'})do s[key]=s[key]or {}end

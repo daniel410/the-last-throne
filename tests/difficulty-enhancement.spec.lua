@@ -136,4 +136,48 @@ for _,chapter in ipairs(Content.mainChapters)do
  routeXP=routeXP+amount
  while routeLevel<80 and routeXP>=Growth.xpToNext(routeLevel)do routeXP=routeXP-Growth.xpToNext(routeLevel);routeLevel=routeLevel+1 end
 end
+-- Side entry must include the mandatory report's prerequisite, not only discovery.
+local function storyClear(profile,c)
+ for _,goal in ipairs(c.goals)do if not goal.optional then
+  if goal.activity and goal.activity.steps then
+   for _,step in ipairs(goal.activity.steps)do profile=assert(R.story(profile,'hero',c.id,goal.id,step.choices and step.choices[1].id,C,step.id))end
+  else profile=assert(R.story(profile,'hero',c.id,goal.id,goal.choice and 'sanctuary',C))end
+ end end
+ return profile
+end
+local route=new();route.heroes.hero.level=80;route.heroes.hero.progression=Growth.new(80)
+for number=1,15 do
+ route=storyClear(route,Content.mainChapters[number])
+ for id,required in pairs({['FV-Q1']=8,['EC-Q1']=15})do
+  if number==required-1 then
+   local ok,why=D.allowed(route.heroes.hero,id,'Easy')
+   check(not ok and why=='StoryLocked',id..' rejects unfinishable report boundary')
+   local nextProfile,why=A.begin(route,'hero',id,'Easy','blocked-'..id,route.revision,R,C)
+   check(not nextProfile and why=='StoryLocked',id..' server begin also rejects boundary')
+  elseif number==required then
+   check(D.allowed(route.heroes.hero,id,'Easy'),id..' opens when report is reachable')
+   local side=assert(A.begin(route,'hero',id,'Easy','side-'..id,route.revision,R,C))
+   for _,goal in ipairs(Content.byId[id].goals)do if not goal.optional then
+    side=assert(A.event(side,'hero',id,goal.id,nil,nil,R,C,'side-'..id))
+   end end
+   check(side.heroes.hero.expeditions.active.completed,id..' can finish inside isolated run')
+   eq(side.heroes.hero.deepwood.main,required,id..' preserves main progress')
+  end
+ end
+end
+-- The actual journal projection used by DeepwoodState includes hero-wide discovery.
+local fog=assert(A.begin(new(),'hero','DW-01','Easy','fog-first',1,R,C))
+fog=assert(R.explore(fog,'hero','DW-01',2,2))
+local view=A.projection(fog.heroes.hero)
+check(view.explored['DW-01']and next(view.explored['DW-01']),'saved first-run exploration is visible')
+check(not fog.heroes.hero.expeditions.active.journal.explored['DW-01'],'projection does not duplicate canonical storage')
+view.explored['DW-01']['1']=nil
+check(fog.heroes.hero.deepwood.explored['DW-01']['1'],'client projection cannot mutate saved fog')
+local fogReplay=assert(A.begin(route,'hero','DW-01','Easy','fog-replay',route.revision,R,C))
+fogReplay=assert(R.explore(fogReplay,'hero','DW-01',4,4))
+fogReplay=assert(R.explore(fogReplay,'hero','FV-01',4,4))
+local view=A.projection(fogReplay.heroes.hero)
+check(view.explored['DW-01']and next(view.explored['DW-01']),'replay discovery is visible')
+check(not view.explored['FV-01'],'replay projection keeps future zones hidden')
+check(R.validate(fogReplay,C),'fog projection preserves saved replay journal invariants')
 print('Difficulty/enhancement: '..n..' checks passed')

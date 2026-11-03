@@ -5,6 +5,7 @@ local Run=game:GetService('RunService')
 local Teleport=game:GetService('TeleportService')
 local C=require(RS.Shared.ExpeditionConfig)
 local Store=require(script.Parent.ExpeditionStore)
+local Departure=require(script.Parent.ExpeditionDeparture)
 local Difficulty=require(RS.Shared.Difficulty)
 local Content=require(RS.Shared.CampaignContent)
 local Service={}
@@ -24,7 +25,9 @@ local function member(p,token)
  return {userId=p.UserId,name=p.DisplayName,heroId=h.heroId,classId=h.classId,main=s and s.main or 0,level=g and g.level or 1,token=token,arrived=true}
 end
 local function offer(p)
- local r,e=store.rejoin(p.UserId);if not r then return nil,e end
+ local r,e=store.rejoin(p.UserId,function(heroId)
+  local a=o.inventory.expedition(p,heroId);return a and a.runId
+ end);if not r then return nil,e end
  local run,why=store.readRun(r.runId);if not run or run.closed then return nil,why or 'RejoinExpired' end
  return r
 end
@@ -161,29 +164,18 @@ local function startRunLocked(p,party,runId)
   local h=o.inventory.expeditionHero(person);local allowed,why=Difficulty.allowed(h,chosen.missionId,chosen.difficultyId)
   if not allowed then if party then store.launchStatus(party.id,runId,'forming')end;return nil,why end
  end
- for _,person in ipairs(participants)do
-  local why=o.inventory.beginExpedition(person,members[tostring(person.UserId)].heroId,chosen.missionId,chosen.difficultyId,runId)
-  if why then if party then store.launchStatus(party.id,runId,'forming')end;return nil,why end
- end
  if studio then
+  for _,person in ipairs(participants)do
+   local why=o.inventory.beginExpedition(person,members[tostring(person.UserId)].heroId,chosen.missionId,chosen.difficultyId,runId)
+   if why then if party then store.launchStatus(party.id,runId,'forming')end;return nil,why end
+  end
   if party then store.launchStatus(party.id,runId,'forming') end
   for _,person in ipairs(participants) do o.previewWorld();o.heroSession.enterAdventure(person,members[tostring(person.UserId)].heroId) end
   return true
  end
- local r,e=store.createRun({id=runId,ticket=guid(),reservedId=Http:GenerateGUID(false),members=members,placeId=C.battlePlaceId,missionId=chosen.missionId,difficultyId=chosen.difficultyId,rulesVersion=Difficulty.version})
- if not r then if party then store.launchStatus(party.id,runId,'forming') end;return nil,e end
- local prepared={}
- for _,person in ipairs(participants) do
-  local m=members[tostring(person.UserId)]
-  local saved=store.offer(person.UserId,r,m.heroId,m.ticket,true)
-  if not saved or not o.inventory.prepareTransfer(person) then
-   store.cancelRun(r.id,r.ticket)
-   for _,old in ipairs(prepared) do unlock(old) end
-   if party then store.launchStatus(party.id,runId,'forming') end
-   return nil,'Unavailable'
-  end
-  person:SetAttribute('TLTTravelLock',true);table.insert(prepared,person)
- end
+ local r,e,prepared=Departure.prepare(store,o.inventory,participants,members,{id=runId,ticket=guid(),reservedId=Http:GenerateGUID(false),members=members,placeId=C.battlePlaceId,missionId=chosen.missionId,difficultyId=chosen.difficultyId,rulesVersion=Difficulty.version},unlock)
+ if not r then if party then store.launchStatus(party.id,runId,'forming')end;return nil,e end
+ for _,person in ipairs(prepared)do person:SetAttribute('TLTTravelLock',true)end
  if party then store.launchStatus(party.id,runId,'launched');advertise(party.id) end
  -- Each server-created ticket belongs to one user. Separate TeleportData is
  -- required, while the same ReservedServerId gathers all users into one battle.
@@ -331,13 +323,24 @@ function Service.start(options)
    for _,p in ipairs(Players:GetPlayers()) do
     if admitted[p] and not travel[p] then
      if p:GetAttribute('K0SessionPhase')=='Lobby' and o.inventory.ready(p) then
+      local m=admitted[p]
       local verified=Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
-      if not verified then
+      if not verified and runHealthy and store.departure(p.UserId,battleRun.id,m.ticket)then
+       -- Only a server-staged departure may replace the old checkpoint. A rejoin
+       -- can verify an existing run but cannot restart a superseded journal.
+       local why=o.inventory.beginExpedition(p,m.heroId,battleRun.missionId,battleRun.difficultyId,battleRun.id)
+       verified=not why and Difficulty.verifyRun(o.inventory.expeditionHero(p),battleRun)
+      end
+      if verified and runHealthy then
+       -- Keep the pending capability on unknown MemoryStore results; rejoin()
+       -- resolves it against the account's durable active run after reconnect.
+       if store.offer(p.UserId,battleRun,m.heroId,m.ticket,true)then o.heroSession.enterAdventure(p,m.heroId)end
+      elseif not verified and runHealthy and o.inventory.ready(p)then
        p:Kick('Your expedition could not be verified. Rejoin from the Dawnspire lobby.')
-      else o.heroSession.enterAdventure(p,admitted[p].heroId)end
+      end
      end
      local arrived=count(admitted);local complete=arrived>=count(battleRun.members) or os.clock()-battleStarted>=30
-     p:SetAttribute('TLTTravelLock',not runHealthy or not complete)
+     p:SetAttribute('TLTTravelLock',not runHealthy or not complete or p:GetAttribute('K0SessionPhase')~='Tutorial')
      if ticks%10==0 and runHealthy then local m=admitted[p];store.offer(p.UserId,battleRun,m.heroId,m.ticket,false) end
     elseif arrivals[p] and o.inventory.ready(p) and p:GetAttribute('K0SessionPhase')=='Lobby' then
      local a=arrivals[p];local party=store.readParty(a.partyId);local m=party and party.members[tostring(p.UserId)]

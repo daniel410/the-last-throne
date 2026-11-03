@@ -2,7 +2,7 @@
 from pathlib import Path
 import re,json
 root=Path.cwd()
-seeds=['tests/difficulty-enhancement.spec.lua','src/client/ArmoryView.luau','src/client/ExpeditionView.luau','src/server/Inventory/InventoryService.luau','src/client/AdventureReplay.luau']
+seeds=['tests/expedition-departure.spec.lua','tests/expedition-store.spec.lua','tests/difficulty-enhancement.spec.lua','src/client/ArmoryView.luau','src/client/ExpeditionView.luau','src/server/Inventory/InventoryService.luau','src/client/AdventureReplay.luau']
 sources={}
 def add(path):
  if path in sources:return
@@ -30,6 +30,8 @@ local function pure(path)
  setfenv(fn,env);local value=fn();cache[path]=value or true;return value
 end
 pure('tests/difficulty-enhancement.spec.lua')
+pure('tests/expedition-departure.spec.lua')
+pure('tests/expedition-store.spec.lua')
 local tree={};local nodes={}
 for path in pairs(sources)do
  local parent=tree
@@ -97,6 +99,9 @@ local serviceOK,serviceError=xpcall(function()
   end end
   assert(inventory.expedition(actor,'service-hero').completed)
  end
+ attrs.K0SessionPhase='Tutorial';ctx.atHub=false
+ inventory.reveal(actor,'service-hero','DW-01',2,2);task.wait(.1)
+ assert(inventory.storyState(actor,'service-hero').explored['DW-01']['1'],'saved fog missing from service projection')
  finish('service-first');local money=inventory.snapshot(actor).wallet.gold;local diamonds=inventory.snapshot(actor).wallet.diamonds
  attrs.K0SessionPhase='Lobby';ctx.atHub=true
  assert(not inventory.beginExpedition(actor,'service-hero','DW-01','Easy','service-replay'));finish('service-replay')
@@ -143,7 +148,7 @@ local ok,result=xpcall(function()
   armory.panel.Size=UDim2.fromOffset(size.X-40,size.Y-40);armory.render(snapshot);armory.setMode('Enhance');task.wait(.1)
   for _,b in ipairs(armory.panel:GetDescendants())do if b:IsA('TextButton')and b.Visible then assert(b.AbsoluteSize.Y>=43,'touch target below44 '..b.Name)end end
  end
- return {pure='95 account and replay checks passed in native Luau',service='durable begin, first/repeat completion, forge/equip and equipment stats passed',forgeButtons=forgeButtons,ui='four modes, locked entry, enhancement and desktop/mobile controls passed'}
+ return {pure='difficulty, enhancement, departure recovery and store checks passed in native Luau',service='durable begin, first/repeat completion, forge/equip and equipment stats passed',forgeButtons=forgeButtons,ui='four modes, locked entry, enhancement and desktop/mobile controls passed'}
 end,debug.traceback)
 gui:Destroy();signal:Destroy();assert(ok,result);return result
 ''')

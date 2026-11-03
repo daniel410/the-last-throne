@@ -212,7 +212,7 @@ end
 function Service.storyState(player,heroId)
  local state=accounts[player];local hero=state and state.profile and state.profile.heroes[heroId]
  local a=hero and hero.expeditions and hero.expeditions.active
- if a and player:GetAttribute('K0SessionPhase')=='Tutorial'then local projection=Rules.copy(a.journal);projection.expeditionMission=a.missionId;projection.seleneUnlocked=require(ReplicatedStorage.Shared.DeepwoodProgress).seleneUnlocked(hero.deepwood);projection.seleneFollowing=hero.deepwood and hero.deepwood.seleneFollowing;return projection end
+ if a and player:GetAttribute('K0SessionPhase')=='Tutorial'then return require(ReplicatedStorage.Shared.AdventureRules).projection(hero)end
  return hero and Rules.copy(hero.deepwood or require(ReplicatedStorage.Shared.DeepwoodProgress).new())
 end
 -- All support Gold and entitlement changes use the same account fence as items.
