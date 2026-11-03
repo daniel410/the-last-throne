@@ -63,7 +63,8 @@ function W.create(world)
   elseif id=='FV-07' then
    arch(region,center+Vector3.new(0,0,125),36,115)
    for _,offset in ipairs({Vector3.new(-80,0,0),Vector3.new(70,0,0),Vector3.new(-70,0,-90)})do
-    local mirror=part(region,'SignalMirror',Vector3.new(12,18,2),center+offset+Vector3.new(0,9,-8),ice,Enum.Material.Glass,true);mirror.Transparency=.25
+    local mirror=part(region,'SignalMirror',Vector3.new(12,18,2),center+offset+Vector3.new(0,9,-8),ice,Enum.Material.Glass,true);mirror.Transparency=1;mirror:SetAttribute('StoryBlockoutProxy',true)
+    require(script.Parent.StoryProps).build(region,'SignalMirror',center+offset+Vector3.new(0,0,-8),{theme='FrozenVale',scale=2})
    end
   end
   if id:match('FV%-S') then arch(region,center+Vector3.new(0,0,85),24,60)end

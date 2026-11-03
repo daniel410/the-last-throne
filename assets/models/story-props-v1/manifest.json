@@ -25,7 +25,7 @@
       "nativeParts": 22,
       "glb": "assets/models/story-props-v1/SupplyCrate.glb",
       "bytes": 33288,
-      "sha256": "9f8af2edfef1ab73d9b11ea64021067eeaa9f9bc38433d2755910035f9cda49b"
+      "sha256": "53fb418843dda4a7cad720d6ef94bfbf41eb5e4063476a6c2a7660b1fa485f8f"
     },
     {
       "id": "TravelBindings",
@@ -34,7 +34,7 @@
       "nativeParts": 39,
       "glb": "assets/models/story-props-v1/TravelBindings.glb",
       "bytes": 60760,
-      "sha256": "d94c403915c8b4035a380d978c1a760d0f683eaca98abccd2a294d0e9638f35c"
+      "sha256": "5e8dcfc35dc976de10803f5dc0e5a35f17aa047e491de89ae300a3bba119c120"
     },
     {
       "id": "LedgerDesk",
@@ -43,7 +43,7 @@
       "nativeParts": 38,
       "glb": "assets/models/story-props-v1/LedgerDesk.glb",
       "bytes": 59872,
-      "sha256": "d723c250e694c1db5315948542e2230e230d8b2eef55aeb93520156b54e5602c"
+      "sha256": "c548fcc16df8bdbe4d71c01ef7278ce5fbc6a1a410285c35930a59d42273a501"
     },
     {
       "id": "ConvoyBadge",
@@ -52,7 +52,7 @@
       "nativeParts": 6,
       "glb": "assets/models/story-props-v1/ConvoyBadge.glb",
       "bytes": 10416,
-      "sha256": "c5b671e02227e3b6ac024dd693a7d42fb902aed651e6606a0064b0d6dac7e6f6"
+      "sha256": "a2c909e5c2c8114798e0f8c707ead72ca62a811bfee71708baeb311057b513a8"
     },
     {
       "id": "CartWreck",
@@ -61,7 +61,7 @@
       "nativeParts": 124,
       "glb": "assets/models/story-props-v1/CartWreck.glb",
       "bytes": 190208,
-      "sha256": "1543a4773e26ec26d9ffc232955cf8819947cb3e777f31fe9204c37b67a0bc9a"
+      "sha256": "af3a0a51fc7c67ffa81679cb45f435021d809bad863e226c3e398c6ef247a421"
     },
     {
       "id": "PrisonCage",
@@ -70,7 +70,7 @@
       "nativeParts": 59,
       "glb": "assets/models/story-props-v1/PrisonCage.glb",
       "bytes": 88528,
-      "sha256": "919ddc77722e0526195494c991fc9849669c7d3e78a28a0387f23b5ac655199a"
+      "sha256": "fdb19158319d847e1b50aa7ebfc30f6981231e6e7bd2d03ad4d53546bb72715b"
     },
     {
       "id": "GateWinch",
@@ -79,7 +79,7 @@
       "nativeParts": 97,
       "glb": "assets/models/story-props-v1/GateWinch.glb",
       "bytes": 144304,
-      "sha256": "56fc3055145060719d1be4663c6f27542ae58f90da8b5a38c3901c54e54334c1"
+      "sha256": "74e6d5793f5a0886d7f00996ff9793101e4b274e1af7b1e2399e7274abb36503"
     },
     {
       "id": "CoolantValve",
@@ -88,7 +88,7 @@
       "nativeParts": 70,
       "glb": "assets/models/story-props-v1/CoolantValve.glb",
       "bytes": 129640,
-      "sha256": "e0f0dd3473e1ad410282364ba7f17521696e0ffb0b7964193042f22d68ac1353"
+      "sha256": "385dd51a54791a1a6861381ab2eba4bc4bc6beb8d45e5efb6dc6d0868de41c54"
     },
     {
       "id": "RouteLantern",
@@ -97,7 +97,16 @@
       "nativeParts": 23,
       "glb": "assets/models/story-props-v1/RouteLantern.glb",
       "bytes": 37444,
-      "sha256": "ccb8de5308d642ad889d5327879f0d41e55d12a7a22a48e6b66f2b8c1b566d28"
+      "sha256": "783a6251953dfc35b5b6d88ce84d691e4a4d2ed4158abacc58a3035cbaf9a0fb"
+    },
+    {
+      "id": "SignalMirror",
+      "status": "New",
+      "purpose": "Frozen Vale optical relay mirror; braced feet, pivot axle, adjustment wheels and a framed reflective surface.",
+      "nativeParts": 29,
+      "glb": "assets/models/story-props-v1/SignalMirror.glb",
+      "bytes": 46272,
+      "sha256": "8a44f6cf6be017b5e2f0896578d36c819fcaf7d3b733e924f095dfaa014194fc"
     },
     {
       "id": "SealWaystone",
@@ -105,8 +114,8 @@
       "purpose": "Safe-route signs and rune switches; a carved stone sign with an inlaid geometric route glyph.",
       "nativeParts": 10,
       "glb": "assets/models/story-props-v1/SealWaystone.glb",
-      "bytes": 16428,
-      "sha256": "15ff4f3c78f2e7a7727a3f67a161dc30e170fedd70f78fb1af5302e86b8f3026"
+      "bytes": 16424,
+      "sha256": "f9c38e0e3ff777631b89fa7c03584779f32c1676258b75dd16a64735baf1724a"
     },
     {
       "id": "PortalAnchor",
@@ -114,8 +123,8 @@
       "purpose": "King Shaman portal power socket; stepped altar, six stone blocks, brass collar and clamped crystal.",
       "nativeParts": 30,
       "glb": "assets/models/story-props-v1/PortalAnchor.glb",
-      "bytes": 48088,
-      "sha256": "20d8f1626b5a8a70803bfb8c6db1f821cdee1f91ca5af44d2a1b54b72301c0d9"
+      "bytes": 48076,
+      "sha256": "5041ee9eb38c106b63e81a9660cfe552cc40e7d8085058514b8d6327f9e591ac"
     },
     {
       "id": "TrailEvidence",
@@ -123,8 +132,8 @@
       "purpose": "Convoy wheel ruts, boot heels and broken branches, grounded in the trail rather than luminous residue.",
       "nativeParts": 16,
       "glb": "assets/models/story-props-v1/TrailEvidence.glb",
-      "bytes": 25204,
-      "sha256": "8c237e603b355eeafd937e88af495a81314c2ed75a8ab3ae780cffbce4bba08b"
+      "bytes": 25200,
+      "sha256": "7d9aea135263026b8890756bcdb7054ff0e5f33f1884d8149ec67569c83fbbdb"
     },
     {
       "id": "RuinedArch",
@@ -132,8 +141,8 @@
       "purpose": "Occupied cloister gateway built from staggered stone courses, voussoirs, capitals and a keystone.",
       "nativeParts": 26,
       "glb": "assets/models/story-props-v1/RuinedArch.glb",
-      "bytes": 40404,
-      "sha256": "1b0df89820c592248a7131b91e0037dcca3e1b5c799f743a721b55b25f04d060"
+      "bytes": 40392,
+      "sha256": "a85f4228a7843623d3fcbeb1224155273e64bea80dbb60b999cb67c785eb98bf"
     }
   ]
 }

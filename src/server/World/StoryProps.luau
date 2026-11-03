@@ -66,8 +66,10 @@ function P.goal(parent,chapter,goal)
  if goal.activity or #(goal.enemies or {})>0 then return end
  local title=string.lower(goal.title or '')
  local key
- if title:find('lantern',1,true) then key='RouteLantern'
- elseif title:find('mirror',1,true) then key='SealWaystone'
+ if title:find('lantern',1,true) or title:find('beacon',1,true) then key='RouteLantern'
+ elseif title:find('mirror',1,true) then key='SignalMirror'
+ elseif title:find('relay',1,true) or title:find('marker',1,true) then key='SealWaystone'
+ elseif title:find('lock',1,true) then key='GateWinch'
  elseif title:find('record',1,true) or title:find('order',1,true) or title:find('plan',1,true) or title:find('map',1,true) then key='LedgerDesk'
  elseif title:find('suppl',1,true) or title:find('kit',1,true) then key='SupplyCrate'
  elseif title:find('seal',1,true) or title:find('portal',1,true) or title:find('core',1,true) then key='PortalAnchor' end

@@ -121,6 +121,18 @@ box('FrostedLanternPane',[.94,1.25,.72],[1.3,4.55,0],light,'Glass')
 box('LanternCandle',[.22,.67,.22],[1.3,4.2,0],paper,'SmoothPlastic');box('SmallFlame',[.12,.25,.12],[1.3,4.67,0],light,'Neon')
 for s in [-1,1]:box('SlopedLanternHood',[.88,.12,1.3],[1.3+s*.34,5.55,0],iron,'Metal',rot=[0,0,-s*.38])
 finish('RouteLantern','Survivor route lantern: iron bracket, hood, glass enclosure and candle; no floating glowing sphere.')
+# Frozen Vale optical signal mirror, with pivoting reflector and braced support.
+for x in [-1.9,1.9]:
+ box('MirrorStandFoot',[.65,.4,3.8],[x,.2,0],iron,'Metal')
+ box('MirrorStandUpright',[.3,5.5,.4],[x,3,0],iron,'Metal')
+ beam('MirrorStandBrace',[x,.4,1.7],[x,3,0],.18,iron)
+box('MirrorPivotAxle',[4.6,.24,.24],[0,4.7,0],brass,'Metal',shape='Cylinder')
+box('PolishedSignalReflector',[3.2,4.3,.12],[0,4.6,.14],[164,210,227],'Glass')
+for x in [-1.7,1.7]:box('MirrorSideFrame',[.2,4.7,.3],[x,4.6,0],brass,'Metal')
+for y in [2.3,6.9]:box('MirrorEndFrame',[3.6,.22,.3],[0,y,0],brass,'Metal')
+for x in [-1.95,1.95]:ring('MirrorAdjustmentWheel',[x,4.7,0],.4,.09,brass,'yz',8)
+box('MirrorSignalStrip',[.1,3.6,.03],[0,4.6,.22],blue,'Neon')
+finish('SignalMirror','Frozen Vale optical relay mirror; braced feet, pivot axle, adjustment wheels and a framed reflective surface.')
 # Carved marker/portal socket; cut stone joints, inset glyphs, metal collars, restrained emission.
 for i in range(3):box('SteppedStonePlinth',[4.8-i*.7,.4,4.3-i*.6],[0,.2+i*.4,0],stone,'Slate')
 box('CarvedMarkerBody',[2.3,3.2,1.45],[0,2.8,0],stone,'Slate')
