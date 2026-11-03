@@ -1,0 +1,4 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+STORY_PROPS_NATIVE {"models":{"TrailEvidence":16,"ConvoyBadge":6,"SupplyCrate":22,"RouteLantern":23,"CartWreck":124,"TravelBindings":39,"SealWaystone":10,"GateWinch":97,"LedgerDesk":38,"PrisonCage":59,"PortalAnchor":30,"CoolantValve":70,"SignalMirror":29,"RuinedArch":26},"regions":[true,true,true],"failures":[],"checks":12375,"placedModels":371,"kind":"STORY_PROPS_NATIVE","pass":true,"placedParts":10134}
+DEEPWOOD_PLACES_NATIVE {"terraces":9,"groves":164,"checks":405,"failures":[],"pass":true,"kind":"DEEPWOOD_PLACES_NATIVE"}
+BATTLE_BOOTSTRAP_NATIVE {"coverage":"Native battle-role startup; no real Player admission or published teleport","checks":10,"failures":[],"pass":true,"kind":"BATTLE_BOOTSTRAP_NATIVE"}

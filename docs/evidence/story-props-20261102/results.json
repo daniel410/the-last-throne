@@ -1,0 +1,65 @@
+{
+  "version": "0.62.3",
+  "sourceCommit": "78305048d4c90592c57ff6de780c18cf98aa1d22",
+  "pass": true,
+  "nativeChecks": 12790,
+  "nativeReports": [
+    {
+      "models": {
+        "TrailEvidence": 16,
+        "ConvoyBadge": 6,
+        "SupplyCrate": 22,
+        "RouteLantern": 23,
+        "CartWreck": 124,
+        "TravelBindings": 39,
+        "SealWaystone": 10,
+        "GateWinch": 97,
+        "LedgerDesk": 38,
+        "PrisonCage": 59,
+        "PortalAnchor": 30,
+        "CoolantValve": 70,
+        "SignalMirror": 29,
+        "RuinedArch": 26
+      },
+      "regions": [
+        true,
+        true,
+        true
+      ],
+      "failures": [],
+      "checks": 12375,
+      "placedModels": 371,
+      "kind": "STORY_PROPS_NATIVE",
+      "pass": true,
+      "placedParts": 10134
+    },
+    {
+      "terraces": 9,
+      "groves": 164,
+      "checks": 405,
+      "failures": [],
+      "pass": true,
+      "kind": "DEEPWOOD_PLACES_NATIVE"
+    },
+    {
+      "coverage": "Native battle-role startup; no real Player admission or published teleport",
+      "checks": 10,
+      "failures": [],
+      "pass": true,
+      "kind": "BATTLE_BOOTSTRAP_NATIVE"
+    }
+  ],
+  "geometryCheck": {
+    "models": 14,
+    "sourceParts": 589,
+    "GLBNodeCountsMatch": true,
+    "noRemoteTextures": true
+  },
+  "command": "run-in-roblox --place builds/0.62.3/TheLastThrone-Battle-0.62.3.rbxlx --script /tmp/tlt-story-props-frozen-tests.luau",
+  "scriptComposition": [
+    "tests/story-props-native.luau",
+    "tests/deepwood-places-native.luau",
+    "tests/battle-bootstrap-native.luau"
+  ],
+  "published": false
+}
