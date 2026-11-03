@@ -2,7 +2,7 @@
 from pathlib import Path
 import re,json
 root=Path.cwd()
-seeds=['tests/expedition-departure.spec.lua','tests/expedition-store.spec.lua','tests/difficulty-enhancement.spec.lua','src/client/ArmoryView.luau','src/client/ExpeditionView.luau','src/server/Inventory/InventoryService.luau','src/client/AdventureReplay.luau']
+seeds=['src/server/Network/ExpeditionService.luau','tests/expedition-presentation.spec.lua','tests/expedition-departure.spec.lua','tests/expedition-store.spec.lua','tests/difficulty-enhancement.spec.lua','src/client/ArmoryView.luau','src/client/ExpeditionView.luau','src/server/Inventory/InventoryService.luau','src/client/AdventureReplay.luau']
 sources={}
 def add(path):
  if path in sources:return
@@ -32,6 +32,7 @@ end
 pure('tests/difficulty-enhancement.spec.lua')
 pure('tests/expedition-departure.spec.lua')
 pure('tests/expedition-store.spec.lua')
+pure('tests/expedition-presentation.spec.lua')
 local tree={};local nodes={}
 for path in pairs(sources)do
  local parent=tree

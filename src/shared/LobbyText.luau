@@ -15,7 +15,7 @@ return {
  TravelFailed='Travel failed. Your progress is saved. Retry joining the same destination.',
  PartyFull='That party is full or no longer recruiting. Refresh the party list.',PartyChanged='The party changed. Check the roster and ready up again.',
  PartyRequired='Create or join a party first.',LeaderOnly='Only the party leader can start this adventure.',
- NotReady='Select a hero. Every party member must be in this lobby and ready, with the same next main story.',
+ NotReady='Select a hero. Every party member must meet the selected mission conditions, gather in this lobby, and ready up.',
  AlreadyParty='Leave your current party before joining another.',RejoinExpired='That expedition has ended or expired. Start a new adventure.',
  NetworkUnavailable='The party service is unavailable. Wait and refresh; your progress is safe.',
 }

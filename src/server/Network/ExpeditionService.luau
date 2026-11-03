@@ -8,6 +8,7 @@ local Store=require(script.Parent.ExpeditionStore)
 local Departure=require(script.Parent.ExpeditionDeparture)
 local Difficulty=require(RS.Shared.Difficulty)
 local Content=require(RS.Shared.CampaignContent)
+local Presentation=require(RS.Shared.ExpeditionPresentation)
 local Service={}
 local selections={}
 local o,store,remote,index,role,job
@@ -38,7 +39,7 @@ local function selection(p)
  local c=Content.mainChapters[math.min(Content.mainCount,(h and h.deepwood and h.deepwood.main or 0)+1)]
  return {missionId=a and a.missionId or c.id,difficultyId=a and a.difficultyId or 'Easy'}
 end
-local function publish(p,errorCode,open)
+local function publish(p,errorCode,open,requestId)
  if p.Parent~=Players or not remote then return end
  local localParty=parties[p];local party=localParty and store.readParty(localParty.id)
  local list={}
@@ -47,23 +48,20 @@ local function publish(p,errorCode,open)
   if ok then for _,row in ipairs(rows) do local v=row.value;if v.expiresAt>os.time() and v.count<v.target then table.insert(list,v) end end end
  end
  -- Reserved destination IDs, membership fences and admission tickets stay server-only.
- local clean
- if party then
-  clean={id=party.id,hostId=party.hostId,target=party.target,status=party.status,missionId=party.missionId,difficultyId=party.difficultyId,members={}}
-  for _,m in pairs(party.members) do table.insert(clean.members,{userId=m.userId,name=m.name,classId=m.classId,level=m.level,main=m.main,ready=m.ready,arrived=m.arrived}) end
-  table.sort(clean.members,function(a,b) return a.userId<b.userId end)
- end
+ local clean=Presentation.party(party,function(m)
+  local person=Players:GetPlayerByUserId(m.userId)
+  local ctx=person and o.heroSession.getInventoryContext(person)
+  local fence=person and parties[person]
+  if not ctx or not ctx.atHub or ctx.heroId~=m.heroId or not fence or fence.id~=party.id or fence.token~=m.token or travel[person]then return nil end
+  return o.inventory.expeditionHero(person)
+ end)
  local r=offer(p)
  local choice=party and {missionId=party.missionId,difficultyId=party.difficultyId}or selection(p)
- local hero=o.inventory.expeditionHero(p);local missions={}
- for _,c in ipairs(Content.chapters)do
-  local allowed={};for _,mode in ipairs(Difficulty.order)do local ok,why=Difficulty.allowed(hero,c.id,mode);allowed[mode]={allowed=ok,reason=why,level=math.max(Difficulty.entry(c),Difficulty.modes[mode].level)}end
-  table.insert(missions,{id=c.id,title=c.quest and c.quest.title or c.title,combat=Difficulty.combat(c),modes=allowed})
- end
+ local hero=o.inventory.expeditionHero(p);local missions=Presentation.missions(hero)
  local activeHero=o.heroSession.getActiveHero(p)
  local expedition=activeHero and o.inventory.expedition(p,activeHero.heroId)
  remote:FireClient(p,{role=role,studio=studio,configured=C.battlePlaceId>0,capacity=role=='Lobby' and C.lobbyCapacity or C.battleCapacity,
-  selection=choice,missions=missions,expedition=expedition,population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt} or nil})
+  requestId=requestId,busy=busy[p]==true,hero=hero and {classId=hero.baseClassId,level=hero.level},selection=choice,missions=missions,expedition=expedition,population=#Players:GetPlayers(),party=clean,list=list,travelling=travel[p]~=nil,error=errorCode,open=open==true,rejoin=r and {heroId=r.heroId,expiresAt=r.expiresAt} or nil})
 end
 function Service.openMenu(p)
  if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then return 'WaitForLobby' end
@@ -231,14 +229,18 @@ function Service.beforeHeroAction(p,action)
 end
 local function handle(p,c,...)
  if select('#',...)~=0 or type(c)~='table' or type(c.action)~='string' or #c.action>16 then return end
- for k,v in pairs(c) do if k~='action' and k~='id' and k~='target' and k~='ready' and k~='missionId' and k~='difficultyId' then return end;if type(v)~='string' and type(v)~='number' and type(v)~='boolean' then return end end
+ for k,v in pairs(c) do if k~='action' and k~='id' and k~='target' and k~='ready' and k~='missionId' and k~='difficultyId' and k~='requestId' then return end;if type(v)~='string' and type(v)~='number' and type(v)~='boolean' then return end end
  if c.id~=nil and (type(c.id)~='string' or #c.id>64 or not c.id:match('^[%w_-]+$')) then return end
  if c.ready~=nil and type(c.ready)~='boolean' then return end
- if os.clock()-(last[p] or -math.huge)<.35 then return end;last[p]=os.clock()
- if c.action=='GetState' then publish(p);return end
- if c.action=='Solo' then Service.solo(p);return end
- if Service.isBusy(p) then publish(p,'Busy');return end
- if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then publish(p,'ShopLobbyOnly');return end
+ if c.requestId~=nil and(type(c.requestId)~='string'or #c.requestId>64 or not c.requestId:match('^[%w_-]+$'))then return end
+ if os.clock()-(last[p] or -math.huge)<.35 then
+  remote:FireClient(p,{ackOnly=true,requestId=c.requestId,error='Busy',retryAfter=.4});return
+ end;last[p]=os.clock()
+ if c.action=='GetState' then publish(p,nil,nil,c.requestId);return end
+ if c.action=='Solo' then local why=Service.solo(p);publish(p,why,nil,c.requestId);return end
+ if Service.isBusy(p) then publish(p,'Busy',nil,c.requestId);return end
+ if role~='Lobby' or p:GetAttribute('K0SessionPhase')~='Lobby' then publish(p,'ShopLobbyOnly',nil,c.requestId);return end
+ local previousParty=parties[p]and parties[p].id
  busy[p]=true
  local success,e=pcall(function()
   local mine=parties[p]
@@ -288,7 +290,13 @@ local function handle(p,c,...)
    local ok,reason=send(p,{kind='battle',placeId=run.placeId,reservedId=run.reservedId,data={runId=run.id,ticket=r.ticket}});if not ok then return reason end
   else return 'InvalidRequest' end
  end)
- busy[p]=nil;publish(p,success and e or 'NetworkUnavailable')
+ busy[p]=nil
+ local errorCode=not success and 'NetworkUnavailable'or e
+ publish(p,errorCode,nil,c.requestId)
+ local partyId=parties[p]and parties[p].id or previousParty
+ if partyId then for person,mine in pairs(parties)do
+  if person~=p and mine.id==partyId and not travel[person]then publish(person)end
+ end end
 end
 function Service.start(options)
  o=options;role=options.role;job=game.JobId~='' and game.JobId or guid()
