@@ -15,3 +15,7 @@
 제작 대안: 기존 강체 모델 유지(비용 낮음/팔 고정 지속), 연속 표면 스키닝 후보(채택/새 자산·Bone 구동 어댑터 필요), 전신 새 모델 제작(원형 변경·제작량이 커 보류). 선택한 후보는3종×9뼈·10클립이며 보행은 상체 변화만 포함한다. 전신 보행 IK나 새 AI를 구현한 것으로 세지 않는다.
 
 검증: 소스 해시·표면적·컬러 텍스처 보존, GLB의 정확한10클립/두 메시·뼈 계층·가중치·4공격의 독립 팔꿈치/손목·30/60/144표본 간격 접합/지팡이 강체/발 고정, 실제 Roblox Bone 계층 변환을 분리한다. 후보 메시의 실제 Roblox 가져오기/권한/스킨 변형·현재 서버 시각/취소/스트리밍 연결·기기/사용자 미술 수용은 다음 단계다. 결과는 [MR-01 증거](../evidence/regional-casters-mr01-20261103/README.md)를 따른다.
+
+## 2026-11-03 실제 가져오기 적용
+
+사용자 승인으로3종을 새 개인 자산에 업로드했다. [SerializationService](https://create.roblox.com/docs/reference/engine/classes/SerializationService)의 엔진 생성 바이너리로 공유 skeleton을 보존한다. 실제 렌더에서 native(-X,+Y,-Z) rest/mesh와 raw Pose local의 차이를 발견해 rest 기준 리타게팅·추가 yaw 제거·소켓 변환을 함께 적용했다. 실제 검증과 한계는 [0.62.8 기록](../evidence/regional-casters-runtime-20261103/README.md)을 따른다. 원래 RPG 비교 사례·기획/성능 계약은 유지하며 미술/실기기 수용으로 확대하지 않는다.

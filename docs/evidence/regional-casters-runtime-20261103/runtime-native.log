@@ -1,0 +1,18 @@
+debug.profileEnd() - No active profile annotation. At: Stack Begin
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.RobloxReactProfiling', Line 65 - function profileend
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.RobloxReactProfiling', Line 168 - function profileRootAfterYielding
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 841
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 237
+Script 'MaterialManager.MaterialManager.Packages._Index.Scheduler.Scheduler.Scheduler', Line 377 - function unstable_runWithPriority
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 165 - function runWithPriority
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 227
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 208 - function flushSyncCallbackQueue
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 697
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new', Line 379
+Script 'MaterialManager.MaterialManager.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot', Line 110 - function render
+Script 'MaterialManager.MaterialManager.Packages._Index.RoactCompat.RoactCompat.RoactTree', Line 86 - function mount
+Script 'MaterialManager.MaterialManager.Bin.main', Line 42 - function init
+Script 'MaterialManager.MaterialManager.Bin.main', Line 60
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+REGIONAL_CASTER_RUNTIME_NATIVE {"assets":{"rbxassetid://105871246621076":"Success","rbxassetid://98788108850990":"Success","rbxassetid://77540020824267":"Success","rbxassetid://87082222255321":"Success","rbxassetid://131610066809992":"Success","rbxassetid://119163831733699":"Success","rbxassetid://112698580463422":"Success","rbxassetid://116018092489297":"Success","rbxassetid://117483065629295":"Success"},"maxSourcePositionFraction":0.00132963997010159,"checks":4242,"pass":true,"kind":"REGIONAL_CASTER_RUNTIME_NATIVE","maxSourceAngle":0.007126245182007551,"failures":[]}

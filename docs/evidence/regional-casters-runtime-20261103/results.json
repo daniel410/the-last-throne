@@ -1,0 +1,197 @@
+{
+  "version": "0.62.8",
+  "sourceCommit": "dca9c422c3a54500d20e57291269d837f4d89e67",
+  "checks": 22278,
+  "pass": true,
+  "reports": [
+    {
+      "assets": {
+        "rbxassetid://105871246621076": "Success",
+        "rbxassetid://98788108850990": "Success",
+        "rbxassetid://77540020824267": "Success",
+        "rbxassetid://87082222255321": "Success",
+        "rbxassetid://131610066809992": "Success",
+        "rbxassetid://119163831733699": "Success",
+        "rbxassetid://112698580463422": "Success",
+        "rbxassetid://116018092489297": "Success",
+        "rbxassetid://117483065629295": "Success"
+      },
+      "maxSourcePositionFraction": 0.00132963997010159,
+      "checks": 4242,
+      "pass": true,
+      "kind": "REGIONAL_CASTER_RUNTIME_NATIVE",
+      "maxSourceAngle": 0.007126245182007551,
+      "failures": []
+    },
+    {
+      "weapons": [],
+      "checks": 4056,
+      "scope": "motion-and-story",
+      "kind": "FROZEN_VALE_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "weapons": [],
+      "checks": 4114,
+      "scope": "motion-and-story",
+      "kind": "EMBER_CALDERA_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "checks": 7033,
+      "species": {
+        "IceBear": {
+          "maxStoppedFootLift": 4.76837158203125e-06,
+          "stanceSlipHeightFraction": 0.00904224537037037
+        },
+        "CalderaTitan": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.006680026720106881
+        },
+        "MagmaImp": {
+          "maxStoppedFootLift": 9.5367431640625e-07,
+          "stanceSlipHeightFraction": 0.009080661322645291
+        },
+        "IceElf": {
+          "maxStoppedFootLift": 9.5367431640625e-07,
+          "stanceSlipHeightFraction": 0.01201923076923077
+        },
+        "KingIceGolem": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.009080661322645291
+        },
+        "IceGolem": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.009787870159453304
+        },
+        "VolcanoShaman": {
+          "maxStoppedFootLift": 0
+        },
+        "LavaSlime": {
+          "maxStoppedFootLift": 0
+        },
+        "AncientGlacierKing": {
+          "maxStoppedFootLift": 7.152557373046875e-07,
+          "stanceSlipHeightFraction": 0.005968969188376754
+        },
+        "IceWolf": {
+          "maxStoppedFootLift": 4.0531158447265625e-06,
+          "stanceSlipHeightFraction": 0.013292100694444446
+        },
+        "IceTroll": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.0067625284738041
+        },
+        "MagmaGolem": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.009393787575150301
+        },
+        "Golem": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.009787870159453304
+        },
+        "QueenIceElf": {
+          "maxStoppedFootLift": 0
+        },
+        "IceTrollKing": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.008517034068136272,
+          "clubForwardTravel": 6.890718638896942
+        },
+        "KingIceBear": {
+          "maxStoppedFootLift": 9.5367431640625e-06,
+          "stanceSlipHeightFraction": 0.005853664108187135
+        },
+        "InfernoOverlord": {
+          "maxStoppedFootLift": 7.152557373046875e-07,
+          "stanceSlipHeightFraction": 0.01891804442217769
+        },
+        "MagmaWorm": {
+          "maxStoppedFootLift": 0
+        },
+        "Imp": {
+          "maxStoppedFootLift": 7.152557373046875e-07,
+          "stanceSlipHeightFraction": 0.011589972527472528
+        },
+        "KingVolcanoShaman": {
+          "maxStoppedFootLift": 0
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "kind": "REGIONAL_INDIVIDUAL_REVIEW_NATIVE"
+    },
+    {
+      "checks": 2813,
+      "species": {
+        "EnragedWarlord": {
+          "maxStoppedFootLift": 0
+        },
+        "Shaman": {
+          "maxStoppedFootLift": 0
+        },
+        "KingShaman": {
+          "maxStoppedFootLift": 0
+        },
+        "Orc": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.006156589673913044
+        },
+        "Ogre": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.006295196280991735
+        },
+        "GoblinKing": {
+          "maxStoppedFootLift": 0
+        },
+        "KingOgre": {
+          "maxStoppedFootLift": 0
+        },
+        "Warlord": {
+          "maxStoppedFootLift": 7.152557373046875e-07,
+          "stanceSlipHeightFraction": 0.006810238486842105
+        },
+        "Slime": {
+          "maxStoppedFootLift": 0
+        },
+        "Goblin": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.007052951388888889
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "kind": "DEEPWOOD_INDIVIDUAL_REVIEW_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "ENEMY_STREAMING_PRESENTATION_NATIVE",
+      "pass": true,
+      "checks": 10
+    },
+    {
+      "coverage": "Native battle-role startup; no real Player admission or published teleport",
+      "checks": 10,
+      "failures": [],
+      "pass": true,
+      "kind": "BATTLE_BOOTSTRAP_NATIVE"
+    }
+  ],
+  "environment": "Roblox Studio Run, PlaceId=0, real Player=0; imported asset meshes rendered separately with screen_capture; no DataStore writes, Place publish or physical device acceptance",
+  "commands": [
+    "python3 tools/assemble-regional-caster-runtime-suite.py --output /tmp/tlt-mr01-runtime-final.luau",
+    "run-in-roblox --place builds/0.62.8/TheLastThrone-Battle-0.62.8.rbxlx --script /tmp/tlt-mr01-runtime-final.luau",
+    "python3 tools/assemble-regional-motion-suite.py --scope full --output /tmp/tlt-mr01-regression.luau",
+    "run-in-roblox --place builds/0.62.8/TheLastThrone-Battle-0.62.8.rbxlx --script /tmp/tlt-mr01-regression.luau"
+  ],
+  "harnessSha256": {
+    "/tmp/tlt-mr01-runtime-final.luau": "5598e0b4054ec11f73d32970c76f5cc7b1681ed0d54a34745f30f32a41180256",
+    "/tmp/tlt-mr01-regression.luau": "b82ec238b79ee042482214b2e0a7a6127b8d9d0862ef22b7fdac8d2933c4508e",
+    "tools/preview-regional-casters.luau": "d0d727fff2c3641cc7a9ba958ac0bc4765f1ec5f9971851078af6a6b4e1a3d30"
+  },
+  "renderedFinalImages": 31,
+  "supersededOccludedSideImages": 12,
+  "rejectedInitialBasisImage": 1
+}

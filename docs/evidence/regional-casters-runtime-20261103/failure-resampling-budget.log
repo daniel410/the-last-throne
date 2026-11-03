@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+REGIONAL_CASTER_RUNTIME_NATIVE {"assets":[],"checks":76,"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:10: QueenIceElf GLB pose Attack ForearmL gap=0.0005611036904156208 angle=0.0040559712797403336 height=3.7424999999999997 scale=3.742500066757202\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:10\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:17\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"REGIONAL_CASTER_RUNTIME_NATIVE"}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:69: Imported caster runtime failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:69
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

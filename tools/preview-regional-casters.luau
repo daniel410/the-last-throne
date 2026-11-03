@@ -16,10 +16,13 @@ workspace.CurrentCamera.CFrame=CFrame.lookAt(Vector3.new(10000,57,-27),Vector3.n
 local connection=Run.PreSimulation:Connect(function(dt)
  local age=workspace:GetAttribute('MR01PreviewAge')or 1
  local sequence=workspace:GetAttribute('MR01PreviewSequence')or 1
+ local selected=workspace:GetAttribute('MR01PreviewKind')
  for _,s in states do
+  local visible=not selected or selected==s.kind
+  for _,part in s.model.TdMonsterVisual:GetChildren()do if part:IsA('MeshPart')then part.Transparency=visible and 0 or 1 end end
   s.model:SetAttribute('K0EnemyAttackClock',sequence..'|100|1|0.2|0.8|'..(sequence>=3 and '1'or'0'))
   s.model:SetAttribute('K0EnemyState',age<1 and 'Windup' or age<1.2 and 'Active' or 'Recovery')
-  Motion.step(s,dt,100+age)
+  if visible then Motion.step(s,dt,100+age)else require(game.StarterPlayer.StarterPlayerScripts.Client.K0EnemyWeaponMotion).hide(s.weaponFX)end
  end
 end)
 game:GetService('ContentProvider'):PreloadAsync(folder:GetDescendants())
