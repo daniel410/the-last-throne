@@ -1,0 +1,4 @@
+SIDE_GATE	FV-Q1	admitted	true	main	7	reportNeeds	8	reportError	StoryLocked	canAdvanceMain	false
+SIDE_GATE	EC-Q1	admitted	true	main	14	reportNeeds	15	reportError	StoryLocked	canAdvanceMain	false
+FOG_COPY	canonicalRevealed	true	activeRevealed	false
+FAILED_DEPARTURE	oldRunAdmitted	false	reason	AdventureChanged	previousCheckpointRetained	false
