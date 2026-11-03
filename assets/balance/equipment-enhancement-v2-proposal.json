@@ -19,64 +19,64 @@
     },
     {
       "targetLevel": 2,
-      "successPercent": 95,
-      "failurePercent": 5,
+      "successPercent": 90,
+      "failurePercent": 10,
       "gemsPerAttempt": 4,
       "magicStonesPerAttempt": 0,
       "bonusPercent": 6
     },
     {
       "targetLevel": 3,
-      "successPercent": 90,
-      "failurePercent": 10,
+      "successPercent": 80,
+      "failurePercent": 20,
       "gemsPerAttempt": 6,
       "magicStonesPerAttempt": 0,
       "bonusPercent": 9
     },
     {
       "targetLevel": 4,
-      "successPercent": 80,
-      "failurePercent": 20,
+      "successPercent": 70,
+      "failurePercent": 30,
       "gemsPerAttempt": 8,
       "magicStonesPerAttempt": 1,
       "bonusPercent": 12
     },
     {
       "targetLevel": 5,
-      "successPercent": 70,
-      "failurePercent": 30,
+      "successPercent": 60,
+      "failurePercent": 40,
       "gemsPerAttempt": 10,
       "magicStonesPerAttempt": 2,
       "bonusPercent": 15
     },
     {
       "targetLevel": 6,
-      "successPercent": 60,
-      "failurePercent": 40,
+      "successPercent": 50,
+      "failurePercent": 50,
       "gemsPerAttempt": 12,
       "magicStonesPerAttempt": 3,
       "bonusPercent": 18
     },
     {
       "targetLevel": 7,
-      "successPercent": 50,
-      "failurePercent": 50,
+      "successPercent": 40,
+      "failurePercent": 60,
       "gemsPerAttempt": 14,
       "magicStonesPerAttempt": 4,
       "bonusPercent": 21
     },
     {
       "targetLevel": 8,
-      "successPercent": 40,
-      "failurePercent": 60,
+      "successPercent": 30,
+      "failurePercent": 70,
       "gemsPerAttempt": 16,
       "magicStonesPerAttempt": 5,
       "bonusPercent": 24
     },
     {
       "targetLevel": 9,
-      "successPercent": 30,
-      "failurePercent": 70,
+      "successPercent": 20,
+      "failurePercent": 80,
       "gemsPerAttempt": 18,
       "magicStonesPerAttempt": 6,
       "bonusPercent": 27
