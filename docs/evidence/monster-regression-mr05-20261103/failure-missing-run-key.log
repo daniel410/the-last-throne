@@ -1,0 +1,9 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+FROZEN_VALE_NATIVE {"weapons":[],"checks":3955,"scope":"motion-and-story","kind":"FROZEN_VALE_NATIVE","pass":false,"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8: service saves FV-01:snow_guards\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:10\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"]}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:152: regional regression failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:152
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

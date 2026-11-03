@@ -1,0 +1,336 @@
+{
+  "workId": "MR-05",
+  "version": "0.62.7",
+  "runtimeSourceCommit": "bcc5e0492c0f866245a4dc8641cd9813f0654f49",
+  "battleSha256": "810bceb3d7e952886eaaa70377ffa3982406505cd20ea6487fdeaf2d321097ad",
+  "rebuilt": false,
+  "published": false,
+  "liveDataStore": false,
+  "full": {
+    "checks": 27345,
+    "reports": [
+      {
+        "weapons": [],
+        "checks": 4200,
+        "scope": "motion-and-story",
+        "kind": "FROZEN_VALE_NATIVE",
+        "pass": true,
+        "failures": []
+      },
+      {
+        "weapons": [],
+        "checks": 4402,
+        "scope": "motion-and-story",
+        "kind": "EMBER_CALDERA_NATIVE",
+        "pass": true,
+        "failures": []
+      },
+      {
+        "checks": 15910,
+        "species": {
+          "IceBear": {
+            "maxStoppedFootLift": 4.76837158203125e-06,
+            "stanceSlipHeightFraction": 0.00904224537037037
+          },
+          "CalderaTitan": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.006680026720106881
+          },
+          "MagmaImp": {
+            "maxStoppedFootLift": 9.5367431640625e-07,
+            "stanceSlipHeightFraction": 0.009080661322645291
+          },
+          "IceElf": {
+            "maxStoppedFootLift": 9.5367431640625e-07,
+            "stanceSlipHeightFraction": 0.01201923076923077
+          },
+          "KingIceGolem": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.009080661322645291
+          },
+          "IceGolem": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.009787870159453304
+          },
+          "VolcanoShaman": {
+            "maxStoppedFootLift": 0
+          },
+          "LavaSlime": {
+            "maxStoppedFootLift": 0
+          },
+          "AncientGlacierKing": {
+            "maxStoppedFootLift": 7.152557373046875e-07,
+            "stanceSlipHeightFraction": 0.005968969188376754
+          },
+          "IceWolf": {
+            "maxStoppedFootLift": 4.0531158447265625e-06,
+            "stanceSlipHeightFraction": 0.013292100694444446
+          },
+          "IceTroll": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.0067625284738041
+          },
+          "MagmaGolem": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.009393787575150301
+          },
+          "Golem": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.009787870159453304
+          },
+          "QueenIceElf": {
+            "maxStoppedFootLift": 0
+          },
+          "IceTrollKing": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.008517034068136272,
+            "clubForwardTravel": 6.890718638896942
+          },
+          "KingIceBear": {
+            "maxStoppedFootLift": 9.5367431640625e-06,
+            "stanceSlipHeightFraction": 0.005853664108187135
+          },
+          "InfernoOverlord": {
+            "maxStoppedFootLift": 7.152557373046875e-07,
+            "stanceSlipHeightFraction": 0.01891804442217769
+          },
+          "MagmaWorm": {
+            "maxStoppedFootLift": 0
+          },
+          "Imp": {
+            "maxStoppedFootLift": 7.152557373046875e-07,
+            "stanceSlipHeightFraction": 0.011589972527472528
+          },
+          "KingVolcanoShaman": {
+            "maxStoppedFootLift": 0
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "kind": "REGIONAL_INDIVIDUAL_REVIEW_NATIVE"
+      },
+      {
+        "checks": 2813,
+        "species": {
+          "EnragedWarlord": {
+            "maxStoppedFootLift": 0
+          },
+          "Shaman": {
+            "maxStoppedFootLift": 0
+          },
+          "KingShaman": {
+            "maxStoppedFootLift": 0
+          },
+          "Orc": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.006156589673913044
+          },
+          "Ogre": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.006295196280991735
+          },
+          "GoblinKing": {
+            "maxStoppedFootLift": 0
+          },
+          "KingOgre": {
+            "maxStoppedFootLift": 0
+          },
+          "Warlord": {
+            "maxStoppedFootLift": 7.152557373046875e-07,
+            "stanceSlipHeightFraction": 0.006810238486842105
+          },
+          "Slime": {
+            "maxStoppedFootLift": 0
+          },
+          "Goblin": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.007052951388888889
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "kind": "DEEPWOOD_INDIVIDUAL_REVIEW_NATIVE"
+      },
+      {
+        "failures": [],
+        "kind": "ENEMY_STREAMING_PRESENTATION_NATIVE",
+        "pass": true,
+        "checks": 10
+      },
+      {
+        "coverage": "Native battle-role startup; no real Player admission or published teleport",
+        "checks": 10,
+        "failures": [],
+        "pass": true,
+        "kind": "BATTLE_BOOTSTRAP_NATIVE"
+      }
+    ]
+  },
+  "testSources": {
+    "tests/frozen-vale-native.luau": "8952dfab43f99bdbaf3ea8ee3f4b7985ab06ceb4def0297c1d5ff3164bb550e4",
+    "tests/ember-caldera-native.luau": "b758eac2ada603f4d07e433f6e78d0676e3939d6f2a4674571df8c37f694a255",
+    "tools/assemble-regional-motion-suite.py": "7c769760c06f7c46552ee537b0f73b6d4a537675aa78f3be3788070c9d30dcdc"
+  },
+  "fullHarnessSha256": "3d4a40ac8d8abd8040b485a04ba7dfee7738947c86e2e0e8f207f663afc52807",
+  "motion": {
+    "checks": 26640,
+    "reports": [
+      {
+        "weapons": [],
+        "checks": 3930,
+        "scope": "motion-only",
+        "kind": "FROZEN_VALE_NATIVE",
+        "pass": true,
+        "failures": []
+      },
+      {
+        "weapons": [],
+        "checks": 3967,
+        "scope": "motion-only",
+        "kind": "EMBER_CALDERA_NATIVE",
+        "pass": true,
+        "failures": []
+      },
+      {
+        "checks": 15910,
+        "species": {
+          "IceBear": {
+            "maxStoppedFootLift": 4.76837158203125e-06,
+            "stanceSlipHeightFraction": 0.00904224537037037
+          },
+          "CalderaTitan": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.006680026720106881
+          },
+          "MagmaImp": {
+            "maxStoppedFootLift": 9.5367431640625e-07,
+            "stanceSlipHeightFraction": 0.009080661322645291
+          },
+          "IceElf": {
+            "maxStoppedFootLift": 9.5367431640625e-07,
+            "stanceSlipHeightFraction": 0.01201923076923077
+          },
+          "KingIceGolem": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.009080661322645291
+          },
+          "IceGolem": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.009787870159453304
+          },
+          "VolcanoShaman": {
+            "maxStoppedFootLift": 0
+          },
+          "LavaSlime": {
+            "maxStoppedFootLift": 0
+          },
+          "AncientGlacierKing": {
+            "maxStoppedFootLift": 7.152557373046875e-07,
+            "stanceSlipHeightFraction": 0.005968969188376754
+          },
+          "IceWolf": {
+            "maxStoppedFootLift": 4.0531158447265625e-06,
+            "stanceSlipHeightFraction": 0.013292100694444446
+          },
+          "IceTroll": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.0067625284738041
+          },
+          "MagmaGolem": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.009393787575150301
+          },
+          "Golem": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.009787870159453304
+          },
+          "QueenIceElf": {
+            "maxStoppedFootLift": 0
+          },
+          "IceTrollKing": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.008517034068136272,
+            "clubForwardTravel": 6.890718638896942
+          },
+          "KingIceBear": {
+            "maxStoppedFootLift": 9.5367431640625e-06,
+            "stanceSlipHeightFraction": 0.005853664108187135
+          },
+          "InfernoOverlord": {
+            "maxStoppedFootLift": 7.152557373046875e-07,
+            "stanceSlipHeightFraction": 0.01891804442217769
+          },
+          "MagmaWorm": {
+            "maxStoppedFootLift": 0
+          },
+          "Imp": {
+            "maxStoppedFootLift": 7.152557373046875e-07,
+            "stanceSlipHeightFraction": 0.011589972527472528
+          },
+          "KingVolcanoShaman": {
+            "maxStoppedFootLift": 0
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "kind": "REGIONAL_INDIVIDUAL_REVIEW_NATIVE"
+      },
+      {
+        "checks": 2813,
+        "species": {
+          "EnragedWarlord": {
+            "maxStoppedFootLift": 0
+          },
+          "Shaman": {
+            "maxStoppedFootLift": 0
+          },
+          "KingShaman": {
+            "maxStoppedFootLift": 0
+          },
+          "Orc": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.006156589673913044
+          },
+          "Ogre": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.006295196280991735
+          },
+          "GoblinKing": {
+            "maxStoppedFootLift": 0
+          },
+          "KingOgre": {
+            "maxStoppedFootLift": 0
+          },
+          "Warlord": {
+            "maxStoppedFootLift": 7.152557373046875e-07,
+            "stanceSlipHeightFraction": 0.006810238486842105
+          },
+          "Slime": {
+            "maxStoppedFootLift": 0
+          },
+          "Goblin": {
+            "maxStoppedFootLift": 4.76837158203125e-07,
+            "stanceSlipHeightFraction": 0.007052951388888889
+          }
+        },
+        "failures": [],
+        "pass": true,
+        "kind": "DEEPWOOD_INDIVIDUAL_REVIEW_NATIVE"
+      },
+      {
+        "failures": [],
+        "kind": "ENEMY_STREAMING_PRESENTATION_NATIVE",
+        "pass": true,
+        "checks": 10
+      },
+      {
+        "coverage": "Native battle-role startup; no real Player admission or published teleport",
+        "checks": 10,
+        "failures": [],
+        "pass": true,
+        "kind": "BATTLE_BOOTSTRAP_NATIVE"
+      }
+    ]
+  },
+  "motionHarnessSha256": "b82b9d122d297e130c812018d1cd633862614398a99a73c20b2135969fc24194"
+}

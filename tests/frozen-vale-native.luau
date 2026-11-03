@@ -1,8 +1,8 @@
 -- Unpublished real Studio geometry, TD MeshParts and server story APIs.
-assert(game.PlaceId==0,'Local fixture only')
+assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'Isolated local fixture only')
 local Run=game:GetService('RunService');if not Run:IsRunning()then Run:Run();task.wait(4)end
 local RS=game.ReplicatedStorage;local Server=game.ServerScriptService.Server;local Client=game.StarterPlayer.StarterPlayerScripts.Client
-local report={kind='FROZEN_VALE_NATIVE',checks=0,failures={},weapons={}}
+local report={kind='FROZEN_VALE_NATIVE',scope='motion-and-story',checks=0,failures={},weapons={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local folder=Instance.new('Folder');folder.Name='FrozenValeNativeQA';folder.Parent=workspace
 local ok,err=xpcall(function()
@@ -66,25 +66,39 @@ local ok,err=xpcall(function()
  local profile=assert(Rules.addHero(Rules.new(911),'qa','knight',Catalog));profile.heroes.qa.deepwood=journal
  local original=Server.Story.DeepwoodService;local copy=original:Clone();copy.Name='FrozenValeServiceQA'
  local source=copy.Source;local first=assert(source:find('local function publish',1,true));local last=assert(source:find('function Service.destination',first,true));copy.Source=source:sub(1,first-1)..'local function publish(player,message)player.message=message end\n'..source:sub(last);copy.Parent=original.Parent
- local story=require(copy);local combat=require(Server.Combat.CombatService);local xp,gold=0,0;local saveUnknown=true
+ local story=require(copy);local combat=require(Server.Combat.CombatService);local xp,gold=0,0;local saveFaults={'SaveUnknown','Busy'};local firstEvent;local attempts=0;local expedition
  local character=Instance.new('Model');character.Parent=folder
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Parent=character;character.PrimaryPart=root
  local h=Instance.new('Humanoid');h.Parent=character;h.MaxHealth=1000;h.Health=1000
  local player={UserId=911,Parent=game.Players,Character=character,GetAttribute=function()return 'Tutorial'end}
  local inventory={storyState=function()return P.copy(profile.heroes.qa.deepwood)end,
-  storyEvent=function(_,hero,c,g,choice,step)
-   if saveUnknown then saveUnknown=false;return 'SaveUnknown'end
+  expedition=function(owner,hero)check(owner==player and hero=='qa','expedition reads the active personal hero');return expedition end,
+  storyEvent=function(_,hero,c,g,choice,step,runId)
+   if not firstEvent then firstEvent={hero,c,g,choice=choice,step=step,runId=runId,coins=profile.heroes.qa.deepwood.coins,revision=profile.revision}end
+   if c==firstEvent[2] and g==firstEvent[3] then
+    attempts+=1
+    check(hero==firstEvent[1] and choice==firstEvent.choice and step==firstEvent.step and runId==firstEvent.runId,'retry preserves personal event identity')
+    check(profile.heroes.qa.deepwood.coins==firstEvent.coins and profile.revision==firstEvent.revision and not profile.heroes.qa.deepwood.flags[c..':'..g],'unconfirmed save cannot advance or award story rewards')
+    local fault=table.remove(saveFaults,1);if fault then return fault end
+   end
    local nextState,reason
    if g=='@selene' then nextState,reason=Rules.selectSelene(profile,hero,choice)
    elseif g=='@accept' then nextState,reason=Rules.acceptQuest(profile,hero,c,choice==true)
    else nextState,reason=Rules.story(profile,hero,c,g,choice,Catalog,step)end
    if nextState then profile=nextState end;return reason
   end,
+  -- Support-pass ownership is pre-provisioned in this story fixture, not purchased here.
+  supportState=function()return {active=true,credits=0}end,
+  activateSupport=function(owner,hero)check(owner==player and hero=='qa','camp uses the fixture-owned active support pass')end,
   awardXP=function(_,_,amount,_,coins)xp+=amount;gold+=coins or 0 end}
  story.start({world=world,enemies=workspace.DeepwoodK0.Enemies,inventory=inventory,heroSession={getActiveHero=function()return {heroId='qa',training=false}end,getCombatContext=function()return {heroId='qa'}end},combat=combat})
  check(story.destination(player,'qa')==world.spawns['FV-01'],'Deepwood save resumes in Frozen Vale')
+ expedition={missionId='FV-02',runId='qa-destination'}
+ check(story.destination(player,'qa')==world.spawns['FV-02'],'active personal expedition selects its mission checkpoint')
+ expedition=nil
+ check(story.destination(player,'qa')==world.spawns['FV-01'],'cleared expedition falls back to saved campaign checkpoint')
  root.Position=world.refugeCompanionCamp.PrimaryPart.Position;check(not story.selectSelene(player,true),'locked refuge cannot select companion before entry')
- local function alive(key)local out={}for _,m in ipairs(workspace.DeepwoodK0.Enemies:GetChildren())do if m:GetAttribute('DeepwoodEncounter')==key and m.Humanoid.Health>0 and not m:GetAttribute('StoryPacified')then table.insert(out,m)end end;return out end
+ local function alive(key)local out={}for _,m in ipairs(workspace.DeepwoodK0.Enemies:GetChildren())do if m:GetAttribute('DeepwoodEncounter')==key..':legacy' and m.Humanoid.Health>0 and not m:GetAttribute('StoryPacified')then table.insert(out,m)end end;return out end
  local function drain(c,g)
   local key=c.id..':'..g.id
   for _=1,80 do local models=alive(key);if #models==0 then break end
@@ -108,7 +122,13 @@ local ok,err=xpcall(function()
    if #g.enemies>0 then story.interact(player,c.id,g.id);drain(c,g)
    elseif g.activity and g.activity.mode=='travel' then story.interactStep(player,c.id,g.id,g.activity.steps[1].id)
    else story.interact(player,c.id,g.id)end
-   if saveUnknown==false and n==8 and g==c.goals[1]then task.wait(1.2)else task.wait(.1)end
+   if n==8 and g==c.goals[1]then
+    check(story.hasPendingEvents(player),'unconfirmed event stays queued')
+    check(not inventory.storyState().flags[c.id..':'..g.id],'progress stays unconfirmed before retry')
+    local deadline=os.clock()+5
+    repeat task.wait(.05)until not story.hasPendingEvents(player)or os.clock()>deadline
+    check(attempts==3 and #saveFaults==0 and not story.hasPendingEvents(player),'SaveUnknown and Busy retry the same event to confirmed completion')
+   else task.wait(.1)end
    check(inventory.storyState().flags[c.id..':'..g.id],'service saves '..c.id..':'..g.id)
   end
   check(inventory.storyState().main==n,'correct checkpoint advancement')
