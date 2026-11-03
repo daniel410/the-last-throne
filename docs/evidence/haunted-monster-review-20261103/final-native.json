@@ -1,0 +1,360 @@
+{
+  "sourceCommit": "0db85bf9112e0ccb9aa7d47927f446aa074aa173",
+  "version": "0.65.2",
+  "exitCode": 0,
+  "pass": true,
+  "results": [
+    {
+      "checks": 380138,
+      "failures": [],
+      "species": {
+        "DeathKnight": {
+          "maxStoppedFootLift": 2.384185791015625e-07,
+          "stanceSlipHeightFraction": 0.007515030060120241,
+          "source": "death_knight"
+        },
+        "SkeletonKnight": {
+          "maxStoppedFootLift": 2.384185791015625e-07,
+          "bladeForwardTravel": {
+            "HeavyAlt": 1.9750690460205078,
+            "AttackAlt": 1.7847110033035278,
+            "Heavy": 2.4508509635925293,
+            "Attack": 2.2059781551361084
+          },
+          "source": "skeleton_knight",
+          "stanceSlipHeightFraction": 0.007745754667229196
+        },
+        "Hellhound": {
+          "maxStoppedFootLift": 0,
+          "stanceSlipHeightFraction": 0.012478298611111112,
+          "source": "hellhound"
+        },
+        "Skeleton": {
+          "maxStoppedFootLift": 2.384185791015625e-07,
+          "bladeForwardTravel": {
+            "HeavyAlt": 1.3982086181640625,
+            "AttackAlt": 1.2684398293495178,
+            "Heavy": 2.1949970424175262,
+            "Attack": 1.9673004150390625
+          },
+          "source": "skeleton",
+          "stanceSlipHeightFraction": 0.012613932291666668
+        },
+        "Lich": {
+          "source": "lich",
+          "maxStoppedFootLift": 0
+        },
+        "Veyr": {
+          "source": "dread_commander",
+          "maxStoppedFootLift": 0
+        },
+        "DreadCommander": {
+          "source": "dread_commander",
+          "maxStoppedFootLift": 0
+        },
+        "Ghoul": {
+          "source": "ghoul",
+          "maxStoppedFootLift": 0
+        },
+        "LichSovereign": {
+          "source": "lich_sovereign",
+          "maxStoppedFootLift": 0
+        },
+        "Mummy": {
+          "source": "mummy",
+          "maxStoppedFootLift": 0
+        },
+        "Zombie": {
+          "maxStoppedFootLift": 2.384185791015625e-07,
+          "stanceSlipHeightFraction": 0.009553328804347826,
+          "source": "zombie"
+        }
+      },
+      "pass": true,
+      "kind": "HAUNTED_MONSTER_MOTION_NATIVE"
+    },
+    {
+      "weapons": [],
+      "checks": 4056,
+      "scope": "motion-and-story",
+      "kind": "FROZEN_VALE_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "weapons": [],
+      "checks": 4114,
+      "scope": "motion-and-story",
+      "kind": "EMBER_CALDERA_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "checks": 7033,
+      "species": {
+        "IceBear": {
+          "maxStoppedFootLift": 7.152557373046875e-07,
+          "stanceSlipHeightFraction": 0.00904224537037037
+        },
+        "CalderaTitan": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.006680026720106881
+        },
+        "MagmaImp": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.009080661322645291
+        },
+        "IceElf": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.01201923076923077
+        },
+        "KingIceGolem": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.009080661322645291
+        },
+        "IceGolem": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.009787870159453304
+        },
+        "VolcanoShaman": {
+          "maxStoppedFootLift": 0
+        },
+        "LavaSlime": {
+          "maxStoppedFootLift": 0
+        },
+        "AncientGlacierKing": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.006066821142284569
+        },
+        "IceWolf": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.013292100694444446
+        },
+        "IceTroll": {
+          "maxStoppedFootLift": 2.384185791015625e-07,
+          "stanceSlipHeightFraction": 0.0067625284738041
+        },
+        "MagmaGolem": {
+          "maxStoppedFootLift": 2.384185791015625e-07,
+          "stanceSlipHeightFraction": 0.009393787575150301
+        },
+        "Golem": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.009787870159453304
+        },
+        "QueenIceElf": {
+          "maxStoppedFootLift": 0
+        },
+        "IceTrollKing": {
+          "maxStoppedFootLift": 2.384185791015625e-07,
+          "stanceSlipHeightFraction": 0.008517034068136272,
+          "clubForwardTravel": 6.890719801187515
+        },
+        "KingIceBear": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.005853664108187135
+        },
+        "InfernoOverlord": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.01891804442217769
+        },
+        "MagmaWorm": {
+          "maxStoppedFootLift": 0
+        },
+        "Imp": {
+          "maxStoppedFootLift": 2.384185791015625e-07,
+          "stanceSlipHeightFraction": 0.011589972527472528
+        },
+        "KingVolcanoShaman": {
+          "maxStoppedFootLift": 0
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "kind": "REGIONAL_INDIVIDUAL_REVIEW_NATIVE"
+    },
+    {
+      "checks": 2813,
+      "species": {
+        "EnragedWarlord": {
+          "maxStoppedFootLift": 0
+        },
+        "Shaman": {
+          "maxStoppedFootLift": 0
+        },
+        "KingShaman": {
+          "maxStoppedFootLift": 0
+        },
+        "Orc": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.006156589673913044
+        },
+        "Ogre": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.006295196280991735
+        },
+        "GoblinKing": {
+          "maxStoppedFootLift": 0
+        },
+        "KingOgre": {
+          "maxStoppedFootLift": 0
+        },
+        "Warlord": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.006810238486842105
+        },
+        "Slime": {
+          "maxStoppedFootLift": 0
+        },
+        "Goblin": {
+          "maxStoppedFootLift": 4.76837158203125e-07,
+          "stanceSlipHeightFraction": 0.007052951388888889
+        }
+      },
+      "failures": [],
+      "pass": true,
+      "kind": "DEEPWOOD_INDIVIDUAL_REVIEW_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "ENEMY_STREAMING_PRESENTATION_NATIVE",
+      "pass": true,
+      "checks": 10
+    },
+    {
+      "coverage": "Native battle-role startup; no real Player admission or published teleport",
+      "checks": 10,
+      "failures": [],
+      "pass": true,
+      "kind": "BATTLE_BOOTSTRAP_NATIVE"
+    },
+    {
+      "ok": true,
+      "checks": 1939,
+      "scope": "real-engine-with-fake-account-and-player",
+      "finalMain": 35,
+      "models": [
+        {
+          "prototype": false,
+          "kind": "DeathKnight",
+          "template": "death_knight",
+          "parts": 3
+        },
+        {
+          "prototype": false,
+          "kind": "SkeletonKnight",
+          "template": "skeleton_knight",
+          "parts": 5
+        },
+        {
+          "prototype": true,
+          "kind": "AncientHollowbark",
+          "template": "AncientHollowbark",
+          "parts": 10
+        },
+        {
+          "prototype": false,
+          "kind": "Hellhound",
+          "template": "hellhound",
+          "parts": 5
+        },
+        {
+          "prototype": false,
+          "kind": "Skeleton",
+          "template": "skeleton",
+          "parts": 5
+        },
+        {
+          "prototype": true,
+          "kind": "Gloambat",
+          "template": "Gloambat",
+          "parts": 9
+        },
+        {
+          "prototype": false,
+          "kind": "Zombie",
+          "template": "zombie",
+          "parts": 5
+        },
+        {
+          "prototype": true,
+          "kind": "Barkstalker",
+          "template": "Barkstalker",
+          "parts": 10
+        },
+        {
+          "prototype": false,
+          "kind": "DreadCommander",
+          "template": "dread_commander",
+          "parts": 1
+        },
+        {
+          "prototype": true,
+          "kind": "WidowQueen",
+          "template": "WidowQueen",
+          "parts": 25
+        },
+        {
+          "prototype": false,
+          "kind": "LichSovereign",
+          "template": "lich_sovereign",
+          "parts": 3
+        },
+        {
+          "prototype": true,
+          "kind": "Webling",
+          "template": "Webling",
+          "parts": 22
+        },
+        {
+          "prototype": false,
+          "kind": "Veyr",
+          "template": "dread_commander",
+          "parts": 1
+        },
+        {
+          "prototype": false,
+          "kind": "Lich",
+          "template": "lich",
+          "parts": 3
+        },
+        {
+          "prototype": false,
+          "kind": "Mummy",
+          "template": "mummy",
+          "parts": 3
+        },
+        {
+          "prototype": false,
+          "kind": "Ghoul",
+          "template": "ghoul",
+          "parts": 1
+        },
+        {
+          "prototype": true,
+          "kind": "Silkweaver",
+          "template": "Silkweaver",
+          "parts": 22
+        },
+        {
+          "prototype": true,
+          "kind": "VenomcoilKing",
+          "template": "VenomcoilKing",
+          "parts": 38
+        },
+        {
+          "prototype": true,
+          "kind": "VenomcoilCentipede",
+          "template": "VenomcoilCentipede",
+          "parts": 35
+        }
+      ],
+      "scopedMaeves": 2,
+      "finalGold": 16570,
+      "kind": "LATE_EPICS_NATIVE"
+    }
+  ],
+  "warnings": [
+    "ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type"
+  ]
+}

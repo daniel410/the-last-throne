@@ -25,9 +25,23 @@ TD 원본10종과 같은 Dread Commander 외형을 쓰는 Veyr까지11개 런타
 - `python3 tests/haunted-motion-assets.spec.py`, `python3 tests/haunted-graveyard-assets.spec.py`:385채널·11종/10원본·해시/소켓·원본ID PASS.
 - `tools/capture-haunted-monster-review.luau`: 로컬 전용 native 전후 행렬 캡처. `tools/review-haunted-monsters-blender.py --stage before|after --kind <Kind> --output /tmp/review.py`로 safe-mode용 Blender 입력을 만들고 MCP에서 코드를 직접 실행한다. `tools/assemble-haunted-review.py`는 Pillow가 포함된 번들 Python으로 실행한다.
 - 수정 후보를 기존0.65.1 로컬 fixture에만 주입한 [엔진 결과](candidate-native.json):380,137검사 PASS. 주로201표본의 유한값 검사이며 접지·접촉·흔적 정리 검사를 함께 포함한다. 6stud/s 지지 발 미끄러짐은 체고0.75~1.26%, 검 끝 전방 이동은 약1.27~2.45stud. 이 수치는 평지 시험이고 실제 플레이/경사 수용이 아니다.
-- 기존 Frozen Vale/Ember Caldera full story·지역/Deepwood 동작·스트리밍·배틀 부트스트랩 후보 회귀도 PASS. 최종 고정 소스 빌드 결과는 후속 파일에 기록한다.
+- 기존 Frozen Vale/Ember Caldera full story·지역/Deepwood 동작·스트리밍·배틀 부트스트랩 후보 회귀도 PASS. 최종 고정 소스 빌드에서도 동일 회귀가 통과했다(아래 기록).
 
 최초 fixture는 plugin에 HttpEnabled 쓰기 권한이 없어 실패했고, 불필요한 설정 쓰기를 제거해 허용된 plugin HTTP 읽기로 실행했다. 첫 HG 검사에서는 팔이 분리된 Mummy를 일체형 팔로 잘못 가정해 실패했다. 해부학에 맞춰 해당 준비/접촉 검사를 분기하고 통과했으며 게임 결함 수정을 가장하지 않는다([로그](candidate-first-failure.log)). Blender 엔진 enum 목록이 실제 렌더 엔진을 누락해 첫 렌더가 중단됐고 지원 엔진 할당/예외 처리와 원래 씬 복원을 추가해 재실행했다.
+
+## 고정 소스 빌드·최종 엔진 결과
+
+소스 `0db85bf9112e0ccb9aa7d47927f446aa074aa173`를 git archive로 분리하고, 커밋의 LFS OID와 대조한 입력만 연결해 Rojo 7.7.1로 Lobby/Battle 0.65.2를 빌드했다. 두 산출물 모두 성공했고 최종 검사 뒤 SHA256을 재대조했다([빌드·해시](build.json)). 기존 미커밋 로비/이동 작업은 빌드에 포함하지 않았다.
+
+`run-in-roblox --place builds/0.65.2/TheLastThrone-Battle-0.65.2.rbxlx --script /tmp/tlt-haunted-final-suite.luau` 종료0. [fixture 해시/구성](final-suite.json), [원본 로그](final-native.log), [구조화 결과](final-native.json).
+
+- HG 380,138검사 PASS: 후보 검사에 최초 지연 로드 상태 확인을 추가했다. 대부분 표본 유한값 검사이며 실제 플레이 수용 횟수가 아니다.
+- Frozen 4,056 / Ember 4,114 / 지역 개별7,033 / Deepwood 2,813 / streaming10 / bootstrap10: 모두 PASS.
+- 후기 에픽 native1,939 PASS: 실제 엔진·모델을 사용하고 계정/플레이어는 fake fixture, 피해는 시험 주입이다. live DataStore·실제 입력·게시 이동 수용 증거가 아니다.
+- 전체 Luau 소스305/305컴파일 PASS. Lua suite43/44 PASS이며 기존 `k0-appearance.spec.lua`의 mock `GetDescendants` 누락 실패1개는 남아 있다([컴파일](compile.json), [Lua 결과](lua-tests.json)).
+- 엔진 로그의 기존 `rbxassetid://203785492` asset type mismatch 경고1건은 남아 있다. 해당 자산의 정상 재생을 이 결과로 주장하지 않는다.
+
+Git 소스·이미지 LFS 푸시는 완료했다. 게시/릴리스 태그는 만들지 않았다. 로컬 시험 Studio 프로세스는 종료됐고, 후보 주입용 로컬 HTTP 서버도 정리했다.
 
 ## 남은 한계와 다음 담당
 

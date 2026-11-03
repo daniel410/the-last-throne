@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "0db85bf9112e0ccb9aa7d47927f446aa074aa173",
+  "fixtureSha256": "1594d478363de01c9795283991c2be08731de63adc0b875859f1248b4575898f",
+  "tests": [
+    "haunted-monster-motion-native.luau",
+    "frozen-vale-native.luau",
+    "ember-caldera-native.luau",
+    "regional-individual-review-native.luau",
+    "deepwood-individual-review-native.luau",
+    "enemy-streaming-presentation-native.luau",
+    "battle-bootstrap-native.luau",
+    "late-epics-native.luau"
+  ],
+  "dependencyScope": "real engine/meshes; fake account and player for story tests; manually injected battle damage; no live DataStore or real input claimed"
+}
