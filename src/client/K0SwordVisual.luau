@@ -23,7 +23,7 @@ assert(groundSlam and overheadSmash, "Dwarf skill configuration is missing")
 
 local HitFeedback = require(script.Parent.K0PlayerHitFeedback)
 local Visual = {}
-local DodgeRules = require(game.ReplicatedStorage.Shared.DodgeRules)
+local SideDiveMotion = require(script.Parent.K0SideDiveMotion)
 local shieldSkills={}
 for _,d in ipairs(Config.Skills.knight) do if d.requiresShield or d.shield or d.counterPosture or d.name:find("SHIELD",1,true) then shieldSkills[d.id]=true end end
 local started = false
@@ -244,8 +244,8 @@ local function updateElfIK(character, mode, phase, dt, bowPose)
 	if not isDrawing then
 		if state and state.control.Parent then
 			if bowPose then state.weight=0;state.control.Weight=0;state.control.Enabled=false;return false end
-			-- Block has its own right-hand control; never blend the bow draw into it.
-			if mode == "Block" then state.weight = 0; state.control.Weight = 0; state.control.Enabled = false; return false end
+			-- Block and Dodge must not inherit the previous bow draw IK.
+			if mode == "Block" or mode == "Dodge" then state.weight = 0; state.control.Weight = 0; state.control.Enabled = false; return false end
 			if isElf then
 				state.weight = math.max(0, state.weight - dt * 3.5)
 				state.control.Weight = state.weight
@@ -400,13 +400,11 @@ function Visual.renderArms(character, dt, now)
 	local usesIK = updateElfIK(character, mode, phase, elapsed,bowPose)
 	local blockHand = updateBlockHand(character, classId, mode)
 	local rolling = mode == "Dodge" and character:GetAttribute("K0DodgeKind") == "SideRoll"
-	local rollAngle, rollLift, rollTuck = 0, 0, 0
+	local sideDive
 	if rolling then
-		local startedAt = character:GetAttribute("K0DodgeStartedAt")
-		if type(startedAt) == "number" then
-			rollAngle, rollLift, rollTuck = DodgeRules.rollPose((now or Workspace:GetServerTimeNow()) - startedAt,
-				Config.Dodge.sideRoll.moveDuration, character:GetAttribute("K0DodgeSide") == -1 and -1 or 1, Config.Dodge.sideRoll.jumpHeight)
-		end
+		local began = character:GetAttribute("K0DodgeStartedAt")
+		sideDive = SideDiveMotion.sample(type(began) == "number" and (now or Workspace:GetServerTimeNow()) - began or 0,
+			Config.Dodge.sideRoll.moveDuration, character:GetAttribute("K0DodgeSide"))
 	end
 	if mode == "Dead" or character:GetAttribute("TLTDeathFalling") then
 		left=CFrame.Angles(math.rad(20),0,math.rad(12));right=CFrame.Angles(math.rad(15),0,math.rad(-12))
@@ -416,10 +414,10 @@ function Visual.renderArms(character, dt, now)
 		local leftStep = type(seq) == "number" and seq > 0 and seq % 2 == 0
 		local hip, knee = CFrame.Angles(math.rad(-42), 0, 0), CFrame.Angles(math.rad(15), 0, 0)
 		if leftStep then leftHipPose, leftKneePose = hip, knee else rightHipPose, rightKneePose = hip, knee end
-		if rolling then
-			right, left = CFrame.Angles(math.rad(70 * rollTuck), 0, math.rad(-15 * rollTuck)), CFrame.Angles(math.rad(70 * rollTuck), 0, math.rad(15 * rollTuck))
-			rightHipPose, leftHipPose = CFrame.Angles(math.rad(-65 * rollTuck), 0, 0), CFrame.Angles(math.rad(-65 * rollTuck), 0, 0)
-			rightKneePose, leftKneePose = CFrame.Angles(math.rad(110 * rollTuck), 0, 0), CFrame.Angles(math.rad(110 * rollTuck), 0, 0)
+		if sideDive then
+			right, left, rightElbow, torso = sideDive.right, sideDive.left, sideDive.elbow, CFrame.identity
+			rightHipPose, leftHipPose = sideDive.hip, sideDive.hip
+			rightKneePose, leftKneePose = sideDive.knee, sideDive.knee
 		end
 	elseif classId == "knight" and mode == "Block" then
 		left = CFrame.Angles(0, math.rad(-75), 0) * CFrame.Angles(math.rad(110), 0, 0)
@@ -537,13 +535,13 @@ function Visual.renderArms(character, dt, now)
 		local speed = classId == "elf" and (phase == "Active" and 30 or phase == "Recovery" and 9 or 12) or 24
 		-- The authored curve already supplies acceleration/deceleration. A second
 		-- frame-rate-dependent filter would delay the visible strike after the hit.
-		pose = motion and target or pose:Lerp(target or CFrame.new(), math.clamp(elapsed * speed, 0, 1))
+		pose = (motion or rolling) and target or pose:Lerp(target or CFrame.new(), math.clamp(elapsed * speed, 0, 1))
 		if not target and returning >= 0.25 then pose = CFrame.new(); armPoses[joint] = nil
 		else armPoses[joint] = { pose = pose, returning = returning } end
 		joint.Transform = pose
 	end
 	local leftShoulder = armJoint(character, "Left", "Shoulder")
-	if left and leftShoulder and (motion or (mode == "Block" and classId ~= "knight")) then
+	if left and leftShoulder and (motion or rolling or (mode == "Block" and classId ~= "knight")) then
 		local basis = leftShoulder.C0.Rotation
 		left = basis:Inverse() * left * basis
 	end
@@ -562,7 +560,7 @@ function Visual.renderArms(character, dt, now)
 		if rolling then
 			-- Roll the visual rig, leaving the authoritative physics root upright.
 			local basis = rootJoint.C0.Rotation
-			local pose = basis:Inverse() * CFrame.new(0, rollLift, 0) * CFrame.Angles(0, 0, rollAngle) * basis
+			local pose = basis:Inverse() * sideDive.root * basis
 			rootJoint.Transform = pose
 			armPoses[rootJoint] = { pose = pose, returning = 0 }
 			groundSlamJoints[rootJoint] = true
@@ -606,17 +604,17 @@ function Visual.renderArms(character, dt, now)
 	applyLeg("Left", leftHipPose, leftKneePose)
 	local rightShoulder, elbow = armJoint(character, "Right", "Shoulder"), armJoint(character, "Right", "Elbow")
 	apply(armJoint(character, "Right", "Wrist"), motion and motion.wrist)
-	apply(armJoint(character, "Left", "Elbow"), motion and motion.leftElbow)
+	apply(armJoint(character, "Left", "Elbow"), sideDive and sideDive.elbow or motion and motion.leftElbow)
 	local neck = character:FindFirstChild("Neck", true)
 	if neck and (neck:IsA("Motor6D") or neck:IsA("AnimationConstraint")) then
-		local neckPose = motion and motion.neck
+		local neckPose = sideDive and sideDive.neck or motion and motion.neck
 		if neckPose then
 			local basis = neck.C0.Rotation
 			neckPose = basis:Inverse() * neckPose * basis
 		end
 		apply(neck, neckPose)
 	end
-	if right and rightShoulder and (motion or classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane") or (mode == "Block" and classId ~= "knight")) then
+	if right and rightShoulder and (motion or rolling or classId == "knight" or classId == "dwarf" or (classId == "mage" and kind ~= "Arcane") or (mode == "Block" and classId ~= "knight")) then
 		-- Classic R6 shoulders use a different joint basis from R15. Express
 		-- these strokes in torso axes so both rigs travel the same way.
 		local basis = rightShoulder.C0.Rotation

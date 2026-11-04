@@ -8,13 +8,14 @@ local Content=require(Shared.CampaignContent)
 local Access=require(Shared.CampaignAccess)
 local State=require(script.Parent.DeepwoodMapState)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
+local Scope=require(Shared.CampaignMapScope)
 local Map={}
 function Map.start(button)
  local player=Players.LocalPlayer
  local gui=Instance.new('ScreenGui');gui.Name='DeepwoodWorldMap';gui.ResetOnSpawn=false;gui.DisplayOrder=43;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=player:WaitForChild('PlayerGui')
  local panel=Theme.frame(gui,'WorldMap',UDim2.fromScale(.5,.5),UDim2.fromOffset(1100,800));panel.AnchorPoint=Vector2.new(.5,.5);panel.BackgroundTransparency=.05;panel.Visible=false
  local title=Theme.label(panel,'Title',Text.Map.Title,UDim2.fromOffset(22,12),UDim2.new(1,-88,0,30),21,Theme.color.gold)
- Theme.label(panel,'Subtitle',Text.Map.Subtitle,UDim2.fromOffset(24,43),UDim2.new(1,-90,0,18),10,Theme.color.muted)
+ local subtitle=Theme.label(panel,'Subtitle',Text.Map.Subtitle,UDim2.fromOffset(24,43),UDim2.new(1,-90,0,18),10,Theme.color.muted)
  local progress=Theme.label(panel,'Progress','',UDim2.fromOffset(24,66),UDim2.new(1,-48,0,20),12,Theme.color.text)
  local close=Theme.button(panel,'Close','X',UDim2.new(1,-60,0,12),UDim2.fromOffset(44,44))
  local area=Instance.new('ScrollingFrame');area.Name='Atlas';area.Position=UDim2.fromOffset(18,96);area.Size=UDim2.new(1,-36,1,-232)
@@ -31,11 +32,16 @@ function Map.start(button)
   elseif journal and journal.explored and journal.explored[id] then message=Text.Map.Ready end
   detail.Text=string.format(Text.Map.Detail,z.name,message)
  end
- local atlas=Canvas.create(scene,nil,false,describe)
- local journey=Instance.new('ScrollingFrame');journey.AutomaticCanvasSize=Enum.AutomaticSize.Y;journey.CanvasSize=UDim2.new();journey.ScrollBarThickness=4;journey.Name='Journey';journey.BackgroundColor3=Color3.fromRGB(12,26,32);journey.BackgroundTransparency=.15;journey.BorderSizePixel=0;journey.Position=UDim2.new(1,-214,0,96);journey.Size=UDim2.new(0,196,1,-232);journey.Parent=panel
+ local epic=1
+ local atlas=Canvas.create(scene,Scope.ids(epic),false,describe)
+ local controller
+ local epicTabs=Instance.new('ScrollingFrame');epicTabs.Name='EpicCategories';epicTabs.BackgroundTransparency=1;epicTabs.BorderSizePixel=0;epicTabs.ScrollBarThickness=3;epicTabs.ScrollingDirection=Enum.ScrollingDirection.X;epicTabs.CanvasSize=UDim2.fromOffset(#Content.epics*174,0);epicTabs.Parent=panel
+ local epicButtons={}
+ local journey=Instance.new('ScrollingFrame');journey.AutomaticCanvasSize=Enum.AutomaticSize.None;journey.CanvasSize=UDim2.fromOffset(0,532);journey.ScrollBarThickness=4;journey.Name='Journey';journey.BackgroundColor3=Color3.fromRGB(12,26,32);journey.BackgroundTransparency=.15;journey.BorderSizePixel=0;journey.Position=UDim2.new(1,-214,0,96);journey.Size=UDim2.new(0,196,1,-232);journey.Parent=panel
  Theme.label(journey,'Title',Text.Map.Journey,UDim2.fromOffset(14,12),UDim2.new(1,-28,0,20),13,Theme.color.gold)
  Theme.label(journey,'Hint',Text.Map.JourneyHint,UDim2.fromOffset(14,36),UDim2.new(1,-28,0,30),10,Theme.color.muted)
  local chapters={}
+ local journeyHint=journey.Hint
  for i=1,Content.mainCount do
   local id=Content.mainChapters[i].id;local item=Instance.new('TextButton');item.Name='Story'..i;item.Text='';item.AutoLocalize=false;item.BackgroundColor3=Color3.fromRGB(23,45,48);item.BackgroundTransparency=.2;item.BorderSizePixel=0
   item.Position=UDim2.fromOffset(10,70+(i-1)*66);item.Size=UDim2.new(1,-20,0,60);item.Parent=journey
@@ -43,7 +49,7 @@ function Map.start(button)
   local status=Theme.label(item,'Status','',UDim2.new(0,10,.65,0),UDim2.new(1,-20,.35,-2),9,Theme.color.muted)
   item.Activated:Connect(function() atlas.select(id) end);chapters[i]={button=item,name=name,status=status}
  end
- local compass=Theme.label(scene,'Compass',Text.Map.North..'\n↑',UDim2.fromScale(.93,.06),UDim2.fromOffset(36,40),16,Theme.color.gold);compass.AnchorPoint=Vector2.new(.5,.5);compass.TextXAlignment=Enum.TextXAlignment.Center;compass.ZIndex=8
+ local compass=Theme.label(panel,'Compass',Text.Map.North..'\n↑',UDim2.new(1,-270,0,150),UDim2.fromOffset(36,40),16,Theme.color.gold);compass.AnchorPoint=Vector2.new(.5,.5);compass.TextXAlignment=Enum.TextXAlignment.Center;compass.ZIndex=8
  local legend=Theme.label(panel,'Legend',Text.Map.Legend,UDim2.new(0,24,1,-94),UDim2.new(1,-48,0,20),11)
  local hint=Theme.label(panel,'MapHint',Text.Map.Hint,UDim2.new(0,24,1,-73),UDim2.new(1,-48,0,18),10,Theme.color.muted)
  local navigation=Theme.button(panel,'NavigationTrail','',UDim2.new(0,18,1,-52),UDim2.new(1,-266,0,40))
@@ -62,8 +68,12 @@ function Map.start(button)
   detail.TextSize=small and 10 or 12;legend.TextSize=small and 9 or 11;hint.Visible=not short
   navigation.Caption.TextSize=small and 10 or 13
   journey.Visible=viewport.X>=1000 and not short
-  area.Position=UDim2.fromOffset(18,short and 58 or 96)
-  area.Size=UDim2.new(1,journey.Visible and -250 or -36,1,short and -142 or small and -280 or -232)
+  epicTabs.Position=UDim2.fromOffset(18,short and 60 or 96);epicTabs.Size=UDim2.new(1,-36,0,46)
+  local mapTop=short and 112 or 148
+  area.Position=UDim2.fromOffset(18,mapTop)
+  journey.Position=UDim2.new(1,-214,0,mapTop);journey.Size=UDim2.new(0,196,1,-284)
+  compass.Position=UDim2.new(1,journey.Visible and -285 or -72,0,mapTop+22)
+  area.Size=UDim2.new(1,journey.Visible and -250 or -36,1,short and -196 or small and -332 or -284)
   detail.Position=UDim2.new(0,24,1,short and -82 or small and -178 or -130);detail.Size=UDim2.new(1,-48,0,short and 26 or 34)
   legend.Visible=not short
   legend.Position=UDim2.new(0,24,1,small and -144 or -94);hint.Position=UDim2.new(0,24,1,small and -126 or -73)
@@ -82,12 +92,14 @@ function Map.start(button)
   scene:SetAttribute('MapAspect',atlas.aspect);scene:SetAttribute('Zoom',zoom)
   -- Text stays readable while zooming. Fit is a geographic overview on phones.
   local font=w<650 and 10 or 12;local labelWidth=w<650 and 118 or 156
+  local showNames=not short and not small
   for id,row in pairs(atlas.rows) do
-   row.name.Visible=w>=550;row.status.Visible=w>=550;row.name.TextSize=font;row.name.Size=UDim2.fromOffset(labelWidth,32)
-   row.badge.Text=w<550 and (id:match('DW%-(%d+)') or '◇') or (id:match('DW%-(%d+)') and string.format(Text.Map.Main,tonumber(id:match('DW%-(%d+)'))) or Text.Map.Side)
+   row.name.Visible=showNames;row.status.Visible=showNames;row.name.TextSize=font;row.name.Size=UDim2.fromOffset(labelWidth,32)
+   local number=Content.byId[id] and Content.byId[id].number
+   row.badge.Text=w<550 and string.format('%02d',(number-1)%7+1) or string.format(Text.Map.Main,(number-1)%7+1)
    if row.hit then
-    row.hit.Size=w<550 and UDim2.fromOffset(28,28) or UDim2.fromOffset(labelWidth+8,48)
-    row.hit.Position=w<550 and UDim2.fromScale(row.center.X,row.center.Y) or row.name.Position
+    row.hit.Size=not showNames and UDim2.fromOffset(28,28) or UDim2.fromOffset(labelWidth+8,48)
+    row.hit.Position=not showNames and UDim2.fromScale(row.center.X,row.center.Y) or row.name.Position
    end
   end
  end
@@ -101,9 +113,47 @@ function Map.start(button)
  minus.Activated:Connect(function() setZoom(zoom-.5) end);plus.Activated:Connect(function() setZoom(zoom+.5) end)
  local function fitMap() overview=true;zoom=1;layout();area.CanvasPosition=Vector2.zero end
  fit.Activated:Connect(fitMap)
+ local function refreshEpic()
+  local journal=State.current and State.current.journal or {main=0}
+  local discovered,count=0,0
+  for _,row in pairs(atlas.rows) do discovered+=row.name:GetAttribute('ExploredPercent') or 0;count+=1 end
+  local first,last=Scope.range(epic)
+  progress.Text=string.format(Text.Map.EpicProgress,math.clamp(journal.main-first+1,0,last-first+1),last-first+1,math.floor(discovered/math.max(1,count)))
+  subtitle.Text=string.format(Text.Map.EpicSubtitle,epic,Content.epics[epic].region:upper())
+  journeyHint.Text=Text.Map.EpicJourneyHint
+  for i,item in ipairs(chapters) do
+   item.button.Visible=i>=first and i<=last
+   if item.button.Visible then item.button.Position=UDim2.fromOffset(10,70+(i-first)*66);item.name.Text=string.format('%02d  %s',i-first+1,Content.zones[Content.mainChapters[i].id].name) end
+   local done=journal.main>=i;local active=journal.main==i-1
+   item.status.Text=done and Text.Map.Complete or active and Text.Map.Current or Text.Map.Locked
+   item.status.TextColor3=done and Theme.color.green or active and Theme.color.gold or Theme.color.muted
+   item.button.BackgroundColor3=active and Color3.fromRGB(62,65,40) or Color3.fromRGB(23,45,48)
+  end
+  for i,b in ipairs(epicButtons) do b.Caption.Text=(i==epic and '> ' or '')..Content.epics[i].region:upper();b:SetAttribute('Selected',i==epic) end
+ end
+ local function selectEpic(index)
+  if not Content.epics[index] then return end
+  epic=index;selected=nil;scene:ClearAllChildren()
+  atlas=Canvas.create(scene,Scope.ids(epic),false,describe)
+  if controller then controller.atlas=atlas end
+  journey.CanvasPosition=Vector2.zero
+  atlas.update(State.current,nil,nil);refreshEpic();fitMap()
+  local first,last=Scope.range(epic);local main=State.current and State.current.journal.main or 0;atlas.select(Content.mainChapters[math.clamp(main+1,first,last)].id)
+  epicTabs.CanvasPosition=Vector2.new(math.max(0,(epic-1)*174-epicTabs.AbsoluteSize.X/2+84),0)
+ end
+ for i,spec in ipairs(Content.epics) do
+  local b=Theme.button(epicTabs,'Epic'..i,spec.region:upper(),UDim2.fromOffset((i-1)*174,0),UDim2.fromOffset(168,42));b.Caption.TextSize=10;epicButtons[i]=b
+  b.Activated:Connect(function()selectEpic(i)end)
+ end
+ local function playerEpic()
+  local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
+  if root then return Scope.epicFor(Access.region(root.Position.X,root.Position.Z)) end
+  return math.clamp(math.floor((State.current and State.current.journal.main or 0)/7)+1,1,#Content.epics)
+ end
  local function centerPlayer()
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart');if not root then return end
-  if overview then overview=false;layout() end
+  local currentEpic=playerEpic();if epic~=currentEpic then selectEpic(currentEpic) end
+  layout()
   local p=atlas.project(root.Position.X,root.Position.Z)
   area.CanvasPosition=Vector2.new(math.max(0,p.X*scene.Size.X.Offset-area.AbsoluteSize.X/2),math.max(0,p.Y*scene.Size.Y.Offset-area.AbsoluteSize.Y/2))
  end
@@ -117,7 +167,7 @@ function Map.start(button)
  local function open(value)
   value=value and State.current and not State.current.training and player:GetAttribute('K0SessionPhase')=='Tutorial'
   panel.Visible=value==true;player:SetAttribute('TLTMapOpen',panel.Visible)
-  if panel.Visible then layout();task.defer(centerPlayer) end
+  if panel.Visible then selectEpic(playerEpic());layout() end
  end
  if button then button.Activated:Connect(function() open(not panel.Visible) end) end
  close.Activated:Connect(function() open(false) end)
@@ -134,18 +184,11 @@ function Map.start(button)
   local c=player.Character;local root=c and c:FindFirstChild('HumanoidRootPart');local human=c and c:FindFirstChildOfClass('Humanoid')
   atlas.update(State.current,root and human and human.Health>0 and root or nil,State.target)
   if lastRevision~=State.revision then
-   lastRevision=State.revision;local discovered=0
-   for _,row in pairs(atlas.rows) do discovered+=row.name:GetAttribute('ExploredPercent') or 0 end
-   progress.Text=string.format(Text.Map.Progress,math.clamp(State.current.journal.main,0,Content.mainCount),math.floor(discovered/30))
-   for i,item in ipairs(chapters) do
-    local done=State.current.journal.main>=i;local active=State.current.journal.main==i-1
-    item.status.Text=done and Text.Map.Complete or active and Text.Map.Current or Text.Map.Locked
-    item.status.TextColor3=done and Theme.color.green or active and Theme.color.gold or Theme.color.muted
-    item.button.BackgroundColor3=active and Color3.fromRGB(62,65,40) or Color3.fromRGB(23,45,48)
-   end
+   lastRevision=State.revision;refreshEpic()
    if selected then describe(selected) end
   end
  end)
- return {open=open,atlas=atlas,panel=panel,setZoom=setZoom,fit=fitMap,center=centerPlayer}
+ controller={open=open,atlas=atlas,panel=panel,setZoom=setZoom,fit=fitMap,center=centerPlayer,selectEpic=selectEpic}
+ return controller
 end
 return Map

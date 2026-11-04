@@ -1,0 +1,10 @@
+{
+  "src/client/DeepwoodMap.luau": "f354db0c8cc59a7a08e4d74a4d28c36f50fd7176551c60d9be9801def54b8996",
+  "src/client/K0SideDiveMotion.luau": "6e97c5ade19e7c58480f5b61ef2fb27f92a20cb57e6b923553fcc6fe2f1f1f57",
+  "src/shared/CampaignMapScope.luau": "32003f25657c760ef28edb881921c8cd4849c6ca30a60c10a8102168eb97c76e",
+  "src/shared/K0Text.luau": "6629aef00bf41e9eb8784056893d339b0e74f9f9e125427e0b90593500c0e225",
+  "tests/deepwood-atlas-native.luau": "f888e1e52f9aedb9d7161463654233609ead15282b247c2c4b4a62817f3a889a",
+  "tests/side-breakfall-native.luau": "0867f2273809d175716e94f8590716611392fa8e6c06950db5ba3289ae59854e",
+  "tests/dodge-double-tap-native.luau": "4e5d45127804aeffc36e97d36e05f9dee5f6115ed3ef9bf864f81e83b56ea4b9",
+  "src/client/K0SwordVisual.luau (commit target, unrelated pending attack changes excluded)": "7586e51907c8d3209d8b47d97d5354fcd332834a7c7074e65b25f1d146789020"
+}

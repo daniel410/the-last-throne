@@ -10,7 +10,7 @@ copy.Parent=combat.Parent
 local api=require(copy)
 local visual=require(game.StarterPlayer.StarterPlayerScripts.Client.K0SwordVisual)
 local config=require(game.ReplicatedStorage.Shared.K0Config)
-local rules=require(game.ReplicatedStorage.Shared.DodgeRules)
+local motion=require(game.StarterPlayer.StarterPlayerScripts.Client.K0SideDiveMotion)
 local checks=0
 local function check(value,label)checks+=1;assert(value,label)end
 local function near(a,b,label)check(math.abs(a-b)<.002,label..' '..tostring(a)..' ~= '..tostring(b))end
@@ -57,17 +57,18 @@ local ok,err=xpcall(function()
      for frame=0,math.ceil(config.Dodge.duration*hz)do
       local age=math.min(config.Dodge.duration,frame/hz)
       visual.renderArms(character,1/hz,started+age)
-      local angle,drop=rules.rollPose(age,config.Dodge.sideRoll.moveDuration,side,config.Dodge.sideRoll.jumpHeight)
+      local pose=motion.sample(age,config.Dodge.sideRoll.moveDuration,side)
       local basis=joint.C0.Rotation
-      local expected=basis:Inverse()*CFrame.new(0,drop,0)*CFrame.Angles(0,0,angle)*basis
+      local expected=basis:Inverse()*pose.root*basis
       frameNear(joint.Transform,expected,'root animation '..rigType.Name..' '..classId)
       frameNear(root.CFrame,physicsBefore,'physics root stays upright')
      end
     end
     visual.renderArms(character,1/60,started+config.Dodge.sideRoll.moveDuration/2)
     local bodyPose=joint.C0.Rotation*joint.Transform*joint.C0.Rotation:Inverse()
-    near(bodyPose.Position.Y,2.5,'jump apex independently measured')
-    local _,halfTurn=bodyPose:ToAxisAngle();near(math.abs(halfTurn),math.pi,'airborne half roll')
+    near(bodyPose.Position.Y,-1.15,'grounded breakfall independently measured')
+    near(bodyPose.UpVector.Y,0,'body stays horizontal instead of feet-over-head')
+    near(side*bodyPose.UpVector.X,1,'head leads toward the accepted dodge side')
     character:SetAttribute('K0State','Idle')
     for _=1,45 do visual.renderArms(character,1/60,started+1)end
     frameNear(joint.Transform,CFrame.identity,'roll restores neutral')
