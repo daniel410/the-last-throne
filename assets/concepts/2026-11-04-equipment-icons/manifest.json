@@ -30,7 +30,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Wayfarer Hood. travel leather and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/common_head.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Wayfarer Hood",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_body",
@@ -44,7 +54,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Wayfarer Coat. travel leather and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/common_body.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Wayfarer Coat",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_hands",
@@ -58,7 +78,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Wayfarer Gloves. travel leather and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/common_hands.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Wayfarer Gloves",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_feet",
@@ -72,7 +102,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Wayfarer Boots. travel leather and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/common_feet.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Wayfarer Boots",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_vigor_ring",
@@ -86,7 +126,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Vigor Ring. copper amber and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/common_vigor_ring.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Vigor Ring",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_ward_pendant",
@@ -100,7 +150,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Ward Pendant. copper amber and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/common_ward_pendant.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Ward Pendant",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_valor_ring",
@@ -114,7 +174,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Valor Ring. copper amber and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/common_valor_ring.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Valor Ring",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_refuge_charm",
@@ -128,7 +198,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Refuge Charm. copper amber and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/common_refuge_charm.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Refuge Charm",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "knight_weapon_family",
@@ -142,7 +222,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Oathguard Sword. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/knight_weapon_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Oathguard Sword",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "knight_head_family",
@@ -156,7 +246,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Oathguard Headguard. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/knight_head_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Oathguard Headguard",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "knight_body_family",
@@ -170,7 +270,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Oathguard Vestments. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/knight_body_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Oathguard Vestments",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "knight_hands_family",
@@ -184,7 +294,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Oathguard Grips. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/knight_hands_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Oathguard Grips",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "knight_feet_family",
@@ -198,7 +318,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Oathguard Treads. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/knight_feet_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Oathguard Treads",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "knight_ring_family",
@@ -212,7 +342,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Oathguard Signet. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/knight_ring_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Oathguard Signet",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "knight_pendant_family",
@@ -226,7 +366,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Oathguard Pendant. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/knight_pendant_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Oathguard Pendant",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "elf_weapon_family",
@@ -240,7 +390,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Briarwatch Bow. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/elf_weapon_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Briarwatch Bow",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "elf_head_family",
@@ -254,7 +414,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Briarwatch Headguard. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/elf_head_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Briarwatch Headguard",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "elf_body_family",
@@ -268,7 +438,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Briarwatch Vestments. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/elf_body_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Briarwatch Vestments",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "elf_hands_family",
@@ -282,7 +462,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Briarwatch Grips. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/elf_hands_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Briarwatch Grips",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "elf_feet_family",
@@ -296,7 +486,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Briarwatch Treads. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/elf_feet_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Briarwatch Treads",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "elf_ring_family",
@@ -310,7 +510,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Briarwatch Signet. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/elf_ring_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Briarwatch Signet",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "elf_pendant_family",
@@ -324,7 +534,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Briarwatch Pendant. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/elf_pendant_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Briarwatch Pendant",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "dwarf_weapon_family",
@@ -338,7 +558,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Stonehearth Axe. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/dwarf_weapon_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Stonehearth Axe",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "dwarf_head_family",
@@ -352,7 +582,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Stonehearth Headguard. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/dwarf_head_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Stonehearth Headguard",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "dwarf_body_family",
@@ -366,7 +606,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Stonehearth Vestments. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/dwarf_body_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Stonehearth Vestments",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "dwarf_hands_family",
@@ -380,7 +630,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Stonehearth Grips. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/dwarf_hands_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Stonehearth Grips",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "dwarf_feet_family",
@@ -394,7 +654,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Stonehearth Treads. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/dwarf_feet_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Stonehearth Treads",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "dwarf_ring_family",
@@ -408,7 +678,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Stonehearth Signet. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/dwarf_ring_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Stonehearth Signet",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "dwarf_pendant_family",
@@ -422,7 +702,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Stonehearth Pendant. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/dwarf_pendant_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Stonehearth Pendant",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "mage_weapon_family",
@@ -436,7 +726,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Aetherweave Staff. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/mage_weapon_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Aetherweave Staff",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "mage_head_family",
@@ -450,7 +750,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Aetherweave Headguard. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/mage_head_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Aetherweave Headguard",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "mage_body_family",
@@ -464,7 +774,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Aetherweave Vestments. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/mage_body_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Aetherweave Vestments",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "mage_hands_family",
@@ -478,7 +798,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Aetherweave Grips. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/mage_hands_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Aetherweave Grips",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "mage_feet_family",
@@ -492,7 +822,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Aetherweave Treads. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/mage_feet_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Aetherweave Treads",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "id": "mage_ring_family",
@@ -506,7 +846,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Aetherweave Signet. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/mage_ring_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Aetherweave Signet",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "mage_pendant_family",
@@ -520,7 +870,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Aetherweave Pendant. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/mage_pendant_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Aetherweave Pendant",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "knight_shield_family",
@@ -534,7 +894,17 @@
       "status": "silhouette-draft-not-approved",
       "generationPrompt": "Create a single inventory equipment icon: Oathguard Shield. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.",
       "generatedIcon": "generated-v1/knight_shield_family.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Oathguard Shield",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_mana_ring",
@@ -552,7 +922,17 @@
       "manaRule": "bonus-applies-only-if-hero-already-has-mana-pool",
       "generationPrompt": "Create a single inventory equipment icon: Mana Ring. Silver setting and blue crystal, readable chunky fantasy silhouette matching approved Throne Defense reference supplied at generation time. Transparent background, centered, no text, no numbers, no rarity frame, no UI, 1024 square. Distinguish maximum mana reservoir from a consumable mana potion. Reference audit required before generation.",
       "generatedIcon": "generated-v1/common_mana_ring.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Mana Ring",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_arcane_pendant",
@@ -570,7 +950,17 @@
       "manaRule": "bonus-applies-only-if-hero-already-has-mana-pool",
       "generationPrompt": "Create a single inventory equipment icon: Arcane Reservoir Pendant. Silver setting and blue crystal, readable chunky fantasy silhouette matching approved Throne Defense reference supplied at generation time. Transparent background, centered, no text, no numbers, no rarity frame, no UI, 1024 square. Distinguish maximum mana reservoir from a consumable mana potion. Reference audit required before generation.",
       "generatedIcon": "generated-v1/common_arcane_pendant.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Arcane Reservoir Pendant",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "id": "common_wellspring_charm",
@@ -589,7 +979,17 @@
       "manaRule": "bonus-applies-only-if-hero-already-has-mana-pool",
       "generationPrompt": "Create a single inventory equipment icon: Wellspring Charm. Silver setting and blue crystal, readable chunky fantasy silhouette matching approved Throne Defense reference supplied at generation time. Transparent background, centered, no text, no numbers, no rarity frame, no UI, 1024 square. Distinguish maximum mana reservoir from a consumable mana potion. Reference audit required before generation.",
       "generatedIcon": "generated-v1/common_wellspring_charm.png",
-      "generatedStatus": "generated-candidate-pending-art-acceptance"
+      "generatedStatus": "generated-candidate-pending-art-acceptance",
+      "displayMetadata": {
+        "name": "Wellspring Charm",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     }
   ],
   "counts": {

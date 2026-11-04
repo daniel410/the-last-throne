@@ -17,7 +17,17 @@
       "prompt": "Wayfarer leather hood, TD knight style reference; initial tool prompt in conversation",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Wayfarer Hood",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "common_feet",
@@ -32,7 +42,17 @@
       "prompt": "Create a single inventory equipment icon: Wayfarer Boots. travel leather and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role balanced survival. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Wayfarer Boots",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "common_body",
@@ -47,7 +67,17 @@
       "prompt": "Create a single inventory equipment icon: Wayfarer Coat. travel leather and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role balanced survival. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Wayfarer Coat",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "common_hands",
@@ -62,7 +92,17 @@
       "prompt": "Create a single inventory equipment icon: Wayfarer Gloves. travel leather and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role balanced survival. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Wayfarer Gloves",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "common_vigor_ring",
@@ -79,7 +119,17 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [
         "similar-common-ring-pair-review"
-      ]
+      ],
+      "displayMetadata": {
+        "name": "Vigor Ring",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "knight_weapon_family",
@@ -98,7 +148,17 @@
         "2026-11-04: user requested straight blade; straightened blade edges and blade/grip axis; reviewed generated output visually"
       ],
       "previousSha256": "78110161a17bf12b41b011ecf77860ea48ef4b6ef3ef2815b78ecd1e16364f57",
-      "revisionPrompt": "Edit the attached sword inventory icon to FIX THE BENT SWORD. Preserve the silver steel, blue enamel central panel, gold lion emblem, gold crossguard with blue gems, blue leather handle, warm 3D lighting and transparent background. The entire sword must have ONE PERFECTLY STRAIGHT LONGITUDINAL AXIS from pommel center through grip center, crossguard center and blade tip. The grip and blade must be precisely collinear, not kinked at the guard. Blade must be a straight double-edged knight longsword, with straight symmetrical cutting edges smoothly tapering toward one centered point. Remove the wavy/scalloped blade outline and asymmetric bulge. Show it diagonally lower left to upper right, entire sword within image with adequate margin. Keep heraldic ornament inside straight blade boundaries. Do not bend, curve, bow or tilt blade relative to grip. Exactly one sword, no labels, no frame, no background. This is a geometry correction, preserve identity and materials."
+      "revisionPrompt": "Edit the attached sword inventory icon to FIX THE BENT SWORD. Preserve the silver steel, blue enamel central panel, gold lion emblem, gold crossguard with blue gems, blue leather handle, warm 3D lighting and transparent background. The entire sword must have ONE PERFECTLY STRAIGHT LONGITUDINAL AXIS from pommel center through grip center, crossguard center and blade tip. The grip and blade must be precisely collinear, not kinked at the guard. Blade must be a straight double-edged knight longsword, with straight symmetrical cutting edges smoothly tapering toward one centered point. Remove the wavy/scalloped blade outline and asymmetric bulge. Show it diagonally lower left to upper right, entire sword within image with adequate margin. Keep heraldic ornament inside straight blade boundaries. Do not bend, curve, bow or tilt blade relative to grip. Exactly one sword, no labels, no frame, no background. This is a geometry correction, preserve identity and materials.",
+      "displayMetadata": {
+        "name": "Oathguard Sword",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "common_ward_pendant",
@@ -113,7 +173,17 @@
       "prompt": "Create a single inventory equipment icon: Ward Pendant. copper amber and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role armor. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Ward Pendant",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "knight_head_family",
@@ -128,7 +198,17 @@
       "prompt": "Create a single inventory equipment icon: Oathguard Headguard. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role block and frontline protection. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Oathguard Headguard",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "common_valor_ring",
@@ -145,7 +225,17 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [
         "similar-common-ring-pair-review"
-      ]
+      ],
+      "displayMetadata": {
+        "name": "Valor Ring",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "knight_body_family",
@@ -160,7 +250,17 @@
       "prompt": "Create a single inventory equipment icon: Oathguard Vestments. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role block and frontline protection. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Oathguard Vestments",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "common_refuge_charm",
@@ -175,7 +275,17 @@
       "prompt": "Create a single inventory equipment icon: Refuge Charm. copper amber and steel. Hero compatibility: all four heroes. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role health and armor. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Refuge Charm",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "knight_hands_family",
@@ -190,7 +300,17 @@
       "prompt": "Create a single inventory equipment icon: Oathguard Grips. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role block and frontline protection. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Oathguard Grips",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "knight_ring_family",
@@ -205,7 +325,17 @@
       "prompt": "Create a single inventory equipment icon: Oathguard Signet. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role block and frontline protection. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Oathguard Signet",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "knight_pendant_family",
@@ -220,7 +350,17 @@
       "prompt": "Create a single inventory equipment icon: Oathguard Pendant. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role block and frontline protection. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Oathguard Pendant",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "knight_feet_family",
@@ -235,7 +375,17 @@
       "prompt": "Create a single inventory equipment icon: Oathguard Treads. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role block and frontline protection. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Oathguard Treads",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Oathguard Bastion",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "elf_weapon_family",
@@ -250,7 +400,17 @@
       "prompt": "Create a single inventory equipment icon: Briarwatch Bow. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role ranged precision and positioning. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Briarwatch Bow",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "elf_head_family",
@@ -265,7 +425,17 @@
       "prompt": "Create a single inventory equipment icon: Briarwatch Headguard. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role ranged precision and positioning. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Briarwatch Headguard",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "elf_ring_family",
@@ -280,7 +450,17 @@
       "prompt": "Create a single inventory equipment icon: Briarwatch Signet. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role ranged precision and positioning. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Briarwatch Signet",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "elf_body_family",
@@ -295,7 +475,17 @@
       "prompt": "Create a single inventory equipment icon: Briarwatch Vestments. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role ranged precision and positioning. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Briarwatch Vestments",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "elf_pendant_family",
@@ -310,7 +500,17 @@
       "prompt": "Create a single inventory equipment icon: Briarwatch Pendant. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role ranged precision and positioning. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Briarwatch Pendant",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "elf_hands_family",
@@ -325,7 +525,17 @@
       "prompt": "Create a single inventory equipment icon: Briarwatch Grips. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role ranged precision and positioning. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Briarwatch Grips",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "dwarf_weapon_family",
@@ -340,7 +550,17 @@
       "prompt": "Create a single inventory equipment icon: Stonehearth Axe. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role impact and close-range resilience. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Stonehearth Axe",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "elf_feet_family",
@@ -355,7 +575,17 @@
       "prompt": "Create a single inventory equipment icon: Briarwatch Treads. leaf green and silver feathers. Hero compatibility: elf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role ranged precision and positioning. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Briarwatch Treads",
+        "classLabel": "Elf Archer",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Briarwatch Vigil",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "dwarf_hands_family",
@@ -370,7 +600,17 @@
       "prompt": "Create a single inventory equipment icon: Stonehearth Grips. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role impact and close-range resilience. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Stonehearth Grips",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "dwarf_head_family",
@@ -385,7 +625,17 @@
       "prompt": "Create a single inventory equipment icon: Stonehearth Headguard. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role impact and close-range resilience. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Stonehearth Headguard",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "dwarf_feet_family",
@@ -400,7 +650,17 @@
       "prompt": "Create a single inventory equipment icon: Stonehearth Treads. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role impact and close-range resilience. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Stonehearth Treads",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "dwarf_body_family",
@@ -415,7 +675,17 @@
       "prompt": "Create a single inventory equipment icon: Stonehearth Vestments. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role impact and close-range resilience. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Stonehearth Vestments",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Stonehearth Resolve",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "dwarf_ring_family",
@@ -430,7 +700,17 @@
       "prompt": "Create a single inventory equipment icon: Stonehearth Signet. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role impact and close-range resilience. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Stonehearth Signet",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "dwarf_pendant_family",
@@ -445,7 +725,17 @@
       "prompt": "Create a single inventory equipment icon: Stonehearth Pendant. bronze stone and forge marks. Hero compatibility: dwarf. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role impact and close-range resilience. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Stonehearth Pendant",
+        "classLabel": "Dwarf Axe Thrower",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "mage_body_family",
@@ -460,7 +750,17 @@
       "prompt": "Create a single inventory equipment icon: Aetherweave Vestments. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role spell power and controlled mana support. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Aetherweave Vestments",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "mage_weapon_family",
@@ -475,7 +775,17 @@
       "prompt": "Create a single inventory equipment icon: Aetherweave Staff. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role spell power and controlled mana support. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Aetherweave Staff",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "mage_hands_family",
@@ -490,7 +800,17 @@
       "prompt": "Create a single inventory equipment icon: Aetherweave Grips. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role spell power and controlled mana support. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Aetherweave Grips",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "mage_head_family",
@@ -505,7 +825,17 @@
       "prompt": "Create exactly ONE isolated inventory icon of Aetherweave Headguard for a MAGE: a soft violet CLOTH wizard hood with a gently pointed folded top, woven pale silver rune embroidery and ONE purple crystal clasp. EMPTY HOOD, no face/head/person. The construction must be visibly textile, NO helmet, NO steel dome, NO cheek plates, NO knight armor. Match the first attached hood's chunky polished 3D fantasy material rendering and the second attached Throne Defense reference's visual quality. Warm upper-left keylight, simple readable silhouette. Transparent background with generous 12% clear margin, full item within square canvas. No words, no labels, no rarity frame, no floor.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Aetherweave Headguard",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "mage_feet_family",
@@ -520,7 +850,17 @@
       "prompt": "Create a single inventory equipment icon: Aetherweave Treads. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role spell power and controlled mana support. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Aetherweave Treads",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": "Aetherweave Constellation",
+        "setRole": "5-piece set candidate"
+      }
     },
     {
       "familyId": "mage_ring_family",
@@ -535,7 +875,17 @@
       "prompt": "Create a single inventory equipment icon: Aetherweave Signet. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role spell power and controlled mana support. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Aetherweave Signet",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "common_mana_ring",
@@ -550,7 +900,17 @@
       "prompt": "Create a single inventory equipment icon: Mana Ring. Silver setting and blue crystal, readable chunky fantasy silhouette matching approved Throne Defense reference supplied at generation time. Transparent background, centered, no text, no numbers, no rarity frame, no UI, 1024 square. Distinguish maximum mana reservoir from a consumable mana potion. Reference audit required before generation.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role maximum mana. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Mana Ring",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "mage_pendant_family",
@@ -565,7 +925,17 @@
       "prompt": "Create a single inventory equipment icon: Aetherweave Pendant. violet crystal and woven runes. Hero compatibility: mage. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role spell power and controlled mana support. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Aetherweave Pendant",
+        "classLabel": "Mage",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "common_arcane_pendant",
@@ -580,7 +950,17 @@
       "prompt": "Create a single inventory equipment icon: Arcane Reservoir Pendant. Silver setting and blue crystal, readable chunky fantasy silhouette matching approved Throne Defense reference supplied at generation time. Transparent background, centered, no text, no numbers, no rarity frame, no UI, 1024 square. Distinguish maximum mana reservoir from a consumable mana potion. Reference audit required before generation.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role maximum mana. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Arcane Reservoir Pendant",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "knight_shield_family",
@@ -595,7 +975,17 @@
       "prompt": "Create a single inventory equipment icon: Oathguard Shield. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role block protection. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Oathguard Shield",
+        "classLabel": "Knight",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     },
     {
       "familyId": "common_wellspring_charm",
@@ -610,7 +1000,17 @@
       "prompt": "Create a single inventory equipment icon: Wellspring Charm. Silver setting and blue crystal, readable chunky fantasy silhouette matching approved Throne Defense reference supplied at generation time. Transparent background, centered, no text, no numbers, no rarity frame, no UI, 1024 square. Distinguish maximum mana reservoir from a consumable mana potion. Reference audit required before generation.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role maximum mana and health. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [],
+      "displayMetadata": {
+        "name": "Wellspring Charm",
+        "classLabel": "Shared",
+        "rarity": "Rare",
+        "rarityStatus": "visual-proposal-only",
+        "requiredLevel": 10,
+        "levelStatus": "proposal-only",
+        "setName": null,
+        "setRole": "Standalone equipment"
+      }
     }
   ]
 }
