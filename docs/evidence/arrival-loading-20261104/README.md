@@ -17,7 +17,7 @@
 - `lua tests/battle-startup.spec.lua`: 기존 에픽 선택 생성/재진입·전투 지연 초기화223검사 PASS.
 - `/private/tmp/td233-luau/luau-compile`: ArrivalLoading/TravelLoadingScreen/init.client 컴파일 PASS.
 - Lobby/Battle `rojo sourcemap` 및 `git diff --check` PASS.
-- 고정 소스 Lobby/Battle 빌드 결과는 `build.json`에 기록한다. 다른 진행 작업의 미커밋 파일은 포함하지 않는다.
+- 고정 소스 `cd91a9e`의 Lobby/Battle Rojo 빌드 모두 PASS. 산출 XML에서 ReplicatedFirst의 LocalScript/ModuleScript·각 역할 값도 확인했다. 해시/크기는 `build.json`에 기록한다. 다른 진행 작업의 미커밋 파일은 포함하지 않았다.
 
 ## 미검증과 후속
 

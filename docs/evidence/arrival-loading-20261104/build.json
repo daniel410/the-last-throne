@@ -1,0 +1,34 @@
+{
+  "version": "0.69.4",
+  "sourceCommit": "cd91a9e0bbba10ea8e94d6a743e74cbb42f4e5d6",
+  "buildCwd": "/tmp/tlt-arrival-0694",
+  "tool": "Rojo 7.7.1",
+  "commands": [
+    "rojo build default.project.json -o <Lobby output>",
+    "rojo build battle.project.json -o <Battle output>"
+  ],
+  "builds": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.69.4/TheLastThrone-Lobby-0.69.4.rbxlx",
+      "sha256": "96e339142dbad6e503a0e653e48ea1ea6d4b48b5b9a442c888c574025938b68c",
+      "bytes": 13090155,
+      "status": "success",
+      "replicatedFirstStructure": "PASS"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.69.4/TheLastThrone-Battle-0.69.4.rbxlx",
+      "sha256": "0b4b1c7f1f7b7658f9bca1917b4e9f91273ec1206a221c82e2cac2927d1cb544",
+      "bytes": 13090157,
+      "status": "success",
+      "replicatedFirstStructure": "PASS"
+    }
+  ],
+  "published": false,
+  "studioRuntime": "Not Run: no connected Studio",
+  "testChecks": {
+    "arrivalLifecycleSimulation": 108,
+    "battleStartupRegression": 223
+  }
+}
