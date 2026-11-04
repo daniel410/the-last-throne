@@ -68,10 +68,11 @@ function Canvas.create(parent,zoneId,compact,onSelect)
    if compact then cell.Visible=(origin-Vector2.new(.5,.5)).Magnitude<.44 end
   end end
   local caption=label('Place',z.name,center+Vector2.new(0,size.Y*.20),UDim2.fromOffset(156,34),12,Theme.color.text)
-  caption.Font=Enum.Font.GothamBold;caption.Visible=not compact
+  caption.Font=Enum.Font.GothamBold;caption.Visible=not compact;caption.TextStrokeTransparency=1
   caption.BackgroundColor3=Color3.fromRGB(12,26,28);caption.BackgroundTransparency=.16
   local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(0,5);corner.Parent=caption
-  local outline=Instance.new('UIStroke');outline.Color=Theme.color.gold;outline.Transparency=.7;outline.Parent=caption
+  -- Selection outlines the nameplate, never the glyphs (UIStroke defaults to Contextual).
+  local outline=Instance.new('UIStroke');outline.ApplyStrokeMode=Enum.ApplyStrokeMode.Border;outline.Thickness=1;outline.Color=Theme.color.gold;outline.Transparency=.7;outline.Parent=caption
   local status=label('RegionStatus','',center+Vector2.new(0,size.Y*.20),UDim2.fromOffset(160,16),9,Theme.color.muted)
   status.Position+=UDim2.fromOffset(0,27);status.Visible=not compact
   local chapter=Content.byId[id];local number=chapter and not chapter.side and chapter.number
