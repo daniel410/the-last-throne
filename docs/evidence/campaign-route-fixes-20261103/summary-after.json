@@ -1,0 +1,14 @@
+{
+  "chapters": 47,
+  "localSegments": 232,
+  "edges": 43,
+  "returnApproaches": 34,
+  "status": {
+    "Success": 304,
+    "SamePoint": 5
+  },
+  "floorSamples": 18630,
+  "floorDeviations": 545,
+  "localAndEdgeFloorDeviations": 0,
+  "visualCandidates": 57
+}
