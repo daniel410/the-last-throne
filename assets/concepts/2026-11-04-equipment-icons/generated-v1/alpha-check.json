@@ -1,0 +1,402 @@
+[
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "mage_pendant_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "mage_head_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "elf_feet_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_arcane_pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0.0039215686274509803,
+      0,
+      0,
+      0
+    ],
+    "file" : "dwarf_pendant_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "mage_feet_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "knight_body_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0.0039215686274509803,
+      0,
+      0,
+      0
+    ],
+    "file" : "elf_head_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_body.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "dwarf_head_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "dwarf_feet_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "knight_weapon_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "elf_weapon_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_hands.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "dwarf_ring_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "knight_shield_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "mage_ring_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_feet.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "elf_ring_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "dwarf_weapon_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_wellspring_charm.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_refuge_charm.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "dwarf_hands_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "mage_hands_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_valor_ring.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "elf_pendant_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "mage_weapon_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "knight_ring_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_vigor_ring.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "elf_hands_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "knight_feet_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "mage_body_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_mana_ring.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "elf_body_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "knight_head_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "dwarf_body_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "knight_hands_family.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_ward_pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "common_head.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "knight_pendant_family.png",
+    "hasAlpha" : true
+  }
+]
