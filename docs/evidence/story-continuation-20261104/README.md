@@ -28,7 +28,7 @@
 | `lua tests/expedition-departure.spec.lua` | 42 PASS |
 | `lua tests/expedition-store.spec.lua` | 43 PASS |
 
-`/private/tmp/td233-luau/luau-compile`로 수정한 Luau5모듈 컴파일 PASS. Lobby/Battle `rojo sourcemap`과 `git diff --check` PASS. 고정 소스 Lobby/Battle 빌드 결과는 후속 기록한다.
+`/private/tmp/td233-luau/luau-compile`로 수정한 Luau5모듈 컴파일 PASS. Lobby/Battle `rojo sourcemap`과 `git diff --check` PASS. 고정 소스 `09758d24b5613d8daee38a5a327e92068e7512e6`의0.69.5 Lobby/Battle 빌드 모두 PASS. `python3 tools/build-regional-caster-freeze.py --source 09758d24b5613d8daee38a5a327e92068e7512e6 --record docs/evidence/story-continuation-20261104/build.json`으로 실행했으며, [버전/입력/LFS/산출물 해시](build.json)를 기록하고 두 산출물의 SHA256을 다시 검증했다. 소스 커밋은 origin/main 푸시 후 원격 SHA 일치를 확인했다. 이번 변경에는 신규 LFS 자산이 없다.
 
 ## 미검증·다음 담당
 
