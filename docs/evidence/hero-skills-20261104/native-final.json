@@ -1,0 +1,304 @@
+{
+  "sourceCommit": "5bee9810904fa9206ffdead40028c8a343ec22b9",
+  "version": "0.69.1",
+  "scope": "Isolated Studio Edit fixtures; real R6/R15 joints and weapon instances, not live Animator/combat/device/visual acceptance",
+  "latestResults": {
+    "K0_MAGE_STAFF_NATIVE": {
+      "minReleaseForward": 0.9713628888130188,
+      "checks": 17087,
+      "maxDegreesError": 0.000038152233173605055,
+      "kind": "K0_MAGE_STAFF_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    "HERO_SKILLS_NATIVE": {
+      "failures": [],
+      "checks": 239912,
+      "rigs": [
+        "R6/knight",
+        "R6/dwarf",
+        "R6/elf",
+        "R6/mage",
+        "R15/knight",
+        "R15/dwarf",
+        "R15/elf",
+        "R15/mage"
+      ],
+      "kind": "HERO_SKILLS_NATIVE",
+      "pass": true,
+      "skills": 256
+    },
+    "K0_SKILL_ANIMATION_NATIVE": {
+      "coverage": "Actual R6/R15 joints and bow transforms; no Player, animation aesthetics, network latency or mobile acceptance",
+      "checks": 61,
+      "samples": [
+        {
+          "armDelta": 0.39147624373435974,
+          "skill": "knight.common.bash",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 2.792168140411377,
+          "skill": "knight.common.whirlwind",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.9599742889404297,
+          "skill": "knight.common.provoke",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.4095711708068848,
+          "skill": "knight_driving_thrust",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 2.190816879272461,
+          "skill": "knight_crescent_cut",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.1147972345352173,
+          "skill": "knight_guarded_strike",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.1147972345352173,
+          "skill": "knight.steel_knight.counter_slash",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.5810646414756775,
+          "skill": "dwarf.common.overhead",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.7437585592269897,
+          "skill": "dwarf.common.throw",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.4915715456008911,
+          "skill": "dwarf.common.ground",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.1999003887176514,
+          "skill": "dwarf_hooking_chop",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 2.190816879272461,
+          "skill": "dwarf_low_sweep",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.7618284821510315,
+          "skill": "dwarf_braced_throw",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.10342688858509064,
+          "skill": "elf.common.aimed",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.006765836384147406,
+          "skill": "elf.common.rapid",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.10342688858509064,
+          "skill": "elf.common.multi",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.10342688858509064,
+          "skill": "elf_retreating_shot",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.10342688858509064,
+          "skill": "elf_pinning_shot",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.006765836384147406,
+          "skill": "elf_arrow_screen",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.7589418292045593,
+          "skill": "mage.common.mana_bolt",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.9190748333930969,
+          "skill": "mage.common.water_ball",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.4590243399143219,
+          "skill": "mage.common.gravity",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.7589418292045593,
+          "skill": "mage_wind_lance",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.4590243399143219,
+          "skill": "mage_tidal_ring",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 1.245276689529419,
+          "skill": "mage_arcane_ward",
+          "rig": "R6"
+        },
+        {
+          "armDelta": 0.3914765417575836,
+          "skill": "knight.common.bash",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 2.792167901992798,
+          "skill": "knight.common.whirlwind",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.9599753022193909,
+          "skill": "knight.common.provoke",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.4095715284347534,
+          "skill": "knight_driving_thrust",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 2.190816879272461,
+          "skill": "knight_crescent_cut",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.1147973537445068,
+          "skill": "knight_guarded_strike",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.1147973537445068,
+          "skill": "knight.steel_knight.counter_slash",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.5810644030570984,
+          "skill": "dwarf.common.overhead",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.7437587380409241,
+          "skill": "dwarf.common.throw",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.4915710389614105,
+          "skill": "dwarf.common.ground",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.1999002695083618,
+          "skill": "dwarf_hooking_chop",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 2.190816879272461,
+          "skill": "dwarf_low_sweep",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.7618284821510315,
+          "skill": "dwarf_braced_throw",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.10342919826507568,
+          "skill": "elf.common.aimed",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.0067834327928721905,
+          "skill": "elf.common.rapid",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.10342919826507568,
+          "skill": "elf.common.multi",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.10342919826507568,
+          "skill": "elf_retreating_shot",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.10342919826507568,
+          "skill": "elf_pinning_shot",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.0067834327928721905,
+          "skill": "elf_arrow_screen",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.7589418292045593,
+          "skill": "mage.common.mana_bolt",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.9190748333930969,
+          "skill": "mage.common.water_ball",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.4590243399143219,
+          "skill": "mage.common.gravity",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.7589418292045593,
+          "skill": "mage_wind_lance",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 0.4590243399143219,
+          "skill": "mage_tidal_ring",
+          "rig": "R15"
+        },
+        {
+          "armDelta": 1.245276689529419,
+          "skill": "mage_arcane_ward",
+          "rig": "R15"
+        }
+      ],
+      "kind": "K0_SKILL_ANIMATION_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    "K0_ELF_BOW_NATIVE": {
+      "maxDegreesError": 0.000015495374100282788,
+      "checks": 4890,
+      "failures": [],
+      "kind": "K0_ELF_BOW_NATIVE",
+      "pass": true,
+      "maxNockError": 0.000030517810955643654
+    }
+  },
+  "fixtureCorrections": [
+    "Inject MageGolden from existing authored JSON before executing Mage fixture",
+    "Use accepted action timestamps and actual nocked arrow movement in legacy skill fixture",
+    "Use current basic elf windup instead of old .21/.25 second constants in bow fixture"
+  ]
+}

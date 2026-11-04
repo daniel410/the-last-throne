@@ -161,12 +161,13 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}) do
   Bow.confirmPulse(character,volley.id,3,77,due+.7,400,due+.7)
   check(Bow.forCharacter(character,due+.7)==nil,"Cancelled volley cannot restart from a late pulse")
   character:SetAttribute("K0SkillId",nil);character:SetAttribute("K0State","Attack");character:SetAttribute("K0AttackStartedAt",200)
-  Visual.renderArms(character,1/60,200.21);fk();Visual.renderCharacter(character,1/60,200.21);fk()
+  local basicWindup=Config.BasicAttackProfiles.elf.attacks[1].windup
+  Visual.renderArms(character,1/60,200+basicWindup*.875);fk();Visual.renderCharacter(character,1/60,200+basicWindup*.875);fk()
   if rig==Enum.HumanoidRigType.R15 then
    local ik=character.Humanoid:FindFirstChild("K0BowDrawIK")
    check(ik and ik.Enabled and ik.Pole~=nil,"Draw hand uses native IK with an elbow pole")
    near(ik.Target.Position,Vector3.new(.06,-.06,1.27),.0001,"Hand target follows arrow rear, without the old vertical offset")
-   Visual.renderArms(character,1/60,200.25)
+   Visual.renderArms(character,1/60,200+basicWindup+.04)
    check(not ik.Enabled,"Release hand does not chase the snapping string")
   end
   for _,mode in ipairs({"Block","Dodge","Dead"}) do

@@ -15,6 +15,8 @@ local skills = {
 	elf = {"elf.common.aimed", "elf.common.rapid", "elf.common.multi"},
 	mage = {"mage.common.mana_bolt", "mage.common.water_ball", "mage.common.gravity"},
 }
+local Config=require(game.ReplicatedStorage.Shared.K0Config)
+local Bow=require(game.StarterPlayer.StarterPlayerScripts.Client.K0BowMotion)
 local Advanced=require(game.ReplicatedStorage.Shared.AdvancedSkills)
 for classId,list in pairs(Advanced.common) do for _,d in ipairs(list) do table.insert(skills[classId],d.id) end end
 table.insert(skills.knight,Advanced.branches.steel_knight.skills[1].id)
@@ -38,20 +40,32 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 			character:SetAttribute("K0AttackKind", classId == "mage" and "Arcane" or "Basic")
 			character:SetAttribute("K0Combo", 1)
 			for index, skillId in ipairs(skills[classId]) do
-				character:SetAttribute("K0SkillId", skillId)
+				local definition
+                for _,d in ipairs(Config.Skills[classId]) do if d.id==skillId then definition=d;break end end
+                local started=100+index*10
+                character:SetAttribute("K0AttackStartedAt",started)
+                character:SetAttribute("K0SkillStartedAt",started)
+                character:SetAttribute("K0SkillId", skillId)
 				character:SetAttribute("K0AttackSeq", index)
 				character:SetAttribute("K0RapidShotCount", 3)
 				local selected = assert(joint(character, (classId == "knight" and (index == 1 or index == 3 or index==6 or index==7)) and "Left" or classId == "elf" and "Left" or "Right"))
 				character:SetAttribute("K0AttackPhase", "Windup")
-				for _ = 1, 18 do visual.renderArms(character, 1/60); visual.renderCharacter(character, 1/60) end
+				for _ = 1, 18 do visual.renderArms(character, 1/60,started+definition.windup*(classId=="elf" and .8 or .35)); visual.renderCharacter(character, 1/60,started+definition.windup*(classId=="elf" and .8 or .35)) end
 				local wind = selected.Transform
 				local stringPart = model:FindFirstChild("String")
-				local drawn = stringPart and stringPart.Size.Z
+				local nock=model:FindFirstChild("NockedArrow")
+                local nockJoint=nock and nock:FindFirstChild("NockedArrowVisualJoint")
+                local drawn=nockJoint and nockJoint.Transform.Position.Magnitude
 				character:SetAttribute("K0AttackPhase", "Active")
-				for _ = 1, 18 do visual.renderArms(character, 1/60); visual.renderCharacter(character, 1/60) end
+                if classId=="elf" then
+                 character:SetAttribute("K0RapidShotAt",started+definition.windup)
+                 character:SetAttribute("K0RapidShotCount",1)
+                 if definition.advanced and definition.pulses>1 then Bow.confirmPulse(character,skillId,1,index,started+definition.windup,started,started+definition.windup+.04) end
+                end
+				for _ = 1, 18 do visual.renderArms(character, 1/60,started+definition.windup+.04); visual.renderCharacter(character, 1/60,started+definition.windup+.04) end
 				local _, angle = wind:ToObjectSpace(selected.Transform):ToAxisAngle()
 				if classId == "elf" then
-					check(stringPart and drawn > stringPart.Size.Z + 0.1, skillId .. " draws and releases bow")
+					check(nockJoint and drawn > nockJoint.Transform.Position.Magnitude + 0.1, skillId .. " draws and releases bow")
 				else
 					check(math.abs(angle) > 0.05, skillId .. " changes arm pose between windup and active")
 				end
