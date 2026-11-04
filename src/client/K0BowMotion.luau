@@ -135,6 +135,14 @@ function Motion.forCharacter(character,now)
    end
   end
  end
+ -- Lob ground-targeted arrows upward; direct shots retain their reviewed aim.
+ if d.form=="ground" then
+  local fade=math.clamp((total-age)/math.max(.01,d.recovery),0,1)
+  local raise=math.clamp(age/math.max(.01,d.windup*.7),0,1)*fade
+  pose.aimPitch=(d.element=="lightning" or d.element=="nature") and 25*raise or 40*raise
+  local tilt=CFrame.Angles(math.rad(pose.aimPitch),0,0)
+  pose.left=tilt*pose.left;pose.right=tilt*pose.right
+ end
  return pose
 end
 return Motion

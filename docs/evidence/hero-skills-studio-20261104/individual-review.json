@@ -1,0 +1,1282 @@
+[
+  {
+    "classId": "knight",
+    "index": 1,
+    "id": "knight.common.bash",
+    "name": "SHIELD BASH",
+    "motion": "shield",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 2,
+    "id": "knight.common.whirlwind",
+    "name": "WHIRLWIND",
+    "motion": "spin",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 3,
+    "id": "knight.common.provoke",
+    "name": "PROVOKE",
+    "motion": "shield",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 4,
+    "id": "knight.steel_knight.counter_slash",
+    "name": "COUNTER SLASH",
+    "motion": "counter",
+    "note": "기존 검 소켓에 맞춘 준비·접촉·회수 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 5,
+    "id": "knight.steel_knight.steel_sweep",
+    "name": "STEEL SWEEP",
+    "motion": "sweep",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 6,
+    "id": "knight.steel_knight.challenging_strike",
+    "name": "CHALLENGING STRIKE",
+    "motion": "slash",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 7,
+    "id": "knight.steel_knight.twin_cyclone",
+    "name": "TWIN CYCLONE",
+    "motion": "spin",
+    "note": "상체만360도 비트는 대신 시각 루트로 몸·다리를 함께 회전.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 8,
+    "id": "knight.steel_knight.shield_breaker",
+    "name": "SHIELD BREAKER",
+    "motion": "shield",
+    "note": "검·방패 소켓 검증을 마친 Shield Bash 곡선을 기술 시간에 맞춤. 회수 때 방패 팔 들림 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 9,
+    "id": "knight.steel_knight.guardian_counter",
+    "name": "GUARDIAN COUNTER",
+    "motion": "counter",
+    "note": "기존 검 소켓에 맞춘 준비·접촉·회수 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 10,
+    "id": "knight.steel_knight.rallying_slash",
+    "name": "RALLYING SLASH",
+    "motion": "sweep",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 11,
+    "id": "knight.steel_knight.breaker_charge",
+    "name": "BREAKER CHARGE",
+    "motion": "shield",
+    "note": "검·방패 소켓 검증을 마친 Shield Bash 곡선을 기술 시간에 맞춤. 회수 때 방패 팔 들림 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 12,
+    "id": "knight.steel_knight.vanguard_strike",
+    "name": "VANGUARD STRIKE",
+    "motion": "thrust",
+    "note": "검 축을 실제 전방으로 정렬. Play 전방 일치도0.998 / 검 끝은 발 위.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 13,
+    "id": "knight.steel_knight.blade_storm",
+    "name": "BLADE STORM",
+    "motion": "spin",
+    "note": "상체만360도 비트는 대신 시각 루트로 몸·다리를 함께 회전.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 14,
+    "id": "knight.steel_knight.sweeping_break",
+    "name": "SWEEPING BREAK",
+    "motion": "sweep",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 15,
+    "id": "knight.steel_knight.warcry_assault",
+    "name": "WARCRY ASSAULT",
+    "motion": "slash",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 16,
+    "id": "knight.steel_knight.unyielding_front",
+    "name": "UNYIELDING FRONT",
+    "motion": "shield",
+    "note": "검·방패 소켓 검증을 마친 Shield Bash 곡선을 기술 시간에 맞춤. 회수 때 방패 팔 들림 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 17,
+    "id": "knight.paladin.oathblade",
+    "name": "OATHBLADE",
+    "motion": "slash",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 18,
+    "id": "knight.paladin.radiant_sweep",
+    "name": "RADIANT SWEEP",
+    "motion": "sweep",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 19,
+    "id": "knight.paladin.oath_challenge",
+    "name": "OATH CHALLENGE",
+    "motion": "sweep",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 20,
+    "id": "knight.paladin.dawn_burst",
+    "name": "DAWN BURST",
+    "motion": "spin",
+    "note": "상체만360도 비트는 대신 시각 루트로 몸·다리를 함께 회전.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 21,
+    "id": "knight.paladin.oathbreaker_strike",
+    "name": "OATHBREAKER STRIKE",
+    "motion": "chop",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 22,
+    "id": "knight.paladin.shield_verdict",
+    "name": "SHIELD VERDICT",
+    "motion": "shield",
+    "note": "검·방패 소켓 검증을 마친 Shield Bash 곡선을 기술 시간에 맞춤. 회수 때 방패 팔 들림 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 23,
+    "id": "knight.paladin.guardian_slash",
+    "name": "GUARDIAN SLASH",
+    "motion": "sweep",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 24,
+    "id": "knight.paladin.radiant_charge",
+    "name": "RADIANT CHARGE",
+    "motion": "shield",
+    "note": "검·방패 소켓 검증을 마친 Shield Bash 곡선을 기술 시간에 맞춤. 회수 때 방패 팔 들림 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 25,
+    "id": "knight.paladin.valiant_advance",
+    "name": "VALIANT ADVANCE",
+    "motion": "shield",
+    "note": "검·방패 소켓 검증을 마친 Shield Bash 곡선을 기술 시간에 맞춤. 회수 때 방패 팔 들림 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 26,
+    "id": "knight.paladin.dawn_spiral",
+    "name": "DAWN SPIRAL",
+    "motion": "spin",
+    "note": "상체만360도 비트는 대신 시각 루트로 몸·다리를 함께 회전.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 27,
+    "id": "knight.paladin.sunward_cross",
+    "name": "SUNWARD CROSS",
+    "motion": "cross",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 28,
+    "id": "knight.paladin.oathbound_assault",
+    "name": "OATHBOUND ASSAULT",
+    "motion": "slash",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 29,
+    "id": "knight.paladin.oath_of_dawn",
+    "name": "OATH OF DAWN",
+    "motion": "shield",
+    "note": "검·방패 소켓 검증을 마친 Shield Bash 곡선을 기술 시간에 맞춤. 회수 때 방패 팔 들림 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 30,
+    "id": "knight_driving_thrust",
+    "name": "DRIVING THRUST",
+    "motion": "thrust",
+    "note": "검 축을 실제 전방으로 정렬. Play 전방 일치도0.998 / 검 끝은 발 위.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 31,
+    "id": "knight_crescent_cut",
+    "name": "CRESCENT CUT",
+    "motion": "sweep",
+    "note": "검 끝이 발 아래로 떨어지던 고정 Euler 자세를 검증된 검 곡선으로 교체.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "knight",
+    "index": 32,
+    "id": "knight_guarded_strike",
+    "name": "GUARDED STRIKE",
+    "motion": "shield",
+    "note": "검·방패 소켓 검증을 마친 Shield Bash 곡선을 기술 시간에 맞춤. 회수 때 방패 팔 들림 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 1,
+    "id": "dwarf.common.overhead",
+    "name": "OVERHEAD SMASH",
+    "motion": "chop",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 2,
+    "id": "dwarf.common.throw",
+    "name": "AXE THROW",
+    "motion": "throw",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 3,
+    "id": "dwarf.common.ground",
+    "name": "GROUND SLAM",
+    "motion": "slam",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 4,
+    "id": "dwarf.iron_axe.armor_splitter",
+    "name": "ARMOR SPLITTER",
+    "motion": "chop",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 5,
+    "id": "dwarf.iron_axe.returning_echo",
+    "name": "RETURNING ECHO",
+    "motion": "throw",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 6,
+    "id": "dwarf.iron_axe.mountain_sweep",
+    "name": "MOUNTAIN SWEEP",
+    "motion": "sweep",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 7,
+    "id": "dwarf.iron_axe.crag_cleave",
+    "name": "CRAG CLEAVE",
+    "motion": "chop",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 8,
+    "id": "dwarf.iron_axe.breaker_throw",
+    "name": "BREAKER THROW",
+    "motion": "throw",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 9,
+    "id": "dwarf.iron_axe.stonebound_leap",
+    "name": "STONEBOUND LEAP",
+    "motion": "slam",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 10,
+    "id": "dwarf.iron_axe.iron_shoulder",
+    "name": "IRON SHOULDER",
+    "motion": "shield",
+    "note": "도끼를 방어 자세로 거두고 어깨를 전방으로 기울임. 기사 방패 동작을 혼용하지 않음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 11,
+    "id": "dwarf.iron_axe.crosscut_axe",
+    "name": "CROSSCUT AXE",
+    "motion": "throw",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 12,
+    "id": "dwarf.iron_axe.mountain_strike",
+    "name": "MOUNTAIN STRIKE",
+    "motion": "slam",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 13,
+    "id": "dwarf.iron_axe.shatter_blow",
+    "name": "SHATTER BLOW",
+    "motion": "slam",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 14,
+    "id": "dwarf.iron_axe.twin_axe_path",
+    "name": "TWIN AXE PATH",
+    "motion": "throw",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 15,
+    "id": "dwarf.iron_axe.tremor_guard",
+    "name": "TREMOR GUARD",
+    "motion": "slam",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 16,
+    "id": "dwarf.iron_axe.mountain_collapse",
+    "name": "MOUNTAIN COLLAPSE",
+    "motion": "slam",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 17,
+    "id": "dwarf.gunner.gunner_shot",
+    "name": "GUNNER SHOT",
+    "motion": "shoot",
+    "note": "총구가 정면을 향하도록 손 소켓과 총신 축 보정. Play 전방 일치도0.989. 반동은 발사 뒤.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 18,
+    "id": "dwarf.gunner.bomb_toss",
+    "name": "BOMB TOSS",
+    "motion": "lob",
+    "note": "폭탄을 든 손 자세와 투척/회수 구분. 장식 소품은 취소 시 제거.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 19,
+    "id": "dwarf.gunner.shell_burst",
+    "name": "SHELL BURST",
+    "motion": "mortar",
+    "note": "포신/총구 축·나무 개머리판·금속 약실·가늠쇠·손잡이와 발사 후 반동.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 20,
+    "id": "dwarf.gunner.quickfire",
+    "name": "QUICKFIRE",
+    "motion": "shoot",
+    "note": "총구가 정면을 향하도록 손 소켓과 총신 축 보정. Play 전방 일치도0.989. 반동은 발사 뒤.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 21,
+    "id": "dwarf.gunner.shrapnel_toss",
+    "name": "SHRAPNEL TOSS",
+    "motion": "lob",
+    "note": "폭탄을 든 손 자세와 투척/회수 구분. 장식 소품은 취소 시 제거.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 22,
+    "id": "dwarf.gunner.blast_step",
+    "name": "BLAST STEP",
+    "motion": "mortar",
+    "note": "포신/총구 축·나무 개머리판·금속 약실·가늠쇠·손잡이와 발사 후 반동.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 23,
+    "id": "dwarf.gunner.scatter_shot",
+    "name": "SCATTER SHOT",
+    "motion": "shoot",
+    "note": "총구가 정면을 향하도록 손 소켓과 총신 축 보정. Play 전방 일치도0.989. 반동은 발사 뒤.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 24,
+    "id": "dwarf.gunner.skipping_charge",
+    "name": "SKIPPING CHARGE",
+    "motion": "lob",
+    "note": "폭탄을 든 손 자세와 투척/회수 구분. 장식 소품은 취소 시 제거.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 25,
+    "id": "dwarf.gunner.field_mortar",
+    "name": "FIELD MORTAR",
+    "motion": "mortar",
+    "note": "포신/총구 축·나무 개머리판·금속 약실·가늠쇠·손잡이와 발사 후 반동.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 26,
+    "id": "dwarf.gunner.piercing_round",
+    "name": "PIERCING ROUND",
+    "motion": "shoot",
+    "note": "총구가 정면을 향하도록 손 소켓과 총신 축 보정. Play 전방 일치도0.989. 반동은 발사 뒤.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 27,
+    "id": "dwarf.gunner.rolling_charge",
+    "name": "ROLLING CHARGE",
+    "motion": "lob",
+    "note": "폭탄을 든 손 자세와 투척/회수 구분. 장식 소품은 취소 시 제거.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 28,
+    "id": "dwarf.gunner.siege_pattern",
+    "name": "SIEGE PATTERN",
+    "motion": "mortar",
+    "note": "포신/총구 축·나무 개머리판·금속 약실·가늠쇠·손잡이와 발사 후 반동.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 29,
+    "id": "dwarf.gunner.siege_barrage",
+    "name": "SIEGE BARRAGE",
+    "motion": "mortar",
+    "note": "포신/총구 축·나무 개머리판·금속 약실·가늠쇠·손잡이와 발사 후 반동.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 30,
+    "id": "dwarf_hooking_chop",
+    "name": "HOOKING CHOP",
+    "motion": "chop",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 31,
+    "id": "dwarf_low_sweep",
+    "name": "LOW SWEEP",
+    "motion": "sweep",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "dwarf",
+    "index": 32,
+    "id": "dwarf_braced_throw",
+    "name": "BRACED THROW",
+    "motion": "throw",
+    "note": "도끼 전용 저작 곡선을 실제 접촉 시각에 맞춤. 지면 강타/투척/내려찍기 구분.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 1,
+    "id": "elf.common.aimed",
+    "name": "AIMED SHOT",
+    "motion": "draw",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 2,
+    "id": "elf.common.rapid",
+    "name": "RAPID FIRE",
+    "motion": "draw",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 3,
+    "id": "elf.common.multi",
+    "name": "MULTI SHOT",
+    "motion": "draw",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 4,
+    "id": "elf.marksman.weakpoint_shot",
+    "name": "WEAKPOINT SHOT",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 5,
+    "id": "elf.marksman.moving_volley",
+    "name": "MOVING VOLLEY",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 6,
+    "id": "elf.marksman.piercing_line",
+    "name": "PIERCING LINE",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 7,
+    "id": "elf.marksman.heavy_draw",
+    "name": "HEAVY DRAW",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 8,
+    "id": "elf.marksman.precision_volley",
+    "name": "PRECISION VOLLEY",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 9,
+    "id": "elf.marksman.fan_break",
+    "name": "FAN BREAK",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 10,
+    "id": "elf.marksman.hunter_s_focus",
+    "name": "HUNTER'S FOCUS",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 11,
+    "id": "elf.marksman.retreating_fire",
+    "name": "RETREATING FIRE",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 12,
+    "id": "elf.marksman.piercing_volley",
+    "name": "PIERCING VOLLEY",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 13,
+    "id": "elf.marksman.mark_breaker",
+    "name": "MARK BREAKER",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 14,
+    "id": "elf.marksman.crossfire",
+    "name": "CROSSFIRE",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 15,
+    "id": "elf.marksman.arrow_rain",
+    "name": "ARROW RAIN",
+    "motion": "rain",
+    "note": "지면 기술을25~40도 위로 겨냥해 곡사 준비/화살비 구분. 손·활·무기 회수를 함께 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 16,
+    "id": "elf.marksman.grand_volley",
+    "name": "GRAND VOLLEY",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 17,
+    "id": "elf.magic_archer.elemental_arrow",
+    "name": "ELEMENTAL ARROW",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 18,
+    "id": "elf.magic_archer.spark_volley",
+    "name": "SPARK VOLLEY",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 19,
+    "id": "elf.magic_archer.vine_trap",
+    "name": "VINE TRAP",
+    "motion": "rain",
+    "note": "지면 기술을25~40도 위로 겨냥해 곡사 준비/화살비 구분. 손·활·무기 회수를 함께 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 20,
+    "id": "elf.magic_archer.bloom_shot",
+    "name": "BLOOM SHOT",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 21,
+    "id": "elf.magic_archer.storm_arrow",
+    "name": "STORM ARROW",
+    "motion": "rain",
+    "note": "지면 기술을25~40도 위로 겨냥해 곡사 준비/화살비 구분. 손·활·무기 회수를 함께 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 22,
+    "id": "elf.magic_archer.rooting_fan",
+    "name": "ROOTING FAN",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 23,
+    "id": "elf.magic_archer.warden_arrow",
+    "name": "WARDEN ARROW",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 24,
+    "id": "elf.magic_archer.gliding_shot",
+    "name": "GLIDING SHOT",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 25,
+    "id": "elf.magic_archer.spirit_rain",
+    "name": "SPIRIT RAIN",
+    "motion": "rain",
+    "note": "지면 기술을25~40도 위로 겨냥해 곡사 준비/화살비 구분. 손·활·무기 회수를 함께 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 26,
+    "id": "elf.magic_archer.elemental_pierce",
+    "name": "ELEMENTAL PIERCE",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 27,
+    "id": "elf.magic_archer.echo_arrows",
+    "name": "ECHO ARROWS",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 28,
+    "id": "elf.magic_archer.vine_burst",
+    "name": "VINE BURST",
+    "motion": "rain",
+    "note": "지면 기술을25~40도 위로 겨냥해 곡사 준비/화살비 구분. 손·활·무기 회수를 함께 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 29,
+    "id": "elf.magic_archer.spirit_arrowfall",
+    "name": "SPIRIT ARROWFALL",
+    "motion": "rain",
+    "note": "지면 기술을25~40도 위로 겨냥해 곡사 준비/화살비 구분. 손·활·무기 회수를 함께 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 30,
+    "id": "elf_retreating_shot",
+    "name": "RETREATING SHOT",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 31,
+    "id": "elf_pinning_shot",
+    "name": "PINNING SHOT",
+    "motion": "draw",
+    "note": "기존 직선 사격/시위·노크·서버 확정 재장전을 검토하고 유지.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "elf",
+    "index": 32,
+    "id": "elf_arrow_screen",
+    "name": "ARROW SCREEN",
+    "motion": "rain",
+    "note": "지면 기술을25~40도 위로 겨냥해 곡사 준비/화살비 구분. 손·활·무기 회수를 함께 보정.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 1,
+    "id": "mage.common.mana_bolt",
+    "name": "MANA BOLT",
+    "motion": "cast",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 2,
+    "id": "mage.common.water_ball",
+    "name": "WATER BALL",
+    "motion": "cast",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 3,
+    "id": "mage.common.gravity",
+    "name": "GRAVITY",
+    "motion": "area",
+    "note": "기존 기본 기술을 준비·접촉·회수 및 Play에서 검토. 이번 변경은 보존.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 4,
+    "id": "mage.pyro.ember_lance",
+    "name": "EMBER LANCE",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 5,
+    "id": "mage.pyro.steam_burst",
+    "name": "STEAM BURST",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 6,
+    "id": "mage.pyro.cinder_ring",
+    "name": "CINDER RING",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 7,
+    "id": "mage.pyro.flame_dart",
+    "name": "FLAME DART",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 8,
+    "id": "mage.pyro.earth_rise",
+    "name": "EARTH RISE",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 9,
+    "id": "mage.pyro.ember_step",
+    "name": "EMBER STEP",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 10,
+    "id": "mage.pyro.stone_lance",
+    "name": "STONE LANCE",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 11,
+    "id": "mage.pyro.searing_ward",
+    "name": "SEARING WARD",
+    "motion": "ward",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 12,
+    "id": "mage.pyro.lava_eruption",
+    "name": "LAVA ERUPTION",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 13,
+    "id": "mage.pyro.magma_spear",
+    "name": "MAGMA SPEAR",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 14,
+    "id": "mage.pyro.molten_line",
+    "name": "MOLTEN LINE",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 15,
+    "id": "mage.pyro.ashfall",
+    "name": "ASHFALL",
+    "motion": "rain",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 16,
+    "id": "mage.pyro.caldera_s_judgment",
+    "name": "CALDERA'S JUDGMENT",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 17,
+    "id": "mage.cryo.frost_lance",
+    "name": "FROST LANCE",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 18,
+    "id": "mage.cryo.ice_shard",
+    "name": "ICE SHARD",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 19,
+    "id": "mage.cryo.frost_ring",
+    "name": "FROST RING",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 20,
+    "id": "mage.cryo.shatter_dart",
+    "name": "SHATTER DART",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 21,
+    "id": "mage.cryo.chain_lightning",
+    "name": "CHAIN LIGHTNING",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 22,
+    "id": "mage.cryo.frost_step",
+    "name": "FROST STEP",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 23,
+    "id": "mage.cryo.thunder_spear",
+    "name": "THUNDER SPEAR",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 24,
+    "id": "mage.cryo.ice_ward",
+    "name": "ICE WARD",
+    "motion": "ward",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 25,
+    "id": "mage.cryo.froststorm",
+    "name": "FROSTSTORM",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 26,
+    "id": "mage.cryo.glacial_spike",
+    "name": "GLACIAL SPIKE",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 27,
+    "id": "mage.cryo.lightning_line",
+    "name": "LIGHTNING LINE",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 28,
+    "id": "mage.cryo.hailfall",
+    "name": "HAILFALL",
+    "motion": "rain",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 29,
+    "id": "mage.cryo.eternal_tempest",
+    "name": "ETERNAL TEMPEST",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 30,
+    "id": "mage_wind_lance",
+    "name": "WIND LANCE",
+    "motion": "cast",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 31,
+    "id": "mage_tidal_ring",
+    "name": "TIDAL RING",
+    "motion": "area",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  },
+  {
+    "classId": "mage",
+    "index": 32,
+    "id": "mage_arcane_ward",
+    "name": "ARCANE WARD",
+    "motion": "ward",
+    "note": "기존 지팡이6가족·원소 초점·반복 방출을 실제 모델/Play에서 검토하고 유지. 별도 신규 모션 수정 없음.",
+    "review": "Studio native ready/contact/recovery + scripted Play",
+    "finalAcceptance": "pending real combat/device/user art acceptance"
+  }
+]

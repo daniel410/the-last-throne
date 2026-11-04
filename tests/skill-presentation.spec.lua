@@ -19,7 +19,11 @@ function V:Lerp(b,t)return self+(b-self)*t end
 function V:Dot(b)return self.X*b.X+self.Y*b.Y+self.Z*b.Z end
 function V:Cross(b)return V.new(self.Y*b.Z-self.Z*b.Y,self.Z*b.X-self.X*b.Z,self.X*b.Y-self.Y*b.X)end
 Vector3=V;V.zero=V.new();V.one=V.new(1,1,1);V.xAxis=V.new(1,0,0);V.yAxis=V.new(0,1,0)
-CFrame={Angles=function(x,y,z)return {X=x,Y=y,Z=z}end}
+local cf={};cf.__index=cf
+cf.__mul=function(a,b)return setmetatable({X=a.X+b.X,Y=a.Y+b.Y,Z=a.Z+b.Z},cf)end
+function cf:ToOrientation()return self.X,self.Y,self.Z end
+cf.ToEulerAnglesXYZ=cf.ToOrientation
+CFrame={Angles=function(x,y,z)return setmetatable({X=x,Y=y,Z=z},cf)end,new=function()return setmetatable({X=0,Y=0,Z=0},cf)end}
 local Config=dofile('src/shared/K0Config.luau')
 local Advanced=dofile('src/shared/AdvancedSkills.luau')
 local Clips=dofile('src/client/K0MeleeClips.luau')
@@ -27,9 +31,16 @@ local MageClips=dofile('src/client/K0MageClips.luau')
 local oldRequire=require
 local modules={AdvancedSkills=Advanced,K0Config=Config,K0MeleeClips=Clips,K0MageClips=MageClips}
 require=function(name)return assert(modules[name],tostring(name))end
-script={Parent={AdvancedSkills='AdvancedSkills',K0MeleeClips='K0MeleeClips',K0MageClips='K0MageClips'}}
+script={Parent={AdvancedSkills='AdvancedSkills',K0MeleeClips='K0MeleeClips',K0MageClips='K0MageClips',K0MeleeMotion='K0MeleeMotion',K0ShieldBashMotion='K0ShieldBashMotion',K0ShieldBashClip='K0ShieldBashClip',K0DwarfDiagonalClip='K0DwarfDiagonalClip'}}
 game={ReplicatedStorage={Shared={K0Config='K0Config',SkillPresentation='SkillPresentation'}}}
 local P=dofile('src/shared/SkillPresentation.luau');modules.SkillPresentation=P
+game.GetService=function(self) return self.ReplicatedStorage end
+modules.K0ShieldBashClip=dofile('src/client/K0ShieldBashClip.luau')
+local file=io.open('src/client/K0DwarfDiagonalClip.luau')
+if file then file:close();modules.K0DwarfDiagonalClip=dofile('src/client/K0DwarfDiagonalClip.luau') end
+local sourceFile=assert(io.open('src/client/K0MeleeMotion.luau'));local source=sourceFile:read('*a');sourceFile:close()
+modules.K0MeleeMotion=assert(load(source:gsub('value%+=','value=value+'),'@K0MeleeMotion.luau'))()
+modules.K0ShieldBashMotion=dofile('src/client/K0ShieldBashMotion.luau')
 local Motion=dofile('src/client/AdvancedSkillMotion.luau')
 local Mage=dofile('src/client/K0MageMotion.luau')
 local G=dofile('src/client/SkillEffectGeometry.luau')

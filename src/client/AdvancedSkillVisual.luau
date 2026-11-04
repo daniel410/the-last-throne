@@ -73,7 +73,7 @@ local function source(character,origin,d)
  local prop=character:FindFirstChild("BranchSkillProp")
  local tip=prop and prop:FindFirstChild("SkillMuzzle",true)
  if not tip then
-  local grip=character:FindFirstChild("WeaponGrip",true)
+  local grip=character:FindFirstChild("WeaponGrip",true) or character:FindFirstChild("SwordGrip",true)
   tip=grip and grip:FindFirstChild("WeaponTip")
  end
  if tip and tip:IsA("Attachment") then return tip.WorldPosition end
@@ -95,14 +95,14 @@ local function firearm(character,d,seq)
  local model=Instance.new("Model");model.Name="BranchSkillProp";model.Parent=character
  local record={model=model,hidden={},connections={}};props[character]=record
  -- The temporary skill prop replaces the axe visually, never in inventory.
- local grip=character:FindFirstChild("WeaponGrip",true)
+ local grip=character:FindFirstChild("WeaponGrip",true) or character:FindFirstChild("SwordGrip",true)
  local appearance=grip and grip.Parent
  if appearance then for _,p in ipairs(appearance:GetDescendants()) do
   if p:IsA("BasePart") then record.hidden[p]=p.LocalTransparencyModifier;p.LocalTransparencyModifier=1 end
  end end
  local function piece(name,size,offset,color,shape)
   local p=Instance.new("Part");p.Name=name;p.Size=size;p.Shape=shape or Enum.PartType.Block;p.Color=color;p.Material=Enum.Material.Metal
-  p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.Massless=true;p.CFrame=arm.CFrame*offset;p.Parent=model
+  p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.Massless=true;p.CFrame=arm.CFrame*CFrame.new(0,-.25,0)*CFrame.Angles(-math.pi/2,0,0)*offset;p.Parent=model
   local weld=Instance.new("WeldConstraint");weld.Part0=arm;weld.Part1=p;weld.Parent=p;return p
  end
  if d.element=="bomb" then
@@ -110,9 +110,14 @@ local function firearm(character,d,seq)
   piece("Fuse",Vector3.new(.08,.25,.08),CFrame.new(0,.05,-.25),colors.bomb)
  else
   local heavy=d.element=="shell";local length=heavy and 2.3 or 1.7
-  local barrel=piece("Barrel",Vector3.new(heavy and .6 or .28,heavy and .6 or .28,length),CFrame.new(0,-.35,-.7),Color3.fromRGB(68,83,99))
+  local diameter=heavy and .6 or .28
+  local barrel=piece("Barrel",Vector3.new(length,diameter,diameter),CFrame.new(0,-.35,-.7)*CFrame.Angles(0,math.pi/2,0),Color3.fromRGB(68,83,99),Enum.PartType.Cylinder)
+  piece("Breech",Vector3.new(.45,.42,.4),CFrame.new(0,-.35,.05),Color3.fromRGB(48,58,68))
+  piece("Foregrip",Vector3.new(.38,.22,.65),CFrame.new(0,-.58,-.6),Color3.fromRGB(111,68,39))
+  piece("Sight",Vector3.new(.08,.15,.14),CFrame.new(0,-.1,-1.1),colors.gun)
+  piece("Grip",Vector3.new(.23,.5,.25),CFrame.new(0,-.68,.1)*CFrame.Angles(math.rad(-15),0,0),Color3.fromRGB(85,53,34))
   piece("Stock",Vector3.new(.45,.4,.7),CFrame.new(0,-.35,.35),Color3.fromRGB(111,68,39))
-  local muzzle=Instance.new("Attachment");muzzle.Name="SkillMuzzle";muzzle.Position=Vector3.new(0,0,-length/2);muzzle.Parent=barrel
+  local muzzle=Instance.new("Attachment");muzzle.Name="SkillMuzzle";muzzle.Position=Vector3.new(length/2,0,0);muzzle.Parent=barrel
  end
  local function cancelled()
   if not character.Parent or character:GetAttribute("K0State")~="Attack" or character:GetAttribute("K0AttackSeq")~=seq then clearProp(character) end

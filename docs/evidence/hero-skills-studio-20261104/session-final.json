@@ -1,0 +1,46 @@
+{
+  "version": "0.69.2",
+  "native": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"kind\":\"HERO_SKILLS_NATIVE\",\"rigs\":{\"1\":\"R6/knight\",\"8\":\"R15/mage\",\"3\":\"R6/elf\",\"2\":\"R6/dwarf\",\"5\":\"R15/knight\",\"4\":\"R6/mage\",\"7\":\"R15/elf\",\"6\":\"R15/dwarf\"},\"skills\":256,\"failures\":[],\"pass\":true,\"checks\":239912}"
+      }
+    ],
+    "isError": false
+  },
+  "socket": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"checks\":12,\"samples\":{\"1\":{\"id\":\"knight_driving_thrust\",\"forwardDot\":1.0000001192092896,\"tipHeight\":0.13153076171875,\"rig\":\"R6\"},\"4\":{\"id\":\"dwarf.gunner.gunner_shot\",\"forwardDot\":0.9948294758796692,\"rig\":\"R15\"},\"3\":{\"id\":\"knight_driving_thrust\",\"forwardDot\":1,\"tipHeight\":0.51959228515625,\"rig\":\"R15\"},\"2\":{\"id\":\"dwarf.gunner.gunner_shot\",\"forwardDot\":0.9948293566703796,\"rig\":\"R6\"}},\"kind\":\"HERO_SKILL_SOCKETS_NATIVE\",\"pass\":true,\"failures\":[]}"
+      }
+    ],
+    "isError": false
+  },
+  "play": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"control\":{\"Completed\":128,\"Index\":32,\"Ready\":true},\"gui\":{\"Frames\":10909,\"Errors\":0},\"projectiles\":0}"
+      }
+    ],
+    "isError": false
+  },
+  "liveSocketMeasurements": {
+    "gunner": {
+      "forwardDot": 0.989219069480896,
+      "muzzle": [
+        -4.830883502960205,
+        501.17181396484375,
+        -3.4889469146728516
+      ]
+    },
+    "thrust": {
+      "forwardDot": 0.9979372620582581,
+      "tipHeight": 0.426422119140625
+    },
+    "scope": "Actual Client Play; manual local skill preview, not damage authority"
+  },
+  "scope": "Isolated local Studio: ready/contact/recovery static FK plus scripted NPC Play. Not player combat/device/user acceptance."
+}

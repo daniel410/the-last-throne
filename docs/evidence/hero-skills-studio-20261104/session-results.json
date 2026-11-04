@@ -1,0 +1,47 @@
+{
+  "initialVersion": "0.69.1",
+  "finalVersion": "0.69.2",
+  "studio": "c193d9b4-9b77-4e18-8708-df44c3ef067b",
+  "native": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"kind\":\"HERO_SKILLS_NATIVE\",\"rigs\":{\"1\":\"R6/knight\",\"8\":\"R15/mage\",\"3\":\"R6/elf\",\"2\":\"R6/dwarf\",\"5\":\"R15/knight\",\"4\":\"R6/mage\",\"7\":\"R15/elf\",\"6\":\"R15/dwarf\"},\"skills\":256,\"failures\":[],\"pass\":true,\"checks\":239912}"
+      }
+    ],
+    "isError": false
+  },
+  "playFirst": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"control\":{\"Completed\":128,\"Index\":32,\"Ready\":true},\"gui\":{\"Frames\":9024,\"Errors\":0}}"
+      }
+    ],
+    "isError": false
+  },
+  "playWithProjectileLifecycle": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"control\":{\"Completed\":128,\"Index\":32,\"Ready\":true},\"gui\":{\"Frames\":6318,\"Errors\":0}}"
+      }
+    ],
+    "isError": false
+  },
+  "liveSocketMeasurements": {
+    "gunner": {
+      "forwardDot": 0.989219069480896,
+      "muzzle": [
+        -4.830883502960205,
+        501.17181396484375,
+        -3.4889469146728516
+      ]
+    },
+    "thrust": {
+      "forwardDot": 0.9979372620582581,
+      "tipHeight": 0.426422119140625
+    },
+    "scope": "Actual Client Play; manual local skill preview, not damage authority"
+  }
+}

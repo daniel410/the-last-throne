@@ -559,7 +559,12 @@ function Visual.renderArms(character, dt, now)
 	local rootJoint = lowerTorso and lowerTorso:FindFirstChild("Root") or (rootPart and rootPart:FindFirstChild("RootJoint"))
 	local slamming = classId == "dwarf" and mode == "Attack" and skillId == "dwarf.common.ground"
 	if rootJoint and (rootJoint:IsA("Motor6D") or rootJoint:IsA("AnimationConstraint")) then
-		if rolling then
+		if motion and motion.root and lowerTorso then
+			local basis = rootJoint.C0.Rotation
+			rootJoint.Transform = basis:Inverse() * motion.root * basis
+			armPoses[rootJoint] = { pose = rootJoint.Transform, returning = 0 }
+			groundSlamJoints[rootJoint] = true
+		elseif rolling then
 			-- Roll the visual rig, leaving the authoritative physics root upright.
 			local basis = rootJoint.C0.Rotation
 			local pose = basis:Inverse() * sideDive.root * basis
@@ -586,6 +591,7 @@ function Visual.renderArms(character, dt, now)
 		local rootJoint = root and root:FindFirstChild("RootJoint")
 		if rootJoint and rootJoint:IsA("Motor6D") then
 			local rootPose = hurtPose and torso or motion and torso or classId == "knight" and (skillId == "knight.common.whirlwind" or skillId == "knight.common.bash") and torso or nil
+			if motion and motion.root and rootPose then rootPose=motion.root*rootPose end
 			if (motion or hurtPose) and rootPose then
 				local basis = rootJoint.C0.Rotation
 				rootPose = basis:Inverse() * rootPose * basis
@@ -1023,11 +1029,24 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 		-- cutting path once the anticipation has turned it into the swing.
 		target = CFrame.Angles(0, -math.pi / 2 * motion.axeStrikeTurn, 0) * target
 	end
+ if motion and motion.aimWeapon and joint.Part0 then
+  local root=character:FindFirstChild("HumanoidRootPart")
+  if root then
+   local basis=(joint.Part0.CFrame*joint.C0).Rotation
+   local from=(basis*target).UpVector
+   local to=root.CFrame.LookVector
+   local axis=from:Cross(to)
+   if axis.Magnitude>.0001 then
+    local correction=CFrame.fromAxisAngle(axis.Unit,math.acos(math.clamp(from:Dot(to),-1,1)))
+    target=target:Lerp(basis:Inverse()*correction*basis*target,motion.aimWeapon)
+   end
+  end
+ end
 	if bowPose and joint.Part0 then
 		local root=character:FindFirstChild("HumanoidRootPart")
 		if root then
 			local basis=(joint.Part0.CFrame*joint.C0).Rotation
-			target=basis:Inverse()*root.CFrame.Rotation*CFrame.Angles(0,0,math.rad(bowPose.angles.weapon.Z))
+			target=basis:Inverse()*root.CFrame.Rotation*CFrame.Angles(math.rad(bowPose.aimPitch or 0),0,math.rad(bowPose.angles.weapon.Z))
 		end
 	end
 	if character and character:GetAttribute("K0State") == "Block" then
