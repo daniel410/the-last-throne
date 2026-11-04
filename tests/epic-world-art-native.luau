@@ -117,7 +117,7 @@ local ok,err=xpcall(function()
   if p:IsA('MeshPart')then meshes+=1;check(p.MeshId~='','original reusable TD mesh')end
  end
  report.siteParts=total;report.reusedMeshInstances=meshes
- check(art:GetAttribute('BuildComplete')==true and art:GetAttribute('ArtVersion')==3,'only fully generated v3 worlds are cached')
+ check(art:GetAttribute('BuildComplete')==true and art:GetAttribute('ArtVersion')==4,'only fully generated v4 worlds are cached')
  local count=#art:GetDescendants();require(Server.World.EpicWorldArt).create(world)
  check(#art:GetDescendants()==count,'idempotent rebuild')
  report.totalDescendants=count;report.pass=true

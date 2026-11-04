@@ -120,8 +120,11 @@ function A.citadel(parent,c,size,pal,theme,index)
  end
  A.arch(m,p+V(0,0,4),65,59,pal,11)
  -- Recessed gate is a backdrop, not a second interactable story door.
- part(m,'GateRecess',V(57,49,3),p+V(0,24,-9),pal.rock:Lerp(Color3.new(0,0,0),.62))
- for x=-24,24,8 do part(m,'GateIronwork',V(.7,42,1),p+V(x,21,-6),pal.trim,Enum.Material.Metal)end
+ -- The final ice palace opens onto the Caldera road; its arch must stay open.
+ if not (theme=='FrozenVale' and index==7)then
+  part(m,'GateRecess',V(57,49,3),p+V(0,24,-9),pal.rock:Lerp(Color3.new(0,0,0),.62))
+  for x=-24,24,8 do part(m,'GateIronwork',V(.7,42,1),p+V(x,21,-6),pal.trim,Enum.Material.Metal)end
+ end
  if theme=='HauntedGraveyard'then
   part(m,'CathedralClerestory',V(68,42,18),p+V(0,82,-7),pal.rock,Enum.Material.Brick)
   for _,s in ipairs({-1,1})do part(m,'NaveButtress',V(6,48,22),p+V(s*36,82,-6),pal.trim)end
@@ -139,8 +142,9 @@ function A.cloister(parent,c,size,pal,index)
   A.arch(m,p+V(i*46,0,0),34,43+((i+index)%2)*3,pal,6)
   for j=0,1 do part(m,'CloisterCornice',V(49,2,10+j*2),p+V(i*46,47+j*2,0),pal.trim)end
  end
- A.tower(m,p+V(133,0,-5),82,pal,false)
- banner(m,p+V(133,35,20),pal)
+ local towerX=index==4 and -133 or 133
+ A.tower(m,p+V(towerX,0,-5),82,pal,false)
+ banner(m,p+V(towerX,35,20),pal)
  -- A timber ranger lodge occupies the flank rather than an isolated cube in the distance.
  local q=c+V(-size[1]/2-15,0,40)
  A.cabin(m,q,pal,false)
@@ -162,7 +166,8 @@ function A.cabin(parent,p,pal,snow)
  return m
 end
 function A.foundry(parent,c,size,pal,index)
- local m=model(parent,'GreatFoundry');local p=c+V(0,0,-size[2]/2-38)
+ -- Leave the eastern exit from the final furnace clear of the facade/chimneys.
+ local m=model(parent,'GreatFoundry');local p=c+V(index==7 and -200 or 0,0,-size[2]/2-38)
  for _,s in ipairs({-1,1})do
   wing(m,p+V(s*94,0,0),100,40,pal,'EmberCaldera')
   for i=0,1 do
@@ -298,10 +303,10 @@ function A.mine(parent,c,size,pal)
  for _,side in ipairs({-1,1})do A.flame(m,p+V(side*45,0,19),pal,true)end
  return m
 end
-function A.camp(parent,c,size,pal,snow)
+function A.camp(parent,c,size,pal,snow,leftShiftZ)
  local m=model(parent,'ShelteredQuarter')
  for _,side in ipairs({-1,1})do
-  local p=c+V(side*(size[1]/2-24),0,-65)
+  local p=c+V(side*(size[1]/2-24),0,-65+(side==-1 and (leftShiftZ or 0)or 0))
   A.cabin(m,p,pal,snow)
   A.cabin(m,p+V(0,0,-88),pal,snow)
  end

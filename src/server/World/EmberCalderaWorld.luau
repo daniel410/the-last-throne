@@ -20,8 +20,16 @@ local function gate(parent,p,width,height)
  for _,x in ipairs({-width/2,width/2})do part(parent,'ForgePillar',Vector3.new(7,height,9),p+Vector3.new(x,height/2,0),C.iron,Enum.Material.Metal,true)end
  part(parent,'ForgeGateLintel',Vector3.new(width+7,6,9),p+Vector3.new(0,height,0),C.basalt,Enum.Material.Basalt,true)
 end
+local function alignEmergencyPipes(world)
+ local region=world.terrain:FindFirstChild('EC-07');if not region then return end
+ local center=v(Content.zones['EC-07'].center)
+ for _,pipe in ipairs(region:GetChildren())do if pipe.Name=='EmergencyCoolantPipe' and pipe:IsA('BasePart')then
+  local side=pipe.Position.X<center.X and -1 or 1
+  pipe.Position=center+Vector3.new(side*184,4,0)
+ end end
+end
 function W.create(world)
- if world.emberReady then return world end
+ if world.emberReady then alignEmergencyPipes(world);return world end
  local terrain=world.terrain;local foundation=Instance.new('Model');foundation.Name='EmberCalderaFoundation';foundation.ModelStreamingMode=Enum.ModelStreamingMode.Persistent;foundation.Parent=terrain
  local props=Instance.new('Folder');props.Name='EmberStoryProps';props.Parent=world.folder
  for id,z in pairs(Content.zones)do
@@ -60,7 +68,7 @@ function W.create(world)
    gate(region,center+Vector3.new(0,0,125),115,36)
    part(region,'GreatFurnaceWall',Vector3.new(130,42,10),center+Vector3.new(0,21,-175),C.basalt,nil,true)
    local glow=part(props,'FurnaceCore',Vector3.new(48,26,3),center+Vector3.new(0,18,-168),C.lava,Enum.Material.Neon);glow:SetAttribute('StoryVisualKey','EC-07:restart')
-   for _,x in ipairs({-140,140})do part(region,'EmergencyCoolantPipe',Vector3.new(8,8,270),center+Vector3.new(x,4,0),C.coolant,Enum.Material.Metal,true)end
+   for _,x in ipairs({-184,184})do part(region,'EmergencyCoolantPipe',Vector3.new(8,8,270),center+Vector3.new(x,4,0),C.coolant,Enum.Material.Metal,true)end
   end
   if id:match('EC%-S')then gate(region,center+Vector3.new(0,0,95),65,24)end
   task.wait()

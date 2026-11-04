@@ -7,7 +7,7 @@ local Bounds=require(Shared.CampaignBounds)
 local K=require(script.Parent.EpicEnvironmentKit)
 local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
-local Art={version=3}
+local Art={version=4}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -80,7 +80,14 @@ local function terrainSite(parent,c,size,pal,theme,safe)
   terrain:FillBall(p,74,mat)
  end end
  local cliff=Env.kit(m,'DeepCliff',c,100)
- Env.fit(cliff,c-V(0,37,0),V(size[1]+112,74,size[2]+104));paletteKit(cliff,pal,theme)
+ -- A merged cliff skirt cannot be cut by Terrain carving. Keep its top below
+ -- lower neighboring approaches so it cannot mask an ascending road.
+ local skirtTop=c.Y
+ for _,edge in ipairs(Access.edges)do
+  local other=edge[1]==parent.Name and edge[2]or edge[2]==parent.Name and edge[1]
+  if other then local y=Content.zones[other].center[2];if y<c.Y then skirtTop=math.min(skirtTop,y-6)end end
+ end
+ Env.fit(cliff,V(c.X,skirtTop-37,c.Z),V(size[1]+112,74,size[2]+104));paletteKit(cliff,pal,theme)
  -- Merged TD geometry supplies irregular ledges and soil contours, not flat wedges.
  local top=Env.kit(m,'ContinuousTerrain',c,100)
  Env.fit(top,c-V(0,1.6,0),V(size[1]+(theme=='EmberCaldera'and 88 or 148),3.2,size[2]+138));paletteKit(top,pal,theme)
@@ -229,7 +236,7 @@ local function vista(parent,c,size,pal,theme,index)
   elseif index==5 then Architecture.mine(m,c,size,pal)
   else Architecture.ruin(m,c,size,pal,index)end
  else
-  if index==3 then Architecture.camp(m,c,size,pal,false)
+  if index==3 then Architecture.camp(m,c,size,pal,false,180)
   elseif index==5 then Architecture.citadel(m,c,size,pal,theme,index)
   else Architecture.cloister(m,c,size,pal,index)end
   local hero=c+V(size[1]/2+15,0,-size[2]/2+45)
