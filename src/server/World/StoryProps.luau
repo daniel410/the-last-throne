@@ -1,6 +1,12 @@
 -- Story-specific, upload-free native model kit. All detail is decorative.
 -- Geometry source and Blender exports: assets/models/story-props-v1.
 local Geometry=require(script.Parent.StoryPropGeometry)
+-- The roadside manifest belongs to fallen convoy cargo, not office furniture.
+local convoyCargo={purpose='Convoy food and medicine crate dropped during the ambush, with its packing list secured beneath the delivery seal.',parts=table.clone(Geometry.SupplyCrate.parts)}
+table.insert(convoyCargo.parts,{name='PackingList',size={1.25,.035,1.5},position={-.2,2.17,0},color={223,207,164},material='Fabric',rotation={0,0,0},shape='Block'})
+for i=1,4 do
+ table.insert(convoyCargo.parts,{name='PackingListLine',size={.75,.012,.045},position={-.25,2.195,-.5+i*.22},color={74,62,46},material='Fabric',rotation={0,0,0},shape='Block'})
+end
 local P={version=1}
 local function theme(chapter)
  if chapter and chapter:match('^FV') then return 'FrozenVale' end
@@ -8,7 +14,7 @@ local function theme(chapter)
  return 'Deepwood'
 end
 function P.build(parent,key,position,options)
- options=options or {};local spec=assert(Geometry[key],'Unknown story prop: '..tostring(key))
+ options=options or {};local spec=assert(key=='ConvoySupplyCrate' and convoyCargo or Geometry[key],'Unknown story prop: '..tostring(key))
  local model=Instance.new('Model');model.Name=options.name or key
  model.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
  model:SetAttribute('StoryPropVersion',P.version);model:SetAttribute('StoryPropKey',key)
@@ -35,6 +41,7 @@ function P.build(parent,key,position,options)
  model.WorldPivot=origin;model.Parent=parent;return model
 end
 function P.forStep(chapter,goal,step)
+ if chapter=='DW-01' and goal=='supplies' and step.id=='manifest' then return 'ConvoySupplyCrate' end
  local kind=step.kind;local title=string.lower(step.title or '')
  -- Resolve the actual story object before using the reusable activity type.
  if title:find('badge',1,true) then return 'ConvoyBadge' end

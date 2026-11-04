@@ -30,7 +30,9 @@
 
 **supplies**
 
-- `manifest` — Read the convoy packing list: The convoy was carrying food and medicine for the village. Let us bring the supplies back.
+- `manifest` — Read the packing list on the fallen supply crate: Eryn: This crate fell from the convoy during the ambush. Its packing list says food and medicine for the village. Let us find the rest of the supplies.
+
+2026-11-03 개연성 수정: 페이즈2의 길 위 책상을 습격 중 수레에서 떨어진 식량·의약품 보급 상자로 교체한다. 상자 위에는 봉인 아래 끼운 짐 목록이 있어 읽기 상호작용과 이어진다. `supplies/manifest` 저장ID·좌표·조사 순서·보상은 유지한다.
 - `bindings` — Find the loose travel ropes: Someone untied these ropes and escaped. Look for the survivors by the clearing.
 - `resin` — Find the convoy wheel marks: The wheel marks lead to a broken cart. Eryn has marked the way!
 

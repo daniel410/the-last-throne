@@ -7,7 +7,7 @@ end
 local function answer(id,title,text) return {id=id,title=title,text=text} end
 A.goals={
  ['DW-01:supplies']={mode='investigate',steps={
-  step("manifest","Read the convoy packing list",-45,32,"The convoy was carrying food and medicine for the village. Let us bring the supplies back.",'ledger'),
+  step("manifest","Read the packing list on the fallen supply crate",-45,32,"Eryn: This crate fell from the convoy during the ambush. Its packing list says food and medicine for the village. Let us find the rest of the supplies.",'ledger'),
   step("bindings","Find the loose travel ropes",35,-35,"Someone untied these ropes and escaped. Look for the survivors by the clearing.",'bindings'),
   step("resin","Find the convoy wheel marks",60,25,"The wheel marks lead to a broken cart. Eryn has marked the way!",'resin')}},
  ['DW-01:tracks']={mode='trail',steps={

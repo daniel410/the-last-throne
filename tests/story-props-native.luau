@@ -20,6 +20,10 @@ local ok,err=xpcall(function()
  check(kit.forStep('EC-04','west_valve',{kind='lever',title='Open the western coolant valve'})=='CoolantValve','coolant uses pipe/handwheel, not generic lever')
  check(kit.forStep('DW-02','testimony',{kind='ledger',title="Find the convoy captain's badge"})=='ConvoyBadge','badge differs from a book')
  check(kit.forStep('DW-01','supplies',{kind='bindings',title='Find the loose travel ropes'})=='TravelBindings','ropes do not become machinery')
+ local manifestStep=require(game.ReplicatedStorage.Shared.DeepwoodAdventure).goals['DW-01:supplies'].steps[1]
+ local cargo=kit.activity(fixture,'DW-01','supplies',manifestStep,Vector3.new(0,0,0))
+ check(cargo:GetAttribute('StoryPropKey')=='ConvoySupplyCrate' and cargo:FindFirstChild('CargoLid') and cargo:FindFirstChild('PackingList'),'roadside packing list belongs to fallen supply cargo')
+ for _,p in ipairs(cargo:GetDescendants())do if p:IsA('BasePart')then check(not p.CanCollide and not p.CanTouch and not p.CanQuery,'fallen cargo preserves interaction and navigation')end end
  check(kit.goal(fixture,'FV-07',{id='mirror',title='Restore the first signal mirror',position={0,0,0}}):GetAttribute('StoryPropKey')=='SignalMirror','mirror uses an optical instrument')
  fixture:Destroy()
  Run:Run();task.wait(3)
