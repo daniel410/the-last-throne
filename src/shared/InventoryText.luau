@@ -1,4 +1,5 @@
 return {
+ RarityLabel = "RARITY: %s",
  BalanceLimit="Your Gold balance is at its limit. Spend some Gold before exchanging Diamonds.",
  GoldCategory="GOLD", GoldBundle="%d Gold", GoldDescription="Adds %d Gold to your RPG account wallet. Available across your heroes.",
  ShopInsufficient="Need %d more %s", ShopShortfall="\nPrice: %d %s · Need %d more.",

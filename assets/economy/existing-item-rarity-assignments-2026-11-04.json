@@ -1,0 +1,588 @@
+{
+  "date": "2026-11-04",
+  "source": "src/shared/ItemCatalog.luau",
+  "status": "existing-runtime-classification-no-stat-migration",
+  "counts": {
+    "Uncommon": 14,
+    "Common": 20,
+    "Rare": 17
+  },
+  "equipmentCounts": {
+    "Uncommon": 11,
+    "Common": 10,
+    "Rare": 12
+  },
+  "items": [
+    {
+      "definitionId": "amber_charm",
+      "name": "Amber Charm",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": null,
+      "slot": "accessory",
+      "requiredLevel": 1,
+      "stats": {
+        "health": 60.0
+      }
+    },
+    {
+      "definitionId": "copper_ring",
+      "name": "Copper Ring",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": null,
+      "slot": "accessory",
+      "requiredLevel": 1,
+      "stats": {
+        "power": 5.0
+      }
+    },
+    {
+      "definitionId": "dwarf_weapon",
+      "name": "Training Axe",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "dwarf_weapon_fine",
+      "name": "Tempered Axe",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "requiredLevel": 1,
+      "stats": {
+        "power": 10.0
+      }
+    },
+    {
+      "definitionId": "dwarf_weapon_forged",
+      "name": "Dawnforge Axe",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "requiredLevel": 10,
+      "stats": {
+        "power": 24.0
+      }
+    },
+    {
+      "definitionId": "dwarf_weapon_veteran",
+      "name": "Veteran's Axe",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "requiredLevel": 5,
+      "stats": {
+        "power": 18.0
+      }
+    },
+    {
+      "definitionId": "elf_weapon",
+      "name": "Training Bow",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": "elf",
+      "slot": "weapon",
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "elf_weapon_fine",
+      "name": "Tempered Bow",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": "elf",
+      "slot": "weapon",
+      "requiredLevel": 1,
+      "stats": {
+        "power": 10.0
+      }
+    },
+    {
+      "definitionId": "elf_weapon_forged",
+      "name": "Dawnforge Bow",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": "elf",
+      "slot": "weapon",
+      "requiredLevel": 10,
+      "stats": {
+        "power": 24.0
+      }
+    },
+    {
+      "definitionId": "elf_weapon_veteran",
+      "name": "Veteran's Bow",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": "elf",
+      "slot": "weapon",
+      "requiredLevel": 5,
+      "stats": {
+        "power": 18.0
+      }
+    },
+    {
+      "definitionId": "enhancement_gem",
+      "name": "Enhancement Gem",
+      "category": "Materials",
+      "rarity": "Uncommon",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "equipment_cache_1",
+      "name": "Level 1 Equipment Cache",
+      "category": "Materials",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "equipment_cache_10",
+      "name": "Level 10 Equipment Cache",
+      "category": "Materials",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "equipment_cache_5",
+      "name": "Level 5 Equipment Cache",
+      "category": "Materials",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "forge_core",
+      "name": "Forge Core",
+      "category": "Materials",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "guardian_charm",
+      "name": "Guardian Charm",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": "accessory",
+      "requiredLevel": 10,
+      "stats": {
+        "armor": 2.0,
+        "health": 100.0
+      }
+    },
+    {
+      "definitionId": "health_potion",
+      "name": "Small Health Potion",
+      "category": "Consumables",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "health_potion_large",
+      "name": "Large Health Potion",
+      "category": "Consumables",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "health_potion_medium",
+      "name": "Medium Health Potion",
+      "category": "Consumables",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "health_potion_xl",
+      "name": "XL Health Potion",
+      "category": "Consumables",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "iron_ore",
+      "name": "Iron Ore",
+      "category": "Materials",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "king_shaman_seal",
+      "name": "King Shaman Seal",
+      "category": "Materials",
+      "rarity": "Uncommon",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "knight_shield",
+      "name": "Training Shield",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": "knight",
+      "slot": "offhand",
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "knight_shield_fine",
+      "name": "Citadel Shield",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": "knight",
+      "slot": "offhand",
+      "requiredLevel": 1,
+      "stats": {
+        "armor": 4.0
+      }
+    },
+    {
+      "definitionId": "knight_weapon",
+      "name": "Training Sword",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": "knight",
+      "slot": "weapon",
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "knight_weapon_fine",
+      "name": "Tempered Sword",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": "knight",
+      "slot": "weapon",
+      "requiredLevel": 1,
+      "stats": {
+        "power": 10.0
+      }
+    },
+    {
+      "definitionId": "knight_weapon_forged",
+      "name": "Dawnforge Sword",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": "knight",
+      "slot": "weapon",
+      "requiredLevel": 10,
+      "stats": {
+        "power": 24.0
+      }
+    },
+    {
+      "definitionId": "knight_weapon_veteran",
+      "name": "Veteran's Sword",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": "knight",
+      "slot": "weapon",
+      "requiredLevel": 5,
+      "stats": {
+        "power": 18.0
+      }
+    },
+    {
+      "definitionId": "mage_weapon",
+      "name": "Training Staff",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": "mage",
+      "slot": "weapon",
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "mage_weapon_fine",
+      "name": "Tempered Staff",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": "mage",
+      "slot": "weapon",
+      "requiredLevel": 1,
+      "stats": {
+        "power": 10.0
+      }
+    },
+    {
+      "definitionId": "mage_weapon_forged",
+      "name": "Dawnforge Staff",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": "mage",
+      "slot": "weapon",
+      "requiredLevel": 10,
+      "stats": {
+        "power": 24.0
+      }
+    },
+    {
+      "definitionId": "mage_weapon_veteran",
+      "name": "Veteran's Staff",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": "mage",
+      "slot": "weapon",
+      "requiredLevel": 5,
+      "stats": {
+        "power": 18.0
+      }
+    },
+    {
+      "definitionId": "magic_stone",
+      "name": "Magic Stone",
+      "category": "Materials",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "mana_potion",
+      "name": "Small Mana Potion",
+      "category": "Consumables",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "mana_potion_large",
+      "name": "Large Mana Potion",
+      "category": "Consumables",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "mana_potion_medium",
+      "name": "Medium Mana Potion",
+      "category": "Consumables",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "mana_potion_xl",
+      "name": "XL Mana Potion",
+      "category": "Consumables",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "ruby_ring",
+      "name": "Ruby Ring",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": "accessory",
+      "requiredLevel": 10,
+      "stats": {
+        "power": 10.0
+      }
+    },
+    {
+      "definitionId": "sentinel_boots",
+      "name": "Sentinel Boots",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": "feet",
+      "requiredLevel": 10,
+      "stats": {
+        "armor": 7.0
+      }
+    },
+    {
+      "definitionId": "sentinel_gauntlets",
+      "name": "Sentinel Gauntlets",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": "hands",
+      "requiredLevel": 10,
+      "stats": {
+        "power": 5.0,
+        "armor": 3.0
+      }
+    },
+    {
+      "definitionId": "sentinel_helm",
+      "name": "Sentinel Helm",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": "head",
+      "requiredLevel": 10,
+      "stats": {
+        "armor": 8.0
+      }
+    },
+    {
+      "definitionId": "sentinel_mail",
+      "name": "Sentinel Mail",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": "body",
+      "requiredLevel": 10,
+      "stats": {
+        "armor": 7.0,
+        "health": 80.0
+      }
+    },
+    {
+      "definitionId": "sentinel_shield",
+      "name": "Sentinel Shield",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": "knight",
+      "slot": "offhand",
+      "requiredLevel": 10,
+      "stats": {
+        "armor": 8.0
+      }
+    },
+    {
+      "definitionId": "soft_hide",
+      "name": "Soft Hide",
+      "category": "Materials",
+      "rarity": "Common",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    },
+    {
+      "definitionId": "storm_pendant",
+      "name": "Storm Pendant",
+      "category": "Equipment",
+      "rarity": "Rare",
+      "classId": null,
+      "slot": "accessory",
+      "requiredLevel": 10,
+      "stats": {
+        "power": 6.0,
+        "health": 50.0
+      }
+    },
+    {
+      "definitionId": "traveler_boots",
+      "name": "Traveler's Boots",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": null,
+      "slot": "feet",
+      "requiredLevel": 1,
+      "stats": {
+        "armor": 2.0
+      }
+    },
+    {
+      "definitionId": "traveler_coat",
+      "name": "Traveler's Coat",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": null,
+      "slot": "body",
+      "requiredLevel": 1,
+      "stats": {
+        "armor": 2.0,
+        "health": 40.0
+      }
+    },
+    {
+      "definitionId": "traveler_gloves",
+      "name": "Traveler's Gloves",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": null,
+      "slot": "hands",
+      "requiredLevel": 1,
+      "stats": {
+        "power": 3.0
+      }
+    },
+    {
+      "definitionId": "traveler_hood",
+      "name": "Traveler's Hood",
+      "category": "Equipment",
+      "rarity": "Common",
+      "classId": null,
+      "slot": "head",
+      "requiredLevel": 1,
+      "stats": {
+        "armor": 2.0
+      }
+    },
+    {
+      "definitionId": "veteran_hood",
+      "name": "Veteran's Hood",
+      "category": "Equipment",
+      "rarity": "Uncommon",
+      "classId": null,
+      "slot": "head",
+      "requiredLevel": 5,
+      "stats": {
+        "armor": 6.0
+      }
+    },
+    {
+      "definitionId": "warlord_seal",
+      "name": "Orc Warlord Seal",
+      "category": "Materials",
+      "rarity": "Uncommon",
+      "classId": null,
+      "slot": null,
+      "requiredLevel": 1,
+      "stats": {}
+    }
+  ]
+}

@@ -7,6 +7,7 @@ local GuiService = game:GetService("GuiService")
 local ContextActionService = game:GetService("ContextActionService")
 local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
 local Text = require(ReplicatedStorage.Shared.InventoryText)
+local Rarity = require(ReplicatedStorage.Shared.ItemRarity)
 local EquipmentImpact = require(ReplicatedStorage.Shared.EquipmentImpact)
 local Navigation = require(ReplicatedStorage.Shared.NavigationText)
 local CombatText = require(ReplicatedStorage.Shared.CombatStatText)
@@ -215,6 +216,13 @@ function InventoryGui.create(onVisibility, feedback)
 	local function detailLabel(name,text,y,height,size,color)
 		return Theme.label(detailScroll,name,text,UDim2.fromOffset(2,y),UDim2.new(1,-8,0,height),size,color)
 	end
+	local function rarityLabel(def,y)
+		local style=Rarity.style(def.rarity)
+		local label=detailLabel("Rarity",string.format(Text.RarityLabel,style.label).."  •  "..string.upper(def.category),y,34,14,Color3.fromRGB(table.unpack(style.rgb)))
+		label.Font=Enum.Font.GothamBold
+		label:SetAttribute("Rarity",def.rarity)
+		return label
+	end
 	local function clearChildren(parent,kind)
 		for _, child in ipairs(parent:GetChildren()) do if not kind or child:IsA(kind) then child:Destroy() end end
 	end
@@ -254,6 +262,7 @@ function InventoryGui.create(onVisibility, feedback)
 				local entry=quantityBox; local id=selectedId
 				entry.FocusLost:Connect(function() if selectedId==id then quantity=tonumber(entry.Text) end end)
 			end
+			rarityLabel(def,106)
 			primary.Visible=actionForSelection~=nil
 			if actionForSelection then primary.Caption.Text=Text[actionForSelection]; Theme.enabled(primary,not pending and snapshot.ready and snapshot.safe and snapshot.atStorage) end
 			return
@@ -280,11 +289,11 @@ function InventoryGui.create(onVisibility, feedback)
    count.Font=Enum.Font.GothamBold;y=y+32
   end
 		Artwork.create(detailScroll,def,UDim2.fromOffset(12,y),UDim2.new(1,-32,0,156)); y=y+160
+		rarityLabel(def,y); y=y+38
 		local classText=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or (def.slot and Text.Compatible or Text.AllClasses)
 		detailLabel("Requirements",classText.."  •  "..string.format(Text.Level,def.level or 1),y,48,13,Color.silver); y=y+52
 		if def.restore then detailLabel("RestoreAmount",string.format(Text.RestoreAmount,def.amount,def.glyph),y,30,16,def.restore=="health" and Color.error or Color.silver); y=y+34 end
 		if expandedDetails then
-			detailLabel("Rarity",string.upper(def.rarity).."  •  "..string.upper(def.category),y,22,11,Color.silver); y=y+26
 			detailLabel("Binding",(item.binding=="character" and Text.CharacterBound or Text.Bound)..(item.locked and "  •  "..Text.Locked or ""),y,26,11,Color.gold); y=y+30
 		end
 		if def.slot then

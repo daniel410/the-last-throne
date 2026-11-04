@@ -1,5 +1,8 @@
 # The Last Throne 통합 개발 계획
 
+> **2026-11-04 기존 아이템 등급 표시 · TLT-028/029/043/052/084 · 0.69.3:** [기존51종 분류](docs/production/existing-item-rarity-2026-11-04.md)를 확인하고 가방/창고 상세에 등급명과색상을 항상 표시한다. Common20/Uncommon14/Rare17·ID/능력치/기존희귀도 보존. [검증·미검증](docs/evidence/item-rarity-details-20261104/README.md). 로컬 수정·미게시, 실제UI/기기 수용 후속.
+
+
 > **2026-11-04 개별 아이템 능력치 계획 · TLT-027/028/029/041/043/044/045/052/073/082/084:** [120종 기본/+9·마나·세트 수치표](docs/production/equipment-item-stats-2026-11-04.md)와 [수치 JSON](assets/balance/equipment-stats-plan-2026-11-04.json)을 작성했다. 40계열×Rare/Epic/Legendary의 Lv10 시험안이며 최소 착용Lv/실측 밸런스·런타임 구현은 후속이다. 세트2/4/5부위·MP 비강화를 보존한다.
 
 

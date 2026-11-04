@@ -1,4 +1,5 @@
 -- Trial equipment values, not story rewards, shop products or final balance.
+-- Existing rarity assignments are explicit. Keep canonical spelling Uncommon.
 local Catalog = {
 	version = 1, bagCapacity = 60, storageCapacity = 120,
 	slots = {"weapon", "offhand", "head", "body", "hands", "feet", "accessory1", "accessory2"},
@@ -13,17 +14,17 @@ local function gear(id, name, slot, classId, stats, glyph, extra)
 	Catalog.items[id] = item
 end
 for classId, name in pairs({knight = "Sword", elf = "Bow", dwarf = "Axe", mage = "Staff"}) do
-	gear(classId .. "_weapon", "Training " .. name, "weapon", classId, {}, name:sub(1, 2):upper())
+	gear(classId .. "_weapon", "Training " .. name, "weapon", classId, {}, name:sub(1, 2):upper(), {rarity = "Common"})
 	gear(classId .. "_weapon_fine", "Tempered " .. name, "weapon", classId, {power = 10}, name:sub(1, 2):upper(), {rarity = "Uncommon"})
  gear(classId..'_weapon_veteran',"Veteran's "..name,'weapon',classId,{power=18},name:sub(1,2):upper(),{level=5,rarity='Uncommon',description='A Dawnspire weapon for experienced adventurers. Requires level 5. Available for Gold or Diamonds.'})
 end
-gear("knight_shield", "Training Shield", "offhand", "knight", {}, "SH")
+gear("knight_shield", "Training Shield", "offhand", "knight", {}, "SH", {rarity = "Common"})
 gear("knight_shield_fine", "Citadel Shield", "offhand", "knight", {armor = 4}, "SH", {rarity = "Uncommon"})
-gear("traveler_hood", "Traveler's Hood", "head", nil, {armor = 2}, "HD")
-gear("traveler_coat", "Traveler's Coat", "body", nil, {health = 40, armor = 2}, "BD")
-gear("traveler_gloves", "Traveler's Gloves", "hands", nil, {power = 3}, "HN")
-gear("traveler_boots", "Traveler's Boots", "feet", nil, {armor = 2}, "FT")
-gear("copper_ring", "Copper Ring", "accessory", nil, {power = 5}, "RG", {uniqueGroup = "copper_ring"})
+gear("traveler_hood", "Traveler's Hood", "head", nil, {armor = 2}, "HD", {rarity = "Common"})
+gear("traveler_coat", "Traveler's Coat", "body", nil, {health = 40, armor = 2}, "BD", {rarity = "Common"})
+gear("traveler_gloves", "Traveler's Gloves", "hands", nil, {power = 3}, "HN", {rarity = "Common"})
+gear("traveler_boots", "Traveler's Boots", "feet", nil, {armor = 2}, "FT", {rarity = "Common"})
+gear("copper_ring", "Copper Ring", "accessory", nil, {power = 5}, "RG", {uniqueGroup = "copper_ring", rarity = "Common"})
 gear("amber_charm", "Amber Charm", "accessory", nil, {health = 60}, "CH", {rarity = "Uncommon"})
 gear("veteran_hood", "Veteran's Hood", "head", nil, {armor = 6}, "HD", {level = 5, rarity = "Uncommon"})
 -- Provisional Lv10 forge stock. Existing stable definitions/rewards stay intact.
