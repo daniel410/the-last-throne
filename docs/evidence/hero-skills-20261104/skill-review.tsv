@@ -1,0 +1,129 @@
+class	skill_id	name	form	motion	effect	pulses	geometry_review	motion_review	visual_acceptance
+knight	knight.common.bash	SHIELD BASH	bash	shield	shield	1	retained	retained	NOT_RUN
+knight	knight.common.whirlwind	WHIRLWIND	whirlwind	spin	slash	1	retained	retained	NOT_RUN
+knight	knight.common.provoke	PROVOKE	provoke	shield	taunt	1	retained	retained	NOT_RUN
+knight	knight.steel_knight.counter_slash	COUNTER SLASH	melee	counter	slash	1	revised	procedural	NOT_RUN
+knight	knight.steel_knight.steel_sweep	STEEL SWEEP	cone	sweep	slash	1	revised	procedural	NOT_RUN
+knight	knight.steel_knight.challenging_strike	CHALLENGING STRIKE	melee	slash	slash	1	revised	procedural	NOT_RUN
+knight	knight.steel_knight.twin_cyclone	TWIN CYCLONE	area	spin	slash	2	revised	procedural	NOT_RUN
+knight	knight.steel_knight.shield_breaker	SHIELD BREAKER	melee	shield	shield	1	revised	procedural	NOT_RUN
+knight	knight.steel_knight.guardian_counter	GUARDIAN COUNTER	melee	counter	shield	1	revised	procedural	NOT_RUN
+knight	knight.steel_knight.rallying_slash	RALLYING SLASH	cone	sweep	slash	1	revised	procedural	NOT_RUN
+knight	knight.steel_knight.breaker_charge	BREAKER CHARGE	cone	shield	shield	2	revised	procedural	NOT_RUN
+knight	knight.steel_knight.vanguard_strike	VANGUARD STRIKE	line	thrust	slash	1	revised	procedural	NOT_RUN
+knight	knight.steel_knight.blade_storm	BLADE STORM	area	spin	slash	4	revised	procedural	NOT_RUN
+knight	knight.steel_knight.sweeping_break	SWEEPING BREAK	area	sweep	slash	1	revised	procedural	NOT_RUN
+knight	knight.steel_knight.warcry_assault	WARCRY ASSAULT	cone	slash	slash	3	revised	procedural	NOT_RUN
+knight	knight.steel_knight.unyielding_front	UNYIELDING FRONT	area	shield	shield	2	revised	procedural	NOT_RUN
+knight	knight.paladin.oathblade	OATHBLADE	melee	slash	slash	2	revised	procedural	NOT_RUN
+knight	knight.paladin.radiant_sweep	RADIANT SWEEP	cone	sweep	slash	1	revised	procedural	NOT_RUN
+knight	knight.paladin.oath_challenge	OATH CHALLENGE	cone	sweep	slash	1	revised	procedural	NOT_RUN
+knight	knight.paladin.dawn_burst	DAWN BURST	area	spin	holy	1	revised	procedural	NOT_RUN
+knight	knight.paladin.oathbreaker_strike	OATHBREAKER STRIKE	melee	chop	slash	1	revised	procedural	NOT_RUN
+knight	knight.paladin.shield_verdict	SHIELD VERDICT	melee	shield	shield	1	revised	procedural	NOT_RUN
+knight	knight.paladin.guardian_slash	GUARDIAN SLASH	cone	sweep	slash	1	revised	procedural	NOT_RUN
+knight	knight.paladin.radiant_charge	RADIANT CHARGE	cone	shield	shield	2	revised	procedural	NOT_RUN
+knight	knight.paladin.valiant_advance	VALIANT ADVANCE	cone	shield	shield	1	revised	procedural	NOT_RUN
+knight	knight.paladin.dawn_spiral	DAWN SPIRAL	area	spin	holy	3	revised	procedural	NOT_RUN
+knight	knight.paladin.sunward_cross	SUNWARD CROSS	cone	cross	slash	2	revised	procedural	NOT_RUN
+knight	knight.paladin.oathbound_assault	OATHBOUND ASSAULT	cone	slash	slash	3	revised	procedural	NOT_RUN
+knight	knight.paladin.oath_of_dawn	OATH OF DAWN	area	shield	holy	2	revised	procedural	NOT_RUN
+knight	knight_driving_thrust	DRIVING THRUST	line	thrust	slash	1	revised	procedural	NOT_RUN
+knight	knight_crescent_cut	CRESCENT CUT	cone	sweep	slash	1	revised	procedural	NOT_RUN
+knight	knight_guarded_strike	GUARDED STRIKE	melee	shield	shield	1	revised	procedural	NOT_RUN
+dwarf	dwarf.common.overhead	OVERHEAD SMASH	overhead	chop	slash	1	retained	retained	NOT_RUN
+dwarf	dwarf.common.throw	AXE THROW	throw	throw	axe	1	retained	retained	NOT_RUN
+dwarf	dwarf.common.ground	GROUND SLAM	slam	slam	earth	1	retained	retained	NOT_RUN
+dwarf	dwarf.iron_axe.armor_splitter	ARMOR SPLITTER	melee	chop	slash	1	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.returning_echo	RETURNING ECHO	line	throw	axe	2	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.mountain_sweep	MOUNTAIN SWEEP	area	sweep	earth	1	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.crag_cleave	CRAG CLEAVE	cone	chop	slash	1	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.breaker_throw	BREAKER THROW	line	throw	axe	1	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.stonebound_leap	STONEBOUND LEAP	area	slam	earth	1	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.iron_shoulder	IRON SHOULDER	cone	shield	shield	1	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.crosscut_axe	CROSSCUT AXE	line	throw	axe	2	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.mountain_strike	MOUNTAIN STRIKE	cone	slam	earth	1	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.shatter_blow	SHATTER BLOW	ground	slam	earth	1	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.twin_axe_path	TWIN AXE PATH	projectile	throw	axe	2	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.tremor_guard	TREMOR GUARD	area	slam	earth	1	revised	procedural	NOT_RUN
+dwarf	dwarf.iron_axe.mountain_collapse	MOUNTAIN COLLAPSE	cone	slam	earth	2	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.gunner_shot	GUNNER SHOT	projectile	shoot	bullet	1	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.bomb_toss	BOMB TOSS	ground	lob	bomb	1	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.shell_burst	SHELL BURST	ground	mortar	shell	1	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.quickfire	QUICKFIRE	projectile	shoot	bullet	3	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.shrapnel_toss	SHRAPNEL TOSS	ground	lob	bomb	3	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.blast_step	BLAST STEP	cone	mortar	shell	1	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.scatter_shot	SCATTER SHOT	cone	shoot	bullet	1	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.skipping_charge	SKIPPING CHARGE	ground	lob	bomb	2	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.field_mortar	FIELD MORTAR	ground	mortar	shell	4	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.piercing_round	PIERCING ROUND	line	shoot	bullet	1	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.rolling_charge	ROLLING CHARGE	line	lob	bomb	1	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.siege_pattern	SIEGE PATTERN	ground	mortar	shell	2	revised	procedural	NOT_RUN
+dwarf	dwarf.gunner.siege_barrage	SIEGE BARRAGE	ground	mortar	shell	4	revised	procedural	NOT_RUN
+dwarf	dwarf_hooking_chop	HOOKING CHOP	melee	chop	slash	1	revised	procedural	NOT_RUN
+dwarf	dwarf_low_sweep	LOW SWEEP	cone	sweep	slash	1	revised	procedural	NOT_RUN
+dwarf	dwarf_braced_throw	BRACED THROW	line	throw	axe	1	revised	procedural	NOT_RUN
+elf	elf.common.aimed	AIMED SHOT	aimed	draw	arrow	1	retained	retained	NOT_RUN
+elf	elf.common.rapid	RAPID FIRE	rapid	draw	arrow	3	retained	retained	NOT_RUN
+elf	elf.common.multi	MULTI SHOT	multi	draw	arrow	1	retained	retained	NOT_RUN
+elf	elf.marksman.weakpoint_shot	WEAKPOINT SHOT	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.moving_volley	MOVING VOLLEY	projectile	draw	arrow	3	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.piercing_line	PIERCING LINE	line	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.heavy_draw	HEAVY DRAW	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.precision_volley	PRECISION VOLLEY	projectile	draw	arrow	3	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.fan_break	FAN BREAK	cone	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.hunter_s_focus	HUNTER'S FOCUS	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.retreating_fire	RETREATING FIRE	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.piercing_volley	PIERCING VOLLEY	cone	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.mark_breaker	MARK BREAKER	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.crossfire	CROSSFIRE	line	draw	arrow	2	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.arrow_rain	ARROW RAIN	ground	rain	rain	4	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.marksman.grand_volley	GRAND VOLLEY	cone	draw	arrow	3	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.elemental_arrow	ELEMENTAL ARROW	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.spark_volley	SPARK VOLLEY	projectile	draw	arrow	3	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.vine_trap	VINE TRAP	ground	rain	vine	3	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.bloom_shot	BLOOM SHOT	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.storm_arrow	STORM ARROW	ground	rain	lightning	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.rooting_fan	ROOTING FAN	cone	draw	vine	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.warden_arrow	WARDEN ARROW	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.gliding_shot	GLIDING SHOT	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.spirit_rain	SPIRIT RAIN	ground	rain	rain	4	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.elemental_pierce	ELEMENTAL PIERCE	line	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.echo_arrows	ECHO ARROWS	projectile	draw	arrow	3	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.vine_burst	VINE BURST	ground	rain	vine	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf.magic_archer.spirit_arrowfall	SPIRIT ARROWFALL	ground	rain	rain	3	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf_retreating_shot	RETREATING SHOT	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf_pinning_shot	PINNING SHOT	projectile	draw	arrow	1	revised	authored+confirmed-pulse	NOT_RUN
+elf	elf_arrow_screen	ARROW SCREEN	ground	rain	rain	3	revised	authored+confirmed-pulse	NOT_RUN
+mage	mage.common.mana_bolt	MANA BOLT	mana_bolt	cast	arcane	1	retained	retained	NOT_RUN
+mage	mage.common.water_ball	WATER BALL	water	cast	water	1	retained	retained	NOT_RUN
+mage	mage.common.gravity	GRAVITY	gravity	area	gravity	1	retained	retained	NOT_RUN
+mage	mage.pyro.ember_lance	EMBER LANCE	projectile	cast	fire	1	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.steam_burst	STEAM BURST	ground	area	steam	1	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.cinder_ring	CINDER RING	area	area	fire	3	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.flame_dart	FLAME DART	projectile	cast	fire	1	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.earth_rise	EARTH RISE	ground	area	earth	1	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.ember_step	EMBER STEP	area	area	fire	1	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.stone_lance	STONE LANCE	projectile	cast	earth	1	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.searing_ward	SEARING WARD	area	ward	fire	1	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.lava_eruption	LAVA ERUPTION	ground	area	lava	1	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.magma_spear	MAGMA SPEAR	projectile	cast	fire	1	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.molten_line	MOLTEN LINE	line	cast	fire	3	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.ashfall	ASHFALL	ground	rain	ash	4	revised	authored+pulse	NOT_RUN
+mage	mage.pyro.caldera_s_judgment	CALDERA'S JUDGMENT	ground	area	lava	3	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.frost_lance	FROST LANCE	projectile	cast	frost	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.ice_shard	ICE SHARD	projectile	cast	frost	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.frost_ring	FROST RING	area	area	frost	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.shatter_dart	SHATTER DART	projectile	cast	frost	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.chain_lightning	CHAIN LIGHTNING	chain	cast	lightning	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.frost_step	FROST STEP	area	area	frost	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.thunder_spear	THUNDER SPEAR	projectile	cast	lightning	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.ice_ward	ICE WARD	area	ward	frost	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.froststorm	FROSTSTORM	ground	area	frost	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.glacial_spike	GLACIAL SPIKE	projectile	cast	frost	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.lightning_line	LIGHTNING LINE	line	cast	lightning	1	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.hailfall	HAILFALL	ground	rain	hail	4	revised	authored+pulse	NOT_RUN
+mage	mage.cryo.eternal_tempest	ETERNAL TEMPEST	ground	area	frost	3	revised	authored+pulse	NOT_RUN
+mage	mage_wind_lance	WIND LANCE	line	cast	wind	1	revised	authored+pulse	NOT_RUN
+mage	mage_tidal_ring	TIDAL RING	area	area	water	1	revised	authored+pulse	NOT_RUN
+mage	mage_arcane_ward	ARCANE WARD	self	ward	arcane	1	revised	authored+pulse	NOT_RUN

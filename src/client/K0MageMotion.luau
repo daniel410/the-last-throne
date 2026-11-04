@@ -41,6 +41,18 @@ function Motion.sample(d,profile,age,entry,entrySlope)
  local t=age<w and .65*math.clamp(age/w,0,1)
   or age<w+a and .65+.17*math.clamp((age-w)/a,0,1)
   or .82+.18*math.clamp((age-w-a)/r,0,1)
+ -- Re-articulate every accepted pulse instead of stretching one release
+ -- across an entire barrage. Area channels keep their raised guiding hand.
+ if d.advanced and (d.pulses or 1)>1 and age>=w and age<w+a then
+  local pulse=math.min(d.pulses,math.floor((age-w)/d.interval)+1)
+  local since=age-w-(pulse-1)*d.interval
+  if since<.055 then t=.65+.17*math.clamp(since/.055,0,1)
+  elseif pulse<d.pulses then
+   local reload=math.clamp((since-.055)/math.max(.01,d.interval-.055),0,1)
+   -- A continuous return arc joins release (.82) to the next anchor (.65).
+   if reload<.5 then t=.82-.32*(reload*2) else t=.50+.15*((reload-.5)*2) end
+  else t=.82 end
+ end
  local pose=Motion.raw(profile,t);if not pose then return nil end
  local opening=w*.3
  if entry and age<opening then
