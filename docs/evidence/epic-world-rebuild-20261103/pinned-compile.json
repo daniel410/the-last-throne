@@ -1,0 +1,1547 @@
+{
+  "sourceCommit": "dc477a4a7168d085893f027c4d59c0203b61c2d0",
+  "files": 308,
+  "pass": true,
+  "results": [
+    {
+      "path": "src/client/AdvancedSkillVisual.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/AdventureCamera.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/AdventureReplay.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/ArmoryView.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/BattleMinimap.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/CombatStatsView.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DailyLoginGui.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DawnspireHomecoming.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeathPenaltyNotice.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodAtmosphere.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodCartography.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodGates.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodJournal.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodMap.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodMapCanvas.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodMapState.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodNavigation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodQuestBook.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/DeepwoodStoryPresentation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/EmberCalderaClips.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/EmberCalderaPresentation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/EnhancementGuide.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/EnhancementView.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/ExpeditionView.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/FrozenValeClips.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/GameSettings.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/GloamwoodMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/DeathKnight.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/DreadCommander.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/Ghoul.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/Hellhound.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/Lich.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/LichSovereign.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/Mummy.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/Skeleton.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/SkeletonKnight.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/Veyr.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/Zombie.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HauntedGraveyardClips/init.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HeroDeathCamera.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HeroGrowthGui.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HeroLobbyGui.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HeroMenuChrome.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HeroSkillTree.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/HeroStatsView.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/InteractionPrompts.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/InventoryChrome.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/InventoryGui.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/ItemArtwork.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/ItemSprites.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0BackgroundMusic.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0BowMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0EnemyClips.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0EnemyControlEffects.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0EnemyHitReaction.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0EnemyMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0EnemyVisual.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0EnemyWeaponMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0HitEffects.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0Hud.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0MageClips.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0MageFocus.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0MageMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0MeleeClips.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0MeleeMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0PlayerHitFeedback.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0ShieldBashClip.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0ShieldBashMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0SwordVisual.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0Targeting.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/K0Telegraphs.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LateEpicPresentation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyAtlas.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyCommerce.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyHeroDock.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyLandmarkVisuals.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyMenuBridge.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyNavigation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyNavigationArt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyNavigationSizing.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyPanelLayout.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyQuestJournal.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyRejoinButton.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyTopMenu.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/LobbyWallet.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/MobileHeroStatsView.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/NPCDialogue.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/NPCMotionPresentation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/NPCPresentation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/PotionIcon.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/Attack.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/AttackAlt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/Exposed.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/Heavy.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/HeavyAlt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/Idle.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/Interrupted.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/Return.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/Stunned.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/KingVolcanoShaman/Walk.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/Attack.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/AttackAlt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/Exposed.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/Heavy.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/HeavyAlt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/Idle.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/Interrupted.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/Return.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/Stunned.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/QueenIceElf/Walk.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/Attack.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/AttackAlt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/Exposed.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/Heavy.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/HeavyAlt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/Idle.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/Interrupted.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/Return.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/Stunned.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/VolcanoShaman/Walk.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterClips/init.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/RegionalCasterSockets.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/SelenePresentation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/SeleneSkinMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/SettingsGui.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/SkillAdvancementView.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/SkillGlyph.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/SkillUnlockNotice.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/StoryCompletionView.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/StoryRegionNotice.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/SupporterDetails.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/TDInventoryTheme.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/TDLobbyDockArt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/TDLobbySelectionCheck.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/TopMenuLayout.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/TravelLoadingScreen.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/WalletDisplay.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/WindLanceVisual.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/WorldPresentationBudget.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/client/init.client.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Combat/AdvancedCombat.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Combat/CombatService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Combat/EnemyDeathFall.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Combat/HeroLevelUpEffect.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Combat/K0Rules.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Cosmetics/HeroPalette.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Cosmetics/KnightAppearance.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Cosmetics/WeaponAppearance.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Cosmetics/WoodenStaffBuilder.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Inventory/AccountStore.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Inventory/InventoryRules.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Inventory/InventoryService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Lobby/DailyLoginService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Lobby/FacilityAccess.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Lobby/FacilityService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Lobby/HeroSessionService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Lobby/MerchantService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Lobby/NPCService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Network/ExpeditionDeparture.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Network/ExpeditionService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Network/ExpeditionStore.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Spawn/HeroDeathFall.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Spawn/SpawnService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Story/DeepwoodActivities.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Story/DeepwoodRegionAccess.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Story/DeepwoodService.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Story/SeleneCompanion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/Story/SeleneFollow.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/CampaignWorld.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/DeepwoodActivityWorld.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/DeepwoodEnvironment.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/DeepwoodGroundedWorld.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/DeepwoodPlaces.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/DeepwoodWorld.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/EmberCalderaWorld.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/EnemyHealthBar.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/EpicArchitecture.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/EpicEnvironmentKit.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/EpicWorldArt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/FrozenValeWorld.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/GloamwoodAppearance.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/HauntedFinaleVisual.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/ItemShop.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/LateEpicWorld.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/LobbyArchitecture.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/LobbyLandmarks.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/LobbyResidents.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/LobbyWorld.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/NPCActors.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/NPCArticulation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/NPCCast.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/NPCHeadVisual.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/NPCVisual.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/RegionalCasterAppearance.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/SeleneVisual.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/StorageChest.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/StoryMonsterSizing.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/StoryPropGeometry.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/StoryProps.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/TdMonsterAppearance.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/TrainingField.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/World/WeaponMerchant.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/server/init.server.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/AdvancedSkills.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/AdvancementText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/AdventureRepeatRewards.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/AdventureRules.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/AdventureText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/CampaignAccess.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/CampaignBounds.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/CampaignContent.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/CombatStatText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DailyLogin.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DailyLoginText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodAccess.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodAdventure.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodBossEncounters.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodBounds.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodContent.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodEncounterBalance.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodMusicPolicy.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodProgress.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodQuestCatalog.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DeepwoodQuestLog.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/Difficulty.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/DodgeRules.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/EconomyCatalog.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/EconomyRules.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/ElfBowClip.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/ElfBowGeometry.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/EmberCalderaCombat.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/EmberCalderaContent.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/EmberCalderaRigs.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/EncounterSummary.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/EnemyRigSockets.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/Enhancement.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/EquipmentImpact.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/EquipmentTransactions.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/ExpeditionConfig.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/ExpeditionPresentation.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/ExpeditionText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/FrozenValeCombat.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/FrozenValeContent.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/FrozenValeRigs.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/GearBagIcon.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/HauntedGraveyardRigs.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/Hello.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/HeroProgression.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/InventoryText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/ItemCatalog.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/ItemSpriteAtlas.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/K0Config.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/K0Text.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/LateEpicCombat.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/LateEpicContent.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/LobbyFacilities.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/LobbyQuestText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/LobbyText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCCatalog.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/aldric.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/brann.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/dagna.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/elowen.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/eryn.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/fen.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/finn.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/freya.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/garrick.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/haldor.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/ivo.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/ketta.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/liora.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/lumi.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/maeve.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/mira.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/nessa.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/nia.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/oren.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/orik.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/pip.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/rook.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/rowan.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/suri.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/tali.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/tessa.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/tobin.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/wispkeeper.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadAssets/ylva.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCHeadRecipes.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCIdentity.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NPCMotion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/NavigationText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/RPGNavigationArt.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/RewardEconomy.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/SeleneSupport.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/SettingsText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/SkillStatPreview.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/SkillStatText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/StorageChestGeometry.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/StoryCompletion.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/SupportPassRules.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/SupporterInfo.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/SupporterText.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/TDUI/BattleChromeArtAssets.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/TDUI/LobbyHomeArtAssets.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/TDUI/StatusWindowArtAssets.luau",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "path": "src/shared/TDUI/UIIconAssets.luau",
+      "pass": true,
+      "error": ""
+    }
+  ]
+}

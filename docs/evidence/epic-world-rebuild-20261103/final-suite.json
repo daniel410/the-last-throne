@@ -1,0 +1,19 @@
+{
+  "sourceCommit": "dc477a4a7168d085893f027c4d59c0203b61c2d0",
+  "fixtureSha256": "d6a3713bccd7408a62266f6c1b49049d8666dd6f2f4eb90b61992ade304813f4",
+  "scope": "real engine, fake account/player, manual story damage; no real device/input/published tests",
+  "firstAggregateFailure": "homecoming fixture lobby contamination; cleaned only explicit test lobby, resumed bootstrap and late-epics tests on unchanged artifact",
+  "latestResults": 10,
+  "outputs": [
+    {
+      "path": "builds/0.67.0/TheLastThrone-Lobby-0.67.0.rbxlx",
+      "sha256": "9fadd2b047a4f5ce1e3001d46b54b056966fc7442750b7a56c346ed67a36b433",
+      "unchanged": true
+    },
+    {
+      "path": "builds/0.67.0/TheLastThrone-Battle-0.67.0.rbxlx",
+      "sha256": "a55fd0eee9147f7190a999450c5de4802413248156a6d75b952cf678bcef6ff2",
+      "unchanged": true
+    }
+  ]
+}

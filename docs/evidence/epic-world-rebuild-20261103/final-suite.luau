@@ -145,7 +145,7 @@ check(lobby.folder:FindFirstChild('DawnspireHomecoming')~=nil,'complete hero see
 check(lobby.folder.DawnspireHomecoming.Crownheart.HomecomingGreeting.TextLabel.Text:find('WELCOME HOME',1,true),'English homecoming greeting')
 Home.update({heroId='new',heroes={new={deepwood={clears={}}}}})
 check(lobby.folder:FindFirstChild('DawnspireHomecoming')==nil,'unfinished hero cannot inherit another hero ending')
-report.pass=true;print('LATE_EPICS_PRESENTATION_NATIVE '..game.HttpService:JSONEncode(report))
+report.pass=true;print('LATE_EPICS_PRESENTATION_NATIVE '..game.HttpService:JSONEncode(report));lobby.folder:Destroy() -- isolate the explicit homecoming fixture from subsequent Battle bootstrap assertion
 
 end
 do

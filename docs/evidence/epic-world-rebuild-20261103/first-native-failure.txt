@@ -8,3 +8,5 @@ Third native failure at(-1584,0,-900): Terrain surface0.35156 at77.78stud from a
 Fourth native failure on FV-07 -> EC-01 at(-850,100,-7716.25): the centered trail retained an interpolated Terrain surface at100.419 while its original Part top is100. The air-mask bottom now sits8stud below the Part-owned floor to clear complete4stud voxels, while the unchanged Part supplies the exact safe walking height.
 
 After core native PASS, an extended audit found3 pre-existing Deepwood walking ramps partly buried by optional terrain. Added a mask for actual legacy terrace/landing/ramp bounds, plus independent surface samples in the native test; hidden GroveTrunk scenery is not treated as a walk surface.
+
+Final aggregate fixture: homecoming presentation test explicitly constructed DawnspireLobbyPrototype before Battle bootstrap test asserted no lobby. This was fixture contamination, not Battle startup constructing a lobby. Added cleanup of only that explicit test lobby; retained the no-lobby assertion. Rerun bootstrap and late story from the same unchanged pinned artifact.

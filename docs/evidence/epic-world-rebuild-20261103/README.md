@@ -21,3 +21,13 @@
 ## 미검증과 다음 담당
 
 컨셉과 동등한 최종 미술로 수용하지 않는다. 일부 넓은 평면 교전장·직선 연결로·단순 건축/재질·닫힌 장식 건물은 남는다. 실제 캐릭터 조작/카메라·모바일/패드·4인+AI FPS/메모리·실제 저장/게시 클라이언트·최종 사용자 미술 수용은 후속이다. ART/DES는 실제 시야에서 고유 메시/재질/구도, QA는 실기기 성능과 정상 플레이를 수용한다. 부모 티켓 In Progress, 릴리스 태그 없음. 타 작업의 미커밋 파일은 선별 커밋/고정 빌드에서 제외한다.
+
+## 고정 빌드 최종 결과
+
+입력 소스 `dc477a4a7168d085893f027c4d59c0203b61c2d0`, VERSION0.67.0. `python3 tools/build-regional-caster-freeze.py --source dc477a4 --record docs/evidence/epic-world-rebuild-20261103/build.json`으로 별도 분리한 소스를 빌드했다. Lobby/Battle 모두 성공했고 검사 후 SHA256 유지([build.json](build.json), [fixture/해시](final-suite.json)). TD 환경 모델은 기존 소스 내 포함 입력을 그대로 사용한다.
+
+고정 Battle Studio에서 [엔진 로그](final-native.log), [최종10개 결과](final-native.json)를 기록했다. 환경219,970·개인 연출45·HG동작380,138·FV4,056·EC4,114·지역20종7,033·DW2,813·스트리밍10·배틀 시작10·후기 스토리1,940검사 PASS. 후기 스토리는 fake 계정/플레이어·수동 서버 피해 fixture이며 실제 정상 조작/저장 수용과 구분한다.
+
+최초 통합 fixture는 개인 귀환 연출 테스트가 직접 만든 로비를 남겨 배틀 시작의 로비 부재 검사에 실패했다([최초 원본](first-final-native.log)). 그 테스트 로비만 정리하고 배틀 시작·후기 스토리를 같은 변경 없는 고정 빌드에서 재실행해 통과했다. fixture에는 생성한 로비 정리를 추가했다. 제품 소스/빌드는 재작성하지 않았다. 기존 asset203785492 타입 불일치와 Studio 내장 MaterialManager profiling 경고가 로그에 남아 있다.
+
+[고정 소스 컴파일](pinned-compile.json)308/308 PASS. [고정 Lua suite](pinned-lua-tests.json)42/43 PASS: 기존 k0-appearance.spec.lua mock의 GetDescendants 누락1건은 남는다. 후보 생성11.86초, 고정11.62초는 단회 측정이며 FPS/실기기 수용이 아니다. QA Run은 중지하고 편집 미리보기만 남겼다. 소스/스크린샷33개 LFS 전송(19MB) 성공·미게시·릴리스 태그 없음.
