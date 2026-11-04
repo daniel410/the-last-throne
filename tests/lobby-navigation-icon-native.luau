@@ -5,6 +5,7 @@ local report={kind='LOBBY_NAVIGATION_ICON_NATIVE',checks=0,failures={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local ok,err=xpcall(function()
  local nav=require(client.LobbyNavigation).create(gui,{open=function()end,close=function()end})
+ task.wait(.2)
  local shop=nav.rail.DiamondShop.PictureViewport.NavigationIcon
  local function fittedWidth(img)
   local crop=img.ImageRectSize;local target=img.AbsoluteSize
@@ -17,11 +18,13 @@ local ok,err=xpcall(function()
  check(shop.ImageRectSize.Y==262,'TD body crop excludes original plaque')
  for _,entry in ipairs(nav.rail:GetChildren())do if entry:IsA('TextButton')then
   check(entry.NavigationPlaqueArt.Image=='rbxassetid://127394633978202','same Maps nameplate for every entry')
-  check(entry.NavigationPlaqueArt.Position==UDim2.fromScale(.01,.7),'TD plaque position')
-  check(entry.PictureViewport.Size==UDim2.fromScale(.98,.72),'TD picture geometry')
-  check(entry.Caption.Position==UDim2.fromScale(0,.7),'caption on TD plaque')
+  check(entry.NavigationPlaqueArt.AbsoluteSize.X<=entry.AbsoluteSize.X,'TD plaque stays inside tile')
+  check(entry.PictureViewport.NavigationIcon.ScaleType==Enum.ScaleType.Fit,'TD picture keeps aspect ratio')
+  check(entry.Caption.Position==entry.NavigationPlaqueArt.Position,'caption on TD plaque')
  end end
  check(nav.rail.LoginRewards.PictureViewport.NavigationIcon.Image=='rbxassetid://96946740539077','new RPG-only subjects use matching TD frame')
 end,debug.traceback)
 gui:Destroy();if not ok then table.insert(report.failures,tostring(err))end;report.pass=ok
+print(game:GetService('HttpService'):JSONEncode(report))
+assert(report.pass,table.concat(report.failures,'\n'))
 return report

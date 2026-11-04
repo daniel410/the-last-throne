@@ -1,5 +1,6 @@
 -- TD navigation renders the picture and the shared Maps nameplate independently.
 local RS=game:GetService('ReplicatedStorage')
+local TextService=game:GetService('TextService')
 local T=require(script.Parent.TDInventoryTheme)
 local TD=require(RS.Shared.TDUI.LobbyHomeArtAssets)
 local RPG=require(RS.Shared.RPGNavigationArt)
@@ -8,18 +9,36 @@ local keys={Heroes='hero',Quest='quests',Maps='maps',DiamondShop='shop'}
 function Art.layout(button)
  local size=button.AbsoluteSize
  if size.X<=0 or size.Y<=0 then return end
- local picture=button.PictureViewport.NavigationIcon
+ local viewport=button.PictureViewport
+ local picture=viewport.NavigationIcon
  local plate=button.NavigationPlaqueArt
- local crop=picture.ImageRectSize
- -- Keep aspect-fitted artwork against the join instead of centering its padding.
- picture.AnchorPoint=Vector2.new(.5,1)
- picture.Position=UDim2.fromScale(.5,1)
- picture.Size=UDim2.new(1,0,0,math.min(size.Y*.72,size.X*.98*crop.Y/crop.X))
- local plaqueCrop=plate.ImageRectSize
- local height=math.min(size.Y*.30,size.X*.98*plaqueCrop.Y/plaqueCrop.X)
- plate.Size=UDim2.new(.98,0,0,height)
- button.Caption.Position=UDim2.fromScale(0,.70)
- button.Caption.Size=UDim2.new(1,0,0,height)
+ local crop,plaqueCrop=picture.ImageRectSize,plate.ImageRectSize
+ -- Preserve each crop's aspect ratio and join their visible edges. Fit the
+ -- picture into the height left above the full-width plaque, keeping small
+ -- screens' labels readable instead of shrinking the whole assembly.
+ local bodyRatio,plateRatio=crop.Y/crop.X,plaqueCrop.Y/plaqueCrop.X
+ local width=size.X*.98
+ local plateHeight=width*plateRatio
+ local overlap=width*.02
+ local bodyWidth=math.min(width,(size.Y-plateHeight+overlap)/bodyRatio)
+ local bodyHeight=bodyWidth*bodyRatio
+ local left=(size.X-width)*.5
+ local top=(size.Y-(bodyHeight+plateHeight-overlap))*.5
+ viewport.Position=UDim2.fromOffset((size.X-bodyWidth)*.5,top)
+ viewport.Size=UDim2.fromOffset(bodyWidth,bodyHeight)
+ picture.AnchorPoint=Vector2.zero
+ picture.Position=UDim2.fromOffset(0,0)
+ picture.Size=UDim2.fromScale(1,1)
+ plate.Position=UDim2.fromOffset(left,top+bodyHeight-overlap)
+ plate.Size=UDim2.fromOffset(width,plateHeight)
+ local label=button.Caption
+ label.Position=plate.Position
+ label.Size=plate.Size
+ local textSize=size.Y<64 and 14 or size.X<100 and 16 or math.clamp(math.floor(size.X*.17),18,34)
+ local bounds=TextService:GetTextSize(label.Text,textSize,Enum.Font.GothamBlack,Vector2.new(10000,1000))
+ local availableWidth=width*(button.Name=='Blacksmith' and .82 or .92)
+ label.TextSize=math.max(1,math.floor(math.min(textSize,textSize*availableWidth/math.max(1,bounds.X),plateHeight*.85)))
+ label.TextScaled=false;label.TextWrapped=false
 end
 function Art.apply(button,id)
  local key=keys[id]

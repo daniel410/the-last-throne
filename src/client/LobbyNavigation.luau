@@ -1,12 +1,11 @@
 -- TD original pictures, shared nameplates, metrics and RPG-only subject adapter.
 local RS=game:GetService('ReplicatedStorage')
-local TextService=game:GetService('TextService')
 local T=require(script.Parent.TDInventoryTheme)
 local Sizing=require(script.Parent.LobbyNavigationSizing)
 local Bridge=require(script.Parent.LobbyMenuBridge)
 local Art=require(script.Parent.LobbyNavigationArt)
 local M={}
-local iconTitles={ItemShop='PORTION',DiamondShop='DIAMOND',LoginRewards='REWORDS'}
+local iconTitles={ItemShop='POTIONS',DiamondShop='DIAMONDS',LoginRewards='REWARDS'}
 function M.create(parent,actions)
  local rail=Instance.new('Frame');rail.Name='LobbyNavigation';rail.BackgroundTransparency=1;rail.AnchorPoint=Vector2.new(0,0);rail.Position=UDim2.new(0,10,.5,-30);rail.Size=UDim2.fromOffset(180,268);rail.Parent=parent
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.fromOffset(88,64);grid.CellPadding=UDim2.fromOffset(4,4);grid.FillDirectionMaxCells=2;grid.SortOrder=Enum.SortOrder.LayoutOrder;grid.Parent=rail
@@ -22,15 +21,7 @@ function M.create(parent,actions)
   scale.Scale=1
   for _,b in ipairs(rail:GetChildren()) do
    if b:IsA('TextButton') then
-    local textSize=metrics.height<64 and 14 or metrics.width<100 and 16 or math.clamp(math.floor(metrics.width*.17),18,34)
-    local label=b.Caption
-    local full=b:GetAttribute('NavigationLabel') or label.Text
-    label.Text=iconTitles[b.Name] or full
-    local bounds=TextService:GetTextSize(label.Text,textSize,Enum.Font.GothamBlack,Vector2.new(10000,1000))
-    -- TD uses fixed-size, outlined text. Fit RPG's longer names on one line.
-    local availableWidth=if b.Name=='Blacksmith' then metrics.width*.82 else metrics.width-2
-    label.TextSize=math.min(textSize,math.floor(textSize*availableWidth/math.max(1,bounds.X)))
-    label.TextScaled=false;label.TextWrapped=false
+    b.Caption.Text=iconTitles[b.Name] or b:GetAttribute('NavigationLabel') or b.Caption.Text
     Art.layout(b)
    end
   end
