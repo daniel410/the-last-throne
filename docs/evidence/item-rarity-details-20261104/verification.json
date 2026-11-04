@@ -1,0 +1,49 @@
+{
+  "version": "0.69.3",
+  "sourceCommit": "585eaafbda4a496ff65320164753cd41ebd909ee",
+  "catalogBaselineCommit": "5bcf613588b558196bdb491c1b20ee16a007b11b",
+  "catalogDeepEquality": "PASS",
+  "existingItemCount": 51,
+  "existingEquipmentCount": 33,
+  "gradeCounts": {
+    "Common": 20,
+    "Uncommon": 14,
+    "Rare": 17
+  },
+  "compile": {
+    "compiler": "/private/tmp/td233-luau/luau-compile",
+    "files": [
+      "src/client/InventoryGui.luau",
+      "src/shared/ItemCatalog.luau",
+      "src/shared/ItemRarity.luau",
+      "src/shared/InventoryText.luau"
+    ],
+    "result": "PASS"
+  },
+  "tests": [
+    {
+      "command": "lua tests/inventory.spec.lua",
+      "checks": 271,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/equipment-impact.spec.lua",
+      "checks": 44,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/enhancement-probability.spec.lua",
+      "checks": 2857,
+      "boundaries": 90000,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/item-shop-categories.spec.lua",
+      "result": "PASS"
+    }
+  ],
+  "studioGui": "NOT RUN - no connected Studio",
+  "publishedClient": "NOT RUN",
+  "mobileController": "NOT RUN",
+  "published": false
+}

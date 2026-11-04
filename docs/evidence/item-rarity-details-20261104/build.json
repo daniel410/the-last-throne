@@ -1,0 +1,55 @@
+{
+  "version": "0.69.3",
+  "source_commit": "585eaafbda4a496ff65320164753cd41ebd909ee",
+  "tool": "Rojo 7.7.1",
+  "stage": "/private/tmp/tlt-0693-pinned-xqrBYA",
+  "lfs_materialized": [
+    "assets/shared/deepwood-weapon-repair/runtime.rbxmx",
+    "assets/shared/regional-casters/runtime.rbxm",
+    "assets/shared/selene-repaired/runtime.rbxm",
+    "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+    "assets/shared/td-deepwood-environment/maps.rbxmx",
+    "assets/shared/td-ember-caldera/runtime.rbxmx",
+    "assets/shared/td-frozen-vale/runtime.rbxmx",
+    "assets/shared/td-haunted-graveyard/runtime.rbxmx",
+    "assets/shared/td-monsters/runtime.rbxmx",
+    "assets/shared/td-player-weapons/runtime.rbxmx",
+    "assets/shared/td-player-weapons/shield/runtime.rbxmx",
+    "assets/shared/td-refined-player-weapons/runtime.rbxmx",
+    "assets/shared/td-selene-articulated/runtime.rbxmx",
+    "assets/shared/td-selene/runtime.rbxmx"
+  ],
+  "artifacts": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.69.3/TheLastThrone-Lobby-0.69.3.rbxlx",
+      "bytes": 13083636,
+      "sha256": "c51ef33d69c0f3ac6d3db16c62d9d450a5342ccbfe5900775169463d6852d1cc",
+      "command": [
+        "rojo",
+        "build",
+        "default.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.69.3/TheLastThrone-Lobby-0.69.3.rbxlx"
+      ],
+      "result": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.69.3/TheLastThrone-Battle-0.69.3.rbxlx",
+      "bytes": 13083637,
+      "sha256": "30d1e642a552c14bb7b1da52f94d9f4eef3f04a7323775f9a5ec891b1b8a9424",
+      "command": [
+        "rojo",
+        "build",
+        "battle.project.json",
+        "--output",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.69.3/TheLastThrone-Battle-0.69.3.rbxlx"
+      ],
+      "result": "success"
+    }
+  ],
+  "published": false,
+  "release_tag": null,
+  "status": "local-build-success-unpublished"
+}
