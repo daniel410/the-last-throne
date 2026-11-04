@@ -14,10 +14,9 @@ function M.create(o)
  local reasonKeys,noticeState,noticeTimes={},{},{}
  local activatingOwner
  local remote=RS.Remotes:FindFirstChild('NPCDialogue') or Instance.new('RemoteEvent');remote.Name='NPCDialogue';remote.Parent=RS.Remotes
- local camp=o.world.seleneCamp or o.world.positions['DW-03']+Vector3.new(-45,0,45)
- -- The rescue report and companion selection share the actual camp actor.
- local npc=Actors.acquire(o.world.folder,'Selene',camp,{role='camp',priority=20})
- npc:SetAttribute('SeleneCampPosition',camp)
+ local camp,npc,refuge,forge
+ local lateCamps=o.world.lateCompanionCamps or {}
+ local boundCamps=setmetatable({},{__mode='k'})
  local function prompt(model,name,action,offset,follow)
   local old=model.PrimaryPart:FindFirstChild(name);if old then old:Destroy() end
   local anchor=Instance.new('Attachment');anchor.Name=name;anchor.Position=Vector3.new(offset,0,0);anchor.Parent=model.PrimaryPart
@@ -25,7 +24,7 @@ function M.create(o)
   p.Triggered:Connect(function(player) api.select(player,follow) end)
  end
  local function selectionPrompts(model)
-  model:SetAttribute('SeleneCampPosition',camp)
+  model:SetAttribute('SeleneCampPosition',model==npc and camp or model.PrimaryPart.Position)
   prompt(model,'Invite','Invite Selene',-3,true);prompt(model,'Rest','Ask Selene to rest',3,false)
   local old=model.PrimaryPart:FindFirstChild('SupporterDetails');if old then old:Destroy()end
   local anchor=Instance.new('Attachment');anchor.Name='SupporterDetails';anchor.Position=Vector3.new(0,4,0);anchor.Parent=model.PrimaryPart
@@ -34,13 +33,19 @@ function M.create(o)
   p.Triggered:Connect(function(player)api.inspect(player,model)end)
 
  end
- selectionPrompts(npc)
- local refuge=o.world.refugeCompanionCamp
- if refuge then selectionPrompts(refuge);refuge:SetAttribute('SeleneCampPosition',refuge.PrimaryPart.Position) end
- local forge=o.world.emberCompanionCamp
- if forge then selectionPrompts(forge);forge:SetAttribute('SeleneCampPosition',forge.PrimaryPart.Position)end
- local lateCamps=o.world.lateCompanionCamps or {}
- for _,entry in ipairs(lateCamps)do selectionPrompts(entry.model);entry.model:SetAttribute('SeleneCampPosition',entry.model.PrimaryPart.Position)end
+ function api.refreshWorld()
+  if not npc and o.world.seleneCamp then
+   camp=o.world.seleneCamp
+   npc=Actors.acquire(o.world.folder,'Selene',camp,{role='camp',priority=20})
+  end
+  refuge=o.world.refugeCompanionCamp;forge=o.world.emberCompanionCamp
+  lateCamps=o.world.lateCompanionCamps or {}
+  local models={};if npc then table.insert(models,npc)end
+  if refuge then table.insert(models,refuge)end;if forge then table.insert(models,forge)end
+  for _,entry in ipairs(lateCamps)do table.insert(models,entry.model)end
+  for _,model in ipairs(models)do if not boundCamps[model]then selectionPrompts(model);boundCamps[model]=true end end
+ end
+ api.refreshWorld()
  local function nearLateCamp(root,s)
   for _,entry in ipairs(lateCamps)do if s and s.main>=entry.requiresMain and (root.Position-entry.model.PrimaryPart.Position).Magnitude<=16 then return true end end
   return false
@@ -66,13 +71,13 @@ function M.create(o)
   local hero=o.active(player);local ctx,root=o.context(player)
   if not hero or hero.training or not ctx or ctx.heroId~=heroId or not root then return false end
   local s=o.state(player,heroId)
-  return (root.Position-camp).Magnitude<=16 or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or nearLateCamp(root,s) or forge and s and s.main>=15 and (root.Position-forge.PrimaryPart.Position).Magnitude<=16 or false
+  return (camp and (root.Position-camp).Magnitude<=16) or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or nearLateCamp(root,s) or forge and s and s.main>=15 and (root.Position-forge.PrimaryPart.Position).Magnitude<=16 or false
  end
  function api.select(player,following)
   local hero=o.active(player);local ctx,root=o.context(player)
   if type(following)~='boolean' or not hero or hero.training or not ctx or ctx.heroId~=hero.heroId or not root then return false end
   local s=o.state(player,ctx.heroId)
-  local atCamp=(root.Position-camp).Magnitude<=16 or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or nearLateCamp(root,s) or forge and s and s.main>=15 and (root.Position-forge.PrimaryPart.Position).Magnitude<=16
+  local atCamp=(camp and (root.Position-camp).Magnitude<=16) or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or nearLateCamp(root,s) or forge and s and s.main>=15 and (root.Position-forge.PrimaryPart.Position).Magnitude<=16
   if not atCamp then return false end
   if not Progress.seleneUnlocked(s) then o.publish(player,'Help the convoy reach camp, then finish the rescue report with Selene.');return false end
   local time=o.clock and o.clock() or os.clock()

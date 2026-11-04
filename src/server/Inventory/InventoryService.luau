@@ -440,6 +440,13 @@ local function handle(player, command, ...)
 	state.busy = false
 	publish(player, command.requestId, errorCode)
 end
+function Service.addStorage(chest,prompt)
+ options.chests=options.chests or {}
+ table.insert(options.chests,chest)
+ prompt.Triggered:Connect(function(player)
+  if Service.ready(player) and atStorage(player) then openRemote:FireClient(player);publish(player) end
+ end)
+end
 function Service.start(settings)
 	assert(not started, "Inventory already started")
 	started, options = true, settings

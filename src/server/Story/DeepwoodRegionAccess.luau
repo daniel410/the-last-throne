@@ -4,6 +4,11 @@ local Bounds=require(game:GetService('ReplicatedStorage').Shared.CampaignBounds)
 local Gate={}
 function Gate.create(o)
  local safe,lastNotice,lastReveal,regions={},{},{},{}
+ local function fallback(player,hero,s)
+  local run=o.inventory.expedition(player,hero.heroId)
+  local chapter=run and Content.byId[run.missionId]or Content.mainChapters[math.min(Content.mainCount,s.main+1)]
+  return o.world.spawns[chapter.zone]
+ end
  local function clearRegion(player)
   if regions[player] then regions[player]=nil;if o.regionChanged then o.regionChanged(player,nil) end end
  end
@@ -16,16 +21,16 @@ function Gate.create(o)
   if not root or not human or human.Health<=0 or not s then clearRegion(player);return end
   local pos=root.Position
   local supported,floor=Bounds.supported(pos.X,pos.Y,pos.Z)
-  if not supported then
+  local id=Access.region(root.Position.X,root.Position.Z)
+  if not supported or not o.world.spawns[id]then
    if regions[player] then regions[player].candidate=nil end
    local saved=safe[player]
-   local spawn=o.world.spawns[Content.mainChapters[math.min(Content.mainCount,s.main+1)].zone]
+   local spawn=fallback(player,hero,s)
    local pivot=saved and saved.heroId==hero.heroId and saved.character==player.Character and saved.pivot or spawn.CFrame+Vector3.new(0,4,0)
    o.combat.relocateForStoryGate(player,pivot)
    if o.boundaryNotice and os.clock()-(lastNotice[player] or -math.huge)>3 then lastNotice[player]=os.clock();o.boundaryNotice(player) end
    return
   end
-  local id=Access.region(root.Position.X,root.Position.Z)
   if Access.allowed(s,id) then
    local entry=regions[player]
    if not entry or entry.heroId~=hero.heroId or entry.character~=player.Character then
@@ -42,7 +47,7 @@ function Gate.create(o)
   else
    if regions[player] then regions[player].candidate=nil end
    local saved=safe[player]
-   local spawn=o.world.spawns[Content.mainChapters[math.min(Content.mainCount,s.main+1)].zone]
+   local spawn=fallback(player,hero,s)
    local pivot=saved and saved.heroId==hero.heroId and saved.character==player.Character and saved.pivot or spawn.CFrame+Vector3.new(0,4,0)
    o.combat.relocateForStoryGate(player,pivot)
    if os.clock()-(lastNotice[player] or -math.huge)>3 then lastNotice[player]=os.clock();o.notice(player,Content.zones[id].requiresMain,Content.zones[id].name) end

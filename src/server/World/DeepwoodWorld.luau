@@ -76,9 +76,9 @@ local function npc(parent,p,name,_goblin,role)
  while world.Parent and world.Name~='DeepwoodCampaign' do world=world.Parent end
  return require(script.Parent.NPCActors).acquire(world,name,p,{role=role or 'scene'})
 end
-function World.create()
+function World.create(world)
  local existing=Workspace:FindFirstChild('DeepwoodCampaign')
- if existing then
+ if existing and not (world and not world.positions["DW-01"]) then
   require(script.Parent.NPCActors).reconcile(existing)
   for id,z in pairs(Content.zones) do
    local terrain=existing:FindFirstChild('TerrainBlockout');local region=terrain and terrain:FindFirstChild(id)
@@ -109,10 +109,10 @@ function World.create()
   require(script.Parent.DeepwoodPlaces).create(result)
   World.current=result;return result
  end
- local root=Instance.new('Model');root.Name='DeepwoodCampaign';root.Parent=Workspace
- local terrain=Instance.new('Folder');terrain.Name='TerrainBlockout';terrain.Parent=root
- local nodes=Instance.new('Folder');nodes.Name='Objectives';nodes.Parent=root
- local spawns,positions={},{}
+ local root=world and world.folder or Instance.new('Model');root.Name='DeepwoodCampaign';root.Parent=Workspace
+ local terrain=world and world.terrain or Instance.new('Folder');terrain.Name='TerrainBlockout';terrain.Parent=root
+ local nodes=root:FindFirstChild('Objectives') or Instance.new('Folder');nodes.Name='Objectives';nodes.Parent=root
+ local spawns,positions=world and world.spawns or {},world and world.positions or {}
  local titles={} for _,c in ipairs(Content.chapters) do if not c.side or not titles[c.zone] then titles[c.zone]=c.title end end
  for id,z in pairs(Content.zones) do
   local region=Instance.new('Model');region.Name=id;region.Parent=terrain
@@ -183,7 +183,7 @@ function World.create()
    previous=p
   end end
  end end
- local interactions={}
+ local interactions=world and world.nodes or {}
  for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
   local p=part(nodes,c.id..'_'..g.id,Vector3.new(3,2,3),vec(g.position)+Vector3.new(0,1,0),#g.enemies>0 and C.gold or C.violet,Enum.Material.Slate,false)
   p:SetAttribute('ChapterId',c.id);p:SetAttribute('GoalId',g.id)
@@ -206,7 +206,8 @@ function World.create()
  end end
  require(script.Parent.DeepwoodGroundedWorld).create(root)
  root:SetAttribute("DeepwoodReady",true)
- World.current={folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions,seleneCamp=vec(Content.byId['DW-03'].goals[1].position)}
+ World.current=world or {folder=root,terrain=terrain,nodes=interactions,spawns=spawns,positions=positions}
+ World.current.seleneCamp=vec(Content.byId['DW-03'].goals[1].position)
  require(script.Parent.DeepwoodActivityWorld).create(World.current)
  local portal=Env.portal(root,positions['DW-07']+Vector3.new(0,0,-110));portal.Name='MonsterPortal'
  portal:SetAttribute('StoryPortal',true)

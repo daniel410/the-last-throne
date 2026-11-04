@@ -114,7 +114,7 @@ local function transition(state, mode)
 	state.phase = mode == "Tutorial" and "LoadingTutorial" or "ReturningLobby"
 	state.transitionId = state.transitionId + 1
 	changed(state)
-	local destination = mode == "Tutorial" and (state.route == "Training" and (settings.trainingSpawn or settings.tutorialSpawn) or (settings.tutorialDestination and settings.tutorialDestination(state.player,selectedHero(state).heroId) or settings.tutorialSpawn)) or settings.lobbySpawn
+	local destination = mode == "Tutorial" and (state.route == "Training" and (settings.trainingDestination and settings.trainingDestination() or settings.trainingSpawn or settings.tutorialSpawn) or (settings.tutorialDestination and settings.tutorialDestination(state.player,selectedHero(state).heroId) or settings.tutorialSpawn)) or settings.lobbySpawn
 	local ok = settings.requestSpawn(state.player, destination, state.transitionId)
 	if not ok then
 		-- Keep the old life ineligible. The user can safely retry the same route.

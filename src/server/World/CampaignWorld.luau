@@ -1,11 +1,42 @@
+local Shared=game:GetService('ReplicatedStorage').Shared
+local Content=require(Shared.CampaignContent)
+local Access=require(Shared.CampaignAccess)
 local W={}
-function W.create()
- local world=require(script.Parent.DeepwoodWorld).create()
- require(script.Parent.FrozenValeWorld).create(world)
- require(script.Parent.EmberCalderaWorld).create(world)
- require(script.Parent.LateEpicWorld).create(world)
+function W.scope(epic)
+ assert(type(epic)=='number' and Content.epics[epic], 'Unknown campaign epic')
+ local content={zones={},chapters={},byId=Content.byId};local access={edges={}}
+ for _,chapter in ipairs(Content.chapters)do
+  if (chapter.epic or 1)==epic then
+   table.insert(content.chapters,chapter);content.zones[chapter.zone]=Content.zones[chapter.zone]
+  end
+ end
+ for _,edge in ipairs(Access.edges)do
+  if content.zones[edge[1]] and content.zones[edge[2]]then table.insert(access.edges,edge)end
+ end
+ return {epic=epic,content=content,access=access}
+end
+function W.create(epic,world)
+ -- No-argument creation is retained for offline art/QA tools only.
+ if not epic then for id=1,#Content.epics do world=W.create(id,world)end;return world end
+ local scope=W.scope(epic)
+ if world and world.loadedEpics and world.loadedEpics[epic]then return world end
+ if epic==1 then
+  local forest=require(script.Parent.DeepwoodWorld).create(world)
+  world=forest
+ elseif not world then
+  local root=Instance.new('Model');root.Name='DeepwoodCampaign';root.Parent=workspace
+  local terrain=Instance.new('Folder');terrain.Name='TerrainBlockout';terrain.Parent=root
+  local objectives=Instance.new('Folder');objectives.Name='Objectives';objectives.Parent=root
+  world={folder=root,terrain=terrain,nodes={},spawns={},positions={}}
+ end
+ world.loadedEpics=world.loadedEpics or {}
+ if epic==2 then require(script.Parent.FrozenValeWorld).create(world)
+ elseif epic==3 then require(script.Parent.EmberCalderaWorld).create(world)
+ elseif epic>=4 then require(script.Parent.LateEpicWorld).create(world,epic)end
  require(script.Parent.DeepwoodActivityWorld).create(world)
- require(script.Parent.EpicWorldArt).create(world)
+ require(script.Parent.EpicWorldArt).create(world,scope)
+ world.loadedEpics[epic]=true
+ world.folder:SetAttribute('Epic'..epic..'Ready',true)
  return world
 end
 return W

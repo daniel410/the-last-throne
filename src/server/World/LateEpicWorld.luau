@@ -24,12 +24,14 @@ local function arch(parent,p,color,width)
  for _,x in ipairs({-width/2,width/2})do part(parent,'GatePillar',Vector3.new(6,28,8),p+Vector3.new(x,14,0),color,true)end
  part(parent,'GateLintel',Vector3.new(width+6,5,8),p+Vector3.new(0,28,0),color,true)
 end
-function W.create(world)
- if world.lateEpicsReady then return world end
+function W.create(world,epic)
+ world.lateReady=world.lateReady or {}
+ local key=epic or "All"
+ if world.lateReady[key] then return world end
  local props=Instance.new('Folder');props.Name='LateEpicProps';props.Parent=world.folder
  local foundation=Instance.new('Model');foundation.Name='LateEpicFoundation';foundation.ModelStreamingMode=Enum.ModelStreamingMode.Persistent;foundation.Parent=world.terrain
- world.lateCompanionCamps={}
- for _,chapter in ipairs(Content.chapters)do
+ world.lateCompanionCamps=world.lateCompanionCamps or {}
+ for _,chapter in ipairs(Content.chapters)do if not epic or chapter.epic==epic then
   local id=chapter.zone;local z=Content.zones[id];local center=v(z.center);local forest=chapter.epic==4
   local ground=forest and Color3.fromRGB(77,94,73) or Color3.fromRGB(108,115,131)
   local stone=Color3.fromRGB(87,84,102);world.positions[id]=center
@@ -77,11 +79,12 @@ function W.create(world)
    end
   end
   task.wait()
- end
- for _,edge in ipairs(Content.edges)do
+ end end
+ for _,edge in ipairs(Content.edges)do if world.spawns[edge[1]] and world.spawns[edge[2]] then
   local a,b=Bounds.ends(edge);a,b=v(a),v(b)
   part(foundation,'LateTrail_'..edge[1]..'_'..edge[2],Vector3.new(96,4,(b-a).Magnitude+6),CFrame.lookAt((a+b)/2,b)-Vector3.new(0,2,0),Color3.fromRGB(105,111,98),true)
- end
+ end end
+ world.lateReady[key]=true
  world.lateEpicsReady=true;world.folder:SetAttribute('LateEpicsReady',true);return world
 end
 return W

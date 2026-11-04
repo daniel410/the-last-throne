@@ -70,12 +70,12 @@ function W.create(world)
   if id:match('FV%-S') then arch(region,center+Vector3.new(0,0,85),24,60)end
   task.wait()
  end
- for _,edge in ipairs(Content.edges)do
+ for _,edge in ipairs(Content.edges)do if world.spawns[edge[1]]and world.spawns[edge[2]]then
   local a,b=Bounds.ends(edge);a,b=v(a),v(b)
   part(foundation,'SnowTrail_'..edge[1]..'_'..edge[2],Vector3.new(96,4,(b-a).Magnitude+6),CFrame.lookAt((a+b)/2,b)-Vector3.new(0,2,0),snow,Enum.Material.Snow,true)
   local delta=b-a;local segments=math.max(1,math.ceil(delta.Magnitude/80))
   for i=0,segments do if i%2==0 then beacon(terrain,a:Lerp(b,i/segments)+Vector3.new(38,0,0))end end
- end
+ end end
  local objectives=root:FindFirstChild('Objectives')
  for _,c in ipairs(Content.chapters)do for _,g in ipairs(c.goals)do
   local p=part(objectives,c.id..'_'..g.id,Vector3.new(3,2,3),v(g.position)+Vector3.new(0,1,0),ice,Enum.Material.Slate);p.Transparency=1

@@ -138,6 +138,8 @@ function Service.admitArrival(p)
  if battleRun and battleRun.id~=r.id then return nil,'This battle server belongs to another expedition.' end
  battleRun=r;battleStarted=battleStarted or os.clock();admitted[p]=r.members[tostring(p.UserId)]
  p:SetAttribute('TLTTravelLock',true)
+ local ready=pcall(o.previewWorld,r.missionId)
+ if not ready then return nil,'The adventure could not load. Return to the lobby and rejoin.'end
  return {heroId=admitted[p].heroId}
 end
 local function startRunLocked(p,party,runId)
@@ -168,7 +170,8 @@ local function startRunLocked(p,party,runId)
    if why then if party then store.launchStatus(party.id,runId,'forming')end;return nil,why end
   end
   if party then store.launchStatus(party.id,runId,'forming') end
-  for _,person in ipairs(participants) do o.previewWorld();o.heroSession.enterAdventure(person,members[tostring(person.UserId)].heroId) end
+  o.previewWorld(chosen.missionId)
+  for _,person in ipairs(participants) do o.heroSession.enterAdventure(person,members[tostring(person.UserId)].heroId) end
   return true
  end
  local r,e,prepared=Departure.prepare(store,o.inventory,participants,members,{id=runId,ticket=guid(),reservedId=Http:GenerateGUID(false),members=members,placeId=C.battlePlaceId,missionId=chosen.missionId,difficultyId=chosen.difficultyId,rulesVersion=Difficulty.version},unlock)

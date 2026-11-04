@@ -48,8 +48,8 @@ function Service.destination(player,heroId)
  local s=state(player,heroId)
  local a=options.inventory.expedition(player,heroId)
  local c=a and Content.byId[a.missionId]or Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
- if s and s.main==6 and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
- if s and s.main==Content.mainCount then return options.world.spawns[Content.epics[#Content.epics].hub] end
+ if not a and s and s.main==6 and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
+ if not a and s and s.main==Content.mainCount then return options.world.spawns[Content.epics[#Content.epics].hub] end
  return options.world.spawns[c.zone]
 end
 local function enqueue(player,heroId,c,g,choice,stepId)
@@ -288,7 +288,7 @@ local function interact(player,node)
    return
   elseif node.goal==node.chapter.goals[1] and Progress.canAccept(journal,node.chapter) then offerQuest(player,node,true);return end
  end
- local ctx=eligible(player,node.chapter,node.goal,16,node.part.Position)
+ local ctx=node and eligible(player,node.chapter,node.goal,16,node.part.Position)
  if not ctx then publish(player,'Complete the earlier objectives and move closer to this marker.');return end
  if activities and activities.interact(player,node) then return end
  if #node.goal.enemies>0 then begin(player,node)
@@ -333,21 +333,26 @@ function Service.defeated(model,_winner)
   for p in pairs(e.participants) do publish(p,'The next group is approaching. Watch their attack warnings!') end
  end
 end
+local boundNodes=setmetatable({},{__mode='k'})
+function Service.refreshWorld()
+ if companion then companion.refreshWorld()end
+ for _,node in pairs(options.world.activityNodes or {}) do if node.prompt and not boundNodes[node] then boundNodes[node]=true; node.prompt.Triggered:Connect(function(p) Service.interactStep(p,node.chapter.id,node.goal.id,node.step.id) end) end end
+
+ for _,node in pairs(options.world.nodes) do
+  if node.prompt and not boundNodes[node] then boundNodes[node]=true; node.prompt.Triggered:Connect(function(player)
+   local t=os.clock();if t-(lastRequest[player] or 0)<.4 then return end;lastRequest[player]=t
+   interact(player,node)
+  end) end
+ end
+end
 function Service.start(settings)
  options=settings;remote=Instance.new('RemoteEvent');remote.Name='DeepwoodState';remote.Parent=ReplicatedStorage.Remotes
  activities=require(script.Parent.DeepwoodActivities).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,enqueue=enqueue,publish=publish})
  companion=require(script.Parent.SeleneCompanion).create({frameDriven=true,active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,activate=options.inventory.activateSupport,passState=options.inventory.supportState,phase=function(p)return p:GetAttribute('K0SessionPhase')end,notice=function(p,message)publish(p,nil,message)end,
   select=function(player,heroId,following) enqueue(player,heroId,Content.byId['DW-03'],{id='@selene'},following) end})
  access=require(script.Parent.DeepwoodRegionAccess).create({heroSession=options.heroSession,inventory=options.inventory,world=options.world,combat=options.combat,notice=function(p,required,name) publish(p,nil,string.format('Complete Story %d before entering %s.',required,name)) end,boundaryNotice=function(p) publish(p,nil,Text.ForestBoundaryReturn) end,regionChanged=function(p,id) p:SetAttribute('TLTStoryRegion',id) end})
- for _,node in pairs(options.world.activityNodes or {}) do if node.prompt then node.prompt.Triggered:Connect(function(p) Service.interactStep(p,node.chapter.id,node.goal.id,node.step.id) end) end end
-
+ Service.refreshWorld()
  local request=Instance.new('RemoteEvent');request.Name='DeepwoodRequest';request.Parent=ReplicatedStorage.Remotes
- for _,node in pairs(options.world.nodes) do
-  if node.prompt then node.prompt.Triggered:Connect(function(player)
-   local t=os.clock();if t-(lastRequest[player] or 0)<.4 then return end;lastRequest[player]=t
-   interact(player,node)
-  end) end
- end
  request.OnServerEvent:Connect(function(player,action,argument,...)
   if select('#',...)~=0 or type(action)~='string' or argument~=nil and type(argument)~='string' then return end
   local t=os.clock();local gap=(action=='AcceptQuest' or action=='LaterQuest') and .05 or .4;if t-(lastRequest[player] or 0)<gap then return end;lastRequest[player]=t
@@ -359,7 +364,7 @@ function Service.start(settings)
    local ctx=context(player);if ctx then options.heroSession.restartAdventure(player) end
   elseif action=='Choose' and (argument=='sanctuary' or argument=='shared') then
    local node=options.world.nodes['DW-07:restoration']
-   local ctx=eligible(player,node.chapter,node.goal,16,node.part.Position)
+   local ctx=node and eligible(player,node.chapter,node.goal,16,node.part.Position)
    if ctx then enqueue(player,ctx.heroId,node.chapter,node.goal,argument) end
   end
  end)
@@ -378,7 +383,7 @@ function Service.start(settings)
     if s then for _,c in ipairs(Content.chapters) do if not c.side then for _,g in ipairs(c.goals) do
      if g.activity and g.activity.mode=='battle' and Progress.available(s,c,g) and not encounters[c.id..':'..g.id..':'..((options.inventory.expedition(p,ctx.heroId)or {}).runId or 'legacy')] then
       local node=options.world.nodes[c.id..':'..g.id]
-      if (root.Position-node.part.Position).Magnitude<32 then begin(p,node,true) end
+      if node and (root.Position-node.part.Position).Magnitude<32 then begin(p,node,true) end
      end
     end end end end
    end

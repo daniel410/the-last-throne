@@ -208,13 +208,13 @@ end
 
 TrainingField.makeEnemy = makeEnemy
 
-function TrainingField.create()
+function TrainingField.create(runtime)
 	-- Check all imported K0 template contracts before changing Workspace.
 	for _, kind in ipairs({ "Goblin", "Orc", "Ogre", "Slime" }) do
 		TdMonsterAppearance.describe(kind)
 	end
-	local existing = Workspace:FindFirstChild("DeepwoodK0")
-	if existing then
+	local existing = runtime and runtime.folder or Workspace:FindFirstChild("DeepwoodK0")
+	if existing and existing:FindFirstChild("Spawn") then
 		assert(existing:IsA("Model"), "DeepwoodK0 must be a Model")
 		local enemies = existing:FindFirstChild("Enemies")
 		local spawn = existing:FindFirstChild("Spawn")
@@ -239,7 +239,7 @@ function TrainingField.create()
 	Lighting.OutdoorAmbient = Color3.fromRGB(154, 166, 137)
 	Lighting.GlobalShadows = true
 
-	local folder = Instance.new("Model")
+	local folder = existing or Instance.new("Model")
 	folder.Name = "DeepwoodK0"
 	folder.Parent = Workspace
 	makeTerrain(folder)
@@ -260,7 +260,7 @@ function TrainingField.create()
 	anchoredPart(folder, "SpawnMarker", Vector3.new(10, 0.08, 10), Vector3.new(-20, 0.05, 56),
 		COLORS.gold, Enum.Material.Slate, false)
 
-	local enemies = Instance.new("Folder")
+	local enemies = folder:FindFirstChild("Enemies") or Instance.new("Folder")
 	enemies.Name = "Enemies"
 	enemies.Parent = folder
 	makeEnemy(enemies, "Goblin", -18, -10, 1.02, 1.2)

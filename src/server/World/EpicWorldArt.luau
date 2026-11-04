@@ -271,7 +271,7 @@ local function pass(parent,edge,index)
  -- A continuous curving trail remains entirely within the 96-stud safe connector.
  route(m,a,b,23,pal,theme);range(m,700)
 end
-local function carve(world)
+local function carve(world,Content,Access)
  local terrain=workspace.Terrain
  local original=RaycastParams.new();original.FilterType=Enum.RaycastFilterType.Include;original.RespectCanCollide=true
  original.FilterDescendantsInstances={world.terrain,world.folder:FindFirstChild('GroundedForest')or world.terrain}
@@ -361,11 +361,14 @@ local function cutScenicWater(plans)
   task.wait()
  end
 end
-function Art.create(world)
- local previous=world.folder:FindFirstChild('EpicWorldArt')
+function Art.create(world,scope)
+ local Content=scope and scope.content or Content
+ local Access=scope and scope.access or Access
+ local artName=scope and ("EpicWorldArt_"..scope.epic) or "EpicWorldArt"
+ local previous=world.folder:FindFirstChild(artName)
  if previous and previous:GetAttribute('ArtVersion')==Art.version and previous:GetAttribute('BuildComplete')then return world end
  if previous then previous:Destroy()end
- local root=Instance.new('Folder');root.Name='EpicWorldArt';root:SetAttribute('ArtVersion',Art.version);root.Parent=world.folder
+ local root=Instance.new('Folder');root.Name=artName;root:SetAttribute('ArtVersion',Art.version);root.Parent=world.folder
  local ids={};for id in pairs(Content.zones)do table.insert(ids,id)end;table.sort(ids)
  local plans={}
  -- Finish every overlapping height field before grounding a single tree/building.
@@ -379,7 +382,7 @@ function Art.create(world)
  end
  for _,edge in ipairs(Access.edges)do connectGround(edge);task.wait()end
  cutScenicWater(plans)
- carve(world)
+ carve(world,Content,Access)
  for _,p in ipairs(plans)do
   vegetation(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng)
   floorDetails(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,Content.byId[p.id])

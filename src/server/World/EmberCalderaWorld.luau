@@ -65,10 +65,10 @@ function W.create(world)
   if id:match('EC%-S')then gate(region,center+Vector3.new(0,0,95),65,24)end
   task.wait()
  end
- for _,edge in ipairs(Content.edges)do local a,b=Bounds.ends(edge);a,b=v(a),v(b)
+ for _,edge in ipairs(Content.edges)do if world.spawns[edge[1]]and world.spawns[edge[2]]then local a,b=Bounds.ends(edge);a,b=v(a),v(b)
   part(foundation,'CalderaTrail_'..edge[1]..'_'..edge[2],Vector3.new(96,4,(b-a).Magnitude+6),CFrame.lookAt((a+b)/2,b)-Vector3.new(0,2,0),C.rock,Enum.Material.Basalt,true)
   for i=0,math.floor((b-a).Magnitude/110)do lamp(terrain,a:Lerp(b,math.min(1,i*110/math.max(1,(b-a).Magnitude)))+Vector3.new(38,0,0))end
- end
+ end end
  for _,c in ipairs(Content.chapters)do for _,g in ipairs(c.goals)do
   local p=part(world.folder.Objectives,c.id..'_'..g.id,Vector3.new(3,2,3),v(g.position)+Vector3.new(0,1,0),C.brass);p.Transparency=1;p:SetAttribute('ChapterId',c.id);p:SetAttribute('GoalId',g.id)
   local prompt=Instance.new('ProximityPrompt');prompt.Name='StoryInteract';prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ActionText=#g.enemies>0 and 'Begin encounter' or 'Interact';prompt.ObjectText=g.title;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.HoldDuration=.3;prompt.Parent=p
