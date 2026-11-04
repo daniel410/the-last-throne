@@ -981,6 +981,11 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	local magePose=character and MageMotion.forCharacter(character,now or Workspace:GetServerTimeNow())
 	motion=motion or bowPose or magePose
 	if motion then target = motion.weapon end
+	if classId == "dwarf" and motion and motion.axeStrikeTurn then
+		-- C0 now holds the axe 90 degrees forward; preserve the reviewed
+		-- cutting path once the anticipation has turned it into the swing.
+		target = CFrame.Angles(0, -math.pi / 2 * motion.axeStrikeTurn, 0) * target
+	end
 	if bowPose and joint.Part0 then
 		local root=character:FindFirstChild("HumanoidRootPart")
 		if root then

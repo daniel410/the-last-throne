@@ -1,0 +1,9 @@
+AXE_CUTTING_EDGE_NATIVE {"checks":8,"samples":[],"failures":["R6: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:576: cutting edge leads rather than striking with the back\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:576\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:579\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","R15: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:576: cutting edge leads rather than striking with the back\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:576\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:579\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"pass":false,"kind":"AXE_CUTTING_EDGE_NATIVE"}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:611: Axe edge alignment failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:611
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

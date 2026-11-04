@@ -108,6 +108,9 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId)
   result.angles[channel]=angles(unpack(v));result[channel]=rotation(unpack(v))
  end
  result.cutting=not definition.ranged and age>=w*.45 and age<=w+a and age<total
+ -- The forward-facing held axe turns into the previously authored strike
+ -- orientation during anticipation, before the cutting interval begins.
+ if classId=="dwarf" then result.axeStrikeTurn=u2*(3-2*u) end
  return result
 end
 
@@ -121,6 +124,10 @@ local function presentation(record, now)
  if age<=total then return Motion.sample(record.classId,record.combo,age,record.entry,record.entrySlope,record.skillId) end
  local result=frame({guard[record.classId],guard[record.classId],rest[record.classId]}, {0,.10,.42}, age-total)
  result.cutting=false
+ if record.classId=="dwarf" then
+  local turn=math.clamp((age-total-.10)/.32,0,1)
+  result.axeStrikeTurn=1-turn*turn*(3-2*turn)
+ end
  return result
 end
 

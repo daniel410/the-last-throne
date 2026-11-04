@@ -13,7 +13,7 @@ local VERSION = 2
 local SPECS = {
 	knight = { template = "KnightSword", parts = { "Weapon" }, gripName = "SwordGrip", jointName = "K0SwordJoint", sourceKey = "td:v2:AzureOathblade" },
 	elf = { template = "ElfBow", parts = { "Bow", "String", "NockedArrow" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:ElfBow" },
-	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:Embercleaver:edge1" },
+	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:Embercleaver:forward2" },
 	mage = { gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "authored:WoodenStaff" },
 }
 
@@ -307,9 +307,9 @@ local function handPoseFor(hand, classId)
 		* CFrame.Angles(0, 0, math.rad(classId == "elf" and 0 or -23))
 	if classId ~= "elf" then offset = offset * CFrame.new(0, 0, -hand.Size.Z / 2 + 0.12) end
 	if classId == "dwarf" then
-		-- Reverse the previously backward axe head while preserving its
-		-- original TD mesh and grip-relative shape.
-		offset = offset * CFrame.Angles(math.rad(-35), 0, 0) * CFrame.Angles(0, -math.pi / 2, 0)
+		-- Turn the held blade forward by 90 degrees around the shaft.
+		-- Keep the palm position, tilt and original TD geometry unchanged.
+		offset = offset * CFrame.Angles(math.rad(-35), 0, 0)
 	end
 	return offset
 end

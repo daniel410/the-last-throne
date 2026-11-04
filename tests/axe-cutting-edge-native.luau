@@ -11,7 +11,7 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
   local desc=Instance.new('HumanoidDescription');character=game.Players:CreateHumanoidModelFromDescriptionAsync(desc,rig);desc:Destroy()
   character.Parent=workspace;character:PivotTo(CFrame.new(0,500,0))
   local m=Instance.new('Model');m.Parent=character;local w=assert(A.attachInto(m,character,'dwarf'))
-  check(m:GetAttribute('WeaponSourceKey')=='td:v2:Embercleaver:edge1','stale sideways visual is invalidated')
+  check(m:GetAttribute('WeaponSourceKey')=='td:v2:Embercleaver:forward2','stale sideways visual is invalidated')
   local edge=assert(w.grip:FindFirstChild('AxeCuttingEdge'));local direction=assert(w.grip:FindFirstChild('AxeCuttingDirection'));local face=assert(w.grip:FindFirstChild('AxeFaceNormal'))
   check(math.abs(direction.Position:Dot(face.Position))<.0001,'reviewed cutting direction is in the blade plane')
   local part=m.Weapon;check(math.abs(w.grip.CFrame:ToObjectSpace(part.CFrame).LookVector:Dot(face.Position))>.999,'face marker matches actual mesh thickness axis')

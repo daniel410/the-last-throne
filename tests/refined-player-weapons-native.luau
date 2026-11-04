@@ -2,7 +2,7 @@
 local Players=game:GetService('Players');local SS=game:GetService('ServerStorage')
 local modules=game.ServerScriptService.Server.Cosmetics;local A=require(modules.WeaponAppearance)
 local V=require(game.StarterPlayer.StarterPlayerScripts.Client.K0SwordVisual)
-local expected={knight={'SwordBlade','136222429214301','td:v2:AzureOathblade'},dwarf={'Weapon','137793778150208','td:v2:Embercleaver:edge1'},mage={'WoodenShaft',nil,'authored:WoodenStaff'},elf={'Bow','83795343518288','td:ElfBow'}}
+local expected={knight={'SwordBlade','136222429214301','td:v2:AzureOathblade'},dwarf={'Weapon','137793778150208','td:v2:Embercleaver:forward2'},mage={'WoodenShaft',nil,'authored:WoodenStaff'},elf={'Bow','83795343518288','td:ElfBow'}}
 local report={kind='REFINED_PLAYER_WEAPONS_NATIVE',checks=0,failures={},assetLoads={},coverage='Native R6/R15 new PBR meshes, production appearance observers, re-equip/repair/respawn with Player identity fixtures; no real account or published client'}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local function waitFor(fn)local t=os.clock();repeat local v=fn();if v then return v end;task.wait(.03)until os.clock()-t>4 end
