@@ -1,0 +1,19 @@
+{
+  "chapters": 47,
+  "mainChapters": 35,
+  "optionalChapters": 12,
+  "localSegments": 232,
+  "edges": 43,
+  "returnRoutes": 10,
+  "returnApproaches": 34,
+  "status": {
+    "Success": 303,
+    "SamePoint": 5,
+    "NoPath": 1
+  },
+  "floorSamples": 18630,
+  "floorDeviationSamples": 545,
+  "localAndEdgeFloorDeviations": 0,
+  "visualCandidateRecords": 94,
+  "directCollisionSegments": 39
+}
