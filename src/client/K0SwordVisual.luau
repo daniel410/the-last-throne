@@ -1,5 +1,5 @@
--- Weapon presentation driven by server combat attributes. Dwarf axes and Mage
--- staves stay in the hand. Elf arrows are local, non-colliding visual effects;
+-- Weapon presentation driven by server combat attributes. Thrown axes and
+-- Elf arrows are local, non-colliding visual effects; Mage staves stay held.
 -- this module never chooses a class or determines damage or hit geometry.
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -842,6 +842,13 @@ local function consumeMultiShot(character)
 	end
 end
 
+local function destroySpell(spell)
+	if spell.heldWeapon and spell.heldWeapon.Parent then
+		spell.heldWeapon.LocalTransparencyModifier = spell.heldTransparency
+	end
+	spell.part:Destroy()
+end
+
 local function consumeSpell(character)
 	local payload = character:GetAttribute("K0SpellVisual")
 	if payload == nil or seenSpells[character] == payload then return end
@@ -855,23 +862,34 @@ local function consumeSpell(character)
 			if model:IsA("Model") and classFor(model)=="mage" then MageFocus.flash(model) end
 		end
 	end
-	if #spells >= 32 then table.remove(spells, 1).part:Destroy() end
+	-- Restore a superseded throw before hiding the next release's weapon.
+	for index = #spells, 1, -1 do
+		if spells[index].character == character then destroySpell(table.remove(spells, index)) end
+	end
+	if #spells >= 32 then destroySpell(table.remove(spells, 1)) end
 	local skillId = character:GetAttribute("K0SkillId")
 	local color = classId == "dwarf" and Color3.fromRGB(255, 155, 65)
 		or skillId == "mage.common.water_ball" and Color3.fromRGB(70, 170, 255)
 		or skillId == "mage.common.gravity" and Color3.fromRGB(126, 65, 211)
 		or Color3.fromRGB(160, 224, 255)
-	local orb, launchRotation
+	local orb, launchRotation, heldWeapon, heldTransparency
 	if classId == "dwarf" then
 		for _, model in ipairs(character:GetChildren()) do
 			if model:IsA("Model") and classFor(model) == "dwarf" then
 				local weapon = model:FindFirstChild("Weapon")
 				if weapon and weapon:IsA("BasePart") then
 					launchRotation = weapon.CFrame.Rotation
+					heldWeapon, heldTransparency = weapon, weapon.LocalTransparencyModifier
+					-- Release the mesh centre from the actual hand-held pose,
+					-- rather than teleporting its centre to the axe's tip.
+					if (weapon.Position - first).Magnitude <= 8 and (last - weapon.Position).Magnitude >= 0.05
+						and (last - first):Dot(last - weapon.Position) > 0 then first = weapon.Position end
 					orb = weapon:Clone(); break
 				end
 			end
 		end
+		-- Late weapon replication must never turn an axe into a glowing orb.
+		if not orb then return end
 	end
 	if orb then
 		-- A cloned WeldConstraint can retain a Part0 reference to the live hand.
@@ -880,7 +898,9 @@ local function consumeSpell(character)
 			if not child:IsA("SurfaceAppearance") and not child:IsA("SpecialMesh") then child:Destroy() end
 		end
 		orb.Name, orb.Anchored, orb.CanCollide, orb.CanTouch, orb.CanQuery = "K0VisualThrownAxe", true, false, false, false
+		orb.LocalTransparencyModifier = 0
 		orb.Parent, orb.Position = workspace, first
+		heldWeapon.LocalTransparencyModifier = 1
 	else
 		local size = skillId == "mage.common.water_ball" and 1.35 or skillId == "mage.common.gravity" and 0.9 or 0.65
 		orb = arrowPart(workspace, "K0VisualSpell", Vector3.new(size, size, size), color, Enum.Material.Neon)
@@ -897,18 +917,30 @@ local function consumeSpell(character)
 			table.insert(waterDroplets, droplet)
 		end
 	end
-	local light = Instance.new("PointLight"); light.Color = orb.Color; light.Brightness = 2; light.Range = 8; light.Parent = orb
+	if not heldWeapon then
+		local light = Instance.new("PointLight"); light.Color = orb.Color; light.Brightness = 2; light.Range = 8; light.Parent = orb
+	end
 	local front = Instance.new("Attachment"); front.Position = Vector3.new(0, 0, -0.3); front.Parent = orb
 	local back = Instance.new("Attachment"); back.Position = Vector3.new(0, 0, 0.3); back.Parent = orb
 	local trail = Instance.new("Trail"); trail.Attachment0, trail.Attachment1 = front, back
 	trail.Color = ColorSequence.new(color, Color3.fromRGB(230, 238, 255))
 	trail.Transparency, trail.Lifetime, trail.LightEmission = NumberSequence.new(0.2), 0.25, 1
+	if heldWeapon then
+		-- A short, pale blade-tip sweep leaves the rotating silhouette readable.
+		front.Position = Vector3.new(-0.12, orb.Size.Y * 0.35, 0)
+		back.Position = Vector3.new(0.12, orb.Size.Y * 0.35, 0)
+		trail.Color = ColorSequence.new(Color3.fromRGB(205, 215, 222))
+		trail.Transparency = NumberSequence.new({ NumberSequenceKeypoint.new(0, 0.72), NumberSequenceKeypoint.new(1, 1) })
+		trail.Lifetime, trail.LightEmission = 0.065, 0
+	end
 	trail.Parent = orb
 	local distance = (last - first).Magnitude
 	table.insert(spells, { part = orb, character = character, owner = Players:GetPlayerFromCharacter(character),
 		payload = payload, first = first, direction = (last - first).Unit, distance = distance, elapsed = 0, waterDroplets = waterDroplets,
 		launchRotation = launchRotation,
-		duration = math.clamp(distance / 75, 0.15, 0.60) })
+		heldWeapon = heldWeapon, heldTransparency = heldTransparency,
+		arcHeight = heldWeapon and math.clamp(distance * 0.06, 0.45, 1.8) or 0,
+		duration = heldWeapon and math.clamp(distance / 42, 0.28, 0.85) or math.clamp(distance / 75, 0.15, 0.60) })
 end
 
 local function advanceSpells(dt)
@@ -918,15 +950,19 @@ local function advanceSpells(dt)
 		if not spell.part.Parent or not spell.character:IsDescendantOf(workspace)
 			or (spell.character:GetAttribute("K0ClassId") ~= "mage" and spell.character:GetAttribute("K0ClassId") ~= "dwarf")
 			or spell.character:GetAttribute("K0SpellVisual") ~= spell.payload
+			or spell.character:GetAttribute("K0State") == "Dead" or spell.character:GetAttribute("TLTDeathFalling")
+			or (spell.heldWeapon and (not spell.heldWeapon:IsDescendantOf(spell.character) or spell.character:GetAttribute("TLTEquippedWeapon") == ""))
 			or (spell.owner and spell.owner.Character ~= spell.character) then
-			spell.part:Destroy(); table.remove(spells, index)
+			destroySpell(spell); table.remove(spells, index)
 		else
 			spell.elapsed = spell.elapsed + elapsed
-			local position = spell.first + spell.direction * spell.distance * math.min(1, spell.elapsed / spell.duration)
+			local progress = math.min(1, spell.elapsed / spell.duration)
+			local position = spell.first + spell.direction * spell.distance * progress
+				+ Vector3.yAxis * (spell.arcHeight * 4 * progress * (1 - progress))
 			if spell.launchRotation then
 				-- Keep the release pose, then tumble around the flight frame's lateral axis.
 				local flightFrame = CFrame.lookAt(position, position + spell.direction)
-				spell.part.CFrame = CFrame.new(position) * CFrame.fromAxisAngle(flightFrame.RightVector, spell.elapsed * 20) * spell.launchRotation
+				spell.part.CFrame = CFrame.new(position) * CFrame.fromAxisAngle(flightFrame.RightVector, spell.elapsed * math.pi * 8) * spell.launchRotation
 			else
 				spell.part.CFrame = CFrame.lookAt(position, position + spell.direction)
 			end
@@ -935,8 +971,8 @@ local function advanceSpells(dt)
 				droplet.Position = position + Vector3.new(math.cos(angle) * 0.9, math.sin(angle * 1.3) * 0.55, math.sin(angle) * 0.9)
 			end
 			if spell.elapsed >= spell.duration then
-				impact(position, spell.part.Color)
-				spell.part:Destroy(); table.remove(spells, index)
+				if not spell.heldWeapon then impact(position, spell.part.Color) end
+				destroySpell(spell); table.remove(spells, index)
 			end
 		end
 	end
