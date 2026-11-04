@@ -1,0 +1,5 @@
+Skill presentation CPU: 367906 checks PASS; 128 skill contracts, 116 revised advanced skills. No engine/visual acceptance.
+Skill effects CPU: 11977 checks PASS; all 116 advanced casts/pulses, geometry, cosmetic budget, cancellation. No engine QA.
+Advanced skills: 1435 checks passed
+K0 rules: 125 checks passed
+Compiled 1 KLOC into 85 KB bytecode (read 0.00s, parse 0.00s, compile 0.00s)
