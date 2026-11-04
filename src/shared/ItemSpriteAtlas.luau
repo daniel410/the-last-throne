@@ -1,6 +1,11 @@
 -- RPG-specific illustrated sprites, generated as one atlas; asset provenance is
 -- recorded in assets/ui/item-icons-v1/manifest.json. TD's original art is unchanged.
 return {
+	-- Separate transparent material icons; provenance: enhancement-material-icons-v1.
+	images = {
+		enhancement_gem = "rbxassetid://81095702596861",
+		magic_stone = "rbxassetid://103562386022277",
+	},
 	image = "rbxassetid://135019494060990",
 	width = 1024, height = 1536, renderWidth = 683, renderHeight = 1024,
 	cells = {

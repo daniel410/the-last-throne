@@ -1,0 +1,37 @@
+{
+  "created": "2026-11-03",
+  "tool": "built-in image_gen",
+  "prompt_file": "prompt.txt",
+  "style_reference": "assets/ui/item-icons-v1/item-atlas.png (visually inspected; text-described style)",
+  "assets": [
+    {
+      "file": "enhancement-gem.png",
+      "roblox_image_id": 81095702596861,
+      "sha256": "b16453d9021a4c0366221bc3fcb1c45bb26cff7df81150461e696d316783ff51",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "magic-stone.png",
+      "roblox_image_id": 103562386022277,
+      "sha256": "69b498d6871c1c3eabc300a0d2d41e10e8528d3de2990287bc9efcfc43da729f",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_range": [
+        0,
+        255
+      ]
+    }
+  ],
+  "runtime_definition": "src/shared/ItemSpriteAtlas.luau",
+  "renderer": "src/client/ItemSprites.luau",
+  "published_place_validation": false
+}

@@ -1,6 +1,16 @@
 local Atlas=require(game:GetService("ReplicatedStorage").Shared.ItemSpriteAtlas)
 local Sprites={}
 function Sprites.create(parent,definition,position,size)
+	local standalone=Atlas.images and Atlas.images[definition.id]
+	if standalone then
+		local image=Instance.new("ImageLabel")
+		image.Name,image.BackgroundTransparency,image.Image="ItemIllustration",1,standalone
+		image.Position,image.Size,image.ScaleType=position,size,Enum.ScaleType.Fit
+		image:SetAttribute("DefinitionId",definition.id)
+		image:SetAttribute("SpriteKey",definition.id)
+		image.Parent=parent
+		return image
+	end
 	if not Atlas.image then return nil end
 	local key=definition.potionTier and definition.id or definition.slot=="weapon" and definition.classId.."_weapon"
 		or Atlas.cells[definition.id] and definition.id or definition.slot
