@@ -38,7 +38,7 @@ function M.create(player,onVisibility)
    previousFocus=GuiService.SelectedObject
    previousPrompts=Prompts.Enabled;Prompts.Enabled=false
    CAS:BindActionAtPriority('SettingsMovement',function()return Enum.ContextActionResult.Sink end,false,4300,Enum.KeyCode.W,Enum.KeyCode.A,Enum.KeyCode.S,Enum.KeyCode.D,Enum.KeyCode.Space,Enum.KeyCode.Thumbstick1)
-   if UIS:GetLastInputType().Name:match('^Gamepad') then GuiService.SelectedObject=toggles.attacks end
+   if UIS:GetLastInputType().Name:match('^Gamepad') then GuiService.SelectedObject=toggles.autoTarget end
   else
    CAS:UnbindAction('SettingsMovement')
    if previousPrompts~=nil then Prompts.Enabled=previousPrompts;previousPrompts=nil end

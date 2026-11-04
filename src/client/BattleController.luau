@@ -14,6 +14,7 @@ function Controller.start(services)
  local heroSnapshot=services.snapshot
 local Text = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("K0Text"))
 local Targeting = require(script.K0Targeting)
+local Settings = require(script.GameSettings)
 local hud = require(script.K0Hud).create()
 hud.setVisible(false)
 require(script.K0BackgroundMusic).start()
@@ -36,6 +37,7 @@ local characterConnections = {}
 local showingSpawnRetry = false
 local focused = true
 local selectedEnemy
+local targetAutomatic = false
 local targetHighlight
 local targetConnections = {}
 
@@ -43,41 +45,40 @@ local function clearTarget()
 	for _, connection in ipairs(targetConnections) do connection:Disconnect() end
 	table.clear(targetConnections)
 	selectedEnemy = nil
+	targetAutomatic = false
 	if targetHighlight then targetHighlight:Destroy(); targetHighlight = nil end
 end
 
-local function clearMovingElfTarget()
-	if not selectedEnemy then return end
-	local character = player.Character
-	if not character or character:GetAttribute("K0ClassId") ~= "elf" then return end
-	local humanoid = character:FindFirstChildOfClass("Humanoid")
-	if humanoid and humanoid.MoveDirection.Magnitude > 0.01 then
-		clearTarget()
-		hud.showFeedback(Text.TargetCleared)
+local function selectTarget(part, automatic)
+	if selectedEnemy == part then
+		targetAutomatic = automatic
+		return
 	end
+	clearTarget()
+	selectedEnemy, targetAutomatic = part, automatic
+	targetHighlight = Instance.new("Highlight")
+	targetHighlight.Name = "K0TargetHighlight"
+	targetHighlight.Adornee = part
+	targetHighlight.FillTransparency, targetHighlight.OutlineTransparency = 0.8, 0
+	targetHighlight.FillColor, targetHighlight.OutlineColor = Color3.fromRGB(255, 200, 80), Color3.fromRGB(255, 235, 170)
+	targetHighlight.DepthMode = Enum.HighlightDepthMode.Occluded
+	targetHighlight.Parent = part
+	local humanoid = part:FindFirstChildOfClass("Humanoid")
+	table.insert(targetConnections, humanoid.Died:Connect(function() if selectedEnemy == part then clearTarget() end end))
+	table.insert(targetConnections, part.AncestryChanged:Connect(function() if selectedEnemy == part and not Targeting.valid(part) then clearTarget() end end))
+	if not automatic then hud.showFeedback(string.format(Text.TargetSelected, humanoid.DisplayName)) end
 end
 
 local function selectAt(screenPosition)
 	local part = Targeting.pick(screenPosition, player.Character)
 	if not part then return false end
-	if selectedEnemy ~= part then
-		clearTarget()
-		selectedEnemy = part
-		targetHighlight = Instance.new("Highlight")
-		targetHighlight.Name = "K0TargetHighlight"
-		targetHighlight.Adornee = part
-		targetHighlight.FillTransparency, targetHighlight.OutlineTransparency = 0.8, 0
-		targetHighlight.FillColor, targetHighlight.OutlineColor = Color3.fromRGB(255, 200, 80), Color3.fromRGB(255, 235, 170)
-		targetHighlight.DepthMode = Enum.HighlightDepthMode.Occluded
-		targetHighlight.Parent = part
-		local humanoid = part:FindFirstChildOfClass("Humanoid")
-		table.insert(targetConnections, humanoid.Died:Connect(function() if selectedEnemy == part then clearTarget() end end))
-		table.insert(targetConnections, part.AncestryChanged:Connect(function() if selectedEnemy == part and not Targeting.valid(part) then clearTarget() end end))
-		hud.showFeedback(string.format(Text.TargetSelected, humanoid.DisplayName))
-	end
-	clearMovingElfTarget()
+	selectTarget(part, false)
 	return true
 end
+
+player:GetAttributeChangedSignal("TLTAutoTargetEnabled"):Connect(function()
+	if targetAutomatic and not Settings.enabled(player, "autoTarget") then clearTarget() end
+end)
 
 local function combatInputAllowed()
 	local character = player.Character
@@ -115,8 +116,6 @@ player:GetAttributeChangedSignal("K0SpawnStatus"):Connect(updateSpawnStatus)
 updateSpawnStatus()
 
 local function sendAction(action, direction)
-	-- Recheck before dispatch so held fire cannot reuse a moving elf's target.
-	clearMovingElfTarget()
 	if action == "Item1" or action == "Item2" then
 		if inventory and combatInputAllowed() then inventory.use(action == "Item1" and 1 or 2) end
 		return
@@ -132,9 +131,13 @@ local function sendAction(action, direction)
 		end
 		local character = player.Character
 		local classId = character and character:GetAttribute("K0ClassId")
-		local canTarget = action == "Attack" or action:match("^Skill[12345]$") or (action == "CastArcane" and classId == "mage")
-		local target = canTarget and selectedEnemy or nil
-		if target and not Targeting.valid(target) then clearTarget(); target = nil end
+		if selectedEnemy and not Targeting.valid(selectedEnemy) then clearTarget() end
+		local target = Targeting.resolve(character, action, selectedEnemy, Settings.enabled(player, "autoTarget"), targetAutomatic)
+		if target and target ~= selectedEnemy then
+			selectTarget(target, true)
+		elseif not target and targetAutomatic and Targeting.definition(character, action) then
+			clearTarget()
+		end
 		-- Avoid turning mid-swing when held input repeats. The server turns
 		-- again when a buffered melee attack actually begins.
 		local state = character and character:GetAttribute("K0State")
@@ -309,8 +312,6 @@ local function bindCharacter(character)
 	task.spawn(function()
 		local humanoid = character:WaitForChild("Humanoid", 15)
 		if not humanoid or player.Character ~= character then return end
-		table.insert(characterConnections, humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(clearMovingElfTarget))
-		clearMovingElfTarget()
 		local function updateHealth()
 			hud.setHealth(humanoid.Health, humanoid.MaxHealth)
 		end
@@ -373,7 +374,7 @@ UserInputService.InputBegan:Connect(function(input, processed)
 		if picked and input.UserInputType == Enum.UserInputType.Touch then return end
 	end
 	if input.KeyCode == Enum.KeyCode.X and selectedEnemy then
-		clearTarget(); hud.showFeedback(Text.TargetCleared)
+		clearAttacks(); clearTarget(); hud.showFeedback(Text.TargetCleared)
 	elseif input.UserInputType == Enum.UserInputType.MouseButton1 or input.KeyCode == Enum.KeyCode.ButtonR2 then
 		startAttack(input)
 	elseif input.UserInputType == Enum.UserInputType.MouseButton2 or input.KeyCode == Enum.KeyCode.Q or input.KeyCode == Enum.KeyCode.ButtonL2 then

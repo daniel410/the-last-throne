@@ -16,6 +16,7 @@ local rewardHandler
 local Config = require(ReplicatedStorage.Shared.K0Config)
 local Rules = require(script.Parent.K0Rules)
 local DodgeRules = require(ReplicatedStorage.Shared.DodgeRules)
+local TargetAssistRules = require(ReplicatedStorage.Shared.TargetAssistRules)
 local EnemyHealthBar = require(script.Parent.Parent.World.EnemyHealthBar)
 local Text = require(ReplicatedStorage.Shared.K0Text)
 
@@ -280,7 +281,21 @@ local function damagePosture(enemy, amount, current)
 	end
 end
 
+local function targetForMovement(state, targetModel)
+	local selected = targetModel and enemyStates[targetModel]
+	-- MoveDirection is client-local. Recheck buffered turns against observed
+	-- horizontal motion, excluding tiny idle physics drift.
+	local movement = horizontal(state.root.AssemblyLinearVelocity)
+	if selected and movement.Magnitude > Config.WalkSpeed * 0.05 then
+		local delta = horizontal(selected.root.Position - state.root.Position)
+		if delta.Magnitude > 0.01 and not TargetAssistRules.inFront(movement.Unit:Dot(delta.Unit)) then return nil end
+	end
+	return targetModel
+end
+
 local function startAttack(state, current, targetModel)
+	-- Buffered attacks must recheck the current movement, not an old client aim.
+	targetModel = targetForMovement(state, targetModel)
 	state.lastEquipmentCombat = current
 	local profile = state.attackProfile
 	if not profile or Config.BasicAttackProfiles[state.baseClassId] ~= profile or #profile.attacks == 0 then
@@ -394,7 +409,8 @@ local function startSkill(state, slot, current, targetModel)
 	end
 	if skill.effect == "recall" then targetModel = state.thrownTarget end
 	local direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1))
-	if skill.effect == "whirlwind" or skill.effect == "provoke" or skill.effect == "slam" then targetModel = nil end
+	if not TargetAssistRules.directional(skill) and skill.effect ~= "recall" then targetModel = nil
+	elseif skill.effect ~= "recall" then targetModel = targetForMovement(state, targetModel) end
 	local selected = targetModel and enemyStates[targetModel]
 	if selected and enemyAlive(selected) then
 		local delta = horizontal(selected.root.Position - state.root.Position)
