@@ -7,7 +7,7 @@ local Bounds=require(Shared.CampaignBounds)
 local K=require(script.Parent.EpicEnvironmentKit)
 local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
-local Art={version=2}
+local Art={version=3}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -32,7 +32,11 @@ local function reservation(world,id)
  for _,chapter in ipairs(Content.chapters)do if chapter.zone==id then
   for _,g in ipairs(chapter.goals)do
    local p=vec(g.position);table.insert(anchors,{p=p,r=#g.enemies>0 and 74 or 20});table.insert(lanes,{previous,p});previous=p
-   for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then table.insert(anchors,{p=vec(step.position),r=24})end end
+   local stepPrevious=p
+   for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then
+    local at=vec(step.position);table.insert(anchors,{p=at,r=24});table.insert(lanes,{stepPrevious,at});stepPrevious=at
+   end end
+   table.insert(lanes,{stepPrevious,p})
   end
  end end
  for _,edge in ipairs(Access.edges)do if edge[1]==id or edge[2]==id then table.insert(lanes,{center,vec(Content.zones[edge[1]==id and edge[2] or edge[1]].center)})end end
@@ -288,7 +292,14 @@ local function carve(world)
    local p=vec(g.position);clear(p,#g.enemies>0 and 80 or 24)
    local d=p-prev;local n=math.max(1,math.ceil(d.Magnitude/25))
    for i=0,n do clear(prev:Lerp(p,i/n),25)end
-   for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then clear(vec(step.position),27)end end
+   local stepPrevious=p
+   for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then
+    local at=vec(step.position);local count=math.max(1,math.ceil((at-stepPrevious).Magnitude/20))
+    for i=0,count do clear(stepPrevious:Lerp(at,i/count),27)end
+    stepPrevious=at
+   end end
+   local count=math.max(1,math.ceil((p-stepPrevious).Magnitude/20))
+   for i=0,count do clear(stepPrevious:Lerp(p,i/count),27)end
    prev=p
   end
   task.wait()

@@ -24,7 +24,11 @@ for _,chapter in ipairs(Content.chapters)do
  local previous=world.spawns[chapter.zone].Position
  for _,g in ipairs(chapter.goals)do
   local p=Vector3.new(table.unpack(g.position));table.insert(anchors,{p=p,r=#g.enemies>0 and 78 or 22});table.insert(lanes,{previous,p,21});previous=p
-  for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then table.insert(anchors,{p=Vector3.new(table.unpack(step.position)),r=23})end end
+  local stepPrevious=p
+  for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then
+   local at=Vector3.new(table.unpack(step.position));table.insert(anchors,{p=at,r=23});table.insert(lanes,{stepPrevious,at,21});stepPrevious=at
+  end end
+  table.insert(lanes,{stepPrevious,p,21})
  end
 end
 for _,edge in ipairs(Access.edges)do local aa,bb=Bounds.ends(edge);table.insert(lanes,{Vector3.new(table.unpack(aa)),Vector3.new(table.unpack(bb)),44})end
@@ -47,7 +51,12 @@ for id,z in pairs(Content.zones)do
 end
 for _,chapter in ipairs(Content.chapters)do for _,g in ipairs(chapter.goals)do
  saveRay(Vector3.new(table.unpack(g.position)))
- for _,s in ipairs(g.activity and g.activity.steps or {})do if s.position then saveRay(Vector3.new(table.unpack(s.position)))end end
+ local previous=Vector3.new(table.unpack(g.position))
+ for _,s in ipairs(g.activity and g.activity.steps or {})do if s.position then
+  local at=Vector3.new(table.unpack(s.position));local count=math.max(1,math.ceil((at-previous).Magnitude/8))
+  for i=0,count do saveRay(previous:Lerp(at,i/count))end
+  previous=at
+ end end
 end end
 for _,edge in ipairs(Access.edges)do
  local aa,bb=Bounds.ends(edge);local a,b=Vector3.new(table.unpack(aa)),Vector3.new(table.unpack(bb))
@@ -108,7 +117,7 @@ local ok,err=xpcall(function()
   if p:IsA('MeshPart')then meshes+=1;check(p.MeshId~='','original reusable TD mesh')end
  end
  report.siteParts=total;report.reusedMeshInstances=meshes
- check(art:GetAttribute('BuildComplete')==true and art:GetAttribute('ArtVersion')==2,'only fully generated v2 worlds are cached')
+ check(art:GetAttribute('BuildComplete')==true and art:GetAttribute('ArtVersion')==3,'only fully generated v3 worlds are cached')
  local count=#art:GetDescendants();require(Server.World.EpicWorldArt).create(world)
  check(#art:GetDescendants()==count,'idempotent rebuild')
  report.totalDescendants=count;report.pass=true

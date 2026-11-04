@@ -1,6 +1,30 @@
 -- Script-free, anchored scenery; authoritative walkable surfaces stay in world modules.
 local Kit={}
 local Env=require(script.Parent.DeepwoodEnvironment)
+local Content=require(game.ReplicatedStorage.Shared.CampaignContent)
+local Access=require(game.ReplicatedStorage.Shared.CampaignAccess)
+local Bounds=require(game.ReplicatedStorage.Shared.CampaignBounds)
+local function blocksWalkable(model)
+ -- Check the final rotated mesh footprint against every zone, including neighbors.
+ local cf,size=model:GetBoundingBox();local low=Vector3.new(math.huge,math.huge,math.huge);local high=-low
+ for _,x in ipairs({-1,1})do for _,y in ipairs({-1,1})do for _,z in ipairs({-1,1})do
+  local p=cf:PointToWorldSpace(size*Vector3.new(x,y,z)/2)
+  low=Vector3.new(math.min(low.X,p.X),math.min(low.Y,p.Y),math.min(low.Z,p.Z))
+  high=Vector3.new(math.max(high.X,p.X),math.max(high.Y,p.Y),math.max(high.Z,p.Z))
+ end end end
+ for _,zone in pairs(Content.zones)do
+  local c,s=zone.center,zone.size
+  if low.Y<c[2]+18 and high.Y>c[2]+.5 and low.X<c[1]+s[1]/2+8 and high.X>c[1]-s[1]/2-8 and low.Z<c[3]+s[2]/2+8 and high.Z>c[3]-s[2]/2-8 then return true end
+ end
+ local center=(low+high)/2;local radius=Vector3.new(high.X-low.X,0,high.Z-low.Z).Magnitude/2
+ for _,edge in ipairs(Access.edges)do
+  local aa,bb=Bounds.ends(edge);local a,b=Vector3.new(table.unpack(aa)),Vector3.new(table.unpack(bb));local d=Vector3.new(b.X-a.X,0,b.Z-a.Z)
+  local t=math.clamp(Vector3.new(center.X-a.X,0,center.Z-a.Z):Dot(d)/math.max(.001,d:Dot(d)),0,1)
+  local p=a:Lerp(b,t)
+  if low.Y<math.max(a.Y,b.Y)+18 and high.Y>math.min(a.Y,b.Y)+.5 and Vector3.new(center.X-p.X,0,center.Z-p.Z).Magnitude<Bounds.trailHalfWidth+radius+8 then return true end
+ end
+ return false
+end
 local C=Color3.fromRGB
 Kit.palette={
  Deepwood={rock=C(94,112,91),trim=C(166,175,139),ground=C(95,126,70),leaf=C(97,137,65),wood=C(88,69,43),accent=C(237,187,87)},
@@ -26,6 +50,8 @@ function Kit.rock(parent,p,size,col,seed)
   local name=theme=='FrozenVale' and 'SnowCliff' or theme=='EmberCaldera' and 'VolcanoCliff' or theme=='HauntedGraveyard' and 'CemeteryCliff' or 'CliffRock'
   local m=Env.asset(parent,name,p-Vector3.new(0,size.Y*.5,0),size.Y)
   local bounds=m:GetBoundingBox();m:PivotTo(CFrame.new(p)*CFrame.Angles(math.pi,seed*.71,.08*math.sin(seed))*bounds:ToObjectSpace(m:GetPivot()))
+  if blocksWalkable(m)then m:Destroy();return nil end
+  m:SetAttribute('WalkableSceneryChecked',true)
   -- TD geometry is shared; baked grassy cliff textures are inappropriate for ice/ash/graves.
   for _,part in ipairs(m:GetDescendants())do if part:IsA('MeshPart')then
    part:SetAttribute('TDOriginalTexture',part.TextureID);part.TextureID='';part.Material=theme=='FrozenVale' and Enum.Material.Glacier or Enum.Material.Slate
