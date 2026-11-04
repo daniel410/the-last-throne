@@ -133,6 +133,20 @@
       "$properties": {
         "RespectFilteringEnabled": true
       }
+    },
+    "ReplicatedFirst": {
+      "ArrivalLoading": {
+        "$path": "src/loading/ArrivalLoading.client.luau"
+      },
+      "TravelLoadingScreen": {
+        "$path": "src/client/TravelLoadingScreen.luau"
+      },
+      "ServerRole": {
+        "$className": "StringValue",
+        "$properties": {
+          "Value": "Lobby"
+        }
+      }
     }
   }
 }

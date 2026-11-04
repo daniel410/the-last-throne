@@ -1,5 +1,8 @@
 # The Last Throne 통합 개발 계획
 
+> **2026-11-04 / TLT-028/057/061/084 · 0.69.4:** 배틀 도착 대기 발판 노출을 막도록 ReplicatedFirst에서 기존 이동 로딩 화면을 이어받는다. 서버 전투/캐릭터·클라이언트 전투UI·카메라·현지 바닥/스트리밍 준비 후 닫는다. [검증·미검증](docs/evidence/arrival-loading-20261104/README.md). 실제 게시 이동/모바일 수용은 후속이다.
+
+
 > **2026-11-04 기존 아이템 등급 표시 · TLT-028/029/043/052/084 · 0.69.3:** [기존51종 분류](docs/production/existing-item-rarity-2026-11-04.md)를 확인하고 가방/창고 상세에 등급명과색상을 항상 표시한다. Common20/Uncommon14/Rare17·ID/능력치/기존희귀도 보존. [검증·미검증](docs/evidence/item-rarity-details-20261104/README.md). 로컬 수정·미게시, 실제UI/기기 수용 후속.
 
 

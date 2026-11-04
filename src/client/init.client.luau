@@ -102,6 +102,7 @@ local function updateSessionView()
    require(script.DeepwoodAtmosphere).start()
    battle=require(script.BattleController).start({inventory=inventory,growthGui=growthGui,settingsGui=settingsGui,requestHero=requestHero,snapshot=heroSnapshot})
    startingBattle=false;battle.update(heroSnapshot)
+   player:SetAttribute('TLTBattleClientReady',true)
   end)
  elseif battle then battle.update(heroSnapshot)end
 end
