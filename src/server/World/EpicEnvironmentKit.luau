@@ -49,13 +49,18 @@ function Kit.pine(parent,p,h,pal,snow)
  end
 end
 function Kit.tree(parent,p,h,pal,dead)
- local trunk=p+Vector3.new(0,h*.55,0)
- Kit.beam(parent,'CrookedTrunk',p,trunk+Vector3.new(3,0,0),h*.13,pal.wood,Enum.Material.Wood)
+ local trunk={p,p+Vector3.new(2,h*.24,-1),p+Vector3.new(-2,h*.51,2),p+Vector3.new(1,h*.77,0)}
+ for i=1,3 do Kit.beam(parent,'WeatheredTrunk',trunk[i],trunk[i+1],h*(.13-i*.018),pal.wood,Enum.Material.Wood)end
  for j=1,3 do
-  local angle=j*2.2;local endP=p+Vector3.new(math.cos(angle)*h*.29,h*(.7+j*.08),math.sin(angle)*h*.29)
-  Kit.beam(parent,'GnarledBough',trunk,endP,h*.065,pal.wood,Enum.Material.Wood)
-  Kit.beam(parent,'RootButtress',p+Vector3.new(0,5,0),p+Vector3.new(math.cos(angle)*h*.23,0,math.sin(angle)*h*.23),h*.07,pal.wood,Enum.Material.Wood)
-  if not dead then Kit.part(parent,'ShadeCanopy',Vector3.new(h*.55,h*.19,h*.5),CFrame.new(endP)*CFrame.Angles(.12,angle,.1),pal.leaf,Enum.Material.Grass,'Ball')end
+  local angle=j*2.18;local d=Vector3.new(math.cos(angle),0,math.sin(angle))
+  local a=trunk[3];local b=a+d*h*.18+Vector3.new(0,h*.08,0);local c=p+d*h*.32+Vector3.new(0,h*(.76+j*.055),0)
+  Kit.beam(parent,'CrookedBough',a,b,h*.052,pal.wood,Enum.Material.Wood)
+  Kit.beam(parent,'TaperedBough',b,c,h*.029,pal.wood,Enum.Material.Wood)
+  Kit.beam(parent,'BrokenTwig',b,b+Vector3.new(-d.Z*h*.1,h*.18,d.X*h*.1),h*.018,pal.wood,Enum.Material.Wood)
+  local knee=p+d*h*.12+Vector3.new(0,3,0)
+  Kit.beam(parent,'ExposedRoot',p+Vector3.new(0,6,0),knee,h*.06,pal.wood,Enum.Material.Wood)
+  Kit.beam(parent,'RootTip',knee,p+d*h*.26,h*.035,pal.wood,Enum.Material.Wood)
+  if not dead then Kit.part(parent,'ShadeCanopy',Vector3.new(h*.5,h*.2,h*.43),CFrame.new(c)*CFrame.Angles(.12,angle,.1),pal.leaf,Enum.Material.Grass,'Ball')end
  end
 end
 function Kit.lantern(parent,p,pal)
@@ -105,9 +110,18 @@ function Kit.hall(parent,p,pal,style)
  if style=='chapel' then Kit.tower(parent,p+Vector3.new(-24,0,-13),54,pal,'spire')end
 end
 function Kit.web(parent,a,b,c,pal)
- for i=0,4 do
-  local t=i/4;Kit.beam(parent,'WebSpoke',a,b:Lerp(c,t),.17,pal.trim)
+ local center=(a+b+c)/3;local perimeter={}
+ for _,edge in ipairs({{a,b},{b,c},{c,a}})do for i=0,3 do table.insert(perimeter,edge[1]:Lerp(edge[2],i/4))end end
+ local color=pal.trim:Lerp(Color3.new(1,1,1),.65)
+ local function thread(name,from,to,width)
+  local p=Kit.beam(parent,name,from,to,width,color,Enum.Material.Fabric);p.Transparency=.15;p.CastShadow=false
  end
- for _,t in ipairs({.35,.65,1})do Kit.beam(parent,'WebRing',a:Lerp(b,t),a:Lerp(c,t),.12,pal.trim)end
+ for _,p in ipairs(perimeter)do thread('WebRadial',center,p,.28)end
+ for _,t in ipairs({.2,.4,.62,.82,1})do
+  for i,p in ipairs(perimeter)do
+   local q=perimeter[i%#perimeter+1]
+   thread('WebSilkRing',center:Lerp(p,t),center:Lerp(q,t),.18)
+  end
+ end
 end
 return Kit

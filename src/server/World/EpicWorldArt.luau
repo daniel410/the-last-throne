@@ -1,296 +1,391 @@
--- Authored environment pass over the existing server-owned campaign footprint.
--- Scenery never extends story access, collision, interaction or reward authority.
-local Shared=game:GetService('ReplicatedStorage').Shared
+-- Composition pass: organic terrain envelopes, enclosed vistas, coherent architecture.
+-- Story anchors, combat leash space, and authoritative collision remain independent.
+local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local Access=require(Shared.CampaignAccess)
 local Bounds=require(Shared.CampaignBounds)
-local Kit=require(script.Parent.EpicEnvironmentKit)
+local K=require(script.Parent.EpicEnvironmentKit)
 local Env=require(script.Parent.DeepwoodEnvironment)
-local Art={version=1}
+local Architecture=require(script.Parent.EpicArchitecture)
+local Art={version=2}
 local V=Vector3.new
 local C=Color3.fromRGB
+local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
+local landmarkNames={DW={'Pilgrim Cloister','Convoy Watch','Elder Sanctuary','Lost Abbey','Occupied Keep','Root Cathedral','Seal Sanctuary'},FV={'Glacier Citadel','Hearth Refuge','Blue Ice Gorge','Relay Aqueduct','Frozen Procession','Sentinel Keep','Mirror Palace'},EC={'Freight Foundry','Workers Quarter','Braced Mine','Cooling Aqueduct','Engineers Archive','Heatworks','Great Furnace'},GW={'Lantern Monastery','Webbed Watch','Root Refuge','Hollowbark Grove','Venomcoil Burrow','Widow Cathedral','Hidden Cemetery Gate'},HG={'Mist Cathedral','Keepers Shelter','Garden of Names','Fallen Belfry','Royal Gate','Crownheart Bastion','Last Throne'}}
+local obsolete={Snowbank=true,GlacierSpire=true,PineTrunk=true,SnowPineCrown=true,CalderaRim=true,DistantLavaFissure=true,AncientTrunk=true,Canopy=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true,ForestBoundary=true,OptionalMarsh=true,Waterfall=true,WatchtowerPillar=true,WatchtowerCrown=true}
 local function vec(p)return V(table.unpack(p))end
-local themes={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
-local landmarks={
- DW={'Pilgrim Watch','Convoy Ruins','Ranger Sanctuary','Lost Cloister','Occupied Watchtower','Elder Roots','Broken Seal'},
- FV={'Glacier Gate','Hearth Refuge','Blue Ice Gorge','Relay Watch','Frozen Procession','Sentinel Citadel','Mirror Palace'},
- EC={'Freight Foundry','Workers Quarter','Braced Mine','Cooling Aqueduct','Engineers Archive','Heatworks','Great Furnace'},
- GW={'Lantern Ruins','Webbed Watch','Root Refuge','Hollowbark Grove','Venomcoil Burrow','Widow Nest','Hidden Cemetery Gate'},
- HG={'Mist Chapel','Keepers Shelter','Garden of Names','Fallen Belfry','Royal Gate','Crownheart Bastion','Last Throne'},
-}
-local obsolete={Snowbank=true,GlacierSpire=true,PineTrunk=true,SnowPineCrown=true,CalderaRim=true,DistantLavaFissure=true,AncientTrunk=true,Canopy=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true}
-local function backdrop(p)
- p:SetAttribute('TLTSceneryDistance',900)
- if p:IsA('Model')then for _,v in ipairs(p:GetDescendants())do if v:IsA('BasePart')then v:SetAttribute('TLTSceneryDistance',900)end end end
- return p
-end
 local function model(parent,name)
  local m=Instance.new('Model');m.Name=name;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic;m.Parent=parent;return m
 end
-local function flatDistance(a,b)return (V(a.X,0,a.Z)-V(b.X,0,b.Z)).Magnitude end
-local function segmentDistance(p,a,b)
- p,a,b=V(p.X,0,p.Z),V(a.X,0,a.Z),V(b.X,0,b.Z)
- local d=b-a;local t=math.clamp((p-a):Dot(d)/math.max(.001,d:Dot(d)),0,1);return (p-a-d*t).Magnitude
+local function range(root,limit)
+ for _,p in ipairs(root:GetDescendants())do if p:IsA('BasePart')then p:SetAttribute('TLTSceneryDistance',limit)end end
 end
-local function reserves(world,id)
- local anchors,lanes={world.spawns[id].Position},{}
- local chapter=Content.byId[id]
- local center=vec(Content.zones[id].center)
- if chapter then
-  local previous=world.spawns[id].Position
+local function distance(p,a,b)
+ local dx,dz=b.X-a.X,b.Z-a.Z
+ local t=math.clamp(((p.X-a.X)*dx+(p.Z-a.Z)*dz)/math.max(.001,dx*dx+dz*dz),0,1)
+ return math.sqrt((p.X-a.X-t*dx)^2+(p.Z-a.Z-t*dz)^2)
+end
+local function reservation(world,id)
+ local anchors={{p=world.spawns[id].Position,r=32}};local lanes={}
+ local center=vec(Content.zones[id].center);local previous=world.spawns[id].Position
+ -- Include every chapter using a shared optional area, not just the main ID.
+ for _,chapter in ipairs(Content.chapters)do if chapter.zone==id then
   for _,g in ipairs(chapter.goals)do
    local p=vec(g.position);table.insert(anchors,{p=p,r=#g.enemies>0 and 74 or 20});table.insert(lanes,{previous,p});previous=p
-   for _,s in ipairs(g.activity and g.activity.steps or {})do if s.position then table.insert(anchors,{p=vec(s.position),r=22})end end
+   for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then table.insert(anchors,{p=vec(step.position),r=24})end end
   end
- end
- -- Reserve broad arrival/departure corridors, including side quests.
- for _,edge in ipairs(Access.edges)do if edge[1]==id or edge[2]==id then
-  local other=vec(Content.zones[edge[1]==id and edge[2] or edge[1]].center);table.insert(lanes,{center,other})
+ end end
+ for _,edge in ipairs(Access.edges)do if edge[1]==id or edge[2]==id then table.insert(lanes,{center,vec(Content.zones[edge[1]==id and edge[2] or edge[1]].center)})end end
+ local actors=world.folder:FindFirstChild('NPCActors')
+ if actors then for _,actor in ipairs(actors:GetChildren())do
+  local root=actor:IsA('Model')and actor.PrimaryPart
+  if root and math.abs(root.Position.Y-center.Y)<24 and math.abs(root.Position.X-center.X)<Content.zones[id].size[1]/2+20 and math.abs(root.Position.Z-center.Z)<Content.zones[id].size[2]/2+20 then
+   table.insert(anchors,{p=root.Position,r=24})
+  end
  end end
  return function(p,r)
-  if flatDistance(p,world.spawns[id].Position)<r+32 then return false end
-  for _,a in ipairs(anchors)do if type(a)=='table' and flatDistance(p,a.p)<r+a.r then return false end end
-  for _,lane in ipairs(lanes)do if segmentDistance(p,lane[1],lane[2])<r+24 then return false end end
+  for _,a in ipairs(anchors)do if distance(p,a.p,a.p)<a.r+r then return false end end
+  for _,line in ipairs(lanes)do if distance(p,line[1],line[2])<24+r then return false end end
   return true
  end
 end
-local function pine(parent,p,h,pal)Kit.pine(parent,p,h,pal,true)end
-local function forestTree(parent,p,h,pal,theme)
- if theme=='Deepwood' then
-  local tree=Env.tree(parent,p,h,false);tree:PivotTo(tree:GetPivot()*CFrame.Angles(0,(p.X+p.Z)%.9,0))
- elseif theme=='Gloamwood' then
-  local tree=Env.asset(parent,'ForestTree',p,h)
-  for _,part in ipairs(tree:GetDescendants())do if part:IsA('MeshPart')then part.Color=C(105,140,125);if part.Name=='foliage_geom'then part:SetAttribute('TDOriginalTexture',part.TextureID);part.TextureID='';part.Material=Enum.Material.Grass;part.Color=pal.leaf end end end
- else Kit.tree(parent,p,h,pal,true)end
+local function groundMaterial(theme)
+ return theme=='FrozenVale' and Enum.Material.Snow or theme=='EmberCaldera' and Enum.Material.Basalt or theme=='HauntedGraveyard' and Enum.Material.Rock or Enum.Material.Grass
 end
-local function sculptGround(c,size,pal,theme)
- local terrain=workspace.Terrain
- local mat=theme=='FrozenVale' and Enum.Material.Snow or theme=='EmberCaldera' and Enum.Material.Basalt or theme=='HauntedGraveyard' and Enum.Material.Rock or Enum.Material.Grass
- -- Thin valley floor plus overlapping natural skirts. These sit below or outside
- -- the authoritative floor; access/safe-return bounds remain the existing ones.
- terrain:FillBlock(CFrame.new(c-V(0,72,0)),V(size[1]+440,12,size[2]+440),mat)
+local function paletteKit(m,pal,theme)
+ for _,p in ipairs(m:GetDescendants())do if p:IsA('MeshPart')then
+  if p.Name:find('Meadow')or p.Name:find('Moss')then p.Material=groundMaterial(theme);p.Color=pal.ground
+  elseif p.Name:find('Sandstone')then p.Color=pal.rock;p.Material=theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Slate
+  elseif theme=='Gloamwood'then p.Color=p.Color:Lerp(pal.leaf,.6)end
+ end end
+end
+local function terrainSite(parent,c,size,pal,theme,safe)
+ local m=model(parent,'OrganicTerrain');local terrain=workspace.Terrain;local mat=groundMaterial(theme)
+ -- Raised shoulders occupy unused exploration space; encounter leashes and
+ -- objective corridors remain flat. This replaces the old all-flat tile rule.
+ local shoulders=0
+ for x=-2,2 do for z=-2,2 do
+  local p=c+V(x*size[1]/5,0,z*size[2]/5)
+  if safe(p,48)then terrain:FillBall(p-V(0,32,0),48,mat);shoulders+=1 end
+ end end
+ m:SetAttribute('RaisedShoulders',shoulders)
+ -- Ground now meets the clearing, replacing the exposed rectangular slab sides.
+ terrain:FillBlock(CFrame.new(c-V(0,32,0)),V(size[1]+160,64,size[2]+160),mat)
+ for _,s in ipairs({-1,1})do for i=0,5 do
+  local p=c+V(s*(size[1]/2+74),-35,-size[2]/2+i*size[2]/5)
+  terrain:FillBall(p,74,mat)
+ end end
+ local cliff=Env.kit(m,'DeepCliff',c,100)
+ Env.fit(cliff,c-V(0,37,0),V(size[1]+112,74,size[2]+104));paletteKit(cliff,pal,theme)
+ -- Merged TD geometry supplies irregular ledges and soil contours, not flat wedges.
+ local top=Env.kit(m,'ContinuousTerrain',c,100)
+ Env.fit(top,c-V(0,1.6,0),V(size[1]+(theme=='EmberCaldera'and 88 or 148),3.2,size[2]+138));paletteKit(top,pal,theme)
+ for _,s in ipairs({-1,1})do for i=0,3 do
+  local p=c+V(s*(size[1]/2+125+(i%2)*42),-5,-size[2]/2+i*size[2]/3)
+  local h=80+(i%3)*28
+  K.rock(m,p+V(0,h*.2,0),V(90,h,95),pal.rock,i+s)
+  terrain:FillBall(p-V(0,60,0),80,mat)
+  if theme=='FrozenVale'then K.rock(m,p+V(8,h*.4,0),V(70,h*.65,80),pal.ground,i+s)end
+ end end
+ for _,s in ipairs({-1,1})do for i=1,3 do
+  local p=c+V(s*(size[1]/2+310),20,-size[2]/2+(i-.5)*size[2]/3)
+  if not Bounds.region(p.X,p.Z,170)then
+   local h=190+i%2*65;K.rock(m,p+V(0,h*.15,0),V(220,h,230),theme=='FrozenVale'and pal.ground or pal.rock,i+s)
+  end
+ end end
+ range(m,900)
+end
+local terrainRay=RaycastParams.new();terrainRay.FilterType=Enum.RaycastFilterType.Include;terrainRay.FilterDescendantsInstances={workspace.Terrain}
+local function ground(p)
+ local hit=workspace:Raycast(p+V(0,180,0),V(0,-360,0),terrainRay)
+ return hit and hit.Position.Y>p.Y-3 and hit.Position.Y<p.Y+70 and V(p.X,hit.Position.Y,p.Z)or p
+end
+local function tree(parent,p,h,pal,theme,hero)
+ p=ground(p)
+ if theme=='HauntedGraveyard'then K.tree(parent,p,h,pal,true);return end
+ if theme=='FrozenVale'then K.pine(parent,p,h,pal,true);return end
+local copy=Env.asset(parent,hero and 'ForestLandmark'or 'ForestTree',p,h)
+ if hero then for i=1,3 do
+  local angle=i*2.1;Env.crown(parent,p+V(math.cos(angle)*h*.19,h*(.62+i*.025),math.sin(angle)*h*.19),h*.60,pal.leaf)
+ end end
+ for _,piece in ipairs(copy:GetDescendants())do if piece:IsA('MeshPart')then
+  if piece.Name:find('foliage')or piece.Name:find('canopy')or piece.Name:find('leav')or piece.Name:find('crown')then
+   if theme=='Gloamwood'then piece:SetAttribute('TDOriginalTexture',piece.TextureID);piece.TextureID='';piece.Material=Enum.Material.Grass;piece.Color=pal.leaf
+   else piece.Color=C(124,162,98)end
+  end
+ end end
+end
+local function vegetation(parent,c,size,pal,theme,safe,rng)
+ local m=model(parent,'LayeredVegetation')
+ -- Three staggered depth bands form a forest/canyon wall, rather than a ring of ornaments.
+ local count=theme=='FrozenVale' and 12 or theme=='HauntedGraveyard' and 8 or theme=='EmberCaldera' and 10 or 24
  for _,side in ipairs({-1,1})do
-  for i=0,6 do
-   local p=c+V(side*(size[1]/2+38),-44,-size[2]/2+i*size[2]/6)
-   if not Bounds.connection(p.X,p.Z,64)then terrain:FillBall(p,57,mat)end
-   if i%2==0 then terrain:FillBall(c+V(side*(size[1]/2+230),-100,-size[2]/2+i*size[2]/6),100,mat)end
+  for band=0,2 do
+   for i=1,count do
+    local p=c+V(side*(size[1]/2-38+band*31+rng:NextNumber(-12,12)),0,-size[2]/2+(i-.5)*size[2]/count+rng:NextNumber(-12,12))
+    if safe(p,12)then
+     local h=theme=='Gloamwood' and rng:NextNumber(62,96)or rng:NextNumber(39,65)
+     if theme=='EmberCaldera'then K.rock(m,p+V(0,8,0),V(14,h,18),pal.rock,i+band)
+     else tree(m,p,h,pal,theme,false)end
+    end
+   end
+   task.wait()
   end
  end
-end
-local function geology(parent,c,size,pal,rng,theme)
- local m=model(parent,'LayeredValley');m:SetAttribute('Theme',theme)
- -- Continuous visual bed under the clearing and its connections. Non-walkable.
- local base=Kit.part(m,'ValleyBed',V(size[1]+680,120,size[2]+680),c-V(0,100,0),pal.rock,Enum.Material.Slate,'Ball');backdrop(base)
- for _,side in ipairs({-1,1})do
-  for i=1,5 do
-   local p=c+V(side*(size[1]/2+60+rng:NextNumber(0,80)),-48,-size[2]/2+(i-.5)*size[2]/5)
-   local rock=Kit.rock(m,p,V(rng:NextNumber(100,160),rng:NextNumber(65,100),110),pal.rock,i*side);backdrop(rock)
-   local shelf=Kit.rock(m,p+V(-side*20,27,0),V(80,28,85),pal.ground,i+4);backdrop(shelf)
-  end
-  -- Background ridges rise beyond the playable bounds, instead of identical balls on the floor.
-  for i=1,4 do
-   local p=c+V(side*(size[1]/2+230+i%2*48),-15,-size[2]/2+i*size[2]/4)
-   local h=rng:NextNumber(90,150)
-   backdrop(Kit.rock(m,p,V(150,h,190),pal.rock,side*i+2))
-   if theme=='FrozenVale' then backdrop(Kit.rock(m,p+V(0,h*.27,0),V(136,h*.5,170),pal.ground,side*i+2))end
-  end
- end
-end
-local function trail(parent,a,b,width,pal,theme)
- local d=b-a;if d.Magnitude<.1 then return end
- local mat=theme=='FrozenVale' and Enum.Material.Snow or theme=='EmberCaldera' and Enum.Material.CrackedLava or theme=='HauntedGraveyard' and Enum.Material.Cobblestone or Enum.Material.Ground
- local col=theme=='Deepwood' and C(162,145,101) or theme=='Gloamwood' and C(91,105,92) or theme=='HauntedGraveyard' and C(118,124,133) or pal.trim
- local p=Kit.part(parent,'WornRoute',V(width,.07,d.Magnitude+1),CFrame.lookAt((a+b)/2+V(0,.045,0),b+V(0,.045,0)),col,mat);p.CastShadow=false
-end
-local function paving(parent,c,pal,theme,chapter)
- local m=model(parent,'RouteAndGroundCover')
- -- A sequence of broad, uneven stepping slabs, not a glowing road or new collision.
- local step=theme=='EmberCaldera' and 23 or 18
- for i=1,15 do
-  local z=145-i*step;local x=math.sin(i*.39)*22
-  local mat=theme=='FrozenVale' and Enum.Material.Glacier or Enum.Material.Slate
-  local p=Kit.part(m,'OldPaving',V(11+i%3*3,.1,10+i%2*4),CFrame.new(c+V(x,.08,z))*CFrame.Angles(0,math.sin(i)*.22,0),pal.trim,mat);p.Color=p.Color:Lerp(pal.ground,.55);p.CastShadow=false
- end
- if chapter then
-  local from=c+V(-140,0,110)
-  for _,g in ipairs(chapter.goals)do local to=vec(g.position);trail(m,from,to,theme=='Deepwood' and 13 or 17,pal,theme);from=to end
- end
-end
-local function grave(parent,p,pal,i)
- local yaw=CFrame.new(p)*CFrame.Angles(0,math.sin(i)*.12,math.sin(i*3)*.065)
- Kit.part(parent,'GraveBorder',V(7,.4,12),yaw*CFrame.new(0,.2,3),pal.rock)
- Kit.part(parent,'GraveEarth',V(5,.12,9),yaw*CFrame.new(0,.46,3),pal.ground,Enum.Material.Ground)
- Kit.part(parent,'HeadstoneBase',V(7,1.4,3),yaw*CFrame.new(0,.7,-2),pal.trim)
- Kit.part(parent,'Headstone',V(5,7,2),yaw*CFrame.new(0,4,-2),pal.trim)
- Kit.part(parent,'HeadstoneCap',V(5.5,2,2.5),yaw*CFrame.new(0,8,-2),pal.rock,Enum.Material.Slate,'Wedge')
- Kit.part(parent,'NameInset',V(3,1.7,.15),yaw*CFrame.new(0,4.8,-.92),pal.rock)
-end
-local function scatter(parent,c,size,pal,rng,theme,safe)
- local m=model(parent,'BorderVegetation')
- for i=1,(theme=='Gloamwood' and 62 or theme=='FrozenVale' and 24 or 42)do
-  local side=i%2==0 and -1 or 1
-  local p=c+V(side*rng:NextNumber(size[1]*.30,size[1]*.59),0,rng:NextNumber(-size[2]*.53,size[2]*.53))
-  if safe(p,14)then
-   local h=theme=='Gloamwood' and rng:NextNumber(48,74) or rng:NextNumber(30,49)
-   if theme=='Deepwood' or theme=='Gloamwood' or theme=='HauntedGraveyard'then forestTree(m,p,h,pal,theme)
-   elseif theme=='FrozenVale'then pine(m,p,h,pal)
-   else
-    Kit.rock(m,p+V(0,7,0),V(12,h,16),pal.rock,i)
-    if i%3==0 then Kit.part(m,'BasaltSeam',V(.4,h*.6,1),p+V(4,h*.35,8.2),pal.accent,Enum.Material.Neon)end
+ -- Low, merged flower/fern/moss patches from the original TD Blender kit.
+ if theme=='Deepwood'or theme=='Gloamwood'then
+  local patches=model(parent,'Understory')
+  for i=1,20 do
+   local p=c+V(rng:NextNumber(-size[1]*.45,size[1]*.45),.05,rng:NextNumber(-size[2]*.45,size[2]*.45))
+   if safe(p,13)then
+    local patch=Env.kit(patches,'BankVegetation',p,58+rng:NextNumber(0,20))
+    if theme=='Gloamwood'then paletteKit(patch,pal,theme)end
    end
   end
+  range(patches,170)
  end
- local ground=model(parent,'GroundDetails')
- for i=1,64 do
-  local p=c+V(rng:NextNumber(-size[1]*.46,size[1]*.46),0,rng:NextNumber(-size[2]*.46,size[2]*.46))
-  if safe(p,5)then
-   if theme=='HauntedGraveyard' and i%2==0 then grave(ground,p,pal,i)
-   elseif i%3==0 then Kit.rock(ground,p+V(0,1.1,0),V(6+i%4,4,5+i%3),pal.trim,i)
-   elseif theme=='Deepwood' or theme=='Gloamwood'then
-    for j=1,3 do Kit.part(ground,'FernFrond',V(1,2.5,7),CFrame.new(p+V(0,1,0))*CFrame.Angles(.15,j*2,.25),pal.leaf,Enum.Material.Grass,'Wedge')end
-   else Kit.part(ground,'WeatheredGroundPatch',V(14,.08,11),CFrame.new(p+V(0,.04,0))*CFrame.Angles(0,i,0),pal.trim:Lerp(pal.ground,.7),theme=='FrozenVale' and Enum.Material.Snow or Enum.Material.Slate)end
+ if theme=='Gloamwood'then
+  for _,side in ipairs({-1,1})do for i=1,2 do
+   local q=c+V(side*(size[1]/2-35),0,100-i*100)
+   if safe(q,18)then
+    q=ground(q);tree(m,q,76,pal,theme,false)
+    K.web(m,q+V(0,58,0),q+V(side*34,37,14),q+V(side*19,8,-13),pal)
+   end
+  end end
+ end
+ range(m,650)
+end
+local function route(parent,a,b,width,pal,theme)
+ local d=b-a;if d.Magnitude<.1 then return end
+ local forward=V(d.X,0,d.Z).Unit;local normal=V(-forward.Z,0,forward.X);local prev=a
+ local n=math.max(2,math.ceil(d.Magnitude/16))
+ for i=1,n do
+  local t=i/n;local q=a:Lerp(b,t)+normal*math.sin(t*math.pi)*math.sin(i*.32)*6
+  local p=K.part(parent,'WornCurvedRoute',V(width,.06,(q-prev).Magnitude+1),CFrame.lookAt((prev+q)/2+V(0,.04,0),q+V(0,.04,0)),pal.ground:Lerp(pal.trim,theme=='Deepwood'and .60 or (theme=='Gloamwood'or theme=='HauntedGraveyard')and .65 or .38),theme=='Deepwood'and Enum.Material.Sandstone or theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone)
+  p.CastShadow=false;prev=q
+ end
+end
+local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
+ local m=model(parent,'GroundAndPaths')
+ local north=c+V(0,0,-size[2]/2+12);local middle=c+V(22,0,0);local south=c+V(-20,0,size[2]/2-16)
+ route(m,south,middle,24,pal,theme);route(m,middle,north,24,pal,theme)
+ if chapter then for _,g in ipairs(chapter.goals)do
+  local p=vec(g.position);local onRoad=c+V(p.Z>c.Z and -10 or 14,0,p.Z-c.Z)
+  route(m,onRoad,p,10,pal,theme)
+  if #g.enemies>0 and theme~='Deepwood'and theme~='Gloamwood'then
+   -- Worn court stonework has no emission or gameplay markings.
+   for x=-2,2 do for z=-2,2 do
+    local cf=CFrame.new(p+V(x*13,.025,z*12))*CFrame.Angles(0,math.sin(x*2+z)*.035,0)
+    local col=pal.ground:Lerp(pal.trim,.12+((x+z)%3)*.025)
+    local tile=K.part(m,'CourtFlagstone',V(12.6,.04,11.6),cf,col,theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone);tile.CastShadow=false
+   end end
+  end
+ end end
+ -- Scale-aware paving around interaction positions; quiet center for attack warnings.
+ for i=1,38 do
+  local p=c+V(rng:NextNumber(-size[1]*.45,size[1]*.45),.08,rng:NextNumber(-size[2]*.45,size[2]*.45))
+  if safe(p,6)then
+   if theme=='HauntedGraveyard'then Architecture.grave(m,p,pal,i%4==0 and 1 or 2)
+   elseif theme=='EmberCaldera'then
+    K.part(m,'BasaltRubble',V(7,2,5),CFrame.new(p)*CFrame.Angles(.1,i,.1),pal.rock,Enum.Material.Basalt,'Wedge')
+   else K.part(m,'WeatheredStone',V(5,1.2,4),CFrame.new(p)*CFrame.Angles(0,i,.04),pal.trim,Enum.Material.Slate,'Wedge')end
   end
  end
  if theme=='HauntedGraveyard'then
-  for _,side in ipairs({-1,1})do for i=1,7 do
-   local p=c+V(side*(size[1]/2-43),0,-135+i*31)
-   if safe(p,8)then grave(ground,p,pal,i)end
+  for _,s in ipairs({-1,1})do for i=1,9 do
+   local p=c+V(s*(size[1]/2-42),0,-size[2]/2+30+i*size[2]/11)
+   if safe(p,9)then Architecture.grave(m,p,pal,i%3==0 and 1 or 2)end
   end end
  end
- for _,s in ipairs({-1,1})do Kit.lantern(ground,c+V(s*112,0,145),pal)end
+ range(m,450)
 end
-local function waterfall(parent,p,pal)
- local m=model(parent,'SpringCascade')
- Kit.rock(m,p+V(0,27,-8),V(65,80,43),pal.rock,2)
- for i=1,3 do
-  local water=Kit.part(m,'FallingWater',V(9,57,1.5),CFrame.new(p+V(i*7-14,19,15))*CFrame.Angles(0,0,.06),C(134,201,211),Enum.Material.Glass);water.Transparency=.28;water.CastShadow=false
- end
- local pool=Kit.part(m,'SpringPool',V(67,.25,45),p-V(0,9,0),C(92,161,168),Enum.Material.Glass,'Ball');pool.Transparency=.2
-end
-local function landmark(parent,c,size,pal,theme,index)
- local m=model(parent,'Landmark')
- if theme~='Deepwood'then Kit.arch(m,c+V(0,0,145),theme=='Gloamwood' and 85 or 95,36,pal)end
- -- Scenic flanks: outside combat/goal footprint, never a route gate.
- local p=c+V(math.max(135,size[1]/2-38),0,-size[2]/2+46)
- local original=theme=='FrozenVale' and 'SnowLandmark' or theme=='EmberCaldera' and 'VolcanoLandmark' or theme=='HauntedGraveyard' and 'CemeteryLandmark'
- if original then Env.asset(m,original,p+V(10,0,-54),index==7 and 82 or 62)end
- if theme=='Deepwood'then
-  if index==3 or index==6 then
-   local tree=Env.tree(m,p,index==6 and 82 or 64,true)
-   tree:SetAttribute('LandmarkRole','ElderTree')
-   for i=1,5 do local a=i*1.25;Kit.beam(m,'ElderRoot',p+V(0,8,0),p+V(math.cos(a)*40,0,math.sin(a)*40),5,pal.wood,Enum.Material.Wood)end
-  elseif index==1 or index==5 then Kit.tower(m,p,58,pal,'battlement')
-  else Kit.hall(m,p,pal,'ruin')end
-  waterfall(parent,c+V(-size[1]/2-45,0,-90),pal)
+local function vista(parent,c,size,pal,theme,index)
+ local m=model(parent,'AuthoredVista')
+ if index==1 or index==7 then Architecture.entry(m,c,size,pal)end
+ if theme=='EmberCaldera'then
+  if index==2 then Architecture.camp(m,c,size,pal,false)
+  elseif index==3 then Architecture.mine(m,c,size,pal)
+  elseif index==4 then Architecture.aqueduct(m,c,size,pal,theme)
+  else Architecture.foundry(m,c,size,pal,index)end
  elseif theme=='FrozenVale'then
-  if index==2 then Kit.hall(m,p,pal,'refuge');Kit.lantern(m,p+V(0,0,35),pal)
-  else
-   Kit.tower(m,p,65+index*3,pal,'battlement');Kit.arch(m,p+V(-65,0,0),60,46,pal)
-   for i=1,4 do local q=p+V(-30-i*21,0,-15);Kit.rock(m,q+V(0,17,0),V(11,48+i*5,12),pal.trim,i)end
-  end
- elseif theme=='EmberCaldera'then
-  Kit.hall(m,p,pal,'forge')
-  for _,s in ipairs({-1,1})do
-   local q=p+V(s*36,0,-18)
-   Kit.part(m,'FurnaceStack',V(14,75+index*3,16),q+V(0,37.5+index*1.5,0),pal.rock,Enum.Material.Brick)
-   Kit.part(m,'StackCrown',V(19,5,21),q+V(0,75+index*3,0),pal.trim)
-   Kit.part(m,'FurnaceMouth',V(10,14,.4),q+V(0,12,8.3),pal.accent,Enum.Material.Neon)
-   local a=q+V(0,30,0);local b=c+V(size[1]/2+10,30,100);Kit.beam(m,'OverheadConduit',a,b,5,pal.trim,Enum.Material.Metal)
-  end
-  local lava=Kit.part(m,'LowerLavaChannel',V(38,.4,size[2]+240),c+V(-size[1]/2-95,-25,0),pal.accent,Enum.Material.Neon);backdrop(lava)
-  for i=1,7 do Kit.rock(m,c+V(-size[1]/2-95,-6,-size[2]/2+i*62),V(30,45,33),pal.rock,i)end
- elseif theme=='Gloamwood'then
-  if index==3 then Kit.hall(m,p,pal,'refuge')
-  elseif index==7 then Kit.arch(m,p,52,55,pal);Kit.tower(m,p+V(43,0,0),72,pal,'spire')
-  else
-   Kit.tree(m,p,83,pal,false);forestTree(m,p+V(25,0,-15),76,pal,theme)
-   Kit.tree(m,p+V(-70,0,-30),64,pal,false)
-   Kit.web(m,p+V(0,65,0),p+V(-70,54,-30),p+V(-47,15,5),pal)
-   if index==6 then Kit.hall(m,p+V(-35,0,-20),pal,'ruin')end
-  end
-  for _,s in ipairs({-1,1})do
-   local q=c+V(s*(size[1]/2+20),0,-120)
-   Kit.tree(m,q,65,pal,false);Kit.web(m,q+V(0,47,0),q+V(s*48,29,43),q+V(s*22,4,58),pal)
-  end
+  if index==2 then Architecture.camp(m,c,size,pal,true)
+  elseif index==3 or index==4 then Architecture.aqueduct(m,c,size,pal,theme)
+  else Architecture.citadel(m,c,size,pal,theme,index)end
  elseif theme=='HauntedGraveyard'then
-  if index==1 or index==2 then Kit.hall(m,p,pal,index==1 and 'chapel' or 'shelter')
-  elseif index==4 then Kit.tower(m,p,94,pal,'spire');Kit.arch(m,p+V(-55,0,0),45,32,pal)
-  elseif index>=5 then
-   Kit.tower(m,p+V(-40,0,-16),75,pal,'spire');Kit.tower(m,p+V(40,0,-16),95,pal,'spire');Kit.hall(m,p,pal,'chapel')
-  else Kit.hall(m,p,pal,'crypt')end
-  -- Offset burial rows; the center remains open for target silhouettes.
-  for i=1,8 do grave(m,c+V(-size[1]/2+24+(i%2)*22,0,-size[2]/2+30+math.floor((i-1)/2)*40),pal,i)end
+  if index==2 then Architecture.camp(m,c,size,pal,false)
+  elseif index==4 then Architecture.belfry(m,c,size,pal)
+  else Architecture.citadel(m,c,size,pal,theme,index)end
+  for _,side in ipairs({-1,1})do for i=1,2 do
+   local q=c+V(side*(size[1]/2-25),0,95-i*95)
+   -- Raised burial terraces belong outside encounter leashes; retained ground has a deep plinth.
+   Architecture.mausoleum(m,q,pal)
+  end end
+ elseif theme=='Gloamwood'then
+  if index==3 then Architecture.camp(m,c,size,pal,false)
+  elseif index==5 then Architecture.mine(m,c,size,pal)
+  else Architecture.ruin(m,c,size,pal,index)end
+ else
+  if index==3 then Architecture.camp(m,c,size,pal,false)
+  elseif index==5 then Architecture.citadel(m,c,size,pal,theme,index)
+  else Architecture.cloister(m,c,size,pal,index)end
+  local hero=c+V(size[1]/2+15,0,-size[2]/2+45)
+  tree(m,hero,(index==3 or index==6)and 125 or 98,pal,theme,true)
  end
- for _,piece in ipairs(m:GetDescendants())do if piece:IsA('BasePart')then backdrop(piece)end end
-end
-local function connection(world,parent,edge,index)
- local first,last=Content.zones[edge[1]],Content.zones[edge[2]]
- local theme=themes[edge[2]:sub(1,2)];local pal=Kit.palette[theme]
- local aa,bb=Bounds.ends(edge);local a,b=vec(aa),vec(bb);local length=(b-a).Magnitude
- if length<5 then return end
- local forward=V(b.X-a.X,0,b.Z-a.Z).Unit;local normal=V(-forward.Z,0,forward.X)
- local m=model(parent,'Pass_'..edge[1]..'_'..edge[2]);m:SetAttribute('Theme',theme)
- local segments=math.ceil(length/100)
- for i=0,segments do
-  local t=i/segments;local p=a:Lerp(b,t)
-  -- A visual valley floor follows the existing gentle ramp; no walkable bypass.
-  local bed=Kit.part(m,'PassValley',V(280,78,length/segments+80),CFrame.lookAt(p-V(0,47,0),p-V(0,47,0)+forward),pal.rock,Enum.Material.Slate);backdrop(bed)
-  for _,side in ipairs({-1,1})do
-   local q=p+normal*side*(91+i%3*8)
-   if not Bounds.region(q.X,q.Z,18)then
-    backdrop(Kit.rock(m,q-V(0,16,0),V(70,61+i%3*9,80),pal.rock,i+index))
-    if theme=='FrozenVale' then pine(m,q+V(0,9,0),33,pal)
-    elseif theme~='EmberCaldera'then forestTree(m,q+V(0,6,0),35,pal,theme)end
-    if i%2==0 then Kit.lantern(m,p+normal*side*38,pal)end
+ -- Real original TD waterfall meshes, no transparent rectangular water panel.
+ if theme=='Deepwood'then
+  local gorge=Env.kit(m,'WaterfallGorge',c,100)
+  Env.fit(gorge,c+V(-size[1]/2-46,-25,-42),V(105,65,155));paletteKit(gorge,pal,theme)
+ elseif theme=='EmberCaldera'then
+  for _,s in ipairs({-1,1})do
+   local lava=K.part(m,'LavaBelowCliff',V(26,.6,size[2]+40),c+V(s*(size[1]/2+68),-12,0),pal.accent,Enum.Material.Neon);lava.CastShadow=false
+   for i=1,3 do
+    local q=c+V(s*(size[1]/2+67),-43,-size[2]/2+i*size[2]/4)
+    K.part(m,'LavaFall',V(5,62,3),q,pal.accent,Enum.Material.Neon)
    end
   end
-  if i%4==0 then task.wait()end
  end
- -- Dress bridges as broad stone causeways while retaining the exact original ramp collision.
- for _,side in ipairs({-1,1})do
-  local curb=Kit.beam(m,'CausewayCoping',a+normal*side*44+V(0,.3,0),b+normal*side*44+V(0,.3,0),1.2,pal.trim);curb.CastShadow=false
- end
+ for _,s in ipairs({-1,1})do Architecture.flame(m,c+V(s*108,0,124),pal,true)end
+ range(m,900)
 end
-local function carveRoutes()
- -- Higher neighbouring skirts must never bury a lower clearing. Mask out only
- -- smooth scenic Terrain above the exact Part-owned campaign footprint.
+local function pass(parent,edge,index)
+ local aa,bb=Bounds.ends(edge);local a,b=vec(aa),vec(bb);local d=b-a
+ if d.Magnitude<2 then return end
+ local theme=names[edge[2]:sub(1,2)];local pal=K.palette[theme];local normal=V(-d.Z,0,d.X).Unit
+ local m=model(parent,'ScenicPass_'..edge[1]..'_'..edge[2]);local count=math.ceil(d.Magnitude/58)
+ for i=0,count do
+  local t=i/count;local p=a:Lerp(b,t)
+  for _,s in ipairs({-1,1})do
+   local q=p+normal*s*(74+i%3*9)
+   if not Bounds.region(q.X,q.Z,16)then
+    if theme~='EmberCaldera'then tree(m,q,theme=='Gloamwood'and 67 or 43,pal,theme,false)
+    else K.rock(m,q+V(0,8,0),V(22,47,25),pal.rock,i)end
+    if i%3==0 then K.lantern(m,p+normal*s*34,pal)end
+   end
+  end
+  if i%7==0 then task.wait()end
+ end
+ -- A continuous curving trail remains entirely within the 96-stud safe connector.
+ route(m,a,b,23,pal,theme);range(m,700)
+end
+local function carve(world)
  local terrain=workspace.Terrain
- for _,zone in pairs(Content.zones)do
-  local c=vec(zone.center)
-  terrain:FillBlock(CFrame.new(c+V(0,198,0)),V(zone.size[1]+4,400,zone.size[2]+4),Enum.Material.Air)
+ local original=RaycastParams.new();original.FilterType=Enum.RaycastFilterType.Include;original.RespectCanCollide=true
+ original.FilterDescendantsInstances={world.terrain,world.folder:FindFirstChild('GroundedForest')or world.terrain}
+ local function clear(p,r)
+  -- Return-to-another-zone objectives can span different heights. Follow actual
+  -- server-owned floor instead of carving an interpolated line above a lower path.
+  local hit=workspace:Raycast(p+V(0,8,0),V(0,-180,0),original)
+  local authority=Bounds.surface(p.X,p.Z)
+  local y=math.min(p.Y,authority or p.Y,hit and hit.Position.Y or p.Y)
+  p=V(p.X,y,p.Z)
+  -- Two voxel-edge widths keep interpolated terrain from lifting a planted foot.
+  terrain:FillCylinder(CFrame.new(p+V(0,192,0)),400,r+6,Enum.Material.Air)
+ end
+ for id in pairs(Content.zones)do clear(world.spawns[id].Position-V(0,.1,0),40)end
+ for _,chapter in ipairs(Content.chapters)do
+  local prev=world.spawns[chapter.zone].Position
+  for _,g in ipairs(chapter.goals)do
+   local p=vec(g.position);clear(p,#g.enemies>0 and 80 or 24)
+   local d=p-prev;local n=math.max(1,math.ceil(d.Magnitude/25))
+   for i=0,n do clear(prev:Lerp(p,i/n),25)end
+   for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then clear(vec(step.position),27)end end
+   prev=p
+  end
   task.wait()
  end
- for _,edge in ipairs(Access.edges)do
-  local aa,bb=Bounds.ends(edge);local a,b=vec(aa),vec(bb)
-  local flat=V(b.X-a.X,0,b.Z-a.Z);local n=math.max(1,math.ceil(flat.Magnitude/30))
-  for i=0,n do
-   local p=a:Lerp(b,i/n)
-   terrain:FillBlock(CFrame.lookAt(p+V(0,198,0),p+V(0,198,0)+flat),V(100,400,flat.Magnitude/n+16),Enum.Material.Air)
-   if i%12==0 then task.wait()end
+ -- Existing optional terraces/ramps are part of the playable world too.
+ local places=world.terrain:FindFirstChild('DeepwoodPlaces')
+ if places then for _,part in ipairs(places:GetDescendants())do
+  if part:IsA('BasePart')and part.CanCollide and (part.Name=='WalkableTerrace'or part.Name=='WalkableRamp'or part.Name=='TerraceLanding')then
+   local low,high=V(math.huge,math.huge,math.huge),V(-math.huge,-math.huge,-math.huge)
+   for _,x in ipairs({-1,1})do for _,y in ipairs({-1,1})do for _,z in ipairs({-1,1})do
+    local p=part.CFrame:PointToWorldSpace(part.Size*V(x,y,z)/2)
+    low=V(math.min(low.X,p.X),math.min(low.Y,p.Y),math.min(low.Z,p.Z));high=V(math.max(high.X,p.X),math.max(high.Y,p.Y),math.max(high.Z,p.Z))
+   end end end
+   local nx,nz=math.max(1,math.ceil((high.X-low.X)/18)),math.max(1,math.ceil((high.Z-low.Z)/18))
+   for ix=0,nx do for iz=0,nz do clear(V(low.X+(high.X-low.X)*ix/nx,low.Y,low.Z+(high.Z-low.Z)*iz/nz),17)end end
   end
+ end end
+ local actors=world.folder:FindFirstChild('NPCActors')
+ if actors then for _,actor in ipairs(actors:GetChildren())do
+  local root=actor:IsA('Model')and actor.PrimaryPart
+  if root then local y=Bounds.surface(root.Position.X,root.Position.Z);if y then clear(V(root.Position.X,y,root.Position.Z),26)end end
+ end end
+ for _,edge in ipairs(Access.edges)do
+  local aa,bb=Bounds.ends(edge);local a,b=vec(aa),vec(bb);local flat=V(b.X-a.X,0,b.Z-a.Z);local n=math.max(1,math.ceil(flat.Magnitude/30))
+  if flat.Magnitude>1 then
+   clear(a,52);clear(b,52)
+   for i=0,n do
+   local p=a:Lerp(b,i/n)
+   terrain:FillBlock(CFrame.lookAt(p+V(0,192,0),p+V(0,192,0)+flat),V(100,400,flat.Magnitude/n+16),Enum.Material.Air)
+   if i%12==0 then task.wait()end
+  end end
+ end
+end
+local function connectGround(edge)
+ local aa,bb=Bounds.ends(edge);local a,b=vec(aa),vec(bb);local d=b-a
+ if d.Magnitude<2 then return end
+ local theme=names[edge[2]:sub(1,2)];local n=math.ceil(d.Magnitude/58)
+ for i=0,n do
+  local p=a:Lerp(b,i/n)
+  workspace.Terrain:FillBlock(CFrame.lookAt(p-V(0,25,0),p-V(0,25,0)+d),V(158,50,d.Magnitude/n+25),groundMaterial(theme))
+  if i%10==0 then task.wait()end
+ end
+end
+local function cutScenicWater(plans)
+ -- Channels are beyond the playable floor: lava cannot read as the route.
+ for _,p in ipairs(plans)do
+  local c,size=p.c,p.z.size
+  if p.theme=='EmberCaldera'then
+   for _,side in ipairs({-1,1})do for i=0,math.ceil(size[2]/48)do
+    local q=c+V(side*(size[1]/2+69),120,-size[2]/2+i*48)
+    if not Bounds.region(q.X,q.Z,20)and not Bounds.connection(q.X,q.Z,10)then
+     workspace.Terrain:FillBlock(CFrame.new(q),V(34,400,53),Enum.Material.Air)
+    end
+   end end
+  elseif p.theme=='Deepwood'then
+   local q=c+V(-size[1]/2-54,132,-42)
+   workspace.Terrain:FillBlock(CFrame.new(q),V(106,400,162),Enum.Material.Air)
+  end
+  task.wait()
  end
 end
 function Art.create(world)
- if world.folder:FindFirstChild('EpicWorldArt')then return world end
+ local previous=world.folder:FindFirstChild('EpicWorldArt')
+ if previous and previous:GetAttribute('ArtVersion')==Art.version and previous:GetAttribute('BuildComplete')then return world end
+ if previous then previous:Destroy()end
  local root=Instance.new('Folder');root.Name='EpicWorldArt';root:SetAttribute('ArtVersion',Art.version);root.Parent=world.folder
  local ids={};for id in pairs(Content.zones)do table.insert(ids,id)end;table.sort(ids)
+ local plans={}
+ -- Finish every overlapping height field before grounding a single tree/building.
  for order,id in ipairs(ids)do
-  local zone=Content.zones[id];local prefix=id:sub(1,2);local theme=themes[prefix];local pal=Kit.palette[theme]
-  local c=vec(zone.center);local index=tonumber(id:sub(4)) or 2;local region=world.terrain:FindFirstChild(id)
-  -- Retain existing colliders/anchors, hide only their superseded primitive presentation.
-  if region then for _,p in ipairs(region:GetDescendants())do if p:IsA('BasePart') and obsolete[p.Name]then p.Transparency=1;p.CastShadow=false end end end
-  local site=Instance.new('Folder');site.Name=id;site:SetAttribute('Theme',theme);site:SetAttribute('Landmark',landmarks[prefix][index]);site.Parent=root
-  local rng=Random.new(6100+order*137)
-  sculptGround(c,zone.size,pal,theme)
-  geology(site,c,zone.size,pal,rng,theme)
-  paving(site,c,pal,theme,Content.byId[id])
-  scatter(site,c,zone.size,pal,rng,theme,reserves(world,id))
-  landmark(site,c,zone.size,pal,theme,index)
+  local z=Content.zones[id];local c=vec(z.center);local theme=names[id:sub(1,2)];local pal=K.palette[theme];local index=tonumber(id:sub(4))or 2
+  local site=Instance.new('Folder');site.Name=id;site:SetAttribute('Theme',theme);site:SetAttribute('Landmark',landmarkNames[id:sub(1,2)][index]);site.Parent=root
+  local rng=Random.new(22000+order*139);local safe=reservation(world,id)
+  terrainSite(site,c,z.size,pal,theme,safe)
+  table.insert(plans,{id=id,z=z,c=c,theme=theme,pal=pal,index=index,site=site,rng=rng,safe=safe})
   task.wait()
  end
- for index,edge in ipairs(Access.edges)do connection(world,root,edge,index);task.wait()end
- carveRoutes()
- world.folder:SetAttribute('EpicWorldArtVersion',Art.version)
- return world
+ for _,edge in ipairs(Access.edges)do connectGround(edge);task.wait()end
+ cutScenicWater(plans)
+ carve(world)
+ for _,p in ipairs(plans)do
+  vegetation(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng)
+  floorDetails(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,Content.byId[p.id])
+  vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index)
+  task.wait()
+ end
+ for i,edge in ipairs(Access.edges)do pass(root,edge,i);task.wait()end
+ for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and not p:IsDescendantOf(root)then
+  if obsolete[p.Name]then p.Transparency=1;p.CastShadow=false end
+ end end
+ for _,id in ipairs(ids)do
+  local region=world.terrain:FindFirstChild(id);local pal=K.palette[names[id:sub(1,2)]]
+  if region then for _,p in ipairs(region:GetDescendants())do
+   if p:IsA('MeshPart')and p.Name=='foliage_geom'and id:sub(1,2)=='DW'then p.Color=C(124,162,98)end
+   if p:IsA('BasePart')and (p.Name=='ForestGround'or p.Name=='SnowGround'or p.Name=='Ground'or p.Name=='BasaltGround')then p.Color=pal.ground;p.Material=groundMaterial(names[id:sub(1,2)])end
+  end end
+ end
+ root:SetAttribute('BuildComplete',true);world.folder:SetAttribute('EpicWorldArtVersion',Art.version);return world
 end
 return Art

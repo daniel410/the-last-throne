@@ -63,7 +63,9 @@ function W.create(world)
    part(region,'BlackThroneSeat',Vector3.new(18,4,12),center+Vector3.new(65,2,14),stone,true)
    part(region,'BlackThroneBack',Vector3.new(18,24,4),center+Vector3.new(65,12,23),stone,true)
    local heart=part(props,'Crownheart',Vector3.new(3,5,3),center+Vector3.new(65,9,14),Color3.fromRGB(122,228,255),false,Enum.Material.Neon);heart:SetAttribute('LateStoryHideKey','HG-07:crownheart')
-   local portal=part(props,'InvasionPortal',Vector3.new(70,40,2),center+Vector3.new(0,20,-175),Color3.fromRGB(152,68,211),false,Enum.Material.Neon);portal.Transparency=.25;portal:SetAttribute('LateStoryHideKey','HG-07:portal')
+   local portal=part(props,'InvasionPortal',Vector3.new(70,40,2),center+Vector3.new(0,20,-175),Color3.fromRGB(152,68,211),false,Enum.Material.Neon);portal.Transparency=1;portal:SetAttribute('LateStoryHideKey','HG-07:portal');portal:SetAttribute('StoryBlockoutProxy',true)
+   heart.Transparency=1;heart:SetAttribute('StoryBlockoutProxy',true)
+   require(script.Parent.HauntedFinaleVisual).create(props,region,center)
   end
   for _,g in ipairs(chapter.goals)do
    local p=part(world.folder.Objectives,id..'_'..g.id,Vector3.new(3,2,3),v(g.position)+Vector3.new(0,1,0),Color3.fromRGB(221,180,82));p.Transparency=1;p:SetAttribute('ChapterId',id);p:SetAttribute('GoalId',g.id)

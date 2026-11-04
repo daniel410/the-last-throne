@@ -1,0 +1,10 @@
+{"content":[{"type":"text","text":"sabuiltin_Assistant.rbxm.Assistant.Packages._Index.AssistantUI.AssistantUI.Tools.ExecuteLuauTool:125: sabuiltin_Assistant.rbxm.Assistant.Packages._Index.AssistantUI.AssistantUI.Util.CommandExecution:54: AssistantCommand:100: AssistantCommand:14: protected encounter/spawn/NPC/corridor stays clear -212, 116, -9170\nAssistantCommand:14\nAssistantCommand:57\n"}],"isError":true}
+Observed at EC-03 -> EC-S1 endpoint: Terrain height117.987 above original116, inside the authoritative rounded trail endpoint. Rectangular carving stopped23stud beyond the terminal while CampaignBounds includes a rounded48stud cap. Fixed the actual terrain mask with52stud circular caps at both ramp endpoints; did not reduce the test coverage.
+
+Second native failure at(-242,18,-1819.6): the DW-07 restoration goal returns to a much earlier zone. A straight spawn-to-goal interpolation carved above the lower physical path. The mask now uses the minimum of the existing Part floor, authority height, and authored node height. Protected test coverage was retained.
+
+Third native failure at(-1584,0,-900): Terrain surface0.35156 at77.78stud from a DW-01 encounter; the nominal80stud carve left a4stud voxel interpolation edge. Added6stud masking margin to every protected circle. The original78stud protected check and0.15 tolerance remain unchanged.
+
+Fourth native failure on FV-07 -> EC-01 at(-850,100,-7716.25): the centered trail retained an interpolated Terrain surface at100.419 while its original Part top is100. The air-mask bottom now sits8stud below the Part-owned floor to clear complete4stud voxels, while the unchanged Part supplies the exact safe walking height.
+
+After core native PASS, an extended audit found3 pre-existing Deepwood walking ramps partly buried by optional terrain. Added a mask for actual legacy terrace/landing/ramp bounds, plus independent surface samples in the native test; hidden GroveTrunk scenery is not treated as a walk surface.
