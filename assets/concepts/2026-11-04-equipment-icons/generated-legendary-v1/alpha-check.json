@@ -1,0 +1,402 @@
+[
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Knight_Oathguard_Treads.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Dwarf_Stonehearth_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Knight_Oathguard_Headguard.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Mana_Ring.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Vigor_Ring.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Mage_Aetherweave_Signet.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Dwarf_Stonehearth_Signet.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Dwarf_Stonehearth_Headguard.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Elf_Briarwatch_Vestments.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Valor_Ring.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Dwarf_Stonehearth_Grips.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Wellspring_Charm.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Wayfarer_Coat.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Dwarf_Stonehearth_Treads.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0.0039215686274509803,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Mage_Aetherweave_Treads.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0.0039215686274509803,
+      0
+    ],
+    "file" : "Legendary_Arcane_Reservoir_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Wayfarer_Hood.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Mage_Aetherweave_Headguard.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Knight_Oathguard_Shield.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Knight_Oathguard_Signet.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Elf_Briarwatch_Bow.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Wayfarer_Boots.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Refuge_Charm.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Elf_Briarwatch_Treads.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Mage_Aetherweave_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Elf_Briarwatch_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Mage_Aetherweave_Vestments.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Dwarf_Stonehearth_Axe.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Knight_Oathguard_Grips.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Elf_Briarwatch_Grips.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Mage_Aetherweave_Grips.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Knight_Oathguard_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Knight_Oathguard_Sword.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Dwarf_Stonehearth_Vestments.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Elf_Briarwatch_Headguard.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Wayfarer_Gloves.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Knight_Oathguard_Vestments.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Ward_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Mage_Aetherweave_Staff.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Legendary_Elf_Briarwatch_Signet.png",
+    "hasAlpha" : true
+  }
+]

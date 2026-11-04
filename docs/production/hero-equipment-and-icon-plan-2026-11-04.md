@@ -111,3 +111,9 @@ QA는 4클래스·8슬롯·클래스/레벨 제한·세트 혼합·장신구 uni
 기존 생성40종은 사용자 지시로 **Epic**으로 지정한다. 같은 품목 구성의 장식이 적은 **Rare40종**을 추가 생성했다. 앞선 Rare 시각 후보 분류는 이 지시로 대체한다. [80종 등급 비교 보드](../../assets/concepts/2026-11-04-equipment-icons/comparison.html)에서 각 쌍을 확인한다. 총80개 실제 PNG이며 240변형 전체가 완성된 것은 아니다. 각 등급에서 공통11·기사8·엘프7·드워프7·마법사7이며 무기/방어구5부위만 세트 후보로 묶는다.
 
 표시 이름과 PNG는 `Epic_Knight_Oathguard_Sword`, `Rare_Knight_Oathguard_Sword`, 공통품은 `Rare_Mana_Ring` 형태다. 메타데이터의 baseName은 읽기 쉬운 기존 영어 이름을 보존한다. familyId/proposalId와 기존 게임 아이템 안정ID는 바꾸지 않는다. 이름 구분을 위한 영어 토큰이며 상위 전직 번역을 새로 확정하지 않는다. 이40품목의 착용Lv/수치/효과·드롭/강화 연동은 후속이며 이전 Lv10 시각 시험값을 Epic 등급 최소 레벨로 확정하지 않는다. 상세 검증/한계는 [제작 기록](../../assets/concepts/2026-11-04-equipment-icons/generated-rare-v1/README.md)을 따른다.
+
+## 2026-11-04 최신 추가 — Epic 기반 Legendary40
+
+사용자 요청으로 Epic40개를 개별 참조한 Legendary40종을 추가했다. 기존 클래스/부위/세트 구성을 유지하며 금장·보석·문장·방어판으로 상위 외형을 구분한다. 이름은 `Legendary_Knight_Oathguard_Sword`, 공통품은 `Legendary_Mana_Ring` 형태다. [세 등급120종 비교](../../assets/concepts/2026-11-04-equipment-icons/comparison.html)와 [제작·검증 기록](../../assets/concepts/2026-11-04-equipment-icons/generated-legendary-v1/README.md)을 따른다.
+
+동일 착용레벨/동일 부위 기본 예산은 기존 제안 Epic1.28 → Legendary1.40으로 약9.375% 높다. 실제 스탯을 일괄 올린 확정값이나 게임 성능 검증이 아니며 품목별 배분/반올림/드롭 연동은 후속이다. 등급별 최소Lv를 새로 확정하지 않는다. +9·Power/Armor/Health만 강화·MP 비강화 계약을 보존하고 추가 세트 보너스/고정 효과는 만들지 않는다. 실제120PNG·240제안ID 연결과 해시/경로를 정적으로 검증했으며 런타임 아이템120개가 구현됐다고 간주하지 않는다.

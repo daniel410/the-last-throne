@@ -44,7 +44,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wayfarer_Hood.png",
-        "Rare": "generated-rare-v1/Rare_Wayfarer_Hood.png"
+        "Rare": "generated-rare-v1/Rare_Wayfarer_Hood.png",
+        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Hood.png"
       }
     },
     {
@@ -73,7 +74,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wayfarer_Coat.png",
-        "Rare": "generated-rare-v1/Rare_Wayfarer_Coat.png"
+        "Rare": "generated-rare-v1/Rare_Wayfarer_Coat.png",
+        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Coat.png"
       }
     },
     {
@@ -102,7 +104,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wayfarer_Gloves.png",
-        "Rare": "generated-rare-v1/Rare_Wayfarer_Gloves.png"
+        "Rare": "generated-rare-v1/Rare_Wayfarer_Gloves.png",
+        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Gloves.png"
       }
     },
     {
@@ -131,7 +134,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wayfarer_Boots.png",
-        "Rare": "generated-rare-v1/Rare_Wayfarer_Boots.png"
+        "Rare": "generated-rare-v1/Rare_Wayfarer_Boots.png",
+        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Boots.png"
       }
     },
     {
@@ -160,7 +164,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Vigor_Ring.png",
-        "Rare": "generated-rare-v1/Rare_Vigor_Ring.png"
+        "Rare": "generated-rare-v1/Rare_Vigor_Ring.png",
+        "Legendary": "generated-legendary-v1/Legendary_Vigor_Ring.png"
       }
     },
     {
@@ -189,7 +194,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Ward_Pendant.png",
-        "Rare": "generated-rare-v1/Rare_Ward_Pendant.png"
+        "Rare": "generated-rare-v1/Rare_Ward_Pendant.png",
+        "Legendary": "generated-legendary-v1/Legendary_Ward_Pendant.png"
       }
     },
     {
@@ -218,7 +224,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Valor_Ring.png",
-        "Rare": "generated-rare-v1/Rare_Valor_Ring.png"
+        "Rare": "generated-rare-v1/Rare_Valor_Ring.png",
+        "Legendary": "generated-legendary-v1/Legendary_Valor_Ring.png"
       }
     },
     {
@@ -247,7 +254,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Refuge_Charm.png",
-        "Rare": "generated-rare-v1/Rare_Refuge_Charm.png"
+        "Rare": "generated-rare-v1/Rare_Refuge_Charm.png",
+        "Legendary": "generated-legendary-v1/Legendary_Refuge_Charm.png"
       }
     },
     {
@@ -276,7 +284,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Sword.png",
-        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Sword.png"
+        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Sword.png",
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Sword.png"
       }
     },
     {
@@ -305,7 +314,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Headguard.png",
-        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Headguard.png"
+        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Headguard.png",
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png"
       }
     },
     {
@@ -334,7 +344,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Vestments.png",
-        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Vestments.png"
+        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Vestments.png",
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Vestments.png"
       }
     },
     {
@@ -363,7 +374,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Grips.png",
-        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Grips.png"
+        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Grips.png",
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Grips.png"
       }
     },
     {
@@ -392,7 +404,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Treads.png",
-        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Treads.png"
+        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Treads.png",
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Treads.png"
       }
     },
     {
@@ -421,7 +434,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Signet.png",
-        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Signet.png"
+        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Signet.png",
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Signet.png"
       }
     },
     {
@@ -450,7 +464,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Pendant.png",
-        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Pendant.png"
+        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Pendant.png",
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Pendant.png"
       }
     },
     {
@@ -479,7 +494,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Bow.png",
-        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Bow.png"
+        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Bow.png",
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Bow.png"
       }
     },
     {
@@ -508,7 +524,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Headguard.png",
-        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Headguard.png"
+        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Headguard.png",
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Headguard.png"
       }
     },
     {
@@ -537,7 +554,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Vestments.png",
-        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Vestments.png"
+        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Vestments.png",
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Vestments.png"
       }
     },
     {
@@ -566,7 +584,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Grips.png",
-        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Grips.png"
+        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Grips.png",
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Grips.png"
       }
     },
     {
@@ -595,7 +614,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Treads.png",
-        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Treads.png"
+        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Treads.png",
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Treads.png"
       }
     },
     {
@@ -624,7 +644,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Signet.png",
-        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Signet.png"
+        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Signet.png",
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Signet.png"
       }
     },
     {
@@ -653,7 +674,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Pendant.png",
-        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Pendant.png"
+        "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Pendant.png",
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Pendant.png"
       }
     },
     {
@@ -682,7 +704,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Axe.png",
-        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Axe.png"
+        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Axe.png",
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Axe.png"
       }
     },
     {
@@ -711,7 +734,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Headguard.png",
-        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Headguard.png"
+        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Headguard.png",
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png"
       }
     },
     {
@@ -740,7 +764,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Vestments.png",
-        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Vestments.png"
+        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Vestments.png",
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Vestments.png"
       }
     },
     {
@@ -769,7 +794,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Grips.png",
-        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Grips.png"
+        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Grips.png",
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Grips.png"
       }
     },
     {
@@ -798,7 +824,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Treads.png",
-        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Treads.png"
+        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Treads.png",
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Treads.png"
       }
     },
     {
@@ -827,7 +854,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Signet.png",
-        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Signet.png"
+        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Signet.png",
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Signet.png"
       }
     },
     {
@@ -856,7 +884,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Pendant.png",
-        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Pendant.png"
+        "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Pendant.png",
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Pendant.png"
       }
     },
     {
@@ -885,7 +914,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Staff.png",
-        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Staff.png"
+        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Staff.png",
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Staff.png"
       }
     },
     {
@@ -914,7 +944,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Headguard.png",
-        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Headguard.png"
+        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Headguard.png",
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Headguard.png"
       }
     },
     {
@@ -943,7 +974,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Vestments.png",
-        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Vestments.png"
+        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Vestments.png",
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Vestments.png"
       }
     },
     {
@@ -972,7 +1004,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Grips.png",
-        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Grips.png"
+        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Grips.png",
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Grips.png"
       }
     },
     {
@@ -1001,7 +1034,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Treads.png",
-        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Treads.png"
+        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Treads.png",
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Treads.png"
       }
     },
     {
@@ -1030,7 +1064,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Signet.png",
-        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Signet.png"
+        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Signet.png",
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Signet.png"
       }
     },
     {
@@ -1059,7 +1094,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Pendant.png",
-        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Pendant.png"
+        "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Pendant.png",
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Pendant.png"
       }
     },
     {
@@ -1088,7 +1124,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Shield.png",
-        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Shield.png"
+        "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Shield.png",
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Shield.png"
       }
     },
     {
@@ -1121,7 +1158,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mana_Ring.png",
-        "Rare": "generated-rare-v1/Rare_Mana_Ring.png"
+        "Rare": "generated-rare-v1/Rare_Mana_Ring.png",
+        "Legendary": "generated-legendary-v1/Legendary_Mana_Ring.png"
       }
     },
     {
@@ -1154,7 +1192,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Arcane_Reservoir_Pendant.png",
-        "Rare": "generated-rare-v1/Rare_Arcane_Reservoir_Pendant.png"
+        "Rare": "generated-rare-v1/Rare_Arcane_Reservoir_Pendant.png",
+        "Legendary": "generated-legendary-v1/Legendary_Arcane_Reservoir_Pendant.png"
       }
     },
     {
@@ -1188,7 +1227,8 @@
       },
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wellspring_Charm.png",
-        "Rare": "generated-rare-v1/Rare_Wellspring_Charm.png"
+        "Rare": "generated-rare-v1/Rare_Wellspring_Charm.png",
+        "Legendary": "generated-legendary-v1/Legendary_Wellspring_Charm.png"
       }
     }
   ],
@@ -1196,7 +1236,9 @@
     "families": 40,
     "lv10Variants": 240,
     "generatedEpicIcons": 40,
-    "generatedRareIcons": 40
+    "generatedRareIcons": 40,
+    "generatedLegendaryIcons": 40,
+    "totalGeneratedIcons": 120
   },
   "runtimeImport": false,
   "variants": [
@@ -1280,7 +1322,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Wayfarer_Hood"
+      "assetName": "Legendary_Wayfarer_Hood",
+      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Hood.png"
     },
     {
       "proposalId": "common_head_l10_unique",
@@ -1378,7 +1421,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Wayfarer_Coat"
+      "assetName": "Legendary_Wayfarer_Coat",
+      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Coat.png"
     },
     {
       "proposalId": "common_body_l10_unique",
@@ -1476,7 +1520,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Wayfarer_Gloves"
+      "assetName": "Legendary_Wayfarer_Gloves",
+      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Gloves.png"
     },
     {
       "proposalId": "common_hands_l10_unique",
@@ -1574,7 +1619,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Wayfarer_Boots"
+      "assetName": "Legendary_Wayfarer_Boots",
+      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Boots.png"
     },
     {
       "proposalId": "common_feet_l10_unique",
@@ -1672,7 +1718,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Vigor_Ring"
+      "assetName": "Legendary_Vigor_Ring",
+      "generatedIcon": "generated-legendary-v1/Legendary_Vigor_Ring.png"
     },
     {
       "proposalId": "common_vigor_ring_l10_unique",
@@ -1770,7 +1817,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Ward_Pendant"
+      "assetName": "Legendary_Ward_Pendant",
+      "generatedIcon": "generated-legendary-v1/Legendary_Ward_Pendant.png"
     },
     {
       "proposalId": "common_ward_pendant_l10_unique",
@@ -1868,7 +1916,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Valor_Ring"
+      "assetName": "Legendary_Valor_Ring",
+      "generatedIcon": "generated-legendary-v1/Legendary_Valor_Ring.png"
     },
     {
       "proposalId": "common_valor_ring_l10_unique",
@@ -1966,7 +2015,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Refuge_Charm"
+      "assetName": "Legendary_Refuge_Charm",
+      "generatedIcon": "generated-legendary-v1/Legendary_Refuge_Charm.png"
     },
     {
       "proposalId": "common_refuge_charm_l10_unique",
@@ -2064,7 +2114,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Knight_Oathguard_Sword"
+      "assetName": "Legendary_Knight_Oathguard_Sword",
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Sword.png"
     },
     {
       "proposalId": "knight_weapon_family_l10_unique",
@@ -2162,7 +2213,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Knight_Oathguard_Headguard"
+      "assetName": "Legendary_Knight_Oathguard_Headguard",
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png"
     },
     {
       "proposalId": "knight_head_family_l10_unique",
@@ -2260,7 +2312,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Knight_Oathguard_Vestments"
+      "assetName": "Legendary_Knight_Oathguard_Vestments",
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Vestments.png"
     },
     {
       "proposalId": "knight_body_family_l10_unique",
@@ -2358,7 +2411,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Knight_Oathguard_Grips"
+      "assetName": "Legendary_Knight_Oathguard_Grips",
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Grips.png"
     },
     {
       "proposalId": "knight_hands_family_l10_unique",
@@ -2456,7 +2510,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Knight_Oathguard_Treads"
+      "assetName": "Legendary_Knight_Oathguard_Treads",
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Treads.png"
     },
     {
       "proposalId": "knight_feet_family_l10_unique",
@@ -2554,7 +2609,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Knight_Oathguard_Signet"
+      "assetName": "Legendary_Knight_Oathguard_Signet",
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Signet.png"
     },
     {
       "proposalId": "knight_ring_family_l10_unique",
@@ -2652,7 +2708,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Knight_Oathguard_Pendant"
+      "assetName": "Legendary_Knight_Oathguard_Pendant",
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Pendant.png"
     },
     {
       "proposalId": "knight_pendant_family_l10_unique",
@@ -2750,7 +2807,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Elf_Briarwatch_Bow"
+      "assetName": "Legendary_Elf_Briarwatch_Bow",
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Bow.png"
     },
     {
       "proposalId": "elf_weapon_family_l10_unique",
@@ -2848,7 +2906,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Elf_Briarwatch_Headguard"
+      "assetName": "Legendary_Elf_Briarwatch_Headguard",
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Headguard.png"
     },
     {
       "proposalId": "elf_head_family_l10_unique",
@@ -2946,7 +3005,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Elf_Briarwatch_Vestments"
+      "assetName": "Legendary_Elf_Briarwatch_Vestments",
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Vestments.png"
     },
     {
       "proposalId": "elf_body_family_l10_unique",
@@ -3044,7 +3104,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Elf_Briarwatch_Grips"
+      "assetName": "Legendary_Elf_Briarwatch_Grips",
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Grips.png"
     },
     {
       "proposalId": "elf_hands_family_l10_unique",
@@ -3142,7 +3203,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Elf_Briarwatch_Treads"
+      "assetName": "Legendary_Elf_Briarwatch_Treads",
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Treads.png"
     },
     {
       "proposalId": "elf_feet_family_l10_unique",
@@ -3240,7 +3302,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Elf_Briarwatch_Signet"
+      "assetName": "Legendary_Elf_Briarwatch_Signet",
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Signet.png"
     },
     {
       "proposalId": "elf_ring_family_l10_unique",
@@ -3338,7 +3401,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Elf_Briarwatch_Pendant"
+      "assetName": "Legendary_Elf_Briarwatch_Pendant",
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Pendant.png"
     },
     {
       "proposalId": "elf_pendant_family_l10_unique",
@@ -3436,7 +3500,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Dwarf_Stonehearth_Axe"
+      "assetName": "Legendary_Dwarf_Stonehearth_Axe",
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Axe.png"
     },
     {
       "proposalId": "dwarf_weapon_family_l10_unique",
@@ -3534,7 +3599,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Dwarf_Stonehearth_Headguard"
+      "assetName": "Legendary_Dwarf_Stonehearth_Headguard",
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png"
     },
     {
       "proposalId": "dwarf_head_family_l10_unique",
@@ -3632,7 +3698,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Dwarf_Stonehearth_Vestments"
+      "assetName": "Legendary_Dwarf_Stonehearth_Vestments",
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Vestments.png"
     },
     {
       "proposalId": "dwarf_body_family_l10_unique",
@@ -3730,7 +3797,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Dwarf_Stonehearth_Grips"
+      "assetName": "Legendary_Dwarf_Stonehearth_Grips",
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Grips.png"
     },
     {
       "proposalId": "dwarf_hands_family_l10_unique",
@@ -3828,7 +3896,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Dwarf_Stonehearth_Treads"
+      "assetName": "Legendary_Dwarf_Stonehearth_Treads",
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Treads.png"
     },
     {
       "proposalId": "dwarf_feet_family_l10_unique",
@@ -3926,7 +3995,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Dwarf_Stonehearth_Signet"
+      "assetName": "Legendary_Dwarf_Stonehearth_Signet",
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Signet.png"
     },
     {
       "proposalId": "dwarf_ring_family_l10_unique",
@@ -4024,7 +4094,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Dwarf_Stonehearth_Pendant"
+      "assetName": "Legendary_Dwarf_Stonehearth_Pendant",
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Pendant.png"
     },
     {
       "proposalId": "dwarf_pendant_family_l10_unique",
@@ -4122,7 +4193,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Mage_Aetherweave_Staff"
+      "assetName": "Legendary_Mage_Aetherweave_Staff",
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Staff.png"
     },
     {
       "proposalId": "mage_weapon_family_l10_unique",
@@ -4220,7 +4292,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Mage_Aetherweave_Headguard"
+      "assetName": "Legendary_Mage_Aetherweave_Headguard",
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Headguard.png"
     },
     {
       "proposalId": "mage_head_family_l10_unique",
@@ -4318,7 +4391,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Mage_Aetherweave_Vestments"
+      "assetName": "Legendary_Mage_Aetherweave_Vestments",
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Vestments.png"
     },
     {
       "proposalId": "mage_body_family_l10_unique",
@@ -4416,7 +4490,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Mage_Aetherweave_Grips"
+      "assetName": "Legendary_Mage_Aetherweave_Grips",
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Grips.png"
     },
     {
       "proposalId": "mage_hands_family_l10_unique",
@@ -4514,7 +4589,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Mage_Aetherweave_Treads"
+      "assetName": "Legendary_Mage_Aetherweave_Treads",
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Treads.png"
     },
     {
       "proposalId": "mage_feet_family_l10_unique",
@@ -4612,7 +4688,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Mage_Aetherweave_Signet"
+      "assetName": "Legendary_Mage_Aetherweave_Signet",
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Signet.png"
     },
     {
       "proposalId": "mage_ring_family_l10_unique",
@@ -4710,7 +4787,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Mage_Aetherweave_Pendant"
+      "assetName": "Legendary_Mage_Aetherweave_Pendant",
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Pendant.png"
     },
     {
       "proposalId": "mage_pendant_family_l10_unique",
@@ -4808,7 +4886,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Knight_Oathguard_Shield"
+      "assetName": "Legendary_Knight_Oathguard_Shield",
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Shield.png"
     },
     {
       "proposalId": "knight_shield_family_l10_unique",
@@ -4906,7 +4985,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Mana_Ring"
+      "assetName": "Legendary_Mana_Ring",
+      "generatedIcon": "generated-legendary-v1/Legendary_Mana_Ring.png"
     },
     {
       "proposalId": "common_mana_ring_l10_unique",
@@ -5004,7 +5084,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Arcane_Reservoir_Pendant"
+      "assetName": "Legendary_Arcane_Reservoir_Pendant",
+      "generatedIcon": "generated-legendary-v1/Legendary_Arcane_Reservoir_Pendant.png"
     },
     {
       "proposalId": "common_arcane_pendant_l10_unique",
@@ -5102,7 +5183,8 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Legendary_Wellspring_Charm"
+      "assetName": "Legendary_Wellspring_Charm",
+      "generatedIcon": "generated-legendary-v1/Legendary_Wellspring_Charm.png"
     },
     {
       "proposalId": "common_wellspring_charm_l10_unique",

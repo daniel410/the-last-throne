@@ -1,5 +1,8 @@
 # The Last Throne 실행 백로그
 
+> **2026-11-04 Legendary40 추가 · TLT-028/029/052/084:** Epic40을 참조한 상위 외형40종을 생성했다. Rare/Epic/Legendary 각40종·총120PNG와 [등급 비교](assets/concepts/2026-11-04-equipment-icons/comparison.html)를 제공한다. 동일 레벨/부위 예산1.28→1.40(약9.375% 증가)은 기존 제안이며 착용Lv·실제 능력치/게임 연결·최종 미술 수용은 후속이다. [제작·검증](assets/concepts/2026-11-04-equipment-icons/generated-legendary-v1/README.md).
+
+
 
 > **2026-11-04 장비 Epic40/Rare40 · TLT-028/029/052/084:** 사용자 지정으로 기존40종을 Epic으로 분류하고 단순화한 Rare40종을 추가했다. [등급별 비교](assets/concepts/2026-11-04-equipment-icons/comparison.html)와 등급_클래스_이름 규칙을 제공한다. 실제80PNG·게임 연결/최종 미술/실기기 수용 후속, 착용Lv·능력치는 미확정이다.
 > **2026-11-04 / TLT-005/032/033/055/057/084 · 0.69.2:** Studio 연결 후128스킬을 개별3시점/실제 Play로 검토했다. 검·도끼 접촉 곡선/방패 회수·전신 회전·찌르기 축·건너 총구/반동·엘프 곡사 자세를 보정했다. [128개 전후 갤러리·실행 증거·한계](docs/evidence/hero-skills-studio-20261104/README.md). 로컬 개선본·미게시, 정상 전투/실기기·최종 미술 수용 후속.
