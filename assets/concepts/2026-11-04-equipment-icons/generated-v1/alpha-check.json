@@ -6,7 +6,7 @@
       0,
       0
     ],
-    "file" : "mage_pendant_family.png",
+    "file" : "Epic_Knight_Oathguard_Treads.png",
     "hasAlpha" : true
   },
   {
@@ -16,7 +16,7 @@
       0,
       0
     ],
-    "file" : "mage_head_family.png",
+    "file" : "Epic_Elf_Briarwatch_Signet.png",
     "hasAlpha" : true
   },
   {
@@ -26,7 +26,7 @@
       0,
       0
     ],
-    "file" : "elf_feet_family.png",
+    "file" : "Epic_Refuge_Charm.png",
     "hasAlpha" : true
   },
   {
@@ -36,17 +36,7 @@
       0,
       0
     ],
-    "file" : "common_arcane_pendant.png",
-    "hasAlpha" : true
-  },
-  {
-    "cornerAlpha" : [
-      0.0039215686274509803,
-      0,
-      0,
-      0
-    ],
-    "file" : "dwarf_pendant_family.png",
+    "file" : "Epic_Vigor_Ring.png",
     "hasAlpha" : true
   },
   {
@@ -56,17 +46,7 @@
       0,
       0
     ],
-    "file" : "mage_feet_family.png",
-    "hasAlpha" : true
-  },
-  {
-    "cornerAlpha" : [
-      0,
-      0,
-      0,
-      0
-    ],
-    "file" : "knight_body_family.png",
+    "file" : "Epic_Mage_Aetherweave_Staff.png",
     "hasAlpha" : true
   },
   {
@@ -76,7 +56,7 @@
       0,
       0
     ],
-    "file" : "elf_head_family.png",
+    "file" : "Epic_Elf_Briarwatch_Headguard.png",
     "hasAlpha" : true
   },
   {
@@ -86,7 +66,7 @@
       0,
       0
     ],
-    "file" : "common_body.png",
+    "file" : "Epic_Mage_Aetherweave_Vestments.png",
     "hasAlpha" : true
   },
   {
@@ -96,7 +76,7 @@
       0,
       0
     ],
-    "file" : "dwarf_head_family.png",
+    "file" : "Epic_Mage_Aetherweave_Signet.png",
     "hasAlpha" : true
   },
   {
@@ -106,7 +86,7 @@
       0,
       0
     ],
-    "file" : "dwarf_feet_family.png",
+    "file" : "Epic_Knight_Oathguard_Vestments.png",
     "hasAlpha" : true
   },
   {
@@ -116,7 +96,7 @@
       0,
       0
     ],
-    "file" : "knight_weapon_family.png",
+    "file" : "Epic_Mage_Aetherweave_Treads.png",
     "hasAlpha" : true
   },
   {
@@ -126,7 +106,7 @@
       0,
       0
     ],
-    "file" : "elf_weapon_family.png",
+    "file" : "Epic_Elf_Briarwatch_Pendant.png",
     "hasAlpha" : true
   },
   {
@@ -136,7 +116,7 @@
       0,
       0
     ],
-    "file" : "common_hands.png",
+    "file" : "Epic_Wayfarer_Hood.png",
     "hasAlpha" : true
   },
   {
@@ -146,7 +126,7 @@
       0,
       0
     ],
-    "file" : "dwarf_ring_family.png",
+    "file" : "Epic_Dwarf_Stonehearth_Grips.png",
     "hasAlpha" : true
   },
   {
@@ -156,7 +136,7 @@
       0,
       0
     ],
-    "file" : "knight_shield_family.png",
+    "file" : "Epic_Dwarf_Stonehearth_Vestments.png",
     "hasAlpha" : true
   },
   {
@@ -166,7 +146,7 @@
       0,
       0
     ],
-    "file" : "mage_ring_family.png",
+    "file" : "Epic_Knight_Oathguard_Grips.png",
     "hasAlpha" : true
   },
   {
@@ -176,7 +156,7 @@
       0,
       0
     ],
-    "file" : "common_feet.png",
+    "file" : "Epic_Knight_Oathguard_Pendant.png",
     "hasAlpha" : true
   },
   {
@@ -186,7 +166,7 @@
       0,
       0
     ],
-    "file" : "elf_ring_family.png",
+    "file" : "Epic_Mage_Aetherweave_Grips.png",
     "hasAlpha" : true
   },
   {
@@ -196,7 +176,7 @@
       0,
       0
     ],
-    "file" : "dwarf_weapon_family.png",
+    "file" : "Epic_Elf_Briarwatch_Treads.png",
     "hasAlpha" : true
   },
   {
@@ -206,7 +186,7 @@
       0,
       0
     ],
-    "file" : "common_wellspring_charm.png",
+    "file" : "Epic_Knight_Oathguard_Signet.png",
     "hasAlpha" : true
   },
   {
@@ -216,7 +196,7 @@
       0,
       0
     ],
-    "file" : "common_refuge_charm.png",
+    "file" : "Epic_Ward_Pendant.png",
     "hasAlpha" : true
   },
   {
@@ -226,7 +206,7 @@
       0,
       0
     ],
-    "file" : "dwarf_hands_family.png",
+    "file" : "Epic_Wayfarer_Boots.png",
     "hasAlpha" : true
   },
   {
@@ -236,7 +216,7 @@
       0,
       0
     ],
-    "file" : "mage_hands_family.png",
+    "file" : "Epic_Valor_Ring.png",
     "hasAlpha" : true
   },
   {
@@ -246,7 +226,7 @@
       0,
       0
     ],
-    "file" : "common_valor_ring.png",
+    "file" : "Epic_Knight_Oathguard_Sword.png",
     "hasAlpha" : true
   },
   {
@@ -256,7 +236,7 @@
       0,
       0
     ],
-    "file" : "elf_pendant_family.png",
+    "file" : "Epic_Knight_Oathguard_Shield.png",
     "hasAlpha" : true
   },
   {
@@ -266,7 +246,7 @@
       0,
       0
     ],
-    "file" : "mage_weapon_family.png",
+    "file" : "Epic_Mage_Aetherweave_Pendant.png",
     "hasAlpha" : true
   },
   {
@@ -276,7 +256,7 @@
       0,
       0
     ],
-    "file" : "knight_ring_family.png",
+    "file" : "Epic_Wayfarer_Coat.png",
     "hasAlpha" : true
   },
   {
@@ -286,7 +266,7 @@
       0,
       0
     ],
-    "file" : "common_vigor_ring.png",
+    "file" : "Epic_Dwarf_Stonehearth_Axe.png",
     "hasAlpha" : true
   },
   {
@@ -296,7 +276,7 @@
       0,
       0
     ],
-    "file" : "elf_hands_family.png",
+    "file" : "Epic_Wayfarer_Gloves.png",
     "hasAlpha" : true
   },
   {
@@ -306,7 +286,7 @@
       0,
       0
     ],
-    "file" : "knight_feet_family.png",
+    "file" : "Epic_Elf_Briarwatch_Bow.png",
     "hasAlpha" : true
   },
   {
@@ -316,7 +296,7 @@
       0,
       0
     ],
-    "file" : "mage_body_family.png",
+    "file" : "Epic_Arcane_Reservoir_Pendant.png",
     "hasAlpha" : true
   },
   {
@@ -326,7 +306,7 @@
       0,
       0
     ],
-    "file" : "common_mana_ring.png",
+    "file" : "Epic_Knight_Oathguard_Headguard.png",
     "hasAlpha" : true
   },
   {
@@ -336,7 +316,7 @@
       0,
       0
     ],
-    "file" : "elf_body_family.png",
+    "file" : "Epic_Mana_Ring.png",
     "hasAlpha" : true
   },
   {
@@ -346,7 +326,7 @@
       0,
       0
     ],
-    "file" : "knight_head_family.png",
+    "file" : "Epic_Dwarf_Stonehearth_Treads.png",
     "hasAlpha" : true
   },
   {
@@ -356,7 +336,7 @@
       0,
       0
     ],
-    "file" : "dwarf_body_family.png",
+    "file" : "Epic_Wellspring_Charm.png",
     "hasAlpha" : true
   },
   {
@@ -366,7 +346,17 @@
       0,
       0
     ],
-    "file" : "knight_hands_family.png",
+    "file" : "Epic_Dwarf_Stonehearth_Headguard.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0.0039215686274509803,
+      0,
+      0,
+      0
+    ],
+    "file" : "Epic_Dwarf_Stonehearth_Pendant.png",
     "hasAlpha" : true
   },
   {
@@ -376,7 +366,7 @@
       0,
       0
     ],
-    "file" : "common_ward_pendant.png",
+    "file" : "Epic_Mage_Aetherweave_Headguard.png",
     "hasAlpha" : true
   },
   {
@@ -386,7 +376,7 @@
       0,
       0
     ],
-    "file" : "common_head.png",
+    "file" : "Epic_Elf_Briarwatch_Grips.png",
     "hasAlpha" : true
   },
   {
@@ -396,7 +386,17 @@
       0,
       0
     ],
-    "file" : "knight_pendant_family.png",
+    "file" : "Epic_Elf_Briarwatch_Vestments.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Epic_Dwarf_Stonehearth_Signet.png",
     "hasAlpha" : true
   }
 ]

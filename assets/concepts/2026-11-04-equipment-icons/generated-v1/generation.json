@@ -1,12 +1,12 @@
 {
   "date": "2026-11-04",
   "tool": "image_gen.imagegen",
-  "status": "40 family baseline candidates; not 240 rarity variants",
+  "status": "40 Epic family icons designated by user; runtime not imported",
   "referenceSha256": "06724d7047f6e76ab77ceadf2ea717a57102b80a7e2e2e7e7f5065e649b71759",
   "records": [
     {
       "familyId": "common_head",
-      "file": "common_head.png",
+      "file": "Epic_Wayfarer_Hood.png",
       "sha256": "a89165e7c22ecc21101e41ef68c6aca29b86dbb6193f45dd32d2a1f0cb6f109f",
       "bytes": 1377223,
       "width": 1254,
@@ -19,19 +19,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Wayfarer Hood",
+        "name": "Epic_Wayfarer_Hood",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Wayfarer Hood"
       }
     },
     {
       "familyId": "common_feet",
-      "file": "common_feet.png",
+      "file": "Epic_Wayfarer_Boots.png",
       "sha256": "27221ba2c1e4007eda442eb6b66a9c849282920c1d1ca4741ddc350e90eaaa4c",
       "bytes": 1462626,
       "width": 1254,
@@ -44,19 +45,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Wayfarer Boots",
+        "name": "Epic_Wayfarer_Boots",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Wayfarer Boots"
       }
     },
     {
       "familyId": "common_body",
-      "file": "common_body.png",
+      "file": "Epic_Wayfarer_Coat.png",
       "sha256": "d6f18b187c53bcace552f0b8b6489fb8b8086d88122d3198619c96c50f590237",
       "bytes": 1777723,
       "width": 1254,
@@ -69,19 +71,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Wayfarer Coat",
+        "name": "Epic_Wayfarer_Coat",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Wayfarer Coat"
       }
     },
     {
       "familyId": "common_hands",
-      "file": "common_hands.png",
+      "file": "Epic_Wayfarer_Gloves.png",
       "sha256": "8dbd57f5431a00e1c7dc88965a96d586f32ca5a495716b85032dfaa7bcd3c6a8",
       "bytes": 1772523,
       "width": 1254,
@@ -94,19 +97,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Wayfarer Gloves",
+        "name": "Epic_Wayfarer_Gloves",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Wayfarer Gloves"
       }
     },
     {
       "familyId": "common_vigor_ring",
-      "file": "common_vigor_ring.png",
+      "file": "Epic_Vigor_Ring.png",
       "sha256": "8346783aa10ba8370aa7736d6781efe6a53235e74e2e0df154f76786ebea96a8",
       "bytes": 1165932,
       "width": 1254,
@@ -121,19 +125,20 @@
         "similar-common-ring-pair-review"
       ],
       "displayMetadata": {
-        "name": "Vigor Ring",
+        "name": "Epic_Vigor_Ring",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Vigor Ring"
       }
     },
     {
       "familyId": "knight_weapon_family",
-      "file": "knight_weapon_family.png",
+      "file": "Epic_Knight_Oathguard_Sword.png",
       "sha256": "0b3c37a5941fa9e1f88f12e77c9f72789a3038df005f8417c146f9afe78e6e73",
       "bytes": 581381,
       "width": 1254,
@@ -150,19 +155,20 @@
       "previousSha256": "78110161a17bf12b41b011ecf77860ea48ef4b6ef3ef2815b78ecd1e16364f57",
       "revisionPrompt": "Edit the attached sword inventory icon to FIX THE BENT SWORD. Preserve the silver steel, blue enamel central panel, gold lion emblem, gold crossguard with blue gems, blue leather handle, warm 3D lighting and transparent background. The entire sword must have ONE PERFECTLY STRAIGHT LONGITUDINAL AXIS from pommel center through grip center, crossguard center and blade tip. The grip and blade must be precisely collinear, not kinked at the guard. Blade must be a straight double-edged knight longsword, with straight symmetrical cutting edges smoothly tapering toward one centered point. Remove the wavy/scalloped blade outline and asymmetric bulge. Show it diagonally lower left to upper right, entire sword within image with adequate margin. Keep heraldic ornament inside straight blade boundaries. Do not bend, curve, bow or tilt blade relative to grip. Exactly one sword, no labels, no frame, no background. This is a geometry correction, preserve identity and materials.",
       "displayMetadata": {
-        "name": "Oathguard Sword",
+        "name": "Epic_Knight_Oathguard_Sword",
         "classLabel": "Knight",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Oathguard Bastion",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Oathguard Sword"
       }
     },
     {
       "familyId": "common_ward_pendant",
-      "file": "common_ward_pendant.png",
+      "file": "Epic_Ward_Pendant.png",
       "sha256": "5913d69871c35d84adbebcedd10b4880e24447d1d441f35ff40d57c5009cec52",
       "bytes": 1046829,
       "width": 1254,
@@ -175,19 +181,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Ward Pendant",
+        "name": "Epic_Ward_Pendant",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Ward Pendant"
       }
     },
     {
       "familyId": "knight_head_family",
-      "file": "knight_head_family.png",
+      "file": "Epic_Knight_Oathguard_Headguard.png",
       "sha256": "eaa6e6a359e3a5df7053d310d3c61d32149df2291bde7b6d7efe1df09aac4ba9",
       "bytes": 1297486,
       "width": 1254,
@@ -200,19 +207,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Oathguard Headguard",
+        "name": "Epic_Knight_Oathguard_Headguard",
         "classLabel": "Knight",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Oathguard Bastion",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Oathguard Headguard"
       }
     },
     {
       "familyId": "common_valor_ring",
-      "file": "common_valor_ring.png",
+      "file": "Epic_Valor_Ring.png",
       "sha256": "d62c268bfa2933b31a5959a66c140dfb8daf4f986cb31cf671cfc1a516f30a6d",
       "bytes": 1305565,
       "width": 1254,
@@ -227,19 +235,20 @@
         "similar-common-ring-pair-review"
       ],
       "displayMetadata": {
-        "name": "Valor Ring",
+        "name": "Epic_Valor_Ring",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Valor Ring"
       }
     },
     {
       "familyId": "knight_body_family",
-      "file": "knight_body_family.png",
+      "file": "Epic_Knight_Oathguard_Vestments.png",
       "sha256": "c237a7f25e521bdfbc3d9072c3b59253a9961a68927e79e5626470b23bd73b8a",
       "bytes": 1595467,
       "width": 1254,
@@ -252,19 +261,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Oathguard Vestments",
+        "name": "Epic_Knight_Oathguard_Vestments",
         "classLabel": "Knight",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Oathguard Bastion",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Oathguard Vestments"
       }
     },
     {
       "familyId": "common_refuge_charm",
-      "file": "common_refuge_charm.png",
+      "file": "Epic_Refuge_Charm.png",
       "sha256": "13ec43d18c07de80b8ba3efdf5499747b4bac5a7459a753e01ea8b61396deb28",
       "bytes": 1172711,
       "width": 1254,
@@ -277,19 +287,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Refuge Charm",
+        "name": "Epic_Refuge_Charm",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Refuge Charm"
       }
     },
     {
       "familyId": "knight_hands_family",
-      "file": "knight_hands_family.png",
+      "file": "Epic_Knight_Oathguard_Grips.png",
       "sha256": "3e9aba3d026e20a337cd14c34c2de7591bfd8ff9ed0d09064ea50bb9924b7a12",
       "bytes": 1512552,
       "width": 1254,
@@ -302,19 +313,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Oathguard Grips",
+        "name": "Epic_Knight_Oathguard_Grips",
         "classLabel": "Knight",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Oathguard Bastion",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Oathguard Grips"
       }
     },
     {
       "familyId": "knight_ring_family",
-      "file": "knight_ring_family.png",
+      "file": "Epic_Knight_Oathguard_Signet.png",
       "sha256": "5f6743091b00ed00704418dbf2d35b38b423df40aed59e6ee519a3eb7b604011",
       "bytes": 1380495,
       "width": 1254,
@@ -327,19 +339,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Oathguard Signet",
+        "name": "Epic_Knight_Oathguard_Signet",
         "classLabel": "Knight",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Oathguard Signet"
       }
     },
     {
       "familyId": "knight_pendant_family",
-      "file": "knight_pendant_family.png",
+      "file": "Epic_Knight_Oathguard_Pendant.png",
       "sha256": "59bb4639c1e44ed98a35ee4af2d92b5d1f819c075920aae8d32e70f88991721f",
       "bytes": 1325434,
       "width": 1254,
@@ -352,19 +365,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Oathguard Pendant",
+        "name": "Epic_Knight_Oathguard_Pendant",
         "classLabel": "Knight",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Oathguard Pendant"
       }
     },
     {
       "familyId": "knight_feet_family",
-      "file": "knight_feet_family.png",
+      "file": "Epic_Knight_Oathguard_Treads.png",
       "sha256": "55cab89f91bb17b59753e16fde26a9a4dfb9ba2807f4a4f9f12bfaf383c59dbf",
       "bytes": 1597550,
       "width": 1254,
@@ -377,19 +391,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Oathguard Treads",
+        "name": "Epic_Knight_Oathguard_Treads",
         "classLabel": "Knight",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Oathguard Bastion",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Oathguard Treads"
       }
     },
     {
       "familyId": "elf_weapon_family",
-      "file": "elf_weapon_family.png",
+      "file": "Epic_Elf_Briarwatch_Bow.png",
       "sha256": "5de317fc6c8a309e25e2970925bc95dd4e5f1005cb56f6e60707e057aaf22287",
       "bytes": 826674,
       "width": 1254,
@@ -402,19 +417,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Briarwatch Bow",
+        "name": "Epic_Elf_Briarwatch_Bow",
         "classLabel": "Elf Archer",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Briarwatch Vigil",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Briarwatch Bow"
       }
     },
     {
       "familyId": "elf_head_family",
-      "file": "elf_head_family.png",
+      "file": "Epic_Elf_Briarwatch_Headguard.png",
       "sha256": "0f87df2ca6bc44141c472da2512b0b6506a2ac11d1701eef4461019f9ec4ca38",
       "bytes": 1416907,
       "width": 1254,
@@ -427,19 +443,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Briarwatch Headguard",
+        "name": "Epic_Elf_Briarwatch_Headguard",
         "classLabel": "Elf Archer",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Briarwatch Vigil",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Briarwatch Headguard"
       }
     },
     {
       "familyId": "elf_ring_family",
-      "file": "elf_ring_family.png",
+      "file": "Epic_Elf_Briarwatch_Signet.png",
       "sha256": "e5ff6040cd2afff12dc5c22460573db29f597686c961481974cddc61566ca8d3",
       "bytes": 1358263,
       "width": 1254,
@@ -452,19 +469,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Briarwatch Signet",
+        "name": "Epic_Elf_Briarwatch_Signet",
         "classLabel": "Elf Archer",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Briarwatch Signet"
       }
     },
     {
       "familyId": "elf_body_family",
-      "file": "elf_body_family.png",
+      "file": "Epic_Elf_Briarwatch_Vestments.png",
       "sha256": "3074db2f4b5492c0c9b9ad3ad57f4db89b330852fc0ac12b18e632eb6900c6fc",
       "bytes": 1875632,
       "width": 1254,
@@ -477,19 +495,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Briarwatch Vestments",
+        "name": "Epic_Elf_Briarwatch_Vestments",
         "classLabel": "Elf Archer",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Briarwatch Vigil",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Briarwatch Vestments"
       }
     },
     {
       "familyId": "elf_pendant_family",
-      "file": "elf_pendant_family.png",
+      "file": "Epic_Elf_Briarwatch_Pendant.png",
       "sha256": "6cfee2930b39c019458778674cec3d4817e56c135c15170efb15227c5e192e75",
       "bytes": 1151079,
       "width": 1254,
@@ -502,19 +521,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Briarwatch Pendant",
+        "name": "Epic_Elf_Briarwatch_Pendant",
         "classLabel": "Elf Archer",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Briarwatch Pendant"
       }
     },
     {
       "familyId": "elf_hands_family",
-      "file": "elf_hands_family.png",
+      "file": "Epic_Elf_Briarwatch_Grips.png",
       "sha256": "6a03e09c523f4485c0210e0c2b95477356046b9ab9e5fec8560a4e52b87859d5",
       "bytes": 1539413,
       "width": 1254,
@@ -527,19 +547,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Briarwatch Grips",
+        "name": "Epic_Elf_Briarwatch_Grips",
         "classLabel": "Elf Archer",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Briarwatch Vigil",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Briarwatch Grips"
       }
     },
     {
       "familyId": "dwarf_weapon_family",
-      "file": "dwarf_weapon_family.png",
+      "file": "Epic_Dwarf_Stonehearth_Axe.png",
       "sha256": "a0082fff51f211d11518caffbfec7a30006f9aef1b7935c8c71b2ad0785fe6fa",
       "bytes": 1167865,
       "width": 1254,
@@ -552,19 +573,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Stonehearth Axe",
+        "name": "Epic_Dwarf_Stonehearth_Axe",
         "classLabel": "Dwarf Axe Thrower",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Stonehearth Resolve",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Stonehearth Axe"
       }
     },
     {
       "familyId": "elf_feet_family",
-      "file": "elf_feet_family.png",
+      "file": "Epic_Elf_Briarwatch_Treads.png",
       "sha256": "8968db5a969677830b12cc6004124e20dd79694bd18edfab29d0332e5403a63f",
       "bytes": 1610515,
       "width": 1254,
@@ -577,19 +599,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Briarwatch Treads",
+        "name": "Epic_Elf_Briarwatch_Treads",
         "classLabel": "Elf Archer",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Briarwatch Vigil",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Briarwatch Treads"
       }
     },
     {
       "familyId": "dwarf_hands_family",
-      "file": "dwarf_hands_family.png",
+      "file": "Epic_Dwarf_Stonehearth_Grips.png",
       "sha256": "169a2d802be61a78957e0fec6241fe87d19d92a176c92358fbb88d05160ab107",
       "bytes": 1738280,
       "width": 1254,
@@ -602,19 +625,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Stonehearth Grips",
+        "name": "Epic_Dwarf_Stonehearth_Grips",
         "classLabel": "Dwarf Axe Thrower",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Stonehearth Resolve",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Stonehearth Grips"
       }
     },
     {
       "familyId": "dwarf_head_family",
-      "file": "dwarf_head_family.png",
+      "file": "Epic_Dwarf_Stonehearth_Headguard.png",
       "sha256": "7485afc459e6bec51de8340821e1decab65d15217108c826c6bd64f05ec222a8",
       "bytes": 1535424,
       "width": 1254,
@@ -627,19 +651,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Stonehearth Headguard",
+        "name": "Epic_Dwarf_Stonehearth_Headguard",
         "classLabel": "Dwarf Axe Thrower",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Stonehearth Resolve",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Stonehearth Headguard"
       }
     },
     {
       "familyId": "dwarf_feet_family",
-      "file": "dwarf_feet_family.png",
+      "file": "Epic_Dwarf_Stonehearth_Treads.png",
       "sha256": "850adccfec4d389d42d75f4fd9488a3abec7b3ee6168e58be13dce4f072a19c6",
       "bytes": 1559474,
       "width": 1254,
@@ -652,19 +677,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Stonehearth Treads",
+        "name": "Epic_Dwarf_Stonehearth_Treads",
         "classLabel": "Dwarf Axe Thrower",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Stonehearth Resolve",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Stonehearth Treads"
       }
     },
     {
       "familyId": "dwarf_body_family",
-      "file": "dwarf_body_family.png",
+      "file": "Epic_Dwarf_Stonehearth_Vestments.png",
       "sha256": "8eb2400825c98588170230eeaa55bf2a3e4ff3105cb2d8d40120cb0bc703e1a1",
       "bytes": 1637946,
       "width": 1254,
@@ -677,19 +703,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Stonehearth Vestments",
+        "name": "Epic_Dwarf_Stonehearth_Vestments",
         "classLabel": "Dwarf Axe Thrower",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Stonehearth Resolve",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Stonehearth Vestments"
       }
     },
     {
       "familyId": "dwarf_ring_family",
-      "file": "dwarf_ring_family.png",
+      "file": "Epic_Dwarf_Stonehearth_Signet.png",
       "sha256": "a2a3a1fc3d2defbf6c5d21d329145c1be163f4a9afae3ca7bf1f6546993ab6a6",
       "bytes": 1527687,
       "width": 1254,
@@ -702,19 +729,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Stonehearth Signet",
+        "name": "Epic_Dwarf_Stonehearth_Signet",
         "classLabel": "Dwarf Axe Thrower",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Stonehearth Signet"
       }
     },
     {
       "familyId": "dwarf_pendant_family",
-      "file": "dwarf_pendant_family.png",
+      "file": "Epic_Dwarf_Stonehearth_Pendant.png",
       "sha256": "60033eb01606b7d389e0c23c70fc0ba95db3c474e061719ca49bfde3e7c1aa1c",
       "bytes": 1219806,
       "width": 1254,
@@ -727,19 +755,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Stonehearth Pendant",
+        "name": "Epic_Dwarf_Stonehearth_Pendant",
         "classLabel": "Dwarf Axe Thrower",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Stonehearth Pendant"
       }
     },
     {
       "familyId": "mage_body_family",
-      "file": "mage_body_family.png",
+      "file": "Epic_Mage_Aetherweave_Vestments.png",
       "sha256": "8e706c008ceb26c114f86e1ab3f5170ba1b1e7ac0fd0db4b979c3ef79566ee6b",
       "bytes": 1597548,
       "width": 1254,
@@ -752,19 +781,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Aetherweave Vestments",
+        "name": "Epic_Mage_Aetherweave_Vestments",
         "classLabel": "Mage",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Aetherweave Constellation",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Aetherweave Vestments"
       }
     },
     {
       "familyId": "mage_weapon_family",
-      "file": "mage_weapon_family.png",
+      "file": "Epic_Mage_Aetherweave_Staff.png",
       "sha256": "c20b5f6fedf6d8dde976a74dd062f40410abfe01e71b63450c21d74e50a18994",
       "bytes": 845106,
       "width": 1254,
@@ -777,19 +807,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Aetherweave Staff",
+        "name": "Epic_Mage_Aetherweave_Staff",
         "classLabel": "Mage",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Aetherweave Constellation",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Aetherweave Staff"
       }
     },
     {
       "familyId": "mage_hands_family",
-      "file": "mage_hands_family.png",
+      "file": "Epic_Mage_Aetherweave_Grips.png",
       "sha256": "b941aa4ede5041baf921ae206924b93342cdcc776e8afb7c0a0c03c71f54d202",
       "bytes": 1592128,
       "width": 1254,
@@ -802,19 +833,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Aetherweave Grips",
+        "name": "Epic_Mage_Aetherweave_Grips",
         "classLabel": "Mage",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Aetherweave Constellation",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Aetherweave Grips"
       }
     },
     {
       "familyId": "mage_head_family",
-      "file": "mage_head_family.png",
+      "file": "Epic_Mage_Aetherweave_Headguard.png",
       "sha256": "464d15e54eca0a72fb06c65b7ac4c37acc9c7c30b55c601b498861f5ef3476a1",
       "bytes": 1647739,
       "width": 1254,
@@ -827,19 +859,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Aetherweave Headguard",
+        "name": "Epic_Mage_Aetherweave_Headguard",
         "classLabel": "Mage",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Aetherweave Constellation",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Aetherweave Headguard"
       }
     },
     {
       "familyId": "mage_feet_family",
-      "file": "mage_feet_family.png",
+      "file": "Epic_Mage_Aetherweave_Treads.png",
       "sha256": "5e0763f4f2aa0bb934c37bfae8ef0e78bd0d57296184de1e4ae2b811f19f8d17",
       "bytes": 1575070,
       "width": 1254,
@@ -852,19 +885,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Aetherweave Treads",
+        "name": "Epic_Mage_Aetherweave_Treads",
         "classLabel": "Mage",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": "Aetherweave Constellation",
-        "setRole": "5-piece set candidate"
+        "setRole": "5-piece set candidate",
+        "baseName": "Aetherweave Treads"
       }
     },
     {
       "familyId": "mage_ring_family",
-      "file": "mage_ring_family.png",
+      "file": "Epic_Mage_Aetherweave_Signet.png",
       "sha256": "19048436272549f64af56939d01b99bd5dcc4ec93ca67f691e9c5a4b3c34b435",
       "bytes": 1352743,
       "width": 1254,
@@ -877,19 +911,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Aetherweave Signet",
+        "name": "Epic_Mage_Aetherweave_Signet",
         "classLabel": "Mage",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Aetherweave Signet"
       }
     },
     {
       "familyId": "common_mana_ring",
-      "file": "common_mana_ring.png",
+      "file": "Epic_Mana_Ring.png",
       "sha256": "5109022c06e52d53e6550c17d232fb9d3f0b614ecffa682173afca92cf67406b",
       "bytes": 1239360,
       "width": 1254,
@@ -902,19 +937,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Mana Ring",
+        "name": "Epic_Mana_Ring",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Mana Ring"
       }
     },
     {
       "familyId": "mage_pendant_family",
-      "file": "mage_pendant_family.png",
+      "file": "Epic_Mage_Aetherweave_Pendant.png",
       "sha256": "898d1d5055ea9b34022c269e726e533f4c09f207fd1f7caa6907c35377cf1a00",
       "bytes": 1242283,
       "width": 1254,
@@ -927,19 +963,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Aetherweave Pendant",
+        "name": "Epic_Mage_Aetherweave_Pendant",
         "classLabel": "Mage",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Aetherweave Pendant"
       }
     },
     {
       "familyId": "common_arcane_pendant",
-      "file": "common_arcane_pendant.png",
+      "file": "Epic_Arcane_Reservoir_Pendant.png",
       "sha256": "23442058750f9de9aa0a4891bd490dd490d4a99d79085a588dad8f1301a885dd",
       "bytes": 1222679,
       "width": 1254,
@@ -952,19 +989,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Arcane Reservoir Pendant",
+        "name": "Epic_Arcane_Reservoir_Pendant",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Arcane Reservoir Pendant"
       }
     },
     {
       "familyId": "knight_shield_family",
-      "file": "knight_shield_family.png",
+      "file": "Epic_Knight_Oathguard_Shield.png",
       "sha256": "2043a345641bdde4129724cb5f4139b19233f0aa20be789b0b6875f40fac607a",
       "bytes": 1546112,
       "width": 1254,
@@ -977,19 +1015,20 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Oathguard Shield",
+        "name": "Epic_Knight_Oathguard_Shield",
         "classLabel": "Knight",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Oathguard Shield"
       }
     },
     {
       "familyId": "common_wellspring_charm",
-      "file": "common_wellspring_charm.png",
+      "file": "Epic_Wellspring_Charm.png",
       "sha256": "d06500f98705db129920e594dfe6df86ce6fbd14d223e3f391756ad3c8cac2a6",
       "bytes": 1106996,
       "width": 1254,
@@ -1002,14 +1041,15 @@
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
       "notes": [],
       "displayMetadata": {
-        "name": "Wellspring Charm",
+        "name": "Epic_Wellspring_Charm",
         "classLabel": "Shared",
-        "rarity": "Rare",
-        "rarityStatus": "visual-proposal-only",
+        "rarity": "Epic",
+        "rarityStatus": "user-designated-art-grade",
         "requiredLevel": 10,
-        "levelStatus": "proposal-only",
+        "levelStatus": "unconfirmed-proposal-not-grade-minimum",
         "setName": null,
-        "setRole": "Standalone equipment"
+        "setRole": "Standalone equipment",
+        "baseName": "Wellspring Charm"
       }
     }
   ]

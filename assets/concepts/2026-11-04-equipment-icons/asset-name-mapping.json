@@ -1,0 +1,162 @@
+[
+  {
+    "oldPath": "generated-v1/common_head.png",
+    "newPath": "generated-v1/Epic_Wayfarer_Hood.png"
+  },
+  {
+    "oldPath": "generated-v1/common_feet.png",
+    "newPath": "generated-v1/Epic_Wayfarer_Boots.png"
+  },
+  {
+    "oldPath": "generated-v1/common_body.png",
+    "newPath": "generated-v1/Epic_Wayfarer_Coat.png"
+  },
+  {
+    "oldPath": "generated-v1/common_hands.png",
+    "newPath": "generated-v1/Epic_Wayfarer_Gloves.png"
+  },
+  {
+    "oldPath": "generated-v1/common_vigor_ring.png",
+    "newPath": "generated-v1/Epic_Vigor_Ring.png"
+  },
+  {
+    "oldPath": "generated-v1/knight_weapon_family.png",
+    "newPath": "generated-v1/Epic_Knight_Oathguard_Sword.png"
+  },
+  {
+    "oldPath": "generated-v1/common_ward_pendant.png",
+    "newPath": "generated-v1/Epic_Ward_Pendant.png"
+  },
+  {
+    "oldPath": "generated-v1/knight_head_family.png",
+    "newPath": "generated-v1/Epic_Knight_Oathguard_Headguard.png"
+  },
+  {
+    "oldPath": "generated-v1/common_valor_ring.png",
+    "newPath": "generated-v1/Epic_Valor_Ring.png"
+  },
+  {
+    "oldPath": "generated-v1/knight_body_family.png",
+    "newPath": "generated-v1/Epic_Knight_Oathguard_Vestments.png"
+  },
+  {
+    "oldPath": "generated-v1/common_refuge_charm.png",
+    "newPath": "generated-v1/Epic_Refuge_Charm.png"
+  },
+  {
+    "oldPath": "generated-v1/knight_hands_family.png",
+    "newPath": "generated-v1/Epic_Knight_Oathguard_Grips.png"
+  },
+  {
+    "oldPath": "generated-v1/knight_ring_family.png",
+    "newPath": "generated-v1/Epic_Knight_Oathguard_Signet.png"
+  },
+  {
+    "oldPath": "generated-v1/knight_pendant_family.png",
+    "newPath": "generated-v1/Epic_Knight_Oathguard_Pendant.png"
+  },
+  {
+    "oldPath": "generated-v1/knight_feet_family.png",
+    "newPath": "generated-v1/Epic_Knight_Oathguard_Treads.png"
+  },
+  {
+    "oldPath": "generated-v1/elf_weapon_family.png",
+    "newPath": "generated-v1/Epic_Elf_Briarwatch_Bow.png"
+  },
+  {
+    "oldPath": "generated-v1/elf_head_family.png",
+    "newPath": "generated-v1/Epic_Elf_Briarwatch_Headguard.png"
+  },
+  {
+    "oldPath": "generated-v1/elf_ring_family.png",
+    "newPath": "generated-v1/Epic_Elf_Briarwatch_Signet.png"
+  },
+  {
+    "oldPath": "generated-v1/elf_body_family.png",
+    "newPath": "generated-v1/Epic_Elf_Briarwatch_Vestments.png"
+  },
+  {
+    "oldPath": "generated-v1/elf_pendant_family.png",
+    "newPath": "generated-v1/Epic_Elf_Briarwatch_Pendant.png"
+  },
+  {
+    "oldPath": "generated-v1/elf_hands_family.png",
+    "newPath": "generated-v1/Epic_Elf_Briarwatch_Grips.png"
+  },
+  {
+    "oldPath": "generated-v1/dwarf_weapon_family.png",
+    "newPath": "generated-v1/Epic_Dwarf_Stonehearth_Axe.png"
+  },
+  {
+    "oldPath": "generated-v1/elf_feet_family.png",
+    "newPath": "generated-v1/Epic_Elf_Briarwatch_Treads.png"
+  },
+  {
+    "oldPath": "generated-v1/dwarf_hands_family.png",
+    "newPath": "generated-v1/Epic_Dwarf_Stonehearth_Grips.png"
+  },
+  {
+    "oldPath": "generated-v1/dwarf_head_family.png",
+    "newPath": "generated-v1/Epic_Dwarf_Stonehearth_Headguard.png"
+  },
+  {
+    "oldPath": "generated-v1/dwarf_feet_family.png",
+    "newPath": "generated-v1/Epic_Dwarf_Stonehearth_Treads.png"
+  },
+  {
+    "oldPath": "generated-v1/dwarf_body_family.png",
+    "newPath": "generated-v1/Epic_Dwarf_Stonehearth_Vestments.png"
+  },
+  {
+    "oldPath": "generated-v1/dwarf_ring_family.png",
+    "newPath": "generated-v1/Epic_Dwarf_Stonehearth_Signet.png"
+  },
+  {
+    "oldPath": "generated-v1/dwarf_pendant_family.png",
+    "newPath": "generated-v1/Epic_Dwarf_Stonehearth_Pendant.png"
+  },
+  {
+    "oldPath": "generated-v1/mage_body_family.png",
+    "newPath": "generated-v1/Epic_Mage_Aetherweave_Vestments.png"
+  },
+  {
+    "oldPath": "generated-v1/mage_weapon_family.png",
+    "newPath": "generated-v1/Epic_Mage_Aetherweave_Staff.png"
+  },
+  {
+    "oldPath": "generated-v1/mage_hands_family.png",
+    "newPath": "generated-v1/Epic_Mage_Aetherweave_Grips.png"
+  },
+  {
+    "oldPath": "generated-v1/mage_head_family.png",
+    "newPath": "generated-v1/Epic_Mage_Aetherweave_Headguard.png"
+  },
+  {
+    "oldPath": "generated-v1/mage_feet_family.png",
+    "newPath": "generated-v1/Epic_Mage_Aetherweave_Treads.png"
+  },
+  {
+    "oldPath": "generated-v1/mage_ring_family.png",
+    "newPath": "generated-v1/Epic_Mage_Aetherweave_Signet.png"
+  },
+  {
+    "oldPath": "generated-v1/common_mana_ring.png",
+    "newPath": "generated-v1/Epic_Mana_Ring.png"
+  },
+  {
+    "oldPath": "generated-v1/mage_pendant_family.png",
+    "newPath": "generated-v1/Epic_Mage_Aetherweave_Pendant.png"
+  },
+  {
+    "oldPath": "generated-v1/common_arcane_pendant.png",
+    "newPath": "generated-v1/Epic_Arcane_Reservoir_Pendant.png"
+  },
+  {
+    "oldPath": "generated-v1/knight_shield_family.png",
+    "newPath": "generated-v1/Epic_Knight_Oathguard_Shield.png"
+  },
+  {
+    "oldPath": "generated-v1/common_wellspring_charm.png",
+    "newPath": "generated-v1/Epic_Wellspring_Charm.png"
+  }
+]
