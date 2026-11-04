@@ -47,7 +47,7 @@ end
 function Service.destination(player,heroId)
  local s=state(player,heroId)
  local a=options.inventory.expedition(player,heroId)
- local c=a and Content.byId[a.missionId]or Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
+ local c=a and Content.byId[s and s.expeditionMission or a.missionId]or Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
  if not a and s and s.main==6 and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
  if not a and s and s.main==Content.mainCount then return options.world.spawns[Content.epics[#Content.epics].hub] end
  return options.world.spawns[c.zone]
@@ -223,7 +223,7 @@ spawnWave=function(e)
   local scale,visual=Sizing.forStory(kind,boss)
   local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,visual)
   m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
-  e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',e.goal.id..'_'..e.spawnCount)
+  e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',(e.launchMission and e.chapter.id~=e.launchMission and e.chapter.id..':' or '')..e.goal.id..'_'..e.spawnCount)
   m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize,e.difficultyId,e.rulesVersion,index)
   m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1.25+index*.12)
   m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or Text.Enemy[kind] or kind
@@ -241,7 +241,7 @@ local function begin(player,node,automatic)
   local n=0 for _ in pairs(e.participants) do n=n+1 end
   if not e.participants[player] and n>=4 then publish(player,'This encounter already has four heroes. Wait for the next attempt.');return end
   e.participants[player]=ctx.heroId;publish(player,'Encounter joined. Defeat the remaining guards.');return end
- e={key=key,runId=run and run.runId,difficultyId=run and run.difficultyId,rulesVersion=run and(run.balanceVersion or 1),chapter=c,goal=g,position=position,models={},participants={[player]=ctx.heroId},remaining=0,started=os.clock(),lastPresent=os.clock()};encounters[key]=e
+ e={key=key,runId=run and run.runId,launchMission=run and run.missionId,difficultyId=run and run.difficultyId,rulesVersion=run and(run.balanceVersion or 1),chapter=c,goal=g,position=position,models={},participants={[player]=ctx.heroId},remaining=0,started=os.clock(),lastPresent=os.clock()};encounters[key]=e
  -- Eligible nearby allies can help through combat, protection or interaction.
  local count=1
  for _,p in ipairs(Players:GetPlayers()) do if p~=player then

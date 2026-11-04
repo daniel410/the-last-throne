@@ -6,7 +6,7 @@ function Gate.create(o)
  local safe,lastNotice,lastReveal,regions={},{},{},{}
  local function fallback(player,hero,s)
   local run=o.inventory.expedition(player,hero.heroId)
-  local chapter=run and Content.byId[run.missionId]or Content.mainChapters[math.min(Content.mainCount,s.main+1)]
+  local chapter=run and Content.byId[s.expeditionMission or run.missionId]or Content.mainChapters[math.min(Content.mainCount,s.main+1)]
   return o.world.spawns[chapter.zone]
  end
  local function clearRegion(player)

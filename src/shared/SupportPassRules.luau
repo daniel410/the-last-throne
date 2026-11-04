@@ -1,8 +1,11 @@
 -- Pure account transactions. Credits are story entitlements, never heal charges.
 local M={offers={{id='selene_story_1',stories=1,price=200},{id='selene_story_5',stories=5,price=1000},{id='selene_story_10',stories=10,price=2000}}}
 local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
+local Adventure=game and require(game:GetService('ReplicatedStorage').Shared.AdventureRules)or dofile('src/shared/AdventureRules.luau')
 local function target(h)
  local a=h.expeditions and h.expeditions.active
+ local nextChapter=Adventure.continuation(a)
+ if nextChapter then return nextChapter.number,'run:'..a.runId..':'..nextChapter.id,false end
  local c=a and Content.byId[a.missionId]
  if c and not c.side and type(a.runId)=='string' then return c.number,'run:'..a.runId..':'..a.missionId,a.completed==true end
  local n=((h.deepwood and h.deepwood.main) or 0)+1;return n,'main:'..n,false

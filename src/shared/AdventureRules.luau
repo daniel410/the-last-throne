@@ -1,6 +1,14 @@
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
 local D,P,G,Content,F=load('Difficulty'),load('DeepwoodProgress'),load('HeroProgression'),load('CampaignContent'),load('EquipmentTransactions')
 local A={}
+-- The launch mission remains stable for admission/rejoin. First-time Easy
+-- adventures can continue through the already loaded epic without a new run.
+function A.continuation(a)
+ local start=a and Content.byId[a.missionId]
+ local nextChapter=a and a.journal and Content.mainChapters[a.journal.main+1]
+ if a and a.completed and a.firstClear and a.difficultyId=='Easy' and start and not start.side
+  and nextChapter and nextChapter.epic==start.epic then return nextChapter end
+end
 local function integer(n,min,max)return type(n)=='number'and n%1==0 and n>=min and n<=max end
 function A.valid(hero)
  local e=hero.expeditions;if e==nil then return true end
@@ -27,7 +35,8 @@ function A.projection(hero)
    for cell,revealed in pairs(cells)do view.explored[id][cell]=revealed end
   end
  end
- view.expeditionMission=a.missionId
+ local nextChapter=A.continuation(a)
+ view.expeditionMission=nextChapter and nextChapter.id or a.missionId
  view.seleneUnlocked=P.seleneUnlocked(hero.deepwood)
  view.seleneFollowing=hero.deepwood and hero.deepwood.seleneFollowing
  return view
@@ -75,7 +84,17 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
 end
 function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
  local hero=profile.heroes[heroId];local active=hero and hero.expeditions and hero.expeditions.active
- if not active or active.runId~=runId or active.missionId~=chapterId then return nil,'AdventureChanged'end
+ if not active or active.runId~=runId then return nil,'AdventureChanged'end
+ local nextChapter=A.continuation(active)
+ if active.missionId~=chapterId and (not nextChapter or nextChapter.id~=chapterId)then
+  -- A lost save response may retry the final event after its continuation opened.
+  local start,c=Content.byId[active.missionId],Content.byId[chapterId]
+  if active.firstClear and active.difficultyId=='Easy'and start and not start.side and c and not c.side
+   and c.epic==start.epic and c.number>=start.number and active.journal.flags[chapterId..':'..goalId]then
+   return R.copy(profile),nil,true
+  end
+  return nil,'AdventureChanged'
+ end
  local c=Content.byId[chapterId];local p,why,journal,reward
  if active.firstClear then
   p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId)
@@ -88,7 +107,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   p=R.copy(profile);p.revision=p.revision+1
  end
  local h=p.heroes[heroId];local e=h.expeditions;local a=e.active;a.journal=journal
- if journal.clears[chapterId]and not a.completed then
+ if journal.clears[chapterId]and not active.journal.clears[chapterId]then
   a.completed=true;e.clears[chapterId]=e.clears[chapterId]or {};e.clears[chapterId][a.difficultyId]=true
   local reward=D.completion(c,a.difficultyId,a.balanceVersion or 1)
   if not a.firstClear then
@@ -99,7 +118,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
    h.progression.level=h.level;h.progression.revision=h.progression.revision+1;p.wallet.gold=p.wallet.gold+gold
   end
   if D.combat(c)then
-   local prefix='run-'..a.runId..'-'..heroId
+   local prefix='run-'..a.runId..'-'..heroId..(chapterId~=a.missionId and '-'..chapterId or '')
    F.grant(p,R,C,heroId,'iron_ore',reward.ore,prefix..'-ore')
    F.grant(p,R,C,heroId,'forge_core',reward.cores,prefix..'-core')
    F.grant(p,R,C,heroId,'enhancement_gem',reward.gems,prefix..'-gem')
