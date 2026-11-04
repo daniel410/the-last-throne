@@ -33,5 +33,4 @@ return {
  Enhance='ENHANCE',Recover='RECOVER MATERIALS',Exchange='EXCHANGE: 5 GEMS + 50 GOLD → 1 MAGIC STONE',
  Success='Success: %d%% / Failure: %d%%\nFailure consumes materials. Item and level are kept.',
  Repeat='Replay completed missions for Gold, equipment and enhancement materials.',
- PlayAgain='PLAY AGAIN · RETURN TO LOBBY',
 }
