@@ -84,17 +84,21 @@
     {
       "familyId": "knight_weapon_family",
       "file": "knight_weapon_family.png",
-      "sha256": "78110161a17bf12b41b011ecf77860ea48ef4b6ef3ef2815b78ecd1e16364f57",
-      "bytes": 800270,
+      "sha256": "0b3c37a5941fa9e1f88f12e77c9f72789a3038df005f8417c146f9afe78e6e73",
+      "bytes": 581381,
       "width": 1254,
       "height": 1254,
       "bitDepth": 8,
       "colorType": 6,
-      "source": "/Users/daniel/.codex/generated_images/01a1a4f1-0c86-7e30-bf58-34ecfffd2870/exec-62c2ec08-0b8f-4e9e-bfaa-6b858c8c5934.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1a4f1-0c86-7e30-bf58-34ecfffd2870/exec-e350c102-9d2c-45d2-8963-618aea3a1a4d.png",
       "prompt": "Create a single inventory equipment icon: Oathguard Sword. steel blue and lion crest. Hero compatibility: knight. Readable chunky fantasy silhouette matching the approved Throne Defense equipment reference supplied at generation time. Preserve weapon type and slot. Centered isolated object, transparent background, no text, no numbers, no rarity frame, no UI, no watermark. Crisp at 48 pixels. 1024 square delivery candidate. Do not invent guns, stamina meters, class symbols or extra equipment. Match approved local source after visual inspection; this prompt alone is not a reference.\nART DIRECTION: match attached Throne Defense reference's chunky bevelled polished 3D fantasy materials, warm upper-left keylight, restrained saturated color, bold readable silhouette. This is a BASELINE item icon not an ornate Legendary. Exactly ONE item or one matching pair for gloves/boots, empty wearable clothing without body or face. Transparent background, centered with 12 percent margin. Do not draw portrait or whole character. Visually differentiate rings and pendants with distinct gem cut and band silhouette; role block and frontline protection. No labels, no rarity frame, no floor. For body armor show torso garment alone. For bows show a bow, no guns. Dwarf uses axe only. Mage staff.",
       "approval": "candidate",
       "reference": "assets/concepts/2026-10-27-shared-ui-v2/references/hero-knight.png",
-      "notes": []
+      "notes": [
+        "2026-11-04: user requested straight blade; straightened blade edges and blade/grip axis; reviewed generated output visually"
+      ],
+      "previousSha256": "78110161a17bf12b41b011ecf77860ea48ef4b6ef3ef2815b78ecd1e16364f57",
+      "revisionPrompt": "Edit the attached sword inventory icon to FIX THE BENT SWORD. Preserve the silver steel, blue enamel central panel, gold lion emblem, gold crossguard with blue gems, blue leather handle, warm 3D lighting and transparent background. The entire sword must have ONE PERFECTLY STRAIGHT LONGITUDINAL AXIS from pommel center through grip center, crossguard center and blade tip. The grip and blade must be precisely collinear, not kinked at the guard. Blade must be a straight double-edged knight longsword, with straight symmetrical cutting edges smoothly tapering toward one centered point. Remove the wavy/scalloped blade outline and asymmetric bulge. Show it diagonally lower left to upper right, entire sword within image with adequate margin. Keep heraldic ornament inside straight blade boundaries. Do not bend, curve, bow or tilt blade relative to grip. Exactly one sword, no labels, no frame, no background. This is a geometry correction, preserve identity and materials."
     },
     {
       "familyId": "common_ward_pendant",
