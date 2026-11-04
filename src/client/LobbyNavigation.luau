@@ -31,8 +31,7 @@ function M.create(parent,actions)
     local availableWidth=if b.Name=='Blacksmith' then metrics.width*.82 else metrics.width-2
     label.TextSize=math.min(textSize,math.floor(textSize*availableWidth/math.max(1,bounds.X)))
     label.TextScaled=false;label.TextWrapped=false
-    label.Position=UDim2.fromScale(0,.70)
-    label.Size=UDim2.fromScale(1,.30)
+    Art.layout(b)
    end
   end
   local x=metrics.large and math.floor(viewport.X*.0284) or 12

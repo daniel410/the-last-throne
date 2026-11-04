@@ -4,7 +4,7 @@ local gui=Instance.new('ScreenGui');gui.Name='NavigationGridQA';gui.IgnoreGuiIns
 local report={kind='LOBBY_NAVIGATION_GRID_NATIVE',checks=0,failures={}}
 local function check(value,message) report.checks+=1;assert(value,message) end
 local ok,err=xpcall(function()
- for _,viewport in ipairs({Vector2.new(1280,800),Vector2.new(750,323),Vector2.new(529,323),Vector2.new(530,323),Vector2.new(390,317)}) do
+ for _,viewport in ipairs({Vector2.new(3840,2160),Vector2.new(2560,1440),Vector2.new(1920,1080),Vector2.new(1500,900),Vector2.new(1499,900),Vector2.new(1280,800),Vector2.new(750,323),Vector2.new(529,323),Vector2.new(530,323),Vector2.new(390,317)}) do
   local host=Instance.new('Frame');host.Size=UDim2.fromOffset(viewport.X,viewport.Y);host.Parent=gui
   local copy=Instance.new('ModuleScript');copy.Name='NavigationGridFixture';copy.Parent=client
   local signal=Instance.new('BindableEvent');signal.Name='CameraChanged';signal.Parent=copy
@@ -23,6 +23,16 @@ local ok,err=xpcall(function()
    check(button.Caption.TextSize>=(name=='Blacksmith' and 8 or 10),name..' caption remains readable')
    if name=='Blacksmith'then check(button.Caption.TextBounds.X<=button.AbsoluteSize.X*.82+1,'blacksmith clears beveled nameplate corners')end
    check(button.NavigationPlaqueArt.Image==buttons[1].NavigationPlaqueArt.Image,name..' same TD plaque')
+   local picture=button.PictureViewport.NavigationIcon
+   local plate=button.NavigationPlaqueArt
+   local pictureBottom=picture.AbsolutePosition.Y+picture.AbsoluteSize.Y
+   local plateTop=plate.AbsolutePosition.Y
+   check(pictureBottom>=plateTop-1 and pictureBottom<=plateTop+button.AbsoluteSize.Y*.02+1,name..' picture touches the nameplate')
+   local crop=picture.ImageRectSize
+   check(math.abs(picture.AbsoluteSize.Y-math.min(button.PictureViewport.AbsoluteSize.Y,picture.AbsoluteSize.X*crop.Y/crop.X))<=1,name..' picture has no bottom fit padding')
+   local plateCrop=plate.ImageRectSize
+   check(math.abs(plate.AbsoluteSize.Y-plate.AbsoluteSize.X*plateCrop.Y/plateCrop.X)<=1 or math.abs(plate.AbsoluteSize.Y-button.AbsoluteSize.Y*.3)<=1,name..' plaque has no top fit padding')
+   check(button.Caption.AbsolutePosition.Y==plate.AbsolutePosition.Y and button.Caption.AbsoluteSize.Y==plate.AbsoluteSize.Y,name..' caption follows the fitted plaque')
   end
   for index=1,6,2 do
    local left,right=buttons[index],buttons[index+1]
