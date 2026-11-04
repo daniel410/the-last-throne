@@ -1283,13 +1283,17 @@
       "slot": "head",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_head.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Wayfarer_Hood",
-      "generatedIcon": "generated-rare-v1/Rare_Wayfarer_Hood.png"
+      "generatedIcon": "generated-rare-v1/Rare_Wayfarer_Hood.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_head_l10_rare"
+      }
     },
     {
       "proposalId": "common_head_l10_epic",
@@ -1300,13 +1304,17 @@
       "slot": "head",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_head.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Wayfarer_Hood",
-      "generatedIcon": "generated-v1/Epic_Wayfarer_Hood.png"
+      "generatedIcon": "generated-v1/Epic_Wayfarer_Hood.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_head_l10_epic"
+      }
     },
     {
       "proposalId": "common_head_l10_legendary",
@@ -1317,13 +1325,17 @@
       "slot": "head",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_head.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Wayfarer_Hood",
-      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Hood.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Hood.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_head_l10_legendary"
+      }
     },
     {
       "proposalId": "common_head_l10_unique",
@@ -1382,13 +1394,17 @@
       "slot": "body",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_body.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Wayfarer_Coat",
-      "generatedIcon": "generated-rare-v1/Rare_Wayfarer_Coat.png"
+      "generatedIcon": "generated-rare-v1/Rare_Wayfarer_Coat.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_body_l10_rare"
+      }
     },
     {
       "proposalId": "common_body_l10_epic",
@@ -1399,13 +1415,17 @@
       "slot": "body",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_body.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Wayfarer_Coat",
-      "generatedIcon": "generated-v1/Epic_Wayfarer_Coat.png"
+      "generatedIcon": "generated-v1/Epic_Wayfarer_Coat.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_body_l10_epic"
+      }
     },
     {
       "proposalId": "common_body_l10_legendary",
@@ -1416,13 +1436,17 @@
       "slot": "body",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_body.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Wayfarer_Coat",
-      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Coat.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Coat.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_body_l10_legendary"
+      }
     },
     {
       "proposalId": "common_body_l10_unique",
@@ -1481,13 +1505,17 @@
       "slot": "hands",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_hands.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Wayfarer_Gloves",
-      "generatedIcon": "generated-rare-v1/Rare_Wayfarer_Gloves.png"
+      "generatedIcon": "generated-rare-v1/Rare_Wayfarer_Gloves.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_hands_l10_rare"
+      }
     },
     {
       "proposalId": "common_hands_l10_epic",
@@ -1498,13 +1526,17 @@
       "slot": "hands",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_hands.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Wayfarer_Gloves",
-      "generatedIcon": "generated-v1/Epic_Wayfarer_Gloves.png"
+      "generatedIcon": "generated-v1/Epic_Wayfarer_Gloves.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_hands_l10_epic"
+      }
     },
     {
       "proposalId": "common_hands_l10_legendary",
@@ -1515,13 +1547,17 @@
       "slot": "hands",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_hands.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Wayfarer_Gloves",
-      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Gloves.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Gloves.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_hands_l10_legendary"
+      }
     },
     {
       "proposalId": "common_hands_l10_unique",
@@ -1580,13 +1616,17 @@
       "slot": "feet",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_feet.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Wayfarer_Boots",
-      "generatedIcon": "generated-rare-v1/Rare_Wayfarer_Boots.png"
+      "generatedIcon": "generated-rare-v1/Rare_Wayfarer_Boots.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_feet_l10_rare"
+      }
     },
     {
       "proposalId": "common_feet_l10_epic",
@@ -1597,13 +1637,17 @@
       "slot": "feet",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_feet.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Wayfarer_Boots",
-      "generatedIcon": "generated-v1/Epic_Wayfarer_Boots.png"
+      "generatedIcon": "generated-v1/Epic_Wayfarer_Boots.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_feet_l10_epic"
+      }
     },
     {
       "proposalId": "common_feet_l10_legendary",
@@ -1614,13 +1658,17 @@
       "slot": "feet",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_feet.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Wayfarer_Boots",
-      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Boots.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Wayfarer_Boots.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_feet_l10_legendary"
+      }
     },
     {
       "proposalId": "common_feet_l10_unique",
@@ -1679,13 +1727,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_vigor_ring.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Vigor_Ring",
-      "generatedIcon": "generated-rare-v1/Rare_Vigor_Ring.png"
+      "generatedIcon": "generated-rare-v1/Rare_Vigor_Ring.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_vigor_ring_l10_rare"
+      }
     },
     {
       "proposalId": "common_vigor_ring_l10_epic",
@@ -1696,13 +1748,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_vigor_ring.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Vigor_Ring",
-      "generatedIcon": "generated-v1/Epic_Vigor_Ring.png"
+      "generatedIcon": "generated-v1/Epic_Vigor_Ring.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_vigor_ring_l10_epic"
+      }
     },
     {
       "proposalId": "common_vigor_ring_l10_legendary",
@@ -1713,13 +1769,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_vigor_ring.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Vigor_Ring",
-      "generatedIcon": "generated-legendary-v1/Legendary_Vigor_Ring.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Vigor_Ring.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_vigor_ring_l10_legendary"
+      }
     },
     {
       "proposalId": "common_vigor_ring_l10_unique",
@@ -1778,13 +1838,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_ward_pendant.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Ward_Pendant",
-      "generatedIcon": "generated-rare-v1/Rare_Ward_Pendant.png"
+      "generatedIcon": "generated-rare-v1/Rare_Ward_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_ward_pendant_l10_rare"
+      }
     },
     {
       "proposalId": "common_ward_pendant_l10_epic",
@@ -1795,13 +1859,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_ward_pendant.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Ward_Pendant",
-      "generatedIcon": "generated-v1/Epic_Ward_Pendant.png"
+      "generatedIcon": "generated-v1/Epic_Ward_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_ward_pendant_l10_epic"
+      }
     },
     {
       "proposalId": "common_ward_pendant_l10_legendary",
@@ -1812,13 +1880,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_ward_pendant.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Ward_Pendant",
-      "generatedIcon": "generated-legendary-v1/Legendary_Ward_Pendant.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Ward_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_ward_pendant_l10_legendary"
+      }
     },
     {
       "proposalId": "common_ward_pendant_l10_unique",
@@ -1877,13 +1949,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_valor_ring.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Valor_Ring",
-      "generatedIcon": "generated-rare-v1/Rare_Valor_Ring.png"
+      "generatedIcon": "generated-rare-v1/Rare_Valor_Ring.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_valor_ring_l10_rare"
+      }
     },
     {
       "proposalId": "common_valor_ring_l10_epic",
@@ -1894,13 +1970,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_valor_ring.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Valor_Ring",
-      "generatedIcon": "generated-v1/Epic_Valor_Ring.png"
+      "generatedIcon": "generated-v1/Epic_Valor_Ring.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_valor_ring_l10_epic"
+      }
     },
     {
       "proposalId": "common_valor_ring_l10_legendary",
@@ -1911,13 +1991,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_valor_ring.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Valor_Ring",
-      "generatedIcon": "generated-legendary-v1/Legendary_Valor_Ring.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Valor_Ring.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_valor_ring_l10_legendary"
+      }
     },
     {
       "proposalId": "common_valor_ring_l10_unique",
@@ -1976,13 +2060,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_refuge_charm.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Refuge_Charm",
-      "generatedIcon": "generated-rare-v1/Rare_Refuge_Charm.png"
+      "generatedIcon": "generated-rare-v1/Rare_Refuge_Charm.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_refuge_charm_l10_rare"
+      }
     },
     {
       "proposalId": "common_refuge_charm_l10_epic",
@@ -1993,13 +2081,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_refuge_charm.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Refuge_Charm",
-      "generatedIcon": "generated-v1/Epic_Refuge_Charm.png"
+      "generatedIcon": "generated-v1/Epic_Refuge_Charm.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_refuge_charm_l10_epic"
+      }
     },
     {
       "proposalId": "common_refuge_charm_l10_legendary",
@@ -2010,13 +2102,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_refuge_charm.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Refuge_Charm",
-      "generatedIcon": "generated-legendary-v1/Legendary_Refuge_Charm.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Refuge_Charm.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_refuge_charm_l10_legendary"
+      }
     },
     {
       "proposalId": "common_refuge_charm_l10_unique",
@@ -2075,13 +2171,17 @@
       "slot": "weapon",
       "classId": "knight",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Knight_Oathguard_Sword",
-      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Sword.png"
+      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Sword.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_weapon_family_l10_rare"
+      }
     },
     {
       "proposalId": "knight_weapon_family_l10_epic",
@@ -2092,13 +2192,17 @@
       "slot": "weapon",
       "classId": "knight",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Knight_Oathguard_Sword",
-      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Sword.png"
+      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Sword.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_weapon_family_l10_epic"
+      }
     },
     {
       "proposalId": "knight_weapon_family_l10_legendary",
@@ -2109,13 +2213,17 @@
       "slot": "weapon",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Knight_Oathguard_Sword",
-      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Sword.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Sword.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_weapon_family_l10_legendary"
+      }
     },
     {
       "proposalId": "knight_weapon_family_l10_unique",
@@ -2174,13 +2282,17 @@
       "slot": "head",
       "classId": "knight",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Knight_Oathguard_Headguard",
-      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Headguard.png"
+      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_head_family_l10_rare"
+      }
     },
     {
       "proposalId": "knight_head_family_l10_epic",
@@ -2191,13 +2303,17 @@
       "slot": "head",
       "classId": "knight",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Knight_Oathguard_Headguard",
-      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Headguard.png"
+      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_head_family_l10_epic"
+      }
     },
     {
       "proposalId": "knight_head_family_l10_legendary",
@@ -2208,13 +2324,17 @@
       "slot": "head",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Knight_Oathguard_Headguard",
-      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_head_family_l10_legendary"
+      }
     },
     {
       "proposalId": "knight_head_family_l10_unique",
@@ -2273,13 +2393,17 @@
       "slot": "body",
       "classId": "knight",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Knight_Oathguard_Vestments",
-      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Vestments.png"
+      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_body_family_l10_rare"
+      }
     },
     {
       "proposalId": "knight_body_family_l10_epic",
@@ -2290,13 +2414,17 @@
       "slot": "body",
       "classId": "knight",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Knight_Oathguard_Vestments",
-      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Vestments.png"
+      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_body_family_l10_epic"
+      }
     },
     {
       "proposalId": "knight_body_family_l10_legendary",
@@ -2307,13 +2435,17 @@
       "slot": "body",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Knight_Oathguard_Vestments",
-      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Vestments.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_body_family_l10_legendary"
+      }
     },
     {
       "proposalId": "knight_body_family_l10_unique",
@@ -2372,13 +2504,17 @@
       "slot": "hands",
       "classId": "knight",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Knight_Oathguard_Grips",
-      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Grips.png"
+      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_hands_family_l10_rare"
+      }
     },
     {
       "proposalId": "knight_hands_family_l10_epic",
@@ -2389,13 +2525,17 @@
       "slot": "hands",
       "classId": "knight",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Knight_Oathguard_Grips",
-      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Grips.png"
+      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_hands_family_l10_epic"
+      }
     },
     {
       "proposalId": "knight_hands_family_l10_legendary",
@@ -2406,13 +2546,17 @@
       "slot": "hands",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Knight_Oathguard_Grips",
-      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Grips.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_hands_family_l10_legendary"
+      }
     },
     {
       "proposalId": "knight_hands_family_l10_unique",
@@ -2471,13 +2615,17 @@
       "slot": "feet",
       "classId": "knight",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Knight_Oathguard_Treads",
-      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Treads.png"
+      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_feet_family_l10_rare"
+      }
     },
     {
       "proposalId": "knight_feet_family_l10_epic",
@@ -2488,13 +2636,17 @@
       "slot": "feet",
       "classId": "knight",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Knight_Oathguard_Treads",
-      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Treads.png"
+      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_feet_family_l10_epic"
+      }
     },
     {
       "proposalId": "knight_feet_family_l10_legendary",
@@ -2505,13 +2657,17 @@
       "slot": "feet",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Knight_Oathguard_Treads",
-      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Treads.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_feet_family_l10_legendary"
+      }
     },
     {
       "proposalId": "knight_feet_family_l10_unique",
@@ -2570,13 +2726,17 @@
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Knight_Oathguard_Signet",
-      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Signet.png"
+      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_ring_family_l10_rare"
+      }
     },
     {
       "proposalId": "knight_ring_family_l10_epic",
@@ -2587,13 +2747,17 @@
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Knight_Oathguard_Signet",
-      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Signet.png"
+      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_ring_family_l10_epic"
+      }
     },
     {
       "proposalId": "knight_ring_family_l10_legendary",
@@ -2604,13 +2768,17 @@
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Knight_Oathguard_Signet",
-      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Signet.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_ring_family_l10_legendary"
+      }
     },
     {
       "proposalId": "knight_ring_family_l10_unique",
@@ -2669,13 +2837,17 @@
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Knight_Oathguard_Pendant",
-      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Pendant.png"
+      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_pendant_family_l10_rare"
+      }
     },
     {
       "proposalId": "knight_pendant_family_l10_epic",
@@ -2686,13 +2858,17 @@
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Knight_Oathguard_Pendant",
-      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Pendant.png"
+      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_pendant_family_l10_epic"
+      }
     },
     {
       "proposalId": "knight_pendant_family_l10_legendary",
@@ -2703,13 +2879,17 @@
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Knight_Oathguard_Pendant",
-      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Pendant.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_pendant_family_l10_legendary"
+      }
     },
     {
       "proposalId": "knight_pendant_family_l10_unique",
@@ -2768,13 +2948,17 @@
       "slot": "weapon",
       "classId": "elf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Elf_Briarwatch_Bow",
-      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Bow.png"
+      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Bow.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_weapon_family_l10_rare"
+      }
     },
     {
       "proposalId": "elf_weapon_family_l10_epic",
@@ -2785,13 +2969,17 @@
       "slot": "weapon",
       "classId": "elf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Elf_Briarwatch_Bow",
-      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Bow.png"
+      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Bow.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_weapon_family_l10_epic"
+      }
     },
     {
       "proposalId": "elf_weapon_family_l10_legendary",
@@ -2802,13 +2990,17 @@
       "slot": "weapon",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Elf_Briarwatch_Bow",
-      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Bow.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Bow.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_weapon_family_l10_legendary"
+      }
     },
     {
       "proposalId": "elf_weapon_family_l10_unique",
@@ -2867,13 +3059,17 @@
       "slot": "head",
       "classId": "elf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Elf_Briarwatch_Headguard",
-      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Headguard.png"
+      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_head_family_l10_rare"
+      }
     },
     {
       "proposalId": "elf_head_family_l10_epic",
@@ -2884,13 +3080,17 @@
       "slot": "head",
       "classId": "elf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Elf_Briarwatch_Headguard",
-      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Headguard.png"
+      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_head_family_l10_epic"
+      }
     },
     {
       "proposalId": "elf_head_family_l10_legendary",
@@ -2901,13 +3101,17 @@
       "slot": "head",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Elf_Briarwatch_Headguard",
-      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Headguard.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_head_family_l10_legendary"
+      }
     },
     {
       "proposalId": "elf_head_family_l10_unique",
@@ -2966,13 +3170,17 @@
       "slot": "body",
       "classId": "elf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Elf_Briarwatch_Vestments",
-      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Vestments.png"
+      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_body_family_l10_rare"
+      }
     },
     {
       "proposalId": "elf_body_family_l10_epic",
@@ -2983,13 +3191,17 @@
       "slot": "body",
       "classId": "elf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Elf_Briarwatch_Vestments",
-      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Vestments.png"
+      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_body_family_l10_epic"
+      }
     },
     {
       "proposalId": "elf_body_family_l10_legendary",
@@ -3000,13 +3212,17 @@
       "slot": "body",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Elf_Briarwatch_Vestments",
-      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Vestments.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_body_family_l10_legendary"
+      }
     },
     {
       "proposalId": "elf_body_family_l10_unique",
@@ -3065,13 +3281,17 @@
       "slot": "hands",
       "classId": "elf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Elf_Briarwatch_Grips",
-      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Grips.png"
+      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_hands_family_l10_rare"
+      }
     },
     {
       "proposalId": "elf_hands_family_l10_epic",
@@ -3082,13 +3302,17 @@
       "slot": "hands",
       "classId": "elf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Elf_Briarwatch_Grips",
-      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Grips.png"
+      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_hands_family_l10_epic"
+      }
     },
     {
       "proposalId": "elf_hands_family_l10_legendary",
@@ -3099,13 +3323,17 @@
       "slot": "hands",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Elf_Briarwatch_Grips",
-      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Grips.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_hands_family_l10_legendary"
+      }
     },
     {
       "proposalId": "elf_hands_family_l10_unique",
@@ -3164,13 +3392,17 @@
       "slot": "feet",
       "classId": "elf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Elf_Briarwatch_Treads",
-      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Treads.png"
+      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_feet_family_l10_rare"
+      }
     },
     {
       "proposalId": "elf_feet_family_l10_epic",
@@ -3181,13 +3413,17 @@
       "slot": "feet",
       "classId": "elf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Elf_Briarwatch_Treads",
-      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Treads.png"
+      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_feet_family_l10_epic"
+      }
     },
     {
       "proposalId": "elf_feet_family_l10_legendary",
@@ -3198,13 +3434,17 @@
       "slot": "feet",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Elf_Briarwatch_Treads",
-      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Treads.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_feet_family_l10_legendary"
+      }
     },
     {
       "proposalId": "elf_feet_family_l10_unique",
@@ -3263,13 +3503,17 @@
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Elf_Briarwatch_Signet",
-      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Signet.png"
+      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_ring_family_l10_rare"
+      }
     },
     {
       "proposalId": "elf_ring_family_l10_epic",
@@ -3280,13 +3524,17 @@
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Elf_Briarwatch_Signet",
-      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Signet.png"
+      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_ring_family_l10_epic"
+      }
     },
     {
       "proposalId": "elf_ring_family_l10_legendary",
@@ -3297,13 +3545,17 @@
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Elf_Briarwatch_Signet",
-      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Signet.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_ring_family_l10_legendary"
+      }
     },
     {
       "proposalId": "elf_ring_family_l10_unique",
@@ -3362,13 +3614,17 @@
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Elf_Briarwatch_Pendant",
-      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Pendant.png"
+      "generatedIcon": "generated-rare-v1/Rare_Elf_Briarwatch_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_pendant_family_l10_rare"
+      }
     },
     {
       "proposalId": "elf_pendant_family_l10_epic",
@@ -3379,13 +3635,17 @@
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Elf_Briarwatch_Pendant",
-      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Pendant.png"
+      "generatedIcon": "generated-v1/Epic_Elf_Briarwatch_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_pendant_family_l10_epic"
+      }
     },
     {
       "proposalId": "elf_pendant_family_l10_legendary",
@@ -3396,13 +3656,17 @@
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Elf_Briarwatch_Pendant",
-      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Pendant.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "elf_pendant_family_l10_legendary"
+      }
     },
     {
       "proposalId": "elf_pendant_family_l10_unique",
@@ -3461,13 +3725,17 @@
       "slot": "weapon",
       "classId": "dwarf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Dwarf_Stonehearth_Axe",
-      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Axe.png"
+      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Axe.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_weapon_family_l10_rare"
+      }
     },
     {
       "proposalId": "dwarf_weapon_family_l10_epic",
@@ -3478,13 +3746,17 @@
       "slot": "weapon",
       "classId": "dwarf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Dwarf_Stonehearth_Axe",
-      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Axe.png"
+      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Axe.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_weapon_family_l10_epic"
+      }
     },
     {
       "proposalId": "dwarf_weapon_family_l10_legendary",
@@ -3495,13 +3767,17 @@
       "slot": "weapon",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Dwarf_Stonehearth_Axe",
-      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Axe.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Axe.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_weapon_family_l10_legendary"
+      }
     },
     {
       "proposalId": "dwarf_weapon_family_l10_unique",
@@ -3560,13 +3836,17 @@
       "slot": "head",
       "classId": "dwarf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Dwarf_Stonehearth_Headguard",
-      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Headguard.png"
+      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_head_family_l10_rare"
+      }
     },
     {
       "proposalId": "dwarf_head_family_l10_epic",
@@ -3577,13 +3857,17 @@
       "slot": "head",
       "classId": "dwarf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Dwarf_Stonehearth_Headguard",
-      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Headguard.png"
+      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_head_family_l10_epic"
+      }
     },
     {
       "proposalId": "dwarf_head_family_l10_legendary",
@@ -3594,13 +3878,17 @@
       "slot": "head",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Dwarf_Stonehearth_Headguard",
-      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_head_family_l10_legendary"
+      }
     },
     {
       "proposalId": "dwarf_head_family_l10_unique",
@@ -3659,13 +3947,17 @@
       "slot": "body",
       "classId": "dwarf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Dwarf_Stonehearth_Vestments",
-      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Vestments.png"
+      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_body_family_l10_rare"
+      }
     },
     {
       "proposalId": "dwarf_body_family_l10_epic",
@@ -3676,13 +3968,17 @@
       "slot": "body",
       "classId": "dwarf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Dwarf_Stonehearth_Vestments",
-      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Vestments.png"
+      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_body_family_l10_epic"
+      }
     },
     {
       "proposalId": "dwarf_body_family_l10_legendary",
@@ -3693,13 +3989,17 @@
       "slot": "body",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Dwarf_Stonehearth_Vestments",
-      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Vestments.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_body_family_l10_legendary"
+      }
     },
     {
       "proposalId": "dwarf_body_family_l10_unique",
@@ -3758,13 +4058,17 @@
       "slot": "hands",
       "classId": "dwarf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Dwarf_Stonehearth_Grips",
-      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Grips.png"
+      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_hands_family_l10_rare"
+      }
     },
     {
       "proposalId": "dwarf_hands_family_l10_epic",
@@ -3775,13 +4079,17 @@
       "slot": "hands",
       "classId": "dwarf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Dwarf_Stonehearth_Grips",
-      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Grips.png"
+      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_hands_family_l10_epic"
+      }
     },
     {
       "proposalId": "dwarf_hands_family_l10_legendary",
@@ -3792,13 +4100,17 @@
       "slot": "hands",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Dwarf_Stonehearth_Grips",
-      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Grips.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_hands_family_l10_legendary"
+      }
     },
     {
       "proposalId": "dwarf_hands_family_l10_unique",
@@ -3857,13 +4169,17 @@
       "slot": "feet",
       "classId": "dwarf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Dwarf_Stonehearth_Treads",
-      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Treads.png"
+      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_feet_family_l10_rare"
+      }
     },
     {
       "proposalId": "dwarf_feet_family_l10_epic",
@@ -3874,13 +4190,17 @@
       "slot": "feet",
       "classId": "dwarf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Dwarf_Stonehearth_Treads",
-      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Treads.png"
+      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_feet_family_l10_epic"
+      }
     },
     {
       "proposalId": "dwarf_feet_family_l10_legendary",
@@ -3891,13 +4211,17 @@
       "slot": "feet",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Dwarf_Stonehearth_Treads",
-      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Treads.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_feet_family_l10_legendary"
+      }
     },
     {
       "proposalId": "dwarf_feet_family_l10_unique",
@@ -3956,13 +4280,17 @@
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Dwarf_Stonehearth_Signet",
-      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Signet.png"
+      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_ring_family_l10_rare"
+      }
     },
     {
       "proposalId": "dwarf_ring_family_l10_epic",
@@ -3973,13 +4301,17 @@
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Dwarf_Stonehearth_Signet",
-      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Signet.png"
+      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_ring_family_l10_epic"
+      }
     },
     {
       "proposalId": "dwarf_ring_family_l10_legendary",
@@ -3990,13 +4322,17 @@
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Dwarf_Stonehearth_Signet",
-      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Signet.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_ring_family_l10_legendary"
+      }
     },
     {
       "proposalId": "dwarf_ring_family_l10_unique",
@@ -4055,13 +4391,17 @@
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Dwarf_Stonehearth_Pendant",
-      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Pendant.png"
+      "generatedIcon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_pendant_family_l10_rare"
+      }
     },
     {
       "proposalId": "dwarf_pendant_family_l10_epic",
@@ -4072,13 +4412,17 @@
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Dwarf_Stonehearth_Pendant",
-      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Pendant.png"
+      "generatedIcon": "generated-v1/Epic_Dwarf_Stonehearth_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_pendant_family_l10_epic"
+      }
     },
     {
       "proposalId": "dwarf_pendant_family_l10_legendary",
@@ -4089,13 +4433,17 @@
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Dwarf_Stonehearth_Pendant",
-      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Pendant.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "dwarf_pendant_family_l10_legendary"
+      }
     },
     {
       "proposalId": "dwarf_pendant_family_l10_unique",
@@ -4154,13 +4502,17 @@
       "slot": "weapon",
       "classId": "mage",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Mage_Aetherweave_Staff",
-      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Staff.png"
+      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Staff.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_weapon_family_l10_rare"
+      }
     },
     {
       "proposalId": "mage_weapon_family_l10_epic",
@@ -4171,13 +4523,17 @@
       "slot": "weapon",
       "classId": "mage",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Mage_Aetherweave_Staff",
-      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Staff.png"
+      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Staff.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_weapon_family_l10_epic"
+      }
     },
     {
       "proposalId": "mage_weapon_family_l10_legendary",
@@ -4188,13 +4544,17 @@
       "slot": "weapon",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_weapon_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Mage_Aetherweave_Staff",
-      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Staff.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Staff.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_weapon_family_l10_legendary"
+      }
     },
     {
       "proposalId": "mage_weapon_family_l10_unique",
@@ -4253,13 +4613,17 @@
       "slot": "head",
       "classId": "mage",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Mage_Aetherweave_Headguard",
-      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Headguard.png"
+      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_head_family_l10_rare"
+      }
     },
     {
       "proposalId": "mage_head_family_l10_epic",
@@ -4270,13 +4634,17 @@
       "slot": "head",
       "classId": "mage",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Mage_Aetherweave_Headguard",
-      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Headguard.png"
+      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_head_family_l10_epic"
+      }
     },
     {
       "proposalId": "mage_head_family_l10_legendary",
@@ -4287,13 +4655,17 @@
       "slot": "head",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_head_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Mage_Aetherweave_Headguard",
-      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Headguard.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Headguard.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_head_family_l10_legendary"
+      }
     },
     {
       "proposalId": "mage_head_family_l10_unique",
@@ -4352,13 +4724,17 @@
       "slot": "body",
       "classId": "mage",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Mage_Aetherweave_Vestments",
-      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Vestments.png"
+      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_body_family_l10_rare"
+      }
     },
     {
       "proposalId": "mage_body_family_l10_epic",
@@ -4369,13 +4745,17 @@
       "slot": "body",
       "classId": "mage",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Mage_Aetherweave_Vestments",
-      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Vestments.png"
+      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_body_family_l10_epic"
+      }
     },
     {
       "proposalId": "mage_body_family_l10_legendary",
@@ -4386,13 +4766,17 @@
       "slot": "body",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_body_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Mage_Aetherweave_Vestments",
-      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Vestments.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Vestments.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_body_family_l10_legendary"
+      }
     },
     {
       "proposalId": "mage_body_family_l10_unique",
@@ -4451,13 +4835,17 @@
       "slot": "hands",
       "classId": "mage",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Mage_Aetherweave_Grips",
-      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Grips.png"
+      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_hands_family_l10_rare"
+      }
     },
     {
       "proposalId": "mage_hands_family_l10_epic",
@@ -4468,13 +4856,17 @@
       "slot": "hands",
       "classId": "mage",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Mage_Aetherweave_Grips",
-      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Grips.png"
+      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_hands_family_l10_epic"
+      }
     },
     {
       "proposalId": "mage_hands_family_l10_legendary",
@@ -4485,13 +4877,17 @@
       "slot": "hands",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_hands_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Mage_Aetherweave_Grips",
-      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Grips.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Grips.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_hands_family_l10_legendary"
+      }
     },
     {
       "proposalId": "mage_hands_family_l10_unique",
@@ -4550,13 +4946,17 @@
       "slot": "feet",
       "classId": "mage",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Mage_Aetherweave_Treads",
-      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Treads.png"
+      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_feet_family_l10_rare"
+      }
     },
     {
       "proposalId": "mage_feet_family_l10_epic",
@@ -4567,13 +4967,17 @@
       "slot": "feet",
       "classId": "mage",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Mage_Aetherweave_Treads",
-      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Treads.png"
+      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_feet_family_l10_epic"
+      }
     },
     {
       "proposalId": "mage_feet_family_l10_legendary",
@@ -4584,13 +4988,17 @@
       "slot": "feet",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_feet_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": true,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Mage_Aetherweave_Treads",
-      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Treads.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Treads.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_feet_family_l10_legendary"
+      }
     },
     {
       "proposalId": "mage_feet_family_l10_unique",
@@ -4649,13 +5057,17 @@
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Mage_Aetherweave_Signet",
-      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Signet.png"
+      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_ring_family_l10_rare"
+      }
     },
     {
       "proposalId": "mage_ring_family_l10_epic",
@@ -4666,13 +5078,17 @@
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Mage_Aetherweave_Signet",
-      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Signet.png"
+      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_ring_family_l10_epic"
+      }
     },
     {
       "proposalId": "mage_ring_family_l10_legendary",
@@ -4683,13 +5099,17 @@
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_ring_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Mage_Aetherweave_Signet",
-      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Signet.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Signet.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_ring_family_l10_legendary"
+      }
     },
     {
       "proposalId": "mage_ring_family_l10_unique",
@@ -4748,13 +5168,17 @@
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Mage_Aetherweave_Pendant",
-      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Pendant.png"
+      "generatedIcon": "generated-rare-v1/Rare_Mage_Aetherweave_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_pendant_family_l10_rare"
+      }
     },
     {
       "proposalId": "mage_pendant_family_l10_epic",
@@ -4765,13 +5189,17 @@
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Mage_Aetherweave_Pendant",
-      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Pendant.png"
+      "generatedIcon": "generated-v1/Epic_Mage_Aetherweave_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_pendant_family_l10_epic"
+      }
     },
     {
       "proposalId": "mage_pendant_family_l10_legendary",
@@ -4782,13 +5210,17 @@
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_pendant_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Mage_Aetherweave_Pendant",
-      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Pendant.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "mage_pendant_family_l10_legendary"
+      }
     },
     {
       "proposalId": "mage_pendant_family_l10_unique",
@@ -4847,13 +5279,17 @@
       "slot": "offhand",
       "classId": "knight",
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_shield_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Knight_Oathguard_Shield",
-      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Shield.png"
+      "generatedIcon": "generated-rare-v1/Rare_Knight_Oathguard_Shield.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_shield_family_l10_rare"
+      }
     },
     {
       "proposalId": "knight_shield_family_l10_epic",
@@ -4864,13 +5300,17 @@
       "slot": "offhand",
       "classId": "knight",
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_shield_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Knight_Oathguard_Shield",
-      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Shield.png"
+      "generatedIcon": "generated-v1/Epic_Knight_Oathguard_Shield.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_shield_family_l10_epic"
+      }
     },
     {
       "proposalId": "knight_shield_family_l10_legendary",
@@ -4881,13 +5321,17 @@
       "slot": "offhand",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_shield_family.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Knight_Oathguard_Shield",
-      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Shield.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Knight_Oathguard_Shield.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "knight_shield_family_l10_legendary"
+      }
     },
     {
       "proposalId": "knight_shield_family_l10_unique",
@@ -4946,13 +5390,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_mana_ring.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Mana_Ring",
-      "generatedIcon": "generated-rare-v1/Rare_Mana_Ring.png"
+      "generatedIcon": "generated-rare-v1/Rare_Mana_Ring.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_mana_ring_l10_rare"
+      }
     },
     {
       "proposalId": "common_mana_ring_l10_epic",
@@ -4963,13 +5411,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_mana_ring.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Mana_Ring",
-      "generatedIcon": "generated-v1/Epic_Mana_Ring.png"
+      "generatedIcon": "generated-v1/Epic_Mana_Ring.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_mana_ring_l10_epic"
+      }
     },
     {
       "proposalId": "common_mana_ring_l10_legendary",
@@ -4980,13 +5432,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_mana_ring.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Mana_Ring",
-      "generatedIcon": "generated-legendary-v1/Legendary_Mana_Ring.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Mana_Ring.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_mana_ring_l10_legendary"
+      }
     },
     {
       "proposalId": "common_mana_ring_l10_unique",
@@ -5045,13 +5501,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_arcane_pendant.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Arcane_Reservoir_Pendant",
-      "generatedIcon": "generated-rare-v1/Rare_Arcane_Reservoir_Pendant.png"
+      "generatedIcon": "generated-rare-v1/Rare_Arcane_Reservoir_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_arcane_pendant_l10_rare"
+      }
     },
     {
       "proposalId": "common_arcane_pendant_l10_epic",
@@ -5062,13 +5522,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_arcane_pendant.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Arcane_Reservoir_Pendant",
-      "generatedIcon": "generated-v1/Epic_Arcane_Reservoir_Pendant.png"
+      "generatedIcon": "generated-v1/Epic_Arcane_Reservoir_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_arcane_pendant_l10_epic"
+      }
     },
     {
       "proposalId": "common_arcane_pendant_l10_legendary",
@@ -5079,13 +5543,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_arcane_pendant.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Arcane_Reservoir_Pendant",
-      "generatedIcon": "generated-legendary-v1/Legendary_Arcane_Reservoir_Pendant.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Arcane_Reservoir_Pendant.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_arcane_pendant_l10_legendary"
+      }
     },
     {
       "proposalId": "common_arcane_pendant_l10_unique",
@@ -5144,13 +5612,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.18,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_wellspring_charm.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Rare_Wellspring_Charm",
-      "generatedIcon": "generated-rare-v1/Rare_Wellspring_Charm.png"
+      "generatedIcon": "generated-rare-v1/Rare_Wellspring_Charm.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_wellspring_charm_l10_rare"
+      }
     },
     {
       "proposalId": "common_wellspring_charm_l10_epic",
@@ -5161,13 +5633,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.28,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_wellspring_charm.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Epic_Wellspring_Charm",
-      "generatedIcon": "generated-v1/Epic_Wellspring_Charm.png"
+      "generatedIcon": "generated-v1/Epic_Wellspring_Charm.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_wellspring_charm_l10_epic"
+      }
     },
     {
       "proposalId": "common_wellspring_charm_l10_legendary",
@@ -5178,13 +5654,17 @@
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_wellspring_charm.svg",
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
       "assetName": "Legendary_Wellspring_Charm",
-      "generatedIcon": "generated-legendary-v1/Legendary_Wellspring_Charm.png"
+      "generatedIcon": "generated-legendary-v1/Legendary_Wellspring_Charm.png",
+      "statsPlanRef": {
+        "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+        "proposalId": "common_wellspring_charm_l10_legendary"
+      }
     },
     {
       "proposalId": "common_wellspring_charm_l10_unique",
@@ -5203,5 +5683,10 @@
       "assetName": "Unique_Wellspring_Charm"
     }
   ],
-  "namingConvention": "Rarity_ClassOptional_ItemName (English, underscores); stable runtime IDs are unchanged"
+  "namingConvention": "Rarity_ClassOptional_ItemName (English, underscores); stable runtime IDs are unchanged",
+  "statsPlan": {
+    "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
+    "status": "authored-level10-trial-not-runtime",
+    "itemCount": 120
+  }
 }

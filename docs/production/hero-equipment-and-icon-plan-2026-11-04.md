@@ -117,3 +117,11 @@ QA는 4클래스·8슬롯·클래스/레벨 제한·세트 혼합·장신구 uni
 사용자 요청으로 Epic40개를 개별 참조한 Legendary40종을 추가했다. 기존 클래스/부위/세트 구성을 유지하며 금장·보석·문장·방어판으로 상위 외형을 구분한다. 이름은 `Legendary_Knight_Oathguard_Sword`, 공통품은 `Legendary_Mana_Ring` 형태다. [세 등급120종 비교](../../assets/concepts/2026-11-04-equipment-icons/comparison.html)와 [제작·검증 기록](../../assets/concepts/2026-11-04-equipment-icons/generated-legendary-v1/README.md)을 따른다.
 
 동일 착용레벨/동일 부위 기본 예산은 기존 제안 Epic1.28 → Legendary1.40으로 약9.375% 높다. 실제 스탯을 일괄 올린 확정값이나 게임 성능 검증이 아니며 품목별 배분/반올림/드롭 연동은 후속이다. 등급별 최소Lv를 새로 확정하지 않는다. +9·Power/Armor/Health만 강화·MP 비강화 계약을 보존하고 추가 세트 보너스/고정 효과는 만들지 않는다. 실제120PNG·240제안ID 연결과 해시/경로를 정적으로 검증했으며 런타임 아이템120개가 구현됐다고 간주하지 않는다.
+
+## 2026-11-04 저장 및 구현 인계
+
+Rare/Epic/Legendary120PNG를 보존하고 [장비 구현 계획 E01~E08](equipment-implementation-plan-2026-11-04.md)을 연결한다. MP/세트·강화·보스 내구성 지급·TD UI·게시/실기기 수용의 선행 조건과 코드 경로를 명시했다. 실제 정의120개/효과/드롭의 구현 완료로 상태를 올리지 않는다. 다음은 PLAN/ENG의 E01 첫 세대 스탯·착용Lv·안정ID 대응표 확정이다.
+
+## 2026-11-04 개별 능력치 추가
+
+[120종 능력치 계획](equipment-item-stats-2026-11-04.md)과 [JSON](../../assets/balance/equipment-stats-plan-2026-11-04.json)에 Lv10 시험 세대의 Rare/Epic/Legendary 각40개 기본치/+9·세트·중복 조건을 작성했다. 앞선 Common 환산 마나 초안은 Mana Ring MP20/Armor2, Arcane Reservoir Pendant MP30, Wellspring Charm MP15/HP60 제안으로 구체화한다. 실제 착용Lv/서버 카탈로그·드롭은 후속이며 모든 등급 최소Lv10을 확정하지 않는다. 세트 문턱은 기존2/4/5부위를 유지한다.

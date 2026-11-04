@@ -1,5 +1,11 @@
 # 현재 기획 결정과 미확정 항목
 
+> **2026-11-04 개별 아이템 능력치 계획 · TLT-027/028/029/041/043/044/045/052/073/082/084:** [120종 기본/+9·마나·세트 수치표](production/equipment-item-stats-2026-11-04.md)와 [수치 JSON](../assets/balance/equipment-stats-plan-2026-11-04.json)을 작성했다. 40계열×Rare/Epic/Legendary의 Lv10 시험안이며 최소 착용Lv/실측 밸런스·런타임 구현은 후속이다. 세트2/4/5부위·MP 비강화를 보존한다.
+
+
+> **2026-11-04 장비 저장 및 구현 계획 · TLT-028/029/041/043/044/045/052/073/082/084:** Rare/Epic/Legendary120PNG의 저장을 확인하고 [E01~E08 구현 계획](production/equipment-implementation-plan-2026-11-04.md)을 작성했다. 첫 세대 정의→자산 등록→MP/장착→세트/강화→보스 지급/복구→Deepwood 시범→전체 확장 순서다. 이번에는 계획만 저장했으며 게임 구현/게시·부모 티켓 수용은 후속이다.
+
+
 > **2026-11-04 Legendary40 추가 · TLT-028/029/052/084:** Epic40을 참조한 상위 외형40종을 생성했다. Rare/Epic/Legendary 각40종·총120PNG와 [등급 비교](../assets/concepts/2026-11-04-equipment-icons/comparison.html)를 제공한다. 동일 레벨/부위 예산1.28→1.40(약9.375% 증가)은 기존 제안이며 착용Lv·실제 능력치/게임 연결·최종 미술 수용은 후속이다. [제작·검증](../assets/concepts/2026-11-04-equipment-icons/generated-legendary-v1/README.md).
 
 

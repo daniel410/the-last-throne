@@ -1,0 +1,3866 @@
+{
+  "version": 1,
+  "date": "2026-11-04",
+  "status": "proposed-level10-stats-not-runtime",
+  "sourceManifest": "assets/concepts/2026-11-04-equipment-icons/manifest.json",
+  "rarityBudgetRatios": {
+    "Rare": 1.18,
+    "Epic": 1.28,
+    "Legendary": 1.4
+  },
+  "budgetWeights": {
+    "power": 1,
+    "armor": 2,
+    "health": 0.1,
+    "maxMana": 0.4
+  },
+  "slotBudgets": {
+    "weapon": 21,
+    "offhand": 14,
+    "head": 12,
+    "body": 20,
+    "hands": 10,
+    "feet": 12,
+    "accessory": 12
+  },
+  "setBudgetFactor": 0.97,
+  "setThresholds": [
+    2,
+    4,
+    5
+  ],
+  "setBonuses": {
+    "2": {
+      "healthFractionOfPreSetMaxHealth": 0.02
+    },
+    "4": {
+      "armorFractionOfEnhancedEquipmentArmor": 0.02
+    },
+    "5": {
+      "powerFractionOfEnhancedEquipmentPower": 0.02
+    }
+  },
+  "families": [
+    {
+      "familyId": "common_head",
+      "baseName": "Wayfarer Hood",
+      "classId": null,
+      "slot": "head",
+      "commonEquivalentStats": {
+        "armor": 6
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "common_body",
+      "baseName": "Wayfarer Coat",
+      "classId": null,
+      "slot": "body",
+      "commonEquivalentStats": {
+        "armor": 5,
+        "health": 100
+      },
+      "normalizedBudget": 20.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "common_hands",
+      "baseName": "Wayfarer Gloves",
+      "classId": null,
+      "slot": "hands",
+      "commonEquivalentStats": {
+        "power": 6,
+        "armor": 2
+      },
+      "normalizedBudget": 10.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "common_feet",
+      "baseName": "Wayfarer Boots",
+      "classId": null,
+      "slot": "feet",
+      "commonEquivalentStats": {
+        "armor": 4,
+        "health": 40
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "common_vigor_ring",
+      "baseName": "Vigor Ring",
+      "classId": null,
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "health": 120
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "common_vigor_ring"
+    },
+    {
+      "familyId": "common_ward_pendant",
+      "baseName": "Ward Pendant",
+      "classId": null,
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "armor": 6
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "common_ward_pendant"
+    },
+    {
+      "familyId": "common_valor_ring",
+      "baseName": "Valor Ring",
+      "classId": null,
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "power": 12
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "common_valor_ring"
+    },
+    {
+      "familyId": "common_refuge_charm",
+      "baseName": "Refuge Charm",
+      "classId": null,
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "armor": 3,
+        "health": 60
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "common_refuge_charm"
+    },
+    {
+      "familyId": "knight_weapon_family",
+      "baseName": "Oathguard Sword",
+      "classId": "knight",
+      "slot": "weapon",
+      "commonEquivalentStats": {
+        "power": 18,
+        "health": 30
+      },
+      "normalizedBudget": 21.0,
+      "setName": "Oathguard Bastion",
+      "setPieceId": "weapon",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "knight_head_family",
+      "baseName": "Oathguard Headguard",
+      "classId": "knight",
+      "slot": "head",
+      "commonEquivalentStats": {
+        "armor": 5,
+        "health": 20
+      },
+      "normalizedBudget": 12.0,
+      "setName": "Oathguard Bastion",
+      "setPieceId": "head",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "knight_body_family",
+      "baseName": "Oathguard Vestments",
+      "classId": "knight",
+      "slot": "body",
+      "commonEquivalentStats": {
+        "armor": 7,
+        "health": 60
+      },
+      "normalizedBudget": 20.0,
+      "setName": "Oathguard Bastion",
+      "setPieceId": "body",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "knight_hands_family",
+      "baseName": "Oathguard Grips",
+      "classId": "knight",
+      "slot": "hands",
+      "commonEquivalentStats": {
+        "power": 4,
+        "armor": 2,
+        "health": 20
+      },
+      "normalizedBudget": 10.0,
+      "setName": "Oathguard Bastion",
+      "setPieceId": "hands",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "knight_feet_family",
+      "baseName": "Oathguard Treads",
+      "classId": "knight",
+      "slot": "feet",
+      "commonEquivalentStats": {
+        "armor": 4,
+        "health": 40
+      },
+      "normalizedBudget": 12.0,
+      "setName": "Oathguard Bastion",
+      "setPieceId": "feet",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "knight_ring_family",
+      "baseName": "Oathguard Signet",
+      "classId": "knight",
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "power": 4,
+        "health": 80
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "knight_ring_family"
+    },
+    {
+      "familyId": "knight_pendant_family",
+      "baseName": "Oathguard Pendant",
+      "classId": "knight",
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "armor": 4,
+        "health": 40
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "knight_pendant_family"
+    },
+    {
+      "familyId": "elf_weapon_family",
+      "baseName": "Briarwatch Bow",
+      "classId": "elf",
+      "slot": "weapon",
+      "commonEquivalentStats": {
+        "power": 21
+      },
+      "normalizedBudget": 21.0,
+      "setName": "Briarwatch Vigil",
+      "setPieceId": "weapon",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "elf_head_family",
+      "baseName": "Briarwatch Headguard",
+      "classId": "elf",
+      "slot": "head",
+      "commonEquivalentStats": {
+        "power": 4,
+        "armor": 4
+      },
+      "normalizedBudget": 12.0,
+      "setName": "Briarwatch Vigil",
+      "setPieceId": "head",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "elf_body_family",
+      "baseName": "Briarwatch Vestments",
+      "classId": "elf",
+      "slot": "body",
+      "commonEquivalentStats": {
+        "armor": 6,
+        "health": 80
+      },
+      "normalizedBudget": 20.0,
+      "setName": "Briarwatch Vigil",
+      "setPieceId": "body",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "elf_hands_family",
+      "baseName": "Briarwatch Grips",
+      "classId": "elf",
+      "slot": "hands",
+      "commonEquivalentStats": {
+        "power": 8,
+        "armor": 1
+      },
+      "normalizedBudget": 10.0,
+      "setName": "Briarwatch Vigil",
+      "setPieceId": "hands",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "elf_feet_family",
+      "baseName": "Briarwatch Treads",
+      "classId": "elf",
+      "slot": "feet",
+      "commonEquivalentStats": {
+        "power": 2,
+        "armor": 3,
+        "health": 40
+      },
+      "normalizedBudget": 12.0,
+      "setName": "Briarwatch Vigil",
+      "setPieceId": "feet",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "elf_ring_family",
+      "baseName": "Briarwatch Signet",
+      "classId": "elf",
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "power": 10,
+        "health": 20
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "elf_ring_family"
+    },
+    {
+      "familyId": "elf_pendant_family",
+      "baseName": "Briarwatch Pendant",
+      "classId": "elf",
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "power": 4,
+        "armor": 4
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "elf_pendant_family"
+    },
+    {
+      "familyId": "dwarf_weapon_family",
+      "baseName": "Stonehearth Axe",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "commonEquivalentStats": {
+        "power": 20,
+        "health": 10
+      },
+      "normalizedBudget": 21.0,
+      "setName": "Stonehearth Resolve",
+      "setPieceId": "weapon",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "dwarf_head_family",
+      "baseName": "Stonehearth Headguard",
+      "classId": "dwarf",
+      "slot": "head",
+      "commonEquivalentStats": {
+        "armor": 4,
+        "health": 40
+      },
+      "normalizedBudget": 12.0,
+      "setName": "Stonehearth Resolve",
+      "setPieceId": "head",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "dwarf_body_family",
+      "baseName": "Stonehearth Vestments",
+      "classId": "dwarf",
+      "slot": "body",
+      "commonEquivalentStats": {
+        "armor": 5,
+        "health": 100
+      },
+      "normalizedBudget": 20.0,
+      "setName": "Stonehearth Resolve",
+      "setPieceId": "body",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "dwarf_hands_family",
+      "baseName": "Stonehearth Grips",
+      "classId": "dwarf",
+      "slot": "hands",
+      "commonEquivalentStats": {
+        "power": 6,
+        "armor": 2
+      },
+      "normalizedBudget": 10.0,
+      "setName": "Stonehearth Resolve",
+      "setPieceId": "hands",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "dwarf_feet_family",
+      "baseName": "Stonehearth Treads",
+      "classId": "dwarf",
+      "slot": "feet",
+      "commonEquivalentStats": {
+        "armor": 3,
+        "health": 60
+      },
+      "normalizedBudget": 12.0,
+      "setName": "Stonehearth Resolve",
+      "setPieceId": "feet",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "dwarf_ring_family",
+      "baseName": "Stonehearth Signet",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "power": 8,
+        "armor": 2
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "dwarf_ring_family"
+    },
+    {
+      "familyId": "dwarf_pendant_family",
+      "baseName": "Stonehearth Pendant",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "armor": 2,
+        "health": 80
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "dwarf_pendant_family"
+    },
+    {
+      "familyId": "mage_weapon_family",
+      "baseName": "Aetherweave Staff",
+      "classId": "mage",
+      "slot": "weapon",
+      "commonEquivalentStats": {
+        "power": 17,
+        "maxMana": 10
+      },
+      "normalizedBudget": 21.0,
+      "setName": "Aetherweave Constellation",
+      "setPieceId": "weapon",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "mage_head_family",
+      "baseName": "Aetherweave Headguard",
+      "classId": "mage",
+      "slot": "head",
+      "commonEquivalentStats": {
+        "armor": 3,
+        "maxMana": 15
+      },
+      "normalizedBudget": 12.0,
+      "setName": "Aetherweave Constellation",
+      "setPieceId": "head",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "mage_body_family",
+      "baseName": "Aetherweave Vestments",
+      "classId": "mage",
+      "slot": "body",
+      "commonEquivalentStats": {
+        "armor": 5,
+        "health": 60,
+        "maxMana": 10
+      },
+      "normalizedBudget": 20.0,
+      "setName": "Aetherweave Constellation",
+      "setPieceId": "body",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "mage_hands_family",
+      "baseName": "Aetherweave Grips",
+      "classId": "mage",
+      "slot": "hands",
+      "commonEquivalentStats": {
+        "power": 6,
+        "maxMana": 10
+      },
+      "normalizedBudget": 10.0,
+      "setName": "Aetherweave Constellation",
+      "setPieceId": "hands",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "mage_feet_family",
+      "baseName": "Aetherweave Treads",
+      "classId": "mage",
+      "slot": "feet",
+      "commonEquivalentStats": {
+        "armor": 3,
+        "health": 20,
+        "maxMana": 10
+      },
+      "normalizedBudget": 12.0,
+      "setName": "Aetherweave Constellation",
+      "setPieceId": "feet",
+      "setBudgetFactor": 0.97,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "mage_ring_family",
+      "baseName": "Aetherweave Signet",
+      "classId": "mage",
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "power": 8,
+        "maxMana": 10
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "mage_ring_family"
+    },
+    {
+      "familyId": "mage_pendant_family",
+      "baseName": "Aetherweave Pendant",
+      "classId": "mage",
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "maxMana": 20,
+        "health": 40
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "mage_pendant_family"
+    },
+    {
+      "familyId": "knight_shield_family",
+      "baseName": "Oathguard Shield",
+      "classId": "knight",
+      "slot": "offhand",
+      "commonEquivalentStats": {
+        "armor": 7
+      },
+      "normalizedBudget": 14.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": null
+    },
+    {
+      "familyId": "common_mana_ring",
+      "baseName": "Mana Ring",
+      "classId": null,
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "maxMana": 20,
+        "armor": 2
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "common_mana_ring"
+    },
+    {
+      "familyId": "common_arcane_pendant",
+      "baseName": "Arcane Reservoir Pendant",
+      "classId": null,
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "maxMana": 30
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "common_arcane_pendant"
+    },
+    {
+      "familyId": "common_wellspring_charm",
+      "baseName": "Wellspring Charm",
+      "classId": null,
+      "slot": "accessory",
+      "commonEquivalentStats": {
+        "maxMana": 15,
+        "health": 60
+      },
+      "normalizedBudget": 12.0,
+      "setName": null,
+      "setPieceId": null,
+      "setBudgetFactor": 1,
+      "uniqueGroup": "common_wellspring_charm"
+    }
+  ],
+  "items": [
+    {
+      "proposalId": "common_head_l10_rare",
+      "candidateDefinitionId": "gear_common_head_t10_rare",
+      "name": "Rare_Wayfarer_Hood",
+      "familyId": "common_head",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "head",
+      "stats": {
+        "armor": 7.08
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.9916
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Wayfarer_Hood.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_head_l10_epic",
+      "candidateDefinitionId": "gear_common_head_t10_epic",
+      "name": "Epic_Wayfarer_Hood",
+      "familyId": "common_head",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "head",
+      "stats": {
+        "armor": 7.68
+      },
+      "statsAtEnhancement9": {
+        "armor": 9.7536
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Wayfarer_Hood.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_head_l10_legendary",
+      "candidateDefinitionId": "gear_common_head_t10_legendary",
+      "name": "Legendary_Wayfarer_Hood",
+      "familyId": "common_head",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "head",
+      "stats": {
+        "armor": 8.4
+      },
+      "statsAtEnhancement9": {
+        "armor": 10.668
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Wayfarer_Hood.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_body_l10_rare",
+      "candidateDefinitionId": "gear_common_body_t10_rare",
+      "name": "Rare_Wayfarer_Coat",
+      "familyId": "common_body",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "body",
+      "stats": {
+        "armor": 5.9,
+        "health": 118.0
+      },
+      "statsAtEnhancement9": {
+        "armor": 7.493,
+        "health": 149.86
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Wayfarer_Coat.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_body_l10_epic",
+      "candidateDefinitionId": "gear_common_body_t10_epic",
+      "name": "Epic_Wayfarer_Coat",
+      "familyId": "common_body",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "body",
+      "stats": {
+        "armor": 6.4,
+        "health": 128.0
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.128,
+        "health": 162.56
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Wayfarer_Coat.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_body_l10_legendary",
+      "candidateDefinitionId": "gear_common_body_t10_legendary",
+      "name": "Legendary_Wayfarer_Coat",
+      "familyId": "common_body",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "body",
+      "stats": {
+        "armor": 7.0,
+        "health": 140.0
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.89,
+        "health": 177.8
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Wayfarer_Coat.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_hands_l10_rare",
+      "candidateDefinitionId": "gear_common_hands_t10_rare",
+      "name": "Rare_Wayfarer_Gloves",
+      "familyId": "common_hands",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "hands",
+      "stats": {
+        "power": 7.08,
+        "armor": 2.36
+      },
+      "statsAtEnhancement9": {
+        "power": 8.9916,
+        "armor": 2.9972
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Wayfarer_Gloves.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_hands_l10_epic",
+      "candidateDefinitionId": "gear_common_hands_t10_epic",
+      "name": "Epic_Wayfarer_Gloves",
+      "familyId": "common_hands",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "hands",
+      "stats": {
+        "power": 7.68,
+        "armor": 2.56
+      },
+      "statsAtEnhancement9": {
+        "power": 9.7536,
+        "armor": 3.2512
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Wayfarer_Gloves.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_hands_l10_legendary",
+      "candidateDefinitionId": "gear_common_hands_t10_legendary",
+      "name": "Legendary_Wayfarer_Gloves",
+      "familyId": "common_hands",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "hands",
+      "stats": {
+        "power": 8.4,
+        "armor": 2.8
+      },
+      "statsAtEnhancement9": {
+        "power": 10.668,
+        "armor": 3.556
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Wayfarer_Gloves.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_feet_l10_rare",
+      "candidateDefinitionId": "gear_common_feet_t10_rare",
+      "name": "Rare_Wayfarer_Boots",
+      "familyId": "common_feet",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "feet",
+      "stats": {
+        "armor": 4.72,
+        "health": 47.2
+      },
+      "statsAtEnhancement9": {
+        "armor": 5.9944,
+        "health": 59.944
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Wayfarer_Boots.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_feet_l10_epic",
+      "candidateDefinitionId": "gear_common_feet_t10_epic",
+      "name": "Epic_Wayfarer_Boots",
+      "familyId": "common_feet",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "feet",
+      "stats": {
+        "armor": 5.12,
+        "health": 51.2
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.5024,
+        "health": 65.024
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Wayfarer_Boots.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_feet_l10_legendary",
+      "candidateDefinitionId": "gear_common_feet_t10_legendary",
+      "name": "Legendary_Wayfarer_Boots",
+      "familyId": "common_feet",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "feet",
+      "stats": {
+        "armor": 5.6,
+        "health": 56.0
+      },
+      "statsAtEnhancement9": {
+        "armor": 7.112,
+        "health": 71.12
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Wayfarer_Boots.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_vigor_ring_l10_rare",
+      "candidateDefinitionId": "gear_common_vigor_ring_t10_rare",
+      "name": "Rare_Vigor_Ring",
+      "familyId": "common_vigor_ring",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "health": 141.6
+      },
+      "statsAtEnhancement9": {
+        "health": 179.832
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_vigor_ring",
+      "icon": "generated-rare-v1/Rare_Vigor_Ring.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_vigor_ring_l10_epic",
+      "candidateDefinitionId": "gear_common_vigor_ring_t10_epic",
+      "name": "Epic_Vigor_Ring",
+      "familyId": "common_vigor_ring",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "health": 153.6
+      },
+      "statsAtEnhancement9": {
+        "health": 195.072
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_vigor_ring",
+      "icon": "generated-v1/Epic_Vigor_Ring.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_vigor_ring_l10_legendary",
+      "candidateDefinitionId": "gear_common_vigor_ring_t10_legendary",
+      "name": "Legendary_Vigor_Ring",
+      "familyId": "common_vigor_ring",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "health": 168.0
+      },
+      "statsAtEnhancement9": {
+        "health": 213.36
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_vigor_ring",
+      "icon": "generated-legendary-v1/Legendary_Vigor_Ring.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_ward_pendant_l10_rare",
+      "candidateDefinitionId": "gear_common_ward_pendant_t10_rare",
+      "name": "Rare_Ward_Pendant",
+      "familyId": "common_ward_pendant",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "armor": 7.08
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.9916
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_ward_pendant",
+      "icon": "generated-rare-v1/Rare_Ward_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_ward_pendant_l10_epic",
+      "candidateDefinitionId": "gear_common_ward_pendant_t10_epic",
+      "name": "Epic_Ward_Pendant",
+      "familyId": "common_ward_pendant",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "armor": 7.68
+      },
+      "statsAtEnhancement9": {
+        "armor": 9.7536
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_ward_pendant",
+      "icon": "generated-v1/Epic_Ward_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_ward_pendant_l10_legendary",
+      "candidateDefinitionId": "gear_common_ward_pendant_t10_legendary",
+      "name": "Legendary_Ward_Pendant",
+      "familyId": "common_ward_pendant",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "armor": 8.4
+      },
+      "statsAtEnhancement9": {
+        "armor": 10.668
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_ward_pendant",
+      "icon": "generated-legendary-v1/Legendary_Ward_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_valor_ring_l10_rare",
+      "candidateDefinitionId": "gear_common_valor_ring_t10_rare",
+      "name": "Rare_Valor_Ring",
+      "familyId": "common_valor_ring",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "power": 14.16
+      },
+      "statsAtEnhancement9": {
+        "power": 17.9832
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_valor_ring",
+      "icon": "generated-rare-v1/Rare_Valor_Ring.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_valor_ring_l10_epic",
+      "candidateDefinitionId": "gear_common_valor_ring_t10_epic",
+      "name": "Epic_Valor_Ring",
+      "familyId": "common_valor_ring",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "power": 15.36
+      },
+      "statsAtEnhancement9": {
+        "power": 19.5072
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_valor_ring",
+      "icon": "generated-v1/Epic_Valor_Ring.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_valor_ring_l10_legendary",
+      "candidateDefinitionId": "gear_common_valor_ring_t10_legendary",
+      "name": "Legendary_Valor_Ring",
+      "familyId": "common_valor_ring",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "power": 16.8
+      },
+      "statsAtEnhancement9": {
+        "power": 21.336
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_valor_ring",
+      "icon": "generated-legendary-v1/Legendary_Valor_Ring.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_refuge_charm_l10_rare",
+      "candidateDefinitionId": "gear_common_refuge_charm_t10_rare",
+      "name": "Rare_Refuge_Charm",
+      "familyId": "common_refuge_charm",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "armor": 3.54,
+        "health": 70.8
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.4958,
+        "health": 89.916
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_refuge_charm",
+      "icon": "generated-rare-v1/Rare_Refuge_Charm.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_refuge_charm_l10_epic",
+      "candidateDefinitionId": "gear_common_refuge_charm_t10_epic",
+      "name": "Epic_Refuge_Charm",
+      "familyId": "common_refuge_charm",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "armor": 3.84,
+        "health": 76.8
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.8768,
+        "health": 97.536
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_refuge_charm",
+      "icon": "generated-v1/Epic_Refuge_Charm.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_refuge_charm_l10_legendary",
+      "candidateDefinitionId": "gear_common_refuge_charm_t10_legendary",
+      "name": "Legendary_Refuge_Charm",
+      "familyId": "common_refuge_charm",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "armor": 4.2,
+        "health": 84.0
+      },
+      "statsAtEnhancement9": {
+        "armor": 5.334,
+        "health": 106.68
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_refuge_charm",
+      "icon": "generated-legendary-v1/Legendary_Refuge_Charm.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_weapon_family_l10_rare",
+      "candidateDefinitionId": "gear_knight_weapon_family_t10_rare",
+      "name": "Rare_Knight_Oathguard_Sword",
+      "familyId": "knight_weapon_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "weapon",
+      "stats": {
+        "power": 20.6028,
+        "health": 34.338
+      },
+      "statsAtEnhancement9": {
+        "power": 26.165556,
+        "health": 43.60926
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_rare",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Knight_Oathguard_Sword.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_weapon_family_l10_epic",
+      "candidateDefinitionId": "gear_knight_weapon_family_t10_epic",
+      "name": "Epic_Knight_Oathguard_Sword",
+      "familyId": "knight_weapon_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "weapon",
+      "stats": {
+        "power": 22.3488,
+        "health": 37.248
+      },
+      "statsAtEnhancement9": {
+        "power": 28.382976,
+        "health": 47.30496
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_epic",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Knight_Oathguard_Sword.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_weapon_family_l10_legendary",
+      "candidateDefinitionId": "gear_knight_weapon_family_t10_legendary",
+      "name": "Legendary_Knight_Oathguard_Sword",
+      "familyId": "knight_weapon_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "weapon",
+      "stats": {
+        "power": 24.444,
+        "health": 40.74
+      },
+      "statsAtEnhancement9": {
+        "power": 31.04388,
+        "health": 51.7398
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_legendary",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Knight_Oathguard_Sword.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_head_family_l10_rare",
+      "candidateDefinitionId": "gear_knight_head_family_t10_rare",
+      "name": "Rare_Knight_Oathguard_Headguard",
+      "familyId": "knight_head_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "head",
+      "stats": {
+        "armor": 5.723,
+        "health": 22.892
+      },
+      "statsAtEnhancement9": {
+        "armor": 7.26821,
+        "health": 29.07284
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_rare",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Knight_Oathguard_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_head_family_l10_epic",
+      "candidateDefinitionId": "gear_knight_head_family_t10_epic",
+      "name": "Epic_Knight_Oathguard_Headguard",
+      "familyId": "knight_head_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "head",
+      "stats": {
+        "armor": 6.208,
+        "health": 24.832
+      },
+      "statsAtEnhancement9": {
+        "armor": 7.88416,
+        "health": 31.53664
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_epic",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Knight_Oathguard_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_head_family_l10_legendary",
+      "candidateDefinitionId": "gear_knight_head_family_t10_legendary",
+      "name": "Legendary_Knight_Oathguard_Headguard",
+      "familyId": "knight_head_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "head",
+      "stats": {
+        "armor": 6.79,
+        "health": 27.16
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.6233,
+        "health": 34.4932
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_legendary",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_body_family_l10_rare",
+      "candidateDefinitionId": "gear_knight_body_family_t10_rare",
+      "name": "Rare_Knight_Oathguard_Vestments",
+      "familyId": "knight_body_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "body",
+      "stats": {
+        "armor": 8.0122,
+        "health": 68.676
+      },
+      "statsAtEnhancement9": {
+        "armor": 10.175494,
+        "health": 87.21852
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_rare",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Knight_Oathguard_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_body_family_l10_epic",
+      "candidateDefinitionId": "gear_knight_body_family_t10_epic",
+      "name": "Epic_Knight_Oathguard_Vestments",
+      "familyId": "knight_body_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "body",
+      "stats": {
+        "armor": 8.6912,
+        "health": 74.496
+      },
+      "statsAtEnhancement9": {
+        "armor": 11.037824,
+        "health": 94.60992
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_epic",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Knight_Oathguard_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_body_family_l10_legendary",
+      "candidateDefinitionId": "gear_knight_body_family_t10_legendary",
+      "name": "Legendary_Knight_Oathguard_Vestments",
+      "familyId": "knight_body_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "body",
+      "stats": {
+        "armor": 9.506,
+        "health": 81.48
+      },
+      "statsAtEnhancement9": {
+        "armor": 12.07262,
+        "health": 103.4796
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_legendary",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Knight_Oathguard_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_hands_family_l10_rare",
+      "candidateDefinitionId": "gear_knight_hands_family_t10_rare",
+      "name": "Rare_Knight_Oathguard_Grips",
+      "familyId": "knight_hands_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "hands",
+      "stats": {
+        "power": 4.5784,
+        "armor": 2.2892,
+        "health": 22.892
+      },
+      "statsAtEnhancement9": {
+        "power": 5.814568,
+        "armor": 2.907284,
+        "health": 29.07284
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_rare",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Knight_Oathguard_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_hands_family_l10_epic",
+      "candidateDefinitionId": "gear_knight_hands_family_t10_epic",
+      "name": "Epic_Knight_Oathguard_Grips",
+      "familyId": "knight_hands_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "hands",
+      "stats": {
+        "power": 4.9664,
+        "armor": 2.4832,
+        "health": 24.832
+      },
+      "statsAtEnhancement9": {
+        "power": 6.307328,
+        "armor": 3.153664,
+        "health": 31.53664
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_epic",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Knight_Oathguard_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_hands_family_l10_legendary",
+      "candidateDefinitionId": "gear_knight_hands_family_t10_legendary",
+      "name": "Legendary_Knight_Oathguard_Grips",
+      "familyId": "knight_hands_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "hands",
+      "stats": {
+        "power": 5.432,
+        "armor": 2.716,
+        "health": 27.16
+      },
+      "statsAtEnhancement9": {
+        "power": 6.89864,
+        "armor": 3.44932,
+        "health": 34.4932
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_legendary",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Knight_Oathguard_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_feet_family_l10_rare",
+      "candidateDefinitionId": "gear_knight_feet_family_t10_rare",
+      "name": "Rare_Knight_Oathguard_Treads",
+      "familyId": "knight_feet_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "feet",
+      "stats": {
+        "armor": 4.5784,
+        "health": 45.784
+      },
+      "statsAtEnhancement9": {
+        "armor": 5.814568,
+        "health": 58.14568
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_rare",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Knight_Oathguard_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_feet_family_l10_epic",
+      "candidateDefinitionId": "gear_knight_feet_family_t10_epic",
+      "name": "Epic_Knight_Oathguard_Treads",
+      "familyId": "knight_feet_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "feet",
+      "stats": {
+        "armor": 4.9664,
+        "health": 49.664
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.307328,
+        "health": 63.07328
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_epic",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Knight_Oathguard_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_feet_family_l10_legendary",
+      "candidateDefinitionId": "gear_knight_feet_family_t10_legendary",
+      "name": "Legendary_Knight_Oathguard_Treads",
+      "familyId": "knight_feet_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "feet",
+      "stats": {
+        "armor": 5.432,
+        "health": 54.32
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.89864,
+        "health": 68.9864
+      },
+      "enhancementSupported": true,
+      "setName": "Oathguard Bastion",
+      "setId": "knight_t10_legendary",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Knight_Oathguard_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_ring_family_l10_rare",
+      "candidateDefinitionId": "gear_knight_ring_family_t10_rare",
+      "name": "Rare_Knight_Oathguard_Signet",
+      "familyId": "knight_ring_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "accessory",
+      "stats": {
+        "power": 4.72,
+        "health": 94.4
+      },
+      "statsAtEnhancement9": {
+        "power": 5.9944,
+        "health": 119.888
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "knight_ring_family",
+      "icon": "generated-rare-v1/Rare_Knight_Oathguard_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_ring_family_l10_epic",
+      "candidateDefinitionId": "gear_knight_ring_family_t10_epic",
+      "name": "Epic_Knight_Oathguard_Signet",
+      "familyId": "knight_ring_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "accessory",
+      "stats": {
+        "power": 5.12,
+        "health": 102.4
+      },
+      "statsAtEnhancement9": {
+        "power": 6.5024,
+        "health": 130.048
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "knight_ring_family",
+      "icon": "generated-v1/Epic_Knight_Oathguard_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_ring_family_l10_legendary",
+      "candidateDefinitionId": "gear_knight_ring_family_t10_legendary",
+      "name": "Legendary_Knight_Oathguard_Signet",
+      "familyId": "knight_ring_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "accessory",
+      "stats": {
+        "power": 5.6,
+        "health": 112.0
+      },
+      "statsAtEnhancement9": {
+        "power": 7.112,
+        "health": 142.24
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "knight_ring_family",
+      "icon": "generated-legendary-v1/Legendary_Knight_Oathguard_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_pendant_family_l10_rare",
+      "candidateDefinitionId": "gear_knight_pendant_family_t10_rare",
+      "name": "Rare_Knight_Oathguard_Pendant",
+      "familyId": "knight_pendant_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "accessory",
+      "stats": {
+        "armor": 4.72,
+        "health": 47.2
+      },
+      "statsAtEnhancement9": {
+        "armor": 5.9944,
+        "health": 59.944
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "knight_pendant_family",
+      "icon": "generated-rare-v1/Rare_Knight_Oathguard_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_pendant_family_l10_epic",
+      "candidateDefinitionId": "gear_knight_pendant_family_t10_epic",
+      "name": "Epic_Knight_Oathguard_Pendant",
+      "familyId": "knight_pendant_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "accessory",
+      "stats": {
+        "armor": 5.12,
+        "health": 51.2
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.5024,
+        "health": 65.024
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "knight_pendant_family",
+      "icon": "generated-v1/Epic_Knight_Oathguard_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_pendant_family_l10_legendary",
+      "candidateDefinitionId": "gear_knight_pendant_family_t10_legendary",
+      "name": "Legendary_Knight_Oathguard_Pendant",
+      "familyId": "knight_pendant_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "accessory",
+      "stats": {
+        "armor": 5.6,
+        "health": 56.0
+      },
+      "statsAtEnhancement9": {
+        "armor": 7.112,
+        "health": 71.12
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "knight_pendant_family",
+      "icon": "generated-legendary-v1/Legendary_Knight_Oathguard_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_weapon_family_l10_rare",
+      "candidateDefinitionId": "gear_elf_weapon_family_t10_rare",
+      "name": "Rare_Elf_Briarwatch_Bow",
+      "familyId": "elf_weapon_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "weapon",
+      "stats": {
+        "power": 24.0366
+      },
+      "statsAtEnhancement9": {
+        "power": 30.526482
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_rare",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Elf_Briarwatch_Bow.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_weapon_family_l10_epic",
+      "candidateDefinitionId": "gear_elf_weapon_family_t10_epic",
+      "name": "Epic_Elf_Briarwatch_Bow",
+      "familyId": "elf_weapon_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "weapon",
+      "stats": {
+        "power": 26.0736
+      },
+      "statsAtEnhancement9": {
+        "power": 33.113472
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_epic",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Elf_Briarwatch_Bow.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_weapon_family_l10_legendary",
+      "candidateDefinitionId": "gear_elf_weapon_family_t10_legendary",
+      "name": "Legendary_Elf_Briarwatch_Bow",
+      "familyId": "elf_weapon_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "weapon",
+      "stats": {
+        "power": 28.518
+      },
+      "statsAtEnhancement9": {
+        "power": 36.21786
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_legendary",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Bow.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_head_family_l10_rare",
+      "candidateDefinitionId": "gear_elf_head_family_t10_rare",
+      "name": "Rare_Elf_Briarwatch_Headguard",
+      "familyId": "elf_head_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "head",
+      "stats": {
+        "power": 4.5784,
+        "armor": 4.5784
+      },
+      "statsAtEnhancement9": {
+        "power": 5.814568,
+        "armor": 5.814568
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_rare",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Elf_Briarwatch_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_head_family_l10_epic",
+      "candidateDefinitionId": "gear_elf_head_family_t10_epic",
+      "name": "Epic_Elf_Briarwatch_Headguard",
+      "familyId": "elf_head_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "head",
+      "stats": {
+        "power": 4.9664,
+        "armor": 4.9664
+      },
+      "statsAtEnhancement9": {
+        "power": 6.307328,
+        "armor": 6.307328
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_epic",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Elf_Briarwatch_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_head_family_l10_legendary",
+      "candidateDefinitionId": "gear_elf_head_family_t10_legendary",
+      "name": "Legendary_Elf_Briarwatch_Headguard",
+      "familyId": "elf_head_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "head",
+      "stats": {
+        "power": 5.432,
+        "armor": 5.432
+      },
+      "statsAtEnhancement9": {
+        "power": 6.89864,
+        "armor": 6.89864
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_legendary",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_body_family_l10_rare",
+      "candidateDefinitionId": "gear_elf_body_family_t10_rare",
+      "name": "Rare_Elf_Briarwatch_Vestments",
+      "familyId": "elf_body_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "body",
+      "stats": {
+        "armor": 6.8676,
+        "health": 91.568
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.721852,
+        "health": 116.29136
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_rare",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Elf_Briarwatch_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_body_family_l10_epic",
+      "candidateDefinitionId": "gear_elf_body_family_t10_epic",
+      "name": "Epic_Elf_Briarwatch_Vestments",
+      "familyId": "elf_body_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "body",
+      "stats": {
+        "armor": 7.4496,
+        "health": 99.328
+      },
+      "statsAtEnhancement9": {
+        "armor": 9.460992,
+        "health": 126.14656
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_epic",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Elf_Briarwatch_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_body_family_l10_legendary",
+      "candidateDefinitionId": "gear_elf_body_family_t10_legendary",
+      "name": "Legendary_Elf_Briarwatch_Vestments",
+      "familyId": "elf_body_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "body",
+      "stats": {
+        "armor": 8.148,
+        "health": 108.64
+      },
+      "statsAtEnhancement9": {
+        "armor": 10.34796,
+        "health": 137.9728
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_legendary",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_hands_family_l10_rare",
+      "candidateDefinitionId": "gear_elf_hands_family_t10_rare",
+      "name": "Rare_Elf_Briarwatch_Grips",
+      "familyId": "elf_hands_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "hands",
+      "stats": {
+        "power": 9.1568,
+        "armor": 1.1446
+      },
+      "statsAtEnhancement9": {
+        "power": 11.629136,
+        "armor": 1.453642
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_rare",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Elf_Briarwatch_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_hands_family_l10_epic",
+      "candidateDefinitionId": "gear_elf_hands_family_t10_epic",
+      "name": "Epic_Elf_Briarwatch_Grips",
+      "familyId": "elf_hands_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "hands",
+      "stats": {
+        "power": 9.9328,
+        "armor": 1.2416
+      },
+      "statsAtEnhancement9": {
+        "power": 12.614656,
+        "armor": 1.576832
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_epic",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Elf_Briarwatch_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_hands_family_l10_legendary",
+      "candidateDefinitionId": "gear_elf_hands_family_t10_legendary",
+      "name": "Legendary_Elf_Briarwatch_Grips",
+      "familyId": "elf_hands_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "hands",
+      "stats": {
+        "power": 10.864,
+        "armor": 1.358
+      },
+      "statsAtEnhancement9": {
+        "power": 13.79728,
+        "armor": 1.72466
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_legendary",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_feet_family_l10_rare",
+      "candidateDefinitionId": "gear_elf_feet_family_t10_rare",
+      "name": "Rare_Elf_Briarwatch_Treads",
+      "familyId": "elf_feet_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "feet",
+      "stats": {
+        "power": 2.2892,
+        "armor": 3.4338,
+        "health": 45.784
+      },
+      "statsAtEnhancement9": {
+        "power": 2.907284,
+        "armor": 4.360926,
+        "health": 58.14568
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_rare",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Elf_Briarwatch_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_feet_family_l10_epic",
+      "candidateDefinitionId": "gear_elf_feet_family_t10_epic",
+      "name": "Epic_Elf_Briarwatch_Treads",
+      "familyId": "elf_feet_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "feet",
+      "stats": {
+        "power": 2.4832,
+        "armor": 3.7248,
+        "health": 49.664
+      },
+      "statsAtEnhancement9": {
+        "power": 3.153664,
+        "armor": 4.730496,
+        "health": 63.07328
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_epic",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Elf_Briarwatch_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_feet_family_l10_legendary",
+      "candidateDefinitionId": "gear_elf_feet_family_t10_legendary",
+      "name": "Legendary_Elf_Briarwatch_Treads",
+      "familyId": "elf_feet_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "feet",
+      "stats": {
+        "power": 2.716,
+        "armor": 4.074,
+        "health": 54.32
+      },
+      "statsAtEnhancement9": {
+        "power": 3.44932,
+        "armor": 5.17398,
+        "health": 68.9864
+      },
+      "enhancementSupported": true,
+      "setName": "Briarwatch Vigil",
+      "setId": "elf_t10_legendary",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_ring_family_l10_rare",
+      "candidateDefinitionId": "gear_elf_ring_family_t10_rare",
+      "name": "Rare_Elf_Briarwatch_Signet",
+      "familyId": "elf_ring_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "accessory",
+      "stats": {
+        "power": 11.8,
+        "health": 23.6
+      },
+      "statsAtEnhancement9": {
+        "power": 14.986,
+        "health": 29.972
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "elf_ring_family",
+      "icon": "generated-rare-v1/Rare_Elf_Briarwatch_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_ring_family_l10_epic",
+      "candidateDefinitionId": "gear_elf_ring_family_t10_epic",
+      "name": "Epic_Elf_Briarwatch_Signet",
+      "familyId": "elf_ring_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "accessory",
+      "stats": {
+        "power": 12.8,
+        "health": 25.6
+      },
+      "statsAtEnhancement9": {
+        "power": 16.256,
+        "health": 32.512
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "elf_ring_family",
+      "icon": "generated-v1/Epic_Elf_Briarwatch_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_ring_family_l10_legendary",
+      "candidateDefinitionId": "gear_elf_ring_family_t10_legendary",
+      "name": "Legendary_Elf_Briarwatch_Signet",
+      "familyId": "elf_ring_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "accessory",
+      "stats": {
+        "power": 14.0,
+        "health": 28.0
+      },
+      "statsAtEnhancement9": {
+        "power": 17.78,
+        "health": 35.56
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "elf_ring_family",
+      "icon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_pendant_family_l10_rare",
+      "candidateDefinitionId": "gear_elf_pendant_family_t10_rare",
+      "name": "Rare_Elf_Briarwatch_Pendant",
+      "familyId": "elf_pendant_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "accessory",
+      "stats": {
+        "power": 4.72,
+        "armor": 4.72
+      },
+      "statsAtEnhancement9": {
+        "power": 5.9944,
+        "armor": 5.9944
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "elf_pendant_family",
+      "icon": "generated-rare-v1/Rare_Elf_Briarwatch_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_pendant_family_l10_epic",
+      "candidateDefinitionId": "gear_elf_pendant_family_t10_epic",
+      "name": "Epic_Elf_Briarwatch_Pendant",
+      "familyId": "elf_pendant_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "accessory",
+      "stats": {
+        "power": 5.12,
+        "armor": 5.12
+      },
+      "statsAtEnhancement9": {
+        "power": 6.5024,
+        "armor": 6.5024
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "elf_pendant_family",
+      "icon": "generated-v1/Epic_Elf_Briarwatch_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "elf_pendant_family_l10_legendary",
+      "candidateDefinitionId": "gear_elf_pendant_family_t10_legendary",
+      "name": "Legendary_Elf_Briarwatch_Pendant",
+      "familyId": "elf_pendant_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "elf",
+      "slot": "accessory",
+      "stats": {
+        "power": 5.6,
+        "armor": 5.6
+      },
+      "statsAtEnhancement9": {
+        "power": 7.112,
+        "armor": 7.112
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "elf_pendant_family",
+      "icon": "generated-legendary-v1/Legendary_Elf_Briarwatch_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_weapon_family_l10_rare",
+      "candidateDefinitionId": "gear_dwarf_weapon_family_t10_rare",
+      "name": "Rare_Dwarf_Stonehearth_Axe",
+      "familyId": "dwarf_weapon_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "stats": {
+        "power": 22.892,
+        "health": 11.446
+      },
+      "statsAtEnhancement9": {
+        "power": 29.07284,
+        "health": 14.53642
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_rare",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Axe.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_weapon_family_l10_epic",
+      "candidateDefinitionId": "gear_dwarf_weapon_family_t10_epic",
+      "name": "Epic_Dwarf_Stonehearth_Axe",
+      "familyId": "dwarf_weapon_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "stats": {
+        "power": 24.832,
+        "health": 12.416
+      },
+      "statsAtEnhancement9": {
+        "power": 31.53664,
+        "health": 15.76832
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_epic",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Dwarf_Stonehearth_Axe.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_weapon_family_l10_legendary",
+      "candidateDefinitionId": "gear_dwarf_weapon_family_t10_legendary",
+      "name": "Legendary_Dwarf_Stonehearth_Axe",
+      "familyId": "dwarf_weapon_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "stats": {
+        "power": 27.16,
+        "health": 13.58
+      },
+      "statsAtEnhancement9": {
+        "power": 34.4932,
+        "health": 17.2466
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_legendary",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Axe.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_head_family_l10_rare",
+      "candidateDefinitionId": "gear_dwarf_head_family_t10_rare",
+      "name": "Rare_Dwarf_Stonehearth_Headguard",
+      "familyId": "dwarf_head_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "head",
+      "stats": {
+        "armor": 4.5784,
+        "health": 45.784
+      },
+      "statsAtEnhancement9": {
+        "armor": 5.814568,
+        "health": 58.14568
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_rare",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_head_family_l10_epic",
+      "candidateDefinitionId": "gear_dwarf_head_family_t10_epic",
+      "name": "Epic_Dwarf_Stonehearth_Headguard",
+      "familyId": "dwarf_head_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "head",
+      "stats": {
+        "armor": 4.9664,
+        "health": 49.664
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.307328,
+        "health": 63.07328
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_epic",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Dwarf_Stonehearth_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_head_family_l10_legendary",
+      "candidateDefinitionId": "gear_dwarf_head_family_t10_legendary",
+      "name": "Legendary_Dwarf_Stonehearth_Headguard",
+      "familyId": "dwarf_head_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "head",
+      "stats": {
+        "armor": 5.432,
+        "health": 54.32
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.89864,
+        "health": 68.9864
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_legendary",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_body_family_l10_rare",
+      "candidateDefinitionId": "gear_dwarf_body_family_t10_rare",
+      "name": "Rare_Dwarf_Stonehearth_Vestments",
+      "familyId": "dwarf_body_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "body",
+      "stats": {
+        "armor": 5.723,
+        "health": 114.46
+      },
+      "statsAtEnhancement9": {
+        "armor": 7.26821,
+        "health": 145.3642
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_rare",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_body_family_l10_epic",
+      "candidateDefinitionId": "gear_dwarf_body_family_t10_epic",
+      "name": "Epic_Dwarf_Stonehearth_Vestments",
+      "familyId": "dwarf_body_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "body",
+      "stats": {
+        "armor": 6.208,
+        "health": 124.16
+      },
+      "statsAtEnhancement9": {
+        "armor": 7.88416,
+        "health": 157.6832
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_epic",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Dwarf_Stonehearth_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_body_family_l10_legendary",
+      "candidateDefinitionId": "gear_dwarf_body_family_t10_legendary",
+      "name": "Legendary_Dwarf_Stonehearth_Vestments",
+      "familyId": "dwarf_body_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "body",
+      "stats": {
+        "armor": 6.79,
+        "health": 135.8
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.6233,
+        "health": 172.466
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_legendary",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_hands_family_l10_rare",
+      "candidateDefinitionId": "gear_dwarf_hands_family_t10_rare",
+      "name": "Rare_Dwarf_Stonehearth_Grips",
+      "familyId": "dwarf_hands_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "hands",
+      "stats": {
+        "power": 6.8676,
+        "armor": 2.2892
+      },
+      "statsAtEnhancement9": {
+        "power": 8.721852,
+        "armor": 2.907284
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_rare",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_hands_family_l10_epic",
+      "candidateDefinitionId": "gear_dwarf_hands_family_t10_epic",
+      "name": "Epic_Dwarf_Stonehearth_Grips",
+      "familyId": "dwarf_hands_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "hands",
+      "stats": {
+        "power": 7.4496,
+        "armor": 2.4832
+      },
+      "statsAtEnhancement9": {
+        "power": 9.460992,
+        "armor": 3.153664
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_epic",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Dwarf_Stonehearth_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_hands_family_l10_legendary",
+      "candidateDefinitionId": "gear_dwarf_hands_family_t10_legendary",
+      "name": "Legendary_Dwarf_Stonehearth_Grips",
+      "familyId": "dwarf_hands_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "hands",
+      "stats": {
+        "power": 8.148,
+        "armor": 2.716
+      },
+      "statsAtEnhancement9": {
+        "power": 10.34796,
+        "armor": 3.44932
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_legendary",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_feet_family_l10_rare",
+      "candidateDefinitionId": "gear_dwarf_feet_family_t10_rare",
+      "name": "Rare_Dwarf_Stonehearth_Treads",
+      "familyId": "dwarf_feet_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "feet",
+      "stats": {
+        "armor": 3.4338,
+        "health": 68.676
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.360926,
+        "health": 87.21852
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_rare",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_feet_family_l10_epic",
+      "candidateDefinitionId": "gear_dwarf_feet_family_t10_epic",
+      "name": "Epic_Dwarf_Stonehearth_Treads",
+      "familyId": "dwarf_feet_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "feet",
+      "stats": {
+        "armor": 3.7248,
+        "health": 74.496
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.730496,
+        "health": 94.60992
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_epic",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Dwarf_Stonehearth_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_feet_family_l10_legendary",
+      "candidateDefinitionId": "gear_dwarf_feet_family_t10_legendary",
+      "name": "Legendary_Dwarf_Stonehearth_Treads",
+      "familyId": "dwarf_feet_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "feet",
+      "stats": {
+        "armor": 4.074,
+        "health": 81.48
+      },
+      "statsAtEnhancement9": {
+        "armor": 5.17398,
+        "health": 103.4796
+      },
+      "enhancementSupported": true,
+      "setName": "Stonehearth Resolve",
+      "setId": "dwarf_t10_legendary",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_ring_family_l10_rare",
+      "candidateDefinitionId": "gear_dwarf_ring_family_t10_rare",
+      "name": "Rare_Dwarf_Stonehearth_Signet",
+      "familyId": "dwarf_ring_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "stats": {
+        "power": 9.44,
+        "armor": 2.36
+      },
+      "statsAtEnhancement9": {
+        "power": 11.9888,
+        "armor": 2.9972
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "dwarf_ring_family",
+      "icon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_ring_family_l10_epic",
+      "candidateDefinitionId": "gear_dwarf_ring_family_t10_epic",
+      "name": "Epic_Dwarf_Stonehearth_Signet",
+      "familyId": "dwarf_ring_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "stats": {
+        "power": 10.24,
+        "armor": 2.56
+      },
+      "statsAtEnhancement9": {
+        "power": 13.0048,
+        "armor": 3.2512
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "dwarf_ring_family",
+      "icon": "generated-v1/Epic_Dwarf_Stonehearth_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_ring_family_l10_legendary",
+      "candidateDefinitionId": "gear_dwarf_ring_family_t10_legendary",
+      "name": "Legendary_Dwarf_Stonehearth_Signet",
+      "familyId": "dwarf_ring_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "stats": {
+        "power": 11.2,
+        "armor": 2.8
+      },
+      "statsAtEnhancement9": {
+        "power": 14.224,
+        "armor": 3.556
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "dwarf_ring_family",
+      "icon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_pendant_family_l10_rare",
+      "candidateDefinitionId": "gear_dwarf_pendant_family_t10_rare",
+      "name": "Rare_Dwarf_Stonehearth_Pendant",
+      "familyId": "dwarf_pendant_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "stats": {
+        "armor": 2.36,
+        "health": 94.4
+      },
+      "statsAtEnhancement9": {
+        "armor": 2.9972,
+        "health": 119.888
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "dwarf_pendant_family",
+      "icon": "generated-rare-v1/Rare_Dwarf_Stonehearth_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_pendant_family_l10_epic",
+      "candidateDefinitionId": "gear_dwarf_pendant_family_t10_epic",
+      "name": "Epic_Dwarf_Stonehearth_Pendant",
+      "familyId": "dwarf_pendant_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "stats": {
+        "armor": 2.56,
+        "health": 102.4
+      },
+      "statsAtEnhancement9": {
+        "armor": 3.2512,
+        "health": 130.048
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "dwarf_pendant_family",
+      "icon": "generated-v1/Epic_Dwarf_Stonehearth_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "dwarf_pendant_family_l10_legendary",
+      "candidateDefinitionId": "gear_dwarf_pendant_family_t10_legendary",
+      "name": "Legendary_Dwarf_Stonehearth_Pendant",
+      "familyId": "dwarf_pendant_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "stats": {
+        "armor": 2.8,
+        "health": 112.0
+      },
+      "statsAtEnhancement9": {
+        "armor": 3.556,
+        "health": 142.24
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "dwarf_pendant_family",
+      "icon": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_weapon_family_l10_rare",
+      "candidateDefinitionId": "gear_mage_weapon_family_t10_rare",
+      "name": "Rare_Mage_Aetherweave_Staff",
+      "familyId": "mage_weapon_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "weapon",
+      "stats": {
+        "power": 19.4582,
+        "maxMana": 11.446
+      },
+      "statsAtEnhancement9": {
+        "power": 24.711914,
+        "maxMana": 11.446
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_rare",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Mage_Aetherweave_Staff.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_weapon_family_l10_epic",
+      "candidateDefinitionId": "gear_mage_weapon_family_t10_epic",
+      "name": "Epic_Mage_Aetherweave_Staff",
+      "familyId": "mage_weapon_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "weapon",
+      "stats": {
+        "power": 21.1072,
+        "maxMana": 12.416
+      },
+      "statsAtEnhancement9": {
+        "power": 26.806144,
+        "maxMana": 12.416
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_epic",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Mage_Aetherweave_Staff.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_weapon_family_l10_legendary",
+      "candidateDefinitionId": "gear_mage_weapon_family_t10_legendary",
+      "name": "Legendary_Mage_Aetherweave_Staff",
+      "familyId": "mage_weapon_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "weapon",
+      "stats": {
+        "power": 23.086,
+        "maxMana": 13.58
+      },
+      "statsAtEnhancement9": {
+        "power": 29.31922,
+        "maxMana": 13.58
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_legendary",
+      "setPieceId": "weapon",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Staff.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_head_family_l10_rare",
+      "candidateDefinitionId": "gear_mage_head_family_t10_rare",
+      "name": "Rare_Mage_Aetherweave_Headguard",
+      "familyId": "mage_head_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "head",
+      "stats": {
+        "armor": 3.4338,
+        "maxMana": 17.169
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.360926,
+        "maxMana": 17.169
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_rare",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Mage_Aetherweave_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_head_family_l10_epic",
+      "candidateDefinitionId": "gear_mage_head_family_t10_epic",
+      "name": "Epic_Mage_Aetherweave_Headguard",
+      "familyId": "mage_head_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "head",
+      "stats": {
+        "armor": 3.7248,
+        "maxMana": 18.624
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.730496,
+        "maxMana": 18.624
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_epic",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Mage_Aetherweave_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_head_family_l10_legendary",
+      "candidateDefinitionId": "gear_mage_head_family_t10_legendary",
+      "name": "Legendary_Mage_Aetherweave_Headguard",
+      "familyId": "mage_head_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "head",
+      "stats": {
+        "armor": 4.074,
+        "maxMana": 20.37
+      },
+      "statsAtEnhancement9": {
+        "armor": 5.17398,
+        "maxMana": 20.37
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_legendary",
+      "setPieceId": "head",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Headguard.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_body_family_l10_rare",
+      "candidateDefinitionId": "gear_mage_body_family_t10_rare",
+      "name": "Rare_Mage_Aetherweave_Vestments",
+      "familyId": "mage_body_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "body",
+      "stats": {
+        "armor": 5.723,
+        "health": 68.676,
+        "maxMana": 11.446
+      },
+      "statsAtEnhancement9": {
+        "armor": 7.26821,
+        "health": 87.21852,
+        "maxMana": 11.446
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_rare",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Mage_Aetherweave_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_body_family_l10_epic",
+      "candidateDefinitionId": "gear_mage_body_family_t10_epic",
+      "name": "Epic_Mage_Aetherweave_Vestments",
+      "familyId": "mage_body_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "body",
+      "stats": {
+        "armor": 6.208,
+        "health": 74.496,
+        "maxMana": 12.416
+      },
+      "statsAtEnhancement9": {
+        "armor": 7.88416,
+        "health": 94.60992,
+        "maxMana": 12.416
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_epic",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Mage_Aetherweave_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_body_family_l10_legendary",
+      "candidateDefinitionId": "gear_mage_body_family_t10_legendary",
+      "name": "Legendary_Mage_Aetherweave_Vestments",
+      "familyId": "mage_body_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "body",
+      "stats": {
+        "armor": 6.79,
+        "health": 81.48,
+        "maxMana": 13.58
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.6233,
+        "health": 103.4796,
+        "maxMana": 13.58
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_legendary",
+      "setPieceId": "body",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Vestments.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_hands_family_l10_rare",
+      "candidateDefinitionId": "gear_mage_hands_family_t10_rare",
+      "name": "Rare_Mage_Aetherweave_Grips",
+      "familyId": "mage_hands_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "hands",
+      "stats": {
+        "power": 6.8676,
+        "maxMana": 11.446
+      },
+      "statsAtEnhancement9": {
+        "power": 8.721852,
+        "maxMana": 11.446
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_rare",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Mage_Aetherweave_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_hands_family_l10_epic",
+      "candidateDefinitionId": "gear_mage_hands_family_t10_epic",
+      "name": "Epic_Mage_Aetherweave_Grips",
+      "familyId": "mage_hands_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "hands",
+      "stats": {
+        "power": 7.4496,
+        "maxMana": 12.416
+      },
+      "statsAtEnhancement9": {
+        "power": 9.460992,
+        "maxMana": 12.416
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_epic",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Mage_Aetherweave_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_hands_family_l10_legendary",
+      "candidateDefinitionId": "gear_mage_hands_family_t10_legendary",
+      "name": "Legendary_Mage_Aetherweave_Grips",
+      "familyId": "mage_hands_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "hands",
+      "stats": {
+        "power": 8.148,
+        "maxMana": 13.58
+      },
+      "statsAtEnhancement9": {
+        "power": 10.34796,
+        "maxMana": 13.58
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_legendary",
+      "setPieceId": "hands",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Grips.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_feet_family_l10_rare",
+      "candidateDefinitionId": "gear_mage_feet_family_t10_rare",
+      "name": "Rare_Mage_Aetherweave_Treads",
+      "familyId": "mage_feet_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "feet",
+      "stats": {
+        "armor": 3.4338,
+        "health": 22.892,
+        "maxMana": 11.446
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.360926,
+        "health": 29.07284,
+        "maxMana": 11.446
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_rare",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Mage_Aetherweave_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_feet_family_l10_epic",
+      "candidateDefinitionId": "gear_mage_feet_family_t10_epic",
+      "name": "Epic_Mage_Aetherweave_Treads",
+      "familyId": "mage_feet_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "feet",
+      "stats": {
+        "armor": 3.7248,
+        "health": 24.832,
+        "maxMana": 12.416
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.730496,
+        "health": 31.53664,
+        "maxMana": 12.416
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_epic",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Mage_Aetherweave_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_feet_family_l10_legendary",
+      "candidateDefinitionId": "gear_mage_feet_family_t10_legendary",
+      "name": "Legendary_Mage_Aetherweave_Treads",
+      "familyId": "mage_feet_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "feet",
+      "stats": {
+        "armor": 4.074,
+        "health": 27.16,
+        "maxMana": 13.58
+      },
+      "statsAtEnhancement9": {
+        "armor": 5.17398,
+        "health": 34.4932,
+        "maxMana": 13.58
+      },
+      "enhancementSupported": true,
+      "setName": "Aetherweave Constellation",
+      "setId": "mage_t10_legendary",
+      "setPieceId": "feet",
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Treads.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_ring_family_l10_rare",
+      "candidateDefinitionId": "gear_mage_ring_family_t10_rare",
+      "name": "Rare_Mage_Aetherweave_Signet",
+      "familyId": "mage_ring_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "accessory",
+      "stats": {
+        "power": 9.44,
+        "maxMana": 11.8
+      },
+      "statsAtEnhancement9": {
+        "power": 11.9888,
+        "maxMana": 11.8
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "mage_ring_family",
+      "icon": "generated-rare-v1/Rare_Mage_Aetherweave_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_ring_family_l10_epic",
+      "candidateDefinitionId": "gear_mage_ring_family_t10_epic",
+      "name": "Epic_Mage_Aetherweave_Signet",
+      "familyId": "mage_ring_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "accessory",
+      "stats": {
+        "power": 10.24,
+        "maxMana": 12.8
+      },
+      "statsAtEnhancement9": {
+        "power": 13.0048,
+        "maxMana": 12.8
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "mage_ring_family",
+      "icon": "generated-v1/Epic_Mage_Aetherweave_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_ring_family_l10_legendary",
+      "candidateDefinitionId": "gear_mage_ring_family_t10_legendary",
+      "name": "Legendary_Mage_Aetherweave_Signet",
+      "familyId": "mage_ring_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "accessory",
+      "stats": {
+        "power": 11.2,
+        "maxMana": 14.0
+      },
+      "statsAtEnhancement9": {
+        "power": 14.224,
+        "maxMana": 14.0
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "mage_ring_family",
+      "icon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Signet.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_pendant_family_l10_rare",
+      "candidateDefinitionId": "gear_mage_pendant_family_t10_rare",
+      "name": "Rare_Mage_Aetherweave_Pendant",
+      "familyId": "mage_pendant_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 23.6,
+        "health": 47.2
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 23.6,
+        "health": 59.944
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "mage_pendant_family",
+      "icon": "generated-rare-v1/Rare_Mage_Aetherweave_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_pendant_family_l10_epic",
+      "candidateDefinitionId": "gear_mage_pendant_family_t10_epic",
+      "name": "Epic_Mage_Aetherweave_Pendant",
+      "familyId": "mage_pendant_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 25.6,
+        "health": 51.2
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 25.6,
+        "health": 65.024
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "mage_pendant_family",
+      "icon": "generated-v1/Epic_Mage_Aetherweave_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "mage_pendant_family_l10_legendary",
+      "candidateDefinitionId": "gear_mage_pendant_family_t10_legendary",
+      "name": "Legendary_Mage_Aetherweave_Pendant",
+      "familyId": "mage_pendant_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "mage",
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 28.0,
+        "health": 56.0
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 28.0,
+        "health": 71.12
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "mage_pendant_family",
+      "icon": "generated-legendary-v1/Legendary_Mage_Aetherweave_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_shield_family_l10_rare",
+      "candidateDefinitionId": "gear_knight_shield_family_t10_rare",
+      "name": "Rare_Knight_Oathguard_Shield",
+      "familyId": "knight_shield_family",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "offhand",
+      "stats": {
+        "armor": 8.26
+      },
+      "statsAtEnhancement9": {
+        "armor": 10.4902
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-rare-v1/Rare_Knight_Oathguard_Shield.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_shield_family_l10_epic",
+      "candidateDefinitionId": "gear_knight_shield_family_t10_epic",
+      "name": "Epic_Knight_Oathguard_Shield",
+      "familyId": "knight_shield_family",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "offhand",
+      "stats": {
+        "armor": 8.96
+      },
+      "statsAtEnhancement9": {
+        "armor": 11.3792
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-v1/Epic_Knight_Oathguard_Shield.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "knight_shield_family_l10_legendary",
+      "candidateDefinitionId": "gear_knight_shield_family_t10_legendary",
+      "name": "Legendary_Knight_Oathguard_Shield",
+      "familyId": "knight_shield_family",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": "knight",
+      "slot": "offhand",
+      "stats": {
+        "armor": 9.8
+      },
+      "statsAtEnhancement9": {
+        "armor": 12.446
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "icon": "generated-legendary-v1/Legendary_Knight_Oathguard_Shield.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_mana_ring_l10_rare",
+      "candidateDefinitionId": "gear_common_mana_ring_t10_rare",
+      "name": "Rare_Mana_Ring",
+      "familyId": "common_mana_ring",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 23.6,
+        "armor": 2.36
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 23.6,
+        "armor": 2.9972
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_mana_ring",
+      "icon": "generated-rare-v1/Rare_Mana_Ring.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_mana_ring_l10_epic",
+      "candidateDefinitionId": "gear_common_mana_ring_t10_epic",
+      "name": "Epic_Mana_Ring",
+      "familyId": "common_mana_ring",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 25.6,
+        "armor": 2.56
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 25.6,
+        "armor": 3.2512
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_mana_ring",
+      "icon": "generated-v1/Epic_Mana_Ring.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_mana_ring_l10_legendary",
+      "candidateDefinitionId": "gear_common_mana_ring_t10_legendary",
+      "name": "Legendary_Mana_Ring",
+      "familyId": "common_mana_ring",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 28.0,
+        "armor": 2.8
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 28.0,
+        "armor": 3.556
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_mana_ring",
+      "icon": "generated-legendary-v1/Legendary_Mana_Ring.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_arcane_pendant_l10_rare",
+      "candidateDefinitionId": "gear_common_arcane_pendant_t10_rare",
+      "name": "Rare_Arcane_Reservoir_Pendant",
+      "familyId": "common_arcane_pendant",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 35.4
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 35.4
+      },
+      "enhancementSupported": false,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_arcane_pendant",
+      "icon": "generated-rare-v1/Rare_Arcane_Reservoir_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_arcane_pendant_l10_epic",
+      "candidateDefinitionId": "gear_common_arcane_pendant_t10_epic",
+      "name": "Epic_Arcane_Reservoir_Pendant",
+      "familyId": "common_arcane_pendant",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 38.4
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 38.4
+      },
+      "enhancementSupported": false,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_arcane_pendant",
+      "icon": "generated-v1/Epic_Arcane_Reservoir_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_arcane_pendant_l10_legendary",
+      "candidateDefinitionId": "gear_common_arcane_pendant_t10_legendary",
+      "name": "Legendary_Arcane_Reservoir_Pendant",
+      "familyId": "common_arcane_pendant",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 42.0
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 42.0
+      },
+      "enhancementSupported": false,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_arcane_pendant",
+      "icon": "generated-legendary-v1/Legendary_Arcane_Reservoir_Pendant.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_wellspring_charm_l10_rare",
+      "candidateDefinitionId": "gear_common_wellspring_charm_t10_rare",
+      "name": "Rare_Wellspring_Charm",
+      "familyId": "common_wellspring_charm",
+      "rarity": "Rare",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 17.7,
+        "health": 70.8
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 17.7,
+        "health": 89.916
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_wellspring_charm",
+      "icon": "generated-rare-v1/Rare_Wellspring_Charm.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_wellspring_charm_l10_epic",
+      "candidateDefinitionId": "gear_common_wellspring_charm_t10_epic",
+      "name": "Epic_Wellspring_Charm",
+      "familyId": "common_wellspring_charm",
+      "rarity": "Epic",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 19.2,
+        "health": 76.8
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 19.2,
+        "health": 97.536
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_wellspring_charm",
+      "icon": "generated-v1/Epic_Wellspring_Charm.png",
+      "status": "proposed-not-runtime"
+    },
+    {
+      "proposalId": "common_wellspring_charm_l10_legendary",
+      "candidateDefinitionId": "gear_common_wellspring_charm_t10_legendary",
+      "name": "Legendary_Wellspring_Charm",
+      "familyId": "common_wellspring_charm",
+      "rarity": "Legendary",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "trial-only-not-rarity-minimum",
+      "classId": null,
+      "slot": "accessory",
+      "stats": {
+        "maxMana": 21.0,
+        "health": 84.0
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 21.0,
+        "health": 106.68
+      },
+      "enhancementSupported": true,
+      "setName": null,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_wellspring_charm",
+      "icon": "generated-legendary-v1/Legendary_Wellspring_Charm.png",
+      "status": "proposed-not-runtime"
+    }
+  ]
+}
