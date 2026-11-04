@@ -1,0 +1,10 @@
+{
+  "version": "0.67.5",
+  "sourceCommit": "cfbb84b",
+  "status": "failed",
+  "reason": "Evidence directory absent: record write failed after Lobby build; Battle not attempted",
+  "partialOutput": "builds/0.67.5/TheLastThrone-Lobby-0.67.5.rbxlx",
+  "sha256": "8c5ee1ac0d7b65b97cc1aa8ceadf3fbd9af1a75914298cd93d0d1b039d5164cc",
+  "published": false,
+  "retryVersion": "0.67.6"
+}
