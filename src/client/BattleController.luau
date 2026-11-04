@@ -46,6 +46,17 @@ local function clearTarget()
 	if targetHighlight then targetHighlight:Destroy(); targetHighlight = nil end
 end
 
+local function clearMovingElfTarget()
+	if not selectedEnemy then return end
+	local character = player.Character
+	if not character or character:GetAttribute("K0ClassId") ~= "elf" then return end
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if humanoid and humanoid.MoveDirection.Magnitude > 0.01 then
+		clearTarget()
+		hud.showFeedback(Text.TargetCleared)
+	end
+end
+
 local function selectAt(screenPosition)
 	local part = Targeting.pick(screenPosition, player.Character)
 	if not part then return false end
@@ -64,6 +75,7 @@ local function selectAt(screenPosition)
 		table.insert(targetConnections, part.AncestryChanged:Connect(function() if selectedEnemy == part and not Targeting.valid(part) then clearTarget() end end))
 		hud.showFeedback(string.format(Text.TargetSelected, humanoid.DisplayName))
 	end
+	clearMovingElfTarget()
 	return true
 end
 
@@ -103,6 +115,8 @@ player:GetAttributeChangedSignal("K0SpawnStatus"):Connect(updateSpawnStatus)
 updateSpawnStatus()
 
 local function sendAction(action, direction)
+	-- Recheck before dispatch so held fire cannot reuse a moving elf's target.
+	clearMovingElfTarget()
 	if action == "Item1" or action == "Item2" then
 		if inventory and combatInputAllowed() then inventory.use(action == "Item1" and 1 or 2) end
 		return
@@ -295,6 +309,8 @@ local function bindCharacter(character)
 	task.spawn(function()
 		local humanoid = character:WaitForChild("Humanoid", 15)
 		if not humanoid or player.Character ~= character then return end
+		table.insert(characterConnections, humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(clearMovingElfTarget))
+		clearMovingElfTarget()
 		local function updateHealth()
 			hud.setHealth(humanoid.Health, humanoid.MaxHealth)
 		end
