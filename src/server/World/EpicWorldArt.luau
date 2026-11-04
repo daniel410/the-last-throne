@@ -365,10 +365,15 @@ function Art.create(world,scope)
  local Content=scope and scope.content or Content
  local Access=scope and scope.access or Access
  local artName=scope and ("EpicWorldArt_"..scope.epic) or "EpicWorldArt"
- local previous=world.folder:FindFirstChild(artName)
+ local parent=world.folder
+ if scope then
+  parent=world.folder:FindFirstChild('EpicWorldArt')or Instance.new('Folder')
+  parent.Name='EpicWorldArt';parent:SetAttribute('ArtVersion',Art.version);parent.Parent=world.folder
+ end
+ local previous=parent:FindFirstChild(artName)
  if previous and previous:GetAttribute('ArtVersion')==Art.version and previous:GetAttribute('BuildComplete')then return world end
  if previous then previous:Destroy()end
- local root=Instance.new('Folder');root.Name=artName;root:SetAttribute('ArtVersion',Art.version);root.Parent=world.folder
+ local root=Instance.new('Folder');root.Name=artName;root:SetAttribute('ArtVersion',Art.version);root.Parent=parent
  local ids={};for id in pairs(Content.zones)do table.insert(ids,id)end;table.sort(ids)
  local plans={}
  -- Finish every overlapping height field before grounding a single tree/building.
