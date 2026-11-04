@@ -7,7 +7,8 @@ function Menu.frame(parent,name,position,size)
  local outline=frame:FindFirstChildOfClass('UIStroke');outline.Color=Color3.fromRGB(174,202,231);outline.Thickness=3
  local inner=Instance.new('Frame');inner.Name='GoldRail';inner.Position=UDim2.fromOffset(5,5);inner.Size=UDim2.new(1,-10,1,-10);inner.BackgroundTransparency=1;inner.Parent=frame
  local gold=Instance.new('UIStroke');gold.Color=Theme.color.gold;gold.Thickness=1;gold.Parent=inner
- for i,p in ipairs({UDim2.fromOffset(5,5),UDim2.new(1,-5,0,5),UDim2.new(0,5,1,-5),UDim2.new(1,-5,1,-5)}) do Chrome.diamond(frame,'GoldFitting'..i,p,13,Color3.fromRGB(255,197,52)) end
+ local fittingSize=name:match('^EquipSlot_') and 4 or 13
+ for i,p in ipairs({UDim2.fromOffset(5,5),UDim2.new(1,-5,0,5),UDim2.new(0,5,1,-5),UDim2.new(1,-5,1,-5)}) do Chrome.diamond(frame,'GoldFitting'..i,p,fittingSize,Color3.fromRGB(255,197,52)) end
  return frame
 end
 function Menu.plaque(parent,name,text,position,size)
