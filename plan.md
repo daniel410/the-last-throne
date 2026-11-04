@@ -1,6 +1,8 @@
 # The Last Throne 통합 개발 계획
 
 
+> **2026-11-04 영웅 장비·세트·아이콘 / TLT-027/028/029/041/043/044/045/052/073/082/084:** [설계·레벨/강화 재리뷰](docs/production/hero-equipment-and-icon-plan-2026-11-04.md)와 [조사](docs/research/2026-11-04-hero-gear-levels-sets.md), [37품목 아이콘 초안·생성 명세](assets/concepts/2026-11-04-equipment-icons/index.html)를 준비했다. Lv10 222제안 레코드·12세트 후보이며 최종 TD 미술·실제 능력치/효과·런타임·밸런스 수용은 후속이다.
+
 > **2026-11-04 보스 장비 드롭 / TLT-027/029/041/043/044/045/052/061/073/082/084:** 사용자 지시에 따라 [보스 드롭 설계안](docs/production/boss-drop-reward-design-2026-11-04.md)과 [조사](docs/research/2026-11-04-boss-targeted-loot.md)를 작성했다. 난이도별 개인 장비 드롭은 시험안이며 기존 임무 완료 기반 신규 등급 획득안보다 우선한다. 런타임·기존 권리 유지, 경제/저장/다인 수용 후속.
 
 > **2026-11-04 난이도·등급 통합 보상안 / TLT-027/029/041/043/044/045/052/061/073/082/084:** [통합 체계](docs/production/difficulty-rarity-reward-framework-2026-11-04.md)와 [비교 조사](docs/research/2026-11-04-difficulty-rarity-rewards.md)를 추가했다. 개인 전액·난이도별 보상과 별도 등급 선택 진도는 시험 제안이며 기존 정본/런타임 유지, 실제 경제·다인·저장 수용은 후속이다.
