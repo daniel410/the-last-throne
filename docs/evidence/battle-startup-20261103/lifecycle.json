@@ -1,0 +1,19 @@
+{
+  "version": "0.68.1",
+  "sourceCommit": "f52e220",
+  "client": {
+    "attackSeq": 1,
+    "checks": 8,
+    "normalEntry": true,
+    "kind": "BATTLE_STARTUP_LIFECYCLE",
+    "returnToLobby": true,
+    "reentry": true
+  },
+  "scope": "isolated Studio Play, session-only account",
+  "notVerified": [
+    "published teleport",
+    "real device",
+    "four players + AI",
+    "cold join timing comparison"
+  ]
+}

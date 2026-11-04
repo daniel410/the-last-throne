@@ -1,0 +1,37 @@
+{
+  "version": "0.68.1",
+  "sourceCommit": "f52e220",
+  "native": {
+    "elapsed": {
+      "1": 3.673681083135307,
+      "2": 2.7584525833372027,
+      "3": 2.762771458365023,
+      "4": 2.1046491665765643,
+      "5": 1.8593902082648128
+    },
+    "epics": {
+      "1": {
+        "instances": 98846,
+        "newZones": 10
+      },
+      "2": {
+        "instances": 57644,
+        "newZones": 10
+      },
+      "3": {
+        "instances": 65041,
+        "newZones": 10
+      },
+      "4": {
+        "instances": 17049,
+        "newZones": 7
+      },
+      "5": {
+        "instances": 33086,
+        "newZones": 7
+      }
+    },
+    "kind": "BATTLE_STARTUP_NATIVE",
+    "checks": 271
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "version": "0.68.1",
+  "sourceCommit": "f52e220ede81909125df3f48dc6cc0c846d661e3",
+  "buildCwd": "/tmp/tlt-startup-0680",
+  "tool": "Rojo 7.7.1",
+  "commands": [
+    "rojo build default.project.json -o <Lobby output>",
+    "rojo build battle.project.json -o <Battle output>"
+  ],
+  "builds": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.68.1/TheLastThrone-Lobby-0.68.1.rbxlx",
+      "sha256": "eec1bced76e3521511447af550e733be5af938aba802d1cc894f7bcd2f8a006b",
+      "bytes": 13049578,
+      "status": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.68.1/TheLastThrone-Battle-0.68.1.rbxlx",
+      "sha256": "07f5cce2462cae1d6d306a2ce8655a22c8c7928429fc6c2b88b0c64f957eaf0a",
+      "bytes": 13049579,
+      "status": "success"
+    }
+  ]
+}

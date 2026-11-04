@@ -19,3 +19,7 @@
 0.68.0 고정 소스 `cd313a2`의 Lobby/Battle 빌드 성공. 별도 로컬 Lobby Studio Play에서 최초 로비 phase=Lobby·campaign/field/combat/HUD 없음, 공통 메뉴 존재를 확인했다. 다섯 에픽을4→5→2→3→1 순서로 실제 생성하는 네이티브266검사 PASS(7/7/10/10/10구역만 추가, 목표·반복 호출 검증). 정상 클라이언트 RemoteEvent로 Knight 생성→솔로 Deepwood 입장→공격 sequence1→로비 복귀(HUD 숨김), 모험→훈련, 새 세션의 훈련 선입장(캠페인/지도 없음)→복귀→모험(지도/일지 생성)을 확인했다. 게임 스크립트 오류 없음; 기존 `203785492` 자산 유형 경고는 남는다. 이 시간 기록은 전체 접속 시간 전후 비교가 아니다.
 
 0.68.1은 에픽별 미술 폴더를 기존 `DeepwoodCampaign.EpicWorldArt` 아래에 유지해 기존 미술/동선 검사 도구의 경로도 보존한다. 저장/보상/클래스 계약 변경 없음. 아래 최종 검증 기록과 산출물 해시 참조.
+
+최종 0.68.1 검증: 소스 `f52e220`의 Lobby/Battle Rojo 빌드 모두 PASS. 실제 로컬 Lobby Play에서 `tests/battle-startup-native.luau` 271개 PASS: Gloamwood 선생성 후 Story/Selene 서비스를 시작하고 Haunted→Frozen→Ember→Deepwood를 추가하면서 동료 캠프/목표 재연결·기존 미술 검사 경로·에픽별 구역만 추가·동일 맵 재호출 무증식을 확인했다. 결과는 `native.json`. 정상 클라이언트 요청의 최초 로비 무맵/무전투HUD/무전투Remote→영웅 생성→모험→지도/일지→공격 승인→복귀 HUD 숨김→재입장 HUD1개 등8검사 PASS(`tests/battle-startup-lifecycle-native.luau`, `lifecycle.json`). CPU 계약223 + 엔진 생성271 + 클라이언트 생명주기8 = 최종502검사 PASS. 전후 접속 시간을 계측한 결과는 아니다.
+
+검증 중 두 fixture 가정은 수정했다. 스트리밍 Client의 `GetDescendants()` 수는 월드 중복 생성 판정으로 사용할 수 없어 Server의 생성 API 반복 호출로 검사한다. 캐릭터 준비 직후 단1회 전투Remote 요청은 초기 이동 샘플보다 빠를 수 있어 실제 누르고 있기 동작과 같은 재요청으로 공격 승인을 검사한다. 최초 두 fixture의 assert 실패를 게임 스크립트 예외/전체 검증 통과로 보고하지 않는다. 최종 실행 콘솔에는 기존 자산 유형 경고만 있으며 게임 스크립트 예외는 없다. 검증용0.68.0/0.68.1 Play는 종료했고 기존0.67.7/미술 작업 창은 변경하지 않았다.
