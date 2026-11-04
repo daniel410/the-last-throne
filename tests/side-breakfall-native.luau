@@ -29,10 +29,9 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
      local b=joint.C0.Rotation;local actual=b*joint.Transform*b:Inverse()
      nearFrame(actual,sample.root,'sampled root')
      nearFrame(root.CFrame,rootBefore,'physics root fixed')
-     if u>=.36 and u<=.82 then
-      check(math.abs(actual.UpVector.Y)<.002,'body long axis horizontal through entire ground roll')
-      check(actual.Position.Y< -1,'ground roll stays low')
-      check(side*actual.UpVector.X>.99,'head points toward selected side, feet trail sideways')
+     if u>=.24 and u<=.68 then
+      check(actual.Position.Y< -1,'compact shoulder roll stays low')
+      check(math.abs(actual.LookVector.Z)<.01,'rotation stays in lateral travel plane')
      end
      if previous then
       local _,turn=previous:ToObjectSpace(actual):ToAxisAngle()
@@ -41,18 +40,12 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
      previous=actual
     end
    end
-   visual.renderArms(c,1/60,100+duration*.12)
-   for _,limb in ipairs({'Right','Left'})do
-    local j=c:FindFirstChild(limb..'Shoulder',true)or c:FindFirstChild(limb..' Shoulder',true)
-    local b=j.C0.Rotation;local p=b*j.Transform*b:Inverse()
-    check(side*p:VectorToWorldSpace(-Vector3.yAxis).X>.99,'both hands extend toward chosen side')
-   end
-   -- Quarter turns must show all four sides of the torso exactly once.
-   local p0=motion.sample(duration*.36,duration,side).root
-   local p1=motion.sample(duration*.59,duration,side).root
-   check(p0.LookVector:Dot(p1.LookVector)<-.99,'half barrel turn on ground')
-   local p2=motion.sample(duration*.82,duration,side).root
-   check(p0.LookVector:Dot(p2.LookVector)>.99,'full barrel turn before getting up')
+   local tucked=motion.sample(duration*.45,duration,side)
+   check(tucked.hip.LookVector.Y<-.85,'hips fold toward torso')
+   check(tucked.knee.LookVector.Y>.9,'knees fold during roll')
+   check(tucked.root.UpVector.Y<-.8,'one inverted mid-roll pose')
+   check(side*tucked.root.LookVector.X<-.8,'forward pitch follows selected travel plane')
+   nearFrame(motion.sample(-1,duration,side).root,CFrame.identity,'negative age neutral')
    nearFrame(motion.sample(duration,duration,side).root,CFrame.identity,'upright finish')
    c:SetAttribute('K0State','Idle');for _=1,45 do visual.renderArms(c,1/60,102)end
    nearFrame(joint.Transform,CFrame.identity,'idle restores root')
@@ -61,4 +54,4 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
   c:Destroy()
  end
 end
-print('SIDE_BREAKFALL_NATIVE '..count..' checks passed')
+print('SIDE_SHOULDER_ROLL_NATIVE '..count..' checks passed')

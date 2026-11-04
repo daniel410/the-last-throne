@@ -1,0 +1,9 @@
+{
+  "scope": "isolated native module fixture; not a game build",
+  "baseCommit": "8b2bb8d534a5234c72fc8617407c9d4cd26026b7",
+  "sha256": {
+    "src/client/K0SideDiveMotion.luau": "0fef32706f4bcd6f5b033929039ba2141cfbf53900942838898f93eb4d6a0c57",
+    "tests/side-breakfall-native.luau": "de89dc1bd918f2907ff39426f398e4b72c857663eb5d6d64d4a688b39209eb27",
+    "tests/dodge-double-tap-native.luau": "65816580d5816cce98a08905a11740cd760771c878e3de182308e6b6d0a7de05"
+  }
+}

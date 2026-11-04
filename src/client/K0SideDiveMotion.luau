@@ -1,5 +1,5 @@
--- A low sideways breakfall. Rotate around the laid-out body's long axis,
--- rather than cartwheeling the feet over the head. No physics-root movement.
+-- Directional shoulder roll: turn toward travel, compress, roll, plant, recover.
+-- Server movement owns translation; this only poses the visual skeleton.
 local Motion = {}
 
 local function smooth(value)
@@ -10,23 +10,27 @@ end
 function Motion.sample(age, duration, side)
 	local u = math.clamp(age / duration, 0, 1)
 	side = side == -1 and -1 or 1
-	local launch = smooth(u / 0.26)
-	local stand = smooth((u - 0.84) / 0.16)
-	local low = launch * (1 - stand)
-	local turn = smooth((u - 0.36) / 0.46)
-	local reach = smooth(u / 0.12) * (1 - smooth((u - 0.30) / 0.16))
-	local brace = smooth((u - 0.30) / 0.16) * (1 - stand)
+	local prepare = smooth(u / 0.16)
+	local recover = smooth((u - 0.78) / 0.22)
+	local compressed = prepare * (1 - recover)
+	local turn = smooth((u - 0.12) / 0.66)
+	local tuck = smooth((u - 0.08) / 0.16) * (1 - smooth((u - 0.68) / 0.22))
+	local facing = prepare * (1 - recover)
+	-- Yaw first, then pitch in that local plane: a forward shoulder roll
+	-- along either lateral direction, without a horizontal barrel spin.
+	local pitch = -2 * math.pi * turn - math.rad(18) * compressed * (1 - turn)
 	return {
-		root = CFrame.new(0, -1.15 * low + 0.18 * math.sin(math.pi * u) * (1 - launch), 0)
-			* CFrame.Angles(0, 0, -side * math.pi / 2 * low)
-			* CFrame.Angles(0, side * 2 * math.pi * turn, 0),
-		-- Both hands reach toward the chosen side before bending for contact.
-		right = CFrame.Angles(math.rad(35 * brace), 0, math.rad(side * 85 * reach + 18 * brace)),
-		left = CFrame.Angles(math.rad(35 * brace), 0, math.rad(side * 85 * reach - 18 * brace)),
-		elbow = CFrame.Angles(math.rad(-65 * brace), 0, 0),
-		hip = CFrame.Angles(math.rad(-25 * brace), 0, 0),
-		knee = CFrame.Angles(math.rad(65 * brace), 0, 0),
-		neck = CFrame.Angles(math.rad(12 * brace), 0, 0),
+		root = CFrame.new(0, -1.15 * compressed, 0)
+			* CFrame.Angles(0, -side * math.pi / 2 * facing, 0)
+			* CFrame.Angles(pitch, 0, math.rad(side * 12 * tuck)),
+		-- Keep weapons close and lead with the shoulder instead of diving
+		-- with both hands overhead. R6 uses the same compact silhouette.
+		right = CFrame.Angles(math.rad(55 * compressed + 25 * tuck), math.rad(-12 * tuck), math.rad(18 * compressed)),
+		left = CFrame.Angles(math.rad(65 * compressed + 25 * tuck), math.rad(12 * tuck), math.rad(-18 * compressed)),
+		elbow = CFrame.Angles(math.rad(-85 * tuck), 0, 0),
+		hip = CFrame.Angles(math.rad(-65 * tuck - 12 * compressed), 0, 0),
+		knee = CFrame.Angles(math.rad(105 * tuck), 0, 0),
+		neck = CFrame.Angles(math.rad(-22 * tuck), 0, 0),
 	}
 end
 
