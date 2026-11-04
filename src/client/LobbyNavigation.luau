@@ -5,7 +5,7 @@ local Sizing=require(script.Parent.LobbyNavigationSizing)
 local Bridge=require(script.Parent.LobbyMenuBridge)
 local Art=require(script.Parent.LobbyNavigationArt)
 local M={}
-local iconTitles={ItemShop='POTIONS',DiamondShop='DIAMONDS',LoginRewards='REWARDS'}
+local iconTitles={ItemShop='POTIONS',DiamondShop='DIAMONDS',LoginRewards='REWARDS',Quest='QUESTS'}
 function M.create(parent,actions)
  local rail=Instance.new('Frame');rail.Name='LobbyNavigation';rail.BackgroundTransparency=1;rail.AnchorPoint=Vector2.new(0,0);rail.Position=UDim2.new(0,10,.5,-30);rail.Size=UDim2.fromOffset(180,268);rail.Parent=parent
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.fromOffset(88,64);grid.CellPadding=UDim2.fromOffset(4,4);grid.FillDirectionMaxCells=2;grid.SortOrder=Enum.SortOrder.LayoutOrder;grid.Parent=rail
