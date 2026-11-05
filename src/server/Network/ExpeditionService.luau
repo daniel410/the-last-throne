@@ -34,10 +34,7 @@ local function offer(p)
 end
 local function selection(p)
  if selections[p]then return selections[p]end
- local h=o.inventory.expeditionHero(p)
- local a=h and h.expeditions and h.expeditions.active
- local c=Content.mainChapters[math.min(Content.mainCount,(h and h.deepwood and h.deepwood.main or 0)+1)]
- return {missionId=a and a.missionId or c.id,difficultyId=a and a.difficultyId or 'Easy'}
+ return require(RS.Shared.AdventureRules).selection(o.inventory.expeditionHero(p))
 end
 local function publish(p,errorCode,open,requestId)
  if p.Parent~=Players or not remote then return end
@@ -224,7 +221,7 @@ function Service.returnLobby(p)
 end
 function Service.beforeHeroAction(p,action)
  if travel[p] or busy[p] then return true,'Busy' end
- if action=='ReturnLobby' and role=='Battle' then return Service.returnLobby(p) end
+ if action=='ReturnLobby' then selections[p]=nil;if role=='Battle' then return Service.returnLobby(p) end end
  if role=='Battle' and action~='GetState' then return true,'WaitForLobby' end
  if action=='StartTutorial' then return true,Service.solo(p) end
  if parties[p] and action=='StartTraining' then return true,'PartyChanged' end
