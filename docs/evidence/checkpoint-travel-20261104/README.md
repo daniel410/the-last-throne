@@ -24,3 +24,14 @@ Deepwood Story7의 `separate`(마지막 공급품·명령서 수집)까지 저�
 | `lua tests/party-story.spec.lua` |2,765개 통과 |
 
 미검증: 실제 Roblox 클라이언트의 도착 바닥/스트리밍·NPC 거리/카메라/셀렌느 동행, 실제2~4인 저장/동시 이용/폰·패드 입력/성능, 최종 시각·사용자 수용. 기존 열린 Studio의 문서/세션과 사용자 미커밋 이동·무기·회피 작업은 변경/포함하지 않는다. TD 소스·계정·상품·실제 Place 게시를 변경하지 않는다. 다음 담당 QA:7/7 공급품 마지막 단계→포탈/지도→Eryn 대화→Frozen Vale와 로비 복귀/재입장, 완료한 중간 스토리 지도 이동·저장 지연 중 거부를 실제 기기로 검증한다. 부모 티켓 In Progress.
+
+## 고정 소스 빌드/마감
+
+입력 `96924afd589ff0a6318e2eec674ebdd0e980be8d` / VERSION `0.72.0` / Rojo7.7.1. 소스 원격 푸시 후 별도 `/tmp/tlt-checkpoint-0720` worktree에서 `rojo build default.project.json -o <Lobby 산출물>`과 `rojo build battle.project.json -o <Battle 산출물>` 모두 성공했다. 두 XML의 새/변경6모듈 Source가 고정 커밋 파일과 일치하는 것도 확인했다.
+
+| 산출물 | SHA-256 |
+| --- | --- |
+| `builds/0.72.0/TheLastThrone-Lobby-0.72.0.rbxlx` | `41a6757398c0b4a68a67b4b48ee1ba77640c0f8b471b071fb30b9fdcd95a14fe` |
+| `builds/0.72.0/TheLastThrone-Battle-0.72.0.rbxlx` | `239bb22a04d21bde83b35d5023f552861b971c9fd1af8c41bc89529d5b28291d` |
+
+고정 worktree에서 새 체크포인트1,927·지도 geometry36·지역인계52·로비복귀24·배틀 시작223개 검사 재통과. 빌드는 게시/실제 기기 수용을 대신하지 않는다. 신규 LFS 원본이 없으며 빌드 출력은 ignore된 로컬 산출물이다. 구현 `96924af`를 `origin/main`에 푸시했다. 이번 작업은 일반 빌드로 Roblox 게시와 릴리스 태그를 만들지 않았다.
