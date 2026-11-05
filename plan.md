@@ -1,5 +1,7 @@
 # The Last Throne 통합 개발 계획
 
+> **2026-11-05 / TLT-005/032/033/055/057/084 · 0.75.4:** 드워프 R15 기본 베기의 준비 후 도끼 소켓을 고정하고 팔 관절로 궤적을 재저작했다. R6 준비·연격110도 yaw 초기화·2배공속 연결을 교정했다. [영상 조사](docs/research/2026-11-05-dwarf-natural-axe-swing.md)·[검증/한계](docs/evidence/dwarf-natural-swing-20261105/README.md). 로컬 후보·미게시, GPU/실플레이·실기기·사용자 미술 수용 후속이며 부모 티켓 In Progress.
+
 > **2026-11-05 · TLT-027/028/050/052/084:** [투자 증가량·기본 공격 피해 표시](docs/evidence/stat-investment-preview-20261105/README.md)를 로컬 소스에 적용한다. [자동 회피 조사](docs/research/2026-11-05-passive-evasion.md)는 공통DEX 추가 보류를 추천하며 제품 결정/구현으로 처리하지 않는다. 새 빌드/게시·실기기/사용자 수용과 부모 티켓 완료는 후속이다.
 
 > **2026-11-05 구형 Lv10 Rare/Epic24종 정리 · TLT-028/029/041/043/044/052/057/084 · 0.75.3:** 사용자 확인에 따라 [Dawnforge/Sentinel/장신구24종](docs/production/retired-forge-equipment-2026-11-05.md)을 신규 판매·상자 선택·지급에서 제거했다. 기존 보유·구매영수증·강화·되팔기·상자 권리는 보존한다. Lv10 상자는 대체 선택지 연결 전 보관 안내를 표시하며 교환 공백은 후속이다. 최신160종 재산정/이미지·Common/Uncommon·보상 정본은 보존한다. 미게시·실계정/실기기 수용 후속.

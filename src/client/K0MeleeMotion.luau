@@ -81,7 +81,7 @@ local function sampleAxis(keys, age)
  return (2*u3-3*u2+1)*a[2]+(u3-2*u2+u)*span*a[3]
   +(-2*u3+3*u2)*b[2]+(u3-u2)*span*b[3]
 end
-function Motion.sample(classId, combo, age, entry, entrySlope, skillId)
+function Motion.sample(classId, combo, age, entry, entrySlope, skillId, rigType, entryTurn, entryAcceleration)
  local definition,clip=definitionFor(classId,combo,skillId)
  if not definition or type(age)~="number" or age~=age then return nil end
  local w,a,r=definition.windup,definition.active,definition.recovery
@@ -96,13 +96,26 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId)
  local result={angles={}}
  local opening=w*.45
  local u=math.clamp(age/opening,0,1);local u2,u3=u*u,u*u*u
+ local curves=rigType==Enum.HumanoidRigType.R6 and clip.r6Curves or clip.curves
  for _,channel in ipairs(channels) do
   local v={}
   for axis,name in ipairs({"X","Y","Z"}) do
-   local value=sampleAxis(clip.curves[channel][axis],time)
+   local value=sampleAxis(curves[channel][axis],time)
    if entry and age<opening then
     value+=(2*u3-3*u2+1)*(entry[channel][name]-rest[classId][channel][name])
      +(u3-2*u2+u)*opening*(entrySlope and entrySlope[channel][name] or 0)
+    if entryAcceleration then
+     local keys=curves[channel][axis]
+     local first,nextKey=keys[1],keys[2]
+     local span=nextKey[1]-first[1]
+     local baseAcceleration=6*(nextKey[2]-first[2])/(span*span)-(4*first[3]+2*nextKey[3])/span
+     local delta=entry[channel][name]-rest[classId][channel][name]
+     local slope=entrySlope and entrySlope[channel][name] or 0
+     local acceleration=baseAcceleration-6*delta/(opening*opening)-4*slope/opening
+     -- Match outgoing acceleration as well as pose/velocity. The correction
+     -- and its first two derivatives vanish at the end of anticipation.
+     value+=.5*age*age*(1-u)^3*(entryAcceleration[channel][name]-acceleration)
+    end
    end
    v[axis]=value
   end
@@ -111,7 +124,12 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId)
  result.cutting=not definition.ranged and age>=w*.45 and age<=w+a and age<total
  -- The forward-facing held axe turns into the previously authored strike
  -- orientation during anticipation, before the cutting interval begins.
- if classId=="dwarf" then result.axeStrikeTurn=u2*(3-2*u) end
+ if classId=="dwarf" then
+  -- Keep the grip orientation when chaining attacks. Resetting this separate
+  -- yaw layer used to snap the axe by 110 degrees even though the arm joined.
+  local from=entryTurn or 0
+  result.axeStrikeTurn=from+(1-from)*u2*(3-2*u)
+ end
  if classId=="dwarf" and not skillId then
   -- R6 has no elbow/wrist segments, so its shorter rigid arm needs a
   -- little more cross-body follow-through after the contact interval.
@@ -129,7 +147,7 @@ local function presentation(record, now)
  local d=definitionFor(record.classId,record.combo,record.skillId)
  local total=d.windup+d.active+d.recovery
  local age=(now-record.started)*(record.rate or 1)
- if age<=total then return Motion.sample(record.classId,record.combo,age,record.entry,record.entrySlope,record.skillId) end
+ if age<=total then return Motion.sample(record.classId,record.combo,age,record.entry,record.entrySlope,record.skillId,record.rigType,record.entryTurn,record.entryAcceleration) end
  local result=frame({guard[record.classId],guard[record.classId],rest[record.classId]}, {0,.10,.42}, age-total)
  result.cutting=false
  if record.classId=="dwarf" then
@@ -151,21 +169,27 @@ function Motion.forCharacter(character, now)
  if mode=="Idle" then
   if not previous or previous.classId~=classId then return nil end
   local d=definitionFor(classId,previous.combo,previous.skillId)
-  if now-previous.started>d.windup+d.active+d.recovery+.42 then actions[character]=nil;return nil end
+  if (now-previous.started)*(previous.rate or 1)>d.windup+d.active+d.recovery+.42 then actions[character]=nil;return nil end
   return presentation(previous,now)
  end
  local started=character:GetAttribute("K0AttackStartedAt")
  local combo=character:GetAttribute("K0Combo")
  if type(started)~="number" then actions[character]=nil;return nil end
  if not previous or previous.started~=started or previous.classId~=classId or previous.combo~=combo or previous.skillId~=skillId then
-  local entry,entrySlope=rest[classId],nil
+  local rate=not skillId and (character:GetAttribute("K0BasicAttackRate") or 1) or 1
+  local entry,entrySlope,entryTurn,entryAcceleration=rest[classId],nil,0,nil
   if previous and previous.classId==classId and started>=previous.started then
-   entry=presentation(previous,started).angles
+   local previousPose=presentation(previous,started)
+   entry,entryTurn=previousPose.angles,previousPose.axeStrikeTurn or 0
    local before,after=presentation(previous,started-.0001),presentation(previous,started+.0001)
-   entrySlope={}
-   for _,channel in ipairs(channels) do entrySlope[channel]=(after.angles[channel]-before.angles[channel])/.0002 end
+   entrySlope,entryAcceleration={},classId=="dwarf" and {} or nil
+   for _,channel in ipairs(channels) do
+    entrySlope[channel]=(after.angles[channel]-before.angles[channel])/(.0002*rate)
+    if entryAcceleration then entryAcceleration[channel]=(after.angles[channel]-2*entry[channel]+before.angles[channel])/(.0001*rate)^2 end
+   end
   end
-  previous={classId=classId,combo=combo,skillId=skillId,started=started,entry=entry,entrySlope=entrySlope,rate=not skillId and (character:GetAttribute("K0BasicAttackRate") or 1) or 1}
+  local humanoid=character:FindFirstChildOfClass("Humanoid")
+  previous={classId=classId,combo=combo,skillId=skillId,started=started,entry=entry,entrySlope=entrySlope,entryAcceleration=entryAcceleration,entryTurn=entryTurn,rigType=humanoid and humanoid.RigType,rate=rate}
   actions[character]=previous
  end
  return presentation(previous,now)

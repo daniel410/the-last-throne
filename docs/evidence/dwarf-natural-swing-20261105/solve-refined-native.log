@@ -1,0 +1,6 @@
+thread '<unnamed>' panicked at 'called `Result::unwrap()` on an `Err` value: Timeout reached while waiting for Roblox Studio to come online', src/main.rs:75:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread 'tokio-runtime-worker-2' panicked at 'assertion failed: `(left == right)`
+  left: `140657462136880`,
+ right: `0`', /rustc/5c1f21c3b82297671ad3ae1e8c942d2ca92e84f2/src/libstd/macros.rs:16:9
+[ERROR run_in_roblox] receiving on a closed channel

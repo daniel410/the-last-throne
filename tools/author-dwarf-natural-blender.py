@@ -1,0 +1,66 @@
+# Run inside Blender MCP with SOLVED_POSES loaded from dwarf-diagonal-v1/poses.json.
+# A new scene/action preserves all existing authoring scenes and source assets.
+import bpy, json, math, copy
+# POSE_SOURCE is supplied as data by the caller; no external datablocks are loaded.
+s = bpy.data.scenes.new('TLT_Dwarf_NaturalCut_v2')
+s.render.fps = 60
+s.frame_start, s.frame_end = 0, 26
+bpy.context.window.scene = s
+armature = bpy.data.armatures.new('Dwarf_NaturalChannels_v2')
+r = bpy.data.objects.new('Dwarf_NaturalRig_v2', armature)
+s.collection.objects.link(r)
+bpy.context.view_layer.objects.active = r
+r.select_set(True)
+mapping = {'right':'RightShoulder','left':'LeftShoulder','elbow':'RightElbow','leftElbow':'LeftElbow','wrist':'RightWrist','neck':'Neck','torso':'Waist','rightHip':'RightHip','leftHip':'LeftHip','rightKnee':'RightKnee','leftKnee':'LeftKnee','weapon':'WeaponSocket'}
+bpy.ops.object.mode_set(mode='EDIT')
+for i, name in enumerate(mapping.values()):
+    bone = armature.edit_bones.new(name)
+    bone.head, bone.tail = (i*.2,0,0), (i*.2,0,1)
+bpy.ops.object.mode_set(mode='OBJECT')
+poses, times = POSE_SOURCE['poses'], POSE_SOURCE['times']
+a = bpy.data.actions.new('Dwarf_NaturalCut_v2')
+a.use_fake_user = True
+r.animation_data_create()
+r.animation_data.action = a
+clip = {'name':a.name,'classId':'dwarf','combo':1,'windup':.16,'active':.10,'recovery':.16,'hitDelay':.06,'duration':.42,'entryUntil':.072,'curves':{},'golden':[]}
+for channel, bone in mapping.items():
+    pb = r.pose.bones[bone]
+    pb.rotation_mode = 'YZX'
+    clip['curves'][channel] = []
+    for native, (axis, sign) in enumerate([(0,1),(2,1),(1,-1)]):
+        values = [p[channel][native] for p in poses]
+        slopes = [0.] * len(times)
+        for i in range(1, len(times)-1):
+            h0, h1 = times[i]-times[i-1], times[i+1]-times[i]
+            v0, v1 = (values[i]-values[i-1])/h0, (values[i+1]-values[i])/h1
+            if v0*v1 > 0:
+                slopes[i] = 3*(h0+h1)/((2*h1+h0)/v0+(h1+2*h0)/v1)
+        for time, value in zip(times, values):
+            pb.rotation_euler[axis] = math.radians(value)*sign
+            pb.keyframe_insert(data_path='rotation_euler', index=axis, frame=time*60, group=channel)
+        curves = a.layers[0].strips[0].channelbag(r.animation_data.action_slot).fcurves
+        fc = next(f for f in curves if f.data_path == pb.path_from_id('rotation_euler') and f.array_index == axis)
+        for i, key in enumerate(fc.keyframe_points):
+            key.interpolation = 'BEZIER'
+            key.handle_left_type = key.handle_right_type = 'FREE'
+            left = (times[i]-times[i-1])/3 if i else times[1]/3
+            right = (times[i+1]-times[i])/3 if i < len(times)-1 else left
+            key.handle_left = (key.co.x-left*60, math.radians(values[i]-slopes[i]*left)*sign)
+            key.handle_right = (key.co.x+right*60, math.radians(values[i]+slopes[i]*right)*sign)
+        fc.update()
+        clip['curves'][channel].append([[t,v,m] for t,v,m in zip(times,values,slopes)])
+for i in range(43):
+    time = .42*i/42
+    angles = {}
+    for channel, bone in mapping.items():
+        values = []
+        for axis, sign in [(0,1),(2,1),(1,-1)]:
+            fc = next(f for f in curves if f.data_path == r.pose.bones[bone].path_from_id('rotation_euler') and f.array_index == axis)
+            values.append(math.degrees(fc.evaluate(time*60))*sign)
+        angles[channel] = values
+    clip['golden'].append({'age':time,'angles':angles})
+s['diagonal_clip'] = json.dumps(clip)
+bpy.context.window.scene = s
+s.frame_set(7)
+bpy.ops.wm.save_as_mainfile(filepath='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/dwarf-natural-v2/dwarf-natural-v2.blend', copy=True)
+print('NATURAL_CLIP_JSON '+json.dumps(clip))
