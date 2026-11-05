@@ -103,6 +103,13 @@ local ok,err=xpcall(function()
   local parts=0
   for _,p in ipairs(site:GetDescendants())do
    if p:IsA('BasePart')then
+    if p.Name=='WornCurvedRoute'then
+     for _,x in ipairs({-p.Size.X/2,0,p.Size.X/2})do for _,z in ipairs({-p.Size.Z/2,0,p.Size.Z/2})do
+      local sample=p.CFrame:PointToWorldSpace(Vector3.new(x,0,z))
+      local hit=workspace:Raycast(sample+Vector3.new(0,180,0),Vector3.new(0,-480,0),params)
+      check(hit and math.abs(sample.Y-.04-hit.Position.Y)<.61,'paving supported across width and length '..id)
+     end end
+    end
     parts+=1;check(p.Anchored and not p.CanCollide and not p.CanQuery and not p.CanTouch,'scenery cannot change physics or hit queries')
     check(p:GetAttribute('TLTDecorative')==true,'scenery budget opt-in')
     local limit=p:GetAttribute('TLTSceneryDistance');check(not limit or limit<=900,'bounded backdrop distance')

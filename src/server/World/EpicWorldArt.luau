@@ -152,8 +152,20 @@ local function route(parent,a,b,width,pal,theme)
  local n=math.max(2,math.ceil(d.Magnitude/16))
  for i=1,n do
   local t=i/n;local q=ground(a:Lerp(b,t)+normal*math.sin(t*math.pi)*math.sin(i*.32)*6)
-  local p=K.part(parent,'WornCurvedRoute',V(width,.06,(q-prev).Magnitude+1),CFrame.lookAt((prev+q)/2+V(0,.04,0),q+V(0,.04,0)),pal.ground:Lerp(pal.trim,theme=='Deepwood'and .60 or (theme=='Gloamwood'or theme=='HauntedGraveyard')and .65 or .38),theme=='Deepwood'and Enum.Material.Sandstone or theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone)
-  p.CastShadow=false;prev=q
+  local cf=CFrame.lookAt((prev+q)/2+V(0,.04,0),q+V(0,.04,0))
+  local length=(q-prev).Magnitude
+  -- Do not bridge carved cliffs with a paper-thin decorative ramp. The full
+  -- width must follow real ground, including both verges and the segment ends.
+  local supported=math.abs(q.Y-prev.Y)<=length*.35
+  for _,x in ipairs({-width/2,0,width/2})do for _,z in ipairs({-length/2,0,length/2})do
+   local sample=cf:PointToWorldSpace(V(x,0,z));local floor=ground(sample)
+   if math.abs(sample.Y-.04-floor.Y)>.6 then supported=false end
+  end end
+  if supported then
+   local p=K.part(parent,'WornCurvedRoute',V(width,.06,length),cf,pal.ground:Lerp(pal.trim,theme=='Deepwood'and .60 or (theme=='Gloamwood'or theme=='HauntedGraveyard')and .65 or .38),theme=='Deepwood'and Enum.Material.Sandstone or theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone)
+   p.CastShadow=false
+  end
+  prev=q
  end
 end
 local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)

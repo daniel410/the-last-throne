@@ -127,10 +127,13 @@ function A.citadel(parent,c,size,pal,theme,index)
  end
  if theme=='HauntedGraveyard'then
   part(m,'CathedralClerestory',V(68,42,18),p+V(0,82,-7),pal.rock,Enum.Material.Brick)
-  for _,s in ipairs({-1,1})do part(m,'NaveButtress',V(6,48,22),p+V(s*36,82,-6),pal.trim)end
+  for _,s in ipairs({-1,1})do part(m,'NaveButtress',V(6,106,22),p+V(s*36,53,-6),pal.trim)end
   A.rose(m,p+V(0,82,3),12,pal);A.gable(m,p+V(0,104,4),78,32,70,pal)
   part(m,'NaveFinial',V(2,14,2),p+V(0,142,5),pal.trim,Enum.Material.Metal)
  else
+  -- Tie every merlon to a continuous lintel and grounded side piers.
+  for _,side in ipairs({-1,1})do part(m,'GateUpperPier',V(10,64,15),p+V(side*38,32,0),pal.rock,Enum.Material.Brick)end
+  part(m,'GateParapetBeam',V(86,8,15),p+V(0,60,0),pal.trim)
   for x=-30,30,10 do part(m,'GateBattlement',V(6,8,8),p+V(x,65,0),pal.rock)end
  end
  for _,s in ipairs({-1,1})do A.flame(m,p+V(s*58,0,27),pal,theme=='FrozenVale')end
@@ -266,7 +269,7 @@ function A.aqueduct(parent,c,size,pal,theme)
  local m=model(parent,'AncientAqueduct');local p=c+V(0,0,-size[2]/2-26)
  for i=-3,3 do
   A.arch(m,p+V(i*43,0,0),32,42+(i%2)*2,pal,12)
-  part(m,'AqueductCrown',V(46,4,19),p+V(i*43,49,0),pal.trim)
+  part(m,'AqueductCrown',V(46,8,19),p+V(i*43,47,0),pal.trim)
   part(m,'AqueductChannel',V(46,2,9),p+V(i*43,51,0),theme=='FrozenVale'and pal.trim or Color3.fromRGB(100,156,160),Enum.Material.Glacier)
  end
  for _,side in ipairs({-1,1})do A.tower(m,p+V(side*177,0,-5),67,pal,false)end
