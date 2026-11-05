@@ -190,7 +190,6 @@ function M.create(o)
    end
    local key=reasonKeys[player];local previous=noticeState[player];noticeState[player]=key
    local message=Info.transition(previous,key)
-   if previous and previous~=key and (key=='SupportReady' or key=='SupportPassRequired') then message=Text.SupportEnded end
    local now=o.clock and o.clock() or os.clock()
    if message and o.notice and (key=='Available' or now-(noticeTimes[player] or -math.huge)>=4) then
     noticeTimes[player]=now;o.notice(player,message)

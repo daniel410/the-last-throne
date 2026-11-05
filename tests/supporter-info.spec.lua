@@ -2,6 +2,13 @@ local Info=dofile('src/shared/SupporterInfo.luau')
 local checks=0;local function check(v,m)checks=checks+1;assert(v,m)end
 check(Info.project(nil).key=='Unknown','missing save is unknown, not a new locked profile')
 check(Info.project({flags={}}).key=='Locked','real fresh profile needs rescue')
+local replay={main=2,flags={},seleneUnlocked=true,seleneFollowing=false}
+check(Info.project(replay).unlocked and Info.project(replay).key=='Available','permanent recruitment survives a replay before the rescue report')
+check(Info.project(replay,nil,nil,false,{active=false,credits=1}).key=='SupportReady','replay offers saved support credits')
+check(Info.project(replay,nil,nil,false,{active=false,credits=0}).key=='SupportPassRequired','replay recruitment grants no free paid support')
+check(Info.transition('Locked','SupportReady')==Info.text.SupportReady,'new recruitment explains invitation with saved credits')
+check(Info.transition('Locked','SupportPassRequired')==Info.text.SupportPassRequired,'new recruitment explains pass requirement instead of announcing ended support')
+check(Info.transition('Locked','Available')==Info.text.recruited,'new recruitment explains explicit camp invitation')
 for _,main in ipairs({3,4,7,14,21})do
  local journal={main=main,flags={['DW-03:report']=true},seleneFollowing=true}
  local copy=Info.project(journal)

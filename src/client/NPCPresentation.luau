@@ -3,6 +3,7 @@
 local Tags=game:GetService('CollectionService')
 local Run=game:GetService('RunService')
 local MapState=require(script.Parent.DeepwoodMapState)
+local Progress=require(game.ReplicatedStorage.Shared.DeepwoodProgress)
 local View={}
 function View.create(player,world,readState)
  readState=readState or function()return MapState.current end
@@ -28,7 +29,7 @@ function View.create(player,world,readState)
      if role=='escort' then priority=4
      elseif role=='companion' and distance<=120 then priority=model:GetAttribute('OwnerUserId')==player.UserId and 4 or 3 end
      if identity=='npc:selene' and model:GetAttribute('NPCRole_camp') and distance<80
-      and journal and journal.main>=2 and not journal.flags['DW-03:report'] then priority=6 end
+      and journal and journal.main>=2 and not Progress.seleneUnlocked(journal) then priority=6 end
      candidates[model]={identity=identity,priority=priority,distance=distance}
      local old=chosen[identity]
      if not old or priority>candidates[old].priority or priority==candidates[old].priority
@@ -53,7 +54,7 @@ function View.create(player,world,readState)
      local enabled=shown and record[object]
      if object:IsA('ProximityPrompt') and (object.Name=='Invite' or object.Name=='Rest') then
       local camp=model:GetAttribute('SeleneCampPosition')
-      local unlocked=journal and journal.flags['DW-03:report']==true
+      local unlocked=Progress.seleneUnlocked(journal)
       local pass=state and state.supporter and state.supporter.pass
       local following=journal and journal.seleneFollowing==true and (not pass or pass.active==true)
       enabled=enabled and unlocked and root and typeof(camp)=='Vector3' and (root.Position-camp).Magnitude<=16

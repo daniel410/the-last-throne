@@ -6,6 +6,7 @@ return {
  cleanse='CLEANSE · Remove the current stun. Support cooldown: %ds. Range: %d studs.',
  policy='200 GOLD PER MAIN STORY · 5-STORY PACK 1,000 GOLD · 10-STORY PACK 2,000 GOLD',duration='One story credit starts support for your current main story. Story completion or choosing Return to Lobby ends that support. Unused credits remain saved.',
  unlock='Finish the convoy rescue report with Selene in Deepwood Story 3 to recruit her for free.',
+ recruited='SELENE RECRUITED · At a safe companion camp, choose Invite Selene to start story support. Recruitment alone does not start support; each new main story uses 1 saved credit.',
  invite='At a safe companion camp, choose Invite Selene to use 1 story credit. Resting, respawning and rejoining the same supported story do not use another credit.',
  camps='Companion camps: Elder Tree in Deepwood, Refuge in Frozen Vale, and Forge City in Ember Caldera.',
  lobby='Buy 1, 5 or 10 story credits below. A 5-story pack supports five separately started stories; it is not five healing casts. No automatic purchase or renewal.',

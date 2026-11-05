@@ -2,9 +2,10 @@
 local Shared=game and game:GetService('ReplicatedStorage').Shared
 local Text=Shared and require(Shared.SupporterText) or dofile('src/shared/SupporterText.luau')
 local Budget=Shared and require(Shared.SeleneSupport) or dofile('src/shared/SeleneSupport.luau')
+local Progress=Shared and require(Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
 local Info={text=Text}
 function Info.project(journal,status,key,lobby,pass)
- local unlocked=journal and journal.flags and journal.flags['DW-03:report']==true or false
+ local unlocked=Progress.seleneUnlocked(journal)
  if lobby and journal and unlocked and journal.seleneFollowing and not key then key='Selected' end
  key=key or (not journal and 'Unknown' or not unlocked and 'Locked' or journal.seleneFollowing and 'Following' or 'Available')
  if unlocked and pass and not pass.active then key=pass.credits>0 and 'SupportReady' or 'SupportPassRequired' end
@@ -19,6 +20,9 @@ function Info.project(journal,status,key,lobby,pass)
 end
 function Info.transition(previous,current)
  if not previous or previous==current then return nil end
+ if previous=='Locked' and (current=='Available' or current=='SupportReady' or current=='SupportPassRequired') then
+  return current=='SupportReady' and Text.SupportReady or current=='SupportPassRequired' and Text.SupportPassRequired or Text.recruited
+ end
  if current=='Available' and previous~='Locked' and previous~='Unknown' then return Text.ended end
  if current=='Following' and previous~='Locked' and previous~='Available' and previous~='Unknown' then return Text.resumed end
  if current=='SupportReady' or current=='SupportPassRequired' then return Text.SupportEnded end
