@@ -1,0 +1,7 @@
+2026-11-05T04:28:03.898Z,37.898941,6be4b000,6,Info [FLog::StudioPublishService] publishAs: currentUniverse=0 currentPlace=0 -> targetUniverse=10773575153 targetPlace=70829337938054 isPublish=1 (crossUniverse=0)
+2026-11-05T04:28:12.849Z,46.849247,6be4b000,6,Debug [FLog::PublishSessionStateController] Go to PublishSuccessful
+2026-11-05T04:28:12.849Z,46.849346,6be4b000,6,Info [FLog::StudioPublishStatusLabel] Publish succeeded for placeId 0; marking as published (refreshing menu label to "Publish latest version")
+2026-11-05T04:29:03.078Z,97.078995,6bc3f000,6,Info [FLog::StudioPublishService] publishAs: currentUniverse=10773575153 currentPlace=70829337938054 -> targetUniverse=10773575153 targetPlace=129388473517823 isPublish=1 (crossUniverse=0)
+2026-11-05T04:29:03.082Z,97.082283,6bc3f000,6,Info [FLog::StudioPublishService] publishAs: asset-permission grant resolved after 4ms; continuing to publish (universe=10773575153 place=129388473517823)
+2026-11-05T04:29:05.677Z,99.677391,6bc3f000,6,Debug [FLog::PublishSessionStateController] Go to PublishSuccessful
+2026-11-05T04:29:05.677Z,99.677513,6c46f000,6,Info [FLog::StudioPublishStatusLabel] Publish succeeded for placeId 0; marking as published (refreshing menu label to "Publish latest version")

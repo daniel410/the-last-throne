@@ -1,0 +1,37 @@
+{
+  "version": "0.73.2",
+  "sourceCommit": "3360af8ae95ee21a9529a810ea526a6366604b67",
+  "artifact": "builds/0.73.2/TheLastThrone-0.73.2.rbxlx",
+  "sha256": "0d7fff65a2cd82036b39af5eb220ba5a3c81cdc870b308ef136fc7735278e010",
+  "recordedAt": "2026-11-05T04:30:24.490981+00:00",
+  "status": "published",
+  "universeId": 10773575153,
+  "visibility": "Private",
+  "restart": "User authorized force quit; three Roblox Studio processes force quit through Activity Monitor; opened 0.73.2 from Finder",
+  "targets": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedAtUtc": "2026-11-05T04:28:12.849Z",
+      "published": true,
+      "robloxVersionNumber": null,
+      "verification": "Studio PublishSuccessful log; Manage Audience ready-to-test/private screen"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedAtUtc": "2026-11-05T04:29:05.677Z",
+      "published": true,
+      "robloxVersionNumber": null,
+      "verification": "Studio PublishSuccessful log; Successfully published! The Last Throne Battles Private screen"
+    }
+  ],
+  "assetPermissionPrompt": "Grant Permissions and Publish accepted for The Last Throne; IDs/count not exposed by dialog",
+  "releaseTag": "v0.73.2",
+  "runtimeClientVerified": false,
+  "limitations": [
+    "Roblox numeric Place version not independently retrieved; Edit game.PlaceVersion returned 0 for local-file session.",
+    "Studio script asset version-history commits logged HTTP 429; Place publish itself reported success twice.",
+    "Published client travel, mobile, 4 players plus AI, gameplay acceptance remain unverified."
+  ]
+}
