@@ -24,7 +24,9 @@
 - `/private/tmp/td233-luau/luau-compile`: 수정한 런타임6모듈과 새 네이티브 테스트 컴파일 PASS.
 - `run-in-roblox --place builds/0.73.3/TheLastThrone-0.73.3.rbxlx --script /tmp/tlt-trial-native/candidate.luau`: 실제6모듈을 메모리에 교체한 후보 검사에서 실제 SeleneCompanion/TD모델/권리·저널을 실행해14검사 PASS([로그](candidate-native.log)). 두 fixture 영웅 중1명만 자동 동행·다른영웅 무료권 보존, 지원 루프·시작/종료 안내·휴식/사망/재개·완료 후 비갱신을 검사했다. 플레이어/계정은 메모리 fixture이고 치유 적용 콜백은 시험용이다. 실제 CombatService 피해/치유 수치를 재검증한 결과는 아니다.
 
-첫 후보 시험은 주입 문자열의 unicode escape, 다음은 미생성 Remotes, 이후 fixture 캐릭터의 Raycast 간섭으로 실패했다. 시험 환경을 바로잡은 뒤 종료 안내가 직전 알림의 제한에 가려지는 실제 분기를 발견해 수정하고 재통과했다. 원래203785492 asset type 경고는 남는다. 고정 소스 빌드/네이티브 재검증은 후속 기록에 연결한다.
+첫 후보 시험은 주입 문자열의 unicode escape, 다음은 미생성 Remotes, 이후 fixture 캐릭터의 Raycast 간섭으로 실패했다. 시험 환경을 바로잡은 뒤 종료 안내가 직전 알림의 제한에 가려지는 실제 분기를 발견해 수정하고 재통과했다. 원래203785492 asset type 경고는 남는다. 고정 소스 `d234227aa163f05753a36fb4640bfb5e730da356`를 origin/main에 푸시하고 원격 SHA 일치를 확인한 뒤 `python3 tools/build-game.py --source HEAD --record docs/evidence/selene-trial-20261105/build.json`으로 단일 Lobby/Battle 빌드에 성공했다. 신규 LFS 자산은 없으며 기존 입력의 LFS 해시 검증도 통과했다. 산출물 `builds/0.74.0/TheLastThrone-0.74.0.rbxlx`의 SHA-256은 `355a25ac2d4bc01d40bfe9a766538bed49912581c294f4d27d0805fd4ddda591`로 실제 바이트를 다시 확인했다. [입력/명령/산출물](build.json).
+
+고정 산출물 자체에서 `run-in-roblox --place builds/0.74.0/TheLastThrone-0.74.0.rbxlx --script tests/selene-trial-native.luau`로14검사를 재통과했다([로그](fixed-native.log)). `python3 tests/single-build.spec.py --artifact builds/0.74.0/TheLastThrone-0.74.0.rbxlx`도 실제 산출물의 역할10·도착 로딩108·공통 마운트/구성 일치 검사 PASS다.
 
 ## 미검증·다음 담당
 
