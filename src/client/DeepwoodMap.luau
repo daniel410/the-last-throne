@@ -201,7 +201,7 @@ function Map.start(button)
   local camera=workspace.CurrentCamera;local size=camera and camera.ViewportSize
   if size~=previousSize then previousSize=size;layout() end
   local c=player.Character;local root=c and c:FindFirstChild('HumanoidRootPart');local human=c and c:FindFirstChildOfClass('Humanoid')
-  atlas.update(State.current,root and human and human.Health>0 and root or nil,State.target)
+  atlas.update(State.current,root and human and human.Health>0 and root or nil,State.target,State.party())
   if lastRevision~=State.revision then
    lastRevision=State.revision;refreshEpic()
    if selected then describe(selected) end

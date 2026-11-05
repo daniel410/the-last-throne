@@ -63,7 +63,7 @@ function Map.create(parent)
   if id then
    local z=Content.zones[id];mapOrigin=Vector3.new(table.unpack(z.center));mapWidth=math.max(z.size[1],z.size[2])*168/152;caption.Text=z.name
    if regionId~=id then clearScene();atlas=Canvas.create(view,id,true);atlas.pin.Visible=false;regionId=id end
-   atlas.update(State.current,nil,State.target)
+   atlas.update(State.current,nil,State.target,State.party())
   else
    if regionId then clearScene();regionId=nil;atlas=nil end
    mapOrigin=Vector3.zero;mapWidth=180;caption.Text='TRAINING'

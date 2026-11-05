@@ -30,7 +30,7 @@ return {
   EpicSubtitle = "EPIC %d  /  %s",
   EpicProgress = "%d / %d STORIES COMPLETE  ·  %d%% EXPLORED",
   EpicJourneyHint = "7 story regions · Select an epic above",
-  Legend = "▲ YOU    ◆ OBJECTIVE    ◇ CHECKPOINT",
+  Legend = "▲ YOU    ● PARTY    ◆ OBJECTIVE    ◇ CHECKPOINT",
   Hint = "Select a region · Drag to explore · + / − to zoom",
   Available = "UNEXPLORED", Locked = "LOCKED", Explored = "%d%% EXPLORED",
   Main = "STORY %02d", Side = "OPTIONAL", North = "N", South = "S", East = "E", West = "W",

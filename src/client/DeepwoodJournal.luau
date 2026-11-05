@@ -56,6 +56,7 @@ function Journal.start(hud)
  local player=Players.LocalPlayer
  local remotes=RS:WaitForChild('Remotes');local request=remotes:WaitForChild('DeepwoodRequest');local response=remotes:WaitForChild('DeepwoodState')
  local gui=Instance.new('ScreenGui');gui.Name='DeepwoodJournal';gui.ResetOnSpawn=false;gui.DisplayOrder=42;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=player:WaitForChild('PlayerGui')
+ remotes:WaitForChild('DeepwoodPartyState').OnClientEvent:Connect(MapState.setParty)
  local current,target,selectedChapter,selectedGoal,lastMessage,render,setOpen,track
  local book=require(script.Parent.DeepwoodQuestBook).create(gui,function(id,goal) track(id,goal) end)
  local panel=book.panel

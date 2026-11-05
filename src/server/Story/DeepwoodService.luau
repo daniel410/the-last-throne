@@ -379,6 +379,22 @@ function Service.start(settings)
   end,relocate=function(p,pivot)return options.combat.relocateForStoryGate(p,pivot)end,
  })
  remote=Instance.new('RemoteEvent');remote.Name='DeepwoodState';remote.Parent=ReplicatedStorage.Remotes
+ local partyRemote=Instance.new('RemoteEvent');partyRemote.Name='DeepwoodPartyState';partyRemote.Parent=ReplicatedStorage.Remotes
+ local partySnapshot=require(script.Parent.PartyMapRoster).create({active=active,
+  players=function()return Players:GetPlayers()end,
+  run=function(p,id)return options.inventory.expedition(p,id)end,
+  inAdventure=function(p)return p:GetAttribute('K0SessionPhase')=='Tutorial'end,
+  position=function(p)
+   local character=p.Character;local root=character and character:FindFirstChild('HumanoidRootPart');local human=character and character:FindFirstChildOfClass('Humanoid')
+   if not root or not human then return nil end
+   return {root.Position.X,root.Position.Y,root.Position.Z},human.Health<=0
+  end,
+ })
+ local partyElapsed=0
+ RunService.Heartbeat:Connect(function(dt)
+  partyElapsed=partyElapsed+dt;if partyElapsed<.5 then return end;partyElapsed=0
+  for _,p in ipairs(Players:GetPlayers())do partyRemote:FireClient(p,partySnapshot(p))end
+ end)
  activities=require(script.Parent.DeepwoodActivities).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,enqueue=enqueue,publish=publish})
  companion=require(script.Parent.SeleneCompanion).create({frameDriven=true,active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,activate=options.inventory.activateSupport,passState=options.inventory.supportState,phase=function(p)return p:GetAttribute('K0SessionPhase')end,notice=function(p,message)publish(p,nil,message)end,
   select=function(player,heroId,following) enqueue(player,heroId,Content.byId['DW-03'],{id='@selene'},following) end})

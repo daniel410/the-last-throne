@@ -91,7 +91,9 @@ function Canvas.create(parent,zoneId,compact,onSelect)
  local function located(marker,position)
   local p=point(position.X,position.Z);marker.Position=UDim2.fromScale(p.X,p.Y);marker.Visible=p.X>=0 and p.X<=1 and p.Y>=0 and p.Y<=1
  end
- local function update(current,root,target)
+ local party=require(script.Parent.PartyMapMarkers).create(parent,point,compact)
+ local function update(current,root,target,members)
+  party.update(members)
   local journal=current and current.journal
   if journal~=lastJournal then
    lastJournal=journal
@@ -123,6 +125,6 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   if root then located(pin,root.Position);pin.Rotation=math.deg(math.atan2(root.CFrame.LookVector.X,-root.CFrame.LookVector.Z)) else pin.Visible=false end
   if target then located(objective,target) else objective.Visible=false end
  end
- return {pin=pin,objective=objective,rows=rows,aspect=width/height,update=update,project=point,select=selectRegion}
+ return {party=party,pin=pin,objective=objective,rows=rows,aspect=width/height,update=update,project=point,select=selectRegion}
 end
 return Canvas
