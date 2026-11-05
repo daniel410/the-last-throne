@@ -1,0 +1,37 @@
+{
+  "sourceAssetId": "9114171855",
+  "sourceCreator": "ProSoundEffects",
+  "sourceTitle": "Drinking Cu Gulping 2 (SFX)",
+  "sourceUrl": "https://create.roblox.com/store/asset/9114171855",
+  "edit": "Two gulps in one WAV; 55ms gap, 8ms edge fades, second gulp gain 0.94",
+  "reproduce": "python3 tools/edit-potion-drink.py",
+  "files": [
+    {
+      "path": "source.wav",
+      "sha256": "cd202e9aab270c0597b324082706a020a6d07493ca31598ba015193633d66242",
+      "seconds": 0.8506875,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "peak": 3971,
+      "firstSample": 0,
+      "lastSample": 0
+    },
+    {
+      "path": "potion-drink.wav",
+      "sha256": "bb1729c9cfc7d281ae87c0f164f1cb47d51d6d17fe047e30af67654ed4d8b29b",
+      "seconds": 1.756375,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "peak": 3971,
+      "firstSample": 0,
+      "lastSample": 0
+    }
+  ],
+  "robloxUpload": {
+    "status": "blocked-unapproved-directory",
+    "newAssetId": null
+  },
+  "runtime": "Existing source asset remains active; no runtime replay/loop added"
+}
