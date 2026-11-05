@@ -75,7 +75,21 @@ function M.create(parent,player,chooseHero,playAction,world)
   play.Size=UDim2.fromOffset(playW,playH);play.Position=UDim2.fromOffset((deckW-playW)/2,0)
   playTitle.TextSize=short and 26 or w<600 and 30 or large and 51 or 38
   heading.Position=UDim2.fromOffset(0,playSlotH+3);heading.Size=UDim2.new(1,0,0,18)
-  for i,classId in ipairs(ORDER) do cards[classId].Position=UDim2.fromOffset((i-1)*(portraitW+spacing),portraitY);cards[classId].Size=UDim2.fromOffset(portraitW,portraitH) end
+  for i,classId in ipairs(ORDER) do
+   local card=cards[classId];local selected=card:GetAttribute('HeroSelected')==true
+   local compact=short or w<600
+   card.Position=UDim2.fromOffset((i-1)*(portraitW+spacing),portraitY);card.Size=UDim2.fromOffset(portraitW,portraitH)
+   -- Compact cards keep the portrait clear: a thin outline and corner check
+   -- replace the desktop's filled selection labels.
+   card.HeroSelectedTag.Visible=selected and not compact
+   card.HeroSelectedMarker.Size=UDim2.fromOffset(compact and 12 or 20,compact and 12 or 20)
+   card.HeroSelectedMarker.Position=compact and UDim2.new(1,-16,0,3) or UDim2.new(1,-24,0,1)
+   card.HeroSelectionBorder.Thickness=selected and (compact and 2 or 5) or 1
+   local filled=selected and not compact
+   card.HeroName.BackgroundColor3=filled and Color3.fromRGB(255,215,90) or Color3.fromRGB(12,27,54)
+   card.HeroName.TextColor3=filled and Color3.fromRGB(12,27,54) or Color3.new(1,1,1)
+   card.HeroName.TextStrokeTransparency=filled and 1 or 0
+  end
   local amountW=w<600 and 94 or short and 108 or large and 176 or 144
   local gap=w<600 and 6 or 12
   track.Position=UDim2.fromOffset(0,progressY+progressH-20);track.Size=UDim2.fromOffset(math.max(24,deckW-amountW-gap),18)
@@ -90,11 +104,9 @@ function M.create(parent,player,chooseHero,playAction,world)
   for _,classId in ipairs(ORDER) do
    local card=cards[classId];local selected=false
    for _,hero in ipairs(state and state.heroes or {}) do if hero.classId==classId and hero.heroId==state.selectedHeroId then selected=true end end
-   card:SetAttribute('HeroSelected',selected);card.HeroSelectedMarker.Visible=selected;card.HeroSelectedTag.Visible=selected
-   card.HeroName.BackgroundColor3=selected and Color3.fromRGB(255,215,90) or Color3.fromRGB(12,27,54)
-   card.HeroName.TextColor3=selected and Color3.fromRGB(12,27,54) or Color3.new(1,1,1);card.HeroName.TextStrokeTransparency=selected and 1 or 0
+   card:SetAttribute('HeroSelected',selected);card.HeroSelectedMarker.Visible=selected
    card.HeroPortrait.ImageColor3=selected and Color3.new(1,1,1) or Color3.fromRGB(185,195,210)
-   card.HeroSelectionBorder.Color=selected and Color3.fromRGB(255,225,115) or Color3.fromRGB(120,145,175);card.HeroSelectionBorder.Thickness=selected and 5 or 1
+   card.HeroSelectionBorder.Color=selected and Color3.fromRGB(255,225,115) or Color3.fromRGB(120,145,175)
    card.Active=allowed() and state.canManage==true;card.Selectable=card.Active;card.AutoButtonColor=card.Active
   end
   play.Active=allowed();play.Selectable=play.Active;play.AutoButtonColor=play.Active

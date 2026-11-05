@@ -10,26 +10,42 @@ function V.create(parent,send)
  require(script.Parent.LobbyPanelLayout).bind(panel)
  T.label(panel,'Title',Copy.Title,UDim2.fromOffset(20,10),UDim2.new(1,-88,0,32),21,T.color.gold)
  local close=T.button(panel,'Close',Copy.Close,UDim2.new(1,-60,0,8),UDim2.fromOffset(44,44));close.Activated:Connect(function()panel.Visible=false end)
- T.label(panel,'Subtitle',Copy.Subtitle,UDim2.fromOffset(20,48),UDim2.new(1,-40,0,38),12,T.color.muted)
+ local subtitle=T.label(panel,'Subtitle',Copy.Subtitle,UDim2.fromOffset(20,48),UDim2.new(1,-40,0,38),12,T.color.muted)
  local grid=Instance.new('ScrollingFrame');grid.Name='Days';grid.Position=UDim2.fromOffset(16,92);grid.Size=UDim2.new(1,-32,1,-200);grid.BackgroundTransparency=1;grid.BorderSizePixel=0;grid.ScrollBarThickness=5;grid.AutomaticCanvasSize=Enum.AutomaticSize.Y;grid.CanvasSize=UDim2.new();grid.Parent=panel
  local layout=Instance.new('UIGridLayout');layout.CellPadding=UDim2.fromOffset(8,8);layout.SortOrder=Enum.SortOrder.LayoutOrder;layout.Parent=grid
  local cells={}
  for i=1,7 do
   local cell=T.frame(grid,'Day'..i,UDim2.new(),UDim2.new());cell.LayoutOrder=i
   local title=T.label(cell,'Day',string.format(Copy.Day,i),UDim2.fromOffset(4,6),UDim2.new(1,-8,0,23),12,T.color.text);title.TextXAlignment=Enum.TextXAlignment.Center
-  T.icon(cell,'gold',UDim2.new(.5,-18,0,31),UDim2.fromOffset(36,36))
+  local icon=T.icon(cell,'gold',UDim2.new(.5,-18,0,31),UDim2.fromOffset(36,36))
   local reward=T.label(cell,'Reward',string.format(Copy.Reward,Rules.rewards[i]),UDim2.fromOffset(4,68),UDim2.new(1,-8,0,24),12,T.color.gold);reward.TextXAlignment=Enum.TextXAlignment.Center
   local status=T.label(cell,'Status',Copy.Unknown,UDim2.fromOffset(4,96),UDim2.new(1,-8,0,22),10,T.color.muted);status.TextXAlignment=Enum.TextXAlignment.Center
-  cells[i]={frame=cell,status=status,reward=reward}
+  cells[i]={frame=cell,status=status,reward=reward,title=title,icon=icon}
  end
  local message=T.label(panel,'Status','',UDim2.new(0,20,1,-102),UDim2.new(1,-40,0,40),12,T.color.muted)
  local claim=T.button(panel,'Claim',Copy.Loading,UDim2.new(0,16,1,-54),UDim2.new(1,-32,0,44),true)
  local state={status='Loading'};local pending,waiting,feedback=nil,false,''
  local function layoutGrid()
-  local width=grid.AbsoluteSize.X;local columns=width>=650 and 7 or width>=380 and 4 or 3
-  layout.CellSize=UDim2.new(1/columns,-8,0,124)
+  local viewport=parent.AbsoluteSize;local compact=viewport.Y<500 or viewport.X<600
+  subtitle.Position=UDim2.fromOffset(20,compact and 44 or 48);subtitle.Size=UDim2.new(1,-40,0,compact and 22 or 38)
+  grid.Position=UDim2.fromOffset(16,compact and 70 or 92);grid.Size=UDim2.new(1,-32,1,compact and -156 or -200)
+  message.Position=UDim2.new(0,20,1,compact and -80 or -102);message.Size=UDim2.new(1,-40,0,compact and 24 or 40)
+  local width=grid.AbsoluteSize.X;local columns=width>=(compact and 490 or 650) and 7 or width>=380 and 4 or 3
+  local rows=math.ceil(7/columns)
+  local height=compact and math.max(84,math.min(104,math.floor((grid.AbsoluteSize.Y-(rows-1)*8)/rows))) or 124
+  layout.CellSize=UDim2.new(1/columns,-8,0,height)
+  for _,cell in ipairs(cells)do
+   local iconSize=compact and math.floor(height*.25) or 36
+   cell.title.Position=UDim2.fromOffset(4,compact and 4 or 6);cell.title.Size=UDim2.new(1,-8,0,compact and 16 or 23);cell.title.TextSize=compact and 10 or 12
+   cell.icon.Position=UDim2.new(.5,-iconSize/2,0,compact and 22 or 31);cell.icon.Size=UDim2.fromOffset(iconSize,iconSize)
+   cell.reward.Position=UDim2.fromOffset(4,compact and 24+iconSize or 68);cell.reward.Size=UDim2.new(1,-8,0,compact and 16 or 24);cell.reward.TextSize=compact and 10 or 12
+   cell.status.Position=UDim2.fromOffset(4,compact and height-18 or 96);cell.status.Size=UDim2.new(1,-8,0,compact and 16 or 22);cell.status.TextSize=compact and 9 or 10
+  end
  end
- grid:GetPropertyChangedSignal('AbsoluteSize'):Connect(layoutGrid);layoutGrid()
+ grid:GetPropertyChangedSignal('AbsoluteSize'):Connect(layoutGrid)
+ local resize=parent:GetPropertyChangedSignal('AbsoluteSize'):Connect(layoutGrid)
+ panel.Destroying:Connect(function()resize:Disconnect()end)
+ layoutGrid()
  local function render()
   local ready=state.status=='Ready';local day=state.day or 1
   for i,cell in ipairs(cells)do

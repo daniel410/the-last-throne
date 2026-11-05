@@ -37,6 +37,10 @@ local ok,err=xpcall(function()
  check(view.Enabled,'role refresh restores lobby wallet')
  player:SetAttribute('TLTLobbyTopMenuOpen',true);task.wait();check(not view.Enabled,'open MENU hides balances')
  player:SetAttribute('TLTLobbyTopMenuOpen',false);task.wait();check(view.Enabled,'closed MENU restores balances')
+ for _,key in ipairs({'TLTHeroSelectionOpen','TLTInventoryOpen','TLTProgressionOpen','TLTSettingsOpen','TLTLobbyPanelOpen','TLTSupporterOpen','TLTMapOpen','TLTStoryOpen','TLTTravelLock'})do
+  player:SetAttribute(key,true);task.wait();check(not view.Enabled,key..' hides external balances')
+  player:SetAttribute(key,false);task.wait();check(view.Enabled,key..' closure restores balances')
+ end
  check(wallet.Size==UDim2.fromOffset(208,56) and wallet.Gold:FindFirstChildOfClass('UITextSizeConstraint').MaxTextSize==17,'readable shared wallet sizing preserved')
 end,debug.traceback)
 scratch:Destroy()

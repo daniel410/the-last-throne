@@ -11,6 +11,7 @@ local ok,err=xpcall(function()
  local view=require(client.LobbyHeroDock).create(gui,player,function() error('Unexpected hero intention') end,function() error('Unexpected play intention') end,world)
  local state={phase='Lobby',canManage=true,canStart=true,selectedHeroId='h1',heroes={{heroId='h1',classId='knight',level=1},{heroId='h2',classId='mage',level=5}}}
  view.update(state,false)
+ view.layout(Vector2.new(1920,1080))
  check(view.root.Visible and view.play.Active,'lobby dock is interactive')
  local count=0;for _ in pairs(view.cards) do count+=1 end
  check(count==4 and view.cards.priestess==nil,'four player classes, no priestess')
@@ -32,7 +33,14 @@ local ok,err=xpcall(function()
   check(p.X.Offset>=0 and p.Y.Offset>=0 and p.X.Offset+s.X.Offset<=size.X and p.Y.Offset+s.Y.Offset==size.Y-12,'dock fits viewport '..tostring(size))
   check(dock.Hero_knight.Position.X.Offset==0 and dock.Hero_knight.Position.Y.Offset>view.play.Size.Y.Offset,'cards below PLAY')
   check(dock.Hero_mage.Position.X.Offset+dock.Hero_mage.Size.X.Offset==s.X.Offset,'four cards fill TD row')
+  local compact=size.Y<500 or size.X<600;local selected=view.cards.knight
+  check(selected.HeroSelectedTag.Visible==not compact,'selection label adapts without covering mobile portrait')
+  check(selected.HeroSelectionBorder.Thickness==(compact and 2 or 5),'mobile selection uses a thin border; desktop unchanged')
+  check(selected.HeroSelectedMarker.Size==UDim2.fromOffset(compact and 12 or 20,compact and 12 or 20),'selection check stays in a small corner')
+  check(selected.HeroName.BackgroundColor3==(compact and Color3.fromRGB(12,27,54) or Color3.fromRGB(255,215,90)),'mobile nameplate does not fill with Gold')
  end
+ view.layout(Vector2.new(1920,1080))
+ check(view.cards.knight.HeroSelectedTag.Visible and view.cards.knight.HeroSelectionBorder.Thickness==5,'resizing back restores desktop selection')
  for _,key in ipairs({'TLTHeroSelectionOpen','TLTInventoryOpen','TLTProgressionOpen','TLTSettingsOpen','TLTLobbyPanelOpen','TLTLobbyTopMenuOpen','TLTTravelLock'}) do
   player:SetAttribute(key,true);task.wait();check(not view.root.Visible and not view.play.Active,key..' blocks dock')
   player:SetAttribute(key,false);task.wait();check(view.root.Visible,key..' restores dock')

@@ -1,6 +1,7 @@
 local RS=game:GetService("ReplicatedStorage")
 local Http=game:GetService("HttpService")
 local Wallet=require(script.Parent.WalletDisplay)
+local Chrome=require(script.Parent.LobbyChromeVisibility)
 local M={}
 
 function M.create(player,parent,world)
@@ -15,14 +16,11 @@ function M.create(player,parent,world)
  local function refresh()
   local phase=player:GetAttribute("K0SessionPhase")
   gui.Enabled=world:GetAttribute("TLTServerRole")~="Battle"
-   and not player:GetAttribute('TLTHeroSelectionOpen') and not player:GetAttribute('TLTProgressionOpen') and not player:GetAttribute('TLTInventoryOpen') and not player:GetAttribute('TLTLobbyTopMenuOpen')
+   and not Chrome.blocked(player)
    and (phase==nil or phase=="Lobby" or phase=="LoadingLobby" or phase=="ReturningLobby")
  end
  player:GetAttributeChangedSignal("K0SessionPhase"):Connect(refresh)
- player:GetAttributeChangedSignal('TLTHeroSelectionOpen'):Connect(refresh)
- player:GetAttributeChangedSignal('TLTProgressionOpen'):Connect(refresh)
- player:GetAttributeChangedSignal('TLTInventoryOpen'):Connect(refresh)
- player:GetAttributeChangedSignal('TLTLobbyTopMenuOpen'):Connect(refresh)
+ for _,key in ipairs(Chrome.blockers)do player:GetAttributeChangedSignal(key):Connect(refresh)end
  world:GetAttributeChangedSignal("TLTServerRole"):Connect(refresh)
  refresh()
  return gui

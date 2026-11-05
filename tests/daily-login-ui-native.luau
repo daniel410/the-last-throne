@@ -24,11 +24,18 @@ local ok,err=xpcall(function()
  check(view.panel.Status.Text:find('+20 Gold',1,true)~=nil,'success amount is visible')
  view.receive({state={status='Ready',day=2,canClaim=true,rewards=rewards}})
  check(view.cells[1].status.Text=='CLAIMED' and view.cells[2].status.Text=='TODAY','next UTC day progression shown')
- for _,size in ipairs({Vector2.new(1280,800),Vector2.new(750,323),Vector2.new(390,780)})do
+ for _,size in ipairs({Vector2.new(1280,800),Vector2.new(844,390),Vector2.new(750,323),Vector2.new(667,375),Vector2.new(568,320),Vector2.new(390,780)})do
   host.Size=UDim2.fromOffset(size.X,size.Y);task.wait(.1)
   check(view.panel.Days.AbsoluteSize.Y>0,'reward calendar scrolls on screen')
   check(view.claim.AbsolutePosition.Y>=view.panel.Days.AbsolutePosition.Y+view.panel.Days.AbsoluteSize.Y,'claim button stays below calendar')
   check(view.claim.AbsoluteSize.Y>=44,'touch claim remains accessible')
+  if size.Y<500 or size.X<600 then
+   local days=view.panel.Days;local bottom=days.AbsolutePosition.Y+days.AbsoluteSize.Y
+   for _,cell in ipairs(view.cells)do
+    check(cell.frame.AbsolutePosition.Y+cell.frame.AbsoluteSize.Y<=bottom+1,'every mobile reward fits without vertical scrolling')
+    check(cell.status.Position.Y.Offset+cell.status.Size.Y.Offset<=cell.frame.AbsoluteSize.Y,'status fits its compact card')
+   end
+  end
  end
 end,debug.traceback)
 gui:Destroy();if not ok then table.insert(report.failures,tostring(err))end;report.pass=ok;return report

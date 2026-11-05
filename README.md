@@ -1,5 +1,7 @@
 # The Last Throne / 최후의 왕좌
 
+> **2026-11-05 모바일 상세 UI · TLT-028/031/046/052/057/084 · 0.75.1:** 상세창에서 배경 재화HUD/왼쪽메뉴/재접속 버튼을 숨기고, 모바일 영웅 선택을 얇은 테두리·작은 체크로 축소했다. 로그인7일 보상도 모바일에서 세로스크롤 없이 맞춘다. PC 선택 표시는 유지한다. [검증·한계](docs/evidence/mobile-lobby-overlays-20261105/README.md). 미게시·실기기/사용자 시각수용 후속.
+
 > **2026-11-05 대장간 Rare/Epic Diamonds 전용 · TLT-028/029/041/043/044/046/052/057/084 · 0.75.0:** [Rare12·Epic12 고정 판매](docs/production/forge-diamond-sales-2026-11-05.md)를구현했다. Rare Gold SKU중단·서버통화검사·기존51정의/상자권리보존. Common/Uncommon Gold판매/장비Gold되팔기는유지한다. [검증](docs/evidence/forge-diamond-sales-20261105/README.md). 로컬미게시·실제UI/계정/기기·가격수용후속, 계획중Epic40전체구현과구분한다.
 
 
