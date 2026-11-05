@@ -18,7 +18,9 @@
 - `lua tests/place-role.spec.lua`:10검사 PASS. 실제 두 ID·Studio 기본/배틀·알 수 없는 운영 Place/TD Place 거절·잘못된 Studio 속성 거절.
 - `lua tests/arrival-loading.spec.lua`:108검사 PASS. 실제 역할 모듈을 연결하고 로비/배틀·도착 GUI 유무·스트리밍 실패/준비 회귀를 모의 실행한다.
 - `python3 tests/single-build.spec.py`:프로젝트의 동일성·조기 로딩 마운트 PASS.
-- 고정 커밋의 실제 Rojo 빌드와 출력 XML 검증은 `build.json`/후속 기록에 남긴다.
+- 실제 Rojo 빌드 PASS. 소스 커밋 `2b8ab1ff711920c52796f1f927a87e152025db92`. 출력 `builds/0.73.1/TheLastThrone-0.73.1.rbxlx`, 13,132,657 bytes, SHA-256 `3923f63d322dcb876b585fff28d27a190d84be436332b9c0cf43f827c942ba03`. [빌드 입력/LFS/명령](build.json).
+- `python3 tests/single-build.spec.py --artifact builds/0.73.1/TheLastThrone-0.73.1.rbxlx`: 실제 XML의 조기/서버 모듈·설정 바이트 일치, 고정 역할 제거, 서버 부트스트랩 연결 PASS. 산출물에서 추출한 실제 코드로 역할10/로딩108검사 재통과.
+- 동일 소스/버전 빌드 재요청 거절 PASS. 산출물 SHA-256/mtime·기존 build.json 보존 PASS. [검증 요약](validation.json).
 - Studio/게시 클라이언트·실제 Teleport·모바일/4인+AI는 미검증이다. 이번에는 게시/릴리스 태그를 만들지 않는다. 부모 티켓 수용 상태는 유지한다.
 - 기존 미커밋 모션·무기·포탈 작업은 보존하고 소스 커밋/빌드에 포함하지 않는다.
 

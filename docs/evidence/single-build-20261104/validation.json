@@ -1,0 +1,12 @@
+{
+  "artifactSha256": "3923f63d322dcb876b585fff28d27a190d84be436332b9c0cf43f827c942ba03",
+  "artifactBytes": 13132657,
+  "artifactRoleChecks": 10,
+  "artifactLoadingChecks": 108,
+  "xmlMounts": "PASS",
+  "overwriteRejected": true,
+  "bytesAndMtimePreserved": true,
+  "buildRecordPreserved": true,
+  "studioPlayTested": false,
+  "published": false
+}
