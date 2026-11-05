@@ -46,5 +46,8 @@
   "compile": "6 changed Luau modules PASS",
   "nativeUi": "NOT RUN - connected Studios belong to existing projects; no isolated session used",
   "published": false,
-  "livePurchase": false
+  "livePurchase": false,
+  "sourceCommit": "4e60d380df9abb268b23438faaf5db72633aa20c",
+  "builtModuleSourceMatches": 6,
+  "artifactSha256Verified": true
 }
