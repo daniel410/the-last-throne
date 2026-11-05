@@ -21,7 +21,7 @@ for _,row in ipairs({{'Orc',450,924},{'Ogre',600,1134}})do
  check(D.stats(row[1],9,1,false,'Easy',1)==325,'legacy Easy rules retained for '..row[1])
 end
 local hp,damage,level=D.stats('Goblin',5,1,false,'Hell')
-check(hp==3465 and damage==135 and level==80,'reference Hell guard')
+check(hp==3465 and damage==169 and level==80,'reference Hell guard')
 local hp2,damage2,level2=D.stats('Goblin',12,1,false,'Hell')
 check(level2==87 and hp2>hp and damage2>damage,'later mission retains level progression inside Hell')
 local oldHP,oldDamage,oldLevel=D.stats('Goblin',5,1,false,'Hell',1)
@@ -72,7 +72,7 @@ check(D.verifyRun(p.heroes.hero,{id='old',missionId='DW-01',difficultyId='Hell',
 local gold=p.wallet.gold;local cores=R.quantity(p,'hero','forge_core');p=finish(p,'old')
 check(p.wallet.gold-gold==135 and R.quantity(p,'hero','forge_core')-cores==3,'v1 completion and materials remain pinned')
 p=assert(A.begin(p,'hero','DW-01','Hell','new',p.revision,R,Items))
-check(p.heroes.hero.expeditions.active.version==1 and p.heroes.hero.expeditions.active.balanceVersion==2,'schema stable; new run pins revised rules')
+check(p.heroes.hero.expeditions.active.version==1 and p.heroes.hero.expeditions.active.balanceVersion==3,'schema stable; new run pins revised rules')
 gold=p.wallet.gold;cores=R.quantity(p,'hero','magic_stone');p=finish(p,'new')
 check(p.wallet.gold-gold==393 and R.quantity(p,'hero','magic_stone')-cores==10,'new completion and material schedule reaches real reducer')
 local completed=assert(A.event(p,'hero','DW-01',C.byId['DW-01'].goals[#C.byId['DW-01'].goals].id,nil,nil,R,Items,'new'))

@@ -1,6 +1,6 @@
 local Difficulty=game and require(script.Parent.Difficulty)or dofile('src/shared/Difficulty.luau')
 -- Trial adventure tuning. Authored levels and fixed story rewards remain canonical.
-local Balance={density=6,normalHealth=1.5,normalDamage=1.5,bossHealth=1.35,bossDamage=1.25,maxWaveSize=9}
+local Balance={density=6,normalHealth=1.5,normalDamage=1.875,bossHealth=1.35,bossDamage=1.5625,maxWaveSize=9}
 local bosses={Warlord=true,GoblinKing=true,KingOgre=true,EnragedWarlord=true,KingShaman=true,IceTrollKing=true,KingIceBear=true,KingIceGolem=true,QueenIceElf=true,AncientGlacierKing=true,MagmaImp=true,MagmaGolem=true,InfernoOverlord=true,CalderaTitan=true,KingVolcanoShaman=true,AncientHollowbark=true,VenomcoilKing=true,WidowQueen=true,DreadCommander=true,Lich=true,LichSovereign=true,Veyr=true}
 function Balance.isBoss(kind) return bosses[kind]==true end
 -- Double the previous three-copy population, split into finite story-paced packs.
