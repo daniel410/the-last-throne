@@ -9,15 +9,19 @@ function A.continuation(a)
  if a and a.completed and start and not start.side and nextChapter
   and nextChapter.number>start.number then return nextChapter end
 end
--- Lobby defaults follow the saved frontier, never the immutable launch mission.
+local function currentMission(a)
+ local start=a and Content.byId[a.missionId]
+ if a and a.completed and start and not start.side then
+  return Content.mainChapters[math.min(Content.mainCount,a.journal.main+1)]
+ end
+ return start
+end
+-- Continue prioritizes permanent first-clear progress over an older Easy replay.
 function A.selection(hero)
  local a=hero and hero.expeditions and hero.expeditions.active
- local nextChapter=A.continuation(a)
- local current=nextChapter or a and Content.byId[a.missionId]
- if a and a.completed and current and not current.side then
-  current=Content.mainChapters[math.min(Content.mainCount,a.journal.main+1)]
- end
+ local current=currentMission(a)
  local frontier=Content.mainChapters[math.min(Content.mainCount,(hero and hero.deepwood and hero.deepwood.main or 0)+1)]
+ if a and a.difficultyId=='Easy' and current and not current.side and frontier.number>current.number then current=frontier end
  return {missionId=(current or frontier).id,difficultyId=a and a.difficultyId or 'Easy'}
 end
 local function integer(n,min,max)return type(n)=='number'and n%1==0 and n>=min and n<=max end
@@ -87,8 +91,8 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  local p=R.copy(profile);local h=p.heroes[heroId];local c=Content.byId[missionId]
  h.expeditions=h.expeditions or {version=1,clears={},cacheProgress={}}
  local first=not (h.deepwood and h.deepwood.clears[missionId])
- local previous=old and A.selection(hero)
- local resume=old and previous.missionId==missionId and old.difficultyId==mode and not old.journal.clears[missionId]
+ local previous=currentMission(old)
+ local resume=old and previous and previous.id==missionId and old.difficultyId==mode and not old.journal.clears[missionId]
  local journal=resume and P.copy(old.journal)or first and P.copy(h.deepwood or P.new())or resetJournal(h.deepwood or P.new(),c)
  if c.side then journal.accepted=journal.accepted or {};journal.accepted[c.id]=true;if first then h.deepwood=P.copy(journal)end end
  h.expeditions.active={version=1,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills={}}

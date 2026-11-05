@@ -24,6 +24,14 @@ check(h.deepwood.main==6 and h.deepwood.flags['DW-07:separate'],'reproduce all D
 check(not h.deepwood.clears['DW-07']and not h.deepwood.flags['DW-07:restoration'],'Eryn report is still required for story 7 completion')
 check(h.expeditions.active.missionId=='DW-01'and h.expeditions.active.completed,'saved launch mission differs from current objective')
 local saved=R.copy(p);local gold=p.wallet.gold;local xp=h.progression.xp
+-- Recover an existing account that already acquired the unintended early replay.
+local accidental=assert(A.begin(saved,'hero','DW-01','Easy','accidental',saved.revision,R,C))
+for _,goal in ipairs(Content.byId['DW-01'].goals)do if not goal.optional then accidental=apply(accidental,Content.byId['DW-01'],goal,'accidental')end end
+check(A.projection(accidental.heroes.hero).expeditionMission=='DW-02','reproduce the reported 2/7 replay while permanent history stays at 7/7')
+local recovery=A.selection(accidental.heroes.hero)
+check(recovery.missionId=='DW-07','existing accidental replay defaults back to permanent story 7')
+local restored=assert(A.begin(accidental,'hero',recovery.missionId,recovery.difficultyId,'recover',accidental.revision,R,C))
+check(A.projection(restored.heroes.hero).flags['DW-07:separate'],'recover Eryn checkpoint from retained permanent journal')
 local choice=A.selection(h)
 check(choice.missionId=='DW-07'and choice.difficultyId=='Easy','lobby defaults to saved story 7 instead of replaying story 1')
 -- A new lobby departure receives a new admission ID; it must preserve checkpoints.

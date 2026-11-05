@@ -8,7 +8,7 @@
 
 수정:
 
-- `AdventureRules.selection`으로 원정 journal의 현재 스토리를 기본 선택한다. 캠페인 전체 완료 때에도 최초 입장 스토리로 되돌리지 않는다.
+- `AdventureRules.selection`으로 원정 journal의 현재 스토리를 기본 선택한다. 이미 초반 Easy 반복 journal이 생성됐더라도 영구 초회 진행이 더 앞서 있으면 그 진행을 우선해 복구한다. 고의로 초반을 반복하려면 해당 임무를 명시적으로 선택하며, 그 임무의 같은 난이도 체크포인트는 유지한다. 캠페인 전체 완료 때에도 최초 입장 스토리로 되돌리지 않는다.
 - 같은 난이도·현재 미완료 스토리의 새 admission/runId에는 기존 journal을 복사해 전투·수집·대화 하위 체크포인트를 유지한다. 임의 다른 임무 또는 난이도 선택은 기존 반복 플레이 계약을 따른다. 신규 원정의 입장 권위/보상 원장은 기존 검증 경로를 유지한다.
 - 로비 복귀 시 이전 임무 선택 캐시를 정리한다. 명시적으로 새 임무를 선택하는 기능은 유지한다.
 - Eryn 보고 전에는 `main=6`, Story7 진행 중이 정상이다. `DW-07:king_shaman`·`DW-07:separate` 등을 보존해 보스를 다시 처치할 필요가 없으며 Eryn 보고 후 `main=7`, 다음 Frozen Vale로 진행한다.
@@ -17,7 +17,7 @@
 
 | 명령 | 결과 |
 | --- | --- |
-| `lua tests/story-lobby-resume.spec.lua` |21개 통과: Story1 출발→Story7 보스/공급품 완료→Eryn 보고 전 로비 선택→새 runId→체크포인트 유지→보고/다음 에픽, 중복 보상·반복 플레이 하위 진행·오래된 원정 차단·실제 선택/복귀 캐시·본편 완결 기본 선택 |
+| `lua tests/story-lobby-resume.spec.lua` |24개 통과: Story1 출발→Story7 보스/공급품 완료→Eryn 보고 전 로비 선택→새 runId→체크포인트 유지→보고/다음 에픽, 중복 보상·반복 플레이 하위 진행·오래된 원정 차단·실제 선택/복귀 캐시·본편 완결 기본 선택 |
 | `lua tests/story-continuation.spec.lua` |1,017개 통과 |
 | `lua tests/difficulty-enhancement.spec.lua` |125개 통과 |
 | `lua tests/difficulty-balance.spec.lua` |2,637개 통과 |
