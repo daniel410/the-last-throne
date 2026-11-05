@@ -1,0 +1,4 @@
+PixelFX CPU: 634 checks PASS; 128 skills, 4 basic profiles, 185 advanced pulses, support, hostile accents, frame playback, cancellation and budgets. No engine rendering.
+Skill effects CPU: 11978 checks PASS; all 116 advanced casts/pulses, geometry, cosmetic budget, cancellation. No engine QA.
+Lobby: SHA256 verified; all 4 PixelFX modules and 20 asset IDs in built Place
+Battle: SHA256 verified; all 4 PixelFX modules and 20 asset IDs in built Place

@@ -50,10 +50,16 @@ The current thread cannot require 'K0Config' since 'K0Config' has an additional
 value for the Capabilities property: Network
 ```
 
-Studio `rbx-permissions` 지침은 이 상황에 대해 “only Network can be granted, under Connect to the internet”라고 안내한다. 사용자에게 Assistant Settings → MCP Permissions → Connect to the internet → Network 활성화를 요청했다. 권한을 우회하기 위해 Play/다른 컨텍스트로 실행하지 않는다. 권한 확인 이후 같은 격리 Place에서 재시도한다.
+Studio [`rbx-permissions` 지침 발췌](rbx-permissions/SKILL.md)는 이 상황에 대해 “only `Network` can be granted, under *Connect to the internet*”라고 안내한다. 사용자에게 Assistant Settings → MCP Permissions → Connect to the internet → Network 활성화를 요청했다. 권한을 우회하기 위해 Play/다른 컨텍스트로 실행하지 않는다. 권한 확인 이후 격리 Place를 다시 열어 재시도한다.
 
 ## 남은 수용과 인계
 
 QA/DES: Network 권한 후 네이티브 fixture →20자산 실제 로드/320프레임·각 클래스 일반 조작/명중/빗나감·모든 기술128개/연타·Selene 지원·51종 적 공격을 확인한다. 이후 게시 테스트 Experience의 텍스처 이용 권한/모바일 가로/저사양·카메라 회전·밝은/어두운 지역·4인+AI 동시 효과/발열·위험 가림·스트림 아웃/재접속을 검증한다. 사용자 최종 미술 수용은 별도다.
 
-이 작업은 게임 Place 게시/릴리스가 아니며 상위 티켓을 Done으로 바꾸지 않는다. 로컬 버전/고정 소스 빌드·커밋/원격 결과는 마감 시 이 폴더에 기록한다.
+이 작업은 게임 Place 게시/릴리스가 아니며 상위 티켓을 Done으로 바꾸지 않는다.
+
+## 고정 빌드와 마감
+
+소스 `6b8cb3ec1643e0649c38c8927e5ef9e7dfa1534d`를 커밋·푸시하고 같은 소스에서0.70.0 Lobby/Battle Rojo 빌드가 모두 성공했다. [build.json](build.json)에 버전/소스/명령/경로/바이트/해시를 보존한다. [pinned-checks.log](pinned-checks.log)는 고정 소스의 CPU12,612검사, 빌드SHA256 및 각 Place의 신규4모듈/자산ID20개 포함 검사를 기록한다. 원격 main과 소스 커밋 일치·LFS21/21(효과20+시안1,1.7MB) 전송 성공을 확인했다. 이후 증거 커밋은 빌드 입력 소스와 구분한다.
+
+자체 Studio 검토 Place는 Don't Save로 닫았고 시작 화면으로 돌아갔다. 임시 변경/자동 복구 파일을 실제 게임 빌드에 저장하지 않았다. 새0.70.0 파일도 Studio 실행 검증/게임 게시/릴리스 태그로 보고하지 않는다. Network 권한 응답과 실제 렌더 검증은 남아 있다.
