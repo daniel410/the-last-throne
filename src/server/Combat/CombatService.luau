@@ -1439,7 +1439,7 @@ local function beginEnemyAttack(enemy, target, current)
 	setEnemyState(enemy, "Windup")
 end
 
-local function resetEnemy(enemy)
+local function resetEnemy(enemy, restoreHealth)
 	if not enemyAlive(enemy) then
 		return
 	end
@@ -1467,7 +1467,8 @@ local function resetEnemy(enemy)
 	enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
 	enemy.humanoid.WalkSpeed = enemy.config.walkSpeed
 	enemy.model:SetAttribute("K0GravityUntil", nil)
-	enemy.humanoid.Health = enemy.humanoid.MaxHealth
+	-- Returning home preserves damage; only a full party wipe restores health.
+	if restoreHealth then enemy.humanoid.Health = enemy.humanoid.MaxHealth end
 	enemy.model:SetAttribute("K0Posture", enemy.posture)
 	enemy.model:PivotTo(enemy.spawnPivot)
 	stopEnemy(enemy)
@@ -1554,7 +1555,7 @@ local function stepEnemy(enemy, current, dt)
 			setEnemyState(enemy, "Chase")
 			moveEnemy(enemy, enemy.spawnPosition, current)
 		else
-			if enemy.humanoid.Health < enemy.humanoid.MaxHealth and current >= (enemy.aggroUntil or 0) then
+			if enemy.mode ~= "Idle" and enemy.humanoid.Health < enemy.humanoid.MaxHealth and current >= (enemy.aggroUntil or 0) then
 				resetEnemy(enemy)
 			else
 				if enemy.mode ~= "Idle" then stopEnemy(enemy) end
@@ -2070,7 +2071,7 @@ function CombatService.start(enemies, serverContextResolver, awardXP)
 		elseif hadLivingPlayer then
 			hadLivingPlayer = false
 			for _, enemy in pairs(enemyStates) do
-				if enemy.splitGroup then retireSplitChild(enemy) else resetEnemy(enemy) end
+				if enemy.splitGroup then retireSplitChild(enemy) else resetEnemy(enemy, true) end
 			end
 		end
 		for _, enemy in pairs(enemyStates) do
