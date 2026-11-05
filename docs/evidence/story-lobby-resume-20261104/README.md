@@ -28,3 +28,19 @@
 명확한 결함 수정으로 별도 비교 게임 조사는 생략한다. 원정 이동/회피/무기/능력치의 기존 미커밋·스테이징 변경은 보존하며, `ExpeditionService`는 이번 선택/복귀 캐시 부분만 커밋한다. TD·live DataStore·실상품·Roblox 게시를 변경하지 않는다.
 
 미검증/다음 담당 QA: 실제 게시된 Lobby/Battle에서1~4인으로 보스 처치 후 Eryn 보고 전 복귀·재접속·새 원정 입장·저장 응답 유실·완료 후 다음 에픽 기본 선택을 확인한다. 사용자 저장본의 삭제/복원 여부는 확인되지 않았다. 본편 전체/멀티 게이트는 미완료로 유지한다.
+
+## 0.71.2 고정 빌드
+
+입력 소스 `cf647c9062593bc56949fdaa5b7524a731f3c4c8` / VERSION `0.71.2` / Rojo7.7.1. 별도 `/tmp/tlt-lobby-resume-0712` worktree에서 Lobby/Battle을 각각 빌드했다. 기존 미커밋 이동/무기/회피 작업을 제외했고, 선행 커밋 `54329f9`의 능력치 변경은 이미 커밋된 기반 소스로 포함된다.
+
+- `rojo build default.project.json -o <Lobby 산출물>`: 성공.
+- `rojo build battle.project.json -o <Battle 산출물>`: 성공.
+- 해당 고정 worktree에서 로비 복귀24·연속 스토리1,017·원정 출발42개 재검증 통과.
+- 열린 Battle Studio(Edit)에서 변경2모듈의 Luau `loadstring` 구문 검사 통과. 마지막 영구진도 복구 보완 후 AdventureRules를 다시 검사했다. Studio 문서·운영 계정·게시 상태는 변경하지 않았다.
+
+| 산출물 | SHA-256 |
+| --- | --- |
+| `builds/0.71.2/TheLastThrone-Lobby-0.71.2.rbxlx` | `9ac00e74faa2d30833abb7a94d4451c180f916cb95cbcdac4e8838602c3f1403` |
+| `builds/0.71.2/TheLastThrone-Battle-0.71.2.rbxlx` | `d0add327431d9659442a9d3513cb554312076f0c5af37e10013d6211ccc416ef` |
+
+구현 `3f97b5a`·기존 초반 반복 journal 복구 `cf647c9`를 `origin/main`에 푸시했다. 신규 LFS 파일은 없고 빌드 출력은 로컬 ignore 산출물이다. 일반 빌드이며 Roblox 게시/릴리스 태그를 수행하지 않았다. 사용자의 실제 저장본 복원 완료·게시 클라이언트 검증 완료로 보고하지 않는다.
