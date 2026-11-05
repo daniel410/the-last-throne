@@ -6,7 +6,7 @@
 
 ## 1. 기본 능력치와 착용 조건
 
-유니크는 같은 세대 Common 환산 프로필×1.26을 기본치로 하고 고유 효과에 예산0.14를 예약한다. 상한1.40 안에서 **기본치와 효과를 교환**하는 시험안이다. Legendary의1.40을 그대로 쓰고 효과를 추가하지 않는다. 기존 Legendary 세트 조각에는0.97이 적용되므로 실제 개별품 기본치 비교는1.358 대1.26이고, 비세트는1.40 대1.26이다. 이 예산 예약이 피해/생존/MP의 실제 가치 교환을 증명하지는 않는다.
+최신 사용자 정정에 따라 **Unique는 Legendary보다 기본 능력치도 높고 고정 효과1개도 추가로 갖는 최상위 등급**이다. 기본 능력치를 깎아 효과와 교환하던 이전안은 폐기한다. 같은 세대 Common 환산 프로필×1.60을 새 기본치 시험안으로 사용한다. Legendary 비세트1.40 대비 약14.286% 높고, Legendary 세트 조각1.358보다도 높다. 정확한1.60 배율은 플레이 검증 전 제안이며, 기본치 우위와 추가 고유 효과라는 방향은 사용자 지시다. 최종 피해/생존시간의 증가율과는 구분한다.
 
 모든 표는 등급 비교를 위한 **Lv10 시험 세대**다. Unique 최소착용Lv10이나 후반 보스Lv10 보상을 확정하지 않는다. 보스·지역·난이도별 장비 세대/요구Lv가 고정되기 전 드롭은OFF다. 높은 난이도에서Unique를 더 자주, Easy에서는 희소하게 주는 방향을 유지하며 확률표/보장책은 기존 재리뷰의 수용 조건을 먼저 충족한다. 본편/전직에 특정Unique를 요구하지 않는다.
 
@@ -20,66 +20,66 @@ Power / Armor / HP / MP 순서로 표시하며 수치는 소수3자리까지 표
 
 | 식별 이름 | 기본 P / A / HP / MP | +9 P / A / HP / MP | 고정 효과1개 | 목표 보스 |
 | --- | --- | --- | --- | --- |
-| `Unique_Quarrykeeper_Hood` | — / 7.56 / — / — | — / 9.601 / — / — | 적의 직접 피해가 HP에 적용되면, 최대HP의4% 보호막 4초 (공유 재발동 20초) | KingOgre |
-| `Unique_Hollowbark_Mantle` | — / 6.3 / 126 / — | — / 8.001 / 160.02 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 직접 적 피해6% 감소 3초 (공유 재발동 20초) | AncientHollowbark |
-| `Unique_Ashforged_Grips` | 7.56 / 2.52 / — / — | 9.601 / 3.2 / — / — | 8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | InfernoOverlord |
-| `Unique_Widowstep_Boots` | — / 5.04 / 50.4 / — | — / 6.401 / 64.008 / — | 회피로 서버가 확인한 적 공격을 피하면, 최대HP의3% 보호막 3초 (공유 재발동 20초) | WidowQueen |
-| `Unique_Ogreheart_Ring` | — / — / 151.2 / — | — / — / 192.024 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의2% 자기 회복 (공유 재발동 20초) | KingOgre |
-| `Unique_Glacier_Ward` | — / 7.56 / — / — | — / 9.601 / — / — | 적의 피해가 있는 공격을 블록하면, 최대HP의4% 보호막 4초 (공유 재발동 20초) | AncientGlacierKing |
-| `Unique_Emberfang_Ring` | 15.12 / — / — / — | 19.202 / — / — / — | 8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초) | InfernoOverlord |
-| `Unique_Lastlight_Charm` | — / 3.78 / 75.6 / — | — / 4.801 / 96.012 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의6% 보호막 4초 (공유 재발동 20초) | Veyr |
-| `Unique_Stillwater_Ring` | — / 2.52 / — / 25.2 | — / 3.2 / — / 25.2 | 스킬1회에 MP10 이상을 실제 소비하면, 최대HP의3% 보호막 4초 (공유 재발동 20초) | KingShaman |
-| `Unique_Grovewell_Pendant` | — / — / — / 37.8 | — / — / — / 37.8 | 피해 마법을 적중하면, 기존 MP 풀에 MP4 회복 (공유 재발동 15초) | KingShaman |
-| `Unique_Moonwell_Charm` | — / — / 75.6 / 18.9 | — / — / 96.012 / 18.9 | 스킬1회에 MP10 이상을 실제 소비하면, 최대HP의1.5% 자기 회복 (공유 재발동 20초) | WidowQueen |
+| `Unique_Quarrykeeper_Hood` | — / 9.6 / — / — | — / 12.192 / — / — | 적의 직접 피해가 HP에 적용되면, 최대HP의4% 보호막 4초 (공유 재발동 20초) | KingOgre |
+| `Unique_Hollowbark_Mantle` | — / 8 / 160 / — | — / 10.16 / 203.2 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 직접 적 피해6% 감소 3초 (공유 재발동 20초) | AncientHollowbark |
+| `Unique_Ashforged_Grips` | 9.6 / 3.2 / — / — | 12.192 / 4.064 / — / — | 8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | InfernoOverlord |
+| `Unique_Widowstep_Boots` | — / 6.4 / 64 / — | — / 8.128 / 81.28 / — | 회피로 서버가 확인한 적 공격을 피하면, 최대HP의3% 보호막 3초 (공유 재발동 20초) | WidowQueen |
+| `Unique_Ogreheart_Ring` | — / — / 192 / — | — / — / 243.84 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의2% 자기 회복 (공유 재발동 20초) | KingOgre |
+| `Unique_Glacier_Ward` | — / 9.6 / — / — | — / 12.192 / — / — | 적의 피해가 있는 공격을 블록하면, 최대HP의4% 보호막 4초 (공유 재발동 20초) | AncientGlacierKing |
+| `Unique_Emberfang_Ring` | 19.2 / — / — / — | 24.384 / — / — / — | 8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초) | InfernoOverlord |
+| `Unique_Lastlight_Charm` | — / 4.8 / 96 / — | — / 6.096 / 121.92 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의6% 보호막 4초 (공유 재발동 20초) | Veyr |
+| `Unique_Stillwater_Ring` | — / 3.2 / — / 32 | — / 4.064 / — / 32 | 스킬1회에 MP10 이상을 실제 소비하면, 최대HP의3% 보호막 4초 (공유 재발동 20초) | KingShaman |
+| `Unique_Grovewell_Pendant` | — / — / — / 48 | — / — / — / 48 | 피해 마법을 적중하면, 기존 MP 풀에 MP4 회복 (공유 재발동 15초) | KingShaman |
+| `Unique_Moonwell_Charm` | — / — / 96 / 24 | — / — / 121.92 / 24 | 스킬1회에 MP10 이상을 실제 소비하면, 최대HP의1.5% 자기 회복 (공유 재발동 20초) | WidowQueen |
 
 ### Knight 8종
 
 | 식별 이름 | 기본 P / A / HP / MP | +9 P / A / HP / MP | 고정 효과1개 | 목표 보스 |
 | --- | --- | --- | --- | --- |
-| `Unique_Knight_Rootwardens_Oath` | 22.68 / — / 37.8 / — | 28.804 / — / 48.006 / — | Shield Bash 적중 후, 최대HP의5% 보호막 4초 (공유 재발동 20초) | KingShaman |
-| `Unique_Knight_Glacierwatch_Helm` | — / 6.3 / 25.2 / — | — / 8.001 / 32.004 / — | 적의 직접 피해가 HP에 적용되면, 직접 적 피해5% 감소 3초 (공유 재발동 20초) | AncientGlacierKing |
-| `Unique_Knight_Hollowbark_Bulwark` | — / 8.82 / 75.6 / — | — / 11.201 / 96.012 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의6% 보호막 4초 (공유 재발동 20초) | AncientHollowbark |
-| `Unique_Knight_Ogregrip_Gauntlets` | 5.04 / 2.52 / 25.2 / — | 6.401 / 3.2 / 32.004 / — | 적의 피해가 있는 공격을 블록하면, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초) | KingOgre |
-| `Unique_Knight_Citadel_Step` | — / 5.04 / 50.4 / — | — / 6.401 / 64.008 / — | 회피로 서버가 확인한 적 공격을 피하면, 직접 적 피해4% 감소 3초 (공유 재발동 20초) | GoblinKing |
-| `Unique_Knight_Lionheart_Signet` | 5.04 / — / 100.8 / — | 6.401 / — / 128.016 / — | 8초 안에 기본 공격3회를 적중하면, 최대HP의3% 보호막 4초 (공유 재발동 20초) | KingShaman |
-| `Unique_Knight_Oathkeeper_Pendant` | — / 5.04 / 50.4 / — | — / 6.401 / 64.008 / — | 적의 피해가 있는 공격을 블록하면, 최대HP의5% 보호막 4초 (공유 재발동 20초) | KingShaman |
-| `Unique_Knight_Throneward_Shield` | — / 8.82 / — / — | — / 11.201 / — / — | 적의 피해가 있는 공격을 블록하면, 직접 적 피해6% 감소 3초 (공유 재발동 20초) | Veyr |
+| `Unique_Knight_Rootwardens_Oath` | 28.8 / — / 48 / — | 36.576 / — / 60.96 / — | Shield Bash 적중 후, 최대HP의5% 보호막 4초 (공유 재발동 20초) | KingShaman |
+| `Unique_Knight_Glacierwatch_Helm` | — / 8 / 32 / — | — / 10.16 / 40.64 / — | 적의 직접 피해가 HP에 적용되면, 직접 적 피해5% 감소 3초 (공유 재발동 20초) | AncientGlacierKing |
+| `Unique_Knight_Hollowbark_Bulwark` | — / 11.2 / 96 / — | — / 14.224 / 121.92 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의6% 보호막 4초 (공유 재발동 20초) | AncientHollowbark |
+| `Unique_Knight_Ogregrip_Gauntlets` | 6.4 / 3.2 / 32 / — | 8.128 / 4.064 / 40.64 / — | 적의 피해가 있는 공격을 블록하면, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초) | KingOgre |
+| `Unique_Knight_Citadel_Step` | — / 6.4 / 64 / — | — / 8.128 / 81.28 / — | 회피로 서버가 확인한 적 공격을 피하면, 직접 적 피해4% 감소 3초 (공유 재발동 20초) | GoblinKing |
+| `Unique_Knight_Lionheart_Signet` | 6.4 / — / 128 / — | 8.128 / — / 162.56 / — | 8초 안에 기본 공격3회를 적중하면, 최대HP의3% 보호막 4초 (공유 재발동 20초) | KingShaman |
+| `Unique_Knight_Oathkeeper_Pendant` | — / 6.4 / 64 / — | — / 8.128 / 81.28 / — | 적의 피해가 있는 공격을 블록하면, 최대HP의5% 보호막 4초 (공유 재발동 20초) | KingShaman |
+| `Unique_Knight_Throneward_Shield` | — / 11.2 / — / — | — / 14.224 / — / — | 적의 피해가 있는 공격을 블록하면, 직접 적 피해6% 감소 3초 (공유 재발동 20초) | Veyr |
 
 ### Elf Archer 7종
 
 | 식별 이름 | 기본 P / A / HP / MP | +9 P / A / HP / MP | 고정 효과1개 | 목표 보스 |
 | --- | --- | --- | --- | --- |
-| `Unique_Elf_Thornsong` | 26.46 / — / — / — | 33.604 / — / — / — | Aimed Shot 적중 후, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초) | KingShaman |
-| `Unique_Elf_Widowwatch_Hood` | 5.04 / 5.04 / — / — | 6.401 / 6.401 / — / — | 적의 직접 피해가 HP에 적용되면, 최대HP의3% 보호막 4초 (공유 재발동 20초) | WidowQueen |
-| `Unique_Elf_Hollowbark_Jerkin` | — / 7.56 / 100.8 / — | — / 9.601 / 128.016 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 직접 적 피해5% 감소 3초 (공유 재발동 20초) | AncientHollowbark |
-| `Unique_Elf_Emberflight_Grips` | 10.08 / 1.26 / — / — | 12.802 / 1.6 / — / — | 8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | InfernoOverlord |
-| `Unique_Elf_Silkstep_Treads` | 2.52 / 3.78 / 50.4 / — | 3.2 / 4.801 / 64.008 / — | 회피로 서버가 확인한 적 공격을 피하면, 최대HP의4% 보호막 3초 (공유 재발동 20초) | WidowQueen |
-| `Unique_Elf_Thornmark_Signet` | 12.6 / — / 25.2 / — | 16.002 / — / 32.004 / — | Aimed Shot 적중 후, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | GoblinKing |
-| `Unique_Elf_Glacierleaf_Pendant` | 5.04 / 5.04 / — / — | 6.401 / 6.401 / — / — | 적의 피해가 있는 공격을 블록하면, 직접 적 피해4% 감소 3초 (공유 재발동 20초) | AncientGlacierKing |
+| `Unique_Elf_Thornsong` | 33.6 / — / — / — | 42.672 / — / — / — | Aimed Shot 적중 후, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초) | KingShaman |
+| `Unique_Elf_Widowwatch_Hood` | 6.4 / 6.4 / — / — | 8.128 / 8.128 / — / — | 적의 직접 피해가 HP에 적용되면, 최대HP의3% 보호막 4초 (공유 재발동 20초) | WidowQueen |
+| `Unique_Elf_Hollowbark_Jerkin` | — / 9.6 / 128 / — | — / 12.192 / 162.56 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 직접 적 피해5% 감소 3초 (공유 재발동 20초) | AncientHollowbark |
+| `Unique_Elf_Emberflight_Grips` | 12.8 / 1.6 / — / — | 16.256 / 2.032 / — / — | 8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | InfernoOverlord |
+| `Unique_Elf_Silkstep_Treads` | 3.2 / 4.8 / 64 / — | 4.064 / 6.096 / 81.28 / — | 회피로 서버가 확인한 적 공격을 피하면, 최대HP의4% 보호막 3초 (공유 재발동 20초) | WidowQueen |
+| `Unique_Elf_Thornmark_Signet` | 16 / — / 32 / — | 20.32 / — / 40.64 / — | Aimed Shot 적중 후, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | GoblinKing |
+| `Unique_Elf_Glacierleaf_Pendant` | 6.4 / 6.4 / — / — | 8.128 / 8.128 / — / — | 적의 피해가 있는 공격을 블록하면, 직접 적 피해4% 감소 3초 (공유 재발동 20초) | AncientGlacierKing |
 
 ### Dwarf Axe Thrower 7종
 
 | 식별 이름 | 기본 P / A / HP / MP | +9 P / A / HP / MP | 고정 효과1개 | 목표 보스 |
 | --- | --- | --- | --- | --- |
-| `Unique_Dwarf_Stonebreakers_Resolve` | 25.2 / — / 12.6 / — | 32.004 / — / 16.002 / — | Ground Slam 적중 후, 직접 적 피해6% 감소 3초 (공유 재발동 20초) | KingShaman |
-| `Unique_Dwarf_Quarryking_Helm` | — / 5.04 / 50.4 / — | — / 6.401 / 64.008 / — | 적의 직접 피해가 HP에 적용되면, 최대HP의4% 보호막 4초 (공유 재발동 20초) | KingOgre |
-| `Unique_Dwarf_Caldera_Heartplate` | — / 6.3 / 126 / — | — / 8.001 / 160.02 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 직접 적 피해6% 감소 3초 (공유 재발동 20초) | InfernoOverlord |
-| `Unique_Dwarf_Cragbreaker_Grips` | 7.56 / 2.52 / — / — | 9.601 / 3.2 / — / — | 8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초) | KingOgre |
-| `Unique_Dwarf_Glacieranchor_Boots` | — / 3.78 / 75.6 / — | — / 4.801 / 96.012 / — | 적의 피해가 있는 공격을 블록하면, 최대HP의4% 보호막 4초 (공유 재발동 20초) | AncientGlacierKing |
-| `Unique_Dwarf_Forgeheart_Signet` | 10.08 / 2.52 / — / — | 12.802 / 3.2 / — / — | Ground Slam 적중 후, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | InfernoOverlord |
-| `Unique_Dwarf_Hollowstone_Pendant` | — / 2.52 / 100.8 / — | — / 3.2 / 128.016 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의2% 자기 회복 (공유 재발동 20초) | AncientHollowbark |
+| `Unique_Dwarf_Stonebreakers_Resolve` | 32 / — / 16 / — | 40.64 / — / 20.32 / — | Ground Slam 적중 후, 직접 적 피해6% 감소 3초 (공유 재발동 20초) | KingShaman |
+| `Unique_Dwarf_Quarryking_Helm` | — / 6.4 / 64 / — | — / 8.128 / 81.28 / — | 적의 직접 피해가 HP에 적용되면, 최대HP의4% 보호막 4초 (공유 재발동 20초) | KingOgre |
+| `Unique_Dwarf_Caldera_Heartplate` | — / 8 / 160 / — | — / 10.16 / 203.2 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 직접 적 피해6% 감소 3초 (공유 재발동 20초) | InfernoOverlord |
+| `Unique_Dwarf_Cragbreaker_Grips` | 9.6 / 3.2 / — / — | 12.192 / 4.064 / — / — | 8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초) | KingOgre |
+| `Unique_Dwarf_Glacieranchor_Boots` | — / 4.8 / 96 / — | — / 6.096 / 121.92 / — | 적의 피해가 있는 공격을 블록하면, 최대HP의4% 보호막 4초 (공유 재발동 20초) | AncientGlacierKing |
+| `Unique_Dwarf_Forgeheart_Signet` | 12.8 / 3.2 / — / — | 16.256 / 4.064 / — / — | Ground Slam 적중 후, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | InfernoOverlord |
+| `Unique_Dwarf_Hollowstone_Pendant` | — / 3.2 / 128 / — | — / 4.064 / 162.56 / — | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의2% 자기 회복 (공유 재발동 20초) | AncientHollowbark |
 
 ### Mage 7종
 
 | 식별 이름 | 기본 P / A / HP / MP | +9 P / A / HP / MP | 고정 효과1개 | 목표 보스 |
 | --- | --- | --- | --- | --- |
-| `Unique_Mage_Groveheart_Staff` | 21.42 / — / — / 12.6 | 27.203 / — / — / 12.6 | Wind Lance 적중 후, 기존 MP 풀에 MP4 회복 (공유 재발동 15초) | KingShaman |
-| `Unique_Mage_Stillgrove_Hood` | — / 3.78 / — / 18.9 | — / 4.801 / — / 18.9 | 스킬1회에 MP10 이상을 실제 소비하면, 최대HP의3% 보호막 4초 (공유 재발동 20초) | KingShaman |
-| `Unique_Mage_Glacierveil_Robe` | — / 6.3 / 75.6 / 12.6 | — / 8.001 / 96.012 / 12.6 | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의5% 보호막 4초 (공유 재발동 20초) | AncientGlacierKing |
-| `Unique_Mage_Emberweave_Grips` | 7.56 / — / — / 12.6 | 9.601 / — / — / 12.6 | 피해 마법을 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | InfernoOverlord |
-| `Unique_Mage_Silkweave_Treads` | — / 3.78 / 25.2 / 12.6 | — / 4.801 / 32.004 / 12.6 | 회피로 서버가 확인한 적 공격을 피하면, 직접 적 피해4% 감소 3초 (공유 재발동 20초) | WidowQueen |
-| `Unique_Mage_Grovepulse_Signet` | 10.08 / — / — / 12.6 | 12.802 / — / — / 12.6 | 피해 마법을 적중하면, 기존 MP 풀에 MP3 회복 (공유 재발동 15초) | KingShaman |
-| `Unique_Mage_Lastlight_Focus` | — / — / 50.4 / 25.2 | — / — / 64.008 / 25.2 | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 기존 MP 풀에 MP6 회복 (공유 재발동 15초) | Veyr |
+| `Unique_Mage_Groveheart_Staff` | 27.2 / — / — / 16 | 34.544 / — / — / 16 | Wind Lance 적중 후, 기존 MP 풀에 MP4 회복 (공유 재발동 15초) | KingShaman |
+| `Unique_Mage_Stillgrove_Hood` | — / 4.8 / — / 24 | — / 6.096 / — / 24 | 스킬1회에 MP10 이상을 실제 소비하면, 최대HP의3% 보호막 4초 (공유 재발동 20초) | KingShaman |
+| `Unique_Mage_Glacierveil_Robe` | — / 8 / 96 / 16 | — / 10.16 / 121.92 / 16 | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의5% 보호막 4초 (공유 재발동 20초) | AncientGlacierKing |
+| `Unique_Mage_Emberweave_Grips` | 9.6 / — / — / 16 | 12.192 / — / — / 16 | 피해 마법을 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초) | InfernoOverlord |
+| `Unique_Mage_Silkweave_Treads` | — / 4.8 / 32 / 16 | — / 6.096 / 40.64 / 16 | 회피로 서버가 확인한 적 공격을 피하면, 직접 적 피해4% 감소 3초 (공유 재발동 20초) | WidowQueen |
+| `Unique_Mage_Grovepulse_Signet` | 12.8 / — / — / 16 | 16.256 / — / — / 16 | 피해 마법을 적중하면, 기존 MP 풀에 MP3 회복 (공유 재발동 15초) | KingShaman |
+| `Unique_Mage_Lastlight_Focus` | — / — / 64 / 32 | — / — / 81.28 / 32 | 직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 기존 MP 풀에 MP6 회복 (공유 재발동 15초) | Veyr |
 
 ## 3. 효과의 공통 실행 계약
 
@@ -123,6 +123,8 @@ MP 효과는 Mage와 첫 전직을 완료한 magic_archer Elf의 기존 풀에�
 
 ## 6. 검증 기록과 미검증
 
-`python3 scripts/validate_unique_equipment_plan.py` PASS: 40고유ID·40계열·클래스11/8/7/7/7, 기본 예산1.26+예약0.14, +9MP 불변/비세트, 기존 기술4ID, 목표 보스, 효과 상한, manifest 연결, 드롭/런타임OFF를 검사한다. 기존120종의 수치/아이콘 검사도 유지한다. 영어 이름·설명 키와 개별 생성 프롬프트도 JSON에 기록했다.
+`python3 scripts/validate_unique_equipment_plan.py` PASS: 40고유ID·40계열·클래스11/8/7/7/7, 기본 예산1.60 및 같은 계열 Legendary 대비+0/+5/+9 기본치 우위, +9MP 불변/비세트, 기존 기술4ID, 목표 보스, 효과 상한, manifest 연결, 드롭/런타임OFF를 검사한다. 기존120종의 수치/아이콘 검사도 유지한다. 영어 이름·설명 키와 개별 생성 프롬프트도 JSON에 기록했다.
 
 이번에는 JSON/문서/manifest만 변경했다. 실제 보스 드롭40종·효과 엔진·상세 툴팁/Unique 아이콘·Studio/게시/실기기·전투 밸런스는 미검증이다. 부모 티켓을 완료로 표시하지 않는다. VERSION/빌드/릴리스 태그·Roblox 게시는 없다. 다음 담당은 PLAN/ENG의 U01 무기4종 프로토타입과 QA의 중첩/재발동 검사다.
+
+정정 검증: Unique40종 모두 같은 세대/계열의 Legendary보다 각 양수 기본 스탯이 높고 +0/+5/+9에서도 순서가 유지된다. 고유 효과·효과 재발동·MP 비강화 규칙은 그대로다.

@@ -18,7 +18,9 @@ for key in ['proposalId', 'candidateDefinitionId', 'name', 'nameKey', 'descripti
     assert len({i[key] for i in items}) == 40, key
 assert not ({i['candidateDefinitionId'] for i in items} & {i['candidateDefinitionId'] for i in base['items']})
 assert Counter(i['classId'] or 'shared' for i in items) == {'shared': 11, 'knight': 8, 'elf': 7, 'dwarf': 7, 'mage': 7}
-assert D(str(p['uniqueBaseBudgetRatio'])) + D(str(p['reservedEffectBudgetRatio'])) == D(str(p['legendaryBudgetRatio']))
+assert D(str(p['uniqueBaseBudgetRatio'])) == D('1.60') > D(str(p['legendaryBudgetRatio']))
+assert p['effectBudgetPolicy'] == 'additional-fixed-effect-no-base-stat-deduction'
+legendary = {i['familyId']: i for i in base['items'] if i['rarity'] == 'Legendary'}
 boss_source = (ROOT / 'src/shared/DeepwoodEncounterBalance.luau').read_text()
 boss_block = boss_source.split('local bosses={', 1)[1].split('}', 1)[0]
 bosses = set(re.findall(r'(\w+)=true', boss_block))
@@ -32,8 +34,13 @@ for i in items:
     assert i['classId'] == f['classId'] and i['slot'] == f['slot']
     assert i['uniqueGroup'] == (i['familyId'] if i['slot'] == 'accessory' else None)
     assert i['stats'].keys() == f['commonEquivalentStats'].keys() == i['statsAtEnhancement9'].keys()
+    assert v['budgetRatio'] == i['baseBudgetRatio'] == p['uniqueBaseBudgetRatio']
     for k, n in i['stats'].items():
-        assert D(str(n)) == D(str(f['commonEquivalentStats'][k])) * D('1.26')
+        assert n > legendary[i['familyId']]['stats'][k]
+        for enhancement in (0, 5, 9):
+            mult = D(1) + D('.03') * enhancement if k in ('power', 'armor', 'health') else D(1)
+            assert D(str(n)) * mult > D(str(legendary[i['familyId']]['stats'][k])) * mult
+        assert D(str(n)) == D(str(f['commonEquivalentStats'][k])) * D(str(p['uniqueBaseBudgetRatio']))
         assert D(str(i['statsAtEnhancement9'][k])) == D(str(n)) * (D('1.27') if k in ('power', 'armor', 'health') else D(1))
     assert i['enhancementSupported'] == any(k in ('power', 'armor', 'health') for k in i['stats'])
     assert e['cooldownSeconds'] == rules['categoryCooldownSeconds'][e['kind']]
@@ -54,4 +61,4 @@ for i in items:
 assert len({i['effect']['effectId'] for i in items}) == 40
 assert len(p['firstImplementationFamilyIds']) == 4
 assert rules['requiresActiveCombat'] and rules['noProcChain'] and rules['noEquipRestore']
-print('PASS: 40 Unique stat/effect/drop/art proposals; 4 existing skill IDs, boss kinds, budget/enhancement/MP invariants, no sets, no runtime/drop activation')
+print('PASS: 40 Unique stat/effect/drop/art proposals; 4 existing skill IDs, boss kinds, Unique > Legendary at +0/+5/+9, budget/enhancement/MP invariants, no sets, no runtime/drop activation')

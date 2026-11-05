@@ -1,12 +1,11 @@
 {
   "date": "2026-11-05",
-  "version": 1,
+  "version": 2,
   "status": "40-unique-proposals-not-runtime-not-generated",
   "baseStatsSource": "assets/balance/equipment-stats-plan-2026-11-04.json",
   "sourceManifest": "assets/concepts/2026-11-04-equipment-icons/manifest.json",
   "legendaryBudgetRatio": 1.4,
-  "uniqueBaseBudgetRatio": 1.26,
-  "reservedEffectBudgetRatio": 0.14,
+  "uniqueBaseBudgetRatio": 1.6,
   "setMembership": false,
   "previewTier": 10,
   "globalRules": {
@@ -60,14 +59,13 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 7.56
+        "armor": 9.6
       },
       "statsAtEnhancement9": {
-        "armor": 9.6012
+        "armor": 12.192
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -118,16 +116,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 6.3,
-        "health": 126.0
+        "armor": 8.0,
+        "health": 160.0
       },
       "statsAtEnhancement9": {
-        "armor": 8.001,
-        "health": 160.02
+        "armor": 10.16,
+        "health": 203.2
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -180,16 +177,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 7.56,
-        "armor": 2.52
+        "power": 9.6,
+        "armor": 3.2
       },
       "statsAtEnhancement9": {
-        "power": 9.6012,
-        "armor": 3.2004
+        "power": 12.192,
+        "armor": 4.064
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -246,16 +242,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 5.04,
-        "health": 50.4
+        "armor": 6.4,
+        "health": 64.0
       },
       "statsAtEnhancement9": {
-        "armor": 6.4008,
-        "health": 64.008
+        "armor": 8.128,
+        "health": 81.28
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -306,14 +301,13 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "health": 151.2
+        "health": 192.0
       },
       "statsAtEnhancement9": {
-        "health": 192.024
+        "health": 243.84
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "common_vigor_ring",
@@ -367,14 +361,13 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 7.56
+        "armor": 9.6
       },
       "statsAtEnhancement9": {
-        "armor": 9.6012
+        "armor": 12.192
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "common_ward_pendant",
@@ -425,14 +418,13 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 15.12
+        "power": 19.2
       },
       "statsAtEnhancement9": {
-        "power": 19.2024
+        "power": 24.384
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "common_valor_ring",
@@ -489,16 +481,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 3.78,
-        "health": 75.6
+        "armor": 4.8,
+        "health": 96.0
       },
       "statsAtEnhancement9": {
-        "armor": 4.8006,
-        "health": 96.012
+        "armor": 6.096,
+        "health": 121.92
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "common_refuge_charm",
@@ -551,16 +542,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "maxMana": 25.2,
-        "armor": 2.52
+        "maxMana": 32.0,
+        "armor": 3.2
       },
       "statsAtEnhancement9": {
-        "maxMana": 25.2,
-        "armor": 3.2004
+        "maxMana": 32.0,
+        "armor": 4.064
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "common_mana_ring",
@@ -614,14 +604,13 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "maxMana": 37.8
+        "maxMana": 48.0
       },
       "statsAtEnhancement9": {
-        "maxMana": 37.8
+        "maxMana": 48.0
       },
       "enhancementSupported": false,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "common_arcane_pendant",
@@ -677,16 +666,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "maxMana": 18.9,
-        "health": 75.6
+        "maxMana": 24.0,
+        "health": 96.0
       },
       "statsAtEnhancement9": {
-        "maxMana": 18.9,
-        "health": 96.012
+        "maxMana": 24.0,
+        "health": 121.92
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "common_wellspring_charm",
@@ -741,16 +729,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 22.68,
-        "health": 37.8
+        "power": 28.8,
+        "health": 48.0
       },
       "statsAtEnhancement9": {
-        "power": 28.8036,
-        "health": 48.006
+        "power": 36.576,
+        "health": 60.96
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -803,16 +790,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 6.3,
-        "health": 25.2
+        "armor": 8.0,
+        "health": 32.0
       },
       "statsAtEnhancement9": {
-        "armor": 8.001,
-        "health": 32.004
+        "armor": 10.16,
+        "health": 40.64
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -863,16 +849,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 8.82,
-        "health": 75.6
+        "armor": 11.2,
+        "health": 96.0
       },
       "statsAtEnhancement9": {
-        "armor": 11.2014,
-        "health": 96.012
+        "armor": 14.224,
+        "health": 121.92
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -925,18 +910,17 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 5.04,
-        "armor": 2.52,
-        "health": 25.2
+        "power": 6.4,
+        "armor": 3.2,
+        "health": 32.0
       },
       "statsAtEnhancement9": {
-        "power": 6.4008,
-        "armor": 3.2004,
-        "health": 32.004
+        "power": 8.128,
+        "armor": 4.064,
+        "health": 40.64
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -989,16 +973,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 5.04,
-        "health": 50.4
+        "armor": 6.4,
+        "health": 64.0
       },
       "statsAtEnhancement9": {
-        "armor": 6.4008,
-        "health": 64.008
+        "armor": 8.128,
+        "health": 81.28
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1049,16 +1032,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 5.04,
-        "health": 100.8
+        "power": 6.4,
+        "health": 128.0
       },
       "statsAtEnhancement9": {
-        "power": 6.4008,
-        "health": 128.016
+        "power": 8.128,
+        "health": 162.56
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "knight_ring_family",
@@ -1113,16 +1095,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 5.04,
-        "health": 50.4
+        "armor": 6.4,
+        "health": 64.0
       },
       "statsAtEnhancement9": {
-        "armor": 6.4008,
-        "health": 64.008
+        "armor": 8.128,
+        "health": 81.28
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "knight_pendant_family",
@@ -1173,14 +1154,13 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 8.82
+        "armor": 11.2
       },
       "statsAtEnhancement9": {
-        "armor": 11.2014
+        "armor": 14.224
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1231,14 +1211,13 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 26.46
+        "power": 33.6
       },
       "statsAtEnhancement9": {
-        "power": 33.6042
+        "power": 42.672
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1293,16 +1272,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 5.04,
-        "armor": 5.04
+        "power": 6.4,
+        "armor": 6.4
       },
       "statsAtEnhancement9": {
-        "power": 6.4008,
-        "armor": 6.4008
+        "power": 8.128,
+        "armor": 8.128
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1353,16 +1331,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 7.56,
-        "health": 100.8
+        "armor": 9.6,
+        "health": 128.0
       },
       "statsAtEnhancement9": {
-        "armor": 9.6012,
-        "health": 128.016
+        "armor": 12.192,
+        "health": 162.56
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1415,16 +1392,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 10.08,
-        "armor": 1.26
+        "power": 12.8,
+        "armor": 1.6
       },
       "statsAtEnhancement9": {
-        "power": 12.8016,
-        "armor": 1.6002
+        "power": 16.256,
+        "armor": 2.032
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1481,18 +1457,17 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 2.52,
-        "armor": 3.78,
-        "health": 50.4
+        "power": 3.2,
+        "armor": 4.8,
+        "health": 64.0
       },
       "statsAtEnhancement9": {
-        "power": 3.2004,
-        "armor": 4.8006,
-        "health": 64.008
+        "power": 4.064,
+        "armor": 6.096,
+        "health": 81.28
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1543,16 +1518,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 12.6,
-        "health": 25.2
+        "power": 16.0,
+        "health": 32.0
       },
       "statsAtEnhancement9": {
-        "power": 16.002,
-        "health": 32.004
+        "power": 20.32,
+        "health": 40.64
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "elf_ring_family",
@@ -1607,16 +1581,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 5.04,
-        "armor": 5.04
+        "power": 6.4,
+        "armor": 6.4
       },
       "statsAtEnhancement9": {
-        "power": 6.4008,
-        "armor": 6.4008
+        "power": 8.128,
+        "armor": 8.128
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "elf_pendant_family",
@@ -1667,16 +1640,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 25.2,
-        "health": 12.6
+        "power": 32.0,
+        "health": 16.0
       },
       "statsAtEnhancement9": {
-        "power": 32.004,
-        "health": 16.002
+        "power": 40.64,
+        "health": 20.32
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1729,16 +1701,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 5.04,
-        "health": 50.4
+        "armor": 6.4,
+        "health": 64.0
       },
       "statsAtEnhancement9": {
-        "armor": 6.4008,
-        "health": 64.008
+        "armor": 8.128,
+        "health": 81.28
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1789,16 +1760,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 6.3,
-        "health": 126.0
+        "armor": 8.0,
+        "health": 160.0
       },
       "statsAtEnhancement9": {
-        "armor": 8.001,
-        "health": 160.02
+        "armor": 10.16,
+        "health": 203.2
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1851,16 +1821,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 7.56,
-        "armor": 2.52
+        "power": 9.6,
+        "armor": 3.2
       },
       "statsAtEnhancement9": {
-        "power": 9.6012,
-        "armor": 3.2004
+        "power": 12.192,
+        "armor": 4.064
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1917,16 +1886,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 3.78,
-        "health": 75.6
+        "armor": 4.8,
+        "health": 96.0
       },
       "statsAtEnhancement9": {
-        "armor": 4.8006,
-        "health": 96.012
+        "armor": 6.096,
+        "health": 121.92
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -1977,16 +1945,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 10.08,
-        "armor": 2.52
+        "power": 12.8,
+        "armor": 3.2
       },
       "statsAtEnhancement9": {
-        "power": 12.8016,
-        "armor": 3.2004
+        "power": 16.256,
+        "armor": 4.064
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "dwarf_ring_family",
@@ -2041,16 +2008,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 2.52,
-        "health": 100.8
+        "armor": 3.2,
+        "health": 128.0
       },
       "statsAtEnhancement9": {
-        "armor": 3.2004,
-        "health": 128.016
+        "armor": 4.064,
+        "health": 162.56
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "dwarf_pendant_family",
@@ -2104,16 +2070,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 21.42,
-        "maxMana": 12.6
+        "power": 27.2,
+        "maxMana": 16.0
       },
       "statsAtEnhancement9": {
-        "power": 27.2034,
-        "maxMana": 12.6
+        "power": 34.544,
+        "maxMana": 16.0
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -2169,16 +2134,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 3.78,
-        "maxMana": 18.9
+        "armor": 4.8,
+        "maxMana": 24.0
       },
       "statsAtEnhancement9": {
-        "armor": 4.8006,
-        "maxMana": 18.9
+        "armor": 6.096,
+        "maxMana": 24.0
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -2232,18 +2196,17 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 6.3,
-        "health": 75.6,
-        "maxMana": 12.6
+        "armor": 8.0,
+        "health": 96.0,
+        "maxMana": 16.0
       },
       "statsAtEnhancement9": {
-        "armor": 8.001,
-        "health": 96.012,
-        "maxMana": 12.6
+        "armor": 10.16,
+        "health": 121.92,
+        "maxMana": 16.0
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -2296,16 +2259,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 7.56,
-        "maxMana": 12.6
+        "power": 9.6,
+        "maxMana": 16.0
       },
       "statsAtEnhancement9": {
-        "power": 9.6012,
-        "maxMana": 12.6
+        "power": 12.192,
+        "maxMana": 16.0
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -2361,18 +2323,17 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "armor": 3.78,
-        "health": 25.2,
-        "maxMana": 12.6
+        "armor": 4.8,
+        "health": 32.0,
+        "maxMana": 16.0
       },
       "statsAtEnhancement9": {
-        "armor": 4.8006,
-        "health": 32.004,
-        "maxMana": 12.6
+        "armor": 6.096,
+        "health": 40.64,
+        "maxMana": 16.0
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": null,
@@ -2423,16 +2384,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "power": 10.08,
-        "maxMana": 12.6
+        "power": 12.8,
+        "maxMana": 16.0
       },
       "statsAtEnhancement9": {
-        "power": 12.8016,
-        "maxMana": 12.6
+        "power": 16.256,
+        "maxMana": 16.0
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "mage_ring_family",
@@ -2488,16 +2448,15 @@
       "requiredLevel": 10,
       "levelStatus": "comparison-fixture-only-not-rarity-minimum",
       "stats": {
-        "maxMana": 25.2,
-        "health": 50.4
+        "maxMana": 32.0,
+        "health": 64.0
       },
       "statsAtEnhancement9": {
-        "maxMana": 25.2,
-        "health": 64.008
+        "maxMana": 32.0,
+        "health": 81.28
       },
       "enhancementSupported": true,
-      "baseBudgetRatio": 1.26,
-      "reservedEffectBudgetRatio": 0.14,
+      "baseBudgetRatio": 1.6,
       "setId": null,
       "setPieceId": null,
       "uniqueGroup": "mage_pendant_family",
@@ -2535,5 +2494,7 @@
       "status": "authored-proposal-not-runtime",
       "runtimeEnabled": false
     }
-  ]
+  ],
+  "effectBudgetPolicy": "additional-fixed-effect-no-base-stat-deduction",
+  "rarityOrderPolicy": "Unique base stats exceed Legendary at same family, tier and enhancement; fixed effect is additional"
 }
