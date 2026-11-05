@@ -27,11 +27,25 @@
       "peak": 3971,
       "firstSample": 0,
       "lastSample": 0
+    },
+    {
+      "path": "potion-drink-louder.wav",
+      "sha256": "258b8d82190883c045ba28f716eb559f6402546013ab48d5c35e7d7525d26ff3",
+      "seconds": 1.756375,
+      "sampleRate": 48000,
+      "channels": 1,
+      "bits": 16,
+      "peak": 15884,
+      "peakDbFS": -6.289536054997073,
+      "gainDb": 12.041199826559248,
+      "firstSample": 0,
+      "lastSample": 0
     }
   ],
   "robloxUpload": {
-    "status": "blocked-unapproved-directory",
+    "status": "preview-only-per-user",
     "newAssetId": null
   },
-  "runtime": "Existing source asset remains active; no runtime replay/loop added"
+  "runtime": "Existing source asset remains active; no runtime replay/loop added",
+  "preferredPreview": "potion-drink-louder.wav"
 }
