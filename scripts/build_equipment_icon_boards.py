@@ -12,7 +12,8 @@ def page(title, cards, single=False):
     controls=''.join(f'<button onclick="filter(\'{c}\')">{c.title()}</button>' for c in ['all','shared','knight','elf','dwarf','mage'])
     if not single: controls+='<button onclick="grades(false)">Legendary / Unique</button><button onclick="grades(true)">Rare / Epic / Legendary / Unique</button>'
     controls+='<button onclick="document.body.classList.toggle(\'tiny\')">48px</button><button onclick="document.body.classList.toggle(\'light\')">배경 전환</button><input placeholder="아이템 이름 검색" aria-label="아이템 이름 검색" oninput="apply()">'
-    return '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+title+'</title><style>'+STYLE+'</style><h1>'+title+'</h1><p>등급·클래스·아이템명으로 식별합니다. 아이콘 생성본이며 실제 게임 등록·효과·실기기 수용은 별도입니다. Unique 최소 착용Lv60은 사용자 확정입니다. 다른 세 등급의Lv10은 시험안이며 최소레벨 확정이 아닙니다.</p><p><a href="'+('../comparison.html' if single else 'generated-unique-v1/index.html')+'">'+('전체 등급 비교' if single else 'Unique40 단독 보기')+'</a></p>'+controls+'<main>'+''.join(cards)+'</main><script>'+SCRIPT+('' if single else ';grades(false)')+'</script></html>'
+    catalog='../catalog-160.html' if single else 'catalog-160.html'
+    return '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+title+'</title><style>'+STYLE+'</style><h1>'+title+'</h1><p><a href="'+catalog+'">160종 등급·클래스·이름 통합 목록</a></p><p>등급·클래스·아이템명으로 식별합니다. 아이콘 생성본이며 실제 게임 등록·효과·실기기 수용은 별도입니다. Unique 최소 착용Lv60은 사용자 확정입니다. 다른 세 등급의Lv10은 시험안이며 최소레벨 확정이 아닙니다.</p><p><a href="'+('../comparison.html' if single else 'generated-unique-v1/index.html')+'">'+('전체 등급 비교' if single else 'Unique40 단독 보기')+'</a></p>'+controls+'<main>'+''.join(cards)+'</main><script>'+SCRIPT+('' if single else ';grades(false)')+'</script></html>'
 
 def build():
     manifest=json.loads((ROOT/'manifest.json').read_text())

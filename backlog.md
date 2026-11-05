@@ -1,5 +1,8 @@
 # The Last Throne 실행 백로그
 
+> **2026-11-05 장비160종 통합 목록 · TLT-028/029/052/084:** [등급·영웅클래스 제한·이름 통합 화면](assets/concepts/2026-11-04-equipment-icons/catalog-160.html)과 [문서표](docs/production/equipment-catalog-160-2026-11-05.md)를 작성했다. Rare/Epic/Legendary/Unique 각40종·공통44/기사32/엘프28/드워프28/마법사28이며 전체160행·필터/검색·원본이미지 링크를 제공한다. 생성아이콘 목록이며 실제런타임160종 구현과구분한다.
+
+
 > **2026-11-05 Unique40 이미지·Lv60 확정 · TLT-028/029/044/045/052/082/084:** [유니크40 아이콘](assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/index.html)과 [무기 교정 전후](assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/weapons-review.png)를 저장한다. 검의직선축·도끼/지팡이긴자루를교정했고 총160PNG다. Unique 최소착용Lv60이Lv50을대체하며Hell전용이다. 이전Lv10수치는참조로분리·Lv60재산정/효과·런타임·실기기수용후속.
 
 
