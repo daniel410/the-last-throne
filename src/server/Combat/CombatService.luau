@@ -6,6 +6,7 @@ local PathfindingService = game:GetService("PathfindingService")
 
 local Advanced=require(ReplicatedStorage.Shared.AdvancedSkills)
 local LevelUpEffect=require(script.Parent.HeroLevelUpEffect)
+local PotionUseSound = require(script.Parent.PotionUseSound)
 local EnemyDeathFall=require(script.Parent.EnemyDeathFall)
 local AdvancedCombat=require(script.Parent.AdvancedCombat)
 local advancedEffectRemote
@@ -1938,7 +1939,9 @@ function CombatService.applyInventoryItem(player, definition, character)
 	local state = playerStates[player]
 	if not state or state.character ~= character or not alive(state) then return end
 	if definition.restore == "health" then state.humanoid.Health = math.min(state.humanoid.MaxHealth, state.humanoid.Health + definition.amount)
-	elseif definition.restore == "mana" and state.mana then setMana(state, state.mana + definition.amount) end
+	elseif definition.restore == "mana" and state.mana then setMana(state, state.mana + definition.amount)
+	else return end
+	PotionUseSound.play(state.character)
 end
 
 -- Called only by the server-owned, proximity/slot-validated supporter service.
