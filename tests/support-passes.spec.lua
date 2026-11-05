@@ -13,6 +13,8 @@ for _,chapter in ipairs(Content.chapters)do if not chapter.side and chapter.numb
  end end
 end end
 base.wallet.gold=10000
+-- These cases cover paid support after the one-time introduction is used.
+base.supportPasses={version=1,credits=0,active={},trials={hero=true}}
 check(R.validate(base,C),'valid loaded rescued profile')
 local function apply(p,c,ctx)return R.supportPass(p,c,ctx or {atLobby=true},C)end
 for _,offer in ipairs(Pass.offers)do

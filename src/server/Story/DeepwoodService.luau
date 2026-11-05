@@ -84,6 +84,10 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
      publish(player,nil,'Optional quest accepted: '..e.c.title,{kind='Accepted',id=e.c.id})
     else
     local text=e.g.id=='@selene' and (e.choice and require(ReplicatedStorage.Shared.SupporterText).started or require(ReplicatedStorage.Shared.SupporterText).ended) or e.g.text
+    if e.g.id=='@selene' and e.choice then
+     local pass=options.inventory.supportState(player,e.heroId)
+     if pass and pass.active and pass.trial then text=require(ReplicatedStorage.Shared.SupporterText).trialStarted end
+    end
     if e.stepId then for _,step in ipairs(e.g.activity.steps) do if step.id==e.stepId then
      text=step.text
      for _,answer in ipairs(step.choices or {}) do if answer.id==e.choice then text=answer.text end end

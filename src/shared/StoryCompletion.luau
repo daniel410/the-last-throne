@@ -1,6 +1,6 @@
 -- Read-only presentation of server-confirmed clears. Never awards or advances progress.
 local function load(n)return game and require(script.Parent[n]) or dofile('src/shared/'..n..'.luau')end
-local Content=load('CampaignContent');local Log=load('DeepwoodQuestLog')
+local Content=load('CampaignContent');local Log=load('DeepwoodQuestLog');local SupportText=load('SupporterText')
 local M={text={story='STORY COMPLETE',side='SIDE QUEST COMPLETE',epic='EPIC COMPLETE',
  reward='+%d XP  ·  +%d Gold',saved='Rewards saved. Check your bag or unclaimed rewards for items.',
  next='NEXT · %s',region='%s · Story %d / 7',objective='First objective: %s',
@@ -31,7 +31,9 @@ function M.project(value,previous)
   data.action=M.text.review;data.nextId=nil
  end
  local pass=previous and previous.heroId==value.heroId and previous.supporter and previous.supporter.pass
- if not c.side and pass and pass.active and pass.story==c.number then data.support=M.text.support end
+ if not c.side and pass and pass.active and pass.story==c.number then
+  data.support=pass.trial and SupportText.trialEnded or M.text.support
+ end
  return data
 end
 return M

@@ -19,6 +19,7 @@ local ok,err=xpcall(function()
   if not(g.activity and g.activity.steps)then p=assert(R.story(p,'hero',c.id,g.id,g.choice and 'shared' or nil,Items))end
  end end end end
  p.wallet.gold=5000
+ p.supportPasses={version=1,credits=0,active={},trials={hero=true}}
  local saved,lose;local adapter={UpdateAsync=function(_,_,fn)local n=fn(R.copy(saved));if n then saved=R.copy(n)end;if lose then error('lost response')end;return n end}
  local store=Store.new(adapter,R,Items,function()return 1000 end,function()end,'support-service')
  assert(store:open(77));p=assert(store:transact(77,function(v)local n=R.copy(p);n.epoch=v.epoch;n.lease=v.lease;return n end))

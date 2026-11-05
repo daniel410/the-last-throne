@@ -25,7 +25,7 @@ for i,c in ipairs(Content.mainChapters)do
  local h=p.heroes.hero;local s=A.projection(h)
  local gemsBefore=R.quantity(p,'hero','enhancement_gem')
  if i==4 or i==5 then
-  if i==4 then p.supportPasses={version=1,credits=2,active={}}end
+  if i==4 then p.supportPasses={version=1,credits=2,active={},trials={hero=true}}end
   local v=Pass.view(p,'hero')
   check(v.story==i and not v.active and not v.completed,'continued story needs its own explicit support invitation')
   p=assert(R.supportPass(p,{action='Activate',requestId='invite_'..i,heroId='hero',story=i,scope=v.scope},{inAdventure=true,hasCampAccess=true,maxStories=35},C))

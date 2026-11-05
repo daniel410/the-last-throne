@@ -11,14 +11,24 @@ local function target(h)
  local n=((h.deepwood and h.deepwood.main) or 0)+1;return n,'main:'..n,false
 end
 local function int(v,max)return type(v)=='number' and v==v and v%1==0 and v>=0 and v<=max end
+local function trialAvailable(p,heroId,story,completed)
+ local h=p.heroes[heroId];local s=p.supportPasses
+ return h and h.deepwood and h.deepwood.clears['DW-03']==true and story>=4 and story<=Content.mainCount
+  and not completed and not (s and s.trials and s.trials[heroId]) or false
+end
 function M.valid(p)
  if type(p)~='table' then return false end
  local s=p.supportPasses;if s==nil then return true end
  if type(p.heroes)~='table' or type(s)~='table' or s.version~=1 or not int(s.credits,9999) or type(s.active)~='table' then return false end
+ if s.trials~=nil then
+  if type(s.trials)~='table' then return false end
+  for id,used in pairs(s.trials)do if not p.heroes[id] or used~=true then return false end end
+ end
  local n=0
  for heroId,c in pairs(s.active)do
   n=n+1
-  if not p.heroes[heroId] or type(c)~='table' or not int(c.story,35) or c.story<1 or type(c.id)~='string' or #c.id>64 or type(c.ended)~='boolean' or type(c.scope)~='string' or #c.scope>100 then return false end
+  if not p.heroes[heroId] or type(c)~='table' or not int(c.story,35) or c.story<1 or type(c.id)~='string' or #c.id>64 or type(c.ended)~='boolean' or type(c.scope)~='string' or #c.scope>100 or c.trial~=nil and type(c.trial)~='boolean' then return false end
+  if c.trial and not (s.trials and s.trials[heroId]) then return false end
  end
  return n<=4
 end
@@ -27,7 +37,8 @@ function M.view(p,heroId)
  local h=p and p.heroes and p.heroes[heroId];if not h then return nil end
  local story,scope,completed=target(h)
  local s=p.supportPasses;local c=s and s.active[heroId]
- return {credits=s and s.credits or 0,story=story,active=c~=nil and not c.ended and not completed and c.story==story and c.scope==scope,scope=scope,completed=completed,contractId=c and c.id or nil,price=200,offers=M.offers}
+ return {credits=s and s.credits or 0,story=story,active=c~=nil and not c.ended and not completed and c.story==story and c.scope==scope,scope=scope,completed=completed,contractId=c and c.id or nil,price=200,offers=M.offers,
+  trialAvailable=trialAvailable(p,heroId,story,completed),trial=c and c.trial==true or false}
 end
 function M.apply(p,cmd,ctx,R,catalog)
  if not M.valid(p) or type(cmd)~='table' or type(cmd.requestId)~='string' or #cmd.requestId<1 or #cmd.requestId>64 or not cmd.requestId:match('^[%w_-]+$') then return nil,'InvalidRequest' end
@@ -51,9 +62,11 @@ function M.apply(p,cmd,ctx,R,catalog)
   if completed or ctx.maxStories and story>ctx.maxStories then return nil,'SupportStoryComplete' end
   local c=s.active[cmd.heroId]
   if c and not c.ended and c.story==story and c.scope==scope then return R.copy(p),nil,true end
-  if s.credits<1 then return nil,'SupportPassRequired' end
+  local trial=trialAvailable(p,cmd.heroId,story,completed)
+  if not trial and s.credits<1 then return nil,'SupportPassRequired' end
   n.heroes[cmd.heroId].deepwood.seleneFollowing=true
-  s.credits=s.credits-1;s.active[cmd.heroId]={id=cmd.requestId,story=story,scope=scope,ended=false}
+  if trial then s.trials=s.trials or {};s.trials[cmd.heroId]=true else s.credits=s.credits-1 end
+  s.active[cmd.heroId]={id=cmd.requestId,story=story,scope=scope,ended=false,trial=trial}
  elseif cmd.action=='End' then
   if not ctx.serverEnd then return nil,'InvalidRequest' end
   local c=s.active[cmd.heroId]

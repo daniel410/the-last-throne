@@ -97,6 +97,8 @@ function M.create(o)
     if reason~='SaveUnknown' and reason~='AccountBusy' then activatingOwner=nil end
     o.publish(player,Text[reason] or Text.Unavailable);return false
    end
+   local started=o.passState(player,ctx.heroId)
+   if started and started.trial and started.active and (not pass or not pass.active) and o.notice then o.notice(player,Text.trialStarted) end
   end
   o.select(player,ctx.heroId,following);return true
  end
@@ -111,7 +113,7 @@ function M.create(o)
  function api.projection(player) return status[player] end
  function api.update(dt)
   dt=math.min(dt,.25)
-  local population={};local chosen={}
+  local population={};local chosen={};local trials={}
   for _,player in ipairs(o.players and o.players() or Players:GetPlayers()) do
    local hero=o.active(player)
    if hero and not hero.training then
@@ -119,9 +121,20 @@ function M.create(o)
     local s=o.state(player,hero.heroId)
     local pass=o.passState and o.passState(player,hero.heroId)
     if s and Progress.seleneUnlocked(s) and s.seleneFollowing and pass and pass.active then table.insert(chosen,player) end
+    if pass and pass.trialAvailable and not pass.active and api.atCamp(player,hero.heroId) then table.insert(trials,player) end
    end
   end
   table.sort(chosen,function(a,b) return a.UserId<b.UserId end)
+  -- The introduction starts only when a real party slot is available. The
+  -- account transaction saves trial use and following together before spawning.
+  if #chosen==0 and next(followers)==nil and not activatingOwner and Budget.limit(#population)>0 then
+   table.sort(trials,function(a,b)return a.UserId<b.UserId end)
+   local player=trials[1]
+   if player and api.select(player,true) then
+    local hero=o.active(player);local pass=hero and o.passState(player,hero.heroId)
+    if pass and pass.active then table.insert(chosen,player) end
+   end
+  end
   local allowed={};for i=1,math.min(#chosen,Budget.runtimeCap,Budget.limit(#population)) do allowed[chosen[i]]=true end
   for player in pairs(followers) do if not allowed[player] then remove(player) end end
   for _,player in ipairs(population) do
@@ -129,7 +142,7 @@ function M.create(o)
    status[player]=not Progress.seleneUnlocked(s) and 'Meet Selene after the convoy rescue.' or not s.seleneFollowing and 'Available · Invite Selene at a safe companion camp.' or not allowed[player] and 'Resting · Party companion slots are full.' or 'Following · Healing, protection and cleansing support.'
    reasonKeys[player]=not Progress.seleneUnlocked(s) and 'Locked' or not s.seleneFollowing and 'Available' or not allowed[player] and 'PartyFull' or 'Following'
    local pass=o.passState and o.passState(player,hero.heroId)
-   if Progress.seleneUnlocked(s) and (not pass or not pass.active) then reasonKeys[player]=not pass and 'SupportChecking' or pass.credits>0 and 'SupportReady' or 'SupportPassRequired';status[player]=Text[reasonKeys[player]] end
+   if Progress.seleneUnlocked(s) and (not pass or not pass.active) then reasonKeys[player]=not pass and 'SupportChecking' or pass.trialAvailable and 'TrialReady' or pass.credits>0 and 'SupportReady' or 'SupportPassRequired';status[player]=Text[reasonKeys[player]] end
    if not allowed[player] or not ctx or ctx.heroId~=hero.heroId or not root then
     if allowed[player] then
      reasonKeys[player]=o.phase and o.phase(player)=='Lobby' and 'AtLobby' or 'Respawning';status[player]=Text[reasonKeys[player]]
@@ -190,8 +203,9 @@ function M.create(o)
    end
    local key=reasonKeys[player];local previous=noticeState[player];noticeState[player]=key
    local message=Info.transition(previous,key)
+   if pass and pass.trial and not pass.active and previous and previous~=key and (key=='SupportReady' or key=='SupportPassRequired') then message=Text.trialEnded end
    local now=o.clock and o.clock() or os.clock()
-   if message and o.notice and (key=='Available' or now-(noticeTimes[player] or -math.huge)>=4) then
+   if message and o.notice and (key=='Available' or message==Text.trialEnded or now-(noticeTimes[player] or -math.huge)>=4) then
     noticeTimes[player]=now;o.notice(player,message)
    end
   end
