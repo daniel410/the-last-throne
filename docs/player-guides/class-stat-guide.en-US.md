@@ -6,7 +6,7 @@
 
 The Skills panel now identifies the stat used by each skill and shows an estimated damage or barrier value. The Stats panel compares your equipped skills before and after your draft allocation, including equipment and current mastery. Damage is estimated per hit; multi-hit totals assume every hit lands on one target. Enemy bonuses, marks and counters can change the final result.
 
-In the current trial, Knight skills (including Paladin) and all Dwarf skills (including Gunner shots, bombs and artillery) use **STR** for damage. Physical Elf skills use **STR**. Mage spells and Magic Archer path skills use **INT**. For every hero, each invested DEX point adds 0.5% basic attack speed (up to +50%) and 0.1% movement speed (up to +20%). DEX does not change per-hit damage, skill cooldowns, spell casting times or critical chance.
+In the current trial, Knight skills (including Paladin) and all Dwarf skills (including Gunner shots, bombs and artillery) use **STR** for damage. Physical Elf skills use **STR**. Mage spells and Magic Archer path skills use **INT**. For every hero, each invested DEX point adds 0.5% basic attack speed (up to +80%) and 0.1% movement speed (up to +40%). DEX does not change per-hit damage, skill cooldowns, spell casting times or critical chance.
 
 Barriers use the recipient's **Max HP**, including equipment. Your VIT can increase your own barrier; a party barrier uses each ally's own Max HP. INT does not directly increase barrier strength in the current trial. Stats do not change cooldowns or effect duration. Raising Max HP or MP does not refill the resource.
 

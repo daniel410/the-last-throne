@@ -98,8 +98,8 @@ function Growth.derived(classId,g)
 	return {health=base.health+base.healthPerLevel*(g.level-1)+g.stats.VIT*10,
 		mana=manaBase>0 and manaBase+manaLevels+g.stats.INT*3 or 0,
 		physicalPower=100+physical,magicPower=100+(g.level-1)*3+g.stats.INT*2,
-		attackRate=1+math.min(.5,g.stats.DEX*.005),
-		moveRate=1+math.min(.2,g.stats.DEX*.001),
+		attackRate=1+math.min(.8,g.stats.DEX*.005),
+		moveRate=1+math.min(.4,g.stats.DEX*.001),
 		armor=math.floor(g.stats.VIT/4),totalStats=total}
 end
 function Growth.skill(classId,index,base,g)

@@ -25,7 +25,7 @@ return {
 	StatNote = "Preview includes equipment and your draft. Confirm saves points. Raising Max HP / MP does not refill them.",
 	StatHints = {
 		Physical = "+2 physical power per invested point.",
-		Dexterity = "+0.5% basic attack speed (max +50%); +0.1% movement speed (max +20%) per invested point.",
+		Dexterity = "+0.5% basic attack speed (max +80%); +0.1% movement speed (max +40%) per invested point.",
 		UnusedPhysical = "Does not increase this hero's bow or spell damage.",
 		UnusedDexterity = "No damage, attack speed or critical bonus for this hero.",
 		Magic = "+2 magic power and +3 Max MP per invested point.",

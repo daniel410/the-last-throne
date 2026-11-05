@@ -21,12 +21,14 @@ for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
   end
  end
  local cap=G.new(80);cap.stats.DEX=316
- near(G.derived(classId,cap).attackRate,1.5,'attack rate cap')
- near(G.derived(classId,cap).moveRate,1.2,'movement rate cap')
+ near(G.derived(classId,cap).attackRate,1.8,'attack rate cap')
+ near(G.derived(classId,cap).moveRate,1.316,'316 invested points remain below movement cap')
+ local ceiling=G.copy(cap);ceiling.stats.DEX=400 -- Synthetic ceiling check; exceeds the current legal budget.
+ near(G.derived(classId,ceiling).moveRate,1.4,'movement ceiling at 400 points')
  for _,base in ipairs(K.BasicAttackProfiles[classId].attacks) do
-  local d=K.scaledBasicAttack(base,1.5)
+  local d=K.scaledBasicAttack(base,1.8)
   for _,key in ipairs({'windup','active','recovery','hitDelay'})do
-   if base[key]then near(d[key]*1.5,base[key],'server contact and duration rescale together')end
+   if base[key]then near(d[key]*1.8,base[key],'server contact and duration rescale together')end
   end
   near(d.damage,base.damage,'speed does not add per-hit damage')
   check(d~=base,'timing projection leaves shared definitions intact')
