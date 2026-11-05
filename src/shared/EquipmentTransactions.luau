@@ -3,6 +3,7 @@ local F={}
 -- Caller supplies deterministic IDs and commits this mutation in its account write.
 function F.grant(p,R,C,heroId,definitionId,amount,id,pendingOnly,bagOnly)
  local def=C.items[definitionId];if not def or amount<=0 then return true end
+ if def.retired then return false end
  local ids={};for key in pairs(p.items)do table.insert(ids,key)end;table.sort(ids)
  for _,key in ipairs(ids)do local item=p.items[key]
   if not item.locked and item.binding=='account' and item.definitionId==definitionId and item.quantity<def.maxStack
@@ -65,6 +66,7 @@ function F.apply(profile,c,context,C,R)
   if item.location.heroId~=c.heroId or (item.location.kind~='bag'and item.location.kind~='equipped')then return nil,'BagOnly'end
   if c.action=='OpenCache'then
    local chosen=C.items[c.offerId]
+   if chosen and chosen.retired then return nil,'RetiredEquipment'end
    if not def.cacheTier or not chosen or not chosen.slot or chosen.cacheEligible==false or (chosen.level or 1)~=def.cacheTier or chosen.classId and chosen.classId~=hero.baseClassId or not E.supported(chosen)then return nil,'CacheChoice'end
    item.quantity=item.quantity-1;item.version=item.version+1;if item.quantity==0 then p.items[c.instanceId]=nil end
    F.grant(p,R,C,c.heroId,chosen.id,1,'cache-'..c.requestId)

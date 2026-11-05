@@ -51,6 +51,18 @@ for _,baseId in ipairs({"knight_weapon_forged","elf_weapon_forged","dwarf_weapon
   {level=base.level,rarity="Epic",uniqueGroup=base.uniqueGroup,forgeBaseId=baseId,cacheEligible=false,
    description="Epic Dawnspire forge equipment. Requires level 10. Purchase with Diamonds at the blacksmith. Balance values are provisional."})
 end
+-- Retired Lv10 trial stock: retained solely to deserialize owned gear/receipts.
+-- No active shop, cache choice or new grant may issue these definitions.
+Catalog.retiredEquipment = {}
+for _,baseId in ipairs({"knight_weapon_forged","elf_weapon_forged","dwarf_weapon_forged","mage_weapon_forged",
+ "sentinel_shield","sentinel_helm","sentinel_mail","sentinel_gauntlets","sentinel_boots","ruby_ring","guardian_charm","storm_pendant"}) do
+ for _,id in ipairs({baseId,baseId.."_epic"}) do
+  local definition=Catalog.items[id]
+  definition.retired=true;definition.cacheEligible=false
+  definition.description="Retired trial equipment. New purchases and cache selections are unavailable. Existing equipment and enhancement progress are preserved."
+  table.insert(Catalog.retiredEquipment,id)
+ end
+end
 -- Stable IDs/schema; potion restore amounts follow the latest user balance decision.
 Catalog.potions = {}
 for _, resource in ipairs({"health", "mana"}) do

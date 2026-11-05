@@ -1,5 +1,7 @@
 # 대장간 레어와 에픽 Diamonds 전용 판매
 
+> 후속: [사용자 지시에 따른 구형24종 정리](retired-forge-equipment-2026-11-05.md)로 아래 판매 목록은 종료됐다. 과거 검증/가격 이력으로 보존한다.
+
 2026-11-05 · TLT-028/029/041/043/044/046/052/057/084 · 0.75.0 · ENG/DES → QA
 
 대장간에서 Rare12종과 Epic12종을 Diamonds로만 구매하도록 구현했다. 기존 Rare의 Gold SKU는 중단하고, 네 무기의 기존 Diamond SKU와 가격18은 유지한다. 새 Epic12종은 기존 Rare의 부위·클래스·착용Lv10·장신구 중복 그룹을 유지한 별도 정의다. [판매 명세](../../assets/economy/forge-diamond-stock-2026-11-05.json)와 서버 EconomyCatalog가 대응한다. 신규 가격은 실제 성장/경제 수용 전 시험값이다.

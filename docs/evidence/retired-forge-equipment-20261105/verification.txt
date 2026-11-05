@@ -1,0 +1,31 @@
+2026-11-05 | 0.75.3 | TLT-028/029/041/043/044/052/057/084
+
+$ lua tests/blacksmith-stock.spec.lua
+Blacksmith active stock: 115 checks passed
+
+$ lua tests/retired-forge-equipment.spec.lua
+Retired forge equipment: 462 checks passed
+
+$ lua tests/difficulty-enhancement.spec.lua
+Difficulty/enhancement: 125 checks passed
+
+$ lua tests/economy.spec.lua
+Economy: 42 checks passed
+
+$ lua tests/starter-potions-and-shop.spec.lua
+Starter potions and shop: 172 checks passed
+
+$ lua tests/inventory.spec.lua
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+
+$ lua tests/equipment-impact.spec.lua
+Equipment impact: 44 checks passed
+
+$ lua tests/enhancement-probability.spec.lua
+Enhancement probability: 2857 checks passed (including 90000 outcome boundaries)
+
+Final updated regression test:
+Retired forge equipment: 486 checks passed
+
+Luau compile: PASS (ItemCatalog, EconomyCatalog, EquipmentTransactions, AdventureText, EnhancementView).
+Studio/UI/DataStore/live-client/device acceptance unverified. Not published.

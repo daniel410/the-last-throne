@@ -17,6 +17,8 @@ return {
  StatChange='%s: %.2f → %.2f',Power='Power',Armor='Armor',Health='HP',
  EnhanceCost='Limit +%d · Next: %d Gold / %d Gems / %d Stones',MaterialBag='In bag: %d Gems / %d Stones',
  RecoveryReview='Reset %s to +0? Recover %d Gems / %d Stones and %d old Ore / %d old Cores. Gold is not returned.',
+ CacheUnavailable='Keep this cache. Its trial equipment has been retired, and replacement choices are not available yet. The cache will not be consumed.',
+ RetiredEquipment='This trial equipment has been retired. Keep your cache until replacement choices are available.',
  CacheInfo='Use 1 %s to receive this equipment. Overflow goes to unclaimed rewards. Same-tier equipment has the same stats across difficulties.',ChooseEquipment='CHOOSE EQUIPMENT',
  FinalSurge='Final surge! Watch the warning zones and keep moving.',
  DifficultyLevel='Your hero does not meet the required level. Select another mission or difficulty.',

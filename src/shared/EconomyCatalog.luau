@@ -38,7 +38,8 @@ for _,row in ipairs({{'traveler_hood',80},{'traveler_coat',120},{'traveler_glove
 end
 -- Rare and Epic forge gear is sold only for Diamonds. Retire former Gold offer IDs.
 -- Keep the existing four weapon Diamond SKU IDs and prices unchanged.
-C.forgeDiamondStock={
+C.forgeDiamondStock={} -- Current assortment excludes all 24 retired Lv10 goods.
+C.retiredForgeDiamondStock={
  {id='knight_weapon_forged',rare=18,epic=30,sell=190},
  {id='elf_weapon_forged',rare=18,epic=30,sell=190},
  {id='dwarf_weapon_forged',rare=18,epic=30,sell=190},
@@ -52,16 +53,15 @@ C.forgeDiamondStock={
  {id='guardian_charm',rare=11,epic=18,sell=110},
  {id='storm_pendant',rare=11,epic=18,sell=110},
 }
-for _,row in ipairs(C.forgeDiamondStock)do
- table.insert(C.offers,{id=row.id..'_diamond',definitionId=row.id,currency='diamonds',price=row.rare})
- local epic=row.id..'_epic'
- table.insert(C.offers,{id=epic..'_diamond',definitionId=epic,currency='diamonds',price=row.epic})
- C.sell[row.id]=row.sell;C.sell[epic]=row.sell
+-- Historical rows retain resale values; they are not purchase offers.
+for _,row in ipairs(C.retiredForgeDiamondStock)do
+ C.sell[row.id]=row.sell;C.sell[row.id..'_epic']=row.sell
 end
 function C.diamondGear(definition)
  return definition and definition.category=='Equipment' and (definition.rarity=='Rare' or definition.rarity=='Epic')
 end
 function C.allowed(store,definition,offer)
+ if definition and definition.retired then return offer==nil and (store==nil or store=='blacksmith') end
  if offer and C.diamondGear(definition) and offer.currency~='diamonds' then return false end
  if store=='diamonds' then return offer and offer.currency=='diamonds' end
  if store=='blacksmith' then return definition.category=='Equipment' and (not offer or (C.diamondGear(definition) and offer.currency=='diamonds') or (not C.diamondGear(definition) and offer.currency=='gold')) end

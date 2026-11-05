@@ -1,5 +1,8 @@
 # The Last Throne 통합 개발 계획
 
+> **2026-11-05 구형 Lv10 Rare/Epic24종 정리 · TLT-028/029/041/043/044/052/057/084 · 0.75.3:** 사용자 확인에 따라 [Dawnforge/Sentinel/장신구24종](docs/production/retired-forge-equipment-2026-11-05.md)을 신규 판매·상자 선택·지급에서 제거했다. 기존 보유·구매영수증·강화·되팔기·상자 권리는 보존한다. Lv10 상자는 대체 선택지 연결 전 보관 안내를 표시하며 교환 공백은 후속이다. 최신160종 재산정/이미지·Common/Uncommon·보상 정본은 보존한다. 미게시·실계정/실기기 수용 후속.
+
+
 > **2026-11-05 장비160종 재산정 v2 · TLT-028/029/044/045/052/082/084:** [현재 수치·효과](docs/production/equipment-recalculation-2026-11-05.md)와 [160종 전후표](assets/concepts/2026-11-04-equipment-icons/recalculated-160.html)를 작성했다. Rare10/Epic20/Legendary40은 시험 기준, Unique60/Hell만은 사용자 확정 유지. 152종 기본치 변경·세트 -3% 제거·고정Armor0.45 정규화·Unique40종 Lv60 수치/효과 재산정·동일조건 동시착용 충돌11→0. 정적3000비교/실제 순수 성장·난이도 함수1664조건 계산, 실전/MP·세트·효과 엔진·상점80종 연결은 후속. 부모 티켓 In Progress·게임 코드/기존 권리·VERSION·게시 변경 없음.
 
 

@@ -25,8 +25,8 @@ end
 local candidates=0;for _ in pairs(seen) do candidates=candidates+1 end
 assert(candidates==160 and offered==0 and registered==0)
 print('PASS candidate definitions='..candidates..'; registered='..registered..'; offered='..offered)
-assert(#Shop.forgeDiamondStock==12)
-print('PASS actual forge Rare/Epic pairs='..#Shop.forgeDiamondStock)
+assert(#Shop.forgeDiamondStock==0 and #Shop.retiredForgeDiamondStock==12)
+print('PASS retired forge pairs='..#Shop.retiredForgeDiamondStock..'; active pairs='..#Shop.forgeDiamondStock)
 local profile={items={probe={definitionId='probe',location={kind='equipped',heroId='probe'}}}}
 local ok,err=pcall(Rules.stats,profile,'probe',{items={probe={stats={maxMana=10}}}})
 assert(not ok and tostring(err):find('arithmetic'))

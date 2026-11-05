@@ -1,0 +1,212 @@
+{
+  "date": "2026-11-05",
+  "status": "retired-from-active-acquisition-compatibility-definitions-retained",
+  "userScope": "all-24-old-level10-forge-goods",
+  "counts": {
+    "Rare": 12,
+    "Epic": 12
+  },
+  "preserved": [
+    "owned instances",
+    "enhancement",
+    "committed receipts",
+    "resale values",
+    "cache balances and reward rights"
+  ],
+  "newAcquisitionEnabled": false,
+  "replacement160Plan": "assets/balance/equipment-recalculated-2026-11-05.json",
+  "items": [
+    {
+      "id": "knight_weapon_forged",
+      "name": "Dawnforge Sword",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "weapon",
+      "classId": "knight"
+    },
+    {
+      "id": "knight_weapon_forged_epic",
+      "name": "Epic Dawnforge Sword",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "weapon",
+      "classId": "knight"
+    },
+    {
+      "id": "elf_weapon_forged",
+      "name": "Dawnforge Bow",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "weapon",
+      "classId": "elf"
+    },
+    {
+      "id": "elf_weapon_forged_epic",
+      "name": "Epic Dawnforge Bow",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "weapon",
+      "classId": "elf"
+    },
+    {
+      "id": "dwarf_weapon_forged",
+      "name": "Dawnforge Axe",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "weapon",
+      "classId": "dwarf"
+    },
+    {
+      "id": "dwarf_weapon_forged_epic",
+      "name": "Epic Dawnforge Axe",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "weapon",
+      "classId": "dwarf"
+    },
+    {
+      "id": "mage_weapon_forged",
+      "name": "Dawnforge Staff",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "weapon",
+      "classId": "mage"
+    },
+    {
+      "id": "mage_weapon_forged_epic",
+      "name": "Epic Dawnforge Staff",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "weapon",
+      "classId": "mage"
+    },
+    {
+      "id": "sentinel_shield",
+      "name": "Sentinel Shield",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "offhand",
+      "classId": "knight"
+    },
+    {
+      "id": "sentinel_shield_epic",
+      "name": "Epic Sentinel Shield",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "offhand",
+      "classId": "knight"
+    },
+    {
+      "id": "sentinel_helm",
+      "name": "Sentinel Helm",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "head",
+      "classId": "shared"
+    },
+    {
+      "id": "sentinel_helm_epic",
+      "name": "Epic Sentinel Helm",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "head",
+      "classId": "shared"
+    },
+    {
+      "id": "sentinel_mail",
+      "name": "Sentinel Mail",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "body",
+      "classId": "shared"
+    },
+    {
+      "id": "sentinel_mail_epic",
+      "name": "Epic Sentinel Mail",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "body",
+      "classId": "shared"
+    },
+    {
+      "id": "sentinel_gauntlets",
+      "name": "Sentinel Gauntlets",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "hands",
+      "classId": "shared"
+    },
+    {
+      "id": "sentinel_gauntlets_epic",
+      "name": "Epic Sentinel Gauntlets",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "hands",
+      "classId": "shared"
+    },
+    {
+      "id": "sentinel_boots",
+      "name": "Sentinel Boots",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "feet",
+      "classId": "shared"
+    },
+    {
+      "id": "sentinel_boots_epic",
+      "name": "Epic Sentinel Boots",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "feet",
+      "classId": "shared"
+    },
+    {
+      "id": "ruby_ring",
+      "name": "Ruby Ring",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "accessory",
+      "classId": "shared"
+    },
+    {
+      "id": "ruby_ring_epic",
+      "name": "Epic Ruby Ring",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "accessory",
+      "classId": "shared"
+    },
+    {
+      "id": "guardian_charm",
+      "name": "Guardian Charm",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "accessory",
+      "classId": "shared"
+    },
+    {
+      "id": "guardian_charm_epic",
+      "name": "Epic Guardian Charm",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "accessory",
+      "classId": "shared"
+    },
+    {
+      "id": "storm_pendant",
+      "name": "Storm Pendant",
+      "rarity": "Rare",
+      "requiredLevel": 10,
+      "slot": "accessory",
+      "classId": "shared"
+    },
+    {
+      "id": "storm_pendant_epic",
+      "name": "Epic Storm Pendant",
+      "rarity": "Epic",
+      "requiredLevel": 10,
+      "slot": "accessory",
+      "classId": "shared"
+    }
+  ]
+}
