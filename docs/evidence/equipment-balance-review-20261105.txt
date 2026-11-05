@@ -1,0 +1,32 @@
+2026-11-05 | TLT-028/029/052/084 | static review, no Studio/client acceptance
+
+$ python3 scripts/validate_equipment_icon_assets.py
+PASS: 160 unique labeled PNGs / 40 families / 240 proposal IDs; hashes, grade mapping, references, counts, alpha presence and local board links
+
+$ python3 scripts/validate_equipment_stats_plan.py
+PASS: 40 family budgets, 120 item stat plans, 12 five-piece sets; IDs/icons/grades/levels, exact multipliers, MP unchanged at +9 and enhancement eligibility
+
+$ python3 scripts/validate_unique_equipment_plan.py
+PASS: 40 Unique stat/effect/drop/art proposals; 4 existing skill IDs, boss kinds, reference budget Unique > Legendary at +0/+5/+9, Lv60 equip, Lv60 stat rebudget pending, budget/enhancement/MP invariants, no sets, no runtime/drop activation
+
+$ python3 scripts/validate_boss_equipment_drop_policy.py
+PASS: Legendary Insane/Hell, Unique Hell only; 4 trial tables sum to 100%; prohibited weights zero; protection gates, 160 stat plans and 240 variant references
+
+$ python3 scripts/review_equipment_balance.py
+PASS: 160 rows; grade order/gates; flag counts: {'SHOP-MAP': 80, 'MP-RUNTIME': 40, 'MP-CLASS': 12, 'MP-ENHANCE': 4, 'SET': 60, 'SET-SINGLE': 9, 'L-TIER': 40, 'U60': 40, 'PROC-SURVIVAL': 18, 'PROC-UPTIME': 9, 'PROC-CONFLICT': 18, 'PROC-BASIC': 9, 'PROC-MANA': 4, 'PROC-LOADOUT': 6}
+Compatible Unique pairs with identical trigger: 11 ; affected items: 18
+
+$ lua scripts/probe_equipment_review.lua
+PASS runtime definitions=63; equipment=45; MP definitions=0
+Common=20
+Uncommon=14
+Rare=17
+Epic=12
+PASS candidate definitions=160; registered=0; offered=0
+PASS actual forge Rare/Epic pairs=12
+REPRODUCED proposed MP injection blocker (isolated memory): src/server/Inventory/InventoryRules.luau:58: attempt to perform arithmetic on a nil value (field '?')
+No game services, profiles, currencies or canonical inputs changed.
+
+HTMLParser static inspection:
+PASS review HTML: 160 icons / 160 item rows / all local links exist.
+Browser rendering, Studio, client combat and device acceptance remain unverified.
