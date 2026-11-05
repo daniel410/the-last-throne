@@ -13,9 +13,10 @@ def page(title, cards, single=False):
     if not single: controls+='<button onclick="grades(false)">Legendary / Unique</button><button onclick="grades(true)">Rare / Epic / Legendary / Unique</button>'
     controls+='<button onclick="document.body.classList.toggle(\'tiny\')">48px</button><button onclick="document.body.classList.toggle(\'light\')">배경 전환</button><input placeholder="아이템 이름 검색" aria-label="아이템 이름 검색" oninput="apply()">'
     catalog='../catalog-160.html' if single else 'catalog-160.html'
-    return '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+title+'</title><style>'+STYLE+'</style><h1>'+title+'</h1><p><a href="'+catalog+'">160종 등급·클래스·이름 통합 목록</a></p><p>등급·클래스·아이템명으로 식별합니다. 아이콘 생성본이며 실제 게임 등록·효과·실기기 수용은 별도입니다. Unique 최소 착용Lv60은 사용자 확정입니다. 다른 세 등급의Lv10은 시험안이며 최소레벨 확정이 아닙니다.</p><p><a href="'+('../comparison.html' if single else 'generated-unique-v1/index.html')+'">'+('전체 등급 비교' if single else 'Unique40 단독 보기')+'</a></p>'+controls+'<main>'+''.join(cards)+'</main><script>'+SCRIPT+('' if single else ';grades(false)')+'</script></html>'
+    return '<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+title+'</title><style>'+STYLE+'</style><h1>'+title+'</h1><p><a href="'+catalog+'">160종 등급·클래스·이름 통합 목록</a></p><p>등급·클래스·아이템명으로 식별합니다. 아이콘 생성본이며 실제 게임 등록·효과·실기기 수용은 별도입니다. Unique 최소 착용Lv60은 사용자 확정입니다. Rare10/Epic20/Legendary40은 재산정 시험 기준입니다. 현재 능력치는 통합 목록의 재산정 링크를 확인하세요.</p><p><a href="'+('../comparison.html' if single else 'generated-unique-v1/index.html')+'">'+('전체 등급 비교' if single else 'Unique40 단독 보기')+'</a></p>'+controls+'<main>'+''.join(cards)+'</main><script>'+SCRIPT+('' if single else ';grades(false)')+'</script></html>'
 
 def build():
+    balance={(i['rarity'],i['familyId']):i for i in json.loads((ROOT.parents[2]/'assets/balance/equipment-recalculated-2026-11-05.json').read_text())['items']}
     manifest=json.loads((ROOT/'manifest.json').read_text())
     records={g:{r['familyId']:r for r in json.loads((ROOT/d/'generation.json').read_text())['records']} for g,d in GRADES.items()}
     combined=[];single={g:[] for g in GRADES}
@@ -23,7 +24,7 @@ def build():
         group=f['classId'] or 'shared';figures=[]
         for grade,folder in GRADES.items():
             r=records[grade][f['id']];d=r['displayMetadata'];path=folder+'/'+r['file'];name=html.escape(d['name']);caption=html.escape(d['classLabel'])+' · '+html.escape(f['slot'])+'<br>'+html.escape(d.get('setName') or 'Standalone')
-            caption+='<br>Lv'+str(d['requiredLevel'])+(' · Approved' if grade=='Unique' else ' · Trial')
+            caption+='<br>Lv'+str(balance[(grade,f['id'])]['requiredLevel'])+(' · Approved' if grade=='Unique' else ' · Trial')
             if grade=='Unique':caption+='<br>Boss: '+html.escape(r['bossKind'])+' · Hell only'
             fig=f'<figure class="{grade}" data-grade="{grade}"><a href="{path}"><img loading="lazy" src="{path}" alt="{name}"></a><figcaption>{name}<small>{caption}</small></figcaption></figure>'
             figures.append(fig);single[grade].append(f'<article data-group="{group}">'+fig.replace(path,r['file'])+'</article>')

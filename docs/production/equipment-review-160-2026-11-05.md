@@ -1,6 +1,8 @@
-# 160종 아이템별 성능 리뷰 표
+# 160종 아이템별 성능 리뷰 표 (재산정 전 보관본)
 
 2026-11-05 · TLT-028/029/052/084 · PLAN/DES → ENG/QA
+
+[현재 재산정 수치](equipment-recalculated-160-2026-11-05.md) · 아래는 재산정 전 리뷰 보관본이다.
 
 [종합 리뷰](equipment-balance-review-2026-11-05.md) · [검색 가능한 아이콘 표](../../assets/concepts/2026-11-04-equipment-icons/review-160.html)
 

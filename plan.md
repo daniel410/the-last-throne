@@ -1,5 +1,8 @@
 # The Last Throne 통합 개발 계획
 
+> **2026-11-05 장비160종 재산정 v2 · TLT-028/029/044/045/052/082/084:** [현재 수치·효과](docs/production/equipment-recalculation-2026-11-05.md)와 [160종 전후표](assets/concepts/2026-11-04-equipment-icons/recalculated-160.html)를 작성했다. Rare10/Epic20/Legendary40은 시험 기준, Unique60/Hell만은 사용자 확정 유지. 152종 기본치 변경·세트 -3% 제거·고정Armor0.45 정규화·Unique40종 Lv60 수치/효과 재산정·동일조건 동시착용 충돌11→0. 정적3000비교/실제 순수 성장·난이도 함수1664조건 계산, 실전/MP·세트·효과 엔진·상점80종 연결은 후속. 부모 티켓 In Progress·게임 코드/기존 권리·VERSION·게시 변경 없음.
+
+
 > **2026-11-05 모바일 상세 UI · TLT-028/031/046/052/057/084 · 0.75.1:** 상세창에서 배경 재화HUD/왼쪽메뉴/재접속 버튼을 숨기고, 모바일 영웅 선택을 얇은 테두리·작은 체크로 축소했다. 로그인7일 보상도 모바일에서 세로스크롤 없이 맞춘다. PC 선택 표시는 유지한다. [검증·한계](docs/evidence/mobile-lobby-overlays-20261105/README.md). 미게시·실기기/사용자 시각수용 후속.
 
 > **2026-11-05 장비160종 통합 목록 · TLT-028/029/052/084:** [등급·영웅클래스 제한·이름 통합 화면](assets/concepts/2026-11-04-equipment-icons/catalog-160.html)과 [문서표](docs/production/equipment-catalog-160-2026-11-05.md)를 작성했다. Rare/Epic/Legendary/Unique 각40종·공통44/기사32/엘프28/드워프28/마법사28이며 전체160행·필터/검색·원본이미지 링크를 제공한다. 생성아이콘 목록이며 실제런타임160종 구현과구분한다.

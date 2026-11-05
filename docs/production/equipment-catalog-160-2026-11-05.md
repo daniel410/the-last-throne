@@ -2,7 +2,7 @@
 
 2026-11-05 · TLT-028/029/052/084 · PLAN/DES → ENG/QA
 
-[160종 통합 화면](../../assets/concepts/2026-11-04-equipment-icons/catalog-160.html)에서 이미지·등급·클래스 제한·이름을 한 표로 확인하고 검색/필터할 수 있다. [동일 JSON](../../assets/concepts/2026-11-04-equipment-icons/catalog-160.json)은 generation.json과 manifest의 실제 메타데이터에서 생성했다. 아래 목록은 생성한 아이콘160종이며 게임에160종이 모두 구현됐다는 뜻은 아니다. 기존 Common/Uncommon 및 대장간의 별도 런타임 품목은 이160종에 합산하지 않는다.
+[160종 통합 화면](../../assets/concepts/2026-11-04-equipment-icons/catalog-160.html)에서 이미지·등급·클래스 제한·이름을 한 표로 확인하고 검색/필터할 수 있다. [동일 JSON](../../assets/concepts/2026-11-04-equipment-icons/catalog-160.json)은 generation.json/manifest의 이미지 메타데이터와 현재 재산정 JSON의 레벨에서 생성했다. 아래 목록은 생성한 아이콘160종이며 게임에160종이 모두 구현됐다는 뜻은 아니다. 기존 Common/Uncommon 및 대장간의 별도 런타임 품목은 이160종에 합산하지 않는다.
 
 | 구분 | Rare | Epic | Legendary | Unique | 합계 |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -13,7 +13,7 @@
 | Mage 전용 | 7 | 7 | 7 | 7 | 28 |
 | 합계 | 40 | 40 | 40 | 40 | 160 |
 
-클래스 전용은 기본 클래스 조건이며 두 전직 계열 중 하나만의 전용품이라는 뜻은 아니다. 공통 MP품은 착용 가능 클래스와 MP 보너스 적용 자격을 구분한다. Unique 착용Lv60은 사용자 확정이며 다른 세 등급의Lv10은 기존 시험안이다. Unique의 Lv60 능력치 재산정·게임 등록/효과/드롭 수용은 후속이다.
+클래스 전용은 기본 클래스 조건이며 두 전직 계열 중 하나만의 전용품이라는 뜻은 아니다. 공통 MP품은 착용 가능 클래스와 MP 보너스 적용 자격을 구분한다. Unique 착용Lv60은 사용자 확정이며 Rare10/Epic20/Legendary40은 재산정 시험 기준이다. Unique Lv60 재산정은 v2 수치안을 사용하며 게임 등록/효과/드롭 수용은 후속이다.
 
 | 번호 | 등급 | 영웅 클래스 제한 | 이름 | 부위 | 착용Lv |
 | --- | --- | --- | --- | --- | --- |
@@ -57,86 +57,86 @@
 | 038 | Rare | Mage · 마법사 전용 | `Rare_Mage_Aetherweave_Treads` | 발 | 10 · 시험안 |
 | 039 | Rare | Mage · 마법사 전용 | `Rare_Mage_Aetherweave_Pendant` | 장신구 | 10 · 시험안 |
 | 040 | Rare | Mage · 마법사 전용 | `Rare_Mage_Aetherweave_Signet` | 장신구 | 10 · 시험안 |
-| 041 | Epic | 공통 · 모든 영웅 | `Epic_Wayfarer_Hood` | 머리 | 10 · 시험안 |
-| 042 | Epic | 공통 · 모든 영웅 | `Epic_Wayfarer_Coat` | 몸통 | 10 · 시험안 |
-| 043 | Epic | 공통 · 모든 영웅 | `Epic_Wayfarer_Gloves` | 손 | 10 · 시험안 |
-| 044 | Epic | 공통 · 모든 영웅 | `Epic_Wayfarer_Boots` | 발 | 10 · 시험안 |
-| 045 | Epic | 공통 · 모든 영웅 | `Epic_Arcane_Reservoir_Pendant` | 장신구 | 10 · 시험안 |
-| 046 | Epic | 공통 · 모든 영웅 | `Epic_Mana_Ring` | 장신구 | 10 · 시험안 |
-| 047 | Epic | 공통 · 모든 영웅 | `Epic_Refuge_Charm` | 장신구 | 10 · 시험안 |
-| 048 | Epic | 공통 · 모든 영웅 | `Epic_Valor_Ring` | 장신구 | 10 · 시험안 |
-| 049 | Epic | 공통 · 모든 영웅 | `Epic_Vigor_Ring` | 장신구 | 10 · 시험안 |
-| 050 | Epic | 공통 · 모든 영웅 | `Epic_Ward_Pendant` | 장신구 | 10 · 시험안 |
-| 051 | Epic | 공통 · 모든 영웅 | `Epic_Wellspring_Charm` | 장신구 | 10 · 시험안 |
-| 052 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Sword` | 무기 | 10 · 시험안 |
-| 053 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Shield` | 방패 | 10 · 시험안 |
-| 054 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Headguard` | 머리 | 10 · 시험안 |
-| 055 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Vestments` | 몸통 | 10 · 시험안 |
-| 056 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Grips` | 손 | 10 · 시험안 |
-| 057 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Treads` | 발 | 10 · 시험안 |
-| 058 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Pendant` | 장신구 | 10 · 시험안 |
-| 059 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Signet` | 장신구 | 10 · 시험안 |
-| 060 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Bow` | 무기 | 10 · 시험안 |
-| 061 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Headguard` | 머리 | 10 · 시험안 |
-| 062 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Vestments` | 몸통 | 10 · 시험안 |
-| 063 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Grips` | 손 | 10 · 시험안 |
-| 064 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Treads` | 발 | 10 · 시험안 |
-| 065 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Pendant` | 장신구 | 10 · 시험안 |
-| 066 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Signet` | 장신구 | 10 · 시험안 |
-| 067 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Axe` | 무기 | 10 · 시험안 |
-| 068 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Headguard` | 머리 | 10 · 시험안 |
-| 069 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Vestments` | 몸통 | 10 · 시험안 |
-| 070 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Grips` | 손 | 10 · 시험안 |
-| 071 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Treads` | 발 | 10 · 시험안 |
-| 072 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Pendant` | 장신구 | 10 · 시험안 |
-| 073 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Signet` | 장신구 | 10 · 시험안 |
-| 074 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Staff` | 무기 | 10 · 시험안 |
-| 075 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Headguard` | 머리 | 10 · 시험안 |
-| 076 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Vestments` | 몸통 | 10 · 시험안 |
-| 077 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Grips` | 손 | 10 · 시험안 |
-| 078 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Treads` | 발 | 10 · 시험안 |
-| 079 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Pendant` | 장신구 | 10 · 시험안 |
-| 080 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Signet` | 장신구 | 10 · 시험안 |
-| 081 | Legendary | 공통 · 모든 영웅 | `Legendary_Wayfarer_Hood` | 머리 | 10 · 시험안 |
-| 082 | Legendary | 공통 · 모든 영웅 | `Legendary_Wayfarer_Coat` | 몸통 | 10 · 시험안 |
-| 083 | Legendary | 공통 · 모든 영웅 | `Legendary_Wayfarer_Gloves` | 손 | 10 · 시험안 |
-| 084 | Legendary | 공통 · 모든 영웅 | `Legendary_Wayfarer_Boots` | 발 | 10 · 시험안 |
-| 085 | Legendary | 공통 · 모든 영웅 | `Legendary_Arcane_Reservoir_Pendant` | 장신구 | 10 · 시험안 |
-| 086 | Legendary | 공통 · 모든 영웅 | `Legendary_Mana_Ring` | 장신구 | 10 · 시험안 |
-| 087 | Legendary | 공통 · 모든 영웅 | `Legendary_Refuge_Charm` | 장신구 | 10 · 시험안 |
-| 088 | Legendary | 공통 · 모든 영웅 | `Legendary_Valor_Ring` | 장신구 | 10 · 시험안 |
-| 089 | Legendary | 공통 · 모든 영웅 | `Legendary_Vigor_Ring` | 장신구 | 10 · 시험안 |
-| 090 | Legendary | 공통 · 모든 영웅 | `Legendary_Ward_Pendant` | 장신구 | 10 · 시험안 |
-| 091 | Legendary | 공통 · 모든 영웅 | `Legendary_Wellspring_Charm` | 장신구 | 10 · 시험안 |
-| 092 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Sword` | 무기 | 10 · 시험안 |
-| 093 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Shield` | 방패 | 10 · 시험안 |
-| 094 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Headguard` | 머리 | 10 · 시험안 |
-| 095 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Vestments` | 몸통 | 10 · 시험안 |
-| 096 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Grips` | 손 | 10 · 시험안 |
-| 097 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Treads` | 발 | 10 · 시험안 |
-| 098 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Pendant` | 장신구 | 10 · 시험안 |
-| 099 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Signet` | 장신구 | 10 · 시험안 |
-| 100 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Bow` | 무기 | 10 · 시험안 |
-| 101 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Headguard` | 머리 | 10 · 시험안 |
-| 102 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Vestments` | 몸통 | 10 · 시험안 |
-| 103 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Grips` | 손 | 10 · 시험안 |
-| 104 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Treads` | 발 | 10 · 시험안 |
-| 105 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Pendant` | 장신구 | 10 · 시험안 |
-| 106 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Signet` | 장신구 | 10 · 시험안 |
-| 107 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Axe` | 무기 | 10 · 시험안 |
-| 108 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Headguard` | 머리 | 10 · 시험안 |
-| 109 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Vestments` | 몸통 | 10 · 시험안 |
-| 110 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Grips` | 손 | 10 · 시험안 |
-| 111 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Treads` | 발 | 10 · 시험안 |
-| 112 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Pendant` | 장신구 | 10 · 시험안 |
-| 113 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Signet` | 장신구 | 10 · 시험안 |
-| 114 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Staff` | 무기 | 10 · 시험안 |
-| 115 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Headguard` | 머리 | 10 · 시험안 |
-| 116 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Vestments` | 몸통 | 10 · 시험안 |
-| 117 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Grips` | 손 | 10 · 시험안 |
-| 118 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Treads` | 발 | 10 · 시험안 |
-| 119 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Pendant` | 장신구 | 10 · 시험안 |
-| 120 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Signet` | 장신구 | 10 · 시험안 |
+| 041 | Epic | 공통 · 모든 영웅 | `Epic_Wayfarer_Hood` | 머리 | 20 · 시험안 |
+| 042 | Epic | 공통 · 모든 영웅 | `Epic_Wayfarer_Coat` | 몸통 | 20 · 시험안 |
+| 043 | Epic | 공통 · 모든 영웅 | `Epic_Wayfarer_Gloves` | 손 | 20 · 시험안 |
+| 044 | Epic | 공통 · 모든 영웅 | `Epic_Wayfarer_Boots` | 발 | 20 · 시험안 |
+| 045 | Epic | 공통 · 모든 영웅 | `Epic_Arcane_Reservoir_Pendant` | 장신구 | 20 · 시험안 |
+| 046 | Epic | 공통 · 모든 영웅 | `Epic_Mana_Ring` | 장신구 | 20 · 시험안 |
+| 047 | Epic | 공통 · 모든 영웅 | `Epic_Refuge_Charm` | 장신구 | 20 · 시험안 |
+| 048 | Epic | 공통 · 모든 영웅 | `Epic_Valor_Ring` | 장신구 | 20 · 시험안 |
+| 049 | Epic | 공통 · 모든 영웅 | `Epic_Vigor_Ring` | 장신구 | 20 · 시험안 |
+| 050 | Epic | 공통 · 모든 영웅 | `Epic_Ward_Pendant` | 장신구 | 20 · 시험안 |
+| 051 | Epic | 공통 · 모든 영웅 | `Epic_Wellspring_Charm` | 장신구 | 20 · 시험안 |
+| 052 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Sword` | 무기 | 20 · 시험안 |
+| 053 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Shield` | 방패 | 20 · 시험안 |
+| 054 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Headguard` | 머리 | 20 · 시험안 |
+| 055 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Vestments` | 몸통 | 20 · 시험안 |
+| 056 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Grips` | 손 | 20 · 시험안 |
+| 057 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Treads` | 발 | 20 · 시험안 |
+| 058 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Pendant` | 장신구 | 20 · 시험안 |
+| 059 | Epic | Knight · 기사 전용 | `Epic_Knight_Oathguard_Signet` | 장신구 | 20 · 시험안 |
+| 060 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Bow` | 무기 | 20 · 시험안 |
+| 061 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Headguard` | 머리 | 20 · 시험안 |
+| 062 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Vestments` | 몸통 | 20 · 시험안 |
+| 063 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Grips` | 손 | 20 · 시험안 |
+| 064 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Treads` | 발 | 20 · 시험안 |
+| 065 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Pendant` | 장신구 | 20 · 시험안 |
+| 066 | Epic | Elf Archer · 엘프 궁수 전용 | `Epic_Elf_Briarwatch_Signet` | 장신구 | 20 · 시험안 |
+| 067 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Axe` | 무기 | 20 · 시험안 |
+| 068 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Headguard` | 머리 | 20 · 시험안 |
+| 069 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Vestments` | 몸통 | 20 · 시험안 |
+| 070 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Grips` | 손 | 20 · 시험안 |
+| 071 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Treads` | 발 | 20 · 시험안 |
+| 072 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Pendant` | 장신구 | 20 · 시험안 |
+| 073 | Epic | Dwarf Axe Thrower · 드워프 전용 | `Epic_Dwarf_Stonehearth_Signet` | 장신구 | 20 · 시험안 |
+| 074 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Staff` | 무기 | 20 · 시험안 |
+| 075 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Headguard` | 머리 | 20 · 시험안 |
+| 076 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Vestments` | 몸통 | 20 · 시험안 |
+| 077 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Grips` | 손 | 20 · 시험안 |
+| 078 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Treads` | 발 | 20 · 시험안 |
+| 079 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Pendant` | 장신구 | 20 · 시험안 |
+| 080 | Epic | Mage · 마법사 전용 | `Epic_Mage_Aetherweave_Signet` | 장신구 | 20 · 시험안 |
+| 081 | Legendary | 공통 · 모든 영웅 | `Legendary_Wayfarer_Hood` | 머리 | 40 · 시험안 |
+| 082 | Legendary | 공통 · 모든 영웅 | `Legendary_Wayfarer_Coat` | 몸통 | 40 · 시험안 |
+| 083 | Legendary | 공통 · 모든 영웅 | `Legendary_Wayfarer_Gloves` | 손 | 40 · 시험안 |
+| 084 | Legendary | 공통 · 모든 영웅 | `Legendary_Wayfarer_Boots` | 발 | 40 · 시험안 |
+| 085 | Legendary | 공통 · 모든 영웅 | `Legendary_Arcane_Reservoir_Pendant` | 장신구 | 40 · 시험안 |
+| 086 | Legendary | 공통 · 모든 영웅 | `Legendary_Mana_Ring` | 장신구 | 40 · 시험안 |
+| 087 | Legendary | 공통 · 모든 영웅 | `Legendary_Refuge_Charm` | 장신구 | 40 · 시험안 |
+| 088 | Legendary | 공통 · 모든 영웅 | `Legendary_Valor_Ring` | 장신구 | 40 · 시험안 |
+| 089 | Legendary | 공통 · 모든 영웅 | `Legendary_Vigor_Ring` | 장신구 | 40 · 시험안 |
+| 090 | Legendary | 공통 · 모든 영웅 | `Legendary_Ward_Pendant` | 장신구 | 40 · 시험안 |
+| 091 | Legendary | 공통 · 모든 영웅 | `Legendary_Wellspring_Charm` | 장신구 | 40 · 시험안 |
+| 092 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Sword` | 무기 | 40 · 시험안 |
+| 093 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Shield` | 방패 | 40 · 시험안 |
+| 094 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Headguard` | 머리 | 40 · 시험안 |
+| 095 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Vestments` | 몸통 | 40 · 시험안 |
+| 096 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Grips` | 손 | 40 · 시험안 |
+| 097 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Treads` | 발 | 40 · 시험안 |
+| 098 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Pendant` | 장신구 | 40 · 시험안 |
+| 099 | Legendary | Knight · 기사 전용 | `Legendary_Knight_Oathguard_Signet` | 장신구 | 40 · 시험안 |
+| 100 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Bow` | 무기 | 40 · 시험안 |
+| 101 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Headguard` | 머리 | 40 · 시험안 |
+| 102 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Vestments` | 몸통 | 40 · 시험안 |
+| 103 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Grips` | 손 | 40 · 시험안 |
+| 104 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Treads` | 발 | 40 · 시험안 |
+| 105 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Pendant` | 장신구 | 40 · 시험안 |
+| 106 | Legendary | Elf Archer · 엘프 궁수 전용 | `Legendary_Elf_Briarwatch_Signet` | 장신구 | 40 · 시험안 |
+| 107 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Axe` | 무기 | 40 · 시험안 |
+| 108 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Headguard` | 머리 | 40 · 시험안 |
+| 109 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Vestments` | 몸통 | 40 · 시험안 |
+| 110 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Grips` | 손 | 40 · 시험안 |
+| 111 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Treads` | 발 | 40 · 시험안 |
+| 112 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Pendant` | 장신구 | 40 · 시험안 |
+| 113 | Legendary | Dwarf Axe Thrower · 드워프 전용 | `Legendary_Dwarf_Stonehearth_Signet` | 장신구 | 40 · 시험안 |
+| 114 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Staff` | 무기 | 40 · 시험안 |
+| 115 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Headguard` | 머리 | 40 · 시험안 |
+| 116 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Vestments` | 몸통 | 40 · 시험안 |
+| 117 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Grips` | 손 | 40 · 시험안 |
+| 118 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Treads` | 발 | 40 · 시험안 |
+| 119 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Pendant` | 장신구 | 40 · 시험안 |
+| 120 | Legendary | Mage · 마법사 전용 | `Legendary_Mage_Aetherweave_Signet` | 장신구 | 40 · 시험안 |
 | 121 | Unique | 공통 · 모든 영웅 | `Unique_Quarrykeeper_Hood` | 머리 | 60 · 확정 |
 | 122 | Unique | 공통 · 모든 영웅 | `Unique_Hollowbark_Mantle` | 몸통 | 60 · 확정 |
 | 123 | Unique | 공통 · 모든 영웅 | `Unique_Ashforged_Grips` | 손 | 60 · 확정 |

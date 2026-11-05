@@ -1,0 +1,34 @@
+2026-11-05 | TLT-028/029/044/045/052/082/084 | balance proposal v2
+
+$ python3 scripts/validate_equipment_icon_assets.py
+PASS: 160 unique labeled PNGs / 40 families / 240 proposal IDs; hashes, grade mapping, references, counts, alpha presence and local board links
+
+$ python3 scripts/validate_equipment_stats_plan.py
+PASS: 40 family budgets, 120 item stat plans, 12 five-piece sets; IDs/icons/grades/levels, exact multipliers, MP unchanged at +9 and enhancement eligibility
+
+$ python3 scripts/validate_unique_equipment_plan.py
+PASS: 40 Unique stat/effect/drop/art proposals; 4 existing skill IDs, boss kinds, reference budget Unique > Legendary at +0/+5/+9, Lv60 equip, Lv60 stat rebudget pending, budget/enhancement/MP invariants, no sets, no runtime/drop activation
+
+$ python3 scripts/validate_boss_equipment_drop_policy.py
+PASS: Legendary Insane/Hell, Unique Hell only; 4 trial tables sum to 100%; prohibited weights zero; protection gates, 160 stat plans and 240 variant references
+
+$ lua scripts/probe_equipment_review.lua
+PASS runtime definitions=63; equipment=45; MP definitions=0
+Common=20
+Uncommon=14
+Rare=17
+Epic=12
+PASS candidate definitions=160; registered=0; offered=0
+PASS actual forge Rare/Epic pairs=12
+REPRODUCED proposed MP injection blocker (isolated memory): src/server/Inventory/InventoryRules.luau:58: attempt to perform arithmetic on a nil value (field '?')
+No game services, profiles, currencies or canonical inputs changed.
+
+$ python3 scripts/recalculate_equipment_balance.py
+PASS: recalculated 160; changed stats 152 ; same-level comparisons 3000 ; compatible identical Unique triggers 0; runtime disabled
+
+$ python3 scripts/check_recalculated_equipment.py
+PASS: 1664 legal-level human-party fixtures, actual pure Growth/Difficulty v3; minimum normal damage before/after: 590 312
+
+HTMLParser: PASS 160 rows/icons, all local links; catalog current levels 10/20/40/60.
+No game runtime, live accounts, Store, VERSION, build or publish changes.
+MP/sets/procs/shop mapping remain implementation gates. Combat/AI/devices unverified.

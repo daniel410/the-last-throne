@@ -45,7 +45,8 @@ def stats_text(stats):
 items = []
 for art in catalog['items']:
     i = lookup[(art['rarity'], art['familyId'])]
-    assert i['name'] == art['name'] and i['requiredLevel'] == art['requiredLevel']
+    assert i['name'] == art['name']
+    art={**art,'requiredLevel':i['requiredLevel'],'levelStatus':i['levelStatus']}  # Historical review retains its original levels.
     flags, actions = [], []
     grade = i['rarity']
     if grade == 'Unique':
@@ -127,14 +128,17 @@ assert all(i['requiredLevel'] == 60 and i['allowedDifficulties'] == ['Hell'] for
 assert all(i['allowedDifficulties'] == ['Insane','Hell'] for i in items if i['rarity'] == 'Legendary')
 flag_counts = Counter(f for i in items for f in i['flags'])
 result = {'date':'2026-11-05', 'workIds':['TLT-028','TLT-029','TLT-052','TLT-084'],
-          'scope':'static-review-of-160-authored-proposals-not-combat-acceptance',
+          'scope':'historical-pre-recalculation-static-review',
+          'currentBalancePlanRef':'assets/balance/equipment-recalculated-2026-11-05.json',
           'sources':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in SOURCES},
           'counts':dict(Counter(i['rarity'] for i in items)), 'flagCounts':dict(flag_counts),
           'sameTriggerCompatibleUniquePairs':pairs, 'items':items}
 (ROOT/'assets/balance/equipment-review-160-2026-11-05.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
-md = '''# 160종 아이템별 성능 리뷰 표
+md = '''# 160종 아이템별 성능 리뷰 표 (재산정 전 보관본)
 
 2026-11-05 · TLT-028/029/052/084 · PLAN/DES → ENG/QA
+
+[현재 재산정 수치](equipment-recalculated-160-2026-11-05.md) · 아래는 재산정 전 리뷰 보관본이다.
 
 [종합 리뷰](equipment-balance-review-2026-11-05.md) · [검색 가능한 아이콘 표](../../assets/concepts/2026-11-04-equipment-icons/review-160.html)
 
@@ -159,7 +163,7 @@ for i in items:
              esc(effect)+'<br><b>'+esc(i['verdict'])+'</b><br>'+esc(', '.join(i['flags']))+'<br>'+esc(action)]
     rows.append('<tr>'+''.join('<td>'+c+'</td>' for c in cells)+'</tr>')
 (ROOT/'docs/production/equipment-review-160-2026-11-05.md').write_text(md)
-page = '''<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>160종 장비 성능 리뷰</title><style>body{font:14px/1.6 system-ui;background:#172534;color:#edf3fa;margin:24px}a{color:#b7daff}input{font:inherit;padding:12px;width:min(90%,600px);margin:12px 0}table{border-collapse:collapse;width:100%;min-width:1000px}td,th{padding:12px;border:1px solid #4d6275;text-align:left;vertical-align:top}th{background:#2a4055}td:nth-child(2){min-width:230px;overflow-wrap:anywhere}td:nth-child(6){min-width:400px}img{width:64px;height:64px;object-fit:contain;float:left;margin-right:8px}.table{overflow:auto}b{color:#ffdc91}</style><h1>160종 장비 성능 리뷰</h1><p>2026-11-05 · 제안 데이터 정적 리뷰. Unique 착용Lv60 확정 / 표시 능력치는 Lv10 참조치이므로 재산정 필요. 다른 등급 Lv10은 시험값.</p><p>P: Power 보너스 %p · A: 고정 피해 차감 · HP: 추가 체력 · MP: 최대 마나. +9의 MP는 불변. 허용 난이도는 드롭 구현/확률 확정이 아닙니다.</p><p><a href="catalog-160.html">기존 목록</a> · <a href="../../../docs/production/equipment-balance-review-2026-11-05.md">종합 리뷰·우선순위·수용 조건</a></p><label>등급·클래스·이름·문제 코드 검색 <input id="q" type="search" placeholder="Unique / mage / PROC-CONFLICT / MP-RUNTIME"></label> <span id="n" aria-live="polite"></span><div class="table"><table><thead><tr><th>#</th><th>아이콘 / 이름</th><th>등급 / 클래스 / 부위</th><th>착용Lv / 허용 난이도</th><th>기본 → +9</th><th>효과 / 판정 / 제안</th></tr></thead><tbody>'''+''.join(rows)+'''</tbody></table></div><script>const rows=[...document.querySelectorAll('tbody tr')],q=document.querySelector('#q');function apply(){let n=0;for(const r of rows){r.hidden=!r.textContent.toLowerCase().includes(q.value.trim().toLowerCase());if(!r.hidden)n++}document.querySelector('#n').textContent=n+' / 160'}q.addEventListener('input',apply);apply()</script></html>'''
+page = '''<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>160종 장비 성능 리뷰</title><style>body{font:14px/1.6 system-ui;background:#172534;color:#edf3fa;margin:24px}a{color:#b7daff}input{font:inherit;padding:12px;width:min(90%,600px);margin:12px 0}table{border-collapse:collapse;width:100%;min-width:1000px}td,th{padding:12px;border:1px solid #4d6275;text-align:left;vertical-align:top}th{background:#2a4055}td:nth-child(2){min-width:230px;overflow-wrap:anywhere}td:nth-child(6){min-width:400px}img{width:64px;height:64px;object-fit:contain;float:left;margin-right:8px}.table{overflow:auto}b{color:#ffdc91}</style><h1>160종 장비 성능 리뷰 · 재산정 전 보관본</h1><p><a href="recalculated-160.html">현재 재산정 수치·효과 보기</a></p><p>2026-11-05 · 제안 데이터 정적 리뷰. Unique 착용Lv60 확정 / 표시 능력치는 Lv10 참조치이므로 재산정 필요. 다른 등급 Lv10은 시험값.</p><p>P: Power 보너스 %p · A: 고정 피해 차감 · HP: 추가 체력 · MP: 최대 마나. +9의 MP는 불변. 허용 난이도는 드롭 구현/확률 확정이 아닙니다.</p><p><a href="catalog-160.html">기존 목록</a> · <a href="../../../docs/production/equipment-balance-review-2026-11-05.md">종합 리뷰·우선순위·수용 조건</a></p><label>등급·클래스·이름·문제 코드 검색 <input id="q" type="search" placeholder="Unique / mage / PROC-CONFLICT / MP-RUNTIME"></label> <span id="n" aria-live="polite"></span><div class="table"><table><thead><tr><th>#</th><th>아이콘 / 이름</th><th>등급 / 클래스 / 부위</th><th>착용Lv / 허용 난이도</th><th>기본 → +9</th><th>효과 / 판정 / 제안</th></tr></thead><tbody>'''+''.join(rows)+'''</tbody></table></div><script>const rows=[...document.querySelectorAll('tbody tr')],q=document.querySelector('#q');function apply(){let n=0;for(const r of rows){r.hidden=!r.textContent.toLowerCase().includes(q.value.trim().toLowerCase());if(!r.hidden)n++}document.querySelector('#n').textContent=n+' / 160'}q.addEventListener('input',apply);apply()</script></html>'''
 (ART/'review-160.html').write_text(page)
 print('PASS: 160 rows; grade order/gates; flag counts:', dict(flag_counts))
 print('Compatible Unique pairs with identical trigger:',len(pairs),'; affected items:',len(conflicts))

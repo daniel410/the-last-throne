@@ -1,5 +1,7 @@
 # 유니크 장비 40종 추가 계획
 
+> 후속 재산정: [현재160종 수치·효과 v2](equipment-recalculation-2026-11-05.md)가 이 문서의 이전 수치안을 대체한다. 아래는 원본 비교/검토 이력이며 런타임 반영을 뜻하지 않는다.
+
 2026-11-05 · TLT-027/028/029/041/043/044/045/052/073/082/084 · PLAN/RESEARCH → ENG/ART/DES/QA
 
 기존40품목 계열에 **Unique40종의 개별 능력치·고정 효과·목표 보스·영어 설명·아이콘 생성 명세**를 추가했다. [수치/효과 JSON](../../assets/balance/unique-equipment-plan-2026-11-05.json)과 [공식 자료 조사](../research/2026-11-05-unique-equipment.md)를 사용한다. 레어/에픽/레전더리120종과 합쳐 능력치 작성 제안은160개다. Unique40종도 생성해 실제 PNG는160개다. [아이콘 보드](../../assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/index.html)와 [무기 교정 전후](../../assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/weapons-review.png)를 연결한다. 서버 ItemCatalog 등록·효과 엔진·드롭·실제 장착은 후속이며 미구현 효과를 설명만 붙여 지급하지 않는다.
