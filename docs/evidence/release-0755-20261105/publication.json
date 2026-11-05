@@ -1,0 +1,46 @@
+{
+  "version": "0.75.5",
+  "sourceCommit": "86fc3cae5297fa97e3ba6874b629e61e74b1d88c",
+  "file": "builds/0.75.5/TheLastThrone-0.75.5.rbxlx",
+  "sha256": "34602d42d4bb56e5431353de3542238eb422f30d680b90a4373ea145f9d15a1c",
+  "universeId": 10773575153,
+  "method": "Studio Publish As, same immutable file to existing Lobby and Battle",
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "result": "success",
+      "utc": "2026-11-05T23:37:17.742Z",
+      "local": "2026-11-05 18:37:17 America/Toronto",
+      "uiEvidence": "The Last Throne is ready to test; existing limited audience retained",
+      "publishedVersion": null
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "result": "success",
+      "utc": "2026-11-05T23:38:43.380Z",
+      "local": "2026-11-05 18:38:43 America/Toronto",
+      "uiEvidence": "Successfully published! The Last Throne Battles, Private",
+      "publishedVersion": null
+    }
+  ],
+  "assetPermissions": "Grant Permissions and Publish executed for destination RPG Experience",
+  "scriptVersionHistory429Count": 558,
+  "postPublishBattleEditAudioCheck": {
+    "fetch": "Success",
+    "loaded": true,
+    "duration": 1.756375,
+    "sourceId": "103385691872375",
+    "localEditPlaceVersion": 0
+  },
+  "audioModeration": "Last observed Reviewing; post-publication asset:read unavailable in this Studio session",
+  "releaseTag": "v0.75.5",
+  "unverified": [
+    "Published client gameplay",
+    "Actual potion consumption -> sound",
+    "Monster return and repeat combat",
+    "Mobile / multiplayer / real-device acceptance",
+    "Numeric published Place versions"
+  ]
+}

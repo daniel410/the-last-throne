@@ -1,0 +1,5 @@
+2026-11-05T23:37:17.742Z,165.742615,6dd27000,6,Debug [FLog::PublishSessionStateController] Go to PublishSuccessful
+2026-11-05T23:37:17.742Z,165.742752,6dd27000,6,Info [FLog::StudioPublishStatusLabel] Publish succeeded for placeId 0; marking as published (refreshing menu label to "Publish latest version")
+2026-11-05T23:37:17.818Z,165.818008,5c0e300,6 [FLog::Output] PublishToDifferentGame srcPlaceId=0, dstPlaceId=70829337938054, srcUniverse=0, dstUniverse=10773575153
+2026-11-05T23:38:43.380Z,251.380447,6df33000,6,Debug [FLog::PublishSessionStateController] Go to PublishSuccessful
+2026-11-05T23:38:43.380Z,251.380600,6e96f000,6,Info [FLog::StudioPublishStatusLabel] Publish succeeded for placeId 0; marking as published (refreshing menu label to "Publish latest version")

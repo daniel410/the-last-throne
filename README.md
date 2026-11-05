@@ -1,5 +1,7 @@
 # The Last Throne / 최후의 왕좌
 
+> **2026-11-05 · 0.75.5 게시:** 최신 확정 소스의 단일 빌드를 기존 로비·배틀에 게시했다. 드워프 모션·몬스터 복귀HP 유지·편집 포션 음원을 포함한다. [빌드/게시 증거와 한계](docs/evidence/release-0755-20261105/README.md). 기존 제한 접근 유지, 실제 클라이언트/실기기 수용은 후속.
+
 > **2026-11-05 / TLT-005/032/033/055/057/084 · 0.75.4:** 드워프 R15 기본 베기의 준비 후 도끼 소켓을 고정하고 팔 관절로 궤적을 재저작했다. R6 준비·연격110도 yaw 초기화·2배공속 연결을 교정했다. [영상 조사](docs/research/2026-11-05-dwarf-natural-axe-swing.md)·[검증/한계](docs/evidence/dwarf-natural-swing-20261105/README.md). 로컬 후보·미게시, GPU/실플레이·실기기·사용자 미술 수용 후속이며 부모 티켓 In Progress.
 
 > **2026-11-05 스탯 투자·피해 표시 · TLT-027/028/050/052/084:** 포인트 화면에 장비를 반영한 현재→확정후(+증가량)와 기본 공격 각타격 피해를 추가하고 계산용 Physical/Magic Power를 구분한다. [조사](docs/research/2026-11-05-damage-display-and-investment-preview.md) · [검증·한계](docs/evidence/stat-investment-preview-20261105/README.md). 로컬 소스·격리 엔진 검증, 새 게임빌드/게시·실기기/사용자 수용 후속. 힘방어/자동회피는 미도입.

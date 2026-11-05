@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "86fc3cae5297fa97e3ba6874b629e61e74b1d88c",
+  "exactArtifactSources": [
+    "src/server/Combat/CombatService.luau",
+    "src/server/Combat/PotionUseSound.luau",
+    "src/client/K0DwarfDiagonalClip.luau",
+    "src/client/K0MeleeMotion.luau"
+  ],
+  "inventoryChecks": 271,
+  "combatRuleChecks": 125,
+  "artifactRoleChecks": 10,
+  "artifactArrivalChecks": 108,
+  "compile": "PASS"
+}
