@@ -6,7 +6,8 @@ local M={text={story='STORY COMPLETE',side='SIDE QUEST COMPLETE',epic='EPIC COMP
  next='NEXT · %s',region='%s · Story %d / 7',objective='First objective: %s',
  route='Follow the gold waypoint to the next objective. Open QUEST [J] to review the steps.',
  travel='Your journey continues in %s. Follow the gold waypoint to the marked objective.',
- mission='Return to Lobby, choose %s on the adventure map, then start that story. Completing this story does not start the next mission automatically.',
+ mission='Your next story is saved. Rejoin this adventure to continue with %s.',
+ sideMission='Return to Lobby and choose %s on the adventure map to continue the main story.',
  endTitle='THE CROWNHEART IS HOME',endBody='You saved all five regions with your friends! Return to Lobby to restore the Dawnspire throne and celebrate. You can still explore optional quests and replay adventures.',
  support='SELENE SUPPORT ENDED · Invite her at a safe companion camp to use 1 saved story credit. If none remain, buy more from Selene in the lobby. No automatic renewal.',
  follow='TRACK NEXT STORY',review='REVIEW QUESTS',close='CLOSE'}}
@@ -26,7 +27,7 @@ function M.project(value,previous)
   objective=nextTarget and string.format(M.text.objective,nextTarget.goal.title)or '',
   guidance=not nextChapter and M.text.endBody or nextChapter.epic~=c.epic and string.format(M.text.travel,Content.epics[nextChapter.epic or 1].region)or M.text.route}
  if value.expedition and value.expedition.completed and nextChapter and s.expeditionMission~=nextChapter.id then
-  data.guidance=string.format(M.text.mission,nextChapter.quest.title or nextChapter.title)
+  data.guidance=string.format(c.side and M.text.sideMission or M.text.mission,nextChapter.quest.title or nextChapter.title)
   data.action=M.text.review;data.nextId=nil
  end
  local pass=previous and previous.heroId==value.heroId and previous.supporter and previous.supporter.pass

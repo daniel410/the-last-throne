@@ -18,7 +18,7 @@ for i,c in ipairs(C.mainChapters)do
  check(s.main==i and s.clears[c.id],'projection never changes saved progress')
  value.expedition={completed=true,runId='run1'}
  local run=M.project(value,before)
- if i<C.mainCount then check(run.nextId==nil and run.guidance:find('Return to Lobby',1,true),'completed mission explains map entry rather than tracking a locked mission')end
+ if i<C.mainCount then check(run.nextId==nil and run.guidance:find('Rejoin this adventure',1,true),'unavailable next story explains recovery without treating each main story as a lobby exit')end
  value.expedition.runId='run2';check(M.project(value).key~=run.key,'new repeated mission gets its own presentation key')
  check(not M.project(value,{heroId='other',supporter=before.supporter}).support,'another hero cannot trigger a false supporter expiry')
  value.training=true;check(M.project(value)==nil,'training cannot show story completion')

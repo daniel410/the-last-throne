@@ -167,6 +167,7 @@ function Journal.start(hud)
   local pass=value.supporter and value.supporter.pass
   if pass and pass.active then supportedStories[value.heroId]=pass.story end
   current=value;gates.update(value)
+  if Log.followNext(value,previous) then selectedChapter=nil;selectedGoal=nil;book.setTab('Main')end
   local event=value.completion
   if event then
    if event.kind=='Accepted' then selectedChapter=event.id;selectedGoal=nil

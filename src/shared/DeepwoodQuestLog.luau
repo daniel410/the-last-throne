@@ -1,6 +1,15 @@
 local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local P=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
 local Log={}
+-- Saved progression, rather than a completion-card button, drives main tracking.
+-- Snapshots can arrive before the one-shot completion event after a save.
+function Log.followNext(value,previous)
+ local s=value and value.journal
+ if not s or value.training then return false end
+ if previous and previous.heroId==value.heroId and previous.journal and s.main>previous.journal.main then return true end
+ local event=value.completion;local c=event and Content.byId[event.id]
+ return c~=nil and not c.side and event.kind~='Accepted'and s.clears[c.id]==true
+end
 function Log.main(s) return s.main<Content.mainCount and Content.mainChapters[s.main+1] or nil end
 function Log.target(s,c,optionalId)
  if not c then return nil end

@@ -50,6 +50,7 @@ function Service.destination(player,heroId)
  local c=a and Content.byId[s and s.expeditionMission or a.missionId]or Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
  if not a and s and s.main==6 and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
  if not a and s and s.main==Content.mainCount then return options.world.spawns[Content.epics[#Content.epics].hub] end
+ if not options.world.spawns[c.zone]and options.prepareStory then options.prepareStory(c.id)end
  return options.world.spawns[c.zone]
 end
 local function enqueue(player,heroId,c,g,choice,stepId)
@@ -82,10 +83,24 @@ local function enqueue(player,heroId,c,g,choice,stepId)
      for _,answer in ipairs(step.choices or {}) do if answer.id==e.choice then text=answer.text end end
     end end end
     local complete=after and after.clears[e.c.id] and before and not before.clears[e.c.id]
+    local transitionNotice
+    local nextChapter=after and Content.mainChapters[after.main+1]
+    if complete and not e.c.side and nextChapter and (nextChapter.epic or 1)~=(e.c.epic or 1)
+     and after.expeditionMission==nextChapter.id and options.prepareStory then
+     publish(player,Text.StoryPreparingRegion)
+     local prepared=pcall(options.prepareStory,nextChapter.id)
+     local destination=prepared and options.world.spawns[nextChapter.zone]
+     local ctx=context(player)
+     if destination and ctx and ctx.heroId==e.heroId and (options.inventory.expedition(player,e.heroId)or {}).runId==e.runId then
+      options.combat.relocateForStoryGate(player,destination.CFrame+Vector3.new(0,4,0))
+     elseif not destination then transitionNotice=Text.StoryRegionLoadFailed end
+    end
     local run=options.inventory.expedition(player,e.heroId)
-    local reward=run and not run.firstClear and Difficulty.completion(e.c,run.difficultyId,run.balanceVersion or 1)or {xp=e.c.reward.xp,gold=e.c.reward.coins}
+    local firstClear=before and before.expeditionFirstClear
+    if firstClear==nil then firstClear=not run or run.firstClear end
+    local reward=run and not firstClear and Difficulty.completion(e.c,run.difficultyId,run.balanceVersion or 1)or {xp=e.c.reward.xp,gold=e.c.reward.coins}
     local xp=growthBefore and growthBefore.level>=80 and 0 or reward.xp
-    publish(player,text~='' and text or nil,nil,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=xp,coins=reward.gold,outcome=e.c.quest.outcome} or nil)
+    publish(player,text~='' and text or nil,transitionNotice,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=xp,coins=reward.gold,outcome=e.c.quest.outcome} or nil)
     end
    end
   end

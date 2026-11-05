@@ -17,6 +17,8 @@ return {
  StoryEnemiesLeft = "Defeat the remaining enemies: %d left.",
  StoryPillarsLeft = "Break the temporary seal pillars: %d left.",
  StorySaving = "Saving objective progress. Please wait.",
+ StoryPreparingRegion = "Preparing the next region. Your progress and rewards are saved.",
+ StoryRegionLoadFailed = "Your next story is saved, but the region could not load. Rejoin this adventure to continue.",
  NavigationOn = "Navigation Trail: ON",
  NavigationOff = "Navigation Trail: OFF",
  ForestBoundaryReturn = "The forest edge is blocked. Follow the marked trail.",

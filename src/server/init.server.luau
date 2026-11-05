@@ -55,7 +55,7 @@ local function previewWorld(missionId)
   local chest,prompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions[hub]+offset})
   chest.Parent.Name=hub..'AccountStorage';prompt.ObjectText=Content.zones[hub].name..' Storage';inventory.addStorage(chest,prompt)
   if not storyStarted then
-   story.start({world=deepwood,enemies=world.enemies,inventory=inventory,heroSession=heroSession,combat=combat});storyStarted=true
+   story.start({world=deepwood,enemies=world.enemies,inventory=inventory,heroSession=heroSession,combat=combat,prepareStory=previewWorld});storyStarted=true
   else story.refreshWorld()end
  end)
  building=false
