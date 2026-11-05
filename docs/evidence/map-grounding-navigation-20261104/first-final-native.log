@@ -1,0 +1,13 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+EPIC_WORLD_ART_NATIVE {"groundSamples":5285,"checks":18418,"pass":false,"legacyWalkSurfaceSamples":750,"maxRaisedGround":45.21863662451506,"sculptedSamples":2029,"sites":{"GW-03":{"landmark":"Root Refuge","theme":"Gloamwood","parts":807},"EC-S1":{"landmark":"Workers Quarter","theme":"EmberCaldera","parts":197}},"generationSeconds":13.044894291553647,"kind":"EPIC_WORLD_ART_NATIVE","protectedGroundSamples":2943,"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18: paving supported across width and length DW-03\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:82\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"]}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:140: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18: paving supported across width and length DW-03
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:82
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:140
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

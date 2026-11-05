@@ -1,0 +1,42 @@
+{
+  "version": "0.71.5",
+  "sourceCommit": "d70fae90671345f98e59ef04bd31b7f621ca9c2c",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-mr01-freeze-d70fae90-38lqss2c",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Lobby",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-mr01-freeze-d70fae90-38lqss2c/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.71.5/TheLastThrone-Lobby-0.71.5.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-Lobby-0.71.5.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.71.5/TheLastThrone-Lobby-0.71.5.rbxlx",
+      "sha256": "1b7d926c2da5aa8a7f9ee0357e3b6e9645012acb940af6860268cf16dc678dde",
+      "bytes": 13114782
+    },
+    {
+      "role": "Battle",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-mr01-freeze-d70fae90-38lqss2c/battle.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.71.5/TheLastThrone-Battle-0.71.5.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne-battle'\nBuilt project to TheLastThrone-Battle-0.71.5.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.71.5/TheLastThrone-Battle-0.71.5.rbxlx",
+      "sha256": "1c6e012788db18f0642897058d7d94778f18d3196194c978ada8c8ba901353a9",
+      "bytes": 13114784
+    }
+  ]
+}

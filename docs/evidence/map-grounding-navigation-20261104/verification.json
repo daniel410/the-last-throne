@@ -1,0 +1,27 @@
+{
+  "version": "0.71.5",
+  "sourceCommit": "d70fae90671345f98e59ef04bd31b7f621ca9c2c",
+  "nativeChecks": 227441,
+  "nativePass": true,
+  "scopedRuntime": true,
+  "navigation": true,
+  "builds": [
+    {
+      "path": "builds/0.71.5/TheLastThrone-Lobby-0.71.5.rbxlx",
+      "sha256": "1b7d926c2da5aa8a7f9ee0357e3b6e9645012acb940af6860268cf16dc678dde",
+      "matchesPinnedBuild": true
+    },
+    {
+      "path": "builds/0.71.5/TheLastThrone-Battle-0.71.5.rbxlx",
+      "sha256": "1c6e012788db18f0642897058d7d94778f18d3196194c978ada8c8ba901353a9",
+      "matchesPinnedBuild": true
+    }
+  ],
+  "fixtureHashes": {
+    "tests/epic-world-art-native.luau": "9f83dd5473fa242bf2a62968fe988476253db71f9f3055e613cc0d4b6430d30e",
+    "tests/navigation-always-on-native.luau": "904b18a37d35f7fefe57f2feb71d68c62f6f4d1f627f49fc3ee8531ed4293346",
+    "/tmp/tlt-grounding-final-preview.luau": "3875c094126c78d253e9ed843e53851ba72528ea55ac01df5cce812345065e65"
+  },
+  "published": false,
+  "releaseTag": null
+}

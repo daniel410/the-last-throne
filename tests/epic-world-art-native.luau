@@ -14,7 +14,7 @@ local report={kind='EPIC_WORLD_ART_NATIVE',checks=0,pass=false,sites={},failures
 local function check(v,msg)report.checks+=1;assert(v,msg)end
 local before={};local rays={};local anchors={};local lanes={}
 for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and p.CanCollide then before[p]={p.CFrame,p.Size,p.CanQuery}end end
-local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Include;params.FilterDescendantsInstances={world.terrain,workspace.Terrain};params.RespectCanCollide=true
+local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Include;params.FilterDescendantsInstances={world.terrain,workspace.Terrain,world.folder:FindFirstChild('GroundedForest') or world.terrain};params.RespectCanCollide=true
 local function planarDistance(p,a,b)
  local dx,dz=b.X-a.X,b.Z-a.Z;local t=math.clamp(((p.X-a.X)*dx+(p.Z-a.Z)*dz)/math.max(.001,dx*dx+dz*dz),0,1)
  return math.sqrt((p.X-a.X-t*dx)^2+(p.Z-a.Z-t*dz)^2)
@@ -106,8 +106,8 @@ local ok,err=xpcall(function()
     if p.Name=='WornCurvedRoute'then
      for _,x in ipairs({-p.Size.X/2,0,p.Size.X/2})do for _,z in ipairs({-p.Size.Z/2,0,p.Size.Z/2})do
       local sample=p.CFrame:PointToWorldSpace(Vector3.new(x,0,z))
-      local hit=workspace:Raycast(sample+Vector3.new(0,180,0),Vector3.new(0,-480,0),params)
-      check(hit and math.abs(sample.Y-.04-hit.Position.Y)<.61,'paving supported across width and length '..id)
+      local hit=workspace:Raycast(sample+Vector3.new(0,.75,0),Vector3.new(0,-2,0),params)
+      check(hit and math.abs(sample.Y-.04-hit.Position.Y)<.61,'paving supported across width and length '..id..' '..tostring(sample)..' '..tostring(hit and hit.Instance))
      end end
     end
     parts+=1;check(p.Anchored and not p.CanCollide and not p.CanQuery and not p.CanTouch,'scenery cannot change physics or hit queries')

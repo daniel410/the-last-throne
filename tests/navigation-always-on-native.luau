@@ -19,14 +19,18 @@ local function visible()
  for _,p in ipairs(workspace.DeepwoodNavigation:GetChildren()) do if p.Transparency<1 then count+=1 end end
  return count
 end
+local function awaitVisible(expected)
+ local started=os.clock();local deadline=started+4
+ repeat task.wait() until (os.clock()-started>.1 and (visible()>0)==expected) or os.clock()>deadline
+end
 for _,distance in ipairs({60,10,6,1,0}) do
- nav.setTarget(Vector3.new(distance,3,0));task.wait(.15)
+ nav.setTarget(Vector3.new(distance,3,0));awaitVisible(true)
  assert(visible()>0,'guide hidden at distance '..distance)
 end
 -- Native chevrons stay on the direct bearing after lateral player movement.
 root.Position=Vector3.new(5,3,20)
 local destination=Vector3.new(60,3,-10)
-nav.setTarget(destination);task.wait(.15)
+nav.setTarget(destination);awaitVisible(true)
 local delta=Vector3.new(destination.X-root.Position.X,0,destination.Z-root.Position.Z).Unit
 local rendered=workspace.DeepwoodNavigation:GetChildren();local pairsChecked=0
 for i=1,#rendered,2 do
