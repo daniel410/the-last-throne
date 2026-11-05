@@ -1,0 +1,38 @@
+{
+  "sourceCommit": "98add9b0bc20a73702c724a20199a89ecbe6ef10",
+  "checks": 8348,
+  "allPass": true,
+  "suites": [
+    {
+      "checks": 156,
+      "failures": [],
+      "pass": true,
+      "kind": "AXE_CUTTING_EDGE_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "K0_DWARF_MOTION_NATIVE",
+      "pass": true,
+      "checks": 1642
+    },
+    {
+      "checks": 3204,
+      "failures": [],
+      "pass": true,
+      "kind": "K0_MELEE_CURVES_NATIVE"
+    },
+    {
+      "checks": 2664,
+      "maxDegreesError": 3.7763576983707026e-05,
+      "failures": [],
+      "pass": true,
+      "kind": "K0_MELEE_BLENDER_NATIVE"
+    },
+    {
+      "failures": [],
+      "kind": "DWARF_NATURAL_GRIP_NATIVE",
+      "pass": true,
+      "checks": 682
+    }
+  ]
+}

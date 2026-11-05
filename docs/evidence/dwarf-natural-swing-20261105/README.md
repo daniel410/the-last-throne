@@ -39,3 +39,5 @@ run-in-roblox --place /tmp/tlt-dwarf-natural-qa/tlt-k0-qa-empty.rbxlx --script /
 `native-poses.json`은 실제 관절 FK 위치/크기를 기록한 데이터이며 GPU 화면이 아니다. 열린 로컬 Studio에서 검토 모듈을 생성했지만 MCP의 Network capability 때문에 기존 렌더러 require가 거부되어 직접 화면 비교는 미완료다. 권한을 바꾸거나 Play로 우회하지 않았고 임시 모듈/폴더는 제거했다. 따라서 정상 플레이의 자연스러움·이동 중 관통/연격·게시 클라이언트·실기기·4인+AI·사용자 미술 수용은 미검증이다. QA/DES가 다음 단계에서 확인하며 부모 티켓은 In Progress다.
 
 빌드는 VERSION과 소스 커밋을 고정한 뒤 `build.json`, 고정 소스 재검증은 `pinned-native.log`에 남긴다. 게시·릴리스 태그는 만들지 않는다.
+
+고정 소스 `98add9b0bc20a73702c724a20199a89ecbe6ef10`의0.75.4 단일 빌드 성공. `pinned-inputs.json`의 모든 입력 해시가 커밋과 일치하며, 최종 `pinned-native.log`/`results.json`에서8,348검사 재통과했다. 열린 TheLastThrone-0.75.3 로컬 Studio의 두 모듈을 baseline과 대조한 뒤 공식 multi_edit로 갱신하고 전체 소스를 다시 읽어 고정 소스와 일치함을 확인했다(`studio-source-readback.json`). Studio 파일 저장·Play/게시 화면 수용과는 구분하며, 전체0.75.4는 `builds/0.75.4/TheLastThrone-0.75.4.rbxlx`에 있다.

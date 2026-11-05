@@ -1,0 +1,17 @@
+{
+  "studioId": "b504d824-e1f8-4a1d-ac0e-51c86238d3ad",
+  "mode": "Edit",
+  "sourceCommit": "98add9b0bc20a73702c724a20199a89ecbe6ef10",
+  "saved": false,
+  "published": false,
+  "modules": [
+    {
+      "name": "K0DwarfDiagonalClip",
+      "matches": true
+    },
+    {
+      "name": "K0MeleeMotion",
+      "matches": true
+    }
+  ]
+}
