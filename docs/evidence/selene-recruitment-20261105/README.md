@@ -17,7 +17,7 @@
 - `/private/tmp/td233-luau/luau-compile`로 변경한 Luau 4개와 새 네이티브 검사 파일 컴파일 PASS.
 - `git diff --check`: PASS.
 
-Studio MCP로 직접 검사하려 했으나 열린 Battle Edit의 Network capability 제한으로 require/시험 모듈 배치가 거부됐다. 이 실패를 실제 화면 검증으로 보고하지 않는다. 별도 Rojo 로컬 fixture에서 `run-in-roblox --place /tmp/tlt-selene-recruitment-qa/fixture.rbxlx --script /tmp/tlt-selene-recruitment-qa/run.luau`로 실제 NPCPresentation을 실행해 7검사 PASS했다. 영구 해금의 초대 버튼, 동행 모델 우선 표시, 지원 종료 후 명시적 재초대, 미해금/거리 차단을 확인했다. 이는 가상 플레이어/단순 모델을 사용하는 엔진 검사이며 정상 플레이 화면 수용과 구분한다. 기존 203785492 asset type 경고는 이번 변경과 별개로 남는다. 수정 전 HEAD의 NPCPresentation으로 동일 검사를 실행하면 `permanent unlock exposes invite before replay report`에서 실패하여 결함 재현도 확인했다([수정 전](before-native.log), [수정 후](native.log)). 
+Studio MCP로 직접 검사하려 했으나 열린 Battle Edit의 Network capability 제한으로 require/시험 모듈 배치가 거부됐다. 이 실패를 실제 화면 검증으로 보고하지 않는다. 별도 Rojo 로컬 fixture에서 `run-in-roblox --place /tmp/tlt-selene-recruitment-qa/fixture.rbxlx --script /tmp/tlt-selene-recruitment-qa/run.luau`로 실제 NPCPresentation을 실행해 7검사 PASS했다. 영구 해금의 초대 버튼, 동행 모델 우선 표시, 지원 종료 후 명시적 재초대, 미해금/거리 차단을 확인했다. 이는 가상 플레이어/단순 모델을 사용하는 엔진 검사이며 정상 플레이 화면 수용과 구분한다. 기존 203785492 asset type 경고는 이번 변경과 별개로 남는다. 수정 전 HEAD의 NPCPresentation으로 동일 검사를 실행하면 `permanent unlock exposes invite before replay report`에서 실패하여 결함 재현도 확인했다([수정 전](before-native.log), [수정 후](native.log)).
 
 고정 소스 `bd68b4358ddbbd5df160c8096a7a970444fd048d`를 origin/main에 푸시하고 원격 SHA 일치를 확인한 뒤 `python3 tools/build-game.py --source HEAD --record docs/evidence/selene-recruitment-20261105/build.json`으로 단일 Lobby/Battle 빌드에 성공했다. 산출물은 `builds/0.73.3/TheLastThrone-0.73.3.rbxlx`, SHA-256 `6119d576d6a980a15b075ae6742b0aaee426cf91872e15c993137345bd51509a`이며 실제 바이트 해시를 재확인했다. 기존 LFS 입력 검증 성공·신규 LFS 자산 없음. [입력/명령/해시](build.json).
 
