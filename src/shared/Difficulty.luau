@@ -96,12 +96,18 @@ function D.verifyRun(hero,run)
  if not run or not D.compatible(run.rulesVersion) or not a or a.runId~=run.id or a.missionId~=run.missionId or a.difficultyId~=run.difficultyId or (a.balanceVersion or 1)~=run.rulesVersion then return false,'AdventureChanged'end
  return D.allowed(hero,run.missionId,run.difficultyId)
 end
+-- Easy solo targets at authored Lv9; preserve level and party scaling.
+local easyHealthAtLevel9={Orc=450,Ogre=600}
 function D.stats(kind,level,partySize,boss,mode,version)
  local m=assert(D.mode(mode or 'Easy',version),'Unsupported difficulty rules')
  local effective=D.enemyLevel(level,mode or 'Easy',version)
  local family=version==1 and {hp=1,damage=1}or D.families[kind]or {hp=1,damage=1}
  local party=(boss and {1,1.7,2.3,2.8}or {1,1.5,2,2.5})[math.max(1,math.min(4,partySize or 1))]
- local hp=(boss and 1000+effective*100 or 100+effective*25)*party*(boss and m.bossHP or m.hp)*family.hp
+ local healthFactor=family.hp
+ if version~=1 and not boss and (mode or 'Easy')=='Easy' and easyHealthAtLevel9[kind]then
+  healthFactor=easyHealthAtLevel9[kind]/(100+9*25)
+ end
+ local hp=(boss and 1000+effective*100 or 100+effective*25)*party*(boss and m.bossHP or m.hp)*healthFactor
  local damage=(boss and 28+effective*2 or 10+effective)*(boss and m.bossDamage or m.damage)*family.damage
  return math.floor(hp+.5),math.floor(damage+.5),effective
 end

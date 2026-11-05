@@ -14,6 +14,12 @@ for kind in pairs(D.families)do for _,level in ipairs({5,12,30})do
   end
  end
 end end
+for _,row in ipairs({{'Orc',450,924},{'Ogre',600,1134}})do
+ check(D.stats(row[1],9,1,false,'Easy',2)==row[2],'approved Easy Lv9 solo HP for '..row[1])
+ check(D.stats(row[1],9,1,false,'Hard',2)==row[3],'Hard HP unchanged for '..row[1])
+ check(D.stats(row[1],9,4,false,'Easy',2)==row[2]*2.5,'Easy party scaling retained for '..row[1])
+ check(D.stats(row[1],9,1,false,'Easy',1)==325,'legacy Easy rules retained for '..row[1])
+end
 local hp,damage,level=D.stats('Goblin',5,1,false,'Hell')
 check(hp==3465 and damage==135 and level==80,'reference Hell guard')
 local hp2,damage2,level2=D.stats('Goblin',12,1,false,'Hell')
