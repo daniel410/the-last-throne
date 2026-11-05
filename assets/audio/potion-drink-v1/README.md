@@ -23,3 +23,11 @@
 ## 사용자 볼륨 피드백 반영
 
 사용자가 우선 편집본만 확인하기로 선택한 뒤 볼륨이 작다고 피드백했다. `potion-drink-louder.wav`를4배(+12.0412dB)로 증폭해 별도 미리 듣기로 제공한다. 길이1.756375초·간격/페이드는 유지하며 peak15884/32767(-6.29dBFS)로 클리핑이 없다. 최초 편집본도 비교용으로 보존한다. 게임 Sound.Volume/음원ID와 업로드 상태는 변경하지 않는다.
+
+## 2026-11-05 업로드·Studio 연결 완료
+
+사용자가 `assets/` 업로드 디렉터리를 허용한 뒤 볼륨 증가 편집본을 Roblox Audio **103385691872375**(User9156786071·revision1)로 업로드했다. operation40be0c90-bdc1-4e2a-bc55-b403eebffc65의done=true 및 자산 Active를 확인했다. 검토 상태는현재Reviewing이며 심사 통과로 보고하지 않는다.
+
+저장소 `PotionUseSound`의 단일SoundId를 교체했고, Roblox에 저장된 로비 Place70829337938054 / Universe10773575153의 Studio 편집 세션에 모듈 생성과CombatService 사용 성공 호출을 적용했다. 기존 로비 소스 전체를 덮어쓰지 않고 포션 연결만 수정했다. 실제 Studio Source에서 모듈/ID/require/호출을 재확인했다. 해당 Place의 ContentProvider fetch=Success, IsLoaded=true, TimeLength=1.756375초와 PlayLocalSound 미리듣기를 확인했다.
+
+`luau-compile` 두 모듈PASS·기존 인벤토리271개PASS·실제회복본문 격리8개PASS·diff검사PASS. Studio 실행 중 실제 포션 소비→음원 재생 통합/클라이언트·모바일/다인·Battle Place 접근 권한/심사 완료는 미검증이다. 현재 클라우드 Studio 편집과 로컬 소스 적용이며 게임 Place 게시/새 빌드/VERSION/릴리스 태그는 생성하지 않았다. 앞선 업로드 대기 기록은 당시 상태이며 이절과manifest가최신이다. 다음QA는심사완료 후 실제포션·두Place/기기에서 검증한다.

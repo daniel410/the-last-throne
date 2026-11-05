@@ -43,9 +43,21 @@
     }
   ],
   "robloxUpload": {
-    "status": "preview-only-per-user",
-    "newAssetId": null
+    "status": "uploaded",
+    "newAssetId": "103385691872375",
+    "assetType": "Audio",
+    "creatorUserId": "9156786071",
+    "revisionId": "1",
+    "operationId": "40be0c90-bdc1-4e2a-bc55-b403eebffc65",
+    "uploadedFile": "potion-drink-louder.wav",
+    "moderationState": "Reviewing",
+    "checkedAt": "2026-11-05 America/Toronto",
+    "studioPlaceId": "70829337938054",
+    "universeId": "10773575153",
+    "studioFetch": "Success",
+    "studioIsLoaded": true,
+    "studioDuration": 1.756375
   },
-  "runtime": "Existing source asset remains active; no runtime replay/loop added",
+  "runtime": "PotionUseSound uses 103385691872375 with one Play call, Looped false; repo source and open Lobby Studio draft updated; game Places not published",
   "preferredPreview": "potion-drink-louder.wav"
 }

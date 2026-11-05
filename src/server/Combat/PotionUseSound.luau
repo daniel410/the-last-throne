@@ -11,8 +11,8 @@ function PotionUseSound.play(character)
 	if previous then previous:Destroy() end
 	local sound = Instance.new("Sound")
 	sound.Name = "PotionDrinkSound"
-	-- Pro Sound Effects: Drinking Cu Gulping 2 (0.9 seconds), Creator Store.
-	sound.SoundId = "rbxassetid://9114171855"
+	-- Single 1.76-second edit: two gulps, +12 dB; see assets/audio/potion-drink-v1.
+	sound.SoundId = "rbxassetid://103385691872375"
 	sound.Volume = 0.4
 	sound.RollOffMode = Enum.RollOffMode.Linear
 	sound.RollOffMinDistance, sound.RollOffMaxDistance = 16, 60
