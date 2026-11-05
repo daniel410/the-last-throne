@@ -1,4 +1,4 @@
--- TD LobbyHomeUI.navigationMetrics size rules, verified 2026-11-01.
+-- TD LobbyHomeUI.navigationMetrics size rules, rechecked 2026-11-05.
 -- Only dimensions are shared: RPG artwork, order and destinations stay local.
 local S={}
 function S.measure(w,h)

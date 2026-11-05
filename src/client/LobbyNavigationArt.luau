@@ -13,14 +13,14 @@ function Art.layout(button)
  local picture=viewport.NavigationIcon
  local plate=button.NavigationPlaqueArt
  local crop,plaqueCrop=picture.ImageRectSize,plate.ImageRectSize
- -- Preserve each crop's aspect ratio and join their visible edges. Fit the
- -- picture into the height left above the full-width plaque, keeping small
- -- screens' labels readable instead of shrinking the whole assembly.
+ -- Match TD LobbyHomeArt's fitted .98 x .72 picture and .98 x .30 plaque.
+ -- Keep the RPG's joined edges, but never enlarge either visible surface to
+ -- fill the unused space left by the other one's aspect ratio.
  local bodyRatio,plateRatio=crop.Y/crop.X,plaqueCrop.Y/plaqueCrop.X
- local width=size.X*.98
+ local width=math.min(size.X*.98,size.Y*.30/plateRatio)
  local plateHeight=width*plateRatio
  local overlap=width*.02
- local bodyWidth=math.min(width,(size.Y-plateHeight+overlap)/bodyRatio)
+ local bodyWidth=math.min(size.X*.98,size.Y*.72/bodyRatio)
  local bodyHeight=bodyWidth*bodyRatio
  local left=(size.X-width)*.5
  local top=(size.Y-(bodyHeight+plateHeight-overlap))*.5
@@ -32,10 +32,11 @@ function Art.layout(button)
  plate.Position=UDim2.fromOffset(left,top+bodyHeight-overlap)
  plate.Size=UDim2.fromOffset(width,plateHeight)
  local label=button.Caption
+ label.Font=size.Y<64 and Enum.Font.GothamMedium or Enum.Font.GothamBlack
  label.Position=plate.Position
  label.Size=plate.Size
  local textSize=size.Y<64 and 14 or size.X<100 and 16 or math.clamp(math.floor(size.X*.17),18,34)
- local bounds=TextService:GetTextSize(label.Text,textSize,Enum.Font.GothamBlack,Vector2.new(10000,1000))
+ local bounds=TextService:GetTextSize(label.Text,textSize,label.Font,Vector2.new(10000,1000))
  local availableWidth=width*(button.Name=='Blacksmith' and .82 or .92)
  label.TextSize=math.max(1,math.floor(math.min(textSize,textSize*availableWidth/math.max(1,bounds.X),plateHeight*.85)))
  label.TextScaled=false;label.TextWrapped=false

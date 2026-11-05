@@ -29,6 +29,10 @@ local ok,err=xpcall(function()
    local crop=picture.ImageRectSize
    check(math.abs(picture.AbsoluteSize.Y-picture.AbsoluteSize.X*crop.Y/crop.X)<=1,name..' picture has no bottom fit padding')
    local plateCrop=plate.ImageRectSize
+   local tdPictureWidth=math.min(button.AbsoluteSize.X*.98,button.AbsoluteSize.Y*.72*crop.X/crop.Y)
+   local tdPlaqueWidth=math.min(button.AbsoluteSize.X*.98,button.AbsoluteSize.Y*.30*plateCrop.X/plateCrop.Y)
+   check(math.abs(picture.AbsoluteSize.X-tdPictureWidth)<1,name..' visible picture matches TD fitted size')
+   check(math.abs(plate.AbsoluteSize.X-tdPlaqueWidth)<1,name..' visible nameplate matches TD fitted size')
    check(math.abs(plate.AbsoluteSize.Y-plate.AbsoluteSize.X*plateCrop.Y/plateCrop.X)<=1,name..' plaque has no top fit padding')
    check(picture.AbsolutePosition.Y>=button.AbsolutePosition.Y-1 and plate.AbsolutePosition.Y+plate.AbsoluteSize.Y<=button.AbsolutePosition.Y+button.AbsoluteSize.Y+1,name..' complete art stays inside cell')
    check(button.Caption.TextBounds.X<=plate.AbsoluteSize.X*.92+1,name..' text stays inside plaque corners')
