@@ -197,3 +197,7 @@ MP는 Mage 및Lv20 첫 전직을 완료한 magic_archer Elf에게만 적용한�
 ## 2026-11-05 Unique 확장
 
 [Unique40 개별 표](unique-equipment-plan-2026-11-05.md)를 별도 추가했다. 이 문서의120개 수치/세트는 보존하며 Unique는 기본1.60과 추가 고정 효과1개를 갖는 비세트 시험안이다. 최신 사용자 정정으로 기본치/효과 교환안은 폐기했다. MP/효과 비강화와 기존 안정ID를 유지한다.
+
+## 2026-11-05 Unique40 아이콘 및 Lv60 착용 확정
+
+[Unique40 이미지/교정 기록](../../assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/README.md)을 추가해 총160PNG다. 사용자 지시에 따라 Unique 최소 착용Lv60을 적용한다(Lv50 대체). 기존Lv10 기본/+9 수치는 참조용으로 분리하고 Lv60 재산정 완료 전 실제 지급/장착/효과를 켜지 않는다. 비세트·Hell 전용·같은 세대 Legendary보다 높은 기본치와 추가 고정 효과 방향을 유지한다. 검은정면 직선축, 도끼/지팡이는긴 자루로 교정했다.

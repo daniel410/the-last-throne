@@ -1,5 +1,8 @@
 # The Last Throne 실행 백로그
 
+> **2026-11-05 Unique40 이미지·Lv60 확정 · TLT-028/029/044/045/052/082/084:** [유니크40 아이콘](assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/index.html)과 [무기 교정 전후](assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/weapons-review.png)를 저장한다. 검의직선축·도끼/지팡이긴자루를교정했고 총160PNG다. Unique 최소착용Lv60이Lv50을대체하며Hell전용이다. 이전Lv10수치는참조로분리·Lv60재산정/효과·런타임·실기기수용후속.
+
+
 > **2026-11-05 대장간 Rare/Epic Diamonds 전용 · TLT-028/029/041/043/044/046/052/057/084 · 0.75.0:** [Rare12·Epic12 고정 판매](docs/production/forge-diamond-sales-2026-11-05.md)를구현했다. Rare Gold SKU중단·서버통화검사·기존51정의/상자권리보존. Common/Uncommon Gold판매/장비Gold되팔기는유지한다. [검증](docs/evidence/forge-diamond-sales-20261105/README.md). 로컬미게시·실제UI/계정/기기·가격수용후속, 계획중Epic40전체구현과구분한다.
 
 

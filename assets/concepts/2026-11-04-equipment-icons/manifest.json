@@ -45,7 +45,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wayfarer_Hood.png",
         "Rare": "generated-rare-v1/Rare_Wayfarer_Hood.png",
-        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Hood.png"
+        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Hood.png",
+        "Unique": "generated-unique-v1/Unique_Quarrykeeper_Hood.png"
       }
     },
     {
@@ -75,7 +76,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wayfarer_Coat.png",
         "Rare": "generated-rare-v1/Rare_Wayfarer_Coat.png",
-        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Coat.png"
+        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Coat.png",
+        "Unique": "generated-unique-v1/Unique_Hollowbark_Mantle.png"
       }
     },
     {
@@ -105,7 +107,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wayfarer_Gloves.png",
         "Rare": "generated-rare-v1/Rare_Wayfarer_Gloves.png",
-        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Gloves.png"
+        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Gloves.png",
+        "Unique": "generated-unique-v1/Unique_Ashforged_Grips.png"
       }
     },
     {
@@ -135,7 +138,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wayfarer_Boots.png",
         "Rare": "generated-rare-v1/Rare_Wayfarer_Boots.png",
-        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Boots.png"
+        "Legendary": "generated-legendary-v1/Legendary_Wayfarer_Boots.png",
+        "Unique": "generated-unique-v1/Unique_Widowstep_Boots.png"
       }
     },
     {
@@ -165,7 +169,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Vigor_Ring.png",
         "Rare": "generated-rare-v1/Rare_Vigor_Ring.png",
-        "Legendary": "generated-legendary-v1/Legendary_Vigor_Ring.png"
+        "Legendary": "generated-legendary-v1/Legendary_Vigor_Ring.png",
+        "Unique": "generated-unique-v1/Unique_Ogreheart_Ring.png"
       }
     },
     {
@@ -195,7 +200,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Ward_Pendant.png",
         "Rare": "generated-rare-v1/Rare_Ward_Pendant.png",
-        "Legendary": "generated-legendary-v1/Legendary_Ward_Pendant.png"
+        "Legendary": "generated-legendary-v1/Legendary_Ward_Pendant.png",
+        "Unique": "generated-unique-v1/Unique_Glacier_Ward.png"
       }
     },
     {
@@ -225,7 +231,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Valor_Ring.png",
         "Rare": "generated-rare-v1/Rare_Valor_Ring.png",
-        "Legendary": "generated-legendary-v1/Legendary_Valor_Ring.png"
+        "Legendary": "generated-legendary-v1/Legendary_Valor_Ring.png",
+        "Unique": "generated-unique-v1/Unique_Emberfang_Ring.png"
       }
     },
     {
@@ -255,7 +262,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Refuge_Charm.png",
         "Rare": "generated-rare-v1/Rare_Refuge_Charm.png",
-        "Legendary": "generated-legendary-v1/Legendary_Refuge_Charm.png"
+        "Legendary": "generated-legendary-v1/Legendary_Refuge_Charm.png",
+        "Unique": "generated-unique-v1/Unique_Lastlight_Charm.png"
       }
     },
     {
@@ -285,7 +293,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Sword.png",
         "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Sword.png",
-        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Sword.png"
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Sword.png",
+        "Unique": "generated-unique-v1/Unique_Knight_Rootwardens_Oath.png"
       }
     },
     {
@@ -315,7 +324,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Headguard.png",
         "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Headguard.png",
-        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png"
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png",
+        "Unique": "generated-unique-v1/Unique_Knight_Glacierwatch_Helm.png"
       }
     },
     {
@@ -345,7 +355,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Vestments.png",
         "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Vestments.png",
-        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Vestments.png"
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Vestments.png",
+        "Unique": "generated-unique-v1/Unique_Knight_Hollowbark_Bulwark.png"
       }
     },
     {
@@ -375,7 +386,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Grips.png",
         "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Grips.png",
-        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Grips.png"
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Grips.png",
+        "Unique": "generated-unique-v1/Unique_Knight_Ogregrip_Gauntlets.png"
       }
     },
     {
@@ -405,7 +417,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Treads.png",
         "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Treads.png",
-        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Treads.png"
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Treads.png",
+        "Unique": "generated-unique-v1/Unique_Knight_Citadel_Step.png"
       }
     },
     {
@@ -435,7 +448,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Signet.png",
         "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Signet.png",
-        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Signet.png"
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Signet.png",
+        "Unique": "generated-unique-v1/Unique_Knight_Lionheart_Signet.png"
       }
     },
     {
@@ -465,7 +479,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Pendant.png",
         "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Pendant.png",
-        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Pendant.png"
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Pendant.png",
+        "Unique": "generated-unique-v1/Unique_Knight_Oathkeeper_Pendant.png"
       }
     },
     {
@@ -495,7 +510,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Bow.png",
         "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Bow.png",
-        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Bow.png"
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Bow.png",
+        "Unique": "generated-unique-v1/Unique_Elf_Thornsong.png"
       }
     },
     {
@@ -525,7 +541,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Headguard.png",
         "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Headguard.png",
-        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Headguard.png"
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Headguard.png",
+        "Unique": "generated-unique-v1/Unique_Elf_Widowwatch_Hood.png"
       }
     },
     {
@@ -555,7 +572,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Vestments.png",
         "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Vestments.png",
-        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Vestments.png"
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Vestments.png",
+        "Unique": "generated-unique-v1/Unique_Elf_Hollowbark_Jerkin.png"
       }
     },
     {
@@ -585,7 +603,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Grips.png",
         "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Grips.png",
-        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Grips.png"
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Grips.png",
+        "Unique": "generated-unique-v1/Unique_Elf_Emberflight_Grips.png"
       }
     },
     {
@@ -615,7 +634,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Treads.png",
         "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Treads.png",
-        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Treads.png"
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Treads.png",
+        "Unique": "generated-unique-v1/Unique_Elf_Silkstep_Treads.png"
       }
     },
     {
@@ -645,7 +665,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Signet.png",
         "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Signet.png",
-        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Signet.png"
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Signet.png",
+        "Unique": "generated-unique-v1/Unique_Elf_Thornmark_Signet.png"
       }
     },
     {
@@ -675,7 +696,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Elf_Briarwatch_Pendant.png",
         "Rare": "generated-rare-v1/Rare_Elf_Briarwatch_Pendant.png",
-        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Pendant.png"
+        "Legendary": "generated-legendary-v1/Legendary_Elf_Briarwatch_Pendant.png",
+        "Unique": "generated-unique-v1/Unique_Elf_Glacierleaf_Pendant.png"
       }
     },
     {
@@ -705,7 +727,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Axe.png",
         "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Axe.png",
-        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Axe.png"
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Axe.png",
+        "Unique": "generated-unique-v1/Unique_Dwarf_Stonebreakers_Resolve.png"
       }
     },
     {
@@ -735,7 +758,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Headguard.png",
         "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Headguard.png",
-        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png"
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png",
+        "Unique": "generated-unique-v1/Unique_Dwarf_Quarryking_Helm.png"
       }
     },
     {
@@ -765,7 +789,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Vestments.png",
         "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Vestments.png",
-        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Vestments.png"
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Vestments.png",
+        "Unique": "generated-unique-v1/Unique_Dwarf_Caldera_Heartplate.png"
       }
     },
     {
@@ -795,7 +820,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Grips.png",
         "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Grips.png",
-        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Grips.png"
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Grips.png",
+        "Unique": "generated-unique-v1/Unique_Dwarf_Cragbreaker_Grips.png"
       }
     },
     {
@@ -825,7 +851,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Treads.png",
         "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Treads.png",
-        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Treads.png"
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Treads.png",
+        "Unique": "generated-unique-v1/Unique_Dwarf_Glacieranchor_Boots.png"
       }
     },
     {
@@ -855,7 +882,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Signet.png",
         "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Signet.png",
-        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Signet.png"
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Signet.png",
+        "Unique": "generated-unique-v1/Unique_Dwarf_Forgeheart_Signet.png"
       }
     },
     {
@@ -885,7 +913,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Dwarf_Stonehearth_Pendant.png",
         "Rare": "generated-rare-v1/Rare_Dwarf_Stonehearth_Pendant.png",
-        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Pendant.png"
+        "Legendary": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Pendant.png",
+        "Unique": "generated-unique-v1/Unique_Dwarf_Hollowstone_Pendant.png"
       }
     },
     {
@@ -915,7 +944,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Staff.png",
         "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Staff.png",
-        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Staff.png"
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Staff.png",
+        "Unique": "generated-unique-v1/Unique_Mage_Groveheart_Staff.png"
       }
     },
     {
@@ -945,7 +975,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Headguard.png",
         "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Headguard.png",
-        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Headguard.png"
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Headguard.png",
+        "Unique": "generated-unique-v1/Unique_Mage_Stillgrove_Hood.png"
       }
     },
     {
@@ -975,7 +1006,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Vestments.png",
         "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Vestments.png",
-        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Vestments.png"
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Vestments.png",
+        "Unique": "generated-unique-v1/Unique_Mage_Glacierveil_Robe.png"
       }
     },
     {
@@ -1005,7 +1037,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Grips.png",
         "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Grips.png",
-        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Grips.png"
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Grips.png",
+        "Unique": "generated-unique-v1/Unique_Mage_Emberweave_Grips.png"
       }
     },
     {
@@ -1035,7 +1068,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Treads.png",
         "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Treads.png",
-        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Treads.png"
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Treads.png",
+        "Unique": "generated-unique-v1/Unique_Mage_Silkweave_Treads.png"
       }
     },
     {
@@ -1065,7 +1099,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Signet.png",
         "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Signet.png",
-        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Signet.png"
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Signet.png",
+        "Unique": "generated-unique-v1/Unique_Mage_Grovepulse_Signet.png"
       }
     },
     {
@@ -1095,7 +1130,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mage_Aetherweave_Pendant.png",
         "Rare": "generated-rare-v1/Rare_Mage_Aetherweave_Pendant.png",
-        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Pendant.png"
+        "Legendary": "generated-legendary-v1/Legendary_Mage_Aetherweave_Pendant.png",
+        "Unique": "generated-unique-v1/Unique_Mage_Lastlight_Focus.png"
       }
     },
     {
@@ -1125,7 +1161,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Knight_Oathguard_Shield.png",
         "Rare": "generated-rare-v1/Rare_Knight_Oathguard_Shield.png",
-        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Shield.png"
+        "Legendary": "generated-legendary-v1/Legendary_Knight_Oathguard_Shield.png",
+        "Unique": "generated-unique-v1/Unique_Knight_Throneward_Shield.png"
       }
     },
     {
@@ -1159,7 +1196,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Mana_Ring.png",
         "Rare": "generated-rare-v1/Rare_Mana_Ring.png",
-        "Legendary": "generated-legendary-v1/Legendary_Mana_Ring.png"
+        "Legendary": "generated-legendary-v1/Legendary_Mana_Ring.png",
+        "Unique": "generated-unique-v1/Unique_Stillwater_Ring.png"
       }
     },
     {
@@ -1193,7 +1231,8 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Arcane_Reservoir_Pendant.png",
         "Rare": "generated-rare-v1/Rare_Arcane_Reservoir_Pendant.png",
-        "Legendary": "generated-legendary-v1/Legendary_Arcane_Reservoir_Pendant.png"
+        "Legendary": "generated-legendary-v1/Legendary_Arcane_Reservoir_Pendant.png",
+        "Unique": "generated-unique-v1/Unique_Grovewell_Pendant.png"
       }
     },
     {
@@ -1228,19 +1267,22 @@
       "iconVariants": {
         "Epic": "generated-v1/Epic_Wellspring_Charm.png",
         "Rare": "generated-rare-v1/Rare_Wellspring_Charm.png",
-        "Legendary": "generated-legendary-v1/Legendary_Wellspring_Charm.png"
+        "Legendary": "generated-legendary-v1/Legendary_Wellspring_Charm.png",
+        "Unique": "generated-unique-v1/Unique_Moonwell_Charm.png"
       }
     }
   ],
   "counts": {
     "families": 40,
-    "lv10Variants": 240,
+    "lv10Variants": 200,
     "generatedEpicIcons": 40,
     "generatedRareIcons": 40,
     "generatedLegendaryIcons": 40,
-    "totalGeneratedIcons": 120,
+    "totalGeneratedIcons": 160,
     "authoredUniqueProposals": 40,
-    "totalAuthoredStatProposals": 160
+    "totalAuthoredStatProposals": 160,
+    "generatedUniqueIcons": 40,
+    "lv60Variants": 40
   },
   "runtimeImport": false,
   "variants": [
@@ -1386,12 +1428,12 @@
       "proposalId": "common_head_l10_unique",
       "familyId": "common_head",
       "name": "Unique_Quarrykeeper_Hood",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "head",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_head.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -1406,7 +1448,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Quarrykeeper_Hood.png"
     },
     {
       "proposalId": "common_body_l10_common",
@@ -1550,12 +1594,12 @@
       "proposalId": "common_body_l10_unique",
       "familyId": "common_body",
       "name": "Unique_Hollowbark_Mantle",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "body",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_body.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -1570,7 +1614,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Hollowbark_Mantle.png"
     },
     {
       "proposalId": "common_hands_l10_common",
@@ -1714,12 +1760,12 @@
       "proposalId": "common_hands_l10_unique",
       "familyId": "common_hands",
       "name": "Unique_Ashforged_Grips",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "hands",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_hands.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -1734,7 +1780,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Ashforged_Grips.png"
     },
     {
       "proposalId": "common_feet_l10_common",
@@ -1878,12 +1926,12 @@
       "proposalId": "common_feet_l10_unique",
       "familyId": "common_feet",
       "name": "Unique_Widowstep_Boots",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "feet",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_feet.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -1898,7 +1946,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Widowstep_Boots.png"
     },
     {
       "proposalId": "common_vigor_ring_l10_common",
@@ -2042,12 +2092,12 @@
       "proposalId": "common_vigor_ring_l10_unique",
       "familyId": "common_vigor_ring",
       "name": "Unique_Ogreheart_Ring",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_vigor_ring.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -2062,7 +2112,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Ogreheart_Ring.png"
     },
     {
       "proposalId": "common_ward_pendant_l10_common",
@@ -2206,12 +2258,12 @@
       "proposalId": "common_ward_pendant_l10_unique",
       "familyId": "common_ward_pendant",
       "name": "Unique_Glacier_Ward",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_ward_pendant.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -2226,7 +2278,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Glacier_Ward.png"
     },
     {
       "proposalId": "common_valor_ring_l10_common",
@@ -2370,12 +2424,12 @@
       "proposalId": "common_valor_ring_l10_unique",
       "familyId": "common_valor_ring",
       "name": "Unique_Emberfang_Ring",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_valor_ring.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -2390,7 +2444,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Emberfang_Ring.png"
     },
     {
       "proposalId": "common_refuge_charm_l10_common",
@@ -2534,12 +2590,12 @@
       "proposalId": "common_refuge_charm_l10_unique",
       "familyId": "common_refuge_charm",
       "name": "Unique_Lastlight_Charm",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_refuge_charm.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -2554,7 +2610,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Lastlight_Charm.png"
     },
     {
       "proposalId": "knight_weapon_family_l10_common",
@@ -2698,12 +2756,12 @@
       "proposalId": "knight_weapon_family_l10_unique",
       "familyId": "knight_weapon_family",
       "name": "Unique_Knight_Rootwardens_Oath",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "weapon",
       "classId": "knight",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/knight_weapon_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -2718,7 +2776,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Knight_Rootwardens_Oath.png"
     },
     {
       "proposalId": "knight_head_family_l10_common",
@@ -2862,12 +2922,12 @@
       "proposalId": "knight_head_family_l10_unique",
       "familyId": "knight_head_family",
       "name": "Unique_Knight_Glacierwatch_Helm",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "head",
       "classId": "knight",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/knight_head_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -2882,7 +2942,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Knight_Glacierwatch_Helm.png"
     },
     {
       "proposalId": "knight_body_family_l10_common",
@@ -3026,12 +3088,12 @@
       "proposalId": "knight_body_family_l10_unique",
       "familyId": "knight_body_family",
       "name": "Unique_Knight_Hollowbark_Bulwark",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "body",
       "classId": "knight",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/knight_body_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -3046,7 +3108,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Knight_Hollowbark_Bulwark.png"
     },
     {
       "proposalId": "knight_hands_family_l10_common",
@@ -3190,12 +3254,12 @@
       "proposalId": "knight_hands_family_l10_unique",
       "familyId": "knight_hands_family",
       "name": "Unique_Knight_Ogregrip_Gauntlets",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "hands",
       "classId": "knight",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/knight_hands_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -3210,7 +3274,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Knight_Ogregrip_Gauntlets.png"
     },
     {
       "proposalId": "knight_feet_family_l10_common",
@@ -3354,12 +3420,12 @@
       "proposalId": "knight_feet_family_l10_unique",
       "familyId": "knight_feet_family",
       "name": "Unique_Knight_Citadel_Step",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "feet",
       "classId": "knight",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/knight_feet_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -3374,7 +3440,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Knight_Citadel_Step.png"
     },
     {
       "proposalId": "knight_ring_family_l10_common",
@@ -3518,12 +3586,12 @@
       "proposalId": "knight_ring_family_l10_unique",
       "familyId": "knight_ring_family",
       "name": "Unique_Knight_Lionheart_Signet",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/knight_ring_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -3538,7 +3606,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Knight_Lionheart_Signet.png"
     },
     {
       "proposalId": "knight_pendant_family_l10_common",
@@ -3682,12 +3752,12 @@
       "proposalId": "knight_pendant_family_l10_unique",
       "familyId": "knight_pendant_family",
       "name": "Unique_Knight_Oathkeeper_Pendant",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/knight_pendant_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -3702,7 +3772,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Knight_Oathkeeper_Pendant.png"
     },
     {
       "proposalId": "elf_weapon_family_l10_common",
@@ -3846,12 +3918,12 @@
       "proposalId": "elf_weapon_family_l10_unique",
       "familyId": "elf_weapon_family",
       "name": "Unique_Elf_Thornsong",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "weapon",
       "classId": "elf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/elf_weapon_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -3866,7 +3938,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Elf_Thornsong.png"
     },
     {
       "proposalId": "elf_head_family_l10_common",
@@ -4010,12 +4084,12 @@
       "proposalId": "elf_head_family_l10_unique",
       "familyId": "elf_head_family",
       "name": "Unique_Elf_Widowwatch_Hood",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "head",
       "classId": "elf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/elf_head_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -4030,7 +4104,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Elf_Widowwatch_Hood.png"
     },
     {
       "proposalId": "elf_body_family_l10_common",
@@ -4174,12 +4250,12 @@
       "proposalId": "elf_body_family_l10_unique",
       "familyId": "elf_body_family",
       "name": "Unique_Elf_Hollowbark_Jerkin",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "body",
       "classId": "elf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/elf_body_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -4194,7 +4270,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Elf_Hollowbark_Jerkin.png"
     },
     {
       "proposalId": "elf_hands_family_l10_common",
@@ -4338,12 +4416,12 @@
       "proposalId": "elf_hands_family_l10_unique",
       "familyId": "elf_hands_family",
       "name": "Unique_Elf_Emberflight_Grips",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "hands",
       "classId": "elf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/elf_hands_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -4358,7 +4436,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Elf_Emberflight_Grips.png"
     },
     {
       "proposalId": "elf_feet_family_l10_common",
@@ -4502,12 +4582,12 @@
       "proposalId": "elf_feet_family_l10_unique",
       "familyId": "elf_feet_family",
       "name": "Unique_Elf_Silkstep_Treads",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "feet",
       "classId": "elf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/elf_feet_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -4522,7 +4602,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Elf_Silkstep_Treads.png"
     },
     {
       "proposalId": "elf_ring_family_l10_common",
@@ -4666,12 +4748,12 @@
       "proposalId": "elf_ring_family_l10_unique",
       "familyId": "elf_ring_family",
       "name": "Unique_Elf_Thornmark_Signet",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/elf_ring_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -4686,7 +4768,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Elf_Thornmark_Signet.png"
     },
     {
       "proposalId": "elf_pendant_family_l10_common",
@@ -4830,12 +4914,12 @@
       "proposalId": "elf_pendant_family_l10_unique",
       "familyId": "elf_pendant_family",
       "name": "Unique_Elf_Glacierleaf_Pendant",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/elf_pendant_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -4850,7 +4934,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Elf_Glacierleaf_Pendant.png"
     },
     {
       "proposalId": "dwarf_weapon_family_l10_common",
@@ -4994,12 +5080,12 @@
       "proposalId": "dwarf_weapon_family_l10_unique",
       "familyId": "dwarf_weapon_family",
       "name": "Unique_Dwarf_Stonebreakers_Resolve",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "weapon",
       "classId": "dwarf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/dwarf_weapon_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -5014,7 +5100,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Dwarf_Stonebreakers_Resolve.png"
     },
     {
       "proposalId": "dwarf_head_family_l10_common",
@@ -5158,12 +5246,12 @@
       "proposalId": "dwarf_head_family_l10_unique",
       "familyId": "dwarf_head_family",
       "name": "Unique_Dwarf_Quarryking_Helm",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "head",
       "classId": "dwarf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/dwarf_head_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -5178,7 +5266,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Dwarf_Quarryking_Helm.png"
     },
     {
       "proposalId": "dwarf_body_family_l10_common",
@@ -5322,12 +5412,12 @@
       "proposalId": "dwarf_body_family_l10_unique",
       "familyId": "dwarf_body_family",
       "name": "Unique_Dwarf_Caldera_Heartplate",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "body",
       "classId": "dwarf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/dwarf_body_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -5342,7 +5432,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Dwarf_Caldera_Heartplate.png"
     },
     {
       "proposalId": "dwarf_hands_family_l10_common",
@@ -5486,12 +5578,12 @@
       "proposalId": "dwarf_hands_family_l10_unique",
       "familyId": "dwarf_hands_family",
       "name": "Unique_Dwarf_Cragbreaker_Grips",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "hands",
       "classId": "dwarf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/dwarf_hands_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -5506,7 +5598,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Dwarf_Cragbreaker_Grips.png"
     },
     {
       "proposalId": "dwarf_feet_family_l10_common",
@@ -5650,12 +5744,12 @@
       "proposalId": "dwarf_feet_family_l10_unique",
       "familyId": "dwarf_feet_family",
       "name": "Unique_Dwarf_Glacieranchor_Boots",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "feet",
       "classId": "dwarf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/dwarf_feet_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -5670,7 +5764,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Dwarf_Glacieranchor_Boots.png"
     },
     {
       "proposalId": "dwarf_ring_family_l10_common",
@@ -5814,12 +5910,12 @@
       "proposalId": "dwarf_ring_family_l10_unique",
       "familyId": "dwarf_ring_family",
       "name": "Unique_Dwarf_Forgeheart_Signet",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/dwarf_ring_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -5834,7 +5930,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Dwarf_Forgeheart_Signet.png"
     },
     {
       "proposalId": "dwarf_pendant_family_l10_common",
@@ -5978,12 +6076,12 @@
       "proposalId": "dwarf_pendant_family_l10_unique",
       "familyId": "dwarf_pendant_family",
       "name": "Unique_Dwarf_Hollowstone_Pendant",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/dwarf_pendant_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -5998,7 +6096,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Dwarf_Hollowstone_Pendant.png"
     },
     {
       "proposalId": "mage_weapon_family_l10_common",
@@ -6142,12 +6242,12 @@
       "proposalId": "mage_weapon_family_l10_unique",
       "familyId": "mage_weapon_family",
       "name": "Unique_Mage_Groveheart_Staff",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "weapon",
       "classId": "mage",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/mage_weapon_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -6162,7 +6262,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Mage_Groveheart_Staff.png"
     },
     {
       "proposalId": "mage_head_family_l10_common",
@@ -6306,12 +6408,12 @@
       "proposalId": "mage_head_family_l10_unique",
       "familyId": "mage_head_family",
       "name": "Unique_Mage_Stillgrove_Hood",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "head",
       "classId": "mage",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/mage_head_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -6326,7 +6428,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Mage_Stillgrove_Hood.png"
     },
     {
       "proposalId": "mage_body_family_l10_common",
@@ -6470,12 +6574,12 @@
       "proposalId": "mage_body_family_l10_unique",
       "familyId": "mage_body_family",
       "name": "Unique_Mage_Glacierveil_Robe",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "body",
       "classId": "mage",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/mage_body_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -6490,7 +6594,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Mage_Glacierveil_Robe.png"
     },
     {
       "proposalId": "mage_hands_family_l10_common",
@@ -6634,12 +6740,12 @@
       "proposalId": "mage_hands_family_l10_unique",
       "familyId": "mage_hands_family",
       "name": "Unique_Mage_Emberweave_Grips",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "hands",
       "classId": "mage",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/mage_hands_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -6654,7 +6760,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Mage_Emberweave_Grips.png"
     },
     {
       "proposalId": "mage_feet_family_l10_common",
@@ -6798,12 +6906,12 @@
       "proposalId": "mage_feet_family_l10_unique",
       "familyId": "mage_feet_family",
       "name": "Unique_Mage_Silkweave_Treads",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "feet",
       "classId": "mage",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/mage_feet_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -6818,7 +6926,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Mage_Silkweave_Treads.png"
     },
     {
       "proposalId": "mage_ring_family_l10_common",
@@ -6962,12 +7072,12 @@
       "proposalId": "mage_ring_family_l10_unique",
       "familyId": "mage_ring_family",
       "name": "Unique_Mage_Grovepulse_Signet",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/mage_ring_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -6982,7 +7092,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Mage_Grovepulse_Signet.png"
     },
     {
       "proposalId": "mage_pendant_family_l10_common",
@@ -7126,12 +7238,12 @@
       "proposalId": "mage_pendant_family_l10_unique",
       "familyId": "mage_pendant_family",
       "name": "Unique_Mage_Lastlight_Focus",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/mage_pendant_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -7146,7 +7258,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Mage_Lastlight_Focus.png"
     },
     {
       "proposalId": "knight_shield_family_l10_common",
@@ -7290,12 +7404,12 @@
       "proposalId": "knight_shield_family_l10_unique",
       "familyId": "knight_shield_family",
       "name": "Unique_Knight_Throneward_Shield",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "offhand",
       "classId": "knight",
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/knight_shield_family.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -7310,7 +7424,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Knight_Throneward_Shield.png"
     },
     {
       "proposalId": "common_mana_ring_l10_common",
@@ -7454,12 +7570,12 @@
       "proposalId": "common_mana_ring_l10_unique",
       "familyId": "common_mana_ring",
       "name": "Unique_Stillwater_Ring",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_mana_ring.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -7474,7 +7590,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Stillwater_Ring.png"
     },
     {
       "proposalId": "common_arcane_pendant_l10_common",
@@ -7618,12 +7736,12 @@
       "proposalId": "common_arcane_pendant_l10_unique",
       "familyId": "common_arcane_pendant",
       "name": "Unique_Grovewell_Pendant",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_arcane_pendant.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -7638,7 +7756,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Grovewell_Pendant.png"
     },
     {
       "proposalId": "common_wellspring_charm_l10_common",
@@ -7782,12 +7902,12 @@
       "proposalId": "common_wellspring_charm_l10_unique",
       "familyId": "common_wellspring_charm",
       "name": "Unique_Moonwell_Charm",
-      "requiredLevel": 10,
+      "requiredLevel": 60,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.6,
-      "statsStatus": "authored-trial-external-plan-not-runtime",
+      "statsStatus": "level10-comparison-reference-needs-level60-rebudget",
       "iconDraft": "icons/common_wellspring_charm.svg",
       "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
@@ -7802,7 +7922,9 @@
           "Hell"
         ],
         "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
-      }
+      },
+      "levelStatus": "user-approved-minimum-60",
+      "generatedIcon": "generated-unique-v1/Unique_Moonwell_Charm.png"
     }
   ],
   "namingConvention": "Rarity_ClassOptional_ItemName (English, underscores); stable runtime IDs are unchanged",
@@ -7814,8 +7936,9 @@
   "uniquePlan": {
     "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
     "count": 40,
-    "status": "40-unique-proposals-not-runtime-not-generated",
-    "revision": 2
+    "status": "40-unique-icons-generated-level60-approved-runtime-and-rebudget-pending",
+    "revision": 3,
+    "minimumEquipLevel": 60
   },
   "dropPolicyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
 }

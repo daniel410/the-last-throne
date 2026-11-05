@@ -8,6 +8,7 @@ p = json.loads((ROOT / PATH).read_text())
 a = p['allowedDifficultiesByRarity']
 assert a['Legendary'] == ['Insane', 'Hell']
 assert a['Unique'] == ['Hell']
+assert p['minimumEquipLevelByRarity']['Unique'] == 60
 assert p['unknownModeOrRarity'] == 'reject' and not p['runtimeEnabled']
 for mode, table in p['trialBasisPointsByDifficulty'].items():
     assert set(table) == set(a) and sum(table.values()) == 10000

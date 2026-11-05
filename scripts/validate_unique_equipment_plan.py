@@ -28,7 +28,11 @@ skills = (ROOT / 'src/shared/K0Config.luau').read_text() + (ROOT / 'src/shared/A
 for i in items:
     f = families[i['familyId']]; v = variants[i['proposalId']]; e = i['effect']
     assert i['rarity'] == v['rarity'] == 'Unique'
-    assert i['requiredLevel'] == i['equipmentTier'] == 10
+    assert i['requiredLevel'] == i['equipmentTier'] == 60
+    assert i['statReferenceTier'] == 10
+    assert i['levelStatus'] == 'user-approved-minimum-60'
+    assert i['statsStatus'] == 'level10-comparison-reference-needs-level60-rebudget'
+    assert i['candidateDefinitionId'].endswith('_t60_unique')
     assert i['status'] == 'authored-proposal-not-runtime' and not i['runtimeEnabled']
     assert i['setId'] is None and i['setPieceId'] is None and not v['setCandidate']
     assert i['classId'] == f['classId'] and i['slot'] == f['slot']
@@ -53,7 +57,10 @@ for i in items:
     if e['kind'] == 'bonus': assert 0 < e['damageBonusFraction'] <= rules['maxBonusFraction'] and e['charges'] == 1
     if e['kind'] == 'mana': assert 0 < e['flatMana'] <= rules['maxManaRestoredPerCooldown'] and e['requiresExistingManaPool'] and e['requiresMissingMana']
     assert i['drop']['bossKind'] in bosses and i['drop']['probability'] is None and not i['drop']['enabled']
-    assert i['art']['status'] == 'prompt-ready-not-generated' and i['art']['targetFile'] == i['name'] + '.png'
+    assert i['art']['status'] == 'generated-candidate-pending-art-acceptance' and i['art']['targetFile'] == i['name'] + '.png'
+    assert i['icon'] == i['art']['generatedIcon']
+    assert i['icon'] == next(f for f in m['families'] if f['id'] == i['familyId'])['iconVariants']['Unique']
+    assert (ROOT / 'assets/concepts/2026-11-04-equipment-icons' / i['icon']).is_file()
     assert (ROOT / 'assets/concepts/2026-11-04-equipment-icons' / i['art']['reference']).is_file()
     assert re.fullmatch(r'Unique_[A-Za-z0-9_]+', i['name'])
     assert all(ord(c) < 128 for c in i['descriptionEnUS'])
@@ -61,4 +68,4 @@ for i in items:
 assert len({i['effect']['effectId'] for i in items}) == 40
 assert len(p['firstImplementationFamilyIds']) == 4
 assert rules['requiresActiveCombat'] and rules['noProcChain'] and rules['noEquipRestore']
-print('PASS: 40 Unique stat/effect/drop/art proposals; 4 existing skill IDs, boss kinds, Unique > Legendary at +0/+5/+9, budget/enhancement/MP invariants, no sets, no runtime/drop activation')
+print('PASS: 40 Unique stat/effect/drop/art proposals; 4 existing skill IDs, boss kinds, reference budget Unique > Legendary at +0/+5/+9, Lv60 equip, Lv60 stat rebudget pending, budget/enhancement/MP invariants, no sets, no runtime/drop activation')

@@ -80,5 +80,8 @@
     "allowLowerModeProgressConversion": false,
     "preserveExistingOwnedItemsAndReceipts": true
   },
-  "source": "latest user instruction 2026-11-05; Legendary Insane/Hell only, Unique Hell only"
+  "source": "latest user instruction 2026-11-05; Legendary Insane/Hell only, Unique Hell only",
+  "minimumEquipLevelByRarity": {
+    "Unique": 60
+  }
 }

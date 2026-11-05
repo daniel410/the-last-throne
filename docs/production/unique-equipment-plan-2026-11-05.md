@@ -2,13 +2,13 @@
 
 2026-11-05 · TLT-027/028/029/041/043/044/045/052/073/082/084 · PLAN/RESEARCH → ENG/ART/DES/QA
 
-기존40품목 계열에 **Unique40종의 개별 능력치·고정 효과·목표 보스·영어 설명·아이콘 생성 명세**를 추가했다. [수치/효과 JSON](../../assets/balance/unique-equipment-plan-2026-11-05.json)과 [공식 자료 조사](../research/2026-11-05-unique-equipment.md)를 사용한다. 레어/에픽/레전더리120종과 합쳐 능력치 작성 제안은160개다. 실제 PNG는 기존120개이며 Unique 이미지40개를 생성한 것은 아니다. 서버 ItemCatalog 등록·효과 엔진·드롭·실제 장착은 후속이며 미구현 효과를 설명만 붙여 지급하지 않는다.
+기존40품목 계열에 **Unique40종의 개별 능력치·고정 효과·목표 보스·영어 설명·아이콘 생성 명세**를 추가했다. [수치/효과 JSON](../../assets/balance/unique-equipment-plan-2026-11-05.json)과 [공식 자료 조사](../research/2026-11-05-unique-equipment.md)를 사용한다. 레어/에픽/레전더리120종과 합쳐 능력치 작성 제안은160개다. Unique40종도 생성해 실제 PNG는160개다. [아이콘 보드](../../assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/index.html)와 [무기 교정 전후](../../assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/weapons-review.png)를 연결한다. 서버 ItemCatalog 등록·효과 엔진·드롭·실제 장착은 후속이며 미구현 효과를 설명만 붙여 지급하지 않는다.
 
 ## 1. 기본 능력치와 착용 조건
 
 최신 사용자 정정에 따라 **Unique는 Legendary보다 기본 능력치도 높고 고정 효과1개도 추가로 갖는 최상위 등급**이다. 기본 능력치를 깎아 효과와 교환하던 이전안은 폐기한다. 같은 세대 Common 환산 프로필×1.60을 새 기본치 시험안으로 사용한다. Legendary 비세트1.40 대비 약14.286% 높고, Legendary 세트 조각1.358보다도 높다. 정확한1.60 배율은 플레이 검증 전 제안이며, 기본치 우위와 추가 고유 효과라는 방향은 사용자 지시다. 최종 피해/생존시간의 증가율과는 구분한다.
 
-모든 표는 등급 비교를 위한 **Lv10 시험 세대**다. Unique 최소착용Lv10이나 후반 보스Lv10 보상을 확정하지 않는다. 보스·지역·난이도별 장비 세대/요구Lv가 고정되기 전 드롭은OFF다. Unique는Hell 전용이며 Easy/Hard/Insane은0%로 고정하고 확률표/보장책은 기존 재리뷰의 수용 조건을 먼저 충족한다. 본편/전직에 특정Unique를 요구하지 않는다.
+유니크 **최소 착용 레벨은 Lv60으로 사용자 확정**됐다. 앞선 Lv50 제안은 대체한다. JSON의requiredLevel/equipmentTier는60이고 후보definitionId도t60이다. 기존proposalId는참조 호환을 위해 유지한다. 아래 기본/+9 수치는 이전Lv10 프로필의 비교 참조이며 statReferenceTier=10으로 분리했다. Lv60 실전 수치는 별도 성장 예산으로 재산정해야 하며 현재 드롭/런타임은OFF다. Unique는Hell 전용이고 Easy/Hard/Insane은0%다. 본편/전직에 특정Unique를 요구하지 않는다.
 
 Unique는 모두 **비세트**다. 기존5부위 세트의 조각·97%차감·2/4/5부위 보너스를 받지 않는다. 장신구 uniqueGroup은 원래 품목 계열을 유지해 그 계열의 다른등급과도 중복 장착하지 않는다. 서로 다른Unique의 동시 장착은 허용하되 효과별 공유 제한을 적용한다. 기존 클래스4·8슬롯·검/방패·활·도끼·지팡이 유형을 보존한다. 이름/색만으로 기존품을 자동 승급하지 않는다.
 
@@ -115,7 +115,7 @@ MP 효과는 Mage와 첫 전직을 완료한 magic_archer Elf의 기존 풀에�
 | --- | --- | --- |
 | U01 무기4종 원형 | PLAN/ENG | knight.common.bash / elf.common.aimed / dwarf.common.ground / mage_wind_lance의 실제 해금/명중 연결. 영어 설명·기본치/효과 대가 검토 |
 | U02 공유 효과 엔진 | ENG/QA | 서버 이벤트→중첩/공유 타이머→결과/피드백. 중복 시전ID·저장/재접속·재장착·AI 소유권 없음·4클래스×강화0/5/9 검사 |
-| U03 Unique 아이콘 | ART/DES | 각 art.reference의 Legendary 원본을 보고 보스 모티프1개로 차별화. 40개 개별 투명PNG·등급_클래스_이름·TD프레임48/64px·기하/색 검수. 현재는 프롬프트만 준비 |
+| U03 Unique 아이콘 | ART/DES | 각 art.reference의 Legendary 원본을 보고 보스 모티프1개로 차별화. 40개 개별 투명PNG·등급_클래스_이름·TD프레임48/64px·기하/색 검수. 40종 생성/무기 교정 완료, 최종TD프레임/실기기 수용 후속 |
 | U04 상세/보스/지급 | ENG/DES/QA | Unique 금색 표시에 고정 효과·공유 재발동·요구Lv·MP 비적용 설명. 해당모드의 허용등급 풀·품목 확률·보호·멱등 원장 완성 후 개발 환경에서 활성화 |
 | U05 40종 확장 | PLAN/ENG/QA | 무기4종 수용 후 방어구/장신구36종과 세대 확대. 무료Rare 본편 완결·보스 반복 시간·미획득 분위수·4인+AI1 실기기 검증 |
 
@@ -123,10 +123,12 @@ MP 효과는 Mage와 첫 전직을 완료한 magic_archer Elf의 기존 풀에�
 
 ## 6. 검증 기록과 미검증
 
-`python3 scripts/validate_unique_equipment_plan.py` PASS: 40고유ID·40계열·클래스11/8/7/7/7, 기본 예산1.60 및 같은 계열 Legendary 대비+0/+5/+9 기본치 우위, +9MP 불변/비세트, 기존 기술4ID, 목표 보스, 효과 상한, manifest 연결, 드롭/런타임OFF를 검사한다. 기존120종의 수치/아이콘 검사도 유지한다. 영어 이름·설명 키와 개별 생성 프롬프트도 JSON에 기록했다.
+`python3 scripts/validate_unique_equipment_plan.py` PASS: 40고유ID·40계열·클래스11/8/7/7/7, 참조 프로필 예산1.60 및 같은 참조 계열 Legendary 대비+0/+5/+9 우위, Lv60 착용/수치 재산정 대기, +9MP 불변/비세트, 기존 기술4ID, 목표 보스, 효과 상한, manifest 연결, 드롭/런타임OFF를 검사한다. 기존120종의 수치/아이콘 검사도 유지한다. 영어 이름·설명 키와 개별 생성 프롬프트도 JSON에 기록했다.
 
-이번에는 JSON/문서/manifest만 변경했다. 실제 보스 드롭40종·효과 엔진·상세 툴팁/Unique 아이콘·Studio/게시/실기기·전투 밸런스는 미검증이다. 부모 티켓을 완료로 표시하지 않는다. VERSION/빌드/릴리스 태그·Roblox 게시는 없다. 다음 담당은 PLAN/ENG의 U01 무기4종 프로토타입과 QA의 중첩/재발동 검사다.
+이번에는40개PNG·비교 보드·JSON/문서/manifest/정적 검사를 변경했다. 실제 보스 드롭40종·효과 엔진·상세 툴팁·아이콘 런타임 연결·Studio/게시/실기기·Lv60 전투 밸런스는 미검증이다. 부모 티켓을 완료로 표시하지 않는다. VERSION/빌드/릴리스 태그·Roblox 게시는 없다. 다음 담당은 PLAN/ENG의 U01 무기4종 프로토타입과 QA의 중첩/재발동 검사다.
 
 정정 검증: Unique40종 모두 같은 세대/계열의 Legendary보다 각 양수 기본 스탯이 높고 +0/+5/+9에서도 순서가 유지된다. 고유 효과·효과 재발동·MP 비강화 규칙은 그대로다.
 
 최신 드롭 제한: [정본 JSON](../../assets/balance/boss-equipment-drop-policy-2026-11-05.json)에따라 Unique40종 모두 drop.allowedDifficulties=[Hell]이다. 하위모드에서 보장/선택/보호 진도로 우회하지 않는다.
+
+최종 자산 제작/알파/원본 보존 기록은 [Unique40 README](../../assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/README.md)를 따른다. 실제 구현 시 서버 장착 검사는level>=60을 요구하며드롭 모드Hell과착용레벨은별도 자격으로 검사한다.

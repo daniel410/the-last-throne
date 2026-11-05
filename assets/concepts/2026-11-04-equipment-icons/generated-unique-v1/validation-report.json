@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-05",
+  "finalUniqueIcons": 40,
+  "allGradeIcons": 160,
+  "initialGenerationCalls": 40,
+  "correctionCalls": 8,
+  "requiredLevel": 60,
+  "dropModes": [
+    "Hell"
+  ],
+  "checks": {
+    "pngHashesAndReferences": "PASS",
+    "immutableGenerationSources": "PASS",
+    "editInputHashes": "PASS",
+    "classCounts": "PASS",
+    "uniqueNames": "PASS",
+    "localBoardAndDocumentLinks": "PASS",
+    "alphaChannelPresence": "PASS",
+    "fourGrade160Cards": "PASS",
+    "level60Metadata": "PASS",
+    "referenceBudgetSuperiority": "PASS",
+    "weaponsBeforeAfterVisualReview": "PASS"
+  },
+  "cornerAlphaResiduals": [
+    {
+      "cornerAlpha": [
+        0,
+        0,
+        0.00392156862745098,
+        0
+      ],
+      "file": "Unique_Mage_Grovepulse_Signet.png",
+      "hasAlpha": true
+    },
+    {
+      "cornerAlpha": [
+        0,
+        0,
+        0.00392156862745098,
+        0
+      ],
+      "file": "Unique_Quarrykeeper_Hood.png",
+      "hasAlpha": true
+    },
+    {
+      "cornerAlpha": [
+        0,
+        0,
+        0.00392156862745098,
+        0
+      ],
+      "file": "Unique_Knight_Lionheart_Signet.png",
+      "hasAlpha": true
+    },
+    {
+      "cornerAlpha": [
+        0,
+        0,
+        0.00392156862745098,
+        0
+      ],
+      "file": "Unique_Mage_Glacierveil_Robe.png",
+      "hasAlpha": true
+    }
+  ],
+  "dimensions": [
+    "1145x1374",
+    "1254x1254"
+  ],
+  "notValidated": [
+    "strict full alpha cleanup",
+    "final art acceptance",
+    "48/64px actual TD frame and device rendering",
+    "Roblox asset upload and runtime",
+    "level60 stat rebudget",
+    "Unique server effects and drops"
+  ],
+  "runtimeImported": false,
+  "published": false
+}

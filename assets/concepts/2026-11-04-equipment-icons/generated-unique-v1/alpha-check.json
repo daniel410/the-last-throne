@@ -1,0 +1,402 @@
+[
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0.0039215686274509803,
+      0
+    ],
+    "file" : "Unique_Mage_Grovepulse_Signet.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Knight_Oathkeeper_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Grovewell_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Knight_Citadel_Step.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Mage_Stillgrove_Hood.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Moonwell_Charm.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Elf_Emberflight_Grips.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Knight_Ogregrip_Gauntlets.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Elf_Hollowbark_Jerkin.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0.0039215686274509803,
+      0
+    ],
+    "file" : "Unique_Quarrykeeper_Hood.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Elf_Thornsong.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Elf_Thornmark_Signet.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Knight_Rootwardens_Oath.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Mage_Emberweave_Grips.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0.0039215686274509803,
+      0
+    ],
+    "file" : "Unique_Knight_Lionheart_Signet.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Dwarf_Caldera_Heartplate.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Ashforged_Grips.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Dwarf_Hollowstone_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Elf_Glacierleaf_Pendant.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Knight_Throneward_Shield.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Elf_Widowwatch_Hood.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Lastlight_Charm.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Stillwater_Ring.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Mage_Lastlight_Focus.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Emberfang_Ring.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Knight_Hollowbark_Bulwark.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Dwarf_Quarryking_Helm.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Ogreheart_Ring.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Elf_Silkstep_Treads.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Hollowbark_Mantle.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Dwarf_Forgeheart_Signet.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Dwarf_Glacieranchor_Boots.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Widowstep_Boots.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Dwarf_Cragbreaker_Grips.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0.0039215686274509803,
+      0
+    ],
+    "file" : "Unique_Mage_Glacierveil_Robe.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Knight_Glacierwatch_Helm.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Mage_Silkweave_Treads.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Mage_Groveheart_Staff.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Dwarf_Stonebreakers_Resolve.png",
+    "hasAlpha" : true
+  },
+  {
+    "cornerAlpha" : [
+      0,
+      0,
+      0,
+      0
+    ],
+    "file" : "Unique_Glacier_Ward.png",
+    "hasAlpha" : true
+  }
+]

@@ -108,3 +108,7 @@ MP 보너스는 Mage와 첫 전직을 완료한 magic_archer Elf의 기존 MP �
 ## 2026-11-05 상위 등급 모드 제한
 
 [드롭 정책 JSON](../../assets/balance/boss-equipment-drop-policy-2026-11-05.json)을 E01/E05의 단일 자격 원천으로 사용한다. Legendary는Insane/Hell, Unique는Hell 전용이다. 금지 모드는추첨/보장/보호 진도에서0이며 미완성허용풀을다른등급으로 몰래대체하지않는다. 신규 정책에따라160개 제안과240개 변형의모드 참조를검사한다.
+
+## 2026-11-05 Unique40 아이콘 및 Lv60 착용 확정
+
+[Unique40 이미지/교정 기록](../../assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/README.md)을 추가해 총160PNG다. 사용자 지시에 따라 Unique 최소 착용Lv60을 적용한다(Lv50 대체). 기존Lv10 기본/+9 수치는 참조용으로 분리하고 Lv60 재산정 완료 전 실제 지급/장착/효과를 켜지 않는다. 비세트·Hell 전용·같은 세대 Legendary보다 높은 기본치와 추가 고정 효과 방향을 유지한다. 검은정면 직선축, 도끼/지팡이는긴 자루로 교정했다.
