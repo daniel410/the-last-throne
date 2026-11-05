@@ -2,7 +2,7 @@ local Run=game:GetService('RunService')
 local report={kind='BATTLE_BOOTSTRAP_NATIVE',checks=0,failures={},coverage='Native battle-role startup; no real Player admission or published teleport'}
 local function check(v,m) report.checks+=1;assert(v,m) end
 local ok,e=xpcall(function()
- check(game.ServerStorage.ServerRole.Value=='Battle','battle artifact selects battle role')
+ check(require(game.ReplicatedStorage.Shared.PlaceRole).resolve(game.PlaceId,true,workspace:GetAttribute('TLTStudioRole'))=='Battle','single artifact selects battle role')
  Run:Run();task.wait(3)
  check(workspace:GetAttribute('TLTServerRole')=='Battle','battle bootstrap active')
  check(not workspace:FindFirstChild('DawnspireLobbyPrototype'),'battle does not construct public lobby')

@@ -1,5 +1,6 @@
-local roleValue=game.ServerStorage:FindFirstChild('ServerRole')
-local role=roleValue and roleValue.Value or 'Lobby'
+local role=require(game.ReplicatedStorage.Shared.PlaceRole).resolve(
+ game.PlaceId,game:GetService('RunService'):IsStudio(),workspace:GetAttribute('TLTStudioRole'))
+game:GetService('StarterPlayer').CameraMaxZoomDistance=role=='Battle' and 22 or 18
 workspace:SetAttribute('TLTServerRole',role)
 local Content=require(game.ReplicatedStorage.Shared.CampaignContent)
 local story=require(script.Story.DeepwoodService)

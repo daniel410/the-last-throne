@@ -1,5 +1,8 @@
 -- Execute the real ReplicatedFirst script against delayed/reordered services.
 -- These are lifecycle simulations, not Roblox renderer/teleport acceptance.
+local config=assert(loadfile('src/shared/ExpeditionConfig.luau'))()
+local roleEnv=setmetatable({script={Parent={WaitForChild=function()return config end}},require=function(value)return value end},{__index=_G})
+local Role=assert(loadfile('src/shared/PlaceRole.luau','t',roleEnv))()
 local checks = 0
 local function check(value, message) checks = checks + 1; assert(value, message) end
 local vector = {}
@@ -34,7 +37,7 @@ local function run(role, incoming, failStream)
   check(params.RespectCanCollide and #params.FilterDescendantsInstances==3,'exclude character and staging geometry')
   return frame>=12 and {} or nil
  end
- local runService = {RenderStepped={Wait=function()
+ local runService = {IsStudio=function() return true end,RenderStepped={Wait=function()
   frame=frame+1;assert(frame<40,'loading must finish after readiness')
   -- Delayed initialization must never dismiss the cover.
   if frame<=5 then check(not destroyedAt,'temporary Lobby phase remains covered') end
@@ -61,9 +64,9 @@ local function run(role, incoming, failStream)
  local teleport = {GetArrivingTeleportGui=function() return incoming and gui or nil end}
  local services={Players={LocalPlayer=player},TeleportService=teleport,ReplicatedFirst=first,RunService=runService}
  local env=setmetatable({
-  game={GetService=function(_,name) return services[name] end},workspace=world,
-  script={Parent={WaitForChild=function(_,name) return name=='ServerRole' and {Value=role} or 'ScreenModule' end}},
-  require=function() return {create=function() created=created+1;return gui end} end,
+  game={PlaceId=role=='Battle' and config.battlePlaceId or config.lobbyPlaceId,GetService=function(_,name) return services[name] end},workspace=world,
+  script={Parent={WaitForChild=function(_,name) return name end}},
+  require=function(name) if name=='PlaceRole' then return Role end;return {create=function() created=created+1;return gui end} end,
   Enum={CameraType={Custom='Custom'},RaycastFilterType={Exclude='Exclude'}},
   RaycastParams={new=function()return {}end},Vector3={new=function()return pos(0)end},
   task={spawn=function(fn)deferred[#deferred+1]=fn end},

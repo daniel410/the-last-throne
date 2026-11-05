@@ -1,7 +1,7 @@
 -- Run against each frozen product artifact; no player identity or live persistence claims.
 assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'Local unpublished artifact required')
 local Run=game:GetService('RunService')
-local report={kind='NPC_BOOTSTRAP_NATIVE',role=game.ServerStorage.ServerRole.Value,checks=0,failures={}}
+local report={kind='NPC_BOOTSTRAP_NATIVE',role=require(game.ReplicatedStorage.Shared.PlaceRole).resolve(game.PlaceId,true,workspace:GetAttribute('TLTStudioRole')),checks=0,failures={}}
 local function check(v,m) report.checks+=1;assert(v,m) end
 local ok,e=xpcall(function()
  Run:Run()

@@ -5,7 +5,8 @@ local Teleport = game:GetService('TeleportService')
 local First = game:GetService('ReplicatedFirst')
 local Run = game:GetService('RunService')
 local player = Players.LocalPlayer
-local role = script.Parent:WaitForChild('ServerRole').Value
+local role = require(script.Parent:WaitForChild('PlaceRole')).resolve(
+ game.PlaceId, Run:IsStudio(), workspace:GetAttribute('TLTStudioRole'))
 local ok, arriving = pcall(function() return Teleport:GetArrivingTeleportGui() end)
 if not ok then arriving = nil end
 if role ~= 'Battle' and not arriving then return end

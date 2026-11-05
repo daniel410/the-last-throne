@@ -33,12 +33,6 @@
       "TDForestKit": {
         "$path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx"
       },
-      "ServerRole": {
-        "$className": "StringValue",
-        "$properties": {
-          "Value": "Lobby"
-        }
-      },
       "TDSeleneModels": {
         "$path": "assets/shared/td-selene/runtime.rbxmx"
       },
@@ -141,11 +135,11 @@
       "TravelLoadingScreen": {
         "$path": "src/client/TravelLoadingScreen.luau"
       },
-      "ServerRole": {
-        "$className": "StringValue",
-        "$properties": {
-          "Value": "Lobby"
-        }
+      "PlaceRole": {
+        "$path": "src/shared/PlaceRole.luau"
+      },
+      "ExpeditionConfig": {
+        "$path": "src/shared/ExpeditionConfig.luau"
       }
     }
   }

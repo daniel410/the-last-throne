@@ -1,5 +1,5 @@
 {
-  "name": "the-last-throne-battle",
+  "name": "the-last-throne",
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
@@ -32,12 +32,6 @@
       },
       "TDForestKit": {
         "$path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx"
-      },
-      "ServerRole": {
-        "$className": "StringValue",
-        "$properties": {
-          "Value": "Battle"
-        }
       },
       "TDSeleneModels": {
         "$path": "assets/shared/td-selene/runtime.rbxmx"
@@ -80,7 +74,7 @@
       },
       "$properties": {
         "CameraMinZoomDistance": 6,
-        "CameraMaxZoomDistance": 22
+        "CameraMaxZoomDistance": 18
       }
     },
     "Workspace": {
@@ -141,11 +135,11 @@
       "TravelLoadingScreen": {
         "$path": "src/client/TravelLoadingScreen.luau"
       },
-      "ServerRole": {
-        "$className": "StringValue",
-        "$properties": {
-          "Value": "Battle"
-        }
+      "PlaceRole": {
+        "$path": "src/shared/PlaceRole.luau"
+      },
+      "ExpeditionConfig": {
+        "$path": "src/shared/ExpeditionConfig.luau"
       }
     }
   }

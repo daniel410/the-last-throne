@@ -82,3 +82,7 @@ git lfs fsck
 ## 5. 마감 보고
 
 작업 결과에는 변경·검증·미검증과 함께 커밋ID·원격/브랜치·푸시 결과를 남긴다. 빌드를 했다면 버전/소스 커밋/산출물, 릴리스를 했다면 태그/대상 커밋/태그 푸시를 추가한다. 실패한 푸시는 성공으로 보고하지 않고 로컬 커밋·LFS 원본을 보존한다. 비밀·로컬 설정·OS 메타데이터는 커밋하지 않는다.
+
+## 6. TLT 단일 빌드 (2026-11-04 사용자 지시)
+
+기본 명령은 `python3 tools/build-game.py --source HEAD --record <기록.json>`이다. 버전/입력 소스 커밋을 먼저 고정한다. 산출물은 `builds/<VERSION>/TheLastThrone-<VERSION>.rbxlx` 하나이며 같은 파일을 로비·배틀에 각각 게시한다. 런타임이 Place ID로 역할을 선택한다. `battle.project.json`은 자산 준비 도구 호환 사본이며 기본 프로젝트와 동일하게 유지한다. 예전 로비/배틀별 빌드 기록/파일은 당시 증거로 보존한다. [상세 검증과 Studio 시험](evidence/single-build-20261104/README.md).
