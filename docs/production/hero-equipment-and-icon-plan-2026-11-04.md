@@ -125,3 +125,7 @@ Rare/Epic/Legendary120PNG를 보존하고 [장비 구현 계획 E01~E08](equipme
 ## 2026-11-04 개별 능력치 추가
 
 [120종 능력치 계획](equipment-item-stats-2026-11-04.md)과 [JSON](../../assets/balance/equipment-stats-plan-2026-11-04.json)에 Lv10 시험 세대의 Rare/Epic/Legendary 각40개 기본치/+9·세트·중복 조건을 작성했다. 앞선 Common 환산 마나 초안은 Mana Ring MP20/Armor2, Arcane Reservoir Pendant MP30, Wellspring Charm MP15/HP60 제안으로 구체화한다. 실제 착용Lv/서버 카탈로그·드롭은 후속이며 모든 등급 최소Lv10을 확정하지 않는다. 세트 문턱은 기존2/4/5부위를 유지한다.
+
+## 2026-11-05 유니크40 추가안
+
+[고정 이름·개별 수치·효과·목표 보스·생성 준비](unique-equipment-plan-2026-11-05.md)를 작성했다. 기존40계열의Unique 제안ID는 유지하고 이름/효과를 구체화한다. 새Unique는비세트이며 첫구현은기존4무기 원형이다. 수치작성 제안160·생성PNG120개이고실제효과/드롭/게임 등록은후속이다.

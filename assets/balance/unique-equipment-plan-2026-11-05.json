@@ -1,0 +1,2539 @@
+{
+  "date": "2026-11-05",
+  "version": 1,
+  "status": "40-unique-proposals-not-runtime-not-generated",
+  "baseStatsSource": "assets/balance/equipment-stats-plan-2026-11-04.json",
+  "sourceManifest": "assets/concepts/2026-11-04-equipment-icons/manifest.json",
+  "legendaryBudgetRatio": 1.4,
+  "uniqueBaseBudgetRatio": 1.26,
+  "reservedEffectBudgetRatio": 0.14,
+  "setMembership": false,
+  "previewTier": 10,
+  "globalRules": {
+    "categoryStrongestOnly": true,
+    "cooldownScope": "hero-and-effect-category-persisted-no-equip-reset",
+    "categoryCooldownSeconds": {
+      "shield": 20,
+      "reduction": 20,
+      "bonus": 15,
+      "mana": 15,
+      "heal": 20
+    },
+    "maxActiveShieldFraction": 0.06,
+    "maxActiveReductionFraction": 0.06,
+    "maxBonusFraction": 0.08,
+    "maxManaRestoredPerCooldown": 6,
+    "maxHealFractionPerCooldown": 0.02,
+    "noProcChain": true,
+    "noEquipRestore": true,
+    "noEnhancementScaling": true,
+    "requiresActiveCombat": true,
+    "sourceDamage": "server-confirmed-enemy-direct-hit-only",
+    "bonusHitMustFollowTriggerCast": true,
+    "categoryTieBreak": "largest-effect-value-then-definitionId",
+    "onUnequip": "clear-buffs-and-counters-preserve-category-cooldown",
+    "onDeath": "clear-buffs-and-counters-preserve-category-cooldown",
+    "onRunChange": "clear-buffs-and-counters-preserve-category-cooldown",
+    "onWeakerActiveBuff": "ignore-without-refresh-or-cooldown-consumption"
+  },
+  "firstImplementationFamilyIds": [
+    "knight_weapon_family",
+    "elf_weapon_family",
+    "dwarf_weapon_family",
+    "mage_weapon_family"
+  ],
+  "items": [
+    {
+      "proposalId": "common_head_l10_unique",
+      "candidateDefinitionId": "gear_common_head_t10_unique",
+      "familyId": "common_head",
+      "name": "Unique_Quarrykeeper_Hood",
+      "baseName": "Quarrykeeper Hood",
+      "nameKey": "item.common_head_l10_unique.name",
+      "descriptionKey": "item.common_head_l10_unique.description",
+      "descriptionEnUS": "After taking direct enemy damage, gain a shield worth 4% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "적의 직접 피해가 HP에 적용되면, 최대HP의4% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "head",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 7.56
+      },
+      "statsAtEnhancement9": {
+        "armor": 9.6012
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_common_head",
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.04
+      },
+      "drop": {
+        "bossKind": "KingOgre",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Quarrykeeper_Hood.png",
+        "reference": "generated-legendary-v1/Legendary_Wayfarer_Hood.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Quarrykeeper Hood, shared head. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingOgre; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_body_l10_unique",
+      "candidateDefinitionId": "gear_common_body_t10_unique",
+      "familyId": "common_body",
+      "name": "Unique_Hollowbark_Mantle",
+      "baseName": "Hollowbark Mantle",
+      "nameKey": "item.common_body_l10_unique.name",
+      "descriptionKey": "item.common_body_l10_unique.description",
+      "descriptionEnUS": "After direct enemy damage lowers your HP from at least 50% to below 50%, take 6% less direct enemy damage for 3s. 20s shared reduction cooldown. Does not stack with other Unique reduction effects.",
+      "descriptionKoDev": "직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 직접 적 피해6% 감소 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "body",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 6.3,
+        "health": 126.0
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.001,
+        "health": 160.02
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_common_body",
+        "kind": "reduction",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.06
+      },
+      "drop": {
+        "bossKind": "AncientHollowbark",
+        "region": "Gloamwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Hollowbark_Mantle.png",
+        "reference": "generated-legendary-v1/Legendary_Wayfarer_Coat.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Hollowbark Mantle, shared body. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from AncientHollowbark; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_hands_l10_unique",
+      "candidateDefinitionId": "gear_common_hands_t10_unique",
+      "familyId": "common_hands",
+      "name": "Unique_Ashforged_Grips",
+      "baseName": "Ashforged Grips",
+      "nameKey": "item.common_hands_l10_unique.name",
+      "descriptionKey": "item.common_hands_l10_unique.description",
+      "descriptionEnUS": "After hitting enemies with 3 basic attacks within 8 seconds, your next basic attack deals 6% bonus damage to its first enemy hit within 4s. 15s shared bonus cooldown. Does not stack with other Unique bonus effects.",
+      "descriptionKoDev": "8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "hands",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 7.56,
+        "armor": 2.52
+      },
+      "statsAtEnhancement9": {
+        "power": 9.6012,
+        "armor": 3.2004
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_common_hands",
+        "kind": "bonus",
+        "event": "basic_attack_hit",
+        "conditions": {
+          "requiredCount": 3,
+          "windowSeconds": 8,
+          "countPerAttack": 1
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.06,
+        "charges": 1,
+        "target": "next_basic_attack_first_enemy"
+      },
+      "drop": {
+        "bossKind": "InfernoOverlord",
+        "region": "Ember Caldera",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Ashforged_Grips.png",
+        "reference": "generated-legendary-v1/Legendary_Wayfarer_Gloves.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Ashforged Grips, shared hands. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from InfernoOverlord; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_feet_l10_unique",
+      "candidateDefinitionId": "gear_common_feet_t10_unique",
+      "familyId": "common_feet",
+      "name": "Unique_Widowstep_Boots",
+      "baseName": "Widowstep Boots",
+      "nameKey": "item.common_feet_l10_unique.name",
+      "descriptionKey": "item.common_feet_l10_unique.description",
+      "descriptionEnUS": "After a dodge avoids a validated enemy hit, gain a shield worth 3% of your pre-effect Max HP for 3s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "회피로 서버가 확인한 적 공격을 피하면, 최대HP의3% 보호막 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "feet",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 5.04,
+        "health": 50.4
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.4008,
+        "health": 64.008
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_common_feet",
+        "kind": "shield",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.03
+      },
+      "drop": {
+        "bossKind": "WidowQueen",
+        "region": "Gloamwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Widowstep_Boots.png",
+        "reference": "generated-legendary-v1/Legendary_Wayfarer_Boots.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Widowstep Boots, shared feet. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from WidowQueen; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_vigor_ring_l10_unique",
+      "candidateDefinitionId": "gear_common_vigor_ring_t10_unique",
+      "familyId": "common_vigor_ring",
+      "name": "Unique_Ogreheart_Ring",
+      "baseName": "Ogreheart Ring",
+      "nameKey": "item.common_vigor_ring_l10_unique.name",
+      "descriptionKey": "item.common_vigor_ring_l10_unique.description",
+      "descriptionEnUS": "After direct enemy damage lowers your HP from at least 50% to below 50%, restore up to 2% of your pre-effect Max HP. 20s shared heal cooldown. Does not stack with other Unique heal effects.",
+      "descriptionKoDev": "직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의2% 자기 회복 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "health": 151.2
+      },
+      "statsAtEnhancement9": {
+        "health": 192.024
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_vigor_ring",
+      "effect": {
+        "effectId": "unique_common_vigor_ring",
+        "kind": "heal",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "heal",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.02,
+        "requiresMissingHealth": true
+      },
+      "drop": {
+        "bossKind": "KingOgre",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Ogreheart_Ring.png",
+        "reference": "generated-legendary-v1/Legendary_Vigor_Ring.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Ogreheart Ring, shared accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingOgre; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_ward_pendant_l10_unique",
+      "candidateDefinitionId": "gear_common_ward_pendant_t10_unique",
+      "familyId": "common_ward_pendant",
+      "name": "Unique_Glacier_Ward",
+      "baseName": "Glacier Ward",
+      "nameKey": "item.common_ward_pendant_l10_unique.name",
+      "descriptionKey": "item.common_ward_pendant_l10_unique.description",
+      "descriptionEnUS": "After blocking a damaging enemy hit, gain a shield worth 4% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "적의 피해가 있는 공격을 블록하면, 최대HP의4% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 7.56
+      },
+      "statsAtEnhancement9": {
+        "armor": 9.6012
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_ward_pendant",
+      "effect": {
+        "effectId": "unique_common_ward_pendant",
+        "kind": "shield",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.04
+      },
+      "drop": {
+        "bossKind": "AncientGlacierKing",
+        "region": "Frozen Vale",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Glacier_Ward.png",
+        "reference": "generated-legendary-v1/Legendary_Ward_Pendant.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Glacier Ward, shared accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from AncientGlacierKing; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_valor_ring_l10_unique",
+      "candidateDefinitionId": "gear_common_valor_ring_t10_unique",
+      "familyId": "common_valor_ring",
+      "name": "Unique_Emberfang_Ring",
+      "baseName": "Emberfang Ring",
+      "nameKey": "item.common_valor_ring_l10_unique.name",
+      "descriptionKey": "item.common_valor_ring_l10_unique.description",
+      "descriptionEnUS": "After hitting enemies with 3 basic attacks within 8 seconds, your next basic attack deals 8% bonus damage to its first enemy hit within 4s. 15s shared bonus cooldown. Does not stack with other Unique bonus effects.",
+      "descriptionKoDev": "8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 15.12
+      },
+      "statsAtEnhancement9": {
+        "power": 19.2024
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_valor_ring",
+      "effect": {
+        "effectId": "unique_common_valor_ring",
+        "kind": "bonus",
+        "event": "basic_attack_hit",
+        "conditions": {
+          "requiredCount": 3,
+          "windowSeconds": 8,
+          "countPerAttack": 1
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.08,
+        "charges": 1,
+        "target": "next_basic_attack_first_enemy"
+      },
+      "drop": {
+        "bossKind": "InfernoOverlord",
+        "region": "Ember Caldera",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Emberfang_Ring.png",
+        "reference": "generated-legendary-v1/Legendary_Valor_Ring.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Emberfang Ring, shared accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from InfernoOverlord; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_refuge_charm_l10_unique",
+      "candidateDefinitionId": "gear_common_refuge_charm_t10_unique",
+      "familyId": "common_refuge_charm",
+      "name": "Unique_Lastlight_Charm",
+      "baseName": "Lastlight Charm",
+      "nameKey": "item.common_refuge_charm_l10_unique.name",
+      "descriptionKey": "item.common_refuge_charm_l10_unique.description",
+      "descriptionEnUS": "After direct enemy damage lowers your HP from at least 50% to below 50%, gain a shield worth 6% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의6% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 3.78,
+        "health": 75.6
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.8006,
+        "health": 96.012
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_refuge_charm",
+      "effect": {
+        "effectId": "unique_common_refuge_charm",
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.06
+      },
+      "drop": {
+        "bossKind": "Veyr",
+        "region": "Haunted Graveyard",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Lastlight_Charm.png",
+        "reference": "generated-legendary-v1/Legendary_Refuge_Charm.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Lastlight Charm, shared accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from Veyr; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_mana_ring_l10_unique",
+      "candidateDefinitionId": "gear_common_mana_ring_t10_unique",
+      "familyId": "common_mana_ring",
+      "name": "Unique_Stillwater_Ring",
+      "baseName": "Stillwater Ring",
+      "nameKey": "item.common_mana_ring_l10_unique.name",
+      "descriptionKey": "item.common_mana_ring_l10_unique.description",
+      "descriptionEnUS": "After spending at least 10 MP on one skill, gain a shield worth 3% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "스킬1회에 MP10 이상을 실제 소비하면, 최대HP의3% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "maxMana": 25.2,
+        "armor": 2.52
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 25.2,
+        "armor": 3.2004
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_mana_ring",
+      "effect": {
+        "effectId": "unique_common_mana_ring",
+        "kind": "shield",
+        "event": "mana_consumed_by_skill",
+        "conditions": {
+          "minimumSpent": 10,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.03
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Stillwater_Ring.png",
+        "reference": "generated-legendary-v1/Legendary_Mana_Ring.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Stillwater Ring, shared accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_arcane_pendant_l10_unique",
+      "candidateDefinitionId": "gear_common_arcane_pendant_t10_unique",
+      "familyId": "common_arcane_pendant",
+      "name": "Unique_Grovewell_Pendant",
+      "baseName": "Grovewell Pendant",
+      "nameKey": "item.common_arcane_pendant_l10_unique.name",
+      "descriptionKey": "item.common_arcane_pendant_l10_unique.description",
+      "descriptionEnUS": "After a damaging spell hits an enemy, restore up to 4 MP to your existing mana pool. 15s shared mana cooldown. Does not stack with other Unique mana effects.",
+      "descriptionKoDev": "피해 마법을 적중하면, 기존 MP 풀에 MP4 회복 (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "maxMana": 37.8
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 37.8
+      },
+      "enhancementSupported": false,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_arcane_pendant",
+      "effect": {
+        "effectId": "unique_common_arcane_pendant",
+        "kind": "mana",
+        "event": "skill_hit",
+        "conditions": {
+          "requiresMagicSkill": true,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "mana",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "flatMana": 4,
+        "requiresExistingManaPool": true,
+        "requiresMissingMana": true
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Grovewell_Pendant.png",
+        "reference": "generated-legendary-v1/Legendary_Arcane_Reservoir_Pendant.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Grovewell Pendant, shared accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "common_wellspring_charm_l10_unique",
+      "candidateDefinitionId": "gear_common_wellspring_charm_t10_unique",
+      "familyId": "common_wellspring_charm",
+      "name": "Unique_Moonwell_Charm",
+      "baseName": "Moonwell Charm",
+      "nameKey": "item.common_wellspring_charm_l10_unique.name",
+      "descriptionKey": "item.common_wellspring_charm_l10_unique.description",
+      "descriptionEnUS": "After spending at least 10 MP on one skill, restore up to 1.5% of your pre-effect Max HP. 20s shared heal cooldown. Does not stack with other Unique heal effects.",
+      "descriptionKoDev": "스킬1회에 MP10 이상을 실제 소비하면, 최대HP의1.5% 자기 회복 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": null,
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "maxMana": 18.9,
+        "health": 75.6
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 18.9,
+        "health": 96.012
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "common_wellspring_charm",
+      "effect": {
+        "effectId": "unique_common_wellspring_charm",
+        "kind": "heal",
+        "event": "mana_consumed_by_skill",
+        "conditions": {
+          "minimumSpent": 10,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "heal",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.015,
+        "requiresMissingHealth": true
+      },
+      "drop": {
+        "bossKind": "WidowQueen",
+        "region": "Gloamwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Moonwell_Charm.png",
+        "reference": "generated-legendary-v1/Legendary_Wellspring_Charm.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Moonwell Charm, shared accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from WidowQueen; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "knight_weapon_family_l10_unique",
+      "candidateDefinitionId": "gear_knight_weapon_family_t10_unique",
+      "familyId": "knight_weapon_family",
+      "name": "Unique_Knight_Rootwardens_Oath",
+      "baseName": "Rootwarden's Oath",
+      "nameKey": "item.knight_weapon_family_l10_unique.name",
+      "descriptionKey": "item.knight_weapon_family_l10_unique.description",
+      "descriptionEnUS": "After Shield Bash hits an enemy, gain a shield worth 5% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "Shield Bash 적중 후, 최대HP의5% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "knight",
+      "slot": "weapon",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 22.68,
+        "health": 37.8
+      },
+      "statsAtEnhancement9": {
+        "power": 28.8036,
+        "health": 48.006
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_knight_weapon_family",
+        "kind": "shield",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "knight.common.bash"
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.05
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Knight_Rootwardens_Oath.png",
+        "reference": "generated-legendary-v1/Legendary_Knight_Oathguard_Sword.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Rootwarden's Oath, knight weapon. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "knight_head_family_l10_unique",
+      "candidateDefinitionId": "gear_knight_head_family_t10_unique",
+      "familyId": "knight_head_family",
+      "name": "Unique_Knight_Glacierwatch_Helm",
+      "baseName": "Glacierwatch Helm",
+      "nameKey": "item.knight_head_family_l10_unique.name",
+      "descriptionKey": "item.knight_head_family_l10_unique.description",
+      "descriptionEnUS": "After taking direct enemy damage, take 5% less direct enemy damage for 3s. 20s shared reduction cooldown. Does not stack with other Unique reduction effects.",
+      "descriptionKoDev": "적의 직접 피해가 HP에 적용되면, 직접 적 피해5% 감소 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "knight",
+      "slot": "head",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 6.3,
+        "health": 25.2
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.001,
+        "health": 32.004
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_knight_head_family",
+        "kind": "reduction",
+        "event": "enemy_damage_applied",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.05
+      },
+      "drop": {
+        "bossKind": "AncientGlacierKing",
+        "region": "Frozen Vale",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Knight_Glacierwatch_Helm.png",
+        "reference": "generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Glacierwatch Helm, knight head. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from AncientGlacierKing; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "knight_body_family_l10_unique",
+      "candidateDefinitionId": "gear_knight_body_family_t10_unique",
+      "familyId": "knight_body_family",
+      "name": "Unique_Knight_Hollowbark_Bulwark",
+      "baseName": "Hollowbark Bulwark",
+      "nameKey": "item.knight_body_family_l10_unique.name",
+      "descriptionKey": "item.knight_body_family_l10_unique.description",
+      "descriptionEnUS": "After direct enemy damage lowers your HP from at least 50% to below 50%, gain a shield worth 6% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의6% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "knight",
+      "slot": "body",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 8.82,
+        "health": 75.6
+      },
+      "statsAtEnhancement9": {
+        "armor": 11.2014,
+        "health": 96.012
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_knight_body_family",
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.06
+      },
+      "drop": {
+        "bossKind": "AncientHollowbark",
+        "region": "Gloamwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Knight_Hollowbark_Bulwark.png",
+        "reference": "generated-legendary-v1/Legendary_Knight_Oathguard_Vestments.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Hollowbark Bulwark, knight body. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from AncientHollowbark; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "knight_hands_family_l10_unique",
+      "candidateDefinitionId": "gear_knight_hands_family_t10_unique",
+      "familyId": "knight_hands_family",
+      "name": "Unique_Knight_Ogregrip_Gauntlets",
+      "baseName": "Ogregrip Gauntlets",
+      "nameKey": "item.knight_hands_family_l10_unique.name",
+      "descriptionKey": "item.knight_hands_family_l10_unique.description",
+      "descriptionEnUS": "After blocking a damaging enemy hit, your next basic attack deals 8% bonus damage to its first enemy hit within 4s. 15s shared bonus cooldown. Does not stack with other Unique bonus effects.",
+      "descriptionKoDev": "적의 피해가 있는 공격을 블록하면, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "knight",
+      "slot": "hands",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 5.04,
+        "armor": 2.52,
+        "health": 25.2
+      },
+      "statsAtEnhancement9": {
+        "power": 6.4008,
+        "armor": 3.2004,
+        "health": 32.004
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_knight_hands_family",
+        "kind": "bonus",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 15,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.08,
+        "charges": 1,
+        "target": "next_basic_attack_first_enemy"
+      },
+      "drop": {
+        "bossKind": "KingOgre",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Knight_Ogregrip_Gauntlets.png",
+        "reference": "generated-legendary-v1/Legendary_Knight_Oathguard_Grips.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Ogregrip Gauntlets, knight hands. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingOgre; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "knight_feet_family_l10_unique",
+      "candidateDefinitionId": "gear_knight_feet_family_t10_unique",
+      "familyId": "knight_feet_family",
+      "name": "Unique_Knight_Citadel_Step",
+      "baseName": "Citadel Step",
+      "nameKey": "item.knight_feet_family_l10_unique.name",
+      "descriptionKey": "item.knight_feet_family_l10_unique.description",
+      "descriptionEnUS": "After a dodge avoids a validated enemy hit, take 4% less direct enemy damage for 3s. 20s shared reduction cooldown. Does not stack with other Unique reduction effects.",
+      "descriptionKoDev": "회피로 서버가 확인한 적 공격을 피하면, 직접 적 피해4% 감소 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "knight",
+      "slot": "feet",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 5.04,
+        "health": 50.4
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.4008,
+        "health": 64.008
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_knight_feet_family",
+        "kind": "reduction",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.04
+      },
+      "drop": {
+        "bossKind": "GoblinKing",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Knight_Citadel_Step.png",
+        "reference": "generated-legendary-v1/Legendary_Knight_Oathguard_Treads.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Citadel Step, knight feet. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from GoblinKing; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "knight_ring_family_l10_unique",
+      "candidateDefinitionId": "gear_knight_ring_family_t10_unique",
+      "familyId": "knight_ring_family",
+      "name": "Unique_Knight_Lionheart_Signet",
+      "baseName": "Lionheart Signet",
+      "nameKey": "item.knight_ring_family_l10_unique.name",
+      "descriptionKey": "item.knight_ring_family_l10_unique.description",
+      "descriptionEnUS": "After hitting enemies with 3 basic attacks within 8 seconds, gain a shield worth 3% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "8초 안에 기본 공격3회를 적중하면, 최대HP의3% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "knight",
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 5.04,
+        "health": 100.8
+      },
+      "statsAtEnhancement9": {
+        "power": 6.4008,
+        "health": 128.016
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "knight_ring_family",
+      "effect": {
+        "effectId": "unique_knight_ring_family",
+        "kind": "shield",
+        "event": "basic_attack_hit",
+        "conditions": {
+          "requiredCount": 3,
+          "windowSeconds": 8,
+          "countPerAttack": 1
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.03
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Knight_Lionheart_Signet.png",
+        "reference": "generated-legendary-v1/Legendary_Knight_Oathguard_Signet.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Lionheart Signet, knight accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "knight_pendant_family_l10_unique",
+      "candidateDefinitionId": "gear_knight_pendant_family_t10_unique",
+      "familyId": "knight_pendant_family",
+      "name": "Unique_Knight_Oathkeeper_Pendant",
+      "baseName": "Oathkeeper Pendant",
+      "nameKey": "item.knight_pendant_family_l10_unique.name",
+      "descriptionKey": "item.knight_pendant_family_l10_unique.description",
+      "descriptionEnUS": "After blocking a damaging enemy hit, gain a shield worth 5% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "적의 피해가 있는 공격을 블록하면, 최대HP의5% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "knight",
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 5.04,
+        "health": 50.4
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.4008,
+        "health": 64.008
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "knight_pendant_family",
+      "effect": {
+        "effectId": "unique_knight_pendant_family",
+        "kind": "shield",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.05
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Knight_Oathkeeper_Pendant.png",
+        "reference": "generated-legendary-v1/Legendary_Knight_Oathguard_Pendant.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Oathkeeper Pendant, knight accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "knight_shield_family_l10_unique",
+      "candidateDefinitionId": "gear_knight_shield_family_t10_unique",
+      "familyId": "knight_shield_family",
+      "name": "Unique_Knight_Throneward_Shield",
+      "baseName": "Throneward Shield",
+      "nameKey": "item.knight_shield_family_l10_unique.name",
+      "descriptionKey": "item.knight_shield_family_l10_unique.description",
+      "descriptionEnUS": "After blocking a damaging enemy hit, take 6% less direct enemy damage for 3s. 20s shared reduction cooldown. Does not stack with other Unique reduction effects.",
+      "descriptionKoDev": "적의 피해가 있는 공격을 블록하면, 직접 적 피해6% 감소 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "knight",
+      "slot": "offhand",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 8.82
+      },
+      "statsAtEnhancement9": {
+        "armor": 11.2014
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_knight_shield_family",
+        "kind": "reduction",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.06
+      },
+      "drop": {
+        "bossKind": "Veyr",
+        "region": "Haunted Graveyard",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Knight_Throneward_Shield.png",
+        "reference": "generated-legendary-v1/Legendary_Knight_Oathguard_Shield.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Throneward Shield, knight offhand. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from Veyr; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "elf_weapon_family_l10_unique",
+      "candidateDefinitionId": "gear_elf_weapon_family_t10_unique",
+      "familyId": "elf_weapon_family",
+      "name": "Unique_Elf_Thornsong",
+      "baseName": "Thornsong",
+      "nameKey": "item.elf_weapon_family_l10_unique.name",
+      "descriptionKey": "item.elf_weapon_family_l10_unique.description",
+      "descriptionEnUS": "After Aimed Shot hits an enemy, your next basic attack deals 8% bonus damage to its first enemy hit within 4s. 15s shared bonus cooldown. Does not stack with other Unique bonus effects.",
+      "descriptionKoDev": "Aimed Shot 적중 후, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "elf",
+      "slot": "weapon",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 26.46
+      },
+      "statsAtEnhancement9": {
+        "power": 33.6042
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_elf_weapon_family",
+        "kind": "bonus",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "elf.common.aimed"
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.08,
+        "charges": 1,
+        "target": "next_basic_attack_first_enemy"
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Elf_Thornsong.png",
+        "reference": "generated-legendary-v1/Legendary_Elf_Briarwatch_Bow.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Thornsong, elf weapon. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "elf_head_family_l10_unique",
+      "candidateDefinitionId": "gear_elf_head_family_t10_unique",
+      "familyId": "elf_head_family",
+      "name": "Unique_Elf_Widowwatch_Hood",
+      "baseName": "Widowwatch Hood",
+      "nameKey": "item.elf_head_family_l10_unique.name",
+      "descriptionKey": "item.elf_head_family_l10_unique.description",
+      "descriptionEnUS": "After taking direct enemy damage, gain a shield worth 3% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "적의 직접 피해가 HP에 적용되면, 최대HP의3% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "elf",
+      "slot": "head",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 5.04,
+        "armor": 5.04
+      },
+      "statsAtEnhancement9": {
+        "power": 6.4008,
+        "armor": 6.4008
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_elf_head_family",
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.03
+      },
+      "drop": {
+        "bossKind": "WidowQueen",
+        "region": "Gloamwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Elf_Widowwatch_Hood.png",
+        "reference": "generated-legendary-v1/Legendary_Elf_Briarwatch_Headguard.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Widowwatch Hood, elf head. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from WidowQueen; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "elf_body_family_l10_unique",
+      "candidateDefinitionId": "gear_elf_body_family_t10_unique",
+      "familyId": "elf_body_family",
+      "name": "Unique_Elf_Hollowbark_Jerkin",
+      "baseName": "Hollowbark Jerkin",
+      "nameKey": "item.elf_body_family_l10_unique.name",
+      "descriptionKey": "item.elf_body_family_l10_unique.description",
+      "descriptionEnUS": "After direct enemy damage lowers your HP from at least 50% to below 50%, take 5% less direct enemy damage for 3s. 20s shared reduction cooldown. Does not stack with other Unique reduction effects.",
+      "descriptionKoDev": "직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 직접 적 피해5% 감소 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "elf",
+      "slot": "body",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 7.56,
+        "health": 100.8
+      },
+      "statsAtEnhancement9": {
+        "armor": 9.6012,
+        "health": 128.016
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_elf_body_family",
+        "kind": "reduction",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.05
+      },
+      "drop": {
+        "bossKind": "AncientHollowbark",
+        "region": "Gloamwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Elf_Hollowbark_Jerkin.png",
+        "reference": "generated-legendary-v1/Legendary_Elf_Briarwatch_Vestments.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Hollowbark Jerkin, elf body. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from AncientHollowbark; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "elf_hands_family_l10_unique",
+      "candidateDefinitionId": "gear_elf_hands_family_t10_unique",
+      "familyId": "elf_hands_family",
+      "name": "Unique_Elf_Emberflight_Grips",
+      "baseName": "Emberflight Grips",
+      "nameKey": "item.elf_hands_family_l10_unique.name",
+      "descriptionKey": "item.elf_hands_family_l10_unique.description",
+      "descriptionEnUS": "After hitting enemies with 3 basic attacks within 8 seconds, your next basic attack deals 6% bonus damage to its first enemy hit within 4s. 15s shared bonus cooldown. Does not stack with other Unique bonus effects.",
+      "descriptionKoDev": "8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "elf",
+      "slot": "hands",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 10.08,
+        "armor": 1.26
+      },
+      "statsAtEnhancement9": {
+        "power": 12.8016,
+        "armor": 1.6002
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_elf_hands_family",
+        "kind": "bonus",
+        "event": "basic_attack_hit",
+        "conditions": {
+          "requiredCount": 3,
+          "windowSeconds": 8,
+          "countPerAttack": 1
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.06,
+        "charges": 1,
+        "target": "next_basic_attack_first_enemy"
+      },
+      "drop": {
+        "bossKind": "InfernoOverlord",
+        "region": "Ember Caldera",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Elf_Emberflight_Grips.png",
+        "reference": "generated-legendary-v1/Legendary_Elf_Briarwatch_Grips.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Emberflight Grips, elf hands. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from InfernoOverlord; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "elf_feet_family_l10_unique",
+      "candidateDefinitionId": "gear_elf_feet_family_t10_unique",
+      "familyId": "elf_feet_family",
+      "name": "Unique_Elf_Silkstep_Treads",
+      "baseName": "Silkstep Treads",
+      "nameKey": "item.elf_feet_family_l10_unique.name",
+      "descriptionKey": "item.elf_feet_family_l10_unique.description",
+      "descriptionEnUS": "After a dodge avoids a validated enemy hit, gain a shield worth 4% of your pre-effect Max HP for 3s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "회피로 서버가 확인한 적 공격을 피하면, 최대HP의4% 보호막 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "elf",
+      "slot": "feet",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 2.52,
+        "armor": 3.78,
+        "health": 50.4
+      },
+      "statsAtEnhancement9": {
+        "power": 3.2004,
+        "armor": 4.8006,
+        "health": 64.008
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_elf_feet_family",
+        "kind": "shield",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.04
+      },
+      "drop": {
+        "bossKind": "WidowQueen",
+        "region": "Gloamwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Elf_Silkstep_Treads.png",
+        "reference": "generated-legendary-v1/Legendary_Elf_Briarwatch_Treads.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Silkstep Treads, elf feet. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from WidowQueen; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "elf_ring_family_l10_unique",
+      "candidateDefinitionId": "gear_elf_ring_family_t10_unique",
+      "familyId": "elf_ring_family",
+      "name": "Unique_Elf_Thornmark_Signet",
+      "baseName": "Thornmark Signet",
+      "nameKey": "item.elf_ring_family_l10_unique.name",
+      "descriptionKey": "item.elf_ring_family_l10_unique.description",
+      "descriptionEnUS": "After Aimed Shot hits an enemy, your next basic attack deals 6% bonus damage to its first enemy hit within 4s. 15s shared bonus cooldown. Does not stack with other Unique bonus effects.",
+      "descriptionKoDev": "Aimed Shot 적중 후, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "elf",
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 12.6,
+        "health": 25.2
+      },
+      "statsAtEnhancement9": {
+        "power": 16.002,
+        "health": 32.004
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "elf_ring_family",
+      "effect": {
+        "effectId": "unique_elf_ring_family",
+        "kind": "bonus",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "elf.common.aimed"
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.06,
+        "charges": 1,
+        "target": "next_basic_attack_first_enemy"
+      },
+      "drop": {
+        "bossKind": "GoblinKing",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Elf_Thornmark_Signet.png",
+        "reference": "generated-legendary-v1/Legendary_Elf_Briarwatch_Signet.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Thornmark Signet, elf accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from GoblinKing; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "elf_pendant_family_l10_unique",
+      "candidateDefinitionId": "gear_elf_pendant_family_t10_unique",
+      "familyId": "elf_pendant_family",
+      "name": "Unique_Elf_Glacierleaf_Pendant",
+      "baseName": "Glacierleaf Pendant",
+      "nameKey": "item.elf_pendant_family_l10_unique.name",
+      "descriptionKey": "item.elf_pendant_family_l10_unique.description",
+      "descriptionEnUS": "After blocking a damaging enemy hit, take 4% less direct enemy damage for 3s. 20s shared reduction cooldown. Does not stack with other Unique reduction effects.",
+      "descriptionKoDev": "적의 피해가 있는 공격을 블록하면, 직접 적 피해4% 감소 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "elf",
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 5.04,
+        "armor": 5.04
+      },
+      "statsAtEnhancement9": {
+        "power": 6.4008,
+        "armor": 6.4008
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "elf_pendant_family",
+      "effect": {
+        "effectId": "unique_elf_pendant_family",
+        "kind": "reduction",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.04
+      },
+      "drop": {
+        "bossKind": "AncientGlacierKing",
+        "region": "Frozen Vale",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Elf_Glacierleaf_Pendant.png",
+        "reference": "generated-legendary-v1/Legendary_Elf_Briarwatch_Pendant.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Glacierleaf Pendant, elf accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from AncientGlacierKing; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "dwarf_weapon_family_l10_unique",
+      "candidateDefinitionId": "gear_dwarf_weapon_family_t10_unique",
+      "familyId": "dwarf_weapon_family",
+      "name": "Unique_Dwarf_Stonebreakers_Resolve",
+      "baseName": "Stonebreaker's Resolve",
+      "nameKey": "item.dwarf_weapon_family_l10_unique.name",
+      "descriptionKey": "item.dwarf_weapon_family_l10_unique.description",
+      "descriptionEnUS": "After Ground Slam hits an enemy, take 6% less direct enemy damage for 3s. 20s shared reduction cooldown. Does not stack with other Unique reduction effects.",
+      "descriptionKoDev": "Ground Slam 적중 후, 직접 적 피해6% 감소 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 25.2,
+        "health": 12.6
+      },
+      "statsAtEnhancement9": {
+        "power": 32.004,
+        "health": 16.002
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_dwarf_weapon_family",
+        "kind": "reduction",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "dwarf.common.ground"
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.06
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Dwarf_Stonebreakers_Resolve.png",
+        "reference": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Axe.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Stonebreaker's Resolve, dwarf weapon. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "dwarf_head_family_l10_unique",
+      "candidateDefinitionId": "gear_dwarf_head_family_t10_unique",
+      "familyId": "dwarf_head_family",
+      "name": "Unique_Dwarf_Quarryking_Helm",
+      "baseName": "Quarryking Helm",
+      "nameKey": "item.dwarf_head_family_l10_unique.name",
+      "descriptionKey": "item.dwarf_head_family_l10_unique.description",
+      "descriptionEnUS": "After taking direct enemy damage, gain a shield worth 4% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "적의 직접 피해가 HP에 적용되면, 최대HP의4% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "dwarf",
+      "slot": "head",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 5.04,
+        "health": 50.4
+      },
+      "statsAtEnhancement9": {
+        "armor": 6.4008,
+        "health": 64.008
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_dwarf_head_family",
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.04
+      },
+      "drop": {
+        "bossKind": "KingOgre",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Dwarf_Quarryking_Helm.png",
+        "reference": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Quarryking Helm, dwarf head. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingOgre; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "dwarf_body_family_l10_unique",
+      "candidateDefinitionId": "gear_dwarf_body_family_t10_unique",
+      "familyId": "dwarf_body_family",
+      "name": "Unique_Dwarf_Caldera_Heartplate",
+      "baseName": "Caldera Heartplate",
+      "nameKey": "item.dwarf_body_family_l10_unique.name",
+      "descriptionKey": "item.dwarf_body_family_l10_unique.description",
+      "descriptionEnUS": "After direct enemy damage lowers your HP from at least 50% to below 50%, take 6% less direct enemy damage for 3s. 20s shared reduction cooldown. Does not stack with other Unique reduction effects.",
+      "descriptionKoDev": "직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 직접 적 피해6% 감소 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "dwarf",
+      "slot": "body",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 6.3,
+        "health": 126.0
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.001,
+        "health": 160.02
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_dwarf_body_family",
+        "kind": "reduction",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.06
+      },
+      "drop": {
+        "bossKind": "InfernoOverlord",
+        "region": "Ember Caldera",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Dwarf_Caldera_Heartplate.png",
+        "reference": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Vestments.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Caldera Heartplate, dwarf body. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from InfernoOverlord; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "dwarf_hands_family_l10_unique",
+      "candidateDefinitionId": "gear_dwarf_hands_family_t10_unique",
+      "familyId": "dwarf_hands_family",
+      "name": "Unique_Dwarf_Cragbreaker_Grips",
+      "baseName": "Cragbreaker Grips",
+      "nameKey": "item.dwarf_hands_family_l10_unique.name",
+      "descriptionKey": "item.dwarf_hands_family_l10_unique.description",
+      "descriptionEnUS": "After hitting enemies with 3 basic attacks within 8 seconds, your next basic attack deals 8% bonus damage to its first enemy hit within 4s. 15s shared bonus cooldown. Does not stack with other Unique bonus effects.",
+      "descriptionKoDev": "8초 안에 기본 공격3회를 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+8% (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "dwarf",
+      "slot": "hands",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 7.56,
+        "armor": 2.52
+      },
+      "statsAtEnhancement9": {
+        "power": 9.6012,
+        "armor": 3.2004
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_dwarf_hands_family",
+        "kind": "bonus",
+        "event": "basic_attack_hit",
+        "conditions": {
+          "requiredCount": 3,
+          "windowSeconds": 8,
+          "countPerAttack": 1
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.08,
+        "charges": 1,
+        "target": "next_basic_attack_first_enemy"
+      },
+      "drop": {
+        "bossKind": "KingOgre",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Dwarf_Cragbreaker_Grips.png",
+        "reference": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Grips.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Cragbreaker Grips, dwarf hands. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingOgre; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "dwarf_feet_family_l10_unique",
+      "candidateDefinitionId": "gear_dwarf_feet_family_t10_unique",
+      "familyId": "dwarf_feet_family",
+      "name": "Unique_Dwarf_Glacieranchor_Boots",
+      "baseName": "Glacieranchor Boots",
+      "nameKey": "item.dwarf_feet_family_l10_unique.name",
+      "descriptionKey": "item.dwarf_feet_family_l10_unique.description",
+      "descriptionEnUS": "After blocking a damaging enemy hit, gain a shield worth 4% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "적의 피해가 있는 공격을 블록하면, 최대HP의4% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "dwarf",
+      "slot": "feet",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 3.78,
+        "health": 75.6
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.8006,
+        "health": 96.012
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_dwarf_feet_family",
+        "kind": "shield",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.04
+      },
+      "drop": {
+        "bossKind": "AncientGlacierKing",
+        "region": "Frozen Vale",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Dwarf_Glacieranchor_Boots.png",
+        "reference": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Treads.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Glacieranchor Boots, dwarf feet. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from AncientGlacierKing; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "dwarf_ring_family_l10_unique",
+      "candidateDefinitionId": "gear_dwarf_ring_family_t10_unique",
+      "familyId": "dwarf_ring_family",
+      "name": "Unique_Dwarf_Forgeheart_Signet",
+      "baseName": "Forgeheart Signet",
+      "nameKey": "item.dwarf_ring_family_l10_unique.name",
+      "descriptionKey": "item.dwarf_ring_family_l10_unique.description",
+      "descriptionEnUS": "After Ground Slam hits an enemy, your next basic attack deals 6% bonus damage to its first enemy hit within 4s. 15s shared bonus cooldown. Does not stack with other Unique bonus effects.",
+      "descriptionKoDev": "Ground Slam 적중 후, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 10.08,
+        "armor": 2.52
+      },
+      "statsAtEnhancement9": {
+        "power": 12.8016,
+        "armor": 3.2004
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "dwarf_ring_family",
+      "effect": {
+        "effectId": "unique_dwarf_ring_family",
+        "kind": "bonus",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "dwarf.common.ground"
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.06,
+        "charges": 1,
+        "target": "next_basic_attack_first_enemy"
+      },
+      "drop": {
+        "bossKind": "InfernoOverlord",
+        "region": "Ember Caldera",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Dwarf_Forgeheart_Signet.png",
+        "reference": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Signet.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Forgeheart Signet, dwarf accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from InfernoOverlord; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "dwarf_pendant_family_l10_unique",
+      "candidateDefinitionId": "gear_dwarf_pendant_family_t10_unique",
+      "familyId": "dwarf_pendant_family",
+      "name": "Unique_Dwarf_Hollowstone_Pendant",
+      "baseName": "Hollowstone Pendant",
+      "nameKey": "item.dwarf_pendant_family_l10_unique.name",
+      "descriptionKey": "item.dwarf_pendant_family_l10_unique.description",
+      "descriptionEnUS": "After direct enemy damage lowers your HP from at least 50% to below 50%, restore up to 2% of your pre-effect Max HP. 20s shared heal cooldown. Does not stack with other Unique heal effects.",
+      "descriptionKoDev": "직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의2% 자기 회복 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 2.52,
+        "health": 100.8
+      },
+      "statsAtEnhancement9": {
+        "armor": 3.2004,
+        "health": 128.016
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "dwarf_pendant_family",
+      "effect": {
+        "effectId": "unique_dwarf_pendant_family",
+        "kind": "heal",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "heal",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.02,
+        "requiresMissingHealth": true
+      },
+      "drop": {
+        "bossKind": "AncientHollowbark",
+        "region": "Gloamwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Dwarf_Hollowstone_Pendant.png",
+        "reference": "generated-legendary-v1/Legendary_Dwarf_Stonehearth_Pendant.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Hollowstone Pendant, dwarf accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from AncientHollowbark; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "mage_weapon_family_l10_unique",
+      "candidateDefinitionId": "gear_mage_weapon_family_t10_unique",
+      "familyId": "mage_weapon_family",
+      "name": "Unique_Mage_Groveheart_Staff",
+      "baseName": "Groveheart Staff",
+      "nameKey": "item.mage_weapon_family_l10_unique.name",
+      "descriptionKey": "item.mage_weapon_family_l10_unique.description",
+      "descriptionEnUS": "After Wind Lance hits an enemy, restore up to 4 MP to your existing mana pool. 15s shared mana cooldown. Does not stack with other Unique mana effects.",
+      "descriptionKoDev": "Wind Lance 적중 후, 기존 MP 풀에 MP4 회복 (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "mage",
+      "slot": "weapon",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 21.42,
+        "maxMana": 12.6
+      },
+      "statsAtEnhancement9": {
+        "power": 27.2034,
+        "maxMana": 12.6
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_mage_weapon_family",
+        "kind": "mana",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "mage_wind_lance",
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "mana",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "flatMana": 4,
+        "requiresExistingManaPool": true,
+        "requiresMissingMana": true
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Mage_Groveheart_Staff.png",
+        "reference": "generated-legendary-v1/Legendary_Mage_Aetherweave_Staff.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Groveheart Staff, mage weapon. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "mage_head_family_l10_unique",
+      "candidateDefinitionId": "gear_mage_head_family_t10_unique",
+      "familyId": "mage_head_family",
+      "name": "Unique_Mage_Stillgrove_Hood",
+      "baseName": "Stillgrove Hood",
+      "nameKey": "item.mage_head_family_l10_unique.name",
+      "descriptionKey": "item.mage_head_family_l10_unique.description",
+      "descriptionEnUS": "After spending at least 10 MP on one skill, gain a shield worth 3% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "스킬1회에 MP10 이상을 실제 소비하면, 최대HP의3% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "mage",
+      "slot": "head",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 3.78,
+        "maxMana": 18.9
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.8006,
+        "maxMana": 18.9
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_mage_head_family",
+        "kind": "shield",
+        "event": "mana_consumed_by_skill",
+        "conditions": {
+          "minimumSpent": 10,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.03
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Mage_Stillgrove_Hood.png",
+        "reference": "generated-legendary-v1/Legendary_Mage_Aetherweave_Headguard.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Stillgrove Hood, mage head. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "mage_body_family_l10_unique",
+      "candidateDefinitionId": "gear_mage_body_family_t10_unique",
+      "familyId": "mage_body_family",
+      "name": "Unique_Mage_Glacierveil_Robe",
+      "baseName": "Glacierveil Robe",
+      "nameKey": "item.mage_body_family_l10_unique.name",
+      "descriptionKey": "item.mage_body_family_l10_unique.description",
+      "descriptionEnUS": "After direct enemy damage lowers your HP from at least 50% to below 50%, gain a shield worth 5% of your pre-effect Max HP for 4s. 20s shared shield cooldown. Does not stack with other Unique shield effects.",
+      "descriptionKoDev": "직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 최대HP의5% 보호막 4초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "mage",
+      "slot": "body",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 6.3,
+        "health": 75.6,
+        "maxMana": 12.6
+      },
+      "statsAtEnhancement9": {
+        "armor": 8.001,
+        "health": 96.012,
+        "maxMana": 12.6
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_mage_body_family",
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.05
+      },
+      "drop": {
+        "bossKind": "AncientGlacierKing",
+        "region": "Frozen Vale",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Mage_Glacierveil_Robe.png",
+        "reference": "generated-legendary-v1/Legendary_Mage_Aetherweave_Vestments.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Glacierveil Robe, mage body. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from AncientGlacierKing; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "mage_hands_family_l10_unique",
+      "candidateDefinitionId": "gear_mage_hands_family_t10_unique",
+      "familyId": "mage_hands_family",
+      "name": "Unique_Mage_Emberweave_Grips",
+      "baseName": "Emberweave Grips",
+      "nameKey": "item.mage_hands_family_l10_unique.name",
+      "descriptionKey": "item.mage_hands_family_l10_unique.description",
+      "descriptionEnUS": "After a damaging spell hits an enemy, your next basic attack deals 6% bonus damage to its first enemy hit within 4s. 15s shared bonus cooldown. Does not stack with other Unique bonus effects.",
+      "descriptionKoDev": "피해 마법을 적중하면, 4초 내 다음 기본 공격의 첫 대상 피해+6% (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "mage",
+      "slot": "hands",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 7.56,
+        "maxMana": 12.6
+      },
+      "statsAtEnhancement9": {
+        "power": 9.6012,
+        "maxMana": 12.6
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_mage_hands_family",
+        "kind": "bonus",
+        "event": "skill_hit",
+        "conditions": {
+          "requiresMagicSkill": true,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.06,
+        "charges": 1,
+        "target": "next_basic_attack_first_enemy"
+      },
+      "drop": {
+        "bossKind": "InfernoOverlord",
+        "region": "Ember Caldera",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Mage_Emberweave_Grips.png",
+        "reference": "generated-legendary-v1/Legendary_Mage_Aetherweave_Grips.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Emberweave Grips, mage hands. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from InfernoOverlord; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "mage_feet_family_l10_unique",
+      "candidateDefinitionId": "gear_mage_feet_family_t10_unique",
+      "familyId": "mage_feet_family",
+      "name": "Unique_Mage_Silkweave_Treads",
+      "baseName": "Silkweave Treads",
+      "nameKey": "item.mage_feet_family_l10_unique.name",
+      "descriptionKey": "item.mage_feet_family_l10_unique.description",
+      "descriptionEnUS": "After a dodge avoids a validated enemy hit, take 4% less direct enemy damage for 3s. 20s shared reduction cooldown. Does not stack with other Unique reduction effects.",
+      "descriptionKoDev": "회피로 서버가 확인한 적 공격을 피하면, 직접 적 피해4% 감소 3초 (공유 재발동 20초)",
+      "rarity": "Unique",
+      "classId": "mage",
+      "slot": "feet",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "armor": 3.78,
+        "health": 25.2,
+        "maxMana": 12.6
+      },
+      "statsAtEnhancement9": {
+        "armor": 4.8006,
+        "health": 32.004,
+        "maxMana": 12.6
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": null,
+      "effect": {
+        "effectId": "unique_mage_feet_family",
+        "kind": "reduction",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 3,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.04
+      },
+      "drop": {
+        "bossKind": "WidowQueen",
+        "region": "Gloamwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Mage_Silkweave_Treads.png",
+        "reference": "generated-legendary-v1/Legendary_Mage_Aetherweave_Treads.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Silkweave Treads, mage feet. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from WidowQueen; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "mage_ring_family_l10_unique",
+      "candidateDefinitionId": "gear_mage_ring_family_t10_unique",
+      "familyId": "mage_ring_family",
+      "name": "Unique_Mage_Grovepulse_Signet",
+      "baseName": "Grovepulse Signet",
+      "nameKey": "item.mage_ring_family_l10_unique.name",
+      "descriptionKey": "item.mage_ring_family_l10_unique.description",
+      "descriptionEnUS": "After a damaging spell hits an enemy, restore up to 3 MP to your existing mana pool. 15s shared mana cooldown. Does not stack with other Unique mana effects.",
+      "descriptionKoDev": "피해 마법을 적중하면, 기존 MP 풀에 MP3 회복 (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "mage",
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "power": 10.08,
+        "maxMana": 12.6
+      },
+      "statsAtEnhancement9": {
+        "power": 12.8016,
+        "maxMana": 12.6
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "mage_ring_family",
+      "effect": {
+        "effectId": "unique_mage_ring_family",
+        "kind": "mana",
+        "event": "skill_hit",
+        "conditions": {
+          "requiresMagicSkill": true,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "mana",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "flatMana": 3,
+        "requiresExistingManaPool": true,
+        "requiresMissingMana": true
+      },
+      "drop": {
+        "bossKind": "KingShaman",
+        "region": "Deepwood",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Mage_Grovepulse_Signet.png",
+        "reference": "generated-legendary-v1/Legendary_Mage_Aetherweave_Signet.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Grovepulse Signet, mage accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from KingShaman; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    },
+    {
+      "proposalId": "mage_pendant_family_l10_unique",
+      "candidateDefinitionId": "gear_mage_pendant_family_t10_unique",
+      "familyId": "mage_pendant_family",
+      "name": "Unique_Mage_Lastlight_Focus",
+      "baseName": "Lastlight Focus",
+      "nameKey": "item.mage_pendant_family_l10_unique.name",
+      "descriptionKey": "item.mage_pendant_family_l10_unique.description",
+      "descriptionEnUS": "After direct enemy damage lowers your HP from at least 50% to below 50%, restore up to 6 MP to your existing mana pool. 15s shared mana cooldown. Does not stack with other Unique mana effects.",
+      "descriptionKoDev": "직접 피격으로 HP가50% 이상에서50% 미만으로 내려가면, 기존 MP 풀에 MP6 회복 (공유 재발동 15초)",
+      "rarity": "Unique",
+      "classId": "mage",
+      "slot": "accessory",
+      "equipmentTier": 10,
+      "requiredLevel": 10,
+      "levelStatus": "comparison-fixture-only-not-rarity-minimum",
+      "stats": {
+        "maxMana": 25.2,
+        "health": 50.4
+      },
+      "statsAtEnhancement9": {
+        "maxMana": 25.2,
+        "health": 64.008
+      },
+      "enhancementSupported": true,
+      "baseBudgetRatio": 1.26,
+      "reservedEffectBudgetRatio": 0.14,
+      "setId": null,
+      "setPieceId": null,
+      "uniqueGroup": "mage_pendant_family",
+      "effect": {
+        "effectId": "unique_mage_pendant_family",
+        "kind": "mana",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "mana",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "flatMana": 6,
+        "requiresExistingManaPool": true,
+        "requiresMissingMana": true
+      },
+      "drop": {
+        "bossKind": "Veyr",
+        "region": "Haunted Graveyard",
+        "status": "target-boss-proposal-tier-mapping-pending",
+        "probability": null,
+        "enabled": false
+      },
+      "art": {
+        "status": "prompt-ready-not-generated",
+        "targetFile": "Unique_Mage_Lastlight_Focus.png",
+        "reference": "generated-legendary-v1/Legendary_Mage_Aetherweave_Pendant.png",
+        "prompt": "Create a UNIQUE fantasy inventory icon for Lastlight Focus, mage accessory. Derive the equipment type and class palette from the Legendary reference. One distinct boss-inspired centerpiece from Veyr; preserve a clear small-size silhouette and polished chunky 3D art. Keep the Knight sword blade perfectly straight, Mage headwear a cloth hood, Elf weapon a bow, Dwarf weapon an axe. True transparent background. No words, frame, human, fog or backdrop. Do not change equipment type. New individual asset only; do not overwrite the reference."
+      },
+      "status": "authored-proposal-not-runtime",
+      "runtimeEnabled": false
+    }
+  ]
+}

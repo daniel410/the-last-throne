@@ -1238,7 +1238,9 @@
     "generatedEpicIcons": 40,
     "generatedRareIcons": 40,
     "generatedLegendaryIcons": 40,
-    "totalGeneratedIcons": 120
+    "totalGeneratedIcons": 120,
+    "authoredUniqueProposals": 40,
+    "totalAuthoredStatProposals": 160
   },
   "runtimeImport": false,
   "variants": [
@@ -1340,18 +1342,22 @@
     {
       "proposalId": "common_head_l10_unique",
       "familyId": "common_head",
-      "name": "Unique_Wayfarer_Hood",
+      "name": "Unique_Quarrykeeper_Hood",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "head",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_head.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Wayfarer_Hood"
+      "assetName": "Unique_Quarrykeeper_Hood",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_head_l10_unique"
+      }
     },
     {
       "proposalId": "common_body_l10_common",
@@ -1451,18 +1457,22 @@
     {
       "proposalId": "common_body_l10_unique",
       "familyId": "common_body",
-      "name": "Unique_Wayfarer_Coat",
+      "name": "Unique_Hollowbark_Mantle",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "body",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_body.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Wayfarer_Coat"
+      "assetName": "Unique_Hollowbark_Mantle",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_body_l10_unique"
+      }
     },
     {
       "proposalId": "common_hands_l10_common",
@@ -1562,18 +1572,22 @@
     {
       "proposalId": "common_hands_l10_unique",
       "familyId": "common_hands",
-      "name": "Unique_Wayfarer_Gloves",
+      "name": "Unique_Ashforged_Grips",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "hands",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_hands.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Wayfarer_Gloves"
+      "assetName": "Unique_Ashforged_Grips",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_hands_l10_unique"
+      }
     },
     {
       "proposalId": "common_feet_l10_common",
@@ -1673,18 +1687,22 @@
     {
       "proposalId": "common_feet_l10_unique",
       "familyId": "common_feet",
-      "name": "Unique_Wayfarer_Boots",
+      "name": "Unique_Widowstep_Boots",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "feet",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_feet.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Wayfarer_Boots"
+      "assetName": "Unique_Widowstep_Boots",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_feet_l10_unique"
+      }
     },
     {
       "proposalId": "common_vigor_ring_l10_common",
@@ -1784,18 +1802,22 @@
     {
       "proposalId": "common_vigor_ring_l10_unique",
       "familyId": "common_vigor_ring",
-      "name": "Unique_Vigor_Ring",
+      "name": "Unique_Ogreheart_Ring",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_vigor_ring.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Vigor_Ring"
+      "assetName": "Unique_Ogreheart_Ring",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_vigor_ring_l10_unique"
+      }
     },
     {
       "proposalId": "common_ward_pendant_l10_common",
@@ -1895,18 +1917,22 @@
     {
       "proposalId": "common_ward_pendant_l10_unique",
       "familyId": "common_ward_pendant",
-      "name": "Unique_Ward_Pendant",
+      "name": "Unique_Glacier_Ward",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_ward_pendant.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Ward_Pendant"
+      "assetName": "Unique_Glacier_Ward",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_ward_pendant_l10_unique"
+      }
     },
     {
       "proposalId": "common_valor_ring_l10_common",
@@ -2006,18 +2032,22 @@
     {
       "proposalId": "common_valor_ring_l10_unique",
       "familyId": "common_valor_ring",
-      "name": "Unique_Valor_Ring",
+      "name": "Unique_Emberfang_Ring",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_valor_ring.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Valor_Ring"
+      "assetName": "Unique_Emberfang_Ring",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_valor_ring_l10_unique"
+      }
     },
     {
       "proposalId": "common_refuge_charm_l10_common",
@@ -2117,18 +2147,22 @@
     {
       "proposalId": "common_refuge_charm_l10_unique",
       "familyId": "common_refuge_charm",
-      "name": "Unique_Refuge_Charm",
+      "name": "Unique_Lastlight_Charm",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_refuge_charm.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Refuge_Charm"
+      "assetName": "Unique_Lastlight_Charm",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_refuge_charm_l10_unique"
+      }
     },
     {
       "proposalId": "knight_weapon_family_l10_common",
@@ -2228,18 +2262,22 @@
     {
       "proposalId": "knight_weapon_family_l10_unique",
       "familyId": "knight_weapon_family",
-      "name": "Unique_Knight_Oathguard_Sword",
+      "name": "Unique_Knight_Rootwardens_Oath",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "weapon",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_weapon_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Knight_Oathguard_Sword"
+      "assetName": "Unique_Knight_Rootwardens_Oath",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "knight_weapon_family_l10_unique"
+      }
     },
     {
       "proposalId": "knight_head_family_l10_common",
@@ -2339,18 +2377,22 @@
     {
       "proposalId": "knight_head_family_l10_unique",
       "familyId": "knight_head_family",
-      "name": "Unique_Knight_Oathguard_Headguard",
+      "name": "Unique_Knight_Glacierwatch_Helm",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "head",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_head_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Knight_Oathguard_Headguard"
+      "assetName": "Unique_Knight_Glacierwatch_Helm",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "knight_head_family_l10_unique"
+      }
     },
     {
       "proposalId": "knight_body_family_l10_common",
@@ -2450,18 +2492,22 @@
     {
       "proposalId": "knight_body_family_l10_unique",
       "familyId": "knight_body_family",
-      "name": "Unique_Knight_Oathguard_Vestments",
+      "name": "Unique_Knight_Hollowbark_Bulwark",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "body",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_body_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Knight_Oathguard_Vestments"
+      "assetName": "Unique_Knight_Hollowbark_Bulwark",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "knight_body_family_l10_unique"
+      }
     },
     {
       "proposalId": "knight_hands_family_l10_common",
@@ -2561,18 +2607,22 @@
     {
       "proposalId": "knight_hands_family_l10_unique",
       "familyId": "knight_hands_family",
-      "name": "Unique_Knight_Oathguard_Grips",
+      "name": "Unique_Knight_Ogregrip_Gauntlets",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "hands",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_hands_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Knight_Oathguard_Grips"
+      "assetName": "Unique_Knight_Ogregrip_Gauntlets",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "knight_hands_family_l10_unique"
+      }
     },
     {
       "proposalId": "knight_feet_family_l10_common",
@@ -2672,18 +2722,22 @@
     {
       "proposalId": "knight_feet_family_l10_unique",
       "familyId": "knight_feet_family",
-      "name": "Unique_Knight_Oathguard_Treads",
+      "name": "Unique_Knight_Citadel_Step",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "feet",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_feet_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Knight_Oathguard_Treads"
+      "assetName": "Unique_Knight_Citadel_Step",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "knight_feet_family_l10_unique"
+      }
     },
     {
       "proposalId": "knight_ring_family_l10_common",
@@ -2783,18 +2837,22 @@
     {
       "proposalId": "knight_ring_family_l10_unique",
       "familyId": "knight_ring_family",
-      "name": "Unique_Knight_Oathguard_Signet",
+      "name": "Unique_Knight_Lionheart_Signet",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_ring_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Knight_Oathguard_Signet"
+      "assetName": "Unique_Knight_Lionheart_Signet",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "knight_ring_family_l10_unique"
+      }
     },
     {
       "proposalId": "knight_pendant_family_l10_common",
@@ -2894,18 +2952,22 @@
     {
       "proposalId": "knight_pendant_family_l10_unique",
       "familyId": "knight_pendant_family",
-      "name": "Unique_Knight_Oathguard_Pendant",
+      "name": "Unique_Knight_Oathkeeper_Pendant",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_pendant_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Knight_Oathguard_Pendant"
+      "assetName": "Unique_Knight_Oathkeeper_Pendant",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "knight_pendant_family_l10_unique"
+      }
     },
     {
       "proposalId": "elf_weapon_family_l10_common",
@@ -3005,18 +3067,22 @@
     {
       "proposalId": "elf_weapon_family_l10_unique",
       "familyId": "elf_weapon_family",
-      "name": "Unique_Elf_Briarwatch_Bow",
+      "name": "Unique_Elf_Thornsong",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "weapon",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_weapon_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Elf_Briarwatch_Bow"
+      "assetName": "Unique_Elf_Thornsong",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "elf_weapon_family_l10_unique"
+      }
     },
     {
       "proposalId": "elf_head_family_l10_common",
@@ -3116,18 +3182,22 @@
     {
       "proposalId": "elf_head_family_l10_unique",
       "familyId": "elf_head_family",
-      "name": "Unique_Elf_Briarwatch_Headguard",
+      "name": "Unique_Elf_Widowwatch_Hood",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "head",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_head_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Elf_Briarwatch_Headguard"
+      "assetName": "Unique_Elf_Widowwatch_Hood",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "elf_head_family_l10_unique"
+      }
     },
     {
       "proposalId": "elf_body_family_l10_common",
@@ -3227,18 +3297,22 @@
     {
       "proposalId": "elf_body_family_l10_unique",
       "familyId": "elf_body_family",
-      "name": "Unique_Elf_Briarwatch_Vestments",
+      "name": "Unique_Elf_Hollowbark_Jerkin",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "body",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_body_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Elf_Briarwatch_Vestments"
+      "assetName": "Unique_Elf_Hollowbark_Jerkin",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "elf_body_family_l10_unique"
+      }
     },
     {
       "proposalId": "elf_hands_family_l10_common",
@@ -3338,18 +3412,22 @@
     {
       "proposalId": "elf_hands_family_l10_unique",
       "familyId": "elf_hands_family",
-      "name": "Unique_Elf_Briarwatch_Grips",
+      "name": "Unique_Elf_Emberflight_Grips",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "hands",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_hands_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Elf_Briarwatch_Grips"
+      "assetName": "Unique_Elf_Emberflight_Grips",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "elf_hands_family_l10_unique"
+      }
     },
     {
       "proposalId": "elf_feet_family_l10_common",
@@ -3449,18 +3527,22 @@
     {
       "proposalId": "elf_feet_family_l10_unique",
       "familyId": "elf_feet_family",
-      "name": "Unique_Elf_Briarwatch_Treads",
+      "name": "Unique_Elf_Silkstep_Treads",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "feet",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_feet_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Elf_Briarwatch_Treads"
+      "assetName": "Unique_Elf_Silkstep_Treads",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "elf_feet_family_l10_unique"
+      }
     },
     {
       "proposalId": "elf_ring_family_l10_common",
@@ -3560,18 +3642,22 @@
     {
       "proposalId": "elf_ring_family_l10_unique",
       "familyId": "elf_ring_family",
-      "name": "Unique_Elf_Briarwatch_Signet",
+      "name": "Unique_Elf_Thornmark_Signet",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_ring_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Elf_Briarwatch_Signet"
+      "assetName": "Unique_Elf_Thornmark_Signet",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "elf_ring_family_l10_unique"
+      }
     },
     {
       "proposalId": "elf_pendant_family_l10_common",
@@ -3671,18 +3757,22 @@
     {
       "proposalId": "elf_pendant_family_l10_unique",
       "familyId": "elf_pendant_family",
-      "name": "Unique_Elf_Briarwatch_Pendant",
+      "name": "Unique_Elf_Glacierleaf_Pendant",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "elf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/elf_pendant_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Elf_Briarwatch_Pendant"
+      "assetName": "Unique_Elf_Glacierleaf_Pendant",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "elf_pendant_family_l10_unique"
+      }
     },
     {
       "proposalId": "dwarf_weapon_family_l10_common",
@@ -3782,18 +3872,22 @@
     {
       "proposalId": "dwarf_weapon_family_l10_unique",
       "familyId": "dwarf_weapon_family",
-      "name": "Unique_Dwarf_Stonehearth_Axe",
+      "name": "Unique_Dwarf_Stonebreakers_Resolve",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "weapon",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_weapon_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Dwarf_Stonehearth_Axe"
+      "assetName": "Unique_Dwarf_Stonebreakers_Resolve",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "dwarf_weapon_family_l10_unique"
+      }
     },
     {
       "proposalId": "dwarf_head_family_l10_common",
@@ -3893,18 +3987,22 @@
     {
       "proposalId": "dwarf_head_family_l10_unique",
       "familyId": "dwarf_head_family",
-      "name": "Unique_Dwarf_Stonehearth_Headguard",
+      "name": "Unique_Dwarf_Quarryking_Helm",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "head",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_head_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Dwarf_Stonehearth_Headguard"
+      "assetName": "Unique_Dwarf_Quarryking_Helm",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "dwarf_head_family_l10_unique"
+      }
     },
     {
       "proposalId": "dwarf_body_family_l10_common",
@@ -4004,18 +4102,22 @@
     {
       "proposalId": "dwarf_body_family_l10_unique",
       "familyId": "dwarf_body_family",
-      "name": "Unique_Dwarf_Stonehearth_Vestments",
+      "name": "Unique_Dwarf_Caldera_Heartplate",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "body",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_body_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Dwarf_Stonehearth_Vestments"
+      "assetName": "Unique_Dwarf_Caldera_Heartplate",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "dwarf_body_family_l10_unique"
+      }
     },
     {
       "proposalId": "dwarf_hands_family_l10_common",
@@ -4115,18 +4217,22 @@
     {
       "proposalId": "dwarf_hands_family_l10_unique",
       "familyId": "dwarf_hands_family",
-      "name": "Unique_Dwarf_Stonehearth_Grips",
+      "name": "Unique_Dwarf_Cragbreaker_Grips",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "hands",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_hands_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Dwarf_Stonehearth_Grips"
+      "assetName": "Unique_Dwarf_Cragbreaker_Grips",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "dwarf_hands_family_l10_unique"
+      }
     },
     {
       "proposalId": "dwarf_feet_family_l10_common",
@@ -4226,18 +4332,22 @@
     {
       "proposalId": "dwarf_feet_family_l10_unique",
       "familyId": "dwarf_feet_family",
-      "name": "Unique_Dwarf_Stonehearth_Treads",
+      "name": "Unique_Dwarf_Glacieranchor_Boots",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "feet",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_feet_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Dwarf_Stonehearth_Treads"
+      "assetName": "Unique_Dwarf_Glacieranchor_Boots",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "dwarf_feet_family_l10_unique"
+      }
     },
     {
       "proposalId": "dwarf_ring_family_l10_common",
@@ -4337,18 +4447,22 @@
     {
       "proposalId": "dwarf_ring_family_l10_unique",
       "familyId": "dwarf_ring_family",
-      "name": "Unique_Dwarf_Stonehearth_Signet",
+      "name": "Unique_Dwarf_Forgeheart_Signet",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_ring_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Dwarf_Stonehearth_Signet"
+      "assetName": "Unique_Dwarf_Forgeheart_Signet",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "dwarf_ring_family_l10_unique"
+      }
     },
     {
       "proposalId": "dwarf_pendant_family_l10_common",
@@ -4448,18 +4562,22 @@
     {
       "proposalId": "dwarf_pendant_family_l10_unique",
       "familyId": "dwarf_pendant_family",
-      "name": "Unique_Dwarf_Stonehearth_Pendant",
+      "name": "Unique_Dwarf_Hollowstone_Pendant",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "dwarf",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/dwarf_pendant_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Dwarf_Stonehearth_Pendant"
+      "assetName": "Unique_Dwarf_Hollowstone_Pendant",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "dwarf_pendant_family_l10_unique"
+      }
     },
     {
       "proposalId": "mage_weapon_family_l10_common",
@@ -4559,18 +4677,22 @@
     {
       "proposalId": "mage_weapon_family_l10_unique",
       "familyId": "mage_weapon_family",
-      "name": "Unique_Mage_Aetherweave_Staff",
+      "name": "Unique_Mage_Groveheart_Staff",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "weapon",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_weapon_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Mage_Aetherweave_Staff"
+      "assetName": "Unique_Mage_Groveheart_Staff",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "mage_weapon_family_l10_unique"
+      }
     },
     {
       "proposalId": "mage_head_family_l10_common",
@@ -4670,18 +4792,22 @@
     {
       "proposalId": "mage_head_family_l10_unique",
       "familyId": "mage_head_family",
-      "name": "Unique_Mage_Aetherweave_Headguard",
+      "name": "Unique_Mage_Stillgrove_Hood",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "head",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_head_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Mage_Aetherweave_Headguard"
+      "assetName": "Unique_Mage_Stillgrove_Hood",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "mage_head_family_l10_unique"
+      }
     },
     {
       "proposalId": "mage_body_family_l10_common",
@@ -4781,18 +4907,22 @@
     {
       "proposalId": "mage_body_family_l10_unique",
       "familyId": "mage_body_family",
-      "name": "Unique_Mage_Aetherweave_Vestments",
+      "name": "Unique_Mage_Glacierveil_Robe",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "body",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_body_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Mage_Aetherweave_Vestments"
+      "assetName": "Unique_Mage_Glacierveil_Robe",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "mage_body_family_l10_unique"
+      }
     },
     {
       "proposalId": "mage_hands_family_l10_common",
@@ -4892,18 +5022,22 @@
     {
       "proposalId": "mage_hands_family_l10_unique",
       "familyId": "mage_hands_family",
-      "name": "Unique_Mage_Aetherweave_Grips",
+      "name": "Unique_Mage_Emberweave_Grips",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "hands",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_hands_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Mage_Aetherweave_Grips"
+      "assetName": "Unique_Mage_Emberweave_Grips",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "mage_hands_family_l10_unique"
+      }
     },
     {
       "proposalId": "mage_feet_family_l10_common",
@@ -5003,18 +5137,22 @@
     {
       "proposalId": "mage_feet_family_l10_unique",
       "familyId": "mage_feet_family",
-      "name": "Unique_Mage_Aetherweave_Treads",
+      "name": "Unique_Mage_Silkweave_Treads",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "feet",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_feet_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Mage_Aetherweave_Treads"
+      "assetName": "Unique_Mage_Silkweave_Treads",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "mage_feet_family_l10_unique"
+      }
     },
     {
       "proposalId": "mage_ring_family_l10_common",
@@ -5114,18 +5252,22 @@
     {
       "proposalId": "mage_ring_family_l10_unique",
       "familyId": "mage_ring_family",
-      "name": "Unique_Mage_Aetherweave_Signet",
+      "name": "Unique_Mage_Grovepulse_Signet",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_ring_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Mage_Aetherweave_Signet"
+      "assetName": "Unique_Mage_Grovepulse_Signet",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "mage_ring_family_l10_unique"
+      }
     },
     {
       "proposalId": "mage_pendant_family_l10_common",
@@ -5225,18 +5367,22 @@
     {
       "proposalId": "mage_pendant_family_l10_unique",
       "familyId": "mage_pendant_family",
-      "name": "Unique_Mage_Aetherweave_Pendant",
+      "name": "Unique_Mage_Lastlight_Focus",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": "mage",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/mage_pendant_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Mage_Aetherweave_Pendant"
+      "assetName": "Unique_Mage_Lastlight_Focus",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "mage_pendant_family_l10_unique"
+      }
     },
     {
       "proposalId": "knight_shield_family_l10_common",
@@ -5336,18 +5482,22 @@
     {
       "proposalId": "knight_shield_family_l10_unique",
       "familyId": "knight_shield_family",
-      "name": "Unique_Knight_Oathguard_Shield",
+      "name": "Unique_Knight_Throneward_Shield",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "offhand",
       "classId": "knight",
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/knight_shield_family.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Knight_Oathguard_Shield"
+      "assetName": "Unique_Knight_Throneward_Shield",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "knight_shield_family_l10_unique"
+      }
     },
     {
       "proposalId": "common_mana_ring_l10_common",
@@ -5447,18 +5597,22 @@
     {
       "proposalId": "common_mana_ring_l10_unique",
       "familyId": "common_mana_ring",
-      "name": "Unique_Mana_Ring",
+      "name": "Unique_Stillwater_Ring",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_mana_ring.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Mana_Ring"
+      "assetName": "Unique_Stillwater_Ring",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_mana_ring_l10_unique"
+      }
     },
     {
       "proposalId": "common_arcane_pendant_l10_common",
@@ -5558,18 +5712,22 @@
     {
       "proposalId": "common_arcane_pendant_l10_unique",
       "familyId": "common_arcane_pendant",
-      "name": "Unique_Arcane_Reservoir_Pendant",
+      "name": "Unique_Grovewell_Pendant",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_arcane_pendant.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Arcane_Reservoir_Pendant"
+      "assetName": "Unique_Grovewell_Pendant",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_arcane_pendant_l10_unique"
+      }
     },
     {
       "proposalId": "common_wellspring_charm_l10_common",
@@ -5669,18 +5827,22 @@
     {
       "proposalId": "common_wellspring_charm_l10_unique",
       "familyId": "common_wellspring_charm",
-      "name": "Unique_Wellspring_Charm",
+      "name": "Unique_Moonwell_Charm",
       "requiredLevel": 10,
       "rarity": "Unique",
       "slot": "accessory",
       "classId": null,
       "budgetRatio": 1.4,
-      "statsStatus": "not-authored-budget-only",
+      "statsStatus": "authored-trial-external-plan-not-runtime",
       "iconDraft": "icons/common_wellspring_charm.svg",
-      "uniqueEffectStatus": "requires-fixed-effect-design",
+      "uniqueEffectStatus": "authored-proposal-engine-pending",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Unique_Wellspring_Charm"
+      "assetName": "Unique_Moonwell_Charm",
+      "statsPlanRef": {
+        "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+        "proposalId": "common_wellspring_charm_l10_unique"
+      }
     }
   ],
   "namingConvention": "Rarity_ClassOptional_ItemName (English, underscores); stable runtime IDs are unchanged",
@@ -5688,5 +5850,10 @@
     "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
     "status": "authored-level10-trial-not-runtime",
     "itemCount": 120
+  },
+  "uniquePlan": {
+    "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
+    "count": 40,
+    "status": "40-unique-proposals-not-runtime-not-generated"
   }
 }

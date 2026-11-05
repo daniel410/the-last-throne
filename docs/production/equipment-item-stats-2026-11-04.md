@@ -193,3 +193,7 @@ MP는 Mage 및Lv20 첫 전직을 완료한 magic_archer Elf에게만 적용한�
 다음은 PLAN/QA의 부위별 현재 장비 대비·세트/비세트·4클래스×4모드×강화 0/5/9 전투 실험과ENG의 신규 필드 스키마·서버 집계·UI 동일계산이다. 1~4인/AI0 및 인원별 최대2/2/1/1 조건으로 처치시간·사망·보스/시간·강화 순소비·MP 회전율·이전 세대 교체를 측정한다. 기사 방패로 인한 추가 방어를 클래스 공정성 실험에 포함한다. 실측 전에는 동일 가중 예산을 동일 성능이라고 보고하지 않는다. 신규120정의·효과·드롭·저장·실기기 검증은 후속이며 이번에는 JSON/문서만 저장한다.
 
 검증 기록: `python3 scripts/validate_equipment_stats_plan.py` 및 `python3 scripts/validate_equipment_icon_assets.py` PASS. 새 문서 상대 링크/기존120아이콘 연결과 `git diff --check`도 PASS. 생성 당시 generation.json의 budget-only 상태는 당시 제작 이력이며 현재 시험 스탯의 원천은 이 문서/수치 JSON과 manifest.statsPlan이다.
+
+## 2026-11-05 Unique 확장
+
+[Unique40 개별 표](unique-equipment-plan-2026-11-05.md)를 별도 추가했다. 이 문서의120개 수치/세트는 보존하며 Unique는기본1.26+고정 효과 예산예약0.14의 비세트 시험안이다. MP/효과 비강화와 기존 안정ID를 유지한다.

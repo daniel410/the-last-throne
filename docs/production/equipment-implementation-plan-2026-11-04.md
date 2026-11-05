@@ -100,3 +100,7 @@ MP 보너스는 Mage와 첫 전직을 완료한 magic_archer Elf의 기존 MP �
 다음 담당은 PLAN/ENG의 **E01 첫 세대 정의표·스탯/레벨·ID 매핑 고정**이다. 근거는 [공식 자료 재확인](../research/2026-11-04-equipment-implementation-check.md), [장비 설계](hero-equipment-and-icon-plan-2026-11-04.md), [강화 계약](equipment-enhancement-v2-2026-11-03.md)이다. 구현 시점에는 현재 main·관련 미커밋 변경을 다시 확인하고 파일 소유 범위를 정한 뒤 시작한다.
 
 추가 산출물: [개별 능력치120종](equipment-item-stats-2026-11-04.md)과 [수치 JSON](../../assets/balance/equipment-stats-plan-2026-11-04.json)에 E01 시험값을 작성했다. 예산 가중치와 세트/마나 세부값은 전투 수용 전 제안이며 실제 카탈로그 등록은 대기한다.
+
+## 2026-11-05 Unique40 연결
+
+[Unique40 계획](unique-equipment-plan-2026-11-05.md)의 U01~U02(첫4무기·공유 효과 엔진)를 E03/E04와 연결한다. 개별 수치/효과/목표 보스와 영어 설명은 작성했고 이미지40종은 프롬프트만 준비했다. E05의 Unique 유효 풀을 채우려면 실제 효과·저장·보호 검증이 선행한다. 기존120종 및 Unique40종 합계160개는 제안 수이며 런타임 정의 수가 아니다.
