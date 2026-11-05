@@ -29,3 +29,7 @@ Retired forge equipment: 486 checks passed
 
 Luau compile: PASS (ItemCatalog, EconomyCatalog, EquipmentTransactions, AdventureText, EnhancementView).
 Studio/UI/DataStore/live-client/device acceptance unverified. Not published.
+
+Build 0.75.3: PASS; source 8b1ac6b7b2f86af39d6e4f57346dc1e4e0007d97.
+SHA256 17bfdaa691b67e8e474ed93d78b166f76da6434e799cc402fdc38d743cd2d4d8
+XML source identity: PASS for all 5 changed modules. Published=false, no release tag.
