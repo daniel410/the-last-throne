@@ -14,11 +14,13 @@ local packSizes={
  ['DW-Q1:marsh_slimes']=4,['DW-Q2:goblin_king']=6,['DW-Q3:quarry_slimes']=7,['DW-Q3:king_ogre']=8,['DW-Q4:enraged_warlord']=9,
 }
 function Balance.packSize(chapter,goal) return chapter.epic==3 and (chapter.side and 6 or math.min(9,chapter.number-10)) or chapter.epic==2 and (chapter.side and 5 or math.min(8,chapter.number-5)) or packSizes[chapter.id..':'..goal.id] or Balance.maxWaveSize end
-function Balance.expand(specs)
+function Balance.population(partySize) return 6+2*(math.max(1,math.min(4,partySize or 1))-1) end
+function Balance.packCapacity(chapter,goal,partySize) return math.min(12,Balance.packSize(chapter,goal)+(partySize or 1)-1) end
+function Balance.expand(specs,partySize)
  local result={}
  -- Interleave source units so later packs also contain mixed enemy roles.
- for index=1,Balance.density do for _,spec in ipairs(specs) do
-  local copies=Balance.isBoss(spec.kind) and 1 or Balance.density
+ for index=1,Balance.population(partySize) do for _,spec in ipairs(specs) do
+  local copies=Balance.isBoss(spec.kind) and 1 or Balance.population(partySize)
   if index<=copies then for _=1,spec.count do
    table.insert(result,{kind=spec.kind,level=spec.level,rewardCopies=copies,rewardIndex=index})
   end end
@@ -33,12 +35,18 @@ function Balance.waves(specs,packSize,reserved)
  for index,spec in ipairs(guards) do
   local n=math.floor((index-1)/capacity)+1;waves[n]=waves[n] or {};table.insert(waves[n],spec)
  end
- if boss then waves[1]=waves[1] or {};table.insert(waves[1],1,boss) end
+ if boss then table.insert(waves,{boss}) end
  return waves
 end
 -- Preserve each unit's original level/reward share while varying the first story.
-function Balance.encounterWaves(chapter,goal)
- local waves=Balance.waves(Balance.expand(goal.enemies),Balance.packSize(chapter,goal))
+function Balance.encounterWaves(chapter,goal,partySize)
+ -- Every authored reinforcement is a finite pre-boss wave. No adds after the boss.
+ local specs={}
+ for _,spec in ipairs(goal.enemies) do table.insert(specs,spec) end
+ for _,stage in ipairs(goal.bossEncounter and goal.bossEncounter.waves or {}) do
+  for _,spec in ipairs(stage.enemies) do table.insert(specs,spec) end
+ end
+ local waves=Balance.waves(Balance.expand(specs,partySize),Balance.packCapacity(chapter,goal,partySize),0)
  if chapter.id=='DW-01' then
   for n,batch in ipairs(waves) do for index,spec in ipairs(batch) do
    if n%4==2 or n%4==0 and index%2==0 then spec.kind='Slime' end
@@ -62,7 +70,7 @@ function Balance.stats(kind,level,partySize,mode,version)
  local party=(boss and {1,1.7,2.3,2.8} or {1,1.5,2,2.5})[partySize or 1]
  local health=(boss and 1000+level*100 or 100+level*25)*party*(boss and Balance.bossHealth or Balance.normalHealth)
  local damage=(boss and 28+level*2 or 10+level)*(boss and Balance.bossDamage or Balance.normalDamage)
- return math.floor(health+.5),math.floor(damage+.5)
+ return math.floor(health+.5),math.floor(damage*(1+.1*((partySize or 1)-1))+.5)
 end
 -- Elite adjustments share a single path with the runtime and entry preview.
 function Balance.unitStats(spec,partySize,mode,version,index)

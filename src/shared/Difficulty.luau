@@ -109,6 +109,6 @@ function D.stats(kind,level,partySize,boss,mode,version)
  end
  local hp=(boss and 1000+effective*100 or 100+effective*25)*party*(boss and m.bossHP or m.hp)*healthFactor
  local damage=(boss and 28+effective*2 or 10+effective)*(boss and m.bossDamage or m.damage)*family.damage
- return math.floor(hp+.5),math.floor(damage+.5),effective
+ return math.floor(hp+.5),math.floor(damage*(1+.1*(math.max(1,math.min(4,partySize or 1))-1))+.5),effective
 end
 return D

@@ -53,7 +53,7 @@ function Service.destination(player,heroId)
  if not options.world.spawns[c.zone]and options.prepareStory then options.prepareStory(c.id)end
  return options.world.spawns[c.zone]
 end
-local function enqueue(player,heroId,c,g,choice,stepId)
+local function enqueuePersonal(player,heroId,c,g,choice,stepId)
  queues[player]=queues[player] or {events={},keys={}}
  local q=queues[player];local key=heroId..':'..c.id..':'..g.id..':'..tostring(stepId)..':'..tostring(choice)
  if q.keys[key] then return end
@@ -61,7 +61,10 @@ local function enqueue(player,heroId,c,g,choice,stepId)
  if q.running then return end;q.running=true
  task.spawn(function()
   while player.Parent==Players and #q.events>0 do
-   local e=q.events[1];local before=state(player,e.heroId);local growthBefore=options.inventory.growth and options.inventory.growth(player,e.heroId);local reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId,e.runId)
+   local e=q.events[1];local before=state(player,e.heroId);local growthBefore=options.inventory.growth and options.inventory.growth(player,e.heroId);local currentRun=options.inventory.expedition(player,e.heroId)
+   local reason
+   if (currentRun and currentRun.runId)~=e.runId then reason='AdventureChanged'
+   else reason=options.inventory.storyEvent(player,e.heroId,e.c.id,e.g.id,e.choice,e.stepId,e.runId) end
    if reason=='Busy' or reason=='SaveUnknown' then
     publish(player,'Saving progress. Please wait; the same event will retry.');task.wait(1)
    elseif reason then
@@ -107,6 +110,14 @@ local function enqueue(player,heroId,c,g,choice,stepId)
   q.running=false
  end)
 end
+local partyStory=require(script.Parent.PartyStory).create({
+ players=function() return Players:GetPlayers() end,active=active,state=state,
+ run=function(p,id) return options.inventory.expedition(p,id) end,enqueue=enqueuePersonal,
+ available=Progress.available,canAccept=Progress.canAccept,
+})
+local function enqueue(player,heroId,c,g,choice,stepId)
+ partyStory.enqueue(player,heroId,c,g,choice,stepId)
+end
 local function eligible(player,c,g,radius,position)
  local ctx,root=context(player)
  if not ctx or not root or (root.Position-position).Magnitude>radius then return nil end
@@ -128,19 +139,6 @@ local function applyBalance(model,spec,partySize,difficulty,version,index)
  model:SetAttribute('StoryRewardXP',xp);model:SetAttribute('StoryRewardGold',gold);model:SetAttribute('StoryElite',elite)
 end
 local spawnWave
-local function reinforce(e,health)
- local profile=e.goal.bossEncounter;if not profile then return end
- e.reinforcements=e.reinforcements or {}
- for index,wave in ipairs(profile.waves) do
-  if health<=wave.health and not e.reinforcements[index] then
-   e.reinforcements[index]=true
-   local specs=Balance.expand(wave.enemies)
-   for _,batch in ipairs(Balance.waves(specs,e.packSize,1)) do table.insert(e.batches,batch) end
-   for player in pairs(e.participants) do publish(player,'Reinforcements are gathering. Clear the current guards before the next group arrives.') end
-  end
- end
- if e.guardsRemaining==0 and e.nextWave<=#e.batches then spawnWave(e) end
-end
 local function pillar(e,index)
  local p=Instance.new('Part');p.Name='TemporarySealPillar';p.Size=Vector3.new(4,9,4);p.Position=e.position+Vector3.new(index==1 and -22 or 22,3,0)
  p.Anchored=true;p.CanCollide=false;p.CanQuery=false;p.Color=Color3.fromRGB(160,70,220);p.Material=Enum.Material.Neon;p.Parent=options.world.folder
@@ -181,23 +179,21 @@ function Service.bossDamage(model,damage)
  end
  if kind=='InfernoOverlord' or kind=='WidowQueen' then
   if not e.phase2 and hp-damage<=max*.65 then
-   reinforce(e,.65);e.phase2=true;e.nextHazard=os.clock()+2;model:SetAttribute('StoryPhase',2)
-   for p in pairs(e.participants)do publish(p,kind=='WidowQueen' and 'The queen calls more spiders. Step away from the violet warning circles!' or 'The furnace is heating up. Step away from the orange warning circles!')end
+   e.phase2=true;e.nextHazard=os.clock()+2;model:SetAttribute('StoryPhase',2)
+   for p in pairs(e.participants)do publish(p,kind=='WidowQueen' and 'The queen spreads her venom. Step away from the violet warning circles!' or 'The furnace is heating up. Step away from the orange warning circles!')end
    return math.max(0,hp-max*.65)
   elseif not e.phase3 and hp-damage<=max*.30 then
-   reinforce(e,.30);e.phase3=true;model:SetAttribute('StoryPhase',3)
+   e.phase3=true;model:SetAttribute('StoryPhase',3)
    return math.max(0,hp-max*.30)
   end
  end
  if kind=='KingShaman' or kind=='Veyr' then
   if not e.phase2 and hp-damage<=max*.7 then
-   reinforce(e,.7)
    e.phase2=true;e.shield=true;e.pillars=2;model:SetAttribute('StoryShield',true);model:SetAttribute('StoryPhase',2)
    pillar(e,1);pillar(e,2)
    for p in pairs(e.participants) do publish(p,kind=='Veyr' and 'Veyr is shielded. Break both throne links, one at a time.' or 'King Shaman is shielded. Break both temporary pillars, one at a time.') end
    return math.max(0,hp-max*.7)
   elseif not e.phase3 and hp-damage<=max*.35 then
-   reinforce(e,.35)
    e.phase3=true;e.nextHazard=os.clock()+2;model:SetAttribute('StoryPhase',3)
    for p,heroId in pairs(e.participants) do
     local s=state(p,heroId)
@@ -209,7 +205,6 @@ function Service.bossDamage(model,damage)
    return math.max(0,hp-max*.35)
   end
  end
- reinforce(e,math.max(0,hp-damage)/max)
  return damage
 end
 local function floorHazard(e)
@@ -257,18 +252,16 @@ local function begin(player,node,automatic)
   if not e.participants[player] and n>=4 then publish(player,'This encounter already has four heroes. Wait for the next attempt.');return end
   e.participants[player]=ctx.heroId;publish(player,'Encounter joined. Defeat the remaining guards.');return end
  e={key=key,runId=run and run.runId,launchMission=run and run.missionId,difficultyId=run and run.difficultyId,rulesVersion=run and(run.balanceVersion or 1),chapter=c,goal=g,position=position,models={},participants={[player]=ctx.heroId},remaining=0,started=os.clock(),lastPresent=os.clock()};encounters[key]=e
- -- Eligible nearby allies can help through combat, protection or interaction.
+ -- Count admitted run members even while separated, downed or waiting for a save.
  local count=1
  for _,p in ipairs(Players:GetPlayers()) do if p~=player then
-  local ally=eligible(p,c,g,65,position)
-  local other=ally and options.inventory.expedition(p,ally.heroId)
+  local h=active(p)
+  local other=h and options.inventory.expedition(p,h.heroId)
+  local ally=other and e.runId and other.runId==e.runId and not h.training and h or eligible(p,c,g,65,position)
   if ally and count<4 and (other and other.runId or nil)==e.runId then e.participants[p]=ally.heroId;count=count+1 end
  end end
- e.partySize=count;e.packSize=Balance.packSize(c,g);e.batches=Balance.encounterWaves(c,g)
+ e.partySize=count;e.packSize=Balance.packCapacity(c,g,count);e.batches=Balance.encounterWaves(c,g,count)
  e.waveCount=#e.batches;e.wave=0;e.nextWave=1;e.guardsRemaining=0
- for _,stage in ipairs(g.bossEncounter and g.bossEncounter.waves or {}) do
-  e.waveCount=e.waveCount+#Balance.waves(Balance.expand(stage.enemies),e.packSize,1)
- end
  spawnWave(e)
  for ally in pairs(e.participants) do publish(ally,g.activity and g.activity.intro or 'Encounter started. Watch enemy attack warnings and use the open ground.') end
 end
@@ -328,11 +321,15 @@ function Service.defeated(model,_winner)
  local owned=false for _,m in ipairs(e.models) do if m==model then owned=true end end
  if not owned then return end
  e.dead=e.dead or {};e.dead[model]=true;e.remaining=e.remaining-1
- if model==e.boss then reinforce(e,0) else e.guardsRemaining=e.guardsRemaining-1 end
+ if model~=e.boss then e.guardsRemaining=e.guardsRemaining-1 end
  local complete=e.remaining==0 and e.nextWave>#e.batches and e.wave==e.waveCount
  -- Per-attempt kill XP is a server reward, distinct from the quest's fixed XP.
  for p,heroId in pairs(e.participants) do
-  local ctx=eligible(p,e.chapter,e.goal,100,e.position)
+  local h=active(p);local run=h and options.inventory.expedition(p,h.heroId)
+  local ctx
+  if e.runId then
+   if run and run.runId==e.runId then ctx=h end
+  else ctx=eligible(p,e.chapter,e.goal,100,e.position) end
   if ctx and ctx.heroId==heroId then
    local level=model:GetAttribute('StoryLevel') or 1;local multiplier=model:GetAttribute('StoryBoss') and 5 or 1
    options.inventory.awardXP(p,heroId,model:GetAttribute('StoryRewardXP') or (8+2*level)*multiplier,true,model:GetAttribute('StoryRewardGold') or (3+math.floor(level/2))*(model:GetAttribute('StoryBoss') and 10 or 1),e.runId,model:GetAttribute('StoryKillId'))
@@ -343,7 +340,7 @@ function Service.defeated(model,_winner)
   e.completed=true
   for p in pairs(e.participants) do publish(p,'The encounter is clear.') end
   task.delay(3,function() destroyEncounter(e) end)
- elseif e.guardsRemaining==0 and e.nextWave<=#e.batches then
+ elseif e.remaining==0 and e.nextWave<=#e.batches then
   spawnWave(e)
   for p in pairs(e.participants) do publish(p,'The next group is approaching. Watch their attack warnings!') end
  end
@@ -403,6 +400,7 @@ function Service.start(settings)
     end end end end
    end
   end
+  partyStory.replay()
   activities.update(tick);companion.update(tick)
  end)
  local elapsed=0

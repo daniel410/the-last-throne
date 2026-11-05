@@ -10,7 +10,7 @@ for kind in pairs(D.families)do for _,level in ipairs({5,12,30})do
   lastHP,lastDamage,lastLevel=hp,damage,effective
   for players=1,4 do
    local groupHP,groupDamage,groupLevel=D.stats(kind,level,players,B.isBoss(kind),mode)
-   check(groupHP>=hp and groupDamage==damage and groupLevel==effective,'party increases HP without damage inflation')
+   check(groupHP>=hp and groupDamage>=damage and groupLevel==effective,'party increases HP and damage')
   end
  end
 end end
@@ -39,7 +39,7 @@ for _,mode in ipairs(D.order)do for _,boss in ipairs({false,true})do
 end end
 for _,c in ipairs(C.chapters)do for _,mode in ipairs(D.order)do
  local solo=S.mission(c,mode,1);local party=S.mission(c,mode,4)
- check(solo.xp==party.xp and solo.gold==party.gold and solo.count==party.count,'party preserves personal reward amount')
+ check(solo.xp==party.xp and solo.gold==party.gold and solo.count<=party.count,'party preserves personal reward amount')
  check(party.health>=solo.health,'preview includes party health scaling')
  if solo.normal then check(solo.normal.levelMin>=D.modes[mode].level,'normal level floor shown')end
  if solo.boss then check(solo.boss.levelMin>=D.modes[mode].level,'boss level floor shown')end

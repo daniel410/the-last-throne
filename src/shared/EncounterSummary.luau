@@ -5,10 +5,7 @@ local S={}
 function S.mission(chapter,mode,players,version)
  local result={count=0,health=0,xp=0,gold=0,players=players or 1}
  for _,g in ipairs(chapter.goals)do
-  local groups=B.encounterWaves(chapter,g)
-  for _,wave in ipairs(g.bossEncounter and g.bossEncounter.waves or {})do
-   for _,batch in ipairs(B.waves(B.expand(wave.enemies),B.packSize(chapter,g),1))do table.insert(groups,batch)end
-  end
+  local groups=B.encounterWaves(chapter,g,players)
   for _,group in ipairs(groups)do for index,spec in ipairs(group)do
    local hp,damage,level=B.unitStats(spec,players or 1,mode,version,index)
    local xp,gold=B.rewards(spec,mode,version)

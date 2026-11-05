@@ -16,7 +16,7 @@ for _,c in ipairs(C.chapters) do for _,g in ipairs(c.goals) do
    end
   end
   check(total==counts[2] and total<=12,key..' finite full population')
-  check(g.activity.waves==1,'boss appears with guards; not a separate cleanup wave')
+  check(g.activity.waves==1,'authored activity remains one encounter; runtime schedules its finite waves')
   check(c.reward.xp==(c.id=='DW-05' and 247 or c.id=='DW-07' and 134 or 0),'fixed quest XP unchanged')
  else check(not g.bossEncounter,'ordinary field encounter unchanged') end
 end end
