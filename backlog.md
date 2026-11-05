@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> **2026-11-04 / TLT-003/005/057/084 · 0.73.2:** 기존 미커밋 모션·회피·무기·로비 TD 포탈 변경을 모두 포함한 단일 빌드. [소스/산출물 검증·한계](docs/evidence/changed-source-build-20261104/README.md). 로컬 빌드·미게시, Studio/실기기·실제 이동 수용 후속.
+
 > **2026-11-04 / TLT-003/057/084 · 0.73.1:** 사용자 지시로 로비·배틀 단일 빌드를 도입한다. Place ID로 역할을 자동 판별하며 `TheLastThrone-0.73.1.rbxlx` 하나를 두 Place에 각각 게시한다. [명령·검증·한계](docs/evidence/single-build-20261104/README.md). 미게시·실제 이동/기기 수용 후속.
 
 

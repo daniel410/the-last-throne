@@ -1,0 +1,29 @@
+{
+  "pass": true,
+  "sourceCommit": "3360af8ae95ee21a9529a810ea526a6366604b67",
+  "artifact": "builds/0.73.2/TheLastThrone-0.73.2.rbxlx",
+  "sha256": "0d7fff65a2cd82036b39af5eb220ba5a3c81cdc870b308ef136fc7735278e010",
+  "bytes": 13141552,
+  "changedRuntimeSourcesExact": [
+    "src/client/K0DwarfDiagonalClip.luau",
+    "src/client/K0MeleeMotion.luau",
+    "src/client/K0SwordVisual.luau",
+    "src/client/LobbyLandmarkVisuals.luau",
+    "src/server/Cosmetics/WeaponAppearance.luau",
+    "src/server/Network/ExpeditionService.luau",
+    "src/server/Network/TravelAttempt.luau",
+    "src/server/World/LobbyLandmarks.luau",
+    "src/shared/DodgeRules.luau",
+    "src/shared/ExpeditionConfig.luau",
+    "src/shared/LobbyText.luau"
+  ],
+  "dodgeChecks": 983,
+  "travelAttemptChecks": 8,
+  "placeRoleChecks": 10,
+  "arrivalLoadingChecks": 108,
+  "artifactRoleChecks": 10,
+  "artifactLoadingChecks": 108,
+  "projectMounts": "PASS",
+  "published": false,
+  "studioNativeTestsRun": false
+}

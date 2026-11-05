@@ -18,7 +18,10 @@
 - `python3 tests/single-build.spec.py`: 프로젝트 마운트/호환 사본 PASS.
 - `git diff --check`: PASS.
 - 빌드 명령: `python3 tools/build-game.py --source HEAD --record docs/evidence/changed-source-build-20261104/build.json`.
-- 산출물/소스 커밋/자산 해시는 빌드 후 `build.json`에 기록한다. 산출물 내부 변경 소스 일치는 빌드 후 별도 확인한다.
+- 실제 Rojo 빌드 PASS. 소스 커밋 `3360af8ae95ee21a9529a810ea526a6366604b67`. [빌드/LFS 기록](build.json) · [검증 기록](validation.json).
+- 산출물 `builds/0.73.2/TheLastThrone-0.73.2.rbxlx`: 13,141,552 bytes, SHA-256 `0d7fff65a2cd82036b39af5eb220ba5a3c81cdc870b308ef136fc7735278e010`.
+- 실제 XML에 변경 런타임 소스 11개가 커밋과 정확히 일치함을 확인했다. 미커밋 런타임 소스 없음.
+- `python3 tests/single-build.spec.py --artifact builds/0.73.2/TheLastThrone-0.73.2.rbxlx`: 조기/서버 모듈·설정 일치, 실제 산출물의 역할10/로딩108검사 PASS.
 - 이번 작업에서 Studio 네이티브 모션/무기 테스트·실제 렌더·실제 Experience 이동·실기기/4인+AI는 실행하지 않았다. 과거 로컬 로그를 이번 소스의 통과 증거로 사용하지 않는다.
 - Roblox 미게시·릴리스 태그 없음. 상위 구현 티켓의 수용 상태는 갱신하지 않는다.
 
