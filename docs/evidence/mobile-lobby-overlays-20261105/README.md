@@ -22,4 +22,8 @@
 - `lua tests/daily-login.spec.lua`:73 PASS. 보상/UTC/멱등 저장 계약 회귀.
 - `git diff --check`: PASS. 기존203785492 asset type 경고는 후보 로그에 남으며 이번 수정을 자산권한 성공으로 보고하지 않는다.
 
-고정 소스 빌드/검증 결과는 후속 기록에 추가한다. 실제 모바일 터치/클라이언트 렌더·사용자 최종 시각수용·게시된 계정 저장은 미검증이다. 엔진의 기하/상태검사를 실기기 화면수용으로 대신하지 않는다. 다음 담당 QA: 새 빌드에서 각 상세창 열기/닫기·PC선택보존·모바일 보상카드 가독성을 직접 확인한다. 부모 티켓 In Progress. Roblox 게시·릴리스 태그는 수행하지 않는다.
+고정 소스 `7df4d832e1ab1a38009d8af040882c123292ba1b`를 origin/main에 푸시하고 원격 SHA 일치를 확인했다. `python3 tools/build-game.py --source HEAD --record docs/evidence/mobile-lobby-overlays-20261105/build.json`으로 단일 Lobby/Battle 빌드 성공, 기존 LFS 입력 검증 성공·신규 LFS 자산 없음. 산출물 `builds/0.75.1/TheLastThrone-0.75.1.rbxlx`의 SHA-256은 `6bb563fd934ab67f0157b0a12c67b42d7b1027ff861824523b14463b3eb99570`로 실제 바이트를 재확인했다([빌드 기록](build.json)).
+
+고정 산출물에서 소스 주입 없이 `run-in-roblox --place builds/0.75.1/TheLastThrone-0.75.1.rbxlx --script /tmp/tlt-mobile-ui-fixed.luau`로 동일208검사를 재통과했다([로그](fixed-native.log)). `python3 tests/single-build.spec.py --artifact builds/0.75.1/TheLastThrone-0.75.1.rbxlx`도 실제 구성/마운트·역할10·도착로딩108 검사를 통과했다.
+
+ 실제 모바일 터치/클라이언트 렌더·사용자 최종 시각수용·게시된 계정 저장은 미검증이다. 엔진의 기하/상태검사를 실기기 화면수용으로 대신하지 않는다. 다음 담당 QA: 새 빌드에서 각 상세창 열기/닫기·PC선택보존·모바일 보상카드 가독성을 직접 확인한다. 부모 티켓 In Progress. Roblox 게시·릴리스 태그는 수행하지 않는다.
