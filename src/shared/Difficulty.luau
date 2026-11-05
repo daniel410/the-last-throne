@@ -15,7 +15,7 @@ D.modes={
 local Economy=game and require(script.Parent.RewardEconomy)or dofile('src/shared/RewardEconomy.luau')
 local Repeat=game and require(script.Parent.AdventureRepeatRewards)or dofile('src/shared/AdventureRepeatRewards.luau')
 D.families={
- Slime={hp=.8,damage=.8},Goblin={hp=1,damage=1},Orc={hp=1.1,damage=1},Shaman={hp=.85,damage=.9},Ogre={hp=1.35,damage=1.1},
+ Slime={hp=.8,damage=.8},Goblin={hp=1,damage=1},Orc={hp=2.2,damage=1},Shaman={hp=.85,damage=.9},Ogre={hp=2.7,damage=1.1},
  IceWolf={hp=.9,damage=1},IceTroll={hp=1.25,damage=1.1},IceBear={hp=1.3,damage=1.1},IceGolem={hp=1.4,damage=.95},IceElf={hp=.85,damage=1},
  Imp={hp=.85,damage=.9},Golem={hp=1.35,damage=1},VolcanoShaman={hp=.85,damage=1},LavaSlime={hp=.9,damage=.9},MagmaWorm={hp=1.2,damage=1.05},
  Warlord={hp=1,damage=1},GoblinKing={hp=.9,damage=1},KingOgre={hp=1.15,damage=1.05},EnragedWarlord={hp=1.1,damage=1.05},KingShaman={hp=.9,damage=1},

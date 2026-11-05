@@ -1,0 +1,16 @@
+$ lua /tmp/tlt-orc-ogre-hp-20261104/verify.lua
+Baseline differential: 5400 stat cases passed; training HP-only change passed
+Orc Lv5 Easy solo: 248 -> 495
+Ogre Lv5 Easy solo: 304 -> 608
+
+$ lua tests/difficulty-balance.spec.lua
+Difficulty balance: 2629 checks passed
+
+$ lua tests/deepwood-encounter-balance.spec.lua
+Deepwood encounter balance: 3111 checks passed; authored enemies 82 -> 467
+
+$ lua tests/difficulty-enhancement.spec.lua
+Difficulty/enhancement: 125 checks passed
+
+$ lua tests/k0-rules.spec.lua
+K0 rules: 125 checks passed

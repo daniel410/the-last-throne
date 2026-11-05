@@ -85,7 +85,7 @@ equal(allowed, false, "non-finite movement rejected")
 -- Orc's ordinary, blockable strike uses the same actual rules as Goblin/Ogre.
 -- These are pure decisions, not proof of real Player hits or animations.
 local orc = assert(Config.Enemy.Orc, "Orc combat preset missing; fallback is not allowed")
-equal(orc.health, 900, "Orc prototype health")
+equal(orc.health, 1800, "Orc prototype health")
 equal(orc.posture, 100, "Orc prototype posture")
 local orcAttack = assert(orc.attacks[1])
 equal(#orc.attacks, 1, "Orc has one authored ordinary melee attack")
