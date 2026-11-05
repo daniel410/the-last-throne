@@ -7,7 +7,7 @@ local Bounds=require(Shared.CampaignBounds)
 local K=require(script.Parent.EpicEnvironmentKit)
 local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
-local Art={version=4}
+local Art={version=5}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -79,18 +79,8 @@ local function terrainSite(parent,c,size,pal,theme,safe)
   local p=c+V(s*(size[1]/2+74),-35,-size[2]/2+i*size[2]/5)
   terrain:FillBall(p,74,mat)
  end end
- local cliff=Env.kit(m,'DeepCliff',c,100)
- -- A merged cliff skirt cannot be cut by Terrain carving. Keep its top below
- -- lower neighboring approaches so it cannot mask an ascending road.
- local skirtTop=c.Y
- for _,edge in ipairs(Access.edges)do
-  local other=edge[1]==parent.Name and edge[2]or edge[2]==parent.Name and edge[1]
-  if other then local y=Content.zones[other].center[2];if y<c.Y then skirtTop=math.min(skirtTop,y-6)end end
- end
- Env.fit(cliff,V(c.X,skirtTop-37,c.Z),V(size[1]+112,74,size[2]+104));paletteKit(cliff,pal,theme)
- -- Merged TD geometry supplies irregular ledges and soil contours, not flat wedges.
- local top=Env.kit(m,'ContinuousTerrain',c,100)
- Env.fit(top,c-V(0,1.6,0),V(size[1]+(theme=='EmberCaldera'and 88 or 148),3.2,size[2]+138));paletteKit(top,pal,theme)
+ -- Fused TD meadow/cliff meshes span many disconnected islands. Terrain owns
+ -- this envelope so carving a lower approach cannot leave an overhead mesh slab.
  for _,s in ipairs({-1,1})do for i=0,3 do
   local p=c+V(s*(size[1]/2+125+(i%2)*42),-5,-size[2]/2+i*size[2]/3)
   local h=80+(i%3)*28
@@ -106,10 +96,10 @@ local function terrainSite(parent,c,size,pal,theme,safe)
  end end
  range(m,900)
 end
-local terrainRay=RaycastParams.new();terrainRay.FilterType=Enum.RaycastFilterType.Include;terrainRay.FilterDescendantsInstances={workspace.Terrain}
+local terrainRay=RaycastParams.new();terrainRay.FilterType=Enum.RaycastFilterType.Include
 local function ground(p)
- local hit=workspace:Raycast(p+V(0,180,0),V(0,-360,0),terrainRay)
- return hit and hit.Position.Y>p.Y-3 and hit.Position.Y<p.Y+70 and V(p.X,hit.Position.Y,p.Z)or p
+ local hit=workspace:Raycast(p+V(0,180,0),V(0,-480,0),terrainRay)
+ return hit and V(p.X,hit.Position.Y,p.Z) or p
 end
 local function tree(parent,p,h,pal,theme,hero)
  p=ground(p)
@@ -143,18 +133,8 @@ local function vegetation(parent,c,size,pal,theme,safe,rng)
    task.wait()
   end
  end
- -- Low, merged flower/fern/moss patches from the original TD Blender kit.
- if theme=='Deepwood'or theme=='Gloamwood'then
-  local patches=model(parent,'Understory')
-  for i=1,20 do
-   local p=c+V(rng:NextNumber(-size[1]*.45,size[1]*.45),.05,rng:NextNumber(-size[2]*.45,size[2]*.45))
-   if safe(p,13)then
-    local patch=Env.kit(patches,'BankVegetation',p,58+rng:NextNumber(0,20))
-    if theme=='Gloamwood'then paletteKit(patch,pal,theme)end
-   end
-  end
-  range(patches,170)
- end
+ -- BankVegetation is a material-fused scene, not an individual bush. Repeating
+ -- it on one pivot left disconnected foliage over roads and cut terrain.
  if theme=='Gloamwood'then
   for _,side in ipairs({-1,1})do for i=1,2 do
    local q=c+V(side*(size[1]/2-35),0,100-i*100)
@@ -168,10 +148,10 @@ local function vegetation(parent,c,size,pal,theme,safe,rng)
 end
 local function route(parent,a,b,width,pal,theme)
  local d=b-a;if d.Magnitude<.1 then return end
- local forward=V(d.X,0,d.Z).Unit;local normal=V(-forward.Z,0,forward.X);local prev=a
+ local forward=V(d.X,0,d.Z).Unit;local normal=V(-forward.Z,0,forward.X);local prev=ground(a)
  local n=math.max(2,math.ceil(d.Magnitude/16))
  for i=1,n do
-  local t=i/n;local q=a:Lerp(b,t)+normal*math.sin(t*math.pi)*math.sin(i*.32)*6
+  local t=i/n;local q=ground(a:Lerp(b,t)+normal*math.sin(t*math.pi)*math.sin(i*.32)*6)
   local p=K.part(parent,'WornCurvedRoute',V(width,.06,(q-prev).Magnitude+1),CFrame.lookAt((prev+q)/2+V(0,.04,0),q+V(0,.04,0)),pal.ground:Lerp(pal.trim,theme=='Deepwood'and .60 or (theme=='Gloamwood'or theme=='HauntedGraveyard')and .65 or .38),theme=='Deepwood'and Enum.Material.Sandstone or theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone)
   p.CastShadow=false;prev=q
  end
@@ -181,7 +161,10 @@ local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
  local north=c+V(0,0,-size[2]/2+12);local middle=c+V(22,0,0);local south=c+V(-20,0,size[2]/2-16)
  route(m,south,middle,24,pal,theme);route(m,middle,north,24,pal,theme)
  if chapter then for _,g in ipairs(chapter.goals)do
-  local p=vec(g.position);local onRoad=c+V(p.Z>c.Z and -10 or 14,0,p.Z-c.Z)
+  local p=vec(g.position)
+  -- Return/report goals in other regions already have their own local paths.
+  if math.abs(p.X-c.X)<=size[1]/2 and math.abs(p.Z-c.Z)<=size[2]/2 then
+  p=ground(p);local onRoad=c+V(p.Z>c.Z and -10 or 14,0,p.Z-c.Z)
   route(m,onRoad,p,10,pal,theme)
   if #g.enemies>0 and theme~='Deepwood'and theme~='Gloamwood'then
    -- Worn court stonework has no emission or gameplay markings.
@@ -191,11 +174,12 @@ local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
     local tile=K.part(m,'CourtFlagstone',V(12.6,.04,11.6),cf,col,theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone);tile.CastShadow=false
    end end
   end
- end end
+ end end end
  -- Scale-aware paving around interaction positions; quiet center for attack warnings.
  for i=1,38 do
   local p=c+V(rng:NextNumber(-size[1]*.45,size[1]*.45),.08,rng:NextNumber(-size[2]*.45,size[2]*.45))
   if safe(p,6)then
+   p=ground(p)
    if theme=='HauntedGraveyard'then Architecture.grave(m,p,pal,i%4==0 and 1 or 2)
    elseif theme=='EmberCaldera'then
     K.part(m,'BasaltRubble',V(7,2,5),CFrame.new(p)*CFrame.Angles(.1,i,.1),pal.rock,Enum.Material.Basalt,'Wedge')
@@ -205,7 +189,7 @@ local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
  if theme=='HauntedGraveyard'then
   for _,s in ipairs({-1,1})do for i=1,9 do
    local p=c+V(s*(size[1]/2-42),0,-size[2]/2+30+i*size[2]/11)
-   if safe(p,9)then Architecture.grave(m,p,pal,i%3==0 and 1 or 2)end
+   if safe(p,9)then Architecture.grave(m,ground(p),pal,i%3==0 and 1 or 2)end
   end end
  end
  range(m,450)
@@ -395,6 +379,15 @@ function Art.create(world,scope)
  for _,edge in ipairs(Access.edges)do connectGround(edge);task.wait()end
  cutScenicWater(plans)
  carve(world,Content,Access)
+ -- Ground against actual retained floors as well as carved Terrain, never scenery.
+ local floors={workspace.Terrain}
+ for _,p in ipairs(world.folder:GetDescendants())do
+  if p:IsA('BasePart') and p.CanCollide and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name=='Ground' or p.Name=='ForestBedrock' or p.Name=='TrailEmbankment' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_') or p.Name:match('^ConnectedPath_') or p.Name:match('^SnowTrail_') or p.Name:match('^CalderaTrail_'))then
+   table.insert(floors,p)
+  end
+ end
+ terrainRay.FilterDescendantsInstances=floors
+ terrainRay.RespectCanCollide=true
  for _,p in ipairs(plans)do
   vegetation(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng)
   floorDetails(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,Content.byId[p.id])

@@ -41,7 +41,20 @@ for i=1,#rendered,2 do
  end
 end
 assert(pairsChecked>0,'moving player keeps visible direct guidance')
-player:SetAttribute('TLTNavigationEnabled',false);task.wait(.1);assert(visible()==0,'option hides trail')
+-- World geometry may cover the entire line of sight; every active arrow has
+-- a matching depth-independent overlay, and hidden arrows must hide it too.
+local occluder=Instance.new('Part');occluder.Name='NavigationOccluder';occluder.Anchored=true
+occluder.Size=Vector3.new(200,6,200);occluder.Position=Vector3.new(0,12,0);occluder.Parent=field
+local function checkOverlay()
+ for _,p in ipairs(workspace.DeepwoodNavigation:GetChildren())do
+  local overlay=p:FindFirstChild('GuideOverlay')
+  assert(overlay and overlay:IsA('BoxHandleAdornment') and overlay.Adornee==p,'each chevron has an overlay')
+  assert(overlay.AlwaysOnTop and overlay.ZIndex>=0,'terrain cannot occlude the overlay')
+  assert(overlay.Transparency==p.Transparency,'overlay follows active/hidden state')
+ end
+end
+checkOverlay()
+player:SetAttribute('TLTNavigationEnabled',false);task.wait(.1);assert(visible()==0,'option hides trail');checkOverlay()
 player:SetAttribute('TLTNavigationEnabled',true);task.wait(.1);assert(visible()>0,'option restores trail')
 -- Story paths use persistent support outside TerrainBlockout after older roads
 -- have been disabled; goals can be much higher than the current floor.
@@ -53,10 +66,18 @@ assert(visible()>0,'story 4 support and a high destination still show navigation
 local projected=false
 for _,p in ipairs(workspace.DeepwoodNavigation:GetChildren())do if p.Transparency<1 and math.abs(p.Position.Y-.64)<.3 then projected=true;break end end
 assert(projected,'guide projects onto persistent story path')
-support:Destroy();task.wait(.2);assert(visible()>0,'guide remains visible while ground is not streamed')
+support:Destroy()
+-- Terrain must also be a navigation floor in every epic, not just named Parts.
+workspace.Terrain:FillBlock(CFrame.new(0,6,0),Vector3.new(160,8,160),Enum.Material.Grass)
+task.wait(.2)
+local onTerrain=false
+for _,p in ipairs(workspace.DeepwoodNavigation:GetChildren())do if p.Transparency<1 and p.Position.Y>9 then onTerrain=true end end
+assert(onTerrain,'arrows project onto smooth Terrain rather than underneath it');checkOverlay()
+workspace.Terrain:Clear();occluder:Destroy()
+task.wait(.2);assert(visible()>0,'guide remains visible while ground is not streamed')
 player:SetAttribute('TLTNavigationEnabled',false);task.wait(.1);assert(visible()==0,'settings also hide the fallback')
 player:SetAttribute('TLTNavigationEnabled',true);task.wait(.1);assert(visible()>0,'settings restore the fallback')
-nav.setTarget(nil);task.wait(.1);assert(visible()==0,'stale guide')
+nav.setTarget(nil);task.wait(.1);assert(visible()==0,'stale guide');checkOverlay()
 nav.setTarget(Vector3.new(6,3,0));player:SetAttribute('TLTRoute','Training');task.wait(.1);assert(visible()==0,'training guide')
 player:SetAttribute('TLTRoute',nil);human.Health=0;task.wait(.1);assert(visible()==0,'dead guide')
 local gui=Instance.new('Folder');gui.Name='PlayerGui';gui.Parent=player

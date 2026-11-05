@@ -114,10 +114,12 @@ local ok,err=xpcall(function()
  local meshes=0
  for _,p in ipairs(art:GetDescendants())do
   if p:IsA('BasePart')then check(not p.CanCollide and not p.CanQuery,'all route scenery non-physical')end
-  if p:IsA('MeshPart')then meshes+=1;check(p.MeshId~='','original reusable TD mesh')end
+  if p:IsA('MeshPart')then
+   check(not p.Name:match('^ContinuousTerrain_') and not p.Name:match('^BankVegetation_') and not p.Name:match('^DeepCliff_'),'no disconnected fused floor or understory islands '..p.Name)
+   meshes+=1;check(p.MeshId~='','original reusable TD mesh')end
  end
  report.siteParts=total;report.reusedMeshInstances=meshes
- check(art:GetAttribute('BuildComplete')==true and art:GetAttribute('ArtVersion')==4,'only fully generated v4 worlds are cached')
+ check(art:GetAttribute('BuildComplete')==true and art:GetAttribute('ArtVersion')==5,'only fully generated v5 worlds are cached')
  local count=#art:GetDescendants();require(Server.World.EpicWorldArt).create(world)
  check(#art:GetDescendants()==count,'idempotent rebuild')
  report.totalDescendants=count;report.pass=true
