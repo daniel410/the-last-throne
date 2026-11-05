@@ -1,0 +1,40 @@
+{
+  "version": "0.71.6",
+  "sourceCommit": "292e89065cb4e35b051bf416151ecd3da5d2d9eb",
+  "freeze": "/tmp/tlt-stat-0716",
+  "published": false,
+  "outputs": [
+    {
+      "role": "Lobby",
+      "command": [
+        "rojo",
+        "build",
+        "/tmp/tlt-stat-0716/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.71.6/TheLastThrone-Lobby-0.71.6.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-Lobby-0.71.6.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.71.6/TheLastThrone-Lobby-0.71.6.rbxlx",
+      "sha256": "d320daea36baec3de9875280015f3d677d6bbfeeacf2cfd5129f7129971787cb",
+      "bytes": 13114782
+    },
+    {
+      "role": "Battle",
+      "command": [
+        "rojo",
+        "build",
+        "/tmp/tlt-stat-0716/battle.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.71.6/TheLastThrone-Battle-0.71.6.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne-battle'\nBuilt project to TheLastThrone-Battle-0.71.6.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.71.6/TheLastThrone-Battle-0.71.6.rbxlx",
+      "sha256": "89397edc02a7c51720d8ed330747c47ce978610628af9a5b246aaa2758438b24",
+      "bytes": 13114784
+    }
+  ]
+}

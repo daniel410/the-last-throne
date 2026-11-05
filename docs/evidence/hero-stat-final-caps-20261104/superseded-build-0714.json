@@ -1,0 +1,21 @@
+{
+  "version": "0.71.4",
+  "sourceCommit": "bf30285728f6b018f07b397cf8599d9a037042e5",
+  "published": false,
+  "supersededBy": "0.71.6",
+  "reason": "User changed final speed caps to +100% attack / +30% movement before publication",
+  "outputs": [
+    {
+      "role": "Lobby",
+      "path": "builds/0.71.4/TheLastThrone-Lobby-0.71.4.rbxlx",
+      "sha256": "e262b2312cffa9d20b0768b8e147ae35bc37d7a86187ea169ffd5fc1394df547",
+      "status": "success"
+    },
+    {
+      "role": "Battle",
+      "path": "builds/0.71.4/TheLastThrone-Battle-0.71.4.rbxlx",
+      "sha256": "27a004bffddd23be3fb1d3c730edc405e78537aa566e8e02e971fb654c0a6c17",
+      "status": "success"
+    }
+  ]
+}
