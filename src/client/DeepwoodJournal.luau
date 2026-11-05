@@ -12,6 +12,7 @@ local MapState=require(script.Parent.DeepwoodMapState)
 local Gates=require(script.Parent.DeepwoodGates)
 local Settings=require(script.Parent.GameSettings)
 local Completion=require(RS.Shared.StoryCompletion)
+local Checkpoints=require(RS.Shared.CheckpointTravel)
 local Journal={}
 function Journal.guidance(current,target,origin)
  if not current or current.training or not target then return nil end
@@ -147,6 +148,10 @@ function Journal.start(hud)
     elseif c.side and g.id==c.quest.turnIn and c.quest.offerPosition and not c.quest.discoveryOnly then prompt.Enabled=false
     else prompt.Enabled=Progress.available(s,c,g) and (not g.activity or g.activity.mode=='dialogue' or g.activity.mode=='escort');if c.side and g.id==c.quest.turnIn then prompt.ActionText='Report';prompt.ObjectText=c.quest.giver end end
    end
+  end
+  local portals=world:FindFirstChild('StoryCheckpointPortals')
+  for _,prompt in ipairs(portals and portals:GetDescendants()or {})do
+   if prompt:IsA('ProximityPrompt')and prompt:GetAttribute('CheckpointTarget')then prompt.Enabled=Checkpoints.allowed(s,prompt:GetAttribute('CheckpointTarget'))~=nil end
   end
   local steps=world:FindFirstChild('AdventureActivities')
   for _,p in ipairs(steps and steps:GetChildren() or {}) do if p:IsA('BasePart') and p:GetAttribute('StepId') then

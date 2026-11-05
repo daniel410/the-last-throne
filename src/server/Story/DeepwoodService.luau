@@ -9,6 +9,8 @@ local Sizing=require(script.Parent.Parent.World.StoryMonsterSizing)
 local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
 local Text=require(ReplicatedStorage.Shared.K0Text)
 local Difficulty=require(ReplicatedStorage.Shared.Difficulty)
+local Checkpoints=require(ReplicatedStorage.Shared.CheckpointTravel)
+local travelCheckpoint
 local Service={}
 local offers={}
 local activities,access,companion
@@ -38,6 +40,7 @@ end
 local function publish(player,message,notice,completion)
  local h=active(player);if not h then return end
  local s=state(player,h.heroId);if not s then return end
+ require(script.Parent.Parent.World.StoryCheckpointPortal).ensure(options.world,s,function(p,id) Service.travelCheckpoint(p,id)end)
  local activityState,dialogue
  if activities then activityState,dialogue=activities.projection(player,h.heroId) end
  local offer=offers[player];local ctx,root=context(player)
@@ -87,6 +90,7 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
     end end end
     local complete=after and after.clears[e.c.id] and before and not before.clears[e.c.id]
     local transitionNotice
+    if Checkpoints.report(after) and not Checkpoints.report(before)then transitionNotice=Checkpoints.text.ready end
     local nextChapter=after and Content.mainChapters[after.main+1]
     if complete and not e.c.side and nextChapter and (nextChapter.epic or 1)~=(e.c.epic or 1)
      and after.expeditionMission==nextChapter.id and options.prepareStory then
@@ -345,6 +349,12 @@ function Service.defeated(model,_winner)
   for p in pairs(e.participants) do publish(p,'The next group is approaching. Watch their attack warnings!') end
  end
 end
+function Service.travelCheckpoint(player,id)
+ if not travelCheckpoint then return false end
+ local ok,target=travelCheckpoint(player,id)
+ publish(player,nil,ok and string.format(Checkpoints.text.arrived,target.title)or Checkpoints.text.unavailable)
+ return ok
+end
 local boundNodes=setmetatable({},{__mode='k'})
 function Service.refreshWorld()
  if companion then companion.refreshWorld()end
@@ -358,7 +368,17 @@ function Service.refreshWorld()
  end
 end
 function Service.start(settings)
- options=settings;remote=Instance.new('RemoteEvent');remote.Name='DeepwoodState';remote.Parent=ReplicatedStorage.Remotes
+ options=settings
+ travelCheckpoint=require(script.Parent.CheckpointTravelService).create({rules=Checkpoints,context=context,active=active,state=state,
+  ready=function(p)return p:GetAttribute('K0SessionPhase')=='Tutorial' and p:GetAttribute('TLTTravelLock')~=true and (not options.inventory.available or options.inventory.available(p))end,
+  pending=Service.hasPendingEvents,
+  inEncounter=function(p,id)for _,e in pairs(encounters)do if not e.completed and e.participants[p]==id then return true end end;return false end,
+  destination=function(target)
+   local spawn=options.world.spawns[target.zone];if not spawn then return nil end
+   return target.position and CFrame.new(Vector3.new(table.unpack(target.position))+Vector3.new(0,4,6))or spawn.CFrame+Vector3.new(0,4,0)
+  end,relocate=function(p,pivot)return options.combat.relocateForStoryGate(p,pivot)end,
+ })
+ remote=Instance.new('RemoteEvent');remote.Name='DeepwoodState';remote.Parent=ReplicatedStorage.Remotes
  activities=require(script.Parent.DeepwoodActivities).create({active=active,context=context,state=state,world=options.world,enemies=options.enemies,enqueue=enqueue,publish=publish})
  companion=require(script.Parent.SeleneCompanion).create({frameDriven=true,active=active,context=context,state=state,world=options.world,enemies=options.enemies,combat=options.combat,publish=publish,activate=options.inventory.activateSupport,passState=options.inventory.supportState,phase=function(p)return p:GetAttribute('K0SessionPhase')end,notice=function(p,message)publish(p,nil,message)end,
   select=function(player,heroId,following) enqueue(player,heroId,Content.byId['DW-03'],{id='@selene'},following) end})
@@ -371,6 +391,7 @@ function Service.start(settings)
   if action=='AcceptQuest' and argument and #argument<=16 then Service.acceptQuest(player,argument)
   elseif action=='LaterQuest' and offers[player] and offers[player].node.chapter.id==argument then offers[player]=nil;publish(player)
   elseif action=='Answer' and argument and #argument<=160 then activities.answer(player,argument)
+  elseif action=='TravelCheckpoint' and argument and #argument<=32 then Service.travelCheckpoint(player,argument)
   elseif action=='GetState' and argument==nil then publish(player)
   elseif action=='Retry' and argument==nil then
    local ctx=context(player);if ctx then options.heroSession.restartAdventure(player) end

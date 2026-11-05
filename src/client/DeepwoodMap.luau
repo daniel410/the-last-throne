@@ -9,6 +9,7 @@ local Access=require(Shared.CampaignAccess)
 local State=require(script.Parent.DeepwoodMapState)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
 local Scope=require(Shared.CampaignMapScope)
+local Checkpoints=require(Shared.CheckpointTravel)
 local Map={}
 function Map.start(button)
  local player=Players.LocalPlayer
@@ -21,7 +22,7 @@ function Map.start(button)
  local area=Instance.new('ScrollingFrame');area.Name='Atlas';area.Position=UDim2.fromOffset(18,96);area.Size=UDim2.new(1,-36,1,-232)
  area.BackgroundColor3=Color3.fromRGB(16,33,34);area.BorderSizePixel=0;area.ClipsDescendants=true;area.ScrollBarThickness=4;area.ScrollBarImageColor3=Theme.color.gold;area.Parent=panel
  local scene=Instance.new('Frame');scene.Name='Cartography';scene.BackgroundTransparency=1;scene.BorderSizePixel=0;scene.Parent=area
- local selected
+ local selected,travelTarget,updateTravel,layout
  local detail=Theme.label(panel,'RegionDetail',Text.Map.Ready,UDim2.new(0,24,1,-130),UDim2.new(1,-48,0,34),12,Theme.color.gold)
  local function describe(id)
   selected=id;local z=Content.zones[id];local journal=State.current and State.current.journal
@@ -31,6 +32,7 @@ function Map.start(button)
    message=string.format(Text.Map.Unlock,previous and previous.title or Text.Map.Title)
   elseif journal and journal.explored and journal.explored[id] then message=Text.Map.Ready end
   detail.Text=string.format(Text.Map.Detail,z.name,message)
+  if updateTravel then updateTravel();if layout then layout()end end
  end
  local epic=1
  local atlas=Canvas.create(scene,Scope.ids(epic),false,describe)
@@ -57,8 +59,21 @@ function Map.start(button)
  local plus=Theme.button(panel,'ZoomIn',Text.Map.ZoomIn,UDim2.new(1,-192,1,-52),UDim2.fromOffset(44,40))
  local fit=Theme.button(panel,'Fit',Text.Map.Fit,UDim2.new(1,-144,1,-52),UDim2.fromOffset(58,40))
  local you=Theme.button(panel,'Center',Text.Map.Center,UDim2.new(1,-82,1,-52),UDim2.fromOffset(64,40))
+ local travel=Theme.button(panel,'TravelCheckpoint','',UDim2.new(.55,0,1,-136),UDim2.new(.45,-24,0,40),true)
+ travel.Visible=false
+ updateTravel=function()
+  travelTarget=State.current and not State.current.training and Checkpoints.preferred(State.current.journal,selected)
+  travel.Visible=travelTarget~=nil and travelTarget~=false
+  travel.Caption.Text=travelTarget and string.format(Checkpoints.text.button,travelTarget.title)or ''
+  travel.Caption.TextSize=11
+ end
+ travel.Activated:Connect(function()
+  if not travelTarget then return end
+  game:GetService('ReplicatedStorage'):WaitForChild('Remotes'):WaitForChild('DeepwoodRequest'):FireServer('TravelCheckpoint',travelTarget.id)
+  panel.Visible=false;player:SetAttribute('TLTMapOpen',false)
+ end)
  local zoom=1;local overview=false;local previousSize
- local function layout()
+ layout=function()
   local camera=workspace.CurrentCamera;if not camera then return end
   local viewport=gui.AbsoluteSize
   panel.Size=UDim2.fromOffset(math.min(1100,viewport.X-24),math.min(900,viewport.Y-24))
@@ -73,8 +88,12 @@ function Map.start(button)
   area.Position=UDim2.fromOffset(18,mapTop)
   journey.Position=UDim2.new(1,-214,0,mapTop);journey.Size=UDim2.new(0,196,1,-284)
   compass.Position=UDim2.new(1,journey.Visible and -285 or -72,0,mapTop+22)
-  area.Size=UDim2.new(1,journey.Visible and -250 or -36,1,short and -196 or small and -332 or -284)
+  area.Size=UDim2.new(1,journey.Visible and -250 or -36,1,short and -212 or small and -332 or -284)
   detail.Position=UDim2.new(0,24,1,short and -82 or small and -178 or -130);detail.Size=UDim2.new(1,-48,0,short and 26 or 34)
+  detail.Visible=not (travel.Visible and (small or short))
+  detail.Size=UDim2.new(travel.Visible and .55 or 1,-48,0,short and 26 or 34)
+  travel.Position=UDim2.new((small or short)and 0 or .55,(small or short)and 18 or 0,1,short and -98 or small and -184 or -136)
+  travel.Size=UDim2.new((small or short)and 1 or .45,(small or short)and -36 or -24,0,40)
   legend.Visible=not short
   legend.Position=UDim2.new(0,24,1,small and -144 or -94);hint.Position=UDim2.new(0,24,1,small and -126 or -73)
   local stacked=small and not short
@@ -167,7 +186,7 @@ function Map.start(button)
  local function open(value)
   value=value and State.current and not State.current.training and player:GetAttribute('K0SessionPhase')=='Tutorial'
   panel.Visible=value==true;player:SetAttribute('TLTMapOpen',panel.Visible)
-  if panel.Visible then selectEpic(playerEpic());layout() end
+  if panel.Visible then selectEpic(playerEpic());updateTravel();layout() end
  end
  if button then button.Activated:Connect(function() open(not panel.Visible) end) end
  close.Activated:Connect(function() open(false) end)
@@ -186,6 +205,7 @@ function Map.start(button)
   if lastRevision~=State.revision then
    lastRevision=State.revision;refreshEpic()
    if selected then describe(selected) end
+   updateTravel();layout()
   end
  end)
  controller={open=open,atlas=atlas,panel=panel,setZoom=setZoom,fit=fitMap,center=centerPlayer,selectEpic=selectEpic}
