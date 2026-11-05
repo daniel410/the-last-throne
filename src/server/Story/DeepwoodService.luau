@@ -113,7 +113,7 @@ end
 local partyStory=require(script.Parent.PartyStory).create({
  players=function() return Players:GetPlayers() end,active=active,state=state,
  run=function(p,id) return options.inventory.expedition(p,id) end,enqueue=enqueuePersonal,
- available=Progress.available,canAccept=Progress.canAccept,
+ available=Progress.available,canAccept=Progress.canAccept,collected=Progress.collected,
 })
 local function enqueue(player,heroId,c,g,choice,stepId)
  partyStory.enqueue(player,heroId,c,g,choice,stepId)

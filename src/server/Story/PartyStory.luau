@@ -6,6 +6,11 @@ function PartyStory.create(o)
  local api={}
  local function deliver(player,heroId,c,g,choice,stepId)
   local s=o.state(player,heroId)
+  if s and stepId and o.collected then
+   for index,step in ipairs(g.activity and g.activity.steps or {}) do
+    if step.id==stepId and o.collected(s,c,g,index) then return end
+   end
+  end
   if s and (g.id=='@accept' and o.canAccept(s,c) or g.id~='@accept' and o.available(s,c,g)) then
    o.enqueue(player,heroId,c,g,choice,stepId)
   end

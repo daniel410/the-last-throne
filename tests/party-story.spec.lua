@@ -7,7 +7,7 @@ local players={1,2,3,4,5};local journals,runs,events={},{},{}
 for _,p in ipairs(players)do journals[p]=P.new();runs[p]={runId=p==5 and 'other' or 'party'}end
 local fail=false
 local party=Party.create({players=function()return players end,active=function(p)return {heroId=tostring(p)}end,
- run=function(p)return runs[p]end,state=function(p)return journals[p]end,available=P.available,canAccept=P.canAccept,
+ run=function(p)return runs[p]end,state=function(p)return journals[p]end,available=P.available,canAccept=P.canAccept,collected=P.collected,
  enqueue=function(p,h,c,g,choice,step)
   if p==2 and fail then return end
   local nextState,err=P.apply(journals[p],c.id,g.id,choice,step);assert(nextState,err)
@@ -16,7 +16,10 @@ local party=Party.create({players=function()return players end,active=function(p
 local c=C.byId['DW-01']
 for _,g in ipairs(c.goals)do if not g.optional then
  local steps=g.activity and g.activity.steps
- if steps then for _,step in ipairs(steps)do party.enqueue(1,'1',c,g,step.choices and step.choices[1].id,step.id)end
+ if steps then for _,step in ipairs(steps)do
+  party.enqueue(1,'1',c,g,step.choices and step.choices[1].id,step.id)
+  local before=events[1];party.replay();check(events[1]==before,'saved substep is not queued again while later steps are pending')
+ end
  else party.enqueue(1,'1',c,g)end
 end end
 for p=1,4 do check(journals[p].clears[c.id],'one player completes entire story for all four members')end

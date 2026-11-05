@@ -19,7 +19,7 @@ AI는 인간 인원에 포함하지 않는다. 보스는 복제하지 않고 개
 
 검증:
 
-- `lua tests/party-story.spec.lua`: 2,758개 통과. 실제 진행 reducer로 1명 조작→4명 스토리 완료·타 원정 격리·중복 재전달·저장 실패/늦은 합류/원정 교체, 전체 캠페인 웨이브 최종 보스·인원별 보상 예산.
+- `lua tests/party-story.spec.lua`: 2,765개 통과. 실제 진행 reducer로 1명 조작→4명 스토리 완료·타 원정 격리·중복 재전달·저장 실패/늦은 합류/원정 교체, 전체 캠페인 웨이브 최종 보스·인원별 보상 예산.
 - `lua tests/deepwood-encounter-balance.spec.lua`: 3,116개 통과.
 - `lua tests/difficulty-balance.spec.lua`: 2,637개 통과.
 - 보스96, 스토리 연속 진행1,017, 지역 인계52, 진행570, 난이도/강화125, 원정 표시17, 첫 스토리57, 퀘스트31, 완료356, 원정 저장43개 회귀 통과.
@@ -27,3 +27,14 @@ AI는 인간 인원에 포함하지 않는다. 보스는 복제하지 않고 개
 - `tests/party-encounter-native.luau`의 격리 서버 경로 시험을 시도했지만 Studio Assistant가 기존 `DeepwoodProgress`의 `Capabilities: Network` require를 거부하여 **Blocked**. 게임 시작·실제4인 입력/저장 수용으로 보고하지 않는다. 테스트는 임시 ServerStorage 폴더에서 fake Player/계정/적 리그를 사용하는 조건이다.
 
 미검증: 실제2~4인 Roblox 클라이언트, 서버 종료/다중 계정 실제 DataStore, 전투 도중 합류/이탈,4인+AI 기기 부하/최종 밸런스, 사용자 수용. 기존 미커밋 이동/무기/회피 작업은 이번 커밋·빌드에 포함하지 않는다. TD 코드·잔액·상품은 변경하지 않는다. 다음 담당 QA: 같은 원정의 분산된 파티원·다운된 파티원·NPC 보고/선택/호위/보스 기둥·지역 전환을 실제 다인으로 확인한다. 부모 티켓은 In Progress로 유지한다.
+
+## 고정 소스 빌드
+
+Rojo 7.7.1 / 별도 `/tmp/tlt-party-story-0710` worktree에서 기존 미커밋 변경을 제외해 빌드한다. 빌드는 파일 생성 증거이며 Studio 시작/게시 성공과 구별한다. 이번 작업은 Roblox 게시나 정식 릴리스가 아니므로 태그를 만들지 않는다.
+
+초기 0.71.0 입력 `70f4494b0088d046495890cd7508ef85c52f2503`의 Lobby/Battle 빌드 성공. 이후 이미 저장된 활동 하위 단계를 재전달 때 큐에 다시 넣지 않도록 보완하고 회귀7개를 추가했다. 이 보완 빌드는0.71.1로 분리하며0.71.0 결과물을 덮어쓰지 않는다.
+
+| 버전 | 산출물 | SHA-256 |
+| --- | --- | --- |
+| 0.71.0 | `builds/0.71.0/TheLastThrone-Lobby-0.71.0.rbxlx` | `7917c3dcbb05332ff5709a889d53bc68bce255578977fc708abcde28818ed57a` |
+| 0.71.0 | `builds/0.71.0/TheLastThrone-Battle-0.71.0.rbxlx` | `cc2dfd96f53c9a5967090de496266c30fb0005c5e2efbdc61f2e9714ae36f79d` |
