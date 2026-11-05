@@ -1,0 +1,45 @@
+{
+  "version": "0.70.0",
+  "sourceCommit": "6b8cb3ec1643e0649c38c8927e5ef9e7dfa1534d",
+  "universeId": 10773575153,
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": 24,
+      "publishedAtLocal": "2026-11-04 19:52 America/Toronto",
+      "previousPublishedVersion": 23,
+      "file": "builds/0.70.0/TheLastThrone-Lobby-0.70.0.rbxlx",
+      "sha256": "f4630db96b58d84f7508a8da891799e741cb2ba5555e6e95cfb2f56ba4c85fea",
+      "studioState": "PublishSuccessful / ready to test",
+      "dashboardShowPublishedOnly": true,
+      "dashboardUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/70829337938054/version-history",
+      "scriptAssetUpload429Count": 264
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": 10,
+      "publishedAtLocal": "2026-11-04 19:54 America/Toronto",
+      "previousPublishedVersion": 9,
+      "file": "builds/0.70.0/TheLastThrone-Battle-0.70.0.rbxlx",
+      "sha256": "26b45081797a6ea6f4c44f12d079889e7af0daf71e320401efca53c4399c8002",
+      "studioState": "PublishSuccessful / ready to test",
+      "dashboardShowPublishedOnly": true,
+      "dashboardUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history",
+      "scriptAssetUpload429Count": 264
+    }
+  ],
+  "publishMethod": "Studio Publish As -> existing Place -> Overwrite -> Grant Permissions and Publish",
+  "audience": "existing private / collaborators and early testers; no audience settings changed",
+  "releaseTag": "v0.70.0",
+  "remoteBytesCompared": false,
+  "publishedClientPlaytest": "not run",
+  "deviceAndMultiplayerAcceptance": "not run",
+  "studioModuleQa": "previously blocked by Network capability; not bypassed",
+  "notes": [
+    "Tool uploads do not support rbxlx Place binaries; used native Studio publish workflow.",
+    "Per-asset permission dialog did not enumerate IDs; actual permission list not verified.",
+    "Studio game.PlaceVersion remained 0 on the local publishing document; release versions are verified from Creator Dashboard Show published only."
+  ]
+}

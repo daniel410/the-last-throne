@@ -1,5 +1,7 @@
 # 전체 공격·스킬 PixelFX 연결
 
+> **후속 게시 · 2026-11-04:** 사용자 ‘게시해줘’ 요청에 따라 같은0.70.0 고정 빌드를 기존 RPG Lobby24/Battle10에 게시했다. Creator Dashboard의 Show published only로 확인했다. 아래 로컬 구현/차단 기록은 당시 검증 이력이며, 게시가 네이티브/실기기 검증 완료를 뜻하지 않는다. [게시 상세](publish.json) · [스크립트 업로드 진단](publish-diagnostics.log).
+
 2026-11-04 · TLT-005/032/033/055/057/084 · ENG/ART 자체 검증 → QA/DES
 
 사용자가 PixelFX를 전체 공격/스킬에 적용하도록 요청했다. 기존 [도입 검토](../../research/2026-11-04-pixelfx-review.md)의 샘플을 게임용20종으로 확장해 네 영웅 기본 공격·128스킬, Selene 지원3행동, 몬스터 공격 방출/플레이어 확정 피격에 연결했다. **로컬 소스 구현이며 실제 화면/실기기/최종 미술 수용은 아직 아니다.** 피해·기술 정의·MP·쿨다운·해금·보상/저장·TD 소스/권리는 변경하지 않았다.
@@ -63,3 +65,13 @@ QA/DES: Network 권한 후 네이티브 fixture →20자산 실제 로드/320프
 소스 `6b8cb3ec1643e0649c38c8927e5ef9e7dfa1534d`를 커밋·푸시하고 같은 소스에서0.70.0 Lobby/Battle Rojo 빌드가 모두 성공했다. [build.json](build.json)에 버전/소스/명령/경로/바이트/해시를 보존한다. [pinned-checks.log](pinned-checks.log)는 고정 소스의 CPU12,612검사, 빌드SHA256 및 각 Place의 신규4모듈/자산ID20개 포함 검사를 기록한다. 원격 main과 소스 커밋 일치·LFS21/21(효과20+시안1,1.7MB) 전송 성공을 확인했다. 이후 증거 커밋은 빌드 입력 소스와 구분한다.
 
 자체 Studio 검토 Place는 Don't Save로 닫았고 시작 화면으로 돌아갔다. 임시 변경/자동 복구 파일을 실제 게임 빌드에 저장하지 않았다. 새0.70.0 파일도 Studio 실행 검증/게임 게시/릴리스 태그로 보고하지 않는다. Network 권한 응답과 실제 렌더 검증은 남아 있다.
+
+## 사용자 요청에 따른 게시
+
+2026-11-04 19:52/19:54 America/Toronto에 기존 Experience `10773575153`의 Lobby `70829337938054` / Battle `129388473517823`를 각각 교체 게시했다. 두 로컬 산출물의 SHA256을 게시 전후 확인했고 원래 빌드 기록과 일치한다. 새 빌드/미커밋 파일 반영은 하지 않았다.
+
+Studio의 자산 사용 권한 안내에서 Grant Permissions and Publish를 적용하고, 양쪽 Manage Audience의 ‘ready to test’와 기존 협업자/초기 테스터 대상 접근 범위를 확인했다. 공개 출시/테스터 초대/TD Place 변경은 하지 않았다. Creator Dashboard의 **Show published only**를 켜 Lobby24(19:52)와Battle10(19:54)를 직접 확인했다. 이전 게시본은Lobby23/Battle9이며 문제가 생기면 Dashboard에서 해당 버전을 복원한 뒤 Studio에서 게시한다.
+
+두 Studio 로그의 `Go to PublishSuccessful`을 확인했다. 별도로 `Commit Failure: Publish Assets — HTTP429` 경고가 있어 [진단 로그](publish-diagnostics.log)에 해당 줄만 보존한다. 게시 이력과 개별 스크립트 자산 업로드 완결은 구분한다. 원격 Place 바이트 일치·새 효과의 실제 클라이언트 로드·Teleport·모바일/다인 동작은 이번 게시 요청에서 실행하지 않았다. 기존 Network 차단을 우회해 플레이 테스트를 수행하지 않았다.
+
+실제 게시 빌드 입력 커밋 `6b8cb3ec1643e0649c38c8927e5ef9e7dfa1534d`를 주석 태그 `v0.70.0`의 대상으로 사용한다. 전체 게임/미술/출시 게이트 완료나 권한 오류 해결을 뜻하는 태그는 아니다. 다음 담당 QA는 게시 테스트 클라이언트에서 스크립트 동작·효과 이미지·기본/스킬·로비↔배틀 이동을 검증한다.
