@@ -33,8 +33,9 @@ function V.start()
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(660,54);cap.Parent=notice
  local serial=0
  RS:WaitForChild('Remotes'):WaitForChild('LobbyFacilityState').OnClientEvent:Connect(function(data)
-  if type(data)~='table' or not data.error then return end
-  serial+=1;local current=serial;notice.Text=Text[data.error] or HeroText[data.error] or Text.Busy;notice.Visible=true
+  if type(data)~='table' or not (data.error or data.status) then return end
+  local key=data.error or data.status
+  serial+=1;local current=serial;notice.Text=Text[key] or HeroText[key] or Text.Busy;notice.Visible=true
   task.delay(6,function() if serial==current then notice.Visible=false end end)
  end)
 end

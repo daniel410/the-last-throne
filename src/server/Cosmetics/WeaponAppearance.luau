@@ -13,7 +13,7 @@ local VERSION = 2
 local SPECS = {
 	knight = { template = "KnightSword", parts = { "Weapon" }, gripName = "SwordGrip", jointName = "K0SwordJoint", sourceKey = "td:v2:AzureOathblade" },
 	elf = { template = "ElfBow", parts = { "Bow", "String", "NockedArrow" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:ElfBow" },
-	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:Embercleaver:forward2" },
+	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:Embercleaver:inward3" },
 	mage = { gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "authored:WoodenStaff" },
 }
 
@@ -307,9 +307,9 @@ local function handPoseFor(hand, classId)
 		* CFrame.Angles(0, 0, math.rad(classId == "elf" and 0 or -23))
 	if classId ~= "elf" then offset = offset * CFrame.new(0, 0, -hand.Size.Z / 2 + 0.12) end
 	if classId == "dwarf" then
-		-- Turn the held blade forward by 90 degrees around the shaft.
+		-- Turn the held blade forward and another 20 degrees inward.
 		-- Keep the palm position, tilt and original TD geometry unchanged.
-		offset = offset * CFrame.Angles(math.rad(-35), 0, 0)
+		offset = offset * CFrame.Angles(math.rad(-35), 0, 0) * CFrame.Angles(0, math.rad(20), 0)
 	end
 	return offset
 end

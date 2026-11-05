@@ -519,6 +519,9 @@ function Visual.renderArms(character, dt, now)
 	if motion then
 		right, left, rightElbow, torso = motion.right, motion.left, motion.elbow, motion.torso
 		local humanoid = character:FindFirstChildOfClass("Humanoid")
+		if humanoid and humanoid.RigType == Enum.HumanoidRigType.R6 and motion.r6FollowAcross then
+			right = CFrame.Angles(0, math.rad(20) * motion.r6FollowAcross, 0) * right
+		end
 		-- Walking attacks keep the Animator's footfalls. The planted weight
 		-- shift is only appropriate while standing on the ground.
 		if not humanoid or (humanoid.MoveDirection.Magnitude < 0.1 and humanoid.FloorMaterial ~= Enum.Material.Air) then
@@ -1027,7 +1030,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	if classId == "dwarf" and motion and motion.axeStrikeTurn then
 		-- C0 now holds the axe 90 degrees forward; preserve the reviewed
 		-- cutting path once the anticipation has turned it into the swing.
-		target = CFrame.Angles(0, -math.pi / 2 * motion.axeStrikeTurn, 0) * target
+		target = CFrame.Angles(0, math.rad(-110) * motion.axeStrikeTurn, 0) * target
 	end
  if motion and motion.aimWeapon and joint.Part0 then
   local root=character:FindFirstChild("HumanoidRootPart")

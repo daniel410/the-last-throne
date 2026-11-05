@@ -9,6 +9,7 @@ local function rotation(x, y, z)
 end
 
 local Clips = require(script.Parent.K0MeleeClips)
+local DwarfDiagonalClip = require(script.Parent.K0DwarfDiagonalClip)
 local channels = Clips.channels
 local rest, guard = {}, {}
 local function angles(x,y,z) return Vector3.new(x or 0,y or 0,z or 0) end
@@ -65,7 +66,7 @@ local function definitionFor(classId,combo,skillId)
  local profile=Config.BasicAttackProfiles[classId]
  if not Clips.clips[classId] or not profile then return nil end
  local index=math.clamp(math.floor(tonumber(combo) or 1),1,#profile.attacks)
- return profile.attacks[index],Clips.clips[classId][index]
+ return profile.attacks[index],classId=="dwarf" and index==1 and DwarfDiagonalClip or Clips.clips[classId][index]
 end
 
 -- The exported Bezier handles have one-third interval lengths, so each
@@ -111,6 +112,13 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId)
  -- The forward-facing held axe turns into the previously authored strike
  -- orientation during anticipation, before the cutting interval begins.
  if classId=="dwarf" then result.axeStrikeTurn=u2*(3-2*u) end
+ if classId=="dwarf" and not skillId then
+  -- R6 has no elbow/wrist segments, so its shorter rigid arm needs a
+  -- little more cross-body follow-through after the contact interval.
+  local across=math.clamp((age-impact-.005)/.065,0,1)
+  local release=math.clamp((age-.29)/(total-.29),0,1)
+  result.r6FollowAcross=across*across*(3-2*across)*(1-release*release*(3-2*release))
+ end
  return result
 end
 

@@ -6,6 +6,7 @@ local Teleport=game:GetService('TeleportService')
 local C=require(RS.Shared.ExpeditionConfig)
 local Store=require(script.Parent.ExpeditionStore)
 local Departure=require(script.Parent.ExpeditionDeparture)
+local TravelAttempt=require(script.Parent.TravelAttempt)
 local Difficulty=require(RS.Shared.Difficulty)
 local Content=require(RS.Shared.CampaignContent)
 local Presentation=require(RS.Shared.ExpeditionPresentation)
@@ -95,7 +96,8 @@ local function retryTravel(p,attempt)
  end
  local options=Instance.new('TeleportOptions')
  if attempt.reservedId then options.ReservedServerId=attempt.reservedId elseif attempt.jobId then options.ServerInstanceId=attempt.jobId end
- options:SetTeleportData(attempt.data)
+ attempt.callbackToken=guid()
+ options:SetTeleportData(TravelAttempt.data(attempt.data,attempt.callbackToken))
  local ok=pcall(function() Teleport:TeleportAsync(attempt.placeId,{p},options) end)
  local generation=attempt.tries
  task.delay(ok and 20 or 2,function() if attempt.tries==generation and not attempt.retrying then retryTravel(p,attempt) end end)
@@ -110,10 +112,14 @@ function Service.travelToDefense(p)
  if Service.isBusy(p) then return 'Busy' end
  if parties[p] then return 'LeavePartyForDefense' end
  if studio then return 'DefenseStudioUnavailable' end
+ if type(C.defensePlaceId)~='number' or C.defensePlaceId~=C.defensePlaceId or C.defensePlaceId<=0 or C.defensePlaceId%1~=0 then return 'DefenseNotConfigured' end
  busy[p]=true
- local ok,reason=send(p,{kind='defense',placeId=103116209434833,data={}})
+ local notice=RS.Remotes:FindFirstChild('LobbyFacilityState')
+ if notice then notice:FireClient(p,{status='DefenseSaving'}) end
+ local ok,reason=send(p,{kind='defense',placeId=C.defensePlaceId,data={}})
  busy[p]=nil
- if not ok then return reason end
+ if not ok then return 'DefenseSaveFailed' end
+ if notice and p.Parent==Players then notice:FireClient(p,{status='DefenseTravelling'}) end
 end
 function Service.isBusy(p) return travel[p]~=nil or busy[p]==true end
 function Service.admitArrival(p)
@@ -311,8 +317,16 @@ function Service.start(options)
  remote=Instance.new('RemoteEvent');remote.Name='ExpeditionState';remote.Parent=RS.Remotes
  local request=Instance.new('RemoteEvent');request.Name='ExpeditionRequest';request.Parent=RS.Remotes;request.OnServerEvent:Connect(handle)
  workspace:SetAttribute('TLTServerRole',role)
- Teleport.TeleportInitFailed:Connect(function(p,_,_,place)
-  local a=travel[p];if a and a.placeId==place and not a.retrying then a.retrying=true;task.delay(2,function() a.retrying=nil;retryTravel(p,a) end) end
+ Teleport.TeleportInitFailed:Connect(function(p,_,_,place,options)
+  local a=travel[p]
+  local ok,data=pcall(function() return options:GetTeleportData() end)
+  if ok and TravelAttempt.matches(a,place,data) then
+   local token=a.callbackToken;a.retrying=true
+   task.delay(2,function()
+    if travel[p]~=a or a.callbackToken~=token then return end
+    a.retrying=nil;retryTravel(p,a)
+   end)
+  end
  end)
  Players.PlayerRemoving:Connect(function(p)
   if seats[p] then seats[p]=nil;seatCount-=1 end

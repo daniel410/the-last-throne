@@ -52,7 +52,7 @@ local function defense(lobby)
  end
  local sign=make('DefenseSign',Vector3.new(20,3,.5),Vector3.new(0,15,-3),C.blue,Enum.Material.Wood);A.sign(sign,spec)
  local lore=make('KingdomStory',Vector3.new(20,4,.5),Vector3.new(0,3,4),C.blue,Enum.Material.Wood)
- A.sign(lore,{title='ONE KINGDOM · TWO FRONTS',subtitle='COMMAND THE DEFENSE. EXPLORE AS A HERO.',key='lobby.story.sharedKingdom'})
+ A.sign(lore,{title='TOWER DEFENSE · SOLO TRAVEL',subtitle='TRAVEL INDIVIDUALLY; REFORM YOUR PARTY AFTER ARRIVAL.',key='lobby.story.sharedKingdom'})
  local anchor=make('DefenseInteraction',Vector3.new(2,2,1),Vector3.new(0,2,6),C.gold);anchor.Transparency=1
  return {model=m,prompt=A.prompt(anchor,spec),anchor=anchor}
 end

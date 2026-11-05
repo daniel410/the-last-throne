@@ -1,6 +1,10 @@
 return {
  Gold='Gold', Diamonds='Diamonds',
  LeavePartyForDefense='Leave your party before travelling to Throne Defense. Travel is individual.',
+ DefenseNotConfigured='Travel to Throne Defense is not available yet. Please try again later.',
+ DefenseSaving='Saving your progress before travel. Please wait.',
+ DefenseTravelling='Progress saved. Travelling to Throne Defense; please wait.',
+ DefenseSaveFailed='Progress could not be confirmed. Use the portal to retry, or rejoin if the problem continues.',
  DefenseTravelFailed='Travel failed. Your account is ready; use the portal to try again.',
  DefenseResumeFailed='Travel failed and your account could not reopen. Rejoin to restore your progress.',
  DefenseStudioUnavailable='Travel is available in the published game. Return to the lobby and try there.',

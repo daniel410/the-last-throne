@@ -18,17 +18,21 @@ eq(roll.distance,2*Config.Dodge.distance,'side roll twice as far')
 for _,side in ipairs({-1,1}) do
  local angle,drop,tuck=Rules.rollPose(0,roll.moveDuration,side,roll.jumpHeight)
  near(angle,0,'neutral start');near(drop,0,'start height');near(tuck,0,'start pose')
- angle,drop,tuck=Rules.rollPose(roll.moveDuration/2,roll.moveDuration,side,roll.jumpHeight)
- near(angle,-math.pi*side,'half turn');near(drop,roll.jumpHeight,'jump apex');near(tuck,1,'tuck legs')
+ local stretch,pitch,yaw
+ angle,drop,tuck,stretch,pitch,yaw=Rules.rollPose(roll.moveDuration*.30,roll.moveDuration,side,roll.jumpHeight)
+ near(angle,0,'no airborne somersault');near(drop,roll.jumpHeight,'dive apex');near(tuck,0,'straight legs in flight')
+ near(stretch,1,'arms spread in flight');near(pitch,-math.pi/2,'horizontal dive');near(yaw,-side*math.pi/2,'face travel direction')
+ angle,drop,tuck=Rules.rollPose(roll.moveDuration*.73,roll.moveDuration,side,roll.jumpHeight)
+ near(angle,-math.pi,'half roll only on landing');eq(drop<0,true,'low landing roll');near(tuck,1,'tuck only on landing')
  angle,drop,tuck=Rules.rollPose(roll.moveDuration,roll.moveDuration,side,roll.jumpHeight)
- near(angle,-2*math.pi*side,'full turn');near(drop,0,'end height');near(tuck,0,'end pose')
+ near(angle,-2*math.pi,'full forward turn');near(drop,0,'end height');near(tuck,0,'end pose')
  for _,hz in ipairs({30,60,144}) do
   local previous=0
   for frame=0,math.ceil(.65*hz) do
    local a,d,t=Rules.rollPose(frame/hz,roll.moveDuration,side,roll.jumpHeight)
    eq(math.abs(a)+1e-8>=previous,true,'continuous full roll progress')
    eq(t>=-1e-8 and t<=1+1e-8,true,'bounded tuck')
-   eq(d>=-1e-8 and d<=roll.jumpHeight+1e-8,true,'bounded jump height')
+   eq(d>=-.65-1e-8 and d<=roll.jumpHeight+1e-8,true,'bounded dive and low roll')
    previous=math.abs(a)
   end
  end

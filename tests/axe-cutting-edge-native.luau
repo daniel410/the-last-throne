@@ -11,7 +11,7 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
   local desc=Instance.new('HumanoidDescription');character=game.Players:CreateHumanoidModelFromDescriptionAsync(desc,rig);desc:Destroy()
   character.Parent=workspace;character:PivotTo(CFrame.new(0,500,0))
   local m=Instance.new('Model');m.Parent=character;local w=assert(A.attachInto(m,character,'dwarf'))
-  check(m:GetAttribute('WeaponSourceKey')=='td:v2:Embercleaver:forward2','stale sideways visual is invalidated')
+  check(m:GetAttribute('WeaponSourceKey')=='td:v2:Embercleaver:inward3','stale sideways visual is invalidated')
   local edge=assert(w.grip:FindFirstChild('AxeCuttingEdge'));local direction=assert(w.grip:FindFirstChild('AxeCuttingDirection'));local face=assert(w.grip:FindFirstChild('AxeFaceNormal'))
   check(math.abs(direction.Position:Dot(face.Position))<.0001,'reviewed cutting direction is in the blade plane')
   local part=m.Weapon;check(math.abs(w.grip.CFrame:ToObjectSpace(part.CFrame).LookVector:Dot(face.Position))>.999,'face marker matches actual mesh thickness axis')
@@ -35,6 +35,15 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
     table.insert(report.samples,{rig=rig.Name,skill=definition.id or 'basic',time=t,dt=dt,edgeDot=edgeDot,faceDot=faceDot})
    end end
   end
+  character:SetAttribute('K0State','Dodge');Motion.forCharacter(character,110)
+  character:SetAttribute('K0State','Attack');character:SetAttribute('K0SkillId',nil);character:SetAttribute('K0AttackStartedAt',111)
+  local high=sample(11.11,1/60):PointToWorldSpace(edge.Position)
+  local low=sample(11.29,1/60):PointToWorldSpace(edge.Position)
+  high=root.CFrame:PointToObjectSpace(high);low=root.CFrame:PointToObjectSpace(low)
+  local head=root.CFrame:PointToObjectSpace(character.Head.Position)
+  check(high.X>.7 and high.Y>head.Y,'axe loads above the right temple '..tostring(high))
+  check(low.X<-.4 and low.Y<-.8,'axe follows through toward the left knee '..tostring(low))
+  check(low.X-high.X < -2 and low.Y-high.Y < -3,'large diagonal travels down and left across the body')
  end,debug.traceback)
  if not ok then table.insert(report.failures,rig.Name..': '..tostring(err))end
  if character then character:Destroy()end
