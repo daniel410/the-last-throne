@@ -88,7 +88,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -149,7 +153,11 @@
         "region": "Gloamwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -214,7 +222,11 @@
         "region": "Ember Caldera",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -273,7 +285,11 @@
         "region": "Gloamwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -333,7 +349,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -390,7 +410,11 @@
         "region": "Frozen Vale",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -453,7 +477,11 @@
         "region": "Ember Caldera",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -514,7 +542,11 @@
         "region": "Haunted Graveyard",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -576,7 +608,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -638,7 +674,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -701,7 +741,11 @@
         "region": "Gloamwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -762,7 +806,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -821,7 +869,11 @@
         "region": "Frozen Vale",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -882,7 +934,11 @@
         "region": "Gloamwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -945,7 +1001,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1004,7 +1064,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1067,7 +1131,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1126,7 +1194,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1183,7 +1255,11 @@
         "region": "Haunted Graveyard",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1244,7 +1320,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1303,7 +1383,11 @@
         "region": "Gloamwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1364,7 +1448,11 @@
         "region": "Gloamwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1429,7 +1517,11 @@
         "region": "Ember Caldera",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1490,7 +1582,11 @@
         "region": "Gloamwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1553,7 +1649,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1612,7 +1712,11 @@
         "region": "Frozen Vale",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1673,7 +1777,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1732,7 +1840,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1793,7 +1905,11 @@
         "region": "Ember Caldera",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1858,7 +1974,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1917,7 +2037,11 @@
         "region": "Frozen Vale",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -1980,7 +2104,11 @@
         "region": "Ember Caldera",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -2042,7 +2170,11 @@
         "region": "Gloamwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -2106,7 +2238,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -2168,7 +2304,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -2231,7 +2371,11 @@
         "region": "Frozen Vale",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -2295,7 +2439,11 @@
         "region": "Ember Caldera",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -2356,7 +2504,11 @@
         "region": "Gloamwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -2420,7 +2572,11 @@
         "region": "Deepwood",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -2483,7 +2639,11 @@
         "region": "Haunted Graveyard",
         "status": "target-boss-proposal-tier-mapping-pending",
         "probability": null,
-        "enabled": false
+        "enabled": false,
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       },
       "art": {
         "status": "prompt-ready-not-generated",
@@ -2496,5 +2656,6 @@
     }
   ],
   "effectBudgetPolicy": "additional-fixed-effect-no-base-stat-deduction",
-  "rarityOrderPolicy": "Unique base stats exceed Legendary at same family, tier and enhancement; fixed effect is additional"
+  "rarityOrderPolicy": "Unique base stats exceed Legendary at same family, tier and enhancement; fixed effect is additional",
+  "dropPolicyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
 }

@@ -1,5 +1,8 @@
 # 현재 기획 결정과 미확정 항목
 
+> **2026-11-05 상위등급 드롭 모드 확정 · TLT-027/029/041/044/045/073/082/084:** 사용자 지시로 Legendary는Insane/Hell 전용, Unique는Hell 전용이다. Easy/Hard의두등급·Insane Unique는0%이며신규보호/선택보상도동일자격을따른다. [정본 정책](../assets/balance/boss-equipment-drop-policy-2026-11-05.json)과 [보스 표](production/boss-drop-reward-design-2026-11-04.md)를갱신했다. 양수확률·실제드롭구현/수용은후속이다.
+
+
 > **2026-11-05 Unique 최상위 정정 · TLT-027/029/044/045/082/084:** 사용자 지시에 따라 기본치/효과 교환안을 폐기한다. Unique는같은 세대·계열·강화의 Legendary보다 기본치가 높고 고정 효과도 갖는다. 기본 배율1.60 대 Legendary1.40은새 시험값이며 [40종 수치표](production/unique-equipment-plan-2026-11-05.md)·JSON·검사를 수정했다. 효과/런타임 구현은후속이다.
 
 

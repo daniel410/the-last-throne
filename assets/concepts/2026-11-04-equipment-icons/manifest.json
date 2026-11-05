@@ -1258,7 +1258,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Wayfarer_Hood"
+      "assetName": "Common_Wayfarer_Hood",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_head_l10_uncommon",
@@ -1274,7 +1283,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Wayfarer_Hood"
+      "assetName": "Uncommon_Wayfarer_Hood",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_head_l10_rare",
@@ -1295,6 +1313,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_head_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1316,6 +1343,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_head_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1337,6 +1373,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_head_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1357,6 +1400,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_head_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1373,7 +1422,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Wayfarer_Coat"
+      "assetName": "Common_Wayfarer_Coat",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_body_l10_uncommon",
@@ -1389,7 +1447,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Wayfarer_Coat"
+      "assetName": "Uncommon_Wayfarer_Coat",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_body_l10_rare",
@@ -1410,6 +1477,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_body_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1431,6 +1507,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_body_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1452,6 +1537,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_body_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1472,6 +1564,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_body_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1488,7 +1586,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Wayfarer_Gloves"
+      "assetName": "Common_Wayfarer_Gloves",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_hands_l10_uncommon",
@@ -1504,7 +1611,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Wayfarer_Gloves"
+      "assetName": "Uncommon_Wayfarer_Gloves",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_hands_l10_rare",
@@ -1525,6 +1641,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_hands_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1546,6 +1671,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_hands_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1567,6 +1701,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_hands_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1587,6 +1728,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_hands_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1603,7 +1750,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Wayfarer_Boots"
+      "assetName": "Common_Wayfarer_Boots",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_feet_l10_uncommon",
@@ -1619,7 +1775,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Wayfarer_Boots"
+      "assetName": "Uncommon_Wayfarer_Boots",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_feet_l10_rare",
@@ -1640,6 +1805,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_feet_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1661,6 +1835,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_feet_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1682,6 +1865,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_feet_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1702,6 +1892,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_feet_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1718,7 +1914,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Vigor_Ring"
+      "assetName": "Common_Vigor_Ring",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_vigor_ring_l10_uncommon",
@@ -1734,7 +1939,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Vigor_Ring"
+      "assetName": "Uncommon_Vigor_Ring",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_vigor_ring_l10_rare",
@@ -1755,6 +1969,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_vigor_ring_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1776,6 +1999,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_vigor_ring_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1797,6 +2029,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_vigor_ring_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1817,6 +2056,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_vigor_ring_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1833,7 +2078,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Ward_Pendant"
+      "assetName": "Common_Ward_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_ward_pendant_l10_uncommon",
@@ -1849,7 +2103,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Ward_Pendant"
+      "assetName": "Uncommon_Ward_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_ward_pendant_l10_rare",
@@ -1870,6 +2133,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_ward_pendant_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1891,6 +2163,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_ward_pendant_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1912,6 +2193,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_ward_pendant_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1932,6 +2220,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_ward_pendant_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -1948,7 +2242,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Valor_Ring"
+      "assetName": "Common_Valor_Ring",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_valor_ring_l10_uncommon",
@@ -1964,7 +2267,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Valor_Ring"
+      "assetName": "Uncommon_Valor_Ring",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_valor_ring_l10_rare",
@@ -1985,6 +2297,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_valor_ring_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2006,6 +2327,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_valor_ring_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2027,6 +2357,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_valor_ring_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2047,6 +2384,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_valor_ring_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2063,7 +2406,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Refuge_Charm"
+      "assetName": "Common_Refuge_Charm",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_refuge_charm_l10_uncommon",
@@ -2079,7 +2431,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Refuge_Charm"
+      "assetName": "Uncommon_Refuge_Charm",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_refuge_charm_l10_rare",
@@ -2100,6 +2461,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_refuge_charm_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2121,6 +2491,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_refuge_charm_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2142,6 +2521,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_refuge_charm_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2162,6 +2548,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_refuge_charm_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2178,7 +2570,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Knight_Oathguard_Sword"
+      "assetName": "Common_Knight_Oathguard_Sword",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_weapon_family_l10_uncommon",
@@ -2194,7 +2595,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Knight_Oathguard_Sword"
+      "assetName": "Uncommon_Knight_Oathguard_Sword",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_weapon_family_l10_rare",
@@ -2215,6 +2625,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_weapon_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2236,6 +2655,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_weapon_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2257,6 +2685,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_weapon_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2277,6 +2712,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "knight_weapon_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2293,7 +2734,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Knight_Oathguard_Headguard"
+      "assetName": "Common_Knight_Oathguard_Headguard",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_head_family_l10_uncommon",
@@ -2309,7 +2759,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Knight_Oathguard_Headguard"
+      "assetName": "Uncommon_Knight_Oathguard_Headguard",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_head_family_l10_rare",
@@ -2330,6 +2789,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_head_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2351,6 +2819,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_head_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2372,6 +2849,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_head_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2392,6 +2876,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "knight_head_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2408,7 +2898,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Knight_Oathguard_Vestments"
+      "assetName": "Common_Knight_Oathguard_Vestments",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_body_family_l10_uncommon",
@@ -2424,7 +2923,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Knight_Oathguard_Vestments"
+      "assetName": "Uncommon_Knight_Oathguard_Vestments",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_body_family_l10_rare",
@@ -2445,6 +2953,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_body_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2466,6 +2983,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_body_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2487,6 +3013,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_body_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2507,6 +3040,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "knight_body_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2523,7 +3062,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Knight_Oathguard_Grips"
+      "assetName": "Common_Knight_Oathguard_Grips",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_hands_family_l10_uncommon",
@@ -2539,7 +3087,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Knight_Oathguard_Grips"
+      "assetName": "Uncommon_Knight_Oathguard_Grips",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_hands_family_l10_rare",
@@ -2560,6 +3117,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_hands_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2581,6 +3147,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_hands_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2602,6 +3177,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_hands_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2622,6 +3204,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "knight_hands_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2638,7 +3226,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Knight_Oathguard_Treads"
+      "assetName": "Common_Knight_Oathguard_Treads",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_feet_family_l10_uncommon",
@@ -2654,7 +3251,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Knight_Oathguard_Treads"
+      "assetName": "Uncommon_Knight_Oathguard_Treads",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_feet_family_l10_rare",
@@ -2675,6 +3281,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_feet_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2696,6 +3311,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_feet_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2717,6 +3341,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_feet_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2737,6 +3368,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "knight_feet_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2753,7 +3390,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Knight_Oathguard_Signet"
+      "assetName": "Common_Knight_Oathguard_Signet",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_ring_family_l10_uncommon",
@@ -2769,7 +3415,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Knight_Oathguard_Signet"
+      "assetName": "Uncommon_Knight_Oathguard_Signet",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_ring_family_l10_rare",
@@ -2790,6 +3445,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_ring_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2811,6 +3475,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_ring_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2832,6 +3505,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_ring_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2852,6 +3532,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "knight_ring_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2868,7 +3554,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Knight_Oathguard_Pendant"
+      "assetName": "Common_Knight_Oathguard_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_pendant_family_l10_uncommon",
@@ -2884,7 +3579,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Knight_Oathguard_Pendant"
+      "assetName": "Uncommon_Knight_Oathguard_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_pendant_family_l10_rare",
@@ -2905,6 +3609,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_pendant_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2926,6 +3639,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_pendant_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2947,6 +3669,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_pendant_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2967,6 +3696,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "knight_pendant_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -2983,7 +3718,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Elf_Briarwatch_Bow"
+      "assetName": "Common_Elf_Briarwatch_Bow",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_weapon_family_l10_uncommon",
@@ -2999,7 +3743,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Elf_Briarwatch_Bow"
+      "assetName": "Uncommon_Elf_Briarwatch_Bow",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_weapon_family_l10_rare",
@@ -3020,6 +3773,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_weapon_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3041,6 +3803,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_weapon_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3062,6 +3833,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_weapon_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3082,6 +3860,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "elf_weapon_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3098,7 +3882,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Elf_Briarwatch_Headguard"
+      "assetName": "Common_Elf_Briarwatch_Headguard",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_head_family_l10_uncommon",
@@ -3114,7 +3907,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Elf_Briarwatch_Headguard"
+      "assetName": "Uncommon_Elf_Briarwatch_Headguard",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_head_family_l10_rare",
@@ -3135,6 +3937,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_head_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3156,6 +3967,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_head_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3177,6 +3997,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_head_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3197,6 +4024,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "elf_head_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3213,7 +4046,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Elf_Briarwatch_Vestments"
+      "assetName": "Common_Elf_Briarwatch_Vestments",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_body_family_l10_uncommon",
@@ -3229,7 +4071,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Elf_Briarwatch_Vestments"
+      "assetName": "Uncommon_Elf_Briarwatch_Vestments",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_body_family_l10_rare",
@@ -3250,6 +4101,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_body_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3271,6 +4131,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_body_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3292,6 +4161,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_body_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3312,6 +4188,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "elf_body_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3328,7 +4210,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Elf_Briarwatch_Grips"
+      "assetName": "Common_Elf_Briarwatch_Grips",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_hands_family_l10_uncommon",
@@ -3344,7 +4235,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Elf_Briarwatch_Grips"
+      "assetName": "Uncommon_Elf_Briarwatch_Grips",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_hands_family_l10_rare",
@@ -3365,6 +4265,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_hands_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3386,6 +4295,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_hands_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3407,6 +4325,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_hands_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3427,6 +4352,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "elf_hands_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3443,7 +4374,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Elf_Briarwatch_Treads"
+      "assetName": "Common_Elf_Briarwatch_Treads",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_feet_family_l10_uncommon",
@@ -3459,7 +4399,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Elf_Briarwatch_Treads"
+      "assetName": "Uncommon_Elf_Briarwatch_Treads",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_feet_family_l10_rare",
@@ -3480,6 +4429,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_feet_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3501,6 +4459,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_feet_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3522,6 +4489,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_feet_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3542,6 +4516,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "elf_feet_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3558,7 +4538,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Elf_Briarwatch_Signet"
+      "assetName": "Common_Elf_Briarwatch_Signet",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_ring_family_l10_uncommon",
@@ -3574,7 +4563,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Elf_Briarwatch_Signet"
+      "assetName": "Uncommon_Elf_Briarwatch_Signet",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_ring_family_l10_rare",
@@ -3595,6 +4593,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_ring_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3616,6 +4623,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_ring_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3637,6 +4653,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_ring_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3657,6 +4680,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "elf_ring_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3673,7 +4702,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Elf_Briarwatch_Pendant"
+      "assetName": "Common_Elf_Briarwatch_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_pendant_family_l10_uncommon",
@@ -3689,7 +4727,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Elf_Briarwatch_Pendant"
+      "assetName": "Uncommon_Elf_Briarwatch_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "elf_pendant_family_l10_rare",
@@ -3710,6 +4757,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_pendant_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3731,6 +4787,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_pendant_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3752,6 +4817,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "elf_pendant_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3772,6 +4844,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "elf_pendant_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3788,7 +4866,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Dwarf_Stonehearth_Axe"
+      "assetName": "Common_Dwarf_Stonehearth_Axe",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_weapon_family_l10_uncommon",
@@ -3804,7 +4891,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Dwarf_Stonehearth_Axe"
+      "assetName": "Uncommon_Dwarf_Stonehearth_Axe",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_weapon_family_l10_rare",
@@ -3825,6 +4921,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_weapon_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3846,6 +4951,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_weapon_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3867,6 +4981,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_weapon_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3887,6 +5008,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "dwarf_weapon_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3903,7 +5030,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Dwarf_Stonehearth_Headguard"
+      "assetName": "Common_Dwarf_Stonehearth_Headguard",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_head_family_l10_uncommon",
@@ -3919,7 +5055,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Dwarf_Stonehearth_Headguard"
+      "assetName": "Uncommon_Dwarf_Stonehearth_Headguard",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_head_family_l10_rare",
@@ -3940,6 +5085,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_head_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3961,6 +5115,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_head_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -3982,6 +5145,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_head_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4002,6 +5172,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "dwarf_head_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4018,7 +5194,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Dwarf_Stonehearth_Vestments"
+      "assetName": "Common_Dwarf_Stonehearth_Vestments",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_body_family_l10_uncommon",
@@ -4034,7 +5219,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Dwarf_Stonehearth_Vestments"
+      "assetName": "Uncommon_Dwarf_Stonehearth_Vestments",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_body_family_l10_rare",
@@ -4055,6 +5249,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_body_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4076,6 +5279,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_body_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4097,6 +5309,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_body_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4117,6 +5336,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "dwarf_body_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4133,7 +5358,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Dwarf_Stonehearth_Grips"
+      "assetName": "Common_Dwarf_Stonehearth_Grips",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_hands_family_l10_uncommon",
@@ -4149,7 +5383,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Dwarf_Stonehearth_Grips"
+      "assetName": "Uncommon_Dwarf_Stonehearth_Grips",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_hands_family_l10_rare",
@@ -4170,6 +5413,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_hands_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4191,6 +5443,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_hands_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4212,6 +5473,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_hands_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4232,6 +5500,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "dwarf_hands_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4248,7 +5522,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Dwarf_Stonehearth_Treads"
+      "assetName": "Common_Dwarf_Stonehearth_Treads",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_feet_family_l10_uncommon",
@@ -4264,7 +5547,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Dwarf_Stonehearth_Treads"
+      "assetName": "Uncommon_Dwarf_Stonehearth_Treads",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_feet_family_l10_rare",
@@ -4285,6 +5577,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_feet_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4306,6 +5607,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_feet_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4327,6 +5637,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_feet_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4347,6 +5664,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "dwarf_feet_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4363,7 +5686,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Dwarf_Stonehearth_Signet"
+      "assetName": "Common_Dwarf_Stonehearth_Signet",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_ring_family_l10_uncommon",
@@ -4379,7 +5711,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Dwarf_Stonehearth_Signet"
+      "assetName": "Uncommon_Dwarf_Stonehearth_Signet",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_ring_family_l10_rare",
@@ -4400,6 +5741,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_ring_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4421,6 +5771,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_ring_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4442,6 +5801,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_ring_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4462,6 +5828,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "dwarf_ring_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4478,7 +5850,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Dwarf_Stonehearth_Pendant"
+      "assetName": "Common_Dwarf_Stonehearth_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_pendant_family_l10_uncommon",
@@ -4494,7 +5875,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Dwarf_Stonehearth_Pendant"
+      "assetName": "Uncommon_Dwarf_Stonehearth_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "dwarf_pendant_family_l10_rare",
@@ -4515,6 +5905,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_pendant_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4536,6 +5935,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_pendant_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4557,6 +5965,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "dwarf_pendant_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4577,6 +5992,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "dwarf_pendant_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4593,7 +6014,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Mage_Aetherweave_Staff"
+      "assetName": "Common_Mage_Aetherweave_Staff",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_weapon_family_l10_uncommon",
@@ -4609,7 +6039,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Mage_Aetherweave_Staff"
+      "assetName": "Uncommon_Mage_Aetherweave_Staff",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_weapon_family_l10_rare",
@@ -4630,6 +6069,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_weapon_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4651,6 +6099,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_weapon_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4672,6 +6129,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_weapon_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4692,6 +6156,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "mage_weapon_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4708,7 +6178,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Mage_Aetherweave_Headguard"
+      "assetName": "Common_Mage_Aetherweave_Headguard",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_head_family_l10_uncommon",
@@ -4724,7 +6203,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Mage_Aetherweave_Headguard"
+      "assetName": "Uncommon_Mage_Aetherweave_Headguard",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_head_family_l10_rare",
@@ -4745,6 +6233,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_head_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4766,6 +6263,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_head_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4787,6 +6293,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_head_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4807,6 +6320,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "mage_head_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4823,7 +6342,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Mage_Aetherweave_Vestments"
+      "assetName": "Common_Mage_Aetherweave_Vestments",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_body_family_l10_uncommon",
@@ -4839,7 +6367,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Mage_Aetherweave_Vestments"
+      "assetName": "Uncommon_Mage_Aetherweave_Vestments",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_body_family_l10_rare",
@@ -4860,6 +6397,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_body_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4881,6 +6427,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_body_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4902,6 +6457,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_body_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4922,6 +6484,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "mage_body_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4938,7 +6506,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Mage_Aetherweave_Grips"
+      "assetName": "Common_Mage_Aetherweave_Grips",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_hands_family_l10_uncommon",
@@ -4954,7 +6531,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Mage_Aetherweave_Grips"
+      "assetName": "Uncommon_Mage_Aetherweave_Grips",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_hands_family_l10_rare",
@@ -4975,6 +6561,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_hands_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -4996,6 +6591,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_hands_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5017,6 +6621,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_hands_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5037,6 +6648,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "mage_hands_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5053,7 +6670,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Mage_Aetherweave_Treads"
+      "assetName": "Common_Mage_Aetherweave_Treads",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_feet_family_l10_uncommon",
@@ -5069,7 +6695,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Mage_Aetherweave_Treads"
+      "assetName": "Uncommon_Mage_Aetherweave_Treads",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_feet_family_l10_rare",
@@ -5090,6 +6725,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_feet_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5111,6 +6755,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_feet_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5132,6 +6785,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_feet_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5152,6 +6812,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "mage_feet_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5168,7 +6834,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Mage_Aetherweave_Signet"
+      "assetName": "Common_Mage_Aetherweave_Signet",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_ring_family_l10_uncommon",
@@ -5184,7 +6859,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Mage_Aetherweave_Signet"
+      "assetName": "Uncommon_Mage_Aetherweave_Signet",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_ring_family_l10_rare",
@@ -5205,6 +6889,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_ring_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5226,6 +6919,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_ring_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5247,6 +6949,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_ring_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5267,6 +6976,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "mage_ring_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5283,7 +6998,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Mage_Aetherweave_Pendant"
+      "assetName": "Common_Mage_Aetherweave_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_pendant_family_l10_uncommon",
@@ -5299,7 +7023,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Mage_Aetherweave_Pendant"
+      "assetName": "Uncommon_Mage_Aetherweave_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "mage_pendant_family_l10_rare",
@@ -5320,6 +7053,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_pendant_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5341,6 +7083,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_pendant_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5362,6 +7113,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "mage_pendant_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5382,6 +7140,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "mage_pendant_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5398,7 +7162,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Knight_Oathguard_Shield"
+      "assetName": "Common_Knight_Oathguard_Shield",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_shield_family_l10_uncommon",
@@ -5414,7 +7187,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Knight_Oathguard_Shield"
+      "assetName": "Uncommon_Knight_Oathguard_Shield",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "knight_shield_family_l10_rare",
@@ -5435,6 +7217,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_shield_family_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5456,6 +7247,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_shield_family_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5477,6 +7277,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "knight_shield_family_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5497,6 +7304,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "knight_shield_family_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5513,7 +7326,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Mana_Ring"
+      "assetName": "Common_Mana_Ring",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_mana_ring_l10_uncommon",
@@ -5529,7 +7351,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Mana_Ring"
+      "assetName": "Uncommon_Mana_Ring",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_mana_ring_l10_rare",
@@ -5550,6 +7381,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_mana_ring_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5571,6 +7411,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_mana_ring_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5592,6 +7441,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_mana_ring_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5612,6 +7468,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_mana_ring_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5628,7 +7490,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Arcane_Reservoir_Pendant"
+      "assetName": "Common_Arcane_Reservoir_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_arcane_pendant_l10_uncommon",
@@ -5644,7 +7515,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Arcane_Reservoir_Pendant"
+      "assetName": "Uncommon_Arcane_Reservoir_Pendant",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_arcane_pendant_l10_rare",
@@ -5665,6 +7545,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_arcane_pendant_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5686,6 +7575,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_arcane_pendant_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5707,6 +7605,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_arcane_pendant_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5727,6 +7632,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_arcane_pendant_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5743,7 +7654,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Common_Wellspring_Charm"
+      "assetName": "Common_Wellspring_Charm",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_wellspring_charm_l10_uncommon",
@@ -5759,7 +7679,16 @@
       "uniqueEffectStatus": "none",
       "setCandidate": false,
       "status": "proposal-not-runtime",
-      "assetName": "Uncommon_Wellspring_Charm"
+      "assetName": "Uncommon_Wellspring_Charm",
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
+      }
     },
     {
       "proposalId": "common_wellspring_charm_l10_rare",
@@ -5780,6 +7709,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_wellspring_charm_l10_rare"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5801,6 +7739,15 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_wellspring_charm_l10_epic"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Easy",
+          "Hard",
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5822,6 +7769,13 @@
       "statsPlanRef": {
         "path": "assets/balance/equipment-stats-plan-2026-11-04.json",
         "proposalId": "common_wellspring_charm_l10_legendary"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Insane",
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     },
     {
@@ -5842,6 +7796,12 @@
       "statsPlanRef": {
         "path": "assets/balance/unique-equipment-plan-2026-11-05.json",
         "proposalId": "common_wellspring_charm_l10_unique"
+      },
+      "dropEligibility": {
+        "allowedDifficulties": [
+          "Hell"
+        ],
+        "policyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
       }
     }
   ],
@@ -5856,5 +7816,6 @@
     "count": 40,
     "status": "40-unique-proposals-not-runtime-not-generated",
     "revision": 2
-  }
+  },
+  "dropPolicyRef": "assets/balance/boss-equipment-drop-policy-2026-11-05.json"
 }

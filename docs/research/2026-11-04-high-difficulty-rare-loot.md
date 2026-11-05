@@ -1,5 +1,7 @@
 # 고난이도 고등급 장비 획득 조사
 
+> **2026-11-05 최신 사용자 결정:** Legendary는Insane/Hell, Unique는Hell 전용이다. 아래 과거Easy 상위등급 확률·하위모드 보호 누적·전모드 교환 제안은폐기한다. 당시 산술/조사 이력이며현재획득규칙이아니다. 최신 [보스 설계](../production/boss-drop-reward-design-2026-11-04.md)를우선한다.
+
 2026-11-04 · TLT-027/029/044/045/082 · RESEARCH/PLAN → ENG/QA
 
 ## 사용자 방향과 현재 상태

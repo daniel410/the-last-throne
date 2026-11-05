@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-05",
+  "version": 1,
+  "status": "user-approved-eligibility-proposed-weights-not-runtime",
+  "runtimeEnabled": false,
+  "allowedDifficultiesByRarity": {
+    "Common": [
+      "Easy",
+      "Hard",
+      "Insane",
+      "Hell"
+    ],
+    "Uncommon": [
+      "Easy",
+      "Hard",
+      "Insane",
+      "Hell"
+    ],
+    "Rare": [
+      "Easy",
+      "Hard",
+      "Insane",
+      "Hell"
+    ],
+    "Epic": [
+      "Easy",
+      "Hard",
+      "Insane",
+      "Hell"
+    ],
+    "Legendary": [
+      "Insane",
+      "Hell"
+    ],
+    "Unique": [
+      "Hell"
+    ]
+  },
+  "unknownModeOrRarity": "reject",
+  "probabilityStatus": "trial-unapproved-positive-weights-zeroes-are-required",
+  "trialBasisPointsByDifficulty": {
+    "Easy": {
+      "Common": 4000,
+      "Uncommon": 3500,
+      "Rare": 2000,
+      "Epic": 500,
+      "Legendary": 0,
+      "Unique": 0
+    },
+    "Hard": {
+      "Common": 2000,
+      "Uncommon": 3500,
+      "Rare": 3000,
+      "Epic": 1500,
+      "Legendary": 0,
+      "Unique": 0
+    },
+    "Insane": {
+      "Common": 800,
+      "Uncommon": 2200,
+      "Rare": 3800,
+      "Epic": 2700,
+      "Legendary": 500,
+      "Unique": 0
+    },
+    "Hell": {
+      "Common": 300,
+      "Uncommon": 1200,
+      "Rare": 3500,
+      "Epic": 3700,
+      "Legendary": 1000,
+      "Unique": 300
+    }
+  },
+  "removedWeightHandling": "trial-reallocate-disallowed-mass-to-Epic-only",
+  "protection": {
+    "appliesSameDifficultyGate": true,
+    "progressEarnedOnlyOnEligibleMode": true,
+    "grantOnlyOnEligibleMode": true,
+    "allowLowerModeProgressConversion": false,
+    "preserveExistingOwnedItemsAndReceipts": true
+  },
+  "source": "latest user instruction 2026-11-05; Legendary Insane/Hell only, Unique Hell only"
+}
