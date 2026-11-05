@@ -41,12 +41,12 @@ local Config = {
 		-- Initial K0 test values, pending Orc Warrior playtesting; armor and
 		-- flank-specific damage are future behavior, not part of this preset.
 		Orc = {
-			health = 1800, posture = 100, walkSpeed = 8.5, aggroRange = 25, leashRange = 36,
+			health = 900, posture = 100, walkSpeed = 8.5, aggroRange = 25, leashRange = 36,
 			exposeTime = 1.20, respawnTime = 5,
 			attacks = {{ name = "Melee", windup = 0.85, active = 0.12, recovery = 1.05, range = 5, angle = 90, damage = 125, blockable = true }},
 		},
 		Ogre = {
-			health = 12000, posture = 220, walkSpeed = 7, aggroRange = 25, leashRange = 36,
+			health = 6000, posture = 220, walkSpeed = 7, aggroRange = 25, leashRange = 36,
 			exposeTime = 1.50, respawnTime = 5,
 			attacks = {
 				{ name = "Melee", windup = 1.20, active = 0.15, recovery = 1.40, range = 7, angle = 80, damage = 220, blockable = true },
