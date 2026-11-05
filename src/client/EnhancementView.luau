@@ -48,7 +48,7 @@ function V.render(scroll,s,send,saving,notice)
      {rulesVersion=E.version,expectedLevel=n,title=n>=E.cap(def)and Text.MaxEnhancement or enough and Text.Enhance or Text.MoreMaterials,action='Enhance',instanceId=item.instanceId,itemVersion=item.version,enabled=n<E.cap(def)and enough},
      {title=Text.Recover,action='Recover',instanceId=item.instanceId,itemVersion=item.version,enabled=ro+rc+rg+rs>0,review=string.format(Text.RecoveryReview,E.name(def,item),rg,rs,ro,rc)}})
    elseif def.cacheTier then
-    local choices={};for _,choice in pairs(C.items)do if choice.slot and (choice.level or 1)==def.cacheTier and E.supported(choice)and (not choice.classId or choice.classId==hero.baseClassId)then table.insert(choices,choice)end end
+    local choices={};for _,choice in pairs(C.items)do if choice.slot and choice.cacheEligible~=false and (choice.level or 1)==def.cacheTier and E.supported(choice)and (not choice.classId or choice.classId==hero.baseClassId)then table.insert(choices,choice)end end
     table.sort(choices,function(a,b)return a.id<b.id end)
     for _,choice in ipairs(choices)do
      card(item.instanceId..choice.id,choice,choice.name,string.format(Text.CacheInfo,def.name),{{title=Text.ChooseEquipment,action='OpenCache',instanceId=item.instanceId,itemVersion=item.version,offerId=choice.id}})

@@ -1,5 +1,8 @@
 # The Last Throne / 최후의 왕좌
 
+> **2026-11-05 대장간 Rare/Epic Diamonds 전용 · TLT-028/029/041/043/044/046/052/057/084 · 0.75.0:** [Rare12·Epic12 고정 판매](docs/production/forge-diamond-sales-2026-11-05.md)를구현했다. Rare Gold SKU중단·서버통화검사·기존51정의/상자권리보존. Common/Uncommon Gold판매/장비Gold되팔기는유지한다. [검증](docs/evidence/forge-diamond-sales-20261105/README.md). 로컬미게시·실제UI/계정/기기·가격수용후속, 계획중Epic40전체구현과구분한다.
+
+
 > **2026-11-05 / TLT-016/028/043/057/061/072/084 · 0.74.0:** Deepwood 구조 스토리 완료 후 영웅별 첫1스토리 무료 지원을 캠프에서 자동 시작한다. 사용 여부/권리를 함께 저장하고 구매 credits를 보존하며, 종료 후 로비 Selene의 추가 지원권을 안내한다. [검증·한계](docs/evidence/selene-trial-20261105/README.md). 로컬 구현·미게시, 실제 계정/실기기 수용 후속.
 
 > **2026-11-05 / TLT-016/057/061/072/084 · 0.73.3:** Selene 영구 영입 해금을 재도전의 초대/외형 선택·상세창에도 적용하고 최초 해금의 잘못된 지원 종료 알림을 수정했다. 지원권 보유 후 캠프 명시적 초대·스토리별 소비는 유지한다. [검증·한계](docs/evidence/selene-recruitment-20261105/README.md). 미게시·실계정/실기기 수용 후속.

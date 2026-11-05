@@ -36,18 +36,35 @@ end
 for _,row in ipairs({{'traveler_hood',80},{'traveler_coat',120},{'traveler_gloves',80},{'traveler_boots',80},{'copper_ring',150},{'amber_charm',150},{'veteran_hood',250}}) do
  table.insert(C.offers,{id=row[1],definitionId=row[1],currency='gold',price=row[2]});C.sell[row[1]]=math.floor(row[2]/5)
 end
--- Blacksmith additions: trial stock, never story reward replacements.
-for _,row in ipairs({{'knight_weapon_forged',950},{'elf_weapon_forged',950},{'dwarf_weapon_forged',950},{'mage_weapon_forged',950},{'sentinel_shield',500},{'sentinel_helm',400},{'sentinel_mail',650},{'sentinel_gauntlets',400},{'sentinel_boots',400},{'ruby_ring',550},{'guardian_charm',550},{'storm_pendant',550}})do
- table.insert(C.offers,{id=row[1],definitionId=row[1],currency='gold',price=row[2]});C.sell[row[1]]=math.floor(row[2]/5)
+-- Rare and Epic forge gear is sold only for Diamonds. Retire former Gold offer IDs.
+-- Keep the existing four weapon Diamond SKU IDs and prices unchanged.
+C.forgeDiamondStock={
+ {id='knight_weapon_forged',rare=18,epic=30,sell=190},
+ {id='elf_weapon_forged',rare=18,epic=30,sell=190},
+ {id='dwarf_weapon_forged',rare=18,epic=30,sell=190},
+ {id='mage_weapon_forged',rare=18,epic=30,sell=190},
+ {id='sentinel_shield',rare=10,epic=18,sell=100},
+ {id='sentinel_helm',rare=8,epic=14,sell=80},
+ {id='sentinel_mail',rare=13,epic=22,sell=130},
+ {id='sentinel_gauntlets',rare=8,epic=14,sell=80},
+ {id='sentinel_boots',rare=8,epic=14,sell=80},
+ {id='ruby_ring',rare=11,epic=18,sell=110},
+ {id='guardian_charm',rare=11,epic=18,sell=110},
+ {id='storm_pendant',rare=11,epic=18,sell=110},
+}
+for _,row in ipairs(C.forgeDiamondStock)do
+ table.insert(C.offers,{id=row.id..'_diamond',definitionId=row.id,currency='diamonds',price=row.rare})
+ local epic=row.id..'_epic'
+ table.insert(C.offers,{id=epic..'_diamond',definitionId=epic,currency='diamonds',price=row.epic})
+ C.sell[row.id]=row.sell;C.sell[epic]=row.sell
 end
--- The same Lv10 gear is available for either currency; no exclusive stats.
-for _,class in ipairs({'knight','elf','dwarf','mage'})do
- local id=class..'_weapon_forged'
- table.insert(C.offers,{id=id..'_diamond',definitionId=id,currency='diamonds',price=18})
+function C.diamondGear(definition)
+ return definition and definition.category=='Equipment' and (definition.rarity=='Rare' or definition.rarity=='Epic')
 end
 function C.allowed(store,definition,offer)
+ if offer and C.diamondGear(definition) and offer.currency~='diamonds' then return false end
  if store=='diamonds' then return offer and offer.currency=='diamonds' end
- if store=='blacksmith' then return definition.category=='Equipment' and (not offer or offer.currency=='gold') end
+ if store=='blacksmith' then return definition.category=='Equipment' and (not offer or (C.diamondGear(definition) and offer.currency=='diamonds') or (not C.diamondGear(definition) and offer.currency=='gold')) end
  if store=='items' then return (definition.category~='Equipment' or definition.slot=='accessory') and (not offer or offer.currency=='gold') end
  return true
 end

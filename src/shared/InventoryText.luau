@@ -1,4 +1,5 @@
 return {
+ ForgeDiamondOnly = "Rare and Epic equipment: Diamonds only.",
  RarityLabel = "RARITY: %s",
  BalanceLimit="Your Gold balance is at its limit. Spend some Gold before exchanging Diamonds.",
  GoldCategory="GOLD", GoldBundle="%d Gold", GoldDescription="Adds %d Gold to your RPG account wallet. Available across your heroes.",

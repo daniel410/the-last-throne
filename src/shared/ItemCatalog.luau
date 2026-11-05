@@ -41,6 +41,16 @@ for _,row in ipairs({
  {'guardian_charm','Guardian Charm','accessory',false,{health=100,armor=2},'CH'},
  {'storm_pendant','Storm Pendant','accessory',false,{power=6,health=50},'CH'},
 })do gear(row[1],row[2],row[3],row[4]or nil,row[5],row[6],{level=10,rarity='Rare',description='Dawnspire forge equipment. Requires level 10. Balance values are provisional.',uniqueGroup=row[3]=='accessory' and row[1]or nil})end
+-- Existing forge-stock Epic counterparts, separate from the 40-family art proposals.
+-- Keep old Rare definitions/instances intact; the new IDs are fixed deterministic goods.
+for _,baseId in ipairs({"knight_weapon_forged","elf_weapon_forged","dwarf_weapon_forged","mage_weapon_forged",
+ "sentinel_shield","sentinel_helm","sentinel_mail","sentinel_gauntlets","sentinel_boots","ruby_ring","guardian_charm","storm_pendant"}) do
+ local base=Catalog.items[baseId];local stats={}
+ for key,value in pairs(base.stats)do stats[key]=math.floor(value*128/118*10000+.5)/10000 end
+ gear(baseId.."_epic","Epic "..base.name,base.slot,base.classId,stats,base.glyph,
+  {level=base.level,rarity="Epic",uniqueGroup=base.uniqueGroup,forgeBaseId=baseId,cacheEligible=false,
+   description="Epic Dawnspire forge equipment. Requires level 10. Purchase with Diamonds at the blacksmith. Balance values are provisional."})
+end
 -- Stable IDs/schema; potion restore amounts follow the latest user balance decision.
 Catalog.potions = {}
 for _, resource in ipairs({"health", "mana"}) do

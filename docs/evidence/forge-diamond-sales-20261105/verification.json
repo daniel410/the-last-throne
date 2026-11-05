@@ -1,0 +1,50 @@
+{
+  "version": "0.75.0",
+  "tests": [
+    {
+      "command": "lua tests/blacksmith-stock.spec.lua",
+      "checks": 430,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/difficulty-enhancement.spec.lua",
+      "checks": 125,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/economy.spec.lua",
+      "checks": 42,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/starter-potions-and-shop.spec.lua",
+      "checks": 172,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/inventory.spec.lua",
+      "checks": 271,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/equipment-impact.spec.lua",
+      "checks": 44,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/enhancement-probability.spec.lua",
+      "checks": 2857,
+      "result": "PASS"
+    },
+    {
+      "command": "lua tests/item-shop-categories.spec.lua",
+      "result": "PASS"
+    }
+  ],
+  "oldCatalogDefinitionsUnchanged": 51,
+  "newEpicDefinitions": 12,
+  "compile": "6 changed Luau modules PASS",
+  "nativeUi": "NOT RUN - connected Studios belong to existing projects; no isolated session used",
+  "published": false,
+  "livePurchase": false
+}

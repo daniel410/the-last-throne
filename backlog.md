@@ -1,5 +1,8 @@
 # The Last Throne 실행 백로그
 
+> **2026-11-05 대장간 Rare/Epic Diamonds 전용 · TLT-028/029/041/043/044/046/052/057/084 · 0.75.0:** [Rare12·Epic12 고정 판매](docs/production/forge-diamond-sales-2026-11-05.md)를구현했다. Rare Gold SKU중단·서버통화검사·기존51정의/상자권리보존. Common/Uncommon Gold판매/장비Gold되팔기는유지한다. [검증](docs/evidence/forge-diamond-sales-20261105/README.md). 로컬미게시·실제UI/계정/기기·가격수용후속, 계획중Epic40전체구현과구분한다.
+
+
 > **2026-11-05 상위등급 드롭 모드 확정 · TLT-027/029/041/044/045/073/082/084:** 사용자 지시로 Legendary는Insane/Hell 전용, Unique는Hell 전용이다. Easy/Hard의두등급·Insane Unique는0%이며신규보호/선택보상도동일자격을따른다. [정본 정책](assets/balance/boss-equipment-drop-policy-2026-11-05.json)과 [보스 표](docs/production/boss-drop-reward-design-2026-11-04.md)를갱신했다. 양수확률·실제드롭구현/수용은후속이다.
 
 

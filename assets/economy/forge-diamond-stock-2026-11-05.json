@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-05",
+  "status": "local-trial-runtime-stock-unpublished",
+  "currency": "diamonds",
+  "prices": "trial-not-playtest-accepted",
+  "rareCount": 12,
+  "epicCount": 12,
+  "items": [
+    {
+      "rareDefinitionId": "knight_weapon_forged",
+      "rareName": "Dawnforge Sword",
+      "rareDiamondPrice": 18,
+      "epicDefinitionId": "knight_weapon_forged_epic",
+      "epicName": "Epic Dawnforge Sword",
+      "epicDiamondPrice": 30,
+      "goldResale": 190
+    },
+    {
+      "rareDefinitionId": "elf_weapon_forged",
+      "rareName": "Dawnforge Bow",
+      "rareDiamondPrice": 18,
+      "epicDefinitionId": "elf_weapon_forged_epic",
+      "epicName": "Epic Dawnforge Bow",
+      "epicDiamondPrice": 30,
+      "goldResale": 190
+    },
+    {
+      "rareDefinitionId": "dwarf_weapon_forged",
+      "rareName": "Dawnforge Axe",
+      "rareDiamondPrice": 18,
+      "epicDefinitionId": "dwarf_weapon_forged_epic",
+      "epicName": "Epic Dawnforge Axe",
+      "epicDiamondPrice": 30,
+      "goldResale": 190
+    },
+    {
+      "rareDefinitionId": "mage_weapon_forged",
+      "rareName": "Dawnforge Staff",
+      "rareDiamondPrice": 18,
+      "epicDefinitionId": "mage_weapon_forged_epic",
+      "epicName": "Epic Dawnforge Staff",
+      "epicDiamondPrice": 30,
+      "goldResale": 190
+    },
+    {
+      "rareDefinitionId": "sentinel_shield",
+      "rareName": "Sentinel Shield",
+      "rareDiamondPrice": 10,
+      "epicDefinitionId": "sentinel_shield_epic",
+      "epicName": "Epic Sentinel Shield",
+      "epicDiamondPrice": 18,
+      "goldResale": 100
+    },
+    {
+      "rareDefinitionId": "sentinel_helm",
+      "rareName": "Sentinel Helm",
+      "rareDiamondPrice": 8,
+      "epicDefinitionId": "sentinel_helm_epic",
+      "epicName": "Epic Sentinel Helm",
+      "epicDiamondPrice": 14,
+      "goldResale": 80
+    },
+    {
+      "rareDefinitionId": "sentinel_mail",
+      "rareName": "Sentinel Mail",
+      "rareDiamondPrice": 13,
+      "epicDefinitionId": "sentinel_mail_epic",
+      "epicName": "Epic Sentinel Mail",
+      "epicDiamondPrice": 22,
+      "goldResale": 130
+    },
+    {
+      "rareDefinitionId": "sentinel_gauntlets",
+      "rareName": "Sentinel Gauntlets",
+      "rareDiamondPrice": 8,
+      "epicDefinitionId": "sentinel_gauntlets_epic",
+      "epicName": "Epic Sentinel Gauntlets",
+      "epicDiamondPrice": 14,
+      "goldResale": 80
+    },
+    {
+      "rareDefinitionId": "sentinel_boots",
+      "rareName": "Sentinel Boots",
+      "rareDiamondPrice": 8,
+      "epicDefinitionId": "sentinel_boots_epic",
+      "epicName": "Epic Sentinel Boots",
+      "epicDiamondPrice": 14,
+      "goldResale": 80
+    },
+    {
+      "rareDefinitionId": "ruby_ring",
+      "rareName": "Ruby Ring",
+      "rareDiamondPrice": 11,
+      "epicDefinitionId": "ruby_ring_epic",
+      "epicName": "Epic Ruby Ring",
+      "epicDiamondPrice": 18,
+      "goldResale": 110
+    },
+    {
+      "rareDefinitionId": "guardian_charm",
+      "rareName": "Guardian Charm",
+      "rareDiamondPrice": 11,
+      "epicDefinitionId": "guardian_charm_epic",
+      "epicName": "Epic Guardian Charm",
+      "epicDiamondPrice": 18,
+      "goldResale": 110
+    },
+    {
+      "rareDefinitionId": "storm_pendant",
+      "rareName": "Storm Pendant",
+      "rareDiamondPrice": 11,
+      "epicDefinitionId": "storm_pendant_epic",
+      "epicName": "Epic Storm Pendant",
+      "epicDiamondPrice": 18,
+      "goldResale": 110
+    }
+  ]
+}

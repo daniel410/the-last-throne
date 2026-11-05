@@ -159,12 +159,13 @@ function V.create(parent,send,diamondOnly,store)
      description=string.format('Restores up to %d %s · In bag: %d\n%s',d.amount,d.restore=='health' and 'HP' or 'MP',owned,d.restore=='mana' and 'Requires an MP pool. Assign to Z / C from BAG.' or 'Delivered to your bag. Assign to Z / C from BAG.')
     else
      local fit=d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
-     description=string.format('%s · Lv%d · Power +%d%s%s\n%s',fit,d.level or 1,d.stats.power or 0,d.stats.armor and ' · Armor +'..d.stats.armor or '',d.stats.health and ' · HP +'..d.stats.health or '',d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
+     description=string.format('%s · %s · Lv%d · Power +%.2f%s%s\n%s',fit,d.rarity,d.level or 1,d.stats.power or 0,d.stats.armor and ' · Armor +'..d.stats.armor or '',d.stats.health and ' · HP +'..d.stats.health or '',d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
     end
     if not d.restore then
      local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,d.slot=='accessory' and 'accessory1' or nil,Items)
      if impact and d.slot~='accessory' then description=description..'\n'..Impact.summary(impact) end
     end
+    if store=='blacksmith' and Catalog.diamondGear(d) then description=description..'\n'..ItemText.ForgeDiamondOnly end
     local currency=offer.currency=='gold' and 'Gold' or 'Diamonds'
     local amount=state.wallet and state.wallet[offer.currency]
     local shortfall=type(amount)=='number' and math.max(0,offer.price-amount) or nil

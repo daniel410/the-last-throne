@@ -65,7 +65,7 @@ function F.apply(profile,c,context,C,R)
   if item.location.heroId~=c.heroId or (item.location.kind~='bag'and item.location.kind~='equipped')then return nil,'BagOnly'end
   if c.action=='OpenCache'then
    local chosen=C.items[c.offerId]
-   if not def.cacheTier or not chosen or not chosen.slot or (chosen.level or 1)~=def.cacheTier or chosen.classId and chosen.classId~=hero.baseClassId or not E.supported(chosen)then return nil,'CacheChoice'end
+   if not def.cacheTier or not chosen or not chosen.slot or chosen.cacheEligible==false or (chosen.level or 1)~=def.cacheTier or chosen.classId and chosen.classId~=hero.baseClassId or not E.supported(chosen)then return nil,'CacheChoice'end
    item.quantity=item.quantity-1;item.version=item.version+1;if item.quantity==0 then p.items[c.instanceId]=nil end
    F.grant(p,R,C,c.heroId,chosen.id,1,'cache-'..c.requestId)
   else
