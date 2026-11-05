@@ -4,7 +4,7 @@ return {
  EquipmentPreview='ACTUAL STATS IF EQUIPPED',EquipmentNote='Attack is before skill multipliers. Max HP / MP changes do not refill resources.',
  Title='COMBAT STATS',Current='Current stats · Equipped gear included',
  HeroAndGear='Hero %s  +  Gear %s',Draft='DRAFT %s → %s (%s)',
- Labels={physicalPower='Physical Attack',magicPower='Magic Attack',armor='Defense',health='Max HP',mana='Max MP'},
+ Labels={physicalPower='Physical Attack',magicPower='Magic Attack',armor='Defense',health='Max HP',mana='Max MP',attackRate='Basic Attack Speed (x)',moveRate='Movement Speed (x)'},
  AttackBonus='Equipped attack bonus: %s%%',BasicAttack='Basic attacks use %s.',
  ShowGear='SHOW GEAR BONUSES',HideGear='HIDE GEAR BONUSES',
  NoGear='No equipment is currently equipped.',NoBonus='No combat stat bonus.',

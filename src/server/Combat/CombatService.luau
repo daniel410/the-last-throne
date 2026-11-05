@@ -100,6 +100,10 @@ local function updateFeedback(state, value)
 end
 
 
+local function movementRate(state)
+ return state.derived and state.derived.moveRate or 1
+end
+
 local function setPlayerState(state, name)
 	if state.mode == name then
 		return
@@ -115,7 +119,7 @@ local function setPlayerState(state, name)
 	elseif name == "Dodge" or name == "Stunned" or name == "Dead" then
 		speed = 0
 	end
-	state.humanoid.WalkSpeed = speed
+	state.humanoid.WalkSpeed = speed * movementRate(state)
 end
 
 local function releaseDodgeOwnership(state)
@@ -336,7 +340,7 @@ local function startAttack(state, current, targetModel)
 	end
 	state.attack = {
 		started = current,
-		definition = profile.attacks[nextCombo],
+		definition = Config.scaledBasicAttack(profile.attacks[nextCombo], state.derived and state.derived.attackRate or 1),
 		attackPower = (state.derived and (state.baseClassId=="mage" and state.derived.magicPower or state.derived.physicalPower) or profile.attackPower) * (1 + (state.equipment and state.equipment.power or 0) / 100),
 		maxTargets = profile.maxTargets,
 		maxHeight = profile.maxHeight,
@@ -347,6 +351,7 @@ local function startAttack(state, current, targetModel)
 		sampledActive = false, targetModel = targetModel,
 	}
 	setPlayerState(state, "Attack")
+	state.character:SetAttribute("K0BasicAttackRate", state.derived and state.derived.attackRate or 1)
 	state.character:SetAttribute("K0AttackKind", "Basic")
 	state.character:SetAttribute("K0AttackStartedAt", workspace:GetServerTimeNow())
 	state.character:SetAttribute("K0AttackPhase", "Windup")
@@ -579,7 +584,7 @@ local function acceptAction(state, action, direction, current, targetModel)
 	if action == "SprintEnd" then
 		state.sprinting = false
 		state.character:SetAttribute("K0Sprinting", false)
-		if state.mode == "Idle" then state.humanoid.WalkSpeed = Config.WalkSpeed end
+		if state.mode == "Idle" then state.humanoid.WalkSpeed = Config.WalkSpeed * movementRate(state) end
 		return
 	end
 	if action == "SprintStart" then
@@ -587,7 +592,7 @@ local function acceptAction(state, action, direction, current, targetModel)
 			state.sprinting = true
 			state.sprintExpires = current + 1
 			state.character:SetAttribute("K0Sprinting", true)
-			state.humanoid.WalkSpeed = Config.SprintSpeed
+			state.humanoid.WalkSpeed = Config.SprintSpeed * movementRate(state)
 		end
 		return
 	end
@@ -1082,7 +1087,7 @@ local function checkMovement(state, current)
 		local travelled = (position - state.lastMotionPosition).Magnitude
 		-- Replicated movement can arrive in bursts between heartbeats. Accumulate
 		-- the unused allowance instead of charging every sample as a fresh burst.
-		local permitted, remaining = Rules.movementBudget(state.movementBudget, elapsed, travelled, state.sprinting and Config.SprintSpeed or Config.WalkSpeed, Config.MovementBudget)
+		local permitted, remaining = Rules.movementBudget(state.movementBudget, elapsed, travelled, (state.sprinting and Config.SprintSpeed or Config.WalkSpeed) * movementRate(state), Config.MovementBudget)
 		if not permitted then
 			-- Rewind to the last accepted server sample; never use a rejected position for hits.
 			state.character:PivotTo(state.lastSafePivot)
@@ -1311,7 +1316,7 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 	if state.sprinting and current >= state.sprintExpires then
 		state.sprinting = false
 		state.character:SetAttribute("K0Sprinting", false)
-		if state.mode == "Idle" then state.humanoid.WalkSpeed = Config.WalkSpeed end
+		if state.mode == "Idle" then state.humanoid.WalkSpeed = Config.WalkSpeed * movementRate(state) end
 	end
 	-- Recovery is server-owned and continues during combat; dead or invalid
 	-- characters already returned through alive() above.
@@ -1899,6 +1904,9 @@ function CombatService.refreshEquipment(player, equipment)
 		for key,value in pairs({K0Level=state.growth.level,K0XP=state.growth.xp,K0XPToNext=Growth.xpToNext(state.growth.level),K0StatPoints=sp,K0SkillPoints=kp}) do state.character:SetAttribute(key,value) end
 		for i=1,3 do state.character:SetAttribute("K0SkillRank"..i,state.growth.mastery[i]) end
 	end
+	local mode=state.mode
+	state.mode="" -- Reapply movement after a confirmed allocation.
+	setPlayerState(state,mode)
 	local health = state.humanoid.Health
 	state.humanoid.MaxHealth = (state.derived and state.derived.health or Config.MaxHealth) + equipment.health
 	state.humanoid.Health = leveledUp and state.humanoid.MaxHealth or math.min(health, state.humanoid.MaxHealth)

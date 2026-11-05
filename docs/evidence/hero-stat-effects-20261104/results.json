@@ -1,0 +1,34 @@
+{
+  "kind": "hero-stat-effects",
+  "date": "2026-11-04",
+  "baseCommit": "464dd4c609ab40d85073bbd4c9be08dc81259731",
+  "checks": {
+    "stat_effects": 524,
+    "progression": 656,
+    "skill_preview": 1392,
+    "advanced_skills": 1435,
+    "equipment": 44,
+    "combat_rules": 125,
+    "auto_target": 215,
+    "pixelfx_cpu": 634,
+    "native": 106
+  },
+  "source_sha256": {
+    "src/client/K0BowMotion.luau": "6b3b3f8d176ea5cfe4e35cf32d7c065fbc4c5d8f44db3beb7919db182d3aa6a0",
+    "src/client/K0MageMotion.luau": "ac9443d973a839a54816631696eda1c4979a6035ebfe13e07eccfb2edd127989",
+    "src/client/K0MeleeMotion.luau": "406a082cb82069571f9bfa64bad1e079c7e9b767f138a09d2402c1626ccdc693",
+    "src/client/PixelFXController.luau": "8fec2c4d948e04ecd258797faf7cf5b4dc3ce4ce8cc9eef47a5dbdd273981d18",
+    "src/server/Combat/CombatService.luau": "ba3e3a629c7892c6eed561486d933b20d7a9d67cac17bb86c4906e4d8b8546e9",
+    "src/shared/CombatStatText.luau": "c7a0830a32c01f1b5d6a69484fd62bc4906a18cfc442336b49a51b68ee48e710",
+    "src/shared/HeroProgression.luau": "2defde7f43a52c3007cd48b4394eb72a17cc21e33c7051d6bc3fe6c090470045",
+    "src/shared/K0Config.luau": "af0a605cbfcc52370a379535438bd4400c11d0cd0c235900e462f2534fdde1f3",
+    "src/shared/SkillStatPreview.luau": "5f2d042658a22f654d4ebfe068195e3fba624d168fd3371884a866f1ff2f9454",
+    "src/shared/SkillStatText.luau": "0fd315531205b81f3b71d63879f30051949345334ba832786f70b7caa4404c1b",
+    "tests/hero-stat-effects-native.luau": "b799e6e53089243c7a98653ff0abf4b91c4501674c28b818497592d7b8bef1d3",
+    "tests/hero-stat-effects.spec.lua": "e15fa493abf75c20e60c8bd3bc3f819e61bbf80d297838636af50e693d77024d",
+    "tests/prepare-hero-stat-probe.py": "222ba9b7f8dc8025bc67ab44fc21aaf997e5833cc9374b865c7355636eb597ec",
+    "tests/skill-stat-preview.spec.lua": "7d57ada13d83ccfef9d247cd67cc83f08715ac94356c3dd88597b7a794596650"
+  },
+  "nativeResult": "HERO_STAT_EFFECTS_NATIVE PASS 106 checks",
+  "limits": "Isolated synthetic server state, native Humanoid/client poses. No game build, publication, real player input, UI or device acceptance."
+}

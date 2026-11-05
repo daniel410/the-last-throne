@@ -109,7 +109,7 @@ for classId,paths in pairs(A.order) do
 end
 for _,level in ipairs({20,40,80}) do
  local budget=4*(level-1)
- for _,case in ipairs({{'elf','magic_archer','DEX','INT'},{'dwarf','gunner','STR','DEX'}}) do
+ for _,case in ipairs({{'elf','magic_archer','STR','INT'},{'dwarf','gunner','STR','DEX'}}) do
   local classId,path,first,second=table.unpack(case)
   local branchSkill=A.branches[path].skills[1].index
   for _,ratio in ipairs({1,.5,0}) do

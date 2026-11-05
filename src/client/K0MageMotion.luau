@@ -69,7 +69,7 @@ function Motion.sample(d,profile,age,entry,entrySlope)
  return pose
 end
 local function presentation(record,now)
- return Motion.sample(record.d,record.profile,now-record.started,record.entry,record.entrySlope)
+ return Motion.sample(record.d,record.profile,(now-record.started)*(record.rate or 1),record.entry,record.entrySlope)
 end
 function Motion.forCharacter(character,now)
  local mode=character:GetAttribute("K0State")
@@ -87,7 +87,7 @@ function Motion.forCharacter(character,now)
     local before,after=presentation(previous,started-.0001),presentation(previous,started+.0001)
     for _,c in ipairs(Clips.channels) do entrySlope[c]=(after.angles[c]-before.angles[c])/.0002 end
    end
-   previous={d=d,profile=profile,started=started,entry=entry,entrySlope=entrySlope};records[character]=previous
+   previous={d=d,profile=profile,started=started,entry=entry,entrySlope=entrySlope,rate=not character:GetAttribute("K0SkillId") and (character:GetAttribute("K0BasicAttackRate") or 1) or 1};records[character]=previous
   end
  end
  if not previous then return Motion.raw("staff_strike",0) end

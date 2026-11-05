@@ -22,7 +22,8 @@ function Controller.renderCharacter(character,now)
  local seq=character:GetAttribute("K0AttackSeq")
  local root=character:FindFirstChild("HumanoidRootPart")
  if not d or type(at)~="number" or type(seq)~="number" or not root then return false end
- local beat=Catalog.beat(d,now-at)
+ local rate=not row.definition and (character:GetAttribute("K0BasicAttackRate") or 1) or 1
+ local beat=Catalog.beat(d,(now-at)*rate)
  if beat==0 then return false end
  local old=seen[character]
  if old and old.seq==seq and old.at==at and old.beat>=beat then return false end

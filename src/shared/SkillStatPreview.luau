@@ -22,7 +22,7 @@ function Preview.breakdown(classId,g,equipment,draftGrowth)
  local current=Preview.derived(classId,g,equipment)
  local after=draftGrowth and Preview.derived(classId,draftGrowth,equipment)
  local rows={}
- for _,key in ipairs({'physicalPower','magicPower','armor','health','mana'}) do
+ for _,key in ipairs({'physicalPower','magicPower','armor','health','mana','attackRate','moveRate'}) do
   table.insert(rows,{key=key,hero=hero[key],gear=current[key]-hero[key],total=current[key],draft=after and after[key]})
  end
  return rows
@@ -54,6 +54,7 @@ end
 function Preview.statHint(classId,key,g)
 	local t=Text.StatHints
 	if key=="VIT" then return t.Vitality end
+	if key=="DEX" then return t.Dexterity end
 	if key=="INT" then
 		if Growth.derived(classId,g).mana>0 then return t.Magic end
 		return classId=="elf" and t.FutureMagic or t.UnusedMagic

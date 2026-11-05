@@ -6,7 +6,7 @@
 
 The Skills panel now identifies the stat used by each skill and shows an estimated damage or barrier value. The Stats panel compares your equipped skills before and after your draft allocation, including equipment and current mastery. Damage is estimated per hit; multi-hit totals assume every hit lands on one target. Enemy bonuses, marks and counters can change the final result.
 
-In the current trial, Knight skills (including Paladin) and all Dwarf skills (including Gunner shots, bombs and artillery) use **STR** for damage. Physical Elf skills use **DEX**. Mage spells and Magic Archer path skills use **INT**. DEX does not currently add attack speed or critical chance. Gunner DEX scaling remains a future design question.
+In the current trial, Knight skills (including Paladin) and all Dwarf skills (including Gunner shots, bombs and artillery) use **STR** for damage. Physical Elf skills use **STR**. Mage spells and Magic Archer path skills use **INT**. For every hero, each invested DEX point adds 0.5% basic attack speed (up to +50%) and 0.1% movement speed (up to +20%). DEX does not change per-hit damage, skill cooldowns, spell casting times or critical chance.
 
 Barriers use the recipient's **Max HP**, including equipment. Your VIT can increase your own barrier; a party barrier uses each ally's own Max HP. INT does not directly increase barrier strength in the current trial. Stats do not change cooldowns or effect duration. Raising Max HP or MP does not refill the resource.
 
@@ -18,10 +18,10 @@ Your character has four stats:
 
 | Stat | Planned role |
 | --- | --- |
-| **Strength (STR)** | Improves strength-based physical attacks, such as sword, shield, and axe skills. Some skills may also deal more posture damage. |
-| **Dexterity (DEX)** | Improves precision-based physical attacks, such as bow and gun skills. Its possible effects on critical chance and attack speed are still being balanced. |
-| **Intelligence (INT)** | Improves magic attacks and may increase maximum MP for characters who use magic. |
-| **Vitality (VIT)** | Improves maximum HP. A contribution to defense is under consideration. |
+| **Strength (STR)** | Adds 2 physical attack per invested point, including sword, shield, axe, bow and gun skills. Mage staff basic attacks continue to use magic attack. |
+| **Dexterity (DEX)** | Increases basic attack speed and movement speed for all four heroes, subject to the caps above. |
+| **Intelligence (INT)** | Adds 2 magic attack and, when your hero has an unlocked MP pool, 3 Max MP per invested point. Magic Archer unlocks MP after the first advancement. |
+| **Vitality (VIT)** | Adds 10 Max HP per invested point, plus 1 defense per 4 invested points. |
 
 HP is your health; VIT is the stat you can invest in to improve it. A character's level and equipment may also affect combat values. Exact formulas are not final.
 
@@ -61,7 +61,7 @@ Paladin magic, MP availability, and any INT scaling are not finalized. Radiant v
 
 ### Gunner
 
-- **STR and DEX scaling is still under review.** Axe skills, gunshots, bombs, and artillery must remain useful after advancement; exact recommendations will follow testing.
+- **STR** increases axe, gunshot, bomb and artillery damage. **DEX** increases basic attack and movement speed.
 - **Consider VIT** for more HP.
 - **Playstyle:** choose independent gun, bomb, and artillery skills. No gun-and-bomb sequence is required.
 
@@ -71,14 +71,14 @@ The current concept keeps the axe as the equipped weapon and brings out a gun du
 
 ### Sharpshooter path (working name)
 
-- **Consider DEX** for physical bow attacks and precision shots.
+- **Consider STR** for physical bow damage and **DEX** for faster basic attacks and movement.
 - **Consider VIT** for more HP.
 - **Playstyle:** select precise single shots, moving volleys, or piercing attacks.
 
 ### Magic Archer (working name)
 
 - **Consider INT** for magic arrows and MP-related growth.
-- **DEX remains relevant to your physical bow skills.** The exact DEX/INT contribution to magic arrows is not final; do not treat any point split as mandatory.
+- **STR** increases physical bow damage; **INT** increases magic skill damage and unlocked Max MP. **DEX** increases basic attack and movement speed. No point split is mandatory.
 - **Consider VIT** for more HP.
 - **Playstyle:** combine physical bow skills with magic arrows and nature-based area control. Magic skills use MP; physical skills use cooldowns without Stamina.
 

@@ -120,7 +120,7 @@ end
 local function presentation(record, now)
  local d=definitionFor(record.classId,record.combo,record.skillId)
  local total=d.windup+d.active+d.recovery
- local age=now-record.started
+ local age=(now-record.started)*(record.rate or 1)
  if age<=total then return Motion.sample(record.classId,record.combo,age,record.entry,record.entrySlope,record.skillId) end
  local result=frame({guard[record.classId],guard[record.classId],rest[record.classId]}, {0,.10,.42}, age-total)
  result.cutting=false
@@ -157,10 +157,10 @@ function Motion.forCharacter(character, now)
    entrySlope={}
    for _,channel in ipairs(channels) do entrySlope[channel]=(after.angles[channel]-before.angles[channel])/.0002 end
   end
-  previous={classId=classId,combo=combo,skillId=skillId,started=started,entry=entry,entrySlope=entrySlope}
+  previous={classId=classId,combo=combo,skillId=skillId,started=started,entry=entry,entrySlope=entrySlope,rate=not skillId and (character:GetAttribute("K0BasicAttackRate") or 1) or 1}
   actions[character]=previous
  end
- return Motion.sample(classId,combo,now-started,previous.entry,previous.entrySlope,skillId)
+ return presentation(previous,now)
 end
 
 return Motion

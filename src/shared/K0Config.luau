@@ -141,4 +141,13 @@ for index, definition in ipairs(Config.Skills.mage) do
 	end
 	Config.Skills.mage[index] = skill
 end
+-- Copy timing fields; never mutate shared attack definitions.
+function Config.scaledBasicAttack(definition, rate)
+ local result={}
+ for key,value in pairs(definition) do result[key]=value end
+ for _,key in ipairs({'windup','active','recovery','hitDelay'}) do
+  if result[key] then result[key]=result[key]/rate end
+ end
+ return result
+end
 return Config

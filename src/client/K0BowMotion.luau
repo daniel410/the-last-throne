@@ -62,7 +62,7 @@ function Motion.confirmPulse(character,skillId,pulse,attackSeq,firedAt,startedAt
  if d~=expected or not validNumber(started) or firedAt<started or firedAt>=started+d.windup+d.active+d.recovery then return end
  local record=records[character]
  if not record or record.started~=started or record.definition~=d then
-  record={definition=d,started=started};records[character]=record
+  record={definition=d,started=started,rate=not character:GetAttribute("K0SkillId") and (character:GetAttribute("K0BasicAttackRate") or 1) or 1};records[character]=record
  end
  if pulse<=(record.pulse or 0) then return end
  record.pulse=pulse;record.pulseAt=firedAt
@@ -77,7 +77,7 @@ function Motion.forCharacter(character,now)
   local d=definition(character);local started=character:GetAttribute("K0AttackStartedAt")
   if not d or type(started)~="number" then return nil end
   if not record or record.started~=started or record.definition~=d then
-   record={definition=d,started=started};records[character]=record
+   record={definition=d,started=started,rate=not character:GetAttribute("K0SkillId") and (character:GetAttribute("K0BasicAttackRate") or 1) or 1};records[character]=record
   end
   local queue=pending[character]
   if queue then
@@ -91,7 +91,7 @@ function Motion.forCharacter(character,now)
   end
  end
  if not record then return rest() end
- local d=record.definition;local age=now-record.started
+ local d=record.definition;local age=(now-record.started)*(record.rate or 1)
  local total=d.windup+d.active+d.recovery
  if age>=total then records[character]=nil;return rest() end
  local release=d.windup
