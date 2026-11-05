@@ -30,7 +30,7 @@
 | `lua tests/expedition-departure.spec.lua` | 42 PASS |
 | `lua tests/expedition-store.spec.lua` | 43 PASS |
 
-수정한7개 Luau 모듈/스크립트를 `/private/tmp/td233-luau/luau-compile`로 컴파일 PASS. `git diff --check` PASS. 고정 소스 빌드 결과는 후속 기록한다.
+수정한7개 Luau 모듈/스크립트를 `/private/tmp/td233-luau/luau-compile`로 컴파일 PASS. `git diff --check` PASS. Lobby/Battle `rojo sourcemap` PASS. 고정 소스 `d86b3a321bc4c28d0f847baec151e007d64e1f5a`를 origin/main에 푸시하고 원격 SHA 일치 확인 후 `python3 tools/build-regional-caster-freeze.py --source d86b3a3 --record docs/evidence/all-story-handoff-20261104/build.json`으로0.69.6 Lobby/Battle 빌드 모두 PASS. [입력/산출물 해시/게시 상태](build.json)를 기록하고 실제 파일 SHA256을 다시 확인했다. 이번 수정에 신규 LFS 자산은 없다.
 
 ## 미검증·게시·다음 담당
 
