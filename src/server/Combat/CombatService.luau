@@ -1555,7 +1555,8 @@ local function stepEnemy(enemy, current, dt)
 			setEnemyState(enemy, "Chase")
 			moveEnemy(enemy, enemy.spawnPosition, current)
 		else
-			if enemy.mode ~= "Idle" and enemy.humanoid.Health < enemy.humanoid.MaxHealth and current >= (enemy.aggroUntil or 0) then
+			if (enemy.mode ~= "Idle" or (enemy.aggroUntil or 0) > 0)
+				and enemy.humanoid.Health < enemy.humanoid.MaxHealth and current >= (enemy.aggroUntil or 0) then
 				resetEnemy(enemy)
 			else
 				if enemy.mode ~= "Idle" then stopEnemy(enemy) end
