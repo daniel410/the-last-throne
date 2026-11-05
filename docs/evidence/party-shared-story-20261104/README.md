@@ -38,3 +38,12 @@ Rojo 7.7.1 / 별도 `/tmp/tlt-party-story-0710` worktree에서 기존 미커밋 
 | --- | --- | --- |
 | 0.71.0 | `builds/0.71.0/TheLastThrone-Lobby-0.71.0.rbxlx` | `7917c3dcbb05332ff5709a889d53bc68bce255578977fc708abcde28818ed57a` |
 | 0.71.0 | `builds/0.71.0/TheLastThrone-Battle-0.71.0.rbxlx` | `cc2dfd96f53c9a5967090de496266c30fb0005c5e2efbdc61f2e9714ae36f79d` |
+
+최종 0.71.1 입력 `233fbc455f1dd9b957903d1e6907a4e5d699fcd3`, 소스 원격 푸시 후 위 worktree를 해당 커밋으로 전환했다. `rojo build default.project.json -o <Lobby 산출물>` 및 `rojo build battle.project.json -o <Battle 산출물>` 모두 성공. 두 XML에 `PartyStory`/`DeepwoodService` 포함을 검사했고, 최종 공유 진행2,765·웨이브3,116·난이도2,637개를 다시 통과했다. 변경 후 PartyStory의 Studio Luau 구문 검사도 통과했다.
+
+| 버전 | 산출물 | SHA-256 |
+| --- | --- | --- |
+| 0.71.1 | `builds/0.71.1/TheLastThrone-Lobby-0.71.1.rbxlx` | `9b930b7ba6dcd8dbe070ce511b5eba0ab035b272bbea54950842fee0e024e1c9` |
+| 0.71.1 | `builds/0.71.1/TheLastThrone-Battle-0.71.1.rbxlx` | `48c58e9a2ad36d8c44605941dbfb7a0467cbc5cb69ddc0352f937ad47289593f` |
+
+구현 `70f4494`·보완 `233fbc4`를 `origin/main`에 푸시했다. 신규 LFS 대상 파일은 없으며 빌드 파일은 ignore된 로컬 산출물이다. Studio의 기존 열린 Battle 문서·미저장 사용자 작업은 수정/게시/종료하지 않았다. 현재 게시판0.70.0과 이 로컬0.71.1 빌드는 구분한다.
