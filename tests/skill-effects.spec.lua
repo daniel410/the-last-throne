@@ -35,9 +35,10 @@ function obj:GetAttributeChangedSignal(k)self.signals=self.signals or {};self.si
 Instance={new=function(class)local p=setmetatable({ClassName=class,AncestryChanged=signal(),LocalTransparencyModifier=0},obj);created[#created+1]=p;return p end}
 workspace={GetServerTimeNow=function()return 100 end,Raycast=function(self,from,delta,params)return {Position=V.new(from.X,0,from.Z)}end}
 local Config=dofile('src/shared/K0Config.luau');local Advanced=dofile('src/shared/AdvancedSkills.luau')
-local modules={AdvancedSkills=Advanced,K0Config=Config}
+local pixelPulses=0
+local modules={AdvancedSkills=Advanced,K0Config=Config,PixelFX={skill=function(_,_,_,_,pulse)assert(pulse>0);pixelPulses=pixelPulses+1 end}}
 require=function(name)return assert(modules[name],tostring(name))end
-script={Parent={AdvancedSkills='AdvancedSkills',SkillEffectGeometry='Geometry',K0BowMotion='Bow',WindLanceVisual='Wind'}}
+script={Parent={AdvancedSkills='AdvancedSkills',SkillEffectGeometry='Geometry',K0BowMotion='Bow',WindLanceVisual='Wind',PixelFX='PixelFX'}}
 local P=dofile('src/shared/SkillPresentation.luau');modules.SkillPresentation=P;modules.Geometry=dofile('src/client/SkillEffectGeometry.luau')
 modules.Bow={confirmPulse=function()end};modules.Wind={play=function()end}
 local rs={Shared={K0Config='K0Config',SkillPresentation='SkillPresentation'}}
@@ -70,6 +71,9 @@ for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do if d.advanced the
  end
 end end end
 check(count==116,'execute all advanced skills and all pulses')
+local expectedPulses=0
+for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do if d.advanced then expectedPulses=expectedPulses+d.pulses end end end
+check(pixelPulses==expectedPulses,'every advanced pulse forwards to PixelFX exactly once; no windup emission')
 for _,name in ipairs({'SkillTelegraph','ImpactBoundary','ArrowShaft','LightningFork','RootingVine','IceCrystal','EarthRupture','SteamJet','MortarDescent','RifleTracer','ShotPellet','ThrownAxeBlade','BladeCrescent','PersonalWard','ShieldContact','LavaFissure','HailShard','AshfallEmber'})do check(seen[name],name..' has exercised renderer')end
 -- Gunner cancellation restores held weapon and removes temporary props.
 local character=Instance.new('Model');character.Parent=workspace;character.attributes={K0State='Attack',K0AttackSeq=5}

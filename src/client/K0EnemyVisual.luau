@@ -6,6 +6,7 @@ local Workspace = game:GetService("Workspace")
 local EnemyVisual = {}
 local Text=require(game:GetService('ReplicatedStorage').Shared.K0Text)
 local Config=require(game:GetService('ReplicatedStorage').Shared.K0Config)
+local PixelFX=require(script.Parent.PixelFX)
 function EnemyVisual.statusText(model,current)
  local lines={}
  local stunUntil=model:GetAttribute('K0EnemyStunUntil')
@@ -52,6 +53,7 @@ local function mount(enemies)
 				end
 			end
 			for _, model in enemies:GetChildren() do
+				PixelFX.enemy(model,current)
 				local provokeUntil = model:GetAttribute("K0ProvokeUntil")
 				if type(provokeUntil) == "number" and Workspace:GetServerTimeNow() < provokeUntil and not provokeEffects[model] then
 					local glow = Instance.new("Highlight")

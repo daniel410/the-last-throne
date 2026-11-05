@@ -7,6 +7,7 @@ local Presentation=require(RS.Shared.SkillPresentation)
 local Geometry=require(script.Parent.SkillEffectGeometry)
 local BowMotion=require(script.Parent.K0BowMotion)
 local WindLance=require(script.Parent.WindLanceVisual)
+local PixelFX=require(script.Parent.PixelFX)
 local Visual={}
 local byId={};for _,list in pairs(Config.Skills) do for _,d in ipairs(list) do byId[d.id]=d end end
 local colors={wind=Color3.fromRGB(180,255,218),arcane=Color3.fromRGB(180,153,255),steel=Color3.fromRGB(255,215,133),holy=Color3.fromRGB(255,239,167),gun=Color3.fromRGB(255,210,80),bomb=Color3.fromRGB(255,133,57),shell=Color3.fromRGB(255,87,55),nature=Color3.fromRGB(104,238,157),fire=Color3.fromRGB(255,101,41),earth=Color3.fromRGB(176,126,76),water=Color3.fromRGB(73,178,255),frost=Color3.fromRGB(141,234,255),lightning=Color3.fromRGB(222,198,255)}
@@ -150,6 +151,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local d=byId[id];if not d or not d.advanced or typeof(origin)~="Vector3" or typeof(center)~="Vector3" then return end
  local profile=Presentation.get(d);if not profile then return end
  if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
+ if pulse~=0 then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
  local color=colors[d.element] or colors.steel
  local direction=center-origin

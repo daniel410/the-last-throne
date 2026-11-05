@@ -1,5 +1,7 @@
 # The Last Throne 실행 백로그
 
+> **2026-11-04 / TLT-005/032/033/055/057/084 · 0.70.0:** 전체 공격/스킬 PixelFX20종·4기본/128스킬·Selene지원/적공격을 로컬 연결했다. [수용 증거와 남은 작업](docs/evidence/pixelfx-20261104/README.md). Studio Network 권한/실제 렌더·모바일/4인+AI·최종 미술 수용 전까지 부모 티켓은 In Progress다.
+
 > **2026-11-04 / TLT-028/057/061/084 · 0.69.4:** 배틀 도착 대기 발판 노출을 막도록 ReplicatedFirst에서 기존 이동 로딩 화면을 이어받는다. 서버 전투/캐릭터·클라이언트 전투UI·카메라·현지 바닥/스트리밍 준비 후 닫는다. [검증·미검증](docs/evidence/arrival-loading-20261104/README.md). 실제 게시 이동/모바일 수용은 후속이다.
 
 

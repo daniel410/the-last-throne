@@ -4,6 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Debris = game:GetService("Debris")
 local TweenService = game:GetService("TweenService")
 local HitReaction = require(script.Parent.K0EnemyHitReaction)
+local PixelFX = require(script.Parent.PixelFX)
 
 local HitEffects = {}
 local started = false
@@ -106,6 +107,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	if model and model:GetAttribute("SlimeSplitGeneration") == 1 then scale = 0.7 end
 	local impactScale = skill and skill.shape == "chop" and 1.5 or 1
 	HitReaction.record(model, flat)
+	PixelFX.hit(position, classId, skillId, scale)
 	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.25 * scale * impactScale, profile.secondary)
 	TweenService:Create(flash, TweenInfo.new(0.20, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 		{ Size = Vector3.one * 1.65 * scale * impactScale, Transparency = 1 }):Play()

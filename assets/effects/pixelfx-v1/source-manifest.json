@@ -1,0 +1,546 @@
+{
+  "source": "https://github.com/patch-gg/pixelfx",
+  "commit": "a84159688af3ca37a4be05a0d422b94451b2e24e",
+  "license": "MIT",
+  "cell": 128,
+  "columns": 4,
+  "rows": 4,
+  "frames": 16,
+  "padding": 4,
+  "samples": [
+    {
+      "key": "steel",
+      "source": "melee/sword-slash",
+      "sourceWindow": [
+        0,
+        0.52
+      ],
+      "options": {
+        "light": 0.35,
+        "palette": [
+          "#423019",
+          "#806036",
+          "#bb9550",
+          "#ffd785",
+          "#ffe5ac",
+          "#fff0cb",
+          "#ffffff"
+        ]
+      },
+      "sourceBounds": [
+        3,
+        2,
+        124,
+        93
+      ],
+      "file": "steel.png",
+      "sha256": "26b76a3734eb3d192e2b2e8bd606a9fe0273d579833008c5d4748c48425cb1a5",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://126195196879627"
+    },
+    {
+      "key": "shield",
+      "source": "impacts/shield-block",
+      "sourceWindow": [
+        0,
+        0.65
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        34,
+        25,
+        93,
+        70
+      ],
+      "file": "shield.png",
+      "sha256": "582afce52e6ea5515652e86c7c8035ef97c1e8eedd8c4d39409f9e071e5e9130",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://116682799210764"
+    },
+    {
+      "key": "axe",
+      "source": "impacts/crit-hit",
+      "sourceWindow": [
+        0,
+        0.65
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        26,
+        30,
+        154,
+        100
+      ],
+      "file": "axe.png",
+      "sha256": "1308a725de86fc6253a1809d25562a90ad33a5704afd3a65d1fdea17d57f9877",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://79156590926728"
+    },
+    {
+      "key": "arrow",
+      "source": "impacts/hit-spark",
+      "sourceWindow": [
+        0,
+        0.5
+      ],
+      "options": {
+        "light": 0.35,
+        "palette": [
+          "#194c30",
+          "#318f57",
+          "#68ce80",
+          "#adf6a1",
+          "#f7ffe0",
+          "#ffffff"
+        ]
+      },
+      "sourceBounds": [
+        26,
+        9,
+        105,
+        63
+      ],
+      "file": "arrow.png",
+      "sha256": "9371576f3146bc102a823510bc529df591d6af10f532e72de5b95c4348dc082e",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://70394998889278"
+    },
+    {
+      "key": "gun",
+      "source": "impacts/bullet-impact",
+      "sourceWindow": [
+        0,
+        0.7
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        32,
+        30,
+        104,
+        56
+      ],
+      "file": "gun.png",
+      "sha256": "5f4c55878ca4b2e26d6e731e0024dba78669ff34e691195eea70c1ed93d136a9",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://114949276584790"
+    },
+    {
+      "key": "arcane",
+      "source": "arcane/mana-burst",
+      "sourceWindow": [
+        0.35,
+        1.45
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        18,
+        10,
+        164,
+        134
+      ],
+      "file": "arcane.png",
+      "sha256": "5fa57a4378062dd8a79ab002bb1fd8dfe5bfa7508ee42b0bcfa97d774b89f7ac",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://82824010689746"
+    },
+    {
+      "key": "water",
+      "source": "water/splash",
+      "sourceWindow": [
+        0.15,
+        1.35
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        22,
+        25,
+        126,
+        72
+      ],
+      "file": "water.png",
+      "sha256": "2c6180df95099c8db25b1e0896ea2678e1f93d122462d17a2a61efd072ffb67e",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://104644824235390"
+    },
+    {
+      "key": "gravity",
+      "source": "explosions/implosion",
+      "sourceWindow": [
+        0,
+        1.5
+      ],
+      "options": {
+        "light": 0.35,
+        "palette": [
+          "#190e30",
+          "#372059",
+          "#6434a1",
+          "#a875e1",
+          "#ddbbff",
+          "#ffffff"
+        ]
+      },
+      "sourceBounds": [
+        18,
+        6,
+        165,
+        165
+      ],
+      "file": "gravity.png",
+      "sha256": "a2fb33855dc7078191c2515e137edc9340a6d078c8fc5e915c040199a7692872",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://103583951750488"
+    },
+    {
+      "key": "wind",
+      "source": "nature/tornado",
+      "sourceWindow": [
+        0.2,
+        1.2
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        26,
+        19,
+        145,
+        140
+      ],
+      "file": "wind.png",
+      "sha256": "6ae2e8f31cc0eae35393e8a6930a7f90b4f93d1d91c71b3e6d60e8952ce2af05",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://95477541317444"
+    },
+    {
+      "key": "fire",
+      "source": "explosions/small-explosion",
+      "sourceWindow": [
+        0,
+        0.85
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        46,
+        84,
+        195,
+        155
+      ],
+      "file": "fire.png",
+      "sha256": "c3a4a69151a6739afbce5352466507d6e15f81ad7820dbfedb3120000b0c9441",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://125880857986566"
+    },
+    {
+      "key": "frost",
+      "source": "ice/snowflake-burst",
+      "sourceWindow": [
+        0.4,
+        1.8
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        26,
+        12,
+        84,
+        99
+      ],
+      "file": "frost.png",
+      "sha256": "0d5de11f7db4f25eb7df9d13408435f538c978da825c956ff8277236b5f5ee3a",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://114563012327470"
+    },
+    {
+      "key": "lightning",
+      "source": "lightning/zap-hit",
+      "sourceWindow": [
+        0,
+        0.65
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        3,
+        23,
+        109,
+        63
+      ],
+      "file": "lightning.png",
+      "sha256": "7a69dadbbe53ddbf3df7cd5933d3e3b1b2eaa014ce20cafb1ed8215062f26e83",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://109873337649969"
+    },
+    {
+      "key": "earth",
+      "source": "impacts/ground-slam",
+      "sourceWindow": [
+        0.15,
+        1.35
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        29,
+        63,
+        229,
+        131
+      ],
+      "file": "earth.png",
+      "sha256": "301ceb3257d16767a090c50a727c2c4097a9d07c01eff0772394443cb3e3ed32",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://96300147364691"
+    },
+    {
+      "key": "bomb",
+      "source": "explosions/small-explosion",
+      "sourceWindow": [
+        0,
+        1.2
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        46,
+        61,
+        206,
+        177
+      ],
+      "file": "bomb.png",
+      "sha256": "0ca8aba93849d1c23bbe8b38882707db12f9cc09de39e15e21483d4e29a24db5",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://97702256550503"
+    },
+    {
+      "key": "holy",
+      "source": "holy/sunburst",
+      "sourceWindow": [
+        0.25,
+        1.4
+      ],
+      "options": {
+        "light": 0.35,
+        "palette": [
+          "#423019",
+          "#806036",
+          "#bb9550",
+          "#ffd785",
+          "#ffe5ac",
+          "#fff0cb",
+          "#ffffff"
+        ]
+      },
+      "sourceBounds": [
+        14,
+        22,
+        91,
+        86
+      ],
+      "file": "holy.png",
+      "sha256": "83a97cb564841fa1b266de32f5bfb028b3ff0502cdeee7058cdf182a910a10a9",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://87151494058764"
+    },
+    {
+      "key": "nature",
+      "source": "nature/leaf-storm",
+      "sourceWindow": [
+        0,
+        1.2
+      ],
+      "options": {
+        "light": 0.35
+      },
+      "sourceBounds": [
+        10,
+        9,
+        95,
+        89
+      ],
+      "file": "nature.png",
+      "sha256": "5dfd33cb66883ec512e787be7f552f1b9c66e924020f53e65fa748b5807a6ea5",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://94125424154534"
+    },
+    {
+      "key": "heal",
+      "source": "holy/heal-aoe",
+      "sourceWindow": [
+        0.35,
+        1.7
+      ],
+      "options": {
+        "light": 0.35,
+        "palette": [
+          "#423019",
+          "#806036",
+          "#bb9550",
+          "#ffd785",
+          "#ffe5ac",
+          "#fff0cb",
+          "#ffffff"
+        ]
+      },
+      "sourceBounds": [
+        19,
+        24,
+        218,
+        106
+      ],
+      "file": "heal.png",
+      "sha256": "38955559cb858528f6d85aaa342a818732759c4534ec08f4ec90718fbb664c7c",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://88005605477351"
+    },
+    {
+      "key": "ward",
+      "source": "impacts/parry",
+      "sourceWindow": [
+        0,
+        0.7
+      ],
+      "options": {
+        "light": 0.35,
+        "palette": [
+          "#423019",
+          "#806036",
+          "#bb9550",
+          "#ffd785",
+          "#ffe5ac",
+          "#fff0cb",
+          "#ffffff"
+        ]
+      },
+      "sourceBounds": [
+        16,
+        23,
+        168,
+        79
+      ],
+      "file": "ward.png",
+      "sha256": "1d5141cf59fecd79f79f1e02ac57de1c4f4ee3d832f867b731da8b7ece4f8d3d",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://116376069982468"
+    },
+    {
+      "key": "cleanse",
+      "source": "ice/snowflake-burst",
+      "sourceWindow": [
+        0.4,
+        1.4
+      ],
+      "options": {
+        "light": 0.35,
+        "palette": [
+          "#29445e",
+          "#527f9c",
+          "#91c4d5",
+          "#c4efff",
+          "#effcff",
+          "#ffffff"
+        ]
+      },
+      "sourceBounds": [
+        27,
+        12,
+        86,
+        99
+      ],
+      "file": "cleanse.png",
+      "sha256": "b66467f1e1f9bfbc3eb2b97aad82b96e8d814aca280f3f5741bc5008972a25cb",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://134457115562528"
+    },
+    {
+      "key": "enemy",
+      "source": "impacts/hit-spark",
+      "sourceWindow": [
+        0,
+        0.5
+      ],
+      "options": {
+        "light": 0.35,
+        "palette": [
+          "#49161b",
+          "#923023",
+          "#d75a30",
+          "#ff9d51",
+          "#ffe1ad",
+          "#ffffff"
+        ]
+      },
+      "sourceBounds": [
+        26,
+        9,
+        105,
+        63
+      ],
+      "file": "enemy.png",
+      "sha256": "93ab0a3b25404d24142d1d0d230cd437049b07f6715f4dc0ee5de305c65a2e91",
+      "frames": 16,
+      "columns": 4,
+      "cell": 128,
+      "robloxAssetId": "rbxassetid://71056081233944"
+    }
+  ],
+  "upload": {
+    "method": "Roblox Studio MCP upload_image",
+    "date": "2026-11-04",
+    "studioPlaceId": 0,
+    "verification": "20 uploads succeeded; engine preload and render checks pending"
+  }
+}

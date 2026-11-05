@@ -3,6 +3,7 @@ local Run=game:GetService('RunService')
 local Players=game:GetService('Players')
 local Tags=game:GetService('CollectionService')
 local Skin=require(script.Parent.SeleneSkinMotion)
+local PixelFX=require(script.Parent.PixelFX)
 local View={}
 local GOLD=Color3.fromRGB(255,223,132)
 local MINT=Color3.fromRGB(145,255,200)
@@ -39,6 +40,7 @@ function View.bind(model,resolveCharacter)
   local humanoid=character and character:FindFirstChildOfClass('Humanoid')
   local arm=self.skin.visual
   if not arm or not targetRoot or not humanoid or humanoid.Health<=0 then return end
+  PixelFX.support(character,action)
   local folder=Instance.new('Folder');folder.Name='SeleneSupportEffect';folder.Parent=workspace
   local color=action=='Heal' and MINT or action=='Protect' and GOLD or Color3.fromRGB(187,224,255)
   local source=Instance.new('Attachment');source.Name='SeleneHealingHand';source.CFrame=arm.CFrame:ToObjectSpace(Skin.hand(self.skin));source.Parent=arm

@@ -1,0 +1,913 @@
+{
+  "skills": [
+    {
+      "id": "dwarf.common.ground",
+      "classId": "dwarf",
+      "texture": "earth",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.common.overhead",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.common.throw",
+      "classId": "dwarf",
+      "texture": "axe",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.gunner.blast_step",
+      "classId": "dwarf",
+      "texture": "bomb",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.gunner.bomb_toss",
+      "classId": "dwarf",
+      "texture": "bomb",
+      "form": "ground",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.gunner.field_mortar",
+      "classId": "dwarf",
+      "texture": "bomb",
+      "form": "ground",
+      "pulses": 4
+    },
+    {
+      "id": "dwarf.gunner.gunner_shot",
+      "classId": "dwarf",
+      "texture": "gun",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.gunner.piercing_round",
+      "classId": "dwarf",
+      "texture": "gun",
+      "form": "line",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.gunner.quickfire",
+      "classId": "dwarf",
+      "texture": "gun",
+      "form": "projectile",
+      "pulses": 3
+    },
+    {
+      "id": "dwarf.gunner.rolling_charge",
+      "classId": "dwarf",
+      "texture": "bomb",
+      "form": "line",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.gunner.scatter_shot",
+      "classId": "dwarf",
+      "texture": "gun",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.gunner.shell_burst",
+      "classId": "dwarf",
+      "texture": "bomb",
+      "form": "ground",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.gunner.shrapnel_toss",
+      "classId": "dwarf",
+      "texture": "bomb",
+      "form": "ground",
+      "pulses": 3
+    },
+    {
+      "id": "dwarf.gunner.siege_barrage",
+      "classId": "dwarf",
+      "texture": "bomb",
+      "form": "ground",
+      "pulses": 4
+    },
+    {
+      "id": "dwarf.gunner.siege_pattern",
+      "classId": "dwarf",
+      "texture": "bomb",
+      "form": "ground",
+      "pulses": 2
+    },
+    {
+      "id": "dwarf.gunner.skipping_charge",
+      "classId": "dwarf",
+      "texture": "bomb",
+      "form": "ground",
+      "pulses": 2
+    },
+    {
+      "id": "dwarf.iron_axe.armor_splitter",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "melee",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.iron_axe.breaker_throw",
+      "classId": "dwarf",
+      "texture": "axe",
+      "form": "line",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.iron_axe.crag_cleave",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.iron_axe.crosscut_axe",
+      "classId": "dwarf",
+      "texture": "axe",
+      "form": "line",
+      "pulses": 2
+    },
+    {
+      "id": "dwarf.iron_axe.iron_shoulder",
+      "classId": "dwarf",
+      "texture": "shield",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_collapse",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "cone",
+      "pulses": 2
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_strike",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.iron_axe.mountain_sweep",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.iron_axe.returning_echo",
+      "classId": "dwarf",
+      "texture": "axe",
+      "form": "line",
+      "pulses": 2
+    },
+    {
+      "id": "dwarf.iron_axe.shatter_blow",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "ground",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.iron_axe.stonebound_leap",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.iron_axe.tremor_guard",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf.iron_axe.twin_axe_path",
+      "classId": "dwarf",
+      "texture": "axe",
+      "form": "projectile",
+      "pulses": 2
+    },
+    {
+      "id": "dwarf_braced_throw",
+      "classId": "dwarf",
+      "texture": "axe",
+      "form": "line",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf_hooking_chop",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "melee",
+      "pulses": 1
+    },
+    {
+      "id": "dwarf_low_sweep",
+      "classId": "dwarf",
+      "texture": "steel",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "elf.common.aimed",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "elf.common.multi",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "elf.common.rapid",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "common",
+      "pulses": 3
+    },
+    {
+      "id": "elf.magic_archer.bloom_shot",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf.magic_archer.echo_arrows",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "projectile",
+      "pulses": 3
+    },
+    {
+      "id": "elf.magic_archer.elemental_arrow",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf.magic_archer.elemental_pierce",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "line",
+      "pulses": 1
+    },
+    {
+      "id": "elf.magic_archer.gliding_shot",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf.magic_archer.rooting_fan",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "elf.magic_archer.spark_volley",
+      "classId": "elf",
+      "texture": "lightning",
+      "form": "projectile",
+      "pulses": 3
+    },
+    {
+      "id": "elf.magic_archer.spirit_arrowfall",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "ground",
+      "pulses": 3
+    },
+    {
+      "id": "elf.magic_archer.spirit_rain",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "ground",
+      "pulses": 4
+    },
+    {
+      "id": "elf.magic_archer.storm_arrow",
+      "classId": "elf",
+      "texture": "lightning",
+      "form": "ground",
+      "pulses": 1
+    },
+    {
+      "id": "elf.magic_archer.vine_burst",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "ground",
+      "pulses": 1
+    },
+    {
+      "id": "elf.magic_archer.vine_trap",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "ground",
+      "pulses": 3
+    },
+    {
+      "id": "elf.magic_archer.warden_arrow",
+      "classId": "elf",
+      "texture": "nature",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf.marksman.arrow_rain",
+      "classId": "elf",
+      "texture": "steel",
+      "form": "ground",
+      "pulses": 4
+    },
+    {
+      "id": "elf.marksman.crossfire",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "line",
+      "pulses": 2
+    },
+    {
+      "id": "elf.marksman.fan_break",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "elf.marksman.grand_volley",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "cone",
+      "pulses": 3
+    },
+    {
+      "id": "elf.marksman.heavy_draw",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf.marksman.hunter_s_focus",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf.marksman.mark_breaker",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf.marksman.moving_volley",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "projectile",
+      "pulses": 3
+    },
+    {
+      "id": "elf.marksman.piercing_line",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "line",
+      "pulses": 1
+    },
+    {
+      "id": "elf.marksman.piercing_volley",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "elf.marksman.precision_volley",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "projectile",
+      "pulses": 3
+    },
+    {
+      "id": "elf.marksman.retreating_fire",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf.marksman.weakpoint_shot",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf_arrow_screen",
+      "classId": "elf",
+      "texture": "steel",
+      "form": "ground",
+      "pulses": 3
+    },
+    {
+      "id": "elf_pinning_shot",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "elf_retreating_shot",
+      "classId": "elf",
+      "texture": "arrow",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "knight.common.bash",
+      "classId": "knight",
+      "texture": "shield",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "knight.common.provoke",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "knight.common.whirlwind",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "knight.paladin.dawn_burst",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "knight.paladin.dawn_spiral",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "area",
+      "pulses": 3
+    },
+    {
+      "id": "knight.paladin.guardian_slash",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "knight.paladin.oath_challenge",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "knight.paladin.oath_of_dawn",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "area",
+      "pulses": 2
+    },
+    {
+      "id": "knight.paladin.oathblade",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "melee",
+      "pulses": 2
+    },
+    {
+      "id": "knight.paladin.oathbound_assault",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "cone",
+      "pulses": 3
+    },
+    {
+      "id": "knight.paladin.oathbreaker_strike",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "melee",
+      "pulses": 1
+    },
+    {
+      "id": "knight.paladin.radiant_charge",
+      "classId": "knight",
+      "texture": "shield",
+      "form": "cone",
+      "pulses": 2
+    },
+    {
+      "id": "knight.paladin.radiant_sweep",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "knight.paladin.shield_verdict",
+      "classId": "knight",
+      "texture": "shield",
+      "form": "melee",
+      "pulses": 1
+    },
+    {
+      "id": "knight.paladin.sunward_cross",
+      "classId": "knight",
+      "texture": "holy",
+      "form": "cone",
+      "pulses": 2
+    },
+    {
+      "id": "knight.paladin.valiant_advance",
+      "classId": "knight",
+      "texture": "shield",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "knight.steel_knight.blade_storm",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "area",
+      "pulses": 4
+    },
+    {
+      "id": "knight.steel_knight.breaker_charge",
+      "classId": "knight",
+      "texture": "shield",
+      "form": "cone",
+      "pulses": 2
+    },
+    {
+      "id": "knight.steel_knight.challenging_strike",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "melee",
+      "pulses": 1
+    },
+    {
+      "id": "knight.steel_knight.counter_slash",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "melee",
+      "pulses": 1
+    },
+    {
+      "id": "knight.steel_knight.guardian_counter",
+      "classId": "knight",
+      "texture": "shield",
+      "form": "melee",
+      "pulses": 1
+    },
+    {
+      "id": "knight.steel_knight.rallying_slash",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "knight.steel_knight.shield_breaker",
+      "classId": "knight",
+      "texture": "shield",
+      "form": "melee",
+      "pulses": 1
+    },
+    {
+      "id": "knight.steel_knight.steel_sweep",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "knight.steel_knight.sweeping_break",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "knight.steel_knight.twin_cyclone",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "area",
+      "pulses": 2
+    },
+    {
+      "id": "knight.steel_knight.unyielding_front",
+      "classId": "knight",
+      "texture": "shield",
+      "form": "area",
+      "pulses": 2
+    },
+    {
+      "id": "knight.steel_knight.vanguard_strike",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "line",
+      "pulses": 1
+    },
+    {
+      "id": "knight.steel_knight.warcry_assault",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "cone",
+      "pulses": 3
+    },
+    {
+      "id": "knight_crescent_cut",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "cone",
+      "pulses": 1
+    },
+    {
+      "id": "knight_driving_thrust",
+      "classId": "knight",
+      "texture": "steel",
+      "form": "line",
+      "pulses": 1
+    },
+    {
+      "id": "knight_guarded_strike",
+      "classId": "knight",
+      "texture": "shield",
+      "form": "melee",
+      "pulses": 1
+    },
+    {
+      "id": "mage.common.gravity",
+      "classId": "mage",
+      "texture": "gravity",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "mage.common.mana_bolt",
+      "classId": "mage",
+      "texture": "arcane",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "mage.common.water_ball",
+      "classId": "mage",
+      "texture": "water",
+      "form": "common",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.chain_lightning",
+      "classId": "mage",
+      "texture": "lightning",
+      "form": "chain",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.eternal_tempest",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "ground",
+      "pulses": 3
+    },
+    {
+      "id": "mage.cryo.frost_lance",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.frost_ring",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.frost_step",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.froststorm",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "ground",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.glacial_spike",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.hailfall",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "ground",
+      "pulses": 4
+    },
+    {
+      "id": "mage.cryo.ice_shard",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.ice_ward",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.lightning_line",
+      "classId": "mage",
+      "texture": "lightning",
+      "form": "line",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.shatter_dart",
+      "classId": "mage",
+      "texture": "frost",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "mage.cryo.thunder_spear",
+      "classId": "mage",
+      "texture": "lightning",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "mage.pyro.ashfall",
+      "classId": "mage",
+      "texture": "fire",
+      "form": "ground",
+      "pulses": 4
+    },
+    {
+      "id": "mage.pyro.caldera_s_judgment",
+      "classId": "mage",
+      "texture": "earth",
+      "form": "ground",
+      "pulses": 3
+    },
+    {
+      "id": "mage.pyro.cinder_ring",
+      "classId": "mage",
+      "texture": "fire",
+      "form": "area",
+      "pulses": 3
+    },
+    {
+      "id": "mage.pyro.earth_rise",
+      "classId": "mage",
+      "texture": "earth",
+      "form": "ground",
+      "pulses": 1
+    },
+    {
+      "id": "mage.pyro.ember_lance",
+      "classId": "mage",
+      "texture": "fire",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "mage.pyro.ember_step",
+      "classId": "mage",
+      "texture": "fire",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "mage.pyro.flame_dart",
+      "classId": "mage",
+      "texture": "fire",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "mage.pyro.lava_eruption",
+      "classId": "mage",
+      "texture": "earth",
+      "form": "ground",
+      "pulses": 1
+    },
+    {
+      "id": "mage.pyro.magma_spear",
+      "classId": "mage",
+      "texture": "fire",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "mage.pyro.molten_line",
+      "classId": "mage",
+      "texture": "fire",
+      "form": "line",
+      "pulses": 3
+    },
+    {
+      "id": "mage.pyro.searing_ward",
+      "classId": "mage",
+      "texture": "fire",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "mage.pyro.steam_burst",
+      "classId": "mage",
+      "texture": "water",
+      "form": "ground",
+      "pulses": 1
+    },
+    {
+      "id": "mage.pyro.stone_lance",
+      "classId": "mage",
+      "texture": "earth",
+      "form": "projectile",
+      "pulses": 1
+    },
+    {
+      "id": "mage_arcane_ward",
+      "classId": "mage",
+      "texture": "arcane",
+      "form": "self",
+      "pulses": 1
+    },
+    {
+      "id": "mage_tidal_ring",
+      "classId": "mage",
+      "texture": "water",
+      "form": "area",
+      "pulses": 1
+    },
+    {
+      "id": "mage_wind_lance",
+      "classId": "mage",
+      "texture": "wind",
+      "form": "line",
+      "pulses": 1
+    }
+  ],
+  "basic": {
+    "knight": "steel",
+    "dwarf": "axe",
+    "elf": "arrow",
+    "mage": "arcane"
+  },
+  "selene": {
+    "Heal": "heal",
+    "Protect": "ward",
+    "Cleanse": "cleanse"
+  },
+  "enemyReleaseAndPlayerHurt": "enemy",
+  "note": "Static/CPU coverage, not native rendering acceptance"
+}
