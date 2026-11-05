@@ -22,3 +22,14 @@
 | `lua tests/battle-startup.spec.lua` |223개 통과 |
 
 미검증: 실제 게시 클라이언트2~4인·지연/스트리밍·실기기 미니맵 밀집/이름 가독성·쓰러짐/재생성/원정 이탈의 실제 연속 입력. 다음 QA는 떨어진 파티원의 합류, 동일 좌표 밀집, 다른 구역/에픽 가장자리, 이동 포탈/로비 복귀/재입장과 영웅 교체를 확인한다. 부모 티켓 In Progress. 기존 미커밋 무기·회피·이동 변경은 포함하지 않으며 TD 계정·상품·게시 상태를 변경하지 않는다.
+
+## 0.73.0 고정 빌드
+
+입력 `ef4b5889b850d74b30fb1ee5065423619f6c065a` / VERSION `0.73.0` / Rojo7.7.1. 원격 푸시 후 별도 `/tmp/tlt-party-map-0730` worktree에서 `rojo build default.project.json -o <Lobby 산출물>`과 `rojo build battle.project.json -o <Battle 산출물>` 모두 성공했다. 두 XML의 새/변경10모듈 Source가 해당 고정 소스와 일치하는 것도 확인했다.
+
+| 산출물 | SHA-256 |
+| --- | --- |
+| `builds/0.73.0/TheLastThrone-Lobby-0.73.0.rbxlx` | `2f9f88fa0e67e5309f25ad65b0555d49426e724a2243a0b5f601081cabaedd12` |
+| `builds/0.73.0/TheLastThrone-Battle-0.73.0.rbxlx` | `71782c3337244ce7f5181722e61f20475f1f8f153e18aa188bf5050a7db0f353` |
+
+고정 worktree에서 새 파티지도96·지도배치36·공유진행2,765·배틀시작223개 재통과. 구현 `ef4b588`를 `origin/main`에 푸시했다. 신규 LFS 자산은 없고 빌드 출력은 로컬 ignore 산출물이다. 일반 빌드이며 실제 Roblox 게시/릴리스 태그를 수행하지 않았다. 기존 열린 Studio 문서/세션은 수정하거나 종료하지 않았다.
