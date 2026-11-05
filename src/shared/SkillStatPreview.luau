@@ -5,6 +5,7 @@ local Growth=Shared and require(Shared.HeroProgression) or dofile("src/shared/He
 local Config=Shared and require(Shared.K0Config) or dofile("src/shared/K0Config.luau")
 local Advanced=Shared and require(Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
 local Text=Shared and require(Shared.SkillStatText) or dofile("src/shared/SkillStatText.luau")
+local CombatText=Shared and require(Shared.CombatStatText) or dofile("src/shared/CombatStatText.luau")
 local Preview={}
 function Preview.derived(classId,g,equipment)
 	local d=Growth.derived(classId,g)
@@ -26,6 +27,57 @@ function Preview.breakdown(classId,g,equipment,draftGrowth)
   table.insert(rows,{key=key,hero=hero[key],gear=current[key]-hero[key],total=current[key],draft=after and after[key]})
  end
  return rows
+end
+local function precise(value)
+ if math.abs(value)<.0000001 then value=0 end
+ return string.format('%.3f',value):gsub('0+$',''):gsub('%.$','')
+end
+local function signed(value) return (value>=0 and '+' or '')..precise(value) end
+-- Same final-hit rounding as CombatService, without temporary enemy/counter effects.
+function Preview.basicAttacks(classId,g,equipment,draftGrowth)
+ local current=Preview.derived(classId,g,equipment)
+ local after=draftGrowth and Preview.derived(classId,draftGrowth,equipment)
+ local key=classId=='mage' and 'magicPower' or 'physicalPower'
+ local rows={}
+ for index,attack in ipairs(Config.BasicAttackProfiles[classId].attacks) do
+  local before=math.max(1,math.floor(current[key]*attack.damage+.5))
+  local target=after and math.max(1,math.floor(after[key]*attack.damage+.5))
+  table.insert(rows,{key='basicHit'..index,before=before,after=target,delta=target and target-before})
+ end
+ return rows
+end
+function Preview.basicAttackText(classId,g,equipment,draftGrowth)
+ local lines={CombatText.BasicDamageTitle}
+ for index,row in ipairs(Preview.basicAttacks(classId,g,equipment,draftGrowth)) do
+  local label=string.format(CombatText.BasicHit,index)
+  table.insert(lines,row.after and string.format(CombatText.InvestmentValue,label,precise(row.before),precise(row.after),signed(row.delta)) or label..': '..precise(row.before))
+ end
+ table.insert(lines,CombatText.BasicDamageNote)
+ return table.concat(lines,'\n')
+end
+-- Project the whole unsaved allocation. Include +0 for thresholds and caps.
+function Preview.investmentText(classId,g,equipment,draft)
+ local after=Growth.copy(g);local spent=0
+ for key,value in pairs(draft) do after.stats[key]=after.stats[key]+value;spent=spent+value end
+ local lines={spent>0 and CombatText.InvestmentNote or CombatText.InvestmentEmpty,
+  Preview.basicAttackText(classId,g,equipment,spent>0 and after or nil)}
+ if spent>0 then
+  local relevant={physicalPower=draft.STR>0,magicPower=draft.INT>0,mana=draft.INT>0,
+   armor=draft.VIT>0,health=draft.VIT>0,attackRate=draft.DEX>0,moveRate=draft.DEX>0}
+  for _,row in ipairs(Preview.breakdown(classId,g,equipment,after)) do
+   if relevant[row.key] then
+    local delta=row.draft-row.total
+    if CombatText.SpeedLabels[row.key] then
+     table.insert(lines,string.format(CombatText.InvestmentValue,CombatText.SpeedLabels[row.key],precise(row.total)..'x',precise(row.draft)..'x',string.format(CombatText.SpeedGain,signed(delta*100))))
+    elseif row.key=='mana' and row.total==0 and row.draft==0 then
+     table.insert(lines,CombatText.NoMana)
+    else
+     table.insert(lines,string.format(CombatText.InvestmentValue,CombatText.Labels[row.key],precise(row.total),precise(row.draft),signed(delta)))
+    end
+   end
+  end
+ end
+ return table.concat(lines,'\n')
 end
 function Preview.gearSources(heroId,items,catalog)
  local equipped={}

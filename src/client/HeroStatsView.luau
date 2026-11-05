@@ -14,6 +14,7 @@ local Navigation=require(RS.Shared.NavigationText)
 local MobileView=require(script.Parent.MobileHeroStatsView)
 local CombatStats=require(script.Parent.CombatStatsView)
 local CombatText=require(RS.Shared.CombatStatText)
+local Investment=require(script.Parent.StatInvestmentPreview)
 local TextService=game:GetService('TextService')
 local View={}
 local portraits={knight='103255177842108',elf='80894238854345',dwarf='74628903359757',mage='91907986271282'}
@@ -99,9 +100,13 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
   minus.Activated:Connect(function() if minus.Active then draft[key]-=1;redraw() end end)
   plus.Activated:Connect(function() if plus.Active then draft[key]+=1;redraw() end end)
  end
- Theme.label(right,'Derived',threeColumn and CombatText.Beside or CombatText.Above,UDim2.fromOffset(18,threeColumn and 330 or 426),UDim2.new(1,-36,0,32),12,Theme.color.silver)
+ local previewY=threeColumn and 330 or 426
+ local previewHeight=Investment.render(right,hero,snapshot,draft,12,previewY,allocationW-24)
+ local resourceY=previewY+previewHeight+12
+ allocationHeight=resourceY+(threeColumn and 48 or 58)+84
+ right.Size=UDim2.fromOffset(allocationW,allocationHeight)
  for i,entry in ipairs({{'MAX HP',derived.health,Color3.fromRGB(214,48,68)},{'MAX MP',derived.mana,Color3.fromRGB(61,148,255)}}) do
-  local box=Menu.frame(right,'Resource'..i,UDim2.new((i-1)*.5,12,0,threeColumn and 354 or 470),UDim2.new(.5,-24,0,threeColumn and 48 or 58))
+  local box=Menu.frame(right,'Resource'..i,UDim2.new((i-1)*.5,12,0,resourceY),UDim2.new(.5,-24,0,threeColumn and 48 or 58))
   Theme.label(box,'Value',entry[1]..'  '..entry[2],UDim2.fromOffset(10,2),UDim2.new(1,-20,0,24),12,entry[2]>0 and Theme.color.text or Theme.color.muted)
   local bar=Instance.new('Frame');bar.Position=UDim2.fromOffset(10,32);bar.Size=UDim2.new(1,-20,0,10);bar.BackgroundColor3=entry[2]>0 and entry[3] or Theme.color.ink;bar.BorderSizePixel=0;bar.Parent=box
  end
@@ -110,8 +115,12 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
  cancel.Caption.TextSize=12;Theme.enabled(apply,editable and spent>0)
  cancel.Activated:Connect(function() resetDraft();redraw() end)
  apply.Activated:Connect(function() if apply.Active then send('AllocateStats',{stats=Growth.copy(draft)}) end end)
+ if not mobile and narrow and short then
+  leftY=y+allocationHeight+20
+  body.HeroEquipment.Position=UDim2.fromOffset(4,leftY)
  end
- local bottom=mobile and (section=='Points' and y+636 or top) or threeColumn and math.max(y+allocationHeight,top+summaryHeight-48,leftY+450)+20 or math.max(y+636,leftY+580)
+ end
+ local bottom=mobile and (section=='Points' and y+allocationHeight+20 or top) or threeColumn and math.max(y+allocationHeight,top+summaryHeight-48,leftY+450)+20 or math.max(y+allocationHeight+20,leftY+580)
  local note=Theme.label(body,'StatNote',SkillText.StatNote,UDim2.fromOffset(12,bottom),UDim2.fromOffset(width-24,50),11,Theme.color.muted)
  bottom+=58
  if pending then

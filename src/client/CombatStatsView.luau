@@ -10,7 +10,7 @@ local Text=require(Shared.CombatStatText)
 local InventoryText=require(Shared.InventoryText)
 local View={}
 local function number(value)
- return string.format('%.2f',value):gsub('0+$',''):gsub('%.$','')
+ return string.format('%.3f',value):gsub('0+$',''):gsub('%.$','')
 end
 local function signed(value) return (value>=0 and '+' or '')..number(value) end
 function View.render(parent,hero,snapshot,draft,position,width,state,redraw)
@@ -27,10 +27,10 @@ function View.render(parent,hero,snapshot,draft,position,width,state,redraw)
  local y=14+titleH+currentH
  local _,bonusH=label('AttackBonus',string.format(Text.AttackBonus,signed((snapshot.stats or {}).power or 0)),y,12,Theme.color.green)
  y+=bonusH
- local _,basicH=label('BasicAttack',string.format(Text.BasicAttack,Text.Labels[hero.baseClassId=='mage' and 'magicPower' or 'physicalPower']),y,11,Theme.color.muted)
- y+=basicH+6
  local after=Growth.copy(hero.progression);local spent=0
  for key,value in pairs(draft) do after.stats[key]+=value;spent+=value end
+ local _,basicH=label('BasicAttack',Preview.basicAttackText(hero.baseClassId,hero.progression,snapshot.stats,spent>0 and after or nil),y,12,Theme.color.gold)
+ y+=basicH+6
  for _,entry in ipairs(Preview.breakdown(hero.baseClassId,hero.progression,snapshot.stats,spent>0 and after or nil)) do
   local row=Instance.new('Frame');row.Name=entry.key;row.Position=UDim2.fromOffset(12,y);row.Size=UDim2.fromOffset(available,spent>0 and 70 or 48)
   row.BackgroundColor3=Theme.color.ink;row.BackgroundTransparency=.25;row.BorderSizePixel=0;row.Parent=panel

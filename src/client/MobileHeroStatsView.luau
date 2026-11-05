@@ -11,11 +11,12 @@ local Text=require(Shared.CombatStatText)
 local SkillText=require(Shared.SkillStatText)
 local InventoryText=require(Shared.InventoryText)
 local Navigation=require(Shared.NavigationText)
+local Investment=require(script.Parent.StatInvestmentPreview)
 local TextService=game:GetService('TextService')
 local View={}
 local portraits={knight='103255177842108',elf='80894238854345',dwarf='74628903359757',mage='91907986271282'}
 local symbols={STR='damage',DEX='range',INT='emblemDetails',VIT='support'}
-local function number(value) return string.format('%.2f',value):gsub('0+$',''):gsub('%.$','') end
+local function number(value) return string.format('%.3f',value):gsub('0+$',''):gsub('%.$','') end
 local function signed(value) return (value>=0 and '+' or '')..number(value) end
 local function frame(parent,name,x,y,w,h)
  return Menu.frame(parent,name,UDim2.fromOffset(x,y),UDim2.fromOffset(w,h))
@@ -56,6 +57,10 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
  if section=='Combat' then
   top=0
   local after=Growth.copy(g);for key,v in pairs(draft) do after.stats[key]+=v end
+  local basicText=Preview.basicAttackText(classId,g,snapshot.stats,spent>0 and after or nil)
+  local basicHeight=measured(basicText,12,mainW-8)
+  label(scroll,'BasicDamage',basicText,4,top,mainW-8,basicHeight,12,Theme.color.gold)
+  top+=basicHeight+8
   local entries=Preview.breakdown(classId,g,snapshot.stats,spent>0 and after or nil)
   local columns=mainW>=480 and 3 or 2
   local cellW=(mainW-8-(columns-1)*6)/columns
@@ -98,6 +103,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
    button(row,'Plus','+',w-48,1,44,function() draft[key]+=1;redraw() end,editable and points>spent)
   end
   top+=100
+  top+=Investment.render(scroll,hero,snapshot,draft,4,top,mainW-8)+8
   for _,key in ipairs(Growth.statKeys) do
    local text=key..' · '..Preview.statHint(classId,key,g);local h=measured(text,11,mainW-8)
    label(scroll,'Hint'..key,text,4,top,mainW-8,h,11,Theme.color.muted);top+=h+2

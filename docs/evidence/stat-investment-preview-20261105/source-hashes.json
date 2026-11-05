@@ -1,0 +1,8 @@
+{
+  "src/shared/SkillStatPreview.luau": "1962675f5b7d687dfe6c95e358fd61165e661e64b332364720c6edc55091690b",
+  "src/shared/CombatStatText.luau": "c9144188f74e76c953496fbe7c544ce4673af7cd840a05084635b41d8ff5e967",
+  "src/client/StatInvestmentPreview.luau": "16e4b3d060ba5dc054a565ce21549ed687f0af35fda9aa07533578e98832a0d4",
+  "src/client/HeroStatsView.luau": "ef103b93cb4258b174d593765a7fb3bec23c386993414a5cf071350f174a055f",
+  "src/client/MobileHeroStatsView.luau": "8630a63527c848cee50a697bd7b1d8d53e0366e1add2ff4ac75d589d7a2a15ca",
+  "src/client/CombatStatsView.luau": "7a26e0f7dc98fa70b0621eddd2ab17be9aba3eb0b393119d36ca381f7f7bb5f7"
+}

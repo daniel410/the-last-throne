@@ -28,6 +28,11 @@ local ok,err=xpcall(function()
      check(b:GetAttribute('Selected')==(id==section),'selected section state')
     end
     if section=='Points' then
+     local preview=scroll.StatInvestmentPreview
+     check(preview.Changes.Text==P.investmentText(classId,g,snapshot.stats,draft),'points section includes exact draft gains')
+     check(preview.Position.Y.Offset>=100,'preview clears all four allocation rows')
+     local h=game:GetService('TextService'):GetTextSize(preview.Changes.Text,preview.Changes.TextSize,preview.Changes.Font,Vector2.new(preview.Changes.AbsoluteSize.X,10000)).Y
+     check(h<=preview.Changes.AbsoluteSize.Y,'mobile preview text fits its measured height')
      for _,key in ipairs(G.statKeys) do
       local row=scroll[key]
       check(row.AbsolutePosition.Y>=scroll.AbsolutePosition.Y and row.AbsolutePosition.Y+row.AbsoluteSize.Y<=scroll.AbsolutePosition.Y+scroll.AbsoluteSize.Y,'all allocation rows visible initially '..key)
@@ -36,6 +41,7 @@ local ok,err=xpcall(function()
      check(body.ApplyPoints.Active,'safe draft remains confirmable')
      check(body.ApplyPoints.Position.Y.Offset+44<=height,'confirm stays inside viewport')
     elseif section=='Combat' then
+     check(scroll.BasicDamage.Text==P.basicAttackText(classId,g,snapshot.stats,after),'basic damage is shown before power ratings')
      for _,entry in ipairs(P.breakdown(classId,g,snapshot.stats,after)) do
       local row=scroll[entry.key]
       check(math.abs(tonumber(row.Total.Text)-entry.total)<=.0051,'saved total stays separate from draft')

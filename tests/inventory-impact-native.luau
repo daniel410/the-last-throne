@@ -22,7 +22,7 @@ local ok,err=xpcall(function()
   view.qaSnapshot(snapshot,id)
   local gui=playerGui.InventoryGui;local comparison=assert(gui:FindFirstChild('Comparison',true));local impact=assert(gui:FindFirstChild('ActualStatChanges',true))
   check(impact.Position.Y.Offset>=comparison.Position.Y.Offset+comparison.Size.Y.Offset,'actual stat deltas appear below Current -> Selected')
-  for _,label in ipairs({'Physical Attack','Magic Attack','Defense','Max HP','Max MP'})do check(impact.Text:find(label,1,true)~=nil,'bag lists actual '..label..' including zero bonuses')end
+  for _,label in ipairs({'Physical Power','Magic Power','Defense','Max HP','Max MP'})do check(impact.Text:find(label,1,true)~=nil,'bag lists actual '..label..' including zero bonuses')end
   check(gui:FindFirstChild('ActualStatNote',true).Text:find('do not refill',1,true)~=nil,'bag does not promise HP/MP restoration')
   check(impact.Text:find('(+',1,true)~=nil,'compatible upgraded weapon shows signed actual increase')
  end

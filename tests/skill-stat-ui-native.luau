@@ -16,7 +16,7 @@ local function check(v,label)report.checks+=1;assert(v,label)end
 local body=Instance.new('Frame');body.Parent=workspace
 local function textFits(root)
  for _,label in ipairs(root:GetDescendants()) do
-  if label:IsA('TextLabel') and (label:FindFirstAncestor('CombatStats')~=nil or label.Name=='Effect' or label.Name=='Estimate' or label.Name=='SkillName' or label.Name=='EffectHint' or label.Name=='PreviewNote') then
+  if label:IsA('TextLabel') and (label:FindFirstAncestor('CombatStats')~=nil or label:FindFirstAncestor('StatInvestmentPreview')~=nil or label.Name=='Effect' or label.Name=='Estimate' or label.Name=='SkillName' or label.Name=='EffectHint' or label.Name=='PreviewNote') then
    local width=label.Size.X.Offset+label.Size.X.Scale*label.Parent.AbsoluteSize.X
    local height=TextService:GetTextSize(label.Text,label.TextSize,label.Font,Vector2.new(width,10000)).Y
    local availableHeight=label.Size.Y.Offset+label.Size.Y.Scale*label.Parent.AbsoluteSize.Y
@@ -81,6 +81,10 @@ local ok,failure=xpcall(function()
     check(body.SkillPreview1.Estimate.Text:find('scales with',1,true)~=nil,'starter scaling visible')
     check(body.SkillPreview1.Estimate.Text:find(' %-> ')~=nil,'draft shows actual damage delta')
     check(body.StatAllocation.ApplyPoints.Active,'draft remains confirmable')
+    local investment=body.StatAllocation.StatInvestmentPreview
+    check(investment.Changes.Text==P.investmentText(classId,g,snapshot.stats,draft),'allocation displays actual damage and stat gains')
+    check(investment.Position.Y.Offset+investment.Size.Y.Offset<body.StatAllocation.Resource1.Position.Y.Offset,'investment preview clears resource boxes')
+    check(body.StatAllocation.Resource1.Position.Y.Offset+body.StatAllocation.Resource1.Size.Y.Offset<body.StatAllocation.ApplyPoints.Position.Y.Offset+body.StatAllocation.Size.Y.Offset,'resource boxes clear confirm')
     check(body.StatAllocation.STR.Plus.Size.X.Offset>=44,'allocation retains touch target')
     check(body.SkillPreview0.Position.Y.Offset+body.SkillPreview0.Size.Y.Offset<height,'last preview stays inside canvas')
     textFits(body)
