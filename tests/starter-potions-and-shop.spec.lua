@@ -6,6 +6,7 @@ local checks=0
 local function check(v,m) checks=checks+1;assert(v,m) end
 for _,class in ipairs({'knight','elf','dwarf','mage'}) do
  local p=R.addHero(R.new(79),class,class,C)
+ check(p.heroes[class].starterSuppliesClaimed==true,"hero starter receipt is committed with supplies")
  check(p.starterSuppliesClaimed==true and R.count(p,'pending')==0,'first kit is recorded once with no extra pending potions')
  for _,id in ipairs(C.potions) do
   local d=C.items[id];local quantity=R.quantity(p,class,id)
@@ -22,26 +23,33 @@ for _,class in ipairs({'knight','elf','dwarf','mage'}) do
  local slots=p.heroes[class].quickSlots
  check(slots[2]==(class=='mage' and 'mana_potion' or 'health_potion_medium'),'starter quick slots match class resources')
 end
--- A fresh account grants once regardless of first class or exhausted inventory.
+-- Each newly created hero gets its own kit, regardless of creation order.
 for _,first in ipairs({'knight','elf','dwarf','mage'})do
  local p=assert(R.addHero(R.new(780),first,first,C))
  for _,class in ipairs({'knight','elf','dwarf','mage'})do if class~=first then
   p=assert(R.addHero(p,class,class,C))
-  for _,id in ipairs(C.potions)do check(R.quantity(p,class,id)==0,'later hero cannot refill free potions')end
-  check(R.quantity(p,class,'iron_ore')==0 and R.quantity(p,class,class..'_weapon_fine')==0,'later hero cannot repeat material or equipment supplies')
+  for _,id in ipairs(C.potions)do
+   local d=C.items[id];local expected=(d.restore=='health' or class=='mage') and (d.potionTier==1 and 3 or d.potionTier==2 and 2 or 1) or 0
+   check(R.quantity(p,class,id)==expected,'later hero receives its own initial potions')
+  end
+  check(R.quantity(p,class,'iron_ore')==24 and R.quantity(p,class,class..'_weapon_fine')==1,'later hero receives its initial equipment and materials')
   check(R.equipped(p,class,'weapon')~=nil,'later hero retains basic class weapon')
  end end
  check(R.validate(p,C),'all four heroes with once-only supplies remain valid')
 end
-local legacyProfile=assert(R.addHero(R.new(781),'old','knight',C));legacyProfile.starterSuppliesClaimed=nil
+local legacyProfile=assert(R.addHero(R.new(781),'old','knight',C));legacyProfile.starterSuppliesClaimed=nil;legacyProfile.heroes.old.starterSuppliesClaimed=nil
 local legacyAdded=assert(R.addHero(legacyProfile,'new','mage',C))
-check(R.quantity(legacyAdded,'new','health_potion')==0 and R.quantity(legacyAdded,'new','mana_potion')==0,'legacy existing heroes do not qualify for a new free kit')
+check(R.quantity(legacyAdded,'new','health_potion')==3 and R.quantity(legacyAdded,'new','mana_potion')==3,'new hero on legacy account receives its own kit')
 check(R.quantity(legacyAdded,'old','health_potion')==3,'legacy inventory is preserved')
 local migrated=R.upgrade(R.copy(legacyProfile))
 check(migrated.starterSuppliesClaimed==true and R.quantity(migrated,'old','health_potion')==3,'opening a legacy profile records prior supplies without granting or removing items')
-local consumed=assert(R.addHero(R.new(782),'old','knight',C));consumed.heroes={};consumed.items={}
-local again=assert(R.addHero(consumed,'new','mage',C))
-check(R.quantity(again,'new','health_potion')==0,'persistent once-only marker survives empty hero/item tables')
+local consumed=assert(R.addHero(R.new(782),'old','knight',C));consumed.items={}
+local again=R.upgrade(R.copy(consumed))
+check(R.quantity(again,'old','health_potion')==0 and next(again.items)==nil,'empty bags never trigger a refill')
+local deniedDuplicate=R.addHero(again,'retry','knight',C)
+check(not deniedDuplicate,'retrying class creation cannot repeat a starter kit')
+local conflict=R.addHero(again,'old','mage',C);check(not conflict,'existing hero ID cannot be overwritten')
+again.heroes.old.starterSuppliesClaimed='invalid';check(not R.validate(again,C),'invalid hero supply receipt rejected')
 consumed.starterSuppliesClaimed='invalid';check(not R.validate(consumed,C),'invalid supply marker is rejected')
 local p=R.addHero(R.new(80),'h','knight',C);p.wallet.gold=10000
 local hp
@@ -75,5 +83,7 @@ check(duplicate and replay.wallet.gold==50 and R.quantity(replay,'h','health_pot
 check(store:close(91)~=nil,'account closes after committed purchases')
 local reopened=assert(store:open(91));check(reopened.starterSuppliesClaimed==true,'supply marker persists across rejoin')
 local later=assert(store:transact(91,function(v)return R.addHero(v,'later','mage',C)end))
-check(R.quantity(later,'later','health_potion')==0 and R.quantity(later,'later','mana_potion')==0,'rejoin and another hero cannot repeat supplies')
+check(R.quantity(later,'later','health_potion')==3 and R.quantity(later,'later','mana_potion')==3,'new hero after rejoin gets its initial kit')
+local revision=later.revision
+local reopen=R.upgrade(R.copy(later));check(reopen.revision==revision,'reopening an already migrated profile never regrants supplies')
 print('Starter potions and shop: '..checks..' checks passed')

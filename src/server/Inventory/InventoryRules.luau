@@ -72,31 +72,37 @@ local function insertItem(profile, id, definitionId, quantity, location, catalog
 		location = location, sourceGrantId = source or id}
 	return definition
 end
+local function grantStarterSupplies(profile, heroId, catalog)
+	local hero = profile.heroes[heroId]
+	if hero.starterSuppliesClaimed then return end
+	local classId = hero.baseClassId
+	local n = classId == "knight" and 2 or 1
+	local function add(definitionId, quantity)
+		n = n + 1
+		local location = Rules.count(profile, "bag", heroId) < catalog.bagCapacity
+			and {kind = "bag", heroId = heroId} or {kind = "pending"}
+		insertItem(profile, heroId .. "-starter-" .. n, definitionId, quantity, location, catalog, "starter:" .. heroId)
+	end
+	add(classId .. "_weapon_fine", 1)
+	for _, id in ipairs(catalog.kit) do add(id, 1) end
+	add("health_potion", 3); if classId == "mage" then add("mana_potion", 3) end
+	for _, resource in ipairs(classId == "mage" and {"health", "mana"} or {"health"}) do
+		add(resource .. "_potion_medium", 2); add(resource .. "_potion_large", 1); add(resource .. "_potion_xl", 1)
+	end
+	add("iron_ore", 24); add("soft_hide", 8)
+	hero.starterSuppliesClaimed = true
+end
 function Rules.addHero(profile, heroId, classId, catalog)
 	if not catalog.classes[classId] then return nil, "InvalidRequest" end
+	if profile.heroes[heroId] then return nil, "RequestConflict" end
 	for _, hero in pairs(profile.heroes) do if hero.baseClassId == classId then return nil, "ClassAlreadyCreated" end end
 	local nextProfile = Rules.copy(profile)
-	-- Account-wide one-time supplies. Existing heroes imply a legacy account
-	-- already received its starter kit; never refill it during migration.
-	local firstSupplies = not profile.starterSuppliesClaimed and next(profile.heroes) == nil
+	-- Preserve the legacy account marker, but grant once for each new hero.
 	nextProfile.starterSuppliesClaimed = true
 	nextProfile.heroes[heroId] = {heroId = heroId, baseClassId = classId, level = 1, progression = Growth.new(), quickSlots = {"health_potion", classId=="mage" and "mana_potion" or "health_potion_medium"}}
-	local n = 0
-	local function add(definitionId, quantity, location)
-		n = n + 1
-		insertItem(nextProfile, heroId .. "-starter-" .. n, definitionId, quantity, location or {kind = "bag", heroId = heroId}, catalog, "starter:" .. heroId)
-	end
-	add(classId .. "_weapon", 1, {kind = "equipped", heroId = heroId, slot = "weapon"})
-	if classId == "knight" then add("knight_shield", 1, {kind = "equipped", heroId = heroId, slot = "offhand"}) end
-	if firstSupplies then
-		add(classId .. "_weapon_fine", 1)
-		for _, id in ipairs(catalog.kit) do add(id, 1) end
-		add("health_potion", 3); if classId=="mage" then add("mana_potion", 3) end
-		for _, resource in ipairs(classId=="mage" and {"health", "mana"} or {"health"}) do
-			add(resource .. "_potion_medium", 2); add(resource .. "_potion_large", 1); add(resource .. "_potion_xl", 1)
-		end
-		add("iron_ore", 24); add("soft_hide", 8)
-	end
+	insertItem(nextProfile, heroId .. "-starter-1", classId .. "_weapon", 1, {kind = "equipped", heroId = heroId, slot = "weapon"}, catalog, "starter:" .. heroId)
+	if classId == "knight" then insertItem(nextProfile, heroId .. "-starter-2", "knight_shield", 1, {kind = "equipped", heroId = heroId, slot = "offhand"}, catalog, "starter:" .. heroId) end
+	grantStarterSupplies(nextProfile, heroId, catalog)
 	nextProfile.revision = nextProfile.revision + 1
 	return nextProfile
 end
@@ -119,6 +125,7 @@ function Rules.validate(profile, catalog)
 	for id, hero in pairs(profile.heroes) do
 		if type(hero) ~= "table" or id ~= hero.heroId or type(id) ~= "string" or not catalog.classes[hero.baseClassId]
 			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, 80) or type(hero.quickSlots) ~= "table" then return false end
+		if hero.starterSuppliesClaimed ~= nil and type(hero.starterSuppliesClaimed) ~= "boolean" then return false end
 		if not Adventure.valid(hero) then return false end
 		if hero.deepwood~=nil and not Story.validate(hero.deepwood) then return false end
 		if hero.progression ~= nil and (not Growth.validate(hero.progression,hero.baseClassId) or hero.level ~= hero.progression.level) then return false end
@@ -279,6 +286,11 @@ end
 -- Legacy account migration preserves roster, classes, items and all ownership.
 function Rules.upgrade(profile)
 	local changed=Economy.upgrade(profile)
+	-- Legacy profiles lack a per-hero receipt. Preserve consumption instead
+	-- of guessing from empty bags and reissuing items that were used/discarded.
+	for _, hero in pairs(profile.heroes) do
+		if hero.starterSuppliesClaimed == nil then hero.starterSuppliesClaimed = true; changed = true end
+	end
 	if profile.starterSuppliesClaimed==nil and next(profile.heroes)~=nil then profile.starterSuppliesClaimed=true;changed=true end
 	for _,hero in pairs(profile.heroes) do
 		if hero.progression==nil then hero.progression=Growth.new(hero.level); changed=true
