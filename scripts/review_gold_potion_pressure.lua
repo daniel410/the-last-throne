@@ -34,7 +34,7 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
      local stats=E.stats(assert(I.items[id]),{enhancementLevel=loadout=='owned_retired_epic_plus9' and 9 or 0})
      hp=hp+(stats.health or 0);armor=armor+(stats.armor or 0)
     end
-    out('hero',class,level,vit,loadout,hp,armor,hp*.001,math.max(1,25-armor),math.max(1,math.floor(25*.2+.5)-armor))
+    out('hero',class,level,vit,loadout,hp,armor,0,math.max(1,25-armor),math.max(1,math.floor(25*.2+.5)-armor))
    end
   end
  end

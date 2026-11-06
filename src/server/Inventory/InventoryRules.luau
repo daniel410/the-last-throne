@@ -76,6 +76,10 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	if not catalog.classes[classId] then return nil, "InvalidRequest" end
 	for _, hero in pairs(profile.heroes) do if hero.baseClassId == classId then return nil, "ClassAlreadyCreated" end end
 	local nextProfile = Rules.copy(profile)
+	-- Account-wide one-time supplies. Existing heroes imply a legacy account
+	-- already received its starter kit; never refill it during migration.
+	local firstSupplies = not profile.starterSuppliesClaimed and next(profile.heroes) == nil
+	nextProfile.starterSuppliesClaimed = true
 	nextProfile.heroes[heroId] = {heroId = heroId, baseClassId = classId, level = 1, progression = Growth.new(), quickSlots = {"health_potion", classId=="mage" and "mana_potion" or "health_potion_medium"}}
 	local n = 0
 	local function add(definitionId, quantity, location)
@@ -84,18 +88,20 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	end
 	add(classId .. "_weapon", 1, {kind = "equipped", heroId = heroId, slot = "weapon"})
 	if classId == "knight" then add("knight_shield", 1, {kind = "equipped", heroId = heroId, slot = "offhand"}) end
-	add(classId .. "_weapon_fine", 1)
-	for _, id in ipairs(catalog.kit) do add(id, 1) end
-	add("health_potion", 3); if classId=="mage" then add("mana_potion", 3) end
-	for _, resource in ipairs(classId=="mage" and {"health", "mana"} or {"health"}) do
-		add(resource .. "_potion_medium", 2); add(resource .. "_potion_large", 1); add(resource .. "_potion_xl", 1)
+	if firstSupplies then
+		add(classId .. "_weapon_fine", 1)
+		for _, id in ipairs(catalog.kit) do add(id, 1) end
+		add("health_potion", 3); if classId=="mage" then add("mana_potion", 3) end
+		for _, resource in ipairs(classId=="mage" and {"health", "mana"} or {"health"}) do
+			add(resource .. "_potion_medium", 2); add(resource .. "_potion_large", 1); add(resource .. "_potion_xl", 1)
+		end
+		add("iron_ore", 24); add("soft_hide", 8)
 	end
-	add("iron_ore", 24); add("soft_hide", 8)
-	add("health_potion", 5, {kind = "pending"})
 	nextProfile.revision = nextProfile.revision + 1
 	return nextProfile
 end
 function Rules.validate(profile, catalog)
+	if type(profile)=="table" and profile.starterSuppliesClaimed~=nil and type(profile.starterSuppliesClaimed)~="boolean" then return false end
  if profile and not Pass.valid(profile) then return false end
  if profile and profile.dailyLogin~=nil and not Daily.valid(profile.dailyLogin) then return false end
  if profile and profile.wallet~=nil and not Economy.valid(profile.wallet) then return false end
@@ -273,6 +279,7 @@ end
 -- Legacy account migration preserves roster, classes, items and all ownership.
 function Rules.upgrade(profile)
 	local changed=Economy.upgrade(profile)
+	if profile.starterSuppliesClaimed==nil and next(profile.heroes)~=nil then profile.starterSuppliesClaimed=true;changed=true end
 	for _,hero in pairs(profile.heroes) do
 		if hero.progression==nil then hero.progression=Growth.new(hero.level); changed=true
 		elseif (hero.progression.version==1 or hero.progression.version==2) then hero.progression=Growth.upgrade(hero.progression); changed=true end

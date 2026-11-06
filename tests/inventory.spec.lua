@@ -9,6 +9,8 @@ local function equal(a,b,label) check(a==b,label..": "..tostring(a).." ~= "..tos
 local function valid(p) check(R.validate(p,C),"inventory invariant") end
 local function profile()
 	local p=R.addHero(R.new(42),"hero-knight","knight",C)
+	-- Explicit legacy reward fixture; new accounts no longer get pending supplies.
+	p.items['fixture-pending-health']={instanceId='fixture-pending-health',definitionId='health_potion',definitionVersion=C.version,ownerUserId=p.userId,quantity=5,version=1,binding='account',locked=false,location={kind='pending'},sourceGrantId='legacy-fixture'}
 	valid(p)
 	return p
 end
@@ -59,7 +61,7 @@ equal(C.items.mana_potion.amount,50,"Small MP follows user restore amount")
 local p=profile()
 equal(#C.slots,8,"exactly eight equipment slots")
 equal(R.quantity(p,"hero-knight","health_potion"),3,"starter potions in bag")
-equal(R.count(p,"pending"),1,"starter training grant is pending")
+equal(R.count(p,"pending"),1,"legacy pending reward fixture is retained")
 for _,class in ipairs({"elf","dwarf","mage"}) do p=assert(R.addHero(p,"hero-"..class,class,C)); valid(p) end
 for id,hero in pairs(p.heroes) do
 	equal(C.items[R.equipped(p,id,"weapon").definitionId].classId,hero.baseClassId,"class-specific starter weapon")
@@ -246,7 +248,9 @@ local stored=assert(apply(p,ore,"Deposit",{quantity=24}))
 _,discardReason=apply(stored,find(stored,"iron_ore","storage"),"Discard",{quantity=1});equal(discardReason,"BagOnly","storage cannot be discarded directly")
 _,discardReason=apply(p,ore,"Discard",{quantity=1},{safe=false});equal(discardReason,"InCombat","combat cannot discard")
 local other=assert(R.addHero(p,"hero-mage","mage",C))
-_,discardReason=apply(other,find(other,"mage_weapon_fine","bag"),"Discard",{quantity=1});equal(discardReason,"NotOwned","other hero bag cannot be discarded")
+-- Move the second hero's basic staff into its bag for ownership validation.
+find(other,"mage_weapon","equipped").location.kind="bag"
+_,discardReason=apply(other,find(other,"mage_weapon","bag"),"Discard",{quantity=1});equal(discardReason,"NotOwned","other hero bag cannot be discarded")
 local hpDiscard=assert(apply(p,find(p,"health_potion","bag"),"Discard",{quantity=3}))
 equal(R.quantity(hpDiscard,"hero-knight","health_potion"),0,"discard updates quick-slot count")
 equal(hpDiscard.heroes['hero-knight'].quickSlots[1],"health_potion","empty quick slot preserves selection")

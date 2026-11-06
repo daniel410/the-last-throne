@@ -142,8 +142,8 @@ local function beginEnemy(enemy, state, activeAt)
 	return enemy.attack.definition
 end
 local function recoveredHealth(health, dt)
-	-- The production heartbeat applies server HP recovery after combat samples.
-	return math.min(10000, health + 10000 * api.Config.HealthRegenFraction * math.min(dt, 0.25))
+	-- Combat samples no longer trigger passive HP recovery.
+	return health
 end
 
 local ok, fatal = xpcall(function()

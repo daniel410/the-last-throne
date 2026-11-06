@@ -1,0 +1,37 @@
+$ lua tests/k0-rules.spec.lua
+K0 rules: 125 checks passed
+exit=0
+
+$ lua tests/starter-potions-and-shop.spec.lua
+Starter potions and shop: 308 checks passed
+exit=0
+
+$ lua tests/inventory.spec.lua
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+exit=0
+
+$ lua tests/economy.spec.lua
+Economy: 42 checks passed
+exit=0
+
+$ lua tests/hero-progression.spec.lua
+Hero progression: 656 checks passed
+exit=0
+
+$ lua tests/support-passes.spec.lua
+Support passes: 30 checks passed
+exit=0
+
+$ lua tests/selene-trial.spec.lua
+Selene trial: 28 checks passed
+exit=0
+
+$ lua tests/daily-login.spec.lua
+Daily login: 73 checks passed
+exit=0
+$ lua tests/difficulty-enhancement.spec.lua
+Difficulty/enhancement: 125 checks passed
+exit=0
+$ lua tests/enhancement-probability.spec.lua
+Enhancement probability: 2857 checks passed (including 90000 outcome boundaries)
+exit=0

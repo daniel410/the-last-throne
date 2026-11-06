@@ -571,17 +571,20 @@ return {
 			end
 		end
 	end)
-	case("player-health-recovers-slowly-on-server", function()
+	case("player-health-does-not-regenerate", function()
 		for _, classId in ipairs({ "knight", "elf", "dwarf", "mage" }) do
 			reset(); api.injectResolver(function() return classId end)
 			local state = spawnPlayer()
 			state.humanoid.Health = 500
-			state.mode = "Block"
-			for tick = 1, 4 do api.stepPlayer(state, tick * 0.25, 0.25, true) end
-			near(state.humanoid.Health, 501, classId .. " heals 0.1 percent per second even in combat")
+			for _,mode in ipairs({"Idle","Block"})do
+				state.mode = mode
+				for tick = 1, 240 do api.stepPlayer(state, tick * 0.25, 0.25, true) end
+				near(state.humanoid.Health, 500, classId .. " HP stays unchanged for 60 seconds in "..mode)
+			end
 			state.humanoid.Health = 999.9
+			local almostFull = state.humanoid.Health -- Humanoid stores float32 HP.
 			api.stepPlayer(state, 1.25, 0.25, true)
-			near(state.humanoid.Health, 1000, classId .. " cannot exceed max health")
+			near(state.humanoid.Health, almostFull, classId .. " missing HP is not topped up")
 			state.humanoid.Health = 0
 			api.stepPlayer(state, 1.5, 0.25, true)
 			near(state.humanoid.Health, 0, classId .. " does not regenerate after death")
@@ -912,31 +915,28 @@ return {
 		equal(state.skillReadyAt[api.Config.Skills.mage[2].id], nil, "rejected cast starts no cooldown")
 		equal(state.character:GetAttribute("K0Feedback"), "NeedMana", "mana failure is reported")
 	end)
-	case("mana-recovery-still-respects-delay-and-cap", function()
+	case("mage-mana-does-not-regenerate-after-casting", function()
 		api.injectResolver(function() return "mage" end)
 		local state = spawnPlayer()
 		action(state, "Skill1", 0)
 		api.stepPlayer(state, 0.75, 0.25, true)
-		near(state.mana, 85, "mana does not recover before delay")
-		for tick = 0, 3 do api.stepPlayer(state, 1 + tick * 0.25, 0.25, true) end
-		near(state.mana, 85.30, "100 MP recovers 0.30 per second")
+		near(state.mana, 85, "cast consumes 15 MP")
+		for tick = 1, 240 do api.stepPlayer(state, 1 + tick * 0.25, 0.25, true) end
+		near(state.mana, 85, "spent MP stays unchanged for 60 seconds")
 		state.mana = 99.99
 		api.stepPlayer(state, 2, 0.25, true)
-		near(state.mana, 100, "mana cannot exceed maximum")
+		near(state.mana, 99.99, "missing MP is not topped up")
 	end)
-	case("magic-archer-mana-regeneration-doubled",function()
+	case("magic-archer-mana-does-not-regenerate",function()
 		local G=require(game.ReplicatedStorage.Shared.HeroProgression)
 		local growth=G.new(20);growth.branch="magic_archer";growth.stage=1;growth.battleWins=3
 		api.injectResolver(function(player)return {heroId="hero-"..player.UserId,baseClassId="elf",epoch=1,characterGeneration=1,growth=growth}end)
-		local state=spawnPlayer();state.mana=40;state.manaRegenAt=0;state.humanoid.Health=state.humanoid.MaxHealth-10
+		local state=spawnPlayer();state.mana=40;state.humanoid.Health=state.humanoid.MaxHealth-10
 		local health=state.humanoid.Health
-		for tick=1,4 do api.stepPlayer(state,tick*.25,.25,true)end
-		near(state.mana,40.24,"80 MP recovers 0.24 per second")
-		local hpRate=(state.humanoid.Health-health)/state.humanoid.MaxHealth
-		assert(math.abs(hpRate*3-(state.mana-40)/state.maxMana)<.00001,"MP percentage regeneration is three times HP")
-		state.mana=40;state.manaRegenAt=3
-		api.stepPlayer(state,2,.25,true);near(state.mana,40,"elf MP waits for regeneration delay")
-		state.mana=79.99;api.stepPlayer(state,3,.25,true);near(state.mana,80,"elf MP cannot exceed maximum")
+		for tick=1,240 do api.stepPlayer(state,tick*.25,.25,true)end
+		near(state.mana,40,"Magic Archer MP stays unchanged for 60 seconds")
+		near(state.humanoid.Health,health,"Magic Archer HP stays unchanged for 60 seconds")
+		state.mana=79.99;api.stepPlayer(state,61,.25,true);near(state.mana,79.99,"elf MP is not topped up")
 	end)
 	case("physical-skill-cooldown-survives-respawn", function()
 		local ready = {}

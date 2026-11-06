@@ -1,0 +1,62 @@
+{
+  "scope": "isolated empty PlaceId 0; actual CombatService source; identity mocks; synthetic clock",
+  "targetedCases": [
+    {
+      "id": "growth-starting-resources-dwarf",
+      "pass": true,
+      "checks": 13
+    },
+    {
+      "id": "growth-starting-resources-mage",
+      "pass": true,
+      "checks": 16
+    },
+    {
+      "id": "growth-starting-resources-knight",
+      "pass": true,
+      "checks": 13
+    },
+    {
+      "id": "growth-starting-resources-elf",
+      "pass": true,
+      "checks": 13
+    },
+    {
+      "id": "eight-catalog-potions-restore-exactly-and-cap",
+      "pass": true,
+      "checks": 32
+    },
+    {
+      "id": "player-health-does-not-regenerate",
+      "pass": true,
+      "checks": 16
+    },
+    {
+      "id": "mage-mana-does-not-regenerate-after-casting",
+      "pass": true,
+      "checks": 3
+    },
+    {
+      "id": "magic-archer-mana-does-not-regenerate",
+      "pass": true,
+      "checks": 3
+    }
+  ],
+  "targetedChecks": 109,
+  "targetedPass": true,
+  "currentChecks": 1051,
+  "baselineChecks": 1047,
+  "baselineFailures": 19,
+  "currentFailures": 19,
+  "sameFailureCaseIds": true,
+  "currentSourceHashes": {
+    "tests/k0-basic-attacks-native.luau": "f68349e160df45900638009922b9eaa494c61687179404413b66b553cec0e0e6",
+    "src/server/Combat/CombatService.luau": "c51150dee2c38a11ffdfdcb7e1c2ed6a568e43fb82854fb5b3be30163445e17b",
+    "src/shared/K0Config.luau": "50bd1b8f8e4a841ec832da99264016da79560528c122118866235c540b33aa6c"
+  },
+  "baselineSourceHashes": {
+    "tests/k0-basic-attacks-native.luau": "f68349e160df45900638009922b9eaa494c61687179404413b66b553cec0e0e6",
+    "src/server/Combat/CombatService.luau": "c51150dee2c38a11ffdfdcb7e1c2ed6a568e43fb82854fb5b3be30163445e17b",
+    "src/shared/K0Config.luau": "50bd1b8f8e4a841ec832da99264016da79560528c122118866235c540b33aa6c"
+  }
+}
