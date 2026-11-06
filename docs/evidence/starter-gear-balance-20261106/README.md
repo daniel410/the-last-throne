@@ -30,4 +30,6 @@
 - `lua tests/starter-gear-balance.spec.lua`:45 PASS. 네 클래스의 실제 Equip reducer→서버 합산→UI 계산·기존 버전 인스턴스·물약 보존 검사.
 - 합계3347검사. `git diff --check` 통과.
 
-빌드·Studio 검증 결과는 아래에 추가한다. 기존 Blender 변경과 미추적 산출물은 포함하지 않는다. 미게시·릴리스 태그 없음. 실제 게시 클라이언트/실기기·Deepwood 전투·사용자 최종 수치 수용은 미검증이며 QA→사용자 후속이다.
+입력 소스 `ba1898528cea74d6e4b7ef2ebfb578d93d12be1a`를 origin/main에 푸시한 뒤 단일 빌드0.78.5 성공. [빌드 기록](build.json)의 산출물 SHA-256은 `9d5a28a4cd5e3b8d61fa13adbc4721b1202807e6bc1b735d7d8cb058dacc437d`이다. XML의 ItemCatalog가 검증한 소스와 바이트 일치한다.
+
+`run-in-roblox --place builds/0.78.5/TheLastThrone-0.78.5.rbxlx --script tests/starter-gear-balance.spec.lua`로 격리 Studio Luau에서도45검사 PASS. [엔진 결과](native.json). 기존203785492 자산 타입 경고가 발생했으며 장비 계산 검사는 통과했다. 실제 계정/실행 중 사용자 세션은 수정하지 않았다. 기존 Blender 변경과 미추적 산출물은 포함하지 않는다. 미게시·릴리스 태그 없음. 실제 게시 클라이언트/실기기·Deepwood 전투·사용자 최종 수치 수용은 미검증이며 QA→사용자 후속이다.

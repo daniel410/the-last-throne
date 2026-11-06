@@ -1,0 +1,9 @@
+{
+  "environment": "isolated local Studio / run-in-roblox",
+  "buildVersion": "0.78.5",
+  "sourceCommit": "ba1898528cea74d6e4b7ef2ebfb578d93d12be1a",
+  "checks": 45,
+  "status": "pass",
+  "catalogMatchesSource": true,
+  "note": "Existing asset203785492 type warning; no live player or DataStore mutation."
+}
