@@ -30,7 +30,8 @@ local _,e=apply(poor,{action='Buy',requestId='poor',heroId='hero',revision=poor.
 local p=assert(apply(base,{action='Buy',requestId='bundle',heroId='hero',revision=base.revision,offerId='selene_story_10'}))
 local cmd={action='Activate',requestId='activate4',heroId='hero',story=4}
 local ctx={inAdventure=true,hasCampAccess=true,maxStories=21}
-local no,e=apply(p,cmd,{inAdventure=true,hasCampAccess=false});check(not no and e=='Unavailable','activation needs server camp access')
+local unprepared=R.copy(p);unprepared.supportPasses.departure=nil
+local no,e=apply(unprepared,cmd,{inAdventure=true,hasCampAccess=false});check(not no and e=='Unavailable','activation without a saved departure still needs server camp access')
 p=assert(apply(p,cmd,ctx));check(Pass.view(p,'hero').credits==9 and Pass.view(p,'hero').active,'one credit starts current story')
 check(p.heroes.hero.deepwood.seleneFollowing==true,'paid activation and preference commit together')
 local q=assert(apply(p,{action='Activate',requestId='reinvite',heroId='hero',story=4},ctx));check(q.revision==p.revision and Pass.view(q,'hero').credits==9,'reinvitations and retry cannot consume another credit')

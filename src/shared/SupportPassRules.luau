@@ -2,6 +2,7 @@
 local M={offers={{id='selene_story_1',stories=1,price=200},{id='selene_story_5',stories=5,price=1000},{id='selene_story_10',stories=10,price=2000}}}
 local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local Adventure=game and require(game:GetService('ReplicatedStorage').Shared.AdventureRules)or dofile('src/shared/AdventureRules.luau')
+local Progress=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress)or dofile('src/shared/DeepwoodProgress.luau')
 local function target(h)
  local a=h.expeditions and h.expeditions.active
  local nextChapter=Adventure.continuation(a)
@@ -20,6 +21,7 @@ function M.valid(p)
  if type(p)~='table' then return false end
  local s=p.supportPasses;if s==nil then return true end
  if type(p.heroes)~='table' or type(s)~='table' or s.version~=1 or not int(s.credits,9999) or type(s.active)~='table' then return false end
+ if s.departure~=nil and (type(s.departure)~='string' or not p.heroes[s.departure]) then return false end
  if s.trials~=nil then
   if type(s.trials)~='table' then return false end
   for id,used in pairs(s.trials)do if not p.heroes[id] or used~=true then return false end end
@@ -37,7 +39,8 @@ function M.view(p,heroId)
  local h=p and p.heroes and p.heroes[heroId];if not h then return nil end
  local story,scope,completed=target(h)
  local s=p.supportPasses;local c=s and s.active[heroId]
- return {credits=s and s.credits or 0,story=story,active=c~=nil and not c.ended and not completed and c.story==story and c.scope==scope,scope=scope,completed=completed,contractId=c and c.id or nil,price=200,offers=M.offers,
+ local a=h.expeditions and h.expeditions.active;local chapter=a and Content.byId[a.missionId]
+ return {credits=s and s.credits or 0,story=story,active=c~=nil and not c.ended and not completed and c.story==story and c.scope==scope,scope=scope,completed=completed,recruited=Progress.seleneUnlocked(h.deepwood),departure=s and s.departure==heroId or false,side=chapter and chapter.side==true or false,contractId=c and c.id or nil,price=200,offers=M.offers,
   trialAvailable=trialAvailable(p,heroId,story,completed),trial=c and c.trial==true or false}
 end
 function M.apply(p,cmd,ctx,R,catalog)
@@ -56,8 +59,18 @@ function M.apply(p,cmd,ctx,R,catalog)
   -- Old accounts migrate via the existing server-owned economy adapter first.
   if not n.wallet or n.wallet.gold<offer.price then return nil,'NotEnoughGold' end
   n.wallet.gold=n.wallet.gold-offer.price;s.credits=s.credits+offer.stories
+  if Progress.seleneUnlocked(h.deepwood) then s.departure=cmd.heroId end
+ elseif cmd.action=='Prepare' then
+  if not ctx.atLobby then return nil,'ShopLobbyOnly' end
+  if not Progress.seleneUnlocked(h.deepwood) then return nil,'StoryLocked' end
+  if s.credits<1 and not trialAvailable(p,cmd.heroId,story,completed) then return nil,'SupportPassRequired' end
+  if s.departure==cmd.heroId then return R.copy(p),nil,true end
+  -- No entitlement or credit is consumed by the cosmetic lobby follower.
+  s.departure=cmd.heroId
  elseif cmd.action=='Activate' then
-  if not ctx.inAdventure or cmd.story~=story or cmd.scope and cmd.scope~=scope or not ctx.hasCampAccess then return nil,'Unavailable' end
+  local a=h.expeditions and h.expeditions.active;local chapter=a and Content.byId[a.missionId]
+  local departure=s.departure==cmd.heroId and not (chapter and chapter.side)
+  if not ctx.inAdventure or cmd.story~=story or cmd.scope and cmd.scope~=scope or not (ctx.hasCampAccess or departure) then return nil,'Unavailable' end
   if not h.deepwood or not h.deepwood.flags['DW-03:report'] then return nil,'StoryLocked' end
   if completed or ctx.maxStories and story>ctx.maxStories then return nil,'SupportStoryComplete' end
   local c=s.active[cmd.heroId]
@@ -65,6 +78,7 @@ function M.apply(p,cmd,ctx,R,catalog)
   local trial=trialAvailable(p,cmd.heroId,story,completed)
   if not trial and s.credits<1 then return nil,'SupportPassRequired' end
   n.heroes[cmd.heroId].deepwood.seleneFollowing=true
+  s.departure=nil
   if trial then s.trials=s.trials or {};s.trials[cmd.heroId]=true else s.credits=s.credits-1 end
   s.active[cmd.heroId]={id=cmd.requestId,story=story,scope=scope,ended=false,trial=trial}
  elseif cmd.action=='End' then

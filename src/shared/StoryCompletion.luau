@@ -9,7 +9,7 @@ local M={text={story='STORY COMPLETE',side='SIDE QUEST COMPLETE',epic='EPIC COMP
  mission='Your next story is saved. Rejoin this adventure to continue with %s.',
  sideMission='Return to Lobby and choose %s on the adventure map to continue the main story.',
  endTitle='THE CROWNHEART IS HOME',endBody='You saved all five regions with your friends! Return to Lobby to restore the Dawnspire throne and celebrate. You can still explore optional quests and replay adventures.',
- support='SELENE SUPPORT ENDED · Invite her at a safe companion camp to use 1 saved story credit. If none remain, buy more from Selene in the lobby. No automatic renewal.',
+ support='SELENE SUPPORT ENDED · Return to the lobby to depart together, or invite her at a safe camp to use 1 saved story credit. Buy more from Selene in the lobby if needed. No automatic story renewal.',
  follow='TRACK NEXT STORY',review='REVIEW QUESTS',close='CLOSE'}}
 function M.project(value,previous)
  local e=value and value.completion;local s=value and value.journal

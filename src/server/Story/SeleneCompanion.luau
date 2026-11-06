@@ -78,7 +78,8 @@ function M.create(o)
   if type(following)~='boolean' or not hero or hero.training or not ctx or ctx.heroId~=hero.heroId or not root then return false end
   local s=o.state(player,ctx.heroId)
   local atCamp=(camp and (root.Position-camp).Magnitude<=16) or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or nearLateCamp(root,s) or forge and s and s.main>=15 and (root.Position-forge.PrimaryPart.Position).Magnitude<=16
-  if not atCamp then return false end
+  local departure=o.passState and o.passState(player,ctx.heroId)
+  if not atCamp and not (following and departure and departure.departure and not departure.side) then return false end
   if not Progress.seleneUnlocked(s) then o.publish(player,'Help the convoy reach camp, then finish the rescue report with Selene.');return false end
   local time=o.clock and o.clock() or os.clock()
   if time-(lastSelect[player] or -math.huge)<.4 then return false end
@@ -113,7 +114,7 @@ function M.create(o)
  function api.projection(player) return status[player] end
  function api.update(dt)
   dt=math.min(dt,.25)
-  local population={};local chosen={};local trials={}
+  local population={};local chosen={};local departures={}
   for _,player in ipairs(o.players and o.players() or Players:GetPlayers()) do
    local hero=o.active(player)
    if hero and not hero.training then
@@ -121,15 +122,18 @@ function M.create(o)
     local s=o.state(player,hero.heroId)
     local pass=o.passState and o.passState(player,hero.heroId)
     if s and Progress.seleneUnlocked(s) and s.seleneFollowing and pass and pass.active then table.insert(chosen,player) end
-    if pass and pass.trialAvailable and not pass.active and api.atCamp(player,hero.heroId) then table.insert(trials,player) end
+    if pass and not pass.active and (pass.departure and not pass.side or pass.trialAvailable and api.atCamp(player,hero.heroId)) then
+     local ctx,root=o.context(player)
+     if ctx and ctx.heroId==hero.heroId and root then table.insert(departures,player) end
+    end
    end
   end
   table.sort(chosen,function(a,b) return a.UserId<b.UserId end)
-  -- The introduction starts only when a real party slot is available. The
-  -- account transaction saves trial use and following together before spawning.
+  -- Lobby departures and camp introductions need a real party slot. The account
+  -- transaction saves the entitlement and following together before spawning.
   if #chosen==0 and next(followers)==nil and not activatingOwner and Budget.limit(#population)>0 then
-   table.sort(trials,function(a,b)return a.UserId<b.UserId end)
-   local player=trials[1]
+   table.sort(departures,function(a,b)return a.UserId<b.UserId end)
+   local player=departures[1]
    if player and api.select(player,true) then
     local hero=o.active(player);local pass=hero and o.passState(player,hero.heroId)
     if pass and pass.active then table.insert(chosen,player) end

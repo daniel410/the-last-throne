@@ -9,6 +9,7 @@ function Info.project(journal,status,key,lobby,pass)
  if lobby and journal and unlocked and journal.seleneFollowing and not key then key='Selected' end
  key=key or (not journal and 'Unknown' or not unlocked and 'Locked' or journal.seleneFollowing and 'Following' or 'Available')
  if unlocked and pass and not pass.active then key=pass.trialAvailable and 'TrialReady' or pass.credits>0 and 'SupportReady' or 'SupportPassRequired' end
+ if lobby and unlocked and pass and pass.departure and (pass.credits>0 or pass.trialAvailable) then key='DepartureReady' end
  if pass and pass.active and pass.trial and key=='Following' then key='TrialFollowing' end
  local state=key=='Range' and string.format(Text.Range,Budget.range) or Text[key] or status or Text.Unknown
  return {id='selene',name=Text.name,role=Text.role,portrait='nun',key=key,status=state,unlocked=unlocked,

@@ -1,0 +1,26 @@
+$ lua tests/selene-departure.spec.lua
+Selene departure: 26 checks passed
+
+$ lua tests/support-passes.spec.lua
+Support passes: 30 checks passed
+
+$ lua tests/selene-trial.spec.lua
+Selene trial: 28 checks passed
+
+$ lua tests/story-continuation.spec.lua
+Story continuation: 1017 checks passed
+
+$ lua tests/supporter-info.spec.lua
+Supporter info: 45 checks passed
+
+$ lua tests/selene-recruitment.spec.lua
+Selene recruitment: 23 checks passed
+
+$ lua tests/story-completion.spec.lua
+Story completion: 356 checks passed
+
+$ lua tests/inventory.spec.lua
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+
+$ lua tests/story-lobby-resume.spec.lua
+Story lobby resume: 32 checks passed

@@ -250,6 +250,12 @@ function Service.supportPass(player,command)
  end
  return e
 end
+function Service.prepareSupport(player,heroId)
+ local s=accounts[player]
+ local pending=s and s.supportPending
+ local cmd=pending and pending.action=='Prepare' and pending or {action='Prepare',heroId=heroId,requestId=HttpService:GenerateGUID(false):gsub('%-','')}
+ return Service.supportPass(player,cmd)
+end
 function Service.activateSupport(player,heroId)
  local s=accounts[player];local v=s and s.profile and require(ReplicatedStorage.Shared.SupportPassRules).view(s.profile,heroId)
  if not v then return 'Unavailable' end

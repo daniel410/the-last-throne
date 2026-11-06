@@ -90,6 +90,10 @@ require(script.Lobby.FacilityService).start({facilities=facilities,heroSession=h
 local residents=role=='Lobby' and require(script.World.LobbyResidents).create(lobby,facilities,prompts[1]) or nil
 if role=='Lobby' then require(script.World.ItemShop).create(lobby) end
 require(script.Lobby.NPCService).start({residents=residents,inventory=inventory})
+if role=='Lobby' then
+ local companions=Instance.new('Folder');companions.Name='LobbyCompanions';companions.Parent=lobby.folder
+ require(script.Lobby.SeleneDeparture).start({folder=companions,inventory=inventory,heroSession=heroSession})
+end
 spawnService.start(lobby.spawn,{
  resolveDestination=function(player,previous)
   local phase=player:GetAttribute('K0SessionPhase');local h=heroSession.getActiveHero(player)
