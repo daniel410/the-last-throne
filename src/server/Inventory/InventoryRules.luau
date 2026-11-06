@@ -295,7 +295,7 @@ function Rules.progress(profile,command,context,catalog)
 		if previous then if previous.fingerprint~=fingerprint then return nil,"RequestConflict" end; return Rules.copy(profile),nil,true end
 		if not death and command.revision~=profile.revision then return nil,"Changed" end
 		local investment=command.action=="AllocateStats" or command.action=="TrainSkill" or command.action=="SetSkillSlot"
-  if not death and not context.atHub and not (investment and context.canInvest) then return nil,investment and "UnsafeGrowth" or "WaitForLobby" end
+  if not death and command.action~="Advance" and not context.atHub and not (investment and context.canInvest) then return nil,investment and "UnsafeGrowth" or "WaitForLobby" end
 	elseif context.serverReward~=true then return nil,"InvalidRequest" end
 	local expedition=hero.expeditions and hero.expeditions.active
  if command.action=='AwardXP'and command.runId then

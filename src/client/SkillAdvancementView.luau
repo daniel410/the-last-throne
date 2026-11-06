@@ -13,7 +13,7 @@ local function context(hero,snapshot,state,pending)
  if not branch or branch.classId~=hero.baseClassId then return nil end
  local stage=g.stage+1
  local samePath=g.stage==0 or g.branch==path
- local ready=snapshot.ready and snapshot.atHub and not pending and samePath and stage<=4 and g.level>=stage*20 and g.battleWins>=stage*3
+ local ready=snapshot.ready and not pending and samePath and stage<=4 and g.level>=stage*20
  local key=table.concat({hero.heroId or snapshot.heroId or '',tostring(snapshot.revision),path,tostring(stage)},':')
  return {g=g,path=path,branch=branch,stage=stage,samePath=samePath,ready=ready==true,key=key}
 end
@@ -48,7 +48,7 @@ function View.render(body,hero,snapshot,state,send,redraw,pending,top,width)
   line('Requirements',Text.complete,12,Theme.color.green)
  else
   line('NextStage',string.format(Text.next,c.stage*20,c.stage),13,Theme.color.gold)
-  line('Requirements',string.format(Text.requirements,g.level,c.stage*20,math.min(g.battleWins,c.stage*3),c.stage*3),12,Theme.color.text)
+  line('Requirements',string.format(Text.requirements,g.level,c.stage*20),12,Theme.color.text)
  end
  -- Other paths stay inspectable; final stages still show the ultimate's name.
  local previewStage=math.min(c.stage,4)
@@ -59,7 +59,7 @@ function View.render(body,hero,snapshot,state,send,redraw,pending,top,width)
  line('Unlocks',Text.unlocks..'\n'..table.concat(skills,'  /  '),12,Theme.color.text)
  if c.samePath and c.stage<=4 then
   local armed=state.advanceConfirmation==c.key
-  local hint=pending and Text.saving or not snapshot.atHub and Text.hub or armed and string.format(Text.review,c.branch.name) or c.ready and Text.ready or Text.locked
+  local hint=pending and Text.saving or armed and string.format(Text.review,c.branch.name) or c.ready and Text.ready or Text.locked
   line('ActionHint',hint,12,c.ready and Theme.color.gold or Theme.color.muted)
   local caption=armed and string.format(Text.confirm,c.branch.name,c.stage) or string.format(Text.advance,c.stage)
   local button=Theme.button(panel,'CompleteAdvancement',caption,UDim2.fromOffset(12,y),UDim2.new(1,-24,0,44),true)

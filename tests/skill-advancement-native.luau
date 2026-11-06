@@ -18,7 +18,7 @@ local ok,err=xpcall(function()
    local state={path=path,selected=1,retry=function()end}
    local sent={};local function send(action,fields)table.insert(sent,{action=action,fields=fields})end
    for stage=1,4 do
-    g.level=stage*20;g.battleWins=stage*3
+    g.level=stage*20;g.battleWins=0;snapshot.atHub=false;snapshot.canInvest=false
     if stage>1 then g.stage=stage-1;g.branch=path end
     state.advanceConfirmation=nil
     check(not View.request(hero,snapshot,state,send,function()end),'first click only reviews')
@@ -29,20 +29,18 @@ local ok,err=xpcall(function()
     local result,why=G.apply(g,{action='Advance',branch=path,stage=stage},classId)
     check(result~=nil,'existing progression rules accept command: '..tostring(why))
     local savedStage=g.stage
-    for _,condition in ipairs({'level','defeats','hub','saving','otherPath','unready'})do
+    for _,condition in ipairs({'level','saving','otherPath','unready'})do
      local beforeLevel,beforeWins,beforeBranch=g.level,g.battleWins,g.branch
      if condition=='level'then g.level=stage*20-1 end
-     if condition=='defeats'then g.battleWins=stage*3-1 end
-     if condition=='hub'then snapshot.atHub=false end
      if condition=='unready'then snapshot.ready=false end
      if condition=='otherPath'then g.stage=1;g.branch=paths[1]==path and paths[2] or paths[1] end
      local before=#sent
      check(not View.request(hero,snapshot,state,send,function()end,condition=='saving' and {} or nil),'blocked '..condition)
      check(#sent==before,'no command on blocked '..condition)
-     g.level,g.battleWins,g.branch,g.stage=beforeLevel,beforeWins,beforeBranch,savedStage;snapshot.atHub=true;snapshot.ready=true
+     g.level,g.battleWins,g.branch,g.stage=beforeLevel,beforeWins,beforeBranch,savedStage;snapshot.atHub=false;snapshot.ready=true
     end
    end
-   g.level=20;g.stage=0;g.branch='';g.battleWins=3;state.path=path;state.advanceConfirmation=nil
+   g.level=20;g.stage=0;g.branch='';g.battleWins=0;state.path=path;state.advanceConfirmation=nil
    View.request(hero,snapshot,state,send,function()end)
    snapshot.revision+=1
    local before=#sent

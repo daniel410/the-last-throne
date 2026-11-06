@@ -60,7 +60,7 @@ function Growth.validate(g,classId)
   or not Growth.integer(g.rewardSequence,0,1e12) or not Growth.integer(g.stage,0,4) or not Growth.integer(g.battleWins,0,1e12) then return false end
  local branch=Advanced.branches[g.branch]
  if g.stage==0 then if g.branch~="" then return false end
- elseif not branch or classId and branch.classId~=classId or g.level<g.stage*20 or g.battleWins<g.stage*3 then return false end
+ elseif not branch or classId and branch.classId~=classId or g.level<g.stage*20 then return false end
  local resolvedClass=classId or branch and branch.classId or "knight"
  local spent=0;for k in pairs(g.stats) do if k~="STR" and k~="DEX" and k~="INT" and k~="VIT" then return false end end
  for _,k in ipairs(Growth.statKeys) do if not Growth.integer(g.stats[k],0,316) then return false end;spent=spent+g.stats[k] end
@@ -157,7 +157,6 @@ function Growth.apply(g,command,classId)
 		local stage=g.stage+1
 		if not branch or branch.classId~=classId or command.stage~=stage or stage>4 or g.stage>0 and command.branch~=g.branch then return nil,"InvalidAdvancement" end
 		if g.level<stage*20 then return nil,"LevelRequired" end
-		if g.battleWins<stage*3 then return nil,"TrialRequired" end
 		nextG.branch=command.branch;nextG.stage=stage
 	else return nil,"InvalidRequest" end
 	nextG.revision=nextG.revision+1

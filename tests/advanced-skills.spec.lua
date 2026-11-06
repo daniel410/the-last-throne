@@ -45,7 +45,7 @@ for classId,paths in pairs(A.order)do
   for _,v in ipairs(roots)do eq(v,4,'four descendants per root')end
   local g=G.new(20)
   check(not A.unlocked(g,classId,b.skills[1].index),'level alone no skill')
-  check(not G.apply(g,{action='Advance',branch=path,stage=1},classId),'trial required')
+  check(G.apply(g,{action='Advance',branch=path,stage=1},classId),'no defeat trial required')
   for seq=1,12 do g=assert(G.apply(g,{action='AwardXP',stream='qa',sequence=seq,amount=1,rewardKind='Defeat'},classId))end
   local first=assert(G.apply(g,{action='Advance',branch=path,stage=1},classId))
   check(G.validate(first,classId),'valid advanced profile');eq(A.slotCount(first),5,'five slots before first advancement')

@@ -134,7 +134,7 @@ function Service.progress(player, command, serverReward)
 	local investment=command.action=="AllocateStats" or command.action=="TrainSkill" or command.action=="SetSkillSlot"
  if not serverReward then
   if not initial or initial.heroId~=command.heroId or options.heroSession.isBusy(player) then return "WaitForLobby" end
-  if not initial.atHub and not (investment and options.combat.isSafeForEquipment(player)) then return investment and "UnsafeGrowth" or "WaitForLobby" end
+  if command.action~="Advance" and not initial.atHub and not (investment and options.combat.isSafeForEquipment(player)) then return investment and "UnsafeGrowth" or "WaitForLobby" end
  end
 	state.busy=true
 	state.growthPending=Growth.copy(command)
@@ -143,6 +143,7 @@ function Service.progress(player, command, serverReward)
 		if not serverReward then
 			local latest=options.heroSession.getInventoryContext(player)
 			local sameLife=latest and initial and latest.heroId==initial.heroId and latest.generation==initial.generation
+   if command.action=="Advance" and not sameLife then return nil,"Changed" end
    context.atHub=sameLife and latest.atHub
    context.canInvest=sameLife and investment and options.combat.isSafeForEquipment(player)
 		end

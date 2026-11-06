@@ -1,6 +1,7 @@
 -- Pure growth/account invariants, including save-unknown replay and legacy migration.
 if game then return {} end
 local G=dofile('src/shared/HeroProgression.luau')
+local A=dofile('src/shared/AdvancedSkills.luau')
 local R=dofile('src/server/Inventory/InventoryRules.luau')
 local S=dofile('src/server/Inventory/AccountStore.luau')
 local C=dofile('src/shared/ItemCatalog.luau')
@@ -84,9 +85,9 @@ for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
   eq(saved.skillSlots[1],1,'existing first skill preserved');check(G.validate(saved,classId),'saved loadout validates')
   local afterStats,afterSP=G.points(saved);eq(afterStats,beforeStats,'equip does not spend stats');eq(afterSP,beforeSP,'equip does not spend SP')
  end
- local advance={action='Advance',heroId='new-skill',requestId='field-advance',revision=account.revision,branch='steel_knight',stage=1}
+ local advance={action='Advance',heroId='new-skill',requestId='field-advance',revision=account.revision,branch=A.order[classId][1],stage=1}
  local denied,reason=R.progress(account,advance,{atHub=false,canInvest=true},C)
- eq(denied,nil,'safe field never allows advancement');eq(reason,'WaitForLobby','advancement still needs Hub')
+ eq(denied,nil,'field advancement still needs level20');eq(reason,'LevelRequired','location does not hide level requirement')
 end
 local cumulative=G.new()
 local expected=0
