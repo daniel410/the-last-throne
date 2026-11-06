@@ -28,4 +28,6 @@
 
 ## 빌드·Git 마감
 
-소스와 VERSION을 커밋·푸시한 뒤 `python3 tools/build-game.py --source HEAD --record docs/evidence/selene-lobby-departure-20261106/build.json`으로 고정 소스 단일 Lobby/Battle 산출물을 만든다. 실제 결과·원격 확인·고정본 검증은 후속 증거 커밋에 기록한다.
+입력 소스 `53ba9d6fc1a5a9350c20bffbaf5c7209904f63e9`와 VERSION0.79.0을 커밋·origin/main 푸시하고 `git ls-remote origin refs/heads/main`의 동일 SHA를 확인했다. `python3 tools/build-game.py --source HEAD --record docs/evidence/selene-lobby-departure-20261106/build.json`으로 단일 Lobby/Battle 산출물 빌드 성공. [정확한 입력·명령·해시](build.json). 새 LFS 자산은 없으며 기존 미커밋 모델 변경은 빌드 입력에 포함하지 않았다.
+
+산출물 `builds/0.79.0/TheLastThrone-0.79.0.rbxlx`, SHA-256 `ddb7fd02b01481565822e93418552052b5bb2cfdb3df679f6b8adee74c4a1634`를 실제 바이트로 재확인했다. `python3 tests/single-build.spec.py --artifact builds/0.79.0/TheLastThrone-0.79.0.rbxlx`: role10·arrival-loading108·마운트/실제 산출물 일치 PASS. 고정본 자체의 엔진 실행은 미검증이며 앞선20검사는 후보에서 얻은 증거다. 게시/태그는 수행하지 않았다. 이 기록은 후속 증거 커밋으로 보존한다.
