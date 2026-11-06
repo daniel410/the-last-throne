@@ -7,6 +7,7 @@ def add(path):
  for dep in re.findall(r'dofile\([\'"]([^\'"]+)[\'"]\)',s):add(dep)
  for name in re.findall(r'load\([\'"]([^\'"]+)[\'"]\)',s):add('src/shared/'+name+'.luau')
 add('tests/epic-monster-progression.spec.lua')
+add('tests/monster-damage-boost.spec.lua')
 body=re.search(r'(local function applyBalance.*?)\nlocal spawnWave',Path('src/server/Story/DeepwoodService.luau').read_text(),re.S)[1]
 code='local sources='+ '{\n'+''.join('['+json.dumps(k)+']='+json.dumps(v)+',\n'for k,v in sources.items())+'}\n'
 code+='''local cache={};local messages={}
@@ -17,6 +18,7 @@ local function pure(path)
  local value=fn();cache[path]=value or true;return value
 end
 pure('tests/epic-monster-progression.spec.lua')
+pure('tests/monster-damage-boost.spec.lua')
 local B=pure('src/shared/DeepwoodEncounterBalance.luau')
 local C=pure('src/shared/CampaignContent.luau')
 '''
@@ -26,7 +28,7 @@ local ok,err=xpcall(function()
  for _,chapter in ipairs(C.chapters)do for _,goal in ipairs(chapter.goals)do
   for _,mode in ipairs({'Easy','Hell'})do for _,party in ipairs({1,4})do
    for _,wave in ipairs(B.encounterWaves(chapter,goal,party))do for index,spec in ipairs(wave)do
-    for version=1,4 do
+    for version=1,5 do
      apply(model,spec,party,mode,version,index)
      local hp,damage,level=B.unitStats(spec,party,mode,version,index)
      assert(model:GetAttribute('StoryHealth')==hp and model:GetAttribute('StoryDamage')==damage and model:GetAttribute('StoryLevel')==level,'authoritative attribute bridge mismatch')

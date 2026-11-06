@@ -21,7 +21,7 @@ for _,row in ipairs({{'Orc',450,924},{'Ogre',600,1134}})do
  check(D.stats(row[1],9,1,false,'Easy',1)==325,'legacy Easy rules retained for '..row[1])
 end
 local hp,damage,level=D.stats('Goblin',5,1,false,'Hell')
-check(hp==3465 and damage==169 and level==80,'reference Hell guard')
+check(hp==3465 and damage==203 and level==80,'reference Hell guard')
 local hp2,damage2,level2=D.stats('Goblin',12,1,false,'Hell')
 check(level2==87 and hp2>hp and damage2>damage,'later mission retains level progression inside Hell')
 local oldHP,oldDamage,oldLevel=D.stats('Goblin',5,1,false,'Hell',1)
