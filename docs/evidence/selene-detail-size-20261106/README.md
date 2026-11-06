@@ -8,6 +8,11 @@
 
 MENU는 상세창이 열리면 숨기고 닫을 때 기존 로비·다른 상세창·이동잠금 조건에 따라 복원한다. 기본 MENU의 TD 이미지·크기·위치·기능은 유지한다. 기존 TD 프레임/버튼/셀린 초상·3개 구매·서버 가격/소유/거래는 그대로다. 명확한 겹침/잘림 결함 수정이므로 제작 스킬의 예외에 따라 별도 게임 사례 조사는 생략한다.
 
-검증: `/private/tmp/td233-luau/luau-compile`로 런타임3개와 관련 네이티브2개 컴파일 PASS, `git diff --check` PASS. `lua tests/supporter-info.spec.lua`45·support-passes30·selene-departure26, 총101검사 PASS. 기존 GUI 검사를1280×591·568×320까지 확장해 창 여백/텍스트·스크롤/약관/구매 버튼 경계·44px를 확인하고 MENU 숨김/복원/다른 상세창 중 복원 방지를 검사하도록 했다. 실제 엔진 실행 결과와 고정 소스 빌드 기록은 아래 마감 기록에 추가한다.
+검증: `/private/tmp/td233-luau/luau-compile`로 런타임3개와 관련 네이티브2개 컴파일 PASS, `git diff --check` PASS. `lua tests/supporter-info.spec.lua`45·support-passes30·selene-departure26, 총101검사 PASS. 기존 GUI 검사를1280×591·568×320까지 확장해 창 여백/텍스트·스크롤/약관/구매 버튼 경계·44px를 확인하고 MENU 숨김/복원/다른 상세창 중 복원 방지를 검사하도록 했다. 실제 엔진의 GUI 경계 검사는 아래 시작 실패로 실행하지 못했으며, 추가한 검사 정의를 통과 증거로 계산하지 않는다.
 
 미검증: 사용자 실제 모바일 화면/터치/최종 시각수용·게시된 테스트 클라이언트. QA는 새 빌드에서 상세창 열기→CLOSE와 구매 버튼 노출→닫기 후 MENU복원을 확인한다. 부모 티켓은 In Progress다. TD 운영·기존 사용자 모델/첨부는 보존하며 신규 이미지 업로드·Roblox 게시·릴리스 태그는 수행하지 않는다.
+
+
+고정 소스 `0c75cf49c1ec8cbdbfab9b37f6b31b911a45748b`와 VERSION0.79.1을 커밋·origin/main 푸시하고 원격 동일 SHA를 확인했다. `python3 tools/build-game.py --source HEAD --record docs/evidence/selene-detail-size-20261106/build.json` 성공. [정확한 입력·명령·해시](build.json). 산출물 `builds/0.79.1/TheLastThrone-0.79.1.rbxlx`, 실제 SHA-256 `e861644ced9e19fada2a9536a6733eb6c1b31a222ea33b3049fa30e7f0529276`. 신규 LFS 자산/전송은 없다. 기존 미커밋 모델은 고정 소스 빌드에 포함하지 않았다.
+
+`python3 tests/single-build.spec.py --artifact builds/0.79.1/TheLastThrone-0.79.1.rbxlx`: 역할10·도착로딩108·실제 구성/마운트 검사 PASS([로그](checks.log)). 화면 검사는 `tests/supporter-details-native.luau`와 `tests/lobby-top-menu-native.luau`를 한 세션에 연결한 `/tmp/tlt-selene-detail-suite.luau`를 만들어 `run-in-roblox --place /tmp/tlt-selene-detail-candidate.rbxlx --script /tmp/tlt-selene-detail-suite.luau`로 시도했지만 Studio online 대기 시간 초과로 실행되지 않았다([로그](candidate-native.log)). 재현 시 상세창 검사는 해당 파일을 직접 실행하고, 메뉴 검사는 반환 report를 출력하는 wrapper에서 실행한다. 이번 화면 변경의 엔진 렌더·실기기 수용은 미검증이며 고정 빌드의 정적 통과와 구분한다.

@@ -1,0 +1,14 @@
+$ lua tests/supporter-info.spec.lua
+Supporter info: 45 checks passed
+
+$ lua tests/support-passes.spec.lua
+Support passes: 30 checks passed
+
+$ lua tests/selene-departure.spec.lua
+Selene departure: 26 checks passed
+
+$ python3 tests/single-build.spec.py --artifact builds/0.79.1/TheLastThrone-0.79.1.rbxlx
+place-role: 10 checks PASS
+arrival-loading: 108 checks PASS
+single-build: project mounts and compatibility alias PASS
+single-build: actual artifact role/config/loading checks PASS
