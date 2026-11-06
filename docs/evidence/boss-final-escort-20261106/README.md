@@ -26,3 +26,5 @@
 | `luau-compile` Balance/Service/native fixture, `git diff --check` |PASS |
 
 기존203785492 asset-type 경고는 검사에 영향 없음. 네이티브 fixture는 실제 TD 모델/Humanoid·서비스 편성/사망/이벤트 큐를 사용하지만, 목표 지점/플레이어·계정 저장/Combat 등록은 대역이며 HP0을 주입해 사망 처리한다. 실제 전투AI·공격으로 처치·보스 기믹/설원 진정의 전체 플레이·live DataStore·다인 네트워크·실기기/최종 난도 수용은 증명하지 않는다. 다음 QA는5에픽 대표/선택 보스에서 보스+호위의 탈출 공간·원거리 압박·전멸/재접속·보상·4인+AI 성능을 확인한다. 부모 티켓은 In Progress를 유지한다. Place게시·태그·TD운영 변경 없음.
+
+단일 빌드 **0.78.9 성공**. 입력 소스 `307e6e0b44872ebdce083c2faa9bf9b281e630b0`, SHA-256 `5e67696fcca277e7ed1dbe14db96ab5ad07e85a8aa720098427169c14a0bc8eb`, 13,290,231bytes. 산출물 XML의 변경2개 모듈이 소스와 동일함을 확인했다. [빌드 기록](build.json). 소스 origin/main 푸시 성공. 검사 후 테스트용0.78.8 Studio는 종료됐으며 기존 사용자 세션은 보존했다. 게시/릴리스 태그는 생성하지 않았다.
