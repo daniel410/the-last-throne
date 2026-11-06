@@ -7,9 +7,9 @@ normal={
 'Orc':('physical','sweep','Heavy Cleave','cone','Overhead Cut','line'),
 'Shaman':('arcane','cast','Hex Bolt','projectile','Hex Circle','circle'),
 'Ogre':('physical','slam','Club Smash','cone','Ground Break','line'),
-'IceWolf':('frost','hop','Frost Bite','cone','Frost Pounce','dash'),
+'IceWolf':('frost','hop','Frost Bite','cone','Frost Rend','cone'),
 'IceTroll':('frost','slam','Frozen Club','cone','Ice Boulder','projectile'),
-'IceBear':('frost','sweep','Raking Claws','cone','Bear Rush','dash'),
+'IceBear':('frost','sweep','Raking Claws','cone','Heavy Maul','cone'),
 'IceGolem':('frost','slam','Frozen Fist','cone','Frost Fissure','line'),
 'IceElf':('frost','cast','Crystal Bolt','projectile','Crystal Volley','projectile'),
 'Imp':('fire','cast','Ember Toss','projectile','Spark Fan','projectile'),
@@ -58,6 +58,10 @@ def action(kind,name,form,element,boss=False,index=0,motion=None):
  shape='line' if form=='dash' else form
  heavy=boss and index==3 or not boss and index==1 and form in ('line','circle','ring','trail','dash')
  p=dict(id=kind+'.'+str(index+1),name=name,shape=shape,element=element,motion=motion or ('dash' if form=='dash' else 'cast' if form in ('projectile','trail') else 'slam' if form in ('circle','ring') else 'sweep'),windup=1.55 if heavy else 1.15 if boss else 1.0,recovery=1.25 if heavy else .85 if boss else .8,range=24 if form in ('projectile','line','dash','trail') else 9 if boss else 6,radius=8 if boss else 4,width=3 if boss else 2,angle=105 if boss else 85,blockable=not heavy,heavy=bool(heavy),pulses=3 if form=='trail' or boss and form in ('cone','projectile') and index>0 else 1,interval=.55,minRange=0,maxRange=32 if form in ('projectile','trail','line','dash') else 10 if boss else 7,cooldown=7 if heavy else 3.5,speed=19 if boss else 16,fan=3 if 'Fan' in name or 'Volley' in name or 'Crown' in name or name=='Final Gate' else 1,spread=40,innerRadius=3 if boss else 2,dashDistance=12 if boss else 8)
+ if kind in ('Goblin','Orc','Ogre','IceWolf','IceBear'):
+  p['range']=6;p['maxRange']=5.4;p['dashDistance']=0
+  if kind in ('IceWolf','IceBear')and index==1:
+   p.update(motion='hop' if kind=='IceWolf' else 'slam',heavy=True,blockable=False,windup=1.55,recovery=1.25,cooldown=7)
  if kind in ('Golem','SkeletonKnight')and index==0:p['guard']=True
  if form=='trail':p['radius']=3.5;p['interval']=.65
  if form=='projectile':p['range']=32;p['maxRange']=28
@@ -79,7 +83,7 @@ def lua(v):
  if isinstance(v,(float,int)):return str(v)
  if isinstance(v,list):return '{'+','.join(map(lua,v))+'}'
  return '{'+','.join('['+lua(k)+']='+lua(x) for k,x in v.items())+'}'
-out='-- Versioned server-owned enemy actions; stable kinds, no reward or stat changes.\nlocal P={version=1,minimumRulesVersion=9,profiles={\n'+''.join(' ['+lua(k)+']='+lua(v)+',\n'for k,v in profiles.items())+'}}\n'
+out='-- Versioned server-owned enemy actions; stable kinds, no reward or stat changes.\nlocal P={version=2,minimumRulesVersion=9,profiles={\n'+''.join(' ['+lua(k)+']='+lua(v)+',\n'for k,v in profiles.items())+'}}\n'
 out+='''function P.enabled(version)return type(version)=='number' and version>=P.minimumRulesVersion end
 function P.get(kind)return P.profiles[kind]end
 function P.choose(kind,distance,history,current)
@@ -98,4 +102,4 @@ end
 return P
 '''
 Path('src/shared/EnemyPatterns.luau').write_text(out)
-Path('assets/animations/enemy-patterns-v1/pattern-manifest.json').write_text(json.dumps({'version':1,'profiles':profiles},indent=2)+'\n')
+Path('assets/animations/enemy-patterns-v1/pattern-manifest.json').write_text(json.dumps({'version':2,'profiles':profiles},indent=2)+'\n')

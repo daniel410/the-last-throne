@@ -33,6 +33,17 @@ for kind,unit in pairs(seen)do
   check(x==xp and y==gold,'rule9 preserves rewards')
  end end
 end
+for _,kind in ipairs({'Goblin','Orc','Ogre','IceWolf','IceBear'})do
+ for _,a in ipairs(P.get(kind).attacks)do
+  check(a.range<=6 and a.maxRange<=6,'melee geometry and selection range: '..a.id)
+  check(a.shape~='projectile' and a.shape~='trail' and a.motion~='dash','no ranged release or charge: '..a.id)
+ end
+ for distance=7,32 do check(P.choose(kind,distance,{},100)==nil,'melee chases outside reach: '..kind)end
+ check(P.choose(kind,4,{},100)~=nil,'melee remains usable up close')
+end
+for _,kind in ipairs({'IceElf','Shaman','VolcanoShaman','KingOgre','GoblinKing','KingShaman'})do
+ check(P.choose(kind,20,{},100)~=nil,'caster or ranged boss retains distance attack: '..kind)
+end
 check(count==49 and bosses==22,'actual roster coverage')
 for v=1,8 do check(not P.enabled(v)and D.compatible(v),'old runs remain supported and old patterns')end
 check(P.enabled(9)and not P.enabled(nil),'new-run gate')

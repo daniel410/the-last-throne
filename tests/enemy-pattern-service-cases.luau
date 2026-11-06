@@ -9,6 +9,22 @@
   model:SetAttribute('StoryAttackSpeed',1.265);model:SetAttribute('StoryMoveSpeed',1.265)
   return api.registerEnemy(model)
  end
+ for _,kind in ipairs({'Goblin','Orc','Ogre','IceWolf','IceBear'})do
+  case('service-melee-only-'..kind,function()
+   api.injectResolver(function()return 'knight'end);local player=spawnPlayer();local e=storyEnemy(kind,12,9)
+   api.beginEnemyAttack(e,player,0);equal(e.attack,nil,'distant melee attack is not selected')
+   e.root.Position=origin+Vector3.new(0,0,-4);api.beginEnemyAttack(e,player,10)
+   equal(e.attack~=nil,true,'close melee attack starts')
+   equal(e.attack.pattern.range<=6,true,'server uses melee geometry')
+  end)
+ end
+ case('service-ice-elf-ranged',function()
+  api.injectResolver(function()return 'knight'end);local player=spawnPlayer();player.humanoid.MaxHealth=10000;player.humanoid.Health=10000
+  local e=storyEnemy('IceElf',20,9);messages={};api.beginEnemyAttack(e,player,0)
+  equal(e.attack.pattern.shape,'projectile','Ice Elf keeps ranged profile')
+  for frame=0,240 do sample(frame/60)end
+  equal(player.humanoid.Health<10000,true,'Ice Elf hits from twenty studs')
+ end)
  for _,classId in ipairs({'knight','elf','dwarf','mage'})do
   case('service-projectile-'..classId,function()
    api.injectResolver(function()return classId end);local player=spawnPlayer();player.humanoid.MaxHealth=10000;player.humanoid.Health=10000

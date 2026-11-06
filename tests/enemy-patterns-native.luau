@@ -27,6 +27,20 @@ local function simulate(d,distance)
  for frame=0,math.ceil((d.windup+d.active)*60)do R.step(enemy,10+frame/60,{target},ctx)end
  return #hits
 end
+for _,kind in ipairs({'Goblin','Orc','Ogre','IceWolf','IceBear'})do
+ for _,d in ipairs(P.get(kind).attacks)do
+  check(simulate(d,4)==1,'melee connects up close: '..d.id)
+  check(simulate(d,12)==0,'melee cannot hit distant target: '..d.id)
+  for _,event in ipairs(events)do check(event.kind~='projectile','melee emits no projectile: '..d.id)end
+  check(enemy.root.Position==Vector3.new(0,4,0),'melee has no ranged charge: '..d.id)
+ end
+ check(P.choose(kind,12,{},100)==nil,'no distant attack selection: '..kind)
+end
+for _,d in ipairs(P.get('IceElf').attacks)do
+ check(simulate(d,20)==1,'Ice Elf retains ranged hit: '..d.id)
+ local fired=false;for _,event in ipairs(events)do if event.kind=='projectile'then fired=true end end
+ check(fired,'Ice Elf fires visible projectile: '..d.id)
+end
 local cast=P.get('Shaman').attacks[1]
 check(simulate(cast,12)==1,'traveling magic hits exactly once')
 check(target.humanoid.Health==880,'authoritative payload damage')
@@ -88,6 +102,9 @@ target.model:SetAttribute('K0HurtSource',target.root.Position-Vector3.new(10,0,0
 local _,_,left=hurt.bodyPose(target.model,current):ToOrientation()
 check(right*left<0,'hit reaction distinguishes left/right')
 check(hurt.bodyPose(target.model,current+.3)==nil,'hit body reaction ends')
+local groundWorld=Instance.new('Folder');groundWorld.Name='DeepwoodCampaign';groundWorld.Parent=workspace
+local floorPart=Instance.new('Part');floorPart.Name='Ground';floorPart.Anchored=true;floorPart.Size=Vector3.new(100,2,100);floorPart.Position=Vector3.new(0,-1,0);floorPart.Parent=groundWorld
+local overhead=Instance.new('Part');overhead.Name='SceneryAboveGround';overhead.Anchored=true;overhead.Size=Vector3.new(100,1,100);overhead.Position=Vector3.new(0,5,0);overhead.Parent=groundWorld
 local sampleShapes={}
 for _,profile in pairs(P.profiles)do for _,d in ipairs(profile.attacks)do
  if not sampleShapes[d.shape]then
@@ -98,10 +115,21 @@ for _,profile in pairs(P.profiles)do for _,d in ipairs(profile.attacks)do
   fx.render(at+.4)
   local warning=workspace:FindFirstChild('EnemyPatternWarning')
   check(warning~=nil and #warning:GetChildren()>0,'native warning shape '..d.shape)
-  for _,o in ipairs(warning:GetChildren())do check(not o.CanCollide and not o.CanQuery,'nonblocking warning')end
+  for _,o in ipairs(warning:GetChildren())do check(not o.CanCollide and not o.CanQuery,'nonblocking warning');check(math.abs(o.Position.Y-.12)<.01,'warning projects onto floor, not scenery or root height')end
   R.cancel(enemy,function(m)fx.receive(m)end)
   check(workspace:FindFirstChild('EnemyPatternWarning')==nil,'warning canceled '..d.shape)
  end
 end end
-folder:Destroy()
+-- Streaming floor absence must hide the warning, never fall back to root height.
+local d=P.get('Orc').attacks[1];local at=workspace:GetServerTimeNow()
+R.begin(enemy,target,d,at,function(m)fx.receive(m)end);fx.render(at+.4)
+check(#workspace:FindFirstChild('EnemyPatternWarning'):GetChildren()>0,'warning starts on existing floor')
+floorPart:Destroy();fx.render(at+.5)
+local warning=workspace:FindFirstChild('EnemyPatternWarning')
+check(warning and #warning:GetChildren()==0,'missing floor emits no airborne warning')
+-- A streamed-in floor can restore this same warning.
+local restored=Instance.new('Part');restored.Name='Ground';restored.Anchored=true;restored.Size=Vector3.new(100,2,100);restored.Position=Vector3.new(0,-1,0);restored.Parent=groundWorld
+fx.render(at+.6);warning=workspace:FindFirstChild('EnemyPatternWarning');check(#warning:GetChildren()>0,'streamed floor restores warning')
+R.cancel(enemy,function(m)fx.receive(m)end)
+groundWorld:Destroy();folder:Destroy()
 print('ENEMY_PATTERN_NATIVE '..game:GetService('HttpService'):JSONEncode({checks=checks,kinds=classes,actions=actions,modelParts=modelParts,scope='isolated engine modules; no accounts/normal gameplay/device acceptance'}))

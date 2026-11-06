@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "profiles": {
     "Slime": {
       "boss": false,
@@ -71,7 +71,7 @@
           "motion": "sweep",
           "windup": 1.0,
           "recovery": 0.8,
-          "range": 24,
+          "range": 6,
           "radius": 4,
           "width": 2,
           "angle": 85,
@@ -80,13 +80,13 @@
           "pulses": 1,
           "interval": 0.55,
           "minRange": 0,
-          "maxRange": 21.6,
+          "maxRange": 5.4,
           "cooldown": 3.5,
           "speed": 16,
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
+          "dashDistance": 0,
           "active": 0.22
         },
         {
@@ -112,7 +112,7 @@
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
+          "dashDistance": 0,
           "active": 0.22
         }
       ]
@@ -144,7 +144,7 @@
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
+          "dashDistance": 0,
           "active": 0.22
         },
         {
@@ -155,7 +155,7 @@
           "motion": "sweep",
           "windup": 1.55,
           "recovery": 1.25,
-          "range": 24,
+          "range": 6,
           "radius": 4,
           "width": 2,
           "angle": 85,
@@ -164,13 +164,13 @@
           "pulses": 1,
           "interval": 0.55,
           "minRange": 0,
-          "maxRange": 21.6,
+          "maxRange": 5.4,
           "cooldown": 7,
           "speed": 16,
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
+          "dashDistance": 0,
           "active": 0.22
         }
       ]
@@ -260,7 +260,7 @@
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
+          "dashDistance": 0,
           "active": 0.22
         },
         {
@@ -271,7 +271,7 @@
           "motion": "sweep",
           "windup": 1.55,
           "recovery": 1.25,
-          "range": 24,
+          "range": 6,
           "radius": 4,
           "width": 2,
           "angle": 85,
@@ -280,13 +280,13 @@
           "pulses": 1,
           "interval": 0.55,
           "minRange": 0,
-          "maxRange": 21.6,
+          "maxRange": 5.4,
           "cooldown": 7,
           "speed": 16,
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
+          "dashDistance": 0,
           "active": 0.22
         }
       ]
@@ -318,18 +318,18 @@
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
+          "dashDistance": 0,
           "active": 0.22
         },
         {
           "id": "IceWolf.2",
-          "name": "Frost Pounce",
-          "shape": "line",
+          "name": "Frost Rend",
+          "shape": "cone",
           "element": "frost",
-          "motion": "dash",
+          "motion": "hop",
           "windup": 1.55,
           "recovery": 1.25,
-          "range": 24,
+          "range": 6,
           "radius": 4,
           "width": 2,
           "angle": 85,
@@ -338,14 +338,14 @@
           "pulses": 1,
           "interval": 0.55,
           "minRange": 0,
-          "maxRange": 7.2,
+          "maxRange": 5.4,
           "cooldown": 7,
           "speed": 16,
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
-          "active": 0.45
+          "dashDistance": 0,
+          "active": 0.22
         }
       ]
     },
@@ -434,18 +434,18 @@
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
+          "dashDistance": 0,
           "active": 0.22
         },
         {
           "id": "IceBear.2",
-          "name": "Bear Rush",
-          "shape": "line",
+          "name": "Heavy Maul",
+          "shape": "cone",
           "element": "frost",
-          "motion": "dash",
+          "motion": "slam",
           "windup": 1.55,
           "recovery": 1.25,
-          "range": 24,
+          "range": 6,
           "radius": 4,
           "width": 2,
           "angle": 85,
@@ -454,14 +454,14 @@
           "pulses": 1,
           "interval": 0.55,
           "minRange": 0,
-          "maxRange": 7.2,
+          "maxRange": 5.4,
           "cooldown": 7,
           "speed": 16,
           "fan": 1,
           "spread": 40,
           "innerRadius": 2,
-          "dashDistance": 8,
-          "active": 0.45
+          "dashDistance": 0,
+          "active": 0.22
         }
       ]
     },

@@ -129,10 +129,33 @@ function Effects.receive(m)
   for i=#projectiles,1,-1 do local p=projectiles[i];if p.model==m.model and p.sequence==m.sequence and p.pulse==m.pulse and p.shot==m.shot then p.part:Destroy();table.remove(projectiles,i)end end
  end
 end
-local function ground(v,model)
- local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude;params.FilterDescendantsInstances={model,workspace.CurrentCamera};params.RespectCanCollide=true
- local hit=workspace:Raycast(v+Vector3.new(0,6,0),Vector3.new(0,-30,0),params)
- return hit and hit.Normal.Y>.4 and hit.Position+Vector3.new(0,.12,0) or v-Vector3.new(0,2.5,0)
+-- Match authored walkable floors, never character bodies, props or warning FX.
+local floorNames={Ground=true,ForestGround=true,SnowGround=true,BasaltGround=true,ForestBedrock=true,TrailEmbankment=true,WalkableTerrace=true,WalkableRamp=true,TerraceLanding=true}
+local floorParams=RaycastParams.new();floorParams.FilterType=Enum.RaycastFilterType.Include;floorParams.RespectCanCollide=true
+local floorDirty=true
+local function walkable(p)
+ if not p:IsA('BasePart')then return false end
+ local world=p:FindFirstAncestor('DeepwoodCampaign')or p:FindFirstAncestor('DeepwoodK0')
+ return world~=nil and (floorNames[p.Name] or p.Name:match('^Support_')or p.Name:match('^TrailSupport_')or p.Name:match('^ConnectedPath_')or p.Name:match('^SnowTrail_')or p.Name:match('^CalderaTrail_'))
+end
+local function floorChanged(p)
+ if not walkable(p)then return end
+ floorDirty=true
+ for _,a in pairs(attacks)do if a.folder then a.folder:Destroy();a.folder=nil;a.lines=nil end end
+end
+workspace.DescendantAdded:Connect(floorChanged)
+workspace.DescendantRemoving:Connect(floorChanged)
+local function ground(v)
+ if floorDirty then
+  local floors={workspace.Terrain}
+  for _,name in ipairs({'DeepwoodCampaign','DeepwoodK0'})do
+   local world=workspace:FindFirstChild(name)
+   if world then for _,p in ipairs(world:GetDescendants())do if walkable(p)then table.insert(floors,p)end end end
+  end
+  floorParams.FilterDescendantsInstances=floors;floorDirty=false
+ end
+ local hit=workspace:Raycast(v+Vector3.new(0,2,0),Vector3.new(0,-96,0),floorParams)
+ return hit and hit.Normal.Y>.4 and hit.Position+Vector3.new(0,.12,0)or nil
 end
 local function draw(a,model,now)
  local d=a.d;local age=now-a.at
@@ -145,12 +168,20 @@ local function draw(a,model,now)
  elseif a.charge then a.charge:Destroy();a.charge=nil end
  local warning=age<d.windup+(d.pulses-1)*d.interval+.22
  if not warning or not permitted(a.origin)then if a.folder then a.folder:Destroy();a.folder=nil end;return end
- if a.lines and a.folder then
+ if a.lines and #a.lines>0 and a.folder then
   for _,p in ipairs(a.lines)do if p.Parent then p.Transparency=.08+(.18*(1-math.clamp(age/d.windup,0,1)))end end;return
  end
  if not a.folder then a.lines=nil;a.folder=Instance.new('Folder');a.folder.Name='EnemyPatternWarning';a.folder.Parent=workspace end
  local vertices={};local right=Vector3.new(-a.direction.Z,0,a.direction.X)
- local function line(x,y)table.insert(vertices,{ground(x,model),ground(y,model)})end
+ local function line(x,y)
+  -- Short edges follow slopes; missing floors and cliffs leave a gap instead of an airborne beam.
+  local steps=math.max(1,math.ceil((y-x).Magnitude/3));local previous=ground(x)
+  for i=1,steps do
+   local nextPoint=ground(x:Lerp(y,i/steps))
+   if previous and nextPoint and math.abs(previous.Y-nextPoint.Y)<=1.5 then table.insert(vertices,{previous,nextPoint})end
+   previous=nextPoint
+  end
+ end
  local function circle(center,r)
   for i=1,20 do local x,y=(i-1)*math.pi/10,i*math.pi/10;line(center+Vector3.new(math.cos(x)*r,0,math.sin(x)*r),center+Vector3.new(math.cos(y)*r,0,math.sin(y)*r))end
  end

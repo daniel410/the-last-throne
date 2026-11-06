@@ -1,0 +1,7 @@
+{
+  "checks": 1297,
+  "scope": "isolated engine modules; no accounts/normal gameplay/device acceptance",
+  "modelParts": 186,
+  "actions": 142,
+  "kinds": 49
+}
