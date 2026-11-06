@@ -212,7 +212,10 @@ end
 function Service.storyState(player,heroId)
  local state=accounts[player];local hero=state and state.profile and state.profile.heroes[heroId]
  local a=hero and hero.expeditions and hero.expeditions.active
- if a and player:GetAttribute('K0SessionPhase')=='Tutorial'then return require(ReplicatedStorage.Shared.AdventureRules).projection(hero)end
+ -- Death/loading must keep the admitted journal: falling back to the permanent
+ -- journal loses expeditionMission and sends respawns to the launch story.
+ local phase=player:GetAttribute('K0SessionPhase')
+ if a and (phase=='Tutorial' or phase=='Respawning' or phase=='LoadingTutorial')then return require(ReplicatedStorage.Shared.AdventureRules).projection(hero)end
  return hero and Rules.copy(hero.deepwood or require(ReplicatedStorage.Shared.DeepwoodProgress).new())
 end
 -- All support Gold and entitlement changes use the same account fence as items.
