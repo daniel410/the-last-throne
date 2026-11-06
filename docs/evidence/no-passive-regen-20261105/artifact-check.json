@@ -1,0 +1,20 @@
+{
+  "artifact": "builds/0.75.13/TheLastThrone-0.75.13.rbxlx",
+  "sha256": "a09b8ee562260c0b64bf1ee8f22468083738b48e6fcc519c17a28ce1bc91bc0e",
+  "sourceCommit": "24b92f4db81ddf44c437a1d86cf0d03488a678b3",
+  "matchingSource": [
+    {
+      "path": "src/server/Combat/CombatService.luau",
+      "sha256": "c51150dee2c38a11ffdfdcb7e1c2ed6a568e43fb82854fb5b3be30163445e17b"
+    },
+    {
+      "path": "src/shared/K0Config.luau",
+      "sha256": "50bd1b8f8e4a841ec832da99264016da79560528c122118866235c540b33aa6c"
+    },
+    {
+      "path": "src/server/Inventory/InventoryRules.luau",
+      "sha256": "43decef70f405f9fa4657ce5e60727b409bc33ddb7b6c15f9edaa985350f3b14"
+    }
+  ],
+  "pass": true
+}

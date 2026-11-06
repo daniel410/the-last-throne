@@ -23,7 +23,7 @@
 
 fixture 준비는 `tests/make_k0_source_probe.py --output-dir /tmp/tlt-no-passive-regen --test-script tests/k0-basic-attacks-native.luau`의 기존 생성기를 사용했다. 현재 src/loading 매핑과200KB를 넘는 비관련 적 클립3개(FrozenValeClips/EmberCalderaClips/K0EnemyClips)는 기존 전용 준비기와 같은 필터로 제외했다. 관련 CombatService/Config 원본은 대체하지 않았다. 실행 명령은 `run-in-roblox --place /tmp/tlt-no-passive-regen/tlt-k0-qa-empty.rbxlx --script /tmp/tlt-no-passive-regen/source-probe.luau`다. 런타임 Player/RemoteEvent 전송·게시 환경/실제 시간 플레이 수용 검사가 아니다.
 
-`git diff --check` 통과. 빌드는 입력 소스와 VERSION을 먼저 커밋·푸시한 다음 `python3 tools/build-game.py --source <고정커밋> --record docs/evidence/no-passive-regen-20261105/build.json`으로 생성하며 [기록](build.json)에 소스 커밋/산출물 해시/결과를 남긴다. 새 빌드는 아직 게시/릴리스하지 않는다.
+`git diff --check` 통과. 입력 소스/VERSION 커밋 `24b92f4db81ddf44c437a1d86cf0d03488a678b3`을 먼저 푸시한 뒤 `python3 tools/build-game.py --source 24b92f4 --record docs/evidence/no-passive-regen-20261105/build.json`으로0.75.13 단일 빌드에 성공했다. [기록](build.json)에 소스 커밋/산출물 해시/결과를 남겼다. `python3 tests/single-build.spec.py --artifact builds/0.75.13/TheLastThrone-0.75.13.rbxlx`의 역할10/로딩108·실제산출물 검사 PASS. [산출물 원본 대조](artifact-check.json)는 핵심3모듈의 Source가 고정 커밋과 바이트 일치함을 확인했다. XML Source는 string 태그이므로 ProtectedString 태그를 기대한 첫 대조 스크립트는 실패했으며 실제 태그를 읽도록 교정한 후 통과했다. 새 빌드는 미게시이며 릴리스 태그 없음.
 
 ## 한계와 인계
 
