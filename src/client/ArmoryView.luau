@@ -162,7 +162,7 @@ function V.create(parent,send,diamondOnly,store)
      description=string.format('%s · %s · Lv%d · Power +%.2f%s%s\n%s',fit,d.rarity,d.level or 1,d.stats.power or 0,d.stats.armor and ' · Armor +'..d.stats.armor or '',d.stats.health and ' · HP +'..d.stats.health or '',d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
     end
     if not d.restore then
-     local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,d.slot=='accessory' and 'accessory1' or nil,Items)
+     local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,nil,Items)
      if impact and d.slot~='accessory' then description=description..'\n'..Impact.summary(impact) end
     end
     if store=='blacksmith' and Catalog.diamondGear(d) then description=description..'\n'..ItemText.ForgeDiamondOnly end

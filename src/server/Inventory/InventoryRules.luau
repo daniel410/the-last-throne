@@ -1,4 +1,5 @@
 local Enhancement=game and require(game:GetService('ReplicatedStorage').Shared.Enhancement)or dofile('src/shared/Enhancement.luau')
+local EquipmentSlots=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentSlotRules)or dofile('src/shared/EquipmentSlotRules.luau')
 local Adventure=game and require(game:GetService('ReplicatedStorage').Shared.AdventureRules)or dofile('src/shared/AdventureRules.luau')
 local Story=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
 local Economy=game and require(game:GetService('ReplicatedStorage').Shared.EconomyRules) or dofile('src/shared/EconomyRules.luau')
@@ -191,8 +192,8 @@ function Rules.apply(profile, command, context, catalog)
 		if loc.kind ~= "bag" or not def.slot then return nil, "BagOnly" end
 		if def.classId and def.classId ~= hero.baseClassId then return nil, "WrongClass" end
 		if hero.level < (def.level or 1) then return nil, "LevelRequired" end
-		local slot = def.slot == "accessory" and command.slot or def.slot
-		if def.slot == "accessory" and slot ~= "accessory1" and slot ~= "accessory2" then return nil, "ChooseAccessory" end
+		local slot,slotError = EquipmentSlots.resolve(hero.heroId,nextProfile.items,def,catalog,command.slot)
+		if not slot then return nil,slotError end
 		local equipped = Rules.equipped(nextProfile, hero.heroId, slot)
 		if def.uniqueGroup then
 			for _, other in pairs(nextProfile.items) do

@@ -9,6 +9,7 @@ local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
 local Text = require(ReplicatedStorage.Shared.InventoryText)
 local Rarity = require(ReplicatedStorage.Shared.ItemRarity)
 local EquipmentImpact = require(ReplicatedStorage.Shared.EquipmentImpact)
+local EquipmentSlots = require(ReplicatedStorage.Shared.EquipmentSlotRules)
 local Navigation = require(ReplicatedStorage.Shared.NavigationText)
 local CombatText = require(ReplicatedStorage.Shared.CombatStatText)
 local BaseTheme = require(script.Parent.TDInventoryTheme)
@@ -149,7 +150,7 @@ function InventoryGui.create(onVisibility, feedback)
  require(script.Parent.LobbyPanelLayout).bind(claimsPanel,player)
 	local claimsTitle=Theme.label(claimsPanel,"ClaimsTitle",Text.Pending,UDim2.fromOffset(20,12),UDim2.new(1,-92,0,42),24,Color.gold)
 	closeClaims.Parent=claimsPanel;closeClaims.Caption.Text="X";closeClaims.Caption.TextSize=24
-	local snapshot,remote,pending,selectedId,accessorySlot,actionForSelection,quantityBox
+	local snapshot,remote,pending,selectedId,actionForSelection,quantityBox
 	local busyRetry, busyAttempts = nil, 0
 	local opened,storageMode,gearMode,mobileDetail=false,false,false,false
 	local category,sourceTab,sortMode="Equipment","bag","Name"
@@ -198,7 +199,7 @@ function InventoryGui.create(onVisibility, feedback)
 	player:GetAttributeChangedSignal("TLTSettingsOpen"):Connect(showLauncher)
 	player:GetAttributeChangedSignal("K0SessionPhase"):Connect(showLauncher)
 	local function choose(item)
-		selectedId,accessorySlot,quantity,quantityBox=item.instanceId,nil,1,nil
+		selectedId,quantity,quantityBox=item.instanceId,1,nil
 		expandedDetails=false
 		mobileDetail=true
 		resize(); render()
@@ -297,20 +298,13 @@ function InventoryGui.create(onVisibility, feedback)
 			detailLabel("Binding",(item.binding=="character" and Text.CharacterBound or Text.Bound)..(item.locked and "  •  "..Text.Locked or ""),y,26,11,Color.gold); y=y+30
 		end
 		if def.slot then
-			if def.slot=="accessory" and item.location.kind=="bag" and not storageMode then
-				detailLabel("ChooseSlot",Text.ChooseAccessory,y,36,13,Color.silver); y=y+40
-				for index=1,2 do
-					local slot="accessory"..index
-					local button=Theme.button(detailScroll,"Choose_"..slot,(accessorySlot==slot and "[X] " or "")..Text["Accessory"..index],UDim2.new((index-1)*.5,0,0,y),UDim2.new(.5,-5,0,44))
-					button.Caption.TextSize=11
-					button.Activated:Connect(function() accessorySlot=slot; renderDetails() end)
-				end
-				y=y+50
-			end
-			local compareSlot=def.slot=="accessory" and accessorySlot or def.slot
+			local compareSlot=EquipmentSlots.resolve(snapshot.heroId,snapshot.items,def,Catalog,item.location.kind=="equipped" and item.location.slot or nil)
 			local current
 			for _, other in ipairs(snapshot.items) do
-				if other.location.kind=="equipped" and other.location.heroId==snapshot.heroId and other.location.slot==compareSlot then current={stats=Enhance.stats(Catalog.items[other.definitionId],other)} end
+				if other.location.kind=="equipped" and other.location.heroId==snapshot.heroId and other.location.slot==compareSlot then current={stats=Enhance.stats(Catalog.items[other.definitionId],other),name=Enhance.name(Catalog.items[other.definitionId],other)} end
+			end
+			if def.slot=="accessory" and item.location.kind=="bag" and not storageMode then
+				detailLabel("AutoEquipTarget",current and string.format(Text.AutoAccessoryReplace,current.name) or Text.AutoAccessoryEmpty,y,48,13,Color.silver);y=y+52
 			end
 			local lines={Text.Current.."  →  "..Text.Selected}
 			for _, key in ipairs({"power","armor","health"}) do
@@ -377,7 +371,7 @@ function InventoryGui.create(onVisibility, feedback)
 			if actionForSelection=="Deposit" or actionForSelection=="Withdraw" then enabled=enabled and snapshot.atStorage end
 			if actionForSelection=="Claim" then enabled=enabled and snapshot.atHub end
 			if actionForSelection=="Use" and snapshot.atHub then enabled=false end
-			if actionForSelection=="Equip" then enabled=enabled and (not def.classId or hero.baseClassId==def.classId) and hero.level>=(def.level or 1) and (def.slot~="accessory" or accessorySlot~=nil) end
+			if actionForSelection=="Equip" then enabled=enabled and (not def.classId or hero.baseClassId==def.classId) and hero.level>=(def.level or 1) end
 			if actionForSelection=="Equip" and not snapshot.safe then primary.Caption.Text=Text.CombatLocked end
 			Theme.enabled(primary,enabled==true)
 		end
@@ -637,7 +631,7 @@ function InventoryGui.create(onVisibility, feedback)
 			retry.Visible=true; resize(); setMessage(Text.Uncertain,true)
 		end)
 	end
-	primary.Activated:Connect(function() if actionForSelection then command(actionForSelection,accessorySlot,actionForSelection=="Claim" and "bag" or nil) end end)
+	primary.Activated:Connect(function() if actionForSelection then command(actionForSelection,nil,actionForSelection=="Claim" and "bag" or nil) end end)
 	lockItem.Activated:Connect(function() if lockItem.Active then command("Lock") end end)
 	local function closeDiscard()
 		discardOverlay.Visible=false;discardTarget=nil
@@ -674,7 +668,7 @@ function InventoryGui.create(onVisibility, feedback)
 	gear.Activated:Connect(function() gearMode=not gearMode; storageMode=false; sourceTab="bag"; mobileDetail=false; resize(); render() end)
 	bagTab.Activated:Connect(function() sourceTab="bag"; mobileDetail=false; resize(); render() end)
 	storageTab.Activated:Connect(function() sourceTab="storage"; mobileDetail=false; resize(); render() end)
-	pendingButton.Activated:Connect(function() sourceTab="pending"; selectedId=nil;accessorySlot=nil;quantity=1;gearMode=false; mobileDetail=false; resize(); render() end)
+	pendingButton.Activated:Connect(function() sourceTab="pending"; selectedId=nil;quantity=1;gearMode=false; mobileDetail=false; resize(); render() end)
 	closeClaims.Activated:Connect(function() sourceTab="bag";selectedId=nil;mobileDetail=false;resize();render() end)
 	for key,button in pairs(filterButtons) do button.Activated:Connect(function() category=key; selectedId=nil; mobileDetail=false; resize(); render() end) end
 	sort.Activated:Connect(function() sortMode=sortMode=="Name" and "Level" or "Name"; sort.Caption.Text="SORT: "..string.upper(sortMode); render() end)
