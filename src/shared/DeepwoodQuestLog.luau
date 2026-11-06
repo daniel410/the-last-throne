@@ -51,9 +51,14 @@ function Log.tracker(s,target)
  if target then
   if chapter.side then data.title=target.offer and 'OPTIONAL REQUEST' or 'SIDE QUEST · '..Log.status(s,chapter)
   else local _,index,total=Log.phase(s,chapter);data.title=string.format('MAIN STORY %d / 7 · PHASE %d / %d',(chapter.number-1)%7+1,index,total) end
+ elseif admitted and admitted.side and s.clears[admitted.id] then
+  data.title='SIDE QUEST COMPLETE'
+  data.objective=main and 'Return to Lobby and select '..Content.epics[main.epic or 1].region..' · '..(main.quest.title or main.title)..' in ADVENTURES.'
+   or 'Return to Lobby to choose another adventure.'
+  data.note='Open the map menu to return to the lobby.'
  elseif main then
   local nextName=Content.epics[main.epic or 1].region..' · '..(main.quest.title or main.title)
-  data.title=admitted and admitted.side and s.clears[admitted.id] and 'SIDE QUEST COMPLETE' or 'CONTINUE YOUR JOURNEY'
+  data.title='CONTINUE YOUR JOURNEY'
   data.objective='Return to Lobby and select '..nextName..' in ADVENTURES.'
   data.note='Open the map menu to return to the lobby.'
  else

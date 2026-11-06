@@ -1,0 +1,67 @@
+{
+  "pass": true,
+  "kind": "SIDE_QUEST_REVIEW_NATIVE",
+  "quests": [
+    {
+      "id": "DW-Q1",
+      "spawned": 12,
+      "goals": 3
+    },
+    {
+      "id": "DW-Q2",
+      "spawned": 49,
+      "goals": 5
+    },
+    {
+      "id": "DW-Q3",
+      "spawned": 55,
+      "goals": 5
+    },
+    {
+      "id": "DW-Q4",
+      "spawned": 67,
+      "goals": 4
+    },
+    {
+      "id": "FV-Q2",
+      "spawned": 1,
+      "goals": 3
+    },
+    {
+      "id": "FV-Q3",
+      "spawned": 1,
+      "goals": 3
+    },
+    {
+      "id": "FV-Q4",
+      "spawned": 1,
+      "goals": 3
+    },
+    {
+      "id": "FV-Q1",
+      "spawned": 0,
+      "goals": 3
+    },
+    {
+      "id": "EC-Q2",
+      "spawned": 1,
+      "goals": 4
+    },
+    {
+      "id": "EC-Q3",
+      "spawned": 1,
+      "goals": 4
+    },
+    {
+      "id": "EC-Q4",
+      "spawned": 1,
+      "goals": 4
+    },
+    {
+      "id": "EC-Q1",
+      "spawned": 0,
+      "goals": 3
+    }
+  ],
+  "checks": 739
+}

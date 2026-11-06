@@ -19,7 +19,9 @@ function Journal.guidance(current,target,origin)
  local goal=target.goal;local chapter=target.chapter
  if target.offer then
   if not Progress.canAccept(current.journal,chapter) then return nil end
-  return {position=Vector3.new(table.unpack(chapter.quest.offerPosition)),objective='Speak with '..chapter.quest.giver,note='Optional request · Choose ACCEPT or LATER after hearing the request.'}
+  local discovery=chapter.quest.discoveryOnly
+  return {position=Vector3.new(table.unpack(chapter.quest.offerPosition)),objective=discovery and goal.title or 'Speak with '..chapter.quest.giver,
+   note=discovery and 'Read the field clue, then choose ACCEPT or LATER.' or 'Optional request · Choose ACCEPT or LATER after hearing the request.'}
  end
  if not Progress.available(current.journal,chapter,goal) then return nil end
  if chapter.id=='DW-07' and goal.id=='restoration' then

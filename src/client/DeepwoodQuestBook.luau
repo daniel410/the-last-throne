@@ -66,9 +66,9 @@ function Book.create(parent,track)
    for _,c in ipairs(Content.chapters) do if c.side and s.main>=c.minMain and not s.clears[c.id] and (c.id~='DW-Q1' or P.accepted(s,c)) then
     count+=1;local status=Log.status(s,c)
     local lines={c.quest.brief,'Status: '..status,Log.reward(c)}
-    if status=='Available' then table.insert(lines,'Quest giver: '..c.quest.giver..' · Elder Tree Outpost')
+    if status=='Available' then table.insert(lines,c.quest.discoveryOnly and 'Find the field clue in '..Content.zones[c.zone].name..'.' or 'Quest giver: '..c.quest.giver..' · Elder Tree Outpost')
     else local t=Log.target(s,c);if t then table.insert(lines,'Next: '..t.goal.title) else table.insert(lines,'Continue the main story to reach '..c.quest.giver..'.') end end
-    card(c.title,lines,function() track(c.id) end,status=='Available' and 'FIND QUEST GIVER' or status=='Ready to report' and 'TRACK REPORT' or status:find('Waiting',1,true) and 'CONTINUE MAIN STORY' or 'TRACK SIDE QUEST')
+    card(c.title,lines,function() track(c.id) end,status=='Available' and (c.quest.discoveryOnly and 'FIND CLUE' or 'FIND QUEST GIVER') or status=='Ready to report' and 'TRACK REPORT' or status:find('Waiting',1,true) and 'CONTINUE MAIN STORY' or 'TRACK SIDE QUEST')
    end end
    if count==0 then card('NO OPEN REQUESTS',{'Explore for field clues and continue the main story. Hidden discoveries appear here after you accept them.'}) end
   else
