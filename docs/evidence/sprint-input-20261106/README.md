@@ -15,7 +15,8 @@
 - `lua tests/sprint-input.spec.lua`: 67검사 PASS. 실제 소스의 스프린트 생명주기와 바인딩 콜백을 추출하여 엔진 경계를 stub으로 대체한다. 방향키 조합8개를 가정한 반복 시작/lease 갱신/해제·중복 Begin/End·입력 자격 차단·Cancel을 검사한다. 물리 키 이벤트나 실제 기본 이동 스크립트를 시뮬레이션한 검사가 아니다.
 - Studio `TheLastThrone-0.78.0.rbxlx` Edit에서 수정 BattleController 전체를 `loadstring`으로 컴파일: PASS. 모듈 실행·DataModel 수정은 하지 않았다.
 - `lua tests/k0-rules.spec.lua`: 실패. 변경하지 않은 서버 `beginEnemyAttack`의 Luau `+=`를 Lua `load`로 읽는 fixture에서 syntax error near '+'가 발생한다. 해당 서버/테스트는 이번 수정 범위 밖이며 전체 회귀 통과로 보고하지 않는다.
-- `git diff --check`: 통과. 고정 소스 단일 빌드 결과는 [build.json](build.json)에 기록한다.
+- `git diff --check`: 통과. 입력 소스 `895a31b143f46ebc55f43e446ccef5e2b75dbe52`를 커밋·푸시한 뒤 `python3 tools/build-game.py --source 895a31b --record docs/evidence/sprint-input-20261106/build.json`으로0.78.1 단일 빌드 성공. 버전/소스/산출물 SHA-256은 [build.json](build.json)에 기록했다.
+- `python3 tests/single-build.spec.py --artifact builds/0.78.1/TheLastThrone-0.78.1.rbxlx`: 역할10·로딩108검사 및 실제 산출물 검사 PASS. XML 내부 BattleController의 Source가 검증한 소스 파일과 바이트 일치함을 별도 확인했다. 미게시이며 릴리스 태그 없음.
 
 ## 미검증과 다음 담당
 
