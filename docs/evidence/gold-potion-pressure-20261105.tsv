@@ -1,0 +1,137 @@
+scope	static authored values; solo Easy; no measured hit rate, potion use or wallet data
+rules	3 = published 0.75.5 default; 8 = current new-run default; old runs stay pinned
+hero	class	level	VIT spent	loadout	HP	armor	HP regen/s	unblocked damage at raw 25	blocked damage at raw 25
+hero	knight	1	0	starter_equipped	250	0	0.25	25	5
+hero	knight	1	0	free_kit_equipped	350.0	6.0	0.35000000000000003	19.0	1
+hero	knight	1	0	gold_max	350.0	10.0	0.35000000000000003	15.0	1
+hero	knight	22	20	starter_equipped	765	5	0.765	20	1
+hero	knight	22	20	free_kit_equipped	865.0	15.0	0.865	10.0	1
+hero	knight	22	20	gold_max	865.0	19.0	0.865	6.0	1
+hero	knight	22	20	owned_retired_epic_plus9	1081.854332	53.216947000000005	1.081854332	1	1
+hero	knight	80	80	starter_equipped	2235	20	2.235	5	1
+hero	knight	80	80	free_kit_equipped	2335.0	30.0	2.335	1	1
+hero	knight	80	80	gold_max	2335.0	34.0	2.335	1	1
+hero	knight	80	80	owned_retired_epic_plus9	2551.854332	68.216947	2.551854332	1	1
+hero	dwarf	1	0	starter_equipped	200	0	0.2	25	5
+hero	dwarf	1	0	free_kit_equipped	300.0	6.0	0.3	19.0	1
+hero	dwarf	1	0	gold_max	300.0	6.0	0.3	19.0	1
+hero	dwarf	22	20	starter_equipped	673	5	0.673	20	1
+hero	dwarf	22	20	free_kit_equipped	773.0	15.0	0.773	10.0	1
+hero	dwarf	22	20	gold_max	773.0	15.0	0.773	10.0	1
+hero	dwarf	22	20	owned_retired_epic_plus9	989.85433200000011	42.195887000000006	0.98985433200000017	1	1
+hero	dwarf	80	80	starter_equipped	2027	20	2.027	5	1
+hero	dwarf	80	80	free_kit_equipped	2127.0	30.0	2.1270000000000002	1	1
+hero	dwarf	80	80	gold_max	2127.0	30.0	2.1270000000000002	1	1
+hero	dwarf	80	80	owned_retired_epic_plus9	2343.854332	57.195887000000006	2.343854332	1	1
+hero	elf	1	0	starter_equipped	150	0	0.15	25	5
+hero	elf	1	0	free_kit_equipped	250.0	6.0	0.25	19.0	1
+hero	elf	1	0	gold_max	250.0	6.0	0.25	19.0	1
+hero	elf	22	20	starter_equipped	560	5	0.56	20	1
+hero	elf	22	20	free_kit_equipped	660.0	15.0	0.66	10.0	1
+hero	elf	22	20	gold_max	660.0	15.0	0.66	10.0	1
+hero	elf	22	20	owned_retired_epic_plus9	876.85433200000011	42.195887000000006	0.87685433200000018	1	1
+hero	elf	80	80	starter_equipped	1740	20	1.74	5	1
+hero	elf	80	80	free_kit_equipped	1840.0	30.0	1.84	1	1
+hero	elf	80	80	gold_max	1840.0	30.0	1.84	1	1
+hero	elf	80	80	owned_retired_epic_plus9	2056.854332	57.195887000000006	2.056854332	1	1
+hero	mage	1	0	starter_equipped	100	0	0.1	25	5
+hero	mage	1	0	free_kit_equipped	200.0	6.0	0.2	19.0	1
+hero	mage	1	0	gold_max	200.0	6.0	0.2	19.0	1
+hero	mage	22	20	starter_equipped	468	5	0.468	20	1
+hero	mage	22	20	free_kit_equipped	568.0	15.0	0.56800000000000006	10.0	1
+hero	mage	22	20	gold_max	568.0	15.0	0.56800000000000006	10.0	1
+hero	mage	22	20	owned_retired_epic_plus9	784.85433200000011	42.195887000000006	0.7848543320000001	1	1
+hero	mage	80	80	starter_equipped	1532	20	1.532	5	1
+hero	mage	80	80	free_kit_equipped	1632.0	30.0	1.6320000000000001	1	1
+hero	mage	80	80	gold_max	1632.0	30.0	1.6320000000000001	1	1
+hero	mage	80	80	owned_retired_epic_plus9	1848.8543319999999	57.195887000000006	1.848854332	1	1
+starter	class	HP bottles including pending	nominal HP including pending	HP potion replacement Gold
+starter	knight	12	2900	620
+starter	dwarf	12	2900	620
+starter	elf	12	2900	620
+starter	mage	12	2900	620
+mission	id	epic	rule	normal damage min	normal damage max	boss damage min	boss damage max	kill Gold	first fixed Gold	repeat fixed Gold	count
+mission	DW-01	1	3	15	20	0	0	28	150	45	30
+mission	DW-01	1	8	18	24	0	0	28	150	45	30
+mission	DW-02	1	3	20	20	0	0	24	240	72	24
+mission	DW-02	1	8	24	24	0	0	24	240	72	24
+mission	DW-03	1	3	0	0	0	0	0	100	0	0
+mission	DW-03	1	8	0	0	0	0	0	100	0	0
+mission	DW-04	1	3	20	23	0	0	40	320	96	36
+mission	DW-04	1	8	24	27	0	0	40	320	96	36
+mission	DW-05	1	3	21	26	60	60	164	450	135	73
+mission	DW-05	1	8	26	31	95	95	164	450	135	73
+mission	DW-06	1	3	23	28	0	0	40	380	114	30
+mission	DW-06	1	8	27	33	0	0	40	380	114	30
+mission	DW-07	1	3	24	26	65	65	210	650	195	91
+mission	DW-07	1	8	28	32	103	103	210	650	195	91
+mission	FV-01	2	3	28	32	0	0	36	280	84	24
+mission	FV-01	2	8	40	46	0	0	36	280	84	24
+mission	FV-02	2	3	0	0	0	0	0	120	0	0
+mission	FV-02	2	8	0	0	0	0	0	120	0	0
+mission	FV-03	2	3	29	33	0	0	66	360	108	42
+mission	FV-03	2	8	41	48	0	0	66	360	108	42
+mission	FV-04	2	3	30	33	0	0	50	480	144	30
+mission	FV-04	2	8	43	48	0	0	50	480	144	30
+mission	FV-05	2	3	31	34	0	0	77	540	162	42
+mission	FV-05	2	8	44	49	0	0	77	540	162	42
+mission	FV-06	2	3	33	35	83	83	168	680	204	25
+mission	FV-06	2	8	48	50	157	157	168	680	204	25
+mission	FV-07	2	3	34	36	85	85	191	900	297	25
+mission	FV-07	2	8	50	52	162	162	191	900	297	25
+mission	EC-01	3	3	34	35	0	0	84	420	138	36
+mission	EC-01	3	8	59	61	0	0	84	420	138	36
+mission	EC-02	3	3	0	0	0	0	0	160	0	0
+mission	EC-02	3	8	0	0	0	0	0	160	0	0
+mission	EC-03	3	3	35	43	0	0	102	560	184	42
+mission	EC-03	3	8	61	75	0	0	102	560	184	42
+mission	EC-04	3	3	37	43	0	0	93	680	224	36
+mission	EC-04	3	8	65	74	0	0	93	680	224	36
+mission	EC-05	3	3	44	44	0	0	48	720	237	18
+mission	EC-05	3	8	76	76	0	0	48	720	237	18
+mission	EC-06	3	3	41	45	105	105	255	900	297	25
+mission	EC-06	3	8	70	78	241	241	255	900	297	25
+mission	EC-07	3	3	43	49	110	110	324	1200	396	43
+mission	EC-07	3	8	74	85	253	253	324	1200	396	43
+mission	GW-01	4	3	48	48	0	0	54	0	0	18
+mission	GW-01	4	8	97	97	0	0	54	0	0	18
+mission	GW-02	4	3	49	49	0	0	54	0	0	18
+mission	GW-02	4	8	99	99	0	0	54	0	0	18
+mission	GW-03	4	3	0	0	0	0	0	0	0	0
+mission	GW-03	4	8	0	0	0	0	0	0	0	0
+mission	GW-04	4	3	50	50	113	113	255	0	0	19
+mission	GW-04	4	8	102	102	303	303	255	0	0	19
+mission	GW-05	4	3	51	51	115	115	266	0	0	19
+mission	GW-05	4	8	105	105	310	310	266	0	0	19
+mission	GW-06	4	3	53	53	0	0	100	0	0	30
+mission	GW-06	4	8	107	107	0	0	100	0	0	30
+mission	GW-07	4	3	54	54	120	120	340	0	0	37
+mission	GW-07	4	8	110	110	323	323	340	0	0	37
+mission	HG-01	5	3	55	55	0	0	110	600	198	30
+mission	HG-01	5	8	132	132	0	0	110	600	198	30
+mission	HG-02	5	3	0	0	0	0	0	220	0	0
+mission	HG-02	5	8	0	0	0	0	0	220	0	0
+mission	HG-03	5	3	56	56	0	0	110	780	257	30
+mission	HG-03	5	8	135	135	0	0	110	780	257	30
+mission	HG-04	5	3	58	58	128	128	300	900	297	19
+mission	HG-04	5	8	138	138	404	404	300	900	297	19
+mission	HG-05	5	3	59	59	130	130	311	980	323	19
+mission	HG-05	5	8	141	141	412	412	311	980	323	19
+mission	HG-06	5	3	60	60	133	133	290	1200	396	13
+mission	HG-06	5	8	144	144	420	420	290	1200	396	13
+mission	HG-07	5	3	61	61	135	135	407	1600	600	31
+mission	HG-07	5	8	147	147	428	428	407	1600	600	31
+epic	index	first fixed Gold	finite kill Gold	first total Gold	repeat total Gold	XL HP potions at 200 Gold
+epic	1	2290	506	2796	1163	13.98
+epic	2	3360	588	3948	1587	19.74
+epic	3	4640	906	5546	2382	27.73
+epic	4	0	1069	1069	1069	5.345
+epic	5	6280	1528	7808	3599	39.04
+sample	kind	authored level	epic	rule	raw damage	HP
+sample	Goblin	9	1	3	24	325
+sample	Goblin	9	1	8	29	358
+sample	Warlord	10	1	3	60	2000
+sample	Warlord	10	1	8	95	2200
+sample	Veyr	40	5	3	135	5000
+sample	Veyr	40	5	8	428	14850
+enhancement	all current steps Gold	0
