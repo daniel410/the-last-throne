@@ -1,0 +1,15 @@
+{
+  "players": 0,
+  "messages": {
+    "1": "Epic monster progression: 201484 checks passed",
+    "2": "Monster damage boost: 89518 checks passed",
+    "3": "Monster health boost: 89518 checks passed",
+    "4": "Boss combat tuning: 307910 checks passed; 22 boss kinds",
+    "5": "Boss pressure boost: 307910 checks passed; 22 boss kinds"
+  },
+  "bridgeChecks": 272800,
+  "scope": "isolated current-source Luau and actual applyBalance Model attributes; no live accounts or gameplay",
+  "placeId": 0,
+  "registrationChecks": 277,
+  "units": 6820
+}

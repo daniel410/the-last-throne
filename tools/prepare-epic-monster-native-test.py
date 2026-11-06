@@ -10,6 +10,7 @@ add('tests/epic-monster-progression.spec.lua')
 add('tests/monster-damage-boost.spec.lua')
 add('tests/monster-health-boost.spec.lua')
 add('tests/boss-combat-tuning.spec.lua')
+add('tests/boss-pressure-boost.spec.lua')
 for name in ['FrozenValeCombat','EmberCalderaCombat','LateEpicCombat']:add('src/shared/'+name+'.luau')
 body=re.search(r'(local function applyBalance.*?)\nlocal spawnWave',Path('src/server/Story/DeepwoodService.luau').read_text(),re.S)[1]
 code='local sources='+ '{\n'+''.join('['+json.dumps(k)+']='+json.dumps(v,ensure_ascii=False)+',\n'for k,v in sources.items())+'}\n'
@@ -24,6 +25,7 @@ pure('tests/epic-monster-progression.spec.lua')
 pure('tests/monster-damage-boost.spec.lua')
 pure('tests/monster-health-boost.spec.lua')
 pure('tests/boss-combat-tuning.spec.lua')
+pure('tests/boss-pressure-boost.spec.lua')
 local B=pure('src/shared/DeepwoodEncounterBalance.luau')
 local C=pure('src/shared/CampaignContent.luau')
 '''
@@ -33,7 +35,7 @@ local ok,err=xpcall(function()
  for _,chapter in ipairs(C.chapters)do for _,goal in ipairs(chapter.goals)do
   for _,mode in ipairs({'Easy','Hell'})do for _,party in ipairs({1,4})do
    for _,wave in ipairs(B.encounterWaves(chapter,goal,party))do for index,spec in ipairs(wave)do
-    for version=1,7 do
+    for version=1,8 do
      apply(model,spec,party,mode,version,index)
      local hp,damage,level=B.unitStats(spec,party,mode,version,index)
      assert(model:GetAttribute('StoryHealth')==hp and model:GetAttribute('StoryDamage')==damage and model:GetAttribute('StoryLevel')==level,'authoritative attribute bridge mismatch')
@@ -66,9 +68,9 @@ for _,chapter in ipairs(C.chapters)do for _,goal in ipairs(chapter.goals)do
  for _,wave in ipairs(B.encounterWaves(chapter,goal,1))do for index,spec in ipairs(wave)do
   if not kinds[spec.kind]then
    kinds[spec.kind]=true;model:SetAttribute('EnemyKind',spec.kind);model:SetAttribute('DeepwoodEncounter',true)
-   apply(model,spec,1,'Easy',6,index);local old=registerConfig(base,tuning,model)
-   apply(model,spec,1,'Easy',7,index);local new=registerConfig(base,tuning,model)
-   local factor=B.isBoss(spec.kind)and 1.1 or 1
+   apply(model,spec,1,'Easy',7,index);local old=registerConfig(base,tuning,model)
+   apply(model,spec,1,'Easy',8,index);local new=registerConfig(base,tuning,model)
+   local factor=B.isBoss(spec.kind)and 1.15 or 1
    assert(math.abs(new.walkSpeed/old.walkSpeed-factor)<1e-8,'actual registration movement mismatch')
    registrationChecks+=1
    for i,a in ipairs(new.attacks)do local b=old.attacks[i]

@@ -59,7 +59,7 @@ for kind in pairs(bosses)do
   check(a.recovery>=0,'recovery remains valid')
  end
  local h,d=B.unitStats({kind=kind,level=30,epic=3},1,nil,6,1)
- local hp,damage=B.unitStats({kind=kind,level=30,epic=3},1,nil,nil,1)
+ local hp,damage=B.unitStats({kind=kind,level=30,epic=3},1,nil,7,1)
  check(h==hp and math.abs(damage-d*1.1)<=1.000001,'local boss damage boosted once')
 end
 check(count>0,'spawned bosses exercised')
@@ -72,5 +72,5 @@ check(R.validate(p,Items),'v6 profile still loads')
 check(D.verifyRun(p.heroes.hero,{id='v6',missionId='DW-01',difficultyId='Easy',rulesVersion=6}),'v6 run rejoins')
 check(not D.verifyRun(p.heroes.hero,{id='v6',missionId='DW-01',difficultyId='Easy',rulesVersion=7}),'rejoin cannot silently upgrade')
 p=assert(A.begin(p,'hero','DW-01','Easy','v7',p.revision,R,Items))
-check(p.heroes.hero.expeditions.active.balanceVersion==7,'new run pins rules7')
+check(p.heroes.hero.expeditions.active.balanceVersion==D.version,'new run pins current rules')
 print('Boss combat tuning: '..n..' checks passed; '..count..' boss kinds')

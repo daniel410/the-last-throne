@@ -35,7 +35,7 @@ for i,mode in ipairs(D.order)do
   end
  end
 end
-check(D.compatible(1)and D.compatible(2)and D.compatible(3)and D.compatible(4)and D.compatible(5)and D.compatible(6)and D.compatible(7)and not D.compatible(8),'old journals remain supported, unknown versions rejected')
+check(D.compatible(1)and D.compatible(2)and D.compatible(3)and D.compatible(4)and D.compatible(5)and D.compatible(6)and D.compatible(7)and D.compatible(8)and not D.compatible(9),'old journals remain supported, unknown versions rejected')
 near(D.mode('Hell',1).damage,1.65,'legacy v1 normal preserved')
 near(D.mode('Hell',1).bossDamage,1.5,'legacy v1 boss preserved')
 -- Exercise persisted v2 rejoin/complete separately from current-v3 departures.
