@@ -14,10 +14,10 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
   p=assert(R.apply(p,{action='Equip',requestId='equip-'..i,heroId='hero',instanceId=item.instanceId,itemVersion=item.version,revision=p.revision},{safe=true,atHub=true},C))
  end
  local stats=R.stats(p,'hero',C)
- eq(stats.power,5,class..' starter power ceiling');eq(stats.health,25,class..' starter HP ceiling');eq(stats.armor,3,class..' starter armor ceiling')
+ eq(stats.power,5,class..' starter power ceiling');eq(stats.health,50,class..' starter HP ceiling');eq(stats.armor,5,class..' starter armor ceiling')
  local base=G.derived(class,p.heroes.hero.progression)
  local total=P.derived(class,p.heroes.hero.progression,stats)
- eq(total.health,base.health+25,class..' UI HP follows equipped server stats')
+ eq(total.health,base.health+50,class..' UI HP follows equipped server stats')
  eq(total.physicalPower,base.physicalPower*1.05,class..' physical power uses5 percent')
  eq(total.magicPower,base.magicPower*1.05,class..' magic power uses5 percent')
  -- Saved instances contain identity/enhancement, not a frozen copy of old bonuses.
@@ -30,5 +30,5 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
  eq(loaded.armor,stats.armor,class..' saved equipment follows current armor')
  eq(R.quantity(restored,'hero','health_potion'),3,class..' potion stock preserved')
 end
-eq(C.items.veteran_hood.stats.armor,3,'free Lv5 hood remains modest')
+eq(C.items.veteran_hood.stats.armor,2,'free Lv5 hood remains modest')
 print('Starter gear balance: '..n..' checks passed')

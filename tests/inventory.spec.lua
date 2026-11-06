@@ -75,7 +75,7 @@ for _,id in ipairs({"traveler_hood","traveler_coat","traveler_gloves","traveler_
 end
 for _,slot in ipairs(C.slots) do check(R.equipped(p,"hero-knight",slot)~=nil,"equipped "..slot) end
 local stats=R.stats(p,"hero-knight",C)
-equal(stats.power,2,"aggregate server power"); equal(stats.armor,3,"aggregate armor"); equal(stats.health,25,"aggregate HP")
+equal(stats.power,2,"aggregate server power"); equal(stats.armor,5,"aggregate armor"); equal(stats.health,50,"aggregate HP")
 local current=find(p,"knight_weapon_fine","bag")
 local beforeCount=R.count(p,"bag","hero-knight")
 local first,err,command=apply(p,current,"Equip")

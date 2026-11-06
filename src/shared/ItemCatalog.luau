@@ -21,13 +21,13 @@ for classId, name in pairs({knight = "Sword", elf = "Bow", dwarf = "Axe", mage =
 end
 gear("knight_shield", "Training Shield", "offhand", "knight", {}, "SH", {rarity = "Common"})
 gear("knight_shield_fine", "Citadel Shield", "offhand", "knight", {armor = 4}, "SH", {rarity = "Uncommon"})
-gear("traveler_hood", "Traveler's Hood", "head", nil, {armor = 1}, "HD", {rarity = "Common"})
-gear("traveler_coat", "Traveler's Coat", "body", nil, {health = 10, armor = 1}, "BD", {rarity = "Common"})
+gear("traveler_hood", "Traveler's Hood", "head", nil, {armor = 2}, "HD", {rarity = "Common"})
+gear("traveler_coat", "Traveler's Coat", "body", nil, {health = 20, armor = 2}, "BD", {rarity = "Common"})
 gear("traveler_gloves", "Traveler's Gloves", "hands", nil, {power = 1}, "HN", {rarity = "Common"})
 gear("traveler_boots", "Traveler's Boots", "feet", nil, {armor = 1}, "FT", {rarity = "Common"})
 gear("copper_ring", "Copper Ring", "accessory", nil, {power = 1}, "RG", {uniqueGroup = "copper_ring", rarity = "Common"})
-gear("amber_charm", "Amber Charm", "accessory", nil, {health = 15}, "CH", {rarity = "Uncommon"})
-gear("veteran_hood", "Veteran's Hood", "head", nil, {armor = 3}, "HD", {level = 5, rarity = "Uncommon"})
+gear("amber_charm", "Amber Charm", "accessory", nil, {health = 30}, "CH", {rarity = "Uncommon"})
+gear("veteran_hood", "Veteran's Hood", "head", nil, {armor = 2}, "HD", {level = 5, rarity = "Uncommon"})
 -- Provisional Lv10 forge stock. Existing stable definitions/rewards stay intact.
 for classId,name in pairs({knight='Sword',elf='Bow',dwarf='Axe',mage='Staff'})do
  gear(classId..'_weapon_forged','Dawnforge '..name,'weapon',classId,{power=24},name:sub(1,2):upper(),{level=10,rarity='Rare',description='Forged in Dawnspire for seasoned adventurers. Requires level 10.'})
