@@ -22,5 +22,11 @@
       "sha256": "d88e04cd5f5a431e4a482cc1f8736c16f5bf72e08192f9461f4eacc298f64edc",
       "bytes": 13182966
     }
-  ]
+  ],
+  "artifactChecks": {
+    "expectedAudioModulesAndCallSites": "PASS",
+    "newAudioIds": 12,
+    "isolatedNativeChecks": 818,
+    "published": false
+  }
 }
