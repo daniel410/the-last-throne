@@ -19,6 +19,6 @@
 - 전체 native는1053검사 중 **기존 동일19개 사례 실패가 남아 전체 PASS는 아니다**. 바로 전0.75.13 및 변경 전 대조와 실패ID집합이 같음을 자동 확인했다. 표적/투사체/구형 전투 기대값 관련 잔여 한계는 별도이며 이번 변경 때문에 신규 실패가 늘지 않았다. [전체 결과](native.json).
 - 로컬 PlaceId0·플레이어0, 실제 CombatService/Humanoid와 합성 시각/신원 fixture다. 실제 Player/네트워크/클라이언트/기기 검증으로 해석하지 않는다. `git diff --check` PASS.
 
-VERSION0.75.14와 입력 소스를 먼저 커밋·푸시한 뒤 `python3 tools/build-game.py --source <고정커밋> --record docs/evidence/mana-regen-restored-20261105/build.json`으로 단일 빌드를 만든다. [빌드 기록](build.json)에 고정 소스/산출물 해시/성공 여부를 남긴다. 게시/릴리스 태그 없음.
+VERSION0.75.14와 입력 소스 `c8b0492698bcb1e318ed8c1c65859ff1c072b9c3`을 먼저 커밋·푸시한 뒤 `python3 tools/build-game.py --source c8b0492 --record docs/evidence/mana-regen-restored-20261105/build.json`으로 단일 빌드에 성공했다. [빌드 기록](build.json)에 고정 소스/산출물 해시를 보존했다. `python3 tests/single-build.spec.py --artifact builds/0.75.14/TheLastThrone-0.75.14.rbxlx`: 역할10/로딩108·실제산출물 검사 PASS. [핵심2모듈 Source 대조](artifact-check.json)에서 고정 소스와 바이트 일치를 확인했다. 게시/릴리스 태그 없음.
 
 미검증: 실전 MP고갈·기술 사용 리듬/물약 구매/골드 소비·실계정/실기기·4인+AI·최종 밸런스 수용. 다음 PLAN/QA는 같은 레벨/장비에서 복구 전후 기술 사용률·자원 부족 시간·MP물약 사용/구매·보스전 시간을 비교한다. 부모 티켓은 In Progress를 유지한다.
