@@ -1,0 +1,23 @@
+{
+  "timing-fixed-build.log": {
+    "checks": 101,
+    "pass": false,
+    "failedCases": [
+      "R1-dodge-position-before-enemy-hit-0.079",
+      "R1-dodge-invulnerability-boundary-0.28",
+      "R1-dodge-wall-and-same-time-idempotence",
+      "dodge-sequence-advances-only-on-accepted-dodges"
+    ]
+  },
+  "timing-baseline-0770.log": {
+    "checks": 101,
+    "pass": false,
+    "failedCases": [
+      "R1-dodge-position-before-enemy-hit-0.079",
+      "R1-dodge-invulnerability-boundary-0.28",
+      "R1-dodge-wall-and-same-time-idempotence",
+      "dodge-sequence-advances-only-on-accepted-dodges"
+    ]
+  },
+  "conclusion": "Same four pre-existing legacy dodge fixture failures; not new pattern failures or a full timing pass."
+}

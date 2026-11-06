@@ -35,7 +35,7 @@ Gloamwood8종은 기존 임시 블록 모델의 분절·타원 몸통/복부·�
 | `run-in-roblox --place <최종QA/고정빌드> --script tests/deepwood-monster-refinement-native.luau` |3122 PASS. 실제 TD10종·30/60/144Hz 클립/소켓·접지/원본 루트/HP 보존 회귀([로그](motion-regression.log)). 새142개 공격의 정상 전투 화면 수용과 구분 |
 | `tools/assemble-enemy-model-capture.py` → 격리 engine 캡처 → Blender5.2 MCP 복원/렌더 | 기존/개선20모델 상태·385파트 캡처, 대표4종 전후 비교를 직접 확인. 연결된 사용자 드워프 장면은 보존. 검토GLB 출력, 새Roblox 업로드 없음 |
 
-초기 native 번들 생성에서 Luau 문자열에 JSON의Unicode escape를 넣어 컴파일이 실패했다([초기 로그](native-initial.log)). 번들러가UTF-8을 보존하도록 고친 뒤 최종 검사가 통과했다. 기존 로컬 Studio의asset203785492 타입 불일치 경고는 새 공격 자산의 실패로 합산하지 않는다. 새 효과/음향의 게시 권한·청음/실기기 수용을 해당 통과로 대신하지 않는다. 서비스55개 검사 뒤 Studio 내장 MaterialPicker/AssetImporter/SocialPresence React 오류로 CLI 종료1이 나온 시도는 게임 검사 통과와 구분하고 원본 로그에 보존했다. 고정 빌드에서 프로세스 결과도 다시 확인한다.
+초기 native 번들 생성에서 Luau 문자열에 JSON의Unicode escape를 넣어 컴파일이 실패했다([초기 로그](native-initial.log)). 번들러가UTF-8을 보존하도록 고친 뒤 최종 검사가 통과했다. 기존 로컬 Studio의asset203785492 타입 불일치 경고는 새 공격 자산의 실패로 합산하지 않는다. 새 효과/음향의 게시 권한·청음/실기기 수용을 해당 통과로 대신하지 않는다. 서비스55개 검사 뒤 Studio 내장 MaterialPicker/AssetImporter/SocialPresence React 오류로 CLI 종료1이 나온 시도는 게임 검사 통과와 구분하고 원본 로그에 보존했다. 고정0.78.0 빌드에서는 [서비스55개](service-fixed-build.log)가 다시 PASS했고 CLI도 종료0이었다.
 
 ## 미검증·남은 범위·인계
 
@@ -44,3 +44,9 @@ Gloamwood8종은 기존 임시 블록 모델의 분절·타원 몸통/복부·�
 계획의 모든 고급 특성을 구현 완료로 처리하지 않는다. Shaman 아군 연결 지원, 지속 Burn/Poison/Slow, 실제 땅속 잠복/무적, 분절별 개별 충돌/약점·반사/유도탄, 보스별 단계 전용 추가 조합·최종 컨셉 메시 교체는 후속이다. 현재 독/거미줄은 공격/원소 표현이며 새 상태 이상을 뜻하지 않는다. 첫 시험에서는 읽을 수 있는 공간 공격·피격 결과·반격 기회를 우선했다.
 
 다음 QA는 고정 빌드의 신규 원정에서 Deepwood7대표→설원/화산/숲/묘지의 정상 전투를 관찰하고, PLAN/ART는 각 종의 피해 분배/클립·소켓·경고 크기와 위 후속 특성을 보완한다. 부모 티켓과 전체 계획 게이트는 In Progress로 유지한다. 빌드 입력/해시/결과는 `build.json`에 추가하며 실제 게시·릴리스 태그는 만들지 않는다.
+
+## 고정 빌드·원격 마감
+
+`python3 tools/build-game.py --source da9fb216977472426eaef8799a32de6ae184b04a --record docs/evidence/enemy-patterns-20261106/build.json` 성공. 게임0.78.0, 입력 소스 `da9fb216977472426eaef8799a32de6ae184b04a`, 산출물 `builds/0.78.0/TheLastThrone-0.78.0.rbxlx`, SHA-256 `bf4c0cb4105df26f4bcf50adfdeb64eef9c263b397f3cb6017b5e3a2e43d066e`. [전체 입력/LFS 검증·빌드 결과](build.json). 소스는 origin/main에 푸시했고 신규 GLB/이미지2개·2.4MB LFS 전송 성공을 확인했다. Roblox 게시/릴리스 태그는 생성하지 않았다.
+
+고정 빌드의 서비스55검사/17사례는 성공·프로세스 종료0. 추가 [구형 회피 타이밍 검사](timing-fixed-build.log)는101검사 중4사례가 실패했다.[0.77.0 기준 빌드](timing-baseline-0770.log)에서도 같은101검사·동일4사례가 실패했음을 [대조 결과](timing-comparison.json)로 확인했다. 실패는 회피 위치/무적 경계/벽·구형 쿨다운 기대이며 이번 신규 패턴에 의한 추가 실패는 관측하지 않았다. 현행 무쿨다운/회피 사양에 맞춘 구형 fixture 갱신과 실제 회피 수용은 별도 QA다. 구형 검사 전체를 PASS로 보고하지 않는다.
