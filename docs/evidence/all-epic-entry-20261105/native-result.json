@@ -1,0 +1,62 @@
+{
+  "epics": [
+    {
+      "seconds": 3.5533924583323824,
+      "position": [
+        -930.4769897460938,
+        57.09541320800781,
+        -4092.3798828125
+      ],
+      "missionId": "FV-01",
+      "loadingDismissed": true,
+      "returned": true
+    },
+    {
+      "seconds": 3.3669997083325143,
+      "position": [
+        -992.5759887695312,
+        103.0963134765625,
+        -7994.67333984375
+      ],
+      "missionId": "EC-01",
+      "loadingDismissed": true,
+      "returned": true
+    },
+    {
+      "seconds": 2.6652357916664187,
+      "position": [
+        -836.6109008789062,
+        159.0956268310547,
+        -11489.013671875
+      ],
+      "missionId": "GW-01",
+      "loadingDismissed": true,
+      "returned": true
+    },
+    {
+      "seconds": 2.5493667916671257,
+      "position": [
+        -841.41357421875,
+        187.0962677001953,
+        -15188.0068359375
+      ],
+      "missionId": "HG-01",
+      "loadingDismissed": true,
+      "returned": true
+    },
+    {
+      "seconds": 4.284627291666766,
+      "position": [
+        -1700.9539794921875,
+        3.176222085952759,
+        -735.8653564453125
+      ],
+      "missionId": "DW-01",
+      "loadingDismissed": true,
+      "returned": true
+    }
+  ],
+  "kind": "ALL_EPIC_ENTRY_NATIVE",
+  "pass": true,
+  "checks": 27
+}
