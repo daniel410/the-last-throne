@@ -22,6 +22,10 @@ function Journal.guidance(current,target,origin)
   return {position=Vector3.new(table.unpack(chapter.quest.offerPosition)),objective='Speak with '..chapter.quest.giver,note='Optional request · Choose ACCEPT or LATER after hearing the request.'}
  end
  if not Progress.available(current.journal,chapter,goal) then return nil end
+ if chapter.id=='DW-07' and goal.id=='restoration' then
+  local report=Log.reportGuidance(current.journal)
+  if report then return {position=Vector3.new(table.unpack(goal.position)),objective=report.objective,note=report.note} end
+ end
  local fight=current.encounters and current.encounters[chapter.id..':'..goal.id]
  local step=Progress.nextStep(current.journal,chapter,goal)
  local a=goal.activity

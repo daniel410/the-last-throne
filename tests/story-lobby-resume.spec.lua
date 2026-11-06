@@ -37,6 +37,18 @@ check(choice.missionId=='DW-07'and choice.difficultyId=='Easy','lobby defaults t
 -- A new lobby departure receives a new admission ID; it must preserve checkpoints.
 p=assert(A.begin(saved,'hero',choice.missionId,choice.difficultyId,'return',saved.revision,R,C))
 local view=A.projection(p.heroes.hero)
+local Log=dofile('src/shared/DeepwoodQuestLog.luau')
+local target=Log.tracked(view)
+check(target.chapter.id=='DW-07' and target.goal.id=='restoration','lobby return restores the final Eryn report as the active waypoint')
+local report=Log.tracker(view,target)
+check(report.title=='MAIN STORY 7 / 7 · REPORT TO ERYN','story 7 names the required report instead of suggesting completion')
+check(report.objective=='Return to Eryn and report your findings.','HUD explicitly tells the player to return and report')
+check(report.note:find('not complete yet',1,true) and report.note:find('MAP [M]',1,true),'HUD explains pending completion and checkpoint travel')
+local blocked=R.copy(view);blocked.expeditionMission='DW-Q3'
+report=Log.tracker(blocked)
+check(report.objective:find('final Deepwood report',1,true) and report.note:find('Story 7',1,true),'different admission still explains pending Eryn report and how to resume it')
+local selected=Log.tracked(view,'DW-Q3')
+check(selected.chapter.id=='DW-07' and selected.goal.id=='restoration','unfinished final report takes tracking priority over an optional request')
 check(view.main==6 and view.expeditionMission=='DW-07'and view.flags['DW-07:king_shaman']and view.flags['DW-07:separate'],'new run preserves final boss and return-to-Eryn checkpoints')
 check(p.wallet.gold==gold and p.heroes.hero.progression.xp==xp,'resuming neither charges nor regrants rewards')
 local revision=p.revision
@@ -45,6 +57,8 @@ check(p.revision==revision,'repeated destination admission is idempotent')
 local restoration=Content.byId['DW-07'].goals[#Content.byId['DW-07'].goals]
 check(restoration.id=='restoration','fixture ends at actual Eryn report')
 p=apply(p,Content.byId['DW-07'],restoration,'return')
+check(Log.reportGuidance(A.projection(p.heroes.hero))==nil,'confirmed report removes the pending reminder')
+check(Log.tracked(A.projection(p.heroes.hero)).chapter.id=='FV-01','confirmed report automatically tracks Frozen Vale')
 check(p.heroes.hero.deepwood.main==7 and A.selection(p.heroes.hero).missionId=='FV-01','Eryn report completes Deepwood and lobby continues to Frozen Vale')
 local paid=p.wallet.gold
 p=assert(A.event(p,'hero','DW-07','restoration','shared',nil,R,C,'return'))
