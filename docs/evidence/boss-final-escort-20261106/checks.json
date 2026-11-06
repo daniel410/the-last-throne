@@ -1,0 +1,62 @@
+[
+  {
+    "command": "lua tests/boss-final-escort.spec.lua",
+    "exitCode": 0,
+    "stdout": "BOSS_FINAL_ESCORT 263374 checks PASS; 22 boss goals / 14 new escort cohorts; 1-4 players and existing receipt rewards preserved\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/party-story.spec.lua",
+    "exitCode": 0,
+    "stdout": "Party story and final boss: 2781 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/side-quest-review.spec.lua",
+    "exitCode": 0,
+    "stdout": "SIDE_QUEST_REVIEW 1610 checks PASS; 12 quests, 44 goals, 11 combats, 2 optional goals\nDW-Q1 | Supplies in the Marsh | 2 | 3 | Easy/replay/Hard/Insane/Hell\nDW-Q2 | The Stolen Food | 4 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q3 | Quarry Below the Falls | 5 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q4 | Remnants of the Red Battlefield | 7 | 4 | Easy/replay/Hard/Insane/Hell\nFV-Q2 | Frostfang Supply Cave | 10 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q3 | Blue Lake Return Route | 11 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q4 | Ancient Glacier Watch | 14 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q1 | A Name in the Snow | 8 | 3 | Easy/replay\nEC-Q2 | Ember Raider Nest | 17 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q3 | Volcano Shaman Altar | 18 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q4 | Caldera Titan Basin | 21 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q1 | A Worker's Lost Mark | 15 | 3 | Easy/replay\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/deepwood-encounter-balance.spec.lua",
+    "exitCode": 0,
+    "stdout": "Deepwood encounter balance: 3111 checks passed; authored enemies 82 -> 467\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/enemy-patterns.spec.lua",
+    "exitCode": 0,
+    "stdout": "enemy-patterns: 3642 checks PASS;49 kinds/22 bosses, geometry, version8/9 stats/rewards\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/side-quest-battle-start.spec.lua",
+    "exitCode": 0,
+    "stdout": "Side quest battle entry: 1029 checks passed (9 side, 64 main battle goals)\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/story-completion.spec.lua",
+    "exitCode": 0,
+    "stdout": "Story completion: 356 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/difficulty-enhancement.spec.lua",
+    "exitCode": 0,
+    "stdout": "Difficulty/enhancement: 125 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/deepwood-bosses.spec.lua",
+    "exitCode": 0,
+    "stdout": "Deepwood bosses: 96 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/deepwood-music-policy.spec.lua",
+    "exitCode": 0,
+    "stdout": "Deepwood music policy: 13 checks passed\n",
+    "stderr": ""
+  }
+]

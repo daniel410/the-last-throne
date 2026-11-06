@@ -52,7 +52,7 @@ for _,c in ipairs(Content.chapters)do if c.side then
   if #g.enemies>0 then
    battles=battles+1;local waves=B.encounterWaves(c,g,1);check(#waves>0,'battle has finite spawn plan')
    local bosses=0
-   for i,wave in ipairs(waves)do for _,unit in ipairs(wave)do if B.isBoss(unit.kind)then bosses=bosses+1;check(i==#waves and #wave==1,'boss alone in final wave')end end end
+   for i,wave in ipairs(waves)do for _,unit in ipairs(wave)do if B.isBoss(unit.kind)then bosses=bosses+1;check(i==#waves and #wave>1,'boss and guards in final wave')end end end
    check(bosses<=1,'unique optional boss')
   end
  end

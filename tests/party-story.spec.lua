@@ -35,7 +35,7 @@ for _,chapter in ipairs(C.chapters)do for _,g in ipairs(chapter.goals)do
   for n,batch in ipairs(waves)do
    check(#batch<=B.packCapacity(chapter,g,size),'bounded live population')
    for _,spec in ipairs(batch)do
-    if B.isBoss(spec.kind)then bosses=bosses+1;check(n==#waves and #batch==1,'boss is alone in the final spawn')end
+    if B.isBoss(spec.kind)then bosses=bosses+1;check(n==#waves and #batch>1,'boss joins guards in final spawn')end
     local x,y=B.rewards(spec,'Easy',2);xp=xp+x;gold=gold+y;total=total+1
    end
   end

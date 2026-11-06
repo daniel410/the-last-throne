@@ -32,23 +32,42 @@ end
 function Balance.waves(specs,packSize,reserved)
  local boss,guards=nil,{}
  for _,spec in ipairs(specs) do if Balance.isBoss(spec.kind) then boss=spec else table.insert(guards,spec) end end
- local capacity=math.max(1,packSize-(reserved or (boss and 1 or 0)))
+ local capacity=math.max(1,packSize-(reserved or 0))
+ local finalGuards=boss and math.min(#guards,math.max(0,packSize-1))or 0
  local waves={}
- for index,spec in ipairs(guards) do
-  local n=math.floor((index-1)/capacity)+1;waves[n]=waves[n] or {};table.insert(waves[n],spec)
+ for index=1,#guards-finalGuards do
+  local n=math.floor((index-1)/capacity)+1;waves[n]=waves[n] or {};table.insert(waves[n],guards[index])
  end
- if boss then table.insert(waves,{boss}) end
+ if boss then
+  local final={boss}
+  for index=#guards-finalGuards+1,#guards do table.insert(final,guards[index])end
+  table.insert(waves,final)
+ end
  return waves
 end
--- Preserve each unit's original level/reward share while varying the first story.
+-- Used only when an authored boss encounter has no normal units of its own.
+local bossEscorts={Warlord='Orc',GoblinKing='Goblin',KingOgre='Ogre',EnragedWarlord='Orc',KingShaman='Shaman',
+ IceTrollKing='IceTroll',KingIceBear='IceBear',KingIceGolem='IceGolem',QueenIceElf='IceElf',AncientGlacierKing='IceGolem',
+ MagmaImp='Imp',MagmaGolem='Golem',InfernoOverlord='VolcanoShaman',CalderaTitan='Golem',KingVolcanoShaman='VolcanoShaman',
+ AncientHollowbark='Barkstalker',VenomcoilKing='VenomcoilCentipede',WidowQueen='Silkweaver',
+ DreadCommander='SkeletonKnight',Lich='Skeleton',LichSovereign='Mummy',Veyr='DeathKnight'}
 function Balance.encounterWaves(chapter,goal,partySize)
- -- Every authored reinforcement is a finite pre-boss wave. No adds after the boss.
- local specs={}
+ local specs={};local boss,hasGuards
  for _,spec in ipairs(goal.enemies) do table.insert(specs,spec) end
  for _,stage in ipairs(goal.bossEncounter and goal.bossEncounter.waves or {}) do
   for _,spec in ipairs(stage.enemies) do table.insert(specs,spec) end
  end
- local waves=Balance.waves(Balance.expand(specs,partySize,chapter.epic),Balance.packCapacity(chapter,goal,partySize),0)
+ for _,spec in ipairs(specs)do if Balance.isBoss(spec.kind)then boss=spec else hasGuards=true end end
+ if boss and not hasGuards then
+  table.insert(specs,{kind=assert(bossEscorts[boss.kind]),level=math.max(1,boss.level-1),count=1})
+ end
+ local expanded=Balance.expand(specs,partySize,chapter.epic)
+ -- Keep existing kill receipt IDs even though the boss moves ahead of its final guards.
+ -- Formerly solo bosses keep index 1; their new guards get new indices after it.
+ local normalCount=0
+ for _,spec in ipairs(expanded)do if not Balance.isBoss(spec.kind)then normalCount=normalCount+1;spec.killIndex=normalCount+(boss and not hasGuards and 1 or 0)end end
+ for _,spec in ipairs(expanded)do if Balance.isBoss(spec.kind)then spec.killIndex=hasGuards and normalCount+1 or 1 end end
+ local waves=Balance.waves(expanded,Balance.packCapacity(chapter,goal,partySize),0)
  if chapter.id=='DW-01' then
   for n,batch in ipairs(waves) do for index,spec in ipairs(batch) do
    if n%4==2 or n%4==0 and index%2==0 then spec.kind='Slime' end

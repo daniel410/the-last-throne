@@ -247,7 +247,7 @@ spawnWave=function(e)
   local scale,visual=Sizing.forStory(kind,boss)
   local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,visual)
   m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
-  e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',(e.launchMission and e.chapter.id~=e.launchMission and e.chapter.id..':' or '')..e.goal.id..'_'..e.spawnCount)
+  e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',(e.launchMission and e.chapter.id~=e.launchMission and e.chapter.id..':' or '')..e.goal.id..'_'..(spec.killIndex or e.spawnCount))
   m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize,e.difficultyId,e.rulesVersion,index)
   m:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+1.25+index*.12)
   m:FindFirstChildOfClass('Humanoid').DisplayName=({Orc='Orc Warrior',Slime='Cave Slime',Shaman='Goblin Shaman',Warlord='Orc Warlord',GoblinKing='Goblin King',KingOgre='King Ogre',KingShaman='King Shaman',EnragedWarlord='Enraged Warlord'})[kind] or Text.Enemy[kind] or kind

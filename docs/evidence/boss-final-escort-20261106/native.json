@@ -1,0 +1,139 @@
+{
+  "pass": true,
+  "kind": "BOSS_FINAL_ESCORT_NATIVE",
+  "quests": [
+    {
+      "id": "DW-05:warlord",
+      "spawned": 37,
+      "finalSize": 6,
+      "waves": 7
+    },
+    {
+      "id": "DW-07:king_shaman",
+      "spawned": 55,
+      "finalSize": 9,
+      "waves": 7
+    },
+    {
+      "id": "DW-Q2:goblin_king",
+      "spawned": 49,
+      "finalSize": 6,
+      "waves": 9
+    },
+    {
+      "id": "DW-Q3:king_ogre",
+      "spawned": 43,
+      "finalSize": 8,
+      "waves": 6
+    },
+    {
+      "id": "DW-Q4:enraged_warlord",
+      "spawned": 67,
+      "finalSize": 9,
+      "waves": 8
+    },
+    {
+      "id": "FV-06:king_golem",
+      "spawned": 7,
+      "finalSize": 7,
+      "waves": 1
+    },
+    {
+      "id": "FV-07:queen",
+      "spawned": 7,
+      "finalSize": 7,
+      "waves": 1
+    },
+    {
+      "id": "FV-Q2:guardian",
+      "spawned": 7,
+      "finalSize": 5,
+      "waves": 2
+    },
+    {
+      "id": "FV-Q3:guardian",
+      "spawned": 7,
+      "finalSize": 5,
+      "waves": 2
+    },
+    {
+      "id": "FV-Q4:guardian",
+      "spawned": 7,
+      "finalSize": 5,
+      "waves": 2
+    },
+    {
+      "id": "EC-06:magma_golem",
+      "spawned": 7,
+      "finalSize": 7,
+      "waves": 1
+    },
+    {
+      "id": "EC-07:overlord",
+      "spawned": 19,
+      "finalSize": 9,
+      "waves": 3
+    },
+    {
+      "id": "EC-Q2:boss",
+      "spawned": 7,
+      "finalSize": 6,
+      "waves": 2
+    },
+    {
+      "id": "EC-Q3:boss",
+      "spawned": 7,
+      "finalSize": 6,
+      "waves": 2
+    },
+    {
+      "id": "EC-Q4:boss",
+      "spawned": 7,
+      "finalSize": 6,
+      "waves": 2
+    },
+    {
+      "id": "GW-04:ent",
+      "spawned": 7,
+      "finalSize": 7,
+      "waves": 1
+    },
+    {
+      "id": "GW-05:king",
+      "spawned": 7,
+      "finalSize": 7,
+      "waves": 1
+    },
+    {
+      "id": "GW-07:queen",
+      "spawned": 19,
+      "finalSize": 9,
+      "waves": 3
+    },
+    {
+      "id": "HG-04:commander",
+      "spawned": 7,
+      "finalSize": 7,
+      "waves": 1
+    },
+    {
+      "id": "HG-05:lich",
+      "spawned": 7,
+      "finalSize": 7,
+      "waves": 1
+    },
+    {
+      "id": "HG-06:sovereign",
+      "spawned": 7,
+      "finalSize": 7,
+      "waves": 1
+    },
+    {
+      "id": "HG-07:veyr",
+      "spawned": 25,
+      "finalSize": 9,
+      "waves": 3
+    }
+  ],
+  "checks": 588
+}
