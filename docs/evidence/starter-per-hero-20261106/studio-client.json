@@ -1,0 +1,22 @@
+{
+  "selectionDoesNotRefill": true,
+  "renderedBagHeading": "BAG  14 / 60",
+  "knight": {
+    "hpMedium": 2,
+    "hpSmall": 3,
+    "hpLarge": 1,
+    "hpXL": 1,
+    "temperedSword": 1,
+    "bagUsed": 14
+  },
+  "sessionOnly": true,
+  "status": "PASS",
+  "mage": {
+    "temperedStaff": 1,
+    "hpSmall": 3,
+    "mpSmall": 3,
+    "bagUsed": 18
+  },
+  "fixture": "fresh Studio Play; actual CreateHero Mage then Knight; SelectHero Mage then Knight",
+  "build": "0.78.2"
+}

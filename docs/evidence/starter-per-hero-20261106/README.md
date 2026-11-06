@@ -20,8 +20,8 @@
 - `lua tests/hero-progression.spec.lua`:656검사 PASS.
 - `lua tests/advanced-skills.spec.lua`:1435검사 PASS. 합계2678검사.
 - Studio0.78.0 Edit에서 수정 InventoryRules 소스 전체를 loadstring/실행한 순수 fixture: Mage→Knight 둘 다 물약/장비 지급·프로필 유효성·재개방 무변경·소진 후 무보충·중복 생성 거절 PASS. 실제 계정/DataModel은 변경하지 않았다.
-- `git diff --check` 통과. 고정 소스 단일 빌드 결과는 [build.json](build.json)에 기록한다.
+- `git diff --check` 통과. 입력 소스 `f1bcb5232a852987f50843f045812ed6d045a00d`를 커밋·푸시한 뒤0.78.2 단일 빌드 성공. [build.json](build.json)에 버전·소스·산출물 SHA-256을 기록했다. 실제 산출물 역할10/로딩108검사 PASS 및 XML InventoryRules Source가 검증한 파일과 바이트 일치함을 확인했다. 수정 빌드를 OS 열기 명령으로 Studio에 열었다. 미게시이며 릴리스 태그 없음.
 
 ## 다음 담당과 미검증
 
-QA는0.78.2 새 Play에서 Mage와 Knight를 순서대로 생성해 각 가방에 시작 보급이 보이는지, 영웅 선택 왕복 뒤 수량이 늘지 않는지 확인한다. 실제 게시 DataStore/실기기/운영 계정의 누락 복구·Place 게시·릴리스 태그는 미실행이다. 새 빌드와 이전 실행 세션을 구별한다.
+0.78.2를 Studio에 열고 새 Play에서 실제 CreateHero RemoteEvent로 Mage→Knight를 생성했다. 두 번째 Knight 가방14칸·HP물약3/2/1/1·Tempered Sword1, Mage 가방18칸·HP/MP Small3·Tempered Staff1 지급 PASS. 실제 SelectHero로 Mage→Knight 왕복 후 가방14칸·Small HP3 유지 PASS. 클라이언트 가방 렌더링도 `BAG  14 / 60`과 HP물약4등급 이름을 확인했다. [Studio Client 결과](studio-client.json). 자동 B키 입력 뒤 가방 열림 속성은false였으므로 키를 통한 열림 수용은 통과로 보고하지 않는다. 새 빌드 Play는 Knight 선택 상태로 남겼다. QA의 물약 사용/장비 장착·재접속 및 실제 게시 DataStore/실기기/운영 계정 누락 복구·Place 게시·릴리스 태그는 미실행이다. 새 빌드와 이전 실행 세션을 구별한다.
