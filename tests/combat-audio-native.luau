@@ -17,7 +17,8 @@ local ok,err=xpcall(function()
   c:SetAttribute("K0ClassId",classId)
   for _,d in ipairs(list) do
    index+=1;result.skills+=1
-   check(Catalog.get(classId,d.id,"release")~=nil,d.id.." release profile")
+   local releaseExpected = classId ~= "mage"
+   check((Catalog.get(classId,d.id,"release")~=nil)==releaseExpected,d.id.." release profile or requested silence")
    check(Catalog.get(classId,d.id,"impact")~=nil,d.id.." impact profile")
    c:SetAttribute("K0State","Attack");c:SetAttribute("K0AttackSeq",index)
    c:SetAttribute("K0SkillId",d.id);c:SetAttribute("K0AttackStartedAt",100)
@@ -25,7 +26,7 @@ local ok,err=xpcall(function()
    for beat=1,d.shotCount or d.pulses or 1 do
     clean()
     local at=100+d.windup+(d.hitDelay or 0)+(beat-1)*(d.shotInterval or d.interval or .3)+.001
-    check(Audio.renderCharacter(c,at),d.id.." pulse "..beat)
+    check((Audio.renderCharacter(c,at)==true)==releaseExpected,d.id.." pulse "..beat)
     check(not Audio.renderCharacter(c,at),d.id.." dedup "..beat)
     result.pulses+=1
    end
@@ -35,7 +36,7 @@ local ok,err=xpcall(function()
   c:SetAttribute("K0BasicAttackRate",2);c:SetAttribute("K0AttackSeq",1000+index)
   local d=Config.BasicAttackProfiles[classId].attacks[1]
   local at=100+(d.windup+(d.hitDelay or 0))/2+.001
-  check(Audio.renderCharacter(c,at),classId.." scaled basic timing")
+  check((Audio.renderCharacter(c,at)==true)==(classId~="knight"),classId.." scaled basic timing or requested silence")
   check(not Audio.renderCharacter(c,at),classId.." basic dedup")
   clean()
  end
@@ -52,6 +53,14 @@ local ok,err=xpcall(function()
  check(not Audio.play("release",Vector3.new(1000,0,0),"knight"),"distant sound rejected")
  check(not Audio.play("invalid",Vector3.zero,"knight"),"unknown layer rejected")
  clean()
+ for _,case in ipairs({{"knight",nil,"rbxasset://sounds/action_jump_land.mp3",.15,1.35}, {"mage","mage.common.water_ball","rbxasset://sounds/impact_water.mp3",.12,1.25}}) do
+  local played,emitter=Audio.play("impact",Vector3.new(0,0,-20),case[1],case[2])
+  check(played,"restored contact plays")
+  local sound=emitter.K0HitSound
+  check(sound.SoundId==case[3] and math.abs(sound.Volume-case[4])<.0001 and math.abs(sound.PlaybackSpeed-case[5])<.0001,"original ID volume pitch")
+  check(sound.RollOffMaxDistance==70,"original contact falloff")
+ end
+ clean()
  local played,holder=Audio.play("impact",Vector3.zero,"knight","knight.common.bash")
  check(played,"shield contact plays")
  check(not Audio.play("impact",Vector3.zero,"knight","knight.common.bash"),"AoE contact collapsed")
@@ -61,7 +70,7 @@ local ok,err=xpcall(function()
  check(holder.Anchored and not holder.CanCollide and not holder.CanQuery and not holder.CanTouch,"inert emitter")
  task.wait(.08);check(Audio.play("impact",Vector3.zero,"knight","knight.common.bash"),"next hit allowed")
  clean()
- for i=1,20 do Audio.play("release",Vector3.zero,"knight") end
+ for i=1,20 do Audio.play("release",Vector3.zero,"dwarf") end
  for i=1,20 do Audio.play("impact",Vector3.new(i*9,0,0),"mage") end
  local counts={release=0,impact=0}
  for _,h in ipairs(workspace:GetChildren()) do if h.Name=="K0CombatAudioEmitter" then

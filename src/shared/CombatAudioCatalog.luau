@@ -1,6 +1,10 @@
 -- Presentation only. Free Creator Store provenance is pinned in assets/audio/combat-store-v1.
 local FXCatalog = require(script.Parent.PixelFXCatalog)
 local Catalog = {}
+-- User-requested rollback to the pre-0.76.0 contact sounds. Those paths had
+-- no release layer; preserve their original volume, pitch and falloff.
+local legacyKnightImpact = {id = "rbxasset://sounds/action_jump_land.mp3", volume = .15, speed = 1.35, duration = 1.2, fixedPitch = true, maxDistance = 70}
+local legacyMageImpact = {id = "rbxasset://sounds/impact_water.mp3", volume = .12, speed = 1.25, duration = 1.2, fixedPitch = true, maxDistance = 70}
 local function clip(id, volume, speed, duration)
     return {id = "rbxassetid://" .. id, volume = volume, speed = speed or 1, duration = duration or 1.2}
 end
@@ -38,6 +42,12 @@ Catalog.profiles = {
 function Catalog.get(classId, skillId, kind)
     local row = FXCatalog.get(classId, skillId)
     if not row or (kind ~= "release" and kind ~= "impact") then return nil end
+    if classId == "knight" and not row.definition then
+        return kind == "impact" and legacyKnightImpact or nil
+    end
+    if classId == "mage" and row.definition then
+        return kind == "impact" and legacyMageImpact or nil
+    end
     local key = row.key
     -- Physical axe descendants and common ground attacks keep a heavy contact.
     if row.effect == "earth" or skillId == "dwarf.common.ground" then key = "earth"

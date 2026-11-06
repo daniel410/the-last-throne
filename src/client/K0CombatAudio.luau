@@ -16,7 +16,7 @@ function Audio.play(kind, position, classId, skillId)
     local clip = Catalog.get(classId, skillId, kind)
     if not clip or not vector(position) then return false end
     local camera = workspace.CurrentCamera
-    if camera and (camera.CFrame.Position - position).Magnitude > 80 then return false end
+    if camera and (camera.CFrame.Position - position).Magnitude > (clip.maxDistance or 80) then return false end
     local now = os.clock()
     -- A clustered AoE has one contact per short window, rather than a voice per target.
     for key, at in pairs(impactCells) do if now - at >= .07 then impactCells[key] = nil end end
@@ -43,10 +43,10 @@ function Audio.play(kind, position, classId, skillId)
     local sound = Instance.new("Sound")
     sound.Name = kind == "impact" and "K0HitSound" or "K0ReleaseSound"
     sound.SoundId, sound.Volume = clip.id, clip.volume
-    sound.PlaybackSpeed = clip.speed * (.98 + math.random() * .04)
+    sound.PlaybackSpeed = clip.speed * (clip.fixedPitch and 1 or (.98 + math.random() * .04))
     sound.Looped = false
     sound.RollOffMode = Enum.RollOffMode.Linear
-    sound.RollOffMinDistance, sound.RollOffMaxDistance = 8, 80
+    sound.RollOffMinDistance, sound.RollOffMaxDistance = 8, clip.maxDistance or 80
     sound.Parent = holder
     sound.Ended:Once(function() holder:Destroy() end)
     holder.Parent = workspace
