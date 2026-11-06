@@ -34,7 +34,7 @@ function W.create(world)
   -- Thin visible surface on a deep persistent foundation; never floating islands.
   part(foundation,'Support_'..id,Vector3.new(z.size[1],100,z.size[2]),center-Vector3.new(0,50,0),stone,Enum.Material.Slate,true)
   part(region,'SnowGround',Vector3.new(z.size[1],.4,z.size[2]),center-Vector3.new(0,.2,0),snow,Enum.Material.Snow,true)
-  local sp=Instance.new('SpawnLocation');sp.Name=id..'_SP';sp.Size=Vector3.new(12,.2,12);sp.Position=center+Vector3.new(-140,.1,110);sp.Anchored=true;sp.CanCollide=false;sp.CanQuery=false;sp.CanTouch=false;sp.Neutral=true;sp.Duration=0;sp.Enabled=false;sp.Color=ice;sp.Parent=root;world.spawns[id]=sp
+  local sp=Instance.new('SpawnLocation');sp.Name=id..'_SP';sp.Size=Vector3.new(12,.2,12);sp.Position=center+Vector3.new(-140,.1,110);sp.Anchored=true;sp.CanCollide=false;sp.CanQuery=false;sp.CanTouch=false;sp.Neutral=true;sp.Duration=0;sp.Enabled=true;sp.Color=ice;sp.Parent=root;world.spawns[id]=sp
   beacon(region,sp.Position+Vector3.new(-10,0,0))
   for i=1,14 do
    local angle=i*math.pi*2/14;local pos=center+Vector3.new(math.cos(angle)*(z.size[1]/2+24),0,math.sin(angle)*(z.size[2]/2+24))

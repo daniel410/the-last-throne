@@ -37,7 +37,7 @@ function W.create(world)
   local region=Instance.new('Model');region.Name=id;region:SetAttribute('EpicId','EmberCaldera');region.Parent=terrain
   part(foundation,'Support_'..id,Vector3.new(z.size[1],110,z.size[2]),center-Vector3.new(0,55,0),C.basalt,nil,true)
   part(region,'BasaltGround',Vector3.new(z.size[1],.4,z.size[2]),center-Vector3.new(0,.2,0),C.rock,Enum.Material.Basalt,true)
-  local sp=Instance.new('SpawnLocation');sp.Name=id..'_SP';sp.Position=center+Vector3.new(-140,.1,110);sp.Size=Vector3.new(12,.2,12);sp.Anchored=true;sp.CanCollide=false;sp.CanQuery=false;sp.CanTouch=false;sp.Neutral=true;sp.Enabled=false;sp.Duration=0;sp.Color=C.brass;sp.Parent=world.folder;world.spawns[id]=sp;lamp(region,sp.Position+Vector3.new(-12,0,0))
+  local sp=Instance.new('SpawnLocation');sp.Name=id..'_SP';sp.Position=center+Vector3.new(-140,.1,110);sp.Size=Vector3.new(12,.2,12);sp.Anchored=true;sp.CanCollide=false;sp.CanQuery=false;sp.CanTouch=false;sp.Neutral=true;sp.Enabled=true;sp.Duration=0;sp.Color=C.brass;sp.Parent=world.folder;world.spawns[id]=sp;lamp(region,sp.Position+Vector3.new(-12,0,0))
   for i=1,12 do
    local angle=i*math.pi/6;local p=center+Vector3.new(math.cos(angle)*(z.size[1]/2+35),-12,math.sin(angle)*(z.size[2]/2+35))
    local cliff=part(region,'CalderaRim',Vector3.new(65,50+i%4*10,60),CFrame.new(p)*CFrame.Angles(.1,i*.4,.1),C.basalt);cliff.Shape=Enum.PartType.Ball

@@ -38,7 +38,7 @@ function W.create(world,epic)
   local region=Instance.new('Model');region.Name=id;region:SetAttribute('EpicId',forest and 'Gloamwood' or 'HauntedGraveyard');region.Parent=world.terrain
   part(foundation,'Support_'..id,Vector3.new(z.size[1],100,z.size[2]),center-Vector3.new(0,50,0),ground,true)
   part(region,'Ground',Vector3.new(z.size[1],.4,z.size[2]),center-Vector3.new(0,.2,0),ground,true,forest and Enum.Material.Grass or Enum.Material.Cobblestone)
-  local sp=Instance.new('SpawnLocation');sp.Name=id..'_SP';sp.Size=Vector3.new(12,.2,12);sp.Position=center+Vector3.new(-140,.1,110);sp.Anchored=true;sp.CanCollide=false;sp.CanTouch=false;sp.CanQuery=false;sp.Neutral=true;sp.Enabled=false;sp.Duration=0;sp.Parent=world.folder;world.spawns[id]=sp
+  local sp=Instance.new('SpawnLocation');sp.Name=id..'_SP';sp.Size=Vector3.new(12,.2,12);sp.Position=center+Vector3.new(-140,.1,110);sp.Anchored=true;sp.CanCollide=false;sp.CanTouch=false;sp.CanQuery=false;sp.Neutral=true;sp.Enabled=true;sp.Duration=0;sp.Parent=world.folder;world.spawns[id]=sp
   for i=1,16 do
    local side=i%2==0 and -1 or 1;local at=center+Vector3.new(side*195,0,-175+math.floor((i-1)/2)*48)
    if forest then

@@ -32,6 +32,9 @@ for _,epic in ipairs({4,5,2,3,1})do
   if not before[id]then check((Content.zones[id].epic or 1)==epic,'only selected epic generated: '..id);added+=1 end
  end
  check(added>=7,'all main zones exist')
+ for id,spawn in pairs(world.spawns)do
+  check(spawn:IsA('SpawnLocation') and spawn:IsDescendantOf(workspace) and spawn.Enabled,'SpawnService accepts checkpoint '..id)
+ end
  for _,chapter in ipairs(Content.chapters)do if (chapter.epic or 1)==epic then
   for _,goal in ipairs(chapter.goals)do check(world.nodes[chapter.id..':'..goal.id]~=nil,'objective exists '..chapter.id..':'..goal.id)end
  end end
