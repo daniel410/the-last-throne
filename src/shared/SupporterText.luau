@@ -47,7 +47,7 @@ return {
  AccountBusy='Your account is still being checked. Please wait for the same purchase to finish.',
  Unavailable='Support is unavailable. Return to a safe camp or rejoin after your account finishes loading.',
  ShopLobbyOnly='Buy support passes from Selene in the Dawnspire lobby.',
- purchaseTerms='One credit = one main story. Selene follows in the lobby for free and joins your adventure. Story completion or Return to Lobby ends current support. Unused credits stay saved. No automatic story renewal.',
+ purchaseTerms='1 credit = 1 main story. Lobby following is free. Support ends at story completion or Return to Lobby. Unused credits stay saved. No automatic renewal.',
  purchase='BUY %d STORY%s\n%d GOLD',
  account='Saved story credits: %d · Current main story: %d',
  activeStory='ACTIVE SUPPORT · MAIN STORY %d',

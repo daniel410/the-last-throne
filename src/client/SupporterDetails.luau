@@ -15,6 +15,7 @@ function View.create(parent,buy)
  local layout=Instance.new('UIListLayout');layout.Padding=UDim.new(0,10);layout.Parent=list
  local api={gui=gui,panel=panel,close=close};local previous;local data;local pending=false
  local offers=require(game.ReplicatedStorage.Shared.SupportPassRules).offers
+ local compact=false
  local terms=Theme.label(panel,'PurchaseTerms',Text.purchaseTerms,UDim2.new(0,18,1,-124),UDim2.new(1,-36,0,44),11,Theme.color.gold);terms.Visible=false
  local buttons={}
  for i,offer in ipairs(offers)do
@@ -33,9 +34,17 @@ function View.create(parent,buy)
   end
   if data.lobby then table.insert(lines,data.balance~=nil and string.format(Text.balance,data.balance) or Text.balanceUnknown)end
   if data.message then table.insert(lines,data.message)end
-  list.Size=UDim2.new(1,-36,1,data.lobby and -280 or -162)
+  local top=compact and 94 or 132
+  local buttonHeight=compact and 44 or 50
+  local termsHeight=math.max(32,game:GetService('TextService'):GetTextSize(Text.purchaseTerms,11,Enum.Font.GothamMedium,Vector2.new(math.max(1,panel.Size.X.Offset-36),2000)).Y+4)
+  local footer=data.lobby and (termsHeight+buttonHeight+34) or 16
+  list.Position=UDim2.fromOffset(18,top)
+  list.Size=UDim2.new(1,-36,1,-top-footer)
+  terms.Position=UDim2.new(0,18,1,-footer+8);terms.Size=UDim2.new(1,-36,0,termsHeight)
   terms.Visible=data.lobby==true
   for i,button in ipairs(buttons)do
+   button.Position=UDim2.new((i-1)/3,18,1,-buttonHeight-12)
+   button.Size=UDim2.new(1/3,-24,0,buttonHeight)
    button.Visible=data.lobby==true
    Theme.enabled(button,data.canBuy==true and not pending and (data.balance or 0)>=offers[i].price)
   end
@@ -49,8 +58,14 @@ function View.create(parent,buy)
   end
  end
  function api:resize(width,height)
-  local short=height<440
-  panel.Size=UDim2.fromOffset(math.max(260,math.min(760,width-(short and 24 or 80))),math.max(240,math.min(540,height-(short and 24 or 90))))
+  compact=height<500 or width<600
+  panel.Size=UDim2.fromOffset(math.max(1,math.min(680,width-64)),math.max(1,math.min(480,height-(compact and 56 or 96))))
+  portrait.Position=UDim2.fromOffset(18,compact and 44 or 56);portrait.Size=UDim2.fromOffset(compact and 42 or 64,compact and 42 or 64)
+  name.Position=UDim2.fromOffset(compact and 76 or 98,compact and 44 or 56)
+  name.Size=UDim2.new(1,compact and -94 or -116,0,24);name.TextSize=compact and 16 or 19
+  role.Position=UDim2.fromOffset(compact and 76 or 98,compact and 68 or 84)
+  role.Size=UDim2.new(1,compact and -94 or -116,0,compact and 22 or 36);role.TextSize=compact and 12 or 13
+  close.Size=UDim2.fromOffset(76,44)
   render()
  end
  function api:setPending(value)pending=value==true;render()end
@@ -63,7 +78,8 @@ function View.create(parent,buy)
  function api:open(value)
   if type(value)~='table' or value.id~='selene' or type(value.lines)~='table' then return false end
   data=value;panel.Visible=true;if player then player:SetAttribute('TLTSupporterOpen',true)end;list.CanvasPosition=Vector2.zero
-  local camera=workspace.CurrentCamera;if camera then self:resize(camera.ViewportSize.X,camera.ViewportSize.Y)else render()end
+  local size=gui.AbsoluteSize
+  if size.X>0 and size.Y>0 then self:resize(size.X,size.Y)else render()end
   if game:GetService('UserInputService').GamepadEnabled then
    if game:GetService('GuiService').SelectedObject~=close then previous=game:GetService('GuiService').SelectedObject end
    game:GetService('GuiService').SelectedObject=close

@@ -77,7 +77,7 @@ function M.create(player,actions)
  local function refresh()
   local enabled=player:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle'
    and not player:GetAttribute('TLTInventoryOpen') and not player:GetAttribute('TLTProgressionOpen')
-   and not player:GetAttribute('TLTHeroSelectionOpen') and not player:GetAttribute('TLTSettingsOpen') and not player:GetAttribute('TLTLobbyPanelOpen') and not player:GetAttribute('TLTTravelLock')
+   and not player:GetAttribute('TLTHeroSelectionOpen') and not player:GetAttribute('TLTSettingsOpen') and not player:GetAttribute('TLTLobbyPanelOpen') and not player:GetAttribute('TLTSupporterOpen') and not player:GetAttribute('TLTTravelLock')
   gui.Enabled=enabled
   if not enabled and open then setOpen(false)end
  end
@@ -90,7 +90,7 @@ function M.create(player,actions)
  local connections={}
  table.insert(connections,gui:GetPropertyChangedSignal("AbsoluteSize"):Connect(resize))
  resize()
- for _,attribute in ipairs({'TLTHeroSelectionOpen','K0SessionPhase','TLTInventoryOpen','TLTProgressionOpen','TLTSettingsOpen','TLTLobbyPanelOpen','TLTTravelLock'})do
+ for _,attribute in ipairs({'TLTHeroSelectionOpen','K0SessionPhase','TLTInventoryOpen','TLTProgressionOpen','TLTSettingsOpen','TLTLobbyPanelOpen','TLTSupporterOpen','TLTTravelLock'})do
   table.insert(connections,player:GetAttributeChangedSignal(attribute):Connect(refresh))
  end
  table.insert(connections,workspace:GetAttributeChangedSignal('TLTServerRole'):Connect(refresh))
