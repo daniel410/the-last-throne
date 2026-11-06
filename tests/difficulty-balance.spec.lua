@@ -72,7 +72,7 @@ check(D.verifyRun(p.heroes.hero,{id='old',missionId='DW-01',difficultyId='Hell',
 local gold=p.wallet.gold;local cores=R.quantity(p,'hero','forge_core');p=finish(p,'old')
 check(p.wallet.gold-gold==135 and R.quantity(p,'hero','forge_core')-cores==3,'v1 completion and materials remain pinned')
 p=assert(A.begin(p,'hero','DW-01','Hell','new',p.revision,R,Items))
-check(p.heroes.hero.expeditions.active.version==1 and p.heroes.hero.expeditions.active.balanceVersion==3,'schema stable; new run pins revised rules')
+check(p.heroes.hero.expeditions.active.version==1 and p.heroes.hero.expeditions.active.balanceVersion==D.version,'schema stable; new run pins revised rules')
 gold=p.wallet.gold;cores=R.quantity(p,'hero','magic_stone');p=finish(p,'new')
 check(p.wallet.gold-gold==393 and R.quantity(p,'hero','magic_stone')-cores==10,'new completion and material schedule reaches real reducer')
 local completed=assert(A.event(p,'hero','DW-01',C.byId['DW-01'].goals[#C.byId['DW-01'].goals].id,nil,nil,R,Items,'new'))

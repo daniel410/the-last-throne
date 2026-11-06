@@ -35,7 +35,7 @@ for i,mode in ipairs(D.order)do
   end
  end
 end
-check(D.compatible(1)and D.compatible(2)and D.compatible(3)and not D.compatible(4),'old journals remain supported, unknown versions rejected')
+check(D.compatible(1)and D.compatible(2)and D.compatible(3)and D.compatible(4)and not D.compatible(5),'old journals remain supported, unknown versions rejected')
 near(D.mode('Hell',1).damage,1.65,'legacy v1 normal preserved')
 near(D.mode('Hell',1).bossDamage,1.5,'legacy v1 boss preserved')
 -- Exercise persisted v2 rejoin/complete separately from current-v3 departures.
@@ -50,5 +50,5 @@ check(R.validate(profile,Items),'v2 journal loads')
 check(D.verifyRun(profile.heroes.hero,{id='v2',missionId='DW-01',difficultyId='Easy',rulesVersion=2}),'v2 run rejoins safely')
 check(not D.verifyRun(profile.heroes.hero,{id='v2',missionId='DW-01',difficultyId='Easy',rulesVersion=3}),'rejoin cannot silently switch damage version')
 profile=assert(A.begin(profile,'hero','DW-01','Easy','v3',profile.revision,R,Items))
-check(profile.heroes.hero.expeditions.active.balanceVersion==3,'new departures persist damage generation')
+check(profile.heroes.hero.expeditions.active.balanceVersion==D.version,'new departures persist current balance generation')
 print('Monster damage tuning: '..n..' checks passed')

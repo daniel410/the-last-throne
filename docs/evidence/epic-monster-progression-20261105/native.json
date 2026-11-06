@@ -1,0 +1,10 @@
+{
+  "players": 0,
+  "messages": {
+    "1": "Epic monster progression: 201484 checks passed"
+  },
+  "bridgeChecks": 81840,
+  "scope": "isolated current-source Luau and actual applyBalance Model attributes; no live accounts or gameplay",
+  "placeId": 0,
+  "units": 6820
+}
