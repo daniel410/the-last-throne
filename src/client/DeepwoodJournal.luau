@@ -104,11 +104,7 @@ function Journal.start(hud)
  if hud.journalMenu then hud.journalMenu.Activated:Connect(function() setOpen(true) end) end
  UIS.InputBegan:Connect(function(input,processed) if not processed and input.KeyCode==Enum.KeyCode.J and current and not current.training and player:GetAttribute('K0SessionPhase')=='Tutorial' then setOpen(not panel.Visible) end end)
  local function selectTarget()
-  local s=current.journal;local c=selectedChapter and Content.byId[selectedChapter]
-  if c and c.side and Progress.canAccept(s,c) and c.quest.offerPosition then return {chapter=c,goal=c.goals[1],offer=true} end
-  if c and c.side and not s.clears[c.id] then local t=Log.target(s,c);if t then return t end end
-  local main=Log.main(s)
-  if main then return Log.target(s,main,selectedChapter==main.id and selectedGoal or nil) end
+  return Log.tracked(current.journal,selectedChapter,selectedGoal)
  end
  local function updateTracker()
   if not current or current.training or player:GetAttribute('TLTRoute')=='Training' then
@@ -118,12 +114,9 @@ function Journal.start(hud)
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart')
   local guidance=Journal.guidance(current,target,root and root.Position)
   if hud.setStory then
-   local title='EPIC '..#Content.epics..' COMPLETE'
-   if target then
-    if target.chapter.side then title=target.offer and 'OPTIONAL REQUEST' or 'SIDE QUEST · '..Log.status(current.journal,target.chapter)
-    else local _,index,total=Log.phase(current.journal,target.chapter);title=string.format('MAIN STORY %d / 7 · PHASE %d / %d',(target.chapter.number-1)%7+1,index,total) end
-   end
-   hud.setStory({region=Content.epics[target and target.chapter.epic or math.min(#Content.epics,math.floor(current.journal.main/7)+1)].region,title=title,objective=guidance and guidance.objective or 'Explore optional requests or return to the lobby.',note=guidance and guidance.note or '[J] QUEST'})
+   local tracker=Log.tracker(current.journal,target)
+   if guidance then tracker.objective=guidance.objective;tracker.note=guidance.note end
+   hud.setStory(tracker)
   end
   return guidance
  end

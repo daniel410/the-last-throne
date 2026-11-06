@@ -16,6 +16,35 @@ function Log.target(s,c,optionalId)
  if optionalId then local g=P.goal(c,optionalId);if g and g.optional and P.available(s,c,g) then return {chapter=c,goal=g} end end
  for _,g in ipairs(c.goals) do if not g.optional and P.available(s,c,g) then return {chapter=c,goal=g} end end
 end
+function Log.tracked(s,selectedChapter,selectedGoal)
+ local c=selectedChapter and Content.byId[selectedChapter]
+ if c and c.side and P.canAccept(s,c) and c.quest.offerPosition then return {chapter=c,goal=c.goals[1],offer=true} end
+ if c and c.side and not s.clears[c.id] then local target=Log.target(s,c);if target then return target end end
+ -- An isolated optional expedition cannot expose a main-story objective.
+ local admitted=s.expeditionMission and Content.byId[s.expeditionMission]
+ if admitted and admitted.side then return Log.target(s,admitted) end
+ local main=Log.main(s)
+ return Log.target(s,main,main and selectedChapter==main.id and selectedGoal or nil)
+end
+function Log.tracker(s,target)
+ local main=Log.main(s)
+ local admitted=s.expeditionMission and Content.byId[s.expeditionMission]
+ local chapter=target and target.chapter or admitted or main or Content.mainChapters[Content.mainCount]
+ local data={region=Content.epics[chapter.epic or 1].region,note='[J] QUEST'}
+ if target then
+  if chapter.side then data.title=target.offer and 'OPTIONAL REQUEST' or 'SIDE QUEST · '..Log.status(s,chapter)
+  else local _,index,total=Log.phase(s,chapter);data.title=string.format('MAIN STORY %d / 7 · PHASE %d / %d',(chapter.number-1)%7+1,index,total) end
+ elseif main then
+  local nextName=Content.epics[main.epic or 1].region..' · '..(main.quest.title or main.title)
+  data.title=admitted and admitted.side and s.clears[admitted.id] and 'SIDE QUEST COMPLETE' or 'CONTINUE YOUR JOURNEY'
+  data.objective='Return to Lobby and select '..nextName..' in ADVENTURES.'
+  data.note='Open the map menu to return to the lobby.'
+ else
+  data.title='EPIC '..#Content.epics..' COMPLETE'
+  data.objective='Explore optional requests or return to the lobby.'
+ end
+ return data
+end
 function Log.status(s,c)
  if s.clears[c.id] then return 'Completed' end
  if not c.side then return c.number==s.main+1 and 'In progress' or 'Locked' end
