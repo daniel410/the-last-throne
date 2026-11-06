@@ -1,0 +1,54 @@
+{
+  "targetedCases": [
+    {
+      "id": "growth-starting-resources-dwarf",
+      "pass": true,
+      "checks": 13
+    },
+    {
+      "id": "growth-starting-resources-mage",
+      "pass": true,
+      "checks": 16
+    },
+    {
+      "id": "growth-starting-resources-knight",
+      "pass": true,
+      "checks": 13
+    },
+    {
+      "id": "growth-starting-resources-elf",
+      "pass": true,
+      "checks": 13
+    },
+    {
+      "id": "eight-catalog-potions-restore-exactly-and-cap",
+      "pass": true,
+      "checks": 32
+    },
+    {
+      "id": "player-health-does-not-regenerate",
+      "pass": true,
+      "checks": 16
+    },
+    {
+      "id": "mage-mana-recovery-restored-with-delay-and-cap",
+      "pass": true,
+      "checks": 4
+    },
+    {
+      "id": "magic-archer-mana-recovery-restored-without-health-regen",
+      "pass": true,
+      "checks": 4
+    }
+  ],
+  "targetedChecks": 111,
+  "targetedPass": true,
+  "fullSuitePass": false,
+  "same19FailureCaseIdsAsNoPassiveRegen": true,
+  "sourceHashes": {
+    "tests/k0-basic-attacks-native.luau": "fc743adc86873f415eb5471b1655f76afe1fee164c4f41fe03e4bd2c7c1ad299",
+    "src/server/Combat/CombatService.luau": "e190ac219ee1f55c78f9582dffe6dd721bd6f8bac858c85b9bc05c54a66eb94a",
+    "src/shared/K0Config.luau": "d08dc69a7e19f4a3854ba111b351453810841a33929816422d6231110ffc22dc"
+  },
+  "scope": "actual CombatService with native Humanoids, identity mocks, synthetic time; PlaceId0 Player0; no live accounts or real client"
+}

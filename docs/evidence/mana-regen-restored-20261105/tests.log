@@ -1,0 +1,4 @@
+lua tests/k0-rules.spec.lua: 125 PASS
+lua tests/starter-potions-and-shop.spec.lua: 308 PASS
+lua tests/hero-progression.spec.lua: 656 PASS
+git diff --check: PASS

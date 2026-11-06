@@ -436,6 +436,7 @@ local function startSkill(state, slot, current, targetModel)
 	state.character:SetAttribute((slot==0 and "K0UltimateReady" or "K0SkillReady" .. slot), workspace:GetServerTimeNow() + skill.cooldown)
 	if skill.magic then
 		setMana(state, state.mana - skill.manaCost)
+		state.manaRegenAt = current + Config.ManaRegenDelay
 	end
 	local advancedCast=skill.advanced and AdvancedCombat.snapshot(state,skill,direction,targetModel,enemyStates,unobstructed)
 	if skill.move then skillStep(state,direction,skill.move) end
@@ -1320,9 +1321,12 @@ local function stepPlayer(state, current, dt, movementAlreadyChecked)
 		state.character:SetAttribute("K0Sprinting", false)
 		if state.mode == "Idle" then state.humanoid.WalkSpeed = Config.WalkSpeed * movementRate(state) end
 	end
-	-- Passive HP/MP regeneration is disabled. Explicit recovery sources remain
-	-- server-owned; this step only expires temporary protection.
+	-- HP has no passive recovery. Mana recovery is server-owned, delayed after
+	-- a magic cast, and capped by setMana; alive() already rejects dead heroes.
 	if state.branchShield and current>=state.branchShield.expires then state.branchShield=nil;state.character:SetAttribute("K0Shield",0) end
+	if state.mana and current >= state.manaRegenAt and state.mode ~= "Dead" then
+		setMana(state, state.mana + (state.maxMana or Config.MaxMana) * Config.ManaRegenFraction * (state.baseClassId=="mage" and Config.MageManaRegenMultiplier or state.baseClassId=="elf" and Config.ElfManaRegenMultiplier or 1) * math.min(dt, 0.25))
+	end
 	return consumedAction
 end
 
@@ -1791,6 +1795,7 @@ local function setupCharacter(player, character)
 			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0,
 			growth=context.growth, derived=derived, maxMana=derived and derived.mana or Config.MaxMana,
 			mana = (derived and derived.mana>0) and derived.mana or (not derived and classId=="mage" and Config.MaxMana or nil),
+			manaRegenAt = current,
 			itemCounts = context.itemCounts or {3, 3}, equipment = context.equipment, inventoryManaged = context.inventoryManaged,
 			skillSlots = context.skillSlots or {1, 2, 3, 0, 0}, slotCount = context.slotCount or 3, skillReadyAt = context.skillReadyAt or {}, setSkillReadyAt = context.setSkillReadyAt,
 			heroId = context.heroId, heroEpoch = context.epoch, characterGeneration = context.characterGeneration,
