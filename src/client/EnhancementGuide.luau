@@ -16,13 +16,14 @@ function G.create(panel)
   table.insert(sections,{box=box,label=label})
  end
  section('Introduction',Text.EnhancementHelpIntro,T.color.gold)
- section('AttemptRules',Text.EnhancementHelpRules)
+ section('AttemptRules',string.format(Text.EnhancementHelpRules,E.cost({},1).gold))
  for target=1,E.cap({})do
   local cost=E.cost({},target);local chance=E.successPercent(target)
-  section('Stage'..target,string.format(Text.EnhancementGuideStage,target,chance,100-chance,cost.gems,cost.stones,target*3),T.color.gold)
+  section('Stage'..target,string.format(Text.EnhancementGuideStage,target,chance,100-chance,cost.gold,cost.gems,cost.stones,target*3),T.color.gold)
  end
  section('Recovery',Text.EnhancementHelpRecovery)
- section('Materials',Text.EnhancementHelpExchange)
+ local g,s=E.exchanges.gems,E.exchanges.stones
+ section('Materials',string.format(Text.EnhancementHelpExchange,g.gold,g.amount,s.gems,s.gold,s.amount))
  section('ConfirmationAndSaving',Text.EnhancementHelpSaving)
  local function resize()
   local width=math.max(80,scroll.AbsoluteSize.X-36)

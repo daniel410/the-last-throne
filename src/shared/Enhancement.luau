@@ -1,5 +1,6 @@
 -- Pure enhancement math shared by the authoritative reducer and UI.
-local E={version=2,rate=.03,keys={power=true,armor=true,health=true}}
+local E={version=3,rate=.03,keys={power=true,armor=true,health=true},exchangeVersion=1,
+ exchanges={gems={gold=50,amount=5},stones={gold=50,gems=5,amount=1}}}
 function E.cap(def)return 9 end
 function E.successPercent(target)return 110-10*target end
 function E.succeeds(target,roll)
@@ -16,7 +17,7 @@ function E.stats(def,item)
  return result
 end
 function E.cost(def,level)
- return {gold=0,ore=2*level,cores=math.max(0,level-3),gems=2*level,stones=math.max(0,level-3)}
+ return {gold=25,ore=2*level,cores=math.max(0,level-3),gems=2*level,stones=math.max(0,level-3)}
 end
 function E.valid(item,def)
  local n=item.enhancementLevel

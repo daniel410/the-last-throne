@@ -1,0 +1,31 @@
+$ lua tests/material-exchange.spec.lua
+Material exchange and flat fee: 151 checks passed
+exit=0
+
+$ lua tests/enhancement-probability.spec.lua
+Enhancement probability: 2869 checks passed (including 90000 outcome boundaries)
+exit=0
+
+$ lua tests/difficulty-enhancement.spec.lua
+Difficulty/enhancement: 125 checks passed
+exit=0
+
+$ lua tests/inventory.spec.lua
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+exit=0
+
+$ lua tests/economy.spec.lua
+Economy: 42 checks passed
+exit=0
+
+$ lua tests/starter-potions-and-shop.spec.lua
+Starter potions and shop: 308 checks passed
+exit=0
+
+$ lua tests/hero-progression.spec.lua
+Hero progression: 656 checks passed
+exit=0
+
+$ lua tests/retired-forge-equipment.spec.lua
+Retired forge equipment: 486 checks passed
+exit=0

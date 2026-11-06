@@ -40,6 +40,7 @@ function F.apply(profile,c,context,C,R)
  if type(c.requestId)~='string'or #c.requestId==0 or #c.requestId>64 or not c.requestId:match('^[%w_-]+$')then return nil,'InvalidRequest'end
  local fingerprint=table.concat({'forge',c.action or '',c.heroId or '',c.instanceId or '',c.offerId or '',tostring(c.itemVersion),tostring(c.revision),c.store or ''},'|')
  if c.rulesVersion~=nil or c.expectedLevel~=nil then fingerprint=fingerprint..'|'..tostring(c.rulesVersion)..'|'..tostring(c.expectedLevel)end
+ if c.exchangeVersion~=nil then fingerprint=fingerprint..'|exchange:'..tostring(c.exchangeVersion)end
  local previous=profile.operations[c.requestId]
  if previous then if previous.fingerprint~=fingerprint then return nil,'RequestConflict'end;return R.copy(profile),nil,true end
  if not context.atLobby or c.store~='blacksmith'then return nil,'ShopLobbyOnly'end
@@ -51,10 +52,18 @@ function F.apply(profile,c,context,C,R)
   if p.wallet.gold<50 then return nil,'NotEnoughGold'end
   if not F.consume(p,c.heroId,'iron_ore',5)then return nil,'EnhancementMaterials'end
   p.wallet.gold=p.wallet.gold-50;F.grant(p,R,C,c.heroId,'forge_core',1,'forge-'..c.requestId)
+ elseif c.action=='ExchangeGems'then
+  if c.exchangeVersion~=E.exchangeVersion then return nil,'ExchangeChanged'end
+  local offer=E.exchanges.gems
+  if p.wallet.gold<offer.gold then return nil,'NotEnoughGold'end
+  if not F.grant(p,R,C,c.heroId,'enhancement_gem',offer.amount,'gems-'..c.requestId,false,true)then return nil,'BagFull'end
+  p.wallet.gold=p.wallet.gold-offer.gold
  elseif c.action=='ExchangeStone'then
-  if p.wallet.gold<50 then return nil,'NotEnoughGold'end
-  if not F.consume(p,c.heroId,'enhancement_gem',5)then return nil,'EnhancementMaterials'end
-  p.wallet.gold=p.wallet.gold-50;F.grant(p,R,C,c.heroId,'magic_stone',1,'stone-'..c.requestId)
+  if c.exchangeVersion~=nil and c.exchangeVersion~=E.exchangeVersion then return nil,'ExchangeChanged'end
+  local offer=E.exchanges.stones
+  if p.wallet.gold<offer.gold then return nil,'NotEnoughGold'end
+  if not F.consume(p,c.heroId,'enhancement_gem',offer.gems)then return nil,'EnhancementMaterials'end
+  p.wallet.gold=p.wallet.gold-offer.gold;F.grant(p,R,C,c.heroId,'magic_stone',offer.amount,'stone-'..c.requestId)
  elseif c.action=='ConvertOre'or c.action=='ConvertCore'then
   local source=c.action=='ConvertOre'and 'iron_ore'or 'forge_core'
   local target=c.action=='ConvertOre'and 'enhancement_gem'or 'magic_stone'
@@ -88,7 +97,7 @@ function F.apply(profile,c,context,C,R)
      item.enhancementLevel=level+1
      local paid=item.enhancementPaidV2 or {gems=0,stones=0};item.enhancementPaidV2={gems=paid.gems+cost.gems,stones=paid.stones+cost.stones}
     end
-    outcome={success=success,level=item.enhancementLevel,targetLevel=level+1,rulesVersion=E.version,roll=roll,gems=cost.gems,stones=cost.stones,instanceId=c.instanceId}
+    outcome={success=success,level=item.enhancementLevel,targetLevel=level+1,rulesVersion=E.version,roll=roll,gold=cost.gold,gems=cost.gems,stones=cost.stones,instanceId=c.instanceId}
     item.lastEnhancement={requestId=c.requestId,success=success,level=item.enhancementLevel,rulesVersion=E.version}
    else
     local paid=item.enhancementPaid or {ore=0,cores=0};local modern=item.enhancementPaidV2 or {gems=0,stones=0}

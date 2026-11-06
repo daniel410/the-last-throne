@@ -1,0 +1,261 @@
+{
+  "probabilityChecks": 2869,
+  "scope": "temporary CoreGui; no user account, live storage or publishing",
+  "layouts": [
+    {
+      "host": [
+        1108,
+        707
+      ],
+      "guideHeight": 384,
+      "sections": [
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Introduction"
+        },
+        {
+          "height": 66,
+          "textHeight": 42,
+          "name": "AttemptRules"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage1"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage2"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage3"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage4"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage5"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage6"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage7"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage8"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage9"
+        },
+        {
+          "height": 66,
+          "textHeight": 42,
+          "name": "Recovery"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Materials"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "ConfirmationAndSaving"
+        }
+      ],
+      "panel": [
+        800,
+        510
+      ],
+      "canvasHeight": 1030
+    },
+    {
+      "host": [
+        844,
+        390
+      ],
+      "guideHeight": 248,
+      "sections": [
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Introduction"
+        },
+        {
+          "height": 66,
+          "textHeight": 42,
+          "name": "AttemptRules"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage1"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage2"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage3"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage4"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage5"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage6"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage7"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage8"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage9"
+        },
+        {
+          "height": 66,
+          "textHeight": 42,
+          "name": "Recovery"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Materials"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "ConfirmationAndSaving"
+        }
+      ],
+      "panel": [
+        800,
+        366
+      ],
+      "canvasHeight": 1030
+    },
+    {
+      "host": [
+        667,
+        375
+      ],
+      "guideHeight": 233,
+      "sections": [
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Introduction"
+        },
+        {
+          "height": 80,
+          "textHeight": 56,
+          "name": "AttemptRules"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage1"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage2"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage3"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage4"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage5"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage6"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage7"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage8"
+        },
+        {
+          "height": 64,
+          "textHeight": 28,
+          "name": "Stage9"
+        },
+        {
+          "height": 80,
+          "textHeight": 56,
+          "name": "Recovery"
+        },
+        {
+          "height": 66,
+          "textHeight": 42,
+          "name": "Materials"
+        },
+        {
+          "height": 66,
+          "textHeight": 42,
+          "name": "ConfirmationAndSaving"
+        }
+      ],
+      "panel": [
+        643,
+        351
+      ],
+      "canvasHeight": 1062
+    }
+  ],
+  "serviceRecovery": true,
+  "pass": true,
+  "materialChecks": 151
+}

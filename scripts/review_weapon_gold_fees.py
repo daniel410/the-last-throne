@@ -39,7 +39,7 @@ for line in raw.splitlines():
     else:
         missions.append(dict(id=row[1], mode=row[2], repeat_gold=int(row[3]),
                              gems=int(row[4]), stones=int(row[5])))
-assert len(steps) == 9 and all(s['current_gold'] == 0 for s in steps)
+assert len(steps) == 9 and all(s['current_gold'] >= 0 for s in steps)
 
 
 def distribution(prices, chances):
@@ -69,13 +69,14 @@ def distribution(prices, chances):
 
 
 curves = {
+    'current_runtime': [s['current_gold'] for s in steps],
     'trial_25n': [25 * n for n in range(1, 10)],
     'trial_50n': [50 * n for n in range(1, 10)],
     'trial_10n_squared': [10 * n * n for n in range(1, 10)],
     'historical_20n_squared_T1': [20 * n * n for n in range(1, 10)],
     'historical_20n_squared_T6': [120 * n * n for n in range(1, 10)],
 }
-result = dict(scope='unapproved weapon-only fee sensitivity; independent attempts; '
+result = dict(scope='current runtime and unapproved fee sensitivity; independent attempts; '
                    'no measured clear time, inventory stocks, potion spending or player behavior',
               source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
               steps=steps, missions=missions, curves={})

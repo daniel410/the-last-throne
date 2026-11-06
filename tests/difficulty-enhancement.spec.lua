@@ -65,7 +65,7 @@ p.wallet.gold=10000
 local item=find(p,'knight_weapon_fine');local id=item.instanceId
 for level=1,3 do
  item=p.items[id];local cmd={action='Enhance',store='blacksmith',requestId='enhance'..level,heroId='hero',revision=p.revision,instanceId=id,itemVersion=item.version}
- local oldGold=p.wallet.gold;p=assert(shop(p,cmd,{atLobby=true},C));eq(p.wallet.gold,oldGold,'enhancement costs no Gold')
+ local oldGold=p.wallet.gold;p=assert(shop(p,cmd,{atLobby=true},C));eq(p.wallet.gold,oldGold-25,'enhancement costs25 Gold per attempt')
  local q=R.quantity(p,'hero','enhancement_gem');p=assert(shop(p,cmd,{atLobby=true},C));eq(R.quantity(p,'hero','enhancement_gem'),q,'retry consumes no extra ore')
 end
 eq(C.items.knight_weapon_fine.stats.power,10,'item definition never overwritten')
@@ -86,7 +86,7 @@ fail=true;local result,reason=store:transact(42,function(current)return shop(cur
 check(not result and reason=='SaveUnknown','lost save response is unknown, not rolled back')
 fail=false;result=assert(store:transact(42,function(current)return shop(current,cmd,{atLobby=true},C)end))
 eq(result.items[id].enhancementLevel,1,'unknown save recovers exactly one enhancement')
-eq(result.wallet.gold,p.wallet.gold,'unknown save never debits Gold')
+eq(result.wallet.gold,p.wallet.gold-25,'unknown save debits25 Gold exactly once')
 -- A fresh run permits new rewards; an enemy in the same run is credited once.
 local nextRun='kill-ledger';result=assert(A.begin(result,'hero','DW-01','Hell',nextRun,result.revision,R,C))
 local kill={action='AwardXP',heroId='hero',amount=50,coins=5,rewardKind='Defeat',stream='kill-test',sequence=1,requestId='kill1',runId=nextRun,killId='trail_guards_1'}
@@ -108,7 +108,7 @@ full.items.cores={instanceId='cores',definitionId='magic_stone',definitionVersio
 for step=1,9 do
  local item=full.items[hitem.instanceId];full=assert(shop(full,{action='Enhance',store='blacksmith',heroId='hero',requestId='high'..step,revision=full.revision,instanceId=item.instanceId,itemVersion=item.version},{atLobby=true},high))
 end
-eq(full.wallet.gold,100000,'Lv80 enhancement has no Gold fee');eq(R.quantity(full,'hero','enhancement_gem'),20,'+9 consumes90 gems');eq(R.quantity(full,'hero','magic_stone'),7,'+9 consumes21 stones')
+eq(full.wallet.gold,99775,'nine successful enhancements cost225 Gold at any level');eq(R.quantity(full,'hero','enhancement_gem'),20,'+9 consumes90 gems');eq(R.quantity(full,'hero','magic_stone'),7,'+9 consumes21 stones')
 check(math.abs(E.stats(high.items.test_80,full.items[hitem.instanceId]).power-30.48)<1e-9,'+9 adds27% once to base stats')
 -- Partial material shortage and foreign locations never mutate the source account.
 local q=new();q.wallet.gold=1000;local gear=find(q,'knight_weapon_fine');gear.enhancementLevel=0
