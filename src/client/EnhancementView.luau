@@ -33,7 +33,10 @@ function V.render(scroll,s,send,saving,notice)
  card('StoneExchange',C.items.magic_stone,Text.ForgeMaterials,string.format(Text.ExchangeInfo,ore,cores,gemsOffer.gold,gemsOffer.amount,stoneOffer.gems,stoneOffer.gold,stoneOffer.amount),{
   {title=string.format(Text.ExchangeGemsButton,gemsOffer.gold,gemsOffer.amount),action='ExchangeGems',exchangeVersion=E.exchangeVersion,enabled=s.wallet and s.wallet.gold>=gemsOffer.gold},
   {title=string.format(Text.ExchangeStoneButton,stoneOffer.gold),action='ExchangeStone',exchangeVersion=E.exchangeVersion,enabled=ore>=stoneOffer.gems and s.wallet and s.wallet.gold>=stoneOffer.gold}})
- if amount('iron_ore')>0 then card('LegacyOre',C.items.iron_ore,Text.ConvertOre,Text.ConvertReview,{{title=Text.ConvertOre,review=Text.ConvertReview,action='ConvertOre'}})end
+ if amount('iron_ore')>0 then
+  local title,review=string.format(Text.ConvertOre,E.oreConversionGold),string.format(Text.ConvertOreReview,E.oreConversionGold)
+  card('LegacyOre',C.items.iron_ore,title,review,{{title=title,review=review,action='ConvertOre',exchangeVersion=E.exchangeVersion,enabled=s.wallet and s.wallet.gold>=E.oreConversionGold}})
+ end
  if amount('forge_core')>0 then card('LegacyCore',C.items.forge_core,Text.ConvertCore,Text.ConvertReview,{{title=Text.ConvertCore,review=Text.ConvertReview,action='ConvertCore'}})end
  for _,item in ipairs(s.items or {})do
   local def=C.items[item.definitionId]

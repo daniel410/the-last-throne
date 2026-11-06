@@ -13,7 +13,7 @@ return {
 
  MissionTitle='MISSION & DIFFICULTY · %s · %s',MissionList='SELECT MISSION · completed missions can be replayed',
  ChangeMission='CHANGE MISSION',HideMissions='HIDE MISSION LIST',Locked=' · LOCKED',StoryRequired='Complete the earlier story first.',
- Confirm='CONFIRM · ',ForgeMaterials='GEMS & MAGIC STONES',ConvertOre='CONVERT 1 ORE → 1 GEM',ConvertCore='CONVERT 1 CORE → 1 MAGIC STONE',ConvertReview='Convert one old material to one new material? This is optional and cannot be undone.',ExchangeInfo='In bag: %d Gems / %d Stones\n%d Gold → %d Gems\n%d Gems + %d Gold → %d Magic Stone\nGems are separate from Diamonds.',
+ Confirm='CONFIRM · ',ForgeMaterials='GEMS & MAGIC STONES',ConvertOre='1 ORE + %d GOLD → 1 GEM',ConvertOreReview='Spend 1 Ore and %d Gold to receive 1 Gem? This cannot be undone.',ConvertCore='CONVERT 1 CORE → 1 MAGIC STONE',ConvertReview='Convert one old material to one new material? This is optional and cannot be undone.',ExchangeInfo='In bag: %d Gems / %d Stones\n%d Gold → %d Gems\n%d Gems + %d Gold → %d Magic Stone\nGems are separate from Diamonds.',
  ExchangeGemsButton='%d GOLD → %d GEMS',ExchangeStoneButton='GEMS + %d GOLD → STONE',
  ExchangeButton='EXCHANGE · 50 GOLD',MoreMaterials='MORE GOLD OR MATERIALS NEEDED',MaxEnhancement='MAX ENHANCEMENT',
  StatChange='%s: %.2f → %.2f',Power='Power',Armor='Armor',Health='HP',

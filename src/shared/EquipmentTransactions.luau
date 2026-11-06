@@ -65,9 +65,13 @@ function F.apply(profile,c,context,C,R)
   if not F.consume(p,c.heroId,'enhancement_gem',offer.gems)then return nil,'EnhancementMaterials'end
   p.wallet.gold=p.wallet.gold-offer.gold;F.grant(p,R,C,c.heroId,'magic_stone',offer.amount,'stone-'..c.requestId)
  elseif c.action=='ConvertOre'or c.action=='ConvertCore'then
+  local gold=c.action=='ConvertOre'and E.oreConversionGold or 0
+  if c.action=='ConvertOre'and c.exchangeVersion~=E.exchangeVersion then return nil,'ExchangeChanged'end
+  if p.wallet.gold<gold then return nil,'NotEnoughGold'end
   local source=c.action=='ConvertOre'and 'iron_ore'or 'forge_core'
   local target=c.action=='ConvertOre'and 'enhancement_gem'or 'magic_stone'
   if not F.consume(p,c.heroId,source,1)then return nil,'EnhancementMaterials'end
+  p.wallet.gold=p.wallet.gold-gold
   F.grant(p,R,C,c.heroId,target,1,'convert-'..c.requestId)
  elseif c.action=='Enhance'or c.action=='Recover'or c.action=='OpenCache'then
   if not item or item.version~=c.itemVersion or item.ownerUserId~=p.userId then return nil,'Changed'end

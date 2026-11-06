@@ -47,6 +47,33 @@ assert(store:open(42));p=assert(store:transact(42,function(v)local q=fresh(100);
 lose=true;no,why=store:transact(42,function(v)return trade(v,c)end);check(not no and why=='SaveUnknown','lost committed purchase remains unknown')
 lose=false;n=assert(store:transact(42,function(v)return trade(v,c)end));check(n.wallet.gold==50 and R.quantity(n,'h','enhancement_gem')==5,'unknown retry recovers one debit and one grant')
 check(store:close(42)~=nil,'save release succeeds');local reopened=assert(store:open(42));check(reopened.wallet.gold==50 and R.quantity(reopened,'h','enhancement_gem')==5,'purchase persists on rejoin')
+-- Ore conversion charges once, after a current price confirmation.
+local oreProfile=fresh(49);local oreBefore=R.quantity(oreProfile,'h','iron_ore')
+local oreCommand=cmd(oreProfile,'ore','ConvertOre');oreCommand.price=0
+no,why=trade(oreProfile,oreCommand)
+check(not no and why=='NotEnoughGold'and oreProfile.wallet.gold==49 and R.quantity(oreProfile,'h','iron_ore')==oreBefore,'49 Gold refuses without consuming ore')
+oreProfile.wallet.gold=50
+local oldCommand=R.copy(oreCommand);oldCommand.exchangeVersion=nil
+no,why=trade(oreProfile,oldCommand);check(not no and why=='ExchangeChanged','old free quote requires a new confirmation')
+n=assert(trade(oreProfile,oreCommand))
+check(n.wallet.gold==0 and R.quantity(n,'h','iron_ore')==oreBefore-1 and R.quantity(n,'h','enhancement_gem')==1 and n.wallet.diamonds==99,'one ore and50 Gold yield exactly one gem')
+for i=1,20 do local replay=assert(trade(n,oreCommand));check(replay.wallet.gold==0 and R.quantity(replay,'h','enhancement_gem')==1,'conversion retry never charges or grants twice')end
+local empty=fresh(50);assert(F.consume(empty,'h','iron_ore',R.quantity(empty,'h','iron_ore')))
+no,why=trade(empty,cmd(empty,'empty-ore','ConvertOre'));check(not no and why=='EnhancementMaterials'and empty.wallet.gold==50,'missing ore preserves Gold')
+F.grant(oreProfile,R,C,'h','forge_core',1,'core-fixture')
+local core=assert(trade(oreProfile,cmd(oreProfile,'core','ConvertCore')));check(core.wallet.gold==50,'core conversion retains zero Gold fee')
+-- Completed free conversions retain their original fingerprint and result.
+local historicOre=R.copy(n);local oldFingerprint=table.concat({'forge','ConvertOre','h','','','nil',tostring(oldCommand.revision),'blacksmith'},'|')
+historicOre.operations.ore={fingerprint=oldFingerprint,revision=historicOre.revision}
+local replay,err,duplicate=trade(historicOre,oldCommand,{atLobby=false})
+check(not err and duplicate and replay.wallet.gold==0,'historical free receipt is returned without retroactive charging')
+-- Commit succeeds but acknowledgement is lost; retry/rejoin recover one fee.
+local account=assert(store:transact(42,function(v)local q=fresh(50);q.epoch=v.epoch;q.lease=v.lease;return q end))
+local lostOre=cmd(account,'ore-unknown','ConvertOre');lose=true
+no,why=store:transact(42,function(v)return trade(v,lostOre)end);check(not no and why=='SaveUnknown','unknown ore conversion remains pending')
+lose=false;n=assert(store:transact(42,function(v)return trade(v,lostOre)end))
+check(n.wallet.gold==0 and R.quantity(n,'h','enhancement_gem')==1 and R.quantity(n,'h','iron_ore')==oreBefore-1,'unknown retry preserves one fee and one conversion')
+assert(store:close(42));n=assert(store:open(42));check(n.wallet.gold==0 and R.quantity(n,'h','enhancement_gem')==1,'ore conversion persists on rejoin')
 -- Enhancement costs are fixed for every target and supported equipment type.
 for _,id in ipairs({'knight_weapon_fine','traveler_coat','copper_ring'})do for target=1,9 do check(E.cost(C.items[id],target).gold==25,'flat25 Gold on every equipment type and target')end end
 local gear;for _,item in pairs(p.items)do if item.definitionId=='knight_weapon_fine'then gear=item end end

@@ -123,7 +123,7 @@ local serviceOK,serviceError=xpcall(function()
  assert(not inventory.shop(actor,{action='ExchangeStone',store='blacksmith',heroId='service-hero',requestId='service-stone',revision=s.revision}))
  s=inventory.snapshot(actor);assert(quantity(s,'enhancement_gem')==beforeGem-5 and quantity(s,'magic_stone')==beforeStone+1 and s.wallet.gold==beforeGold-50 and s.wallet.diamonds==beforeDiamonds,'new exchange not isolated from Diamonds')
  local oldOre=quantity(s,'iron_ore');local gems=quantity(s,'enhancement_gem')
- assert(not inventory.shop(actor,{action='ConvertOre',store='blacksmith',heroId='service-hero',requestId='service-convert',revision=s.revision}))
+ assert(not inventory.shop(actor,{action='ConvertOre',store='blacksmith',heroId='service-hero',requestId='service-convert',revision=s.revision,exchangeVersion=1}))
  s=inventory.snapshot(actor);assert(quantity(s,'iron_ore')==oldOre-1 and quantity(s,'enhancement_gem')==gems+1,'explicit old material conversion failed')
  for _,v in ipairs(s.items)do if v.instanceId==item.instanceId then item=v;break end end
  assert(not inventory.shop(actor,{action='Recover',store='blacksmith',heroId='service-hero',requestId='service-recover',revision=s.revision,instanceId=item.instanceId,itemVersion=item.version}))

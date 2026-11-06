@@ -1,0 +1,17 @@
+$ lua tests/material-exchange.spec.lua
+Material exchange and flat fee: 180 checks passed
+
+$ lua tests/reward-materials.spec.lua
+Reward materials: 41 checks passed
+
+$ lua tests/enhancement-probability.spec.lua
+Enhancement probability: 2869 checks passed (including 90000 outcome boundaries)
+
+$ lua tests/inventory.spec.lua
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+
+$ lua tests/difficulty-balance.spec.lua
+Difficulty balance: 2661 checks passed
+
+$ lua tests/difficulty-enhancement.spec.lua
+Difficulty/enhancement: 125 checks passed
