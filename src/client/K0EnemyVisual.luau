@@ -5,10 +5,13 @@ local Workspace = game:GetService("Workspace")
 
 local EnemyVisual = {}
 local Text=require(game:GetService('ReplicatedStorage').Shared.K0Text)
+local PatternText=require(game:GetService('ReplicatedStorage').Shared.EnemyPatternText)
 local Config=require(game:GetService('ReplicatedStorage').Shared.K0Config)
 local PixelFX=require(script.Parent.PixelFX)
+local PatternFX=require(script.Parent.EnemyPatternEffects)
 function EnemyVisual.statusText(model,current)
  local lines={}
+ if (model:GetAttribute('K0EnemyGuardUntil')or 0)>current then table.insert(lines,PatternText.Guarding)end
  local stunUntil=model:GetAttribute('K0EnemyStunUntil')
  if type(stunUntil)=='number' and stunUntil>current then table.insert(lines,string.format(Text.EnemyStunned,stunUntil-current)) end
  local tauntUntil=model:GetAttribute('K0ProvokeUntil')
@@ -53,7 +56,8 @@ local function mount(enemies)
 				end
 			end
 			for _, model in enemies:GetChildren() do
-				PixelFX.enemy(model,current)
+				PatternFX.observe(model,current)
+    if not model:GetAttribute('K0PatternId')then PixelFX.enemy(model,current)end
 				local provokeUntil = model:GetAttribute("K0ProvokeUntil")
 				if type(provokeUntil) == "number" and Workspace:GetServerTimeNow() < provokeUntil and not provokeEffects[model] then
 					local glow = Instance.new("Highlight")
@@ -97,6 +101,7 @@ local function mount(enemies)
 end
 function EnemyVisual.start()
  if started then return end;started=true
+ PatternFX.start()
  local function discover(o)
   if o.Name=='Enemies' and o:IsA('Folder') and o.Parent and o.Parent.Name=='DeepwoodK0' then mount(o)end
  end

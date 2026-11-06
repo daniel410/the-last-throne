@@ -1,0 +1,14 @@
+{
+  "src/server/Combat/CombatService.luau": "81cde5dd1c118f575f348596adce3b5ba35b5f01d1589a2dcf281740ef4d739e",
+  "src/server/Combat/EnemyPatternRuntime.luau": "1fe3c40779491135b184c5a4086614eb9774a238e558c7d81a164e33cd92d1be",
+  "src/server/World/EnemyModelDetails.luau": "d5db65c78a3c149ff83d0a8c96dc84d5e80cedc86b08cbcc5c0a7d062e19a322",
+  "src/server/World/GloamwoodAppearance.luau": "8d30992a51a658ab8fb3af44dfdeb2cf1624a01ee628e6fa66518afaee0810e1",
+  "src/shared/EnemyPatterns.luau": "fc2aa0ef85448e016816aa9fcadcc8e219695faeac76d97e56a442688a7089d5",
+  "src/shared/EnemyAttackGeometry.luau": "15a1707d4ea15152dd9284489f4e01cc00c0557d52275354f2bcf9ef1ef8c171",
+  "src/shared/Difficulty.luau": "fd8f7cf78b36eb5d107d2cc8cbcea718932c0047150e3f5c0796b5e1b612b811",
+  "src/client/EnemyPatternEffects.luau": "647442cc1c9dc3576c4cbd9a1277730331e1ee7d2214b804c216db4a9a8b252f",
+  "src/client/EnemyPatternPose.luau": "7fb94fcc86ad1f363449ec2e3a80d72d38af1abdb3746aca38fe4a712bd1460e",
+  "src/client/K0PlayerHitFeedback.luau": "6db1f0bf753821cdad644f4f41114de733cf9cd51ce01dc17e80d26377fabc79",
+  "tests/enemy-patterns-native.luau": "200b40ca898172adf85549d4d22410bf67a1f25f325611959068847b386efde8",
+  "tests/enemy-pattern-service-cases.luau": "cde2749a777bcf07439c32e87a60d5f6d4f197bc0e751162cb93e7ffa0bb615c"
+}

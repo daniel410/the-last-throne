@@ -142,6 +142,7 @@ end
 local function applyBalance(model,spec,partySize,difficulty,version,index)
  local health,damage,level,elite=Balance.unitStats(spec,partySize,difficulty,version,index)
  local xp,gold=Balance.rewards(spec,difficulty,version)
+ model:SetAttribute('StoryRulesVersion',version or Difficulty.version)
  model:SetAttribute('StoryLevel',level or spec.level);model:SetAttribute('StoryBoss',Balance.isBoss(spec.kind))
  model:SetAttribute('StoryHealth',health);model:SetAttribute('StoryDamage',damage)
  local tempo=Balance.tempo(spec.kind,version)
@@ -223,10 +224,13 @@ local function floorHazard(e)
  local p=Instance.new('Part');p.Name=e.chapter.epic==3 and 'FurnaceHeatWarning' or 'CorruptionWarning';p.Shape=Enum.PartType.Cylinder;p.Size=Vector3.new(.15,14,14);p.CFrame=CFrame.new(pos)*CFrame.Angles(0,0,math.pi/2);p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.Color=e.chapter.epic==3 and Color3.fromRGB(255,145,55) or Color3.fromRGB(180,65,240);p.Material=Enum.Material.Neon;p.Transparency=.5;p.Parent=options.world.folder
  e.parts=e.parts or {};table.insert(e.parts,p)
  task.delay(2,function()
-  if encounters[e.key]==e then
+  if encounters[e.key]==e and not e.completed and e.boss and e.boss.Parent and e.boss:FindFirstChildOfClass('Humanoid').Health>0 then
+   if (e.rulesVersion or Difficulty.version)>=9 then options.combat.applyStoryHazard(e.boss,pos,7,math.floor(32*(Difficulty.mode(e.difficultyId or 'Easy',e.rulesVersion)or Difficulty.modes.Easy).damage+.5))
+   else
    for ally,heroId in pairs(e.participants) do local ctx,root=context(ally)
     if ctx and ctx.heroId==heroId and root and (Vector3.new(root.Position.X,pos.Y,root.Position.Z)-pos).Magnitude<7
      and not ally.Character:GetAttribute('K0Invulnerable') then ally.Character:FindFirstChildOfClass('Humanoid'):TakeDamage(math.floor(32*(Difficulty.mode(e.difficultyId or 'Easy',e.rulesVersion)or Difficulty.modes.Easy).damage+.5)) end
+   end
    end
   end
   p:Destroy()
@@ -424,6 +428,12 @@ function Service.start(settings)
   end
  end)
  options.combat.setStoryDefeatHandler(Service.defeated,Service.bossDamage)
+ options.combat.setStoryTargetValidator(function(model,player,heroId)
+  local e=encounters[model:GetAttribute('DeepwoodEncounter')]
+  if not e or e.completed or e.participants[player]~=heroId then return false end
+  local run=options.inventory.expedition(player,heroId)
+  return (run and run.runId or nil)==e.runId
+ end)
  Players.PlayerRemoving:Connect(function(p) activities.remove(p);access.remove(p);companion.remove(p);offers[p]=nil;queues[p]=nil;lastRequest[p]=nil;for _,e in pairs(encounters) do e.participants[p]=nil end end)
  local activityElapsed=0
  RunService.Heartbeat:Connect(function(dt)

@@ -1,6 +1,7 @@
 -- Deterministic imported Bone curves, driven by the existing server attack clock.
 local Clips=require(script.Parent.RegionalCasterClips)
 local Sockets=require(script.Parent.RegionalCasterSockets)
+local PatternPose=require(script.Parent.EnemyPatternPose)
 local Caster={}
 local names={'Root','Torso','UpperR','ForearmR','HandR','Staff','UpperL','ForearmL','HandL'}
 local function scale(cf,height)return CFrame.new(cf.Position*height)*cf.Rotation end
@@ -47,7 +48,7 @@ function Caster.step(c,s,dt,current,attackPhase)
  local active=not stunned and c.attack and (state=='Windup' or state=='Active' or state=='Recovery')
  if stunned then clip='Stunned';phase=(current*.65+s.seed)%1
  elseif state=='Exposed'then clip='Exposed';phase=(current*.65+s.seed)%1
- elseif active then clip=c.attack.clip;phase=attackPhase(current-c.attack.start,c.attack.w,c.attack.a,c.attack.r)end
+ elseif active then clip=c.attack.clip;phase=PatternPose.phase(model,current,c.attack)or attackPhase(current-c.attack.start,c.attack.w,c.attack.a,c.attack.r)end
  -- On a state change, blend from the actual current pose. This also handles
  -- interruption at arbitrary attack times rather than replaying a fixed windup.
  local key=active and ('attack:'..tostring(clock)) or clip

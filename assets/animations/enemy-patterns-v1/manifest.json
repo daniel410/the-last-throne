@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "baselineCommit": "02309a66caff7cc593f3a7de0597beaf75a9c90a",
+  "runtime": "procedural native geometry; GLB is a review/export artifact, not a newly uploaded Roblox mesh",
+  "tdPinnedAudit": [
+    {
+      "key": "runtime",
+      "path": "assets/shared/td-monsters/runtime.rbxmx",
+      "sha256": "14e4e9492d280ce887b229cbe6deea5a7a90af2cb643760dc355bcdcb4433ef5",
+      "matchesPinned": true
+    },
+    {
+      "key": "goblin",
+      "path": "assets/shared/td-monsters/source/Meshy_AI_Goblin_Bladebearer_20261025_texture_da014fd3.glb",
+      "sha256": "90ece6137ab326db2e9b929383c5b98c3f2529b0f78bc7f4d1fc8dbba1dc0a7b",
+      "matchesPinned": true
+    },
+    {
+      "key": "slime",
+      "path": "assets/shared/td-monsters/source/Meshy_AI_Grumpy_Green_Slime_1026021945_texture.glb",
+      "sha256": "3adc1a12f3e89f6690047abb2c8cab3d6fbb4ae0f3726b87e2a5607d4d7324c2",
+      "matchesPinned": true
+    },
+    {
+      "key": "ogre",
+      "path": "assets/shared/td-monsters/source/Meshy_AI_Grimfang_the_Bonecrusher_20261025_texture_5d91642a.glb",
+      "sha256": "d5a01cdc860ce2bc0725594e89c01b574f095ac9cde4a84807b72640493af2b3",
+      "matchesPinned": true
+    },
+    {
+      "key": "orc",
+      "path": "assets/shared/td-monsters/source/Meshy_AI_Ironhide_Warlord_20261025_texture_3545c9fe.glb",
+      "sha256": "b612a43d660f11cf24a9b5216462fdf1cf7b98a2e49db625102006cc70fb5ad3",
+      "matchesPinned": true
+    }
+  ],
+  "derivedFiles": [
+    {
+      "path": "src/server/World/GloamwoodAppearance.luau",
+      "sha256": "8d30992a51a658ab8fb3af44dfdeb2cf1624a01ee628e6fa66518afaee0810e1"
+    },
+    {
+      "path": "src/server/World/EnemyModelDetails.luau",
+      "sha256": "d5db65c78a3c149ff83d0a8c96dc84d5e80cedc86b08cbcc5c0a7d062e19a322"
+    },
+    {
+      "path": "assets/animations/enemy-patterns-v1/model-comparison.glb",
+      "sha256": "e21fb1e1871224f15ea4fff0506b335f05ea2613f9478e94e35af3fafe396800"
+    },
+    {
+      "path": "assets/animations/enemy-patterns-v1/native-model-capture.json",
+      "sha256": "95ddc558e87a57cae9c6af9c4c86e29be61be544e90de0584feb207b323ddbb0"
+    },
+    {
+      "path": "assets/animations/enemy-patterns-v1/pattern-manifest.json",
+      "sha256": "6dccd451faa9f9d5fe936062e8123ed31f5dd49e983ff02fac04c767dcf15020"
+    },
+    {
+      "path": "docs/evidence/enemy-patterns-20261106/model-before-after.png",
+      "sha256": "21a5f59d6ae0c99dbfd95a5c61bbd368cb3d88a1353f9a16a12cc7836427ff2f"
+    }
+  ],
+  "newRobloxAssetUploads": false,
+  "artAcceptance": "pending",
+  "originalUserBlenderScenePreserved": true
+}

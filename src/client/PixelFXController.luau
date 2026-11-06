@@ -34,6 +34,7 @@ function Controller.renderCharacter(character,now)
  return FX.emit(row.key,position,row.definition and 2.5 or 1.6,.32,{character=character,seq=seq})
 end
 function Controller.renderHurt(character,now)
+ local specific=character:GetAttribute('K0PatternHurtAt');if type(specific)=='number' and now-specific<.3 then return false end
  local at=character:GetAttribute("K0HurtAt")
  if type(at)~="number" or at~=at or hurt[character]==at or now-at<0 or now-at>.2 then return false end
  local damage=character:GetAttribute("K0HurtDamage")

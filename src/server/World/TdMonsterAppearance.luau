@@ -4,6 +4,7 @@ local ServerStorage = game:GetService("ServerStorage")
 local RigSockets = require(game:GetService("ReplicatedStorage").Shared.EnemyRigSockets)
 
 local FrozenRigs=require(game:GetService('ReplicatedStorage').Shared.FrozenValeRigs)
+local Details=require(script.Parent.EnemyModelDetails)
 local Appearance = {}
 local RegionalCasters = require(script.Parent.RegionalCasterAppearance)
 local SPECS = {
@@ -64,10 +65,10 @@ function Appearance.describe(kind)
 end
 
 function Appearance.attach(rig, kind, footOffset, visualMultiplier)
- if Gloamwood.supports(kind)then return Gloamwood.attach(rig,kind,footOffset,visualMultiplier)end
+ if Gloamwood.supports(kind)then local visual=Gloamwood.attach(rig,kind,footOffset,visualMultiplier);Details.attach(rig,kind,visual,footOffset or rig.HumanoidRootPart.Size.Y*1.5,rig:GetAttribute('TdMonsterTargetHeight'));return visual end
 	assert(rig and rig:IsA("Model"), "TD monster visual requires a Model rig")
 	assert(not rig:FindFirstChild("TdMonsterVisual"), "TD monster visual already attached")
-	if RegionalCasters.supports(kind) then return RegionalCasters.attach(rig,kind,footOffset,visualMultiplier) end
+	if RegionalCasters.supports(kind) then local visual=RegionalCasters.attach(rig,kind,footOffset,visualMultiplier);Details.attach(rig,kind,visual,footOffset or rig.HumanoidRootPart.Size.Y*1.5,rig:GetAttribute('TdMonsterTargetHeight'));return visual end
 	local root = rig:FindFirstChild("HumanoidRootPart")
 	assert(root and root:IsA("BasePart"), "TD monster rig needs HumanoidRootPart")
 	local spec, sourceHeight, sources, scale = templateFor(kind)
@@ -173,6 +174,7 @@ function Appearance.attach(rig, kind, footOffset, visualMultiplier)
  rig:SetAttribute("TdWeaponPart", spec.weaponPart or spec.weaponArm or "ArmR")
  rig:SetAttribute("TdWeaponSwingReversed", spec.reverseWeaponSwing == true)
  rig:SetAttribute("TdWeaponShoulder", kind == "Slime" and "None" or spec.weaponArm == "ArmL" and "Right Shoulder" or "Left Shoulder")
+	Details.attach(rig,kind,visual,offset,height)
 	return visual
 end
 

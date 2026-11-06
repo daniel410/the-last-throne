@@ -1,0 +1,87 @@
+[
+  {
+    "path": "src/client/EnemyPatternEffects.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/client/EnemyPatternPose.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/client/K0EnemyMotion.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/client/K0EnemyVisual.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/client/K0PlayerHitFeedback.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/client/PixelFXController.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/client/RegionalCasterMotion.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/server/Combat/CombatService.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/server/Combat/EnemyPatternRuntime.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/server/Story/DeepwoodService.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/server/World/EnemyModelDetails.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/server/World/GloamwoodAppearance.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/server/World/TdMonsterAppearance.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/shared/Difficulty.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/shared/EnemyAttackGeometry.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/shared/EnemyPatternText.luau",
+    "pass": true,
+    "error": ""
+  },
+  {
+    "path": "src/shared/EnemyPatterns.luau",
+    "pass": true,
+    "error": ""
+  }
+]

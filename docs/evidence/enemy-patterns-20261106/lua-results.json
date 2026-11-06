@@ -1,0 +1,32 @@
+[
+  {
+    "command": "lua tests/enemy-patterns.spec.lua",
+    "exitCode": 0,
+    "stdout": "enemy-patterns: 3481 checks PASS;49 kinds/22 bosses, geometry, version8/9 stats/rewards\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/deepwood-bosses.spec.lua",
+    "exitCode": 0,
+    "stdout": "Deepwood bosses: 96 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/difficulty-balance.spec.lua",
+    "exitCode": 0,
+    "stdout": "Difficulty balance: 2637 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/party-story.spec.lua",
+    "exitCode": 0,
+    "stdout": "Party story and final boss: 2765 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/boss-pressure-boost.spec.lua",
+    "exitCode": 0,
+    "stdout": "Boss pressure boost: 307910 checks passed; 22 boss kinds\n",
+    "stderr": ""
+  }
+]

@@ -12,6 +12,14 @@ function Feedback.bodyPose(character, current)
     local age = current - at
     if age < 0 or age >= .22 then return nil end
     local weight = age < .035 and age / .035 or ((.22 - age) / .185) ^ 2
+    local source=character:GetAttribute('K0HurtSource');local root=character:FindFirstChild('HumanoidRootPart')
+    if typeof(source)=='Vector3' and root then
+        local delta=source-root.Position;local flat=Vector3.new(delta.X,0,delta.Z)
+        if flat.Magnitude>.01 then
+            local direction=root.CFrame:VectorToObjectSpace(flat.Unit)
+            return CFrame.Angles(math.rad(9*weight*direction.Z),0,math.rad(6*weight*direction.X))
+        end
+    end
     return CFrame.Angles(math.rad(-9 * weight), 0, math.rad(3 * weight))
 end
 

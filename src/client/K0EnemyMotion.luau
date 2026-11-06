@@ -18,6 +18,7 @@ local GloamMotion=require(script.Parent.GloamwoodMotion)
 local HitReaction=require(script.Parent.K0EnemyHitReaction)
 local WeaponMotion=require(script.Parent.K0EnemyWeaponMotion)
 local CasterMotion=require(script.Parent.RegionalCasterMotion)
+local PatternPose=require(script.Parent.EnemyPatternPose)
 local Motion={}
 local channels={'body','weapon','off','rightLeg','leftLeg'}
 local names={weapon='Left Shoulder',off='Right Shoulder',rightLeg='Right Hip',leftLeg='Left Hip'}
@@ -96,7 +97,7 @@ function Motion.step(s,dt,current)
   local humanoid=s.model:FindFirstChildOfClass('Humanoid')
   if not humanoid or humanoid.Health<=0 or s.model:GetAttribute('K0EnemyState')=='Dead'then WeaponMotion.hide(s.weaponFX);return end
   local phase,active,heavy,clock,jumped=CasterMotion.step(s.caster,s,dt,current,Motion.attackPhase)
-  s.caster.bones.Root.Transform=s.caster.pose.Root*HitReaction.sample(s.model,current)
+  s.caster.bones.Root.Transform=s.caster.pose.Root*HitReaction.sample(s.model,current)*(s.caster.attack and PatternPose.accent(s.model,current,s.caster.attack)or CFrame.identity)
   WeaponMotion.step(s.weaponFX,phase,active,heavy,clock,current,s.viewDistance or 0,jumped)
   return
  end
@@ -127,7 +128,7 @@ function Motion.step(s,dt,current)
  local attackPhase=0
  if stunned or state=='Exposed' then target=Motion.sample(s.kind,'Stunned',(current*.65+s.seed)%1)
  elseif s.attack and (state=='Windup' or state=='Active' or state=='Recovery') then
-  local a=s.attack;attackPhase=Motion.attackPhase(current-a.start,a.w,a.a,a.r);target=Motion.sample(s.kind,a.clip,attackPhase)
+  local a=s.attack;attackPhase=PatternPose.phase(s.model,current,a)or Motion.attackPhase(current-a.start,a.w,a.a,a.r);target=Motion.sample(s.kind,a.clip,attackPhase)
  end
  GloamMotion.step(s.gloam,s.model,current,moving,attackActive and attackPhase or nil)
  -- Attack timing is sampled directly; smoothing it would delay the impact.
@@ -139,6 +140,7 @@ function Motion.step(s,dt,current)
  local cross=s.look:Cross(look).Y;s.look=look;s.turn=s.turn+(clamp(cross/math.max(dt,.001),-2,2)-s.turn)*(1-math.exp(-dt*9))
  local rootFrame=CFrame.new(b[1]*s.height,b[2]*s.height,b[3]*s.height)*frame(b,4)*CFrame.Angles(0,0,-s.turn*.025*s.move)
  rootFrame=rootFrame*HitReaction.sample(s.model,current)
+ if attackActive then rootFrame=rootFrame*PatternPose.accent(s.model,current,s.attack)end
  local bodyInRoot=s.joint.C0*rootFrame*s.joint.C1:Inverse()
  if not s.profile.hasLegs then
   -- Robes/one-piece bodies keep their lower bound planted. Slime scales from
