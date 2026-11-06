@@ -1,0 +1,3090 @@
+{
+  "date": "2026-11-05",
+  "sourceCommit": "8f488a2bbbd3b77cd9518614b907329e592f1a77",
+  "kind": "static-proposal-and-pure-lua-synthetic-audit-not-engine-combat",
+  "hashes": {
+    "assets/balance/equipment-recalculated-2026-11-05.json": "c5c37695acbd01ed1ff14238f2875a2107693fbef07cb306fe5cd78a7de341cd",
+    "src/shared/ItemCatalog.luau": "f00468302f90bdea955bc0df246f8709e5537611ca12258d42e3f700cceb9b32",
+    "src/shared/Difficulty.luau": "d788c10ac23281c966e4b4ad472a6fb992057b52858e0c690110654a1c11beb9",
+    "src/shared/HeroProgression.luau": "515583b442295e577ed2844e91598a104802fc0c260385694415bab376535807",
+    "src/shared/BossCombatTuning.luau": "29ec447d9d1d1a0db786d04407835f4652d92da9eb127feeb924d29b7ca3a22f",
+    "src/server/Inventory/InventoryRules.luau": "b18d37c8937045009fde0926570dbdc89cbf2112227431ee082128c7cfd6d0a4",
+    "src/shared/EquipmentImpact.luau": "b8926b4ca8defcf5f47889f6cb93d7a37c3b9d80b8c3a0891dddf2c9f541b8e9",
+    "src/shared/SkillStatPreview.luau": "1962675f5b7d687dfe6c95e358fd61165e661e64b332364720c6edc55091690b",
+    "src/server/Combat/CombatService.luau": "328a544609664d46666c50d6ed4718ff1460747b937f2d71b80284e6a417b2d7"
+  },
+  "runtimeRulesVersion": 8,
+  "runtimeCatalog": {
+    "definitions": 63,
+    "equipment": 45,
+    "mpDefinitions": 0
+  },
+  "currentCandidateIdsRegistered": 0,
+  "mpInjectionError": "src/server/Inventory/InventoryRules.luau:59: attempt to perform arithmetic on a nil value (field '?')",
+  "gradeCounts": {
+    "Rare": 40,
+    "Epic": 40,
+    "Legendary": 40,
+    "Unique": 40
+  },
+  "effectCounts": {
+    "shield": 12,
+    "reduction": 13,
+    "heal": 5,
+    "bonus": 7,
+    "mana": 3
+  },
+  "identicalCompatibleTriggers": [],
+  "compatibleSharedCategoryPairs": [
+    {
+      "items": [
+        "Unique_Quarrykeeper_Hood",
+        "Unique_Widowstep_Boots"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Quarrykeeper_Hood",
+        "Unique_Glacier_Ward"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Quarrykeeper_Hood",
+        "Unique_Lastlight_Charm"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Quarrykeeper_Hood",
+        "Unique_Knight_Rootwardens_Oath"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Quarrykeeper_Hood",
+        "Unique_Knight_Lionheart_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "basic_attack_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Quarrykeeper_Hood",
+        "Unique_Elf_Silkstep_Treads"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Quarrykeeper_Hood",
+        "Unique_Elf_Thornmark_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Quarrykeeper_Hood",
+        "Unique_Dwarf_Cragbreaker_Grips"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Quarrykeeper_Hood",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Hollowbark_Mantle",
+        "Unique_Ashforged_Grips"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "basic_attack_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Hollowbark_Mantle",
+        "Unique_Knight_Glacierwatch_Helm"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Hollowbark_Mantle",
+        "Unique_Knight_Citadel_Step"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Hollowbark_Mantle",
+        "Unique_Elf_Glacierleaf_Pendant"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Hollowbark_Mantle",
+        "Unique_Dwarf_Stonebreakers_Resolve"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Hollowbark_Mantle",
+        "Unique_Dwarf_Glacieranchor_Boots"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Hollowbark_Mantle",
+        "Unique_Mage_Emberweave_Grips"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Hollowbark_Mantle",
+        "Unique_Mage_Silkweave_Treads"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Hollowbark_Mantle",
+        "Unique_Knight_Throneward_Shield"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Knight_Glacierwatch_Helm"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Knight_Citadel_Step"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Elf_Hollowbark_Jerkin"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Elf_Glacierleaf_Pendant"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Dwarf_Stonebreakers_Resolve"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Dwarf_Caldera_Heartplate"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Dwarf_Glacieranchor_Boots"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Mage_Glacierveil_Robe"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Mage_Silkweave_Treads"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ashforged_Grips",
+        "Unique_Knight_Throneward_Shield"
+      ],
+      "category": "reduction",
+      "events": [
+        "basic_attack_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Widowstep_Boots",
+        "Unique_Glacier_Ward"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Widowstep_Boots",
+        "Unique_Lastlight_Charm"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Widowstep_Boots",
+        "Unique_Knight_Rootwardens_Oath"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Widowstep_Boots",
+        "Unique_Knight_Lionheart_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "basic_attack_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Widowstep_Boots",
+        "Unique_Elf_Widowwatch_Hood"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Widowstep_Boots",
+        "Unique_Elf_Thornmark_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Widowstep_Boots",
+        "Unique_Dwarf_Quarryking_Helm"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Widowstep_Boots",
+        "Unique_Dwarf_Cragbreaker_Grips"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Widowstep_Boots",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ogreheart_Ring",
+        "Unique_Knight_Hollowbark_Bulwark"
+      ],
+      "category": "heal",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ogreheart_Ring",
+        "Unique_Knight_Oathkeeper_Pendant"
+      ],
+      "category": "heal",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ogreheart_Ring",
+        "Unique_Mage_Grovepulse_Signet"
+      ],
+      "category": "heal",
+      "events": [
+        "enemy_damage_applied",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Ogreheart_Ring",
+        "Unique_Moonwell_Charm"
+      ],
+      "category": "heal",
+      "events": [
+        "enemy_damage_applied",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Glacier_Ward",
+        "Unique_Lastlight_Charm"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_hit_blocked",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Glacier_Ward",
+        "Unique_Knight_Rootwardens_Oath"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_hit_blocked",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Glacier_Ward",
+        "Unique_Knight_Lionheart_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_hit_blocked",
+        "basic_attack_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Glacier_Ward",
+        "Unique_Elf_Widowwatch_Hood"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_hit_blocked",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Glacier_Ward",
+        "Unique_Elf_Silkstep_Treads"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_hit_blocked",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Glacier_Ward",
+        "Unique_Elf_Thornmark_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_hit_blocked",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Glacier_Ward",
+        "Unique_Dwarf_Quarryking_Helm"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_hit_blocked",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Glacier_Ward",
+        "Unique_Dwarf_Cragbreaker_Grips"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_hit_blocked",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Glacier_Ward",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_hit_blocked",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Emberfang_Ring",
+        "Unique_Knight_Ogregrip_Gauntlets"
+      ],
+      "category": "bonus",
+      "events": [
+        "basic_attack_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Emberfang_Ring",
+        "Unique_Elf_Thornsong"
+      ],
+      "category": "bonus",
+      "events": [
+        "basic_attack_hit",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Emberfang_Ring",
+        "Unique_Elf_Emberflight_Grips"
+      ],
+      "category": "bonus",
+      "events": [
+        "basic_attack_hit",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Emberfang_Ring",
+        "Unique_Dwarf_Forgeheart_Signet"
+      ],
+      "category": "bonus",
+      "events": [
+        "basic_attack_hit",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Emberfang_Ring",
+        "Unique_Dwarf_Hollowstone_Pendant"
+      ],
+      "category": "bonus",
+      "events": [
+        "basic_attack_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Emberfang_Ring",
+        "Unique_Mage_Groveheart_Staff"
+      ],
+      "category": "bonus",
+      "events": [
+        "basic_attack_hit",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Lastlight_Charm",
+        "Unique_Knight_Rootwardens_Oath"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Lastlight_Charm",
+        "Unique_Knight_Lionheart_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "basic_attack_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Lastlight_Charm",
+        "Unique_Elf_Widowwatch_Hood"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Lastlight_Charm",
+        "Unique_Elf_Silkstep_Treads"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Lastlight_Charm",
+        "Unique_Elf_Thornmark_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Lastlight_Charm",
+        "Unique_Dwarf_Quarryking_Helm"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Lastlight_Charm",
+        "Unique_Dwarf_Cragbreaker_Grips"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Lastlight_Charm",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Knight_Rootwardens_Oath",
+        "Unique_Knight_Lionheart_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "skill_hit",
+        "basic_attack_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Knight_Rootwardens_Oath",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "skill_hit",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Knight_Glacierwatch_Helm",
+        "Unique_Knight_Citadel_Step"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Knight_Glacierwatch_Helm",
+        "Unique_Knight_Throneward_Shield"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Knight_Hollowbark_Bulwark",
+        "Unique_Knight_Oathkeeper_Pendant"
+      ],
+      "category": "heal",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Knight_Hollowbark_Bulwark",
+        "Unique_Moonwell_Charm"
+      ],
+      "category": "heal",
+      "events": [
+        "enemy_damage_applied",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Knight_Citadel_Step",
+        "Unique_Knight_Throneward_Shield"
+      ],
+      "category": "reduction",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Knight_Lionheart_Signet",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "basic_attack_hit",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Knight_Oathkeeper_Pendant",
+        "Unique_Moonwell_Charm"
+      ],
+      "category": "heal",
+      "events": [
+        "enemy_hit_blocked",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Elf_Thornsong",
+        "Unique_Elf_Emberflight_Grips"
+      ],
+      "category": "bonus",
+      "events": [
+        "skill_hit",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Elf_Widowwatch_Hood",
+        "Unique_Elf_Silkstep_Treads"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Elf_Widowwatch_Hood",
+        "Unique_Elf_Thornmark_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Elf_Widowwatch_Hood",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Elf_Hollowbark_Jerkin",
+        "Unique_Elf_Glacierleaf_Pendant"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Elf_Silkstep_Treads",
+        "Unique_Elf_Thornmark_Signet"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Elf_Silkstep_Treads",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Elf_Thornmark_Signet",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "skill_hit",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Dwarf_Stonebreakers_Resolve",
+        "Unique_Dwarf_Caldera_Heartplate"
+      ],
+      "category": "reduction",
+      "events": [
+        "skill_hit",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Dwarf_Stonebreakers_Resolve",
+        "Unique_Dwarf_Glacieranchor_Boots"
+      ],
+      "category": "reduction",
+      "events": [
+        "skill_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Dwarf_Quarryking_Helm",
+        "Unique_Dwarf_Cragbreaker_Grips"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Dwarf_Quarryking_Helm",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "enemy_damage_applied",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Dwarf_Caldera_Heartplate",
+        "Unique_Dwarf_Glacieranchor_Boots"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_damage_applied",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Dwarf_Cragbreaker_Grips",
+        "Unique_Stillwater_Ring"
+      ],
+      "category": "shield",
+      "events": [
+        "skill_hit",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Dwarf_Forgeheart_Signet",
+        "Unique_Dwarf_Hollowstone_Pendant"
+      ],
+      "category": "bonus",
+      "events": [
+        "skill_hit",
+        "enemy_hit_blocked"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Mage_Stillgrove_Hood",
+        "Unique_Mage_Lastlight_Focus"
+      ],
+      "category": "mana",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "enemy_damage_applied"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Mage_Stillgrove_Hood",
+        "Unique_Grovewell_Pendant"
+      ],
+      "category": "mana",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Mage_Glacierveil_Robe",
+        "Unique_Mage_Emberweave_Grips"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_hit_blocked",
+        "skill_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Mage_Glacierveil_Robe",
+        "Unique_Mage_Silkweave_Treads"
+      ],
+      "category": "reduction",
+      "events": [
+        "enemy_hit_blocked",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Mage_Emberweave_Grips",
+        "Unique_Mage_Silkweave_Treads"
+      ],
+      "category": "reduction",
+      "events": [
+        "skill_hit",
+        "dodge_avoided_enemy_hit"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Mage_Grovepulse_Signet",
+        "Unique_Moonwell_Charm"
+      ],
+      "category": "heal",
+      "events": [
+        "dodge_avoided_enemy_hit",
+        "mana_consumed_by_skill"
+      ]
+    },
+    {
+      "items": [
+        "Unique_Mage_Lastlight_Focus",
+        "Unique_Grovewell_Pendant"
+      ],
+      "category": "mana",
+      "events": [
+        "enemy_damage_applied",
+        "skill_hit"
+      ]
+    }
+  ],
+  "pairCaveat": "Potential competition, not proven simultaneous failures; each pair is legal, not all pairs in one build.",
+  "manaCapExamples": [
+    {
+      "level": 60,
+      "maxMana": 336,
+      "missingManaAssumed": 336,
+      "cap": 24,
+      "fourPercent": 13.44,
+      "sixPercent": 20.16
+    },
+    {
+      "level": 60,
+      "maxMana": 600,
+      "missingManaAssumed": 600,
+      "cap": 24,
+      "fourPercent": 24,
+      "sixPercent": 24
+    },
+    {
+      "level": 60,
+      "maxMana": 1044,
+      "missingManaAssumed": 1044,
+      "cap": 24,
+      "fourPercent": 24,
+      "sixPercent": 24
+    },
+    {
+      "level": 80,
+      "maxMana": 700,
+      "missingManaAssumed": 700,
+      "cap": 28,
+      "fourPercent": 28,
+      "sixPercent": 28
+    }
+  ],
+  "fixtures": [
+    {
+      "classId": "knight",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 1,
+      "rulesVersion": 3,
+      "maxHealth": 2502.8961,
+      "normalDamage": 61.856,
+      "bossDamage": 158.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 1,
+      "rulesVersion": 8,
+      "maxHealth": 2502.8961,
+      "normalDamage": 79.856,
+      "bossDamage": 266.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 2,
+      "rulesVersion": 3,
+      "maxHealth": 2502.8961,
+      "normalDamage": 70.856,
+      "bossDamage": 176.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 2,
+      "rulesVersion": 8,
+      "maxHealth": 2502.8961,
+      "normalDamage": 90.856,
+      "bossDamage": 296.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 3,
+      "rulesVersion": 3,
+      "maxHealth": 2502.8961,
+      "normalDamage": 79.856,
+      "bossDamage": 195.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 3,
+      "rulesVersion": 8,
+      "maxHealth": 2502.8961,
+      "normalDamage": 101.856,
+      "bossDamage": 325.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 4,
+      "rulesVersion": 3,
+      "maxHealth": 2502.8961,
+      "normalDamage": 88.856,
+      "bossDamage": 214.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 4,
+      "rulesVersion": 8,
+      "maxHealth": 2502.8961,
+      "normalDamage": 111.856,
+      "bossDamage": 355.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 1,
+      "rulesVersion": 3,
+      "maxHealth": 2802.8961,
+      "normalDamage": 150.856,
+      "bossDamage": 323.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 1,
+      "rulesVersion": 8,
+      "maxHealth": 2802.8961,
+      "normalDamage": 186.856,
+      "bossDamage": 528.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 2,
+      "rulesVersion": 3,
+      "maxHealth": 2802.8961,
+      "normalDamage": 168.856,
+      "bossDamage": 358.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 2,
+      "rulesVersion": 8,
+      "maxHealth": 2802.8961,
+      "normalDamage": 207.856,
+      "bossDamage": 583.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 3,
+      "rulesVersion": 3,
+      "maxHealth": 2802.8961,
+      "normalDamage": 186.856,
+      "bossDamage": 393.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 3,
+      "rulesVersion": 8,
+      "maxHealth": 2802.8961,
+      "normalDamage": 229.856,
+      "bossDamage": 639.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 4,
+      "rulesVersion": 3,
+      "maxHealth": 2802.8961,
+      "normalDamage": 204.856,
+      "bossDamage": 428.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "knight",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 4,
+      "rulesVersion": 8,
+      "maxHealth": 2802.8961,
+      "normalDamage": 250.856,
+      "bossDamage": 694.856,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 58.945100000000004,
+        "armor": 27.144,
+        "health": 1367.8961,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 1,
+      "rulesVersion": 3,
+      "maxHealth": 1430.6667,
+      "normalDamage": 72.152,
+      "bossDamage": 169.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 1,
+      "rulesVersion": 8,
+      "maxHealth": 1430.6667,
+      "normalDamage": 90.152,
+      "bossDamage": 277.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 2,
+      "rulesVersion": 3,
+      "maxHealth": 1430.6667,
+      "normalDamage": 81.152,
+      "bossDamage": 187.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 2,
+      "rulesVersion": 8,
+      "maxHealth": 1430.6667,
+      "normalDamage": 101.152,
+      "bossDamage": 307.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 3,
+      "rulesVersion": 3,
+      "maxHealth": 1430.6667,
+      "normalDamage": 90.152,
+      "bossDamage": 206.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 3,
+      "rulesVersion": 8,
+      "maxHealth": 1430.6667,
+      "normalDamage": 112.152,
+      "bossDamage": 336.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 4,
+      "rulesVersion": 3,
+      "maxHealth": 1430.6667,
+      "normalDamage": 99.152,
+      "bossDamage": 225.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 4,
+      "rulesVersion": 8,
+      "maxHealth": 1430.6667,
+      "normalDamage": 122.152,
+      "bossDamage": 366.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 1,
+      "rulesVersion": 3,
+      "maxHealth": 1630.6667,
+      "normalDamage": 161.152,
+      "bossDamage": 334.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 1,
+      "rulesVersion": 8,
+      "maxHealth": 1630.6667,
+      "normalDamage": 197.152,
+      "bossDamage": 539.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 2,
+      "rulesVersion": 3,
+      "maxHealth": 1630.6667,
+      "normalDamage": 179.152,
+      "bossDamage": 369.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 2,
+      "rulesVersion": 8,
+      "maxHealth": 1630.6667,
+      "normalDamage": 218.152,
+      "bossDamage": 594.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 3,
+      "rulesVersion": 3,
+      "maxHealth": 1630.6667,
+      "normalDamage": 197.152,
+      "bossDamage": 404.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 3,
+      "rulesVersion": 8,
+      "maxHealth": 1630.6667,
+      "normalDamage": 240.152,
+      "bossDamage": 650.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 4,
+      "rulesVersion": 3,
+      "maxHealth": 1630.6667,
+      "normalDamage": 215.152,
+      "bossDamage": 439.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "elf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 4,
+      "rulesVersion": 8,
+      "maxHealth": 1630.6667,
+      "normalDamage": 261.152,
+      "bossDamage": 705.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 101.92,
+        "armor": 16.848,
+        "health": 690.6667,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 1,
+      "rulesVersion": 3,
+      "maxHealth": 2382.4196,
+      "normalDamage": 72.152,
+      "bossDamage": 169.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 1,
+      "rulesVersion": 8,
+      "maxHealth": 2382.4196,
+      "normalDamage": 90.152,
+      "bossDamage": 277.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 2,
+      "rulesVersion": 3,
+      "maxHealth": 2382.4196,
+      "normalDamage": 81.152,
+      "bossDamage": 187.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 2,
+      "rulesVersion": 8,
+      "maxHealth": 2382.4196,
+      "normalDamage": 101.152,
+      "bossDamage": 307.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 3,
+      "rulesVersion": 3,
+      "maxHealth": 2382.4196,
+      "normalDamage": 90.152,
+      "bossDamage": 206.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 3,
+      "rulesVersion": 8,
+      "maxHealth": 2382.4196,
+      "normalDamage": 112.152,
+      "bossDamage": 336.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 4,
+      "rulesVersion": 3,
+      "maxHealth": 2382.4196,
+      "normalDamage": 99.152,
+      "bossDamage": 225.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 4,
+      "rulesVersion": 8,
+      "maxHealth": 2382.4196,
+      "normalDamage": 122.152,
+      "bossDamage": 366.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 1,
+      "rulesVersion": 3,
+      "maxHealth": 2642.4196,
+      "normalDamage": 161.152,
+      "bossDamage": 334.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 1,
+      "rulesVersion": 8,
+      "maxHealth": 2642.4196,
+      "normalDamage": 197.152,
+      "bossDamage": 539.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 2,
+      "rulesVersion": 3,
+      "maxHealth": 2642.4196,
+      "normalDamage": 179.152,
+      "bossDamage": 369.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 2,
+      "rulesVersion": 8,
+      "maxHealth": 2642.4196,
+      "normalDamage": 218.152,
+      "bossDamage": 594.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 3,
+      "rulesVersion": 3,
+      "maxHealth": 2642.4196,
+      "normalDamage": 197.152,
+      "bossDamage": 404.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 3,
+      "rulesVersion": 8,
+      "maxHealth": 2642.4196,
+      "normalDamage": 240.152,
+      "bossDamage": 650.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 4,
+      "rulesVersion": 3,
+      "maxHealth": 2642.4196,
+      "normalDamage": 215.152,
+      "bossDamage": 439.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "dwarf",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 4,
+      "rulesVersion": 8,
+      "maxHealth": 2642.4196,
+      "normalDamage": 261.152,
+      "bossDamage": 705.152,
+      "baseMana": 0.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 16.848,
+        "health": 1415.4196,
+        "maxMana": 0
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 1,
+      "rulesVersion": 3,
+      "maxHealth": 1210.5116,
+      "normalDamage": 78.70400000000001,
+      "bossDamage": 175.704,
+      "baseMana": 336.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 1,
+      "rulesVersion": 8,
+      "maxHealth": 1210.5116,
+      "normalDamage": 96.70400000000001,
+      "bossDamage": 283.704,
+      "baseMana": 336.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 2,
+      "rulesVersion": 3,
+      "maxHealth": 1210.5116,
+      "normalDamage": 87.70400000000001,
+      "bossDamage": 193.704,
+      "baseMana": 336.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 2,
+      "rulesVersion": 8,
+      "maxHealth": 1210.5116,
+      "normalDamage": 107.70400000000001,
+      "bossDamage": 313.704,
+      "baseMana": 336.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 3,
+      "rulesVersion": 3,
+      "maxHealth": 1210.5116,
+      "normalDamage": 96.70400000000001,
+      "bossDamage": 212.704,
+      "baseMana": 336.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 3,
+      "rulesVersion": 8,
+      "maxHealth": 1210.5116,
+      "normalDamage": 118.70400000000001,
+      "bossDamage": 342.704,
+      "baseMana": 336.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 4,
+      "rulesVersion": 3,
+      "maxHealth": 1210.5116,
+      "normalDamage": 105.70400000000001,
+      "bossDamage": 231.704,
+      "baseMana": 336.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 60,
+      "mode": "Insane",
+      "humans": 4,
+      "rulesVersion": 8,
+      "maxHealth": 1210.5116,
+      "normalDamage": 128.704,
+      "bossDamage": 372.704,
+      "baseMana": 336.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 1,
+      "rulesVersion": 3,
+      "maxHealth": 1370.5116,
+      "normalDamage": 167.704,
+      "bossDamage": 340.704,
+      "baseMana": 416.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 1,
+      "rulesVersion": 8,
+      "maxHealth": 1370.5116,
+      "normalDamage": 203.704,
+      "bossDamage": 545.704,
+      "baseMana": 416.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 2,
+      "rulesVersion": 3,
+      "maxHealth": 1370.5116,
+      "normalDamage": 185.704,
+      "bossDamage": 375.704,
+      "baseMana": 416.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 2,
+      "rulesVersion": 8,
+      "maxHealth": 1370.5116,
+      "normalDamage": 224.704,
+      "bossDamage": 600.704,
+      "baseMana": 416.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 3,
+      "rulesVersion": 3,
+      "maxHealth": 1370.5116,
+      "normalDamage": 203.704,
+      "bossDamage": 410.704,
+      "baseMana": 416.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 3,
+      "rulesVersion": 8,
+      "maxHealth": 1370.5116,
+      "normalDamage": 246.704,
+      "bossDamage": 656.704,
+      "baseMana": 416.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 4,
+      "rulesVersion": 3,
+      "maxHealth": 1370.5116,
+      "normalDamage": 221.704,
+      "bossDamage": 445.704,
+      "baseMana": 416.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    },
+    {
+      "classId": "mage",
+      "level": 80,
+      "mode": "Hell",
+      "humans": 4,
+      "rulesVersion": 8,
+      "maxHealth": 1370.5116,
+      "normalDamage": 267.704,
+      "bossDamage": 711.704,
+      "baseMana": 416.0,
+      "gear": {
+        "power": 71.4251,
+        "armor": 10.296,
+        "health": 638.5116,
+        "maxMana": 335.9999
+      }
+    }
+  ],
+  "excluded": [
+    "live combat",
+    "effect engine",
+    "sets",
+    "block/dodge",
+    "enemy attack skill multipliers",
+    "attack cadence and movement",
+    "AI",
+    "stat allocation",
+    "enhancement",
+    "DataStore",
+    "devices"
+  ],
+  "uniqueItems": [
+    {
+      "name": "Unique_Quarrykeeper_Hood",
+      "classId": null,
+      "effect": {
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.08,
+        "effectId": "unique_common_head"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 → 효과 전 최대HP 8% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Hollowbark_Mantle",
+      "classId": null,
+      "effect": {
+        "kind": "reduction",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.1,
+        "effectId": "unique_common_body"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 HP50% 아래로 통과 시 → 적 직접 피해 10% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Ashforged_Grips",
+      "classId": null,
+      "effect": {
+        "kind": "reduction",
+        "event": "basic_attack_hit",
+        "conditions": {
+          "requiredCount": 3,
+          "windowSeconds": 8,
+          "countPerAttack": 1
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.08,
+        "effectId": "unique_common_hands"
+      },
+      "descriptionKoDev": "8초 안에 기본공격 3회 적중 후 → 적 직접 피해 8% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Widowstep_Boots",
+      "classId": null,
+      "effect": {
+        "kind": "shield",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.06,
+        "effectId": "unique_common_feet"
+      },
+      "descriptionKoDev": "회피로 실제 적 타격을 피한 후 → 효과 전 최대HP 6% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Ogreheart_Ring",
+      "classId": null,
+      "effect": {
+        "kind": "heal",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "heal",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.03,
+        "requiresMissingHealth": true,
+        "effectId": "unique_common_vigor_ring"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 HP50% 아래로 통과 시 → 효과 전 최대HP 3% 회복/부족HP 한도; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Glacier_Ward",
+      "classId": null,
+      "effect": {
+        "kind": "shield",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.08,
+        "effectId": "unique_common_ward_pendant"
+      },
+      "descriptionKoDev": "적 타격 블록 후 → 효과 전 최대HP 8% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Emberfang_Ring",
+      "classId": null,
+      "effect": {
+        "kind": "bonus",
+        "event": "basic_attack_hit",
+        "conditions": {
+          "requiredCount": 3,
+          "windowSeconds": 8,
+          "countPerAttack": 1
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 8,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.24,
+        "charges": 3,
+        "target": "next_basic_attack_first_enemy",
+        "consumeOncePerAttackOrCast": true,
+        "effectId": "unique_common_valor_ring"
+      },
+      "descriptionKoDev": "8초 안에 기본공격 3회 적중 후 → 다음 기본공격 첫 대상 피해+24%, 3회/8초; 발동 공격·시전 제외; 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Lastlight_Charm",
+      "classId": null,
+      "effect": {
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.1,
+        "effectId": "unique_common_refuge_charm"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 HP50% 아래로 통과 시 → 효과 전 최대HP 10% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Knight_Rootwardens_Oath",
+      "classId": "knight",
+      "effect": {
+        "kind": "shield",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "knight.common.bash"
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.1,
+        "effectId": "unique_knight_weapon_family"
+      },
+      "descriptionKoDev": "knight.common.bash 적중 후 → 효과 전 최대HP 10% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Knight_Glacierwatch_Helm",
+      "classId": "knight",
+      "effect": {
+        "kind": "reduction",
+        "event": "enemy_damage_applied",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.08,
+        "effectId": "unique_knight_head_family"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 → 적 직접 피해 8% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Knight_Hollowbark_Bulwark",
+      "classId": "knight",
+      "effect": {
+        "kind": "heal",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.35
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "heal",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.03,
+        "requiresMissingHealth": true,
+        "effectId": "unique_knight_body_family"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 HP35% 아래로 통과 시 → 효과 전 최대HP 3% 회복/부족HP 한도; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Knight_Ogregrip_Gauntlets",
+      "classId": "knight",
+      "effect": {
+        "kind": "bonus",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 15,
+        "durationSeconds": 8,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.24,
+        "charges": 3,
+        "target": "next_basic_attack_first_enemy",
+        "consumeOncePerAttackOrCast": true,
+        "effectId": "unique_knight_hands_family"
+      },
+      "descriptionKoDev": "적 타격 블록 후 → 다음 기본공격 첫 대상 피해+24%, 3회/8초; 발동 공격·시전 제외; 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Knight_Citadel_Step",
+      "classId": "knight",
+      "effect": {
+        "kind": "reduction",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.08,
+        "effectId": "unique_knight_feet_family"
+      },
+      "descriptionKoDev": "회피로 실제 적 타격을 피한 후 → 적 직접 피해 8% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Knight_Lionheart_Signet",
+      "classId": "knight",
+      "effect": {
+        "kind": "shield",
+        "event": "basic_attack_hit",
+        "conditions": {
+          "requiredCount": 3,
+          "windowSeconds": 8,
+          "countPerAttack": 1
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.06,
+        "effectId": "unique_knight_ring_family"
+      },
+      "descriptionKoDev": "8초 안에 기본공격 3회 적중 후 → 효과 전 최대HP 6% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Knight_Oathkeeper_Pendant",
+      "classId": "knight",
+      "effect": {
+        "kind": "heal",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "heal",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.03,
+        "requiresMissingHealth": true,
+        "effectId": "unique_knight_pendant_family"
+      },
+      "descriptionKoDev": "적 타격 블록 후 → 효과 전 최대HP 3% 회복/부족HP 한도; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Elf_Thornsong",
+      "classId": "elf",
+      "effect": {
+        "kind": "bonus",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "elf.common.aimed"
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 8,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.24,
+        "charges": 3,
+        "target": "next_basic_attack_first_enemy",
+        "consumeOncePerAttackOrCast": true,
+        "effectId": "unique_elf_weapon_family"
+      },
+      "descriptionKoDev": "elf.common.aimed 적중 후 → 다음 기본공격 첫 대상 피해+24%, 3회/8초; 발동 공격·시전 제외; 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Elf_Widowwatch_Hood",
+      "classId": "elf",
+      "effect": {
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.06,
+        "effectId": "unique_elf_head_family"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 → 효과 전 최대HP 6% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Elf_Hollowbark_Jerkin",
+      "classId": "elf",
+      "effect": {
+        "kind": "reduction",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.08,
+        "effectId": "unique_elf_body_family"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 HP50% 아래로 통과 시 → 적 직접 피해 8% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Elf_Emberflight_Grips",
+      "classId": "elf",
+      "effect": {
+        "kind": "bonus",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 15,
+        "durationSeconds": 8,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.2,
+        "charges": 3,
+        "target": "next_basic_attack_first_enemy",
+        "consumeOncePerAttackOrCast": true,
+        "effectId": "unique_elf_hands_family"
+      },
+      "descriptionKoDev": "회피로 실제 적 타격을 피한 후 → 다음 기본공격 첫 대상 피해+20%, 3회/8초; 발동 공격·시전 제외; 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Elf_Silkstep_Treads",
+      "classId": "elf",
+      "effect": {
+        "kind": "shield",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.08,
+        "effectId": "unique_elf_feet_family"
+      },
+      "descriptionKoDev": "회피로 실제 적 타격을 피한 후 → 효과 전 최대HP 8% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Elf_Thornmark_Signet",
+      "classId": "elf",
+      "effect": {
+        "kind": "shield",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "elf.common.aimed"
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.08,
+        "effectId": "unique_elf_ring_family"
+      },
+      "descriptionKoDev": "elf.common.aimed 적중 후 → 효과 전 최대HP 8% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Elf_Glacierleaf_Pendant",
+      "classId": "elf",
+      "effect": {
+        "kind": "reduction",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.08,
+        "effectId": "unique_elf_pendant_family"
+      },
+      "descriptionKoDev": "적 타격 블록 후 → 적 직접 피해 8% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Dwarf_Stonebreakers_Resolve",
+      "classId": "dwarf",
+      "effect": {
+        "kind": "reduction",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "dwarf.common.ground"
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.1,
+        "effectId": "unique_dwarf_weapon_family"
+      },
+      "descriptionKoDev": "dwarf.common.ground 적중 후 → 적 직접 피해 10% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Dwarf_Quarryking_Helm",
+      "classId": "dwarf",
+      "effect": {
+        "kind": "shield",
+        "event": "enemy_damage_applied",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.08,
+        "effectId": "unique_dwarf_head_family"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 → 효과 전 최대HP 8% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Dwarf_Caldera_Heartplate",
+      "classId": "dwarf",
+      "effect": {
+        "kind": "reduction",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.1,
+        "effectId": "unique_dwarf_body_family"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 HP50% 아래로 통과 시 → 적 직접 피해 10% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Dwarf_Cragbreaker_Grips",
+      "classId": "dwarf",
+      "effect": {
+        "kind": "shield",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "dwarf.common.ground"
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.1,
+        "effectId": "unique_dwarf_hands_family"
+      },
+      "descriptionKoDev": "dwarf.common.ground 적중 후 → 효과 전 최대HP 10% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Dwarf_Glacieranchor_Boots",
+      "classId": "dwarf",
+      "effect": {
+        "kind": "reduction",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.08,
+        "effectId": "unique_dwarf_feet_family"
+      },
+      "descriptionKoDev": "적 타격 블록 후 → 적 직접 피해 8% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Dwarf_Forgeheart_Signet",
+      "classId": "dwarf",
+      "effect": {
+        "kind": "bonus",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "dwarf.common.ground"
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 8,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.2,
+        "charges": 3,
+        "target": "next_basic_attack_first_enemy",
+        "consumeOncePerAttackOrCast": true,
+        "effectId": "unique_dwarf_ring_family"
+      },
+      "descriptionKoDev": "dwarf.common.ground 적중 후 → 다음 기본공격 첫 대상 피해+20%, 3회/8초; 발동 공격·시전 제외; 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Dwarf_Hollowstone_Pendant",
+      "classId": "dwarf",
+      "effect": {
+        "kind": "bonus",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 15,
+        "durationSeconds": 8,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.24,
+        "charges": 3,
+        "target": "next_basic_attack_first_enemy",
+        "consumeOncePerAttackOrCast": true,
+        "effectId": "unique_dwarf_pendant_family"
+      },
+      "descriptionKoDev": "적 타격 블록 후 → 다음 기본공격 첫 대상 피해+24%, 3회/8초; 발동 공격·시전 제외; 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Mage_Groveheart_Staff",
+      "classId": "mage",
+      "effect": {
+        "kind": "bonus",
+        "event": "skill_hit",
+        "conditions": {
+          "skillId": "mage_wind_lance",
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 8,
+        "maxStacks": 1,
+        "cooldownGroup": "bonus",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageBonusFraction": 0.24,
+        "charges": 2,
+        "target": "next_magic_skill_first_enemy",
+        "consumeOncePerAttackOrCast": true,
+        "effectId": "unique_mage_weapon_family"
+      },
+      "descriptionKoDev": "mage_wind_lance 적중 후 → 다음 마법스킬 첫 대상 피해+24%, 2회/8초; 발동 공격·시전 제외; 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Mage_Stillgrove_Hood",
+      "classId": "mage",
+      "effect": {
+        "kind": "mana",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "mana",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxManaFraction": 0.04,
+        "requiresExistingManaPool": true,
+        "requiresMissingMana": true,
+        "flatFloor": 6,
+        "levelCap": {
+          "base": 12,
+          "perLevel": 0.2,
+          "round": "floor"
+        },
+        "effectId": "unique_mage_head_family"
+      },
+      "descriptionKoDev": "회피로 실제 적 타격을 피한 후 → 효과 전 최대MP의 4% 회복 (최저6, 레벨상한12+floor(0.2×Lv), 부족MP 한도); 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Mage_Glacierveil_Robe",
+      "classId": "mage",
+      "effect": {
+        "kind": "reduction",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.08,
+        "effectId": "unique_mage_body_family"
+      },
+      "descriptionKoDev": "적 타격 블록 후 → 적 직접 피해 8% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Mage_Emberweave_Grips",
+      "classId": "mage",
+      "effect": {
+        "kind": "reduction",
+        "event": "skill_hit",
+        "conditions": {
+          "requiresMagicSkill": true,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.08,
+        "effectId": "unique_mage_hands_family"
+      },
+      "descriptionKoDev": "마법 스킬 적중 후 → 적 직접 피해 8% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Mage_Silkweave_Treads",
+      "classId": "mage",
+      "effect": {
+        "kind": "reduction",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.08,
+        "effectId": "unique_mage_feet_family"
+      },
+      "descriptionKoDev": "회피로 실제 적 타격을 피한 후 → 적 직접 피해 8% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Mage_Grovepulse_Signet",
+      "classId": "mage",
+      "effect": {
+        "kind": "heal",
+        "event": "dodge_avoided_enemy_hit",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "heal",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.025,
+        "requiresMissingHealth": true,
+        "effectId": "unique_mage_ring_family"
+      },
+      "descriptionKoDev": "회피로 실제 적 타격을 피한 후 → 효과 전 최대HP 2.5% 회복/부족HP 한도; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Mage_Lastlight_Focus",
+      "classId": "mage",
+      "effect": {
+        "kind": "mana",
+        "event": "enemy_damage_applied",
+        "conditions": {
+          "crossHealthFractionBelow": 0.5
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "mana",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxManaFraction": 0.06,
+        "requiresExistingManaPool": true,
+        "requiresMissingMana": true,
+        "flatFloor": 6,
+        "levelCap": {
+          "base": 12,
+          "perLevel": 0.2,
+          "round": "floor"
+        },
+        "effectId": "unique_mage_pendant_family"
+      },
+      "descriptionKoDev": "적 직접 피해 적용 후 HP50% 아래로 통과 시 → 효과 전 최대MP의 6% 회복 (최저6, 레벨상한12+floor(0.2×Lv), 부족MP 한도); 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Knight_Throneward_Shield",
+      "classId": "knight",
+      "effect": {
+        "kind": "reduction",
+        "event": "enemy_hit_blocked",
+        "conditions": {},
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "reduction",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "damageReductionFraction": 0.1,
+        "effectId": "unique_knight_shield_family"
+      },
+      "descriptionKoDev": "적 타격 블록 후 → 적 직접 피해 10% 감소/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Stillwater_Ring",
+      "classId": null,
+      "effect": {
+        "kind": "shield",
+        "event": "mana_consumed_by_skill",
+        "conditions": {
+          "minimumSpent": 10,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 4,
+        "maxStacks": 1,
+        "cooldownGroup": "shield",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.06,
+        "effectId": "unique_common_mana_ring"
+      },
+      "descriptionKoDev": "스킬로 MP10 이상 소비 후 → 효과 전 최대HP 6% 보호막/4초; 범주공유CD 20초"
+    },
+    {
+      "name": "Unique_Grovewell_Pendant",
+      "classId": null,
+      "effect": {
+        "kind": "mana",
+        "event": "skill_hit",
+        "conditions": {
+          "requiresMagicSkill": true,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 15,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "mana",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxManaFraction": 0.04,
+        "requiresExistingManaPool": true,
+        "requiresMissingMana": true,
+        "flatFloor": 6,
+        "levelCap": {
+          "base": 12,
+          "perLevel": 0.2,
+          "round": "floor"
+        },
+        "effectId": "unique_common_arcane_pendant"
+      },
+      "descriptionKoDev": "마법 스킬 적중 후 → 효과 전 최대MP의 4% 회복 (최저6, 레벨상한12+floor(0.2×Lv), 부족MP 한도); 범주공유CD 15초"
+    },
+    {
+      "name": "Unique_Moonwell_Charm",
+      "classId": null,
+      "effect": {
+        "kind": "heal",
+        "event": "mana_consumed_by_skill",
+        "conditions": {
+          "minimumSpent": 10,
+          "requiresManaPool": true
+        },
+        "cooldownSeconds": 20,
+        "durationSeconds": 0,
+        "maxStacks": 1,
+        "cooldownGroup": "heal",
+        "applyOncePerCast": true,
+        "allowProcFromProc": false,
+        "enhancementScaling": false,
+        "maxHealthFraction": 0.025,
+        "requiresMissingHealth": true,
+        "effectId": "unique_common_wellspring_charm"
+      },
+      "descriptionKoDev": "스킬로 MP10 이상 소비 후 → 효과 전 최대HP 2.5% 회복/부족HP 한도; 범주공유CD 20초"
+    }
+  ]
+}
