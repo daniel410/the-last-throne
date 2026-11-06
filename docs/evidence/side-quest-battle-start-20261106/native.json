@@ -1,0 +1,7 @@
+{
+  "mainBattles": 64,
+  "sideBattles": 9,
+  "pass": true,
+  "checks": 1029,
+  "scope": "Studio Luau production proximity heartbeat; player, distance and begin callback doubles; canonical content/progress modules from local 0.78.3 build"
+}

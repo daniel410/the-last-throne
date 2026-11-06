@@ -445,12 +445,14 @@ function Service.start(settings)
    local hero=active(p);local ctx,root=context(p)
    if hero and not hero.training and ctx and root then
     local s=state(p,ctx.heroId)
-    if s then for _,c in ipairs(Content.chapters) do if not c.side then for _,g in ipairs(c.goals) do
+    -- Battle markers hide their prompts; accepted side quests need the same proximity entry.
+    -- Progress.available retains acceptance, prerequisites and expedition mission gates.
+    if s then for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
      if g.activity and g.activity.mode=='battle' and Progress.available(s,c,g) and not encounters[c.id..':'..g.id..':'..((options.inventory.expedition(p,ctx.heroId)or {}).runId or 'legacy')] then
       local node=options.world.nodes[c.id..':'..g.id]
       if node and (root.Position-node.part.Position).Magnitude<32 then begin(p,node,true) end
      end
-    end end end end
+    end end end
    end
   end
   partyStory.replay()
