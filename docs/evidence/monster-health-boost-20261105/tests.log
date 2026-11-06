@@ -1,0 +1,53 @@
+lua tests/monster-health-boost.spec.lua
+Monster health boost: 89518 checks passed
+
+lua tests/monster-damage-boost.spec.lua
+Monster damage boost: 89518 checks passed
+
+lua tests/epic-monster-progression.spec.lua
+Epic monster progression: 201484 checks passed
+
+lua tests/monster-damage-tuning.spec.lua
+Monster damage tuning: 57203 checks passed
+
+lua tests/difficulty-balance.spec.lua
+Difficulty balance: 2637 checks passed
+
+lua tests/deepwood-encounter-balance.spec.lua
+Deepwood encounter balance: 3116 checks passed; authored enemies 82 -> 467
+
+lua tests/difficulty-enhancement.spec.lua
+Difficulty/enhancement: 125 checks passed
+
+lua tests/expedition-presentation.spec.lua
+Expedition presentation: 17 checks passed
+
+lua tests/expedition-departure.spec.lua
+Expedition departure: 42 checks passed
+
+lua tests/expedition-store.spec.lua
+Expedition store: 43 checks passed
+
+lua tests/reward-materials.spec.lua
+Reward materials: 41 checks passed
+
+lua tests/late-epics.spec.lua
+LATE_EPICS_STATIC 959 checks passed
+
+lua tests/deepwood-bosses.spec.lua
+Deepwood bosses: 96 checks passed
+
+lua tests/frozen-vale.spec.lua
+FROZEN_VALE_STATIC 460 checks passed
+
+lua tests/ember-caldera.spec.lua
+EMBER_CALDERA_STATIC 600 checks passed
+
+lua tests/party-story.spec.lua
+Party story and final boss: 2765 checks passed
+
+lua tests/story-continuation.spec.lua
+Story continuation: 1017 checks passed
+
+lua tests/story-region-handoff.spec.lua
+Story region handoff: 52 checks passed

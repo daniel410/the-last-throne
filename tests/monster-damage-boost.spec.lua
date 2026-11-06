@@ -28,7 +28,7 @@ for epic=1,5 do
  local before,after=D.epicScale(epic,4),D.epicScale(epic,5)
  check(after.hp==before.hp and math.abs(after.damage/before.damage-1.2)<1e-8,'all epics get 20 percent outgoing boost')
  local a,b=B.unitStats({kind='Imp',level=20,epic=epic},1,nil,4,1)
- local c,d=B.unitStats({kind='Imp',level=20,epic=epic},1,nil,nil,1)
+ local c,d=B.unitStats({kind='Imp',level=20,epic=epic},1,nil,5,1)
  check(a==c and d>b and math.abs(d-b*1.2)<=1,'local adventure damage boosted once')
 end
 -- Current departures and rejoin versions are checked by the journal reducer.
@@ -41,5 +41,5 @@ check(R.validate(profile,Items),'v4 profile still loads')
 check(D.verifyRun(profile.heroes.hero,{id='v4',missionId='DW-01',difficultyId='Easy',rulesVersion=4}),'v4 run rejoins without new damage')
 check(not D.verifyRun(profile.heroes.hero,{id='v4',missionId='DW-01',difficultyId='Easy',rulesVersion=5}),'v4 cannot silently switch to v5')
 profile=assert(A.begin(profile,'hero','DW-01','Easy','v5',profile.revision,R,Items))
-check(profile.heroes.hero.expeditions.active.balanceVersion==5,'new run pins rules5')
+check(profile.heroes.hero.expeditions.active.balanceVersion==D.version,'new run pins current rules')
 print('Monster damage boost: '..n..' checks passed')
