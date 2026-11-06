@@ -381,8 +381,6 @@ UserInputService.InputBegan:Connect(function(input, processed)
 		startAttack(input)
 	elseif input.UserInputType == Enum.UserInputType.MouseButton2 or input.KeyCode == Enum.KeyCode.Q or input.KeyCode == Enum.KeyCode.ButtonL2 then
 		startBlock()
-	elseif input.KeyCode == Enum.KeyCode.E or input.KeyCode == Enum.KeyCode.ButtonL3 then
-		startSprint()
 	elseif input.KeyCode == Enum.KeyCode.Z then
 		sendAction("Item1")
 	elseif input.KeyCode == Enum.KeyCode.C then
@@ -425,6 +423,18 @@ GuiService.MenuOpened:Connect(function()
 	endSprint()
 	clearAttacks()
 end)
+
+-- Route sprint before the default controls can mark keyboard chords processed.
+-- The combat gate still gives menus, text entry and inactive sessions priority.
+ContextActionService:BindActionAtPriority("K0Sprint", function(_, state)
+	if state == Enum.UserInputState.End or state == Enum.UserInputState.Cancel then
+		endSprint()
+		return Enum.ContextActionResult.Pass
+	end
+	if not combatInputAllowed() then return Enum.ContextActionResult.Pass end
+	if state == Enum.UserInputState.Begin then startSprint() end
+	return Enum.ContextActionResult.Sink
+end, false, Enum.ContextActionPriority.High.Value, Enum.KeyCode.E, Enum.KeyCode.ButtonL3)
 
 -- Keep the standard Space jump available; R is the keyboard dodge action.
 ContextActionService:BindActionAtPriority("K0Dodge", function(_, state)
