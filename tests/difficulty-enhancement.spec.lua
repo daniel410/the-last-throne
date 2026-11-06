@@ -68,8 +68,8 @@ for level=1,3 do
  local oldGold=p.wallet.gold;p=assert(shop(p,cmd,{atLobby=true},C));eq(p.wallet.gold,oldGold-25,'enhancement costs25 Gold per attempt')
  local q=R.quantity(p,'hero','enhancement_gem');p=assert(shop(p,cmd,{atLobby=true},C));eq(R.quantity(p,'hero','enhancement_gem'),q,'retry consumes no extra ore')
 end
-eq(C.items.knight_weapon_fine.stats.power,10,'item definition never overwritten')
-check(math.abs(E.stats(C.items.knight_weapon_fine,p.items[id]).power-10.9)<.00001,'three upgrades add9% to equipment only')
+eq(C.items.knight_weapon_fine.stats.power,3,'item definition never overwritten')
+check(math.abs(E.stats(C.items.knight_weapon_fine,p.items[id]).power-3.27)<.00001,'three upgrades add9% to equipment only')
 local old=p.wallet.gold;local cmd={action='Enhance',store='blacksmith',requestId='cap',heroId='hero',revision=p.revision,instanceId=id,itemVersion=p.items[id].version}
 local capped=R.copy(p);capped.items[id].enhancementLevel=9;cmd.expectedLevel=9
 local no,why=shop(capped,cmd,{atLobby=true},C);check(not no and why=='EnhancementMax','all equipment stops at+9');eq(p.wallet.gold,old,'rejected upgrade costs nothing')
