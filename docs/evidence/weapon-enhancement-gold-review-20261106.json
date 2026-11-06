@@ -1,0 +1,783 @@
+{
+  "scope": "unapproved weapon-only fee sensitivity; independent attempts; no measured clear time, inventory stocks, potion spending or player behavior",
+  "source_commit": "7f1a5eecdc620be0883a9dfcc14a957e43cfe408",
+  "steps": [
+    {
+      "target": 1,
+      "success": 1.0,
+      "current_gold": 0,
+      "gems": 2,
+      "stones": 0
+    },
+    {
+      "target": 2,
+      "success": 0.9,
+      "current_gold": 0,
+      "gems": 4,
+      "stones": 0
+    },
+    {
+      "target": 3,
+      "success": 0.8,
+      "current_gold": 0,
+      "gems": 6,
+      "stones": 0
+    },
+    {
+      "target": 4,
+      "success": 0.7,
+      "current_gold": 0,
+      "gems": 8,
+      "stones": 1
+    },
+    {
+      "target": 5,
+      "success": 0.6,
+      "current_gold": 0,
+      "gems": 10,
+      "stones": 2
+    },
+    {
+      "target": 6,
+      "success": 0.5,
+      "current_gold": 0,
+      "gems": 12,
+      "stones": 3
+    },
+    {
+      "target": 7,
+      "success": 0.4,
+      "current_gold": 0,
+      "gems": 14,
+      "stones": 4
+    },
+    {
+      "target": 8,
+      "success": 0.3,
+      "current_gold": 0,
+      "gems": 16,
+      "stones": 5
+    },
+    {
+      "target": 9,
+      "success": 0.2,
+      "current_gold": 0,
+      "gems": 18,
+      "stones": 6
+    }
+  ],
+  "missions": [
+    {
+      "id": "DW-01",
+      "mode": "Easy",
+      "repeat_gold": 73,
+      "gems": 6,
+      "stones": 1
+    },
+    {
+      "id": "DW-01",
+      "mode": "Hard",
+      "repeat_gold": 160,
+      "gems": 10,
+      "stones": 3
+    },
+    {
+      "id": "DW-01",
+      "mode": "Insane",
+      "repeat_gold": 270,
+      "gems": 15,
+      "stones": 5
+    },
+    {
+      "id": "DW-01",
+      "mode": "Hell",
+      "repeat_gold": 635,
+      "gems": 28,
+      "stones": 10
+    },
+    {
+      "id": "DW-05",
+      "mode": "Easy",
+      "repeat_gold": 299,
+      "gems": 6,
+      "stones": 1
+    },
+    {
+      "id": "DW-05",
+      "mode": "Hard",
+      "repeat_gold": 653,
+      "gems": 10,
+      "stones": 3
+    },
+    {
+      "id": "DW-05",
+      "mode": "Insane",
+      "repeat_gold": 1118,
+      "gems": 15,
+      "stones": 5
+    },
+    {
+      "id": "DW-05",
+      "mode": "Hell",
+      "repeat_gold": 2613,
+      "gems": 28,
+      "stones": 10
+    },
+    {
+      "id": "DW-07",
+      "mode": "Easy",
+      "repeat_gold": 405,
+      "gems": 6,
+      "stones": 1
+    },
+    {
+      "id": "DW-07",
+      "mode": "Hard",
+      "repeat_gold": 882,
+      "gems": 10,
+      "stones": 3
+    },
+    {
+      "id": "DW-07",
+      "mode": "Insane",
+      "repeat_gold": 1518,
+      "gems": 15,
+      "stones": 5
+    },
+    {
+      "id": "DW-07",
+      "mode": "Hell",
+      "repeat_gold": 3543,
+      "gems": 28,
+      "stones": 10
+    },
+    {
+      "id": "FV-07",
+      "mode": "Easy",
+      "repeat_gold": 488,
+      "gems": 8,
+      "stones": 2
+    },
+    {
+      "id": "FV-07",
+      "mode": "Hard",
+      "repeat_gold": 984,
+      "gems": 10,
+      "stones": 3
+    },
+    {
+      "id": "FV-07",
+      "mode": "Insane",
+      "repeat_gold": 1679,
+      "gems": 15,
+      "stones": 5
+    },
+    {
+      "id": "FV-07",
+      "mode": "Hell",
+      "repeat_gold": 3919,
+      "gems": 28,
+      "stones": 10
+    },
+    {
+      "id": "EC-07",
+      "mode": "Easy",
+      "repeat_gold": 720,
+      "gems": 8,
+      "stones": 2
+    },
+    {
+      "id": "EC-07",
+      "mode": "Hard",
+      "repeat_gold": 1644,
+      "gems": 12,
+      "stones": 4
+    },
+    {
+      "id": "EC-07",
+      "mode": "Insane",
+      "repeat_gold": 2962,
+      "gems": 18,
+      "stones": 6
+    },
+    {
+      "id": "EC-07",
+      "mode": "Hell",
+      "repeat_gold": 5761,
+      "gems": 28,
+      "stones": 10
+    },
+    {
+      "id": "HG-07",
+      "mode": "Easy",
+      "repeat_gold": 1007,
+      "gems": 10,
+      "stones": 3
+    },
+    {
+      "id": "HG-07",
+      "mode": "Hard",
+      "repeat_gold": 2050,
+      "gems": 12,
+      "stones": 4
+    },
+    {
+      "id": "HG-07",
+      "mode": "Insane",
+      "repeat_gold": 3690,
+      "gems": 18,
+      "stones": 6
+    },
+    {
+      "id": "HG-07",
+      "mode": "Hell",
+      "repeat_gold": 7172,
+      "gems": 28,
+      "stones": 10
+    }
+  ],
+  "curves": {
+    "trial_25n": {
+      "attempt_fees": [
+        25,
+        50,
+        75,
+        100,
+        125,
+        150,
+        175,
+        200,
+        225
+      ],
+      "targets": {
+        "3": {
+          "minimum": 150,
+          "expected": 174.30555555555554,
+          "quantiles": {
+            "0.5": 150,
+            "0.9": 225,
+            "0.95": 275
+          },
+          "truncated_probability": 2.220446049250313e-16,
+          "expected_attempts": 3.361111111111111,
+          "expected_gems": 13.944444444444445,
+          "expected_stones": 0.0
+        },
+        "6": {
+          "minimum": 525,
+          "expected": 825.4960317460318,
+          "quantiles": {
+            "0.5": 775,
+            "0.9": 1175,
+            "0.95": 1350
+          },
+          "truncated_probability": 3.3306690738754696e-16,
+          "expected_attempts": 8.456349206349206,
+          "expected_gems": 66.03968253968254,
+          "expected_stones": 10.761904761904763
+        },
+        "9": {
+          "minimum": 1125,
+          "expected": 3054.6626984126983,
+          "quantiles": {
+            "0.5": 2800,
+            "0.9": 4675,
+            "0.95": 5400
+          },
+          "truncated_probability": 0.0,
+          "expected_attempts": 19.28968253968254,
+          "expected_gems": 244.37301587301587,
+          "expected_stones": 67.42857142857143
+        }
+      }
+    },
+    "trial_50n": {
+      "attempt_fees": [
+        50,
+        100,
+        150,
+        200,
+        250,
+        300,
+        350,
+        400,
+        450
+      ],
+      "targets": {
+        "3": {
+          "minimum": 300,
+          "expected": 348.6111111111111,
+          "quantiles": {
+            "0.5": 300,
+            "0.9": 450,
+            "0.95": 550
+          },
+          "truncated_probability": 2.220446049250313e-16,
+          "expected_attempts": 3.361111111111111,
+          "expected_gems": 13.944444444444445,
+          "expected_stones": 0.0
+        },
+        "6": {
+          "minimum": 1050,
+          "expected": 1650.9920634920636,
+          "quantiles": {
+            "0.5": 1550,
+            "0.9": 2350,
+            "0.95": 2700
+          },
+          "truncated_probability": 3.3306690738754696e-16,
+          "expected_attempts": 8.456349206349206,
+          "expected_gems": 66.03968253968254,
+          "expected_stones": 10.761904761904763
+        },
+        "9": {
+          "minimum": 2250,
+          "expected": 6109.325396825397,
+          "quantiles": {
+            "0.5": 5600,
+            "0.9": 9350,
+            "0.95": 10800
+          },
+          "truncated_probability": 0.0,
+          "expected_attempts": 19.28968253968254,
+          "expected_gems": 244.37301587301587,
+          "expected_stones": 67.42857142857143
+        }
+      }
+    },
+    "trial_10n_squared": {
+      "attempt_fees": [
+        10,
+        40,
+        90,
+        160,
+        250,
+        360,
+        490,
+        640,
+        810
+      ],
+      "targets": {
+        "3": {
+          "minimum": 140,
+          "expected": 166.94444444444446,
+          "quantiles": {
+            "0.5": 140,
+            "0.9": 230,
+            "0.95": 270
+          },
+          "truncated_probability": 0.0,
+          "expected_attempts": 3.361111111111111,
+          "expected_gems": 13.944444444444445,
+          "expected_stones": 0.0
+        },
+        "6": {
+          "minimum": 910,
+          "expected": 1532.1825396825398,
+          "quantiles": {
+            "0.5": 1410,
+            "0.9": 2330,
+            "0.95": 2700
+          },
+          "truncated_probability": 1.9984014443252818e-15,
+          "expected_attempts": 8.456349206349206,
+          "expected_gems": 66.03968253968254,
+          "expected_stones": 10.761904761904763
+        },
+        "9": {
+          "minimum": 2850,
+          "expected": 8940.515873015873,
+          "quantiles": {
+            "0.5": 8020,
+            "0.9": 14440,
+            "0.95": 17010
+          },
+          "truncated_probability": 1.1657341758564144e-14,
+          "expected_attempts": 19.28968253968254,
+          "expected_gems": 244.37301587301587,
+          "expected_stones": 67.42857142857143
+        }
+      }
+    },
+    "historical_20n_squared_T1": {
+      "attempt_fees": [
+        20,
+        80,
+        180,
+        320,
+        500,
+        720,
+        980,
+        1280,
+        1620
+      ],
+      "targets": {
+        "3": {
+          "minimum": 280,
+          "expected": 333.8888888888889,
+          "quantiles": {
+            "0.5": 280,
+            "0.9": 460,
+            "0.95": 540
+          },
+          "truncated_probability": 0.0,
+          "expected_attempts": 3.361111111111111,
+          "expected_gems": 13.944444444444445,
+          "expected_stones": 0.0
+        },
+        "6": {
+          "minimum": 1820,
+          "expected": 3064.3650793650795,
+          "quantiles": {
+            "0.5": 2820,
+            "0.9": 4660,
+            "0.95": 5400
+          },
+          "truncated_probability": 1.9984014443252818e-15,
+          "expected_attempts": 8.456349206349206,
+          "expected_gems": 66.03968253968254,
+          "expected_stones": 10.761904761904763
+        },
+        "9": {
+          "minimum": 5700,
+          "expected": 17881.031746031746,
+          "quantiles": {
+            "0.5": 16040,
+            "0.9": 28880,
+            "0.95": 34020
+          },
+          "truncated_probability": 1.1657341758564144e-14,
+          "expected_attempts": 19.28968253968254,
+          "expected_gems": 244.37301587301587,
+          "expected_stones": 67.42857142857143
+        }
+      }
+    },
+    "historical_20n_squared_T6": {
+      "attempt_fees": [
+        120,
+        480,
+        1080,
+        1920,
+        3000,
+        4320,
+        5880,
+        7680,
+        9720
+      ],
+      "targets": {
+        "3": {
+          "minimum": 1680,
+          "expected": 2003.3333333333335,
+          "quantiles": {
+            "0.5": 1680,
+            "0.9": 2760,
+            "0.95": 3240
+          },
+          "truncated_probability": 0.0,
+          "expected_attempts": 3.361111111111111,
+          "expected_gems": 13.944444444444445,
+          "expected_stones": 0.0
+        },
+        "6": {
+          "minimum": 10920,
+          "expected": 18386.190476190477,
+          "quantiles": {
+            "0.5": 16920,
+            "0.9": 27960,
+            "0.95": 32400
+          },
+          "truncated_probability": 1.9984014443252818e-15,
+          "expected_attempts": 8.456349206349206,
+          "expected_gems": 66.03968253968254,
+          "expected_stones": 10.761904761904763
+        },
+        "9": {
+          "minimum": 34200,
+          "expected": 107286.19047619047,
+          "quantiles": {
+            "0.5": 96240,
+            "0.9": 173280,
+            "0.95": 204120
+          },
+          "truncated_probability": 1.1657341758564144e-14,
+          "expected_attempts": 19.28968253968254,
+          "expected_gems": 244.37301587301587,
+          "expected_stones": 67.42857142857143
+        }
+      }
+    }
+  },
+  "material_constrained_examples": [
+    {
+      "id": "DW-01",
+      "mode": "Easy",
+      "repeat_gold": 73,
+      "gems": 6,
+      "stones": 1,
+      "approximate_clears": 67.42857142857143,
+      "approximate_gross_gold": 4922.285714285715,
+      "proposed_gold_share": 0.620578096380569,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-01",
+      "mode": "Hard",
+      "repeat_gold": 160,
+      "gems": 10,
+      "stones": 3,
+      "approximate_clears": 24.437301587301587,
+      "approximate_gross_gold": 3909.968253968254,
+      "proposed_gold_share": 0.78125,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-01",
+      "mode": "Insane",
+      "repeat_gold": 270,
+      "gems": 15,
+      "stones": 5,
+      "approximate_clears": 16.29153439153439,
+      "approximate_gross_gold": 4398.714285714285,
+      "proposed_gold_share": 0.6944444444444445,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-01",
+      "mode": "Hell",
+      "repeat_gold": 635,
+      "gems": 28,
+      "stones": 10,
+      "approximate_clears": 8.727607709750567,
+      "approximate_gross_gold": 5542.03089569161,
+      "proposed_gold_share": 0.5511811023622047,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-05",
+      "mode": "Easy",
+      "repeat_gold": 299,
+      "gems": 6,
+      "stones": 1,
+      "approximate_clears": 67.42857142857143,
+      "approximate_gross_gold": 20161.14285714286,
+      "proposed_gold_share": 0.1515123780460921,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-05",
+      "mode": "Hard",
+      "repeat_gold": 653,
+      "gems": 10,
+      "stones": 3,
+      "approximate_clears": 24.437301587301587,
+      "approximate_gross_gold": 15957.557936507936,
+      "proposed_gold_share": 0.19142419601837674,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-05",
+      "mode": "Insane",
+      "repeat_gold": 1118,
+      "gems": 15,
+      "stones": 5,
+      "approximate_clears": 16.29153439153439,
+      "approximate_gross_gold": 18213.93544973545,
+      "proposed_gold_share": 0.1677101967799642,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-05",
+      "mode": "Hell",
+      "repeat_gold": 2613,
+      "gems": 28,
+      "stones": 10,
+      "approximate_clears": 8.727607709750567,
+      "approximate_gross_gold": 22805.238945578232,
+      "proposed_gold_share": 0.13394565633371602,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-07",
+      "mode": "Easy",
+      "repeat_gold": 405,
+      "gems": 6,
+      "stones": 1,
+      "approximate_clears": 67.42857142857143,
+      "approximate_gross_gold": 27308.57142857143,
+      "proposed_gold_share": 0.11185728650810256,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-07",
+      "mode": "Hard",
+      "repeat_gold": 882,
+      "gems": 10,
+      "stones": 3,
+      "approximate_clears": 24.437301587301587,
+      "approximate_gross_gold": 21553.7,
+      "proposed_gold_share": 0.1417233560090703,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-07",
+      "mode": "Insane",
+      "repeat_gold": 1518,
+      "gems": 15,
+      "stones": 5,
+      "approximate_clears": 16.29153439153439,
+      "approximate_gross_gold": 24730.549206349206,
+      "proposed_gold_share": 0.12351778656126482,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "DW-07",
+      "mode": "Hell",
+      "repeat_gold": 3543,
+      "gems": 28,
+      "stones": 10,
+      "approximate_clears": 8.727607709750567,
+      "approximate_gross_gold": 30921.914115646257,
+      "proposed_gold_share": 0.0987863392605137,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "FV-07",
+      "mode": "Easy",
+      "repeat_gold": 488,
+      "gems": 8,
+      "stones": 2,
+      "approximate_clears": 33.714285714285715,
+      "approximate_gross_gold": 16452.571428571428,
+      "proposed_gold_share": 0.185664758343367,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "FV-07",
+      "mode": "Hard",
+      "repeat_gold": 984,
+      "gems": 10,
+      "stones": 3,
+      "approximate_clears": 24.437301587301587,
+      "approximate_gross_gold": 24046.30476190476,
+      "proposed_gold_share": 0.12703252032520326,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "FV-07",
+      "mode": "Insane",
+      "repeat_gold": 1679,
+      "gems": 15,
+      "stones": 5,
+      "approximate_clears": 16.29153439153439,
+      "approximate_gross_gold": 27353.486243386244,
+      "proposed_gold_share": 0.11167361524717093,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "FV-07",
+      "mode": "Hell",
+      "repeat_gold": 3919,
+      "gems": 28,
+      "stones": 10,
+      "approximate_clears": 8.727607709750567,
+      "approximate_gross_gold": 34203.49461451247,
+      "proposed_gold_share": 0.08930849706557796,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "EC-07",
+      "mode": "Easy",
+      "repeat_gold": 720,
+      "gems": 8,
+      "stones": 2,
+      "approximate_clears": 33.714285714285715,
+      "approximate_gross_gold": 24274.285714285714,
+      "proposed_gold_share": 0.1258394473216154,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "EC-07",
+      "mode": "Hard",
+      "repeat_gold": 1644,
+      "gems": 12,
+      "stones": 4,
+      "approximate_clears": 20.36441798941799,
+      "approximate_gross_gold": 33479.10317460317,
+      "proposed_gold_share": 0.09124087591240876,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "EC-07",
+      "mode": "Insane",
+      "repeat_gold": 2962,
+      "gems": 18,
+      "stones": 6,
+      "approximate_clears": 13.576278659611994,
+      "approximate_gross_gold": 40212.93738977073,
+      "proposed_gold_share": 0.07596218771100607,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "EC-07",
+      "mode": "Hell",
+      "repeat_gold": 5761,
+      "gems": 28,
+      "stones": 10,
+      "approximate_clears": 8.727607709750567,
+      "approximate_gross_gold": 50279.74801587302,
+      "proposed_gold_share": 0.060753341433778855,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "HG-07",
+      "mode": "Easy",
+      "repeat_gold": 1007,
+      "gems": 10,
+      "stones": 3,
+      "approximate_clears": 24.437301587301587,
+      "approximate_gross_gold": 24608.362698412697,
+      "proposed_gold_share": 0.12413108242303873,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "HG-07",
+      "mode": "Hard",
+      "repeat_gold": 2050,
+      "gems": 12,
+      "stones": 4,
+      "approximate_clears": 20.36441798941799,
+      "approximate_gross_gold": 41747.05687830688,
+      "proposed_gold_share": 0.07317073170731707,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "HG-07",
+      "mode": "Insane",
+      "repeat_gold": 3690,
+      "gems": 18,
+      "stones": 6,
+      "approximate_clears": 13.576278659611994,
+      "approximate_gross_gold": 50096.468253968254,
+      "proposed_gold_share": 0.06097560975609756,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    },
+    {
+      "id": "HG-07",
+      "mode": "Hell",
+      "repeat_gold": 7172,
+      "gems": 28,
+      "stones": 10,
+      "approximate_clears": 8.727607709750567,
+      "approximate_gross_gold": 62594.402494331065,
+      "proposed_gold_share": 0.048800892359174564,
+      "note": "zero starting materials; no exchanges, side rewards or other spending; ratio of expected budgets, NOT expected stopping time"
+    }
+  ],
+  "source_hashes": {
+    "src/shared/Enhancement.luau": "c58e9f39395c122648a6fe225c62033d740538a7afa0d6761b3d8353fa4319bb",
+    "src/shared/Difficulty.luau": "d788c10ac23281c966e4b4ad472a6fb992057b52858e0c690110654a1c11beb9",
+    "src/shared/RewardEconomy.luau": "12af74f1389055b9af7f1594d15a674e1ccc931f7f2128711c5fdf48370485e5",
+    "src/shared/DeepwoodEncounterBalance.luau": "e4458480fbd3d1a4cf68adffb5a4240e68398778f44e4df3749b0d1cfdfc456b"
+  }
+}
