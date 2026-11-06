@@ -27,3 +27,9 @@
 기존203785492 asset-type 경고가 발생했으며 검사에는 영향이 없었다. fixture는 실제 엔진 Parts/raycast/피해 콜백을 쓰되 플레이어·원격/계정·정상 전투 입력은 대역이다. 정상 전투 화면의 최종 미술/경사·절벽 경계/스트리밍·기기 성능·실제 체감 난도·다인·네트워크 수용은 미검증이다. 지면 후보 검색은 최초/지면 스트리밍 변화 때만 갱신하며 경사 분할의 실기기 비용은 후속 측정한다. 부모 티켓은 In Progress를 유지한다.
 
 다음 QA는5종이 접근 후 타격하는지·공격 중 거리 이탈 시 회피되는지, IceElf/주술사/원거리 보스의 비행탄, 지형 높이가 다른 Deepwood/설원/화산/숲/묘지에서 바닥 전용 예고를 정상 플레이로 확인한다. Place게시·태그·TD변경은 수행하지 않는다.
+
+## 고정 빌드·서버 통합 후속
+
+단일 빌드0.78.8 성공. 입력 소스 `70b111825b1ae0ebffb1ea088ec2552f2d9ddb8a`, SHA-256 `da659d63daaba0cfbe28af5893bcfd10cd086823733a49538ee1c7ba4956031f`, 13,288,824bytes. 산출물 XML의 변경2개 모듈이 소스와 동일함을 확인했다. [빌드 기록](build.json).
+
+`python3 tools/assemble-enemy-pattern-service-test.py` → `run-in-roblox --place builds/0.78.8/TheLastThrone-0.78.8.rbxlx --script /tmp/tlt-enemy-pattern-service-native.luau`:72개/23사례 PASS·CLI종료0. 실제 CombatService에서5종의12stud 공격 미시작/4stud 시작·6stud 판정, IceElf20stud 투사체 실제 피해,4클래스/벽·다른 원정·일시중단·블록/완벽블록·회피·보호막 회귀를 확인했다. [서버 결과](service.json). 테스트용 Studio 프로세스는 자동 종료됐으며 기존 사용자 Studio는 보존했다. 소스 origin/main 푸시 성공. 게시/실제 사람 플레이 수용은 별도다.
