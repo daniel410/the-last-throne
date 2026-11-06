@@ -46,7 +46,7 @@ for party,multiplier in ipairs({1,1.5,2,2.5}) do
  local hp,damage=B.stats('Goblin',5,party)
  check(hp==math.floor(225*1.5*1.1*multiplier+.5) and damage==math.floor(28.125*1.2*(1+.1*(party-1))+.5),'normal enemy scales health and damage with party size')
  local bossHP,bossDamage=B.stats('Warlord',10,party)
- check(bossHP==math.floor(2000*1.35*1.1*({1,1.7,2.3,2.8})[party]+.5) and bossDamage==math.floor(75*1.2*(1+.1*(party-1))+.5),'boss health and damage scale with party size')
+ check(bossHP==math.floor(2000*1.35*1.1*({1,1.7,2.3,2.8})[party]+.5) and bossDamage==math.floor(75*1.2*1.1*(1+.1*(party-1))+.5),'boss health and damage scale with party size')
 end
 local early=C.byId['DW-01'];check(B.packSize(early,early.goals[1])==2,'first encounter teaches two at once')
 for _,row in ipairs({{'DW-04','courtyard',4},{'DW-04','west_link',5},{'DW-04','east_link',6},{'DW-07','corridor',7},{'DW-07','outer_west',8},{'DW-07','outer_east',9}}) do local c=C.byId[row[1]];local g;for _,x in ipairs(c.goals) do if x.id==row[2] then g=x end end;check(#B.waves(B.expand(g.enemies),B.packSize(c,g))[1]==row[3],'story progressively introduces the requested group size') end

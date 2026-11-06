@@ -15,6 +15,7 @@ local storyDamageHandler
 local storyDefeatHandler
 local rewardHandler
 local Config = require(ReplicatedStorage.Shared.K0Config)
+local BossTuning = require(ReplicatedStorage.Shared.BossCombatTuning)
 local Rules = require(script.Parent.K0Rules)
 local DodgeRules = require(ReplicatedStorage.Shared.DodgeRules)
 local TargetAssistRules = require(ReplicatedStorage.Shared.TargetAssistRules)
@@ -1679,6 +1680,7 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
   for _,attack in ipairs(source) do
    local a=table.clone(attack);a.damage=damage;table.insert(config.attacks,a)
   end
+  BossTuning.apply(config,model:GetAttribute('StoryAttackSpeed')or 1,model:GetAttribute('StoryMoveSpeed')or 1)
  end
 	local humanoid = model:FindFirstChildOfClass("Humanoid")
 	local root = model:FindFirstChild("HumanoidRootPart")

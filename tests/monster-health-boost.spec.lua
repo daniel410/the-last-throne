@@ -28,7 +28,7 @@ for epic=1,5 do
  local before,after=D.epicScale(epic,5),D.epicScale(epic,6)
  check(after.damage==before.damage and math.abs(after.hp/before.hp-1.1)<1e-8,'all epics get 10 percent health boost')
  local a,b=B.unitStats({kind='Imp',level=20,epic=epic},1,nil,5,1)
- local c,d=B.unitStats({kind='Imp',level=20,epic=epic},1,nil,nil,1)
+ local c,d=B.unitStats({kind='Imp',level=20,epic=epic},1,nil,6,1)
  check(b==d and c>a and math.abs(c-a*1.1)<=1,'local adventure health boosted once')
 end
 -- Current departures and rejoin versions are checked by the journal reducer.

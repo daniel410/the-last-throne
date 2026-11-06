@@ -144,6 +144,8 @@ local function applyBalance(model,spec,partySize,difficulty,version,index)
  local xp,gold=Balance.rewards(spec,difficulty,version)
  model:SetAttribute('StoryLevel',level or spec.level);model:SetAttribute('StoryBoss',Balance.isBoss(spec.kind))
  model:SetAttribute('StoryHealth',health);model:SetAttribute('StoryDamage',damage)
+ local tempo=Balance.tempo(spec.kind,version)
+ model:SetAttribute('StoryAttackSpeed',tempo.attackSpeed);model:SetAttribute('StoryMoveSpeed',tempo.moveSpeed)
  model:SetAttribute('StoryRewardXP',xp);model:SetAttribute('StoryRewardGold',gold);model:SetAttribute('StoryElite',elite)
 end
 local spawnWave

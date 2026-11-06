@@ -1,7 +1,9 @@
+local BossTuning=game and require(script.Parent.BossCombatTuning)or dofile('src/shared/BossCombatTuning.luau')
 local Difficulty=game and require(script.Parent.Difficulty)or dofile('src/shared/Difficulty.luau')
 -- Trial adventure tuning. Authored levels and fixed story rewards remain canonical.
 local Balance={density=6,normalHealth=1.5,normalDamage=1.875,bossHealth=1.35,bossDamage=1.5625,maxWaveSize=9}
 local bosses={Warlord=true,GoblinKing=true,KingOgre=true,EnragedWarlord=true,KingShaman=true,IceTrollKing=true,KingIceBear=true,KingIceGolem=true,QueenIceElf=true,AncientGlacierKing=true,MagmaImp=true,MagmaGolem=true,InfernoOverlord=true,CalderaTitan=true,KingVolcanoShaman=true,AncientHollowbark=true,VenomcoilKing=true,WidowQueen=true,DreadCommander=true,Lich=true,LichSovereign=true,Veyr=true}
+function Balance.tempo(kind,version)return BossTuning.forRun(Balance.isBoss(kind),version)end
 function Balance.isBoss(kind) return bosses[kind]==true end
 -- Double the previous three-copy population, split into finite story-paced packs.
 local packSizes={
@@ -71,7 +73,7 @@ function Balance.stats(kind,level,partySize,mode,version,epic)
  local health=(boss and 1000+level*100 or 100+level*25)*party*(boss and Balance.bossHealth or Balance.normalHealth)
  local damage=(boss and 28+level*2 or 10+level)*(boss and Balance.bossDamage or Balance.normalDamage)
  local scale=Difficulty.epicScale(epic,version)
- return math.floor(health*scale.hp+.5),math.floor(damage*scale.damage*(1+.1*((partySize or 1)-1))+.5)
+ return math.floor(health*scale.hp+.5),math.floor(damage*scale.damage*BossTuning.forRun(boss,version).damage*(1+.1*((partySize or 1)-1))+.5)
 end
 -- Elite adjustments share a single path with the runtime and entry preview.
 function Balance.unitStats(spec,partySize,mode,version,index)
