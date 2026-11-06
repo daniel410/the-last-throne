@@ -23,13 +23,13 @@ merchant.start({inventory={snapshot=function()return R.copy(profile)end,shop=fun
  return err
 end}})
 local function send(cmd)reply=nil;remotes.ArmoryRequest.OnServerEvent.callback({},cmd);return reply end
-local function command(action,id)return {action=action,requestId=id,store='blacksmith',heroId='hero',revision=profile.revision,exchangeVersion=E.exchangeVersion}end
+local function command(action,id)return {action=action,requestId=id,store='blacksmith',heroId='hero',revision=profile.revision,exchangeVersion=(action==nil or action=='ExchangeGems')and E.gemPurchaseVersion or E.exchangeVersion}end
 local stone=command('ExchangeStone','stone');local result=assert(send(stone))
 check(not result.error and result.requestId=='stone','versioned stone exchange reaches real shop')
 check(profile.wallet.gold==150 and R.quantity(profile,'hero','enhancement_gem')==0 and R.quantity(profile,'hero','magic_stone')==1,'remote consumes five gems and50 Gold and grants one stone')
 result=assert(send(stone));check(not result.error and profile.wallet.gold==150 and R.quantity(profile,'hero','magic_stone')==1,'remote duplicate cannot charge twice')
-result=assert(send(command('ExchangeGems','gems')));check(not result.error and profile.wallet.gold==100 and R.quantity(profile,'hero','enhancement_gem')==5,'gem purchase action is allowed at remote boundary')
-result=assert(send(command('ConvertOre','ore')));check(not result.error and profile.wallet.gold==50 and R.quantity(profile,'hero','enhancement_gem')==6,'paid ore conversion accepts quote version at remote boundary')
+result=assert(send(command('ExchangeGems','gems')));check(not result.error and profile.wallet.gold==100 and R.quantity(profile,'hero','enhancement_gem')==1,'gem purchase action is allowed at remote boundary')
+result=assert(send(command('ConvertOre','ore')));check(not result.error and profile.wallet.gold==50 and R.quantity(profile,'hero','enhancement_gem')==2,'paid ore conversion accepts quote version at remote boundary')
 local bad=command('ExchangeStone','bad-field');bad.price=0;local before=calls
 result=assert(send(bad));check(result.error=='InvalidRequest'and result.requestId=='bad-field'and calls==before,'invalid field rejects with matching ID so client clears pending')
 bad=command('ExchangeStone','bad-version');bad.exchangeVersion='1'
@@ -37,6 +37,6 @@ result=assert(send(bad));check(result.error=='InvalidRequest'and result.requestI
 bad=command('ExchangeStone','stale');bad.exchangeVersion=0
 result=assert(send(bad));check(result.error=='ExchangeChanged'and result.requestId=='stale'and profile.wallet.gold==50,'stale quote reaches authoritative price validation without debit')
 profile.wallet.gold=49
-result=assert(send(command('ExchangeStone','poor')));check(result.error=='NotEnoughGold'and profile.wallet.gold==49 and R.quantity(profile,'hero','enhancement_gem')==6,'remote insufficient Gold preserves gems')
+result=assert(send(command('ExchangeStone','poor')));check(result.error=='NotEnoughGold'and profile.wallet.gold==49 and R.quantity(profile,'hero','enhancement_gem')==2,'remote insufficient Gold preserves gems')
 check(profile.wallet.diamonds==99,'remote exchanges never consume Diamonds')
 print('Merchant remote exchanges: '..checks..' checks passed')

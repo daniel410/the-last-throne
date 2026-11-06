@@ -1,0 +1,11 @@
+$ lua tests/material-exchange.spec.lua
+Material exchange and flat fee: 181 checks passed
+
+$ lua tests/merchant-exchange.spec.lua
+Merchant remote exchanges: 10 checks passed
+
+$ lua tests/reward-materials.spec.lua
+Reward materials: 41 checks passed
+
+$ lua tests/inventory.spec.lua
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed

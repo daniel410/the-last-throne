@@ -6,22 +6,29 @@ local Store=dofile('src/server/Inventory/AccountStore.luau')
 local checks=0
 local function check(v,m)checks=checks+1;assert(v,m)end
 local function fresh(gold)local p=assert(R.addHero(R.new(42),'h','knight',C));p.wallet.gold=gold;p.wallet.diamonds=99;return p end
-local function cmd(p,id,action)return {requestId=id,action=action or 'ExchangeGems',store='blacksmith',heroId='h',revision=p.revision,exchangeVersion=E.exchangeVersion}end
+local function cmd(p,id,action)return {requestId=id,action=action or 'ExchangeGems',store='blacksmith',heroId='h',revision=p.revision,exchangeVersion=(action==nil or action=='ExchangeGems')and E.gemPurchaseVersion or E.exchangeVersion}end
 local function trade(p,c,ctx)return R.shop(p,c,ctx or {atLobby=true},C)end
 local p=fresh(200);local c=cmd(p,'gems');c.price=0;c.amount=10000
 local n=assert(trade(p,c))
-check(n.wallet.gold==150 and R.quantity(n,'h','enhancement_gem')==5,'server ignores forged price/quantity and grants five gems for50 Gold')
+check(n.wallet.gold==150 and R.quantity(n,'h','enhancement_gem')==1,'server ignores forged price/quantity and grants one gem for50 Gold')
 check(n.wallet.diamonds==99 and R.validate(n,C),'Diamonds and ownership preserved')
-for i=1,100 do local replay,err,duplicate=trade(n,c,{atLobby=false});check(not err and duplicate and replay.wallet.gold==150 and R.quantity(replay,'h','enhancement_gem')==5,'duplicate request never repeats debit/grant')end
-local conflict=R.copy(c);conflict.exchangeVersion=2
+for i=1,100 do local replay,err,duplicate=trade(n,c,{atLobby=false});check(not err and duplicate and replay.wallet.gold==150 and R.quantity(replay,'h','enhancement_gem')==1,'duplicate request never repeats debit/grant')end
+local conflict=R.copy(c);conflict.exchangeVersion=1
 local no,why=trade(n,conflict);check(not no and why=='RequestConflict','same request with different quote version conflicts')
-for _,version in ipairs({0,2})do local stale=cmd(n,'stale'..version);stale.exchangeVersion=version;no,why=trade(n,stale);check(not no and why=='ExchangeChanged','stale quote rejected without spending')end
+for _,version in ipairs({0,1})do local stale=cmd(n,'stale'..version);stale.exchangeVersion=version;no,why=trade(n,stale);check(not no and why=='ExchangeChanged','stale quote rejected without spending')end
 local missing=cmd(n,'missing');missing.exchangeVersion=nil;no,why=trade(n,missing);check(not no and why=='ExchangeChanged','new exchange requires a quote version')
 no,why=trade(p,cmd(p,'outside'),{atLobby=false});check(not no and why=='ShopLobbyOnly','exchange is lobby-only')
 local poor=fresh(49);no,why=trade(poor,cmd(poor,'poor'));check(not no and why=='NotEnoughGold' and poor.wallet.gold==49 and R.quantity(poor,'h','enhancement_gem')==0,'one Gold short cannot buy or debit')
-local exact=fresh(50);n=assert(trade(exact,cmd(exact,'exact')));check(n.wallet.gold==0 and R.quantity(n,'h','enhancement_gem')==5,'exact Gold succeeds')
+local exact=fresh(50);n=assert(trade(exact,cmd(exact,'exact')));check(n.wallet.gold==0 and R.quantity(n,'h','enhancement_gem')==1,'exact Gold succeeds')
 local foreign=cmd(p,'foreign');foreign.heroId='missing';no,why=trade(p,foreign);check(not no and why=='HeroNotOwned','other hero cannot receive materials')
+-- Completed five-gem purchases retain their receipt; new version1 requests are refused.
+local historicPurchase=fresh(150);F.grant(historicPurchase,R,C,'h','enhancement_gem',5,'historic-purchase')
+local oldPurchase=cmd(historicPurchase,'historic-purchase');oldPurchase.exchangeVersion=1
+historicPurchase.operations[oldPurchase.requestId]={fingerprint=table.concat({'forge','ExchangeGems','h','','','nil',tostring(oldPurchase.revision),'blacksmith'},'|')..'|exchange:1',revision=historicPurchase.revision}
+local oldResult,oldError,oldDuplicate=trade(historicPurchase,oldPurchase)
+check(not oldError and oldDuplicate and oldResult.wallet.gold==150 and R.quantity(oldResult,'h','enhancement_gem')==5,'completed five-gem receipt remains unchanged without new debit')
 -- Preserve the existing stone exchange and its historical request shape.
+F.grant(n,R,C,'h','enhancement_gem',4,'stone-fixture')
 local stone=cmd(n,'stone','ExchangeStone');n.wallet.gold=50;stone.exchangeVersion=nil
 n=assert(trade(n,stone));check(n.wallet.gold==0 and R.quantity(n,'h','enhancement_gem')==0 and R.quantity(n,'h','magic_stone')==1,'five gems and50 Gold yield one stone')
 local receipt=assert(trade(n,stone));check(receipt.wallet.gold==0 and R.quantity(receipt,'h','magic_stone')==1,'legacy stone retry cannot mint')
@@ -31,11 +38,11 @@ while R.count(full,'bag','h')<C.bagCapacity do
  local id='fill-'..R.count(full,'bag','h');full.items[id]={instanceId=id,definitionId='iron_ore',definitionVersion=C.version,ownerUserId=42,quantity=999,version=1,binding='account',locked=false,location={kind='bag',heroId='h'}}
 end
 no,why=trade(full,cmd(full,'full'));check(not no and why=='BagFull' and full.wallet.gold==50 and R.count(full,'pending')==0,'full bag cannot lose Gold or redirect bought Gems')
-local slot='fill-20';assert(full.items[slot]);full.items[slot].definitionId='enhancement_gem';full.items[slot].quantity=994
+local slot='fill-20';assert(full.items[slot]);full.items[slot].definitionId='enhancement_gem';full.items[slot].quantity=998
 n=assert(trade(full,cmd(full,'merge')));check(n.items[slot].quantity==999 and n.wallet.gold==0,'full bag can fill an existing gem stack exactly')
-full.items[slot].quantity=997;no,why=trade(full,cmd(full,'split'))
-check(not no and why=='BagFull' and full.items[slot].quantity==997 and full.wallet.gold==50,'partial merge refusal rolls back entire purchase')
-full.items[slot].quantity=994;full.items[slot].locked=true;no,why=trade(full,cmd(full,'locked'));check(not no and why=='BagFull','locked stack cannot receive a purchase')
+full.items[slot].quantity=999;no,why=trade(full,cmd(full,'split'))
+check(not no and why=='BagFull' and full.items[slot].quantity==999 and full.wallet.gold==50,'full stack refusal preserves Gold and items')
+full.items[slot].quantity=998;full.items[slot].locked=true;no,why=trade(full,cmd(full,'locked'));check(not no and why=='BagFull','locked stack cannot receive a purchase')
 -- Lost acknowledgement after commit and repeated UpdateAsync callback.
 local saved,lose
 local adapter={UpdateAsync=function(_,_,fn)
@@ -45,8 +52,8 @@ end}
 local store=Store.new(adapter,R,C,function()return 100 end,function()end,'exchange-session')
 assert(store:open(42));p=assert(store:transact(42,function(v)local q=fresh(100);q.epoch=v.epoch;q.lease=v.lease;return q end));c=cmd(p,'unknown')
 lose=true;no,why=store:transact(42,function(v)return trade(v,c)end);check(not no and why=='SaveUnknown','lost committed purchase remains unknown')
-lose=false;n=assert(store:transact(42,function(v)return trade(v,c)end));check(n.wallet.gold==50 and R.quantity(n,'h','enhancement_gem')==5,'unknown retry recovers one debit and one grant')
-check(store:close(42)~=nil,'save release succeeds');local reopened=assert(store:open(42));check(reopened.wallet.gold==50 and R.quantity(reopened,'h','enhancement_gem')==5,'purchase persists on rejoin')
+lose=false;n=assert(store:transact(42,function(v)return trade(v,c)end));check(n.wallet.gold==50 and R.quantity(n,'h','enhancement_gem')==1,'unknown retry recovers one debit and one grant')
+check(store:close(42)~=nil,'save release succeeds');local reopened=assert(store:open(42));check(reopened.wallet.gold==50 and R.quantity(reopened,'h','enhancement_gem')==1,'purchase persists on rejoin')
 -- Ore conversion charges once, after a current price confirmation.
 local oreProfile=fresh(49);local oreBefore=R.quantity(oreProfile,'h','iron_ore')
 local oreCommand=cmd(oreProfile,'ore','ConvertOre');oreCommand.price=0

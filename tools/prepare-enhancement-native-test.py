@@ -61,12 +61,12 @@ local gemStore={transact=function(_,_,fn)
  return serverProfile
 end}
 local gemService=create(accounts,R,C,gemStore,{heroSession={getInventoryContext=function()return {heroId='hero',atHub=true}end,refresh=function()end}}, {GetAttribute=function()return 'Lobby'end},function()end,{new=function()return {NextInteger=function()return 0 end}end})
-local gemCmd={action='ExchangeGems',store='blacksmith',heroId='hero',revision=serverProfile.revision,requestId='service-gems',exchangeVersion=1}
+local gemCmd={action='ExchangeGems',store='blacksmith',heroId='hero',revision=serverProfile.revision,requestId='service-gems',exchangeVersion=2}
 assert(gemService.shop(player,gemCmd)=='SaveUnknown','exchange reply loss remains pending')
-local changed=R.copy(gemCmd);changed.exchangeVersion=2
+local changed=R.copy(gemCmd);changed.exchangeVersion=1
 assert(gemService.shop(player,changed)=='RequestConflict','pending exchange quote change refused')
 assert(gemService.shop(player,gemCmd)==nil,'original exchange recovers its receipt')
-assert(gemCalls==2 and serverProfile.wallet.gold==925 and R.quantity(serverProfile,'hero','enhancement_gem')==21,'saved exchange debits50 Gold and grants5 Gems only once')
+assert(gemCalls==2 and serverProfile.wallet.gold==925 and R.quantity(serverProfile,'hero','enhancement_gem')==17,'saved exchange debits50 Gold and grants1 Gem only once')
 local profile=assert(R.addHero(R.new(42),'hero','knight',C));local items={};for _,v in pairs(profile.items)do table.insert(items,v)end
 local state={ready=true,heroId='hero',heroes=profile.heroes,items=items,wallet=profile.wallet,revision=profile.revision}
 view.render(state);view.panel.Visible=true

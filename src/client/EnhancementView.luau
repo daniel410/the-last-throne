@@ -31,7 +31,7 @@ function V.render(scroll,s,send,saving,notice)
  end
  local gemsOffer,stoneOffer=E.exchanges.gems,E.exchanges.stones
  card('StoneExchange',C.items.magic_stone,Text.ForgeMaterials,string.format(Text.ExchangeInfo,ore,cores,gemsOffer.gold,gemsOffer.amount,stoneOffer.gems,stoneOffer.gold,stoneOffer.amount),{
-  {title=string.format(Text.ExchangeGemsButton,gemsOffer.gold,gemsOffer.amount),action='ExchangeGems',exchangeVersion=E.exchangeVersion,enabled=s.wallet and s.wallet.gold>=gemsOffer.gold},
+  {title=string.format(Text.ExchangeGemsButton,gemsOffer.gold,gemsOffer.amount),action='ExchangeGems',exchangeVersion=E.gemPurchaseVersion,enabled=s.wallet and s.wallet.gold>=gemsOffer.gold},
   {title=string.format(Text.ExchangeStoneButton,stoneOffer.gold),action='ExchangeStone',exchangeVersion=E.exchangeVersion,enabled=ore>=stoneOffer.gems and s.wallet and s.wallet.gold>=stoneOffer.gold}})
  if amount('iron_ore')>0 then
   local title,review=string.format(Text.ConvertOre,E.oreConversionGold),string.format(Text.ConvertOreReview,E.oreConversionGold)

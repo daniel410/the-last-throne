@@ -53,7 +53,7 @@ function F.apply(profile,c,context,C,R)
   if not F.consume(p,c.heroId,'iron_ore',5)then return nil,'EnhancementMaterials'end
   p.wallet.gold=p.wallet.gold-50;F.grant(p,R,C,c.heroId,'forge_core',1,'forge-'..c.requestId)
  elseif c.action=='ExchangeGems'then
-  if c.exchangeVersion~=E.exchangeVersion then return nil,'ExchangeChanged'end
+  if c.exchangeVersion~=E.gemPurchaseVersion then return nil,'ExchangeChanged'end
   local offer=E.exchanges.gems
   if p.wallet.gold<offer.gold then return nil,'NotEnoughGold'end
   if not F.grant(p,R,C,c.heroId,'enhancement_gem',offer.amount,'gems-'..c.requestId,false,true)then return nil,'BagFull'end
