@@ -1,0 +1,16 @@
+수정 전 실제 MerchantService: FAIL (versioned stone exchange reaches real shop)
+lua: /tmp/tlt-merchant-before-test.lua:6: versioned stone exchange reaches real shop
+stack traceback:
+	[C]: in global 'assert'
+	/tmp/tlt-merchant-before-test.lua:6: in local 'check'
+	/tmp/tlt-merchant-before-test.lua:28: in main chunk
+	[C]: in ?
+
+$ lua tests/merchant-exchange.spec.lua
+Merchant remote exchanges: 10 checks passed
+
+$ lua tests/material-exchange.spec.lua
+Material exchange and flat fee: 180 checks passed
+
+$ lua tests/inventory.spec.lua
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed

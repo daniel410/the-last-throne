@@ -15,13 +15,14 @@ function S.start(options)
    return
   end;last[p]=os.clock()
   if select('#',...)~=0 or type(c)~='table' then return end
-  local allowed={store=true,action=true,requestId=true,heroId=true,revision=true,offerId=true,instanceId=true,itemVersion=true,rulesVersion=true,expectedLevel=true}
-  for k,v in pairs(c) do if not allowed[k] or type(v)~='string' and type(v)~='number' then publish(p,nil,'InvalidRequest');return end end
   if type(c.requestId)~='string' or #c.requestId>64 or not c.requestId:match('^[%w_-]+$') then return end
+  local allowed={store=true,action=true,requestId=true,heroId=true,revision=true,offerId=true,instanceId=true,itemVersion=true,rulesVersion=true,expectedLevel=true,exchangeVersion=true}
+  for k,v in pairs(c) do if not allowed[k] or type(v)~='string' and type(v)~='number' then publish(p,c.requestId,'InvalidRequest');return end end
   if c.action=='GetState' then publish(p,c.requestId,nil,c.open);return end
   local function integer(v) return type(v)=='number' and v==v and v%1==0 and v>=0 and v<=1e12 end
-  if (c.action~='Buy' and c.action~='Sell' and c.action~='Enhance'and c.action~='Recover'and c.action~='ExchangeCore'and c.action~='ExchangeStone'and c.action~='ConvertOre'and c.action~='ConvertCore'and c.action~='OpenCache') or not integer(c.revision) or type(c.heroId)~='string' or #c.heroId>64
+  if (c.action~='Buy' and c.action~='Sell' and c.action~='Enhance'and c.action~='Recover'and c.action~='ExchangeCore'and c.action~='ExchangeGems'and c.action~='ExchangeStone'and c.action~='ConvertOre'and c.action~='ConvertCore'and c.action~='OpenCache') or not integer(c.revision) or type(c.heroId)~='string' or #c.heroId>64
    or (c.action=='Enhance'or c.action=='Recover'or c.action=='OpenCache')and (type(c.instanceId)~='string'or #c.instanceId>100 or not integer(c.itemVersion))
+   or c.exchangeVersion~=nil and not integer(c.exchangeVersion)
    or c.action=='OpenCache'and (type(c.offerId)~='string'or #c.offerId>80)
    or c.action=='Buy' and (type(c.offerId)~='string' or #c.offerId>80) or c.action=='Sell' and (type(c.instanceId)~='string' or #c.instanceId>100 or not integer(c.itemVersion)) then publish(p,c.requestId,'InvalidRequest');return end
   local e,outcome=options.inventory.shop(p,c);publish(p,c.requestId,e,nil,outcome)
