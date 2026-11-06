@@ -13,8 +13,10 @@ ART = ROOT / 'assets/concepts/2026-11-04-equipment-icons'
 OLD = 'assets/balance/equipment-stats-plan-2026-11-04.json'
 OLD_U = 'assets/balance/unique-equipment-plan-2026-11-05.json'
 OUT = 'assets/balance/equipment-recalculated-2026-11-05.json'
+SET = 'assets/balance/equipment-set-bonuses-2026-11-05.json'
 base = json.loads((ROOT/OLD).read_text())
 unique = json.loads((ROOT/OLD_U).read_text())
+set_policy = json.loads((ROOT/SET).read_text())
 old = {(i['rarity'], i['familyId']): i for i in base['items']+unique['items']}
 families = {f['familyId']: f for f in base['families']}
 levels = {'Rare':10, 'Epic':20, 'Legendary':40, 'Unique':60}
@@ -137,8 +139,14 @@ for grade,level in levels.items():
             i['descriptionEnUS'],i['descriptionKoDev']=describe(e)
             i['drop']=copy.deepcopy(src['drop'])
         else:
-            i['descriptionEnUS']='No individual proc. Set bonuses apply only when their piece requirements are met.' if i['setId'] else 'No individual proc.'
-            i['descriptionKoDev']='개별 발동 효과 없음'+(' / 2·4·5부위 세트 보너스' if i['setId'] else '')
+            i['descriptionEnUS']='No individual proc.'
+            i['descriptionKoDev']='개별 발동 효과 없음'
+            if i['setId']:
+                bonus=set_policy['bonuses']
+                percent=round(bonus['5']['finalDirectDamageFractionByRarity'][grade]*100)
+                i['descriptionEnUS']+=' '+bonus['2']['descriptionEnUS']+' '+bonus['4']['classBonuses'][i['classId']]['descriptionEnUS']+' '+bonus['5']['descriptionTemplateEnUS'].format(percent=percent)
+                role={'knight':'블록 후 직접 피해10% 감소','elf':'원거리 스킬 직접 피해5% 증가','dwarf':'물리 스킬 직접 피해5% 증가','mage':'마법 스킬 MP소모8% 감소(올림)'}[i['classId']]
+                i['descriptionKoDev']+=f' / 2부위 최대HP5% / 4부위 {role} / 5부위 최종 직접 피해+{percent}%'
         items.append(i)
 new_by={(i['rarity'],i['familyId']):i for i in items}
 unique_items=[i for i in items if i['rarity']=='Unique']
@@ -170,7 +178,8 @@ for f in families.values():
                 checks+=1
             legendary=stats(f,'Legendary',level,upgrade)
             u=stats(f,'Unique',level,upgrade)
-            assert all(u[k]>legendary[k]*1.02 for k in u) # Full set's maximum stat multiplier.
+            # Unique's base-stat superiority is separate from specialized set effects.
+            assert all(u[k]>legendary[k] for k in u)
 for i in items:
     assert i['requiredLevel']==levels[i['rarity']]
     assert i['stats'].keys()==i['statsAtEnhancement9'].keys()
@@ -179,13 +188,13 @@ for i in items:
     assert i['allowedDifficulties']==(['Hell'] if i['rarity']=='Unique' else ['Insane','Hell'] if i['rarity']=='Legendary' else ['Easy','Hard','Insane','Hell'])
 
 policy={
- 'version':2,'date':'2026-11-05','status':'current-recalculated-proposal-playtest-and-runtime-pending',
+ 'version':3,'date':'2026-11-05','status':'current-recalculated-proposal-set-revision-runtime-pending',
  'supersedesNumericProposals':[OLD,OLD_U],
- 'sourceHashes':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in (OLD,OLD_U)},
+ 'sourceHashes':{p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in (OLD,OLD_U,SET)},
  'rarityMultipliers':ratios,'requiredLevels':levels,'runtimeEnabled':False,
  'effectBudgetPolicy':'additional-fixed-effect-no-base-stat-deduction',
  'coefficients':{'referenceLevel':10,'powerPerLevel':.006,'armorPerLevel':.006,'armorNormalization':.45,'weaponRarePowerFloor':24,'healthBases':bases,'manaReference':'Mage MP=100+4*(level-1); Lv10=136; no INT/equipment'},
- 'setBudgetFactor':1,'setBonuses':base['setBonuses'],
+ 'setBudgetFactor':1,'setPolicyRef':SET,'setBonuses':set_policy['bonuses'],
  'globalEffectRules':{**unique['globalRules'],'maxActiveShieldFraction':.12,'maxActiveReductionFraction':.10,'maxBonusFraction':.24,'maxHealFractionPerCooldown':.03,
    'maxManaRestoredPerCooldown':None,'maxManaRestoredFormula':'12+floor(0.2*level)',
    'bonusPolicy':'maximum 3 basic attacks or 2 magic casts; one first enemy each; 8s TTL; no refresh/charge accumulation',
@@ -203,6 +212,8 @@ doc='''# 장비160종 재산정 전후 전체표
 
 현재 시험 제안: Rare10 / Epic20 / Legendary40 / Unique60. Unique60은 사용자 확정이며 나머지는 시험 기준이다. P=Power %p, A=고정 피해 차감. Unique의 이전 수치는 Lv10 참조이며 현재 수치는 Lv60 산정치다. 런타임 미반영.
 
+세트 후속 조정: 2부위 최대HP5%, 4부위 클래스별 강화, 5부위 최종 직접 피해 Rare5%/Epic6%/Legendary8%. [상세 계약](equipment-set-revision-2026-11-05.md). 장비 기본치·Unique 효과는 유지한다.
+
 | 이름 / 클래스 / 부위 | Lv 이전→현재 / 허용 난이도 | 기본 이전 → 재산정 | 재산정 +9 | 현재 효과 |
 | --- | --- | --- | --- | --- |
 '''
@@ -215,5 +226,5 @@ for i in items:
            f'{lv}<br>'+', '.join(i['allowedDifficulties']),fmt(i['previous']['stats']),fmt(i['stats']),fmt(i['statsAtEnhancement9']),effect_text]
     rows.append('<tr>'+''.join('<td>'+c+'</td>' for c in cells)+'</tr>')
 (ROOT/'docs/production/equipment-recalculated-160-2026-11-05.md').write_text(doc)
-(ART/'recalculated-160.html').write_text('''<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>장비160종 재산정</title><style>body{background:#172534;color:#eef4fa;font:14px/1.6 system-ui;margin:24px}a{color:#abd9ff}input{font:inherit;padding:10px;width:min(90%,600px)}table{border-collapse:collapse;min-width:1100px;width:100%;margin-top:16px}td,th{border:1px solid #526b82;text-align:left;vertical-align:top;padding:12px}td:first-child{min-width:220px;overflow-wrap:anywhere}td:last-child{min-width:350px}b{color:#ffdc91}img{width:56px;height:56px;object-fit:contain;float:left;margin-right:8px}</style><h1>장비160종 재산정 전후</h1><p>Rare Lv10 / Epic Lv20 / Legendary Lv40 / Unique Lv60 · Unique60은 확정, 나머지는 시험 제안. 현재 수치는 실전 테스트 대기이며 런타임 미반영입니다.</p><p>P: Power %p · A: 고정 피해 차감 · HP: 추가 체력 · MP: 최대 마나. 이전 Unique는 Lv10 참조치, 현재는 Lv60 재산정치. +9는 P/A/HP 27% 증가·MP 불변.</p><p><a href="../../../docs/production/equipment-recalculation-2026-11-05.md">산정 근거·효과·난이도·검증 한계</a> · <a href="catalog-160.html">이미지 목록</a></p><label>이름·등급·클래스·효과 검색 <input id="q" type="search" placeholder="Unique / mage / 보호막"></label> <span id="n" aria-live="polite"></span><div style="overflow:auto"><table><thead><tr><th>아이콘 / 이름 / 클래스</th><th>Lv 이전→현재 / 허용 난이도</th><th>이전 기본치</th><th>재산정 기본치</th><th>재산정 +9</th><th>재산정 효과</th></tr></thead><tbody>'''+''.join(rows)+'''</tbody></table></div><script>const q=document.querySelector('#q'),rows=[...document.querySelectorAll('tbody tr')];function apply(){let n=0;for(const r of rows){r.hidden=!r.textContent.toLowerCase().includes(q.value.trim().toLowerCase());if(!r.hidden)n++}document.querySelector('#n').textContent=n+' / 160'}q.addEventListener('input',apply);apply()</script></html>''')
+(ART/'recalculated-160.html').write_text('''<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>장비160종 재산정</title><style>body{background:#172534;color:#eef4fa;font:14px/1.6 system-ui;margin:24px}a{color:#abd9ff}input{font:inherit;padding:10px;width:min(90%,600px)}table{border-collapse:collapse;min-width:1100px;width:100%;margin-top:16px}td,th{border:1px solid #526b82;text-align:left;vertical-align:top;padding:12px}td:first-child{min-width:220px;overflow-wrap:anywhere}td:last-child{min-width:350px}b{color:#ffdc91}img{width:56px;height:56px;object-fit:contain;float:left;margin-right:8px}</style><h1>장비160종 재산정 전후</h1><p>Rare Lv10 / Epic Lv20 / Legendary Lv40 / Unique Lv60 · Unique60은 확정, 나머지는 시험 제안. 현재 수치는 실전 테스트 대기이며 런타임 미반영입니다.</p><p>세트 조정: 2부위 최대HP5% · 4부위 클래스별 강화 · 5부위 최종 직접 피해 Rare5% / Epic6% / Legendary8%. <a href="../../../docs/production/equipment-set-revision-2026-11-05.md">상세 계약</a></p><p>P: Power %p · A: 고정 피해 차감 · HP: 추가 체력 · MP: 최대 마나. 이전 Unique는 Lv10 참조치, 현재는 Lv60 재산정치. +9는 P/A/HP 27% 증가·MP 불변.</p><p><a href="../../../docs/production/equipment-recalculation-2026-11-05.md">산정 근거·효과·난이도·검증 한계</a> · <a href="catalog-160.html">이미지 목록</a></p><label>이름·등급·클래스·효과 검색 <input id="q" type="search" placeholder="Unique / mage / 보호막"></label> <span id="n" aria-live="polite"></span><div style="overflow:auto"><table><thead><tr><th>아이콘 / 이름 / 클래스</th><th>Lv 이전→현재 / 허용 난이도</th><th>이전 기본치</th><th>재산정 기본치</th><th>재산정 +9</th><th>재산정 효과</th></tr></thead><tbody>'''+''.join(rows)+'''</tbody></table></div><script>const q=document.querySelector('#q'),rows=[...document.querySelectorAll('tbody tr')];function apply(){let n=0;for(const r of rows){r.hidden=!r.textContent.toLowerCase().includes(q.value.trim().toLowerCase());if(!r.hidden)n++}document.querySelector('#n').textContent=n+' / 160'}q.addEventListener('input',apply);apply()</script></html>''')
 print('PASS: recalculated 160; changed stats',changed,'; same-level comparisons',checks,'; compatible identical Unique triggers 0; runtime disabled')

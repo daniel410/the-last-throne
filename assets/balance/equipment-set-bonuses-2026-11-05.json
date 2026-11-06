@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "date": "2026-11-05",
+  "status": "revised-proposal-runtime-and-playtest-pending",
+  "runtimeEnabled": false,
+  "thresholds": [2, 4, 5],
+  "countPolicy": {
+    "identity": "exact-setId-generation-and-rarity",
+    "distinctField": "setPieceId",
+    "eligibleSlots": ["weapon", "head", "body", "hands", "feet"],
+    "requiresOwnerClassAndLevelEligibility": true,
+    "excludeUniqueOffhandAndAccessories": true,
+    "thresholdsAccumulate": true,
+    "multipleSetsAtSameThreshold": "strongest-only-then-setId",
+    "noEnhancementScaling": true,
+    "onEquip": "recompute-without-restoring-current-health-or-mana"
+  },
+  "bonuses": {
+    "2": {
+      "healthFractionOfPreSetMaxHealth": 0.05,
+      "textKey": "Equipment.Set.TwoPieces",
+      "descriptionEnUS": "2 pieces: +5% Max HP. Equipping does not restore HP."
+    },
+    "4": {
+      "classBonuses": {
+        "knight": {
+          "blockedDirectDamageReductionFraction": 0.1,
+          "textKey": "Equipment.Set.FourPieces.Knight",
+          "descriptionEnUS": "4 pieces: Take 10% less direct enemy damage when blocking a hit."
+        },
+        "elf": {
+          "rangedSkillDirectDamageFraction": 0.05,
+          "textKey": "Equipment.Set.FourPieces.Elf",
+          "descriptionEnUS": "4 pieces: Ranged skills deal 5% more direct damage."
+        },
+        "dwarf": {
+          "physicalSkillDirectDamageFraction": 0.05,
+          "textKey": "Equipment.Set.FourPieces.Dwarf",
+          "descriptionEnUS": "4 pieces: Physical skills deal 5% more direct damage."
+        },
+        "mage": {
+          "magicSkillManaCostReductionFraction": 0.08,
+          "textKey": "Equipment.Set.FourPieces.Mage",
+          "descriptionEnUS": "4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP."
+        }
+      }
+    },
+    "5": {
+      "finalDirectDamageFractionByRarity": {"Rare": 0.05, "Epic": 0.06, "Legendary": 0.08},
+      "textKey": "Equipment.Set.FivePieces",
+      "descriptionTemplateEnUS": "5 pieces: Deal {percent}% more direct damage with basic attacks and skills."
+    }
+  },
+  "calculationPolicy": {
+    "health": "(hero-max-health + enhanced-equipment-health) * (1 + two-piece-fraction)",
+    "outgoingDamage": "post-target-mitigation-direct-damage * (1 + eligible-four-piece-fraction) * (1 + five-piece-fraction); round once at the end",
+    "blockedDamage": "normal-block-direct-enemy-damage-after-flat-armor * (1 - knight-four-piece-fraction), before shields; preserve minimum-damage rule",
+    "magicCost": "positive-base-cost -> max(1, ceil(base-cost * (1 - mage-four-piece-fraction))); zero cost stays zero",
+    "eligibleAttacks": "basic attacks and server-confirmed active skill hits, including eligible ultimate and authored pulses once each",
+    "excludedDamage": ["proc-generated bonus damage", "reflected damage", "self damage", "environment damage", "damage over time"],
+    "uniqueProcInteraction": "do not multiply proc-generated bonus damage by set multipliers again",
+    "noProcOrCooldownConsumption": true,
+    "noNewManaPoolOrPassiveRecovery": true
+  }
+}

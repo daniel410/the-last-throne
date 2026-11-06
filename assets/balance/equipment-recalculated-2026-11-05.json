@@ -1,14 +1,15 @@
 {
-  "version": 2,
+  "version": 3,
   "date": "2026-11-05",
-  "status": "current-recalculated-proposal-playtest-and-runtime-pending",
+  "status": "current-recalculated-proposal-set-revision-runtime-pending",
   "supersedesNumericProposals": [
     "assets/balance/equipment-stats-plan-2026-11-04.json",
     "assets/balance/unique-equipment-plan-2026-11-05.json"
   ],
   "sourceHashes": {
     "assets/balance/equipment-stats-plan-2026-11-04.json": "cee2e889233682bb3a603a72a49ef50222c4ffa5439ebf20e68b8e45ea105d7d",
-    "assets/balance/unique-equipment-plan-2026-11-05.json": "658c49cba30935d2b682bcf4a45414b102706657a381134fdf7a7cbe70d3b4cb"
+    "assets/balance/unique-equipment-plan-2026-11-05.json": "658c49cba30935d2b682bcf4a45414b102706657a381134fdf7a7cbe70d3b4cb",
+    "assets/balance/equipment-set-bonuses-2026-11-05.json": "4ddb5c1647bdc0f902ef0bd9d1243fe3298879ac8ea9e1874a059acb78c44b7b"
   },
   "rarityMultipliers": {
     "Common": 1,
@@ -53,15 +54,45 @@
     "manaReference": "Mage MP=100+4*(level-1); Lv10=136; no INT/equipment"
   },
   "setBudgetFactor": 1,
+  "setPolicyRef": "assets/balance/equipment-set-bonuses-2026-11-05.json",
   "setBonuses": {
     "2": {
-      "healthFractionOfPreSetMaxHealth": 0.02
+      "healthFractionOfPreSetMaxHealth": 0.05,
+      "textKey": "Equipment.Set.TwoPieces",
+      "descriptionEnUS": "2 pieces: +5% Max HP. Equipping does not restore HP."
     },
     "4": {
-      "armorFractionOfEnhancedEquipmentArmor": 0.02
+      "classBonuses": {
+        "knight": {
+          "blockedDirectDamageReductionFraction": 0.1,
+          "textKey": "Equipment.Set.FourPieces.Knight",
+          "descriptionEnUS": "4 pieces: Take 10% less direct enemy damage when blocking a hit."
+        },
+        "elf": {
+          "rangedSkillDirectDamageFraction": 0.05,
+          "textKey": "Equipment.Set.FourPieces.Elf",
+          "descriptionEnUS": "4 pieces: Ranged skills deal 5% more direct damage."
+        },
+        "dwarf": {
+          "physicalSkillDirectDamageFraction": 0.05,
+          "textKey": "Equipment.Set.FourPieces.Dwarf",
+          "descriptionEnUS": "4 pieces: Physical skills deal 5% more direct damage."
+        },
+        "mage": {
+          "magicSkillManaCostReductionFraction": 0.08,
+          "textKey": "Equipment.Set.FourPieces.Mage",
+          "descriptionEnUS": "4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP."
+        }
+      }
     },
     "5": {
-      "powerFractionOfEnhancedEquipmentPower": 0.02
+      "finalDirectDamageFractionByRarity": {
+        "Rare": 0.05,
+        "Epic": 0.06,
+        "Legendary": 0.08
+      },
+      "textKey": "Equipment.Set.FivePieces",
+      "descriptionTemplateEnUS": "5 pieces: Deal {percent}% more direct damage with basic attacks and skills."
     }
   },
   "globalEffectRules": {
@@ -541,8 +572,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "knight_head_family_l10_rare",
@@ -592,8 +623,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "knight_body_family_l10_rare",
@@ -643,8 +674,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "knight_hands_family_l10_rare",
@@ -698,8 +729,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "knight_feet_family_l10_rare",
@@ -749,8 +780,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "knight_ring_family_l10_rare",
@@ -898,8 +929,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "elf_head_family_l10_rare",
@@ -949,8 +980,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "elf_body_family_l10_rare",
@@ -1000,8 +1031,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "elf_hands_family_l10_rare",
@@ -1051,8 +1082,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "elf_feet_family_l10_rare",
@@ -1106,8 +1137,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "elf_ring_family_l10_rare",
@@ -1259,8 +1290,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "dwarf_head_family_l10_rare",
@@ -1310,8 +1341,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "dwarf_body_family_l10_rare",
@@ -1361,8 +1392,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "dwarf_hands_family_l10_rare",
@@ -1412,8 +1443,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "dwarf_feet_family_l10_rare",
@@ -1463,8 +1494,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "dwarf_ring_family_l10_rare",
@@ -1616,8 +1647,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "mage_head_family_l10_rare",
@@ -1667,8 +1698,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "mage_body_family_l10_rare",
@@ -1722,8 +1753,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "mage_hands_family_l10_rare",
@@ -1773,8 +1804,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "mage_feet_family_l10_rare",
@@ -1828,8 +1859,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 10,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 5% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+5%"
     },
     {
       "proposalId": "mage_ring_family_l10_rare",
@@ -2569,8 +2600,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "knight_head_family_l10_epic",
@@ -2620,8 +2651,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "knight_body_family_l10_epic",
@@ -2671,8 +2702,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "knight_hands_family_l10_epic",
@@ -2726,8 +2757,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "knight_feet_family_l10_epic",
@@ -2777,8 +2808,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "knight_ring_family_l10_epic",
@@ -2926,8 +2957,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "elf_head_family_l10_epic",
@@ -2977,8 +3008,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "elf_body_family_l10_epic",
@@ -3028,8 +3059,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "elf_hands_family_l10_epic",
@@ -3079,8 +3110,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "elf_feet_family_l10_epic",
@@ -3134,8 +3165,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "elf_ring_family_l10_epic",
@@ -3287,8 +3318,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "dwarf_head_family_l10_epic",
@@ -3338,8 +3369,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "dwarf_body_family_l10_epic",
@@ -3389,8 +3420,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "dwarf_hands_family_l10_epic",
@@ -3440,8 +3471,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "dwarf_feet_family_l10_epic",
@@ -3491,8 +3522,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "dwarf_ring_family_l10_epic",
@@ -3644,8 +3675,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "mage_head_family_l10_epic",
@@ -3695,8 +3726,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "mage_body_family_l10_epic",
@@ -3750,8 +3781,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "mage_hands_family_l10_epic",
@@ -3801,8 +3832,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "mage_feet_family_l10_epic",
@@ -3856,8 +3887,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 20,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 6% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+6%"
     },
     {
       "proposalId": "mage_ring_family_l10_epic",
@@ -4579,8 +4610,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "knight_head_family_l10_legendary",
@@ -4628,8 +4659,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "knight_body_family_l10_legendary",
@@ -4677,8 +4708,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "knight_hands_family_l10_legendary",
@@ -4730,8 +4761,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "knight_feet_family_l10_legendary",
@@ -4779,8 +4810,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Take 10% less direct enemy damage when blocking a hit. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 블록 후 직접 피해10% 감소 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "knight_ring_family_l10_legendary",
@@ -4922,8 +4953,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "elf_head_family_l10_legendary",
@@ -4971,8 +5002,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "elf_body_family_l10_legendary",
@@ -5020,8 +5051,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "elf_hands_family_l10_legendary",
@@ -5069,8 +5100,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "elf_feet_family_l10_legendary",
@@ -5122,8 +5153,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Ranged skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 원거리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "elf_ring_family_l10_legendary",
@@ -5269,8 +5300,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "dwarf_head_family_l10_legendary",
@@ -5318,8 +5349,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "dwarf_body_family_l10_legendary",
@@ -5367,8 +5398,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "dwarf_hands_family_l10_legendary",
@@ -5416,8 +5447,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "dwarf_feet_family_l10_legendary",
@@ -5465,8 +5496,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": false,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Physical skills deal 5% more direct damage. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 물리 스킬 직접 피해5% 증가 / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "dwarf_ring_family_l10_legendary",
@@ -5612,8 +5643,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "mage_head_family_l10_legendary",
@@ -5661,8 +5692,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "mage_body_family_l10_legendary",
@@ -5714,8 +5745,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "mage_hands_family_l10_legendary",
@@ -5763,8 +5794,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "mage_feet_family_l10_legendary",
@@ -5816,8 +5847,8 @@
       "status": "current-balance-proposal-not-runtime",
       "personalLootRequiresExistingManaPool": true,
       "personalLootMinimumLevel": 40,
-      "descriptionEnUS": "No individual proc. Set bonuses apply only when their piece requirements are met.",
-      "descriptionKoDev": "개별 발동 효과 없음 / 2·4·5부위 세트 보너스"
+      "descriptionEnUS": "No individual proc. 2 pieces: +5% Max HP. Equipping does not restore HP. 4 pieces: Magic skills cost 8% less MP, rounded up to a whole MP. 5 pieces: Deal 8% more direct damage with basic attacks and skills.",
+      "descriptionKoDev": "개별 발동 효과 없음 / 2부위 최대HP5% / 4부위 마법 스킬 MP소모8% 감소(올림) / 5부위 최종 직접 피해+8%"
     },
     {
       "proposalId": "mage_ring_family_l10_legendary",

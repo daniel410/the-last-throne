@@ -1,0 +1,1241 @@
+{
+  "date": "2026-11-05",
+  "kind": "static-design-validation-not-runtime",
+  "baselineCommit": "9296775b8c1ba085bc14b378ae86dd1f60e1cdf9",
+  "sourceHashes": {
+    "assets/balance/equipment-recalculated-2026-11-05.json": "57dee710cf0874647630280f78d8bda9761a493466425ee6738f94c4c1d82047",
+    "assets/balance/equipment-set-bonuses-2026-11-05.json": "4ddb5c1647bdc0f902ef0bd9d1243fe3298879ac8ea9e1874a059acb78c44b7b"
+  },
+  "unchangedItemDefinitionsExceptDescriptions": 160,
+  "unchangedUniqueItems": 40,
+  "sets": 12,
+  "setItems": 60,
+  "transitionFixtures": [
+    {
+      "setId": "knight_t10_rare",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "knight_t10_rare",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_rare"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "knight_t10_rare",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_rare",
+        "gear_knight_head_family_t10_rare"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "knight_t10_rare",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_rare",
+        "gear_knight_head_family_t10_rare",
+        "gear_knight_body_family_t10_rare"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "knight_t10_rare",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_rare",
+        "gear_knight_head_family_t10_rare",
+        "gear_knight_body_family_t10_rare",
+        "gear_knight_hands_family_t10_rare"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "knight_t10_rare",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_rare",
+        "gear_knight_head_family_t10_rare",
+        "gear_knight_body_family_t10_rare",
+        "gear_knight_hands_family_t10_rare",
+        "gear_knight_feet_family_t10_rare"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "elf_t10_rare",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "elf_t10_rare",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_rare"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "elf_t10_rare",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_rare",
+        "gear_elf_head_family_t10_rare"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "elf_t10_rare",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_rare",
+        "gear_elf_head_family_t10_rare",
+        "gear_elf_body_family_t10_rare"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "elf_t10_rare",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_rare",
+        "gear_elf_head_family_t10_rare",
+        "gear_elf_body_family_t10_rare",
+        "gear_elf_hands_family_t10_rare"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "elf_t10_rare",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_rare",
+        "gear_elf_head_family_t10_rare",
+        "gear_elf_body_family_t10_rare",
+        "gear_elf_hands_family_t10_rare",
+        "gear_elf_feet_family_t10_rare"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "dwarf_t10_rare",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "dwarf_t10_rare",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_rare"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "dwarf_t10_rare",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_rare",
+        "gear_dwarf_head_family_t10_rare"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "dwarf_t10_rare",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_rare",
+        "gear_dwarf_head_family_t10_rare",
+        "gear_dwarf_body_family_t10_rare"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "dwarf_t10_rare",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_rare",
+        "gear_dwarf_head_family_t10_rare",
+        "gear_dwarf_body_family_t10_rare",
+        "gear_dwarf_hands_family_t10_rare"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "dwarf_t10_rare",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_rare",
+        "gear_dwarf_head_family_t10_rare",
+        "gear_dwarf_body_family_t10_rare",
+        "gear_dwarf_hands_family_t10_rare",
+        "gear_dwarf_feet_family_t10_rare"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "mage_t10_rare",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "mage_t10_rare",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_rare"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "mage_t10_rare",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_rare",
+        "gear_mage_head_family_t10_rare"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "mage_t10_rare",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_rare",
+        "gear_mage_head_family_t10_rare",
+        "gear_mage_body_family_t10_rare"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "mage_t10_rare",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_rare",
+        "gear_mage_head_family_t10_rare",
+        "gear_mage_body_family_t10_rare",
+        "gear_mage_hands_family_t10_rare"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "mage_t10_rare",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_rare",
+        "gear_mage_head_family_t10_rare",
+        "gear_mage_body_family_t10_rare",
+        "gear_mage_hands_family_t10_rare",
+        "gear_mage_feet_family_t10_rare"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "knight_t10_epic",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "knight_t10_epic",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_epic"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "knight_t10_epic",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_epic",
+        "gear_knight_head_family_t10_epic"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "knight_t10_epic",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_epic",
+        "gear_knight_head_family_t10_epic",
+        "gear_knight_body_family_t10_epic"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "knight_t10_epic",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_epic",
+        "gear_knight_head_family_t10_epic",
+        "gear_knight_body_family_t10_epic",
+        "gear_knight_hands_family_t10_epic"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "knight_t10_epic",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_epic",
+        "gear_knight_head_family_t10_epic",
+        "gear_knight_body_family_t10_epic",
+        "gear_knight_hands_family_t10_epic",
+        "gear_knight_feet_family_t10_epic"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "elf_t10_epic",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "elf_t10_epic",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_epic"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "elf_t10_epic",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_epic",
+        "gear_elf_head_family_t10_epic"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "elf_t10_epic",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_epic",
+        "gear_elf_head_family_t10_epic",
+        "gear_elf_body_family_t10_epic"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "elf_t10_epic",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_epic",
+        "gear_elf_head_family_t10_epic",
+        "gear_elf_body_family_t10_epic",
+        "gear_elf_hands_family_t10_epic"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "elf_t10_epic",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_epic",
+        "gear_elf_head_family_t10_epic",
+        "gear_elf_body_family_t10_epic",
+        "gear_elf_hands_family_t10_epic",
+        "gear_elf_feet_family_t10_epic"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "dwarf_t10_epic",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "dwarf_t10_epic",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_epic"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "dwarf_t10_epic",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_epic",
+        "gear_dwarf_head_family_t10_epic"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "dwarf_t10_epic",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_epic",
+        "gear_dwarf_head_family_t10_epic",
+        "gear_dwarf_body_family_t10_epic"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "dwarf_t10_epic",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_epic",
+        "gear_dwarf_head_family_t10_epic",
+        "gear_dwarf_body_family_t10_epic",
+        "gear_dwarf_hands_family_t10_epic"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "dwarf_t10_epic",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_epic",
+        "gear_dwarf_head_family_t10_epic",
+        "gear_dwarf_body_family_t10_epic",
+        "gear_dwarf_hands_family_t10_epic",
+        "gear_dwarf_feet_family_t10_epic"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "mage_t10_epic",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "mage_t10_epic",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_epic"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "mage_t10_epic",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_epic",
+        "gear_mage_head_family_t10_epic"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "mage_t10_epic",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_epic",
+        "gear_mage_head_family_t10_epic",
+        "gear_mage_body_family_t10_epic"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "mage_t10_epic",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_epic",
+        "gear_mage_head_family_t10_epic",
+        "gear_mage_body_family_t10_epic",
+        "gear_mage_hands_family_t10_epic"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "mage_t10_epic",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_epic",
+        "gear_mage_head_family_t10_epic",
+        "gear_mage_body_family_t10_epic",
+        "gear_mage_hands_family_t10_epic",
+        "gear_mage_feet_family_t10_epic"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "knight_t10_legendary",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "knight_t10_legendary",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_legendary"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "knight_t10_legendary",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_legendary",
+        "gear_knight_head_family_t10_legendary"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "knight_t10_legendary",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_legendary",
+        "gear_knight_head_family_t10_legendary",
+        "gear_knight_body_family_t10_legendary"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "knight_t10_legendary",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_legendary",
+        "gear_knight_head_family_t10_legendary",
+        "gear_knight_body_family_t10_legendary",
+        "gear_knight_hands_family_t10_legendary"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "knight_t10_legendary",
+      "candidateIds": [
+        "gear_knight_weapon_family_t10_legendary",
+        "gear_knight_head_family_t10_legendary",
+        "gear_knight_body_family_t10_legendary",
+        "gear_knight_hands_family_t10_legendary",
+        "gear_knight_feet_family_t10_legendary"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "elf_t10_legendary",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "elf_t10_legendary",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_legendary"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "elf_t10_legendary",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_legendary",
+        "gear_elf_head_family_t10_legendary"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "elf_t10_legendary",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_legendary",
+        "gear_elf_head_family_t10_legendary",
+        "gear_elf_body_family_t10_legendary"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "elf_t10_legendary",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_legendary",
+        "gear_elf_head_family_t10_legendary",
+        "gear_elf_body_family_t10_legendary",
+        "gear_elf_hands_family_t10_legendary"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "elf_t10_legendary",
+      "candidateIds": [
+        "gear_elf_weapon_family_t10_legendary",
+        "gear_elf_head_family_t10_legendary",
+        "gear_elf_body_family_t10_legendary",
+        "gear_elf_hands_family_t10_legendary",
+        "gear_elf_feet_family_t10_legendary"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "dwarf_t10_legendary",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "dwarf_t10_legendary",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_legendary"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "dwarf_t10_legendary",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_legendary",
+        "gear_dwarf_head_family_t10_legendary"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "dwarf_t10_legendary",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_legendary",
+        "gear_dwarf_head_family_t10_legendary",
+        "gear_dwarf_body_family_t10_legendary"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "dwarf_t10_legendary",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_legendary",
+        "gear_dwarf_head_family_t10_legendary",
+        "gear_dwarf_body_family_t10_legendary",
+        "gear_dwarf_hands_family_t10_legendary"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "dwarf_t10_legendary",
+      "candidateIds": [
+        "gear_dwarf_weapon_family_t10_legendary",
+        "gear_dwarf_head_family_t10_legendary",
+        "gear_dwarf_body_family_t10_legendary",
+        "gear_dwarf_hands_family_t10_legendary",
+        "gear_dwarf_feet_family_t10_legendary"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "setId": "mage_t10_legendary",
+      "candidateIds": [],
+      "distinctPieces": 0,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "mage_t10_legendary",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_legendary"
+      ],
+      "distinctPieces": 1,
+      "expectedThresholds": []
+    },
+    {
+      "setId": "mage_t10_legendary",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_legendary",
+        "gear_mage_head_family_t10_legendary"
+      ],
+      "distinctPieces": 2,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "mage_t10_legendary",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_legendary",
+        "gear_mage_head_family_t10_legendary",
+        "gear_mage_body_family_t10_legendary"
+      ],
+      "distinctPieces": 3,
+      "expectedThresholds": [
+        2
+      ]
+    },
+    {
+      "setId": "mage_t10_legendary",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_legendary",
+        "gear_mage_head_family_t10_legendary",
+        "gear_mage_body_family_t10_legendary",
+        "gear_mage_hands_family_t10_legendary"
+      ],
+      "distinctPieces": 4,
+      "expectedThresholds": [
+        2,
+        4
+      ]
+    },
+    {
+      "setId": "mage_t10_legendary",
+      "candidateIds": [
+        "gear_mage_weapon_family_t10_legendary",
+        "gear_mage_head_family_t10_legendary",
+        "gear_mage_body_family_t10_legendary",
+        "gear_mage_hands_family_t10_legendary",
+        "gear_mage_feet_family_t10_legendary"
+      ],
+      "distinctPieces": 5,
+      "expectedThresholds": [
+        2,
+        4,
+        5
+      ]
+    }
+  ],
+  "calculatedFullKits": [
+    {
+      "setId": "knight_t10_rare",
+      "classId": "knight",
+      "rarity": "Rare",
+      "level": 10,
+      "enhancement": 0,
+      "equipmentPower": 33.44,
+      "oldFullSetDamageMultiplier": 1.341088,
+      "newBasicDamageMultiplier": 1.4011200000000001,
+      "newEligibleSkillDamageMultiplier": 1.4011200000000001,
+      "basicGainOverOldFullSetPercent": 4.476365458493414,
+      "completionOnlyBasicGainPercent": 5.0,
+      "newFourAndFiveEligibleSkillGainPercent": 5.000000000000004,
+      "oldTwoPieceMaxHealth": 741.744,
+      "newTwoPieceMaxHealth": 763.5600000000001
+    },
+    {
+      "setId": "knight_t10_rare",
+      "classId": "knight",
+      "rarity": "Rare",
+      "level": 10,
+      "enhancement": 9,
+      "equipmentPower": 42.4688,
+      "oldFullSetDamageMultiplier": 1.43318176,
+      "newBasicDamageMultiplier": 1.4959224,
+      "newEligibleSkillDamageMultiplier": 1.4959224,
+      "basicGainOverOldFullSetPercent": 4.377716891959316,
+      "completionOnlyBasicGainPercent": 5.0,
+      "newFourAndFiveEligibleSkillGainPercent": 5.000000000000004,
+      "oldTwoPieceMaxHealth": 835.9858800000001,
+      "newTwoPieceMaxHealth": 860.5737000000001
+    },
+    {
+      "setId": "elf_t10_rare",
+      "classId": "elf",
+      "rarity": "Rare",
+      "level": 10,
+      "enhancement": 0,
+      "equipmentPower": 57.82,
+      "oldFullSetDamageMultiplier": 1.589764,
+      "newBasicDamageMultiplier": 1.65711,
+      "newEligibleSkillDamageMultiplier": 1.7399655,
+      "basicGainOverOldFullSetPercent": 4.236226257482256,
+      "completionOnlyBasicGainPercent": 5.0,
+      "newFourAndFiveEligibleSkillGainPercent": 10.250000000000004,
+      "oldTwoPieceMaxHealth": 413.30400000000003,
+      "newTwoPieceMaxHealth": 425.4600000000001
+    },
+    {
+      "setId": "elf_t10_rare",
+      "classId": "elf",
+      "rarity": "Rare",
+      "level": 10,
+      "enhancement": 9,
+      "equipmentPower": 73.4314,
+      "oldFullSetDamageMultiplier": 1.74900028,
+      "newBasicDamageMultiplier": 1.8210297,
+      "newEligibleSkillDamageMultiplier": 1.9120811850000001,
+      "basicGainOverOldFullSetPercent": 4.118319523653824,
+      "completionOnlyBasicGainPercent": 5.0,
+      "newFourAndFiveEligibleSkillGainPercent": 10.250000000000004,
+      "oldTwoPieceMaxHealth": 458.80008,
+      "newTwoPieceMaxHealth": 472.2942
+    },
+    {
+      "setId": "dwarf_t10_rare",
+      "classId": "dwarf",
+      "rarity": "Rare",
+      "level": 10,
+      "enhancement": 0,
+      "equipmentPower": 40.519999999999996,
+      "oldFullSetDamageMultiplier": 1.413304,
+      "newBasicDamageMultiplier": 1.47546,
+      "newEligibleSkillDamageMultiplier": 1.549233,
+      "basicGainOverOldFullSetPercent": 4.397921466294585,
+      "completionOnlyBasicGainPercent": 5.0,
+      "newFourAndFiveEligibleSkillGainPercent": 10.250000000000004,
+      "oldTwoPieceMaxHealth": 672.384,
+      "newTwoPieceMaxHealth": 692.1600000000001
+    },
+    {
+      "setId": "dwarf_t10_rare",
+      "classId": "dwarf",
+      "rarity": "Rare",
+      "level": 10,
+      "enhancement": 9,
+      "equipmentPower": 51.4604,
+      "oldFullSetDamageMultiplier": 1.52489608,
+      "newBasicDamageMultiplier": 1.5903341999999998,
+      "newEligibleSkillDamageMultiplier": 1.6698509099999999,
+      "basicGainOverOldFullSetPercent": 4.291316690905256,
+      "completionOnlyBasicGainPercent": 5.0,
+      "newFourAndFiveEligibleSkillGainPercent": 10.250000000000004,
+      "oldTwoPieceMaxHealth": 766.62588,
+      "newTwoPieceMaxHealth": 789.1737
+    },
+    {
+      "setId": "mage_t10_rare",
+      "classId": "mage",
+      "rarity": "Rare",
+      "level": 10,
+      "enhancement": 0,
+      "equipmentPower": 40.519999999999996,
+      "oldFullSetDamageMultiplier": 1.413304,
+      "newBasicDamageMultiplier": 1.47546,
+      "newEligibleSkillDamageMultiplier": 1.47546,
+      "basicGainOverOldFullSetPercent": 4.397921466294585,
+      "completionOnlyBasicGainPercent": 5.0,
+      "newFourAndFiveEligibleSkillGainPercent": 5.000000000000004,
+      "oldTwoPieceMaxHealth": 319.872,
+      "newTwoPieceMaxHealth": 329.28000000000003
+    },
+    {
+      "setId": "mage_t10_rare",
+      "classId": "mage",
+      "rarity": "Rare",
+      "level": 10,
+      "enhancement": 9,
+      "equipmentPower": 51.4604,
+      "oldFullSetDamageMultiplier": 1.52489608,
+      "newBasicDamageMultiplier": 1.5903341999999998,
+      "newEligibleSkillDamageMultiplier": 1.5903341999999998,
+      "basicGainOverOldFullSetPercent": 4.291316690905256,
+      "completionOnlyBasicGainPercent": 5.0,
+      "newFourAndFiveEligibleSkillGainPercent": 5.000000000000004,
+      "oldTwoPieceMaxHealth": 358.86864,
+      "newTwoPieceMaxHealth": 369.4236
+    },
+    {
+      "setId": "knight_t10_epic",
+      "classId": "knight",
+      "rarity": "Epic",
+      "level": 20,
+      "enhancement": 0,
+      "equipmentPower": 38.4503,
+      "oldFullSetDamageMultiplier": 1.3921930599999999,
+      "newBasicDamageMultiplier": 1.46757318,
+      "newEligibleSkillDamageMultiplier": 1.46757318,
+      "basicGainOverOldFullSetPercent": 5.414487556776071,
+      "completionOnlyBasicGainPercent": 6.0,
+      "newFourAndFiveEligibleSkillGainPercent": 6.000000000000005,
+      "oldTwoPieceMaxHealth": 1071.839868,
+      "newTwoPieceMaxHealth": 1103.36457
+    },
+    {
+      "setId": "knight_t10_epic",
+      "classId": "knight",
+      "rarity": "Epic",
+      "level": 20,
+      "enhancement": 9,
+      "equipmentPower": 48.8318,
+      "oldFullSetDamageMultiplier": 1.49808436,
+      "newBasicDamageMultiplier": 1.57761708,
+      "newEligibleSkillDamageMultiplier": 1.57761708,
+      "basicGainOverOldFullSetPercent": 5.308961372509091,
+      "completionOnlyBasicGainPercent": 6.0,
+      "newFourAndFiveEligibleSkillGainPercent": 6.000000000000005,
+      "oldTwoPieceMaxHealth": 1213.8975120000002,
+      "newTwoPieceMaxHealth": 1249.60038
+    },
+    {
+      "setId": "elf_t10_epic",
+      "classId": "elf",
+      "rarity": "Epic",
+      "level": 20,
+      "enhancement": 0,
+      "equipmentPower": 66.4832,
+      "oldFullSetDamageMultiplier": 1.6781286400000002,
+      "newBasicDamageMultiplier": 1.7647219200000002,
+      "newEligibleSkillDamageMultiplier": 1.8529580160000003,
+      "basicGainOverOldFullSetPercent": 5.16010977561292,
+      "completionOnlyBasicGainPercent": 6.0,
+      "newFourAndFiveEligibleSkillGainPercent": 11.300000000000022,
+      "oldTwoPieceMaxHealth": 605.744034,
+      "newTwoPieceMaxHealth": 623.5600350000001
+    },
+    {
+      "setId": "elf_t10_epic",
+      "classId": "elf",
+      "rarity": "Epic",
+      "level": 20,
+      "enhancement": 9,
+      "equipmentPower": 84.4337,
+      "oldFullSetDamageMultiplier": 1.8612237400000002,
+      "newBasicDamageMultiplier": 1.95499722,
+      "newEligibleSkillDamageMultiplier": 2.052747081,
+      "basicGainOverOldFullSetPercent": 5.038270143706636,
+      "completionOnlyBasicGainPercent": 6.0,
+      "newFourAndFiveEligibleSkillGainPercent": 11.300000000000022,
+      "oldTwoPieceMaxHealth": 675.658914,
+      "newTwoPieceMaxHealth": 695.531235
+    },
+    {
+      "setId": "dwarf_t10_epic",
+      "classId": "dwarf",
+      "rarity": "Epic",
+      "level": 20,
+      "enhancement": 0,
+      "equipmentPower": 46.5911,
+      "oldFullSetDamageMultiplier": 1.4752292200000001,
+      "newBasicDamageMultiplier": 1.55386566,
+      "newEligibleSkillDamageMultiplier": 1.6315589430000002,
+      "basicGainOverOldFullSetPercent": 5.330455696911973,
+      "completionOnlyBasicGainPercent": 6.0,
+      "newFourAndFiveEligibleSkillGainPercent": 11.300000000000022,
+      "oldTwoPieceMaxHealth": 989.835642,
+      "newTwoPieceMaxHealth": 1018.9484550000001
+    },
+    {
+      "setId": "dwarf_t10_epic",
+      "classId": "dwarf",
+      "rarity": "Epic",
+      "level": 20,
+      "enhancement": 9,
+      "equipmentPower": 59.1707,
+      "oldFullSetDamageMultiplier": 1.60354114,
+      "newBasicDamageMultiplier": 1.68720942,
+      "newEligibleSkillDamageMultiplier": 1.7715698910000002,
+      "basicGainOverOldFullSetPercent": 5.217719577808899,
+      "completionOnlyBasicGainPercent": 6.0,
+      "newFourAndFiveEligibleSkillGainPercent": 11.300000000000022,
+      "oldTwoPieceMaxHealth": 1133.98755,
+      "newTwoPieceMaxHealth": 1167.3401250000002
+    },
+    {
+      "setId": "mage_t10_epic",
+      "classId": "mage",
+      "rarity": "Epic",
+      "level": 20,
+      "enhancement": 0,
+      "equipmentPower": 46.5911,
+      "oldFullSetDamageMultiplier": 1.4752292200000001,
+      "newBasicDamageMultiplier": 1.55386566,
+      "newEligibleSkillDamageMultiplier": 1.55386566,
+      "basicGainOverOldFullSetPercent": 5.330455696911973,
+      "completionOnlyBasicGainPercent": 6.0,
+      "newFourAndFiveEligibleSkillGainPercent": 6.000000000000005,
+      "oldTwoPieceMaxHealth": 486.582738,
+      "newTwoPieceMaxHealth": 500.893995
+    },
+    {
+      "setId": "mage_t10_epic",
+      "classId": "mage",
+      "rarity": "Epic",
+      "level": 20,
+      "enhancement": 9,
+      "equipmentPower": 59.1707,
+      "oldFullSetDamageMultiplier": 1.60354114,
+      "newBasicDamageMultiplier": 1.68720942,
+      "newEligibleSkillDamageMultiplier": 1.68720942,
+      "basicGainOverOldFullSetPercent": 5.217719577808899,
+      "completionOnlyBasicGainPercent": 6.0,
+      "newFourAndFiveEligibleSkillGainPercent": 6.000000000000005,
+      "oldTwoPieceMaxHealth": 548.5592640000001,
+      "newTwoPieceMaxHealth": 564.6933600000001
+    },
+    {
+      "setId": "knight_t10_legendary",
+      "classId": "knight",
+      "rarity": "Legendary",
+      "level": 40,
+      "enhancement": 0,
+      "equipmentPower": 46.816,
+      "oldFullSetDamageMultiplier": 1.4775232,
+      "newBasicDamageMultiplier": 1.5856128000000003,
+      "newEligibleSkillDamageMultiplier": 1.5856128000000003,
+      "basicGainOverOldFullSetPercent": 7.3155940969319655,
+      "completionOnlyBasicGainPercent": 8.0,
+      "newFourAndFiveEligibleSkillGainPercent": 8.000000000000007,
+      "oldTwoPieceMaxHealth": 1749.856308,
+      "newTwoPieceMaxHealth": 1801.32267
+    },
+    {
+      "setId": "knight_t10_legendary",
+      "classId": "knight",
+      "rarity": "Legendary",
+      "level": 40,
+      "enhancement": 9,
+      "equipmentPower": 59.4564,
+      "oldFullSetDamageMultiplier": 1.60645528,
+      "newBasicDamageMultiplier": 1.7221291200000002,
+      "newEligibleSkillDamageMultiplier": 1.7221291200000002,
+      "basicGainOverOldFullSetPercent": 7.2005639646564035,
+      "completionOnlyBasicGainPercent": 8.0,
+      "newFourAndFiveEligibleSkillGainPercent": 8.000000000000007,
+      "oldTwoPieceMaxHealth": 1992.358554,
+      "newTwoPieceMaxHealth": 2050.957335
+    },
+    {
+      "setId": "elf_t10_legendary",
+      "classId": "elf",
+      "rarity": "Legendary",
+      "level": 40,
+      "enhancement": 0,
+      "equipmentPower": 80.948,
+      "oldFullSetDamageMultiplier": 1.8256696,
+      "newBasicDamageMultiplier": 1.9542384000000002,
+      "newEligibleSkillDamageMultiplier": 2.0519503200000004,
+      "basicGainOverOldFullSetPercent": 7.042281911250559,
+      "completionOnlyBasicGainPercent": 8.0,
+      "newFourAndFiveEligibleSkillGainPercent": 13.400000000000034,
+      "oldTwoPieceMaxHealth": 1000.62,
+      "newTwoPieceMaxHealth": 1030.05
+    },
+    {
+      "setId": "elf_t10_legendary",
+      "classId": "elf",
+      "rarity": "Legendary",
+      "level": 40,
+      "enhancement": 9,
+      "equipmentPower": 102.804,
+      "oldFullSetDamageMultiplier": 2.0486008,
+      "newBasicDamageMultiplier": 2.1902832,
+      "newEligibleSkillDamageMultiplier": 2.2997973600000003,
+      "basicGainOverOldFullSetPercent": 6.91605704732714,
+      "completionOnlyBasicGainPercent": 8.0,
+      "newFourAndFiveEligibleSkillGainPercent": 13.400000000000034,
+      "oldTwoPieceMaxHealth": 1122.0714000000003,
+      "newTwoPieceMaxHealth": 1155.0735000000002
+    },
+    {
+      "setId": "dwarf_t10_legendary",
+      "classId": "dwarf",
+      "rarity": "Legendary",
+      "level": 40,
+      "enhancement": 0,
+      "equipmentPower": 56.728,
+      "oldFullSetDamageMultiplier": 1.5786256,
+      "newBasicDamageMultiplier": 1.6926624000000001,
+      "newEligibleSkillDamageMultiplier": 1.7772955200000002,
+      "basicGainOverOldFullSetPercent": 7.223802781356148,
+      "completionOnlyBasicGainPercent": 8.0,
+      "newFourAndFiveEligibleSkillGainPercent": 13.400000000000013,
+      "oldTwoPieceMaxHealth": 1644.7451039999999,
+      "newTwoPieceMaxHealth": 1693.11996
+    },
+    {
+      "setId": "dwarf_t10_legendary",
+      "classId": "dwarf",
+      "rarity": "Legendary",
+      "level": 40,
+      "enhancement": 9,
+      "equipmentPower": 72.0445,
+      "oldFullSetDamageMultiplier": 1.7348539,
+      "newBasicDamageMultiplier": 1.8580806,
+      "newEligibleSkillDamageMultiplier": 1.9509846300000002,
+      "basicGainOverOldFullSetPercent": 7.103001584167989,
+      "completionOnlyBasicGainPercent": 8.0,
+      "newFourAndFiveEligibleSkillGainPercent": 13.400000000000013,
+      "oldTwoPieceMaxHealth": 1894.11858,
+      "newTwoPieceMaxHealth": 1949.82795
+    },
+    {
+      "setId": "mage_t10_legendary",
+      "classId": "mage",
+      "rarity": "Legendary",
+      "level": 40,
+      "enhancement": 0,
+      "equipmentPower": 56.728,
+      "oldFullSetDamageMultiplier": 1.5786256,
+      "newBasicDamageMultiplier": 1.6926624000000001,
+      "newEligibleSkillDamageMultiplier": 1.6926624000000001,
+      "basicGainOverOldFullSetPercent": 7.223802781356148,
+      "completionOnlyBasicGainPercent": 8.0,
+      "newFourAndFiveEligibleSkillGainPercent": 8.000000000000007,
+      "oldTwoPieceMaxHealth": 830.706972,
+      "newTwoPieceMaxHealth": 855.13953
+    },
+    {
+      "setId": "mage_t10_legendary",
+      "classId": "mage",
+      "rarity": "Legendary",
+      "level": 40,
+      "enhancement": 9,
+      "equipmentPower": 72.0445,
+      "oldFullSetDamageMultiplier": 1.7348539,
+      "newBasicDamageMultiplier": 1.8580806,
+      "newEligibleSkillDamageMultiplier": 1.8580806,
+      "basicGainOverOldFullSetPercent": 7.103001584167989,
+      "completionOnlyBasicGainPercent": 8.0,
+      "newFourAndFiveEligibleSkillGainPercent": 8.000000000000007,
+      "oldTwoPieceMaxHealth": 941.533032,
+      "newTwoPieceMaxHealth": 969.22518
+    }
+  ],
+  "mageManaCostExamples": [
+    {
+      "baseCost": 0,
+      "newCost": 0
+    },
+    {
+      "baseCost": 1,
+      "newCost": 1
+    },
+    {
+      "baseCost": 12,
+      "newCost": 12
+    },
+    {
+      "baseCost": 14,
+      "newCost": 13
+    },
+    {
+      "baseCost": 20,
+      "newCost": 19
+    },
+    {
+      "baseCost": 80,
+      "newCost": 74
+    }
+  ],
+  "roundingCaveat": "Outgoing examples compare pre-rounding multipliers; per-hit integer damage may change the percentage.",
+  "notRun": [
+    "server set engine",
+    "actual equip counting",
+    "save/rejoin",
+    "UI",
+    "multiplayer",
+    "devices",
+    "Unique proc DPS"
+  ]
+}
