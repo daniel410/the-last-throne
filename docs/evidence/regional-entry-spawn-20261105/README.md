@@ -24,6 +24,6 @@ EmberCalderaWorld/FrozenValeWorld/LateEpicWorld의 체크포인트를 Deepwood�
 
 ## 빌드와 후속
 
-VERSION 0.75.6→0.75.7, 커밋 고정 단일빌드는 build.json에 기록한다. 로컬 수정·미게시, 릴리스 태그 없음. 기존 사용자 Blender/첨부/미추적 검토 파일은 제외한다.
+VERSION 0.75.6→0.75.7, 소스 fea088795b6c0f130036b6143f9aac80657e1bfe의 단일 Rojo 빌드 성공. build.json에 해시를 기록했다. `python3 tests/single-build.spec.py --artifact builds/0.75.7/TheLastThrone-0.75.7.rbxlx` PASS(로딩108검사 포함), 산출 XML의 수정 월드3개가 소스와 바이트 일치함을 확인했다. 로컬 수정·미게시, 릴리스 태그 없음. 기존 사용자 Blender/첨부/미추적 검토 파일은 제외한다.
 
 다음 QA는 게시된 테스트 Lobby→Battle에서 EC-01 직접 진입과 재접속, FV/GW/HG 진입, 느린 네트워크·실기기·다인, 배틀→로비 복귀를 확인한다. 실제 클라이언트·Teleport·사용자 수용 미검증이므로 부모 티켓은 완료 처리하지 않는다.
