@@ -31,7 +31,7 @@ Gold 차감·재료 지급/소비·시도 결과/영수증은 기존 단일 계�
 - 첫 실행은 run-in-roblox가 place 인자 없는 모드를 지원하지 않아 실행 전 실패했다. 격리 PlaceId0 파일을 지정해 해결했다. 문자열 검사에서 `+`를 Lua 패턴으로 해석한 첫 확인도 plain 비교로 바로잡았다. 최종 엔진 실행은 PASS이며 제품 기대값을 낮추지 않았다.
 - [검증 소스 해시](source-hashes.json)·`git diff --check`로 입력/형식을 확인했다. 실제 배틀 native의 기존19개 실패를 이번 대장간 통과로 해결했다고 보고하지 않는다.
 
-VERSION0.77.0과 입력 소스를 먼저 커밋·푸시한 뒤 `python3 tools/build-game.py --source <고정커밋> --record docs/evidence/material-exchange-20261106/build.json`으로 단일 빌드를 만들고 [기록](build.json)에 소스/산출물 해시·결과를 남긴다. Roblox 게시/릴리스 태그 없음.
+VERSION0.77.0과 입력 소스 `04c9c29d3f1dfe3a7b4e89bb7652a0861a4a8c1d`를 먼저 커밋·푸시한 뒤 `python3 tools/build-game.py --source 04c9c29 --record docs/evidence/material-exchange-20261106/build.json`으로 단일 빌드에 성공했다. [기록](build.json)에 소스/산출물 해시를 보존했다. `python3 tests/single-build.spec.py --artifact builds/0.77.0/TheLastThrone-0.77.0.rbxlx`: 역할10/로딩108·실제 산출물 검사 PASS. [핵심8모듈의 Source 대조](artifact-check.json)는 고정 소스와 바이트 일치를 확인했다. Roblox 게시/릴리스 태그 없음.
 
 ## 미검증과 인계
 

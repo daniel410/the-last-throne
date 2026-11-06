@@ -1,0 +1,40 @@
+{
+  "sourceCommit": "04c9c29d3f1dfe3a7b4e89bb7652a0861a4a8c1d",
+  "artifact": "builds/0.77.0/TheLastThrone-0.77.0.rbxlx",
+  "sha256": "07eed905f444e29181a2823edd5c78c3231228e05c3b4a5de85e33b729024984",
+  "matchingSource": [
+    {
+      "path": "src/shared/Enhancement.luau",
+      "sha256": "82f802d22436b1ab6524c5dd05a07bb4c7a584d9d1e4cfdc3d2733488f52ebb6"
+    },
+    {
+      "path": "src/shared/EquipmentTransactions.luau",
+      "sha256": "bab9fd98b574a0dcca09b7a50ef4a82e5d48c2241321bf683a2bd5f586c95cfc"
+    },
+    {
+      "path": "src/shared/AdventureText.luau",
+      "sha256": "d8fb3d779c726fb0a14e7110eb6d7078c9f85d3408eea1ef14e72203ed351ec6"
+    },
+    {
+      "path": "src/server/Inventory/InventoryRules.luau",
+      "sha256": "7bdb5dff982e6169f2a6dec88920c6d6696fff74a196bb8991e0e9449fb6ea98"
+    },
+    {
+      "path": "src/server/Inventory/InventoryService.luau",
+      "sha256": "4af203c3f2aeebe0ec75f78fdd6595406d06c75da5a3ed20f718b84ba4443b44"
+    },
+    {
+      "path": "src/client/EnhancementView.luau",
+      "sha256": "b0b77361a1da2de87ffcc5fa3f123d9a8939f1a25065ee88e7e5c0cdf91b8384"
+    },
+    {
+      "path": "src/client/EnhancementGuide.luau",
+      "sha256": "09f91a3e5d3e5a6687dc383df5f11efa3cc05f6eda315bfb4c4ff36a108db82f"
+    },
+    {
+      "path": "src/client/LobbyCommerce.luau",
+      "sha256": "6539d4a0168e4413f9f4ea38c62891b56238dbd4a736a0c498c346af45aca836"
+    }
+  ],
+  "pass": true
+}
