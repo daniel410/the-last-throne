@@ -24,6 +24,7 @@ local ok, err = xpcall(function()
 	check(#holders() == 0, "invalid events create no effects")
 	for _, classId in ipairs({ "knight", "dwarf", "mage", "elf" }) do
 		local before = {}; for _, h in ipairs(holders()) do before[h] = true end
+		local emittersBefore = {}; for _, h in ipairs(workspace:GetChildren()) do if h.Name == "K0CombatAudioEmitter" then emittersBefore[h] = true end end
 		check(visual.show(model, Vector3.new(0, 50, 0), 75, classId, classId == "dwarf" and "Slime" or "Goblin"), classId .. " accepted")
 		local h; for _, candidate in ipairs(holders()) do if not before[candidate] then h = candidate end end
 		check(h ~= nil and h.Anchored and not h.CanCollide and not h.CanQuery and not h.CanTouch, "inert local effect")
@@ -32,7 +33,10 @@ local ok, err = xpcall(function()
 		check(h.K0DamageNumber.StudsOffsetWorldSpace.Y >= 3.8, "damage number clears the health bar")
 		local particles = 0; for _, child in ipairs(h:GetChildren()) do if child.Name == (classId == "dwarf" and "K0GelDroplet" or "K0ImpactSpark") then particles += 1 end end
 		check(particles == 5, "material-appropriate particles")
-		local sound = h:FindFirstChild("K0HitSound")
+		local sound
+		for _, emitter in ipairs(workspace:GetChildren()) do
+			if emitter.Name == "K0CombatAudioEmitter" and not emittersBefore[emitter] then sound = emitter:FindFirstChild("K0HitSound") or sound end
+		end
 		check(sound ~= nil and sound.SoundId ~= "" and sound.Volume > 0, "class impact sound created")
 		table.insert(result.samples, { class = classId, sound = sound.SoundId, speed = sound.PlaybackSpeed })
 		task.wait(0.09)

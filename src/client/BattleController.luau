@@ -25,6 +25,7 @@ require(script.K0HitEffects).start()
 require(script.K0PlayerHitFeedback).start()
 require(script.AdvancedSkillVisual).start()
 require(script.PixelFXController).start()
+require(script.K0CombatAudio).start()
 local actionRemote
 local heldBlock = false
 local heldSprint = false

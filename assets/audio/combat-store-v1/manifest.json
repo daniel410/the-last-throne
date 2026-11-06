@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-05",
+  "source": "Roblox Studio MCP search_asset; scope=creator_store, assetType=Audio, priceFilter=free",
+  "runtime": "Roblox experiences only; no source audio redistribution",
+  "assets": [
+    {
+      "assetId": "9125959472",
+      "name": "Slowed Whip Swishes Whomping Airy Whoosh Bys (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9125959472",
+      "description": "Slowed Whip Swishes, Whomping Airy Whoosh Bys, Swirling Hum, Single Swipes and Bursts of Movement, High Intensity, Some Rumbling\n\nFull Name: Slowed Whip Swishes Whomping Airy Whoosh Bys 2\nDuration: 1.8 seconds\nCategory: Whips\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "whoosh whip",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 1.5328333333333333
+      }
+    },
+    {
+      "assetId": "7258329846",
+      "name": "Bow and Arrow Fire",
+      "creatorName": "Iogician",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/7258329846",
+      "description": "Audio",
+      "query": "bow arrow",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 0.422312925170068
+      }
+    },
+    {
+      "assetId": "9119744718",
+      "name": "Sword Draw Clang Unsheathing Two Sabers 30 (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9119744718",
+      "description": "Sword Draw and Clang, Unsheathing Two Sabers, Fighting, Sharp Metallic Clinking, Hissing Scrapes, Some Ringing, Dropping to Wood at Tail\n\nDuration: 0.6 seconds\nCategory: Weapons - Knives & Swords\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "sword clang",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 0.39995833333333336
+      }
+    },
+    {
+      "assetId": "9119072660",
+      "name": "Shield Clang As Hit Metal Sword Hubcap 1 (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9119072660",
+      "description": "Shield, Clang As Hit, Metal Sword, Hubcap\n\nDuration: 0.8 seconds\nCategory: Metal - Hits\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "metal hit",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 0.7398958333333333
+      }
+    },
+    {
+      "assetId": "9118598279",
+      "name": "Rock Hit Dirt Impact 14 (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9118598279",
+      "description": "Rock Hit Dirt, CU Deep Thunking Impacts with Crackling Debris\n\nDuration: 0.4 seconds\nCategory: Rocks - Hits\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "rock impact",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 0.37525
+      }
+    },
+    {
+      "assetId": "9125648149",
+      "name": "Magic Zoom Up Sharp Tubular Whoosh Fast Hiss (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9125648149",
+      "description": "Magic Zoom Up, Sharp Tubular Whoosh, Fast, Hiss, Whipping\n\nFull Name: Magic Zoom Up Sharp Tubular Whoosh Fast Hiss 8\nDuration: 0.7 seconds\nCategory: Whooshes - Bys\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "magic whoosh",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 0.7233125
+      }
+    },
+    {
+      "assetId": "9116395089",
+      "name": "Magic Glows Soft Clusters Of Chiming Hits 4 (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9116395089",
+      "description": "Magic Glow, Soft Cluster of Chiming Hits, Ringing, Shimmering, Twinkling\n\nDuration: 2.9 seconds\nCategory: Energy\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "magic",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 2.4622083333333333
+      }
+    },
+    {
+      "assetId": "9125703168",
+      "name": "Mud Puddle Splash Shallow Water Impacts Hits (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9125703168",
+      "description": "Mud Puddle, Splash, Shallow Water Impacts, Hits, Various Versions\n\nFull Name: Mud Puddle Splash Shallow Water Impacts Hits 18\nDuration: 0.8 seconds\nCategory: Water - Splashes\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "water splash",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 0.7544166666666666
+      }
+    },
+    {
+      "assetId": "9117988736",
+      "name": "Pyro Fire Ball Burst 7 (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9117988736",
+      "description": "Pyro Fire Ball Burst, Rips, Spurts of Fire or Flame, Gas Jet Hiss, Airy Whooshes\n\nDuration: 1.1 seconds\nCategory: Fire - Whooshes\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "fire burst",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 0.6475833333333333
+      }
+    },
+    {
+      "assetId": "9114855626",
+      "name": "Ice Block Drop To Concrete Shatter 1 (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9114855626",
+      "description": "Ice Block, Drop to Concrete, Shatter\n\nDuration: 1.3 seconds\nCategory: Water - Misc\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "ice shatter",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 1.280875
+      }
+    },
+    {
+      "assetId": "9114277757",
+      "name": "Electric Zaps 12 (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9114277757",
+      "description": "Electric Zaps, Popping Metal Squeaks\n\nDuration: 1.1 seconds\nCategory: Electric - Arcs & Zaps\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "electric zap",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 0.9707708333333334
+      }
+    },
+    {
+      "assetId": "9113852810",
+      "name": "Colt 22 Revolver 2 (SFX)",
+      "creatorName": "ProSoundEffects",
+      "isFree": true,
+      "priceCents": 0,
+      "creatorStoreUrl": "https://create.roblox.com/store/asset/9113852810",
+      "description": "Colt .22 Revolver, Single Gunshots, Distant Bullets Landing, Distant Shots From Others, Handling Clicks\n\nDuration: 2.4 seconds\nCategory: Guns - Pistols\nAsset Type: Sound Effect\n\nCourtesy of Pro Sound Effects.",
+      "query": "gun pistol",
+      "studioVerification": {
+        "fetchStatus": "Success",
+        "isLoaded": true,
+        "timeLengthSeconds": 2.181395833333333
+      }
+    }
+  ],
+  "verification": {
+    "contentProvider": "All 12 IDs: Success, IsLoaded=true, TimeLength>0 in isolated local Studio place; silent decode check, not audible acceptance.",
+    "targetExperience": "Not tested; connected open place is TD, not RPG",
+    "audibleAcceptance": "Not tested"
+  }
+}

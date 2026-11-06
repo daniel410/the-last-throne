@@ -1,0 +1,82 @@
+{
+  "kind": "COMBAT_AUDIO_NATIVE",
+  "assets": [
+    {
+      "loaded": true,
+      "id": "rbxassetid://9125959472",
+      "length": 1.5328333333333333,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9118598279",
+      "length": 0.37525,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9125648149",
+      "length": 0.7233125,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9113852810",
+      "length": 2.181395833333333,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9119744718",
+      "length": 0.39995833333333336,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9119072660",
+      "length": 0.7398958333333333,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://7258329846",
+      "length": 0.422312925170068,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9116395089",
+      "length": 2.4622083333333333,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9125703168",
+      "length": 0.7544166666666666,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9114855626",
+      "length": 1.280875,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9114277757",
+      "length": 0.9707708333333334,
+      "status": "Success"
+    },
+    {
+      "loaded": true,
+      "id": "rbxassetid://9117988736",
+      "length": 0.6475833333333333,
+      "status": "Success"
+    }
+  ],
+  "success": true,
+  "checks": 818,
+  "published": false,
+  "skills": 128,
+  "pulses": 199
+}

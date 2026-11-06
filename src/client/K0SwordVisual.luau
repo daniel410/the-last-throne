@@ -23,6 +23,7 @@ end
 assert(groundSlam and overheadSmash, "Dwarf skill configuration is missing")
 
 local HitFeedback = require(script.Parent.K0PlayerHitFeedback)
+local CombatAudio = require(script.Parent.K0CombatAudio)
 local Visual = {}
 local SideDiveMotion = require(script.Parent.K0SideDiveMotion)
 local shieldSkills={}
@@ -1095,6 +1096,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 end
 
 function Visual.renderCharacter(character, dt, now)
+	CombatAudio.renderCharacter(character, now or Workspace:GetServerTimeNow())
 	local classId = character:GetAttribute("K0ClassId") or "knight"
 	if classId == "knight" and character:GetAttribute("K0AttackPhase") == "Active" then
 		local skillId, seq = character:GetAttribute("K0SkillId"), character:GetAttribute("K0AttackSeq")

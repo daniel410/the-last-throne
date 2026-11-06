@@ -5,21 +5,19 @@ local Debris = game:GetService("Debris")
 local TweenService = game:GetService("TweenService")
 local HitReaction = require(script.Parent.K0EnemyHitReaction)
 local PixelFX = require(script.Parent.PixelFX)
+local CombatAudio = require(script.Parent.K0CombatAudio)
 
 local HitEffects = {}
 local started = false
 local active = {}
-local lastSound = -math.huge
 local MAX_ACTIVE = 24
-local SOUND_COOLDOWN = 0.07
 
--- Existing TD prototype uses these built-in Roblox sounds for impacts. They
--- are temporary profiles, not uploaded or claimed as final custom audio.
+-- Visual palettes; audio resolves independently from the shared skill catalog.
 local profiles = {
-	knight = { color = Color3.fromRGB(255, 232, 150), secondary = Color3.fromRGB(255, 255, 240), sound = "rbxasset://sounds/action_jump_land.mp3", volume = 0.15, speed = 1.35 },
-	dwarf = { color = Color3.fromRGB(255, 157, 65), secondary = Color3.fromRGB(255, 219, 132), sound = "rbxasset://sounds/action_jump_land.mp3", volume = 0.18, speed = 0.9 },
-	mage = { color = Color3.fromRGB(190, 127, 255), secondary = Color3.fromRGB(237, 192, 255), sound = "rbxasset://sounds/impact_water.mp3", volume = 0.12, speed = 1.25 },
-	elf = { color = Color3.fromRGB(173, 246, 161), secondary = Color3.fromRGB(247, 255, 224), sound = "rbxasset://sounds/action_jump_land.mp3", volume = 0.12, speed = 1.65 },
+	knight = { color = Color3.fromRGB(255, 232, 150), secondary = Color3.fromRGB(255, 255, 240) },
+	dwarf = { color = Color3.fromRGB(255, 157, 65), secondary = Color3.fromRGB(255, 219, 132) },
+	mage = { color = Color3.fromRGB(190, 127, 255), secondary = Color3.fromRGB(237, 192, 255) },
+	elf = { color = Color3.fromRGB(173, 246, 161), secondary = Color3.fromRGB(247, 255, 224) },
 }
 
 -- Skill-specific palettes and impact silhouettes. IDs are supplied by the
@@ -63,18 +61,6 @@ local function part(parent, name, position, size, color)
 	p.Material, p.Shape = Enum.Material.Neon, Enum.PartType.Ball
 	p.Parent = parent
 	return p
-end
-
-local function playSound(parent, profile)
-	local current = os.clock()
-	if current - lastSound < SOUND_COOLDOWN then return end
-	lastSound = current
-	local sound = Instance.new("Sound")
-	sound.Name = "K0HitSound"
-	sound.SoundId, sound.Volume, sound.PlaybackSpeed = profile.sound, profile.volume, profile.speed
-	sound.RollOffMode, sound.RollOffMinDistance, sound.RollOffMaxDistance = Enum.RollOffMode.Linear, 8, 70
-	sound.Parent = parent
-	sound:Play()
 end
 
 -- Public for isolated native fixture QA; live calls come only from OnClientEvent.
@@ -200,7 +186,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	TweenService:Create(billboard, TweenInfo.new(0.65, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 		{ StudsOffsetWorldSpace = Vector3.new(0, numberHeight + 0.7, 0) }):Play()
 	TweenService:Create(label, TweenInfo.new(0.65), { TextTransparency = 1, TextStrokeTransparency = 1 }):Play()
-	playSound(holder, profile)
+	CombatAudio.play("impact", position, classId, skillId)
 	return true
 end
 
