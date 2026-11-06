@@ -14,3 +14,5 @@
 - `/tmp/td233-luau/luau-compile src/server/Story/DeepwoodService.luau`: PASS. `git diff --check`: PASS.
 
 플레이어·거리·`begin` 호출은 fixture 대역이다. 위 검사는 실제 적 생성/처치나 저장·게시 클라이언트·실기기 수용을 증명하지 않는다. 다음 QA는 수정 빌드에서 DW-Q3의 도구 조사 → King Ogre 접근 → 실제 보스 처치 → 장치 조사 → 보고와 DW-Q2/Q4 전투를 확인한다. 부모 티켓은 In Progress를 유지한다. Place 게시·릴리스 태그·TD 변경은 하지 않았다.
+
+단일 빌드0.78.4 성공. 입력 소스 `9c6255a6bd22f8489aaef53899db719b511b0735`, 산출물 `builds/0.78.4/TheLastThrone-0.78.4.rbxlx`, SHA-256 `d5bb8cdd6dc00b1308a3dbc0ba7c0229bb6263dacc6ed23733863730a2b6812e`, 13,286,615bytes. 산출물 XML의 DeepwoodService가 수정 소스와 완전히 동일함을 확인했다. [빌드 기록](build.json). 소스 커밋 origin/main 푸시 성공.
