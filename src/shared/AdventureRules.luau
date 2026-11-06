@@ -21,6 +21,10 @@ function A.selection(hero)
  local a=hero and hero.expeditions and hero.expeditions.active
  local current=currentMission(a)
  local frontier=Content.mainChapters[math.min(Content.mainCount,(hero and hero.deepwood and hero.deepwood.main or 0)+1)]
+ -- Unfinished optional expeditions never pin Continue to an already completed epic.
+ if current and current.side and frontier and hero.deepwood and hero.deepwood.main<Content.mainCount and (frontier.epic or 1)>(current.epic or 1) then
+  return {missionId=frontier.id,difficultyId='Easy'}
+ end
  if a and a.difficultyId=='Easy' and current and not current.side and frontier.number>current.number then current=frontier end
  return {missionId=(current or frontier).id,difficultyId=a and a.difficultyId or 'Easy'}
 end

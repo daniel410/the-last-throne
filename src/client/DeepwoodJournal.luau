@@ -15,7 +15,7 @@ local Completion=require(RS.Shared.StoryCompletion)
 local Checkpoints=require(RS.Shared.CheckpointTravel)
 local Journal={}
 function Journal.guidance(current,target,origin)
- if not current or current.training or not target then return nil end
+ if not current or current.training or not target or target.lobby then return nil end
  local goal=target.goal;local chapter=target.chapter
  if target.offer then
   if not Progress.canAccept(current.journal,chapter) then return nil end

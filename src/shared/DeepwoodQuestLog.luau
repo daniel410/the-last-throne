@@ -29,12 +29,15 @@ function Log.tracked(s,selectedChapter,selectedGoal)
  local final=Content.byId['DW-07']
  if report and P.available(s,final,P.goal(final,'restoration')) then return {chapter=final,goal=P.goal(final,'restoration')} end
  local c=selectedChapter and Content.byId[selectedChapter]
+ local admitted=s.expeditionMission and Content.byId[s.expeditionMission]
+ local main=Log.main(s)
+ if c and c==main and admitted and admitted.side then
+  return {chapter=main,goal=main.goals[1],lobby=true}
+ end
  if c and c.side and P.canAccept(s,c) and c.quest.offerPosition then return {chapter=c,goal=c.goals[1],offer=true} end
  if c and c.side and not s.clears[c.id] then local target=Log.target(s,c);if target then return target end end
  -- An isolated optional expedition cannot expose a main-story objective.
- local admitted=s.expeditionMission and Content.byId[s.expeditionMission]
  if admitted and admitted.side then return Log.target(s,admitted) end
- local main=Log.main(s)
  return Log.target(s,main,main and selectedChapter==main.id and selectedGoal or nil)
 end
 function Log.tracker(s,target)
@@ -42,6 +45,12 @@ function Log.tracker(s,target)
  local admitted=s.expeditionMission and Content.byId[s.expeditionMission]
  local chapter=target and target.chapter or admitted or main or Content.mainChapters[Content.mainCount]
  local data={region=Content.epics[chapter.epic or 1].region,note='[J] QUEST'}
+ if target and target.lobby then
+  data.title='CONTINUE MAIN STORY'
+  data.objective='Return to Lobby and select '..Content.epics[chapter.epic or 1].region..' · '..(chapter.quest.title or chapter.title)..' in ADVENTURES.'
+  data.note='Side quests are optional. You can return to them later.'
+  return data
+ end
  local report=Log.reportGuidance(s)
  if report and (not target or target.chapter.id=='DW-07' and target.goal.id=='restoration') then
   data.region=Content.epics[1].region;data.title='MAIN STORY 7 / 7 · REPORT TO ERYN'

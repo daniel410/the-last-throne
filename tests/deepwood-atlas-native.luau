@@ -38,7 +38,7 @@ local ok,err=xpcall(function()
   check(panel.Visible,'adventure opens map')
   check(panel.Size.X.Offset<=size.X-24 and panel.Size.Y.Offset<=size.Y-24,'panel respects available safe area')
   check(math.abs(scene.Size.X.Offset/scene.Size.Y.Offset-map.atlas.aspect)<.02,'map preserves geographic aspect')
-  local n=0;for _ in pairs(map.atlas.rows)do n+=1 end;check(n==7,'default shows only seven main story regions')
+  local n=0;for _ in pairs(map.atlas.rows)do n+=1 end;check(n==10,'default shows seven main regions and three side regions')
   for _,name in ipairs({'Close','ZoomIn','ZoomOut','Fit','Center','NavigationTrail'}) do
    local b=panel[name];check(b.Position.Y.Scale*panel.AbsoluteSize.Y+b.Position.Y.Offset>=0,name..' stays inside panel vertically')
    check(b.AbsoluteSize.X>=40 and b.AbsoluteSize.Y>=40,name..' keeps a usable target')
@@ -56,10 +56,10 @@ local ok,err=xpcall(function()
    map.selectEpic(epic);task.wait(.1)
    local n=0;local first=(epic-1)*7+1
    for id in pairs(map.atlas.rows)do
-    n+=1;local chapter=Content.byId[id]
-    check(not chapter.side and chapter.number>=first and chapter.number<=first+6,'map contains only selected epic main regions')
+    n+=1
+    check(require(game.ReplicatedStorage.Shared.CampaignMapScope).epicFor(id)==epic,'map contains only selected epic regions')
    end
-   check(n==7,'every epic contains exactly seven map regions')
+   check(n==(epic<=3 and 10 or 7),'epic includes optional regions where authored')
    local visible=0
    for _,b in ipairs(panel.Journey:GetChildren())do if b:IsA('TextButton')and b.Visible then visible+=1 end end
    check(visible==7,'journey lists seven selected stories')
@@ -71,6 +71,18 @@ local ok,err=xpcall(function()
   map.center();task.wait(.1);check(map.atlas.rows['DW-02']~=nil,'YOU returns from a different epic')
   root.Position=Vector3.new(table.unpack(Content.zones['HG-03'].center));map.open(true);task.wait(.1)
   check(map.atlas.rows['HG-03']~=nil and map.atlas.rows['DW-01']==nil,'opening selects actual player epic')
+  -- Reproduce active Waterfall Quarry after completing the seven Deepwood stories.
+  local side=Progress.copy(journal);side.main=7;side.expeditionMission='DW-Q3'
+  side.explored['DW-S2']={['66']=true};side.accepted={['DW-Q3']=true}
+  root.Position=Vector3.new(table.unpack(Content.zones['DW-S2'].center))
+  State.set({journal=side},root.Position);map.open(true);task.wait(.4)
+  local row=map.atlas.rows['DW-S2'];check(row~=nil,'active quarry area is drawn instead of blank map')
+  check(row.name:GetAttribute('Accessible')==true,'active side region is accessible')
+  check(row.cells[66].BackgroundTransparency==1,'saved explored side cell is visible')
+  check(map.atlas.pin.Visible and map.atlas.objective.Visible,'side area player and target remain on map')
+  local point=map.atlas.project(root.Position.X,root.Position.Z)
+  check(point.X>0 and point.X<1 and point.Y>0 and point.Y<1,'quarry coordinates fit complete epic bounds')
+  State.set({journal=journal},Vector3.new(table.unpack(Content.zones['DW-02'].center)))
   root.Position=Vector3.new(table.unpack(Content.zones['DW-02'].center))
   map.open(false);check(not attributes:GetAttribute('TLTMapOpen'),'closing restores combat input gate')
   attributes:SetAttribute('K0SessionPhase','Lobby');panel.Parent:Destroy();av:Destroy();cv:Destroy()

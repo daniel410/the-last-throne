@@ -44,7 +44,7 @@ function Book.create(parent,track)
    card('EPIC '..epic..' · '..info.title,{info.promise,string.format('%d / 7 stories completed · Side quests are optional.',math.clamp(s.main-(epic-1)*7,0,7))})
    if c then
     local phase,index,total=Log.phase(s,c)
-    card(string.format('MAIN STORY %d / 7 · %s',(c.number-1)%7+1,c.quest.title),{c.quest.brief,string.format('Phase %d / %d · %s',index,total,phase),Log.reward(c)},function() track(c.id) end,'TRACK MAIN STORY')
+    card(string.format('MAIN STORY %d / 7 · %s',(c.number-1)%7+1,c.quest.title),{c.quest.brief,string.format('Phase %d / %d · %s',index,total,phase),Log.reward(c)},function() track(c.id) end,s.expeditionMission and Content.byId[s.expeditionMission] and Content.byId[s.expeditionMission].side and 'CONTINUE MAIN STORY' or 'TRACK MAIN STORY')
     local currentPhase=c.quest.phases[index];local lines={}
     for _,id in ipairs(currentPhase.goals) do local g=P.goal(c,id);table.insert(lines,(s.flags[c.id..':'..id] and '✓ ' or '□ ')..g.title) end
     card('CURRENT PHASE',lines)

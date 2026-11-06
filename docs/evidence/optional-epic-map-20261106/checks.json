@@ -1,0 +1,68 @@
+[
+  {
+    "command": "lua tests/optional-epic-continuation.spec.lua",
+    "exitCode": 0,
+    "stdout": "OPTIONAL_EPIC_CONTINUATION 3980 checks PASS; twelve side quests, all states, five map scopes\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/story-lobby-resume.spec.lua",
+    "exitCode": 0,
+    "stdout": "Story lobby resume: 32 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/journal-missing-target.spec.lua",
+    "exitCode": 0,
+    "stdout": "Journal missing target: 13 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/side-quest-guidance.spec.lua",
+    "exitCode": 0,
+    "stdout": "SIDE_QUEST_GUIDANCE 77 checks PASS\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/side-quest-review.spec.lua",
+    "exitCode": 0,
+    "stdout": "SIDE_QUEST_REVIEW 1610 checks PASS; 12 quests, 44 goals, 11 combats, 2 optional goals\nDW-Q1 | Supplies in the Marsh | 2 | 3 | Easy/replay/Hard/Insane/Hell\nDW-Q2 | The Stolen Food | 4 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q3 | Quarry Below the Falls | 5 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q4 | Remnants of the Red Battlefield | 7 | 4 | Easy/replay/Hard/Insane/Hell\nFV-Q2 | Frostfang Supply Cave | 10 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q3 | Blue Lake Return Route | 11 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q4 | Ancient Glacier Watch | 14 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q1 | A Name in the Snow | 8 | 3 | Easy/replay\nEC-Q2 | Ember Raider Nest | 17 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q3 | Volcano Shaman Altar | 18 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q4 | Caldera Titan Basin | 21 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q1 | A Worker's Lost Mark | 15 | 3 | Easy/replay\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/checkpoint-travel.spec.lua",
+    "exitCode": 0,
+    "stdout": "Checkpoint travel: 1927 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/checkpoint-map-layout.spec.lua",
+    "exitCode": 0,
+    "stdout": "Checkpoint map layout: 36 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/party-map.spec.lua",
+    "exitCode": 0,
+    "stdout": "Party map: 96 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/story-completion.spec.lua",
+    "exitCode": 0,
+    "stdout": "Story completion: 356 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/place-role.spec.lua",
+    "exitCode": 0,
+    "stdout": "place-role: 10 checks PASS\n",
+    "stderr": ""
+  },
+  {
+    "command": "lua tests/battle-startup.spec.lua",
+    "exitCode": 0,
+    "stdout": "battle-startup: 223 checks PASS\n",
+    "stderr": ""
+  }
+]

@@ -1,4 +1,4 @@
--- Scope the detailed adventure map to one epic's seven main story regions.
+-- Show every region in the selected epic, including optional adventure areas.
 local Content=game and require(script.Parent.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local Scope={}
 function Scope.range(epic)
@@ -6,8 +6,7 @@ function Scope.range(epic)
 end
 function Scope.ids(epic)
 	local ids={}
-	local first,last=Scope.range(epic)
-	for i=first,last do ids[Content.mainChapters[i].id]=true end
+	for id in pairs(Content.zones) do if Scope.epicFor(id)==epic then ids[id]=true end end
 	return ids
 end
 function Scope.epicFor(id)

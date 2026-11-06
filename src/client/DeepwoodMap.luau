@@ -115,7 +115,7 @@ function Map.start(button)
   for id,row in pairs(atlas.rows) do
    row.name.Visible=showNames;row.status.Visible=showNames;row.name.TextSize=font;row.name.Size=UDim2.fromOffset(labelWidth,32)
    local number=Content.byId[id] and Content.byId[id].number
-   row.badge.Text=w<550 and string.format('%02d',(number-1)%7+1) or string.format(Text.Map.Main,(number-1)%7+1)
+   row.badge.Text=number and (w<550 and string.format('%02d',(number-1)%7+1) or string.format(Text.Map.Main,(number-1)%7+1)) or Text.Map.Side
    if row.hit then
     row.hit.Size=not showNames and UDim2.fromOffset(28,28) or UDim2.fromOffset(labelWidth+8,48)
     row.hit.Position=not showNames and UDim2.fromScale(row.center.X,row.center.Y) or row.name.Position
