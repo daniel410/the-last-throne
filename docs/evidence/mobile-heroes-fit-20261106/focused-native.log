@@ -1,0 +1,8 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+HERO_VIEWPORT 1280, 800 panel 800, 510 Mage 833, 539
+HERO_VIEWPORT 1280, 591 panel 800, 427 Mage 845, 447
+HERO_VIEWPORT 844, 390 panel 800, 366 Mage 627, 258
+HERO_VIEWPORT 750, 323 panel 726, 299 Mage 561.5, 191
+HERO_VIEWPORT 568, 320 panel 544, 296 Mage 425, 188
+HERO_VIEWPORT 390, 780 panel 270, 510 Mage 206, 825
+{"failures":[],"kind":"LOBBY_PANEL_SIZE_NATIVE","pass":true,"checks":85}
