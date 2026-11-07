@@ -326,21 +326,13 @@ function Hud.create()
 			block.Position=UDim2.fromOffset(8,66);block.Size=UDim2.fromOffset(56,56)
 			sprint.Position=UDim2.fromOffset(8,0);sprint.Size=UDim2.fromOffset(56,56)
 			attack.Position=UDim2.fromOffset(90,0);attack.Size=UDim2.fromOffset(64,64)
-			if viewport.X<600 then
-				-- Two bottom rows preserve readable touch targets on narrow displays.
-				skillBar.Size=UDim2.fromOffset(208,212)
-				skillScale.Scale=math.max(.7,math.min(scale,(viewport.X-172*actionScale.Scale-36)/208))
-				for i,button in ipairs(itemButtons) do button.Position=UDim2.fromOffset((i-1)*72,0) end
-				for i,button in ipairs(skillButtons) do local slot=i+1;button.Position=UDim2.fromOffset((slot%3)*72,math.floor(slot/3)*72) end
-				-- Keep the column at the bottom and place the compact bar to its left.
-				skillBar.Position=UDim2.new(0,12+(208*skillScale.Scale)/2,1,viewport.Y>viewport.X and -180 or -12)
-			elseif viewport.X<780 then
-				skillBar.Size=UDim2.fromOffset(288,140);skillScale.Scale=math.max(.7,scale)
-				for i,button in ipairs(itemButtons)do button.Position=UDim2.fromOffset((i-1)*72,0)end
-				for i,button in ipairs(skillButtons)do local slot=i+1;button.Position=UDim2.fromOffset((slot%4)*72,math.floor(slot/4)*72)end
-			else
-				skillBar.Size=UDim2.fromOffset(528,68)
-				for i,button in ipairs(skillButtons) do button.Position=UDim2.fromOffset((i+1)*72+24,0) end
+			skillBar.Size=UDim2.fromOffset(528,68)
+			for i,button in ipairs(itemButtons) do button.Position=UDim2.fromOffset((i-1)*72,0) end
+			for i,button in ipairs(skillButtons) do button.Position=UDim2.fromOffset((i+1)*72+24,0) end
+			if viewport.X<780 then
+				-- Keep all seven buttons in one row, above the thumb controls when space is tight.
+				skillScale.Scale=math.min(scale,(viewport.X-24)/528)
+				skillBar.Position=UDim2.new(.5,0,1,-math.max(180,264*actionScale.Scale+12))
 			end
 			local jumpVisible=jump and jump:IsA('GuiObject') and jump.AbsoluteSize.Y>0
 			local ancestor=jump

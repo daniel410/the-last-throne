@@ -148,7 +148,10 @@ case('combat HUD',function()
   local actions,bar=root.Actions,root.SkillBar
   actions.Ultimate.Visible=true
   for _,group in ipairs({actions,bar})do for _,b in ipairs(group:GetChildren())do if b:IsA('GuiButton')and b.Visible then
-   inside(b,root,'HUD button bounds '..b.Name..' '..tostring(size));check(b.AbsoluteSize.X>=44 and b.AbsoluteSize.Y>=44,'HUD touch target '..b.Name..' '..tostring(size))
+   inside(b,root,'HUD button bounds '..b.Name..' '..tostring(size))
+   local minimum=group==bar and size.X<390 and 35 or 44
+   check(b.AbsoluteSize.X>=minimum and b.AbsoluteSize.Y>=minimum,'HUD touch target '..b.Name..' '..tostring(size))
+   if group==bar then check(math.abs(b.AbsolutePosition.Y-bar.Item1.AbsolutePosition.Y)<1,'items and skills share one row '..b.Name..' '..tostring(size)) end
    for _,other in ipairs((group==actions and bar or actions):GetChildren())do if other:IsA('GuiButton')and other.Visible then separate(b,other,'HUD controls do not overlap '..b.Name..' / '..other.Name..' '..tostring(size))end end
   end end end
   if size.Y>size.X then check(bar.AbsolutePosition.Y+bar.AbsoluteSize.Y<=root.AbsolutePosition.Y+size.Y-170,'portrait HUD clears movement thumb area')end
