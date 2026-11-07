@@ -9,3 +9,7 @@
 검증: 실제 GUI 생성자로1280×591·844×390·750×323·750×280·568×320·390×844·320×568을 검사한다. 아이템/스킬의 동일 행, 화면 경계, 액션/궁극기 중첩, 세로 이동 손가락 영역을 검사하며 기존 주요 모바일 창 회귀를 함께 실행한다. 고정 소스 빌드와 최종 엔진 결과는 아래 후속 기록한다.
 
 미검증: 게시된 Roblox 클라이언트, 실기기 터치/시각 수용. 다음 담당 QA는 실제 가로 모바일에서 아이템2개·스킬5개 사용과 화면 회전·궁극기 해금 상태를 확인한다. 게시/릴리스 태그는 이번 작업에 포함하지 않는다.
+
+## 최종 결과
+
+소스 `e91426b832682b0ea87cddd4eed6f808dc3cf9a9`를 origin/main에 푸시하고 단일 빌드0.79.8 성공. 산출물 `builds/0.79.8/TheLastThrone-0.79.8.rbxlx`, SHA-256 `a618802aa079c6d16f131ba31f4c5046caed8e5ac12874c6746b8534db814378`. 소스 주입 없이 고정 산출물에서 `run-in-roblox --place builds/0.79.8/TheLastThrone-0.79.8.rbxlx --script tests/mobile-ui-audit-native.luau` 실행: **2501조건 PASS** ([로그](fixed-native.log)). 역할10·도착로딩192·마운트/실제 산출물 검사는 `python3 tests/single-build.spec.py --artifact builds/0.79.8/TheLastThrone-0.79.8.rbxlx` PASS ([로그](checks.log)). 기존203785492 asset-type 경고는 남아 있으며 이미지 권한 수용으로 계산하지 않는다. 테스트용 Studio 세션은 run-in-roblox 완료로 종료한다. 신규 LFS 대상 없음. 미게시·실기기 수용 후속.
