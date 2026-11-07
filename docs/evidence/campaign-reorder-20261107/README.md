@@ -34,3 +34,7 @@
 빌드 입력/산출물/SHA256은 마감의 `build.json`에 기록한다. 원격 소스 커밋 고정 후 `python3 tools/build-game.py --source HEAD --record docs/evidence/campaign-reorder-20261107/build.json`을 실행한다. 실제 Roblox 게시·릴리스 태그는 이번 작업에 포함하지 않는다.
 
 정상 전투 전 구간 완주·실제 계정 이관·게시된 로비/배틀 Teleport·재접속·실기기/4인+AI1·거미 여왕 전투 난도·두 숲의 차이/목적지 이해도는 미검증이다. GW 출구의 설산 노출은 현재 영어 서술이며 별도 신규 배경 연출을 제작하지 않았다. 최종Lv80 성장/전직 도달 속도·드롭/경제·수치 밸런스는 후속 수용 대상이다. 다음 QA는 고정 파일에서 이 항목들을 확인하며 부모 티켓을 Done으로 바꾸지 않는다.
+
+## 고정 빌드 마감 결과
+
+소스 `7ef7b8141f3ac946b31d78ddb1abc3c3de5c330c`을 origin/main에 푸시한 뒤 빌드 성공. 단일 파일은 `builds/0.81.0/TheLastThrone-0.81.0.rbxlx` (14824159bytes), SHA256 `09b3d62e54fd4a52045f5a58f75b443dada21d670ab6e6e578a2051d6fa569dc`이다. [빌드 기록](build.json). 같은 고정 파일에서 계정/진행 **1,850 PASS + 실제 월드/전투 연결916 PASS·종료0**를 재확인했다. [고정 빌드 로그](native-fixed-build.log) / [결과](native-fixed-build.json). 기존 자산 타입 경고는 로그에 보존했다. 실제 Place 게시·릴리스 태그는 없다.
