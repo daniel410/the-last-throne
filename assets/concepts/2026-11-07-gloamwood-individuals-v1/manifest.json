@@ -30,19 +30,21 @@
       "file": "Silkweaver.png",
       "width": 1536,
       "height": 1024,
-      "sha256": "47f3c899a2caa708278d5655b4663cf6571c0962f1d7c6bf952807fe0280bf24",
+      "sha256": "e3b1716237bad939bd24becf24f3e9dd9a3228bfeebd2728f50ab8d853cb6906",
       "alpha_min": 0,
       "alpha_max": 254,
-      "transparent_pixels": 1070986,
-      "alpha_below_128": 1140719,
-      "alpha_at_least_250": 412811,
+      "transparent_pixels": 1077446,
+      "alpha_below_128": 1133705,
+      "alpha_at_least_250": 422954,
       "subject_bbox_alpha128": [
-        99,
-        15,
-        1447,
-        1012
+        63,
+        9,
+        1474,
+        1017
       ],
-      "corners_transparent": true
+      "corners_transparent": true,
+      "revision": 2,
+      "visual_validation": "사용자 지시: 다리 좌우3개씩 총6개. 첫 수정본은5개여서 미채택, 두 번째 수정본에서6개를 시각 확인."
     },
     {
       "id": "Barkstalker",
@@ -88,21 +90,23 @@
       "id": "VenomcoilCentipede",
       "rank": "normal",
       "file": "VenomcoilCentipede.png",
-      "width": 1774,
-      "height": 887,
-      "sha256": "50994a7b99899d1ab7695c18f2f7ba088d207e11c467dcbf81c93c993af6a8d1",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "1b6d5e0f9beb19a5ef1e1bfc62f8b2182d30e5e3b45b5076c26219d021a27318",
       "alpha_min": 0,
-      "alpha_max": 255,
-      "transparent_pixels": 920523,
-      "alpha_below_128": 967127,
-      "alpha_at_least_250": 579653,
+      "alpha_max": 254,
+      "transparent_pixels": 1420441,
+      "alpha_below_128": 1442114,
+      "alpha_at_least_250": 119465,
       "subject_bbox_alpha128": [
-        56,
-        11,
-        1755,
-        875
+        321,
+        328,
+        1224,
+        752
       ],
-      "corners_transparent": true
+      "corners_transparent": true,
+      "revision": 2,
+      "visual_validation": "사용자 지시: King보다 작게 보이는 짧고 가는 몸체, 머리 위 좌우에 붙은 짧은 더듬이 한 쌍. 시각 확인."
     },
     {
       "id": "WidowQueen",
@@ -165,5 +169,6 @@
       "corners_transparent": true
     }
   ],
-  "validation": "PNG decode, RGBA alpha, transparent exterior, visible subject, file SHA256. Generated images visually reviewed. Exact limb/segment topology and hidden surfaces require 3D work."
+  "validation": "PNG decode, RGBA alpha, transparent exterior, visible subject, file SHA256. Generated images visually reviewed. Exact limb/segment topology and hidden surfaces require 3D work.",
+  "corrections": "prompts/corrections-v2.json"
 }

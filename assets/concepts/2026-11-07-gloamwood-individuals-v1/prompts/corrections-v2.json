@@ -1,0 +1,19 @@
+[
+  {
+    "id": "Silkweaver",
+    "source": "/Users/daniel/.codex/generated_images/01a1b6f1-77b7-7cb2-afe3-9aaccc6b5135/exec-be0c0af4-d569-4cb8-9156-afc29ab8f155.png",
+    "prompts": [
+      "Edit ONLY this Silkweaver character image to correct leg anatomy. It must have EXACTLY SIX LEGS TOTAL, THREE ON EACH SIDE. This is the user's deliberate fantasy anatomy requirement. Remove the extra seventh leg: the narrow inner background leg descending behind the face on the viewer's left, with its foot near x=520 y=820 in the 1536x1024 input. Keep exactly three clearly separated white-and-indigo articulated legs on the viewer left and three on the viewer right. All six feet must be visible and countable, no hidden additional limbs, no stubs, no duplicated joints. Keep the same elongated indigo/ivory faceted abdomen, purple head, glowing violet eyes, two ivory fangs, blocky low-poly style, framing and body pose. Only leg count/spacing should change. Real transparent alpha background, no backdrop, glow haze, floor, shadow, text, labels or grid. One whole character.",
+      "Correct this fantasy Silkweaver reference to EXACTLY SIX legs: currently the image has ONLY FIVE (two on image left and three on image right). ADD ONE missing leg to the LEFT side of the image, arising from the thorax behind the head, bending outward into the empty gap between the two existing left legs, with its distinct foot ending around x=520,y=830. Keep the other FIVE existing legs. Final count must be THREE feet on image left and THREE feet on image right, six total. Keep all feet separated visibly. Do not remove any existing leg. Preserve ivory-indigo segmented limbs, elongated abdomen, face, eyes, fangs, composition and low-poly style. Fully transparent background, no text or scene."
+    ],
+    "note": "사용자 지시: 다리 좌우3개씩 총6개. 첫 수정본은5개여서 미채택, 두 번째 수정본에서6개를 시각 확인."
+  },
+  {
+    "id": "VenomcoilCentipede",
+    "source": "/Users/daniel/.codex/generated_images/01a1b6f1-77b7-7cb2-afe3-9aaccc6b5135/exec-965a7369-21cd-4863-91fb-5ee0f33c17c4.png",
+    "prompts": [
+      "Edit the FIRST reference image ONLY: Venomcoil Centipede normal monster. Second image is Venomcoil King ONLY for comparative hierarchy; DO NOT include the King in the result. Make the normal clearly smaller, shorter and lighter than the boss: shorten its overlong body to about TEN modest segments, slim body plates and legs, reduce dorsal spikes and fang bulk. Keep burgundy red blocky chitin, purple eyes, ivory mandibles, low crawling posture and gentle curve. Frame the entire single normal centipede centered on a 1536x1024 transparent canvas occupying around 65% of width and 55% of height with generous empty alpha margins, so it reads noticeably smaller than the King reference. IMPORTANT ANTENNA ANATOMY: replace the current two giant parallel horns awkwardly emerging from the facial eye area with exactly TWO SHORT slender jointed violet antennae. Their bases must attach to anatomically separate symmetrical left/right points on the TOP outer corners of the head, ABOVE and BEHIND the eyes. Each antenna gently sweeps outward and forward, length about half a head width, tapering to a fine point. Both attachment roots must be clearly visible. No horn between eyes, no antenna through eyes, no detached or doubled antennae. Preserve face identity. Low-poly hand-painted game modeling reference, soft neutral light, no crown/gold armor, no other character, no text, no floor, no cast shadow, no glow haze. TRUE transparent alpha background."
+    ],
+    "note": "사용자 지시: King보다 작게 보이는 짧고 가는 몸체, 머리 위 좌우에 붙은 짧은 더듬이 한 쌍. 시각 확인."
+  }
+]
