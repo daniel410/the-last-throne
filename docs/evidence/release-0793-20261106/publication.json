@@ -1,0 +1,37 @@
+{
+  "version": "0.79.3",
+  "sourceCommit": "24c695a69850d0d802d661f9c0035fa7c2177a68",
+  "file": "builds/0.79.3/TheLastThrone-0.79.3.rbxlx",
+  "sha256": "c53119df81678f0723d0efa2ac38b58b9867cb0604e8c78b4a5527fdd6ff0e18",
+  "universeId": 10773575153,
+  "method": "Studio Publish As from the verified immutable build to existing Lobby and Battle",
+  "forceTerminatedStudioPid": 79640,
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "result": "success",
+      "utc": "2026-11-07T03:24:35.974Z",
+      "local": "2026-11-06T22:24:35.974000-05:00",
+      "uiEvidence": "The Last Throne is ready to test; existing restricted audience retained",
+      "publishedVersion": null
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "result": "success",
+      "utc": "2026-11-07T03:25:57.475Z",
+      "local": "2026-11-06T22:25:57.475000-05:00",
+      "uiEvidence": "Successfully published! The Last Throne Battles; Private",
+      "publishedVersion": null
+    }
+  ],
+  "assetPermissions": "Grant Permissions and Publish for the target RPG experience, no audience expansion",
+  "releaseTag": "v0.79.3",
+  "unverified": [
+    "Published client Lobby to Battle teleport and loading completion",
+    "Published return hero selection behavior",
+    "Mobile and multiplayer acceptance",
+    "Numeric published Place versions"
+  ]
+}
