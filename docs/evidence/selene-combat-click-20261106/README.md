@@ -14,3 +14,5 @@ SeleneCompanion에서 이동 동료에 프롬프트를 붙이는 호출을 제�
 - `git diff --check`: PASS.
 
 미검증: 실제 게시된 클라이언트와 PC/터치/패드의 연속 공격·화면 터치 수용, 실제 회복 전투. QA는 동행 셀린 근처에서 공격해 상세창/버튼이 나타나지 않는지와 캠프/로비 기능을 확인한다. Roblox 게시·릴리스 태그는 수행하지 않는다. 고정 소스 빌드 결과는 후속 기록한다.
+
+고정 소스 `a74256de62b9496571ad7edd7b8e049bf7b7f7b4`와 VERSION0.79.4의 단일 빌드 성공. `python3 tools/build-game.py --source HEAD --record docs/evidence/selene-combat-click-20261106/build.json` 실행, [입력·LFS 검증·해시](build.json). 산출물 `builds/0.79.4/TheLastThrone-0.79.4.rbxlx`, SHA-256 `d9d5ca970112e29cfd1592e647ecc9aa9597929c959f5f5845a9b278d53429b5` 실제 바이트 일치. `python3 tests/single-build.spec.py --artifact builds/0.79.4/TheLastThrone-0.79.4.rbxlx` 마운트/원본 일치·역할10·도착로딩108검사 PASS([로그](checks.log)). 신규 LFS 자산 없음. 기존 미커밋 모델 변경은 고정 입력에서 제외했다. 엔진25검사는 위 후보 기준이며 실제 게시·기기 수용과 구분한다. origin/main에 소스와 증거를 푸시하고 원격 동일 SHA를 확인한다.
