@@ -1,0 +1,169 @@
+{
+  "task_id": "TLT-065/gloamwood-individual-transparent-20261107",
+  "tool": "built-in image_gen",
+  "status": "individual-modeling-reference-png-not-mesh",
+  "reference_boards": "../2026-10-30-gloamwood-v1/*-blocky-v5.png",
+  "images": [
+    {
+      "id": "Webling",
+      "rank": "normal",
+      "file": "Webling.png",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "d65b745467f0f6f66a6ce544bbdc44478a44be6751c7153486859c6d859042e8",
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 1009252,
+      "alpha_below_128": 1034766,
+      "alpha_at_least_250": 523202,
+      "subject_bbox_alpha128": [
+        129,
+        70,
+        1433,
+        989
+      ],
+      "corners_transparent": true
+    },
+    {
+      "id": "Silkweaver",
+      "rank": "normal",
+      "file": "Silkweaver.png",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "47f3c899a2caa708278d5655b4663cf6571c0962f1d7c6bf952807fe0280bf24",
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 1070986,
+      "alpha_below_128": 1140719,
+      "alpha_at_least_250": 412811,
+      "subject_bbox_alpha128": [
+        99,
+        15,
+        1447,
+        1012
+      ],
+      "corners_transparent": true
+    },
+    {
+      "id": "Barkstalker",
+      "rank": "normal",
+      "file": "Barkstalker.png",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "de52ca8b1e29dd91ff8a033f24cc2edb6bab46fed3e03e522791e01432b66bae",
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 852364,
+      "alpha_below_128": 884516,
+      "alpha_at_least_250": 669988,
+      "subject_bbox_alpha128": [
+        82,
+        27,
+        1469,
+        1016
+      ],
+      "corners_transparent": true
+    },
+    {
+      "id": "Gloambat",
+      "rank": "normal",
+      "file": "Gloambat.png",
+      "width": 1752,
+      "height": 897,
+      "sha256": "08f6800dc3fecf4c41db126988ac4e99e8529fe1369b1221489634c70305de08",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 915278,
+      "alpha_below_128": 936805,
+      "alpha_at_least_250": 623120,
+      "subject_bbox_alpha128": [
+        14,
+        21,
+        1737,
+        854
+      ],
+      "corners_transparent": true
+    },
+    {
+      "id": "VenomcoilCentipede",
+      "rank": "normal",
+      "file": "VenomcoilCentipede.png",
+      "width": 1774,
+      "height": 887,
+      "sha256": "50994a7b99899d1ab7695c18f2f7ba088d207e11c467dcbf81c93c993af6a8d1",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 920523,
+      "alpha_below_128": 967127,
+      "alpha_at_least_250": 579653,
+      "subject_bbox_alpha128": [
+        56,
+        11,
+        1755,
+        875
+      ],
+      "corners_transparent": true
+    },
+    {
+      "id": "WidowQueen",
+      "rank": "boss",
+      "file": "WidowQueen.png",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "3cf5fa412231438d8ad2028e89265964b9331b4ad5bb690d1f33cedc3cc783c8",
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 847442,
+      "alpha_below_128": 876609,
+      "alpha_at_least_250": 681667,
+      "subject_bbox_alpha128": [
+        112,
+        19,
+        1424,
+        1009
+      ],
+      "corners_transparent": true
+    },
+    {
+      "id": "AncientHollowbark",
+      "rank": "boss",
+      "file": "AncientHollowbark.png",
+      "width": 1320,
+      "height": 1192,
+      "sha256": "8b56fda551b5da724091b924db4215c8373ed79f92d4d0edbf6be9ee9fd140f7",
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 597538,
+      "alpha_below_128": 641179,
+      "alpha_at_least_250": 900038,
+      "subject_bbox_alpha128": [
+        44,
+        10,
+        1274,
+        1153
+      ],
+      "corners_transparent": true
+    },
+    {
+      "id": "VenomcoilKing",
+      "rank": "boss",
+      "file": "VenomcoilKing.png",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "af30fc027f01e76f6d2d1b88aa1d99802ac2cdeb888a03ca358bc1b774be75af",
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 824561,
+      "alpha_below_128": 864538,
+      "alpha_at_least_250": 685474,
+      "subject_bbox_alpha128": [
+        215,
+        8,
+        1398,
+        1015
+      ],
+      "corners_transparent": true
+    }
+  ],
+  "validation": "PNG decode, RGBA alpha, transparent exterior, visible subject, file SHA256. Generated images visually reviewed. Exact limb/segment topology and hidden surfaces require 3D work."
+}
