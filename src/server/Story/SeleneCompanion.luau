@@ -162,7 +162,8 @@ function M.create(o)
      local spawnGround=Follow.ground(f.model.PrimaryPart.Position,Follow.params(f.model,player.Character,o.enemies))
      if spawnGround then f.model:PivotTo(CFrame.new(spawnGround)*root.CFrame.Rotation) end
      f.model:SetAttribute('NPCActorIdentity','npc:selene')
-     selectionPrompts(f.model)
+     -- Moving support must never place clickable prompts over combat input.
+     -- Invitation, rest and details remain on the stationary camp actors.
      Actors.tag(f.model,'companion')
     end
     local position=f.model.PrimaryPart.Position;local distance=(position-root.Position).Magnitude

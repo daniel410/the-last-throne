@@ -84,6 +84,13 @@ local ok,err=xpcall(function()
   end,select=function(p,_,following)accounts[p]=assert(R.selectSelene(accounts[p],'hero',following))end})
  battle.update(.2)
  check(activations==1 and battleFolder:FindFirstChild('Selene_1'),'entry starts one supporter far from every camp')
+ local follower=battleFolder:FindFirstChild('Selene_1')
+ check(not follower:FindFirstChildWhichIsA('ProximityPrompt',true),'moving supporter cannot capture combat clicks, touch or interaction keys')
+ local campPrompts=0
+ for _,object in ipairs(battleFolder:GetDescendants())do
+  if object:IsA('ProximityPrompt') then campPrompts+=1;check(not object:IsDescendantOf(follower),'interaction belongs to stationary camp only')end
+ end
+ check(campPrompts==3,'camp retains invite, rest and supporter details')
  check(Pass.view(accounts[first],'hero').credits==2 and Pass.view(accounts[first],'hero').active and not Pass.view(accounts[first],'hero').departure,'successful admission spends one credit and clears departure intent')
  for i=2,4 do check(Pass.view(accounts[players[i]],'hero').credits==2 and Pass.view(accounts[players[i]],'hero').departure,'occupied party slot preserves waiting player '..i..' credit and intent')end
  battle.update(.2);check(activations==1,'repeated update cannot spend another credit')
