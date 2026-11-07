@@ -8,6 +8,8 @@
 
 변경: Network/ExpeditionService, Lobby/HeroSessionService, 관련 Lua 회귀 검사2개, VERSION. 기존 사용자 모델·첨부·작업 파일은 포함하지 않는다.
 
-검증: 새 회귀 검사를 수정 전 HEAD 소스에 실행하면 두 검사 모두 실패한다(복귀 데이터의 영웅 누락, 새 로비의 영웅 선택 불일치). 수정 후 `lua tests/lobby-return-hero.spec.lua`27, `lua tests/k0-hero-session.spec.lua`121, `lua tests/story-lobby-resume.spec.lua`32, `lua tests/travel-attempt.spec.lua`8, 총188검사 PASS. 실제 서비스의 복귀/입장 함수와 세션 서비스를 실행하는 결정적 fixture이며 실제 Teleport는 아니다. `/private/tmp/td233-luau/luau-compile`로 변경 런타임2개 컴파일 PASS, `git diff --check` PASS.
+검증: 새 회귀 검사를 수정 전 HEAD 소스에 실행하면 두 검사 모두 실패한다(복귀 데이터의 영웅 누락, 새 로비가 선택 힌트를 필수 배틀 영웅 정보로 처리해 초기화 중단). 수정 후 `lua tests/lobby-return-hero.spec.lua`27, `lua tests/k0-hero-session.spec.lua`121, `lua tests/story-lobby-resume.spec.lua`32, `lua tests/travel-attempt.spec.lua`8, 총188검사 PASS. 실제 서비스의 복귀/입장 함수와 세션 서비스를 실행하는 결정적 fixture이며 실제 Teleport는 아니다. `/private/tmp/td233-luau/luau-compile`로 변경 런타임2개 컴파일 PASS, `git diff --check` PASS.
 
 미검증: 실제 게시된 배틀→로비 Teleport 및 PC/모바일 선택 표시. 다음 QA는 네 영웅이 있는 계정에서 엘프 외 영웅 선택→모험 출발→로비 복귀 후 선택 카드·초상·무기·다음 출발 영웅을 확인한다. 최초 클래스/저장 영웅은 변경하지 않는다. Roblox 게시·릴리스 태그는 수행하지 않으며 부모 티켓 In Progress를 유지한다.
+
+고정 소스 `df7dc6d41a74ed79791091f799ac5f9ecb24d418`를 origin/main에 푸시한 뒤 `python3 tools/build-game.py --source HEAD --record docs/evidence/lobby-return-hero-20261106/build.json` 성공. 단일 산출물 `builds/0.79.2/TheLastThrone-0.79.2.rbxlx`, SHA-256 `edcd83208b030eea66b4383ca67a975da635434c203920048996526c23a1200f`. `python3 tests/single-build.spec.py --artifact builds/0.79.2/TheLastThrone-0.79.2.rbxlx` PASS([로그](build-check.log)). 신규 LFS 자산은 없으며 기존 사용자 미커밋 모델은 빌드에 포함하지 않았다. 정확한 입력/검증 자산은 [빌드 기록](build.json)에 남긴다. 미게시.
