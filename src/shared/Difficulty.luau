@@ -7,6 +7,8 @@ local D={version=9,order={'Easy','Hard','Insane','Hell'},legacyModes={
  Hard={level=20,previous='Easy',hp=1.35,damage=1.2,bossHP=1.25,bossDamage=1.15,xp=1.15,gold=1.5,ore=8,cores=1,cache=2},
  Insane={level=40,previous='Hard',hp=1.7,damage=1.4,bossHP=1.5,bossDamage=1.3,xp=1.3,gold=2,ore=10,cores=2,cache=3},
  Hell={level=80,previous='Insane',hp=2.1,damage=1.65,bossHP=1.8,bossDamage=1.5,xp=1.5,gold=3,ore=12,cores=3,cache=4}}}
+-- Current admission policy is independent of pinned enemy/reward balance.
+D.entryLevels={Easy=1,Hard=30,Insane=60,Hell=80}
 D.modes={
  Easy={level=1,levelShift=0,hp=1,damage=1,bossHP=1,bossDamage=1,xp=1,gold=1,cache=1},
  Hard={level=20,levelShift=15,previous='Easy',hp=1.2,damage=1.15,bossHP=1.15,bossDamage=1.1,xp=1.5,gold=2,cache=2},
@@ -72,6 +74,10 @@ function D.combat(c)
 end
 -- Late-epic entry stays at Lv27 until a mandatory-route growth budget is accepted.
 function D.entry(c)return levels[c.number] or ((c.epic or 1)>=4 and 27 or c.epic==3 and 20 or c.epic==2 and 12 or 1)end
+function D.requiredLevel(c,mode)
+ local minimum=assert(D.entryLevels[mode],'Unsupported difficulty')
+ return math.max(D.entry(c),minimum)
+end
 function D.tier(c)return D.entry(c)>=10 and 10 or D.entry(c)>=5 and 5 or 1 end
 -- An isolated side expedition cannot advance another main chapter to unlock its report.
 function D.requiredMain(c)
@@ -91,7 +97,7 @@ function D.allowed(hero,id,mode)
  local c,m=Content.byId[id],D.modes[mode]
  if not hero or not c or not m then return false,'InvalidMission' end
  if mode~='Easy' and not D.combat(c)then return false,'CombatMissionOnly' end
- if hero.level<math.max(m.level,D.entry(c))then return false,'DifficultyLevel' end
+ if hero.level<D.requiredLevel(c,mode)then return false,'DifficultyLevel' end
  local s=hero.deepwood or {main=0,clears={}}
  if s.main<D.requiredMain(c)then return false,'StoryLocked' end
  if m.previous then

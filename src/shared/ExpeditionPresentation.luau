@@ -9,7 +9,7 @@ function P.missions(hero,players)
   for _,mode in ipairs(D.order)do
    local m=D.modes[mode];local ok,why=D.allowed(hero,c.id,mode)
    local reward=D.completion(c,mode)
-   modes[mode]={allowed=ok,reason=why,level=math.max(D.entry(c),m.level),previous=m.previous,
+   modes[mode]={allowed=ok,reason=why,level=D.requiredLevel(c,mode),previous=m.previous,
     storyMain=D.requiredMain(c),firstClear=not(hero and hero.deepwood and hero.deepwood.clears[c.id]),
     firstXP=c.reward.xp,firstGold=c.reward.coins,repeatXP=reward.xp,repeatGold=reward.gold,
     xpCapped=hero and hero.level>=80 or false,ore=reward.ore,cores=reward.cores,gems=reward.gems,stones=reward.stones,rewardLevel=reward.rewardLevel,rewardBand=reward.rewardBand,cache=reward.cache,encounter=Summary.mission(c,mode,players),
@@ -30,7 +30,7 @@ function P.party(party,resolve)
   if m.arrived and hero then ok,why=D.allowed(hero,party.missionId,party.difficultyId)end
   local required=Content.byId[party.missionId];local mode=D.modes[party.difficultyId]
   local row={userId=m.userId,name=m.name,classId=m.classId,level=hero and hero.level or m.level,main=m.main,ready=m.ready,arrived=m.arrived,
-   eligible=ok,reason=why,requiredLevel=required and mode and math.max(D.entry(required),mode.level)or 1,
+   eligible=ok,reason=why,requiredLevel=required and mode and D.requiredLevel(required,party.difficultyId)or 1,
    previous=D.modes[party.difficultyId]and D.modes[party.difficultyId].previous,storyMain=required and D.requiredMain(required)or 0}
   -- Ready refers to this exact roster snapshot, not a different selected hero.
   if hero and(hero.level~=m.level or(hero.deepwood and hero.deepwood.main or 0)~=m.main)then row.ready=false end

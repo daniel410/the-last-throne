@@ -97,7 +97,7 @@ function V.create(parent,send)
   local party=s.party;local canConfigure=s.role=='Lobby'and not s.travelling and not s.busy and(not party or party.hostId==player.UserId and party.status=='forming')
   for i,mode in ipairs(D.order)do
    local info=mission and mission.modes[mode];local locked=not info or not info.allowed
-   local caption=mode..' · Lv'..(info and info.level or D.modes[mode].level)..(locked and '\n'..Text.Locked or '')
+   local caption=mode..' · Lv'..(info and info.level or D.entryLevels[mode])..(locked and '\n'..Text.Locked or '')
    local b=button(modeHost,'Mode'..mode,caption,{action='Configure',missionId=selected.missionId,difficultyId=mode},UDim2.new((i-1)/4,3,0,0),UDim2.new(.25,-6,1,0),false,canConfigure)
    b.Caption.TextSize=13;mark(b,mode==selected.difficultyId,locked)
   end
