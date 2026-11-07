@@ -1,0 +1,21 @@
+{
+  "pass": true,
+  "checks": 7025,
+  "suites": {
+    "mobile-ui-audit": 2452,
+    "mobile-landscape-details": 1552,
+    "mobile-menu-stats": 920,
+    "inventory-mobile-layout": 65,
+    "lobby-panel-size": 212,
+    "lobby-atlas": 88,
+    "lobby-quest-journal": 71,
+    "daily-login-ui": 106,
+    "supporter-details": 1346,
+    "shop-affordability": 23,
+    "lobby-top-menu": 62,
+    "lobby-wallet": 37,
+    "lobby-hero-dock": 66,
+    "checkpoint-map": 25
+  },
+  "scope": "Native geometry/state and text measurement; no device input acceptance"
+}

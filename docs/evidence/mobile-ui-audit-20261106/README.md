@@ -37,3 +37,11 @@ python3 tests/single-build.spec.py --artifact builds/0.79.7/TheLastThrone-0.79.7
 최종 소스/고정 빌드 결과는 후속 기록한다. 후보의 기존13개 GUI 검사와 체크포인트25조건은 통과([후보 로그](candidate-regressions.log)); 이후 추가한 미니맵 검사도 최종 빌드에서 확인한다. Studio에서 기존203785492 asset-type 경고가 발생했으며 이미지 권한/실기기 시각 수용으로 보고하지 않는다.
 
 미검증: 실제 휴대폰 터치·회전/노치·OS별 렌더·최종 시각수용, 게시된 테스트 클라이언트, 모든 월드 상황/8인/장시간 성능. QA는 새 빌드에서 각 창 열기/닫기→마지막 스크롤 항목→가로/세로 전환·초안 보존·실제 터치와 배경 입력 차단을 확인한다. Roblox 게시/릴리스 태그는 수행하지 않는다. 기존 사용자 Blender/미추적 자산/첨부는 보존하고 커밋에서 제외한다.
+
+## 최종 고정 빌드 결과
+
+소스 `26327eaccaf5517575f42aab6d945f67e9392eab`와 VERSION0.79.7을 origin/main에 커밋·푸시하고 고정 소스로 단일 빌드 성공([정확한 입력/명령/해시](build.json)). 산출물 `builds/0.79.7/TheLastThrone-0.79.7.rbxlx`, SHA-256 `733d836b27e1037c55bf124b68f687f4cd17c1f4067473d535b2a0caff1fb64e`. 신규 LFS 자산/전송 없음. 기존 미커밋 모델은 포함하지 않았다.
+
+위 재현 명령으로 소스 주입 없이 고정 산출물의 실제 모듈을 실행: **14검사 묶음·7025조건 PASS**([엔진 로그](fixed-native.log), [묶음별 수치](summary.json)). 새 모바일 전용2452·4클래스/4분류/장비 두 행1552·세로 능력치920·가방/장비/상세65·공통 패널/4영웅212·로비 지도88·퀘스트71·일일보상106·Selene 상세1346·상점23·상단 메뉴62·지갑37·영웅 도크66·체크포인트25다. 최종 로그에 asset-type 경고 외 assertion/파괴된 UI 접근 오류는 없다. 변경 Luau24파일 컴파일 PASS([로그](compile.log)). 최종 `git diff --check` PASS.
+
+`python3 tests/single-build.spec.py --artifact builds/0.79.7/TheLastThrone-0.79.7.rbxlx`: 역할10·도착로딩192·실제 마운트/구성 검사 PASS([로그](checks.log)). 사용한 Studio/run-in-roblox 세션은 실행 완료 후 종료됐으며 잔여 프로세스가 없음을 확인했다. 빌드·엔진 검사와 실제 휴대폰/게시 검증을 구분하며 게시/태그는 여전히 수행하지 않았다. 증거는 별도 커밋·푸시한다.
