@@ -23,6 +23,11 @@ local ok,err=xpcall(function()
  check(view.play.CitadelButtonArt:GetAttribute('CitadelAtlasKey')=='play','original TD PLAY atlas')
  view.inventory({revision=2,ready=true,heroId='h1',heroes={h1={progression={level=1,xp=25}}}})
  local dock=view.root.HomeDock
+ -- Saving/loading snapshots use ready=false even when the selected ID is known.
+ view.inventory({revision=3,ready=false,heroId='h1',heroes={}})
+ check(not dock.HomeXPTrack.Visible and dock.HomeHeroProgress.Text=='Loading Hero Progress...','unready inventory waits without boolean growth error')
+ view.update(state,false);view.suppress(true);view.suppress(false)
+ view.inventory({revision=4,ready=true,heroId='h1',heroes={h1={progression={level=1,xp=25}}}})
  check(dock.HomeHeroProgress.Text=='Knight Hero Lv.1' and dock.HomeXPAmount.Text=='25 / 100 XP','actual RPG growth labels')
  check(dock.HomeXPTrack.HomeXPFill.Size==UDim2.fromScale(.25,1),'actual RPG XP fraction')
  view.inventory({revision=1,ready=true,heroId='h1',heroes={h1={progression={level=1,xp=0}}}})

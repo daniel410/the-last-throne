@@ -8,7 +8,7 @@ local function check(value, message) checks = checks + 1; assert(value, message)
 local vector = {}
 vector.__sub = function(a,b) return setmetatable({Magnitude=math.abs(a.x-b.x)},vector) end
 local function pos(x) return setmetatable({x=x},vector) end
-local function run(role, incoming, failStream)
+local function run(role, incoming, failStream, demandStream, slowGates)
  local frame, destroyedAt, removed, created, requests = 0, nil, false, 0, 0
  local deferred = {}
  local parent = {}
@@ -35,7 +35,7 @@ local function run(role, incoming, failStream)
  function world:FindFirstChild(name) return name end
  function world:Raycast(_,_,params)
   check(params.RespectCanCollide and #params.FilterDescendantsInstances==3,'exclude character and staging geometry')
-  return frame>=12 and {} or nil
+  return frame>=12 and (not demandStream or requests>0) and {} or nil
  end
  local runService = {IsStudio=function() return true end,RenderStepped={Wait=function()
   frame=frame+1;assert(frame<40,'loading must finish after readiness')
@@ -43,8 +43,10 @@ local function run(role, incoming, failStream)
   if frame<=5 then check(not destroyedAt,'temporary Lobby phase remains covered') end
   if frame==6 then attrs.K0SessionPhase=role=='Battle' and 'Tutorial' or 'Lobby' end
   if frame==7 then character.spawnReady=true end
-  if frame==8 then attrs.TLTBattleClientReady=true end
-  if frame==9 then attrs.TLTTravelLock=false;camera.Focus.Position=pos(0) end
+  if frame==8 and not slowGates or frame==22 then attrs.TLTBattleClientReady=true end
+  if frame==9 then attrs.TLTTravelLock=slowGates==true;camera.Focus.Position=pos(0) end
+  if frame==23 then attrs.TLTTravelLock=false end
+  if slowGates and frame<=23 then check(not destroyedAt,'streaming alone cannot bypass battle UI or party lock') end
   if frame==10 then camera.Focus.Position=pos(100);player.GameplayPaused=true end
   if frame==11 then player.GameplayPaused=false end
   if frame<=12 then check(not destroyedAt,'no reveal before destination streams') end
@@ -85,4 +87,7 @@ run('Lobby',true,false)
 run('Battle',true,false)
 run('Battle',false,false)
 run('Battle',true,true)
+run('Battle',true,false,true)
+run('Lobby',true,false,true)
+run('Battle',true,false,true,true)
 print('arrival-loading: '..checks..' checks PASS')

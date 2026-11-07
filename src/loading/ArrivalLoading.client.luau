@@ -21,20 +21,25 @@ gui.Parent = player:WaitForChild('PlayerGui')
 -- Install our opaque cover before removing Roblox's loading screen.
 First:RemoveDefaultLoadingScreen()
 
-local function ready()
+local function destination()
  local phase = player:GetAttribute('K0SessionPhase')
  if role == 'Battle' then
-  if phase ~= 'Tutorial' or workspace:GetAttribute('TLTCombatReady') ~= true
-   or player:GetAttribute('TLTBattleClientReady') ~= true
-   or player:GetAttribute('TLTTravelLock') == true then return end
+  if phase ~= 'Tutorial' or workspace:GetAttribute('TLTCombatReady') ~= true then return end
  elseif phase ~= 'Lobby' then return end
  local character = player.Character
  if not character or not character:IsDescendantOf(workspace)
   or character:GetAttribute('K0SpawnReady') ~= true then return end
  local root = character:FindFirstChild('HumanoidRootPart')
  local human = character:FindFirstChildOfClass('Humanoid')
+ if not root or not human or human.Health <= 0 then return end
+ return character, root, human
+end
+
+local function ready(character, root, human)
+ if role == 'Battle' and (player:GetAttribute('TLTBattleClientReady') ~= true
+  or player:GetAttribute('TLTTravelLock') == true) then return end
  local camera = workspace.CurrentCamera
- if not root or not human or human.Health <= 0 or player.GameplayPaused
+ if player.GameplayPaused
   or not camera or camera.CameraSubject ~= human
   or camera.CameraType ~= Enum.CameraType.Custom
   or (camera.Focus.Position - root.Position).Magnitude > 16 then return end
@@ -52,13 +57,13 @@ local function ready()
  return character, root
 end
 
--- Stream around the final spawn, never the temporary arrival platform. Streaming
--- completion alone is not proof of readiness; the rendered-world gate still runs.
+-- Request the final spawn before checking local ground, camera or streaming pause.
+-- Those can depend on the request completing. Keep all reveal gates afterwards.
 local streamingCharacter, streamingPosition, streamingComplete
 local stableFrames = 0
 while gui.Parent do
  Run.RenderStepped:Wait()
- local character, root = ready()
+ local character, root, human = destination()
  if character then
   if character ~= streamingCharacter or (root.Position - streamingPosition).Magnitude > 16 then
    streamingCharacter, streamingPosition, streamingComplete = character, root.Position, false
@@ -74,11 +79,13 @@ while gui.Parent do
     end
    end)
    stableFrames = 0
-  elseif streamingComplete then
+  elseif streamingComplete and ready(character, root, human) then
    stableFrames = stableFrames + 1
    -- Allow camera and destination geometry to render behind the cover, and
    -- recheck every frame so death/replacement/late admission cannot reveal it.
    if stableFrames >= 3 then gui:Destroy(); break end
+  else
+   stableFrames = 0
   end
  else
   stableFrames = 0

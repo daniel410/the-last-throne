@@ -110,9 +110,9 @@ function M.create(parent,player,chooseHero,playAction,world)
    card.Active=allowed() and state.canManage==true;card.Selectable=card.Active;card.AutoButtonColor=card.Active
   end
   play.Active=allowed();play.Selectable=play.Active;play.AutoButtonColor=play.Active
-  local hero=inventory and inventory.ready and state and inventory.heroes[state.selectedHeroId]
+  local hero=inventory and inventory.ready==true and state and inventory.heroes[state.selectedHeroId] or nil
   local g=hero and hero.progression
-  local ready=g~=nil and inventory.heroId==state.selectedHeroId
+  local ready=type(g)=='table' and inventory.heroId==state.selectedHeroId
   local selectedClass
   for _,entry in ipairs(state and state.heroes or {}) do if entry.heroId==state.selectedHeroId then selectedClass=entry.classId;break end end
   xp.Text=notice or (busy and TEXT.waiting) or (ready and string.format(TEXT.level,NAMES[selectedClass] or 'Hero',g.level)) or (state and not state.selectedHeroId and TEXT.choose) or TEXT.loading
