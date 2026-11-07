@@ -1,0 +1,39 @@
+AUDIT_BEGIN mobile-ui-audit
+MOBILE_AUDIT_CASE settings
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+MOBILE_AUDIT_CASE shops
+MOBILE_AUDIT_CASE lobby maps and quests
+MOBILE_AUDIT_CASE expedition
+MOBILE_AUDIT_CASE battle map
+MOBILE_AUDIT_CASE supporter and completion
+MOBILE_AUDIT_CASE combat HUD
+MOBILE_UI_AUDIT_NATIVE {"checks":2373,"pass":true,"kind":"MOBILE_UI_AUDIT_NATIVE","cases":[],"failures":[]}
+AUDIT_RESULT mobile-ui-audit true {"checks":2373,"pass":true,"kind":"MOBILE_UI_AUDIT_NATIVE","cases":[],"failures":[]}
+AUDIT_BEGIN mobile-landscape-details
+AUDIT_RESULT mobile-landscape-details true {"failures":[],"kind":"MOBILE_LANDSCAPE_DETAILS_NATIVE","pass":true,"checks":1552}
+AUDIT_BEGIN mobile-menu-stats
+AUDIT_RESULT mobile-menu-stats true {"failures":[],"kind":"MOBILE_MENU_STATS_NATIVE","pass":true,"checks":920}
+AUDIT_BEGIN inventory-mobile-layout
+INVENTORY_MOBILE_LAYOUT_NATIVE {"failures":[],"kind":"INVENTORY_MOBILE_LAYOUT_NATIVE","pass":true,"checks":65}
+AUDIT_RESULT inventory-mobile-layout true nil
+AUDIT_BEGIN lobby-panel-size
+AUDIT_RESULT lobby-panel-size true {"failures":[],"kind":"LOBBY_PANEL_SIZE_NATIVE","pass":true,"checks":212}
+AUDIT_BEGIN lobby-atlas
+AUDIT_RESULT lobby-atlas true {"failures":[],"kind":"LOBBY_ATLAS_NATIVE","pass":true,"checks":88}
+AUDIT_BEGIN lobby-quest-journal
+AUDIT_RESULT lobby-quest-journal true {"failures":[],"kind":"LOBBY_QUEST_JOURNAL_NATIVE","pass":true,"checks":71}
+AUDIT_BEGIN daily-login-ui
+AUDIT_RESULT daily-login-ui true {"failures":[],"kind":"DAILY_LOGIN_UI_NATIVE","pass":true,"checks":106}
+AUDIT_BEGIN supporter-details
+SUPPORTER_DETAILS_NATIVE {"failures":[],"kind":"SUPPORTER_DETAILS_NATIVE","pass":true,"checks":1346}
+AUDIT_RESULT supporter-details true nil
+AUDIT_BEGIN shop-affordability
+AUDIT_RESULT shop-affordability true {"failures":[],"kind":"SHOP_AFFORDABILITY_NATIVE","pass":true,"checks":23}
+AUDIT_BEGIN lobby-top-menu
+AUDIT_RESULT lobby-top-menu true {"failures":[],"kind":"LOBBY_TOP_MENU_NATIVE","pass":true,"checks":62}
+AUDIT_BEGIN lobby-wallet
+LOBBY_WALLET_NATIVE {"failures":[],"kind":"LOBBY_WALLET_NATIVE","pass":true,"checks":37}
+AUDIT_RESULT lobby-wallet true nil
+AUDIT_BEGIN lobby-hero-dock
+AUDIT_RESULT lobby-hero-dock true {"status":"passed","kind":"LOBBY_HERO_DOCK_NATIVE","checks":66}
+CHECKPOINT_AUDIT true Checkpoint map native: 25 checks passed

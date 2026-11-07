@@ -89,9 +89,10 @@ function LobbyGui.create(request,onManage)
  require(script.Parent.LobbyPanelLayout).bind(shell)
 	local explore = button(shell, "ExploreCourtyard", "X", UDim2.new(1,-58,0,12), UDim2.fromOffset(40,40))
 	explore.Activated:Connect(function() minimized=true; shade.Visible=false end)
-	require(script.Parent.LobbyMenuBridge).Event:Connect(function(action)
+	local bridgeConnection=require(script.Parent.LobbyMenuBridge).Event:Connect(function(action)
 		if action=="Heroes" then minimized=false;shade.Visible=not suppressed end
 	end)
+	gui.Destroying:Connect(function()bridgeConnection:Disconnect()end)
 	local titlePlaque=Menu.plaque(shell,"TitlePlaque","THE LAST THRONE",UDim2.new(.5,-200,0,-26),UDim2.fromOffset(400,64))
 	local subtitle = label(shell, "Subtitle", Text.Lobby.Subtitle, UDim2.fromOffset(18, 46), UDim2.new(1, -36, 0, 23), 13, COLOR.cream)
 	label(shell, "SessionNotice", Text.Lobby.Notice, UDim2.fromOffset(18, 75), UDim2.new(1, -36, 0, 34), 12, COLOR.gold)
@@ -308,7 +309,7 @@ function LobbyGui.create(request,onManage)
 		subtitle.Text="CHOOSE YOUR HERO  /  Begin your adventure."
 		subtitle.Visible=not short
 		shell.SessionNotice.Visible=not short
-		shell.SessionNotice.Position,shell.SessionNotice.Size=UDim2.fromOffset(22,65),UDim2.new(1,-44,0,28)
+		shell.SessionNotice.Position,shell.SessionNotice.Size=UDim2.fromOffset(22,65),UDim2.new(1,-86,0,32)
 		shell.SessionNotice.TextSize=10
 		roster.Visible=false
 		cards.Position=UDim2.fromOffset(22,short and 48 or 104)
@@ -329,8 +330,8 @@ function LobbyGui.create(request,onManage)
 		 view.role.Visible=not short
 		 view.status.Position=UDim2.new(0,10,1,short and -62 or -76)
 		 view.status.Size=UDim2.new(1,-20,0,short and 14 or 20)
-		 view.button.Position=UDim2.new(0,10,1,short and -48 or -52)
-		 view.button.Size=UDim2.new(1,-20,0,short and 44 or 42)
+		 view.button.Position=UDim2.new(0,10,1,short and -48 or -54)
+		 view.button.Size=UDim2.new(1,-20,0,44)
 		 view.button.TextSize=short and compact and 10 or 13
 		end
 		classLock.Position,classLock.Size=UDim2.new(0,22,1,-106),UDim2.new(1,-44,0,28)

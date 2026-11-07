@@ -49,7 +49,8 @@ function M.create(parent,actions)
   if kind=='Maps'then atlas.show(snapshot)else journal.show(snapshot)end
   panel.Visible=true
  end
- Bridge.Event:Connect(function(action)if action=='Quest'then actions.close();guide('Quest')end end)
+ local bridgeConnection=Bridge.Event:Connect(function(action)if action=='Quest'then actions.close();guide('Quest')end end)
+ panel.Destroying:Connect(function()bridgeConnection:Disconnect()end)
  for index,entry in ipairs({{'Heroes','HEROES'},{'ItemShop','POTION SHOP'},{'Blacksmith','BLACKSMITH'},{'Quest','QUEST'},{'Maps','MAPS'},{'DiamondShop','DIAMOND SHOP'},{'LoginRewards','LOGIN REWARDS'}}) do
   local b=T.button(rail,entry[1],entry[2],UDim2.new(),UDim2.fromOffset(88,64))
   -- Every entry uses the same TD picture/nameplate structure.

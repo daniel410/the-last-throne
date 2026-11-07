@@ -34,7 +34,7 @@ function Gui.create(onVisibility)
 		local mobile=width<600 or UIS.TouchEnabled or height<400
 		local short=height>0 and mobile
 		panel.Size=mobile and UDim2.new(1,-24,1,-16) or UDim2.new(1,-24,1,-40)
-		local wide=short and width>=600
+		local wide=short and width>=520
 		if short then
 			title.Position=UDim2.fromOffset(wide and 10 or 12,2)
 			title.Size=UDim2.fromOffset(math.min(190,width-76),44);title.Caption.TextSize=15
@@ -66,6 +66,7 @@ function Gui.create(onVisibility)
 	local snapshot,pending
  local loadoutRetried=false
  local feedback=false
+ local messageGeneration=0
 	local tab="Stats"
 	local treeState={selected=1}
  local statState={gearExpanded=false}
@@ -73,7 +74,15 @@ function Gui.create(onVisibility)
 	local opened=false
 	local render
 	local function getState() inventoryRemote:FireServer({action="GetState",requestId=Http:GenerateGUID(false)}) end
-	local function show(text) message.Text=text;resizeChrome() end
+	local function show(text)
+		messageGeneration+=1;local generation=messageGeneration
+		message.Text=text;resizeChrome()
+		if text=="Hero saved." then task.delay(2,function()
+			if gui.Parent and generation==messageGeneration and not pending then
+				message.Text="";resizeChrome()
+			end
+		end) end
+	end
 	local function resetDraft() draft={STR=0,DEX=0,INT=0,VIT=0} end
 	local function send(action,args,retried)
 		if pending or not snapshot or not snapshot.ready or not snapshot.heroId then return end

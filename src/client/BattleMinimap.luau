@@ -31,6 +31,7 @@ function Map.create(parent)
  local menuButton=Theme.button(frame,'MapMenu','≡',UDim2.new(1,-34,0,0),UDim2.fromOffset(40,40));menuButton.Caption.Visible=false
  Theme.icon(menuButton,'settings',UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8))
  local menu=Theme.frame(frame,'MapActions',UDim2.new(1,-168,0,248),UDim2.fromOffset(168,238));menu.Visible=false
+ local menuScale=Instance.new('UIScale');menuScale.Parent=menu
  local hero=Theme.button(menu,'Hero',Navigation.statsButton,UDim2.fromOffset(10,8),UDim2.fromOffset(148,36))
  local bag=Theme.button(menu,'Bag',Navigation.bagButton,UDim2.fromOffset(10,52),UDim2.fromOffset(148,36))
  for _,b in ipairs({hero,bag}) do b.Caption.TextScaled=true;local cap=Instance.new('UITextSizeConstraint');cap.MaxTextSize=13;cap.MinTextSize=9;cap.Parent=b.Caption end
@@ -38,13 +39,38 @@ function Map.create(parent)
  local settings=Theme.button(menu,'Settings',Navigation.settings,UDim2.fromOffset(10,140),UDim2.fromOffset(148,44))
  settings.Activated:Connect(function() menu.Visible=false end)
  journal.Activated:Connect(function() menu.Visible=false end)
- menuButton.Activated:Connect(function()
-  local camera=Workspace.CurrentCamera
-  local scale=frame.AbsoluteSize.Y/168
-  if camera and scale>0 then
-   local available=(camera.ViewportSize.Y-frame.AbsolutePosition.Y-12)/scale-menu.Size.Y.Offset
+ local function layoutMenu()
+  local frameScale=frame:FindFirstChildOfClass('UIScale')
+  local scale=frameScale and frameScale.Scale or frame.AbsoluteSize.Y/168
+  local availableSize=parent.AbsoluteSize
+  if scale<=0 then return end
+  local compact=game:GetService('UserInputService').TouchEnabled or availableSize.X<900 or availableSize.Y<540
+  menuScale.Scale=compact and 1/scale or 1
+  menu.AnchorPoint=compact and Vector2.new(1,0) or Vector2.zero
+  menu.Size=UDim2.fromOffset(168,compact and 252 or 238)
+  if compact then
+   for i,b in ipairs({hero,bag,journal,settings,menu:FindFirstChild('BackToLobby')})do b.Position=UDim2.fromOffset(10,8+(i-1)*48);b.Size=UDim2.fromOffset(148,45)end
+   for _,b in ipairs({fullMap,menuButton})do b.Size=UDim2.fromOffset(45/scale,45/scale)end
+   menuButton.Position=UDim2.new(1,-45/scale,0,0)
+   fullMap.Caption.TextSize=13/scale
+   local below=frame.AbsolutePosition.Y-parent.AbsolutePosition.Y+frame.AbsoluteSize.Y+12
+   if below+252<=availableSize.Y-8 then menu.Position=UDim2.new(1,0,0,(frame.AbsoluteSize.Y+12)/scale)
+   else menu.Position=UDim2.new(0,-8/scale,0,(parent.AbsolutePosition.Y+8-frame.AbsolutePosition.Y)/scale)end
+  else
+   fullMap.Size=UDim2.fromOffset(40,40);menuButton.Size=UDim2.fromOffset(40,40);menuButton.Position=UDim2.new(1,-34,0,0)
+   fullMap.Caption.TextSize=13
+   for i,b in ipairs({hero,bag,journal,settings,menu:FindFirstChild('BackToLobby')})do b.Position=UDim2.fromOffset(10,8+(i-1)*44);b.Size=UDim2.fromOffset(148,i>=4 and 44 or 36)end
+   local available=(availableSize.Y-(frame.AbsolutePosition.Y-parent.AbsolutePosition.Y)-12)/scale-menu.Size.Y.Offset
    menu.Position=UDim2.new(1,-168,0,math.max(0,math.min(248,available)))
   end
+ end
+ frame:GetPropertyChangedSignal('AbsoluteSize'):Connect(layoutMenu)
+ parent:GetPropertyChangedSignal('AbsoluteSize'):Connect(layoutMenu)
+ menu:GetPropertyChangedSignal('Visible'):Connect(layoutMenu)
+ menu.ChildAdded:Connect(function()task.defer(layoutMenu)end)
+ layoutMenu()
+ menuButton.Activated:Connect(function()
+  layoutMenu()
   menu.Visible=not menu.Visible
  end)
  hero.Activated:Connect(function() menu.Visible=false end);bag.Activated:Connect(function() menu.Visible=false end)

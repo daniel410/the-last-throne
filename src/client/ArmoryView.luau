@@ -71,6 +71,18 @@ function V.create(parent,send,diamondOnly,store)
   categories.Position=UDim2.fromOffset(16,y)
   if compactStore then categories.Size=UDim2.new(1,-32,0,44) end
   local top=y+(if panel:GetAttribute('EnhancementMode') or panel:GetAttribute('EnhancementGuideMode')then 0 elseif compactStore then 54 else 106)
+  if store=='blacksmith' and panel.AbsoluteSize.X<450 then
+   title.Position=UDim2.fromOffset(16,6);title.Size=UDim2.new(1,-84,0,32);title.TextSize=18
+   help.Position=UDim2.fromOffset(16,48);help.Size=UDim2.new(1,-32,0,44)
+   balance.Position=UDim2.fromOffset(16,98);balance.Size=UDim2.new(.25,-20,0,44);balance.TextSize=11
+   buy.Position=UDim2.new(.25,0,0,98);sell.Position=UDim2.new(.5,6,0,98);enhance.Position=UDim2.new(.75,6,0,98)
+   categories.Position=UDim2.fromOffset(16,150)
+   top=(panel:GetAttribute('EnhancementMode') or panel:GetAttribute('EnhancementGuideMode')) and 150 or 204
+  else
+   help.Size=UDim2.fromOffset(174,44)
+   title.Size=UDim2.new(1,store=='blacksmith' and -270 or -88,0,28);title.TextSize=22
+   balance.TextSize=15
+  end
   scroll.Position=UDim2.fromOffset(16,top)
   -- Reserve space only for an actual confirmation, save status, or error.
   local noticeHeight=0

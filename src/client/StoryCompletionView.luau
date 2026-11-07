@@ -17,6 +17,10 @@ function View.create(parent,onContinue)
  local function render()
   if not current then return end
   heading.Text=current.heading;heading.TextSize=panel.Size.X.Offset<550 and 18 or 22;button.Caption.Text=current.action
+  local headingHeight=math.max(30,game.TextService:GetTextSize(heading.Text,heading.TextSize,heading.Font,Vector2.new(math.max(1,panel.Size.X.Offset-136),2000)).Y+4)
+  heading.Size=UDim2.new(1,-136,0,headingHeight)
+  accent.Position=UDim2.fromOffset(20,headingHeight+22)
+  list.Position=UDim2.fromOffset(20,headingHeight+36);list.Size=UDim2.new(1,-40,1,-headingHeight-106)
   for _,v in ipairs(list:GetChildren())do if v:IsA('GuiObject')then v:Destroy()end end
   local lines={{current.title,18,Theme.color.gold},{current.outcome,14},{current.reward,17,Theme.color.green},{current.saved,12},
    {current.nextTitle,17,Theme.color.gold},{current.region,13},{current.objective,14},{current.guidance,14},{current.support,13,Theme.color.gold}}
@@ -25,7 +29,7 @@ function View.create(parent,onContinue)
    local label=Theme.label(list,'Line'..i,row[1],UDim2.new(),UDim2.new(1,-16,0,h),row[2],row[3]);label.LayoutOrder=i;label.TextYAlignment=Enum.TextYAlignment.Top
   end end
  end
- function api:resize(w,h)panel.Size=UDim2.fromOffset(math.min(680,math.max(280,w-24)),math.min(480,math.max(240,h-24)));render()end
+ function api:resize(w,h)panel.Size=UDim2.fromOffset(math.min(680,math.max(1,w-24)),math.min(480,math.max(1,h-24)));render()end
  function api:dismiss()
   stop();panel.Visible=false
   local chosen=GuiService.SelectedObject
@@ -34,7 +38,7 @@ function View.create(parent,onContinue)
  end
  function api:show(data)
   self:dismiss();current=data
-  local camera=workspace.CurrentCamera;if camera then self:resize(camera.ViewportSize.X,camera.ViewportSize.Y)else render()end
+  local size=parent.AbsoluteSize;if size.X>0 and size.Y>0 then self:resize(size.X,size.Y)else render()end
   list.CanvasPosition=Vector2.zero;panel.Visible=true;scale.Scale=.96;accent.BackgroundTransparency=.65
   tweens={Tween:Create(scale,TweenInfo.new(.28,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Scale=1}),Tween:Create(accent,TweenInfo.new(.45),{BackgroundTransparency=0})}
   for _,t in ipairs(tweens)do t:Play()end
@@ -45,7 +49,7 @@ function View.create(parent,onContinue)
  local input=game.UserInputService.InputBegan:Connect(function(event)
   if panel.Visible and (event.KeyCode==Enum.KeyCode.Escape or event.KeyCode==Enum.KeyCode.ButtonB)then api:dismiss()end
  end)
- local resize=parent:GetPropertyChangedSignal('AbsoluteSize'):Connect(function()if panel.Visible then local c=workspace.CurrentCamera;if c then api:resize(c.ViewportSize.X,c.ViewportSize.Y)end end end)
+ local resize=parent:GetPropertyChangedSignal('AbsoluteSize'):Connect(function()if panel.Visible then api:resize(parent.AbsoluteSize.X,parent.AbsoluteSize.Y)end end)
  function api:destroy()self:dismiss();input:Disconnect();resize:Disconnect();panel:Destroy()end
  return api
 end

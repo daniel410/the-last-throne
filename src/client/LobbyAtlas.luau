@@ -19,6 +19,7 @@ function M.create(parent)
  local hint=T.label(root,'Hint','Select a region for unlock details. Drag to explore the map.',UDim2.new(0,4,1,-23),UDim2.new(1,-8,0,22),10,T.color.muted)
  local buttons,snapshot,atlas,selected={},nil,nil,nil
  local epic,zoom,overview=1,1,false
+ local resizeChrome
  local function hero()return snapshot and snapshot.heroId and snapshot.heroes and snapshot.heroes[snapshot.heroId]end
  local function journal()local h=hero();return h and (h.deepwood or Progress.new())or {main=-1,explored={}}end
  local function describe(id)
@@ -31,15 +32,46 @@ function M.create(parent)
   elseif j.clears and j.clears[id]then status='COMPLETED · Enter an adventure to revisit.'
   else status='OPEN · Enter an adventure to explore.'end
   detail.Text=z.name..' · '..status
+  if resizeChrome then resizeChrome()end
+ end
+ resizeChrome=function()
+  local width,height=root.AbsoluteSize.X,root.AbsoluteSize.Y
+  local landscape=height<360 and width>=450
+  local narrow=width<600
+  local footer=math.max(46,math.ceil(game:GetService('TextService'):GetTextSize(detail.Text,12,detail.Font,Vector2.new(math.max(1,width-(landscape and 160 or 8)),10000)).Y)+8)
+  hint.Visible=not landscape and not narrow
+  summary.Visible=not landscape
+  if landscape then
+   tabs.Position=UDim2.new();tabs.Size=UDim2.new(0,144,1,0)
+   tabs.ScrollingDirection=Enum.ScrollingDirection.Y;tabs.CanvasSize=UDim2.fromOffset(0,#epics*50)
+   for i,b in ipairs(buttons)do b.Position=UDim2.fromOffset(0,(i-1)*50);b.Size=UDim2.fromOffset(138,44)end
+   area.Position=UDim2.fromOffset(152,0);area.Size=UDim2.new(1,-244,1,-footer-8)
+   detail.Position=UDim2.new(0,152,1,-footer);detail.Size=UDim2.new(1,-152,0,footer)
+   fit.Position=UDim2.new(1,-84,0,0);zoomButton.Position=UDim2.new(1,-84,0,50)
+   fit.Size=UDim2.fromOffset(84,44);zoomButton.Size=UDim2.fromOffset(84,44)
+  else
+   tabs.Position=UDim2.new();tabs.Size=UDim2.new(1,0,0,48)
+   tabs.ScrollingDirection=Enum.ScrollingDirection.X;tabs.CanvasSize=UDim2.fromOffset(#epics*174,0)
+   for i,b in ipairs(buttons)do b.Position=UDim2.fromOffset((i-1)*174,0);b.Size=UDim2.fromOffset(168,44)end
+   summary.Position=UDim2.fromOffset(2,50);summary.Size=UDim2.new(1,narrow and -4 or -184,0,44)
+   local y=narrow and 98 or 50
+   fit.Position=UDim2.new(1,-178,0,y);zoomButton.Position=UDim2.new(1,-88,0,y)
+   fit.Size=UDim2.fromOffset(84,44);zoomButton.Size=UDim2.fromOffset(88,44)
+   local top=narrow and 150 or 102
+   local bottom=footer+(hint.Visible and 26 or 0)
+   area.Position=UDim2.fromOffset(0,top);area.Size=UDim2.new(1,0,1,-top-bottom-8)
+   detail.Position=UDim2.new(0,4,1,-bottom);detail.Size=UDim2.new(1,-8,0,footer)
+  end
  end
  local function layout()
+  resizeChrome()
   if not atlas then return end
   local w,h=math.max(1,area.AbsoluteSize.X),math.max(1,area.AbsoluteSize.Y)
   local width=math.max(w,h*atlas.aspect)*zoom
   -- Region names remain legible; drag scrolls a large epic on small displays.
   width=overview and math.min(w,h*atlas.aspect)or math.max(width,900)
   for _,row in pairs(atlas.rows)do row.name.Visible=not overview;row.status.Visible=not overview end
-  scene.Size=UDim2.fromOffset(width,width/atlas.aspect);area.CanvasSize=UDim2.fromOffset(width,width/atlas.aspect)
+  scene.Size=UDim2.fromOffset(width,width/atlas.aspect);scene.Position=UDim2.fromOffset(math.max(0,(w-width)/2),math.max(0,(h-width/atlas.aspect)/2));area.CanvasSize=UDim2.fromOffset(math.max(w,width),math.max(h,width/atlas.aspect))
   atlas.update({journal=journal()},nil,nil)
  end
  local function render()
@@ -61,13 +93,14 @@ function M.create(parent)
  end
  for i,spec in ipairs(epics)do
   local b=T.button(tabs,'Epic'..i,spec[1]:upper(),UDim2.fromOffset((i-1)*174,0),UDim2.fromOffset(168,44));b.Caption.TextSize=10;buttons[i]=b
-  b.Activated:Connect(function()epic=i;zoom=1;overview=false;render()end)
+  b.Activated:Connect(function()epic=i;zoom=1;overview=root.AbsoluteSize.Y<360 or root.AbsoluteSize.X<600;render()end)
  end
- area:GetPropertyChangedSignal('AbsoluteSize'):Connect(layout)
+ root:GetPropertyChangedSignal('AbsoluteSize'):Connect(layout)
+ area:GetPropertyChangedSignal('AbsoluteSize'):Connect(function()if atlas then layout()end end)
  fit.Activated:Connect(function()zoom=1;overview=true;layout();area.CanvasPosition=Vector2.zero end)
  zoomButton.Activated:Connect(function()overview=false;zoom=zoom==1 and 1.5 or 1;layout()end)
- return {root=root,show=function(s)snapshot=s;root.Visible=true;render()end,update=function(s)snapshot=s;if root.Visible then render()end end,
-  selectEpic=function(i)if epics[i]then epic=i;zoom=1;overview=false;render()end end,
+ return {root=root,show=function(s)snapshot=s;root.Visible=true;overview=root.AbsoluteSize.Y<360 or root.AbsoluteSize.X<600;render()end,update=function(s)snapshot=s;if root.Visible then render()end end,
+  selectEpic=function(i)if epics[i]then epic=i;zoom=1;overview=root.AbsoluteSize.Y<360 or root.AbsoluteSize.X<600;render()end end,
   selectRegion=function(id)if atlas and atlas.rows[id]then atlas.select(id)end end,
   rows=function()return atlas and atlas.rows or {}end}
 end

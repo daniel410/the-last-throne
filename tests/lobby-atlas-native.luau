@@ -33,7 +33,7 @@ local ok,err=xpcall(function()
   check(area.AbsolutePosition.Y+area.AbsoluteSize.Y<=root.RegionDetail.AbsolutePosition.Y+.1,'map does not cover detail controls')
   check(root.EpicCategories.AbsoluteSize.Y>=44,'touch category height')
   check(root.Zoom.Caption.TextFits and root.Fit.Caption.TextFits,'map control labels fit')
-  check(root.Fit.AbsolutePosition.X+root.Fit.AbsoluteSize.X<=root.Zoom.AbsolutePosition.X and root.Zoom.AbsolutePosition.X+root.Zoom.AbsoluteSize.X<=root.AbsolutePosition.X+root.AbsoluteSize.X+1,'map controls do not overlap or leave the panel')
+  check((root.Fit.AbsolutePosition.X+root.Fit.AbsoluteSize.X<=root.Zoom.AbsolutePosition.X or root.Fit.AbsolutePosition.Y+root.Fit.AbsoluteSize.Y<=root.Zoom.AbsolutePosition.Y) and root.Zoom.AbsolutePosition.X+root.Zoom.AbsoluteSize.X<=root.AbsolutePosition.X+root.AbsoluteSize.X+1,'map controls do not overlap or leave the panel')
   check(area.CanvasSize.X.Offset>=area.AbsoluteSize.X,'map remains scrollable')
  end
  -- Existing battle full atlas and minimap constructors still work.

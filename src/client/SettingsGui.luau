@@ -17,7 +17,7 @@ function M.create(player,onVisibility)
  local panel=Theme.frame(shade,'SettingsPanel',UDim2.fromScale(.5,.5),UDim2.new(1,-32,1,-80));panel.AnchorPoint=Vector2.new(.5,.5)
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(620,520);cap.Parent=panel
  require(script.Parent.LobbyPanelLayout).bind(panel,player)
- Theme.label(panel,'Title',Text.Title,UDim2.fromOffset(20,12),UDim2.new(1,-104,0,38),24,Theme.color.gold)
+ Theme.label(panel,'Title',Text.Title,UDim2.fromOffset(20,12),UDim2.new(1,-124,0,38),24,Theme.color.gold)
  local close=Theme.button(panel,'Close',Text.Close,UDim2.new(1,-90,0,12),UDim2.fromOffset(76,44))
  Theme.label(panel,'Description',Text.Description,UDim2.fromOffset(20,60),UDim2.new(1,-40,0,28),14)
  local list=Instance.new('ScrollingFrame');list.Name='Options';list.BackgroundTransparency=1;list.BorderSizePixel=0;list.Position=UDim2.fromOffset(16,96);list.Size=UDim2.new(1,-32,1,-150);list.CanvasSize=UDim2.new();list.AutomaticCanvasSize=Enum.AutomaticSize.Y;list.ScrollBarThickness=5;list.Parent=panel
@@ -80,6 +80,31 @@ function M.create(player,onVisibility)
   setOpen(false);CAS:UnbindAction('SettingsBack')
   for _,connection in ipairs(connections) do connection:Disconnect() end
  end)
+ local function resize()
+  local measure=game:GetService('TextService')
+  local width=panel.AbsoluteSize.X
+  local function textHeight(label,w)
+   return math.ceil(measure:GetTextSize(label.Text,label.TextSize,label.Font,Vector2.new(math.max(1,w),10000)).Y)
+  end
+  local description=panel.Description;local note=panel.SessionNote
+  local descriptionH=textHeight(description,width-40)+4
+  description.Size=UDim2.new(1,-40,0,descriptionH)
+  local noteH=textHeight(note,width-40)+4
+  note.Position=UDim2.new(0,20,1,-noteH-8);note.Size=UDim2.new(1,-40,0,noteH)
+  local top=60+descriptionH+8
+  list.Position=UDim2.fromOffset(16,top);list.Size=UDim2.new(1,-32,1,-top-noteH-16)
+  for _,row in ipairs(list:GetChildren())do if row:IsA('Frame')then
+   local name,hint=row:FindFirstChild('Name'),row:FindFirstChild('Hint')
+   local headingH=math.max(44,textHeight(name,row.AbsoluteSize.X-120)+8)
+   name.Size=UDim2.new(1,-120,0,headingH)
+   local hintH=textHeight(hint,row.AbsoluteSize.X-24)+8
+   hint.Position=UDim2.fromOffset(12,headingH+8);hint.Size=UDim2.new(1,-24,0,hintH)
+   row.Size=UDim2.new(1,-8,0,headingH+hintH+20)
+   row.Toggle.Position=UDim2.new(1,-96,0,8)
+  end end
+ end
+ connect(panel:GetPropertyChangedSignal('AbsoluteSize'),function()task.defer(resize)end)
+ resize()
  showLauncher()
  return {open=function()setOpen(true)end,close=function()setOpen(false)end,isOpen=function()return opened end,gui=gui,toggles=toggles}
 end

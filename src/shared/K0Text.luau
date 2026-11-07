@@ -25,6 +25,7 @@ return {
  StoryRegionEntering = "ENTERING REGION",
  MinimapYou = "YOU",
  Map = {
+  TrailOn = "TRAIL: ON", TrailOff = "TRAIL: OFF",
   Title = "ADVENTURE · WORLD MAP",
   Subtitle = "FIVE EPIC ADVENTURES  /  ADVENTURE ATLAS",
   EpicSubtitle = "EPIC %d  /  %s",

@@ -21,10 +21,12 @@ local ok,err=xpcall(function()
  for _,item in pairs(profile.items) do table.insert(items,item);if item.location.kind=='bag' then id=item.instanceId end end
  local snapshot={ready=true,heroId='hero',heroes=profile.heroes,items=items,revision=profile.revision,bagCapacity=C.bagCapacity,storageCapacity=C.storageCapacity,safe=true,atHub=true,atStorage=false,pending=1,bagUsed=R.count(profile,'bag','hero'),storageUsed=0}
  local view=require(module).create(function()end,function()end)
- local gui=game.CoreGui.InventoryGui;local overlay=gui.InventoryOverlay;overlay.Size=UDim2.fromOffset(750,323);task.wait(.1)
+ local gui=game.CoreGui.InventoryGui;local overlay=gui.InventoryOverlay
+ for _,size in ipairs({Vector2.new(750,323),Vector2.new(750,280),Vector2.new(568,320),Vector2.new(390,844),Vector2.new(320,568)})do
+ overlay.Size=UDim2.fromOffset(size.X,size.Y);task.wait(.1)
  view.qaSet(snapshot,false,false,nil);task.wait()
  local panel=overlay.InventoryPanel;local content=panel.Content;local bag=content.BagItems
- check(content.AbsoluteSize.Y>=160 and bag.Items.AbsoluteSize.Y>=110,'bag shows a complete item row')
+ check(bag.Items.AbsoluteSize.Y>=bag.Items.UIGridLayout.CellSize.Y.Offset,'bag shows a complete item row '..tostring(size))
  view.qaSet(snapshot,true,false,nil);task.wait()
  local preview=content.HeroPreview;check(preview.Visible and not panel.Filters.Visible,'gear view uses its own expanded area')
  for _,slot in ipairs(C.slots) do
@@ -37,6 +39,7 @@ local ok,err=xpcall(function()
   local details=content.ItemDetails
   check(details.Description.AbsoluteSize.Y>=100,'item description has readable scroll area')
   check(details.PrimaryAction.AbsolutePosition.Y>=details.Description.AbsolutePosition.Y+details.Description.AbsoluteSize.Y,'item action clears description')
+ end
  end
  gui:Destroy()
 end,debug.traceback)

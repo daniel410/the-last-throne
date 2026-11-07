@@ -39,6 +39,10 @@ function Map.start(button)
  local controller
  local epicTabs=Instance.new('ScrollingFrame');epicTabs.Name='EpicCategories';epicTabs.BackgroundTransparency=1;epicTabs.BorderSizePixel=0;epicTabs.ScrollBarThickness=3;epicTabs.ScrollingDirection=Enum.ScrollingDirection.X;epicTabs.CanvasSize=UDim2.fromOffset(#Content.epics*174,0);epicTabs.Parent=panel
  local epicButtons={}
+ local categoriesOpen=false
+ local epicPicker=Theme.button(panel,'SelectEpic','',UDim2.fromOffset(12,4),UDim2.fromOffset(150,44))
+ epicPicker.Visible=false
+ epicPicker.Activated:Connect(function()categoriesOpen=not categoriesOpen;if layout then layout()end end)
  local journey=Instance.new('ScrollingFrame');journey.AutomaticCanvasSize=Enum.AutomaticSize.None;journey.CanvasSize=UDim2.fromOffset(0,532);journey.ScrollBarThickness=4;journey.Name='Journey';journey.BackgroundColor3=Color3.fromRGB(12,26,32);journey.BackgroundTransparency=.15;journey.BorderSizePixel=0;journey.Position=UDim2.new(1,-214,0,96);journey.Size=UDim2.new(0,196,1,-232);journey.Parent=panel
  Theme.label(journey,'Title',Text.Map.Journey,UDim2.fromOffset(14,12),UDim2.new(1,-28,0,20),13,Theme.color.gold)
  Theme.label(journey,'Hint',Text.Map.JourneyHint,UDim2.fromOffset(14,36),UDim2.new(1,-28,0,30),10,Theme.color.muted)
@@ -93,13 +97,43 @@ function Map.start(button)
   detail.Visible=not (travel.Visible and (small or short))
   detail.Size=UDim2.new(travel.Visible and .55 or 1,-48,0,short and 26 or 34)
   travel.Position=UDim2.new((small or short)and 0 or .55,(small or short)and 18 or 0,1,short and -98 or small and -184 or -136)
-  travel.Size=UDim2.new((small or short)and 1 or .45,(small or short)and -36 or -24,0,40)
+  travel.Size=UDim2.new((small or short)and 1 or .45,(small or short)and -36 or -24,0,44)
   legend.Visible=not short
   legend.Position=UDim2.new(0,24,1,small and -144 or -94);hint.Position=UDim2.new(0,24,1,small and -126 or -73)
   local stacked=small and not short
   navigation.Position=UDim2.new(0,18,1,stacked and -108 or -52);navigation.Size=UDim2.new(1,stacked and -36 or -266,0,40)
   for index,control in ipairs({minus,plus,fit,you}) do
    control.Position=stacked and UDim2.new(0,18+({0,48,96,158})[index],1,-56) or UDim2.new(1,({-240,-192,-144,-82})[index],1,-52)
+  end
+  -- Compact toolbar and expandable region list leave the map the available height.
+  epicPicker.Visible=short;title.Visible=not short;progress.Visible=not short;compass.Visible=not short
+  close.Position=UDim2.new(1,-56,0,short and 4 or 12)
+  epicTabs.Visible=not short or categoriesOpen
+  if short then
+   local twoRows=panel.AbsoluteSize.X<530
+   epicPicker.Caption.Text=Content.epics[epic].region:upper()..' ▾';epicPicker.Caption.TextSize=11
+   navigation.Position=UDim2.fromOffset(168,4);navigation.Size=UDim2.fromOffset(twoRows and math.max(44,panel.AbsoluteSize.X-236) or 96,44)
+   navigation.Caption.Text=player:GetAttribute('TLTNavigationEnabled')~=false and Text.Map.TrailOn or Text.Map.TrailOff
+   navigation.Caption.TextSize=11
+   for i,control in ipairs({minus,plus,fit,you})do
+    control.Position=UDim2.fromOffset((twoRows and 12 or 270)+(i-1)*50,twoRows and 52 or 4)
+    control.Size=UDim2.fromOffset(44,44);control.Caption.TextSize=11
+   end
+   local top=twoRows and 104 or 56
+   area.Position=UDim2.fromOffset(12,top);area.Size=UDim2.new(1,-24,1,-top-56)
+   detail.Position=UDim2.new(0,14,1,-50);detail.Size=UDim2.new(1,-28,0,44);detail.Visible=not travel.Visible
+   travel.Position=UDim2.new(0,12,1,-50);travel.Size=UDim2.new(1,-24,0,44)
+   epicTabs.Position=UDim2.fromOffset(12,52);epicTabs.Size=UDim2.fromOffset(192,math.max(44,math.min(#Content.epics*50,panel.AbsoluteSize.Y-64)))
+   epicTabs.BackgroundTransparency=0;epicTabs.BackgroundColor3=Theme.color.ink;epicTabs.ZIndex=20
+   epicTabs.ScrollingDirection=Enum.ScrollingDirection.Y;epicTabs.CanvasSize=UDim2.fromOffset(0,#Content.epics*50)
+   for i,b in ipairs(epicButtons)do b.Position=UDim2.fromOffset(4,(i-1)*50);b.Size=UDim2.fromOffset(180,44);b.ZIndex=21 end
+  else
+   epicTabs.BackgroundTransparency=1;epicTabs.ZIndex=1
+   epicTabs.ScrollingDirection=Enum.ScrollingDirection.X;epicTabs.CanvasSize=UDim2.fromOffset(#Content.epics*174,0)
+   for i,b in ipairs(epicButtons)do b.Position=UDim2.fromOffset((i-1)*174,0);b.Size=UDim2.fromOffset(168,44);b.ZIndex=1 end
+   navigation.Caption.Text=player:GetAttribute('TLTNavigationEnabled')~=false and Text.NavigationOn or Text.NavigationOff
+   navigation.Size=UDim2.new(1,stacked and -36 or -266,0,44)
+   for i,control in ipairs({minus,plus,fit,you})do control.Size=UDim2.fromOffset(({44,44,58,64})[i],44)end
   end
   local available=area.AbsoluteSize
   if available.X<=0 or available.Y<=0 then return end
@@ -117,7 +151,7 @@ function Map.start(button)
    local number=Content.byId[id] and Content.byId[id].number
    row.badge.Text=number and (w<550 and string.format('%02d',(number-1)%7+1) or string.format(Text.Map.Main,(number-1)%7+1)) or Text.Map.Side
    if row.hit then
-    row.hit.Size=not showNames and UDim2.fromOffset(28,28) or UDim2.fromOffset(labelWidth+8,48)
+   row.hit.Size=not showNames and UDim2.fromOffset(44,44) or UDim2.fromOffset(labelWidth+8,48)
     row.hit.Position=not showNames and UDim2.fromScale(row.center.X,row.center.Y) or row.name.Position
    end
   end
@@ -152,13 +186,14 @@ function Map.start(button)
  end
  local function selectEpic(index)
   if not Content.epics[index] then return end
+  categoriesOpen=false
   epic=index;selected=nil;scene:ClearAllChildren()
   atlas=Canvas.create(scene,Scope.ids(epic),false,describe)
   if controller then controller.atlas=atlas end
   journey.CanvasPosition=Vector2.zero
   atlas.update(State.current,nil,nil);refreshEpic();fitMap()
   local first,last=Scope.range(epic);local main=State.current and State.current.journal.main or 0;atlas.select(Content.mainChapters[math.clamp(main+1,first,last)].id)
-  epicTabs.CanvasPosition=Vector2.new(math.max(0,(epic-1)*174-epicTabs.AbsoluteSize.X/2+84),0)
+  epicTabs.CanvasPosition=epicPicker.Visible and Vector2.new(0,math.max(0,(epic-1)*50-epicTabs.AbsoluteSize.Y/2+22)) or Vector2.new(math.max(0,(epic-1)*174-epicTabs.AbsoluteSize.X/2+84),0)
  end
  for i,spec in ipairs(Content.epics) do
   local b=Theme.button(epicTabs,'Epic'..i,spec.region:upper(),UDim2.fromOffset((i-1)*174,0),UDim2.fromOffset(168,42));b.Caption.TextSize=10;epicButtons[i]=b
@@ -180,6 +215,7 @@ function Map.start(button)
  local function refreshNavigation()
   local enabled=player:GetAttribute('TLTNavigationEnabled')~=false
   navigation.Caption.Text=enabled and Text.NavigationOn or Text.NavigationOff;navigation:SetAttribute('Enabled',enabled)
+  if panel.Visible then layout()end
  end
  navigation.Activated:Connect(function() player:SetAttribute('TLTNavigationEnabled',player:GetAttribute('TLTNavigationEnabled')==false) end)
  player:GetAttributeChangedSignal('TLTNavigationEnabled'):Connect(refreshNavigation);refreshNavigation()

@@ -474,7 +474,7 @@ function InventoryGui.create(onVisibility, feedback)
 		compact=width<900 or height<400
 		local short=height>0 and height<400
 		portrait.Visible=not short
-		local wideShort=short and width>=600
+		local wideShort=short and width>=520
 		shell.Eyebrow.Visible=false
 		plaque.Position,plaque.Size=UDim2.new(.5,compact and -108 or -150,0,-20),UDim2.fromOffset(compact and 216 or 300,54)
 		title.Position,title.Size,title.TextSize=UDim2.fromOffset(12,4),UDim2.new(1,-24,1,-8),compact and 19 or 26
@@ -528,8 +528,8 @@ function InventoryGui.create(onVisibility, feedback)
 			top=wideShort and 88 or 132
 			if storageMode then top+=44 end
 		end
-		filters.Visible=not (short and not storageMode and sourceTab~="pending" and (gearMode or mobileDetail))
-		if short and not filters.Visible then top=wideShort and 44 or 88 end
+		filters.Visible=not (compact and not storageMode and sourceTab~="pending" and (gearMode or mobileDetail))
+		if not filters.Visible then top=short and (wideShort and 44 or 88) or 124 end
 		local fw=(filterWidth-18)/4
 		for index,name in ipairs({"All","Equipment","Consumables","Materials"}) do
 			local button=filterButtons[name]
@@ -614,7 +614,7 @@ function InventoryGui.create(onVisibility, feedback)
 		for _,view in ipairs({bag,storage}) do
 			view.heading.Position,view.heading.Size,view.heading.BackgroundTransparency=UDim2.fromOffset(10,5),UDim2.new(1,-20,0,24),1
 			view.heading.TextSize,view.heading.TextXAlignment=12,Enum.TextXAlignment.Right
-			view.scroll.Position,view.scroll.Size=UDim2.fromOffset(10,36),UDim2.new(1,-20,1,-46)
+			view.scroll.Position,view.scroll.Size=UDim2.fromOffset(10,short and 28 or 36),UDim2.new(1,-20,1,short and -38 or -46)
 			local available=math.max(70,view.panel.AbsoluteSize.X-24)
 			local columns=math.clamp(math.floor((available+8)/94),2,short and 7 or 4)
 			local cell=math.floor((available-(columns-1)*8)/columns)

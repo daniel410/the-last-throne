@@ -9,7 +9,7 @@ local function check(v,m)report.checks+=1;assert(v,m)end
 local screen=Instance.new('ScreenGui');screen.Parent=game.CoreGui
 local body=Instance.new('ScrollingFrame');body.Parent=screen
 local ok,err=xpcall(function()
- for _,size in ipairs({Vector2.new(702,193),Vector2.new(702,260),Vector2.new(796,260)}) do
+ for _,size in ipairs({Vector2.new(520,193),Vector2.new(702,193),Vector2.new(702,260),Vector2.new(796,260)}) do
   body.Size=UDim2.fromOffset(size.X,size.Y);task.wait()
   for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
    local g=G.new(20);local hero={heroId='qa',baseClassId=classId,progression=g}
@@ -48,7 +48,12 @@ local ok,err=xpcall(function()
       check(row.Draft~=nil,'draft comparison remains explicit')
      end
     elseif section=='Gear' then
-     for _,slot in ipairs(require(game.ReplicatedStorage.Shared.ItemCatalog).slots) do check(scroll:FindFirstChild('EquipSlot_'..slot)~=nil,'all eight equipment slots') end
+     for _,slot in ipairs(require(game.ReplicatedStorage.Shared.ItemCatalog).slots) do
+      local cell=scroll:FindFirstChild('EquipSlot_'..slot)
+      check(cell~=nil,'all eight equipment slots')
+      local name=scroll['SlotName_'..slot]
+      check(name.AbsolutePosition.Y+name.AbsoluteSize.Y<=scroll.AbsolutePosition.Y+scroll.AbsoluteSize.Y,'both gear rows and names visible initially '..slot)
+     end
     else check(scroll:FindFirstChild('SkillPreview1')~=nil,'equipped skill preview exists') end
     body:ClearAllChildren()
     Stats.render(body,hero,snapshot,P.derived(classId,after,snapshot.stats),draft,{requestId='same'},function()end,function()end,function()end,function()end,{mobile=true,section=section})

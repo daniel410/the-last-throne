@@ -306,12 +306,12 @@ function Hud.create()
 		local scale = math.clamp(math.min(viewport.X / 900, viewport.Y / 550), 0.72, 1)
 		statusScale.Scale = scale
 		headingScale.Scale = scale
-		actionScale.Scale = scale
+		actionScale.Scale = UserInputService.TouchEnabled and math.max(.8,scale) or scale
 		skillScale.Scale = math.min(scale, viewport.X / 560)
 		practiceScale.Scale = scale
 		backScale.Scale = 1
 		mapScale.Scale=viewport.X<500 and math.max(.62,scale*.85) or scale
-		back.Size = UDim2.fromOffset(148,36)
+		back.Size = UDim2.fromOffset(148,45)
 		backCaption.TextSize = 11
 		-- Reset after input-mode changes; a hidden mobile JumpButton must not lift Attack.
 		attack.Position=UDim2.fromOffset(90,0)
@@ -328,13 +328,16 @@ function Hud.create()
 			attack.Position=UDim2.fromOffset(90,0);attack.Size=UDim2.fromOffset(64,64)
 			if viewport.X<600 then
 				-- Two bottom rows preserve readable touch targets on narrow displays.
-				skillBar.Size=UDim2.fromOffset(288,140)
-				skillScale.Scale=math.min(scale,(viewport.X-40)/288)
+				skillBar.Size=UDim2.fromOffset(208,212)
+				skillScale.Scale=math.max(.7,math.min(scale,(viewport.X-172*actionScale.Scale-36)/208))
 				for i,button in ipairs(itemButtons) do button.Position=UDim2.fromOffset((i-1)*72,0) end
-				for i,button in ipairs(skillButtons) do local slot=i+1;button.Position=UDim2.fromOffset((slot%4)*72,math.floor(slot/4)*72) end
+				for i,button in ipairs(skillButtons) do local slot=i+1;button.Position=UDim2.fromOffset((slot%3)*72,math.floor(slot/3)*72) end
 				-- Keep the column at the bottom and place the compact bar to its left.
-				skillScale.Scale=math.min(skillScale.Scale,math.max(.3,(viewport.X-172*scale-48)/288))
-				skillBar.Position=UDim2.new(0,12+(288*skillScale.Scale)/2,1,-12)
+				skillBar.Position=UDim2.new(0,12+(208*skillScale.Scale)/2,1,viewport.Y>viewport.X and -180 or -12)
+			elseif viewport.X<780 then
+				skillBar.Size=UDim2.fromOffset(288,140);skillScale.Scale=math.max(.7,scale)
+				for i,button in ipairs(itemButtons)do button.Position=UDim2.fromOffset((i-1)*72,0)end
+				for i,button in ipairs(skillButtons)do local slot=i+1;button.Position=UDim2.fromOffset((slot%4)*72,math.floor(slot/4)*72)end
 			else
 				skillBar.Size=UDim2.fromOffset(528,68)
 				for i,button in ipairs(skillButtons) do button.Position=UDim2.fromOffset((i+1)*72+24,0) end
@@ -346,10 +349,11 @@ function Hud.create()
 				ancestor=ancestor.Parent
 			end
 			if jumpVisible then
-				local left=root.AbsolutePosition.X+viewport.X-20+(90-172)*scale
-				local top=root.AbsolutePosition.Y+viewport.Y-188*scale
+				local controlScale=actionScale.Scale
+				local left=root.AbsolutePosition.X+viewport.X-20+(90-172)*controlScale
+				local top=root.AbsolutePosition.Y+viewport.Y-188*controlScale
 				local pos,size=jump.AbsolutePosition,jump.AbsoluteSize
-				if left<pos.X+size.X and left+64*scale>pos.X and top<pos.Y+size.Y and top+64*scale>pos.Y then
+				if left<pos.X+size.X and left+64*controlScale>pos.X and top<pos.Y+size.Y and top+64*controlScale>pos.Y then
 					-- Keep Attack beside Sprint; use its left side if jump occupies the right.
 					attack.Position=UDim2.fromOffset(-68,0)
 				end

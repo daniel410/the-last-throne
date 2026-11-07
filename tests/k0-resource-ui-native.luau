@@ -26,6 +26,7 @@ local function copyModule(name, mobileViewport)
   assert(name == "PlayerGui"); return script.FixturePlayerGui.Value
 end,
  GetAttribute=function(_,name) return script.FixturePlayerGui.Value:GetAttribute(name) end,
+ SetAttribute=function(_,name,value) script.FixturePlayerGui.Value:SetAttribute(name,value) end,
  GetAttributeChangedSignal=function(_,name) return script.FixturePlayerGui.Value:GetAttributeChangedSignal(name) end,
 } }]]
 	local source, count = original.Source:gsub('local Players = game:GetService%("Players"%)', function() return replacement end)
@@ -318,7 +319,7 @@ local ok, failure = xpcall(function()
 		copyModule('K0Hud',size).create()
 		local mobile=playerGui.DeepwoodTrainingHud.Root
 		local actions,bar=mobile.Actions,mobile.SkillBar
-		check(bar.Position.Y.Scale==1 and bar.Position.Y.Offset==-12,'mobile items and skills stay at the bottom')
+		check(bar.Position.Y.Scale==1 and bar.Position.Y.Offset==(size.Y>size.X and -180 or -12),'mobile skills clear the portrait movement thumb area')
 		check(actions.Attack.Size==UDim2.fromOffset(64,64),'mobile attack is reduced to64px')
 		check(actions.Block.Size==actions.Dodge.Size and actions.Dodge.Size==actions.Sprint.Size,'mobile defensive actions have equal size')
 		check(actions.Block.Position.X.Offset==actions.Dodge.Position.X.Offset and actions.Dodge.Position.X.Offset==actions.Sprint.Position.X.Offset,'mobile defensive actions form one column')

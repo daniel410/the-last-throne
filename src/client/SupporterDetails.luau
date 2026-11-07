@@ -34,17 +34,19 @@ function View.create(parent,buy)
   end
   if data.lobby then table.insert(lines,data.balance~=nil and string.format(Text.balance,data.balance) or Text.balanceUnknown)end
   if data.message then table.insert(lines,data.message)end
-  local top=compact and 94 or 132
+  local top=compact and (panel.Size.Y.Offset<260 and panel.Size.X.Offset>=500 and 56 or 94) or 132
   local buttonHeight=compact and 44 or 50
+  local stacked=panel.Size.X.Offset<380
+  local packHeight=stacked and (buttonHeight*3+12) or buttonHeight
   local termsHeight=math.max(32,game:GetService('TextService'):GetTextSize(Text.purchaseTerms,11,Enum.Font.GothamMedium,Vector2.new(math.max(1,panel.Size.X.Offset-36),2000)).Y+4)
-  local footer=data.lobby and (termsHeight+buttonHeight+34) or 16
+  local footer=data.lobby and (termsHeight+packHeight+28) or 16
   list.Position=UDim2.fromOffset(18,top)
   list.Size=UDim2.new(1,-36,1,-top-footer)
   terms.Position=UDim2.new(0,18,1,-footer+8);terms.Size=UDim2.new(1,-36,0,termsHeight)
   terms.Visible=data.lobby==true
   for i,button in ipairs(buttons)do
-   button.Position=UDim2.new((i-1)/3,18,1,-buttonHeight-12)
-   button.Size=UDim2.new(1/3,-24,0,buttonHeight)
+   button.Position=stacked and UDim2.new(0,18,1,-packHeight-12+(i-1)*(buttonHeight+6)) or UDim2.new((i-1)/3,18,1,-buttonHeight-12)
+   button.Size=stacked and UDim2.new(1,-36,0,buttonHeight) or UDim2.new(1/3,-24,0,buttonHeight)
    button.Visible=data.lobby==true
    Theme.enabled(button,data.canBuy==true and not pending and (data.balance or 0)>=offers[i].price)
   end
@@ -60,11 +62,18 @@ function View.create(parent,buy)
  function api:resize(width,height)
   compact=height<500 or width<600
   panel.Size=UDim2.fromOffset(math.max(1,math.min(680,width-64)),math.max(1,math.min(480,height-(compact and 56 or 96))))
+  title.Size=UDim2.new(1,-114,0,32);title.TextSize=panel.Size.X.Offset<380 and 14 or 18
   portrait.Position=UDim2.fromOffset(18,compact and 44 or 56);portrait.Size=UDim2.fromOffset(compact and 42 or 64,compact and 42 or 64)
   name.Position=UDim2.fromOffset(compact and 76 or 98,compact and 44 or 56)
   name.Size=UDim2.new(1,compact and -94 or -116,0,24);name.TextSize=compact and 16 or 19
   role.Position=UDim2.fromOffset(compact and 76 or 98,compact and 68 or 84)
   role.Size=UDim2.new(1,compact and -94 or -116,0,compact and 22 or 36);role.TextSize=compact and 12 or 13
+  if panel.Size.Y.Offset<260 and panel.Size.X.Offset>=500 then
+   title.Position=UDim2.fromOffset(18,6);title.Size=UDim2.fromOffset(214,32)
+   portrait.Position=UDim2.fromOffset(238,4)
+   name.Position=UDim2.fromOffset(288,4);name.Size=UDim2.new(1,-384,0,24)
+   role.Position=UDim2.fromOffset(288,28);role.Size=UDim2.new(1,-384,0,22)
+  else title.Position=UDim2.fromOffset(18,12) end
   close.Size=UDim2.fromOffset(76,44)
   render()
  end

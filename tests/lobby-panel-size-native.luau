@@ -40,7 +40,7 @@ local ok,err=xpcall(function()
  local invShade=invGui.InventoryOverlay;local growthShade=growthGui.Overlay;local settingsShade=settingsGui.Overlay
  check(not invGui.OpenBag.Visible and not growthGui.OpenHero.Visible and not settingsGui.OpenSettings.Visible,'individual top launchers are hidden in the lobby: '..tostring(invGui.OpenBag.Visible)..' / '..tostring(growthGui.OpenHero.Visible)..' / '..tostring(settingsGui.OpenSettings.Visible))
  player:SetAttribute('K0SessionPhase','ReturningLobby');task.wait()
- check(invGui.OpenBag.Visible and growthGui.OpenHero.Visible and settingsGui.OpenSettings.Visible,'non-lobby launcher visibility is preserved')
+ check(not invGui.OpenBag.Visible and not growthGui.OpenHero.Visible and not settingsGui.OpenSettings.Visible,'return loading keeps duplicate launchers hidden')
  player:SetAttribute('K0SessionPhase','Lobby');task.wait()
  local panels={armory.panel,items.panel,diamonds.panel,navigation.panel,expedition.panel,settingsShade.SettingsPanel,invShade.ClaimsOverlay.ClaimsPopup}
  local atlas=require(client.LobbyAtlas).create(navigation.panel)

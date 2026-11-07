@@ -38,14 +38,20 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
  local sideW=math.clamp(math.floor(width*.21),112,172)
  local mainX,mainW=sideW+16,width-sideW-20
  local side=frame(body,'MobileHero',4,4,sideW,height-8)
- local portrait=Instance.new('ImageLabel');portrait.Name='HeroPortrait';portrait.BackgroundTransparency=1;portrait.Position=UDim2.fromOffset(6,6);portrait.Size=UDim2.new(1,-12,1,-42);portrait.Image='rbxassetid://'..portraits[classId];portrait.ScaleType=Enum.ScaleType.Crop;portrait.Parent=side
- Theme.label(side,'Identity',Catalog.classes[classId]..' / Lv. '..g.level,UDim2.new(0,6,1,-32),UDim2.new(1,-12,0,26),12,Theme.color.gold)
+ local showIdentity=height>=244
+ local portrait=Instance.new('ImageLabel');portrait.Name='HeroPortrait';portrait.BackgroundTransparency=1;portrait.Position=UDim2.fromOffset(6,4);portrait.Size=UDim2.fromOffset(32,32);portrait.Image='rbxassetid://'..portraits[classId];portrait.ScaleType=Enum.ScaleType.Crop;portrait.Visible=showIdentity;portrait.Parent=side
+ local identity=Theme.label(side,'Identity',Catalog.classes[classId]..' / Lv. '..g.level,UDim2.fromOffset(42,0),UDim2.new(1,-48,0,40),11,Theme.color.gold);identity.Visible=showIdentity
  for i,entry in ipairs(Navigation.mobileStatSections) do
-  local w=(mainW-18)/4
-  local b=button(body,'Section'..entry.id,entry.id=='Points' and (entry.label..' '..(points-spent)) or entry.label,mainX+(i-1)*(w+6),2,w,function() state.section=entry.id;state.scrollY=0;redraw() end,true,section==entry.id)
+  local twoColumns=height<196
+  local tabW=twoColumns and (sideW-12)/2 or sideW-8
+  local tabX=8+(twoColumns and (i-1)%2*(tabW+4) or 0)
+  local tabY=(showIdentity and 48 or 4)+(twoColumns and math.floor((i-1)/2) or i-1)*48
+  local b=button(body,'Section'..entry.id,entry.id=='Points' and (entry.label..' '..(points-spent)) or entry.label,tabX,tabY,tabW,function() state.section=entry.id;state.scrollY=0;redraw() end,true,section==entry.id)
+  if twoColumns then b.Caption.TextSize=10 end
   b:SetAttribute('Selected',section==entry.id)
  end
- local scroll=Instance.new('ScrollingFrame');scroll.Name='MobileDetail';scroll.Position=UDim2.fromOffset(mainX,48);scroll.Size=UDim2.fromOffset(mainW,math.max(24,height-94));scroll.BackgroundTransparency=1;scroll.BorderSizePixel=0;scroll.ScrollBarThickness=4;scroll.ScrollingDirection=Enum.ScrollingDirection.Y;scroll.CanvasPosition=Vector2.new(0,state.scrollY or 0);scroll.Parent=body
+ local hasFooter=pending or section=='Points' or section=='Combat'
+ local scroll=Instance.new('ScrollingFrame');scroll.Name='MobileDetail';scroll.Position=UDim2.fromOffset(mainX,4);scroll.Size=UDim2.fromOffset(mainW,math.max(24,height-(hasFooter and 54 or 8)));scroll.BackgroundTransparency=1;scroll.BorderSizePixel=0;scroll.ScrollBarThickness=4;scroll.ScrollingDirection=Enum.ScrollingDirection.Y;scroll.CanvasPosition=Vector2.new(0,state.scrollY or 0);scroll.Parent=body
  scroll:GetPropertyChangedSignal('CanvasPosition'):Connect(function() state.scrollY=scroll.CanvasPosition.Y end)
  local top=0
  local function label(parent,name,text,x,y,w,h,size,color)

@@ -40,6 +40,27 @@ function V.create(parent,send)
   tabs.Position=UDim2.fromOffset(16,short and 130 or 152);tabs.Size=UDim2.new(1,-32,0,36)
   local top=short and 172 or 196
   scroll.Position=UDim2.fromOffset(16,top);scroll.Size=UDim2.new(1,-32,1,-top-86)
+  if short then
+   title.Position=UDim2.fromOffset(12,4);title.Size=UDim2.fromOffset(140,40);title.Caption.TextSize=14
+   portrait.Visible=false
+   summary.Position=UDim2.fromOffset(160,4);summary.Size=UDim2.new(1,-220,0,40);summary.TextSize=12
+   modeHost.Position=UDim2.fromOffset(12,52);modeHost.Size=UDim2.new(0,128,1,-64)
+   tabs.Position=UDim2.fromOffset(152,52);tabs.Size=UDim2.new(1,-168,0,44)
+   scroll.Position=UDim2.fromOffset(152,104);scroll.Size=UDim2.new(1,-168,1,-190)
+   notice.Position=UDim2.new(0,152,1,-82);notice.Size=UDim2.new(1,-168,0,28);notice.TextSize=11
+   footer.Position=UDim2.new(0,152,1,-50);footer.Size=UDim2.new(1,-168,0,44)
+  else
+   notice.Position=UDim2.new(0,18,1,-86);notice.Size=UDim2.new(1,-36,0,32)
+   footer.Position=UDim2.new(0,16,1,-50);footer.Size=UDim2.new(1,-32,0,44)
+  end
+  for i,mode in ipairs(D.order)do
+   local b=modeHost:FindFirstChild('Mode'..mode)
+   if b then
+    b.Position=short and UDim2.fromOffset(0,(i-1)*48) or UDim2.new((i-1)/4,3,0,0)
+    b.Size=short and UDim2.fromOffset(128,44) or UDim2.new(.25,-6,1,0)
+    b.Caption.TextSize=short and 11 or 13
+   end
+  end
  end
  panel:GetPropertyChangedSignal('AbsoluteSize'):Connect(resize);resize()
  local function clear(host)for _,child in ipairs(host:GetChildren())do if child:IsA('GuiObject')then child:Destroy()end end end
@@ -176,6 +197,7 @@ function V.create(parent,send)
   end
   if not available and not s.travelling and s.role=='Lobby'then info=s.busy and Text.Saving or Text.Config end
   notice.Text=pending and(message or Text.Applying)or info or Text.Eligible
+  resize()
  end
  render=function(s,message)
   if s.requestId and latestRequestId and s.requestId~=latestRequestId then return end

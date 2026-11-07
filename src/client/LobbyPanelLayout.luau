@@ -11,7 +11,7 @@ function Layout.bind(panel,player)
    return
   end
   local height=host.AbsoluteSize.Y
-  local short=height>0 and height<400
+  local short=height>0 and (height<400 or host.AbsoluteSize.X<720)
   panel.AnchorPoint=Vector2.new(.5,.5)
   panel.Size=short and UDim2.new(1,-24,1,-24)or UDim2.new(1,-120,1,-164)
   panel.Position=short and UDim2.fromScale(.5,.5)or UDim2.new(.5,0,.5,58)
