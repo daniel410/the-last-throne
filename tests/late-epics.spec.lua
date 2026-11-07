@@ -11,7 +11,7 @@ local s=P.new();local hgXP,hgGold=0,0;local kinds={}
 check(C.mainCount==35 and #C.epics==5,'five complete epics')
 for number=1,C.mainCount do
  local c=assert(C.mainChapters[number]);check(c.number==number,'contiguous main sequence')
- if number>=22 then
+ if c.id:sub(1,2)=='GW'or c.id:sub(1,2)=='HG'then
   local locked=P.copy(s);check(not P.apply(locked,c.id,c.goals[#c.goals].id,nil,'confirmed'),'cannot skip a late story objective')
   check(Access.allowed(s,c.zone),'region unlocks from exact previous clear')
   check(D.allowed({level=27,deepwood=s},c.id,'Easy'),'provisional late route has no new unbudgeted level gate')
@@ -30,14 +30,14 @@ for number=1,C.mainCount do
   check(P.validate(s),'journal valid after event')
   local again,err,reward=P.apply(s,c.id,g.id)
   check(again and not err and reward.repeated and reward.xp==0 and reward.coins==0,'goal retry cannot duplicate rewards')
-  if number>=22 then
+  if c.id:sub(1,2)=='GW'or c.id:sub(1,2)=='HG'then
    check(Bounds.supported(g.position[1],g.position[2]+3,g.position[3]),'goal on authoritative terrain')
    for _,e in ipairs(g.enemies)do kinds[e.kind]=true;check(Combat.profiles[e.kind]~=nil,'actual enemy has server attack profile')end
    for _,wave in ipairs(Balance.encounterWaves(c,g))do check(#wave<=Balance.packSize(c,g),'finite bounded encounter pack')end
   end
  end
  check(s.main==number and s.clears[c.id],'clear advances exactly one story')
- if c.epic==4 then check(c.reward.xp==0 and c.reward.coins==0,'GW fixed reward budget remains unassigned')end
+ if c.id:sub(1,2)=='GW'then check(c.reward.xp==0 and c.reward.coins==0,'GW fixed reward budget remains unassigned')end
  if c.epic==5 then hgXP=hgXP+c.reward.xp;hgGold=hgGold+c.reward.coins end
  if number==7 or number==14 or number==21 or number==28 then
   local save=P.copy(s);check(P.validate(save),'existing/transition save retained')

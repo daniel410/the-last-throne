@@ -19,7 +19,7 @@ end
 for epic=1,5 do
  local ids=Scope.ids(epic);local count=0
  for id in pairs(ids)do count=count+1;check(Scope.epicFor(id)==epic,'map excludes other epics')end
- check(count==(epic<=3 and 10 or 7),'all seven story and all optional regions are included')
+ check(count==((epic==1 or epic==3 or epic==4)and 10 or 7),'all seven story and all optional regions are included')
  local first,last=Scope.range(epic);check(last-first+1==7,'story journey still contains exactly seven stories')
 end
 for _,c in ipairs(Content.chapters)do if c.side then

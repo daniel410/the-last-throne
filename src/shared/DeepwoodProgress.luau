@@ -3,7 +3,7 @@ local Content=game and require(game:GetService('ReplicatedStorage').Shared.Campa
 local P={}
 function P.copy(v) if type(v)~='table' then return v end local r={} for k,x in pairs(v) do r[k]=P.copy(x) end return r end
 function P.hasCell(cells,index) return cells and (cells[tostring(index)]==true or cells[index]==true) or false end
-function P.new() return {version=1,main=0,flags={},clears={},choice='',coins=0,killCoins=0,activities={},decisions={},explored={},accepted={},clues={}} end
+function P.new() return {version=2,main=0,flags={},clears={},choice='',coins=0,killCoins=0,activities={},decisions={},explored={},accepted={},clues={}} end
 -- Recruitment is derived from the existing personal rescue report, including old saves.
 function P.seleneUnlocked(s) return s and (s.seleneUnlocked==true or s.flags and s.flags['DW-03:report']==true)or false end
 function P.selectSelene(s,following)
@@ -22,7 +22,7 @@ function P.accepted(s,c)
  for _,g in ipairs(c.goals) do if s.flags[c.id..':'..g.id] then return true end end
  return false
 end
-function P.canAccept(s,c) return (not s.expeditionMission or c and s.expeditionMission==c.id)and c and c.side and s.main>=c.minMain and not P.accepted(s,c) end
+function P.canAccept(s,c) return (not s.expeditionMission or c and s.expeditionMission==c.id)and c and c.side and Content.accessible(s,c.minMain,c.legacyMinMain) and not P.accepted(s,c) end
 function P.accept(s,id,discovery)
  if not P.validate(s) then return nil,'Incompatible' end
  local c=Content.byId[id]
@@ -35,11 +35,11 @@ function P.accept(s,id,discovery)
 end
 function P.eligible(s,c)
  if s.expeditionMission and s.expeditionMission~=c.id then return false end
- if c.side then return s.main>=c.minMain and P.accepted(s,c) and not s.clears[c.id] end
- return s.main+1==c.number and not s.clears[c.id]
+ if c.side then return Content.accessible(s,c.minMain,c.legacyMinMain) and P.accepted(s,c) and not s.clears[c.id] end
+ return not s.clears[c.id]and (s.main+1==(s.version==1 and c.legacyNumber or c.number)or s.version==2 and s.legacyResume==c.id)
 end
 function P.available(s,c,g)
- if s.main<(g.minMain or 0) then return false end
+ if not Content.accessible(s,g.minMain or 0,g.legacyMinMain)then return false end
  if not P.eligible(s,c) or s.flags[c.id..':'..g.id] then return false end
  for _,id in ipairs(g.requires) do if not s.flags[c.id..':'..id] then return false end end
  return true
@@ -55,17 +55,30 @@ function P.nextStep(s,c,g)
  for index,step in ipairs(g.activity.steps) do if not P.collected(s,c,g,index) then return step end end
 end
 function P.validate(s)
- if type(s)~='table' or s.version~=1 or type(s.flags)~='table' or type(s.clears)~='table'
+ if type(s)~='table' or (s.version~=1 and s.version~=2)or type(s.flags)~='table' or type(s.clears)~='table'
  or type(s.main)~='number' or s.main%1~=0 or s.main<0 or s.main>Content.mainCount
  or type(s.coins)~='number' or s.coins%1~=0 or s.coins<0 or s.coins>Content.maxStoryGold
  or s.killCoins~=nil and (type(s.killCoins)~='number' or s.killCoins%1~=0 or s.killCoins<0 or s.killCoins>1e12)
  or (s.choice~='' and s.choice~='sanctuary' and s.choice~='shared') then return false end
+ local legacy=s.version==1
+ if s.legacyMain~=nil and (legacy or type(s.legacyMain)~='number'or s.legacyMain%1~=0 or s.legacyMain<0 or s.legacyMain>Content.mainCount)then return false end
+ if s.legacyResume~=nil then
+  local c=Content.byId[s.legacyResume]
+  if not s.legacyMain or not c or c.side or c.legacyNumber~=s.legacyMain+1 then return false end
+ end
+ local function number(c)return legacy and c.legacyNumber or c.number end
+ local function accessible(c)return Content.accessible(s,c.minMain,c.legacyMinMain)end
+ local function recorded(c,cleared)
+  if c.side then return accessible(c)end
+  return number(c)<=s.main+(cleared and 0 or 1)
+   or not legacy and (s.legacyMain and c.legacyNumber<=s.legacyMain or s.legacyResume==c.id)
+ end
  for key,v in pairs(s.flags) do
   local cid,gid
   if type(key)=='string' then cid,gid=key:match('^([^:]+):(.+)$') end
   local c=cid and Content.byId[cid];local g=c and P.goal(c,gid)
   if v~=true or not g then return false end
-  if not c.side and c.number>s.main+1 or c.side and s.main<c.minMain then return false end
+  if not recorded(c,false)then return false end
   for _,r in ipairs(g.requires) do if not s.flags[c.id..':'..r] then return false end end
  end
  if s.seleneFollowing~=nil and type(s.seleneFollowing)~='boolean' or s.seleneFollowing==true and not P.seleneUnlocked(s) then return false end
@@ -75,7 +88,7 @@ function P.validate(s)
   if type(key)=='string' then cid,gid=key:match('^([^:]+):(.+)$') end
   local c=cid and Content.byId[cid];local g=c and P.goal(c,gid)
   if not g or not g.activity or not g.activity.steps or type(count)~='number' or count%1~=0 or count<1 or count>#g.activity.steps then return false end
-  if not c.side and c.number>s.main+1 then return false end
+  if not recorded(c,false)then return false end
   for _,r in ipairs(g.requires) do if not s.flags[cid..':'..r] then return false end end
   if count==#g.activity.steps and not s.flags[key] then return false end
  end
@@ -90,7 +103,7 @@ function P.validate(s)
  end
  if s.accepted~=nil and type(s.accepted)~='table' or s.clues~=nil and type(s.clues)~='table' then return false end
  for id,value in pairs(s.accepted or {}) do
-  local c=Content.byId[id];if not c or not c.side or value~=true or s.main<c.minMain then return false end
+  local c=Content.byId[id];if not c or not c.side or value~=true or not accessible(c)then return false end
  end
  for key,values in pairs(s.clues or {}) do
   local cid,gid;if type(key)=='string' then cid,gid=key:match('^([^:]+):(.+)$') end
@@ -106,7 +119,7 @@ function P.validate(s)
  if s.explored~=nil and type(s.explored)~='table' then return false end
  for id,cells in pairs(s.explored or {}) do
   local zone=Content.zones[id]
-  if not zone or zone.requiresMain>s.main or type(cells)~='table' then return false end
+  if not zone or not Content.accessible(s,zone.requiresMain,zone.legacyRequiresMain)or type(cells)~='table' then return false end
   for cell,value in pairs(cells) do
    local index=tonumber(cell)
    if (type(cell)~='number' and type(cell)~='string') or not index or index%1~=0 or index<1 or index>144 or type(cell)=='string' and tostring(index)~=cell or type(cell)=='number' and cells[tostring(cell)]~=nil or value~=true then return false end
@@ -115,12 +128,13 @@ function P.validate(s)
  local coins=0
  for _,c in ipairs(Content.chapters) do
   if s.clears[c.id] then
-   if s.clears[c.id]~=true or not c.side and c.number>s.main or c.side and s.main<c.minMain then return false end
+   if s.clears[c.id]~=true or not recorded(c,true) then return false end
    for _,g in ipairs(c.goals) do if not g.optional and not s.flags[c.id..':'..g.id] then return false end end
    coins=coins+c.reward.coins
-  elseif not c.side and c.number<=s.main then return false end
+  elseif not c.side and (number(c)<=s.main or not legacy and s.legacyMain and c.legacyNumber<=s.legacyMain)then return false end
  end
  for id in pairs(s.clears) do if not Content.byId[id] then return false end end
+ if not legacy and s.main<Content.mainCount and s.clears[Content.mainChapters[s.main+1].id]then return false end
  if coins~=s.coins or (s.flags['DW-07:restoration']==true)~=(s.choice~='') then return false end
  return true
 end
@@ -158,13 +172,30 @@ function P.apply(s,chapterId,goalId,choice,stepId)
  local reward={xp=0,coins=0}
  local complete=true for _,o in ipairs(c.goals) do if not o.optional and not n.flags[c.id..':'..o.id] then complete=false end end
  if complete then
-  n.clears[c.id]=true;if not c.side then n.main=c.number end
+  n.clears[c.id]=true;if not c.side then
+   if n.version==1 then n.main=c.legacyNumber
+   else while n.main<Content.mainCount and n.clears[Content.mainChapters[n.main+1].id]do n.main=n.main+1 end end
+  end
   n.coins=n.coins+c.reward.coins;reward=P.copy(c.reward);reward.chapter=c.id
  end
  return n,nil,reward
 end
+-- Upgrade only a validated old journal, preserving every receipt and partial objective.
+-- legacyMain grants historical access; main is the new contiguous clear frontier.
+function P.upgrade(s)
+ if not P.validate(s)then return nil,'Incompatible'end
+ local n=P.copy(s)
+ if n.version==2 then return n end
+ n.version=2;n.legacyMain=s.main
+ local nextChapter=Content.legacyMainChapters[s.main+1]
+ n.legacyResume=nextChapter and nextChapter.id or nil
+ n.main=0
+ while n.main<Content.mainCount and n.clears[Content.mainChapters[n.main+1].id]do n.main=n.main+1 end
+ if not P.validate(n)then return nil,'Incompatible'end
+ return n
+end
 function P.reveal(s,id,x,z)
- if not P.validate(s) or not Content.zones[id] or Content.zones[id].requiresMain>s.main or type(x)~='number' or type(z)~='number' or x%1~=0 or z%1~=0 or x<1 or x>12 or z<1 or z>12 then return nil,'InvalidRequest' end
+ if not P.validate(s) or not Content.zones[id] or not Content.accessible(s,Content.zones[id].requiresMain,Content.zones[id].legacyRequiresMain) or type(x)~='number' or type(z)~='number' or x%1~=0 or z%1~=0 or x<1 or x>12 or z<1 or z>12 then return nil,'InvalidRequest' end
  local n=P.copy(s);n.explored=n.explored or {}
  -- String keys survive Roblox JSON/DataStore serialization of sparse discovery.
  for zone,values in pairs(n.explored) do local normalized={} for key in pairs(values) do normalized[tostring(key)]=true end;n.explored[zone]=normalized end

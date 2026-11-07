@@ -38,7 +38,7 @@ function Log.tracked(s,selectedChapter,selectedGoal)
  if c and c.side and not s.clears[c.id] then local target=Log.target(s,c);if target then return target end end
  -- An isolated optional expedition cannot expose a main-story objective.
  if admitted and admitted.side then return Log.target(s,admitted) end
- return Log.target(s,main,main and selectedChapter==main.id and selectedGoal or nil)
+ return admitted and not admitted.side and Log.target(s,admitted)or Log.target(s,main,main and selectedChapter==main.id and selectedGoal or nil)
 end
 function Log.tracker(s,target)
  local main=Log.main(s)
@@ -78,12 +78,12 @@ function Log.tracker(s,target)
 end
 function Log.status(s,c)
  if s.clears[c.id] then return 'Completed' end
- if not c.side then return c.number==s.main+1 and 'In progress' or 'Locked' end
- if s.main<c.minMain then return 'Locked' end
+ if not c.side then return P.eligible(s,c)and 'In progress'or 'Locked' end
+ if not Content.accessible(s,c.minMain,c.legacyMinMain)then return 'Locked' end
  if not P.accepted(s,c) then return 'Available' end
  local report=P.goal(c,c.quest.turnIn)
  local ready=true;for _,g in ipairs(c.goals) do if not g.optional and g~=report and not s.flags[c.id..':'..g.id] then ready=false end end
- if ready and s.main<(report.minMain or 0) then return 'Waiting for story '..report.minMain end
+ if ready and not Content.accessible(s,report.minMain or 0,report.legacyMinMain)then return 'Waiting for story '..report.minMain end
  return P.available(s,c,report) and 'Ready to report' or 'In progress'
 end
 function Log.phase(s,c)

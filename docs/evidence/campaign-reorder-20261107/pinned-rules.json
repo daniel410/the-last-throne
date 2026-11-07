@@ -1,0 +1,19 @@
+{
+  "baselineCommit": "9a5e63e37b027698d12dec5031f5317ede690cff",
+  "rules": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "rows": 3384,
+  "mismatches": 0,
+  "sha256Before": "83c915d94c10f6fecc780126efbd4182a84c8550cdea3d607d0dce90335b2f58",
+  "sha256After": "83c915d94c10f6fecc780126efbd4182a84c8550cdea3d607d0dce90335b2f58",
+  "conditions": "47 missions x 4 modes x 1/4 players x 9 pinned rules; actual finite waves, stats and kill/completion rewards"
+}

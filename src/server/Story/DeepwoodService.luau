@@ -176,7 +176,7 @@ function Service.bossDamage(model,damage)
  if e.shield then return 0 end
  local humanoid=model:FindFirstChildOfClass('Humanoid');local hp,max=humanoid.Health,humanoid.MaxHealth
  local kind=model:GetAttribute('EnemyKind')
- if e.chapter.epic==2 and model:GetAttribute('StoryBoss') and hp-damage<=max*.1 then
+ if e.chapter.id:sub(1,2)=='FV' and model:GetAttribute('StoryBoss') and hp-damage<=max*.1 then
   model:SetAttribute('StoryPacified',true);model:SetAttribute('StoryPauseUntil',workspace:GetServerTimeNow()+3600)
   model:SetAttribute('K0EnemyState','Idle');model:SetAttribute('K0EnemyAttackClock',nil);model:SetAttribute('K0Telegraph','None')
   local root=model:FindFirstChild('HumanoidRootPart');if root then root.Anchored=true end
@@ -221,7 +221,7 @@ end
 local function floorHazard(e)
  if not e.boss or not e.boss.Parent or e.boss:FindFirstChildOfClass('Humanoid').Health<=0 then return end
  local pos=e.position+Vector3.new(math.sin(os.clock())*18,-.7,math.cos(os.clock())*18)
- local p=Instance.new('Part');p.Name=e.chapter.epic==3 and 'FurnaceHeatWarning' or 'CorruptionWarning';p.Shape=Enum.PartType.Cylinder;p.Size=Vector3.new(.15,14,14);p.CFrame=CFrame.new(pos)*CFrame.Angles(0,0,math.pi/2);p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.Color=e.chapter.epic==3 and Color3.fromRGB(255,145,55) or Color3.fromRGB(180,65,240);p.Material=Enum.Material.Neon;p.Transparency=.5;p.Parent=options.world.folder
+ local p=Instance.new('Part');p.Name=e.chapter.id:sub(1,2)=='EC' and 'FurnaceHeatWarning' or 'CorruptionWarning';p.Shape=Enum.PartType.Cylinder;p.Size=Vector3.new(.15,14,14);p.CFrame=CFrame.new(pos)*CFrame.Angles(0,0,math.pi/2);p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.Color=e.chapter.id:sub(1,2)=='EC' and Color3.fromRGB(255,145,55) or Color3.fromRGB(180,65,240);p.Material=Enum.Material.Neon;p.Transparency=.5;p.Parent=options.world.folder
  e.parts=e.parts or {};table.insert(e.parts,p)
  task.delay(2,function()
   if encounters[e.key]==e and not e.completed and e.boss and e.boss.Parent and e.boss:FindFirstChildOfClass('Humanoid').Health>0 then
@@ -466,7 +466,7 @@ function Service.start(settings)
    local present=false
    for p,heroId in pairs(e.participants) do local ctx,root=context(p);if ctx and ctx.heroId==heroId and root and (root.Position-e.position).Magnitude<110 then present=true end end
    if present then e.lastPresent=os.clock() end
-   if (e.phase3 or e.hellPhase or (e.chapter.epic==3 or e.chapter.epic==4) and e.phase2) and not e.completed and os.clock()>=(e.nextHazard or math.huge) then e.nextHazard=os.clock()+(e.hellPhase and 4 or 6);floorHazard(e) end
+   if (e.phase3 or e.hellPhase or (e.chapter.id:sub(1,2)=='EC' or e.chapter.id:sub(1,2)=='GW') and e.phase2) and not e.completed and os.clock()>=(e.nextHazard or math.huge) then e.nextHazard=os.clock()+(e.hellPhase and 4 or 6);floorHazard(e) end
    if os.clock()-e.lastPresent>8 then destroyEncounter(e) end
   end
  end)

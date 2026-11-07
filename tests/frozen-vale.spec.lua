@@ -6,9 +6,9 @@ local Balance=dofile('src/shared/DeepwoodEncounterBalance.luau')
 local Config=dofile('src/shared/FrozenValeCombat.luau')
 local checks=0
 local function check(x,m)checks=checks+1;assert(x,m)end
-local s=P.new();check(P.validate(s),'new and existing v1 journal accepted')
+local s=P.new();check(P.validate(s),'new order journal accepted')
 local frozenXP,frozenGold,kinds=0,0,{}
-for number=1,14 do
+for number=1,21 do
  local c=C.mainChapters[number];check(c and c.number==number,'contiguous main story')
  for _,g in ipairs(c.goals)do
   check(P.available(s,c,g),'ordered goal available '..c.id..':'..g.id)
@@ -22,13 +22,13 @@ for number=1,14 do
   end
   check(P.validate(s),'journal valid after each event')
   local again,e,reward=P.apply(s,c.id,g.id);check(again and not e and reward.repeated and reward.xp==0 and reward.coins==0,'retry cannot duplicate reward')
-  if c.epic==2 then
+  if c.epic==3 then
    for _,enemy in ipairs(g.enemies)do kinds[enemy.kind]=true;check(Config.profiles[enemy.kind]~=nil,'server combat profile')end
    local batches=Balance.encounterWaves(c,g);for _,batch in ipairs(batches)do check(#batch<=Balance.packSize(c,g),'bounded finite wave')end
   end
  end
  check(s.main==number and s.clears[c.id],'chapter advances only after all goals')
- if c.epic==2 then frozenXP=frozenXP+c.reward.xp;frozenGold=frozenGold+c.reward.coins end
+ if c.epic==3 then frozenXP=frozenXP+c.reward.xp;frozenGold=frozenGold+c.reward.coins end
  if number==7 then
   local old=P.copy(s);check(P.validate(old) and old.coins==2290,'old Deepwood complete save retained')
   local locked=P.copy(s);locked.main=8;check(not P.validate(locked),'no forged clear/main')
@@ -36,7 +36,7 @@ for number=1,14 do
 end
 check(frozenXP==2158 and frozenGold==3360,'canonical FV story XP/Gold preserved')
 check(s.coins==5650 and P.validate(s),'combined exact earned Gold cap')
-for _,c in ipairs(C.chapters)do if c.epic==2 and c.side then
+for _,c in ipairs(C.chapters)do if c.epic==3 and c.side then
  local n,e=P.accept(s,c.id,true);check(n and not e,'optional discovery accepted');s=n
  for _,g in ipairs(c.goals)do
   for _,enemy in ipairs(g.enemies)do kinds[enemy.kind]=true end
@@ -47,7 +47,7 @@ end end
 local count=0;for k in pairs(kinds)do count=count+1;check(Config.profiles[k]~=nil,'all ten combat profiles')end
 check(count==10,'ten TD species used in actual objectives')
 local old=P.new();check(not Access.allowed(old,'FV-01'),'new hero cannot skip Deepwood')
-old.main=7;check(Access.allowed(old,'FV-01') and not Access.allowed(old,'FV-02'),'first FV gate unlocks after Deepwood')
+old.main=14;check(Access.allowed(old,'FV-01') and not Access.allowed(old,'FV-02'),'first FV gate unlocks after Gloamwood')
 for id,z in pairs(C.zones)do if id:sub(1,3)=='FV-' then
  check(Access.region(z.center[1],z.center[3])==id,'atlas/region center agrees')
  check(Bounds.supported(z.center[1],z.center[2]+3,z.center[3]),'authoritative winter ground')

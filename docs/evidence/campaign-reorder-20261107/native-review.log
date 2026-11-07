@@ -1,0 +1,3 @@
+CAMPAIGN_REORDER 1850 checks passed; mandatory solo final level 43
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+CAMPAIGN_REORDER_NATIVE {"worlds":[{"epic":1,"zones":10,"region":"Deepwood"},{"epic":2,"zones":7,"region":"Gloamwood"},{"epic":3,"zones":10,"region":"Frozen Vale"},{"epic":4,"zones":10,"region":"Ember Caldera"},{"epic":5,"zones":7,"region":"Haunted Graveyard"}],"kind":"CAMPAIGN_REORDER_NATIVE","pass":true,"checks":916}

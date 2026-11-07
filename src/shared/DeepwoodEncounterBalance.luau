@@ -15,16 +15,16 @@ local packSizes={
  ['DW-07:corridor']=7,['DW-07:outer_west']=8,['DW-07:outer_east']=9,['DW-07:king_shaman']=9,
  ['DW-Q1:marsh_slimes']=4,['DW-Q2:goblin_king']=6,['DW-Q3:quarry_slimes']=7,['DW-Q3:king_ogre']=8,['DW-Q4:enraged_warlord']=9,
 }
-function Balance.packSize(chapter,goal) return chapter.epic==3 and (chapter.side and 6 or math.min(9,chapter.number-10)) or chapter.epic==2 and (chapter.side and 5 or math.min(8,chapter.number-5)) or packSizes[chapter.id..':'..goal.id] or Balance.maxWaveSize end
+function Balance.packSize(chapter,goal) return (chapter.legacyEpic or chapter.epic)==3 and (chapter.side and 6 or math.min(9,(chapter.legacyNumber or chapter.number)-10)) or (chapter.legacyEpic or chapter.epic)==2 and (chapter.side and 5 or math.min(8,(chapter.legacyNumber or chapter.number)-5)) or packSizes[chapter.id..':'..goal.id] or Balance.maxWaveSize end
 function Balance.population(partySize) return 6+2*(math.max(1,math.min(4,partySize or 1))-1) end
 function Balance.packCapacity(chapter,goal,partySize) return math.min(12,Balance.packSize(chapter,goal)+(partySize or 1)-1) end
-function Balance.expand(specs,partySize,epic)
+function Balance.expand(specs,partySize,epic,legacyEpic)
  local result={}
  -- Interleave source units so later packs also contain mixed enemy roles.
  for index=1,Balance.population(partySize) do for _,spec in ipairs(specs) do
   local copies=Balance.isBoss(spec.kind) and 1 or Balance.population(partySize)
   if index<=copies then for _=1,spec.count do
-   table.insert(result,{kind=spec.kind,level=spec.level,rewardCopies=copies,rewardIndex=index,epic=epic or spec.epic or 1})
+   table.insert(result,{kind=spec.kind,level=spec.level,legacyLevel=spec.legacyLevel,legacyEpic=legacyEpic,rewardCopies=copies,rewardIndex=index,epic=epic or spec.epic or 1})
   end end
  end end
  return result
@@ -59,9 +59,9 @@ function Balance.encounterWaves(chapter,goal,partySize)
  end
  for _,spec in ipairs(specs)do if Balance.isBoss(spec.kind)then boss=spec else hasGuards=true end end
  if boss and not hasGuards then
-  table.insert(specs,{kind=assert(bossEscorts[boss.kind]),level=math.max(1,boss.level-1),count=1})
+  table.insert(specs,{kind=assert(bossEscorts[boss.kind]),level=math.max(1,boss.level-1),legacyLevel=math.max(1,(boss.legacyLevel or boss.level)-1),count=1})
  end
- local expanded=Balance.expand(specs,partySize,chapter.epic)
+ local expanded=Balance.expand(specs,partySize,chapter.epic,chapter.legacyEpic)
  -- Keep existing kill receipt IDs even though the boss moves ahead of its final guards.
  -- Formerly solo bosses keep index 1; their new guards get new indices after it.
  local normalCount=0
@@ -81,9 +81,10 @@ local function share(amount,spec)
 end
 function Balance.rewards(spec,mode,version)
  local boss=Balance.isBoss(spec.kind)
+ local level=version~=nil and version<10 and (spec.legacyLevel or spec.level)or spec.level
  local m=version~=1 and mode and assert(Difficulty.mode(mode,version),'Unsupported reward rules')or {xp=1,gold=1}
  -- Scale the original whole-unit budget before splitting its six finite copies.
- return share(math.floor((8+2*spec.level)*(boss and 5 or 1)*m.xp),spec),share(math.floor((3+math.floor(spec.level/2))*(boss and 10 or 1)*(mode and version~=1 and Difficulty.goldMultiplier(spec.level,mode,version)or m.gold)),spec)
+ return share(math.floor((8+2*level)*(boss and 5 or 1)*m.xp),spec),share(math.floor((3+math.floor(level/2))*(boss and 10 or 1)*(mode and version~=1 and Difficulty.goldMultiplier(level,mode,version)or m.gold)),spec)
 end
 function Balance.stats(kind,level,partySize,mode,version,epic)
  if mode then return Difficulty.stats(kind,level,partySize,Balance.isBoss(kind),mode,version,epic)end
@@ -96,7 +97,9 @@ function Balance.stats(kind,level,partySize,mode,version,epic)
 end
 -- Elite adjustments share a single path with the runtime and entry preview.
 function Balance.unitStats(spec,partySize,mode,version,index)
- local hp,damage,level=Balance.stats(spec.kind,spec.level,partySize,mode,version,spec.epic)
+ local authored=version~=nil and version<10 and (spec.legacyLevel or spec.level)or spec.level
+ local epic=version~=nil and version<10 and (spec.legacyEpic or spec.epic)or spec.epic
+ local hp,damage,level=Balance.stats(spec.kind,authored,partySize,mode,version,epic)
  local elite
  if not Balance.isBoss(spec.kind)then
   if (mode=='Insane'or mode=='Hell')and index==1 then hp=math.floor(hp*1.15+.5);elite='Armored' end

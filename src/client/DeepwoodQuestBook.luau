@@ -63,7 +63,7 @@ function Book.create(parent,track)
   elseif tab=='Side' then
    card('OPTIONAL STORIES',{'Discover a field clue or speak to a resident. Read the request, then choose ACCEPT or LATER.','Accepted quests never block the main stories. Report to the named resident when the work is done.'})
    local count=0
-   for _,c in ipairs(Content.chapters) do if c.side and s.main>=c.minMain and not s.clears[c.id] and (c.id~='DW-Q1' or P.accepted(s,c)) then
+   for _,c in ipairs(Content.chapters) do if c.side and Content.accessible(s,c.minMain,c.legacyMinMain) and not s.clears[c.id] and (c.id~='DW-Q1' or P.accepted(s,c)) then
     count+=1;local status=Log.status(s,c)
     local lines={c.quest.brief,'Status: '..status,Log.reward(c)}
     if status=='Available' then table.insert(lines,c.quest.discoveryOnly and 'Find the field clue in '..Content.zones[c.zone].name..'.' or 'Quest giver: '..c.quest.giver..' · Elder Tree Outpost')

@@ -19,7 +19,7 @@ for _,chapter in ipairs(C.chapters)do for _,mode in ipairs(D.order)do for party=
    else check(hp>oldHP and damage>oldDamage,'every later-epic unit grows on every difficulty/party size')end
    for version=1,3 do
     local priorHP,priorDamage=B.unitStats(spec,party,mode,version,index)
-    local neutral={kind=spec.kind,level=spec.level,epic=1}
+    local neutral={kind=spec.kind,level=spec.legacyLevel or spec.level,epic=1}
     local baseHP,baseDamage=B.unitStats(neutral,party,mode,version,index)
     check(priorHP==baseHP and priorDamage==baseDamage,'saved rules 1-3 retain pre-region stats')
    end

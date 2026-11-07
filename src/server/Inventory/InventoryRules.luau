@@ -299,6 +299,20 @@ function Rules.upgrade(profile)
 	end
 	if profile.starterSuppliesClaimed==nil and next(profile.heroes)~=nil then profile.starterSuppliesClaimed=true;changed=true end
 	for _,hero in pairs(profile.heroes) do
+  if hero.deepwood and hero.deepwood.version==1 then
+   local contract=profile.supportPasses and profile.supportPasses.active[hero.heroId]
+   if contract then
+    local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent)or dofile('src/shared/CampaignContent.luau')
+    local chapter=Content.legacyMainChapters[contract.story]
+    if chapter then
+     if contract.scope=='main:'..contract.story then contract.scope='main:'..chapter.number end
+     contract.story=chapter.number
+    end
+   end
+   hero.deepwood=assert(Story.upgrade(hero.deepwood));changed=true
+  end
+  local active=hero.expeditions and hero.expeditions.active
+  if active and active.journal.version==1 then active.journal=assert(Story.upgrade(active.journal));changed=true end
 		if hero.progression==nil then hero.progression=Growth.new(hero.level); changed=true
 		elseif (hero.progression.version==1 or hero.progression.version==2) then hero.progression=Growth.upgrade(hero.progression); changed=true end
 	end

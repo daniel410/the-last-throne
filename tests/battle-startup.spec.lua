@@ -45,10 +45,10 @@ check(zones==total,'all authored zones partitioned once')
 for _,bad in ipairs({0,6,-1,1.5,'1'})do check(not pcall(World.scope,bad),'reject unknown epic')end
 for epic=1,5 do
  calls={};local world=World.create(epic);check(world.loadedEpics[epic],'selected epic ready')
- local expected=({'DeepwoodWorld','FrozenValeWorld','EmberCalderaWorld','LateEpicWorld','LateEpicWorld'})[epic]
+ local expected=({'DeepwoodWorld','LateEpicWorld','FrozenValeWorld','EmberCalderaWorld','LateEpicWorld'})[epic]
  check(calls[1].name==expected,'only selected region builder runs first')
  check(#calls==3,'one region + activity + art, no unrelated regions')
- if epic>=4 then check(calls[1].epic==epic,'late epic split')end
+ if epic==2 or epic==5 then check(calls[1].epic==epic,'late epic split')end
  local before=#calls;check(World.create(epic,world)==world and #calls==before,'repeat entry reuses completed epic')
  if epic~=1 then
   check(World.create(1,world)==world,'adding Deepwood retains tables for active story services')

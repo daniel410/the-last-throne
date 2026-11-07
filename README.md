@@ -1,3 +1,5 @@
+> **2026-11-07 게임 적용 · TLT-001/050/057/061~065/084 · 0.81.0:** Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard 순서·영어 연결·지도/이동·구순서 저널/활성 원정/Selene 권리 이관을 구현했다. GW Lv12~18·새 원정 규칙10, 기존1~9/ID/고정 보상 보존. [검증·Studio 적용·미게시](docs/evidence/campaign-reorder-20261107/README.md). 실제 계정/기기·전투 난도·Lv80 성장 수용은 후속이다.
+
 > **2026-11-07 본편 순서 변경 · TLT-001/061~065:** 사용자 승인으로 Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard 순서로 줄거리를 개정했다. Gloamwood는 운반대 추적·정찰대 구조·설원행 옛길 개방, Ember Caldera는 Veyr의 침공 계획·왕릉 진입로 확보를 맡는다. 문서 반영 완료이며 게임 순서·저장 이관·레벨/드롭 조정·빌드/게시는 후속이다. 기존 안정ID·보상·보유품·진행 기록을 보존한다. [상세 시나리오·인계](docs/production/gloamwood-second-story-2026-11-07.md).
 
 > **2026-11-07 / TLT-065/032/033/057/084 · 0.80.0:** 사용자 Meshy Gloamwood8종 실제 스킨 모델·116본/종별 모션으로 임시 블록을 교체했다. 거미8다리·일반 지네/King 크기 구분·서버 공격 시각 유지. [27,993엔진/1,127공격/3,122기존 모션 검사·Studio·미게시](docs/evidence/gloamwood-meshy-20261107/README.md). 실전/기기·최종 미술 수용은 후속.

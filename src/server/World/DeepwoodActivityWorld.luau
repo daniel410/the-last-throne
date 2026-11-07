@@ -38,7 +38,7 @@ function W.create(world)
    node.activityBuilt=true
    node.part.Transparency=1;local gem=node.part:FindFirstChild('ObjectiveGem');if gem then gem.Transparency=1 end
    node.prompt.Enabled=a.mode=='dialogue' or a.mode=='escort'
-   if a.actor and a.mode=='dialogue' then W.actor(folder,a.actor,Vector3.new(table.unpack(g.position)),a.spirit,{world=world.folder,role='dialogue',scope=(c.epic or 1)>=4 and c.zone or nil}) end
+   if a.actor and a.mode=='dialogue' then W.actor(folder,a.actor,Vector3.new(table.unpack(g.position)),a.spirit,{world=world.folder,role='dialogue',scope=(c.id:sub(1,2)=='GW'or c.id:sub(1,2)=='HG')and c.zone or nil}) end
    if a.steps then
     for _,step in ipairs(a.steps) do
      local p=Vector3.new(table.unpack(step.position));local anchor=part(folder,c.id..'_'..g.id..'_'..step.id,Vector3.new(1,1,1),p+Vector3.new(0,1,0),Color3.new());anchor.Transparency=1

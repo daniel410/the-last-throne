@@ -18,7 +18,7 @@ local function clear(c,run)
  end end
 end
 for i=1,7 do clear(Content.mainChapters[i])end
-check(A.selection(profile.heroes.hero).missionId=='FV-01','Deepwood complete continues to Frozen Vale in lobby')
+check(A.selection(profile.heroes.hero).missionId=='GW-01','Deepwood complete continues to Gloamwood in lobby')
 -- Reproduce a separate Waterfall Quarry departure after clearing Deepwood.
 profile=assert(A.begin(profile,'hero','DW-Q3','Easy','quarry',profile.revision,R,C))
 local view=A.projection(profile.heroes.hero)
@@ -33,14 +33,14 @@ local before=P.copy(view)
 check(Log.tracked(view)==nil,'completed optional run does not suggest an inaccessible main waypoint')
 local tracker=Log.tracker(view)
 check(tracker.title=='SIDE QUEST COMPLETE','completed optional quest has its own heading')
-check(tracker.objective:find('Frozen Vale',1,true) and tracker.objective:find('ADVENTURES',1,true),'missing target explains next region and actionable lobby selection')
+check(tracker.objective:find('Gloamwood',1,true) and tracker.objective:find('ADVENTURES',1,true),'missing target explains next region and actionable lobby selection')
 check(view.main==before.main and profile.heroes.hero.deepwood.main==7,'presentation does not advance saved progress')
 local invalid=Log.tracker({main=6,expeditionMission='DW-01'})
 check(invalid.title=='CONTINUE YOUR JOURNEY' and invalid.objective:find('Deepwood',1,true),'blocked main target is not interpreted as full completion')
-profile=assert(A.begin(profile,'hero','FV-01','Easy','frozen',profile.revision,R,C))
+profile=assert(A.begin(profile,'hero','GW-01','Easy','frozen',profile.revision,R,C))
 view=A.projection(profile.heroes.hero);target=Log.tracked(view)
-check(target and target.chapter.id=='FV-01','explicit next-region admission restores main target')
-check(Log.tracker(view,target).title:find('MAIN STORY 1 / 7',1,true),'Frozen Vale starts at story 1')
+check(target and target.chapter.id=='GW-01','explicit next-region admission restores main target')
+check(Log.tracker(view,target).title:find('MAIN STORY 1 / 7',1,true),'Gloamwood starts at story 1')
 for i=8,Content.mainCount do clear(Content.mainChapters[i])end
 tracker=Log.tracker(profile.heroes.hero.deepwood)
 check(tracker.title=='EPIC 5 COMPLETE','full completion remains exclusive to all 35 saved stories')

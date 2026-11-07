@@ -8,7 +8,7 @@ local G=dofile('src/shared/HeroProgression.luau')
 local D=dofile('src/shared/Difficulty.luau')
 local n=0;local function check(v,m)n=n+1;assert(v,m)end
 local journal=P.new()
-for i=1,21 do local c=Content.mainChapters[i];for _,g in ipairs(c.goals)do if not g.optional then
+for i=1,7 do local c=Content.mainChapters[i];for _,g in ipairs(c.goals)do if not g.optional then
  if g.activity and g.activity.steps then for _,step in ipairs(g.activity.steps)do journal=assert(P.apply(journal,c.id,g.id,step.choices and step.choices[1].id,step.id))end
  else journal=assert(P.apply(journal,c.id,g.id,g.choice and 'sanctuary'))end
 end end end
@@ -30,12 +30,12 @@ local function run(id,mode,runId)
  end
  check(p.heroes.hero.expeditions.active.completed,'mission completes')
 end
-for number=22,35 do
+for number=8,35 do
  local c=Content.mainChapters[number];run(c.id,'Easy','first_'..number)
  check(p.heroes.hero.deepwood.main==number,'first clear advances permanent campaign')
  check(p.heroes.hero.expeditions.clears[c.id].Easy,'difficulty clear saved separately')
 end
-check(p.wallet.gold==6280,'HG first-clear fixed Gold preserved and GW provisional fixed Gold zero')
+check(p.wallet.gold==14280,'FV/EC/HG first-clear fixed Gold preserved and GW provisional fixed Gold zero')
 run('GW-01','Easy','replay_gw')
 check(p.heroes.hero.deepwood.main==35 and p.heroes.hero.deepwood.clears['HG-07'],'earlier replay preserves permanent ending')
 local expected=D.completion(Content.byId['HG-07'],'Easy');local before=p.wallet.gold

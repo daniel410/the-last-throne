@@ -1,0 +1,32 @@
+{
+  "worlds": [
+    {
+      "epic": 1,
+      "zones": 10,
+      "region": "Deepwood"
+    },
+    {
+      "epic": 2,
+      "zones": 7,
+      "region": "Gloamwood"
+    },
+    {
+      "epic": 3,
+      "zones": 10,
+      "region": "Frozen Vale"
+    },
+    {
+      "epic": 4,
+      "zones": 10,
+      "region": "Ember Caldera"
+    },
+    {
+      "epic": 5,
+      "zones": 7,
+      "region": "Haunted Graveyard"
+    }
+  ],
+  "kind": "CAMPAIGN_REORDER_NATIVE",
+  "pass": true,
+  "checks": 916
+}

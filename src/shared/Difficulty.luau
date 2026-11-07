@@ -2,7 +2,7 @@
 local BossTuning=game and require(script.Parent.BossCombatTuning)or dofile('src/shared/BossCombatTuning.luau')
 local Content=game and require(script.Parent.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 -- Balance/rule generation is pinned by the run and persisted hero journal.
-local D={version=9,order={'Easy','Hard','Insane','Hell'},legacyModes={
+local D={version=10,order={'Easy','Hard','Insane','Hell'},legacyModes={
  Easy={level=1,hp=1,damage=1,bossHP=1,bossDamage=1,xp=1,gold=1,ore=6,cores=0,cache=1},
  Hard={level=20,previous='Easy',hp=1.35,damage=1.2,bossHP=1.25,bossDamage=1.15,xp=1.15,gold=1.5,ore=8,cores=1,cache=2},
  Insane={level=40,previous='Hard',hp=1.7,damage=1.4,bossHP=1.5,bossDamage=1.3,xp=1.3,gold=2,ore=10,cores=2,cache=3},
@@ -34,7 +34,7 @@ D.families={
  IceTrollKing={hp=1.1,damage=1},KingIceBear={hp=1.15,damage=1},KingIceGolem={hp=1.2,damage=1},QueenIceElf={hp=.9,damage=1},AncientGlacierKing={hp=1.15,damage=1.05},
  MagmaImp={hp=.9,damage=1},MagmaGolem={hp=1.15,damage=1},InfernoOverlord={hp=1,damage=1},CalderaTitan={hp=1.2,damage=1.05},KingVolcanoShaman={hp=.9,damage=1},
 }
-function D.compatible(version)return version==1 or version==2 or version==3 or version==4 or version==5 or version==6 or version==7 or version==8 or version==D.version end
+function D.compatible(version)return version==1 or version==2 or version==3 or version==4 or version==5 or version==6 or version==7 or version==8 or version==9 or version==D.version end
 function D.mode(mode,version)
  if version~=nil and not D.compatible(version)then return nil end
  return (version==1 and D.legacyModes or version==2 and D.previousModes or D.modes)[mode]
@@ -44,10 +44,10 @@ function D.enemyLevel(level,mode,version)
  return version==1 and math.max(level,m.level)or math.max(m.level,level+(m.levelShift or 0))
 end
 function D.rewardLevel(c,mode,version)
- local authored=D.entry(c)
+ local authored=D.entry(c,version)
  for _,g in ipairs(c.goals)do
-  for _,unit in ipairs(g.enemies or {})do authored=math.max(authored,unit.level)end
-  for _,wave in ipairs(g.bossEncounter and g.bossEncounter.waves or {})do for _,unit in ipairs(wave.enemies)do authored=math.max(authored,unit.level)end end
+  for _,unit in ipairs(g.enemies or {})do authored=math.max(authored,version~=nil and version<10 and (unit.legacyLevel or unit.level)or unit.level)end
+  for _,wave in ipairs(g.bossEncounter and g.bossEncounter.waves or {})do for _,unit in ipairs(wave.enemies)do authored=math.max(authored,version~=nil and version<10 and (unit.legacyLevel or unit.level)or unit.level)end end
  end
  return D.enemyLevel(authored,mode,version)
 end
@@ -72,22 +72,26 @@ function D.combat(c)
  for _,g in ipairs(c and c.goals or {})do if #(g.enemies or {})>0 then return true end end
  return false
 end
--- Late-epic entry stays at Lv27 until a mandatory-route growth budget is accepted.
-function D.entry(c)return levels[c.number] or ((c.epic or 1)>=4 and 27 or c.epic==3 and 20 or c.epic==2 and 12 or 1)end
-function D.requiredLevel(c,mode)
+-- Keep existing FV/EC/HG gates; the new GW route follows the Lv12 Deepwood exit.
+function D.entry(c,version)
+ if (version==nil or version>=10)and c.id:sub(1,2)=='GW'then return 12 end
+ local epic=c.legacyEpic or c.epic or 1
+ return levels[c.legacyNumber or c.number]or (epic>=4 and 27 or epic==3 and 20 or epic==2 and 12 or 1)
+end
+function D.requiredLevel(c,mode,version)
  local minimum=assert(D.entryLevels[mode],'Unsupported difficulty')
- return math.max(D.entry(c),minimum)
+ return math.max(D.entry(c,version),minimum)
 end
 function D.tier(c)return D.entry(c)>=10 and 10 or D.entry(c)>=5 and 5 or 1 end
 -- An isolated side expedition cannot advance another main chapter to unlock its report.
-function D.requiredMain(c)
- local main=c.side and c.minMain or c.number-1
+function D.requiredMain(c,legacy)
+ local main=c.side and (legacy and c.legacyMinMain or c.minMain)or (legacy and c.legacyNumber or c.number)-1
  if c.side then
   for _,g in ipairs(c.goals)do
    if not g.optional then
-    main=math.max(main,g.minMain or 0)
+    main=math.max(main,(legacy and g.legacyMinMain or g.minMain)or 0)
     local zone=Content.zones[g.zone or c.zone]
-    if zone then main=math.max(main,zone.requiresMain or 0)end
+    if zone then main=math.max(main,(legacy and zone.legacyRequiresMain or zone.requiresMain)or 0)end
    end
   end
  end
@@ -99,7 +103,7 @@ function D.allowed(hero,id,mode)
  if mode~='Easy' and not D.combat(c)then return false,'CombatMissionOnly' end
  if hero.level<D.requiredLevel(c,mode)then return false,'DifficultyLevel' end
  local s=hero.deepwood or {main=0,clears={}}
- if s.main<D.requiredMain(c)then return false,'StoryLocked' end
+ if not Content.accessible(s,D.requiredMain(c),D.requiredMain(c,true))then return false,'StoryLocked'end
  if m.previous then
   local clears=hero.expeditions and hero.expeditions.clears or {}
   local prior=clears[id] or {}

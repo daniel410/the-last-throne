@@ -1,3 +1,5 @@
+> **후속 게임 적용 · 0.81.0:** DW-07의 Gloamwood행 원고를 `CampaignStoryText`로 적용했다. [검증·Studio·미게시](../evidence/campaign-reorder-20261107/README.md). 아래 미반영 표시는 최초 원고 작성 당시 기록이다.
+
 > **2026-11-07 / TLT-001/061~065:** DW-07의 연결을 Gloamwood행으로 개정한 목표 시나리오다. 아래 변경 영어 원고는 런타임 미반영이며, 기존0.41.0 구현 기록은 당시 증거로 보존한다. [연결 원고·후속 구현](gloamwood-second-story-2026-11-07.md).
 
 # Deepwood 5에픽 반영 시나리오 · 0.41.0

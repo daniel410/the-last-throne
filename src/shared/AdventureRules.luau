@@ -5,14 +5,14 @@ local A={}
 -- follows the journal, including replays, higher difficulties and epic borders.
 function A.continuation(a)
  local start=a and Content.byId[a.missionId]
- local nextChapter=a and a.journal and Content.mainChapters[a.journal.main+1]
- if a and a.completed and start and not start.side and nextChapter
-  and nextChapter.number>start.number then return nextChapter end
+ local main=a and (a.returnToCampaign and a.campaignMain or a.journal and a.journal.main)
+ local nextChapter=main and Content.mainChapters[main+1]
+ if a and a.completed and start and not start.side and nextChapter then return nextChapter end
 end
 local function currentMission(a)
  local start=a and Content.byId[a.missionId]
  if a and a.completed and start and not start.side then
-  return Content.mainChapters[math.min(Content.mainCount,a.journal.main+1)]
+  return A.continuation(a)or Content.mainChapters[Content.mainCount]
  end
  return start
 end
@@ -22,7 +22,7 @@ function A.selection(hero)
  local current=currentMission(a)
  local frontier=Content.mainChapters[math.min(Content.mainCount,(hero and hero.deepwood and hero.deepwood.main or 0)+1)]
  -- Unfinished optional expeditions never pin Continue to an already completed epic.
- if current and current.side and frontier and hero.deepwood and hero.deepwood.main<Content.mainCount and (frontier.epic or 1)>(current.epic or 1) then
+ if current and current.side and frontier and hero.deepwood and hero.deepwood.main<Content.mainCount and ((frontier.epic or 1)>(current.epic or 1)or hero.deepwood.legacyMain~=nil and hero.deepwood.main<current.minMain)then
   return {missionId=frontier.id,difficultyId='Easy'}
  end
  if a and a.difficultyId=='Easy' and current and not current.side and frontier.number>current.number then current=frontier end
@@ -37,6 +37,7 @@ function A.valid(hero)
  local a=e.active
  if a~=nil then
   if type(a)~='table'or type(a.runId)~='string'or #a.runId<1 or #a.runId>64 or not a.runId:match('^[%w_-]+$')or not Content.byId[a.missionId]or not D.modes[a.difficultyId]or a.version~=1 or (a.balanceVersion~=nil and not D.compatible(a.balanceVersion)) or type(a.completed)~='boolean'or type(a.firstClear)~='boolean'or not P.validate(a.journal)or type(a.kills)~='table'then return false end
+  if a.returnToCampaign~=nil and type(a.returnToCampaign)~='boolean'or a.returnToCampaign and not integer(a.campaignMain,0,Content.mainCount)then return false end
   local n=0;for key,v in pairs(a.kills)do if type(key)~='string'or #key>100 or v~=true then return false end;n=n+1 end;if n>4096 then return false end
   if a.completed~=(a.journal.clears[a.missionId]==true)then return false end
  end
@@ -46,39 +47,63 @@ end
 function A.projection(hero)
  local a=hero and hero.expeditions and hero.expeditions.active
  if not a then return nil end
- local view=P.copy(a.journal)
+ local view=P.copy(a.completed and a.returnToCampaign and hero.deepwood or a.journal)
  for id,cells in pairs(hero.deepwood and hero.deepwood.explored or {})do
   local zone=Content.zones[id]
-  if zone and zone.requiresMain<=view.main then
+  if zone and Content.accessible(view,zone.requiresMain,zone.legacyRequiresMain) then
    view.explored[id]=view.explored[id]or {}
    for cell,revealed in pairs(cells)do view.explored[id][cell]=revealed end
   end
  end
  local nextChapter=A.continuation(a)
- view.expeditionMission=nextChapter and nextChapter.id or a.missionId
+ view.expeditionMission=nextChapter and nextChapter.id or currentMission(a).id
  view.expeditionFirstClear=not (hero.deepwood and hero.deepwood.clears[view.expeditionMission])
  view.seleneUnlocked=P.seleneUnlocked(hero.deepwood)
  view.seleneFollowing=hero.deepwood and hero.deepwood.seleneFollowing
  return view
 end
 local function resetJournal(base,c)
- local s=P.copy(base)
- for _,key in ipairs({'accepted','activities','decisions','explored','clues'})do s[key]=s[key]or {}end
- local main=c.side and s.main or c.number-1
+ if c.side then
+  local s=P.copy(base);s.clears[c.id]=nil;s.accepted=s.accepted or {};s.accepted[c.id]=true
+  for _,g in ipairs(c.goals)do
+   local key=c.id..':'..g.id;s.flags[key]=nil
+   for _,field in ipairs({'activities','clues'})do if s[field]then s[field][key]=nil end end
+   for _,step in ipairs(g.activity and g.activity.steps or {})do if s.decisions then s.decisions[key..':'..step.id]=nil end end
+  end
+  s.coins=0;for id in pairs(s.clears)do s.coins=s.coins+Content.byId[id].reward.coins end
+  assert(P.validate(s),'Invalid side replay journal');return s
+ end
+ -- A replay projection has a synthetic completed prefix, never paid into the hero.
+ -- This also supports replaying FV/EC before a migrated hero fills the new GW gap.
+ local s=P.new();s.killCoins=base.killCoins or 0
+ local main=c.side and base.main or c.number-1
  for _,chapter in ipairs(Content.chapters)do
-  if chapter.id==c.id or not chapter.side and chapter.number>main or chapter.side and chapter.minMain>main then
-   s.clears[chapter.id]=nil;s.accepted[chapter.id]=nil
-   for _,g in ipairs(chapter.goals)do local key=chapter.id..':'..g.id;s.flags[key]=nil;s.activities[key]=nil;s.clues[key]=nil
-    for _,step in ipairs(g.activity and g.activity.steps or {})do s.decisions[key..':'..step.id]=nil end
+  local retain=not chapter.side and chapter.number<=main
+   or chapter.side and chapter.id~=c.id and chapter.minMain<=main and base.clears[chapter.id]
+  if retain then
+   s.clears[chapter.id]=true;s.coins=s.coins+chapter.reward.coins
+   for _,g in ipairs(chapter.goals)do
+    local key=chapter.id..':'..g.id
+    if not g.optional or base.flags[key]then
+     s.flags[key]=true
+     local steps=g.activity and g.activity.steps
+     if steps then
+      s.activities[key]=#steps
+      for _,step in ipairs(steps)do
+       if g.activity.mode=='investigate'then s.clues[key]=s.clues[key]or {};s.clues[key][step.id]=true end
+       if step.choices then s.decisions[key..':'..step.id]=(base.decisions or {})[key..':'..step.id]or step.choices[1].id end
+      end
+     end
+     if g.choice then s.choice=base.choice~=''and base.choice or 'sanctuary'end
+    end
    end
   end
  end
- s.main=main;s.coins=0
- for id in pairs(s.clears)do s.coins=s.coins+Content.byId[id].reward.coins end
- for id in pairs(s.explored)do if Content.zones[id].requiresMain>main then s.explored[id]=nil end end
- if not s.flags['DW-07:restoration']then s.choice=''end
- if not P.seleneUnlocked(s)then s.seleneFollowing=nil end
+ s.main=main
+ for id,cells in pairs(base.explored or {})do if Content.zones[id].requiresMain<=main then s.explored[id]=P.copy(cells)end end
+ if P.seleneUnlocked(s)then s.seleneFollowing=base.seleneFollowing end
  if c.side then s.accepted[c.id]=true end
+ assert(P.validate(s),'Invalid replay prefix')
  return s
 end
 function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
@@ -100,6 +125,10 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  local journal=resume and P.copy(old.journal)or first and P.copy(h.deepwood or P.new())or resetJournal(h.deepwood or P.new(),c)
  if c.side then journal.accepted=journal.accepted or {};journal.accepted[c.id]=true;if first then h.deepwood=P.copy(journal)end end
  h.expeditions.active={version=1,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills={}}
+ local active=h.expeditions.active
+ if not c.side and not first and h.deepwood and h.deepwood.main<c.number-1 then
+  active.returnToCampaign=true;active.campaignMain=h.deepwood.main
+ end
  p.revision=p.revision+1
  if not R.validate(p,C)then return nil,'Incompatible'end
  return p
@@ -130,6 +159,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   p=R.copy(profile);p.revision=p.revision+1
  end
  local h=p.heroes[heroId];local e=h.expeditions;local a=e.active;a.journal=journal
+ if a.returnToCampaign then a.campaignMain=h.deepwood.main end
  if journal.clears[chapterId]and not active.journal.clears[chapterId]then
   a.completed=true;e.clears[chapterId]=e.clears[chapterId]or {};e.clears[chapterId][a.difficultyId]=true
   local reward=D.completion(c,a.difficultyId,a.balanceVersion or 1)

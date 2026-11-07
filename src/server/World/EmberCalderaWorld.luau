@@ -1,6 +1,6 @@
 -- Native volcanic city blockout; lava is off the safe route, not a hidden class gate.
 local Shared=game.ReplicatedStorage.Shared
-local Content=require(Shared.EmberCalderaContent)
+local Content=require(Shared.CampaignContent).region('EC')
 local Bounds=require(Shared.CampaignBounds)
 local W={}
 local C={rock=Color3.fromRGB(76,68,67),basalt=Color3.fromRGB(48,47,54),iron=Color3.fromRGB(110,106,99),lava=Color3.fromRGB(255,124,43),coolant=Color3.fromRGB(77,189,212),brass=Color3.fromRGB(194,147,83)}

@@ -13,7 +13,8 @@ function T.report(s)
 end
 function T.list(s)
  local result={};if not s then return result end
- local epic=Content.mainChapters[math.min(Content.mainCount,s.main+1)].epic or 1
+ local current=s.expeditionMission and Content.byId[s.expeditionMission]
+ local epic=(current or Content.mainChapters[math.min(Content.mainCount,s.main+1)]).epic or 1
  for _,c in ipairs(Content.mainChapters)do
   if (c.epic or 1)==epic and s.clears[c.id]then
    result[c.zone]={id=c.zone,zone=c.zone,chapterId=c.id,title=c.title:upper()}

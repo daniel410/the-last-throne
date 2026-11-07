@@ -58,8 +58,8 @@ local restoration=Content.byId['DW-07'].goals[#Content.byId['DW-07'].goals]
 check(restoration.id=='restoration','fixture ends at actual Eryn report')
 p=apply(p,Content.byId['DW-07'],restoration,'return')
 check(Log.reportGuidance(A.projection(p.heroes.hero))==nil,'confirmed report removes the pending reminder')
-check(Log.tracked(A.projection(p.heroes.hero)).chapter.id=='FV-01','confirmed report automatically tracks Frozen Vale')
-check(p.heroes.hero.deepwood.main==7 and A.selection(p.heroes.hero).missionId=='FV-01','Eryn report completes Deepwood and lobby continues to Frozen Vale')
+check(Log.tracked(A.projection(p.heroes.hero)).chapter.id=='GW-01','confirmed report automatically tracks Gloamwood')
+check(p.heroes.hero.deepwood.main==7 and A.selection(p.heroes.hero).missionId=='GW-01','Eryn report completes Deepwood and lobby continues to Gloamwood')
 local paid=p.wallet.gold
 p=assert(A.event(p,'hero','DW-07','restoration','shared',nil,R,C,'return'))
 check(p.wallet.gold==paid,'retried Eryn report cannot pay twice')

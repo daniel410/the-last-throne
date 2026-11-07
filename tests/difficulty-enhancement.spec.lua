@@ -169,9 +169,9 @@ local function storyClear(profile,c)
  return profile
 end
 local route=new();route.heroes.hero.level=80;route.heroes.hero.progression=Growth.new(80)
-for number=1,15 do
+for number=1,22 do
  route=storyClear(route,Content.mainChapters[number])
- for id,required in pairs({['FV-Q1']=8,['EC-Q1']=15})do
+ for id,required in pairs({['FV-Q1']=15,['EC-Q1']=22})do
   if number==required-1 then
    local ok,why=D.allowed(route.heroes.hero,id,'Easy')
    check(not ok and why=='StoryLocked',id..' rejects unfinishable report boundary')

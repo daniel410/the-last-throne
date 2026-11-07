@@ -1,6 +1,6 @@
 -- Native winter route. TD monsters are mounted independently by TrainingField.
 local Shared=game:GetService('ReplicatedStorage').Shared
-local Content=require(Shared.FrozenValeContent)
+local Content=require(Shared.CampaignContent).region('FV')
 local Bounds=require(Shared.CampaignBounds)
 local W={}
 local snow=Color3.fromRGB(216,235,242)

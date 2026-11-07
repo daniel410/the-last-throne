@@ -142,7 +142,7 @@ function Journal.start(hud)
    local c=Content.byId[p:GetAttribute('ChapterId')];local g=c and Progress.goal(c,p:GetAttribute('GoalId'));local prompt=p:FindFirstChildOfClass('ProximityPrompt')
    if prompt and g then
     if p:GetAttribute('QuestOffer') then
-     prompt.Enabled=s.main>=c.minMain and not s.clears[c.id];prompt.ActionText=Log.status(s,c)=='Ready to report' and 'Report' or 'Talk'
+     prompt.Enabled=Content.accessible(s,c.minMain,c.legacyMinMain) and not s.clears[c.id];prompt.ActionText=Log.status(s,c)=='Ready to report' and 'Report' or 'Talk'
      prompt.ObjectText=c.quest.giver..' · '..Log.status(s,c)
     elseif c.side and g==c.goals[1] and Progress.canAccept(s,c) then prompt.Enabled=true;prompt.ActionText='Read clue';prompt.ObjectText='Optional discovery · '..c.title
     elseif c.side and g.id==c.quest.turnIn and c.quest.offerPosition and not c.quest.discoveryOnly then prompt.Enabled=false

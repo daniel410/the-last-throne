@@ -35,6 +35,7 @@ function AccountStore:open(userId)
 		if lease and lease.token ~= self.token and lease.expiresAt > time then return nil, "AccountBusy" end
 		profile = self.rules.copy(profile)
 		if self.rules.upgrade then profile = self.rules.upgrade(profile) end
+  if not self.rules.validate(profile,self.catalog)then return nil,"Incompatible"end
 		if not lease or lease.token ~= self.token then profile.epoch = profile.epoch + 1 end
 		profile.lease = {token = self.token, epoch = profile.epoch, expiresAt = time + self.leaseSeconds}
   profile.release=nil

@@ -7,6 +7,7 @@ local Visual=require(script.Parent.Parent.World.SeleneVisual)
 local Actors=require(script.Parent.Parent.World.NPCActors)
 local RS=game:GetService('ReplicatedStorage')
 local Info=require(RS.Shared.SupporterInfo)
+local Access=require(RS.Shared.CampaignAccess)
 local Text=Info.text
 local M={}
 function M.create(o)
@@ -47,7 +48,7 @@ function M.create(o)
  end
  api.refreshWorld()
  local function nearLateCamp(root,s)
-  for _,entry in ipairs(lateCamps)do if s and s.main>=entry.requiresMain and (root.Position-entry.model.PrimaryPart.Position).Magnitude<=16 then return true end end
+  for _,entry in ipairs(lateCamps)do if s and Access.allowed(s,entry.zone) and (root.Position-entry.model.PrimaryPart.Position).Magnitude<=16 then return true end end
   return false
  end
  local function remove(player)
@@ -71,13 +72,13 @@ function M.create(o)
   local hero=o.active(player);local ctx,root=o.context(player)
   if not hero or hero.training or not ctx or ctx.heroId~=heroId or not root then return false end
   local s=o.state(player,heroId)
-  return (camp and (root.Position-camp).Magnitude<=16) or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or nearLateCamp(root,s) or forge and s and s.main>=15 and (root.Position-forge.PrimaryPart.Position).Magnitude<=16 or false
+  return (camp and (root.Position-camp).Magnitude<=16) or refuge and s and Access.allowed(s,'FV-02') and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or nearLateCamp(root,s) or forge and s and Access.allowed(s,'EC-02') and (root.Position-forge.PrimaryPart.Position).Magnitude<=16 or false
  end
  function api.select(player,following)
   local hero=o.active(player);local ctx,root=o.context(player)
   if type(following)~='boolean' or not hero or hero.training or not ctx or ctx.heroId~=hero.heroId or not root then return false end
   local s=o.state(player,ctx.heroId)
-  local atCamp=(camp and (root.Position-camp).Magnitude<=16) or refuge and s and s.main>=8 and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or nearLateCamp(root,s) or forge and s and s.main>=15 and (root.Position-forge.PrimaryPart.Position).Magnitude<=16
+  local atCamp=(camp and (root.Position-camp).Magnitude<=16) or refuge and s and Access.allowed(s,'FV-02') and (root.Position-refuge.PrimaryPart.Position).Magnitude<=16 or nearLateCamp(root,s) or forge and s and Access.allowed(s,'EC-02') and (root.Position-forge.PrimaryPart.Position).Magnitude<=16
   local departure=o.passState and o.passState(player,ctx.heroId)
   if not atCamp and not (following and departure and departure.departure and not departure.side) then return false end
   if not Progress.seleneUnlocked(s) then o.publish(player,'Help the convoy reach camp, then finish the rescue report with Selene.');return false end

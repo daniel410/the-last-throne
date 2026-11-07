@@ -1,6 +1,6 @@
 -- Disposable native world art. Content IDs, nodes and terrain are independent of creature art.
 local Shared=game.ReplicatedStorage.Shared
-local Content=require(Shared.LateEpicContent)
+local Content=require(Shared.CampaignContent)
 local Bounds=require(Shared.CampaignBounds)
 local W={}
 local function v(p)return Vector3.new(table.unpack(p))end
@@ -28,11 +28,11 @@ function W.create(world,epic)
  world.lateReady=world.lateReady or {}
  local key=epic or "All"
  if world.lateReady[key] then return world end
- local props=Instance.new('Folder');props.Name='LateEpicProps';props.Parent=world.folder
+ local props=world.folder:FindFirstChild('LateEpicProps')or Instance.new('Folder');props.Name='LateEpicProps';props.Parent=world.folder
  local foundation=Instance.new('Model');foundation.Name='LateEpicFoundation';foundation.ModelStreamingMode=Enum.ModelStreamingMode.Persistent;foundation.Parent=world.terrain
  world.lateCompanionCamps=world.lateCompanionCamps or {}
- for _,chapter in ipairs(Content.chapters)do if not epic or chapter.epic==epic then
-  local id=chapter.zone;local z=Content.zones[id];local center=v(z.center);local forest=chapter.epic==4
+ for _,chapter in ipairs(Content.chapters)do if (chapter.id:sub(1,2)=='GW'or chapter.id:sub(1,2)=='HG')and (not epic or chapter.epic==epic)then
+  local id=chapter.zone;local z=Content.zones[id];local center=v(z.center);local forest=chapter.id:sub(1,2)=='GW'
   local ground=forest and Color3.fromRGB(77,94,73) or Color3.fromRGB(108,115,131)
   local stone=Color3.fromRGB(87,84,102);world.positions[id]=center
   local region=Instance.new('Model');region.Name=id;region:SetAttribute('EpicId',forest and 'Gloamwood' or 'HauntedGraveyard');region.Parent=world.terrain
@@ -54,7 +54,7 @@ function W.create(world,epic)
   if id=='GW-03' or id=='HG-02' then
    local camp=require(script.Parent.NPCActors).acquire(world.folder,'Selene',center+Vector3.new(-45,0,80),{scope=id,role='camp',priority=20})
    camp:SetAttribute('LateEpicCamp',id)
-   table.insert(world.lateCompanionCamps,{model=camp,requiresMain=z.requiresMain})
+   table.insert(world.lateCompanionCamps,{model=camp,zone=id,requiresMain=z.requiresMain})
    for _,x in ipairs({-90,90})do
     part(region,'ShelterRoof',Vector3.new(48,3,38),center+Vector3.new(x,18,100),Color3.fromRGB(78,87,101))
     for _,dx in ipairs({-20,20})do part(region,'ShelterPost',Vector3.new(3,18,3),center+Vector3.new(x+dx,9,115),stone,true)end
@@ -80,7 +80,7 @@ function W.create(world,epic)
   end
   task.wait()
  end end
- for _,edge in ipairs(Content.edges)do if world.spawns[edge[1]] and world.spawns[edge[2]] then
+ for _,edge in ipairs(Content.edges)do if edge[1]:sub(1,2)==edge[2]:sub(1,2)and (not epic or Content.zones[edge[1]].epic==epic)and world.spawns[edge[1]]and world.spawns[edge[2]]then
   local a,b=Bounds.ends(edge);a,b=v(a),v(b)
   part(foundation,'LateTrail_'..edge[1]..'_'..edge[2],Vector3.new(96,4,(b-a).Magnitude+6),CFrame.lookAt((a+b)/2,b)-Vector3.new(0,2,0),Color3.fromRGB(105,111,98),true)
  end end

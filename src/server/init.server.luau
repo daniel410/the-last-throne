@@ -52,7 +52,7 @@ local function previewWorld(missionId)
    sessionOptions.outpostBounds={center=deepwood.positions['DW-03'],size=Vector3.new(220,24,200)}
   end
   local hub=Content.epics[epic].hub
-  local offset=epic==1 and Vector3.new(-55,0,-10)or Vector3.new(45,0,epic==2 and 75 or 80)
+  local offset=epic==1 and Vector3.new(-55,0,-10)or Vector3.new(45,0,epic==3 and 75 or 80)
   local chest,prompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions[hub]+offset})
   chest.Parent.Name=hub..'AccountStorage';prompt.ObjectText=Content.zones[hub].name..' Storage';inventory.addStorage(chest,prompt)
   if not storyStarted then
