@@ -9,6 +9,11 @@ local function equal(a,b,label) check(a==b,label..": "..tostring(a).." ~= "..tos
 local function valid(p) check(R.validate(p,C),"inventory invariant") end
 local function profile()
 	local p=R.addHero(R.new(42),"hero-knight","knight",C)
+	-- Manual equip/swap scenarios use the former starter layout as an explicit fixture.
+	for _,item in pairs(p.items) do
+		if item.location.kind=="equipped" and item.definitionId~="knight_shield" then item.location={kind="bag",heroId="hero-knight"} end
+	end
+	p.items['legacy-training-sword']={instanceId='legacy-training-sword',definitionId='knight_weapon',definitionVersion=C.version,ownerUserId=p.userId,quantity=1,version=1,binding='account',locked=false,location={kind='equipped',heroId='hero-knight',slot='weapon'},sourceGrantId='legacy-fixture'}
 	-- Explicit legacy reward fixture; new accounts no longer get pending supplies.
 	p.items['fixture-pending-health']={instanceId='fixture-pending-health',definitionId='health_potion',definitionVersion=C.version,ownerUserId=p.userId,quantity=5,version=1,binding='account',locked=false,location={kind='pending'},sourceGrantId='legacy-fixture'}
 	valid(p)
@@ -249,8 +254,8 @@ _,discardReason=apply(stored,find(stored,"iron_ore","storage"),"Discard",{quanti
 _,discardReason=apply(p,ore,"Discard",{quantity=1},{safe=false});equal(discardReason,"InCombat","combat cannot discard")
 local other=assert(R.addHero(p,"hero-mage","mage",C))
 -- Move the second hero's basic staff into its bag for ownership validation.
-find(other,"mage_weapon","equipped").location.kind="bag"
-_,discardReason=apply(other,find(other,"mage_weapon","bag"),"Discard",{quantity=1});equal(discardReason,"NotOwned","other hero bag cannot be discarded")
+find(other,"mage_weapon_fine","equipped").location.kind="bag"
+_,discardReason=apply(other,find(other,"mage_weapon_fine","bag"),"Discard",{quantity=1});equal(discardReason,"NotOwned","other hero bag cannot be discarded")
 local hpDiscard=assert(apply(p,find(p,"health_potion","bag"),"Discard",{quantity=3}))
 equal(R.quantity(hpDiscard,"hero-knight","health_potion"),0,"discard updates quick-slot count")
 equal(hpDiscard.heroes['hero-knight'].quickSlots[1],"health_potion","empty quick slot preserves selection")
@@ -275,19 +280,19 @@ local account=assert(a:open(42))
 equal(account.epoch,1,"first session epoch")
 denied,reason=b:open(42); equal(reason,"AccountBusy","other live server fenced")
 account=assert(a:transact(42,function(current) return R.addHero(current,"hero-knight","knight",C) end))
-local weapon=find(account,"knight_weapon_fine","bag")
-local cmd=request(account,weapon,"Equip")
+local weapon=find(account,"knight_weapon_fine","equipped")
+local cmd=request(account,weapon,"Unequip")
 failAfter=1
 account=assert(a:transact(42,function(current) return R.apply(current,cmd,safe,C) end))
 equal(account.revision,2,"unknown response retry commits once")
-equal(R.equipped(account,"hero-knight","weapon").definitionId,"knight_weapon_fine","unknown write recovered")
+equal(find(account,"knight_weapon_fine","bag").definitionId,"knight_weapon_fine","unknown write recovered")
 time=time+121
 local taken=assert(b:open(42)); equal(taken.epoch,2,"expired lease gets new fence")
 denied,reason=a:transact(42,function(current) return current end)
 equal(reason,"AccountBusy","old server cannot overwrite new session")
 assert(b:close(42)); check(not data['account:42'].lease,"release clears only current lease")
 local rejoined=assert(a:open(42)); valid(rejoined)
-equal(R.equipped(rejoined,"hero-knight","weapon").definitionId,"knight_weapon_fine","items survive reopen")
+equal(find(rejoined,"knight_weapon_fine","bag").definitionId,"knight_weapon_fine","items survive reopen")
 failBefore=true
 local empty=newStore("server-c")
 denied,reason=empty:open(88)

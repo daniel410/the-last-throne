@@ -10,16 +10,17 @@ local Catalog = {
 local function gear(id, name, slot, classId, stats, glyph, extra)
 	local item = {id = id, name = name, category = "Equipment", slot = slot, classId = classId,
 		level = 1, maxStack = 1, stats = stats, glyph = glyph, rarity = "Common",
-		description = "Dawnspire training equipment. Balance values are provisional."}
+		description = "Dawnspire equipment. Balance values are provisional."}
 	for key, value in pairs(extra or {}) do item[key] = value end
 	Catalog.items[id] = item
 end
+-- Retain retired training weapon definitions only to read already-owned instances.
 for classId, name in pairs({knight = "Sword", elf = "Bow", dwarf = "Axe", mage = "Staff"}) do
-	gear(classId .. "_weapon", "Training " .. name, "weapon", classId, {}, name:sub(1, 2):upper(), {rarity = "Common"})
+	gear(classId .. "_weapon", "Training " .. name, "weapon", classId, {}, name:sub(1, 2):upper(), {rarity = "Common", retired = true, cacheEligible = false})
 	gear(classId .. "_weapon_fine", "Tempered " .. name, "weapon", classId, {power = 3}, name:sub(1, 2):upper(), {rarity = "Uncommon"})
  gear(classId..'_weapon_veteran',"Veteran's "..name,'weapon',classId,{power=18},name:sub(1,2):upper(),{level=5,rarity='Uncommon',description='A Dawnspire weapon for experienced adventurers. Requires level 5. Available for Gold or Diamonds.'})
 end
-gear("knight_shield", "Training Shield", "offhand", "knight", {}, "SH", {rarity = "Common"})
+gear("knight_shield", "Dawnspire Shield", "offhand", "knight", {}, "SH", {rarity = "Common"})
 gear("knight_shield_fine", "Citadel Shield", "offhand", "knight", {armor = 4}, "SH", {rarity = "Uncommon"})
 gear("traveler_hood", "Traveler's Hood", "head", nil, {armor = 2}, "HD", {rarity = "Common"})
 gear("traveler_coat", "Traveler's Coat", "body", nil, {health = 20, armor = 2}, "BD", {rarity = "Common"})

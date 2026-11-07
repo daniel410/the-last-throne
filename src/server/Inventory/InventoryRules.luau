@@ -81,6 +81,13 @@ local function grantStarterSupplies(profile, heroId, catalog)
 		n = n + 1
 		local location = Rules.count(profile, "bag", heroId) < catalog.bagCapacity
 			and {kind = "bag", heroId = heroId} or {kind = "pending"}
+		local definition = catalog.items[definitionId]
+		if definition.slot and (definition.level or 1) <= hero.level then
+			local slot = EquipmentSlots.resolve(heroId, profile.items, definition, catalog)
+			if slot and not Rules.equipped(profile, heroId, slot) then
+				location = {kind = "equipped", heroId = heroId, slot = slot}
+			end
+		end
 		insertItem(profile, heroId .. "-starter-" .. n, definitionId, quantity, location, catalog, "starter:" .. heroId)
 	end
 	add(classId .. "_weapon_fine", 1)
@@ -100,7 +107,6 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	-- Preserve the legacy account marker, but grant once for each new hero.
 	nextProfile.starterSuppliesClaimed = true
 	nextProfile.heroes[heroId] = {heroId = heroId, baseClassId = classId, level = 1, progression = Growth.new(), quickSlots = {"health_potion", classId=="mage" and "mana_potion" or "health_potion_medium"}}
-	insertItem(nextProfile, heroId .. "-starter-1", classId .. "_weapon", 1, {kind = "equipped", heroId = heroId, slot = "weapon"}, catalog, "starter:" .. heroId)
 	if classId == "knight" then insertItem(nextProfile, heroId .. "-starter-2", "knight_shield", 1, {kind = "equipped", heroId = heroId, slot = "offhand"}, catalog, "starter:" .. heroId) end
 	grantStarterSupplies(nextProfile, heroId, catalog)
 	nextProfile.revision = nextProfile.revision + 1

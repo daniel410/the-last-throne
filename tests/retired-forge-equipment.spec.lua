@@ -60,5 +60,6 @@ for _,id in ipairs(I.retiredEquipment)do
  local sold=assert(R.shop(p,{store='blacksmith',action='Sell',requestId='sell',heroId='h',revision=p.revision,instanceId='legacy',itemVersion=1},{atLobby=true},I))
  check(sold.wallet.gold==p.wallet.gold+C.sell[id]and sold.wallet.diamonds==p.wallet.diamonds and not sold.items.legacy,'explicit legacy resale preserved')
 end
-for _,id in ipairs({'knight_weapon','knight_weapon_fine','knight_weapon_veteran','veteran_hood'})do check(not I.items[id].retired,'starter/Uncommon preserved')end
+for _,id in ipairs({'knight_weapon_fine','knight_weapon_veteran','veteran_hood'})do check(not I.items[id].retired,'starter/Uncommon preserved')end
+check(I.items.knight_weapon.retired and I.items.knight_weapon.cacheEligible==false,'training starter retired separately')
 print('Retired forge equipment: '..n..' checks passed')

@@ -2,17 +2,30 @@
 local R=game and require(game.ServerScriptService.Server.Inventory.InventoryRules) or dofile('src/server/Inventory/InventoryRules.luau')
 local C=game and require(game.ReplicatedStorage.Shared.ItemCatalog) or dofile('src/shared/ItemCatalog.luau')
 local G=game and require(game.ReplicatedStorage.Shared.HeroProgression) or dofile('src/shared/HeroProgression.luau')
+local F=game and require(game.ReplicatedStorage.Shared.EquipmentTransactions) or dofile('src/shared/EquipmentTransactions.luau')
 local P=game and require(game.ReplicatedStorage.Shared.SkillStatPreview) or dofile('src/shared/SkillStatPreview.luau')
 local n=0
 local function eq(a,b,label)n=n+1;assert(a==b,label..': '..tostring(a)..' ~= '..tostring(b))end
 for _,class in ipairs({'knight','dwarf','elf','mage'})do
  local p=assert(R.addHero(R.new(42),'hero',class,C))
  local ids={class..'_weapon_fine','traveler_hood','traveler_coat','traveler_gloves','traveler_boots','copper_ring','amber_charm'}
- for i,id in ipairs(ids)do
-  local item
-  for _,candidate in pairs(p.items)do if candidate.definitionId==id then item=candidate end end
-  p=assert(R.apply(p,{action='Equip',requestId='equip-'..i,heroId='hero',instanceId=item.instanceId,itemVersion=item.version,revision=p.revision},{safe=true,atHub=true},C))
+ for _,id in ipairs(ids)do
+  local count=0
+  for _,item in pairs(p.items)do if item.definitionId==id then
+   count=count+1;eq(item.location.kind,'equipped',class..' starts wearing '..id)
+  end end
+  eq(count,1,class..' receives exactly one '..id)
  end
+ eq(R.equipped(p,'hero','weapon').definitionId,class..'_weapon_fine',class..' starts with real weapon')
+ eq(R.equipped(p,'hero','head').definitionId,'traveler_hood',class..' wears level1 hood')
+ eq(R.equipped(p,'hero','accessory1').definitionId,'copper_ring',class..' auto accessory1')
+ eq(R.equipped(p,'hero','accessory2').definitionId,'amber_charm',class..' auto accessory2')
+ eq(R.quantity(p,'hero','veteran_hood'),1,class..' level5 bonus stays in bag')
+ for _,item in pairs(p.items)do eq(item.definitionId==class..'_weapon',false,class..' no training weapon') end
+ eq(R.count(p,'equipped'),class=='knight' and 8 or 7,class..' all eligible slots filled')
+ eq(R.validate(p,C),true,class..' creation is valid')
+ eq(F.grant(p,R,C,'hero',class..'_weapon',1,'retired-test'),false,class..' retired training weapon cannot be granted')
+ eq(R.quantity(p,'hero',class..'_weapon'),0,class..' retired grant adds no training weapon')
  local stats=R.stats(p,'hero',C)
  eq(stats.power,5,class..' starter power ceiling');eq(stats.health,50,class..' starter HP ceiling');eq(stats.armor,5,class..' starter armor ceiling')
  local base=G.derived(class,p.heroes.hero.progression)
