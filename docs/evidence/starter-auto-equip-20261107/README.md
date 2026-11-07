@@ -12,3 +12,7 @@
 검증: `lua tests/starter-gear-balance.spec.lua`198·`starter-potions-and-shop.spec.lua`316·`inventory.spec.lua`271·`difficulty-enhancement.spec.lua`149·`hero-progression.spec.lua`656·`skill-stat-preview.spec.lua`1392·`retired-forge-equipment.spec.lua`486, 합계 **3468조건 PASS** ([로그](checks.log)).4클래스 실제 생성 결과/착용 위치·유효성·보너스·물약 보존·기존 아이템/저장·회복/강화·폐기 장비 차단을 검사한다. 수동 교환 검사의 과거 장착/가방 상태는 명시적 fixture로 분리했고, 저장불명 검사는 기본 무기 해제/재접속 보존으로 갱신했다. 빌드/엔진 결과는 아래 후속 기록한다.
 
 미검증: 게시된 Roblox 클라이언트/라이브 DataStore·실기기·사용자 시각 수용. 다음 담당 QA는 새 Play/신규 계정에서4클래스 생성→장비 창→배틀 진입→재접속 후 착용/공격/방패를 확인한다. 기존 영웅 소급 정리·실제 게시·릴리스 태그는 이번 범위에 포함하지 않는다.
+
+## 최종 고정 빌드·엔진 결과
+
+소스 `8403c2c240be9b10ba12385b06113834a8023135`를 origin/main에 푸시한 뒤0.79.9 단일 빌드 성공. 산출물 `builds/0.79.9/TheLastThrone-0.79.9.rbxlx`, SHA-256 `98c6562f79b6c36491e4d53e8751310afaa673a0412a1e3f7b5e6146a98cb4b1` ([빌드 기록](build.json)). `run-in-roblox --place builds/0.79.9/TheLastThrone-0.79.9.rbxlx --script tests/starter-gear-balance.spec.lua`로 소스 주입 없이 실제 모듈의4클래스 생성/착용/수치 **198조건 PASS** ([엔진 로그](native.log)). 역할10·도착로딩192·마운트/구성 검사 PASS ([로그](build-checks.log)). 기존203785492 asset-type 경고는 이미지 권한 수용과 구분한다. 검사용 Studio는 run-in-roblox 완료로 종료한다. 신규 LFS 대상 없음, 게시/릴리스 태그 없음. 이전0.79.8의 HUD 한 줄 수정도 이 빌드에 포함한다. 검증 후 증거를 별도 커밋·푸시한다.
