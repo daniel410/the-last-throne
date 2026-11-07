@@ -10,19 +10,28 @@
       "file": "Webling.png",
       "width": 1536,
       "height": 1024,
-      "sha256": "d65b745467f0f6f66a6ce544bbdc44478a44be6751c7153486859c6d859042e8",
+      "sha256": "de2f0ee524047edc07869ce6fe0bdbeab39f254803b49ec511e067c5e0293607",
       "alpha_min": 0,
       "alpha_max": 254,
-      "transparent_pixels": 1009252,
-      "alpha_below_128": 1034766,
-      "alpha_at_least_250": 523202,
+      "transparent_pixels": 890572,
+      "alpha_below_128": 979908,
+      "alpha_at_least_250": 571844,
       "subject_bbox_alpha128": [
-        129,
-        70,
-        1433,
-        989
+        97,
+        53,
+        1439,
+        990
       ],
-      "corners_transparent": true
+      "corners_transparent": true,
+      "corner_alpha_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "revision": 3,
+      "walking_leg_count": 8,
+      "visual_validation": "최종 이미지에서 좌우4개씩 분리된 보행 다리/발 총8개 확인. 최초 재생성본은6개여서 미채택."
     },
     {
       "id": "Silkweaver",
@@ -30,21 +39,28 @@
       "file": "Silkweaver.png",
       "width": 1536,
       "height": 1024,
-      "sha256": "e3b1716237bad939bd24becf24f3e9dd9a3228bfeebd2728f50ab8d853cb6906",
+      "sha256": "299b514de6d179f60419cd0443fed6256d08d47b24fd5998bb8d872297970295",
       "alpha_min": 0,
       "alpha_max": 254,
-      "transparent_pixels": 1077446,
-      "alpha_below_128": 1133705,
-      "alpha_at_least_250": 422954,
+      "transparent_pixels": 861514,
+      "alpha_below_128": 1054636,
+      "alpha_at_least_250": 486074,
       "subject_bbox_alpha128": [
-        63,
-        9,
-        1474,
-        1017
+        71,
+        14,
+        1466,
+        1014
       ],
       "corners_transparent": true,
-      "revision": 2,
-      "visual_validation": "사용자 지시: 다리 좌우3개씩 총6개. 첫 수정본은5개여서 미채택, 두 번째 수정본에서6개를 시각 확인."
+      "revision": 3,
+      "visual_validation": "최종 이미지에서 좌우4개씩 분리된 보행 다리/발 총8개 확인. 최초 재생성본은6개여서 미채택.",
+      "corner_alpha_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "walking_leg_count": 8
     },
     {
       "id": "Barkstalker",
@@ -52,19 +68,28 @@
       "file": "Barkstalker.png",
       "width": 1536,
       "height": 1024,
-      "sha256": "de52ca8b1e29dd91ff8a033f24cc2edb6bab46fed3e03e522791e01432b66bae",
+      "sha256": "cb37055313f374e87ed24d72f8288c1261253794889220ee8a4770169cccd439",
       "alpha_min": 0,
       "alpha_max": 254,
-      "transparent_pixels": 852364,
-      "alpha_below_128": 884516,
-      "alpha_at_least_250": 669988,
+      "transparent_pixels": 850561,
+      "alpha_below_128": 901423,
+      "alpha_at_least_250": 642797,
       "subject_bbox_alpha128": [
         82,
-        27,
-        1469,
-        1016
+        16,
+        1451,
+        1014
       ],
-      "corners_transparent": true
+      "corners_transparent": false,
+      "corner_alpha_values": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "revision": 3,
+      "walking_leg_count": 8,
+      "visual_validation": "최종 이미지에서 좌우4개씩 분리된 보행 다리/발 총8개 확인. 최초 재생성본은6개여서 미채택."
     },
     {
       "id": "Gloambat",
@@ -114,19 +139,28 @@
       "file": "WidowQueen.png",
       "width": 1536,
       "height": 1024,
-      "sha256": "3cf5fa412231438d8ad2028e89265964b9331b4ad5bb690d1f33cedc3cc783c8",
+      "sha256": "4898ac88ce1fc4724bdcf605b0d617d1654b0ada6fffc66bd33213c5f6420d05",
       "alpha_min": 0,
       "alpha_max": 254,
-      "transparent_pixels": 847442,
-      "alpha_below_128": 876609,
-      "alpha_at_least_250": 681667,
+      "transparent_pixels": 761492,
+      "alpha_below_128": 821482,
+      "alpha_at_least_250": 728352,
       "subject_bbox_alpha128": [
-        112,
-        19,
-        1424,
-        1009
+        97,
+        10,
+        1439,
+        1020
       ],
-      "corners_transparent": true
+      "corners_transparent": true,
+      "corner_alpha_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "revision": 3,
+      "walking_leg_count": 8,
+      "visual_validation": "최종 이미지에서 좌우4개씩 분리된 보행 다리/발 총8개 확인. 최초 재생성본은6개여서 미채택."
     },
     {
       "id": "AncientHollowbark",
@@ -170,5 +204,6 @@
     }
   ],
   "validation": "PNG decode, RGBA alpha, transparent exterior, visible subject, file SHA256. Generated images visually reviewed. Exact limb/segment topology and hidden surfaces require 3D work.",
-  "corrections": "prompts/corrections-v2.json"
+  "corrections": "prompts/corrections-v2.json",
+  "spider_corrections": "prompts/spiders-eight-legs-v3.json"
 }
