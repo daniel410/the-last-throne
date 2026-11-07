@@ -317,19 +317,21 @@ function LobbyGui.create(request,onManage)
 		cards.AutomaticCanvasSize=short and Enum.AutomaticSize.X or Enum.AutomaticSize.Y
 		grid.FillDirectionMaxCells=short and 4 or 0
 		local columns=compact and 2 or 4
-		grid.CellSize=short and UDim2.new(.32,-10,1,-8) or UDim2.new(1/columns,-(columns==4 and 12 or 9),0,compact and 282 or math.max(260,cards.AbsoluteSize.Y-8))
+		-- Four portraits must fit without scrolling; a three-column wrap hides Mage.
+		grid.CellSize=short and UDim2.new(.25,-8,1,-8) or UDim2.new(1/columns,-(columns==4 and 12 or 9),0,compact and 282 or math.max(260,cards.AbsoluteSize.Y-8))
 		grid.CellPadding=UDim2.fromOffset(10,16)
 		for _,view in pairs(cardViews) do
-		 view.portrait.Size=UDim2.new(1,-18,1,short and -90 or -142)
-		 view.fallback.Size=UDim2.new(1,-24,1,short and -100 or -152)
-		 view.plaque.Position=UDim2.new(0,0,1,short and -83 or -146)
+		 view.portrait.Size=UDim2.new(1,-18,1,short and -96 or -142)
+		 view.fallback.Size=UDim2.new(1,-24,1,short and -106 or -152)
+		 view.plaque.Position=UDim2.new(0,0,1,short and -89 or -146)
 		 view.plaque.Size=UDim2.new(1,0,0,short and 28 or 48)
 		 view.plaque.Caption.TextSize=short and 14 or 20
 		 view.role.Visible=not short
-		 view.status.Position=UDim2.new(0,10,1,short and -56 or -76)
+		 view.status.Position=UDim2.new(0,10,1,short and -62 or -76)
 		 view.status.Size=UDim2.new(1,-20,0,short and 14 or 20)
-		 view.button.Position=UDim2.new(0,10,1,short and -42 or -52)
-		 view.button.Size=UDim2.new(1,-20,0,short and 38 or 42)
+		 view.button.Position=UDim2.new(0,10,1,short and -48 or -52)
+		 view.button.Size=UDim2.new(1,-20,0,short and 44 or 42)
+		 view.button.TextSize=short and compact and 10 or 13
 		end
 		classLock.Position,classLock.Size=UDim2.new(0,22,1,-106),UDim2.new(1,-44,0,28)
 		classLock.TextSize=10;classLock.Visible=not short

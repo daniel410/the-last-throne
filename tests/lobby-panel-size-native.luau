@@ -44,7 +44,7 @@ local ok,err=xpcall(function()
  player:SetAttribute('K0SessionPhase','Lobby');task.wait()
  local panels={armory.panel,items.panel,diamonds.panel,navigation.panel,expedition.panel,settingsShade.SettingsPanel,invShade.ClaimsOverlay.ClaimsPopup}
  local atlas=require(client.LobbyAtlas).create(navigation.panel)
- for _,size in ipairs({Vector2.new(1280,800),Vector2.new(750,323),Vector2.new(390,780)})do
+ for _,size in ipairs({Vector2.new(1280,800),Vector2.new(1280,591),Vector2.new(750,323),Vector2.new(568,320),Vector2.new(390,780)})do
   host.Size=UDim2.fromOffset(size.X,size.Y);heroShade.Size=host.Size;invShade.Size=host.Size;growthShade.Size=host.Size;settingsShade.Size=host.Size;task.wait(.1)
   local h=hero.AbsoluteSize
   for _,panel in ipairs(panels)do
@@ -64,11 +64,18 @@ local ok,err=xpcall(function()
   check(atlas.root.Atlas.AbsolutePosition.Y+atlas.root.Atlas.AbsoluteSize.Y<=atlas.root.RegionDetail.AbsolutePosition.Y+1,'map and detail do not overlap')
   check(expedition.panel.PartyList.AbsoluteSize.Y>0,'party list has usable scroll area')
   check(hero.HeroCards.AbsoluteSize.Y>0,'hero cards remain visible')
-  if size.Y<400 then
+  if h.Y<480 then
    local cards=hero.HeroCards;local card=cards.knight
    check(cards.ScrollingDirection==Enum.ScrollingDirection.X and cards.AutomaticCanvasSize==Enum.AutomaticSize.X,'short screen uses horizontal hero scrolling')
    check(card.AbsoluteSize.Y<=cards.AbsoluteSize.Y and card.ChooseHero.AbsolutePosition.Y+card.ChooseHero.AbsoluteSize.Y<=cards.AbsolutePosition.Y+cards.AbsoluteSize.Y,'hero choice fits the card viewport')
-   check(card.ChooseHero.AbsoluteSize.Y>=38,'hero selection remains touch sized')
+   for _,classId in ipairs({'knight','elf','dwarf','mage'})do
+    local choice=cards[classId].ChooseHero
+    local p,s=choice.AbsolutePosition,choice.AbsoluteSize
+    check(p.X>=cards.AbsolutePosition.X and p.X+s.X<=cards.AbsolutePosition.X+cards.AbsoluteSize.X+1,'every hero selection fits horizontally: '..classId..' at '..tostring(size))
+    check(p.Y>=cards.AbsolutePosition.Y and p.Y+s.Y<=cards.AbsolutePosition.Y+cards.AbsoluteSize.Y+1,'every hero selection fits vertically: '..classId..' at '..tostring(size))
+    check(s.Y>=44,'hero selection remains touch sized: '..classId)
+    check(math.abs(cards[classId].AbsolutePosition.Y-card.AbsolutePosition.Y)<1,'all four heroes share one row: '..classId)
+   end
    check(hero.TitlePlaque.AbsolutePosition.Y>=hero.AbsolutePosition.Y,'short screen title stays inside panel')
    check(hero.ExploreCourtyard.AbsolutePosition.Y+hero.ExploreCourtyard.AbsoluteSize.Y<=cards.AbsolutePosition.Y,'close button stays above cards')
   end
