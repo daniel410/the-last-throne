@@ -86,6 +86,7 @@ function Motion.bind(model)
   end
  end
  s.gloam=GloamMotion.bind(model)
+ if model:GetAttribute('GloamwoodMeshyVersion') and not s.gloam then return nil end
  s.caster=CasterMotion.bind(model,visual,s.height)
  if model:GetAttribute('TdSkinnedCaster') and not s.caster then return nil end
  s.weaponFX=WeaponMotion.bind(model,s.caster)
@@ -93,6 +94,10 @@ function Motion.bind(model)
 end
 function Motion.step(s,dt,current)
  dt=clamp(dt,0,.25)
+ if s.gloam and s.gloam.skinned then
+  GloamMotion.stepSkinned(s.gloam,s,dt,current,Motion.attackPhase)
+  return
+ end
  if s.caster then
   local humanoid=s.model:FindFirstChildOfClass('Humanoid')
   if not humanoid or humanoid.Health<=0 or s.model:GetAttribute('K0EnemyState')=='Dead'then WeaponMotion.hide(s.weaponFX);return end
@@ -130,7 +135,6 @@ function Motion.step(s,dt,current)
  elseif s.attack and (state=='Windup' or state=='Active' or state=='Recovery') then
   local a=s.attack;attackPhase=PatternPose.phase(s.model,current,a)or Motion.attackPhase(current-a.start,a.w,a.a,a.r);target=Motion.sample(s.kind,a.clip,attackPhase)
  end
- GloamMotion.step(s.gloam,s.model,current,moving,attackActive and attackPhase or nil)
  -- Attack timing is sampled directly; smoothing it would delay the impact.
  -- Reviewed gaits are already continuous distance samples. A second pose lerp
  -- shifts the feet behind their stance phase at running speed and causes skating.
@@ -177,6 +181,7 @@ function Motion.step(s,dt,current)
  WeaponMotion.step(s.weaponFX,attackPhase,attackActive,s.attack and s.attack.heavy,clock,current,s.viewDistance or 0,distance>math.max(3,s.height*1.5))
 end
 function Motion.unbind(s)
+ GloamMotion.reset(s.gloam)
  CasterMotion.reset(s.caster)
  WeaponMotion.destroy(s.weaponFX);s.weaponFX=nil
  if s.body.Parent then s.body.Size=s.bodySize end

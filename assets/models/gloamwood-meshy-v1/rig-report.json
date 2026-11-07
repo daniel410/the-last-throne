@@ -1,0 +1,1330 @@
+[
+  {
+    "kind": "Webling",
+    "shape": "spider",
+    "bones": [
+      {
+        "name": "Root",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "role": "body"
+      },
+      {
+        "name": "Body",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": "Root",
+        "role": "body"
+      },
+      {
+        "name": "LegUpper_L_1",
+        "head": [
+          -0.10000000149011612,
+          -0.11999999731779099,
+          0.019999999552965164
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_1",
+        "head": [
+          -0.2199999988079071,
+          -0.23000000417232513,
+          0.05000000074505806
+        ],
+        "parent": "LegUpper_L_1",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_2",
+        "head": [
+          -0.10000000149011612,
+          -0.03999999910593033,
+          0.029999999329447746
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_2",
+        "head": [
+          -0.28999999165534973,
+          -0.07999999821186066,
+          0.10000000149011612
+        ],
+        "parent": "LegUpper_L_2",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_3",
+        "head": [
+          -0.11999999731779099,
+          0.05000000074505806,
+          0.03999999910593033
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_3",
+        "head": [
+          -0.3199999928474426,
+          0.05000000074505806,
+          0.12999999523162842
+        ],
+        "parent": "LegUpper_L_3",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_4",
+        "head": [
+          -0.14000000059604645,
+          0.12999999523162842,
+          0.05999999865889549
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_4",
+        "head": [
+          -0.3400000035762787,
+          0.17000000178813934,
+          0.17000000178813934
+        ],
+        "parent": "LegUpper_L_4",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_1",
+        "head": [
+          0.10000000149011612,
+          -0.11999999731779099,
+          0.019999999552965164
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_1",
+        "head": [
+          0.2199999988079071,
+          -0.23000000417232513,
+          0.05000000074505806
+        ],
+        "parent": "LegUpper_R_1",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_2",
+        "head": [
+          0.10000000149011612,
+          -0.03999999910593033,
+          0.029999999329447746
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_2",
+        "head": [
+          0.28999999165534973,
+          -0.07999999821186066,
+          0.10000000149011612
+        ],
+        "parent": "LegUpper_R_2",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_3",
+        "head": [
+          0.11999999731779099,
+          0.05000000074505806,
+          0.03999999910593033
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_3",
+        "head": [
+          0.3199999928474426,
+          0.05000000074505806,
+          0.12999999523162842
+        ],
+        "parent": "LegUpper_R_3",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_4",
+        "head": [
+          0.14000000059604645,
+          0.12999999523162842,
+          0.05999999865889549
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_4",
+        "head": [
+          0.3400000035762787,
+          0.17000000178813934,
+          0.17000000178813934
+        ],
+        "parent": "LegUpper_R_4",
+        "role": "leg"
+      }
+    ],
+    "triangles": 2023,
+    "vertices": 2321,
+    "clips": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "AttackAlt",
+      "Heavy",
+      "HeavyAlt",
+      "Stunned",
+      "Exposed",
+      "Return",
+      "Interrupted"
+    ],
+    "source": "Amethyst_Arachnid"
+  },
+  {
+    "kind": "Silkweaver",
+    "shape": "spider",
+    "bones": [
+      {
+        "name": "Root",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "role": "body"
+      },
+      {
+        "name": "Body",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": "Root",
+        "role": "body"
+      },
+      {
+        "name": "LegUpper_L_1",
+        "head": [
+          -0.07999999821186066,
+          -0.14000000059604645,
+          0.009999999776482582
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_1",
+        "head": [
+          -0.20999999344348907,
+          -0.1899999976158142,
+          0.05999999865889549
+        ],
+        "parent": "LegUpper_L_1",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_2",
+        "head": [
+          -0.07999999821186066,
+          -0.05999999865889549,
+          0.019999999552965164
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_2",
+        "head": [
+          -0.28999999165534973,
+          -0.10000000149011612,
+          0.10999999940395355
+        ],
+        "parent": "LegUpper_L_2",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_3",
+        "head": [
+          -0.09000000357627869,
+          0.019999999552965164,
+          0.029999999329447746
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_3",
+        "head": [
+          -0.3499999940395355,
+          0.03999999910593033,
+          0.14000000059604645
+        ],
+        "parent": "LegUpper_L_3",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_4",
+        "head": [
+          -0.10000000149011612,
+          0.07999999821186066,
+          0.03999999910593033
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_4",
+        "head": [
+          -0.3400000035762787,
+          0.20999999344348907,
+          0.17000000178813934
+        ],
+        "parent": "LegUpper_L_4",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_1",
+        "head": [
+          0.07999999821186066,
+          -0.14000000059604645,
+          0.009999999776482582
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_1",
+        "head": [
+          0.20999999344348907,
+          -0.1899999976158142,
+          0.05999999865889549
+        ],
+        "parent": "LegUpper_R_1",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_2",
+        "head": [
+          0.07999999821186066,
+          -0.05999999865889549,
+          0.019999999552965164
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_2",
+        "head": [
+          0.28999999165534973,
+          -0.10000000149011612,
+          0.10999999940395355
+        ],
+        "parent": "LegUpper_R_2",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_3",
+        "head": [
+          0.09000000357627869,
+          0.019999999552965164,
+          0.029999999329447746
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_3",
+        "head": [
+          0.3499999940395355,
+          0.03999999910593033,
+          0.14000000059604645
+        ],
+        "parent": "LegUpper_R_3",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_4",
+        "head": [
+          0.10000000149011612,
+          0.07999999821186066,
+          0.03999999910593033
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_4",
+        "head": [
+          0.3400000035762787,
+          0.20999999344348907,
+          0.17000000178813934
+        ],
+        "parent": "LegUpper_R_4",
+        "role": "leg"
+      }
+    ],
+    "triangles": 2084,
+    "vertices": 2323,
+    "clips": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "AttackAlt",
+      "Heavy",
+      "HeavyAlt",
+      "Stunned",
+      "Exposed",
+      "Return",
+      "Interrupted"
+    ],
+    "source": "Amethyst_Bone_Spider"
+  },
+  {
+    "kind": "Barkstalker",
+    "shape": "spider",
+    "bones": [
+      {
+        "name": "Root",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "role": "body"
+      },
+      {
+        "name": "Body",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": "Root",
+        "role": "body"
+      },
+      {
+        "name": "LegUpper_L_1",
+        "head": [
+          -0.09000000357627869,
+          -0.11999999731779099,
+          -0.019999999552965164
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_1",
+        "head": [
+          -0.23000000417232513,
+          -0.20999999344348907,
+          0.009999999776482582
+        ],
+        "parent": "LegUpper_L_1",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_2",
+        "head": [
+          -0.10999999940395355,
+          -0.009999999776482582,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_2",
+        "head": [
+          -0.3199999928474426,
+          -0.10000000149011612,
+          0.05000000074505806
+        ],
+        "parent": "LegUpper_L_2",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_3",
+        "head": [
+          -0.14000000059604645,
+          0.11999999731779099,
+          0.019999999552965164
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_3",
+        "head": [
+          -0.3799999952316284,
+          0.11999999731779099,
+          0.10000000149011612
+        ],
+        "parent": "LegUpper_L_3",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_4",
+        "head": [
+          -0.15000000596046448,
+          0.2199999988079071,
+          0.029999999329447746
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_4",
+        "head": [
+          -0.38999998569488525,
+          0.28999999165534973,
+          0.12999999523162842
+        ],
+        "parent": "LegUpper_L_4",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_1",
+        "head": [
+          0.09000000357627869,
+          -0.11999999731779099,
+          -0.019999999552965164
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_1",
+        "head": [
+          0.23000000417232513,
+          -0.20999999344348907,
+          0.009999999776482582
+        ],
+        "parent": "LegUpper_R_1",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_2",
+        "head": [
+          0.10999999940395355,
+          -0.009999999776482582,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_2",
+        "head": [
+          0.3199999928474426,
+          -0.10000000149011612,
+          0.05000000074505806
+        ],
+        "parent": "LegUpper_R_2",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_3",
+        "head": [
+          0.14000000059604645,
+          0.11999999731779099,
+          0.019999999552965164
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_3",
+        "head": [
+          0.3799999952316284,
+          0.11999999731779099,
+          0.10000000149011612
+        ],
+        "parent": "LegUpper_R_3",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_4",
+        "head": [
+          0.15000000596046448,
+          0.2199999988079071,
+          0.029999999329447746
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_4",
+        "head": [
+          0.38999998569488525,
+          0.28999999165534973,
+          0.12999999523162842
+        ],
+        "parent": "LegUpper_R_4",
+        "role": "leg"
+      }
+    ],
+    "triangles": 1976,
+    "vertices": 2418,
+    "clips": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "AttackAlt",
+      "Heavy",
+      "HeavyAlt",
+      "Stunned",
+      "Exposed",
+      "Return",
+      "Interrupted"
+    ],
+    "source": "Mossfang_Arachnid"
+  },
+  {
+    "kind": "WidowQueen",
+    "shape": "spider",
+    "bones": [
+      {
+        "name": "Root",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "role": "body"
+      },
+      {
+        "name": "Body",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": "Root",
+        "role": "body"
+      },
+      {
+        "name": "LegUpper_L_1",
+        "head": [
+          -0.11999999731779099,
+          -0.12999999523162842,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_1",
+        "head": [
+          -0.23000000417232513,
+          -0.20999999344348907,
+          0.07000000029802322
+        ],
+        "parent": "LegUpper_L_1",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_2",
+        "head": [
+          -0.12999999523162842,
+          -0.019999999552965164,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_2",
+        "head": [
+          -0.3100000023841858,
+          -0.07999999821186066,
+          0.07000000029802322
+        ],
+        "parent": "LegUpper_L_2",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_3",
+        "head": [
+          -0.1599999964237213,
+          0.10000000149011612,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_3",
+        "head": [
+          -0.36000001430511475,
+          0.10000000149011612,
+          0.07000000029802322
+        ],
+        "parent": "LegUpper_L_3",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_L_4",
+        "head": [
+          -0.17000000178813934,
+          0.23000000417232513,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_L_4",
+        "head": [
+          -0.4000000059604645,
+          0.28999999165534973,
+          0.07999999821186066
+        ],
+        "parent": "LegUpper_L_4",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_1",
+        "head": [
+          0.11999999731779099,
+          -0.12999999523162842,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_1",
+        "head": [
+          0.23000000417232513,
+          -0.20999999344348907,
+          0.07000000029802322
+        ],
+        "parent": "LegUpper_R_1",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_2",
+        "head": [
+          0.12999999523162842,
+          -0.019999999552965164,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_2",
+        "head": [
+          0.3100000023841858,
+          -0.07999999821186066,
+          0.07000000029802322
+        ],
+        "parent": "LegUpper_R_2",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_3",
+        "head": [
+          0.1599999964237213,
+          0.10000000149011612,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_3",
+        "head": [
+          0.36000001430511475,
+          0.10000000149011612,
+          0.07000000029802322
+        ],
+        "parent": "LegUpper_R_3",
+        "role": "leg"
+      },
+      {
+        "name": "LegUpper_R_4",
+        "head": [
+          0.17000000178813934,
+          0.23000000417232513,
+          0
+        ],
+        "parent": "Body",
+        "role": "leg"
+      },
+      {
+        "name": "LegLower_R_4",
+        "head": [
+          0.4000000059604645,
+          0.28999999165534973,
+          0.07999999821186066
+        ],
+        "parent": "LegUpper_R_4",
+        "role": "leg"
+      }
+    ],
+    "triangles": 2070,
+    "vertices": 2381,
+    "clips": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "AttackAlt",
+      "Heavy",
+      "HeavyAlt",
+      "Stunned",
+      "Exposed",
+      "Return",
+      "Interrupted"
+    ],
+    "source": "Amethyst_Skullspider"
+  },
+  {
+    "kind": "Gloambat",
+    "shape": "bat",
+    "bones": [
+      {
+        "name": "Root",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "role": "body"
+      },
+      {
+        "name": "Body",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": "Root",
+        "role": "body"
+      },
+      {
+        "name": "Wing_L",
+        "head": [
+          -0.055,
+          -0.02,
+          0.02
+        ],
+        "parent": "Body",
+        "role": "wing"
+      },
+      {
+        "name": "WingTip_L",
+        "head": [
+          -0.25,
+          0.01,
+          0.06
+        ],
+        "parent": "Wing_L",
+        "role": "wing"
+      },
+      {
+        "name": "Wing_R",
+        "head": [
+          0.055,
+          -0.02,
+          0.02
+        ],
+        "parent": "Body",
+        "role": "wing"
+      },
+      {
+        "name": "WingTip_R",
+        "head": [
+          0.25,
+          0.01,
+          0.06
+        ],
+        "parent": "Wing_R",
+        "role": "wing"
+      }
+    ],
+    "triangles": 2099,
+    "vertices": 2570,
+    "clips": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "AttackAlt",
+      "Heavy",
+      "HeavyAlt",
+      "Stunned",
+      "Exposed",
+      "Return",
+      "Interrupted"
+    ],
+    "source": "Amethyst_Nightfang"
+  },
+  {
+    "kind": "VenomcoilCentipede",
+    "shape": "centipede",
+    "bones": [
+      {
+        "name": "Root",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "role": "body"
+      },
+      {
+        "name": "Body",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": "Root",
+        "role": "body"
+      },
+      {
+        "name": "Segment0",
+        "head": [
+          0.17,
+          -0.34,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment1",
+        "head": [
+          0.15,
+          -0.25,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment2",
+        "head": [
+          0.17,
+          -0.15,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment3",
+        "head": [
+          0.18,
+          -0.05,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment4",
+        "head": [
+          0.19,
+          0.05,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment5",
+        "head": [
+          0.18,
+          0.15,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment6",
+        "head": [
+          0.14,
+          0.24,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment7",
+        "head": [
+          0.08,
+          0.31,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment8",
+        "head": [
+          -0.02,
+          0.36,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment9",
+        "head": [
+          -0.12,
+          0.39,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment10",
+        "head": [
+          -0.21,
+          0.42,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment11",
+        "head": [
+          -0.28,
+          0.43,
+          -0.02
+        ],
+        "parent": "Body",
+        "role": "segment"
+      }
+    ],
+    "triangles": 1982,
+    "vertices": 2214,
+    "clips": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "AttackAlt",
+      "Heavy",
+      "HeavyAlt",
+      "Stunned",
+      "Exposed",
+      "Return",
+      "Interrupted"
+    ],
+    "source": "Crimson_Centipede"
+  },
+  {
+    "kind": "VenomcoilKing",
+    "shape": "centipede",
+    "bones": [
+      {
+        "name": "Root",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "role": "body"
+      },
+      {
+        "name": "Body",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": "Root",
+        "role": "body"
+      },
+      {
+        "name": "Segment0",
+        "head": [
+          -0.08,
+          -0.32,
+          0.06
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment1",
+        "head": [
+          -0.06,
+          -0.24,
+          0.015
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment2",
+        "head": [
+          -0.02,
+          -0.15,
+          -0.03
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment3",
+        "head": [
+          0.04,
+          -0.06,
+          -0.07500000000000001
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment4",
+        "head": [
+          0.1,
+          0.04,
+          -0.12
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment5",
+        "head": [
+          0.15,
+          0.14,
+          -0.16499999999999998
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment6",
+        "head": [
+          0.17,
+          0.24,
+          -0.19
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment7",
+        "head": [
+          0.12,
+          0.32,
+          -0.19
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment8",
+        "head": [
+          0.04,
+          0.39,
+          -0.19
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment9",
+        "head": [
+          -0.05,
+          0.43,
+          -0.19
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment10",
+        "head": [
+          -0.14,
+          0.45,
+          -0.19
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment11",
+        "head": [
+          -0.23,
+          0.46,
+          -0.19
+        ],
+        "parent": "Body",
+        "role": "segment"
+      }
+    ],
+    "triangles": 1876,
+    "vertices": 2287,
+    "clips": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "AttackAlt",
+      "Heavy",
+      "HeavyAlt",
+      "Stunned",
+      "Exposed",
+      "Return",
+      "Interrupted"
+    ],
+    "source": "Crimson_Crystal_Scorpion"
+  },
+  {
+    "kind": "AncientHollowbark",
+    "shape": "ent",
+    "bones": [
+      {
+        "name": "Root",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "role": "body"
+      },
+      {
+        "name": "Body",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": "Root",
+        "role": "body"
+      },
+      {
+        "name": "ArmL",
+        "head": [
+          -0.18000000715255737,
+          0,
+          0.1599999964237213
+        ],
+        "parent": "Body",
+        "role": "limb"
+      },
+      {
+        "name": "ForearmL",
+        "head": [
+          -0.33000001311302185,
+          -0.009999999776482582,
+          -0.05000000074505806
+        ],
+        "parent": "ArmL",
+        "role": "limb"
+      },
+      {
+        "name": "ThighL",
+        "head": [
+          -0.12999999523162842,
+          0.019999999552965164,
+          -0.10999999940395355
+        ],
+        "parent": "Body",
+        "role": "limb"
+      },
+      {
+        "name": "ShinL",
+        "head": [
+          -0.15000000596046448,
+          0.019999999552965164,
+          -0.25
+        ],
+        "parent": "ThighL",
+        "role": "limb"
+      },
+      {
+        "name": "ArmR",
+        "head": [
+          0.18000000715255737,
+          0,
+          0.1599999964237213
+        ],
+        "parent": "Body",
+        "role": "limb"
+      },
+      {
+        "name": "ForearmR",
+        "head": [
+          0.33000001311302185,
+          -0.009999999776482582,
+          -0.05000000074505806
+        ],
+        "parent": "ArmR",
+        "role": "limb"
+      },
+      {
+        "name": "ThighR",
+        "head": [
+          0.12999999523162842,
+          0.019999999552965164,
+          -0.10999999940395355
+        ],
+        "parent": "Body",
+        "role": "limb"
+      },
+      {
+        "name": "ShinR",
+        "head": [
+          0.15000000596046448,
+          0.019999999552965164,
+          -0.25
+        ],
+        "parent": "ThighR",
+        "role": "limb"
+      }
+    ],
+    "triangles": 1802,
+    "vertices": 2534,
+    "clips": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "AttackAlt",
+      "Heavy",
+      "HeavyAlt",
+      "Stunned",
+      "Exposed",
+      "Return",
+      "Interrupted"
+    ],
+    "source": "Ancient_Forest_Golem"
+  }
+]

@@ -69,7 +69,7 @@ local modelParts=0
 for _,kind in ipairs(nativeKinds)do
  local rig=actor(kind,Vector3.new(30,4,0)).model;rig:SetAttribute('EnemyKind',kind)
  local visual=deps.GloamwoodAppearance.attach(rig,kind,3,1)
- check(rig:GetAttribute('GloamwoodPrototypeVersion')==2,'derived geometry version')
+ check(rig:GetAttribute('GloamwoodMeshyVersion')==1 and rig:GetAttribute('GloamwoodPrototypeVersion')==nil,'imported skinned geometry version')
  deps.EnemyModelDetails.attach(rig,kind,visual,3,rig:GetAttribute('TdMonsterTargetHeight'))
  for _,o in ipairs(visual:GetDescendants())do if o:IsA('BasePart')then modelParts+=1;check(not o.CanCollide and not o.CanTouch and not o.CanQuery and o.Massless,'visual-only geometry')end end
  check(rig:FindFirstChild('EnemyCastSocket',true)~=nil,'cast socket')

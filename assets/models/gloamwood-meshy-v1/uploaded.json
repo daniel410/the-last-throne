@@ -1,0 +1,170 @@
+[
+  {
+    "kind": "Webling",
+    "operationId": "deda276a-6f3f-4481-960c-6514344b5cab",
+    "path": "assets/92599589241180",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-07T17:43:20.993Z",
+    "assetId": "92599589241180",
+    "displayName": "TLT Gloamwood Webling Rig v1",
+    "description": "Gloamwood Webling. User-created Meshy source with custom eight-leg rig and local motion reference.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  },
+  {
+    "kind": "Silkweaver",
+    "operationId": "927b7521-700f-4702-894f-a11b82b34eb9",
+    "path": "assets/72675738041334",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-07T17:43:23.453Z",
+    "assetId": "72675738041334",
+    "displayName": "TLT Gloamwood Silkweaver Rig v1",
+    "description": "User-created Meshy Gloamwood monster with custom anatomical rig; cosmetic motion only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  },
+  {
+    "kind": "Barkstalker",
+    "operationId": "1372e755-b6e8-4435-a655-f6410d389ea6",
+    "path": "assets/92493238009633",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-07T17:43:21.049Z",
+    "assetId": "92493238009633",
+    "displayName": "TLT Gloamwood Barkstalker Rig v1",
+    "description": "User-created Meshy Gloamwood monster with custom anatomical rig; cosmetic motion only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  },
+  {
+    "kind": "WidowQueen",
+    "operationId": "2227886a-d076-4692-aafb-f5e93435c4e6",
+    "path": "assets/71560722554123",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-07T17:43:26.985Z",
+    "assetId": "71560722554123",
+    "displayName": "TLT Gloamwood WidowQueen Rig v1",
+    "description": "User-created Meshy Gloamwood monster with custom anatomical rig; cosmetic motion only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  },
+  {
+    "kind": "Gloambat",
+    "operationId": "9427d950-e28e-4864-8f93-795b9a5cc63c",
+    "path": "assets/90087256113495",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-07T17:43:25.375Z",
+    "assetId": "90087256113495",
+    "displayName": "TLT Gloamwood Gloambat Rig v1",
+    "description": "User-created Meshy Gloamwood monster with custom anatomical rig; cosmetic motion only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  },
+  {
+    "kind": "VenomcoilCentipede",
+    "operationId": "44b4406e-d96f-44eb-acc0-20e6b8e58391",
+    "path": "assets/126710747385060",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-07T17:43:25.371Z",
+    "assetId": "126710747385060",
+    "displayName": "TLT Gloamwood VenomcoilCentipede Rig v1",
+    "description": "User-created Meshy Gloamwood monster with custom anatomical rig; cosmetic motion only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  },
+  {
+    "kind": "VenomcoilKing",
+    "operationId": "8e04ce28-188b-408e-b3e5-ca51981da4b2",
+    "path": "assets/90620890641534",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-07T17:43:26.928Z",
+    "assetId": "90620890641534",
+    "displayName": "TLT Gloamwood VenomcoilKing Rig v1",
+    "description": "User-created Meshy Gloamwood monster with custom anatomical rig; cosmetic motion only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  },
+  {
+    "kind": "AncientHollowbark",
+    "operationId": "2980fcfb-fca6-4e9a-b2bc-f3a6dc09d6a1",
+    "path": "assets/76121457381371",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-07T17:43:23.925Z",
+    "assetId": "76121457381371",
+    "displayName": "TLT Gloamwood AncientHollowbark Rig v1",
+    "description": "User-created Meshy Gloamwood monster with custom anatomical rig; cosmetic motion only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  }
+]

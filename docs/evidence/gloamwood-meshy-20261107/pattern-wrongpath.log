@@ -1,0 +1,4 @@
+[ERROR run_in_roblox] failed to open file `/tmp/tlt-enemy-pattern-native.luau`
+
+    Caused by:
+        No such file or directory (os error 2)

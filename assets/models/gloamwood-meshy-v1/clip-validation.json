@@ -1,0 +1,496 @@
+[
+  {
+    "kind": "AncientHollowbark",
+    "triangles": 1802,
+    "bones": 10,
+    "clips": {
+      "Idle": {
+        "duration": 2.4000000953674316,
+        "animatedBones": 1
+      },
+      "Walk": {
+        "duration": 1.0,
+        "animatedBones": 8
+      },
+      "Attack": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 5
+      },
+      "AttackAlt": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 5
+      },
+      "Heavy": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 5
+      },
+      "HeavyAlt": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 5
+      },
+      "Stunned": {
+        "duration": 0.699999988079071,
+        "animatedBones": 1
+      },
+      "Exposed": {
+        "duration": 1.0,
+        "animatedBones": 1
+      },
+      "Return": {
+        "duration": 0.5,
+        "animatedBones": 0
+      },
+      "Interrupted": {
+        "duration": 0.44999998807907104,
+        "animatedBones": 0
+      }
+    },
+    "originalMeshySourceSha256": "8090035acf8f850a1598d0e1eb44abd73942d93c1758192eddb883b099903b24",
+    "sourceSha256": "e1f08f07e58c3b7b1b80666a145f85bc9dd742fe47dddeb910508ef02cb82cad",
+    "moduleSha256": "d87e6c7972cce681aad0d0430295b7227c577f6050b3c67ebba87e399a21d624",
+    "childModules": {},
+    "sourceSurfaceMaxError": {
+      "POSITION": 0.0,
+      "TEXCOORD_0": 2.9802322387695312e-08
+    },
+    "allVertexWeightsNormalized": true,
+    "maxInfluences": 2,
+    "noRootVertexWeights": true,
+    "nativeRestFramesMatch": true
+  },
+  {
+    "kind": "Barkstalker",
+    "triangles": 1976,
+    "bones": 18,
+    "clips": {
+      "Idle": {
+        "duration": 2.4000000953674316,
+        "animatedBones": 1
+      },
+      "Walk": {
+        "duration": 1.0,
+        "animatedBones": 16
+      },
+      "Attack": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 9
+      },
+      "AttackAlt": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 9
+      },
+      "Heavy": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 9
+      },
+      "HeavyAlt": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 9
+      },
+      "Stunned": {
+        "duration": 0.699999988079071,
+        "animatedBones": 1
+      },
+      "Exposed": {
+        "duration": 1.0,
+        "animatedBones": 1
+      },
+      "Return": {
+        "duration": 0.5,
+        "animatedBones": 0
+      },
+      "Interrupted": {
+        "duration": 0.44999998807907104,
+        "animatedBones": 0
+      }
+    },
+    "originalMeshySourceSha256": "07c770a839691fe768cdbf813518dab008852c9625798020a744195f4e54c7af",
+    "sourceSha256": "f276f255851e885a895e02d13c6ec120dcc222bff4a22e13198e9c089629f571",
+    "moduleSha256": "3269b1426e07b3f65888d21de0519367c0618bd21f1ebd1901776272c65c3e53",
+    "childModules": {},
+    "sourceSurfaceMaxError": {
+      "POSITION": 0.0,
+      "TEXCOORD_0": 2.9802322387695312e-08
+    },
+    "allVertexWeightsNormalized": true,
+    "maxInfluences": 2,
+    "noRootVertexWeights": true,
+    "nativeRestFramesMatch": true
+  },
+  {
+    "kind": "Gloambat",
+    "triangles": 2099,
+    "bones": 6,
+    "clips": {
+      "Idle": {
+        "duration": 2.4000000953674316,
+        "animatedBones": 5
+      },
+      "Walk": {
+        "duration": 1.0,
+        "animatedBones": 4
+      },
+      "Attack": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 5
+      },
+      "AttackAlt": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 5
+      },
+      "Heavy": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 5
+      },
+      "HeavyAlt": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 5
+      },
+      "Stunned": {
+        "duration": 0.699999988079071,
+        "animatedBones": 1
+      },
+      "Exposed": {
+        "duration": 1.0,
+        "animatedBones": 1
+      },
+      "Return": {
+        "duration": 0.5,
+        "animatedBones": 0
+      },
+      "Interrupted": {
+        "duration": 0.44999998807907104,
+        "animatedBones": 0
+      }
+    },
+    "originalMeshySourceSha256": "2cb64e6d57c893871013b0dbc33da5623661c6b1b743433569de4a7f0deef129",
+    "sourceSha256": "51a207efac9c26102a7a40d0cc7ec6efe99f7eb6cdcb87774de5d4cd5175de7e",
+    "moduleSha256": "d706a7c51db658bab24bb18f9c1432bc75d3b0759cedb64a96423c1b0b35388c",
+    "childModules": {},
+    "sourceSurfaceMaxError": {
+      "POSITION": 0.0,
+      "TEXCOORD_0": 2.9802322387695312e-08
+    },
+    "allVertexWeightsNormalized": true,
+    "maxInfluences": 2,
+    "noRootVertexWeights": true,
+    "nativeRestFramesMatch": true
+  },
+  {
+    "kind": "Silkweaver",
+    "triangles": 2084,
+    "bones": 18,
+    "clips": {
+      "Idle": {
+        "duration": 2.4000000953674316,
+        "animatedBones": 1
+      },
+      "Walk": {
+        "duration": 1.0,
+        "animatedBones": 16
+      },
+      "Attack": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 9
+      },
+      "AttackAlt": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 9
+      },
+      "Heavy": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 9
+      },
+      "HeavyAlt": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 9
+      },
+      "Stunned": {
+        "duration": 0.699999988079071,
+        "animatedBones": 1
+      },
+      "Exposed": {
+        "duration": 1.0,
+        "animatedBones": 1
+      },
+      "Return": {
+        "duration": 0.5,
+        "animatedBones": 0
+      },
+      "Interrupted": {
+        "duration": 0.44999998807907104,
+        "animatedBones": 0
+      }
+    },
+    "originalMeshySourceSha256": "aa8964f5defbbfbf66580341e1787bd0a9e314e317b99135b9a2a9dec10b5b5c",
+    "sourceSha256": "5f4f0e90c6fd1228e4c499c3967b3aea632ab4f2b189a8a568e43e0e9f7a0f53",
+    "moduleSha256": "f81487b9f71b38f27df96c5f980f317bedcdf8e08f10a1347cdb8b1ffc6abe8e",
+    "childModules": {},
+    "sourceSurfaceMaxError": {
+      "POSITION": 0.0,
+      "TEXCOORD_0": 2.9802322387695312e-08
+    },
+    "allVertexWeightsNormalized": true,
+    "maxInfluences": 2,
+    "noRootVertexWeights": true,
+    "nativeRestFramesMatch": true
+  },
+  {
+    "kind": "VenomcoilCentipede",
+    "triangles": 1982,
+    "bones": 14,
+    "clips": {
+      "Idle": {
+        "duration": 2.4000000953674316,
+        "animatedBones": 13
+      },
+      "Walk": {
+        "duration": 1.0,
+        "animatedBones": 12
+      },
+      "Attack": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 13
+      },
+      "AttackAlt": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 13
+      },
+      "Heavy": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 13
+      },
+      "HeavyAlt": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 13
+      },
+      "Stunned": {
+        "duration": 0.699999988079071,
+        "animatedBones": 13
+      },
+      "Exposed": {
+        "duration": 1.0,
+        "animatedBones": 13
+      },
+      "Return": {
+        "duration": 0.5,
+        "animatedBones": 12
+      },
+      "Interrupted": {
+        "duration": 0.44999998807907104,
+        "animatedBones": 12
+      }
+    },
+    "originalMeshySourceSha256": "e4f2125bbf97e4f2069bd853132154d3206b70dd70a06809d2236fcc0c5b5be6",
+    "sourceSha256": "a6ea63b9cf58fded8834db1f8a34ce85ffdea24df466b9bd0267401c14b5993f",
+    "moduleSha256": "166280092f12c1ac244a0ea066d8924045f1846ef9668998218ba0de5e7c1d82",
+    "childModules": {
+      "src/client/GloamwoodClips/VenomcoilCentipede/Idle.luau": "0cc4c49f8b385b5bcc1e382ac123f912eed40fb9ca03dc3103eb871dc301c990",
+      "src/client/GloamwoodClips/VenomcoilCentipede/Walk.luau": "cf1323ab52e65c988cb7b86ff76af89d03821469d6e4ae041e0b88468c6ae677",
+      "src/client/GloamwoodClips/VenomcoilCentipede/Attack.luau": "eaa8c924771b9b98cd758534972a5ad90e44ce5457059f87df3b730d7cb95f56",
+      "src/client/GloamwoodClips/VenomcoilCentipede/AttackAlt.luau": "eaa8c924771b9b98cd758534972a5ad90e44ce5457059f87df3b730d7cb95f56",
+      "src/client/GloamwoodClips/VenomcoilCentipede/Heavy.luau": "bf53b354211da2d3b59f7c6ed962925ab546a94d1fb67f4a049f49ac7d729b31",
+      "src/client/GloamwoodClips/VenomcoilCentipede/HeavyAlt.luau": "bf53b354211da2d3b59f7c6ed962925ab546a94d1fb67f4a049f49ac7d729b31",
+      "src/client/GloamwoodClips/VenomcoilCentipede/Stunned.luau": "f8533964be3b02c73ba9f8c6859050168e9abd8b861500e7cdeca1d07e7400f3",
+      "src/client/GloamwoodClips/VenomcoilCentipede/Exposed.luau": "c2b9ede5e982efd574cb45cac8677a59dfcc2b3b02e7a495872cb0ac45f96faa",
+      "src/client/GloamwoodClips/VenomcoilCentipede/Return.luau": "52291d601853b926deae967416d53dc3ea7db5fb15eb4acd9727b78428c0b87e",
+      "src/client/GloamwoodClips/VenomcoilCentipede/Interrupted.luau": "91aba61b77de8ca971aa5392ccfe5d33f26574aafde7935f8bf2e9d09e4a1ef6"
+    },
+    "sourceSurfaceMaxError": {
+      "POSITION": 0.0,
+      "TEXCOORD_0": 2.9802322387695312e-08
+    },
+    "allVertexWeightsNormalized": true,
+    "maxInfluences": 2,
+    "noRootVertexWeights": true,
+    "nativeRestFramesMatch": true
+  },
+  {
+    "kind": "VenomcoilKing",
+    "triangles": 1876,
+    "bones": 14,
+    "clips": {
+      "Idle": {
+        "duration": 2.4000000953674316,
+        "animatedBones": 13
+      },
+      "Walk": {
+        "duration": 1.0,
+        "animatedBones": 12
+      },
+      "Attack": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 13
+      },
+      "AttackAlt": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 13
+      },
+      "Heavy": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 13
+      },
+      "HeavyAlt": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 13
+      },
+      "Stunned": {
+        "duration": 0.699999988079071,
+        "animatedBones": 13
+      },
+      "Exposed": {
+        "duration": 1.0,
+        "animatedBones": 13
+      },
+      "Return": {
+        "duration": 0.5,
+        "animatedBones": 12
+      },
+      "Interrupted": {
+        "duration": 0.44999998807907104,
+        "animatedBones": 12
+      }
+    },
+    "originalMeshySourceSha256": "f5a80cdd63d74f091d65fd273f4b823c94803ee1e15299efe40aa52396f5aed3",
+    "sourceSha256": "b7b179753bebae5f0d0e6c9b8be961aebd2e60cc470e844528fbf77b0218389a",
+    "moduleSha256": "166280092f12c1ac244a0ea066d8924045f1846ef9668998218ba0de5e7c1d82",
+    "childModules": {
+      "src/client/GloamwoodClips/VenomcoilKing/Idle.luau": "0cc4c49f8b385b5bcc1e382ac123f912eed40fb9ca03dc3103eb871dc301c990",
+      "src/client/GloamwoodClips/VenomcoilKing/Walk.luau": "cf1323ab52e65c988cb7b86ff76af89d03821469d6e4ae041e0b88468c6ae677",
+      "src/client/GloamwoodClips/VenomcoilKing/Attack.luau": "eaa8c924771b9b98cd758534972a5ad90e44ce5457059f87df3b730d7cb95f56",
+      "src/client/GloamwoodClips/VenomcoilKing/AttackAlt.luau": "eaa8c924771b9b98cd758534972a5ad90e44ce5457059f87df3b730d7cb95f56",
+      "src/client/GloamwoodClips/VenomcoilKing/Heavy.luau": "bf53b354211da2d3b59f7c6ed962925ab546a94d1fb67f4a049f49ac7d729b31",
+      "src/client/GloamwoodClips/VenomcoilKing/HeavyAlt.luau": "bf53b354211da2d3b59f7c6ed962925ab546a94d1fb67f4a049f49ac7d729b31",
+      "src/client/GloamwoodClips/VenomcoilKing/Stunned.luau": "f8533964be3b02c73ba9f8c6859050168e9abd8b861500e7cdeca1d07e7400f3",
+      "src/client/GloamwoodClips/VenomcoilKing/Exposed.luau": "ca17199968638bc49967610bb2db1ba42e5edced0e4856c471faab8d278d7ce2",
+      "src/client/GloamwoodClips/VenomcoilKing/Return.luau": "52291d601853b926deae967416d53dc3ea7db5fb15eb4acd9727b78428c0b87e",
+      "src/client/GloamwoodClips/VenomcoilKing/Interrupted.luau": "91aba61b77de8ca971aa5392ccfe5d33f26574aafde7935f8bf2e9d09e4a1ef6"
+    },
+    "sourceSurfaceMaxError": {
+      "POSITION": 0.0,
+      "TEXCOORD_0": 2.9802322387695312e-08
+    },
+    "allVertexWeightsNormalized": true,
+    "maxInfluences": 2,
+    "noRootVertexWeights": true,
+    "nativeRestFramesMatch": true
+  },
+  {
+    "kind": "Webling",
+    "triangles": 2023,
+    "bones": 18,
+    "clips": {
+      "Idle": {
+        "duration": 2.4000000953674316,
+        "animatedBones": 1
+      },
+      "Walk": {
+        "duration": 1.0,
+        "animatedBones": 16
+      },
+      "Attack": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 9
+      },
+      "AttackAlt": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 9
+      },
+      "Heavy": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 9
+      },
+      "HeavyAlt": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 9
+      },
+      "Stunned": {
+        "duration": 0.699999988079071,
+        "animatedBones": 1
+      },
+      "Exposed": {
+        "duration": 1.0,
+        "animatedBones": 1
+      },
+      "Return": {
+        "duration": 0.5,
+        "animatedBones": 0
+      },
+      "Interrupted": {
+        "duration": 0.44999998807907104,
+        "animatedBones": 0
+      }
+    },
+    "originalMeshySourceSha256": "1a978ea40475cab6d30656ebac5880664155706ce515131766c193a10c5ffb70",
+    "sourceSha256": "147a0e4fadcdb0dd1989800c767485f9c7a4f054bb97b6ceff49d824da134bdc",
+    "moduleSha256": "e8e4e93d76aee00791452010404fe45674467d8eea2ef1aabac2675965ade3d9",
+    "childModules": {},
+    "sourceSurfaceMaxError": {
+      "POSITION": 0.0,
+      "TEXCOORD_0": 2.9802322387695312e-08
+    },
+    "allVertexWeightsNormalized": true,
+    "maxInfluences": 2,
+    "noRootVertexWeights": true,
+    "nativeRestFramesMatch": true
+  },
+  {
+    "kind": "WidowQueen",
+    "triangles": 2070,
+    "bones": 18,
+    "clips": {
+      "Idle": {
+        "duration": 2.4000000953674316,
+        "animatedBones": 1
+      },
+      "Walk": {
+        "duration": 1.0,
+        "animatedBones": 16
+      },
+      "Attack": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 9
+      },
+      "AttackAlt": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 9
+      },
+      "Heavy": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 9
+      },
+      "HeavyAlt": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 9
+      },
+      "Stunned": {
+        "duration": 0.699999988079071,
+        "animatedBones": 1
+      },
+      "Exposed": {
+        "duration": 1.0,
+        "animatedBones": 1
+      },
+      "Return": {
+        "duration": 0.5,
+        "animatedBones": 0
+      },
+      "Interrupted": {
+        "duration": 0.44999998807907104,
+        "animatedBones": 0
+      }
+    },
+    "originalMeshySourceSha256": "09119511e1ed02058cd8047208832e8fbd42a1ddecdbe656c95a2ae07fc6b341",
+    "sourceSha256": "017a4fa9f71cf2348220ff142737f1ba96cbbf04e4582f95a6f0d3293ac6a280",
+    "moduleSha256": "d42be89976488893bead059c9399ca1cb6c153940c7b63a2f5bb46b530acefd6",
+    "childModules": {},
+    "sourceSurfaceMaxError": {
+      "POSITION": 0.0,
+      "TEXCOORD_0": 2.9802322387695312e-08
+    },
+    "allVertexWeightsNormalized": true,
+    "maxInfluences": 2,
+    "noRootVertexWeights": true,
+    "nativeRestFramesMatch": true
+  }
+]

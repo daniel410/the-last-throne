@@ -37,7 +37,7 @@ local ok,err=xpcall(function()
   check(m:FindFirstChild('TdMonsterVisual')~=nil,kind..' actual visual')
   for _,p in ipairs(m.TdMonsterVisual:GetDescendants())do if p:IsA('BasePart')then check(not p.CanCollide and not p.CanQuery and p.Massless,'cosmetic geometry does not block combat')end end
   local entry={kind=kind,template=m:GetAttribute('TdMonsterTemplate'),prototype=m:GetAttribute('GloamwoodPrototypeVersion')~=nil,parts=#m.TdMonsterVisual:GetChildren()}
-  if entry.prototype then check(s.gloam and #s.gloam>0,'prototype appendage animation bound')else check(m.TdMonsterVisual.Body:IsA('MeshPart'),'HG uses TD MeshParts')end
+  if m:GetAttribute('GloamwoodMeshyVersion')then check(s.gloam and s.gloam.skinned,'Gloamwood imported skeleton bound')else check(m.TdMonsterVisual.Body:IsA('MeshPart'),'HG uses TD MeshParts')end
   table.insert(report.models,entry);Motion.unbind(s);m:Destroy();task.wait()
  end
  local journal=P.new()

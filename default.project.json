@@ -59,6 +59,9 @@
       },
       "HauntedGraveyardModels": {
         "$path": "assets/shared/td-haunted-graveyard/runtime.rbxmx"
+      },
+      "GloamwoodMeshyModels": {
+        "$path": "assets/models/gloamwood-meshy-v1/runtime.rbxm"
       }
     },
     "StarterPlayer": {
