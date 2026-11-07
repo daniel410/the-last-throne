@@ -7,6 +7,7 @@ local images={
  'rbxassetid://125359077730192', -- Deepwood
  'rbxassetid://119442635735506', -- Frozen Vale
  'rbxassetid://125067552170259', -- Ember Caldera
+ 'rbxassetid://104518259187897', -- Gloamwood (approved environment concept)
 }
 function M.create(index)
  local gui=Instance.new('ScreenGui');gui.Name='TravelLoadingScreen';gui.IgnoreGuiInset=true;gui.ResetOnSpawn=false;gui.DisplayOrder=10000
