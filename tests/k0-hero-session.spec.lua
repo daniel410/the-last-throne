@@ -59,6 +59,7 @@ local function player(name)
 	local result = { Name = name, Parent = players, attributes = {} }
 	function result:SetAttribute(key, value) self.attributes[key] = value end
 	function result:GetAttribute(key) return self.attributes[key] end
+	function result:Kick(message) self.kicked=message end
 	return result
 end
 local function character(position)
@@ -301,5 +302,33 @@ check(first.response.errorCode == "TooFast" and guid == 6, "burst requests are b
 players.PlayerRemoving:Fire(first)
 first.Parent = nil
 check(Service.getActiveHero(first) == nil and Service.getCombatContext(first, first.Character) == nil, "leaving discards prototype roster and context")
+-- New server arrival must restore the returning hero after loading the owned roster.
+task = {spawn=function(fn) fn() end}
+local roster = {['a-elf']={baseClassId='elf'}, ['b-dwarf']={baseClassId='dwarf'},
+ ['c-knight']={baseClassId='knight'}, ['d-mage']={baseClassId='mage'}}
+local incoming
+sessionOptions.inventory = {open=function() return roster end, available=function() return true end}
+sessionOptions.network = {admitArrival=function() return incoming end}
+for _, id in ipairs({'a-elf','b-dwarf','c-knight','d-mage'}) do
+ incoming = {lobbyHeroId=id}
+ local returning = player('Returning-'..id)
+ players.PlayerAdded:Fire(returning)
+ local active = Service.getActiveHero(returning)
+ check(active.heroId==id and active.classId==roster[id].baseClassId, 'new lobby restores owned return hero '..id)
+ check(returning.response.snapshot.selectedHeroId==id, 'lobby UI snapshot retains return hero '..id)
+ check(Service.getCombatContext(returning,nil)==nil, 'restoring lobby selection grants no combat')
+end
+for _, hint in ipairs({{}, {lobbyHeroId='not-owned'}, {lobbyHeroId={}}}) do
+ incoming=hint
+ local returning=player('Fallback');players.PlayerAdded:Fire(returning)
+ check(Service.getActiveHero(returning).heroId=='a-elf', 'invalid/missing return hint keeps safe owned default')
+end
+incoming={heroId='b-dwarf'}
+local battle=player('Battle');players.PlayerAdded:Fire(battle)
+check(Service.getActiveHero(battle).heroId=='b-dwarf', 'verified battle admission still selects its mandatory hero')
+incoming={heroId='not-owned'}
+local invalid=player('InvalidBattle');function invalid:Kick(message) self.kicked=message end
+players.PlayerAdded:Fire(invalid)
+check(invalid.kicked~=nil, 'unowned battle admission still rejects entry')
 os.clock = savedClock
 print("Hero session: " .. checks .. " identity, ownership, transitions, four-class, stale-life and boundary checks passed")

@@ -282,9 +282,11 @@ local function bindPlayer(player)
 				end
 				table.sort(state.heroes, function(a,b) return a.heroId < b.heroId end)
 				state.selectedHeroId = state.heroes[1] and state.heroes[1].heroId
-    if arrival then
+    if arrival and arrival.heroId then
      if not state.byId[arrival.heroId] then player:Kick('Your expedition hero could not be loaded. Return to the lobby and retry.');return end
      state.selectedHeroId=arrival.heroId
+    elseif arrival and state.byId[arrival.lobbyHeroId] then
+     state.selectedHeroId=arrival.lobbyHeroId
     end
 				state.profileReady = true
 			end

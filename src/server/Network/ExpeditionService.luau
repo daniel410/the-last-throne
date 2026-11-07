@@ -132,6 +132,10 @@ function Service.admitArrival(p)
  if role=='Lobby' then
   if sourceValid(data)and type(t)=='table'and t.returning==true and t.replay==true then p:SetAttribute('TLTReplayRequested',true)end
   if sourceValid(data) and type(t)=='table' and type(t.partyId)=='string' and #t.partyId<=64 and type(t.token)=='string' and #t.token<=64 then arrivals[p]=t end
+  -- A return hero is a selection hint only; the loaded account checks ownership.
+  if sourceValid(data) and data.SourcePlaceId==C.battlePlaceId and type(t)=='table' and t.returning==true and type(t.heroId)=='string' and #t.heroId>0 and #t.heroId<=64 then
+   return {lobbyHeroId=t.heroId}
+  end
   return nil
  end
  if studio then return nil end
@@ -222,7 +226,7 @@ function Service.returnLobby(p)
  local saved=store.finish(p.UserId,battleRun.id,m.ticket)
  if not saved then unlock(p);return true,'NetworkUnavailable' end
  leaving[p]=true
- local ok,e=send(p,{kind='return',placeId=C.lobbyPlaceId,data={returning=true,replay=replay and replay.completed==true or false}},true)
+ local ok,e=send(p,{kind='return',placeId=C.lobbyPlaceId,data={returning=true,heroId=m.heroId,replay=replay and replay.completed==true or false}},true)
  return true,e
 end
 function Service.beforeHeroAction(p,action)
