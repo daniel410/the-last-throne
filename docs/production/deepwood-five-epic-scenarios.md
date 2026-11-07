@@ -1,8 +1,10 @@
+> **2026-11-07 / TLT-001/061~065:** DW-07의 연결을 Gloamwood행으로 개정한 목표 시나리오다. 아래 변경 영어 원고는 런타임 미반영이며, 기존0.41.0 구현 기록은 당시 증거로 보존한다. [연결 원고·후속 구현](gloamwood-second-story-2026-11-07.md).
+
 # Deepwood 5에픽 반영 시나리오 · 0.41.0
 
 2026-10-31 · TLT-001/016/050/061/072 · 기획/시험 구현
 
-정본은 `DeepwoodContent`·`DeepwoodAdventure`·`DeepwoodQuestCatalog`의 영어 원문이다. 본편7스토리/기존ID·단계ID·좌표·필수/선택 보스·승인1173 XP/2290 Gold를 유지한다. 기존 저장의 봉인핵 명칭 키는 호환을 위해 남기고 플레이어에게는 구조/포탈/북쪽 추적 사건으로 보여 준다. 선택 퀘스트4개와 그 보상은 유지한다.
+0.41.0 당시 구현 원문은 `DeepwoodContent`·`DeepwoodAdventure`·`DeepwoodQuestCatalog`다. 2026-11-07 개편의 목표 영어 원고는 본 문서와 연결 시나리오를 따르며 코드 반영은 후속이다. 본편7스토리/기존ID·단계ID·좌표·필수/선택 보스·승인1173 XP/2290 Gold를 유지한다. 기존 저장의 봉인핵 명칭 키는 호환을 위해 남기고 플레이어에게는 구조/포탈/북쪽 추적 사건으로 보여 준다. 선택 퀘스트4개와 그 보상은 유지한다.
 
 합류: **DW-02 구조/귀환로 완료 → DW-03:report의 account/missing 보고 완료 → Selene 무료 동료 해금**. 첫 보고 응답만으로는 해금하지 않는다. 야영지에서 F/패드X/터치로 Invite Selene 또는 Ask Selene to rest를 선택한다. 해금은 개인 기록에서 파생하며 기존 보고 완료 저장도 자동 인정한다. 신규 XP/Gold·숨은 퀘스트·유료 조건은 없다.
 
@@ -230,7 +232,7 @@ Selene와 함께 부상자/생존자를 돕고 안전한 피난처와 전초기�
 
 ## DW-07 · The Forest Is Safe Again
 
-King Shaman을 격파하고 Frozen Vale행 왕관의 심장 운반 명령서를 발견한다. 포탈을 닫고 보급품을 회수한 뒤 야영지에서 구조 성공을 기뻐한다.
+King Shaman을 격파하고 Gloamwood행 왕관의 심장 운반 명령서를 발견한다. 포탈을 닫고 보급품을 회수한 뒤 야영지에서 구조 성공을 기뻐한다.
 
 완료 보상: **134 XP / 650 Gold**. 보상 정본 불변.
 
@@ -257,8 +259,8 @@ King Shaman을 격파하고 Frozen Vale행 왕관의 심장 운반 명령서를 
 **core_record**
 
 - `purpose` — Find the delivery label: The label says Crownheart. The stolen crystal was carried through this camp!
-- `cost` — Read the northbound orders: Orders: Take the Crownheart north through Frozen Vale.
-- `replacement` — Share the clue with Eryn: Eryn: We know where to look next! First, let us close this monster portal.
+- `cost` — Read the convoy orders: Orders: Carry the Crownheart through the old road in Gloamwood.
+- `replacement` — Share the clue with Eryn: Eryn: Our scouts followed that convoy into Gloamwood. We have not heard from them. First, let us close this portal!
 
 **stabilize**
 
@@ -271,6 +273,6 @@ King Shaman을 격파하고 Frozen Vale행 왕관의 심장 운반 명령서를 
 
 - `clamp` — Open the supply crate: The convoy's missing supplies are inside.
 - `isolate` — Collect the food and medicine: The supplies can go back to the village.
-- `secure` — Take the delivery orders: You have the northern route. Return to Eryn and celebrate the rescue!
+- `secure` — Take the delivery orders: The orders mark the old road into Gloamwood. Return to Eryn with the news.
 
-**restoration** — Eryn: Our friends and supplies are home! Shall we help the forest camp or deliver supplies to the village first? Both groups will get help. Then we can follow the Crownheart trail to Frozen Vale!
+**restoration** — Eryn: Our friends and supplies are home! Shall we help the forest camp or deliver supplies to the village first? Both groups will get help. Then we can follow the Crownheart trail into Gloamwood!

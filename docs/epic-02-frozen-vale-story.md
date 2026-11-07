@@ -1,3 +1,5 @@
+> **2026-11-07 현재 서사:** Frozen Vale는 에픽3다. 본편 순서는 Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard이며 [승인 줄거리](production/five-epic-adventure-story-2026-10-30.md)와 [연결 시나리오](production/gloamwood-second-story-2026-11-07.md)가 우선한다. 아래 과거 번호·서사·진입 조건은 참고 기록이다. 이번 변경은 문서 반영이며 게임 순서/저장 이관은 후속이다.
+
 # 에픽2 Frozen Vale · 얼어붙은 왕의 기억
 
 > **2026-10-31 0.50.0 로컬 시험 구현:** 최신5에픽 승인에 따른 구조·피난처 연결·수호수 진정 이야기를 구현했다. 아래 과거 상세안과 실제 런타임은 구분하며 [구현·자산·검증·미검증](evidence/frozen-vale-0500/README.md)을 현재 적용 기록으로 삼는다. 기존 안정ID와 고정 보상은 유지한다.

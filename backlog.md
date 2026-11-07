@@ -1,3 +1,5 @@
+> **2026-11-07 본편 순서 변경 · TLT-001/061~065:** 사용자 승인으로 Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard 순서로 줄거리를 개정했다. Gloamwood는 운반대 추적·정찰대 구조·설원행 옛길 개방, Ember Caldera는 Veyr의 침공 계획·왕릉 진입로 확보를 맡는다. 문서 반영 완료이며 게임 순서·저장 이관·레벨/드롭 조정·빌드/게시는 후속이다. 기존 안정ID·보상·보유품·진행 기록을 보존한다. [상세 시나리오·인계](docs/production/gloamwood-second-story-2026-11-07.md).
+
 > **2026-11-07 / TLT-065/032/033/057/084 · 0.80.0:** 사용자 Meshy Gloamwood8종 실제 스킨 모델·116본/종별 모션으로 임시 블록을 교체했다. 거미8다리·일반 지네/King 크기 구분·서버 공격 시각 유지. [27,993엔진/1,127공격/3,122기존 모션 검사·Studio·미게시](docs/evidence/gloamwood-meshy-20261107/README.md). 실전/기기·최종 미술 수용은 후속.
 
 > **2026-11-07 최신 시작 장비 지시 · 0.79.9:** 신규 영웅은 실제 기본 무기·Lv1 방어구/장신구를 즉시 착용한다. 트레이닝 무기 신규 지급/상자 선택은 중단한다. Lv5 보너스 투구는 가방에 유지하며 기존 보유품/편성은 소급 변경하지 않는다. [구현·검증·미게시](docs/evidence/starter-auto-equip-20261107/README.md).
@@ -281,9 +283,9 @@
 
 > **Priestess 수녀 Selene:** NPC·선택형 동행 서포터로 회복/보호/정화를 돕는다. Dawnspire 첫 만남 후 Deepwood 초반 구조 완료·안전한 야영지 도착 시 무료 해금하고 야영지에서 동행을 선택한다. TD 영웅과 타워의 외형·모델·무기·연출을 재사용하며 기존 동행 슬롯과 플레이어4클래스를 유지한다. [서사/자산 적용](docs/production/five-epic-adventure-story-2026-10-30.md#priestess-수녀와-td-영웅타워-재사용).
 
-> **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → Frozen Vale → Ember Caldera → 어둠의 숲(Gloamwood, 영문 가칭) → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 따른다.
+> **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → 어둠의 숲(Gloamwood, 영문 가칭) → Frozen Vale → Ember Caldera → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 따른다.
 
-> **2026-10-30 최신 본편 승인 · TLT-001/065:** 10~15세 대상 [다섯 에픽 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 현재 서사 기준으로 삼는다. Deepwood → Frozen Vale → Ember Caldera → 어두운 숲 → Haunted Graveyard 순서로 Veyr의 침공을 막고 왕관의 심장을 되찾아 완결한다. 기존 심오한 서사/에픽1~4 줄거리 보존 조건과 8에픽 계획보다 이 승인이 우선한다. 아래 과거 기록·상세안은 참고 자료이며 세부 시나리오/성장·보상/게임 반영은 후속이다. 기존 보상 정본과 안정ID는 자동 변경하지 않는다.
+> **2026-10-30 본편 승인 이력 · TLT-001/065:** 10~15세 대상 [다섯 에픽 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 현재 서사 기준으로 삼는다. Deepwood → Frozen Vale → Ember Caldera → 어두운 숲 → Haunted Graveyard 순서로 Veyr의 침공을 막고 왕관의 심장을 되찾아 완결한다. 기존 심오한 서사/에픽1~4 줄거리 보존 조건과 8에픽 계획보다 이 승인이 우선한다. 아래 과거 기록·상세안은 참고 자료이며 세부 시나리오/성장·보상/게임 반영은 후속이다. 기존 보상 정본과 안정ID는 자동 변경하지 않는다.
 
 > 2026-10-30 **0.40.2 / TLT-028/031/052/061/084 부분 구현:** Deepwood 지역별 장소·선택 경사로/순환길·숲 군집·굽은 연결 흙길, 서버 판정 BOSS 머리 위 배지, 미니맵 아래 투명 Gold/Diamonds 표시. [비교 조사](docs/research/2026-10-30-deepwood-places.md) · [검증/남은 수용](docs/evidence/deepwood/places-0400/README.md). 로비 버전18·전투 버전4가 비공개 게시됐으며 상위 티켓은 In Progress다. [게시 증거](docs/evidence/release-0402/README.md).
 
@@ -351,7 +353,7 @@ TLT-001/065: [승인 개요](docs/production/five-epic-adventure-story-2026-10-3
 | --- | --- |
 | TLT-001/060~063 | PLAN/DES: 프롤로그와 Deepwood·Frozen Vale·Ember Caldera를 심장 추적과 주민 구조로 개정. 기존 상세안/보상 대응 확인 |
 | TLT-064 | PLAN/DES: 기존 HG를 에픽5 최종 지역으로 개정. Veyr 최종전·심장 회수·포탈 폐쇄와 저장/재도전 계약 |
-| TLT-065 | PLAN/DES: 새 에픽4 Gloamwood 상세안·새 안정ID·기존 콘텐츠 대응표·5에픽 Lv1~80/전직/보상 설계. 수치 확정은 후속 |
+| TLT-065 | PLAN/DES → ENG/QA: 에픽2 Gloamwood 추적/구조 줄거리·GW-01~07 연결 원고 반영. 기존ID 보존·런타임 순서/저장 이관·5에픽 성장/드롭 검증은 후속 |
 | TLT-066~069 | 기존 AS/DC/FB/FC 제작 보류. 현 본편에 포함하지 않으며 의존 관계 재설계 전 구현 착수하지 않음 |
 | TLT-070 | PLAN/DES: Dawnspire 귀환·수정 왕좌 복구·주민/동료 재회로 개편. 과거 세 결말/Lyra 해방 조건은 적용하지 않음 |
 

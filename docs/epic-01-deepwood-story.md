@@ -1,3 +1,5 @@
+> **2026-11-07 현재 서사:** Deepwood는 에픽1다. 본편 순서는 Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard이며 [승인 줄거리](production/five-epic-adventure-story-2026-10-30.md)와 [연결 시나리오](production/gloamwood-second-story-2026-11-07.md)가 우선한다. 아래 과거 번호·서사·진입 조건은 참고 기록이다. 이번 변경은 문서 반영이며 게임 순서/저장 이관은 후속이다.
+
 # 에픽1 Deepwood · 대삼림의 검은 뿌리
 
 > **2026-10-31 · 0.41.0 현재 구현:** 10~15세 대상 구조/우정 모험·DW-03 구조 보고 후 Selene 무료 해금·King Shaman 격파/포탈 폐쇄/북쪽 명령서로 개정했다. [현재7시나리오](production/deepwood-five-epic-scenarios.md)가 정본이며 아래 과거 서사보다 우선한다.4인+AI1 허용. 실행/미검증은 [증거](evidence/deepwood/adventure-0410/README.md)를 따른다.
@@ -30,9 +32,9 @@
 
 **DW-06 A Safe Path for Everyone** — 고블린 가족들도 돕고 포탈 장치3개와 길 표식을 정리해 모두에게 안전한 귀환로를 연다.
 
-**DW-07 The Forest Is Safe Again** — King Shaman을 격파하고 Frozen Vale행 왕관의 심장 운반 명령서를 발견한다. 포탈을 닫고 보급품을 회수한 뒤 야영지에서 구조 성공을 기뻐한다.
+**DW-07 The Forest Is Safe Again** — King Shaman을 격파하고 Gloamwood행 왕관의 심장 운반 명령서를 발견한다. 포탈을 닫고 보급품을 회수한 뒤 야영지에서 구조 성공을 기뻐한다.
 
-[영어 목표·전체 단계·Selene/저장/파티 계약](production/deepwood-five-epic-scenarios.md)이 현재 시나리오다. 아래 과거의 봉인핵 회수·왕좌의 대가·인물 갈등/선택 의미는 현재 줄거리로 대체한다. 후속 Frozen Vale는 아직 런타임 진입을 제공하지 않는다.
+[영어 목표·전체 단계·Selene/저장/파티 계약](production/deepwood-five-epic-scenarios.md)이 현재 시나리오다. 아래 과거의 봉인핵 회수·왕좌의 대가·인물 갈등/선택 의미는 현재 줄거리로 대체한다. 이 단락의 개편 영어 원고는 런타임 미반영이다. 현재 게임은 Deepwood 다음 Frozen Vale로 연결된다.
 
 <details>
 <summary>과거 상세 기획 기록 · 충돌하는 서사/동료 조건은 현재7시나리오로 대체</summary>

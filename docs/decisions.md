@@ -1056,3 +1056,11 @@ TLT-029/041/043/052/084. 사용자는 수정 빌드의 Knight에게 시작 장�
 ## 2026-11-07 · Gloamwood 사용자 Meshy8종 채택
 
 TLT-065/032/033. 사용자는 Meshy에서 제작한 몬스터5종·보스3종을 Gloamwood 에픽의 기존 임시 모델과 움직임에 적용하도록 지시했다. 일반 지네의 소형 비율/더듬이와 거미4종8다리 지시를 유지한다. 실제8스킨/116본·GLB 종별 클립을 연결하고 서버 이동/피해/보상·안정ID를 유지한다. [자산 원본/업로드](../assets/models/gloamwood-meshy-v1/README.md) · [0.80.0 검증/미게시/한계](evidence/gloamwood-meshy-20261107/README.md). 로컬 Studio/격리 엔진 통과이며 게시 클라이언트·실기기/최종 미술 수용을 뜻하지 않는다.
+
+## 2026-11-07 · Gloamwood를 Deepwood 다음 에픽으로 변경
+
+TLT-001/050/061~065/084. 사용자는 Gloamwood를 Deepwood 다음으로 옮기고 싶다고 요청했고, 제안된 **Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard** 줄거리에 “변경해줘”라고 지시했다. 이 결정은2026-10-30 본편 순서보다 우선한다.
+
+Deepwood의 운반 명령서가 Gloamwood를 가리키고, Gloamwood는 운반대를 추적하던 정찰대 구조·거미 여왕 격파·북쪽 옛길 개방·Frozen Vale행 증언을 맡는다. Frozen Vale에서는 화산 도시의 가공 목적을 확인한다. Ember Caldera에서는 Veyr의 침공 계획과 왕릉 진입로를 확보해 Haunted Graveyard로 바로 향한다. Gloamwood에서 구한 정찰대는 최종 접근로 확보로 도움을 돌려준다. 거미 여왕은 독립적인 숲의 괴물로 유지한다.
+
+[본편 정본](production/five-epic-adventure-story-2026-10-30.md)·[상세 연결/영어 원고](production/gloamwood-second-story-2026-11-07.md)·[비교 검토](research/2026-11-07-gloamwood-story-order.md)를 따른다. 기존 DW/GW/FV/EC/HG 안정ID·보상 정본·보유품·저장 기록은 보존한다. 이번은 문서 반영이며 실제 게임 순서/저장 이관·성장/드롭·지역 분기·영어 원고 적용과 빌드/게시/실기기 검증은 후속이다. VERSION과 런타임은 변경하지 않았으며 구현 티켓을 완료 처리하지 않는다.

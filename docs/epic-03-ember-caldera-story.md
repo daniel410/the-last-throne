@@ -1,3 +1,5 @@
+> **2026-11-07 현재 서사:** Ember Caldera는 에픽4다. 본편 순서는 Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard이며 [승인 줄거리](production/five-epic-adventure-story-2026-10-30.md)와 [연결 시나리오](production/gloamwood-second-story-2026-11-07.md)가 우선한다. 아래 과거 번호·서사·진입 조건은 참고 기록이다. 이번 변경은 문서 반영이며 게임 순서/저장 이관은 후속이다.
+
 # 에픽3 Ember Caldera · 꺼지지 않는 용광로
 
 > **2026-10-31 0.51.0 로컬 시험 구현:** 최신5에픽 줄거리의 광부 구조·냉각 장치 복구·Inferno Overlord 격파·어둠의 숲 추적 방향을 구현했다. 아래 과거 상세안과 현재 적용 상태를 구분하며 [구현/원본/검증/미검증](evidence/ember-caldera-0510/README.md)을 따른다. 기존 안정ID·고정 보상을 유지한다.

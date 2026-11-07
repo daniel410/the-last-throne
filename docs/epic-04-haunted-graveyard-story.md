@@ -1,3 +1,5 @@
+> **2026-11-07 현재 서사:** Haunted Graveyard는 에픽5다. 본편 순서는 Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard이며 [승인 줄거리](production/five-epic-adventure-story-2026-10-30.md)와 [연결 시나리오](production/gloamwood-second-story-2026-11-07.md)가 우선한다. 아래 과거 번호·서사·진입 조건은 참고 기록이다. 이번 변경은 문서 반영이며 게임 순서/저장 이관은 후속이다.
+
 # 에픽4 Haunted Graveyard · 죽은 자들의 증언
 
 > [2026-10-30 전체 서사 개정](production/narrative-review-2026-10-30.md): 아래 보강은 사용자 요청에 따른 서사 개정안이다. 기존 장소/필수 목표·보상 정본은 유지하며 새 장면·인과관계는 런타임 미반영이다. 아래의 과거 승인/제작 상태는 당시 기록이며 이번 보강 전체의 승인·구현 완료를 뜻하지 않는다.

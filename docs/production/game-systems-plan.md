@@ -1,6 +1,8 @@
+> **2026-11-07 본편 순서 변경 · TLT-001/061~065:** 사용자 승인으로 Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard 순서로 줄거리를 개정했다. Gloamwood는 운반대 추적·정찰대 구조·설원행 옛길 개방, Ember Caldera는 Veyr의 침공 계획·왕릉 진입로 확보를 맡는다. 문서 반영 완료이며 게임 순서·저장 이관·레벨/드롭 조정·빌드/게시는 후속이다. 기존 안정ID·보상·보유품·진행 기록을 보존한다. [상세 시나리오·인계](gloamwood-second-story-2026-11-07.md).
+
 # 게임 시스템·서사 제작 계획
 
-> **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → Frozen Vale → Ember Caldera → 어둠의 숲(Gloamwood, 영문 가칭) → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](five-epic-adventure-story-2026-10-30.md)를 따른다.
+> **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → 어둠의 숲(Gloamwood, 영문 가칭) → Frozen Vale → Ember Caldera → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](five-epic-adventure-story-2026-10-30.md)를 따른다.
 
 v0.25 · 2026-10-28 · 문서 한국어 / 게임 영어 전용 · 상태: 구현 전 제작 실행안
 
@@ -29,14 +31,14 @@ v0.25 · 2026-10-28 · 문서 한국어 / 게임 영어 전용 · 상태: 구현
 | 구간 | 지역 | 현재 본편의 사건과 결과 |
 | --- | --- | --- |
 | 프롤로그 | Dawnspire | 왕관의 심장 탈취·포탈 침공·주민 구조 후 추적 시작 |
-| 에픽1 | Deepwood | 보급대/주민 구조·King Shaman 격파·북쪽 운반 명령서 발견 |
-| 에픽2 | Frozen Vale | 고립 주민 구조·얼음 수호수 진정·겨울 해제·화산 도시 추적 |
-| 에픽3 | Ember Caldera | 광부 구조·냉각 복구·Inferno Overlord 격파·Veyr 계획 발견 |
-| 에픽4 | Gloamwood | 원정대 구조·거미 여왕 격파·묘지 요새의 숨겨진 입구 확보 |
+| 에픽1 | Deepwood | 보급대/주민 구조·King Shaman 격파·Gloamwood행 운반 명령서 발견 |
+| 에픽2 | Gloamwood | 운반대 추적·정찰대 구조·거미 여왕 격파·Frozen Vale행 옛길 개방 |
+| 에픽3 | Frozen Vale | 고립 주민 구조·얼음 수호수 진정·눈보라 해제·화산 도시의 가공 목적 확인 |
+| 에픽4 | Ember Caldera | 광부 구조·냉각 복구·Inferno Overlord 격파·Veyr 침공 계획/왕릉 진입로 확보 |
 | 에픽5 | Haunted Graveyard | Veyr 최종전·왕관의 심장 회수·대형 포탈 폐쇄 |
 | 귀환 | Dawnspire | 수정 왕좌 복구·구한 주민/동료와 재회·본편 완결 |
 
-Gloamwood/Crownheart는 영문 가칭이다. 기존 DW/FV/EC/HG 안정ID와 승인32구간 보상은 변경하지 않는다. 아래 기존 구간 추적표와 지역별 상세안은 재사용 후보이며 충돌하는 서사는 승인 개요로 개정해야 한다. HG는 새 본편 에픽5다. 새 지역 ID·스토리 수·Lv1~80 성장 및 Lv20/40/60/80 전직 배치·XP/Gold는 후속 설계이며 과거 장별 레벨을 그대로 적용하지 않는다.
+Gloamwood/Crownheart는 영문 가칭이다. 기존 DW/GW/FV/EC/HG 안정ID와 승인32구간 보상은 변경하지 않는다. 아래 기존 구간 추적표와 지역별 상세안은 재사용 후보이며 충돌하는 서사는 승인 개요로 개정해야 한다. HG는 새 본편 에픽5다. 기존 GW-01~07을 포함한 35개 본편 ID는 보존한다. 새 순서의 Lv1~80 성장·Lv20/40/60/80 전직 도달 시점·XP/Gold·저장 이관은 후속 설계이며 과거 장별 레벨을 그대로 적용하지 않는다. 실제 게임 순서는 아직 이전 순서다.
 
 기존 AS/DC/FB/FC 8에픽 후반 원고는 참고로 보존하고 현재 본편 제작 범위에서 제외한다. Dawnspire는 거점이며 첫 제작·전투 검증 지역은 Deepwood다. 일반 본편은 솔로~4인으로 완결하며 레이드와 선택 보스를 결말의 필수 조건으로 두지 않는다. 상세 영어 대사·맵/몬스터·정상 성장·실기기/협동 수용은 후속이며 상위 티켓 완료를 뜻하지 않는다.
 

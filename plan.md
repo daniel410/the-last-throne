@@ -1,3 +1,5 @@
+> **2026-11-07 본편 순서 변경 · TLT-001/061~065:** 사용자 승인으로 Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard 순서로 줄거리를 개정했다. Gloamwood는 운반대 추적·정찰대 구조·설원행 옛길 개방, Ember Caldera는 Veyr의 침공 계획·왕릉 진입로 확보를 맡는다. 문서 반영 완료이며 게임 순서·저장 이관·레벨/드롭 조정·빌드/게시는 후속이다. 기존 안정ID·보상·보유품·진행 기록을 보존한다. [상세 시나리오·인계](docs/production/gloamwood-second-story-2026-11-07.md).
+
 > **2026-11-07 / TLT-065/032/033/057/084 · 0.80.0:** 사용자 Meshy Gloamwood8종 실제 스킨 모델·116본/종별 모션으로 임시 블록을 교체했다. 거미8다리·일반 지네/King 크기 구분·서버 공격 시각 유지. [27,993엔진/1,127공격/3,122기존 모션 검사·Studio·미게시](docs/evidence/gloamwood-meshy-20261107/README.md). 실전/기기·최종 미술 수용은 후속.
 
 > **2026-11-07 최신 시작 장비 지시 · 0.79.9:** 신규 영웅은 실제 기본 무기·Lv1 방어구/장신구를 즉시 착용한다. 트레이닝 무기 신규 지급/상자 선택은 중단한다. Lv5 보너스 투구는 가방에 유지하며 기존 보유품/편성은 소급 변경하지 않는다. [구현·검증·미게시](docs/evidence/starter-auto-equip-20261107/README.md).
@@ -282,9 +284,9 @@
 
 > **Priestess 수녀 Selene:** NPC·선택형 동행 서포터로 회복/보호/정화를 돕는다. Dawnspire 첫 만남 후 Deepwood 초반 구조 완료·안전한 야영지 도착 시 무료 해금하고 야영지에서 동행을 선택한다. TD 영웅과 타워의 외형·모델·무기·연출을 재사용하며 기존 동행 슬롯과 플레이어4클래스를 유지한다. [서사/자산 적용](docs/production/five-epic-adventure-story-2026-10-30.md#priestess-수녀와-td-영웅타워-재사용).
 
-> **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → Frozen Vale → Ember Caldera → 어둠의 숲(Gloamwood, 영문 가칭) → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 따른다.
+> **현재 본편: 어둠의 숲을 포함한 총 5에픽.** 10~15세 Roblox 플레이어가 쉽게 이해할 수 있도록 도움·우정·용기·회복을 중심으로 쓴다. Deepwood → 어둠의 숲(Gloamwood, 영문 가칭) → Frozen Vale → Ember Caldera → Haunted Graveyard. Dawnspire는 시작/귀환 거점이며 별도 에픽이 아니다. [쉬운 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 따른다.
 
-> **2026-10-30 최신 본편 승인 · TLT-001/065:** 10~15세 대상 [다섯 에픽 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 현재 서사 기준으로 삼는다. Deepwood → Frozen Vale → Ember Caldera → 어두운 숲 → Haunted Graveyard 순서로 Veyr의 침공을 막고 왕관의 심장을 되찾아 완결한다. 기존 심오한 서사/에픽1~4 줄거리 보존 조건과 8에픽 계획보다 이 승인이 우선한다. 아래 과거 기록·상세안은 참고 자료이며 세부 시나리오/성장·보상/게임 반영은 후속이다. 기존 보상 정본과 안정ID는 자동 변경하지 않는다.
+> **2026-10-30 본편 승인 이력 · TLT-001/065:** 10~15세 대상 [다섯 에픽 모험 줄거리](docs/production/five-epic-adventure-story-2026-10-30.md)를 현재 서사 기준으로 삼는다. Deepwood → Frozen Vale → Ember Caldera → 어두운 숲 → Haunted Graveyard 순서로 Veyr의 침공을 막고 왕관의 심장을 되찾아 완결한다. 기존 심오한 서사/에픽1~4 줄거리 보존 조건과 8에픽 계획보다 이 승인이 우선한다. 아래 과거 기록·상세안은 참고 자료이며 세부 시나리오/성장·보상/게임 반영은 후속이다. 기존 보상 정본과 안정ID는 자동 변경하지 않는다.
 
 > 2026-10-30 **0.40.2 / TLT-028/031/052/061/084 부분 구현:** Deepwood 지역별 장소·선택 경사로/순환길·숲 군집·굽은 연결 흙길, 서버 판정 BOSS 머리 위 배지, 미니맵 아래 투명 Gold/Diamonds 표시. [비교 조사](docs/research/2026-10-30-deepwood-places.md) · [검증/남은 수용](docs/evidence/deepwood/places-0400/README.md). 로비 버전18·전투 버전4가 비공개 게시됐으며 상위 티켓은 In Progress다. [게시 증거](docs/evidence/release-0402/README.md).
 
@@ -394,14 +396,14 @@
 | 구간 | 지역 | 현재 본편의 사건과 결과 |
 | --- | --- | --- |
 | 프롤로그 | Dawnspire | 왕관의 심장 탈취·포탈 침공·주민 구조 후 추적 시작 |
-| 에픽1 | Deepwood | 보급대/주민 구조·King Shaman 격파·북쪽 운반 명령서 발견 |
-| 에픽2 | Frozen Vale | 고립 주민 구조·얼음 수호수 진정·겨울 해제·화산 도시 추적 |
-| 에픽3 | Ember Caldera | 광부 구조·냉각 복구·Inferno Overlord 격파·Veyr 계획 발견 |
-| 에픽4 | Gloamwood | 원정대 구조·거미 여왕 격파·묘지 요새의 숨겨진 입구 확보 |
+| 에픽1 | Deepwood | 보급대/주민 구조·King Shaman 격파·Gloamwood행 운반 명령서 발견 |
+| 에픽2 | Gloamwood | 운반대 추적·정찰대 구조·거미 여왕 격파·Frozen Vale행 옛길 개방 |
+| 에픽3 | Frozen Vale | 고립 주민 구조·얼음 수호수 진정·눈보라 해제·화산 도시의 가공 목적 확인 |
+| 에픽4 | Ember Caldera | 광부 구조·냉각 복구·Inferno Overlord 격파·Veyr 침공 계획/왕릉 진입로 확보 |
 | 에픽5 | Haunted Graveyard | Veyr 최종전·왕관의 심장 회수·대형 포탈 폐쇄 |
 | 귀환 | Dawnspire | 수정 왕좌 복구·구한 주민/동료와 재회·본편 완결 |
 
-Gloamwood/Crownheart는 영문 가칭이다. 기존 DW/FV/EC/HG 안정ID와 승인32구간 보상은 변경하지 않는다. 아래 기존 구간 추적표와 지역별 상세안은 재사용 후보이며 충돌하는 서사는 승인 개요로 개정해야 한다. HG는 새 본편 에픽5다. 새 지역 ID·스토리 수·Lv1~80 성장 및 Lv20/40/60/80 전직 배치·XP/Gold는 후속 설계이며 과거 장별 레벨을 그대로 적용하지 않는다.
+Gloamwood/Crownheart는 영문 가칭이다. 기존 DW/GW/FV/EC/HG 안정ID와 승인32구간 보상은 변경하지 않는다. 아래 기존 구간 추적표와 지역별 상세안은 재사용 후보이며 충돌하는 서사는 승인 개요로 개정해야 한다. HG는 새 본편 에픽5다. 기존 GW-01~07을 포함한 35개 본편 ID는 보존한다. 새 순서의 Lv1~80 성장·Lv20/40/60/80 전직 도달 시점·XP/Gold·저장 이관은 후속 설계이며 과거 장별 레벨을 그대로 적용하지 않는다. 실제 게임 순서는 아직 이전 순서다.
 
 기존 AS/DC/FB/FC 8에픽 후반 원고는 참고로 보존하고 현재 본편 제작 범위에서 제외한다. Dawnspire는 거점이며 첫 제작·전투 검증 지역은 Deepwood다. 일반 본편은 솔로~4인으로 완결하며 레이드와 선택 보스를 결말의 필수 조건으로 두지 않는다. 상세 영어 대사·맵/몬스터·정상 성장·실기기/협동 수용은 후속이며 상위 티켓 완료를 뜻하지 않는다.
 
