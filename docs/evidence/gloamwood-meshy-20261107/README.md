@@ -36,3 +36,9 @@
 정상 Gloamwood7스토리 전투 완주, 게시된 Experience의 새 자산 권한, 실제 기기/4인+AI 성능·스트리밍·늦은 합류, 사용자 최종 미술 수용은 남아 있다. Blender/Studio 자세/격리 엔진 검사를 이를 대신하는 증거로 쓰지 않는다. 일부 AttackAlt/전환 슬롯은 같은 키를 공유하며80개의 독립적 전용 연출을 뜻하지 않는다. 지네 발의 독립 IK, 전 종의 지면 경사 접지/관절 극한 자세와 체형별 공격 연출의 세부 다듬기는 후속이다.
 
 다음 QA는 고정 빌드에서 GW본편/선택 보스·소형 적과 보스 크기·8다리 보행·피격/사망·실기기 성능을 관찰한다. ART는 사용자 수용 결과에 따라 발 접지와 관절을 다듬는다. 실제 Roblox Place 게시와 릴리스 태그는 수행하지 않았다. 버전/입력 커밋/산출물 해시는 마감의 `build.json`에 기록한다.
+
+## 고정 빌드·Git 마감
+
+`aadaf09271f87e9105d94a2d4088c4f0fb5ad6ab`을 입력으로 `python3 tools/build-game.py --source aadaf09 --record docs/evidence/gloamwood-meshy-20261107/build.json` 성공.0.80.0 단일 파일은 `builds/0.80.0/TheLastThrone-0.80.0.rbxlx`, SHA256 `a8c75a70f94f9ce7c04386cad341676b7cb6c5ddd44e33309bef217aea796ae3`이다. 모든 참조 LFS 입력을 해시로 검증했다. [빌드 기록](build.json).
+
+고정 파일에서도 `tests/gloamwood-meshy-native.luau` **27,993 PASS·종료0**,16자산 모두 Success를 확인했다([고정 빌드 로그](native-fixed-build.log) / [결과](native-fixed-build.json)). 소스 커밋은 origin/main에 반영됐고 신규 LFS18개·60MB 전송 성공을 확인했다. 후속 기록 커밋은 빌드 입력 커밋을 바꾸지 않는다. 실제 Place 게시·태그는 없다.
