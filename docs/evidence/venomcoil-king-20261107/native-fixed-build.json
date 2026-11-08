@@ -1,0 +1,80 @@
+{
+  "models": [
+    {
+      "bones": 18,
+      "height": 1.7386030316417513,
+      "kind": "Webling",
+      "mesh": "rbxassetid://132731227329747",
+      "texture": "rbxassetid://87041370819307"
+    },
+    {
+      "bones": 18,
+      "height": 2.0301923525477528,
+      "kind": "Silkweaver",
+      "mesh": "rbxassetid://92280398865893",
+      "texture": "rbxassetid://90157337142817"
+    },
+    {
+      "bones": 18,
+      "height": 2.3684445728684698,
+      "kind": "Barkstalker",
+      "mesh": "rbxassetid://106309469785242",
+      "texture": "rbxassetid://99145131743015"
+    },
+    {
+      "bones": 6,
+      "height": 3.889803000764866,
+      "kind": "Gloambat",
+      "mesh": "rbxassetid://103638822774187",
+      "texture": "rbxassetid://72391808960013"
+    },
+    {
+      "bones": 14,
+      "height": 1.086158219011903,
+      "kind": "VenomcoilCentipede",
+      "mesh": "rbxassetid://72669066254172",
+      "texture": "rbxassetid://106291858986253"
+    },
+    {
+      "bones": 18,
+      "height": 2.901024034030984,
+      "kind": "WidowQueen",
+      "mesh": "rbxassetid://72516309373191",
+      "texture": "rbxassetid://139553609301130"
+    },
+    {
+      "bones": 10,
+      "height": 9,
+      "kind": "AncientHollowbark",
+      "mesh": "rbxassetid://103283623112756",
+      "texture": "rbxassetid://88236660743771"
+    },
+    {
+      "bones": 14,
+      "height": 3.1920765474184827,
+      "kind": "VenomcoilKing",
+      "mesh": "rbxassetid://138080691573925",
+      "texture": "rbxassetid://93469012689254"
+    }
+  ],
+  "assets": {
+    "rbxassetid://99145131743015": "Success",
+    "rbxassetid://72516309373191": "Success",
+    "rbxassetid://87041370819307": "Success",
+    "rbxassetid://138080691573925": "Success",
+    "rbxassetid://93469012689254": "Success",
+    "rbxassetid://106309469785242": "Success",
+    "rbxassetid://139553609301130": "Success",
+    "rbxassetid://88236660743771": "Success",
+    "rbxassetid://72669066254172": "Success",
+    "rbxassetid://132731227329747": "Success",
+    "rbxassetid://90157337142817": "Success",
+    "rbxassetid://103283623112756": "Success",
+    "rbxassetid://103638822774187": "Success",
+    "rbxassetid://106291858986253": "Success",
+    "rbxassetid://72391808960013": "Success",
+    "rbxassetid://92280398865893": "Success"
+  },
+  "status": "PASS",
+  "checks": 27993
+}

@@ -22,3 +22,9 @@ Meshy 작업공간에서 최신 색상 모델을 직접 선택·다운로드했�
 ![새 Venomcoil King의 강공격 접촉 자세](studio-updated.jpg)
 
 정상 Gloamwood 전투 완주, 실제 기기/4인+AI 성능, 게시 Experience 자산 권한, 독립 발 IK/경사 접지 및 사용자 최종 미술 수용은 후속이다. QA는 고정 빌드에서 보스 전투와 위 항목을 확인한다. 실제 Place 게시·릴리스 태그는 수행하지 않는다. 빌드 입력/해시/마감 결과는 후속 `build.json`과 아래 마감 기록으로 연결한다.
+
+## 고정 빌드·Git 마감
+
+입력 커밋 `99be6ccf123ec05c8699d76f9a9302b172612065`를 origin/main에 푸시하고 LFS5개·9.9MB 전송 성공을 확인했다. `python3 tools/build-game.py --source 99be6cc --record docs/evidence/venomcoil-king-20261107/build.json` 성공. 산출물은 `builds/0.83.5/TheLastThrone-0.83.5.rbxlx`, SHA256 `84d29cf393fd3e69cecb817ba79bb3d20210ec627c04031d9bf7aee459965d46`이다. git archive가 확장한 실제 자산15개의 고정 입력 SHA256을 커밋된 LFS OID와 독립 대조해 모두 일치했다. [빌드 기록](build.json).
+
+같은 고정 빌드에서 `tests/gloamwood-meshy-native.luau`를 실행해 **27,993 PASS·종료0**,16자산 모두 Success를 재확인했다. [고정 빌드 로그](native-fixed-build.log) / [결과](native-fixed-build.json). 이 기록의 후속 커밋은 빌드 입력을 변경하지 않는다. Roblox Place 게시·릴리스 태그는 없다.
