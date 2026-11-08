@@ -21,3 +21,5 @@
 고정 소스 빌드는 구현 커밋 후 `python3 tools/build-game.py --source HEAD --record docs/evidence/skill-level9-20261107/build.json`으로 기록한다.
 
 빌드 번호 충돌: 작업 중 다른 변경의0.81.3 빌드가 존재하여 첫 빌드 명령은 덮어쓰기 방지로 종료1. 산출물은 변경하지 않았고 새 번호0.81.4로 고정한다.
+
+고정 빌드0.81.4 성공: 소스 `5e420c14667eab1f54cc4e2f2a7e2cedabb5b1eb`, 산출물 SHA256 `5d84f9be33c056836fc96141e065dd44fb3bc968dad5a65b882afe341e0a6ecb` 재확인. [build.json](build.json). 입력 LFS 검증 대상 0개. 작업별 커밋을 origin/main에 푸시하며 게시/태그는 수행하지 않는다.
