@@ -16,7 +16,7 @@ local profile=assert(R.addHero(R.new(928),'hero','knight',C))
 profile.heroes.hero.level=80;profile.heroes.hero.progression=G.new(80)
 local prefixes={[0]=R.copy(profile)}
 for _,c in ipairs(Content.mainChapters)do
- for _,g in ipairs(c.goals)do if not g.optional then
+ for _,g in ipairs(c.coreGoals)do if not g.optional then
   for _,s in ipairs(g.activity and g.activity.steps or {false})do
    profile=assert(R.story(profile,'hero',c.id,g.id,s and s.choices and s.choices[1].id or g.choice and 'shared',C,s and s.id or nil))
   end
@@ -28,7 +28,7 @@ for _,c in ipairs(Content.chapters)do if c.side then
  total=total+1;local required=D.requiredMain(c);local base=prefixes[required];check(base~=nil,'valid side admission checkpoint')
  check(c.quest and c.quest.giver and c.quest.brief~='' and c.quest.outcome~='','authored quest narrative')
  local report=P.goal(c,c.quest.turnIn);check(report and not report.optional,'mandatory report exists')
- check(c.goals[#c.goals]==report,'report is last objective')
+ check(c.coreGoals[#c.coreGoals].id==report.id,'report is last objective')
  check(c.reward.xp>0 and c.reward.coins>0,'every side quest has a fixed completion award')
  check(D.allowed(base.heroes.hero,c.id,'Easy'),c.id..' can enter at required checkpoint')
  if required>0 then
@@ -43,7 +43,7 @@ for _,c in ipairs(Content.chapters)do if c.side then
    if seen[b] and not seen[a]then seen[a]=true;changed=true end
   end
  end end
- for _,g in ipairs(c.goals)do
+ for _,g in ipairs(c.coreGoals)do
   goals=goals+1;if g.optional then optional=optional+1 end
   check(Bounds.supported(g.position[1],g.position[2]+4,g.position[3]),c.id..':'..g.id..' supported destination')
   local zone=Access.region(g.position[1],g.position[3]);check(Access.allowed(base.heroes.hero.deepwood,zone),c.id..':'..g.id..' actual nearest region unlocked')
@@ -61,13 +61,13 @@ for _,c in ipairs(Content.chapters)do if c.side then
   if mode=='Easy' or D.combat(c)then
    local first=not p.heroes.hero.deepwood.clears[c.id]
    local runId='audit_'..c.id..'_'..mode..'_'..p.revision
-   p=assert(A.begin(p,'hero',c.id,mode,runId,p.revision,R,C))
+   p=assert(A.begin(p,'hero',c.id,mode,runId,p.revision,R,C,12))
    local permanentMain=p.heroes.hero.deepwood.main
    check(P.accepted(A.projection(p.heroes.hero),c),'admission durably accepts side quest')
    local wrong,why=A.event(p,'hero',c.id,c.goals[1].id,nil,nil,R,C,'foreign')
    check(not wrong and why=='AdventureChanged','foreign run rejected')
    wrong=A.event(p,'hero',c.id,report.id,nil,nil,R,C,runId);check(not wrong,'early report rejected')
-   for _,g in ipairs(c.goals)do
+   for _,g in ipairs(c.coreGoals)do
     local view=A.projection(p.heroes.hero)
     check(P.available(view,c,g),c.id..':'..g.id..' available in order')
     if not g.optional then local t=Log.tracked(view,c.id);check(t and t.goal.id==g.id,'tracker leads to next mandatory goal')end
@@ -76,9 +76,9 @@ for _,c in ipairs(Content.chapters)do if c.side then
     check(again and again.revision==p.revision and again.wallet.gold==p.wallet.gold,'duplicate does not grant rewards')
     check(R.validate(p,C),'account valid after event')
     local before=A.projection(p.heroes.hero)
-    if g~=report then
+    if g.id~=report.id then
      -- New server admission must resume the same mission's saved flags.
-     runId=runId..'r';p=assert(A.begin(p,'hero',c.id,mode,runId,p.revision,R,C))
+     runId=runId..'r';p=assert(A.begin(p,'hero',c.id,mode,runId,p.revision,R,C,12))
      check(A.projection(p.heroes.hero).flags[c.id..':'..g.id] and P.validate(before),'reconnect preserves completed objective')
     end
    end
@@ -88,11 +88,11 @@ for _,c in ipairs(Content.chapters)do if c.side then
    check(not Log.tracked(A.projection(p.heroes.hero)),'completed run has no stale objective')
   else local ok,why=D.allowed(p.heroes.hero,c.id,mode);check(not ok and why=='CombatMissionOnly','noncombat side rejects combat difficulty')end
  end
- table.insert(rows,string.format('%s | %s | %d | %d | %s',c.id,c.title,required,#c.goals,D.combat(c)and 'Easy/replay/Hard/Insane/Hell' or 'Easy/replay'))
+ table.insert(rows,string.format('%s | %s | %d | %d | %s',c.id,c.title,required,#c.coreGoals,D.combat(c)and 'Easy/replay/Hard/Insane/Hell' or 'Easy/replay'))
 end end
 -- Completing a side expedition after the finale must still say side quest complete.
-local c=Content.byId['DW-Q3'];local p=assert(A.begin(prefixes[35],'hero',c.id,'Easy','postgame',prefixes[35].revision,R,C))
-for _,g in ipairs(c.goals)do if not g.optional then p=assert(A.event(p,'hero',c.id,g.id,nil,nil,R,C,'postgame'))end end
+local c=Content.byId['DW-Q3'];local p=assert(A.begin(prefixes[35],'hero',c.id,'Easy','postgame',prefixes[35].revision,R,C,12))
+for _,g in ipairs(c.coreGoals)do if not g.optional then p=assert(A.event(p,'hero',c.id,g.id,nil,nil,R,C,'postgame'))end end
 check(Log.tracker(A.projection(p.heroes.hero)).title=='SIDE QUEST COMPLETE','postgame side completion is not mislabeled as epic completion')
 print(string.format('SIDE_QUEST_REVIEW %d checks PASS; %d quests, %d goals, %d combats, %d optional goals',n,total,goals,battles,optional))
 for _,row in ipairs(rows)do print(row)end

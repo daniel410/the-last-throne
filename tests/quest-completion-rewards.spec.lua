@@ -47,7 +47,7 @@ local mainOnly=R.copy(profile)
 for _,c in ipairs(Content.chapters)do if c.side then
  check(c.reward.xp>0 and c.reward.coins>0 and ((c.reward.ore or 0)+(c.reward.gems or 0))>0,'side pays XP, Gold and items '..c.id)
  local run='first-'..c.id
- profile=assert(A.begin(profile,'hero',c.id,'Easy',run,profile.revision,R,C))
+ profile=assert(A.begin(profile,'hero',c.id,'Easy',run,profile.revision,R,C,12))
  local gold,xp=profile.wallet.gold,G.totalXP(profile.heroes.hero.progression)
  local ore,gems=quantity(profile,'iron_ore'),quantity(profile,'enhancement_gem')
  local report=P.goal(c,c.quest.turnIn)
@@ -66,7 +66,7 @@ for _,c in ipairs(Content.chapters)do if c.side then
  check(Log.reward(c):find(tostring(c.reward.coins)..' Gold',1,true),'journal reward preview '..c.id)
  -- Replaying does not reissue the first-clear materials, but pays repeat XP/Gold.
  local repeatRun='repeat-'..c.id
- profile=assert(A.begin(profile,'hero',c.id,'Easy',repeatRun,profile.revision,R,C))
+ profile=assert(A.begin(profile,'hero',c.id,'Easy',repeatRun,profile.revision,R,C,12))
  gold=profile.wallet.gold;xp=G.totalXP(profile.heroes.hero.progression);ore=quantity(profile,'iron_ore');gems=quantity(profile,'enhancement_gem')
  events(c,function(g,choice,step)profile=assert(A.event(profile,'hero',c.id,g.id,choice,step,R,C,repeatRun))end)
  check(mode.gold>0 and mode.xp>0,'nonzero repeat award '..c.id)
@@ -81,7 +81,7 @@ for id in pairs(Rewards.awards)do
   check(reward.xp==0 and reward.gold==0,'pinned pre-award repeat contract '..id)
  end end
 end
-check(D.version==12 and D.compatible(11),'new runs use rules 12')
+check(D.version==13 and D.compatible(12) and D.compatible(11),'expanded runs retain rules 12 completion rewards')
 -- Reconstruct an actual pre-award account: unchanged journal, with awards absent.
 local legacy=R.copy(profile);local h=legacy.heroes.hero
 local addedGold,addedXP=0,0

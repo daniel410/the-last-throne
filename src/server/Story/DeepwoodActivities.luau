@@ -64,11 +64,11 @@ function Engine.create(o)
  end
  function api.update(dt)
   dt=math.min(dt,.25)
-  for _,p in ipairs(Players:GetPlayers()) do
+  for _,p in ipairs(o.players and o.players()or Players:GetPlayers()) do
    local hero=o.active(p);local ctx,root=o.context(p)
    if hero and not hero.training and ctx and root then
     local s=o.state(p,ctx.heroId)
-    if s then for _,c in ipairs(Content.chapters) do if not c.side then for _,g in ipairs(c.goals) do
+    if s then for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
      local a=g.activity;local step=Progress.nextStep(s,c,g)
      if a and step then
       if (a.mode=='trail' or a.mode=='travel') and (root.Position-Vector3.new(table.unpack(step.position))).Magnitude<=10 then o.enqueue(p,ctx.heroId,c,g,nil,step.id)
@@ -77,7 +77,7 @@ function Engine.create(o)
        if count>0 and (root.Position-Vector3.new(table.unpack(a.steps[count].position))).Magnitude<=16 then escort(p,c,g,ctx,s) end
       end
      end
-    end end end end
+    end end end
    end
   end
   for p,a in pairs(attempts) do
@@ -97,7 +97,7 @@ function Engine.create(o)
       a.waiting=nil
       local target=Vector3.new(table.unpack(step.position));local delta=target-pos
       if delta.Magnitude<=1 then a.waiting=step.id;o.enqueue(p,ctx.heroId,a.c,a.g,nil,step.id)
-      else local nextPos=pos+delta.Unit*math.min(delta.Magnitude,dt*7);local flat=Vector3.new(delta.X,0,delta.Z);a.actor:PivotTo(flat.Magnitude>.01 and CFrame.lookAt(nextPos,nextPos+flat) or CFrame.new(nextPos)) end
+      else local nextPos=pos+delta.Unit*math.min(delta.Magnitude,dt*7);if a.g.expansion then local floor=require(game.ReplicatedStorage.Shared.CampaignBounds).surface(nextPos.X,nextPos.Z);if floor then nextPos=Vector3.new(nextPos.X,floor,nextPos.Z)end end;local flat=Vector3.new(delta.X,0,delta.Z);a.actor:PivotTo(flat.Magnitude>.01 and CFrame.lookAt(nextPos,nextPos+flat) or CFrame.new(nextPos)) end
      end
     end
    end

@@ -3,6 +3,7 @@ local M={}
 local scene
 function M.update(snapshot)
  local hero=snapshot and snapshot.heroId and snapshot.heroes and snapshot.heroes[snapshot.heroId]
+ require(script.Parent.CampaignExpansionPresentation).update({journal=hero and hero.deepwood})
  local done=hero and hero.deepwood and hero.deepwood.clears['HG-07']==true
  local lobby=workspace:FindFirstChild('DawnspireLobbyPrototype')
  if not done or not lobby then if scene then scene:Destroy();scene=nil end;return end

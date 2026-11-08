@@ -2,6 +2,7 @@
 -- Background forest is scenery, never an alternate route around story gates.
 local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local Access=game and require(game:GetService('ReplicatedStorage').Shared.CampaignAccess) or dofile('src/shared/CampaignAccess.luau')
+local Areas=game and require(game:GetService('ReplicatedStorage').Shared.CampaignAreas)or dofile('src/shared/CampaignAreas.luau')
 local Bounds={trailHalfWidth=48,backgroundHeight=-12}
 local function finite(v) return type(v)=='number' and v==v and math.abs(v)<1e7 end
 function Bounds.ends(edge)
@@ -23,8 +24,9 @@ function Bounds.region(x,z,margin,except)
  margin=margin or 0
  local height,id
  for key,zone in pairs(Content.zones) do
-  if key~=except and math.abs(x-zone.center[1])<=zone.size[1]/2+margin and math.abs(z-zone.center[3])<=zone.size[2]/2+margin then
-   if not height or zone.center[2]>height then height,id=zone.center[2],key end
+  if key~=except and Areas.containsZone(zone,x,z,margin) then
+   local y=Areas.height(zone,x,z,margin)
+   if not height or y>height then height,id=y,key end
   end
  end
  return height,id

@@ -33,8 +33,10 @@ function W.create(epic,world)
  if epic==3 then require(script.Parent.FrozenValeWorld).create(world)
  elseif epic==4 then require(script.Parent.EmberCalderaWorld).create(world)
  elseif epic==2 or epic==5 then require(script.Parent.LateEpicWorld).create(world,epic)end
+ require(script.Parent.CampaignExpansionWorld).create(world,scope)
  require(script.Parent.DeepwoodActivityWorld).create(world)
  require(script.Parent.EpicWorldArt).create(world,scope)
+ require(script.Parent.CampaignExpansionWorld).openEntrances(world,scope)
  world.loadedEpics[epic]=true
  world.folder:SetAttribute('Epic'..epic..'Ready',true)
  return world

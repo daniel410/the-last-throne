@@ -8,13 +8,14 @@ local Theme=require(script.Parent.TDInventoryTheme)
 local Art=require(script.Parent.DeepwoodCartography)
 local Survey=require(Shared.CampaignCartography)
 local Bounds=require(Shared.CampaignBounds)
+local Areas=require(Shared.CampaignAreas)
 local Canvas={}
 function Canvas.create(parent,zoneId,compact,onSelect)
  local minX,minZ,maxX,maxZ=math.huge,math.huge,-math.huge,-math.huge
  local ids={};for id in pairs(Content.zones) do if not zoneId or id==zoneId or type(zoneId)=='table' and zoneId[id] then table.insert(ids,id) end end;table.sort(ids)
  for _,id in ipairs(ids) do local z=Content.zones[id]
-  minX=math.min(minX,z.center[1]-z.size[1]/2);maxX=math.max(maxX,z.center[1]+z.size[1]/2)
-  minZ=math.min(minZ,z.center[3]-z.size[2]/2);maxZ=math.max(maxZ,z.center[3]+z.size[2]/2)
+  local a,b,c,d=Areas.extent(z)
+  minX=math.min(minX,a);maxX=math.max(maxX,c);minZ=math.min(minZ,b);maxZ=math.max(maxZ,d)
  end
  if compact then
   local size=math.max(maxX-minX,maxZ-minZ);local cx,cz=(minX+maxX)/2,(minZ+maxZ)/2
@@ -45,6 +46,12 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   table.insert(roads,{part=f,a=a,b=b,thickness=thickness,edge=edge,zone=zone,worldWidth=worldWidth});return f
  end
  for _,id in ipairs(ids) do Art.region(parent,id,Content.zones[id],point,width,height,compact,line) end
+ for _,id in ipairs(ids)do for _,area in ipairs(Content.zones[id].expansionAreas or {})do
+  local center=point(area.center[1],area.center[3])
+  Art.shape(parent,'IncidentSpace',center.X,center.Y,area.size[1]/width,area.size[2]/height,Color3.fromRGB(66,87,79),3,.3)
+  line('IncidentWalk',point(area.entry[1],area.entry[3]),center,Theme.color.silver,3,4,nil,id,24)
+  if not compact then local t=label('IncidentName',area.name,center,UDim2.fromOffset(120,32),9,Theme.color.silver,5);t.TextWrapped=true end
+ end end
  local included={};for _,id in ipairs(ids)do included[id]=true end
  if type(zoneId)~='string' then for _,edge in ipairs(Access.edges) do
   if included[edge[1]] and included[edge[2]] and Content.zones[edge[1]].epic==Content.zones[edge[2]].epic then

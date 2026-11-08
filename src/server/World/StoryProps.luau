@@ -9,6 +9,8 @@ for i=1,4 do
 end
 local P={version=1}
 local function theme(chapter)
+ if chapter and chapter:match('^GW')then return 'Gloamwood'end
+ if chapter and chapter:match('^HG')then return 'HauntedGraveyard'end
  if chapter and chapter:match('^FV') then return 'FrozenVale' end
  if chapter and chapter:match('^EC') then return 'EmberCaldera' end
  return 'Deepwood'
@@ -21,7 +23,14 @@ function P.build(parent,key,position,options)
  model:SetAttribute('StoryPropTheme',options.theme or 'Deepwood');model:SetAttribute('StoryPurpose',spec.purpose)
  local origin=typeof(position)=='CFrame' and position or CFrame.new(position)
  local scale=options.scale or 1
+ local counts,seen={},{}
+ local limits={WoundHempCable=6,RatchetGear=6,RatchetTooth=4,GuidePulley=4,BoltedFlange=6,FlangeBolt=4,GaugeBezel=4,ValveHandwheel=8,CompassRim=4,HandwrittenLedgerRule=3}
+ if options.detail=='incident'then for _,piece in ipairs(spec.parts)do counts[piece.name]=(counts[piece.name]or 0)+1 end end
  for _,s in ipairs(spec.parts) do
+  seen[s.name]=(seen[s.name]or 0)+1
+  local limit=options.detail=='incident'and limits[s.name]
+  local keep=not limit or math.floor(seen[s.name]*limit/counts[s.name])>math.floor((seen[s.name]-1)*limit/counts[s.name])
+  if keep then
   local p=Instance.new(s.shape=='Wedge' and 'WedgePart' or 'Part');p.Name=s.name
   p.Size=Vector3.new(table.unpack(s.size))*scale
   local at=Vector3.new(table.unpack(s.position))*scale
@@ -37,6 +46,7 @@ function P.build(parent,key,position,options)
   p.CastShadow=p.Size.Magnitude>1;p.TopSurface=Enum.SurfaceType.Smooth;p.BottomSurface=Enum.SurfaceType.Smooth
   p:SetAttribute('TLTDecorative',true);p.Parent=model
   if not model.PrimaryPart then model.PrimaryPart=p end
+  end
  end
  model.WorldPivot=origin;model.Parent=parent;return model
 end
@@ -64,7 +74,7 @@ end
 function P.activity(parent,chapter,goal,step,position)
  local key=P.forStep(chapter,goal,step)
  if not key then return end
- local model=P.build(parent,key,position,{theme=theme(chapter),name=chapter..'_'..goal..'_'..step.id..'_Art'})
+ local model=P.build(parent,key,position,{theme=theme(chapter),name=chapter..'_'..goal..'_'..step.id..'_Art',detail=goal:match('^exp_')and 'incident'or nil})
  if chapter:match('^EC') and step.kind=='lever' then model:SetAttribute('StoryVisualKey',chapter..':'..goal) end
  return model
 end

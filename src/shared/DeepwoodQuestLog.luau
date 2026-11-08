@@ -14,7 +14,7 @@ function Log.main(s) return s.main<Content.mainCount and Content.mainChapters[s.
 function Log.target(s,c,optionalId)
  if not c then return nil end
  if optionalId then local g=P.goal(c,optionalId);if g and g.optional and P.available(s,c,g) then return {chapter=c,goal=g} end end
- for _,g in ipairs(c.goals) do if not g.optional and P.available(s,c,g) then return {chapter=c,goal=g} end end
+ for _,g in ipairs(c.goals) do if P.required(s,g) and P.available(s,c,g) then return {chapter=c,goal=g} end end
 end
 function Log.reportGuidance(s)
  if s.main~=6 or not s.flags or not s.flags['DW-07:separate'] or s.flags['DW-07:restoration'] then return nil end
@@ -82,7 +82,7 @@ function Log.status(s,c)
  if not Content.accessible(s,c.minMain,c.legacyMinMain)then return 'Locked' end
  if not P.accepted(s,c) then return 'Available' end
  local report=P.goal(c,c.quest.turnIn)
- local ready=true;for _,g in ipairs(c.goals) do if not g.optional and g~=report and not s.flags[c.id..':'..g.id] then ready=false end end
+ local ready=true;for _,g in ipairs(c.goals) do if P.required(s,g) and g~=report and not s.flags[c.id..':'..g.id] then ready=false end end
  if ready and not Content.accessible(s,report.minMain or 0,report.legacyMinMain)then return 'Waiting for story '..report.minMain end
  return P.available(s,c,report) and 'Ready to report' or 'In progress'
 end

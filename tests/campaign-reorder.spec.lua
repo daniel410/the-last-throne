@@ -53,7 +53,7 @@ for _,losses in ipairs({1,3})do
  p.heroes.hero.expeditions={version=1,clears={},cacheProgress={},active={version=1,balanceVersion=9,runId='caldera',missionId='EC-07',difficultyId='Easy',journal=P.copy(snapshots[22]),completed=true,firstClear=true,kills={}}}
  p=R.upgrade(p)
  local c=C.byId['GW-01'];local last=c.goals[#c.goals]
- for i,g in ipairs(c.goals)do if i<#c.goals then
+ for i,g in ipairs(c.coreGoals)do if i<#c.coreGoals then
   for _,step in ipairs(g.activity and g.activity.steps or {false})do p=assert(A.event(p,'hero',c.id,g.id,nil,step and step.id or nil,R,Items,'caldera'))end
  end end
  local db=P.copy(p);local remaining=0;local committed
@@ -120,7 +120,7 @@ check(load('SupportPassRules').view(reopened,'hero').active,'paid old mission su
 -- Historical replay and permanent first clears use separate journals.
 local p=assert(R.addHero(R.new(789),'hero','knight',Items));p.heroes.hero.level=80;p.heroes.hero.progression=G.new(80)
 p.heroes.hero.deepwood=assert(P.upgrade(snapshots[22]));local oldGold=p.heroes.hero.deepwood.coins
-p=assert(A.begin(p,'hero','FV-07','Easy','oldReplay',p.revision,R,Items))
+p=assert(A.begin(p,'hero','FV-07','Easy','oldReplay',p.revision,R,Items,12))
 check(P.validate(p.heroes.hero.expeditions.active.journal),'replay has valid prefix despite permanent GW gap')
 check(p.heroes.hero.deepwood.main==7 and not p.heroes.hero.deepwood.clears['GW-01'],'synthetic prefix never enters permanent progress')
 events(C.byId['FV-07'],function(g,choice,step)p=assert(A.event(p,'hero','FV-07',g.id,choice,step,R,Items,'oldReplay'))end)
@@ -135,7 +135,7 @@ check(A.continuation(active).id=='GW-01','completed legacy run reaches missing n
 local oldSide=assert(P.accept(snapshots[22],'FV-Q1',true));oldSide=finish(oldSide,C.byId['FV-Q1'])
 local sideProfile=assert(R.addHero(R.new(812),'hero','elf',Items));sideProfile.heroes.hero.level=80;sideProfile.heroes.hero.progression=G.new(80)
 sideProfile.heroes.hero.deepwood=assert(P.upgrade(oldSide))
-sideProfile=assert(A.begin(sideProfile,'hero','FV-Q1','Easy','legacySide',sideProfile.revision,R,Items))
+sideProfile=assert(A.begin(sideProfile,'hero','FV-Q1','Easy','legacySide',sideProfile.revision,R,Items,12))
 check(P.validate(sideProfile.heroes.hero.expeditions.active.journal),'old side replay valid before filling GW')
 events(C.byId['FV-Q1'],function(g,choice,step)sideProfile=assert(A.event(sideProfile,'hero','FV-Q1',g.id,choice,step,R,Items,'legacySide'))end)
 check(sideProfile.heroes.hero.deepwood.main==7 and sideProfile.heroes.hero.deepwood.clears['FV-Q1'],'old side replay preserves permanent clears and frontier')
@@ -144,7 +144,7 @@ p=assert(R.addHero(R.new(890),'hero','mage',Items));p.heroes.hero.level=80;p.her
 local fixed=0
 for i,c in ipairs(C.mainChapters)do
  check(c.epic==math.ceil(i/7)and c.number==i,'ordered episode metadata')
- p=assert(A.begin(p,'hero',c.id,'Easy','route'..i,p.revision,R,Items));local run='route'..i
+ p=assert(A.begin(p,'hero',c.id,'Easy','route'..i,p.revision,R,Items,12));local run='route'..i
  local gold=p.wallet.gold
  events(c,function(g,choice,step)
   p=assert(A.event(p,'hero',c.id,g.id,choice,step,R,Items,run))

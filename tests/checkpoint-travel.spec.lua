@@ -7,7 +7,7 @@ local Content=dofile('src/shared/CampaignContent.luau')
 local G=dofile('src/shared/HeroProgression.luau')
 local checks=0;local function check(v,m)checks=checks+1;assert(v,m)end
 local p=assert(R.addHero(R.new(720),'hero','knight',C));p.heroes.hero.level=80;p.heroes.hero.progression=G.new(80)
-p=assert(A.begin(p,'hero','DW-01','Easy','travel',p.revision,R,C))
+p=assert(A.begin(p,'hero','DW-01','Easy','travel',p.revision,R,C,12))
 check(next(T.list(A.projection(p.heroes.hero)))==nil,'no travel before any saved completion')
 local readySave
 for _,c in ipairs(Content.mainChapters)do

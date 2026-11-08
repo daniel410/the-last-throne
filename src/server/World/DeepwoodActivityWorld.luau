@@ -27,7 +27,7 @@ end
 function W.create(world)
  local folder=world.folder:FindFirstChild('AdventureActivities') or Instance.new('Folder');folder.Name='AdventureActivities';folder.Parent=world.folder
  local nodes=world.activityNodes or {};world.activityNodes=nodes
- for _,c in ipairs(Content.chapters) do if not c.side then for _,g in ipairs(c.goals) do
+ for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
   local a=g.activity;local node=world.nodes[c.id..':'..g.id]
   if node and not node.storyArtBuilt then
    node.storyArtBuilt=true
@@ -55,6 +55,6 @@ function W.create(world)
     if a.clue then label(node.part,a.clue) end
    end
   end
- end end end
+ end end
 end
 return W

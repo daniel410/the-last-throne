@@ -44,7 +44,10 @@ function S.start(options)
   entry.prompt.Triggered:Connect(function(player)
    if os.clock()-(last[player] or -math.huge)<.6 or not Access.allowed(player,entry.prompt)then return end
    last[player]=os.clock()
-   if id=='mira' then
+   if entry.homecoming then
+    local snapshot=options.inventory.snapshot(player);local hero=snapshot.ready and snapshot.heroId and snapshot.heroes[snapshot.heroId]
+    if hero and hero.deepwood and hero.deepwood.clears['HG-07']then remote:FireClient(player,{name=entry.name,role='Welcome Home',text=entry.text})end
+   elseif id=='mira' then
     if options.inventory.ready(player)then RS.Remotes.ArmoryState:FireClient(player,{inventory=options.inventory.snapshot(player),open=true,store='items'})end
    elseif id=='selene' then show(player)
    elseif id=='tessa' then remote:FireClient(player,{sideQuests=true})

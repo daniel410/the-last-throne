@@ -16,7 +16,7 @@ local n=0;local function check(v,m)n=n+1;assert(v,m)end
 local phase='Tutorial';local player={GetAttribute=function()return phase end}
 local profile=assert(R.addHero(R.new(713),'hero','knight',C))
 profile.heroes.hero.level=80;profile.heroes.hero.progression=G.new(80)
-profile=assert(A.begin(profile,'hero','DW-01','Easy','journey',profile.revision,R,C))
+profile=assert(A.begin(profile,'hero','DW-01','Easy','journey',profile.revision,R,C,12))
 local function apply(c,g)
  for _,step in ipairs(g.activity and g.activity.steps or {false})do
   profile=assert(A.event(profile,'hero',c.id,g.id,step and step.choices and step.choices[1].id or g.choice and 'shared' or nil,step and step.id or nil,R,C,'journey'))
@@ -43,7 +43,7 @@ for _,value in ipairs({'Tutorial','Respawning','LoadingTutorial'})do
 end
 check(profile.revision==original.revision and profile.wallet.gold==original.wallet.gold,'destination resolution grants no reward or journal mutation')
 -- Replay progress may differ from permanent clears; respawn must use the replay.
-profile=assert(A.begin(profile,'hero','DW-01','Easy','replay',profile.revision,R,C));account.profile=profile
+profile=assert(A.begin(profile,'hero','DW-01','Easy','replay',profile.revision,R,C,12));account.profile=profile
 phase='Respawning'
 check(storyState(player,'hero').main==0 and profile.heroes.hero.deepwood.main==3,'death preserves replay journal independently of permanent progress')
 check(resolve(player,spawns['DW-04'])==spawns['DW-01'],'deliberate replay respawns in replay story')

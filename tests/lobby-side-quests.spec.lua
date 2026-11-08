@@ -23,7 +23,7 @@ for _,c in ipairs(C.mainChapters)do
 end
 local function field(p,c,run,mode,version)
  if run then p=assert(A.begin(p,'hero',c.id,mode or 'Easy',run,p.revision,R,Items,version))else p=assert(R.acceptQuest(p,'hero',c.id,c.quest.discoveryOnly==true))end
- for _,g in ipairs(c.goals)do if not g.optional and g.id~=c.quest.turnIn then
+ for _,g in ipairs(c.goals)do if P.required(A.projection(p.heroes.hero)or p.heroes.hero.deepwood,g)and g.id~=c.quest.turnIn then
   for _,s in ipairs(g.activity and g.activity.steps or {false})do
    local choice=s and s.choices and s.choices[1].id or g.choice and 'shared'
    if run then p=assert(A.event(p,'hero',c.id,g.id,choice,s and s.id or nil,R,Items,run))else p=assert(R.story(p,'hero',c.id,g.id,choice,Items,s and s.id or nil))end

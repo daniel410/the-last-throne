@@ -5,7 +5,7 @@ local Settings=require(script.Parent.GameSettings)
 local Navigation={}
 local function flat(p) return Vector3.new(p.X,0,p.Z) end
 local function isSurface(p)
- return p:IsA('BasePart') and (p==workspace.Terrain or p.Name=='Ground' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround'
+ return p:IsA('BasePart') and (p==workspace.Terrain or p:GetAttribute('ExpansionFloor')==true or p.Name=='Ground' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround'
   or p.Name=='TrailEmbankment' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_')
   or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_'))
 end

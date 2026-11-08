@@ -57,14 +57,15 @@ check(elite==math.floor(plain*1.15+.5),'armored elite applied once')
 -- Persisted v1 checkpoints migrate by omission; new departures pin v2 separately
 -- from the stable journal schema understood by previous account readers.
 local p=assert(R.addHero(R.new(42),'hero','knight',Items));p.heroes.hero.level=80;p.heroes.hero.progression=G.new(80)
+local P=dofile('src/shared/DeepwoodProgress.luau')
 local function finish(profile,id)
- for _,g in ipairs(C.byId['DW-01'].goals)do if not g.optional then
+ for _,g in ipairs(C.byId['DW-01'].goals)do if P.required(A.projection(profile.heroes.hero),g)then
   if g.activity and g.activity.steps then for _,step in ipairs(g.activity.steps)do profile=assert(A.event(profile,'hero','DW-01',g.id,step.choices and step.choices[1].id,step.id,R,Items,id))end
   else profile=assert(A.event(profile,'hero','DW-01',g.id,nil,nil,R,Items,id))end
  end end
  return profile
 end
-p=assert(A.begin(p,'hero','DW-01','Easy','first',p.revision,R,Items));p=finish(p,'first')
+p=assert(A.begin(p,'hero','DW-01','Easy','first',p.revision,R,Items,12));p=finish(p,'first')
 p.heroes.hero.expeditions.clears['DW-01']={Easy=true,Hard=true,Insane=true}
 p=assert(A.begin(p,'hero','DW-01','Hell','old',p.revision,R,Items,1));p.heroes.hero.expeditions.active.balanceVersion=nil
 check(R.validate(p,Items),'pre-upgrade journal with no balance version loads safely')

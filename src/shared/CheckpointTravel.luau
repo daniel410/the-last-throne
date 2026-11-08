@@ -20,6 +20,7 @@ function T.list(s)
    result[c.zone]={id=c.zone,zone=c.zone,chapterId=c.id,title=c.title:upper()}
   end
  end
+ for id,row in pairs(load('CampaignExpansionCheckpoints').list(s))do result[id]=row end
  local report=T.report(s);if report then result[report.id]=report end
  return result
 end
@@ -27,7 +28,11 @@ function T.preferred(s,selected)
  local all=T.list(s);local report=all['DW-07:restoration']
  -- The report shortcut remains visible while the map opens on the uncleared altar.
  if report and (not selected or selected=='DW-03'or selected=='DW-07')then return report end
- if selected then return all[selected]end
+ if selected then
+  if all[selected]then return all[selected]end
+  local c=Content.byId[selected];if c then for i=#(c.expansionGoals or {}),1,-1 do local row=all[c.id..':'..c.expansionGoals[i].id];if row then return row end end end
+  return nil
+ end
  local current=Content.mainChapters[s and s.main or 0]
  return current and all[current.zone]
 end

@@ -54,7 +54,7 @@ function Book.create(parent,track)
      for i,step in ipairs(g.activity.steps) do table.insert(lines,(P.collected(s,c,g,i) and '✓ ' or '□ ')..step.title) end
      card(g.title,lines)
     end
-    for _,g in ipairs(c.goals) do if g.optional and P.available(s,c,g) then
+    for _,g in ipairs(c.goals) do if g.optional and not g.expansion and P.available(s,c,g) then
      card('OPTIONAL · '..g.title,{'This does not block the main story.','Rescuing the altar captives creates an opening during King Shaman\'s final phase.'},function() track(c.id,g.id) end,'TRACK OPTIONAL RESCUE')
     end end
     card('NEXT STORY',{'Complete this story to open the next region. Combat alone may not finish an investigation, rescue, or report.'})

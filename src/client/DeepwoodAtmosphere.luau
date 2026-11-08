@@ -11,6 +11,7 @@ local profiles={
   ClockTime=13.5,ExposureCompensation=.14,ColorShift_Top=Color3.fromRGB(15,27,40)},
 }
 local saved,environment,sky,correction,current,atmosphere,bloom
+local valleyRestored=false
 local function clearOwned()
  if sky then sky:Destroy();sky=nil end
  if correction then correction:Destroy();correction=nil end
@@ -60,6 +61,15 @@ function Mood.update(mode)
  end
  current=mode
 end
+function Mood.restoration(s)
+ valleyRestored=s and s.clears and s.clears['FV-07']==true or false
+ if current=='FrozenVale'and atmosphere then
+  atmosphere.Density=valleyRestored and .07 or .19
+  atmosphere.Haze=valleyRestored and .25 or .65
+  Lighting.FogStart=valleyRestored and 400 or profiles.FrozenVale.FogStart
+  Lighting.FogEnd=valleyRestored and 1200 or profiles.FrozenVale.FogEnd
+ end
+end
 function Mood.start()
  local p=game:GetService('Players').LocalPlayer
  local function apply()
@@ -68,6 +78,7 @@ function Mood.start()
   local root=p.Character and p.Character:FindFirstChild('HumanoidRootPart')
   local region=root and root.Position.Z<-15000 and 'HauntedGraveyard' or root and root.Position.Z<-11200 and 'Gloamwood' or root and root.Position.Z<-7600 and 'EmberCaldera' or root and root.Position.Z<-3800 and 'FrozenVale' or 'Deepwood'
   Mood.update(lobby and 'Lobby' or phase=='Tutorial' and p:GetAttribute('TLTRoute')~='Training' and region or nil)
+  if current=='FrozenVale'then Mood.restoration({clears={['FV-07']=valleyRestored}})end
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(apply);p:GetAttributeChangedSignal('TLTRoute'):Connect(apply)
  workspace:GetAttributeChangedSignal('TLTServerRole'):Connect(apply)

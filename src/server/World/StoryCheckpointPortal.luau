@@ -5,6 +5,20 @@ local Content=require(Shared.CampaignContent)
 local Env=require(script.Parent.DeepwoodEnvironment)
 local Portal={}
 function Portal.ensure(world,journal,onTravel)
+local expansion=require(Shared.CampaignExpansionCheckpoints).list(journal)
+ local shortcuts=world.folder:FindFirstChild('ExpansionReturnPoints')or Instance.new('Folder');shortcuts.Name='ExpansionReturnPoints';shortcuts.Parent=world.folder
+ for id,row in pairs(expansion)do if row.exit and not shortcuts:FindFirstChild(id)then
+  local chapter=Content.byId[row.chapterId];local goal=require(Shared.DeepwoodProgress).goal(chapter,id:match(':([^:]+)$'))
+  if goal and world.spawns[row.zone]then
+   local model=Instance.new('Model');model.Name=id;model:SetAttribute('CheckpointTarget',id)
+   local at=Vector3.new(table.unpack(goal.activity.steps[#goal.activity.steps].position))+Vector3.new(10,0,0)
+   require(script.Parent.StoryProps).build(model,'RouteLantern',at,{theme='Deepwood'})
+   local anchor=Instance.new('Part');anchor.Name='ReturnAnchor';anchor.Size=Vector3.new(1,1,1);anchor.Position=at+Vector3.new(0,2,0);anchor.Anchored=true;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanQuery=false;anchor.CanTouch=false;anchor.Parent=model
+   local prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ObjectText='Return to the main route';prompt.ActionText='Travel';prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.RequiresLineOfSight=false;prompt.MaxActivationDistance=12;prompt.HoldDuration=.3;prompt:SetAttribute('CheckpointTarget',id);prompt.Parent=anchor
+   prompt.Triggered:Connect(function(player)local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart');if root and (root.Position-anchor.Position).Magnitude<=16 then onTravel(player,id)end end)
+   model.Parent=shortcuts
+  end
+ end end
  local target=Rules.report(journal)
  if not target or not world.spawns[target.zone]then return end
  local folder=world.folder:FindFirstChild('StoryCheckpointPortals')

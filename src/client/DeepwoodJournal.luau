@@ -132,6 +132,7 @@ function Journal.start(hud)
   if current.training then hud.setStory(nil);target=nil;marker.Adornee=nil;closeDialogue();setOpen(false);return end
   target=selectTarget();book.render(current);updateTracker();promptsDirty=true
   require(script.Parent.DeepwoodStoryPresentation).update(current.journal)
+  require(script.Parent.CampaignExpansionPresentation).update(current)
   require(script.Parent.EmberCalderaPresentation).update(current.journal)
   require(script.Parent.LateEpicPresentation).update(current.journal)
  end
@@ -149,9 +150,11 @@ function Journal.start(hud)
     else prompt.Enabled=Progress.available(s,c,g) and (not g.activity or g.activity.mode=='dialogue' or g.activity.mode=='escort');if c.side and g.id==c.quest.turnIn then prompt.ActionText='Report';prompt.ObjectText=c.quest.giver end end
    end
   end
-  local portals=world:FindFirstChild('StoryCheckpointPortals')
-  for _,prompt in ipairs(portals and portals:GetDescendants()or {})do
-   if prompt:IsA('ProximityPrompt')and prompt:GetAttribute('CheckpointTarget')then prompt.Enabled=Checkpoints.allowed(s,prompt:GetAttribute('CheckpointTarget'))~=nil end
+  for _,folderName in ipairs({'StoryCheckpointPortals','ExpansionReturnPoints'})do
+   local portals=world:FindFirstChild(folderName)
+   for _,prompt in ipairs(portals and portals:GetDescendants()or {})do
+    if prompt:IsA('ProximityPrompt')and prompt:GetAttribute('CheckpointTarget')then prompt.Enabled=Checkpoints.allowed(s,prompt:GetAttribute('CheckpointTarget'))~=nil end
+   end
   end
   local steps=world:FindFirstChild('AdventureActivities')
   for _,p in ipairs(steps and steps:GetChildren() or {}) do if p:IsA('BasePart') and p:GetAttribute('StepId') then

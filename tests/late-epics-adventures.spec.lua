@@ -35,7 +35,7 @@ for number=8,35 do
  check(p.heroes.hero.deepwood.main==number,'first clear advances permanent campaign')
  check(p.heroes.hero.expeditions.clears[c.id].Easy,'difficulty clear saved separately')
 end
-check(p.wallet.gold==14280,'FV/EC/HG first-clear fixed Gold preserved and GW provisional fixed Gold zero')
+check(p.wallet.gold==16880,'FV/EC/HG fixed Gold and implemented GW 2600 Gold are preserved')
 run('GW-01','Easy','replay_gw')
 check(p.heroes.hero.deepwood.main==35 and p.heroes.hero.deepwood.clears['HG-07'],'earlier replay preserves permanent ending')
 local expected=D.completion(Content.byId['HG-07'],'Easy');local before=p.wallet.gold

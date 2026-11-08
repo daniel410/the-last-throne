@@ -55,7 +55,7 @@ for _,size in ipairs({Vector2.new(800,510),Vector2.new(726,299),Vector2.new(270,
  guide.close()
 end
 local c=C.byId['DW-Q1'];p=assert(A.begin(p,'hero',c.id,'Easy','native-guide',p.revision,R,Items))
-for _,g in ipairs(c.goals)do if not g.optional and g.id~=c.quest.turnIn then for _,s in ipairs(g.activity and g.activity.steps or {false})do
+for _,g in ipairs(c.goals)do if P.required(A.projection(p.heroes.hero),g)and g.id~=c.quest.turnIn then for _,s in ipairs(g.activity and g.activity.steps or {false})do
  p=assert(A.event(p,'hero',c.id,g.id,s and s.choices and s.choices[1].id or nil,s and s.id or nil,R,Items,'native-guide'))
 end end end
 guide.update(snapshot(p));task.wait(.1)

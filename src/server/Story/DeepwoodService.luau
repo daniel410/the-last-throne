@@ -49,6 +49,17 @@ local function publish(player,message,notice,completion)
 end
 function Service.destination(player,heroId)
  local s=state(player,heroId)
+ if s and s.expansionVersion==1 then
+  local admitted=s.expeditionMission and Content.byId[s.expeditionMission]
+  local chapter=admitted or QuestLog.main(s)
+  local checkpoint=chapter and require(ReplicatedStorage.Shared.CampaignExpansionCheckpoints).respawn(s,chapter)
+  if checkpoint then
+   if not options.world.spawns[chapter.zone]and options.prepareStory then options.prepareStory(chapter.id)end
+   local anchor=options.world.folder:FindFirstChild('ExpansionRespawn_'..chapter.id)
+   if not anchor then anchor=Instance.new('Part');anchor.Name='ExpansionRespawn_'..chapter.id;anchor.Size=Vector3.new(1,1,1);anchor.Anchored=true;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanQuery=false;anchor.CanTouch=false;anchor.Parent=options.world.folder end
+   anchor.Position=Vector3.new(table.unpack(checkpoint.position));return anchor
+  end
+ end
  local a=options.inventory.expedition(player,heroId)
  local c=a and Content.byId[s and s.expeditionMission or a.missionId]or Content.mainChapters[math.min(Content.mainCount,(s and s.main or 0)+1)]
  if not a and s and s.main==6 and s.flags['DW-07:separate'] then return options.world.spawns['DW-03'] end
