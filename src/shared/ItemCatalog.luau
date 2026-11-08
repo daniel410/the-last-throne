@@ -31,7 +31,7 @@ gear("amber_charm", "Amber Charm", "accessory", nil, {health = 30}, "CH", {rarit
 gear("veteran_hood", "Veteran's Hood", "head", nil, {armor = 2}, "HD", {level = 5, rarity = "Uncommon"})
 -- Provisional Lv10 forge stock. Existing stable definitions/rewards stay intact.
 for classId,name in pairs({knight='Sword',elf='Bow',dwarf='Axe',mage='Staff'})do
- gear(classId..'_weapon_forged','Dawnforge '..name,'weapon',classId,{power=4},name:sub(1,2):upper(),{level=10,rarity='Rare',description='Forged in Dawnspire for seasoned adventurers. Requires level 10.'})
+ gear(classId..'_weapon_forged','Dawnforge '..name,'weapon',classId,{power=5},name:sub(1,2):upper(),{level=10,rarity='Rare',description='Forged in Dawnspire for seasoned adventurers. Requires level 10.'})
 end
 for _,row in ipairs({
  {'sentinel_shield','Sentinel Shield','offhand','knight',{armor=8},'SH'},
@@ -49,8 +49,8 @@ for _,baseId in ipairs({"knight_weapon_forged","elf_weapon_forged","dwarf_weapon
  "sentinel_shield","sentinel_helm","sentinel_mail","sentinel_gauntlets","sentinel_boots","ruby_ring","guardian_charm","storm_pendant"}) do
  local base=Catalog.items[baseId];local stats={}
  for key,value in pairs(base.stats)do stats[key]=math.floor(value*128/118*10000+.5)/10000 end
- -- Retired Dawnforge weapons share the requested 4% base bonus in both rarities.
- if base.slot=="weapon" then stats.power=base.stats.power end
+ -- Retired Dawnforge weapons use explicit Rare 5% / Epic 6% base bonuses.
+ if base.slot=="weapon" then stats.power=6 end
  gear(baseId.."_epic","Epic "..base.name,base.slot,base.classId,stats,base.glyph,
   {level=base.level,rarity="Epic",uniqueGroup=base.uniqueGroup,forgeBaseId=baseId,cacheEligible=false,
    description="Epic Dawnspire forge equipment. Requires level 10. Purchase with Diamonds at the blacksmith. Balance values are provisional."})
