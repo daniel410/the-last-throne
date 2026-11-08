@@ -1,0 +1,85 @@
+{
+  "version": "0.86.3",
+  "sourceCommit": "1a81a2d48653c4c81bd7612e31e9e941319950e5",
+  "sha256": "3566febbaa8c7d63b5180306deaad409cee474117adb4e35b39f7c99b70f40be",
+  "runtimeModuleReplacement": false,
+  "pass": true,
+  "checks": 114477,
+  "suites": [
+    {
+      "suite": "MIXAMO_DWARF_NATIVE",
+      "checks": 47989,
+      "pass": true
+    },
+    {
+      "suite": "DWARF_OVERHEAD_REMAP_NATIVE",
+      "checks": 124,
+      "pass": true
+    },
+    {
+      "suite": "MIXAMO_KNIGHT_NATIVE",
+      "checks": 42104,
+      "pass": true
+    },
+    {
+      "suite": "MIXAMO_ELF_NATIVE",
+      "checks": 986,
+      "pass": true
+    },
+    {
+      "suite": "K0_ELF_BOW_NATIVE",
+      "checks": 4890,
+      "pass": true
+    },
+    {
+      "suite": "K0_DWARF_MOTION_NATIVE",
+      "checks": 1642,
+      "pass": true
+    },
+    {
+      "suite": "DWARF_NATURAL_GRIP_NATIVE",
+      "checks": 682,
+      "pass": true
+    },
+    {
+      "suite": "DWARF_RECOVERY_NATIVE",
+      "checks": 3432,
+      "pass": true
+    },
+    {
+      "suite": "K0_MELEE_BLENDER_NATIVE",
+      "checks": 8484,
+      "pass": true
+    },
+    {
+      "suite": "AXE_CUTTING_EDGE_NATIVE",
+      "checks": 154,
+      "pass": true
+    },
+    {
+      "suite": "K0_MELEE_CURVES_NATIVE",
+      "checks": 3204,
+      "pass": true
+    },
+    {
+      "suite": "SHIELD_BASH_LEADING_NATIVE",
+      "checks": 86,
+      "pass": true
+    },
+    {
+      "suite": "K0_SKILL_ANIMATION_NATIVE",
+      "checks": 61,
+      "pass": true
+    },
+    {
+      "suite": "ELF_QUIVER_NATIVE",
+      "checks": 179,
+      "pass": true
+    },
+    {
+      "suite": "DWARF_AXE_THROW_NATIVE",
+      "checks": 460,
+      "pass": true
+    }
+  ]
+}

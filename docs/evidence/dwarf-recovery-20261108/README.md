@@ -48,4 +48,8 @@ run-in-roblox --place /tmp/tlt-recovery-all/tlt-k0-qa-empty.rbxlx --script /tmp/
 
 이전 종료 검사는 팜 고정만 만족해도 통과했으며 새 회귀 조건을 대신하지 못했다. 이번 검증도 실제 PC/터치/패드 조작·관전자/네트워크·최종 드워프 스킨/체형·사용자의 동작 수용까지 확인한 결과는 아니다. 다음 담당 QA/DES가 실제 영웅으로 확인한다. 복구가 필요하면 이 작업의 런타임/파생 데이터만 이전0.86.2로 되돌리고 다른 사용자 파일을 보존한다.
 
-고정 빌드/동일 파일 재검사는 마감 시 아래에 기록한다. Roblox 게시/릴리스 태그는 수행하지 않는다.
+## 고정 빌드·마감
+
+`0.86.3`의 소스 커밋은 `1a81a2d48653c4c81bd7612e31e9e941319950e5`다. `python3 tools/build-game.py --source 1a81a2d4 --record docs/evidence/dwarf-recovery-20261108/build.json`으로 `builds/0.86.3/TheLastThrone-0.86.3.rbxlx` 단일 빌드에 성공했다. SHA256은 `3566febbaa8c7d63b5180306deaad409cee474117adb4e35b39f7c99b70f40be`다. [빌드/LFS 입력 기록](build.json).
+
+동일 파일에 `run-in-roblox --place builds/0.86.3/TheLastThrone-0.86.3.rbxlx --script /tmp/tlt-recovery-all/source-probe.luau`를 실행해 런타임 모듈 치환 없이 **114,477검사 재통과**했다. [정본 결과](pinned-results.json)·[원시 로그](pinned-native.log). 원격 origin/main의 소스 커밋 및 LFS3개 전송 성공을 확인했다. 일반 빌드이며 Roblox 게시/릴리스 태그는 수행하지 않았다.
