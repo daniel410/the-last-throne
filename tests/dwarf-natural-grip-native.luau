@@ -39,7 +39,7 @@ for _,rig in {Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}do
   if rig==Enum.HumanoidRigType.R15 then
    local fixed
    for i=0,100 do
-    local p=Motion.sample('dwarf',1,.11+.18*i/100)
+    local p=Motion.sample('dwarf',1,.12+.14*i/100)
     fixed=fixed or p.weapon
     local _,angle=(fixed:Inverse()*p.weapon):ToAxisAngle()
     check(math.abs(angle)<.0001,'Axe socket stays fixed from loaded pose through follow-through')

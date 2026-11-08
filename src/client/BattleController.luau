@@ -143,7 +143,7 @@ local function sendAction(action, direction)
 		-- Avoid turning mid-swing when held input repeats. The server turns
 		-- again when a buffered melee attack actually begins.
 		local state = character and character:GetAttribute("K0State")
-		if target and (classId == "elf" or action == "CastArcane" or state == "Idle" or state == "Block") then
+		if target and state ~= "Attack" and (classId == "elf" or action == "CastArcane" or state == "Idle" or state == "Block") then
 			local root, enemyRoot = character:FindFirstChild("HumanoidRootPart"), target:FindFirstChild("HumanoidRootPart")
 			if root and enemyRoot then
 				local delta = enemyRoot.Position - root.Position

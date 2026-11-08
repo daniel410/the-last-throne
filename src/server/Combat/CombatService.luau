@@ -332,7 +332,7 @@ local function startAttack(state, current, targetModel)
 	state.attackSeq = state.attackSeq + 1
 	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
 	local direction = horizontalUnit(state.root.CFrame.LookVector, Vector3.new(0, 0, -1))
-	if targetModel and state.baseClassId ~= "elf" then
+	if targetModel then
 		local selected = enemyStates[targetModel]
 		if selected and enemyAlive(selected) then
 			local delta = horizontal(selected.root.Position - state.root.Position)
@@ -346,6 +346,13 @@ local function startAttack(state, current, targetModel)
 				state.root.CFrame = CFrame.lookAt(position, position + direction)
 			end
 		end
+	end
+	if state.baseClassId == "elf" and state.savedAutoRotate == nil then
+		-- Keep the bow facing the accepted shot while moving/strafing through
+		-- its windup. Otherwise AutoRotate turns the avatar away from the
+		-- selected endpoint and release appears to snap sideways.
+		state.savedAutoRotate = state.humanoid.AutoRotate
+		state.humanoid.AutoRotate = false
 	end
 	state.attack = {
 		started = current,
@@ -922,7 +929,12 @@ local function applyArrowShot(state, current)
 	local origin, target, nearest = state.root.Position, nil, math.huge
 	local selected = attack.targetModel and enemyStates[attack.targetModel]
 	local selectedEndpoint
-	if attack.targetModel then
+	-- A target moving out of the basic bow's accepted forward sector must not
+	-- turn the released arrow into a sideways/homing shot. Keep the selected
+	-- intent, but release a straight miss along the locked aim for this attack.
+	local offAxisBasic = state.baseClassId == "elf" and not attack.isSkill and selected and enemyAlive(selected)
+		and facingDot(origin, attack.direction, selected.root.Position) < math.cos(math.rad(attack.definition.angle * .5))
+	if attack.targetModel and not offAxisBasic then
 		if selected and enemyAlive(selected) then
 			local position = selected.root.Position
 			local delta = position - origin

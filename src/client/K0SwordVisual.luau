@@ -691,7 +691,7 @@ local function arrowPart(model, name, size, color, material)
 	return part
 end
 
-local function emitArrow(character, first, last, payload, showImpact, fanOffset)
+local function emitArrow(character, first, last, payload, showImpact)
 	-- Keep presentation bounded even if a spectator observes many characters.
 	if #arrows >= 32 then
 		table.remove(arrows, 1).model:Destroy()
@@ -724,7 +724,7 @@ local function emitArrow(character, first, last, payload, showImpact, fanOffset)
 	model.Parent = workspace
 	local distance = (last - first).Magnitude
 	local arrow = { model = model, shaft = shaft, tip = tip, feather = feather, character = character,
-		owner = Players:GetPlayerFromCharacter(character), payload = payload, showImpact = showImpact ~= false, fanOffset = fanOffset or 0,
+		owner = Players:GetPlayerFromCharacter(character), payload = payload, showImpact = showImpact ~= false,
 		first = first, direction = (last - first).Unit, distance = distance, elapsed = 0,
 		duration = math.clamp(distance / 100, 0.12, 0.55) }
 	arrow.sourceLength=sourceLength
@@ -787,10 +787,6 @@ local function advanceArrows(dt)
 			arrow.elapsed = arrow.elapsed + elapsed
 			local progress = math.min(1, arrow.elapsed / arrow.duration)
 			local position = arrow.first + arrow.direction * arrow.distance * progress
-			if arrow.fanOffset ~= 0 then
-				local sideways = Vector3.new(-arrow.direction.Z, 0, arrow.direction.X)
-				if sideways.Magnitude > 0.001 then position += sideways.Unit * arrow.fanOffset * math.sin(math.pi * progress) end
-			end
 			local pose = CFrame.lookAt(position, position + arrow.direction)
 			arrow.shaft.CFrame = pose*CFrame.new(0,0,(arrow.sourceLength or 0)*.5)
 			arrow.tip.CFrame = pose * CFrame.new(0, 0, -0.93)
@@ -854,8 +850,9 @@ local function consumeMultiShot(character)
 		local endpoint = Vector3.new(values[index], values[index + 1], values[index + 2])
 		local length = (endpoint - origin).Magnitude
 		if length >= 0.05 and length <= 55.1 then
-			local lane = ({ -2.4, -1.2, 1.2, 2.4 })[math.floor((index - 5) / 3) + 1]
-			emitArrow(character, weaponOrigin(character, origin, endpoint, "elf"), endpoint, payload, false, lane)
+			-- Spread comes from the server endpoints. Each released arrow keeps
+			-- that straight ray rather than bending sideways during flight.
+			emitArrow(character, weaponOrigin(character, origin, endpoint, "elf"), endpoint, payload, false)
 		end
 	end
 end

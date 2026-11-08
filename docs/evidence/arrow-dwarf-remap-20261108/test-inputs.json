@@ -1,0 +1,10 @@
+{
+  "src/client/BattleController.luau": "39c0b3054f142f8e84e99e145411f2ab5c99c66fbfdd33ad80e975ea7dc59b86",
+  "src/client/K0MeleeMotion.luau": "b59cee5dc60c214fa89c2a6730bad25454a4b4e8721d16311980b16a1eeca4c1",
+  "src/client/K0SwordVisual.luau": "df726998c35de93ec89637c37a741ae9196252887bcc6ba7102d0746374b2fd8",
+  "src/client/K0DwarfMixamoBasic.luau": "78334ec77c16a1769326deddeb29b26cb779595e2a15ef6a82bf84d34b7ea0f8",
+  "src/client/K0DwarfMixamoSkills.luau": "ff4cc1e8b6c2121b7c8526facb240bad0a6b13535ceb0b60328148f833df8447",
+  "src/client/K0DwarfMixamoClips.luau": "f90b13cbef5bb754892da87940844418d30ba2fddba5416c456f171c35769a7e",
+  "src/client/K0DwarfMixamoOverhead.luau": "13e0d72cf67d14e738cf65cfc0f0de6724d92ad1478dcfc8664807988bf60847",
+  "src/server/Combat/CombatService.luau": "1d29bed9c39a79cd6c3101aae7f3d3d1848d9d6afafb5ae824f8526dcfa75c4d"
+}

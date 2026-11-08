@@ -2,7 +2,7 @@
   "date": "2026-11-08",
   "classId": "dwarf",
   "sourceCommitBefore": "3c59958749da2d4306f64c1f983dbd39f72ef9b3",
-  "catalogUrl": "https://www.mixamo.com/#/?page=1&query=axe",
+  "catalogUrl": "https://www.mixamo.com/#/?genres=&page=1&query=axe+standing+melee+combo",
   "sourceDownload": {
     "format": "FBX Binary",
     "skin": "With Skin",
@@ -46,22 +46,29 @@
       "sourceBytes": 2291600,
       "fps": 60.0,
       "duration": 3.6666666666666665
+    },
+    "Standing Melee Combo Attack Ver. 1": {
+      "sourceSha256": "e304f9ed9d25bcf943b6c80efc690090bc9e36dd98f5a61a01b7d44fd32d22dd",
+      "sourceBytes": 2389024,
+      "fps": 60,
+      "duration": 4.666666666667
     }
   },
   "exports": {
     "basic": {
-      "source": "Standing Melee Attack Horizontal",
+      "source": "Standing Melee Attack Downward",
       "duration": 0.42,
       "rig": "R15",
       "root": "in-place",
-      "r6": "previous reviewed curves retained"
+      "r6": "complete previous overhead retimed; diagonal override removed",
+      "adoptedFrom": "0.86.1/dwarf.common.overhead"
     },
     "overhead": {
-      "source": "Standing Melee Attack Downward",
+      "source": "Standing Melee Combo Attack Ver. 1",
       "duration": 1.13,
       "rig": "R15",
       "root": "in-place",
-      "r6": "previous reviewed curves retained"
+      "r6": "reviewed overhead adapted to two visible beats; one authoritative hit"
     },
     "ground": {
       "source": "Standing Melee Run Jump Attack",
@@ -104,11 +111,13 @@
   "rawSources": "Original downloads retained locally; raw Mixamo FBX/pack is not redistributed",
   "runtimeAssetsUploaded": 0,
   "files": {
-    "dwarf-mixamo-v1.blend": "e5602da8e3b4f6468aa3f5271e77ae5090d8c779d35959bf1378b865edf1e2b6",
-    "grip-calibration.json": "d636ecbcd5ab985ba0d7246f16318521fe01fde2784ac1ef4257ea6526c098e8",
+    "dwarf-mixamo-v1.blend": "2ea41fe9736194315d1bab43b0626ab51ca988568a8b2c51487b777aa35b84c0",
+    "grip-calibration.json": "db1b812f8eb2026c19cab650db7b283d22ca6cba86e96cddf0884ddf39f32783",
     "target-rig.json": "fd98dfa45881a14272c7f8f719c47a1330684f4396b51d8c50070768b01ff692",
-    "blender-golden.json": "6e4e81e31a752635618ff4bfdf3fbe7fa3897ffc25fca9111116d9b74d59fc84",
-    "clips.json": "3dcc28805aa9d8c5dc77c3e39d9e5dcfbeaa128f9a8458e9f1777d335149e538",
-    "retargeted.json": "aee57b931b8cd0c55b16f04d3e5dd34ef59085996abb2740e1a5506a3b758b76"
-  }
+    "blender-golden.json": "25d50539eb5ad2c577736416aca3371ec43ec3dec5ec5f7aa03a097d994027c5",
+    "clips.json": "4bce32aa67d437f6ffc917d3af8a596297e79379678cf5c49ea0e23062a73e94",
+    "retargeted.json": "95876cf923378add87ab246c5d421a6d80277fd8a714d1bb10ef8871a93dd7fa",
+    "basic-overhead-baseline.json": "6cdb2a400e114559e210d981d3afd668878cd5ee7577941a6ec063bc889e16c7"
+  },
+  "revision": "0.86.2"
 }

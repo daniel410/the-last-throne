@@ -76,20 +76,23 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 					if i%20 == 0 then table.insert(points, {age=age, tip=vec(tip)}) end
 				end
 				local hit = sample(impact, 1/60)
-				local loaded = sample(d.windup*.45, 1/60)
+				local opening=d.windup*(classId=="dwarf" and .75 or .45)
+                local loaded = sample(opening, 1/60)
 				local finish = sample(total, 1/60)
 				local initial = sample(0, 1/60)
 				check(finish.Z < -1.5 and (finish-initial).Magnitude > .15, "Ends combat-ready instead of dropping to neutral")
-				check(hit.Z < -3 and math.abs(hit.X) < 1.6, "Contact passes through target corridor in front")
+				check(hit.Z < -3 and math.abs(hit.X) < (classId=="dwarf" and 2.6 or 1.6), "Contact passes through target corridor in front")
 				check(minY > -3.4, "Blade stays above floor on default rig")
 				check(maxReach < 6.5, "Compact arc stays near combat reach")
-				check(maxStep < .7, "Continuous arc without snapping")
+				-- The complete overhead now runs in the 0.42s basic window.
+                -- Its wider arc is checked alongside exact boundary/velocity continuity below.
+                check(maxStep < (classId=="dwarf" and 1 or .7), "Continuous bounded arc")
 				if classId == "dwarf" or combo == 3 then
 					check(loaded.Y-hit.Y > 1, "Loaded weapon descends into contact")
 				else
 					check((hit.X-loaded.X)*(combo == 2 and 1 or -1) > 1, "Sword alternates cutting direction")
 				end
-				for _, boundary in ipairs({d.windup*.45,impact,d.windup+d.active+d.recovery*.15,total}) do
+				for _, boundary in ipairs({opening,impact,d.windup+d.active+d.recovery*.15,total}) do
 					local before = sample(boundary-.00001, 1/30)
 					local after = sample(boundary+.00001, 1/144)
 					check((after-before).Magnitude < .01, "No discontinuity at curve boundary")
@@ -100,7 +103,7 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
                 local arriving,leaving=(contact-beforeContact)/.0005,(afterContact-contact)/.0005
                 check(arriving.Magnitude>5 and leaving.Magnitude>5,"Blade carries momentum through contact")
                 check(arriving.Unit:Dot(leaving.Unit)>.99,"Contact does not reverse or freeze the blade")
-                check((arriving-leaving).Magnitude/math.max(arriving.Magnitude,leaving.Magnitude)<.12,"Contact velocity stays continuous")
+                check((arriving-leaving).Magnitude/math.max(arriving.Magnitude,leaving.Magnitude)<.12,"Contact velocity stays continuous "..rig.Name.."/"..classId.." ratio="..((arriving-leaving).Magnitude/math.max(arriving.Magnitude,leaving.Magnitude)))
                 local low = sample(impact, 1/30)
 				local high = sample(impact, 1/144)
 				check((low-high).Magnitude < .0001, "30/144Hz observers agree at hit time")

@@ -8,7 +8,6 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 OUT=ROOT/'assets/animations/mixamo-dwarf-v1'
 raw=json.loads((OUT/'retargeted.json').read_text())
 old=json.loads((ROOT/'assets/animations/melee-blender-v1/curves.json').read_text())
-natural=json.loads((ROOT/'assets/animations/dwarf-natural-v2/clip.json').read_text())
 guard=old['guard']['dwarf'];rest=old['rest']['dwarf']
 legacy={c.get('skillId','basic'):c for c in old['clips'] if c['classId']=='dwarf'}
 calibration=json.loads((OUT/'grip-calibration.json').read_text()) if (OUT/'grip-calibration.json').exists() else {}
@@ -18,16 +17,6 @@ def matrix(v):
     return [[cy*cz,-cy*sz,sy],[cx*sz+sx*sy*cz,cx*cz-sx*sy*sz,-sx*cy],[sx*sz-cx*sy*cz,sx*cz+cx*sy*sz,cx*cy]]
 def multiply(a,b):return [[sum(a[i][k]*b[k][j]for k in range(3))for j in range(3)]for i in range(3)]
 def euler(m):return [math.degrees(math.atan2(-m[1][2],m[2][2])),math.degrees(math.asin(max(-1,min(1,m[0][2])))),math.degrees(math.atan2(-m[0][1],m[0][0]))]
-def interpolate_rotation(a,b,u):
-    inverse=[list(row)for row in zip(*a)]
-    delta=multiply(inverse,b);angle=math.acos(max(-1,min(1,(sum(delta[i][i]for i in range(3))-1)/2)))
-    if angle<1e-8:return a
-    axis=[delta[2][1]-delta[1][2],delta[0][2]-delta[2][0],delta[1][0]-delta[0][1]]
-    length=math.sqrt(sum(x*x for x in axis));assert length>1e-7,'Ambiguous 180-degree socket rotation'
-    axis=[x/length for x in axis];x,y,z=axis;skew=[[0,-z,y],[z,0,-x],[-y,x,0]]
-    co,si=math.cos(angle*u),math.sin(angle*u)
-    r=[[(co if i==j else 0)+(1-co)*axis[i]*axis[j]+si*skew[i][j]for j in range(3)]for i in range(3)]
-    return multiply(a,r)
 
 def source_pose(name,t):
     frames=raw['clips'][name]['frames']
@@ -61,8 +50,7 @@ def sample(keys,t):
 
 clips={}
 specs={
- 'basic':('Standing Melee Attack Horizontal',legacy['basic'],[0,.42,1.00,1.15,1.50]),
- 'overhead':('Standing Melee Attack Downward',legacy['dwarf.common.overhead'],[0,.40,.83,1.02,1.60]),
+ 'overhead':('Standing Melee Combo Attack Ver. 1',legacy['dwarf.common.overhead'],[0,.75,2.00,2.50,4.666666667]),
  'ground':('Standing Melee Run Jump Attack',legacy['dwarf.common.ground'],[.72,1.25,1.80,2.05,2.80]),
  'grounded':('Standing Melee Attack Downward',legacy['dwarf.common.ground'],[0,.50,.93,1.10,1.60]),
  'backhand':('Standing Melee Attack Backhand',legacy['dwarf.common.overhead'],[0,.65,.98,1.23,1.80]),
@@ -75,9 +63,8 @@ for key,(name,base,anchors) in specs.items():
     # Five semantic anchors, plus uniform samples between them: no phase holds.
     ts=[0,c['entryUntil'],c['windup']+c['hitDelay'],c['windup']+c['active']+c['recovery']*.15,c['duration']]
     times=sorted(set(round(ts[i]+(ts[i+1]-ts[i])*n/8,9) for i in range(4) for n in range(9)))
-    if key=='basic': times=sorted(set(times+[.29]+[round(c['duration']*i/60,9)for i in range(61)]+[k[0]for k in natural['curves']['right'][0]]))
     poses=[];lifts=[]
-    prev={};filtered_delta={};previous_time=0
+    prev={}
     for t in times:
         i=min(3,next((j for j in range(4) if t<=ts[j+1]+1e-8),3))
         u=max(0,min(1,(t-ts[i])/(ts[i+1]-ts[i])))
@@ -119,29 +106,10 @@ for key,(name,base,anchors) in specs.items():
         options=[[x-360*round(x/360)for x in v]for v in options]
         socket=min(options,key=lambda v:sum(x*x for x in v))
         a['weapon']=[x*blend for x in socket]
-        release=max(ts[3],.29) if key=='basic' else ts[3]
+        release=ts[3]
         if t>release:
             fade=(t-release)/(ts[4]-release);fade=fade*fade*(3-2*fade)
             a['weapon']=[v+(guard['weapon'][j]-v)*fade for j,v in enumerate(a['weapon'])]
-        if key=='basic':
-            # Preserve the measured contact corridor and rigid grip. Source
-            # anticipation/recovery is blended around it, avoiding a gimbal turn
-            # under the fast 0.42s basic attack and its accepted combo joins.
-            envelope=min(1,t/.072)*(1-max(0,(t-.29)/(.42-.29)))
-            protected=max(0,min(1,(abs(t-.22)-.03)/.06))
-            for ch,axes in natural['curves'].items():
-                original=[sample(axis,t)for axis in axes]
-                if ch in ['weapon','rightHip','leftHip','rightKnee','leftKnee']:
-                    a[ch]=original;continue
-                options=[a[ch],[a[ch][0]+180,180-a[ch][1],a[ch][2]+180]]
-                options=[[v+360*round((r-v)/360)for v,r in zip(values,original)]for values in options]
-                measured=min(options,key=lambda v:sum((x-r)**2 for x,r in zip(v,original)))
-                previous=filtered_delta.get(ch,[0,0,0]);limit=250*max(0,t-previous_time)
-                delta=[max(p-limit,min(p+limit,max(-45,min(45,s-v))))for p,v,s in zip(previous,original,measured)]
-                filtered_delta[ch]=delta
-                weight=.20*max(0,envelope)*protected
-                a[ch]=[v+d*weight for v,d in zip(original,delta)]
-        previous_time=t
         poses.append(a)
     c['curves']={}
     if key=='ground': c['rootLift']=[[t,v,slope(times,lifts,i)]for i,(t,v)in enumerate(zip(times,lifts))]
@@ -152,10 +120,55 @@ for key,(name,base,anchors) in specs.items():
             c['curves'][ch].append([[t,round(v,7),round(slope(times,vs,i),7)] for i,(t,v) in enumerate(zip(times,vs))])
     # R6 cannot reproduce the measured elbow/wrist. Preserve its established
     # contact path explicitly rather than claim the R15 retarget supports it.
-    c['r6Curves']=copy.deepcopy(natural['curves'] if key=='basic' else base['curves'])
-    if key=='basic':
-        c['r6Curves']=json.loads((ROOT/'assets/animations/dwarf-diagonal-v1/clip.json').read_text())['curves']
+    c['r6Curves']=copy.deepcopy(base['curves'])
     clips[key]=c
+
+# User-selected replacement: the complete previous Overhead Smash becomes the
+# basic strike. There is no blend with the superseded diagonal/basic animation.
+adopted=json.loads((OUT/'basic-overhead-baseline.json').read_text())
+def fit_curves(source,source_times,target_times,extra=()):
+    def remap(t,old_times,new_times):
+        # Smooth time warp through the semantic anchors. A piecewise linear
+        # warp changes angular speed abruptly exactly at the damage sample.
+        keys=[[x,y,slope(old_times,new_times,i)]for i,(x,y)in enumerate(zip(old_times,new_times))]
+        keys[0][2]=(new_times[1]-new_times[0])/(old_times[1]-old_times[0])
+        keys[-1][2]=(new_times[-1]-new_times[-2])/(old_times[-1]-old_times[-2])
+        return sample(keys,t)
+    # Keep an evenly spaced C1 fit; nearly coincident mapped keys create a
+    # sub-millisecond acceleration spike when the full skill is compressed.
+    uniform=[round(target_times[-1]*i/80,6)for i in range(81)]
+    times=sorted(set([t for t in uniform if min(abs(t-a)for a in target_times)>.004]+target_times+list(extra)))
+    result={}
+    for ch,axes in source.items():
+        result[ch]=[]
+        for axis in axes:
+            values=[sample(axis,remap(t,target_times,source_times))for t in times]
+            result[ch].append([[t,v,slope(times,values,i)]for i,(t,v)in enumerate(zip(times,values))])
+    return result
+basic={k:copy.deepcopy(v)for k,v in legacy['basic'].items()if k not in ['curves','golden']}
+basic.update(name='Mixamo_Dwarf_PreviousOverhead_AsBasic_v2',source=adopted['source'],adoptedFrom='0.86.1/dwarf.common.overhead',entryUntil=.12,entryFraction=.75,disableR6FollowAcross=True)
+source_times=[0,adopted['entryUntil'],adopted['windup']+adopted['hitDelay'],adopted['windup']+adopted['active']+adopted['recovery']*.15,adopted['duration']]
+target_times=[0,.12,.22,.284,.42]
+basic['curves']=fit_curves(adopted['curves'],source_times,target_times)
+basic['r6Curves']=fit_curves(adopted['r6Curves'],source_times,target_times)
+clips['basic']=basic
+# R6 cannot reproduce the Mixamo elbow chain, so adapt the reviewed overhead
+# path into the same two visible beats, retaining the second authoritative hit.
+r6_anchors=[0,.12,.2925,.36,.46,.563,.71,.7681,.858,1.13]
+r6_source=[0,.2925,.71,.875,1.13,.2925,.71,.875,1.13,1.13]
+r6_times=sorted(set([round(1.13*i/100,6)for i in range(101)]+r6_anchors))
+def r6_time(t):
+    i=min(len(r6_anchors)-2,next((j for j in range(len(r6_anchors)-1)if t<=r6_anchors[j+1]),len(r6_anchors)-2))
+    u=(t-r6_anchors[i])/(r6_anchors[i+1]-r6_anchors[i])
+    return r6_source[i]+(r6_source[i+1]-r6_source[i])*u
+r6={}
+for ch,axes in adopted['r6Curves'].items():
+    r6[ch]=[]
+    for axis in axes:
+        values=[sample(axis,r6_time(t))for t in r6_times]
+        r6[ch].append([[t,v,slope(r6_times,values,i)]for i,(t,v)in enumerate(zip(r6_times,values))])
+clips['overhead']['r6Curves']=r6
+clips['overhead']['sourceBeats']=[.2925,.71]
 
 def lua(x):
     if isinstance(x,dict): return '{'+','.join('['+json.dumps(k)+']='+lua(v) for k,v in x.items())+'}'
@@ -170,9 +183,10 @@ clips=quantize(clips)
 runtime={'basic':clips['basic'],'skills':{'dwarf.common.overhead':clips['overhead'],'dwarf.common.ground':clips['ground']},
          'variants':{'dwarf.mixamo.backhand':clips['backhand'],'dwarf.mixamo.sweep':clips['sweep'],'dwarf.mixamo.grounded':clips['grounded']}}
 (OUT/'clips.json').write_text(json.dumps(clips,separators=(',',':'))+'\n')
-for name,value in [('K0DwarfMixamoBasic',runtime['basic']),('K0DwarfMixamoSkills',{'skills':runtime['skills'],'variants':runtime['variants']})]:
+overhead=runtime['skills'].pop('dwarf.common.overhead')
+for name,value in [('K0DwarfMixamoBasic',runtime['basic']),('K0DwarfMixamoOverhead',overhead),('K0DwarfMixamoSkills',{'skills':runtime['skills'],'variants':runtime['variants']})]:
     source='-- Generated by tools/export-mixamo-dwarf.py from measured FBX rotations.\nreturn '+lua(value)+'\n'
     assert len(source)<200000,(name,len(source))
     (ROOT/'src/client'/f'{name}.luau').write_text(source)
-(ROOT/'src/client/K0DwarfMixamoClips.luau').write_text('-- Generated Mixamo dwarf packs; split for Studio source limits.\nlocal skills=require(script.Parent.K0DwarfMixamoSkills)\nreturn {basic=require(script.Parent.K0DwarfMixamoBasic),skills=skills.skills,variants=skills.variants}\n')
+(ROOT/'src/client/K0DwarfMixamoClips.luau').write_text('-- Generated Mixamo dwarf packs; split for Studio source limits.\nlocal skills=require(script.Parent.K0DwarfMixamoSkills)\nskills.skills["dwarf.common.overhead"]=require(script.Parent.K0DwarfMixamoOverhead)\nreturn {basic=require(script.Parent.K0DwarfMixamoBasic),skills=skills.skills,variants=skills.variants}\n')
 print('Exported Mixamo dwarf clips:',', '.join(clips))

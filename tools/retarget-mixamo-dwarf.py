@@ -40,7 +40,7 @@ mapping = {
 }
 names = ['Standing Melee Attack Horizontal', 'Standing Melee Attack Downward',
          'Standing Melee Attack Backhand', 'Standing Melee Attack 360 Low',
-         'Standing Melee Run Jump Attack']
+         'Standing Melee Run Jump Attack', 'Standing Melee Combo Attack Ver. 1']
 if args.profile=='knight':
     names=sorted(p.stem for p in pathlib.Path(args.source_dir).glob('*.fbx')
                  if p.stem.startswith(('sword and shield slash','sword and shield attack','sword and shield block')))

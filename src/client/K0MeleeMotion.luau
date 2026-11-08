@@ -9,7 +9,6 @@ local function rotation(x, y, z)
 end
 
 local Clips = require(script.Parent.K0MeleeClips)
-local DwarfDiagonalClip = require(script.Parent.K0DwarfDiagonalClip)
 local DwarfMixamo = require(script.Parent.K0DwarfMixamoClips)
 local KnightMixamo = require(script.Parent.K0KnightMixamoBasic)
 local KnightVariants = require(script.Parent.K0KnightMixamoVariants)
@@ -102,17 +101,16 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId, rigType,
  local w,a,r=definition.windup,definition.active,definition.recovery
  local total,impact=w+a+r,w+(definition.hitDelay or 0)
  -- Retiming anchors preserve contact if combat timing is adjusted later.
- local current={0,w*.45,impact,w+a+r*.15,total}
+ local opening=w*(clip.entryFraction or .45)
+ local current={0,opening,impact,w+a+r*.15,total}
  local authored={0,clip.entryUntil,clip.windup+clip.hitDelay,clip.windup+clip.active+clip.recovery*.15,clip.duration}
  local section=1
  for i=1,4 do if age>=current[i] then section=i end end
  local ratio=math.clamp((age-current[section])/(current[section+1]-current[section]),0,1)
  local time=authored[section]+(authored[section+1]-authored[section])*ratio
  local result={angles={}}
- local opening=w*.45
  local u=math.clamp(age/opening,0,1);local u2,u3=u*u,u*u*u
  local curves=rigType==Enum.HumanoidRigType.R6 and (clip.r6Curves or clip.curves) or clip.curves
- if rigType==Enum.HumanoidRigType.R6 and classId=="dwarf" and not skillId then curves=DwarfDiagonalClip.r6Curves end
  for _,channel in ipairs(channels) do
   local v={}
   for axis,name in ipairs({"X","Y","Z"}) do
@@ -146,7 +144,7 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId, rigType,
   local from=entryTurn or 0
   result.axeStrikeTurn=from+(1-from)*u2*(3-2*u)
  end
- if classId=="dwarf" and not skillId then
+ if classId=="dwarf" and not skillId and not clip.disableR6FollowAcross then
   -- R6 has no elbow/wrist segments, so its shorter rigid arm needs a
   -- little more cross-body follow-through after the contact interval.
   local across=math.clamp((age-impact-.005)/.065,0,1)

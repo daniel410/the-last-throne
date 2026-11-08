@@ -14,7 +14,7 @@ for key,samples in mixamoGolden do
   for ch,expected in s.angles do
    local error=(p.angles[ch]-Vector3.new(unpack(expected))).Magnitude
    report.maxBlenderDegrees=math.max(report.maxBlenderDegrees,error)
-   check(error<.004,'Independent Blender curve parity '..key..'/'..ch)
+   check(error<.004,'Independent Blender curve parity '..key..'/'..ch..' age='..s.age..' error='..error..' actual='..tostring(p.angles[ch])..' expected='..tostring(Vector3.new(unpack(expected))))
   end
  end
 end
