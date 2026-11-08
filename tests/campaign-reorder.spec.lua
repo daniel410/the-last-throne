@@ -155,7 +155,7 @@ for i,c in ipairs(C.mainChapters)do
  check(p.wallet.gold-gold==c.reward.coins and p.heroes.hero.deepwood.main==i,'one first-clear reward and exact frontier')
  check(A.selection(p.heroes.hero).missionId==(C.mainChapters[math.min(35,i+1)]).id,'Continue points to correct mission')
 end
-check(fixed==16570 and p.heroes.hero.deepwood.clears['HG-07'],'original fixed Gold and ending preserved')
+check(fixed==19170 and p.heroes.hero.deepwood.coins==16570 and p.heroes.hero.deepwood.clears['HG-07'],'original ledger and ending preserved; GW adds 2600 account Gold')
 check(not D.allowed({level=80,deepwood=P.new()},'FV-01','Easy'),'new player cannot skip Gloamwood')
 check(C.byId['DW-07'].quest.outcome:find('Gloamwood',1,true)and C.byId['GW-07'].quest.outcome:find('Frozen Vale',1,true)and C.byId['EC-07'].quest.outcome:find('Haunted Graveyard',1,true),'English outcomes match exits')
 -- New Easy route must not require side quests, replay XP, purchases or support.

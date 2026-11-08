@@ -1,0 +1,155 @@
+[
+  {
+    "command": [
+      "lua",
+      "tests/quest-completion-rewards.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Quest completion rewards: 1416 checks passed; 47 quests pay, 19 new awards; legacy catch-up and storage recovery PASS\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/side-quest-review.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "SIDE_QUEST_REVIEW 1610 checks PASS; 12 quests, 44 goals, 11 combats, 2 optional goals\nDW-Q1 | Supplies in the Marsh | 2 | 3 | Easy/replay/Hard/Insane/Hell\nDW-Q2 | The Stolen Food | 4 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q3 | Quarry Below the Falls | 5 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q4 | Remnants of the Red Battlefield | 7 | 4 | Easy/replay/Hard/Insane/Hell\nFV-Q1 | A Name in the Snow | 15 | 3 | Easy/replay\nFV-Q2 | Frostfang Supply Cave | 17 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q3 | Blue Lake Return Route | 18 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q4 | Ancient Glacier Watch | 21 | 3 | Easy/replay/Hard/Insane/Hell\nEC-Q1 | A Worker's Lost Mark | 22 | 3 | Easy/replay\nEC-Q2 | Ember Raider Nest | 24 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q3 | Volcano Shaman Altar | 25 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q4 | Caldera Titan Basin | 28 | 4 | Easy/replay/Hard/Insane/Hell\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/campaign-reorder.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "CAMPAIGN_REORDER 1871 checks passed; mandatory solo final level 44\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/late-epics.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "LATE_EPICS_STATIC 952 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/deepwood-progress.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Deepwood progression: 515 checks passed\nDeepwood total: 520 checks passed\nDeepwood extended total: 570 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/deepwood-quests.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Deepwood quest contract: 31 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/frozen-vale.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "FROZEN_VALE_STATIC 575 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/ember-caldera.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "EMBER_CALDERA_STATIC 715 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/difficulty-balance.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Difficulty balance: 2661 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/gold-diamond-tuning.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Gold/Diamond tuning: 1892 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/expedition-presentation.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Expedition presentation: 22 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/expedition-departure.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Expedition departure: 42 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/expedition-store.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Expedition store: 43 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/inventory.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/economy.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Economy: 42 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/starter-material-cleanup.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Starter material cleanup: 35 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "lua",
+      "tests/story-completion.spec.lua"
+    ],
+    "exitCode": 0,
+    "stdout": "Story completion: 356 checks passed\n",
+    "stderr": ""
+  }
+]

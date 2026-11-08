@@ -95,7 +95,10 @@ function Log.phase(s,c)
 end
 function Log.reward(c)
  if c.reward.xp==0 and c.reward.coins==0 then return 'No fixed XP or Gold. Combat rewards are earned separately.' end
- return string.format('On story completion: %d XP · %d Gold. Items go to your bag or unclaimed rewards.',c.reward.xp,c.reward.coins)
+ local materials={}
+ if c.reward.ore then table.insert(materials,string.format('%d Iron Ore',c.reward.ore))end
+ if c.reward.gems then table.insert(materials,string.format('%d Enhancement Gem(s)',c.reward.gems))end
+ return string.format('On quest completion: %d XP · %d Gold%s. Items go to your bag or unclaimed rewards.',c.reward.xp,c.reward.coins,#materials>0 and ' · '..table.concat(materials,' · ')or '')
 end
 function Log.choices(s,c)
  local rows={}

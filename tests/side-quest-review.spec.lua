@@ -29,7 +29,7 @@ for _,c in ipairs(Content.chapters)do if c.side then
  check(c.quest and c.quest.giver and c.quest.brief~='' and c.quest.outcome~='','authored quest narrative')
  local report=P.goal(c,c.quest.turnIn);check(report and not report.optional,'mandatory report exists')
  check(c.goals[#c.goals]==report,'report is last objective')
- check(c.reward.xp==0 and c.reward.coins==0,'approved side fixed reward is zero')
+ check(c.reward.xp>0 and c.reward.coins>0,'every side quest has a fixed completion award')
  check(D.allowed(base.heroes.hero,c.id,'Easy'),c.id..' can enter at required checkpoint')
  if required>0 then
   local ok,why=D.allowed(prefixes[required-1].heroes.hero,c.id,'Easy');check(not ok and why=='StoryLocked',c.id..' rejects unfinished report gate')

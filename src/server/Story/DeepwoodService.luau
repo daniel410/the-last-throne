@@ -111,7 +111,7 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
     if firstClear==nil then firstClear=not run or run.firstClear end
     local reward=run and not firstClear and Difficulty.completion(e.c,run.difficultyId,run.balanceVersion or 1)or {xp=e.c.reward.xp,gold=e.c.reward.coins}
     local xp=growthBefore and growthBefore.level>=80 and 0 or reward.xp
-    publish(player,text~='' and text or nil,transitionNotice,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=xp,coins=reward.gold,outcome=e.c.quest.outcome} or nil)
+    publish(player,text~='' and text or nil,transitionNotice,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=xp,coins=reward.gold,ore=firstClear and e.c.reward.ore or 0,gems=firstClear and e.c.reward.gems or 0,outcome=e.c.quest.outcome} or nil)
     end
    end
   end

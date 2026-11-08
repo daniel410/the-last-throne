@@ -130,7 +130,7 @@ function P.validate(s)
   if s.clears[c.id] then
    if s.clears[c.id]~=true or not recorded(c,true) then return false end
    for _,g in ipairs(c.goals) do if not g.optional and not s.flags[c.id..':'..g.id] then return false end end
-   coins=coins+c.reward.coins
+   coins=coins+(c.journalCoins or c.reward.coins)
   elseif not c.side and (number(c)<=s.main or not legacy and s.legacyMain and c.legacyNumber<=s.legacyMain)then return false end
  end
  for id in pairs(s.clears) do if not Content.byId[id] then return false end end
@@ -176,7 +176,7 @@ function P.apply(s,chapterId,goalId,choice,stepId)
    if n.version==1 then n.main=c.legacyNumber
    else while n.main<Content.mainCount and n.clears[Content.mainChapters[n.main+1].id]do n.main=n.main+1 end end
   end
-  n.coins=n.coins+c.reward.coins;reward=P.copy(c.reward);reward.chapter=c.id
+  n.coins=n.coins+(c.journalCoins or c.reward.coins);reward=P.copy(c.reward);reward.chapter=c.id
  end
  return n,nil,reward
 end

@@ -37,7 +37,7 @@ for number=1,C.mainCount do
   end
  end
  check(s.main==number and s.clears[c.id],'clear advances exactly one story')
- if c.id:sub(1,2)=='GW'then check(c.reward.xp==0 and c.reward.coins==0,'GW fixed reward budget remains unassigned')end
+ if c.id:sub(1,2)=='GW'then check(c.reward.xp>0 and c.reward.coins>0 and c.journalCoins==0,'GW completion awards preserve historical journal checksums')end
  if c.epic==5 then hgXP=hgXP+c.reward.xp;hgGold=hgGold+c.reward.coins end
  if number==7 or number==14 or number==21 or number==28 then
   local save=P.copy(s);check(P.validate(save),'existing/transition save retained')

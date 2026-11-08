@@ -175,6 +175,7 @@ function V.create(parent,send)
     if s.rejoin and s.rejoin.rulesVersion==1 then line('OriginalRules',Text.OriginalRules,36,T.color.muted)end
     line('Risk',string.format(Text.Risk,access.hp or 1,access.damage or 1,access.bossHP or 1,access.bossDamage or 1),32)
     line('RiskNote',Text.RiskNote,28,T.color.muted)
+    if access.firstClear and ((access.firstOre or 0)>0 or (access.firstGems or 0)>0)then line('QuestMaterials',string.format(Text.QuestMaterials,access.firstOre or 0,access.firstGems or 0),40,T.color.gold)end
     line('FirstReward',string.format(Text.First,access.xpCapped and 0 or access.firstXP or 0,access.firstGold or 0)..(access.firstClear and ''or Text.Claimed),40,access.firstClear and T.color.gold or T.color.muted)
     line('RepeatReward',string.format(Text.Repeat,access.xpCapped and 0 or access.repeatXP or 0,access.repeatGold or 0),32,T.color.gold)
     if access.xpCapped then line('XPCap',Text.Capped,28)end

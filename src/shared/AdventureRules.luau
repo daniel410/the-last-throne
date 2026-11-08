@@ -77,7 +77,7 @@ local function resetJournal(base,c)
    for _,field in ipairs({'activities','clues'})do if s[field]then s[field][key]=nil end end
    for _,step in ipairs(g.activity and g.activity.steps or {})do if s.decisions then s.decisions[key..':'..step.id]=nil end end
   end
-  s.coins=0;for id in pairs(s.clears)do s.coins=s.coins+Content.byId[id].reward.coins end
+  s.coins=0;for id in pairs(s.clears)do s.coins=s.coins+(Content.byId[id].journalCoins or Content.byId[id].reward.coins) end
   assert(P.validate(s),'Invalid side replay journal');return s
  end
  -- A replay projection has a synthetic completed prefix, never paid into the hero.
@@ -88,7 +88,7 @@ local function resetJournal(base,c)
   local retain=not chapter.side and chapter.number<=main
    or chapter.side and chapter.id~=c.id and chapter.minMain<=main and base.clears[chapter.id]
   if retain then
-   s.clears[chapter.id]=true;s.coins=s.coins+chapter.reward.coins
+   s.clears[chapter.id]=true;s.coins=s.coins+(chapter.journalCoins or chapter.reward.coins)
    for _,g in ipairs(chapter.goals)do
     local key=chapter.id..':'..g.id
     if not g.optional or base.flags[key]then

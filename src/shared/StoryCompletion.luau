@@ -26,6 +26,8 @@ function M.project(value,previous)
   region=nextChapter and string.format(M.text.region,Content.epics[nextChapter.epic or 1].region,(nextChapter.number-1)%7+1)or epic.region,
   objective=nextTarget and string.format(M.text.objective,nextTarget.goal.title)or '',
   guidance=not nextChapter and M.text.endBody or nextChapter.epic~=c.epic and string.format(M.text.travel,Content.epics[nextChapter.epic or 1].region)or M.text.route}
+ if (e.ore or 0)>0 then data.saved=string.format('%d Iron Ore. ',e.ore)..data.saved end
+ if (e.gems or 0)>0 then data.saved=string.format('%d Enhancement Gem(s). ',e.gems)..data.saved end
  if value.expedition and value.expedition.completed and nextChapter and s.expeditionMission~=nextChapter.id then
   data.guidance=string.format(c.side and M.text.sideMission or M.text.mission,nextChapter.quest.title or nextChapter.title)
   data.action=M.text.review;data.nextId=nil

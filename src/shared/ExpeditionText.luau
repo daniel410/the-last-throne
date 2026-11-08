@@ -8,7 +8,7 @@ return {
  Level='Reach Lv%d.',Previous='Clear %s on %s first.',Story='Complete main story %d first.',
  GatherParty='Gather in the leader\'s lobby and select the party hero.',WaitingReady='Waiting for Ready.',Eligible='Ready to enter.',
  SelectHero='Select a hero in the lobby to enter.',Leader='Only the leader can change the mission and difficulty.',
- Claimed=' Already claimed.',First='First story clear: %d XP · %d Gold. Once per hero.',
+ Claimed=' Already claimed.',QuestMaterials='First quest completion: %d Iron Ore · %d Enhancement Gem(s).',First='First quest clear: %d XP · %d Gold. Once per hero.',
  Repeat='Repeat clear: %d XP · %d Gold.',Capped='Lv80: XP is capped; other rewards continue.',
  Materials='Completion: %d Enhancement Gems · %d Magic Stones · %d/4 equipment cache progress.',RewardBand='Reward band: Lv%d · Based on mission enemy level, not your hero level.',
  Equipment='Equipment has the same tier and stats on every difficulty.',

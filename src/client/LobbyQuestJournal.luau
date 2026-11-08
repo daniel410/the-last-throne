@@ -45,11 +45,14 @@ function Journal.create(panel)
   summary.Text=h and (spec[1]:upper()..' · '..#chapters..' QUESTS')or Text.SelectHero
   for i,c in ipairs(chapters)do
    local current,hint=status(journal,c)
-   local row=T.frame(list,'Quest_'..c.id,UDim2.new(),UDim2.new(1,-8,0,88));row.LayoutOrder=i;row:SetAttribute('QuestStatus',current)
+   local row=T.frame(list,'Quest_'..c.id,UDim2.new(),UDim2.new(1,-8,0,124));row.LayoutOrder=i;row:SetAttribute('QuestStatus',current)
    local title=T.label(row,'Title',(c.side and Text.Side or Text.Main)..' · '..(c.quest.title or c.title),UDim2.fromOffset(12,5),UDim2.new(1,-24,0,24),13,T.color.gold)
    title.TextTruncate=Enum.TextTruncate.AtEnd
    local state=T.label(row,'Status',current,UDim2.fromOffset(12,29),UDim2.new(1,-24,0,20),11,current==Text.Locked and T.color.muted or current==Text.Completed and T.color.green or T.color.gold)
    local detail=T.label(row,'Hint',hint,UDim2.fromOffset(12,49),UDim2.new(1,-24,0,32),11,T.color.text);detail.TextYAlignment=Enum.TextYAlignment.Top
+   local reward=T.label(row,'Reward',Log.reward(c),UDim2.fromOffset(12,84),UDim2.new(1,-24,0,34),11,T.color.gold);reward.TextWrapped=true;reward.TextYAlignment=Enum.TextYAlignment.Top
+   local height=math.max(34,game:GetService('TextService'):GetTextSize(reward.Text,reward.TextSize,reward.Font,Vector2.new(math.max(120,root.AbsoluteSize.X-40),1000)).Y+4)
+   reward.Size=UDim2.new(1,-24,0,height);row.Size=UDim2.new(1,-8,0,90+height)
   end
   list.CanvasPosition=reset and Vector2.zero or previous
  end
@@ -77,7 +80,7 @@ function Journal.create(panel)
   local listTop=tabHeight+30
   list.Position,list.Size=UDim2.fromOffset(0,listTop),UDim2.new(1,0,1,-listTop)
  end
- root:GetPropertyChangedSignal('AbsoluteSize'):Connect(resizeTabs);resizeTabs()
+ root:GetPropertyChangedSignal('AbsoluteSize'):Connect(function()resizeTabs();if root.Visible then render(false)end end);resizeTabs()
  return {root=root,show=function(s)snapshot=s;root.Visible=true;render(true)end,update=function(s)snapshot=s;if root.Visible then render(false)end end,
   selectEpic=function(i)if epics[i]then epic=i;render(true)end end}
 end

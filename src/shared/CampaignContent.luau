@@ -63,4 +63,5 @@ function C.region(prefix)
  return r
 end
 load('CampaignStoryText').install(C)
+load('QuestCompletionRewards').install(C)
 return C

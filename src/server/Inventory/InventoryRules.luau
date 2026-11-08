@@ -7,6 +7,8 @@ local Economy=game and require(game:GetService('ReplicatedStorage').Shared.Econo
 local Growth = game and require(game:GetService("ReplicatedStorage").Shared.HeroProgression) or dofile("src/shared/HeroProgression.luau")
 local Daily=game and require(game:GetService('ReplicatedStorage').Shared.DailyLogin) or dofile('src/shared/DailyLogin.luau')
 local Pass=game and require(game:GetService('ReplicatedStorage').Shared.SupportPassRules) or dofile('src/shared/SupportPassRules.luau')
+local CompletionRewards=game and require(game:GetService('ReplicatedStorage').Shared.QuestCompletionRewards)or dofile('src/shared/QuestCompletionRewards.luau')
+local Grants=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentTransactions)or dofile('src/shared/EquipmentTransactions.luau')
 local Rules = {}
 function Rules.copy(value)
 	if type(value) ~= "table" then return value end
@@ -132,7 +134,7 @@ function Rules.validate(profile, catalog)
 		if type(hero) ~= "table" or id ~= hero.heroId or type(id) ~= "string" or not catalog.classes[hero.baseClassId]
 			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, 80) or type(hero.quickSlots) ~= "table" then return false end
 		if hero.starterSuppliesClaimed ~= nil and type(hero.starterSuppliesClaimed) ~= "boolean" then return false end
-		if not Adventure.valid(hero) then return false end
+		if not Adventure.valid(hero) or not CompletionRewards.valid(hero) then return false end
 		if hero.deepwood~=nil and not Story.validate(hero.deepwood) then return false end
 		if hero.progression ~= nil and (not Growth.validate(hero.progression,hero.baseClassId) or hero.level ~= hero.progression.level) then return false end
 		for index = 1, 2 do
@@ -304,8 +306,26 @@ function Rules.apply(profile, command, context, catalog)
 	if not Rules.validate(nextProfile, catalog) then return nil, "Incompatible" end
 	return nextProfile
 end
+-- Clear receipt and award are committed together. Reopening a historic account
+-- catches up missing awards without modifying journal checksums or reissuing them.
+local function grantCompletion(profile,heroId,chapterId,catalog)
+ local award=CompletionRewards.awards[chapterId];local h=profile.heroes[heroId]
+ if not award or not(h.deepwood and h.deepwood.clears[chapterId])or(h.completionRewardClaims or {})[chapterId]then return false end
+ if profile.wallet.gold+award.coins>1e12 then return false end
+ local g=h.progression or Growth.new(h.level)
+ g.xp=g.xp+award.xp
+ while g.level<80 and g.xp>=Growth.xpToNext(g.level)do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end
+ if g.level==80 then g.xp=0 end
+ g.revision=g.revision+1;h.progression=g;h.level=g.level
+ profile.wallet.gold=profile.wallet.gold+award.coins
+ local prefix='quest-award-v1-'..heroId..'-'..chapterId
+ Grants.grant(profile,Rules,catalog,heroId,'iron_ore',award.ore or 0,prefix..'-ore')
+ Grants.grant(profile,Rules,catalog,heroId,'enhancement_gem',award.gems or 0,prefix..'-gem')
+ h.completionRewardClaims=h.completionRewardClaims or {};h.completionRewardClaims[chapterId]=CompletionRewards.version
+ return true
+end
 -- Legacy account migration preserves ownership except explicitly retired supplies.
-function Rules.upgrade(profile)
+function Rules.upgrade(profile,catalog)
 	local changed=Economy.upgrade(profile)
 	-- User-requested retirement, including locked bag/storage/unclaimed stacks.
 	-- Keep the catalog tombstone so AccountStore can validate old saves first.
@@ -336,6 +356,14 @@ function Rules.upgrade(profile)
 		if hero.progression==nil then hero.progression=Growth.new(hero.level); changed=true
 		elseif (hero.progression.version==1 or hero.progression.version==2) then hero.progression=Growth.upgrade(hero.progression); changed=true end
 	end
+ -- Catalog is supplied by AccountStore; retain the pure helper's existing API.
+ catalog=catalog or (game and require(game:GetService('ReplicatedStorage').Shared.ItemCatalog)or dofile('src/shared/ItemCatalog.luau'))
+ local ids,heroIds={},{}
+ for id in pairs(CompletionRewards.awards)do table.insert(ids,id)end;table.sort(ids)
+ for heroId in pairs(profile.heroes)do table.insert(heroIds,heroId)end;table.sort(heroIds)
+ for _,heroId in ipairs(heroIds)do
+  for _,id in ipairs(ids)do if grantCompletion(profile,heroId,id,catalog)then changed=true end end
+ end
 	if changed then profile.revision=profile.revision+1 end
 	return profile
 end
@@ -401,7 +429,12 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId)
  if reward.repeated then return Rules.copy(profile),nil,true end
  local n=Rules.copy(profile);local h=n.heroes[heroId];h.deepwood=journal
  -- Migrate historic earnings before assigning the new journal, then credit only this event.
- local migrated=Rules.copy(profile);Economy.upgrade(migrated);n.wallet=migrated.wallet;Economy.story(n,reward)
+ local migrated=Rules.copy(profile);Economy.upgrade(migrated);n.wallet=migrated.wallet
+ local added=reward.chapter and CompletionRewards.awards[reward.chapter]
+ if added then
+  if not grantCompletion(n,heroId,reward.chapter,catalog)then return nil,'BalanceLimit'end
+  reward={xp=0,coins=0,chapter=reward.chapter}
+ else Economy.story(n,reward)end
  local g=h.progression or Growth.new(h.level)
  g.xp=g.xp+reward.xp
  while g.level<80 and g.xp>=Growth.xpToNext(g.level) do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end

@@ -33,7 +33,7 @@ check(not side.clears['DW-Q1'] and Log.target(side,C.byId['DW-Q1']).goal.id=='ma
 side=assert(P.apply(side,'DW-Q1','marsh_report'));check(Log.status(side,C.byId['DW-Q1'])=='Completed' and side.main==2,'optional completion never advances main story')
 local discovered=assert(P.accept(P.new(),'DW-Q1',true));check(discovered.flags['DW-Q1:waterproof_log'],'discovery accepts and recovers clue atomically')
 local old=P.copy(discovered);old.accepted=nil;check(P.accepted(old,C.byId['DW-Q1']) and P.validate(old),'old in-progress optional quest remains valid')
-check(Log.reward(C.byId['DW-Q1']):find('No fixed XP',1,true)~=nil,'zero fixed reward is explained honestly')
+check(Log.reward(dofile('src/shared/CampaignContent.luau').byId['DW-Q1']):find('60 XP · 100 Gold',1,true)~=nil,'side completion reward is shown honestly')
 -- Valid completed main prefixes preserve reward exactness while exercising optional rescue priority.
 local late=P.new()
 for i=1,6 do local story=C.chapters[i];late.main=i;late.clears[story.id]=true;late.coins=late.coins+story.reward.coins;for _,goal in ipairs(story.goals) do if not goal.optional then late.flags[story.id..':'..goal.id]=true end end end

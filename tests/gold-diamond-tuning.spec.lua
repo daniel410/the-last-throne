@@ -5,9 +5,9 @@ local E=dofile('src/shared/EconomyRules.luau')
 local R=dofile('src/server/Inventory/InventoryRules.luau')
 local Items=dofile('src/shared/ItemCatalog.luau')
 local checks=0;local function check(v,m)checks=checks+1;assert(v,m)end
-check(D.version==11 and D.compatible(10),'new runs use 11; existing runs keep 10')
+check(D.version==12 and D.compatible(11)and D.compatible(10),'new runs use 12; existing runs keep their rewards')
 for _,c in ipairs(Content.chapters)do for _,mode in ipairs(D.order)do
- local old,new=D.completion(c,mode,10),D.completion(c,mode)
+ local old,new=D.completion(c,mode,10),D.completion(c,mode,11)
  check(new.gold==math.floor(old.gold*4/5),'20 percent reduction rounded down: '..c.id..' '..mode)
  for key,value in pairs(old)do if key~='gold'then check(new[key]==value,'non-Gold completion reward preserved: '..key)end end
  local oldKills,newKills=Summary.mission(c,mode,1,10),Summary.mission(c,mode,1,11)
