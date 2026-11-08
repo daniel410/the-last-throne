@@ -1,0 +1,30 @@
+{
+  "version": "0.83.1",
+  "sourceCommit": "f0c9b40308336e26c5bcb36ead78b6042683157d",
+  "native": {
+    "cartography": {
+      "zones": 44,
+      "roads": 2745,
+      "footprints": 2077,
+      "checks": 6030
+    },
+    "atlas": {
+      "failures": [],
+      "kind": "DEEPWOOD_ATLAS_NATIVE",
+      "pass": true,
+      "checks": 416
+    },
+    "checkpointNative": {
+      "checks": 25,
+      "pass": true
+    },
+    "totalChecks": 6471
+  },
+  "pureLua": {
+    "partyMap": 96,
+    "checkpointTravel": 1927
+  },
+  "knownFixtureFailure": "checkpoint-map-layout.spec.lua: pre-existing missing epicPicker mock; native equivalent passed",
+  "published": false,
+  "deviceAcceptance": false
+}
