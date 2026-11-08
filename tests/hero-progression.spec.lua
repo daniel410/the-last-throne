@@ -30,8 +30,10 @@ local skill=G.skill('knight',1,base,g); check(math.abs(skill.damage-.84)<.00001,
 g=assert(G.apply(g,{action='SetSkillSlot',slot=1,skill=3}));eq(g.skillSlots[1],3,'slot swap');eq(g.skillSlots[3],1,'unique loadout')
 check(not G.apply(g,{action='SetSkillSlot',slot=4,skill=2}),'advancement slot locked')
 local cap=assert(G.apply(g,{action='AwardXP',stream='server-a',sequence=2,amount=1000000}));eq(cap.level,80,'cap80');eq(cap.xp,0,'capXP0');st,sp=G.points(cap);eq(st+8,316,'316 stat budget');eq(sp+1,79,'79 skill budget')
-for i=1,2 do cap=assert(G.apply(cap,{action='TrainSkill',skill=1})) end
-check(not G.apply(cap,{action='TrainSkill',skill=1}),'rank cap3')
+for i=2,8 do cap=assert(G.apply(cap,{action='TrainSkill',skill=1})) end
+eq(cap.mastery[1]+1,9,'skill reaches level9')
+local rejected,capError=G.apply(cap,{action='TrainSkill',skill=1})
+eq(rejected,nil,'no level10');eq(capError,'SkillMaxRank','actionable cap error')
 local p=assert(R.addHero(R.new(42),'hero','mage',C));p.heroes.hero.progression=nil
 check(R.validate(p,C),'legacy accepted');local oldRevision=p.revision
 p=R.upgrade(p);check(R.validate(p,C),'migration valid');eq(p.revision,oldRevision+1,'migration revision');eq(p.heroes.hero.progression.level,1,'legacy level preserved');eq(R.upgrade(p).revision,p.revision,'migration idempotent')
@@ -105,4 +107,46 @@ for level=1,79 do
 end
 eq(G.totalXP(assert(G.apply(G.new(),{action='AwardXP',stream='multi',sequence=1,amount=240}))),240,'multi-level reward remains fully visible')
 eq(G.totalXP(recovered.heroes.hero.progression),100,'recovered unknown reward has one cumulative grant')
+-- Every class/path skill uses the same cap; saved ranks and point budgets survive reload.
+for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
+ for _,path in ipairs(A.order[classId]) do
+  for index=1,32 do
+   local saved=G.new(80);saved.branch=path;saved.stage=4
+   if A.unlocked(saved,classId,index) then
+    for rank=1,8 do
+     saved=assert(G.apply(saved,{action='TrainSkill',skill=index},classId))
+     eq(saved.mastery[index],rank,'one rank per SP')
+     local _,remaining=G.points(saved);eq(remaining,79-rank,'exact SP budget')
+    end
+    check(G.validate(G.upgrade(G.copy(saved)),classId),'level9 survives saved-data reload')
+    local denied,reason=G.apply(saved,{action='TrainSkill',skill=index},classId)
+    eq(denied,nil,'all skills reject level10');eq(reason,'SkillMaxRank','shared cap reason')
+    saved.mastery[index]=9;check(not G.validate(saved,classId),'forged level10 rejected')
+   end
+  end
+ end
+ local low=G.new(8);low.mastery[1]=7
+ local denied,reason=G.apply(low,{action='TrainSkill',skill=1},classId)
+ eq(denied,nil,'cannot reach level9 without eighth SP');eq(reason,'NotEnoughSkillPoints','budget gate')
+end
+-- Account serialization, save-unknown recovery and receipt replay at the new boundary.
+local high=assert(R.addHero(R.new(765),'high','knight',C))
+high.heroes.high.level=80;high.heroes.high.progression=G.new(80)
+high.heroes.high.progression.mastery[1]=7
+local highData=G.copy(high);local dropResponse=false
+local highAdapter={UpdateAsync=function(_,_,callback)
+ local value=callback(G.copy(highData));if value then highData=G.copy(value) end
+ if dropResponse then error('response lost') end;return G.copy(highData)
+end}
+local highStore=S.new(highAdapter,R,C,function()return 1000 end,function()end,'high-fence')
+local opened=assert(highStore:open(765))
+local highCmd={action='TrainSkill',heroId='high',requestId='level9',revision=opened.revision,skill=1}
+dropResponse=true
+local missingHigh,unknownHigh=highStore:transact(765,function(cur)return R.progress(cur,highCmd,{atHub=true},C)end)
+eq(missingHigh,nil,'level9 unknown fails closed');eq(unknownHigh,'SaveUnknown','level9 response loss')
+dropResponse=false
+local recoveredHigh=assert(highStore:transact(765,function(cur)return R.progress(cur,highCmd,{atHub=true},C)end))
+eq(recoveredHigh.heroes.high.progression.mastery[1],8,'level9 recovers once')
+local _,highSP=G.points(recoveredHigh.heroes.high.progression);eq(highSP,71,'only eight SP spent')
+check(R.validate(G.copy(highData),C),'persisted level9 account validates')
 print('Hero progression: '..n..' checks passed')

@@ -1,7 +1,9 @@
 -- Pure hero growth. Starting resources are user decisions; growth coefficients
 -- and mastery effects are trial balance. XP mirrors story-reward-budget.json.
 local Advanced=game and require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
-local Growth={maxLevel=80,xpBase=100,xpPerLevel=25,statKeys={"STR","DEX","INT","VIT"}}
+local Growth={maxLevel=80,maxSkillLevel=9,xpBase=100,xpPerLevel=25,statKeys={"STR","DEX","INT","VIT"}}
+-- Learned skills start at level 1; each invested SP adds one mastery rank.
+Growth.maxMasteryRank=Growth.maxSkillLevel-1
 Growth.bases={
 	knight={health=250,healthPerLevel=15,mana=0,stats={STR=12,DEX=6,INT=4,VIT=12}},
 	dwarf={health=200,healthPerLevel=13,mana=0,stats={STR=11,DEX=7,INT=4,VIT=10}},
@@ -66,9 +68,9 @@ function Growth.validate(g,classId)
  for _,k in ipairs(Growth.statKeys) do if not Growth.integer(g.stats[k],0,316) then return false end;spent=spent+g.stats[k] end
  if spent>4*(g.level-1) then return false end
  local sp=0
- for k,v in pairs(g.mastery) do if not Growth.integer(k,1,32) or not Growth.integer(v,0,3) then return false end end
+ for k,v in pairs(g.mastery) do if not Growth.integer(k,1,32) or not Growth.integer(v,0,Growth.maxMasteryRank) then return false end end
  for i=1,32 do
-  if not Growth.integer(g.mastery[i],0,3) or g.mastery[i]>0 and not Advanced.unlocked(g,resolvedClass,i) then return false end
+  if not Growth.integer(g.mastery[i],0,Growth.maxMasteryRank) or g.mastery[i]>0 and not Advanced.unlocked(g,resolvedClass,i) then return false end
   sp=sp+g.mastery[i]
  end
  if sp>g.level-1 then return false end
@@ -144,7 +146,7 @@ function Growth.apply(g,command,classId)
 		if not Advanced.unlocked(g,classId or (Advanced.branches[g.branch] or {}).classId or "knight",command.skill) then return nil,"SkillLocked" end
 		local _,points=Growth.points(g)
 		if points<1 then return nil,"NotEnoughSkillPoints" end
-		if nextG.mastery[command.skill]>=3 then return nil,"SkillMaxRank" end
+		if nextG.mastery[command.skill]>=Growth.maxMasteryRank then return nil,"SkillMaxRank" end
 		nextG.mastery[command.skill]=nextG.mastery[command.skill]+1
 	elseif command.action=="SetSkillSlot" then
 		if not Growth.integer(command.slot,1,Advanced.slotCount(g)) or not Growth.integer(command.skill,0,32) then return nil,"InvalidRequest" end

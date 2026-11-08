@@ -127,7 +127,7 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local heading=Menu.plaque(detail,'SkillTitle',base.name,UDim2.fromOffset(10,10),UDim2.new(1,-20,0,50));heading.Caption.TextSize=15
  local detailIcon=Menu.node(detail,'SelectedSkillIcon','',UDim2.new(.5,-44,0,84),88,learned,true)
  local symbol=table.clone(base);symbol.root=selected<=3 and selected or base.root;Glyph.draw(detailIcon,classId,symbol,66,learned)
- local rank=label(detail,'Mastery','MASTERY  '..(1+g.mastery[selected])..' / 4',12,196,detailW-24,28,15,Theme.color.gold);rank.TextXAlignment=Enum.TextXAlignment.Center
+ local rank=label(detail,'Mastery','MASTERY  '..(1+g.mastery[selected])..' / '..Growth.maxSkillLevel,12,196,detailW-24,28,15,Theme.color.gold);rank.TextXAlignment=Enum.TextXAlignment.Center
  local effect=skill.form=='self' and string.format('Barrier: %.0f%% max HP / %gs',skill.shield*100,skill.shieldDuration) or skill.damage>0 and string.format(SkillText.DamageMultiplier,skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration or 0)
  if skill.pulses and skill.pulses>1 then effect=effect..'  /  '..skill.pulses..' hits' end
  local pathContext=base.branch and string.format(SkillText.PathPreview,Advanced.branches[base.branch].name) or SkillText.SharedSkill
@@ -139,9 +139,9 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  label(detail,'Cost',string.format('%gs cooldown%s',skill.cooldown,skill.manaCost and '  /  '..skill.manaCost..' MP' or ''),18,274+detailExtra,detailW-36,30,12,Theme.color.silver)
  label(detail,'Requirements',learned and (base.ultimate and 'LEARNED  /  Dedicated ultimate button. Does not use slots 1–5.' or 'LEARNED  /  Select a combat slot below to equip.') or base.common and string.format('LOCKED  /  Reach Level %d. No advancement required.',base.level) or string.format('LOCKED  /  Level %d + advancement stage %d\nPreview only. Complete this path first.',base.level or 1,base.stage or 0),18,310+detailExtra,detailW-36,66,12,learned and Theme.color.green or Theme.color.muted)
  local train=Theme.button(detail,'Train','+1 MASTERY  /  1 SP',UDim2.fromOffset(14,386+detailExtra),UDim2.new(1,-28,0,44),true)
- Theme.enabled(train,canTrain and learned and points>0 and g.mastery[selected]<3)
+ Theme.enabled(train,canTrain and learned and points>0 and g.mastery[selected]<Growth.maxMasteryRank)
  train.Activated:Connect(function() if train.Active then send('TrainSkill',{skill=selected}) end end)
- local hint=learned and (g.mastery[selected]>=3 and 'Maximum mastery reached.' or 'Mastery strengthens this skill. Skills are learned automatically when eligible.') or 'Locked nodes remain available to inspect.'
+ local hint=learned and (g.mastery[selected]>=Growth.maxMasteryRank and 'Maximum mastery reached.' or 'Mastery strengthens this skill. Skills are learned automatically when eligible.') or 'Locked nodes remain available to inspect.'
  label(detail,'MasteryHint',hint,18,442+detailExtra,detailW-36,44,11,Theme.color.muted)
  local loadY=math.max(top+treeHeight,narrow and detailY+500+detailExtra or 0)+24
  local load=Menu.frame(body,'CombatLoadout',UDim2.fromOffset(4,loadY),UDim2.fromOffset(width-8,narrow and 200 or 120))
