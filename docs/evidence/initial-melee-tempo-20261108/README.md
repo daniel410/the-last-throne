@@ -52,4 +52,10 @@ run-in-roblox의 같은 로컬 포트를 동시에 사용하면 연결 실패하
 
 직전0.86.4로 복구할 때 이 작업의 Config/AdvancedMotion만 역적용한다. 드워프 종료 자세 수정과 기존 민첩/저장 데이터는 유지한다. 연구 산술은 작성 당시 기준으로 보존하며 현재 값은 Config와 이 기록을 따른다. 일반 빌드이며 Roblox 게시/릴리스 태그는 수행하지 않는다.
 
-고정 빌드·동일 산출물 재검사는 마감 시 아래에 기록한다.
+## 고정 빌드·마감
+
+`0.86.5`의 소스 커밋은 `b7e67eeb70a2f14b598d28563c78950e10923a6b`다. `python3 tools/build-game.py --source b7e67eeb --record docs/evidence/initial-melee-tempo-20261108/build.json`으로 `builds/0.86.5/TheLastThrone-0.86.5.rbxlx` 단일 빌드에 성공했다. SHA256은 `a55f5dfbae63ede0d25401c37dfd26f467b92869bcb73573cab4a63246ea9fe5`다. [빌드/LFS 입력 기록](build.json).
+
+동일 파일에 `run-in-roblox --place builds/0.86.5/TheLastThrone-0.86.5.rbxlx --script /tmp/tlt-initial-tempo-pinned.luau`를 실행해18묶음·**283,209검사 재통과**했다. pinned 스크립트는 위 모션/스킬 대조+현재 커밋의 서버 템포+기존 서버14경우를 순서대로 연결한다. 런타임 모듈을 바꾸지 않았고 private API/기준 버전은 테스트 복제 모듈에만 넣었다. [정본 결과](pinned-results.json)·[원시 로그](pinned-native.log).
+
+소스 커밋의 origin/main 푸시 성공을 확인했다. 새 LFS 자산은 없고 빌드 입력은 도구가 검증했다. 공유 작업공간의 별도 미커밋 전투 효과 작업은 이 빌드에 넣지 않았다. 일반 빌드이며 Roblox 게시/릴리스 태그는 수행하지 않았다.
