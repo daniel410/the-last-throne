@@ -2,7 +2,7 @@
   "version": "0.22",
   "date": "2026-10-27",
   "status": "requested monetization plan; prices/power not live or playtest validated",
-  "currency": "Robux direct; no Diamonds wallet redesign",
+  "currency": "Reset tickets: RPG Diamonds; other legacy product prices remain drafts",
   "gear_slots": [
     "weapon",
     "offhand",
@@ -22,12 +22,14 @@
       "target": "stats",
       "stackable": true,
       "consume_on_success": 1,
-      "price_robux_draft": 39,
       "acquisition": [
-        "Robux developer product"
+        "RPG Diamond Shop"
       ],
       "binding": "account inventory; consumed for selected RPG character; no trading",
-      "product_id": null
+      "product_id": null,
+      "currency": "diamonds",
+      "price_diamonds": 50,
+      "price_status": "user approved; runtime purchase and use pending"
     },
     {
       "id": "reset.skill",
@@ -36,12 +38,14 @@
       "target": "skills",
       "stackable": true,
       "consume_on_success": 1,
-      "price_robux_draft": 49,
       "acquisition": [
-        "Robux developer product"
+        "RPG Diamond Shop"
       ],
       "binding": "account inventory; consumed for selected RPG character; no trading",
-      "product_id": null
+      "product_id": null,
+      "currency": "diamonds",
+      "price_diamonds": 50,
+      "price_status": "user approved; runtime purchase and use pending"
     },
     {
       "id": "gear.lv5.knight.weapon",
@@ -230,12 +234,12 @@
     {
       "id": "bundle.reset-duo",
       "name": "성장 재설계 묶음",
-      "price_robux_draft": 79,
       "grants": {
         "reset.stat": 1,
         "reset.skill": 1
       },
-      "product_id": null
+      "product_id": null,
+      "status": "deferred; bundle price not approved"
     },
     {
       "id": "bundle.royal-armor",
@@ -259,5 +263,6 @@
     "receipt": "one Experience-level server receipt owner; idempotent grants; no prompt callback grants",
     "trading": "not enabled",
     "deployment": "no products created, no IDs assigned, no sales enabled"
-  }
+  },
+  "reset_price_decision_date": "2026-11-07"
 }
