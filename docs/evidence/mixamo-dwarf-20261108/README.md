@@ -58,3 +58,9 @@ run-in-roblox --place /tmp/tlt-mixamo-combined/tlt-k0-qa-empty.rbxlx --script /t
 `native-poses.json`과 PNG는 **기본 R15 관절의 접지 분기를 직접 평가한 프록시**다. PNG의 몸체/무기 박스는 최종 드워프 스킨이나 실제 Roblox 조명/Play 화면이 아니다. 실제 게임 모델의 시각 수용은 QA/DES 후속이다. 기존 Roblox203785492 자산 유형 경고는 격리 fixture에서도 관찰되며 모든 assertion 통과와 구분한다.
 
 실제 사용자 조작·다양한 체형/갑옷·관전자·기기 성능/P95·네트워크·최종 미술 수용은 미검증이다. 원래 모듈을 기준 커밋 `3c59958749da2d4306f64c1f983dbd39f72ef9b3`로 복구하면 이전 경로로 돌아갈 수 있으며 새 클립 모듈은 참조되지 않는다.
+
+## 고정 빌드·마감
+
+`0.86.1` 입력 소스는 `03c8b020ac0d41bb5ddcf6e216bf8fe5a6f47ac9`다. `python3 tools/build-game.py --source HEAD --record docs/evidence/mixamo-dwarf-20261108/build.json`으로 단일 `builds/0.86.1/TheLastThrone-0.86.1.rbxlx` 빌드에 성공했다. 소스/LFS 입력과 산출물 SHA256은 [build.json](build.json)에 기록했다.
+
+생성된 동일 파일을 `run-in-roblox`로 다시 열어 모듈 치환 없이 통합 **108,895검사**를 재실행해 전부 통과했다. [pinned-native.log](pinned-native.log)·[pinned-results.json](pinned-results.json). 별도 실제 플레이/기기 수용·Roblox 게시·릴리스 태그를 수행한 결과가 아니다. 일반 빌드 산출물은 Git에 포함하지 않는다.
