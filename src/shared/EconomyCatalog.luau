@@ -27,7 +27,7 @@ for _,resource in ipairs({'health','mana'}) do
  end
 end
 for _,kind in ipairs({'stat','skill'}) do
- table.insert(C.offers,{id=kind..'_reset_ticket_diamond',definitionId=kind..'_reset_ticket',currency='diamonds',price=50})
+ table.insert(C.offers,{id=kind..'_reset_ticket_diamond',definitionId=kind..'_reset_ticket',currency='diamonds',price=100})
 end
 C.categories={{id='All',label='ALL'},{id='Weapons',label='WEAPONS'},{id='Armor',label='ARMOR'},{id='Accessories',label='ACCESSORIES'},{id='Potions',label='POTIONS'},{id='Resets',label='RESET TICKETS'}}
 function C.category(definition)

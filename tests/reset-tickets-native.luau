@@ -21,10 +21,10 @@ local ok,err=xpcall(function()
  local view=require(m).create(function()end,function()end)
  local Shop=require(client.ArmoryView)
  for _,kind in ipairs({'stat','skill'})do
-  local p=assert(R.addHero(R.new(38),'qa','mage',C));p.wallet.diamonds=100
+  local p=assert(R.addHero(R.new(38),'qa','mage',C));p.wallet.diamonds=200
   p.heroes.qa.level=9;p.heroes.qa.progression=G.new(9);p.heroes.qa.progression.stats.INT=32;p.heroes.qa.progression.mastery[1]=8
   local buy={action='Buy',requestId='qa-'..kind,heroId='qa',offerId=kind..'_reset_ticket_diamond',revision=p.revision,store='diamonds'}
-  p=assert(R.shop(p,buy,{atLobby=true},C));check(p.wallet.diamonds==50,'50 Diamond debit')
+  p=assert(R.shop(p,buy,{atLobby=true},C));check(p.wallet.diamonds==100,'100 Diamond debit')
   local id='shop-'..buy.requestId
   local function snapshot(hub)
    local list={};for _,item in pairs(p.items)do table.insert(list,item)end
@@ -43,15 +43,15 @@ local ok,err=xpcall(function()
   local host=Instance.new('ScreenGui');host.Parent=playerGui
   local shop=Shop.create(host,function()error('UI fixture must not trade')end,true,'diamonds')
   shop.render(snapshot(true));shop.selectCategory('Resets')
-  local card=assert(shop.panel:FindFirstChild(kind..'_reset_ticket_diamond',true));check(card.Trade.Caption.Text=='BUY · 50 Diamonds','shop price visible')
+  local card=assert(shop.panel:FindFirstChild(kind..'_reset_ticket_diamond',true));check(card.Trade.Caption.Text=='BUY · 100 Diamonds','shop price visible')
   check(card.Trade.Active,'affordable ticket enabled');check(card.Details.Text:find('combat',1,true),'shop explains use during combat')
-  local poor=snapshot(true);poor.wallet={gold=0,diamonds=49};shop.render(poor)
+  local poor=snapshot(true);poor.wallet={gold=0,diamonds=99};shop.render(poor)
   card=assert(shop.panel:FindFirstChild(kind..'_reset_ticket_diamond',true));check(not card.Trade.Active,'unaffordable ticket disabled')
   host:Destroy()
   local item=p.items[id];local cmd={action='ResetPoints',requestId='use-'..kind,heroId='qa',instanceId=id,itemVersion=item.version,revision=p.revision}
   p=assert(R.apply(p,cmd,{safe=false,atHub=false},C));check(p.items[id]==nil,'last ticket consumed')
   local st,sp=G.points(p.heroes.qa.progression);check(kind=='stat' and st==32 or kind=='skill' and sp==8,'points returned in Luau')
-  local again,_,repeated=R.apply(p,cmd,{safe=false,atHub=false},C);check(repeated and again.wallet.diamonds==50,'same receipt reconciles')
+  local again,_,repeated=R.apply(p,cmd,{safe=false,atHub=false},C);check(repeated and again.wallet.diamonds==100,'same receipt reconciles')
  end
  view.close()
 end,debug.traceback)

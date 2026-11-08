@@ -23,13 +23,13 @@ end
 for _,classId in ipairs({'knight','elf','dwarf','mage'})do
  for _,kind in ipairs({'stat','skill'})do
   local p=fixture(classId);local cmd=buy(p,kind,'purchase')
-  eq(E.offer(cmd.offerId).price,50,'approved price')
-  local poor=R.copy(p);poor.wallet.diamonds=49
-  local denied,reason=R.shop(poor,cmd,{atLobby=true},C);eq(denied,nil,'cannot buy without balance');eq(reason,'NotEnoughDiamonds','balance reason');eq(poor.wallet.diamonds,49,'denial unchanged')
+  eq(E.offer(cmd.offerId).price,100,'approved price')
+  local poor=R.copy(p);poor.wallet.diamonds=99
+  local denied,reason=R.shop(poor,cmd,{atLobby=true},C);eq(denied,nil,'cannot buy without balance');eq(reason,'NotEnoughDiamonds','balance reason');eq(poor.wallet.diamonds,99,'denial unchanged')
   denied=R.shop(p,cmd,{atLobby=false},C);eq(denied,nil,'cannot buy outside lobby')
   local wrong=R.copy(cmd);wrong.store='items';check(not R.shop(p,wrong,{atLobby=true},C),'cannot buy with Gold store')
-  p=assert(R.shop(p,cmd,{atLobby=true},C));eq(p.wallet.diamonds,450,'debit50');local item=p.items['shop-purchase'];eq(item.quantity,1,'grant1');eq(p.heroes.hero.progression.stats.VIT,100,'purchase does not reset')
-  local replay,_,repeatBuy=R.shop(p,cmd,{atLobby=false},C);check(repeatBuy,'purchase retry reconciles');eq(replay.wallet.diamonds,450,'purchase retry no debit')
+  p=assert(R.shop(p,cmd,{atLobby=true},C));eq(p.wallet.diamonds,400,'debit100');local item=p.items['shop-purchase'];eq(item.quantity,1,'grant1');eq(p.heroes.hero.progression.stats.VIT,100,'purchase does not reset')
+  local replay,_,repeatBuy=R.shop(p,cmd,{atLobby=false},C);check(repeatBuy,'purchase retry reconciles');eq(replay.wallet.diamonds,400,'purchase retry no debit')
   local second=buy(p,kind,'second');p=assert(R.shop(p,second,{atLobby=true},C));eq(p.items[item.instanceId].quantity,2,'stack ticket')
   local before=R.copy(p);item=p.items[item.instanceId];local reset=use(p,item,'reset')
   local field=assert(R.apply(p,reset,{safe=true,atHub=false},C));eq(field.items[item.instanceId].quantity,1,'safe field consumes one ticket')
@@ -38,7 +38,7 @@ for _,classId in ipairs({'knight','elf','dwarf','mage'})do
   check(not R.apply(stored,reset,{safe=true,atHub=true},C),'must withdraw ticket')
   local forged=R.copy(reset);forged.heroId='not-owned';check(not R.apply(p,forged,{safe=true,atHub=true},C),'other hero denied')
   forged=R.copy(reset);forged.itemVersion=999;check(not R.apply(p,forged,{safe=true,atHub=true},C),'stale item denied')
-  p=assert(R.apply(p,reset,{safe=false,atHub=false},C));eq(p.items[item.instanceId].quantity,1,'consume1');eq(p.wallet.diamonds,400,'use has no extra debit')
+  p=assert(R.apply(p,reset,{safe=false,atHub=false},C));eq(p.items[item.instanceId].quantity,1,'consume1');eq(p.wallet.diamonds,300,'use has no extra debit')
   local g=p.heroes.hero.progression;local st,sp=G.points(g)
   eq(st,kind=='stat' and 316 or 0,'stat refund exact');eq(sp,kind=='skill' and 79 or 67,'skill refund exact')
   eq(g.branch,before.heroes.hero.progression.branch,'branch kept');eq(g.stage,4,'advancement kept');eq(g.level,80,'level kept');eq(g.skillSlots[1],1,'slot kept')
@@ -62,13 +62,13 @@ for _,kind in ipairs({'stat','skill'})do
  assert(store:open(42));local p=assert(store:transact(42,function(cur)local seed=fixture('mage');cur.heroes=seed.heroes;cur.items=seed.items;cur.wallet=seed.wallet;return cur end))
  local cmd=buy(p,kind,'save-buy');fail=true
  local missing,why=store:transact(42,function(cur)return R.shop(cur,cmd,{atLobby=true},C)end);eq(missing,nil,'unknown buy fail closed');eq(why,'SaveUnknown','unknown buy reason')
- fail=false;p=assert(store:transact(42,function(cur)return R.shop(cur,cmd,{atLobby=true},C)end));eq(p.wallet.diamonds,450,'unknown buy single debit')
+ fail=false;p=assert(store:transact(42,function(cur)return R.shop(cur,cmd,{atLobby=true},C)end));eq(p.wallet.diamonds,400,'unknown buy single debit')
  local reset=use(p,p.items['shop-save-buy'],'save-use');fail=true
  missing,why=store:transact(42,function(cur)return R.apply(cur,reset,{safe=false,atHub=false},C)end);eq(missing,nil,'unknown use fail closed');eq(why,'SaveUnknown','unknown use reason')
  fail=false;p=assert(store:transact(42,function(cur)return R.apply(cur,reset,{safe=false,atHub=false},C)end));eq(p.items['shop-save-buy'],nil,'last ticket consumed once')
  local st,sp=G.points(p.heroes.hero.progression);eq(kind=='stat' and st or sp,kind=='stat' and 316 or 79,'refund survives response loss')
  assert(store:close(42));local nextStore=S.new(adapter,R,C,function()return 100 end,function()end,'destination')
- p=assert(nextStore:open(42));check(R.validate(p,C),'reopened durable account valid');eq(p.wallet.diamonds,450,'reopen no debit');eq(p.items['shop-save-buy'],nil,'reopen no ticket resurrection')
+ p=assert(nextStore:open(42));check(R.validate(p,C),'reopened durable account valid');eq(p.wallet.diamonds,400,'reopen no debit');eq(p.items['shop-save-buy'],nil,'reopen no ticket resurrection')
  p=assert(nextStore:transact(42,function(cur)return R.apply(cur,reset,{safe=false,atHub=false},C)end));check(R.validate(p,C),'same receipt recovers on new server')
 end
 print('Reset tickets: '..n..' checks passed')
