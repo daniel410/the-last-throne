@@ -1,0 +1,8 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+EXPANSION_NATIVE_EPIC 1
+EXPANSION_NATIVE_EPIC 2
+EXPANSION_NATIVE_EPIC 3
+EXPANSION_NATIVE_EPIC 4
+EXPANSION_NATIVE_EPIC 5
+EXPANSION_NATIVE_GEOMETRY {"samples":1312,"blockers":[],"parts":56321}
+CAMPAIGN_EXPANSION_NATIVE {"scope":"isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance","blockers":[],"checks":3709,"steps":246,"samples":1312,"incidents":82,"parts":56321}

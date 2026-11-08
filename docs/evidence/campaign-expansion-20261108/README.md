@@ -29,3 +29,7 @@
 VERSION0.85.0·소스 커밋을 먼저 푸시해 고정하고 `python3 tools/build-game.py --source HEAD --record docs/evidence/campaign-expansion-20261108/build.json`으로 단일 Place를 만든다. [build.json](build.json)에 소스/도구/해시/성공을 고정한다. Roblox 게시/릴리스 태그/live DataStore/사용자 플레이 Studio는 변경하지 않는다.
 
 실계정 저장/서버 이동·PC/터치/패드 실입력·물리 캐릭터 연속 완주·실제 스트리밍 네트워크/저사양 기기·4인+AI·미술/가독성·사용자 재미·초회285~410분 목표는 미검증이다. 이번 엔진 동선 검사는 충돌/발판/서버 동작이며 실제 플레이테스트와 구분한다. 다음 QA는 FV01~03 신규/중간 저장/기존 완료 파일럿→전5에픽 연속/재방문→기기/파티 검증 순서로 시간·길 찾기·반복감·성능을 측정한다. 부모 티켓은 미완료다. [계획](../../production/campaign-fun-and-duration-final-plan-2026-11-07.md)·[조사 근거](../../research/2026-11-08-campaign-expansion.md).
+
+## 고정 빌드 마감
+
+소스 `ae4694ad717ebc2c16b4285e38cdf47b9cef648b`를 origin/main에 푸시하고 단일 빌드 **0.85.0 성공**. 산출물 `builds/0.85.0/TheLastThrone-0.85.0.rbxlx`, 15,102,356bytes, SHA256 `168ad033deb35a56fb366c3246b5c7be9e94acfed8b16a82509acc0e1e0628e2`를 재확인했다. 이 고정 파일에서 변경28모듈 Source 일치/전체 Luau 문법 뒤 **엔진3,709검사 PASS**, 동선1,312지점 충돌0. [native.log](native.log)·[기계 판독 결과](native-result.json). `python3 tests/single-build.spec.py --artifact builds/0.85.0/TheLastThrone-0.85.0.rbxlx` 역할10/도착 로딩192·프로젝트/별칭·실제 산출물 검사 PASS. 현재 사용자 Play 세션/게시/live DataStore/릴리스 태그 변경 없음.
