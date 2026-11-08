@@ -19,6 +19,6 @@
 - `run-in-roblox --place /tmp/tlt-mana-regen-restored/tlt-k0-qa-empty.rbxlx --script /tmp/tlt-starter-material-cleanup-native.luau`: [Luau 결과](native.json)/[로그](native.log).32개 관련 소스를 메모리에 로드해 전용/초기보급/인벤토리/교환 **805검사 PASS**. `game=nil` 격리 환경으로 실제 순수 모듈과 AccountStore를 실행했다. PlaceId0·Player0, 합성 저장 어댑터이며 live DataStore/클라이언트/화면 검사가 아니다. 기존203785492 asset type 경고가 있으며 이 검사는 자산 렌더 수용이 아니다.
 - [검증 소스 해시](source-hashes.json)·`git diff --check` PASS. 지정 가격/보급·미사용 재료 정리에 한정한 사용자 지시이므로 별도 디아블로 비교 조사는 반복하지 않았다.
 
-VERSION0.82.5와 입력 소스를 먼저 커밋·푸시한 뒤 `python3 tools/build-game.py --source <고정커밋> --record docs/evidence/starter-material-cleanup-20261107/build.json`으로 단일 빌드를 만들고 [결과](build.json)에 소스/산출물 해시를 남긴다. Roblox 게시/릴리스 태그 없음.
+VERSION0.82.5와 입력 소스 `3df102cf1fad9355c33083fa1bebf4b94adf04ea`를 먼저 커밋·푸시한 뒤 `python3 tools/build-game.py --source 3df102c --record docs/evidence/starter-material-cleanup-20261107/build.json`으로 단일 빌드에 성공했다. [결과](build.json)에 소스/산출물 해시를 보존했다. `python3 tests/single-build.spec.py --artifact builds/0.82.5/TheLastThrone-0.82.5.rbxlx`: 역할10/로딩192·실제 산출물 검사 PASS. [정리/카탈로그/아이콘3모듈 Source 대조](artifact-check.json)에서 고정 소스와 바이트 일치를 확인했다. Roblox 게시/릴리스 태그 없음.
 
 미검증: 실제 계정/클라이언트·실기기/다인·배포 후 재접속/오래된 서버 교체. 다음 QA는 기존 계정의 모든 Soft Hide 제거·다른 권리 보존과 신규/추가 영웅Ore10·이후 미재지급을 확인한다. 이전 서버의 새 지급이 남지 않도록 로비/배틀과 기존 서버 교체를 함께 확인한다. 부모 티켓은 In Progress를 유지한다. 비관련 Blender 변경·컨셉 삭제·첨부/증거 파일은 포함하지 않았다.

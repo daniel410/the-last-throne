@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "3df102cf1fad9355c33083fa1bebf4b94adf04ea",
+  "artifact": "builds/0.82.5/TheLastThrone-0.82.5.rbxlx",
+  "sha256": "8b85c4c9ddee8227810a550135a4d60312ef3f44559bc2146d4a470ffba6963a",
+  "matchingSource": [
+    {
+      "path": "src/server/Inventory/InventoryRules.luau",
+      "sha256": "5d4fa881b9ef45ab47b9cb95415d6a2c347b936a2a481df9e057df40af361d34"
+    },
+    {
+      "path": "src/shared/ItemCatalog.luau",
+      "sha256": "4176b5062abeeeb30dcf2bb44d2874d2c6903912f5976628369cb2ff042a7509"
+    },
+    {
+      "path": "src/shared/ItemSpriteAtlas.luau",
+      "sha256": "78010bc8a7ee1ac548cea29bfefdcf4925620dc312fe3d3bd89cdbeff1bcf869"
+    }
+  ],
+  "pass": true
+}
