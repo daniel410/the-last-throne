@@ -51,4 +51,10 @@ run-in-roblox --place /tmp/tlt-dwarf-tempo-server/tlt-dwarf-tempo-empty.rbxlx --
 
 연구 표/JSON은0.86.3의 비교 기준으로 보존한다. 계산 도구는 작성 당시 소스 커밋을 읽도록 고정해 이후 적용값을 과거 조사표에 섞지 않는다. 현행 값은 이 기록과 Config가 정본이다. 복구할 때 이 작업의 Config/MeleeMotion 변경을 이전0.86.3으로 역적용하며 기존 종료 자세 수정은 유지한다. 사용자 미커밋3D/삭제/장비 컨셉 작업은 포함하지 않았다.
 
-고정 빌드·동일 파일 재검사 결과는 마감 시 아래에 추가한다. 일반 빌드이며 Roblox 게시/릴리스 태그는 별도다.
+## 고정 빌드·마감
+
+`0.86.4`의 소스 커밋은 `0814db02429275d093f2b9770ad8dcab5ee059f8`다. `python3 tools/build-game.py --source 0814db02 --record docs/evidence/dwarf-basic-tempo-20261108/build.json`으로 `builds/0.86.4/TheLastThrone-0.86.4.rbxlx` 단일 빌드에 성공했다. SHA256은 `d3bc97bea2657ff582ff98281fe85f81c97cf1a525111abaac120242d5d20528`다. [빌드/LFS 입력 기록](build.json).
+
+동일 파일에 `run-in-roblox --place builds/0.86.4/TheLastThrone-0.86.4.rbxlx --script /tmp/tlt-dwarf-tempo-pinned.luau`를 실행해17묶음·**116,938검사 재통과**했다. pinned 스크립트는 위 모션 통합+새 서버 템포+기존 서버7경우를 순서대로 연결하며 실제 런타임 모듈을 치환하지 않았다. private 함수 노출은 테스트 복제 모듈만 사용한다. [정본 결과](pinned-results.json)·[원시 로그](pinned-native.log).
+
+소스 커밋의 origin/main 푸시 성공을 확인했다. 새 LFS 자산은 없으며 기존 빌드 입력은 빌드 도구가 해시 검증했다. 일반 빌드이며 Roblox 게시/릴리스 태그는 수행하지 않았다.
