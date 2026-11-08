@@ -1,0 +1,27 @@
+{
+  "created": "2026-11-08",
+  "status": "revision-pending-user-acceptance",
+  "scope": "icons-and-equipped-3d-concept",
+  "tool": "built-in image_gen",
+  "file": "hood-comparison-r3.png",
+  "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263",
+  "width": 1774,
+  "height": 887,
+  "promptFile": "prompt-r3.txt",
+  "promptSha256": "8183dae56641541c4d7c914b7fed98f0125da552a8b91c2f65814fb54cd95385",
+  "referenceFile": "hood-comparison-r2.png",
+  "referenceSha256": "02bb74fc91bfdc3d98cef70d76ad376f866830c225cd153825a8f99019a1d5b2",
+  "userFeedback": "유니크 좀더 고급스러웠으면 좋겠어",
+  "changes": [
+    "Polished platinum-silver shell",
+    "Gold inlays and fine engraving",
+    "Midnight-blue enamel and indigo silk",
+    "Refined amber jewel mount; integrated fastenings"
+  ],
+  "verification": {
+    "visualReview": "Luxury metal layering, asymmetric silhouette, rounded Epic and other tier designs retained",
+    "runtime": "Not applied",
+    "blender": "Not a Blender Standard render",
+    "deviceAcceptance": "Not tested"
+  }
+}
