@@ -50,7 +50,7 @@ function E.apply(p,cmd,context,items,R)
   local offer=Catalog.offer(cmd.offerId);if not offer then return nil,'InvalidRequest' end
   local definition=items.items[offer.definitionId];if not definition or not allowed(definition,offer) then return nil,'InvalidRequest' end
   local stack
-  if definition.restore then
+  if definition.restore or definition.reset then
    for _,item in pairs(n.items) do
     if item.definitionId==offer.definitionId and item.location.kind=='bag' and item.location.heroId==cmd.heroId
      and not item.locked and item.quantity<definition.maxStack and (not stack or item.instanceId<stack.instanceId) then stack=item end

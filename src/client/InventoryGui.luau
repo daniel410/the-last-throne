@@ -5,6 +5,7 @@ local HttpService = game:GetService("HttpService")
 local UserInputService = game:GetService("UserInputService")
 local GuiService = game:GetService("GuiService")
 local ContextActionService = game:GetService("ContextActionService")
+local Growth=require(ReplicatedStorage.Shared.HeroProgression)
 local Catalog = require(ReplicatedStorage.Shared.ItemCatalog)
 local Text = require(ReplicatedStorage.Shared.InventoryText)
 local Rarity = require(ReplicatedStorage.Shared.ItemRarity)
@@ -155,6 +156,7 @@ function InventoryGui.create(onVisibility, feedback)
 	local opened,storageMode,gearMode,mobileDetail=false,false,false,false
 	local category,sourceTab,sortMode="Equipment","bag","Name"
 	local expandedDetails=false
+ local resetConfirmation
 	local quantity=1
 	local compact=false
 	local render,resize,send
@@ -174,6 +176,7 @@ function InventoryGui.create(onVisibility, feedback)
 		launcher.Visible=phase~=nil and phase~="LoadingLobby" and phase~="ReturningLobby" and not opened and not player:GetAttribute("TLTProgressionOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Lobby" and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function setOpen(value)
+  if not value then resetConfirmation=nil end
 		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end
 		opened=value; shade.Visible=value; showLauncher()
 		discardOverlay.Visible=false; discardTarget=nil
@@ -199,6 +202,7 @@ function InventoryGui.create(onVisibility, feedback)
 	player:GetAttributeChangedSignal("TLTSettingsOpen"):Connect(showLauncher)
 	player:GetAttributeChangedSignal("K0SessionPhase"):Connect(showLauncher)
 	local function choose(item)
+		resetConfirmation=nil
 		selectedId,quantity,quantityBox=item.instanceId,1,nil
 		expandedDetails=false
 		mobileDetail=true
@@ -321,6 +325,14 @@ function InventoryGui.create(onVisibility, feedback)
 				detailLabel("ActualStatChanges",reason=="ChooseAccessory" and Text.ChooseAccessory or reason=="WrongClass" and Text.Errors.WrongClass or Text.Loading,y,56,12,Color.muted);y=y+62
 			end
 		end
+  local resetSpent=0
+  if def.reset and hero and hero.progression then
+   local g=hero.progression;local statPoints,skillPoints=Growth.points(g)
+   if def.reset=='stat' then for _,key in ipairs(Growth.statKeys) do resetSpent=resetSpent+g.stats[key] end
+   else for _,rank in ipairs(g.mastery) do resetSpent=resetSpent+rank end end
+   local balance=def.reset=='stat' and statPoints or skillPoints
+   detailLabel('ResetPreview',string.format(Text.ResetPreview,def.reset=='stat' and Text.ResetStatLabel or Text.ResetSkillLabel,resetSpent,balance,balance+resetSpent),y,150,13,Color.gold);y=y+156
+  end
 		if expandedDetails then detailLabel("DescriptionText",def.description,y,70,13,Color.muted); y=y+76 end
 		local more=Theme.button(detailScroll,"ToggleDetails",expandedDetails and Text.LessDetails or Text.MoreDetails,UDim2.fromOffset(0,y),UDim2.new(1,-6,0,36))
 		more.Activated:Connect(function() expandedDetails=not expandedDetails; renderDetails() end); y=y+42
@@ -330,6 +342,7 @@ function InventoryGui.create(onVisibility, feedback)
 		elseif loc=="pending" then actionForSelection="Claim"
 		elseif storageMode then actionForSelection="Deposit"
 		elseif def.slot then actionForSelection="Equip"
+		elseif def.reset then actionForSelection="ResetPoints"
 		elseif def.restore then actionForSelection="Use" end
 		if (actionForSelection=="Deposit" or actionForSelection=="Withdraw" or actionForSelection=="Claim") and item.quantity>1 then
 			detailLabel("QuantityLabel",Text.Quantity.."  (1–"..item.quantity..")",y,22,13,Color.silver); y=y+28
@@ -362,15 +375,17 @@ function InventoryGui.create(onVisibility, feedback)
 			Theme.enabled(discard,not pending and snapshot.ready and snapshot.safe and not item.locked)
 			if item.locked then detailLabel("LockNotice",Text.LockHint,y,52,12,Color.gold);y=y+56 end
 		end
-		detailLabel("StatsNotice",def.slot and Text.StatsHint or def.restore and (snapshot.atHub and Text.UseInField or Text.PotionHint) or Text.HubHint,y,55,12,Color.muted)
+		detailLabel("StatsNotice",def.reset and Text.ResetHint or def.slot and Text.StatsHint or def.restore and (snapshot.atHub and Text.UseInField or Text.PotionHint) or Text.HubHint,y,55,12,Color.muted)
 		primary.Visible=actionForSelection~=nil
 		if actionForSelection then
 			primary.Caption.Text=Text[actionForSelection]
+   if actionForSelection=='ResetPoints' and resetConfirmation==item.instanceId..':'..snapshot.revision..':'..item.version then primary.Caption.Text=Text.ConfirmReset end
 			local enabled=not pending and snapshot.ready and hero~=nil
 			if actionForSelection~="Use" then enabled=enabled and snapshot.safe end
 			if actionForSelection=="Deposit" or actionForSelection=="Withdraw" then enabled=enabled and snapshot.atStorage end
 			if actionForSelection=="Claim" then enabled=enabled and snapshot.atHub end
 			if actionForSelection=="Use" and snapshot.atHub then enabled=false end
+   if actionForSelection=="ResetPoints" then enabled=enabled and snapshot.atHub and resetSpent>0 end
 			if actionForSelection=="Equip" then enabled=enabled and (not def.classId or hero.baseClassId==def.classId) and hero.level>=(def.level or 1) end
 			if actionForSelection=="Equip" and not snapshot.safe then primary.Caption.Text=Text.CombatLocked end
 			Theme.enabled(primary,enabled==true)
@@ -413,7 +428,7 @@ function InventoryGui.create(onVisibility, feedback)
      end
     end
 				local flag=def.category=="Materials" and "x"..item.quantity or ""
-				if def.restore then flag="x"..item.quantity end
+				if def.restore or def.reset then flag="x"..item.quantity end
 				if item.locked then flag="LOCK  "..flag end
 				if flag~="" then
      local count=itemBadge(card,"ItemStatus",flag,item.locked and UDim2.fromOffset(6,6) or UDim2.new(1,-6,0,6),item.locked and UDim2.new(1,-12,0,24) or UDim2.fromOffset(50,24),Color.text,item.locked and 12 or 14)
@@ -631,7 +646,17 @@ function InventoryGui.create(onVisibility, feedback)
 			retry.Visible=true; resize(); setMessage(Text.Uncertain,true)
 		end)
 	end
-	primary.Activated:Connect(function() if actionForSelection then command(actionForSelection,nil,actionForSelection=="Claim" and "bag" or nil) end end)
+	local function activatePrimary()
+  if not primary.Active or not actionForSelection then return end
+  if actionForSelection=='ResetPoints' then
+   local item=getSelected();if not item or not snapshot then return end
+   local key=item.instanceId..':'..snapshot.revision..':'..item.version
+   if resetConfirmation~=key then resetConfirmation=key;renderDetails();return end
+   resetConfirmation=nil
+  end
+  command(actionForSelection,nil,actionForSelection=='Claim' and 'bag' or nil)
+ end
+ primary.Activated:Connect(activatePrimary)
 	lockItem.Activated:Connect(function() if lockItem.Active then command("Lock") end end)
 	local function closeDiscard()
 		discardOverlay.Visible=false;discardTarget=nil
@@ -664,7 +689,7 @@ function InventoryGui.create(onVisibility, feedback)
 	end)
 	retry.Activated:Connect(function() if pending and remote then remote:FireServer(pending); setMessage(Text.Waiting) end end)
 	launcher.Activated:Connect(function() storageMode,sourceTab=false,"bag"; setOpen(true) end)
-	close.Activated:Connect(function() setOpen(false) end)
+	close.Activated:Connect(function() resetConfirmation=nil; setOpen(false) end)
 	gear.Activated:Connect(function() gearMode=not gearMode; storageMode=false; sourceTab="bag"; mobileDetail=false; resize(); render() end)
 	bagTab.Activated:Connect(function() sourceTab="bag"; mobileDetail=false; resize(); render() end)
 	storageTab.Activated:Connect(function() sourceTab="storage"; mobileDetail=false; resize(); render() end)

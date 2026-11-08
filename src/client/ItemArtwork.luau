@@ -56,6 +56,11 @@ function Artwork.create(parent,def,position,size)
 	elseif slot=="accessory" then
 		for i=1,12 do local a=i*math.pi/6; p("Ring",.38,.18,.22,math.sin(a)*.78,math.cos(a)*.78,0,gold,-i*30) end
 		p("Stone",.62,.68,.4,0,.72,-.16,def.id=="amber_charm" and Color3.fromRGB(255,157,40) or blue,45)
+	elseif def.reset then
+  p('Ticket',1.6,2.0,.12,0,0,0,metal,-12)
+  p('TopSeal',1.8,.25,.3,.2,.95,0,gold,-12)
+  p('BottomSeal',1.8,.25,.3,-.2,-.95,0,gold,-12)
+  p('ResetSeal',.7,.7,.25,0,0,-.2,def.reset=='stat' and blue or Color3.fromRGB(150,105,220),45)
 	elseif def.id=="enhancement_gem" then
   p("GemBody",1.1,1.4,.85,0,0,0,Color3.fromRGB(60,212,151),45,"wedge")
   p("GemCrown",1.1,.6,.85,0,.65,0,Color3.fromRGB(139,255,202),-45,"wedge")

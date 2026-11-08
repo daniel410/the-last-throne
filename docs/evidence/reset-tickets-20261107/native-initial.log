@@ -1,0 +1,13 @@
+RESET_TICKETS_NATIVE {"error":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:37: assertion failed!\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:37\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:21\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","kind":"RESET_TICKETS_NATIVE","pass":false,"checks":2}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:56: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:37: assertion failed!
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:37
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:21
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:56
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

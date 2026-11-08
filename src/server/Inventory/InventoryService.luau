@@ -444,6 +444,7 @@ local function handle(player, command, ...)
 		end
 		state.pending, state.pendingLife = nil, nil
 		Service.refreshCharacter(player)
+  if command.action=="ResetPoints" then options.heroSession.refresh(player) end
 	elseif errorCode == "SaveUnknown" or errorCode == "AccountBusy" then
 		state.valid, state.errorCode = false, errorCode
 	else state.pending, state.pendingLife = nil, nil end

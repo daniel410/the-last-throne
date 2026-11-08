@@ -166,14 +166,16 @@ function V.create(parent,send,diamondOnly,store)
    for _,offer in ipairs(offers) do
     local d=Items.items[offer.definitionId];if not allowed(d,offer) then continue end;if category~='All' and itemCategory(d)~=category then continue end;local hero=state.heroes and state.heroes[state.heroId]
     local description
-    if d.restore then
+    if d.reset then
+     description=d.reset=='stat' and ItemText.ResetShopStat or ItemText.ResetShopSkill
+    elseif d.restore then
      local owned=0;for _,item in ipairs(state.items or {}) do if item.definitionId==d.id and item.location.kind=='bag' and item.location.heroId==state.heroId then owned+=item.quantity end end
      description=string.format('Restores up to %d %s · In bag: %d\n%s',d.amount,d.restore=='health' and 'HP' or 'MP',owned,d.restore=='mana' and 'Requires an MP pool. Assign to Z / C from BAG.' or 'Delivered to your bag. Assign to Z / C from BAG.')
     else
      local fit=d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
      description=string.format('%s · %s · Lv%d · Power +%.2f%s%s\n%s',fit,d.rarity,d.level or 1,d.stats.power or 0,d.stats.armor and ' · Armor +'..d.stats.armor or '',d.stats.health and ' · HP +'..d.stats.health or '',d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
     end
-    if not d.restore then
+    if d.slot then
      local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,nil,Items)
      if impact and d.slot~='accessory' then description=description..'\n'..Impact.summary(impact) end
     end
@@ -213,6 +215,7 @@ function V.create(parent,send,diamondOnly,store)
  end
  local displayedCategories=if store=='items' then {{id='Potions',label='POTIONS'},{id='Accessories',label='ACCESSORIES'},{id='Etc',label='ETC'}} else Catalog.categories
  for index,entry in ipairs(displayedCategories)do
+  if diamondOnly and entry.id=='Potions' then continue end
   if store=='blacksmith' and entry.id~='Weapons' and entry.id~='Armor' and entry.id~='Accessories' then continue end
   local b=T.button(categories,'Category_'..entry.id,entry.label,UDim2.new(),UDim2.new());b.LayoutOrder=index;b.Caption.TextSize=11;b:SetAttribute('CategoryLabel',entry.label);categoryButtons[entry.id]=b;b.Activated:Connect(function()selectCategory(entry.id)end)end
  if diamondOnly then

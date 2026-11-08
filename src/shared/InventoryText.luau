@@ -1,4 +1,9 @@
 return {
+ ResetShopStat="Returns this hero's invested stat points. Delivered to BAG; use in the lobby. No consumption if no points are invested.",
+ ResetShopSkill="Returns this hero's invested mastery points. Keeps advancement and slots. Delivered to BAG; use in the lobby.",
+ ResetPoints="RESET POINTS", ConfirmReset="CONFIRM RESET", ResetHint="Use in the lobby. Preview the returned points, then press CONFIRM RESET. Select another item or close BAG to cancel.",
+ ResetPreview="%s: return %d invested points. Unspent balance: %d -> %d. Consumes 1 ticket. Hero level, advancement and skill slots stay the same. HP, MP and cooldowns are not restored.",
+ ResetStatLabel="STATS", ResetSkillLabel="SKILL MASTERY",
  ForgeDiamondOnly = "Rare and Epic equipment: Diamonds only.",
  RarityLabel = "RARITY: %s",
  BalanceLimit="Your Gold balance is at its limit. Spend some Gold before exchanging Diamonds.",
@@ -8,7 +13,7 @@ return {
 	Bag = "BAG", Title = "Hero Bag", StorageTitle = "Hub Storage", EquipmentTitle = "Equipped Gear",
 	Eyebrow = "THE LAST THRONE  /  EQUIPMENT & ITEMS", Close = "CLOSE", ViewGear = "VIEW GEAR", ViewBag = "BACK TO BAG",
 	Organize = "ORGANIZE", Done = "DONE", All = "All", Equipment = "Equipment", Consumables = "Consumables", Materials = "Materials",
-	ShortFilters = {All="All",Equipment="Gear",Consumables="Potions",Materials="Materials"},
+	ShortFilters = {All="All",Equipment="Gear",Consumables="Items",Materials="Materials"},
 	PotionHint = "Z / C uses potions carried in this hero's bag.", UseInField = "Enter the tutorial with this hero to use potions.",
 	Search = "Search items...", Empty = "No items here.", SelectItem = "Select an item", SelectHint = "Choose an item to compare equipment, use a potion or read its details.",
 	SelectHero = "Create or select a hero in Hub to open their bag.",
@@ -31,6 +36,7 @@ return {
 	Stats = {power = "Power", armor = "Armor", health = "Max HP"},
 	Slots = {weapon="Weapon", offhand="Offhand", head="Head", body="Body", hands="Hands", feet="Feet", accessory1="Accessory 1", accessory2="Accessory 2"},
 	Errors = {
+  ResetLobbyOnly="Return to the lobby with this hero before using a reset ticket.", NothingToReset="This hero has no invested points of this type. Your ticket was not used.",
 		InvalidRequest = "That request could not be read. Refresh your bag and try again.",
 		Changed = "Your items changed. Select the item again and retry.", RequestConflict = "That request does not match. Close and reopen your bag.",
 		Unavailable = "Items are not available yet. Wait, or rejoin to retry.", SaveUnknown = "Saving was not confirmed. Retry this request to verify it before doing anything else.",

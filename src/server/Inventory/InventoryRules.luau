@@ -237,6 +237,22 @@ function Rules.apply(profile, command, context, catalog)
 	elseif action == "Assign" then
 		if loc.kind ~= "bag" or not def.restore or not Rules.integer(command.slot, 1, 2) then return nil, "InvalidRequest" end
 		nextProfile.heroes[hero.heroId].quickSlots[command.slot] = def.id
+	elseif action == "ResetPoints" then
+  if loc.kind~='bag' or not def.reset then return nil,'BagOnly' end
+  if not context.atHub then return nil,'ResetLobbyOnly' end
+  local growth=Growth.upgrade(hero.progression or Growth.new(hero.level))
+  if not Growth.validate(growth,hero.baseClassId) then return nil,'Incompatible' end
+  local returned=0
+  if def.reset=='stat' then
+   for _,key in ipairs(Growth.statKeys) do returned=returned+growth.stats[key];growth.stats[key]=0 end
+  elseif def.reset=='skill' then
+   for index,rank in ipairs(growth.mastery) do returned=returned+rank;growth.mastery[index]=0 end
+  else return nil,'InvalidRequest' end
+  if returned==0 then return nil,'NothingToReset' end
+  growth.revision=growth.revision+1
+  nextProfile.heroes[hero.heroId].progression=growth
+  target.quantity=target.quantity-1
+  if target.quantity==0 then nextProfile.items[target.instanceId]=nil end
 	elseif action == "Use" then
 		if loc.kind ~= "bag" or not def.restore then return nil, "BagOnly" end
 		if not context.canUse or context.restore ~= def.restore then return nil, context.useError or "Unavailable" end

@@ -29,7 +29,9 @@
       "product_id": null,
       "currency": "diamonds",
       "price_diamonds": 50,
-      "price_status": "user approved; runtime purchase and use pending"
+      "price_status": "user approved; local runtime implemented; unpublished; live-account acceptance pending",
+      "runtime_definition_id": "stat_reset_ticket",
+      "runtime_offer_id": "stat_reset_ticket_diamond"
     },
     {
       "id": "reset.skill",
@@ -45,7 +47,9 @@
       "product_id": null,
       "currency": "diamonds",
       "price_diamonds": 50,
-      "price_status": "user approved; runtime purchase and use pending"
+      "price_status": "user approved; local runtime implemented; unpublished; live-account acceptance pending",
+      "runtime_definition_id": "skill_reset_ticket",
+      "runtime_offer_id": "skill_reset_ticket_diamond"
     },
     {
       "id": "gear.lv5.knight.weapon",

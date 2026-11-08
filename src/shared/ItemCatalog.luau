@@ -95,4 +95,10 @@ for _,tier in ipairs({1,5,10})do
 end
 Catalog.items.enhancement_gem={id='enhancement_gem',name='Enhancement Gem',category='Materials',maxStack=999,glyph='EG',rarity='Uncommon',description='Earned crafting material for equipment enhancement. Separate from Diamonds. Higher-level missions and difficulties award more.'}
 Catalog.items.magic_stone={id='magic_stone',name='Magic Stone',category='Materials',maxStack=999,glyph='MS',rarity='Rare',description='Earned material used from enhancement +4 onward. Complete combat missions or exchange Enhancement Gems at the blacksmith.'}
+for _,kind in ipairs({'stat','skill'}) do
+ local id=kind..'_reset_ticket'
+ Catalog.items[id]={id=id,name=kind=='stat' and 'Stat Reset Ticket' or 'Skill Reset Ticket',category='Consumables',maxStack=99,
+  glyph=kind=='stat' and 'ST' or 'SK',rarity='Rare',reset=kind,
+  description=kind=='stat' and 'Returns all invested STR, DEX, INT and VIT points for this hero. Use from BAG in the lobby. Consumes one ticket only after a successful reset.' or 'Returns all invested skill mastery points for this hero. Keeps learned skills, advancement and combat slots. Use from BAG in the lobby. Consumes one ticket only after a successful reset.'}
+end
 return Catalog

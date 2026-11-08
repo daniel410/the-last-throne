@@ -26,8 +26,12 @@ for _,resource in ipairs({'health','mana'}) do
   table.insert(C.offers,{id=id,definitionId=id,currency='gold',price=price});C.sell[id]=math.floor(price/5)
  end
 end
-C.categories={{id='All',label='ALL'},{id='Weapons',label='WEAPONS'},{id='Armor',label='ARMOR'},{id='Accessories',label='ACCESSORIES'},{id='Potions',label='POTIONS'}}
+for _,kind in ipairs({'stat','skill'}) do
+ table.insert(C.offers,{id=kind..'_reset_ticket_diamond',definitionId=kind..'_reset_ticket',currency='diamonds',price=50})
+end
+C.categories={{id='All',label='ALL'},{id='Weapons',label='WEAPONS'},{id='Armor',label='ARMOR'},{id='Accessories',label='ACCESSORIES'},{id='Potions',label='POTIONS'},{id='Resets',label='RESET TICKETS'}}
 function C.category(definition)
+ if definition.reset then return 'Resets' end
  if definition.restore then return 'Potions' end
  if definition.slot=='weapon' then return 'Weapons' end
  if definition.slot=='accessory' then return 'Accessories' end
