@@ -32,3 +32,9 @@ Tessa에 F/패드X/터치 대화 프롬프트를 추가했다. 신규/미수락�
 새 기능 묶음으로 VERSION을0.83.7→0.84.0으로 올린다. 입력 소스 커밋/단일 파일/해시/성공은 build.json에서 고정한다. 실제 릴리스 태그·Roblox 게시·live DataStore 변경은 하지 않는다. 사용자 Studio는 플레이 상태로 확인되어 현재 세션을 중단하거나 핫패치하지 않았다. 격리 엔진 검사와 현재 플레이 세션 적용을 구분한다.
 
 실계정 저장·실제 PC/터치/패드 입력·멀티플레이·게시 테스트 이동/귀환·30초 인지 목표·최종 미술/가독성 수용은 미검증이다. 다음 QA는 새 빌드의 신규/중간 진행/기존 완료·영웅 전환·실제 보고/재접속과 NPC를 스스로 찾는지 확인한다. 부모 티켓은 미완료다. 근거: [최신 계획](../../production/lobby-side-quest-npc-2026-11-07.md), [구현 조사](../../research/2026-11-08-lobby-side-quest-guide.md).
+
+## 고정 빌드 마감
+
+소스 `fa4064e3954a19bcd5803e30d1a5752f8af3f0d0`를 origin/main에 푸시하고 단일 빌드 **0.84.0 성공**. [build.json](build.json)의 `builds/0.84.0/TheLastThrone-0.84.0.rbxlx`, 15,027,335bytes·SHA256 `b0dcfcfd1b912c9056e59682a58e140bf9645c9ee161d6336a8051de51549bb5`를 재확인했다. 빌드 도구가 마운트된 LFS 입력을 해시로 검증했다.
+
+고정 산출물에서 변경10개 모듈 Source 일치/문법 검사 뒤 **엔진85검사 PASS**. [native.log](native.log)·[기계 판독 결과](native-result.json). `python3 tests/single-build.spec.py --artifact builds/0.84.0/TheLastThrone-0.84.0.rbxlx`도 역할10/도착 로딩192·프로젝트/별칭·실제 파일 검사 PASS. [순수 회귀5종](regressions.json)의5,707검사와 구분한다. 현재 플레이 중인 사용자 Studio·Roblox 게시·live DataStore·릴리스 태그 변경 없음.

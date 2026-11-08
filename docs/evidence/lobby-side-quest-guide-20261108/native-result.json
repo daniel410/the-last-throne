@@ -1,0 +1,10 @@
+{
+  "version": "0.84.0",
+  "sourceCommit": "fa4064e3954a19bcd5803e30d1a5752f8af3f0d0",
+  "checks": 85,
+  "status": "PASS",
+  "knownWarnings": [
+    "203785492 asset type mismatch (pre-existing)"
+  ],
+  "scope": "fixed artifact/source identity, native UI/marker geometry and mocked transport; no actual input or live account"
+}
