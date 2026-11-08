@@ -1,0 +1,9151 @@
+{
+  "returnRoutes": [
+    {
+      "chapter": "DW-07",
+      "approaches": [
+        {
+          "visualCandidates": [],
+          "b": [
+            -418,
+            54,
+            -3089.281982421875
+          ],
+          "pathStatus": "Success",
+          "samples": 147,
+          "label": "restoration:connector_6",
+          "floorExamples": [
+            {
+              "height": 56.015625,
+              "p": [
+                -665.8720092773438,
+                54,
+                -3277.519287109375
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 56.015625,
+              "p": [
+                -668.25,
+                54,
+                -3274.302978515625
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 56.015625,
+              "p": [
+                -659.455322265625,
+                54,
+                -3272.775146484375
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 50,
+          "a": [
+            -726,
+            54,
+            -3317
+          ],
+          "floorMisses": 53,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                -202.8690185546875,
+                46,
+                -3030.188720703125
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-06.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                8.444947242736816,
+                19.62775993347168,
+                8.669648170471191
+              ]
+            },
+            {
+              "at": [
+                -151.02743530273438,
+                46,
+                -3010.059814453125
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-06.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                11.259928703308105,
+                26.170345306396484,
+                11.559530258178711
+              ]
+            },
+            {
+              "at": [
+                56.338890075683594,
+                46,
+                -2929.5439453125
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-06.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                7.506618976593018,
+                17.446897506713867,
+                7.706353664398193
+              ]
+            },
+            {
+              "at": [
+                167.42800903320312,
+                46,
+                -2886.410400390625
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-06.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                7.506618976593018,
+                17.446897506713867,
+                7.706353664398193
+              ]
+            },
+            {
+              "at": [
+                248.89337158203125,
+                46,
+                -2854.779052734375
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-06.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                11.259928703308105,
+                26.170345306396484,
+                11.559530258178711
+              ]
+            }
+          ],
+          "b": [
+            440,
+            46,
+            -2776.28564453125
+          ],
+          "pathStatus": "Success",
+          "samples": 306,
+          "label": "restoration:connector_5",
+          "floorExamples": [
+            {
+              "height": 48.84556198120117,
+              "p": [
+                -239.89871215820312,
+                46,
+                -3044.566650390625
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 48.706398010253906,
+              "p": [
+                -241.34652709960938,
+                46,
+                -3040.837890625
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 48.64398193359375,
+              "p": [
+                -242.79434204101562,
+                46,
+                -3037.109130859375
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 110,
+          "a": [
+            -308,
+            46,
+            -3066.718017578125
+          ],
+          "floorMisses": 146,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                631.0308227539062,
+                38,
+                -2418.22119140625
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-05.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                9.711688041687012,
+                22.571922302246094,
+                9.970094680786133
+              ]
+            }
+          ],
+          "b": [
+            697.6129150390625,
+            38,
+            -2264
+          ],
+          "pathStatus": "Success",
+          "samples": 195,
+          "label": "restoration:connector_4",
+          "floorExamples": [
+            {
+              "height": 40.015625,
+              "p": [
+                542.642578125,
+                38,
+                -2658.502197265625
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 40.20506286621094,
+              "p": [
+                538.9334716796875,
+                38,
+                -2657.004638671875
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 40.015625,
+              "p": [
+                535.224365234375,
+                38,
+                -2655.507080078125
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 125,
+          "a": [
+            506,
+            38,
+            -2738.571533203125
+          ],
+          "floorMisses": 87,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                350.3485107421875,
+                30,
+                -1888.32861328125
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-04.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                10.00882625579834,
+                23.262531280517578,
+                10.275138854980469
+              ]
+            }
+          ],
+          "b": [
+            220,
+            30,
+            -1783.88232421875
+          ],
+          "pathStatus": "Success",
+          "samples": 207,
+          "label": "restoration:connector_3",
+          "floorExamples": [
+            {
+              "height": 32.015625,
+              "p": [
+                587.6416625976562,
+                30,
+                -2087.984130859375
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 32.015625,
+              "p": [
+                585.06640625,
+                30,
+                -2091.044921875
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 32.015625,
+              "p": [
+                582.4911499023438,
+                30,
+                -2094.105712890625
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 70,
+          "a": [
+            633.741943359375,
+            30,
+            -2132
+          ],
+          "floorMisses": 56,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            -187,
+            18,
+            -1593
+          ],
+          "pathStatus": "Success",
+          "samples": 114,
+          "label": "restoration:arrival",
+          "floorExamples": [
+            {
+              "height": 20.015625,
+              "p": [
+                13.29234504699707,
+                18,
+                -1703.642822265625
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 20.015625,
+              "p": [
+                11.297294616699219,
+                18,
+                -1707.1097412109375
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 20.015625,
+              "p": [
+                9.302244186401367,
+                18,
+                -1710.57666015625
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 38,
+          "a": [
+            66,
+            18,
+            -1738.5882568359375
+          ],
+          "floorMisses": 48,
+          "directCollision": "Workspace.Terrain"
+        }
+      ],
+      "chain": [
+        {
+          "index": 6,
+          "forward": false
+        },
+        {
+          "index": 5,
+          "forward": false
+        },
+        {
+          "index": 4,
+          "forward": false
+        },
+        {
+          "index": 3,
+          "forward": false
+        }
+      ],
+      "label": "restoration"
+    },
+    {
+      "chapter": "DW-Q1",
+      "approaches": [
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                -1170.223388671875,
+                0,
+                -1001.2733154296875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                9.711688041687012,
+                22.571922302246094,
+                9.970094680786133
+              ]
+            }
+          ],
+          "b": [
+            -1122,
+            0,
+            -1029.642822265625
+          ],
+          "pathStatus": "Success",
+          "samples": 234,
+          "label": "marsh_report:connector_1",
+          "floorExamples": [
+            {
+              "height": 3.115342378616333,
+              "p": [
+                -1243.4285888671875,
+                0,
+                -969.448974609375
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 80,
+          "a": [
+            -1672,
+            0,
+            -757
+          ],
+          "floorMisses": 1,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                -1063.9796142578125,
+                6,
+                -1055.90625
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                8.444947242736816,
+                19.62775993347168,
+                8.669648170471191
+              ]
+            },
+            {
+              "at": [
+                -842.2608642578125,
+                6,
+                -1198.0408935546875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-02.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                11.259928703308105,
+                26.170345306396484,
+                11.559530258178711
+              ]
+            },
+            {
+              "at": [
+                -681.5856323242188,
+                6,
+                -1302.338623046875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                8.444947242736816,
+                19.62775993347168,
+                8.669648170471191
+              ]
+            }
+          ],
+          "b": [
+            -577.7391357421875,
+            6,
+            -1362
+          ],
+          "pathStatus": "Success",
+          "samples": 234,
+          "label": "marsh_report:connector_2",
+          "floorExamples": [],
+          "waypoints": 80,
+          "a": [
+            -1100,
+            6,
+            -1038.2857666015625
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            -385,
+            18,
+            -1527
+          ],
+          "pathStatus": "Success",
+          "samples": 87,
+          "label": "marsh_report:arrival",
+          "floorExamples": [],
+          "waypoints": 30,
+          "a": [
+            -550,
+            18,
+            -1385.629638671875
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        }
+      ],
+      "chain": [
+        {
+          "index": 1,
+          "forward": true
+        },
+        {
+          "index": 2,
+          "forward": true
+        }
+      ],
+      "label": "marsh_report"
+    },
+    {
+      "chapter": "DW-Q2",
+      "approaches": [
+        {
+          "visualCandidates": [],
+          "b": [
+            330,
+            18,
+            -1277.88232421875
+          ],
+          "pathStatus": "Success",
+          "samples": 96,
+          "label": "food_report:connector_41",
+          "floorExamples": [
+            {
+              "height": 20.083345413208008,
+              "p": [
+                440.06671142578125,
+                18,
+                -1260.1820068359375
+              ],
+              "hit": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-S1.WalkableRamp"
+            }
+          ],
+          "waypoints": 33,
+          "a": [
+            572,
+            18,
+            -1230
+          ],
+          "floorMisses": 1,
+          "directCollision": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-S1.WalkableTerrace"
+        },
+        {
+          "a": [
+            66,
+            18,
+            -1448.7059326171875
+          ],
+          "label": "food_report:arrival",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 50,
+          "samples": 147,
+          "visualCandidates": [
+            {
+              "at": [
+                -156.18310546875,
+                18,
+                -1538.3306884765625
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-03.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                11.259928703308105,
+                26.170345306396484,
+                11.559530258178711
+              ]
+            }
+          ],
+          "b": [
+            -287,
+            18,
+            -1598
+          ]
+        }
+      ],
+      "chain": [
+        {
+          "index": 41,
+          "forward": false
+        }
+      ],
+      "label": "food_report"
+    },
+    {
+      "chapter": "DW-Q3",
+      "approaches": [
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                -873.8775634765625,
+                18,
+                -1733.861083984375
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S2.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                8.444947242736816,
+                19.62775993347168,
+                8.669648170471191
+              ]
+            }
+          ],
+          "b": [
+            -858,
+            18,
+            -1716.4444580078125
+          ],
+          "pathStatus": "Success",
+          "samples": 57,
+          "label": "quarry_report:connector_42",
+          "floorExamples": [
+            {
+              "height": 20.015625,
+              "p": [
+                -909.3446655273438,
+                18,
+                -1751.311767578125
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 21,
+          "a": [
+            -968,
+            18,
+            -1802
+          ],
+          "floorMisses": 1,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "a": [
+            -550,
+            18,
+            -1682.22216796875
+          ],
+          "label": "quarry_report:arrival",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 33,
+          "samples": 99,
+          "visualCandidates": [
+            {
+              "at": [
+                -548.9082641601562,
+                18,
+                -1686.0703125
+              ],
+              "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_1.DW-03.AuthoredVista.TDWaterfallGorge.WaterfallGorge_JadeWater_0",
+              "mesh": true,
+              "size": [
+                101.0137939453125,
+                65,
+                155
+              ]
+            }
+          ],
+          "b": [
+            -306,
+            18,
+            -1613
+          ]
+        }
+      ],
+      "chain": [
+        {
+          "index": 42,
+          "forward": false
+        }
+      ],
+      "label": "quarry_report"
+    },
+    {
+      "chapter": "DW-Q4",
+      "approaches": [
+        {
+          "a": [
+            1452,
+            38,
+            -3166
+          ],
+          "label": "battlefield_report:connector_43",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 40,
+          "samples": 120,
+          "visualCandidates": [
+            {
+              "at": [
+                1285.59765625,
+                38,
+                -2993.94091796875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S3.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                10.97843074798584,
+                25.51608657836914,
+                11.27054214477539
+              ]
+            }
+          ],
+          "b": [
+            1232,
+            38,
+            -2946
+          ]
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            697.6129150390625,
+            38,
+            -2264
+          ],
+          "pathStatus": "Success",
+          "samples": 273,
+          "label": "battlefield_report:connector_4",
+          "floorExamples": [
+            {
+              "height": 40.015625,
+              "p": [
+                815.4982299804688,
+                38,
+                -2422.888916015625
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 40.015625,
+              "p": [
+                813.9952392578125,
+                38,
+                -2414.14990234375
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 40.015625,
+              "p": [
+                810.7828369140625,
+                38,
+                -2416.533203125
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 94,
+          "a": [
+            1122,
+            38,
+            -2836
+          ],
+          "floorMisses": 52,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                350.3485107421875,
+                30,
+                -1888.32861328125
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-04.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                10.00882625579834,
+                23.262531280517578,
+                10.275138854980469
+              ]
+            }
+          ],
+          "b": [
+            220,
+            30,
+            -1783.88232421875
+          ],
+          "pathStatus": "Success",
+          "samples": 207,
+          "label": "battlefield_report:connector_3",
+          "floorExamples": [
+            {
+              "height": 32.015625,
+              "p": [
+                587.6416625976562,
+                30,
+                -2087.984130859375
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 32.015625,
+              "p": [
+                585.06640625,
+                30,
+                -2091.044921875
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 32.015625,
+              "p": [
+                582.4911499023438,
+                30,
+                -2094.105712890625
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 70,
+          "a": [
+            633.741943359375,
+            30,
+            -2132
+          ],
+          "floorMisses": 56,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                -10.250621795654297,
+                18,
+                -1720.3309326171875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-03.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                9.711688041687012,
+                22.571922302246094,
+                9.970094680786133
+              ]
+            },
+            {
+              "at": [
+                -213.07986450195312,
+                18,
+                -1660.67529296875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-03.TDElderTree.roots_geom",
+              "mesh": true,
+              "size": [
+                60.61988830566406,
+                16.72518539428711,
+                62.7880744934082
+              ]
+            }
+          ],
+          "b": [
+            -242,
+            18,
+            -1648
+          ],
+          "pathStatus": "Success",
+          "samples": 126,
+          "label": "battlefield_report:arrival",
+          "floorExamples": [
+            {
+              "height": 20.015625,
+              "p": [
+                7.031108379364014,
+                18,
+                -1717.0750732421875
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 20.015625,
+              "p": [
+                5.902442932128906,
+                18,
+                -1720.9124755859375
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 20.015625,
+              "p": [
+                4.773777484893799,
+                18,
+                -1724.7498779296875
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 44,
+          "a": [
+            66,
+            18,
+            -1738.5882568359375
+          ],
+          "floorMisses": 20,
+          "directCollision": "Workspace.Terrain"
+        }
+      ],
+      "chain": [
+        {
+          "index": 43,
+          "forward": false
+        },
+        {
+          "index": 4,
+          "forward": false
+        },
+        {
+          "index": 3,
+          "forward": false
+        }
+      ],
+      "label": "battlefield_report"
+    },
+    {
+      "chapter": "FV-Q1",
+      "approaches": [
+        {
+          "visualCandidates": [],
+          "b": [
+            -582,
+            54,
+            -4389.4736328125
+          ],
+          "pathStatus": "Success",
+          "samples": 147,
+          "label": "report:connector_15",
+          "floorExamples": [],
+          "waypoints": 50,
+          "a": [
+            -822,
+            54,
+            -4090
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "a": [
+            -470,
+            60,
+            -4490.5263671875
+          ],
+          "label": "report:arrival",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 37,
+          "samples": 111,
+          "visualCandidates": [],
+          "b": [
+            -260,
+            60,
+            -4680
+          ]
+        }
+      ],
+      "chain": [
+        {
+          "index": 15,
+          "forward": true
+        }
+      ],
+      "label": "report"
+    },
+    {
+      "chapter": "EC-Q1",
+      "approaches": [
+        {
+          "visualCandidates": [],
+          "b": [
+            -630,
+            100,
+            -8278.9833984375
+          ],
+          "pathStatus": "Success",
+          "samples": 147,
+          "label": "report:connector_22",
+          "floorExamples": [],
+          "waypoints": 51,
+          "a": [
+            -880,
+            100,
+            -7990
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            -260,
+            108,
+            -8565
+          ],
+          "pathStatus": "Success",
+          "samples": 108,
+          "label": "report:arrival",
+          "floorExamples": [],
+          "waypoints": 36,
+          "a": [
+            -480,
+            108,
+            -8401.0166015625
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-02.ForgeAnvil"
+        }
+      ],
+      "chain": [
+        {
+          "index": 22,
+          "forward": true
+        }
+      ],
+      "label": "report"
+    },
+    {
+      "chapter": "EC-Q2",
+      "approaches": [
+        {
+          "visualCandidates": [],
+          "b": [
+            -180,
+            116,
+            -9166.060546875
+          ],
+          "pathStatus": "Success",
+          "samples": 54,
+          "label": "report:connector_38",
+          "floorExamples": [],
+          "waypoints": 18,
+          "a": [
+            -265,
+            116,
+            -9265
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                100,
+                116,
+                -8956.8056640625
+              ],
+              "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-03.TDScenicComposition.TDSupport_VolcanoCliff.body_geom",
+              "mesh": true,
+              "size": [
+                24.74502944946289,
+                24.639999389648438,
+                25.02642250061035
+              ]
+            }
+          ],
+          "b": [
+            100,
+            116,
+            -8877.9306640625
+          ],
+          "pathStatus": "Success",
+          "samples": 90,
+          "label": "report:connector_23",
+          "floorExamples": [
+            {
+              "height": 109.65007781982422,
+              "p": [
+                96,
+                116,
+                -9067.2294921875
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 110,
+              "p": [
+                96,
+                116,
+                -9059.341796875
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 118.1356201171875,
+              "p": [
+                96,
+                116,
+                -8933.142578125
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 32,
+          "a": [
+            100,
+            116,
+            -9106.6669921875
+          ],
+          "floorMisses": 8,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            -260,
+            108,
+            -8565
+          ],
+          "pathStatus": "Success",
+          "samples": 114,
+          "label": "report:arrival",
+          "floorExamples": [],
+          "waypoints": 40,
+          "a": [
+            -40,
+            108,
+            -8762.0693359375
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        }
+      ],
+      "chain": [
+        {
+          "index": 38,
+          "forward": false
+        },
+        {
+          "index": 23,
+          "forward": false
+        }
+      ],
+      "label": "report"
+    },
+    {
+      "chapter": "EC-Q3",
+      "approaches": [
+        {
+          "visualCandidates": [],
+          "b": [
+            1340,
+            124,
+            -9554.6669921875
+          ],
+          "pathStatus": "Success",
+          "samples": 96,
+          "label": "report:connector_39",
+          "floorExamples": [],
+          "waypoints": 33,
+          "a": [
+            1575,
+            124,
+            -9625
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            680,
+            124,
+            -9357.9306640625
+          ],
+          "pathStatus": "Success",
+          "samples": 183,
+          "label": "report:connector_24",
+          "floorExamples": [],
+          "waypoints": 67,
+          "a": [
+            1120,
+            124,
+            -9547.3330078125
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-04.CoolantPipe"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            100,
+            116,
+            -8877.9306640625
+          ],
+          "pathStatus": "Success",
+          "samples": 219,
+          "label": "report:connector_23",
+          "floorExamples": [],
+          "waypoints": 74,
+          "a": [
+            540,
+            116,
+            -9242.0693359375
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            -260,
+            108,
+            -8565
+          ],
+          "pathStatus": "Success",
+          "samples": 114,
+          "label": "report:arrival",
+          "floorExamples": [],
+          "waypoints": 40,
+          "a": [
+            -40,
+            108,
+            -8762.0693359375
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        }
+      ],
+      "chain": [
+        {
+          "index": 39,
+          "forward": false
+        },
+        {
+          "index": 24,
+          "forward": false
+        },
+        {
+          "index": 23,
+          "forward": false
+        }
+      ],
+      "label": "report"
+    },
+    {
+      "chapter": "EC-Q4",
+      "approaches": [
+        {
+          "a": [
+            -1445,
+            148,
+            -11095
+          ],
+          "label": "report:connector_40",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 16,
+          "samples": 48,
+          "visualCandidates": [],
+          "b": [
+            -1360,
+            148,
+            -11017.5
+          ]
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            -660,
+            148,
+            -10797.9306640625
+          ],
+          "pathStatus": "Success",
+          "samples": 186,
+          "label": "report:connector_27",
+          "floorExamples": [],
+          "waypoints": 77,
+          "a": [
+            -1100,
+            148,
+            -10997.1875
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-07.EmergencyCoolantPipe"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            -80,
+            140,
+            -10324
+          ],
+          "pathStatus": "Success",
+          "samples": 216,
+          "label": "report:connector_26",
+          "floorExamples": [],
+          "waypoints": 73,
+          "a": [
+            -520,
+            140,
+            -10682.0693359375
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            520,
+            132,
+            -9844
+          ],
+          "pathStatus": "Success",
+          "samples": 216,
+          "label": "report:connector_25",
+          "floorExamples": [],
+          "waypoints": 73,
+          "a": [
+            80,
+            132,
+            -10196
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            680,
+            124,
+            -9357.9306640625
+          ],
+          "pathStatus": "Success",
+          "samples": 138,
+          "label": "report:connector_24",
+          "floorExamples": [
+            {
+              "height": 117.96247863769531,
+              "p": [
+                676,
+                124,
+                -9700.0859375
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 117.79402923583984,
+              "p": [
+                676,
+                124,
+                -9692.12890625
+              ],
+              "hit": "Workspace.Terrain"
+            },
+            {
+              "height": 117.96165466308594,
+              "p": [
+                676,
+                124,
+                -9684.171875
+              ],
+              "hit": "Workspace.Terrain"
+            }
+          ],
+          "waypoints": 50,
+          "a": [
+            680,
+            124,
+            -9716
+          ],
+          "floorMisses": 11,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            100,
+            116,
+            -8877.9306640625
+          ],
+          "pathStatus": "Success",
+          "samples": 219,
+          "label": "report:connector_23",
+          "floorExamples": [],
+          "waypoints": 74,
+          "a": [
+            540,
+            116,
+            -9242.0693359375
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            -260,
+            108,
+            -8565
+          ],
+          "pathStatus": "Success",
+          "samples": 114,
+          "label": "report:arrival",
+          "floorExamples": [],
+          "waypoints": 40,
+          "a": [
+            -40,
+            108,
+            -8762.0693359375
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        }
+      ],
+      "chain": [
+        {
+          "index": 40,
+          "forward": false
+        },
+        {
+          "index": 27,
+          "forward": false
+        },
+        {
+          "index": 26,
+          "forward": false
+        },
+        {
+          "index": 25,
+          "forward": false
+        },
+        {
+          "index": 24,
+          "forward": false
+        },
+        {
+          "index": 23,
+          "forward": false
+        }
+      ],
+      "label": "report"
+    }
+  ],
+  "rows": [
+    {
+      "side": false,
+      "zone": "DW-01",
+      "id": "DW-01",
+      "anchors": [
+        {
+          "id": "trail_guards",
+          "p": [
+            -1595,
+            0,
+            -823
+          ]
+        },
+        {
+          "id": "supplies",
+          "p": [
+            -1485,
+            0,
+            -889
+          ]
+        },
+        {
+          "id": "supply_guards",
+          "p": [
+            -1364,
+            0,
+            -933
+          ]
+        },
+        {
+          "id": "tracks",
+          "p": [
+            -1254,
+            0,
+            -1021
+          ]
+        },
+        {
+          "id": "trail_exit",
+          "p": [
+            -1210,
+            0,
+            -1065
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -1696.199951171875,
+            0,
+            -735.4400024414062
+          ],
+          "label": "trail_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 18,
+          "samples": 54,
+          "visualCandidates": [],
+          "b": [
+            -1595,
+            0,
+            -823
+          ]
+        },
+        {
+          "a": [
+            -1595,
+            0,
+            -823
+          ],
+          "label": "supplies:manifest",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -1530,
+            0,
+            -857
+          ]
+        },
+        {
+          "a": [
+            -1530,
+            0,
+            -857
+          ],
+          "label": "supplies:bindings",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 15,
+          "samples": 45,
+          "visualCandidates": [],
+          "b": [
+            -1450,
+            0,
+            -924
+          ]
+        },
+        {
+          "a": [
+            -1450,
+            0,
+            -924
+          ],
+          "label": "supplies:resin",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            -1425,
+            0,
+            -864
+          ]
+        },
+        {
+          "a": [
+            -1425,
+            0,
+            -864
+          ],
+          "label": "supply_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -1364,
+            0,
+            -933
+          ]
+        },
+        {
+          "a": [
+            -1364,
+            0,
+            -933
+          ],
+          "label": "tracks:drag_marks",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -1304,
+            0,
+            -973
+          ]
+        },
+        {
+          "a": [
+            -1304,
+            0,
+            -973
+          ],
+          "label": "tracks:heavy_prints",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -1259,
+            0,
+            -1051
+          ]
+        },
+        {
+          "a": [
+            -1259,
+            0,
+            -1051
+          ],
+          "label": "tracks:scout_sign",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            -1219,
+            0,
+            -1001
+          ]
+        },
+        {
+          "a": [
+            -1219,
+            0,
+            -1001
+          ],
+          "label": "trail_exit:approach",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            -1210,
+            0,
+            -1065
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "DW-02",
+      "id": "DW-02",
+      "anchors": [
+        {
+          "id": "cart_guards",
+          "p": [
+            -957,
+            6,
+            -1054
+          ]
+        },
+        {
+          "id": "survivors",
+          "p": [
+            -891,
+            6,
+            -1131
+          ]
+        },
+        {
+          "id": "escape_guards",
+          "p": [
+            -770,
+            6,
+            -1175
+          ]
+        },
+        {
+          "id": "testimony",
+          "p": [
+            -715,
+            6,
+            -1241
+          ]
+        },
+        {
+          "id": "clearing_exit",
+          "p": [
+            -649,
+            6,
+            -1285
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -1031.3599853515625,
+            6,
+            -992.4000244140625
+          ],
+          "label": "cart_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -957,
+            6,
+            -1054
+          ]
+        },
+        {
+          "a": [
+            -957,
+            6,
+            -1054
+          ],
+          "label": "survivors:shelter",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 7,
+          "samples": 21,
+          "visualCandidates": [],
+          "b": [
+            -951,
+            6,
+            -1096
+          ]
+        },
+        {
+          "a": [
+            -951,
+            6,
+            -1096
+          ],
+          "label": "survivors:crossing",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 15,
+          "samples": 45,
+          "visualCandidates": [],
+          "b": [
+            -881,
+            6,
+            -1176
+          ]
+        },
+        {
+          "a": [
+            -881,
+            6,
+            -1176
+          ],
+          "label": "survivors:safety",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            -831,
+            6,
+            -1106
+          ]
+        },
+        {
+          "a": [
+            -831,
+            6,
+            -1106
+          ],
+          "label": "escape_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -770,
+            6,
+            -1175
+          ]
+        },
+        {
+          "a": [
+            -770,
+            6,
+            -1175
+          ],
+          "label": "testimony:crest",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 7,
+          "samples": 21,
+          "visualCandidates": [],
+          "b": [
+            -760,
+            6,
+            -1216
+          ]
+        },
+        {
+          "a": [
+            -760,
+            6,
+            -1216
+          ],
+          "label": "testimony:ritual",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -685,
+            6,
+            -1276
+          ]
+        },
+        {
+          "a": [
+            -685,
+            6,
+            -1276
+          ],
+          "label": "testimony:witness",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 27,
+          "visualCandidates": [],
+          "b": [
+            -660,
+            6,
+            -1221
+          ]
+        },
+        {
+          "a": [
+            -660,
+            6,
+            -1221
+          ],
+          "label": "clearing_exit:road",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            -689,
+            6,
+            -1260
+          ]
+        },
+        {
+          "a": [
+            -689,
+            6,
+            -1260
+          ],
+          "label": "clearing_exit:outpost",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -624,
+            6,
+            -1300
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "DW-03",
+      "id": "DW-03",
+      "anchors": [
+        {
+          "id": "report",
+          "p": [
+            -341,
+            18,
+            -1549
+          ]
+        },
+        {
+          "id": "erin",
+          "p": [
+            -242,
+            18,
+            -1648
+          ]
+        },
+        {
+          "id": "watchtower_order",
+          "p": [
+            -121,
+            18,
+            -1703
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -469.91998291015625,
+            18,
+            -1453.52001953125
+          ],
+          "label": "report:account",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 22,
+          "samples": 66,
+          "visualCandidates": [],
+          "b": [
+            -341,
+            18,
+            -1549
+          ]
+        },
+        {
+          "a": [
+            -341,
+            18,
+            -1549
+          ],
+          "visualCandidates": [],
+          "floorExamples": [],
+          "label": "report:missing",
+          "pathStatus": "SamePoint",
+          "samples": 6,
+          "floorMisses": 0,
+          "b": [
+            -341,
+            18,
+            -1549
+          ]
+        },
+        {
+          "a": [
+            -341,
+            18,
+            -1549
+          ],
+          "label": "erin:trust",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -242,
+            18,
+            -1648
+          ]
+        },
+        {
+          "a": [
+            -242,
+            18,
+            -1648
+          ],
+          "visualCandidates": [],
+          "floorExamples": [],
+          "label": "erin:signal",
+          "pathStatus": "SamePoint",
+          "samples": 6,
+          "floorMisses": 0,
+          "b": [
+            -242,
+            18,
+            -1648
+          ]
+        },
+        {
+          "a": [
+            -242,
+            18,
+            -1648
+          ],
+          "visualCandidates": [],
+          "floorExamples": [],
+          "label": "erin:agreement",
+          "pathStatus": "SamePoint",
+          "samples": 6,
+          "floorMisses": 0,
+          "b": [
+            -242,
+            18,
+            -1648
+          ]
+        },
+        {
+          "a": [
+            -242,
+            18,
+            -1648
+          ],
+          "label": "watchtower_order:map",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [
+            {
+              "at": [
+                -214.65081787109375,
+                18,
+                -1661.77685546875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-03.TDElderTree.roots_geom",
+              "mesh": true,
+              "size": [
+                60.61988830566406,
+                16.72518539428711,
+                62.7880744934082
+              ]
+            }
+          ],
+          "b": [
+            -156,
+            18,
+            -1678
+          ]
+        },
+        {
+          "a": [
+            -156,
+            18,
+            -1678
+          ],
+          "label": "watchtower_order:ward",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            -86,
+            18,
+            -1723
+          ]
+        },
+        {
+          "a": [
+            -86,
+            18,
+            -1723
+          ],
+          "label": "watchtower_order:departure",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            -66,
+            18,
+            -1673
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "DW-04",
+      "id": "DW-04",
+      "anchors": [
+        {
+          "id": "courtyard",
+          "p": [
+            363,
+            30,
+            -1780
+          ]
+        },
+        {
+          "id": "west_link",
+          "p": [
+            407,
+            30,
+            -1890
+          ]
+        },
+        {
+          "id": "east_link",
+          "p": [
+            605,
+            30,
+            -1890
+          ]
+        },
+        {
+          "id": "spirit",
+          "p": [
+            506,
+            30,
+            -1923
+          ]
+        },
+        {
+          "id": "link_record",
+          "p": [
+            550,
+            30,
+            -1989
+          ]
+        },
+        {
+          "id": "shortcut",
+          "p": [
+            319,
+            30,
+            -1989
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            294.3599853515625,
+            30,
+            -1688.47998046875
+          ],
+          "label": "courtyard",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 16,
+          "samples": 48,
+          "visualCandidates": [
+            {
+              "at": [
+                327.7679748535156,
+                30,
+                -1739.690673828125
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-04.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                9.711688041687012,
+                22.571922302246094,
+                9.970094680786133
+              ]
+            }
+          ],
+          "b": [
+            363,
+            30,
+            -1780
+          ]
+        },
+        {
+          "a": [
+            363,
+            30,
+            -1780
+          ],
+          "label": "west_link",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 17,
+          "samples": 48,
+          "visualCandidates": [],
+          "b": [
+            407,
+            30,
+            -1890
+          ]
+        },
+        {
+          "a": [
+            407,
+            30,
+            -1890
+          ],
+          "label": "east_link",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 26,
+          "samples": 78,
+          "visualCandidates": [],
+          "b": [
+            605,
+            30,
+            -1890
+          ]
+        },
+        {
+          "a": [
+            605,
+            30,
+            -1890
+          ],
+          "label": "spirit:cage",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 20,
+          "samples": 60,
+          "visualCandidates": [],
+          "b": [
+            461,
+            30,
+            -1903
+          ]
+        },
+        {
+          "a": [
+            461,
+            30,
+            -1903
+          ],
+          "label": "spirit:spring",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            506,
+            30,
+            -1883
+          ]
+        },
+        {
+          "a": [
+            506,
+            30,
+            -1883
+          ],
+          "label": "spirit:release",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            556,
+            30,
+            -1908
+          ]
+        },
+        {
+          "a": [
+            556,
+            30,
+            -1908
+          ],
+          "label": "link_record:leaf",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            515,
+            30,
+            -1964
+          ]
+        },
+        {
+          "a": [
+            515,
+            30,
+            -1964
+          ],
+          "label": "link_record:rain",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            585,
+            30,
+            -1964
+          ]
+        },
+        {
+          "a": [
+            585,
+            30,
+            -1964
+          ],
+          "label": "link_record:root",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            550,
+            30,
+            -2024
+          ]
+        },
+        {
+          "visualCandidates": [],
+          "b": [
+            289,
+            30,
+            -1969
+          ],
+          "pathStatus": "Success",
+          "samples": 105,
+          "label": "shortcut:counterweight",
+          "floorExamples": [],
+          "waypoints": 36,
+          "a": [
+            550,
+            30,
+            -2024
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.Terrain"
+        },
+        {
+          "a": [
+            289,
+            30,
+            -1969
+          ],
+          "label": "shortcut:lantern",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            349,
+            30,
+            -1999
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "DW-05",
+      "id": "DW-05",
+      "anchors": [
+        {
+          "id": "ruin_guards",
+          "p": [
+            682,
+            38,
+            -2451
+          ]
+        },
+        {
+          "id": "prison_guards",
+          "p": [
+            748,
+            38,
+            -2528
+          ]
+        },
+        {
+          "id": "prisoners",
+          "p": [
+            693,
+            38,
+            -2583
+          ]
+        },
+        {
+          "id": "first_ogre",
+          "p": [
+            880,
+            38,
+            -2484
+          ]
+        },
+        {
+          "id": "barracks",
+          "p": [
+            935,
+            38,
+            -2583
+          ]
+        },
+        {
+          "id": "warlord",
+          "p": [
+            990,
+            38,
+            -2682
+          ]
+        },
+        {
+          "id": "transfer",
+          "p": [
+            1045,
+            38,
+            -2737
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            591.7999877929688,
+            38,
+            -2355.52001953125
+          ],
+          "label": "ruin_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 18,
+          "samples": 54,
+          "visualCandidates": [],
+          "b": [
+            682,
+            38,
+            -2451
+          ]
+        },
+        {
+          "a": [
+            682,
+            38,
+            -2451
+          ],
+          "label": "prison_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            748,
+            38,
+            -2528
+          ]
+        },
+        {
+          "a": [
+            748,
+            38,
+            -2528
+          ],
+          "label": "prisoners:cage",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 15,
+          "samples": 45,
+          "visualCandidates": [],
+          "b": [
+            638,
+            38,
+            -2548
+          ]
+        },
+        {
+          "a": [
+            638,
+            38,
+            -2548
+          ],
+          "label": "prisoners:cover",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            683,
+            38,
+            -2623
+          ]
+        },
+        {
+          "a": [
+            683,
+            38,
+            -2623
+          ],
+          "label": "prisoners:refuge",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            748,
+            38,
+            -2558
+          ]
+        },
+        {
+          "a": [
+            748,
+            38,
+            -2558
+          ],
+          "label": "first_ogre",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 20,
+          "samples": 60,
+          "visualCandidates": [],
+          "b": [
+            880,
+            38,
+            -2484
+          ]
+        },
+        {
+          "a": [
+            880,
+            38,
+            -2484
+          ],
+          "label": "barracks",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 16,
+          "samples": 48,
+          "visualCandidates": [],
+          "b": [
+            935,
+            38,
+            -2583
+          ]
+        },
+        {
+          "a": [
+            935,
+            38,
+            -2583
+          ],
+          "label": "warlord",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 16,
+          "samples": 48,
+          "visualCandidates": [],
+          "b": [
+            990,
+            38,
+            -2682
+          ]
+        },
+        {
+          "a": [
+            990,
+            38,
+            -2682
+          ],
+          "label": "transfer:names",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 5,
+          "samples": 15,
+          "visualCandidates": [],
+          "b": [
+            1000,
+            38,
+            -2707
+          ]
+        },
+        {
+          "a": [
+            1000,
+            38,
+            -2707
+          ],
+          "label": "transfer:orders",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            1080,
+            38,
+            -2767
+          ]
+        },
+        {
+          "a": [
+            1080,
+            38,
+            -2767
+          ],
+          "label": "transfer:route",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 27,
+          "visualCandidates": [],
+          "b": [
+            1100,
+            38,
+            -2712
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "DW-06",
+      "id": "DW-06",
+      "anchors": [
+        {
+          "id": "refugees",
+          "p": [
+            -99,
+            46,
+            -2891
+          ]
+        },
+        {
+          "id": "root_west",
+          "p": [
+            -66,
+            46,
+            -3001
+          ]
+        },
+        {
+          "id": "root_east",
+          "p": [
+            165,
+            46,
+            -2957
+          ]
+        },
+        {
+          "id": "root_depth",
+          "p": [
+            77,
+            46,
+            -3111
+          ]
+        },
+        {
+          "id": "ancient_network",
+          "p": [
+            -77,
+            46,
+            -3133
+          ]
+        },
+        {
+          "id": "altar_path",
+          "p": [
+            -198,
+            46,
+            -3133
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -210.760009765625,
+            46,
+            -2810.47998046875
+          ],
+          "label": "refugees:listen",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 20,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -99,
+            46,
+            -2891
+          ]
+        },
+        {
+          "a": [
+            -99,
+            46,
+            -2891
+          ],
+          "visualCandidates": [],
+          "floorExamples": [],
+          "label": "refugees:erin_response",
+          "pathStatus": "SamePoint",
+          "samples": 6,
+          "floorMisses": 0,
+          "b": [
+            -99,
+            46,
+            -2891
+          ]
+        },
+        {
+          "a": [
+            -99,
+            46,
+            -2891
+          ],
+          "visualCandidates": [],
+          "floorExamples": [],
+          "label": "refugees:map",
+          "pathStatus": "SamePoint",
+          "samples": 6,
+          "floorMisses": 0,
+          "b": [
+            -99,
+            46,
+            -2891
+          ]
+        },
+        {
+          "a": [
+            -99,
+            46,
+            -2891
+          ],
+          "label": "root_west",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 16,
+          "samples": 48,
+          "visualCandidates": [],
+          "b": [
+            -66,
+            46,
+            -3001
+          ]
+        },
+        {
+          "a": [
+            -66,
+            46,
+            -3001
+          ],
+          "label": "root_east",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 31,
+          "samples": 93,
+          "visualCandidates": [],
+          "b": [
+            165,
+            46,
+            -2957
+          ]
+        },
+        {
+          "a": [
+            165,
+            46,
+            -2957
+          ],
+          "label": "root_depth",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 24,
+          "samples": 72,
+          "visualCandidates": [
+            {
+              "at": [
+                134.03819274902344,
+                46,
+                -3019.24560546875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-06.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                9.711688041687012,
+                22.571922302246094,
+                9.970094680786133
+              ]
+            }
+          ],
+          "b": [
+            77,
+            46,
+            -3111
+          ]
+        },
+        {
+          "a": [
+            77,
+            46,
+            -3111
+          ],
+          "label": "ancient_network:shelter",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 26,
+          "samples": 78,
+          "visualCandidates": [],
+          "b": [
+            -122,
+            46,
+            -3113
+          ]
+        },
+        {
+          "a": [
+            -122,
+            46,
+            -3113
+          ],
+          "label": "ancient_network:water",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            -57,
+            46,
+            -3098
+          ]
+        },
+        {
+          "a": [
+            -57,
+            46,
+            -3098
+          ],
+          "label": "ancient_network:roots",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 27,
+          "visualCandidates": [],
+          "b": [
+            -32,
+            46,
+            -3153
+          ]
+        },
+        {
+          "a": [
+            -32,
+            46,
+            -3153
+          ],
+          "label": "ancient_network:star",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 27,
+          "visualCandidates": [],
+          "b": [
+            -92,
+            46,
+            -3168
+          ]
+        },
+        {
+          "a": [
+            -92,
+            46,
+            -3168
+          ],
+          "label": "altar_path:safe_root",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 23,
+          "samples": 69,
+          "visualCandidates": [
+            {
+              "at": [
+                -136.08392333984375,
+                46,
+                -3153.965087890625
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-06.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                8.757722854614258,
+                20.354713439941406,
+                8.99074649810791
+              ]
+            }
+          ],
+          "b": [
+            -248,
+            46,
+            -3103
+          ]
+        },
+        {
+          "a": [
+            -248,
+            46,
+            -3103
+          ],
+          "label": "altar_path:overlook",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -188,
+            46,
+            -3168
+          ]
+        },
+        {
+          "a": [
+            -188,
+            46,
+            -3168
+          ],
+          "label": "altar_path:approach",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            -148,
+            46,
+            -3113
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "DW-07",
+      "id": "DW-07",
+      "anchors": [
+        {
+          "id": "corridor",
+          "p": [
+            -605,
+            54,
+            -3023
+          ]
+        },
+        {
+          "id": "rescue_captives",
+          "p": [
+            -605,
+            54,
+            -3221
+          ]
+        },
+        {
+          "id": "outer_west",
+          "p": [
+            -924,
+            54,
+            -3100
+          ]
+        },
+        {
+          "id": "outer_east",
+          "p": [
+            -660,
+            54,
+            -3166
+          ]
+        },
+        {
+          "id": "king_shaman",
+          "p": [
+            -792,
+            54,
+            -3254
+          ]
+        },
+        {
+          "id": "core_record",
+          "p": [
+            -792,
+            54,
+            -3342
+          ]
+        },
+        {
+          "id": "stabilize",
+          "p": [
+            -858,
+            54,
+            -3342
+          ]
+        },
+        {
+          "id": "separate",
+          "p": [
+            -726,
+            54,
+            -3342
+          ]
+        },
+        {
+          "id": "restoration",
+          "p": [
+            -187,
+            18,
+            -1593
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            -726,
+            54,
+            -3317
+          ],
+          "to": "DW-03",
+          "label": "restoration",
+          "from": "DW-07",
+          "b": [
+            -187,
+            18,
+            -1593
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "a": [
+            -1068.760009765625,
+            54,
+            -2956.56005859375
+          ],
+          "label": "corridor",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 61,
+          "samples": 180,
+          "visualCandidates": [],
+          "b": [
+            -605,
+            54,
+            -3023
+          ]
+        },
+        {
+          "a": [
+            -605,
+            54,
+            -3023
+          ],
+          "label": "rescue_captives:cage",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 24,
+          "samples": 72,
+          "visualCandidates": [],
+          "b": [
+            -640,
+            54,
+            -3196
+          ]
+        },
+        {
+          "a": [
+            -640,
+            54,
+            -3196
+          ],
+          "label": "rescue_captives:cover",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            -585,
+            54,
+            -3186
+          ]
+        },
+        {
+          "a": [
+            -585,
+            54,
+            -3186
+          ],
+          "label": "rescue_captives:safety",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            -560,
+            54,
+            -3231
+          ]
+        },
+        {
+          "a": [
+            -560,
+            54,
+            -3231
+          ],
+          "label": "outer_west",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 50,
+          "samples": 150,
+          "visualCandidates": [],
+          "b": [
+            -924,
+            54,
+            -3100
+          ]
+        },
+        {
+          "a": [
+            -924,
+            54,
+            -3100
+          ],
+          "label": "outer_east",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 36,
+          "samples": 108,
+          "visualCandidates": [],
+          "b": [
+            -660,
+            54,
+            -3166
+          ]
+        },
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                -715.018798828125,
+                54,
+                -3197.871826171875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-07.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                9.711688041687012,
+                22.571922302246094,
+                9.970094680786133
+              ]
+            }
+          ],
+          "b": [
+            -792,
+            54,
+            -3254
+          ],
+          "pathStatus": "Success",
+          "samples": 63,
+          "label": "king_shaman",
+          "floorExamples": [],
+          "waypoints": 22,
+          "a": [
+            -660,
+            54,
+            -3166
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-07.TreeCollision"
+        },
+        {
+          "a": [
+            -792,
+            54,
+            -3254
+          ],
+          "label": "core_record:purpose",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [
+            {
+              "at": [
+                -802.5,
+                54,
+                -3274.39990234375
+              ],
+              "path": "Workspace.DeepwoodCampaign.MonsterPortal.PortalGate_Sandstone0_0",
+              "mesh": true,
+              "size": [
+                20.682653427124023,
+                20.784210205078125,
+                4.290942192077637
+              ]
+            },
+            {
+              "at": [
+                -802.5,
+                54,
+                -3274.39990234375
+              ],
+              "path": "Workspace.DeepwoodCampaign.MonsterPortal.PortalGate_Sandstone1_0",
+              "mesh": true,
+              "size": [
+                22.114839553833008,
+                20.67197036743164,
+                10.232244491577148
+              ]
+            },
+            {
+              "at": [
+                -802.5,
+                54,
+                -3274.39990234375
+              ],
+              "path": "Workspace.DeepwoodCampaign.MonsterPortal.PortalGate_Sandstone2_0",
+              "mesh": true,
+              "size": [
+                20.73360252380371,
+                21.926895141601562,
+                4.8685688972473145
+              ]
+            },
+            {
+              "at": [
+                -798.9434814453125,
+                54,
+                -3276.23046875
+              ],
+              "path": "Workspace.DeepwoodCampaign.MonsterPortal.PortalGate_AntiqueGold_0",
+              "mesh": true,
+              "size": [
+                22.52743148803711,
+                14.812661170959473,
+                2.6299421787261963
+              ]
+            }
+          ],
+          "b": [
+            -827,
+            54,
+            -3322
+          ]
+        },
+        {
+          "a": [
+            -827,
+            54,
+            -3322
+          ],
+          "label": "core_record:cost",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -767,
+            54,
+            -3367
+          ]
+        },
+        {
+          "a": [
+            -767,
+            54,
+            -3367
+          ],
+          "label": "core_record:replacement",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            -752,
+            54,
+            -3317
+          ]
+        },
+        {
+          "a": [
+            -752,
+            54,
+            -3317
+          ],
+          "label": "stabilize:spring",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 20,
+          "samples": 60,
+          "visualCandidates": [],
+          "b": [
+            -898,
+            54,
+            -3317
+          ]
+        },
+        {
+          "a": [
+            -898,
+            54,
+            -3317
+          ],
+          "label": "stabilize:roots",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            -828,
+            54,
+            -3312
+          ]
+        },
+        {
+          "a": [
+            -828,
+            54,
+            -3312
+          ],
+          "label": "stabilize:shelter",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            -823,
+            54,
+            -3367
+          ]
+        },
+        {
+          "a": [
+            -823,
+            54,
+            -3367
+          ],
+          "label": "stabilize:return",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 27,
+          "visualCandidates": [],
+          "b": [
+            -883,
+            54,
+            -3372
+          ]
+        },
+        {
+          "a": [
+            -883,
+            54,
+            -3372
+          ],
+          "label": "separate:clamp",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -756,
+            54,
+            -3322
+          ]
+        },
+        {
+          "a": [
+            -756,
+            54,
+            -3322
+          ],
+          "label": "separate:isolate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -696,
+            54,
+            -3362
+          ]
+        },
+        {
+          "a": [
+            -696,
+            54,
+            -3362
+          ],
+          "label": "separate:secure",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            -726,
+            54,
+            -3317
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "DW-01",
+      "id": "DW-Q1",
+      "anchors": [
+        {
+          "id": "waterproof_log",
+          "p": [
+            -1628,
+            0,
+            -713
+          ]
+        },
+        {
+          "id": "marsh_slimes",
+          "p": [
+            -1672,
+            0,
+            -757
+          ]
+        },
+        {
+          "id": "marsh_report",
+          "p": [
+            -385,
+            18,
+            -1527
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            -1672,
+            0,
+            -757
+          ],
+          "to": "DW-03",
+          "label": "marsh_report",
+          "from": "DW-01",
+          "b": [
+            -385,
+            18,
+            -1527
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                -1657.060791015625,
+                0,
+                -726.77294921875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                10.97843074798584,
+                25.51608657836914,
+                11.27054214477539
+              ]
+            }
+          ],
+          "b": [
+            -1628,
+            0,
+            -713
+          ],
+          "pathStatus": "Success",
+          "samples": 30,
+          "label": "waterproof_log",
+          "floorExamples": [],
+          "waypoints": 11,
+          "a": [
+            -1696.199951171875,
+            0,
+            -735.4400024414062
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TreeCollision"
+        },
+        {
+          "a": [
+            -1628,
+            0,
+            -713
+          ],
+          "label": "marsh_slimes",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 27,
+          "visualCandidates": [
+            {
+              "at": [
+                -1647.328369140625,
+                0,
+                -726.6715698242188
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                10.97843074798584,
+                25.51608657836914,
+                11.27054214477539
+              ]
+            }
+          ],
+          "b": [
+            -1672,
+            0,
+            -757
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "DW-S1",
+      "id": "DW-Q2",
+      "anchors": [
+        {
+          "id": "food_clue",
+          "p": [
+            429,
+            18,
+            -1120
+          ]
+        },
+        {
+          "id": "goblin_king",
+          "p": [
+            528,
+            18,
+            -1186
+          ]
+        },
+        {
+          "id": "food_captives",
+          "p": [
+            451,
+            18,
+            -1197
+          ]
+        },
+        {
+          "id": "food_store",
+          "p": [
+            572,
+            18,
+            -1230
+          ]
+        },
+        {
+          "id": "food_report",
+          "p": [
+            -287,
+            18,
+            -1598
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            572,
+            18,
+            -1230
+          ],
+          "to": "DW-03",
+          "label": "food_report",
+          "from": "DW-S1",
+          "b": [
+            -287,
+            18,
+            -1598
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "a": [
+            375.760009765625,
+            18,
+            -1059.280029296875
+          ],
+          "label": "food_clue",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            429,
+            18,
+            -1120
+          ]
+        },
+        {
+          "a": [
+            429,
+            18,
+            -1120
+          ],
+          "label": "goblin_king",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 16,
+          "samples": 48,
+          "visualCandidates": [],
+          "b": [
+            528,
+            18,
+            -1186
+          ]
+        },
+        {
+          "a": [
+            528,
+            18,
+            -1186
+          ],
+          "label": "food_captives",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            451,
+            18,
+            -1197
+          ]
+        },
+        {
+          "a": [
+            451,
+            18,
+            -1197
+          ],
+          "label": "food_store",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 18,
+          "samples": 51,
+          "visualCandidates": [],
+          "b": [
+            572,
+            18,
+            -1230
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "DW-S2",
+      "id": "DW-Q3",
+      "anchors": [
+        {
+          "id": "quarry_tools",
+          "p": [
+            -1111,
+            18,
+            -1692
+          ]
+        },
+        {
+          "id": "quarry_slimes",
+          "p": [
+            -1133,
+            18,
+            -1813
+          ]
+        },
+        {
+          "id": "king_ogre",
+          "p": [
+            -1001,
+            18,
+            -1758
+          ]
+        },
+        {
+          "id": "quarry_record",
+          "p": [
+            -968,
+            18,
+            -1802
+          ]
+        },
+        {
+          "id": "quarry_report",
+          "p": [
+            -306,
+            18,
+            -1613
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            -968,
+            18,
+            -1802
+          ],
+          "to": "DW-03",
+          "label": "quarry_report",
+          "from": "DW-S2",
+          "b": [
+            -306,
+            18,
+            -1613
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "a": [
+            -1164.239990234375,
+            18,
+            -1631.280029296875
+          ],
+          "label": "quarry_tools",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            -1111,
+            18,
+            -1692
+          ]
+        },
+        {
+          "a": [
+            -1111,
+            18,
+            -1692
+          ],
+          "label": "quarry_slimes",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 17,
+          "samples": 51,
+          "visualCandidates": [],
+          "b": [
+            -1133,
+            18,
+            -1813
+          ]
+        },
+        {
+          "visualCandidates": [
+            {
+              "at": [
+                -1065.4615478515625,
+                18,
+                -1789.1922607421875
+              ],
+              "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S2.TDForestTree.trunk_geom",
+              "mesh": true,
+              "size": [
+                8.444947242736816,
+                19.62775993347168,
+                8.669648170471191
+              ]
+            }
+          ],
+          "b": [
+            -1001,
+            18,
+            -1758
+          ],
+          "pathStatus": "Success",
+          "samples": 57,
+          "label": "king_ogre",
+          "floorExamples": [],
+          "waypoints": 20,
+          "a": [
+            -1133,
+            18,
+            -1813
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S2.TreeCollision"
+        },
+        {
+          "a": [
+            -1001,
+            18,
+            -1758
+          ],
+          "label": "quarry_record",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            -968,
+            18,
+            -1802
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "DW-S3",
+      "id": "DW-Q4",
+      "anchors": [
+        {
+          "id": "scout_trace",
+          "p": [
+            1309,
+            38,
+            -3056
+          ]
+        },
+        {
+          "id": "enraged_warlord",
+          "p": [
+            1419,
+            38,
+            -3122
+          ]
+        },
+        {
+          "id": "safe_return",
+          "p": [
+            1452,
+            38,
+            -3166
+          ]
+        },
+        {
+          "id": "battlefield_report",
+          "p": [
+            -242,
+            18,
+            -1648
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            1452,
+            38,
+            -3166
+          ],
+          "to": "DW-03",
+          "label": "battlefield_report",
+          "from": "DW-S3",
+          "b": [
+            -242,
+            18,
+            -1648
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "a": [
+            1255.760009765625,
+            38,
+            -2995.280029296875
+          ],
+          "label": "scout_trace",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            1309,
+            38,
+            -3056
+          ]
+        },
+        {
+          "a": [
+            1309,
+            38,
+            -3056
+          ],
+          "label": "enraged_warlord",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 18,
+          "samples": 54,
+          "visualCandidates": [],
+          "b": [
+            1419,
+            38,
+            -3122
+          ]
+        },
+        {
+          "a": [
+            1419,
+            38,
+            -3122
+          ],
+          "label": "safe_return",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            1452,
+            38,
+            -3166
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "GW-01",
+      "id": "GW-01",
+      "anchors": [
+        {
+          "id": "maeve",
+          "p": [
+            -765,
+            156,
+            -11490
+          ]
+        },
+        {
+          "id": "trail",
+          "p": [
+            -635,
+            156,
+            -11538
+          ]
+        },
+        {
+          "id": "marks",
+          "p": [
+            -765,
+            156,
+            -11586
+          ]
+        },
+        {
+          "id": "lantern",
+          "p": [
+            -635,
+            156,
+            -11634
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -840,
+            155.95001220703125,
+            -11490
+          ],
+          "label": "maeve:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -765,
+            156,
+            -11490
+          ]
+        },
+        {
+          "a": [
+            -765,
+            156,
+            -11490
+          ],
+          "label": "trail",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -635,
+            156,
+            -11538
+          ]
+        },
+        {
+          "a": [
+            -635,
+            156,
+            -11538
+          ],
+          "label": "marks:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -765,
+            156,
+            -11586
+          ]
+        },
+        {
+          "a": [
+            -765,
+            156,
+            -11586
+          ],
+          "label": "lantern:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -635,
+            156,
+            -11634
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "GW-02",
+      "id": "GW-02",
+      "anchors": [
+        {
+          "id": "finn",
+          "p": [
+            -165,
+            160,
+            -11990
+          ]
+        },
+        {
+          "id": "web_guards",
+          "p": [
+            -35,
+            160,
+            -12038
+          ]
+        },
+        {
+          "id": "bindings",
+          "p": [
+            -165,
+            160,
+            -12086
+          ]
+        },
+        {
+          "id": "tali",
+          "p": [
+            -35,
+            160,
+            -12134
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -240,
+            159.95001220703125,
+            -11990
+          ],
+          "label": "finn:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -165,
+            160,
+            -11990
+          ]
+        },
+        {
+          "a": [
+            -165,
+            160,
+            -11990
+          ],
+          "label": "web_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -35,
+            160,
+            -12038
+          ]
+        },
+        {
+          "a": [
+            -35,
+            160,
+            -12038
+          ],
+          "label": "bindings:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -165,
+            160,
+            -12086
+          ]
+        },
+        {
+          "a": [
+            -165,
+            160,
+            -12086
+          ],
+          "label": "tali:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -35,
+            160,
+            -12134
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "GW-03",
+      "id": "GW-03",
+      "anchors": [
+        {
+          "id": "escort",
+          "p": [
+            435,
+            164,
+            -12490
+          ]
+        },
+        {
+          "id": "report",
+          "p": [
+            565,
+            164,
+            -12538
+          ]
+        },
+        {
+          "id": "wisp",
+          "p": [
+            435,
+            164,
+            -12586
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            360,
+            163.95001220703125,
+            -12490
+          ],
+          "label": "escort:path",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 17,
+          "samples": 51,
+          "visualCandidates": [],
+          "b": [
+            480,
+            164,
+            -12530
+          ]
+        },
+        {
+          "a": [
+            480,
+            164,
+            -12530
+          ],
+          "label": "escort:safe",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            550,
+            164,
+            -12575
+          ]
+        },
+        {
+          "a": [
+            550,
+            164,
+            -12575
+          ],
+          "label": "report:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 6,
+          "samples": 18,
+          "visualCandidates": [],
+          "b": [
+            565,
+            164,
+            -12538
+          ]
+        },
+        {
+          "a": [
+            565,
+            164,
+            -12538
+          ],
+          "label": "wisp:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            435,
+            164,
+            -12586
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "GW-04",
+      "id": "GW-04",
+      "anchors": [
+        {
+          "id": "roots",
+          "p": [
+            1035,
+            168,
+            -12990
+          ]
+        },
+        {
+          "id": "ent",
+          "p": [
+            1165,
+            168,
+            -13038
+          ]
+        },
+        {
+          "id": "lantern",
+          "p": [
+            1035,
+            168,
+            -13086
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            960,
+            167.95001220703125,
+            -12990
+          ],
+          "label": "roots",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            1035,
+            168,
+            -12990
+          ]
+        },
+        {
+          "a": [
+            1035,
+            168,
+            -12990
+          ],
+          "label": "ent",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            1165,
+            168,
+            -13038
+          ]
+        },
+        {
+          "a": [
+            1165,
+            168,
+            -13038
+          ],
+          "label": "lantern:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            1035,
+            168,
+            -13086
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "GW-05",
+      "id": "GW-05",
+      "anchors": [
+        {
+          "id": "centipedes",
+          "p": [
+            435,
+            172,
+            -13490
+          ]
+        },
+        {
+          "id": "king",
+          "p": [
+            565,
+            172,
+            -13538
+          ]
+        },
+        {
+          "id": "rope",
+          "p": [
+            435,
+            172,
+            -13586
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            360,
+            171.95001220703125,
+            -13490
+          ],
+          "label": "centipedes",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            435,
+            172,
+            -13490
+          ]
+        },
+        {
+          "a": [
+            435,
+            172,
+            -13490
+          ],
+          "label": "king",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            565,
+            172,
+            -13538
+          ]
+        },
+        {
+          "a": [
+            565,
+            172,
+            -13538
+          ],
+          "label": "rope:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            435,
+            172,
+            -13586
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "GW-06",
+      "id": "GW-06",
+      "anchors": [
+        {
+          "id": "bats",
+          "p": [
+            -165,
+            176,
+            -13990
+          ]
+        },
+        {
+          "id": "webs",
+          "p": [
+            -35,
+            176,
+            -14038
+          ]
+        },
+        {
+          "id": "courage",
+          "p": [
+            -165,
+            176,
+            -14086
+          ]
+        },
+        {
+          "id": "rear_guard",
+          "p": [
+            -35,
+            176,
+            -14134
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -240,
+            175.95001220703125,
+            -13990
+          ],
+          "label": "bats",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -165,
+            176,
+            -13990
+          ]
+        },
+        {
+          "a": [
+            -165,
+            176,
+            -13990
+          ],
+          "label": "webs:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 20,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -35,
+            176,
+            -14038
+          ]
+        },
+        {
+          "a": [
+            -35,
+            176,
+            -14038
+          ],
+          "label": "courage:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -165,
+            176,
+            -14086
+          ]
+        },
+        {
+          "a": [
+            -165,
+            176,
+            -14086
+          ],
+          "label": "rear_guard",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -35,
+            176,
+            -14134
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "GW-07",
+      "id": "GW-07",
+      "anchors": [
+        {
+          "id": "nest",
+          "p": [
+            -765,
+            180,
+            -14490
+          ]
+        },
+        {
+          "id": "queen",
+          "p": [
+            -635,
+            180,
+            -14538
+          ]
+        },
+        {
+          "id": "exit",
+          "p": [
+            -765,
+            180,
+            -14586
+          ]
+        },
+        {
+          "id": "entrance",
+          "p": [
+            -635,
+            180,
+            -14634
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -840,
+            179.95001220703125,
+            -14490
+          ],
+          "label": "nest",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -765,
+            180,
+            -14490
+          ]
+        },
+        {
+          "a": [
+            -765,
+            180,
+            -14490
+          ],
+          "label": "queen",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -635,
+            180,
+            -14538
+          ]
+        },
+        {
+          "a": [
+            -635,
+            180,
+            -14538
+          ],
+          "label": "exit:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -765,
+            180,
+            -14586
+          ]
+        },
+        {
+          "a": [
+            -765,
+            180,
+            -14586
+          ],
+          "label": "entrance:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -635,
+            180,
+            -14634
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "FV-01",
+      "id": "FV-01",
+      "anchors": [
+        {
+          "id": "pathfinder",
+          "p": [
+            -902,
+            54,
+            -4105
+          ]
+        },
+        {
+          "id": "snow_guards",
+          "p": [
+            -847,
+            54,
+            -4160
+          ]
+        },
+        {
+          "id": "rescue",
+          "p": [
+            -787,
+            54,
+            -4200
+          ]
+        },
+        {
+          "id": "troll",
+          "p": [
+            -727,
+            54,
+            -4245
+          ]
+        },
+        {
+          "id": "lanterns",
+          "p": [
+            -687,
+            54,
+            -4300
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -932,
+            53.94999694824219,
+            -4090
+          ],
+          "label": "pathfinder:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 6,
+          "samples": 18,
+          "visualCandidates": [],
+          "b": [
+            -902,
+            54,
+            -4105
+          ]
+        },
+        {
+          "a": [
+            -902,
+            54,
+            -4105
+          ],
+          "label": "snow_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -847,
+            54,
+            -4160
+          ]
+        },
+        {
+          "a": [
+            -847,
+            54,
+            -4160
+          ],
+          "label": "rescue",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -787,
+            54,
+            -4200
+          ]
+        },
+        {
+          "a": [
+            -787,
+            54,
+            -4200
+          ],
+          "label": "troll",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -727,
+            54,
+            -4245
+          ]
+        },
+        {
+          "a": [
+            -727,
+            54,
+            -4245
+          ],
+          "label": "lanterns",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            -687,
+            54,
+            -4300
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "FV-02",
+      "id": "FV-02",
+      "anchors": [
+        {
+          "id": "welcome",
+          "p": [
+            -350,
+            60,
+            -4620
+          ]
+        },
+        {
+          "id": "supplies",
+          "p": [
+            -260,
+            60,
+            -4680
+          ]
+        },
+        {
+          "id": "route",
+          "p": [
+            -175,
+            60,
+            -4745
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -400,
+            59.94999694824219,
+            -4570
+          ],
+          "label": "welcome:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            -350,
+            60,
+            -4620
+          ]
+        },
+        {
+          "a": [
+            -350,
+            60,
+            -4620
+          ],
+          "label": "supplies:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 15,
+          "samples": 45,
+          "visualCandidates": [],
+          "b": [
+            -260,
+            60,
+            -4680
+          ]
+        },
+        {
+          "a": [
+            -260,
+            60,
+            -4680
+          ],
+          "label": "route",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 16,
+          "samples": 45,
+          "visualCandidates": [],
+          "b": [
+            -175,
+            60,
+            -4745
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "FV-03",
+      "id": "FV-03",
+      "anchors": [
+        {
+          "id": "wolves",
+          "p": [
+            220,
+            68,
+            -5070
+          ]
+        },
+        {
+          "id": "west_beacon",
+          "p": [
+            255,
+            68,
+            -5150
+          ]
+        },
+        {
+          "id": "bear",
+          "p": [
+            365,
+            68,
+            -5180
+          ]
+        },
+        {
+          "id": "east_beacon",
+          "p": [
+            415,
+            68,
+            -5250
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            180,
+            67.94999694824219,
+            -5050
+          ],
+          "label": "wolves",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 7,
+          "samples": 21,
+          "visualCandidates": [],
+          "b": [
+            220,
+            68,
+            -5070
+          ]
+        },
+        {
+          "a": [
+            220,
+            68,
+            -5070
+          ],
+          "label": "west_beacon",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            255,
+            68,
+            -5150
+          ]
+        },
+        {
+          "a": [
+            255,
+            68,
+            -5150
+          ],
+          "label": "bear",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 16,
+          "samples": 48,
+          "visualCandidates": [],
+          "b": [
+            365,
+            68,
+            -5180
+          ]
+        },
+        {
+          "a": [
+            365,
+            68,
+            -5180
+          ],
+          "label": "east_beacon",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            415,
+            68,
+            -5250
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "FV-04",
+      "id": "FV-04",
+      "anchors": [
+        {
+          "id": "guards",
+          "p": [
+            750,
+            76,
+            -5555
+          ]
+        },
+        {
+          "id": "relay_west",
+          "p": [
+            785,
+            76,
+            -5640
+          ]
+        },
+        {
+          "id": "elf_guards",
+          "p": [
+            895,
+            76,
+            -5650
+          ]
+        },
+        {
+          "id": "relay_east",
+          "p": [
+            945,
+            76,
+            -5700
+          ]
+        },
+        {
+          "id": "ylva",
+          "p": [
+            950,
+            76,
+            -5750
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            710,
+            75.94999694824219,
+            -5530
+          ],
+          "label": "guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 7,
+          "samples": 21,
+          "visualCandidates": [],
+          "b": [
+            750,
+            76,
+            -5555
+          ]
+        },
+        {
+          "a": [
+            750,
+            76,
+            -5555
+          ],
+          "label": "relay_west",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            785,
+            76,
+            -5640
+          ]
+        },
+        {
+          "a": [
+            785,
+            76,
+            -5640
+          ],
+          "label": "elf_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 15,
+          "samples": 45,
+          "visualCandidates": [],
+          "b": [
+            895,
+            76,
+            -5650
+          ]
+        },
+        {
+          "a": [
+            895,
+            76,
+            -5650
+          ],
+          "label": "relay_east",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            945,
+            76,
+            -5700
+          ]
+        },
+        {
+          "a": [
+            945,
+            76,
+            -5700
+          ],
+          "label": "ylva:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            950,
+            76,
+            -5750
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "FV-05",
+      "id": "FV-05",
+      "anchors": [
+        {
+          "id": "crossing",
+          "p": [
+            160,
+            84,
+            -6035
+          ]
+        },
+        {
+          "id": "marker_west",
+          "p": [
+            210,
+            84,
+            -6110
+          ]
+        },
+        {
+          "id": "patrol",
+          "p": [
+            305,
+            84,
+            -6140
+          ]
+        },
+        {
+          "id": "courier",
+          "p": [
+            360,
+            84,
+            -6205
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            120,
+            83.94999694824219,
+            -6010
+          ],
+          "label": "crossing",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 7,
+          "samples": 21,
+          "visualCandidates": [],
+          "b": [
+            160,
+            84,
+            -6035
+          ]
+        },
+        {
+          "a": [
+            160,
+            84,
+            -6035
+          ],
+          "label": "marker_west",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            210,
+            84,
+            -6110
+          ]
+        },
+        {
+          "a": [
+            210,
+            84,
+            -6110
+          ],
+          "label": "patrol",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            305,
+            84,
+            -6140
+          ]
+        },
+        {
+          "a": [
+            305,
+            84,
+            -6140
+          ],
+          "label": "courier:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            360,
+            84,
+            -6205
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "FV-06",
+      "id": "FV-06",
+      "anchors": [
+        {
+          "id": "gate_guards",
+          "p": [
+            -430,
+            92,
+            -6510
+          ]
+        },
+        {
+          "id": "west_lock",
+          "p": [
+            -390,
+            92,
+            -6600
+          ]
+        },
+        {
+          "id": "east_lock",
+          "p": [
+            -255,
+            92,
+            -6600
+          ]
+        },
+        {
+          "id": "king_golem",
+          "p": [
+            -290,
+            92,
+            -6680
+          ]
+        },
+        {
+          "id": "palace_road",
+          "p": [
+            -390,
+            92,
+            -6720
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -460,
+            91.94999694824219,
+            -6490
+          ],
+          "label": "gate_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 6,
+          "samples": 18,
+          "visualCandidates": [],
+          "b": [
+            -430,
+            92,
+            -6510
+          ]
+        },
+        {
+          "a": [
+            -430,
+            92,
+            -6510
+          ],
+          "label": "west_lock",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -390,
+            92,
+            -6600
+          ]
+        },
+        {
+          "a": [
+            -390,
+            92,
+            -6600
+          ],
+          "label": "east_lock",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 18,
+          "samples": 54,
+          "visualCandidates": [],
+          "b": [
+            -255,
+            92,
+            -6600
+          ]
+        },
+        {
+          "a": [
+            -255,
+            92,
+            -6600
+          ],
+          "label": "king_golem",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            -290,
+            92,
+            -6680
+          ]
+        },
+        {
+          "a": [
+            -290,
+            92,
+            -6680
+          ],
+          "label": "palace_road:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 15,
+          "samples": 45,
+          "visualCandidates": [],
+          "b": [
+            -390,
+            92,
+            -6720
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "FV-07",
+      "id": "FV-07",
+      "anchors": [
+        {
+          "id": "hall",
+          "p": [
+            -950,
+            100,
+            -6990
+          ]
+        },
+        {
+          "id": "mirror_west",
+          "p": [
+            -930,
+            100,
+            -7080
+          ]
+        },
+        {
+          "id": "mirror_east",
+          "p": [
+            -780,
+            100,
+            -7080
+          ]
+        },
+        {
+          "id": "queen",
+          "p": [
+            -825,
+            100,
+            -7145
+          ]
+        },
+        {
+          "id": "mirror_crown",
+          "p": [
+            -920,
+            100,
+            -7170
+          ]
+        },
+        {
+          "id": "reunion",
+          "p": [
+            -850,
+            100,
+            -7210
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -990,
+            99.94999694824219,
+            -6970
+          ],
+          "label": "hall",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 7,
+          "samples": 21,
+          "visualCandidates": [],
+          "b": [
+            -950,
+            100,
+            -6990
+          ]
+        },
+        {
+          "a": [
+            -950,
+            100,
+            -6990
+          ],
+          "label": "mirror_west",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -930,
+            100,
+            -7080
+          ]
+        },
+        {
+          "a": [
+            -930,
+            100,
+            -7080
+          ],
+          "label": "mirror_east",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 20,
+          "samples": 60,
+          "visualCandidates": [],
+          "b": [
+            -780,
+            100,
+            -7080
+          ]
+        },
+        {
+          "a": [
+            -780,
+            100,
+            -7080
+          ],
+          "label": "queen",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -825,
+            100,
+            -7145
+          ]
+        },
+        {
+          "a": [
+            -825,
+            100,
+            -7145
+          ],
+          "label": "mirror_crown",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -920,
+            100,
+            -7170
+          ]
+        },
+        {
+          "a": [
+            -920,
+            100,
+            -7170
+          ],
+          "label": "reunion",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            -850,
+            100,
+            -7210
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "FV-01",
+      "id": "FV-Q1",
+      "anchors": [
+        {
+          "id": "name_tag",
+          "p": [
+            -892,
+            54,
+            -4080
+          ]
+        },
+        {
+          "id": "luggage",
+          "p": [
+            -822,
+            54,
+            -4090
+          ]
+        },
+        {
+          "id": "report",
+          "p": [
+            -260,
+            60,
+            -4680
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            -822,
+            54,
+            -4090
+          ],
+          "to": "FV-02",
+          "label": "report",
+          "from": "FV-01",
+          "b": [
+            -260,
+            60,
+            -4680
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "a": [
+            -932,
+            53.94999694824219,
+            -4090
+          ],
+          "label": "name_tag",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 7,
+          "samples": 21,
+          "visualCandidates": [],
+          "b": [
+            -892,
+            54,
+            -4080
+          ]
+        },
+        {
+          "a": [
+            -892,
+            54,
+            -4080
+          ],
+          "label": "luggage",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            -822,
+            54,
+            -4090
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "FV-S1",
+      "id": "FV-Q2",
+      "anchors": [
+        {
+          "id": "inspect",
+          "p": [
+            -375,
+            68,
+            -5240
+          ]
+        },
+        {
+          "id": "guardian",
+          "p": [
+            -310,
+            68,
+            -5300
+          ]
+        },
+        {
+          "id": "report",
+          "p": [
+            -235,
+            68,
+            -5365
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -450,
+            67.94999694824219,
+            -5190
+          ],
+          "label": "inspect",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -375,
+            68,
+            -5240
+          ]
+        },
+        {
+          "a": [
+            -375,
+            68,
+            -5240
+          ],
+          "label": "guardian",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -310,
+            68,
+            -5300
+          ]
+        },
+        {
+          "a": [
+            -310,
+            68,
+            -5300
+          ],
+          "label": "report",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -235,
+            68,
+            -5365
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "FV-S2",
+      "id": "FV-Q3",
+      "anchors": [
+        {
+          "id": "inspect",
+          "p": [
+            1385,
+            76,
+            -5630
+          ]
+        },
+        {
+          "id": "guardian",
+          "p": [
+            1450,
+            76,
+            -5690
+          ]
+        },
+        {
+          "id": "report",
+          "p": [
+            1525,
+            76,
+            -5755
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            1310,
+            75.94999694824219,
+            -5580
+          ],
+          "label": "inspect",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            1385,
+            76,
+            -5630
+          ]
+        },
+        {
+          "a": [
+            1385,
+            76,
+            -5630
+          ],
+          "label": "guardian",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            1450,
+            76,
+            -5690
+          ]
+        },
+        {
+          "a": [
+            1450,
+            76,
+            -5690
+          ],
+          "label": "report",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            1525,
+            76,
+            -5755
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "FV-S3",
+      "id": "FV-Q4",
+      "anchors": [
+        {
+          "id": "inspect",
+          "p": [
+            -1535,
+            100,
+            -7070
+          ]
+        },
+        {
+          "id": "guardian",
+          "p": [
+            -1470,
+            100,
+            -7130
+          ]
+        },
+        {
+          "id": "report",
+          "p": [
+            -1395,
+            100,
+            -7195
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -1610,
+            99.94999694824219,
+            -7020
+          ],
+          "label": "inspect",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -1535,
+            100,
+            -7070
+          ]
+        },
+        {
+          "a": [
+            -1535,
+            100,
+            -7070
+          ],
+          "label": "guardian",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -1470,
+            100,
+            -7130
+          ]
+        },
+        {
+          "a": [
+            -1470,
+            100,
+            -7130
+          ],
+          "label": "report",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -1395,
+            100,
+            -7195
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "EC-01",
+      "id": "EC-01",
+      "anchors": [
+        {
+          "id": "ash_raiders",
+          "p": [
+            -960,
+            100,
+            -8010
+          ]
+        },
+        {
+          "id": "worker",
+          "p": [
+            -900,
+            100,
+            -8070
+          ]
+        },
+        {
+          "id": "gear",
+          "p": [
+            -830,
+            100,
+            -8110
+          ]
+        },
+        {
+          "id": "lift",
+          "p": [
+            -765,
+            100,
+            -8170
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -990,
+            99.94999694824219,
+            -7990
+          ],
+          "label": "ash_raiders",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 6,
+          "samples": 18,
+          "visualCandidates": [],
+          "b": [
+            -960,
+            100,
+            -8010
+          ]
+        },
+        {
+          "a": [
+            -960,
+            100,
+            -8010
+          ],
+          "label": "worker",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            -900,
+            100,
+            -8070
+          ]
+        },
+        {
+          "a": [
+            -900,
+            100,
+            -8070
+          ],
+          "label": "gear",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            -830,
+            100,
+            -8110
+          ]
+        },
+        {
+          "a": [
+            -830,
+            100,
+            -8110
+          ],
+          "label": "lift:operate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -765,
+            100,
+            -8170
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "EC-02",
+      "id": "EC-02",
+      "anchors": [
+        {
+          "id": "brann",
+          "p": [
+            -355,
+            108,
+            -8515
+          ]
+        },
+        {
+          "id": "tools",
+          "p": [
+            -260,
+            108,
+            -8565
+          ]
+        },
+        {
+          "id": "plan",
+          "p": [
+            -165,
+            108,
+            -8655
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -400,
+            107.94999694824219,
+            -8470
+          ],
+          "label": "brann:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 27,
+          "visualCandidates": [],
+          "b": [
+            -355,
+            108,
+            -8515
+          ]
+        },
+        {
+          "a": [
+            -355,
+            108,
+            -8515
+          ],
+          "label": "tools:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 15,
+          "samples": 45,
+          "visualCandidates": [],
+          "b": [
+            -260,
+            108,
+            -8565
+          ]
+        },
+        {
+          "a": [
+            -260,
+            108,
+            -8565
+          ],
+          "label": "plan:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 18,
+          "samples": 54,
+          "visualCandidates": [],
+          "b": [
+            -165,
+            108,
+            -8655
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "EC-03",
+      "id": "EC-03",
+      "anchors": [
+        {
+          "id": "mine_guards",
+          "p": [
+            210,
+            116,
+            -8970
+          ]
+        },
+        {
+          "id": "supports",
+          "p": [
+            260,
+            116,
+            -9035
+          ]
+        },
+        {
+          "id": "worm",
+          "p": [
+            345,
+            116,
+            -9075
+          ]
+        },
+        {
+          "id": "miners",
+          "p": [
+            400,
+            116,
+            -9125
+          ]
+        },
+        {
+          "id": "cooling_map",
+          "p": [
+            425,
+            116,
+            -9175
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            180,
+            115.94999694824219,
+            -8950
+          ],
+          "label": "mine_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 6,
+          "samples": 18,
+          "visualCandidates": [],
+          "b": [
+            210,
+            116,
+            -8970
+          ]
+        },
+        {
+          "a": [
+            210,
+            116,
+            -8970
+          ],
+          "label": "supports:operate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            260,
+            116,
+            -9035
+          ]
+        },
+        {
+          "a": [
+            260,
+            116,
+            -9035
+          ],
+          "label": "worm",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            345,
+            116,
+            -9075
+          ]
+        },
+        {
+          "a": [
+            345,
+            116,
+            -9075
+          ],
+          "label": "miners:supports",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 27,
+          "visualCandidates": [],
+          "b": [
+            340,
+            116,
+            -9135
+          ]
+        },
+        {
+          "a": [
+            340,
+            116,
+            -9135
+          ],
+          "label": "miners:exit",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 24,
+          "samples": 72,
+          "visualCandidates": [],
+          "b": [
+            430,
+            116,
+            -8975
+          ]
+        },
+        {
+          "a": [
+            430,
+            116,
+            -8975
+          ],
+          "label": "cooling_map",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 27,
+          "samples": 81,
+          "visualCandidates": [],
+          "b": [
+            425,
+            116,
+            -9175
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "EC-04",
+      "id": "EC-04",
+      "anchors": [
+        {
+          "id": "engineer",
+          "p": [
+            790,
+            124,
+            -9455
+          ]
+        },
+        {
+          "id": "canal_guards",
+          "p": [
+            840,
+            124,
+            -9505
+          ]
+        },
+        {
+          "id": "west_valve",
+          "p": [
+            830,
+            124,
+            -9555
+          ]
+        },
+        {
+          "id": "east_guards",
+          "p": [
+            955,
+            124,
+            -9560
+          ]
+        },
+        {
+          "id": "east_valve",
+          "p": [
+            985,
+            124,
+            -9610
+          ]
+        },
+        {
+          "id": "plans",
+          "p": [
+            900,
+            124,
+            -9660
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "visualCandidates": [],
+          "b": [
+            790,
+            124,
+            -9455
+          ],
+          "pathStatus": "Success",
+          "samples": 18,
+          "label": "engineer:confirmed",
+          "floorExamples": [],
+          "waypoints": 13,
+          "a": [
+            760,
+            123.94999694824219,
+            -9430
+          ],
+          "floorMisses": 0,
+          "directCollision": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-04.CoolantPipe"
+        },
+        {
+          "a": [
+            790,
+            124,
+            -9455
+          ],
+          "label": "canal_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 10,
+          "samples": 30,
+          "visualCandidates": [],
+          "b": [
+            840,
+            124,
+            -9505
+          ]
+        },
+        {
+          "a": [
+            840,
+            124,
+            -9505
+          ],
+          "label": "west_valve:operate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            830,
+            124,
+            -9555
+          ]
+        },
+        {
+          "a": [
+            830,
+            124,
+            -9555
+          ],
+          "label": "east_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 20,
+          "samples": 51,
+          "visualCandidates": [],
+          "b": [
+            955,
+            124,
+            -9560
+          ]
+        },
+        {
+          "a": [
+            955,
+            124,
+            -9560
+          ],
+          "label": "east_valve:operate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 27,
+          "visualCandidates": [],
+          "b": [
+            985,
+            124,
+            -9610
+          ]
+        },
+        {
+          "a": [
+            985,
+            124,
+            -9610
+          ],
+          "label": "plans",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            900,
+            124,
+            -9660
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "EC-05",
+      "id": "EC-05",
+      "anchors": [
+        {
+          "id": "vault_guards",
+          "p": [
+            195,
+            132,
+            -9935
+          ]
+        },
+        {
+          "id": "blueprint",
+          "p": [
+            250,
+            132,
+            -10000
+          ]
+        },
+        {
+          "id": "crew",
+          "p": [
+            325,
+            132,
+            -10050
+          ]
+        },
+        {
+          "id": "test_order",
+          "p": [
+            400,
+            132,
+            -10115
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            160,
+            131.95001220703125,
+            -9910
+          ],
+          "label": "vault_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 7,
+          "samples": 21,
+          "visualCandidates": [],
+          "b": [
+            195,
+            132,
+            -9935
+          ]
+        },
+        {
+          "a": [
+            195,
+            132,
+            -9935
+          ],
+          "label": "blueprint",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            250,
+            132,
+            -10000
+          ]
+        },
+        {
+          "a": [
+            250,
+            132,
+            -10000
+          ],
+          "label": "crew",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            325,
+            132,
+            -10050
+          ]
+        },
+        {
+          "a": [
+            325,
+            132,
+            -10050
+          ],
+          "label": "test_order",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 15,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            400,
+            132,
+            -10115
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "EC-06",
+      "id": "EC-06",
+      "anchors": [
+        {
+          "id": "outer_guards",
+          "p": [
+            -410,
+            140,
+            -10415
+          ]
+        },
+        {
+          "id": "intake",
+          "p": [
+            -375,
+            140,
+            -10500
+          ]
+        },
+        {
+          "id": "magma_golem",
+          "p": [
+            -270,
+            140,
+            -10545
+          ]
+        },
+        {
+          "id": "trial",
+          "p": [
+            -215,
+            140,
+            -10595
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -440,
+            139.95001220703125,
+            -10390
+          ],
+          "label": "outer_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 6,
+          "samples": 18,
+          "visualCandidates": [],
+          "b": [
+            -410,
+            140,
+            -10415
+          ]
+        },
+        {
+          "a": [
+            -410,
+            140,
+            -10415
+          ],
+          "label": "intake:operate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -375,
+            140,
+            -10500
+          ]
+        },
+        {
+          "a": [
+            -375,
+            140,
+            -10500
+          ],
+          "label": "magma_golem",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 16,
+          "samples": 48,
+          "visualCandidates": [],
+          "b": [
+            -270,
+            140,
+            -10545
+          ]
+        },
+        {
+          "a": [
+            -270,
+            140,
+            -10545
+          ],
+          "label": "trial:operate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -215,
+            140,
+            -10595
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "EC-07",
+      "id": "EC-07",
+      "anchors": [
+        {
+          "id": "furnace_guards",
+          "p": [
+            -990,
+            148,
+            -10890
+          ]
+        },
+        {
+          "id": "coolant_west",
+          "p": [
+            -965,
+            148,
+            -10970
+          ]
+        },
+        {
+          "id": "coolant_east",
+          "p": [
+            -800,
+            148,
+            -10970
+          ]
+        },
+        {
+          "id": "overlord",
+          "p": [
+            -860,
+            148,
+            -11045
+          ]
+        },
+        {
+          "id": "restart",
+          "p": [
+            -955,
+            148,
+            -11075
+          ]
+        },
+        {
+          "id": "courier",
+          "p": [
+            -810,
+            148,
+            -11110
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -1020,
+            147.95001220703125,
+            -10870
+          ],
+          "label": "furnace_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 6,
+          "samples": 18,
+          "visualCandidates": [],
+          "b": [
+            -990,
+            148,
+            -10890
+          ]
+        },
+        {
+          "a": [
+            -990,
+            148,
+            -10890
+          ],
+          "label": "coolant_west:operate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 12,
+          "samples": 36,
+          "visualCandidates": [],
+          "b": [
+            -965,
+            148,
+            -10970
+          ]
+        },
+        {
+          "a": [
+            -965,
+            148,
+            -10970
+          ],
+          "label": "coolant_east:operate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 22,
+          "samples": 66,
+          "visualCandidates": [],
+          "b": [
+            -800,
+            148,
+            -10970
+          ]
+        },
+        {
+          "a": [
+            -800,
+            148,
+            -10970
+          ],
+          "label": "overlord",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -860,
+            148,
+            -11045
+          ]
+        },
+        {
+          "a": [
+            -860,
+            148,
+            -11045
+          ],
+          "label": "restart:operate",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -955,
+            148,
+            -11075
+          ]
+        },
+        {
+          "a": [
+            -955,
+            148,
+            -11075
+          ],
+          "label": "courier:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 20,
+          "samples": 60,
+          "visualCandidates": [],
+          "b": [
+            -810,
+            148,
+            -11110
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "EC-01",
+      "id": "EC-Q1",
+      "anchors": [
+        {
+          "id": "tool_tag",
+          "p": [
+            -940,
+            100,
+            -7980
+          ]
+        },
+        {
+          "id": "safety_record",
+          "p": [
+            -880,
+            100,
+            -7990
+          ]
+        },
+        {
+          "id": "report",
+          "p": [
+            -260,
+            108,
+            -8565
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            -880,
+            100,
+            -7990
+          ],
+          "to": "EC-02",
+          "label": "report",
+          "from": "EC-01",
+          "b": [
+            -260,
+            108,
+            -8565
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "a": [
+            -990,
+            99.94999694824219,
+            -7990
+          ],
+          "label": "tool_tag",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 8,
+          "samples": 24,
+          "visualCandidates": [],
+          "b": [
+            -940,
+            100,
+            -7980
+          ]
+        },
+        {
+          "a": [
+            -940,
+            100,
+            -7980
+          ],
+          "label": "safety_record",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 9,
+          "samples": 27,
+          "visualCandidates": [],
+          "b": [
+            -880,
+            100,
+            -7990
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "EC-S1",
+      "id": "EC-Q2",
+      "anchors": [
+        {
+          "id": "inspect",
+          "p": [
+            -405,
+            116,
+            -9140
+          ]
+        },
+        {
+          "id": "boss",
+          "p": [
+            -340,
+            116,
+            -9200
+          ]
+        },
+        {
+          "id": "secure",
+          "p": [
+            -265,
+            116,
+            -9265
+          ]
+        },
+        {
+          "id": "report",
+          "p": [
+            -260,
+            108,
+            -8565
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            -265,
+            116,
+            -9265
+          ],
+          "to": "EC-02",
+          "label": "report",
+          "from": "EC-S1",
+          "b": [
+            -260,
+            108,
+            -8565
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "a": [
+            -480,
+            115.94999694824219,
+            -9090
+          ],
+          "label": "inspect",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -405,
+            116,
+            -9140
+          ]
+        },
+        {
+          "a": [
+            -405,
+            116,
+            -9140
+          ],
+          "label": "boss",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -340,
+            116,
+            -9200
+          ]
+        },
+        {
+          "a": [
+            -340,
+            116,
+            -9200
+          ],
+          "label": "secure",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 15,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -265,
+            116,
+            -9265
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "EC-S2",
+      "id": "EC-Q3",
+      "anchors": [
+        {
+          "id": "inspect",
+          "p": [
+            1435,
+            124,
+            -9500
+          ]
+        },
+        {
+          "id": "boss",
+          "p": [
+            1500,
+            124,
+            -9560
+          ]
+        },
+        {
+          "id": "secure",
+          "p": [
+            1575,
+            124,
+            -9625
+          ]
+        },
+        {
+          "id": "report",
+          "p": [
+            -260,
+            108,
+            -8565
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            1575,
+            124,
+            -9625
+          ],
+          "to": "EC-02",
+          "label": "report",
+          "from": "EC-S2",
+          "b": [
+            -260,
+            108,
+            -8565
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "a": [
+            1360,
+            123.94999694824219,
+            -9450
+          ],
+          "label": "inspect",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            1435,
+            124,
+            -9500
+          ]
+        },
+        {
+          "a": [
+            1435,
+            124,
+            -9500
+          ],
+          "label": "boss",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            1500,
+            124,
+            -9560
+          ]
+        },
+        {
+          "a": [
+            1500,
+            124,
+            -9560
+          ],
+          "label": "secure",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            1575,
+            124,
+            -9625
+          ]
+        }
+      ]
+    },
+    {
+      "side": true,
+      "zone": "EC-S3",
+      "id": "EC-Q4",
+      "anchors": [
+        {
+          "id": "inspect",
+          "p": [
+            -1585,
+            148,
+            -10970
+          ]
+        },
+        {
+          "id": "boss",
+          "p": [
+            -1520,
+            148,
+            -11030
+          ]
+        },
+        {
+          "id": "secure",
+          "p": [
+            -1445,
+            148,
+            -11095
+          ]
+        },
+        {
+          "id": "report",
+          "p": [
+            -260,
+            108,
+            -8565
+          ]
+        }
+      ],
+      "crossZone": [
+        {
+          "a": [
+            -1445,
+            148,
+            -11095
+          ],
+          "to": "EC-02",
+          "label": "report",
+          "from": "EC-S3",
+          "b": [
+            -260,
+            108,
+            -8565
+          ]
+        }
+      ],
+      "segments": [
+        {
+          "a": [
+            -1660,
+            147.95001220703125,
+            -10920
+          ],
+          "label": "inspect",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -1585,
+            148,
+            -10970
+          ]
+        },
+        {
+          "a": [
+            -1585,
+            148,
+            -10970
+          ],
+          "label": "boss",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 13,
+          "samples": 39,
+          "visualCandidates": [],
+          "b": [
+            -1520,
+            148,
+            -11030
+          ]
+        },
+        {
+          "a": [
+            -1520,
+            148,
+            -11030
+          ],
+          "label": "secure",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 42,
+          "visualCandidates": [],
+          "b": [
+            -1445,
+            148,
+            -11095
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "HG-01",
+      "id": "HG-01",
+      "anchors": [
+        {
+          "id": "rook",
+          "p": [
+            -765,
+            184,
+            -15190
+          ]
+        },
+        {
+          "id": "mist",
+          "p": [
+            -635,
+            184,
+            -15238
+          ]
+        },
+        {
+          "id": "lantern_guards",
+          "p": [
+            -765,
+            184,
+            -15286
+          ]
+        },
+        {
+          "id": "shelter",
+          "p": [
+            -635,
+            184,
+            -15334
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -840,
+            183.95001220703125,
+            -15190
+          ],
+          "label": "rook:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -765,
+            184,
+            -15190
+          ]
+        },
+        {
+          "a": [
+            -765,
+            184,
+            -15190
+          ],
+          "label": "mist",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -635,
+            184,
+            -15238
+          ]
+        },
+        {
+          "a": [
+            -635,
+            184,
+            -15238
+          ],
+          "label": "lantern_guards",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -765,
+            184,
+            -15286
+          ]
+        },
+        {
+          "a": [
+            -765,
+            184,
+            -15286
+          ],
+          "label": "shelter:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -635,
+            184,
+            -15334
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "HG-02",
+      "id": "HG-02",
+      "anchors": [
+        {
+          "id": "garrick",
+          "p": [
+            -165,
+            188,
+            -15690
+          ]
+        },
+        {
+          "id": "eryn",
+          "p": [
+            -35,
+            188,
+            -15738
+          ]
+        },
+        {
+          "id": "brann",
+          "p": [
+            -165,
+            188,
+            -15786
+          ]
+        },
+        {
+          "id": "elowen",
+          "p": [
+            -35,
+            188,
+            -15834
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -240,
+            187.95001220703125,
+            -15690
+          ],
+          "label": "garrick:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 14,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -165,
+            188,
+            -15690
+          ]
+        },
+        {
+          "a": [
+            -165,
+            188,
+            -15690
+          ],
+          "label": "eryn:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -35,
+            188,
+            -15738
+          ]
+        },
+        {
+          "a": [
+            -35,
+            188,
+            -15738
+          ],
+          "label": "brann:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -165,
+            188,
+            -15786
+          ]
+        },
+        {
+          "a": [
+            -165,
+            188,
+            -15786
+          ],
+          "label": "elowen:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -35,
+            188,
+            -15834
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "HG-03",
+      "id": "HG-03",
+      "anchors": [
+        {
+          "id": "lumi",
+          "p": [
+            435,
+            192,
+            -16190
+          ]
+        },
+        {
+          "id": "crypt",
+          "p": [
+            565,
+            192,
+            -16238
+          ]
+        },
+        {
+          "id": "mummy",
+          "p": [
+            435,
+            192,
+            -16286
+          ]
+        },
+        {
+          "id": "passage",
+          "p": [
+            565,
+            192,
+            -16334
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            360,
+            191.95001220703125,
+            -16190
+          ],
+          "label": "lumi:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            435,
+            192,
+            -16190
+          ]
+        },
+        {
+          "a": [
+            435,
+            192,
+            -16190
+          ],
+          "label": "crypt",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            565,
+            192,
+            -16238
+          ]
+        },
+        {
+          "a": [
+            565,
+            192,
+            -16238
+          ],
+          "label": "mummy",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            435,
+            192,
+            -16286
+          ]
+        },
+        {
+          "a": [
+            435,
+            192,
+            -16286
+          ],
+          "label": "passage:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            565,
+            192,
+            -16334
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "HG-04",
+      "id": "HG-04",
+      "anchors": [
+        {
+          "id": "wall",
+          "p": [
+            1035,
+            196,
+            -16690
+          ]
+        },
+        {
+          "id": "winch",
+          "p": [
+            1165,
+            196,
+            -16738
+          ]
+        },
+        {
+          "id": "commander",
+          "p": [
+            1035,
+            196,
+            -16786
+          ]
+        },
+        {
+          "id": "allies",
+          "p": [
+            1165,
+            196,
+            -16834
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            960,
+            195.95001220703125,
+            -16690
+          ],
+          "label": "wall",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            1035,
+            196,
+            -16690
+          ]
+        },
+        {
+          "a": [
+            1035,
+            196,
+            -16690
+          ],
+          "label": "winch:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            1165,
+            196,
+            -16738
+          ]
+        },
+        {
+          "a": [
+            1165,
+            196,
+            -16738
+          ],
+          "label": "commander",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            1035,
+            196,
+            -16786
+          ]
+        },
+        {
+          "a": [
+            1035,
+            196,
+            -16786
+          ],
+          "label": "allies:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            1165,
+            196,
+            -16834
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "HG-05",
+      "id": "HG-05",
+      "anchors": [
+        {
+          "id": "hellhounds",
+          "p": [
+            435,
+            200,
+            -17190
+          ]
+        },
+        {
+          "id": "west",
+          "p": [
+            565,
+            200,
+            -17238
+          ]
+        },
+        {
+          "id": "lich",
+          "p": [
+            435,
+            200,
+            -17286
+          ]
+        },
+        {
+          "id": "east",
+          "p": [
+            565,
+            200,
+            -17334
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            360,
+            199.95001220703125,
+            -17190
+          ],
+          "label": "hellhounds",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            435,
+            200,
+            -17190
+          ]
+        },
+        {
+          "a": [
+            435,
+            200,
+            -17190
+          ],
+          "label": "west:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            565,
+            200,
+            -17238
+          ]
+        },
+        {
+          "a": [
+            565,
+            200,
+            -17238
+          ],
+          "label": "lich",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            435,
+            200,
+            -17286
+          ]
+        },
+        {
+          "a": [
+            435,
+            200,
+            -17286
+          ],
+          "label": "east:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            565,
+            200,
+            -17334
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "HG-06",
+      "id": "HG-06",
+      "anchors": [
+        {
+          "id": "knights",
+          "p": [
+            -165,
+            204,
+            -17690
+          ]
+        },
+        {
+          "id": "sovereign",
+          "p": [
+            -35,
+            204,
+            -17738
+          ]
+        },
+        {
+          "id": "seal",
+          "p": [
+            -165,
+            204,
+            -17786
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -240,
+            203.95001220703125,
+            -17690
+          ],
+          "label": "knights",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -165,
+            204,
+            -17690
+          ]
+        },
+        {
+          "a": [
+            -165,
+            204,
+            -17690
+          ],
+          "label": "sovereign",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -35,
+            204,
+            -17738
+          ]
+        },
+        {
+          "a": [
+            -35,
+            204,
+            -17738
+          ],
+          "label": "seal:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -165,
+            204,
+            -17786
+          ]
+        }
+      ]
+    },
+    {
+      "side": false,
+      "zone": "HG-07",
+      "id": "HG-07",
+      "anchors": [
+        {
+          "id": "guard",
+          "p": [
+            -765,
+            208,
+            -18190
+          ]
+        },
+        {
+          "id": "veyr",
+          "p": [
+            -635,
+            208,
+            -18238
+          ]
+        },
+        {
+          "id": "crownheart",
+          "p": [
+            -765,
+            208,
+            -18286
+          ]
+        },
+        {
+          "id": "portal",
+          "p": [
+            -635,
+            208,
+            -18334
+          ]
+        }
+      ],
+      "crossZone": [],
+      "segments": [
+        {
+          "a": [
+            -840,
+            207.95001220703125,
+            -18190
+          ],
+          "label": "guard",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 11,
+          "samples": 33,
+          "visualCandidates": [],
+          "b": [
+            -765,
+            208,
+            -18190
+          ]
+        },
+        {
+          "a": [
+            -765,
+            208,
+            -18190
+          ],
+          "label": "veyr",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -635,
+            208,
+            -18238
+          ]
+        },
+        {
+          "a": [
+            -635,
+            208,
+            -18238
+          ],
+          "label": "crownheart:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -765,
+            208,
+            -18286
+          ]
+        },
+        {
+          "a": [
+            -765,
+            208,
+            -18286
+          ],
+          "label": "portal:confirmed",
+          "pathStatus": "Success",
+          "floorMisses": 0,
+          "floorExamples": [],
+          "waypoints": 19,
+          "samples": 57,
+          "visualCandidates": [],
+          "b": [
+            -635,
+            208,
+            -18334
+          ]
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "kind": "InterEpicTransfer",
+      "to": "GW-01",
+      "from": "DW-07"
+    },
+    {
+      "kind": "InterEpicTransfer",
+      "to": "FV-01",
+      "from": "GW-07"
+    },
+    {
+      "kind": "InterEpicTransfer",
+      "to": "EC-01",
+      "from": "FV-07"
+    },
+    {
+      "kind": "InterEpicTransfer",
+      "to": "HG-01",
+      "from": "EC-07"
+    }
+  ],
+  "edges": [
+    {
+      "a": [
+        -1122,
+        0,
+        -1029.642822265625
+      ],
+      "label": "DW-01 -> DW-02",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 4,
+      "samples": 15,
+      "visualCandidates": [],
+      "b": [
+        -1100,
+        6,
+        -1038.2857666015625
+      ]
+    },
+    {
+      "a": [
+        -577.7391357421875,
+        6,
+        -1362
+      ],
+      "label": "DW-02 -> DW-03",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 6,
+      "samples": 18,
+      "visualCandidates": [],
+      "b": [
+        -550,
+        18,
+        -1385.629638671875
+      ]
+    },
+    {
+      "a": [
+        66,
+        18,
+        -1738.5882568359375
+      ],
+      "label": "DW-03 -> DW-04",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 22,
+      "samples": 66,
+      "visualCandidates": [],
+      "b": [
+        220,
+        30,
+        -1783.88232421875
+      ]
+    },
+    {
+      "a": [
+        633.741943359375,
+        30,
+        -2132
+      ],
+      "label": "DW-04 -> DW-05",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 21,
+      "samples": 60,
+      "visualCandidates": [
+        {
+          "at": [
+            643.5878295898438,
+            31.6842098236084,
+            -2161.53173828125
+          ],
+          "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_1.DW-04.AuthoredVista.FallenBelfry.ArcadedWing.WingWall",
+          "mesh": false,
+          "size": [
+            110,
+            29,
+            8
+          ]
+        },
+        {
+          "at": [
+            647.1884765625,
+            31.6842098236084,
+            -2159.78955078125
+          ],
+          "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_1.DW-04.AuthoredVista.FallenBelfry.ArcadedWing.ButtressShaft",
+          "mesh": false,
+          "size": [
+            4,
+            34,
+            9
+          ]
+        }
+      ],
+      "b": [
+        697.6129150390625,
+        38,
+        -2264
+      ]
+    },
+    {
+      "a": [
+        506,
+        38,
+        -2738.571533203125
+      ],
+      "label": "DW-05 -> DW-06",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 11,
+      "samples": 33,
+      "visualCandidates": [],
+      "b": [
+        440,
+        46,
+        -2776.28564453125
+      ]
+    },
+    {
+      "a": [
+        -308,
+        46,
+        -3066.718017578125
+      ],
+      "label": "DW-06 -> DW-07",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 16,
+      "samples": 48,
+      "visualCandidates": [],
+      "b": [
+        -418,
+        54,
+        -3089.281982421875
+      ]
+    },
+    null,
+    {
+      "a": [
+        -480,
+        156,
+        -11783.3330078125
+      ],
+      "label": "GW-01 -> GW-02",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 28,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        -320,
+        160,
+        -11916.6669921875
+      ]
+    },
+    {
+      "a": [
+        120,
+        160,
+        -12283.3330078125
+      ],
+      "label": "GW-02 -> GW-03",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 28,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        280,
+        164,
+        -12416.6669921875
+      ]
+    },
+    {
+      "a": [
+        720,
+        164,
+        -12783.3330078125
+      ],
+      "label": "GW-03 -> GW-04",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 28,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        880,
+        168,
+        -12916.6669921875
+      ]
+    },
+    {
+      "a": [
+        880,
+        168,
+        -13283.3330078125
+      ],
+      "label": "GW-04 -> GW-05",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 28,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        720,
+        172,
+        -13416.6669921875
+      ]
+    },
+    {
+      "a": [
+        280,
+        172,
+        -13783.3330078125
+      ],
+      "label": "GW-05 -> GW-06",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 28,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        120,
+        176,
+        -13916.6669921875
+      ]
+    },
+    {
+      "a": [
+        -320,
+        176,
+        -14283.3330078125
+      ],
+      "label": "GW-06 -> GW-07",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 28,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        -480,
+        180,
+        -14416.6669921875
+      ]
+    },
+    null,
+    {
+      "a": [
+        -582,
+        54,
+        -4389.4736328125
+      ],
+      "label": "FV-01 -> FV-02",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 20,
+      "samples": 60,
+      "visualCandidates": [],
+      "b": [
+        -470,
+        60,
+        -4490.5263671875
+      ]
+    },
+    {
+      "a": [
+        -50,
+        60,
+        -4853.79296875
+      ],
+      "label": "FV-02 -> FV-03",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 27,
+      "samples": 81,
+      "visualCandidates": [],
+      "b": [
+        110,
+        68,
+        -4986.20703125
+      ]
+    },
+    {
+      "a": [
+        529.7916870117188,
+        68,
+        -5350
+      ],
+      "label": "FV-03 -> FV-04",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 20,
+      "samples": 60,
+      "visualCandidates": [],
+      "b": [
+        640.2083129882812,
+        76,
+        -5450
+      ]
+    },
+    {
+      "a": [
+        640,
+        76,
+        -5810.84765625
+      ],
+      "label": "FV-04 -> FV-05",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 29,
+      "samples": 87,
+      "visualCandidates": [],
+      "b": [
+        470,
+        84,
+        -5949.15234375
+      ]
+    },
+    {
+      "a": [
+        50,
+        84,
+        -6293.79296875
+      ],
+      "label": "FV-05 -> FV-06",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 28,
+      "samples": 81,
+      "visualCandidates": [],
+      "b": [
+        -110,
+        92,
+        -6426.20703125
+      ]
+    },
+    {
+      "a": [
+        -529.7916870117188,
+        92,
+        -6790
+      ],
+      "label": "FV-06 -> FV-07",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 20,
+      "samples": 60,
+      "visualCandidates": [],
+      "b": [
+        -640.2083129882812,
+        100,
+        -6890
+      ]
+    },
+    null,
+    {
+      "a": [
+        -630,
+        100,
+        -8278.9833984375
+      ],
+      "label": "EC-01 -> EC-02",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 26,
+      "samples": 78,
+      "visualCandidates": [],
+      "b": [
+        -480,
+        108,
+        -8401.0166015625
+      ]
+    },
+    {
+      "a": [
+        -40,
+        108,
+        -8762.0693359375
+      ],
+      "label": "EC-02 -> EC-03",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 24,
+      "samples": 72,
+      "visualCandidates": [],
+      "b": [
+        100,
+        116,
+        -8877.9306640625
+      ]
+    },
+    {
+      "a": [
+        540,
+        116,
+        -9242.0693359375
+      ],
+      "label": "EC-03 -> EC-04",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 24,
+      "samples": 72,
+      "visualCandidates": [],
+      "b": [
+        680,
+        124,
+        -9357.9306640625
+      ]
+    },
+    {
+      "a": [
+        680,
+        124,
+        -9716
+      ],
+      "label": "EC-04 -> EC-05",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 28,
+      "samples": 81,
+      "visualCandidates": [],
+      "b": [
+        520,
+        132,
+        -9844
+      ]
+    },
+    {
+      "a": [
+        80,
+        132,
+        -10196
+      ],
+      "label": "EC-05 -> EC-06",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 27,
+      "samples": 81,
+      "visualCandidates": [],
+      "b": [
+        -80,
+        140,
+        -10324
+      ]
+    },
+    {
+      "a": [
+        -520,
+        140,
+        -10682.0693359375
+      ],
+      "label": "EC-06 -> EC-07",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 24,
+      "samples": 72,
+      "visualCandidates": [],
+      "b": [
+        -660,
+        148,
+        -10797.9306640625
+      ]
+    },
+    null,
+    {
+      "a": [
+        -480,
+        184,
+        -15483.3330078125
+      ],
+      "label": "HG-01 -> HG-02",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 30,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        -320,
+        188,
+        -15616.6669921875
+      ]
+    },
+    {
+      "a": [
+        120,
+        188,
+        -15983.3330078125
+      ],
+      "label": "HG-02 -> HG-03",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 28,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        280,
+        192,
+        -16116.6669921875
+      ]
+    },
+    {
+      "a": [
+        720,
+        192,
+        -16483.333984375
+      ],
+      "label": "HG-03 -> HG-04",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 29,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        880,
+        196,
+        -16616.666015625
+      ]
+    },
+    {
+      "a": [
+        880,
+        196,
+        -16983.333984375
+      ],
+      "label": "HG-04 -> HG-05",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 30,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        720,
+        200,
+        -17116.666015625
+      ]
+    },
+    {
+      "a": [
+        280,
+        200,
+        -17483.333984375
+      ],
+      "label": "HG-05 -> HG-06",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 29,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        120,
+        204,
+        -17616.666015625
+      ]
+    },
+    {
+      "a": [
+        -320,
+        204,
+        -17983.333984375
+      ],
+      "label": "HG-06 -> HG-07",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 33,
+      "samples": 84,
+      "visualCandidates": [],
+      "b": [
+        -480,
+        208,
+        -18116.666015625
+      ]
+    },
+    {
+      "a": [
+        110,
+        68,
+        -5206.66650390625
+      ],
+      "label": "FV-03 -> FV-S1",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 35,
+      "samples": 105,
+      "visualCandidates": [],
+      "b": [
+        -150,
+        68,
+        -5264.4443359375
+      ]
+    },
+    {
+      "a": [
+        1060,
+        76,
+        -5657.5
+      ],
+      "label": "FV-04 -> FV-S2",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 30,
+      "samples": 90,
+      "visualCandidates": [],
+      "b": [
+        1290,
+        76,
+        -5676.66650390625
+      ]
+    },
+    {
+      "a": [
+        -1060,
+        100,
+        -7096.935546875
+      ],
+      "label": "FV-07 -> FV-S3",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 33,
+      "samples": 99,
+      "visualCandidates": [],
+      "b": [
+        -1310,
+        100,
+        -7117.0966796875
+      ]
+    },
+    {
+      "a": [
+        100,
+        116,
+        -9106.6669921875
+      ],
+      "label": "EC-03 -> EC-S1",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 38,
+      "samples": 111,
+      "visualCandidates": [],
+      "b": [
+        -180,
+        116,
+        -9166.060546875
+      ]
+    },
+    {
+      "a": [
+        1120,
+        124,
+        -9547.3330078125
+      ],
+      "label": "EC-04 -> EC-S2",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 29,
+      "samples": 87,
+      "visualCandidates": [],
+      "b": [
+        1340,
+        124,
+        -9554.6669921875
+      ]
+    },
+    {
+      "a": [
+        -1100,
+        148,
+        -10997.1875
+      ],
+      "label": "EC-07 -> EC-S3",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 35,
+      "samples": 102,
+      "visualCandidates": [],
+      "b": [
+        -1360,
+        148,
+        -11017.5
+      ]
+    },
+    {
+      "a": [
+        66,
+        18,
+        -1448.7059326171875
+      ],
+      "label": "DW-03 -> DW-S1",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 42,
+      "samples": 123,
+      "visualCandidates": [],
+      "b": [
+        330,
+        18,
+        -1277.88232421875
+      ]
+    },
+    {
+      "a": [
+        -550,
+        18,
+        -1682.22216796875
+      ],
+      "label": "DW-03 -> DW-S2",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 40,
+      "samples": 120,
+      "visualCandidates": [
+        {
+          "at": [
+            -550.4417114257812,
+            18,
+            -1678.24658203125
+          ],
+          "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_1.DW-03.AuthoredVista.TDWaterfallGorge.WaterfallGorge_JadeWater_0",
+          "mesh": true,
+          "size": [
+            101.0137939453125,
+            65,
+            155
+          ]
+        },
+        {
+          "at": [
+            -582.0314331054688,
+            18,
+            -1681.756591796875
+          ],
+          "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_1.DW-03.AuthoredVista.TDWaterfallGorge.WaterfallGorge_Sandstone0_0",
+          "mesh": true,
+          "size": [
+            70.51773071289062,
+            44.46448516845703,
+            63.12058639526367
+          ]
+        },
+        {
+          "at": [
+            -582.0314331054688,
+            18,
+            -1681.756591796875
+          ],
+          "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_1.DW-03.AuthoredVista.TDWaterfallGorge.WaterfallGorge_Sandstone1_0",
+          "mesh": true,
+          "size": [
+            71.85295867919922,
+            43.6446533203125,
+            62.53059768676758
+          ]
+        },
+        {
+          "at": [
+            -582.0314331054688,
+            18,
+            -1681.756591796875
+          ],
+          "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_1.DW-03.AuthoredVista.TDWaterfallGorge.WaterfallGorge_Sandstone2_0",
+          "mesh": true,
+          "size": [
+            71.09294128417969,
+            44.584922790527344,
+            62.79475402832031
+          ]
+        },
+        {
+          "at": [
+            -582.0314331054688,
+            18,
+            -1681.756591796875
+          ],
+          "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_1.DW-03.AuthoredVista.TDWaterfallGorge.WaterfallGorge_Sandstone3_0",
+          "mesh": true,
+          "size": [
+            71.85295867919922,
+            44.292442321777344,
+            61.28990173339844
+          ]
+        },
+        {
+          "at": [
+            -582.0314331054688,
+            18,
+            -1681.756591796875
+          ],
+          "path": "Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_1.DW-03.AuthoredVista.TDWaterfallGorge.WaterfallGorge_Sandstone4_0",
+          "mesh": true,
+          "size": [
+            69.10065460205078,
+            44.197017669677734,
+            63.50233459472656
+          ]
+        }
+      ],
+      "b": [
+        -858,
+        18,
+        -1716.4444580078125
+      ]
+    },
+    {
+      "a": [
+        1122,
+        38,
+        -2836
+      ],
+      "label": "DW-05 -> DW-S3",
+      "pathStatus": "Success",
+      "floorMisses": 0,
+      "floorExamples": [],
+      "waypoints": 21,
+      "samples": 63,
+      "visualCandidates": [],
+      "b": [
+        1232,
+        38,
+        -2946
+      ]
+    }
+  ]
+}

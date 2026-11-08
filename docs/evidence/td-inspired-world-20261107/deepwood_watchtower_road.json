@@ -1,0 +1,26 @@
+{
+  "paths": [
+    {
+      "step": "leaf",
+      "status": "Success"
+    },
+    {
+      "step": "rain",
+      "status": "Success"
+    },
+    {
+      "step": "root",
+      "status": "Success"
+    },
+    {
+      "step": "counterweight",
+      "status": "Success"
+    },
+    {
+      "step": "lantern",
+      "status": "Success"
+    }
+  ],
+  "pass": true,
+  "checks": 573
+}

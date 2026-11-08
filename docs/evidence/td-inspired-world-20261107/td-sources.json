@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-07",
+  "scope": "TD read-only; reuse pinned models; no TD edits or uploads",
+  "sources": [
+    {
+      "path": "../throne-defense/assets/models/maps-mesh-v2/runtime.rbxmx",
+      "sha256": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39"
+    },
+    {
+      "path": "../throne-defense/assets/models/maps-quality-v2/forest-kit-v3/runtime.rbxmx",
+      "sha256": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5"
+    },
+    {
+      "path": "../throne-defense/src/Server/VisualFactoryMapThemes.lua",
+      "sha256": "e9ab91505d9adc5fab0d6e6e7a12e0000dec7134df89d4efb856fbc8070a372a"
+    },
+    {
+      "path": "../throne-defense/src/Server/VisualFactoryMapMeshes.lua",
+      "sha256": "cc8398a9c4337c11b08aa61f117c9de91c1c5db3c5687718b53f1a41f3b630b2"
+    },
+    {
+      "path": "../throne-defense/src/Server/VisualFactoryMapRelief.lua",
+      "sha256": "74ffc4c566d441c3d10230b75c044cd3a9d306d8781e58c324b9f21c08fd8b3f"
+    },
+    {
+      "path": "../throne-defense/src/Server/VisualFactoryMapConcept.lua",
+      "sha256": "31e0b2399390b341f887fda306efbe8631751e8fef7f4cc5f38e75f9344e8526"
+    },
+    {
+      "path": "../throne-defense/src/Shared/MapRouteData.lua",
+      "sha256": "63b4b4138e580520ab489e6c2e5a01004d744f82959776bb4bc72dfcc0a7e920"
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/maps.rbxmx",
+      "sha256": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39",
+      "matchesCurrentTD": true
+    },
+    {
+      "path": "assets/shared/td-deepwood-environment/forest-kit.rbxmx",
+      "sha256": "d08038b65d548abf742d5517b46265c3d2e4688f42f04170341c639d3a0278d5",
+      "matchesCurrentTD": true
+    }
+  ],
+  "sourceReferences": [
+    "../throne-defense/docs/evidence/maps-battle-target-v1/forest-final.png",
+    "../throne-defense/docs/evidence/maps-battle-target-v1/snow-final.png",
+    "../throne-defense/docs/evidence/maps-battle-target-v1/volcano-final.png",
+    "../throne-defense/docs/evidence/maps-battle-target-v1/cemetery-final.png",
+    "../throne-defense/docs/td290-map-sculpt-direction.md"
+  ]
+}

@@ -25,6 +25,11 @@ for epic=1,5 do
  local atlas=Canvas.create(frame,Scope.ids(epic),false);atlas.update({journal=journal});task.wait()
  for id,row in pairs(atlas.rows)do
   check(row.landmark.Text==Survey.zones[id].landmark,'real landmark caption '..id)
+  local anchor=Survey.zones[id].landmarkAnchor
+  if anchor then
+   local at=atlas.project(anchor[1],anchor[2])
+   check((Vector2.new(row.landmark.Position.X.Scale,row.landmark.Position.Y.Scale)-at).Magnitude<.00001,'landmark at actual TD hero mesh '..id)
+  end
   check(row.checkpoint.Visible,'discovered real spawn '..id)
   local p=atlas.project(table.unpack({Survey.zones[id].spawn[1],Survey.zones[id].spawn[2]}))
   check((Vector2.new(row.checkpoint.Position.X.Scale,row.checkpoint.Position.Y.Scale)-p).Magnitude<.00001,'checkpoint at actual spawn '..id)

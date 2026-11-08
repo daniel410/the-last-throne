@@ -77,7 +77,8 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   local chapter=Content.byId[id];local number=chapter and not chapter.side and chapter.number
   local badge=label('StoryOrder',number and string.format(Text.Main,number) or Text.Side,center-Vector2.new(0,size.Y*.37),UDim2.fromOffset(100,16),9,Theme.color.gold)
   badge.Visible=not compact
-  local landmark=label('Landmark',survey.landmark,center-Vector2.new(0,size.Y*.27),UDim2.fromOffset(140,26),10,Theme.color.silver,7);landmark.Visible=not compact;landmark.TextWrapped=true
+  local landmarkAt=survey.landmarkAnchor and point(survey.landmarkAnchor[1],survey.landmarkAnchor[2])or center-Vector2.new(0,size.Y*.27)
+  local landmark=label('Landmark',survey.landmark,landmarkAt,UDim2.fromOffset(140,26),10,Theme.color.silver,7);landmark.Visible=not compact;landmark.TextWrapped=true
   local checkpoint=label('Checkpoint','◇',point(survey.spawn[1],survey.spawn[2]),UDim2.fromOffset(18,18),17,Theme.color.silver,10);checkpoint.Visible=false
   local hit
   if not compact then

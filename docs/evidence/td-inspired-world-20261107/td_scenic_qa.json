@@ -1,0 +1,229 @@
+{
+  "zones": {
+    "GW-03": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Root Refuge"
+    },
+    "EC-S1": {
+      "models": 2,
+      "hero": 1,
+      "composition": "Raider Spires"
+    },
+    "DW-03": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Elder Sanctuary"
+    },
+    "FV-05": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Frozen Procession"
+    },
+    "DW-01": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Trailhead Grove"
+    },
+    "FV-S2": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Blue Lake Shelf"
+    },
+    "GW-07": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Web Queen Canopy"
+    },
+    "EC-03": {
+      "models": 2,
+      "hero": 1,
+      "composition": "Fractured Mine"
+    },
+    "EC-S2": {
+      "models": 1,
+      "hero": 1,
+      "composition": "Shaman Rift"
+    },
+    "GW-01": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Lantern Grove"
+    },
+    "FV-02": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Sheltered Hearth"
+    },
+    "FV-S3": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Ancient Glacier Watch"
+    },
+    "FV-04": {
+      "models": 5,
+      "hero": 1,
+      "composition": "Archive Ice Shelf"
+    },
+    "HG-03": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Garden of Names"
+    },
+    "HG-02": {
+      "models": 2,
+      "hero": 1,
+      "composition": "Keepers Chapel"
+    },
+    "GW-05": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Venomcoil Hollow"
+    },
+    "DW-S3": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Battlefield Ridge"
+    },
+    "EC-07": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Great Furnace Crown"
+    },
+    "DW-05": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Occupied Keep"
+    },
+    "FV-03": {
+      "models": 5,
+      "hero": 1,
+      "composition": "Split Glacier Gorge"
+    },
+    "FV-06": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Sentinel Ice Gate"
+    },
+    "EC-04": {
+      "models": 2,
+      "hero": 1,
+      "composition": "Cooling Rift"
+    },
+    "FV-01": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Blizzard Ice Gate"
+    },
+    "EC-S3": {
+      "models": 2,
+      "hero": 1,
+      "composition": "Titan Caldera Rim"
+    },
+    "HG-06": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Royal Tomb Spire"
+    },
+    "HG-07": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Last Throne Ruin"
+    },
+    "EC-06": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Heatworks Spires"
+    },
+    "DW-S2": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Waterfall Quarry"
+    },
+    "EC-01": {
+      "models": 2,
+      "hero": 1,
+      "composition": "Ash Spire Gate"
+    },
+    "EC-02": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Foundry Skyline"
+    },
+    "FV-S1": {
+      "models": 2,
+      "hero": 1,
+      "composition": "Supply Cave Crest"
+    },
+    "DW-07": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Seal Sanctuary"
+    },
+    "EC-05": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Ancestral Foundry"
+    },
+    "GW-02": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Silk Watch"
+    },
+    "HG-05": {
+      "models": 2,
+      "hero": 1,
+      "composition": "Royal Gate Chapel"
+    },
+    "DW-06": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Twisted Rootwood"
+    },
+    "DW-02": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Convoy Overlook"
+    },
+    "HG-01": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Lost Chapel"
+    },
+    "GW-04": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Ancient Rootway"
+    },
+    "GW-06": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Widow Ruins"
+    },
+    "HG-04": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Fallen Belfry"
+    },
+    "DW-S1": {
+      "models": 3,
+      "hero": 1,
+      "composition": "Supply Camp Grove"
+    },
+    "FV-07": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Mirror Palace Crest"
+    },
+    "DW-04": {
+      "models": 4,
+      "hero": 1,
+      "composition": "Watchtower Ridge"
+    }
+  },
+  "meshes": 6127,
+  "heroes": 44,
+  "checks": 1254,
+  "compositionModels": 143,
+  "parts": 43302
+}

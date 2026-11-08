@@ -7,7 +7,8 @@ local Bounds=require(Shared.CampaignBounds)
 local K=require(script.Parent.EpicEnvironmentKit)
 local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
-local Art={version=6}
+local Composition=require(script.Parent.EpicScenicComposition)
+local Art={version=7}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -91,7 +92,7 @@ local function terrainSite(parent,c,size,pal,theme,safe)
  for _,s in ipairs({-1,1})do for i=1,3 do
   local p=c+V(s*(size[1]/2+310),20,-size[2]/2+(i-.5)*size[2]/3)
   if not Bounds.region(p.X,p.Z,170)then
-   local h=190+i%2*65;K.rock(m,p+V(0,h*.15,0),V(220,h,230),theme=='FrozenVale'and pal.ground or pal.rock,i+s)
+   local h=100+i%2*43;K.rock(m,p+V(0,h*.15,0),V(220,h,230),theme=='FrozenVale'and pal.ground or pal.rock,i+s)
   end
  end end
  range(m,900)
@@ -100,12 +101,12 @@ local terrainRay=RaycastParams.new();terrainRay.FilterType=Enum.RaycastFilterTyp
 local surfaceOverlap=OverlapParams.new();surfaceOverlap.FilterType=Enum.RaycastFilterType.Include;surfaceOverlap.RespectCanCollide=true
 local function ground(p)
  local hit=workspace:Raycast(p+V(0,180,0),V(0,-480,0),terrainRay)
- return hit and V(p.X,hit.Position.Y,p.Z) or p
+ return hit and V(p.X,hit.Position.Y,p.Z) or p,hit~=nil
 end
 local function tree(parent,p,h,pal,theme,hero)
  p=ground(p)
  if theme=='HauntedGraveyard'then K.tree(parent,p,h,pal,true);return end
- if theme=='FrozenVale'then K.pine(parent,p,h,pal,true);return end
+ if theme=='FrozenVale'then Env.asset(parent,'SnowTree',p,h*.72);return end
 local copy=Env.asset(parent,hero and 'ForestLandmark'or 'ForestTree',p,h)
  if hero then for i=1,3 do
   local angle=i*2.1;Env.crown(parent,p+V(math.cos(angle)*h*.19,h*(.62+i*.025),math.sin(angle)*h*.19),h*.60,pal.leaf)
@@ -119,14 +120,14 @@ local copy=Env.asset(parent,hero and 'ForestLandmark'or 'ForestTree',p,h)
 end
 local function vegetation(parent,c,size,pal,theme,safe,rng)
  local m=model(parent,'LayeredVegetation')
- -- Three staggered depth bands form a forest/canyon wall, rather than a ring of ornaments.
- local count=theme=='FrozenVale' and 12 or theme=='HauntedGraveyard' and 8 or theme=='EmberCaldera' and 10 or 24
+ -- Two broken depth bands frame a lower foreground and an open landmark sightline.
+ local count=theme=='FrozenVale' and 7 or theme=='HauntedGraveyard' and 6 or theme=='EmberCaldera' and 6 or theme=='Gloamwood'and 14 or 12
  for _,side in ipairs({-1,1})do
-  for band=0,2 do
+  for band=0,1 do
    for i=1,count do
     local p=c+V(side*(size[1]/2-38+band*31+rng:NextNumber(-12,12)),0,-size[2]/2+(i-.5)*size[2]/count+rng:NextNumber(-12,12))
-    if safe(p,12)then
-     local h=theme=='Gloamwood' and rng:NextNumber(62,96)or rng:NextNumber(39,65)
+    if safe(p,18)and (i+band)%5~=0 then
+     local h=theme=='Gloamwood' and rng:NextNumber(42,70)or rng:NextNumber(27,48)
      if theme=='EmberCaldera'then K.rock(m,p+V(0,8,0),V(14,h,18),pal.rock,i+band)
      else tree(m,p,h,pal,theme,false)end
     end
@@ -210,7 +211,7 @@ local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
  end
  range(m,450)
 end
-local function vista(parent,c,size,pal,theme,index,id)
+local function vista(parent,c,size,pal,theme,index,id,safe)
  local m=model(parent,'AuthoredVista')
  if index==1 or index==7 then Architecture.entry(m,c,size,pal)end
  if theme=='EmberCaldera'then
@@ -220,13 +221,13 @@ local function vista(parent,c,size,pal,theme,index,id)
   else Architecture.foundry(m,c,size,pal,index)end
  elseif theme=='FrozenVale'then
   if index==2 then Architecture.camp(m,c,size,pal,true)
-  elseif index==3 or index==4 then Architecture.aqueduct(m,c,size,pal,theme)
-  else Architecture.citadel(m,c,size,pal,theme,index)end
+  elseif index==4 then Architecture.aqueduct(m,c,size,pal,theme)
+  elseif index>=6 then Architecture.citadel(m,c,size,pal,theme,index)end
  elseif theme=='HauntedGraveyard'then
   if index==2 then Architecture.camp(m,c,size,pal,false)
   elseif index==4 then Architecture.belfry(m,c,size,pal)
-  else Architecture.citadel(m,c,size,pal,theme,index)end
-  for _,side in ipairs({-1,1})do for i=1,2 do
+  elseif index>=5 then Architecture.citadel(m,c,size,pal,theme,index)end
+  for _,side in ipairs({-1,1})do for i=1,(index==3 and 2 or 1)do
    local q=c+V(side*(size[1]/2-25),0,95-i*95)
    -- Raised burial terraces belong outside encounter leashes; retained ground has a deep plinth.
    Architecture.mausoleum(m,q,pal)
@@ -238,12 +239,11 @@ local function vista(parent,c,size,pal,theme,index,id)
  else
   if index==3 then Architecture.camp(m,c,size,pal,false,180,180)
   elseif index==5 then Architecture.citadel(m,c,size,pal,theme,index)
-  else Architecture.cloister(m,c,size,pal,index)end
-  local hero=c+V(size[1]/2+15,0,-size[2]/2+45)
-  tree(m,hero,(index==3 or index==6)and 125 or 98,pal,theme,true)
+  elseif index==4 then Architecture.belfry(m,c,size,pal)
+  elseif index>=6 then Architecture.cloister(m,c,size,pal,index)end
  end
  -- Real original TD waterfall meshes, no transparent rectangular water panel.
- if theme=='Deepwood'then
+ if theme=='Deepwood'and (id=='DW-03'or id=='DW-S2')then
   local gorge=Env.kit(m,'WaterfallGorge',c,100)
   Env.fit(gorge,c+V(-size[1]/2-46,-25,-42),V(105,65,155));paletteKit(gorge,pal,theme)
  elseif theme=='EmberCaldera'then
@@ -255,6 +255,7 @@ local function vista(parent,c,size,pal,theme,index,id)
    end
   end
  end
+ Composition.build(parent,id,c,size,pal,theme,safe,ground)
  for _,s in ipairs({-1,1})do Architecture.flame(m,c+V(s*108,0,124),pal,true)end
  range(m,900)
 end
@@ -361,7 +362,7 @@ local function cutScenicWater(plans)
      workspace.Terrain:FillBlock(CFrame.new(q),V(34,400,53),Enum.Material.Air)
     end
    end end
-  elseif p.theme=='Deepwood'then
+  elseif p.theme=='Deepwood'and (p.id=='DW-03'or p.id=='DW-S2')then
    local q=c+V(-size[1]/2-54,132,-42)
    workspace.Terrain:FillBlock(CFrame.new(q),V(106,400,162),Enum.Material.Air)
   end
@@ -412,7 +413,7 @@ function Art.create(world,scope)
  for _,p in ipairs(plans)do
   vegetation(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng)
   floorDetails(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,Content.byId[p.id])
-  vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index,p.id)
+  vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index,p.id,p.safe)
   task.wait()
  end
  for i,edge in ipairs(Access.edges)do pass(root,edge,i);task.wait()end

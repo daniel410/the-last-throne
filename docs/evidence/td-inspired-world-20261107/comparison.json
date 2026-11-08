@@ -1,0 +1,297 @@
+{
+  "baselineSource": "41fd822",
+  "before": {
+    "meshes": 9743,
+    "parts": 69387
+  },
+  "after": {
+    "zones": {
+      "GW-03": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Root Refuge"
+      },
+      "EC-S1": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Raider Spires"
+      },
+      "DW-03": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Elder Sanctuary"
+      },
+      "FV-05": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Frozen Procession"
+      },
+      "DW-01": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Trailhead Grove"
+      },
+      "FV-S2": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Blue Lake Shelf"
+      },
+      "GW-07": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Web Queen Canopy"
+      },
+      "EC-03": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Fractured Mine"
+      },
+      "EC-S2": {
+        "models": 1,
+        "hero": 1,
+        "composition": "Shaman Rift"
+      },
+      "GW-01": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Lantern Grove"
+      },
+      "FV-02": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Sheltered Hearth"
+      },
+      "FV-S3": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Ancient Glacier Watch"
+      },
+      "FV-04": {
+        "models": 5,
+        "hero": 1,
+        "composition": "Archive Ice Shelf"
+      },
+      "HG-03": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Garden of Names"
+      },
+      "HG-02": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Keepers Chapel"
+      },
+      "GW-05": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Venomcoil Hollow"
+      },
+      "DW-S3": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Battlefield Ridge"
+      },
+      "EC-07": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Great Furnace Crown"
+      },
+      "DW-05": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Occupied Keep"
+      },
+      "FV-03": {
+        "models": 5,
+        "hero": 1,
+        "composition": "Split Glacier Gorge"
+      },
+      "FV-06": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Sentinel Ice Gate"
+      },
+      "EC-04": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Cooling Rift"
+      },
+      "FV-01": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Blizzard Ice Gate"
+      },
+      "EC-S3": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Titan Caldera Rim"
+      },
+      "HG-06": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Royal Tomb Spire"
+      },
+      "HG-07": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Last Throne Ruin"
+      },
+      "EC-06": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Heatworks Spires"
+      },
+      "DW-S2": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Waterfall Quarry"
+      },
+      "EC-01": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Ash Spire Gate"
+      },
+      "EC-02": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Foundry Skyline"
+      },
+      "FV-S1": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Supply Cave Crest"
+      },
+      "DW-07": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Seal Sanctuary"
+      },
+      "EC-05": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Ancestral Foundry"
+      },
+      "GW-02": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Silk Watch"
+      },
+      "HG-05": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Royal Gate Chapel"
+      },
+      "DW-06": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Twisted Rootwood"
+      },
+      "DW-02": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Convoy Overlook"
+      },
+      "HG-01": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Lost Chapel"
+      },
+      "GW-04": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Ancient Rootway"
+      },
+      "GW-06": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Widow Ruins"
+      },
+      "HG-04": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Fallen Belfry"
+      },
+      "DW-S1": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Supply Camp Grove"
+      },
+      "FV-07": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Mirror Palace Crest"
+      },
+      "DW-04": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Watchtower Ridge"
+      }
+    },
+    "meshes": 6127,
+    "heroes": 44,
+    "checks": 1111,
+    "compositionModels": 143,
+    "parts": 43302
+  },
+  "partReductionPercent": 37.59,
+  "meshInstanceReductionPercent": 37.11,
+  "devicePerformanceVerified": false,
+  "captures": {
+    "after-HG-01.png": "5f60c355b5e6a41b0996fb67b8aa777b6fa9333bb313a2bd3afb59cdb241fe1d",
+    "before-DW-03.png": "0d22ca7739fa50bafeea21fb18d292ad93ad87c831f9af9fd865841d53480576",
+    "before-EC-07.png": "ae4f5449aef0ee9bf8045edd0803ecbc79621356c75aceb29cf352a915cfa9e1",
+    "before-GW-04.png": "7641384719d8206c8bce633cd307d0301bdbe5c8e7d253911e45a7ae96fc538f",
+    "after-FV-03.png": "682e07ec6dcc98e3130940bc0605b4ce6ab0009b9c837e090bb4258268f48603",
+    "after-DW-03.png": "628787d4959c9f71419a1ce3e5bb014ba1087571aa37675a93bf9774e9ba8489",
+    "after-EC-07.png": "2748c690620c209c277e971299f664ee1057b45834049083053801bd5bed7cb3",
+    "before-HG-01.png": "f065312db82542d68cf1e2d9d8adceb87ad567bedbe2e8a4b48ebc53d400f9bb",
+    "before-FV-03.png": "149d58b50498423cec63739b0dec7a9d2fc6c3734912996e151185604fd0ad76",
+    "after-GW-04.png": "eb20582ef1da17c55787dafc1f18d138cce4403a50e145b27446965fa2b75b28"
+  },
+  "camera": {
+    "DW-03": [
+      -242,
+      18,
+      -1648,
+      616
+    ],
+    "GW-04": [
+      1100,
+      168,
+      -13100,
+      440
+    ],
+    "FV-03": [
+      320,
+      68,
+      -5160,
+      420
+    ],
+    "EC-07": [
+      -880,
+      148,
+      -10980,
+      440
+    ],
+    "HG-01": [
+      -700,
+      184,
+      -15300,
+      440
+    ]
+  },
+  "lighting": {
+    "ClockTime": 14,
+    "Brightness": 2,
+    "Ambient": [
+      98,
+      105,
+      116
+    ],
+    "OutdoorAmbient": [
+      120,
+      126,
+      137
+    ]
+  }
+}

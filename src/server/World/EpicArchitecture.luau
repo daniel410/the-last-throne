@@ -223,14 +223,7 @@ function A.ruin(parent,c,size,pal,index)
   else part(m,'BrokenArchStump',V(10,24,12),p+V(i*48-20,12,0),pal.rock)end
  end
  A.tower(m,p+V(140,0,-7),68,pal,true)
- for _,s in ipairs({-1,1})do
-  local q=c+V(s*(size[1]/2+15),0,-55)
-  local tree=Env.asset(m,'ForestLandmark',q,105)
-  for i=1,3 do local angle=i*2.1;Env.crown(m,q+V(math.cos(angle)*21,67+i*3,math.sin(angle)*21),63,pal.leaf)end
-  for _,v in ipairs(tree:GetDescendants())do if v:IsA('MeshPart')and (v.Name:find('foliage')or v.Name:find('canopy'))then v.TextureID='';v.Color=pal.leaf;v.Material=Enum.Material.Grass end end
-  local a=q+V(0,63,0);local b=p+V(s*90,35,0);local cc=q+V(-s*27,10,88)
-  K.web(m,a,b,cc,pal)
- end
+ -- The region's TDScenicComposition owns the primary tree and its silk.
  return m
 end
 function A.entry(parent,c,size,pal)

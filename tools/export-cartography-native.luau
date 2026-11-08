@@ -38,11 +38,18 @@ for _,id in ipairs(ids)do
    table.insert(roads,{a.X,a.Z,b.X,b.Z,p.Size.X})
   end
  end end
- local landmark
+ local landmark,landmarkAnchor
  local art=world.folder:FindFirstChild('EpicWorldArt')
- if art then for _,site in ipairs(art:GetDescendants())do if site.Name==id and site:GetAttribute('Landmark')then landmark=site:GetAttribute('Landmark');break end end end
+ if art then for _,site in ipairs(art:GetDescendants())do if site.Name==id and site:GetAttribute('Landmark')then
+  landmark=site:GetAttribute('Landmark')
+  local composition=site:FindFirstChild('TDScenicComposition')
+  if composition then for _,m in ipairs(composition:GetChildren())do if m:IsA('Model')and m:GetAttribute('CompositionRole')=='Hero'then
+   local cf=m:GetBoundingBox();landmarkAnchor={cf.X,cf.Z};break
+  end end end
+  break
+ end end end
  local spawn=world.spawns[id].Position
- result.zones[id]={pixels=pixels,roads=roads,landmark=landmark,spawn={spawn.X,spawn.Z}}
+ result.zones[id]={pixels=pixels,roads=roads,landmark=landmark,landmarkAnchor=landmarkAnchor,spawn={spawn.X,spawn.Z}}
  print('CARTOGRAPHY_DATA_ZONE '..id..' '..game.HttpService:JSONEncode(result.zones[id]))
  task.wait()
 end
