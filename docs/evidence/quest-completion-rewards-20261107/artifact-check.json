@@ -1,0 +1,22 @@
+{
+  "sourceCommit": "8d689e7a5399d3e9316282bb4b59ac24499fbfb3",
+  "version": "0.83.0",
+  "sha256": "42dba628dcf4c6b59c9f2de3b4a950edeb36ea6bcffd31d48df6c9671a79cab5",
+  "modulesEqual": [
+    "src/shared/QuestCompletionRewards.luau",
+    "src/shared/CampaignContent.luau",
+    "src/shared/DeepwoodProgress.luau",
+    "src/shared/DeepwoodQuestLog.luau",
+    "src/shared/Difficulty.luau",
+    "src/shared/AdventureRules.luau",
+    "src/shared/ExpeditionPresentation.luau",
+    "src/shared/ExpeditionText.luau",
+    "src/shared/StoryCompletion.luau",
+    "src/client/LobbyQuestJournal.luau",
+    "src/client/ExpeditionView.luau",
+    "src/server/Inventory/InventoryRules.luau",
+    "src/server/Inventory/AccountStore.luau",
+    "src/server/Story/DeepwoodService.luau"
+  ],
+  "result": "PASS"
+}

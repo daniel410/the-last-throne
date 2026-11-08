@@ -57,3 +57,9 @@
 - `python3 tools/prepare-quest-rewards-native.py` → 기존0.82.6 로컬 Place에 관련 소스만 주입하여 Luau 규칙/계정 검사와 실제 TD GUI **571개** PASS.800×510/726×299/270×510 영역의47개 보상 줄바꿈/행 경계와 배틀 퀘스트북 일치 확인. 고정0.83.0 산출물 검사 결과는 아래 마감 기록에 추가한다.
 
 독립 QA·실계정·live DataStore·게시 클라이언트·실기기/실제 입력·경제 만족/전투 난도는 미검증이다. 네이티브 저장은 모형이며 실제 Roblox 계정 저장 수용을 대신하지 않는다. 기존203785492 asset-type 경고는 알려진 자산 경고로 별도 기록한다. 다른 작업의 지도/Blender/컨셉 변경은 이 커밋에서 제외한다. 부모 티켓 In Progress, 실제 게시·릴리스 태그 없음.
+
+## 고정 빌드 마감
+
+입력 `8d689e7a5399d3e9316282bb4b59ac24499fbfb3`를 origin/main에 푸시한 뒤 단일 빌드 **0.83.0 성공**. [빌드 기록](build.json)의 SHA256 `42dba628dcf4c6b59c9f2de3b4a950edeb36ea6bcffd31d48df6c9671a79cab5`,14,846,486bytes를 재확인했다. [산출물 검사](artifact-check.json)에서 변경 런타임14개 모듈이 고정 커밋과 일치했다.
+
+`python3 tools/prepare-quest-rewards-native.py --fixed-build` → `run-in-roblox --place builds/0.83.0/TheLastThrone-0.83.0.rbxlx --script /tmp/tlt-quest-rewards-native.luau`: **종료0·Luau 계정/규칙7,914검사 + 실제 GUI571검사 PASS**. [엔진 로그](native.log). 로드한13개 보상/계정/UI 모듈의 고정 소스 일치를 실행 전에 확인했다. `python3 tests/single-build.spec.py --artifact builds/0.83.0/TheLastThrone-0.83.0.rbxlx` PASS. 실제 Roblox 게시·릴리스 태그·실계정 저장 변경 없음. 다음 QA는 게시된 테스트 Experience의 실제 완료→지급→재접속과 보상 체감을 검증한다.

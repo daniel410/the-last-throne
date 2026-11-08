@@ -1,0 +1,20 @@
+Quest completion rewards: 1416 checks passed; 47 quests pay, 19 new awards; legacy catch-up and storage recovery PASS
+SIDE_QUEST_REVIEW 1610 checks PASS; 12 quests, 44 goals, 11 combats, 2 optional goals
+DW-Q1 | Supplies in the Marsh | 2 | 3 | Easy/replay/Hard/Insane/Hell
+DW-Q2 | The Stolen Food | 4 | 5 | Easy/replay/Hard/Insane/Hell
+DW-Q3 | Quarry Below the Falls | 5 | 5 | Easy/replay/Hard/Insane/Hell
+DW-Q4 | Remnants of the Red Battlefield | 7 | 4 | Easy/replay/Hard/Insane/Hell
+FV-Q1 | A Name in the Snow | 15 | 3 | Easy/replay
+FV-Q2 | Frostfang Supply Cave | 17 | 3 | Easy/replay/Hard/Insane/Hell
+FV-Q3 | Blue Lake Return Route | 18 | 3 | Easy/replay/Hard/Insane/Hell
+FV-Q4 | Ancient Glacier Watch | 21 | 3 | Easy/replay/Hard/Insane/Hell
+EC-Q1 | A Worker's Lost Mark | 22 | 3 | Easy/replay
+EC-Q2 | Ember Raider Nest | 24 | 4 | Easy/replay/Hard/Insane/Hell
+EC-Q3 | Volcano Shaman Altar | 25 | 4 | Easy/replay/Hard/Insane/Hell
+EC-Q4 | Caldera Titan Basin | 28 | 4 | Easy/replay/Hard/Insane/Hell
+CAMPAIGN_REORDER 1871 checks passed; mandatory solo final level 44
+Difficulty balance: 2661 checks passed
+Story completion: 356 checks passed
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+QUEST_REWARD_UI_NATIVE {"scope":"native GUI constructors and text geometry; no real input/device acceptance","checks":571}
+QUEST_COMPLETION_REWARDS_NATIVE_PASS
