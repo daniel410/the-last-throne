@@ -23,3 +23,11 @@
 ## 한계와 인계
 
 실제 계정/클라이언트·실기기·협동·플레이시간당 순Gold/다이아소비·사용자 수용은 미검증이다. QA는 기존 진행 원정의 구보상, 신규 원정 표시/지급, 첫 클리어3Diamonds와 재접속/다른 영웅 중복0, 환전 후 순유입을 확인한다. 부모 티켓은 In Progress로 유지한다.
+
+## 고정 빌드 마감
+
+소스 `dbe01cd7b8fc070348d4f819757fd8288b9218c1`를 origin/main에 푸시한 뒤 단일 빌드 **0.82.2 성공**. [빌드 기록](build.json)의 산출물 SHA256 `2536b8eb10431fc1a983211fc263013e86818d27a15b7b579c15ee449c859c0c`을 재확인했다.
+
+`python3 tools/prepare-gold-diamond-native.py` → `run-in-roblox --place builds/0.82.2/TheLastThrone-0.82.2.rbxlx --script /tmp/tlt-gold-diamond-native.luau`: **4,617 PASS / 종료0**. 고정 Place의 세 모듈 원문 일치도 확인했다. [엔진 로그](native.log). 기존203785492 자산 타입 경고는 테스트 실패와 구분한다. 생성기를 재실행해 검증에 쓴 임시 runner와 바이트 일치 확인. 격리 계정/저장 모형이며 실계정·라이브 DataStore 검증이 아니다.
+
+`python3 scripts/simulate_story_progression.py --output /tmp/tlt-gold-diamond-progression.json` 종료0. 기존 승인 XP/Gold 정본을 덮어쓰지 않았다. `git diff --check` 통과. 신규 LFS 자산 없음, 실제 게시·릴리스 태그 없음. 다음 QA는 위 실계정/기기 경제 수용을 담당한다.
