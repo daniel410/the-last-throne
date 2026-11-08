@@ -9,12 +9,15 @@ local report={kind='LOBBY_HERO_DOCK_NATIVE',checks=0}
 local function check(value,message) report.checks+=1;assert(value,message) end
 local ok,err=xpcall(function()
  local view=require(client.LobbyHeroDock).create(gui,player,function() error('Unexpected hero intention') end,function() error('Unexpected play intention') end,world)
+ for _,card in pairs(view.cards) do check(not card.Visible and not card.Active and not card.Selectable,'loading has no hero shortcuts') end
  local state={phase='Lobby',canManage=true,canStart=true,selectedHeroId='h1',heroes={{heroId='h1',classId='knight',level=1},{heroId='h2',classId='mage',level=5}}}
  view.update(state,false)
  view.layout(Vector2.new(1920,1080))
  check(view.root.Visible and view.play.Active,'lobby dock is interactive')
  local count=0;for _ in pairs(view.cards) do count+=1 end
- check(count==4 and view.cards.priestess==nil,'four player classes, no priestess')
+ check(count==4 and view.cards.priestess==nil,'four supported player classes, no priestess')
+ check(view.cards.knight.Visible and view.cards.mage.Visible and not view.cards.elf.Visible and not view.cards.dwarf.Visible,'only created Knight and Mage shown')
+ check(not view.cards.elf.Active and not view.cards.elf.Selectable and not view.cards.dwarf.Active,'uncreated shortcuts cannot receive input')
  check(view.cards.knight.HeroSelectedMarker.Visible and not view.cards.mage.HeroSelectedMarker.Visible,'selected hero only marked')
  check(view.cards.knight.HeroSelectionBorder.Thickness==5,'strong selected gold border')
  check(view.cards.knight.HeroSelectedTag.Visible and not view.cards.mage.HeroSelectedTag.Visible,'selection has explicit text beyond color/check')
@@ -36,8 +39,10 @@ local ok,err=xpcall(function()
   view.layout(size)
   local p,s=dock.Position,dock.Size
   check(p.X.Offset>=0 and p.Y.Offset>=0 and p.X.Offset+s.X.Offset<=size.X and p.Y.Offset+s.Y.Offset==size.Y-12,'dock fits viewport '..tostring(size))
-  check(dock.Hero_knight.Position.X.Offset==0 and dock.Hero_knight.Position.Y.Offset>view.play.Size.Y.Offset,'cards below PLAY')
-  check(dock.Hero_mage.Position.X.Offset+dock.Hero_mage.Size.X.Offset==s.X.Offset,'four cards fill TD row')
+  check(dock.Hero_knight.Position.Y.Offset>view.play.Size.Y.Offset,'cards below PLAY')
+  local first,last=dock.Hero_knight,dock.Hero_mage
+  check(first.Position.X.Offset==s.X.Offset-last.Position.X.Offset-last.Size.X.Offset,'created hero row centered')
+  check(last.Position.X.Offset-first.Position.X.Offset==first.Size.X.Offset+(s.X.Offset-4*first.Size.X.Offset)/3,'uncreated heroes leave no gaps')
   local compact=size.Y<500 or size.X<600;local selected=view.cards.knight
   check(selected.HeroSelectedTag.Visible==not compact,'selection label adapts without covering mobile portrait')
   check(selected.HeroSelectionBorder.Thickness==(compact and 2 or 5),'mobile selection uses a thin border; desktop unchanged')
@@ -60,6 +65,28 @@ local ok,err=xpcall(function()
  world:SetAttribute('TLTServerRole','Lobby');task.wait()
  for _,phase in ipairs({'LoadingLobby','LoadingTutorial','Tutorial','Respawning','ReturningLobby','SpawnFailed'}) do
   state.phase=phase;view.update(state,false);check(not view.root.Visible and not view.play.Active,'no dock interaction in '..phase)
+ end
+ -- Every roster combination must pack/center correctly after creation or refresh.
+ local order={'knight','elf','dwarf','mage'}
+ for mask=0,15 do
+  local heroes={}
+  for i,classId in ipairs(order) do if bit32.band(mask,2^(i-1))~=0 then table.insert(heroes,{classId=classId,heroId=classId}) end end
+  view.update({phase='Lobby',canManage=true,heroes=heroes,selectedHeroId=heroes[1] and heroes[1].heroId},false)
+  for _,size in ipairs({Vector2.new(1920,1080),Vector2.new(1280,720),Vector2.new(844,390),Vector2.new(390,844)}) do
+   view.layout(size)
+   local previous,first,last
+   for i,classId in ipairs(order) do
+    local card=view.cards[classId];local owned=bit32.band(mask,2^(i-1))~=0
+    check(card.Visible==owned and card.Active==owned and card.Selectable==owned,'roster visibility/input '..mask..' '..classId)
+    if owned then
+     first=first or card;last=card
+     if previous then check(card.Position.X.Offset-previous.Position.X.Offset==card.Size.X.Offset+(dock.Size.X.Offset-4*card.Size.X.Offset)/3,'compact roster spacing') end
+     previous=card
+    end
+   end
+   check(dock.HeroesHeading.Visible==(#heroes>0),'empty roster hides heading')
+   if first then check(math.abs(first.Position.X.Offset-(dock.Size.X.Offset-last.Position.X.Offset-last.Size.X.Offset))<=1,'all roster sizes centered within pixel rounding') end
+  end
  end
  report.status='passed'
 end,debug.traceback)

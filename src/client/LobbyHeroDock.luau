@@ -46,7 +46,7 @@ function M.create(parent,player,chooseHero,playAction,world)
   name.BackgroundColor3=Color3.fromRGB(12,27,54);name.BackgroundTransparency=.15;name.ZIndex=image.ZIndex+1
   local marker=caption(card,'HeroSelectedMarker','');marker.Position=UDim2.new(1,-24,0,1);marker.Size=UDim2.fromOffset(20,20);marker.ZIndex=name.ZIndex+1;Check.apply(marker);marker.Visible=false
   local selectedTag=caption(card,'HeroSelectedTag','SELECTED');selectedTag.Position=UDim2.fromOffset(4,3);selectedTag.Size=UDim2.new(1,-8,0,17);selectedTag.TextSize=10;selectedTag.TextColor3=Color3.fromRGB(12,27,54);selectedTag.TextStrokeTransparency=1;selectedTag.BackgroundColor3=Color3.fromRGB(255,215,90);selectedTag.BackgroundTransparency=0;selectedTag.ZIndex=marker.ZIndex+1;selectedTag.Visible=false
-  card.Activated:Connect(function() if allowed() and state.canManage then chooseHero(classId) end end)
+  card.Activated:Connect(function() if card.Visible and allowed() and state.canManage then chooseHero(classId) end end)
   cards[classId]=card
  end
  local xp=caption(dock,'HomeHeroProgress',TEXT.loading)
@@ -75,10 +75,17 @@ function M.create(parent,player,chooseHero,playAction,world)
   play.Size=UDim2.fromOffset(playW,playH);play.Position=UDim2.fromOffset((deckW-playW)/2,0)
   playTitle.TextSize=short and 26 or w<600 and 30 or large and 51 or 38
   heading.Position=UDim2.fromOffset(0,playSlotH+3);heading.Size=UDim2.new(1,0,0,18)
-  for i,classId in ipairs(ORDER) do
+  local count=0
+  for _,classId in ipairs(ORDER) do if cards[classId].Visible then count+=1 end end
+  local rowW=count*portraitW+math.max(0,count-1)*spacing
+  local index=0
+  for _,classId in ipairs(ORDER) do
    local card=cards[classId];local selected=card:GetAttribute('HeroSelected')==true
    local compact=short or w<600
-   card.Position=UDim2.fromOffset((i-1)*(portraitW+spacing),portraitY);card.Size=UDim2.fromOffset(portraitW,portraitH)
+   if card.Visible then
+    card.Position=UDim2.fromOffset((deckW-rowW)/2+index*(portraitW+spacing),portraitY);index+=1
+   end
+   card.Size=UDim2.fromOffset(portraitW,portraitH)
    -- Compact cards keep the portrait clear: a thin outline and corner check
    -- replace the desktop's filled selection labels.
    card.HeroSelectedTag.Visible=selected and not compact
@@ -101,14 +108,19 @@ function M.create(parent,player,chooseHero,playAction,world)
   root.Visible=allowed() or busy and state~=nil and state.phase=='Lobby' and not suppressed
   for _,key in ipairs(BLOCKERS) do if player:GetAttribute(key) then root.Visible=false end end
   if world:GetAttribute('TLTServerRole')=='Battle' then root.Visible=false end
+  local hasHeroes=false
   for _,classId in ipairs(ORDER) do
-   local card=cards[classId];local selected=false
-   for _,hero in ipairs(state and state.heroes or {}) do if hero.classId==classId and hero.heroId==state.selectedHeroId then selected=true end end
+   local card=cards[classId];local selected,owned=false,false
+   for _,hero in ipairs(state and state.heroes or {}) do
+    if hero.classId==classId then owned=true;if hero.heroId==state.selectedHeroId then selected=true end end
+   end
+   card.Visible=owned;hasHeroes=hasHeroes or owned
    card:SetAttribute('HeroSelected',selected);card.HeroSelectedMarker.Visible=selected
    card.HeroPortrait.ImageColor3=selected and Color3.new(1,1,1) or Color3.fromRGB(185,195,210)
    card.HeroSelectionBorder.Color=selected and Color3.fromRGB(255,225,115) or Color3.fromRGB(120,145,175)
-   card.Active=allowed() and state.canManage==true;card.Selectable=card.Active;card.AutoButtonColor=card.Active
+   card.Active=owned and allowed() and state.canManage==true;card.Selectable=card.Active;card.AutoButtonColor=card.Active
   end
+  heading.Visible=hasHeroes
   play.Active=allowed();play.Selectable=play.Active;play.AutoButtonColor=play.Active
   local hero=inventory and inventory.ready==true and state and inventory.heroes[state.selectedHeroId] or nil
   local g=hero and hero.progression
