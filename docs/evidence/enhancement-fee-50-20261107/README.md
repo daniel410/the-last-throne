@@ -16,6 +16,6 @@
 - 기존 TD UI를1108×707/844×390/667×375에서 생성해 +9 도움말50Gold·현재 교환 가격/보유금액 버튼 상태·본문 TextBounds를 검사했다. 기존 asset203785492의 asset type 경고는 별도이며 이미지 전수 수용으로 해석하지 않는다.
 - 초기 검사는 이전 시작 장비 위치·구형+10 fixture/보상·교환 버튼 기대값 때문에 실패했다. 현재 사양에 맞춘 뒤 위 검사를 통과했다. 기존 사용자 미커밋 Blender·컨셉 삭제/첨부/비관련 증거는 포함하지 않았다. [입력 해시](source-hashes.json)와 `git diff --check`로 소스/형식을 확인했다.
 
-VERSION0.82.4와 입력 소스를 먼저 커밋·푸시한 뒤 `python3 tools/build-game.py --source <고정커밋> --record docs/evidence/enhancement-fee-50-20261107/build.json`으로 단일 빌드를 만들고 [결과](build.json)에 소스/산출물 해시를 남긴다. Roblox 게시·릴리스 태그 없음.
+VERSION0.82.4와 입력 소스 `b3d0aa570d90434e9c92b19421b8a1064e2cf844`를 먼저 커밋·푸시한 뒤 `python3 tools/build-game.py --source b3d0aa5 --record docs/evidence/enhancement-fee-50-20261107/build.json`으로 단일 빌드에 성공했다. [결과](build.json)에 소스/산출물 해시를 보존했다. `python3 tests/single-build.spec.py --artifact builds/0.82.4/TheLastThrone-0.82.4.rbxlx`: 역할10/로딩192·실제 산출물 검사 PASS. [Enhancement Source 대조](artifact-check.json)에서 고정 소스와 바이트 일치·수수료50/규칙4를 확인했다. Roblox 게시·릴리스 태그 없음.
 
 미검증: 실제 계정/클라이언트·기기/패드·전투 밸런스·Gold 소비/재료 구매·4인+AI·최종 경제 수용. 합성0플레이어/로컬 PlaceId0 검증을 실제 저장 서버/사용자 조작 수용으로 보고하지 않는다. 다음 QA/PLAN은 가격 표시·실차감·재접속·물약/지원/재료와의 소비 경쟁을 확인한다. 배포 때 로비/배틀과 구버전 서버 교체도 확인해야 하며 부모 티켓은 In Progress를 유지한다.

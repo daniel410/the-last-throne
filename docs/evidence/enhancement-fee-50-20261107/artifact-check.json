@@ -1,0 +1,9 @@
+{
+  "sourceCommit": "b3d0aa570d90434e9c92b19421b8a1064e2cf844",
+  "artifact": "builds/0.82.4/TheLastThrone-0.82.4.rbxlx",
+  "sha256": "cdeee40fb94ccd02d2667d420ee1ca805acf7f73d3788703e83a478541564829",
+  "enhancementSourceSha256": "310500d59a51389f731bb925820cc1566d5ff9aece73d8d6c1147537e21e11e7",
+  "matchesFrozenSource": true,
+  "feeGold": 50,
+  "rulesVersion": 4
+}
