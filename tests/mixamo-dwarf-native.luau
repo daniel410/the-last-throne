@@ -7,7 +7,7 @@ local A=require(game.ServerScriptService.Server.Cosmetics.WeaponAppearance)
 local Config=require(game.ReplicatedStorage.Shared.K0Config)
 local report={checks=0,maxBlenderDegrees=0,skills=0,pass=false}
 local function check(v,label)report.checks+=1;assert(v,label)end
-local keys={basic=false,overhead='dwarf.common.overhead',ground='dwarf.common.ground',grounded='dwarf.mixamo.grounded',backhand='dwarf.mixamo.backhand',sweep='dwarf.mixamo.sweep'}
+local keys={basic=false,throw='dwarf.common.throw',overhead='dwarf.common.overhead',ground='dwarf.common.ground',grounded='dwarf.mixamo.grounded',backhand='dwarf.mixamo.backhand',sweep='dwarf.mixamo.sweep'}
 for key,samples in mixamoGolden do
  for _,s in samples do
   local p=assert(M.sample('dwarf',1,s.age,nil,nil,keys[key]or nil,Enum.HumanoidRigType.R15))

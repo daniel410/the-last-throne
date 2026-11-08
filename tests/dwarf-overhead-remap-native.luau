@@ -8,7 +8,7 @@ local function check(v,label)report.checks+=1;assert(v,label)end
 for _,row in previousOverheadAnchors do
  local rig=row.rig=='R6'and Enum.HumanoidRigType.R6 or Enum.HumanoidRigType.R15
  local p=M.sample('dwarf',1,row.age,nil,nil,nil,rig)
- for ch,a in row.angles do check((p.angles[ch]-Vector3.new(unpack(a))).Magnitude<.001,'Complete prior overhead pose retained in basic '..row.rig..'/'..ch)end
+ for ch,a in row.angles do check((p.angles[ch]-Vector3.new(unpack(a))).Magnitude<.001,'Prior attack anchors retained with relaxed final pose '..row.rig..'/'..ch)end
 end
 check(clips.basic.duration<previousOverheadDuration,'Previous overhead is faster as a basic attack')
 check(clips.skills['dwarf.common.overhead'].source=='Standing Melee Combo Attack Ver. 1','Overhead uses downloaded combo source')

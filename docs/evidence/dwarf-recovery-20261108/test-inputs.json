@@ -1,0 +1,6 @@
+{
+  "src/client/K0MeleeMotion.luau": "b057cc0a2a7b0e8fdd8ceb1f17c002b08cb004f20137f79737d0177e1415c9b8",
+  "src/client/K0DwarfMixamoBasic.luau": "057590cce13db01f8d9a90519dbb0342083d8d3e703bc78c38c288923a20b26c",
+  "src/client/K0DwarfMixamoSkills.luau": "71e287b3f2d49d5175752f0b2d7998191e7e96d6dda928cd7401a3a73ba4b11e",
+  "src/client/K0DwarfMixamoOverhead.luau": "515da995701021d24e3838ede795308f39008a14866eb6a027c8eaa20ff5e27a"
+}

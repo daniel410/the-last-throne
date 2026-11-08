@@ -80,7 +80,11 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
                 local loaded = sample(opening, 1/60)
 				local finish = sample(total, 1/60)
 				local initial = sample(0, 1/60)
-				check(finish.Z < -1.5 and (finish-initial).Magnitude > .15, "Ends combat-ready instead of dropping to neutral")
+				if classId=="dwarf" then
+                 check((finish-initial).Magnitude<.001,"Ends with the original relaxed hand and axe socket")
+                else
+                 check(finish.Z < -1.5 and (finish-initial).Magnitude > .15, "Ends combat-ready instead of dropping to neutral")
+                end
 				check(hit.Z < -3 and math.abs(hit.X) < (classId=="dwarf" and 2.6 or 1.6), "Contact passes through target corridor in front")
 				check(minY > -3.4, "Blade stays above floor on default rig")
 				check(maxReach < 6.5, "Compact arc stays near combat reach")

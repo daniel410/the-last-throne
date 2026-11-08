@@ -143,6 +143,12 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId, rigType,
   -- yaw layer used to snap the axe by 110 degrees even though the arm joined.
   local from=entryTurn or 0
   result.axeStrikeTurn=from+(1-from)*u2*(3-2*u)
+  if clip.returnToIdle then
+   -- Unwind the socket with the arm during authored recovery, never later
+   -- while the hand is already in its idle position.
+   local settle=math.clamp((age-current[4])/(total-current[4]),0,1)
+   result.axeStrikeTurn*=1-settle*settle*(3-2*settle)
+  end
  end
  if classId=="dwarf" and not skillId and not clip.disableR6FollowAcross then
   -- R6 has no elbow/wrist segments, so its shorter rigid arm needs a
@@ -169,11 +175,12 @@ local function presentation(record, now)
  local total=d.windup+d.active+d.recovery
  local age=(now-record.started)*(record.rate or 1)
  if age<=total then return Motion.sample(record.classId,record.combo,age,record.entry,record.entrySlope,record.skillId,record.rigType,record.entryTurn,record.entryAcceleration) end
- local result=frame({guard[record.classId],guard[record.classId],rest[record.classId]}, {0,.10,.42}, age-total)
+ local result=record.classId=="dwarf"
+  and frame({rest.dwarf,rest.dwarf},{0,.42},age-total)
+  or frame({guard[record.classId],guard[record.classId],rest[record.classId]}, {0,.10,.42}, age-total)
  result.cutting=false
  if record.classId=="dwarf" then
-  local turn=math.clamp((age-total-.10)/.32,0,1)
-  result.axeStrikeTurn=1-turn*turn*(3-2*turn)
+  result.axeStrikeTurn=0
  end
  return result
 end

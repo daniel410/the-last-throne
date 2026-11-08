@@ -170,6 +170,34 @@ for ch,axes in adopted['r6Curves'].items():
 clips['overhead']['r6Curves']=r6
 clips['overhead']['sourceBeats']=[.2925,.71]
 
+# End with the same relaxed hand/socket as the shipping idle. The old guard
+# kept the elbow bent and the axe rolled -94 degrees after every action.
+clips['throw']=copy.deepcopy(legacy['dwarf.common.throw'])
+clips['throw']['source']='Existing reviewed axe throw'
+for c in clips.values():
+    c['returnToIdle']=True
+    start=c['windup']+c['active']+c['recovery']*.15
+    span=c['duration']-start
+    for kind in ['curves','r6Curves']:
+        if kind not in c:continue
+        for ch,axes in c[kind].items():
+            for axis,keys in enumerate(axes):
+                # Split the existing Hermite segment at the recovery boundary.
+                # Sparse R6 keys otherwise spread the new end correction back
+                # into the active strike even though its own keys are unchanged.
+                if not any(abs(k[0]-start)<1e-8 for k in keys):
+                    i=max(0,min(len(keys)-2,next((i-1 for i,k in enumerate(keys)if k[0]>start),len(keys)-2)))
+                    a,b=keys[i:i+2];h=b[0]-a[0];u=(start-a[0])/h
+                    derivative=((6*u*u-6*u)*a[1]+(3*u*u-4*u+1)*h*a[2]+(-6*u*u+6*u)*b[1]+(3*u*u-2*u)*h*b[2])/h
+                    value=sample(keys,start)
+                    keys.append([start,value,derivative]);keys.sort(key=lambda k:k[0])
+                for key in keys:
+                    u=max(0,min(1,(key[0]-start)/span))
+                    weight=u*u*(3-2*u)
+                    derivative=6*u*(1-u)/span
+                    key[1]-=guard[ch][axis]*weight
+                    key[2]-=guard[ch][axis]*derivative
+
 def lua(x):
     if isinstance(x,dict): return '{'+','.join('['+json.dumps(k)+']='+lua(v) for k,v in x.items())+'}'
     if isinstance(x,list):return '{'+','.join(map(lua,x))+'}'
@@ -180,7 +208,7 @@ def quantize(x):
     if isinstance(x,float):return round(x,6)
     return x
 clips=quantize(clips)
-runtime={'basic':clips['basic'],'skills':{'dwarf.common.overhead':clips['overhead'],'dwarf.common.ground':clips['ground']},
+runtime={'basic':clips['basic'],'skills':{'dwarf.common.overhead':clips['overhead'],'dwarf.common.ground':clips['ground'],'dwarf.common.throw':clips['throw']},
          'variants':{'dwarf.mixamo.backhand':clips['backhand'],'dwarf.mixamo.sweep':clips['sweep'],'dwarf.mixamo.grounded':clips['grounded']}}
 (OUT/'clips.json').write_text(json.dumps(clips,separators=(',',':'))+'\n')
 overhead=runtime['skills'].pop('dwarf.common.overhead')

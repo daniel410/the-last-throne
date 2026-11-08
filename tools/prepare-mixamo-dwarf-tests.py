@@ -30,12 +30,12 @@ def sample_frozen(keys,t):
 anchors=[]
 for rig,curves in [('R15',baseline['curves']),('R6',baseline['r6Curves'])]:
     for age,source in zip([0,.12,.22,.284,.42],[0,baseline['entryUntil'],.71,.875,1.13]):
-        angles={ch:[sample_frozen(axis,source)for axis in axes]for ch,axes in curves.items()}
+        angles={ch:[(0 if age==.42 else sample_frozen(axis,source))for axis in axes]for ch,axes in curves.items()}
         anchors.append(dict(rig=rig,age=age,angles=angles))
 remap_probe=out/'dwarf-remap.luau'
 remap_probe.write_text('do\nlocal previousOverheadAnchors='+lua(anchors)+'\nlocal previousOverheadDuration='+str(baseline['duration'])+'\n'+(root/'tests/dwarf-overhead-remap-native.luau').read_text()+'\nend\n')
 subprocess.run(['node','tools/prepare-dwarf-swing-review.mjs',str(out),str(probe),str(remap_probe),str(knight_probe),str(elf_probe),str(legacy_bow),
- 'tests/k0-dwarf-motion-native.luau','tests/dwarf-natural-grip-native.luau',
+ 'tests/k0-dwarf-motion-native.luau','tests/dwarf-natural-grip-native.luau','tests/dwarf-recovery-native.luau',
  'tests/dwarf-axe-throw-native.luau','tests/k0-melee-blender-native.luau',
  'tests/axe-cutting-edge-native.luau','tests/k0-melee-curves-native.luau',
  'tests/shield-bash-leading-native.luau','tests/k0-skill-animation-native.luau',

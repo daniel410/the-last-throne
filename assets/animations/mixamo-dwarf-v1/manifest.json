@@ -97,6 +97,13 @@
       "rig": "R15",
       "root": "in-place",
       "r6": "previous reviewed curves retained"
+    },
+    "throw": {
+      "source": "existing reviewed axe throw",
+      "duration": 0.7,
+      "root": "in-place",
+      "rig": "R15/R6",
+      "scope": "recovery only"
     }
   },
   "color": {
@@ -111,13 +118,19 @@
   "rawSources": "Original downloads retained locally; raw Mixamo FBX/pack is not redistributed",
   "runtimeAssetsUploaded": 0,
   "files": {
-    "dwarf-mixamo-v1.blend": "2ea41fe9736194315d1bab43b0626ab51ca988568a8b2c51487b777aa35b84c0",
+    "dwarf-mixamo-v1.blend": "dc520460aae7dc49b2903a170147cddbb39a9f462f4313109f4303d88b6cf427",
     "grip-calibration.json": "db1b812f8eb2026c19cab650db7b283d22ca6cba86e96cddf0884ddf39f32783",
     "target-rig.json": "fd98dfa45881a14272c7f8f719c47a1330684f4396b51d8c50070768b01ff692",
-    "blender-golden.json": "25d50539eb5ad2c577736416aca3371ec43ec3dec5ec5f7aa03a097d994027c5",
-    "clips.json": "4bce32aa67d437f6ffc917d3af8a596297e79379678cf5c49ea0e23062a73e94",
+    "blender-golden.json": "e1bb501bdec0efe6cf749b2eb13899ab040ef22fd336b6bd5e0e89a57e6718fc",
+    "clips.json": "584add87a88ab90583db910e9f365a06a582f3ce1bd289e8fdba88148c0ae254",
     "retargeted.json": "95876cf923378add87ab246c5d421a6d80277fd8a714d1bb10ef8871a93dd7fa",
     "basic-overhead-baseline.json": "6cdb2a400e114559e210d981d3afd668878cd5ee7577941a6ec063bc889e16c7"
   },
-  "revision": "0.86.2"
+  "revision": "0.86.3",
+  "recovery": {
+    "endPose": "same relaxed palm/wrist/axe socket as idle",
+    "start": "windup + active + 0.15 * recovery",
+    "separateAxeYaw": "settles with arms in recovery; no post-action guard hold",
+    "r6": "same contract"
+  }
 }

@@ -6,7 +6,7 @@ import sys
 root=pathlib.Path(__file__).resolve().parents[1]
 profile=sys.argv[1]if len(sys.argv)>1 else 'dwarf'
 gold=json.loads((root/('assets/animations/mixamo-'+profile+'-v1/blender-golden.json')).read_text())
-mapping={None:'basic','dwarf.common.overhead':'overhead','dwarf.common.ground':'ground'}
+mapping={None:'basic','dwarf.common.overhead':'overhead','dwarf.common.ground':'ground','dwarf.common.throw':'throw'}
 path=root/'tests/k0-melee-blender-native.luau';source=path.read_text()
 def lua(x):
     if isinstance(x,dict):return '{'+','.join('['+json.dumps(k)+']='+lua(v)for k,v in x.items())+'}'
@@ -32,6 +32,6 @@ while True:
         replacement['samples']=gold[mapping[skill]if profile=='dwarf'else {1:'forehand',2:'backhand',3:'overhead'}[combo]]
         text=lua(replacement);source=source[:start]+text+source[end:];end=start+len(text);updated+=1
     offset=end
-assert updated==3,updated
+assert updated==(4 if profile=="dwarf" else 3),updated
 path.write_text(source)
-print('Updated three '+profile+' Blender reference rows')
+print('Updated '+str(updated)+' '+profile+' Blender reference rows')
