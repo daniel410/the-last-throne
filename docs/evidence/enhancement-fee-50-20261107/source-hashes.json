@@ -1,0 +1,7 @@
+{
+  "src/shared/Enhancement.luau": "310500d59a51389f731bb925820cc1566d5ff9aece73d8d6c1147537e21e11e7",
+  "tests/enhancement-probability.spec.lua": "716e0ab87e93ec75f93002e4e5163e24b07bd18c915d1da9947b09bd6e87df51",
+  "tests/material-exchange.spec.lua": "13765610e220cdfa9b439485f941a36868d19d9fa8b73e42bbbfdb06ea654e5e",
+  "tests/difficulty-enhancement.spec.lua": "770514181d504d09bea8592a94fee9379bddf092c76c65f6cafb17a1f964ca6c",
+  "tools/prepare-enhancement-native-test.py": "690a919267c66a5dfc084f89c50d6b4915b7cd94d07e280b195f1ebfb4f703fe"
+}

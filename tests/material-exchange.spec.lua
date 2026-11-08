@@ -82,15 +82,21 @@ lose=false;n=assert(store:transact(42,function(v)return trade(v,lostOre)end))
 check(n.wallet.gold==0 and R.quantity(n,'h','enhancement_gem')==1 and R.quantity(n,'h','iron_ore')==oreBefore-1,'unknown retry preserves one fee and one conversion')
 assert(store:close(42));n=assert(store:open(42));check(n.wallet.gold==0 and R.quantity(n,'h','enhancement_gem')==1,'ore conversion persists on rejoin')
 -- Enhancement costs are fixed for every target and supported equipment type.
-for _,id in ipairs({'knight_weapon_fine','traveler_coat','copper_ring'})do for target=1,9 do check(E.cost(C.items[id],target).gold==25,'flat25 Gold on every equipment type and target')end end
+for _,id in ipairs({'knight_weapon_fine','traveler_coat','copper_ring'})do for target=1,9 do check(E.cost(C.items[id],target).gold==50,'flat50 Gold on every equipment type and target')end end
 local gear;for _,item in pairs(p.items)do if item.definitionId=='knight_weapon_fine'then gear=item end end
 local function attempt(profile,id,version)return {action='Enhance',store='blacksmith',requestId=id,heroId='h',revision=profile.revision,instanceId=gear.instanceId,itemVersion=gear.version,rulesVersion=version or E.version,expectedLevel=0}end
-p=fresh(24);F.grant(p,R,C,'h','enhancement_gem',10,'gems');local before=R.quantity(p,'h','enhancement_gem')
-no,why=trade(p,attempt(p,'fee-poor'),{atLobby=true,enhancementRoll=0});check(not no and why=='NotEnoughGold'and p.wallet.gold==24 and R.quantity(p,'h','enhancement_gem')==before,'fee shortage never consumes materials')
-p.wallet.gold=25;n=assert(trade(p,attempt(p,'fee-exact'),{atLobby=true,enhancementRoll=0}));check(n.wallet.gold==0 and n.operations['fee-exact'].enhancementOutcome.gold==25,'exact fee and receipt saved')
+p=fresh(49);F.grant(p,R,C,'h','enhancement_gem',10,'gems');local before=R.quantity(p,'h','enhancement_gem')
+no,why=trade(p,attempt(p,'fee-poor'),{atLobby=true,enhancementRoll=0});check(not no and why=='NotEnoughGold'and p.wallet.gold==49 and R.quantity(p,'h','enhancement_gem')==before,'fee shortage never consumes materials')
+p.wallet.gold=50;n=assert(trade(p,attempt(p,'fee-exact'),{atLobby=true,enhancementRoll=0}));check(n.wallet.gold==0 and n.operations['fee-exact'].enhancementOutcome.gold==50,'exact fee and receipt saved')
 no,why=trade(p,attempt(p,'old-ui',2),{atLobby=true,enhancementRoll=0});check(not no and why=='EnhancementChanged','old free-cost UI cannot spend with stale confirmation')
 local old=attempt(p,'old-receipt',2)
 local fingerprint=table.concat({'forge',old.action,old.heroId,old.instanceId,'',tostring(old.itemVersion),tostring(old.revision),old.store,tostring(old.rulesVersion),tostring(old.expectedLevel)},'|')
 p.operations[old.requestId]={fingerprint=fingerprint,revision=p.revision,enhancementOutcome={gold=0,success=true,rulesVersion=2}}
-local historic,err,duplicate=trade(p,old,{atLobby=false});check(not err and duplicate and historic.wallet.gold==25 and historic.operations[old.requestId].enhancementOutcome.gold==0,'historical free attempt receipt is replayed without a retroactive charge')
+local historic,err,duplicate=trade(p,old,{atLobby=false});check(not err and duplicate and historic.wallet.gold==50 and historic.operations[old.requestId].enhancementOutcome.gold==0,'historical free attempt receipt is replayed without a retroactive charge')
+local stale=attempt(p,'old25-ui',3)
+no,why=trade(p,stale,{atLobby=true,enhancementRoll=0});check(not no and why=='EnhancementChanged','old25Gold quote cannot create a new attempt')
+old=attempt(p,'old25-receipt',3)
+fingerprint=table.concat({'forge',old.action,old.heroId,old.instanceId,'',tostring(old.itemVersion),tostring(old.revision),old.store,tostring(old.rulesVersion),tostring(old.expectedLevel)},'|')
+p.operations[old.requestId]={fingerprint=fingerprint,revision=p.revision,enhancementOutcome={gold=25,success=false,rulesVersion=3}}
+historic,err,duplicate=trade(p,old,{atLobby=false});check(not err and duplicate and historic.wallet.gold==50 and historic.operations[old.requestId].enhancementOutcome.gold==25,'saved25Gold receipt is preserved without topping up the fee')
 print('Material exchange and flat fee: '..checks..' checks passed')

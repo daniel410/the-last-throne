@@ -9,7 +9,7 @@ local function eq(a,b,label)check(a==b,label..': '..tostring(a)..' ~= '..tostrin
 local function fixture()
  local p=assert(R.addHero(R.new(42),'hero','knight',C));p.wallet.gold=1000;p.wallet.diamonds=77
  F.grant(p,R,C,'hero','enhancement_gem',500,'test-gems');F.grant(p,R,C,'hero','magic_stone',500,'test-stones')
- local id;for k,item in pairs(p.items)do if item.definitionId=='knight_weapon_fine'and item.location.kind=='bag'then id=k;break end end
+ local id;for k,item in pairs(p.items)do if item.definitionId=='knight_weapon_fine'and (item.location.kind=='bag'or item.location.kind=='equipped')then id=k;break end end
  return p,id
 end
 local function command(p,id,request)
@@ -31,7 +31,7 @@ for target=1,9 do
  eq(result.items[id].version,p.items[id].version+1,'every attempt changes item version')
  eq(R.quantity(result,'hero','enhancement_gem'),gems-cost.gems,'success and failure consume exact gems')
  eq(R.quantity(result,'hero','magic_stone'),stones-cost.stones,'success and failure consume exact stones')
- eq(result.wallet.gold,975,'success and failure each cost exactly25 Gold');eq(result.operations[c.requestId].enhancementOutcome.gold,25,'receipt records Gold consumed');eq(result.wallet.diamonds,77,'no Diamonds cost')
+ eq(result.wallet.gold,950,'success and failure each cost exactly50 Gold');eq(result.operations[c.requestId].enhancementOutcome.gold,50,'receipt records Gold consumed');eq(result.wallet.diamonds,77,'no Diamonds cost')
  eq(result.schemaVersion,2,'old deterministic writers fenced by schema')
  eq(result.operations[c.requestId].enhancementOutcome.success,success,'durable outcome')
  local ledger=result.items[id].enhancementPaidV2
@@ -60,7 +60,7 @@ c=command(p,id,'first');p=assert(R.shop(p,c,{atLobby=true,enhancementRoll=0},C))
 for i=1,3 do p=assert(R.shop(p,command(p,id,'fail'..i),{atLobby=true,enhancementRoll=9999},C))end
 local gems=R.quantity(p,'hero','enhancement_gem');c=command(p,id,'recover');c.action='Recover'
 p=assert(R.shop(p,c,{atLobby=true},C));eq(R.quantity(p,'hero','enhancement_gem'),gems+1,'only floor80% of successful two gems returned')
-eq(p.items[id].enhancementLevel,0,'recovery resets level');eq(p.wallet.gold,900,'recovery does not refund four25Gold attempt fees')
+eq(p.items[id].enhancementLevel,0,'recovery resets level');eq(p.wallet.gold,800,'recovery does not refund four50Gold attempt fees')
 check(p.items[id].lastEnhancement.success==false,'recovery preserves last attempt history')
 check(p.operations.fail1.enhancementOutcome.success==false,'recovery retains durable failure receipts')
 -- Unknown save after commit and callback reexecution must not redraw or double debit.
@@ -76,17 +76,17 @@ c=command(p,id,'unknown-first');lose=true
 no,why=store:transact(42,function(current)return R.shop(current,c,{atLobby=true,enhancementRoll=0},C)end)
 check(not no and why=='SaveUnknown','committed unknown reported as unknown')
 lose=false;p=assert(store:transact(42,function(current)return R.shop(current,c,{atLobby=true,enhancementRoll=9999},C)end))
-eq(p.wallet.gold,875,'unknown success charges Gold once');eq(p.items[id].enhancementLevel,1,'committed attempt recovered once');eq(R.quantity(p,'hero','enhancement_gem'),gems-1,'callback retries consume once')
+eq(p.wallet.gold,750,'unknown success charges Gold once');eq(p.items[id].enhancementLevel,1,'committed attempt recovered once');eq(R.quantity(p,'hero','enhancement_gem'),gems-1,'callback retries consume once')
 c=command(p,id,'unknown-failure');lose=true
 no,why=store:transact(42,function(current)return R.shop(current,c,{atLobby=true,enhancementRoll=9999},C)end)
 check(not no and why=='SaveUnknown','failed attempt response loss stays unknown')
 lose=false;local result=assert(store:transact(42,function(current)return R.shop(current,c,{atLobby=true,enhancementRoll=0},C)end))
-eq(result.wallet.gold,p.wallet.gold-25,'unknown failure charges Gold once');eq(result.items[id].enhancementLevel,1,'lost failure cannot become a success')
+eq(result.wallet.gold,p.wallet.gold-50,'unknown failure charges Gold once');eq(result.items[id].enhancementLevel,1,'lost failure cannot become a success')
 eq(result.operations[c.requestId].enhancementOutcome.success,false,'original failure retained')
 eq(R.quantity(result,'hero','enhancement_gem'),R.quantity(p,'hero','enhancement_gem')-4,'failure consumes once through save retries')
 -- A historical +10 is preserved and cannot be enhanced further.
 local high=R.copy(C);high.items.test80={id='test80',name='Legacy Sword',category='Equipment',slot='weapon',classId='knight',stats={power=24},level=80,maxStack=1}
-p,id=fixture();p.items[id].definitionId='test80';p.items[id].enhancementLevel=10;p.items[id].enhancementPaid={ore=110,cores=28}
+p,id=fixture();p.items[id].location.kind='bag';p.items[id].definitionId='test80';p.items[id].enhancementLevel=10;p.items[id].enhancementPaid={ore=110,cores=28}
 check(R.validate(p,high),'legacy +10 loads unchanged');check(math.abs(E.stats(high.items.test80,p.items[id]).power-31.2)<1e-9,'legacy +10 keeps original power')
 no,why=R.shop(p,command(p,id,'legacy-cap'),{atLobby=true,enhancementRoll=0},high);check(not no and why=='EnhancementMax','legacy +10 cannot advance')
 -- Material shortage and old evicted requests cannot spend.

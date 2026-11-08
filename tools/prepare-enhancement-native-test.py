@@ -18,7 +18,7 @@ pure('tests/enhancement-probability.spec.lua')
 pure('tests/material-exchange.spec.lua')
 assert(loadstring(sources['src/client/LobbyCommerce.luau'],'@src/client/LobbyCommerce.luau'))
 local receiptText=pure('src/shared/AdventureText.luau')
-assert(string.format(receiptText.EnhancementSucceeded,1,25):find('25 Gold',1,true),'new receipt shows actual fee')
+assert(string.format(receiptText.EnhancementSucceeded,1,50):find('50 Gold',1,true),'new receipt shows actual fee')
 assert(string.format(receiptText.EnhancementSucceeded,1,0):find('0 Gold',1,true),'legacy free receipt shows zero fee')
 '''
 code+=ns['code'].split('local originalGame=game')[1].split("local existing=")[0].join(['local originalGame=game',''])
@@ -36,7 +36,7 @@ local serverProfile=assert(R.addHero(R.new(42),'hero','knight',C));local gear
 serverProfile.wallet.gold=1000
 local F=pure('src/shared/EquipmentTransactions.luau')
 F.grant(serverProfile,R,C,'hero','enhancement_gem',20,'service-gems')
-for _,v in pairs(serverProfile.items)do if v.definitionId=='knight_weapon_fine'and v.location.kind=='bag'then gear=v end end
+for _,v in pairs(serverProfile.items)do if v.definitionId=='knight_weapon_fine'and (v.location.kind=='bag'or v.location.kind=='equipped')then gear=v end end
 gear.enhancementLevel=1
 local player={UserId=42,GetAttribute=function()return 'Lobby'end};local accounts={[player]={valid=true,profile=serverProfile}}
 local draws,calls=0,0
@@ -52,7 +52,7 @@ assert(service.shop(player,cmd)=='SaveUnknown','first service response must stay
 local reason,outcome=service.shop(player,cmd)
 assert(not reason and outcome and not outcome.success,'service publishes saved failure')
 assert(draws==1 and calls==2,'service drew again after unknown response')
-assert(serverProfile.wallet.gold==975 and outcome.gold==25,'service failed attempt must charge25 Gold once')
+assert(serverProfile.wallet.gold==950 and outcome.gold==50,'service failed attempt must charge50 Gold once')
 local gemCalls=0
 local gemStore={transact=function(_,_,fn)
  gemCalls+=1
@@ -66,7 +66,7 @@ assert(gemService.shop(player,gemCmd)=='SaveUnknown','exchange reply loss remain
 local changed=R.copy(gemCmd);changed.exchangeVersion=1
 assert(gemService.shop(player,changed)=='RequestConflict','pending exchange quote change refused')
 assert(gemService.shop(player,gemCmd)==nil,'original exchange recovers its receipt')
-assert(gemCalls==2 and serverProfile.wallet.gold==925 and R.quantity(serverProfile,'hero','enhancement_gem')==17,'saved exchange debits50 Gold and grants1 Gem only once')
+assert(gemCalls==2 and serverProfile.wallet.gold==900 and R.quantity(serverProfile,'hero','enhancement_gem')==17,'saved exchange debits50 Gold and grants1 Gem only once')
 local profile=assert(R.addHero(R.new(42),'hero','knight',C));local items={};for _,v in pairs(profile.items)do table.insert(items,v)end
 local state={ready=true,heroId='hero',heroes=profile.heroes,items=items,wallet=profile.wallet,revision=profile.revision}
 view.render(state);view.panel.Visible=true
@@ -79,7 +79,7 @@ for _,size in ipairs({Vector2.new(1108,707),Vector2.new(844,390),Vector2.new(667
  assert(view.panel.Close.AbsolutePosition.Y+view.panel.Close.AbsoluteSize.Y<=view.panel.EnhanceTab.AbsolutePosition.Y,'close must not overlap tabs')
  assert(guide.Visible and not view.panel.Offers.Visible,'guide must replace offers')
  assert(guide:FindFirstChild('Stage9').Body.Text:find('20%% success / 80%% failure'),'stage9 rate visible')
- assert(guide.Stage9.Body.Text:find('25 Gold',1,true),'flat fee visible at stage9')
+ assert(guide.Stage9.Body.Text:find('50 Gold',1,true),'flat fee visible at stage9')
  assert(#guide:GetChildren()==15,'9 stages plus 5 sections plus layout')
  local clipped={}
  for _,box in ipairs(guide:GetChildren())do if box:IsA('Frame')then
@@ -91,7 +91,7 @@ for _,size in ipairs({Vector2.new(1108,707),Vector2.new(844,390),Vector2.new(667
  state.wallet.gold=50;view.render(state);task.wait(.1)
  local exchange=view.panel.Offers.StoneExchange
  assert(exchange.Action1.Active and not exchange.Action2.Active,'50Gold permits Gems but missing Gems blocks Stone exchange')
- assert(exchange.Action1.Caption.Text=='50 GOLD → 5 GEMS','Gem offer amount visible')
+ assert(exchange.Action1.Caption.Text=='BUY · 50 GOLD → 1 GEM','current Gem offer amount visible')
  assert(exchange.Description.Text:find('5 Gems + 50 Gold',1,true),'Stone offer input visible')
  assert(exchange.Description.TextBounds.Y<=exchange.Description.AbsoluteSize.Y+2,'exchange description clips on this layout')
  state.wallet.gold=49;view.render(state);task.wait(.1)
@@ -107,7 +107,7 @@ for _,size in ipairs({Vector2.new(1108,707),Vector2.new(844,390),Vector2.new(667
 end
 root.Size=UDim2.fromOffset(1108,707);view.setMode('Guide');task.wait(.2)
 _G.TLTEnhancementQA={gui=gui,root=root,view=view,signal=signal}
-local report={pass=true,probabilityChecks=2869,materialChecks=151,serviceRecovery=true,layouts=results,scope='temporary CoreGui; no user account, live storage or publishing'}
+local report={pass=true,probabilityChecks=2869,materialChecks=183,serviceRecovery=true,layouts=results,scope='temporary CoreGui; no user account, live storage or publishing'}
 print('TLT_MATERIAL_EXCHANGE_NATIVE '..originalGame:GetService('HttpService'):JSONEncode(report))
 return report
 '''
