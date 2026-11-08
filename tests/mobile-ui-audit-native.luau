@@ -55,7 +55,7 @@ case('shops',function()
    local panel=view.panel
    inside(panel,host,store..' panel '..tostring(size));check(panel.Offers.AbsoluteSize.Y>=64,store..' usable offers '..tostring(size))
    separate(panel.Title,panel.Close,store..' title clears close');textFits(panel.Title,store)
-   if store=='blacksmith'then inside(panel.EnhancementHelp,panel,'help inside');separate(panel.Title,panel.EnhancementHelp,'blacksmith title clears help');separate(panel.EnhancementHelp,panel.BuyTab,'blacksmith help clears buy')end
+   if store=='blacksmith'then check(not panel.EnhancementHelp.Visible,'enhancement guide hidden while buying')end
    for _,card in ipairs(panel.Offers:GetChildren())do if card:IsA('Frame')and card:FindFirstChild('Trade')then
     textFits(card:FindFirstChild('Name'),store);textFits(card.Details,store);separate(card.Details,card.Trade,store..' text clears trade')
    end end

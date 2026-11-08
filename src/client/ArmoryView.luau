@@ -34,8 +34,7 @@ function V.create(parent,send,diamondOnly,store)
  local notice=T.label(panel,'Notice','',UDim2.new(0,20,1,-82),UDim2.new(1,-40,0,64),12)
  local enhance=T.button(panel,'EnhanceTab','ENHANCE',UDim2.new(.75,6,0,37),UDim2.new(.25,-22,0,44));enhance.Visible=store=='blacksmith'
  local guide=require(script.Parent.EnhancementGuide).create(panel)
- local help=T.button(panel,'EnhancementHelp',AdventureText.EnhancementHelp,UDim2.new(1,-242,0,12),UDim2.fromOffset(174,44));help.Visible=store=='blacksmith'
- if store=='blacksmith' then title.Size=UDim2.new(1,-270,0,28) end
+ local help=T.button(panel,'EnhancementHelp',AdventureText.EnhancementHelp,UDim2.new(1,-242,0,12),UDim2.fromOffset(174,44));help.Visible=false
  local categories=Instance.new('Frame');categories.Name='Categories';categories.Position=UDim2.fromOffset(16,132);categories.Size=UDim2.new(1,-32,0,96);categories.BackgroundTransparency=1;categories.Parent=panel
  local grid=Instance.new('UIGridLayout');grid.CellSize=UDim2.new(1/3,-6,0,44);grid.CellPadding=UDim2.fromOffset(6,6);grid.SortOrder=if store=='items' or store=='blacksmith' then Enum.SortOrder.LayoutOrder else Enum.SortOrder.Name;grid.Parent=categories
  local function resize()
@@ -46,13 +45,11 @@ function V.create(parent,send,diamondOnly,store)
   close.Position=UDim2.new(1,-62,0,short and 4 or 12)
   balance.Position=UDim2.fromOffset(20,short and 42 or 46)
   balance.Size=UDim2.new(1,-40,0,short and 20 or 26)
-  if store=='blacksmith'and short then
-   balance.Size=UDim2.new(.25,-20,0,44);buy.Position,buy.Size=UDim2.new(.25,0,0,38),UDim2.new(.25,-6,0,44);sell.Position,sell.Size=UDim2.new(.5,0,0,38),UDim2.new(.25,-6,0,44)
-  elseif (store=='blacksmith' or store=='items') and short then
+  if store=='items' and short then
    balance.Size=UDim2.new(.5,-24,0,short and 20 or 26)
    buy.Position,buy.Size=UDim2.new(.5,0,0,short and 38 or 42),UDim2.new(.25,-10,0,44)
    sell.Position,sell.Size=UDim2.new(.75,0,0,short and 38 or 42),UDim2.new(.25,-16,0,44)
-  elseif store=='blacksmith' or store=='items' then
+  elseif store=='items' then
    balance.Position=UDim2.fromOffset(20,37)
    balance.Size=UDim2.new(.25,-24,0,44)
    buy.Position,buy.Size=UDim2.new(.25,0,0,37),UDim2.new(.25,-6,0,44)
@@ -61,27 +58,42 @@ function V.create(parent,send,diamondOnly,store)
    buy.Position=UDim2.fromOffset(16,short and 66 or 82)
    sell.Position=UDim2.new(.5,4,0,short and 66 or 82)
   end
-  if store=='blacksmith'then
-   local tabY=short and 52 or 60
-   buy.Position=UDim2.new(.25,0,0,tabY);sell.Position=UDim2.new(.5,6,0,tabY);enhance.Position=UDim2.new(.75,6,0,tabY)
-   balance.Position=UDim2.fromOffset(20,tabY)
-  end
   local compactStore=store=='blacksmith' or store=='items'
-  local y=if store=='blacksmith'then (if short then 102 else 110)elseif compactStore then (if short then 88 else 87) else (if short then (if diamondOnly then 66 else 114) else 132)
+  -- Diamond Shop has no trade tabs; its categories follow the wallet directly.
+  local y=if diamondOnly then (if short then 66 else 82) elseif compactStore then (if short then 88 else 87) else (if short then 114 else 132)
   categories.Position=UDim2.fromOffset(16,y)
   if compactStore then categories.Size=UDim2.new(1,-32,0,44) end
   local top=y+(if panel:GetAttribute('EnhancementMode') or panel:GetAttribute('EnhancementGuideMode')then 0 elseif compactStore then 54 else 106)
-  if store=='blacksmith' and panel.AbsoluteSize.X<450 then
-   title.Position=UDim2.fromOffset(16,6);title.Size=UDim2.new(1,-84,0,32);title.TextSize=18
-   help.Position=UDim2.fromOffset(16,48);help.Size=UDim2.new(1,-32,0,44)
-   balance.Position=UDim2.fromOffset(16,98);balance.Size=UDim2.new(.25,-20,0,44);balance.TextSize=11
-   buy.Position=UDim2.new(.25,0,0,98);sell.Position=UDim2.new(.5,6,0,98);enhance.Position=UDim2.new(.75,6,0,98)
-   categories.Position=UDim2.fromOffset(16,150)
-   top=(panel:GetAttribute('EnhancementMode') or panel:GetAttribute('EnhancementGuideMode')) and 150 or 204
-  else
-   help.Size=UDim2.fromOffset(174,44)
-   title.Size=UDim2.new(1,store=='blacksmith' and -270 or -88,0,28);title.TextSize=22
-   balance.TextSize=15
+  title.Size=UDim2.new(1,-88,0,28);title.TextSize=22;balance.TextSize=15
+  if store=='blacksmith' then
+   -- Two rows: trade tabs beside the title, categories beside the wallet.
+   -- The guide belongs to the enhancement content row, never the shop header.
+   local narrow=panel.AbsoluteSize.X<450
+   local tabY=if narrow then 48 else (if short then 4 else 12)
+   local rowY=tabY+50
+   local left=if narrow then 16 else panel.AbsoluteSize.X*.25
+   local tabWidth=(panel.AbsoluteSize.X-left-78)/3
+   title.Position=UDim2.fromOffset(16,short and 4 or 12)
+   title.Size=if narrow then UDim2.new(1,-84,0,28) else UDim2.new(.25,-24,0,44)
+   title.TextSize=if narrow then 18 else math.min(22,22*(left-24)/TextService:GetTextSize(title.Text,22,title.Font,Vector2.new(1000,100)).X)
+   for index,button in ipairs({buy,sell,enhance}) do
+    button.Position=UDim2.fromOffset(left+(index-1)*(tabWidth+6),tabY)
+    button.Size=UDim2.fromOffset(tabWidth,44)
+    button.Caption.TextSize=if narrow then 11 else 13
+   end
+   balance.Position=UDim2.fromOffset(16,if narrow then rowY+50 else rowY)
+   balance.Size=if narrow then UDim2.new(1,-32,0,26) else UDim2.new(.25,-24,0,44)
+   balance.TextSize=if narrow then 12 else 14
+   categories.Position=UDim2.fromOffset(left,rowY)
+   categories.Size=UDim2.new(1,-left-16,0,44)
+   grid.CellSize=UDim2.new(1/3,-4,0,44)
+   help.Position=UDim2.new(1,-216,0,rowY)
+   help.Size=UDim2.fromOffset(200,44)
+   if narrow then
+    help.Position=UDim2.fromOffset(16,rowY)
+    help.Size=UDim2.new(1,-32,0,44)
+   end
+   top=if narrow then rowY+82 else rowY+54
   end
   scroll.Position=UDim2.fromOffset(16,top)
   -- Reserve space only for an actual confirmation, save status, or error.
@@ -139,6 +151,7 @@ function V.create(parent,send,diamondOnly,store)
   end)
  end
  render=function(snapshot,message,saving)
+  help.Visible=store=='blacksmith' and (mode=='Enhance' or mode=='Guide')
   state=snapshot or state;pending=nil;categories.Visible=mode~='Enhance'and mode~='Guide';panel:SetAttribute('EnhancementMode',mode=='Enhance');panel:SetAttribute('EnhancementGuideMode',mode=='Guide');guide.scroll.Visible=mode=='Guide';scroll.Visible=mode~='Guide'
   for id,b in pairs({Buy=buy,Sell=sell,Enhance=enhance})do b.TDButtonArt.ImageColor3=mode==id and Color3.fromRGB(160,220,255)or Color3.new(1,1,1);b.Caption.Text=(mode==id and '[X] 'or '')..id:upper() end
   resize();if saving~=nil then transactionPending=saving==true end
