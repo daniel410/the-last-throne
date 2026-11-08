@@ -1,0 +1,294 @@
+{
+  "sourceCommit": "28d235c3009955800ee5cb2e83e54dc20fa834e1",
+  "method": "Lua dofile CampaignContent; battleGoals counts nonempty goal.enemies, not waves or elapsed time",
+  "chapters": [
+    {
+      "id": "DW-01",
+      "title": "Goblin Forest Trail",
+      "side": false,
+      "goals": 5,
+      "battleGoals": 2,
+      "activitySteps": 7
+    },
+    {
+      "id": "DW-02",
+      "title": "Broken Cart Clearing",
+      "side": false,
+      "goals": 5,
+      "battleGoals": 2,
+      "activitySteps": 8
+    },
+    {
+      "id": "DW-03",
+      "title": "Elder Tree Outpost",
+      "side": false,
+      "goals": 3,
+      "battleGoals": 0,
+      "activitySteps": 8
+    },
+    {
+      "id": "DW-04",
+      "title": "Abandoned Watchtower",
+      "side": false,
+      "goals": 6,
+      "battleGoals": 3,
+      "activitySteps": 8
+    },
+    {
+      "id": "DW-05",
+      "title": "Orc Occupied Ruins",
+      "side": false,
+      "goals": 7,
+      "battleGoals": 5,
+      "activitySteps": 6
+    },
+    {
+      "id": "DW-06",
+      "title": "Corrupted Rootwood",
+      "side": false,
+      "goals": 6,
+      "battleGoals": 3,
+      "activitySteps": 10
+    },
+    {
+      "id": "DW-07",
+      "title": "Black Root Altar",
+      "side": false,
+      "goals": 9,
+      "battleGoals": 4,
+      "activitySteps": 13
+    },
+    {
+      "id": "DW-Q1",
+      "title": "Supplies in the Marsh",
+      "side": true,
+      "goals": 3,
+      "battleGoals": 1,
+      "activitySteps": 0
+    },
+    {
+      "id": "DW-Q2",
+      "title": "The Stolen Food",
+      "side": true,
+      "goals": 5,
+      "battleGoals": 1,
+      "activitySteps": 0
+    },
+    {
+      "id": "DW-Q3",
+      "title": "Quarry Below the Falls",
+      "side": true,
+      "goals": 5,
+      "battleGoals": 2,
+      "activitySteps": 0
+    },
+    {
+      "id": "DW-Q4",
+      "title": "Remnants of the Red Battlefield",
+      "side": true,
+      "goals": 4,
+      "battleGoals": 1,
+      "activitySteps": 0
+    },
+    {
+      "id": "GW-01",
+      "title": "Lantern Trail",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 1,
+      "activitySteps": 3
+    },
+    {
+      "id": "GW-02",
+      "title": "A Light in the Webs",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 1,
+      "activitySteps": 3
+    },
+    {
+      "id": "GW-03",
+      "title": "Lantern Refuge",
+      "side": false,
+      "goals": 3,
+      "battleGoals": 0,
+      "activitySteps": 4
+    },
+    {
+      "id": "GW-04",
+      "title": "The Ancient Rootway",
+      "side": false,
+      "goals": 3,
+      "battleGoals": 2,
+      "activitySteps": 1
+    },
+    {
+      "id": "GW-05",
+      "title": "Venomcoil Crossing",
+      "side": false,
+      "goals": 3,
+      "battleGoals": 2,
+      "activitySteps": 1
+    },
+    {
+      "id": "GW-06",
+      "title": "One Brave Step",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "activitySteps": 2
+    },
+    {
+      "id": "GW-07",
+      "title": "The Queen of the Webs",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "activitySteps": 2
+    },
+    {
+      "id": "EC-01",
+      "title": "Ash Gate",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "activitySteps": 1
+    },
+    {
+      "id": "EC-02",
+      "title": "Forge City",
+      "side": false,
+      "goals": 3,
+      "battleGoals": 0,
+      "activitySteps": 3
+    },
+    {
+      "id": "EC-03",
+      "title": "Collapsed Resonance Mine",
+      "side": false,
+      "goals": 5,
+      "battleGoals": 2,
+      "activitySteps": 3
+    },
+    {
+      "id": "EC-04",
+      "title": "Split Coolant Canals",
+      "side": false,
+      "goals": 6,
+      "battleGoals": 2,
+      "activitySteps": 3
+    },
+    {
+      "id": "EC-05",
+      "title": "Ancestral Design Vault",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 1,
+      "activitySteps": 0
+    },
+    {
+      "id": "EC-06",
+      "title": "Geothermal Heart Testworks",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "activitySteps": 2
+    },
+    {
+      "id": "EC-07",
+      "title": "Great Furnace",
+      "side": false,
+      "goals": 6,
+      "battleGoals": 2,
+      "activitySteps": 4
+    },
+    {
+      "id": "EC-Q1",
+      "title": "A Worker's Lost Mark",
+      "side": true,
+      "goals": 3,
+      "battleGoals": 0,
+      "activitySteps": 0
+    },
+    {
+      "id": "EC-Q2",
+      "title": "Ember Raider Nest",
+      "side": true,
+      "goals": 4,
+      "battleGoals": 1,
+      "activitySteps": 0
+    },
+    {
+      "id": "EC-Q3",
+      "title": "Volcano Shaman Altar",
+      "side": true,
+      "goals": 4,
+      "battleGoals": 1,
+      "activitySteps": 0
+    },
+    {
+      "id": "EC-Q4",
+      "title": "Caldera Titan Basin",
+      "side": true,
+      "goals": 4,
+      "battleGoals": 1,
+      "activitySteps": 0
+    },
+    {
+      "id": "HG-01",
+      "title": "Mist Gate",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "activitySteps": 2
+    },
+    {
+      "id": "HG-02",
+      "title": "Friends at the Old Shelter",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 0,
+      "activitySteps": 4
+    },
+    {
+      "id": "HG-03",
+      "title": "Lumi Secret Passage",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "activitySteps": 2
+    },
+    {
+      "id": "HG-04",
+      "title": "The Alliance Opens the Gate",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "activitySteps": 2
+    },
+    {
+      "id": "HG-05",
+      "title": "The Black Throne Devices",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "activitySteps": 2
+    },
+    {
+      "id": "HG-06",
+      "title": "The Royal Tomb",
+      "side": false,
+      "goals": 3,
+      "battleGoals": 2,
+      "activitySteps": 1
+    },
+    {
+      "id": "HG-07",
+      "title": "Together We Bring Back the Light",
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "activitySteps": 2
+    }
+  ]
+}
