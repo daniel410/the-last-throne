@@ -23,11 +23,11 @@
 
 | 대표 지역 | 변경 전 | 최종 변경 후 |
 | --- | --- | --- |
-| Deepwood 거점 | [before](before-DW-03.png) | [after](after-DW-03.png) |
-| Gloamwood 뿌리길 | [before](before-GW-04.png) | [after](after-GW-04.png) |
-| Frozen Vale 협곡 | [before](before-FV-03.png) | [after](after-FV-03.png) |
-| Ember Caldera 용광로 | [before](before-EC-07.png) | [after](after-EC-07.png) |
-| Haunted Graveyard 입구 | [before](before-HG-01.png) | [after](after-HG-01.png) |
+| Deepwood 거점 | [before](before-DW-03.jpg) | [after](after-DW-03.jpg) |
+| Gloamwood 뿌리길 | [before](before-GW-04.jpg) | [after](after-GW-04.jpg) |
+| Frozen Vale 협곡 | [before](before-FV-03.jpg) | [after](after-FV-03.jpg) |
+| Ember Caldera 용광로 | [before](before-EC-07.jpg) | [after](after-EC-07.jpg) |
+| Haunted Graveyard 입구 | [before](before-HG-01.jpg) | [after](after-HG-01.jpg) |
 
 직접 비교 후 초기 배치에서 떠 보이던 절벽, 화산 고지 아래 묻힌 랜드마크, Gloamwood의 원색 수관을 수정했다. 최종 사진은 그 수정을 포함하고 TD 메시 PreloadAsync 후 촬영했다. 높은 전체 카메라에서 지역별 원형과 밀도 차이를 확인한 범위이며 사람의 최종 미술 수용으로 선언하지 않는다.
 
@@ -49,3 +49,9 @@
 ## 미검증·다음 담당
 
 실제 PC/모바일의 낮은 영웅 카메라·전투/VFX·입력·4인+AI·프레임 시간·게시 자산 권한은 미검증이다. 높은 카메라에서는 기존 지역 사이 공백/수평 전투장·일부 반복 석조가 여전히 보이며 이 작업이 전체 월드 지형/건축의 최종 미술 완성이나 스토리 확장 완료를 뜻하지 않는다. 기존 계정 진행·아이템/경제·서버 전투 규칙은 유지하고 부모 티켓은 In Progress로 둔다. 다음 담당은 QA/사용자의 대표5지역 실플레이 시각·길찾기/성능 수용이다. 실제 Studio 작업 중 장면에 일부 모듈을 혼합 적용하거나 Roblox 게시·릴리스 태그를 만들지 않았다.
+
+## 고정 소스 빌드·마감
+
+**0.83.2 성공** · 입력 소스 `08b78698007d5bc5cb6c0eb7a55c06e9848d1b91` · 산출물 `builds/0.83.2/TheLastThrone-0.83.2.rbxlx` · SHA-256 `2f8b3b659c2631e5999d4e6af5fb3ad3be0ee4949234585b8958e64e13110267` ·15,001,764bytes. [빌드](build.json), [고정 빌드 검사](committed-build-checks.json).
+
+빌드 산출물의 변경5개 핵심 모듈이 입력 소스와 동일함을 확인하고, 같은 파일에서 랜드마크1,254·지도/미니맵5,810·전체 지도416 = **7,480네이티브 검사 PASS·CLI종료0**를 재실행했다. 이미지10개는 native JPEG바이트를 보존하며 확장자도jpg로 정리했다. Git LFS로 전송하며 Roblox 자산을 새로 업로드하거나 Place를 게시하지 않는다.

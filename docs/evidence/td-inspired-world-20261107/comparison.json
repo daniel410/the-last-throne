@@ -237,16 +237,16 @@
   "meshInstanceReductionPercent": 37.11,
   "devicePerformanceVerified": false,
   "captures": {
-    "after-HG-01.png": "5f60c355b5e6a41b0996fb67b8aa777b6fa9333bb313a2bd3afb59cdb241fe1d",
-    "before-DW-03.png": "0d22ca7739fa50bafeea21fb18d292ad93ad87c831f9af9fd865841d53480576",
-    "before-EC-07.png": "ae4f5449aef0ee9bf8045edd0803ecbc79621356c75aceb29cf352a915cfa9e1",
-    "before-GW-04.png": "7641384719d8206c8bce633cd307d0301bdbe5c8e7d253911e45a7ae96fc538f",
-    "after-FV-03.png": "682e07ec6dcc98e3130940bc0605b4ce6ab0009b9c837e090bb4258268f48603",
-    "after-DW-03.png": "628787d4959c9f71419a1ce3e5bb014ba1087571aa37675a93bf9774e9ba8489",
-    "after-EC-07.png": "2748c690620c209c277e971299f664ee1057b45834049083053801bd5bed7cb3",
-    "before-HG-01.png": "f065312db82542d68cf1e2d9d8adceb87ad567bedbe2e8a4b48ebc53d400f9bb",
-    "before-FV-03.png": "149d58b50498423cec63739b0dec7a9d2fc6c3734912996e151185604fd0ad76",
-    "after-GW-04.png": "eb20582ef1da17c55787dafc1f18d138cce4403a50e145b27446965fa2b75b28"
+    "after-HG-01.jpg": "5f60c355b5e6a41b0996fb67b8aa777b6fa9333bb313a2bd3afb59cdb241fe1d",
+    "before-DW-03.jpg": "0d22ca7739fa50bafeea21fb18d292ad93ad87c831f9af9fd865841d53480576",
+    "before-EC-07.jpg": "ae4f5449aef0ee9bf8045edd0803ecbc79621356c75aceb29cf352a915cfa9e1",
+    "before-GW-04.jpg": "7641384719d8206c8bce633cd307d0301bdbe5c8e7d253911e45a7ae96fc538f",
+    "after-FV-03.jpg": "682e07ec6dcc98e3130940bc0605b4ce6ab0009b9c837e090bb4258268f48603",
+    "after-DW-03.jpg": "628787d4959c9f71419a1ce3e5bb014ba1087571aa37675a93bf9774e9ba8489",
+    "after-EC-07.jpg": "2748c690620c209c277e971299f664ee1057b45834049083053801bd5bed7cb3",
+    "before-HG-01.jpg": "f065312db82542d68cf1e2d9d8adceb87ad567bedbe2e8a4b48ebc53d400f9bb",
+    "before-FV-03.jpg": "149d58b50498423cec63739b0dec7a9d2fc6c3734912996e151185604fd0ad76",
+    "after-GW-04.jpg": "eb20582ef1da17c55787dafc1f18d138cce4403a50e145b27446965fa2b75b28"
   },
   "camera": {
     "DW-03": [
