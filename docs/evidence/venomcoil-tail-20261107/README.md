@@ -15,3 +15,5 @@ Meshy 원본 GLB와 리그 GLB를 단순 정점 수뿐 아니라 정점 좌표�
 검증은 기존 `tests/gloamwood-meshy-native.luau`에 King의 원본 양면/정밀도 계약 검사를 추가해 수행한다. 결과·고정 빌드·소스 커밋은 마감 기록으로 연결한다.
 
 `rojo build default.project.json -o /tmp/tlt-venomcoil-tail-final-review.rbxlx` 후 `run-in-roblox --place /tmp/tlt-venomcoil-tail-final-review.rbxlx --script tests/gloamwood-meshy-native.luau`는 **27,999 PASS·종료0**이다. King3크기×2표시 계약 검사6개가 기존27,993에 추가됐으며16개 메시/텍스처 모두 Success다. [로그](native.log) / [결과](native.json). 최초 실행은 별도 검토 Studio의 CLI 포트가 사용 중이라 시작에 실패했고, 검토가 끝난 후 정상 재실행했다([초기 실행 오류](native-launch-failed.log)).
+
+고정 소스 `f7bec2ea3f1dee303a7e4035f2404c78f471f813`와 LFS2개·412KB의 origin/main 푸시를 확인했다. `python3 tools/build-game.py --source f7bec2e --record docs/evidence/venomcoil-tail-20261107/build.json`으로0.83.7 빌드 성공. 산출물 `builds/0.83.7/TheLastThrone-0.83.7.rbxlx`, SHA256 `4e87ce9ec72bdea7de09f629dd099d4f3e69fc8450451490b8e6d0fe725b34f4`는 위27,999검사를 통과한 검토 파일과 **바이트 단위로 동일**하다. 고정 입력LFS15개의 SHA256도 커밋OID와 일치했다. [빌드 기록](build.json). 후속 증거 커밋은 빌드 입력을 바꾸지 않는다.
