@@ -3,6 +3,12 @@
 import bpy, json, math, copy
 # POSE_SOURCE is supplied as data by the caller; no external datablocks are loaded.
 s = bpy.data.scenes.new('TLT_Dwarf_NaturalCut_v2')
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+s.display_settings.display_device = 'sRGB'
+s.view_settings.view_transform = 'Standard'
+s.view_settings.look = 'None'
+s.view_settings.exposure = 0; s.view_settings.gamma = 1
+s.view_settings.use_curve_mapping = False
 s.render.fps = 60
 s.frame_start, s.frame_end = 0, 26
 bpy.context.window.scene = s

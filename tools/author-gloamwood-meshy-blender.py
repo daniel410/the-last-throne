@@ -70,6 +70,12 @@ def animate(rig, shape, clip, phase):
 
 previous=bpy.context.window.scene
 scene=bpy.data.scenes['TLT_Gloamwood_Meshy_v1'];bpy.context.window.scene=scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 scene.render.fps=40
 results=[]
 for kind,(original,shape) in SPECS.items():

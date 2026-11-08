@@ -1,0 +1,121 @@
+[
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/axe-edge-v1/axe-edge-alignment.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/axe-edge-v1/axe-edge-alignment.blend",
+    "meshesAndMaterials": 118,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/deepwood-monsters-v1/deepwood-motion.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/deepwood-monsters-v1/deepwood-motion.blend",
+    "meshesAndMaterials": 162,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/deepwood-monsters-v2/deepwood-motion.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/deepwood-monsters-v2/deepwood-motion.blend",
+    "meshesAndMaterials": 44,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/dwarf-natural-v2/dwarf-natural-v2.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/dwarf-natural-v2/dwarf-natural-v2.blend",
+    "meshesAndMaterials": 2,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/elf-bow-v1/elf-bow-refined.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/elf-bow-v1/elf-bow-refined.blend",
+    "meshesAndMaterials": 78,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/frozen-vale-v1/frozen-vale-motion.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/frozen-vale-v1/frozen-vale-motion.blend",
+    "meshesAndMaterials": 120,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/mage-staff-v1/mage-staff-casting.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/mage-staff-v1/mage-staff-casting.blend",
+    "meshesAndMaterials": 111,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/dwarf-refinement.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/dwarf-refinement.blend",
+    "meshesAndMaterials": 9346,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/melee-attacks-candidate-v2.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/melee-attacks-candidate-v2.blend",
+    "meshesAndMaterials": 43,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/melee-attacks.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/melee-attacks.blend",
+    "meshesAndMaterials": 43,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/shield-bash-v1/shield-bash.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/shield-bash-v1/shield-bash.blend",
+    "meshesAndMaterials": 162,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/npcs/faces-v2/npc-heads-v2.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/npcs/faces-v2/npc-heads-v2.blend",
+    "meshesAndMaterials": 881,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/npcs/faces-v3/npc-heads-v3.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/npcs/faces-v3/npc-heads-v3.blend",
+    "meshesAndMaterials": 1436,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/npcs/heads-v4/npc-heads-v4.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/npcs/heads-v4/npc-heads-v4.blend",
+    "meshesAndMaterials": 6150,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/npcs/nia-hair-v5/nia-hair-v5.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/npcs/nia-hair-v5/nia-hair-v5.blend",
+    "meshesAndMaterials": 6396,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/shared/td-refined-player-weapons/refined-weapon-review.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/shared/td-refined-player-weapons/refined-weapon-review.blend",
+    "meshesAndMaterials": 117,
+    "differences": [],
+    "passed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/models/maps-quality-v2/forest-kit-v3/forest-kit.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/map-forest-kit.blend",
+    "meshesAndMaterials": 453,
+    "differences": [],
+    "passed": true
+  }
+]

@@ -10,6 +10,12 @@ import json
 from mathutils import Matrix, Vector
 
 scene = bpy.context.scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 assert scene.name in ['TLT_Monster_Motion_Authoring','TLT_Deepwood_Monsters_v2']
 scene.frame_set(0)
 channels = ['body', 'weapon', 'off', 'rightLeg', 'leftLeg']

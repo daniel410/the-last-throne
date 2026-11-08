@@ -3,6 +3,12 @@ import bpy,math,json
 from mathutils import Vector,Matrix
 source=bpy.data.scenes[SOURCE_SCENE];data=json.loads(source['head_recipes_json'])
 review=bpy.data.scenes.new('NPC_Concept_Portraits_v4');bpy.context.window.scene=review;review.world=source.world
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+review.display_settings.display_device = 'sRGB'
+review.view_settings.view_transform = 'Standard'
+review.view_settings.look = 'None'
+review.view_settings.exposure = 0; review.view_settings.gamma = 1
+review.view_settings.use_curve_mapping = False
 camera_data=bpy.data.cameras.new('PortraitCamera');camera=bpy.data.objects.new('PortraitCamera',camera_data);review.collection.objects.link(camera)
 camera.location=(0,-25,4.95);camera.rotation_euler=(math.pi/2,0,0);camera_data.type='ORTHO';camera_data.ortho_scale=7.3;review.camera=camera
 for x,power in ((-4,850),(4,1100)):

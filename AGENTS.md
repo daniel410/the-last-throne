@@ -1,3 +1,5 @@
+> **2026-11-08 사용자 색상 기준 · TLT-031/032/033/057/061~065/084:** Blender에서 맵·영웅·NPC·몬스터·장비를 제작하거나 컨셉과 비교할 때 **View Transform = Standard**를 반드시 명시한다. Display = sRGB, Look = None, Exposure = 0, Gamma = 1, Use Curves = Off를 비교 기준으로 삼는다. 새 장면/가져오기/렌더 직전에 재확인하며 AgX 화면으로 채도·색 일치 판정을 하지 않는다. 색 텍스처는 sRGB, 데이터 맵은 Non-Color로 구분하고 재질 숫자는 scene-linear 입력 규칙을 지킨다. 임의 채도 증가로 표시 변환을 보상하지 않는다. Standard 비교 렌더와 실제 Roblox 조명 검증은 별도다. [작업 증거](docs/evidence/standard-color-20261108/README.md).
+
 > **2026-11-07 리뷰3건 수정 · TLT-001/050/057/061~065/084 · 0.81.1:** 칼데라→GW 역방향 완료의 저장 재시도를 원정별 영수증으로 복구하고, 기존 완료 지역의 지도7/7·완료 배지와 GW-07 Tali 목표/단계 안내를 수정했다. [검증·Studio 적용·미게시](docs/evidence/campaign-review-fixes-20261107/README.md). 기존 진행/보상·전투/성장 수치 유지, 실제 계정/기기 수용은 후속.
 
 > **2026-11-07 게임 적용 · TLT-001/050/057/061~065/084 · 0.81.0:** Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard 순서·영어 연결·지도/이동·구순서 저널/활성 원정/Selene 권리 이관을 구현했다. GW Lv12~18·새 원정 규칙10, 기존1~9/ID/고정 보상 보존. [검증·Studio 적용·미게시](docs/evidence/campaign-reorder-20261107/README.md). 실제 계정/기기·전투 난도·Lv80 성장 수용은 후속이다.

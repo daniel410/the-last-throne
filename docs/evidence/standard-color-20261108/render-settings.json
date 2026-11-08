@@ -1,0 +1,65 @@
+[
+  {
+    "key": "map-forest-kit",
+    "source": "assets/reviews/standard-color-v1/map-forest-kit.blend",
+    "scene": "Scene",
+    "meshes": 428,
+    "engine": "CYCLES",
+    "samples": 8,
+    "note": "Same geometry, materials, frame, neutral lights, camera; only view transform differs. Not Roblox render."
+  },
+  {
+    "key": "melee-heroes",
+    "source": "assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/melee-attacks.blend",
+    "scene": "TLT_Melee_Authoring",
+    "meshes": 34,
+    "engine": "CYCLES",
+    "samples": 8,
+    "note": "Same geometry, materials, frame, neutral lights, camera; only view transform differs. Not Roblox render."
+  },
+  {
+    "key": "elf-archer",
+    "source": "assets/reviews/standard-color-v1/assets/animations/elf-bow-v1/elf-bow-refined.blend",
+    "scene": "TLT_Elf_Bow_Authoring",
+    "meshes": 20,
+    "engine": "CYCLES",
+    "samples": 8,
+    "note": "Same geometry, materials, frame, neutral lights, camera; only view transform differs. Not Roblox render."
+  },
+  {
+    "key": "mage",
+    "source": "assets/reviews/standard-color-v1/assets/animations/mage-staff-v1/mage-staff-casting.blend",
+    "scene": "TLT_Mage_Staff_Authoring",
+    "meshes": 28,
+    "engine": "CYCLES",
+    "samples": 8,
+    "note": "Same geometry, materials, frame, neutral lights, camera; only view transform differs. Not Roblox render."
+  },
+  {
+    "key": "npc-heads",
+    "source": "assets/reviews/standard-color-v1/assets/npcs/nia-hair-v5/nia-hair-v5.blend",
+    "scene": "TLT_NPC_Heads_v4.001",
+    "meshes": 1984,
+    "engine": "CYCLES",
+    "samples": 8,
+    "note": "Same geometry, materials, frame, neutral lights, camera; only view transform differs. Not Roblox render."
+  },
+  {
+    "key": "gloamwood",
+    "source": "assets/reviews/standard-color-v1/live-character-scenes.blend",
+    "scene": "TLT_Gloamwood_Meshy_v1",
+    "meshes": 16,
+    "engine": "CYCLES",
+    "samples": 8,
+    "note": "Same geometry, materials, frame, neutral lights, camera; only view transform differs. Not Roblox render."
+  },
+  {
+    "key": "selene",
+    "source": "assets/animations/selene-repair-v1/Selene-repaired.glb",
+    "scene": "Scene",
+    "meshes": 4,
+    "engine": "CYCLES",
+    "samples": 8,
+    "note": "Same geometry, materials, frame, neutral lights, camera; only view transform differs. Not Roblox render."
+  }
+]

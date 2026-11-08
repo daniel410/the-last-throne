@@ -7,6 +7,12 @@ import bpy,math,json
 from mathutils import Matrix,Vector
 old_scene=bpy.context.scene
 scene=bpy.data.scenes.new('TLT_EmberCaldera_Monsters_v1');bpy.context.window.scene=scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 if old_scene.name.startswith('TLT_EmberCaldera_Monsters_v1'):
  for o in list(old_scene.objects):bpy.data.objects.remove(o,do_unlink=True)
  bpy.data.scenes.remove(old_scene)

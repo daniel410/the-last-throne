@@ -6,6 +6,12 @@ import bpy
 import json
 
 scene=bpy.context.scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 actions=json.loads(scene['v2_actions'])
 clips=['Idle','Walk','Attack','AttackAlt','Heavy','HeavyAlt','Stunned']
 for kind in ['Goblin','Orc','Ogre','Shaman','Warlord','GoblinKing','KingOgre','EnragedWarlord','KingShaman','Slime']:

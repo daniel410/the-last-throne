@@ -1,0 +1,5185 @@
+[
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/axe-edge-v1/axe-edge-alignment.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/axe-edge-v1/axe-edge-alignment.blend",
+    "sourceSha256": "ebc2bc35ac89f82be341041819bbe6bbf95ba7225bfc60572b18bba0b4031831",
+    "outputSha256": "e0828c522e470a116e077a47c44bdf2883b74915b786c1862949af1194756e18",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Axe_Cutting_Edge_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Refined_Weapon_Source_Review": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Axe_Cutting_Edge_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Refined_Weapon_Source_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "f9e124f1718224dce9c846179404ce3532d50b9fc2d3a4f6ba731ecc12b0f007",
+    "savedContentFingerprint": "864c894fb73c7bf68ce5c055b91a6e3571273d2e1ed9768beb43e2d798aaa71e",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/deepwood-monsters-v1/deepwood-motion.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/deepwood-monsters-v1/deepwood-motion.blend",
+    "sourceSha256": "bd6517ace45ec598fe3711675d4308fac4cada9a9a81e45e5a1fb36330243675",
+    "outputSha256": "103392daa3b6613f660232efe2a8f92a9ffab853b1bf3cbc4baf7eeac4634d55",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Axe_Cutting_Edge_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Monster_Motion_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Refined_Weapon_Source_Review": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Axe_Cutting_Edge_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Monster_Motion_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Refined_Weapon_Source_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "49ad1d64dacfd64a140a398bc910ec86720882479f49080ec56e9705b65f1cb0",
+    "savedContentFingerprint": "b61df017cfc96227c1f2ee93b7c351ed7484b958c503ca72e38a0c0bf0e54487",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/deepwood-monsters-v2/deepwood-motion.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/deepwood-monsters-v2/deepwood-motion.blend",
+    "sourceSha256": "92f2aae64dd86801b73a9ce5193df2caa3d7731649263772000fbb00455b3f85",
+    "outputSha256": "f7984722f1f3d15adcc353bc6499103afb9d3b5c2acbe68593af0c1b1ef66ee4",
+    "changed": true,
+    "before": {
+      "TLT_Deepwood_Monsters_v2": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "TLT_Deepwood_Monsters_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "2cef9acadca48ef2fbaf38f5e4c132fa5ec7fc8beeb3782b00557788463d66fb",
+    "savedContentFingerprint": "2cef9acadca48ef2fbaf38f5e4c132fa5ec7fc8beeb3782b00557788463d66fb",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/dwarf-natural-v2/dwarf-natural-v2.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/dwarf-natural-v2/dwarf-natural-v2.blend",
+    "sourceSha256": "e69093b1fb5af74d588467c65366d6eb67284fb3abfbdd153d6aa8db9cc36aa0",
+    "outputSha256": "a961947e7da25a176bc55f1859cdf12107bb353cb3f023164db61bae1ea31317",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dwarf_NaturalCut_v2": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dwarf_NaturalCut_v2.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dwarf_NaturalCut_v2.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dwarf_NaturalCut_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dwarf_NaturalCut_v2.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dwarf_NaturalCut_v2.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "349c221db50a469731f40b97a8b8f849c5085c92330d8afb9c40ed58ea4b7995",
+    "savedContentFingerprint": "349c221db50a469731f40b97a8b8f849c5085c92330d8afb9c40ed58ea4b7995",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/elf-bow-v1/elf-bow-refined.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/elf-bow-v1/elf-bow-refined.blend",
+    "sourceSha256": "c3445b47491329889cef86ff3d9c9b3393aa0a510805c69f22536e9c6250d724",
+    "outputSha256": "fcfd16be66fae7256e483bdb278d5f0ca235c4c0baa96436d798b415d71f24f3",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "f545c314ddeba6dac930261292828e7ad00918f911fff488cae9ce48c41e926c",
+    "savedContentFingerprint": "59eecb64f3967e134f160c7026c5313c983849ebd4aa03ea5c08ab433acd56cb",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/frozen-vale-v1/frozen-vale-motion.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/frozen-vale-v1/frozen-vale-motion.blend",
+    "sourceSha256": "c226ef5d061237b548d8ef5e17f9cdd18faf070d5394d0b5b5d46dc70281bea7",
+    "outputSha256": "67283b248da1df4944807dd2cfc2c654371e7536c0b54f910b3916be5945145e",
+    "changed": true,
+    "before": {
+      "TD_Rapid_V2_ImportLocalAxis": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_Monsters_v2": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_FrozenVale_Monsters_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "TD_Rapid_V2_ImportLocalAxis": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_Monsters_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_FrozenVale_Monsters_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "4259d888585e6b1f0ca68e0ea95dd7ff993b10e87473cdf0b5b819cc2690188f",
+    "savedContentFingerprint": "219d474bd8a3ccf7ca258479b807c676486a0a731bbfdd0228ef5626ba70e9f0",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/mage-staff-v1/mage-staff-casting.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/mage-staff-v1/mage-staff-casting.blend",
+    "sourceSha256": "91d986d5a667206fc9c28d93aa8a975adabfd3ffbd965619a986623b5b5bea46",
+    "outputSha256": "3d93306ca441e4f71d996b84e7e93e47f02c66c62fd7de0fd222c961bca1b2cf",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "6a328d0b4d5b67a5a6639d6bb78b09377e7dcacffcffd3fadda0ac12c9350be3",
+    "savedContentFingerprint": "c9da9949ec3fdc96734a809b1550741ee04d163da18961da5e499aa8eb488abc",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/dwarf-refinement.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/dwarf-refinement.blend",
+    "sourceSha256": "5a7fe280306ce33a8088861399eee9fc91afc99ddc6c28d10e72e154b0bfe6d8",
+    "outputSha256": "0c89d231001115ecddcb35a6b80e8f93ee68defd28b87d23b913737ef1e37ebe",
+    "changed": true,
+    "before": {
+      "Nia_Connected_Hair_v5": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_KingIceBear_Repair_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_MonsterLimbReview_20261103": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_Pyromancer_Skin_Pilot_Reimport_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_Pyromancer_Skin_Pilot_Reimport_v2": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_Pyromancer_Skin_Pilot_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_v3_Curves": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_v3_Curves.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_v3_Curves.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_v3_Curves.003": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_Weapon_Repair_Final": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dive_LandingRoll_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dwarf_DiagonalCut_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Haunted_v1_Curves": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_AncientGlacierKing_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_AncientGlacierKing_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_CalderaTitan_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_CalderaTitan_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_DeathKnight_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_DeathKnight_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_DreadCommander_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_DreadCommander_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_EnragedWarlord_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_EnragedWarlord_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_EnragedWarlord_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ghoul_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ghoul_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Goblin_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Goblin_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Goblin_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Goblin_before.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_after.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_geometry-candidate": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_geometry-candidate.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_geometry-candidate.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Golem_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Golem_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Hellhound_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Hellhound_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceBear_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceBear_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceElf_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceElf_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceGolem_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceGolem_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTroll_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTroll_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTrollKing_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTrollKing_after.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTrollKing_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceWolf_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceWolf_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Imp_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Imp_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_InfernoOverlord_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_InfernoOverlord_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingIceBear_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingIceBear_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingIceGolem_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingIceGolem_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_after.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_geometry-candidate": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_after.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_geometry-candidate": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingVolcanoShaman_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingVolcanoShaman_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_LavaSlime_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_LavaSlime_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Lich_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Lich_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_LichSovereign_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_LichSovereign_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaGolem_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaGolem_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaImp_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaImp_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaWorm_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaWorm_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Mummy_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Mummy_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ogre_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ogre_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ogre_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Orc_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Orc_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Orc_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_QueenIceElf_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_QueenIceElf_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_after.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_geometry-candidate": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Skeleton_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Skeleton_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_SkeletonKnight_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_SkeletonKnight_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Slime_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Slime_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Slime_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Slime_before.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Veyr_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Veyr_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_VolcanoShaman_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_VolcanoShaman_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Warlord_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Warlord_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Warlord_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Zombie_after": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Zombie_before": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Zombie_before.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_KingVolcanoShaman": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_KingVolcanoShaman.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_QueenIceElf": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_QueenIceElf.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_VolcanoShaman": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_VolcanoShaman.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Inspection": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_KingSource": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_KingVolcanoShaman": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Original": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_QueenIceElf": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Source_QueenIceElf": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_VolcanoShaman": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.005": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Individual_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_ClubHand": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_Curves": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_Curves.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_Curves.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_Curves.003": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_GoblinKing": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_GoblinKing.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_GoblinKing.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingOgre": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingOgre.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingOgre.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingShaman": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingShaman.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingShaman.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_Shaman": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_Shaman.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_Shaman.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Selene_Repair_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CartWreck": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CartWreck.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CartWreck.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_ConvoyBadge": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_ConvoyBadge.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_ConvoyBadge.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CoolantValve": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CoolantValve.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CoolantValve.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_GateWinch": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_GateWinch.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_GateWinch.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_LedgerDesk": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_LedgerDesk.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_LedgerDesk.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PortalAnchor": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PortalAnchor.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PortalAnchor.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PrisonCage": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PrisonCage.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PrisonCage.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_Props_Gallery": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_Props_Gallery.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_Props_Gallery.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RouteLantern": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RouteLantern.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RouteLantern.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RuinedArch": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RuinedArch.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RuinedArch.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SealWaystone": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SealWaystone.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SealWaystone.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SignalMirror": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SupplyCrate": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SupplyCrate.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SupplyCrate.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TrailEvidence": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TrailEvidence.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TrailEvidence.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TravelBindings": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TravelBindings.001": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TravelBindings.002": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_TravelStorageChest_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Weapon_Repair_20261102": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Nia_Connected_Hair_v5": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_KingIceBear_Repair_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_MonsterLimbReview_20261103": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_Pyromancer_Skin_Pilot_Reimport_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_Pyromancer_Skin_Pilot_Reimport_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TD_Pyromancer_Skin_Pilot_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_v3_Curves": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_v3_Curves.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_v3_Curves.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_v3_Curves.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Deepwood_Weapon_Repair_Final": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dive_LandingRoll_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Dwarf_DiagonalCut_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Haunted_v1_Curves": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_AncientGlacierKing_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_AncientGlacierKing_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_CalderaTitan_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_CalderaTitan_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_DeathKnight_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_DeathKnight_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_DreadCommander_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_DreadCommander_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_EnragedWarlord_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_EnragedWarlord_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_EnragedWarlord_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ghoul_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ghoul_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Goblin_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Goblin_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Goblin_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Goblin_before.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_after.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_geometry-candidate": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_geometry-candidate.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_GoblinKing_geometry-candidate.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Golem_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Golem_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Hellhound_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Hellhound_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceBear_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceBear_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceElf_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceElf_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceGolem_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceGolem_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTroll_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTroll_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTrollKing_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTrollKing_after.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceTrollKing_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceWolf_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_IceWolf_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Imp_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Imp_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_InfernoOverlord_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_InfernoOverlord_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingIceBear_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingIceBear_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingIceGolem_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingIceGolem_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_after.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingOgre_geometry-candidate": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_after.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingShaman_geometry-candidate": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingVolcanoShaman_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_KingVolcanoShaman_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_LavaSlime_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_LavaSlime_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Lich_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Lich_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_LichSovereign_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_LichSovereign_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaGolem_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaGolem_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaImp_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaImp_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaWorm_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_MagmaWorm_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Mummy_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Mummy_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ogre_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ogre_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Ogre_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Orc_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Orc_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Orc_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_QueenIceElf_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_QueenIceElf_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_after.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Shaman_geometry-candidate": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Skeleton_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Skeleton_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_SkeletonKnight_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_SkeletonKnight_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Slime_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Slime_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Slime_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Slime_before.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Veyr_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Veyr_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_VolcanoShaman_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_VolcanoShaman_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Warlord_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Warlord_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Warlord_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Zombie_after": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Zombie_before": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Individual_Zombie_before.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_KingVolcanoShaman": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_KingVolcanoShaman.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_QueenIceElf": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_QueenIceElf.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_VolcanoShaman": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Baseline_VolcanoShaman.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Inspection": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_KingSource": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_KingVolcanoShaman": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Original": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_QueenIceElf": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_Source_QueenIceElf": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_MR01_VolcanoShaman": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.005": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Individual_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_ClubHand": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_Curves": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_Curves.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_Curves.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Regional_v2_Curves.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_GoblinKing": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_GoblinKing.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_GoblinKing.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingOgre": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingOgre.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingOgre.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingShaman": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingShaman.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_KingShaman.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_Shaman": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_Shaman.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Repaired_Source_Shaman.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Selene_Repair_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CartWreck": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CartWreck.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CartWreck.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_ConvoyBadge": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_ConvoyBadge.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_ConvoyBadge.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CoolantValve": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CoolantValve.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_CoolantValve.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_GateWinch": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_GateWinch.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_GateWinch.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_LedgerDesk": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_LedgerDesk.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_LedgerDesk.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PortalAnchor": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PortalAnchor.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PortalAnchor.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PrisonCage": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PrisonCage.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_PrisonCage.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_Props_Gallery": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_Props_Gallery.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_Props_Gallery.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RouteLantern": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RouteLantern.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RouteLantern.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RuinedArch": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RuinedArch.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_RuinedArch.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SealWaystone": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SealWaystone.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SealWaystone.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SignalMirror": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SupplyCrate": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SupplyCrate.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_SupplyCrate.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TrailEvidence": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TrailEvidence.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TrailEvidence.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TravelBindings": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TravelBindings.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Story_TravelBindings.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_TravelStorageChest_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Weapon_Repair_20261102": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "ce2f39528bb377da99bc1044155b9204f7708b658ae1537fc653871f06a58417",
+    "savedContentFingerprint": "d9a651328c6140501990a3dc9eb31b356f2dc6725b2e3d0989b05fc378ae3582",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/melee-attacks-candidate-v2.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/melee-attacks-candidate-v2.blend",
+    "sourceSha256": "a4c5f5299c5fb53134d48198c79ac2476cea8250802e80897ae77c062954781e",
+    "outputSha256": "519ef5b182750e5f357fcb379fc158c2afe57427afc8cfb629f2ed06eb3e2ebb",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "16786ecbf9ce902a9705925c1adc886decfb3017ce24b9097ec0403ea3fb2f3f",
+    "savedContentFingerprint": "16786ecbf9ce902a9705925c1adc886decfb3017ce24b9097ec0403ea3fb2f3f",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/melee-blender-v1/melee-attacks.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/melee-attacks.blend",
+    "sourceSha256": "00ee6a9befc96480b87914b30a1ebc40719f54650b93db506228109cd5d9325d",
+    "outputSha256": "79a2f96d8e41191d4b94d88c833ff11e7d7e6ac73897c7306e34d9872a2d25a3",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "2289a8585e808055729e5287a5e2429b6224b7bf032299021bdedc08e98d12e4",
+    "savedContentFingerprint": "2200a15522323e85c9c0a7d99ea5864207fe51cf61527ca54aa91beeca73806d",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/shield-bash-v1/shield-bash.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/animations/shield-bash-v1/shield-bash.blend",
+    "sourceSha256": "8a2f2f2a40af40afafdb7d2e1ff83a4fcc4171e205229e7067b62b7e75480b5b",
+    "outputSha256": "42b68742c2973cbf23990208ff2fb57573256c27dd5b643afed9a0b775d243ac",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Axe_Cutting_Edge_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Monster_Motion_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Refined_Weapon_Source_Review": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Shield_Bash_Leading": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Axe_Cutting_Edge_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Monster_Motion_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Refined_Weapon_Source_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Shield_Bash_Leading": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "c3a76140d296e155827f8ea83e0abce8845449fc7d7071714a635a1a5228f973",
+    "savedContentFingerprint": "26fd2a7791ad948c50b741ebd14927f7bc0396558418fe0bb130a4ad2c54221f",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/npcs/faces-v2/npc-heads-v2.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/npcs/faces-v2/npc-heads-v2.blend",
+    "sourceSha256": "828d5d1b796dff31e80f1b3c39dec97f90fccca1eea691f7b5c229685358d211",
+    "outputSha256": "b271cbac514007cc05504f32fd2546f8baa4528966f75ca6a9a40f46b86c9543",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "c96a24cf1456c9891a8f57e8c6de8c4b650c6a777493bf9cb19fea82ba5b46a0",
+    "savedContentFingerprint": "a45136992176e5944ae2cdc643dbf87830ba0c14455ad29dbc81c89584ee9b24",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/npcs/faces-v3/npc-heads-v3.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/npcs/faces-v3/npc-heads-v3.blend",
+    "sourceSha256": "d01b7f6841aa2f76c2c88912c87a87e3f99dbb2ea4d27033f05c000956860866",
+    "outputSha256": "4c8b0dfe676cd42252ec2b02c8cd33cdc8757d93c201269a647b83633e77c818",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Individual_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Individual_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "7ea79b784757c64a28e2ddb7599d655272fe4f6678f77560d9bcdd71c0e5b222",
+    "savedContentFingerprint": "bd9b192ce06e5b3c80858b01a3ad6e4559266609a665dc9224699e8607b9395d",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/npcs/heads-v4/npc-heads-v4.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/npcs/heads-v4/npc-heads-v4.blend",
+    "sourceSha256": "039deb1167488d9da298721a0f72c4727cdeda20c9e3cbd2e69f8e954ce6ec9e",
+    "outputSha256": "bb876f5e9ef549bb8d508dd4f9e95fa524525b157f88104b9cca74bac4f9ac53",
+    "changed": true,
+    "before": {
+      "NPC_Concept_Portraits_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.005": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Individual_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "NPC_Concept_Portraits_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.005": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Individual_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "f690c041c4270436bb116efa3b6184386663b3d28d95da410c52bd87abb479b0",
+    "savedContentFingerprint": "a0df5da826e553a638cde30f20d02dcd5d33bb712d4e91a57b669870e1b477a2",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/npcs/nia-hair-v5/nia-hair-v5.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/npcs/nia-hair-v5/nia-hair-v5.blend",
+    "sourceSha256": "2dd1a1622354563e702961fce5ddb09e65742777ff552f87efdc55899200ca5a",
+    "outputSha256": "33eff28072b8401875cb1922d735f5586cb05a605a39c3873e3a3d6441b36eb2",
+    "changed": true,
+    "before": {
+      "Nia_Connected_Hair_v5": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.005": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Individual_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_TravelStorageChest_v1": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Nia_Connected_Hair_v5": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Concept_Portraits_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "NPC_Individual_Review_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Faces_v2": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v3": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.001": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.002": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.003": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.004": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Heads_v4.005": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_NPC_Individual_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_TravelStorageChest_v1": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "2140c3f360a84170d3ca9aef433c6919f05c44102a5d77a6b40e3d690c80fcff",
+    "savedContentFingerprint": "a751e20e84215586e3473eabf91c3ecfd26f985aeb838465d84ac389a288ad24",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/shared/td-refined-player-weapons/refined-weapon-review.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/shared/td-refined-player-weapons/refined-weapon-review.blend",
+    "sourceSha256": "e1cee815b274119463601acb4a239392eb0126c18165da512395733d3bf2217f",
+    "outputSha256": "1fab7c81519f6afdfd8b285c52429dd910711b88dc734d21110e3c306cda1f7f",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Refined_Weapon_Source_Review": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Elf_Bow_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Mage_Staff_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Melee_Authoring": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      },
+      "TLT_Refined_Weapon_Source_Review": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "7416cb9b425acb2c4a5904c7977dcbea04a0fa48ef5769949a1bcf421ccf2b9a",
+    "savedContentFingerprint": "cc4ceeb2b3b307accb2850415d42bf697a823e627ae74890a0c293ea3b2a392b",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  },
+  {
+    "source": "/Users/daniel/Workspace/project/roblox/throne-defense/assets/models/maps-quality-v2/forest-kit-v3/forest-kit.blend",
+    "output": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/map-forest-kit.blend",
+    "sourceSha256": "4e493fb9cc871b2008aa04983c61046a67ac1d8e3fe36b460bb87363f12034ac",
+    "outputSha256": "b62ed87c5526dee1db1879296e6144beb4ea098b5da8a0cfbb79d71bd76c09af",
+    "changed": true,
+    "before": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "AgX",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "after": {
+      "Scene": {
+        "display": "sRGB",
+        "view": "Standard",
+        "look": "None",
+        "exposure": 0.0,
+        "gamma": 1.0,
+        "curves": false
+      }
+    },
+    "contentFingerprint": "441a1166f8d2184734f93ef2d5e9978acafe98e6da5016e2658d56dc9279d15f",
+    "savedContentFingerprint": "06d048227942419d85b28d0286b76a7695ecd91b1f3d0938c83cc5ba880d2491",
+    "inMemoryContentPreserved": true,
+    "roundTripSettingsPassed": true
+  }
+]

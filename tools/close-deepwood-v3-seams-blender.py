@@ -4,6 +4,12 @@ BASE='/Users/daniel/Workspace/project/roblox/the-last-throne/assets/animations/d
 previous=bpy.context.window.scene
 for kind in ['Shaman','GoblinKing','KingOgre','KingShaman']:
  scene=bpy.data.scenes.new('TLT_Repaired_Source_'+kind);bpy.context.window.scene=scene
+ # TLT concept-color contract: explicit settings for every authoring/review scene.
+ scene.display_settings.display_device = 'sRGB'
+ scene.view_settings.view_transform = 'Standard'
+ scene.view_settings.look = 'None'
+ scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+ scene.view_settings.use_curve_mapping = False
  bpy.ops.import_scene.gltf(filepath=BASE+kind+'-review.glb')
  for obj in list(scene.objects):
   if obj.type!='MESH':continue

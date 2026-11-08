@@ -6,6 +6,12 @@ previous_scene=bpy.context.window.scene
 kind=REVIEW['kind'];stage=REVIEW_STAGE
 clip_order=['Idle','Walk','Attack','AttackAlt','Heavy','HeavyAlt','Stunned']
 scene=bpy.data.scenes.new('TLT_Individual_'+kind+'_'+stage);bpy.context.window.scene=scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 bpy.ops.import_scene.gltf(filepath=SOURCE)
 meshes=[o for o in scene.objects if o.type=='MESH'];parts={}
 B=Matrix(((1,0,0),(0,0,-1),(0,1,0)))

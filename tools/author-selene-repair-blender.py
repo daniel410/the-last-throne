@@ -5,6 +5,12 @@ ROOT='/Users/daniel/Workspace/project/roblox/the-last-throne/'
 OUT=ROOT+'assets/animations/selene-repair-v1/'
 assert 'TLT_Selene_Repair_v1' not in bpy.data.scenes, 'Keep the existing review scene; use a clean Blender file to reproduce'
 scene=bpy.data.scenes.new('TLT_Selene_Repair_v1')
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 bpy.context.window.scene=scene
 bpy.ops.import_scene.gltf(filepath=OUT+'source-rest.glb')
 objects=[o for o in scene.objects if o.type=='MESH']

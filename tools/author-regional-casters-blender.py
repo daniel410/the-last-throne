@@ -79,6 +79,12 @@ try:
    old_action=bpy.data.actions.get(kind+'__'+clip)
    if old_action and old_action.users<=1:bpy.data.actions.remove(old_action)
   scene=bpy.data.scenes.new('TLT_MR01_'+kind);scene['MR01Generated']=True;bpy.context.window.scene=scene
+  # TLT concept-color contract: explicit settings for every authoring/review scene.
+  scene.display_settings.display_device = 'sRGB'
+  scene.view_settings.view_transform = 'Standard'
+  scene.view_settings.look = 'None'
+  scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+  scene.view_settings.use_curve_mapping = False
   bpy.ops.import_scene.gltf(filepath=OUT+kind+'-partitioned.glb')
   obj=next(o for o in scene.objects if o.type=='MESH' and o.name.split('.')[0]=='Skin')
   weapon=next(o for o in scene.objects if o.type=='MESH' and o.name.split('.')[0]=='Staff')

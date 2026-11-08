@@ -6,6 +6,12 @@ The source scene is preserved; the new scene and .blend are separate artifacts.
 import bpy,math,json
 from mathutils import Matrix,Vector
 scene=bpy.context.scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 assert scene.name=='TLT_FrozenVale_Monsters_v1'
 for o in list(scene.objects):bpy.data.objects.remove(o,do_unlink=True)
 channels=['body','weapon','off','rightLeg','leftLeg'];clips=['Idle','Walk','Attack','AttackAlt','Heavy','HeavyAlt','Stunned']

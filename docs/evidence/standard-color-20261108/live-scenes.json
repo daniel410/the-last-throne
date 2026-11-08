@@ -1,0 +1,64 @@
+{
+  "before": {
+    "Scene": {
+      "view": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    },
+    "TLT_Dwarf_NaturalCut_v2": {
+      "view": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    },
+    "TLT_Dwarf_NaturalCut_v2.001": {
+      "view": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    },
+    "TLT_Dwarf_NaturalCut_v2.002": {
+      "view": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    },
+    "TLT_EnemyPattern_Models_v1": {
+      "view": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    },
+    "TLT_EnemyPattern_Models_v1.001": {
+      "view": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    },
+    "TLT_Gloamwood_Meshy_v1": {
+      "view": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    },
+    "TLT_VenomcoilKing_v2": {
+      "view": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0
+    }
+  },
+  "after": {
+    "Scene": "Standard",
+    "TLT_Dwarf_NaturalCut_v2": "Standard",
+    "TLT_Dwarf_NaturalCut_v2.001": "Standard",
+    "TLT_Dwarf_NaturalCut_v2.002": "Standard",
+    "TLT_EnemyPattern_Models_v1": "Standard",
+    "TLT_EnemyPattern_Models_v1.001": "Standard",
+    "TLT_Gloamwood_Meshy_v1": "Standard",
+    "TLT_VenomcoilKing_v2": "Standard"
+  },
+  "activeScene": "TLT_Dwarf_NaturalCut_v2.002",
+  "sourceFile": ""
+}

@@ -4,6 +4,12 @@ import bpy, json, math, copy
 solved = SOLVED_POSES
 src = bpy.data.objects['dwarf_Rig']
 s = bpy.data.scenes.new('TLT_Dwarf_DiagonalCut_v1')
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+s.display_settings.display_device = 'sRGB'
+s.view_settings.view_transform = 'Standard'
+s.view_settings.look = 'None'
+s.view_settings.exposure = 0; s.view_settings.gamma = 1
+s.view_settings.use_curve_mapping = False
 s.render.fps = 60
 s.frame_start, s.frame_end = 0, 26
 r = src.copy()

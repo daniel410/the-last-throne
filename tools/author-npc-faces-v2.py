@@ -11,6 +11,12 @@ OUT = ROOT+'/assets/npcs/faces-v2'
 # Catalog is injected by the MCP caller as CATALOG; no filesystem reads in safe mode.
 catalog = CATALOG
 scene = bpy.data.scenes.new('TLT_NPC_Faces_v2')
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 bpy.context.window.scene = scene
 atlas = bpy.data.images.load(OUT+'/face-atlas.png', check_existing=True)
 atlas.pack()

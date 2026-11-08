@@ -4,6 +4,12 @@ from mathutils import Vector,Matrix
 
 source=bpy.data.scenes[SOURCE_SCENE];data=json.loads(source['head_recipes_json'])
 review=bpy.data.scenes.new('NPC_Individual_Review_v'+str(data['version']))
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+review.display_settings.display_device = 'sRGB'
+review.view_settings.view_transform = 'Standard'
+review.view_settings.look = 'None'
+review.view_settings.exposure = 0; review.view_settings.gamma = 1
+review.view_settings.use_curve_mapping = False
 bpy.context.window.scene=review;review.world=source.world
 camdata=bpy.data.cameras.new('ReviewCamera');cam=bpy.data.objects.new('ReviewCamera',camdata);review.collection.objects.link(cam)
 cam.location=(8.4,-25,2.0);cam.rotation_euler=(math.pi/2,0,0);camdata.type='ORTHO';camdata.ortho_scale=21;review.camera=cam

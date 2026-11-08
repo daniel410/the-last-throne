@@ -8,6 +8,12 @@ from mathutils import Vector
 
 ROOT='/Users/daniel/Workspace/project/roblox/the-last-throne'
 scene=bpy.data.scenes.new('TLT_NPC_Heads_v3');bpy.context.window.scene=scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 materials={};recipes={}
 def material(tint):
     if tint in materials:return materials[tint]

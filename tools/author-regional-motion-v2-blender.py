@@ -1,6 +1,12 @@
 # Input MOTION_KEYS from prepare-deepwood-motion-v3.py. Native properties are the export authority.
 import bpy,json
 scene=bpy.data.scenes.new('TLT_Regional_v2_Curves');previous=bpy.context.window.scene;bpy.context.window.scene=scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 result={k:v for k,v in MOTION_KEYS.items()if k!='models'};result['models']={};actions={}
 def curves(action):return [f for layer in action.layers for strip in layer.strips for bag in strip.channelbags for f in bag.fcurves]
 for kind,model in MOTION_KEYS['models'].items():

@@ -6,6 +6,12 @@ ROOT=Path('/Users/daniel/Workspace/project/roblox/the-last-throne')
 data=json.loads((ROOT/'assets/animations/enemy-patterns-v1/native-model-capture.json').read_text())
 previous=bpy.context.window.scene
 scene=bpy.data.scenes.new('TLT_EnemyPattern_Models_v1');bpy.context.window.scene=scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 B=Matrix(((1,0,0),(0,0,-1),(0,1,0)))
 def frame(values):
  r=Matrix((values[3:6],values[6:9],values[9:12]));m=(B@r@B.transposed()).to_4x4();m.translation=B@Vector(values[:3]);return m

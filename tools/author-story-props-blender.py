@@ -6,6 +6,12 @@ basis=Matrix(((1,0,0),(0,0,-1),(0,1,0)))
 materials={};scenes=[]
 for key,spec in STORY_GEOMETRY['models'].items():
  scene=bpy.data.scenes.new('TLT_Story_'+key);bpy.context.window.scene=scene;scenes.append(scene)
+ # TLT concept-color contract: explicit settings for every authoring/review scene.
+ scene.display_settings.display_device = 'sRGB'
+ scene.view_settings.view_transform = 'Standard'
+ scene.view_settings.look = 'None'
+ scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+ scene.view_settings.use_curve_mapping = False
  for s in spec['parts']:
   size=s['size'];at=Vector(s['position'])
   if s['shape']=='Cylinder':
@@ -43,6 +49,12 @@ for key,spec in STORY_GEOMETRY['models'].items():
  print(key,len(scene.objects),'pieces exported')
 # Contact-sheet scene contains copies, without changing the individual export pivots.
 gallery=bpy.data.scenes.new('TLT_Story_Props_Gallery');bpy.context.window.scene=gallery
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+gallery.display_settings.display_device = 'sRGB'
+gallery.view_settings.view_transform = 'Standard'
+gallery.view_settings.look = 'None'
+gallery.view_settings.exposure = 0; gallery.view_settings.gamma = 1
+gallery.view_settings.use_curve_mapping = False
 for i,scene in enumerate(scenes):
  key=list(STORY_GEOMETRY['models'])[i];offset=Vector(((i%4)*18,-(i//4)*19,0))
  for original in scene.objects:

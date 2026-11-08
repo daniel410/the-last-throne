@@ -4,6 +4,12 @@ from mathutils import Vector
 root=str(Path(__file__).resolve().parents[1]/'assets/models/storage-travel-chest-v1')
 data=json.loads((Path(root)/'geometry.json').read_text())
 scene=bpy.data.scenes.new('TLT_TravelStorageChest_v1')
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 scene.world=bpy.data.worlds.new('TravelChestStudio');scene.world.use_nodes=True
 bg=next(n for n in scene.world.node_tree.nodes if n.type=='BACKGROUND');bg.inputs['Color'].default_value=(.30,.34,.40,1);bg.inputs['Strength'].default_value=.4
 parent=bpy.data.objects.new('TLT_TravelStorageChest_v1',None);scene.collection.objects.link(parent)

@@ -3,6 +3,12 @@ import bpy,math
 from mathutils import Vector,Matrix
 previous_name=bpy.context.window.scene.name
 kind=SNAPSHOT['kind'];scene=bpy.data.scenes.new('TLT_MR01_Baseline_'+kind);bpy.context.window.scene=scene
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 try:
  bpy.ops.import_scene.gltf(filepath=SOURCE)
  B=Matrix(((1,0,0),(0,0,-1),(0,1,0)))

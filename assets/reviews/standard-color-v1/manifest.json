@@ -1,0 +1,74 @@
+{
+  "files": [
+    {
+      "source": "assets/animations/axe-edge-v1/axe-edge-alignment.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/axe-edge-v1/axe-edge-alignment.blend"
+    },
+    {
+      "source": "assets/animations/deepwood-monsters-v1/deepwood-motion.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/deepwood-monsters-v1/deepwood-motion.blend"
+    },
+    {
+      "source": "assets/animations/deepwood-monsters-v2/deepwood-motion.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/deepwood-monsters-v2/deepwood-motion.blend"
+    },
+    {
+      "source": "assets/animations/dwarf-natural-v2/dwarf-natural-v2.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/dwarf-natural-v2/dwarf-natural-v2.blend"
+    },
+    {
+      "source": "assets/animations/elf-bow-v1/elf-bow-refined.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/elf-bow-v1/elf-bow-refined.blend"
+    },
+    {
+      "source": "assets/animations/frozen-vale-v1/frozen-vale-motion.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/frozen-vale-v1/frozen-vale-motion.blend"
+    },
+    {
+      "source": "assets/animations/mage-staff-v1/mage-staff-casting.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/mage-staff-v1/mage-staff-casting.blend"
+    },
+    {
+      "source": "assets/animations/melee-blender-v1/dwarf-refinement.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/dwarf-refinement.blend"
+    },
+    {
+      "source": "assets/animations/melee-blender-v1/melee-attacks-candidate-v2.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/melee-attacks-candidate-v2.blend"
+    },
+    {
+      "source": "assets/animations/melee-blender-v1/melee-attacks.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/melee-blender-v1/melee-attacks.blend"
+    },
+    {
+      "source": "assets/animations/shield-bash-v1/shield-bash.blend",
+      "output": "assets/reviews/standard-color-v1/assets/animations/shield-bash-v1/shield-bash.blend"
+    },
+    {
+      "source": "assets/npcs/faces-v2/npc-heads-v2.blend",
+      "output": "assets/reviews/standard-color-v1/assets/npcs/faces-v2/npc-heads-v2.blend"
+    },
+    {
+      "source": "assets/npcs/faces-v3/npc-heads-v3.blend",
+      "output": "assets/reviews/standard-color-v1/assets/npcs/faces-v3/npc-heads-v3.blend"
+    },
+    {
+      "source": "assets/npcs/heads-v4/npc-heads-v4.blend",
+      "output": "assets/reviews/standard-color-v1/assets/npcs/heads-v4/npc-heads-v4.blend"
+    },
+    {
+      "source": "assets/npcs/nia-hair-v5/nia-hair-v5.blend",
+      "output": "assets/reviews/standard-color-v1/assets/npcs/nia-hair-v5/nia-hair-v5.blend"
+    },
+    {
+      "source": "assets/shared/td-refined-player-weapons/refined-weapon-review.blend",
+      "output": "assets/reviews/standard-color-v1/assets/shared/td-refined-player-weapons/refined-weapon-review.blend"
+    },
+    {
+      "source": "../throne-defense/assets/models/maps-quality-v2/forest-kit-v3/forest-kit.blend",
+      "output": "assets/reviews/standard-color-v1/map-forest-kit.blend"
+    }
+  ],
+  "report": "docs/evidence/standard-color-20261108/blend-files.json",
+  "sourceCommit": "0490687f112b799285cae9dee680aa788fd6d522"
+}

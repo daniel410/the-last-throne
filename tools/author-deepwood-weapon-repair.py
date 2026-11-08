@@ -4,6 +4,12 @@ from mathutils import Vector,Matrix
 BASE='/Users/daniel/Workspace/project/roblox/the-last-throne/'
 scene=bpy.data.scenes.get('TLT_Deepwood_Weapon_Repair_Final')
 if scene is None:scene=bpy.data.scenes.new('TLT_Deepwood_Weapon_Repair_Final')
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+scene.display_settings.display_device = 'sRGB'
+scene.view_settings.view_transform = 'Standard'
+scene.view_settings.look = 'None'
+scene.view_settings.exposure = 0; scene.view_settings.gamma = 1
+scene.view_settings.use_curve_mapping = False
 for old in list(scene.objects):bpy.data.objects.remove(old,do_unlink=True)
 bpy.context.window.scene=scene
 records={}

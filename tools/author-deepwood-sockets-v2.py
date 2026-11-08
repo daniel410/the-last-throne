@@ -1,6 +1,12 @@
 import bpy,json,math
 from mathutils import Vector
 s=bpy.context.scene;actions=json.loads(s['v2_actions']);out={}
+# TLT concept-color contract: explicit settings for every authoring/review scene.
+s.display_settings.display_device = 'sRGB'
+s.view_settings.view_transform = 'Standard'
+s.view_settings.look = 'None'
+s.view_settings.exposure = 0; s.view_settings.gamma = 1
+s.view_settings.use_curve_mapping = False
 for k in ['Goblin','Orc','Ogre','Shaman','Warlord','GoblinKing','KingOgre','KingShaman']:
  for c in ['body','weapon','off','rightLeg','leftLeg']:
   o=bpy.data.objects[k+('_Body' if c=='body' else '_'+c)];o.animation_data.action=None;o.rotation_euler=(0,0,0)
