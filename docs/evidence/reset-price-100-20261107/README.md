@@ -17,3 +17,11 @@
 - `git diff --check`:PASS. 신규 LFS 자산 없음. 실제 Roblox 게시·릴리스 태그 없음.
 
 고정 소스/빌드/엔진 결과는 아래 마감 기록에 추가한다. 실제 계정·DataStore·기기/사용자 수용은 미검증이며 QA 후속이다.
+
+## 고정 빌드 마감
+
+소스 `f1ed3fe455e063d64555714f937a779a8a96bbf6`를 origin/main에 푸시한 뒤 `python3 tools/build-game.py --source HEAD --record docs/evidence/reset-price-100-20261107/build.json`으로0.82.3 단일 빌드 성공. [빌드 기록](build.json)의 SHA256 `f844e4fb832bf0297165f69c80d42390b3eda162255eaa0f179c38e79cdc41b3`를 재확인했다.
+
+`run-in-roblox --place builds/0.82.3/TheLastThrone-0.82.3.rbxlx --script tests/reset-tickets-native.luau`: **38 PASS / 종료0**. [엔진 로그](native.log). TD UI fixture의 두 상품100 Diamonds 표시·잔액별 구매 버튼·100차감·전투 중2단계 사용 확인·포인트 반환/영수증 복구를 확인했다. 기존203785492 자산 타입 경고는 검사 실패와 구분한다. 격리 fixture이며 실계정/라이브 DataStore 검증은 아니다.
+
+구현·검증 기록을 origin/main에 푸시하고 원격 커밋을 대조한다. 실제 게시·릴리스 태그 없음. 다음 QA는 실계정/기기에서 가격·중복 구매 방지·기존 보유권 사용을 수용한다.
