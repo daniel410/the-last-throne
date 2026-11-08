@@ -1,5 +1,7 @@
 local Catalog=game and require(script.Parent.EconomyCatalog) or dofile('src/shared/EconomyCatalog.luau')
 local E={}
+-- Historical clears predate the new first-clear award; migration preserves earnings.
+local legacyStoryDiamonds=2
 local function integer(v) return type(v)=='number' and v==v and v%1==0 and v>=0 and v<=1e12 end
 function E.valid(w)
  if type(w)~='table' or w.version~=1 or not integer(w.gold) or not integer(w.diamonds) or type(w.claims)~='table' then return false end
@@ -13,7 +15,7 @@ function E.upgrade(p)
   local s=h.deepwood
   if s then
    w.gold=w.gold+s.coins+(s.killCoins or 0)
-   for id in pairs(s.clears) do if id:match('^DW%-0[1-7]$') and not w.claims[id] then w.claims[id]=true;w.diamonds=w.diamonds+Catalog.storyDiamonds end end
+   for id in pairs(s.clears) do if id:match('^DW%-0[1-7]$') and not w.claims[id] then w.claims[id]=true;w.diamonds=w.diamonds+legacyStoryDiamonds end end
   end
  end
  p.wallet=w;return true

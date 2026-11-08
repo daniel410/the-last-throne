@@ -74,7 +74,7 @@ check(p.wallet.gold-gold==135 and R.quantity(p,'hero','forge_core')-cores==3,'v1
 p=assert(A.begin(p,'hero','DW-01','Hell','new',p.revision,R,Items))
 check(p.heroes.hero.expeditions.active.version==1 and p.heroes.hero.expeditions.active.balanceVersion==D.version,'schema stable; new run pins revised rules')
 gold=p.wallet.gold;cores=R.quantity(p,'hero','magic_stone');p=finish(p,'new')
-check(p.wallet.gold-gold==393 and R.quantity(p,'hero','magic_stone')-cores==10,'new completion and material schedule reaches real reducer')
+check(p.wallet.gold-gold==314 and R.quantity(p,'hero','magic_stone')-cores==10,'new completion and material schedule reaches real reducer')
 local completed=assert(A.event(p,'hero','DW-01',C.byId['DW-01'].goals[#C.byId['DW-01'].goals].id,nil,nil,R,Items,'new'))
 check(completed.wallet.gold==p.wallet.gold and R.quantity(completed,'hero','forge_core')==R.quantity(p,'hero','forge_core'),'retries cannot duplicate revised rewards')
 check(not D.verifyRun(p.heroes.hero,{id='new',missionId='DW-01',difficultyId='Hell',rulesVersion=1}),'mismatched rules manifest rejected')

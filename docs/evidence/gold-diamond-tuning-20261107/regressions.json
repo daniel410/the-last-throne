@@ -1,0 +1,44 @@
+[
+  {
+    "test": "tests/gold-diamond-tuning.spec.lua",
+    "exitCode": 0,
+    "stdout": "Gold/Diamond tuning: 1892 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/economy.spec.lua",
+    "exitCode": 0,
+    "stdout": "Economy: 42 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/difficulty-balance.spec.lua",
+    "exitCode": 0,
+    "stdout": "Difficulty balance: 2661 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/expedition-presentation.spec.lua",
+    "exitCode": 0,
+    "stdout": "Expedition presentation: 22 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/expedition-departure.spec.lua",
+    "exitCode": 0,
+    "stdout": "Expedition departure: 42 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/expedition-store.spec.lua",
+    "exitCode": 0,
+    "stdout": "Expedition store: 43 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/campaign-reorder.spec.lua",
+    "exitCode": 0,
+    "stdout": "CAMPAIGN_REORDER 1871 checks passed; mandatory solo final level 43\n",
+    "stderr": ""
+  }
+]

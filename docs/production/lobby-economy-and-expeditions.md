@@ -5,7 +5,7 @@
 
 ## 재화와 무기
 
-RPG 계정 지갑의 표시 재화는 **Gold / Diamonds**다. 종전 Coins/처치 Coins의 금액은 한 번 Gold로 이전하며 저널에는 누적 획득 기록을 보존한다. 승인 보상 JSON의 Coins 키와 XP·일반 재화 금액은 바꾸지 않는다. Gold는 TD 전투 Gold·임무 Command Points와 별개다. Diamonds도 TD 지갑·구매권·Robux 상품과 공유하지 않는다. 기존 Deepwood 본편 초회 완료당2 Diamonds를 계정당 한 번 주며 이전 완료도 한 번 반영한다. 가격·추가 Diamond 지급량은 시험값이다.
+RPG 계정 지갑의 표시 재화는 **Gold / Diamonds**다. 종전 Coins/처치 Coins의 금액은 한 번 Gold로 이전하며 저널에는 누적 획득 기록을 보존한다. 승인 보상 JSON의 Coins 키와 XP·일반 재화 금액은 바꾸지 않는다. Gold는 TD 전투 Gold·임무 Command Points와 별개다. Diamonds도 TD 지갑·구매권·Robux 상품과 공유하지 않는다. 2026-11-07 사용자 승인으로 Deepwood 본편7개 스토리의 미수령 초회 완료당3 Diamonds를 계정당 한 번 지급한다(모두 미수령이면 총21). 이미 수령한2 Diamonds는 소급 보충하지 않는다. 지갑이 없는 구저장의 과거 완료 이관은 당시2 Diamonds를 유지하고, 이후 미완료 스토리를 처음 완료할 때3 Diamonds를 준다. 반복·다른 지역·다른 영웅의 같은 스토리에는 추가 지급하지 않는다. 신규 원정 규칙11부터 반복 완료Gold는 규칙10의 난이도/레벨 보정 후 정수금액×0.8을 내림한다. 규칙1~10으로 출발한 기존 원정·초회Gold·처치Gold·XP·재료·기존잔액과 가격/환율은 유지한다. 가격·추가 Diamond 지급량은 시험값이다.
 
 로비의 실물 무기 상인과 **ARMORY** 버튼으로 구매·판매한다. TD UI 원본과 실제 TD 무기 전시를 사용한다. 기본 클래스별 상위 무기250 Gold, Lv5 Veteran 무기600 Gold 또는10 Diamonds, 방패250 Gold다. 매각은50/120/50 Gold다. 다른 클래스 장비 구매는 허용하되 소유·클래스·레벨 장착 검사는 유지한다. 잠금·장착·기본 지급 장비는 팔 수 없으며 Diamonds로 샀어도 매각 대금은 Gold다. 두 번 클릭해 가격을 확인하고 확정한다.
 
