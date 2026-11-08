@@ -1,0 +1,477 @@
+{
+  "anchorIssues": [],
+  "relocated": [
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S1.TreeCollision",
+      "to": [
+        483.36785888671875,
+        27.200000762939453,
+        -1118.6063232421875
+      ],
+      "from": [
+        494.45440673828125,
+        27.200000762939453,
+        -1114.01416015625
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S1.TreeCollision",
+      "to": [
+        413.63519287109375,
+        24.799999237060547,
+        -1233.5557861328125
+      ],
+      "from": [
+        413.63519287109375,
+        24.799999237060547,
+        -1245.5557861328125
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-03.TreeCollision",
+      "to": [
+        -241.54100036621094,
+        24.799999237060547,
+        -1700.4293212890625
+      ],
+      "from": [
+        -236.9488067626953,
+        24.799999237060547,
+        -1711.515869140625
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-06.TreeCollision",
+      "to": [
+        67.54139709472656,
+        52.79999923706055,
+        -3037.543212890625
+      ],
+      "from": [
+        72.13359832763672,
+        52.79999923706055,
+        -3048.6298828125
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-05.TreeCollision",
+      "to": [
+        836.8197631835938,
+        44.79999923706055,
+        -2602.42919921875
+      ],
+      "from": [
+        841.4119873046875,
+        44.79999923706055,
+        -2613.515869140625
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-05.TreeCollision",
+      "to": [
+        803.2654418945312,
+        47.20000076293945,
+        -2461.761474609375
+      ],
+      "from": [
+        814.3519897460938,
+        47.20000076293945,
+        -2457.169189453125
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TreeCollision",
+      "to": [
+        -922.3294067382812,
+        15.199999809265137,
+        -1224.871826171875
+      ],
+      "from": [
+        -926.921630859375,
+        15.199999809265137,
+        -1235.9583740234375
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TreeCollision",
+      "to": [
+        -969.9549560546875,
+        12.800000190734863,
+        -1247.4217529296875
+      ],
+      "from": [
+        -974.5471801757812,
+        12.800000190734863,
+        -1258.50830078125
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TreeCollision",
+      "to": [
+        -1495.821044921875,
+        9.199999809265137,
+        -830.6351928710938
+      ],
+      "from": [
+        -1473.64794921875,
+        9.199999809265137,
+        -821.4508056640625
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-01.TreeCollision",
+      "to": [
+        -1369.64404296875,
+        9.199999809265137,
+        -1040.5616455078125
+      ],
+      "from": [
+        -1381.64404296875,
+        9.199999809265137,
+        -1040.5616455078125
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S3.TreeCollision",
+      "to": [
+        1329.977783203125,
+        47.20000076293945,
+        -3154.68408203125
+      ],
+      "from": [
+        1325.3856201171875,
+        47.20000076293945,
+        -3165.770751953125
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S3.TreeCollision",
+      "to": [
+        1362.454345703125,
+        47.20000076293945,
+        -3050.01416015625
+      ],
+      "from": [
+        1374.454345703125,
+        47.20000076293945,
+        -3050.01416015625
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S3.TreeCollision",
+      "to": [
+        1293.63525390625,
+        44.79999923706055,
+        -3169.555908203125
+      ],
+      "from": [
+        1293.63525390625,
+        44.79999923706055,
+        -3181.555908203125
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-S2.TreeCollision",
+      "to": [
+        -1054.0308837890625,
+        27.200000762939453,
+        -1694.4993896484375
+      ],
+      "from": [
+        -1045.545654296875,
+        27.200000762939453,
+        -1686.01416015625
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-07.AltarObelisk",
+      "to": [
+        -792,
+        66.5,
+        -3231
+      ],
+      "from": [
+        -768,
+        66.5,
+        -3231
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-04.TreeCollision",
+      "to": [
+        415.98687744140625,
+        39.20000076293945,
+        -1972.2647705078125
+      ],
+      "from": [
+        407.5015869140625,
+        39.20000076293945,
+        -1980.75
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DW-04.TreeCollision",
+      "to": [
+        710.306396484375,
+        38,
+        -1795.8399658203125
+      ],
+      "from": [
+        698.306396484375,
+        38,
+        -1795.8399658203125
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-01.GroveTrunk",
+      "to": [
+        -1463.0865478515625,
+        6,
+        -975.2221069335938
+      ],
+      "from": [
+        -1452,
+        6,
+        -979.8143310546875
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-02.GroveTrunk",
+      "to": [
+        -766.4586181640625,
+        12,
+        -1292.447509765625
+      ],
+      "from": [
+        -757.9733276367188,
+        12,
+        -1283.9622802734375
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-02.GroveTrunk",
+      "to": [
+        -836,
+        12,
+        -1202.5584716796875
+      ],
+      "from": [
+        -836,
+        12,
+        -1214.5584716796875
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-03.GroveTrunk",
+      "to": [
+        -246.59219360351562,
+        24,
+        -1731.239501953125
+      ],
+      "from": [
+        -242,
+        24,
+        -1742.3260498046875
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-05.GroveTrunk",
+      "to": [
+        944.619873046875,
+        44,
+        -2729.958740234375
+      ],
+      "from": [
+        933.5333251953125,
+        44,
+        -2734.551025390625
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.DeepwoodPlaces.DW-05.GroveTrunk",
+      "to": [
+        826.7111206054688,
+        44,
+        -2472.3818359375
+      ],
+      "from": [
+        826.7111206054688,
+        44,
+        -2484.3818359375
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.FV-02.RefugeCompanionCamp.CampBoard",
+      "to": [
+        -273.776611328125,
+        63,
+        -4633.259765625
+      ],
+      "from": [
+        -260,
+        63,
+        -4600
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.FV-05.FrozenRouteMonument",
+      "to": [
+        224,
+        89,
+        -5995
+      ],
+      "from": [
+        260,
+        89,
+        -5995
+      ]
+    },
+    {
+      "path": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-05.BlueprintTable",
+      "to": [
+        313.776611328125,
+        133.5,
+        -9881.740234375
+      ],
+      "from": [
+        300,
+        133.5,
+        -9915
+      ]
+    }
+  ],
+  "floorIssues": [],
+  "anchors": 360,
+  "obstacles": [],
+  "retiredProxies": 85,
+  "hubs": {
+    "Dawnspire": {
+      "floor": 96,
+      "spawn": [
+        0,
+        96.0999984741211,
+        536
+      ]
+    },
+    "Training": {
+      "floor": 0,
+      "spawn": [
+        -20,
+        0.10000000149011612,
+        56
+      ]
+    }
+  },
+  "hubPaths": [
+    {
+      "status": "Success",
+      "hub": "Training",
+      "goal": "Goblin"
+    },
+    {
+      "status": "Success",
+      "hub": "Training",
+      "goal": "Slime"
+    },
+    {
+      "status": "Success",
+      "hub": "Training",
+      "goal": "Orc"
+    },
+    {
+      "status": "Success",
+      "hub": "Training",
+      "goal": "Ogre"
+    },
+    {
+      "status": "Success",
+      "hub": "Dawnspire",
+      "goal": "Workspace.DawnspireLobbyPrototype.DawnspireAccountStorage.Chest.OpenAccountStorage"
+    },
+    {
+      "status": "Success",
+      "hub": "Dawnspire",
+      "goal": "Workspace.DawnspireLobbyPrototype.DawnspireExpeditionPortal.PortalInteraction.ExpeditionPortalInteraction"
+    },
+    {
+      "status": "Success",
+      "hub": "Dawnspire",
+      "goal": "Workspace.DawnspireLobbyPrototype.DawnspireTrainingGround.TrainingInteraction.TrainingGroundInteraction"
+    },
+    {
+      "status": "Success",
+      "hub": "Dawnspire",
+      "goal": "Workspace.DawnspireLobbyPrototype.ThroneDefenseGateway.DefenseInteraction.ThroneDefenseInteraction"
+    },
+    {
+      "status": "Success",
+      "hub": "Dawnspire",
+      "goal": "Workspace.DawnspireLobbyPrototype.DawnspireWeaponMerchant.WeaponCounter.BlacksmithInteraction"
+    },
+    {
+      "status": "Success",
+      "hub": "Dawnspire",
+      "goal": "Workspace.DawnspireLobbyPrototype.DawnspireResidents.Mira.ActorRoot.NPCInteract"
+    },
+    {
+      "status": "Success",
+      "hub": "Dawnspire",
+      "goal": "Workspace.DawnspireLobbyPrototype.DawnspireResidents.Selene.ActorRoot.NPCInteract"
+    },
+    {
+      "status": "Success",
+      "hub": "Dawnspire",
+      "goal": "Workspace.DawnspireLobbyPrototype.DawnspireResidents.Nia.ActorRoot.NPCInteract"
+    }
+  ],
+  "roadSamples": 34041,
+  "obstacleCount": 0,
+  "hubSamples": 100,
+  "zones": {
+    "GW-03": [],
+    "EC-S1": [],
+    "DW-03": [],
+    "FV-05": [],
+    "DW-01": [],
+    "FV-S2": [],
+    "GW-07": [],
+    "EC-03": [],
+    "EC-S2": [],
+    "GW-01": [],
+    "FV-02": [],
+    "FV-S3": [],
+    "FV-04": [],
+    "HG-03": [],
+    "HG-02": [],
+    "GW-05": [],
+    "DW-S3": [],
+    "EC-07": [],
+    "DW-05": [],
+    "FV-03": [],
+    "FV-06": [],
+    "EC-04": [],
+    "FV-01": [],
+    "EC-S3": [],
+    "HG-06": [],
+    "HG-07": [],
+    "EC-06": [],
+    "DW-S2": [],
+    "EC-01": [],
+    "EC-02": [],
+    "FV-S1": [],
+    "DW-07": [],
+    "EC-05": [],
+    "GW-02": [],
+    "HG-05": [],
+    "DW-06": [],
+    "DW-02": [],
+    "HG-01": [],
+    "GW-04": [],
+    "GW-06": [],
+    "HG-04": [],
+    "DW-S1": [],
+    "FV-07": [],
+    "DW-04": []
+  },
+  "roads": 3703
+}

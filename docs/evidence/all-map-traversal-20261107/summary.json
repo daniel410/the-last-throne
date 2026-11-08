@@ -1,0 +1,82 @@
+{
+  "zones": {
+    "GW": 7,
+    "EC": 10,
+    "DW": 10,
+    "FV": 10,
+    "HG": 7
+  },
+  "chapters": 47,
+  "roads": 3703,
+  "roadSamples": 34041,
+  "anchors": 360,
+  "hubSamples": 100,
+  "hubPaths": 12,
+  "roadObstacles": 0,
+  "floorIssues": 0,
+  "anchorIssues": 0,
+  "paths": {
+    "Success": 300,
+    "SamePoint": 5
+  },
+  "segments": 305,
+  "transfersExcluded": [
+    {
+      "kind": "InterEpicTransfer",
+      "to": "GW-01",
+      "from": "DW-07"
+    },
+    {
+      "kind": "InterEpicTransfer",
+      "to": "FV-01",
+      "from": "GW-07"
+    },
+    {
+      "kind": "InterEpicTransfer",
+      "to": "EC-01",
+      "from": "FV-07"
+    },
+    {
+      "kind": "InterEpicTransfer",
+      "to": "HG-01",
+      "from": "EC-07"
+    }
+  ],
+  "relocatedProps": 26,
+  "visualCandidatePaths": 32,
+  "directCollisionSegments": 34,
+  "cacheAndLegacy": {
+    "retired": 85,
+    "trees": 22,
+    "checks": 511,
+    "pass": true,
+    "moved": 26
+  },
+  "watchtowerRegression": {
+    "paths": [
+      {
+        "step": "leaf",
+        "status": "Success"
+      },
+      {
+        "step": "rain",
+        "status": "Success"
+      },
+      {
+        "step": "root",
+        "status": "Success"
+      },
+      {
+        "step": "counterweight",
+        "status": "Success"
+      },
+      {
+        "step": "lantern",
+        "status": "Success"
+      }
+    ],
+    "pass": true,
+    "checks": 573
+  },
+  "processExitCode": 0
+}
