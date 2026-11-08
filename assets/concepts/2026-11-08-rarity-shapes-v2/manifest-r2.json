@@ -1,0 +1,29 @@
+{
+  "created": "2026-11-08",
+  "status": "revision-pending-user-acceptance",
+  "scope": "icons-and-equipped-3d-concept",
+  "tool": "built-in image_gen",
+  "file": "hood-comparison-r2.png",
+  "sha256": "02bb74fc91bfdc3d98cef70d76ad376f866830c225cd153825a8f99019a1d5b2",
+  "width": 1774,
+  "height": 887,
+  "promptFile": "prompt-r2.txt",
+  "promptSha256": "b33bf252e4706519873ad74a4806f8d688fc35a4358d31bfa99789a7f70112d8",
+  "referenceFile": "hood-comparison.png",
+  "referenceSha256": "f9b54400a394b0a6abe0ddcaa0b0ef83ef8d881df2b904f7d83794b238ab0800",
+  "userFeedback": {
+    "overall": "전체적인 시안은 좋아",
+    "epic": "머리위 후드가 너무 뾰족해",
+    "unique": "너무 돌 재료같아, 좀더 금속이어야 하지 않을까"
+  },
+  "changes": [
+    "Rounded low Epic hood crown; retained silver brow and layered sides",
+    "Forged dark steel Unique shell with bronze bindings and inset amber core"
+  ],
+  "verification": {
+    "visualReview": "Epic peak removed; Unique reads as forged metal; Rare and Legendary design retained",
+    "runtime": "Not applied",
+    "blender": "Not a Blender Standard render",
+    "deviceAcceptance": "Not tested"
+  }
+}
