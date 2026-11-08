@@ -11,3 +11,15 @@
 ## 1차 검증과 보정
 
 0.83.3 소스 `ed305bd` 빌드 성공, 모바일 UI2543조건·단일 빌드 검사 통과. 추가 로비 검사에서 BLACKSMITH 이름표 모서리 여백 위반을 검출했다. 원래 폭 여백82%/92%를 복구하고 글꼴 목표+1·높이 제한85%→95%만 유지한다. 긴 이름은 원본 이름표에 맞춰 크기를 제한한다. 이 보정은0.83.4로 별도 빌드하며0.83.3 산출물을 재사용하지 않는다.
+
+## 최종 결과
+
+- 최종 소스 `92c7e92135d045213330b04a0b600edc98dff457` · 단일 빌드0.83.4 성공 · `builds/0.83.4/TheLastThrone-0.83.4.rbxlx` · SHA-256 `1c88a7000042d3c262c9c94ebc76c971699396abb1aefb0c494a7f65a88f2b6f`.
+- `run-in-roblox --place builds/0.83.3/TheLastThrone-0.83.3.rbxlx --script tests/mobile-ui-audit-native.luau`: **2543조건 PASS**. 최종 보정은 로비 이름표 폭 여백만 원복하므로 배틀/메뉴 구현은 이 검사와 동일하다.
+- 최종0.83.4에서 기존 `tests/lobby-navigation-grid-native.luau`와 `tests/lobby-hero-dock-native.luau`를 함수로 감싸 순차 실행: 이름표/배치 **1722조건 PASS**, 영웅 독 검사 오류 없음. 14개 화면 크기에서 글자 잘림과 TD 이름표 모서리 여백/원본 타일 크기를 확인했다. 폭 제약이 있는 긴 BLACKSMITH는 기존 크기를 유지할 수 있다.
+- 같은 최종 엔진에서 `K0Config.Skills`의128개 스킬명을 `TextService:GetTextSize(name,9,GothamBold,Vector2.new(58,1000))`로 측정해 모두 높이25px 이내임을 확인했다. `lobby-final-native.log` 참조.
+- `python3 tests/single-build.spec.py --artifact builds/0.83.4/TheLastThrone-0.83.4.rbxlx`: 역할10·도착로딩192·프로젝트/산출물 검사 PASS.
+- 현재 Studio `The Last Throne`, Place70829337938054의 Edit 모델에5개 모듈 변경을 적용하고 모두 엔진 컴파일 성공. Studio Play의 시각 관찰이나 Place 저장/게시를 의미하지 않는다. 기록: `studio.json`.
+- 기존203785492 이미지 유형 경고는 남아 있으며 이미지 권한/로딩 수용으로 계산하지 않는다. 게시 클라이언트·실기기·사용자 시각 수용은 후속이다.
+
+기존 사용자 스테이징과 미커밋 자산은 보존했다. 새 LFS 대상 없음. Git 최종 증거 커밋은 별도 푸시하며 실제 Roblox 게시/릴리스 태그는 없다.

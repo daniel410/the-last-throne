@@ -1,0 +1,15 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+{"sizes":[],"checks":36,"kind":"LOBBY_NAVIGATION_GRID_NATIVE","pass":false,"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:7: blacksmith clears beveled nameplate corners\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:7\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8 function run\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:70\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"]}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:67: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:7: blacksmith clears beveled nameplate corners
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:7
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8 function run
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:70
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:67 function run
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:70
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
