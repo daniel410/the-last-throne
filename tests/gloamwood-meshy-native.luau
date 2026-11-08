@@ -22,6 +22,10 @@ for index,kind in kinds do
   check(visual.ModelStreamingMode==Enum.ModelStreamingMode.Atomic,kind..' atomic streaming')
   check(body.MeshId~='' and body.TextureID~='',kind..' source mesh and texture')
   check(body.Color==Color3.new(1,1,1),kind..' source texture has no importer gray tint')
+  if kind=='VenomcoilKing'then
+   check(body.DoubleSided,kind..' preserves source double-sided material')
+   check(body.RenderFidelity==Enum.RenderFidelity.Precise,kind..' preserves thin tail detail')
+  end
   local meshes,bones,legs=0,0,0
   for _,o in visual:GetDescendants()do
    if o:IsA('MeshPart')then meshes+=1 end

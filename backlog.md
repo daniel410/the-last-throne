@@ -1,3 +1,5 @@
+> **2026-11-07 / TLT-065/032/033/057/084 · 0.83.7:** Venomcoil King 꼬리 제보를 원본/리그 면 단위로 대조해 손실 없음을 확인했다. 원본 양면 설정 복원·얇은 꼬리 정밀 렌더링 적용. [비교·검증·미게시](docs/evidence/venomcoil-tail-20261107/README.md). 제보 장면의 실제 잘림은 미재현.
+
 > **2026-11-07 / TLT-028/043/057/084 · 0.83.6:** Blacksmith 거래/분류 버튼을 두 줄로 정리하고 Enhancement Guide를 ENHANCE 내부로 이동했다. Diamond Shop 상단의 숨긴 거래 탭 여백50px을 제거했다. [검증·미게시](docs/evidence/blacksmith-two-rows-20261107/README.md). 실기기/사용자 수용 후속.
 
 > **2026-11-07 / TLT-065/032/033/057/084 · 0.83.5:** Meshy 최신 Venomcoil King 모델로 교체했다. 원본/구버전 보존·2,458tri/14본·10모션 슬롯·길이11.32stud·다른7종/전투 판정 유지. [검증·Studio 적용·미게시](docs/evidence/venomcoil-king-20261107/README.md). 실기기/최종 미술 수용 후속.

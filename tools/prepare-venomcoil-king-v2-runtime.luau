@@ -16,6 +16,8 @@ for kind,spec in pairs(specs)do
  for _,b in body:GetDescendants()do if b:IsA('Bone')then count+=1;b.Transform=CFrame.identity;table.insert(bones,{name=b.Name,parent=b.Parent.Name,cf={b.CFrame:GetComponents()}})end end
  assert(count==spec.bones,'Bone count mismatch '..kind)
  assert(body.MeshId~='' and (body.TextureID~='' or body:FindFirstChildOfClass('SurfaceAppearance')),'Missing mesh/texture')
+ body.DoubleSided=true -- Preserve the source glTF material's doubleSided flag.
+ body.RenderFidelity=Enum.RenderFidelity.Precise -- Preserve the thin tail silhouette at combat distance.
  body.Color=Color3.new(1,1,1) -- Source glTF baseColorFactor defaults to white.
  body.CFrame=CFrame.new(0,body.Size.Y/2,0);body.Anchored=true;body.Massless=true;body.CanCollide=false;body.CanTouch=false;body.CanQuery=false;body.Parent=model
  local root=Instance.new('Part');root.Name='VisualRoot';root.Size=Vector3.new(.01,.01,.01);root.CFrame=CFrame.identity;root.Transparency=1;root.Anchored=true;root.Massless=true;root.CanCollide=false;root.CanTouch=false;root.CanQuery=false;root.Parent=model

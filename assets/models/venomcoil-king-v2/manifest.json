@@ -11,7 +11,7 @@
   "triangles": 15912,
   "bones": 116,
   "clipSlots": 80,
-  "runtimeSha256": "15b07cd31ae29d91e4a9922231bceaaeb31fe508f2af9bed7a4df7f7fa5d63ac",
+  "runtimeSha256": "f53fbec02d04c3ed6f4e4f28110c3f6e27b4f3b4363f04fa54245482f84b695a",
   "models": [
     {
       "kind": "Webling",
@@ -148,5 +148,12 @@
   "version": 2,
   "previousManifest": "assets/models/gloamwood-meshy-v1/manifest.json",
   "runtime": "assets/models/venomcoil-king-v2/runtime.rbxm",
-  "newUploads": 1
+  "newUploads": 1,
+  "tailPresentationFix": {
+    "sourceDoubleSided": true,
+    "runtimeDoubleSided": true,
+    "renderFidelity": "Precise",
+    "meshIdUnchanged": true,
+    "sourceGeometryUnchanged": true
+  }
 }

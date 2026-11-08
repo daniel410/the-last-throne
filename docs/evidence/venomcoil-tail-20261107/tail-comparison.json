@@ -1,0 +1,36 @@
+{
+  "sourceAndRiggedTriangleSurfacesEqual": true,
+  "sourceVertices": 3218,
+  "riggedVertices": 3218,
+  "sourceTriangles": 2458,
+  "riggedTriangles": 2458,
+  "tailCriterion": "glTF Z < -0.30",
+  "tailVerticesEach": 704,
+  "tailBoundsEach": [
+    [
+      -0.16772499680519104,
+      0.13305699825286865
+    ],
+    [
+      -0.13598600029945374,
+      -0.06713899970054626
+    ],
+    [
+      -0.4753420054912567,
+      -0.3024899959564209
+    ]
+  ],
+  "weldedOpenEdgesSource": 28,
+  "weldedOpenEdgesTail": 0,
+  "sourceDoubleSided": true,
+  "runtimeBefore": {
+    "DoubleSided": false,
+    "RenderFidelity": "Automatic"
+  },
+  "runtimeAfter": {
+    "DoubleSided": true,
+    "RenderFidelity": "Precise"
+  },
+  "truncationReproduced": false,
+  "renderSettingChange": "Preserve source material and thin-tail detail; not proof that settings caused the reported appearance."
+}
