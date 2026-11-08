@@ -1,4 +1,6 @@
 -- Prototype-only values from docs/knight-combat-spec.md. No progression is saved.
+-- Preserve the reviewed three-hit rhythm and sustained damage at a 0.70s mean.
+local knightBasicTempo = 0.70 / 0.50
 local Config = {
 	MaxHealth = 1000,
 	AttackPower = 100,
@@ -16,9 +18,9 @@ local Config = {
 	AttackMaxTargets = 3,
 	AttackHeight = 7,
 	Attacks = {
-		{ windup = 0.16, active = 0.10, recovery = 0.16, damage = 0.75, posture = 12, range = 5.5, angle = 100 },
-		{ windup = 0.18, active = 0.10, recovery = 0.18, damage = 0.90, posture = 14, range = 5.5, angle = 110 },
-		{ windup = 0.26, active = 0.12, recovery = 0.24, damage = 1.20, posture = 24, range = 6.0, angle = 100 },
+		{ windup = 0.16 * knightBasicTempo, active = 0.10 * knightBasicTempo, recovery = 0.16 * knightBasicTempo, damage = 0.75 * knightBasicTempo, posture = 12, range = 5.5, angle = 100 },
+		{ windup = 0.18 * knightBasicTempo, active = 0.10 * knightBasicTempo, recovery = 0.18 * knightBasicTempo, damage = 0.90 * knightBasicTempo, posture = 14, range = 5.5, angle = 110 },
+		{ windup = 0.26 * knightBasicTempo, active = 0.12 * knightBasicTempo, recovery = 0.24 * knightBasicTempo, damage = 1.20 * knightBasicTempo, posture = 24, range = 6.0, angle = 100 },
 	},
 	Guard = { raiseTime = 0.10, perfectTime = 0.15, cooldown = 0.40, angle = 120, damageMultiplier = 0.2, counterDuration = 1.5 },
 	Dodge = { duration = 0.65, moveDuration = 0.30, distance = 7, invulnerableStart = 0.08, invulnerableEnd = 0.28, doubleTapWindow = 0.30,
@@ -72,10 +74,10 @@ local Config = {
 -- equipment or skills. Dwarf swings a hand axe; Mage swings a wooden staff.
 -- Keep Knight tied to the existing K0 values. Elf uses one server-resolved
 -- ranged shot with a narrow forward aim assist, not a client damage claim.
--- Dwarf keeps its reviewed stroke but uses a heavier 0.65s basic cadence.
+-- Dwarf keeps its reviewed stroke but uses a heavier 0.80s basic cadence.
 -- Scale all phases together to preserve motion/contact joins. Scale damage
 -- equally to preserve sustained basic DPS before integer damage rounding.
-local dwarfBasicTempo = 0.65 / 0.42
+local dwarfBasicTempo = 0.80 / 0.42
 Config.BasicAttackProfiles = {
 	knight = {
 		id = "knight.sword.basic", attackPower = Config.AttackPower,

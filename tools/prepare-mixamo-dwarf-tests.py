@@ -34,7 +34,16 @@ for rig,curves in [('R15',baseline['curves']),('R6',baseline['r6Curves'])]:
         anchors.append(dict(rig=rig,age=age,angles=angles))
 remap_probe=out/'dwarf-remap.luau'
 remap_probe.write_text('do\nlocal previousOverheadAnchors='+lua(anchors)+'\nlocal previousOverheadDuration='+str(baseline['duration'])+'\n'+(root/'tests/dwarf-overhead-remap-native.luau').read_text()+'\nend\n')
-subprocess.run(['node','tools/prepare-dwarf-swing-review.mjs',str(out),str(probe),str(remap_probe),str(knight_probe),str(elf_probe),str(legacy_bow),
+# Freeze pre-change skill playback so basic pacing cannot silently retime skills.
+skill_isolation_probe=out/'skill-tempo-isolation.luau'
+baseline_commit='0814db02429275d093f2b9770ad8dcab5ee059f8'
+baseline_sources=[]
+for variable,path in [('tempoBaselineConfigSource','src/shared/K0Config.luau'),('tempoBaselineAdvancedSource','src/client/AdvancedSkillMotion.luau')]:
+    source=subprocess.check_output(['git','show',baseline_commit+':'+path],cwd=root).decode()
+    assert ']====]' not in source
+    baseline_sources.append('local '+variable+'=[====['+source+']====]')
+skill_isolation_probe.write_text('do\n'+'\n'.join(baseline_sources)+'\n'+(root/'tests/melee-skill-tempo-isolation-native.luau').read_text()+'\nend\n')
+subprocess.run(['node','tools/prepare-dwarf-swing-review.mjs',str(out),str(probe),str(remap_probe),str(knight_probe),str(skill_isolation_probe),str(elf_probe),str(legacy_bow),
  'tests/k0-dwarf-motion-native.luau','tests/dwarf-natural-grip-native.luau','tests/dwarf-recovery-native.luau',
  'tests/dwarf-axe-throw-native.luau','tests/k0-melee-blender-native.luau',
  'tests/axe-cutting-edge-native.luau','tests/k0-melee-curves-native.luau',

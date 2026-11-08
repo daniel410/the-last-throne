@@ -4,6 +4,7 @@ local Config=require(game.ReplicatedStorage.Shared.K0Config)
 local Presentation=require(game.ReplicatedStorage.Shared.SkillPresentation)
 local Clips=require(script.Parent.K0MeleeClips)
 local Melee=require(script.Parent.K0MeleeMotion)
+local KnightBasic=require(script.Parent.K0KnightMixamoBasic)
 local Shield=require(script.Parent.K0ShieldBashMotion)
 local Motion={}
 local records=setmetatable({},{__mode="k"})
@@ -34,7 +35,9 @@ local function source(classId,kind,pulse,rigType,skillId)
  if kind=="chop" or kind=="slam" then combo=3 end
  if classId=="knight" then
   local variant=kind=="sweep" and "knight.mixamo.wide" or kind=="chop" and "knight.mixamo.power" or nil
-  return Config.BasicAttackProfiles.knight.attacks[combo],function(age) return Melee.sample("knight",combo,age,nil,nil,variant,rigType) end
+  local base=Config.BasicAttackProfiles.knight.attacks[combo]
+  local sourceScale=(base.windup+base.active+base.recovery)/KnightBasic[combo].duration
+  return base,function(age) return Melee.sample("knight",combo,age,nil,nil,variant,rigType) end,sourceScale
  end
  local index=kind=="throw" and 2 or kind=="slam" and 3 or 1
  local base=Config.Skills.dwarf[index]
@@ -66,7 +69,7 @@ function Motion.sample(classId,d,age,rigType)
  local contact=d.windup+(d.hitDelay or 0)
  local ending=d.windup+d.active
  local pulse,since=Presentation.beat(d,age)
- local base,sample=source(classId,kind,math.max(1,pulse),rigType,d.id)
+ local base,sample,sourceScale=source(classId,kind,math.max(1,pulse),rigType,d.id)
  local bContact=base.windup+(base.hitDelay or 0)
  local pose
  if age<contact then
@@ -74,7 +77,7 @@ function Motion.sample(classId,d,age,rigType)
  elseif age<ending then
   if pulse<(d.pulses or 1) then
    local phase=math.clamp(since/d.interval,0,1)
-   local follow=bContact+math.min(.10,base.active*.7)
+   local follow=bContact+math.min(.10*(sourceScale or 1),base.active*.7)
    if phase<.32 then pose=sample(bContact+(follow-bContact)*smooth(phase/.32))
    elseif phase<.66 then pose=mix(sample(follow),sample(bContact*.6),smooth((phase-.32)/.34))
    else pose=sample(bContact*(.6+.4*smooth((phase-.66)/.34))) end

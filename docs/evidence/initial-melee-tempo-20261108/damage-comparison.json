@@ -1,0 +1,8 @@
+{
+  "baseline": "0.86.4",
+  "cases": 216,
+  "method": "Post-analysis of actual new server HP loss, compared to previous Config timing/damage with identical normal-state rounding",
+  "maxRelativeDPSDifference": 0.001885902876001877,
+  "pass": true,
+  "realGameplay": false
+}

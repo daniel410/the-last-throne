@@ -1,0 +1,115 @@
+{
+  "checks": 283209,
+  "pass": true,
+  "suites": [
+    {
+      "suite": "MIXAMO_DWARF_NATIVE",
+      "checks": 47989,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "DWARF_OVERHEAD_REMAP_NATIVE",
+      "checks": 124,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "MIXAMO_KNIGHT_NATIVE",
+      "checks": 42104,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "MELEE_SKILL_TEMPO_ISOLATION_NATIVE",
+      "checks": 157682,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "MIXAMO_ELF_NATIVE",
+      "checks": 986,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "K0_ELF_BOW_NATIVE",
+      "checks": 4890,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "K0_DWARF_MOTION_NATIVE",
+      "checks": 1642,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "DWARF_NATURAL_GRIP_NATIVE",
+      "checks": 682,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "DWARF_RECOVERY_NATIVE",
+      "checks": 3432,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "K0_MELEE_BLENDER_NATIVE",
+      "checks": 8484,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "AXE_CUTTING_EDGE_NATIVE",
+      "checks": 154,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "K0_MELEE_CURVES_NATIVE",
+      "checks": 3204,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "SHIELD_BASH_LEADING_NATIVE",
+      "checks": 86,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "K0_SKILL_ANIMATION_NATIVE",
+      "checks": 61,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "ELF_QUIVER_NATIVE",
+      "checks": 179,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "DWARF_AXE_THROW_NATIVE",
+      "checks": 460,
+      "pass": true,
+      "log": "motion-native.log"
+    },
+    {
+      "suite": "MELEE_BASIC_TEMPO_NATIVE",
+      "checks": 10993,
+      "pass": true,
+      "log": "server-tempo-native.log"
+    },
+    {
+      "suite": "K0_BASIC_ATTACK_NATIVE",
+      "checks": 57,
+      "pass": true,
+      "log": "selected-basics-native.log"
+    }
+  ],
+  "scope": "Roblox native isolated fixtures; synthetic clock, mock identity; no real players/devices/transport"
+}

@@ -1,4 +1,4 @@
-"""Prepare the seven existing server cases affected by dwarf cadence/damage."""
+"""Prepare existing reach/target cases affected by both melee cadences."""
 import hashlib
 import json
 import pathlib
@@ -8,7 +8,7 @@ root=pathlib.Path(__file__).resolve().parents[1]
 out=pathlib.Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
 source=(root/'tests/k0-basic-attacks-native.luau').read_text()
 selector="""local function case(name, body)
- if not (name:match('^dwarf%-reach%-') or name=='targeted-dwarf-turns-and-hits-selected' or name=='dwarf-impact-matches-downstroke' or name=='dwarf-melee-hit-deduplicate-and-buffer' or name=='dwarf-range-and-wall' or name=='dwarf-missed-active-window') then return end
+ if not (name:match('^dwarf%-reach%-') or name:match('^knight%-reach%-') or name=='targeted-knight-turns-and-hits-selected' or name=='targeted-dwarf-turns-and-hits-selected' or name=='dwarf-impact-matches-downstroke' or name=='dwarf-melee-hit-deduplicate-and-buffer' or name=='dwarf-range-and-wall' or name=='dwarf-missed-active-window') then return end
 """
 assert source.count('local function case(name, body)\n')==1
 source=source.replace('local function case(name, body)\n',selector)

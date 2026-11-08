@@ -11,7 +11,11 @@ local combos={forehand=1,backhand=2,overhead=3,wide=2,power=3,brace=1}
 for key,samples in knightGolden do
  local variant=table.find({'wide','power','brace'},key)and'knight.mixamo.'..key or nil
  for _,sample in samples do
-  local p=M.sample('knight',combos[key],sample.age,nil,nil,variant,Enum.HumanoidRigType.R15)
+  local combo=combos[key]
+  local d=Config.BasicAttackProfiles.knight.attacks[combo]
+  local raw=variant and require(Client.K0KnightMixamoVariants)[variant]or require(Client.K0KnightMixamoBasic)[combo]
+  local age=sample.age*(d.windup+d.active+d.recovery)/raw.duration
+  local p=M.sample('knight',combo,age,nil,nil,variant,Enum.HumanoidRigType.R15)
   for ch,expected in sample.angles do
    local e=(p.angles[ch]-Vector3.new(unpack(expected))).Magnitude
    report.maxBlenderDegrees=math.max(report.maxBlenderDegrees,e)

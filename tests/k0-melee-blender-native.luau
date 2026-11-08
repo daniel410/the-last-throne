@@ -11,6 +11,10 @@ local ok,err=xpcall(function()
     local d=require(game.ReplicatedStorage.Shared.K0Config).BasicAttackProfiles.dwarf.attacks[1]
     age*= (d.windup+d.active+d.recovery)/require(game.StarterPlayer.StarterPlayerScripts.Client.K0DwarfMixamoBasic).duration
    end
+   if clip.classId=="knight" and not clip.skillId then
+    local d=require(game.ReplicatedStorage.Shared.K0Config).BasicAttackProfiles.knight.attacks[clip.combo]
+    age*=(d.windup+d.active+d.recovery)/require(game.StarterPlayer.StarterPlayerScripts.Client.K0KnightMixamoBasic)[clip.combo].duration
+   end
    local actual=assert(Motion.sample(clip.classId,clip.combo,age,nil,nil,clip.skillId))
    for channel,expected in pairs(sample.angles) do
     local error=(actual.angles[channel]-Vector3.new(unpack(expected))).Magnitude
