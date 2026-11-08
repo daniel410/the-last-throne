@@ -6,6 +6,8 @@ local Access=require(Shared.CampaignAccess)
 local Text=require(Shared.K0Text).Map
 local Theme=require(script.Parent.TDInventoryTheme)
 local Art=require(script.Parent.DeepwoodCartography)
+local Survey=require(Shared.CampaignCartography)
+local Bounds=require(Shared.CampaignBounds)
 local Canvas={}
 function Canvas.create(parent,zoneId,compact,onSelect)
  local minX,minZ,maxX,maxZ=math.huge,math.huge,-math.huge,-math.huge
@@ -27,23 +29,28 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   t.AnchorPoint=Vector2.new(.5,.5);t.TextXAlignment=Enum.TextXAlignment.Center;t.TextStrokeTransparency=.35;t.TextStrokeColor3=Color3.fromRGB(5,17,20);t.ZIndex=layer or 8;return t
  end
  local roads={};local rows={};local lastJournal,lastSize
- local function line(name,a,b,color,thickness,layer,edge,zone)
-  local f=Art.shape(parent,name,(a.X+b.X)/2,(a.Y+b.Y)/2,0,0,color,layer,.5)
-  table.insert(roads,{part=f,a=a,b=b,thickness=thickness,edge=edge,zone=zone});return f
- end
- if not compact then
-  for i=1,7 do
-   local f=Art.shape(parent,'AtlasContour',.52,.51,.32+i*.11,.30+i*.115,Color3.fromRGB(16,34,35),1,.5);f.BackgroundTransparency=1
-   local stroke=Instance.new('UIStroke');stroke.Color=Color3.fromRGB(66,92,78);stroke.Transparency=.85;stroke.Thickness=1;stroke.Parent=f
+ local function line(name,a,b,color,thickness,layer,edge,zone,worldWidth)
+  if compact then
+   local delta=b-a;local offset=a-Vector2.new(.5,.5);local aa=delta:Dot(delta)
+   if aa<.0000001 then return end
+   local bb=2*offset:Dot(delta);local cc=offset:Dot(offset)-.475*.475
+   local discriminant=bb*bb-4*aa*cc
+   if discriminant<0 then return end
+   local first=math.max(0,(-bb-math.sqrt(discriminant))/(2*aa))
+   local last=math.min(1,(-bb+math.sqrt(discriminant))/(2*aa))
+   if first>=last then return end
+   b=a+delta*last;a=a+delta*first
   end
+  local f=Art.shape(parent,name,(a.X+b.X)/2,(a.Y+b.Y)/2,0,0,color,layer,.5)
+  table.insert(roads,{part=f,a=a,b=b,thickness=thickness,edge=edge,zone=zone,worldWidth=worldWidth});return f
  end
- for _,id in ipairs(ids) do Art.region(parent,id,Content.zones[id],point,width,height,compact) end
+ for _,id in ipairs(ids) do Art.region(parent,id,Content.zones[id],point,width,height,compact,line) end
  local included={};for _,id in ipairs(ids)do included[id]=true end
  if type(zoneId)~='string' then for _,edge in ipairs(Access.edges) do
-  if included[edge[1]] and included[edge[2]] then
-  local a,b=Content.zones[edge[1]],Content.zones[edge[2]];local first,second=point(a.center[1],a.center[3]),point(b.center[1],b.center[3])
-  line('BridgeShadow',first,second,Color3.fromRGB(8,19,22),10,2)
-  line('BridgeStone',first,second,Color3.fromRGB(86,106,83),7,2)
+  if included[edge[1]] and included[edge[2]] and Content.zones[edge[1]].epic==Content.zones[edge[2]].epic then
+  local a,b=Bounds.ends(edge);local first,second=point(a[1],a[3]),point(b[1],b[3])
+  line('TrailShoulder',first,second,Color3.fromRGB(8,19,22),10,2,nil,nil,96)
+  line('ConnectingTrail',first,second,Color3.fromRGB(86,106,83),7,2,nil,nil,80)
   line('Road',first,second,Theme.color.gold,2.5,4,edge)
  end end end
  local function selectRegion(id)
@@ -51,16 +58,8 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   if onSelect then onSelect(id) end
  end
  for _,id in ipairs(ids) do
-  local z=Content.zones[id];local a=point(z.center[1]-z.size[1]/2,z.center[3]-z.size[2]/2)
+  local z=Content.zones[id];local survey=Survey.zones[id];local a=point(z.center[1]-z.size[1]/2,z.center[3]-z.size[2]/2)
   local size=Vector2.new(z.size[1]/width,z.size[2]/height);local center=point(z.center[1],z.center[3]);local cells={}
-  if not compact then
-   local previous=point(z.center[1]-z.size[1]*.37,z.center[3]+z.size[2]*.34)
-   for _,chapter in ipairs(Content.chapters) do if chapter.zone==id and not chapter.side then
-    for _,goal in ipairs(chapter.goals) do if not goal.zone and not goal.optional then
-     local nextPoint=point(goal.position[1],goal.position[3]);line('LocalTrail',previous,nextPoint,Color3.fromRGB(201,181,126),1.5,4,nil,id);previous=nextPoint
-    end end
-   end end
-  end
   for zz=1,12 do for x=1,12 do
    local origin=a+Vector2.new((x-.5)/12*size.X,(zz-.5)/12*size.Y)
    local cell=Art.shape(parent,'FogCell',origin.X,origin.Y,size.X/11.7,size.Y/11.7,Color3.fromRGB(12,24,31),6,.5)
@@ -78,18 +77,24 @@ function Canvas.create(parent,zoneId,compact,onSelect)
   local chapter=Content.byId[id];local number=chapter and not chapter.side and chapter.number
   local badge=label('StoryOrder',number and string.format(Text.Main,number) or Text.Side,center-Vector2.new(0,size.Y*.37),UDim2.fromOffset(100,16),9,Theme.color.gold)
   badge.Visible=not compact
-  local checkpoint=label('Checkpoint','◇',point(z.center[1]-z.size[1]*.37,z.center[3]+z.size[2]*.34),UDim2.fromOffset(18,18),17,Theme.color.silver,10);checkpoint.Visible=false
+  local landmark=label('Landmark',survey.landmark,center-Vector2.new(0,size.Y*.27),UDim2.fromOffset(140,26),10,Theme.color.silver,7);landmark.Visible=not compact;landmark.TextWrapped=true
+  local checkpoint=label('Checkpoint','◇',point(survey.spawn[1],survey.spawn[2]),UDim2.fromOffset(18,18),17,Theme.color.silver,10);checkpoint.Visible=false
   local hit
   if not compact then
    hit=Instance.new('TextButton');hit.Name='SelectRegion';hit.Text='';hit.BackgroundTransparency=1;hit.Position=caption.Position;hit.AnchorPoint=Vector2.new(.5,.5);hit.Size=UDim2.fromOffset(164,48);hit.ZIndex=9;hit.AutoLocalize=false;hit.Parent=parent
    hit.Activated:Connect(function() selectRegion(id) end)
   end
-  rows[id]={cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit}
+  rows[id]={cells=cells,name=caption,status=status,badge=badge,center=center,checkpoint=checkpoint,zone=caption,outline=outline,hit=hit,landmark=landmark}
  end
  local objective=label('Objective','◆',Vector2.zero,UDim2.fromOffset(26,26),23,Theme.color.gold,12);objective.Visible=false
  local pin=label('You','▲',Vector2.zero,UDim2.fromOffset(30,30),26,Color3.fromRGB(87,241,255),13);pin.TextStrokeTransparency=0;pin.Visible=false
  local function located(marker,position)
-  local p=point(position.X,position.Z);marker.Position=UDim2.fromScale(p.X,p.Y);marker.Visible=p.X>=0 and p.X<=1 and p.Y>=0 and p.Y<=1
+  local p=point(position.X,position.Z)
+  if compact then
+   local offset=p-Vector2.new(.5,.5)
+   if offset.Magnitude>.39 then p=Vector2.new(.5,.5)+offset.Unit*.39 end
+  end
+  marker.Position=UDim2.fromScale(p.X,p.Y);marker.Visible=p.X>=0 and p.X<=1 and p.Y>=0 and p.Y<=1
  end
  local party=require(script.Parent.PartyMapMarkers).create(parent,point,compact)
  local function update(current,root,target,members)
@@ -107,7 +112,10 @@ function Canvas.create(parent,zoneId,compact,onSelect)
     row.name.TextColor3=allowed and Theme.color.text or Theme.color.muted
     row.status.Text=not allowed and Text.Locked or count==0 and Text.Available or string.format(Text.Explored,math.floor(count/144*100))
     row.status.TextColor3=allowed and Theme.color.green or Theme.color.muted
-    row.checkpoint.Visible=count>0 and Progress.hasCell(cells,math.floor(.84*12)*12+math.floor(.13*12)+1)
+    local z=Content.zones[id];local sp=Survey.zones[id].spawn
+    local cx=math.clamp(math.floor((sp[1]-z.center[1]+z.size[1]/2)/z.size[1]*12),0,11)
+    local cz=math.clamp(math.floor((sp[2]-z.center[3]+z.size[2]/2)/z.size[2]*12),0,11)
+    row.checkpoint.Visible=Progress.hasCell(cells,cz*12+cx+1)
     row.name:SetAttribute('ExploredPercent',math.floor(count/144*100));row.name:SetAttribute('Accessible',allowed==true)
    end
    for _,r in ipairs(roads) do
@@ -119,7 +127,8 @@ function Canvas.create(parent,zoneId,compact,onSelect)
    lastSize=parent.AbsoluteSize
    for _,r in ipairs(roads) do
     local delta=Vector2.new((r.b.X-r.a.X)*lastSize.X,(r.b.Y-r.a.Y)*lastSize.Y)
-    r.part.Size=UDim2.fromOffset(delta.Magnitude,r.thickness);r.part.Rotation=math.deg(math.atan2(delta.Y,delta.X))
+    local thickness=r.worldWidth and math.max(r.thickness,r.worldWidth/width*lastSize.X) or r.thickness
+    r.part.Size=UDim2.fromScale(delta.Magnitude/math.max(1,lastSize.X),thickness/math.max(1,lastSize.Y));r.part.Rotation=math.deg(math.atan2(delta.Y,delta.X))
    end
   end
   if root then located(pin,root.Position);pin.Rotation=math.deg(math.atan2(root.CFrame.LookVector.X,-root.CFrame.LookVector.Z)) else pin.Visible=false end

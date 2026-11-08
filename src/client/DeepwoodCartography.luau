@@ -1,69 +1,51 @@
--- Authored 2D symbols, projected from campaign coordinates, without 3D clones.
+-- Surveyed scenery and roads, projected from campaign coordinates without 3D clones.
 local Art={}
-local C={ink=Color3.fromRGB(12,26,29),cliff=Color3.fromRGB(60,73,65),rim=Color3.fromRGB(82,102,71),
- forest=Color3.fromRGB(45,76,57),leaf=Color3.fromRGB(66,103,67),light=Color3.fromRGB(102,131,79),
- corrupt=Color3.fromRGB(54,58,69),violet=Color3.fromRGB(131,110,150),water=Color3.fromRGB(68,132,144),
- wood=Color3.fromRGB(125,100,65),stone=Color3.fromRGB(164,165,133),gold=Color3.fromRGB(211,182,113)}
 function Art.shape(parent,name,x,y,w,h,color,layer,round)
  local f=Instance.new('Frame');f.Name=name;f.BorderSizePixel=0;f.BackgroundColor3=color
  f.AnchorPoint=Vector2.new(.5,.5);f.Position=UDim2.fromScale(x,y);f.Size=UDim2.fromScale(w,h);f.ZIndex=layer;f.Parent=parent
  if round then local c=Instance.new('UICorner');c.CornerRadius=UDim.new(round,0);c.Parent=f end
  return f
 end
-function Art.region(parent,id,z,point,width,height,compact)
+local Survey=require(game.ReplicatedStorage.Shared.CampaignCartography)
+-- Keep strong contrasts at HUD scale, while retaining the regional material palette.
+local palettes={
+ DW={Color3.fromRGB(85,113,65),Color3.fromRGB(198,177,119),Color3.fromRGB(85,98,83),Color3.fromRGB(39,77,47),Color3.fromRGB(171,173,132)},
+ GW={Color3.fromRGB(47,71,60),Color3.fromRGB(155,163,126),Color3.fromRGB(73,92,89),Color3.fromRGB(24,51,43),Color3.fromRGB(132,156,145)},
+ FV={Color3.fromRGB(199,220,230),Color3.fromRGB(114,166,185),Color3.fromRGB(75,111,142),Color3.fromRGB(44,91,104),Color3.fromRGB(141,175,201)},
+ EC={Color3.fromRGB(67,53,57),Color3.fromRGB(160,128,107),Color3.fromRGB(39,36,45),Color3.fromRGB(87,59,59),Color3.fromRGB(129,110,115)},
+ HG={Color3.fromRGB(81,96,91),Color3.fromRGB(163,165,148),Color3.fromRGB(58,64,85),Color3.fromRGB(40,58,57),Color3.fromRGB(155,164,179)},
+}
+function Art.region(parent,id,z,point,width,height,compact,line)
+ local survey=Survey.zones[id];local colors=palettes[id:sub(1,2)]
  local center=point(z.center[1],z.center[3]);local sx,sy=z.size[1]/width,z.size[2]/height
- local frozen=id:sub(1,3)=='FV-'
- local ember=id:sub(1,3)=='EC-'
- local corrupt=id=='DW-06' or id=='DW-07' or id=='DW-S3'
- local ground=corrupt and C.corrupt or C.forest
- local function blob(name,x,y,w,h,color,layer)
-  return Art.shape(parent,name,center.X+x*sx,center.Y+y*sy,w*sx,h*sy,color,layer,.5)
+ if compact then parent.BackgroundColor3=colors[3]end
+ local n=Survey.resolution
+ local function footprint(name,x,y,w,h,color,layer)
+  local function tile(cx,cy,cw,ch)
+   local f=Art.shape(parent,name,cx,cy,cw,ch,color,layer);f:SetAttribute('SurveyRegion',id);return f
+  end
+  if not compact then return tile(x,y,w,h)end
+  -- UICorner rounds only its own background. Clip child footprints explicitly.
+  local step=sy/n;local bottom=y+h/2;local top=y-h/2
+  while top<bottom-.000001 do
+   local nextY=math.min(bottom,top+step)
+   local farY=math.max(math.abs(top-.5),math.abs(nextY-.5))
+   if farY<.49 then
+    local half=math.sqrt(.49*.49-farY*farY)
+    local left,right=math.max(x-w/2,.5-half),math.min(x+w/2,.5+half)
+    if right>left then tile((left+right)/2,(top+nextY)/2,right-left,nextY-top)end
+   end
+   top=nextY
+  end
  end
- -- Scalloped contours replace the rectangular development boxes.
- blob('CliffShadow',0,.035,1.03,1.02,C.ink,2)
- blob('LimestoneContour',0,.012,1,1,C.cliff,2)
- blob('MossContour',0,0,.96,.96,corrupt and C.corrupt or C.rim,2)
- blob('ForestFloor',0,-.015,.90,.90,ember and Color3.fromRGB(115,83,61) or frozen and Color3.fromRGB(166,206,222) or ground,2)
- for i=1,8 do local a=i*math.pi/4
-  blob('CanopyContour',math.cos(a)*.28,math.sin(a)*.29,.42,.40,ground,2)
+ footprint('SurveyGround_'..id,center.X,center.Y,sx,sy,colors[1],2)
+ for _,r in ipairs(survey.rects)do
+  local color=r[5]==6 and Color3.fromRGB(66,156,183) or r[5]==7 and Color3.fromRGB(247,111,43) or colors[r[5]] or colors[5]
+  local tile=footprint('SurveyFootprint',center.X+((r[1]+r[3]/2)/n-.5)*sx,center.Y+((r[2]+r[4]/2)/n-.5)*sy,r[3]/n*sx,r[4]/n*sy,color,3)
+  if tile then tile:SetAttribute('SurfaceKind',r[5])end
  end
- for i=1,compact and 10 or 24 do
-  local a=i*2.39996;local r=.30+(i%3)*.035
-  local x,y=math.cos(a)*r,math.sin(a)*r;local size=.08+(i%4)*.014
-  blob('TreeShadow',x+.013,y+.018,size*1.15,size*1.2,C.ink,3)
-  blob('TreeCanopy',x,y,size,size*1.08,corrupt and Color3.fromRGB(76,75,82) or (i%3==0 and C.light or C.leaf),3)
- end
- blob('BroadTrail',0,0,.78,.035,C.wood,3)
- if id=='DW-S2' then
-  blob('QuarryPool',-.25,-.17,.30,.38,C.water,3)
-  blob('Waterfall',-.38,-.25,.04,.30,Color3.fromRGB(149,194,188),4)
- elseif id=='DW-01' then blob('Marsh',-.27,.32,.14,.14,C.water,3) end
- if compact then return end
- -- Landmarks match the existing DeepwoodWorld scenery.
- local lx,ly=center.X,center.Y-sy*.17
- local function icon(name,x,y,w,h,color,round)
-  return Art.shape(parent,name,lx+x*sx,ly+y*sy,w*sx,h*sy,color,5,round)
- end
- if id=='DW-03' then
-  icon('ElderTreeShadow',0,.025,.35,.36,C.ink,.5);icon('ElderTreeTrunk',0,.07,.04,.24,C.wood)
-  for i=1,5 do local a=i*math.pi*2/5;icon('ElderTreeCrown',math.cos(a)*.075,math.sin(a)*.07-.02,.20,.20,i%2==0 and C.light or C.leaf,.5) end
- elseif id=='DW-04' then
-  icon('TowerShadow',.025,.035,.22,.25,C.ink);icon('Watchtower',0,0,.19,.22,C.stone)
-  icon('TowerRoof',0,-.10,.23,.055,C.rim);icon('TowerDoor',0,.065,.045,.08,C.ink)
- elseif id=='DW-07' then
-  icon('AltarRing',0,0,.32,.30,C.violet,.5);icon('AltarDais',0,0,.25,.23,C.ink,.5)
-  for _,x in ipairs({-.14,.14}) do icon('Obelisk',x,-.07,.045,.20,C.stone) end
-  local crystal=icon('Seal',0,-.03,.06,.10,C.violet);crystal.Rotation=25
- elseif id=='DW-05' then
-  for i=1,3 do icon('RuinedPillar',(i-2)*.11,0,.06,.18,C.stone) end
-  icon('RuinedLintel',0,-.09,.32,.05,C.rim)
- elseif id=='DW-06' then
-  for i=1,4 do local root=icon('BlackRoot',(i-2.5)*.065,0,.028,.30,C.violet);root.Rotation=i*32 end
- elseif id=='DW-01' or id=='DW-02' then
-  icon('CartBed',0,0,.19,.09,C.wood)
-  for _,x in ipairs({-.08,.08}) do icon('CartWheel',x,.05,.04,.05,C.ink,.5) end
- elseif id=='DW-S1' or id=='DW-S3' then
-  for i=1,3 do local tent=icon('CampTent',(i-2)*.14,0,.09,.12,id=='DW-S3' and C.violet or C.gold);tent.Rotation=45 end
+ for _,r in ipairs(survey.roads)do
+  line('SurveyTrail',point(r[1],r[2]),point(r[3],r[4]),colors[2],compact and 1.5 or 2,4,nil,id,r[5])
  end
 end
 return Art

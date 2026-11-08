@@ -59,7 +59,7 @@ local ok,err=xpcall(function()
     n+=1
     check(require(game.ReplicatedStorage.Shared.CampaignMapScope).epicFor(id)==epic,'map contains only selected epic regions')
    end
-   check(n==(epic<=3 and 10 or 7),'epic includes optional regions where authored')
+   check(n==((epic==1 or epic==3 or epic==4) and 10 or 7),'epic includes optional regions where authored')
    local visible=0
    for _,b in ipairs(panel.Journey:GetChildren())do if b:IsA('TextButton')and b.Visible then visible+=1 end end
    check(visible==7,'journey lists seven selected stories')

@@ -10,6 +10,7 @@ local State=require(script.Parent.DeepwoodMapState)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
 local Scope=require(Shared.CampaignMapScope)
 local Checkpoints=require(Shared.CheckpointTravel)
+local Survey=require(Shared.CampaignCartography)
 local Map={}
 function Map.start(button)
  local player=Players.LocalPlayer
@@ -31,7 +32,7 @@ function Map.start(button)
    local previous=Content.mainChapters[z.requiresMain]
    message=string.format(Text.Map.Unlock,previous and previous.title or Text.Map.Title)
   elseif journal and journal.explored and journal.explored[id] then message=Text.Map.Ready end
-  detail.Text=string.format(Text.Map.Detail,z.name,message)
+  detail.Text=string.format(Text.Map.Detail,z.name..' / '..Survey.zones[id].landmark,message)
   if updateTravel then updateTravel();if layout then layout()end end
  end
  local epic=1
@@ -147,7 +148,7 @@ function Map.start(button)
   local font=w<650 and 10 or 12;local labelWidth=w<650 and 118 or 156
   local showNames=not short and not small
   for id,row in pairs(atlas.rows) do
-   row.name.Visible=showNames;row.status.Visible=showNames;row.name.TextSize=font;row.name.Size=UDim2.fromOffset(labelWidth,32)
+   row.name.Visible=showNames;row.status.Visible=showNames;row.landmark.Visible=showNames and w/atlas.aspect>450;row.name.TextSize=font;row.name.Size=UDim2.fromOffset(labelWidth,32)
    local number=Content.byId[id] and Content.byId[id].number
    row.badge.Text=number and (w<550 and string.format('%02d',(number-1)%7+1) or string.format(Text.Map.Main,(number-1)%7+1)) or Text.Map.Side
    if row.hit then

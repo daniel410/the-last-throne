@@ -40,6 +40,7 @@ function Map.create(parent)
  settings.Activated:Connect(function() menu.Visible=false end)
  journal.Activated:Connect(function() menu.Visible=false end)
  local function layoutMenu()
+  if not frame.Parent or not menu.Parent or not fullMap:FindFirstChild('Caption') then return end
   local frameScale=frame:FindFirstChildOfClass('UIScale')
   local scale=frameScale and frameScale.Scale or frame.AbsoluteSize.Y/168
   local availableSize=parent.AbsoluteSize
@@ -76,8 +77,15 @@ function Map.create(parent)
  hero.Activated:Connect(function() menu.Visible=false end);bag.Activated:Connect(function() menu.Visible=false end)
  local enemyMarkers,lastUpdate={},-math.huge
  local mapOrigin=Vector3.zero;local mapWidth=180
+ local function projected(position)
+  if atlas then
+   local p=atlas.project(position.X,position.Z)-Vector2.new(.5,.5)
+   return Vector2.new(p.X*view.AbsoluteSize.X/math.max(1,frame.AbsoluteSize.X),p.Y*view.AbsoluteSize.Y/math.max(1,frame.AbsoluteSize.Y))
+  end
+  return Vector2.new(position.X-mapOrigin.X,position.Z-mapOrigin.Z)/mapWidth
+ end
  local function point(marker,position)
-  local x,z=(position.X-mapOrigin.X)/mapWidth,(position.Z-mapOrigin.Z)/mapWidth
+  local offset=projected(position);local x,z=offset.X,offset.Y
   marker.Position=UDim2.fromScale(.5+x,.5+z);marker.Visible=x*x+z*z<.21
  end
  local function update(character)
@@ -86,6 +94,9 @@ function Map.create(parent)
   local charRoot=character and character:FindFirstChild('HumanoidRootPart')
   local inAdventure=State.current and not State.current.training and charRoot
   local id=inAdventure and Access.region(charRoot.Position.X,charRoot.Position.Z) or nil
+  -- A connector still belongs to the last region until the next clearing is reached.
+  -- Keep its map visible instead of switching to the unrelated training grid.
+  if inAdventure and not id then id=regionId end
   if id then
    local z=Content.zones[id];mapOrigin=Vector3.new(table.unpack(z.center));mapWidth=math.max(z.size[1],z.size[2])*168/152;caption.Text=z.name
    if regionId~=id then clearScene();atlas=Canvas.create(view,id,true);atlas.pin.Visible=false;regionId=id end
@@ -99,7 +110,7 @@ function Map.create(parent)
   local root=character and character:FindFirstChild('HumanoidRootPart')
   local human=character and character:FindFirstChildOfClass('Humanoid')
   if root and (not human or human.Health>0) then
-   local offset=Vector2.new(root.Position.X-mapOrigin.X,root.Position.Z-mapOrigin.Z)/mapWidth
+   local offset=projected(root.Position)
    local clamped=offset.Magnitude>.38
    if clamped then offset=offset.Unit*.38 end
    playerMarker.Position=UDim2.fromScale(.5+offset.X,.5+offset.Y);playerMarker.Visible=true;playerMarker:SetAttribute('AtMapEdge',clamped)
@@ -124,6 +135,6 @@ function Map.create(parent)
   end
   for enemy,marker in pairs(enemyMarkers) do if not present[enemy] then marker:Destroy();enemyMarkers[enemy]=nil end end
  end
- return {frame=frame,menu=menu,hero=hero,bag=bag,journal=journal,settings=settings,fullMap=fullMap,update=update}
+ return {project=projected,frame=frame,menu=menu,hero=hero,bag=bag,journal=journal,settings=settings,fullMap=fullMap,update=update}
 end
 return Map

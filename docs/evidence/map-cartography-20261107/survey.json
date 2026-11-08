@@ -1,0 +1,182 @@
+{
+  "zones": 44,
+  "sourceSha256": "b6536b61892bbc8447365e61159bea4371d86140c2127bfa242079fe81ad39dd",
+  "regions": {
+    "DW-01": {
+      "rectangles": 112,
+      "roads": 104
+    },
+    "DW-02": {
+      "rectangles": 89,
+      "roads": 100
+    },
+    "DW-03": {
+      "rectangles": 98,
+      "roads": 68
+    },
+    "DW-04": {
+      "rectangles": 86,
+      "roads": 116
+    },
+    "DW-05": {
+      "rectangles": 89,
+      "roads": 148
+    },
+    "DW-06": {
+      "rectangles": 105,
+      "roads": 144
+    },
+    "DW-07": {
+      "rectangles": 94,
+      "roads": 162
+    },
+    "DW-S1": {
+      "rectangles": 45,
+      "roads": 33
+    },
+    "DW-S2": {
+      "rectangles": 61,
+      "roads": 25
+    },
+    "DW-S3": {
+      "rectangles": 50,
+      "roads": 32
+    },
+    "EC-01": {
+      "rectangles": 30,
+      "roads": 54
+    },
+    "EC-02": {
+      "rectangles": 33,
+      "roads": 43
+    },
+    "EC-03": {
+      "rectangles": 19,
+      "roads": 62
+    },
+    "EC-04": {
+      "rectangles": 25,
+      "roads": 76
+    },
+    "EC-05": {
+      "rectangles": 16,
+      "roads": 32
+    },
+    "EC-06": {
+      "rectangles": 14,
+      "roads": 54
+    },
+    "EC-07": {
+      "rectangles": 23,
+      "roads": 76
+    },
+    "EC-S1": {
+      "rectangles": 15,
+      "roads": 24
+    },
+    "EC-S2": {
+      "rectangles": 28,
+      "roads": 23
+    },
+    "EC-S3": {
+      "rectangles": 13,
+      "roads": 20
+    },
+    "FV-01": {
+      "rectangles": 50,
+      "roads": 76
+    },
+    "FV-02": {
+      "rectangles": 80,
+      "roads": 36
+    },
+    "FV-03": {
+      "rectangles": 48,
+      "roads": 62
+    },
+    "FV-04": {
+      "rectangles": 37,
+      "roads": 72
+    },
+    "FV-05": {
+      "rectangles": 36,
+      "roads": 60
+    },
+    "FV-06": {
+      "rectangles": 37,
+      "roads": 75
+    },
+    "FV-07": {
+      "rectangles": 36,
+      "roads": 81
+    },
+    "FV-S1": {
+      "rectangles": 57,
+      "roads": 31
+    },
+    "FV-S2": {
+      "rectangles": 65,
+      "roads": 31
+    },
+    "FV-S3": {
+      "rectangles": 55,
+      "roads": 31
+    },
+    "GW-01": {
+      "rectangles": 24,
+      "roads": 66
+    },
+    "GW-02": {
+      "rectangles": 19,
+      "roads": 66
+    },
+    "GW-03": {
+      "rectangles": 29,
+      "roads": 57
+    },
+    "GW-04": {
+      "rectangles": 18,
+      "roads": 57
+    },
+    "GW-05": {
+      "rectangles": 22,
+      "roads": 57
+    },
+    "GW-06": {
+      "rectangles": 17,
+      "roads": 64
+    },
+    "GW-07": {
+      "rectangles": 27,
+      "roads": 65
+    },
+    "HG-01": {
+      "rectangles": 56,
+      "roads": 51
+    },
+    "HG-02": {
+      "rectangles": 71,
+      "roads": 48
+    },
+    "HG-03": {
+      "rectangles": 43,
+      "roads": 51
+    },
+    "HG-04": {
+      "rectangles": 46,
+      "roads": 55
+    },
+    "HG-05": {
+      "rectangles": 44,
+      "roads": 55
+    },
+    "HG-06": {
+      "rectangles": 51,
+      "roads": 45
+    },
+    "HG-07": {
+      "rectangles": 64,
+      "roads": 57
+    }
+  }
+}

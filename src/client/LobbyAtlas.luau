@@ -5,8 +5,10 @@ local Access=require(Shared.CampaignAccess)
 local Progress=require(Shared.DeepwoodProgress)
 local T=require(script.Parent.TDInventoryTheme)
 local Canvas=require(script.Parent.DeepwoodMapCanvas)
+local Survey=require(Shared.CampaignCartography)
 local M={}
-local epics={{'Deepwood','DW-'},{'Frozen Vale','FV-'},{'Ember Caldera','EC-'},{'Gloamwood','GW-'},{'Haunted Graveyard','HG-'}}
+local epics={}
+for _,epic in ipairs(Content.epics)do table.insert(epics,{epic.region,epic.hub:sub(1,3)})end
 function M.create(parent)
  local root=Instance.new('Frame');root.Name='LobbyAtlas';root.Position=UDim2.fromOffset(16,60);root.Size=UDim2.new(1,-32,1,-72);root.BackgroundTransparency=1;root.Visible=false;root.Parent=parent
  local tabs=Instance.new('ScrollingFrame');tabs.Name='EpicCategories';tabs.Size=UDim2.new(1,0,0,48);tabs.BackgroundTransparency=1;tabs.BorderSizePixel=0;tabs.ScrollBarThickness=3;tabs.ScrollingDirection=Enum.ScrollingDirection.X;tabs.CanvasSize=UDim2.fromOffset(#epics*174,0);tabs.Parent=root
@@ -31,7 +33,7 @@ function M.create(parent)
    status=previous and 'LOCKED · Complete '..previous.title..' to unlock.'or 'LOCKED'
   elseif j.clears and j.clears[id]then status='COMPLETED · Enter an adventure to revisit.'
   else status='OPEN · Enter an adventure to explore.'end
-  detail.Text=z.name..' · '..status
+  detail.Text=z.name..' / '..Survey.zones[id].landmark..' · '..status
   if resizeChrome then resizeChrome()end
  end
  resizeChrome=function()
@@ -70,7 +72,7 @@ function M.create(parent)
   local width=math.max(w,h*atlas.aspect)*zoom
   -- Region names remain legible; drag scrolls a large epic on small displays.
   width=overview and math.min(w,h*atlas.aspect)or math.max(width,900)
-  for _,row in pairs(atlas.rows)do row.name.Visible=not overview;row.status.Visible=not overview end
+  for _,row in pairs(atlas.rows)do row.name.Visible=not overview;row.status.Visible=not overview;row.landmark.Visible=not overview end
   scene.Size=UDim2.fromOffset(width,width/atlas.aspect);scene.Position=UDim2.fromOffset(math.max(0,(w-width)/2),math.max(0,(h-width/atlas.aspect)/2));area.CanvasSize=UDim2.fromOffset(math.max(w,width),math.max(h,width/atlas.aspect))
   atlas.update({journal=journal()},nil,nil)
  end
