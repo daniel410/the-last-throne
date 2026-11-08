@@ -1,0 +1,317 @@
+{
+  "date": "2026-11-08",
+  "sourceCommit": "4877faad73ea8bf206f13c43d32440f6cd78df7f",
+  "method": "Static arithmetic from current source; not measured gameplay, transport, frame or enemy-armor simulation",
+  "inputs": {
+    "src/shared/K0Config.luau": "d08dc69a7e19f4a3854ba111b351453810841a33929816422d6231110ffc22dc",
+    "src/shared/HeroProgression.luau": "902cdb09891f6f84841af11334e4f24e1714209b2010fd0bd6d9e21180154a6c",
+    "src/server/Combat/K0Rules.luau": "be818d86d3e9f78a22df77d955506eed15af4998e86b7bee2874379b6735c038",
+    "src/server/Combat/CombatService.luau": "1d29bed9c39a79cd6c3101aae7f3d3d1848d9d6afafb5ae824f8526dcfa75c4d",
+    "src/client/K0MeleeMotion.luau": "b057cc0a2a7b0e8fdd8ceb1f17c002b08cb004f20137f79737d0177e1415c9b8"
+  },
+  "rows": [
+    {
+      "investedDEX": 0,
+      "attackRate": 1.0,
+      "attackBonusPercent": 0.0,
+      "moveRate": 1.0,
+      "moveBonusPercent": 0.0,
+      "knightPeriods": [
+        0.42,
+        0.46,
+        0.62
+      ],
+      "knightAveragePeriod": 0.5,
+      "knightAPS": 2.0,
+      "dwarfPeriod": 0.42,
+      "dwarfAPS": 2.380952380952381,
+      "dwarfHitTime": 0.22,
+      "walkStudsPerSecond": 16.0,
+      "sprintStudsPerSecond": 24.0,
+      "attackMoveStudsPerSecond": 6.4,
+      "guardMoveStudsPerSecond": 8.0,
+      "nextDEXAttackBonus": 0.005,
+      "nextDEXMoveBonus": 0.001
+    },
+    {
+      "investedDEX": 20,
+      "attackRate": 1.1,
+      "attackBonusPercent": 10.000000000000009,
+      "moveRate": 1.02,
+      "moveBonusPercent": 2.0000000000000018,
+      "knightPeriods": [
+        0.3818181818181818,
+        0.41818181818181815,
+        0.5636363636363636
+      ],
+      "knightAveragePeriod": 0.45454545454545453,
+      "knightAPS": 2.2,
+      "dwarfPeriod": 0.3818181818181818,
+      "dwarfAPS": 2.6190476190476195,
+      "dwarfHitTime": 0.19999999999999998,
+      "walkStudsPerSecond": 16.32,
+      "sprintStudsPerSecond": 24.48,
+      "attackMoveStudsPerSecond": 6.5280000000000005,
+      "guardMoveStudsPerSecond": 8.16,
+      "nextDEXAttackBonus": 0.0049999999999999906,
+      "nextDEXMoveBonus": 0.0010000000000000009
+    },
+    {
+      "investedDEX": 40,
+      "attackRate": 1.2,
+      "attackBonusPercent": 19.999999999999996,
+      "moveRate": 1.04,
+      "moveBonusPercent": 4.0000000000000036,
+      "knightPeriods": [
+        0.35,
+        0.38333333333333336,
+        0.5166666666666667
+      ],
+      "knightAveragePeriod": 0.4166666666666667,
+      "knightAPS": 2.4,
+      "dwarfPeriod": 0.35,
+      "dwarfAPS": 2.857142857142857,
+      "dwarfHitTime": 0.18333333333333335,
+      "walkStudsPerSecond": 16.64,
+      "sprintStudsPerSecond": 24.96,
+      "attackMoveStudsPerSecond": 6.656000000000001,
+      "guardMoveStudsPerSecond": 8.32,
+      "nextDEXAttackBonus": 0.0050000000000000044,
+      "nextDEXMoveBonus": 0.0010000000000000009
+    },
+    {
+      "investedDEX": 50,
+      "attackRate": 1.25,
+      "attackBonusPercent": 25.0,
+      "moveRate": 1.05,
+      "moveBonusPercent": 5.000000000000004,
+      "knightPeriods": [
+        0.33599999999999997,
+        0.368,
+        0.496
+      ],
+      "knightAveragePeriod": 0.4,
+      "knightAPS": 2.5,
+      "dwarfPeriod": 0.33599999999999997,
+      "dwarfAPS": 2.9761904761904763,
+      "dwarfHitTime": 0.176,
+      "walkStudsPerSecond": 16.8,
+      "sprintStudsPerSecond": 25.200000000000003,
+      "attackMoveStudsPerSecond": 6.720000000000001,
+      "guardMoveStudsPerSecond": 8.4,
+      "nextDEXAttackBonus": 0.0050000000000000044,
+      "nextDEXMoveBonus": 0.0010000000000000009
+    },
+    {
+      "investedDEX": 80,
+      "attackRate": 1.4,
+      "attackBonusPercent": 39.99999999999999,
+      "moveRate": 1.08,
+      "moveBonusPercent": 8.000000000000007,
+      "knightPeriods": [
+        0.3,
+        0.3285714285714286,
+        0.4428571428571429
+      ],
+      "knightAveragePeriod": 0.35714285714285715,
+      "knightAPS": 2.8,
+      "dwarfPeriod": 0.3,
+      "dwarfAPS": 3.333333333333333,
+      "dwarfHitTime": 0.15714285714285717,
+      "walkStudsPerSecond": 17.28,
+      "sprintStudsPerSecond": 25.92,
+      "attackMoveStudsPerSecond": 6.912000000000001,
+      "guardMoveStudsPerSecond": 8.64,
+      "nextDEXAttackBonus": 0.0050000000000000044,
+      "nextDEXMoveBonus": 0.0010000000000000009
+    },
+    {
+      "investedDEX": 100,
+      "attackRate": 1.5,
+      "attackBonusPercent": 50.0,
+      "moveRate": 1.1,
+      "moveBonusPercent": 10.000000000000009,
+      "knightPeriods": [
+        0.27999999999999997,
+        0.3066666666666667,
+        0.41333333333333333
+      ],
+      "knightAveragePeriod": 0.3333333333333333,
+      "knightAPS": 3.0,
+      "dwarfPeriod": 0.27999999999999997,
+      "dwarfAPS": 3.5714285714285716,
+      "dwarfHitTime": 0.14666666666666667,
+      "walkStudsPerSecond": 17.6,
+      "sprintStudsPerSecond": 26.400000000000002,
+      "attackMoveStudsPerSecond": 7.040000000000001,
+      "guardMoveStudsPerSecond": 8.8,
+      "nextDEXAttackBonus": 0.0050000000000000044,
+      "nextDEXMoveBonus": 0.0010000000000000009
+    },
+    {
+      "investedDEX": 150,
+      "attackRate": 1.75,
+      "attackBonusPercent": 75.0,
+      "moveRate": 1.15,
+      "moveBonusPercent": 14.999999999999991,
+      "knightPeriods": [
+        0.24,
+        0.26285714285714284,
+        0.35428571428571426
+      ],
+      "knightAveragePeriod": 0.2857142857142857,
+      "knightAPS": 3.5,
+      "dwarfPeriod": 0.24,
+      "dwarfAPS": 4.166666666666667,
+      "dwarfHitTime": 0.12571428571428572,
+      "walkStudsPerSecond": 18.4,
+      "sprintStudsPerSecond": 27.599999999999998,
+      "attackMoveStudsPerSecond": 7.359999999999999,
+      "guardMoveStudsPerSecond": 9.2,
+      "nextDEXAttackBonus": 0.0050000000000000044,
+      "nextDEXMoveBonus": 0.0010000000000000009
+    },
+    {
+      "investedDEX": 200,
+      "attackRate": 2,
+      "attackBonusPercent": 100,
+      "moveRate": 1.2,
+      "moveBonusPercent": 19.999999999999996,
+      "knightPeriods": [
+        0.21,
+        0.23,
+        0.31
+      ],
+      "knightAveragePeriod": 0.25,
+      "knightAPS": 4,
+      "dwarfPeriod": 0.21,
+      "dwarfAPS": 4.761904761904762,
+      "dwarfHitTime": 0.11,
+      "walkStudsPerSecond": 19.2,
+      "sprintStudsPerSecond": 28.799999999999997,
+      "attackMoveStudsPerSecond": 7.68,
+      "guardMoveStudsPerSecond": 9.6,
+      "nextDEXAttackBonus": 0,
+      "nextDEXMoveBonus": 0.0010000000000000009
+    },
+    {
+      "investedDEX": 250,
+      "attackRate": 2,
+      "attackBonusPercent": 100,
+      "moveRate": 1.25,
+      "moveBonusPercent": 25.0,
+      "knightPeriods": [
+        0.21,
+        0.23,
+        0.31
+      ],
+      "knightAveragePeriod": 0.25,
+      "knightAPS": 4,
+      "dwarfPeriod": 0.21,
+      "dwarfAPS": 4.761904761904762,
+      "dwarfHitTime": 0.11,
+      "walkStudsPerSecond": 20.0,
+      "sprintStudsPerSecond": 30.0,
+      "attackMoveStudsPerSecond": 8.0,
+      "guardMoveStudsPerSecond": 10.0,
+      "nextDEXAttackBonus": 0,
+      "nextDEXMoveBonus": 0.0010000000000000009
+    },
+    {
+      "investedDEX": 300,
+      "attackRate": 2,
+      "attackBonusPercent": 100,
+      "moveRate": 1.3,
+      "moveBonusPercent": 30.000000000000004,
+      "knightPeriods": [
+        0.21,
+        0.23,
+        0.31
+      ],
+      "knightAveragePeriod": 0.25,
+      "knightAPS": 4,
+      "dwarfPeriod": 0.21,
+      "dwarfAPS": 4.761904761904762,
+      "dwarfHitTime": 0.11,
+      "walkStudsPerSecond": 20.8,
+      "sprintStudsPerSecond": 31.200000000000003,
+      "attackMoveStudsPerSecond": 8.32,
+      "guardMoveStudsPerSecond": 10.4,
+      "nextDEXAttackBonus": 0,
+      "nextDEXMoveBonus": 0.0
+    },
+    {
+      "investedDEX": 316,
+      "attackRate": 2,
+      "attackBonusPercent": 100,
+      "moveRate": 1.3,
+      "moveBonusPercent": 30.000000000000004,
+      "knightPeriods": [
+        0.21,
+        0.23,
+        0.31
+      ],
+      "knightAveragePeriod": 0.25,
+      "knightAPS": 4,
+      "dwarfPeriod": 0.21,
+      "dwarfAPS": 4.761904761904762,
+      "dwarfHitTime": 0.11,
+      "walkStudsPerSecond": 20.8,
+      "sprintStudsPerSecond": 31.200000000000003,
+      "attackMoveStudsPerSecond": 8.32,
+      "guardMoveStudsPerSecond": 10.4,
+      "nextDEXAttackBonus": 0,
+      "nextDEXMoveBonus": 0.0
+    }
+  ],
+  "unapprovedProposals": [
+    {
+      "status": "unapproved research candidate",
+      "dwarfBasePeriod": 0.42,
+      "baseAPS": 2.380952380952381,
+      "maxDEXPeriod": 0.21,
+      "maxDEXAPS": 4.761904761904762,
+      "basicDPSRatioIfDamageUnchanged": 1.0,
+      "damageCoefficientForSameIdealizedDPS": 0.75
+    },
+    {
+      "status": "unapproved research candidate",
+      "dwarfBasePeriod": 0.6,
+      "baseAPS": 1.6666666666666667,
+      "maxDEXPeriod": 0.3,
+      "maxDEXAPS": 3.3333333333333335,
+      "basicDPSRatioIfDamageUnchanged": 0.7,
+      "damageCoefficientForSameIdealizedDPS": 1.0714285714285714
+    },
+    {
+      "status": "unapproved research candidate",
+      "dwarfBasePeriod": 0.65,
+      "baseAPS": 1.5384615384615383,
+      "maxDEXPeriod": 0.325,
+      "maxDEXAPS": 3.0769230769230766,
+      "basicDPSRatioIfDamageUnchanged": 0.6461538461538461,
+      "damageCoefficientForSameIdealizedDPS": 1.1607142857142858
+    },
+    {
+      "status": "unapproved research candidate",
+      "dwarfBasePeriod": 0.7,
+      "baseAPS": 1.4285714285714286,
+      "maxDEXPeriod": 0.35,
+      "maxDEXAPS": 2.857142857142857,
+      "basicDPSRatioIfDamageUnchanged": 0.6,
+      "damageCoefficientForSameIdealizedDPS": 1.2499999999999998
+    }
+  ],
+  "oldDwarfSkillToBasicCompression": 2.6904761904761902,
+  "baselineBasicDPSAtEqualPower100": {
+    "knight": 190.0,
+    "dwarf": 178.57142857142858
+  },
+  "wc3ArchivedGuideExamples": {
+    "mountainKingLevel1Seconds": 1.8196721311475412,
+    "paladinLevel1Seconds": 1.7460317460317463,
+    "mountainKingPlus20AgilitySeconds": 1.3703703703703705,
+    "relativeAttackRateGainFrom11To31Agility": 0.32786885245901654,
+    "status": "Calculated from archived official guide, not a current Reforged client measurement"
+  }
+}
