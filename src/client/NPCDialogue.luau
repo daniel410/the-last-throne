@@ -33,6 +33,7 @@ function D.start()
  close.Activated:Connect(dismiss)
  UIS.InputBegan:Connect(function(input) if panel.Visible and (input.KeyCode==Enum.KeyCode.ButtonB or input.KeyCode==Enum.KeyCode.Escape) then dismiss() end end)
  RS:WaitForChild('Remotes'):WaitForChild('NPCDialogue').OnClientEvent:Connect(function(data)
+  if data.sideQuests then dismiss();require(script.Parent.LobbyMenuBridge):Fire('SideQuests');return end
   if data.supporter then
    if pending and data.requestId==pending.requestId and data.error~='Busy' and data.error~='SaveUnknown' and data.error~='AccountBusy' then pending=nil end
    dismiss();details:open(data.supporter);details:setPending(pending~=nil);return

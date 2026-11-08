@@ -1,0 +1,5 @@
+{
+  "checks": 85,
+  "result": "PASS",
+  "scope": "isolated engine/source/GUI and mocked NPC transport; no actual input, live accounts or device acceptance"
+}

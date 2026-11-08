@@ -8,6 +8,19 @@ function S.start(options)
  local remote=RS.Remotes:FindFirstChild('NPCDialogue') or Instance.new('RemoteEvent');remote.Name='NPCDialogue';remote.Parent=RS.Remotes
  local purchase=Instance.new('RemoteEvent');purchase.Name='SupporterPassRequest';purchase.Parent=RS.Remotes
  local last={}
+ local side=Instance.new('RemoteEvent');side.Name='LobbySideQuestRequest';side.Parent=RS.Remotes
+ local result=Instance.new('RemoteEvent');result.Name='LobbySideQuestResult';result.Parent=RS.Remotes
+ local sideLast={}
+ side.OnServerEvent:Connect(function(player,c,...)
+  if select('#',...)~=0 or not require(RS.Shared.LobbySideQuests).command(c)then return end
+  if os.clock()-(sideLast[player]or -math.huge)<.4 then result:FireClient(player,{requestId=c.requestId,error='Busy'});return end
+  sideLast[player]=os.clock()
+  local entry=options.residents and options.residents.tessa
+  local why
+  if c.action=='Report'and not Access.allowed(player,entry and entry.prompt)then why='Unavailable'
+  else why=options.inventory.sideQuest(player,c)end
+  result:FireClient(player,{requestId=c.requestId,error=why})
+ end)
  local function show(player,requestId,reason)
   local snap=options.inventory.snapshot(player);local h=snap.ready and snap.heroId and snap.heroes[snap.heroId]
   local pass=h and options.inventory.supportState(player,snap.heroId)
@@ -34,9 +47,10 @@ function S.start(options)
    if id=='mira' then
     if options.inventory.ready(player)then RS.Remotes.ArmoryState:FireClient(player,{inventory=options.inventory.snapshot(player),open=true,store='items'})end
    elseif id=='selene' then show(player)
+   elseif id=='tessa' then remote:FireClient(player,{sideQuests=true})
    else local c=Catalog.byId[id];remote:FireClient(player,{id=id,name=c.name,role=c.role,key=c.textKey,text=c.greeting})end
   end)
  end end
- game.Players.PlayerRemoving:Connect(function(player)last[player]=nil end)
+ game.Players.PlayerRemoving:Connect(function(player)last[player]=nil;sideLast[player]=nil end)
 end
 return S

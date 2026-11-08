@@ -532,7 +532,7 @@ function Service.prepareTransfer(player)
  s.closing=true
  local deadline=os.clock()+15
  while s.busy and os.clock()<deadline do task.wait(.1) end
- if s.busy or s.pending or s.growthPending or s.storyPending or s.shopPending or s.expeditionPending or options.storyPending and options.storyPending(player) then s.closing=false;return false end
+ if s.busy or s.pending or s.growthPending or s.storyPending or s.shopPending or s.expeditionPending or s.sideQuestPending or options.storyPending and options.storyPending(player) then s.closing=false;return false end
  while s.rewards and #s.rewards>0 and os.clock()<deadline do
   local reason=Service.progress(player,s.rewards[1],true)
   if not reason then table.remove(s.rewards,1) else s.closing=false;return false end
@@ -627,6 +627,27 @@ function Service.beginExpedition(player,heroId,missionId,difficultyId,runId,rule
  else s.expeditionPending=nil end
  s.busy=false;publish(player,nil,e)
  if s.expeditionPending then task.delay(1,function()if accounts[player]==s and not s.closing then Service.beginExpedition(player,cmd.heroId,cmd.missionId,cmd.difficultyId,cmd.runId,cmd.rulesVersion)end end)end
+ return e
+end
+-- Lobby guide uses the same account fence and existing story/run reward receipts.
+function Service.sideQuest(player,command)
+ local s=accounts[player];local ctx=options.heroSession.getInventoryContext(player)
+ if not s or s.busy or s.closing then return 'Busy'end
+ local fingerprint=command.action..':'..command.heroId..':'..command.questId..':'..tostring(command.runId)..':'..tostring(command.noticeState)..':'..tostring(command.noticeKey)
+ if s.sideQuestPending and s.sideQuestPending~=fingerprint then return 'Busy'end
+ if not s.sideQuestPending and (not ctx or ctx.heroId~=command.heroId or player:GetAttribute('K0SessionPhase')~='Lobby' or workspace:GetAttribute('TLTServerRole')~='Lobby' or player:GetAttribute('TLTTravelLock'))then return 'Unavailable'end
+ if not s.valid and not s.sideQuestPending then return s.errorCode or 'Unavailable'end
+ s.busy=true;s.sideQuestPending=fingerprint
+ local p,e=store:transact(player.UserId,function(current)
+  return require(ReplicatedStorage.Shared.LobbySideQuests).apply(current,command,Rules,Catalog)
+ end)
+ if p then s.profile,s.valid,s.errorCode,s.sideQuestPending=p,true,nil,nil
+ elseif e=='SaveUnknown'or e=='AccountBusy'then s.valid,s.errorCode=false,e
+ else s.sideQuestPending=nil end
+ s.busy=false
+ if p and command.action=='Report'then Service.refreshCharacter(player);options.heroSession.refresh(player)end
+ publish(player,nil,e)
+ if s.sideQuestPending then local frozen=Rules.copy(command);task.delay(1,function()if accounts[player]==s and not s.closing and s.sideQuestPending==fingerprint then Service.sideQuest(player,frozen)end end)end
  return e
 end
 return Service

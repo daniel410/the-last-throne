@@ -9,6 +9,7 @@ local Daily=game and require(game:GetService('ReplicatedStorage').Shared.DailyLo
 local Pass=game and require(game:GetService('ReplicatedStorage').Shared.SupportPassRules) or dofile('src/shared/SupportPassRules.luau')
 local CompletionRewards=game and require(game:GetService('ReplicatedStorage').Shared.QuestCompletionRewards)or dofile('src/shared/QuestCompletionRewards.luau')
 local Grants=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentTransactions)or dofile('src/shared/EquipmentTransactions.luau')
+local SideQuests=game and require(game:GetService('ReplicatedStorage').Shared.LobbySideQuests)or dofile('src/shared/LobbySideQuests.luau')
 local Rules = {}
 function Rules.copy(value)
 	if type(value) ~= "table" then return value end
@@ -134,7 +135,7 @@ function Rules.validate(profile, catalog)
 		if type(hero) ~= "table" or id ~= hero.heroId or type(id) ~= "string" or not catalog.classes[hero.baseClassId]
 			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, 80) or type(hero.quickSlots) ~= "table" then return false end
 		if hero.starterSuppliesClaimed ~= nil and type(hero.starterSuppliesClaimed) ~= "boolean" then return false end
-		if not Adventure.valid(hero) or not CompletionRewards.valid(hero) then return false end
+		if not Adventure.valid(hero) or not CompletionRewards.valid(hero) or not SideQuests.validNotices(hero) then return false end
 		if hero.deepwood~=nil and not Story.validate(hero.deepwood) then return false end
 		if hero.progression ~= nil and (not Growth.validate(hero.progression,hero.baseClassId) or hero.level ~= hero.progression.level) then return false end
 		for index = 1, 2 do

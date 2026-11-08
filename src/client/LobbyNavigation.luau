@@ -38,12 +38,16 @@ function M.create(parent,actions)
  local cap=Instance.new('UISizeConstraint');cap.MaxSize=Vector2.new(1100,850);cap.Parent=panel
  require(script.Parent.LobbyPanelLayout).bind(panel)
  local title=T.label(panel,'Title','',UDim2.fromOffset(20,12),UDim2.new(1,-85,0,34),20,T.color.gold)
+ title.TextWrapped=false;title.TextTruncate=Enum.TextTruncate.AtEnd
  local close=T.button(panel,'Close','X',UDim2.new(1,-60,0,10),UDim2.fromOffset(44,44));close.Activated:Connect(function() panel.Visible=false end)
  local body=T.label(panel,'Contents','',UDim2.fromOffset(24,60),UDim2.new(1,-48,1,-80),15,T.color.text);body.TextYAlignment=Enum.TextYAlignment.Top
  local atlas=require(script.Parent.LobbyAtlas).create(panel)
  local journal=require(script.Parent.LobbyQuestJournal).create(panel)
  local snapshot
+ local sideButton=T.button(panel,'TessaGuide','TESSA',UDim2.new(1,-220,0,10),UDim2.fromOffset(152,44));sideButton.Visible=false
+ sideButton.Activated:Connect(function()Bridge:Fire('FindTessa')end)
  local function guide(kind)
+  sideButton.Visible=kind=='Maps';title.Size=UDim2.new(1,kind=='Maps'and -240 or -85,0,34)
   body.Visible=false;atlas.root.Visible=kind=='Maps';journal.root.Visible=kind=='Quest'
   title.Text=kind=='Quest' and require(RS.Shared.LobbyQuestText).Title or 'ADVENTURE MAPS'
   if kind=='Maps'then atlas.show(snapshot)else journal.show(snapshot)end
@@ -67,7 +71,7 @@ function M.create(parent,actions)
   end)
  end
  resize()
- return {rail=rail,panel=panel,showGuide=guide,update=function(s) snapshot=s;atlas.update(s);journal.update(s);require(script.Parent.DawnspireHomecoming).update(s) end,
+ return {rail=rail,panel=panel,showGuide=guide,update=function(s) snapshot=s;local side=require(RS.Shared.LobbySideQuests).project(s);sideButton.Caption.Text=(side.symbol~=''and side.symbol..' 'or '')..'TESSA'..(side.count>0 and ' ('..side.count..')'or '');atlas.update(s);journal.update(s);require(script.Parent.DawnspireHomecoming).update(s) end,
   dailyAvailable=function(available)local b=rail:FindFirstChild('LoginRewards');if b then b:SetAttribute('RewardAvailable',available);resize() end end}
 end
 return M

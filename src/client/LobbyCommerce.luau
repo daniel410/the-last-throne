@@ -37,18 +37,18 @@ function M.start()
  local expedition=require(script.Parent.ExpeditionView).create(gui,function(command) networkRequest:FireServer(command) end)
  local dailyRequest=remotes:WaitForChild('DailyLoginRequest')
  local daily=require(script.Parent.DailyLoginGui).create(gui,function(command) dailyRequest:FireServer(command) end)
- local navigation
+ local navigation,sideGuide
  remotes:WaitForChild('DailyLoginState').OnClientEvent:Connect(function(data)
   daily.receive(data)
   if navigation and type(data)=='table' and type(data.state)=='table' then navigation.dailyAvailable(data.state.status=='Ready' and data.state.canClaim==true)end
  end)
  local function lock()
-  local open=(navigation and navigation.panel.Visible) or armory.panel.Visible or items.panel.Visible or diamonds.panel.Visible or expedition.panel.Visible or daily.panel.Visible;p:SetAttribute('TLTLobbyPanelOpen',open)
+  local open=(navigation and navigation.panel.Visible) or armory.panel.Visible or items.panel.Visible or diamonds.panel.Visible or expedition.panel.Visible or daily.panel.Visible or (sideGuide and sideGuide.panel.Visible);p:SetAttribute('TLTLobbyPanelOpen',open)
  end
  gui.Destroying:Connect(function()p:SetAttribute('TLTLobbyPanelOpen',false)end)
  armory.panel:GetPropertyChangedSignal('Visible'):Connect(lock);items.panel:GetPropertyChangedSignal('Visible'):Connect(lock);diamonds.panel:GetPropertyChangedSignal('Visible'):Connect(lock);expedition.panel:GetPropertyChangedSignal('Visible'):Connect(lock);daily.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
  local function closePanels()
-  armory.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;expedition.panel.Visible=false;daily.panel.Visible=false
+  armory.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;expedition.panel.Visible=false;daily.panel.Visible=false;if sideGuide then sideGuide.close()end
  end
  local function openStore(kind)
   if kind=='LoginRewards' then local wasOpen=daily.panel.Visible;closePanels();if not wasOpen then daily.open()end;return end
@@ -58,8 +58,19 @@ function M.start()
  end
  navigation=require(script.Parent.LobbyNavigation).create(gui,{close=closePanels,open=openStore})
  navigation.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
+ sideGuide=require(script.Parent.LobbySideQuestGuide).create(gui,{player=p,
+  close=function()closePanels();navigation.panel.Visible=false end,
+  send=function(command)remotes.LobbySideQuestRequest:FireServer(command)end,
+  select=function(id,mode)
+   closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true
+   expedition.request({action='Configure',missionId=id,difficultyId=mode or 'Easy'})
+  end})
+ sideGuide.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
+ remotes:WaitForChild('LobbySideQuestResult').OnClientEvent:Connect(sideGuide.receive)
  require(script.Parent.LobbyMenuBridge).Event:Connect(function(action)
   if p:GetAttribute('K0SessionPhase')~='Lobby' or workspace:GetAttribute('TLTServerRole')=='Battle' then return end
+  if action=='SideQuests'then sideGuide.open();return end
+  if action=='FindTessa'then sideGuide.find();return end
   if action=='DiamondShop' or action=='LoginRewards' then navigation.panel.Visible=false;openStore(action);return end
   if action~='Play' then return end
   closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true
@@ -79,6 +90,7 @@ function M.start()
   if latest and s.revision<latest.revision then s=latest end
   latest=s
   navigation.update(s)
+  sideGuide.update(s)
   Wallet.update(s)
   if armory.panel.Visible then armory.render(s,message,pending~=nil) end
   if items.panel.Visible then items.render(s,message,pending~=nil) end
@@ -101,7 +113,7 @@ function M.start()
   local lobby=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle'
   refreshNavigation()
   if lobby then task.delay(.3,function()if p.Parent and p:GetAttribute('K0SessionPhase')=='Lobby'then dailyRequest:FireServer({action='GetState'})end end)end
-  if not lobby then navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;daily.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
+  if not lobby then sideGuide.close();sideGuide.toast.Visible=false;navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;daily.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(phase)
  phase()

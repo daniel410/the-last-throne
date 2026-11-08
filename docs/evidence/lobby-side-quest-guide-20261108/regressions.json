@@ -1,0 +1,32 @@
+[
+  {
+    "test": "lobby-side-quests",
+    "exitCode": 0,
+    "stdout": "LOBBY_SIDE_QUESTS 539 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "inventory",
+    "exitCode": 0,
+    "stdout": "Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "side-quest-review",
+    "exitCode": 0,
+    "stdout": "SIDE_QUEST_REVIEW 1610 checks PASS; 12 quests, 44 goals, 11 combats, 2 optional goals\nDW-Q1 | Supplies in the Marsh | 2 | 3 | Easy/replay/Hard/Insane/Hell\nDW-Q2 | The Stolen Food | 4 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q3 | Quarry Below the Falls | 5 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q4 | Remnants of the Red Battlefield | 7 | 4 | Easy/replay/Hard/Insane/Hell\nFV-Q1 | A Name in the Snow | 15 | 3 | Easy/replay\nFV-Q2 | Frostfang Supply Cave | 17 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q3 | Blue Lake Return Route | 18 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q4 | Ancient Glacier Watch | 21 | 3 | Easy/replay/Hard/Insane/Hell\nEC-Q1 | A Worker's Lost Mark | 22 | 3 | Easy/replay\nEC-Q2 | Ember Raider Nest | 24 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q3 | Volcano Shaman Altar | 25 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q4 | Caldera Titan Basin | 28 | 4 | Easy/replay/Hard/Insane/Hell\n",
+    "stderr": ""
+  },
+  {
+    "test": "quest-completion-rewards",
+    "exitCode": 0,
+    "stdout": "Quest completion rewards: 1416 checks passed; 47 quests pay, 19 new awards; legacy catch-up and storage recovery PASS\n",
+    "stderr": ""
+  },
+  {
+    "test": "campaign-reorder",
+    "exitCode": 0,
+    "stdout": "CAMPAIGN_REORDER 1871 checks passed; mandatory solo final level 44\n",
+    "stderr": ""
+  }
+]

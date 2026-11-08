@@ -11,9 +11,9 @@ function R.create(lobby,facilities,storagePrompt)
  for id,offset in pairs(positions) do
   local npc=Visual.create(folder,id,lobby.origin+offset,{yaw=math.pi})
   result[id]={model=npc}
-  if id=='mira' or id=='selene' or id=='nia' then
+  if id=='mira' or id=='selene' or id=='nia' or id=='tessa' then
    local p=Instance.new('ProximityPrompt');p.Name='NPCInteract';p.Style=Enum.ProximityPromptStyle.Custom
-   p.ObjectText=Catalog.byId[id].name..' · '..Catalog.byId[id].role;p.ActionText=id=='mira' and 'Buy or sell supplies' or id=='selene' and require(game.ReplicatedStorage.Shared.SupporterText).view or 'Talk'
+   p.ObjectText=Catalog.byId[id].name..' · '..Catalog.byId[id].role;p.ActionText=id=='mira' and 'Buy or sell supplies' or id=='selene' and require(game.ReplicatedStorage.Shared.SupporterText).view or id=='tessa' and 'View side quests' or 'Talk'
    p.KeyboardKeyCode=Enum.KeyCode.F;p.GamepadKeyCode=Enum.KeyCode.ButtonX;p.HoldDuration=0;p.MaxActivationDistance=10;p.RequiresLineOfSight=false;p.Parent=npc.PrimaryPart
    result[id].prompt=p
   end
