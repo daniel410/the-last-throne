@@ -18,14 +18,14 @@ function Map.create(parent)
  local atlas,regionId
  local function clearScene() for _,child in ipairs(view:GetChildren()) do if not child:IsA('UICorner') then child:Destroy() end end end
  for i,p in ipairs({UDim2.fromScale(.5,0),UDim2.fromScale(1,.5),UDim2.fromScale(.5,1),UDim2.fromScale(0,.5)}) do Chrome.diamond(frame,'MapGem'..i,p,12,Theme.color.gold) end
- local north=Theme.label(frame,'North','N',UDim2.new(.5,-10,0,9),UDim2.fromOffset(20,18),10,Theme.color.text);north.TextXAlignment=Enum.TextXAlignment.Center
+ local north=Theme.label(frame,'North','N',UDim2.new(.5,-10,0,9),UDim2.fromOffset(20,18),11,Theme.color.text);north.TextXAlignment=Enum.TextXAlignment.Center
  local playerPulse=Instance.new('Frame');playerPulse.Name='PlayerPulse';playerPulse.AnchorPoint=Vector2.new(.5,.5);playerPulse.BackgroundColor3=Color3.fromRGB(71,232,255);playerPulse.BorderSizePixel=0;playerPulse.Visible=false;playerPulse.ZIndex=4;playerPulse.Parent=frame
  local pulseCorner=Instance.new('UICorner');pulseCorner.CornerRadius=UDim.new(1,0);pulseCorner.Parent=playerPulse
  local playerMarker=Theme.label(frame,'PlayerMarker','▲',UDim2.fromScale(.5,.5),UDim2.fromOffset(28,28),24,Color3.fromRGB(92,239,255));playerMarker.AnchorPoint=Vector2.new(.5,.5);playerMarker.TextXAlignment=Enum.TextXAlignment.Center;playerMarker.TextStrokeTransparency=0;playerMarker.TextStrokeColor3=Color3.fromRGB(0,25,40);playerMarker.BackgroundColor3=Color3.fromRGB(0,22,40);playerMarker.BackgroundTransparency=.08;playerMarker.Visible=false;playerMarker.ZIndex=6
  local markerCorner=Instance.new('UICorner');markerCorner.CornerRadius=UDim.new(1,0);markerCorner.Parent=playerMarker
  local markerOutline=Instance.new('UIStroke');markerOutline.Color=Color3.new(1,1,1);markerOutline.Thickness=2;markerOutline.Parent=playerMarker
- local you=Theme.label(frame,'PlayerLabel',Text.MinimapYou,UDim2.fromScale(.5,.5),UDim2.fromOffset(36,14),10,Color3.new(1,1,1));you.AnchorPoint=Vector2.new(.5,.5);you.TextXAlignment=Enum.TextXAlignment.Center;you.TextStrokeColor3=Color3.new(0,0,0);you.TextStrokeTransparency=0;you.ZIndex=7;you.Visible=false
- local caption=Theme.label(frame,'Region','DEEPWOOD',UDim2.new(0,12,1,-30),UDim2.new(1,-24,0,18),9,Theme.color.text);caption.TextXAlignment=Enum.TextXAlignment.Center;caption.TextStrokeTransparency=.2;caption.TextStrokeColor3=Color3.new(0,0,0)
+ local you=Theme.label(frame,'PlayerLabel',Text.MinimapYou,UDim2.fromScale(.5,.5),UDim2.fromOffset(36,16),11,Color3.new(1,1,1));you.AnchorPoint=Vector2.new(.5,.5);you.TextXAlignment=Enum.TextXAlignment.Center;you.TextStrokeColor3=Color3.new(0,0,0);you.TextStrokeTransparency=0;you.ZIndex=7;you.Visible=false
+ local caption=Theme.label(frame,'Region','DEEPWOOD',UDim2.new(0,12,1,-30),UDim2.new(1,-24,0,18),10,Theme.color.text);caption.TextXAlignment=Enum.TextXAlignment.Center;caption.TextStrokeTransparency=.2;caption.TextStrokeColor3=Color3.new(0,0,0)
  local fullMap=Theme.button(frame,'WorldMap','M',UDim2.fromOffset(-8,-4),UDim2.fromOffset(40,40));fullMap.ZIndex=10
  local wallet=require(script.Parent.WalletDisplay).create(frame);wallet.AnchorPoint=Vector2.new(1,0);wallet.Position=UDim2.new(1,0,1,12)
  local menuButton=Theme.button(frame,'MapMenu','≡',UDim2.new(1,-34,0,0),UDim2.fromOffset(40,40));menuButton.Caption.Visible=false
@@ -34,7 +34,7 @@ function Map.create(parent)
  local menuScale=Instance.new('UIScale');menuScale.Parent=menu
  local hero=Theme.button(menu,'Hero',Navigation.statsButton,UDim2.fromOffset(10,8),UDim2.fromOffset(148,36))
  local bag=Theme.button(menu,'Bag',Navigation.bagButton,UDim2.fromOffset(10,52),UDim2.fromOffset(148,36))
- for _,b in ipairs({hero,bag}) do b.Caption.TextScaled=true;local cap=Instance.new('UITextSizeConstraint');cap.MaxTextSize=13;cap.MinTextSize=9;cap.Parent=b.Caption end
+ for _,b in ipairs({hero,bag}) do b.Caption.TextScaled=true;local cap=Instance.new('UITextSizeConstraint');cap.MaxTextSize=14;cap.MinTextSize=10;cap.Parent=b.Caption end
  local journal=Theme.button(menu,'Journal',Navigation.questButton,UDim2.fromOffset(10,96),UDim2.fromOffset(148,36))
  local settings=Theme.button(menu,'Settings',Navigation.settings,UDim2.fromOffset(10,140),UDim2.fromOffset(148,44))
  settings.Activated:Connect(function() menu.Visible=false end)

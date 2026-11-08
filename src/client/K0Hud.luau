@@ -48,7 +48,7 @@ local function text(parent, name, value, position, size, fontSize, color)
 	label.Font = Enum.Font.GothamBold
 	label.Text = value
 	label.TextColor3 = color or COLORS.cream
-	label.TextSize = fontSize
+	label.TextSize = fontSize <= 11 and fontSize + 1 or fontSize
 	label.TextXAlignment = Enum.TextXAlignment.Left
 	label.Parent = parent
 	return label
@@ -60,7 +60,7 @@ end
 
 local function bar(parent, title, top, color)
 	local titleLabel = text(parent, title .. "Label", title, UDim2.fromOffset(14, top), UDim2.fromOffset(105, 16), 11, COLORS.muted)
-	titleLabel.TextSize = 10
+	titleLabel.TextSize = 11
 	local value = text(parent, title .. "Value", "--", UDim2.new(1, -119, 0, top), UDim2.fromOffset(105, 16), 11)
 	value.TextXAlignment = Enum.TextXAlignment.Right
 	local track = Instance.new("Frame")
@@ -138,7 +138,7 @@ local function quickKey(label)
 	label.Font=Enum.Font.GothamBlack;label.TextColor3=Color3.new(1,1,1)
 	label.TextSize=14;label.TextScaled=true;label.TextXAlignment=Enum.TextXAlignment.Center
 	label.TextStrokeColor3=Color3.new(0,0,0);label.TextStrokeTransparency=.1;label.ZIndex=5
-	local limit=Instance.new('UITextSizeConstraint');limit.MinTextSize=9;limit.MaxTextSize=14;limit.Parent=label
+	local limit=Instance.new('UITextSizeConstraint');limit.MinTextSize=10;limit.MaxTextSize=14;limit.Parent=label
 	round(label,4)
 end
 
@@ -175,7 +175,7 @@ function Hud.create()
 	local state = text(status, "State", Text.State.Idle, UDim2.new(1, -109, 0, 5), UDim2.fromOffset(95, 12), 10, COLORS.muted)
 	state.TextXAlignment = Enum.TextXAlignment.Right
 	local xpLabel=text(status,"XP","",UDim2.fromOffset(14,19),UDim2.new(1,-28,0,12),10,COLORS.gold)
-	local growthPoints=Instance.new("TextButton");growthPoints.Name="GrowthPoints";growthPoints.BackgroundTransparency=1;growthPoints.Size=UDim2.new(1,0,0,26);growthPoints.Position=UDim2.new(0,0,1,3);growthPoints.TextColor3=COLORS.gold;growthPoints.Font=Enum.Font.GothamBold;growthPoints.TextSize=10;growthPoints.TextStrokeTransparency=.2;growthPoints.AutoLocalize=false;growthPoints.Visible=false;growthPoints.Parent=status
+	local growthPoints=Instance.new("TextButton");growthPoints.Name="GrowthPoints";growthPoints.BackgroundTransparency=1;growthPoints.Size=UDim2.new(1,0,0,26);growthPoints.Position=UDim2.new(0,0,1,3);growthPoints.TextColor3=COLORS.gold;growthPoints.Font=Enum.Font.GothamBold;growthPoints.TextSize=11;growthPoints.TextStrokeTransparency=.2;growthPoints.AutoLocalize=false;growthPoints.Visible=false;growthPoints.Parent=status
  local setHealth = bar(status, Text.Health, 32, COLORS.red)
 	local setManaValue = bar(status, Text.Mana, 77, Color3.fromRGB(75, 151, 235))
 	for _, suffix in ipairs({ "Label", "Value", "Track" }) do
@@ -232,7 +232,7 @@ function Hud.create()
 		local button = action(skillBar, "Item" .. index, item[1], item[2], UDim2.fromOffset((index - 1) * 72, 0), 64)
 		button.UICorner.CornerRadius = UDim.new(0, 8)
 		button.Caption.Position, button.Caption.Size = UDim2.fromOffset(2, 47), UDim2.new(1, -4, 0, 14)
-		button.Caption.TextSize = 9
+		button.Caption.TextSize = 10
 		quickKey(button.Hint)
 		local count = text(button, "ItemCount", "x0", UDim2.new(1, -32, 0, 2), UDim2.fromOffset(28, 14), 11)
 		count.TextXAlignment, count.TextStrokeTransparency = Enum.TextXAlignment.Right, .3
@@ -242,7 +242,7 @@ function Hud.create()
 	for index = 1, 5 do
 		local button, key = action(skillBar, "Skill" .. index, "", tostring(index), UDim2.fromOffset((index + 1) * 72 + 24, 0), 64)
 		button.UICorner.CornerRadius = UDim.new(0, 8)
-		button.Caption.TextSize = 8
+		button.Caption.TextSize = 9
 		button.Caption.Position = UDim2.fromOffset(3, 36)
 		button.Caption.Size = UDim2.new(1, -6, 0, 25)
 		button.Caption.TextWrapped = true
@@ -312,7 +312,7 @@ function Hud.create()
 		backScale.Scale = 1
 		mapScale.Scale=viewport.X<500 and math.max(.62,scale*.85) or scale
 		back.Size = UDim2.fromOffset(148,45)
-		backCaption.TextSize = 11
+		backCaption.TextSize = 12
 		-- Reset after input-mode changes; a hidden mobile JumpButton must not lift Attack.
 		attack.Position=UDim2.fromOffset(90,0)
 		if UserInputService.TouchEnabled then

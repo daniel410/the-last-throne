@@ -35,10 +35,10 @@ function Art.layout(button)
  label.Font=size.Y<64 and Enum.Font.GothamMedium or Enum.Font.GothamBlack
  label.Position=plate.Position
  label.Size=plate.Size
- local textSize=size.Y<64 and 14 or size.X<100 and 16 or math.clamp(math.floor(size.X*.17),18,34)
+ local textSize=size.Y<64 and 15 or size.X<100 and 17 or math.clamp(math.floor(size.X*.17),18,34)
  local bounds=TextService:GetTextSize(label.Text,textSize,label.Font,Vector2.new(10000,1000))
- local availableWidth=width*(button.Name=='Blacksmith' and .82 or .92)
- label.TextSize=math.max(1,math.floor(math.min(textSize,textSize*availableWidth/math.max(1,bounds.X),plateHeight*.85)))
+ local availableWidth=width*(button.Name=='Blacksmith' and .90 or .98)
+ label.TextSize=math.max(1,math.floor(math.min(textSize,textSize*availableWidth/math.max(1,bounds.X),plateHeight*.95)))
  label.TextScaled=false;label.TextWrapped=false
 end
 function Art.apply(button,id)

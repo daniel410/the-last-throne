@@ -45,7 +45,7 @@ function M.create(parent,player,chooseHero,playAction,world)
   local name=caption(card,'HeroName',NAMES[classId]);name.Position=UDim2.new(0,2,1,-18);name.Size=UDim2.new(1,-4,0,18);name.TextSize=14;name.Font=Enum.Font.GothamBold
   name.BackgroundColor3=Color3.fromRGB(12,27,54);name.BackgroundTransparency=.15;name.ZIndex=image.ZIndex+1
   local marker=caption(card,'HeroSelectedMarker','');marker.Position=UDim2.new(1,-24,0,1);marker.Size=UDim2.fromOffset(20,20);marker.ZIndex=name.ZIndex+1;Check.apply(marker);marker.Visible=false
-  local selectedTag=caption(card,'HeroSelectedTag','SELECTED');selectedTag.Position=UDim2.fromOffset(4,3);selectedTag.Size=UDim2.new(1,-8,0,17);selectedTag.TextSize=10;selectedTag.TextColor3=Color3.fromRGB(12,27,54);selectedTag.TextStrokeTransparency=1;selectedTag.BackgroundColor3=Color3.fromRGB(255,215,90);selectedTag.BackgroundTransparency=0;selectedTag.ZIndex=marker.ZIndex+1;selectedTag.Visible=false
+  local selectedTag=caption(card,'HeroSelectedTag','SELECTED');selectedTag.Position=UDim2.fromOffset(4,3);selectedTag.Size=UDim2.new(1,-8,0,17);selectedTag.TextSize=11;selectedTag.TextColor3=Color3.fromRGB(12,27,54);selectedTag.TextStrokeTransparency=1;selectedTag.BackgroundColor3=Color3.fromRGB(255,215,90);selectedTag.BackgroundTransparency=0;selectedTag.ZIndex=marker.ZIndex+1;selectedTag.Visible=false
   card.Activated:Connect(function() if card.Visible and allowed() and state.canManage then chooseHero(classId) end end)
   cards[classId]=card
  end

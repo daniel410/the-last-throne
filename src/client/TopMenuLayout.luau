@@ -8,7 +8,7 @@ function M.bind(gui,button,index)
  end
  if button.Name=='OpenHero' or button.Name=='OpenBag' or button.Name=='OpenSettings' then
   button.Caption.TextScaled=true
-  local cap=Instance.new('UITextSizeConstraint');cap.MaxTextSize=13;cap.MinTextSize=9;cap.Parent=button.Caption
+  local cap=Instance.new('UITextSizeConstraint');cap.MaxTextSize=14;cap.MinTextSize=10;cap.Parent=button.Caption
  end
  local connection
  local function cameraChanged()
