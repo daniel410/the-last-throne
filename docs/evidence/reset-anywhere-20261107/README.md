@@ -25,3 +25,5 @@
 실제 플레이어 원격/전투 중 화면 조작·피격 타이밍·DataStore·실계정/기기/다인은 미검증이다. native 검사는 private fixture이며 실제 플레이로 보고하지 않는다. QA는 전투 중 두 권의 사용과 현재 HP/MP·쿨다운 보존, 재접속을 확인한다. 기존 새 포인트 배분/장착 변경의 별도 안전 규칙은 이번 리셋권 사용 변경과 구분한다. 부모 티켓 In Progress 유지. 미게시·릴리스 태그 없음.
 
 구현 소스 커밋 후 `python3 tools/build-game.py --source HEAD --record docs/evidence/reset-anywhere-20261107/build.json`으로 고정하고 동일 native를 재실행한다.
+
+고정 빌드0.82.1 성공: 소스 `9f073fdd4245adf0e69f0307e9e556dee66606ac`·SHA256 `2556d8bd3b42c4f7a738124b158a317a2836483530d3f92182bb0534809364be` 재대조. [build.json](build.json). 동일 고정 Place native **38 PASS / 종료0**: [native-final.log](native-final.log). 신규 LFS 자산 없음. 구현/증거를 origin/main에 푸시하고 원격 커밋 일치를 확인한다.
