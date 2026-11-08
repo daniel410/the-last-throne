@@ -1,0 +1,429 @@
+{
+  "sourceCommit": "5fe105cefaff89b49df3d76eeb36e62bb03d5e14",
+  "gameVersion": "0.83.7",
+  "chapters": [
+    {
+      "id": "DW-01",
+      "epic": 1,
+      "side": false,
+      "goals": 5,
+      "battleGoals": 2,
+      "xp": 140,
+      "gold": 150
+    },
+    {
+      "id": "DW-02",
+      "epic": 1,
+      "side": false,
+      "goals": 5,
+      "battleGoals": 2,
+      "xp": 163,
+      "gold": 240
+    },
+    {
+      "id": "DW-03",
+      "epic": 1,
+      "side": false,
+      "goals": 3,
+      "battleGoals": 0,
+      "xp": 62,
+      "gold": 100
+    },
+    {
+      "id": "DW-04",
+      "epic": 1,
+      "side": false,
+      "goals": 6,
+      "battleGoals": 3,
+      "xp": 200,
+      "gold": 320
+    },
+    {
+      "id": "DW-05",
+      "epic": 1,
+      "side": false,
+      "goals": 7,
+      "battleGoals": 5,
+      "xp": 247,
+      "gold": 450
+    },
+    {
+      "id": "DW-06",
+      "epic": 1,
+      "side": false,
+      "goals": 6,
+      "battleGoals": 3,
+      "xp": 227,
+      "gold": 380
+    },
+    {
+      "id": "DW-07",
+      "epic": 1,
+      "side": false,
+      "goals": 9,
+      "battleGoals": 4,
+      "xp": 134,
+      "gold": 650
+    },
+    {
+      "id": "DW-Q1",
+      "epic": 1,
+      "side": true,
+      "goals": 3,
+      "battleGoals": 1,
+      "xp": 60,
+      "gold": 100
+    },
+    {
+      "id": "DW-Q2",
+      "epic": 1,
+      "side": true,
+      "goals": 5,
+      "battleGoals": 1,
+      "xp": 100,
+      "gold": 150
+    },
+    {
+      "id": "DW-Q3",
+      "epic": 1,
+      "side": true,
+      "goals": 5,
+      "battleGoals": 2,
+      "xp": 120,
+      "gold": 180
+    },
+    {
+      "id": "DW-Q4",
+      "epic": 1,
+      "side": true,
+      "goals": 4,
+      "battleGoals": 1,
+      "xp": 160,
+      "gold": 220
+    },
+    {
+      "id": "GW-01",
+      "epic": 2,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 1,
+      "xp": 180,
+      "gold": 250
+    },
+    {
+      "id": "GW-02",
+      "epic": 2,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 1,
+      "xp": 80,
+      "gold": 120
+    },
+    {
+      "id": "GW-03",
+      "epic": 2,
+      "side": false,
+      "goals": 3,
+      "battleGoals": 0,
+      "xp": 200,
+      "gold": 300
+    },
+    {
+      "id": "GW-04",
+      "epic": 2,
+      "side": false,
+      "goals": 3,
+      "battleGoals": 2,
+      "xp": 260,
+      "gold": 380
+    },
+    {
+      "id": "GW-05",
+      "epic": 2,
+      "side": false,
+      "goals": 3,
+      "battleGoals": 2,
+      "xp": 280,
+      "gold": 420
+    },
+    {
+      "id": "GW-06",
+      "epic": 2,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 320,
+      "gold": 480
+    },
+    {
+      "id": "GW-07",
+      "epic": 2,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 400,
+      "gold": 650
+    },
+    {
+      "id": "FV-01",
+      "epic": 3,
+      "side": false,
+      "goals": 5,
+      "battleGoals": 2,
+      "xp": 187,
+      "gold": 280
+    },
+    {
+      "id": "FV-02",
+      "epic": 3,
+      "side": false,
+      "goals": 3,
+      "battleGoals": 0,
+      "xp": 51,
+      "gold": 120
+    },
+    {
+      "id": "FV-03",
+      "epic": 3,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 185,
+      "gold": 360
+    },
+    {
+      "id": "FV-04",
+      "epic": 3,
+      "side": false,
+      "goals": 5,
+      "battleGoals": 2,
+      "xp": 382,
+      "gold": 480
+    },
+    {
+      "id": "FV-05",
+      "epic": 3,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 403,
+      "gold": 540
+    },
+    {
+      "id": "FV-06",
+      "epic": 3,
+      "side": false,
+      "goals": 5,
+      "battleGoals": 2,
+      "xp": 500,
+      "gold": 680
+    },
+    {
+      "id": "FV-07",
+      "epic": 3,
+      "side": false,
+      "goals": 6,
+      "battleGoals": 2,
+      "xp": 450,
+      "gold": 900
+    },
+    {
+      "id": "FV-Q1",
+      "epic": 3,
+      "side": true,
+      "goals": 3,
+      "battleGoals": 0,
+      "xp": 100,
+      "gold": 150
+    },
+    {
+      "id": "FV-Q2",
+      "epic": 3,
+      "side": true,
+      "goals": 3,
+      "battleGoals": 1,
+      "xp": 180,
+      "gold": 240
+    },
+    {
+      "id": "FV-Q3",
+      "epic": 3,
+      "side": true,
+      "goals": 3,
+      "battleGoals": 1,
+      "xp": 200,
+      "gold": 260
+    },
+    {
+      "id": "FV-Q4",
+      "epic": 3,
+      "side": true,
+      "goals": 3,
+      "battleGoals": 1,
+      "xp": 280,
+      "gold": 360
+    },
+    {
+      "id": "EC-01",
+      "epic": 4,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 316,
+      "gold": 420
+    },
+    {
+      "id": "EC-02",
+      "epic": 4,
+      "side": false,
+      "goals": 3,
+      "battleGoals": 0,
+      "xp": 92,
+      "gold": 160
+    },
+    {
+      "id": "EC-03",
+      "epic": 4,
+      "side": false,
+      "goals": 5,
+      "battleGoals": 2,
+      "xp": 600,
+      "gold": 560
+    },
+    {
+      "id": "EC-04",
+      "epic": 4,
+      "side": false,
+      "goals": 6,
+      "battleGoals": 2,
+      "xp": 657,
+      "gold": 680
+    },
+    {
+      "id": "EC-05",
+      "epic": 4,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 1,
+      "xp": 630,
+      "gold": 720
+    },
+    {
+      "id": "EC-06",
+      "epic": 4,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 745,
+      "gold": 900
+    },
+    {
+      "id": "EC-07",
+      "epic": 4,
+      "side": false,
+      "goals": 6,
+      "battleGoals": 2,
+      "xp": 843,
+      "gold": 1200
+    },
+    {
+      "id": "EC-Q1",
+      "epic": 4,
+      "side": true,
+      "goals": 3,
+      "battleGoals": 0,
+      "xp": 140,
+      "gold": 200
+    },
+    {
+      "id": "EC-Q2",
+      "epic": 4,
+      "side": true,
+      "goals": 4,
+      "battleGoals": 1,
+      "xp": 260,
+      "gold": 340
+    },
+    {
+      "id": "EC-Q3",
+      "epic": 4,
+      "side": true,
+      "goals": 4,
+      "battleGoals": 1,
+      "xp": 320,
+      "gold": 400
+    },
+    {
+      "id": "EC-Q4",
+      "epic": 4,
+      "side": true,
+      "goals": 4,
+      "battleGoals": 1,
+      "xp": 400,
+      "gold": 500
+    },
+    {
+      "id": "HG-01",
+      "epic": 5,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 495,
+      "gold": 600
+    },
+    {
+      "id": "HG-02",
+      "epic": 5,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 0,
+      "xp": 212,
+      "gold": 220
+    },
+    {
+      "id": "HG-03",
+      "epic": 5,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 929,
+      "gold": 780
+    },
+    {
+      "id": "HG-04",
+      "epic": 5,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 1373,
+      "gold": 900
+    },
+    {
+      "id": "HG-05",
+      "epic": 5,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 855,
+      "gold": 980
+    },
+    {
+      "id": "HG-06",
+      "epic": 5,
+      "side": false,
+      "goals": 3,
+      "battleGoals": 2,
+      "xp": 975,
+      "gold": 1200
+    },
+    {
+      "id": "HG-07",
+      "epic": 5,
+      "side": false,
+      "goals": 4,
+      "battleGoals": 2,
+      "xp": 1252,
+      "gold": 1600
+    }
+  ]
+}

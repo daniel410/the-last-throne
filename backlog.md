@@ -1,3 +1,5 @@
+> **2026-11-07 / TLT-001/027/050/061~065/084/087 · 재미·분량 최종 통합 계획:** 기존 줄거리·5지역 확장안·사이드/Tessa·최신 보상을 재검토해 [35장 사건·시간 배분·제작 순서·수용 기준](docs/production/campaign-fun-and-duration-final-plan-2026-11-07.md)을 통합했다. 본편285~410분은 실험 가설, FV-01~03 파일럿 우선·기존12사이드 개선·신규4선택 후보는2차·Lv80 성장은 별도 검토. 계획 완료·게임 미적용·부모 티켓 미완료.
+
 > **2026-11-07 / TLT-065/032/033/057/084 · 0.83.7:** Venomcoil King 꼬리 제보를 원본/리그 면 단위로 대조해 손실 없음을 확인했다. 원본 양면 설정 복원·얇은 꼬리 정밀 렌더링 적용. [비교·검증·미게시](docs/evidence/venomcoil-tail-20261107/README.md). 제보 장면의 실제 잘림은 미재현.
 
 > **2026-11-07 / TLT-028/043/057/084 · 0.83.6:** Blacksmith 거래/분류 버튼을 두 줄로 정리하고 Enhancement Guide를 ENHANCE 내부로 이동했다. Diamond Shop 상단의 숨긴 거래 탭 여백50px을 제거했다. [검증·미게시](docs/evidence/blacksmith-two-rows-20261107/README.md). 실기기/사용자 수용 후속.
@@ -609,3 +611,21 @@ TLT-013/014/015/027/042/052/054~056/058: [초반6스킬·19개 트리](docs/prod
 - [ ] **영웅 무기 액션 개선 2026-10-31**: Blender MCP 기사 첫 공격 후보를 게임 곡선에 연결하고 엔진 및 독립 변환 검증. 차이는 미묘하며 실제 플레이·미술 수용 미검증. 드워프는 최신 `dwarf-refinement.blend`로 다시 제작해야 하며 활·지팡이 개선도 남음. [범위/증거](docs/evidence/knight-motion-candidate-v2/README.md).
 
 - [ ] **엘프 활 기술 동작·전체 무기 액션 (2026-10-31)**: cone 기술에 기존 Blender 활 동작을 연결하고 서버 확인 Grand Volley pulse별 발사/복제 순서 대기 처리. native 활 4,890 PASS 및 독립 코드 검토; 실제 서버-클라이언트 지연/관전자·입력·시각 수용 미검증. 드워프 타격 가시성과 R15 접촉 동시 수용 미해결, 기사·마법사 전 범위 미술 수용도 미완료. [증거](docs/evidence/elf-pulse-motion/README.md).
+
+## 2026-11-07 · 재미·분량 확장 다음 실행 묶음
+
+[최종 통합 계획](docs/production/campaign-fun-and-duration-final-plan-2026-11-07.md)이 기존 지역별 확장 계획의 실행 순서/수용 기준을 통합한다. 아래는 새 작업 범위의 계획 상태이며 부모ID를 새 의미로 재사용하거나 구현을 완료 처리하지 않는다.
+
+| 하위 작업 | 담당 / 상태 | 선행 → 산출물·완료 증거 |
+| --- | --- | --- |
+| TLT-001/050/expand-baseline | QA·PLAN / Open | 고정 현행 빌드 →5지역 초회/숙련 시간·목적 이해·소모품/수입 기준선 |
+| TLT-050/expand-contract | ENG / Open | 기존 계정/원정 샘플 →콘텐츠 버전·구버전 완주/안전 이관·사건/보상 영수증·파티/복구 회귀 |
+| TLT-062/expand-pilot | DES·PLAN·ENG / Open | 기준선/계약 →FV-01~03 사건/지름길1·22~33분 가설·재미/복구/기기 수용 |
+| TLT-062/expand-full | FV 담당 / Open | 파일럿 수용 →FV-04~07/기존4사이드·비살상/재회·전체 경로 검증 |
+| TLT-065/GW/expand → TLT-063/EC/expand → TLT-061/DW/expand → TLT-064/HG/expand | 지역 담당 / Open | 각 지역 파일럿 수용 →7장씩/기존사이드/후일담·35장 전체 |
+| TLT-028/050/lobby-side-report | ENG·DES / Open | 보고 허용표12행/원정 정산 계약 →Tessa 명시적 대리 보고·동일 권리1회 지급 |
+| TLT-027/065/growth-80 | PLAN·ENG·QA / Open | 현재 경로/시간 →본편 종료와 반복Lv60/80 별도 성장·경제 수용 |
+| TLT-065/064/optional-expansion | PLAN·DES·ENG / Open | 본편 수용/새 보상·상태 확정 →GW2/HG2 선택후보·본편 강제 없음 |
+| TLT-057/084/087/expand-acceptance | QA·DIR / Open | 고정 빌드 →실제 계정·게시 테스트 왕복·PC/터치/패드·1~4인/현재AI1·재미/성능 증거 |
+
+계획 산출물만 완료했다. 상세 파일 소유/시간 정의/최소 표본/장별 범위는 통합 계획을 따른다. 실제 제작 일정은 FV 파일럿의 역할별 제작/QA/보수 실측 뒤 산정한다.

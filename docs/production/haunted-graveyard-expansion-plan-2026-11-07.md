@@ -1,3 +1,5 @@
+> **2026-11-07 최종 재검토:** 다음 제작의 범위·시간 배분·우선순위·수용은 [최종 통합 계획](campaign-fun-and-duration-final-plan-2026-11-07.md)을 따른다. 아래 공간/목표 접점은 상세 입력으로 유지한다. 사이드12개·GW본편7개의 보상0/미정 전제는0.83.0 구현으로 대체됐으며 [현재 지급·누락분 복구](../evidence/quest-completion-rewards-20261107/README.md)를 보존한다. Tessa 로비 대리 보고·확장 사건은 아직 설계다.
+
 # Haunted Graveyard 리뷰·스토리·맵 확장 개선 계획
 
 2026-11-07 · TLT-064/050/057/084/087 · PLAN/DES/RES → ENG/ART/QA · 상태: 계획 작성, 게임 미적용
