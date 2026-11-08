@@ -24,3 +24,9 @@
 검증 소스 커밋 후 `python3 tools/build-game.py --source HEAD --record docs/evidence/deepwood-watchtower-road-20261107/build.json`으로 단일 고정 빌드를 만든다. 고정 산출물 검사/해시·종료 결과는 후속 마감 기록에 추가한다. 릴리스 태그·Place 게시는 수행하지 않는다.
 
 다음 QA/사용자는 실제 제보 위치에서 이동/회피·재접속을 확인해야 한다. 입력 잠금이나 다른 위치의 충돌까지 해결했다고 선언하지 않는다. 실제 계정/기기/4인+AI 검증은 미실행, 부모 티켓 In Progress 유지.
+
+## 고정 빌드 마감
+
+- 소스 `a44bceca5ae231c7384511ab0090c2681c689486` / 버전0.81.2의 단일 파일 빌드 성공. [build.json](build.json)의 소스·산출물 SHA256을 다시 대조했다. 입력 LFS 포인터0개이며 이번 작업의 자산 변경/전송 없음.
+- 해당 고정 산출물에서 동일 native 회귀 재실행: **573 PASS / 프로세스 종료0**. [native-final.log](native-final.log). 기존 자산203785492 타입 경고1개는 검증 실패와 구분한다. 최초 임시 실행의 HTTP429/종료1도 위에 그대로 보존한다.
+- 구현 커밋을 `origin/main`에 푸시하고 `git ls-remote origin refs/heads/main`으로 일치를 확인했다. 빌드 기록은 후속 증거 커밋으로 저장한다. Roblox 미게시·릴리스 태그 없음.
