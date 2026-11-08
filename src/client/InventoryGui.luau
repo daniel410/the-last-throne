@@ -381,11 +381,11 @@ function InventoryGui.create(onVisibility, feedback)
 			primary.Caption.Text=Text[actionForSelection]
    if actionForSelection=='ResetPoints' and resetConfirmation==item.instanceId..':'..snapshot.revision..':'..item.version then primary.Caption.Text=Text.ConfirmReset end
 			local enabled=not pending and snapshot.ready and hero~=nil
-			if actionForSelection~="Use" then enabled=enabled and snapshot.safe end
+			if actionForSelection~="Use" and actionForSelection~="ResetPoints" then enabled=enabled and snapshot.safe end
 			if actionForSelection=="Deposit" or actionForSelection=="Withdraw" then enabled=enabled and snapshot.atStorage end
 			if actionForSelection=="Claim" then enabled=enabled and snapshot.atHub end
 			if actionForSelection=="Use" and snapshot.atHub then enabled=false end
-   if actionForSelection=="ResetPoints" then enabled=enabled and snapshot.atHub and resetSpent>0 end
+   if actionForSelection=="ResetPoints" then enabled=enabled and resetSpent>0 end
 			if actionForSelection=="Equip" then enabled=enabled and (not def.classId or hero.baseClassId==def.classId) and hero.level>=(def.level or 1) end
 			if actionForSelection=="Equip" and not snapshot.safe then primary.Caption.Text=Text.CombatLocked end
 			Theme.enabled(primary,enabled==true)

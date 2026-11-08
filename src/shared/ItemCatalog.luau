@@ -99,6 +99,6 @@ for _,kind in ipairs({'stat','skill'}) do
  local id=kind..'_reset_ticket'
  Catalog.items[id]={id=id,name=kind=='stat' and 'Stat Reset Ticket' or 'Skill Reset Ticket',category='Consumables',maxStack=99,
   glyph=kind=='stat' and 'ST' or 'SK',rarity='Rare',reset=kind,
-  description=kind=='stat' and 'Returns all invested STR, DEX, INT and VIT points for this hero. Use from BAG in the lobby. Consumes one ticket only after a successful reset.' or 'Returns all invested skill mastery points for this hero. Keeps learned skills, advancement and combat slots. Use from BAG in the lobby. Consumes one ticket only after a successful reset.'}
+  description=kind=='stat' and 'Returns all invested STR, DEX, INT and VIT points for this hero. Use from BAG anytime, including combat. Consumes one ticket only after a successful reset.' or 'Returns all invested skill mastery points for this hero. Keeps learned skills, advancement and combat slots. Use from BAG anytime, including combat. Consumes one ticket only after a successful reset.'}
 end
 return Catalog

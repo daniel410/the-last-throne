@@ -28,7 +28,7 @@ local ok,err=xpcall(function()
   local id='shop-'..buy.requestId
   local function snapshot(hub)
    local list={};for _,item in pairs(p.items)do table.insert(list,item)end
-   return {ready=true,heroId='qa',heroes=p.heroes,items=list,revision=p.revision,bagCapacity=C.bagCapacity,storageCapacity=C.storageCapacity,safe=true,atHub=hub,atStorage=false,pending=0,bagUsed=R.count(p,'bag','qa'),storageUsed=0,stats=R.stats(p,'qa',C),wallet=p.wallet}
+   return {ready=true,heroId='qa',heroes=p.heroes,items=list,revision=p.revision,bagCapacity=C.bagCapacity,storageCapacity=C.storageCapacity,safe=hub,atHub=hub,atStorage=false,pending=0,bagUsed=R.count(p,'bag','qa'),storageUsed=0,stats=R.stats(p,'qa',C),wallet=p.wallet}
   end
   view.qaSnapshot(snapshot(true),id)
   local gui=playerGui.InventoryGui
@@ -39,17 +39,17 @@ local ok,err=xpcall(function()
   view.qaActivate();check(m:GetAttribute('QACommand')=='ResetPoints','second click submits reset request')
   view.qaSnapshot(snapshot(true),id)
   view.qaActivate();view.close();view.qaSnapshot(snapshot(true),id);check(primary.Caption.Text=='RESET POINTS','closing cancels confirmation')
-  view.qaSnapshot(snapshot(false),id);check(not primary.Active,'field reset disabled')
+  view.qaSnapshot(snapshot(false),id);check(primary.Active,'combat reset enabled');m:SetAttribute('QACommand',nil);view.qaActivate();check(primary.Caption.Text=='CONFIRM RESET','combat asks confirmation');view.qaActivate();check(m:GetAttribute('QACommand')=='ResetPoints','combat submits reset')
   local host=Instance.new('ScreenGui');host.Parent=playerGui
   local shop=Shop.create(host,function()error('UI fixture must not trade')end,true,'diamonds')
   shop.render(snapshot(true));shop.selectCategory('Resets')
   local card=assert(shop.panel:FindFirstChild(kind..'_reset_ticket_diamond',true));check(card.Trade.Caption.Text=='BUY · 50 Diamonds','shop price visible')
-  check(card.Trade.Active,'affordable ticket enabled');check(card.Details.Text:find('lobby',1,true),'shop explains lobby requirement')
+  check(card.Trade.Active,'affordable ticket enabled');check(card.Details.Text:find('combat',1,true),'shop explains use during combat')
   local poor=snapshot(true);poor.wallet={gold=0,diamonds=49};shop.render(poor)
   card=assert(shop.panel:FindFirstChild(kind..'_reset_ticket_diamond',true));check(not card.Trade.Active,'unaffordable ticket disabled')
   host:Destroy()
   local item=p.items[id];local cmd={action='ResetPoints',requestId='use-'..kind,heroId='qa',instanceId=id,itemVersion=item.version,revision=p.revision}
-  p=assert(R.apply(p,cmd,{safe=true,atHub=true},C));check(p.items[id]==nil,'last ticket consumed')
+  p=assert(R.apply(p,cmd,{safe=false,atHub=false},C));check(p.items[id]==nil,'last ticket consumed')
   local st,sp=G.points(p.heroes.qa.progression);check(kind=='stat' and st==32 or kind=='skill' and sp==8,'points returned in Luau')
   local again,_,repeated=R.apply(p,cmd,{safe=false,atHub=false},C);check(repeated and again.wallet.diamonds==50,'same receipt reconciles')
  end

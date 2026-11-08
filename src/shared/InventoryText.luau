@@ -1,7 +1,7 @@
 return {
- ResetShopStat="Returns this hero's invested stat points. Delivered to BAG; use in the lobby. No consumption if no points are invested.",
- ResetShopSkill="Returns this hero's invested mastery points. Keeps advancement and slots. Delivered to BAG; use in the lobby.",
- ResetPoints="RESET POINTS", ConfirmReset="CONFIRM RESET", ResetHint="Use in the lobby. Preview the returned points, then press CONFIRM RESET. Select another item or close BAG to cancel.",
+ ResetShopStat="Returns this hero's invested stat points. Delivered to BAG; use anytime, including combat. No consumption if no points are invested.",
+ ResetShopSkill="Returns this hero's invested mastery points. Keeps advancement and slots. Delivered to BAG; use anytime, including combat.",
+ ResetPoints="RESET POINTS", ConfirmReset="CONFIRM RESET", ResetHint="Use anytime, including combat. Preview the returned points, then press CONFIRM RESET. Select another item or close BAG to cancel.",
  ResetPreview="%s: return %d invested points. Unspent balance: %d -> %d. Consumes 1 ticket. Hero level, advancement and skill slots stay the same. HP, MP and cooldowns are not restored.",
  ResetStatLabel="STATS", ResetSkillLabel="SKILL MASTERY",
  ForgeDiamondOnly = "Rare and Epic equipment: Diamonds only.",
@@ -36,7 +36,7 @@ return {
 	Stats = {power = "Power", armor = "Armor", health = "Max HP"},
 	Slots = {weapon="Weapon", offhand="Offhand", head="Head", body="Body", hands="Hands", feet="Feet", accessory1="Accessory 1", accessory2="Accessory 2"},
 	Errors = {
-  ResetLobbyOnly="Return to the lobby with this hero before using a reset ticket.", NothingToReset="This hero has no invested points of this type. Your ticket was not used.",
+  NothingToReset="This hero has no invested points of this type. Your ticket was not used.",
 		InvalidRequest = "That request could not be read. Refresh your bag and try again.",
 		Changed = "Your items changed. Select the item again and retry.", RequestConflict = "That request does not match. Close and reopen your bag.",
 		Unavailable = "Items are not available yet. Wait, or rejoin to retry.", SaveUnknown = "Saving was not confirmed. Retry this request to verify it before doing anything else.",

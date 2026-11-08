@@ -31,7 +31,8 @@
       "price_diamonds": 50,
       "price_status": "user approved; local runtime implemented; unpublished; live-account acceptance pending",
       "runtime_definition_id": "stat_reset_ticket",
-      "runtime_offer_id": "stat_reset_ticket_diamond"
+      "runtime_offer_id": "stat_reset_ticket_diamond",
+      "usage": "from selected hero bag anytime, including combat; no hub or combat-safety requirement"
     },
     {
       "id": "reset.skill",
@@ -49,7 +50,8 @@
       "price_diamonds": 50,
       "price_status": "user approved; local runtime implemented; unpublished; live-account acceptance pending",
       "runtime_definition_id": "skill_reset_ticket",
-      "runtime_offer_id": "skill_reset_ticket_diamond"
+      "runtime_offer_id": "skill_reset_ticket_diamond",
+      "usage": "from selected hero bag anytime, including combat; no hub or combat-safety requirement"
     },
     {
       "id": "gear.lv5.knight.weapon",
@@ -259,7 +261,7 @@
     }
   ],
   "rules": {
-    "reset_policy": "consumable required for confirmed stat/skill reallocation at safe hub; preview/cancel free",
+    "reset_policy": "consumable required for confirmed stat/skill reallocation; usable from hero bag anytime, including combat; preview/cancel free",
     "new_points": "free allocation from earned balance; no point sales",
     "monetization_scope": "actual weapons/armor/accessories and resets; not cosmetics only",
     "gear_choice": "fixed item/profile; no paid random roll in this launch catalog",
