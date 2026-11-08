@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-08",
+  "classId": "elf",
+  "sourceCommitBefore": "3c59958749da2d4306f64c1f983dbd39f72ef9b3",
+  "catalogUrl": "https://www.mixamo.com/#/?page=1&query=archer+draw+arrow",
+  "sourceDownload": {
+    "format": "FBX Binary",
+    "skin": "With Skin",
+    "fps": 60,
+    "keyframeReduction": "none",
+    "overdrive": 50,
+    "armSpace": 50,
+    "mirror": false,
+    "trim": [
+      0,
+      100
+    ],
+    "profile": "elf",
+    "packPose": null
+  },
+  "sources": {
+    "Standing Draw Arrow": {
+      "sourceSha256": "703049a202db7a81b32c9d8852f66863fb5de7751c96aff237fe7b92288fabd7",
+      "sourceBytes": 1929024,
+      "fps": 60.0,
+      "duration": 1.0166666666666666
+    }
+  },
+  "exports": {
+    "reload": {
+      "source": "Standing Draw Arrow",
+      "duration": 1,
+      "rig": "R15",
+      "root": "in-place",
+      "r6": "previous reviewed curves retained"
+    }
+  },
+  "color": {
+    "display": "sRGB",
+    "view": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "curves": false
+  },
+  "published": false,
+  "rawSources": "Original downloads retained locally; raw Mixamo FBX/pack is not redistributed",
+  "runtimeAssetsUploaded": 0,
+  "files": {
+    "elf-mixamo-v1.blend": "0766443377c619671a2aef705c00f3f09a2756280f2fab47f6cefc89a77b99fa",
+    "blender-golden.json": "9abf9da2cc70c7566074750736db912bf0da2efab0564dc9350fc66757fe8180",
+    "clips.json": "545e32a7f11a511e781f37e0e261af375e02879016bc07011f965c64f8035073",
+    "retargeted.json": "3410510d19c8d318558d9afa1e36420b1277ebaa0e84c73f261df864ec3a133f"
+  }
+}

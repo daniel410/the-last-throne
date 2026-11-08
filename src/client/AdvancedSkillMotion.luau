@@ -28,16 +28,20 @@ local function resting(classId)
  for channel,a in pairs(Clips.rest[classId]) do pose.angles[channel]=v(unpack(a)) end
  return rebuild(pose)
 end
-local function source(classId,kind,pulse)
+local function source(classId,kind,pulse,rigType,skillId)
  local combo=kind=="cross" and pulse%2==0 and 2 or 1
  if kind=="sweep" or kind=="spin" then combo=2 end
  if kind=="chop" or kind=="slam" then combo=3 end
  if classId=="knight" then
-  return Config.BasicAttackProfiles.knight.attacks[combo],function(age) return Melee.sample("knight",combo,age) end
+  local variant=kind=="sweep" and "knight.mixamo.wide" or kind=="chop" and "knight.mixamo.power" or nil
+  return Config.BasicAttackProfiles.knight.attacks[combo],function(age) return Melee.sample("knight",combo,age,nil,nil,variant,rigType) end
  end
  local index=kind=="throw" and 2 or kind=="slam" and 3 or 1
  local base=Config.Skills.dwarf[index]
- return base,function(age) return Melee.sample("dwarf",1,age,nil,nil,base.id) end
+ local clipId=kind=="sweep" and "dwarf.mixamo.sweep"
+  or kind=="slam" and "dwarf.mixamo.grounded"
+  or skillId=="dwarf_hooking_chop" and "dwarf.mixamo.backhand" or base.id
+ return base,function(age) return Melee.sample("dwarf",1,age,nil,nil,clipId,rigType) end
 end
 local function gunner(d,kind,age)
  local contact=d.windup
@@ -54,7 +58,7 @@ local function gunner(d,kind,age)
  for channel,a in pairs(Clips.rest.dwarf) do pose.angles[channel]=v(unpack(a)):Lerp(angles[channel] or v(),load*fade) end
  return rebuild(pose)
 end
-function Motion.sample(classId,d,age)
+function Motion.sample(classId,d,age,rigType)
  if type(age)~="number" or age~=age then return nil end
  local profile=Presentation.get(d);if not profile then return nil end
  local kind=profile.motion
@@ -62,7 +66,7 @@ function Motion.sample(classId,d,age)
  local contact=d.windup+(d.hitDelay or 0)
  local ending=d.windup+d.active
  local pulse,since=Presentation.beat(d,age)
- local base,sample=source(classId,kind,math.max(1,pulse))
+ local base,sample=source(classId,kind,math.max(1,pulse),rigType,d.id)
  local bContact=base.windup+(base.hitDelay or 0)
  local pose
  if age<contact then
@@ -85,7 +89,7 @@ function Motion.sample(classId,d,age)
   local t=age<contact and age/contact*bash.windup
    or age<ending and bash.windup+math.min(bash.active,math.max(0,since))
    or bash.windup+bash.active+bash.recovery*math.clamp((age-ending)/d.recovery,0,1)
-  local shield=Shield.sample(t)
+  local shield=Shield.sample(t,rigType)
   -- Use the reviewed shield-first choreography, including its sheathed sword.
   for _,channel in ipairs(Clips.channels) do
    if shield[channel] then pose[channel]=shield[channel];local x,y,z=shield[channel]:ToEulerAnglesXYZ();pose.angles[channel]=v(math.deg(x),math.deg(y),math.deg(z)) end
@@ -107,6 +111,9 @@ function Motion.sample(classId,d,age)
  if d.id:find("stonebound_leap",1,true) then
   local phase=math.clamp(age/math.max(.01,contact),0,1)
   pose.root=CFrame.new(0,age<contact and math.sin(math.pi*phase)*1.4 or 0,0)
+ elseif classId=="dwarf" then
+  -- Only Ground Slam and explicit leap skills use the jump's visual root.
+  pose.root=nil
  end
  pose.aimWeapon=kind=="thrust" and smooth(age/math.max(.01,contact*.7))*(1-smooth((age-ending)/d.recovery)) or nil
  pose.cutting=profile.effect=="slash" and age>=contact-.045 and age<ending
@@ -121,10 +128,13 @@ function Motion.forCharacter(character,now)
  if not d or not Clips.rest[classId] or type(started)~="number" then records[character]=nil;return nil end
  local record=records[character]
  if not record or record.started~=started or record.d~=d then
-  local entry=record and record.classId==classId and started>=record.started and Motion.sample(classId,record.d,started-record.started) or nil
+  local entry=record and record.classId==classId and started>=record.started and Motion.sample(classId,record.d,started-record.started,record.rigType) or nil
   record={started=started,d=d,classId=classId,entry=entry};records[character]=record
  end
- local age=math.max(0,now-started);local pose=Motion.sample(classId,d,age)
+ local age=math.max(0,now-started)
+ local humanoid=character:FindFirstChildOfClass("Humanoid")
+ record.rigType=humanoid and humanoid.RigType
+ local pose=Motion.sample(classId,d,age,humanoid and humanoid.RigType)
  local blend=smooth(age/math.max(.01,d.windup*.35))
  if record.entry and blend<1 then
   local root,aim=pose.root,pose.aimWeapon;pose=mix(record.entry,pose,blend);pose.root,pose.aimWeapon=root,aim

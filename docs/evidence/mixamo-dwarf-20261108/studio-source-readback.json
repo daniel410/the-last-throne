@@ -1,0 +1,20 @@
+{
+  "readback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"placeId\":70829337938054,\"readback\":{\"K0KnightMixamoVariants\":162930,\"K0DwarfMixamoBasic\":83481,\"K0DwarfMixamoClips\":224,\"K0DwarfMixamoSkills\":164168,\"K0KnightMixamoBasic\":161536,\"AdvancedSkillMotion\":7694,\"K0MeleeMotion\":10953,\"K0ShieldBashMotion\":3138},\"published\":false}"
+      }
+    ],
+    "isError": false
+  },
+  "freshModules": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"contact\":0.41,\"published\":false,\"airborne\":1.399999976158142,\"shield\":true,\"landing\":0,\"placeId\":70829337938054,\"advanced\":true,\"knightCombos\":3}"
+      }
+    ],
+    "isError": false
+  }
+}

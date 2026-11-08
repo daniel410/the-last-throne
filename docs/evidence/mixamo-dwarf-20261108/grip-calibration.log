@@ -1,0 +1,3 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+MIXAMO_GRIP_CALIBRATION {"backhand":[51.59999999999998,28.30000000000002,91.90000000000015],"overhead":[-143.70000000000003,25,-16.400000000000003],"basic":[-173.09999999999998,45.00000000000003,119.19999999999999],"sweep":[-90.3,4,44.7],"grounded":[-159.60000000000003,49,-66.7],"ground":[-82,-4.1,-2.1]}
+MIXAMO_GRIP_METRICS {"backhand":{"cost":0.03606205262108485},"overhead":{"cost":0.005603939478683548},"basic":{"cost":0.5288400386895446},"sweep":{"cost":0.07049798291650765},"grounded":{"cost":0.028126267793024814},"ground":{"cost":0.6504329049695723}}

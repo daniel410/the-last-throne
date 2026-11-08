@@ -27,14 +27,14 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}) do
    for i=0,64 do
     local age=total*i/64
     local actual=assert(Motion.forCharacter(character,100+age))
-    local expected=assert(Motion.sample("dwarf",1,age,nil,nil,skill.id))
+    local expected=assert(Motion.sample("dwarf",1,age,nil,nil,skill.id,rig))
     check((actual.angles.right-expected.angles.right).Magnitude<.002,"Accepted dwarf skill selects its own clip")
     Visual.renderArms(character,1/60,100+age)
     Visual.render(model,"Active",1,1/60,"Skill",100+age)
     check(root.CFrame==origin,"Dwarf motion never moves authoritative root")
     check((weapon.joint.Transform.Position).Magnitude<.001,"Axe remains on its hand socket")
-    local before=Motion.sample("dwarf",1,age-.00001,nil,nil,skill.id)
-    local after=Motion.sample("dwarf",1,age+.00001,nil,nil,skill.id)
+    local before=Motion.sample("dwarf",1,age-.00001,nil,nil,skill.id,rig)
+    local after=Motion.sample("dwarf",1,age+.00001,nil,nil,skill.id,rig)
     check((before.angles.right-after.angles.right).Magnitude<.2,"No phase-boundary shoulder snap")
    end
    local hit=assert(Motion.sample("dwarf",1,impact,nil,nil,skill.id))

@@ -41,9 +41,16 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
   local low=sample(11.29,1/60):PointToWorldSpace(edge.Position)
   high=root.CFrame:PointToObjectSpace(high);low=root.CFrame:PointToObjectSpace(low)
   local head=root.CFrame:PointToObjectSpace(character.Head.Position)
-  check(high.X>.7 and high.Y>head.Y,'axe loads above the right temple '..tostring(high))
-  check(low.X<-.4 and low.Y<-.8,'axe follows through toward the left knee '..tostring(low))
-  check(low.X-high.X < -2 and low.Y-high.Y < -3,'large diagonal travels down and left across the body')
+  if rig==Enum.HumanoidRigType.R6 then
+   check(high.X>.7 and high.Y>head.Y,'R6 retains the reviewed diagonal load '..tostring(high))
+   check(low.X<-.4 and low.Y<-.8,'R6 retains its diagonal follow-through '..tostring(low))
+   check(low.X-high.X < -2 and low.Y-high.Y < -3,'R6 diagonal contact is preserved')
+  else
+   local contact=root.CFrame:PointToObjectSpace(sample(11.22,1/60):PointToWorldSpace(edge.Position))
+   check(high.X>.7,'Mixamo horizontal swing loads to the right '..tostring(high))
+   check(low.X<high.X-1 and contact.Z<-.7,'Horizontal swing crosses in front at server contact '..tostring(contact))
+   check((low-high).Magnitude>2,'Horizontal swing has a visible loaded-to-follow-through arc')
+  end
  end,debug.traceback)
  if not ok then table.insert(report.failures,rig.Name..': '..tostring(err))end
  if character then character:Destroy()end

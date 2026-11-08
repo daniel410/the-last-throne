@@ -10,6 +10,9 @@ end
 
 local Clips = require(script.Parent.K0MeleeClips)
 local DwarfDiagonalClip = require(script.Parent.K0DwarfDiagonalClip)
+local DwarfMixamo = require(script.Parent.K0DwarfMixamoClips)
+local KnightMixamo = require(script.Parent.K0KnightMixamoBasic)
+local KnightVariants = require(script.Parent.K0KnightMixamoVariants)
 local channels = Clips.channels
 local rest, guard = {}, {}
 local function angles(x,y,z) return Vector3.new(x or 0,y or 0,z or 0) end
@@ -56,7 +59,18 @@ end
 
 local function definitionFor(classId,combo,skillId)
  if skillId then
-  local clip=Clips.skills and Clips.skills[skillId]
+  if classId=="knight" and skillId=="knight.common.whirlwind" then
+   return Config.Skills.knight[2],KnightVariants["knight.mixamo.wide"]
+  end
+  if classId=="knight" and KnightVariants[skillId] then
+   local variant=KnightVariants[skillId]
+   return Config.BasicAttackProfiles.knight.attacks[variant.combo],variant
+  end
+  if classId=="dwarf" and DwarfMixamo.variants[skillId] then
+   local variant=DwarfMixamo.variants[skillId]
+   return Config.Skills.dwarf[variant.baseSkillIndex or 1],variant
+  end
+  local clip=classId=="dwarf" and DwarfMixamo.skills[skillId] or Clips.skills and Clips.skills[skillId]
   if not clip or clip.classId~=classId then return nil end
   for _,skill in ipairs(Config.Skills[classId] or {}) do
    if skill.id==skillId then return skill,clip end
@@ -66,7 +80,8 @@ local function definitionFor(classId,combo,skillId)
  local profile=Config.BasicAttackProfiles[classId]
  if not Clips.clips[classId] or not profile then return nil end
  local index=math.clamp(math.floor(tonumber(combo) or 1),1,#profile.attacks)
- return profile.attacks[index],classId=="dwarf" and index==1 and DwarfDiagonalClip or Clips.clips[classId][index]
+ return profile.attacks[index],classId=="dwarf" and index==1 and DwarfMixamo.basic
+  or classId=="knight" and KnightMixamo[index] or Clips.clips[classId][index]
 end
 
 -- The exported Bezier handles have one-third interval lengths, so each
@@ -96,7 +111,8 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId, rigType,
  local result={angles={}}
  local opening=w*.45
  local u=math.clamp(age/opening,0,1);local u2,u3=u*u,u*u*u
- local curves=rigType==Enum.HumanoidRigType.R6 and clip.r6Curves or clip.curves
+ local curves=rigType==Enum.HumanoidRigType.R6 and (clip.r6Curves or clip.curves) or clip.curves
+ if rigType==Enum.HumanoidRigType.R6 and classId=="dwarf" and not skillId then curves=DwarfDiagonalClip.r6Curves end
  for _,channel in ipairs(channels) do
   local v={}
   for axis,name in ipairs({"X","Y","Z"}) do
@@ -136,6 +152,13 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId, rigType,
   local across=math.clamp((age-impact-.005)/.065,0,1)
   local release=math.clamp((age-.29)/(total-.29),0,1)
   result.r6FollowAcross=across*across*(3-2*across)*(1-release*release*(3-2*release))
+ end
+ if clip.rootLift and rigType~=Enum.HumanoidRigType.R6 then
+  result.root=CFrame.new(0,sampleAxis(clip.rootLift,time),0)
+ end
+ if classId=="knight" and skillId=="knight.common.whirlwind" then
+  local turn=math.clamp((age-w)/a,0,1)
+  result.root=CFrame.Angles(0,-2*math.pi*turn,0)
  end
  return result
 end

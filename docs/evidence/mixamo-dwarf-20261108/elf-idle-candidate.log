@@ -1,0 +1,12 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+MIXAMO_DWARF_NATIVE {"skills":64,"maxBlenderDegrees":0.00011319836630718783,"pass":true,"checks":46777}
+MIXAMO_KNIGHT_NATIVE {"maxBlenderDegrees":0.000057040899264393377,"skills":64,"pass":true,"checks":42104}
+MIXAMO_ELF_NATIVE {"maxBlenderDegrees":0.00001078959303413285,"skills":32,"pass":true,"checks":986}
+K0_ELF_BOW_NATIVE {"maxDegreesError":0.000015495374100282789,"checks":4882,"failures":["Enum.HumanoidRigType.R15: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:189: Re-equipping restores the bow rig\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:189\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:205\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"K0_ELF_BOW_NATIVE","pass":false,"maxNockError":0.000030517810955643657}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:390: Elf bow refinement failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:390
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

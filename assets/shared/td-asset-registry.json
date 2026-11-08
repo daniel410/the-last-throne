@@ -472,6 +472,16 @@
       "role": "Current TD body crops/shared Maps plaque and four original navigation pictures; three RPG subjects derived with imagegen",
       "audit_status": "source hashes and Studio local fetch verified; published ACL/real-device/user-art acceptance pending",
       "manifest": "assets/ui/lobby-navigation-td-v2/manifest.json"
+    },
+    {
+      "key": "model.elf-quiver-tlt-v1",
+      "kind": "derived-class-visual",
+      "source_path": "../throne-defense/src/Server/VisualFactory.lua",
+      "sha256": "683b58807b443d457788279bbffb2518461283b3d815d18b469c58d6aaeb9847",
+      "date": "2026-11-08",
+      "role": "Default elf back quiver, harness and three reviewed arrow meshes; visual-only handoff",
+      "audit_status": "local source pinned; R6/R15 inert attachment, pickup/nock/cancel/lifecycle native checks passed; real-device/art pending",
+      "manifest": "assets/shared/td-elf-quiver-v1/manifest.json"
     }
   ]
 }

@@ -1,0 +1,9 @@
+K0_DWARF_MOTION_NATIVE {"failures":["Enum.HumanoidRigType.R6: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:12: Accepted dwarf skill selects its own clip\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:12\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:15\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"K0_DWARF_MOTION_NATIVE","pass":false,"checks":826}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:63: Dwarf motion integration failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:63
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

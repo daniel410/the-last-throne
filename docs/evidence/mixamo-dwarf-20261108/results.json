@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-08",
+  "checks": 108895,
+  "reports": [
+    {
+      "name": "MIXAMO_DWARF_NATIVE",
+      "pass": true,
+      "checks": 46777
+    },
+    {
+      "name": "MIXAMO_KNIGHT_NATIVE",
+      "pass": true,
+      "checks": 42104
+    },
+    {
+      "name": "MIXAMO_ELF_NATIVE",
+      "pass": true,
+      "checks": 986
+    },
+    {
+      "name": "K0_ELF_BOW_NATIVE",
+      "pass": true,
+      "checks": 4890
+    },
+    {
+      "name": "K0_DWARF_MOTION_NATIVE",
+      "pass": true,
+      "checks": 1642
+    },
+    {
+      "name": "DWARF_NATURAL_GRIP_NATIVE",
+      "pass": true,
+      "checks": 682
+    },
+    {
+      "name": "DWARF_AXE_THROW_NATIVE",
+      "pass": true,
+      "checks": 460
+    },
+    {
+      "name": "K0_MELEE_BLENDER_NATIVE",
+      "pass": true,
+      "checks": 7668
+    },
+    {
+      "name": "AXE_CUTTING_EDGE_NATIVE",
+      "pass": true,
+      "checks": 156
+    },
+    {
+      "name": "K0_MELEE_CURVES_NATIVE",
+      "pass": true,
+      "checks": 3204
+    },
+    {
+      "name": "SHIELD_BASH_LEADING_NATIVE",
+      "pass": true,
+      "checks": 86
+    },
+    {
+      "name": "K0_SKILL_ANIMATION_NATIVE",
+      "pass": true,
+      "checks": 61
+    },
+    {
+      "name": "ELF_QUIVER_NATIVE",
+      "pass": true,
+      "checks": 179
+    }
+  ],
+  "scope": "isolated native R6/R15, actual geometry and IK target; actual device/art acceptance pending"
+}

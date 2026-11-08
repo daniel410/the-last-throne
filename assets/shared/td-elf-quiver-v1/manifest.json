@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-08",
+  "key": "td:ArcherQuiver:TLT-visual-v1",
+  "kind": "derived-default-class-visual",
+  "sources": {
+    "../throne-defense/src/Server/VisualFactory.lua": "683b58807b443d457788279bbffb2518461283b3d815d18b469c58d6aaeb9847",
+    "../throne-defense/src/Server/VisualFactoryTowerDetails.lua": "124ef4e15aa1cefa8cf7273b98db2ae23405cd6bd0a6a7f9f60e384407a2a4f3",
+    "assets/shared/td-player-weapons/manifest.json": "59d281c6eb901dd27704d89fe74e4b8ed3e2634d253cb5c3679e7538af3d018d",
+    "assets/animations/elf-bow-v1/clip.json": "f25c8f6464505f822ecc59965d70a22315ece414a423c3649fbf94d103229d7f"
+  },
+  "scope": "TD Archer quiver/rim/harness adapted as14 inert R6/R15 torso parts; three arrows reuse the reviewed bow arrow mesh",
+  "runtime": "src/server/Cosmetics/ElfQuiverAppearance.luau",
+  "handoff": "src/client/ElfQuiverVisual.luau",
+  "inventorySlot": null,
+  "ammoResource": null,
+  "assetUploads": 0,
+  "published": false,
+  "validated": "108895 isolated native assertions; actual device/art acceptance pending"
+}

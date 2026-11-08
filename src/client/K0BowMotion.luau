@@ -1,6 +1,7 @@
 -- Absolute server time drives draw, anchor, release and follow-through.
 local Config=require(game.ReplicatedStorage.Shared.K0Config)
 local Clip=require(game.ReplicatedStorage.Shared.ElfBowClip)
+local ReloadClip=require(script.Parent.K0ElfMixamoReload)
 local Motion={}
 local records=setmetatable({},{__mode="k"})
 local pending=setmetatable({},{__mode="k"})
@@ -11,9 +12,9 @@ local function axis(keys,t)
  local u=math.clamp((t-a[1])/h,0,1);local u2,u3=u*u,u*u*u
  return (2*u3-3*u2+1)*a[2]+(u3-2*u2+u)*h*a[3]+(-2*u3+3*u2)*b[2]+(u3-u2)*h*b[3]
 end
-function Motion.sample(t)
- local pose={angles={},draw=axis(Clip.curves.draw,t)}
- for channel,curves in pairs(Clip.curves) do
+local function sample(clip,t)
+ local pose={angles={},draw=axis(clip.curves.draw,t)}
+ for channel,curves in pairs(clip.curves) do
   if channel~="draw" then
    local a={axis(curves[1],t),axis(curves[2],t),axis(curves[3],t)}
    pose.angles[channel]=Vector3.new(unpack(a))
@@ -22,14 +23,18 @@ function Motion.sample(t)
  end
  return pose
 end
+function Motion.sample(t) return sample(Clip,t) end
+function Motion.sampleBasic(t,rigType)
+ return sample(rigType==Enum.HumanoidRigType.R6 and Clip or ReloadClip,t)
+end
 local function definition(character)
  local skillId=character:GetAttribute("K0SkillId")
  if not skillId then return Config.BasicAttackProfiles.elf.attacks[1] end
  -- Cone describes hit geometry, not whether an elf fires a bow.
  for _,d in ipairs(Config.Skills.elf) do if d.id==skillId and (d.ranged or d.form=="cone") then return d end end
 end
-local function rest()
- local pose=Motion.sample(0);pose.time=0;pose.nocked=true;pose.ikWeight=0;return pose
+local function rest(rigType)
+ local pose=Motion.sample(0);pose.time=0;pose.nocked=rigType==Enum.HumanoidRigType.R6;pose.ikWeight=0;return pose
 end
 -- Advanced pulses are presentation events confirmed by the server. Sequence
 -- matching prevents late events from changing a later cast of the same skill.
@@ -71,6 +76,8 @@ end
 function Motion.forCharacter(character,now)
  if character:GetAttribute("K0ClassId")~="elf" then records[character]=nil;return nil end
  local mode=character:GetAttribute("K0State")
+ local humanoid=character:FindFirstChildOfClass("Humanoid")
+ local rigType=humanoid and humanoid.RigType
  if (mode~="Attack" and mode~="Idle") or character:GetAttribute("TLTDeathFalling") then records[character]=nil;return nil end
  local record=records[character]
  if mode=="Attack" then
@@ -90,10 +97,10 @@ function Motion.forCharacter(character,now)
    record=records[character]
   end
  end
- if not record then return rest() end
+ if not record then return rest(rigType) end
  local d=record.definition;local age=(now-record.started)*(record.rate or 1)
  local total=d.windup+d.active+d.recovery
- if age>=total then records[character]=nil;return rest() end
+ if age>=total then records[character]=nil;return rest(rigType) end
  local release=d.windup
  local t
  local advancedMulti=d.advanced and type(d.pulses)=="number" and d.pulses>1
@@ -116,11 +123,21 @@ function Motion.forCharacter(character,now)
  elseif age<release then t=.8*math.clamp(age/release,0,1)
  elseif age<release+.04 then t=.8+.1*(age-release)/.04
  else t=.9+.1*math.clamp((age-release-.04)/math.max(.01,total-release-.04),0,1) end
- local pose=Motion.sample(t)
+ local reload=d==Config.BasicAttackProfiles.elf.attacks[1] and rigType~=Enum.HumanoidRigType.R6
+ local pose=reload and Motion.sampleBasic(t,rigType) or Motion.sample(t)
  pose.time=t;pose.nocked=t<.8
  -- Hold the hand at anchor on release; move it behind the cheek instead of
  -- chasing the string as it snaps forward. IK weight is sampled, never integrated.
  pose.ikWeight=t<.8 and math.clamp(t/.18,0,1) or math.clamp(1-(t-.8)/.035,0,1)
+ if reload then
+  pose.nocked=t>=ReloadClip.nockAt and t<.8
+  pose.ikWeight=t<.8 and math.clamp((t-ReloadClip.ikStart)/(ReloadClip.ikFull-ReloadClip.ikStart),0,1)or pose.ikWeight
+  pose.reloading=t<ReloadClip.nockAt
+  local function smooth(u)u=math.clamp(u,0,1);return u*u*(3-2*u)end
+  pose.quiverReachWeight=smooth((t-.08)/.06)*(1-smooth((t-.24)/.08))
+  pose.quiverArrow=t>=.22 and t<ReloadClip.nockAt
+  pose.quiverTaken=t>=.22
+ end
  if repeated and age>=d.windup then
   local count=advancedMulti and (record.pulse or 0) or (character:GetAttribute("K0RapidShotCount") or 0)
   local at=advancedMulti and record.pulseAt or character:GetAttribute("K0RapidShotAt")

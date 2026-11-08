@@ -189,7 +189,7 @@ local function syncAppearance(character)
 					local original = part:GetAttribute("TLTEquipmentRestTransparency")
 					if original == nil then original = part.Transparency; part:SetAttribute("TLTEquipmentRestTransparency", original) end
 					local key = part:GetAttribute("TLTPlayerShieldPart") and "TLTEquippedOffhand" or "TLTEquippedWeapon"
-					part.Transparency = character:GetAttribute(key) == "" and 1 or original
+     part.Transparency = not part:GetAttribute("TLTElfQuiverPart") and character:GetAttribute(key) == "" and 1 or original
 				end
 			end
 		end

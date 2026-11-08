@@ -180,7 +180,9 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}) do
   Visual.renderCharacter(character,1/60,201)
   check(arrow.Transparency==1 and not weapon.grip.BowStrandUpper.Enabled,"Unequipping hides local arrow and both strings")
   character:SetAttribute("TLTEquippedWeapon","elf.bow.basic");Visual.renderCharacter(character,1/60,201)
-  check(arrow.Transparency==0 and weapon.grip.BowStrandUpper.Enabled,"Re-equipping restores the bow rig")
+  -- R15 now idles with an empty bow so the next Standing Draw Arrow can
+  -- visibly reload it. R6 retains the previously nocked idle arrow.
+  check(arrow.Transparency==(rig==Enum.HumanoidRigType.R15 and 1 or 0) and weapon.grip.BowStrandUpper.Enabled,"Re-equipping restores the bow and its rig-specific nock state")
   local payload="19|0|500|0|0|500|-20"
   character:SetAttribute("K0ArrowVisual",payload)
   Visual.renderCharacter(character,1/60,201)

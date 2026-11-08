@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-08",
+  "classId": "knight",
+  "sourceCommitBefore": "3c59958749da2d4306f64c1f983dbd39f72ef9b3",
+  "catalogUrl": "https://www.mixamo.com/#/?page=1&query=sword+and+shield",
+  "sourceDownload": {
+    "format": "FBX Binary",
+    "skin": "With Skin",
+    "fps": 60,
+    "keyframeReduction": "none",
+    "overdrive": 50,
+    "armSpace": 50,
+    "mirror": false,
+    "trim": [
+      0,
+      100
+    ],
+    "profile": "knight",
+    "packPose": "T-pose"
+  },
+  "sources": {
+    "sword and shield attack": {
+      "sourceSha256": "05d28c5c5f1fa2b1371a0f3d5d55d9a9a6ca6df0153fff5b4ff778513a8e6485",
+      "sourceBytes": 484065,
+      "fps": 30.0,
+      "duration": 2.3333333333333335
+    },
+    "sword and shield attack (2)": {
+      "sourceSha256": "ec110ddd569caca9f2345b201afceeaca46b118706dc55f23c7603d582d9d0d5",
+      "sourceBytes": 387473,
+      "fps": 30.0,
+      "duration": 1.3
+    },
+    "sword and shield attack (3)": {
+      "sourceSha256": "888e73f43372998cefec155805a6d7bbf1514ca08531a5d13110916d856e3e4f",
+      "sourceBytes": 429809,
+      "fps": 30.0,
+      "duration": 1.7333333333333334
+    },
+    "sword and shield attack (4)": {
+      "sourceSha256": "1c356d660bffe757845acbabfa129e2c547434f2e0d6cb93b5f92033e0a3eb94",
+      "sourceBytes": 350113,
+      "fps": 30.0,
+      "duration": 1.0
+    },
+    "sword and shield block": {
+      "sourceSha256": "f41e0adbe2e0f535cf935d347c802e22552d733946aa3244bd14c9f7c110ed50",
+      "sourceBytes": 319185,
+      "fps": 30.0,
+      "duration": 0.5666666666666667
+    },
+    "sword and shield block (2)": {
+      "sourceSha256": "7f234d93dcf018b8410243bee5409629a79b9cba23a4c67de58e94f2c1442bd4",
+      "sourceBytes": 323937,
+      "fps": 30.0,
+      "duration": 0.5
+    },
+    "sword and shield block idle": {
+      "sourceSha256": "85ac839ff545c1380667dae39ff3775b2083d190c5a5df8c81f233b02855e8c1",
+      "sourceBytes": 380033,
+      "fps": 30.0,
+      "duration": 1.3666666666666667
+    },
+    "sword and shield slash": {
+      "sourceSha256": "0e9e4cfbe8346c5c08b4b47e09ab5056eef65d58138d226231b22c2790452b3f",
+      "sourceBytes": 390401,
+      "fps": 30.0,
+      "duration": 1.5
+    },
+    "sword and shield slash (2)": {
+      "sourceSha256": "1a3c8ae1a16927d970fbf2c11b106df420db1f6d1ca588ba5199facb165d59ac",
+      "sourceBytes": 598225,
+      "fps": 30.0,
+      "duration": 3.533333333333333
+    },
+    "sword and shield slash (3)": {
+      "sourceSha256": "787a908fb86d941c9f1a55f34865fe370dc147bcacc7a98d760f89b65aaa8259",
+      "sourceBytes": 399329,
+      "fps": 30.0,
+      "duration": 1.5666666666666667
+    },
+    "sword and shield slash (4)": {
+      "sourceSha256": "b2026a0f4cbbf07c46d17a211f18b2222d683587454d9891cd23a81d44ef0594",
+      "sourceBytes": 502065,
+      "fps": 30.0,
+      "duration": 2.3
+    },
+    "sword and shield slash (5)": {
+      "sourceSha256": "5b54469fa0a0600f2dd3cf96995b0a8f24005b189d1e7480ace7f4e44bc2b57c",
+      "sourceBytes": 377617,
+      "fps": 30.0,
+      "duration": 1.3666666666666667
+    }
+  },
+  "exports": {
+    "forehand": {
+      "source": "sword and shield slash",
+      "duration": 0.42000000000000004,
+      "rig": "R15",
+      "root": "in-place",
+      "r6": "previous reviewed curves retained"
+    },
+    "backhand": {
+      "source": "sword and shield slash (3)",
+      "duration": 0.46,
+      "rig": "R15",
+      "root": "in-place",
+      "r6": "previous reviewed curves retained"
+    },
+    "overhead": {
+      "source": "sword and shield slash (4)",
+      "duration": 0.62,
+      "rig": "R15",
+      "root": "in-place",
+      "r6": "previous reviewed curves retained"
+    },
+    "wide": {
+      "source": "sword and shield slash (5)",
+      "duration": 0.46,
+      "rig": "R15",
+      "root": "in-place",
+      "r6": "previous reviewed curves retained"
+    },
+    "power": {
+      "source": "sword and shield attack (3)",
+      "duration": 0.62,
+      "rig": "R15",
+      "root": "in-place",
+      "r6": "previous reviewed curves retained"
+    },
+    "brace": {
+      "source": "sword and shield block",
+      "duration": 0.42000000000000004,
+      "rig": "R15",
+      "root": "in-place",
+      "r6": "previous reviewed curves retained"
+    }
+  },
+  "color": {
+    "display": "sRGB",
+    "view": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "curves": false
+  },
+  "published": false,
+  "rawSources": "Original downloads retained locally; raw Mixamo FBX/pack is not redistributed",
+  "runtimeAssetsUploaded": 0,
+  "files": {
+    "blender-golden.json": "af066d1ae4d9da5cf1804bdc4db24ce1196b8af63a6bcb3760e4d61e961bf870",
+    "baseline.json": "220f19a66dbb29da9a3a7e440681b9f9ec278a758167c8562ddaf06605e5367b",
+    "clips.json": "8276fb1ef16a10babb9f9baa585b2803aa294f59d03a6c9f8490eefa3c4676dd",
+    "retargeted.json": "cef1ba9e72a73c3af84eaa2467c277c901db13c799924da4a508569b9e53ee68",
+    "knight-mixamo-v1.blend": "872ccfed33440ce85246cb110c3362e70c44aeda7f8077466ab1bff837c8916e"
+  },
+  "packSha256": "33244a4008e96a8495538d03bc4f65ba2a79e41aa92358f43d7501398e23df54",
+  "packFbxFiles": 52
+}

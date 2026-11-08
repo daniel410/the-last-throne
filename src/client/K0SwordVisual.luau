@@ -42,6 +42,7 @@ local groundSlamJoints = {}
 local weaponPoses = {}
 local knightLoads = {}
 local elfIK = setmetatable({},{__mode="k"})
+local ElfQuiverVisual = require(script.Parent.ElfQuiverVisual)
 local blockIK = {}
 local MELEE = {
 	knight = { grip = "SwordGrip", joint = "K0SwordJoint" },
@@ -242,12 +243,17 @@ end
 local function updateElfIK(character, mode, phase, dt, bowPose)
 	local state = elfIK[character]
 	local isElf = character:GetAttribute("K0ClassId") == "elf"
-	local isDrawing = isElf and (bowPose and bowPose.ikWeight>0 or mode == "Attack" and not bowPose and (phase == "Windup" or phase == "Active"))
+ local quiver=character:FindFirstChild("ElfQuiver",true)
+ local quiverRoot=quiver and quiver:FindFirstChild("QuiverRoot")
+ local quiverTarget=quiverRoot and quiverRoot:FindFirstChild("QuiverDrawSocket")
+ local reachWeight=bowPose and quiverTarget and bowPose.quiverReachWeight or 0
+ local isDrawing = isElf and mode~="Dead" and not character:GetAttribute("TLTDeathFalling") and character:GetAttribute("TLTEquippedWeapon")~=""
+  and (bowPose and (bowPose.ikWeight>0 or reachWeight>0) or mode == "Attack" and not bowPose and (phase == "Windup" or phase == "Active"))
 	if not isDrawing then
 		if state and state.control.Parent then
 			if bowPose then state.weight=0;state.control.Weight=0;state.control.Enabled=false;return false end
 			-- Block and Dodge must not inherit the previous bow draw IK.
-			if mode == "Block" or mode == "Dodge" then state.weight = 0; state.control.Weight = 0; state.control.Enabled = false; return false end
+   if mode == "Block" or mode == "Dodge" or mode=="Dead" or character:GetAttribute("TLTDeathFalling") or not isElf then state.weight = 0; state.control.Weight = 0; state.control.Enabled = false; return false end
 			if isElf then
 				state.weight = math.max(0, state.weight - dt * 3.5)
 				state.control.Weight = state.weight
@@ -292,7 +298,9 @@ local function updateElfIK(character, mode, phase, dt, bowPose)
 		state = { control = control, target = target, arrow = arrow, pole=control.Pole, weight = 1 }
 		elfIK[character] = state
 	end
-	state.weight = bowPose and bowPose.ikWeight or 1
+ state.control.Target=reachWeight>0 and quiverTarget or state.target
+ state.control.Type=reachWeight>0 and Enum.IKControlType.Transform or Enum.IKControlType.Position
+ state.weight = reachWeight>0 and reachWeight or bowPose and bowPose.ikWeight or 1
 	state.control.Weight,state.control.Enabled=state.weight,true
 	return true
 end
@@ -1012,6 +1020,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	local grip = model:FindFirstChild(spec.grip)
 	local joint = grip and grip:FindFirstChild(spec.joint)
 	if not grip or not grip:IsA("BasePart") or not joint or not joint:IsA("Motor6D") or joint.Part1 ~= grip then
+  if classId=="elf" then ElfQuiverVisual.render(model,nil) end
 		clearEffect(model)
 		MageFocus.clear(model)
 		return false
@@ -1085,6 +1094,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	if classId == "mage" then MageFocus.render(model,motion,not character or character:GetAttribute("TLTEquippedWeapon")=="") end
 	if classId == "elf" then
 		drawBow(model, phase, elapsed, skillId,bowPose)
+  ElfQuiverVisual.render(model,bowPose)
 		clearEffect(model)
 	else
 		local effect = meleeEffect(model, joint, classId)

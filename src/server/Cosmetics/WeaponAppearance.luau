@@ -2,6 +2,7 @@
 -- their server owners; this adapter never grants a class or changes hit geometry.
 local ServerStorage = game:GetService("ServerStorage")
 local BowGeometry = require(game:GetService("ReplicatedStorage").Shared.ElfBowGeometry)
+local ElfQuiver = require(script.Parent.ElfQuiverAppearance)
 
 local Appearance = {}
 local OWNED = "TLTPlayerWeaponPart"
@@ -318,7 +319,8 @@ function Appearance.isAttached(appearanceModel, character, classId, hands)
 	if not SPECS[classId] or not appearanceModel or not appearanceModel:IsA("Model")
 		or not character or not character:IsA("Model") then return false end
 	local hand = weaponHandFor(character, hands, classId)
-	return hand ~= nil and attachedResult(appearanceModel, classId, hand) ~= nil
+ return hand ~= nil and attachedResult(appearanceModel, classId, hand) ~= nil
+  and (classId~="elf" or ElfQuiver.valid(appearanceModel,character))
 end
 
 function Appearance.attachInto(appearanceModel, character, classId, hands)
@@ -329,7 +331,10 @@ function Appearance.attachInto(appearanceModel, character, classId, hands)
 	local hand = weaponHandFor(character, hands, classId)
 	if not hand then return nil, classId == "elf" and "left_hand_not_ready" or "right_hand_not_ready" end
 	local existing = attachedResult(appearanceModel, classId, hand)
-	if existing then return existing end
+ if existing then
+  if classId=="elf" then ElfQuiver.ensure(appearanceModel,character) else ElfQuiver.remove(appearanceModel) end
+  return existing
+ end
 	local result, reason = Appearance.build(classId)
 	if not result then return nil, reason end
 	local owned = {}
@@ -374,6 +379,7 @@ function Appearance.attachInto(appearanceModel, character, classId, hands)
 		appearanceModel:SetAttribute("WeaponPartNames", table.concat(names, "|"))
 		appearanceModel:SetAttribute("WeaponPartCount", #names)
 		for _, child in ipairs(owned) do child:Destroy() end
+  if classId=="elf" then ElfQuiver.ensure(appearanceModel,character) else ElfQuiver.remove(appearanceModel) end
 	end)
 	result.model:Destroy()
 	if not ok then
