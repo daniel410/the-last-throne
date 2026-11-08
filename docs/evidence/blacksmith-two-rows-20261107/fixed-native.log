@@ -1,0 +1,7 @@
+MOBILE_AUDIT_CASE shops
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+MOBILE_UI_AUDIT_NATIVE {"checks":784,"pass":true,"kind":"MOBILE_UI_AUDIT_NATIVE","cases":[],"failures":[]}
+{"checks":784,"pass":true,"kind":"MOBILE_UI_AUDIT_NATIVE","cases":[],"failures":[]}
+FORGE_GEOMETRY 1533 PASS
+{"failures":[],"kind":"SHOP_AFFORDABILITY_NATIVE","pass":true,"checks":23}
+DIAMOND_HEADER 24 PASS
