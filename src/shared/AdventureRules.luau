@@ -38,6 +38,13 @@ function A.valid(hero)
  if a~=nil then
   if type(a)~='table'or type(a.runId)~='string'or #a.runId<1 or #a.runId>64 or not a.runId:match('^[%w_-]+$')or not Content.byId[a.missionId]or not D.modes[a.difficultyId]or a.version~=1 or (a.balanceVersion~=nil and not D.compatible(a.balanceVersion)) or type(a.completed)~='boolean'or type(a.firstClear)~='boolean'or not P.validate(a.journal)or type(a.kills)~='table'then return false end
   if a.returnToCampaign~=nil and type(a.returnToCampaign)~='boolean'or a.returnToCampaign and not integer(a.campaignMain,0,Content.mainCount)then return false end
+  if a.completedChapters~=nil then
+   if type(a.completedChapters)~='table'then return false end
+   for id,value in pairs(a.completedChapters)do
+    local chapter=Content.byId[id]
+    if value~=true or not chapter or chapter.side or not a.journal.clears[id]then return false end
+   end
+  end
   local n=0;for key,v in pairs(a.kills)do if type(key)~='string'or #key>100 or v~=true then return false end;n=n+1 end;if n>4096 then return false end
   if a.completed~=(a.journal.clears[a.missionId]==true)then return false end
  end
@@ -124,7 +131,7 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  local resume=old and previous and previous.id==missionId and old.difficultyId==mode and not old.journal.clears[missionId]
  local journal=resume and P.copy(old.journal)or first and P.copy(h.deepwood or P.new())or resetJournal(h.deepwood or P.new(),c)
  if c.side then journal.accepted=journal.accepted or {};journal.accepted[c.id]=true;if first then h.deepwood=P.copy(journal)end end
- h.expeditions.active={version=1,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills={}}
+ h.expeditions.active={version=1,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills={},completedChapters={}}
  local active=h.expeditions.active
  if not c.side and not first and h.deepwood and h.deepwood.main<c.number-1 then
   active.returnToCampaign=true;active.campaignMain=h.deepwood.main
@@ -138,10 +145,12 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
  if not active or active.runId~=runId then return nil,'AdventureChanged'end
  local nextChapter=A.continuation(active)
  if active.missionId~=chapterId and (not nextChapter or nextChapter.id~=chapterId)then
-  -- A lost save response may retry the final event after its continuation opened.
+  -- A lost response may retry a completed chapter after the frontier moved.
+  -- Explicit run receipts also cover EC/FV -> GW backward transitions.
   local start,c=Content.byId[active.missionId],Content.byId[chapterId]
   if start and not start.side and c and not c.side
-   and c.number>=start.number and active.journal.flags[chapterId..':'..goalId]then
+   and (active.completedChapters and active.completedChapters[chapterId]or c.number>=start.number)
+   and active.journal.flags[chapterId..':'..goalId]then
    return R.copy(profile),nil,true
   end
   return nil,'AdventureChanged'
@@ -161,6 +170,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
  local h=p.heroes[heroId];local e=h.expeditions;local a=e.active;a.journal=journal
  if a.returnToCampaign then a.campaignMain=h.deepwood.main end
  if journal.clears[chapterId]and not active.journal.clears[chapterId]then
+  if not c.side then a.completedChapters=a.completedChapters or {};a.completedChapters[chapterId]=true end
   a.completed=true;e.clears[chapterId]=e.clears[chapterId]or {};e.clears[chapterId][a.difficultyId]=true
   local reward=D.completion(c,a.difficultyId,a.balanceVersion or 1)
   if not firstClear then

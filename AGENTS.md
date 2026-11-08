@@ -1,3 +1,5 @@
+> **2026-11-07 리뷰3건 수정 · TLT-001/050/057/061~065/084 · 0.81.1:** 칼데라→GW 역방향 완료의 저장 재시도를 원정별 영수증으로 복구하고, 기존 완료 지역의 지도7/7·완료 배지와 GW-07 Tali 목표/단계 안내를 수정했다. [검증·Studio 적용·미게시](docs/evidence/campaign-review-fixes-20261107/README.md). 기존 진행/보상·전투/성장 수치 유지, 실제 계정/기기 수용은 후속.
+
 > **2026-11-07 게임 적용 · TLT-001/050/057/061~065/084 · 0.81.0:** Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard 순서·영어 연결·지도/이동·구순서 저널/활성 원정/Selene 권리 이관을 구현했다. GW Lv12~18·새 원정 규칙10, 기존1~9/ID/고정 보상 보존. [검증·Studio 적용·미게시](docs/evidence/campaign-reorder-20261107/README.md). 실제 계정/기기·전투 난도·Lv80 성장 수용은 후속이다.
 
 > **2026-11-07 본편 순서 변경 · TLT-001/061~065:** 사용자 승인으로 Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard 순서로 줄거리를 개정했다. Gloamwood는 운반대 추적·정찰대 구조·설원행 옛길 개방, Ember Caldera는 Veyr의 침공 계획·왕릉 진입로 확보를 맡는다. 문서 반영 완료이며 게임 순서·저장 이관·레벨/드롭 조정·빌드/게시는 후속이다. 기존 안정ID·보상·보유품·진행 기록을 보존한다. [상세 시나리오·인계](docs/production/gloamwood-second-story-2026-11-07.md).

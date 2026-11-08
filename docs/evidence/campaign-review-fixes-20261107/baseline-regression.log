@@ -1,0 +1,6 @@
+lua: ...t/roblox/the-last-throne/tests/campaign-reorder.spec.lua:7: backward completion retry recovers exact frontier
+stack traceback:
+	[C]: in global 'assert'
+	...t/roblox/the-last-throne/tests/campaign-reorder.spec.lua:7: in local 'check'
+	...t/roblox/the-last-throne/tests/campaign-reorder.spec.lua:70: in main chunk
+	[C]: in ?

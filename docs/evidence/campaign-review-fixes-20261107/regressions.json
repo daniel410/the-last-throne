@@ -1,0 +1,251 @@
+{
+  "total": 49,
+  "passed": 47,
+  "results": [
+    {
+      "test": "tests/advanced-skills.spec.lua",
+      "exit": 0,
+      "output": "Advanced skills: 1435 checks passed\n"
+    },
+    {
+      "test": "tests/advancement-level-only.spec.lua",
+      "exit": 0,
+      "output": "Level-only advancement: 539 checks passed\n"
+    },
+    {
+      "test": "tests/battle-startup.spec.lua",
+      "exit": 0,
+      "output": "battle-startup: 223 checks PASS\n"
+    },
+    {
+      "test": "tests/boss-combat-tuning.spec.lua",
+      "exit": 0,
+      "output": "Boss combat tuning: 330182 checks passed; 22 boss kinds\n"
+    },
+    {
+      "test": "tests/boss-final-escort.spec.lua",
+      "exit": 0,
+      "output": "BOSS_FINAL_ESCORT 290654 checks PASS; 22 boss goals / 14 new escort cohorts; 1-4 players and existing receipt rewards preserved\n"
+    },
+    {
+      "test": "tests/boss-pressure-boost.spec.lua",
+      "exit": 0,
+      "output": "Boss pressure boost: 330182 checks passed; 22 boss kinds\n"
+    },
+    {
+      "test": "tests/campaign-reorder.spec.lua",
+      "exit": 0,
+      "output": "CAMPAIGN_REORDER 1871 checks passed; mandatory solo final level 43\n"
+    },
+    {
+      "test": "tests/checkpoint-travel.spec.lua",
+      "exit": 0,
+      "output": "Checkpoint travel: 1927 checks passed\n"
+    },
+    {
+      "test": "tests/daily-login.spec.lua",
+      "exit": 0,
+      "output": "Daily login: 73 checks passed\n"
+    },
+    {
+      "test": "tests/death-xp-penalty.spec.lua",
+      "exit": 0,
+      "output": "Death XP penalty: 3575 checks passed\n"
+    },
+    {
+      "test": "tests/deepwood-bosses.spec.lua",
+      "exit": 0,
+      "output": "Deepwood bosses: 96 checks passed\n"
+    },
+    {
+      "test": "tests/deepwood-progress.spec.lua",
+      "exit": 0,
+      "output": "Deepwood progression: 515 checks passed\nDeepwood total: 520 checks passed\nDeepwood extended total: 570 checks passed\n"
+    },
+    {
+      "test": "tests/deepwood-quests.spec.lua",
+      "exit": 0,
+      "output": "Deepwood quest contract: 31 checks passed\n"
+    },
+    {
+      "test": "tests/diamond-gold-exchange.spec.lua",
+      "exit": 0,
+      "output": "Diamond Gold exchange: 25 checks passed\n"
+    },
+    {
+      "test": "tests/difficulty-balance.spec.lua",
+      "exit": 0,
+      "output": "Difficulty balance: 2661 checks passed\n"
+    },
+    {
+      "test": "tests/difficulty-enhancement.spec.lua",
+      "exit": 0,
+      "output": "Difficulty/enhancement: 151 checks passed\n"
+    },
+    {
+      "test": "tests/economy.spec.lua",
+      "exit": 0,
+      "output": "Economy: 42 checks passed\n"
+    },
+    {
+      "test": "tests/ember-caldera.spec.lua",
+      "exit": 0,
+      "output": "EMBER_CALDERA_STATIC 715 checks passed\n"
+    },
+    {
+      "test": "tests/enemy-patterns.spec.lua",
+      "exit": 0,
+      "output": "enemy-patterns: 3642 checks PASS;49 kinds/22 bosses, geometry, version8/9 stats/rewards\n"
+    },
+    {
+      "test": "tests/enhancement-probability.spec.lua",
+      "exit": 1,
+      "output": "lua: tests/enhancement-probability.spec.lua:25: attempt to index a nil value (field '?')\nstack traceback:\n\ttests/enhancement-probability.spec.lua:25: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "test": "tests/epic-monster-progression.spec.lua",
+      "exit": 0,
+      "output": "Epic monster progression: 215980 checks passed\n"
+    },
+    {
+      "test": "tests/expedition-departure.spec.lua",
+      "exit": 0,
+      "output": "Expedition departure: 42 checks passed\n"
+    },
+    {
+      "test": "tests/expedition-presentation.spec.lua",
+      "exit": 0,
+      "output": "Expedition presentation: 22 checks passed\n"
+    },
+    {
+      "test": "tests/frozen-vale.spec.lua",
+      "exit": 0,
+      "output": "FROZEN_VALE_STATIC 575 checks passed\n"
+    },
+    {
+      "test": "tests/hero-progression.spec.lua",
+      "exit": 0,
+      "output": "Hero progression: 656 checks passed\n"
+    },
+    {
+      "test": "tests/inventory.spec.lua",
+      "exit": 0,
+      "output": "Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed\n"
+    },
+    {
+      "test": "tests/journal-missing-target.spec.lua",
+      "exit": 0,
+      "output": "Journal missing target: 13 checks passed\n"
+    },
+    {
+      "test": "tests/late-epics-adventures.spec.lua",
+      "exit": 0,
+      "output": "LATE_EPICS_ADVENTURES 372 checks passed\n"
+    },
+    {
+      "test": "tests/late-epics.spec.lua",
+      "exit": 0,
+      "output": "LATE_EPICS_STATIC 952 checks passed\n"
+    },
+    {
+      "test": "tests/material-exchange.spec.lua",
+      "exit": 0,
+      "output": "Material exchange and flat fee: 181 checks passed\n"
+    },
+    {
+      "test": "tests/monster-damage-boost.spec.lua",
+      "exit": 0,
+      "output": "Monster damage boost: 95662 checks passed\n"
+    },
+    {
+      "test": "tests/monster-damage-tuning.spec.lua",
+      "exit": 0,
+      "output": "Monster damage tuning: 61331 checks passed\n"
+    },
+    {
+      "test": "tests/monster-health-boost.spec.lua",
+      "exit": 0,
+      "output": "Monster health boost: 95662 checks passed\n"
+    },
+    {
+      "test": "tests/optional-epic-continuation.spec.lua",
+      "exit": 0,
+      "output": "OPTIONAL_EPIC_CONTINUATION 4780 checks PASS; twelve side quests, all states, five map scopes\n"
+    },
+    {
+      "test": "tests/party-story.spec.lua",
+      "exit": 0,
+      "output": "Party story and final boss: 2781 checks passed\n"
+    },
+    {
+      "test": "tests/reward-materials.spec.lua",
+      "exit": 1,
+      "output": "lua: tests/reward-materials.spec.lua:39: attempt to index a nil value (local 'item')\nstack traceback:\n\ttests/reward-materials.spec.lua:39: in main chunk\n\t[C]: in ?\n"
+    },
+    {
+      "test": "tests/selene-departure.spec.lua",
+      "exit": 0,
+      "output": "Selene departure: 26 checks passed\n"
+    },
+    {
+      "test": "tests/selene-recruitment.spec.lua",
+      "exit": 0,
+      "output": "Selene recruitment: 23 checks passed\n"
+    },
+    {
+      "test": "tests/selene-trial.spec.lua",
+      "exit": 0,
+      "output": "Selene trial: 28 checks passed\n"
+    },
+    {
+      "test": "tests/side-quest-battle-start.spec.lua",
+      "exit": 0,
+      "output": "Side quest battle entry: 1029 checks passed (9 side, 64 main battle goals)\n"
+    },
+    {
+      "test": "tests/side-quest-guidance.spec.lua",
+      "exit": 0,
+      "output": "SIDE_QUEST_GUIDANCE 77 checks PASS\n"
+    },
+    {
+      "test": "tests/side-quest-review.spec.lua",
+      "exit": 0,
+      "output": "SIDE_QUEST_REVIEW 1610 checks PASS; 12 quests, 44 goals, 11 combats, 2 optional goals\nDW-Q1 | Supplies in the Marsh | 2 | 3 | Easy/replay/Hard/Insane/Hell\nDW-Q2 | The Stolen Food | 4 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q3 | Quarry Below the Falls | 5 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q4 | Remnants of the Red Battlefield | 7 | 4 | Easy/replay/Hard/Insane/Hell\nFV-Q1 | A Name in the Snow | 15 | 3 | Easy/replay\nFV-Q2 | Frostfang Supply Cave | 17 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q3 | Blue Lake Return Route | 18 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q4 | Ancient Glacier Watch | 21 | 3 | Easy/replay/Hard/Insane/Hell\nEC-Q1 | A Worker's Lost Mark | 22 | 3 | Easy/replay\nEC-Q2 | Ember Raider Nest | 24 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q3 | Volcano Shaman Altar | 25 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q4 | Caldera Titan Basin | 28 | 4 | Easy/replay/Hard/Insane/Hell\n"
+    },
+    {
+      "test": "tests/starter-potions-and-shop.spec.lua",
+      "exit": 0,
+      "output": "Starter potions and shop: 316 checks passed\n"
+    },
+    {
+      "test": "tests/story-completion.spec.lua",
+      "exit": 0,
+      "output": "Story completion: 356 checks passed\n"
+    },
+    {
+      "test": "tests/story-continuation.spec.lua",
+      "exit": 0,
+      "output": "Story continuation: 1017 checks passed\n"
+    },
+    {
+      "test": "tests/story-lobby-resume.spec.lua",
+      "exit": 0,
+      "output": "Story lobby resume: 32 checks passed\n"
+    },
+    {
+      "test": "tests/story-region-handoff.spec.lua",
+      "exit": 0,
+      "output": "Story region handoff: 52 checks passed\n"
+    },
+    {
+      "test": "tests/story-respawn.spec.lua",
+      "exit": 0,
+      "output": "Story respawn: 28 checks passed\n"
+    },
+    {
+      "test": "tests/support-passes.spec.lua",
+      "exit": 0,
+      "output": "Support passes: 30 checks passed\n"
+    }
+  ]
+}

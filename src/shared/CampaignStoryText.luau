@@ -37,6 +37,13 @@ function T.install(content)
     assert(target,'Unknown story step')
    end
    if row.title then target.title=row.title end;target.text=row.text
+   -- Single-step objectives share the same authored instruction in HUD and phases.
+   if row.step and #goal.activity.steps==1 then goal.title=target.title;goal.text=target.text end
+   if row.title and (not row.step or #goal.activity.steps==1)then
+    for _,phase in ipairs(chapter.quest.phases)do
+     if #phase.goals==1 and phase.goals[1]==goal.id then phase.title=goal.title end
+    end
+   end
   end
  end
 end

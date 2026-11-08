@@ -171,13 +171,15 @@ function Map.start(button)
   local discovered,count=0,0
   for _,row in pairs(atlas.rows) do discovered+=row.name:GetAttribute('ExploredPercent') or 0;count+=1 end
   local first,last=Scope.range(epic)
-  progress.Text=string.format(Text.Map.EpicProgress,math.clamp(journal.main-first+1,0,last-first+1),last-first+1,math.floor(discovered/math.max(1,count)))
+  local completed,total=Scope.progress(journal,epic)
+  progress.Text=string.format(Text.Map.EpicProgress,completed,total,math.floor(discovered/math.max(1,count)))
   subtitle.Text=string.format(Text.Map.EpicSubtitle,epic,Content.epics[epic].region:upper())
   journeyHint.Text=Text.Map.EpicJourneyHint
   for i,item in ipairs(chapters) do
    item.button.Visible=i>=first and i<=last
    if item.button.Visible then item.button.Position=UDim2.fromOffset(10,70+(i-first)*66);item.name.Text=string.format('%02d  %s',i-first+1,Content.zones[Content.mainChapters[i].id].name) end
-   local done=journal.main>=i;local active=journal.main==i-1
+   local status=Scope.status(journal,Content.mainChapters[i].id)
+   local done=status=='Complete';local active=status=='Current'
    item.status.Text=done and Text.Map.Complete or active and Text.Map.Current or Text.Map.Locked
    item.status.TextColor3=done and Theme.color.green or active and Theme.color.gold or Theme.color.muted
    item.button.BackgroundColor3=active and Color3.fromRGB(62,65,40) or Color3.fromRGB(23,45,48)

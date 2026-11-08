@@ -46,6 +46,48 @@ for oldMain=0,35 do
  for id,z in pairs(C.zones)do if z.legacyRequiresMain<=old.main then check(Access.allowed(upgraded,id),'old region remains unlocked '..id)end end
  local malformed=P.copy(old);malformed.coins=malformed.coins+1;check(not P.upgrade(malformed),'invalid old reward totals fail closed')
 end
+-- Backward EC -> GW completion must recover both immediate retry and SaveUnknown.
+for _,losses in ipairs({1,3})do
+ local p=assert(R.addHero(R.new(332+losses),'hero','knight',Items));p.heroes.hero.level=80;p.heroes.hero.progression=G.new(80)
+ p.heroes.hero.deepwood=P.copy(snapshots[22])
+ p.heroes.hero.expeditions={version=1,clears={},cacheProgress={},active={version=1,balanceVersion=9,runId='caldera',missionId='EC-07',difficultyId='Easy',journal=P.copy(snapshots[22]),completed=true,firstClear=true,kills={}}}
+ p=R.upgrade(p)
+ local c=C.byId['GW-01'];local last=c.goals[#c.goals]
+ for i,g in ipairs(c.goals)do if i<#c.goals then
+  for _,step in ipairs(g.activity and g.activity.steps or {false})do p=assert(A.event(p,'hero',c.id,g.id,nil,step and step.id or nil,R,Items,'caldera'))end
+ end end
+ local db=P.copy(p);local remaining=0;local committed
+ local adapter={UpdateAsync=function(_,_,transform)
+  local value=transform(P.copy(db));if value then db=P.copy(value)end
+  if remaining>0 then remaining=remaining-1;committed=committed or P.copy(db);error('response lost after write')end
+  return value and P.copy(value)or nil
+ end}
+ local store=Store.new(adapter,R,Items,function()return 100 end,function()end,'backward')
+ assert(store:open(p.userId));remaining=losses
+ local function event(current)return A.event(current,'hero','GW-01',last.id,nil,'confirmed',R,Items,'caldera')end
+ local saved,reason=store:transact(p.userId,event)
+ if losses==3 then check(not saved and reason=='SaveUnknown','three lost responses leave a recoverable unknown');saved,reason=store:transact(p.userId,event)end
+ check(saved and not reason and saved.heroes.hero.deepwood.main==8,'backward completion retry recovers exact frontier')
+ check(equal(saved.items,committed.items)and saved.wallet.gold==committed.wallet.gold and saved.revision==committed.revision,'response retries cannot regrant materials/cache/Gold or advance revision')
+ check(saved.heroes.hero.expeditions.active.completedChapters['GW-01'],'completion receipt belongs to this run')
+ local foreign,why=A.event(saved,'hero','FV-07','reunion',nil,nil,R,Items,'caldera')
+ check(not foreign and why=='AdventureChanged','unprocessed historical clear is not a run receipt')
+ check(not A.event(saved,'hero','GW-01',last.id,nil,'confirmed',R,Items,'foreign'),'foreign run still rejected')
+ local bad=P.copy(saved);bad.heroes.hero.expeditions.active.completedChapters['GW-07']=true
+ check(not R.validate(bad,Items),'uncompleted chapter cannot be forged into run receipts')
+end
+local Scope=load('CampaignMapScope')
+local mapJournal=assert(P.upgrade(snapshots[22]))
+check(Scope.progress(mapJournal,3)==7 and Scope.progress(mapJournal,4)==7,'migrated completed FV/EC show seven clears')
+check(Scope.progress(mapJournal,2)==0 and Scope.status(mapJournal,'GW-01')=='Current','missing GW stays current and zero of seven')
+check(Scope.status(mapJournal,'EC-07')=='Complete'and Scope.status(mapJournal,'HG-01')=='Locked','map distinguishes actual clears from future locks')
+check(Scope.status({main=0},'DW-01')=='Locked','pre-snapshot map is safe')
+local partialMap=assert(P.upgrade(snapshots[19]));partialMap.expeditionMission='EC-05'
+check(Scope.progress(partialMap,4)==4 and Scope.status(partialMap,'EC-05')=='Current','partial migrated Caldera shows four completed and its active story')
+local entrance=P.goal(C.byId['GW-07'],'entrance')
+check(entrance.title=='Ask Tali where the convoy went'and entrance.activity.steps[1].title==entrance.title,'HUD objective and step both use new route')
+for _,phase in ipairs(C.byId['GW-07'].quest.phases)do if phase.goals[1]=='entrance'then check(phase.title==entrance.title,'phase shares the current route instruction')end end
+check(Log.target({main=13,version=2,clears={},flags={['GW-07:nest']=true,['GW-07:queen']=true,['GW-07:exit']=true}},C.byId['GW-07']).goal.title==entrance.title,'actual tracked goal uses current Tali instruction')
 local gaps=assert(P.upgrade(snapshots[22])) -- old EC-07 complete, no GW
 check(gaps.main==7 and gaps.clears['FV-07']and gaps.clears['EC-07'],'old late clears preserved behind GW gap')
 local before=gaps.coins
