@@ -76,9 +76,19 @@ local function npc(parent,p,name,_goblin,role)
  while world.Parent and world.Name~='DeepwoodCampaign' do world=world.Parent end
  return require(script.Parent.NPCActors).acquire(world,name,p,{role=role or 'scene'})
 end
+-- EpicWorldArt replaces the watchtower visually. Its retired pillars must not
+-- remain invisible obstacles across the central road, including reused scenes.
+local function clearWatchtowerCollision(root)
+ local terrain=root:FindFirstChild('TerrainBlockout')
+ local region=terrain and terrain:FindFirstChild('DW-04')
+ if region then for _,p in ipairs(region:GetChildren()) do
+  if p:IsA('BasePart') and p.Name=='WatchtowerPillar' then p.CanCollide=false;p.CanQuery=false;p.CanTouch=false end
+ end end
+end
 function World.create(world)
  local existing=Workspace:FindFirstChild('DeepwoodCampaign')
  if existing and not (world and not world.positions["DW-01"]) then
+  clearWatchtowerCollision(existing)
   require(script.Parent.NPCActors).reconcile(existing)
   for id,z in pairs(Content.zones) do
    local terrain=existing:FindFirstChild('TerrainBlockout');local region=terrain and terrain:FindFirstChild(id)
@@ -150,7 +160,7 @@ function World.create(world)
    part(region,'OutpostDeck',Vector3.new(35,1,24),center+Vector3.new(0,.5,-28),C.wood,Enum.Material.Wood,true)
    npc(region,center+Vector3.new(0,0,-5),'Eryn',false);npc(region,center+Vector3.new(-45,0,50),'Quartermaster',false);npc(region,center+Vector3.new(-64,0,35),'Fen',false)
   elseif id=='DW-04' then
-   for _,x in ipairs({-15,15}) do for _,zz in ipairs({-18,18}) do part(region,'WatchtowerPillar',Vector3.new(5,42,5),center+Vector3.new(x,21,zz),C.stone,nil,true) end end
+   for _,x in ipairs({-15,15}) do for _,zz in ipairs({-18,18}) do part(region,'WatchtowerPillar',Vector3.new(5,42,5),center+Vector3.new(x,21,zz),C.stone,nil,false) end end
    part(region,'WatchtowerCrown',Vector3.new(38,5,44),center+Vector3.new(0,43,0),C.moss,nil,false);cage(region,center+Vector3.new(0,0,-25));banner(region,center+Vector3.new(20,0,20))
   elseif id=='DW-05' then
    arch(region,center+Vector3.new(-85,0,45));cage(region,center+Vector3.new(-65,0,-15))
