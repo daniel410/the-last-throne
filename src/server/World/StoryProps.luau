@@ -72,6 +72,7 @@ function P.forStep(chapter,goal,step)
  return 'LedgerDesk'
 end
 function P.activity(parent,chapter,goal,step,position)
+ if goal:match('^exp_')then return require(script.Parent.CampaignIncidentProps).create(parent,chapter,goal,step,position)end
  local key=P.forStep(chapter,goal,step)
  if not key then return end
  local model=P.build(parent,key,position,{theme=theme(chapter),name=chapter..'_'..goal..'_'..step.id..'_Art',detail=goal:match('^exp_')and 'incident'or nil})

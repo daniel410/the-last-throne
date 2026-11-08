@@ -11,7 +11,9 @@ local function isSurface(p)
 end
 -- Direction guidance points at the objective; roads and region centers do not alter it.
 function Navigation.route(origin,destination)
- return {origin,destination}
+ local points=require(game.ReplicatedStorage.Shared.CampaignIncidentRoute).route({origin.X,origin.Y,origin.Z},{destination.X,destination.Y,destination.Z})
+ local result={};for _,p in ipairs(points)do table.insert(result,Vector3.new(table.unpack(p)))end
+ return result
 end
 function Navigation.start()
  local player=Players.LocalPlayer

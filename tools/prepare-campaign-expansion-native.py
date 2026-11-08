@@ -28,9 +28,17 @@ src/shared/CampaignExpansionCheckpoints.luau
 src/shared/CheckpointTravel.luau
 src/shared/DeepwoodProgress.luau
 src/shared/DeepwoodQuestLog.luau
-src/shared/Difficulty.luau'''.splitlines()
+src/shared/Difficulty.luau
+src/shared/StoryEventText.luau
+src/shared/CampaignExpansionLayout.luau
+src/shared/CampaignCircuit.luau
+src/shared/CampaignSceneState.luau
+src/shared/CampaignIncidentRoute.luau
+src/server/World/CampaignIncidentProps.luau
+src/server/World/CampaignIncidentScenes.luau
+src/shared/DeepwoodQuestLog.luau'''.splitlines()
 code="assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'isolated local place only')\n"
-for path in paths:
+for path in dict.fromkeys(paths):
  parts=path.split('/');prefix={'shared':'game.ReplicatedStorage.Shared','client':'game.StarterPlayer.StarterPlayerScripts.Client','server':'game.ServerScriptService.Server'}[parts[1]]
  node=prefix+''.join('.'+part for part in parts[2:]).removesuffix('.luau')
  code+=f'assert({node}.Source=={json.dumps(Path(path).read_text(),ensure_ascii=False)},"fixed source mismatch: {path}")\n'

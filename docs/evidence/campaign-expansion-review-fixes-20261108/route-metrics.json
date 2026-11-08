@@ -1,0 +1,7 @@
+{"scope":"canonical incident entry/connector/steps/return geometric lengths; excludes core route, teleports and play time","epics":[
+{"epic":1,"beforeStuds":8539.36,"afterStuds":7641.91,"changePercent":-10.51}
+,{"epic":2,"beforeStuds":6469.95,"afterStuds":5639.37,"changePercent":-12.84}
+,{"epic":3,"beforeStuds":8466.43,"afterStuds":7674.53,"changePercent":-9.35}
+,{"epic":4,"beforeStuds":8619.48,"afterStuds":7868.44,"changePercent":-8.71}
+,{"epic":5,"beforeStuds":6597.15,"afterStuds":6097.83,"changePercent":-7.57}
+]}

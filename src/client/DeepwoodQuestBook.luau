@@ -46,7 +46,7 @@ function Book.create(parent,track)
     local phase,index,total=Log.phase(s,c)
     card(string.format('MAIN STORY %d / 7 · %s',(c.number-1)%7+1,c.quest.title),{c.quest.brief,string.format('Phase %d / %d · %s',index,total,phase),Log.reward(c)},function() track(c.id) end,s.expeditionMission and Content.byId[s.expeditionMission] and Content.byId[s.expeditionMission].side and 'CONTINUE MAIN STORY' or 'TRACK MAIN STORY')
     local currentPhase=c.quest.phases[index];local lines={}
-    for _,id in ipairs(currentPhase.goals) do local g=P.goal(c,id);table.insert(lines,(s.flags[c.id..':'..id] and '✓ ' or '□ ')..g.title) end
+    for _,id in ipairs(currentPhase.goals) do local g=P.goal(c,id);if P.required(s,g)then table.insert(lines,(s.flags[c.id..':'..id] and '✓ ' or '□ ')..g.title)end end
     card('CURRENT PHASE',lines)
     local target=Log.target(s,c);local g=target and target.goal
     if g and g.activity and g.activity.steps then
@@ -75,6 +75,10 @@ function Book.create(parent,track)
    local count=0
    for _,c in ipairs(Content.chapters) do if s.clears[c.id] then
     count+=1;local lines={c.quest.outcome}
+    for _,g in ipairs(c.expansionGoals or {})do
+     local key=c.id..':'..g.id
+     if s.flags[key]and not (s.expansionWaivers or {})[key]then table.insert(lines,g.text)end
+    end
     for _,choice in ipairs(Log.choices(s,c)) do table.insert(lines,'Your response: '..choice) end
     card((c.side and 'SIDE QUEST · ' or 'MAIN STORY · ')..(c.quest.title or c.title),lines)
    end end

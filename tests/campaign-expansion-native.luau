@@ -10,8 +10,9 @@ local World=game.ServerScriptService.Server.World
 local Client=game.StarterPlayer.StarterPlayerScripts.Client
 local report={checks=0,samples=0,parts=0,incidents=0,steps=0,blockers={},scope='isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance'}
 local function check(v,m)report.checks+=1;assert(v,m)end
-local world
+local world;local generationStart=os.clock()
 for epic=1,5 do world=require(World.CampaignWorld).create(epic,world);print('EXPANSION_NATIVE_EPIC',epic)end
+report.generationSeconds=os.clock()-generationStart
 local params=OverlapParams.new();params.FilterType=Enum.RaycastFilterType.Include;params.FilterDescendantsInstances={world.folder};params.RespectCanCollide=true
 local rays=RaycastParams.new();rays.FilterType=Enum.RaycastFilterType.Include;rays.FilterDescendantsInstances={world.terrain};rays.RespectCanCollide=true
 local function sample(c,g,at)
@@ -32,7 +33,16 @@ for _,c in ipairs(C.chapters)do
   local entry,center=Vector3.new(table.unpack(area.entry)),Vector3.new(table.unpack(area.center))
   local n=math.max(1,math.ceil((center-entry).Magnitude/12))
   for i=0,n do sample(c,g,entry:Lerp(center,i/n))end
+  local Route=require(Shared.CampaignIncidentRoute)
+  local last=area.entry
   for _,step in ipairs(g.activity.steps)do
+   local route=Route.route(last,step.position)
+   for j=2,#route do
+    local a,b=Vector3.new(table.unpack(route[j-1])),Vector3.new(table.unpack(route[j]))
+    local segments=math.max(1,math.ceil((b-a).Magnitude/12))
+    for k=0,segments do sample(c,g,a:Lerp(b,k/segments))end
+   end
+   last=step.position
    report.steps+=1;check(world.activityNodes[c.id..':'..g.id..':'..step.id]~=nil,'actual activity step exists')
    sample(c,g,Vector3.new(table.unpack(step.position)))
   end
@@ -127,5 +137,76 @@ local all=P.new();for _,c in ipairs(C.mainChapters)do all=finish(all,c)end
 presentation.update({journal=all});check(reunion:FindFirstChild('Torso',true).Transparency<1,'old completed hero sees reunion without replay')
 for i=1,5 do check(residents['homecoming'..i]and residents['homecoming'..i].text~='','five actual reunion dialogues')end
 lobby.folder:Destroy()
+-- Saved mechanical stages and two-option circuit UI through the real server engine.
+local function applyGoal(s,c,g)
+ for _,step in ipairs(g.activity and g.activity.steps or {false})do
+  s=assert(P.apply(s,c.id,g.id,step and step.choices and step.choices[1].id or g.choice and 'shared',step and step.id or nil))
+ end
+ return s
+end
+local function reach(cid,gid)
+ local c=C.byId[cid];local s=P.new()
+ for i=1,c.number-1 do s=finish(s,C.mainChapters[i])end
+ s=assert(P.enableExpansion(s))
+ for _,g in ipairs(c.goals)do if g.id==gid then return s,c,g end;if P.required(s,g)then s=applyGoal(s,c,g)end end
+ error('Unreachable goal')
+end
+local bridgeState,bc,bg=reach('FV-03','exp_2')
+local bridge=world.folder.CampaignExpansion.Epic3['FV-03_exp_2'].DeployingRavineBridge
+presentation.update({journal=bridgeState});presentation.tick(1);local raised=bridge:GetPivot()
+bridgeState=assert(P.apply(bridgeState,bc.id,bg.id,nil,'step1'));presentation.update({journal=bridgeState});presentation.tick(1)
+check((bridge:GetPivot().Position-raised.Position).Magnitude>5,'bridge lowers after confirmed first mechanism step')
+bridgeState=assert(P.apply(bridgeState,bc.id,bg.id,nil,'step2'));presentation.update({journal=bridgeState});presentation.tick(1)
+check((bridge:GetPivot().Position-bridge:GetAttribute('ExpansionPose2').Position).Magnitude<.1,'bridge reaches saved walking pose')
+local bridgeClone=bridge:Clone();bridgeClone.Name='RestreamedBridge';bridgeClone.Parent=bridge.Parent;task.wait()
+check((bridgeClone:GetPivot().Position-bridgeClone:GetAttribute('ExpansionPose2').Position).Magnitude<.1,'mid-circuit bridge restream restores saved pose')
+bridgeClone:Destroy()
+local puzzle,circuitChapter,circuit=reach('EC-05','exp_2')
+local control=world.folder.CampaignExpansion.Epic4['EC-05_exp_2'].CircuitControl1
+local puzzleRoot=Instance.new('Part');puzzleRoot.Anchored=true;puzzleRoot.Parent=workspace
+local messages={};local player={UserId=195}
+local circuitEngine=require(game.ServerScriptService.Server.Story.DeepwoodActivities).create({players=function()return {player}end,
+ active=function()return {heroId='hero'}end,context=function()return {heroId='hero'},puzzleRoot end,state=function()return puzzle end,
+ world=world,enemies=Instance.new('Folder'),publish=function(_,text)table.insert(messages,text)end,
+ enqueue=function(_,_,c,g,choice,id)
+  local before=puzzle;puzzle=assert(P.apply(puzzle,c.id,g.id,choice,id))
+  table.insert(messages,require(Shared.StoryEventText).resolve(g,id,choice,before,puzzle,c.id))
+ end})
+presentation.update({journal=puzzle});presentation.tick(1);local unturned=control:GetPivot()
+for i,step in ipairs(circuit.activity.steps)do
+ puzzleRoot.Position=Vector3.new(table.unpack(step.position))
+ circuitEngine.interactStep(player,circuitChapter.id,circuit.id,step.id)
+ local _,dialog=circuitEngine.projection(player,'hero');check(dialog and #dialog.choices==2,'mechanism opens two circuit choices at actual step position')
+ local count=(puzzle.activities or {})['EC-05:exp_2']or 0
+ circuitEngine.answer(player,'EC-05:exp_2:'..step.id..':'..step.choices[2].id)
+ check(((puzzle.activities or {})['EC-05:exp_2']or 0)==count,'wrong answer does not save or advance')
+ check(messages[#messages]==step.failure,'wrong circuit explains safe retry')
+ circuitEngine.answer(player,'EC-05:exp_2:'..step.id..':'..step.choices[1].id)
+ check(puzzle.activities['EC-05:exp_2']==i,'correct answer saves the next circuit stage')
+ presentation.update({journal=puzzle});presentation.tick(1)
+end
+check(control:GetPivot().LookVector:Dot(unturned.LookVector)<.1,'actual model control wheel turns with confirmed circuit')
+check(messages[#messages]==circuit.text,'native circuit final response includes complete authored outcome')
+circuitEngine.remove(player);puzzleRoot:Destroy()
+local allies,ac,ag=reach('HG-04','exp_2')
+local brann=world.folder.CampaignExpansion.Epic5['HG-04_exp_2'].BrannStoryAction
+presentation.update({journal=allies});presentation.tick(1);local waiting=brann:GetPivot().Position
+allies=assert(P.apply(allies,ac.id,ag.id,nil,'step1'));presentation.update({journal=allies});presentation.tick(1)
+check((brann:GetPivot().Position-waiting).Magnitude>2,'Brann moves to the operating rig after confirmed work')
+local gate=world.folder.CampaignExpansion.Epic5['HG-04_exp_2'].AllianceSideGate
+check(gate:GetPivot().Position.Y>gate:GetAttribute('ExpansionPose0').Position.Y,'alliance gate physically changes visual pose')
+local shield,sc,sg=reach('HG-05','exp_1');shield=applyGoal(shield,sc,sg)
+local conduit=world.folder.CampaignExpansion.Epic5['HG-05_exp_1'].ActiveThroneConduit
+presentation.update({journal=shield});presentation.tick(1)
+check(conduit:FindFirstChildWhichIsA('BasePart',true).Transparency<1,'inspection alone leaves throne shield active')
+shield=applyGoal(shield,sc,P.goal(sc,'west'));presentation.update({journal=shield});presentation.tick(1)
+check(conduit:FindFirstChildWhichIsA('BasePart',true).Transparency==1,'actual saved western device disables its own shield connection')
+-- Existing restored throne was already implemented; verify it instead of claiming it missing.
+local home=Instance.new('Folder');home.Name='DawnspireLobbyPrototype';home.Parent=workspace
+require(Client.DawnspireHomecoming).update({heroId='done',heroes={done={deepwood=all}}})
+check(home:FindFirstChild('DawnspireHomecoming')and home.DawnspireHomecoming:FindFirstChild('Crownheart'),'existing throne and Crownheart restoration render for final clear')
+require(Client.DawnspireHomecoming).update({heroId='new',heroes={new={deepwood=P.new()}}})
+check(not home:FindFirstChild('DawnspireHomecoming'),'switching heroes clears personal throne restoration')
+home:Destroy()
 print('CAMPAIGN_EXPANSION_NATIVE '..game.HttpService:JSONEncode(report))
 return report

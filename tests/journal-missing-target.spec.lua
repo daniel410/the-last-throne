@@ -9,7 +9,7 @@ local n=0;local function check(v,m)n=n+1;assert(v,m)end
 local profile=assert(R.addHero(R.new(712),'hero','elf',C))
 profile.heroes.hero.level=80;profile.heroes.hero.progression=G.new(80)
 local function clear(c,run)
- for _,g in ipairs(c.goals)do if not g.optional then
+ for _,g in ipairs(c.goals)do if P.required(run and A.projection(profile.heroes.hero)or profile.heroes.hero.deepwood or P.new(),g)then
   for _,step in ipairs(g.activity and g.activity.steps or {false})do
    local choice=step and step.choices and step.choices[1].id or g.choice and 'shared' or nil
    if run then profile=assert(A.event(profile,'hero',c.id,g.id,choice,step and step.id or nil,R,C,run))

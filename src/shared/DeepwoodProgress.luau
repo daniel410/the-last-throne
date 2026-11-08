@@ -173,6 +173,7 @@ function P.apply(s,chapterId,goalId,choice,stepId)
   if expected.choices then
    local valid=false;for _,answer in ipairs(expected.choices) do if answer.id==choice then valid=true end end
    if not valid then return nil,'ChooseAnswer' end
+   if expected.solution and choice~=expected.solution then return nil,'WrongCircuit' end
    n.decisions[key..':'..stepId]=choice
   end
   n.activities[key]=count+1

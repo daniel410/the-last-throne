@@ -27,7 +27,7 @@ function Engine.create(o)
   local result={};local a=attempts[player]
   if a and a.heroId==heroId then result[a.c.id..':'..a.g.id]={actorPosition=a.actor.PrimaryPart.Position,status=a.status} end
   local d=dialogs[player];local ctx,root=o.context(player)
-  if d and (not ctx or ctx.heroId~=d.heroId or not root or (root.Position-Vector3.new(table.unpack(d.g.position))).Magnitude>16) then dialogs[player]=nil;d=nil end
+  if d and (not ctx or ctx.heroId~=d.heroId or not root or (root.Position-(d.position or Vector3.new(table.unpack(d.g.position)))).Magnitude>16) then dialogs[player]=nil;d=nil end
   return result,d and d.heroId==heroId and {chapter=d.c.id,goal=d.g.id,step=d.step.id,text=d.step.text,choices=d.step.choices} or nil
  end
  function api.interact(player,node)
@@ -52,6 +52,10 @@ function Engine.create(o)
   if not step or g.activity.mode~='investigate' and step.id~=sid then o.publish(player,g.activity.clue or 'Follow the evidence in order.');return end
   if g.activity.mode=='escort' then return end
   if step.choices then
+   if choice==nil then
+    dialogs[player]={heroId=ctx.heroId,c=c,g=g,step=step,position=node.part.Position};o.publish(player,step.text);return
+   end
+   if step.solution and choice~=step.solution then o.publish(player,step.failure);return end
    local valid=false;for _,v in ipairs(step.choices) do if v.id==choice then valid=true end end
    if not valid then return end
   end
@@ -95,8 +99,18 @@ function Engine.create(o)
     if near and not threatened then
      if a.waiting~=step.id then
       a.waiting=nil
-      local target=Vector3.new(table.unpack(step.position));local delta=target-pos
-      if delta.Magnitude<=1 then a.waiting=step.id;o.enqueue(p,ctx.heroId,a.c,a.g,nil,step.id)
+      local target=Vector3.new(table.unpack(step.position))
+      local following=false
+      if a.g.expansion then
+       if a.routeStep~=step.id then
+        a.routeStep=step.id;a.routeIndex=2
+        a.route=require(game.ReplicatedStorage.Shared.CampaignIncidentRoute).route({pos.X,pos.Y,pos.Z},step.position)
+       end
+       while a.routeIndex<#a.route and (Vector3.new(table.unpack(a.route[a.routeIndex]))-pos).Magnitude<1 do a.routeIndex+=1 end
+       target=Vector3.new(table.unpack(a.route[a.routeIndex]));following=a.routeIndex<#a.route
+      end
+      local delta=target-pos
+      if delta.Magnitude<=1 and not following then a.waiting=step.id;o.enqueue(p,ctx.heroId,a.c,a.g,nil,step.id)
       else local nextPos=pos+delta.Unit*math.min(delta.Magnitude,dt*7);if a.g.expansion then local floor=require(game.ReplicatedStorage.Shared.CampaignBounds).surface(nextPos.X,nextPos.Z);if floor then nextPos=Vector3.new(nextPos.X,floor,nextPos.Z)end end;local flat=Vector3.new(delta.X,0,delta.Z);a.actor:PivotTo(flat.Magnitude>.01 and CFrame.lookAt(nextPos,nextPos+flat) or CFrame.new(nextPos)) end
      end
     end

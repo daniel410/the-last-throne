@@ -89,7 +89,7 @@ end
 function Log.phase(s,c)
  if c.side then return Log.status(s,c) end
  for i,phase in ipairs(c.quest.phases) do
-  for _,id in ipairs(phase.goals) do if not s.flags[c.id..':'..id] then return phase.title,i,#c.quest.phases end end
+  for _,id in ipairs(phase.goals) do if P.required(s,P.goal(c,id)) and not s.flags[c.id..':'..id] then return phase.title,i,#c.quest.phases end end
  end
  return 'Completed',#c.quest.phases,#c.quest.phases
 end

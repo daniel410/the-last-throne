@@ -1,6 +1,8 @@
 -- Expansion content is gated by the admitted journal, never by array indices.
 -- Core IDs/rewards/encounters remain intact for saved rules 1-12.
 local Data=game and require(script.Parent.CampaignExpansionContent)or dofile('src/shared/CampaignExpansionContent.luau')
+local Layout=game and require(script.Parent.CampaignExpansionLayout)or dofile('src/shared/CampaignExpansionLayout.luau')
+local Circuit=game and require(script.Parent.CampaignCircuit)or dofile('src/shared/CampaignCircuit.luau')
 local E={version=1,ruleVersion=13}
 local function copy(v)if type(v)~='table'then return v end;local t={};for k,x in pairs(v)do t[k]=copy(x)end;return t end
 local function overlaps(a,b,margin)
@@ -11,13 +13,14 @@ function E.install(C)
  table.sort(ordered,function(a,b)return a.id<b.id end)
  local function pocket(c,index,name)
   local z=C.zones[c.zone];local cx,y,cz=table.unpack(z.center);local hx,hz=z.size[1]/2,z.size[2]/2
+  local shape=Layout.profile(c.id,index)
   local candidates={}
   -- Different wings fit the reviewed zigzag campaign without moving old roads.
   for _,distance in ipairs({120,210,300})do
    for _,side in ipairs({index==1 and -1 or 1,index==1 and 1 or -1})do
     for _,shift in ipairs({0,-100,100,-180,180})do
-     table.insert(candidates,{center={cx+side*(hx+distance),y,cz+shift},size={180,160},axis='x',side=side})
-     table.insert(candidates,{center={cx+shift,y,cz+side*(hz+distance)},size={160,180},axis='z',side=side})
+     table.insert(candidates,{center={cx+side*(hx+distance),y,cz+shift},size={shape.width,shape.depth},axis='x',side=side})
+     table.insert(candidates,{center={cx+shift,y,cz+side*(hz+distance)},size={shape.depth,shape.width},axis='z',side=side})
     end
    end
   end
@@ -37,7 +40,7 @@ function E.install(C)
     local rampEnd=copy(a.center)
     if a.axis=='x'then rampEnd[1]=rampEnd[1]-a.side*a.size[1]/2 else rampEnd[3]=rampEnd[3]-a.side*a.size[2]/2 end
     connector.rampStart=rampStart;connector.rampEnd=rampEnd
-    a.zone=c.zone;a.name=name;a.id=c.id..':wing'..index;a.chapterId=c.id;a.entry=start;a.connector=connector
+    a.layout=shape.kind;a.zone=c.zone;a.name=name;a.id=c.id..':wing'..index;a.chapterId=c.id;a.entry=start;a.connector=connector
     table.insert(used,a);z.expansionAreas=z.expansionAreas or {};table.insert(z.expansionAreas,a);return a
    end
   end
@@ -52,11 +55,11 @@ function E.install(C)
    local area=pocket(c,index,row.space)
    local gate;for _,g in ipairs(c.goals)do if g.id==row.before then gate=g end end
    assert(gate and not gate.optional,'Invalid expansion gate '..c.id..':'..row.before)
-   local steps={};local offsets=row.mode=='escort'and {{-42,35},{0,0},{42,-35}}or {{-50,35},{40,25},{0,-45}}
+   local steps={};local points=Layout.points(c.id,index,area,row.mode)
    for n,s in ipairs(row.steps)do
-    local offset=offsets[(n-1)%#offsets+1]
-    steps[n]={id='step'..n,title=s[1],text=s[2],kind=s[3]or 'tracks',position={area.center[1]+offset[1],area.center[2],area.center[3]+offset[2]}}
+    steps[n]={id='step'..n,title=s[1],text=s[2],kind=s[3]or 'tracks',position=points[n]}
    end
+   Circuit.install(c.id,index,steps)
    local g={id='exp_'..index,title=row.title,text=row.outcome,position=copy(steps[1].position),requires=copy(gate.requires),enemies={},choice=false,
     optional=true,expansion=true,before=row.before,area=area.id,restoration=row.restoration or row.space,
     activity={mode=row.mode,actor=row.actor,steps=steps,clue=row.clue or row.title},result=row.result or 'route'}
@@ -72,6 +75,14 @@ function E.install(C)
    table.insert(goals,g)
   end
   c.goals=goals
+  for _,phase in ipairs(c.quest.phases or {})do
+   local phaseGoals={}
+   for _,id in ipairs(phase.goals)do
+    for _,event in ipairs(before[id]or {})do table.insert(phaseGoals,event.id)end
+    table.insert(phaseGoals,id)
+   end
+   phase.goals=phaseGoals
+  end
  end
 end
 return E

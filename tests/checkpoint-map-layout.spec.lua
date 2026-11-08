@@ -11,7 +11,11 @@ for _,size in ipairs({{1920,1080},{1366,768},{844,390},{667,375},{390,844},{320,
  for _,visible in ipairs({false,true})do
   local env={gui={AbsoluteSize={X=size[1],Y=size[2]}},workspace={CurrentCamera={}},UDim2=U,
    panel={Subtitle={}},title={},progress={},detail={},legend={},hint={},navigation={Caption={}},journey={},epicTabs={},compass={},
-   area={AbsoluteSize={X=0,Y=0}},travel={Visible=visible},minus={},plus={},fit={},you={}}
+   area={AbsoluteSize={X=0,Y=0}},travel={Visible=visible},minus={Caption={}},plus={Caption={}},fit={Caption={}},you={Caption={}}}
+  env.epicPicker={Caption={}};env.close={};env.categoriesOpen=false;env.epic=1;env.epicButtons={}
+  env.Content=dofile('src/shared/CampaignContent.luau');env.Theme={color={ink={}}};env.Enum={ScrollingDirection={X='X',Y='Y'}}
+  env.player={GetAttribute=function()return true end};env.Text={NavigationOn='ON',NavigationOff='OFF',Map={TrailOn='ON',TrailOff='OFF'}}
+  setmetatable(env.panel,{__index=function(t,key)if key=='AbsoluteSize'then return {X=t.Size.x,Y=t.Size.y}end end})
   setmetatable(env,{__index=_G})
   assert(load('local layout\n'..layoutSource..'\nreturn layout',nil,'t',env))()()
   local dimensions={x=env.panel.Size.x,y=env.panel.Size.y}
@@ -20,7 +24,7 @@ for _,size in ipairs({{1920,1080},{1366,768},{844,390},{667,375},{390,844},{320,
    check(t.h>=40 and t.w>=200,'travel remains an actionable touch target')
    check(t.x>=0 and t.x+t.w<=dimensions.x and t.y>=0,'travel stays inside the panel')
    check(map.y+map.h<=t.y,'travel does not cover cartography')
-   check(t.y+t.h<=nav.y,'travel does not cover navigation controls')
+   check(t.y+t.h<=nav.y or nav.y+nav.h<=t.y,'travel and navigation controls do not overlap')
    if size[1]<650 or size[2]<540 then check(not env.detail.Visible,'compact travel row does not overlap region prose')
    else
     local d=rect(env.detail,dimensions);check(d.x+d.w<=t.x,'desktop region description and travel button have separate space')

@@ -3,12 +3,9 @@
 local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local K=require(script.Parent.EpicEnvironmentKit)
-local A=require(script.Parent.EpicArchitecture)
-local Props=require(script.Parent.StoryProps)
 local W={}
 local V=Vector3.new
 local themes={DW='Deepwood',GW='Gloamwood',FV='FrozenVale',EC='EmberCaldera',HG='HauntedGraveyard'}
-local cameos={['DW-02']='Convoy Survivor',['DW-03']='Eryn',['GW-03']='Tali',['GW-06']='Finn',['FV-01']='Rescued Traveler',['FV-02']='Nessa',['EC-03']='Orik',['HG-02']='Lumi',['HG-04']='Brann'}
 local function vec(t)return V(table.unpack(t))end
 local function floor(parent,name,rect,color,material)
  local p=Instance.new('Part');p.Name=name
@@ -18,16 +15,6 @@ local function floor(parent,name,rect,color,material)
   p.CFrame=CFrame.lookAt((first+last)/2,last)*CFrame.new(0,-32,0)
  else p.Size=V(rect.size[1],64,rect.size[2]);p.Position=vec(rect.center)-V(0,32,0)end
  p.Color=color;p.Material=material or Enum.Material.Slate;p.Anchored=true;p.CanTouch=false;p.TopSurface=Enum.SurfaceType.Smooth;p.BottomSurface=Enum.SurfaceType.Smooth;p:SetAttribute('ExpansionFloor',true);p.Parent=parent;return p
-end
-local function stage(parent,c,g,name,after,build)
- local m=Instance.new('Model');m.Name=name;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
- m:SetAttribute('ExpansionEvent',c.id..':'..g.id);m:SetAttribute('ExpansionChapter',c.id);m:SetAttribute('ExpansionAfter',after)
- build(m)
- for _,v in ipairs(m:GetDescendants())do
-  if v:IsA('BasePart')then v.CanCollide=false;v.CanTouch=false;v.CanQuery=false;v:SetAttribute('ExpansionTransparency',v.Transparency);if after then v.Transparency=1 end
-  elseif v:IsA('BillboardGui')or v:IsA('PointLight')then v.Enabled=not after end
- end
- m.Parent=parent;return m
 end
 local function label(part,text)
  local gui=Instance.new('BillboardGui');gui.Name='IncidentName';gui.Size=UDim2.fromOffset(260,48);gui.StudsOffset=V(0,6,0);gui.MaxDistance=100;gui.Parent=part
@@ -88,31 +75,7 @@ function W.create(world,scope)
    for _,pair in ipairs({{entry,edge},{edge,vec(area.connector.rampEnd)},{vec(area.connector.rampEnd),center}})do local path=K.beam(scene,'ExpansionWalkingLine',pair[1]+V(0,.05,0),pair[2]+V(0,.05,0),5,pal.trim,Enum.Material.Ground);path.Size=V(12,.08,path.Size.Z)end
    K.arch(scene,entry,24,15,pal)
    local post=K.part(scene,'IncidentBoard',V(5,4,.5),CFrame.new(entry+V(12,3,0)),pal.wood,Enum.Material.Wood);label(post,area.name)
-   -- Scenery frames the actual space; interaction lanes remain physically open.
-   for i,offset in ipairs({V(-72,0,-62),V(72,0,-62),V(-72,0,62),V(72,0,62)})do
-    if theme=='FrozenVale'then require(script.Parent.DeepwoodEnvironment).asset(scene,'SnowTree',center+offset,20)
-    elseif theme=='EmberCaldera'then K.part(scene,'BasaltServicePillar',V(6,12,6),center+offset+V(0,6,0),pal.rock)
-    elseif theme=='HauntedGraveyard'then A.grave(scene,center+offset,pal,i%2)
-    else require(script.Parent.DeepwoodEnvironment).asset(scene,'ForestTree',center+offset,20)end
-   end
-   if g.result=='camp'or g.result=='rescue'then A.cabin(scene,center+V(0,0,-65),pal,theme=='FrozenVale')
-   elseif g.result=='signal'then A.arch(scene,center+V(0,0,-64),55,24,pal,8)
-   elseif theme=='EmberCaldera'then K.beam(scene,'ReturnCoolantPipe',center+V(-65,1,-30),center+V(65,1,-30),2,pal.rock,Enum.Material.Metal)
-   elseif theme=='HauntedGraveyard'then A.arch(scene,center+V(0,0,-64),55,24,pal,8)end
-   local resultAt=center+V(0,0,62)
-   stage(scene,c,g,'UnresolvedIncident',false,function(m)
-    Props.build(m,g.result=='flow'and 'CoolantValve'or g.result=='signal'and 'SealWaystone'or 'SupplyCrate',resultAt,{theme=theme,detail='incident'})
-   end)
-   stage(scene,c,g,'RestoredIncident',true,function(m)
-    Props.build(m,'RouteLantern',resultAt,{theme=theme,detail='incident'})
-    if g.result=='flow'then
-     K.beam(m,'RestoredCoolantFlow',center+V(-60,1.8,-30),center+V(60,1.8,-30),1,pal.accent,Enum.Material.Neon)
-    elseif g.result=='signal'or g.result=='beacon'then
-     local glow=K.part(m,'RestoredSignal',V(2,5,2),resultAt+V(0,9,0),pal.accent,Enum.Material.Neon)
-     local light=Instance.new('PointLight');light.Color=pal.accent;light.Range=24;light.Brightness=.6;light.Parent=glow
-    else Props.build(m,'SupplyCrate',resultAt+V(9,0,0),{theme=theme,detail='incident'})end
-    if g.id=='exp_2'and cameos[c.id]then require(script.Parent.NPCVisual).actor(m,cameos[c.id],resultAt+V(-12,0,0),c.id=='HG-02')end
-   end)
+   require(script.Parent.CampaignIncidentScenes).create(scene,c,g,area)
    -- Deepwood's original builder still consumes its archived raw content.
    -- All other builders already create the new objective anchors from the projection.
    local node=world.nodes[c.id..':'..g.id]

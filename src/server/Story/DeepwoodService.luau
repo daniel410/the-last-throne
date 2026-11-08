@@ -99,10 +99,9 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
      local pass=options.inventory.supportState(player,e.heroId)
      if pass and pass.active and pass.trial then text=require(ReplicatedStorage.Shared.SupporterText).trialStarted end
     end
-    if e.stepId then for _,step in ipairs(e.g.activity.steps) do if step.id==e.stepId then
-     text=step.text
-     for _,answer in ipairs(step.choices or {}) do if answer.id==e.choice then text=answer.text end end
-    end end end
+    if e.g.id~='@selene' then
+     text=require(ReplicatedStorage.Shared.StoryEventText).resolve(e.g,e.stepId,e.choice,before,after,e.c.id)
+    end
     local complete=after and after.clears[e.c.id] and before and not before.clears[e.c.id]
     local transitionNotice
     if Checkpoints.report(after) and not Checkpoints.report(before)then transitionNotice=Checkpoints.text.ready end
