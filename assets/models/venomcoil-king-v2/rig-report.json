@@ -1,0 +1,163 @@
+[
+  {
+    "kind": "VenomcoilKing",
+    "shape": "centipede",
+    "bones": [
+      {
+        "name": "Root",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": null,
+        "role": "body"
+      },
+      {
+        "name": "Body",
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "parent": "Root",
+        "role": "body"
+      },
+      {
+        "name": "Segment0",
+        "head": [
+          -0.027,
+          -0.36,
+          0.03
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment1",
+        "head": [
+          0.01,
+          -0.28,
+          -0.05
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment2",
+        "head": [
+          0.069,
+          -0.2,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment3",
+        "head": [
+          0.083,
+          -0.12,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment4",
+        "head": [
+          0.064,
+          -0.04,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment5",
+        "head": [
+          0.011,
+          0.04,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment6",
+        "head": [
+          0.01,
+          0.12,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment7",
+        "head": [
+          0.071,
+          0.2,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment8",
+        "head": [
+          0.102,
+          0.28,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment9",
+        "head": [
+          0.072,
+          0.36,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment10",
+        "head": [
+          -0.046,
+          0.42,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      },
+      {
+        "name": "Segment11",
+        "head": [
+          -0.058,
+          0.46,
+          -0.1
+        ],
+        "parent": "Body",
+        "role": "segment"
+      }
+    ],
+    "triangles": 2458,
+    "vertices": 3218,
+    "clips": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "AttackAlt",
+      "Heavy",
+      "HeavyAlt",
+      "Stunned",
+      "Exposed",
+      "Return",
+      "Interrupted"
+    ],
+    "source": "Crimson_Carapace_Colo"
+  }
+]

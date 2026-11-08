@@ -1,0 +1,72 @@
+[
+  {
+    "kind": "VenomcoilKing",
+    "triangles": 2458,
+    "bones": 14,
+    "clips": {
+      "Idle": {
+        "duration": 2.4000000953674316,
+        "animatedBones": 13
+      },
+      "Walk": {
+        "duration": 1.0,
+        "animatedBones": 12
+      },
+      "Attack": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 13
+      },
+      "AttackAlt": {
+        "duration": 1.2000000476837158,
+        "animatedBones": 13
+      },
+      "Heavy": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 13
+      },
+      "HeavyAlt": {
+        "duration": 1.7000000476837158,
+        "animatedBones": 13
+      },
+      "Stunned": {
+        "duration": 0.699999988079071,
+        "animatedBones": 13
+      },
+      "Exposed": {
+        "duration": 1.0,
+        "animatedBones": 13
+      },
+      "Return": {
+        "duration": 0.5,
+        "animatedBones": 12
+      },
+      "Interrupted": {
+        "duration": 0.44999998807907104,
+        "animatedBones": 12
+      }
+    },
+    "originalMeshySourceSha256": "01cd1075ad2cf85eed45f51385f6829f02584197811d74fe5dcfddded8b76b06",
+    "sourceSha256": "94503285350798645d457c0670ab29359f852a3139e3e8b6e73f2743e5e0ee0b",
+    "moduleSha256": "166280092f12c1ac244a0ea066d8924045f1846ef9668998218ba0de5e7c1d82",
+    "childModules": {
+      "src/client/GloamwoodClips/VenomcoilKing/Idle.luau": "0cc4c49f8b385b5bcc1e382ac123f912eed40fb9ca03dc3103eb871dc301c990",
+      "src/client/GloamwoodClips/VenomcoilKing/Walk.luau": "cf1323ab52e65c988cb7b86ff76af89d03821469d6e4ae041e0b88468c6ae677",
+      "src/client/GloamwoodClips/VenomcoilKing/Attack.luau": "eaa8c924771b9b98cd758534972a5ad90e44ce5457059f87df3b730d7cb95f56",
+      "src/client/GloamwoodClips/VenomcoilKing/AttackAlt.luau": "eaa8c924771b9b98cd758534972a5ad90e44ce5457059f87df3b730d7cb95f56",
+      "src/client/GloamwoodClips/VenomcoilKing/Heavy.luau": "bf53b354211da2d3b59f7c6ed962925ab546a94d1fb67f4a049f49ac7d729b31",
+      "src/client/GloamwoodClips/VenomcoilKing/HeavyAlt.luau": "bf53b354211da2d3b59f7c6ed962925ab546a94d1fb67f4a049f49ac7d729b31",
+      "src/client/GloamwoodClips/VenomcoilKing/Stunned.luau": "f8533964be3b02c73ba9f8c6859050168e9abd8b861500e7cdeca1d07e7400f3",
+      "src/client/GloamwoodClips/VenomcoilKing/Exposed.luau": "3377f33a8157a7aca15dfd9a60b26d16d3afd2bc6d4479f06c93e66a8309c94d",
+      "src/client/GloamwoodClips/VenomcoilKing/Return.luau": "52291d601853b926deae967416d53dc3ea7db5fb15eb4acd9727b78428c0b87e",
+      "src/client/GloamwoodClips/VenomcoilKing/Interrupted.luau": "91aba61b77de8ca971aa5392ccfe5d33f26574aafde7935f8bf2e9d09e4a1ef6"
+    },
+    "sourceSurfaceMaxError": {
+      "POSITION": 0.0,
+      "TEXCOORD_0": 2.9802322387695312e-08
+    },
+    "allVertexWeightsNormalized": true,
+    "maxInfluences": 2,
+    "noRootVertexWeights": true,
+    "nativeRestFramesMatch": true
+  }
+]

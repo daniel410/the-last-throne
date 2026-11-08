@@ -4,10 +4,12 @@ Native import records establish that all non-root rest frames equal glTF node
 frames. The root-only native 180-degree bake is retained in the mesh template.
 """
 from pathlib import Path
-import bisect, collections, hashlib, json, math, struct
+import argparse, bisect, collections, hashlib, json, math, struct
 
 ROOT=Path(__file__).resolve().parents[1]
-BASE=ROOT/'assets/models/gloamwood-meshy-v1'
+parser=argparse.ArgumentParser()
+parser.add_argument('--base',type=Path,default=ROOT/'assets/models/gloamwood-meshy-v1')
+BASE=parser.parse_args().base.resolve()
 OUT=ROOT/'src/client/GloamwoodClips'
 OUT.mkdir(exist_ok=True)
 
@@ -117,4 +119,4 @@ for path in sorted((BASE/'rigged').glob('*.glb')):
  reports.append({'kind':kind,'triangles':rigs[kind]['triangles'],'bones':len(skin['joints']),'clips':{k:{'duration':v['duration'],'animatedBones':len(v['tracks'])}for k,v in clips.items()},'originalMeshySourceSha256':hashlib.sha256(source_path.read_bytes()).hexdigest(),'sourceSha256':hashlib.sha256(path.read_bytes()).hexdigest(),'moduleSha256':hashlib.sha256(target.read_bytes()).hexdigest(),'childModules':children,'sourceSurfaceMaxError':surface_errors,'allVertexWeightsNormalized':True,'maxInfluences':2,'noRootVertexWeights':True,'nativeRestFramesMatch':True})
 (BASE/'clip-validation.json').write_text(json.dumps(reports,indent=2)+'\n')
 (BASE/'review-walk-poses.json').write_text(json.dumps(review,indent=2)+'\n')
-print('PASS: 8 intact meshes; normalized skin weights; native rest frames; 80 clips / 41 samples')
+print(f'PASS: {len(reports)} intact meshes; normalized skin weights; native rest frames; {sum(len(r["clips"]) for r in reports)} clips / 41 samples')
