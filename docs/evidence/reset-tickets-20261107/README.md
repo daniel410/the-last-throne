@@ -29,3 +29,5 @@ Diamond Shop → RESET TICKETS → 각50 Diamonds 구매 확인 → 선택 영�
 ## 고정 빌드
 
 구현 소스 커밋 후 `python3 tools/build-game.py --source HEAD --record docs/evidence/reset-tickets-20261107/build.json`으로 고정 빌드를 생성하고 동일 native를 재실행한다. 버전·소스·SHA256·상태는 build.json에 기록한다. 기존 데이터로 롤백할 때는 새 상품 정의를 유지해야 한다. 새 리셋권을 모르는 구버전은 프로필을 로드 거부할 수 있으므로 새 보유품을 삭제/초기화하지 않는다.
+
+고정 빌드0.82.0 성공: 소스 `254d1f5603042b3a51e65080ea31f1d443462a44`, 산출물 SHA256 `c5478c50e8697d9a44435feb8eef748d2dd6bef9b0bafd6e52baf0869ad1ba49` 재대조. [build.json](build.json). 동일 고정 Place의 native 재실행 **34 PASS / 종료0**, [native-final.log](native-final.log). 입력 LFS 포인터0개·이번 변경 신규 대용량 자산 없음. 검증한 구현/기록을 origin/main에 푸시하고 원격 커밋 일치를 확인한다.
