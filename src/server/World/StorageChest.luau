@@ -3,7 +3,9 @@ local Chest={}
 function Chest.create(lobby)
  local model=Instance.new('Model');model.Name='DawnspireAccountStorage'
  model:SetAttribute('StorageVisualVersion','travel-chest-v1')
- local origin=lobby.origin+Vector3.new(12,0,24)
+ -- Keep the lobby chest beside the smith approach, clear of its walking lane.
+ local offset=lobby.folder:GetAttribute('TLTLobbyWorld') and Vector3.new(16,0,34) or Vector3.new(12,0,24)
+ local origin=lobby.origin+offset
  local body
  for _,spec in ipairs(Geometry)do
   local value=Instance.new('Part');value.Name=spec.name

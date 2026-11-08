@@ -28,8 +28,21 @@ local function alignEmergencyPipes(world)
   pipe.Position=center+Vector3.new(side*184,4,0)
  end end
 end
+-- Upgrade the one-piece legacy wall as well as freshly generated worlds.
+function W.repairEntrance(world)
+ local region=world.terrain:FindFirstChild('EC-07');if not region then return end
+ local center=v(Content.zones['EC-07'].center)
+ for _,wall in ipairs(region:GetChildren())do
+  if wall:IsA('BasePart')and wall.Name=='GreatFurnaceWall'and wall.Size==Vector3.new(130,42,10)
+   and (wall.Position-center-Vector3.new(0,21,-175)).Magnitude<.1 then
+   local right=wall:Clone();right.Size=Vector3.new(45,42,10);right.Position=center+Vector3.new(42.5,21,-175);right.Parent=region
+   local lintel=wall:Clone();lintel.Name='GreatFurnaceLintel';lintel.Size=Vector3.new(40,30,10);lintel.Position=center+Vector3.new(0,27,-175);lintel.Parent=region
+   wall.Size=Vector3.new(45,42,10);wall.Position=center+Vector3.new(-42.5,21,-175)
+  end
+ end
+end
 function W.create(world)
- if world.emberReady then alignEmergencyPipes(world);return world end
+ if world.emberReady then alignEmergencyPipes(world);W.repairEntrance(world);return world end
  local terrain=world.terrain;local foundation=Instance.new('Model');foundation.Name='EmberCalderaFoundation';foundation.ModelStreamingMode=Enum.ModelStreamingMode.Persistent;foundation.Parent=terrain
  local props=Instance.new('Folder');props.Name='EmberStoryProps';props.Parent=world.folder
  for id,z in pairs(Content.zones)do
@@ -66,7 +79,9 @@ function W.create(world)
    for _,x in ipairs({-160,160})do part(region,'TestworksHeatTower',Vector3.new(18,36,18),center+Vector3.new(x,18,0),C.iron,Enum.Material.Metal,true)end
   elseif id=='EC-07' then
    gate(region,center+Vector3.new(0,0,125),115,36)
-   part(region,'GreatFurnaceWall',Vector3.new(130,42,10),center+Vector3.new(0,21,-175),C.basalt,nil,true)
+   -- A real doorway keeps the furnace front and the central road usable.
+   for _,side in ipairs({-1,1})do part(region,'GreatFurnaceWall',Vector3.new(45,42,10),center+Vector3.new(side*42.5,21,-175),C.basalt,nil,true)end
+   part(region,'GreatFurnaceLintel',Vector3.new(40,30,10),center+Vector3.new(0,27,-175),C.basalt,nil,true)
    local glow=part(props,'FurnaceCore',Vector3.new(48,26,3),center+Vector3.new(0,18,-168),C.lava,Enum.Material.Neon);glow:SetAttribute('StoryVisualKey','EC-07:restart')
    for _,x in ipairs({-184,184})do part(region,'EmergencyCoolantPipe',Vector3.new(8,8,270),center+Vector3.new(x,4,0),C.coolant,Enum.Material.Metal,true)end
   end

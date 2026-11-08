@@ -62,7 +62,7 @@ local function dressed(legacy,key)
   local before={};for _,child in ipairs(parent:GetChildren()) do before[child]=true end
   legacy(parent,p)
   for _,child in ipairs(parent:GetChildren()) do if not before[child] and child:IsA('BasePart') then
-   child.Transparency=1;child.CastShadow=false;child:SetAttribute('StoryBlockoutProxy',true)
+   child.Transparency=1;child.CastShadow=false;child.CanCollide=false;child.CanQuery=false;child.CanTouch=false;child:SetAttribute('StoryBlockoutProxy',true)
   end end
   return require(script.Parent.StoryProps).build(parent,key,p)
  end

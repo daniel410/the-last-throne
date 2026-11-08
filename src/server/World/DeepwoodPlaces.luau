@@ -5,7 +5,7 @@ local Content=require(Shared.DeepwoodContent)
 local Bounds=require(Shared.DeepwoodBounds)
 local Access=require(Shared.DeepwoodAccess)
 local Env=require(script.Parent.DeepwoodEnvironment)
-local Places={version=2}
+local Places={version=3}
 local C={earth=Color3.fromRGB(128,116,77),stone=Color3.fromRGB(137,148,119),moss=Color3.fromRGB(101,126,79),wood=Color3.fromRGB(105,76,46),gold=Color3.fromRGB(219,176,82),cloth=Color3.fromRGB(38,86,133),root=Color3.fromRGB(73,68,66),water=Color3.fromRGB(104,182,186)}
 local themes={['DW-01']='Old Pilgrim Grove',['DW-02']='Scattered Caravan',['DW-03']='Ranger Overlook',['DW-04']='Ruined Cloister',['DW-05']='Occupied Courtyard',['DW-06']='Root Sanctuary',['DW-07']='Broken Seal Circle',['DW-S1']='Stolen Supply Camp',['DW-S2']='Quarry Watercourse',['DW-S3']='Fallen Standard Ridge'}
 local function part(parent,name,size,cf,color,material,solid)
@@ -179,9 +179,9 @@ function Places.create(world)
    for _,sign in ipairs({-1,1}) do
     strip(place,'WalkableRamp',p+Vector3.new(sign*(x+run),0,0),p+Vector3.new(sign*x,rise,0),24*s,C.stone,true)
    end
-   local previous=p+Vector3.new(-x-run,0,0)
+   local previous=p+Vector3.new(-x-run-20,0,0)
    for i=1,12 do
-    local t=i/12;local nextPoint=p+Vector3.new(-math.cos(t*math.pi)*(x+run),.12,math.sin(t*math.pi)*52*s)
+    local t=i/12;local nextPoint=p+Vector3.new(-math.cos(t*math.pi)*(x+run+20),.12,math.sin(t*math.pi)*56*s)
     strip(place,'ReturnLoop',previous,nextPoint,14,C.earth,false);previous=nextPoint
    end
    dress(place,id,p+Vector3.new(0,rise,0),s)

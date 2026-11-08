@@ -7,7 +7,7 @@ local Bounds=require(Shared.CampaignBounds)
 local K=require(script.Parent.EpicEnvironmentKit)
 local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
-local Art={version=5}
+local Art={version=6}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -97,6 +97,7 @@ local function terrainSite(parent,c,size,pal,theme,safe)
  range(m,900)
 end
 local terrainRay=RaycastParams.new();terrainRay.FilterType=Enum.RaycastFilterType.Include
+local surfaceOverlap=OverlapParams.new();surfaceOverlap.FilterType=Enum.RaycastFilterType.Include;surfaceOverlap.RespectCanCollide=true
 local function ground(p)
  local hit=workspace:Raycast(p+V(0,180,0),V(0,-480,0),terrainRay)
  return hit and V(p.X,hit.Position.Y,p.Z) or p
@@ -149,7 +150,7 @@ end
 local function route(parent,a,b,width,pal,theme)
  local d=b-a;if d.Magnitude<.1 then return end
  local forward=V(d.X,0,d.Z).Unit;local normal=V(-forward.Z,0,forward.X);local prev=ground(a)
- local n=math.max(2,math.ceil(d.Magnitude/16))
+ local n=math.max(2,math.ceil(d.Magnitude/8))
  for i=1,n do
   local t=i/n;local q=ground(a:Lerp(b,t)+normal*math.sin(t*math.pi)*math.sin(i*.32)*6)
   local cf=CFrame.lookAt((prev+q)/2+V(0,.04,0),q+V(0,.04,0))
@@ -157,10 +158,13 @@ local function route(parent,a,b,width,pal,theme)
   -- Do not bridge carved cliffs with a paper-thin decorative ramp. The full
   -- width must follow real ground, including both verges and the segment ends.
   local supported=math.abs(q.Y-prev.Y)<=length*.35
-  for _,x in ipairs({-width/2,0,width/2})do for _,z in ipairs({-length/2,0,length/2})do
-   local sample=cf:PointToWorldSpace(V(x,0,z));local floor=ground(sample)
-   if math.abs(sample.Y-.04-floor.Y)>.6 then supported=false end
+  local nx,nz=math.max(1,math.ceil((width+2)/2)),math.max(1,math.ceil(length/2))
+  for ix=0,nx do for iz=0,nz do
+   local sample=cf:PointToWorldSpace(V((ix/nx-.5)*(width+2),0,(iz/nz-.5)*length));local floor=ground(sample)
+   if math.abs(sample.Y-.04-floor.Y)>.4 then supported=false end
   end end
+  -- A foot can be on flat ground while the body clips the side of a ramp.
+  if #workspace:GetPartBoundsInBox(cf+V(0,3.7,0),V(width+4,5,length+4),surfaceOverlap)>0 then supported=false end
   if supported then
    local p=K.part(parent,'WornCurvedRoute',V(width,.06,length),cf,pal.ground:Lerp(pal.trim,theme=='Deepwood'and .60 or (theme=='Gloamwood'or theme=='HauntedGraveyard')and .65 or .38),theme=='Deepwood'and Enum.Material.Sandstone or theme=='FrozenVale'and Enum.Material.Glacier or Enum.Material.Cobblestone)
    p.CastShadow=false
@@ -206,11 +210,11 @@ local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
  end
  range(m,450)
 end
-local function vista(parent,c,size,pal,theme,index)
+local function vista(parent,c,size,pal,theme,index,id)
  local m=model(parent,'AuthoredVista')
  if index==1 or index==7 then Architecture.entry(m,c,size,pal)end
  if theme=='EmberCaldera'then
-  if index==2 then Architecture.camp(m,c,size,pal,false)
+  if index==2 then Architecture.camp(m,c,size,pal,false,0,id=='EC-02'and 180 or 0)
   elseif index==3 then Architecture.mine(m,c,size,pal)
   elseif index==4 then Architecture.aqueduct(m,c,size,pal,theme)
   else Architecture.foundry(m,c,size,pal,index)end
@@ -232,7 +236,7 @@ local function vista(parent,c,size,pal,theme,index)
   elseif index==5 then Architecture.mine(m,c,size,pal)
   else Architecture.ruin(m,c,size,pal,index)end
  else
-  if index==3 then Architecture.camp(m,c,size,pal,false,180)
+  if index==3 then Architecture.camp(m,c,size,pal,false,180,180)
   elseif index==5 then Architecture.citadel(m,c,size,pal,theme,index)
   else Architecture.cloister(m,c,size,pal,index)end
   local hero=c+V(size[1]/2+15,0,-size[2]/2+45)
@@ -310,7 +314,7 @@ local function carve(world,Content,Access)
  -- Existing optional terraces/ramps are part of the playable world too.
  local places=world.terrain:FindFirstChild('DeepwoodPlaces')
  if places then for _,part in ipairs(places:GetDescendants())do
-  if part:IsA('BasePart')and part.CanCollide and (part.Name=='WalkableTerrace'or part.Name=='WalkableRamp'or part.Name=='TerraceLanding')then
+  if part:IsA('BasePart')and ((part.CanCollide and (part.Name=='WalkableTerrace'or part.Name=='WalkableRamp'or part.Name=='TerraceLanding'))or part.Name=='ReturnLoop')then
    local low,high=V(math.huge,math.huge,math.huge),V(-math.huge,-math.huge,-math.huge)
    for _,x in ipairs({-1,1})do for _,y in ipairs({-1,1})do for _,z in ipairs({-1,1})do
     local p=part.CFrame:PointToWorldSpace(part.Size*V(x,y,z)/2)
@@ -374,7 +378,10 @@ function Art.create(world,scope)
   parent.Name='EpicWorldArt';parent:SetAttribute('ArtVersion',Art.version);parent.Parent=world.folder
  end
  local previous=parent:FindFirstChild(artName)
- if previous and previous:GetAttribute('ArtVersion')==Art.version and previous:GetAttribute('BuildComplete')then return world end
+ if previous and previous:GetAttribute('ArtVersion')==Art.version and previous:GetAttribute('BuildComplete')then
+  require(script.Parent.CampaignRouteClearance).apply(world,previous)
+  return world
+ end
  if previous then previous:Destroy()end
  local root=Instance.new('Folder');root.Name=artName;root:SetAttribute('ArtVersion',Art.version);root.Parent=parent
  local ids={};for id in pairs(Content.zones)do table.insert(ids,id)end;table.sort(ids)
@@ -392,23 +399,26 @@ function Art.create(world,scope)
  cutScenicWater(plans)
  carve(world,Content,Access)
  -- Ground against actual retained floors as well as carved Terrain, never scenery.
- local floors={workspace.Terrain}
+ local floors={workspace.Terrain};local raisedSurfaces={}
  for _,p in ipairs(world.folder:GetDescendants())do
-  if p:IsA('BasePart') and p.CanCollide and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name=='Ground' or p.Name=='ForestBedrock' or p.Name=='TrailEmbankment' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_') or p.Name:match('^ConnectedPath_') or p.Name:match('^SnowTrail_') or p.Name:match('^CalderaTrail_'))then
+  if p:IsA('BasePart') and p.CanCollide and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name=='Ground' or p.Name=='ForestBedrock' or p.Name=='TrailEmbankment' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_') or p.Name:match('^ConnectedPath_') or p.Name:match('^SnowTrail_') or p.Name:match('^CalderaTrail_') or p.Name:match('^LateTrail_'))then
    table.insert(floors,p)
+   if p.Name=='WalkableRamp' or p.Name=='WalkableTerrace' or p.Name=='TerraceLanding'then table.insert(raisedSurfaces,p)end
   end
  end
+ surfaceOverlap.FilterDescendantsInstances=raisedSurfaces
  terrainRay.FilterDescendantsInstances=floors
  terrainRay.RespectCanCollide=true
  for _,p in ipairs(plans)do
   vegetation(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng)
   floorDetails(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,Content.byId[p.id])
-  vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index)
+  vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index,p.id)
   task.wait()
  end
  for i,edge in ipairs(Access.edges)do pass(root,edge,i);task.wait()end
  for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and not p:IsDescendantOf(root)then
   if obsolete[p.Name]then p.Transparency=1;p.CastShadow=false end
+  if p.Name=='InvestigationPath' or p.Name=='WornForestTrack' then p.Transparency=1;p.CastShadow=false end
  end end
  for _,id in ipairs(ids)do
   local region=world.terrain:FindFirstChild(id);local pal=K.palette[names[id:sub(1,2)]]
@@ -417,6 +427,7 @@ function Art.create(world,scope)
    if p:IsA('BasePart')and (p.Name=='ForestGround'or p.Name=='SnowGround'or p.Name=='Ground'or p.Name=='BasaltGround')then p.Color=pal.ground;p.Material=groundMaterial(names[id:sub(1,2)])end
   end end
  end
+ require(script.Parent.CampaignRouteClearance).apply(world,root)
  root:SetAttribute('BuildComplete',true);world.folder:SetAttribute('EpicWorldArtVersion',Art.version);return world
 end
 return Art

@@ -306,10 +306,10 @@ function A.mine(parent,c,size,pal)
  for _,side in ipairs({-1,1})do A.flame(m,p+V(side*45,0,19),pal,true)end
  return m
 end
-function A.camp(parent,c,size,pal,snow,leftShiftZ)
+function A.camp(parent,c,size,pal,snow,leftShiftZ,rightShiftZ)
  local m=model(parent,'ShelteredQuarter')
  for _,side in ipairs({-1,1})do
-  local p=c+V(side*(size[1]/2-24),0,-65+(side==-1 and (leftShiftZ or 0)or 0))
+  local p=c+V(side*(size[1]/2-24),0,-65+(side==-1 and (leftShiftZ or 0)or (rightShiftZ or 0)))
   A.cabin(m,p,pal,snow)
   A.cabin(m,p+V(0,0,-88),pal,snow)
  end
