@@ -21,10 +21,14 @@
 | 현재 TLT Studio70829337938054 / Edit | 변경4소스가 알려진 Git 이력과 일치함을 확인한 뒤 문법 검사·소스 동기화. `ServerStorage.TLTBeforeCampaignReviewFixes20261107`에 기존4소스 보존. 다른0.79.7 Studio·모델·이미지·라이브 저장·게시는 변경하지 않음. |
 | `git diff --check` | PASS. VERSION은 MICRO 증가0.81.1. 보상 JSON·전투 규칙10·저널v2·난도/성장 수치는 무변경. |
 
-기존 자산203785492 타입 경고는 엔진 로그에 남아 있으며 검사 실패와 구분한다. GUI 검증은 실제 표시 함수/엔진 속성 검사이며 사람의 화면 관찰·터치/패드·실기기 수용을 대신하지 않는다.
+기존 자산203785492 타입 경고는 엔진 로그에 남아 있으며 검사 실패와 구분한다. 저장 어댑터는 메모리 모의이며 라이브 DataStore를 변경하지 않았다. GUI 검증은 실제 표시 함수/엔진 속성 검사이며 사람의 화면 관찰·터치/패드·실기기 수용을 대신하지 않는다.
 
 ## 빌드·인계
 
 검증 소스를 커밋·푸시해 고정한 뒤 `python3 tools/build-game.py --source HEAD --record docs/evidence/campaign-review-fixes-20261107/build.json`으로 단일 파일을 만든다. 같은 고정 파일의 재검증 결과·소스 커밋·SHA256은 마감 기록을 따른다. 실제 Place 게시와 릴리스 태그는 수행하지 않는다.
 
 다음 QA는 게시된 테스트 계정에서 기존 칼데라 진행·GW 완료 응답 유실/재접속·지도 완료 표시·Tali 안내를 확인한다. 정상 전투 완주·실기기/협동·Lv80 성장 수용은 기존 후속으로 유지하며 부모 티켓을 Done으로 바꾸지 않는다.
+
+## 고정 빌드 마감 결과
+
+소스 `ad716ead6a5ceee213c9e2b24c352f97f8d27d5d`을 origin/main에 푸시한 뒤 단일 파일 `builds/0.81.1/TheLastThrone-0.81.1.rbxlx` 빌드 성공 (14825935bytes). SHA256 `ed7aebe53392b68bce3b1b6b2389461bebe20cab1ad2f83e8dfd1a491c2df7b8`을 재확인했다. [빌드 기록](build.json). 같은 고정 파일에서 **1,871 + 929 = 2,800검사 PASS·종료0**를 재확인했다. [고정 빌드 로그](native-fixed-build.log) / [결과](native-fixed-build.json). 현재 Studio에는 수정4소스를 적용했으며 실제 Place 게시·릴리스 태그는 없다.
