@@ -1,0 +1,1102 @@
+{
+  "created": "2026-11-08",
+  "status": "concept-boards-generated-pending-user-review",
+  "scope": "40 equipment families, four rarity concepts per board; 39 new boards plus approved hood board; no runtime assets",
+  "reference": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+  "referenceSha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263",
+  "tool": "built-in image_gen",
+  "records": [
+    {
+      "familyId": "common_head",
+      "name": "Wayfarer Hood",
+      "classId": null,
+      "slot": "head",
+      "shape": "hood",
+      "uniqueName": "Quarrykeeper Hood",
+      "bossKind": "KingOgre",
+      "file": "boards/common_head.png",
+      "status": "approved-reference",
+      "source": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+      "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263",
+      "bytes": 2040684,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "paletteGroup": "wayfarer",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_body",
+      "name": "Wayfarer Coat",
+      "classId": null,
+      "slot": "body",
+      "shape": "armor",
+      "uniqueName": "Hollowbark Mantle",
+      "bossKind": "AncientHollowbark",
+      "file": "boards/common_body.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nEdit target: attached Wayfarer Coat four-rarity comparison board. Latest user correction: same-named equipment set must have identical colors across all pieces of the same rarity. Recolor only the fabric/enamel and gemstones to the exact set palette below; keep all silhouettes, construction, weapon proportions (if applicable), details, metal craftsmanship, camera, layout and labels unchanged. Do NOT alter item length. Preserve all four rarity designs. \nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: deep teal cloth #13565B, warm brown leather #784B32, cool steel #CAD3DB, no colored gemstone. EPIC: deep teal cloth #13565B, warm brown leather #784B32, cool silver #CAD3DB, small teal gemstones #229EAA. LEGENDARY: deep teal cloth/enamel #13565B, silver #CAD3DB and gold #D8AF52, teal gemstones #229EAA. UNIQUE: midnight NAVY BLUE cloth/enamel #182F67 (NOT green, NOT purple), polished platinum #E0E5EF, warm gold #D8AF52, AMBER gemstones #EBA52C. Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-38493b80-f6b9-4b91-a36a-9211370bb6e4.png",
+      "revision": "set-palette-r4",
+      "sha256": "31e19e4d167120c5ecb64dc8c2b654011bedb54305607ec9fbb2d5ee52082dc0",
+      "bytes": 2236286,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "previous": "archive/common_body-before-palette.png",
+      "paletteGroup": "wayfarer",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_hands",
+      "name": "Wayfarer Gloves",
+      "classId": null,
+      "slot": "hands",
+      "shape": "gloves",
+      "uniqueName": "Ashforged Grips",
+      "bossKind": "InfernoOverlord",
+      "file": "boards/common_hands.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"WAYFARER GLOVES\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Wayfarer Gloves; class Shared, all four heroes; item type gloves. Theme: travel leather and steel.\nCategory invariant: One matched PAIR of wearable gloves/gauntlets per tier, exactly two gloves, display both.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use rounded layered cuffs and articulated finger/backhand plates.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Ashforged Grips, associated with InfernoOverlord. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through caldera overlord: precisely cut ember-orange gemstone and elegant flame-shaped gold inlays; no lava cracks or charred surface. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-58da797e-1371-4c60-be12-43c2acf60623.png",
+      "revision": "approved-style-v2",
+      "sha256": "fd26867b607f24cc9b83cc839f61e9ba5505c0fb1e98c70b5f431cfeb986dae3",
+      "bytes": 2170713,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "paletteGroup": "wayfarer",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_feet",
+      "name": "Wayfarer Boots",
+      "classId": null,
+      "slot": "feet",
+      "shape": "boots",
+      "uniqueName": "Widowstep Boots",
+      "bossKind": "WidowQueen",
+      "file": "boards/common_feet.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nEdit target: attached Wayfarer Boots four-rarity comparison board. Latest user correction: same-named equipment set must have identical colors across all pieces of the same rarity. Recolor only the fabric/enamel and gemstones to the exact set palette below; keep all silhouettes, construction, weapon proportions (if applicable), details, metal craftsmanship, camera, layout and labels unchanged. Do NOT alter item length. Preserve all four rarity designs. \nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: deep teal cloth #13565B, warm brown leather #784B32, cool steel #CAD3DB, no colored gemstone. EPIC: deep teal cloth #13565B, warm brown leather #784B32, cool silver #CAD3DB, small teal gemstones #229EAA. LEGENDARY: deep teal cloth/enamel #13565B, silver #CAD3DB and gold #D8AF52, teal gemstones #229EAA. UNIQUE: midnight NAVY BLUE cloth/enamel #182F67 (NOT green, NOT purple), polished platinum #E0E5EF, warm gold #D8AF52, AMBER gemstones #EBA52C. Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-b2cd6b58-9285-488c-b067-1a51691104c9.png",
+      "revision": "set-palette-r4",
+      "sha256": "65b90e60b664f2bfe57312c12fad01f0f220c9336a222df13927a2bb561e37a9",
+      "bytes": 2184991,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "previous": "archive/common_feet-before-palette.png",
+      "paletteGroup": "wayfarer",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_vigor_ring",
+      "name": "Vigor Ring",
+      "classId": null,
+      "slot": "accessory",
+      "shape": "ring",
+      "uniqueName": "Ogreheart Ring",
+      "bossKind": "KingOgre",
+      "file": "boards/common_vigor_ring.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"VIGOR RING\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Vigor Ring; class Shared, all four heroes; item type ring. Theme: copper amber and steel.\nCategory invariant: Exactly ONE wearable ring per tier, clearly visible circular finger band with open finger hole, no chain, crowns or extra ring.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a split-shoulder band with an inset class emblem, not just a larger stone.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Ogreheart Ring, associated with KingOgre. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through quarry sovereign: amber gemstone, faceted forged metal, broad architectural structure; never raw rock. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-299ef231-6f19-4868-9a18-4802591076a5.png",
+      "revision": "approved-style-v2",
+      "sha256": "1354d1e2ec4206781531074ea33adf69b57839dced059880b904faa739600a3a",
+      "bytes": 2006661,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_ward_pendant",
+      "name": "Ward Pendant",
+      "classId": null,
+      "slot": "accessory",
+      "shape": "pendant",
+      "uniqueName": "Glacier Ward",
+      "bossKind": "AncientGlacierKing",
+      "file": "boards/common_ward_pendant.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"WARD PENDANT\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Ward Pendant; class Shared, all four heroes; item type pendant. Theme: copper amber and steel.\nCategory invariant: Exactly ONE wearable pendant/charm per tier with a restrained matching chain or cord, not a ring, not a full armor piece.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a two-layer medallion with an open geometric inner window, not a larger Rare disc.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Glacier Ward, associated with AncientGlacierKing. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through glacial sovereign: polished icy-blue jewel and clean snowflake engraving on platinum, gold accents; no rough ice chunks. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-62c6c2c7-8c1c-4ca5-ac3a-226315cc0b01.png",
+      "revision": "approved-style-v2",
+      "sha256": "573e5675e7f86d062145debc2e69362c8d3c60ded6357dc42138a71bcf483d54",
+      "bytes": 2035834,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_valor_ring",
+      "name": "Valor Ring",
+      "classId": null,
+      "slot": "accessory",
+      "shape": "ring",
+      "uniqueName": "Emberfang Ring",
+      "bossKind": "InfernoOverlord",
+      "file": "boards/common_valor_ring.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"VALOR RING\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Valor Ring; class Shared, all four heroes; item type ring. Theme: copper amber and steel.\nCategory invariant: Exactly ONE wearable ring per tier, clearly visible circular finger band with open finger hole, no chain, crowns or extra ring.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a split-shoulder band with an inset class emblem, not just a larger stone.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Emberfang Ring, associated with InfernoOverlord. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through caldera overlord: precisely cut ember-orange gemstone and elegant flame-shaped gold inlays; no lava cracks or charred surface. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-091655d4-f758-4f13-bdb2-feceae94e079.png",
+      "revision": "approved-style-v2",
+      "sha256": "55e8b2ffae119f51a48e13126509edf50ef2a9cdfb9e500f1e4b178dbbf05945",
+      "bytes": 1942826,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_refuge_charm",
+      "name": "Refuge Charm",
+      "classId": null,
+      "slot": "accessory",
+      "shape": "pendant",
+      "uniqueName": "Lastlight Charm",
+      "bossKind": "Veyr",
+      "file": "boards/common_refuge_charm.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"REFUGE CHARM\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Refuge Charm; class Shared, all four heroes; item type pendant. Theme: copper amber and steel.\nCategory invariant: Exactly ONE wearable pendant/charm per tier with a restrained matching chain or cord, not a ring, not a full armor piece.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a two-layer medallion with an open geometric inner window, not a larger Rare disc.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Lastlight Charm, associated with Veyr. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through last throne sovereign: royal star/crown-heart motif in platinum and gold, amber focus, deep blue enamel; no demonic skull. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8e203636-67f4-484d-9c9c-6de278379dc1.png",
+      "revision": "approved-style-v2",
+      "sha256": "0007bf1d9952efb21c5c7cebb6f0b7bef7f4aad96dd3d636eb7ec1bd958881e5",
+      "bytes": 2082181,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "knight_weapon_family",
+      "name": "Oathguard Sword",
+      "classId": "knight",
+      "slot": "weapon",
+      "shape": "sword",
+      "uniqueName": "Rootwarden's Oath",
+      "bossKind": "KingShaman",
+      "file": "boards/knight_weapon_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nEdit target: attached OATHGUARD SWORD four-rarity concept board. User feedback: the hand grips are too short. ONLY lengthen the leather-wrapped grip between crossguard and pommel in ALL FOUR columns by about 35 percent. Keep blade lengths exactly as the attached balanced version. Keep crossguards and pommel sizes unchanged; move each pommel outward to accommodate the longer grip. Make the handle practical and elegant, visibly long enough for a comfortable grip, not an oversized tiny dagger handle. Preserve straight blade, all four designs, tiers, class blue/silver colors, gold and jewel craft, background, title, labels and lighting. Recenter full uncropped items with generous margins. No other redesign.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-9837c6c5-f830-4362-a8c0-a272c0290b5e.png",
+      "revision": "balanced-blade-longer-grip-r4",
+      "previous": "archive/knight_weapon_family-grip-r3.png",
+      "sha256": "97b5df1b68d9e8df921cfc6404b3b55dc78e0963147f6c238836406524ae39ed",
+      "bytes": 1644069,
+      "width": 1536,
+      "height": 1024,
+      "colorType": 2,
+      "paletteGroup": "knight",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "knight_head_family",
+      "name": "Oathguard Headguard",
+      "classId": "knight",
+      "slot": "head",
+      "shape": "helmet",
+      "uniqueName": "Glacierwatch Helm",
+      "bossKind": "AncientGlacierKing",
+      "file": "boards/knight_head_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nImage 1: current Oathguard Headguard board to revise. Images 2-4: the project's ORIGINAL KNIGHT Epic, Legendary and Unique helmet concepts; PRIMARY GEOMETRY references. Latest user instruction: helmets need not all be rounded; return to original helmet concept language. All FOUR items must be real METAL HELMETS, never fabric hoods, cowls or wrapped scarves. The rounded-low rule applies to SOFT HOODS ONLY, not helmets.\nUse the ORIGINAL KNIGHT helmet language from refs 2-4: clearly angular cheek plates with stepped polygonal face opening, broad straight brow band and a RAISED FIN/CREST running front-to-back on top, lion crest badge on forehead, crisp faceted protective steel shell. Legendary has stronger sculpted side fins and an imposing central crest. Unique is a luxurious platinum/gold masterpiece with bold asymmetric metal crest, integrated jewel mount and lion heraldry. Do not reduce these to smooth rounded bowl helmets.\nKeep four different rarity silhouettes: Rare practical modest structure, Epic layered class crest construction, Legendary grand symmetric regalia, Unique the most luxurious smooth polished metal craftsmanship and purposeful asymmetric structure. Exactly one empty wearable helmet in each column, no face/body/mannequin. Preserve reference 1 board title, Concept only subtitle, four labels RARE/EPIC/LEGENDARY/UNIQUE, dark slate background, consistent warm lighting and full-object margins.\nStrict matching set palette overrides color in older references: RARE royal blue #244F93, brown leather #784B32, silver #CAD3DB. EPIC royal blue #244F93 cloth/enamel, silver #CAD3DB, sky-blue jewels #37A6E8. LEGENDARY royal blue #244F93 cloth/enamel, silver and gold #D8AF52, sky-blue jewels #37A6E8. UNIQUE royal blue #244F93 cloth/enamel ONLY (no green fabric), platinum #E0E5EF and gold #D8AF52, EMERALD GREEN gems #119B74 (not amber or ice blue). No raw stone, floating particles, oversized exterior glow. Keep colors consistent with other same-named knight equipment pieces.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-ac90e5fa-654e-4376-8f88-1fe2546240a1.png",
+      "revision": "original-helmet-silhouette-r6",
+      "sha256": "7454bb6027dcf4cc18837258c18d96e10607f9873cb73ad03d1fff2347cb3949",
+      "bytes": 2180724,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "previous": "archive/knight_head_family-before-original-helmet.png",
+      "paletteGroup": "knight",
+      "references": [
+        "assets/concepts/2026-11-08-equipment-rarity-v2/archive/knight_head_family-before-original-helmet.png",
+        "assets/concepts/2026-11-04-equipment-icons/generated-v1/Epic_Knight_Oathguard_Headguard.png",
+        "assets/concepts/2026-11-04-equipment-icons/generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png",
+        "assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/Unique_Knight_Glacierwatch_Helm.png"
+      ],
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-equipment-rarity-v2/archive/knight_head_family-before-original-helmet.png",
+          "sha256": "3a0794c96d8cc40c8f094e8068f47a9a7d6467a38ddcc5b185260c4c265d7cf2"
+        },
+        {
+          "path": "assets/concepts/2026-11-04-equipment-icons/generated-v1/Epic_Knight_Oathguard_Headguard.png",
+          "sha256": "eaa6e6a359e3a5df7053d310d3c61d32149df2291bde7b6d7efe1df09aac4ba9"
+        },
+        {
+          "path": "assets/concepts/2026-11-04-equipment-icons/generated-legendary-v1/Legendary_Knight_Oathguard_Headguard.png",
+          "sha256": "c44631348b3ceb93e3263b5e374ef2bb914f445d4df72ae6bd759f7b124643be"
+        },
+        {
+          "path": "assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/Unique_Knight_Glacierwatch_Helm.png",
+          "sha256": "b298646c7278ba00e89af3a64d37ccfd82d2c577f90d47b8e656e4d5012beb5c"
+        }
+      ]
+    },
+    {
+      "familyId": "knight_body_family",
+      "name": "Oathguard Vestments",
+      "classId": "knight",
+      "slot": "body",
+      "shape": "armor",
+      "uniqueName": "Hollowbark Bulwark",
+      "bossKind": "AncientHollowbark",
+      "file": "boards/knight_body_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nEdit target: attached Oathguard Vestments four-rarity comparison board. Latest user correction: same-named equipment set must have identical colors across all pieces of the same rarity. Recolor only the fabric/enamel and gemstones to the exact set palette below; keep all silhouettes, construction, weapon proportions (if applicable), details, metal craftsmanship, camera, layout and labels unchanged. Do NOT alter item length. Preserve all four rarity designs. \nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: royal blue #244F93, brown leather #784B32, silver #CAD3DB. EPIC: royal blue #244F93 cloth/enamel, silver #CAD3DB, sky-blue jewels #37A6E8. LEGENDARY: royal blue #244F93 cloth/enamel, silver and gold #D8AF52, sky-blue jewels #37A6E8. UNIQUE: royal blue #244F93 cloth/enamel ONLY (no green fabric), platinum #E0E5EF and gold #D8AF52, EMERALD GREEN gems #119B74 (not amber or ice blue). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-88a05a49-e09d-470c-9916-67e33d06ecb7.png",
+      "revision": "set-palette-r4",
+      "sha256": "8bfa23e13a18ebea8f4018e4be21f123cc95da1ca2301f2d4f270322d465aed4",
+      "bytes": 2213634,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "previous": "archive/knight_body_family-before-palette.png",
+      "paletteGroup": "knight",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "knight_hands_family",
+      "name": "Oathguard Grips",
+      "classId": "knight",
+      "slot": "hands",
+      "shape": "gloves",
+      "uniqueName": "Ogregrip Gauntlets",
+      "bossKind": "KingOgre",
+      "file": "boards/knight_hands_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nEdit target: attached Oathguard Grips four-rarity comparison board. Latest user correction: same-named equipment set must have identical colors across all pieces of the same rarity. Recolor only the fabric/enamel and gemstones to the exact set palette below; keep all silhouettes, construction, weapon proportions (if applicable), details, metal craftsmanship, camera, layout and labels unchanged. Do NOT alter item length. Preserve all four rarity designs. \nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: royal blue #244F93, brown leather #784B32, silver #CAD3DB. EPIC: royal blue #244F93 cloth/enamel, silver #CAD3DB, sky-blue jewels #37A6E8. LEGENDARY: royal blue #244F93 cloth/enamel, silver and gold #D8AF52, sky-blue jewels #37A6E8. UNIQUE: royal blue #244F93 cloth/enamel ONLY (no green fabric), platinum #E0E5EF and gold #D8AF52, EMERALD GREEN gems #119B74 (not amber or ice blue). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-096d3fc8-2aec-44d1-b372-23ddb40b1831.png",
+      "revision": "set-palette-r4",
+      "sha256": "9f4968098c45662af42d1f252eb8bb4583900ce9bcc8c1eb35e9a797744b7d3d",
+      "bytes": 2271658,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "previous": "archive/knight_hands_family-before-palette.png",
+      "paletteGroup": "knight",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "knight_feet_family",
+      "name": "Oathguard Treads",
+      "classId": "knight",
+      "slot": "feet",
+      "shape": "boots",
+      "uniqueName": "Citadel Step",
+      "bossKind": "GoblinKing",
+      "file": "boards/knight_feet_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"OATHGUARD TREADS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Oathguard Treads; class knight; item type boots. Theme: steel blue and lion crest.\nCategory invariant: One matched PAIR of wearable boots per tier, exactly two boots, display both.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use layered cuff tabs and a distinct reinforced ankle/instep silhouette.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Citadel Step, associated with GoblinKing. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through citadel treasure sovereign: sophisticated interlocking gold knot/crest, emerald or amber, masterwork platinum; no crude scrap metal. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-d3c6dfdd-e563-4876-9a38-15d649853157.png",
+      "revision": "approved-style-v2",
+      "sha256": "f9a92c0b02b8ca6171c64664babca8ee481a89c864d82175cade88449fac3614",
+      "bytes": 2161615,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "paletteGroup": "knight",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "knight_ring_family",
+      "name": "Oathguard Signet",
+      "classId": "knight",
+      "slot": "accessory",
+      "shape": "ring",
+      "uniqueName": "Lionheart Signet",
+      "bossKind": "KingShaman",
+      "file": "boards/knight_ring_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"OATHGUARD SIGNET\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Oathguard Signet; class knight; item type ring. Theme: steel blue and lion crest.\nCategory invariant: Exactly ONE wearable ring per tier, clearly visible circular finger band with open finger hole, no chain, crowns or extra ring.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a split-shoulder band with an inset class emblem, not just a larger stone.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Lionheart Signet, associated with KingShaman. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through grove sovereign: sculpted golden leaf/branch geometry, refined green crystal, jewel-set platinum, royal craft. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-2db1bd93-b9f0-4e31-9c60-b03f8bc3151f.png",
+      "revision": "approved-style-v2",
+      "sha256": "730e73f4820f0548822036064723e5df6aa6b5ea9a500ad21ed65a2c04d3475c",
+      "bytes": 2120409,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "paletteGroup": "knight",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "knight_pendant_family",
+      "name": "Oathguard Pendant",
+      "classId": "knight",
+      "slot": "accessory",
+      "shape": "pendant",
+      "uniqueName": "Oathkeeper Pendant",
+      "bossKind": "KingShaman",
+      "file": "boards/knight_pendant_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"OATHGUARD PENDANT\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Oathguard Pendant; class knight; item type pendant. Theme: steel blue and lion crest.\nCategory invariant: Exactly ONE wearable pendant/charm per tier with a restrained matching chain or cord, not a ring, not a full armor piece.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a two-layer medallion with an open geometric inner window, not a larger Rare disc.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Oathkeeper Pendant, associated with KingShaman. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through grove sovereign: sculpted golden leaf/branch geometry, refined green crystal, jewel-set platinum, royal craft. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-09f672a5-9220-48a0-9258-1a8db1434d32.png",
+      "revision": "approved-style-v2",
+      "sha256": "acc6ab7e6dcef5607ebde4924533506e2d6c04d66ddaab089bf173c867c91bd8",
+      "bytes": 2058222,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "paletteGroup": "knight",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "elf_weapon_family",
+      "name": "Briarwatch Bow",
+      "classId": "elf",
+      "slot": "weapon",
+      "shape": "bow",
+      "uniqueName": "Thornsong",
+      "bossKind": "KingShaman",
+      "file": "boards/elf_weapon_family.png",
+      "status": "generated-length-review-pending",
+      "prompt": "Use case: precise-object-edit\nEdit target: the attached Briarwatch Bow four-tier comparison board. User correction: ALL WEAPONS LOOK TOO SHORT. Keep the four weapon designs, tiers, precious metal craftsmanship, class palette, jewels and labels, but change proportions: Lengthen BOTH bow limbs by about 30% relative to the unchanged central grip. Tall elegant longbow; end-to-end height at least 7 times the central hand grip length. Maintain a connected taut string and functional curves, not a compact shortbow.\nApply the length correction to ALL FOUR rarity weapons. Keep actual weapon type and functionality. Reframe the entire board to a TALLER landscape aspect if needed (about 3:2) with enough vertical space for complete long weapons, generous top/bottom margins. No cropped tips, no distorted stretched gems or handles. Match previous slate backdrop and lighting. Preserve title and Rare/Epic/Legendary/Unique labels. Concept only. No people, auras, extra items or stats.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-2185eebd-7fd2-4fe5-bbfa-287ebfe26a01.png",
+      "revision": "long-weapons-r2",
+      "previous": "archive/elf_weapon_family-short-r1.png",
+      "sha256": "d988924b7d0745ac1dbafc0f13a66feec106921601d9ba0bbbb34330bd463171",
+      "bytes": 1845178,
+      "width": 1536,
+      "height": 1024,
+      "colorType": 2,
+      "lengthRevisionStatus": "Balanced length edit rejected by image tool safety system; preserved existing long concept unchanged, no retry or workaround",
+      "paletteGroup": "elf",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "elf_head_family",
+      "name": "Briarwatch Headguard",
+      "classId": "elf",
+      "slot": "head",
+      "shape": "hood",
+      "uniqueName": "Widowwatch Hood",
+      "bossKind": "WidowQueen",
+      "file": "boards/elf_head_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nEdit target: attached Briarwatch Headguard four-rarity comparison board. Latest user correction: same-named equipment set must have identical colors across all pieces of the same rarity. Recolor only the fabric/enamel and gemstones to the exact set palette below; keep all silhouettes, construction, weapon proportions (if applicable), details, metal craftsmanship, camera, layout and labels unchanged. Do NOT alter item length. Preserve all four rarity designs. \nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: forest olive green #3E592E, brown leather #784B32, silver #CAD3DB. EPIC: forest green #345F35, silver #CAD3DB, emerald gems #119B74. LEGENDARY: forest green #345F35, silver and gold #D8AF52, emerald gems #119B74. UNIQUE: deep forest green #174C39 cloth/enamel (no navy or purple fabric), platinum #E0E5EF, gold #D8AF52, EMERALD GREEN gems #119B74 (not purple or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-cf8ab29b-f364-42f3-88b2-5d7bbe565c0e.png",
+      "revision": "set-palette-r4",
+      "sha256": "d5eb0be00722ce42fa008bfcb62d0cf6aa909f44b4046ee2529763e0834f11b9",
+      "bytes": 2174934,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "previous": "archive/elf_head_family-before-palette.png",
+      "paletteGroup": "elf",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "elf_body_family",
+      "name": "Briarwatch Vestments",
+      "classId": "elf",
+      "slot": "body",
+      "shape": "armor",
+      "uniqueName": "Hollowbark Jerkin",
+      "bossKind": "AncientHollowbark",
+      "file": "boards/elf_body_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"BRIARWATCH VESTMENTS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Briarwatch Vestments; class elf; item type armor. Theme: leaf green and silver feathers.\nCategory invariant: One complete empty wearable torso coat/vestment. Clear neckline, sleeve/arm openings, waist; no person, mannequin, limbs or separate headgear.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use layered shoulders and overlapping torso panels, not taller spikes.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Hollowbark Jerkin, associated with AncientHollowbark. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through ancient forest sovereign: gold branch filigree, emerald insets, sculpted leaf-shaped metal; never rough wooden chunks. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-6b079819-6f41-46ae-8474-1b9a5614b3d1.png",
+      "revision": "approved-style-v2",
+      "sha256": "bfa4e299eaf4e5d935c6f3ae3f23c8d9e7de32655f1e227403462cd2ec36aa49",
+      "bytes": 2290630,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "paletteGroup": "elf",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "elf_hands_family",
+      "name": "Briarwatch Grips",
+      "classId": "elf",
+      "slot": "hands",
+      "shape": "gloves",
+      "uniqueName": "Emberflight Grips",
+      "bossKind": "InfernoOverlord",
+      "file": "boards/elf_hands_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"BRIARWATCH GRIPS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Briarwatch Grips; class elf; item type gloves. Theme: leaf green and silver feathers.\nCategory invariant: One matched PAIR of wearable gloves/gauntlets per tier, exactly two gloves, display both.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use rounded layered cuffs and articulated finger/backhand plates.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Emberflight Grips, associated with InfernoOverlord. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through caldera overlord: precisely cut ember-orange gemstone and elegant flame-shaped gold inlays; no lava cracks or charred surface. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: forest olive green #3E592E, brown leather #784B32, silver #CAD3DB. EPIC: forest green #345F35, silver #CAD3DB, emerald gems #119B74. LEGENDARY: forest green #345F35, silver and gold #D8AF52, emerald gems #119B74. UNIQUE: deep forest green #174C39 cloth/enamel (no navy or purple fabric), platinum #E0E5EF, gold #D8AF52, EMERALD GREEN gems #119B74 (not purple or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-782d2092-4be2-4843-9d39-134b360c21f3.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "elf",
+      "sha256": "fcf64c7950417b51ae6e1b2f6791624def808d41c6f5c4e78b20afb7c81d5aa0",
+      "bytes": 2225257,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "elf_feet_family",
+      "name": "Briarwatch Treads",
+      "classId": "elf",
+      "slot": "feet",
+      "shape": "boots",
+      "uniqueName": "Silkstep Treads",
+      "bossKind": "WidowQueen",
+      "file": "boards/elf_feet_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"BRIARWATCH TREADS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Briarwatch Treads; class elf; item type boots. Theme: leaf green and silver feathers.\nCategory invariant: One matched PAIR of wearable boots per tier, exactly two boots, display both.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use layered cuff tabs and a distinct reinforced ankle/instep silhouette.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Silkstep Treads, associated with WidowQueen. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through silken queen: refined sweeping silver web tracery, violet/lunar gemstone, elegant interlocking metal arcs; no literal spiders. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: forest olive green #3E592E, brown leather #784B32, silver #CAD3DB. EPIC: forest green #345F35, silver #CAD3DB, emerald gems #119B74. LEGENDARY: forest green #345F35, silver and gold #D8AF52, emerald gems #119B74. UNIQUE: deep forest green #174C39 cloth/enamel (no navy or purple fabric), platinum #E0E5EF, gold #D8AF52, EMERALD GREEN gems #119B74 (not purple or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-888ce265-e6b5-4d37-b6c6-43ee9c5efbda.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "elf",
+      "sha256": "e96314b03ef5565c1daedb6e07818d71191cc436528ab584deeb4cd5a59a9e4d",
+      "bytes": 2182171,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "elf_ring_family",
+      "name": "Briarwatch Signet",
+      "classId": "elf",
+      "slot": "accessory",
+      "shape": "ring",
+      "uniqueName": "Thornmark Signet",
+      "bossKind": "GoblinKing",
+      "file": "boards/elf_ring_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"BRIARWATCH SIGNET\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Briarwatch Signet; class elf; item type ring. Theme: leaf green and silver feathers.\nCategory invariant: Exactly ONE wearable ring per tier, clearly visible circular finger band with open finger hole, no chain, crowns or extra ring.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a split-shoulder band with an inset class emblem, not just a larger stone.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Thornmark Signet, associated with GoblinKing. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through citadel treasure sovereign: sophisticated interlocking gold knot/crest, emerald or amber, masterwork platinum; no crude scrap metal. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: forest olive green #3E592E, brown leather #784B32, silver #CAD3DB. EPIC: forest green #345F35, silver #CAD3DB, emerald gems #119B74. LEGENDARY: forest green #345F35, silver and gold #D8AF52, emerald gems #119B74. UNIQUE: deep forest green #174C39 cloth/enamel (no navy or purple fabric), platinum #E0E5EF, gold #D8AF52, EMERALD GREEN gems #119B74 (not purple or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-26258732-6fe8-428f-a09c-40231d17d215.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "elf",
+      "sha256": "eced084cbf1fc7ced668ef1b087357eaf926e3177f3c9c7a4c2e26ab0ad3b0de",
+      "bytes": 2062696,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "elf_pendant_family",
+      "name": "Briarwatch Pendant",
+      "classId": "elf",
+      "slot": "accessory",
+      "shape": "pendant",
+      "uniqueName": "Glacierleaf Pendant",
+      "bossKind": "AncientGlacierKing",
+      "file": "boards/elf_pendant_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"BRIARWATCH PENDANT\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Briarwatch Pendant; class elf; item type pendant. Theme: leaf green and silver feathers.\nCategory invariant: Exactly ONE wearable pendant/charm per tier with a restrained matching chain or cord, not a ring, not a full armor piece.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a two-layer medallion with an open geometric inner window, not a larger Rare disc.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Glacierleaf Pendant, associated with AncientGlacierKing. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through glacial sovereign: polished icy-blue jewel and clean snowflake engraving on platinum, gold accents; no rough ice chunks. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: forest olive green #3E592E, brown leather #784B32, silver #CAD3DB. EPIC: forest green #345F35, silver #CAD3DB, emerald gems #119B74. LEGENDARY: forest green #345F35, silver and gold #D8AF52, emerald gems #119B74. UNIQUE: deep forest green #174C39 cloth/enamel (no navy or purple fabric), platinum #E0E5EF, gold #D8AF52, EMERALD GREEN gems #119B74 (not purple or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-fd700ba8-9c63-4e0a-a406-5ac9889b33d4.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "elf",
+      "sha256": "22c5321543d45e61a6065a1f18d78c305065fa26dbdc734d84d663ccbab3d209",
+      "bytes": 2144095,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "dwarf_weapon_family",
+      "name": "Stonehearth Axe",
+      "classId": "dwarf",
+      "slot": "weapon",
+      "shape": "axe",
+      "uniqueName": "Stonebreaker's Resolve",
+      "bossKind": "KingShaman",
+      "file": "boards/dwarf_weapon_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nEdit target: attached Stonehearth Axe four-rarity comparison board. Latest user correction: same-named equipment set must have identical colors across all pieces of the same rarity. Recolor only the fabric/enamel and gemstones to the exact set palette below; keep all silhouettes, construction, weapon proportions (if applicable), details, metal craftsmanship, camera, layout and labels unchanged. Do NOT alter item length. Preserve all four rarity designs. \nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: warm brown leather #684234 and bronze #9C683B with silver edge #CAD3DB. EPIC: warm brown leather #684234 and bronze #9C683B with silver #CAD3DB, amber gems #EBA52C. LEGENDARY: dark burgundy enamel #612B3B, bronze #9C683B with gold #D8AF52 and silver #CAD3DB, amber gems #EBA52C. UNIQUE: deep BURGUNDY enamel/leather #612B3B (NOT green or blue), polished platinum #E0E5EF, gold #D8AF52 and bronze #9C683B accents, AMBER gems #EBA52C. Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-e3a7fe11-b9fd-4a79-9c9e-4d3c8a18e4d0.png",
+      "revision": "set-palette-r4",
+      "previous": "archive/dwarf_weapon_family-before-palette.png",
+      "sha256": "c1c5ff3a0c54182e27de51730c53c8df4d32131678d077625fd409ad357fb022",
+      "bytes": 1798693,
+      "width": 1536,
+      "height": 1024,
+      "colorType": 2,
+      "paletteGroup": "dwarf",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "dwarf_head_family",
+      "name": "Stonehearth Headguard",
+      "classId": "dwarf",
+      "slot": "head",
+      "shape": "helmet",
+      "uniqueName": "Quarryking Helm",
+      "bossKind": "KingOgre",
+      "file": "boards/dwarf_head_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nImage 1: current Stonehearth Headguard board to revise. Images 2-4: the project's ORIGINAL DWARF Epic, Legendary and Unique helmet concepts; PRIMARY GEOMETRY references. Latest user instruction: helmets need not all be rounded; return to original helmet concept language. All FOUR items must be real METAL HELMETS, never fabric hoods, cowls or wrapped scarves. The rounded-low rule applies to SOFT HOODS ONLY, not helmets.\nUse the ORIGINAL DWARF helmet language from refs 2-4: stout broad faceted steel shell, thick bronze forehead band, RAISED SQUARED front-to-back central metal ridge, large angular squared cheek plates and wide geometric face opening. Forged geometric/rune mark, not lion crest. Legendary adds strong stepped crest segments and structural side fins; Unique has master-crafted platinum/gold/bronze construction, asymmetric raised architectural crest and amber centerpiece. No rough stone surface or cracks; reinterpret original faceted panels as forged metal.\nKeep four different rarity silhouettes: Rare practical modest structure, Epic layered class crest construction, Legendary grand symmetric regalia, Unique the most luxurious smooth polished metal craftsmanship and purposeful asymmetric structure. Exactly one empty wearable helmet in each column, no face/body/mannequin. Preserve reference 1 board title, Concept only subtitle, four labels RARE/EPIC/LEGENDARY/UNIQUE, dark slate background, consistent warm lighting and full-object margins.\nStrict matching set palette overrides color in older references: RARE warm brown leather #684234 and bronze #9C683B with silver edge #CAD3DB. EPIC warm brown leather #684234 and bronze #9C683B with silver #CAD3DB, amber gems #EBA52C. LEGENDARY dark burgundy enamel #612B3B, bronze #9C683B with gold #D8AF52 and silver #CAD3DB, amber gems #EBA52C. UNIQUE deep BURGUNDY enamel/leather #612B3B (NOT green or blue), polished platinum #E0E5EF, gold #D8AF52 and bronze #9C683B accents, AMBER gems #EBA52C. No raw stone, floating particles, oversized exterior glow. Keep colors consistent with other same-named dwarf equipment pieces.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-99574ae1-251e-4475-a21b-0c4695b0094b.png",
+      "revision": "original-helmet-silhouette-r6",
+      "paletteGroup": "dwarf",
+      "sha256": "55b1d8e69f16d2baf1b629c0d1b53002d425529a9a84c2bdaac487515dbbdb9d",
+      "bytes": 2066271,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "previous": "archive/dwarf_head_family-before-original-helmet.png",
+      "references": [
+        "assets/concepts/2026-11-08-equipment-rarity-v2/archive/dwarf_head_family-before-original-helmet.png",
+        "assets/concepts/2026-11-04-equipment-icons/generated-v1/Epic_Dwarf_Stonehearth_Headguard.png",
+        "assets/concepts/2026-11-04-equipment-icons/generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png",
+        "assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/Unique_Dwarf_Quarryking_Helm.png"
+      ],
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-equipment-rarity-v2/archive/dwarf_head_family-before-original-helmet.png",
+          "sha256": "aff6d6f1007463a424853ff2d5ec11f17021dd92c00bc631ba3f4d55db70f095"
+        },
+        {
+          "path": "assets/concepts/2026-11-04-equipment-icons/generated-v1/Epic_Dwarf_Stonehearth_Headguard.png",
+          "sha256": "7485afc459e6bec51de8340821e1decab65d15217108c826c6bd64f05ec222a8"
+        },
+        {
+          "path": "assets/concepts/2026-11-04-equipment-icons/generated-legendary-v1/Legendary_Dwarf_Stonehearth_Headguard.png",
+          "sha256": "197dd66a71d9f1a2f2b3ad1d858fdfbf9a447b6aa72974c72dc01596f693d1d5"
+        },
+        {
+          "path": "assets/concepts/2026-11-04-equipment-icons/generated-unique-v1/Unique_Dwarf_Quarryking_Helm.png",
+          "sha256": "33450d9eebf498b036e9365bc8b5ef0be6355b4eaa121a9fb7caad903c4d17c3"
+        }
+      ]
+    },
+    {
+      "familyId": "dwarf_body_family",
+      "name": "Stonehearth Vestments",
+      "classId": "dwarf",
+      "slot": "body",
+      "shape": "armor",
+      "uniqueName": "Caldera Heartplate",
+      "bossKind": "InfernoOverlord",
+      "file": "boards/dwarf_body_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"STONEHEARTH VESTMENTS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Stonehearth Vestments; class dwarf; item type armor. Theme: bronze stone and forge marks.\nCategory invariant: One complete empty wearable torso coat/vestment. Clear neckline, sleeve/arm openings, waist; no person, mannequin, limbs or separate headgear.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use layered shoulders and overlapping torso panels, not taller spikes.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Caldera Heartplate, associated with InfernoOverlord. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through caldera overlord: precisely cut ember-orange gemstone and elegant flame-shaped gold inlays; no lava cracks or charred surface. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: warm brown leather #684234 and bronze #9C683B with silver edge #CAD3DB. EPIC: warm brown leather #684234 and bronze #9C683B with silver #CAD3DB, amber gems #EBA52C. LEGENDARY: dark burgundy enamel #612B3B, bronze #9C683B with gold #D8AF52 and silver #CAD3DB, amber gems #EBA52C. UNIQUE: deep BURGUNDY enamel/leather #612B3B (NOT green or blue), polished platinum #E0E5EF, gold #D8AF52 and bronze #9C683B accents, AMBER gems #EBA52C. Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-11196c81-ba73-4a80-83d1-68d3cb3a889c.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "dwarf",
+      "sha256": "b58f75e76484fe5f3c0098e4cfe335a1055e5cd542806111d2ab07bae92803cf",
+      "bytes": 2220440,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "dwarf_hands_family",
+      "name": "Stonehearth Grips",
+      "classId": "dwarf",
+      "slot": "hands",
+      "shape": "gloves",
+      "uniqueName": "Cragbreaker Grips",
+      "bossKind": "KingOgre",
+      "file": "boards/dwarf_hands_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"STONEHEARTH GRIPS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Stonehearth Grips; class dwarf; item type gloves. Theme: bronze stone and forge marks.\nCategory invariant: One matched PAIR of wearable gloves/gauntlets per tier, exactly two gloves, display both.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use rounded layered cuffs and articulated finger/backhand plates.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Cragbreaker Grips, associated with KingOgre. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through quarry sovereign: amber gemstone, faceted forged metal, broad architectural structure; never raw rock. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: warm brown leather #684234 and bronze #9C683B with silver edge #CAD3DB. EPIC: warm brown leather #684234 and bronze #9C683B with silver #CAD3DB, amber gems #EBA52C. LEGENDARY: dark burgundy enamel #612B3B, bronze #9C683B with gold #D8AF52 and silver #CAD3DB, amber gems #EBA52C. UNIQUE: deep BURGUNDY enamel/leather #612B3B (NOT green or blue), polished platinum #E0E5EF, gold #D8AF52 and bronze #9C683B accents, AMBER gems #EBA52C. Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-3470a799-0c7f-42ff-a120-2e079167025f.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "dwarf",
+      "sha256": "4bb85dd9b8aa3baa73a0282bc15d48fbb794aceabd7842aaa2a129f95b254736",
+      "bytes": 2139091,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "dwarf_feet_family",
+      "name": "Stonehearth Treads",
+      "classId": "dwarf",
+      "slot": "feet",
+      "shape": "boots",
+      "uniqueName": "Glacieranchor Boots",
+      "bossKind": "AncientGlacierKing",
+      "file": "boards/dwarf_feet_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"STONEHEARTH TREADS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Stonehearth Treads; class dwarf; item type boots. Theme: bronze stone and forge marks.\nCategory invariant: One matched PAIR of wearable boots per tier, exactly two boots, display both.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use layered cuff tabs and a distinct reinforced ankle/instep silhouette.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Glacieranchor Boots, associated with AncientGlacierKing. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through glacial sovereign: polished icy-blue jewel and clean snowflake engraving on platinum, gold accents; no rough ice chunks. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: warm brown leather #684234 and bronze #9C683B with silver edge #CAD3DB. EPIC: warm brown leather #684234 and bronze #9C683B with silver #CAD3DB, amber gems #EBA52C. LEGENDARY: dark burgundy enamel #612B3B, bronze #9C683B with gold #D8AF52 and silver #CAD3DB, amber gems #EBA52C. UNIQUE: deep BURGUNDY enamel/leather #612B3B (NOT green or blue), polished platinum #E0E5EF, gold #D8AF52 and bronze #9C683B accents, AMBER gems #EBA52C. Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-3b6c6197-79d8-4b64-850d-5b835472dc86.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "dwarf",
+      "sha256": "2b91d3bafa2e3b181513788637dc6d93415f46f97e133b991e70bdb51275cd6f",
+      "bytes": 2145368,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "dwarf_ring_family",
+      "name": "Stonehearth Signet",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "shape": "ring",
+      "uniqueName": "Forgeheart Signet",
+      "bossKind": "InfernoOverlord",
+      "file": "boards/dwarf_ring_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"STONEHEARTH SIGNET\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Stonehearth Signet; class dwarf; item type ring. Theme: bronze stone and forge marks.\nCategory invariant: Exactly ONE wearable ring per tier, clearly visible circular finger band with open finger hole, no chain, crowns or extra ring.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a split-shoulder band with an inset class emblem, not just a larger stone.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Forgeheart Signet, associated with InfernoOverlord. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through caldera overlord: precisely cut ember-orange gemstone and elegant flame-shaped gold inlays; no lava cracks or charred surface. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: warm brown leather #684234 and bronze #9C683B with silver edge #CAD3DB. EPIC: warm brown leather #684234 and bronze #9C683B with silver #CAD3DB, amber gems #EBA52C. LEGENDARY: dark burgundy enamel #612B3B, bronze #9C683B with gold #D8AF52 and silver #CAD3DB, amber gems #EBA52C. UNIQUE: deep BURGUNDY enamel/leather #612B3B (NOT green or blue), polished platinum #E0E5EF, gold #D8AF52 and bronze #9C683B accents, AMBER gems #EBA52C. Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-683fe273-d65e-4def-bd82-c817e6d39951.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "dwarf",
+      "sha256": "e576d486cee0963586e83c4726f72daa74697b28ea530dcfaacd8c6907e85c73",
+      "bytes": 2003182,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "dwarf_pendant_family",
+      "name": "Stonehearth Pendant",
+      "classId": "dwarf",
+      "slot": "accessory",
+      "shape": "pendant",
+      "uniqueName": "Hollowstone Pendant",
+      "bossKind": "AncientHollowbark",
+      "file": "boards/dwarf_pendant_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"STONEHEARTH PENDANT\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Stonehearth Pendant; class dwarf; item type pendant. Theme: bronze stone and forge marks.\nCategory invariant: Exactly ONE wearable pendant/charm per tier with a restrained matching chain or cord, not a ring, not a full armor piece.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a two-layer medallion with an open geometric inner window, not a larger Rare disc.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Hollowstone Pendant, associated with AncientHollowbark. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through ancient forest sovereign: gold branch filigree, emerald insets, sculpted leaf-shaped metal; never rough wooden chunks. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: warm brown leather #684234 and bronze #9C683B with silver edge #CAD3DB. EPIC: warm brown leather #684234 and bronze #9C683B with silver #CAD3DB, amber gems #EBA52C. LEGENDARY: dark burgundy enamel #612B3B, bronze #9C683B with gold #D8AF52 and silver #CAD3DB, amber gems #EBA52C. UNIQUE: deep BURGUNDY enamel/leather #612B3B (NOT green or blue), polished platinum #E0E5EF, gold #D8AF52 and bronze #9C683B accents, AMBER gems #EBA52C. Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-f3023ba5-2c4f-476f-b136-db2a7af25b62.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "dwarf",
+      "sha256": "b9f988e9315a8d59a804f1dd42ab737611143b8f6c6518ee8b40a4643ba64738",
+      "bytes": 2076955,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "mage_weapon_family",
+      "name": "Aetherweave Staff",
+      "classId": "mage",
+      "slot": "weapon",
+      "shape": "staff",
+      "uniqueName": "Groveheart Staff",
+      "bossKind": "KingShaman",
+      "file": "boards/mage_weapon_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: precise-object-edit\nEdit target: attached Aetherweave Staff four-rarity comparison board. Latest user correction: same-named equipment set must have identical colors across all pieces of the same rarity. Recolor only the fabric/enamel and gemstones to the exact set palette below; keep all silhouettes, construction, weapon proportions (if applicable), details, metal craftsmanship, camera, layout and labels unchanged. Do NOT alter item length. Preserve all four rarity designs. \nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: violet cloth #4D2B72, warm wood/leather #684234, silver #CAD3DB, amethyst #9B65D1. EPIC: violet cloth/enamel #4D2B72, silver #CAD3DB, amethyst gems #9B65D1. LEGENDARY: violet cloth/enamel #4D2B72, silver and gold #D8AF52, amethyst gems #9B65D1. UNIQUE: deep VIOLET cloth/enamel #4D2B72 (NOT green), polished platinum #E0E5EF, gold #D8AF52, AMETHYST PURPLE gems #9B65D1 (not emerald or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-4c70dcc0-0b62-46df-b864-beb1c620a60b.png",
+      "revision": "set-palette-r4",
+      "previous": "archive/mage_weapon_family-before-palette.png",
+      "sha256": "8ced86bcff4aced9b470e7864085c07151914168d75663f2a6ee03595abc6d64",
+      "bytes": 1649520,
+      "width": 1536,
+      "height": 1024,
+      "colorType": 2,
+      "paletteGroup": "mage",
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "mage_head_family",
+      "name": "Aetherweave Headguard",
+      "classId": "mage",
+      "slot": "head",
+      "shape": "hood",
+      "uniqueName": "Stillgrove Hood",
+      "bossKind": "KingShaman",
+      "file": "boards/mage_head_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"AETHERWEAVE HEADGUARD\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Aetherweave Headguard; class mage; item type hood. Theme: violet crystal and woven runes.\nCategory invariant: Open-faced wearable headwear, low rounded cloth/leather crown, NO tall pointed wizard peak. Knight/Dwarf may use broad rounded metal headguard; Mage MUST remain a soft cloth hood under fitted metallic framing, never closed plate helmet.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Keep the crown LOW AND ROUNDED. Use layered cheek-side flaps and silver brow framing.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Stillgrove Hood, associated with KingShaman. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through grove sovereign: sculpted golden leaf/branch geometry, refined green crystal, jewel-set platinum, royal craft. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: violet cloth #4D2B72, warm wood/leather #684234, silver #CAD3DB, amethyst #9B65D1. EPIC: violet cloth/enamel #4D2B72, silver #CAD3DB, amethyst gems #9B65D1. LEGENDARY: violet cloth/enamel #4D2B72, silver and gold #D8AF52, amethyst gems #9B65D1. UNIQUE: deep VIOLET cloth/enamel #4D2B72 (NOT green), polished platinum #E0E5EF, gold #D8AF52, AMETHYST PURPLE gems #9B65D1 (not emerald or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-b359ab52-7ed3-4822-a311-8e32008cac2f.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "mage",
+      "sha256": "f5e3428ff5df3fce01bacae96f322cb5e4690b7079c738fb91c467716d4bd671",
+      "bytes": 2074019,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "mage_body_family",
+      "name": "Aetherweave Vestments",
+      "classId": "mage",
+      "slot": "body",
+      "shape": "armor",
+      "uniqueName": "Glacierveil Robe",
+      "bossKind": "AncientGlacierKing",
+      "file": "boards/mage_body_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"AETHERWEAVE VESTMENTS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Aetherweave Vestments; class mage; item type armor. Theme: violet crystal and woven runes.\nCategory invariant: One complete empty wearable torso coat/vestment. Clear neckline, sleeve/arm openings, waist; no person, mannequin, limbs or separate headgear.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use layered shoulders and overlapping torso panels, not taller spikes.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Glacierveil Robe, associated with AncientGlacierKing. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through glacial sovereign: polished icy-blue jewel and clean snowflake engraving on platinum, gold accents; no rough ice chunks. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: violet cloth #4D2B72, warm wood/leather #684234, silver #CAD3DB, amethyst #9B65D1. EPIC: violet cloth/enamel #4D2B72, silver #CAD3DB, amethyst gems #9B65D1. LEGENDARY: violet cloth/enamel #4D2B72, silver and gold #D8AF52, amethyst gems #9B65D1. UNIQUE: deep VIOLET cloth/enamel #4D2B72 (NOT green), polished platinum #E0E5EF, gold #D8AF52, AMETHYST PURPLE gems #9B65D1 (not emerald or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-060548aa-df04-459a-a628-750442c407f3.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "mage",
+      "sha256": "0af78345b17c6f37c5e81eb1ebee5867672be30354c951a4c023a381684384bc",
+      "bytes": 2217272,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "mage_hands_family",
+      "name": "Aetherweave Grips",
+      "classId": "mage",
+      "slot": "hands",
+      "shape": "gloves",
+      "uniqueName": "Emberweave Grips",
+      "bossKind": "InfernoOverlord",
+      "file": "boards/mage_hands_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"AETHERWEAVE GRIPS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Aetherweave Grips; class mage; item type gloves. Theme: violet crystal and woven runes.\nCategory invariant: One matched PAIR of wearable gloves/gauntlets per tier, exactly two gloves, display both.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use rounded layered cuffs and articulated finger/backhand plates.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Emberweave Grips, associated with InfernoOverlord. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through caldera overlord: precisely cut ember-orange gemstone and elegant flame-shaped gold inlays; no lava cracks or charred surface. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: violet cloth #4D2B72, warm wood/leather #684234, silver #CAD3DB, amethyst #9B65D1. EPIC: violet cloth/enamel #4D2B72, silver #CAD3DB, amethyst gems #9B65D1. LEGENDARY: violet cloth/enamel #4D2B72, silver and gold #D8AF52, amethyst gems #9B65D1. UNIQUE: deep VIOLET cloth/enamel #4D2B72 (NOT green), polished platinum #E0E5EF, gold #D8AF52, AMETHYST PURPLE gems #9B65D1 (not emerald or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-acb928e3-75a8-4266-9dab-9cc944605d98.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "mage",
+      "sha256": "d46f8f4b7576652ad815a24cde35bdbe5edf2fed79726c495c0609b7701b7f66",
+      "bytes": 2207207,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "mage_feet_family",
+      "name": "Aetherweave Treads",
+      "classId": "mage",
+      "slot": "feet",
+      "shape": "boots",
+      "uniqueName": "Silkweave Treads",
+      "bossKind": "WidowQueen",
+      "file": "boards/mage_feet_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"AETHERWEAVE TREADS\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Aetherweave Treads; class mage; item type boots. Theme: violet crystal and woven runes.\nCategory invariant: One matched PAIR of wearable boots per tier, exactly two boots, display both.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use layered cuff tabs and a distinct reinforced ankle/instep silhouette.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Silkweave Treads, associated with WidowQueen. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through silken queen: refined sweeping silver web tracery, violet/lunar gemstone, elegant interlocking metal arcs; no literal spiders. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: violet cloth #4D2B72, warm wood/leather #684234, silver #CAD3DB, amethyst #9B65D1. EPIC: violet cloth/enamel #4D2B72, silver #CAD3DB, amethyst gems #9B65D1. LEGENDARY: violet cloth/enamel #4D2B72, silver and gold #D8AF52, amethyst gems #9B65D1. UNIQUE: deep VIOLET cloth/enamel #4D2B72 (NOT green), polished platinum #E0E5EF, gold #D8AF52, AMETHYST PURPLE gems #9B65D1 (not emerald or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-dfb229c6-8d43-428c-a346-4487ffccf30a.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "mage",
+      "sha256": "0dc1f0d4ae5be9f9a4eba486c84da10b3badffa8765e2f7ea984c8cbe3afb21f",
+      "bytes": 2137159,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "mage_ring_family",
+      "name": "Aetherweave Signet",
+      "classId": "mage",
+      "slot": "accessory",
+      "shape": "ring",
+      "uniqueName": "Grovepulse Signet",
+      "bossKind": "KingShaman",
+      "file": "boards/mage_ring_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"AETHERWEAVE SIGNET\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Aetherweave Signet; class mage; item type ring. Theme: violet crystal and woven runes.\nCategory invariant: Exactly ONE wearable ring per tier, clearly visible circular finger band with open finger hole, no chain, crowns or extra ring.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a split-shoulder band with an inset class emblem, not just a larger stone.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Grovepulse Signet, associated with KingShaman. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through grove sovereign: sculpted golden leaf/branch geometry, refined green crystal, jewel-set platinum, royal craft. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: violet cloth #4D2B72, warm wood/leather #684234, silver #CAD3DB, amethyst #9B65D1. EPIC: violet cloth/enamel #4D2B72, silver #CAD3DB, amethyst gems #9B65D1. LEGENDARY: violet cloth/enamel #4D2B72, silver and gold #D8AF52, amethyst gems #9B65D1. UNIQUE: deep VIOLET cloth/enamel #4D2B72 (NOT green), polished platinum #E0E5EF, gold #D8AF52, AMETHYST PURPLE gems #9B65D1 (not emerald or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-a0ed2add-8645-476a-b65e-4c32d8814b79.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "mage",
+      "sha256": "358f1e232a959727835194a38f725123fd7d6e5f4f79ac2bab18bc230107433b",
+      "bytes": 2065802,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "mage_pendant_family",
+      "name": "Aetherweave Pendant",
+      "classId": "mage",
+      "slot": "accessory",
+      "shape": "pendant",
+      "uniqueName": "Lastlight Focus",
+      "bossKind": "Veyr",
+      "file": "boards/mage_pendant_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"AETHERWEAVE PENDANT\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Aetherweave Pendant; class mage; item type pendant. Theme: violet crystal and woven runes.\nCategory invariant: Exactly ONE wearable pendant/charm per tier with a restrained matching chain or cord, not a ring, not a full armor piece.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a two-layer medallion with an open geometric inner window, not a larger Rare disc.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Lastlight Focus, associated with Veyr. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through last throne sovereign: royal star/crown-heart motif in platinum and gold, amber focus, deep blue enamel; no demonic skull. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: violet cloth #4D2B72, warm wood/leather #684234, silver #CAD3DB, amethyst #9B65D1. EPIC: violet cloth/enamel #4D2B72, silver #CAD3DB, amethyst gems #9B65D1. LEGENDARY: violet cloth/enamel #4D2B72, silver and gold #D8AF52, amethyst gems #9B65D1. UNIQUE: deep VIOLET cloth/enamel #4D2B72 (NOT green), polished platinum #E0E5EF, gold #D8AF52, AMETHYST PURPLE gems #9B65D1 (not emerald or amber). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-da5c77c9-9217-4a94-83ba-0e60f1fc2e83.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "mage",
+      "sha256": "e5d43fe27c29ef3c631d50636b8460fc148f1c73d5a1f8b4b7c620f7c483e6fb",
+      "bytes": 2122258,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "knight_shield_family",
+      "name": "Oathguard Shield",
+      "classId": "knight",
+      "slot": "offhand",
+      "shape": "shield",
+      "uniqueName": "Throneward Shield",
+      "bossKind": "Veyr",
+      "file": "boards/knight_shield_family.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"OATHGUARD SHIELD\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Oathguard Shield; class knight; item type shield. Theme: steel blue and lion crest.\nCategory invariant: Exactly ONE Knight shield per tier, readable protective shield outline, no accompanying sword.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use overlapping rounded rim sections and a sculpted class crest.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Throneward Shield, associated with Veyr. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through last throne sovereign: royal star/crown-heart motif in platinum and gold, amber focus, deep blue enamel; no demonic skull. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.\nSTRICT SET COLOR LOCK (latest user instruction, overrides any boss color words earlier): all pieces of the same named equipment family and rarity MUST share the following palette. RARE: royal blue #244F93, brown leather #784B32, silver #CAD3DB. EPIC: royal blue #244F93 cloth/enamel, silver #CAD3DB, sky-blue jewels #37A6E8. LEGENDARY: royal blue #244F93 cloth/enamel, silver and gold #D8AF52, sky-blue jewels #37A6E8. UNIQUE: royal blue #244F93 cloth/enamel ONLY (no green fabric), platinum #E0E5EF and gold #D8AF52, EMERALD GREEN gems #119B74 (not amber or ice blue). Express boss differences in geometry/engravings only, NEVER in replacement fabric/enamel or gemstone hue. Do not copy the navy hue of the shared hood reference onto a different class set. Metal highlights from lighting are natural, but base material colors are fixed.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-80c3bdd8-128c-452b-b0be-d91e93385b45.png",
+      "revision": "approved-style-v2",
+      "paletteGroup": "knight",
+      "sha256": "60c3ba54f602c066cdedd2fec0dae503ffc36a9bb80cafdf57c9d15d2ea648cb",
+      "bytes": 2150579,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_mana_ring",
+      "name": "Mana Ring",
+      "classId": null,
+      "slot": "accessory",
+      "shape": "ring",
+      "uniqueName": "Stillwater Ring",
+      "bossKind": "KingShaman",
+      "file": "boards/common_mana_ring.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"MANA RING\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Mana Ring; class Shared, all four heroes; item type ring. Theme: blue crystal silver and water rune.\nCategory invariant: Exactly ONE wearable ring per tier, clearly visible circular finger band with open finger hole, no chain, crowns or extra ring.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a split-shoulder band with an inset class emblem, not just a larger stone.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Stillwater Ring, associated with KingShaman. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through grove sovereign: sculpted golden leaf/branch geometry, refined green crystal, jewel-set platinum, royal craft. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-2560807a-cfc1-4258-8500-a360df6d0fc5.png",
+      "revision": "approved-style-v2",
+      "sha256": "6b2878f1c586f871c550b3f06e4c5db3fa9f5d538bc2ecaeca10a90642f9ac0e",
+      "bytes": 2004904,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_arcane_pendant",
+      "name": "Arcane Reservoir Pendant",
+      "classId": null,
+      "slot": "accessory",
+      "shape": "pendant",
+      "uniqueName": "Grovewell Pendant",
+      "bossKind": "KingShaman",
+      "file": "boards/common_arcane_pendant.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"ARCANE RESERVOIR PENDANT\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Arcane Reservoir Pendant; class Shared, all four heroes; item type pendant. Theme: blue crystal silver and water rune.\nCategory invariant: Exactly ONE wearable pendant/charm per tier with a restrained matching chain or cord, not a ring, not a full armor piece.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a two-layer medallion with an open geometric inner window, not a larger Rare disc.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Grovewell Pendant, associated with KingShaman. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through grove sovereign: sculpted golden leaf/branch geometry, refined green crystal, jewel-set platinum, royal craft. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-e1143cb8-efaf-4da5-8f30-0c8d73311a60.png",
+      "revision": "approved-style-v2",
+      "sha256": "310f817d18acb5272dde0d3b3b3c009606d26ded89e58a61e3b484a1c69e7d9b",
+      "bytes": 2069018,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    },
+    {
+      "familyId": "common_wellspring_charm",
+      "name": "Wellspring Charm",
+      "classId": null,
+      "slot": "accessory",
+      "shape": "pendant",
+      "uniqueName": "Moonwell Charm",
+      "bossKind": "WidowQueen",
+      "file": "boards/common_wellspring_charm.png",
+      "status": "generated-pending-user-art-acceptance",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE four-column equipment rarity concept comparison board, NOT individual game-ready icons or a 3D model.\nReference image 1: user-approved HOOD BOARD, only the style, rarity hierarchy, material craftsmanship and presentation reference. Generate the requested NEW equipment category instead of copying hood geometry.\nPresentation: wide landscape board, four equal columns, consistent object scale, neutral dark slate studio background, warm upper-left key light and clean soft rim reflections, high-quality polished chunky beveled Throne Defense 3D fantasy game art. Generous spacing; full uncropped objects. Title exactly \"WELLSPRING CHARM\"; subtitle \"Concept only\". Bottom labels exactly \"RARE\", \"EPIC\", \"LEGENDARY\", \"UNIQUE\", left to right. No other text, numbers or stats. Keep silhouette and construction clearly different for each tier, not a recolor.\nSubject: Wellspring Charm; class Shared, all four heroes; item type pendant. Theme: blue crystal silver and water rune.\nCategory invariant: Exactly ONE wearable pendant/charm per tier with a restrained matching chain or cord, not a ring, not a full armor piece.\nRARE: beautifully made functional adventuring equipment, simple compact silhouette, 2-3 broad material areas, leather/cloth/steel, modest fastenings, no gold crown, no luminous aura.\nEPIC: different silhouette through rounded layered reinforcement, overlapping side panels or structurally split shapes and one strong class motif, refined silver fittings, small gemstone optional. More crafted than Rare. NO tall pointed headwear or exaggerated spikes. Use a two-layer medallion with an open geometric inner window, not a larger Rare disc.\nLEGENDARY: grand symmetric heroic/royal relic construction with elegant golden outline and sculpted silver structural arcs, deliberate negative space where functional, one main jewel, large disciplined heraldic motif, never tiny filigree clutter. Preserve class color and actual item function.\nUNIQUE: Moonwell Charm, associated with WidowQueen. The MOST luxurious masterpiece: smooth polished platinum/silver main panels, flowing gold inlays, rich class-colored enamel, subtle precise border engraving, integrated sculpted fastenings instead of industrial bolts. Distinctive purposeful asymmetry or interlocking silhouette different from Legendary. Theme embodied through silken queen: refined sweeping silver web tracery, violet/lunar gemstone, elegant interlocking metal arcs; no literal spiders. One exceptionally cut main jewel with elegant mount; restrained supporting insets. Rich cloth/leather where appropriate, no rock/wood/ice bulk replacing forged precious metal. Refined elegance, not merely larger and covered in more gems. Clearly more precious than Legendary, no rough scratches or rivets.\nConstraints: same item category in all four columns. Keep the approved class identity and grounded usable construction. No people, faces, mannequin, body parts, floating particles, halos, external aura, smoke, pedestals, game UI or extra props. This board is an art reference; no invented power/level text.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-119bfa13-e7ac-4bbf-9ee6-30ebef978df6.png",
+      "revision": "approved-style-v2",
+      "sha256": "618422494442f0ec0c49d1f08ac01bbb4d102cb49aa871b7a79048a1d0c41dc9",
+      "bytes": 2105310,
+      "width": 1774,
+      "height": 887,
+      "colorType": 2,
+      "inputReferences": [
+        {
+          "path": "assets/concepts/2026-11-08-rarity-shapes-v2/hood-comparison-r3.png",
+          "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263"
+        }
+      ]
+    }
+  ],
+  "currentBoards": 40,
+  "tierConcepts": 160,
+  "individualRuntimeIcons": 0,
+  "wearable3dModels": 0,
+  "userInstructions": [
+    "Concept images first; defer 160 individual icons and wearable 3D",
+    "Shorten exaggerated weapon extension; lengthen sword hand grip",
+    "Same named equipment family and rarity shares fabric/enamel, metal and gemstone palette",
+    "Knight and Dwarf use metal helmets referencing original concepts; rounded rule applies only to soft hoods",
+    "Unique uses luxurious metal craftsmanship, not raw rock"
+  ],
+  "sourceFamilyManifest": "assets/concepts/2026-11-04-equipment-icons/manifest.json",
+  "sourceFamilyManifestSha256": "e50c45f937d39552a5d74173a3214e07f968a01a99c4bcde4d643c4d2d924cbd"
+}

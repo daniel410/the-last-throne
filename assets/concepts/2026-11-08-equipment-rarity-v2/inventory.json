@@ -1,0 +1,302 @@
+[
+  {
+    "file": "boards/common_arcane_pendant.png",
+    "sha256": "310f817d18acb5272dde0d3b3b3c009606d26ded89e58a61e3b484a1c69e7d9b",
+    "bytes": 2069018
+  },
+  {
+    "file": "boards/common_body.png",
+    "sha256": "31e19e4d167120c5ecb64dc8c2b654011bedb54305607ec9fbb2d5ee52082dc0",
+    "bytes": 2236286
+  },
+  {
+    "file": "boards/common_feet.png",
+    "sha256": "65b90e60b664f2bfe57312c12fad01f0f220c9336a222df13927a2bb561e37a9",
+    "bytes": 2184991
+  },
+  {
+    "file": "boards/common_hands.png",
+    "sha256": "fd26867b607f24cc9b83cc839f61e9ba5505c0fb1e98c70b5f431cfeb986dae3",
+    "bytes": 2170713
+  },
+  {
+    "file": "boards/common_head.png",
+    "sha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263",
+    "bytes": 2040684
+  },
+  {
+    "file": "boards/common_mana_ring.png",
+    "sha256": "6b2878f1c586f871c550b3f06e4c5db3fa9f5d538bc2ecaeca10a90642f9ac0e",
+    "bytes": 2004904
+  },
+  {
+    "file": "boards/common_refuge_charm.png",
+    "sha256": "0007bf1d9952efb21c5c7cebb6f0b7bef7f4aad96dd3d636eb7ec1bd958881e5",
+    "bytes": 2082181
+  },
+  {
+    "file": "boards/common_valor_ring.png",
+    "sha256": "55e8b2ffae119f51a48e13126509edf50ef2a9cdfb9e500f1e4b178dbbf05945",
+    "bytes": 1942826
+  },
+  {
+    "file": "boards/common_vigor_ring.png",
+    "sha256": "1354d1e2ec4206781531074ea33adf69b57839dced059880b904faa739600a3a",
+    "bytes": 2006661
+  },
+  {
+    "file": "boards/common_ward_pendant.png",
+    "sha256": "573e5675e7f86d062145debc2e69362c8d3c60ded6357dc42138a71bcf483d54",
+    "bytes": 2035834
+  },
+  {
+    "file": "boards/common_wellspring_charm.png",
+    "sha256": "618422494442f0ec0c49d1f08ac01bbb4d102cb49aa871b7a79048a1d0c41dc9",
+    "bytes": 2105310
+  },
+  {
+    "file": "boards/dwarf_body_family.png",
+    "sha256": "b58f75e76484fe5f3c0098e4cfe335a1055e5cd542806111d2ab07bae92803cf",
+    "bytes": 2220440
+  },
+  {
+    "file": "boards/dwarf_feet_family.png",
+    "sha256": "2b91d3bafa2e3b181513788637dc6d93415f46f97e133b991e70bdb51275cd6f",
+    "bytes": 2145368
+  },
+  {
+    "file": "boards/dwarf_hands_family.png",
+    "sha256": "4bb85dd9b8aa3baa73a0282bc15d48fbb794aceabd7842aaa2a129f95b254736",
+    "bytes": 2139091
+  },
+  {
+    "file": "boards/dwarf_head_family.png",
+    "sha256": "55b1d8e69f16d2baf1b629c0d1b53002d425529a9a84c2bdaac487515dbbdb9d",
+    "bytes": 2066271
+  },
+  {
+    "file": "boards/dwarf_pendant_family.png",
+    "sha256": "b9f988e9315a8d59a804f1dd42ab737611143b8f6c6518ee8b40a4643ba64738",
+    "bytes": 2076955
+  },
+  {
+    "file": "boards/dwarf_ring_family.png",
+    "sha256": "e576d486cee0963586e83c4726f72daa74697b28ea530dcfaacd8c6907e85c73",
+    "bytes": 2003182
+  },
+  {
+    "file": "boards/dwarf_weapon_family.png",
+    "sha256": "c1c5ff3a0c54182e27de51730c53c8df4d32131678d077625fd409ad357fb022",
+    "bytes": 1798693
+  },
+  {
+    "file": "boards/elf_body_family.png",
+    "sha256": "bfa4e299eaf4e5d935c6f3ae3f23c8d9e7de32655f1e227403462cd2ec36aa49",
+    "bytes": 2290630
+  },
+  {
+    "file": "boards/elf_feet_family.png",
+    "sha256": "e96314b03ef5565c1daedb6e07818d71191cc436528ab584deeb4cd5a59a9e4d",
+    "bytes": 2182171
+  },
+  {
+    "file": "boards/elf_hands_family.png",
+    "sha256": "fcf64c7950417b51ae6e1b2f6791624def808d41c6f5c4e78b20afb7c81d5aa0",
+    "bytes": 2225257
+  },
+  {
+    "file": "boards/elf_head_family.png",
+    "sha256": "d5eb0be00722ce42fa008bfcb62d0cf6aa909f44b4046ee2529763e0834f11b9",
+    "bytes": 2174934
+  },
+  {
+    "file": "boards/elf_pendant_family.png",
+    "sha256": "22c5321543d45e61a6065a1f18d78c305065fa26dbdc734d84d663ccbab3d209",
+    "bytes": 2144095
+  },
+  {
+    "file": "boards/elf_ring_family.png",
+    "sha256": "eced084cbf1fc7ced668ef1b087357eaf926e3177f3c9c7a4c2e26ab0ad3b0de",
+    "bytes": 2062696
+  },
+  {
+    "file": "boards/elf_weapon_family.png",
+    "sha256": "d988924b7d0745ac1dbafc0f13a66feec106921601d9ba0bbbb34330bd463171",
+    "bytes": 1845178
+  },
+  {
+    "file": "boards/knight_body_family.png",
+    "sha256": "8bfa23e13a18ebea8f4018e4be21f123cc95da1ca2301f2d4f270322d465aed4",
+    "bytes": 2213634
+  },
+  {
+    "file": "boards/knight_feet_family.png",
+    "sha256": "f9a92c0b02b8ca6171c64664babca8ee481a89c864d82175cade88449fac3614",
+    "bytes": 2161615
+  },
+  {
+    "file": "boards/knight_hands_family.png",
+    "sha256": "9f4968098c45662af42d1f252eb8bb4583900ce9bcc8c1eb35e9a797744b7d3d",
+    "bytes": 2271658
+  },
+  {
+    "file": "boards/knight_head_family.png",
+    "sha256": "7454bb6027dcf4cc18837258c18d96e10607f9873cb73ad03d1fff2347cb3949",
+    "bytes": 2180724
+  },
+  {
+    "file": "boards/knight_pendant_family.png",
+    "sha256": "acc6ab7e6dcef5607ebde4924533506e2d6c04d66ddaab089bf173c867c91bd8",
+    "bytes": 2058222
+  },
+  {
+    "file": "boards/knight_ring_family.png",
+    "sha256": "730e73f4820f0548822036064723e5df6aa6b5ea9a500ad21ed65a2c04d3475c",
+    "bytes": 2120409
+  },
+  {
+    "file": "boards/knight_shield_family.png",
+    "sha256": "60c3ba54f602c066cdedd2fec0dae503ffc36a9bb80cafdf57c9d15d2ea648cb",
+    "bytes": 2150579
+  },
+  {
+    "file": "boards/knight_weapon_family.png",
+    "sha256": "97b5df1b68d9e8df921cfc6404b3b55dc78e0963147f6c238836406524ae39ed",
+    "bytes": 1644069
+  },
+  {
+    "file": "boards/mage_body_family.png",
+    "sha256": "0af78345b17c6f37c5e81eb1ebee5867672be30354c951a4c023a381684384bc",
+    "bytes": 2217272
+  },
+  {
+    "file": "boards/mage_feet_family.png",
+    "sha256": "0dc1f0d4ae5be9f9a4eba486c84da10b3badffa8765e2f7ea984c8cbe3afb21f",
+    "bytes": 2137159
+  },
+  {
+    "file": "boards/mage_hands_family.png",
+    "sha256": "d46f8f4b7576652ad815a24cde35bdbe5edf2fed79726c495c0609b7701b7f66",
+    "bytes": 2207207
+  },
+  {
+    "file": "boards/mage_head_family.png",
+    "sha256": "f5e3428ff5df3fce01bacae96f322cb5e4690b7079c738fb91c467716d4bd671",
+    "bytes": 2074019
+  },
+  {
+    "file": "boards/mage_pendant_family.png",
+    "sha256": "e5d43fe27c29ef3c631d50636b8460fc148f1c73d5a1f8b4b7c620f7c483e6fb",
+    "bytes": 2122258
+  },
+  {
+    "file": "boards/mage_ring_family.png",
+    "sha256": "358f1e232a959727835194a38f725123fd7d6e5f4f79ac2bab18bc230107433b",
+    "bytes": 2065802
+  },
+  {
+    "file": "boards/mage_weapon_family.png",
+    "sha256": "8ced86bcff4aced9b470e7864085c07151914168d75663f2a6ee03595abc6d64",
+    "bytes": 1649520
+  },
+  {
+    "file": "archive/common_body-before-palette.png",
+    "sha256": "1ceac681ab2a78518d4d7716c8004ca4cbaa75907c68d5db62ccf2e1af7e7621",
+    "bytes": 2166565
+  },
+  {
+    "file": "archive/common_feet-before-palette.png",
+    "sha256": "0aa20c856d5ef126453d4f622d1d842d6028c4d825141f67fe4e9656624e5fda",
+    "bytes": 2144733
+  },
+  {
+    "file": "archive/dwarf_head_family-before-original-helmet.png",
+    "sha256": "aff6d6f1007463a424853ff2d5ec11f17021dd92c00bc631ba3f4d55db70f095",
+    "bytes": 2061667
+  },
+  {
+    "file": "archive/dwarf_weapon_family-before-palette.png",
+    "sha256": "4a8b32120cfc4ada9c28d41d01b2c212c2387ace9292252702299a23fe2bc8f9",
+    "bytes": 1823988
+  },
+  {
+    "file": "archive/dwarf_weapon_family-long-r2.png",
+    "sha256": "aac983773c3674bbcedac0f0f3e4b6b5559bc04ac6088ac6f9595909ea0b29a3",
+    "bytes": 1886889
+  },
+  {
+    "file": "archive/dwarf_weapon_family-short-r1.png",
+    "sha256": "ccec6bd92e84030941bd4ec2659b25875b8f35eb2b7ef3d7dbd3d91bc26bf8e9",
+    "bytes": 2020026
+  },
+  {
+    "file": "archive/elf_head_family-before-palette.png",
+    "sha256": "1e47397878b7a6c378b2163e5716e1e5eaf2e16ce5fd2fc874acd855275b1337",
+    "bytes": 2163531
+  },
+  {
+    "file": "archive/elf_weapon_family-long-r2.png",
+    "sha256": "d988924b7d0745ac1dbafc0f13a66feec106921601d9ba0bbbb34330bd463171",
+    "bytes": 1845178
+  },
+  {
+    "file": "archive/elf_weapon_family-short-r1.png",
+    "sha256": "4ee6a674e18bfa85f0ab4dd6338713e8f1661dfe1bd5db0fb6112e175772f1ba",
+    "bytes": 1904446
+  },
+  {
+    "file": "archive/knight_body_family-before-palette.png",
+    "sha256": "a4af53eb4a7f9b820f07094663267c29375949b23db30cdb08f0a0f06bb8a695",
+    "bytes": 2204396
+  },
+  {
+    "file": "archive/knight_hands_family-before-palette.png",
+    "sha256": "cfb496e893b7758b2dbb5024617c501838968b6412cca6932b241bbe65a776c0",
+    "bytes": 2213388
+  },
+  {
+    "file": "archive/knight_head_family-before-original-helmet.png",
+    "sha256": "3a0794c96d8cc40c8f094e8068f47a9a7d6467a38ddcc5b185260c4c265d7cf2",
+    "bytes": 2156318
+  },
+  {
+    "file": "archive/knight_head_family-before-palette.png",
+    "sha256": "c907b0dfb4d6d8dd42edef16b17d318465f049985cf78a5d16e5fdb506204950",
+    "bytes": 2111907
+  },
+  {
+    "file": "archive/knight_head_family-hood-rejected.png",
+    "sha256": "df48ad00ebec01016d10cfc23b10d256559402026cb8d3b650565538c3332a71",
+    "bytes": 2169284
+  },
+  {
+    "file": "archive/knight_weapon_family-grip-r3.png",
+    "sha256": "324783f9d53dad0707aff297e230a76793a2c9f7d478eb8963706723607a7808",
+    "bytes": 1656105
+  },
+  {
+    "file": "archive/knight_weapon_family-long-r2.png",
+    "sha256": "a539fae4c3c65ea54e0acdf2504a890fabc286b9ce51ca2bd057126b5ac3318b",
+    "bytes": 1710240
+  },
+  {
+    "file": "archive/knight_weapon_family-short-r1.png",
+    "sha256": "0885153109e1de70235eaab7a81a232efc2ddb40b5102e404b6e58670e9eb9a4",
+    "bytes": 1860679
+  },
+  {
+    "file": "archive/mage_weapon_family-before-palette.png",
+    "sha256": "d0ded434efe6bdb46c0b85ea6031addb5123f153320df6ed395d55b1686cb26a",
+    "bytes": 1672210
+  },
+  {
+    "file": "archive/mage_weapon_family-long-r2.png",
+    "sha256": "be3d3941eae07e48dad361f5203135b058616ea4841065ff40acf104d6234671",
+    "bytes": 1703374
+  },
+  {
+    "file": "archive/mage_weapon_family-short-r1.png",
+    "sha256": "b29fd663c4abcf8fc1749561f36c0e5901844e9a8f514953427336af5743ea8d",
+    "bytes": 1830065
+  }
+]

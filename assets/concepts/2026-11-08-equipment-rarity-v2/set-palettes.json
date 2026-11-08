@@ -1,0 +1,36 @@
+{
+  "status": "user-requested-set-color-consistency",
+  "principle": "Same equipment family + rarity uses the same fabric/enamel, metals and jewel palette; boss motif does not override palette.",
+  "groups": {
+    "wayfarer": {
+      "Rare": "deep teal cloth #13565B, warm brown leather #784B32, cool steel #CAD3DB, no colored gemstone",
+      "Epic": "deep teal cloth #13565B, warm brown leather #784B32, cool silver #CAD3DB, small teal gemstones #229EAA",
+      "Legendary": "deep teal cloth/enamel #13565B, silver #CAD3DB and gold #D8AF52, teal gemstones #229EAA",
+      "Unique": "midnight NAVY BLUE cloth/enamel #182F67 (NOT green, NOT purple), polished platinum #E0E5EF, warm gold #D8AF52, AMBER gemstones #EBA52C"
+    },
+    "knight": {
+      "Rare": "royal blue #244F93, brown leather #784B32, silver #CAD3DB",
+      "Epic": "royal blue #244F93 cloth/enamel, silver #CAD3DB, sky-blue jewels #37A6E8",
+      "Legendary": "royal blue #244F93 cloth/enamel, silver and gold #D8AF52, sky-blue jewels #37A6E8",
+      "Unique": "royal blue #244F93 cloth/enamel ONLY (no green fabric), platinum #E0E5EF and gold #D8AF52, EMERALD GREEN gems #119B74 (not amber or ice blue)"
+    },
+    "elf": {
+      "Rare": "forest olive green #3E592E, brown leather #784B32, silver #CAD3DB",
+      "Epic": "forest green #345F35, silver #CAD3DB, emerald gems #119B74",
+      "Legendary": "forest green #345F35, silver and gold #D8AF52, emerald gems #119B74",
+      "Unique": "deep forest green #174C39 cloth/enamel (no navy or purple fabric), platinum #E0E5EF, gold #D8AF52, EMERALD GREEN gems #119B74 (not purple or amber)"
+    },
+    "dwarf": {
+      "Rare": "warm brown leather #684234 and bronze #9C683B with silver edge #CAD3DB",
+      "Epic": "warm brown leather #684234 and bronze #9C683B with silver #CAD3DB, amber gems #EBA52C",
+      "Legendary": "dark burgundy enamel #612B3B, bronze #9C683B with gold #D8AF52 and silver #CAD3DB, amber gems #EBA52C",
+      "Unique": "deep BURGUNDY enamel/leather #612B3B (NOT green or blue), polished platinum #E0E5EF, gold #D8AF52 and bronze #9C683B accents, AMBER gems #EBA52C"
+    },
+    "mage": {
+      "Rare": "violet cloth #4D2B72, warm wood/leather #684234, silver #CAD3DB, amethyst #9B65D1",
+      "Epic": "violet cloth/enamel #4D2B72, silver #CAD3DB, amethyst gems #9B65D1",
+      "Legendary": "violet cloth/enamel #4D2B72, silver and gold #D8AF52, amethyst gems #9B65D1",
+      "Unique": "deep VIOLET cloth/enamel #4D2B72 (NOT green), polished platinum #E0E5EF, gold #D8AF52, AMETHYST PURPLE gems #9B65D1 (not emerald or amber)"
+    }
+  }
+}
