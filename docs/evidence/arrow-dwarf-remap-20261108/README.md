@@ -35,4 +35,8 @@ Studio의 실제 TLT Place70829337938054는 Edit 모드에서 기존 소스 서�
 
 실제 입력/모바일/패드·카메라 조작·여러 체형/최종 드워프 스킨·관전자 지연·실전 미술 수용은 미검증이다. 다음 담당 QA/DES가 실제 기본기/강타를 플레이하며 확인한다. 이전 동작으로 되돌릴 때 이 작업의 런타임/자산 변경만 역적용하고 다른 작업 파일을 보존한다.
 
-고정 빌드와 동일 산출물 재검사 결과는 마감 시 아래에 기록한다. Roblox 게시/릴리스 태그는 수행하지 않는다.
+## 고정 빌드·마감
+
+`0.86.2` 소스 커밋은 `917741170d7666915b89f356a19905b5191646b7`다. `python3 tools/build-game.py --source 91774117 --record docs/evidence/arrow-dwarf-remap-20261108/build.json`으로 단일 빌드 `builds/0.86.2/TheLastThrone-0.86.2.rbxlx` 생성에 성공했다. SHA256은 `776d573b84c4565a26d9f422f0a5a8180419fc60f4c2b5a8820f82ec648f7c6c`다. [빌드/LFS 입력 기록](build.json).
+
+동일 산출물을 `run-in-roblox --place builds/0.86.2/TheLastThrone-0.86.2.rbxlx --script /tmp/tlt-remap-pinned.luau`로 다시 열어14개 결과 보고·**109,111검사 전부 통과**했다. 실제 게임 모듈 치환 없이 검증했으며 private 함수 노출은 테스트 전용 복제 모듈만 사용한다. [원시 로그](pinned-native.log)·[정본 결과](pinned-results.json). 소스 커밋/LFS의 origin/main 푸시 성공을 확인했다. Roblox 게시/릴리스 태그는 수행하지 않았다.
