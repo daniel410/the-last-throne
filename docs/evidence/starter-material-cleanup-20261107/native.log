@@ -1,0 +1,2 @@
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type
+TLT_STARTER_MATERIAL_CLEANUP_NATIVE {"players":0,"messages":["Starter material cleanup: 35 checks passed","Starter potions and shop: 316 checks passed","Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed","Material exchange and flat fee: 183 checks passed"],"scope":"actual reducer and AccountStore in Luau; synthetic persistence; no live accounts or UI","placeId":0,"pass":true}

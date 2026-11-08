@@ -12,6 +12,8 @@ local function profile()
 	-- Manual equip/swap scenarios use the former starter layout as an explicit fixture.
 	for _,item in pairs(p.items) do
 		if item.location.kind=="equipped" and item.definitionId~="knight_shield" then item.location={kind="bag",heroId="hero-knight"} end
+		-- Transfer/discard cases cover old saved stacks as well as new supplies.
+		if item.definitionId=="iron_ore" then item.quantity=24 end
 	end
 	p.items['legacy-training-sword']={instanceId='legacy-training-sword',definitionId='knight_weapon',definitionVersion=C.version,ownerUserId=p.userId,quantity=1,version=1,binding='account',locked=false,location={kind='equipped',heroId='hero-knight',slot='weapon'},sourceGrantId='legacy-fixture'}
 	-- Explicit legacy reward fixture; new accounts no longer get pending supplies.

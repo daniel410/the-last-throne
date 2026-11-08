@@ -1,0 +1,27 @@
+$ lua tests/starter-material-cleanup.spec.lua
+Starter material cleanup: 35 checks passed
+exit=0
+
+$ lua tests/starter-potions-and-shop.spec.lua
+Starter potions and shop: 316 checks passed
+exit=0
+
+$ lua tests/inventory.spec.lua
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+exit=0
+
+$ lua tests/material-exchange.spec.lua
+Material exchange and flat fee: 183 checks passed
+exit=0
+
+$ lua tests/enhancement-probability.spec.lua
+Enhancement probability: 2869 checks passed (including 90000 outcome boundaries)
+exit=0
+
+$ lua tests/difficulty-enhancement.spec.lua
+Difficulty/enhancement: 153 checks passed
+exit=0
+
+$ lua tests/economy.spec.lua
+Economy: 42 checks passed
+exit=0

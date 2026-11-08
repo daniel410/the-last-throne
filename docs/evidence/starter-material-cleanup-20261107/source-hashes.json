@@ -1,0 +1,8 @@
+{
+  "src/server/Inventory/InventoryRules.luau": "5d4fa881b9ef45ab47b9cb95415d6a2c347b936a2a481df9e057df40af361d34",
+  "src/shared/ItemCatalog.luau": "4176b5062abeeeb30dcf2bb44d2874d2c6903912f5976628369cb2ff042a7509",
+  "src/shared/ItemSpriteAtlas.luau": "78010bc8a7ee1ac548cea29bfefdcf4925620dc312fe3d3bd89cdbeff1bcf869",
+  "tests/starter-material-cleanup.spec.lua": "f845a931d04df0dfab9fc20920608f2a551b5d9f5ac7a8f9e693cc90591e7b1e",
+  "tests/starter-potions-and-shop.spec.lua": "aa4e7fed11f8c797e9ff2480a48f7a6e26c942dbd28faf329243e17a854e9f76",
+  "tests/inventory.spec.lua": "46b704ab6375681726bba3d67358e9e4593d8d674270268e810ab7749ad31303"
+}

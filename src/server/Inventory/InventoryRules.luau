@@ -96,7 +96,7 @@ local function grantStarterSupplies(profile, heroId, catalog)
 	for _, resource in ipairs(classId == "mage" and {"health", "mana"} or {"health"}) do
 		add(resource .. "_potion_medium", 2); add(resource .. "_potion_large", 1); add(resource .. "_potion_xl", 1)
 	end
-	add("iron_ore", 24); add("soft_hide", 8)
+	add("iron_ore", 10)
 	hero.starterSuppliesClaimed = true
 end
 function Rules.addHero(profile, heroId, classId, catalog)
@@ -304,9 +304,14 @@ function Rules.apply(profile, command, context, catalog)
 	if not Rules.validate(nextProfile, catalog) then return nil, "Incompatible" end
 	return nextProfile
 end
--- Legacy account migration preserves roster, classes, items and all ownership.
+-- Legacy account migration preserves ownership except explicitly retired supplies.
 function Rules.upgrade(profile)
 	local changed=Economy.upgrade(profile)
+	-- User-requested retirement, including locked bag/storage/unclaimed stacks.
+	-- Keep the catalog tombstone so AccountStore can validate old saves first.
+	for id,item in pairs(profile.items) do
+		if item.definitionId=="soft_hide" then profile.items[id]=nil;changed=true end
+	end
 	-- Legacy profiles lack a per-hero receipt. Preserve consumption instead
 	-- of guessing from empty bags and reissuing items that were used/discarded.
 	for _, hero in pairs(profile.heroes) do
