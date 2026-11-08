@@ -6,7 +6,12 @@ local report={kind="K0_MELEE_BLENDER_NATIVE",checks=0,failures={},maxDegreesErro
 local ok,err=xpcall(function()
  for _,clip in ipairs(fixtures) do
   for _,sample in ipairs(clip.samples) do
-   local actual=assert(Motion.sample(clip.classId,clip.combo,sample.age,nil,nil,clip.skillId))
+   local age=sample.age
+   if clip.classId=="dwarf" and not clip.skillId then
+    local d=require(game.ReplicatedStorage.Shared.K0Config).BasicAttackProfiles.dwarf.attacks[1]
+    age*= (d.windup+d.active+d.recovery)/require(game.StarterPlayer.StarterPlayerScripts.Client.K0DwarfMixamoBasic).duration
+   end
+   local actual=assert(Motion.sample(clip.classId,clip.combo,age,nil,nil,clip.skillId))
    for channel,expected in pairs(sample.angles) do
     local error=(actual.angles[channel]-Vector3.new(unpack(expected))).Magnitude
     report.maxDegreesError=math.max(report.maxDegreesError,error)

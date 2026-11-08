@@ -72,6 +72,10 @@ local Config = {
 -- equipment or skills. Dwarf swings a hand axe; Mage swings a wooden staff.
 -- Keep Knight tied to the existing K0 values. Elf uses one server-resolved
 -- ranged shot with a narrow forward aim assist, not a client damage claim.
+-- Dwarf keeps its reviewed stroke but uses a heavier 0.65s basic cadence.
+-- Scale all phases together to preserve motion/contact joins. Scale damage
+-- equally to preserve sustained basic DPS before integer damage rounding.
+local dwarfBasicTempo = 0.65 / 0.42
 Config.BasicAttackProfiles = {
 	knight = {
 		id = "knight.sword.basic", attackPower = Config.AttackPower,
@@ -83,7 +87,7 @@ Config.BasicAttackProfiles = {
 	},
 	dwarf = {
 		id = "dwarf.axe.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,
-		attacks = {{ windup = 0.16, active = 0.10, hitDelay = 0.06, recovery = 0.16, damage = 0.75, posture = 12, range = 5.5, angle = 100 }},
+		attacks = {{ windup = 0.16 * dwarfBasicTempo, active = 0.10 * dwarfBasicTempo, hitDelay = 0.06 * dwarfBasicTempo, recovery = 0.16 * dwarfBasicTempo, damage = 0.75 * dwarfBasicTempo, posture = 12, range = 5.5, angle = 100 }},
 	},
 	mage = {
 		id = "mage.staff.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,

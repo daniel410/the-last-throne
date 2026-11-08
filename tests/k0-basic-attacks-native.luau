@@ -342,7 +342,7 @@ return {
       sample(d.windup+(d.hitDelay or 0)+.001)
       return enemy.humanoid.Health
      end
-     near(strike(reach-.05),10000-({75,90,120})[combo],"new outer reach hits with original damage")
+     near(strike(reach-.05),10000-(classId=="dwarf" and 116 or ({75,90,120})[combo]),"outer reach hits with the configured basic damage")
      near(strike(reach+.05),10000,"outside new reach misses")
      near(strike(reach-.05,true),10000,"wall still blocks extended reach")
     end)
@@ -1169,7 +1169,7 @@ return {
 			equal(state.humanoid.AutoRotate, false, "movement cannot turn a targeted swing away")
 			local definition = state.attack.definition
 			sample(definition.windup + (definition.hitDelay or 0) + 0.01)
-			near(selected.humanoid.Health, 9925, "selected side enemy takes server damage")
+			near(selected.humanoid.Health, classId=="dwarf" and 9884 or 9925, "selected side enemy takes server damage")
 			near(decoy.humanoid.Health, 10000, "enemy outside aimed cone is not hit")
 			api.stepPlayer(state, 0.8, 0)
 			equal(state.humanoid.AutoRotate, true, "normal auto rotation returns when the swing ends")
@@ -1290,11 +1290,13 @@ return {
 		api.setHitEffectRemote({ FireAllClients = function(_, ...) table.insert(events, { ... }) end })
 		local state, enemy = spawnPlayer(), spawnEnemy(3)
 		action(state, "Attack", 0)
-		sample(0.20)
+		local d=state.attack.definition
+		local contact=d.windup+d.hitDelay
+		sample(contact-.01)
 		near(enemy.humanoid.Health, 10000, "dwarf does not hit during the early downswing")
 		equal(#events, 0, "no hit feedback before the impact")
-		sample(0.23)
-		near(enemy.humanoid.Health, 9925, "dwarf hits within the existing active window")
+		sample(contact+.01)
+		near(enemy.humanoid.Health, 9884, "dwarf hits at its retimed downstroke")
 		equal(#events, 1, "impact feedback fires once at the hit")
 	end)
 
@@ -1313,13 +1315,15 @@ return {
 			equal(state.character:GetAttribute("K0AttackSeq"), 1, "first attack sequence")
 			local impact = profile.attacks[1].windup + (profile.attacks[1].hitDelay or 0)
 			sample(impact + 0.01)
-			near(enemy.humanoid.Health, 9925, "melee hit and no Knight counter bonus")
+			near(enemy.humanoid.Health, classId=="dwarf" and 9884 or 9925, "melee hit and no Knight counter bonus")
 			sample(impact + 0.02)
-			near(enemy.humanoid.Health, 9925, "same window cannot hit twice")
+			near(enemy.humanoid.Health, classId=="dwarf" and 9884 or 9925, "same window cannot hit twice")
 			equal(#fixture:GetDescendants(), beforeCount, "melee does not create a projectile")
-			action(state, "Attack", 0.301)
+			local d=profile.attacks[1]
+			local ending=d.windup+d.active+d.recovery
+			action(state, "Attack", ending-.119)
 			equal(state.queued and state.queued.action, "Attack", "second attack buffers")
-			action(state, "Attack", 0.433333333)
+			action(state, "Attack", ending+.01)
 			equal(state.character:GetAttribute("K0AttackSeq"), 2, "valid buffer executes once")
 			equal(state.combo, 1, "single-hit profile loops at one")
 		end)
@@ -1338,9 +1342,10 @@ return {
 			wall.Position = origin + Vector3.new(0, 0, -1.5)
 			wall.Parent = fixture
 			enemy.model:PivotTo(CFrame.lookAt(origin + Vector3.new(0, 0, -3), origin + Vector3.new(0, 0, -2)))
-			action(state, "Attack", 0.43)
-			near(state.attack.started, 0.43, "second melee actually starts behind wall")
-			sample(0.43 + definition.windup + (definition.hitDelay or 0) + 0.01)
+			local nextStart=definition.windup+definition.active+definition.recovery+.01
+			action(state, "Attack", nextStart)
+			near(state.attack.started, nextStart, "second melee actually starts behind wall")
+			sample(nextStart + definition.windup + (definition.hitDelay or 0) + 0.01)
 			near(enemy.humanoid.Health, 10000, "solid wall blocks melee")
 		end)
 		case(classId .. "-missed-active-window", function()
@@ -1348,10 +1353,12 @@ return {
 			local state = spawnPlayer()
 			local enemy = spawnEnemy()
 			action(state, "Attack", 0)
-			sample(0.27)
-			near(enemy.humanoid.Health, 9925, "one delayed sample recovers skipped active window")
-			sample(0.28)
-			near(enemy.humanoid.Health, 9925, "recovery cannot hit twice")
+			local d=state.attack.definition
+			local activeEnd=d.windup+d.active
+			sample(activeEnd+.01)
+			near(enemy.humanoid.Health, classId=="dwarf" and 9884 or 9925, "one delayed sample recovers skipped active window")
+			sample(activeEnd+.02)
+			near(enemy.humanoid.Health, classId=="dwarf" and 9884 or 9925, "recovery cannot hit twice")
 		end)
 		case(classId .. "-common-guard", function()
 			api.injectResolver(function() return classId end)

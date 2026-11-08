@@ -88,7 +88,7 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
 				check(hit.Z < -3 and math.abs(hit.X) < (classId=="dwarf" and 2.6 or 1.6), "Contact passes through target corridor in front")
 				check(minY > -3.4, "Blade stays above floor on default rig")
 				check(maxReach < 6.5, "Compact arc stays near combat reach")
-				-- The complete overhead now runs in the 0.42s basic window.
+				-- The complete overhead is retimed to the configured basic window.
                 -- Its wider arc is checked alongside exact boundary/velocity continuity below.
                 check(maxStep < (classId=="dwarf" and 1 or .7), "Continuous bounded arc")
 				if classId == "dwarf" or combo == 3 then
@@ -131,7 +131,8 @@ for _, rig in ipairs({Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15}) do
              check((v0-v1).Magnitude<35,"Chained attack preserves outgoing momentum")
             end
             character:SetAttribute("K0State","Idle");character:SetAttribute("K0AttackStartedAt",nil)
-            check(Motion.forCharacter(character,201.5)==nil,"Idle releases the procedural layer after settling")
+            local nextAttack=Config.BasicAttackProfiles[classId].attacks[classId=="knight" and 2 or 1]
+            check(Motion.forCharacter(character,200+transition+nextAttack.windup+nextAttack.active+nextAttack.recovery+.43)==nil,"Idle releases the procedural layer after settling")
             character:SetAttribute("K0State","Attack");character:SetAttribute("K0AttackStartedAt",202)
             character:SetAttribute("K0SkillId", classId == "knight" and "knight.common.bash" or "dwarf.common.throw")
 			check((Motion.forCharacter(character,202.1) ~= nil) == (classId == "dwarf"), "Dwarf throw uses Blender; Knight specialist keeps its own motion")

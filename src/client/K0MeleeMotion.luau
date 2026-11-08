@@ -123,6 +123,8 @@ function Motion.sample(classId, combo, age, entry, entrySlope, skillId, rigType,
      local first,nextKey=keys[1],keys[2]
      local span=nextKey[1]-first[1]
      local baseAcceleration=6*(nextKey[2]-first[2])/(span*span)-(4*first[3]+2*nextKey[3])/span
+     -- Curve derivatives are in authored seconds; convert to this action clock.
+     baseAcceleration*=(clip.entryUntil/opening)^2
      local delta=entry[channel][name]-rest[classId][channel][name]
      local slope=entrySlope and entrySlope[channel][name] or 0
      local acceleration=baseAcceleration-6*delta/(opening*opening)-4*slope/opening

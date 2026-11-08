@@ -37,11 +37,13 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
   end
   character:SetAttribute('K0State','Dodge');Motion.forCharacter(character,110)
   character:SetAttribute('K0State','Attack');character:SetAttribute('K0SkillId',nil);character:SetAttribute('K0AttackStartedAt',111)
-  local high=sample(11.11,1/60):PointToWorldSpace(edge.Position)
-  local low=sample(11.29,1/60):PointToWorldSpace(edge.Position)
+  local d=C.BasicAttackProfiles.dwarf.attacks[1]
+  local scale=(d.windup+d.active+d.recovery)/.42
+  local high=sample(11+.11*scale,1/60):PointToWorldSpace(edge.Position)
+  local low=sample(11+.29*scale,1/60):PointToWorldSpace(edge.Position)
   high=root.CFrame:PointToObjectSpace(high);low=root.CFrame:PointToObjectSpace(low)
   local head=root.CFrame:PointToObjectSpace(character.Head.Position)
-  local contact=root.CFrame:PointToObjectSpace(sample(11.22,1/60):PointToWorldSpace(edge.Position))
+  local contact=root.CFrame:PointToObjectSpace(sample(11+.22*scale,1/60):PointToWorldSpace(edge.Position))
   table.insert(report.samples,{rig=rig.Name,load=tostring(high),follow=tostring(low),contact=tostring(contact)})
   check((low-high).Magnitude>1,'Full overhead replacement has a visible loading-to-follow-through arc')
   check((contact-high).Magnitude>.5,'Basic attack leaves its loaded pose before server contact')

@@ -1,0 +1,24 @@
+K0_BASIC_ATTACK_NATIVE {"coverage":"Actual server service/callback code, identity mocks, native rig/physics, synthetic clock; no transport, real player or client animation","checks":32,"pass":true,"kind":"K0_BASIC_ATTACK_NATIVE","cases":[{"id":"dwarf-reach-1-targeted-false","pass":true,"checks":3},{"id":"dwarf-reach-1-targeted-true","pass":true,"checks":3},{"id":"targeted-dwarf-turns-and-hits-selected","pass":true,"checks":7},{"id":"dwarf-impact-matches-downstroke","pass":true,"checks":4},{"id":"dwarf-melee-hit-deduplicate-and-buffer","pass":true,"checks":10},{"id":"dwarf-range-and-wall","pass":true,"checks":3},{"id":"dwarf-missed-active-window","pass":true,"checks":2}],"failures":[]}
+debug.profileEnd() - No active profile annotation. At: Stack Begin
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.RobloxReactProfiling', Line 65 - function profileend
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.RobloxReactProfiling', Line 215 - function profileCommitAfter
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 2107
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.Scheduler.Scheduler.Scheduler', Line 377 - function unstable_runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 165 - function runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 2103
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 1173
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 840
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 237
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.Scheduler.Scheduler.Scheduler', Line 377 - function unstable_runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 165 - function runWithPriority
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 227
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.SchedulerWithReactIntegration.new', Line 208 - function flushSyncCallbackQueue
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new', Line 697
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberReconciler.new', Line 379
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.ReactRoblox.ReactRoblox.client.ReactRobloxRoot', Line 110 - function render
+Script 'builtin_Toolbox.rbxm.Toolbox.Packages._Index.RoactCompat.RoactCompat.RoactTree', Line 86 - function mount
+Script 'builtin_Toolbox.rbxm.Toolbox.Bin.main', Line 410 - function main
+Script 'builtin_Toolbox.rbxm.Toolbox.Bin.main', Line 674
+Script 'builtin_Toolbox.rbxm.Toolbox.Bin.loader', Line 145
+Stack End
+ContentId: rbxassetid://203785492 failed due to: Asset type does not match requested type

@@ -1,11 +1,16 @@
 """Read-only arithmetic for the dated combat research; no runtime edits."""
 from pathlib import Path
 import hashlib,json,subprocess
-root=Path(__file__).resolve().parents[1];base={'knight':[.42,.46,.62],'dwarf':[.42]}
-growth=(root/'src/shared/HeroProgression.luau').read_text()
+root=Path(__file__).resolve().parents[1]
+# Freeze the pre-application research baseline; never overwrite its tables
+# with later live balance values that answer a different question.
+source_commit='4877faad73ea8bf206f13c43d32440f6cd78df7f'
+def snapshot(path):return subprocess.check_output(['git','show',source_commit+':'+path],cwd=root)
+base={'knight':[.42,.46,.62],'dwarf':[.42]}
+growth=snapshot('src/shared/HeroProgression.luau').decode()
 assert 'attackRate=1+math.min(1,g.stats.DEX*.005)' in growth
 assert 'moveRate=1+math.min(.3,g.stats.DEX*.001)' in growth
-config=(root/'src/shared/K0Config.luau').read_text()
+config=snapshot('src/shared/K0Config.luau').decode()
 for text in ['windup = 0.16, active = 0.10, recovery = 0.16',
  'windup = 0.18, active = 0.10, recovery = 0.18',
  'windup = 0.26, active = 0.12, recovery = 0.24',
@@ -25,9 +30,9 @@ for period in [.42,.60,.65,.70]:
  proposals.append({'status':'unapproved research candidate','dwarfBasePeriod':period,'baseAPS':1/period,'maxDEXPeriod':period/2,
  'maxDEXAPS':2/period,'basicDPSRatioIfDamageUnchanged':.42/period,'damageCoefficientForSameIdealizedDPS':coeff})
 paths=['src/shared/K0Config.luau','src/shared/HeroProgression.luau','src/server/Combat/K0Rules.luau','src/server/Combat/CombatService.luau','src/client/K0MeleeMotion.luau']
-r={'date':'2026-11-08','sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root).decode().strip(),
+r={'date':'2026-11-08','sourceCommit':source_commit,
  'method':'Static arithmetic from current source; not measured gameplay, transport, frame or enemy-armor simulation',
- 'inputs':{p:hashlib.sha256((root/p).read_bytes()).hexdigest()for p in paths},'rows':rows,'unapprovedProposals':proposals,
+ 'inputs':{p:hashlib.sha256(snapshot(p)).hexdigest()for p in paths},'rows':rows,'unapprovedProposals':proposals,
  'oldDwarfSkillToBasicCompression':1.13/.42,'baselineBasicDPSAtEqualPower100':{'knight':(75+90+120)/1.5,'dwarf':75/.42},
  'wc3ArchivedGuideExamples':{'mountainKingLevel1Seconds':2.22/(1+.02*11),'paladinLevel1Seconds':2.2/(1+.02*13),
  'mountainKingPlus20AgilitySeconds':2.22/(1+.02*31),'relativeAttackRateGainFrom11To31Agility':(1+.02*31)/(1+.02*11)-1,

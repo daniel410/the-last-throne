@@ -1,0 +1,8 @@
+{
+  "src/shared/K0Config.luau": "6cdee7c912b4c287edeaabd96f4005f11be9248d852b4d1c86a42cdede02c72f",
+  "src/client/K0MeleeMotion.luau": "2674d8a9b5278d48c6a78394c7cf528a723c9e45db6054c60b8c0b2d717ed384",
+  "src/shared/HeroProgression.luau": "902cdb09891f6f84841af11334e4f24e1714209b2010fd0bd6d9e21180154a6c",
+  "src/server/Combat/CombatService.luau": "1d29bed9c39a79cd6c3101aae7f3d3d1848d9d6afafb5ae824f8526dcfa75c4d",
+  "tests/dwarf-basic-tempo-native.luau": "3198f02fb53e83dbd8f00297db52c065b3ff9c2a8bef1362784ae618cd3badc2",
+  "tests/k0-basic-attacks-native.luau": "73f5ff01f580bdf48396bc941ce2e4ecf4e3e57baed8dd71560c15ef881a55db"
+}

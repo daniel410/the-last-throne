@@ -10,7 +10,9 @@ local function check(v,label)report.checks+=1;assert(v,label)end
 local keys={basic=false,throw='dwarf.common.throw',overhead='dwarf.common.overhead',ground='dwarf.common.ground',grounded='dwarf.mixamo.grounded',backhand='dwarf.mixamo.backhand',sweep='dwarf.mixamo.sweep'}
 for key,samples in mixamoGolden do
  for _,s in samples do
-  local p=assert(M.sample('dwarf',1,s.age,nil,nil,keys[key]or nil,Enum.HumanoidRigType.R15))
+  local definition=Config.BasicAttackProfiles.dwarf.attacks[1]
+  local age=key=='basic'and s.age*(definition.windup+definition.active+definition.recovery)/require(Client.K0DwarfMixamoBasic).duration or s.age
+  local p=assert(M.sample('dwarf',1,age,nil,nil,keys[key]or nil,Enum.HumanoidRigType.R15))
   for ch,expected in s.angles do
    local error=(p.angles[ch]-Vector3.new(unpack(expected))).Magnitude
    report.maxBlenderDegrees=math.max(report.maxBlenderDegrees,error)
