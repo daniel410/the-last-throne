@@ -1,3 +1,5 @@
+> **2026-11-09 · TLT-029/041/052/057/084 · 0.90.0:** Traveler(Common/Lv1,기본지급)·Tempered(Common/Lv1)·Veteran(Uncommon/Lv10)·Sentinel(Rare/Lv15)을 단일 고정옵션40종으로 구현했다. Copper Ring공격+3·Amber Charm HP+30·새Amber Mana Charm MP+30, 마법사 기본로브MP·장비MP/강화/기존보유 이관 연결. [부위별 정본/이관](production/equipment-four-tier-reorganization-2026-11-09.md) · [검증/빌드/미게시·한계](evidence/equipment-families-20261109/README.md). 실계정/기기·새등급별미술 수용 후속.
+
 > **2026-11-09 사용자 장비 재정리 · TLT-029/041/052/057/084:** Traveler(Common/Lv1/+3~4/HP·MP20, 기본지급·착용) → Tempered(Common/Lv1/+5~6/30) → Veteran(Uncommon/Lv10/+9~10/40) → Sentinel(Rare/**Lv15**/+14~15/50). Copper Ring/Amber Charm 유지. [확정 범위·옵션 배정 질의·구현 인계](production/equipment-four-tier-reorganization-2026-11-09.md). 새 기준 기록이며 게임 미적용.
 
 > **2026-11-09 · TLT-029/032/041/052/057/084 · 0.89.4:** 사용자 지시로 Training 검/도끼/활/지팡이4종의 기존 착용·가방·창고·미수령 인스턴스를 계정 로드 때 전부 삭제한다. 기본 지급 Tempered4종은 Common으로 변경하며 안정ID·공격력+3·강화·외형·가격을 유지한다. [검증/현재 모델 미리보기·미게시](evidence/training-delete-common-20261109/README.md). 실계정/기기 수용 후속.

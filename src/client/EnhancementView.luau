@@ -45,7 +45,7 @@ function V.render(scroll,s,send,saving,notice)
     local n=item.enhancementLevel or 0;local cost=E.cost(def,n+1);local before=E.stats(def,item)
     local after=E.stats(def,{enhancementLevel=math.max(n,math.min(E.cap(def),n+1))})
     local lines={n>=E.cap(def)and Text.MaxEnhancement or string.format(Text.Success,E.successPercent(n+1),100-E.successPercent(n+1))}
-    for _,key in ipairs({'power','armor','health'})do if (before[key]or 0)>0 then table.insert(lines,key=='power' and string.format(Text.PowerChange,before[key],after[key]) or string.format(Text.StatChange,key=='armor'and Text.Armor or Text.Health,before[key],after[key]))end end
+    for _,key in ipairs({'power','armor','health','mana'})do if (before[key]or 0)>0 then table.insert(lines,key=='power' and string.format(Text.PowerChange,before[key],after[key]) or string.format(Text.StatChange,key=='armor'and Text.Armor or key=='mana'and 'Max MP' or Text.Health,before[key],after[key]))end end
     table.insert(lines,string.format(Text.EnhanceCost,E.cap(def),cost.gold,cost.gems,cost.stones))
     table.insert(lines,string.format(Text.MaterialBag,ore,cores))
     local paid=item.enhancementPaid or {ore=0,cores=0};local modern=item.enhancementPaidV2 or {gems=0,stones=0};local ro,rc=math.floor(paid.ore*.8),math.floor(paid.cores*.8);local rg,rs=math.floor(modern.gems*.8),math.floor(modern.stones*.8)
@@ -54,7 +54,7 @@ function V.render(scroll,s,send,saving,notice)
      {rulesVersion=E.version,expectedLevel=n,title=n>=E.cap(def)and Text.MaxEnhancement or enough and Text.Enhance or Text.MoreMaterials,action='Enhance',instanceId=item.instanceId,itemVersion=item.version,enabled=n<E.cap(def)and enough},
      {title=Text.Recover,action='Recover',instanceId=item.instanceId,itemVersion=item.version,enabled=ro+rc+rg+rs>0,review=string.format(Text.RecoveryReview,E.name(def,item),rg,rs,ro,rc)}})
    elseif def.cacheTier then
-    local choices={};for _,choice in pairs(C.items)do if choice.slot and not choice.retired and choice.cacheEligible~=false and (choice.level or 1)==def.cacheTier and E.supported(choice)and (not choice.classId or choice.classId==hero.baseClassId)then table.insert(choices,choice)end end
+    local choices={};for _,choice in pairs(C.items)do if choice.slot and not choice.retired and choice.cacheEligible~=false and (choice.level or 1)==(def.cacheTier==5 and 10 or def.cacheTier) and E.supported(choice)and (not choice.classId or choice.classId==hero.baseClassId)then table.insert(choices,choice)end end
     table.sort(choices,function(a,b)return a.id<b.id end)
     if #choices==0 then card(item.instanceId..'-unavailable',def,def.name,Text.CacheUnavailable,{}) end
     for _,choice in ipairs(choices)do

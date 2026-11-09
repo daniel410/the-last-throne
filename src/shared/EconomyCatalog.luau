@@ -66,6 +66,22 @@ C.retiredForgeDiamondStock={
 for _,row in ipairs(C.retiredForgeDiamondStock)do
  C.sell[row.id]=row.sell;C.sell[row.id..'_epic']=row.sell
 end
+local Items=game and require(script.Parent.ItemCatalog)or dofile('src/shared/ItemCatalog.luau')
+local seen={};for _,offer in ipairs(C.offers)do seen[offer.id]=true end
+for _,id in ipairs(Items.tierEquipment)do
+ local d=Items.items[id]
+ local slot=d.slot;local rare=d.rarity=='Rare'
+ local price=rare and (slot=='weapon' and 18 or slot=='offhand' and 10 or slot=='body' and 13 or 8)
+  or slot=='weapon' and (d.family=='veteran' and 600 or 250)
+  or slot=='offhand' and 250 or d.family=='veteran' and 250 or slot=='body' and 120 or 80
+ local offerId=rare and id..'_diamond' or id
+ if not seen[offerId]then table.insert(C.offers,{id=offerId,definitionId=id,currency=rare and 'diamonds' or 'gold',price=price});seen[offerId]=true end
+ if not C.sell[id]then C.sell[id]=rare and (slot=='weapon' and 190 or slot=='body' and 130 or slot=='offhand' and 100 or 80)or math.floor(price/5)end
+end
+for _,row in ipairs({{'amber_mana_charm','gold',150},{'amber_mana_charm_diamond','diamonds',4}})do
+ table.insert(C.offers,{id=row[1],definitionId='amber_mana_charm',currency=row[2],price=row[3]})
+end
+C.sell.amber_mana_charm=30
 function C.diamondGear(definition)
  return definition and definition.category=='Equipment' and (definition.rarity=='Rare' or definition.rarity=='Epic')
 end

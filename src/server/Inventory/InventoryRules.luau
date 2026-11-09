@@ -21,7 +21,7 @@ function Rules.integer(value, minimum, maximum)
 	return type(value) == "number" and value == value and value % 1 == 0 and value >= minimum and value <= maximum
 end
 function Rules.new(userId)
-	return {schemaVersion = 1, userId = userId, revision = 0, epoch = 0, heroes = {}, items = {}, operations = {}, operationOrder = {},wallet={version=1,gold=0,diamonds=0,claims={}}}
+	return {schemaVersion = 1, userId = userId, revision = 0, epoch = 0, equipmentRulesVersion = 1, heroes = {}, items = {}, operations = {}, operationOrder = {},wallet={version=1,gold=0,diamonds=0,claims={}}}
 end
 -- The trusted server fixes request time; calendar record and Gold share one account write.
 function Rules.claimDaily(profile,now,requestId)
@@ -56,7 +56,7 @@ function Rules.quantity(profile, heroId, definitionId)
 	return count
 end
 function Rules.stats(profile, heroId, catalog)
-	local result = {power = 0, armor = 0, health = 0, weapon = false, offhand = false}
+	local result = {power = 0, armor = 0, health = 0, mana = 0, weapon = false, offhand = false}
 	for _, item in pairs(profile.items) do
 		if item.location.kind == "equipped" and item.location.heroId == heroId then
 			for key, value in pairs(Enhancement.stats(catalog.items[item.definitionId],item)) do result[key] = result[key] + value end
@@ -93,8 +93,11 @@ local function grantStarterSupplies(profile, heroId, catalog)
 		end
 		insertItem(profile, heroId .. "-starter-" .. n, definitionId, quantity, location, catalog, "starter:" .. heroId)
 	end
-	add(classId .. "_weapon_fine", 1)
-	for _, id in ipairs(catalog.kit) do add(id, 1) end
+	add(classId .. "_weapon_traveler", 1)
+	for _, id in ipairs(catalog.kit) do
+  if classId=="mage" and id=="traveler_coat" then id="mage_traveler_coat"end
+  add(id,1)
+ end
 	add("health_potion", 3); if classId == "mage" then add("mana_potion", 3) end
 	for _, resource in ipairs(classId == "mage" and {"health", "mana"} or {"health"}) do
 		add(resource .. "_potion_medium", 2); add(resource .. "_potion_large", 1); add(resource .. "_potion_xl", 1)
@@ -145,6 +148,7 @@ function Rules.validate(profile, catalog)
 		classes[hero.baseClassId] = true; heroCount = heroCount + 1
 	end
 	if heroCount > 4 then return false end
+ if profile.equipmentRulesVersion~=nil and profile.equipmentRulesVersion~=1 then return false end
 	for id, item in pairs(profile.items) do
 		if type(item) ~= "table" then return false end
 		local def, loc = catalog.items[item.definitionId], item.location
@@ -162,7 +166,7 @@ function Rules.validate(profile, catalog)
 			local validSlot = false
 			for _, slot in ipairs(catalog.slots) do if slot == loc.slot then validSlot = true end end
 			if not validSlot or not def.slot or def.slot ~= loc.slot and not (def.slot == "accessory" and (loc.slot == "accessory1" or loc.slot == "accessory2"))
-				or def.classId and def.classId ~= hero.baseClassId or (def.level or 1) > hero.level then return false end
+				or def.classId and def.classId ~= hero.baseClassId or (def.level or 1) > hero.level and not (profile.equipmentRulesVersion==nil and def.legacyLevel and hero.level>=def.legacyLevel) then return false end
 			local key = loc.heroId .. ":" .. loc.slot
 			if slots[key] then return false end
 			slots[key] = true
@@ -335,6 +339,30 @@ function Rules.upgrade(profile,catalog)
 		local definition=catalog.items[item.definitionId]
 		if item.definitionId=="soft_hide" or (definition and definition.deleted) then profile.items[id]=nil;changed=true end
 	end
+ -- One account transaction preserves identity, locks and enhancement investment.
+ if profile.equipmentRulesVersion==nil then
+  local Families=catalog.equipmentFamilies
+  local ids={};for id in pairs(profile.items)do table.insert(ids,id)end;table.sort(ids)
+  for _,id in ipairs(ids)do
+   local item=profile.items[id];local loc=item.location;local hero=profile.heroes[loc.heroId]
+   local sourceHero=type(item.sourceGrantId)=='string' and profile.heroes[item.sourceGrantId:match('^starter:(.+)$')]
+   if Families then
+    local slot=Families.legacy[item.definitionId]
+    if slot then item.definitionId=Families.piece('sentinel',slot);item.version=item.version+1 end
+    if sourceHero and item.definitionId==Families.weapon('tempered',sourceHero.baseClassId)then
+     item.definitionId=Families.weapon('traveler',sourceHero.baseClassId);item.version=item.version+1
+    end
+    local wearer=hero or sourceHero
+    if wearer and wearer.baseClassId=='mage' and item.definitionId=='traveler_coat' then item.definitionId=Families.mageBody('traveler');item.version=item.version+1 end
+   end
+   local def=catalog.items[item.definitionId]
+   if loc.kind=='equipped' and hero and hero.level<(def.level or 1)then
+    item.location=Rules.count(profile,'bag',hero.heroId)<catalog.bagCapacity and {kind='bag',heroId=hero.heroId}or {kind='pending'}
+    item.version=item.version+1
+   end
+  end
+  profile.equipmentRulesVersion=1;changed=true
+ end
 	-- Legacy profiles lack a per-hero receipt. Preserve consumption instead
 	-- of guessing from empty bags and reissuing items that were used/discarded.
 	for _, hero in pairs(profile.heroes) do

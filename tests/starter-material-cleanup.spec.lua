@@ -18,7 +18,7 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  p=assert(R.addHero(p,class,class,C))
  check(R.quantity(p,class,'iron_ore')==10,'each new hero receives ten Ore once')
  check(hides(p)==0,'no new hero receives Soft Hide')
- check(R.equipped(p,class,'weapon').definitionId==class..'_weapon_fine','real starter weapon remains equipped')
+ check(R.equipped(p,class,'weapon').definitionId==class..'_weapon_traveler','real starter weapon remains equipped')
  check(R.validate(p,C),'new profile remains valid')
 end
 local before=R.copy(p);local no,why=R.addHero(p,'knight','knight',C)

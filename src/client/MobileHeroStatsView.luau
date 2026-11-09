@@ -88,7 +88,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
    for _,source in ipairs(sources) do
     local text=string.format(Text.GearItem,InventoryText.Slots[source.slot],source.name)
     local parts={}
-    for _,entry in ipairs({{'power',Text.GearPower},{'armor',Text.GearArmor},{'health',Text.GearHealth}}) do local v=source.stats[entry[1]] or 0;if v~=0 then table.insert(parts,string.format(entry[2],entry[1]=='power' and v or signed(v))) end end
+    for _,entry in ipairs({{'power',Text.GearPower},{'armor',Text.GearArmor},{'health',Text.GearHealth},{'mana',Text.GearMana}}) do local v=source.stats[entry[1]] or 0;if v~=0 then table.insert(parts,string.format(entry[2],entry[1]=='power' and v or signed(v))) end end
     text..='\n'..(#parts>0 and table.concat(parts,' · ') or Text.NoBonus)
     local h=measured(text,12,mainW-8);label(scroll,'Gear_'..source.slot,text,4,top,mainW-8,h,12,Theme.color.silver);top+=h+6
    end

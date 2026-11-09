@@ -1,0 +1,35 @@
+$ lua tests/equipment-families.spec.lua
+Equipment families: 458 checks passed
+
+$ lua tests/starter-gear-balance.spec.lua
+Starter gear balance: 206 checks passed
+
+$ lua tests/equipment-flat-power.spec.lua
+Flat equipment power: 112 checks passed
+
+$ lua tests/deleted-equipment.spec.lua
+Deleted equipment: 171 checks passed
+
+$ lua tests/enhancement-probability.spec.lua
+Enhancement probability: 2869 checks passed (including 90000 outcome boundaries)
+
+$ lua tests/starter-material-cleanup.spec.lua
+Starter material cleanup: 35 checks passed
+
+$ lua tests/reset-tickets.spec.lua
+Reset tickets: 316 checks passed
+
+$ lua tests/support-passes.spec.lua
+Support passes: 30 checks passed
+
+$ lua tests/store-split.spec.lua
+Store split: 14 checks passed
+
+$ lua tests/blacksmith-stock.spec.lua
+Blacksmith active stock: 304 checks passed
+
+$ lua tests/equipment-impact.spec.lua
+Equipment impact: 52 checks passed
+
+$ lua tests/starter-potions-and-shop.spec.lua
+Starter potions and shop: 316 checks passed

@@ -16,7 +16,7 @@ return {
  AttackBonus='Equipped attack bonus: %+.1f pts',BasicAttack='Basic attacks use %s.',
  ShowGear='SHOW GEAR BONUSES',HideGear='HIDE GEAR BONUSES',
  NoGear='No equipment is currently equipped.',NoBonus='No combat stat bonus.',
- GearPower='%+.1f pts attack power',GearArmor='%s pts defense',GearHealth='%s pts Max HP',
+ GearPower='%+.1f pts attack power',GearArmor='%s pts defense',GearHealth='%s pts Max HP',GearMana='%s pts Max MP',
  GearItem='%s · %s',
  HeroNote='Hero includes your class, level and assigned points. Bag and storage items do not add stats.',
  DefenseNote='Attack values are power ratings; each skill has its own damage multiplier. Defense subtracts damage per hit, to a minimum of 1. Temporary combat effects are not included.',

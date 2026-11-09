@@ -9,7 +9,7 @@ local function eq(a,b,label)check(a==b,label..': '..tostring(a)..' ~= '..tostrin
 local function fixture()
  local p=assert(R.addHero(R.new(42),'hero','knight',C));p.wallet.gold=1000;p.wallet.diamonds=77
  F.grant(p,R,C,'hero','enhancement_gem',500,'test-gems');F.grant(p,R,C,'hero','magic_stone',500,'test-stones')
- local id;for k,item in pairs(p.items)do if item.definitionId=='knight_weapon_fine'and (item.location.kind=='bag'or item.location.kind=='equipped')then id=k;break end end
+ local id;for k,item in pairs(p.items)do if item.definitionId=='knight_weapon_traveler'and (item.location.kind=='bag'or item.location.kind=='equipped')then id=k;break end end
  return p,id
 end
 local function command(p,id,request)

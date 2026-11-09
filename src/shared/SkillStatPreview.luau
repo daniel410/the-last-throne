@@ -11,6 +11,7 @@ function Preview.derived(classId,g,equipment)
 	local d=Growth.derived(classId,g)
 	equipment=equipment or {}
 	d.health=d.health+(equipment.health or 0)
+ if d.mana>0 then d.mana=d.mana+(equipment.mana or 0)end
 	d.armor=d.armor+(equipment.armor or 0)
 	-- Keep precision until the final hit, as CombatService does.
 	d.physicalPower=d.physicalPower+(equipment.power or 0)

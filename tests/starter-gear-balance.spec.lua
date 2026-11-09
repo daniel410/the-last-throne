@@ -8,7 +8,7 @@ local n=0
 local function eq(a,b,label)n=n+1;assert(a==b,label..': '..tostring(a)..' ~= '..tostring(b))end
 for _,class in ipairs({'knight','dwarf','elf','mage'})do
  local p=assert(R.addHero(R.new(42),'hero',class,C))
- local ids={class..'_weapon_fine','traveler_hood','traveler_coat','traveler_gloves','traveler_boots','copper_ring','amber_charm'}
+ local ids={class..'_weapon_traveler','traveler_hood',(class=='mage'and 'mage_traveler_coat'or 'traveler_coat'),'traveler_gloves','traveler_boots','copper_ring','amber_charm'}
  for _,id in ipairs(ids)do
   local count=0
   for _,item in pairs(p.items)do if item.definitionId==id then
@@ -16,9 +16,9 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
   end end
   eq(count,1,class..' receives exactly one '..id)
  end
- eq(R.equipped(p,'hero','weapon').definitionId,class..'_weapon_fine',class..' starts with real weapon')
- eq(C.items[class..'_weapon_fine'].rarity,'Common',class..' starter is Common')
- eq(C.items[class..'_weapon_fine'].stats.power,3,class..' starter power unchanged')
+ eq(R.equipped(p,'hero','weapon').definitionId,class..'_weapon_traveler',class..' starts with real weapon')
+ eq(C.items[class..'_weapon_traveler'].rarity,'Common',class..' starter is Common')
+ eq(C.items[class..'_weapon_traveler'].stats.power,4,class..' starter weapon power')
  eq(R.equipped(p,'hero','head').definitionId,'traveler_hood',class..' wears level1 hood')
  eq(R.equipped(p,'hero','accessory1').definitionId,'copper_ring',class..' auto accessory1')
  eq(R.equipped(p,'hero','accessory2').definitionId,'amber_charm',class..' auto accessory2')
@@ -29,12 +29,12 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
  eq(F.grant(p,R,C,'hero',class..'_weapon',1,'retired-test'),false,class..' retired training weapon cannot be granted')
  eq(R.quantity(p,'hero',class..'_weapon'),0,class..' retired grant adds no training weapon')
  local stats=R.stats(p,'hero',C)
- eq(stats.power,5,class..' starter power ceiling');eq(stats.health,50,class..' starter HP ceiling');eq(stats.armor,5,class..' starter armor ceiling')
+ eq(stats.power,10,class..' starter power');eq(stats.health,class=='mage'and 30 or 50,class..' starter HP');eq(stats.mana,class=='mage'and 20 or 0,class..' starter MP');eq(stats.armor,class=='knight'and 10 or 6,class..' starter defense')
  local base=G.derived(class,p.heroes.hero.progression)
  local total=P.derived(class,p.heroes.hero.progression,stats)
- eq(total.health,base.health+50,class..' UI HP follows equipped server stats')
- eq(total.physicalPower,base.physicalPower+5,class..' physical power adds5 points')
- eq(total.magicPower,base.magicPower+5,class..' magic power adds5 points')
+ eq(total.health,base.health+stats.health,class..' UI HP follows equipped server stats')
+ eq(total.physicalPower,base.physicalPower+10,class..' physical power adds10 points')
+ eq(total.magicPower,base.magicPower+10,class..' magic power adds10 points')
  -- Saved instances contain identity/enhancement, not a frozen copy of old bonuses.
  local restored=R.copy(p)
  for _,item in pairs(restored.items)do item.definitionVersion=1 end
@@ -45,5 +45,5 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
  eq(loaded.armor,stats.armor,class..' saved equipment follows current armor')
  eq(R.quantity(restored,'hero','health_potion'),3,class..' potion stock preserved')
 end
-eq(C.items.veteran_hood.stats.armor,2,'free Lv5 hood remains modest')
+eq(C.items.veteran_hood.stats.armor,9,'bonus Veteran hood follows new tier')
 print('Starter gear balance: '..n..' checks passed')

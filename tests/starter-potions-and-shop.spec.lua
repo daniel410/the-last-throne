@@ -32,7 +32,7 @@ for _,first in ipairs({'knight','elf','dwarf','mage'})do
    local d=C.items[id];local expected=(d.restore=='health' or class=='mage') and (d.potionTier==1 and 3 or d.potionTier==2 and 2 or 1) or 0
    check(R.quantity(p,class,id)==expected,'later hero receives its own initial potions')
   end
-  check(R.quantity(p,class,'iron_ore')==10 and R.equipped(p,class,'weapon').definitionId==class..'_weapon_fine','later hero receives its initial equipment and ten Ore')
+  check(R.quantity(p,class,'iron_ore')==10 and R.equipped(p,class,'weapon').definitionId==class..'_weapon_traveler','later hero receives its initial equipment and ten Ore')
   check(R.equipped(p,class,'weapon')~=nil,'later hero retains basic class weapon')
  end end
  check(R.validate(p,C),'all four heroes with once-only supplies remain valid')

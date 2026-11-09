@@ -1884,11 +1884,13 @@ local function setupCharacter(player, character)
 		local attackProfile = Config.BasicAttackProfiles[classId]
 		local current = now()
 		local derived=context.growth and Growth.derived(classId,context.growth)
+  local maxMana=derived and derived.mana or Config.MaxMana
+  if maxMana>0 then maxMana=maxMana+(context.equipment and context.equipment.mana or 0)end
 		local state = {
 			player = player, character = character, humanoid = humanoid, root = root, mode = "",
 			baseClassId = classId, attackProfile = attackProfile, attackSeq = 0, dodgeSeq = 0, arrowSeq = 0, spellSeq = 0,
-			growth=context.growth, derived=derived, maxMana=derived and derived.mana or Config.MaxMana,
-			mana = (derived and derived.mana>0) and derived.mana or (not derived and classId=="mage" and Config.MaxMana or nil),
+			growth=context.growth, derived=derived, maxMana=maxMana,
+			mana = (derived and maxMana>0) and maxMana or (not derived and classId=="mage" and maxMana or nil),
 			manaRegenAt = current,
 			itemCounts = context.itemCounts or {3, 3}, equipment = context.equipment, inventoryManaged = context.inventoryManaged,
 			skillSlots = context.skillSlots or {1, 2, 3, 0, 0}, slotCount = context.slotCount or 3, skillReadyAt = context.skillReadyAt or {}, setSkillReadyAt = context.setSkillReadyAt,
@@ -1994,7 +1996,7 @@ function CombatService.refreshEquipment(player, equipment)
 		state.slotCount=Advanced.slotCount(state.growth)
 		publishSkills(state,now())
 		state.derived=Growth.derived(state.baseClassId,state.growth)
-		state.maxMana=state.derived.mana
+		state.maxMana=state.derived.mana>0 and state.derived.mana+(equipment.mana or 0)or 0
 		if state.maxMana>0 then setMana(state,leveledUp and state.maxMana or math.min(state.mana or 0,state.maxMana)) else state.mana=nil end
 		state.character:SetAttribute("K0MaxMana",state.mana and state.maxMana or nil)
 		local sp,kp=Growth.points(state.growth)

@@ -1,5 +1,5 @@
 -- Equipment power is a flat physical/magic attack bonus in points.
--- All remaining usable attack gear is Common/Uncommon; Rare/Epic attack gear is deleted.
+-- Current Traveler/Tempered/Veteran/Sentinel gear uses fixed flat bonuses.
 -- Trial equipment values, not story rewards, shop products or final balance.
 -- Starter bonuses are deliberately small; shared definitions also retune owned copies.
 -- Existing rarity assignments are explicit. Keep canonical spelling Uncommon.
@@ -81,6 +81,32 @@ for _,baseId in ipairs({'knight_weapon_forged','elf_weapon_forged','dwarf_weapon
   table.insert(Catalog.deletedEquipment,id)
  end
 end
+-- Four current families override old balancing, while deleted IDs remain tombstones.
+local Families=game and require(script.Parent.EquipmentFamilies)or dofile('src/shared/EquipmentFamilies.luau')
+Catalog.equipmentFamilies=Families
+Catalog.tierEquipment={}
+for _,tier in ipairs(Families.tiers)do
+ local function add(id,name,slot,class,stats,glyph,extra)
+  extra=extra or {};extra.level=tier.level;extra.rarity=tier.rarity;extra.family=tier.id
+  extra.description=tier.name..' equipment. One fixed bonus. Requires level '..tier.level..'.'
+  if Catalog.items[id]then extra.legacyLevel=Catalog.items[id].level end
+  gear(id,name,slot,class,stats,glyph,extra);table.insert(Catalog.tierEquipment,id)
+ end
+ for class,name in pairs(Families.weapons)do
+  add(Families.weapon(tier.id,class),tier.name..' '..name,'weapon',class,{power=tier.high},name:sub(1,2):upper())
+ end
+ for _,row in ipairs({{'offhand','Shield','SH'},{'head','Hood','HD'},{'body','Coat','BD'},{'hands','Gloves','HN'},{'feet','Boots','FT'}})do
+  local slot=row[1];local stats=slot=='body' and {health=tier.resource}or slot=='hands' and {power=tier.low}or {armor=slot=='offhand' and tier.high or tier.low}
+  add(Families.piece(tier.id,slot),tier.name..' '..row[2],slot,slot=='offhand' and 'knight'or nil,stats,row[3])
+ end
+ add(Families.mageBody(tier.id),tier.name..' Mage Robe','body','mage',{mana=tier.resource},'BD')
+end
+Catalog.items.copper_ring.stats={power=3}
+gear('amber_mana_charm','Amber Mana Charm','accessory',nil,{mana=30},'CH',{
+ rarity='Uncommon',iconKey='amber_charm',
+ description='Adds 30 maximum MP to heroes with a mana pool. Does not create mana for other heroes or restore current MP.'})
+-- Decode old non-deleted Sentinel copies, then migrate to the new Lv15 family.
+for id in pairs(Families.legacy)do Catalog.items[id].description='Legacy equipment. Migrates to the current Sentinel family when your account loads.'end
 -- Stable IDs/schema; potion restore amounts follow the latest user balance decision.
 Catalog.potions = {}
 for _, resource in ipairs({"health", "mana"}) do

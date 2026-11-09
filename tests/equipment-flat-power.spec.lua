@@ -23,7 +23,7 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
 end
 for _,def in pairs(C.items)do
  if def.slot and not def.deleted and (def.stats.power or 0)>0 then
-  check(def.rarity=='Common'or def.rarity=='Uncommon','all usable attack gear uses flat contract')
+  check(def.rarity=='Common'or def.rarity=='Uncommon'or def.rarity=='Rare','all current attack gear uses flat contract')
   check(near(E.stats(def,{enhancementLevel=9}).power,def.stats.power*1.27),'enhancement increases flat base by 27 percent')
  end
 end

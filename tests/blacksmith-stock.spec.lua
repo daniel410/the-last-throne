@@ -23,7 +23,7 @@ for _,offer in ipairs(C.offers)do
   local twice=assert(R.shop(sold,sell,{atLobby=true},I));check(twice.wallet.gold==sold.wallet.gold,'sale retry idempotent')
  end
 end
-check(counts.Weapons==8 and counts.Armor==6 and counts.Accessories==2,'all 16 active forge offers classified')
-check(grades.Common==9 and grades.Uncommon==7 and not grades.Rare and not grades.Epic,'forge stock by grade')
+check(counts.Weapons==16 and counts.Armor==24 and counts.Accessories==3,'all 43 active forge offers classified')
+check(grades.Common==21 and grades.Uncommon==12 and grades.Rare==10 and not grades.Epic,'forge stock by grade')
 check(#C.forgeDiamondStock==0,'retired forge stock has no active rows')
 print('Blacksmith active stock: '..checks..' checks passed')

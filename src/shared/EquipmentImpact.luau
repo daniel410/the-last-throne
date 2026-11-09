@@ -12,7 +12,7 @@ function Impact.compare(hero,items,selected,slot,catalog)
  local slotError
  slot,slotError=Slots.resolve(hero.heroId,items,d,catalog,slot or (selected.location and selected.location.kind=='equipped' and selected.location.slot or nil))
  if not slot then return nil,slotError end
- local before={power=0,armor=0,health=0};local current
+ local before={power=0,armor=0,health=0,mana=0};local current
  for _,item in ipairs(items or {}) do
   if item.location.kind=='equipped' and item.location.heroId==hero.heroId then
    local def=catalog.items[item.definitionId]
