@@ -1,0 +1,594 @@
+{
+  "created": "2026-11-09",
+  "status": "generated-pending-user-art-acceptance",
+  "tool": "built-in image_gen",
+  "requestedSpelling": "Sentinal",
+  "catalogSpelling": "Sentinel",
+  "spellingDecision": "Treat Sentinal as existing canonical Sentinel; no runtime rename",
+  "tiers": [
+    {
+      "id": "traveler",
+      "name": "Traveler",
+      "rarity": "Common"
+    },
+    {
+      "id": "tempered",
+      "name": "Tempered",
+      "rarity": "Common"
+    },
+    {
+      "id": "veteran",
+      "name": "Veteran",
+      "rarity": "Uncommon"
+    },
+    {
+      "id": "sentinel",
+      "name": "Sentinel",
+      "rarity": "Rare"
+    }
+  ],
+  "palettes": {
+    "traveler": {
+      "cloth": "undyed warm beige linen #C5AF88",
+      "leather": "walnut brown #79513B",
+      "metal": "plain dull iron #92989E",
+      "accent": "muted teal #38585A",
+      "jewels": "none"
+    },
+    "tempered": {
+      "cloth": "slate blue-gray #485B68",
+      "leather": "dark brown #543B30",
+      "metal": "clean tempered steel #BAC4CE",
+      "accent": "cool pale steel #D6DBDF",
+      "jewels": "none"
+    },
+    "veteran": {
+      "cloth": "deep olive green #3F513C",
+      "leather": "dark brown #51392E",
+      "metal": "brushed steel #A8B5BC",
+      "accent": "restrained aged bronze #94734C",
+      "jewels": "none"
+    },
+    "sentinel": {
+      "cloth": "dark navy #234461",
+      "leather": "dark brown #42332D",
+      "metal": "bright silver steel #C9D1D7",
+      "accent": "cobalt blue #3C6D9B, tiny subdued brass only in a small crest",
+      "jewels": "at most ONE SMALL blue inset, optional; never huge gemstones"
+    }
+  },
+  "scope": "12 comparison boards / 48 visual concepts covering 40 existing non-jewelry definitions; head item has Knight helmet, Dwarf helmet and soft hood visual variants",
+  "catalogSource": "src/shared/EquipmentFamilies.luau",
+  "catalogSourceSha256": "d36fbc9b70df9bf3cd6b4415dca4c1e4ee81f05e0b5a00f3e4310e3d68295b2f",
+  "records": [
+    {
+      "id": "sword",
+      "title": "SWORD",
+      "slot": "weapon",
+      "visualClasses": [
+        "knight"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Sword",
+          "rarity": "Common",
+          "definitionId": "knight_weapon_traveler"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Sword",
+          "rarity": "Common",
+          "definitionId": "knight_weapon_fine"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Sword",
+          "rarity": "Uncommon",
+          "definitionId": "knight_weapon_veteran"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Sword",
+          "rarity": "Rare",
+          "definitionId": "knight_weapon_sentinel"
+        }
+      ],
+      "file": "boards/sword.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/knight_weapon_family.png",
+      "referenceSha256": "97b5df1b68d9e8df921cfc6404b3b55dc78e0963147f6c238836406524ae39ed",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier SWORD board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: SWORD. Required construction: A real straight Knight sword; balanced approved blade-to-grip proportion and comfortable long grip. Crisp functional crossguard, one straight blade axis. No short stubby blade, no exaggerated pole-length extension.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"SWORD\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-37c2353e-fd34-42fe-89fb-a749f9386fe3.png",
+      "sha256": "4b75a8cfb676f8e333bdf10794c1c3a3d7e97b2378ce305ad3a93febac7e609f",
+      "bytes": 1689316,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "id": "bow",
+      "title": "BOW",
+      "slot": "weapon",
+      "visualClasses": [
+        "elf"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Bow",
+          "rarity": "Common",
+          "definitionId": "elf_weapon_traveler"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Bow",
+          "rarity": "Common",
+          "definitionId": "elf_weapon_fine"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Bow",
+          "rarity": "Uncommon",
+          "definitionId": "elf_weapon_veteran"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Bow",
+          "rarity": "Rare",
+          "definitionId": "elf_weapon_sentinel"
+        }
+      ],
+      "file": "boards/bow.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/elf_weapon_family.png",
+      "referenceSha256": "d988924b7d0745ac1dbafc0f13a66feec106921601d9ba0bbbb34330bd463171",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier BOW board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: BOW. Required construction: A functional Elf bow with two recurve limbs, central wrapped grip and continuous connected taut bowstring. The full bow height remains practical and elegant like the approved reference. No crossbow or rifle.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"BOW\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-a7a0efeb-8841-4a2d-b309-2e6ee212e03d.png",
+      "sha256": "2f71ea05288679634e9ed62043a49831cfbe1ea01c6c0926db184f28765e20c9",
+      "bytes": 1778231,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "id": "axe",
+      "title": "AXE",
+      "slot": "weapon",
+      "visualClasses": [
+        "dwarf"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Axe",
+          "rarity": "Common",
+          "definitionId": "dwarf_weapon_traveler"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Axe",
+          "rarity": "Common",
+          "definitionId": "dwarf_weapon_fine"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Axe",
+          "rarity": "Uncommon",
+          "definitionId": "dwarf_weapon_veteran"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Axe",
+          "rarity": "Rare",
+          "definitionId": "dwarf_weapon_sentinel"
+        }
+      ],
+      "file": "boards/axe.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/dwarf_weapon_family.png",
+      "referenceSha256": "c1c5ff3a0c54182e27de51730c53c8df4d32131678d077625fd409ad357fb022",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier AXE board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: AXE. Required construction: A Dwarf battle axe with compact practical metal head and a moderate-length sturdy haft, the balanced approved proportions. Show the clear cutting edge and comfortable hand grip. Never a stubby hatchet or extremely long poleaxe.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"AXE\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-5f0207a2-76cb-4f88-98a8-1e5d45919849.png",
+      "sha256": "75d7e4569a2ff5b91dad9bcacf6a5ebf990a1055f4b74abf32a4d86c1345da63",
+      "bytes": 1784525,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "id": "staff",
+      "title": "STAFF",
+      "slot": "weapon",
+      "visualClasses": [
+        "mage"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Staff",
+          "rarity": "Common",
+          "definitionId": "mage_weapon_traveler"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Staff",
+          "rarity": "Common",
+          "definitionId": "mage_weapon_fine"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Staff",
+          "rarity": "Uncommon",
+          "definitionId": "mage_weapon_veteran"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Staff",
+          "rarity": "Rare",
+          "definitionId": "mage_weapon_sentinel"
+        }
+      ],
+      "file": "boards/staff.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/mage_weapon_family.png",
+      "referenceSha256": "8ced86bcff4aced9b470e7864085c07151914168d75663f2a6ee03595abc6d64",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier STAFF board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: STAFF. Required construction: A full-height Mage staff with modest small magical head, long usable shaft, comfortable wrapping and a simple bottom finial. Early-game restraint; only Sentinel may have one small blue focus inset. Earlier tiers use carved wood, metal ring/cage or solid wood head, NOT floating crystals.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"STAFF\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-efb7b305-ee15-4acf-a48d-656ea071d5e3.png",
+      "sha256": "8cb7117c1700ced0904b1d23610ab645038e8dbbc321e9f45dd9c8eeb56a80c3",
+      "bytes": 1647300,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "id": "shield",
+      "title": "SHIELD",
+      "slot": "offhand",
+      "visualClasses": [
+        "knight"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Shield",
+          "rarity": "Common",
+          "definitionId": "knight_shield"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Shield",
+          "rarity": "Common",
+          "definitionId": "knight_shield_fine"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Shield",
+          "rarity": "Uncommon",
+          "definitionId": "veteran_tier_shield"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Shield",
+          "rarity": "Rare",
+          "definitionId": "sentinel_tier_shield"
+        }
+      ],
+      "file": "boards/shield.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/knight_shield_family.png",
+      "referenceSha256": "60c3ba54f602c066cdedd2fec0dae503ffc36a9bb80cafdf57c9d15d2ea648cb",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier SHIELD board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: SHIELD. Required construction: A functional Knight shield, clear protective silhouette and restrained shield-boss or guard/watch crest. Exactly one shield per column, no accompanying sword.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"SHIELD\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-41e5e871-b2dc-47bf-8fc9-82676b5c0b19.png",
+      "sha256": "30d4a3cfc2563c3485a6f5be4df33924a4043d5525175122ae13ca25caff3686",
+      "bytes": 2140645,
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "knight_helmet",
+      "title": "KNIGHT HELMET",
+      "slot": "head",
+      "visualClasses": [
+        "knight"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Knight Helmet",
+          "rarity": "Common",
+          "definitionId": "traveler_hood"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Knight Helmet",
+          "rarity": "Common",
+          "definitionId": "tempered_hood"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Knight Helmet",
+          "rarity": "Uncommon",
+          "definitionId": "veteran_hood"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Knight Helmet",
+          "rarity": "Rare",
+          "definitionId": "sentinel_tier_hood"
+        }
+      ],
+      "file": "boards/knight_helmet.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/knight_head_family.png",
+      "referenceSha256": "7454bb6027dcf4cc18837258c18d96e10607f9873cb73ad03d1fff2347cb3949",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier KNIGHT HELMET board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: KNIGHT HELMET. Required construction: A TRUE METAL KNIGHT HELMET, not a hood. Refer to the original angular cheek plates, polygonal face opening, forehead badge and raised central fin/ridge. Preserve angular crest and useful protection, do NOT force all helmets into smooth round bowls. No exterior cloth cowl.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"KNIGHT HELMET\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-5054657e-a3e5-4600-ba17-2d1776849c05.png",
+      "sha256": "9d021a10a1ea795032e132cc913fa20eac5b17ff94494aa408d10f204e4f5368",
+      "bytes": 2065805,
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "dwarf_helmet",
+      "title": "DWARF HELMET",
+      "slot": "head",
+      "visualClasses": [
+        "dwarf"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Dwarf Helmet",
+          "rarity": "Common",
+          "definitionId": "traveler_hood"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Dwarf Helmet",
+          "rarity": "Common",
+          "definitionId": "tempered_hood"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Dwarf Helmet",
+          "rarity": "Uncommon",
+          "definitionId": "veteran_hood"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Dwarf Helmet",
+          "rarity": "Rare",
+          "definitionId": "sentinel_tier_hood"
+        }
+      ],
+      "file": "boards/dwarf_helmet.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/dwarf_head_family.png",
+      "referenceSha256": "55b1d8e69f16d2baf1b629c0d1b53002d425529a9a84c2bdaac487515dbbdb9d",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier DWARF HELMET board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: DWARF HELMET. Required construction: A TRUE METAL DWARF HELMET, not a hood. Broad compact faceted steel shell, thick forehead band, squared raised front-to-back ridge, wide geometric cheek guards, dwarf forge/knot mark. Broader and lower than Knight. No raw stone/cracks, no exterior cloth hood.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"DWARF HELMET\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-09567f54-f859-4aaa-8382-e8ba0cb85fa0.png",
+      "sha256": "187499f9239ec58daa3389e941c70b08163e9538775bdfa953f6a8fe545fa44f",
+      "bytes": 2049465,
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "hood",
+      "title": "HOOD",
+      "slot": "head",
+      "visualClasses": [
+        "elf",
+        "mage"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Hood",
+          "rarity": "Common",
+          "definitionId": "traveler_hood"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Hood",
+          "rarity": "Common",
+          "definitionId": "tempered_hood"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Hood",
+          "rarity": "Uncommon",
+          "definitionId": "veteran_hood"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Hood",
+          "rarity": "Rare",
+          "definitionId": "sentinel_tier_hood"
+        }
+      ],
+      "file": "boards/hood.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/common_head.png",
+      "referenceSha256": "5133b07989ba2142f37143cd1f138fa74b7c8505249682ec64676a7fd1065263",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier HOOD board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: HOOD. Required construction: A soft open-faced cloth/leather hood for Elf or Mage, LOW ROUNDED top without the old tall pointed peak. Simple wearable face opening and modest neck folds, not a rigid helmet.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"HOOD\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-4e72b3c6-d5c1-427a-adb8-b4fa0973bb66.png",
+      "sha256": "da05e6d369035522b57d41c12c3283f27e20192aebedb770690ec12971dde1db",
+      "bytes": 1997788,
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "coat",
+      "title": "COAT",
+      "slot": "body",
+      "visualClasses": [
+        "shared"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Coat",
+          "rarity": "Common",
+          "definitionId": "traveler_coat"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Coat",
+          "rarity": "Common",
+          "definitionId": "tempered_coat"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Coat",
+          "rarity": "Uncommon",
+          "definitionId": "veteran_coat"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Coat",
+          "rarity": "Rare",
+          "definitionId": "sentinel_tier_coat"
+        }
+      ],
+      "file": "boards/coat.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/common_body.png",
+      "referenceSha256": "31e19e4d167120c5ecb64dc8c2b654011bedb54305607ec9fbb2d5ee52082dc0",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier COAT board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: COAT. Required construction: One complete empty wearable practical short adventuring coat/torso armor with neckline, waist, sleeve or arm openings, layered shoulder protection scaled by tier. Practical common HP coat; never a full-body outfit.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"COAT\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-b545011f-cb2d-4f95-b64e-db2309002030.png",
+      "sha256": "c0d4e7b628a03ff2f5b79f31748ad5d698f857fde0ea55c6635a2e377daba7ed",
+      "bytes": 2084036,
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "mage_robe",
+      "title": "MAGE ROBE",
+      "slot": "body",
+      "visualClasses": [
+        "mage"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Mage Robe",
+          "rarity": "Common",
+          "definitionId": "mage_traveler_coat"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Mage Robe",
+          "rarity": "Common",
+          "definitionId": "mage_tempered_coat"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Mage Robe",
+          "rarity": "Uncommon",
+          "definitionId": "mage_veteran_coat"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Mage Robe",
+          "rarity": "Rare",
+          "definitionId": "mage_sentinel_coat"
+        }
+      ],
+      "file": "boards/mage_robe.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/mage_body_family.png",
+      "referenceSha256": "0af78345b17c6f37c5e81eb1ebee5867672be30354c951a4c023a381684384bc",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier MAGE ROBE board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: MAGE ROBE. Required construction: One complete empty wearable Mage robe, clearly long flowing CLOTH garment with broad readable fabric panels, modest collar and simple closures. Remains soft cloth in every tier, not plate armor and not priest attire. No person.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"MAGE ROBE\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-c348cd72-4d37-45d0-8627-57158991448b.png",
+      "sha256": "601dac9c01eeef72f2e3a4d62a9f2ecf6f5b06c94a91ce4d078612ae3a55bc3a",
+      "bytes": 2084864,
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "gloves",
+      "title": "GLOVES",
+      "slot": "hands",
+      "visualClasses": [
+        "shared"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Gloves",
+          "rarity": "Common",
+          "definitionId": "traveler_gloves"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Gloves",
+          "rarity": "Common",
+          "definitionId": "tempered_gloves"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Gloves",
+          "rarity": "Uncommon",
+          "definitionId": "veteran_gloves"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Gloves",
+          "rarity": "Rare",
+          "definitionId": "sentinel_tier_gloves"
+        }
+      ],
+      "file": "boards/gloves.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/common_hands.png",
+      "referenceSha256": "fd26867b607f24cc9b83cc839f61e9ba5505c0fb1e98c70b5f431cfeb986dae3",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier GLOVES board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: GLOVES. Required construction: One MATCHED PAIR of usable gloves per column, exactly two gloves. Keep practical fingers and class-neutral short cuffs, leather/cloth first, metal reinforcement develops gradually.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"GLOVES\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-356bd2d6-2371-4a31-ba40-79653c00607c.png",
+      "sha256": "6289de2217ed1076feb1cd95aa42e33c9fa83deff1dfc86d96d8775b8f2aec5c",
+      "bytes": 2110045,
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "id": "boots",
+      "title": "BOOTS",
+      "slot": "feet",
+      "visualClasses": [
+        "shared"
+      ],
+      "catalog": [
+        {
+          "tierId": "traveler",
+          "name": "Traveler Boots",
+          "rarity": "Common",
+          "definitionId": "traveler_boots"
+        },
+        {
+          "tierId": "tempered",
+          "name": "Tempered Boots",
+          "rarity": "Common",
+          "definitionId": "tempered_boots"
+        },
+        {
+          "tierId": "veteran",
+          "name": "Veteran Boots",
+          "rarity": "Uncommon",
+          "definitionId": "veteran_boots"
+        },
+        {
+          "tierId": "sentinel",
+          "name": "Sentinel Boots",
+          "rarity": "Rare",
+          "definitionId": "sentinel_tier_boots"
+        }
+      ],
+      "file": "boards/boots.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/common_feet.png",
+      "referenceSha256": "65b90e60b664f2bfe57312c12fad01f0f220c9336a222df13927a2bb561e37a9",
+      "prompt": "Use case: stylized-concept\nAsset type: ONE new four-column early-game equipment comparison board.\nInput image 1 is an approved high-tier BOOTS board, used ONLY for polished chunky beveled Throne Defense 3D art style and basic category/proportions. Do NOT copy the Epic/Legendary/Unique luxury: this request is for far more restrained Common/Uncommon/Rare early-game equipment.\nSubject: BOOTS. Required construction: One MATCHED PAIR of usable boots per column, exactly two boots. Practical broad boots, sound soles and modest cuffs. No high heels, huge spikes or lavish jewels.\nComposition: wide landscape board with four equal columns. Exactly one complete item per column (or one matched pair for gloves/boots), full uncropped objects with generous margins, consistent front/three-quarter view, neutral dark slate backdrop and warm upper-left studio lighting. Title exactly \"BOOTS\". Subtitle exactly \"Concept only\". Column labels exactly: \"TRAVELER\" with \"COMMON\" beneath, \"TEMPERED\" with \"COMMON\" beneath, \"VETERAN\" with \"UNCOMMON\" beneath, \"SENTINEL\" with \"RARE\" beneath. No other words, numbers, levels, price or stats.\nTRAVELER COMMON: humble but attractive functional starter equipment. Plain wood, simple iron, walnut leather, beige linen, minimal seams/straps and almost no ornament. Clean compact construction, not broken or dirty.\nTEMPERED COMMON: also COMMON, refined workshop-grade equipment. Cleaner tempered steel edges, better bracing/metal bands and tidy slate-blue fabric. Clearly different manufactured structure from Traveler through fittings and construction, not just a recolor, but NOT a magical/royal item.\nVETERAN UNCOMMON: experienced adventurer's kit. Reinforced layered steel panels, purposeful fastenings and olive fabric/leather, a small forge/watch mark and restrained bronze accent. A visible construction step above the two Commons, still grounded and useful.\nSENTINEL RARE: disciplined city-watch equipment. Navy cloth/enamel with silver structural framing, deliberate watch/sentry crest and more integrated protective contours. One SMALL blue focus inset allowed only if practical. Restrained premium Rare design, NOT Epic or royal Legendary/Unique. No grand gold crowns, ornate wings, large gemstones or excessive filigree.\nSTRICT SAME-SET PALETTE: the following palette is IDENTICAL for every item and class in the corresponding named family; do not fall back to different class colors. A Sentinel glove/robe/helmet must match its Sentinel weapon. Traveler and Tempered are both Common but have different fixed family palettes.\nTraveler: cloth=undyed warm beige linen #C5AF88, leather=walnut brown #79513B, metal=plain dull iron #92989E, accent=muted teal #38585A, jewels=none\nTempered: cloth=slate blue-gray #485B68, leather=dark brown #543B30, metal=clean tempered steel #BAC4CE, accent=cool pale steel #D6DBDF, jewels=none\nVeteran: cloth=deep olive green #3F513C, leather=dark brown #51392E, metal=brushed steel #A8B5BC, accent=restrained aged bronze #94734C, jewels=none\nSentinel: cloth=dark navy #234461, leather=dark brown #42332D, metal=bright silver steel #C9D1D7, accent=cobalt blue #3C6D9B, tiny subdued brass only in a small crest, jewels=at most ONE SMALL blue inset, optional; never huge gemstones\nConstraints: no rings, necklaces, pendants or jewelry, no humans, mannequin, face, separate body parts, full character outfits, aura, external glow, floating particles, flames, smoke or pedestal. Preserve the actual equipment category. Metal helmets for Knight/Dwarf, rounded SOFT hood for Elf/Mage. This is concept art only, not a final game UI or a 3D model.",
+      "status": "generated-pending-user-art-acceptance",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-3af87cd0-e3de-4539-acc6-9ed0fc9bd801.png",
+      "sha256": "015cf8015993b3e23ea2ea08469565b79e2f3c5b95c0939799f99613411e7d31",
+      "bytes": 2118829,
+      "width": 1774,
+      "height": 887
+    }
+  ]
+}
