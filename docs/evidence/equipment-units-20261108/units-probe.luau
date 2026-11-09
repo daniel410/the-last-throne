@@ -23,7 +23,7 @@ for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
 end
 check(AT.Power=='Attack bonus (%)' and AT.Armor=='Defense (pts)' and AT.Health=='Max HP (pts)','enhancement unit labels')
 check(CT.EquipmentPreview:find('(pts)',1,true)~=nil,'actual changes labelled as points')
-check(CT.EquipmentNote:find('percentage points (pp)',1,true)~=nil,'percentage difference explained')
+check(CT.EquipmentNote:find('pp (percentage points)',1,true)~=nil,'percentage difference explained')
 local client=game.StarterPlayer.StarterPlayerScripts.Client
 local R=require(game.ServerScriptService.Server.Inventory.InventoryRules)
 local profile=R.addHero(R.new(81),'h','knight',C)

@@ -17,3 +17,5 @@
 - 기존 `tests/equipment-impact.spec.lua`는 기본 무기와 Fine무기 차이를10%로 가정하는 옛 기대에서 실패했다. [로그](equipment-impact-existing.log). 기존 `tests/blacksmith-native.luau`도 현재 품목 수와 다른 고정 수량 기대에서23검사 후 실패했다. [로그](blacksmith-native.log). 해당 기존 검사 통과로 보고하지 않으며 이번 표시 변경과 분리한다.
 
 미검증: 실제 화면 렌더/줄바꿈과 실기기·게시 클라이언트·사용자 수용. Studio Edit 적용은 Play 재시작/Place 저장·게시를 뜻하지 않는다. QA는 상점·가방·강화에서 긴 이름/고강화 소수/좁은 화면의 가독성을 확인한다. 부모 티켓 완료·릴리스 태그 없음.
+
+고정 소스 `9168bfb5fd254ec849d16297bce4885d7918adc6` origin/main 푸시 후0.88.3 단일 빌드 성공. 산출물 `builds/0.88.3/TheLastThrone-0.88.3.rbxlx`, SHA256 `5a9b1e5362855fae66816c43c36c3c048987784af83fda63f97b399d52a3fcaa`. [빌드 기록](build.json). 역할10·도착로딩192·마운트/구성 검사 PASS. 고정 빌드 첫 단위 검사는 설명문 어순 변경을 반영하지 않은 fixture 문자열 기대에서 실패했으며, fixture 기대를 최종 문구에 맞춘 뒤 코드 수정 없이49검사 PASS([로그](fixed-native.log)). 새 LFS 파일/전송 없음.
