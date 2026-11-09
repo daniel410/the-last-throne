@@ -24,3 +24,14 @@
 ## 한계와 인계
 
 실계정/라이브 DataStore·협동·게시 클라이언트·실기기 입력·경제/사용자 수용은 미검증이다. 사용자 Studio·Place 게시·릴리스 태그는 변경하지 않는다. QA는 영웅A Easy3→영웅B Easy3→각 영웅 Hard3→같은 영웅/난이도 반복0과 기존 계정 누락분·저장/재접속·가격 보존을 확인한다. 상위 티켓 In Progress 유지. 기존 사용자 모델/컨셉/무기/아이콘/프로젝트의 미커밋 변경은 제외·보존한다.
+
+
+## 고정 빌드·원격 마감
+
+소스 `c18bac22fe3f10010c78f639fc6dfca04977d0ff`를 origin/main에 푸시한 뒤 `python3 tools/build-game.py --source c18bac22 --record docs/evidence/hero-diamonds-20261109/build.json`으로 **0.92.0 성공**. [빌드 기록](build.json), 산출물 `builds/0.92.0/TheLastThrone-0.92.0.rbxlx`, SHA256 `6ab8967406e2b1530a968e1bbb2a6def9f3d40e6e3d7dbc5dd4a4e6429f2f0d9` 재확인. 새 LFS 자산/참조 LFS 입력 없음.
+
+다른 장비 작업이 같은 저장소에서 별도 커밋됐으므로 마지막 검증은 위 소스 커밋의 src/tests/tools를 `/tmp`에 추출해 실행했고 관련12개20,502검증이 모두 통과했다. `python3 tools/prepare-hero-diamonds-native.py --fixed-build`도 이 고정 소스에서 생성했다.
+
+`run-in-roblox --place builds/0.92.0/TheLastThrone-0.92.0.rbxlx --script /tmp/tlt-hero-diamonds-native.luau`: **7,564 규칙/저장 +39 GUI=7,603 PASS / 종료0**. [엔진 로그](native.log). 변경 공통/클라이언트·계정 reducer의 고정 Place 원문 일치도 확인했다. 격리 프로필/저장 모형 및 실제 GUI 텍스트 경계 검증이며 실계정/라이브 DataStore/실기기 수용과 구분한다.
+
+고정 빌드/엔진 증거를 후속 커밋으로 같은 main에 푸시한다. 실제 게시/릴리스 태그 없음.
