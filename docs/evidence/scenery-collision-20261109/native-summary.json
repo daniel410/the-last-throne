@@ -1,0 +1,414 @@
+{
+  "version": "0.89.1",
+  "sourceCommit": "4c640a257ea87bc8af46c3c584a090449dab935c",
+  "artifactSha256": "a329dc397c4f4b427db751eac67acbf342ac3ddd41d3e3b3e819245be5c70321",
+  "published": false,
+  "currentComponentValidationPassed": true,
+  "initialCombinedRunPassed": false,
+  "initialFailure": "Historical Deepwood watchtower fixture bypassed mandatory exp_2 and required arbitrary straight chords through terrain/trees. The pre-change 0.89.0 reproduces the old counterweight floor failure. Updated fixture follows canonical incident routes and the real navigable path, grounding interpolated waypoints. Runtime/build unchanged after source freeze.",
+  "validationRuns": [
+    "native-initial.log",
+    "native-watchtower.log"
+  ],
+  "reports": {
+    "SCENERY_COLLISION_NATIVE": {
+      "failureCount": 0,
+      "casts": {
+        "4arches": true,
+        "3arches": true,
+        "5arches": true,
+        "3sceneWalls": true,
+        "3trunks": true,
+        "2trunks": true,
+        "1trunks": true,
+        "5rocks": true,
+        "3rocks": true,
+        "4rocks": true,
+        "1rocks": true,
+        "2rocks": true,
+        "5trunks": true,
+        "5walls": true,
+        "2arches": true,
+        "1arches": true,
+        "2walls": true,
+        "1walls": true,
+        "4walls": true,
+        "3walls": true
+      },
+      "decorations": 8405,
+      "checks": 23982,
+      "solids": 6384,
+      "failures": [],
+      "pass": true,
+      "byEpic": [
+        {
+          "trunks": 333,
+          "sceneWalls": 0,
+          "arches": 120,
+          "rocks": 53,
+          "walls": 562
+        },
+        {
+          "trunks": 246,
+          "sceneWalls": 0,
+          "arches": 172,
+          "rocks": 25,
+          "walls": 658
+        },
+        {
+          "trunks": 207,
+          "sceneWalls": 69,
+          "arches": 126,
+          "rocks": 69,
+          "walls": 706
+        },
+        {
+          "trunks": 0,
+          "sceneWalls": 0,
+          "arches": 138,
+          "rocks": 36,
+          "walls": 785
+        },
+        {
+          "trunks": 417,
+          "sceneWalls": 0,
+          "arches": 160,
+          "rocks": 22,
+          "walls": 1480
+        }
+      ]
+    },
+    "TD_SCENIC_QA": {
+      "zones": {
+        "GW-03": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Root Refuge"
+        },
+        "EC-S1": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Raider Spires"
+        },
+        "DW-03": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Elder Sanctuary"
+        },
+        "FV-05": {
+          "models": 5,
+          "hero": 1,
+          "composition": "Frozen Procession"
+        },
+        "DW-01": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Trailhead Grove"
+        },
+        "FV-S2": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Blue Lake Shelf"
+        },
+        "GW-07": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Web Queen Canopy"
+        },
+        "EC-03": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Fractured Mine"
+        },
+        "EC-S2": {
+          "models": 1,
+          "hero": 1,
+          "composition": "Shaman Rift"
+        },
+        "GW-01": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Lantern Grove"
+        },
+        "FV-02": {
+          "models": 5,
+          "hero": 1,
+          "composition": "Sheltered Hearth"
+        },
+        "FV-S3": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Ancient Glacier Watch"
+        },
+        "FV-04": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Archive Ice Shelf"
+        },
+        "HG-03": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Garden of Names"
+        },
+        "HG-02": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Keepers Chapel"
+        },
+        "GW-05": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Venomcoil Hollow"
+        },
+        "DW-S3": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Battlefield Ridge"
+        },
+        "EC-07": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Great Furnace Crown"
+        },
+        "DW-05": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Occupied Keep"
+        },
+        "FV-03": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Split Glacier Gorge"
+        },
+        "FV-06": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Sentinel Ice Gate"
+        },
+        "EC-04": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Cooling Rift"
+        },
+        "FV-01": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Blizzard Ice Gate"
+        },
+        "EC-S3": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Titan Caldera Rim"
+        },
+        "HG-06": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Royal Tomb Spire"
+        },
+        "HG-07": {
+          "models": 1,
+          "hero": 1,
+          "composition": "Last Throne Ruin"
+        },
+        "EC-06": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Heatworks Spires"
+        },
+        "DW-S2": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Waterfall Quarry"
+        },
+        "EC-01": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Ash Spire Gate"
+        },
+        "EC-02": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Foundry Skyline"
+        },
+        "FV-S1": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Supply Cave Crest"
+        },
+        "DW-07": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Seal Sanctuary"
+        },
+        "EC-05": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Ancestral Foundry"
+        },
+        "GW-02": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Silk Watch"
+        },
+        "HG-05": {
+          "models": 1,
+          "hero": 1,
+          "composition": "Royal Gate Chapel"
+        },
+        "DW-06": {
+          "models": 5,
+          "hero": 1,
+          "composition": "Twisted Rootwood"
+        },
+        "DW-02": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Convoy Overlook"
+        },
+        "HG-01": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Lost Chapel"
+        },
+        "GW-04": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Ancient Rootway"
+        },
+        "GW-06": {
+          "models": 5,
+          "hero": 1,
+          "composition": "Widow Ruins"
+        },
+        "HG-04": {
+          "models": 2,
+          "hero": 1,
+          "composition": "Fallen Belfry"
+        },
+        "DW-S1": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Supply Camp Grove"
+        },
+        "FV-07": {
+          "models": 3,
+          "hero": 1,
+          "composition": "Mirror Palace Crest"
+        },
+        "DW-04": {
+          "models": 4,
+          "hero": 1,
+          "composition": "Watchtower Ridge"
+        }
+      },
+      "meshes": 5304,
+      "heroes": 44,
+      "checks": 1202,
+      "compositionModels": 131,
+      "parts": 48402
+    },
+    "CAMPAIGN_EXPANSION_NATIVE": {
+      "generationSeconds": 1.0916022083256394,
+      "scope": "isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9192,
+      "steps": 246,
+      "samples": 3974,
+      "incidents": 82,
+      "parts": 48402
+    },
+    "MAP_TRAVERSAL_SUMMARY": {
+      "anchorIssues": 0,
+      "floorIssues": 0,
+      "anchors": 688,
+      "pass": true,
+      "obstacles": 0,
+      "roads": 3740,
+      "pathCount": 551,
+      "failures": [],
+      "paths": {
+        "Success": 546,
+        "SamePoint": 5
+      },
+      "roadSamples": 34374
+    },
+    "CAMPAIGN_CLEARANCE_NATIVE": {
+      "retired": 90,
+      "trees": 24,
+      "checks": 854,
+      "pass": true,
+      "moved": 28
+    },
+    "DEEPWOOD_WATCHTOWER_ROAD": {
+      "paths": [
+        {
+          "step": "leaf",
+          "status": "Success"
+        },
+        {
+          "step": "rain",
+          "status": "Success"
+        },
+        {
+          "step": "root",
+          "status": "Success"
+        },
+        {
+          "step": "step1",
+          "status": "Success"
+        },
+        {
+          "step": "step1",
+          "status": "Success"
+        },
+        {
+          "step": "step1",
+          "status": "Success"
+        },
+        {
+          "step": "step1",
+          "status": "Success"
+        },
+        {
+          "step": "step2",
+          "status": "Success"
+        },
+        {
+          "step": "step3",
+          "status": "Success"
+        },
+        {
+          "step": "counterweight",
+          "status": "Success"
+        },
+        {
+          "step": "counterweight",
+          "status": "Success"
+        },
+        {
+          "step": "counterweight",
+          "status": "Success"
+        },
+        {
+          "step": "counterweight",
+          "status": "Success"
+        },
+        {
+          "step": "lantern",
+          "status": "Success"
+        }
+      ],
+      "pass": true,
+      "checks": 2658
+    }
+  },
+  "singleBuild": "PASS: role10, arrival-loading192, project mounts/alias and artifact config",
+  "pureRegressionChecks": [
+    7688,
+    3362,
+    1722
+  ],
+  "runtimeChangedAfterBuild": false,
+  "realPublishedClientTest": "not_run",
+  "deviceAndArtAcceptance": "not_run"
+}

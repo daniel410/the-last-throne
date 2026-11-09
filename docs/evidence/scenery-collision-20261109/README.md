@@ -38,3 +38,16 @@
 격리 로컬 Studio의 생성 인스턴스·물리 쿼리·길찾기/코드 검사다. 실제 게시 클라이언트 보행/회피·네트워크/스트리밍·1~4인+AI·터치/패드·저사양 FPS/메모리·최종 미술 수용은 미검증이다. 고체를 거리만으로 숨기지 않아 렌더/충돌 부하가 증가하므로 실기기 성능 수용이 필요하다. 기존 테스트 공개 범위/실계정은 변경하지 않는다.
 
 다음 담당 QA/사용자: 새 빌드에서 DW-Q4 출입/귀환, FV 갤러리 교차로, EC-01 후면, HG 벽·묘석, 각 숲의 줄기/절벽을 보행·회피로 확인하고 실제 게시 테스트 왕복/기기 성능을 수용한다. 부모 티켓을 Done으로 변경하지 않는다.
+
+
+## 고정 빌드 마감·최종 수용 결과
+
+소스 `4c640a257ea87bc8af46c3c584a090449dab935c`를 origin/main에 푸시한 뒤 `python3 tools/build-game.py --source HEAD --record docs/evidence/scenery-collision-20261109/build.json`으로 **0.89.1 단일 빌드 성공**. 산출물 `builds/0.89.1/TheLastThrone-0.89.1.rbxlx`,15,998,573 bytes, SHA256 `a329dc397c4f4b427db751eac67acbf342ac3ddd41d3e3b3e819245be5c70321` 재확인. 신규 LFS 자산/빌드 참조 LFS 입력 없음. 게시·릴리스 태그 없음.
+
+`python3 tools/prepare-scenery-collision-native.py --all` → `run-in-roblox --place builds/0.89.1/TheLastThrone-0.89.1.rbxlx --script /tmp/tlt-scenery-collision-native.luau`의 [첫 통합 실행](native-initial.log)에서 변경10개 런타임 모듈 Source 일치·전체 Luau 문법, 충돌23,982·TD 배치1,202·확장9,192·기존 충돌 복구854검사를 통과했다. 생성48,402 BasePart, 영구 충돌6,384개,44주 랜드마크/131배치,82사건/246단계의3,974지점 이상0이다. 도로3,740조각/34,374몸체·바닥 표본·앵커688개 및 로비100표본의 장애/바닥 이상0, 시설 접근18개 성공. **551동선은546 Success·5 SamePoint·NoPath0**이다.
+
+이 첫 실행의 최종 `SCENERY_ALL_SUITES`는 false였다. 원인은 이전 여섯 목표만 읽던 감시탑 검사이며, 필수 exp_2를 건너뛴 과거 직선의 counterweight 지면 검사가 실패했다. [기존0.89.0에서도 같은 실패](legacy-route-baseline.log)를 확인했다. 검사를 현재 CampaignContent의 spirit 이후 필수 확장 구간/연결 경로와 실제 길찾기 경로로 갱신했다. 충돌하는 나무를 지워 직선을 뚫도록 요구하지 않고, 점프 없는 우회 경로와 몸체/지면을 검사한다. 시작점+3 높이로 계산한 길찾기 waypoint는 authored foot 좌표가 아니므로 실제 바닥에 재투영해 검사한다. 옛 네 기둥/도로 sweep·캐시 복구·스폰 보존 검사는 유지했다.
+
+같은 고정 파일에서 `run-in-roblox --place builds/0.89.1/TheLastThrone-0.89.1.rbxlx --script tests/deepwood-watchtower-road-native.luau`를 재실행해 **2,658검사/14구간 모두 통과**했다. [별도 재검증 로그](native-watchtower.log). 게임 코드/빌드를 바꾸지 않고 검증 스크립트만 수정했으며551동선 전체의 재실행 성공이라고 바꾸어 기록하지 않는다. [현재 항목별 최종 집계](native-summary.json)는 첫 실행의 false와 수정 검사 통과를 함께 보존한다. `python3 tests/single-build.spec.py --artifact builds/0.89.1/TheLastThrone-0.89.1.rbxlx`도 역할10/도착 로딩192·프로젝트/별칭/실제 아티팩트 계약 PASS다.
+
+검증 스크립트 갱신과 빌드/수용 증거는 후속 커밋으로 푸시한다. 실제 계정·사람 조작·게시 클라이언트·성능/미술 수용은 여전히 미검증이다. 기존 사용자 Blender/삭제 컨셉/미추적 자산은 보존했다.
