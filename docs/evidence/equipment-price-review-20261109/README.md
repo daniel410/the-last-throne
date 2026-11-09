@@ -43,3 +43,5 @@ Copper Ring300Gold/6Diamonds, Amber Charm/Amber Mana Charm400Gold/8Diamonds. Tra
 ## 고정 빌드 결과
 
 소스 `4332b7c99c80d12e4d0f96158e2b2cac2283a9c6`를 origin/main에 푸시한 뒤 **0.93.5 단일 빌드 성공**. `builds/0.93.5/TheLastThrone-0.93.5.rbxlx`, SHA256 `9f336afe21f585bc5d46dcbd6936dea918dcc340efc6deb0c5ddb4fce1a1f83a`. [빌드 기록](build.json). 고정된 입력의 가격/카탈로그/계열/캠페인/보상/유한 전투 관련 해시가 재계산 보고서와 모두 일치했다. 새 LFS 자산·릴리스 태그·Roblox 게시 없음.
+
+아티팩트 추가 검증: `python3 tests/single-build.spec.py --artifact builds/0.93.5/TheLastThrone-0.93.5.rbxlx`에서 역할10/도착로딩192/마운트·실제 구성 PASS. 실제 XML의 EquipmentPricing/EconomyCatalog ModuleScript 각1개와 Source가 검증한 원본과 일치한다. XML 검증 도구의 초기 ProtectedString 가정은 실제 string Source 형식에 맞춰 수정했으며 게임 소스/빌드 바이트 변경은 없다.
