@@ -1,3 +1,5 @@
+-- Equipment power is a flat physical/magic attack bonus in points.
+-- All remaining usable attack gear is Common/Uncommon; Rare/Epic attack gear is deleted.
 -- Trial equipment values, not story rewards, shop products or final balance.
 -- Starter bonuses are deliberately small; shared definitions also retune owned copies.
 -- Existing rarity assignments are explicit. Keep canonical spelling Uncommon.
@@ -65,6 +67,18 @@ for _,baseId in ipairs({"knight_weapon_forged","elf_weapon_forged","dwarf_weapon
   definition.retired=true;definition.cacheEligible=false
   definition.description="Retired trial equipment. New purchases and cache selections are unavailable. Existing equipment and enhancement progress are preserved."
   table.insert(Catalog.retiredEquipment,id)
+ end
+end
+-- User-requested deletion. Keep decode-only definitions so old saves validate
+-- before AccountStore atomically removes every owned instance on load.
+Catalog.deletedEquipment = {}
+for _,baseId in ipairs({'knight_weapon_forged','elf_weapon_forged','dwarf_weapon_forged','mage_weapon_forged',
+ 'sentinel_gauntlets','ruby_ring','storm_pendant'}) do
+ for _,id in ipairs({baseId,baseId..'_epic'}) do
+  local definition=Catalog.items[id]
+  definition.deleted=true
+  definition.description='Removed equipment. Existing copies are removed when your account loads.'
+  table.insert(Catalog.deletedEquipment,id)
  end
 end
 -- Stable IDs/schema; potion restore amounts follow the latest user balance decision.

@@ -325,13 +325,15 @@ local function grantCompletion(profile,heroId,chapterId,catalog)
  h.completionRewardClaims=h.completionRewardClaims or {};h.completionRewardClaims[chapterId]=CompletionRewards.version
  return true
 end
--- Legacy account migration preserves ownership except explicitly retired supplies.
+-- Legacy account migration preserves ownership except explicitly deleted items.
 function Rules.upgrade(profile,catalog)
 	local changed=Economy.upgrade(profile)
+ catalog=catalog or (game and require(game:GetService('ReplicatedStorage').Shared.ItemCatalog)or dofile('src/shared/ItemCatalog.luau'))
 	-- User-requested retirement, including locked bag/storage/unclaimed stacks.
 	-- Keep the catalog tombstone so AccountStore can validate old saves first.
 	for id,item in pairs(profile.items) do
-		if item.definitionId=="soft_hide" then profile.items[id]=nil;changed=true end
+		local definition=catalog.items[item.definitionId]
+		if item.definitionId=="soft_hide" or (definition and definition.deleted) then profile.items[id]=nil;changed=true end
 	end
 	-- Legacy profiles lack a per-hero receipt. Preserve consumption instead
 	-- of guessing from empty bags and reissuing items that were used/discarded.

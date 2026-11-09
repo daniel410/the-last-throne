@@ -1,7 +1,7 @@
 -- en-US combat stat breakdown. Numeric values use the server's existing formulas.
 return {
  AvailablePoints='AVAILABLE STAT POINTS  %d',
- EquipmentPreview='ACTUAL STATS IF EQUIPPED (pts)',EquipmentNote='Attack bonus: %. Difference: pp (percentage points). Actual stats: pts (points), before skill multipliers. HP / MP changes do not refill resources.',
+ EquipmentPreview='ACTUAL STATS IF EQUIPPED (pts)',EquipmentNote='Equipment bonuses and differences: pts (points), before skill multipliers. HP / MP changes do not refill resources.',
  Title='COMBAT STATS',Current='Current stats · Equipped gear included',
  HeroAndGear='Hero %s  +  Gear %s',Draft='DRAFT %s → %s (%s)',
  Labels={physicalPower='Physical Power',magicPower='Magic Power',armor='Defense',health='Max HP',mana='Max MP',attackRate='Basic Attack Speed (x)',moveRate='Movement Speed (x)'},
@@ -13,10 +13,10 @@ return {
  InvestmentValue='%s: %s → %s (%s)',
  SpeedLabels={attackRate='Basic Attack Speed',moveRate='Movement Speed'},
  SpeedGain='%s%% of base',NoMana='Max MP: 0 → 0 (+0; not unlocked)',
- AttackBonus='Equipped attack bonus: %+.1f%%',BasicAttack='Basic attacks use %s.',
+ AttackBonus='Equipped attack bonus: %+.1f pts',BasicAttack='Basic attacks use %s.',
  ShowGear='SHOW GEAR BONUSES',HideGear='HIDE GEAR BONUSES',
  NoGear='No equipment is currently equipped.',NoBonus='No combat stat bonus.',
- GearPower='%+.1f%% attack power',GearArmor='%s pts defense',GearHealth='%s pts Max HP',
+ GearPower='%+.1f pts attack power',GearArmor='%s pts defense',GearHealth='%s pts Max HP',
  GearItem='%s · %s',
  HeroNote='Hero includes your class, level and assigned points. Bag and storage items do not add stats.',
  DefenseNote='Attack values are power ratings; each skill has its own damage multiplier. Defense subtracts damage per hit, to a minimum of 1. Temporary combat effects are not included.',

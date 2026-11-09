@@ -11,8 +11,8 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  local selected={definitionId=class..'_weapon_veteran',location={kind='bag'}}
  local rows=assert(I.compare(h,list,selected,nil,C));local base=G.derived(class,h.progression)
  check(#rows==5,'comparison always shows both attacks, defense, HP and MP')
- check(math.abs(rows[1].delta-base.physicalPower*.01)<.00001,'physical attack converts percent bonus to actual power')
- check(math.abs(rows[2].delta-base.magicPower*.01)<.00001,'magic attack converts percent bonus to actual power')
+ check(math.abs(rows[1].delta-1)<.00001,'physical attack gains one fixed power point')
+ check(math.abs(rows[2].delta-1)<.00001,'magic attack gains one fixed power point')
  check(rows[3].delta==0 and rows[4].delta==0 and rows[5].delta==0,'weapon comparison does not invent defense, HP or MP')
  local original=R.copy(p)
  local current=assert(R.equipped(p,class,'weapon'));current.definitionId=class..'_weapon_veteran'

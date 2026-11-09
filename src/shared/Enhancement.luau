@@ -12,7 +12,8 @@ function E.supported(def)
  return false
 end
 function E.stats(def,item)
- local result={};local n=item and item.enhancementLevel or 0
+ local result={};if def.deleted then return result end
+ local n=item and item.enhancementLevel or 0
  for key,value in pairs(def.stats or {})do result[key]=value*(E.keys[key]and value>0 and (1+E.rate*n)or 1)end
  return result
 end

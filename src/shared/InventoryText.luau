@@ -33,7 +33,7 @@ return {
 	AutoAccessoryEmpty = "Equips automatically into an empty accessory slot.", AutoAccessoryReplace = "On equip, replaces %s. The replaced item returns to your bag.",
 	Compatible = "Equippable by: All classes", AllClasses = "Available to all classes", Level = "Requires level %d", Class = "Equippable by: %s only", OtherClassPurchase = "You can buy this for another hero; your current hero cannot equip it.", Current = "CURRENT", Selected = "SELECTED",
 	Details = "DETAILS", BagCount = "BAG  %d / %d", StorageCount = "STORAGE  %d / %d", StatsHint = "Changing equipment does not restore health.",
-	ShopGearStats = "%s · %s · Lv%d · Attack +%.1f%%%s%s\n%s",
+	ShopGearStats = "%s · %s · Lv%d · Attack +%.1f pts%s%s\n%s",
 	FlatDefense = " · Defense +%s pts", FlatHealth = " · Max HP +%s pts",
 	Stats = {power = "Attack bonus", armor = "Defense", health = "Max HP"},
 	Slots = {weapon="Weapon", offhand="Offhand", head="Head", body="Body", hands="Hands", feet="Feet", accessory1="Accessory 1", accessory2="Accessory 2"},

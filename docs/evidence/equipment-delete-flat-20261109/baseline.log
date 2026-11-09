@@ -1,0 +1,6 @@
+lua: tests/difficulty-enhancement.spec.lua:23: StoryLocked
+stack traceback:
+	[C]: in global 'assert'
+	tests/difficulty-enhancement.spec.lua:23: in local 'complete'
+	tests/difficulty-enhancement.spec.lua:54: in main chunk
+	[C]: in ?

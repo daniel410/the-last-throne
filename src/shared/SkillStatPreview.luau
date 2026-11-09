@@ -13,8 +13,8 @@ function Preview.derived(classId,g,equipment)
 	d.health=d.health+(equipment.health or 0)
 	d.armor=d.armor+(equipment.armor or 0)
 	-- Keep precision until the final hit, as CombatService does.
-	d.physicalPower=d.physicalPower*(1+(equipment.power or 0)/100)
-	d.magicPower=d.magicPower*(1+(equipment.power or 0)/100)
+	d.physicalPower=d.physicalPower+(equipment.power or 0)
+	d.magicPower=d.magicPower+(equipment.power or 0)
 	return d
 end
 -- Separate saved values from an unconfirmed point draft; never mutate either.

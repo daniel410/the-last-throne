@@ -35,7 +35,7 @@ for _,branch in ipairs(A.order.mage) do
   else check(not skill.inheritedGravity,'other skills do not inherit gravity') end
   local advanced=G.new(80);advanced.branch=branch;advanced.stage=4
   local value=P.value('mage',entry.index,advanced,{power=10})
-  local oldPower=(100+79*3)*1.1
+  local oldPower=(100+79*3)+10
   eq(value.damage,math.max(1,math.floor(oldPower*value.skill.damage+.5)),branch..' skill uses shared magic attack and inherited coefficient')
  end
 end
@@ -59,8 +59,8 @@ eq(g.stats.STR,0,'preview leaves saved allocation intact')
 draft.mastery[1]=1
 eq(P.value('knight',1,draft).damage,113,'mastery included in estimate')
 eq(K.Skills.knight[1].damage,.8,'preview never edits the skill catalog')
-eq(P.value('knight',1,g,{power=7}).damage,109,'equipment precision is kept until final hit')
-eq(P.value('knight',1,G.new(2),{power=5}).damage,87,'rounding power first would incorrectly predict 86')
+eq(P.value('knight',1,g,{power=7}).damage,107,'equipment adds seven fixed power points')
+eq(P.value('knight',1,G.new(2),{power=5}).damage,86,'flat five power points included before skill coefficient')
 check(P.effectText('knight',1,g,nil,draft):find('102 %-> 113 %(%+11%)'),'visible before/after delta')
 check(P.effectText('knight',1,g,nil,g):find('unchanged',1,true),'unrelated allocation is explicit')
 eq(#P.equipped(G.new(1),'knight'),3,'three starter slots')
@@ -132,7 +132,7 @@ for _,classId in ipairs({'knight','elf','dwarf','mage'}) do
   check(math.abs(row.total-(row.hero+row.gear))<.000001,'total decomposes into hero and equipped gear')
   eq(row.total,current[row.key],'current total follows server formula')
   eq(row.draft,after[row.key],'draft target follows same formula')
-  if row.key=='physicalPower' or row.key=='magicPower' then check(math.abs(row.gear-row.hero*.18)<.000001,'power is percentage bonus, not flat points') end
+  if row.key=='physicalPower' or row.key=='magicPower' then check(math.abs(row.gear-18)<.000001,'power is a flat points bonus') end
   if row.key=='armor' then eq(row.gear,6,'armor is a flat gear bonus') end
   if row.key=='health' then eq(row.gear,40,'HP is a flat gear bonus') end
   if row.key=='mana' then eq(row.gear,0,'equipment never advertises unsupported MP bonus') end
@@ -151,7 +151,7 @@ local items={
 local sources=P.gearSources('mine',items,C)
 eq(#sources,2,'only active hero equipped sources count')
 eq(sources[1].definitionId,'knight_weapon_fine','sources follow stable slot order')
-eq(sources[1].stats.power,3,'weapon source retains percent units')
+eq(sources[1].stats.power,3,'weapon source retains flat points')
 eq(sources[2].stats.armor,2,'defense source retains flat units')
 sources[1].stats.power=999;eq(C.items.knight_weapon_fine.stats.power,3,'source details cannot change item catalog')
 print('Skill stat preview: '..n..' checks passed')

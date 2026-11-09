@@ -313,8 +313,8 @@ function InventoryGui.create(onVisibility, feedback)
 			local lines={Text.Current.."  →  "..Text.Selected}
 			for _, key in ipairs({"power","armor","health"}) do
 				local before,after=current and current.stats[key] or 0,Enhance.stats(def,item)[key] or 0
-				local suffix=key=="power" and "%" or " pts"
-				local deltaSuffix=key=="power" and " pp" or suffix
+				local suffix=" pts"
+				local deltaSuffix=suffix
 				local format=key=="power" and "%s   %.1f%s → %.1f%s   (%+.1f%s)" or "%s   %.2f%s → %.2f%s   (%+.2f%s)"
 				lines[#lines+1]=string.format(format,Text.Stats[key],before,suffix,after,suffix,after-before,deltaSuffix)
 			end
