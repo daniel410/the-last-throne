@@ -1,6 +1,7 @@
 -- Local presentation from accepted server attributes and confirmed damage only.
 local RS = game:GetService("ReplicatedStorage")
 local Debris = game:GetService("Debris")
+local Players = game:GetService("Players")
 local Config = require(RS.Shared.K0Config)
 local FXCatalog = require(RS.Shared.PixelFXCatalog)
 local Catalog = require(RS.Shared.CombatAudioCatalog)
@@ -12,18 +13,25 @@ local started = false
 local function finite(n) return type(n) == "number" and n == n and math.abs(n) < 1e7 end
 local function vector(v) return typeof(v) == "Vector3" and finite(v.X) and finite(v.Y) and finite(v.Z) end
 
-function Audio.play(kind, position, classId, skillId)
+-- Source and owner priority are presentation hints, never damage authority.
+function Audio.play(kind, position, classId, skillId, source, own)
     local clip = Catalog.get(classId, skillId, kind)
     if not clip or not vector(position) then return false end
     local camera = workspace.CurrentCamera
     if camera and (camera.CFrame.Position - position).Magnitude > (clip.maxDistance or 80) then return false end
     local now = os.clock()
     -- A clustered AoE has one contact per short window, rather than a voice per target.
-    for key, at in pairs(impactCells) do if now - at >= .07 then impactCells[key] = nil end end
+    for key, sources in pairs(impactCells) do
+        for sourceKey, at in pairs(sources) do if now - at >= .07 then sources[sourceKey] = nil end end
+        if next(sources) == nil then impactCells[key] = nil end
+    end
     if kind == "impact" then
         local cell = clip.id .. ":" .. math.floor(position.X / 8) .. ":" .. math.floor(position.Z / 8)
-        if impactCells[cell] then return false end
-        impactCells[cell] = now
+        local sources = impactCells[cell]
+        local key = source or "legacy"
+        if sources and sources[key] then return false end
+        if not sources then sources = {}; impactCells[cell] = sources end
+        sources[key] = now
     end
     local count = 0
     for i = #active, 1, -1 do
@@ -32,9 +40,15 @@ function Audio.play(kind, position, classId, skillId)
     end
     -- Reserve eight voices for each layer so a large hit cannot erase all releases.
     if count >= 8 then
+        local victim
         for i, entry in ipairs(active) do
-            if entry.kind == kind then entry.holder:Destroy(); table.remove(active, i); break end
+            if entry.kind == kind and not entry.own then victim = i; break end
         end
+        if not victim and own then
+            for i, entry in ipairs(active) do if entry.kind == kind then victim = i; break end end
+        end
+        if not victim then return false end
+        table.remove(active, victim).holder:Destroy()
     end
     local holder = Instance.new("Part")
     holder.Name, holder.Size, holder.Position = "K0CombatAudioEmitter", Vector3.one * .05, position
@@ -50,7 +64,7 @@ function Audio.play(kind, position, classId, skillId)
     sound.Parent = holder
     sound.Ended:Once(function() holder:Destroy() end)
     holder.Parent = workspace
-    table.insert(active, {holder = holder, kind = kind})
+    table.insert(active, {holder = holder, kind = kind, own = own == true})
     Debris:AddItem(holder, clip.duration)
     sound:Play()
     return true, holder
@@ -74,7 +88,8 @@ function Audio.renderCharacter(character, now)
     local old = seen[character]
     if old and old.seq == seq and old.at == at and old.beat >= beat then return false end
     seen[character] = {seq = seq, at = at, beat = beat}
-    return Audio.play("release", root.Position, classId, skillId)
+    return Audio.play("release", root.Position, classId, skillId, character,
+        Players.LocalPlayer ~= nil and Players.LocalPlayer.Character == character)
 end
 
 function Audio.start()

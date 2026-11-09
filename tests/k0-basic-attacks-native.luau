@@ -356,18 +356,22 @@ return {
   api.beginEnemyAttack(enemy,state,0)
   local oldAttack=enemy.attack
   -- Both windows are due on this sample; the sword's earlier hit wins.
-  oldAttack.definition=table.clone(oldAttack.definition);oldAttack.definition.windup=.2
-  action(state,"Attack",0);local hp=state.humanoid.Health;sample(.25)
+  local d=api.Config.Attacks[1]
+  local contact=d.windup+(d.hitDelay or 0)
+  local sampledAt=contact+.08
+  oldAttack.definition=table.clone(oldAttack.definition);oldAttack.definition.windup=contact+.04
+  action(state,"Attack",0);local hp=state.humanoid.Health;sample(sampledAt)
   equal(enemy.attack,nil,"windup attack really cancelled")
   equal(enemy.mode,"Staggered","server enters short hit reaction")
   near(state.humanoid.Health,hp,"cancelled queued attack causes no ghost damage")
   equal(enemy.model:GetAttribute("K0EnemyAttackClock"),nil,"cancel also clears visible weapon attack")
   equal(enemy.model:GetAttribute("K0Telegraph"),"None","cancel removes warning")
-  api.stepEnemy(enemy,.499,1/60);equal(enemy.mode,"Staggered","reaction lasts .25 seconds")
-  api.stepEnemy(enemy,.5,1/60);equal(enemy.hitReactUntil,nil,"reaction expires")
+  api.stepEnemy(enemy,sampledAt+.249,1/60);equal(enemy.mode,"Staggered","reaction lasts .25 seconds")
+  api.stepEnemy(enemy,sampledAt+.25,1/60);equal(enemy.hitReactUntil,nil,"reaction expires")
   near(enemy.humanoid.WalkSpeed,enemy.config.walkSpeed,"movement restored")
-  api.beginEnemyAttack(enemy,state,.5);local nextAttack=enemy.attack
-  api.startAttack(state,.5);sample(.67)
+  local nextAt=math.max(sampledAt+.25,d.windup+d.active+d.recovery+.01)
+  api.beginEnemyAttack(enemy,state,nextAt);local nextAttack=enemy.attack
+  api.startAttack(state,nextAt);sample(nextAt+contact+.01)
   equal(enemy.attack,nextAttack,"short immunity prevents endless basic-hit interruption")
   api.resetEnemy(enemy);equal(enemy.hitInterruptImmuneUntil,nil,"reset clears immunity")
   equal(enemy.model:GetAttribute("K0EnemyHitUntil"),nil,"reset clears presentation")
@@ -381,7 +385,7 @@ return {
    if variant=="zero-damage" then local ff=Instance.new("ForceField");ff.Parent=enemy.model end
    api.beginEnemyAttack(enemy,state,0);local pending=enemy.attack
    if variant=="active" then pending.sampledActive=true end
-   action(state,"Attack",0);sample(.17)
+   action(state,"Attack",0);sample(api.Config.Attacks[1].windup+.01)
    equal(enemy.attack,pending,variant.." does not gain a basic interruption")
    equal(enemy.hitReactUntil,nil,variant.." has no artificial stagger")
   end
@@ -641,14 +645,15 @@ return {
 		local enemy = spawnEnemy(3, "Slime")
 		action(state, "Attack", 0)
 		enemy.humanoid.Health = 50
-		sample(0.17)
+		local contact = api.Config.Attacks[1].windup + (api.Config.Attacks[1].hitDelay or 0)
+		sample(contact + .01)
 		equal(#events, 1, "server broadcasts one confirmed hit")
 		equal(events[1][1], enemy.model, "feedback identifies the actual enemy")
 		equal(events[1][2], enemy.root.Position, "feedback snapshots target position")
 		near(events[1][3], 50, "lethal damage number is actual health lost")
 		equal(events[1][4], "knight", "feedback class comes from trusted server state")
 		equal(events[1][5], "Slime", "feedback identifies slime material")
-		sample(0.20)
+		sample(contact + .04)
 		equal(#events, 1, "one attack window cannot broadcast the hit twice")
 	end)
 	case("confirmed-hit-includes-server-skill-identity", function()
@@ -671,7 +676,7 @@ return {
 		local shield = Instance.new("ForceField")
 		shield.Parent = enemy.model
 		action(state, "Attack", 0)
-		sample(0.17)
+		sample(api.Config.Attacks[1].windup + .01)
 		near(enemy.humanoid.Health, 10000, "forcefield blocks health loss")
 		equal(#events, 0, "blocked damage does not create hit feedback")
 		shield:Destroy()
@@ -681,7 +686,7 @@ return {
 		state = spawnPlayer()
 		spawnEnemy(20)
 		action(state, "Attack", 0)
-		sample(0.17)
+		sample(api.Config.Attacks[1].windup + .01)
 		equal(#events, 0, "miss does not create hit feedback")
 	end)
 	case("slime-melee-is-server-authoritative", function()

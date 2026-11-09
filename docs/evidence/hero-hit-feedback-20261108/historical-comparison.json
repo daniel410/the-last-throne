@@ -1,0 +1,26 @@
+{
+  "baseline": "28e785330226ab66ada99ff519411fb64a3b7467",
+  "caseCount": 241,
+  "checksEach": 1057,
+  "sameCaseStatusAndCounts": true,
+  "newFailures": [],
+  "baselineFailures": [
+    "server-selected-knight-and-forged-client-class",
+    "targeted-elf-shot-prefers-clicked-enemy",
+    "dead-selected-target-does-not-retarget",
+    "targeted-mage-turns-and-hits-selected",
+    "elf-nearest-forward-target-one-server-shot",
+    "elf-25-86-stud-shot-persists-and-provokes-goblin",
+    "elf-outside-passive-range-is-recognized",
+    "elf-retaliation-cannot-break-spawn-leash",
+    "elf-old-hero-is-never-a-retaliation-target",
+    "multiple-elf-hits-retain-each-valid-attacker",
+    "knight-melee-is-recognized-until-timeout",
+    "elf-range-and-facing-validated",
+    "elf-wall-blocks-server-shot",
+    "elf-forward-cone-20",
+    "elf-server-facing-and-input-burst-limit",
+    "hero-switch-clears-fired-elf-visual-and-future-hits"
+  ],
+  "note": "Exploratory historical full matrix on 0.86.4; final selected tests use current pacing and pass."
+}

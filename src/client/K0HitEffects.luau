@@ -2,10 +2,12 @@
 -- never decide hits or damage and stay bounded on busy multiplayer clients.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Debris = game:GetService("Debris")
+local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local HitReaction = require(script.Parent.K0EnemyHitReaction)
 local PixelFX = require(script.Parent.PixelFX)
 local CombatAudio = require(script.Parent.K0CombatAudio)
+local HitStop = require(script.Parent.K0HitStop)
 
 local HitEffects = {}
 local started = false
@@ -64,7 +66,7 @@ local function part(parent, name, position, size, color)
 end
 
 -- Public for isolated native fixture QA; live calls come only from OnClientEvent.
-function HitEffects.show(model, position, damage, classId, enemyKind, direction, skillId)
+function HitEffects.show(model, position, damage, classId, enemyKind, direction, skillId, impact)
 	local profile = profiles[classId]
 	if not profile or typeof(position) ~= "Vector3" or not finite(position.X) or not finite(position.Y) or not finite(position.Z)
 		or not finite(damage) or damage <= 0 or damage > 1000000 or type(enemyKind) ~= "string" then return false end
@@ -186,7 +188,10 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	TweenService:Create(billboard, TweenInfo.new(0.65, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 		{ StudsOffsetWorldSpace = Vector3.new(0, numberHeight + 0.7, 0) }):Play()
 	TweenService:Create(label, TweenInfo.new(0.65), { TextTransparency = 1, TextStrokeTransparency = 1 }):Play()
-	CombatAudio.play("impact", position, classId, skillId)
+	if type(impact) == "table" then HitStop.record(impact.attacker, impact, workspace:GetServerTimeNow()) end
+	local attacker = type(impact) == "table" and impact.attacker or nil
+	CombatAudio.play("impact", position, classId, skillId, attacker,
+		Players.LocalPlayer ~= nil and Players.LocalPlayer.Character == attacker)
 	return true
 end
 

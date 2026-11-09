@@ -1,0 +1,43 @@
+{
+  "placeId": 70829337938054,
+  "published": false,
+  "exactBaselineChecks": 4,
+  "modules": [
+    {
+      "bytes": 4554,
+      "matches": true,
+      "name": "K0HitStop",
+      "published": false
+    },
+    {
+      "bytes": 4483,
+      "matches": true,
+      "name": "EnemyKnockback",
+      "published": false
+    },
+    {
+      "bytes": 5443,
+      "matches": true,
+      "name": "K0CombatAudio",
+      "published": false
+    },
+    {
+      "bytes": 13421,
+      "matches": true,
+      "name": "K0HitEffects",
+      "published": false
+    },
+    {
+      "bytes": 62568,
+      "matches": true,
+      "name": "K0SwordVisual",
+      "published": false
+    },
+    {
+      "bytes": 106473,
+      "matches": true,
+      "name": "CombatService",
+      "published": false
+    }
+  ]
+}

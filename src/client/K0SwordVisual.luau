@@ -24,6 +24,7 @@ assert(groundSlam and overheadSmash, "Dwarf skill configuration is missing")
 
 local HitFeedback = require(script.Parent.K0PlayerHitFeedback)
 local CombatAudio = require(script.Parent.K0CombatAudio)
+local HitStop = require(script.Parent.K0HitStop)
 local Visual = {}
 local SideDiveMotion = require(script.Parent.K0SideDiveMotion)
 local shieldSkills={}
@@ -394,6 +395,7 @@ end
 -- Avatar arms are presentation-only. PreSimulation runs after animation
 -- evaluation for both classic Motor6D and modern AnimationConstraint rigs.
 function Visual.renderArms(character, dt, now)
+	now = HitStop.sample(character, now or Workspace:GetServerTimeNow())
 	local classId = character:GetAttribute("K0ClassId")
 	local mode = character:GetAttribute("K0State")
 	local phase = character:GetAttribute("K0AttackPhase")
@@ -467,7 +469,7 @@ function Visual.renderArms(character, dt, now)
 		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.whirlwind" then
 			right = CFrame.Angles(math.rad(90), math.rad(phase == "Windup" and 80 or phase == "Active" and -80 or 0), 0)
 			local startedAt = character:GetAttribute("K0SkillStartedAt")
-			local progress = type(startedAt) == "number" and math.clamp((Workspace:GetServerTimeNow() - startedAt - 0.25) / 0.18, 0, 1) or 0.5
+			local progress = type(startedAt) == "number" and math.clamp((now - startedAt - 0.25) / 0.18, 0, 1) or 0.5
 			torso = CFrame.Angles(0, phase == "Active" and -2 * math.pi * progress or math.rad(phase == "Windup" and 45 or 0), 0)
 		elseif classId == "knight" and character:GetAttribute("K0SkillId") == "knight.common.provoke" then
 			local pitch = phase == "Windup" and 95 or phase == "Active" and 150 or 75
@@ -502,7 +504,7 @@ function Visual.renderArms(character, dt, now)
 			rightElbow = CFrame.Angles(math.rad(phase == "Windup" and -45 or 0), 0, 0)
 			left = CFrame.Angles(math.rad(phase == "Windup" and 35 or 50), 0, math.rad(15))
 		elseif classId == "dwarf" and skillId == "dwarf.common.overhead" and phase == "Windup" then
-			local angle = Visual.overheadSpinAngle(character:GetAttribute("K0SkillStartedAt"), Workspace:GetServerTimeNow())
+			local angle = Visual.overheadSpinAngle(character:GetAttribute("K0SkillStartedAt"), now)
 			right = CFrame.Angles(0, angle, 0) * CFrame.Angles(math.rad(135), 0, 0)
 			rightElbow = CFrame.Angles(math.rad(-15), 0, 0)
 			left = CFrame.Angles(math.rad(45), 0, math.rad(18))
@@ -584,7 +586,7 @@ function Visual.renderArms(character, dt, now)
 			armPoses[rootJoint] = { pose = pose, returning = 0 }
 			groundSlamJoints[rootJoint] = true
 		elseif slamming then
-			local lift = Visual.groundSlamLift(phase, character:GetAttribute("K0SkillStartedAt"), Workspace:GetServerTimeNow())
+			local lift = Visual.groundSlamLift(phase, character:GetAttribute("K0SkillStartedAt"), now)
 			local basis = rootJoint.C0.Rotation
 			local pose = basis:Inverse() * CFrame.new(0, lift, 0) * basis
 			rootJoint.Transform = pose
@@ -1024,6 +1026,7 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 	end
 	local elapsed = type(dt) == "number" and dt == dt and dt > 0 and dt < math.huge and dt or 1 / 60
 	local character = model.Parent
+	now = HitStop.sample(character, now or Workspace:GetServerTimeNow())
 	local skillId = character and character:GetAttribute("K0SkillId")
 	if classId == "elf" and character then phase = Visual.bowPhase(character, phase, now or Workspace:GetServerTimeNow()) end
 	local target = Visual.samplePose(classId, phase, combo, attackKind, skillId)

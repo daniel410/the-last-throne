@@ -9,6 +9,7 @@ local LevelUpEffect=require(script.Parent.HeroLevelUpEffect)
 local PotionUseSound = require(script.Parent.PotionUseSound)
 local EnemyDeathFall=require(script.Parent.EnemyDeathFall)
 local AdvancedCombat=require(script.Parent.AdvancedCombat)
+local EnemyKnockback=require(script.Parent.EnemyKnockback)
 local advancedEffectRemote
 local Growth = require(ReplicatedStorage.Shared.HeroProgression)
 local storyDamageHandler
@@ -820,7 +821,11 @@ local function damageEnemy(state, enemy, attack, current)
 		-- This is presentation data for an already resolved hit, never an
 		-- input to damage. A position snapshot survives a lethal target's removal.
 		local direction = horizontalUnit(position - state.root.Position, attack.direction)
-		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, attack.isSkill and attack.definition.id or nil)
+		local skillId = attack.isSkill and attack.definition.id or nil
+		hitEffectRemote:FireAllClients(enemy.model, position, applied, state.baseClassId, enemy.kind, direction, skillId,
+			{attacker = state.character, seq = state.attackSeq, startedAt = state.character:GetAttribute("K0AttackStartedAt"),
+				confirmedAt = workspace:GetServerTimeNow() + (attack.resolvedSampleAt or current) - current,
+				classId = state.baseClassId, skillId = skillId})
 	end
 	if enemy.humanoid.Health > 0 then
   if applied > 0 then interruptEnemyOnHit(enemy, attack, current) end
@@ -834,10 +839,9 @@ local function damageEnemy(state, enemy, attack, current)
     enemy.model:SetAttribute("K0GravityUntil",workspace:GetServerTimeNow()+(d.slowDuration or 2))
    end
 			if d.taunt and enemy.kind~="Ogre" then enemy.provokedBy=state;enemy.provokeUntil=current+d.taunt;enemy.model:SetAttribute("K0ProvokeUntil",workspace:GetServerTimeNow()+d.taunt) end
-			if d.push and enemy.kind~="Ogre" then
-				local push=horizontalUnit(enemy.root.Position-state.root.Position,attack.direction)*d.push
-				local wall=workspace:Blockcast(enemy.root.CFrame,enemy.root.Size*.9,push,rayParams({enemy.model,state.character}))
-				if not wall and workspace:Raycast(enemy.root.Position+push,Vector3.new(0,-10,0),rayParams({enemy.model,state.character})) then enemy.model:PivotTo(enemy.model:GetPivot()+push) end
+			if d.push then
+				EnemyKnockback.start(enemy, horizontalUnit(enemy.root.Position-state.root.Position,attack.direction),
+					d.push, current, {enemy.model,state.character})
 			end
 		end
 		if applied > 0 and attack.isSkill and attack.definition.effect == "mark" then
@@ -1532,6 +1536,7 @@ local function resetEnemy(enemy, restoreHealth)
 	enemy.model:SetAttribute("K0ProvokeUntil", nil)
 	enemy.stunUntil=nil;enemy.model:SetAttribute('K0EnemyStunUntil',nil);enemy.model:SetAttribute('K0EnemyStunClass',nil)
 	enemy.hitReactUntil, enemy.hitInterruptImmuneUntil = nil, nil
+	enemy.knockback, enemy.knockbackImmuneUntil = nil, nil
  enemy.model:SetAttribute("K0EnemyHitUntil", nil)
 	enemy.pattern = 0
  enemy.patternHistory={}
@@ -1553,10 +1558,11 @@ local function stepEnemy(enemy, current, dt)
   enemy.attackDownUntil,enemy.attackDownMultiplier=nil,nil
   enemy.model:SetAttribute('K0AttackDownUntil',nil);enemy.model:SetAttribute('K0AttackDownMultiplier',nil)
  end
- if (enemy.model:GetAttribute('StoryPauseUntil') or 0)>workspace:GetServerTimeNow() then if enemy.attack then resetEnemyAttack(enemy)end;stopEnemy(enemy);return end
+ if (enemy.model:GetAttribute('StoryPauseUntil') or 0)>workspace:GetServerTimeNow() then enemy.knockback=nil;if enemy.attack then resetEnemyAttack(enemy)end;stopEnemy(enemy);return end
 	if not enemyAlive(enemy) then
 		return
 	end
+ if EnemyKnockback.step(enemy, current) then return end
 	if enemy.gravityUntil and current >= enemy.gravityUntil then
 		enemy.gravityUntil, enemy.gravityMultiplier = nil, nil
 		enemy.humanoid.WalkSpeed = enemy.config.walkSpeed
