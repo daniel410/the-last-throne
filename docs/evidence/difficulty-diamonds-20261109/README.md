@@ -22,3 +22,12 @@
 ## 미검증과 다음 담당
 
 실제 계정·라이브 DataStore·협동·게시 클라이언트·실기기 입력/사용성·경제 수용은 미검증이다. 현재 사용자 Studio와 실제 Place 게시·릴리스 태그는 변경하지 않는다. QA는 테스트 계정의 Easy기수령→Hard초회3개→Hard반복0→다른영웅Hard0→Insane/Hell각3개, 기존 완료 이관·소비·재접속과 구/신 서버 교체를 확인한다. 부모 티켓 In Progress 유지.
+
+
+## 고정 빌드와 원격 마감
+
+소스 `98a5023b37005933d0829bf548cfb88d2156b09e`를 origin/main에 푸시하고 원격 일치를 확인한 뒤 `python3 tools/build-game.py --source HEAD --record docs/evidence/difficulty-diamonds-20261109/build.json`으로 **0.91.0 빌드 성공**. [빌드 기록](build.json), 산출물 `builds/0.91.0/TheLastThrone-0.91.0.rbxlx`, SHA256 `e8b0c5e8bfc0e0795697ff160c59ce43238a2d20a7f58b2c1749359127dd1fe1` 재확인. 새 LFS 자산/빌드 참조 LFS 입력 없음.
+
+`python3 tools/prepare-difficulty-diamonds-native.py --fixed-build` → `run-in-roblox --place builds/0.91.0/TheLastThrone-0.91.0.rbxlx --script /tmp/tlt-difficulty-diamonds-native.luau`: **6,713 규칙/저장 검증 +39 GUI 검증=6,752 PASS / 종료0**. [엔진 로그](native.log). 변경한 공통 모듈·클라이언트와 실제 계정 reducer/저장 모듈의 고정 Place 원문 일치를 확인했다. 격리 프로필/저장 모형·실제GUI 생성/텍스트 경계 검증이며 실계정/라이브 DataStore/실기기 입력 검증과 구분한다.
+
+소스 커밋 원격 확인 후 빌드/엔진 증거를 후속 커밋으로 같은 main에 푸시한다. 실제 게시/릴리스 태그 없음.
