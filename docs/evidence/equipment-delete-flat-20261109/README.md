@@ -13,3 +13,5 @@ ENG → QA. 프로젝트 제작 스킬의 저장/검증 절차 적용. 사용자
 `difficulty-enhancement.spec.lua`는 StoryLocked에서 실패한다. 변경 전 HEAD도 같은 위치/오류로 실패함을 별도 임시 소스에서 확인했다([baseline.log](baseline.log)). 이번 변경 통과로 보고하지 않는다.
 
 미검증: 실계정 DataStore/게시 클라이언트/기기 화면과 전투 밸런스 수용. 실제 Roblox 게시·릴리스 태그 없음. QA는 재접속 삭제/빈 장착 슬롯·가방/상점/강화 pts·네 클래스의 공격/스킬을 확인한다. 다른 사용자 미커밋 자산은 보존하고 커밋에서 제외한다.
+
+고정 소스 `9fb1c234ef3a6af36e497287e885f7f2967c9f06`를 origin/main에 푸시한 후 단일 빌드 **0.89.3 성공**. 산출물 `builds/0.89.3/TheLastThrone-0.89.3.rbxlx`, SHA256 `2d7839284bb7c2deb36af875ede862277adf7f9928369f09fc5166f3ae67df14`([빌드 기록](build.json)). `python3 tests/single-build.spec.py --artifact builds/0.89.3/TheLastThrone-0.89.3.rbxlx`: 역할10·도착로딩192·마운트/구성 PASS. `run-in-roblox --place builds/0.89.3/TheLastThrone-0.89.3.rbxlx --script docs/evidence/equipment-delete-flat-20261109/native.luau`: 고립된 Place에서 실제 모듈로 삭제135+고정공격86+표시단위3=224검사 PASS([로그](native.log)). GUI 렌더/실전 전투 조작이나 라이브 계정 검증은 아니다. 연결된 사용자 Studio에는 소스를 적용하지 않았다. 새 LFS 자산 없음.
