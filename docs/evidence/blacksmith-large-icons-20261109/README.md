@@ -13,3 +13,7 @@
 실제 TLT Studio(place70829337938054)의 StarterPlayerScripts.Client 두 모듈에도 적용했다. 기존 Play 세션의 PlayerScripts 복사본은 새 플레이 때 갱신된다. 다른 Studio의 실행 중 Play 세션은 중단하지 않았다. Roblox Place 게시·실제 구매·저장 변경은 하지 않았다.
 
 `git diff --check` 및 소스 고정 단일 빌드 결과는 마감 기록에 연결한다. 다음 담당: QA의 실제 PC/모바일 가로 화면 확대 체감·스크롤 사용성 수용. 부모 티켓은 완료 처리하지 않는다.
+
+## 빌드 마감
+
+소스 `b835345e15fe4d2dde8a16a2f452e3d9b5017e5c`를 origin/main에 푸시한 뒤 **0.93.3 단일 빌드 성공**. `builds/0.93.3/TheLastThrone-0.93.3.rbxlx` SHA256 `0c69a2d5d89f846323090c9929761f29c705491cc865fef0b59f94b6c26b1ab5`. [빌드 기록](build.json). 고정 소스의 두 UI 모듈이 네이티브로 검증한 모듈과 바이트 단위로 일치함을 확인했다. 새 LFS 자산 없음, 릴리스 태그/Roblox 게시 없음.
