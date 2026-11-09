@@ -8,7 +8,7 @@ local Text=Shared and require(Shared.SkillStatText) or dofile("src/shared/SkillS
 local CombatText=Shared and require(Shared.CombatStatText) or dofile("src/shared/CombatStatText.luau")
 local Preview={}
 function Preview.derived(classId,g,equipment)
-	local d=Growth.derived(classId,g)
+	local d=Growth.derived(classId,g,equipment)
 	equipment=equipment or {}
 	d.health=d.health+(equipment.health or 0)
  if d.mana>0 then d.mana=d.mana+(equipment.mana or 0)end

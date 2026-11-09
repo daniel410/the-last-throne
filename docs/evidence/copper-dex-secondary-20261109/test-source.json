@@ -1,0 +1,27 @@
+{
+  "baseCommit": "6b30cb253bc1eec0a5f1a4c671e103a5dacaf0ea",
+  "overlayFiles": [
+    "src/shared/EquipmentFamilies.luau",
+    "src/shared/ItemCatalog.luau",
+    "src/shared/HeroProgression.luau",
+    "src/shared/Enhancement.luau",
+    "src/shared/SkillStatPreview.luau",
+    "src/shared/EquipmentImpact.luau",
+    "src/shared/InventoryText.luau",
+    "src/shared/CombatStatText.luau",
+    "src/server/Combat/CombatService.luau",
+    "src/server/Inventory/InventoryRules.luau",
+    "src/client/ArmoryView.luau",
+    "src/client/EnhancementView.luau",
+    "src/client/InventoryGui.luau",
+    "src/client/CombatStatsView.luau",
+    "src/client/HeroStatsView.luau",
+    "src/client/MobileHeroStatsView.luau",
+    "tests/copper-dexterity.spec.lua",
+    "tests/copper-dexterity-native.luau",
+    "tests/equipment-families.spec.lua",
+    "tests/starter-gear-balance.spec.lua",
+    "tests/skill-stat-preview.spec.lua"
+  ],
+  "method": "committed src/tests archive + scoped edits only; unrelated working tree changes excluded"
+}

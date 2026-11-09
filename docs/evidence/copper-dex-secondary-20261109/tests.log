@@ -1,0 +1,53 @@
+$ lua tests/copper-dexterity.spec.lua
+Copper DEX and secondary gear: 130 checks passed
+
+$ lua tests/equipment-families.spec.lua
+Equipment families: 458 checks passed
+
+$ lua tests/starter-gear-balance.spec.lua
+Starter gear balance: 206 checks passed
+
+$ lua tests/equipment-impact.spec.lua
+Equipment impact: 52 checks passed
+
+$ lua tests/equipment-flat-power.spec.lua
+Flat equipment power: 110 checks passed
+
+$ lua tests/hero-stat-effects.spec.lua
+Hero stat effects: 576 checks passed
+
+$ lua tests/hero-progression.spec.lua
+Hero progression: 3711 checks passed
+
+$ lua tests/skill-stat-preview.spec.lua
+HYBRID magic_archer Lv20 STR=76 INT=0 starter=447 branch=251
+HYBRID magic_archer Lv20 STR=38 INT=38 starter=340 branch=365
+HYBRID magic_archer Lv20 STR=0 INT=76 starter=234 branch=479
+HYBRID gunner Lv20 STR=76 DEX=0 starter=447 branch=510
+HYBRID gunner Lv20 STR=38 DEX=38 starter=340 branch=389
+HYBRID gunner Lv20 STR=0 DEX=76 starter=234 branch=267
+HYBRID magic_archer Lv40 STR=156 INT=0 starter=755 branch=341
+HYBRID magic_archer Lv40 STR=78 INT=78 starter=536 branch=575
+HYBRID magic_archer Lv40 STR=0 INT=156 starter=318 branch=809
+HYBRID gunner Lv40 STR=156 DEX=0 starter=755 branch=862
+HYBRID gunner Lv40 STR=78 DEX=78 starter=536 branch=613
+HYBRID gunner Lv40 STR=0 DEX=156 starter=318 branch=363
+HYBRID magic_archer Lv80 STR=316 INT=0 starter=1371 branch=521
+HYBRID magic_archer Lv80 STR=158 INT=158 starter=928 branch=995
+HYBRID magic_archer Lv80 STR=0 INT=316 starter=486 branch=1469
+HYBRID gunner Lv80 STR=316 DEX=0 starter=1371 branch=1566
+HYBRID gunner Lv80 STR=158 DEX=158 starter=928 branch=1061
+HYBRID gunner Lv80 STR=0 DEX=316 starter=486 branch=555
+Skill stat preview: 1392 checks passed
+
+$ lua tests/deleted-equipment.spec.lua
+Deleted equipment: 171 checks passed
+
+$ lua tests/enhancement-probability.spec.lua
+Enhancement probability: 2869 checks passed (including 90000 outcome boundaries)
+
+$ lua tests/blacksmith-stock.spec.lua
+Blacksmith active stock: 304 checks passed
+
+$ lua tests/reset-tickets.spec.lua
+Reset tickets: 316 checks passed

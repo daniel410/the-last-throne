@@ -45,7 +45,7 @@ function V.render(scroll,s,send,saving,notice)
     local n=item.enhancementLevel or 0;local cost=E.cost(def,n+1);local before=E.stats(def,item)
     local after=E.stats(def,{enhancementLevel=math.max(n,math.min(E.cap(def),n+1))})
     local lines={n>=E.cap(def)and Text.MaxEnhancement or string.format(Text.Success,E.successPercent(n+1),100-E.successPercent(n+1))}
-    for _,key in ipairs({'power','armor','health','mana'})do if (before[key]or 0)>0 then table.insert(lines,key=='power' and string.format(Text.PowerChange,before[key],after[key]) or string.format(Text.StatChange,key=='armor'and Text.Armor or key=='mana'and 'Max MP' or Text.Health,before[key],after[key]))end end
+    for _,key in ipairs({'power','armor','health','mana','dexterity'})do if (before[key]or 0)>0 then table.insert(lines,key=='power' and string.format(Text.PowerChange,before[key],after[key]) or string.format(Text.StatChange,key=='armor'and Text.Armor or key=='mana'and 'Max MP' or key=='dexterity'and 'Dexterity' or Text.Health,before[key],after[key]))end end
     table.insert(lines,string.format(Text.EnhanceCost,E.cap(def),cost.gold,cost.gems,cost.stones))
     table.insert(lines,string.format(Text.MaterialBag,ore,cores))
     local paid=item.enhancementPaid or {ore=0,cores=0};local modern=item.enhancementPaidV2 or {gems=0,stones=0};local ro,rc=math.floor(paid.ore*.8),math.floor(paid.cores*.8);local rg,rs=math.floor(modern.gems*.8),math.floor(modern.stones*.8)

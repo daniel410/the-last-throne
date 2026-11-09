@@ -311,17 +311,18 @@ function InventoryGui.create(onVisibility, feedback)
 				detailLabel("AutoEquipTarget",current and string.format(Text.AutoAccessoryReplace,current.name) or Text.AutoAccessoryEmpty,y,48,13,Color.silver);y=y+52
 			end
 			local lines={Text.Current.."  →  "..Text.Selected}
-			for _, key in ipairs({"power","armor","health","mana"}) do
+			for _, key in ipairs({"power","armor","health","mana","dexterity"}) do
 				local before,after=current and current.stats[key] or 0,Enhance.stats(def,item)[key] or 0
 				local suffix=" pts"
 				local deltaSuffix=suffix
 				local format=key=="power" and "%s   %.1f%s → %.1f%s   (%+.1f%s)" or "%s   %.2f%s → %.2f%s   (%+.2f%s)"
 				lines[#lines+1]=string.format(format,Text.Stats[key],before,suffix,after,suffix,after-before,deltaSuffix)
 			end
-			detailLabel("Comparison",table.concat(lines,"\n"),y,116,13,Color.text); y=y+122
+			detailLabel("Comparison",table.concat(lines,"\n"),y,138,13,Color.text); y=y+144
 			local impact,reason=EquipmentImpact.compare(hero,snapshot.items,item,compareSlot,Catalog)
 			if impact then
-				detailLabel("ActualStatChanges",EquipmentImpact.text(impact),y,160,13,Color.silver);y=y+166
+				local impactHeight=math.max(160,(#impact+1)*22)
+    detailLabel("ActualStatChanges",EquipmentImpact.text(impact),y,impactHeight,13,Color.silver);y=y+impactHeight+6
 				local noteHeight=math.max(52,game:GetService("TextService"):GetTextSize(CombatText.EquipmentNote,11,Enum.Font.GothamMedium,Vector2.new(math.max(160,detailScroll.AbsoluteSize.X-8),10000)).Y+6)
 				detailLabel("ActualStatNote",CombatText.EquipmentNote,y,noteHeight,11,Color.muted);y=y+noteHeight+6
 			else

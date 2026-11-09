@@ -91,17 +91,20 @@ end
 function Growth.attackStat(classId,magic)
 	return magic and "INT" or "STR"
 end
-function Growth.derived(classId,g)
+function Growth.derived(classId,g,equipment)
 	local base=assert(Growth.bases[classId]); local total={}
+ local gearDEX=equipment and equipment.dexterity or 0
+ local effectiveDEX=g.stats.DEX+gearDEX
 	local manaBase=(classId=="elf" and g.branch=="magic_archer" and g.stage>=1) and 80 or base.mana
 	local manaLevels=classId=="elf" and math.max(0,g.level-20)*3 or (g.level-1)*4
 	for _,k in ipairs(Growth.statKeys) do total[k]=base.stats[k]+g.stats[k] end
-	local physical=g.stats[Growth.attackStat(classId,false)]*2+(g.level-1)*3
+	total.DEX=total.DEX+gearDEX
+ local physical=g.stats[Growth.attackStat(classId,false)]*2+(g.level-1)*3
 	return {health=base.health+base.healthPerLevel*(g.level-1)+g.stats.VIT*10,
 		mana=manaBase>0 and manaBase+manaLevels+g.stats.INT*3 or 0,
 		physicalPower=100+physical,magicPower=100+(g.level-1)*3+g.stats.INT*2,
-		attackRate=1+math.min(1,g.stats.DEX*.005),
-		moveRate=1+math.min(.3,g.stats.DEX*.001),
+		attackRate=1+math.min(1,effectiveDEX*.005),
+		moveRate=1+math.min(.3,effectiveDEX*.001),
 		armor=math.floor(g.stats.VIT/4),totalStats=total}
 end
 function Growth.skill(classId,index,base,g)

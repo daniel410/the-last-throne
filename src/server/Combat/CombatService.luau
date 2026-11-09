@@ -1883,7 +1883,7 @@ local function setupCharacter(player, character)
 		classes[context.heroId] = classId
 		local attackProfile = Config.BasicAttackProfiles[classId]
 		local current = now()
-		local derived=context.growth and Growth.derived(classId,context.growth)
+		local derived=context.growth and Growth.derived(classId,context.growth,context.equipment)
   local maxMana=derived and derived.mana or Config.MaxMana
   if maxMana>0 then maxMana=maxMana+(context.equipment and context.equipment.mana or 0)end
 		local state = {
@@ -1995,7 +1995,7 @@ function CombatService.refreshEquipment(player, equipment)
 		state.skillSlots=context.skillSlots or state.growth.skillSlots
 		state.slotCount=Advanced.slotCount(state.growth)
 		publishSkills(state,now())
-		state.derived=Growth.derived(state.baseClassId,state.growth)
+		state.derived=Growth.derived(state.baseClassId,state.growth,equipment)
 		state.maxMana=state.derived.mana>0 and state.derived.mana+(equipment.mana or 0)or 0
 		if state.maxMana>0 then setMana(state,leveledUp and state.maxMana or math.min(state.mana or 0,state.maxMana)) else state.mana=nil end
 		state.character:SetAttribute("K0MaxMana",state.mana and state.maxMana or nil)
@@ -2018,6 +2018,7 @@ function CombatService.refreshEquipment(player, equipment)
 	state.character:SetAttribute("TLTEquippedOffhand", equipment.offhand or "")
 	state.character:SetAttribute("TLTEquipmentPower", equipment.power)
 	state.character:SetAttribute("TLTEquipmentArmor", equipment.armor)
+ state.character:SetAttribute("TLTEquipmentDexterity",equipment.dexterity or 0)
 end
 
 function CombatService.canUseInventoryItem(player, definition)

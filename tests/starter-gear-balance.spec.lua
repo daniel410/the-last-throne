@@ -29,12 +29,12 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
  eq(F.grant(p,R,C,'hero',class..'_weapon',1,'retired-test'),false,class..' retired training weapon cannot be granted')
  eq(R.quantity(p,'hero',class..'_weapon'),0,class..' retired grant adds no training weapon')
  local stats=R.stats(p,'hero',C)
- eq(stats.power,9,class..' starter power');eq(stats.health,class=='mage'and 30 or 50,class..' starter HP');eq(stats.mana,class=='mage'and 20 or 0,class..' starter MP');eq(stats.armor,class=='knight'and 9 or 6,class..' starter defense')
+ eq(stats.power,5,class..' starter power');eq(stats.health,class=='mage'and 30 or 50,class..' starter HP');eq(stats.mana,class=='mage'and 20 or 0,class..' starter MP');eq(stats.armor,class=='knight'and 8 or 5,class..' starter defense')
  local base=G.derived(class,p.heroes.hero.progression)
  local total=P.derived(class,p.heroes.hero.progression,stats)
  eq(total.health,base.health+stats.health,class..' UI HP follows equipped server stats')
- eq(total.physicalPower,base.physicalPower+9,class..' physical power adds9 points')
- eq(total.magicPower,base.magicPower+9,class..' magic power adds9 points')
+ eq(total.physicalPower,base.physicalPower+5,class..' physical power adds5 points')
+ eq(total.magicPower,base.magicPower+5,class..' magic power adds5 points')
  -- Saved instances contain identity/enhancement, not a frozen copy of old bonuses.
  local restored=R.copy(p)
  for _,item in pairs(restored.items)do item.definitionVersion=1 end

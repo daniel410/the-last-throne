@@ -88,7 +88,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
    for _,source in ipairs(sources) do
     local text=string.format(Text.GearItem,InventoryText.Slots[source.slot],source.name)
     local parts={}
-    for _,entry in ipairs({{'power',Text.GearPower},{'armor',Text.GearArmor},{'health',Text.GearHealth},{'mana',Text.GearMana}}) do local v=source.stats[entry[1]] or 0;if v~=0 then table.insert(parts,string.format(entry[2],entry[1]=='power' and v or signed(v))) end end
+    for _,entry in ipairs({{'power',Text.GearPower},{'armor',Text.GearArmor},{'health',Text.GearHealth},{'mana',Text.GearMana},{'dexterity',Text.GearDexterity}}) do local v=source.stats[entry[1]] or 0;if v~=0 then table.insert(parts,string.format(entry[2],entry[1]=='power' and v or signed(v))) end end
     text..='\n'..(#parts>0 and table.concat(parts,' · ') or Text.NoBonus)
     local h=measured(text,12,mainW-8);label(scroll,'Gear_'..source.slot,text,4,top,mainW-8,h,12,Theme.color.silver);top+=h+6
    end
@@ -104,7 +104,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
    local icon=Theme.sprite(row,'StatIcon',symbols[key],UDim2.fromOffset(3,7),UDim2.fromOffset(30,30))
    local textX=w>=240 and 36 or 6;icon.Visible=w>=240
    label(row,'Value',key..'  '..derived.totalStats[key],textX,0,w-textX-102,24,13,Theme.color.text)
-   label(row,'Meaning','DRAFT +'..draft[key],textX,24,w-textX-102,20,11,Theme.color.silver)
+   label(row,'Meaning','DRAFT +'..draft[key]..(key=='DEX'and string.format(Text.GearDexSuffix,(snapshot.stats or {}).dexterity or 0)or ''),textX,24,w-textX-102,20,11,Theme.color.silver)
    button(row,'Minus','−',w-96,1,44,function() draft[key]-=1;redraw() end,editable and draft[key]>0)
    button(row,'Plus','+',w-48,1,44,function() draft[key]+=1;redraw() end,editable and points>spent)
   end

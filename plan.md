@@ -1,3 +1,5 @@
+> **2026-11-09 · TLT-029/041/052/057/084 · 0.93.1:** Copper Ring은 공격력3→DEX3으로 변경하고 실제공속/이속·강화·가방/상점/영웅표시를 연결했다. 장갑공격/신발방어는 Traveler2/Tempered4/Veteran7/Sentinel15이며 다른부위·HP/MP 유지. [정본](docs/production/equipment-four-tier-reorganization-2026-11-09.md) · [검증/미게시](docs/evidence/copper-dex-secondary-20261109/README.md). 실계정/기기 수용 후속.
+
 > **2026-11-09 · TLT-028/029/032/041/052/073/082/084 · 0.93.0:** 최신 Meshy Traveler·Tempered·Veteran·Sentinel의 검/도끼/활/지팡이16종을 Task ID로 고정해 가져오고, 실물 렌더 투명 아이콘16종을 기어·가방 공통 등록했다. 실제 장비ID별 외형 교체·각 활의 시위 연결, 기존 다른 Rare/Epic 유지. [원본/업로드/네이티브 검증·미게시](docs/evidence/four-family-weapons-20261109/README.md). 실제 계정·게시 클라이언트·기기 수용은 후속.
 
 > **2026-11-09 · TLT-029/041/052/057/084 · 0.91.1:** 사용자 후속 지시로 Traveler 공격/방어3·Tempered5·Veteran10·Sentinel20으로 통일하고 Sentinel 요구레벨15→10으로 변경했다. HP/MP20/30/40/50·단일옵션·장신구3종 유지. [장비별 정본](docs/production/equipment-four-tier-reorganization-2026-11-09.md) · [검증/미게시](docs/evidence/equipment-fixed-values-20261109/README.md). 다른 진행 중 변경은 제외, 실계정/기기 수용 후속.

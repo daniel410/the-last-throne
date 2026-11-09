@@ -12,7 +12,7 @@ function Impact.compare(hero,items,selected,slot,catalog)
  local slotError
  slot,slotError=Slots.resolve(hero.heroId,items,d,catalog,slot or (selected.location and selected.location.kind=='equipped' and selected.location.slot or nil))
  if not slot then return nil,slotError end
- local before={power=0,armor=0,health=0,mana=0};local current
+ local before={power=0,armor=0,health=0,mana=0,dexterity=0};local current
  for _,item in ipairs(items or {}) do
   if item.location.kind=='equipped' and item.location.heroId==hero.heroId then
    local def=catalog.items[item.definitionId]
@@ -27,9 +27,13 @@ function Impact.compare(hero,items,selected,slot,catalog)
  for _,key in ipairs({'physicalPower','magicPower','armor','health','mana'}) do
   table.insert(rows,{key=key,before=a[key],after=b[key],delta=b[key]-a[key]})
  end
+ if (Enhance.stats(d,selected).dexterity or 0)>0 or (current and (current.dexterity or 0)>0)then
+  table.insert(rows,{key='dexterity',before=a.totalStats.DEX,after=b.totalStats.DEX,delta=b.totalStats.DEX-a.totalStats.DEX})
+  for _,key in ipairs({'attackRate','moveRate'})do table.insert(rows,{key=key,before=a[key],after=b[key],delta=b[key]-a[key]})end
+ end
  return rows
 end
-local function number(v)return string.format('%.2f',v):gsub('0+$',''):gsub('%.$','')end
+local function number(v)return string.format('%.4f',v):gsub('0+$',''):gsub('%.$','')end
 function Impact.text(rows)
  local lines={Text.EquipmentPreview}
  for _,row in ipairs(rows) do lines[#lines+1]=string.format('%s: %s → %s (%s%s)',Text.Labels[row.key],number(row.before),number(row.after),row.delta>=0 and '+' or '',number(row.delta)) end
@@ -37,6 +41,7 @@ function Impact.text(rows)
 end
 function Impact.summary(rows)
  local values={};for _,r in ipairs(rows) do values[r.key]=(r.delta>=0 and '+' or '')..number(r.delta) end
- return string.format('On equip (pts): ATK %s · MATK %s\nDEF %s · Max HP %s · Max MP %s',values.physicalPower,values.magicPower,values.armor,values.health,values.mana)
+ local extra=values.dexterity and ('\nDEX '..values.dexterity..' · Attack speed '..values.attackRate..'x · Move speed '..values.moveRate..'x')or ''
+ return string.format('On equip (pts): ATK %s · MATK %s\nDEF %s · Max HP %s · Max MP %s',values.physicalPower,values.magicPower,values.armor,values.health,values.mana)..extra
 end
 return Impact

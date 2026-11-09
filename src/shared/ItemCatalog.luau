@@ -28,7 +28,7 @@ gear("traveler_hood", "Traveler's Hood", "head", nil, {armor = 2}, "HD", {rarity
 gear("traveler_coat", "Traveler's Coat", "body", nil, {health = 20, armor = 2}, "BD", {rarity = "Common"})
 gear("traveler_gloves", "Traveler's Gloves", "hands", nil, {power = 1}, "HN", {rarity = "Common"})
 gear("traveler_boots", "Traveler's Boots", "feet", nil, {armor = 1}, "FT", {rarity = "Common"})
-gear("copper_ring", "Copper Ring", "accessory", nil, {power = 1}, "RG", {uniqueGroup = "copper_ring", rarity = "Common"})
+gear("copper_ring", "Copper Ring", "accessory", nil, {dexterity = 3}, "RG", {uniqueGroup = "copper_ring", rarity = "Common"})
 gear("amber_charm", "Amber Charm", "accessory", nil, {health = 30}, "CH", {rarity = "Uncommon"})
 gear("veteran_hood", "Veteran's Hood", "head", nil, {armor = 2}, "HD", {level = 5, rarity = "Uncommon"})
 -- Provisional Lv10 forge stock. Existing stable definitions/rewards stay intact.
@@ -96,12 +96,12 @@ for _,tier in ipairs(Families.tiers)do
   add(Families.weapon(tier.id,class),tier.name..' '..name,'weapon',class,{power=tier.high},name:sub(1,2):upper())
  end
  for _,row in ipairs({{'offhand','Shield','SH'},{'head','Hood','HD'},{'body','Coat','BD'},{'hands','Gloves','HN'},{'feet','Boots','FT'}})do
-  local slot=row[1];local stats=slot=='body' and {health=tier.resource}or slot=='hands' and {power=tier.low}or {armor=slot=='offhand' and tier.high or tier.low}
+  local slot=row[1];local stats=slot=='body' and {health=tier.resource}or slot=='hands' and {power=tier.secondary}or {armor=slot=='offhand' and tier.high or slot=='feet'and tier.secondary or tier.low}
   add(Families.piece(tier.id,slot),tier.name..' '..row[2],slot,slot=='offhand' and 'knight'or nil,stats,row[3])
  end
  add(Families.mageBody(tier.id),tier.name..' Mage Robe','body','mage',{mana=tier.resource},'BD')
 end
-Catalog.items.copper_ring.stats={power=3}
+Catalog.items.copper_ring.stats={dexterity=3}
 gear('amber_mana_charm','Amber Mana Charm','accessory',nil,{mana=30},'CH',{
  rarity='Uncommon',iconKey='amber_charm',
  description='Adds 30 maximum MP to heroes with a mana pool. Does not create mana for other heroes or restore current MP.'})
