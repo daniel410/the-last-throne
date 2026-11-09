@@ -1,0 +1,6 @@
+{
+  "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-9fe702aa-8b63-4c30-b686-4d5b65bae316.png",
+  "prompt": "Use case: precise-object-edit. Edit this Traveler Common starter axe PNG reference for 3D modeling. Change ONLY the axe HEAD (the broad blade and small rear poll) from brown wood to simple matte gray IRON, with a slightly lighter gray sharpened bevel. The entire head should read as inexpensive forged iron. Preserve the exact broad wedge-shaped single blade silhouette, proportions, upright orientation, low-poly style, brown WOODEN handle, tan rope lashings, framing and camera. Keep very simple lowest-tier beginner equipment, no ornament, no gems, no gold, no glow. Exactly one isolated axe, no text, no additional objects. Preserve true transparent alpha background. Full object uncropped, 1024x1536 portrait.",
+  "tool": "image_gen",
+  "reason": "2026-11-09 사용자 정정: Traveler 도끼는 나무 자루 + 철제 날"
+}

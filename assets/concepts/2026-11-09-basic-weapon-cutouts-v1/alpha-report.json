@@ -55,19 +55,19 @@
     ],
     "minAlpha": 0,
     "maxAlpha": 254,
-    "transparentPct": 78.64,
-    "semiPct": 21.36,
+    "transparentPct": 78.26,
+    "semiPct": 21.74,
     "nonzeroBounds": [
-      19,
-      31,
-      1009,
-      1513
+      73,
+      37,
+      1003,
+      1503
     ],
     "opaqueBounds": [
-      255,
-      101,
-      827,
-      1453
+      250,
+      98,
+      830,
+      1454
     ],
     "edgeNonzero": 0
   },
