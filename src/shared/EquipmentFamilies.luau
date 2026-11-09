@@ -1,9 +1,9 @@
 -- Fixed single-option equipment. IDs survive balancing; deleted trial IDs stay separate.
-local F={version=1,tiers={
- {id='traveler',name='Traveler',rarity='Common',level=1,low=3,high=4,resource=20},
- {id='tempered',name='Tempered',rarity='Common',level=1,low=5,high=6,resource=30},
- {id='veteran',name='Veteran',rarity='Uncommon',level=10,low=9,high=10,resource=40},
- {id='sentinel',name='Sentinel',rarity='Rare',level=15,low=14,high=15,resource=50},
+local F={version=2,tiers={
+ {id='traveler',name='Traveler',rarity='Common',level=1,low=3,high=3,resource=20},
+ {id='tempered',name='Tempered',rarity='Common',level=1,low=5,high=5,resource=30},
+ {id='veteran',name='Veteran',rarity='Uncommon',level=10,low=10,high=10,resource=40},
+ {id='sentinel',name='Sentinel',rarity='Rare',level=10,low=20,high=20,resource=50},
 },weapons={knight='Sword',dwarf='Axe',elf='Bow',mage='Staff'}}
 function F.weapon(tier,class)
  return class..'_weapon_'..(tier=='tempered' and 'fine' or tier)

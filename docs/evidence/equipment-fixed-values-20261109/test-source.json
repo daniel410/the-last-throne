@@ -1,0 +1,10 @@
+{
+  "baseCommit": "306fa220d6363bb1f5f9fe463318b62a133f7bf6",
+  "overlayFiles": [
+    "src/shared/EquipmentFamilies.luau",
+    "tests/equipment-families.spec.lua",
+    "tests/starter-gear-balance.spec.lua",
+    "tests/equipment-impact.spec.lua"
+  ],
+  "method": "git archive committed src/tests + only scoped edits; unrelated working tree changes excluded"
+}

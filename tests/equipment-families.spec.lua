@@ -18,7 +18,7 @@ local function equal(a,b)
  return true
 end
 local F=C.equipmentFamilies
-local expected={traveler={1,'Common',3,4,20},tempered={1,'Common',5,6,30},veteran={10,'Uncommon',9,10,40},sentinel={15,'Rare',14,15,50}}
+local expected={traveler={1,'Common',3,3,20},tempered={1,'Common',5,5,30},veteran={10,'Uncommon',10,10,40},sentinel={10,'Rare',20,20,50}}
 check(#C.tierEquipment==40,'four complete families, ten definitions each')
 for _,id in ipairs(C.tierEquipment)do
  local d=C.items[id];local v=expected[d.family];local count=0;for _ in pairs(d.stats)do count=count+1 end
@@ -50,7 +50,7 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  check(R.equipped(p,'h','weapon').definitionId==class..'_weapon_traveler','starter uses Traveler '..class)
  check(R.equipped(p,'h','body').definitionId==(class=='mage'and 'mage_traveler_coat'or 'traveler_coat'),'starter body follows class')
  check(R.quantity(p,'h','veteran_hood')==1,'future veteran hood preserved in bag')
- check(stats.power==10 and stats.armor==(class=='knight'and 10 or 6),'starter fixed attack and defense')
+ check(stats.power==9 and stats.armor==(class=='knight'and 9 or 6),'starter fixed attack and defense')
  check(stats.health==(class=='mage'and 30 or 50)and stats.mana==(class=='mage'and 20 or 0),'starter HP/MP classification')
  assert(T.grant(p,R,C,'h','amber_mana_charm',1,'mana'))
  local charm=p.items['mana-1'];local cmd={action='Equip',requestId='charm',heroId='h',revision=p.revision,instanceId=charm.instanceId,itemVersion=1}
@@ -100,7 +100,7 @@ for oldId,slot in pairs(F.legacy)do
  p.items.legacy={instanceId='legacy',definitionId=oldId,definitionVersion=C.version,ownerUserId=42,quantity=1,version=1,binding='account',locked=true,location={kind='equipped',heroId='h',slot=slot},sourceGrantId='old',enhancementLevel=9}
  check(R.validate(p,C),'old Sentinel valid at10')
  local updated=R.upgrade(p,C);local item=updated.items.legacy
- check(R.validate(updated,C)and item.definitionId==F.piece('sentinel',slot)and item.location.kind=='bag'and item.enhancementLevel==9,'Lv15 Sentinel migration preserves instance')
+ check(R.validate(updated,C)and item.definitionId==F.piece('sentinel',slot)and item.location.kind=='equipped'and item.enhancementLevel==9,'Lv10 Sentinel migration preserves eligible equipped instance')
 end
 for _,id in ipairs(C.deletedEquipment)do check(C.items[id].deleted and C.items[id].retired,'deleted training/old goods never resurrected')end
 print('Equipment families: '..n..' checks passed')
