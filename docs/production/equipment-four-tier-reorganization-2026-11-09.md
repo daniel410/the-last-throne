@@ -29,7 +29,7 @@ Copper Ring은 최신 사용자 지시로 공격력+3을 제거하고 DEX+3으�
 
 기존 Tempered/Veteran/Traveler 방어구 ID를 보존한다. 새 Traveler 무기와 Sentinel 계열은 삭제한 Training/Dawnforge/Gauntlets와 별개ID를 사용한다. `equipmentRulesVersion=1`을 계정에 저장한다. 최초이관 때 기존 시작 지급 Tempered만 Traveler로, 기존 마법사 Traveler 상의는 전용로브로 바꾸며 인스턴스ID·강화·잠금·위치·귀속·보상/구매 영수증을 보존한다. 비삭제 옛 Rare Sentinel 방패/투구/상의/신발은 새Lv10 동등 부위로 옮긴다. 새 레벨을 충족하지 못하는 착용품은 가방으로, 가방이 꽉 찼으면 미수령으로 옮긴다. 저레벨의 기존 착용분만 구 요구레벨로 선검증한 다음 세션 잠금 아래 이관·재검증·저장한다. 이미 삭제한 장비는 부활시키지 않는다. 거래 재시도/응답유실/재접속 때 이관을 반복하지 않는다.
 
-기존 상품ID/가격·영수증을 유지한다. 새 가족 품목은 현재 동일 부위의 가격 기준을 승계했다: Common 무기250Gold, Veteran무기600Gold, Common 일반 방어구80/상의120/방패250Gold, 새Veteran 방어구250Gold. Rare는 기존 해당부위 가격 기준(무기18/방패10/상의13/기타8Diamonds)만 사용한다. Rare Gold판매 금지와 재판매 기준도 유지한다. 신규 Amber Mana Charm은 기존 Amber Charm의150Gold/4Diamonds/재판매30Gold를 따른다. 이 승계는 새 가격 최종 밸런스 수용을 뜻하지 않는다. 기존 상품 가격은 재산정하지 않았다.
+2026-11-09 최신 사용자 가격 재검토/개선 지시로 이전 임시 가격 승계 기준을 대체했다. Traveler는 기본 지급용으로 Gold/Diamonds 구매 상품에서 전부 제외하되 보유품·자동착용/기존 되팔기·시작 장비 판매 제한은 유지한다. Tempered는 무기500/방패400/후드300/상의·로브400/장갑·부츠250Gold, Veteran은1,200/1,000/800/1,000/650Gold다. Sentinel은40/32/28/32/24Diamonds로 Rare Gold판매 금지를 유지한다. Copper Ring300Gold/6Diamonds, Amber Charm/Amber Mana Charm400Gold/8Diamonds. 비Traveler 상품ID와 기존 완료 영수증을 보존하며 과거 구매 차액을 소급 청구하지 않는다. 대체 Diamonds SKU는1Diamond→50Gold 환전 기회비용으로 맞추고 활성 장비 되팔기는 해당 Gold 기준가20%로 정리한다. 물약/리셋권/환전/강화·재료 비용과 승인 스토리 보상은 유지한다. [가격 재계산·전체 근거/수용 한계](../research/2026-11-09-equipment-price-review.md) · [검증/빌드](../evidence/equipment-price-review-20261109/README.md).
 
 기존Lv5상자는 새Lv10 Veteran을 선택하게 하며 상자ID·보상수량을 보존한다. Lv1/10 상자는 같은 요구레벨 조건으로 선택한다. Sentinel은 상점에서 구입 가능하며 자동으로 새 보상/XP를 만들지 않는다.
 

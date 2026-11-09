@@ -3,24 +3,32 @@ local E=dofile('src/shared/EconomyRules.luau')
 local C=dofile('src/shared/ItemCatalog.luau')
 local Store=dofile('src/server/Inventory/AccountStore.luau')
 local checks=0;local function check(v,m) checks=checks+1;assert(v,m) end
-local p=R.addHero(R.new(7),'hero','knight',C);p.wallet.gold=1000;p.wallet.diamonds=20
+local p=R.addHero(R.new(7),'hero','knight',C);p.wallet.gold=2000;p.wallet.diamonds=100
 local buy={action='Buy',requestId='buy1',heroId='hero',revision=p.revision,offerId='knight_weapon_veteran'}
 check(not R.shop(p,buy,{atLobby=false},C),'shop blocked outside lobby')
-local n,e=R.shop(p,buy,{atLobby=true},C);check(n and not e and n.wallet.gold==400,'Gold and weapon commit together')
+local n,e=R.shop(p,buy,{atLobby=true},C);check(n and not e and n.wallet.gold==800,'Gold and weapon commit together')
 check(n.items['shop-buy1'].location.heroId=='hero','delivery belongs to selected hero bag')
-local again,_,repeatBuy=R.shop(n,buy,{atLobby=true},C);check(repeatBuy and again.wallet.gold==400 and again.revision==n.revision,'duplicate buy cannot spend twice')
+local again,_,repeatBuy=R.shop(n,buy,{atLobby=true},C);check(repeatBuy and again.wallet.gold==800 and again.revision==n.revision,'duplicate buy cannot spend twice')
+-- A saved receipt from the former 600-Gold Veteran price must never be repriced.
+local historical=R.copy(p);historical.wallet.gold=400;historical.revision=p.revision+1
+historical.items['shop-legacy']=R.copy(n.items['shop-buy1']);historical.items['shop-legacy'].instanceId='shop-legacy';historical.items['shop-legacy'].sourceGrantId='shop:legacy'
+historical.operations.legacy={fingerprint='shop|Buy|hero|knight_weapon_veteran||nil|'..p.revision,revision=historical.revision};table.insert(historical.operationOrder,'legacy')
+local oldCommand={action='Buy',requestId='legacy',heroId='hero',revision=p.revision,offerId='knight_weapon_veteran'}
+local recovered,_,oldDuplicate=R.shop(historical,oldCommand,{atLobby=true},C)
+check(oldDuplicate and recovered.wallet.gold==400 and recovered.revision==historical.revision,'old paid receipt returns without charging the new price')
+check(recovered.items['shop-legacy'].definitionId=='knight_weapon_veteran','old purchased gear survives repricing')
 local conflict=R.copy(buy);conflict.offerId='elf_weapon_veteran';check(not R.shop(n,conflict,{atLobby=true},C),'same id cannot purchase another weapon')
 local sell={action='Sell',requestId='sell1',heroId='hero',revision=n.revision,instanceId='shop-buy1',itemVersion=1}
 local locked=R.copy(n);locked.items['shop-buy1'].locked=true;check(not R.shop(locked,sell,{atLobby=true},C),'locked item cannot be sold')
 local equipped=R.copy(n);equipped.items['shop-buy1'].location={kind='equipped',heroId='hero',slot='weapon'};check(not R.shop(equipped,sell,{atLobby=true},C),'equipped item cannot be sold')
-local sold=assert(R.shop(n,sell,{atLobby=true},C));check(sold.wallet.gold==520 and not sold.items['shop-buy1'],'sale atomically destroys owned item and credits Gold')
-local twice=assert(R.shop(sold,sell,{atLobby=true},C));check(twice.wallet.gold==520 and twice.revision==sold.revision,'duplicate sell cannot mint Gold')
+local sold=assert(R.shop(n,sell,{atLobby=true},C));check(sold.wallet.gold==1040 and not sold.items['shop-buy1'],'sale atomically destroys owned item and credits Gold')
+local twice=assert(R.shop(sold,sell,{atLobby=true},C));check(twice.wallet.gold==1040 and twice.revision==sold.revision,'duplicate sell cannot mint Gold')
 local starter=R.copy(sell);starter.instanceId='hero-starter-3';starter.requestId='starter';starter.revision=p.revision;check(not R.shop(p,starter,{atLobby=true},C),'starter items cannot mint Gold')
 local diamond=R.copy(buy);diamond.requestId='diamond';diamond.offerId='mage_weapon_veteran_diamond';diamond.revision=sold.revision
-local paid=assert(R.shop(sold,diamond,{atLobby=true},C));check(paid.wallet.gold==520 and paid.wallet.diamonds==10,'Diamond price is server-owned; other-class purchase allowed')
+local paid=assert(R.shop(sold,diamond,{atLobby=true},C));check(paid.wallet.gold==1040 and paid.wallet.diamonds==76,'Diamond price is server-owned; other-class purchase allowed')
 check(paid.items['shop-diamond'].definitionId=='mage_weapon_veteran','premium delivery uses same equip/class/level rules')
 local offers=dofile('src/shared/EconomyCatalog.luau')
-for _,id in ipairs({'knight_shield_fine_diamond','traveler_hood_diamond','traveler_coat_diamond','traveler_gloves_diamond','traveler_boots_diamond','copper_ring_diamond','amber_charm_diamond','veteran_hood_diamond'}) do
+for _,id in ipairs({'knight_shield_fine_diamond','copper_ring_diamond','amber_charm_diamond','amber_mana_charm_diamond','veteran_hood_diamond'}) do
  local offer=assert(offers.offer(id));local command={action='Buy',requestId='test-'..id,heroId='hero',revision=p.revision,offerId=id}
  local result=assert(R.shop(p,command,{atLobby=true},C))
  check(result.wallet.diamonds==p.wallet.diamonds-offer.price and result.items['shop-'..command.requestId].definitionId==offer.definitionId,'Diamond offer spends and grants '..id)
@@ -53,11 +61,11 @@ local store=Store.new({UpdateAsync=function(_,key,fn) local v=fn(db[key] and R.c
 assert(store:open(12));assert(store:transact(12,function(v) v=R.addHero(v,'h','knight',C);v.wallet.gold=1000;return v end))
 local command={action='Buy',requestId='unknown',heroId='h',offerId='knight_weapon_fine',revision=db['account:12'].revision}
 fail=true;local result,reason=store:transact(12,function(v) return R.shop(v,command,{atLobby=true},C) end);check(not result and reason=='SaveUnknown','unacknowledged debit is not treated as a failed purchase')
-fail=false;result=assert(store:transact(12,function(v) return R.shop(v,command,{atLobby=true},C) end));check(result.wallet.gold==750 and result.items['shop-unknown'],'same request recovers exact debit and grant')
+fail=false;result=assert(store:transact(12,function(v) return R.shop(v,command,{atLobby=true},C) end));check(result.wallet.gold==500 and result.items['shop-unknown'],'same request recovers exact debit and grant')
 fail=true;check(not store:close(12) and store.profiles[12]~=nil,'unknown lease release retains recovery state')
 fail=false
 local released=assert(store:close(12));check(not released.lease,'unknown release retries the same epoch without a second debit')
 local nextServer=Store.new(store.adapter,R,C,function() return 100 end,function() end,'next-server')
-local reopened=assert(nextServer:open(12));check(reopened.wallet.gold==750 and reopened.epoch>result.epoch,'destination reopens durable items and wallet under a new fence')
+local reopened=assert(nextServer:open(12));check(reopened.wallet.gold==500 and reopened.epoch>result.epoch,'destination reopens durable items and wallet under a new fence')
 check(not store:transact(12,function(v) return v end),'source cannot mutate after successful handoff')
 print('Economy: '..checks..' checks passed')

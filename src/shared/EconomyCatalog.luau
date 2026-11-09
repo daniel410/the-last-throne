@@ -1,6 +1,6 @@
 -- Fixed trial rate: 1 Diamond buys 50 RPG account Gold; no bundle bonus.
 -- Retire the 100-Gold SKU rather than changing its promised amount under the same ID.
-local C={version=5,storyDiamonds=3,offers={},sell={},goldOffers={
+local C={version=6,storyDiamonds=3,offers={},sell={},goldOffers={
  {id='rpg_gold_500_diamond',currency='diamonds',price=10,amount=500},
  {id='rpg_gold_1000_diamond',currency='diamonds',price=20,amount=1000},
  {id='rpg_gold_2000_diamond',currency='diamonds',price=40,amount=2000},
@@ -11,20 +11,6 @@ C.storyDiamondIds={}
 for _,prefix in ipairs({'DW','GW','FV','EC','HG'})do
  for i=1,7 do C.storyDiamondIds[string.format('%s-%02d',prefix,i)]=true end
 end
-for _,class in ipairs({'knight','elf','dwarf','mage'}) do
- local fine=class..'_weapon_fine';local veteran=class..'_weapon_veteran'
- table.insert(C.offers,{id=fine,definitionId=fine,currency='gold',price=250})
- table.insert(C.offers,{id=veteran,definitionId=veteran,currency='gold',price=600})
- table.insert(C.offers,{id=veteran..'_diamond',definitionId=veteran,currency='diamonds',price=10})
- C.sell[fine]=50;C.sell[veteran]=120
-end
-table.insert(C.offers,{id='knight_shield_fine',definitionId='knight_shield_fine',currency='gold',price=250})
-C.sell.knight_shield_fine=50
--- Provisional Diamond Shop assortment; prices and balance require playtesting.
-for _,row in ipairs({{'knight_shield_fine',5},{'traveler_hood',2},{'traveler_coat',3},{'traveler_gloves',2},{'traveler_boots',2},{'copper_ring',4},{'amber_charm',4},{'veteran_hood',6}}) do
- table.insert(C.offers,{id=row[1]..'_diamond',definitionId=row[1],currency='diamonds',price=row[2]})
-end
--- Gold prices are provisional; all classes may buy for their bag/shared storage.
 for _,resource in ipairs({'health','mana'}) do
  for tier,size in ipairs({'','_medium','_large','_xl'}) do
   local id=resource..'_potion'..size
@@ -43,11 +29,7 @@ function C.category(definition)
  if definition.slot=='accessory' then return 'Accessories' end
  return 'Armor'
 end
-for _,row in ipairs({{'traveler_hood',80},{'traveler_coat',120},{'traveler_gloves',80},{'traveler_boots',80},{'copper_ring',150},{'amber_charm',150},{'veteran_hood',250}}) do
- table.insert(C.offers,{id=row[1],definitionId=row[1],currency='gold',price=row[2]});C.sell[row[1]]=math.floor(row[2]/5)
-end
--- Rare and Epic forge gear is sold only for Diamonds. Retire former Gold offer IDs.
--- Keep the existing four weapon Diamond SKU IDs and prices unchanged.
+-- Retired products retain their historical resale values.
 C.forgeDiamondStock={} -- Current assortment excludes all 24 retired Lv10 goods.
 C.retiredForgeDiamondStock={
  {id='knight_weapon_forged',rare=18,epic=30,sell=190},
@@ -68,21 +50,29 @@ for _,row in ipairs(C.retiredForgeDiamondStock)do
  C.sell[row.id]=row.sell;C.sell[row.id..'_epic']=row.sell
 end
 local Items=game and require(script.Parent.ItemCatalog)or dofile('src/shared/ItemCatalog.luau')
-local seen={};for _,offer in ipairs(C.offers)do seen[offer.id]=true end
+local Pricing=game and require(script.Parent.EquipmentPricing)or dofile('src/shared/EquipmentPricing.luau')
+C.equipmentPricingVersion=Pricing.version
 for _,id in ipairs(Items.tierEquipment)do
- local d=Items.items[id]
- local slot=d.slot;local rare=d.rarity=='Rare'
- local price=rare and (slot=='weapon' and 18 or slot=='offhand' and 10 or slot=='body' and 13 or 8)
-  or slot=='weapon' and (d.family=='veteran' and 600 or 250)
-  or slot=='offhand' and 250 or d.family=='veteran' and 250 or slot=='body' and 120 or 80
- local offerId=rare and id..'_diamond' or id
- if not seen[offerId]then table.insert(C.offers,{id=offerId,definitionId=id,currency=rare and 'diamonds' or 'gold',price=price});seen[offerId]=true end
- if not C.sell[id]then C.sell[id]=rare and (slot=='weapon' and 190 or slot=='body' and 130 or slot=='offhand' and 100 or 80)or math.floor(price/5)end
+ local definition=Items.items[id]
+ local price,currency=Pricing.price(definition)
+ if price then
+  table.insert(C.offers,{id=currency=='diamonds'and id..'_diamond'or id,definitionId=id,currency=currency,price=price})
+ end
+ C.sell[id]=Pricing.resale(definition)
 end
-for _,row in ipairs({{'amber_mana_charm','gold',150},{'amber_mana_charm_diamond','diamonds',4}})do
- table.insert(C.offers,{id=row[1],definitionId='amber_mana_charm',currency=row[2],price=row[3]})
+-- Preserve existing alternate-currency SKU IDs, with the same 50-Gold exchange basis.
+local diamondAlternatives={'knight_shield_fine','veteran_hood'}
+for _,class in ipairs({'knight','elf','dwarf','mage'})do table.insert(diamondAlternatives,class..'_weapon_veteran')end
+for _,id in ipairs(diamondAlternatives)do
+ local price,currency=Pricing.price(Items.items[id]);assert(currency=='gold'and price%Pricing.goldPerDiamond==0)
+ table.insert(C.offers,{id=id..'_diamond',definitionId=id,currency='diamonds',price=price/Pricing.goldPerDiamond})
 end
-C.sell.amber_mana_charm=30
+for _,id in ipairs({'copper_ring','amber_charm','amber_mana_charm'})do
+ local definition=Items.items[id];local price=Pricing.price(definition)
+ table.insert(C.offers,{id=id,definitionId=id,currency='gold',price=price})
+ table.insert(C.offers,{id=id..'_diamond',definitionId=id,currency='diamonds',price=price/Pricing.goldPerDiamond})
+ C.sell[id]=Pricing.resale(definition)
+end
 function C.diamondGear(definition)
  return definition and definition.category=='Equipment' and (definition.rarity=='Rare' or definition.rarity=='Epic')
 end

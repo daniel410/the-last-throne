@@ -1,0 +1,175 @@
+{
+  "runner": "Studio MCP Edit isolated fixture, current Families/ItemCatalog/InventoryText/Pricing/Catalog/Armory module copies; no real accounts",
+  "cases": {
+    "1": {
+      "cards": 12,
+      "balance": 0,
+      "category": "Weapons",
+      "viewport": "1280, 720",
+      "store": "blacksmith"
+    },
+    "2": {
+      "cards": 18,
+      "balance": 0,
+      "category": "Armor",
+      "viewport": "1280, 720",
+      "store": "blacksmith"
+    },
+    "3": {
+      "cards": 3,
+      "balance": 0,
+      "category": "Accessories",
+      "viewport": "1280, 720",
+      "store": "blacksmith"
+    },
+    "4": {
+      "cards": 24,
+      "balance": 0,
+      "category": "All",
+      "viewport": "1280, 720",
+      "store": "diamonds"
+    },
+    "5": {
+      "cards": 12,
+      "balance": 10000,
+      "category": "Weapons",
+      "viewport": "1280, 720",
+      "store": "blacksmith"
+    },
+    "6": {
+      "cards": 18,
+      "balance": 10000,
+      "category": "Armor",
+      "viewport": "1280, 720",
+      "store": "blacksmith"
+    },
+    "7": {
+      "cards": 3,
+      "balance": 10000,
+      "category": "Accessories",
+      "viewport": "1280, 720",
+      "store": "blacksmith"
+    },
+    "8": {
+      "cards": 24,
+      "balance": 10000,
+      "category": "All",
+      "viewport": "1280, 720",
+      "store": "diamonds"
+    },
+    "9": {
+      "cards": 12,
+      "balance": 0,
+      "category": "Weapons",
+      "viewport": "844, 390",
+      "store": "blacksmith"
+    },
+    "10": {
+      "cards": 18,
+      "balance": 0,
+      "category": "Armor",
+      "viewport": "844, 390",
+      "store": "blacksmith"
+    },
+    "11": {
+      "cards": 3,
+      "balance": 0,
+      "category": "Accessories",
+      "viewport": "844, 390",
+      "store": "blacksmith"
+    },
+    "12": {
+      "cards": 24,
+      "balance": 0,
+      "category": "All",
+      "viewport": "844, 390",
+      "store": "diamonds"
+    },
+    "13": {
+      "cards": 12,
+      "balance": 10000,
+      "category": "Weapons",
+      "viewport": "844, 390",
+      "store": "blacksmith"
+    },
+    "14": {
+      "cards": 18,
+      "balance": 10000,
+      "category": "Armor",
+      "viewport": "844, 390",
+      "store": "blacksmith"
+    },
+    "15": {
+      "cards": 3,
+      "balance": 10000,
+      "category": "Accessories",
+      "viewport": "844, 390",
+      "store": "blacksmith"
+    },
+    "16": {
+      "cards": 24,
+      "balance": 10000,
+      "category": "All",
+      "viewport": "844, 390",
+      "store": "diamonds"
+    },
+    "17": {
+      "cards": 12,
+      "balance": 0,
+      "category": "Weapons",
+      "viewport": "390, 844",
+      "store": "blacksmith"
+    },
+    "18": {
+      "cards": 18,
+      "balance": 0,
+      "category": "Armor",
+      "viewport": "390, 844",
+      "store": "blacksmith"
+    },
+    "19": {
+      "cards": 3,
+      "balance": 0,
+      "category": "Accessories",
+      "viewport": "390, 844",
+      "store": "blacksmith"
+    },
+    "20": {
+      "cards": 24,
+      "balance": 0,
+      "category": "All",
+      "viewport": "390, 844",
+      "store": "diamonds"
+    },
+    "21": {
+      "cards": 12,
+      "balance": 10000,
+      "category": "Weapons",
+      "viewport": "390, 844",
+      "store": "blacksmith"
+    },
+    "22": {
+      "cards": 18,
+      "balance": 10000,
+      "category": "Armor",
+      "viewport": "390, 844",
+      "store": "blacksmith"
+    },
+    "23": {
+      "cards": 3,
+      "balance": 10000,
+      "category": "Accessories",
+      "viewport": "390, 844",
+      "store": "blacksmith"
+    },
+    "24": {
+      "cards": 24,
+      "balance": 10000,
+      "category": "All",
+      "viewport": "390, 844",
+      "store": "diamonds"
+    }
+  },
+  "passed": true,
+  "checks": 1710
+}

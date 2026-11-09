@@ -31,17 +31,23 @@ for _,id in ipairs(C.tierEquipment)do
  near(E.stats(d,{enhancementLevel=9})[key],amount*1.27,'all four stat types enhance at3 percent')
  local p=assert(R.addHero(R.new(42),'h',d.classId or 'knight',C));p.wallet.gold=10000;p.wallet.diamonds=10000
  local offer=Economy.offer(d.rarity=='Rare' and id..'_diamond'or id)
- check(offer~=nil,'current family gear has acquisition route '..id)
- local bought=assert(R.shop(p,{store='blacksmith',action='Buy',requestId='buy',heroId='h',revision=p.revision,offerId=offer.id},{atLobby=true},C))
- check(bought.items['shop-buy'].definitionId==id,'shop grants exact family '..id)
- local cmd={action='Equip',requestId='wear',heroId='h',revision=bought.revision,instanceId='shop-buy',itemVersion=1}
+ local bought,instanceId
+ if d.family=='traveler'then
+  check(offer==nil,'starter Traveler is not a shop product '..id)
+  bought=p;assert(T.grant(bought,R,C,'h',id,1,'family-fixture'));instanceId='family-fixture-1'
+ else
+  check(offer~=nil,'upgraded family gear is purchasable '..id)
+  bought=assert(R.shop(p,{store='blacksmith',action='Buy',requestId='buy',heroId='h',revision=p.revision,offerId=offer.id},{atLobby=true},C));instanceId='shop-buy'
+ end
+ check(bought.items[instanceId].definitionId==id,'acquisition preserves exact family '..id)
+ local cmd={action='Equip',requestId='wear',heroId='h',revision=bought.revision,instanceId=instanceId,itemVersion=1}
  local worn,err=R.apply(bought,cmd,{safe=true},C)
  if d.level>1 then
   check(not worn and err=='LevelRequired','low level cannot equip '..id)
   bought.heroes.h.level=d.level;bought.heroes.h.progression=G.new(d.level)
   worn=assert(R.apply(bought,cmd,{safe=true},C))
  end
- check(R.validate(worn,C)and worn.items['shop-buy'].location.kind=='equipped','valid equipped family '..id)
+ check(R.validate(worn,C)and worn.items[instanceId].location.kind=='equipped','valid equipped family '..id)
 end
 check(C.items.copper_ring.stats.dexterity==3 and not C.items.copper_ring.stats.power,'Copper Ring DEX +3 only')
 check(C.items.amber_charm.stats.health==30 and C.items.amber_charm.rarity=='Uncommon','HP charm preserved')
