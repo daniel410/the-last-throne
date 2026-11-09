@@ -1,0 +1,36 @@
+{
+  "version": "0.88.1",
+  "sourceCommit": "532a748c63dd1bfd664bb70135fc8b7f54cf9f0b",
+  "artifact": "builds/0.88.1/TheLastThrone-0.88.1.rbxlx",
+  "sha256": "59d54142b43af5dbd56452c82006f2af7e95578b76f047553498d4957bbd090b",
+  "bytes": 15983130,
+  "universeId": 10773575153,
+  "published": true,
+  "method": "Roblox Studio File > Publish As > existing place > Overwrite",
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedAtUtc": "2026-11-09T02:35:55.936Z",
+      "uiResult": "The Last Throne is ready to test!",
+      "placeVersion": null
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedAtUtc": "2026-11-09T02:37:30.268Z",
+      "uiResult": "Successfully published! The Last Throne Battles / Private",
+      "placeVersion": null
+    }
+  ],
+  "audienceChanged": false,
+  "tdChanged": false,
+  "assetPermissionGrantedToDestinationExperience": true,
+  "releaseTag": "v0.88.1",
+  "publishedClientTest": "not_run",
+  "deviceAcceptance": "not_run",
+  "notes": [
+    "Studio script VersionHistory asset uploads reported HTTP 429 after place publication success; this is not a published runtime verification.",
+    "Original build manifest preserves pre-publication state; this record supplies release status."
+  ]
+}

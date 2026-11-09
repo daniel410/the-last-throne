@@ -1,0 +1,6 @@
+2026-11-09T02:35:43.669Z,151.669373,6c0ab000,6,Info [FLog::StudioPublishService] publishAs: currentUniverse=0 currentPlace=0 -> targetUniverse=10773575153 targetPlace=70829337938054 isPublish=1 (crossUniverse=0)
+2026-11-09T02:35:55.936Z,163.936234,6be9f000,6,Info [FLog::StudioPublishStatusLabel] Publish succeeded for placeId 0; marking as published (refreshing menu label to "Publish latest version")
+2026-11-09T02:35:56.021Z,164.021210,5c0e300,6 [FLog::Output] PublishToDifferentGame srcPlaceId=0, dstPlaceId=70829337938054, srcUniverse=0, dstUniverse=10773575153
+2026-11-09T02:37:27.482Z,255.482452,6bc93000,6,Info [FLog::StudioPublishService] publishAs: currentUniverse=10773575153 currentPlace=70829337938054 -> targetUniverse=10773575153 targetPlace=129388473517823 isPublish=1 (crossUniverse=0)
+2026-11-09T02:37:27.487Z,255.487228,6bc93000,6,Info [FLog::StudioPublishService] publishAs: asset-permission grant resolved after 4ms; continuing to publish (universe=10773575153 place=129388473517823)
+2026-11-09T02:37:30.268Z,258.268433,6ccf3000,6,Info [FLog::StudioPublishStatusLabel] Publish succeeded for placeId 0; marking as published (refreshing menu label to "Publish latest version")
