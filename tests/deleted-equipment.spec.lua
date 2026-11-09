@@ -11,7 +11,7 @@ local function equal(a,b)
  for k in pairs(b)do if a[k]==nil then return false end end
  return true
 end
-check(#C.deletedEquipment==14,'seven families including Epic')
+check(#C.deletedEquipment==18,'four Training weapons plus seven Rare/Epic families')
 for _,id in ipairs(C.deletedEquipment)do
  local def=C.items[id]
  local p=assert(R.addHero(R.new(42),'hero',def.classId or 'knight',C))
@@ -23,7 +23,7 @@ for _,id in ipairs(C.deletedEquipment)do
  for i,loc in ipairs(locations)do
   local key='legacy-'..i
   p.items[key]={instanceId=key,definitionId=id,definitionVersion=C.version,ownerUserId=42,quantity=1,version=1,
-   binding='account',locked=true,location=loc,sourceGrantId='legacy',enhancementLevel=9}
+   binding='account',locked=true,location=loc,sourceGrantId='legacy',enhancementLevel=next(def.stats) and 9 or nil}
  end
  check(R.validate(p,C),'legacy enhanced copies validate before cleanup '..id)
  local expected=R.copy(p)

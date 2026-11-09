@@ -17,6 +17,8 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
   eq(count,1,class..' receives exactly one '..id)
  end
  eq(R.equipped(p,'hero','weapon').definitionId,class..'_weapon_fine',class..' starts with real weapon')
+ eq(C.items[class..'_weapon_fine'].rarity,'Common',class..' starter is Common')
+ eq(C.items[class..'_weapon_fine'].stats.power,3,class..' starter power unchanged')
  eq(R.equipped(p,'hero','head').definitionId,'traveler_hood',class..' wears level1 hood')
  eq(R.equipped(p,'hero','accessory1').definitionId,'copper_ring',class..' auto accessory1')
  eq(R.equipped(p,'hero','accessory2').definitionId,'amber_charm',class..' auto accessory2')
@@ -31,8 +33,8 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
  local base=G.derived(class,p.heroes.hero.progression)
  local total=P.derived(class,p.heroes.hero.progression,stats)
  eq(total.health,base.health+50,class..' UI HP follows equipped server stats')
- eq(total.physicalPower,base.physicalPower*1.05,class..' physical power uses5 percent')
- eq(total.magicPower,base.magicPower*1.05,class..' magic power uses5 percent')
+ eq(total.physicalPower,base.physicalPower+5,class..' physical power adds5 points')
+ eq(total.magicPower,base.magicPower+5,class..' magic power adds5 points')
  -- Saved instances contain identity/enhancement, not a frozen copy of old bonuses.
  local restored=R.copy(p)
  for _,item in pairs(restored.items)do item.definitionVersion=1 end

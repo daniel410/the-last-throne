@@ -1,0 +1,14 @@
+00:00.370  blend            | Read blend: "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/reviews/standard-color-v1/assets/shared/td-refined-player-weapons/refined-weapon-review.blend"
+/Users/daniel/Workspace/project/roblox/the-last-throne/tools/render-common-starter-weapons.py:31: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world=bpy.data.worlds.new('Neutral_'+key);world.use_nodes=True;world.node_tree.nodes.get('Background').inputs[0].default_value=(.14,.16,.19,1);world.node_tree.nodes.get('Background').inputs[1].default_value=.7;scene.world=world
+00:01.234  render           | Saved: '/Users/daniel/Workspace/project/roblox/the-last-throne/docs/evidence/training-delete-common-20261109/knight.png'
+00:02.054  render           | Saved: '/Users/daniel/Workspace/project/roblox/the-last-throne/docs/evidence/training-delete-common-20261109/dwarf.png'
+00:02.695  render           | Saved: '/Users/daniel/Workspace/project/roblox/the-last-throne/docs/evidence/training-delete-common-20261109/elf.png'
+00:03.334  render           | Saved: '/Users/daniel/Workspace/project/roblox/the-last-throne/docs/evidence/training-delete-common-20261109/mage.png'
+Reloading external rigs...
+Reloading external metarigs...
+BlenderMCP addon registered
+BlenderMCP addon unregistered
+Blender 5.2.0 LTS (hash fbe6228777e7 built 2026-07-14 01:31:22)
+
+Blender quit

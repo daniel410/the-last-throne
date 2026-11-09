@@ -24,6 +24,6 @@ for _,offer in ipairs(C.offers)do
  end
 end
 check(counts.Weapons==8 and counts.Armor==6 and counts.Accessories==2,'all 16 active forge offers classified')
-check(grades.Common==5 and grades.Uncommon==11 and not grades.Rare and not grades.Epic,'forge stock by grade')
+check(grades.Common==9 and grades.Uncommon==7 and not grades.Rare and not grades.Epic,'forge stock by grade')
 check(#C.forgeDiamondStock==0,'retired forge stock has no active rows')
 print('Blacksmith active stock: '..checks..' checks passed')

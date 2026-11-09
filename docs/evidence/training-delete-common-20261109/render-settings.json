@@ -1,0 +1,87 @@
+[
+  {
+    "classId": "knight",
+    "sourceScene": "TLT_Refined_Weapon_Source_Review",
+    "objects": [
+      "Refined_knight_Mesh_0_review"
+    ],
+    "sourceBounds": [
+      1.188979983329773,
+      0.37033963203430176,
+      3.450000047683716
+    ],
+    "display": "sRGB",
+    "viewTransform": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false
+  },
+  {
+    "classId": "dwarf",
+    "sourceScene": "TLT_Refined_Weapon_Source_Review",
+    "objects": [
+      "Refined_dwarf_Mesh_0.001_review"
+    ],
+    "sourceBounds": [
+      1.5581331253051758,
+      0.398972749710083,
+      3.1999998092651367
+    ],
+    "display": "sRGB",
+    "viewTransform": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false
+  },
+  {
+    "classId": "elf",
+    "sourceScene": "TLT_Elf_Bow_Authoring",
+    "objects": [
+      "ElfSource_Bow_review",
+      "UpperString_review",
+      "LowerString_review"
+    ],
+    "sourceBounds": [
+      0.5923084020614624,
+      0.8464868664741516,
+      3.662943124771118
+    ],
+    "display": "sRGB",
+    "viewTransform": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false
+  },
+  {
+    "classId": "mage",
+    "sourceScene": "TLT_Mage_Staff_Authoring",
+    "objects": [
+      "MageStaff_WoodenShaft_review",
+      "MageStaff_HandWrap_review",
+      "MageStaff_WrapBand0_review",
+      "MageStaff_WrapBand1_review",
+      "MageStaff_WrapBand2_review",
+      "MageStaff_FootCap_review",
+      "MageStaff_LeftFork_review",
+      "MageStaff_LeftProng_review",
+      "MageStaff_RightFork_review",
+      "MageStaff_RightProng_review",
+      "MageStaff_WoodKnot_review",
+      "MageStaff_SmallCrystal_review"
+    ],
+    "sourceBounds": [
+      0.5987496376037598,
+      0.2770138382911682,
+      4.0390849113464355
+    ],
+    "display": "sRGB",
+    "viewTransform": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false
+  }
+]

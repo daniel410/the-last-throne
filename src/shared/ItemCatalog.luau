@@ -16,10 +16,10 @@ local function gear(id, name, slot, classId, stats, glyph, extra)
 	for key, value in pairs(extra or {}) do item[key] = value end
 	Catalog.items[id] = item
 end
--- Retain retired training weapon definitions only to read already-owned instances.
+-- Decode-only Training tombstones: account load removes every owned instance.
 for classId, name in pairs({knight = "Sword", elf = "Bow", dwarf = "Axe", mage = "Staff"}) do
-	gear(classId .. "_weapon", "Training " .. name, "weapon", classId, {}, name:sub(1, 2):upper(), {rarity = "Common", retired = true, cacheEligible = false})
-	gear(classId .. "_weapon_fine", "Tempered " .. name, "weapon", classId, {power = 3}, name:sub(1, 2):upper(), {rarity = "Uncommon"})
+	gear(classId .. "_weapon", "Training " .. name, "weapon", classId, {}, name:sub(1, 2):upper(), {rarity = "Common", retired = true, deleted = true, cacheEligible = false})
+	gear(classId .. "_weapon_fine", "Tempered " .. name, "weapon", classId, {power = 3}, name:sub(1, 2):upper(), {rarity = "Common"})
  gear(classId..'_weapon_veteran',"Veteran's "..name,'weapon',classId,{power=4},name:sub(1,2):upper(),{level=5,rarity='Uncommon',description='A Dawnspire weapon for experienced adventurers. Requires level 5. Available for Gold or Diamonds.'})
 end
 gear("knight_shield", "Dawnspire Shield", "offhand", "knight", {}, "SH", {rarity = "Common"})
@@ -71,7 +71,7 @@ for _,baseId in ipairs({"knight_weapon_forged","elf_weapon_forged","dwarf_weapon
 end
 -- User-requested deletion. Keep decode-only definitions so old saves validate
 -- before AccountStore atomically removes every owned instance on load.
-Catalog.deletedEquipment = {}
+Catalog.deletedEquipment = {"knight_weapon", "dwarf_weapon", "elf_weapon", "mage_weapon"}
 for _,baseId in ipairs({'knight_weapon_forged','elf_weapon_forged','dwarf_weapon_forged','mage_weapon_forged',
  'sentinel_gauntlets','ruby_ring','storm_pendant'}) do
  for _,id in ipairs({baseId,baseId..'_epic'}) do

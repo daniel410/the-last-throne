@@ -1,0 +1,37 @@
+$ lua tests/deleted-equipment.spec.lua
+Deleted equipment: 171 checks passed
+
+$ lua tests/starter-gear-balance.spec.lua
+Starter gear balance: 202 checks passed
+
+$ lua tests/blacksmith-stock.spec.lua
+Blacksmith active stock: 115 checks passed
+
+$ lua tests/equipment-flat-power.spec.lua
+Flat equipment power: 90 checks passed
+
+$ lua tests/equipment-impact.spec.lua
+Equipment impact: 52 checks passed
+
+$ lua tests/inventory.spec.lua
+Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+
+$ lua tests/starter-material-cleanup.spec.lua
+Starter material cleanup: 35 checks passed
+
+$ lua tests/starter-potions-and-shop.spec.lua
+Starter potions and shop: 316 checks passed
+
+$ lua tests/retired-forge-equipment.spec.lua
+Retired forge equipment: 486 checks passed
+
+$ lua tests/diamond-weapons.spec.lua
+lua: tests/diamond-weapons.spec.lua:5: existing Veteran and added Dawnforge for each of four classes
+stack traceback:
+	[C]: in global 'assert'
+	tests/diamond-weapons.spec.lua:5: in local 'check'
+	tests/diamond-weapons.spec.lua:26: in main chunk
+	[C]: in ?
+
+$ lua tests/enhancement-probability.spec.lua
+Enhancement probability: 2869 checks passed (including 90000 outcome boundaries)
