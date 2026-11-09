@@ -28,7 +28,9 @@ function Engine.create(o)
   local result={};local a=attempts[player]
   if a and a.heroId==heroId then result[a.c.id..':'..a.g.id]={actorPosition=a.actor.PrimaryPart.Position,status=a.status} end
   local d=dialogs[player];local ctx,root=o.context(player)
-  if d and (not ctx or ctx.heroId~=d.heroId or not root or (root.Position-(d.position or Vector3.new(table.unpack(d.g.position)))).Magnitude>16) then dialogs[player]=nil;d=nil end
+  local confirmed=d and ctx and ctx.heroId==d.heroId and o.state(player,ctx.heroId)
+  local expected=confirmed and Progress.nextStep(confirmed,d.c,d.g)
+  if d and (not expected or expected.id~=d.step.id or not ctx or ctx.heroId~=d.heroId or not root or (root.Position-(d.position or Vector3.new(table.unpack(d.g.position)))).Magnitude>16) then dialogs[player]=nil;d=nil end
   return result,d and d.heroId==heroId and {chapter=d.c.id,goal=d.g.id,step=d.step.id,text=d.step.text,choices=require(game.ReplicatedStorage.Shared.CampaignCircuit).display(d.step)} or nil
  end
  function api.interact(player,node)

@@ -1,0 +1,10 @@
+{
+  "generationSeconds": 13.72179445833899,
+  "scope": "isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+  "blockers": [],
+  "checks": 9189,
+  "steps": 246,
+  "samples": 3974,
+  "incidents": 82,
+  "parts": 48447
+}

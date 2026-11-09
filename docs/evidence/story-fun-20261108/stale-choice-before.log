@@ -1,0 +1,14 @@
+EXPANSION_NATIVE_EPIC 1
+EXPANSION_NATIVE_EPIC 2
+EXPANSION_NATIVE_EPIC 3
+EXPANSION_NATIVE_EPIC 4
+EXPANSION_NATIVE_EPIC 5
+EXPANSION_NATIVE_GEOMETRY {"samples":3974,"blockers":[],"parts":48447}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:57: confirmed progress from an ally closes the previous choice
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:57 function check
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:339
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

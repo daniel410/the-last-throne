@@ -286,6 +286,15 @@ for i,step in ipairs(cg.activity.steps)do
  updatePrompts(workspace,{journal=controlsState},C,P,CP,require(Shared.DeepwoodQuestLog));check(not good.prompt.Enabled and not bad.prompt.Enabled,'confirmed controls disable in the real client')
 end
 check(controlsState.flags['EC-05:exp_2'],'all physical choices complete the original incident without extra goals')
+-- A confirmed journal update can arrive from another party member while choices are open.
+controlsState=select(1,reach('EC-05','exp_2'));controlRoot.Position=Vector3.new(table.unpack(cg.activity.steps[1].position))
+controlEngine.interactStep(cp,cc.id,cg.id,'step1')
+local _,waitingChoice=controlEngine.projection(cp,'hero');check(waitingChoice~=nil,'current circuit choice stays open before a confirmed update')
+controlsState=assert(P.apply(controlsState,cc.id,cg.id,'inlet','step1'))
+local _,staleChoice=controlEngine.projection(cp,'hero');check(staleChoice==nil,'confirmed progress from an ally closes the previous choice')
+controlRoot.Position=Vector3.new(table.unpack(cg.activity.steps[2].position));controlEngine.interactStep(cp,cc.id,cg.id,'step2')
+controlsState=assert(P.apply(controlsState,cc.id,cg.id,'return','step2'));controlsState=assert(P.apply(controlsState,cc.id,cg.id,'protect','step3'))
+local _,completedChoice=controlEngine.projection(cp,'hero');check(completedChoice==nil,'incident completion closes any remaining choice')
 controlEngine.remove(cp);controlRoot:Destroy()
 local returnFolder=Instance.new('Folder');returnFolder.Parent=workspace
 for _,id in ipairs({'DW-Q2','FV-Q1','EC-Q1'})do

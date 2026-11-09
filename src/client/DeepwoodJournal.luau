@@ -196,7 +196,7 @@ function Journal.start(hud)
    offerShown=nil
    if dialogKind=='offer' then closeDialogue();hud.showFeedback('This request is no longer nearby. Return to the resident or clue.',4) end
   end
-  if not value.dialogue and dialogKind=='dialogue' then closeDialogue();hud.showFeedback('Return to the resident to continue the conversation.',4) end
+  if not value.dialogue and dialogKind=='dialogue' then closeDialogue();hud.showFeedback(Log.dialogueAdvanced(previous,value)and Log.text.progressConfirmed or Log.text.returnToControl,4) end
   if value.dialogue and value.dialogue.choices then showDialogue(value.dialogue.text,'dialogue',value.dialogue.choices[1].title,value.dialogue.choices[2].title) end
  end)
  local elapsed=0

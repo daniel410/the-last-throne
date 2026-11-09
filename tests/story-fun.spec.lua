@@ -57,7 +57,13 @@ for i=1,c.number-1 do for _,goal in ipairs(C.mainChapters[i].coreGoals)do if not
 s=assert(P.enableExpansion(s))
 for _,goal in ipairs(c.goals)do if goal==g then break end;if P.required(s,goal)then s=applyGoal(s,c,goal)end end
 s=assert(P.apply(s,c.id,g.id,'inlet','step1'))
+local Log=dofile('src/shared/DeepwoodQuestLog.luau')
+local oldDialog={heroId='hero',dialogue={chapter=c.id,goal=g.id,step='step2'}}
+check(not Log.dialogueAdvanced(oldDialog,{heroId='hero',journal=s}),'current choice is not called completed')
+check(not Log.dialogueAdvanced(oldDialog,{heroId='other',journal=s}),'hero switch does not invent shared progress')
 local persisted=P.copy(s);check(P.validate(persisted),'preexisting partial circuit journal remains valid')
 s=assert(P.apply(persisted,c.id,g.id,'return','step2'));s=assert(P.apply(s,c.id,g.id,'protect','step3'))
 check(s.flags['EC-05:exp_2']and P.validate(s),'existing answer IDs resume to completion')
+check(Log.dialogueAdvanced(oldDialog,{heroId='hero',journal=s}),'completed shared choice explains the next objective')
+check(not Log.dialogueAdvanced(oldDialog,{heroId='hero'}),'missing snapshot does not claim confirmed progress')
 print('STORY_FUN '..checks..' checks passed; progression/answers unchanged, earned callbacks and partial-save resume')

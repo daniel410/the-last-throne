@@ -2,7 +2,7 @@
   {
     "test": "story-fun",
     "exitCode": 0,
-    "stdout": "STORY_FUN 1718 checks passed; progression/answers unchanged, earned callbacks and partial-save resume\n",
+    "stdout": "STORY_FUN 1722 checks passed; progression/answers unchanged, earned callbacks and partial-save resume\n",
     "stderr": ""
   },
   {

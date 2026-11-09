@@ -1,6 +1,6 @@
 local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local P=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
-local Log={}
+local Log={text={progressConfirmed='Progress confirmed. Follow the next objective.',returnToControl='Return to the resident or control to continue.'}}
 -- Saved progression, rather than a completion-card button, drives main tracking.
 -- Snapshots can arrive before the one-shot completion event after a save.
 function Log.followNext(value,previous)
@@ -92,6 +92,14 @@ function Log.phase(s,c)
   for _,id in ipairs(phase.goals) do if P.required(s,P.goal(c,id)) and not s.flags[c.id..':'..id] then return phase.title,i,#c.quest.phases end end
  end
  return 'Completed',#c.quest.phases,#c.quest.phases
+end
+function Log.dialogueAdvanced(previous,current)
+ local d=previous and previous.dialogue
+ if not d or not current or not current.journal or previous.heroId~=current.heroId then return false end
+ local c=Content.byId[d.chapter];local g=c and P.goal(c,d.goal)
+ if not g then return false end
+ local step=P.nextStep(current.journal,c,g)
+ return not step or step.id~=d.step
 end
 function Log.reward(c)
  if c.reward.xp==0 and c.reward.coins==0 then return 'No fixed XP or Gold. Combat rewards are earned separately.' end
