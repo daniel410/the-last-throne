@@ -6,7 +6,17 @@ local function integer(v) return type(v)=='number' and v==v and v%1==0 and v>=0 
 function E.valid(w)
  if type(w)~='table' or w.version~=1 or not integer(w.gold) or not integer(w.diamonds) or type(w.claims)~='table' then return false end
  local n=0;for k,v in pairs(w.claims) do if type(k)~='string' or not Catalog.storyDiamondIds[k] or v~=true then return false end;n=n+1 end
- return n<=35
+ if n>35 then return false end
+ if w.difficultyClaims~=nil then
+  if type(w.difficultyClaims)~='table'then return false end
+  for id,modes in pairs(w.difficultyClaims)do
+   if not Catalog.storyDiamondIds[id]or type(modes)~='table'then return false end
+   for mode,claimed in pairs(modes)do
+    if not Catalog.storyDiamondModes[mode]or claimed~=true then return false end
+   end
+  end
+ end
+ return true
 end
 -- Account receipt and balance are persisted together by AccountStore.
 function E.claimStory(p,id)
@@ -14,6 +24,18 @@ function E.claimStory(p,id)
  -- Leave the entitlement unclaimed at the balance cap so a later load can retry.
  if p.wallet.diamonds+Catalog.storyDiamonds>1e12 then return false end
  p.wallet.claims[id]=true;p.wallet.diamonds=p.wallet.diamonds+Catalog.storyDiamonds
+ return true
+end
+-- Easy retains the original receipt so spent and historic awards are never reset.
+function E.claimDifficulty(p,id,mode)
+ if mode=='Easy'then return E.claimStory(p,id)end
+ if not Catalog.storyDiamondIds[id]or not Catalog.storyDiamondModes[mode]then return false end
+ local claims=p.wallet.difficultyClaims
+ if claims and claims[id]and claims[id][mode]then return false end
+ if p.wallet.diamonds+Catalog.storyDiamonds>1e12 then return false end
+ claims=claims or {};p.wallet.difficultyClaims=claims
+ claims[id]=claims[id]or {};claims[id][mode]=true
+ p.wallet.diamonds=p.wallet.diamonds+Catalog.storyDiamonds
  return true
 end
 function E.upgrade(p)
@@ -37,6 +59,12 @@ function E.upgrade(p)
  for _,h in pairs(p.heroes)do
   for id in pairs(h.deepwood and h.deepwood.clears or {})do
    if id:sub(1,2)~='DW' and E.claimStory(p,id)then changed=true end
+  end
+  -- Only persisted per-difficulty clears prove historical higher-mode completion.
+  for id,modes in pairs(h.expeditions and h.expeditions.clears or {})do
+   for mode,cleared in pairs(modes)do
+    if cleared and E.claimDifficulty(p,id,mode)then changed=true end
+   end
   end
  end
  return changed

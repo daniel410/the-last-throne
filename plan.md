@@ -1,3 +1,5 @@
+> **2026-11-09 난이도별 다이아 · TLT-027/041/050/052/057/084 · 0.91.0:** 사용자 확인으로 계정당·메인 스토리당·난이도당 최초1회3 Diamonds를 지급한다. Easy/Hard/Insane/Hell 각각105개·본편35스토리 전체420개. 다른 영웅/같은 난이도 반복은 추가0. 기존 Easy 영수증/구DW2개를 보존하며 저장된 상위 난이도 완료 기록의 미수령분만 복구한다. [검증·미게시](docs/evidence/difficulty-diamonds-20261109/README.md). 실계정/기기 수용 후속.
+
 > **2026-11-09 · TLT-029/041/052/057/084 · 0.90.0:** Traveler(Common/Lv1,기본지급)·Tempered(Common/Lv1)·Veteran(Uncommon/Lv10)·Sentinel(Rare/Lv15)을 단일 고정옵션40종으로 구현했다. Copper Ring공격+3·Amber Charm HP+30·새Amber Mana Charm MP+30, 마법사 기본로브MP·장비MP/강화/기존보유 이관 연결. [부위별 정본/이관](docs/production/equipment-four-tier-reorganization-2026-11-09.md) · [검증/빌드/미게시·한계](docs/evidence/equipment-families-20261109/README.md). 실계정/기기·새등급별미술 수용 후속.
 
 > **2026-11-09 사용자 장비 재정리 · TLT-029/041/052/057/084:** Traveler(Common/Lv1/+3~4/HP·MP20, 기본지급·착용) → Tempered(Common/Lv1/+5~6/30) → Veteran(Uncommon/Lv10/+9~10/40) → Sentinel(Rare/**Lv15**/+14~15/50). Copper Ring/Amber Charm 유지. [확정 범위·옵션 배정 질의·구현 인계](docs/production/equipment-four-tier-reorganization-2026-11-09.md). 새 기준 기록이며 게임 미적용.

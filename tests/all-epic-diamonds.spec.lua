@@ -31,7 +31,7 @@ for _,heroId in ipairs({'knight','mage'})do
   end)
   check(p.wallet.diamonds==(heroId=='knight'and i*3 or 105),'actual first clear once per account '..heroId..' '..c.id)
   check(p.wallet.claims[c.id]and R.validate(p,C),'durable receipt and valid wallet '..c.id)
-  check(Log.reward(c):find('3 Diamonds once per account',1,true),'quest reward describes Diamonds '..c.id)
+  check(Log.reward(c):find('3 Diamonds per difficulty, once per account',1,true),'quest reward describes Diamonds '..c.id)
  end
 end
 local complete=R.copy(p)

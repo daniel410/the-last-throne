@@ -1,5 +1,6 @@
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
 local D,P,G,Content,F=load('Difficulty'),load('DeepwoodProgress'),load('HeroProgression'),load('CampaignContent'),load('EquipmentTransactions')
+local Economy=load('EconomyRules')
 local A={}
 -- Admission stays bound to the launch mission; every main story in the run
 -- follows the journal, including replays, higher difficulties and epic borders.
@@ -177,6 +178,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
  if journal.clears[chapterId]and not active.journal.clears[chapterId]then
   if not c.side then a.completedChapters=a.completedChapters or {};a.completedChapters[chapterId]=true end
   a.completed=true;e.clears[chapterId]=e.clears[chapterId]or {};e.clears[chapterId][a.difficultyId]=true
+  Economy.claimDifficulty(p,chapterId,a.difficultyId)
   local reward=D.completion(c,a.difficultyId,a.balanceVersion or 1)
   if not firstClear then
    local xp,gold=reward.xp,reward.gold

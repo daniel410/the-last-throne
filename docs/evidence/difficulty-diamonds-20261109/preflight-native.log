@@ -1,0 +1,30 @@
+Difficulty Diamonds: 2272 checks passed
+All epic Diamonds: 1086 checks passed
+Economy: 42 checks passed
+Gold/Diamond tuning: 1892 checks passed
+Quest completion rewards: 1416 checks passed; 47 quests pay, 19 new awards; legacy catch-up and storage recovery PASS
+ReplicatedStorage.Shared.EconomyCatalog:72: invalid argument #1 to 'ipairs' (table expected, got nil)
+Stack Begin
+Script 'ReplicatedStorage.Shared.EconomyCatalog', Line 72
+Stack End
+Requested module experienced an error while loading
+Stack Begin
+Script 'ReplicatedStorage.Shared.ExpeditionPresentation', Line 2
+Stack End
+Requested module experienced an error while loading
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:48
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:67
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+
+Retry with current 0.90.0 catalog baseline (0.89.0 lacks tierEquipment).
+Difficulty Diamonds: 2272 checks passed
+All epic Diamonds: 1086 checks passed
+Economy: 42 checks passed
+Gold/Diamond tuning: 1892 checks passed
+Quest completion rewards: 1416 checks passed; 47 quests pay, 19 new awards; legacy catch-up and storage recovery PASS
+DIFFICULTY_DIAMOND_UI_NATIVE {"checks":39}
+DIFFICULTY_DIAMONDS_NATIVE_PASS

@@ -177,6 +177,7 @@ function V.create(parent,send)
     line('RiskNote',Text.RiskNote,28,T.color.muted)
     if access.firstClear and ((access.firstOre or 0)>0 or (access.firstGems or 0)>0)then line('QuestMaterials',string.format(Text.QuestMaterials,access.firstOre or 0,access.firstGems or 0),40,T.color.gold)end
     line('FirstReward',string.format(Text.First,access.xpCapped and 0 or access.firstXP or 0,access.firstGold or 0)..(access.firstClear and ''or Text.Claimed),40,access.firstClear and T.color.gold or T.color.muted)
+    if (access.storyDiamonds or 0)>0 then line('DiamondReward',string.format(Text.DiamondFirst,selected.difficultyId,access.storyDiamonds),36,T.color.gold)end
     line('RepeatReward',string.format(Text.Repeat,access.xpCapped and 0 or access.repeatXP or 0,access.repeatGold or 0),32,T.color.gold)
     if access.xpCapped then line('XPCap',Text.Capped,28)end
     if (access.cache or 0)>0 then line('Materials',string.format(Text.Materials,access.gems,access.stones,access.cache),40);line('Equipment',Text.Equipment,32);line('RewardBand',string.format(Text.RewardBand,access.rewardBand or 1),36)end
