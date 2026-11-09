@@ -72,3 +72,7 @@
 검은 날/손잡이 균형을 수정하고 도끼/지팡이는 과도한 연장본에서 길이를 줄였다. 활의 중간 길이 보정은 생성 도구 거부로 미반영이며 기존 긴 보드를 보존했다. 이는 성공이나 사용자 수용으로 보고하지 않는다. 전체 개별 아이콘/실제 착용3D 요청은 유지되지만 사용자가 컨셉을 먼저 요구하여 이번 산출물은 컨셉에 한정한다.
 
 검증 명령: `python3 scripts/build_equipment_rarity_concepts.py --check` 및 `python3 scripts/validate_equipment_icon_assets.py` PASS. 현재40/보관20PNG 해시·분류/팔레트 명세/헬멧2종·갤러리 링크를 확인하고 기존160개 아이콘을 보존했다. 생성 결과 육안 검토와 사용자 최종 수용·개별 아이콘/3D/Standard 렌더·Studio·실기기는 구분한다. 빌드/게시/버전 증가 없음. 다음 담당 DES/사용자 리뷰→ART/ENG/QA, 부모 티켓 미완료.
+
+## 2026-11-09 무기 개별 투명 PNG
+
+사용자 요청에 따라 승인 최종 컨셉의4무기×4등급을 [무기 하나씩 투명 PNG16개](../../assets/concepts/2026-11-09-weapon-cutouts-v1/index.html)와 ZIP으로 제작했다. [출처·생성 입력·알파/해시 검증](../../assets/concepts/2026-11-09-weapon-cutouts-v1/README.md). 모든 파일1024×1536 RGBA·실제0알파 배경·객체 경계/ZIP CRC 확인. 단일뷰3D 모델링 입력용이며 메시/소켓·실제 착용/Studio·게임 적용은 후속이다. 최종 승인 보드/색상 정본·게임 VERSION·부모 티켓 상태는 유지한다.

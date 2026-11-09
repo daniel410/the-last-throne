@@ -1,0 +1,716 @@
+{
+  "created": "2026-11-09",
+  "status": "complete-16-individual-transparent-modeling-references",
+  "scope": "16 individual transparent modeling-reference PNGs: 4 weapon types × 4 rarities; excludes shield and armor",
+  "tool": "built-in image_gen background-extraction",
+  "approvedBaseline": "assets/concepts/2026-11-08-equipment-rarity-v2/approved-baseline.json",
+  "approvedBaselineSha256": "56ded9ed27d6c617654fd4bf47354605fcf78376282140f484b96ee53f6dfdbc",
+  "records": [
+    {
+      "familyId": "knight_weapon_family",
+      "classId": "knight",
+      "rarity": "Rare",
+      "name": "Oathguard Sword",
+      "file": "png/knight_sword_rare.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/knight_weapon_family.png",
+      "referenceSha256": "97b5df1b68d9e8df921cfc6404b3b55dc78e0963147f6c238836406524ae39ed",
+      "column": 1,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Oathguard Sword concept board. Extract ONLY the RARE item in column 1 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated straight Knight sword, including entire sharp tip, crossguard, long blue/leather grip and pommel. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-f88d973d-93ce-4b85-b709-a03bdd974b1d.png",
+      "sha256": "132a16692e692edebf17f9c8666754cd9c53a33f743571c531eceb2435ae67a4",
+      "bytes": 1083703,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/knight_sword_rare.png",
+        "sha256": "132a16692e692edebf17f9c8666754cd9c53a33f743571c531eceb2435ae67a4",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 92.04,
+        "semiPct": 7.96,
+        "nonzeroBounds": [
+          81,
+          30,
+          993,
+          1517
+        ],
+        "opaqueBounds": [
+          364,
+          34,
+          660,
+          1502
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "knight_weapon_family",
+      "classId": "knight",
+      "rarity": "Epic",
+      "name": "Oathguard Sword",
+      "file": "png/knight_sword_epic.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/knight_weapon_family.png",
+      "referenceSha256": "97b5df1b68d9e8df921cfc6404b3b55dc78e0963147f6c238836406524ae39ed",
+      "column": 2,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Oathguard Sword concept board. Extract ONLY the EPIC item in column 2 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated straight Knight sword, including entire sharp tip, crossguard, long blue/leather grip and pommel. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-d122cc90-dd55-4277-9cf2-506c47e9f470.png",
+      "sha256": "9b81f4c8ee6d64bae0017e1e198d7114f0c3b020ba4938a0f02f8557ed9b786d",
+      "bytes": 1095215,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/knight_sword_epic.png",
+        "sha256": "9b81f4c8ee6d64bae0017e1e198d7114f0c3b020ba4938a0f02f8557ed9b786d",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 90.66,
+        "semiPct": 9.34,
+        "nonzeroBounds": [
+          0,
+          13,
+          1003,
+          1535
+        ],
+        "opaqueBounds": [
+          338,
+          31,
+          686,
+          1511
+        ],
+        "edgeNonzero": 19
+      }
+    },
+    {
+      "familyId": "knight_weapon_family",
+      "classId": "knight",
+      "rarity": "Legendary",
+      "name": "Oathguard Sword",
+      "file": "png/knight_sword_legendary.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/knight_weapon_family.png",
+      "referenceSha256": "97b5df1b68d9e8df921cfc6404b3b55dc78e0963147f6c238836406524ae39ed",
+      "column": 3,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Oathguard Sword concept board. Extract ONLY the LEGENDARY item in column 3 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated straight Knight sword, including entire sharp tip, crossguard, long blue/leather grip and pommel. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-ae16a63e-3512-4579-a242-c1d680480934.png",
+      "sha256": "550e53a769bb774b728b92593da0e76df6d4a6c4b2803949cbcbafa4990850cd",
+      "bytes": 1166425,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/knight_sword_legendary.png",
+        "sha256": "550e53a769bb774b728b92593da0e76df6d4a6c4b2803949cbcbafa4990850cd",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 90.04,
+        "semiPct": 9.96,
+        "nonzeroBounds": [
+          39,
+          14,
+          1004,
+          1521
+        ],
+        "opaqueBounds": [
+          334,
+          21,
+          690,
+          1509
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "knight_weapon_family",
+      "classId": "knight",
+      "rarity": "Unique",
+      "name": "Rootwarden's Oath",
+      "file": "png/knight_sword_unique.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/knight_weapon_family.png",
+      "referenceSha256": "97b5df1b68d9e8df921cfc6404b3b55dc78e0963147f6c238836406524ae39ed",
+      "column": 4,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Oathguard Sword concept board. Extract ONLY the UNIQUE item in column 4 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated straight Knight sword, including entire sharp tip, crossguard, long blue/leather grip and pommel. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-2048d304-e430-444d-bad4-ded86c44dda9.png",
+      "sha256": "a150e8445bc2e84c8f3336142f22d92f142a563256207e861b29c1a7527b76fa",
+      "bytes": 1295258,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/knight_sword_unique.png",
+        "sha256": "a150e8445bc2e84c8f3336142f22d92f142a563256207e861b29c1a7527b76fa",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 89.3,
+        "semiPct": 10.7,
+        "nonzeroBounds": [
+          105,
+          17,
+          955,
+          1519
+        ],
+        "opaqueBounds": [
+          314,
+          27,
+          698,
+          1509
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "elf_weapon_family",
+      "classId": "elf",
+      "rarity": "Rare",
+      "name": "Briarwatch Bow",
+      "file": "png/elf_bow_rare.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/elf_weapon_family.png",
+      "referenceSha256": "d988924b7d0745ac1dbafc0f13a66feec106921601d9ba0bbbb34330bd463171",
+      "column": 1,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Briarwatch Bow concept board. Extract ONLY the RARE item in column 1 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Elf bow, including complete upper and lower recurved limbs, central grip, connected thin bowstring and the transparent space between string and bow. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-82550510-1cfb-4857-ab19-bac9e43581de.png",
+      "sha256": "e2378484bfded982f31d30992dc24071ef9d5bba8e2dd86a68c337397b4d62af",
+      "bytes": 1305516,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/elf_bow_rare.png",
+        "sha256": "e2378484bfded982f31d30992dc24071ef9d5bba8e2dd86a68c337397b4d62af",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 90.63,
+        "semiPct": 9.37,
+        "nonzeroBounds": [
+          25,
+          19,
+          991,
+          1515
+        ],
+        "opaqueBounds": [
+          290,
+          31,
+          680,
+          1503
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "elf_weapon_family",
+      "classId": "elf",
+      "rarity": "Epic",
+      "name": "Briarwatch Bow",
+      "file": "png/elf_bow_epic.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/elf_weapon_family.png",
+      "referenceSha256": "d988924b7d0745ac1dbafc0f13a66feec106921601d9ba0bbbb34330bd463171",
+      "column": 2,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Briarwatch Bow concept board. Extract ONLY the EPIC item in column 2 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Elf bow, including complete upper and lower recurved limbs, central grip, connected thin bowstring and the transparent space between string and bow. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-c8a3ad49-ebfa-4460-afd5-5c9d1f480ffb.png",
+      "sha256": "fa39f6771cd8d800178b7f4b0c18970ec2edab51b83807a517a77585c95ddc6e",
+      "bytes": 1349548,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/elf_bow_epic.png",
+        "sha256": "fa39f6771cd8d800178b7f4b0c18970ec2edab51b83807a517a77585c95ddc6e",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 89.11,
+        "semiPct": 10.89,
+        "nonzeroBounds": [
+          31,
+          20,
+          969,
+          1489
+        ],
+        "opaqueBounds": [
+          288,
+          54,
+          705,
+          1485
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "elf_weapon_family",
+      "classId": "elf",
+      "rarity": "Legendary",
+      "name": "Briarwatch Bow",
+      "file": "png/elf_bow_legendary.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/elf_weapon_family.png",
+      "referenceSha256": "d988924b7d0745ac1dbafc0f13a66feec106921601d9ba0bbbb34330bd463171",
+      "column": 3,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Briarwatch Bow concept board. Extract ONLY the LEGENDARY item in column 3 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Elf bow, including complete upper and lower recurved limbs, central grip, connected thin bowstring and the transparent space between string and bow. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-e2c9d6a1-1214-45de-87f6-1493180ed1f8.png",
+      "sha256": "309418519ce72fdb6d4b2f031be698a77a48cf9c6f9c7a573df104d0c4697068",
+      "bytes": 1417203,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/elf_bow_legendary.png",
+        "sha256": "309418519ce72fdb6d4b2f031be698a77a48cf9c6f9c7a573df104d0c4697068",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 88.14,
+        "semiPct": 11.86,
+        "nonzeroBounds": [
+          53,
+          19,
+          1003,
+          1535
+        ],
+        "opaqueBounds": [
+          249,
+          57,
+          752,
+          1501
+        ],
+        "edgeNonzero": 11
+      }
+    },
+    {
+      "familyId": "elf_weapon_family",
+      "classId": "elf",
+      "rarity": "Unique",
+      "name": "Thornsong",
+      "file": "png/elf_bow_unique.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/elf_weapon_family.png",
+      "referenceSha256": "d988924b7d0745ac1dbafc0f13a66feec106921601d9ba0bbbb34330bd463171",
+      "column": 4,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Briarwatch Bow concept board. Extract ONLY the UNIQUE item in column 4 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Elf bow, including complete upper and lower recurved limbs, central grip, connected thin bowstring and the transparent space between string and bow. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-28de17be-3c60-4af9-b90c-dc2840f4aa6f.png",
+      "sha256": "cc0bdb5b5e22d880a411330f18aeb22286c4d3ec94d9b3d2b4794651a7fdd127",
+      "bytes": 1596295,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/elf_bow_unique.png",
+        "sha256": "cc0bdb5b5e22d880a411330f18aeb22286c4d3ec94d9b3d2b4794651a7fdd127",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 85.05,
+        "semiPct": 14.95,
+        "nonzeroBounds": [
+          31,
+          30,
+          989,
+          1519
+        ],
+        "opaqueBounds": [
+          282,
+          36,
+          783,
+          1503
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "dwarf_weapon_family",
+      "classId": "dwarf",
+      "rarity": "Rare",
+      "name": "Stonehearth Axe",
+      "file": "png/dwarf_axe_rare.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/dwarf_weapon_family.png",
+      "referenceSha256": "c1c5ff3a0c54182e27de51730c53c8df4d32131678d077625fd409ad357fb022",
+      "column": 1,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Stonehearth Axe concept board. Extract ONLY the RARE item in column 1 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Dwarf axe, including complete axe head and cutting edge, balanced-length haft and bottom pommel. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-02f4310b-fd2e-419f-94c9-bf6517279634.png",
+      "sha256": "2a4d08e05ae9dba73dfee6a84f050039ea2d5aa2599d164960ba54035ac50758",
+      "bytes": 1350125,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/dwarf_axe_rare.png",
+        "sha256": "2a4d08e05ae9dba73dfee6a84f050039ea2d5aa2599d164960ba54035ac50758",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 85.32,
+        "semiPct": 14.68,
+        "nonzeroBounds": [
+          31,
+          19,
+          999,
+          1519
+        ],
+        "opaqueBounds": [
+          329,
+          61,
+          737,
+          1497
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "dwarf_weapon_family",
+      "classId": "dwarf",
+      "rarity": "Epic",
+      "name": "Stonehearth Axe",
+      "file": "png/dwarf_axe_epic.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/dwarf_weapon_family.png",
+      "referenceSha256": "c1c5ff3a0c54182e27de51730c53c8df4d32131678d077625fd409ad357fb022",
+      "column": 2,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Stonehearth Axe concept board. Extract ONLY the EPIC item in column 2 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Dwarf axe, including complete axe head and cutting edge, balanced-length haft and bottom pommel. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-ec6d2081-bb19-4c91-9cab-8b34c025f841.png",
+      "sha256": "bc9b111a1340c7f900c06ce2e880852fc094a0367d2e85a0cf5eb135c025b12d",
+      "bytes": 1436840,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/dwarf_axe_epic.png",
+        "sha256": "bc9b111a1340c7f900c06ce2e880852fc094a0367d2e85a0cf5eb135c025b12d",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 82.14,
+        "semiPct": 17.86,
+        "nonzeroBounds": [
+          25,
+          20,
+          983,
+          1503
+        ],
+        "opaqueBounds": [
+          265,
+          41,
+          773,
+          1499
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "dwarf_weapon_family",
+      "classId": "dwarf",
+      "rarity": "Legendary",
+      "name": "Stonehearth Axe",
+      "file": "png/dwarf_axe_legendary.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/dwarf_weapon_family.png",
+      "referenceSha256": "c1c5ff3a0c54182e27de51730c53c8df4d32131678d077625fd409ad357fb022",
+      "column": 3,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Stonehearth Axe concept board. Extract ONLY the LEGENDARY item in column 3 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Dwarf axe, including complete axe head and cutting edge, balanced-length haft and bottom pommel. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-1a01f6e4-2047-43bb-aeb5-870de4f84f63.png",
+      "sha256": "ccc5384d59c67d199676607d7fc2dff1c192302568a912613e899874d22e7390",
+      "bytes": 1511551,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/dwarf_axe_legendary.png",
+        "sha256": "ccc5384d59c67d199676607d7fc2dff1c192302568a912613e899874d22e7390",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 82.69,
+        "semiPct": 17.31,
+        "nonzeroBounds": [
+          33,
+          28,
+          1013,
+          1516
+        ],
+        "opaqueBounds": [
+          226,
+          67,
+          796,
+          1512
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "dwarf_weapon_family",
+      "classId": "dwarf",
+      "rarity": "Unique",
+      "name": "Stonebreaker's Resolve",
+      "file": "png/dwarf_axe_unique.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/dwarf_weapon_family.png",
+      "referenceSha256": "c1c5ff3a0c54182e27de51730c53c8df4d32131678d077625fd409ad357fb022",
+      "column": 4,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Stonehearth Axe concept board. Extract ONLY the UNIQUE item in column 4 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Dwarf axe, including complete axe head and cutting edge, balanced-length haft and bottom pommel. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-fcb6f7e6-281b-4f8f-9603-5114144a44f9.png",
+      "sha256": "c537a766c697d42564af4d80bca88b8a54ae2652c168126f110c696e81e7c355",
+      "bytes": 1732818,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/dwarf_axe_unique.png",
+        "sha256": "c537a766c697d42564af4d80bca88b8a54ae2652c168126f110c696e81e7c355",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 66.62,
+        "semiPct": 33.38,
+        "nonzeroBounds": [
+          0,
+          0,
+          1023,
+          1521
+        ],
+        "opaqueBounds": [
+          241,
+          24,
+          846,
+          1515
+        ],
+        "edgeNonzero": 1477
+      }
+    },
+    {
+      "familyId": "mage_weapon_family",
+      "classId": "mage",
+      "rarity": "Rare",
+      "name": "Aetherweave Staff",
+      "file": "png/mage_staff_rare.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/mage_weapon_family.png",
+      "referenceSha256": "8ced86bcff4aced9b470e7864085c07151914168d75663f2a6ee03595abc6d64",
+      "column": 1,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Aetherweave Staff concept board. Extract ONLY the RARE item in column 1 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Mage staff, including complete crystal/ornament head, shaft, wrapped grip, fabric details if present and bottom finial. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8ebef8e1-f841-4bc9-878b-50ec6a09a099.png",
+      "sha256": "ad7753b12701b7eac723ffcc69b841dae7c0d3151a20c0448427eb64f3b19e8b",
+      "bytes": 1041850,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/mage_staff_rare.png",
+        "sha256": "ad7753b12701b7eac723ffcc69b841dae7c0d3151a20c0448427eb64f3b19e8b",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 93.31,
+        "semiPct": 6.69,
+        "nonzeroBounds": [
+          137,
+          49,
+          913,
+          1495
+        ],
+        "opaqueBounds": [
+          415,
+          58,
+          604,
+          1489
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "mage_weapon_family",
+      "classId": "mage",
+      "rarity": "Epic",
+      "name": "Aetherweave Staff",
+      "file": "png/mage_staff_epic.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/mage_weapon_family.png",
+      "referenceSha256": "8ced86bcff4aced9b470e7864085c07151914168d75663f2a6ee03595abc6d64",
+      "column": 2,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Aetherweave Staff concept board. Extract ONLY the EPIC item in column 2 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Mage staff, including complete crystal/ornament head, shaft, wrapped grip, fabric details if present and bottom finial. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-acf3558c-d288-4fda-a1cd-f78e1853fffc.png",
+      "sha256": "3920f9f232180366e1d2bea8224076df57b37fee5948367893489cb768cbe179",
+      "bytes": 1112101,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/mage_staff_epic.png",
+        "sha256": "3920f9f232180366e1d2bea8224076df57b37fee5948367893489cb768cbe179",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 92.08,
+        "semiPct": 7.92,
+        "nonzeroBounds": [
+          24,
+          35,
+          999,
+          1494
+        ],
+        "opaqueBounds": [
+          382,
+          49,
+          637,
+          1486
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "mage_weapon_family",
+      "classId": "mage",
+      "rarity": "Legendary",
+      "name": "Aetherweave Staff",
+      "file": "png/mage_staff_legendary.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/mage_weapon_family.png",
+      "referenceSha256": "8ced86bcff4aced9b470e7864085c07151914168d75663f2a6ee03595abc6d64",
+      "column": 3,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Aetherweave Staff concept board. Extract ONLY the LEGENDARY item in column 3 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Mage staff, including complete crystal/ornament head, shaft, wrapped grip, fabric details if present and bottom finial. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-25689036-0883-489e-8b7c-28587a6e5994.png",
+      "sha256": "d8c8f130a248ff0d1a6d5639b3f41e93e19ca1f67d96cecccf8de8673b2353a9",
+      "bytes": 1237596,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/mage_staff_legendary.png",
+        "sha256": "d8c8f130a248ff0d1a6d5639b3f41e93e19ca1f67d96cecccf8de8673b2353a9",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 90.98,
+        "semiPct": 9.02,
+        "nonzeroBounds": [
+          97,
+          17,
+          953,
+          1501
+        ],
+        "opaqueBounds": [
+          352,
+          43,
+          672,
+          1494
+        ],
+        "edgeNonzero": 0
+      }
+    },
+    {
+      "familyId": "mage_weapon_family",
+      "classId": "mage",
+      "rarity": "Unique",
+      "name": "Groveheart Staff",
+      "file": "png/mage_staff_unique.png",
+      "reference": "assets/concepts/2026-11-08-equipment-rarity-v2/boards/mage_weapon_family.png",
+      "referenceSha256": "8ced86bcff4aced9b470e7864085c07151914168d75663f2a6ee03595abc6d64",
+      "column": 4,
+      "status": "generated-alpha-verified",
+      "prompt": "Use case: background-extraction\nEdit target: attached USER-APPROVED four-column Aetherweave Staff concept board. Extract ONLY the UNIQUE item in column 4 of four (left to right: Rare, Epic, Legendary, Unique). Output exactly ONE isolated Mage staff, including complete crystal/ornament head, shaft, wrapped grip, fabric details if present and bottom finial. This is a faithful clean cutout/reference enlargement, NOT a redesign.\nPreserve the selected item's EXACT silhouette, relative proportions, blade/shaft/limb length, hand grip length, all structural details, ornament placements, gemstone shape and approved material colors. Do not borrow any design elements from the other three columns. Do not stretch, shorten, widen or simplify it. Same front/three-quarter view as source, no new camera angle or rear view.\nDeliver a high-resolution portrait PNG with a TRUE ALPHA TRANSPARENT background. Center the one complete item upright in a tall portrait composition, ideally 1024x1536 or larger, with at least 8% clear transparent padding on ALL sides and no cropped ends. Enlarge the selected object cleanly so its detail is usable for 3D modeling. Preserve object highlights and materials, but remove ALL backdrop, title, Concept only subtitle, grade label, framing lines, other items, floor, shadow plane, cast shadow outside the object and any text. No checkerboard pattern baked into pixels, no white or colored background, no collage, no extra objects, no particles or external aura. The gaps within the object must also be truly transparent, particularly between bowstring and limbs. Exactly one selected item in the entire PNG.\nAlpha requirement: object surfaces must be fully opaque, outside contour must be completely alpha=0 with NO luminous gradient, colored haze, glow or shadow halo, including near the thin string. Use only tight contour antialiasing. Keep extra vertical breathing room: object top and bottom at least 8% away from canvas edge.",
+      "source": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-d78e4995-19c1-45eb-890d-ae4a96154d4b.png",
+      "sha256": "1861554f69fcbbc5b1b0bb13d4e5ab100411445f901d0381a0b7bfb1b16b5732",
+      "bytes": 1172712,
+      "width": 1024,
+      "height": 1536,
+      "bitDepth": 8,
+      "colorType": 6,
+      "alphaReport": {
+        "file": "png/mage_staff_unique.png",
+        "sha256": "1861554f69fcbbc5b1b0bb13d4e5ab100411445f901d0381a0b7bfb1b16b5732",
+        "size": [
+          1024,
+          1536
+        ],
+        "minAlpha": 0,
+        "maxAlpha": 254,
+        "transparentPct": 91.62,
+        "semiPct": 8.38,
+        "nonzeroBounds": [
+          0,
+          0,
+          977,
+          1501
+        ],
+        "opaqueBounds": [
+          341,
+          46,
+          685,
+          1489
+        ],
+        "edgeNonzero": 1
+      }
+    }
+  ],
+  "validation": "python3 scripts/validate_weapon_cutout_pngs.py",
+  "runtimeApplied": false
+}

@@ -1,0 +1,402 @@
+[
+  {
+    "file": "png/knight_sword_rare.png",
+    "sha256": "132a16692e692edebf17f9c8666754cd9c53a33f743571c531eceb2435ae67a4",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 92.04,
+    "semiPct": 7.96,
+    "nonzeroBounds": [
+      81,
+      30,
+      993,
+      1517
+    ],
+    "opaqueBounds": [
+      364,
+      34,
+      660,
+      1502
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/knight_sword_epic.png",
+    "sha256": "9b81f4c8ee6d64bae0017e1e198d7114f0c3b020ba4938a0f02f8557ed9b786d",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 90.66,
+    "semiPct": 9.34,
+    "nonzeroBounds": [
+      0,
+      13,
+      1003,
+      1535
+    ],
+    "opaqueBounds": [
+      338,
+      31,
+      686,
+      1511
+    ],
+    "edgeNonzero": 19
+  },
+  {
+    "file": "png/knight_sword_legendary.png",
+    "sha256": "550e53a769bb774b728b92593da0e76df6d4a6c4b2803949cbcbafa4990850cd",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 90.04,
+    "semiPct": 9.96,
+    "nonzeroBounds": [
+      39,
+      14,
+      1004,
+      1521
+    ],
+    "opaqueBounds": [
+      334,
+      21,
+      690,
+      1509
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/knight_sword_unique.png",
+    "sha256": "a150e8445bc2e84c8f3336142f22d92f142a563256207e861b29c1a7527b76fa",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 89.3,
+    "semiPct": 10.7,
+    "nonzeroBounds": [
+      105,
+      17,
+      955,
+      1519
+    ],
+    "opaqueBounds": [
+      314,
+      27,
+      698,
+      1509
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/elf_bow_rare.png",
+    "sha256": "e2378484bfded982f31d30992dc24071ef9d5bba8e2dd86a68c337397b4d62af",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 90.63,
+    "semiPct": 9.37,
+    "nonzeroBounds": [
+      25,
+      19,
+      991,
+      1515
+    ],
+    "opaqueBounds": [
+      290,
+      31,
+      680,
+      1503
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/elf_bow_epic.png",
+    "sha256": "fa39f6771cd8d800178b7f4b0c18970ec2edab51b83807a517a77585c95ddc6e",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 89.11,
+    "semiPct": 10.89,
+    "nonzeroBounds": [
+      31,
+      20,
+      969,
+      1489
+    ],
+    "opaqueBounds": [
+      288,
+      54,
+      705,
+      1485
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/elf_bow_legendary.png",
+    "sha256": "309418519ce72fdb6d4b2f031be698a77a48cf9c6f9c7a573df104d0c4697068",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 88.14,
+    "semiPct": 11.86,
+    "nonzeroBounds": [
+      53,
+      19,
+      1003,
+      1535
+    ],
+    "opaqueBounds": [
+      249,
+      57,
+      752,
+      1501
+    ],
+    "edgeNonzero": 11
+  },
+  {
+    "file": "png/elf_bow_unique.png",
+    "sha256": "cc0bdb5b5e22d880a411330f18aeb22286c4d3ec94d9b3d2b4794651a7fdd127",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 85.05,
+    "semiPct": 14.95,
+    "nonzeroBounds": [
+      31,
+      30,
+      989,
+      1519
+    ],
+    "opaqueBounds": [
+      282,
+      36,
+      783,
+      1503
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/dwarf_axe_rare.png",
+    "sha256": "2a4d08e05ae9dba73dfee6a84f050039ea2d5aa2599d164960ba54035ac50758",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 85.32,
+    "semiPct": 14.68,
+    "nonzeroBounds": [
+      31,
+      19,
+      999,
+      1519
+    ],
+    "opaqueBounds": [
+      329,
+      61,
+      737,
+      1497
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/dwarf_axe_epic.png",
+    "sha256": "bc9b111a1340c7f900c06ce2e880852fc094a0367d2e85a0cf5eb135c025b12d",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 82.14,
+    "semiPct": 17.86,
+    "nonzeroBounds": [
+      25,
+      20,
+      983,
+      1503
+    ],
+    "opaqueBounds": [
+      265,
+      41,
+      773,
+      1499
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/dwarf_axe_legendary.png",
+    "sha256": "ccc5384d59c67d199676607d7fc2dff1c192302568a912613e899874d22e7390",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 82.69,
+    "semiPct": 17.31,
+    "nonzeroBounds": [
+      33,
+      28,
+      1013,
+      1516
+    ],
+    "opaqueBounds": [
+      226,
+      67,
+      796,
+      1512
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/dwarf_axe_unique.png",
+    "sha256": "c537a766c697d42564af4d80bca88b8a54ae2652c168126f110c696e81e7c355",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 66.62,
+    "semiPct": 33.38,
+    "nonzeroBounds": [
+      0,
+      0,
+      1023,
+      1521
+    ],
+    "opaqueBounds": [
+      241,
+      24,
+      846,
+      1515
+    ],
+    "edgeNonzero": 1477
+  },
+  {
+    "file": "png/mage_staff_rare.png",
+    "sha256": "ad7753b12701b7eac723ffcc69b841dae7c0d3151a20c0448427eb64f3b19e8b",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 93.31,
+    "semiPct": 6.69,
+    "nonzeroBounds": [
+      137,
+      49,
+      913,
+      1495
+    ],
+    "opaqueBounds": [
+      415,
+      58,
+      604,
+      1489
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/mage_staff_epic.png",
+    "sha256": "3920f9f232180366e1d2bea8224076df57b37fee5948367893489cb768cbe179",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 92.08,
+    "semiPct": 7.92,
+    "nonzeroBounds": [
+      24,
+      35,
+      999,
+      1494
+    ],
+    "opaqueBounds": [
+      382,
+      49,
+      637,
+      1486
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/mage_staff_legendary.png",
+    "sha256": "d8c8f130a248ff0d1a6d5639b3f41e93e19ca1f67d96cecccf8de8673b2353a9",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 90.98,
+    "semiPct": 9.02,
+    "nonzeroBounds": [
+      97,
+      17,
+      953,
+      1501
+    ],
+    "opaqueBounds": [
+      352,
+      43,
+      672,
+      1494
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/mage_staff_unique.png",
+    "sha256": "1861554f69fcbbc5b1b0bb13d4e5ab100411445f901d0381a0b7bfb1b16b5732",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 91.62,
+    "semiPct": 8.38,
+    "nonzeroBounds": [
+      0,
+      0,
+      977,
+      1501
+    ],
+    "opaqueBounds": [
+      341,
+      46,
+      685,
+      1489
+    ],
+    "edgeNonzero": 1
+  }
+]
