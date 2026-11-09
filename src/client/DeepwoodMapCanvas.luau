@@ -96,6 +96,12 @@ function Canvas.create(parent,zoneId,compact,onSelect)
  end
  local objective=label('Objective','◆',Vector2.zero,UDim2.fromOffset(26,26),23,Theme.color.gold,12);objective.Visible=false
  local pin=label('You','▲',Vector2.zero,UDim2.fromOffset(30,30),26,Color3.fromRGB(87,241,255),13);pin.TextStrokeTransparency=0;pin.Visible=false
+ local youLabel
+ if not compact then
+  youLabel=label('YouLabel',Text.Center,Vector2.zero,UDim2.fromOffset(54,20),12,Color3.fromRGB(87,241,255),14)
+  youLabel.Font=Enum.Font.GothamBold;youLabel.BackgroundColor3=Color3.fromRGB(12,26,28);youLabel.BackgroundTransparency=.12;youLabel.Visible=false
+  local corner=Instance.new('UICorner');corner.CornerRadius=UDim.new(0,4);corner.Parent=youLabel
+ end
  local function located(marker,position)
   local p=point(position.X,position.Z)
   if compact then
@@ -140,8 +146,13 @@ function Canvas.create(parent,zoneId,compact,onSelect)
    end
   end
   if root then located(pin,root.Position);pin.Rotation=math.deg(math.atan2(root.CFrame.LookVector.X,-root.CFrame.LookVector.Z)) else pin.Visible=false end
+  if youLabel then
+   youLabel.Visible=pin.Visible
+   -- Rotate only the heading arrow; keep the identity readable as it moves.
+   youLabel.Position=pin.Position+UDim2.fromOffset(0,pin.Position.Y.Scale>.9 and -22 or 22)
+  end
   if target then located(objective,target) else objective.Visible=false end
  end
- return {party=party,pin=pin,objective=objective,rows=rows,aspect=width/height,update=update,project=point,select=selectRegion}
+ return {party=party,pin=pin,youLabel=youLabel,objective=objective,rows=rows,aspect=width/height,update=update,project=point,select=selectRegion}
 end
 return Canvas

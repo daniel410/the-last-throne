@@ -1,6 +1,7 @@
 -- Real native GUI and campaign projection; isolated data only, no player saves.
 assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'local QA only')
 local C=require(game.ReplicatedStorage.Shared.CampaignContent)
+local Areas=require(game.ReplicatedStorage.Shared.CampaignAreas)
 local Survey=require(game.ReplicatedStorage.Shared.CampaignCartography)
 local Client=game.StarterPlayer.StarterPlayerScripts.Client
 local Canvas=require(Client.DeepwoodMapCanvas)
@@ -20,6 +21,7 @@ for id,z in pairs(C.zones)do
  journal.explored[id]={};for i=1,144 do journal.explored[id][tostring(i)]=true end
  report.footprints+=#s.rects;report.roads+=#s.roads
 end
+local markerRoot=Instance.new('Part');markerRoot.Anchored=true
 for epic=1,5 do
  frame:ClearAllChildren()
  local atlas=Canvas.create(frame,Scope.ids(epic),false);atlas.update({journal=journal});task.wait()
@@ -33,8 +35,15 @@ for epic=1,5 do
   check(row.checkpoint.Visible,'discovered real spawn '..id)
   local p=atlas.project(table.unpack({Survey.zones[id].spawn[1],Survey.zones[id].spawn[2]}))
   check((Vector2.new(row.checkpoint.Position.X.Scale,row.checkpoint.Position.Y.Scale)-p).Magnitude<.00001,'checkpoint at actual spawn '..id)
+  markerRoot.CFrame=CFrame.new(Vector3.new(table.unpack(C.zones[id].center)))*CFrame.Angles(0,math.pi/2,0)
+  atlas.update({journal=journal},markerRoot)
+  check(atlas.pin.Visible and atlas.youLabel.Visible and atlas.youLabel.Text=='YOU','detailed map identifies the local player '..id)
+  check(atlas.youLabel.Rotation==0 and math.abs(atlas.pin.Rotation)>1,'YOU stays upright when heading changes '..id)
+  check(atlas.youLabel.Position.X.Scale==atlas.pin.Position.X.Scale and atlas.youLabel.Position.Y.Scale==atlas.pin.Position.Y.Scale,'YOU follows the projected player position '..id)
  end
+ atlas.update({journal=journal},nil);check(not atlas.pin.Visible and not atlas.youLabel.Visible,'missing/respawning player removes both markers')
 end
+markerRoot:Destroy()
 for _,size in ipairs({Vector2.new(1000,750),Vector2.new(667,317),Vector2.new(390,780)})do
  frame:ClearAllChildren();frame.Size=UDim2.fromOffset(size.X,size.Y)
  local lobby=require(Client.LobbyAtlas).create(frame);lobby.show({heroId='h',heroes={h={deepwood=journal}}});task.wait()
@@ -51,7 +60,9 @@ for _,id in ipairs({'DW-03','GW-03','FV-02','EC-04','HG-07'})do
  minimap.update(character);task.wait(.12);minimap.update(character)
  local preview=minimap.frame.MapPreview
  local p=minimap.project(root.Position)
- check(p.Magnitude<.00001,'minimap center agrees with atlas '..id)
+ local minX,minZ,maxX,maxZ=Areas.extent(z);local span=math.max(maxX-minX,maxZ-minZ)
+ local expectedCenter=Vector2.new((root.Position.X-(minX+maxX)/2)/span,(root.Position.Z-(minZ+maxZ)/2)/span)*preview.AbsoluteSize.X/minimap.frame.AbsoluteSize.X
+ check((p-expectedCenter).Magnitude<.00001,'minimap agrees with expanded atlas extent '..id)
  root.Position+=Vector3.new(z.size[1]*.2,0,-z.size[2]*.2);task.wait(.12);minimap.update(character)
  local drawn=minimap.frame.PlayerMarker.Position
  local q=minimap.project(root.Position)
