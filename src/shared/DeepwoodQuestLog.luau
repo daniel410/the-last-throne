@@ -1,3 +1,4 @@
+local Economy=game and require(game:GetService('ReplicatedStorage').Shared.EconomyCatalog)or dofile('src/shared/EconomyCatalog.luau')
 local Content=game and require(game:GetService('ReplicatedStorage').Shared.CampaignContent) or dofile('src/shared/CampaignContent.luau')
 local P=game and require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress) or dofile('src/shared/DeepwoodProgress.luau')
 local Log={text={progressConfirmed='Progress confirmed. Follow the next objective.',returnToControl='Return to the resident or control to continue.'}}
@@ -106,7 +107,8 @@ function Log.reward(c)
  local materials={}
  if c.reward.ore then table.insert(materials,string.format('%d Iron Ore',c.reward.ore))end
  if c.reward.gems then table.insert(materials,string.format('%d Enhancement Gem(s)',c.reward.gems))end
- return string.format('On quest completion: %d XP · %d Gold%s. Items go to your bag or unclaimed rewards.',c.reward.xp,c.reward.coins,#materials>0 and ' · '..table.concat(materials,' · ')or '')
+ local diamonds=Economy.storyDiamondIds[c.id]and string.format(' · %d Diamonds once per account',Economy.storyDiamonds)or ''
+ return string.format('On quest completion: %d XP · %d Gold%s. Items go to your bag or unclaimed rewards.',c.reward.xp,c.reward.coins,(#materials>0 and ' · '..table.concat(materials,' · ')or '')..diamonds)
 end
 function Log.choices(s,c)
  local rows={}

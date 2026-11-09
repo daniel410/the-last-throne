@@ -5,26 +5,45 @@ local legacyStoryDiamonds=2
 local function integer(v) return type(v)=='number' and v==v and v%1==0 and v>=0 and v<=1e12 end
 function E.valid(w)
  if type(w)~='table' or w.version~=1 or not integer(w.gold) or not integer(w.diamonds) or type(w.claims)~='table' then return false end
- local n=0;for k,v in pairs(w.claims) do if type(k)~='string' or not k:match('^DW%-0[1-7]$') or v~=true then return false end;n=n+1 end
- return n<=7
+ local n=0;for k,v in pairs(w.claims) do if type(k)~='string' or not Catalog.storyDiamondIds[k] or v~=true then return false end;n=n+1 end
+ return n<=35
+end
+-- Account receipt and balance are persisted together by AccountStore.
+function E.claimStory(p,id)
+ if not Catalog.storyDiamondIds[id] or p.wallet.claims[id] then return false end
+ -- Leave the entitlement unclaimed at the balance cap so a later load can retry.
+ if p.wallet.diamonds+Catalog.storyDiamonds>1e12 then return false end
+ p.wallet.claims[id]=true;p.wallet.diamonds=p.wallet.diamonds+Catalog.storyDiamonds
+ return true
 end
 function E.upgrade(p)
- if p.wallet then return false end
- local w={version=1,gold=0,diamonds=0,claims={}}
- for _,h in pairs(p.heroes) do
-  local s=h.deepwood
-  if s then
-   w.gold=w.gold+s.coins+(s.killCoins or 0)
-   for id in pairs(s.clears) do if id:match('^DW%-0[1-7]$') and not w.claims[id] then w.claims[id]=true;w.diamonds=w.diamonds+legacyStoryDiamonds end end
+ local changed=false
+ if not p.wallet then
+  p.wallet={version=1,gold=0,diamonds=0,claims={}};changed=true
+  for _,h in pairs(p.heroes) do
+   local s=h.deepwood
+   if s then
+    p.wallet.gold=p.wallet.gold+s.coins+(s.killCoins or 0)
+    for id in pairs(s.clears) do
+     if id:match('^DW%-0[1-7]$') and not p.wallet.claims[id] then
+      p.wallet.claims[id]=true;p.wallet.diamonds=p.wallet.diamonds+legacyStoryDiamonds
+     end
+    end
+   end
   end
  end
- p.wallet=w;return true
+ -- Catch up newly added regions from durable hero journals, once per account.
+ -- Never refill spent Diamonds or top up historical Deepwood awards.
+ for _,h in pairs(p.heroes)do
+  for id in pairs(h.deepwood and h.deepwood.clears or {})do
+   if id:sub(1,2)~='DW' and E.claimStory(p,id)then changed=true end
+  end
+ end
+ return changed
 end
 function E.story(p,reward)
  E.upgrade(p);p.wallet.gold=p.wallet.gold+reward.coins
- if reward.chapter and reward.chapter:match('^DW%-0[1-7]$') and not p.wallet.claims[reward.chapter] then
-  p.wallet.claims[reward.chapter]=true;p.wallet.diamonds=p.wallet.diamonds+Catalog.storyDiamonds
- end
+ E.claimStory(p,reward.chapter)
 end
 function E.sellPrice(item)
  if type(item.sourceGrantId)=='string' and item.sourceGrantId:sub(1,8)=='starter:' and not item.definitionId:match('^%a+_potion') then return nil end

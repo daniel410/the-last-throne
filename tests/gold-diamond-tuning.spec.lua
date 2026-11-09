@@ -21,7 +21,7 @@ for i=1,7 do E.story(p,{chapter='DW-0'..i,coins=0})end
 check(p.wallet.diamonds==21,'seven unclaimed first clears award 21 account Diamonds')
 for i=1,7 do E.story(p,{chapter='DW-0'..i,coins=0})end
 check(p.wallet.diamonds==21,'other heroes and repeats cannot claim Diamonds twice')
-E.story(p,{chapter='GW-01',coins=0});check(p.wallet.diamonds==21,'other regions do not award new Diamonds')
+E.story(p,{chapter='GW-01',coins=0});check(p.wallet.diamonds==24,'other regions now award three Diamonds')
 p.wallet.diamonds=1;E.upgrade(p)
 E.story(p,{chapter='DW-01',coins=0});check(p.wallet.diamonds==1,'existing spent balance and claimed reward cannot refill')
 local old=assert(R.addHero(R.new(72),'hero','knight',Items));old.wallet=nil

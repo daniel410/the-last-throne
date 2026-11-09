@@ -435,7 +435,8 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId)
  if added then
   if not grantCompletion(n,heroId,reward.chapter,catalog)then return nil,'BalanceLimit'end
   reward={xp=0,coins=0,chapter=reward.chapter}
- else Economy.story(n,reward)end
+ end
+ Economy.story(n,reward)
  local g=h.progression or Growth.new(h.level)
  g.xp=g.xp+reward.xp
  while g.level<80 and g.xp>=Growth.xpToNext(g.level) do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end

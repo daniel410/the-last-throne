@@ -14,7 +14,7 @@ return {
  RequestConflict='This request was already used for another action. Refresh and try again.',HeroNotOwned='Select one of your own heroes.',
  ShopLobbyOnly='Return to the Dawnspire lobby to trade.',CannotSell='Unequip and unlock an eligible item before selling. Starter gear cannot be sold.',
  BagFull='Your bag is full. Make room before buying.',NotEnoughGold='You need more Gold. Earn Gold through adventures or sell an eligible weapon.',
- NotEnoughDiamonds='You need more Diamonds. Each first main-story clear awards 2 Diamonds per account.',
+ NotEnoughDiamonds='You need more Diamonds. Each main story awards 3 Diamonds once per account across all five regions. Complete an unclaimed main story.',
  Configuration='Battle travel is not configured yet. Training is available in the lobby.',
  TravelFailed='Travel failed. Your progress is saved. Retry joining the same destination.',
  PartyFull='That party is full or no longer recruiting. Refresh the party list.',PartyChanged='The party changed. Check the roster and ready up again.',

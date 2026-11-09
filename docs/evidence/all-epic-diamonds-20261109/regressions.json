@@ -1,0 +1,68 @@
+[
+  {
+    "test": "tests/all-epic-diamonds.spec.lua",
+    "exitCode": 0,
+    "stdout": "All epic Diamonds: 1086 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/economy.spec.lua",
+    "exitCode": 0,
+    "stdout": "Economy: 42 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/gold-diamond-tuning.spec.lua",
+    "exitCode": 0,
+    "stdout": "Gold/Diamond tuning: 1892 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/quest-completion-rewards.spec.lua",
+    "exitCode": 0,
+    "stdout": "Quest completion rewards: 1416 checks passed; 47 quests pay, 19 new awards; legacy catch-up and storage recovery PASS\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/campaign-reorder.spec.lua",
+    "exitCode": 0,
+    "stdout": "CAMPAIGN_REORDER 1870 checks passed; mandatory solo final level 44\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/campaign-expansion.spec.lua",
+    "exitCode": 0,
+    "stdout": "CAMPAIGN_EXPANSION 7688 checks passed; 35 main / 12 side / 82 incidents / 246 new steps\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/difficulty-balance.spec.lua",
+    "exitCode": 0,
+    "stdout": "Difficulty balance: 2661 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/expedition-presentation.spec.lua",
+    "exitCode": 0,
+    "stdout": "Expedition presentation: 22 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/story-completion.spec.lua",
+    "exitCode": 0,
+    "stdout": "Story completion: 356 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/diamond-gold-exchange.spec.lua",
+    "exitCode": 0,
+    "stdout": "Diamond Gold exchange: 25 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/reset-tickets.spec.lua",
+    "exitCode": 0,
+    "stdout": "Reset tickets: 316 checks passed\n",
+    "stderr": ""
+  }
+]

@@ -1,10 +1,15 @@
 -- Fixed trial rate: 1 Diamond buys 50 RPG account Gold; no bundle bonus.
 -- Retire the 100-Gold SKU rather than changing its promised amount under the same ID.
-local C={version=2,storyDiamonds=3,offers={},sell={},goldOffers={
+local C={version=3,storyDiamonds=3,offers={},sell={},goldOffers={
  {id='rpg_gold_500_diamond',currency='diamonds',price=10,amount=500},
  {id='rpg_gold_1000_diamond',currency='diamonds',price=20,amount=1000},
  {id='rpg_gold_2000_diamond',currency='diamonds',price=40,amount=2000},
 }}
+-- Stable main-story IDs only; side quests and prologue never mint Diamonds.
+C.storyDiamondIds={}
+for _,prefix in ipairs({'DW','GW','FV','EC','HG'})do
+ for i=1,7 do C.storyDiamondIds[string.format('%s-%02d',prefix,i)]=true end
+end
 for _,class in ipairs({'knight','elf','dwarf','mage'}) do
  local fine=class..'_weapon_fine';local veteran=class..'_weapon_veteran'
  table.insert(C.offers,{id=fine,definitionId=fine,currency='gold',price=250})
