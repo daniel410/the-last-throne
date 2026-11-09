@@ -1,0 +1,290 @@
+[
+  {
+    "file": "knight_sword_traveler_common.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 87.4,
+    "semiPct": 12.6,
+    "nonzeroBounds": [
+      57,
+      89,
+      977,
+      1511
+    ],
+    "opaqueBounds": [
+      360,
+      96,
+      663,
+      1478
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "elf_bow_traveler_common.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 94.16,
+    "semiPct": 5.84,
+    "nonzeroBounds": [
+      185,
+      77,
+      879,
+      1467
+    ],
+    "opaqueBounds": [
+      341,
+      80,
+      598,
+      1460
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "dwarf_axe_traveler_common.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 78.64,
+    "semiPct": 21.36,
+    "nonzeroBounds": [
+      19,
+      31,
+      1009,
+      1513
+    ],
+    "opaqueBounds": [
+      255,
+      101,
+      827,
+      1453
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "mage_staff_traveler_common.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 93.0,
+    "semiPct": 7.0,
+    "nonzeroBounds": [
+      271,
+      68,
+      977,
+      1483
+    ],
+    "opaqueBounds": [
+      455,
+      73,
+      561,
+      1476
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "knight_sword_tempered_common.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 90.0,
+    "semiPct": 10.0,
+    "nonzeroBounds": [
+      73,
+      38,
+      895,
+      1479
+    ],
+    "opaqueBounds": [
+      337,
+      47,
+      687,
+      1473
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "elf_bow_tempered_common.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 91.63,
+    "semiPct": 8.37,
+    "nonzeroBounds": [
+      49,
+      59,
+      993,
+      1476
+    ],
+    "opaqueBounds": [
+      335,
+      62,
+      627,
+      1473
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "dwarf_axe_tempered_common.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 82.1,
+    "semiPct": 17.9,
+    "nonzeroBounds": [
+      0,
+      74,
+      983,
+      1511
+    ],
+    "opaqueBounds": [
+      289,
+      80,
+      793,
+      1455
+    ],
+    "edgeNonzero": 6
+  },
+  {
+    "file": "mage_staff_tempered_common.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 92.6,
+    "semiPct": 7.4,
+    "nonzeroBounds": [
+      0,
+      0,
+      951,
+      1503
+    ],
+    "opaqueBounds": [
+      437,
+      64,
+      585,
+      1474
+    ],
+    "edgeNonzero": 1
+  },
+  {
+    "file": "knight_sword_veteran_uncommon.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 88.7,
+    "semiPct": 11.3,
+    "nonzeroBounds": [
+      57,
+      47,
+      867,
+      1511
+    ],
+    "opaqueBounds": [
+      329,
+      65,
+      694,
+      1477
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "elf_bow_veteran_uncommon.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 91.37,
+    "semiPct": 8.63,
+    "nonzeroBounds": [
+      73,
+      37,
+      1009,
+      1495
+    ],
+    "opaqueBounds": [
+      340,
+      56,
+      644,
+      1489
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "dwarf_axe_veteran_uncommon.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 82.17,
+    "semiPct": 17.83,
+    "nonzeroBounds": [
+      49,
+      63,
+      1005,
+      1475
+    ],
+    "opaqueBounds": [
+      258,
+      66,
+      814,
+      1471
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "mage_staff_veteran_uncommon.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 91.59,
+    "semiPct": 8.41,
+    "nonzeroBounds": [
+      73,
+      50,
+      947,
+      1492
+    ],
+    "opaqueBounds": [
+      421,
+      53,
+      596,
+      1488
+    ],
+    "edgeNonzero": 0
+  }
+]

@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-09",
+  "taskIds": [
+    "TLT-028",
+    "TLT-029",
+    "TLT-032",
+    "TLT-041",
+    "TLT-052",
+    "TLT-084"
+  ],
+  "kind": "New generated single-view modeling references",
+  "records": [
+    {
+      "file": "knight_sword_traveler_common.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-70732c6d-d124-45f6-96a2-93551a1d70ba.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Traveler (Common): a basic short iron sword. Straight plain gray iron double-edged blade with single pointed tip, small straight iron crossguard, plain brown leather wrapped grip long enough for one hand and a simple iron disk pommel. Nothing fancy.",
+      "tool": "image_gen",
+      "family": "traveler",
+      "rarity": "Common",
+      "sha256": "331266862647395964968c9aff6e2549b617012751298febaa0368c9f18970ad"
+    },
+    {
+      "file": "elf_bow_traveler_common.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-e1089d8a-5019-468f-b673-c3b8429c3f29.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Traveler (Common): a plain WOODEN self bow, one continuous slender gently curved stave of warm medium brown wood, slim taut natural fiber bowstring joining both tips, short simple dark brown leather center grip. Entire bow limbs are WOOD only. No metal, no arrow, no quiver, no additional items.",
+      "tool": "image_gen",
+      "family": "traveler",
+      "rarity": "Common",
+      "sha256": "bd4e01864585908f67e94d8cd170389ed2053aceab961856c320f010010025b7"
+    },
+    {
+      "file": "dwarf_axe_traveler_common.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-709ca552-573f-4f26-9928-23fddd93af99.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Traveler (Common): a simple ALL-WOOD axe. Both the short sturdy straight wooden handle AND the single compact wedge-shaped axe head are visibly carved BROWN WOOD. Wooden head is broad and axe-shaped, with a broad wedge cutting edge and short square poll, firmly pegged through the haft. Read unmistakably as an axe, NOT a hammer. A couple of simple natural rope lashings at joint. NO METAL blade or metal edge, no stone, no iron. Beginner wooden training axe.",
+      "tool": "image_gen",
+      "family": "traveler",
+      "rarity": "Common",
+      "sha256": "422d64968681ffd2e7968b6d0566105b1ab5a4cd44d8fad5daf6bc661cd87998"
+    },
+    {
+      "file": "mage_staff_traveler_common.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-98e12ba1-bf11-407e-b03c-bf473563eae2.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Traveler (Common): a plain WOODEN walking-stick style magic staff, straight sturdy warm brown wooden shaft with slightly rounded blunt top, only a modest natural knot at top and short simple tan cord wrapped grip. Entire staff is wood. No branching crown, no orb, no crystal, no metal, no leaves. Simple starter staff.",
+      "tool": "image_gen",
+      "family": "traveler",
+      "rarity": "Common",
+      "sha256": "1caf68681b6c25fb26d018f01e52502f59da1669aa3c5b9f5827a4fb64bf4b9a"
+    },
+    {
+      "file": "knight_sword_tempered_common.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-673be9a2-2ba8-467d-a262-7755f6a5c047.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Tempered (Common): a very plain functional straight steel arming sword, medium gray double-edged blade, tiny bevel, simple narrow straight dark iron crossguard, dark brown leather grip and small hexagonal iron pommel. Just slightly better made than a starter iron sword. No ornament.",
+      "tool": "image_gen",
+      "family": "tempered",
+      "rarity": "Common",
+      "sha256": "b6a19245babb71456b39bc92812372b534539f0c37250c2a9cce528303b07860"
+    },
+    {
+      "file": "elf_bow_tempered_common.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-d6ef3eb5-be07-4e75-99fa-2cf842d2e15c.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Tempered (Common): a simple smooth brown wooden recurve bow, mild recurved tips, plain dark brown leather wrapped center grip, tiny plain dull iron reinforcing caps at the two limb tips. Thin taut beige bowstring joining the tips. Very cheap simple equipment, no arrow, no quiver, no extra objects.",
+      "tool": "image_gen",
+      "family": "tempered",
+      "rarity": "Common",
+      "sha256": "f97c3b04a5f4222bf205332223b897098ec3cf9a634f2fe759c2f8d2fb602144"
+    },
+    {
+      "file": "dwarf_axe_tempered_common.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-c713fa87-912f-484f-a4c8-c7f2e0f849fa.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Tempered (Common): a small practical single-bladed iron axe, compact plain gray wedge-shaped steel head with straightish broad cutting edge and small flat poll, straight brown wooden haft, simple dark brown leather grip only at lower third. Basic low level weapon with no rivets or decoration.",
+      "tool": "image_gen",
+      "family": "tempered",
+      "rarity": "Common",
+      "sha256": "531f53232e02a98978c9888f9dd899d772b57e339d4fe1cb712732ea91b927c0"
+    },
+    {
+      "file": "mage_staff_tempered_common.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-79e15899-e395-49a1-aa4e-c9c589c16b48.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Tempered (Common): a very simple straight smooth brown wooden staff with a slightly thicker rounded wooden top capped by one small flat dull iron cap, short plain brown leather grip and tiny iron foot ferrule. No bulb or gem or crystal. A practical low level mage staff with only two simple metal fittings.",
+      "tool": "image_gen",
+      "family": "tempered",
+      "rarity": "Common",
+      "sha256": "0944bc3d17e756e21c89cd0a1a756186108bdeb5c9a1a4ebbdfdefb8bb6f8ef6"
+    },
+    {
+      "file": "knight_sword_veteran_uncommon.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-9a07cbb7-4b60-4cc6-86ed-24d00ce82d3c.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Veteran (Uncommon): a modest practical soldier's straight steel arming sword, clean broad gray double-edged blade, shallow central fuller, slightly downturned short dark steel guard, black-brown leather grip, small plain squared steel pommel. Barely one step above common, economical simple construction, no heraldry or jewelry.",
+      "tool": "image_gen",
+      "family": "veteran",
+      "rarity": "Uncommon",
+      "sha256": "b1113ffbf340013d444a88a0d0356a604773eff2ab8c43acd3c6c4915d6a3725"
+    },
+    {
+      "file": "elf_bow_veteran_uncommon.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-d71ad3ff-6938-4809-8d64-d75789385e62.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Veteran (Uncommon): a practical simple laminated hardwood recurve bow in darker brown, subtle light wood strip along outer limbs, dark leather center grip, two small plain gray iron reinforcement bands near grip, thin taut natural bowstring joining tips. A modest low level hunter bow, no arrow, no quiver, no carving or gold.",
+      "tool": "image_gen",
+      "family": "veteran",
+      "rarity": "Uncommon",
+      "sha256": "f74b31634aa358ade4a4126ecd48a0052da8aad185ebce7900fec23079a69b4d"
+    },
+    {
+      "file": "dwarf_axe_veteran_uncommon.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-eaf03376-28e1-471b-9760-74ee8774ffa1.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Veteran (Uncommon): a plain well-forged single-bladed steel combat axe, compact modestly broader gray blade with simple clear bevel, short square poll, dark brown straight wooden haft, one plain iron collar below axe head and dark leather grip on lower third. Modest low level gear. No double blade, no spikes, no ornamental details.",
+      "tool": "image_gen",
+      "family": "veteran",
+      "rarity": "Uncommon",
+      "sha256": "b81ae9eb081425983a2cf373b4d3cf66b737284812e5fc1cab1d7336541d01a9"
+    },
+    {
+      "file": "mage_staff_veteran_uncommon.png",
+      "source": "/Users/daniel/.codex/generated_images/01a1c16c-49e6-7353-8492-e58301e36a72/exec-374aaeb9-eb36-4b95-9f89-2230edef6bcc.png",
+      "prompt": "Use case: stylized-concept. Create one isolated weapon as a transparent PNG reference for image-to-3D modeling for The Last Throne, a stylized Roblox fantasy action RPG. Exactly ONE object, no labels/text, no border, no character, no hands, no props, no ground plane or cast shadow. Portrait composition, full weapon upright with generous 10% margin all around; near orthographic front view with tiny three-quarter angle to reveal thickness; clean simple low-poly chunky game asset, clear silhouette, matte materials, broad flat color areas, minimal surface detail, neutral even studio lighting, natural restrained colors, no bloom. This is the LOWEST starter gear: extremely simple practical cheap construction, no ornamentation, no gems, no gold, no runes, no spikes, no magic, no glowing effects, no engraved motifs. True transparent alpha background. Veteran (Uncommon): an understated functional straight dark brown hardwood mage staff, small thickened faceted wooden top protected by a very simple short gray steel socket cap, two narrow plain gray iron reinforcing bands beneath head, dark leather center grip and tiny steel foot cap. Clearly simple low level gear. No crystal, orb, branching crown, runes, jewelry or ornamental silhouette.",
+      "tool": "image_gen",
+      "family": "veteran",
+      "rarity": "Uncommon",
+      "sha256": "08a7d8be37d2e205b39dfb094f2e47f2580145b17481dc959ea18968d0b6e709"
+    }
+  ]
+}
