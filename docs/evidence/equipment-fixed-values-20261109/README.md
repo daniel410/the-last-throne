@@ -9,3 +9,5 @@
 순수 Lua9개 총4523검사 PASS(`tests.log`). 단일옵션40종/등급·레벨/획득·착용·장착거절, 구Sentinel Lv10 착용 이관, 시작장비합계/실제비교·강화/삭제/보급을 확인했다. 새 시작장비 합계는 공격9(무기3+장갑3+반지3), 방어기사9/다른클래스6이다. 일반HP50(상의20+Charm30), 마법사HP30/MP20이다. 수치와 Sentinel착용기대만 기존검사에서 수정했다.
 
 다른 작업의 미커밋 통화/모델/아이콘/프로젝트파일/테스트는 보존하고 작업범위에서 제외했다. `test-source.json`에 기록한 커밋의 src/tests를 임시경로로 archive하고 이번4파일만 덮어써 검사했다. 실제 계정/게시클라이언트·기기/밸런스 수용은 미검증이다. 연결된 사용자 Studio 소스 적용·Roblox 게시·릴리스 태그 없음. 후속QA는 고정빌드로 가족별무기/방어구/상의·Lv10 Sentinel 착용과 이전장비 수치 재계산을 확인한다.
+
+고정 소스 `8279b55054924b77952acad60a1719d639b46c05`를 origin/main에 푸시 후 단일 빌드 **0.91.1 성공**. `builds/0.91.1/TheLastThrone-0.91.1.rbxlx` SHA256 `4cefd8b9724ea527b1712725e2277e99a3711fc6cf04895061fb943a8c56aa16`. `python3 tests/single-build.spec.py --artifact builds/0.91.1/TheLastThrone-0.91.1.rbxlx`: 역할10/도착로딩192/마운트·실제구성 PASS. `run-in-roblox --place builds/0.91.1/TheLastThrone-0.91.1.rbxlx --script docs/evidence/equipment-fixed-values-20261109/native.luau`: 실제모듈 장비458/시작장비206/비교52/고정공격112/삭제171=**999검사 PASS**(`native.log`). 실제플레이어/게시클라이언트·기기 수용이 아니며 Roblox 미게시다. 새LFS 자산 없음.
