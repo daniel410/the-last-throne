@@ -1,0 +1,13 @@
+{
+  "version": "0.89.2",
+  "sourceCommit": "d553bc02a2996b8b0f011c784a4635ba9f6f2884",
+  "sourceMatch": true,
+  "cartography": {
+    "zones": 44,
+    "roads": 2745,
+    "footprints": 2201,
+    "checks": 6803
+  },
+  "published": false,
+  "deviceAcceptance": "not_run"
+}
