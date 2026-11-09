@@ -13,3 +13,5 @@
 연결된 The Last Throne Battles Studio의 Edit `StarterPlayer.StarterPlayerScripts.Client.K0Hud`에도 해당 배치 변경만 적용했다. 실제 Play 렌더·Place 파일 저장·Roblox 게시를 뜻하지 않는다.
 
 미검증: 휴대폰 터치/세로 화면·실제 렌더·게시 클라이언트·사용자 수용. 다음 담당 QA는 새 빌드 가로 화면에서 아이콘 터치와 기본 점프·이동 조작부를 확인한다. 좁은 화면은 하단 공간에 맞춰 버튼이 작아지므로 실기기 터치 수용은 별도다. 부모 티켓은 완료로 바꾸지 않는다. 릴리스 태그 없음.
+
+고정 소스 `e93c0bfe38d389a8a9a10b2d961b42b720d30c4d`를 origin/main에 푸시한 뒤 단일 빌드0.88.2 성공. 산출물 `builds/0.88.2/TheLastThrone-0.88.2.rbxlx`, SHA256 `f9db04663ce20b15b17dcc34f0fbde515fea0bcc33c31f21d62149ad114ba241`. [빌드 기록](build.json). 고정 빌드에서 같은 하단 검사276개 재통과([로그](fixed-native.log)). `python3 tests/single-build.spec.py --artifact builds/0.88.2/TheLastThrone-0.88.2.rbxlx`: 역할10·도착로딩192·마운트/구성 PASS. 새 LFS 파일/전송 없음.
