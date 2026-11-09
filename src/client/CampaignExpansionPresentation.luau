@@ -9,6 +9,7 @@ local function paint(m,record)
  local first=m:GetAttribute('ExpansionMin');local last=m:GetAttribute('ExpansionMax')or 3
  local visible=first~=nil and count>=first and count<=last
  if first==nil then visible=m:GetAttribute('ExpansionAfter')==(count==3)end
+ visible=visible and State.requires(s,m:GetAttribute('ExpansionRequires'))
  if record.count~=count or record.visible~=visible then
   local pose=m:GetAttribute('ExpansionPose'..count)
   if pose then
@@ -26,7 +27,8 @@ local function paintStep(m)
  local s=current and not current.training and current.journal
  local key=m:GetAttribute('ExpansionStepEvent');local chapter=m:GetAttribute('ExpansionStepChapter')
  local index=m:GetAttribute('ExpansionStepIndex');local count=State.count(s,key,chapter)
- local collected=index and ((s and s.clues and s.clues[key]or {})['step'..index]or count>=index)
+ local clues=s and s.clues and s.clues[key]
+ local collected=index and (clues and clues['step'..index]==true or not clues and count>=index)
  for _,p in ipairs(m:GetDescendants())do if p:IsA('BasePart')then
   p.Color=collected and Color3.fromRGB(103,205,184)or p:GetAttribute('ExpansionOriginalColor')or p.Color
  end end
@@ -34,8 +36,9 @@ end
 local started=false
 function M.tick(dt)
  for m,r in pairs(models)do if r.to and m.Parent then
-  r.elapsed=math.min(.65,r.elapsed+dt);local t=r.elapsed/.65;t=t*t*(3-2*t)
-  m:PivotTo(r.from:Lerp(r.to,t));if r.elapsed>=.65 then r.from=nil;r.to=nil end
+  local duration=math.clamp(m:GetAttribute('ExpansionTransitionSeconds')or .65,.1,10)
+  r.elapsed=math.min(duration,r.elapsed+dt);local t=r.elapsed/duration;t=t*t*(3-2*t)
+  m:PivotTo(r.from:Lerp(r.to,t));if r.elapsed>=duration then r.from=nil;r.to=nil end
  end end
 end
 local function start()

@@ -35,6 +35,7 @@ function R.create(lobby,facilities,storagePrompt)
  end
  for _,part in ipairs(reunion:GetDescendants())do if part:IsA('BasePart')then part:SetAttribute('ExpansionTransparency',part.Transparency);part.Transparency=1;part.CanCollide=false elseif part:IsA('BillboardGui')then part.Enabled=false end end
  reunion.Parent=lobby.folder
+ require(script.Parent.CampaignReturnScenes).lobby(lobby)
  -- Existing server-authorized facilities retain their inputs and validation paths.
  facilities.training.prompt.ObjectText='Rowan · Hero Trainer'
  facilities.portal.prompt.ObjectText='Tessa · Expedition Guide'

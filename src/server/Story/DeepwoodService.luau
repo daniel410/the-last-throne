@@ -377,6 +377,10 @@ function Service.travelCheckpoint(player,id)
 end
 local boundNodes=setmetatable({},{__mode='k'})
 function Service.refreshWorld()
+ for _,node in pairs(options.world.activityChoices or {})do if not boundNodes[node]then
+  boundNodes[node]=true
+  node.prompt.Triggered:Connect(function(p)Service.interactStep(p,node.chapter.id,node.goal.id,node.step.id,node.choice)end)
+ end end
  if companion then companion.refreshWorld()end
  for _,node in pairs(options.world.activityNodes or {}) do if node.prompt and not boundNodes[node] then boundNodes[node]=true; node.prompt.Triggered:Connect(function(p) Service.interactStep(p,node.chapter.id,node.goal.id,node.step.id) end) end end
 

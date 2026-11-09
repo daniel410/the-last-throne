@@ -31,6 +31,9 @@ for _,c in ipairs(C.chapters)do
   check(world.nodes[c.id..':'..g.id]~=nil,'objective anchor exists '..c.id..g.id)
   local area;for _,a in ipairs(C.zones[c.zone].expansionAreas)do if a.id==g.area then area=a end end
   local entry,center=Vector3.new(table.unpack(area.entry)),Vector3.new(table.unpack(area.center))
+  local incidentScene=world.folder.CampaignExpansion:FindFirstChild('Epic'..c.epic):FindFirstChild(c.id..'_'..g.id)
+  local payoffPost=incidentScene.RestoredIncident:FindFirstChild('ConfirmedRouteSignal')
+  check((payoffPost.Position-Vector3.new(table.unpack(g.activity.steps[#g.activity.steps].position))).Magnitude<40,'default final action keeps its visible payoff nearby')
   local n=math.max(1,math.ceil((center-entry).Magnitude/12))
   for i=0,n do sample(c,g,entry:Lerp(center,i/n))end
   local Route=require(Shared.CampaignIncidentRoute)
@@ -77,6 +80,11 @@ engine.startEscort(fake,chapter,escort)
 local key=chapter.id..':'..escort.id
 local data=engine.projection(fake,'hero');check(data[key]~=nil,'live escort created')
 local initial=data[key].actorPosition
+local carried
+for _,model in ipairs(world.folder:GetDescendants())do if model:IsA('Model')and model:GetAttribute('NPCPrivateOwnerUserId')==194 then carried=model:FindFirstChild('ThreeBarScoutLantern')end end
+check(carried and carried:GetAttribute('StoryMotif')=='FinnThreeBarLight','real moving Finn carries the recurring scout lantern')
+local bars=0;for _,part in ipairs(carried:GetChildren())do if part.Name=='RecognizableGoldBar'then bars+=1 end end
+check(bars==3,'Finn carries the same readable three-bar shape used by his allies')
 local restarted=false
 for tick=1,800 do
  local view=engine.projection(fake,'hero');local state=view[key]
@@ -208,5 +216,103 @@ check(home:FindFirstChild('DawnspireHomecoming')and home.DawnspireHomecoming:Fin
 require(Client.DawnspireHomecoming).update({heroId='new',heroes={new={deepwood=P.new()}}})
 check(not home:FindFirstChild('DawnspireHomecoming'),'switching heroes clears personal throne restoration')
 home:Destroy()
+-- Story causes, earned callbacks, physical circuit controls and side returns.
+local medicine,mc,mg=reach('DW-02','exp_1')
+local survivorNode=world.nodes['DW-02:survivors']
+check(survivorNode.chapter==mc and survivorNode.goal==P.goal(mc,'survivors'),'actual archived Deepwood nodes bind canonical narrative and prerequisite data')
+check(not P.available(medicine,survivorNode.chapter,survivorNode.goal),'live core marker cannot bypass the new medicine incident')
+medicine=applyGoal(medicine,mc,mg)
+check(P.available(medicine,survivorNode.chapter,survivorNode.goal),'saved medicine completion unlocks the original survivor objective')
+check(world.nodes['DW-Q2:'..C.byId['DW-Q2'].quest.turnIn].chapter.quest.outcome==C.byId['DW-Q2'].quest.outcome,'actual field report uses the same updated story outcome as Tessa and the journal')
+local investigation,ic,ig=reach('FV-04','exp_1')
+investigation=assert(P.apply(investigation,ic.id,ig.id,nil,'step3'))
+presentation.update({journal=investigation});presentation.tick(1)
+local unseen=world.folder.AdventureActivities['FV-04_exp_1_step1_Art']:FindFirstChildWhichIsA('BasePart',true)
+local collected=world.folder.AdventureActivities['FV-04_exp_1_step3_Art']:FindFirstChildWhichIsA('BasePart',true)
+check(unseen.Color==unseen:GetAttribute('ExpansionOriginalColor'),'out-of-order evidence does not paint an unseen clue as collected')
+check(collected.Color==Color3.fromRGB(103,205,184),'actual collected evidence alone receives the saved feedback')
+local signals,fc,fg=reach('FV-04','exp_2')
+local witnessScene=world.folder.CampaignExpansion.Epic3['FV-04_exp_2']
+local guardian=witnessScene.SignalGuardianWitness
+check(not guardian:FindFirstChildWhichIsA('Humanoid',true),'signal witness adds no combat humanoid or damage target')
+check(guardian:FindFirstChild('NoncombatSignalGuardian'):GetAttribute('StoryWitness')==true,'guardian uses the reviewed noncombat visual')
+presentation.update({journal=signals});presentation.tick(1);local initialFacing=guardian:GetPivot().LookVector
+check(witnessScene.FalseAlarmAimedAtRefuge:FindFirstChildWhichIsA('BasePart',true).Transparency<1,'wrong warning visibly points at the refuge before the repair')
+signals=applyGoal(signals,fc,fg);presentation.update({journal=signals});presentation.tick(1)
+check(guardian:GetPivot().LookVector:Dot(initialFacing)<-.99,'guardian visibly changes its protected direction after the real saved signal')
+check(witnessScene.FalseAlarmAimedAtRefuge:FindFirstChildWhichIsA('BasePart',true).Transparency==1 and witnessScene.ShelterSignalProtectsTravelers:FindFirstChildWhichIsA('BasePart',true).Transparency<1,'old warning and shelter signal change together')
+local signalClone=guardian:Clone();signalClone.Name='GuardianAfterRestream';signalClone.Parent=witnessScene;task.wait()
+check(signalClone:GetPivot().LookVector:Dot(guardian:GetPivot().LookVector)>.99,'restreamed guardian restores the earned reaction');signalClone:Destroy()
+local payoff=world.folder.CampaignExpansion.Epic5['HG-04_exp_2'].FinnsReturningLantern
+presentation.update({journal=P.new()});presentation.tick(1)
+check(payoff:FindFirstChildWhichIsA('BasePart',true).Transparency==1,'unearned scout payoff is hidden')
+local earned=select(1,reach('HG-04','exp_2'));presentation.update({journal=earned});presentation.tick(1)
+check(payoff:FindFirstChildWhichIsA('BasePart',true).Transparency<1,'earlier scout rescue earns the familiar final assault signal')
+-- Bind the actual refreshWorld source to actual control metadata, with test-only event buses.
+local controlsState,cc,cg=reach('EC-05','exp_2');local controlRoot=Instance.new('Part');controlRoot.Anchored=true;controlRoot.Parent=workspace
+local cp={UserId=197};local feedback={};local enqueues=0
+local controlEngine=require(game.ServerScriptService.Server.Story.DeepwoodActivities).create({players=function()return {cp}end,
+ active=function()return {heroId='hero'}end,context=function()return {heroId='hero'},controlRoot end,state=function()return controlsState end,
+ world=world,enemies=Instance.new('Folder'),publish=function(_,message)table.insert(feedback,message)end,
+ enqueue=function(_,_,c,g,choice,id)enqueues+=1;controlsState=assert(P.apply(controlsState,c.id,g.id,choice,id))end})
+local callbacks={};local fakeWorld={activityChoices={},activityNodes={},nodes={}};local binds=0
+for id,node in pairs(world.activityChoices)do
+ local record={part=node.part,chapter=node.chapter,goal=node.goal,step=node.step,choice=node.choice}
+ record.prompt={Triggered={Connect=function(_,fn)binds+=1;callbacks[id]=fn end}};fakeWorld.activityChoices[id]=record
+end
+local serviceSource=game.ServerScriptService.Server.Story.DeepwoodService.Source
+local binding=assert(serviceSource:match('(function Service.refreshWorld%(%)'..'.-)'..'\nfunction Service.start'))
+local env={Service={interactStep=function(p,cid,gid,sid,choice)controlEngine.interactStep(p,cid,gid,sid,choice)end},options={world=fakeWorld},boundNodes={}}
+setmetatable(env,{__index=getfenv()});local fn=assert(loadstring(binding..'\nreturn Service.refreshWorld'));setfenv(fn,env);local refresh=fn();refresh();refresh()
+check(binds==6,'each physical control binds once to the actual server interaction path')
+local journalSource=Client.DeepwoodJournal.Source
+local promptBody=assert(journalSource:match('(local function updatePrompts%(%)'..'.-)'..'\n workspace.DescendantAdded:Connect'))
+local updatePrompts=assert(loadstring('return function(workspace,current,Content,Progress,Checkpoints,Log)\n'..promptBody..'\nupdatePrompts() end'))()
+for i,step in ipairs(cg.activity.steps)do
+ local good=world.activityChoices['EC-05:exp_2:'..step.id..':'..step.solution]
+ local bad=world.activityChoices['EC-05:exp_2:'..step.id..':'..step.choices[2].id]
+ updatePrompts(workspace,{journal=controlsState},C,P,CP,require(Shared.DeepwoodQuestLog))
+ check(good.prompt.Enabled and bad.prompt.Enabled,'both choices in the actual client become actionable at the saved step')
+ local count=enqueues
+ controlRoot.Position=good.part.Position+Vector3.new(1000,0,0);callbacks['EC-05:exp_2:'..step.id..':'..step.solution](cp)
+ check(enqueues==count,'forged physical control requests are rejected outside server distance')
+ controlRoot.Position=bad.part.Position;callbacks['EC-05:exp_2:'..step.id..':'..step.choices[2].id](cp)
+ check(enqueues==count and feedback[#feedback]==step.failure,'wrong physical control is safe and explains the relevant diagram')
+ controlRoot.Position=Vector3.new(table.unpack(step.position));controlEngine.interactStep(cp,cc.id,cg.id,step.id)
+ local _,dialog=controlEngine.projection(cp,'hero')
+ check(dialog and dialog.choices[i==2 and 2 or 1].id==step.solution,'accessible dialog matches the physical left/right order')
+ controlRoot.Position=good.part.Position;callbacks['EC-05:exp_2:'..step.id..':'..step.solution](cp)
+ check(enqueues==count+1 and controlsState.activities['EC-05:exp_2']==i,'actual physical choice saves exactly one correct step')
+ updatePrompts(workspace,{journal=controlsState},C,P,CP,require(Shared.DeepwoodQuestLog));check(not good.prompt.Enabled and not bad.prompt.Enabled,'confirmed controls disable in the real client')
+end
+check(controlsState.flags['EC-05:exp_2'],'all physical choices complete the original incident without extra goals')
+controlEngine.remove(cp);controlRoot:Destroy()
+local returnFolder=Instance.new('Folder');returnFolder.Parent=workspace
+for _,id in ipairs({'DW-Q2','FV-Q1','EC-Q1'})do
+ local s=assert(P.enableExpansion(all));local c=C.byId[id];s=assert(P.accept(s,id))
+ for _,g in ipairs(c.goals)do if g.id==c.quest.turnIn then break end;if P.required(s,g)then s=applyGoal(s,c,g)end end
+ local returnScene=require(World.CampaignReturnScenes).create(returnFolder,Vector3.new(0,96,512),id)
+ presentation.update({journal=s});presentation.tick(1)
+ check(returnScene:FindFirstChildWhichIsA('BasePart',true).Transparency==1,'pre-report work cannot fabricate a returned meal/person')
+ s=applyGoal(s,c,P.goal(c,c.quest.turnIn));presentation.update({journal=s});presentation.tick(1)
+ check(returnScene:FindFirstChildWhichIsA('BasePart',true).Transparency<1,'real saved side report unlocks its personal homecoming')
+ local clone=returnScene:Clone();clone.Name='SideReturnAfterRestream';clone.Parent=returnFolder;task.wait()
+ check(clone:FindFirstChildWhichIsA('BasePart',true).Transparency<1,'reported side return survives stream-in');clone:Destroy()
+ presentation.update({journal=P.new()});presentation.tick(1)
+ check(returnScene:FindFirstChildWhichIsA('BasePart',true).Transparency==1,'changing to a new hero hides another hero\'s return story')
+end
+returnFolder:Destroy()
+local lobbyStory={folder=Instance.new('Folder'),origin=Vector3.new(0,96,512)};lobbyStory.folder.Name='DawnspireLobbyPrototype';lobbyStory.folder.Parent=workspace
+local function lobbyPrompt()local a=Instance.new('Part');a.Parent=lobbyStory.folder;local p=Instance.new('ProximityPrompt');p.Parent=a;return p end
+require(World.LobbyResidents).create(lobbyStory,{training={prompt=lobbyPrompt()},portal={prompt=lobbyPrompt()}},nil)
+check(#lobbyStory.folder.SideStoryHomecomings:GetChildren()==3,'actual lobby resident creation mounts all three existing side homecomings')
+local lobbyJournal=assert(P.enableExpansion(all));lobbyJournal=assert(P.accept(lobbyJournal,'FV-Q1'));lobbyJournal=applyGoal(lobbyJournal,C.byId['FV-Q1'],C.byId['FV-Q1'].goals[1])
+for _,g in ipairs(C.byId['FV-Q1'].goals)do if P.required(lobbyJournal,g)and not lobbyJournal.flags['FV-Q1:'..g.id]then lobbyJournal=applyGoal(lobbyJournal,C.byId['FV-Q1'],g)end end
+require(Client.DawnspireHomecoming).update({heroId='nell-hero',heroes={['nell-hero']={deepwood=lobbyJournal}}});presentation.tick(1)
+local nell=lobbyStory.folder.SideStoryHomecomings:FindFirstChild('ReturnStory_FV-Q1')
+check(nell:FindFirstChildWhichIsA('BasePart',true).Transparency<1,'actual selected hero snapshot reveals Nell in the lobby after the report')
+require(Client.DawnspireHomecoming).update({heroId='new-hero',heroes={['new-hero']={deepwood=P.new()}}});presentation.tick(1)
+check(nell:FindFirstChildWhichIsA('BasePart',true).Transparency==1,'actual hero snapshot switch removes the unearned return scene')
+lobbyStory.folder:Destroy()
 print('CAMPAIGN_EXPANSION_NATIVE '..game.HttpService:JSONEncode(report))
 return report

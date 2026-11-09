@@ -36,7 +36,12 @@ src/shared/CampaignSceneState.luau
 src/shared/CampaignIncidentRoute.luau
 src/server/World/CampaignIncidentProps.luau
 src/server/World/CampaignIncidentScenes.luau
-src/shared/DeepwoodQuestLog.luau'''.splitlines()
+src/shared/DeepwoodQuestLog.luau
+src/shared/CampaignStoryBeats.luau
+src/server/World/CampaignCircuitWorld.luau
+src/server/World/CampaignNarrativeScenes.luau
+src/server/World/CampaignReturnScenes.luau
+src/server/World/ScoutLantern.luau'''.splitlines()
 code="assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'isolated local place only')\n"
 for path in dict.fromkeys(paths):
  parts=path.split('/');prefix={'shared':'game.ReplicatedStorage.Shared','client':'game.StarterPlayer.StarterPlayerScripts.Client','server':'game.ServerScriptService.Server'}[parts[1]]

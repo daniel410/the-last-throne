@@ -22,13 +22,14 @@ function Engine.create(o)
   local count=(s.activities or {})[c.id..':'..g.id] or 0
   local p=count>0 and g.activity.steps[count].position or g.position
   attempts[player]={heroId=ctx.heroId,c=c,g=g,actor=Actors.actor(o.world.folder,g.activity.actor,Vector3.new(table.unpack(p)),g.activity.spirit,{dynamic=true,role='escort',ownerUserId=player.UserId}),status='Follow the rescued resident.'}
+  if g.activity.actor=='Finn'then require(script.Parent.Parent.World.ScoutLantern).attach(attempts[player].actor)end
  end
  function api.projection(player,heroId)
   local result={};local a=attempts[player]
   if a and a.heroId==heroId then result[a.c.id..':'..a.g.id]={actorPosition=a.actor.PrimaryPart.Position,status=a.status} end
   local d=dialogs[player];local ctx,root=o.context(player)
   if d and (not ctx or ctx.heroId~=d.heroId or not root or (root.Position-(d.position or Vector3.new(table.unpack(d.g.position)))).Magnitude>16) then dialogs[player]=nil;d=nil end
-  return result,d and d.heroId==heroId and {chapter=d.c.id,goal=d.g.id,step=d.step.id,text=d.step.text,choices=d.step.choices} or nil
+  return result,d and d.heroId==heroId and {chapter=d.c.id,goal=d.g.id,step=d.step.id,text=d.step.text,choices=require(game.ReplicatedStorage.Shared.CampaignCircuit).display(d.step)} or nil
  end
  function api.interact(player,node)
   local c,g=node.chapter,node.goal;local a=g.activity
@@ -46,7 +47,8 @@ function Engine.create(o)
  function api.interactStep(player,cid,gid,sid,choice)
   local node=o.world.activityNodes[cid..':'..gid..':'..sid];if not node then return end
   local c,g=node.chapter,node.goal
-  local ctx,s=current(player,c,g,node.part.Position)
+  local control=choice and (o.world.activityChoices or {})[cid..':'..gid..':'..sid..':'..choice]
+  local ctx,s=current(player,c,g,control and control.part.Position or node.part.Position)
   if not ctx then return end
   local step=Progress.nextStep(s,c,g)
   if not step or g.activity.mode~='investigate' and step.id~=sid then o.publish(player,g.activity.clue or 'Follow the evidence in order.');return end

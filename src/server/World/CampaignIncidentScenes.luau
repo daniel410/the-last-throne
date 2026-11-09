@@ -50,7 +50,9 @@ function S.create(scene,c,g,area)
  for _,step in ipairs(g.activity.steps)do
   local at=V(table.unpack(step.position));beam(scene,'AuthoredIncidentWalk',previous+V(0,.07,0),at+V(0,.07,0),.12,pal.trim,Enum.Material.Ground);previous=at
  end
- local result=center+V(width*.32,0,depth*.32)
+ local last=V(table.unpack(g.activity.steps[#g.activity.steps].position))
+ -- Put the payoff in view of the last action, with room for its small cast.
+ local result=center+V(math.clamp(last.X-center.X,-width/2+30,width/2-30),0,math.clamp(last.Z-center.Z,-depth/2+22,depth/2-22))
  model('UnresolvedIncident',0,2,function(m)
   part(m,'UnfinishedWork',V(3,1.6,2),result+V(0,.8,0))
   part(m,'WorkPlan',V(2,.08,1.4),result+V(0,1.7,0),pal.trim)
@@ -193,6 +195,8 @@ function S.create(scene,c,g,area)
    end)
   end
  end
+ require(script.Parent.CampaignNarrativeScenes).create(scene,c,g,area,{center=center,result=result,pal=pal,part=part,beam=beam,model=model,moving=moving,actor=actor})
+ if c.id=='DW-Q2'or c.id=='FV-Q1'or c.id=='EC-Q1'then require(script.Parent.CampaignReturnScenes).create(scene,result,c.id)end
  scene:SetAttribute('IncidentLayout',area.layout)
 end
 return S

@@ -34,6 +34,13 @@ function W.create(epic,world)
  elseif epic==4 then require(script.Parent.EmberCalderaWorld).create(world)
  elseif epic==2 or epic==5 then require(script.Parent.LateEpicWorld).create(world,epic)end
  require(script.Parent.CampaignExpansionWorld).create(world,scope)
+ -- Archived Deepwood geometry still supplies anchors; live story metadata comes
+ -- from the canonical campaign so outcomes and expansion gates agree with saves.
+ for _,node in pairs(world.nodes)do
+  local c=node.chapter and Content.byId[node.chapter.id]
+  local g=c and node.goal and require(Shared.DeepwoodProgress).goal(c,node.goal.id)
+  if g then node.chapter=c;node.goal=g end
+ end
  require(script.Parent.DeepwoodActivityWorld).create(world)
  require(script.Parent.EpicWorldArt).create(world,scope)
  require(script.Parent.CampaignExpansionWorld).openEntrances(world,scope)

@@ -1,0 +1,110 @@
+[
+  {
+    "test": "story-fun",
+    "exitCode": 0,
+    "stdout": "STORY_FUN 1718 checks passed; progression/answers unchanged, earned callbacks and partial-save resume\n",
+    "stderr": ""
+  },
+  {
+    "test": "campaign-expansion-review",
+    "exitCode": 0,
+    "stdout": "CAMPAIGN_EXPANSION_REVIEW 3362 checks passed; 82 outcome deliveries, safe circuit choices and connector routes\n",
+    "stderr": ""
+  },
+  {
+    "test": "campaign-expansion",
+    "exitCode": 0,
+    "stdout": "CAMPAIGN_EXPANSION 7688 checks passed; 35 main / 12 side / 82 incidents / 246 new steps\n",
+    "stderr": ""
+  },
+  {
+    "test": "campaign-reorder",
+    "exitCode": 0,
+    "stdout": "CAMPAIGN_REORDER 1870 checks passed; mandatory solo final level 44\n",
+    "stderr": ""
+  },
+  {
+    "test": "deepwood-progress",
+    "exitCode": 0,
+    "stdout": "Deepwood progression: 515 checks passed\nDeepwood total: 520 checks passed\nDeepwood extended total: 570 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "checkpoint-travel",
+    "exitCode": 0,
+    "stdout": "Checkpoint travel: 1927 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "story-respawn",
+    "exitCode": 0,
+    "stdout": "Story respawn: 28 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "story-completion",
+    "exitCode": 0,
+    "stdout": "Story completion: 356 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "party-story",
+    "exitCode": 0,
+    "stdout": "Party story and final boss: 3437 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "difficulty-balance",
+    "exitCode": 0,
+    "stdout": "Difficulty balance: 2661 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "side-quest-review",
+    "exitCode": 0,
+    "stdout": "SIDE_QUEST_REVIEW 1610 checks PASS; 12 quests, 44 goals, 11 combats, 2 optional goals\nDW-Q1 | Supplies in the Marsh | 2 | 3 | Easy/replay/Hard/Insane/Hell\nDW-Q2 | The Stolen Food | 4 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q3 | Quarry Below the Falls | 5 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q4 | Remnants of the Red Battlefield | 7 | 4 | Easy/replay/Hard/Insane/Hell\nFV-Q1 | A Name in the Snow | 15 | 3 | Easy/replay\nFV-Q2 | Frostfang Supply Cave | 17 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q3 | Blue Lake Return Route | 18 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q4 | Ancient Glacier Watch | 21 | 3 | Easy/replay/Hard/Insane/Hell\nEC-Q1 | A Worker's Lost Mark | 22 | 3 | Easy/replay\nEC-Q2 | Ember Raider Nest | 24 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q3 | Volcano Shaman Altar | 25 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q4 | Caldera Titan Basin | 28 | 4 | Easy/replay/Hard/Insane/Hell\n",
+    "stderr": ""
+  },
+  {
+    "test": "lobby-side-quests",
+    "exitCode": 0,
+    "stdout": "LOBBY_SIDE_QUESTS 539 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "quest-completion-rewards",
+    "exitCode": 0,
+    "stdout": "Quest completion rewards: 1416 checks passed; 47 quests pay, 19 new awards; legacy catch-up and storage recovery PASS\n",
+    "stderr": ""
+  },
+  {
+    "test": "gold-diamond-tuning",
+    "exitCode": 0,
+    "stdout": "Gold/Diamond tuning: 1892 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "inventory",
+    "exitCode": 0,
+    "stdout": "Inventory: 271 ownership, capacity, stacking, idempotency, binding and recovery checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "late-epics-adventures",
+    "exitCode": 0,
+    "stdout": "LATE_EPICS_ADVENTURES 732 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "journal-missing-target",
+    "exitCode": 0,
+    "stdout": "Journal missing target: 13 checks passed\n",
+    "stderr": ""
+  },
+  {
+    "test": "checkpoint-map-layout",
+    "exitCode": 0,
+    "stdout": "Checkpoint map layout: 36 checks passed\n",
+    "stderr": ""
+  }
+]

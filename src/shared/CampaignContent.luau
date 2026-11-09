@@ -65,4 +65,5 @@ end
 load('CampaignStoryText').install(C)
 load('QuestCompletionRewards').install(C)
 load('CampaignExpansion').install(C)
+load('CampaignStoryBeats').install(C)
 return C

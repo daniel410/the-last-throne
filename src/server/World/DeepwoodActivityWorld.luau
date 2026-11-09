@@ -50,6 +50,7 @@ function W.create(world)
        prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.ObjectText=step.title;prompt.ActionText=a.mode=='sequence' and 'Activate rune' or a.mode=='mechanism' and 'Operate' or 'Examine';prompt.HoldDuration=.45;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.Parent=anchor
       end
      end
+     if step.circuitControls then require(script.Parent.CampaignCircuitWorld).create(world,folder,c,g,step)end
      nodes[c.id..':'..g.id..':'..step.id]={part=anchor,prompt=prompt,chapter=c,goal=g,step=step}
     end
     if a.clue then label(node.part,a.clue) end
