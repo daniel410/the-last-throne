@@ -15,6 +15,16 @@ local function blocksWalkable(model)
  for _,zone in pairs(Content.zones)do
   local c,s=zone.center,zone.size
   if low.Y<c[2]+18 and high.Y>c[2]+.5 and low.X<c[1]+s[1]/2+8 and high.X>c[1]-s[1]/2-8 and low.Z<c[3]+s[2]/2+8 and high.Z>c[3]-s[2]/2-8 then return true end
+  -- Expanded incident wings live beyond the original zone rectangle. Their
+  -- floors and approaches are equally real and cannot be filled by a cliff.
+  for _,area in ipairs(zone.expansionAreas or {})do
+   for _,rect in ipairs({area,area.connector})do
+    local ac,sz=rect.center,rect.size
+    local minY,maxY=ac[2],ac[2]
+    if rect.rampStart then minY=math.min(rect.rampStart[2],rect.rampEnd[2]);maxY=math.max(rect.rampStart[2],rect.rampEnd[2])end
+    if low.Y<maxY+18 and high.Y>minY+.5 and low.X<ac[1]+sz[1]/2+8 and high.X>ac[1]-sz[1]/2-8 and low.Z<ac[3]+sz[2]/2+8 and high.Z>ac[3]-sz[2]/2-8 then return true end
+   end
+  end
  end
  local center=(low+high)/2;local radius=Vector3.new(high.X-low.X,0,high.Z-low.Z).Magnitude/2
  for _,edge in ipairs(Access.edges)do

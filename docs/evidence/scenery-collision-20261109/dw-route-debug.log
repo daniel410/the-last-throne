@@ -1,0 +1,10 @@
+DW_ROUTE [[1452,38,-3166],[1230,38,-3100],[1210,38,-3100],[1152,38,-3100],[1127.2,38,-3147.4]]
+DW_PATH {"a":[1452,38,-3166],"label":2,"status":"Success","hit":"Workspace.Terrain","b":[1230,38,-3100]}
+DW_PATH {"a":[1230,38,-3100],"label":3,"status":"Success","b":[1210,38,-3100]}
+DW_PATH {"a":[1210,38,-3100],"label":4,"status":"NoPath","hit":"Workspace.Terrain","b":[1152,38,-3100]}
+DW_PATH {"a":[1152,38,-3100],"label":5,"status":"Success","b":[1127.2,38,-3147.4]}
+DW_PATH {"a":[1452,38,-3166],"label":"full","status":"NoPath","hit":"Workspace.DeepwoodCampaign.GroundedForest.ForestEdge_DW-S3.ForestBoundary","b":[1127.2,38,-3147.4]}
+DW_FLOOR {"at":[1452,38,-3166],"p":[1452,38.08000183105469,-3166],"hit":"Workspace.DeepwoodCampaign.TerrainBlockout.DW-S3.ForestGround"}
+DW_FLOOR {"at":[1127.2,38,-3147.4],"p":[1127.199951171875,38,-3147.39990234375],"hit":"Workspace.DeepwoodCampaign.TerrainBlockout.Epic1ExpansionFoundation.DW-Q4_exp_1_Wing"}
+DW_FLOOR {"at":[1230,38,-3100],"p":[1230,40.015625,-3100],"hit":"Workspace.Terrain"}
+DW_FLOOR {"at":[1152,38,-3100],"p":[1152,38,-3100],"hit":"Workspace.DeepwoodCampaign.TerrainBlockout.Epic1ExpansionFoundation.DW-Q4_exp_1_Walk"}

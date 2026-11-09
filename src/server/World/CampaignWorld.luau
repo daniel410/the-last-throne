@@ -19,7 +19,11 @@ function W.create(epic,world)
  -- No-argument creation is retained for offline art/QA tools only.
  if not epic then for id=1,#Content.epics do world=W.create(id,world)end;return world end
  local scope=W.scope(epic)
- if world and world.loadedEpics and world.loadedEpics[epic]then return world end
+ if world and world.loadedEpics and world.loadedEpics[epic]then
+  require(script.Parent.CampaignSceneryCollision).apply(world.folder.EpicWorldArt['EpicWorldArt_'..epic])
+  require(script.Parent.CampaignSceneryCollision).apply(world.folder.CampaignExpansion['Epic'..epic])
+  return world
+ end
  if epic==1 then
   local forest=require(script.Parent.DeepwoodWorld).create(world)
   world=forest
@@ -44,6 +48,10 @@ function W.create(epic,world)
  require(script.Parent.DeepwoodActivityWorld).create(world)
  require(script.Parent.EpicWorldArt).create(world,scope)
  require(script.Parent.CampaignExpansionWorld).openEntrances(world,scope)
+ require(script.Parent.CampaignSceneryPlacement).openGalleries(world,world.folder.CampaignExpansion['Epic'..epic])
+ require(script.Parent.CampaignSceneryCollision).apply(world.folder.EpicWorldArt['EpicWorldArt_'..epic])
+ require(script.Parent.CampaignSceneryCollision).apply(world.folder.CampaignExpansion['Epic'..epic])
+ require(script.Parent.CampaignSceneryPlacement).apply(world,world.folder.EpicWorldArt['EpicWorldArt_'..epic])
  world.loadedEpics[epic]=true
  world.folder:SetAttribute('Epic'..epic..'Ready',true)
  return world

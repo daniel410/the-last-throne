@@ -14,13 +14,15 @@ local world;local generationStart=os.clock()
 for epic=1,5 do world=require(World.CampaignWorld).create(epic,world);print('EXPANSION_NATIVE_EPIC',epic)end
 report.generationSeconds=os.clock()-generationStart
 local params=OverlapParams.new();params.FilterType=Enum.RaycastFilterType.Include;params.FilterDescendantsInstances={world.folder};params.RespectCanCollide=true
-local rays=RaycastParams.new();rays.FilterType=Enum.RaycastFilterType.Include;rays.FilterDescendantsInstances={world.terrain};rays.RespectCanCollide=true
+local rays=RaycastParams.new();rays.FilterType=Enum.RaycastFilterType.Include;rays.FilterDescendantsInstances={world.terrain,workspace.Terrain};rays.RespectCanCollide=true
+local bodyProbe=Instance.new('Part');bodyProbe.Size=Vector3.new(4,5.5,4);bodyProbe.Anchored=true;bodyProbe.CanCollide=false;bodyProbe.CanQuery=false;bodyProbe.Transparency=1;bodyProbe.Parent=workspace
 local function sample(c,g,at)
  report.samples+=1
  local y=Bounds.surface(at.X,at.Z);at=Vector3.new(at.X,y or at.Y,at.Z)
  local hit=workspace:Raycast(at+Vector3.new(0,8,0),Vector3.new(0,-24,0),rays)
  if not hit or math.abs(hit.Position.Y-at.Y)>1 then table.insert(report.blockers,{chapter=c.id,goal=g.id,kind='floor',at={at.X,at.Y,at.Z},part=hit and hit.Instance:GetFullName()})end
- local parts=workspace:GetPartBoundsInBox(CFrame.new(at+Vector3.new(0,3.5,0)),Vector3.new(4,5.5,4),params)
+ bodyProbe.CFrame=CFrame.new(at+Vector3.new(0,3.5,0))
+ local parts=workspace:GetPartsInPart(bodyProbe,params)
  for _,part in ipairs(parts)do table.insert(report.blockers,{chapter=c.id,goal=g.id,kind='body',at={at.X,at.Y,at.Z},part=part:GetFullName()})end
  check(Bounds.supported(at.X,at.Y+3,at.Z),'authority includes incident floor')
  check(Access.region(at.X,at.Z)==c.zone,'incident remains in its own story zone')
@@ -53,7 +55,8 @@ for _,c in ipairs(C.chapters)do
  task.wait()
 end
 for _,v in ipairs(world.folder:GetDescendants())do if v:IsA('BasePart')then report.parts+=1 end end
-print('EXPANSION_NATIVE_GEOMETRY '..game.HttpService:JSONEncode({samples=report.samples,parts=report.parts,blockers=report.blockers}))
+bodyProbe:Destroy()
+print('EXPANSION_NATIVE_GEOMETRY '..game.HttpService:JSONEncode({samples=report.samples,parts=report.parts,blockerCount=#report.blockers,blockers={table.unpack(report.blockers,1,math.min(80,#report.blockers))}}))
 check(#report.blockers==0,'new wings and connectors have no holes or body blockers')
 -- A genuine story actor walks Finn's new route, saves steps, and resumes after removal.
 local function finish(s,c)

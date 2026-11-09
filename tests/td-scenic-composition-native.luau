@@ -37,7 +37,8 @@ for id,z in pairs(Content.zones)do
   end
   for _,p in ipairs(m:GetDescendants())do
    if p:IsA('BasePart')then
-    check(p.Anchored and not p.CanCollide and not p.CanQuery and not p.CanTouch,'cosmetics preserve gameplay physics')
+    local solid=p:GetAttribute('CampaignScenerySolid')==true
+    check(p.Anchored and p.CanCollide==solid and p.CanQuery==solid and not p.CanTouch,'permanent solid scenery collides; foliage stays decorative')
     check(p:GetAttribute('TLTDecorative')==true,'streaming budget opt-in')
    elseif p:IsA('LuaSourceContainer')then check(false,'no executable asset content')end
   end

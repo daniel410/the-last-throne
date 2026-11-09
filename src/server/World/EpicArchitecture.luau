@@ -182,7 +182,12 @@ function A.foundry(parent,c,size,pal,index)
   end
  end
  A.arch(m,p+V(0,0,0),72,56,pal,15)
- part(m,'FurnaceInterior',V(64,44,3),p+V(0,22,-12),Color3.fromRGB(67,31,26))
+ if index==1 then
+  -- The miner rescue connector passes through this arch. Keep a real doorway
+  -- in its dark rear facade rather than a noncolliding painted wall.
+  for _,side in ipairs({-1,1})do part(m,'FurnaceInterior',V(12,44,3),p+V(side*26,22,-12),Color3.fromRGB(67,31,26))end
+  part(m,'FurnaceInteriorLintel',V(40,32,3),p+V(0,28,-12),Color3.fromRGB(67,31,26))
+ else part(m,'FurnaceInterior',V(64,44,3),p+V(0,22,-12),Color3.fromRGB(67,31,26))end
  for i=-2,2 do part(m,'FurnaceGlow',V(5,30,1),p+V(i*10,17,-9),pal.accent,Enum.Material.Neon)end
  for _,s in ipairs({-1,1})do
   local q=c+V(s*(size[1]/2+18),0,25)
@@ -306,7 +311,8 @@ function A.camp(parent,c,size,pal,snow,leftShiftZ,rightShiftZ)
   A.cabin(m,p,pal,snow)
   A.cabin(m,p+V(0,0,-88),pal,snow)
  end
- A.arch(m,c+V(0,0,-size[2]/2-20),70,41,pal,9)
+ local entry=model(m,'QuarterEntranceArch')
+ A.arch(entry,c+V(0,0,-size[2]/2-20),70,41,pal,9)
  return m
 end
 return A

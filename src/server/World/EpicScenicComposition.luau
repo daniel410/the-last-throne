@@ -1,5 +1,5 @@
 -- TD's hero / supporting masses / open foreground, adapted to RPG sightlines.
--- Uses pinned script-free TD meshes. Never moves story anchors or creates colliders.
+-- Uses pinned script-free TD meshes. Final collision is assigned by CampaignWorld.
 local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local Env=require(script.Parent.DeepwoodEnvironment)
@@ -100,6 +100,13 @@ function S.build(site,id,c,size,pal,theme,safe,ground)
  for _,candidate in ipairs({V(side*(size[1]/2-28),0,-size[2]*.30),V(-side*(size[1]/2-28),0,-size[2]*.30),V(side*(size[1]/2+58),0,-size[2]*.23),V(-side*(size[1]/2+62),0,-size[2]*.27),V(side*size[1]*.32,0,-size[2]/2-66),V(-side*size[1]*.30,0,-size[2]/2-72)})do
   hero=put(profile[2],c+candidate,profile[3],math.rad(side*18+index*11),'Hero')
   if hero then break end
+ end
+ -- New wings reserve some former landmark positions. Try the grounded corner
+ -- shoulders as well, preserving the same footprint/sightline safety checks.
+ if not hero then
+  for _,x in ipairs({-1,1})do for _,z in ipairs({-1,1})do
+   if not hero then hero=put(profile[2],c+V(x*(size[1]/2+32),0,z*(size[2]/2+24)),profile[3],math.rad(side*18+index*11),'Hero')end
+  end end
  end
  local cliff=theme=='FrozenVale'and 'SnowCliff'or theme=='EmberCaldera'and 'VolcanoCliff'or theme=='HauntedGraveyard'and 'CemeteryCliff'or 'CliffRock'
  for i=1,2 do

@@ -85,8 +85,9 @@ function S.create(scene,c,g,area)
   end
  elseif prefix=='GW'then
   -- A low lantern corridor contrasts with the broad open Deepwood relief spaces.
-  for _,x in ipairs({-width*.43,width*.43})do
-   beam(scene,'RootGallery',center+V(x,1,-depth*.42),center+V(x,5,depth*.42),2.5,pal.rock)
+  for _,x in ipairs({-width*.48,width*.48})do
+   local ranges=area.axis=='x'and {{-depth*.42,-20},{20,depth*.42}}or {{-depth*.42,depth*.42}}
+   for _,r in ipairs(ranges)do beam(scene,'RootGallery',center+V(x,1,r[1]),center+V(x,5,r[2]),2.5,pal.rock)end
   end
   model('UnreadableWebs',0,1,function(m)
    for i=-1,1 do beam(m,'HangingWeb',center+V(-width*.4,7+i*2,-depth*.42),center+V(width*.4,4-i,-depth*.4),.15,Color3.fromRGB(199,207,190),Enum.Material.Fabric)end
@@ -102,7 +103,10 @@ function S.create(scene,c,g,area)
    end
   end
  elseif prefix=='FV'then
-  for _,x in ipairs({-width*.43,width*.43})do part(scene,'IceGalleryWall',V(4,10,depth*.8),center+V(x,5,0),pal.rock,Enum.Material.Ice)end
+  for _,x in ipairs({-width*.48,width*.48})do
+   local ranges=area.axis=='x'and {{-depth*.4,-20},{20,depth*.4}}or {{-depth*.4,depth*.4}}
+   for _,r in ipairs(ranges)do part(scene,'IceGalleryWall',V(4,10,r[2]-r[1]),center+V(x,5,(r[1]+r[2])/2),pal.rock,Enum.Material.Ice)end
+  end
   if c.id=='FV-03'and g.id=='exp_2'then
    -- Shared safe footing remains; the bridge/lift assembly deploys personally.
    part(scene,'RavineWatercourse',V(width*.78,.1,22),center+V(0,.08,0),Color3.fromRGB(76,120,156),Enum.Material.Glass)

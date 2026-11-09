@@ -312,6 +312,21 @@ local function carve(world,Content,Access)
   end
   task.wait()
  end
+ -- Incident navigation bends through the connector mouth. Straight chords
+ -- between story steps miss these elbows and can leave a Terrain voxel ridge
+ -- above the real floor, disconnecting an otherwise clear-looking wing.
+ for _,zone in pairs(Content.zones)do
+  for _,area in ipairs(zone.expansionAreas or {})do
+   local center=vec(area.center)
+   terrain:FillBlock(CFrame.new(center+V(0,192,0)),V(area.size[1]+8,400,area.size[2]+8),Enum.Material.Air)
+   local points={area.entry,area.connector.rampStart,area.connector.rampEnd,area.center}
+   for i=2,#points do
+    local a,b=vec(points[i-1]),vec(points[i]);local count=math.max(1,math.ceil((b-a).Magnitude/10))
+    for n=0,count do clear(a:Lerp(b,n/count),22)end
+   end
+  end
+  task.wait()
+ end
  -- Existing optional terraces/ramps are part of the playable world too.
  local places=world.terrain:FindFirstChild('DeepwoodPlaces')
  if places then for _,part in ipairs(places:GetDescendants())do
@@ -402,6 +417,7 @@ function Art.create(world,scope)
  -- Ground against actual retained floors as well as carved Terrain, never scenery.
  local floors={workspace.Terrain};local raisedSurfaces={}
  for _,p in ipairs(world.folder:GetDescendants())do
+  if p:IsA('BasePart')and p.CanCollide and p.Name=='RavineIceWall'then table.insert(raisedSurfaces,p)end
   if p:IsA('BasePart') and p.CanCollide and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name=='Ground' or p.Name=='ForestBedrock' or p.Name=='TrailEmbankment' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_') or p.Name:match('^ConnectedPath_') or p.Name:match('^SnowTrail_') or p.Name:match('^CalderaTrail_') or p.Name:match('^LateTrail_'))then
    table.insert(floors,p)
    if p.Name=='WalkableRamp' or p.Name=='WalkableTerrace' or p.Name=='TerraceLanding'then table.insert(raisedSurfaces,p)end

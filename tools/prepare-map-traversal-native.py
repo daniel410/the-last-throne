@@ -24,6 +24,15 @@ for _,row in ipairs(audit.rows)do for _,r in ipairs(row.segments)do check(r)end 
 for _,r in pairs(audit.edges)do check(r)end
 for _,r in ipairs(audit.returnRoutes)do if r.error then pass=false end;for _,p in ipairs(r.approaches)do check(p)end end
 print('MAP_TRAVERSAL_PASS '..tostring(pass))
+local summary={pass=pass,roads=report.roads,roadSamples=report.roadSamples,anchors=report.anchors,obstacles=report.obstacleCount,floorIssues=#report.floorIssues,anchorIssues=#report.anchorIssues,paths={},pathCount=0,failures={}}
+local function countPath(r)
+ summary.pathCount+=1;summary.paths[r.pathStatus]=(summary.paths[r.pathStatus]or 0)+1
+ if r.pathStatus~='Success'and r.pathStatus~='SamePoint'then table.insert(summary.failures,{status=r.pathStatus,label=r.label,a=r.a,b=r.b})end
+end
+for _,row in ipairs(audit.rows)do for _,r in ipairs(row.segments)do countPath(r)end end
+for _,r in pairs(audit.edges)do countPath(r)end
+for _,r in ipairs(audit.returnRoutes)do for _,p in ipairs(r.approaches)do countPath(p)end end
+print('MAP_TRAVERSAL_SUMMARY '..game.HttpService:JSONEncode(summary))
 assert(pass,'map traversal regression; inspect MAP_TRAVERSAL and CAMPAIGN_ROUTES')
 '''
 code+=Path('tests/campaign-route-clearance-native.luau').read_text()

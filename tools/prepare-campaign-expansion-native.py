@@ -2,6 +2,13 @@
 from pathlib import Path
 import json
 paths='''src/client/CampaignExpansionPresentation.luau
+src/client/WorldPresentationBudget.luau
+src/server/World/CampaignSceneryCollision.luau
+src/server/World/CampaignSceneryPlacement.luau
+src/server/World/EpicEnvironmentKit.luau
+src/server/World/EpicArchitecture.luau
+src/server/World/EpicWorldArt.luau
+src/server/World/EpicScenicComposition.luau
 src/client/DawnspireHomecoming.luau
 src/client/DeepwoodAtmosphere.luau
 src/client/DeepwoodJournal.luau

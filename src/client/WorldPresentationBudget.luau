@@ -29,8 +29,10 @@ function Budget.start()
      if v:IsA('BasePart') then
       v.CastShadow=original.shadow and distance<100
       local limit=math.clamp(tonumber(v:GetAttribute('TLTSceneryDistance')) or sceneryLimit,48,900)
-      v.LocalTransparencyModifier=distance>limit and 1 or 0
-      if distance>limit then hidden+=1 end
+      -- A large wall/trunk must remain visible wherever it still blocks a hero.
+      local hide=not v.CanCollide and distance>limit
+      v.LocalTransparencyModifier=hide and 1 or 0
+      if hide then hidden+=1 end
      else v.Enabled=original.enabled and distance<100;if not v.Enabled then disabled+=1 end end
     end
    else tracked[v]=nil end
