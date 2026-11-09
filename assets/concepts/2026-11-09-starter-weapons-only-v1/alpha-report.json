@@ -1,0 +1,98 @@
+[
+  {
+    "file": "png/starter_knight_sword.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 90.0,
+    "semiPct": 10.0,
+    "nonzeroBounds": [
+      73,
+      38,
+      895,
+      1479
+    ],
+    "opaqueBounds": [
+      337,
+      47,
+      687,
+      1473
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/starter_elf_bow.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 91.63,
+    "semiPct": 8.37,
+    "nonzeroBounds": [
+      49,
+      59,
+      993,
+      1476
+    ],
+    "opaqueBounds": [
+      335,
+      62,
+      627,
+      1473
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/starter_dwarf_axe.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 82.1,
+    "semiPct": 17.9,
+    "nonzeroBounds": [
+      0,
+      74,
+      983,
+      1511
+    ],
+    "opaqueBounds": [
+      289,
+      80,
+      793,
+      1455
+    ],
+    "edgeNonzero": 6
+  },
+  {
+    "file": "png/starter_mage_staff.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 92.6,
+    "semiPct": 7.4,
+    "nonzeroBounds": [
+      0,
+      0,
+      951,
+      1503
+    ],
+    "opaqueBounds": [
+      437,
+      64,
+      585,
+      1474
+    ],
+    "edgeNonzero": 1
+  }
+]

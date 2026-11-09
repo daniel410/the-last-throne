@@ -1,0 +1,52 @@
+{
+  "created": "2026-11-09",
+  "scope": "Starter weapons only: sword, bow, axe, staff; no shield",
+  "selection": "Current InventoryRules starter grant is classId + _weapon_traveler. Latest basic weapon selection makes Traveler identical to Tempered.",
+  "selectionSource": "assets/concepts/2026-11-09-basic-weapon-cutouts-v1/README.md",
+  "records": [
+    {
+      "id": "starter_knight_sword",
+      "name": "Starter Sword",
+      "classId": "knight",
+      "category": "sword",
+      "definitionId": "knight_weapon_traveler",
+      "file": "png/starter_knight_sword.png",
+      "source": "assets/concepts/2026-11-09-basic-weapon-cutouts-v1/knight_sword_traveler_common.png",
+      "sha256": "b6a19245babb71456b39bc92812372b534539f0c37250c2a9cce528303b07860",
+      "method": "Exact byte reuse of latest selected Traveler/Tempered source; no image edits"
+    },
+    {
+      "id": "starter_elf_bow",
+      "name": "Starter Bow",
+      "classId": "elf",
+      "category": "bow",
+      "definitionId": "elf_weapon_traveler",
+      "file": "png/starter_elf_bow.png",
+      "source": "assets/concepts/2026-11-09-basic-weapon-cutouts-v1/elf_bow_traveler_common.png",
+      "sha256": "f97c3b04a5f4222bf205332223b897098ec3cf9a634f2fe759c2f8d2fb602144",
+      "method": "Exact byte reuse of latest selected Traveler/Tempered source; no image edits"
+    },
+    {
+      "id": "starter_dwarf_axe",
+      "name": "Starter Axe",
+      "classId": "dwarf",
+      "category": "axe",
+      "definitionId": "dwarf_weapon_traveler",
+      "file": "png/starter_dwarf_axe.png",
+      "source": "assets/concepts/2026-11-09-basic-weapon-cutouts-v1/dwarf_axe_traveler_common.png",
+      "sha256": "531f53232e02a98978c9888f9dd899d772b57e339d4fe1cb712732ea91b927c0",
+      "method": "Exact byte reuse of latest selected Traveler/Tempered source; no image edits"
+    },
+    {
+      "id": "starter_mage_staff",
+      "name": "Starter Staff",
+      "classId": "mage",
+      "category": "staff",
+      "definitionId": "mage_weapon_traveler",
+      "file": "png/starter_mage_staff.png",
+      "source": "assets/concepts/2026-11-09-basic-weapon-cutouts-v1/mage_staff_traveler_common.png",
+      "sha256": "0944bc3d17e756e21c89cd0a1a756186108bdeb5c9a1a4ebbdfdefb8bb6f8ef6",
+      "method": "Exact byte reuse of latest selected Traveler/Tempered source; no image edits"
+    }
+  ]
+}
