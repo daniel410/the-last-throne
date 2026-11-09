@@ -50,3 +50,11 @@ Tessa의 기존 !/? 추천·발견/수락·대리 보고·보상/영수증 경�
 소스 `d567c65fbe601c1636961e70ab03231bb1dc7cd0`를 푸시하고0.88.0 단일 빌드를 성공했다. [초기 build.json](build.json)의 `builds/0.88.0/TheLastThrone-0.88.0.rbxlx`, 15,982,385bytes·SHA256 `156bc0c767cf6b4bc811018e5313a2f08eb04e68f422fb83eed1fd45365cab6c`를 확인했다. 고정 파일에서 초기9,189검사 PASS·단일 빌드 역할10/도착 로딩192/프로젝트·별칭 검사 PASS. [초기 native.log](native.log)·[결과](native-result.json).
 
 이후 확정 저널이 다른 파티원에 의해 먼저 바뀌는 추가 조건을 검사하니0.88.0에서 지난 선택창이 남았다. [수정 전 재현](stale-choice-before.log)의 `confirmed progress from an ally closes the previous choice` 검사는 의도대로 실패했다. 진행 자체와 지급은 중복되지 않으며 선택창 상태의 문제다. 이를0.88.1로 수정해 현재 단계와 다른 창을 닫고, 이미 확정된 경우에는 다음 목표를 안내한다. 영웅 변경/데이터 대기와 확정 진행을 구분하며, 새 회귀의 열린 상태·단계 변경·완료 뒤 닫힘을 검증한다.0.88.0 산출물은 덮어쓰지 않는다. 최종 사용 파일은0.88.1이다.
+
+## 최종0.88.1 마감
+
+소스 `532a748c63dd1bfd664bb70135fc8b7f54cf9f0b`를 origin/main에 푸시하고0.88.1 단일 빌드 성공. 최종 산출물은 `builds/0.88.1/TheLastThrone-0.88.1.rbxlx`, 15,983,130bytes·SHA256 `59d54142b43af5dbd56452c82006f2af7e95578b76f047553498d4957bbd090b`다. 파일 해시를 재확인했다. [최종 build-0.88.1.json](build-0.88.1.json)·[native-0.88.1.log](native-0.88.1.log)·[기계 판독 결과](native-result-0.88.1.json).
+
+고정 파일의40모듈 Source 일치/전체 Luau 문법 뒤 **9,192검사 PASS·동선3,974지점 충돌0·전체48,447 BasePart**. 이전 선택창의 열린 상태→다른 확정 진행 뒤 닫힘→사건 완료 뒤 닫힘을 추가로 통과했다. `lua tests/story-fun.spec.lua`1,722 PASS와 현재 저널 표적13 PASS도 재확인했다.18종 회귀 결과는 위 regressions.json에 보존했다. `python3 tests/single-build.spec.py --artifact builds/0.88.1/TheLastThrone-0.88.1.rbxlx` 역할10/도착 로딩192·프로젝트/별칭·실제 파일 검사 PASS.
+
+사용자 Studio 적용/Roblox 게시/live DataStore/릴리스 태그 변경 없음. 기존 사용자 Blender·삭제 컨셉·미추적 증거는 작업 커밋에 넣지 않고 보존했다. 실제 플레이 재미·최종 미술·입력·실계정/기기/멀티플레이 수용은 후속이다.
