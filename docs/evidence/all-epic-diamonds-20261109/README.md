@@ -21,3 +21,10 @@
 ## 한계와 인계
 
 실제 계정/클라이언트·기기·협동·사용자 경제 수용은 미검증이다. QA는 게시 테스트 환경에서 네 지역 초회3개/기존 완료 복구/다른 영웅 중복0/로그인 재시도/상점 소비 후 잔액 보존을 확인한다. 확장 영수증은 이전 DW전용 검증 코드가 읽지 못하므로 실제 배포 때 로비·배틀을 같은 버전으로 갱신하고 구 서버를 교체해야 한다. 현재 Studio와 Place 게시·릴리스 태그는 변경하지 않는다. 부모 티켓 In Progress 유지.
+
+
+## 고정 빌드/원격 마감
+
+소스 `c2c1136abb4c81014e3355701ca265e22cdda603`를 origin/main에 푸시한 뒤 `python3 tools/build-game.py --source HEAD --record docs/evidence/all-epic-diamonds-20261109/build.json`으로 **0.89.0 빌드 성공**. [빌드 기록](build.json), 산출물 `builds/0.89.0/TheLastThrone-0.89.0.rbxlx` SHA256 `411a4a7420dd30e68e9649c386f39e0b6f7f4f1ad8e0f758f061af54a3f298f0` 재확인. 신규 LFS 자산 없음, 빌드 참조 LFS 입력 없음.
+
+`python3 tools/prepare-all-epic-diamonds-native.py` → `run-in-roblox --place builds/0.89.0/TheLastThrone-0.89.0.rbxlx --script /tmp/tlt-all-epic-diamonds-native.luau`: **4,436 PASS / 종료0**, [엔진 로그](native.log). 변경5개 모듈의 고정 빌드 원문 일치 확인·격리 계정 모형 검증이며 라이브 DataStore/게시 클라이언트 검증은 아니다. 소스 푸시 후 `git ls-remote origin refs/heads/main`으로 해당 커밋 일치 확인. 최종 증거는 후속 커밋으로 동일 main에 푸시한다. 실제 게시/릴리스 태그 없음.
