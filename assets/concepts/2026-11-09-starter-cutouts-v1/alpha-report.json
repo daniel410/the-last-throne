@@ -1,0 +1,502 @@
+[
+  {
+    "file": "png/traveler_sword.png",
+    "sha256": "75f153e719e70f4b622aa584d3f95a941bb4fd1662afb0dff63db0ed096daafa",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 91.07,
+    "semiPct": 8.93,
+    "nonzeroBounds": [
+      0,
+      19,
+      1003,
+      1503
+    ],
+    "opaqueBounds": [
+      316,
+      64,
+      711,
+      1469
+    ],
+    "edgeNonzero": 7
+  },
+  {
+    "file": "png/tempered_sword.png",
+    "sha256": "94017269d8c450f4d321c8be8936d53206b49787b9aef314ab8e424a943627be",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 90.89,
+    "semiPct": 9.11,
+    "nonzeroBounds": [
+      33,
+      21,
+      1001,
+      1519
+    ],
+    "opaqueBounds": [
+      318,
+      65,
+      704,
+      1479
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/veteran_sword.png",
+    "sha256": "74bd3ea8e20925fcf647eec2dda030e8ef4e8838aeda56409897dacd6944cd87",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 90.52,
+    "semiPct": 9.48,
+    "nonzeroBounds": [
+      81,
+      49,
+      907,
+      1495
+    ],
+    "opaqueBounds": [
+      312,
+      57,
+      710,
+      1486
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/sentinel_sword.png",
+    "sha256": "c9a8ebfc79b00f52945d7af2ce02398ee141553c2d8a9895cd98e448633be87d",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 90.53,
+    "semiPct": 9.47,
+    "nonzeroBounds": [
+      49,
+      66,
+      969,
+      1511
+    ],
+    "opaqueBounds": [
+      309,
+      70,
+      716,
+      1471
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/traveler_bow.png",
+    "sha256": "92796a6d9c919706a9c18c072bc35c4f1b46f79e3467d9f7c567379d5eac1c12",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 89.98,
+    "semiPct": 10.02,
+    "nonzeroBounds": [
+      0,
+      31,
+      1001,
+      1489
+    ],
+    "opaqueBounds": [
+      324,
+      52,
+      659,
+      1486
+    ],
+    "edgeNonzero": 1
+  },
+  {
+    "file": "png/tempered_bow.png",
+    "sha256": "a6012f5de4a105abbf242a977c138cab324f68946e4abb354c0ac0db4c063bf8",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 89.25,
+    "semiPct": 10.75,
+    "nonzeroBounds": [
+      49,
+      32,
+      993,
+      1497
+    ],
+    "opaqueBounds": [
+      309,
+      38,
+      724,
+      1492
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/veteran_bow.png",
+    "sha256": "4afed46570ea4a5be7325d3e9daf5cdc09eca0b341232f2a9a56856790e70200",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 88.74,
+    "semiPct": 11.26,
+    "nonzeroBounds": [
+      89,
+      29,
+      979,
+      1503
+    ],
+    "opaqueBounds": [
+      314,
+      47,
+      715,
+      1471
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/sentinel_bow.png",
+    "sha256": "dfb2de3a35af28325f2fa5b76f786c899857ef26fcd3c4265af7a11bc96c6017",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 88.02,
+    "semiPct": 11.98,
+    "nonzeroBounds": [
+      73,
+      31,
+      1001,
+      1490
+    ],
+    "opaqueBounds": [
+      318,
+      38,
+      710,
+      1486
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/traveler_axe.png",
+    "sha256": "f0787ff4c62acb7075f509d9d0dbd02279a2852c73d5c602fe3dbe2cdda12339",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 82.87,
+    "semiPct": 17.13,
+    "nonzeroBounds": [
+      0,
+      48,
+      975,
+      1509
+    ],
+    "opaqueBounds": [
+      321,
+      53,
+      761,
+      1502
+    ],
+    "edgeNonzero": 8
+  },
+  {
+    "file": "png/tempered_axe.png",
+    "sha256": "7cf154b2d8f440b55dcbfc1c8da73fbf61614abd5e984c5e84633cccafd906a4",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 82.82,
+    "semiPct": 17.18,
+    "nonzeroBounds": [
+      57,
+      29,
+      1003,
+      1489
+    ],
+    "opaqueBounds": [
+      276,
+      75,
+      749,
+      1465
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/veteran_axe_metal_shaft.png",
+    "sha256": "0ea5238323b2654ef7b24de916cdac36e8cfb411bf4a1ad753ab9a06985abe96",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 81.68,
+    "semiPct": 18.32,
+    "nonzeroBounds": [
+      25,
+      19,
+      1001,
+      1500
+    ],
+    "opaqueBounds": [
+      289,
+      93,
+      789,
+      1460
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/sentinel_axe_metal_shaft.png",
+    "sha256": "c71f8afd8b32c21cebcb1b0560005812cba452ca572fb34240e7bc36836a0d7e",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 79.53,
+    "semiPct": 20.47,
+    "nonzeroBounds": [
+      31,
+      29,
+      993,
+      1498
+    ],
+    "opaqueBounds": [
+      257,
+      68,
+      801,
+      1495
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/traveler_staff.png",
+    "sha256": "a6bcacc1d10c72bd965d42f793cc2d22c7869cbadf710cdbae5ee894c9a7a9a0",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 93.45,
+    "semiPct": 6.55,
+    "nonzeroBounds": [
+      41,
+      47,
+      987,
+      1511
+    ],
+    "opaqueBounds": [
+      411,
+      72,
+      622,
+      1471
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/tempered_staff.png",
+    "sha256": "527ba2a892f9860c4e0ba8281469385ab24bcb0b37ef7f880599916be4c8e6d5",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 93.28,
+    "semiPct": 6.72,
+    "nonzeroBounds": [
+      91,
+      39,
+      985,
+      1496
+    ],
+    "opaqueBounds": [
+      401,
+      89,
+      622,
+      1489
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/veteran_staff.png",
+    "sha256": "0504a6386afd35105763dbc530663ac4f5b7947df0ec8cd68c9378708696d337",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 92.25,
+    "semiPct": 7.75,
+    "nonzeroBounds": [
+      89,
+      60,
+      993,
+      1500
+    ],
+    "opaqueBounds": [
+      378,
+      64,
+      646,
+      1486
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/sentinel_staff.png",
+    "sha256": "8546d213d6451c1a0ba2fd1c1821ad290e5659b50056859758b7015bff07ee26",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 91.66,
+    "semiPct": 8.34,
+    "nonzeroBounds": [
+      49,
+      42,
+      977,
+      1460
+    ],
+    "opaqueBounds": [
+      386,
+      47,
+      638,
+      1452
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/traveler_shield.png",
+    "sha256": "8d1c2bfe3d9cc7bcd0ceecbead306933d02d2217771a606284fe595d1088f3ea",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 51.9,
+    "semiPct": 48.1,
+    "nonzeroBounds": [
+      77,
+      84,
+      943,
+      1455
+    ],
+    "opaqueBounds": [
+      82,
+      143,
+      938,
+      1376
+    ],
+    "edgeNonzero": 0
+  },
+  {
+    "file": "png/tempered_shield.png",
+    "sha256": "da4c39e1604446163d496118d57e1f0fdd20fb8fd4c7f5c9932ec8bd106b683e",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 54.06,
+    "semiPct": 45.94,
+    "nonzeroBounds": [
+      39,
+      19,
+      973,
+      1535
+    ],
+    "opaqueBounds": [
+      87,
+      153,
+      935,
+      1359
+    ],
+    "edgeNonzero": 1
+  },
+  {
+    "file": "png/veteran_shield.png",
+    "sha256": "1e656b00ac9b3aa679c44c3d721a50b9ea1a9218cc209d9077780f402a444fb6",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 51.71,
+    "semiPct": 48.29,
+    "nonzeroBounds": [
+      0,
+      7,
+      1007,
+      1535
+    ],
+    "opaqueBounds": [
+      84,
+      126,
+      935,
+      1367
+    ],
+    "edgeNonzero": 61
+  },
+  {
+    "file": "png/sentinel_shield.png",
+    "sha256": "e3bc0abe4b3a61737132b7e0d2245ad629d60c409758703a3b5f2e7e246a6d51",
+    "size": [
+      1024,
+      1536
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 254,
+    "transparentPct": 55.34,
+    "semiPct": 44.66,
+    "nonzeroBounds": [
+      94,
+      40,
+      927,
+      1443
+    ],
+    "opaqueBounds": [
+      103,
+      162,
+      920,
+      1360
+    ],
+    "edgeNonzero": 0
+  }
+]
