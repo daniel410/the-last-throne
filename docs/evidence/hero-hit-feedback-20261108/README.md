@@ -56,3 +56,16 @@ TLT Place70829337938054 Edit의 기존4소스를 원문 정확 비교한 뒤 새
 QA/DES 후속은 실제 PC/터치/패드·R15 체형·1~4인+AI1, 지연 네트워크, 좁은 교량/경사와 모든 몬스터 크기, 청취/반복 피로·무게감 수용이다. 본인 정지의 강도·65ms 강타와 복귀 속도가 자연스러운지는 사용자 플레이로 판정해야 한다. 지연/공속에 따른 생략률과 밀기 중 추격 복귀·실제 프레임 비용도 측정한다. 부모 티켓 완료로 변경하지 않는다.
 
 복구는 이 작업6런타임 파일과 추가 메타데이터를 직전0.86.5 상태로 되돌린다. 두 새 모듈은 참조 제거 후 삭제한다. 공격 템포 변경·기존 소리 복구·사용자 자산은 별도 작업이므로 유지한다. 고정 소스/산출물 해시와 재검증 기록은 빌드 마감 뒤 아래에 남긴다.
+
+## 고정 빌드·마감
+
+소스 커밋은 `dc01795eee8ea0c0807939d77c88b97cffefb9a6`이다. `python3 tools/build-game.py --source dc01795e --record docs/evidence/hero-hit-feedback-20261108/build.json`으로 단일 빌드 `builds/0.87.0/TheLastThrone-0.87.0.rbxlx`에 성공했다. SHA256은 `a24241f0eaff2840380bcff7de8caa950283e0389fe508bc3c6f32995544639f`, 크기는15,951,617bytes다. [빌드/LFS 입력 검증](build.json).
+
+동일 산출물에 아래 검사를 실행해 **4묶음·2,685검사 재통과**했다. [정본 결과/8소스 원문 일치](pinned-results.json)·[원시 로그](pinned-native.log)·[입력 해시](pinned-inputs.json). 새6모듈과 기존 템포 Config/AdvancedMotion의 빌드 원문이 고정 커밋과 일치하는지도 확인했다.
+
+```sh
+python3 tools/prepare-hero-feedback-tests.py /tmp/tlt-hero-feedback-pinned --source dc01795e
+run-in-roblox --place builds/0.87.0/TheLastThrone-0.87.0.rbxlx --script /tmp/tlt-hero-feedback-pinned/probe.luau
+```
+
+소스 커밋의 origin/main 푸시 성공을 확인했다. 새 LFS 자산은 없으며 빌드 도구의 LFS 입력 검사 결과는 build.json에 기록했다. 일반 빌드로 Roblox 게시/릴리스 태그는 수행하지 않았다.

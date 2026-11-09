@@ -1,0 +1,279 @@
+{
+  "version": "0.87.0",
+  "sourceCommit": "dc01795eee8ea0c0807939d77c88b97cffefb9a6",
+  "buildSha256": "a24241f0eaff2840380bcff7de8caa950283e0389fe508bc3c6f32995544639f",
+  "checks": 2685,
+  "reports": [
+    {
+      "kind": "HERO_HIT_FEEDBACK_NATIVE",
+      "pass": true,
+      "checks": 1667
+    },
+    {
+      "kind": "COMBAT_AUDIO_NATIVE",
+      "assets": [
+        {
+          "loaded": true,
+          "id": "rbxassetid://9125959472",
+          "length": 1.5328333333333333,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9118598279",
+          "length": 0.37525,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9125648149",
+          "length": 0.7233125,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9113852810",
+          "length": 2.181395833333333,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9119744718",
+          "length": 0.39995833333333336,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9119072660",
+          "length": 0.7398958333333333,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://7258329846",
+          "length": 0.422312925170068,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9116395089",
+          "length": 2.4622083333333333,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9125703168",
+          "length": 0.7544166666666666,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9114855626",
+          "length": 1.280875,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9114277757",
+          "length": 0.9707708333333334,
+          "status": "Success"
+        },
+        {
+          "loaded": true,
+          "id": "rbxassetid://9117988736",
+          "length": 0.6475833333333333,
+          "status": "Success"
+        }
+      ],
+      "success": true,
+      "checks": 824,
+      "published": false,
+      "skills": 128,
+      "pulses": 199
+    },
+    {
+      "coverage": "Native presentation instances and cleanup; no real player, RemoteEvent transport, visual or audible acceptance",
+      "checks": 102,
+      "samples": [
+        {
+          "speed": 1.350000023841858,
+          "class": "knight",
+          "sound": "rbxasset://sounds/action_jump_land.mp3"
+        },
+        {
+          "speed": 0.9122645258903503,
+          "class": "dwarf",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.8875744938850403,
+          "class": "mage",
+          "sound": "rbxassetid://9118598279"
+        },
+        {
+          "speed": 0.9154734015464783,
+          "class": "elf",
+          "sound": "rbxassetid://9118598279"
+        }
+      ],
+      "kind": "K0_HIT_EFFECTS_NATIVE",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "coverage": "Actual server service/callback code, identity mocks, native rig/physics, synthetic clock; no transport, real player or client animation",
+      "checks": 92,
+      "pass": true,
+      "kind": "K0_BASIC_ATTACK_NATIVE",
+      "cases": [
+        {
+          "id": "branch-boss-control-immunity-retains-damage",
+          "pass": true,
+          "checks": 2
+        },
+        {
+          "id": "dwarf-reach-1-targeted-false",
+          "pass": true,
+          "checks": 3
+        },
+        {
+          "id": "dwarf-reach-1-targeted-true",
+          "pass": true,
+          "checks": 3
+        },
+        {
+          "id": "ordinary-windup-interrupt-removes-queued-damage",
+          "pass": true,
+          "checks": 11
+        },
+        {
+          "id": "ordinary-hit-respects-committed-attacks-and-bosses",
+          "pass": true,
+          "checks": 6
+        },
+        {
+          "id": "fully-absorbed-hit-does-not-interrupt-hero",
+          "pass": true,
+          "checks": 3
+        },
+        {
+          "id": "confirmed-hit-feedback-only-for-actual-health-loss",
+          "pass": true,
+          "checks": 7
+        },
+        {
+          "id": "confirmed-hit-includes-server-skill-identity",
+          "pass": true,
+          "checks": 2
+        },
+        {
+          "id": "miss-and-forcefield-do-not-broadcast-hit-feedback",
+          "pass": true,
+          "checks": 3
+        },
+        {
+          "id": "skills-resolve-at-their-own-hit-window",
+          "pass": true,
+          "checks": 13
+        },
+        {
+          "id": "rapid-fire-stops-on-interruption-and-does-not-backfill-stale-shots",
+          "pass": true,
+          "checks": 2
+        },
+        {
+          "id": "dwarf-overhead-smash-is-a-single-hit",
+          "pass": true,
+          "checks": 3
+        },
+        {
+          "id": "dwarf-ground-slam-hits-around-player",
+          "pass": true,
+          "checks": 3
+        },
+        {
+          "id": "dwarf-impact-matches-downstroke",
+          "pass": true,
+          "checks": 4
+        },
+        {
+          "id": "dwarf-melee-hit-deduplicate-and-buffer",
+          "pass": true,
+          "checks": 10
+        },
+        {
+          "id": "dwarf-range-and-wall",
+          "pass": true,
+          "checks": 3
+        },
+        {
+          "id": "dwarf-missed-active-window",
+          "pass": true,
+          "checks": 2
+        },
+        {
+          "id": "dwarf-common-guard",
+          "pass": true,
+          "checks": 2
+        },
+        {
+          "id": "mage-melee-hit-deduplicate-and-buffer",
+          "pass": true,
+          "checks": 10
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "artifactSources": [
+    {
+      "file": "src/client/K0HitStop.luau",
+      "instance": "StarterPlayer.StarterPlayerScripts.Client.K0HitStop",
+      "matchesCommittedSource": true,
+      "sha256": "0bcdab2103d43bd07f35edfcf54424f713520ecce5d0180e81438527fea965ad"
+    },
+    {
+      "file": "src/client/K0CombatAudio.luau",
+      "instance": "StarterPlayer.StarterPlayerScripts.Client.K0CombatAudio",
+      "matchesCommittedSource": true,
+      "sha256": "a0fc88cd9e4757ad058870f5b14a2125acdd3c61b01ccd1215fd6ea0a167b848"
+    },
+    {
+      "file": "src/client/K0HitEffects.luau",
+      "instance": "StarterPlayer.StarterPlayerScripts.Client.K0HitEffects",
+      "matchesCommittedSource": true,
+      "sha256": "f6ce07299f3d9a6783f6c93d24d20dffbef35f710c0ff01722967699ddd96ac8"
+    },
+    {
+      "file": "src/client/K0SwordVisual.luau",
+      "instance": "StarterPlayer.StarterPlayerScripts.Client.K0SwordVisual",
+      "matchesCommittedSource": true,
+      "sha256": "344c888387eebf47bac9c60ddc0b129f378cf9f2218adbaacb0ca1ad2acb3bb3"
+    },
+    {
+      "file": "src/client/AdvancedSkillMotion.luau",
+      "instance": "StarterPlayer.StarterPlayerScripts.Client.AdvancedSkillMotion",
+      "matchesCommittedSource": true,
+      "sha256": "ef0ed29f53973d407c152c5eebd18d1be5767245eba089dfa6706b5c53ddbcfc"
+    },
+    {
+      "file": "src/shared/K0Config.luau",
+      "instance": "ReplicatedStorage.Shared.K0Config",
+      "matchesCommittedSource": true,
+      "sha256": "0655f09becafba32ac0d387db536f59883725a72a2f70ee409d93c5edb24b243"
+    },
+    {
+      "file": "src/server/Combat/EnemyKnockback.luau",
+      "instance": "ServerScriptService.Server.Combat.EnemyKnockback",
+      "matchesCommittedSource": true,
+      "sha256": "b7b7f2ebd247ace79fb325635c49cb97ebffeebd108040b44995e8c403c2f752"
+    },
+    {
+      "file": "src/server/Combat/CombatService.luau",
+      "instance": "ServerScriptService.Server.Combat.CombatService",
+      "matchesCommittedSource": true,
+      "sha256": "62381a6c6a35a8f1aabd8c666dcc7053c7d4eda52559d1099d1b301a5f18ed44"
+    }
+  ],
+  "published": false
+}
