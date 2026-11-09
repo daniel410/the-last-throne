@@ -1,0 +1,13 @@
+Copper DEX and secondary gear: 130 checks passed
+Equipment families: 458 checks passed
+Starter gear balance: 206 checks passed
+Equipment impact: 52 checks passed
+Flat equipment power: 110 checks passed
+Deleted equipment: 171 checks passed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:350: native Humanoid speed includes ring
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:350
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

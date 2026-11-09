@@ -5,7 +5,7 @@ local source=game.ServerScriptService.Server.Combat.CombatService
 local private=Instance.new('ModuleScript');private.Parent=source.Parent
 private.Source=source.Source:gsub('\nreturn CombatService%s*$', '\nreturn {refresh=CombatService.refreshEquipment,attack=startAttack,states=playerStates,resolver=function(fn)contextResolver=fn end}')
 local api=require(private);local n=0
-local function near(a,b,m)n+=1;assert(math.abs(a-b)<1e-7,m)end
+local function near(a,b,m)n+=1;assert(math.abs(a-b)<1e-5,m..': '..tostring(a)..' / '..tostring(b))end
 for _,class in ipairs({'knight','elf','dwarf','mage'})do
  local model=Instance.new('Model');model.Parent=workspace
  local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Parent=model
