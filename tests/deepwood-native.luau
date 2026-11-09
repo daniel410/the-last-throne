@@ -79,7 +79,7 @@ local ok,err=xpcall(function()
   local spawn=world.spawns[id];check(spawn and spawn.Enabled and spawn.Neutral,id..' safe checkpoint')
  end
  check(workspace.StreamingEnabled,'streaming configuration applied')
- check(game:GetService('StarterPlayer').CameraMaxZoomDistance==18,'bounded camera configured')
+ check(game:GetService('StarterPlayer').CameraMaxZoomDistance==32,'bounded camera configured')
  check(Content.runtimeScale==2.2,'world lengths expanded 2.2 times')
  local count=0
  for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do

@@ -113,10 +113,10 @@ local ok,err=xpcall(function()
  check(not world.terrain:FindFirstChild('BridgeParapet'),'reused Studio scene drops rejected parapets')
  check(world.folder.GroundedForest.PersistentGround.TrailSupport_7.Size.X==96,'reused Studio scene upgrades the grass verge')
  local camera=require(client.AdventureCamera);local focus=Vector3.new(20000,1000,20000)
- for _,distance in ipairs({6,18,22,60}) do for _,y in ipairs({-100,-10,0,10,100}) do for n=1,8 do
+ for _,distance in ipairs({6,18,22,32,60}) do for _,y in ipairs({-100,-10,0,10,100}) do for n=1,8 do
   local a=n*math.pi/4;local cf=camera.constrain(focus,focus+Vector3.new(math.cos(a)*distance,y,math.sin(a)*distance),{})
   local d=cf.Position-focus;local pitch=math.asin(d.Unit.Y)
-  check(d.Magnitude<=22.001,'camera never zooms beyond its contract')
+  check(d.Magnitude<=32.001,'camera never zooms beyond its contract')
   check(pitch>=camera.minPitch-.001 and pitch<=camera.maxPitch+.001,'orbit stays above ground and below overhead limit')
  end end end
  local wall=Instance.new('Part');wall.Anchored=true;wall.Size=Vector3.new(20,20,1);wall.Position=focus+Vector3.new(0,4,6);wall.Parent=fixture

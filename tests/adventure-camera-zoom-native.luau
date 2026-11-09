@@ -5,12 +5,12 @@ local report={kind='ADVENTURE_CAMERA_ZOOM_NATIVE',checks=0,failures={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
 local fixture=Instance.new('Folder');fixture.Name='CameraZoomQA';fixture.Parent=workspace
 local ok,err=xpcall(function()
- check(Camera.maximum('Tutorial')==22,'battle zoom extends to 22 studs')
- for _,phase in ipairs({'Lobby','LoadingLobby','ReturningLobby','Respawning'})do check(Camera.maximum(phase)==22,phase..' uses the expanded lobby zoom limit')end
+ check(Camera.maximum('Tutorial')==32,'battle zoom extends to 32 studs')
+ for _,phase in ipairs({'Lobby','LoadingLobby','ReturningLobby','Respawning'})do check(Camera.maximum(phase)==32,phase..' uses the expanded lobby zoom limit')end
  check(Camera.min==6,'minimum zoom remains unchanged')
  local focus=Vector3.new(20000,1000,20000)
  local old=Camera.constrain(focus,focus+Vector3.new(0,10,40),{})
- check(math.abs((old.Position-focus).Magnitude-22)<.01,'unobstructed view reaches the new limit')
+ check(math.abs((old.Position-focus).Magnitude-32)<.01,'unobstructed view reaches the new limit')
  local near=Camera.constrain(focus,focus+Vector3.new(0,4,10),{})
  check((near.Position-focus).Magnitude<18,'closer zoom remains available')
  local wall=Instance.new('Part');wall.Anchored=true;wall.Size=Vector3.new(40,40,1);wall.Position=focus+Vector3.new(0,5,8);wall.Parent=fixture

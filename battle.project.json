@@ -80,7 +80,7 @@
       },
       "$properties": {
         "CameraMinZoomDistance": 6,
-        "CameraMaxZoomDistance": 18
+        "CameraMaxZoomDistance": 32
       }
     },
     "Workspace": {
