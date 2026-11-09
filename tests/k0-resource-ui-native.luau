@@ -1,5 +1,5 @@
 -- Isolated Studio GUI fixture using the actual HUD and lobby modules. Only
--- LocalPlayer is replaced with a PlayerGui double; rendering/input is not tested.
+-- LocalPlayer and the lobby inventory subscription use local doubles; rendering/input is not tested.
 local Players = game:GetService("Players")
 local StarterPlayer = game:GetService("StarterPlayer")
 local HttpService = game:GetService("HttpService")
@@ -22,15 +22,21 @@ local function check(condition, message)
 end
 local function copyModule(name, mobileViewport)
 	local original = assert(client:FindFirstChild(name))
-	local replacement = [[local Players = { LocalPlayer = { WaitForChild = function(_, name)
-  assert(name == "PlayerGui"); return script.FixturePlayerGui.Value
+	local replacement = [[local fixturePlayerGui=script.FixturePlayerGui.Value
+local Players = { LocalPlayer = { WaitForChild = function(_, name)
+  assert(name == "PlayerGui"); return fixturePlayerGui
 end,
- GetAttribute=function(_,name) return script.FixturePlayerGui.Value:GetAttribute(name) end,
- SetAttribute=function(_,name,value) script.FixturePlayerGui.Value:SetAttribute(name,value) end,
- GetAttributeChangedSignal=function(_,name) return script.FixturePlayerGui.Value:GetAttributeChangedSignal(name) end,
+ GetAttribute=function(_,name) return fixturePlayerGui:GetAttribute(name) end,
+ SetAttribute=function(_,name,value) fixturePlayerGui:SetAttribute(name,value) end,
+ GetAttributeChangedSignal=function(_,name) return fixturePlayerGui:GetAttributeChangedSignal(name) end,
 } }]]
 	local source, count = original.Source:gsub('local Players = game:GetService%("Players"%)', function() return replacement end)
 	assert(count == 1, name .. " LocalPlayer binding changed")
+	if name=="HeroLobbyGui" then
+  local remoteCount
+  source,remoteCount=source:gsub('local inventoryRemote=ReplicatedStorage:WaitForChild%("Remotes"%):WaitForChild%("InventoryState"%)', 'local inventoryRemote={OnClientEvent={Connect=function()return {Disconnect=function()end}end}}')
+  assert(remoteCount==1,'lobby inventory subscription binding changed')
+ end
 	if mobileViewport then
 		source=source:gsub('local UserInputService = game:GetService%("UserInputService"%)','local UserInputService = {TouchEnabled=true}')
 		source=source:gsub('local viewport = root.AbsoluteSize',string.format('local viewport = Vector2.new(%d,%d)',mobileViewport.X,mobileViewport.Y))
@@ -106,7 +112,13 @@ local ok, failure = xpcall(function()
 	end
 
 	local root = playerGui.DeepwoodTrainingHud.Root
-	check(root.Feedback.Font==Enum.Font.GothamBlack and root.Feedback.BackgroundTransparency<.31 and root.Feedback.TextStrokeTransparency<.11,'temporary feedback uses bold high-contrast text')
+	check(root.Feedback.Font==Enum.Font.GothamBlack and math.abs(root.Feedback.BackgroundTransparency-.6)<.00001 and root.Feedback.TextStrokeTransparency<.11,'temporary feedback uses bold outlined text on the current translucent background')
+ hud.showFeedback('Feedback fixture',1,true)
+ check(root.Feedback.Visible and root.Feedback.BackgroundTransparency==1,'transparent feedback mode preserves world visibility')
+ hud.showFeedback('Feedback fixture',1)
+ check(math.abs(root.Feedback.BackgroundTransparency-.6)<.00001,'normal feedback resets the translucent background')
+ hud.clearFeedback()
+ check(not root.Feedback.Visible,'clearing feedback hides the message')
 	check(root.Practice.Title.TextSize==15 and root.Practice.Objective.TextSize==16 and root.Practice.Note.TextSize==13,'story tracker text is slightly larger')
 	check(root.Practice.Objective.Position.Y.Offset+root.Practice.Objective.Size.Y.Offset<=root.Practice.Note.Position.Y.Offset,'story tracker text areas do not overlap')
 	check(playerGui.DeepwoodTopHud.Root.Heading.Title.TextSize==17,'top region heading is larger')
@@ -334,8 +346,9 @@ local ok, failure = xpcall(function()
 
 end, debug.traceback)
 if not ok then table.insert(report.failures, tostring(failure)) end
-for _, module in ipairs(copies) do module:Destroy() end
 fixture:Destroy()
+task.wait() -- Let deferred Destroying callbacks finish before removing their module context.
+for _, module in ipairs(copies) do module:Destroy() end
 report.pass = ok
 print("K0_RESOURCE_UI_NATIVE " .. HttpService:JSONEncode(report))
 assert(ok, "Resource UI fixture failed; see K0_RESOURCE_UI_NATIVE")

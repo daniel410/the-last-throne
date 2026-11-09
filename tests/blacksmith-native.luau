@@ -25,10 +25,10 @@ local ok,err=xpcall(function()
    count+=1;check(C.category(I.items[card.Name])==cat,'correct category stock')
    check(card.Trade.Caption.Text:find('Gold',1,true)~=nil,'Gold price before confirmation')
   end end
-  check(count==({Weapons=12,Armor=11,Accessories=5})[cat],'exact category count')
+  check(count==({Weapons=8,Armor=6,Accessories=2})[cat],'exact category count')
  end
  check(not view.panel.Categories:FindFirstChild('Category_Potions'),'no potions in forge')
- view.selectCategory('Accessories');check(view.panel.Offers.guardian_charm.Details.Text:find('HP +100',1,true)~=nil,'health bonus visible on accessories')
+ view.selectCategory('Accessories');check(view.panel.Offers.amber_charm.Details.Text:find('Max HP +30 pts',1,true)~=nil,'health bonus visible on accessories')
  local spec=require(RS.Shared.LobbyFacilities).defense
  require(game.ServerScriptService.Server.World.LobbyArchitecture).sign(sign,spec)
  local art=sign.FacilitySign.DestinationIcon
