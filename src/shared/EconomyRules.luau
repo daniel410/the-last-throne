@@ -16,62 +16,91 @@ function E.valid(w)
    end
   end
  end
+ if w.heroClaims~=nil then
+  if type(w.heroClaims)~='table'then return false end
+  for heroId,stories in pairs(w.heroClaims)do
+   if type(heroId)~='string'or heroId==''or type(stories)~='table'then return false end
+   for id,modes in pairs(stories)do
+    if not Catalog.storyDiamondIds[id]or type(modes)~='table'then return false end
+    for mode,claimed in pairs(modes)do
+     if (mode~='Easy'and not Catalog.storyDiamondModes[mode])or claimed~=true then return false end
+    end
+   end
+  end
+ end
  return true
 end
--- Account receipt and balance are persisted together by AccountStore.
-function E.claimStory(p,id)
- if not Catalog.storyDiamondIds[id] or p.wallet.claims[id] then return false end
- -- Leave the entitlement unclaimed at the balance cap so a later load can retry.
+-- The shared account wallet stores permanent receipts keyed by hero/story/mode.
+local function mark(w,heroId,id,mode)
+ w.heroClaims[heroId]=w.heroClaims[heroId]or {}
+ local stories=w.heroClaims[heroId];stories[id]=stories[id]or {};stories[id][mode]=true
+end
+local function claim(p,heroId,id,mode)
+ if not p.heroes[heroId]or not Catalog.storyDiamondIds[id]
+  or(mode~='Easy'and not Catalog.storyDiamondModes[mode])then return false end
+ local stories=p.wallet.heroClaims[heroId]
+ if stories and stories[id]and stories[id][mode]then return false end
  if p.wallet.diamonds+Catalog.storyDiamonds>1e12 then return false end
- p.wallet.claims[id]=true;p.wallet.diamonds=p.wallet.diamonds+Catalog.storyDiamonds
+ mark(p.wallet,heroId,id,mode);p.wallet.diamonds=p.wallet.diamonds+Catalog.storyDiamonds
  return true
 end
--- Easy retains the original receipt so spent and historic awards are never reset.
-function E.claimDifficulty(p,id,mode)
- if mode=='Easy'then return E.claimStory(p,id)end
- if not Catalog.storyDiamondIds[id]or not Catalog.storyDiamondModes[mode]then return false end
- local claims=p.wallet.difficultyClaims
- if claims and claims[id]and claims[id][mode]then return false end
- if p.wallet.diamonds+Catalog.storyDiamonds>1e12 then return false end
- claims=claims or {};p.wallet.difficultyClaims=claims
- claims[id]=claims[id]or {};claims[id][mode]=true
- p.wallet.diamonds=p.wallet.diamonds+Catalog.storyDiamonds
- return true
+local function completed(hero,id,mode)
+ if mode=='Easy'and hero.deepwood and hero.deepwood.clears[id]then return true end
+ local modes=hero.expeditions and hero.expeditions.clears[id]
+ return modes and modes[mode]==true
 end
 function E.upgrade(p)
  local changed=false
  if not p.wallet then
   p.wallet={version=1,gold=0,diamonds=0,claims={}};changed=true
-  for _,h in pairs(p.heroes) do
+  for _,h in pairs(p.heroes)do
    local s=h.deepwood
    if s then
     p.wallet.gold=p.wallet.gold+s.coins+(s.killCoins or 0)
-    for id in pairs(s.clears) do
-     if id:match('^DW%-0[1-7]$') and not p.wallet.claims[id] then
+    for id in pairs(s.clears)do
+     if id:match('^DW%-0[1-7]$')and not p.wallet.claims[id]then
       p.wallet.claims[id]=true;p.wallet.diamonds=p.wallet.diamonds+legacyStoryDiamonds
      end
     end
    end
   end
  end
- -- Catch up newly added regions from durable hero journals, once per account.
- -- Never refill spent Diamonds or top up historical Deepwood awards.
- for _,h in pairs(p.heroes)do
-  for id in pairs(h.deepwood and h.deepwood.clears or {})do
-   if id:sub(1,2)~='DW' and E.claimStory(p,id)then changed=true end
+ local heroIds={};for id in pairs(p.heroes)do table.insert(heroIds,id)end;table.sort(heroIds)
+ if not p.wallet.heroClaims then
+  p.wallet.heroClaims={};changed=true
+  -- Old receipts omitted the hero. Bind each already-paid award to one completed
+  -- hero in stable ID order, without minting it again or topping up historic DW2.
+  local function inherit(id,mode)
+   for _,heroId in ipairs(heroIds)do
+    if completed(p.heroes[heroId],id,mode)then mark(p.wallet,heroId,id,mode);break end
+   end
   end
-  -- Only persisted per-difficulty clears prove historical higher-mode completion.
+  for id in pairs(p.wallet.claims)do inherit(id,'Easy')end
+  for id,modes in pairs(p.wallet.difficultyClaims or {})do
+   for mode in pairs(modes)do inherit(id,mode)end
+  end
+ end
+ for _,heroId in ipairs(heroIds)do
+  local h=p.heroes[heroId]
+  for id in pairs(h.deepwood and h.deepwood.clears or {})do
+   if claim(p,heroId,id,'Easy')then changed=true end
+  end
   for id,modes in pairs(h.expeditions and h.expeditions.clears or {})do
    for mode,cleared in pairs(modes)do
-    if cleared and E.claimDifficulty(p,id,mode)then changed=true end
+    if cleared and claim(p,heroId,id,mode)then changed=true end
    end
   end
  end
  return changed
 end
-function E.story(p,reward)
+function E.claimDifficulty(p,id,mode,heroId)
+ if not p.heroes[heroId]then return false end
+ if not p.wallet or not p.wallet.heroClaims then E.upgrade(p)end
+ return claim(p,heroId,id,mode)
+end
+function E.story(p,reward,heroId)
  E.upgrade(p);p.wallet.gold=p.wallet.gold+reward.coins
- E.claimStory(p,reward.chapter)
+ E.claimDifficulty(p,reward.chapter,'Easy',heroId)
 end
 function E.sellPrice(item)
  if type(item.sourceGrantId)=='string' and item.sourceGrantId:sub(1,8)=='starter:' and not item.definitionId:match('^%a+_potion') then return nil end

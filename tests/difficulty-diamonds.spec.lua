@@ -3,7 +3,7 @@ local Content,P,A,E,G,D,View=load('CampaignContent'),load('DeepwoodProgress'),lo
 local R=dofile('src/server/Inventory/InventoryRules.luau')
 local C=load('ItemCatalog')
 local Store=dofile('src/server/Inventory/AccountStore.luau')
-local checks=0;local function check(v,m)checks=checks+1;assert(v,m)end
+local checks=0;local function check(v,m)checks=checks+1;if checks%100==0 and task then task.wait()end;assert(v,m)end
 local function same(a,b)
  if type(a)~=type(b)then return false end
  if type(a)~='table'then return a==b end
@@ -31,7 +31,7 @@ for _,mode in ipairs(D.order)do
   end)
   paid=paid+3
   check(p.wallet.diamonds==before+3 and p.wallet.diamonds==paid,'first difficulty clear pays three '..mode..' '..c.id)
-  check(mode=='Easy'and p.wallet.claims[c.id]or mode~='Easy'and p.wallet.difficultyClaims[c.id][mode],'mode receipt '..c.id)
+  check(mode=='Easy'and p.wallet.heroClaims.hero[c.id].Easy or mode~='Easy'and p.wallet.heroClaims.hero[c.id][mode],'mode receipt '..c.id)
   check(R.validate(p,C),'account validates '..mode..' '..c.id)
  end
  snapshots[mode]=R.copy(p)
@@ -47,40 +47,67 @@ for _,mode in ipairs(D.order)do
  end)
  check(p.wallet.diamonds==420 and p.wallet.gold>gold,'same-mode replay pays Gold but no Diamonds '..mode)
 end
--- New hero actually completes a main story, then Hard with its own progression.
-p=assert(R.addHero(p,'mage','mage',C));p.heroes.mage.level=80;p.heroes.mage.progression=G.new(80)
-for _,mode in ipairs({'Easy','Hard'})do
- local run='mage-'..mode;p=assert(A.begin(p,'mage','DW-01',mode,run,p.revision,R,C))
- events(Content.byId['DW-01'],function()return A.projection(p.heroes.mage)end,function(goal,choice,step)
-  p=assert(A.event(p,'mage','DW-01',goal,choice,step,R,C,run))
- end)
- check(p.wallet.diamonds==420,'another hero cannot duplicate account-mode reward '..mode)
+-- All other playable heroes earn every story/mode independently.
+for index,class in ipairs({'mage','elf','dwarf'})do
+ p=assert(R.addHero(p,class,class,C));p.heroes[class].level=80;p.heroes[class].progression=G.new(80)
+ for _,mode in ipairs(D.order)do
+  local run=class..'-'..mode;p=assert(A.begin(p,class,'DW-01',mode,run,p.revision,R,C))
+  for _,c in ipairs(Content.mainChapters)do
+   local before=p.wallet.diamonds
+   events(c,function()return A.projection(p.heroes[class])end,function(goal,choice,step)
+    p=assert(A.event(p,class,c.id,goal,choice,step,R,C,run))
+   end)
+   check(p.wallet.diamonds==before+3,'other hero earns its own mode award '..class..' '..mode..' '..c.id)
+   check(not E.claimDifficulty(p,c.id,mode,class),'same hero receipt cannot mint twice')
+  end
+ end
+ check(p.wallet.diamonds==420*(index+1),'420 Diamonds per playable hero '..class)
 end
+check(p.wallet.diamonds==1680 and R.validate(p,C),'four heroes independently earn 1680 account Diamonds')
+-- Old account-only receipts contain no hero attribution. Preserve exactly one
+-- paid share per story/mode, then pay the other three completed heroes once.
+local accountOnly=R.copy(p);accountOnly.wallet.heroClaims=nil;accountOnly.wallet.diamonds=5
+accountOnly.wallet.claims={};accountOnly.wallet.difficultyClaims={}
+for _,c in ipairs(Content.mainChapters)do
+ accountOnly.wallet.claims[c.id]=true
+ accountOnly.wallet.difficultyClaims[c.id]={Hard=true,Insane=true,Hell=true}
+end
+local catchup=R.upgrade(R.copy(accountOnly),C)
+check(catchup.wallet.diamonds==1265,'legacy paid share preserved; three missing hero shares recover 1260')
+check(same(catchup.heroes,accountOnly.heroes)and catchup.wallet.gold==accountOnly.wallet.gold,'hero migration preserves growth/Gold')
+check(same(R.upgrade(R.copy(catchup),C),catchup),'hero catch-up and revision idempotent')
+catchup.wallet.diamonds=0;check(same(R.upgrade(R.copy(catchup),C),catchup),'spent per-hero rewards never refill')
+for _,bad in ipairs({false,{hero={['DW-Q1']={Easy=true}}},{hero={['DW-01']={Nightmare=true}}},{hero={['DW-01']={Hard=false}}}})do
+ local invalid=R.copy(p);invalid.wallet.heroClaims=bad
+ check(not R.validate(invalid,C),'malformed per-hero receipt rejected')
+end
+check(not E.claimDifficulty(p,'DW-01','Easy','unknown-hero'),'unowned hero cannot claim')
 -- Historic mode clears restore only their missing mode, never inferred higher clears.
-local old=R.copy(snapshots.Hard);old.wallet.diamonds=2;old.wallet.difficultyClaims=nil
+local old=R.copy(snapshots.Hard);old.wallet.diamonds=2;old.wallet.difficultyClaims=nil;old.wallet.heroClaims=nil
+for _,c in ipairs(Content.mainChapters)do old.wallet.claims[c.id]=true end
 check(R.validate(old,C),'legacy no mode ledger accepted')
 local migrated=R.upgrade(R.copy(old),C)
 check(migrated.wallet.diamonds==107,'historic 35 Hard clears restore 105; spent Easy remains two')
 check(same(migrated.heroes,old.heroes)and same(migrated.items,old.items)and migrated.wallet.gold==old.wallet.gold,'migration preserves growth, journal, gear and Gold')
-check(not migrated.wallet.difficultyClaims['DW-01'].Insane,'Hard clear does not imply Insane')
+check(not migrated.wallet.heroClaims.hero['DW-01'].Insane,'Hard clear does not imply Insane')
 check(same(R.upgrade(R.copy(migrated),C),migrated),'migration and revision idempotent')
 migrated.wallet.diamonds=0;check(same(R.upgrade(R.copy(migrated),C),migrated),'spent mode rewards never refill')
 local duplicate=R.copy(old);duplicate.heroes.other=R.copy(duplicate.heroes.hero)
-E.upgrade(duplicate);check(duplicate.wallet.diamonds==107,'two heroes historical Hard shares one account receipt')
+E.upgrade(duplicate);check(duplicate.wallet.diamonds==317,'two heroes receive separate missing Easy and Hard rewards')
 local easy=R.copy(snapshots.Easy);easy.wallet.diamonds=0
-check(not E.upgrade(easy)and not easy.wallet.difficultyClaims,'Easy-only account has no higher-mode reward')
+check(not E.upgrade(easy)and not easy.wallet.heroClaims.hero['DW-01'].Hard,'Easy-only account has no higher-mode reward')
 -- Legacy two-Diamond receipts are not topped up.
-easy.wallet.claims['DW-01']=true;check(not E.claimDifficulty(easy,'DW-01','Easy')and easy.wallet.diamonds==0,'historical Easy receipt preserved')
+easy.wallet.claims['DW-01']=true;check(not E.claimDifficulty(easy,'DW-01','Easy','hero')and easy.wallet.diamonds==0,'historical Easy receipt preserved')
 for _,id in ipairs({'DW-Q1','PR-01','DW-08'})do
- for _,mode in ipairs(D.order)do check(not E.claimDifficulty(easy,id,mode),'no side/invalid-mode award '..id)end
+ for _,mode in ipairs(D.order)do check(not E.claimDifficulty(easy,id,mode,'hero'),'no side/invalid-mode award '..id)end
 end
-check(not E.claimDifficulty(easy,'DW-01','Nightmare'),'invalid difficulty cannot mint')
+check(not E.claimDifficulty(easy,'DW-01','Nightmare','hero'),'invalid difficulty cannot mint')
 for _,bad in ipairs({false,{['XX-01']={Hard=true}},{['DW-01']={Easy=true}},{['DW-01']={Hard=false}},{['DW-01']={Nightmare=true}}})do
  local invalid=R.copy(easy);invalid.wallet.difficultyClaims=bad
  check(not R.validate(invalid,C),'invalid mode ledger rejected')
 end
 local cap=R.copy(old);cap.wallet.diamonds=1e12
-check(not E.upgrade(cap)and not cap.wallet.difficultyClaims,'cap does not burn new receipt')
+E.upgrade(cap);check(cap.wallet.diamonds==1e12 and not cap.wallet.heroClaims.hero['DW-01'].Hard,'cap does not burn new receipt')
 cap.wallet.diamonds=0;check(E.upgrade(cap)and cap.wallet.diamonds==105,'cap recovery after spending')
 -- AccountStore commits receipt and balance even when acknowledgement is lost.
 local saved=R.copy(old);local lose=true
@@ -117,7 +144,7 @@ local function complete(v)return A.event(v,'hero','DW-01',last.goal,last.choice,
 local no,errorCode=eventStore:transact(956,complete)
 check(not no and errorCode=='SaveUnknown'and durable.wallet.diamonds==108,'final Hard event commits exactly three on lost response')
 drop=false;local recovered=assert(eventStore:transact(956,complete))
-check(recovered.wallet.diamonds==108 and recovered.wallet.difficultyClaims['DW-01'].Hard,'same field event recovers committed Diamonds')
+check(recovered.wallet.diamonds==108 and recovered.wallet.heroClaims.hero['DW-01'].Hard,'same field event recovers committed Diamonds')
 check(eventStore:close(956),'close after recovered Hard event')
 check(assert(eventStore:open(956)).wallet.diamonds==108,'reconnect preserves live Hard entitlement')
 for _,mission in ipairs(View.missions(p.heroes.hero))do for _,mode in ipairs(D.order)do

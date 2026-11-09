@@ -17,17 +17,17 @@ check(D.completion(Content.byId['DW-05'],'Easy',10).gold==135,'existing DW-05 co
 check(D.completion(Content.byId['DW-05'],'Easy').gold==108,'new DW-05 completion becomes 108')
 check(Summary.mission(Content.byId['DW-05'],'Easy',1,11).gold==164,'DW-05 kill Gold stays 164; total 272')
 local p=assert(R.addHero(R.new(71),'hero','knight',Items))
-for i=1,7 do E.story(p,{chapter='DW-0'..i,coins=0})end
+for i=1,7 do E.story(p,{chapter='DW-0'..i,coins=0},'hero')end
 check(p.wallet.diamonds==21,'seven unclaimed first clears award 21 account Diamonds')
-for i=1,7 do E.story(p,{chapter='DW-0'..i,coins=0})end
-check(p.wallet.diamonds==21,'other heroes and repeats cannot claim Diamonds twice')
-E.story(p,{chapter='GW-01',coins=0});check(p.wallet.diamonds==24,'other regions now award three Diamonds')
+for i=1,7 do E.story(p,{chapter='DW-0'..i,coins=0},'hero')end
+check(p.wallet.diamonds==21,'same hero repeats cannot claim Diamonds twice')
+E.story(p,{chapter='GW-01',coins=0},'hero');check(p.wallet.diamonds==24,'other regions now award three Diamonds')
 p.wallet.diamonds=1;E.upgrade(p)
-E.story(p,{chapter='DW-01',coins=0});check(p.wallet.diamonds==1,'existing spent balance and claimed reward cannot refill')
+E.story(p,{chapter='DW-01',coins=0},'hero');check(p.wallet.diamonds==1,'existing spent balance and claimed reward cannot refill')
 local old=assert(R.addHero(R.new(72),'hero','knight',Items));old.wallet=nil
 old.heroes.hero.deepwood={coins=150,killCoins=4,clears={['DW-01']=true}}
 E.upgrade(old);check(old.wallet.gold==154 and old.wallet.diamonds==2,'legacy wallet migration preserves historical two-Diamond award')
-E.story(old,{chapter='DW-01',coins=0});check(old.wallet.diamonds==2,'legacy first clear cannot receive a top-up')
-E.story(old,{chapter='DW-02',coins=0});check(old.wallet.diamonds==5,'legacy account receives three only for a new first clear')
+E.story(old,{chapter='DW-01',coins=0},'hero');check(old.wallet.diamonds==2,'legacy first clear cannot receive a top-up')
+E.story(old,{chapter='DW-02',coins=0},'hero');check(old.wallet.diamonds==5,'legacy account receives three only for a new first clear')
 check(R.validate(p,Items)and E.valid(old.wallet),'old and new wallet contracts still validate')
 print('Gold/Diamond tuning: '..checks..' checks passed')

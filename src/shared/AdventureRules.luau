@@ -178,7 +178,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
  if journal.clears[chapterId]and not active.journal.clears[chapterId]then
   if not c.side then a.completedChapters=a.completedChapters or {};a.completedChapters[chapterId]=true end
   a.completed=true;e.clears[chapterId]=e.clears[chapterId]or {};e.clears[chapterId][a.difficultyId]=true
-  Economy.claimDifficulty(p,chapterId,a.difficultyId)
+  Economy.claimDifficulty(p,chapterId,a.difficultyId,heroId)
   local reward=D.completion(c,a.difficultyId,a.balanceVersion or 1)
   if not firstClear then
    local xp,gold=reward.xp,reward.gold

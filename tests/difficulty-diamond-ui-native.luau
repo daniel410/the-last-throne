@@ -19,7 +19,7 @@ for _,size in ipairs({Vector2.new(1280,720),Vector2.new(844,390),Vector2.new(667
   view.render({role='Lobby',hero={classId='knight'},selection={missionId='DW-01',difficultyId=mode},missions=missions,list={}})
   task.wait(.1)
   local line=view.panel.PartyList:FindFirstChild('DiamondReward')
-  check(line and line.Text=='First '..mode..' clear: 3 Diamonds. Once per account.','selected difficulty reward visible '..mode)
+  check(line and line.Text=='First '..mode..' clear: 3 Diamonds. Once per hero.','selected difficulty reward visible '..mode)
   check(line.TextBounds.Y<=line.AbsoluteSize.Y+1,'Diamond line fits '..size.X..' '..mode)
   check(line.TextBounds.X<=line.AbsoluteSize.X+1,'Diamond line width fits '..size.X)
  end

@@ -21,7 +21,7 @@ function Rules.integer(value, minimum, maximum)
 	return type(value) == "number" and value == value and value % 1 == 0 and value >= minimum and value <= maximum
 end
 function Rules.new(userId)
-	return {schemaVersion = 1, userId = userId, revision = 0, epoch = 0, equipmentRulesVersion = 1, heroes = {}, items = {}, operations = {}, operationOrder = {},wallet={version=1,gold=0,diamonds=0,claims={}}}
+	return {schemaVersion = 1, userId = userId, revision = 0, epoch = 0, equipmentRulesVersion = 1, heroes = {}, items = {}, operations = {}, operationOrder = {},wallet={version=1,gold=0,diamonds=0,claims={},heroClaims={}}}
 end
 -- The trusted server fixes request time; calendar record and Gold share one account write.
 function Rules.claimDaily(profile,now,requestId)
@@ -466,7 +466,7 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId)
   if not grantCompletion(n,heroId,reward.chapter,catalog)then return nil,'BalanceLimit'end
   reward={xp=0,coins=0,chapter=reward.chapter}
  end
- Economy.story(n,reward)
+ Economy.story(n,reward,heroId)
  local g=h.progression or Growth.new(h.level)
  g.xp=g.xp+reward.xp
  while g.level<80 and g.xp>=Growth.xpToNext(g.level) do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end

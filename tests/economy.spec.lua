@@ -34,7 +34,7 @@ check(not R.shop(full,buy,{atLobby=true},C),'full bag cannot lose purchase curre
 local old=R.copy(p);old.wallet=nil
 old.heroes.hero.deepwood={coins=2290,killCoins=173,clears={['DW-01']=true,['DW-02']=true,['DW-Q1']=true}}
 local second=R.copy(old.heroes.hero);second.deepwood={coins=140,killCoins=5,clears={['DW-01']=true}};old.heroes.other=second
-E.upgrade(old);check(old.wallet.gold==2608 and old.wallet.diamonds==4,'legacy earnings migrate once; same story on another hero cannot duplicate Diamonds')
+E.upgrade(old);check(old.wallet.gold==2608 and old.wallet.diamonds==7,'legacy account credits one historical receipt and the other hero receives its missing Diamonds')
 old.wallet.gold=7;E.upgrade(old);check(old.wallet.gold==7,'migration cannot refill spent Gold')
 local story=R.addHero(R.new(8),'q','mage',C)
 local content=dofile('src/shared/DeepwoodContent.luau')
