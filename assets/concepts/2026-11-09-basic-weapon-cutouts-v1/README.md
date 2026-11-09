@@ -1,25 +1,29 @@
-# 기본 무기 12종 — 3D 제작용 투명 PNG
+# 기본 무기 PNG — 최종 이미지 선택
 
 2026-11-09 · TLT-028/029/032/041/052/084 · ART → 3D 제작
 
-[전체 보기](index.html) · [PNG 12개 ZIP](TLT-Basic-Weapons-12.zip) · [최종 프롬프트·출처·SHA-256](manifest.json) · [알파 검사 결과](alpha-report.json)
+[전체 보기](index.html) · [PNG 12개 ZIP](TLT-Basic-Weapons-12.zip) · [선택·출처·해시](manifest.json) · [알파 검사](alpha-report.json)
 
-사용자가 Traveler(Common), Tempered(Common), Veteran(Uncommon)의 단순한 최하위 무기와 Traveler의 나무활·나무지팡이·나무 도끼를 요청했다. 기존 고등급 무기 PNG와 같은 검·활·도끼·지팡이 구성으로 **4종 × 3단계 = 12개**를 신규 생성했다. 기존 컨셉을 교체하지 않는다.
+사용자 최신 지시에 따라 **Traveler와 Tempered는 기존 Tempered 이미지로 통일하고, Veteran은 현재 게임 이미지로 사용**한다. 4무기 × 3단계의 파일명 12개를 유지하며 실제 서로 다른 그림은 8개다. 생성한 이전 Traveler/Veteran 시안보다 이 선택이 우선한다.
 
-| 단계 | 검 | 활 | 도끼 | 지팡이 |
-| --- | --- | --- | --- | --- |
-| Traveler / Common | 단순 철검·가죽 손잡이 | 목제 단궁·끈 시위 | 철제 날·나무 자루·끈 결속 | 단순 나무 막대·끈 손잡이 |
-| Tempered / Common | 기본 강철검 | 목제 곡궁·작은 철제 끝마개 | 철제 날·나무 자루 | 나무 몸체·작은 철제 마개 |
-| Veteran / Uncommon | 중앙 홈·간단한 가드 | 적층 목재·소량 철제 보강 | 조금 정돈된 강철 날·보강 링 | 단순 목제 머리·철제 링 |
+| 단계 | 선택한 이미지 | 크기 |
+| --- | --- | --- |
+| Traveler / Common | 기존 Tempered 검·활·도끼·지팡이와 바이트 단위로 동일 | 1024×1536 |
+| Tempered / Common | 기존 Tempered 검·활·도끼·지팡이 | 1024×1536 |
+| Veteran / Uncommon | 현재 게임 아이콘 아틀라스의 해당 클래스 무기 셀 그대로 | 256×288 |
 
-모든 무기는 보석·금장·룬·발광 없이 소박한 재료와 적은 부품으로 구성했다. Traveler 검의 재료는 사용자가 목재로 지정하지 않아 기본 철검으로 제작했다. 방패·화살·화살통은 포함하지 않는다.
+Traveler/Tempered는 단순한 철검, 목제 곡궁·철제 끝마개, 철제 도끼날·나무 자루, 나무 지팡이·작은 철제 마개를 사용한다. 이전 Traveler 전용 목재 시안과 철제 날 수정안은 이번 공용 선택으로 대체한다.
 
-내장 **image_gen**을 품목당 1회 사용하고 Traveler 도끼는 사용자 정정에 따라 1회 추가 편집했다. 모든 최종 프롬프트와 생성 원본 경로는 manifest에 있다. 원본 PNG를 그대로 복사했으며 코드로 픽셀/알파를 편집하지 않았다. 1024×1536px RGBA, 파일당 무기 하나이며 제목/라벨은 없다. 갤러리의 체커는 CSS 검수 배경이다.
+## Veteran의 현재 게임 원본
 
-검증: `python3 assets/concepts/2026-11-09-basic-weapon-cutouts-v1/verify.py` PASS. 기존 PNG 디코더로 12개 실제 알파·치수·잘림·해시, 3단계×4종 구성, ZIP CRC와 내장 파일 해시를 확인했다. 생성 결과에서 12개 단일 무기와 단순한 구조, Traveler 나무활·나무지팡이와 철제 날/나무 자루 도끼를 육안 확인했다. 최종 미술 사용자 수용은 대기다.
+`src/client/ItemSprites.luau`는 무기 아이콘을 클래스별 `classId .. "_weapon"` 셀로 선택한다. `src/shared/ItemSpriteAtlas.luau`의 `rbxassetid://135019494060990`에 연결된 로컬 원본은 `assets/ui/item-icons-v1/item-atlas.png`다. 첫 행의 검/도끼/활/지팡이 256×288 셀을 그대로 추출했다. 금색/보석 장식이 있는 현재 게임 외형을 유지하며 새 디자인으로 생성하지 않았다.
 
-이 산출물은 단일뷰 모델링 참고 이미지다. 실제 메시·후면·UV·소켓·Blender/Roblox 적용은 미검증이며 다음 담당은 ART의 3D 제작이다. Blender 작업/비교 시 **View Transform = Standard, Display = sRGB, Look = None, Exposure = 0, Gamma = 1, Use Curves = Off**를 적용한다. 색 텍스처는 sRGB, 데이터 맵은 Non-Color로 구분한다. 이번에는 Blender 렌더를 수행하지 않았다. 게임 빌드/VERSION·게시·성능/보상·기존 장비 정의와 부모 티켓 상태는 변경하지 않았다.
+이미지 확대·재해석·리터치는 하지 않았다. 원본 셀 경계의 자투리나 가장자리 접촉도 현재 게임의 셀 선택을 그대로 보존한다. 이 저해상도 게임 아이콘은 고해상도 신규 모델링 도면과 구분한다. 단일뷰이므로 후면/메시 구조는 미확정이다.
 
-## Traveler 도끼 재료 정정
+기존 Tempered는 내장 image_gen 생성물이다. 이번 선택 변경에서는 생성 도구 호출 없이 파일을 재사용하고 기존 게임 아틀라스 셀을 추출했다. 과거 최종 프롬프트·생성 경로/해시는 [선택 이전 기록](selection-history.json), 현재 출처·셀 좌표·해시는 [manifest](manifest.json)에 있다. 원본 아틀라스는 변경하지 않았다. 갤러리·ZIP은 현재 선택과 일치한다.
 
-2026-11-09 사용자 후속 지시로 나무 도끼의 뜻을 **나무 자루 + 철제 날**로 바로잡았다. 머리/날은 무광 회색 철로 바꾸고 단순한 형태·목제 자루·끈 결속은 유지했다. 개별 PNG·ZIP·manifest·알파 보고를 갱신했다. 이전 생성 입력/해시는 manifest의 previousGeneration에 보존한다. 내장 image_gen 편집 결과 육안 확인 및 verify.py PASS, 메시/게임 적용은 후속이다.
+## 검증·인계
+
+`python3 assets/concepts/2026-11-09-basic-weapon-cutouts-v1/verify.py` PASS: Traveler=Tempered 4쌍의 바이트 동일성, 고유 이미지 8개, Veteran 원본 아틀라스 SHA-256, 12개 PNG 알파/치수/해시와 ZIP CRC/내장 해시를 확인했다. 새 공용 8파일은 잘림 검사, Veteran은 실제 게임 셀 경계 보존을 검사했다. Veteran 4개는 현재 원본 아틀라스를 열어 대응을 확인했다. 사용자 최종 미술 수용·실제 3D/게임 연결은 후속이다.
+
+이번 범위는 PNG 제작 패키지 선택 반영이다. 런타임 소스·게임 빌드/VERSION·게시·장비 성능/보상·부모 티켓 상태는 변경하지 않았다. 다음 담당 ART의 실제 모델 제작, ENG의 게임 적용이다. Blender 제작/비교 시 **View Transform = Standard, Display = sRGB, Look = None, Exposure = 0, Gamma = 1, Use Curves = Off**를 적용한다. 색 텍스처는 sRGB, 데이터 맵은 Non-Color로 구분한다.

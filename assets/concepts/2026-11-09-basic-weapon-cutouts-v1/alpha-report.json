@@ -7,19 +7,19 @@
     ],
     "minAlpha": 0,
     "maxAlpha": 254,
-    "transparentPct": 87.4,
-    "semiPct": 12.6,
+    "transparentPct": 90.0,
+    "semiPct": 10.0,
     "nonzeroBounds": [
-      57,
-      89,
-      977,
-      1511
+      73,
+      38,
+      895,
+      1479
     ],
     "opaqueBounds": [
-      360,
-      96,
-      663,
-      1478
+      337,
+      47,
+      687,
+      1473
     ],
     "edgeNonzero": 0
   },
@@ -31,19 +31,19 @@
     ],
     "minAlpha": 0,
     "maxAlpha": 254,
-    "transparentPct": 94.16,
-    "semiPct": 5.84,
+    "transparentPct": 91.63,
+    "semiPct": 8.37,
     "nonzeroBounds": [
-      185,
-      77,
-      879,
-      1467
+      49,
+      59,
+      993,
+      1476
     ],
     "opaqueBounds": [
-      341,
-      80,
-      598,
-      1460
+      335,
+      62,
+      627,
+      1473
     ],
     "edgeNonzero": 0
   },
@@ -55,21 +55,21 @@
     ],
     "minAlpha": 0,
     "maxAlpha": 254,
-    "transparentPct": 78.26,
-    "semiPct": 21.74,
+    "transparentPct": 82.1,
+    "semiPct": 17.9,
     "nonzeroBounds": [
-      73,
-      37,
-      1003,
-      1503
+      0,
+      74,
+      983,
+      1511
     ],
     "opaqueBounds": [
-      250,
-      98,
-      830,
-      1454
+      289,
+      80,
+      793,
+      1455
     ],
-    "edgeNonzero": 0
+    "edgeNonzero": 6
   },
   {
     "file": "mage_staff_traveler_common.png",
@@ -79,21 +79,21 @@
     ],
     "minAlpha": 0,
     "maxAlpha": 254,
-    "transparentPct": 93.0,
-    "semiPct": 7.0,
+    "transparentPct": 92.6,
+    "semiPct": 7.4,
     "nonzeroBounds": [
-      271,
-      68,
-      977,
-      1483
+      0,
+      0,
+      951,
+      1503
     ],
     "opaqueBounds": [
-      455,
-      73,
-      561,
-      1476
+      437,
+      64,
+      585,
+      1474
     ],
-    "edgeNonzero": 0
+    "edgeNonzero": 1
   },
   {
     "file": "knight_sword_tempered_common.png",
@@ -194,97 +194,97 @@
   {
     "file": "knight_sword_veteran_uncommon.png",
     "size": [
-      1024,
-      1536
+      256,
+      288
     ],
     "minAlpha": 0,
     "maxAlpha": 254,
-    "transparentPct": 88.7,
-    "semiPct": 11.3,
+    "transparentPct": 62.23,
+    "semiPct": 37.77,
     "nonzeroBounds": [
-      57,
-      47,
-      867,
-      1511
+      0,
+      0,
+      255,
+      287
     ],
     "opaqueBounds": [
-      329,
-      65,
-      694,
-      1477
+      0,
+      0,
+      255,
+      287
     ],
-    "edgeNonzero": 0
+    "edgeNonzero": 740
   },
   {
     "file": "elf_bow_veteran_uncommon.png",
     "size": [
-      1024,
-      1536
+      256,
+      288
     ],
     "minAlpha": 0,
     "maxAlpha": 254,
-    "transparentPct": 91.37,
-    "semiPct": 8.63,
+    "transparentPct": 72.63,
+    "semiPct": 27.37,
     "nonzeroBounds": [
-      73,
-      37,
-      1009,
-      1495
+      0,
+      0,
+      253,
+      287
     ],
     "opaqueBounds": [
-      340,
-      56,
-      644,
-      1489
+      16,
+      26,
+      233,
+      270
     ],
-    "edgeNonzero": 0
+    "edgeNonzero": 97
   },
   {
     "file": "dwarf_axe_veteran_uncommon.png",
     "size": [
-      1024,
-      1536
+      256,
+      288
     ],
     "minAlpha": 0,
     "maxAlpha": 254,
-    "transparentPct": 82.17,
-    "semiPct": 17.83,
+    "transparentPct": 56.29,
+    "semiPct": 43.71,
     "nonzeroBounds": [
-      49,
-      63,
-      1005,
-      1475
+      0,
+      0,
+      255,
+      287
     ],
     "opaqueBounds": [
-      258,
-      66,
-      814,
-      1471
+      31,
+      13,
+      245,
+      273
     ],
-    "edgeNonzero": 0
+    "edgeNonzero": 155
   },
   {
     "file": "mage_staff_veteran_uncommon.png",
     "size": [
-      1024,
-      1536
+      256,
+      288
     ],
     "minAlpha": 0,
     "maxAlpha": 254,
-    "transparentPct": 91.59,
-    "semiPct": 8.41,
+    "transparentPct": 79.25,
+    "semiPct": 20.75,
     "nonzeroBounds": [
-      73,
-      50,
-      947,
-      1492
+      1,
+      0,
+      241,
+      287
     ],
     "opaqueBounds": [
-      421,
-      53,
-      596,
-      1488
+      49,
+      16,
+      231,
+      282
     ],
-    "edgeNonzero": 0
+    "edgeNonzero": 46
   }
 ]
