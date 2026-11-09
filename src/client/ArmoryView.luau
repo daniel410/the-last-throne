@@ -186,7 +186,7 @@ function V.create(parent,send,diamondOnly,store)
      description=string.format('Restores up to %d %s · In bag: %d\n%s',d.amount,d.restore=='health' and 'HP' or 'MP',owned,d.restore=='mana' and 'Requires an MP pool. Assign to Z / C from BAG.' or 'Delivered to your bag. Assign to Z / C from BAG.')
     else
      local fit=d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
-     description=string.format('%s · %s · Lv%d · Power +%.2f%s%s\n%s',fit,d.rarity,d.level or 1,d.stats.power or 0,d.stats.armor and ' · Armor +'..d.stats.armor or '',d.stats.health and ' · HP +'..d.stats.health or '',d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
+     description=string.format(ItemText.ShopGearStats,fit,d.rarity,d.level or 1,d.stats.power or 0,d.stats.armor and string.format(ItemText.FlatDefense,d.stats.armor) or '',d.stats.health and string.format(ItemText.FlatHealth,d.stats.health) or '',d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
     end
     if d.slot then
      local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,nil,Items)

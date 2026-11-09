@@ -1,0 +1,8 @@
+{"failures":["user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9: exact category count\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:12\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"BLACKSMITH_NATIVE","pass":false,"checks":23}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:51: assertion failed!
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:51
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

@@ -1,7 +1,7 @@
 -- en-US combat stat breakdown. Numeric values use the server's existing formulas.
 return {
  AvailablePoints='AVAILABLE STAT POINTS  %d',
- EquipmentPreview='ACTUAL STATS IF EQUIPPED',EquipmentNote='Attack is before skill multipliers. Max HP / MP changes do not refill resources.',
+ EquipmentPreview='ACTUAL STATS IF EQUIPPED (pts)',EquipmentNote='Attack bonus: %. Difference: pp (percentage points). Actual stats: pts (points), before skill multipliers. HP / MP changes do not refill resources.',
  Title='COMBAT STATS',Current='Current stats · Equipped gear included',
  HeroAndGear='Hero %s  +  Gear %s',Draft='DRAFT %s → %s (%s)',
  Labels={physicalPower='Physical Power',magicPower='Magic Power',armor='Defense',health='Max HP',mana='Max MP',attackRate='Basic Attack Speed (x)',moveRate='Movement Speed (x)'},
@@ -16,7 +16,7 @@ return {
  AttackBonus='Equipped attack bonus: %s%%',BasicAttack='Basic attacks use %s.',
  ShowGear='SHOW GEAR BONUSES',HideGear='HIDE GEAR BONUSES',
  NoGear='No equipment is currently equipped.',NoBonus='No combat stat bonus.',
- GearPower='%s%% attack power',GearArmor='%s defense',GearHealth='%s Max HP',
+ GearPower='%s%% attack power',GearArmor='%s pts defense',GearHealth='%s pts Max HP',
  GearItem='%s · %s',
  HeroNote='Hero includes your class, level and assigned points. Bag and storage items do not add stats.',
  DefenseNote='Attack values are power ratings; each skill has its own damage multiplier. Defense subtracts damage per hit, to a minimum of 1. Temporary combat effects are not included.',
