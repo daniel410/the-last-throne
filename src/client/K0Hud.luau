@@ -317,7 +317,7 @@ function Hud.create()
 		attack.Position=UDim2.fromOffset(90,0)
 		if UserInputService.TouchEnabled then
 			-- Keep the item/skill row at the bottom between the two thumb controls.
-			skillScale.Scale = math.min(scale, math.max(.35, (viewport.X-280)/528))
+			skillScale.Scale = math.min(scale, math.max(.35, (viewport.X-320)/528))
 			skillBar.Position = UDim2.new(.5, 0, 1, -12)
 			local jump=playerGui:FindFirstChild('JumpButton',true)
 			actions.Size=UDim2.fromOffset(172,188)
@@ -329,11 +329,6 @@ function Hud.create()
 			skillBar.Size=UDim2.fromOffset(528,68)
 			for i,button in ipairs(itemButtons) do button.Position=UDim2.fromOffset((i-1)*72,0) end
 			for i,button in ipairs(skillButtons) do button.Position=UDim2.fromOffset((i+1)*72+24,0) end
-			if viewport.X<780 then
-				-- Keep all seven buttons in one row, above the thumb controls when space is tight.
-				skillScale.Scale=math.min(scale,(viewport.X-24)/528)
-				skillBar.Position=UDim2.new(.5,0,1,-math.max(180,264*actionScale.Scale+12))
-			end
 			local jumpVisible=jump and jump:IsA('GuiObject') and jump.AbsoluteSize.Y>0
 			local ancestor=jump
 			while jumpVisible and ancestor and ancestor~=playerGui do
@@ -351,7 +346,8 @@ function Hud.create()
 				end
 			end
 		else
-			skillBar.Position = UDim2.new(.5, 0, 1, viewport.X < 1100 and -(190 * scale + 24) or -24)
+			skillScale.Scale = math.min(scale, math.max(.35, (viewport.X-320)/528))
+			skillBar.Position = UDim2.new(.5, 0, 1, -24)
 			if viewport.X >= 1100 then skillBar.Position = UDim2.new(.5, -55, 1, -24) end
 		end
   practice.Size = UDim2.fromOffset(status.Size.X.Offset, 120)
