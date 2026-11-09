@@ -25,7 +25,7 @@ function View.render(parent,hero,snapshot,draft,position,width,state,redraw)
  local _,titleH=label('Title',Text.Title,10,18,Theme.color.gold)
  local _,currentH=label('Current',Text.Current,12+titleH,12,Theme.color.text)
  local y=14+titleH+currentH
- local _,bonusH=label('AttackBonus',string.format(Text.AttackBonus,signed((snapshot.stats or {}).power or 0)),y,12,Theme.color.green)
+ local _,bonusH=label('AttackBonus',string.format(Text.AttackBonus,(snapshot.stats or {}).power or 0),y,12,Theme.color.green)
  y+=bonusH
  local after=Growth.copy(hero.progression);local spent=0
  for key,value in pairs(draft) do after.stats[key]+=value;spent+=value end
@@ -56,7 +56,7 @@ function View.render(parent,hero,snapshot,draft,position,width,state,redraw)
    local parts={}
    for _,entry in ipairs({{'power',Text.GearPower},{'armor',Text.GearArmor},{'health',Text.GearHealth}}) do
     local value=source.stats[entry[1]] or 0
-    if value~=0 then table.insert(parts,string.format(entry[2],signed(value))) end
+    if value~=0 then table.insert(parts,string.format(entry[2],entry[1]=='power' and value or signed(value))) end
    end
    local _,height=label('Bonus_'..source.slot,#parts>0 and table.concat(parts,' · ') or Text.NoBonus,y,12,Theme.color.green)
    y+=height+10

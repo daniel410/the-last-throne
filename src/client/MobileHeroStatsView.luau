@@ -80,7 +80,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
    if entry.draft then label(row,'Draft',string.format(Text.Draft,number(entry.total),number(entry.draft),signed(entry.draft-entry.total)),6,44,cellW-12,22,11,Theme.color.green) end
   end
   top+=math.ceil(#entries/columns)*(rowH+4)
-  local bonus=string.format(Text.AttackBonus,signed((snapshot.stats or {}).power or 0))
+  local bonus=string.format(Text.AttackBonus,(snapshot.stats or {}).power or 0)
   label(scroll,'AttackBonus',bonus,4,top,mainW-8,22,12,Theme.color.green);top+=26
   if state.gearExpanded then
    local sources=Preview.gearSources(hero.heroId,snapshot.items,Catalog)
@@ -88,7 +88,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
    for _,source in ipairs(sources) do
     local text=string.format(Text.GearItem,InventoryText.Slots[source.slot],source.name)
     local parts={}
-    for _,entry in ipairs({{'power',Text.GearPower},{'armor',Text.GearArmor},{'health',Text.GearHealth}}) do local v=source.stats[entry[1]] or 0;if v~=0 then table.insert(parts,string.format(entry[2],signed(v))) end end
+    for _,entry in ipairs({{'power',Text.GearPower},{'armor',Text.GearArmor},{'health',Text.GearHealth}}) do local v=source.stats[entry[1]] or 0;if v~=0 then table.insert(parts,string.format(entry[2],entry[1]=='power' and v or signed(v))) end end
     text..='\n'..(#parts>0 and table.concat(parts,' · ') or Text.NoBonus)
     local h=measured(text,12,mainW-8);label(scroll,'Gear_'..source.slot,text,4,top,mainW-8,h,12,Theme.color.silver);top+=h+6
    end

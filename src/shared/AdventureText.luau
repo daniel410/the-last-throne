@@ -16,7 +16,7 @@ return {
  Confirm='CONFIRM · ',ForgeMaterials='GEMS & MAGIC STONES',ConvertOre='1 ORE + %d GOLD → 1 GEM',ConvertOreReview='Spend 1 Ore and %d Gold to receive 1 Gem? This cannot be undone.',ConvertCore='CONVERT 1 CORE → 1 MAGIC STONE',ConvertReview='Convert one old material to one new material? This is optional and cannot be undone.',ExchangeInfo='In bag: %d Gems / %d Stones\n%d Gold → %d Gem\n%d Gems + %d Gold → %d Magic Stone\nGems are separate from Diamonds.',
  ExchangeGemsButton='BUY · %d GOLD → %d GEM',ExchangeStoneButton='GEMS + %d GOLD → STONE',
  ExchangeButton='EXCHANGE · 50 GOLD',MoreMaterials='MORE GOLD OR MATERIALS NEEDED',MaxEnhancement='MAX ENHANCEMENT',
- StatChange='%s: %.2f → %.2f',Power='Attack bonus (%)',Armor='Defense (pts)',Health='Max HP (pts)',
+ PowerChange='Attack bonus: %.1f%% → %.1f%%',StatChange='%s: %.2f → %.2f',Power='Attack bonus (%)',Armor='Defense (pts)',Health='Max HP (pts)',
  EnhanceCost='Limit +%d · Next: %d Gold / %d Gems / %d Stones',MaterialBag='In bag: %d Gems / %d Stones',
  RecoveryReview='Reset %s to +0? Recover %d Gems / %d Stones and %d old Ore / %d old Cores. Gold is not returned.',
  CacheUnavailable='Keep this cache. Its trial equipment has been retired, and replacement choices are not available yet. The cache will not be consumed.',

@@ -315,7 +315,8 @@ function InventoryGui.create(onVisibility, feedback)
 				local before,after=current and current.stats[key] or 0,Enhance.stats(def,item)[key] or 0
 				local suffix=key=="power" and "%" or " pts"
 				local deltaSuffix=key=="power" and " pp" or suffix
-				lines[#lines+1]=string.format("%s   %.2f%s → %.2f%s   (%+.2f%s)",Text.Stats[key],before,suffix,after,suffix,after-before,deltaSuffix)
+				local format=key=="power" and "%s   %.1f%s → %.1f%s   (%+.1f%s)" or "%s   %.2f%s → %.2f%s   (%+.2f%s)"
+				lines[#lines+1]=string.format(format,Text.Stats[key],before,suffix,after,suffix,after-before,deltaSuffix)
 			end
 			detailLabel("Comparison",table.concat(lines,"\n"),y,94,13,Color.text); y=y+100
 			local impact,reason=EquipmentImpact.compare(hero,snapshot.items,item,compareSlot,Catalog)
