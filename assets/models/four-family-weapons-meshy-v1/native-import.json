@@ -1,0 +1,418 @@
+[
+  {
+    "nativeVertices": 1946,
+    "rotationToSource": 180,
+    "definitionId": "dwarf_weapon_sentinel",
+    "id": "sentinel_axe",
+    "meshId": "rbxassetid://116377495382016",
+    "textureId": "rbxassetid://92416668275380",
+    "modelAssetId": "136485943649830",
+    "center": [
+      0.17337167263031006,
+      0.863999992609024,
+      -0.18118257820606232
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.8709981441497803,
+      3.199999988079071,
+      0.8721596896648407
+    ]
+  },
+  {
+    "nativeVertices": 1402,
+    "rotationToSource": 180,
+    "definitionId": "elf_weapon_sentinel",
+    "id": "sentinel_bow",
+    "meshId": "rbxassetid://128619533363228",
+    "textureId": "rbxassetid://138212965806098",
+    "modelAssetId": "124910471520831",
+    "center": [
+      0.00743924081325531,
+      0,
+      0.23864247649908066
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.27341198921203613,
+      3.625,
+      0.8834676295518875
+    ]
+  },
+  {
+    "nativeVertices": 1910,
+    "rotationToSource": 180,
+    "definitionId": "mage_weapon_sentinel",
+    "id": "sentinel_staff",
+    "meshId": "rbxassetid://115243628418927",
+    "textureId": "rbxassetid://71888804230122",
+    "modelAssetId": "77453459523282",
+    "center": [
+      -0.0011709034442901611,
+      0.31999993324279785,
+      0
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 2,
+      "1": 0,
+      "2": 48,
+      "3": 1
+    },
+    "size": [
+      0.6953835487365723,
+      4,
+      0.23179592192173004
+    ]
+  },
+  {
+    "nativeVertices": 1797,
+    "rotationToSource": 180,
+    "definitionId": "knight_weapon_sentinel",
+    "id": "sentinel_sword",
+    "meshId": "rbxassetid://84214372519416",
+    "textureId": "rbxassetid://130938966338330",
+    "modelAssetId": "81654749463505",
+    "center": [
+      -0.0017690658569335938,
+      1.2764998078346252,
+      0.002652764320373535
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.9884966015815735,
+      3.449999690055847,
+      0.2900049090385437
+    ]
+  },
+  {
+    "nativeVertices": 1796,
+    "rotationToSource": 180,
+    "definitionId": "dwarf_weapon_veteran",
+    "id": "veteran_axe",
+    "meshId": "rbxassetid://95051752543531",
+    "textureId": "rbxassetid://83943218452570",
+    "modelAssetId": "128668848858004",
+    "center": [
+      0.13550594449043274,
+      0.8639998733997345,
+      -0.1450536847114563
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.8257673382759094,
+      3.199999749660492,
+      0.8269264698028564
+    ]
+  },
+  {
+    "nativeVertices": 1617,
+    "rotationToSource": 180,
+    "definitionId": "elf_weapon_veteran",
+    "id": "veteran_bow",
+    "meshId": "rbxassetid://127404029021728",
+    "textureId": "rbxassetid://81876101157285",
+    "modelAssetId": "79504841179851",
+    "center": [
+      0.0016620904207229614,
+      0,
+      0.27116523683071136
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.358965128660202,
+      3.625,
+      1.0080833733081818
+    ]
+  },
+  {
+    "nativeVertices": 1863,
+    "rotationToSource": 180,
+    "definitionId": "mage_weapon_veteran",
+    "id": "veteran_staff",
+    "meshId": "rbxassetid://113075752489310",
+    "textureId": "rbxassetid://93293621299549",
+    "modelAssetId": "98209228900779",
+    "center": [
+      0.001022934913635254,
+      0.31999993324279785,
+      -0.0014196038246154785
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 1,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.7348991632461548,
+      4,
+      0.266118586063385
+    ]
+  },
+  {
+    "nativeVertices": 1798,
+    "rotationToSource": 180,
+    "definitionId": "knight_weapon_veteran",
+    "id": "veteran_sword",
+    "meshId": "rbxassetid://76504045200949",
+    "textureId": "rbxassetid://121557337981154",
+    "modelAssetId": "75587350422841",
+    "center": [
+      5.960464477539063e-8,
+      1.2765000462532043,
+      0.00038285553455352783
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 16,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.929324209690094,
+      3.4500001668930054,
+      0.3026933968067169
+    ]
+  },
+  {
+    "nativeVertices": 1781,
+    "rotationToSource": 180,
+    "definitionId": "dwarf_weapon_fine",
+    "id": "tempered_axe",
+    "meshId": "rbxassetid://114098702576901",
+    "textureId": "rbxassetid://99610768991647",
+    "modelAssetId": "128080375772257",
+    "center": [
+      0.14939546585083008,
+      0.863999992609024,
+      -0.15536004304885864
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.8115208148956299,
+      3.199999988079071,
+      0.8126810789108276
+    ]
+  },
+  {
+    "nativeVertices": 1483,
+    "rotationToSource": 180,
+    "definitionId": "elf_weapon_fine",
+    "id": "tempered_bow",
+    "meshId": "rbxassetid://134452350289001",
+    "textureId": "rbxassetid://124825290649611",
+    "modelAssetId": "113958881008826",
+    "center": [
+      0,
+      0,
+      0.27634197473526
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.273552268743515,
+      3.625,
+      1.0030134916305542
+    ]
+  },
+  {
+    "nativeVertices": 1841,
+    "rotationToSource": 180,
+    "definitionId": "mage_weapon_fine",
+    "id": "tempered_staff",
+    "meshId": "rbxassetid://94360655330486",
+    "textureId": "rbxassetid://90427189221041",
+    "modelAssetId": "96757757917311",
+    "center": [
+      0.005323469638824463,
+      0.31999993324279785,
+      -0.0036049187183380127
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 15,
+      "1": 16,
+      "2": 48,
+      "3": 18
+    },
+    "size": [
+      0.6139625906944275,
+      4,
+      0.6139625906944275
+    ]
+  },
+  {
+    "nativeVertices": 1940,
+    "rotationToSource": 180,
+    "definitionId": "knight_weapon_fine",
+    "id": "tempered_sword",
+    "meshId": "rbxassetid://117155485505426",
+    "textureId": "rbxassetid://116056153489740",
+    "modelAssetId": "110384561218321",
+    "center": [
+      0.0035419315099716187,
+      1.2765000462532043,
+      -0.007080107927322388
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 8,
+      "1": 1,
+      "2": 48,
+      "3": 1
+    },
+    "size": [
+      0.9222404062747955,
+      3.4500001668930054,
+      0.2637510299682617
+    ]
+  },
+  {
+    "nativeVertices": 1675,
+    "rotationToSource": 180,
+    "definitionId": "dwarf_weapon_traveler",
+    "id": "traveler_axe",
+    "meshId": "rbxassetid://103791898585998",
+    "textureId": "rbxassetid://109821269881992",
+    "modelAssetId": "115659241234864",
+    "center": [
+      0.13552875816822052,
+      0.863999992609024,
+      -0.13088633865118027
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.7290913760662079,
+      3.199999988079071,
+      0.7267731577157974
+    ]
+  },
+  {
+    "nativeVertices": 1545,
+    "rotationToSource": 180,
+    "definitionId": "elf_weapon_traveler",
+    "id": "traveler_bow",
+    "meshId": "rbxassetid://112034906978588",
+    "textureId": "rbxassetid://103084256928023",
+    "modelAssetId": "126193150741816",
+    "center": [
+      0.0027916207909584045,
+      0,
+      0.21951265633106232
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.1767849326133728,
+      3.625,
+      0.8485616147518158
+    ]
+  },
+  {
+    "nativeVertices": 1770,
+    "rotationToSource": 180,
+    "definitionId": "mage_weapon_traveler",
+    "id": "traveler_staff",
+    "meshId": "rbxassetid://124554977749498",
+    "textureId": "rbxassetid://85092901344189",
+    "modelAssetId": "72819991155520",
+    "center": [
+      -0.03221443295478821,
+      0.31999993324279785,
+      -0.0012061893939971924
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      0.6068677306175232,
+      4,
+      0.1763191819190979
+    ]
+  },
+  {
+    "nativeVertices": 2104,
+    "rotationToSource": 180,
+    "definitionId": "knight_weapon_traveler",
+    "id": "traveler_sword",
+    "meshId": "rbxassetid://87898672902618",
+    "textureId": "rbxassetid://111610252510810",
+    "modelAssetId": "84313348536114",
+    "center": [
+      0.0017673373222351074,
+      1.2764998078346252,
+      0.007072851061820984
+    ],
+    "matchedSourceSamples": 48,
+    "orientationMatches": {
+      "0": 0,
+      "1": 0,
+      "2": 48,
+      "3": 0
+    },
+    "size": [
+      1.0079443454742432,
+      3.449999690055847,
+      0.3731189966201782
+    ]
+  }
+]

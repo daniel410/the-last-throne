@@ -1,0 +1,359 @@
+{
+  "version": 1,
+  "background": "transparent alpha",
+  "render": "Blender Cycles; Standard/sRGB/None/0/1/Curves Off",
+  "records": [
+    {
+      "id": "sentinel_axe",
+      "tierId": "sentinel",
+      "rarity": "Rare",
+      "classId": "dwarf",
+      "category": "axe",
+      "definitionId": "dwarf_weapon_sentinel",
+      "meshyTaskId": "01a1c253-d853-737e-bfb4-3a5380953770",
+      "robloxIconAssetId": "126622922289484",
+      "1024": {
+        "file": "icons/sentinel_axe.png",
+        "sha256": "c981cb197759fdd91944a2073715fda2cb57eb12fe7d6ad571ae8259d3024beb"
+      },
+      "64": {
+        "file": "64/sentinel_axe.png",
+        "sha256": "1f75737bc31828482e7367db195ee870ae0c5e34b1f21c02668b0fd73a63ba5f"
+      },
+      "48": {
+        "file": "48/sentinel_axe.png",
+        "sha256": "91b8513ef9fb50a9d46710ed15cefec50ba861f6644a98542bbcdcde52468f29"
+      }
+    },
+    {
+      "id": "sentinel_bow",
+      "tierId": "sentinel",
+      "rarity": "Rare",
+      "classId": "elf",
+      "category": "bow",
+      "definitionId": "elf_weapon_sentinel",
+      "meshyTaskId": "01a1c253-cb81-75a2-9005-137d1449ebdf",
+      "robloxIconAssetId": "93652204708306",
+      "1024": {
+        "file": "icons/sentinel_bow.png",
+        "sha256": "3f6b088736ef989522cb7dbc95decb3ef523408c6407e68a009d2445924efff1"
+      },
+      "64": {
+        "file": "64/sentinel_bow.png",
+        "sha256": "6a00a6196b375441178929fca6fb54c2838c4702567b9b1a152ea055760660a1"
+      },
+      "48": {
+        "file": "48/sentinel_bow.png",
+        "sha256": "1f0829027b870707ec5fb4adca34804926569217e958fe044ea3d8e72daf09c7"
+      }
+    },
+    {
+      "id": "sentinel_staff",
+      "tierId": "sentinel",
+      "rarity": "Rare",
+      "classId": "mage",
+      "category": "staff",
+      "definitionId": "mage_weapon_sentinel",
+      "meshyTaskId": "01a1c253-744d-751d-8ba0-4f6154536b38",
+      "robloxIconAssetId": "74366161848908",
+      "1024": {
+        "file": "icons/sentinel_staff.png",
+        "sha256": "020d2283baa1aa2f976a84500a995e831ba79fcbefc21d7f51b3139b621c3bd1"
+      },
+      "64": {
+        "file": "64/sentinel_staff.png",
+        "sha256": "606233d3c2b07cee47d65831f1b1e0adde09f39eb25c332f096e32f4d5ac0f89"
+      },
+      "48": {
+        "file": "48/sentinel_staff.png",
+        "sha256": "dbefc0caa29ae68f56311f6e152bb7d2259bae382a79d184f6da609b936a2451"
+      }
+    },
+    {
+      "id": "sentinel_sword",
+      "tierId": "sentinel",
+      "rarity": "Rare",
+      "classId": "knight",
+      "category": "sword",
+      "definitionId": "knight_weapon_sentinel",
+      "meshyTaskId": "01a1c253-2615-74aa-8274-15fa0ce80d33",
+      "robloxIconAssetId": "76943152457590",
+      "1024": {
+        "file": "icons/sentinel_sword.png",
+        "sha256": "c50fd727cfb08c163efcd96f784c6639752c473db737b91c284691178c3cb1f9"
+      },
+      "64": {
+        "file": "64/sentinel_sword.png",
+        "sha256": "fda600e2c1a0a6a5bbb6a21597125a356d52d284ab0c6e87c7d4ed1ddea23bc8"
+      },
+      "48": {
+        "file": "48/sentinel_sword.png",
+        "sha256": "d0c3d2055a02b37d306ed428b0a5a69a32df1a2af0b1d2e152780d139089b37f"
+      }
+    },
+    {
+      "id": "veteran_axe",
+      "tierId": "veteran",
+      "rarity": "Uncommon",
+      "classId": "dwarf",
+      "category": "axe",
+      "definitionId": "dwarf_weapon_veteran",
+      "meshyTaskId": "01a1c253-24a1-743d-a014-9a151fb1bddb",
+      "robloxIconAssetId": "88074217383860",
+      "1024": {
+        "file": "icons/veteran_axe.png",
+        "sha256": "18901af830674a8de1e096095e70b1d395f1a3b1cbb75f43037813196205abeb"
+      },
+      "64": {
+        "file": "64/veteran_axe.png",
+        "sha256": "c9ec31271b9bfdc9a3f0680db86a92396ffeb5d45e90f42d3ccfc84c252c75cf"
+      },
+      "48": {
+        "file": "48/veteran_axe.png",
+        "sha256": "2705c30454f7685e040157df7df093c6430c83cb69ce1b5f9e8fb55288ff7109"
+      }
+    },
+    {
+      "id": "veteran_bow",
+      "tierId": "veteran",
+      "rarity": "Uncommon",
+      "classId": "elf",
+      "category": "bow",
+      "definitionId": "elf_weapon_veteran",
+      "meshyTaskId": "01a1c252-8936-7610-b2bf-0705dbd59338",
+      "robloxIconAssetId": "121049680687223",
+      "1024": {
+        "file": "icons/veteran_bow.png",
+        "sha256": "1cd6e034f51785335ca686b1859a13bf1ff197cd11e0fd62a6bac6ce29e9d089"
+      },
+      "64": {
+        "file": "64/veteran_bow.png",
+        "sha256": "992a384530667c99bda6a73dc7dfa680c20a73398f40061246d8c7c031637d71"
+      },
+      "48": {
+        "file": "48/veteran_bow.png",
+        "sha256": "14ce396168373ecdf9588f40388976980adb7feb34c2db3e2dc37300757896d8"
+      }
+    },
+    {
+      "id": "veteran_staff",
+      "tierId": "veteran",
+      "rarity": "Uncommon",
+      "classId": "mage",
+      "category": "staff",
+      "definitionId": "mage_weapon_veteran",
+      "meshyTaskId": "01a1c252-1e74-7339-8084-708248f1f133",
+      "robloxIconAssetId": "98052385179240",
+      "1024": {
+        "file": "icons/veteran_staff.png",
+        "sha256": "a6a886c3cf4dcd157bdb44f7e58b93d9f9bcade969a456813faa64ec941c802d"
+      },
+      "64": {
+        "file": "64/veteran_staff.png",
+        "sha256": "4063d495b92d1b2696661cb70a7325ba6ba147a836c35bc7071a8d8a0be03307"
+      },
+      "48": {
+        "file": "48/veteran_staff.png",
+        "sha256": "c8dc88537ad484ec031b8afb7aa24a5a5d9883bad9b57d748be0fcb559517c26"
+      }
+    },
+    {
+      "id": "veteran_sword",
+      "tierId": "veteran",
+      "rarity": "Uncommon",
+      "classId": "knight",
+      "category": "sword",
+      "definitionId": "knight_weapon_veteran",
+      "meshyTaskId": "01a1c251-cd3c-7601-88dd-e8f5648378b8",
+      "robloxIconAssetId": "99740451046658",
+      "1024": {
+        "file": "icons/veteran_sword.png",
+        "sha256": "65a0921cc4727fcbb7131eedb530ec7fa01121506aaa7a18fdd4818f3176dc90"
+      },
+      "64": {
+        "file": "64/veteran_sword.png",
+        "sha256": "16aa72c47de69f290a1e6379d4704b71c81a3a88c8111a9c9aa66b9ab3ab0e16"
+      },
+      "48": {
+        "file": "48/veteran_sword.png",
+        "sha256": "e5e00a0d316187bac67a9086a1df713220f4138258aa7af8ab937bd6bb94c279"
+      }
+    },
+    {
+      "id": "tempered_axe",
+      "tierId": "tempered",
+      "rarity": "Common",
+      "classId": "dwarf",
+      "category": "axe",
+      "definitionId": "dwarf_weapon_fine",
+      "meshyTaskId": "01a1c251-7b2c-764c-9c3a-4fe47adab9fa",
+      "robloxIconAssetId": "83551316779237",
+      "1024": {
+        "file": "icons/tempered_axe.png",
+        "sha256": "4371e764768c0b2c37f3b2859d7cc47f13b4e5f16f5dc6496183195dfe3a78e2"
+      },
+      "64": {
+        "file": "64/tempered_axe.png",
+        "sha256": "9cf10dba99ba41274cf58d1a856fe9475851e7c07e8e1752d4c93bc9fb53e241"
+      },
+      "48": {
+        "file": "48/tempered_axe.png",
+        "sha256": "9dea58211976406bfe906ea25ca4ad999c503bf85de70c497dd09310413e4374"
+      }
+    },
+    {
+      "id": "tempered_bow",
+      "tierId": "tempered",
+      "rarity": "Common",
+      "classId": "elf",
+      "category": "bow",
+      "definitionId": "elf_weapon_fine",
+      "meshyTaskId": "01a1c251-551e-73dc-a8cc-8fa05097872d",
+      "robloxIconAssetId": "123323237309349",
+      "1024": {
+        "file": "icons/tempered_bow.png",
+        "sha256": "92da6fab8d02fe4e0b957eb7d7d7ae0a67698db6d4d1f871cc643ff15e7fef86"
+      },
+      "64": {
+        "file": "64/tempered_bow.png",
+        "sha256": "b0695e941a9ce469eb0067e41ddef819d959572d066bf79581f04e61e0c409cb"
+      },
+      "48": {
+        "file": "48/tempered_bow.png",
+        "sha256": "708c14679e97c2c519a45ccdb597d885fdda1780aa48bb8bff90f234f6fcce37"
+      }
+    },
+    {
+      "id": "tempered_staff",
+      "tierId": "tempered",
+      "rarity": "Common",
+      "classId": "mage",
+      "category": "staff",
+      "definitionId": "mage_weapon_fine",
+      "meshyTaskId": "01a1c250-f13c-7762-9489-06076e0c7dc6",
+      "robloxIconAssetId": "131197800580947",
+      "1024": {
+        "file": "icons/tempered_staff.png",
+        "sha256": "763d9e9f4b03c08d43a311dc3bafb154c649cfb1dbb2bb06423f544a8bfa6c9a"
+      },
+      "64": {
+        "file": "64/tempered_staff.png",
+        "sha256": "7756f0be6c8c197f69809e2cbe90fff7dd6b00a695474a59d1133fc8028b7bfa"
+      },
+      "48": {
+        "file": "48/tempered_staff.png",
+        "sha256": "b99ab98cc642e5fc916289413e56e7025fe6dca541df8dc942516baa4fe435e2"
+      }
+    },
+    {
+      "id": "tempered_sword",
+      "tierId": "tempered",
+      "rarity": "Common",
+      "classId": "knight",
+      "category": "sword",
+      "definitionId": "knight_weapon_fine",
+      "meshyTaskId": "01a1c250-12c0-7078-9a40-eca7bb3bc3cf",
+      "robloxIconAssetId": "121495916623375",
+      "1024": {
+        "file": "icons/tempered_sword.png",
+        "sha256": "9dc21e8fb1c8cc66a90e4c6233100479045df29a4d4c9e1ef37e82684e737872"
+      },
+      "64": {
+        "file": "64/tempered_sword.png",
+        "sha256": "cf941248b107fcd53839aa96317f817a1319abc3cf19c1be24d358aaa90f944f"
+      },
+      "48": {
+        "file": "48/tempered_sword.png",
+        "sha256": "5386b3366c904a09f059516df98663fc58d8e8f754a40c97200f82902673f3b3"
+      }
+    },
+    {
+      "id": "traveler_axe",
+      "tierId": "traveler",
+      "rarity": "Common",
+      "classId": "dwarf",
+      "category": "axe",
+      "definitionId": "dwarf_weapon_traveler",
+      "meshyTaskId": "01a1c24f-c03a-768b-b594-09a675c9ba49",
+      "robloxIconAssetId": "91201276228888",
+      "1024": {
+        "file": "icons/traveler_axe.png",
+        "sha256": "45f14f27519e84c253cfa2b669e38679dadac8628b20c1358945fe89e7ec6aba"
+      },
+      "64": {
+        "file": "64/traveler_axe.png",
+        "sha256": "71d7e0d2c3495bb6cf8b6a296214c8df9b8fd15e8af37772366fa93dc8f35556"
+      },
+      "48": {
+        "file": "48/traveler_axe.png",
+        "sha256": "5fa800e0134b7502ad6a17485c7ff4dc71109a03c58ec9f799e4714827133f0e"
+      }
+    },
+    {
+      "id": "traveler_bow",
+      "tierId": "traveler",
+      "rarity": "Common",
+      "classId": "elf",
+      "category": "bow",
+      "definitionId": "elf_weapon_traveler",
+      "meshyTaskId": "01a1c24f-90f0-75c9-a002-ebc8fb3999c7",
+      "robloxIconAssetId": "84686712382386",
+      "1024": {
+        "file": "icons/traveler_bow.png",
+        "sha256": "833d6c8e78aaef1fbf2028b09cfae89d82c4859d3ae9b72a2253e626e2112ef4"
+      },
+      "64": {
+        "file": "64/traveler_bow.png",
+        "sha256": "5b5e997f2e7ded0af882d8a7eee920ae8591d51fbafbe17352fca9f9bb95f379"
+      },
+      "48": {
+        "file": "48/traveler_bow.png",
+        "sha256": "c8d873907c4b87be715494f44fef4cc45c5052e8d8f0035e992d99ee6b123f68"
+      }
+    },
+    {
+      "id": "traveler_staff",
+      "tierId": "traveler",
+      "rarity": "Common",
+      "classId": "mage",
+      "category": "staff",
+      "definitionId": "mage_weapon_traveler",
+      "meshyTaskId": "01a1c250-7faa-70a8-88fe-c8aaa3ed90b3",
+      "robloxIconAssetId": "111844365076046",
+      "1024": {
+        "file": "icons/traveler_staff.png",
+        "sha256": "b6a84ffc1a149515741e6893b6444d78b81926158c0969851ec8be6a5040c7e3"
+      },
+      "64": {
+        "file": "64/traveler_staff.png",
+        "sha256": "b20a0ab651223ab24a785296e7b26c7648e9e80f7c8dbe6006f691581492a68c"
+      },
+      "48": {
+        "file": "48/traveler_staff.png",
+        "sha256": "52a51ad418746082d540743fec5fadcd627ef0a84789d944944ae26e835111be"
+      }
+    },
+    {
+      "id": "traveler_sword",
+      "tierId": "traveler",
+      "rarity": "Common",
+      "classId": "knight",
+      "category": "sword",
+      "definitionId": "knight_weapon_traveler",
+      "meshyTaskId": "01a1c24f-2cc3-70e5-99f5-a4b76a623e00",
+      "robloxIconAssetId": "83463381365228",
+      "1024": {
+        "file": "icons/traveler_sword.png",
+        "sha256": "75c6382533b56da4121a843d8994a16dd237bc6e328e5a41141867d79ca84843"
+      },
+      "64": {
+        "file": "64/traveler_sword.png",
+        "sha256": "b320aebce1555427a8724c8ff60a54e37a8f916f8a2e10891a4d7c8b5c751157"
+      },
+      "48": {
+        "file": "48/traveler_sword.png",
+        "sha256": "b772997507669feabb4193297e96a2a00e3da5aac6c1dee3fc09a9b7b0452247"
+      }
+    }
+  ]
+}

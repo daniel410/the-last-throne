@@ -1,0 +1,934 @@
+[
+  {
+    "id": "sentinel_axe",
+    "definitionId": "dwarf_weapon_sentinel",
+    "classId": "dwarf",
+    "category": "axe",
+    "prepared": "prepared/sentinel_axe.glb",
+    "targetHeight": 3.2,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.2621273994445801,
+        -0.25489726662635803,
+        -0.7360000014305115
+      ],
+      [
+        0.6088707447052002,
+        0.6172624230384827,
+        2.4639999866485596
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.2621273994445801,
+        -0.7360000014305115,
+        -0.6172624230384827
+      ],
+      [
+        0.6088707447052002,
+        2.4639999866485596,
+        0.25489726662635803
+      ]
+    ],
+    "tipRoblox": [
+      0.43142372369766235,
+      2.4639999866485596,
+      -0.4258940815925598
+    ],
+    "triangles": 1556,
+    "vertices": 1946,
+    "sourceToStudScale": 3.359097057824649,
+    "sourceGripBandFraction": 0.23,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/sentinel_axe.png"
+  },
+  {
+    "id": "sentinel_bow",
+    "definitionId": "elf_weapon_sentinel",
+    "classId": "elf",
+    "category": "bow",
+    "prepared": "prepared/sentinel_bow.glb",
+    "targetHeight": 3.625,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.12926675379276276,
+        -0.6803762912750244,
+        -1.8125
+      ],
+      [
+        0.14414523541927338,
+        0.2030913382768631,
+        1.8125
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.12926675379276276,
+        -1.8125,
+        -0.2030913382768631
+      ],
+      [
+        0.14414523541927338,
+        1.8125,
+        0.6803762912750244
+      ]
+    ],
+    "tipRoblox": [
+      0.002788262441754341,
+      1.8125,
+      0.587380051612854
+    ],
+    "triangles": 1578,
+    "vertices": 1831,
+    "sourceToStudScale": 3.809133604385012,
+    "sourceGripBandFraction": 0.5,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/sentinel_bow.png",
+    "bowGeometry": {
+      "upper": [
+        -0.002000503707677126,
+        1.6525468826293945,
+        0.546072781085968
+      ],
+      "lower": [
+        -0.001457161852158606,
+        -1.6637076139450073,
+        0.4367983043193817
+      ],
+      "nock": [
+        -0.0017914437921717763,
+        0.37656283378601074,
+        0.5040276050567627
+      ],
+      "bakedStringFacesRemoved": 363,
+      "intactNormalized": "normalized/sentinel_bow-intact.glb",
+      "rationale": "Only narrow baked string faces replaced by the existing two moving beams; original GLB and complete icon render retained"
+    },
+    "runtimeTriangles": 1215
+  },
+  {
+    "id": "sentinel_staff",
+    "definitionId": "mage_weapon_sentinel",
+    "classId": "mage",
+    "category": "staff",
+    "prepared": "prepared/sentinel_staff.glb",
+    "targetHeight": 4.0,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.3488626778125763,
+        -0.11589796096086502,
+        -1.6800000667572021
+      ],
+      [
+        0.34652087092399597,
+        0.11589796096086502,
+        2.319999933242798
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.3488626778125763,
+        -1.6800000667572021,
+        -0.11589796096086502
+      ],
+      [
+        0.34652087092399597,
+        2.319999933242798,
+        0.11589796096086502
+      ]
+    ],
+    "tipRoblox": [
+      -0.002193876076489687,
+      2.319999933242798,
+      0.0010250505292788148
+    ],
+    "triangles": 1497,
+    "vertices": 1910,
+    "sourceToStudScale": 4.201027744905722,
+    "sourceGripBandFraction": 0.42,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/sentinel_staff.png"
+  },
+  {
+    "id": "sentinel_sword",
+    "definitionId": "knight_weapon_sentinel",
+    "classId": "knight",
+    "category": "sword",
+    "prepared": "prepared/sentinel_sword.glb",
+    "targetHeight": 3.45,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.49601736664772034,
+        -0.14765521883964539,
+        -0.44850003719329834
+      ],
+      [
+        0.49247923493385315,
+        0.14234969019889832,
+        3.001499652862549
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.49601736664772034,
+        -0.44850003719329834,
+        -0.14234969019889832
+      ],
+      [
+        0.49247923493385315,
+        3.001499652862549,
+        0.14765521883964539
+      ]
+    ],
+    "tipRoblox": [
+      -0.0008852057508192956,
+      3.001499652862549,
+      -0.000881842861417681
+    ],
+    "triangles": 1580,
+    "vertices": 1797,
+    "sourceToStudScale": 3.6215301409409495,
+    "sourceGripBandFraction": 0.13,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/sentinel_sword.png"
+  },
+  {
+    "id": "veteran_axe",
+    "definitionId": "dwarf_weapon_veteran",
+    "classId": "dwarf",
+    "category": "axe",
+    "prepared": "prepared/veteran_axe.glb",
+    "targetHeight": 3.2,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.277377724647522,
+        -0.2684095501899719,
+        -0.7360000014305115
+      ],
+      [
+        0.5483896136283875,
+        0.5585169196128845,
+        2.4639997482299805
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.277377724647522,
+        -0.7360000014305115,
+        -0.5585169196128845
+      ],
+      [
+        0.5483896136283875,
+        2.4639997482299805,
+        0.2684095501899719
+      ]
+    ],
+    "tipRoblox": [
+      0.37210384011268616,
+      2.4639997482299805,
+      -0.3822311460971832
+    ],
+    "triangles": 1515,
+    "vertices": 1796,
+    "sourceToStudScale": 3.35910042058291,
+    "sourceGripBandFraction": 0.23,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/veteran_axe.png"
+  },
+  {
+    "id": "veteran_bow",
+    "definitionId": "elf_weapon_veteran",
+    "classId": "elf",
+    "category": "bow",
+    "prepared": "prepared/veteran_bow.glb",
+    "targetHeight": 3.625,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.17782047390937805,
+        -0.7752069234848022,
+        -1.8125
+      ],
+      [
+        0.18114465475082397,
+        0.23287644982337952,
+        1.8125
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.17782047390937805,
+        -1.8125,
+        -0.23287644982337952
+      ],
+      [
+        0.18114465475082397,
+        1.8125,
+        0.7752069234848022
+      ]
+    ],
+    "tipRoblox": [
+      -0.012286994606256485,
+      1.8125,
+      0.7026695609092712
+    ],
+    "triangles": 1564,
+    "vertices": 1814,
+    "sourceToStudScale": 3.809133604385012,
+    "sourceGripBandFraction": 0.5,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/veteran_bow.png",
+    "bowGeometry": {
+      "upper": [
+        0.0007346774218603969,
+        1.645107626914978,
+        0.650263786315918
+      ],
+      "lower": [
+        0.012044394388794899,
+        -1.5111937522888184,
+        0.3965349793434143
+      ],
+      "nock": [
+        0.005280150566250086,
+        0.37656283378601074,
+        0.5482879877090454
+      ],
+      "bakedStringFacesRemoved": 172,
+      "intactNormalized": "normalized/veteran_bow-intact.glb",
+      "rationale": "Only narrow baked string faces replaced by the existing two moving beams; original GLB and complete icon render retained"
+    },
+    "runtimeTriangles": 1392
+  },
+  {
+    "id": "veteran_staff",
+    "definitionId": "mage_weapon_veteran",
+    "classId": "mage",
+    "category": "staff",
+    "prepared": "prepared/veteran_staff.glb",
+    "targetHeight": 4.0,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.36642664670944214,
+        -0.13163968920707703,
+        -1.6800000667572021
+      ],
+      [
+        0.36847251653671265,
+        0.13447889685630798,
+        2.319999933242798
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.36642664670944214,
+        -1.6800000667572021,
+        -0.13447889685630798
+      ],
+      [
+        0.36847251653671265,
+        2.319999933242798,
+        0.13163968920707703
+      ]
+    ],
+    "tipRoblox": [
+      -0.12077967077493668,
+      2.319999933242798,
+      -0.05055069550871849
+    ],
+    "triangles": 1511,
+    "vertices": 1863,
+    "sourceToStudScale": 4.19242841233903,
+    "sourceGripBandFraction": 0.42,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/veteran_staff.png"
+  },
+  {
+    "id": "veteran_sword",
+    "definitionId": "knight_weapon_veteran",
+    "classId": "knight",
+    "category": "sword",
+    "prepared": "prepared/veteran_sword.glb",
+    "targetHeight": 3.45,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.4646620452404022,
+        -0.151729553937912,
+        -0.44850003719329834
+      ],
+      [
+        0.4646621644496918,
+        0.15096384286880493,
+        3.001500129699707
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.4646620452404022,
+        -0.44850003719329834,
+        -0.15096384286880493
+      ],
+      [
+        0.4646621644496918,
+        3.001500129699707,
+        0.151729553937912
+      ]
+    ],
+    "tipRoblox": [
+      -0.0008842969546094537,
+      3.001500129699707,
+      -0.0005017041112296283
+    ],
+    "triangles": 1568,
+    "vertices": 1798,
+    "sourceToStudScale": 3.62524439589746,
+    "sourceGripBandFraction": 0.13,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/veteran_sword.png"
+  },
+  {
+    "id": "tempered_axe",
+    "definitionId": "dwarf_weapon_fine",
+    "classId": "dwarf",
+    "category": "axe",
+    "prepared": "prepared/tempered_axe.glb",
+    "targetHeight": 3.2,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.25636494159698486,
+        -0.2509804964065552,
+        -0.7360000014305115
+      ],
+      [
+        0.555155873298645,
+        0.5617005825042725,
+        2.4639999866485596
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.25636494159698486,
+        -0.7360000014305115,
+        -0.5617005825042725
+      ],
+      [
+        0.555155873298645,
+        2.4639999866485596,
+        0.2509804964065552
+      ]
+    ],
+    "tipRoblox": [
+      0.39494308829307556,
+      2.4639999866485596,
+      -0.4014878571033478
+    ],
+    "triangles": 1506,
+    "vertices": 1781,
+    "sourceToStudScale": 3.362545526629528,
+    "sourceGripBandFraction": 0.23,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/tempered_axe.png"
+  },
+  {
+    "id": "tempered_bow",
+    "definitionId": "elf_weapon_fine",
+    "classId": "elf",
+    "category": "bow",
+    "prepared": "prepared/tempered_bow.glb",
+    "targetHeight": 3.625,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.1367761343717575,
+        -0.7778487205505371,
+        -1.8125
+      ],
+      [
+        0.1367761343717575,
+        0.2251647710800171,
+        1.8125
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.1367761343717575,
+        -1.8125,
+        -0.2251647710800171
+      ],
+      [
+        0.1367761343717575,
+        1.8125,
+        0.7778487205505371
+      ]
+    ],
+    "tipRoblox": [
+      0.0009298750665038824,
+      1.8125,
+      0.6941115260124207
+    ],
+    "triangles": 1556,
+    "vertices": 1867,
+    "sourceToStudScale": 3.8110878180485823,
+    "sourceGripBandFraction": 0.5,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/tempered_bow.png",
+    "bowGeometry": {
+      "upper": [
+        0.018773406744003296,
+        1.6524648666381836,
+        0.6240563988685608
+      ],
+      "lower": [
+        0.0014158720150589943,
+        -1.6468815803527832,
+        0.4466739296913147
+      ],
+      "nock": [
+        0.012061012908816338,
+        0.37656283378601074,
+        0.5554602146148682
+      ],
+      "bakedStringFacesRemoved": 293,
+      "intactNormalized": "normalized/tempered_bow-intact.glb",
+      "rationale": "Only narrow baked string faces replaced by the existing two moving beams; original GLB and complete icon render retained"
+    },
+    "runtimeTriangles": 1263
+  },
+  {
+    "id": "tempered_staff",
+    "definitionId": "mage_weapon_fine",
+    "classId": "mage",
+    "category": "staff",
+    "prepared": "prepared/tempered_staff.glb",
+    "targetHeight": 4.0,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.3016578257083893,
+        -0.30337637662887573,
+        -1.6800000667572021
+      ],
+      [
+        0.3123047649860382,
+        0.31058621406555176,
+        2.319999933242798
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.3016578257083893,
+        -1.6800000667572021,
+        -0.31058621406555176
+      ],
+      [
+        0.3123047649860382,
+        2.319999933242798,
+        0.30337637662887573
+      ]
+    ],
+    "tipRoblox": [
+      -0.04293278604745865,
+      2.319999933242798,
+      0.01590365171432495
+    ],
+    "triangles": 1549,
+    "vertices": 1841,
+    "sourceToStudScale": 4.205338281984642,
+    "sourceGripBandFraction": 0.42,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/tempered_staff.png"
+  },
+  {
+    "id": "tempered_sword",
+    "definitionId": "knight_weapon_fine",
+    "classId": "knight",
+    "category": "sword",
+    "prepared": "prepared/tempered_sword.glb",
+    "targetHeight": 3.45,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.45757827162742615,
+        -0.12479540705680847,
+        -0.44850003719329834
+      ],
+      [
+        0.4646621346473694,
+        0.13895562291145325,
+        3.001500129699707
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.45757827162742615,
+        -0.44850003719329834,
+        -0.13895562291145325
+      ],
+      [
+        0.4646621346473694,
+        3.001500129699707,
+        0.12479540705680847
+      ]
+    ],
+    "tipRoblox": [
+      0.004426682833582163,
+      3.001500129699707,
+      -0.0026536802761256695
+    ],
+    "triangles": 1544,
+    "vertices": 1940,
+    "sourceToStudScale": 3.62524439589746,
+    "sourceGripBandFraction": 0.13,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/tempered_sword.png"
+  },
+  {
+    "id": "traveler_axe",
+    "definitionId": "dwarf_weapon_traveler",
+    "classId": "dwarf",
+    "category": "axe",
+    "prepared": "prepared/traveler_axe.glb",
+    "targetHeight": 3.2,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.22901692986488342,
+        -0.23250024020671844,
+        -0.7360000014305115
+      ],
+      [
+        0.5000744462013245,
+        0.494272917509079,
+        2.4639999866485596
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.22901692986488342,
+        -0.7360000014305115,
+        -0.494272917509079
+      ],
+      [
+        0.5000744462013245,
+        2.4639999866485596,
+        0.23250024020671844
+      ]
+    ],
+    "tipRoblox": [
+      0.3445029556751251,
+      2.4639999866485596,
+      -0.33870139718055725
+    ],
+    "triangles": 1566,
+    "vertices": 1675,
+    "sourceToStudScale": 3.362545526629528,
+    "sourceGripBandFraction": 0.23,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/traveler_axe.png"
+  },
+  {
+    "id": "traveler_bow",
+    "definitionId": "elf_weapon_traveler",
+    "classId": "elf",
+    "category": "bow",
+    "prepared": "prepared/traveler_bow.glb",
+    "targetHeight": 3.625,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.085600845515728,
+        -0.6437934637069702,
+        -1.8125
+      ],
+      [
+        0.0911840870976448,
+        0.20476815104484558,
+        1.8125
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.085600845515728,
+        -1.8125,
+        -0.20476815104484558
+      ],
+      [
+        0.0911840870976448,
+        1.8125,
+        0.6437934637069702
+      ]
+    ],
+    "tipRoblox": [
+      0.001859784359112382,
+      1.8125,
+      0.5730825066566467
+    ],
+    "triangles": 1482,
+    "vertices": 1792,
+    "sourceToStudScale": 3.8110878180485823,
+    "sourceGripBandFraction": 0.5,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/traveler_bow.png",
+    "bowGeometry": {
+      "upper": [
+        -0.007400158327072859,
+        1.6747939586639404,
+        0.4692928194999695
+      ],
+      "lower": [
+        0.007222093641757965,
+        -1.6208289861679077,
+        0.3274531364440918
+      ],
+      "nock": [
+        -0.0016400751192122698,
+        0.37656283378601074,
+        0.4134185016155243
+      ],
+      "bakedStringFacesRemoved": 244,
+      "intactNormalized": "normalized/traveler_bow-intact.glb",
+      "rationale": "Only narrow baked string faces replaced by the existing two moving beams; original GLB and complete icon render retained"
+    },
+    "runtimeTriangles": 1238
+  },
+  {
+    "id": "traveler_staff",
+    "definitionId": "mage_weapon_traveler",
+    "classId": "mage",
+    "category": "staff",
+    "prepared": "prepared/traveler_staff.glb",
+    "targetHeight": 4.0,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.3356482982635498,
+        -0.08695340156555176,
+        -1.6800000667572021
+      ],
+      [
+        0.2712194323539734,
+        0.08936578035354614,
+        2.319999933242798
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.3356482982635498,
+        -1.6800000667572021,
+        -0.08936578035354614
+      ],
+      [
+        0.2712194323539734,
+        2.319999933242798,
+        0.08695340156555176
+      ]
+    ],
+    "tipRoblox": [
+      -0.09782394766807556,
+      2.319999933242798,
+      0.0008428495493717492
+    ],
+    "triangles": 1570,
+    "vertices": 1770,
+    "sourceToStudScale": 4.198875525728637,
+    "sourceGripBandFraction": 0.42,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/traveler_staff.png"
+  },
+  {
+    "id": "traveler_sword",
+    "definitionId": "knight_weapon_traveler",
+    "classId": "knight",
+    "category": "sword",
+    "prepared": "prepared/traveler_sword.glb",
+    "targetHeight": 3.45,
+    "grip": [
+      0,
+      0,
+      0
+    ],
+    "boundsBlender": [
+      [
+        -0.5022048354148865,
+        -0.1936323493719101,
+        -0.44850003719329834
+      ],
+      [
+        0.5057395100593567,
+        0.17948664724826813,
+        3.001499652862549
+      ]
+    ],
+    "boundsRoblox": [
+      [
+        -0.5022048354148865,
+        -0.44850003719329834,
+        -0.17948664724826813
+      ],
+      [
+        0.5057395100593567,
+        3.001499652862549,
+        0.1936323493719101
+      ]
+    ],
+    "tipRoblox": [
+      2.5929608682417893e-07,
+      3.001499652862549,
+      0.0008836518973112106
+    ],
+    "triangles": 1560,
+    "vertices": 2104,
+    "sourceToStudScale": 3.6215301409409495,
+    "sourceGripBandFraction": 0.13,
+    "viewTransform": "Standard",
+    "display": "sRGB",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "useCurves": false,
+    "icon": "icons/traveler_sword.png"
+  }
+]

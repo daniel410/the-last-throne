@@ -3,6 +3,7 @@
 local ServerStorage = game:GetService("ServerStorage")
 local BowGeometry = require(game:GetService("ReplicatedStorage").Shared.ElfBowGeometry)
 local ElfQuiver = require(script.Parent.ElfQuiverAppearance)
+local FourFamily = require(game:GetService("ReplicatedStorage").Shared.FourFamilyWeaponVisuals)
 
 local Appearance = {}
 local OWNED = "TLTPlayerWeaponPart"
@@ -17,6 +18,19 @@ local SPECS = {
 	dwarf = { template = "DwarfAxe", parts = { "Weapon" }, gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "td:v2:Embercleaver:inward3" },
 	mage = { gripName = "WeaponGrip", jointName = "PlayerWeaponJoint", sourceKey = "authored:WoodenStaff" },
 }
+for classId, spec in pairs(SPECS) do spec.classId = classId end
+
+local function specFor(classId, definitionId)
+ local base = SPECS[classId]
+ if not base then return nil end
+ local visual = type(definitionId) == "string" and FourFamily.models[definitionId]
+ if not visual or visual.classId ~= classId then return base end
+ local spec = table.clone(base)
+ spec.template, spec.sourceKey = visual.template, visual.sourceKey
+ spec.folderName, spec.definitionId = FourFamily.folderName, definitionId
+ if classId == "mage" then spec.parts = {"Weapon"} end
+ return spec
+end
 
 local function finite(value)
 	return type(value) == "number" and value == value and math.abs(value) < 10000
@@ -90,7 +104,7 @@ local function addSwordTrail(blade)
 end
 
 local function buildTd(spec)
-	local folder = ServerStorage:FindFirstChild("TDRefinedPlayerWeaponModels")
+	local folder = ServerStorage:FindFirstChild(spec.folderName or "TDRefinedPlayerWeaponModels")
 	assert(folder and folder:IsA("Folder"), "Missing ServerStorage.TDRefinedPlayerWeaponModels")
 	local source = folder:FindFirstChild(spec.template)
 	assert(source and source:IsA("Model"), "Missing TD weapon template: " .. spec.template)
@@ -122,9 +136,14 @@ local function buildTd(spec)
 		model.PrimaryPart = grip
 		attachmentCopy(sourceGrip, grip, "GripSocket")
 		local tip = attachmentCopy(sourceGrip, grip, "WeaponTip")
-		if spec.template == "DwarfAxe" then
+		if spec.classId == "dwarf" then
 			for _, name in ipairs({"AxeCuttingEdge", "AxeCuttingDirection", "AxeFaceNormal"}) do
 				assert(attachmentCopy(sourceGrip, grip, name), "Missing reviewed axe cutting marker: " .. name)
+			end
+		end
+		if spec.classId == "elf" and spec.definitionId then
+			for _, name in ipairs({"BowNockRest", "BowUpperRest", "BowLowerRest"}) do
+				assert(attachmentCopy(sourceGrip, grip, name), "Missing Meshy bow geometry: " .. name)
 			end
 		end
 		if not tip then
@@ -153,7 +172,7 @@ local function buildTd(spec)
 			copy.CFrame = sourceGrip.CFrame:ToObjectSpace(original.CFrame)
 			inert(copy)
 			copy.Parent = model
-			if spec.template == "ElfBow" and (name == "String" or name == "NockedArrow") then
+			if spec.classId == "elf" and (name == "String" or name == "NockedArrow") then
 				-- The original string and arrow retain their geometry and grip
 				-- offsets. A local-only Transform can now show the draw/release.
 				local joint = Instance.new("Motor6D")
@@ -169,12 +188,12 @@ local function buildTd(spec)
 				weld.Part1 = copy
 				weld.Parent = copy
 			end
-			if spec.template == "KnightSword" then
+			if spec.classId == "knight" then
 				copy.Name = "SwordBlade"
 				blade = copy
 			end
 		end
-		if spec.template == "ElfBow" then BowGeometry.install(model,grip) end
+		if spec.classId == "elf" then BowGeometry.install(model,grip) end
 		if blade then addSwordTrail(blade) end
 		return { model = model, grip = grip, trailPart = blade, tip = tip, sourceKey = spec.sourceKey }
 	end)
@@ -207,16 +226,17 @@ local function buildStaff(spec)
 	return result
 end
 
-function Appearance.build(classId)
-	local spec = SPECS[classId]
+function Appearance.build(classId, definitionId)
+	local spec = specFor(classId, definitionId)
 	if not spec then return nil, "unsupported_class" end
 	local ok, result = pcall(function()
-		return classId == "mage" and buildStaff(spec) or buildTd(spec)
+		return classId == "mage" and not spec.definitionId and buildStaff(spec) or buildTd(spec)
 	end)
 	if not ok then return nil, tostring(result) end
 	result.model:SetAttribute("WeaponClassId", classId)
 	result.model:SetAttribute("WeaponSourceKey", spec.sourceKey)
 	result.model:SetAttribute("WeaponVisualVersion", VERSION)
+	result.model:SetAttribute("WeaponDefinitionId", spec.definitionId)
 	return result
 end
 
@@ -240,8 +260,8 @@ local function weaponHandFor(character, hands, classId)
 	return hand
 end
 
-local function attachedResult(model, classId, hand)
-	local spec = SPECS[classId]
+local function attachedResult(model, classId, hand, definitionId)
+	local spec = specFor(classId, definitionId)
 	if classId=="elf" and model:GetAttribute("ElfBowRigVersion")~=BowGeometry.version then return nil end
 	if model:GetAttribute("WeaponClassId") ~= classId or model:GetAttribute("WeaponSourceKey") ~= spec.sourceKey
 		or model:GetAttribute("WeaponVisualVersion") ~= VERSION then return nil end
@@ -319,23 +339,24 @@ function Appearance.isAttached(appearanceModel, character, classId, hands)
 	if not SPECS[classId] or not appearanceModel or not appearanceModel:IsA("Model")
 		or not character or not character:IsA("Model") then return false end
 	local hand = weaponHandFor(character, hands, classId)
- return hand ~= nil and attachedResult(appearanceModel, classId, hand) ~= nil
+ return hand ~= nil and attachedResult(appearanceModel, classId, hand, character:GetAttribute("TLTEquippedWeapon")) ~= nil
   and (classId~="elf" or ElfQuiver.valid(appearanceModel,character))
 end
 
 function Appearance.attachInto(appearanceModel, character, classId, hands)
-	local spec = SPECS[classId]
+	local definitionId = typeof(character) == "Instance" and character:IsA("Model") and character:GetAttribute("TLTEquippedWeapon") or nil
+	local spec = specFor(classId, definitionId)
 	if not spec then return nil, "unsupported_class" end
 	if not appearanceModel or not appearanceModel:IsA("Model") or not character or not character:IsA("Model") then
 		return nil, "invalid_character_or_appearance" end
 	local hand = weaponHandFor(character, hands, classId)
 	if not hand then return nil, classId == "elf" and "left_hand_not_ready" or "right_hand_not_ready" end
-	local existing = attachedResult(appearanceModel, classId, hand)
+	local existing = attachedResult(appearanceModel, classId, hand, definitionId)
  if existing then
   if classId=="elf" then ElfQuiver.ensure(appearanceModel,character) else ElfQuiver.remove(appearanceModel) end
   return existing
  end
-	local result, reason = Appearance.build(classId)
+	local result, reason = Appearance.build(classId, definitionId)
 	if not result then return nil, reason end
 	local owned = {}
 	for _, child in ipairs(appearanceModel:GetChildren()) do
@@ -375,6 +396,7 @@ function Appearance.attachInto(appearanceModel, character, classId, hands)
 		appearanceModel:SetAttribute("WeaponClassId", classId)
 		appearanceModel:SetAttribute("WeaponSourceKey", spec.sourceKey)
 		appearanceModel:SetAttribute("WeaponVisualVersion", VERSION)
+		appearanceModel:SetAttribute("WeaponDefinitionId", spec.definitionId)
 		appearanceModel:SetAttribute("ElfBowRigVersion",classId=="elf" and BowGeometry.version or nil)
 		appearanceModel:SetAttribute("WeaponPartNames", table.concat(names, "|"))
 		appearanceModel:SetAttribute("WeaponPartCount", #names)

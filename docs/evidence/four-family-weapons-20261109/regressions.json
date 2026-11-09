@@ -1,0 +1,11 @@
+{
+  "elf-quiver-native.luau": {
+    "checks": 179,
+    "pass": true,
+    "parts": 14
+  },
+  "lobby-selected-weapons-native.luau": {
+    "status": "passed",
+    "checks": 49
+  }
+}

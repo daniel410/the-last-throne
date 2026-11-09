@@ -1,0 +1,994 @@
+[
+  {
+    "id": "sentinel_axe",
+    "kind": "icon",
+    "path": "operations/40aaa9b6-5663-41a2-9f73-e62f466f7e66",
+    "operationId": "40aaa9b6-5663-41a2-9f73-e62f466f7e66",
+    "done": true,
+    "operation": {
+      "path": "operations/40aaa9b6-5663-41a2-9f73-e62f466f7e66",
+      "operationId": "40aaa9b6-5663-41a2-9f73-e62f466f7e66",
+      "done": true,
+      "response": {
+        "path": "assets/126622922289484",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:40:45.770Z",
+        "assetId": "126622922289484",
+        "displayName": "TLT Sentinel Axe Icon v1",
+        "description": "Actual latest Meshy model render; sentinel_axe, task 01a1c253-d853-737e-bfb4-3a5380953770. Transparent UI sprite for equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_bow",
+    "kind": "icon",
+    "path": "operations/4d5d71cd-c4a6-4725-9322-124ee9c62b76",
+    "operationId": "4d5d71cd-c4a6-4725-9322-124ee9c62b76",
+    "done": true,
+    "operation": {
+      "path": "operations/4d5d71cd-c4a6-4725-9322-124ee9c62b76",
+      "operationId": "4d5d71cd-c4a6-4725-9322-124ee9c62b76",
+      "done": true,
+      "response": {
+        "path": "assets/93652204708306",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:12.227Z",
+        "assetId": "93652204708306",
+        "displayName": "TLT sentinel bow Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c253-cb81-75a2-9005-137d1449ebdf. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_staff",
+    "kind": "icon",
+    "path": "operations/8b52151d-abcb-4426-8238-ffa8cd80b331",
+    "operationId": "8b52151d-abcb-4426-8238-ffa8cd80b331",
+    "done": true,
+    "operation": {
+      "path": "operations/8b52151d-abcb-4426-8238-ffa8cd80b331",
+      "operationId": "8b52151d-abcb-4426-8238-ffa8cd80b331",
+      "done": true,
+      "response": {
+        "path": "assets/74366161848908",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:12.822Z",
+        "assetId": "74366161848908",
+        "displayName": "TLT sentinel staff Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c253-744d-751d-8ba0-4f6154536b38. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_sword",
+    "kind": "icon",
+    "path": "operations/f445b98b-a4a2-4542-8b6f-18f51beabcc4",
+    "operationId": "f445b98b-a4a2-4542-8b6f-18f51beabcc4",
+    "done": true,
+    "operation": {
+      "path": "operations/f445b98b-a4a2-4542-8b6f-18f51beabcc4",
+      "operationId": "f445b98b-a4a2-4542-8b6f-18f51beabcc4",
+      "done": true,
+      "response": {
+        "path": "assets/76943152457590",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:13.010Z",
+        "assetId": "76943152457590",
+        "displayName": "TLT sentinel sword Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c253-2615-74aa-8274-15fa0ce80d33. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_axe",
+    "kind": "icon",
+    "path": "operations/60a716a0-4681-4cd8-974a-5cf3ddc6b169",
+    "operationId": "60a716a0-4681-4cd8-974a-5cf3ddc6b169",
+    "done": true,
+    "operation": {
+      "path": "operations/60a716a0-4681-4cd8-974a-5cf3ddc6b169",
+      "operationId": "60a716a0-4681-4cd8-974a-5cf3ddc6b169",
+      "done": true,
+      "response": {
+        "path": "assets/88074217383860",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:13.769Z",
+        "assetId": "88074217383860",
+        "displayName": "TLT veteran axe Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c253-24a1-743d-a014-9a151fb1bddb. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_bow",
+    "kind": "icon",
+    "path": "operations/2cc8ab02-8bc6-4974-82ea-b2183838b5cb",
+    "operationId": "2cc8ab02-8bc6-4974-82ea-b2183838b5cb",
+    "done": true,
+    "operation": {
+      "path": "operations/2cc8ab02-8bc6-4974-82ea-b2183838b5cb",
+      "operationId": "2cc8ab02-8bc6-4974-82ea-b2183838b5cb",
+      "done": true,
+      "response": {
+        "path": "assets/121049680687223",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:14.390Z",
+        "assetId": "121049680687223",
+        "displayName": "TLT veteran bow Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c252-8936-7610-b2bf-0705dbd59338. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_staff",
+    "kind": "icon",
+    "path": "operations/cb759f3d-1cd4-4893-a8f6-e0c8a690c31f",
+    "operationId": "cb759f3d-1cd4-4893-a8f6-e0c8a690c31f",
+    "done": true,
+    "operation": {
+      "path": "operations/cb759f3d-1cd4-4893-a8f6-e0c8a690c31f",
+      "operationId": "cb759f3d-1cd4-4893-a8f6-e0c8a690c31f",
+      "done": true,
+      "response": {
+        "path": "assets/98052385179240",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:14.753Z",
+        "assetId": "98052385179240",
+        "displayName": "TLT veteran staff Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c252-1e74-7339-8084-708248f1f133. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_sword",
+    "kind": "icon",
+    "path": "operations/e471e02b-de0e-49ea-8715-4fbb47248be8",
+    "operationId": "e471e02b-de0e-49ea-8715-4fbb47248be8",
+    "done": true,
+    "operation": {
+      "path": "operations/e471e02b-de0e-49ea-8715-4fbb47248be8",
+      "operationId": "e471e02b-de0e-49ea-8715-4fbb47248be8",
+      "done": true,
+      "response": {
+        "path": "assets/99740451046658",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:15.348Z",
+        "assetId": "99740451046658",
+        "displayName": "TLT veteran sword Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c251-cd3c-7601-88dd-e8f5648378b8. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_axe",
+    "kind": "icon",
+    "path": "operations/59f09233-0378-4e1d-b816-f59e87e9ac9d",
+    "operationId": "59f09233-0378-4e1d-b816-f59e87e9ac9d",
+    "done": true,
+    "operation": {
+      "path": "operations/59f09233-0378-4e1d-b816-f59e87e9ac9d",
+      "operationId": "59f09233-0378-4e1d-b816-f59e87e9ac9d",
+      "done": true,
+      "response": {
+        "path": "assets/83551316779237",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:15.688Z",
+        "assetId": "83551316779237",
+        "displayName": "TLT tempered axe Icon v1",
+        "description": "###########################################################################################################",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_bow",
+    "kind": "icon",
+    "path": "operations/bcc82eeb-69fa-4839-b6c8-a566aa6236f0",
+    "operationId": "bcc82eeb-69fa-4839-b6c8-a566aa6236f0",
+    "done": true,
+    "operation": {
+      "path": "operations/bcc82eeb-69fa-4839-b6c8-a566aa6236f0",
+      "operationId": "bcc82eeb-69fa-4839-b6c8-a566aa6236f0",
+      "done": true,
+      "response": {
+        "path": "assets/123323237309349",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:15.985Z",
+        "assetId": "123323237309349",
+        "displayName": "TLT tempered bow Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c251-551e-73dc-a8cc-8fa05097872d. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_staff",
+    "kind": "icon",
+    "path": "operations/dfacbada-feb8-427a-a2a5-d66bc9300abf",
+    "operationId": "dfacbada-feb8-427a-a2a5-d66bc9300abf",
+    "done": true,
+    "operation": {
+      "path": "operations/dfacbada-feb8-427a-a2a5-d66bc9300abf",
+      "operationId": "dfacbada-feb8-427a-a2a5-d66bc9300abf",
+      "done": true,
+      "response": {
+        "path": "assets/131197800580947",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:16.401Z",
+        "assetId": "131197800580947",
+        "displayName": "TLT tempered staff Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c250-f13c-7762-9489-06076e0c7dc6. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_sword",
+    "kind": "icon",
+    "path": "operations/38adb9c3-55c3-42ce-926c-67160919fddf",
+    "operationId": "38adb9c3-55c3-42ce-926c-67160919fddf",
+    "done": true,
+    "operation": {
+      "path": "operations/38adb9c3-55c3-42ce-926c-67160919fddf",
+      "operationId": "38adb9c3-55c3-42ce-926c-67160919fddf",
+      "done": true,
+      "response": {
+        "path": "assets/121495916623375",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:17.236Z",
+        "assetId": "121495916623375",
+        "displayName": "TLT tempered sword Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c250-12c0-7078-9a40-eca7bb3bc3cf. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_axe",
+    "kind": "icon",
+    "path": "operations/cbe35ea1-70f0-4a7c-84dd-5c0ff9a94a83",
+    "operationId": "cbe35ea1-70f0-4a7c-84dd-5c0ff9a94a83",
+    "done": true,
+    "operation": {
+      "path": "operations/cbe35ea1-70f0-4a7c-84dd-5c0ff9a94a83",
+      "operationId": "cbe35ea1-70f0-4a7c-84dd-5c0ff9a94a83",
+      "done": true,
+      "response": {
+        "path": "assets/91201276228888",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:17.697Z",
+        "assetId": "91201276228888",
+        "displayName": "TLT traveler axe Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c24f-c03a-768b-b594-09a675c9ba49. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_bow",
+    "kind": "icon",
+    "path": "operations/961cee51-bb03-4ed7-8d67-5068b3d10722",
+    "operationId": "961cee51-bb03-4ed7-8d67-5068b3d10722",
+    "done": true,
+    "operation": {
+      "path": "operations/961cee51-bb03-4ed7-8d67-5068b3d10722",
+      "operationId": "961cee51-bb03-4ed7-8d67-5068b3d10722",
+      "done": true,
+      "response": {
+        "path": "assets/84686712382386",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:17.966Z",
+        "assetId": "84686712382386",
+        "displayName": "TLT traveler bow Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c24f-90f0-75c9-a002-ebc8fb3999c7. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_staff",
+    "kind": "icon",
+    "path": "operations/8346aa27-9141-4793-8155-5f150a619390",
+    "operationId": "8346aa27-9141-4793-8155-5f150a619390",
+    "done": true,
+    "operation": {
+      "path": "operations/8346aa27-9141-4793-8155-5f150a619390",
+      "operationId": "8346aa27-9141-4793-8155-5f150a619390",
+      "done": true,
+      "response": {
+        "path": "assets/111844365076046",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:18.035Z",
+        "assetId": "111844365076046",
+        "displayName": "TLT traveler staff Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c250-7faa-70a8-88fe-c8aaa3ed90b3. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_sword",
+    "kind": "icon",
+    "path": "operations/17defdf4-6182-44c3-a6ed-360c85d3d999",
+    "operationId": "17defdf4-6182-44c3-a6ed-360c85d3d999",
+    "done": true,
+    "operation": {
+      "path": "operations/17defdf4-6182-44c3-a6ed-360c85d3d999",
+      "operationId": "17defdf4-6182-44c3-a6ed-360c85d3d999",
+      "done": true,
+      "response": {
+        "path": "assets/83463381365228",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:41:18.890Z",
+        "assetId": "83463381365228",
+        "displayName": "TLT traveler sword Icon v1",
+        "description": "Actual-model transparent UI sprite; Meshy task 01a1c24f-2cc3-70e5-99f5-a4b76a623e00. For equipment and bag.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_axe",
+    "kind": "model",
+    "path": "operations/4a22f3f6-6236-4f77-8120-a16eb2a65ed6",
+    "operationId": "4a22f3f6-6236-4f77-8120-a16eb2a65ed6",
+    "done": true,
+    "operation": {
+      "path": "operations/4a22f3f6-6236-4f77-8120-a16eb2a65ed6",
+      "operationId": "4a22f3f6-6236-4f77-8120-a16eb2a65ed6",
+      "done": true,
+      "response": {
+        "path": "assets/136485943649830",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:42.841Z",
+        "assetId": "136485943649830",
+        "displayName": "TLT sentinel axe v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c253-d853-737e-bfb4-3a5380953770. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_bow",
+    "kind": "model",
+    "path": "operations/73df3603-dc79-4374-94dd-1dd2d60f396e",
+    "operationId": "73df3603-dc79-4374-94dd-1dd2d60f396e",
+    "done": true,
+    "operation": {
+      "path": "operations/73df3603-dc79-4374-94dd-1dd2d60f396e",
+      "operationId": "73df3603-dc79-4374-94dd-1dd2d60f396e",
+      "done": true,
+      "response": {
+        "path": "assets/124910471520831",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:36.178Z",
+        "assetId": "124910471520831",
+        "displayName": "TLT sentinel bow v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c253-cb81-75a2-9005-137d1449ebdf. Isolated weapon visual; no scripts. Original preserved. Baked central string replaced by runtime beam attachment data.",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_staff",
+    "kind": "model",
+    "path": "operations/711ee1d5-0ad7-46fa-80cf-b3a41e7ad6ad",
+    "operationId": "711ee1d5-0ad7-46fa-80cf-b3a41e7ad6ad",
+    "done": true,
+    "operation": {
+      "path": "operations/711ee1d5-0ad7-46fa-80cf-b3a41e7ad6ad",
+      "operationId": "711ee1d5-0ad7-46fa-80cf-b3a41e7ad6ad",
+      "done": true,
+      "response": {
+        "path": "assets/77453459523282",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:44.195Z",
+        "assetId": "77453459523282",
+        "displayName": "TLT sentinel staff v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c253-744d-751d-8ba0-4f6154536b38. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_sword",
+    "kind": "model",
+    "path": "operations/06522b28-d9d5-4b91-9c27-6fc96351906b",
+    "operationId": "06522b28-d9d5-4b91-9c27-6fc96351906b",
+    "done": true,
+    "operation": {
+      "path": "operations/06522b28-d9d5-4b91-9c27-6fc96351906b",
+      "operationId": "06522b28-d9d5-4b91-9c27-6fc96351906b",
+      "done": true,
+      "response": {
+        "path": "assets/81654749463505",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:47.956Z",
+        "assetId": "81654749463505",
+        "displayName": "TLT sentinel sword v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c253-2615-74aa-8274-15fa0ce80d33. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_axe",
+    "kind": "model",
+    "path": "operations/e082bece-0ef3-4036-ab03-b453d155a929",
+    "operationId": "e082bece-0ef3-4036-ab03-b453d155a929",
+    "done": true,
+    "operation": {
+      "path": "operations/e082bece-0ef3-4036-ab03-b453d155a929",
+      "operationId": "e082bece-0ef3-4036-ab03-b453d155a929",
+      "done": true,
+      "response": {
+        "path": "assets/128668848858004",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:41.278Z",
+        "assetId": "128668848858004",
+        "displayName": "TLT veteran axe v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c253-24a1-743d-a014-9a151fb1bddb. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_bow",
+    "kind": "model",
+    "path": "operations/fdaf2fb0-329e-45bd-bc87-99c000cbe64c",
+    "operationId": "fdaf2fb0-329e-45bd-bc87-99c000cbe64c",
+    "done": true,
+    "operation": {
+      "path": "operations/fdaf2fb0-329e-45bd-bc87-99c000cbe64c",
+      "operationId": "fdaf2fb0-329e-45bd-bc87-99c000cbe64c",
+      "done": true,
+      "response": {
+        "path": "assets/79504841179851",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:47.086Z",
+        "assetId": "79504841179851",
+        "displayName": "TLT veteran bow v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c252-8936-7610-b2bf-0705dbd59338. Isolated weapon visual; no scripts. Original preserved. Baked central string replaced by runtime beam attachment data.",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_staff",
+    "kind": "model",
+    "path": "operations/e8a62239-07fa-4e21-837c-83fc133ec9d3",
+    "operationId": "e8a62239-07fa-4e21-837c-83fc133ec9d3",
+    "done": true,
+    "operation": {
+      "path": "operations/e8a62239-07fa-4e21-837c-83fc133ec9d3",
+      "operationId": "e8a62239-07fa-4e21-837c-83fc133ec9d3",
+      "done": true,
+      "response": {
+        "path": "assets/98209228900779",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:48.078Z",
+        "assetId": "98209228900779",
+        "displayName": "TLT veteran staff v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c252-1e74-7339-8084-708248f1f133. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_sword",
+    "kind": "model",
+    "path": "operations/e7e17196-49ff-4497-90d1-b298b797b891",
+    "operationId": "e7e17196-49ff-4497-90d1-b298b797b891",
+    "done": true,
+    "operation": {
+      "path": "operations/e7e17196-49ff-4497-90d1-b298b797b891",
+      "operationId": "e7e17196-49ff-4497-90d1-b298b797b891",
+      "done": true,
+      "response": {
+        "path": "assets/75587350422841",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:45.203Z",
+        "assetId": "75587350422841",
+        "displayName": "TLT veteran sword v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c251-cd3c-7601-88dd-e8f5648378b8. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_axe",
+    "kind": "model",
+    "path": "operations/692d4e6e-13e3-4f18-b88d-6b47fcc28ad3",
+    "operationId": "692d4e6e-13e3-4f18-b88d-6b47fcc28ad3",
+    "done": true,
+    "operation": {
+      "path": "operations/692d4e6e-13e3-4f18-b88d-6b47fcc28ad3",
+      "operationId": "692d4e6e-13e3-4f18-b88d-6b47fcc28ad3",
+      "done": true,
+      "response": {
+        "path": "assets/128080375772257",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:49.366Z",
+        "assetId": "128080375772257",
+        "displayName": "TLT tempered axe v1",
+        "description": "####################################################################################################################################################",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_bow",
+    "kind": "model",
+    "path": "operations/7de35441-c250-4747-b08c-9720bcebff8c",
+    "operationId": "7de35441-c250-4747-b08c-9720bcebff8c",
+    "done": true,
+    "operation": {
+      "path": "operations/7de35441-c250-4747-b08c-9720bcebff8c",
+      "operationId": "7de35441-c250-4747-b08c-9720bcebff8c",
+      "done": true,
+      "response": {
+        "path": "assets/113958881008826",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:50.429Z",
+        "assetId": "113958881008826",
+        "displayName": "TLT tempered bow v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c251-551e-73dc-a8cc-8fa05097872d. Isolated weapon visual; no scripts. Original preserved. Baked central string replaced by runtime beam attachment data.",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_staff",
+    "kind": "model",
+    "path": "operations/62b9dfd0-7fc3-49d8-8a50-2962ca1085d8",
+    "operationId": "62b9dfd0-7fc3-49d8-8a50-2962ca1085d8",
+    "done": true,
+    "operation": {
+      "path": "operations/62b9dfd0-7fc3-49d8-8a50-2962ca1085d8",
+      "operationId": "62b9dfd0-7fc3-49d8-8a50-2962ca1085d8",
+      "done": true,
+      "response": {
+        "path": "assets/96757757917311",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:45.941Z",
+        "assetId": "96757757917311",
+        "displayName": "TLT tempered staff v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c250-f13c-7762-9489-06076e0c7dc6. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_sword",
+    "kind": "model",
+    "path": "operations/d0b87c43-b6bd-4cc5-8553-239cc5c19cce",
+    "operationId": "d0b87c43-b6bd-4cc5-8553-239cc5c19cce",
+    "done": true,
+    "operation": {
+      "path": "operations/d0b87c43-b6bd-4cc5-8553-239cc5c19cce",
+      "operationId": "d0b87c43-b6bd-4cc5-8553-239cc5c19cce",
+      "done": true,
+      "response": {
+        "path": "assets/110384561218321",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:47.110Z",
+        "assetId": "110384561218321",
+        "displayName": "TLT tempered sword v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c250-12c0-7078-9a40-eca7bb3bc3cf. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_axe",
+    "kind": "model",
+    "path": "operations/285cf5e6-4004-4d73-afec-55afe2e00329",
+    "operationId": "285cf5e6-4004-4d73-afec-55afe2e00329",
+    "done": true,
+    "operation": {
+      "path": "operations/285cf5e6-4004-4d73-afec-55afe2e00329",
+      "operationId": "285cf5e6-4004-4d73-afec-55afe2e00329",
+      "done": true,
+      "response": {
+        "path": "assets/115659241234864",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:45.873Z",
+        "assetId": "115659241234864",
+        "displayName": "TLT traveler axe v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c24f-c03a-768b-b594-09a675c9ba49. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_bow",
+    "kind": "model",
+    "path": "operations/18a9984a-3792-40ff-b0a9-5cb06defa8da",
+    "operationId": "18a9984a-3792-40ff-b0a9-5cb06defa8da",
+    "done": true,
+    "operation": {
+      "path": "operations/18a9984a-3792-40ff-b0a9-5cb06defa8da",
+      "operationId": "18a9984a-3792-40ff-b0a9-5cb06defa8da",
+      "done": true,
+      "response": {
+        "path": "assets/126193150741816",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:45.180Z",
+        "assetId": "126193150741816",
+        "displayName": "TLT traveler bow v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c24f-90f0-75c9-a002-ebc8fb3999c7. Isolated weapon visual; no scripts. Original preserved. Baked central string replaced by runtime beam attachment data.",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_staff",
+    "kind": "model",
+    "path": "operations/92c9504b-6ddd-4c6c-9766-44cc0e589d9b",
+    "operationId": "92c9504b-6ddd-4c6c-9766-44cc0e589d9b",
+    "done": true,
+    "operation": {
+      "path": "operations/92c9504b-6ddd-4c6c-9766-44cc0e589d9b",
+      "operationId": "92c9504b-6ddd-4c6c-9766-44cc0e589d9b",
+      "done": true,
+      "response": {
+        "path": "assets/72819991155520",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:47.601Z",
+        "assetId": "72819991155520",
+        "displayName": "TLT traveler staff v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c250-7faa-70a8-88fe-c8aaa3ed90b3. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_sword",
+    "kind": "model",
+    "path": "operations/f3bfdf8e-3e6a-4886-ba8b-af9dc642bbbb",
+    "operationId": "f3bfdf8e-3e6a-4886-ba8b-af9dc642bbbb",
+    "done": true,
+    "operation": {
+      "path": "operations/f3bfdf8e-3e6a-4886-ba8b-af9dc642bbbb",
+      "operationId": "f3bfdf8e-3e6a-4886-ba8b-af9dc642bbbb",
+      "done": true,
+      "response": {
+        "path": "assets/84313348536114",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-09T22:43:51.256Z",
+        "assetId": "84313348536114",
+        "displayName": "TLT traveler sword v1",
+        "description": "Latest approved four-family weapon cohort. Meshy task 01a1c24f-2cc3-70e5-99f5-a4b76a623e00. Isolated weapon visual; no scripts. Original preserved. ",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  }
+]

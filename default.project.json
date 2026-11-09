@@ -62,6 +62,9 @@
       },
       "GloamwoodMeshyModels": {
         "$path": "assets/models/venomcoil-king-v2/runtime.rbxm"
+      },
+      "FourFamilyWeaponModels": {
+        "$path": "assets/models/four-family-weapons-meshy-v1/runtime.rbxm"
       }
     },
     "StarterPlayer": {

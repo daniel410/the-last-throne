@@ -3,6 +3,23 @@
 return {
 	-- Separate transparent material icons; provenance: enhancement-material-icons-v1.
 	images = {
+		-- Latest four-family Meshy model renders; shared by gear and bag.
+		["dwarf_weapon_sentinel"] = "rbxassetid://126622922289484",
+		["elf_weapon_sentinel"] = "rbxassetid://93652204708306",
+		["mage_weapon_sentinel"] = "rbxassetid://74366161848908",
+		["knight_weapon_sentinel"] = "rbxassetid://76943152457590",
+		["dwarf_weapon_veteran"] = "rbxassetid://88074217383860",
+		["elf_weapon_veteran"] = "rbxassetid://121049680687223",
+		["mage_weapon_veteran"] = "rbxassetid://98052385179240",
+		["knight_weapon_veteran"] = "rbxassetid://99740451046658",
+		["dwarf_weapon_fine"] = "rbxassetid://83551316779237",
+		["elf_weapon_fine"] = "rbxassetid://123323237309349",
+		["mage_weapon_fine"] = "rbxassetid://131197800580947",
+		["knight_weapon_fine"] = "rbxassetid://121495916623375",
+		["dwarf_weapon_traveler"] = "rbxassetid://91201276228888",
+		["elf_weapon_traveler"] = "rbxassetid://84686712382386",
+		["mage_weapon_traveler"] = "rbxassetid://111844365076046",
+		["knight_weapon_traveler"] = "rbxassetid://83463381365228",
 		enhancement_gem = "rbxassetid://81095702596861",
 		magic_stone = "rbxassetid://103562386022277",
 	},

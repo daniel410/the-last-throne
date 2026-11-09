@@ -22,15 +22,18 @@ function Geometry.install(model,grip)
  local joint=assert(arrow:FindFirstChild("NockedArrowVisualJoint"))
  arrow.Size=Vector3.new(arrow.Size.X,arrow.Size.Y,Data.arrowLength)
  arrow:SetAttribute("ElfArrowRestTransparency",arrow.Transparency)
- local nock=vector(Data.nock)
+ local authoredNock=grip:FindFirstChild("BowNockRest")
+ local nock=authoredNock and authoredNock.Position or vector(Data.nock)
  joint.C0=CFrame.new(nock-Vector3.new(0,0,Data.arrowLength*.5))
  bow:SetAttribute("ElfBowRestSize",bow.Size)
  sourceString.Transparency=1
  sourceString:SetAttribute("TLTEquipmentRestTransparency",1)
  local middle=Instance.new("Attachment");middle.Name="BowNock";middle.Position=nock;middle.Parent=grip
+ middle:SetAttribute("ElfBowRestPosition",nock)
  for _,name in ipairs({"Upper","Lower"}) do
   local tip=Instance.new("Attachment");tip.Name="BowString"..name
-  tip.Position=bow.CFrame:PointToObjectSpace(vector(Data[string.lower(name)]));tip.Parent=bow
+  local authoredTip=grip:FindFirstChild("Bow"..name.."Rest")
+  tip.Position=bow.CFrame:PointToObjectSpace(authoredTip and authoredTip.Position or vector(Data[string.lower(name)]));tip.Parent=bow
   tip:SetAttribute("ElfBowRestPosition",tip.Position)
   local beam=Instance.new("Beam");beam.Name="BowStrand"..name
   beam.Attachment0,beam.Attachment1=tip,middle
@@ -51,7 +54,7 @@ function Geometry.pose(model,draw,visible)
  if typeof(size)~="Vector3" then return false end
  local height,depth=1+Data.heightFlex*amount,1+Data.depthFlex*amount
  bow.Size=Vector3.new(size.X,size.Y*height,size.Z*depth)
- nock.Position=vector(Data.nock)+Vector3.new(0,0,Data.drawDistance*amount)
+ nock.Position=(nock:GetAttribute("ElfBowRestPosition") or vector(Data.nock))+Vector3.new(0,0,Data.drawDistance*amount)
  joint.Transform=CFrame.new(0,0,Data.drawDistance*amount)
  for _,name in ipairs({"Upper","Lower"}) do
   local tip=bow:FindFirstChild("BowString"..name)

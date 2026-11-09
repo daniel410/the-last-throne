@@ -5,11 +5,9 @@ local copy=Instance.new('ModuleScript');copy.Name='QaLobbyAppearance'
 copy.Source=modules.KnightAppearance.Source:gsub('\nreturn KnightAppearance%s*$','\nreturn {sync=syncAppearance}')
 copy.Parent=modules
 local lifecycle=require(copy);local weapons=require(modules.WeaponAppearance)
-local character=Instance.new('Model');character.Name='QaLobbyHeldWeapons'
-local humanoid=Instance.new('Humanoid');humanoid.Parent=character
-for _,name in ipairs({'HumanoidRootPart','Right Arm','Left Arm'}) do
- local part=Instance.new('Part');part.Name=name;part.Size=Vector3.new(1,2,1);part.Anchored=true;part.Parent=character
-end
+local desc=Instance.new('HumanoidDescription')
+local character=game.Players:CreateHumanoidModelFromDescriptionAsync(desc,Enum.HumanoidRigType.R6);desc:Destroy()
+character.Name='QaLobbyHeldWeapons';character.HumanoidRootPart.Anchored=true
 character.Parent=workspace
 local checks=0
 local function check(value,label) checks+=1;assert(value,label) end
@@ -23,7 +21,15 @@ local ok,err=xpcall(function()
   local visible=0
   for _,part in ipairs(model:GetDescendants()) do if part:IsA('BasePart') and part:GetAttribute('TLTPlayerWeaponPart') and part.Transparency<1 then visible+=1 end end
   check(visible>0,'selected class weapon is visible')
+  for _,tier in ipairs({'traveler','fine','veteran','sentinel'})do
+   local id=classId..'_weapon_'..tier
+   character:SetAttribute('TLTEquippedWeapon',id);lifecycle.sync(character)
+   model=assert(character:FindFirstChild('TLT_K0_KnightAppearance'))
+   check(model:GetAttribute('WeaponDefinitionId')==id and weapons.isAttached(model,character,classId),'Lobby appearance follows selected family '..id)
+  end
   character:SetAttribute('TLTEquippedWeapon','');lifecycle.sync(character)
+  model=assert(character:FindFirstChild('TLT_K0_KnightAppearance'))
+  check(weapons.isAttached(model,character,classId),'Unequipped fallback remains attached')
   for _,part in ipairs(model:GetDescendants()) do if part:IsA('BasePart') and part:GetAttribute('TLTPlayerWeaponPart') then check(part.Transparency==1,'unequipped weapon remains hidden') end end
  end
 end,debug.traceback)
