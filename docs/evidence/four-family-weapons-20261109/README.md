@@ -39,3 +39,10 @@
 게임 빌드는 `VERSION`과 소스 커밋을 고정한 뒤 `python3 tools/build-game.py --source <commit> --record docs/evidence/four-family-weapons-20261109/build.json`으로 기록한다. 새 장비ID별 외형 기능으로 MINOR를 올려0.93.0을 사용한다. 일반 빌드이며 릴리스 태그와 Roblox Place 게시는 없다.
 
 미검증: 실제 계정의 저장/재접속 착용, 게시 클라이언트의 에셋 권한·조명, 모바일 아이콘 가독성·4인 성능·최종 사용자 미술 수용. 다음 담당은 QA/미술의 실클라이언트·기기 수용이며 부모 티켓을 완료 처리하지 않는다. 현재 UI 구현 절차와 승인 TD 룩앤필/개별 투명 아이콘 원칙을 재사용하는 자산 교체로서 경제/전투/UX 설계를 추가하지 않았다.
+
+## 고정 빌드 결과
+
+- 소스 `37e27d2e3b29944dc07a14b3ec3573f4c79aeeff`, 버전0.93.0. [빌드 기록](build.json).
+- `builds/0.93.0/TheLastThrone-0.93.0.rbxlx` 16,509,787bytes, SHA256 `141da7a86c2fd7fe0408747b6f27376090f9f03ad3acd9baf19293143298fd54`.
+- 고정된 빌드 파일을 별도 Studio로 열고 동일700검사를 다시 실행해 통과했다. 메시·텍스처·아이콘48개 모두 Success. [고정 빌드 네이티브 결과](fixed-build-native.json). frozen runtime RBXM SHA256 및 장비ID 모듈도 작업 정본과 일치했다.
+- `git push origin main`: LFS88개/190MB 업로드 성공, 원격 main 소스37e27d2e 일치 확인. 증거 문서는 후속 커밋으로 저장한다.
