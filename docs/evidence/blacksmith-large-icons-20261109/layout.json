@@ -1,0 +1,202 @@
+{
+  "cases": {
+    "1": {
+      "gearCards": 16,
+      "category": "Weapons",
+      "viewport": "1280, 720",
+      "mode": "Buy",
+      "cardHeight": 320
+    },
+    "2": {
+      "gearCards": 24,
+      "category": "Armor",
+      "viewport": "1280, 720",
+      "mode": "Buy",
+      "cardHeight": 320
+    },
+    "3": {
+      "gearCards": 3,
+      "category": "Accessories",
+      "viewport": "1280, 720",
+      "mode": "Buy",
+      "cardHeight": 320
+    },
+    "4": {
+      "gearCards": 24,
+      "category": "Weapons",
+      "viewport": "1280, 720",
+      "mode": "Sell",
+      "cardHeight": 320
+    },
+    "5": {
+      "gearCards": 34,
+      "category": "Armor",
+      "viewport": "1280, 720",
+      "mode": "Sell",
+      "cardHeight": 320
+    },
+    "6": {
+      "gearCards": 9,
+      "category": "Accessories",
+      "viewport": "1280, 720",
+      "mode": "Sell",
+      "cardHeight": 320
+    },
+    "7": {
+      "gearCards": 76,
+      "category": "Weapons",
+      "viewport": "1280, 720",
+      "mode": "Enhance",
+      "cardHeight": 390
+    },
+    "8": {
+      "gearCards": 16,
+      "category": "Weapons",
+      "viewport": "844, 390",
+      "mode": "Buy",
+      "cardHeight": 300
+    },
+    "9": {
+      "gearCards": 24,
+      "category": "Armor",
+      "viewport": "844, 390",
+      "mode": "Buy",
+      "cardHeight": 300
+    },
+    "10": {
+      "gearCards": 3,
+      "category": "Accessories",
+      "viewport": "844, 390",
+      "mode": "Buy",
+      "cardHeight": 300
+    },
+    "11": {
+      "gearCards": 24,
+      "category": "Weapons",
+      "viewport": "844, 390",
+      "mode": "Sell",
+      "cardHeight": 300
+    },
+    "12": {
+      "gearCards": 34,
+      "category": "Armor",
+      "viewport": "844, 390",
+      "mode": "Sell",
+      "cardHeight": 300
+    },
+    "13": {
+      "gearCards": 9,
+      "category": "Accessories",
+      "viewport": "844, 390",
+      "mode": "Sell",
+      "cardHeight": 300
+    },
+    "14": {
+      "gearCards": 76,
+      "category": "Weapons",
+      "viewport": "844, 390",
+      "mode": "Enhance",
+      "cardHeight": 390
+    },
+    "15": {
+      "gearCards": 16,
+      "category": "Weapons",
+      "viewport": "568, 320",
+      "mode": "Buy",
+      "cardHeight": 300
+    },
+    "16": {
+      "gearCards": 24,
+      "category": "Armor",
+      "viewport": "568, 320",
+      "mode": "Buy",
+      "cardHeight": 300
+    },
+    "17": {
+      "gearCards": 3,
+      "category": "Accessories",
+      "viewport": "568, 320",
+      "mode": "Buy",
+      "cardHeight": 300
+    },
+    "18": {
+      "gearCards": 24,
+      "category": "Weapons",
+      "viewport": "568, 320",
+      "mode": "Sell",
+      "cardHeight": 300
+    },
+    "19": {
+      "gearCards": 34,
+      "category": "Armor",
+      "viewport": "568, 320",
+      "mode": "Sell",
+      "cardHeight": 300
+    },
+    "20": {
+      "gearCards": 9,
+      "category": "Accessories",
+      "viewport": "568, 320",
+      "mode": "Sell",
+      "cardHeight": 300
+    },
+    "21": {
+      "gearCards": 76,
+      "category": "Weapons",
+      "viewport": "568, 320",
+      "mode": "Enhance",
+      "cardHeight": 390
+    },
+    "22": {
+      "gearCards": 16,
+      "category": "Weapons",
+      "viewport": "390, 844",
+      "mode": "Buy",
+      "cardHeight": 320
+    },
+    "23": {
+      "gearCards": 24,
+      "category": "Armor",
+      "viewport": "390, 844",
+      "mode": "Buy",
+      "cardHeight": 320
+    },
+    "24": {
+      "gearCards": 3,
+      "category": "Accessories",
+      "viewport": "390, 844",
+      "mode": "Buy",
+      "cardHeight": 320
+    },
+    "25": {
+      "gearCards": 24,
+      "category": "Weapons",
+      "viewport": "390, 844",
+      "mode": "Sell",
+      "cardHeight": 320
+    },
+    "26": {
+      "gearCards": 34,
+      "category": "Armor",
+      "viewport": "390, 844",
+      "mode": "Sell",
+      "cardHeight": 320
+    },
+    "27": {
+      "gearCards": 9,
+      "category": "Accessories",
+      "viewport": "390, 844",
+      "mode": "Sell",
+      "cardHeight": 320
+    },
+    "28": {
+      "gearCards": 76,
+      "category": "Weapons",
+      "viewport": "390, 844",
+      "mode": "Enhance",
+      "cardHeight": 390
+    }
+  },
+  "passed": true,
+  "checks": 5236
+}

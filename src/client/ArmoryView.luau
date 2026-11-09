@@ -105,7 +105,8 @@ function V.create(parent,send,diamondOnly,store)
   notice.Visible=noticeHeight>0
   -- Desktop uses two cards across; short mobile windows have their own layout.
   local columns=panel.AbsoluteSize.X>=640 and 2 or 1
-  local cardHeight=panel:GetAttribute('EnhancementMode')and 314 or short and 224 or 244
+  local cardHeight=panel:GetAttribute('EnhancementMode')and 390 or short and 224 or 244
+  if store=='blacksmith' and not panel:GetAttribute('EnhancementMode') then cardHeight+=76 end
   layout.FillDirectionMaxCells=columns
   layout.CellSize=UDim2.new(1/columns,-(8+10*(columns-1))/columns,0,cardHeight)
   panel:SetAttribute('ShopLayout',short and 'MobileLandscape' or 'Desktop')
@@ -128,10 +129,13 @@ function V.create(parent,send,diamondOnly,store)
  local function row(name,title,description,def,caption,fields,shortfall,currency)
   local card=T.frame(scroll,name,UDim2.new(),UDim2.new(1,-8,0,184))
   card.LayoutOrder=#scroll:GetChildren()
-  if def.currencyArt then T.icon(card,'gold',UDim2.fromOffset(10,12),UDim2.fromOffset(62,66))
-  else Artwork.create(card,def,UDim2.fromOffset(10,12),UDim2.fromOffset(62,66)) end
-  T.label(card,'Name',title,UDim2.fromOffset(82,8),UDim2.new(1,-94,0,64),16,T.color.gold)
-  T.label(card,'Details',description,UDim2.fromOffset(14,80),UDim2.new(1,-28,1,-140),12)
+  local largeArtwork=store=='blacksmith'
+  local artSize=largeArtwork and Vector2.new(128,128) or Vector2.new(62,66)
+  if def.currencyArt then T.icon(card,'gold',UDim2.fromOffset(10,12),UDim2.fromOffset(artSize.X,artSize.Y))
+  else Artwork.create(card,def,UDim2.fromOffset(10,12),UDim2.fromOffset(artSize.X,artSize.Y)) end
+  local nameX=largeArtwork and 154 or 82
+  T.label(card,'Name',title,UDim2.fromOffset(nameX,8),UDim2.new(1,-nameX-12,0,largeArtwork and 128 or 64),16,T.color.gold)
+  T.label(card,'Details',description,UDim2.fromOffset(14,largeArtwork and 156 or 80),UDim2.new(1,-28,1,largeArtwork and -216 or -140),12)
   local b=T.button(card,'Trade',caption,UDim2.new(0,14,1,-52),UDim2.new(1,-28,0,44))
   local insufficient=shortfall and shortfall>0
   if insufficient then

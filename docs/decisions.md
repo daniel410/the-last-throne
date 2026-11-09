@@ -1,3 +1,5 @@
+> **2026-11-09 · TLT-028/029/052/057/084 · 0.93.3:** 대장간 구매/판매·강화의 무기/장비 아이콘을128px로 확대하고 카드/이름/설명 공간을 조정했다. 기존 TD 원본 이미지·거래 계약 유지. [네이티브 화면 치수 검증·미게시](evidence/blacksmith-large-icons-20261109/README.md). 실기기 시각 수용은 후속.
+
 > **2026-11-09 · TLT-028/050/061/084 · 0.93.2:** 사용자 요청으로 로비·전투 최대 줌아웃을22→32studs로 확대하고 서버/프로젝트 초기값도 일치시켰다. 최소6·충돌/회전 보정 유지. [Studio10검사·빌드/미게시](evidence/camera-zoom-20261109/README.md). 실기기 조작/차폐·성능 수용 후속.
 
 > **2026-11-09 · TLT-029/041/052/057/084 · 0.93.1:** Copper Ring은 공격력3→DEX3으로 변경하고 실제공속/이속·강화·가방/상점/영웅표시를 연결했다. 장갑공격/신발방어는 Traveler2/Tempered4/Veteran7/Sentinel15이며 다른부위·HP/MP 유지. [정본](production/equipment-four-tier-reorganization-2026-11-09.md) · [검증/미게시](evidence/copper-dex-secondary-20261109/README.md). 실계정/기기 수용 후속.

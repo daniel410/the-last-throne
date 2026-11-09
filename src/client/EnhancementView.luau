@@ -14,9 +14,12 @@ function V.render(scroll,s,send,saving,notice)
  local ore,cores=amount('enhancement_gem'),amount('magic_stone')
  local function card(id,def,title,description,actions)
   local box=T.frame(scroll,id,UDim2.new(),UDim2.new(1,-8,0,304));box.LayoutOrder=#scroll:GetChildren()
-  Artwork.create(box,def,UDim2.fromOffset(10,10),UDim2.fromOffset(54,54))
-  T.label(box,'Name',title,UDim2.fromOffset(74,8),UDim2.new(1,-86,0,56),15,T.color.gold)
-  T.label(box,'Description',description,UDim2.fromOffset(12,70),UDim2.new(1,-24,1,-182),12)
+  local gear=def.slot~=nil
+  local artSize=gear and 128 or 54
+  Artwork.create(box,def,UDim2.fromOffset(10,10),UDim2.fromOffset(artSize,artSize))
+  local nameX=gear and 154 or 74
+  T.label(box,'Name',title,UDim2.fromOffset(nameX,8),UDim2.new(1,-nameX-12,0,gear and 128 or 56),15,T.color.gold)
+  T.label(box,'Description',description,UDim2.fromOffset(12,gear and 146 or 70),UDim2.new(1,-24,1,gear and -258 or -182),12)
   for index,a in ipairs(actions)do
    local b=T.button(box,'Action'..index,a.title,UDim2.new(0,12,1,-108+(index-1)*50),UDim2.new(1,-24,0,44),a.action=='Enhance')
    T.enabled(b,not saving and s.ready and hero~=nil and a.enabled~=false)
