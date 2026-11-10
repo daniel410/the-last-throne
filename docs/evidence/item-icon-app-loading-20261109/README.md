@@ -17,3 +17,11 @@ TLT-028/029/052/057/084 · 2026-11-09. 사용자가 대장간·기어·가방의
 다음 담당: 연결 권한 허용 후 엔지니어가 배치 요청의 성공/실패48개를 확인하고 실제 게시 Roblox 앱에서 대장간·기어·가방을 재검증한다. 현재 원인은 미확정이며 Experience 이미지 사용 권한 누락을 우선 점검한다. 게임 코드/빌드/게시/태그 변경 없음.
 
 공식 근거: [Roblox Assets API](https://create.roblox.com/docs/cloud/reference/features/assets), `PATCH /asset-permissions-api/v1/assets/permissions`, scope `asset-permissions:write`, Universe/Use 지원. 2026-11-09 Studio http_get 문서 확인.
+
+## 2026-11-10 권한 업데이트 후 재검토
+
+TLT-028/029/052/057/084. 사용자 권한 업데이트 안내 후 Studio를 새로 실행하고 고정 빌드0.95.4를 열어 재연결했다. `rbx-permissions`/`rbx-open-cloud-usage` 지침을 읽고, 변경 없는 GET `/cloud/v2/universes/10773575153`에 `asset-permissions:write`, `universe:read` scope를 요청했다. 결과는 토큰 발급 단계에서 **Scope 'asset-permissions:write' has not been granted**였다. PATCH는 보내지 않았으며 외부 권한 변경은 없다. MCP 설정은 place별이므로 사용자가 변경한 창과 현재 연결의 설정 일치 여부는 미확인이다.
+
+Python으로 현재 ItemSpriteAtlas의 무기16·방어구24·투구 변형8개를 추출하고 permission-request.json의48개와 집합 일치를 검증했다(PASS). Universe10773575153/Use 요청을 유지한다. 이미지 ID 오류나 코드 결함은 이번 검사에서 확인하지 못했으며 임의 교체하지 않았다. 게임 소스/VERSION/빌드/게시/태그 변경 없음.
+
+사용자에게 현재 Studio의 Assistant Settings → MCP Permissions → Publish & manage assets → asset-permissions:write 확인을 요청했다. 허용 뒤 재프로브→48개 배치 요청→응답별 성공/실패 확인→게시 Roblox 앱의 대장간/기어/가방 표시 확인이 남았다. Roblox 앱은 홈 화면까지만 확인했고 게임 내 아이콘 검증은 미실행이다. 현재 검증용 Studio는 권한 설정 확인을 위한 사용자 인계 상태로 열어 두었다. 다음 담당: 사용자 설정 확인 후 엔지니어/QA.
