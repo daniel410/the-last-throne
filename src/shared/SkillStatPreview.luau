@@ -6,6 +6,7 @@ local Config=Shared and require(Shared.K0Config) or dofile("src/shared/K0Config.
 local Advanced=Shared and require(Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
 local Text=Shared and require(Shared.SkillStatText) or dofile("src/shared/SkillStatText.luau")
 local CombatText=Shared and require(Shared.CombatStatText) or dofile("src/shared/CombatStatText.luau")
+local Effects=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentEffects)or dofile('src/shared/EquipmentEffects.luau')
 local Preview={}
 function Preview.derived(classId,g,equipment)
 	local d=Growth.derived(classId,g,equipment)
@@ -41,8 +42,9 @@ function Preview.basicAttacks(classId,g,equipment,draftGrowth)
  local key=classId=='mage' and 'magicPower' or 'physicalPower'
  local rows={}
  for index,attack in ipairs(Config.BasicAttackProfiles[classId].attacks) do
-  local before=math.max(1,math.floor(current[key]*attack.damage+.5))
-  local target=after and math.max(1,math.floor(after[key]*attack.damage+.5))
+  local effectMultiplier=Effects.damageMultiplier(equipment and equipment.specialEffects,classId=='mage',false)
+  local before=math.max(1,math.floor(current[key]*attack.damage*effectMultiplier+.5))
+  local target=after and math.max(1,math.floor(after[key]*attack.damage*effectMultiplier+.5))
   table.insert(rows,{key='basicHit'..index,before=before,after=target,delta=target and target-before})
  end
  return rows
@@ -123,7 +125,8 @@ function Preview.value(classId,index,g,equipment)
 	local skill=Growth.skill(classId,index,base,g)
 	local d=Preview.derived(classId,g,equipment)
 	local power=skill.magic and d.magicPower or d.physicalPower
-	local hit=skill.damage>0 and math.max(1,math.floor(power*skill.damage+.5)) or 0
+	local effectMultiplier=Effects.damageMultiplier(equipment and equipment.specialEffects,skill.magic,true,skill.id)
+	local hit=skill.damage>0 and math.max(1,math.floor(power*skill.damage*effectMultiplier+.5)) or 0
 	local hits=skill.pulses or skill.shotCount or 1
 	return {skill=skill,damage=hit,hits=hits,totalDamage=hit*hits,barrier=skill.shield and d.health*skill.shield or nil}
 end

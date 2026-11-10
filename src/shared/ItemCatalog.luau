@@ -144,4 +144,6 @@ for _,kind in ipairs({'stat','skill'}) do
   glyph=kind=='stat' and 'ST' or 'SK',rarity='Rare',reset=kind,
   description=kind=='stat' and 'Returns all invested STR, DEX, INT and VIT points for this hero. Use from BAG anytime, including combat. Consumes one ticket only after a successful reset.' or 'Returns all invested skill mastery points for this hero. Keeps learned skills, advancement and combat slots. Use from BAG anytime, including combat. Consumes one ticket only after a successful reset.'}
 end
+local Effects=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentEffects)or dofile('src/shared/EquipmentEffects.luau')
+for id,def in pairs(Catalog.items)do assert(Effects.validateDefinition(def),'Invalid special effects: '..id)end
 return Catalog

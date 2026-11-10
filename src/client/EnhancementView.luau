@@ -1,6 +1,8 @@
 local RS=game:GetService('ReplicatedStorage')
 local T=require(script.Parent.TDInventoryTheme)
 local Artwork=require(script.Parent.ItemArtwork)
+local Effects=require(RS.Shared.EquipmentEffects)
+local EffectText=require(RS.Shared.EquipmentEffectText)
 local E=require(RS.Shared.Enhancement)
 local C=require(RS.Shared.ItemCatalog)
 local Text=require(RS.Shared.AdventureText)
@@ -13,12 +15,22 @@ function V.render(scroll,s,send,saving,notice)
  end
  local ore,cores=amount('enhancement_gem'),amount('magic_stone')
  local function card(id,def,title,description,actions)
+  local effects=Effects.text(def)
+  if effects~=''and not description:find(effects,1,true)then description=description..'\n'..effects end
   local box=T.frame(scroll,id,UDim2.new(),UDim2.new(1,-8,0,304));box.LayoutOrder=#scroll:GetChildren()
   local gear=def.slot~=nil
   Artwork.create(box,def,UDim2.fromOffset(10,10),gear and UDim2.new(.44,-16,1,-128) or UDim2.fromOffset(54,54),hero and hero.baseClassId)
   local name=T.label(box,'Name',title,gear and UDim2.new(.44,8,0,16) or UDim2.fromOffset(74,8),gear and UDim2.new(.56,-24,0,52) or UDim2.new(1,-86,0,56),15,T.color.gold)
   local descriptionLabel=T.label(box,'Description',description,gear and UDim2.new(.44,8,0,80) or UDim2.fromOffset(12,70),gear and UDim2.new(.56,-24,1,-192) or UDim2.new(1,-24,1,-182),12)
   if gear then name.TextYAlignment=Enum.TextYAlignment.Top;descriptionLabel.TextYAlignment=Enum.TextYAlignment.Top end
+  if Effects.text(def)~=''then
+   local function fitEffects()
+    local width=math.max(100,box.AbsoluteSize.X*.56-24)
+    local height=game:GetService('TextService'):GetTextSize(description,12,descriptionLabel.Font,Vector2.new(width,10000)).Y
+    box.Size=UDim2.new(1,-8,0,math.max(304,height+204))
+   end
+   box:GetPropertyChangedSignal('AbsoluteSize'):Connect(fitEffects);fitEffects()
+  end
   for index,a in ipairs(actions)do
    local b=T.button(box,'Action'..index,a.title,UDim2.new(0,12,1,-108+(index-1)*50),UDim2.new(1,-24,0,44),a.action=='Enhance')
    T.enabled(b,not saving and s.ready and hero~=nil and a.enabled~=false)
@@ -48,6 +60,8 @@ function V.render(scroll,s,send,saving,notice)
     local after=E.stats(def,{enhancementLevel=math.max(n,math.min(E.cap(def),n+1))})
     local lines={n>=E.cap(def)and Text.MaxEnhancement or string.format(Text.Success,E.successPercent(n+1),100-E.successPercent(n+1))}
     for _,key in ipairs({'power','armor','health','mana','dexterity'})do if (before[key]or 0)>0 then table.insert(lines,key=='power' and string.format(Text.PowerChange,before[key],after[key]) or string.format(Text.StatChange,key=='armor'and Text.Armor or key=='mana'and 'Max MP' or key=='dexterity'and 'Dexterity' or Text.Health,before[key],after[key]))end end
+    local effectText=Effects.text(def)
+    if effectText~=''then table.insert(lines,effectText);table.insert(lines,EffectText.Unchanged)end
     table.insert(lines,string.format(Text.EnhanceCost,E.cap(def),cost.gold,cost.gems,cost.stones))
     table.insert(lines,string.format(Text.MaterialBag,ore,cores))
     local paid=item.enhancementPaid or {ore=0,cores=0};local modern=item.enhancementPaidV2 or {gems=0,stones=0};local ro,rc=math.floor(paid.ore*.8),math.floor(paid.cores*.8);local rg,rs=math.floor(modern.gems*.8),math.floor(modern.stones*.8)

@@ -1,3 +1,4 @@
+local Effects=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentEffects)or dofile('src/shared/EquipmentEffects.luau')
 local Enhancement=game and require(game:GetService('ReplicatedStorage').Shared.Enhancement)or dofile('src/shared/Enhancement.luau')
 local EquipmentSlots=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentSlotRules)or dofile('src/shared/EquipmentSlotRules.luau')
 local Adventure=game and require(game:GetService('ReplicatedStorage').Shared.AdventureRules)or dofile('src/shared/AdventureRules.luau')
@@ -63,6 +64,7 @@ function Rules.stats(profile, heroId, catalog)
 			if item.location.slot == "weapon" or item.location.slot == "offhand" then result[item.location.slot] = item.definitionId end
 		end
 	end
+	result.specialEffects=Effects.collect(profile.items,heroId,catalog)
 	return result
 end
 local function sameLocation(a, b)

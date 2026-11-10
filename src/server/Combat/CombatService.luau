@@ -4,6 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local PathfindingService = game:GetService("PathfindingService")
 
+local Effects=require(ReplicatedStorage.Shared.EquipmentEffects)
 local Advanced=require(ReplicatedStorage.Shared.AdvancedSkills)
 local LevelUpEffect=require(script.Parent.HeroLevelUpEffect)
 local PotionUseSound = require(script.Parent.PotionUseSound)
@@ -359,6 +360,7 @@ local function startAttack(state, current, targetModel)
 		started = current,
 		definition = Config.scaledBasicAttack(profile.attacks[nextCombo], state.derived and state.derived.attackRate or 1),
 		attackPower = (state.derived and (state.baseClassId=="mage" and state.derived.magicPower or state.derived.physicalPower) or profile.attackPower) + (state.equipment and state.equipment.power or 0),
+		equipmentMultiplier = Effects.damageMultiplier(state.equipment and state.equipment.specialEffects,state.baseClassId=='mage',false),
 		maxTargets = profile.maxTargets,
 		maxHeight = profile.maxHeight,
 		direction = direction,
@@ -475,6 +477,7 @@ local function startSkill(state, slot, current, targetModel)
 	end
 	state.attack = {
 		started = current, definition = skill, advancedCast=advancedCast, attackPower = (state.derived and (skill.magic and state.derived.magicPower or state.derived.physicalPower) or state.attackProfile.attackPower) + (state.equipment and state.equipment.power or 0),
+		equipmentMultiplier = Effects.damageMultiplier(state.equipment and state.equipment.specialEffects,skill.magic,true,skill.id),
 		maxTargets = skill.maxTargets, maxHeight = skill.maxHeight, isSpell = skill.magic,
 		isSkill = true, ranged = skill.ranged, direction = direction, recallFrom = recallFrom,
 		hits = {}, hitCount = 0, counterDamage = nil, sampledActive = false, targetModel = targetModel,
@@ -719,7 +722,7 @@ local function applyPlayerHit(enemy, playerState, attack, current)
 	if playerState.guardedUntil and current<playerState.guardedUntil then multiplier=multiplier*(1-playerState.guardReduction) end
 	if playerState.rallyUntil and current < playerState.rallyUntil then multiplier = multiplier * 0.8 end
 	if enemy.attackDownUntil and current<enemy.attackDownUntil then multiplier=multiplier*enemy.attackDownMultiplier end
-	local damage = math.max(1, math.floor(attack.definition.damage * multiplier + 0.5))
+	local damage = math.max(1, math.floor(attack.definition.damage * multiplier * Effects.incomingMultiplier(playerState.equipment and playerState.equipment.specialEffects) + 0.5))
 	damage = math.max(1, damage - (playerState.equipment and playerState.equipment.armor or 0) - (playerState.derived and playerState.derived.armor or 0))
 	local shieldAbsorbed=0
 	if playerState.branchShield and playerState.branchShield.expires>current then
@@ -796,7 +799,7 @@ local function damageEnemy(state, enemy, attack, current)
 		if d.wetBonus and (enemy.model:GetAttribute("K0WetUntil") or 0)>workspace:GetServerTimeNow() then multiplier=multiplier*(1+d.wetBonus) end
 		if d.weakenBonus and (enemy.defenseBreakUntil or 0)>current then multiplier=multiplier*(1+d.weakenBonus) end
 	end
-	local damage = math.max(1, math.floor(attack.attackPower * (d.damage + attack.counterDamage) * multiplier + 0.5))
+	local damage = math.max(1, math.floor(attack.attackPower * (d.damage + attack.counterDamage) * multiplier * (attack.equipmentMultiplier or 1) + 0.5))
 	-- Set the attacker before TakeDamage: a lethal hit can synchronously fire
 	-- Died, and split offspring must inherit the real server-validated attacker.
 	local expires = current + ATTACKER_RECOGNITION_SECONDS

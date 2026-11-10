@@ -5,6 +5,7 @@ local Economy=require(RS.Shared.EconomyRules)
 local T=require(script.Parent.TDInventoryTheme)
 local Menu=require(script.Parent.HeroMenuChrome)
 local Artwork=require(script.Parent.ItemArtwork)
+local Effects=require(RS.Shared.EquipmentEffects)
 local Impact=require(RS.Shared.EquipmentImpact)
 local ItemText=require(RS.Shared.InventoryText)
 local TextService=game:GetService('TextService')
@@ -200,6 +201,8 @@ function V.create(parent,send,diamondOnly,store)
      local fit=d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
      description=string.format(d.slot=="weapon" and d.classId=="mage" and ItemText.ShopStaffStats or ItemText.ShopGearStats,fit,d.rarity,d.level or 1,d.stats.power or 0,d.stats.armor and string.format(ItemText.FlatDefense,d.stats.armor) or '',(d.stats.health and string.format(ItemText.FlatHealth,d.stats.health) or '')..(d.stats.mana and string.format(ItemText.FlatMana,d.stats.mana) or '')..(d.stats.dexterity and string.format(ItemText.FlatDexterity,d.stats.dexterity) or ''),d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
     end
+    local effectText=Effects.text(d)
+    if effectText~=''then description=description..'\n'..effectText end
     if d.slot then
      local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,nil,Items)
      if impact and d.slot~='accessory' then description=description..'\n'..Impact.summary(impact) end

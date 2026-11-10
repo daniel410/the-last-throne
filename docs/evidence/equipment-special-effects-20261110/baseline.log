@@ -1,0 +1,9 @@
+22d8753b4132ff10c2090fa34304fbe04e70f28b
+$ lua tests/inventory.spec.lua
+lua: tests/inventory.spec.lua:7: aggregate armor: 8.0 ~= 5
+stack traceback:
+	[C]: in global 'assert'
+	tests/inventory.spec.lua:7: in upvalue 'check'
+	tests/inventory.spec.lua:8: in local 'equal'
+	tests/inventory.spec.lua:85: in main chunk
+	[C]: in ?

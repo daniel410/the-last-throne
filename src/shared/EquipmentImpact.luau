@@ -3,6 +3,7 @@ local Enhance=game and require(game:GetService('ReplicatedStorage').Shared.Enhan
 local Shared=game and game:GetService('ReplicatedStorage').Shared
 local Preview=Shared and require(Shared.SkillStatPreview) or dofile('src/shared/SkillStatPreview.luau')
 local Text=Shared and require(Shared.CombatStatText) or dofile('src/shared/CombatStatText.luau')
+local Effects=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentEffects)or dofile('src/shared/EquipmentEffects.luau')
 local Impact={}
 local Slots=Shared and require(Shared.EquipmentSlotRules)or dofile('src/shared/EquipmentSlotRules.luau')
 function Impact.compare(hero,items,selected,slot,catalog)
@@ -22,6 +23,8 @@ function Impact.compare(hero,items,selected,slot,catalog)
  end
  local after={}
  for key,value in pairs(before) do after[key]=value-((current or {})[key] or 0)+(Enhance.stats(d,selected)[key] or 0) end
+ before.specialEffects=Effects.collect(items,hero.heroId,catalog)
+ after.specialEffects=Effects.collect(items,hero.heroId,catalog,slot,d)
  local a,b=Preview.derived(hero.baseClassId,hero.progression,before),Preview.derived(hero.baseClassId,hero.progression,after)
  local rows={}
  for _,key in ipairs({'physicalPower','magicPower','armor','health','mana'}) do
@@ -31,17 +34,19 @@ function Impact.compare(hero,items,selected,slot,catalog)
   table.insert(rows,{key='dexterity',before=a.totalStats.DEX,after=b.totalStats.DEX,delta=b.totalStats.DEX-a.totalStats.DEX})
   for _,key in ipairs({'attackRate','moveRate'})do table.insert(rows,{key=key,before=a[key],after=b[key],delta=b[key]-a[key]})end
  end
+ rows.specialEffects=Effects.comparison(before.specialEffects,after.specialEffects)
  return rows
 end
 local function number(v)return string.format('%.4f',v):gsub('0+$',''):gsub('%.$','')end
 function Impact.text(rows)
  local lines={Text.EquipmentPreview}
  for _,row in ipairs(rows) do lines[#lines+1]=string.format('%s: %s → %s (%s%s)',Text.Labels[row.key],number(row.before),number(row.after),row.delta>=0 and '+' or '',number(row.delta)) end
+ if rows.specialEffects and rows.specialEffects~=''then lines[#lines+1]=rows.specialEffects end
  return table.concat(lines,'\n')
 end
 function Impact.summary(rows)
  local values={};for _,r in ipairs(rows) do values[r.key]=(r.delta>=0 and '+' or '')..number(r.delta) end
  local extra=values.dexterity and ('\nDEX '..values.dexterity..' · Attack speed '..values.attackRate..'x · Move speed '..values.moveRate..'x')or ''
- return string.format('On equip (pts): ATK %s · MATK %s\nDEF %s · Max HP %s · Max MP %s',values.physicalPower,values.magicPower,values.armor,values.health,values.mana)..extra
+ return string.format('On equip (pts): ATK %s · MATK %s\nDEF %s · Max HP %s · Max MP %s',values.physicalPower,values.magicPower,values.armor,values.health,values.mana)..extra..(rows.specialEffects and rows.specialEffects~=''and ('\n'..rows.specialEffects)or '')
 end
 return Impact

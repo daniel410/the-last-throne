@@ -1,6 +1,7 @@
 local Players=game:GetService('Players')
 local ReplicatedStorage=game:GetService('ReplicatedStorage')
 local RunService=game:GetService('RunService')
+local Effects=require(ReplicatedStorage.Shared.EquipmentEffects)
 local Content=require(ReplicatedStorage.Shared.CampaignContent)
 local Progress=require(ReplicatedStorage.Shared.DeepwoodProgress)
 local Balance=require(ReplicatedStorage.Shared.DeepwoodEncounterBalance)
@@ -239,7 +240,7 @@ local function floorHazard(e)
    else
    for ally,heroId in pairs(e.participants) do local ctx,root=context(ally)
     if ctx and ctx.heroId==heroId and root and (Vector3.new(root.Position.X,pos.Y,root.Position.Z)-pos).Magnitude<7
-     and not ally.Character:GetAttribute('K0Invulnerable') then ally.Character:FindFirstChildOfClass('Humanoid'):TakeDamage(math.floor(32*(Difficulty.mode(e.difficultyId or 'Easy',e.rulesVersion)or Difficulty.modes.Easy).damage+.5)) end
+     and not ally.Character:GetAttribute('K0Invulnerable') then ally.Character:FindFirstChildOfClass('Humanoid'):TakeDamage(math.floor(32*(Difficulty.mode(e.difficultyId or 'Easy',e.rulesVersion)or Difficulty.modes.Easy).damage*Effects.incomingMultiplier(ctx.equipment and ctx.equipment.specialEffects)+.5)) end
    end
    end
   end
