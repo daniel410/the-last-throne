@@ -1,0 +1,5 @@
+Built artifact PASS: standalone Sovereign template1, HasSkinnedMesh=true, bones10, dedicated clip module1
+Single-build actual artifact role/config/loading checks PASS (role10 / loading192)
+Source 416244da0174138ca2b41d0824c0a01b7c123228
+Artifact SHA256 91691331d2299598f8316c1888d2301c3f1d3d042f7dc79596d34669082f6cce
+Source push verified origin/main=416244da0174138ca2b41d0824c0a01b7c123228; LFS3/3 7.1MB uploaded

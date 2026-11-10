@@ -17,3 +17,5 @@ Idle/Walk는 TD 전용 클립, 공격/피격 등 나머지8클립은 TLT Ancient
 기존 `late-epics.spec.lua`는 수정 전 HEAD의 src/검사를 별도 임시 디렉터리에 추출해도 `DW-01:exp_1` 선택 확장 목표를 무조건 진행하려다 실패한다([baseline](baseline.log)). 이번 변경에서 이를 전체통과로 보고하지 않는다. 새 보스 검사는 실제 필수 본편을 완주하며 확장 목표는 별도 기존7,698검사로 검증했다.
 
 미검증: Studio MCP의 연결 문서0건으로 실제 TLT clone/스킨 표면·TLT 조명·메시/텍스처 로드·이동/공격 접점·모바일/4인+AI 성능·실제 계정 수용은 미실행. 원천 TD의 native skin 증거를 TLT 통과로 대체하지 않는다. 다음 QA는 GW-06 일반/재플레이·기존 완료 저장·1~4인·보스 경고/회피/타격·퇴로/카메라와 실제14stud 크기를 확인한다. 부모 티켓은 In Progress 유지. 빌드 결과는 build.json에 별도 기록하며 게임 게시/릴리스 태그는 수행하지 않는다.
+
+빌드: 입력 소스 `416244da0174138ca2b41d0824c0a01b7c123228`를 origin/main에 푸시하고 원격 일치를 확인했다. LFS3/3·7.1MB 전송 성공. `python3 tools/build-game.py --source HEAD --record docs/evidence/hollowbark-sovereign-20261110/build.json` 성공, `builds/0.96.0/TheLastThrone-0.96.0.rbxlx`, SHA-256 `91691331d2299598f8316c1888d2301c3f1d3d042f7dc79596d34669082f6cce`. 단일빌드 검사(role10/loading192)와 실제 산출물의 전용template·skin=true·10본·클립모듈 포함 검증 PASS([기록](build-check.log)). 후속 Studio 상태 확인에서는 TD 문서가 열려 있어 TLT 적용/테스트를 수행하지 않았다. 해당 TD 문서는 수정하지 않았다.
