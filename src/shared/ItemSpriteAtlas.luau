@@ -3,6 +3,31 @@
 return {
 	-- Separate transparent material icons; provenance: enhancement-material-icons-v1.
 	images = {
+		-- Four-family armor/shield concepts; source: assets/ui/four-family-armor-icons-v1.
+		["traveler_hood"] = "rbxassetid://137143080594284",
+		["tempered_hood"] = "rbxassetid://136521016636025",
+		["veteran_hood"] = "rbxassetid://78839767508875",
+		["sentinel_tier_hood"] = "rbxassetid://124750950652536",
+		["traveler_coat"] = "rbxassetid://80123332938356",
+		["tempered_coat"] = "rbxassetid://115845822837350",
+		["veteran_coat"] = "rbxassetid://120310393125164",
+		["sentinel_tier_coat"] = "rbxassetid://109445230940840",
+		["mage_traveler_coat"] = "rbxassetid://72185586709543",
+		["mage_tempered_coat"] = "rbxassetid://75921701620464",
+		["mage_veteran_coat"] = "rbxassetid://122133651584398",
+		["mage_sentinel_coat"] = "rbxassetid://106184216220128",
+		["traveler_gloves"] = "rbxassetid://86281658367231",
+		["tempered_gloves"] = "rbxassetid://111017676569197",
+		["veteran_gloves"] = "rbxassetid://132142681367766",
+		["sentinel_tier_gloves"] = "rbxassetid://140226481680174",
+		["traveler_boots"] = "rbxassetid://79263733706048",
+		["tempered_boots"] = "rbxassetid://116315919920509",
+		["veteran_boots"] = "rbxassetid://125948019718210",
+		["sentinel_tier_boots"] = "rbxassetid://135156716155826",
+		["knight_shield"] = "rbxassetid://92819976181635",
+		["knight_shield_fine"] = "rbxassetid://103003941741748",
+		["veteran_tier_shield"] = "rbxassetid://86204008047513",
+		["sentinel_tier_shield"] = "rbxassetid://89490344153714",
 		-- Latest four-family Meshy model renders; shared by gear and bag.
 		["dwarf_weapon_sentinel"] = "rbxassetid://126622922289484",
 		["elf_weapon_sentinel"] = "rbxassetid://93652204708306",
@@ -22,6 +47,13 @@ return {
 		["knight_weapon_traveler"] = "rbxassetid://83463381365228",
 		enhancement_gem = "rbxassetid://81095702596861",
 		magic_stone = "rbxassetid://103562386022277",
+	},
+	-- Same head definition, class-appropriate concept art. Unknown class uses the hood.
+	classImages = {
+		["traveler_hood"] = { knight = "rbxassetid://125595002040947", dwarf = "rbxassetid://127194582387627" },
+		["tempered_hood"] = { knight = "rbxassetid://112839896045392", dwarf = "rbxassetid://127235271476835" },
+		["veteran_hood"] = { knight = "rbxassetid://120982310537665", dwarf = "rbxassetid://81653443053106" },
+		["sentinel_tier_hood"] = { knight = "rbxassetid://113162779090205", dwarf = "rbxassetid://72777564842196" },
 	},
 	image = "rbxassetid://135019494060990",
 	width = 1024, height = 1536, renderWidth = 683, renderHeight = 1024,

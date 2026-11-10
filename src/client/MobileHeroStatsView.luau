@@ -123,7 +123,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
    local item
    for _,candidate in ipairs(snapshot.items or {}) do if candidate.location.kind=='equipped' and candidate.location.heroId==hero.heroId and candidate.location.slot==slot then item=candidate;break end end
    cell:SetAttribute('DefinitionId',item and item.definitionId or '')
-   if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(5,5),UDim2.new(1,-10,1,-10)) end
+   if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(5,5),UDim2.new(1,-10,1,-10),classId) end
    label(scroll,'SlotName_'..slot,InventoryText.Slots[slot],x,y+54,w,20,11,Theme.color.silver)
   end
   top=156

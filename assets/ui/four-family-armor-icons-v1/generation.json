@@ -1,0 +1,422 @@
+{
+  "tool": "built-in image_gen",
+  "intent": "reference-preserving transparent background extraction",
+  "records": [
+    {
+      "id": "traveler_hood",
+      "family": "traveler",
+      "category": "hood",
+      "column": 1,
+      "palette": "warm beige linen, walnut leather, plain dull iron and muted teal details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/hood.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-2572d69e-e24a-4f68-b28b-dec5d7c2f400.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-2572d69e-e24a-4f68-b28b-dec5d7c2f400.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TRAVELER hood. EDIT the reference comparison board: extract ONLY the item in column 1 from the left, labelled TRAVELER. Delete every other item, all board headings, all labels, all frames, the entire dark background and any ground shadow. Preserve the chosen item's EXACT silhouette, geometry, visible construction, cloth folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it and do not substitute another column. Palette check: warm beige linen, walnut leather, plain dull iron and muted teal details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet keep the hollow face opening and inner lining; no face, human head or mannequin. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% padding. Keep original polished chunky fantasy 3D render lighting, no added saturation, no external glow, no text, no border, no checkerboard or pedestal. Only the selected equipment on transparency."
+    },
+    {
+      "id": "tempered_hood",
+      "family": "tempered",
+      "category": "hood",
+      "column": 2,
+      "palette": "slate blue-gray cloth, dark brown leather and clean tempered silver steel",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/hood.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-5c516d6a-48b2-412c-ae42-25659865c9f7.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-5c516d6a-48b2-412c-ae42-25659865c9f7.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TEMPERED hood. EDIT the reference comparison board: extract ONLY the item in column 2 from the left, labelled TEMPERED. Delete every other item, all board headings, all labels, all frames, the entire dark background and any ground shadow. Preserve the chosen item's EXACT silhouette, geometry, visible construction, cloth folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it and do not substitute another column. Palette check: slate blue-gray cloth, dark brown leather and clean tempered silver steel. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet keep the hollow face opening and inner lining; no face, human head or mannequin. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% padding. Keep original polished chunky fantasy 3D render lighting, no added saturation, no external glow, no text, no border, no checkerboard or pedestal. Only the selected equipment on transparency."
+    },
+    {
+      "id": "veteran_hood",
+      "family": "veteran",
+      "category": "hood",
+      "column": 3,
+      "palette": "deep olive green cloth, dark brown leather, brushed steel and aged bronze details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/hood.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-42b56978-f5b9-4249-bb4f-e99137437499.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-42b56978-f5b9-4249-bb4f-e99137437499.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one VETERAN hood. EDIT the reference comparison board: extract ONLY the item in column 3 from the left, labelled VETERAN. Delete every other item, all board headings, all labels, all frames, the entire dark background and any ground shadow. Preserve the chosen item's EXACT silhouette, geometry, visible construction, cloth folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it and do not substitute another column. Palette check: deep olive green cloth, dark brown leather, brushed steel and aged bronze details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet keep the hollow face opening and inner lining; no face, human head or mannequin. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% padding. Keep original polished chunky fantasy 3D render lighting, no added saturation, no external glow, no text, no border, no checkerboard or pedestal. Only the selected equipment on transparency."
+    },
+    {
+      "id": "sentinel_hood",
+      "family": "sentinel",
+      "category": "hood",
+      "column": 4,
+      "palette": "dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/hood.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8633d8ee-b63c-4c87-ae44-dfd1c16cd90c.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8633d8ee-b63c-4c87-ae44-dfd1c16cd90c.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one SENTINEL hood. EDIT the reference comparison board: extract ONLY the item in column 4 from the left, labelled SENTINEL. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "traveler_knight_helmet",
+      "family": "traveler",
+      "category": "knight_helmet",
+      "column": 1,
+      "palette": "warm beige linen, walnut leather, plain dull iron and muted teal details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/knight_helmet.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-605873fc-459e-4499-b8c7-cf32963acbf4.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-605873fc-459e-4499-b8c7-cf32963acbf4.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TRAVELER knight helmet. EDIT the reference comparison board: extract ONLY the item in column 1 from the left, labelled TRAVELER. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: warm beige linen, walnut leather, plain dull iron and muted teal details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "tempered_knight_helmet",
+      "family": "tempered",
+      "category": "knight_helmet",
+      "column": 2,
+      "palette": "slate blue-gray cloth, dark brown leather and clean tempered silver steel",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/knight_helmet.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-0dd09dd7-7faa-4d14-aaac-3df81268623a.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-0dd09dd7-7faa-4d14-aaac-3df81268623a.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TEMPERED knight helmet. EDIT the reference comparison board: extract ONLY the item in column 2 from the left, labelled TEMPERED. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: slate blue-gray cloth, dark brown leather and clean tempered silver steel. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "veteran_knight_helmet",
+      "family": "veteran",
+      "category": "knight_helmet",
+      "column": 3,
+      "palette": "deep olive green cloth, dark brown leather, brushed steel and aged bronze details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/knight_helmet.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-7805a6f1-9ae8-4322-bbf8-41a27a1903db.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-7805a6f1-9ae8-4322-bbf8-41a27a1903db.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one VETERAN knight helmet. EDIT the reference comparison board: extract ONLY the item in column 3 from the left, labelled VETERAN. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: deep olive green cloth, dark brown leather, brushed steel and aged bronze details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "sentinel_knight_helmet",
+      "family": "sentinel",
+      "category": "knight_helmet",
+      "column": 4,
+      "palette": "dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/knight_helmet.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-71ab2a0d-cb1c-43ad-80ae-155b3c0d4804.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-71ab2a0d-cb1c-43ad-80ae-155b3c0d4804.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one SENTINEL knight helmet. EDIT the reference comparison board: extract ONLY the item in column 4 from the left, labelled SENTINEL. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "traveler_dwarf_helmet",
+      "family": "traveler",
+      "category": "dwarf_helmet",
+      "column": 1,
+      "palette": "warm beige linen, walnut leather, plain dull iron and muted teal details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/dwarf_helmet.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-6e4599da-605c-46af-ab6f-bb30ffd3e07c.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-6e4599da-605c-46af-ab6f-bb30ffd3e07c.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TRAVELER dwarf helmet. EDIT the reference comparison board: extract ONLY the item in column 1 from the left, labelled TRAVELER. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: warm beige linen, walnut leather, plain dull iron and muted teal details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "tempered_dwarf_helmet",
+      "family": "tempered",
+      "category": "dwarf_helmet",
+      "column": 2,
+      "palette": "slate blue-gray cloth, dark brown leather and clean tempered silver steel",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/dwarf_helmet.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-457eedd8-7f94-4c74-a1cd-1b9071daaf59.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-457eedd8-7f94-4c74-a1cd-1b9071daaf59.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TEMPERED dwarf helmet. EDIT the reference comparison board: extract ONLY the item in column 2 from the left, labelled TEMPERED. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: slate blue-gray cloth, dark brown leather and clean tempered silver steel. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "veteran_dwarf_helmet",
+      "family": "veteran",
+      "category": "dwarf_helmet",
+      "column": 3,
+      "palette": "deep olive green cloth, dark brown leather, brushed steel and aged bronze details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/dwarf_helmet.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-60035f19-4ff5-4236-958b-c202a9121582.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-60035f19-4ff5-4236-958b-c202a9121582.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one VETERAN dwarf helmet. EDIT the reference comparison board: extract ONLY the item in column 3 from the left, labelled VETERAN. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: deep olive green cloth, dark brown leather, brushed steel and aged bronze details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "sentinel_dwarf_helmet",
+      "family": "sentinel",
+      "category": "dwarf_helmet",
+      "column": 4,
+      "palette": "dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/dwarf_helmet.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-07d20907-c354-4c98-96a2-d84d904b83d4.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-07d20907-c354-4c98-96a2-d84d904b83d4.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one SENTINEL dwarf helmet. EDIT the reference comparison board: extract ONLY the item in column 4 from the left, labelled SENTINEL. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "traveler_coat",
+      "family": "traveler",
+      "category": "coat",
+      "column": 1,
+      "palette": "warm beige linen, walnut leather, plain dull iron and muted teal details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/coat.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-ab979d74-e33b-499b-a57e-bf299310c82e.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-ab979d74-e33b-499b-a57e-bf299310c82e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TRAVELER coat. EDIT the reference comparison board: extract ONLY the item in column 1 from the left, labelled TRAVELER. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: warm beige linen, walnut leather, plain dull iron and muted teal details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "tempered_coat",
+      "family": "tempered",
+      "category": "coat",
+      "column": 2,
+      "palette": "slate blue-gray cloth, dark brown leather and clean tempered silver steel",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/coat.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-07eaea65-3163-44f4-9b20-03c2fae31176.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-07eaea65-3163-44f4-9b20-03c2fae31176.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TEMPERED coat. EDIT the reference comparison board: extract ONLY the item in column 2 from the left, labelled TEMPERED. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: slate blue-gray cloth, dark brown leather and clean tempered silver steel. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "veteran_coat",
+      "family": "veteran",
+      "category": "coat",
+      "column": 3,
+      "palette": "deep olive green cloth, dark brown leather, brushed steel and aged bronze details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/coat.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-6dd56449-5570-4e67-9c6a-a3f52eebf67f.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-6dd56449-5570-4e67-9c6a-a3f52eebf67f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one VETERAN coat. EDIT the reference comparison board: extract ONLY the item in column 3 from the left, labelled VETERAN. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: deep olive green cloth, dark brown leather, brushed steel and aged bronze details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "sentinel_coat",
+      "family": "sentinel",
+      "category": "coat",
+      "column": 4,
+      "palette": "dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/coat.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-ceef9db6-fbc5-4705-b5a7-a47b92bed947.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-ceef9db6-fbc5-4705-b5a7-a47b92bed947.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one SENTINEL coat. EDIT the reference comparison board: extract ONLY the item in column 4 from the left, labelled SENTINEL. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "traveler_mage_robe",
+      "family": "traveler",
+      "category": "mage_robe",
+      "column": 1,
+      "palette": "warm beige linen, walnut leather, plain dull iron and muted teal details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/mage_robe.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-2123a410-971d-4cec-8cf1-4ceeadf188ba.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-2123a410-971d-4cec-8cf1-4ceeadf188ba.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TRAVELER mage robe. EDIT the reference comparison board: extract ONLY the item in column 1 from the left, labelled TRAVELER. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: warm beige linen, walnut leather, plain dull iron and muted teal details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "tempered_mage_robe",
+      "family": "tempered",
+      "category": "mage_robe",
+      "column": 2,
+      "palette": "slate blue-gray cloth, dark brown leather and clean tempered silver steel",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/mage_robe.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-51101ceb-2bf7-4db9-9a68-05c32affc94c.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-51101ceb-2bf7-4db9-9a68-05c32affc94c.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TEMPERED mage robe. EDIT the reference comparison board: extract ONLY the item in column 2 from the left, labelled TEMPERED. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: slate blue-gray cloth, dark brown leather and clean tempered silver steel. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "veteran_mage_robe",
+      "family": "veteran",
+      "category": "mage_robe",
+      "column": 3,
+      "palette": "deep olive green cloth, dark brown leather, brushed steel and aged bronze details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/mage_robe.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-7820e2f5-64cb-4283-9d8c-d2d601ed91a0.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-7820e2f5-64cb-4283-9d8c-d2d601ed91a0.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one VETERAN mage robe. EDIT the reference comparison board: extract ONLY the item in column 3 from the left, labelled VETERAN. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: deep olive green cloth, dark brown leather, brushed steel and aged bronze details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "sentinel_mage_robe",
+      "family": "sentinel",
+      "category": "mage_robe",
+      "column": 4,
+      "palette": "dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/mage_robe.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-44c3f54e-cf00-407d-8bb3-ec317b4f52fe.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-44c3f54e-cf00-407d-8bb3-ec317b4f52fe.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one SENTINEL mage robe. EDIT the reference comparison board: extract ONLY the item in column 4 from the left, labelled SENTINEL. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "traveler_gloves",
+      "family": "traveler",
+      "category": "gloves",
+      "column": 1,
+      "palette": "warm beige linen, walnut leather, plain dull iron and muted teal details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/gloves.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8edafaf7-e2c1-4e2c-9e88-99f9f225a5de.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8edafaf7-e2c1-4e2c-9e88-99f9f225a5de.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TRAVELER gloves. EDIT the reference comparison board: extract ONLY the item in column 1 from the left, labelled TRAVELER. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: warm beige linen, walnut leather, plain dull iron and muted teal details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "tempered_gloves",
+      "family": "tempered",
+      "category": "gloves",
+      "column": 2,
+      "palette": "slate blue-gray cloth, dark brown leather and clean tempered silver steel",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/gloves.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-a619e6b5-7421-4030-9b0e-392402739663.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-a619e6b5-7421-4030-9b0e-392402739663.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TEMPERED gloves. EDIT the reference comparison board: extract ONLY the item in column 2 from the left, labelled TEMPERED. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: slate blue-gray cloth, dark brown leather and clean tempered silver steel. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "veteran_gloves",
+      "family": "veteran",
+      "category": "gloves",
+      "column": 3,
+      "palette": "deep olive green cloth, dark brown leather, brushed steel and aged bronze details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/gloves.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-4e3fc4a5-e66f-40eb-90bd-7eb4d9325a44.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-4e3fc4a5-e66f-40eb-90bd-7eb4d9325a44.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one VETERAN gloves. EDIT the reference comparison board: extract ONLY the item in column 3 from the left, labelled VETERAN. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: deep olive green cloth, dark brown leather, brushed steel and aged bronze details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "sentinel_gloves",
+      "family": "sentinel",
+      "category": "gloves",
+      "column": 4,
+      "palette": "dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/gloves.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-75f38cda-dc0f-43b5-bbc2-21d96db9c397.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-75f38cda-dc0f-43b5-bbc2-21d96db9c397.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one SENTINEL gloves. EDIT the reference comparison board: extract ONLY the item in column 4 from the left, labelled SENTINEL. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "traveler_boots",
+      "family": "traveler",
+      "category": "boots",
+      "column": 1,
+      "palette": "warm beige linen, walnut leather, plain dull iron and muted teal details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/boots.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-04598b19-5a6a-4299-ba41-f19b4762d845.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-04598b19-5a6a-4299-ba41-f19b4762d845.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TRAVELER boots. EDIT the reference comparison board: extract ONLY the item in column 1 from the left, labelled TRAVELER. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: warm beige linen, walnut leather, plain dull iron and muted teal details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "tempered_boots",
+      "family": "tempered",
+      "category": "boots",
+      "column": 2,
+      "palette": "slate blue-gray cloth, dark brown leather and clean tempered silver steel",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/boots.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-a7ac86c1-912d-4086-a5e8-cde3573df42b.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-a7ac86c1-912d-4086-a5e8-cde3573df42b.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TEMPERED boots. EDIT the reference comparison board: extract ONLY the item in column 2 from the left, labelled TEMPERED. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: slate blue-gray cloth, dark brown leather and clean tempered silver steel. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "veteran_boots",
+      "family": "veteran",
+      "category": "boots",
+      "column": 3,
+      "palette": "deep olive green cloth, dark brown leather, brushed steel and aged bronze details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/boots.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-c598d3e9-342c-40d3-a663-377e87756da3.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-c598d3e9-342c-40d3-a663-377e87756da3.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one VETERAN boots. EDIT the reference comparison board: extract ONLY the item in column 3 from the left, labelled VETERAN. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: deep olive green cloth, dark brown leather, brushed steel and aged bronze details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "sentinel_boots",
+      "family": "sentinel",
+      "category": "boots",
+      "column": 4,
+      "palette": "dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/boots.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8e2ceb65-21ad-4077-8365-aa683a3a342f.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8e2ceb65-21ad-4077-8365-aa683a3a342f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one SENTINEL boots. EDIT the reference comparison board: extract ONLY the item in column 4 from the left, labelled SENTINEL. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: dark navy cloth, dark brown leather, bright silver structural steel and small cobalt blue details. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "traveler_shield",
+      "family": "traveler",
+      "category": "shield",
+      "column": 1,
+      "palette": "warm beige linen and walnut wood/leather with dull iron",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/shield.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-e1138879-01d5-415c-a37d-606dbc30f74c.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-e1138879-01d5-415c-a37d-606dbc30f74c.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TRAVELER shield. EDIT the reference comparison board: extract ONLY the item in column 1 from the left, labelled TRAVELER. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: warm beige linen and walnut wood/leather with dull iron. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "tempered_shield",
+      "family": "tempered",
+      "category": "shield",
+      "column": 2,
+      "palette": "slate blue-gray cloth and clean tempered silver steel",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/shield.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-bb702efa-b7e8-4892-b807-ffea842037b4.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-bb702efa-b7e8-4892-b807-ffea842037b4.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one TEMPERED shield. EDIT the reference comparison board: extract ONLY the item in column 2 from the left, labelled TEMPERED. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: slate blue-gray cloth and clean tempered silver steel. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "veteran_shield",
+      "family": "veteran",
+      "category": "shield",
+      "column": 3,
+      "palette": "deep olive green cloth, brushed steel and aged bronze",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/shield.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-85abf6e5-30ac-47f1-ab8a-31052e550301.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-85abf6e5-30ac-47f1-ab8a-31052e550301.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one VETERAN shield. EDIT the reference comparison board: extract ONLY the item in column 3 from the left, labelled VETERAN. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: deep olive green cloth, brushed steel and aged bronze. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    },
+    {
+      "id": "sentinel_shield",
+      "family": "sentinel",
+      "category": "shield",
+      "column": 4,
+      "palette": "dark navy cloth/enamel and bright silver steel with small blue inset",
+      "reference": "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-09-starter-equipment-v1/boards/shield.png",
+      "generation": {
+        "path": "/Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8f8a6612-408d-4bb6-b36d-7394c97ad0c7.png",
+        "output_hint": "Generated images are saved to /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797 as /Users/daniel/.codex/generated_images/01a1bca4-3faa-75d3-918c-30fd525de797/exec-8f8a6612-408d-4bb6-b36d-7394c97ad0c7.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+      },
+      "prompt": "Use case: background-extraction. Production game inventory icon, one SENTINEL shield. EDIT the reference comparison board: extract ONLY the item in column 4 from the left, labelled SENTINEL. Delete every other item, all board headings, all labels, all frames, the entire dark background and ALL ground shadow, backdrop haze and halo. Preserve the chosen item's EXACT silhouette, geometry, visible construction, folds, seams, metal edges, crest, palette and original three-quarter camera; do not redesign or simplify it or substitute another column. Palette check: dark navy cloth/enamel and bright silver steel with small blue inset. For gloves/boots keep the complete matched pair together as ONE icon. For hood/helmet preserve the hollow face opening and interior lining; no face, human head or mannequin. For coat/robe preserve the hollow garment, not a full character. Return one square 1024x1024 PNG with genuinely transparent alpha background, centered whole uncropped object, about 80% canvas height and minimum 8% clear padding. Preserve original polished chunky fantasy 3D render lighting without increasing saturation. NO external glow, soft backdrop haze, text, border, checkerboard, pedestal, extra objects or cropped item. Only the selected equipment on transparency."
+    }
+  ]
+}

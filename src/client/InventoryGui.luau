@@ -167,6 +167,12 @@ function InventoryGui.create(onVisibility, feedback)
 	local function getSelected()
 		for _, item in ipairs(snapshot and snapshot.items or {}) do if item.instanceId==selectedId then return item end end
 	end
+ local function itemVisualClass(item)
+  local heroes=snapshot and snapshot.heroes
+  local heroId=item and item.location and item.location.heroId or snapshot and snapshot.heroId
+  local hero=heroes and (heroes[heroId] or heroes[snapshot.heroId])
+  return hero and hero.baseClassId
+ end
 	local function setMessage(text,error)
 		message.Text,message.TextColor3=text,error and Color.error or Color.silver
 		if error and not opened and feedback then feedback(text) end
@@ -250,7 +256,7 @@ function InventoryGui.create(onVisibility, feedback)
 		local def=Catalog.items[item.definitionId]
 		local hero=snapshot.heroes[snapshot.heroId]
 		if storageMode and not compact and sourceTab~="pending" then
-			Artwork.create(detailScroll,def,UDim2.fromOffset(0,0),UDim2.fromOffset(90,90))
+			Artwork.create(detailScroll,def,UDim2.fromOffset(0,0),UDim2.fromOffset(90,90),itemVisualClass(item))
 			local name=detailLabel("ItemName",Enhance.name(def,item),0,36,20,Color.text); name.Position=UDim2.fromOffset(106,0); name.Size=UDim2.new(1,-112,0,36)
 			if def.slot then
 				local requirement=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or Text.Compatible
@@ -293,7 +299,7 @@ function InventoryGui.create(onVisibility, feedback)
    local count=detailLabel("PotionQuantity",string.format(Text.StackQuantity,item.quantity),y,28,16,Color.text)
    count.Font=Enum.Font.GothamBold;y=y+32
   end
-		Artwork.create(detailScroll,def,UDim2.fromOffset(12,y),UDim2.new(1,-32,0,156)); y=y+160
+		Artwork.create(detailScroll,def,UDim2.fromOffset(12,y),UDim2.new(1,-32,0,156),itemVisualClass(item)); y=y+160
 		rarityLabel(def,y); y=y+38
 		local classText=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or (def.slot and Text.Compatible or Text.AllClasses)
 		detailLabel("Requirements",classText.."  •  "..string.format(Text.Level,def.level or 1),y,48,13,Color.silver); y=y+52
@@ -421,7 +427,7 @@ function InventoryGui.create(onVisibility, feedback)
 			local card=Chrome.card(view.scroll,item and "Item_"..item.instanceId or "EmptySlot"..index,UDim2.new(),UDim2.new(),item and selectedId==item.instanceId,item~=nil)
 			card.LayoutOrder=index
 			if def then
-				Artwork.create(card,def,UDim2.fromOffset(7,3),UDim2.new(1,-14,.67,-3))
+				Artwork.create(card,def,UDim2.fromOffset(7,3),UDim2.new(1,-14,.67,-3),itemVisualClass(item))
 				local name=Theme.label(card,"ItemName",Enhance.name(def,item),UDim2.new(0,4,.68,0),UDim2.new(1,-8,.3,-2),10,Color.text)
 				name.TextXAlignment=Enum.TextXAlignment.Center
 
@@ -464,7 +470,7 @@ function InventoryGui.create(onVisibility, feedback)
 				local short=shell.AbsoluteSize.Y>0 and shell.AbsoluteSize.Y<400
 				local slotPosition=short and UDim2.new(((index-1)%4+.5)/4,-26,0,34+math.floor((index-1)/4)*60) or UDim2.new(right and 1 or 0,right and -60 or 8,0,54+row*62)
 				local cell=Chrome.card(equipmentSlots,"EquipSlot_"..slot,slotPosition,UDim2.fromOffset(52,54),item and selectedId==item.instanceId,item~=nil)
-				if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(4,1),UDim2.fromOffset(44,38)); cell.Activated:Connect(function() choose(item) end) end
+				if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(4,1),UDim2.fromOffset(44,38),itemVisualClass(item)); cell.Activated:Connect(function() choose(item) end) end
 				local caption=Theme.label(cell,"SlotLabel",Text.Slots[slot],UDim2.fromOffset(0,38),UDim2.fromOffset(52,14),8,Color.silver); caption.TextXAlignment=Enum.TextXAlignment.Center
 			end
 		end

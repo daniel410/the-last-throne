@@ -14,9 +14,9 @@ local function block(model,name,size,position,color,rotation,shape)
 	part.Parent=model
 	return part
 end
-function Artwork.create(parent,def,position,size)
+function Artwork.create(parent,def,position,size,classId)
 	if def.potionTier then return PotionIcon.create(parent,def,position,size) end
-	local sprite=Sprites.create(parent,def,position,size); if sprite then return sprite end
+	local sprite=Sprites.create(parent,def,position,size,classId); if sprite then return sprite end
 	local viewport=Instance.new("ViewportFrame")
 	viewport.Name,viewport.Position,viewport.Size,viewport.BackgroundTransparency="ItemArtwork",position,size,1
 	viewport.Ambient,viewport.LightColor,viewport.LightDirection=Color3.fromRGB(163,178,205),Color3.new(1,1,1),Vector3.new(-1,-2,-3)

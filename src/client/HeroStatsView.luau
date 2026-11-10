@@ -74,7 +74,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
   for _,candidate in ipairs(snapshot.items or {}) do if candidate.location.kind=='equipped' and candidate.location.heroId==hero.heroId and candidate.location.slot==slot then item=candidate;break end end
   local cell=Menu.frame(left,'EquipSlot_'..slot,UDim2.new(right and 1 or 0,right and -slotSize-12 or 12,0,76+row*(threeColumn and 82 or mobile and 74 or 108)),UDim2.fromOffset(slotSize,slotSize))
   cell:SetAttribute('DefinitionId',item and item.definitionId or '')
-  if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8)) end
+  if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(4,4),UDim2.new(1,-8,1,-8),classId) end
   local caption=Theme.label(cell,'SlotName',Text.Slots[slot],UDim2.new(0,-6,1,4),UDim2.new(1,12,0,26),9,Theme.color.silver);caption.TextXAlignment=Enum.TextXAlignment.Center
  end
  local xp=g.level==Growth.maxLevel and string.format(GrowthText.TotalXPMax,Growth.totalXP(g)) or string.format(GrowthText.TotalXP,Growth.totalXP(g),Growth.xpAtLevel(g.level+1))

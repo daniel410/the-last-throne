@@ -132,7 +132,10 @@ function V.create(parent,send,diamondOnly,store)
   local largeArtwork=store=='blacksmith'
   local artSize=largeArtwork and UDim2.new(.44,-16,1,-80) or UDim2.fromOffset(62,66)
   if def.currencyArt then T.icon(card,'gold',UDim2.fromOffset(10,12),artSize)
-  else Artwork.create(card,def,UDim2.fromOffset(10,12),artSize) end
+  else
+   local hero=state.heroId and state.heroes and state.heroes[state.heroId]
+   Artwork.create(card,def,UDim2.fromOffset(10,12),artSize,hero and hero.baseClassId)
+  end
   local name=T.label(card,'Name',title,largeArtwork and UDim2.new(.44,8,0,16) or UDim2.fromOffset(82,8),largeArtwork and UDim2.new(.56,-24,0,52) or UDim2.new(1,-94,0,64),16,T.color.gold)
   local details=T.label(card,'Details',description,largeArtwork and UDim2.new(.44,8,0,80) or UDim2.fromOffset(14,80),largeArtwork and UDim2.new(.56,-24,1,-144) or UDim2.new(1,-28,1,-140),12)
   if largeArtwork then name.TextYAlignment=Enum.TextYAlignment.Top;details.TextYAlignment=Enum.TextYAlignment.Top end

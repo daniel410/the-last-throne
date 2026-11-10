@@ -1,0 +1,610 @@
+[
+  {
+    "file": "icons/traveler_hood.png",
+    "sha256": "856987b08a9457c935b35650fd03b882c2590ef19d1d8cb2e966d1bea93c1288",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 59.03,
+    "semiPct": 40.94,
+    "subjectBoundsAlpha128": [
+      196,
+      122,
+      1025,
+      1162
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/tempered_hood.png",
+    "sha256": "220a3a2065caaeea5cc5771d71c22bc7d2a3769dc2440587427641fa4baf791f",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 57.48,
+    "semiPct": 42.5,
+    "subjectBoundsAlpha128": [
+      208,
+      126,
+      1056,
+      1150
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/veteran_hood.png",
+    "sha256": "900adf65540c6b7d363c4e366c607c13546c556bf28b5226498636e2d13e1957",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 57.53,
+    "semiPct": 42.44,
+    "subjectBoundsAlpha128": [
+      194,
+      128,
+      1059,
+      1153
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/sentinel_hood.png",
+    "sha256": "722e32ec3f23963f1fc6cb929f3d76da1980a2cd60bc74b444d7144a17134fce",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 55.77,
+    "semiPct": 44.19,
+    "subjectBoundsAlpha128": [
+      182,
+      117,
+      1060,
+      1171
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/traveler_knight_helmet.png",
+    "sha256": "c389361893f819a5e21c2b467c6d41c59bd4540b3e4a458d8545ffd99887558d",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 60.89,
+    "semiPct": 39.07,
+    "subjectBoundsAlpha128": [
+      248,
+      96,
+      1014,
+      1193
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/tempered_knight_helmet.png",
+    "sha256": "38bb4d5221accd42b992379d8b032d480d459ba1231bb07c88783d0f7a60286e",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 63.02,
+    "semiPct": 36.94,
+    "subjectBoundsAlpha128": [
+      260,
+      102,
+      994,
+      1182
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/veteran_knight_helmet.png",
+    "sha256": "2291dcd03aaff0ee57cf9b51a939a9284a3b9278a7b03340bff1dfde3212b58f",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 59.22,
+    "semiPct": 40.76,
+    "subjectBoundsAlpha128": [
+      239,
+      106,
+      1046,
+      1212
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/sentinel_knight_helmet.png",
+    "sha256": "2f4b0edb9304e393c3d0fc01d2cc895763e633872d85a34ef9cda19ae0090635",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 63.91,
+    "semiPct": 36.04,
+    "subjectBoundsAlpha128": [
+      293,
+      94,
+      1001,
+      1178
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/traveler_dwarf_helmet.png",
+    "sha256": "20bd8e6839a1ac786bdcfdc511e41157e821315cbb80b5e4fd29c40207a3db09",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 55.28,
+    "semiPct": 44.69,
+    "subjectBoundsAlpha128": [
+      183,
+      80,
+      1069,
+      1164
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/tempered_dwarf_helmet.png",
+    "sha256": "9e7806b03dead5fa057f94eaadf6d9257d0af26d983a949e470fd4e889e49153",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 55.15,
+    "semiPct": 44.83,
+    "subjectBoundsAlpha128": [
+      185,
+      97,
+      1072,
+      1178
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/veteran_dwarf_helmet.png",
+    "sha256": "0cdfb0b9cd4a861464c6c5df1b27d1ad3f9b642967b16c3080dccf7f0dd7ca11",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 57.23,
+    "semiPct": 42.75,
+    "subjectBoundsAlpha128": [
+      204,
+      121,
+      1063,
+      1161
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/sentinel_dwarf_helmet.png",
+    "sha256": "f74415b4158a1d62b9605be50b115d14566af7507fc5e925ae9649b8be7280a7",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 55.75,
+    "semiPct": 44.23,
+    "subjectBoundsAlpha128": [
+      181,
+      106,
+      1080,
+      1174
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/traveler_coat.png",
+    "sha256": "d76b5d3be3239cfd9866f61c5059e3b7caa12ef5069b5ccf0d7b4346782412c1",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 66.94,
+    "semiPct": 33.04,
+    "subjectBoundsAlpha128": [
+      274,
+      89,
+      971,
+      1143
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/tempered_coat.png",
+    "sha256": "ec5fe69e473acf253a15f232de0dcbc7493a70f5428667622e3113f8e25e093a",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 65.23,
+    "semiPct": 34.73,
+    "subjectBoundsAlpha128": [
+      271,
+      93,
+      991,
+      1143
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/veteran_coat.png",
+    "sha256": "1e984d8fc956f9ae3a4c68f733a2c272efcd2bf957e98823bcd93a29522b810f",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 60.01,
+    "semiPct": 39.95,
+    "subjectBoundsAlpha128": [
+      245,
+      70,
+      997,
+      1184
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/sentinel_coat.png",
+    "sha256": "db95c4dc3f394c1010ec7f43d01d7b536646eea81cd628ba61ac61f2844f31fb",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 63.79,
+    "semiPct": 36.15,
+    "subjectBoundsAlpha128": [
+      273,
+      80,
+      981,
+      1161
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/traveler_mage_robe.png",
+    "sha256": "05c871e96cab8b7702dd09329960ae7297650020105024645e477decd739efae",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 70.53,
+    "semiPct": 29.41,
+    "subjectBoundsAlpha128": [
+      340,
+      76,
+      913,
+      1149
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/tempered_mage_robe.png",
+    "sha256": "8512a02be8ebf65e4fdb911535e84f8bd15d596293fb6e324e262c77b2215153",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 69.02,
+    "semiPct": 30.95,
+    "subjectBoundsAlpha128": [
+      326,
+      102,
+      929,
+      1178
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/veteran_mage_robe.png",
+    "sha256": "9d54b9172c5223e5518f6e46e56222b9e5b0c3741ab3e7478497e9016794d83c",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 65.76,
+    "semiPct": 34.21,
+    "subjectBoundsAlpha128": [
+      317,
+      84,
+      954,
+      1180
+    ],
+    "maxEdgeAlpha": 0
+  },
+  {
+    "file": "icons/sentinel_mage_robe.png",
+    "sha256": "d87f991429c168efd1238a160eed6dbc728e48f55c1285bee6f179b6a8a3f04e",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 64.76,
+    "semiPct": 35.19,
+    "subjectBoundsAlpha128": [
+      309,
+      63,
+      963,
+      1181
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/traveler_gloves.png",
+    "sha256": "2293f6948e48ced3807827e1bf3d041b84a772eb9ca67d3ad21bfc41891476f6",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 52.35,
+    "semiPct": 47.61,
+    "subjectBoundsAlpha128": [
+      164,
+      132,
+      1083,
+      1174
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/tempered_gloves.png",
+    "sha256": "215416acaeaad512daf3a79c24df2813ebc237ed9e3d8a97b4979b01a191961b",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 54.55,
+    "semiPct": 45.41,
+    "subjectBoundsAlpha128": [
+      164,
+      149,
+      1054,
+      1168
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/veteran_gloves.png",
+    "sha256": "4ae3662fff76f31bab7e40322ffff8231499815ed517cae5e211d0f744776aa0",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 51.25,
+    "semiPct": 48.71,
+    "subjectBoundsAlpha128": [
+      167,
+      110,
+      1097,
+      1164
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/sentinel_gloves.png",
+    "sha256": "406c2cbbeaf0f3ae3b3aaaaa1a5c9c0bbfb756900bdb7aaa0303383e824a5b27",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 56.95,
+    "semiPct": 43.02,
+    "subjectBoundsAlpha128": [
+      197,
+      151,
+      1052,
+      1145
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/traveler_boots.png",
+    "sha256": "c30855ac7c7785170a51ebe0b499faa0e87623ba97a4fd13129923bb1f4d550d",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 53.65,
+    "semiPct": 46.31,
+    "subjectBoundsAlpha128": [
+      194,
+      120,
+      1129,
+      1159
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/tempered_boots.png",
+    "sha256": "4ab20065054311f88a66244f05492c2c72802ff9b9d08ae8aa03426f906c705b",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 48.53,
+    "semiPct": 51.43,
+    "subjectBoundsAlpha128": [
+      169,
+      107,
+      1157,
+      1174
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/veteran_boots.png",
+    "sha256": "f8c43587d012418df3e8ac02c6263b34ef9eb69e4f9a44077d0746e0d4d70f71",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 55.34,
+    "semiPct": 44.63,
+    "subjectBoundsAlpha128": [
+      200,
+      130,
+      1118,
+      1136
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/sentinel_boots.png",
+    "sha256": "4d3541343c3b2fb2dd3606d65982996fa2fadc537b24f65f047e3462953319e5",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 58.33,
+    "semiPct": 41.64,
+    "subjectBoundsAlpha128": [
+      216,
+      152,
+      1091,
+      1127
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/traveler_shield.png",
+    "sha256": "6b69baf4ffb0f914f8a3e980e442963e3f8bfea4e8f59edc006dcc6a5cf26bd8",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 66.51,
+    "semiPct": 33.46,
+    "subjectBoundsAlpha128": [
+      263,
+      113,
+      985,
+      1122
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/tempered_shield.png",
+    "sha256": "7c3e250585f235b82c122857518c2e0792c7642a16464ebcdd533a915c0d1fad",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 61.23,
+    "semiPct": 38.74,
+    "subjectBoundsAlpha128": [
+      229,
+      89,
+      1023,
+      1176
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/veteran_shield.png",
+    "sha256": "f6f3eccab1bca22cc410f6ca4b51111bbdc4bf35250aa8b824823036884241a2",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 60.86,
+    "semiPct": 39.11,
+    "subjectBoundsAlpha128": [
+      228,
+      81,
+      1020,
+      1169
+    ],
+    "maxEdgeAlpha": 1
+  },
+  {
+    "file": "icons/sentinel_shield.png",
+    "sha256": "e7467d58dc7c2e82be63557603c7a2c8f4f6dd26c3387fe7a3b1223047432ba6",
+    "size": [
+      1254,
+      1254
+    ],
+    "minAlpha": 0,
+    "maxAlpha": 255,
+    "transparentPct": 62.66,
+    "semiPct": 37.31,
+    "subjectBoundsAlpha128": [
+      244,
+      78,
+      1009,
+      1167
+    ],
+    "maxEdgeAlpha": 1
+  }
+]

@@ -1,0 +1,962 @@
+[
+  {
+    "id": "traveler_hood",
+    "path": "operations/b000f4b7-8fcd-4f6c-8abf-81dbfc0e69e1",
+    "operationId": "b000f4b7-8fcd-4f6c-8abf-81dbfc0e69e1",
+    "done": true,
+    "operation": {
+      "path": "operations/b000f4b7-8fcd-4f6c-8abf-81dbfc0e69e1",
+      "operationId": "b000f4b7-8fcd-4f6c-8abf-81dbfc0e69e1",
+      "done": true,
+      "response": {
+        "path": "assets/137143080594284",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:02:15.697Z",
+        "assetId": "137143080594284",
+        "displayName": "TLT Traveler Hood Icon v1",
+        "description": "Transparent inventory artwork extracted from the Traveler column of the four-family hood concept. Shared by blacksmith, gear and bag. Original palette and silhouette preserved.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_hood",
+    "path": "operations/bfacebc8-52cc-40d9-8f88-1a0f74b95fc2",
+    "operationId": "bfacebc8-52cc-40d9-8f88-1a0f74b95fc2",
+    "done": true,
+    "operation": {
+      "path": "operations/bfacebc8-52cc-40d9-8f88-1a0f74b95fc2",
+      "operationId": "bfacebc8-52cc-40d9-8f88-1a0f74b95fc2",
+      "done": true,
+      "response": {
+        "path": "assets/136521016636025",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:27.278Z",
+        "assetId": "136521016636025",
+        "displayName": "TLT tempered hood Icon v1",
+        "description": "Transparent concept-derived inventory icon. tempered hood; blacksmith, gear and bag use the same registry. Reference: four-family hood concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_hood",
+    "path": "operations/d83c5090-440b-47fb-b046-f7ba70207559",
+    "operationId": "d83c5090-440b-47fb-b046-f7ba70207559",
+    "done": true,
+    "operation": {
+      "path": "operations/d83c5090-440b-47fb-b046-f7ba70207559",
+      "operationId": "d83c5090-440b-47fb-b046-f7ba70207559",
+      "done": true,
+      "response": {
+        "path": "assets/124750950652536",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:27.640Z",
+        "assetId": "124750950652536",
+        "displayName": "TLT sentinel hood Icon v1",
+        "description": "Transparent concept-derived inventory icon. sentinel hood; blacksmith, gear and bag use the same registry. Reference: four-family hood concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_hood",
+    "path": "operations/dde989a0-7461-49e3-beb8-e18aa5f7497c",
+    "operationId": "dde989a0-7461-49e3-beb8-e18aa5f7497c",
+    "done": true,
+    "operation": {
+      "path": "operations/dde989a0-7461-49e3-beb8-e18aa5f7497c",
+      "operationId": "dde989a0-7461-49e3-beb8-e18aa5f7497c",
+      "done": true,
+      "response": {
+        "path": "assets/78839767508875",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:28.312Z",
+        "assetId": "78839767508875",
+        "displayName": "TLT veteran hood Icon v1",
+        "description": "Transparent concept-derived inventory icon. veteran hood; blacksmith, gear and bag use the same registry. Reference: four-family hood concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_knight_helmet",
+    "path": "operations/45d14839-c0a9-4826-8004-1f560ef370a2",
+    "operationId": "45d14839-c0a9-4826-8004-1f560ef370a2",
+    "done": true,
+    "operation": {
+      "path": "operations/45d14839-c0a9-4826-8004-1f560ef370a2",
+      "operationId": "45d14839-c0a9-4826-8004-1f560ef370a2",
+      "done": true,
+      "response": {
+        "path": "assets/125595002040947",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:28.578Z",
+        "assetId": "125595002040947",
+        "displayName": "TLT traveler knight helmet Icon v1",
+        "description": "Transparent concept-derived inventory icon. traveler knight_helmet; blacksmith, gear and bag use the same registry. Reference: four-family knight_helmet concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_knight_helmet",
+    "path": "operations/5f888ea8-abd1-459b-b1c7-b3d39f40df74",
+    "operationId": "5f888ea8-abd1-459b-b1c7-b3d39f40df74",
+    "done": true,
+    "operation": {
+      "path": "operations/5f888ea8-abd1-459b-b1c7-b3d39f40df74",
+      "operationId": "5f888ea8-abd1-459b-b1c7-b3d39f40df74",
+      "done": true,
+      "response": {
+        "path": "assets/112839896045392",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:29.068Z",
+        "assetId": "112839896045392",
+        "displayName": "TLT tempered knight helmet Icon v1",
+        "description": "Transparent concept-derived inventory icon. tempered knight_helmet; blacksmith, gear and bag use the same registry. Reference: four-family knight_helmet concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_knight_helmet",
+    "path": "operations/481e53a4-35f3-4eff-ae26-656d3cf9f8c9",
+    "operationId": "481e53a4-35f3-4eff-ae26-656d3cf9f8c9",
+    "done": true,
+    "operation": {
+      "path": "operations/481e53a4-35f3-4eff-ae26-656d3cf9f8c9",
+      "operationId": "481e53a4-35f3-4eff-ae26-656d3cf9f8c9",
+      "done": true,
+      "response": {
+        "path": "assets/120982310537665",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:29.487Z",
+        "assetId": "120982310537665",
+        "displayName": "TLT veteran knight helmet Icon v1",
+        "description": "Transparent concept-derived inventory icon. veteran knight_helmet; blacksmith, gear and bag use the same registry. Reference: four-family knight_helmet concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_knight_helmet",
+    "path": "operations/a4804ff9-8655-4b13-b1c8-5f5a943f61f2",
+    "operationId": "a4804ff9-8655-4b13-b1c8-5f5a943f61f2",
+    "done": true,
+    "operation": {
+      "path": "operations/a4804ff9-8655-4b13-b1c8-5f5a943f61f2",
+      "operationId": "a4804ff9-8655-4b13-b1c8-5f5a943f61f2",
+      "done": true,
+      "response": {
+        "path": "assets/113162779090205",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:30.013Z",
+        "assetId": "113162779090205",
+        "displayName": "TLT sentinel knight helmet Icon v1",
+        "description": "Transparent concept-derived inventory icon. sentinel knight_helmet; blacksmith, gear and bag use the same registry. Reference: four-family knight_helmet concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_dwarf_helmet",
+    "path": "operations/ba4061d1-c30d-49c9-9032-c980764d22df",
+    "operationId": "ba4061d1-c30d-49c9-9032-c980764d22df",
+    "done": true,
+    "operation": {
+      "path": "operations/ba4061d1-c30d-49c9-9032-c980764d22df",
+      "operationId": "ba4061d1-c30d-49c9-9032-c980764d22df",
+      "done": true,
+      "response": {
+        "path": "assets/127194582387627",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:30.899Z",
+        "assetId": "127194582387627",
+        "displayName": "TLT traveler dwarf helmet Icon v1",
+        "description": "Transparent concept-derived inventory icon. traveler dwarf_helmet; blacksmith, gear and bag use the same registry. Reference: four-family dwarf_helmet concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_dwarf_helmet",
+    "path": "operations/7df6aae5-9037-473e-a345-195c1b086aa0",
+    "operationId": "7df6aae5-9037-473e-a345-195c1b086aa0",
+    "done": true,
+    "operation": {
+      "path": "operations/7df6aae5-9037-473e-a345-195c1b086aa0",
+      "operationId": "7df6aae5-9037-473e-a345-195c1b086aa0",
+      "done": true,
+      "response": {
+        "path": "assets/127235271476835",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:31.365Z",
+        "assetId": "127235271476835",
+        "displayName": "TLT tempered dwarf helmet Icon v1",
+        "description": "Transparent concept-derived inventory icon. tempered dwarf_helmet; blacksmith, gear and bag use the same registry. Reference: four-family dwarf_helmet concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_dwarf_helmet",
+    "path": "operations/e6c356c9-6288-4427-8050-3aacf0cc0644",
+    "operationId": "e6c356c9-6288-4427-8050-3aacf0cc0644",
+    "done": true,
+    "operation": {
+      "path": "operations/e6c356c9-6288-4427-8050-3aacf0cc0644",
+      "operationId": "e6c356c9-6288-4427-8050-3aacf0cc0644",
+      "done": true,
+      "response": {
+        "path": "assets/81653443053106",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:31.735Z",
+        "assetId": "81653443053106",
+        "displayName": "TLT veteran dwarf helmet Icon v1",
+        "description": "Transparent concept-derived inventory icon. veteran dwarf_helmet; blacksmith, gear and bag use the same registry. Reference: four-family dwarf_helmet concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_dwarf_helmet",
+    "path": "operations/da35d724-fe36-4a73-93e9-5696c077dbb9",
+    "operationId": "da35d724-fe36-4a73-93e9-5696c077dbb9",
+    "done": true,
+    "operation": {
+      "path": "operations/da35d724-fe36-4a73-93e9-5696c077dbb9",
+      "operationId": "da35d724-fe36-4a73-93e9-5696c077dbb9",
+      "done": true,
+      "response": {
+        "path": "assets/72777564842196",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:32.283Z",
+        "assetId": "72777564842196",
+        "displayName": "TLT sentinel dwarf helmet Icon v1",
+        "description": "Transparent concept-derived inventory icon. sentinel dwarf_helmet; blacksmith, gear and bag use the same registry. Reference: four-family dwarf_helmet concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_coat",
+    "path": "operations/50329726-28c1-4c9d-84e1-d9ddd1f2e935",
+    "operationId": "50329726-28c1-4c9d-84e1-d9ddd1f2e935",
+    "done": true,
+    "operation": {
+      "path": "operations/50329726-28c1-4c9d-84e1-d9ddd1f2e935",
+      "operationId": "50329726-28c1-4c9d-84e1-d9ddd1f2e935",
+      "done": true,
+      "response": {
+        "path": "assets/80123332938356",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:32.319Z",
+        "assetId": "80123332938356",
+        "displayName": "TLT traveler coat Icon v1",
+        "description": "Transparent concept-derived inventory icon. traveler coat; blacksmith, gear and bag use the same registry. Reference: four-family coat concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_coat",
+    "path": "operations/cbe57434-4db2-48c5-a6bd-5dc5c1b64abf",
+    "operationId": "cbe57434-4db2-48c5-a6bd-5dc5c1b64abf",
+    "done": true,
+    "operation": {
+      "path": "operations/cbe57434-4db2-48c5-a6bd-5dc5c1b64abf",
+      "operationId": "cbe57434-4db2-48c5-a6bd-5dc5c1b64abf",
+      "done": true,
+      "response": {
+        "path": "assets/115845822837350",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:33.095Z",
+        "assetId": "115845822837350",
+        "displayName": "TLT tempered coat Icon v1",
+        "description": "Transparent concept-derived inventory icon. tempered coat; blacksmith, gear and bag use the same registry. Reference: four-family coat concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_coat",
+    "path": "operations/a307aec2-2bf6-4144-a887-890668d84114",
+    "operationId": "a307aec2-2bf6-4144-a887-890668d84114",
+    "done": true,
+    "operation": {
+      "path": "operations/a307aec2-2bf6-4144-a887-890668d84114",
+      "operationId": "a307aec2-2bf6-4144-a887-890668d84114",
+      "done": true,
+      "response": {
+        "path": "assets/120310393125164",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:33.455Z",
+        "assetId": "120310393125164",
+        "displayName": "TLT veteran coat Icon v1",
+        "description": "Transparent concept-derived inventory icon. veteran coat; blacksmith, gear and bag use the same registry. Reference: four-family coat concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_coat",
+    "path": "operations/8d7940c8-0f41-4ffa-9978-721126a02532",
+    "operationId": "8d7940c8-0f41-4ffa-9978-721126a02532",
+    "done": true,
+    "operation": {
+      "path": "operations/8d7940c8-0f41-4ffa-9978-721126a02532",
+      "operationId": "8d7940c8-0f41-4ffa-9978-721126a02532",
+      "done": true,
+      "response": {
+        "path": "assets/109445230940840",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:34.049Z",
+        "assetId": "109445230940840",
+        "displayName": "TLT sentinel coat Icon v1",
+        "description": "Transparent concept-derived inventory icon. sentinel coat; blacksmith, gear and bag use the same registry. Reference: four-family coat concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_mage_robe",
+    "path": "operations/d0962ecc-f75c-4fc0-9528-4f83f3c548d0",
+    "operationId": "d0962ecc-f75c-4fc0-9528-4f83f3c548d0",
+    "done": true,
+    "operation": {
+      "path": "operations/d0962ecc-f75c-4fc0-9528-4f83f3c548d0",
+      "operationId": "d0962ecc-f75c-4fc0-9528-4f83f3c548d0",
+      "done": true,
+      "response": {
+        "path": "assets/72185586709543",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:34.166Z",
+        "assetId": "72185586709543",
+        "displayName": "TLT traveler mage robe Icon v1",
+        "description": "Transparent concept-derived inventory icon. traveler mage_robe; blacksmith, gear and bag use the same registry. Reference: four-family mage_robe concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_mage_robe",
+    "path": "operations/4d17a52b-1a6b-446e-95ed-6454d9465b71",
+    "operationId": "4d17a52b-1a6b-446e-95ed-6454d9465b71",
+    "done": true,
+    "operation": {
+      "path": "operations/4d17a52b-1a6b-446e-95ed-6454d9465b71",
+      "operationId": "4d17a52b-1a6b-446e-95ed-6454d9465b71",
+      "done": true,
+      "response": {
+        "path": "assets/75921701620464",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:34.891Z",
+        "assetId": "75921701620464",
+        "displayName": "TLT tempered mage robe Icon v1",
+        "description": "Transparent concept-derived inventory icon. tempered mage_robe; blacksmith, gear and bag use the same registry. Reference: four-family mage_robe concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_mage_robe",
+    "path": "operations/3da675d3-53d5-481d-bd3f-0ca06e4160c8",
+    "operationId": "3da675d3-53d5-481d-bd3f-0ca06e4160c8",
+    "done": true,
+    "operation": {
+      "path": "operations/3da675d3-53d5-481d-bd3f-0ca06e4160c8",
+      "operationId": "3da675d3-53d5-481d-bd3f-0ca06e4160c8",
+      "done": true,
+      "response": {
+        "path": "assets/122133651584398",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:36.551Z",
+        "assetId": "122133651584398",
+        "displayName": "TLT veteran mage robe Icon v1",
+        "description": "Transparent concept-derived inventory icon. veteran mage_robe; blacksmith, gear and bag use the same registry. Reference: four-family mage_robe concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_mage_robe",
+    "path": "operations/c9e4d87c-40fd-4be0-8fec-0c0b528a75b9",
+    "operationId": "c9e4d87c-40fd-4be0-8fec-0c0b528a75b9",
+    "done": true,
+    "operation": {
+      "path": "operations/c9e4d87c-40fd-4be0-8fec-0c0b528a75b9",
+      "operationId": "c9e4d87c-40fd-4be0-8fec-0c0b528a75b9",
+      "done": true,
+      "response": {
+        "path": "assets/106184216220128",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:36.071Z",
+        "assetId": "106184216220128",
+        "displayName": "TLT sentinel mage robe Icon v1",
+        "description": "Transparent concept-derived inventory icon. sentinel mage_robe; blacksmith, gear and bag use the same registry. Reference: four-family mage_robe concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_gloves",
+    "path": "operations/42d05972-10b1-4a9c-80b1-6c97a7f419c2",
+    "operationId": "42d05972-10b1-4a9c-80b1-6c97a7f419c2",
+    "done": true,
+    "operation": {
+      "path": "operations/42d05972-10b1-4a9c-80b1-6c97a7f419c2",
+      "operationId": "42d05972-10b1-4a9c-80b1-6c97a7f419c2",
+      "done": true,
+      "response": {
+        "path": "assets/86281658367231",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:36.663Z",
+        "assetId": "86281658367231",
+        "displayName": "TLT traveler gloves Icon v1",
+        "description": "Transparent concept-derived inventory icon. traveler gloves; blacksmith, gear and bag use the same registry. Reference: four-family gloves concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_gloves",
+    "path": "operations/63990250-b5ba-4563-82e4-366a72816f85",
+    "operationId": "63990250-b5ba-4563-82e4-366a72816f85",
+    "done": true,
+    "operation": {
+      "path": "operations/63990250-b5ba-4563-82e4-366a72816f85",
+      "operationId": "63990250-b5ba-4563-82e4-366a72816f85",
+      "done": true,
+      "response": {
+        "path": "assets/111017676569197",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:37.330Z",
+        "assetId": "111017676569197",
+        "displayName": "TLT tempered gloves Icon v1",
+        "description": "Transparent concept-derived inventory icon. tempered gloves; blacksmith, gear and bag use the same registry. Reference: four-family gloves concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_gloves",
+    "path": "operations/7494f624-faec-4912-95ce-469bbd84cc7f",
+    "operationId": "7494f624-faec-4912-95ce-469bbd84cc7f",
+    "done": true,
+    "operation": {
+      "path": "operations/7494f624-faec-4912-95ce-469bbd84cc7f",
+      "operationId": "7494f624-faec-4912-95ce-469bbd84cc7f",
+      "done": true,
+      "response": {
+        "path": "assets/132142681367766",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:37.536Z",
+        "assetId": "132142681367766",
+        "displayName": "TLT veteran gloves Icon v1",
+        "description": "Transparent concept-derived inventory icon. veteran gloves; blacksmith, gear and bag use the same registry. Reference: four-family gloves concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_gloves",
+    "path": "operations/17fa441d-ea3d-489c-b790-caf619cb3608",
+    "operationId": "17fa441d-ea3d-489c-b790-caf619cb3608",
+    "done": true,
+    "operation": {
+      "path": "operations/17fa441d-ea3d-489c-b790-caf619cb3608",
+      "operationId": "17fa441d-ea3d-489c-b790-caf619cb3608",
+      "done": true,
+      "response": {
+        "path": "assets/140226481680174",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:38.153Z",
+        "assetId": "140226481680174",
+        "displayName": "TLT sentinel gloves Icon v1",
+        "description": "Transparent concept-derived inventory icon. sentinel gloves; blacksmith, gear and bag use the same registry. Reference: four-family gloves concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_boots",
+    "path": "operations/804bf58b-7491-4cad-9a85-69e0769ee8ea",
+    "operationId": "804bf58b-7491-4cad-9a85-69e0769ee8ea",
+    "done": true,
+    "operation": {
+      "path": "operations/804bf58b-7491-4cad-9a85-69e0769ee8ea",
+      "operationId": "804bf58b-7491-4cad-9a85-69e0769ee8ea",
+      "done": true,
+      "response": {
+        "path": "assets/79263733706048",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:39.124Z",
+        "assetId": "79263733706048",
+        "displayName": "TLT traveler boots Icon v1",
+        "description": "Transparent concept-derived inventory icon. traveler boots; blacksmith, gear and bag use the same registry. Reference: four-family boots concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_boots",
+    "path": "operations/aa866f12-68e0-4ffa-9216-20c5fe2c0724",
+    "operationId": "aa866f12-68e0-4ffa-9216-20c5fe2c0724",
+    "done": true,
+    "operation": {
+      "path": "operations/aa866f12-68e0-4ffa-9216-20c5fe2c0724",
+      "operationId": "aa866f12-68e0-4ffa-9216-20c5fe2c0724",
+      "done": true,
+      "response": {
+        "path": "assets/116315919920509",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:39.479Z",
+        "assetId": "116315919920509",
+        "displayName": "TLT tempered boots Icon v1",
+        "description": "Transparent concept-derived inventory icon. tempered boots; blacksmith, gear and bag use the same registry. Reference: four-family boots concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_boots",
+    "path": "operations/963b5e90-ab3c-4881-8df1-084fad4e3d4e",
+    "operationId": "963b5e90-ab3c-4881-8df1-084fad4e3d4e",
+    "done": true,
+    "operation": {
+      "path": "operations/963b5e90-ab3c-4881-8df1-084fad4e3d4e",
+      "operationId": "963b5e90-ab3c-4881-8df1-084fad4e3d4e",
+      "done": true,
+      "response": {
+        "path": "assets/125948019718210",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:39.981Z",
+        "assetId": "125948019718210",
+        "displayName": "TLT veteran boots Icon v1",
+        "description": "Transparent concept-derived inventory icon. veteran boots; blacksmith, gear and bag use the same registry. Reference: four-family boots concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_boots",
+    "path": "operations/4a59d697-15e8-47d6-bb63-cf49082f521e",
+    "operationId": "4a59d697-15e8-47d6-bb63-cf49082f521e",
+    "done": true,
+    "operation": {
+      "path": "operations/4a59d697-15e8-47d6-bb63-cf49082f521e",
+      "operationId": "4a59d697-15e8-47d6-bb63-cf49082f521e",
+      "done": true,
+      "response": {
+        "path": "assets/135156716155826",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:40.895Z",
+        "assetId": "135156716155826",
+        "displayName": "TLT sentinel boots Icon v1",
+        "description": "Transparent concept-derived inventory icon. sentinel boots; blacksmith, gear and bag use the same registry. Reference: four-family boots concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "traveler_shield",
+    "path": "operations/219a5337-3f05-4e13-ae49-ffa7c533d50f",
+    "operationId": "219a5337-3f05-4e13-ae49-ffa7c533d50f",
+    "done": true,
+    "operation": {
+      "path": "operations/219a5337-3f05-4e13-ae49-ffa7c533d50f",
+      "operationId": "219a5337-3f05-4e13-ae49-ffa7c533d50f",
+      "done": true,
+      "response": {
+        "path": "assets/92819976181635",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:40.882Z",
+        "assetId": "92819976181635",
+        "displayName": "TLT traveler shield Icon v1",
+        "description": "Transparent concept-derived inventory icon. traveler shield; blacksmith, gear and bag use the same registry. Reference: four-family shield concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_shield",
+    "path": "operations/7aab9a2a-17f6-46cb-b28e-be8190fd6f4b",
+    "operationId": "7aab9a2a-17f6-46cb-b28e-be8190fd6f4b",
+    "done": true,
+    "operation": {
+      "path": "operations/7aab9a2a-17f6-46cb-b28e-be8190fd6f4b",
+      "operationId": "7aab9a2a-17f6-46cb-b28e-be8190fd6f4b",
+      "done": true,
+      "response": {
+        "path": "assets/103003941741748",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:41.577Z",
+        "assetId": "103003941741748",
+        "displayName": "TLT tempered shield Icon v1",
+        "description": "Transparent concept-derived inventory icon. tempered shield; blacksmith, gear and bag use the same registry. Reference: four-family shield concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_shield",
+    "path": "operations/c7670405-3330-4ef9-af06-60b1dab0f459",
+    "operationId": "c7670405-3330-4ef9-af06-60b1dab0f459",
+    "done": true,
+    "operation": {
+      "path": "operations/c7670405-3330-4ef9-af06-60b1dab0f459",
+      "operationId": "c7670405-3330-4ef9-af06-60b1dab0f459",
+      "done": true,
+      "response": {
+        "path": "assets/86204008047513",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:42.263Z",
+        "assetId": "86204008047513",
+        "displayName": "TLT veteran shield Icon v1",
+        "description": "Transparent concept-derived inventory icon. veteran shield; blacksmith, gear and bag use the same registry. Reference: four-family shield concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_shield",
+    "path": "operations/81bfcbe9-f3f6-42ea-9ea1-2865edd3c1f5",
+    "operationId": "81bfcbe9-f3f6-42ea-9ea1-2865edd3c1f5",
+    "done": true,
+    "operation": {
+      "path": "operations/81bfcbe9-f3f6-42ea-9ea1-2865edd3c1f5",
+      "operationId": "81bfcbe9-f3f6-42ea-9ea1-2865edd3c1f5",
+      "done": true,
+      "response": {
+        "path": "assets/89490344153714",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:05:42.664Z",
+        "assetId": "89490344153714",
+        "displayName": "TLT sentinel shield Icon v1",
+        "description": "Transparent concept-derived inventory icon. sentinel shield; blacksmith, gear and bag use the same registry. Reference: four-family shield concept board.",
+        "assetType": "Image",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  }
+]

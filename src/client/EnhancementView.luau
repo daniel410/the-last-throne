@@ -15,7 +15,7 @@ function V.render(scroll,s,send,saving,notice)
  local function card(id,def,title,description,actions)
   local box=T.frame(scroll,id,UDim2.new(),UDim2.new(1,-8,0,304));box.LayoutOrder=#scroll:GetChildren()
   local gear=def.slot~=nil
-  Artwork.create(box,def,UDim2.fromOffset(10,10),gear and UDim2.new(.44,-16,1,-128) or UDim2.fromOffset(54,54))
+  Artwork.create(box,def,UDim2.fromOffset(10,10),gear and UDim2.new(.44,-16,1,-128) or UDim2.fromOffset(54,54),hero and hero.baseClassId)
   local name=T.label(box,'Name',title,gear and UDim2.new(.44,8,0,16) or UDim2.fromOffset(74,8),gear and UDim2.new(.56,-24,0,52) or UDim2.new(1,-86,0,56),15,T.color.gold)
   local descriptionLabel=T.label(box,'Description',description,gear and UDim2.new(.44,8,0,80) or UDim2.fromOffset(12,70),gear and UDim2.new(.56,-24,1,-192) or UDim2.new(1,-24,1,-182),12)
   if gear then name.TextYAlignment=Enum.TextYAlignment.Top;descriptionLabel.TextYAlignment=Enum.TextYAlignment.Top end

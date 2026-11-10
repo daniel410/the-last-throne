@@ -1,13 +1,19 @@
 local Atlas=require(game:GetService("ReplicatedStorage").Shared.ItemSpriteAtlas)
 local Sprites={}
-function Sprites.create(parent,definition,position,size)
-	local standalone=Atlas.images and Atlas.images[definition.id]
+function Sprites.resolveImage(definition,classId)
+ local variants=Atlas.classImages and Atlas.classImages[definition.id]
+ local selected=variants and classId and variants[classId]
+ return selected or Atlas.images and Atlas.images[definition.id],selected and (definition.id..':'..classId) or definition.id
+end
+function Sprites.create(parent,definition,position,size,classId)
+	local standalone,spriteKey=Sprites.resolveImage(definition,classId)
 	if standalone then
 		local image=Instance.new("ImageLabel")
 		image.Name,image.BackgroundTransparency,image.Image="ItemIllustration",1,standalone
 		image.Position,image.Size,image.ScaleType=position,size,Enum.ScaleType.Fit
 		image:SetAttribute("DefinitionId",definition.id)
-		image:SetAttribute("SpriteKey",definition.id)
+		image:SetAttribute("SpriteKey",spriteKey)
+		if classId then image:SetAttribute("VisualClassId",classId) end
 		image.Parent=parent
 		return image
 	end
