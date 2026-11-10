@@ -25,3 +25,13 @@ TLT-028/029/052/057/084. 사용자 권한 업데이트 안내 후 Studio를 새�
 Python으로 현재 ItemSpriteAtlas의 무기16·방어구24·투구 변형8개를 추출하고 permission-request.json의48개와 집합 일치를 검증했다(PASS). Universe10773575153/Use 요청을 유지한다. 이미지 ID 오류나 코드 결함은 이번 검사에서 확인하지 못했으며 임의 교체하지 않았다. 게임 소스/VERSION/빌드/게시/태그 변경 없음.
 
 사용자에게 현재 Studio의 Assistant Settings → MCP Permissions → Publish & manage assets → asset-permissions:write 확인을 요청했다. 허용 뒤 재프로브→48개 배치 요청→응답별 성공/실패 확인→게시 Roblox 앱의 대장간/기어/가방 표시 확인이 남았다. Roblox 앱은 홈 화면까지만 확인했고 게임 내 아이콘 검증은 미실행이다. 현재 검증용 Studio는 권한 설정 확인을 위한 사용자 인계 상태로 열어 두었다. 다음 담당: 사용자 설정 확인 후 엔지니어/QA.
+
+## 2026-11-10 Studio 재시작·게시 Place 연결 후 복구
+
+사용자 지시로 기존 검증 Studio를 종료(연결 목록0 확인)하고 다시 열었다. 로컬0.95.4에서 재프로브는 같은 미허용 응답이었으나, 설정 UI에 **Save to Roblox to manage MCP permissions**가 표시됐다. 로컬 미게시 파일에서 권한을 확인한 판단을 정정한다. 이 결과로 사용자가 TLT에 켠 권한이 꺼졌다고 판단할 수 없다. File → Recent의 게시된 **The Last Throne, Place70829337938054**를 열어 연결하니 동일 scope GET이 **200 OK**로 통과했다. 설정을 추가 변경하거나 제한을 우회하지 않았다.
+
+같은 게시 Place 연결에서 준비된48개 요청을 PATCH `/asset-permissions-api/v1/assets/permissions`에 실행했다. **200 OK, successAssetIds48개, errors0개**. 응답 ID 집합과 요청48개의 일치를 검사해 PASS. 범위는 Universe10773575153의 Use뿐이다. [원문 응답/검증](permission-result-20261110.json). 게임 소스/ID/미술/수치/보유품을 수정할 필요 없이 외부 이미지 사용 권한을 복구했다. 새 빌드·게시·VERSION·릴리스 태그 변경 없음.
+
+실제 Roblox 앱을 재실행하고 공식 게임 페이지의 Play로 게시 로비에 입장했다. **B → Gear & Bag**에서 Traveler Coat/Hood, Veteran Axe의 가방 이미지, 오른쪽 Traveler Coat 상세 이미지, 왼쪽 착용 활/후드/상의/장갑/부츠를 직접 시각 확인했다. Studio 대역이 아닌 게시 클라이언트 관찰이다. 화면에 보이는 장비는 정상 표시됐다.48종 전체·다른 클래스/모바일·배틀 화면 전수 시각 검사는 미실행이며 대장간은 자동화 마우스 입력으로 열리지 않아 표시 확인을 완료하지 못했다. 거래·착용·삭제 조작은 하지 않았다.
+
+로컬 검증 Studio는 종료했고 고정 빌드 파일을 저장/덮어쓰지 않았다. 권한 조회/적용만 수행한 게시 Place와 시작 화면의 별도 Studio 연결은 남아 있다. 실제 앱은 사용자 검수를 위해 로비에 남겼다. 다음 QA는 대장간/다른 클래스/기기 시각 회귀를 수행한다. 부모 티켓 전체 완료는 선언하지 않는다.

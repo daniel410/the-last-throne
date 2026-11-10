@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-11-10",
+  "universeId": "10773575153",
+  "action": "Use",
+  "probe": {
+    "content": [
+      {
+        "type": "text",
+        "text": "GET https://apis.roblox.com/cloud/v2/universes/10773575153 -> 200 OK\n\n{\"path\":\"universes/10773575153\",\"createTime\":\"2026-10-28T23:45:07.483Z\",\"updateTime\":\"2026-10-30T04:28:03.930Z\",\"displayName\":\"The Last Throne\",\"description\":\"A cooperative action RPG set in a shared fantasy world. Choose your hero, battle through epics and stories, and uncover the mystery of the Last Throne.\",\"user\":\"users/9156786071\",\"visibility\":\"PRIVATE\",\"voiceChatEnabled\":true,\"ageRating\":\"AGE_RATING_13_PLUS\",\"desktopEnabled\":true,\"mobileEnabled\":true,\"tabletEnabled\":true,\"consoleEnabled\":false,\"vrEnabled\":false,\"rootPlace\":\"universes/10773575153/places/70829337938054\",\"templateRootPlace\":\"\"}"
+      }
+    ],
+    "isError": false
+  },
+  "grant": {
+    "content": [
+      {
+        "type": "text",
+        "text": "PATCH https://apis.roblox.com/asset-permissions-api/v1/assets/permissions -> 200 OK\n\n{\"successAssetIds\":[137143080594284,136521016636025,78839767508875,124750950652536,80123332938356,115845822837350,120310393125164,109445230940840,72185586709543,75921701620464,122133651584398,106184216220128,86281658367231,111017676569197,132142681367766,140226481680174,79263733706048,116315919920509,125948019718210,135156716155826,92819976181635,103003941741748,86204008047513,89490344153714,126622922289484,93652204708306,74366161848908,76943152457590,88074217383860,121049680687223,98052385179240,99740451046658,83551316779237,123323237309349,131197800580947,121495916623375,91201276228888,84686712382386,111844365076046,83463381365228,125595002040947,127194582387627,112839896045392,127235271476835,120982310537665,81653443053106,113162779090205,72777564842196],\"errors\":[]}"
+      }
+    ],
+    "isError": false
+  },
+  "validation": {
+    "requested": 48,
+    "succeeded": 48,
+    "errors": 0
+  }
+}
