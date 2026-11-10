@@ -426,8 +426,8 @@ end
 
 local function shieldSpec(definitionId)
  local visual=type(definitionId)=='string' and FourFamilyShields.models[definitionId]
- if visual then return {folder=FourFamilyShields.folderName,template=visual.template,sourceKey=visual.sourceKey,meshId=visual.meshId,textureId=visual.textureId,taskId=visual.taskId,definitionId=definitionId} end
- return {folder='TDKnightShieldModels',template='KnightShield',sourceKey=SHIELD_SOURCE,meshId=SHIELD_MESH,textureId=SHIELD_TEXTURE}
+ if visual then return {folder=FourFamilyShields.folderName,template=visual.template,sourceKey=visual.sourceKey,meshId=visual.meshId,textureId=visual.textureId,taskId=visual.taskId,visualScale=FourFamilyShields.visualScale,definitionId=definitionId} end
+ return {folder='TDKnightShieldModels',template='KnightShield',sourceKey=SHIELD_SOURCE,meshId=SHIELD_MESH,textureId=SHIELD_TEXTURE,visualScale=1}
 end
 
 local function buildShield(definitionId)
@@ -474,10 +474,10 @@ local function buildShield(definitionId)
 		end
 		shield:SetAttribute("SourceMeshId", sourceShield.MeshId)
 		shield:SetAttribute("SourceTextureId", sourceShield.TextureID)
-		-- Native Studio import already converted the original GLB front. The
-		-- reviewed wrapper faces -Z and its center is behind the back socket
-		-- along -Z; preserve that frame and scale exactly.
-		shield.CFrame = sourceGrip.CFrame:ToObjectSpace(sourceShield.CFrame)
+		-- Scale the visual around its back socket; the left-hand anchor stays fixed.
+		local frame = sourceGrip.CFrame:ToObjectSpace(sourceShield.CFrame)
+		shield.Size = sourceShield.Size * spec.visualScale
+		shield.CFrame = CFrame.new(frame.Position * spec.visualScale) * frame.Rotation
 		inert(shield)
 		shield.Parent = model
 		local weld = Instance.new("WeldConstraint")
@@ -487,8 +487,9 @@ local function buildShield(definitionId)
 		weld.Parent = shield
 		model:SetAttribute("ShieldSourceKey", spec.sourceKey)
 		model:SetAttribute("ShieldDefinitionId", spec.definitionId)
+		model:SetAttribute("ShieldVisualScale", spec.visualScale)
 		model:SetAttribute("ShieldVisualVersion", VERSION)
-		return { model = model, grip = grip, shield = shield, sourceKey = spec.sourceKey, definitionId = spec.definitionId }
+		return { model = model, grip = grip, shield = shield, sourceKey = spec.sourceKey, definitionId = spec.definitionId, visualScale = spec.visualScale }
 	end)
 	if not ok then model:Destroy(); error(result) end
 	return result
@@ -513,7 +514,8 @@ end
 
 local function shieldAttachedResult(model, hand, definitionId)
  local spec=shieldSpec(definitionId)
-	if model:GetAttribute("ShieldSourceKey") ~= spec.sourceKey or model:GetAttribute("ShieldVisualVersion") ~= VERSION then return nil end
+	if model:GetAttribute("ShieldSourceKey") ~= spec.sourceKey or model:GetAttribute("ShieldVisualVersion") ~= VERSION
+  or (model:GetAttribute("ShieldVisualScale") or 1) ~= spec.visualScale then return nil end
 	local grip = ownedShieldPart(model, "ShieldGrip")
 	local shield = ownedShieldPart(model, "Shield")
 	if not grip or not grip:IsA("BasePart") or not shield or not shield:IsA("MeshPart") then return nil end
@@ -530,7 +532,7 @@ local function shieldAttachedResult(model, hand, definitionId)
 	for _, part in ipairs({ grip, shield }) do
 		if part.Anchored or not part.Massless or part.CanCollide or part.CanTouch or part.CanQuery then return nil end
 	end
-	return { model = model, grip = grip, shield = shield, joint = handWeld, sourceKey = spec.sourceKey, definitionId = spec.definitionId }
+	return { model = model, grip = grip, shield = shield, joint = handWeld, sourceKey = spec.sourceKey, definitionId = spec.definitionId, visualScale = spec.visualScale }
 end
 
 function Appearance.isShieldAttached(appearanceModel, character, hands)
@@ -544,7 +546,7 @@ function Appearance.detachShield(appearanceModel)
 	for _, child in ipairs(appearanceModel:GetChildren()) do
 		if child:GetAttribute(SHIELD_OWNED) == true then child:Destroy() end
 	end
-	for _, name in ipairs({ "ShieldSourceKey", "ShieldVisualVersion", "UsesTdPlayerShield", "UsesFourFamilyShield", "ShieldDefinitionId", "ShieldFallbackReason" }) do
+	for _, name in ipairs({ "ShieldSourceKey", "ShieldVisualVersion", "UsesTdPlayerShield", "UsesFourFamilyShield", "ShieldDefinitionId", "ShieldVisualScale", "ShieldFallbackReason" }) do
 		appearanceModel:SetAttribute(name, nil)
 	end
 	return true
@@ -590,6 +592,7 @@ function Appearance.attachShieldInto(appearanceModel, character, hands)
 		end
 		appearanceModel:SetAttribute("ShieldSourceKey", result.sourceKey)
 		appearanceModel:SetAttribute("ShieldDefinitionId", result.definitionId)
+		appearanceModel:SetAttribute("ShieldVisualScale", result.visualScale)
 		appearanceModel:SetAttribute("UsesFourFamilyShield", result.definitionId ~= nil)
 		appearanceModel:SetAttribute("ShieldVisualVersion", VERSION)
 		appearanceModel:SetAttribute("UsesTdPlayerShield", result.definitionId == nil)
