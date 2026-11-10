@@ -9,7 +9,7 @@ local function body(path,first,last)
  local start=assert(s:find(first,1,true));return s:sub(start,assert(s:find(last,start,true))-1)
 end
 local makeState=assert(load('return function(accounts,Rules,ReplicatedStorage,require) local Service={}\n'..body('src/server/Inventory/InventoryService.luau','function Service.storyState','-- All support Gold')..'return Service.storyState end'))()
-local makeDestination=assert(load('return function(options,state,Content) local Service={}\n'..body('src/server/Story/DeepwoodService.luau','function Service.destination','local function enqueue')..'return Service.destination end'))()
+local makeDestination=assert(load('return function(options,state,Content,ReplicatedStorage,require,Instance,Vector3) local Service={}\n'..body('src/server/Story/DeepwoodService.luau','function Service.destination','local function enqueue')..'return Service.destination end'))()
 local resolver=body('src/server/init.server.luau',' resolveDestination=function(player,previous)',' end,onLifeStarted')..' end'
 local makeResolver=assert(load('return function(heroSession,world,story) local '..resolver..' return resolveDestination end'))()
 local n=0;local function check(v,m)n=n+1;assert(v,m)end
@@ -53,3 +53,39 @@ check(resolve(player,spawns['DW-03'])==spawns['DW-03'],'lobby route remains unch
 phase='Respawning';active.training=true
 check(resolve(player,spawns['DW-01']).id=='training','training death retains training spawn')
 print('Story respawn: '..n..' checks passed')
+
+-- Expanded-story checkpoints must satisfy the real SpawnService destination
+-- contract, including after death and a new admission of a saved adventure.
+local Checkpoints=dofile('src/shared/CampaignExpansionCheckpoints.luau')
+local anchors={}
+local folder={FindFirstChild=function(_,name)return anchors[name]end}
+local instance={new=function(kind)
+ local part={kind=kind}
+ function part:IsA(name)return self.kind==name end
+ function part:IsDescendantOf(parent)return self.Parent==parent end
+ return part
+end}
+local vectors={new=function(...)return {...}end}
+local checkpointShared={Shared={CampaignExpansionCheckpoints={}}}
+local saved
+local expandedDestination=makeDestination({inventory=inventory,world={spawns=spawns,folder=folder}},function()return saved end,Content,checkpointShared,function(module)
+ check(module==checkpointShared.Shared.CampaignExpansionCheckpoints,'checkpoint rule dependency')
+ return Checkpoints
+end,instance,vectors)
+local checkpointCount=0
+for _,chapter in ipairs(Content.chapters)do
+ for _,goal in ipairs(chapter.expansionGoals or {})do
+  local key=chapter.id..':'..goal.id
+  saved={expansionVersion=1,expeditionMission=chapter.id,clears={},flags={[key]=true},activities={}}
+  local anchor=expandedDestination(player,'hero')
+  check(anchor:IsA('SpawnLocation')and anchor.Enabled and anchor:IsDescendantOf(folder),chapter.id..' expanded respawn is an enabled engine spawn')
+  check(anchor.Neutral and anchor.Duration==0 and anchor.Anchored and anchor.Transparency==1 and not anchor.CanCollide,'checkpoint preserves invisible, nonblocking, unprotected spawn contract')
+  local expected=Checkpoints.respawn(saved,chapter).position
+  for i=1,3 do check(anchor.Position[i]==expected[i],'saved checkpoint position is retained')end
+  anchors[anchor.Name]=anchor
+  check(expandedDestination(player,'hero')==anchor,'retries reuse the same checkpoint spawn')
+  checkpointCount=checkpointCount+1
+ end
+end
+check(checkpointCount>0,'expanded checkpoint fixtures were exercised')
+print('Expanded story respawn: '..checkpointCount..' checkpoint fixtures; total '..n..' checks passed')

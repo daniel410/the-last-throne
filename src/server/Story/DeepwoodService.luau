@@ -56,7 +56,7 @@ function Service.destination(player,heroId)
   if checkpoint then
    if not options.world.spawns[chapter.zone]and options.prepareStory then options.prepareStory(chapter.id)end
    local anchor=options.world.folder:FindFirstChild('ExpansionRespawn_'..chapter.id)
-   if not anchor then anchor=Instance.new('Part');anchor.Name='ExpansionRespawn_'..chapter.id;anchor.Size=Vector3.new(1,1,1);anchor.Anchored=true;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanQuery=false;anchor.CanTouch=false;anchor.Parent=options.world.folder end
+   if not anchor then anchor=Instance.new('SpawnLocation');anchor.Neutral=true;anchor.Enabled=true;anchor.Duration=0;anchor.Name='ExpansionRespawn_'..chapter.id;anchor.Size=Vector3.new(1,1,1);anchor.Anchored=true;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanQuery=false;anchor.CanTouch=false;anchor.Parent=options.world.folder end
    anchor.Position=Vector3.new(table.unpack(checkpoint.position));return anchor
   end
  end
