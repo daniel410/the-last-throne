@@ -1,0 +1,15 @@
+ContentId: rbxassetid://75817121826228 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://122152502851499 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+SHIELD_QA_JSON {"error":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13: shield face points toward target during bash\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:16\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","checks":49,"rigs":[],"kind":"FOUR_FAMILY_SHIELDS_NATIVE","pass":false,"loads":{"rbxassetid://75817121826228":"Success","rbxassetid://85408490981647":"Success","rbxassetid://136181563900601":"Success","rbxassetid://132638511876006":"Success","rbxassetid://122152502851499":"Success","rbxassetid://131828919934579":"Success","rbxassetid://82493427368399":"Success","rbxassetid://119527577099781":"Success"}}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:69: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13: shield face points toward target during bash
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:13
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:16
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:69
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+ContentId: rbxassetid://111610252510810 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.

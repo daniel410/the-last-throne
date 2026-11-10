@@ -44,11 +44,13 @@ local ok,err=xpcall(function()
    check(owned==2,'no duplicate shield or socket')
    check(result.shield.Transparency<1,'equipped shield visible')
    local hand=result.joint.Part0;local offset=hand.CFrame:ToObjectSpace(result.shield.CFrame)
+   -- Native import rebases mesh axes by180 degrees; use the audited surface front rather than mesh -Z.
+   local nativeFront=folder[id].Shield.CFrame:VectorToObjectSpace(Vector3.new(0,0,-1))
    local joints={};for _,j in ipairs(character:GetDescendants())do if (j:IsA('Motor6D')or j:IsA('AnimationConstraint'))and j.Part0 and j.Part1 then joints[j.Part1]=j end end
    local function frame(p)local j=joints[p];return j and frame(j.Part0)*j.C0*j.Transform*j.C1:Inverse()or p.CFrame end
    character:SetAttribute('K0State','Attack');character:SetAttribute('K0AttackKind','Basic');character:SetAttribute('K0SkillId','knight.common.bash');character:SetAttribute('K0AttackStartedAt',1000);character:SetAttribute('K0AttackPhase','Active')
    Visual.renderArms(character,1/60,1000.25);Visual.renderCharacter(character,1/60,1000.25)
-   check((frame(hand)*offset).LookVector:Dot(root.CFrame.LookVector)>.9,'shield face points toward target during bash')
+   check((frame(hand)*offset):VectorToWorldSpace(nativeFront):Dot(root.CFrame.LookVector)>.9,'shield face points toward target during bash')
    check(root.CFrame==before and character.Humanoid.Health==health,'pose/swap preserve authoritative root and health')
    character:SetAttribute('K0State','Idle');character:SetAttribute('K0AttackPhase','None');for i=1,30 do Visual.renderArms(character,1/60,1001+i/60);Visual.renderCharacter(character,1/60,1001+i/60)end
   end

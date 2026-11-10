@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "192 source sample points passed; 4 uploads Approved; integration pending native acceptance",
+  "status": "integrated in 0.95.0; 192 native samples, R6/R15 shield acceptance, prior weapon/legacy shield regressions and 8 asset loads passed",
   "source": "https://www.meshy.ai/workspace",
   "selection": "Exact latest four-family textured cohort, 2026-11-09 16:55–17:00 America/Toronto; shield board visual match; no older Rare/Epic",
   "records": [

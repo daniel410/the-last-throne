@@ -1,0 +1,19 @@
+{
+  "checks": 151,
+  "rigs": {
+    "R15": "four family swaps, bash facing, idempotence, failure recovery, legacy, unequip, class switch passed",
+    "R6": "four family swaps, bash facing, idempotence, failure recovery, legacy, unequip, class switch passed"
+  },
+  "kind": "FOUR_FAMILY_SHIELDS_NATIVE",
+  "pass": true,
+  "loads": {
+    "rbxassetid://122152502851499": "Success",
+    "rbxassetid://85408490981647": "Success",
+    "rbxassetid://136181563900601": "Success",
+    "rbxassetid://132638511876006": "Success",
+    "rbxassetid://75817121826228": "Success",
+    "rbxassetid://131828919934579": "Success",
+    "rbxassetid://82493427368399": "Success",
+    "rbxassetid://119527577099781": "Success"
+  }
+}
