@@ -145,6 +145,15 @@ local function consumeToken(state)
 	return true
 end
 
+local function rememberSelection(state, heroId)
+ if settings.inventory and settings.inventory.selectHero then
+  local reason = settings.inventory.selectHero(state.player, heroId)
+  if reason then return "InventoryUnavailable" end
+ end
+ if not connected(state) then return "InventoryUnavailable" end
+ return nil
+end
+
 local function execute(state, action, argument)
 	if action == "GetState" then return nil end
  if action=='ReturnLobby' and state.mode=='Tutorial' and selectedHero(state) and settings.inventory and settings.inventory.endSupport then
@@ -184,6 +193,8 @@ local function execute(state, action, argument)
 		changed(state)
 	elseif action == "SelectHero" then
 		if not state.byId[argument] then return "HeroNotOwned" end
+		local saveError = rememberSelection(state, argument)
+		if saveError then return saveError end
 		if state.selectedHeroId ~= argument then state.epoch = state.epoch + 1 end
 		state.selectedHeroId = argument
 		changed(state)
@@ -268,9 +279,9 @@ local function bindPlayer(player)
    local arrival,arrivalError
    if settings.network then arrival,arrivalError=settings.network.admitArrival(player) end
    if arrivalError then player:Kick(arrivalError);return end
-			local roster, errorCode = settings.inventory.open(player)
+			local roster, errorCode, lastSelectedHeroId = settings.inventory.open(player)
    if not roster and errorCode=='AccountBusy' then
-    for _=1,20 do task.wait(.5);if not connected(state) then return end;roster,errorCode=settings.inventory.open(player);if roster or errorCode~='AccountBusy' then break end end
+    for _=1,20 do task.wait(.5);if not connected(state) then return end;roster,errorCode,lastSelectedHeroId=settings.inventory.open(player);if roster or errorCode~='AccountBusy' then break end end
    end
 			if not connected(state) then return end
 			if roster then
@@ -281,14 +292,19 @@ local function bindPlayer(player)
 					table.insert(state.heroes, hero)
 				end
 				table.sort(state.heroes, function(a,b) return a.heroId < b.heroId end)
-				state.selectedHeroId = state.heroes[1] and state.heroes[1].heroId
+				state.selectedHeroId = type(lastSelectedHeroId) == "string" and state.byId[lastSelectedHeroId] and lastSelectedHeroId
+     or (state.heroes[1] and state.heroes[1].heroId)
     if arrival and arrival.heroId then
      if not state.byId[arrival.heroId] then player:Kick('Your expedition hero could not be loaded. Return to the lobby and retry.');return end
      state.selectedHeroId=arrival.heroId
     elseif arrival and state.byId[arrival.lobbyHeroId] then
      state.selectedHeroId=arrival.lobbyHeroId
     end
-				state.profileReady = true
+				if state.selectedHeroId and arrival and (arrival.heroId or state.byId[arrival.lobbyHeroId]) then
+     local saveError = rememberSelection(state, state.selectedHeroId)
+     if saveError then publish(state, nil, saveError); return end
+    end
+    state.profileReady = true
 			end
 			changed(state)
 			if errorCode then publish(state, nil, "InventoryUnavailable") end
@@ -472,11 +488,13 @@ end
 function HeroSessionService.selectForArrival(player,heroId)
  local state=sessions[player]
  if not state or state.phase~='Lobby' or not state.byId[heroId] then return false end
+ if rememberSelection(state,heroId) then return false end
  state.selectedHeroId=heroId;state.epoch=state.epoch+1;changed(state);return true
 end
 function HeroSessionService.enterAdventure(player,heroId)
  local state=sessions[player];if not state then return false end
  if not atLobby(state) or not state.byId[heroId] then return false end
+ if rememberSelection(state,heroId) then return false end
  state.selectedHeroId=heroId;state.route='Deepwood'
  return transition(state,'Tutorial')==nil
 end

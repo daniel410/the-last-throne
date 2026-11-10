@@ -112,11 +112,21 @@ function Rules.addHero(profile, heroId, classId, catalog)
 	local nextProfile = Rules.copy(profile)
 	-- Preserve the legacy account marker, but grant once for each new hero.
 	nextProfile.starterSuppliesClaimed = true
+	nextProfile.lastSelectedHeroId = heroId
 	nextProfile.heroes[heroId] = {heroId = heroId, baseClassId = classId, level = 1, progression = Growth.new(), quickSlots = {"health_potion", classId=="mage" and "mana_potion" or "health_potion_medium"}}
 	if classId == "knight" then insertItem(nextProfile, heroId .. "-starter-2", "knight_shield", 1, {kind = "equipped", heroId = heroId, slot = "offhand"}, catalog, "starter:" .. heroId) end
 	grantStarterSupplies(nextProfile, heroId, catalog)
 	nextProfile.revision = nextProfile.revision + 1
 	return nextProfile
+end
+-- Absolute assignment is safe to replay after an uncertain write.
+function Rules.selectHero(profile, heroId)
+ if type(heroId) ~= "string" or not profile.heroes[heroId] then return nil, "HeroNotOwned" end
+ if profile.lastSelectedHeroId == heroId then return profile end
+ local nextProfile = Rules.copy(profile)
+ nextProfile.lastSelectedHeroId = heroId
+ nextProfile.revision = nextProfile.revision + 1
+ return nextProfile
 end
 function Rules.validate(profile, catalog)
 	if type(profile)=="table" and profile.starterSuppliesClaimed~=nil and type(profile.starterSuppliesClaimed)~="boolean" then return false end

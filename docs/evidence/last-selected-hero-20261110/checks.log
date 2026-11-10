@@ -1,0 +1,17 @@
+$ lua tests/last-selected-hero.spec.lua
+Last selected hero: 21 checks PASS
+
+$ lua tests/k0-hero-session.spec.lua
+Hero session: 141 identity, ownership, transitions, four-class, stale-life and boundary checks passed
+
+$ lua tests/lobby-return-hero.spec.lua
+Lobby return hero: 27 checks PASS
+
+$ lua tests/story-lobby-resume.spec.lua
+Story lobby resume: 33 checks passed
+
+$ lua tests/travel-attempt.spec.lua
+Travel attempt: 8 checks passed
+
+$ /private/tmp/td233-luau/luau-compile src/server/Inventory/InventoryRules.luau src/server/Inventory/InventoryService.luau src/server/Lobby/HeroSessionService.luau
+compile PASS

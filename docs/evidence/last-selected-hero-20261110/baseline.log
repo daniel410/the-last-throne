@@ -1,0 +1,30 @@
+tests/k0-hero-session.spec.lua: baseline exit=1
+lua: tests/k0-hero-session.spec.lua:101: ordinary login restores last hero b-dwarf
+stack traceback:
+	[C]: in global 'assert'
+	tests/k0-hero-session.spec.lua:101: in local 'check'
+	tests/k0-hero-session.spec.lua:345: in main chunk
+	[C]: in local 'original'
+	(command line):1: in main chunk
+	[C]: in ?
+
+tests/last-selected-hero.spec.lua: baseline exit=1
+lua: tests/last-selected-hero.spec.lua:6: creation atomically remembers new elf
+stack traceback:
+	[C]: in global 'assert'
+	tests/last-selected-hero.spec.lua:6: in local 'check'
+	tests/last-selected-hero.spec.lua:22: in main chunk
+	[C]: in local 'original'
+	(command line):1: in main chunk
+	[C]: in ?
+
+tests/inventory.spec.lua: baseline exit=1
+lua: tests/inventory.spec.lua:7: aggregate armor: 8.0 ~= 5
+stack traceback:
+	[C]: in global 'assert'
+	tests/inventory.spec.lua:7: in upvalue 'check'
+	tests/inventory.spec.lua:8: in local 'equal'
+	tests/inventory.spec.lua:85: in main chunk
+	[C]: in local 'original'
+	(command line):1: in main chunk
+	[C]: in ?

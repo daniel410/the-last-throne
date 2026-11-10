@@ -308,7 +308,7 @@ local roster = {['a-elf']={baseClassId='elf'}, ['b-dwarf']={baseClassId='dwarf'}
  ['c-knight']={baseClassId='knight'}, ['d-mage']={baseClassId='mage'}}
 local incoming
 sessionOptions.inventory = {open=function() return roster end, available=function() return true end}
-sessionOptions.network = {admitArrival=function() return incoming end}
+sessionOptions.network = {admitArrival=function() return incoming end,beforeHeroAction=function() return false end}
 for _, id in ipairs({'a-elf','b-dwarf','c-knight','d-mage'}) do
  incoming = {lobbyHeroId=id}
  local returning = player('Returning-'..id)
@@ -330,5 +330,49 @@ incoming={heroId='not-owned'}
 local invalid=player('InvalidBattle');function invalid:Kick(message) self.kicked=message end
 players.PlayerAdded:Fire(invalid)
 check(invalid.kicked~=nil, 'unowned battle admission still rejects entry')
+-- Ordinary logins use the durable selection; arrival hints take precedence.
+local savedId, saveFailure, selectionWrites = 'b-dwarf', nil, 0
+sessionOptions.inventory = {
+ open=function() return roster,nil,savedId end,
+ available=function() return true end, ready=function() return true end, busy=function() return false end,
+ stats=function() return {} end,
+ selectHero=function(_,id) selectionWrites=selectionWrites+1;if saveFailure then return saveFailure end;savedId=id end,
+}
+incoming=nil
+for _,id in ipairs({'a-elf','b-dwarf','c-knight','d-mage'}) do
+ savedId=id
+ local login=player('Login-'..id);players.PlayerAdded:Fire(login)
+ check(Service.getActiveHero(login).heroId==id,'ordinary login restores last hero '..id)
+ check(login.response.snapshot.selectedHeroId==id,'login snapshot restores last hero '..id)
+end
+savedId='b-dwarf'
+local login=player('Switch');players.PlayerAdded:Fire(login);ready(login,0,1)
+local _,reason=request(login,'SelectHero','d-mage')
+check(reason==nil and savedId=='d-mage','successful UI selection persists before confirmation')
+local reconnect=player('Reconnect');players.PlayerAdded:Fire(reconnect)
+check(Service.getActiveHero(reconnect).heroId=='d-mage','new session restores selected mage rather than sorted elf')
+saveFailure='SaveUnknown'
+_,reason=request(login,'SelectHero','c-knight')
+check(reason=='InventoryUnavailable' and Service.getActiveHero(login).heroId=='d-mage' and savedId=='d-mage','failed save keeps prior confirmed selection')
+check(not Service.enterAdventure(login,'c-knight'),'adventure cannot bypass selection save failure')
+check(not Service.selectForArrival(login,'c-knight'),'arrival helper cannot bypass selection save failure')
+local writes=selectionWrites
+_,reason=request(login,'SelectHero','not-owned')
+check(reason=='HeroNotOwned' and writes==selectionWrites,'foreign hero rejected before persistence')
+saveFailure=nil
+incoming={lobbyHeroId='b-dwarf'}
+local returning=player('DurableReturn');players.PlayerAdded:Fire(returning)
+check(Service.getActiveHero(returning).heroId=='b-dwarf' and savedId=='b-dwarf','owned return hint overrides and updates saved selection')
+incoming=nil
+local afterReturn=player('LoginAfterReturn');players.PlayerAdded:Fire(afterReturn)
+check(Service.getActiveHero(afterReturn).heroId=='b-dwarf','ordinary login retains returned hero')
+for _,bad in ipairs({'deleted-hero',false,{}}) do
+ savedId=bad
+ local fallback=player('LegacyFallback');players.PlayerAdded:Fire(fallback)
+ check(Service.getActiveHero(fallback).heroId=='a-elf','stale or malformed preference safely falls back')
+end
+savedId=nil
+local legacy=player('Legacy');players.PlayerAdded:Fire(legacy)
+check(Service.getActiveHero(legacy).heroId=='a-elf','legacy profile without preference retains owned default')
 os.clock = savedClock
 print("Hero session: " .. checks .. " identity, ownership, transitions, four-class, stale-life and boundary checks passed")

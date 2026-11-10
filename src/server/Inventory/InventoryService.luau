@@ -48,7 +48,7 @@ function Service.open(player)
 	state.busy = false
 	state.profile, state.valid, state.errorCode = profile, profile ~= nil, errorCode
 	player:SetAttribute("TLTInventoryMode", sessionOnly and "Studio session" or "RPG test save")
-	return profile and Rules.copy(profile.heroes), errorCode
+	return profile and Rules.copy(profile.heroes), errorCode, profile and profile.lastSelectedHeroId
 end
 function Service.close(player)
 	local state = accounts[player]
@@ -92,6 +92,23 @@ function Service.createHero(player, heroId, classId)
 	state.profile = profile
 	publish(player)
 	return nil
+end
+function Service.selectHero(player, heroId)
+ local state = accounts[player]
+ if not Service.ready(player) or state.closing then return "Unavailable" end
+ if type(heroId) ~= "string" or not state.profile.heroes[heroId] then return "HeroNotOwned" end
+ if state.profile.lastSelectedHeroId == heroId then return nil end
+ state.busy = true
+ local profile, errorCode = store:transact(player.UserId, function(current) return Rules.selectHero(current, heroId) end)
+ state.busy = false
+ if not profile then
+  if errorCode == "SaveUnknown" or errorCode == "AccountBusy" then state.valid = false end
+  state.errorCode = errorCode
+  return errorCode
+ end
+ state.profile = profile
+ publish(player)
+ return nil
 end
 function Service.stats(player, heroId)
 	local state = accounts[player]
