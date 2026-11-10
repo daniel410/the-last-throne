@@ -139,6 +139,11 @@ function V.create(parent,send,diamondOnly,store)
   local name=T.label(card,'Name',title,largeArtwork and UDim2.new(.44,8,0,16) or UDim2.fromOffset(82,8),largeArtwork and UDim2.new(.56,-24,0,52) or UDim2.new(1,-94,0,64),16,T.color.gold)
   local details=T.label(card,'Details',description,largeArtwork and UDim2.new(.44,8,0,80) or UDim2.fromOffset(14,80),largeArtwork and UDim2.new(.56,-24,1,-144) or UDim2.new(1,-28,1,-140),12)
   if largeArtwork then name.TextYAlignment=Enum.TextYAlignment.Top;details.TextYAlignment=Enum.TextYAlignment.Top end
+  if def.slot=='weapon' and def.classId=='mage' then
+   local textWidth=math.max(100,largeArtwork and (scroll.AbsoluteSize.X-8)*.56-24 or scroll.AbsoluteSize.X-36)
+   local textHeight=TextService:GetTextSize(description,details.TextSize,details.Font,Vector2.new(textWidth,10000)).Y
+   card.Size=UDim2.new(1,-8,0,math.max(184,math.ceil(textHeight)+152))
+  end
   local b=T.button(card,'Trade',caption,UDim2.new(0,14,1,-52),UDim2.new(1,-28,0,44))
   local insufficient=shortfall and shortfall>0
   if insufficient then
@@ -193,7 +198,7 @@ function V.create(parent,send,diamondOnly,store)
      description=string.format('Restores up to %d %s · In bag: %d\n%s',d.amount,d.restore=='health' and 'HP' or 'MP',owned,d.restore=='mana' and 'Requires an MP pool. Assign to Z / C from BAG.' or 'Delivered to your bag. Assign to Z / C from BAG.')
     else
      local fit=d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
-     description=string.format(ItemText.ShopGearStats,fit,d.rarity,d.level or 1,d.stats.power or 0,d.stats.armor and string.format(ItemText.FlatDefense,d.stats.armor) or '',(d.stats.health and string.format(ItemText.FlatHealth,d.stats.health) or '')..(d.stats.mana and string.format(ItemText.FlatMana,d.stats.mana) or '')..(d.stats.dexterity and string.format(ItemText.FlatDexterity,d.stats.dexterity) or ''),d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
+     description=string.format(d.slot=="weapon" and d.classId=="mage" and ItemText.ShopStaffStats or ItemText.ShopGearStats,fit,d.rarity,d.level or 1,d.stats.power or 0,d.stats.armor and string.format(ItemText.FlatDefense,d.stats.armor) or '',(d.stats.health and string.format(ItemText.FlatHealth,d.stats.health) or '')..(d.stats.mana and string.format(ItemText.FlatMana,d.stats.mana) or '')..(d.stats.dexterity and string.format(ItemText.FlatDexterity,d.stats.dexterity) or ''),d.classId and hero and d.classId~=class and ItemText.OtherClassPurchase or (hero and hero.level<(d.level or 1) and 'You may buy now; equip after reaching the required level.' or 'Delivered to your bag. Equip from BAG.'))
     end
     if d.slot then
      local selected={definitionId=d.id,location={kind='bag'}};local impact=Impact.compare(hero,state.items,selected,nil,Items)

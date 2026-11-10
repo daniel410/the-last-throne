@@ -81,7 +81,8 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
   end
   top+=math.ceil(#entries/columns)*(rowH+4)
   local bonus=string.format(Text.AttackBonus,(snapshot.stats or {}).power or 0)
-  label(scroll,'AttackBonus',bonus,4,top,mainW-8,22,12,Theme.color.green);top+=26
+  local bonusHeight=math.max(22,measured(bonus,12,mainW-8))
+  label(scroll,'AttackBonus',bonus,4,top,mainW-8,bonusHeight,12,Theme.color.green);top+=bonusHeight+4
   if state.gearExpanded then
    local sources=Preview.gearSources(hero.heroId,snapshot.items,Catalog)
    if #sources==0 then label(scroll,'NoGear',Text.NoGear,4,top,mainW-8,26,12,Theme.color.muted);top+=30 end
