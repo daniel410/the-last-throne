@@ -1,0 +1,37 @@
+{
+  "version": "0.95.0",
+  "sourceCommit": "828f3d16efebeb28c4023cf83a62e5daaf3e2b57",
+  "artifact": "builds/0.95.0/TheLastThrone-0.95.0.rbxlx",
+  "sha256": "f47c0f10d3ac548a87ba8d050433c80e27f0047e80f73f6a397b53c416bb5a7e",
+  "published": true,
+  "method": "Roblox Studio Publish As from the fixed build; exact existing TLT experience and place selected in UI",
+  "universeId": 10773575153,
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "name": "The Last Throne",
+      "publishedVersion": 75,
+      "localPublishedTime": "2026-11-09 20:53 America/Toronto",
+      "verification": "Creator Dashboard Version History latest row75 with Published Version check mark"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "name": "The Last Throne Battles",
+      "publishedVersion": 18,
+      "localPublishedTime": "2026-11-09 20:56 America/Toronto",
+      "verification": "Studio Successfully published and Creator Dashboard Version History latest row18 with Published Version check mark"
+    }
+  ],
+  "assetPermissions": "Studio Grant Permissions and Publish granted missing usage permissions to the destination TLT experience",
+  "audience": "existing private/testing access preserved; no public release or collaborator changes",
+  "studioRunningAfter": false,
+  "releaseTag": "v0.95.0",
+  "unverified": [
+    "published Roblox client gameplay and cross-place travel",
+    "real account save/rejoin",
+    "physical devices and party performance",
+    "final user art acceptance"
+  ]
+}
