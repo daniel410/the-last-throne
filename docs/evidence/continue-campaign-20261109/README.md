@@ -17,3 +17,7 @@
 - `lua tests/campaign-reorder.spec.lua`: 1,870 PASS. 기존 본편 재정렬·저장/권리 보존.
 
 build.json에 커밋 고정 빌드를 기록한다. 실제 계정/게시 클라이언트 Continue·Teleport·실기기 검증은 미실행이다. 실제 게시/릴리스 태그 없음. 다음 QA는 새 빌드에서 사용자 영웅의 DW-07 완료 여부와 로비 시작 목적지를 확인한다. 부모 티켓 완료 처리 없음.
+
+## 빌드 마감
+
+입력 소스 `6404ca6bfe8dbc2aee83fefcdca25dedd54e45a9` origin/main 푸시 후 **0.95.4 빌드 성공**. `builds/0.95.4/TheLastThrone-0.95.4.rbxlx`, SHA256 `67355d21345f25cb212cb519f1c78fabc949f44694a9aaeb6ee5776643ee06d7`. single-build 검사에서 역할10·로딩192 및 프로젝트/실제 산출물 계약 PASS. 신규 LFS 자산 없음. 게시/릴리스 태그 없음.
