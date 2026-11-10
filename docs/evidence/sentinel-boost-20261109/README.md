@@ -32,3 +32,9 @@
 ## 범위·인계
 
 현재 실행 중인 옛 Play 세션/실계정/라이브 DataStore를 변경하거나 중단하지 않았다. 새 소스/빌드에 반영하며 실제 Roblox 게시와 라이브 전투 난도·피해/생존·다인 성능·실기기/사용자 수용은 후속이다. 다음 담당은 QA의 새 기본값/기존 +9품의 실제 장착·HP/MP 상한 갱신·보스 전투 및 가격 저축 체감 수용이다. 부모 티켓 완료 처리 없음.
+
+## 고정 빌드 결과
+
+소스 `1f6cf3d1bc64266c1a79541a7ab8611969c405d6` origin/main 푸시 후 **0.93.6 단일 빌드 성공**. `builds/0.93.6/TheLastThrone-0.93.6.rbxlx`, SHA256 `36f89516a741ffc7156956bd901c2f31bdd707d35c90e6b129b9e2a598ab8920`. [빌드 기록](build.json). 재계산 입력 해시가 frozen source와 전부 일치하며 실제 XML의 EquipmentFamilies/EquipmentPricing/EconomyCatalog 각1개 및 Source가 검증한 원본과 일치한다.
+
+`python3 tests/single-build.spec.py --artifact builds/0.93.6/TheLastThrone-0.93.6.rbxlx`: 역할10/도착로딩192/마운트·실제 아티팩트 구성 PASS. 새LFS 자산·릴리스 태그·Roblox 게시 없음.
