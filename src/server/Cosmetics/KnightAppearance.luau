@@ -144,9 +144,9 @@ local function isAttached(model, rightHand, leftHand, classId)
 	local swordWeld = model:FindFirstChild("K0SwordJoint", true)
 	local shieldWeld = model:FindFirstChild("K0ShieldHandWeld", true)
 	local blade = model:FindFirstChild("SwordBlade")
-	if model:GetAttribute("UsesTdPlayerShield") == true
+	if (model:GetAttribute("UsesTdPlayerShield") == true or model:GetAttribute("UsesFourFamilyShield") == true)
 		and not WeaponAppearance.isShieldAttached(model, rightHand.Parent, { left = leftHand }) then return false end
-	if model:GetAttribute("UsesTdPlayerShield") ~= true then
+	if model:GetAttribute("UsesTdPlayerShield") ~= true and model:GetAttribute("UsesFourFamilyShield") ~= true then
 		for _, name in ipairs({ "ShieldRim", "ShieldFace", "ShieldBand", "ShieldEmblem" }) do
 			local part = model:FindFirstChild(name)
 			if not part or not part:IsA("BasePart") or part:GetAttribute("TLTPlayerShieldPart") ~= true then return false end

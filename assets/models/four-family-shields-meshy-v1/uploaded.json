@@ -1,0 +1,110 @@
+[
+  {
+    "id": "traveler_shield",
+    "operation": {
+      "path": "operations/b8555ac6-c7b0-4fd7-bbc0-d088140f982d",
+      "operationId": "b8555ac6-c7b0-4fd7-bbc0-d088140f982d",
+      "done": true,
+      "response": {
+        "path": "assets/86654184355999",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:31:37.089Z",
+        "assetId": "86654184355999",
+        "displayName": "TLT traveler Shield v1",
+        "description": "Exact latest four-family Meshy shield 01a1c24f-7c80-76a2-a858-89d644d5e015. Prepared for left-hand equipment; original color texture.",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "tempered_shield",
+    "operation": {
+      "path": "operations/15b4f6b9-dea5-4a73-b348-fc168d810efb",
+      "operationId": "15b4f6b9-dea5-4a73-b348-fc168d810efb",
+      "done": true,
+      "response": {
+        "path": "assets/136309334071909",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:31:37.063Z",
+        "assetId": "136309334071909",
+        "displayName": "TLT tempered Shield v1",
+        "description": "Exact latest four-family Meshy shield 01a1c251-5f57-70bc-91fb-99fcbb2a97cc. Prepared for left-hand equipment; original color texture.",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "veteran_shield",
+    "operation": {
+      "path": "operations/44c731c1-966f-4579-95dd-b31ac0c0de11",
+      "operationId": "44c731c1-966f-4579-95dd-b31ac0c0de11",
+      "done": true,
+      "response": {
+        "path": "assets/97036219681992",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:31:35.971Z",
+        "assetId": "97036219681992",
+        "displayName": "TLT veteran Shield v1",
+        "description": "Exact latest four-family Meshy shield 01a1c252-3383-752d-8a19-2a515a943dda. Prepared for left-hand equipment; original color texture.",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  },
+  {
+    "id": "sentinel_shield",
+    "operation": {
+      "path": "operations/e63e4d13-17ac-4563-bab7-011bcd601304",
+      "operationId": "e63e4d13-17ac-4563-bab7-011bcd601304",
+      "done": true,
+      "response": {
+        "path": "assets/115223565820026",
+        "revisionId": "1",
+        "revisionCreateTime": "2026-11-10T01:31:32.720Z",
+        "assetId": "115223565820026",
+        "displayName": "TLT sentinel Shield v1",
+        "description": "Exact latest four-family Meshy shield 01a1c253-7530-76aa-845d-e20c04ee5e01. Prepared for left-hand equipment; original color texture.",
+        "assetType": "Model",
+        "creationContext": {
+          "creator": {
+            "userId": "9156786071"
+          }
+        },
+        "moderationResult": {
+          "moderationState": "Approved"
+        },
+        "state": "Active",
+        "isPublished": true
+      }
+    }
+  }
+]

@@ -5,6 +5,8 @@ local BowGeometry = require(game:GetService("ReplicatedStorage").Shared.ElfBowGe
 local ElfQuiver = require(script.Parent.ElfQuiverAppearance)
 local FourFamily = require(game:GetService("ReplicatedStorage").Shared.FourFamilyWeaponVisuals)
 
+local FourFamilyShields = require(game:GetService("ReplicatedStorage").Shared.FourFamilyShieldVisuals)
+
 local Appearance = {}
 local OWNED = "TLTPlayerWeaponPart"
 local SHIELD_OWNED = "TLTPlayerShieldPart"
@@ -422,27 +424,37 @@ local function leftHandFor(character, hands)
 	return hand
 end
 
-local function buildShield()
-	local folder = ServerStorage:FindFirstChild("TDKnightShieldModels")
-	assert(folder and folder:IsA("Folder"), "Missing ServerStorage.TDKnightShieldModels")
-	local source = folder:FindFirstChild("KnightShield")
-	assert(source and source:IsA("Model"), "Missing TD KnightShield template")
-	local sourceGrip = gripFor(source)
+local function shieldSpec(definitionId)
+ local visual=type(definitionId)=='string' and FourFamilyShields.models[definitionId]
+ if visual then return {folder=FourFamilyShields.folderName,template=visual.template,sourceKey=visual.sourceKey,meshId=visual.meshId,textureId=visual.textureId,taskId=visual.taskId,definitionId=definitionId} end
+ return {folder='TDKnightShieldModels',template='KnightShield',sourceKey=SHIELD_SOURCE,meshId=SHIELD_MESH,textureId=SHIELD_TEXTURE}
+end
+
+local function buildShield(definitionId)
+ local spec=shieldSpec(definitionId)
+	local folder = ServerStorage:FindFirstChild(spec.folder)
+	assert(folder and folder:IsA("Folder"), "Missing shield template folder: " .. spec.folder)
+	local source = folder:FindFirstChild(spec.template)
+	assert(source and source:IsA("Model"), "Missing shield template: " .. spec.template)
+	if spec.definitionId then
+  assert(source:GetAttribute('ShieldDefinitionId')==spec.definitionId and source:GetAttribute('MeshyTaskId')==spec.taskId,'Shield template provenance mismatch')
+ end
+ local sourceGrip = gripFor(source)
 	local sourceShield = source:FindFirstChild("Shield")
-	assert(sourceGrip, "TD shield requires PrimaryPart Grip")
+	assert(sourceGrip, "Player shield requires PrimaryPart Grip")
 	assert(sourceShield and sourceShield:IsA("MeshPart") and visualPart(sourceShield) and sourceShield.Archivable,
-		"TD shield requires a valid direct Shield MeshPart")
-	assert(sourceShield.MeshId == SHIELD_MESH and sourceShield.TextureID == SHIELD_TEXTURE,
-		"TD shield must use the approved extracted shield mesh and original color map")
+		"Player shield requires a valid direct Shield MeshPart")
+	assert(sourceShield.MeshId == spec.meshId and sourceShield.TextureID == spec.textureId,
+		"Shield must use its approved mesh and original color map")
 	local count = 0
 	for _, item in ipairs(source:GetDescendants()) do
 		assert(not item:IsA("LuaSourceContainer"), "Executable content is not allowed in shield templates")
 		if item:IsA("BasePart") then
-			assert(item == sourceGrip or item == sourceShield, "Unexpected TD shield part: " .. item.Name)
+			assert(item == sourceGrip or item == sourceShield, "Unexpected shield part: " .. item.Name)
 			count = count + 1
 		end
 	end
-	assert(count == 2, "TD shield template must contain exactly Grip and Shield")
+	assert(count == 2, "Shield template must contain exactly Grip and Shield")
 	local model = Instance.new("Model")
 	model.Name = "KnightShield"
 	local ok, result = pcall(function()
@@ -455,7 +467,7 @@ local function buildShield()
 		inert(grip)
 		grip.Parent = model
 		model.PrimaryPart = grip
-		assert(attachmentCopy(sourceGrip, grip, "GripSocket"), "TD shield requires Grip.GripSocket")
+		assert(attachmentCopy(sourceGrip, grip, "GripSocket"), "Player shield requires Grip.GripSocket")
 		local shield = sourceShield:Clone()
 		for _, child in ipairs(shield:GetDescendants()) do
 			if not child:IsA("SurfaceAppearance") then child:Destroy() end
@@ -473,16 +485,17 @@ local function buildShield()
 		weld.Part0 = grip
 		weld.Part1 = shield
 		weld.Parent = shield
-		model:SetAttribute("ShieldSourceKey", SHIELD_SOURCE)
+		model:SetAttribute("ShieldSourceKey", spec.sourceKey)
+		model:SetAttribute("ShieldDefinitionId", spec.definitionId)
 		model:SetAttribute("ShieldVisualVersion", VERSION)
-		return { model = model, grip = grip, shield = shield, sourceKey = SHIELD_SOURCE }
+		return { model = model, grip = grip, shield = shield, sourceKey = spec.sourceKey, definitionId = spec.definitionId }
 	end)
 	if not ok then model:Destroy(); error(result) end
 	return result
 end
 
-function Appearance.buildShield()
-	local ok, result = pcall(buildShield)
+function Appearance.buildShield(definitionId)
+	local ok, result = pcall(buildShield, definitionId)
 	if not ok then return nil, tostring(result) end
 	return result
 end
@@ -498,8 +511,9 @@ local function ownedShieldPart(model, name)
 	return found
 end
 
-local function shieldAttachedResult(model, hand)
-	if model:GetAttribute("ShieldSourceKey") ~= SHIELD_SOURCE or model:GetAttribute("ShieldVisualVersion") ~= VERSION then return nil end
+local function shieldAttachedResult(model, hand, definitionId)
+ local spec=shieldSpec(definitionId)
+	if model:GetAttribute("ShieldSourceKey") ~= spec.sourceKey or model:GetAttribute("ShieldVisualVersion") ~= VERSION then return nil end
 	local grip = ownedShieldPart(model, "ShieldGrip")
 	local shield = ownedShieldPart(model, "Shield")
 	if not grip or not grip:IsA("BasePart") or not shield or not shield:IsA("MeshPart") then return nil end
@@ -507,7 +521,7 @@ local function shieldAttachedResult(model, hand)
 	local visualWeld = shield:FindFirstChild("ShieldVisualWeld")
 	if not handWeld or not handWeld:IsA("WeldConstraint") or not handWeld.Enabled or handWeld.Part0 ~= hand or handWeld.Part1 ~= grip
 		or not visualWeld or not visualWeld:IsA("WeldConstraint") or not visualWeld.Enabled or visualWeld.Part0 ~= grip or visualWeld.Part1 ~= shield
-		or shield.MeshId ~= SHIELD_MESH or shield.TextureID ~= SHIELD_TEXTURE then return nil end
+		or shield.MeshId ~= spec.meshId or shield.TextureID ~= spec.textureId then return nil end
 	local count = 0
 	for _, child in ipairs(model:GetChildren()) do
 		if child:GetAttribute(SHIELD_OWNED) == true then count = count + 1 end
@@ -516,13 +530,13 @@ local function shieldAttachedResult(model, hand)
 	for _, part in ipairs({ grip, shield }) do
 		if part.Anchored or not part.Massless or part.CanCollide or part.CanTouch or part.CanQuery then return nil end
 	end
-	return { model = model, grip = grip, shield = shield, joint = handWeld, sourceKey = SHIELD_SOURCE }
+	return { model = model, grip = grip, shield = shield, joint = handWeld, sourceKey = spec.sourceKey, definitionId = spec.definitionId }
 end
 
 function Appearance.isShieldAttached(appearanceModel, character, hands)
 	if not appearanceModel or not appearanceModel:IsA("Model") or not character or not character:IsA("Model") then return false end
 	local hand = leftHandFor(character, hands)
-	return hand ~= nil and shieldAttachedResult(appearanceModel, hand) ~= nil
+	return hand ~= nil and shieldAttachedResult(appearanceModel, hand, character:GetAttribute("TLTEquippedOffhand")) ~= nil
 end
 
 function Appearance.detachShield(appearanceModel)
@@ -530,7 +544,7 @@ function Appearance.detachShield(appearanceModel)
 	for _, child in ipairs(appearanceModel:GetChildren()) do
 		if child:GetAttribute(SHIELD_OWNED) == true then child:Destroy() end
 	end
-	for _, name in ipairs({ "ShieldSourceKey", "ShieldVisualVersion", "UsesTdPlayerShield", "ShieldFallbackReason" }) do
+	for _, name in ipairs({ "ShieldSourceKey", "ShieldVisualVersion", "UsesTdPlayerShield", "UsesFourFamilyShield", "ShieldDefinitionId", "ShieldFallbackReason" }) do
 		appearanceModel:SetAttribute(name, nil)
 	end
 	return true
@@ -541,9 +555,10 @@ function Appearance.attachShieldInto(appearanceModel, character, hands)
 		return nil, "invalid_character_or_appearance" end
 	local hand = leftHandFor(character, hands)
 	if not hand then return nil, "left_hand_not_ready" end
-	local existing = shieldAttachedResult(appearanceModel, hand)
+	local definitionId = character:GetAttribute("TLTEquippedOffhand")
+	local existing = shieldAttachedResult(appearanceModel, hand, definitionId)
 	if existing then return existing end
-	local result, reason = Appearance.buildShield()
+	local result, reason = Appearance.buildShield(definitionId)
 	if not result then return nil, reason end
 	local owned = {}
 	for _, child in ipairs(appearanceModel:GetChildren()) do
@@ -573,9 +588,11 @@ function Appearance.attachShieldInto(appearanceModel, character, hands)
 			child.Parent = appearanceModel
 			table.insert(inserted, child)
 		end
-		appearanceModel:SetAttribute("ShieldSourceKey", SHIELD_SOURCE)
+		appearanceModel:SetAttribute("ShieldSourceKey", result.sourceKey)
+		appearanceModel:SetAttribute("ShieldDefinitionId", result.definitionId)
+		appearanceModel:SetAttribute("UsesFourFamilyShield", result.definitionId ~= nil)
 		appearanceModel:SetAttribute("ShieldVisualVersion", VERSION)
-		appearanceModel:SetAttribute("UsesTdPlayerShield", true)
+		appearanceModel:SetAttribute("UsesTdPlayerShield", result.definitionId == nil)
 		appearanceModel:SetAttribute("ShieldFallbackReason", nil)
 		for _, child in ipairs(owned) do child:Destroy() end
 	end)

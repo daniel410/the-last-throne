@@ -65,6 +65,9 @@
       },
       "FourFamilyWeaponModels": {
         "$path": "assets/models/four-family-weapons-meshy-v1/runtime.rbxm"
+      },
+      "FourFamilyShieldModels": {
+        "$path": "assets/models/four-family-shields-meshy-v1/runtime.rbxm"
       }
     },
     "StarterPlayer": {

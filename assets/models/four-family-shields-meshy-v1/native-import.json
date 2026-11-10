@@ -1,0 +1,110 @@
+{
+  "models": [
+    {
+      "nativeVertices": 1816,
+      "rotationToSource": 180,
+      "definitionId": "knight_shield",
+      "id": "traveler_shield",
+      "meshId": "rbxassetid://136181563900601",
+      "textureId": "rbxassetid://82493427368399",
+      "modelAssetId": "86654184355999",
+      "center": [
+        0,
+        0,
+        -0.19137482345104218
+      ],
+      "matchedSourceSamples": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "size": [
+        1.3160008192062378,
+        1.8799999952316284,
+        0.38274964690208435
+      ]
+    },
+    {
+      "nativeVertices": 2061,
+      "rotationToSource": 180,
+      "definitionId": "knight_shield_fine",
+      "id": "tempered_shield",
+      "meshId": "rbxassetid://132638511876006",
+      "textureId": "rbxassetid://119527577099781",
+      "modelAssetId": "136309334071909",
+      "center": [
+        0,
+        0,
+        -0.2122116982936859
+      ],
+      "matchedSourceSamples": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "size": [
+        1.314745545387268,
+        1.8799999952316284,
+        0.4244233965873718
+      ]
+    },
+    {
+      "nativeVertices": 1901,
+      "rotationToSource": 180,
+      "definitionId": "veteran_tier_shield",
+      "id": "veteran_shield",
+      "meshId": "rbxassetid://85408490981647",
+      "textureId": "rbxassetid://122152502851499",
+      "modelAssetId": "97036219681992",
+      "center": [
+        0,
+        0,
+        -0.17730461061000824
+      ],
+      "matchedSourceSamples": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "size": [
+        1.3249611854553223,
+        1.8799999952316284,
+        0.3546092212200165
+      ]
+    },
+    {
+      "nativeVertices": 1800,
+      "rotationToSource": 180,
+      "definitionId": "sentinel_tier_shield",
+      "id": "sentinel_shield",
+      "meshId": "rbxassetid://131828919934579",
+      "textureId": "rbxassetid://75817121826228",
+      "modelAssetId": "115223565820026",
+      "center": [
+        0,
+        0,
+        -0.17248636484146118
+      ],
+      "matchedSourceSamples": 48,
+      "orientationMatches": {
+        "0": 0,
+        "1": 0,
+        "2": 48,
+        "3": 0
+      },
+      "size": [
+        1.3191827535629272,
+        1.8799999952316284,
+        0.34497272968292236
+      ]
+    }
+  ],
+  "chunks": 8,
+  "bytes": 58024
+}

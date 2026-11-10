@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "status": "192 source sample points passed; 4 uploads Approved; integration pending native acceptance",
+  "source": "https://www.meshy.ai/workspace",
+  "selection": "Exact latest four-family textured cohort, 2026-11-09 16:55–17:00 America/Toronto; shield board visual match; no older Rare/Epic",
+  "records": [
+    {
+      "id": "traveler_shield",
+      "family": "traveler",
+      "definitionId": "knight_shield",
+      "meshyName": "Ironbound Guardian",
+      "meshyTaskId": "01a1c24f-7c80-76a2-a858-89d644d5e015",
+      "createdAt": "2026-11-09T16:55:00-05:00",
+      "createdAtPrecision": "minute from Meshy visible UI",
+      "download": "Meshy_AI_Ironbound_Guardian_1110012800_texture.glb",
+      "source": "source/traveler_shield.glb",
+      "sourceSha256": "000348a0be7903caceb9b079678d4fe56552304c6ce31f567160fd630426e57e",
+      "triangles": 1485,
+      "sourceImages": 1,
+      "prepared": "prepared/traveler_shield.glb",
+      "preparedSha256": "8d064b8b93c2bd12daaefebb5d8e887a17d7bfcb6222799b5e25f2b4293fdff5"
+    },
+    {
+      "id": "tempered_shield",
+      "family": "tempered",
+      "definitionId": "knight_shield_fine",
+      "meshyName": "Aegis of the Deep",
+      "meshyTaskId": "01a1c251-5f57-70bc-91fb-99fcbb2a97cc",
+      "createdAt": "2026-11-09T16:57:00-05:00",
+      "createdAtPrecision": "minute from Meshy visible UI",
+      "download": "Meshy_AI_Aegis_of_the_Deep_1110012727_texture.glb",
+      "source": "source/tempered_shield.glb",
+      "sourceSha256": "98feeaa7f328369dd8fb5d3425417c7ed9ffa925626f5d194c87d34b76a59f75",
+      "triangles": 1490,
+      "sourceImages": 1,
+      "prepared": "prepared/tempered_shield.glb",
+      "preparedSha256": "b5451ae56d342131e4db36200cd2b8c33a3d7c0c990615997d4d58203dde7846"
+    },
+    {
+      "id": "veteran_shield",
+      "family": "veteran",
+      "definitionId": "veteran_tier_shield",
+      "meshyName": "Bulwark of the Citadel",
+      "meshyTaskId": "01a1c252-3383-752d-8a19-2a515a943dda",
+      "createdAt": "2026-11-09T16:58:00-05:00",
+      "createdAtPrecision": "minute from Meshy visible UI",
+      "download": "Meshy_AI_Bulwark_of_the_Citade_1110012657_texture.glb",
+      "source": "source/veteran_shield.glb",
+      "sourceSha256": "3cc18ea7a954d04569eee0583738e4b6d10ca215815cb6a87b305996211fa325",
+      "triangles": 1510,
+      "sourceImages": 1,
+      "prepared": "prepared/veteran_shield.glb",
+      "preparedSha256": "08a779ad1e278b11faed0564669b0a63bb0229bf119dcb9b589010534855f9df"
+    },
+    {
+      "id": "sentinel_shield",
+      "family": "sentinel",
+      "definitionId": "sentinel_tier_shield",
+      "meshyName": "Azure Citadel Crest",
+      "meshyTaskId": "01a1c253-7530-76aa-845d-e20c04ee5e01",
+      "createdAt": "2026-11-09T17:00:00-05:00",
+      "createdAtPrecision": "minute from Meshy visible UI",
+      "download": "Meshy_AI_Azure_Citadel_Crest_1110012740_texture.glb",
+      "source": "source/sentinel_shield.glb",
+      "sourceSha256": "21604c08751cd1d89f27c9441f902cd2d72aecc252154d8ca23c72dda39c09c9",
+      "triangles": 1309,
+      "sourceImages": 1,
+      "prepared": "prepared/sentinel_shield.glb",
+      "preparedSha256": "d219b98874090a693f366a9e7a0cb63a9c41cd1dc7c1fe2abf8e932c657d6bcb"
+    }
+  ],
+  "runtimeSha256": "ca20eb19ffa7b5973185c6fc9cd5fe8cdf2607e0b44045f929ccd37716ff8c34"
+}
