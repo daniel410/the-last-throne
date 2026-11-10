@@ -2,6 +2,9 @@
 return {
  AvailablePoints='AVAILABLE STAT POINTS  %d',
  EquipmentPreview='ACTUAL STATS IF EQUIPPED (pts)',EquipmentNote='Equipment bonuses and differences: pts (points), before skill multipliers. HP / MP changes do not refill resources.',
+ PowerGuide='HOW ATTACK POWER WORKS\nPhysical Power = 100 + 3 per level after Lv1 + 2 per assigned STR + equipped power.\nMagic Power = 100 + 3 per level after Lv1 + 2 per assigned INT + equipped power.\nEach hit uses the matching power multiplied by its attack or skill multiplier. Power is not damage per hit.',
+ MagePowerGuide='MAGE: Basic attacks and damaging spells use Magic Power. Assign INT to raise both (+2 power per point) and Max MP (+3 per point). STR does not raise their damage. Staff upgrades and enhancement add power before the skill multiplier.',
+ PhysicalPowerGuide='Basic attacks and physical skills use Physical Power (STR). Magic skills use Magic Power (INT). INT adds +3 Max MP per point only after this hero has an MP pool; it does not unlock MP by itself.',
  Title='COMBAT STATS',Current='Current stats · Equipped gear included',
  HeroAndGear='Hero %s  +  Gear %s',Draft='DRAFT %s → %s (%s)',
  GearDexSuffix=' + %s gear',

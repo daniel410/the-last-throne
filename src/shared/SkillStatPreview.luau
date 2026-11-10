@@ -56,11 +56,14 @@ function Preview.basicAttackText(classId,g,equipment,draftGrowth)
  table.insert(lines,CombatText.BasicDamageNote)
  return table.concat(lines,'\n')
 end
+function Preview.powerGuide(classId)
+ return CombatText.PowerGuide.."\n"..(classId=="mage" and CombatText.MagePowerGuide or CombatText.PhysicalPowerGuide)
+end
 -- Project the whole unsaved allocation. Include +0 for thresholds and caps.
 function Preview.investmentText(classId,g,equipment,draft)
  local after=Growth.copy(g);local spent=0
  for key,value in pairs(draft) do after.stats[key]=after.stats[key]+value;spent=spent+value end
- local lines={spent>0 and CombatText.InvestmentNote or CombatText.InvestmentEmpty,
+ local lines={Preview.powerGuide(classId),spent>0 and CombatText.InvestmentNote or CombatText.InvestmentEmpty,
   Preview.basicAttackText(classId,g,equipment,spent>0 and after or nil)}
  if spent>0 then
   local relevant={physicalPower=draft.STR>0,magicPower=draft.INT>0,mana=draft.INT>0,
@@ -99,7 +102,7 @@ end
 function Preview.scalingText(classId,skill)
 	local lines={}
 	if skill.damage>0 then
-		table.insert(lines,string.format(Text.Scaling,Growth.attackStat(classId,skill.magic)))
+		table.insert(lines,string.format(Text.Scaling,Growth.attackStat(classId,skill.magic)..(skill.magic and Text.MagicEquipmentScaling or Text.PhysicalEquipmentScaling)))
 	elseif not skill.shield then table.insert(lines,Text.NoDamageScaling) end
 	if skill.shield then table.insert(lines,skill.partyShield and Text.PartyBarrierScaling or Text.SelfBarrierScaling) end
 	return table.concat(lines,"\n")

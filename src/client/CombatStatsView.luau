@@ -62,7 +62,7 @@ function View.render(parent,hero,snapshot,draft,position,width,state,redraw)
    y+=height+10
   end
  end
- for _,entry in ipairs({{'HeroNote',Text.HeroNote},{'DefenseNote',Text.DefenseNote}}) do
+ for _,entry in ipairs({{'PowerGuide',Preview.powerGuide(hero.baseClassId)},{'HeroNote',Text.HeroNote},{'DefenseNote',Text.DefenseNote}}) do
   local _,height=label(entry[1],entry[2],y,11,Theme.color.muted);y+=height+6
  end
  panel.Size=UDim2.fromOffset(width,y+8)

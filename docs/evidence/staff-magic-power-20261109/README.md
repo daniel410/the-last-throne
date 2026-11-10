@@ -9,3 +9,5 @@
 검증: `lua tests/equipment-flat-power.spec.lua` 110, `lua tests/skill-stat-preview.spec.lua` 1392, `lua tests/equipment-families.spec.lua` 458, `lua tests/copper-dexterity.spec.lua` 130: 총2090검사 PASS. `git diff --check` PASS. `tests/stat-investment-preview.spec.lua`는 기존 곱셈 장비공격 기대177.41과 현재 고정합산170이 달라 실패한다. HEAD의 src/shared와 해당 테스트만 임시 archive한 기준에서도 같은 실패를 재현했다. 이번 표시 수정과 무관한 기존 테스트 기대 불일치이며 수정 범위에 포함하지 않았다.
 
 다른 미커밋 자산 수정/삭제/생성은 보존하고 커밋에서 제외한다. 실제 계정/게시 클라이언트·PC/모바일 시각 수용은 미검증이다. QA는 지팡이 교체/강화 전후 Magic Power·스킬 피해 증가와 설명 줄바꿈을 확인한다. Roblox 게시/릴리스 태그 없음.
+
+후속 사용자 지시(게임내 설명 부족): PC/모바일 COMBAT STATS 및 스탯 투자 미리보기에 물리/마법 공격력의 실제 공식(기본100·레벨당3·투자STR/INT당2·장비 합산), 공격력과 1타 피해의 차이, Mage 일반공격/공격마법의 INT 적용·MP3·STR 비적용·지팡이 강화를 설명한다. 각 스킬 설명에도 INT/STR와 장비 공격력/강화가 함께 적용됨을 명시한다. 기존 자동 텍스트 높이/스크롤 계산을 사용한다. 추가 `lua tests/hero-stat-effects.spec.lua` 576검사 PASS, 스킬1392/고정공격110/DEX130 재검증 PASS. 원래 수치/조건/피해 계산은 그대로 유지한다.

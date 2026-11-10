@@ -94,8 +94,9 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
     local h=measured(text,12,mainW-8);label(scroll,'Gear_'..source.slot,text,4,top,mainW-8,h,12,Theme.color.silver);top+=h+6
    end
   end
-  local h=measured(Text.HeroNote..'\n'..Text.DefenseNote,11,mainW-8)
-  label(scroll,'CombatNotes',Text.HeroNote..'\n'..Text.DefenseNote,4,top,mainW-8,h,11,Theme.color.muted);top+=h
+  local notes=Preview.powerGuide(classId)..'\n'..Text.HeroNote..'\n'..Text.DefenseNote
+  local h=measured(notes,11,mainW-8)
+  label(scroll,'CombatNotes',notes,4,top,mainW-8,h,11,Theme.color.muted);top+=h
  elseif section=='Points' then
   top=0
   local w=(mainW-14)/2
