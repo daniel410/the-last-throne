@@ -1,6 +1,6 @@
 -- Fixed trial rate: 1 Diamond buys 50 RPG account Gold; no bundle bonus.
 -- Retire the 100-Gold SKU rather than changing its promised amount under the same ID.
-local C={version=6,storyDiamonds=3,offers={},sell={},goldOffers={
+local C={version=7,storyDiamonds=3,offers={},sell={},goldOffers={
  {id='rpg_gold_500_diamond',currency='diamonds',price=10,amount=500},
  {id='rpg_gold_1000_diamond',currency='diamonds',price=20,amount=1000},
  {id='rpg_gold_2000_diamond',currency='diamonds',price=40,amount=2000},

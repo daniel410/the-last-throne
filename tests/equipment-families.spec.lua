@@ -18,14 +18,14 @@ local function equal(a,b)
  return true
 end
 local F=C.equipmentFamilies
-local expected={traveler={1,'Common',3,3,20},tempered={1,'Common',5,5,30},veteran={10,'Uncommon',10,10,40},sentinel={10,'Rare',20,20,50}}
+local expected={traveler={1,'Common',3,3,20},tempered={1,'Common',5,5,30},veteran={10,'Uncommon',10,10,40},sentinel={10,'Rare',30,30,70}}
 check(#C.tierEquipment==40,'four complete families, ten definitions each')
 for _,id in ipairs(C.tierEquipment)do
  local d=C.items[id];local v=expected[d.family];local count=0;for _ in pairs(d.stats)do count=count+1 end
  check(count==1,'single fixed option '..id);check(not d.retired and not d.deleted,'current gear active '..id)
  check(d.level==v[1] and d.rarity==v[2],'level/grade '..id)
  local key=d.slot=='weapon' and 'power'or d.slot=='body' and (d.classId=='mage' and 'mana'or 'health')or d.slot=='hands' and 'power'or 'armor'
- local secondary=({traveler=2,tempered=4,veteran=7,sentinel=15})[d.family]
+ local secondary=({traveler=2,tempered=4,veteran=7,sentinel=20})[d.family]
  local amount=(d.slot=='hands'or d.slot=='feet')and secondary or d.slot=='body' and v[5]or (d.slot=='weapon'or d.slot=='offhand')and v[4]or v[3]
  check(d.stats[key]==amount,'fixed bonus '..id)
  near(E.stats(d,{enhancementLevel=9})[key],amount*1.27,'all four stat types enhance at3 percent')

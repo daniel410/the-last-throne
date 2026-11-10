@@ -65,6 +65,6 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  for family in pairs(totals)do for _,slot in ipairs({'weapon','head','body','hands','feet'})do totals[family]=totals[family]+Pricing.families[family][slot]end;if class=='knight'then totals[family]=totals[family]+Pricing.families[family].offhand end end
  check(totals.tempered<earnings[1],'full first upgrade fits the first epic authored gross budget '..class)
  check(totals.veteran>earnings[1]and totals.veteran<earnings[1]+earnings[2],'Veteran kit is a two-epic saving target '..class)
- check(totals.sentinel<=Content.mainCount*3*2,'Rare kit fits two difficulty tiers of first-clear Diamonds '..class)
+ check(totals.sentinel<=Content.mainCount*3*3,'boosted Rare kit fits three difficulty tiers of first-clear Diamonds '..class)
 end
 print('Blacksmith active stock: '..checks..' checks passed')

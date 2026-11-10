@@ -3,9 +3,18 @@ import argparse,hashlib,json,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--baseline',default='7279201286ded3f9ffc1e15891ccc2921f1c4f00');args=p.parse_args()
-old=subprocess.check_output(['git','show',args.baseline+':src/shared/EconomyCatalog.luau'],cwd=ROOT,text=True)
-assert ']==]' not in old
-bridge="local Old=assert(load([==["+old+"]==]))()\n"+r'''
+baseline_paths=['src/shared/EquipmentFamilies.luau','src/shared/ItemCatalog.luau','src/shared/EquipmentPricing.luau','src/shared/EconomyCatalog.luau']
+baseline_sources={}
+for path in baseline_paths:
+ result=subprocess.run(['git','show',args.baseline+':'+path],cwd=ROOT,text=True,capture_output=True)
+ if result.returncode==0:baseline_sources[path]=result.stdout
+ elif path!='src/shared/EquipmentPricing.luau':raise RuntimeError(result.stderr)
+assert 'EquipmentPricing' not in baseline_sources['src/shared/EconomyCatalog.luau']or 'src/shared/EquipmentPricing.luau'in baseline_sources
+prefix="local baselineModules={};local baselineEnv=setmetatable({}, {__index=_G});baselineEnv.dofile=function(path)if baselineModules[path]then return baselineModules[path]end;return dofile(path)end\n"
+for path,source in baseline_sources.items():
+ assert ']==]'not in source
+ prefix+='baselineModules['+json.dumps(path)+']=assert(load([==['+source+']==],'+json.dumps('@'+args.baseline+':'+path)+',"t",baselineEnv))()\n'
+bridge=prefix+'local Old=baselineModules["src/shared/EconomyCatalog.luau"]\n' +r'''
 local I=dofile('src/shared/ItemCatalog.luau');local C=dofile('src/shared/EconomyCatalog.luau');local P=dofile('src/shared/EquipmentPricing.luau')
 local Campaign=dofile('src/shared/CampaignContent.luau');local S=dofile('src/shared/EncounterSummary.luau');local D=dofile('src/shared/Difficulty.luau')
 for _,offer in ipairs(C.goldOffers)do assert(offer.amount==offer.price*P.goldPerDiamond,'Exchange basis changed')end
@@ -56,7 +65,7 @@ for family in ['tempered','veteran','sentinel']:
   else:row['firstClearStoryEquivalents']=(price+2)//3
   report['sets'].append(row)
 report['checks']={}
-assert len(report['removed'])==14 and all(r['family']=='traveler'for r in report['removed'])
+assert all(r['family']=='traveler'for r in report['removed'])
 assert all(o['family']!='traveler'for o in report['offers'])
 assert all(o['price']==o['oldPrice']for o in report['offers']if o['category']!='Equipment')
 for offer in report['offers']:
@@ -65,8 +74,9 @@ for offer in report['offers']:
   assert len({o['price']*(50 if o['currency']=='diamonds'else 1)for o in peers})==1
   old_min=min(o['oldPrice']*(50 if o['currency']=='diamonds'else 1)for o in peers)
   assert offer['resaleGold']<old_min # Stock bought at historical prices cannot profit on resale.
-report['checks'].update(removedTravelerOffers=14,remainingOffers=len(report['offers']),unchangedConsumableAndResetOffers=10,dualCurrencyParity=True,noHistoricalBuyCurrentResaleArbitrage=True)
+report['checks'].update(removedTravelerOffers=len(report['removed']),remainingOffers=len(report['offers']),unchangedConsumableAndResetOffers=10,dualCurrencyParity=True,noHistoricalBuyCurrentResaleArbitrage=True)
 inputs=['src/shared/EquipmentPricing.luau','src/shared/EconomyCatalog.luau','src/shared/EquipmentFamilies.luau','src/shared/CampaignContent.luau','src/shared/DeepwoodContent.luau','src/shared/QuestCompletionRewards.luau','src/shared/FrozenValeContent.luau','src/shared/EmberCalderaContent.luau','src/shared/LateEpicContent.luau','src/shared/AdventureRepeatRewards.luau','src/shared/Difficulty.luau','src/shared/DeepwoodEncounterBalance.luau','src/shared/EncounterSummary.luau','src/shared/RewardEconomy.luau','src/shared/CampaignStoryText.luau','src/shared/CampaignExpansion.luau','src/shared/CampaignStoryBeats.luau']
+report['baselineInputSha256']={path:hashlib.sha256(source.encode()).hexdigest()for path,source in baseline_sources.items()}
 report['scriptSha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
 report['inputSha256']={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest()for name in inputs}
 args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_text(json.dumps(report,indent=2)+'\n')

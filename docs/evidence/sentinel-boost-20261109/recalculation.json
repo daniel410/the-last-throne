@@ -1,0 +1,2657 @@
+{
+  "baselineCommit": "4b4d6601647b06878b19da573437b4ecb50378dc",
+  "scope": "Static authored finite encounters and completion budgets; not minimum route, live wallet, play time, drop income, side quests, daily login, consumable use or multiplayer telemetry. First fixed rewards remain unchanged across modes; kill/repeat values use pinned current rules.",
+  "missions": [
+    {
+      "id": "DW-01",
+      "epic": 1,
+      "mode": "Easy",
+      "firstFixedGold": 150,
+      "finiteKillGold": 28,
+      "repeatFixedGold": 36,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "DW-01",
+      "epic": 1,
+      "mode": "Hard",
+      "firstFixedGold": 150,
+      "finiteKillGold": 61,
+      "repeatFixedGold": 79,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "DW-01",
+      "epic": 1,
+      "mode": "Insane",
+      "firstFixedGold": 150,
+      "finiteKillGold": 102,
+      "repeatFixedGold": 134,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "DW-01",
+      "epic": 1,
+      "mode": "Hell",
+      "firstFixedGold": 150,
+      "finiteKillGold": 242,
+      "repeatFixedGold": 314,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "DW-02",
+      "epic": 1,
+      "mode": "Easy",
+      "firstFixedGold": 240,
+      "finiteKillGold": 24,
+      "repeatFixedGold": 57,
+      "finiteEnemies": 24
+    },
+    {
+      "id": "DW-02",
+      "epic": 1,
+      "mode": "Hard",
+      "firstFixedGold": 240,
+      "finiteKillGold": 52,
+      "repeatFixedGold": 126,
+      "finiteEnemies": 24
+    },
+    {
+      "id": "DW-02",
+      "epic": 1,
+      "mode": "Insane",
+      "firstFixedGold": 240,
+      "finiteKillGold": 88,
+      "repeatFixedGold": 216,
+      "finiteEnemies": 24
+    },
+    {
+      "id": "DW-02",
+      "epic": 1,
+      "mode": "Hell",
+      "firstFixedGold": 240,
+      "finiteKillGold": 208,
+      "repeatFixedGold": 504,
+      "finiteEnemies": 24
+    },
+    {
+      "id": "DW-03",
+      "epic": 1,
+      "mode": "Easy",
+      "firstFixedGold": 100,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "DW-03",
+      "epic": 1,
+      "mode": "Hard",
+      "firstFixedGold": 100,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "DW-03",
+      "epic": 1,
+      "mode": "Insane",
+      "firstFixedGold": 100,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "DW-03",
+      "epic": 1,
+      "mode": "Hell",
+      "firstFixedGold": 100,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "DW-04",
+      "epic": 1,
+      "mode": "Easy",
+      "firstFixedGold": 320,
+      "finiteKillGold": 40,
+      "repeatFixedGold": 76,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "DW-04",
+      "epic": 1,
+      "mode": "Hard",
+      "firstFixedGold": 320,
+      "finiteKillGold": 86,
+      "repeatFixedGold": 168,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "DW-04",
+      "epic": 1,
+      "mode": "Insane",
+      "firstFixedGold": 320,
+      "finiteKillGold": 148,
+      "repeatFixedGold": 288,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "DW-04",
+      "epic": 1,
+      "mode": "Hell",
+      "firstFixedGold": 320,
+      "finiteKillGold": 348,
+      "repeatFixedGold": 672,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "DW-05",
+      "epic": 1,
+      "mode": "Easy",
+      "firstFixedGold": 450,
+      "finiteKillGold": 164,
+      "repeatFixedGold": 108,
+      "finiteEnemies": 73
+    },
+    {
+      "id": "DW-05",
+      "epic": 1,
+      "mode": "Hard",
+      "firstFixedGold": 450,
+      "finiteKillGold": 356,
+      "repeatFixedGold": 237,
+      "finiteEnemies": 73
+    },
+    {
+      "id": "DW-05",
+      "epic": 1,
+      "mode": "Insane",
+      "firstFixedGold": 450,
+      "finiteKillGold": 612,
+      "repeatFixedGold": 404,
+      "finiteEnemies": 73
+    },
+    {
+      "id": "DW-05",
+      "epic": 1,
+      "mode": "Hell",
+      "firstFixedGold": 450,
+      "finiteKillGold": 1432,
+      "repeatFixedGold": 944,
+      "finiteEnemies": 73
+    },
+    {
+      "id": "DW-06",
+      "epic": 1,
+      "mode": "Easy",
+      "firstFixedGold": 380,
+      "finiteKillGold": 40,
+      "repeatFixedGold": 91,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "DW-06",
+      "epic": 1,
+      "mode": "Hard",
+      "firstFixedGold": 380,
+      "finiteKillGold": 85,
+      "repeatFixedGold": 200,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "DW-06",
+      "epic": 1,
+      "mode": "Insane",
+      "firstFixedGold": 380,
+      "finiteKillGold": 150,
+      "repeatFixedGold": 341,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "DW-06",
+      "epic": 1,
+      "mode": "Hell",
+      "firstFixedGold": 380,
+      "finiteKillGold": 350,
+      "repeatFixedGold": 797,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "DW-07",
+      "epic": 1,
+      "mode": "Easy",
+      "firstFixedGold": 650,
+      "finiteKillGold": 210,
+      "repeatFixedGold": 156,
+      "finiteEnemies": 91
+    },
+    {
+      "id": "DW-07",
+      "epic": 1,
+      "mode": "Hard",
+      "firstFixedGold": 650,
+      "finiteKillGold": 453,
+      "repeatFixedGold": 343,
+      "finiteEnemies": 91
+    },
+    {
+      "id": "DW-07",
+      "epic": 1,
+      "mode": "Insane",
+      "firstFixedGold": 650,
+      "finiteKillGold": 787,
+      "repeatFixedGold": 584,
+      "finiteEnemies": 91
+    },
+    {
+      "id": "DW-07",
+      "epic": 1,
+      "mode": "Hell",
+      "firstFixedGold": 650,
+      "finiteKillGold": 1837,
+      "repeatFixedGold": 1364,
+      "finiteEnemies": 91
+    },
+    {
+      "id": "GW-01",
+      "epic": 2,
+      "mode": "Easy",
+      "firstFixedGold": 250,
+      "finiteKillGold": 27,
+      "repeatFixedGold": 60,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "GW-01",
+      "epic": 2,
+      "mode": "Hard",
+      "firstFixedGold": 250,
+      "finiteKillGold": 57,
+      "repeatFixedGold": 132,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "GW-01",
+      "epic": 2,
+      "mode": "Insane",
+      "firstFixedGold": 250,
+      "finiteKillGold": 99,
+      "repeatFixedGold": 224,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "GW-01",
+      "epic": 2,
+      "mode": "Hell",
+      "firstFixedGold": 250,
+      "finiteKillGold": 234,
+      "repeatFixedGold": 524,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "GW-02",
+      "epic": 2,
+      "mode": "Easy",
+      "firstFixedGold": 120,
+      "finiteKillGold": 27,
+      "repeatFixedGold": 28,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "GW-02",
+      "epic": 2,
+      "mode": "Hard",
+      "firstFixedGold": 120,
+      "finiteKillGold": 57,
+      "repeatFixedGold": 63,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "GW-02",
+      "epic": 2,
+      "mode": "Insane",
+      "firstFixedGold": 120,
+      "finiteKillGold": 99,
+      "repeatFixedGold": 108,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "GW-02",
+      "epic": 2,
+      "mode": "Hell",
+      "firstFixedGold": 120,
+      "finiteKillGold": 234,
+      "repeatFixedGold": 252,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "GW-03",
+      "epic": 2,
+      "mode": "Easy",
+      "firstFixedGold": 300,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 72,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "GW-03",
+      "epic": 2,
+      "mode": "Hard",
+      "firstFixedGold": 300,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 158,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "GW-03",
+      "epic": 2,
+      "mode": "Insane",
+      "firstFixedGold": 300,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 269,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "GW-03",
+      "epic": 2,
+      "mode": "Hell",
+      "firstFixedGold": 300,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 629,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "GW-04",
+      "epic": 2,
+      "mode": "Easy",
+      "firstFixedGold": 380,
+      "finiteKillGold": 140,
+      "repeatFixedGold": 91,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "GW-04",
+      "epic": 2,
+      "mode": "Hard",
+      "firstFixedGold": 380,
+      "finiteKillGold": 308,
+      "repeatFixedGold": 200,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "GW-04",
+      "epic": 2,
+      "mode": "Insane",
+      "firstFixedGold": 380,
+      "finiteKillGold": 523,
+      "repeatFixedGold": 341,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "GW-04",
+      "epic": 2,
+      "mode": "Hell",
+      "firstFixedGold": 380,
+      "finiteKillGold": 1223,
+      "repeatFixedGold": 797,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "GW-05",
+      "epic": 2,
+      "mode": "Easy",
+      "firstFixedGold": 420,
+      "finiteKillGold": 150,
+      "repeatFixedGold": 100,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "GW-05",
+      "epic": 2,
+      "mode": "Hard",
+      "firstFixedGold": 420,
+      "finiteKillGold": 330,
+      "repeatFixedGold": 221,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "GW-05",
+      "epic": 2,
+      "mode": "Insane",
+      "firstFixedGold": 420,
+      "finiteKillGold": 560,
+      "repeatFixedGold": 377,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "GW-05",
+      "epic": 2,
+      "mode": "Hell",
+      "firstFixedGold": 420,
+      "finiteKillGold": 1310,
+      "repeatFixedGold": 881,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "GW-06",
+      "epic": 2,
+      "mode": "Easy",
+      "firstFixedGold": 480,
+      "finiteKillGold": 55,
+      "repeatFixedGold": 115,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "GW-06",
+      "epic": 2,
+      "mode": "Hard",
+      "firstFixedGold": 480,
+      "finiteKillGold": 120,
+      "repeatFixedGold": 252,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "GW-06",
+      "epic": 2,
+      "mode": "Insane",
+      "firstFixedGold": 480,
+      "finiteKillGold": 205,
+      "repeatFixedGold": 432,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "GW-06",
+      "epic": 2,
+      "mode": "Hell",
+      "firstFixedGold": 480,
+      "finiteKillGold": 480,
+      "repeatFixedGold": 1008,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "GW-07",
+      "epic": 2,
+      "mode": "Easy",
+      "firstFixedGold": 650,
+      "finiteKillGold": 186,
+      "repeatFixedGold": 156,
+      "finiteEnemies": 37
+    },
+    {
+      "id": "GW-07",
+      "epic": 2,
+      "mode": "Hard",
+      "firstFixedGold": 650,
+      "finiteKillGold": 408,
+      "repeatFixedGold": 343,
+      "finiteEnemies": 37
+    },
+    {
+      "id": "GW-07",
+      "epic": 2,
+      "mode": "Insane",
+      "firstFixedGold": 650,
+      "finiteKillGold": 696,
+      "repeatFixedGold": 584,
+      "finiteEnemies": 37
+    },
+    {
+      "id": "GW-07",
+      "epic": 2,
+      "mode": "Hell",
+      "firstFixedGold": 650,
+      "finiteKillGold": 1626,
+      "repeatFixedGold": 1364,
+      "finiteEnemies": 37
+    },
+    {
+      "id": "FV-01",
+      "epic": 3,
+      "mode": "Easy",
+      "firstFixedGold": 280,
+      "finiteKillGold": 50,
+      "repeatFixedGold": 73,
+      "finiteEnemies": 24
+    },
+    {
+      "id": "FV-01",
+      "epic": 3,
+      "mode": "Hard",
+      "firstFixedGold": 280,
+      "finiteKillGold": 106,
+      "repeatFixedGold": 147,
+      "finiteEnemies": 24
+    },
+    {
+      "id": "FV-01",
+      "epic": 3,
+      "mode": "Insane",
+      "firstFixedGold": 280,
+      "finiteKillGold": 183,
+      "repeatFixedGold": 252,
+      "finiteEnemies": 24
+    },
+    {
+      "id": "FV-01",
+      "epic": 3,
+      "mode": "Hell",
+      "firstFixedGold": 280,
+      "finiteKillGold": 428,
+      "repeatFixedGold": 588,
+      "finiteEnemies": 24
+    },
+    {
+      "id": "FV-02",
+      "epic": 3,
+      "mode": "Easy",
+      "firstFixedGold": 120,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "FV-02",
+      "epic": 3,
+      "mode": "Hard",
+      "firstFixedGold": 120,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "FV-02",
+      "epic": 3,
+      "mode": "Insane",
+      "firstFixedGold": 120,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "FV-02",
+      "epic": 3,
+      "mode": "Hell",
+      "firstFixedGold": 120,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "FV-03",
+      "epic": 3,
+      "mode": "Easy",
+      "firstFixedGold": 360,
+      "finiteKillGold": 98,
+      "repeatFixedGold": 94,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "FV-03",
+      "epic": 3,
+      "mode": "Hard",
+      "firstFixedGold": 360,
+      "finiteKillGold": 196,
+      "repeatFixedGold": 189,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "FV-03",
+      "epic": 3,
+      "mode": "Insane",
+      "firstFixedGold": 360,
+      "finiteKillGold": 336,
+      "repeatFixedGold": 324,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "FV-03",
+      "epic": 3,
+      "mode": "Hell",
+      "firstFixedGold": 360,
+      "finiteKillGold": 791,
+      "repeatFixedGold": 756,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "FV-04",
+      "epic": 3,
+      "mode": "Easy",
+      "firstFixedGold": 480,
+      "finiteKillGold": 74,
+      "repeatFixedGold": 126,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "FV-04",
+      "epic": 3,
+      "mode": "Hard",
+      "firstFixedGold": 480,
+      "finiteKillGold": 148,
+      "repeatFixedGold": 252,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "FV-04",
+      "epic": 3,
+      "mode": "Insane",
+      "firstFixedGold": 480,
+      "finiteKillGold": 256,
+      "repeatFixedGold": 432,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "FV-04",
+      "epic": 3,
+      "mode": "Hell",
+      "firstFixedGold": 480,
+      "finiteKillGold": 601,
+      "repeatFixedGold": 1008,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "FV-05",
+      "epic": 3,
+      "mode": "Easy",
+      "firstFixedGold": 540,
+      "finiteKillGold": 108,
+      "repeatFixedGold": 142,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "FV-05",
+      "epic": 3,
+      "mode": "Hard",
+      "firstFixedGold": 540,
+      "finiteKillGold": 219,
+      "repeatFixedGold": 284,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "FV-05",
+      "epic": 3,
+      "mode": "Insane",
+      "firstFixedGold": 540,
+      "finiteKillGold": 376,
+      "repeatFixedGold": 485,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "FV-05",
+      "epic": 3,
+      "mode": "Hell",
+      "firstFixedGold": 540,
+      "finiteKillGold": 881,
+      "repeatFixedGold": 1133,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "FV-06",
+      "epic": 3,
+      "mode": "Easy",
+      "firstFixedGold": 680,
+      "finiteKillGold": 256,
+      "repeatFixedGold": 179,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "FV-06",
+      "epic": 3,
+      "mode": "Hard",
+      "firstFixedGold": 680,
+      "finiteKillGold": 585,
+      "repeatFixedGold": 408,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "FV-06",
+      "epic": 3,
+      "mode": "Insane",
+      "firstFixedGold": 680,
+      "finiteKillGold": 1055,
+      "repeatFixedGold": 734,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "FV-06",
+      "epic": 3,
+      "mode": "Hell",
+      "firstFixedGold": 680,
+      "finiteKillGold": 2055,
+      "repeatFixedGold": 1428,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "FV-07",
+      "epic": 3,
+      "mode": "Easy",
+      "firstFixedGold": 900,
+      "finiteKillGold": 261,
+      "repeatFixedGold": 237,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "FV-07",
+      "epic": 3,
+      "mode": "Hard",
+      "firstFixedGold": 900,
+      "finiteKillGold": 600,
+      "repeatFixedGold": 540,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "FV-07",
+      "epic": 3,
+      "mode": "Insane",
+      "firstFixedGold": 900,
+      "finiteKillGold": 1080,
+      "repeatFixedGold": 972,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "FV-07",
+      "epic": 3,
+      "mode": "Hell",
+      "firstFixedGold": 900,
+      "finiteKillGold": 2100,
+      "repeatFixedGold": 1889,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "EC-01",
+      "epic": 4,
+      "mode": "Easy",
+      "firstFixedGold": 420,
+      "finiteKillGold": 104,
+      "repeatFixedGold": 110,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "EC-01",
+      "epic": 4,
+      "mode": "Hard",
+      "firstFixedGold": 420,
+      "finiteKillGold": 244,
+      "repeatFixedGold": 252,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "EC-01",
+      "epic": 4,
+      "mode": "Insane",
+      "firstFixedGold": 420,
+      "finiteKillGold": 440,
+      "repeatFixedGold": 453,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "EC-01",
+      "epic": 4,
+      "mode": "Hell",
+      "firstFixedGold": 420,
+      "finiteKillGold": 856,
+      "repeatFixedGold": 881,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "EC-02",
+      "epic": 4,
+      "mode": "Easy",
+      "firstFixedGold": 160,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "EC-02",
+      "epic": 4,
+      "mode": "Hard",
+      "firstFixedGold": 160,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "EC-02",
+      "epic": 4,
+      "mode": "Insane",
+      "firstFixedGold": 160,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "EC-02",
+      "epic": 4,
+      "mode": "Hell",
+      "firstFixedGold": 160,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "EC-03",
+      "epic": 4,
+      "mode": "Easy",
+      "firstFixedGold": 560,
+      "finiteKillGold": 127,
+      "repeatFixedGold": 147,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "EC-03",
+      "epic": 4,
+      "mode": "Hard",
+      "firstFixedGold": 560,
+      "finiteKillGold": 297,
+      "repeatFixedGold": 336,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "EC-03",
+      "epic": 4,
+      "mode": "Insane",
+      "firstFixedGold": 560,
+      "finiteKillGold": 537,
+      "repeatFixedGold": 604,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "EC-03",
+      "epic": 4,
+      "mode": "Hell",
+      "firstFixedGold": 560,
+      "finiteKillGold": 1045,
+      "repeatFixedGold": 1176,
+      "finiteEnemies": 42
+    },
+    {
+      "id": "EC-04",
+      "epic": 4,
+      "mode": "Easy",
+      "firstFixedGold": 680,
+      "finiteKillGold": 114,
+      "repeatFixedGold": 179,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "EC-04",
+      "epic": 4,
+      "mode": "Hard",
+      "firstFixedGold": 680,
+      "finiteKillGold": 270,
+      "repeatFixedGold": 408,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "EC-04",
+      "epic": 4,
+      "mode": "Insane",
+      "firstFixedGold": 680,
+      "finiteKillGold": 486,
+      "repeatFixedGold": 734,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "EC-04",
+      "epic": 4,
+      "mode": "Hell",
+      "firstFixedGold": 680,
+      "finiteKillGold": 942,
+      "repeatFixedGold": 1428,
+      "finiteEnemies": 36
+    },
+    {
+      "id": "EC-05",
+      "epic": 4,
+      "mode": "Easy",
+      "firstFixedGold": 720,
+      "finiteKillGold": 60,
+      "repeatFixedGold": 189,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "EC-05",
+      "epic": 4,
+      "mode": "Hard",
+      "firstFixedGold": 720,
+      "finiteKillGold": 141,
+      "repeatFixedGold": 432,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "EC-05",
+      "epic": 4,
+      "mode": "Insane",
+      "firstFixedGold": 720,
+      "finiteKillGold": 255,
+      "repeatFixedGold": 777,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "EC-05",
+      "epic": 4,
+      "mode": "Hell",
+      "firstFixedGold": 720,
+      "finiteKillGold": 498,
+      "repeatFixedGold": 1512,
+      "finiteEnemies": 18
+    },
+    {
+      "id": "EC-06",
+      "epic": 4,
+      "mode": "Easy",
+      "firstFixedGold": 900,
+      "finiteKillGold": 322,
+      "repeatFixedGold": 237,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "EC-06",
+      "epic": 4,
+      "mode": "Hard",
+      "firstFixedGold": 900,
+      "finiteKillGold": 738,
+      "repeatFixedGold": 540,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "EC-06",
+      "epic": 4,
+      "mode": "Insane",
+      "firstFixedGold": 900,
+      "finiteKillGold": 1330,
+      "repeatFixedGold": 972,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "EC-06",
+      "epic": 4,
+      "mode": "Hell",
+      "firstFixedGold": 900,
+      "finiteKillGold": 2589,
+      "repeatFixedGold": 1889,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "EC-07",
+      "epic": 4,
+      "mode": "Easy",
+      "firstFixedGold": 1200,
+      "finiteKillGold": 389,
+      "repeatFixedGold": 316,
+      "finiteEnemies": 43
+    },
+    {
+      "id": "EC-07",
+      "epic": 4,
+      "mode": "Hard",
+      "firstFixedGold": 1200,
+      "finiteKillGold": 883,
+      "repeatFixedGold": 720,
+      "finiteEnemies": 43
+    },
+    {
+      "id": "EC-07",
+      "epic": 4,
+      "mode": "Insane",
+      "firstFixedGold": 1200,
+      "finiteKillGold": 1591,
+      "repeatFixedGold": 1296,
+      "finiteEnemies": 43
+    },
+    {
+      "id": "EC-07",
+      "epic": 4,
+      "mode": "Hell",
+      "firstFixedGold": 1200,
+      "finiteKillGold": 3094,
+      "repeatFixedGold": 2520,
+      "finiteEnemies": 43
+    },
+    {
+      "id": "HG-01",
+      "epic": 5,
+      "mode": "Easy",
+      "firstFixedGold": 600,
+      "finiteKillGold": 120,
+      "repeatFixedGold": 158,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "HG-01",
+      "epic": 5,
+      "mode": "Hard",
+      "firstFixedGold": 600,
+      "finiteKillGold": 275,
+      "repeatFixedGold": 360,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "HG-01",
+      "epic": 5,
+      "mode": "Insane",
+      "firstFixedGold": 600,
+      "finiteKillGold": 495,
+      "repeatFixedGold": 648,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "HG-01",
+      "epic": 5,
+      "mode": "Hell",
+      "firstFixedGold": 600,
+      "finiteKillGold": 960,
+      "repeatFixedGold": 1260,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "HG-02",
+      "epic": 5,
+      "mode": "Easy",
+      "firstFixedGold": 220,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "HG-02",
+      "epic": 5,
+      "mode": "Hard",
+      "firstFixedGold": 220,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "HG-02",
+      "epic": 5,
+      "mode": "Insane",
+      "firstFixedGold": 220,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "HG-02",
+      "epic": 5,
+      "mode": "Hell",
+      "firstFixedGold": 220,
+      "finiteKillGold": 0,
+      "repeatFixedGold": 0,
+      "finiteEnemies": 0
+    },
+    {
+      "id": "HG-03",
+      "epic": 5,
+      "mode": "Easy",
+      "firstFixedGold": 780,
+      "finiteKillGold": 120,
+      "repeatFixedGold": 205,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "HG-03",
+      "epic": 5,
+      "mode": "Hard",
+      "firstFixedGold": 780,
+      "finiteKillGold": 275,
+      "repeatFixedGold": 468,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "HG-03",
+      "epic": 5,
+      "mode": "Insane",
+      "firstFixedGold": 780,
+      "finiteKillGold": 495,
+      "repeatFixedGold": 842,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "HG-03",
+      "epic": 5,
+      "mode": "Hell",
+      "firstFixedGold": 780,
+      "finiteKillGold": 960,
+      "repeatFixedGold": 1637,
+      "finiteEnemies": 30
+    },
+    {
+      "id": "HG-04",
+      "epic": 5,
+      "mode": "Easy",
+      "firstFixedGold": 900,
+      "finiteKillGold": 399,
+      "repeatFixedGold": 269,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "HG-04",
+      "epic": 5,
+      "mode": "Hard",
+      "firstFixedGold": 900,
+      "finiteKillGold": 803,
+      "repeatFixedGold": 540,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "HG-04",
+      "epic": 5,
+      "mode": "Insane",
+      "firstFixedGold": 900,
+      "finiteKillGold": 1447,
+      "repeatFixedGold": 972,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "HG-04",
+      "epic": 5,
+      "mode": "Hell",
+      "firstFixedGold": 900,
+      "finiteKillGold": 2816,
+      "repeatFixedGold": 1889,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "HG-05",
+      "epic": 5,
+      "mode": "Easy",
+      "firstFixedGold": 980,
+      "finiteKillGold": 412,
+      "repeatFixedGold": 293,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "HG-05",
+      "epic": 5,
+      "mode": "Hard",
+      "firstFixedGold": 980,
+      "finiteKillGold": 828,
+      "repeatFixedGold": 588,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "HG-05",
+      "epic": 5,
+      "mode": "Insane",
+      "firstFixedGold": 980,
+      "finiteKillGold": 1492,
+      "repeatFixedGold": 1058,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "HG-05",
+      "epic": 5,
+      "mode": "Hell",
+      "firstFixedGold": 980,
+      "finiteKillGold": 2904,
+      "repeatFixedGold": 2057,
+      "finiteEnemies": 25
+    },
+    {
+      "id": "HG-06",
+      "epic": 5,
+      "mode": "Easy",
+      "firstFixedGold": 1200,
+      "finiteKillGold": 390,
+      "repeatFixedGold": 360,
+      "finiteEnemies": 19
+    },
+    {
+      "id": "HG-06",
+      "epic": 5,
+      "mode": "Hard",
+      "firstFixedGold": 1200,
+      "finiteKillGold": 780,
+      "repeatFixedGold": 720,
+      "finiteEnemies": 19
+    },
+    {
+      "id": "HG-06",
+      "epic": 5,
+      "mode": "Insane",
+      "firstFixedGold": 1200,
+      "finiteKillGold": 1404,
+      "repeatFixedGold": 1296,
+      "finiteEnemies": 19
+    },
+    {
+      "id": "HG-06",
+      "epic": 5,
+      "mode": "Hell",
+      "firstFixedGold": 1200,
+      "finiteKillGold": 2730,
+      "repeatFixedGold": 2520,
+      "finiteEnemies": 19
+    },
+    {
+      "id": "HG-07",
+      "epic": 5,
+      "mode": "Easy",
+      "firstFixedGold": 1600,
+      "finiteKillGold": 462,
+      "repeatFixedGold": 480,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "HG-07",
+      "epic": 5,
+      "mode": "Hard",
+      "firstFixedGold": 1600,
+      "finiteKillGold": 925,
+      "repeatFixedGold": 960,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "HG-07",
+      "epic": 5,
+      "mode": "Insane",
+      "firstFixedGold": 1600,
+      "finiteKillGold": 1665,
+      "repeatFixedGold": 1728,
+      "finiteEnemies": 31
+    },
+    {
+      "id": "HG-07",
+      "epic": 5,
+      "mode": "Hell",
+      "firstFixedGold": 1600,
+      "finiteKillGold": 3237,
+      "repeatFixedGold": 3360,
+      "finiteEnemies": 31
+    }
+  ],
+  "offers": [
+    {
+      "id": "health_potion",
+      "definitionId": "health_potion",
+      "name": "Small Health Potion",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "gold",
+      "price": 25,
+      "oldPrice": 25,
+      "resaleGold": 5,
+      "category": "Consumables"
+    },
+    {
+      "id": "health_potion_medium",
+      "definitionId": "health_potion_medium",
+      "name": "Medium Health Potion",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "gold",
+      "price": 60,
+      "oldPrice": 60,
+      "resaleGold": 12,
+      "category": "Consumables"
+    },
+    {
+      "id": "health_potion_large",
+      "definitionId": "health_potion_large",
+      "name": "Large Health Potion",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "gold",
+      "price": 100,
+      "oldPrice": 100,
+      "resaleGold": 20,
+      "category": "Consumables"
+    },
+    {
+      "id": "health_potion_xl",
+      "definitionId": "health_potion_xl",
+      "name": "XL Health Potion",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "gold",
+      "price": 200,
+      "oldPrice": 200,
+      "resaleGold": 40,
+      "category": "Consumables"
+    },
+    {
+      "id": "mana_potion",
+      "definitionId": "mana_potion",
+      "name": "Small Mana Potion",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "gold",
+      "price": 20,
+      "oldPrice": 20,
+      "resaleGold": 4,
+      "category": "Consumables"
+    },
+    {
+      "id": "mana_potion_medium",
+      "definitionId": "mana_potion_medium",
+      "name": "Medium Mana Potion",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "gold",
+      "price": 40,
+      "oldPrice": 40,
+      "resaleGold": 8,
+      "category": "Consumables"
+    },
+    {
+      "id": "mana_potion_large",
+      "definitionId": "mana_potion_large",
+      "name": "Large Mana Potion",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "gold",
+      "price": 80,
+      "oldPrice": 80,
+      "resaleGold": 16,
+      "category": "Consumables"
+    },
+    {
+      "id": "mana_potion_xl",
+      "definitionId": "mana_potion_xl",
+      "name": "XL Mana Potion",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "gold",
+      "price": 160,
+      "oldPrice": 160,
+      "resaleGold": 32,
+      "category": "Consumables"
+    },
+    {
+      "id": "stat_reset_ticket_diamond",
+      "definitionId": "stat_reset_ticket",
+      "name": "Stat Reset Ticket",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "diamonds",
+      "price": 100,
+      "oldPrice": 100,
+      "resaleGold": 0,
+      "category": "Consumables"
+    },
+    {
+      "id": "skill_reset_ticket_diamond",
+      "definitionId": "skill_reset_ticket",
+      "name": "Skill Reset Ticket",
+      "family": "accessory",
+      "slot": "consumable",
+      "currency": "diamonds",
+      "price": 100,
+      "oldPrice": 100,
+      "resaleGold": 0,
+      "category": "Consumables"
+    },
+    {
+      "id": "mage_weapon_fine",
+      "definitionId": "mage_weapon_fine",
+      "name": "Tempered Staff",
+      "family": "tempered",
+      "slot": "weapon",
+      "currency": "gold",
+      "price": 500,
+      "oldPrice": 500,
+      "resaleGold": 100,
+      "category": "Equipment"
+    },
+    {
+      "id": "dwarf_weapon_fine",
+      "definitionId": "dwarf_weapon_fine",
+      "name": "Tempered Axe",
+      "family": "tempered",
+      "slot": "weapon",
+      "currency": "gold",
+      "price": 500,
+      "oldPrice": 500,
+      "resaleGold": 100,
+      "category": "Equipment"
+    },
+    {
+      "id": "elf_weapon_fine",
+      "definitionId": "elf_weapon_fine",
+      "name": "Tempered Bow",
+      "family": "tempered",
+      "slot": "weapon",
+      "currency": "gold",
+      "price": 500,
+      "oldPrice": 500,
+      "resaleGold": 100,
+      "category": "Equipment"
+    },
+    {
+      "id": "knight_weapon_fine",
+      "definitionId": "knight_weapon_fine",
+      "name": "Tempered Sword",
+      "family": "tempered",
+      "slot": "weapon",
+      "currency": "gold",
+      "price": 500,
+      "oldPrice": 500,
+      "resaleGold": 100,
+      "category": "Equipment"
+    },
+    {
+      "id": "knight_shield_fine",
+      "definitionId": "knight_shield_fine",
+      "name": "Tempered Shield",
+      "family": "tempered",
+      "slot": "offhand",
+      "currency": "gold",
+      "price": 400,
+      "oldPrice": 400,
+      "resaleGold": 80,
+      "category": "Equipment"
+    },
+    {
+      "id": "tempered_hood",
+      "definitionId": "tempered_hood",
+      "name": "Tempered Hood",
+      "family": "tempered",
+      "slot": "head",
+      "currency": "gold",
+      "price": 300,
+      "oldPrice": 300,
+      "resaleGold": 60,
+      "category": "Equipment"
+    },
+    {
+      "id": "tempered_coat",
+      "definitionId": "tempered_coat",
+      "name": "Tempered Coat",
+      "family": "tempered",
+      "slot": "body",
+      "currency": "gold",
+      "price": 400,
+      "oldPrice": 400,
+      "resaleGold": 80,
+      "category": "Equipment"
+    },
+    {
+      "id": "tempered_gloves",
+      "definitionId": "tempered_gloves",
+      "name": "Tempered Gloves",
+      "family": "tempered",
+      "slot": "hands",
+      "currency": "gold",
+      "price": 250,
+      "oldPrice": 250,
+      "resaleGold": 50,
+      "category": "Equipment"
+    },
+    {
+      "id": "tempered_boots",
+      "definitionId": "tempered_boots",
+      "name": "Tempered Boots",
+      "family": "tempered",
+      "slot": "feet",
+      "currency": "gold",
+      "price": 250,
+      "oldPrice": 250,
+      "resaleGold": 50,
+      "category": "Equipment"
+    },
+    {
+      "id": "mage_tempered_coat",
+      "definitionId": "mage_tempered_coat",
+      "name": "Tempered Mage Robe",
+      "family": "tempered",
+      "slot": "body",
+      "currency": "gold",
+      "price": 400,
+      "oldPrice": 400,
+      "resaleGold": 80,
+      "category": "Equipment"
+    },
+    {
+      "id": "mage_weapon_veteran",
+      "definitionId": "mage_weapon_veteran",
+      "name": "Veteran Staff",
+      "family": "veteran",
+      "slot": "weapon",
+      "currency": "gold",
+      "price": 1200,
+      "oldPrice": 1200,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "dwarf_weapon_veteran",
+      "definitionId": "dwarf_weapon_veteran",
+      "name": "Veteran Axe",
+      "family": "veteran",
+      "slot": "weapon",
+      "currency": "gold",
+      "price": 1200,
+      "oldPrice": 1200,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "elf_weapon_veteran",
+      "definitionId": "elf_weapon_veteran",
+      "name": "Veteran Bow",
+      "family": "veteran",
+      "slot": "weapon",
+      "currency": "gold",
+      "price": 1200,
+      "oldPrice": 1200,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "knight_weapon_veteran",
+      "definitionId": "knight_weapon_veteran",
+      "name": "Veteran Sword",
+      "family": "veteran",
+      "slot": "weapon",
+      "currency": "gold",
+      "price": 1200,
+      "oldPrice": 1200,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "veteran_tier_shield",
+      "definitionId": "veteran_tier_shield",
+      "name": "Veteran Shield",
+      "family": "veteran",
+      "slot": "offhand",
+      "currency": "gold",
+      "price": 1000,
+      "oldPrice": 1000,
+      "resaleGold": 200,
+      "category": "Equipment"
+    },
+    {
+      "id": "veteran_hood",
+      "definitionId": "veteran_hood",
+      "name": "Veteran Hood",
+      "family": "veteran",
+      "slot": "head",
+      "currency": "gold",
+      "price": 800,
+      "oldPrice": 800,
+      "resaleGold": 160,
+      "category": "Equipment"
+    },
+    {
+      "id": "veteran_coat",
+      "definitionId": "veteran_coat",
+      "name": "Veteran Coat",
+      "family": "veteran",
+      "slot": "body",
+      "currency": "gold",
+      "price": 1000,
+      "oldPrice": 1000,
+      "resaleGold": 200,
+      "category": "Equipment"
+    },
+    {
+      "id": "veteran_gloves",
+      "definitionId": "veteran_gloves",
+      "name": "Veteran Gloves",
+      "family": "veteran",
+      "slot": "hands",
+      "currency": "gold",
+      "price": 650,
+      "oldPrice": 650,
+      "resaleGold": 130,
+      "category": "Equipment"
+    },
+    {
+      "id": "veteran_boots",
+      "definitionId": "veteran_boots",
+      "name": "Veteran Boots",
+      "family": "veteran",
+      "slot": "feet",
+      "currency": "gold",
+      "price": 650,
+      "oldPrice": 650,
+      "resaleGold": 130,
+      "category": "Equipment"
+    },
+    {
+      "id": "mage_veteran_coat",
+      "definitionId": "mage_veteran_coat",
+      "name": "Veteran Mage Robe",
+      "family": "veteran",
+      "slot": "body",
+      "currency": "gold",
+      "price": 1000,
+      "oldPrice": 1000,
+      "resaleGold": 200,
+      "category": "Equipment"
+    },
+    {
+      "id": "mage_weapon_sentinel_diamond",
+      "definitionId": "mage_weapon_sentinel",
+      "name": "Sentinel Staff",
+      "family": "sentinel",
+      "slot": "weapon",
+      "currency": "diamonds",
+      "price": 60,
+      "oldPrice": 40,
+      "resaleGold": 400,
+      "category": "Equipment"
+    },
+    {
+      "id": "dwarf_weapon_sentinel_diamond",
+      "definitionId": "dwarf_weapon_sentinel",
+      "name": "Sentinel Axe",
+      "family": "sentinel",
+      "slot": "weapon",
+      "currency": "diamonds",
+      "price": 60,
+      "oldPrice": 40,
+      "resaleGold": 400,
+      "category": "Equipment"
+    },
+    {
+      "id": "elf_weapon_sentinel_diamond",
+      "definitionId": "elf_weapon_sentinel",
+      "name": "Sentinel Bow",
+      "family": "sentinel",
+      "slot": "weapon",
+      "currency": "diamonds",
+      "price": 60,
+      "oldPrice": 40,
+      "resaleGold": 400,
+      "category": "Equipment"
+    },
+    {
+      "id": "knight_weapon_sentinel_diamond",
+      "definitionId": "knight_weapon_sentinel",
+      "name": "Sentinel Sword",
+      "family": "sentinel",
+      "slot": "weapon",
+      "currency": "diamonds",
+      "price": 60,
+      "oldPrice": 40,
+      "resaleGold": 400,
+      "category": "Equipment"
+    },
+    {
+      "id": "sentinel_tier_shield_diamond",
+      "definitionId": "sentinel_tier_shield",
+      "name": "Sentinel Shield",
+      "family": "sentinel",
+      "slot": "offhand",
+      "currency": "diamonds",
+      "price": 48,
+      "oldPrice": 32,
+      "resaleGold": 320,
+      "category": "Equipment"
+    },
+    {
+      "id": "sentinel_tier_hood_diamond",
+      "definitionId": "sentinel_tier_hood",
+      "name": "Sentinel Hood",
+      "family": "sentinel",
+      "slot": "head",
+      "currency": "diamonds",
+      "price": 42,
+      "oldPrice": 28,
+      "resaleGold": 280,
+      "category": "Equipment"
+    },
+    {
+      "id": "sentinel_tier_coat_diamond",
+      "definitionId": "sentinel_tier_coat",
+      "name": "Sentinel Coat",
+      "family": "sentinel",
+      "slot": "body",
+      "currency": "diamonds",
+      "price": 45,
+      "oldPrice": 32,
+      "resaleGold": 320,
+      "category": "Equipment"
+    },
+    {
+      "id": "sentinel_tier_gloves_diamond",
+      "definitionId": "sentinel_tier_gloves",
+      "name": "Sentinel Gloves",
+      "family": "sentinel",
+      "slot": "hands",
+      "currency": "diamonds",
+      "price": 32,
+      "oldPrice": 24,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "sentinel_tier_boots_diamond",
+      "definitionId": "sentinel_tier_boots",
+      "name": "Sentinel Boots",
+      "family": "sentinel",
+      "slot": "feet",
+      "currency": "diamonds",
+      "price": 32,
+      "oldPrice": 24,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "mage_sentinel_coat_diamond",
+      "definitionId": "mage_sentinel_coat",
+      "name": "Sentinel Mage Robe",
+      "family": "sentinel",
+      "slot": "body",
+      "currency": "diamonds",
+      "price": 45,
+      "oldPrice": 32,
+      "resaleGold": 320,
+      "category": "Equipment"
+    },
+    {
+      "id": "knight_shield_fine_diamond",
+      "definitionId": "knight_shield_fine",
+      "name": "Tempered Shield",
+      "family": "tempered",
+      "slot": "offhand",
+      "currency": "diamonds",
+      "price": 8,
+      "oldPrice": 8,
+      "resaleGold": 80,
+      "category": "Equipment"
+    },
+    {
+      "id": "veteran_hood_diamond",
+      "definitionId": "veteran_hood",
+      "name": "Veteran Hood",
+      "family": "veteran",
+      "slot": "head",
+      "currency": "diamonds",
+      "price": 16,
+      "oldPrice": 16,
+      "resaleGold": 160,
+      "category": "Equipment"
+    },
+    {
+      "id": "knight_weapon_veteran_diamond",
+      "definitionId": "knight_weapon_veteran",
+      "name": "Veteran Sword",
+      "family": "veteran",
+      "slot": "weapon",
+      "currency": "diamonds",
+      "price": 24,
+      "oldPrice": 24,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "elf_weapon_veteran_diamond",
+      "definitionId": "elf_weapon_veteran",
+      "name": "Veteran Bow",
+      "family": "veteran",
+      "slot": "weapon",
+      "currency": "diamonds",
+      "price": 24,
+      "oldPrice": 24,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "dwarf_weapon_veteran_diamond",
+      "definitionId": "dwarf_weapon_veteran",
+      "name": "Veteran Axe",
+      "family": "veteran",
+      "slot": "weapon",
+      "currency": "diamonds",
+      "price": 24,
+      "oldPrice": 24,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "mage_weapon_veteran_diamond",
+      "definitionId": "mage_weapon_veteran",
+      "name": "Veteran Staff",
+      "family": "veteran",
+      "slot": "weapon",
+      "currency": "diamonds",
+      "price": 24,
+      "oldPrice": 24,
+      "resaleGold": 240,
+      "category": "Equipment"
+    },
+    {
+      "id": "copper_ring",
+      "definitionId": "copper_ring",
+      "name": "Copper Ring",
+      "family": "accessory",
+      "slot": "accessory",
+      "currency": "gold",
+      "price": 300,
+      "oldPrice": 300,
+      "resaleGold": 60,
+      "category": "Equipment"
+    },
+    {
+      "id": "copper_ring_diamond",
+      "definitionId": "copper_ring",
+      "name": "Copper Ring",
+      "family": "accessory",
+      "slot": "accessory",
+      "currency": "diamonds",
+      "price": 6,
+      "oldPrice": 6,
+      "resaleGold": 60,
+      "category": "Equipment"
+    },
+    {
+      "id": "amber_charm",
+      "definitionId": "amber_charm",
+      "name": "Amber Charm",
+      "family": "accessory",
+      "slot": "accessory",
+      "currency": "gold",
+      "price": 400,
+      "oldPrice": 400,
+      "resaleGold": 80,
+      "category": "Equipment"
+    },
+    {
+      "id": "amber_charm_diamond",
+      "definitionId": "amber_charm",
+      "name": "Amber Charm",
+      "family": "accessory",
+      "slot": "accessory",
+      "currency": "diamonds",
+      "price": 8,
+      "oldPrice": 8,
+      "resaleGold": 80,
+      "category": "Equipment"
+    },
+    {
+      "id": "amber_mana_charm",
+      "definitionId": "amber_mana_charm",
+      "name": "Amber Mana Charm",
+      "family": "accessory",
+      "slot": "accessory",
+      "currency": "gold",
+      "price": 400,
+      "oldPrice": 400,
+      "resaleGold": 80,
+      "category": "Equipment"
+    },
+    {
+      "id": "amber_mana_charm_diamond",
+      "definitionId": "amber_mana_charm",
+      "name": "Amber Mana Charm",
+      "family": "accessory",
+      "slot": "accessory",
+      "currency": "diamonds",
+      "price": 8,
+      "oldPrice": 8,
+      "resaleGold": 80,
+      "category": "Equipment"
+    }
+  ],
+  "removed": [],
+  "gear": [
+    {
+      "id": "mage_weapon_traveler",
+      "family": "traveler",
+      "slot": "weapon",
+      "classId": "mage",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 50,
+      "oldResaleGold": 50
+    },
+    {
+      "id": "dwarf_weapon_traveler",
+      "family": "traveler",
+      "slot": "weapon",
+      "classId": "dwarf",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 50,
+      "oldResaleGold": 50
+    },
+    {
+      "id": "elf_weapon_traveler",
+      "family": "traveler",
+      "slot": "weapon",
+      "classId": "elf",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 50,
+      "oldResaleGold": 50
+    },
+    {
+      "id": "knight_weapon_traveler",
+      "family": "traveler",
+      "slot": "weapon",
+      "classId": "knight",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 50,
+      "oldResaleGold": 50
+    },
+    {
+      "id": "knight_shield",
+      "family": "traveler",
+      "slot": "offhand",
+      "classId": "knight",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 50,
+      "oldResaleGold": 50
+    },
+    {
+      "id": "traveler_hood",
+      "family": "traveler",
+      "slot": "head",
+      "classId": "all",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 16,
+      "oldResaleGold": 16
+    },
+    {
+      "id": "traveler_coat",
+      "family": "traveler",
+      "slot": "body",
+      "classId": "all",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 24,
+      "oldResaleGold": 24
+    },
+    {
+      "id": "traveler_gloves",
+      "family": "traveler",
+      "slot": "hands",
+      "classId": "all",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 16,
+      "oldResaleGold": 16
+    },
+    {
+      "id": "traveler_boots",
+      "family": "traveler",
+      "slot": "feet",
+      "classId": "all",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 16,
+      "oldResaleGold": 16
+    },
+    {
+      "id": "mage_traveler_coat",
+      "family": "traveler",
+      "slot": "body",
+      "classId": "mage",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 24,
+      "oldResaleGold": 24
+    },
+    {
+      "id": "mage_weapon_fine",
+      "family": "tempered",
+      "slot": "weapon",
+      "classId": "mage",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 100,
+      "oldResaleGold": 100
+    },
+    {
+      "id": "dwarf_weapon_fine",
+      "family": "tempered",
+      "slot": "weapon",
+      "classId": "dwarf",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 100,
+      "oldResaleGold": 100
+    },
+    {
+      "id": "elf_weapon_fine",
+      "family": "tempered",
+      "slot": "weapon",
+      "classId": "elf",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 100,
+      "oldResaleGold": 100
+    },
+    {
+      "id": "knight_weapon_fine",
+      "family": "tempered",
+      "slot": "weapon",
+      "classId": "knight",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 100,
+      "oldResaleGold": 100
+    },
+    {
+      "id": "knight_shield_fine",
+      "family": "tempered",
+      "slot": "offhand",
+      "classId": "knight",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 80,
+      "oldResaleGold": 80
+    },
+    {
+      "id": "tempered_hood",
+      "family": "tempered",
+      "slot": "head",
+      "classId": "all",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 60,
+      "oldResaleGold": 60
+    },
+    {
+      "id": "tempered_coat",
+      "family": "tempered",
+      "slot": "body",
+      "classId": "all",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 80,
+      "oldResaleGold": 80
+    },
+    {
+      "id": "tempered_gloves",
+      "family": "tempered",
+      "slot": "hands",
+      "classId": "all",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 50,
+      "oldResaleGold": 50
+    },
+    {
+      "id": "tempered_boots",
+      "family": "tempered",
+      "slot": "feet",
+      "classId": "all",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 50,
+      "oldResaleGold": 50
+    },
+    {
+      "id": "mage_tempered_coat",
+      "family": "tempered",
+      "slot": "body",
+      "classId": "mage",
+      "rarity": "Common",
+      "level": 1,
+      "resaleGold": 80,
+      "oldResaleGold": 80
+    },
+    {
+      "id": "mage_weapon_veteran",
+      "family": "veteran",
+      "slot": "weapon",
+      "classId": "mage",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 240,
+      "oldResaleGold": 240
+    },
+    {
+      "id": "dwarf_weapon_veteran",
+      "family": "veteran",
+      "slot": "weapon",
+      "classId": "dwarf",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 240,
+      "oldResaleGold": 240
+    },
+    {
+      "id": "elf_weapon_veteran",
+      "family": "veteran",
+      "slot": "weapon",
+      "classId": "elf",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 240,
+      "oldResaleGold": 240
+    },
+    {
+      "id": "knight_weapon_veteran",
+      "family": "veteran",
+      "slot": "weapon",
+      "classId": "knight",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 240,
+      "oldResaleGold": 240
+    },
+    {
+      "id": "veteran_tier_shield",
+      "family": "veteran",
+      "slot": "offhand",
+      "classId": "knight",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 200,
+      "oldResaleGold": 200
+    },
+    {
+      "id": "veteran_hood",
+      "family": "veteran",
+      "slot": "head",
+      "classId": "all",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 160,
+      "oldResaleGold": 160
+    },
+    {
+      "id": "veteran_coat",
+      "family": "veteran",
+      "slot": "body",
+      "classId": "all",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 200,
+      "oldResaleGold": 200
+    },
+    {
+      "id": "veteran_gloves",
+      "family": "veteran",
+      "slot": "hands",
+      "classId": "all",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 130,
+      "oldResaleGold": 130
+    },
+    {
+      "id": "veteran_boots",
+      "family": "veteran",
+      "slot": "feet",
+      "classId": "all",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 130,
+      "oldResaleGold": 130
+    },
+    {
+      "id": "mage_veteran_coat",
+      "family": "veteran",
+      "slot": "body",
+      "classId": "mage",
+      "rarity": "Uncommon",
+      "level": 10,
+      "resaleGold": 200,
+      "oldResaleGold": 200
+    },
+    {
+      "id": "mage_weapon_sentinel",
+      "family": "sentinel",
+      "slot": "weapon",
+      "classId": "mage",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 400,
+      "oldResaleGold": 400
+    },
+    {
+      "id": "dwarf_weapon_sentinel",
+      "family": "sentinel",
+      "slot": "weapon",
+      "classId": "dwarf",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 400,
+      "oldResaleGold": 400
+    },
+    {
+      "id": "elf_weapon_sentinel",
+      "family": "sentinel",
+      "slot": "weapon",
+      "classId": "elf",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 400,
+      "oldResaleGold": 400
+    },
+    {
+      "id": "knight_weapon_sentinel",
+      "family": "sentinel",
+      "slot": "weapon",
+      "classId": "knight",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 400,
+      "oldResaleGold": 400
+    },
+    {
+      "id": "sentinel_tier_shield",
+      "family": "sentinel",
+      "slot": "offhand",
+      "classId": "knight",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 320,
+      "oldResaleGold": 320
+    },
+    {
+      "id": "sentinel_tier_hood",
+      "family": "sentinel",
+      "slot": "head",
+      "classId": "all",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 280,
+      "oldResaleGold": 280
+    },
+    {
+      "id": "sentinel_tier_coat",
+      "family": "sentinel",
+      "slot": "body",
+      "classId": "all",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 320,
+      "oldResaleGold": 320
+    },
+    {
+      "id": "sentinel_tier_gloves",
+      "family": "sentinel",
+      "slot": "hands",
+      "classId": "all",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 240,
+      "oldResaleGold": 240
+    },
+    {
+      "id": "sentinel_tier_boots",
+      "family": "sentinel",
+      "slot": "feet",
+      "classId": "all",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 240,
+      "oldResaleGold": 240
+    },
+    {
+      "id": "mage_sentinel_coat",
+      "family": "sentinel",
+      "slot": "body",
+      "classId": "mage",
+      "rarity": "Rare",
+      "level": 10,
+      "resaleGold": 320,
+      "oldResaleGold": 320
+    }
+  ],
+  "rewardRules": 13,
+  "goldPerDiamond": 50,
+  "epics": [
+    {
+      "epic": 1,
+      "firstFixedGold": 2290,
+      "finiteKillGold": 506,
+      "firstGrossGold": 2796,
+      "repeatGrossGold": 1030
+    },
+    {
+      "epic": 2,
+      "firstFixedGold": 2600,
+      "finiteKillGold": 585,
+      "firstGrossGold": 3185,
+      "repeatGrossGold": 1207
+    },
+    {
+      "epic": 3,
+      "firstFixedGold": 3360,
+      "finiteKillGold": 847,
+      "firstGrossGold": 4207,
+      "repeatGrossGold": 1698
+    },
+    {
+      "epic": 4,
+      "firstFixedGold": 4640,
+      "finiteKillGold": 1116,
+      "firstGrossGold": 5756,
+      "repeatGrossGold": 2294
+    },
+    {
+      "epic": 5,
+      "firstFixedGold": 6280,
+      "finiteKillGold": 1903,
+      "firstGrossGold": 8183,
+      "repeatGrossGold": 3668
+    }
+  ],
+  "sets": [
+    {
+      "family": "tempered",
+      "classId": "knight",
+      "currency": "gold",
+      "price": 2100,
+      "oldPrice": 2100,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "grossThresholds": [
+        {
+          "reservedGold": 0,
+          "chapter": "DW-07",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 200,
+          "chapter": "DW-07",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 400,
+          "chapter": "DW-07",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 800,
+          "chapter": "GW-01",
+          "ignoresLevelGatesAndDrops": true
+        }
+      ]
+    },
+    {
+      "family": "tempered",
+      "classId": "elf",
+      "currency": "gold",
+      "price": 1700,
+      "oldPrice": 1700,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "grossThresholds": [
+        {
+          "reservedGold": 0,
+          "chapter": "DW-06",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 200,
+          "chapter": "DW-06",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 400,
+          "chapter": "DW-07",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 800,
+          "chapter": "DW-07",
+          "ignoresLevelGatesAndDrops": true
+        }
+      ]
+    },
+    {
+      "family": "tempered",
+      "classId": "dwarf",
+      "currency": "gold",
+      "price": 1700,
+      "oldPrice": 1700,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "grossThresholds": [
+        {
+          "reservedGold": 0,
+          "chapter": "DW-06",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 200,
+          "chapter": "DW-06",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 400,
+          "chapter": "DW-07",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 800,
+          "chapter": "DW-07",
+          "ignoresLevelGatesAndDrops": true
+        }
+      ]
+    },
+    {
+      "family": "tempered",
+      "classId": "mage",
+      "currency": "gold",
+      "price": 1700,
+      "oldPrice": 1700,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "grossThresholds": [
+        {
+          "reservedGold": 0,
+          "chapter": "DW-06",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 200,
+          "chapter": "DW-06",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 400,
+          "chapter": "DW-07",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 800,
+          "chapter": "DW-07",
+          "ignoresLevelGatesAndDrops": true
+        }
+      ]
+    },
+    {
+      "family": "veteran",
+      "classId": "knight",
+      "currency": "gold",
+      "price": 5300,
+      "oldPrice": 5300,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "grossThresholds": [
+        {
+          "reservedGold": 0,
+          "chapter": "GW-07",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 200,
+          "chapter": "GW-07",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 400,
+          "chapter": "GW-07",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 800,
+          "chapter": "FV-01",
+          "ignoresLevelGatesAndDrops": true
+        }
+      ]
+    },
+    {
+      "family": "veteran",
+      "classId": "elf",
+      "currency": "gold",
+      "price": 4300,
+      "oldPrice": 4300,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "grossThresholds": [
+        {
+          "reservedGold": 0,
+          "chapter": "GW-05",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 200,
+          "chapter": "GW-05",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 400,
+          "chapter": "GW-06",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 800,
+          "chapter": "GW-06",
+          "ignoresLevelGatesAndDrops": true
+        }
+      ]
+    },
+    {
+      "family": "veteran",
+      "classId": "dwarf",
+      "currency": "gold",
+      "price": 4300,
+      "oldPrice": 4300,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "grossThresholds": [
+        {
+          "reservedGold": 0,
+          "chapter": "GW-05",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 200,
+          "chapter": "GW-05",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 400,
+          "chapter": "GW-06",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 800,
+          "chapter": "GW-06",
+          "ignoresLevelGatesAndDrops": true
+        }
+      ]
+    },
+    {
+      "family": "veteran",
+      "classId": "mage",
+      "currency": "gold",
+      "price": 4300,
+      "oldPrice": 4300,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "grossThresholds": [
+        {
+          "reservedGold": 0,
+          "chapter": "GW-05",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 200,
+          "chapter": "GW-05",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 400,
+          "chapter": "GW-06",
+          "ignoresLevelGatesAndDrops": true
+        },
+        {
+          "reservedGold": 800,
+          "chapter": "GW-06",
+          "ignoresLevelGatesAndDrops": true
+        }
+      ]
+    },
+    {
+      "family": "sentinel",
+      "classId": "knight",
+      "currency": "diamonds",
+      "price": 259,
+      "oldPrice": 180,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "firstClearStoryEquivalents": 87
+    },
+    {
+      "family": "sentinel",
+      "classId": "elf",
+      "currency": "diamonds",
+      "price": 211,
+      "oldPrice": 148,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "firstClearStoryEquivalents": 71
+    },
+    {
+      "family": "sentinel",
+      "classId": "dwarf",
+      "currency": "diamonds",
+      "price": 211,
+      "oldPrice": 148,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "firstClearStoryEquivalents": 71
+    },
+    {
+      "family": "sentinel",
+      "classId": "mage",
+      "currency": "diamonds",
+      "price": 211,
+      "oldPrice": 148,
+      "excludesAccessories": true,
+      "allPiecesPurchased": true,
+      "firstClearStoryEquivalents": 71
+    }
+  ],
+  "checks": {
+    "removedTravelerOffers": 0,
+    "remainingOffers": 52,
+    "unchangedConsumableAndResetOffers": 10,
+    "dualCurrencyParity": true,
+    "noHistoricalBuyCurrentResaleArbitrage": true
+  },
+  "baselineInputSha256": {
+    "src/shared/EquipmentFamilies.luau": "9737f710cdcdf124b3dd0b5af974b4bbbf75f14e62203a9ad27586d96a4aacb0",
+    "src/shared/ItemCatalog.luau": "6b514c76d135f68e74e7ee2956181bc4c539bf9cbbcd515ef21f60c4a5f42e70",
+    "src/shared/EquipmentPricing.luau": "cc6e72efce9e5cf84d44e33d01af3e46eeecae8b6a6e60f19e7fc656abd95311",
+    "src/shared/EconomyCatalog.luau": "9ece74cd0b0b4d22dbe8bc2c8b8d611106b5a616795db930dc83489e7d92d07b"
+  },
+  "scriptSha256": "abfe4c7d94d22d225c92677c2c8d49bc95e161f994515b972bbc094dca376948",
+  "inputSha256": {
+    "src/shared/EquipmentPricing.luau": "cfde48fbda2e6c8cd6c918523369e5821d77b4dac237609ebeb145ac98a0f349",
+    "src/shared/EconomyCatalog.luau": "9389144c43e2f1d70469201954834ad7b71fe3984cb6f564ff840697f5d29242",
+    "src/shared/EquipmentFamilies.luau": "75476c3793bde63f01db19d966251ca85caac2a875d377f776dce3982f53cb6b",
+    "src/shared/CampaignContent.luau": "96495716bdae92816fdf9d784e7ae56613d1245a8558cfdcd5cba830662b9c40",
+    "src/shared/DeepwoodContent.luau": "85465947e04c287dd722a23c0c5cca12ed70e4ad2a6b5b39e7f6c247cc48a4bd",
+    "src/shared/QuestCompletionRewards.luau": "5b60b94dfa76b9ba9a034dbdbced75a32f189ddab6eb6e2ab4cf5cda67a89d30",
+    "src/shared/FrozenValeContent.luau": "af0e75e38ff8a74f5d37c4e071fff5e2b55e978c4427968a281ca73183421f79",
+    "src/shared/EmberCalderaContent.luau": "7dc49852d6e9b48b5b3ac2e106c2d3bc639a630d29f48df9c807b9f3d5670576",
+    "src/shared/LateEpicContent.luau": "e0ece5041f2601a5b4859f967f9edd991be2947e960a6a95ac21ec29fa80bf11",
+    "src/shared/AdventureRepeatRewards.luau": "2cf5027f904fce46419932c1d0f955c008b0f7366f423c45fdb7902b20f64f60",
+    "src/shared/Difficulty.luau": "49afe29f3a977c6d4d13f6ed2a99350f5b152489d0a7fed596903dd4cfff5fa0",
+    "src/shared/DeepwoodEncounterBalance.luau": "d0a90cce7c45dbd70af549fb58a4c2a892e1c179f38659160cbfef8b75df6e2b",
+    "src/shared/EncounterSummary.luau": "3970291b7392e09b36ee3912e7e78efbf0a23a854f972604bd16bb0119d8046a",
+    "src/shared/RewardEconomy.luau": "12af74f1389055b9af7f1594d15a674e1ccc931f7f2128711c5fdf48370485e5",
+    "src/shared/CampaignStoryText.luau": "7d5d4467d491d29e44e55661d64289e940dcedaaf6c277987bf9a22973ff4ae5",
+    "src/shared/CampaignExpansion.luau": "f59b37346718df7e06481a9c7c8536ef1b127fa5969edaebdf2f8256b9961e81",
+    "src/shared/CampaignStoryBeats.luau": "ae32253d3a5d4f24f04fb6393de9ddba191b60edf6f2c1d8fd53841a7ef8bd6d"
+  }
+}
