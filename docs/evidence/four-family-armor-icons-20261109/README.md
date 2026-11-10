@@ -14,6 +14,10 @@ TLT-028/029/032/041/052/057/084. 사용자 요청: 최신 Traveler/Tempered/Vete
 
 - `uv run --with pillow python tools/validate-four-family-armor-icons.py`:32 PNG/해시/참조/알파/32승인/24정의+8변형 통과.
 - ZIP CRC 통과. `git diff --check` 통과.
-- 빌드0.94.0과 네이티브 통합 검증은 소스 고정 후 아래 기록에 추가한다.
+- `run-in-roblox --place builds/0.94.0/TheLastThrone-0.94.0.rbxlx --script tests/four-family-armor-icons-native.luau`: **263검사 통과**. ContentProvider에서32이미지 모두 Success. 4클래스별 실제 대장간·강화·가방/상세/착용·창고·미수령·PC/모바일 기어 ImageLabel을 검사했다. 선택 기사와 소유 마법사가 다른 미수령품도 후드 표시 통과. 테스트용 플레이어/입력/원격 파사드는 복제한 InventoryGui 모듈에만 적용했다. [결과](native.json) / [원문](native.log).
+- 기존16무기·2재료 이미지 및 레거시 아틀라스 전체 바이트 유지: [대조](preservation.json).
+- 고정 소스 `83fdf465efa41cb9cdcff47cb8f4314803c78ba6`, 버전0.94.0. [빌드 기록](build.json), SHA256 `0111430f373151e271b6df14cd406d1854679970cf549a50ee9c433c0ff0a154`, 산출물 `builds/0.94.0/TheLastThrone-0.94.0.rbxlx`.
+- `python3 tests/single-build.spec.py --artifact builds/0.94.0/TheLastThrone-0.94.0.rbxlx`: 역할10/도착192·프로젝트 호환/실제 산출물 검사 통과.
+- 소스 커밋/원본33개 LFS(32 PNG+ZIP) 업로드와 origin/main 반영 확인. 후속 증거 커밋에도 수정 메타데이터/ZIP을 함께 반영한다.
 
 실제 게시 클라이언트·실기기·사용자 미술 수용은 미검증이다. Place 게시/릴리스 태그는 수행하지 않는다. 다음 담당자는 UI QA/사용자 미술 검수다.

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "status": "Roblox Approved; runtime integration pending native acceptance",
+  "status": "32 Roblox Approved; native image loading and four-class UI integration passed in 0.94.0",
   "scope": "32 concept-derived icons: 24 equipment definitions plus 8 Knight/Dwarf head variants; no weapon/stat/price/model changes",
   "tool": "built-in image_gen",
   "alphaPolicy": "Preserve native generated alpha; inspect >=128-alpha subject bounds and edge alpha <=1 without changing pixels.",
