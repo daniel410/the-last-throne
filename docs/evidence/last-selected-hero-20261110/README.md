@@ -20,4 +20,4 @@
 
 미검증: 실제 DataStore·게시 Roblox 클라이언트 로그인/종료/재접속·PC/모바일 화면. Studio 실행/적용·Place 게시·릴리스 태그는 수행하지 않는다. 다음 QA: 네 영웅 계정으로 엘프 외 영웅 선택→플레이→종료→재로그인 시 카드/초상/무기/다음 출발 영웅 유지, 배틀 복귀 후 재로그인 확인. 부모 티켓은 In Progress 유지.
 
-빌드는 소스 고정 후 `python3 tools/build-game.py --source HEAD --record docs/evidence/last-selected-hero-20261110/build.json`으로 만들며 실제 결과를 추가 기록한다.
+소스 `fe2270214ff4eaa41e2bee859722ea6d1e05f99c`를 origin/main에 푸시하고 원격 일치를 확인했다. `python3 tools/build-game.py --source HEAD --record docs/evidence/last-selected-hero-20261110/build.json` 성공. 산출물 `builds/0.95.5/TheLastThrone-0.95.5.rbxlx`, SHA-256 `02ce6bcc28bb73ca8db4f20ebce351368e4e62010f5d7ac8302be6373b7f624d`. 입력 LFS 자산은 빌더에서 해시를 확인했으며 신규 LFS 전송 대상은 없다. `python3 tests/single-build.spec.py --artifact builds/0.95.5/TheLastThrone-0.95.5.rbxlx`는 역할10·로딩192 및 실제 산출물 검사 PASS([기록](build-check.log)). 빌드 증거는 별도 커밋·푸시한다. 미게시.
