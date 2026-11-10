@@ -233,7 +233,9 @@ function Service.beforeHeroAction(p,action)
  if travel[p] or busy[p] then return true,'Busy' end
  if action=='ReturnLobby' then selections[p]=nil;if role=='Battle' then return Service.returnLobby(p) end end
  if role=='Battle' and action~='GetState' then return true,'WaitForLobby' end
- if action=='StartTutorial' then return true,Service.solo(p) end
+ -- The lobby Continue action follows saved progress, independent of the
+ -- mission picker cache. Explicit Solo in the expedition panel keeps its choice.
+ if action=='StartTutorial' then selections[p]=nil;return true,Service.solo(p) end
  if parties[p] and action=='StartTraining' then return true,'PartyChanged' end
  return false
 end

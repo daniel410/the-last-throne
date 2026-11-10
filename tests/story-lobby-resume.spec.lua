@@ -1,3 +1,4 @@
+-- Historical rule-12 checkpoint/replay coverage remains pinned before expansion.
 local A=dofile('src/shared/AdventureRules.luau')
 local R=dofile('src/server/Inventory/InventoryRules.luau')
 local C=dofile('src/shared/ItemCatalog.luau')
@@ -12,9 +13,9 @@ local function apply(profile,c,g,run)
  end
  return profile
 end
-p=assert(A.begin(p,'hero','DW-01','Easy','launch',p.revision,R,C))
+p=assert(A.begin(p,'hero','DW-01','Easy','launch',p.revision,R,C,12))
 for i=1,7 do local c=Content.mainChapters[i]
- for _,g in ipairs(c.goals)do if not g.optional then
+ for _,g in ipairs(c.coreGoals)do if not g.optional then
   if c.id=='DW-07'and g.id=='restoration'then break end
   p=apply(p,c,g,'launch')
  end end
@@ -25,17 +26,17 @@ check(not h.deepwood.clears['DW-07']and not h.deepwood.flags['DW-07:restoration'
 check(h.expeditions.active.missionId=='DW-01'and h.expeditions.active.completed,'saved launch mission differs from current objective')
 local saved=R.copy(p);local gold=p.wallet.gold;local xp=h.progression.xp
 -- Recover an existing account that already acquired the unintended early replay.
-local accidental=assert(A.begin(saved,'hero','DW-01','Easy','accidental',saved.revision,R,C))
-for _,goal in ipairs(Content.byId['DW-01'].goals)do if not goal.optional then accidental=apply(accidental,Content.byId['DW-01'],goal,'accidental')end end
+local accidental=assert(A.begin(saved,'hero','DW-01','Easy','accidental',saved.revision,R,C,12))
+for _,goal in ipairs(Content.byId['DW-01'].coreGoals)do if not goal.optional then accidental=apply(accidental,Content.byId['DW-01'],goal,'accidental')end end
 check(A.projection(accidental.heroes.hero).expeditionMission=='DW-02','reproduce the reported 2/7 replay while permanent history stays at 7/7')
 local recovery=A.selection(accidental.heroes.hero)
 check(recovery.missionId=='DW-07','existing accidental replay defaults back to permanent story 7')
-local restored=assert(A.begin(accidental,'hero',recovery.missionId,recovery.difficultyId,'recover',accidental.revision,R,C))
+local restored=assert(A.begin(accidental,'hero',recovery.missionId,recovery.difficultyId,'recover',accidental.revision,R,C,12))
 check(A.projection(restored.heroes.hero).flags['DW-07:separate'],'recover Eryn checkpoint from retained permanent journal')
 local choice=A.selection(h)
 check(choice.missionId=='DW-07'and choice.difficultyId=='Easy','lobby defaults to saved story 7 instead of replaying story 1')
 -- A new lobby departure receives a new admission ID; it must preserve checkpoints.
-p=assert(A.begin(saved,'hero',choice.missionId,choice.difficultyId,'return',saved.revision,R,C))
+p=assert(A.begin(saved,'hero',choice.missionId,choice.difficultyId,'return',saved.revision,R,C,12))
 local view=A.projection(p.heroes.hero)
 local Log=dofile('src/shared/DeepwoodQuestLog.luau')
 local target=Log.tracked(view)
@@ -52,7 +53,7 @@ check(selected.chapter.id=='DW-07' and selected.goal.id=='restoration','unfinish
 check(view.main==6 and view.expeditionMission=='DW-07'and view.flags['DW-07:king_shaman']and view.flags['DW-07:separate'],'new run preserves final boss and return-to-Eryn checkpoints')
 check(p.wallet.gold==gold and p.heroes.hero.progression.xp==xp,'resuming neither charges nor regrants rewards')
 local revision=p.revision
-p=assert(A.begin(p,'hero','DW-07','Easy','return',p.revision,R,C))
+p=assert(A.begin(p,'hero','DW-07','Easy','return',p.revision,R,C,12))
 check(p.revision==revision,'repeated destination admission is idempotent')
 local restoration=Content.byId['DW-07'].goals[#Content.byId['DW-07'].goals]
 check(restoration.id=='restoration','fixture ends at actual Eryn report')
@@ -64,12 +65,12 @@ local paid=p.wallet.gold
 p=assert(A.event(p,'hero','DW-07','restoration','shared',nil,R,C,'return'))
 check(p.wallet.gold==paid,'retried Eryn report cannot pay twice')
 -- Explicit replay is supported; returning during it must also retain substeps.
-p=assert(A.begin(p,'hero','DW-01','Easy','replay',p.revision,R,C))
-local c=Content.byId['DW-01'];p=apply(p,c,c.goals[1],'replay')
-local g=c.goals[2];local step=g.activity.steps[1]
+p=assert(A.begin(p,'hero','DW-01','Easy','replay',p.revision,R,C,12))
+local c=Content.byId['DW-01'];p=apply(p,c,c.coreGoals[1],'replay')
+local g=c.coreGoals[2];local step=g.activity.steps[1]
 p=assert(A.event(p,'hero',c.id,g.id,nil,step.id,R,C,'replay'))
 local permanent=R.copy(p.heroes.hero.deepwood);gold=p.wallet.gold
-p=assert(A.begin(p,'hero','DW-01','Easy','resume_replay',p.revision,R,C))
+p=assert(A.begin(p,'hero','DW-01','Easy','resume_replay',p.revision,R,C,12))
 view=A.projection(p.heroes.hero)
 check(view.flags['DW-01:trail_guards']and view.activities['DW-01:supplies']==1,'same-difficulty new departure preserves replay combat and investigation substep')
 check(p.heroes.hero.deepwood.main==permanent.main and p.wallet.gold==gold,'resuming replay preserves permanent clears and wallet')
@@ -87,6 +88,16 @@ check(R.validate(p,C),'resumed profile passes complete ownership and journal val
 local firstAction=assert(source:find('function Service.beforeHeroAction',1,true))
 local lastAction=assert(source:find('local function handle',firstAction,true))
 local factory=assert(load('return function(role,Service,selections,travel,busy) local parties={}\n'..source:sub(firstAction,lastAction-1)..'return Service end'))()
+-- Continue must discard an old manual mission before the actual solo launch.
+do
+ local cache={[player]={missionId='DW-01',difficultyId='Easy'}}
+ local chosen
+ local service={solo=function(person)
+  chosen=cache[person]or A.selection(p.heroes.hero)
+ end}
+ factory('Lobby',service,cache,{},{}).beforeHeroAction(player,'StartTutorial')
+ check(cache[player]==nil and chosen.missionId=='GW-01','Continue ignores cached Deepwood replay after completed Deepwood')
+end
 for _,role in ipairs({'Lobby','Battle'})do
  local cache={[player]={missionId='DW-01'}};local returned=0
  local service={returnLobby=function()returned=returned+1;return true end}
@@ -95,7 +106,7 @@ for _,role in ipairs({'Lobby','Battle'})do
  check(returned==(role=='Battle'and 1 or 0),'real Battle return still delegates to verified transfer')
 end
 for _,chapter in ipairs(Content.mainChapters)do
- for _,goal in ipairs(chapter.goals)do if not goal.optional then p=apply(p,chapter,goal,'resume_replay')end end
+ for _,goal in ipairs(chapter.coreGoals)do if not goal.optional then p=apply(p,chapter,goal,'resume_replay')end end
 end
 check(A.selection(p.heroes.hero).missionId=='HG-07','completed campaign defaults to final story, never its launch mission')
 print('Story lobby resume: '..n..' checks passed')

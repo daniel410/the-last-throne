@@ -15,6 +15,16 @@ end
 local main=profile();local prefixes={[0]=R.copy(main)}
 for _,c in ipairs(C.mainChapters)do for _,g in ipairs(c.coreGoals)do if not g.optional then steps(g,function(choice,id)main=assert(R.story(main,'hero',c.id,g.id,choice,Items,id))end)end end;prefixes[c.number]=R.copy(main)end
 check(main.wallet.gold==19170,'existing first main Gold unchanged')
+-- A pre-expansion Deepwood clear must enter the new second epic unchanged.
+do
+ local before=prefixes[7]
+ check(A.selection(before.heroes.hero).missionId=='GW-01','legacy Deepwood completion continues to Gloamwood')
+ local after=assert(A.begin(before,'hero','GW-01','Easy','expanded-after-deepwood',before.revision,R,Items))
+ local hero=after.heroes.hero
+ check(hero.deepwood.main==7 and A.projection(hero).expeditionMission=='GW-01','expansion admission cannot return to Deepwood')
+ for i=1,7 do check(hero.deepwood.clears[C.mainChapters[i].id],'expansion retains Deepwood chapter completion '..i)end
+ check(after.wallet.gold==before.wallet.gold,'expansion admission grants no duplicate completion Gold')
+end
 local eventCount,stepCount,oldBattles=0,0,0
 for _,c in ipairs(C.chapters)do
  local legacy=P.new();local z=C.zones[c.zone];local seen={}

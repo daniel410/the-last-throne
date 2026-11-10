@@ -1,3 +1,5 @@
+> **2026-11-09 · TLT-050/057/061~065/084 · 0.95.4:** 로비 Continue가 이전 Deepwood 원정 선택 캐시를 재사용하는 경로를 수정했다. 저장 본편 진행을 다시 선택하며 명시적 원정 재플레이 유지. 확장 이전 Deepwood7장 완료→규칙13 Gloamwood 입장/완료·Gold 보존 회귀 PASS. [검증·원인 한계/미게시](docs/evidence/continue-campaign-20261109/README.md). 실제 사용자 계정 원인·게시 클라이언트는 미확인.
+
 > **2026-11-09 · TLT-028/050/057/061~065/084 · 0.95.3:** 로비 퀘스트에 남은 구 에픽 순서를 제거하고 지도와 같은 본편 정본을 참조한다. Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. [퀘스트70·지도87/진행1,870 검증·미게시](docs/evidence/epic-order-ui-20261109/README.md). 실계정/게시 클라이언트·기기 수용은 후속.
 
 > **2026-11-09 · 0.95.1:** 사용자 요청으로 최신4계열 실제 착용 방패를 손잡이 기준30% 확대했다. 높이1.88→2.444studs, 기존 작은 투영 자동 교체·원본/색/아이콘·수치/블록 판정 유지. [검증·게시 기록](docs/evidence/shield-size-20261109/README.md). 실기기/사용자 크기 수용 후속.
