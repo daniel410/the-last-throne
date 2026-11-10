@@ -1,4 +1,4 @@
-> **2026-11-09 · TLT-028/050/057/061~065/084 · 0.95.2:** 로비 퀘스트에 남은 구 에픽 순서를 제거하고 지도와 같은 본편 정본을 참조한다. Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. [퀘스트70·지도87/진행1,870 검증·미게시](docs/evidence/epic-order-ui-20261109/README.md). 실계정/게시 클라이언트·기기 수용은 후속.
+> **2026-11-09 · TLT-028/050/057/061~065/084 · 0.95.3:** 로비 퀘스트에 남은 구 에픽 순서를 제거하고 지도와 같은 본편 정본을 참조한다. Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. [퀘스트70·지도87/진행1,870 검증·미게시](docs/evidence/epic-order-ui-20261109/README.md). 실계정/게시 클라이언트·기기 수용은 후속.
 
 > **2026-11-09 · TLT-003/050/057/061~065/084:** HP0/RETRYING 화면 후속으로 확장 부활 체크포인트가 일반 Part여서 스폰 서비스가 거부하는 결함을 수정했다. 활성 SpawnLocation으로 생성하며 저장 좌표·보상은 유지한다. [회귀·Studio 계약 검사/미게시](docs/evidence/expansion-respawn-20261109/README.md). 실제 계정/모바일 사망 후 복구는 후속.
 

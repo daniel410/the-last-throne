@@ -1,4 +1,4 @@
-> **2026-11-09 · TLT-028/050/057/061~065/084 · 0.95.2:** 로비 퀘스트에 남은 구 에픽 순서를 제거하고 지도와 같은 본편 정본을 참조한다. Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. [퀘스트70·지도87/진행1,870 검증·미게시](docs/evidence/epic-order-ui-20261109/README.md). 실계정/게시 클라이언트·기기 수용은 후속.
+> **2026-11-09 · TLT-028/050/057/061~065/084 · 0.95.3:** 로비 퀘스트에 남은 구 에픽 순서를 제거하고 지도와 같은 본편 정본을 참조한다. Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. [퀘스트70·지도87/진행1,870 검증·미게시](docs/evidence/epic-order-ui-20261109/README.md). 실계정/게시 클라이언트·기기 수용은 후속.
 
 > **2026-11-09 · 0.95.1:** 사용자 요청으로 최신4계열 실제 착용 방패를 손잡이 기준30% 확대했다. 높이1.88→2.444studs, 기존 작은 투영 자동 교체·원본/색/아이콘·수치/블록 판정 유지. [검증·게시 기록](docs/evidence/shield-size-20261109/README.md). 실기기/사용자 크기 수용 후속.
 

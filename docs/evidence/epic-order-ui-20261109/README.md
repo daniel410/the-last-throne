@@ -1,4 +1,4 @@
-# 지도·퀘스트 에픽 순서 일치 · 0.95.2
+# 지도·퀘스트 에픽 순서 일치 · 0.95.3
 
 2026-11-09 · TLT-028/050/057/061~065/084 · 구현·로컬 엔진 검증 / 미게시
 
@@ -13,3 +13,7 @@
 - `run-in-roblox --place /tmp/tlt-epic-order-candidate.rbxlx --script /tmp/tlt-epic-order-ui.luau`: 실제 Roblox GUI에서 퀘스트70·지도87 PASS. 두 번째 Gloamwood 표시·Deepwood 완료(main7) 후 개방, Frozen Vale(main14)·Ember Caldera(main21)·Haunted Graveyard(main28) 및 화면 크기 회귀 확인.
 
 빌드는 입력 커밋 고정 후 build.json에 기록한다. 게시·릴리스 태그 없음. 기존 열린 Studio는 읽기만 했으며 사용자 세션을 수정/종료하지 않았다. 실제 계정/게시 클라이언트·실기기 및 사람의 시각 수용은 미검증. 다음 담당 QA는 새 빌드에서 지도/퀘스트 전환과 실제 영웅 진행을 확인한다. 부모 티켓은 완료 처리하지 않는다.
+
+## 고정 빌드 결과
+
+소스 `500cd20d3043a6bc355d1ad22c1607fdd9aa09b1`을 origin/main에 푸시한 뒤 **0.95.3 빌드 성공**. `builds/0.95.3/TheLastThrone-0.95.3.rbxlx`, SHA256 `a10e3f4089553f83525d7bbe96139f543f3dad0de040a3a856d78c9bbda02ca6`. 동일 고정 파일에서 퀘스트70·지도87검사를 재실행해 PASS ([로그](native.log)). `python3 tests/single-build.spec.py --artifact builds/0.95.3/TheLastThrone-0.95.3.rbxlx` 역할10·로딩192·프로젝트/산출물 계약 PASS. 신규 LFS 자산 없음. 실제 게시/릴리스 없음.
