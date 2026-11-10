@@ -482,6 +482,19 @@
       "role": "Default elf back quiver, harness and three reviewed arrow meshes; visual-only handoff",
       "audit_status": "local source pinned; R6/R15 inert attachment, pickup/nock/cancel/lifecycle native checks passed; real-device/art pending",
       "manifest": "assets/shared/td-elf-quiver-v1/manifest.json"
+    },
+    {
+      "key": "monster.hollowbark-sovereign",
+      "kind": "skinned-model",
+      "source_path": "../throne-defense/assets/models/hollowbark-sovereign-v1/runtime.rbxmx",
+      "sha256": "19ac602496e02cee749c6e014d788a595939b045bce348dbd3d32531feefd246",
+      "bytes": 9544,
+      "td_source_commit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+      "source_working_tree": true,
+      "runtime_path": "assets/models/hollowbark-sovereign-td-v1/runtime.rbxmx",
+      "role": "GW-06 rear_guard boss; exact TD 14stud template",
+      "audit_status": "local-file-verified; TLT mesh/image grants saved and Already added verified; native load pending",
+      "permission": "User explicitly requested TD to TLT reuse; no TD mutations"
     }
   ]
 }

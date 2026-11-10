@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-10",
+  "experienceId": 10773575153,
+  "experienceName": "The Last Throne",
+  "assets": [
+    {
+      "type": "Mesh",
+      "id": 105839711981589,
+      "privacy": "Restricted",
+      "tltGrant": "Saved via Dashboard; reopening Add experiences and entering TLT ID returned Already added"
+    },
+    {
+      "type": "Image",
+      "id": 139387289433234,
+      "privacy": "Restricted",
+      "tltGrant": "Saved via Dashboard; reopening Add experiences and entering TLT ID returned Already added"
+    }
+  ],
+  "scope": "No Open Use change; no new upload; no Place publish; full grant list not visible in Dashboard",
+  "nativeLoad": "Not run: Studio MCP list returned studios=[]"
+}

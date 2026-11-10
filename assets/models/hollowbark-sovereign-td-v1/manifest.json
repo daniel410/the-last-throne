@@ -1,0 +1,42 @@
+{
+  "task": "HOLLOWBARK-SOVEREIGN-20261110",
+  "runtime": "runtime.rbxmx",
+  "target_height": 14,
+  "reference_height": 9,
+  "source_to_stud_scale": 15.582616965977925,
+  "triangles": 2484,
+  "bones": 10,
+  "native_surface_deformation": "Prior 18stud XML skin/facing/Walk25/75 verified. 14stud metadata-only change; native resized render pending.",
+  "canonical_facing": "Native compare found source +Z, Body parent Y180 normalization preserves local Bone rest/mesh payload. Runtime Appearance adds legacy TD+Z rotation.",
+  "assets": {
+    "model": 105277750154604,
+    "mesh": 105839711981589,
+    "texture": 139387289433234
+  },
+  "files": [
+    {
+      "path": "runtime.rbxmx",
+      "sha256": "19ac602496e02cee749c6e014d788a595939b045bce348dbd3d32531feefd246",
+      "bytes": 9544
+    },
+    {
+      "path": "source/HollowbarkSovereign.glb",
+      "sha256": "fea67c31d0b4c1533a01a19e1a94ba37765348552d365e7a867c674f8f681ab9",
+      "bytes": 3511816
+    },
+    {
+      "path": "rigged/HollowbarkSovereign.glb",
+      "sha256": "80c14ef5269a2ef97bff67d51ce03834bbccf03ddf19f92052ffcde2dca129d1",
+      "bytes": 3575788
+    }
+  ],
+  "native_snapshot": "native-stage.rbxlx.rbxl is a diagnostic Studio snapshot with temporary QA/old source. Not a release/game candidate.",
+  "new_build": false,
+  "published": false,
+  "previous_target_height": 18,
+  "tdSourceCommit": "22ff3be95a8e9d3c034d83d93b8c540a36070ac2",
+  "sourcePath": "../throne-defense/assets/models/hollowbark-sovereign-v1",
+  "sourceWorkingTree": true,
+  "permission": "Mesh and Image Restricted retained; TLT10773575153 grants saved and Already added verified in Dashboard 2026-11-10; native load pending",
+  "adaptation": "TD 14stud template, exact source/rig/runtime copy; existing TLT ent attack deltas, TD Idle/Walk"
+}

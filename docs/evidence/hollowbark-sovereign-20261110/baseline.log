@@ -1,0 +1,8 @@
+Original HEAD archived src + original test
+lua: tests/late-epics.spec.lua:9: next goal available DW-01:exp_1
+stack traceback:
+	[C]: in global 'assert'
+	tests/late-epics.spec.lua:9: in local 'check'
+	tests/late-epics.spec.lua:21: in main chunk
+	[C]: in ?
+exit=1

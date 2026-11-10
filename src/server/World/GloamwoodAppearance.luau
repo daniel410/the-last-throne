@@ -1,12 +1,12 @@
 -- Intact Meshy surfaces and custom skeletons; gameplay stays on the server R6 rig.
 local Storage=game:GetService('ServerStorage')
 local G={}
-local kinds={Webling=18,Silkweaver=18,Barkstalker=18,Gloambat=6,VenomcoilCentipede=14,AncientHollowbark=10,VenomcoilKing=14,WidowQueen=18}
+local kinds={Webling=18,Silkweaver=18,Barkstalker=18,Gloambat=6,VenomcoilCentipede=14,AncientHollowbark=10,HollowbarkSovereign=10,VenomcoilKing=14,WidowQueen=18}
 function G.supports(kind)return kinds[kind]~=nil end
 local function template(kind)
  assert(kinds[kind],'Unsupported Gloamwood kind')
  local folder=assert(Storage:FindFirstChild('GloamwoodMeshyModels'),'Missing Gloamwood Meshy templates')
- local source=assert(folder:FindFirstChild(kind),'Missing Gloamwood template '..kind)
+ local source=assert(kind=='HollowbarkSovereign' and Storage:FindFirstChild('HollowbarkSovereignTemplate') or folder:FindFirstChild(kind),'Missing Gloamwood template '..kind)
  assert(source:IsA('Model') and source:FindFirstChild('Body') and source.Body:IsA('MeshPart'),'Invalid Gloamwood model')
  assert(source.Body.MeshId~='' and source.Body.TextureID~='','Missing Gloamwood mesh or texture')
  assert(source.SourceToStudScale.Value>0 and source.TargetHeight.Value>0,'Invalid Gloamwood scale')

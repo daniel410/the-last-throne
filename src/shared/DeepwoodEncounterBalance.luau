@@ -2,7 +2,7 @@ local BossTuning=game and require(script.Parent.BossCombatTuning)or dofile('src/
 local Difficulty=game and require(script.Parent.Difficulty)or dofile('src/shared/Difficulty.luau')
 -- Trial adventure tuning. Authored levels and fixed story rewards remain canonical.
 local Balance={density=6,normalHealth=1.5,normalDamage=1.875,bossHealth=1.35,bossDamage=1.5625,maxWaveSize=9}
-local bosses={Warlord=true,GoblinKing=true,KingOgre=true,EnragedWarlord=true,KingShaman=true,IceTrollKing=true,KingIceBear=true,KingIceGolem=true,QueenIceElf=true,AncientGlacierKing=true,MagmaImp=true,MagmaGolem=true,InfernoOverlord=true,CalderaTitan=true,KingVolcanoShaman=true,AncientHollowbark=true,VenomcoilKing=true,WidowQueen=true,DreadCommander=true,Lich=true,LichSovereign=true,Veyr=true}
+local bosses={Warlord=true,GoblinKing=true,KingOgre=true,EnragedWarlord=true,KingShaman=true,IceTrollKing=true,KingIceBear=true,KingIceGolem=true,QueenIceElf=true,AncientGlacierKing=true,MagmaImp=true,MagmaGolem=true,InfernoOverlord=true,CalderaTitan=true,KingVolcanoShaman=true,AncientHollowbark=true,HollowbarkSovereign=true,VenomcoilKing=true,WidowQueen=true,DreadCommander=true,Lich=true,LichSovereign=true,Veyr=true}
 function Balance.tempo(kind,version)return BossTuning.forRun(Balance.isBoss(kind),version)end
 function Balance.isBoss(kind) return bosses[kind]==true end
 -- Double the previous three-copy population, split into finite story-paced packs.
@@ -49,7 +49,7 @@ end
 local bossEscorts={Warlord='Orc',GoblinKing='Goblin',KingOgre='Ogre',EnragedWarlord='Orc',KingShaman='Shaman',
  IceTrollKing='IceTroll',KingIceBear='IceBear',KingIceGolem='IceGolem',QueenIceElf='IceElf',AncientGlacierKing='IceGolem',
  MagmaImp='Imp',MagmaGolem='Golem',InfernoOverlord='VolcanoShaman',CalderaTitan='Golem',KingVolcanoShaman='VolcanoShaman',
- AncientHollowbark='Barkstalker',VenomcoilKing='VenomcoilCentipede',WidowQueen='Silkweaver',
+ AncientHollowbark='Barkstalker',HollowbarkSovereign='Barkstalker',VenomcoilKing='VenomcoilCentipede',WidowQueen='Silkweaver',
  DreadCommander='SkeletonKnight',Lich='Skeleton',LichSovereign='Mummy',Veyr='DeathKnight'}
 function Balance.encounterWaves(chapter,goal,partySize)
  local specs={};local boss,hasGuards

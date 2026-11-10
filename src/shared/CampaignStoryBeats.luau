@@ -37,7 +37,7 @@ B.beats={
   {'Follow Finn\'s raised scout lantern','Finn: I am still scared. Tali needs a light. I will go first.'},
   {'Keep the scouts together at the rope turn','Tali: We can all see your lantern, Finn. Keep going!'},
   {'Reach Finn\'s rearguard signal','Finn: Everyone is past the nests. Keep the rear clear; I will take our friends home.'}},
-  outcome='Finn leads the scouts home beneath his three-bar lantern. Hold the rearguard clearing so every friend can leave safely.'},
+  outcome='Finn leads the scouts home beneath his three-bar lantern. Hollowbark Sovereign is closing on the rearguard clearing. Hold it back so every friend can leave safely.'},
  ['GW-07:exp_2']={outcome='Tali: The convoy went toward that snowy ridge. Finn and I will keep this road safe for everyone you send home.'},
  ['FV-02:exp_1']={outcome='Nessa: Both villages need this medicine. Freya has not given up on their travelers. Let us give her a way to bring them home.'},
  ['FV-04:exp_1']={steps={
@@ -95,7 +95,7 @@ B.beats={
 }
 local briefs={
  ['DW-02']='Use the recovered medicine to help the travelers, then bring their missing cart driver home.',
- ['GW-06']='Finn has found the last scout. Help him lead his friends out, then hold the rearguard clearing.',
+ ['GW-06']='Finn has found the last scout. Help him lead his friends out, then defeat Hollowbark Sovereign in the rearguard clearing.',
  ['FV-04']='Why are the guardians blocking their own refuge road? Compare the signal with their behavior.',
  ['EC-05']='Dagna, Orik and Brann each know part of the circuit. Read their drawings and test the complete loop.',
  ['HG-04']='The scouts and dwarves are ready. Connect Finn\'s signal to Brann\'s gate rig and let your friends through.',

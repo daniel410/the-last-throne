@@ -44,7 +44,7 @@ end
 for _,kind in ipairs({'IceElf','Shaman','VolcanoShaman','KingOgre','GoblinKing','KingShaman'})do
  check(P.choose(kind,20,{},100)~=nil,'caster or ranged boss retains distance attack: '..kind)
 end
-check(count==49 and bosses==22,'actual roster coverage')
+check(count==50 and bosses==23,'actual roster coverage')
 for v=1,8 do check(not P.enabled(v)and D.compatible(v),'old runs remain supported and old patterns')end
 check(P.enabled(9)and not P.enabled(nil),'new-run gate')
 check(G.contains('cone',0,5,0,6,2,4,2,90),'cone front')
@@ -60,4 +60,4 @@ check(not G.contains('ring',5,0,0,10,2,4,2,90),'ring safe exterior')
 local distance,t=G.segmentDistance(0,0,-5,0,0,0,0,0,-10)
 check(distance==0 and t==.5,'swept projectile cannot tunnel')
 check(G.segmentDistance(3,0,-5,0,0,0,0,0,-10)==3,'side dodge')
-print('enemy-patterns: '..n..' checks PASS;49 kinds/22 bosses, geometry, version8/9 stats/rewards')
+print('enemy-patterns: '..n..' checks PASS;50 kinds/23 bosses, geometry, version8/9 stats/rewards')

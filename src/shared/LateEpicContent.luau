@@ -49,11 +49,12 @@ story('GW-05','Venomcoil Crossing',26,{500,172,-13600},{0,0},'Cross the centiped
  fight('king','Defeat Venomcoil King','VenomcoilKing',32),
  act('rope','Secure the scout crossing rope','The rope marks a safe route. The rescued scouts can cross without entering the hunting ground.',nil,nil,'bindings'),
 })
-story('GW-06','One Brave Step',27,{-100,176,-14100},{0,0},'Help Finn rescue his friends outside the queen nest.','All the scouts are free. Finn will guide them while you stop the queen.',{
+story('GW-06','One Brave Step',27,{-100,176,-14100},{0,0},'Help Finn rescue his friends, then hold off Hollowbark Sovereign while the scouts escape.','Hollowbark Sovereign is defeated and all the scouts are safe. Finn leads them home while you stop the queen.',{
  fight('bats','Clear the nest approach','Gloambat',32,3),
  act('webs','Cut the last scout web bindings','The last scouts are free. Finn steps forward to guide them.',nil,nil,'bindings'),
  act('courage','Encourage Finn','Finn: I am still scared. But I will not leave my friends. We can do this together!','dialogue','Finn'),
- fight('rear_guard','Protect the scouts as they leave','Silkweaver',32,2),
+ -- Keep rear_guard and its two existing guard receipt positions; append the new boss.
+ {id='rear_guard',title='Defeat Hollowbark Sovereign and protect the scouts',enemies={enemy('Silkweaver',32,2),enemy('HollowbarkSovereign',32)}},
 })
 local queen=story('GW-07','The Queen of the Webs',28,{-700,180,-14600},{0,0},'Defeat the Widow Queen and open the road to Veyr fortress.','The scouts are safe and the forest road is open! Tali has shown you the hidden entrance to Haunted Graveyard.',{
  fight('nest','Clear the queen nest','Webling',33,3),

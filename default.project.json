@@ -60,6 +60,9 @@
       "HauntedGraveyardModels": {
         "$path": "assets/shared/td-haunted-graveyard/runtime.rbxmx"
       },
+      "HollowbarkSovereignTemplate": {
+        "$path": "assets/models/hollowbark-sovereign-td-v1/runtime.rbxmx"
+      },
       "GloamwoodMeshyModels": {
         "$path": "assets/models/venomcoil-king-v2/runtime.rbxm"
       },

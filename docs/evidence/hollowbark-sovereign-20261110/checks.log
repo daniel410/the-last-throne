@@ -1,0 +1,42 @@
+$ lua tests/hollowbark-sovereign.spec.lua
+HOLLOWBARK_SOVEREIGN 12687 checks passed
+
+
+exit=0
+$ python3 tests/hollowbark-sovereign-assets.spec.py
+SOVEREIGN_ASSETS PASS: exact source hashes, skin flag, ten bones, 2484 triangles, 14stud, both project bindings
+
+
+exit=0
+$ lua tests/enemy-patterns.spec.lua
+enemy-patterns: 3717 checks PASS;50 kinds/23 bosses, geometry, version8/9 stats/rewards
+
+
+exit=0
+$ lua tests/campaign-reorder.spec.lua
+CAMPAIGN_REORDER 1870 checks passed; mandatory solo final level 44
+
+
+exit=0
+$ lua tests/campaign-expansion.spec.lua
+CAMPAIGN_EXPANSION 7698 checks passed; 35 main / 12 side / 82 incidents / 246 new steps
+
+
+exit=0
+$ lua tests/quest-completion-rewards.spec.lua
+Quest completion rewards: 1416 checks passed; 47 quests pay, 19 new awards; legacy catch-up and storage recovery PASS
+
+
+exit=0
+$ lua tests/late-epics-adventures.spec.lua
+LATE_EPICS_ADVENTURES 732 checks passed
+
+
+exit=0
+$ python3 tests/story-monster-sizing.spec.py
+Story monster sizing: 23 TD templates compared; Training sizes and regional proportions passed
+
+
+exit=0
+luau-compile PASS 10 runtime files
+Earlier boss-combat-tuning.spec.lua: 330382 checks PASS; runtime tuning unchanged.

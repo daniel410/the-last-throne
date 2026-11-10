@@ -6,7 +6,7 @@ local Clips=table.clone(BaseClips);Clips.models=table.clone(BaseClips.models)
 for kind,profile in pairs(require(script.Parent.FrozenValeClips).models)do Clips.models[kind]=profile end
 for kind,profile in pairs(require(script.Parent.EmberCalderaClips).models)do Clips.models[kind]=profile end
 -- Late-epic prototypes reuse reviewed movement curves until dedicated clips replace them.
-local aliases={Webling='Slime',Silkweaver='Slime',Barkstalker='Ogre',Gloambat='Slime',VenomcoilCentipede='Slime',AncientHollowbark='KingOgre',VenomcoilKing='Slime',WidowQueen='Slime'}
+local aliases={Webling='Slime',Silkweaver='Slime',Barkstalker='Ogre',Gloambat='Slime',VenomcoilCentipede='Slime',AncientHollowbark='KingOgre',HollowbarkSovereign='KingOgre',VenomcoilKing='Slime',WidowQueen='Slime'}
 for kind,source in pairs(aliases)do Clips.models[kind]=Clips.models[source]end
 local HauntedClips=require(script.Parent.HauntedGraveyardClips)
 local function profileFor(kind)
