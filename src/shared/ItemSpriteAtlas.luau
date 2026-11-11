@@ -3,6 +3,11 @@
 return {
 	-- Separate transparent material icons; provenance: enhancement-material-icons-v1.
 	images = {
+		-- TD-inspired Mage hats; source: assets/concepts/2026-11-11-mage-hats-v1.
+		["mage_traveler_hat"] = "rbxassetid://125014855680211",
+		["mage_tempered_hat"] = "rbxassetid://98802336961905",
+		["mage_veteran_hat"] = "rbxassetid://90018150356432",
+		["mage_sentinel_hat"] = "rbxassetid://129983894503161",
 		-- Four-family armor/shield concepts; source: assets/ui/four-family-armor-icons-v1.
 		["traveler_hood"] = "rbxassetid://137143080594284",
 		["tempered_hood"] = "rbxassetid://136521016636025",

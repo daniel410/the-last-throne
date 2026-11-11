@@ -1,4 +1,4 @@
--- Current 43 equipment definitions through the actual inventory/forge reducer.
+-- Current 47 equipment definitions through the actual inventory/forge reducer.
 local function module(path)
  if not game then return dofile(path)end
  local name=path:match('([^/]+)%.luau$')
@@ -15,7 +15,7 @@ local function near(a,b)return math.abs(a-b)<1e-8 end
 local chances={100,90,80,70,60,50,40,30,20}
 local ids={};for _,id in ipairs(C.tierEquipment)do ids[#ids+1]=id end
 for _,id in ipairs({'copper_ring','amber_charm','amber_mana_charm'})do ids[#ids+1]=id end
-check(#ids==43,'all 40 family gear and 3 accessories covered')
+check(#ids==47,'all 44 family gear and 3 accessories covered')
 for _,id in ipairs(ids)do
  local def=C.items[id]
  local profile=assert(R.addHero(R.new(42),'hero',def.classId or 'knight',C))
@@ -52,4 +52,4 @@ for _,id in ipairs(ids)do
 end
 check(Text.EnhancementHelpIntro:find('Max MP',1,true)and Text.EnhancementHelpIntro:find('DEX',1,true),'guide covers all enhanced resources and stats')
 check(Text.EnhancementHelpIntro:find('Special effects do not change.',1,true),'guide distinguishes special effects')
-print('Current equipment enhancement: '..n..' checks passed (43 definitions; all 9 targets; success/failure boundaries)')
+print('Current equipment enhancement: '..n..' checks passed (47 definitions; all 9 targets; success/failure boundaries)')

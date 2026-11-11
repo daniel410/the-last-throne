@@ -19,7 +19,7 @@ local function equal(a,b)
 end
 local F=C.equipmentFamilies
 local expected={traveler={1,'Common',3,3,20},tempered={1,'Common',6,6,30},veteran={10,'Uncommon',15,15,50},sentinel={10,'Rare',30,30,80}}
-check(#C.tierEquipment==40,'four complete families, ten definitions each')
+check(#C.tierEquipment==44,'four complete families, eleven definitions including Mage hats each')
 for _,id in ipairs(C.tierEquipment)do
  local d=C.items[id];local v=expected[d.family];local count=0;for _ in pairs(d.stats)do count=count+1 end
  check(count==1,'single fixed option '..id);check(not d.retired and not d.deleted,'current gear active '..id)

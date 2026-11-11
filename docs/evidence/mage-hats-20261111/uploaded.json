@@ -1,0 +1,102 @@
+[
+  {
+    "id": "mage_traveler_hat",
+    "path": "operations/611bb091-9987-43d7-975a-ac02d35e60f3",
+    "operationId": "611bb091-9987-43d7-975a-ac02d35e60f3",
+    "done": true,
+    "response": {
+      "path": "assets/125014855680211",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T15:41:12.996Z",
+      "assetId": "125014855680211",
+      "displayName": "TLT Traveler Mage Hat Icon v1",
+      "description": "Transparent Mage head equipment artwork matching the traveler robe. Original TD-inspired mage hat concept preserved.",
+      "assetType": "Image",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "mage_tempered_hat",
+    "path": "operations/8ddd8a47-d6d8-4de2-bef6-9917d29cf122",
+    "operationId": "8ddd8a47-d6d8-4de2-bef6-9917d29cf122",
+    "done": true,
+    "response": {
+      "path": "assets/98802336961905",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T15:41:13.843Z",
+      "assetId": "98802336961905",
+      "displayName": "TLT Tempered Mage Hat Icon v1",
+      "description": "Transparent Mage head equipment artwork matching the tempered robe. Original TD-inspired mage hat concept preserved.",
+      "assetType": "Image",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "mage_veteran_hat",
+    "path": "operations/44a1e9ca-0961-42db-a219-1af7e078e84b",
+    "operationId": "44a1e9ca-0961-42db-a219-1af7e078e84b",
+    "done": true,
+    "response": {
+      "path": "assets/90018150356432",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T15:41:14.375Z",
+      "assetId": "90018150356432",
+      "displayName": "TLT Veteran Mage Hat Icon v1",
+      "description": "Transparent Mage head equipment artwork matching the veteran robe. Original TD-inspired mage hat concept preserved.",
+      "assetType": "Image",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "mage_sentinel_hat",
+    "path": "operations/09368f82-985c-4282-a73b-70ec54a9a9b1",
+    "operationId": "09368f82-985c-4282-a73b-70ec54a9a9b1",
+    "done": true,
+    "response": {
+      "path": "assets/129983894503161",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T15:41:15.451Z",
+      "assetId": "129983894503161",
+      "displayName": "TLT Sentinel Mage Hat Icon v1",
+      "description": "Transparent Mage head equipment artwork matching the sentinel robe. Original TD-inspired mage hat concept preserved.",
+      "assetType": "Image",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  }
+]

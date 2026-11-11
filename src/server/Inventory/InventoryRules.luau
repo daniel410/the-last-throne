@@ -97,6 +97,7 @@ local function grantStarterSupplies(profile, heroId, catalog)
 	end
 	add(classId .. "_weapon_traveler", 1)
 	for _, id in ipairs(catalog.kit) do
+  if classId=="mage" and id=="traveler_hood" then id="mage_traveler_hat"end
   if classId=="mage" and id=="traveler_coat" then id="mage_traveler_coat"end
   add(id,1)
  end

@@ -23,8 +23,8 @@ for _,offer in ipairs(C.offers)do
   local twice=assert(R.shop(sold,sell,{atLobby=true},I));check(twice.wallet.gold==sold.wallet.gold,'sale retry idempotent')
  end
 end
-check(counts.Weapons==12 and counts.Armor==18 and counts.Accessories==3,'33 purchasable forge offers exclude starter Traveler')
-check(grades.Common==11 and grades.Uncommon==12 and grades.Rare==10 and not grades.Epic,'forge stock by grade')
+check(counts.Weapons==12 and counts.Armor==21 and counts.Accessories==3,'36 purchasable forge offers exclude starter Traveler')
+check(grades.Common==12 and grades.Uncommon==13 and grades.Rare==11 and not grades.Epic,'forge stock by grade')
 check(#C.forgeDiamondStock==0,'retired forge stock has no active rows')
 -- Cached/forged Traveler requests cannot spend currency or mint gear.
 local starter=R.addHero(R.new(82),'h','knight',I);starter.wallet.gold=10000;starter.wallet.diamonds=1000

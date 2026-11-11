@@ -8,7 +8,7 @@ local n=0
 local function eq(a,b,label)n=n+1;assert(a==b,label..': '..tostring(a)..' ~= '..tostring(b))end
 for _,class in ipairs({'knight','dwarf','elf','mage'})do
  local p=assert(R.addHero(R.new(42),'hero',class,C))
- local ids={class..'_weapon_traveler','traveler_hood',(class=='mage'and 'mage_traveler_coat'or 'traveler_coat'),'traveler_gloves','traveler_boots','copper_ring','amber_charm'}
+ local ids={class..'_weapon_traveler',(class=='mage'and 'mage_traveler_hat'or 'traveler_hood'),(class=='mage'and 'mage_traveler_coat'or 'traveler_coat'),'traveler_gloves','traveler_boots','copper_ring','amber_charm'}
  for _,id in ipairs(ids)do
   local count=0
   for _,item in pairs(p.items)do if item.definitionId==id then
@@ -19,7 +19,7 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
  eq(R.equipped(p,'hero','weapon').definitionId,class..'_weapon_traveler',class..' starts with real weapon')
  eq(C.items[class..'_weapon_traveler'].rarity,'Common',class..' starter is Common')
  eq(C.items[class..'_weapon_traveler'].stats.power,3,class..' starter weapon power')
- eq(R.equipped(p,'hero','head').definitionId,'traveler_hood',class..' wears level1 hood')
+ eq(R.equipped(p,'hero','head').definitionId,class=='mage'and 'mage_traveler_hat'or 'traveler_hood',class..' wears level1 headgear')
  eq(R.equipped(p,'hero','accessory1').definitionId,'copper_ring',class..' auto accessory1')
  eq(R.equipped(p,'hero','accessory2').definitionId,'amber_charm',class..' auto accessory2')
  eq(R.quantity(p,'hero','veteran_hood'),1,class..' level5 bonus stays in bag')

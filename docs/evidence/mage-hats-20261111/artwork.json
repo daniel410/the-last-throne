@@ -1,0 +1,29 @@
+{
+  "sourceManifest": "assets/concepts/2026-11-11-mage-hats-v1/manifest.json",
+  "records": [
+    {
+      "definitionId": "mage_traveler_hat",
+      "source": "assets/concepts/2026-11-11-mage-hats-v1/traveler_mage_hat.png",
+      "sha256": "214df88034dcd864483016c81d74f82c1c16464b8c8801b1838be12f5913b5e4",
+      "image": "rbxassetid://125014855680211"
+    },
+    {
+      "definitionId": "mage_tempered_hat",
+      "source": "assets/concepts/2026-11-11-mage-hats-v1/tempered_mage_hat.png",
+      "sha256": "4f1c951b12dbc600613737c01d9ac61f2b65b356a0a8de514b904806d1da79c8",
+      "image": "rbxassetid://98802336961905"
+    },
+    {
+      "definitionId": "mage_veteran_hat",
+      "source": "assets/concepts/2026-11-11-mage-hats-v1/veteran_mage_hat.png",
+      "sha256": "a5a1a41b5da192c07a2dff37660c4c957a9f4a2e9027cf1e5875e85faf25933c",
+      "image": "rbxassetid://90018150356432"
+    },
+    {
+      "definitionId": "mage_sentinel_hat",
+      "source": "assets/concepts/2026-11-11-mage-hats-v1/sentinel_mage_hat.png",
+      "sha256": "5e4d9a712e0ead77a5e8f45f0edfed9358cb3b05e99ff95f7f921b48affa65eb",
+      "image": "rbxassetid://129983894503161"
+    }
+  ]
+}
