@@ -26,11 +26,15 @@ local function refresh()
  end
  -- Eight geometric facets form a floating crystal rather than a box placeholder.
  local color=Color3.fromRGB(127,236,255)
- local heart=part('Crownheart',Vector3.new(1.7,2.8,1.7),Vector3.zero,color,Enum.Material.Glass,CFrame.Angles(0,math.pi/4,0))
+ local heart=part('Crownheart',Vector3.new(.2,.2,.2),Vector3.zero,color,Enum.Material.Glass)
+ heart.Transparency=1
  for i=0,3 do
   local yaw=CFrame.Angles(0,i*math.pi/2,0)
-  part('HeartUpperFacet',Vector3.new(1.7,2.5,1.7),Vector3.new(0,1.1,0),color,Enum.Material.Neon,yaw,'CornerWedgePart')
-  part('HeartLowerFacet',Vector3.new(1.7,2.5,1.7),Vector3.new(0,-1.1,0),color,Enum.Material.Glass,yaw*CFrame.Angles(math.pi,0,0),'CornerWedgePart')
+  local upper=CFrame.new(0,1.25,0)*yaw*CFrame.new(-.85,0,.85)
+  local lower=CFrame.new(0,-1.25,0)*CFrame.Angles(math.pi,0,0)*yaw*CFrame.new(-.85,0,.85)
+  local facetColor=i%2==0 and color or Color3.fromRGB(94,191,224)
+  part('HeartUpperFacet',Vector3.new(1.7,2.5,1.7),upper.Position,facetColor,Enum.Material.Glass,upper.Rotation,'CornerWedgePart')
+  part('HeartLowerFacet',Vector3.new(1.7,2.5,1.7),lower.Position,facetColor,Enum.Material.Glass,lower.Rotation,'CornerWedgePart')
  end
  local light=Instance.new('PointLight');light.Color=color;light.Range=30;light.Brightness=1.4;light.Shadows=false;light.Parent=heart
  for i=0,23 do
