@@ -45,5 +45,5 @@ for _,class in ipairs({'knight','dwarf','elf','mage'})do
  eq(loaded.armor,stats.armor,class..' saved equipment follows current armor')
  eq(R.quantity(restored,'hero','health_potion'),3,class..' potion stock preserved')
 end
-eq(C.items.veteran_hood.stats.armor,10,'bonus Veteran hood follows new tier')
+eq(C.items.veteran_hood.stats.armor,15,'bonus Veteran hood follows new tier')
 print('Starter gear balance: '..n..' checks passed')

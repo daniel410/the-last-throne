@@ -41,7 +41,7 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
   check(G.validate(g,class),'gear never violates316-point budget')
  end
 end
-for tier,value in pairs({traveler=2,tempered=4,veteran=7,sentinel=20})do
+for tier,value in pairs({traveler=2,tempered=4,veteran=10,sentinel=20})do
  check(C.items[C.equipmentFamilies.piece(tier,'hands')].stats.power==value,'latest fixed glove value '..tier)
  check(C.items[C.equipmentFamilies.piece(tier,'feet')].stats.armor==value,'latest fixed boot value '..tier)
 end
