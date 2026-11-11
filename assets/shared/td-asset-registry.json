@@ -495,6 +495,18 @@
       "role": "GW-06 rear_guard boss; exact TD 14stud template",
       "audit_status": "local-file-verified; TLT mesh/image grants saved and Already added verified; native load pending",
       "permission": "User explicitly requested TD to TLT reuse; no TD mutations"
+    },
+    {
+      "key": "world.lobby-throne.native",
+      "kind": "geometry-source-snapshot",
+      "source_path": "../throne-defense/src/Server/VisualFactoryLobby.lua",
+      "source_section": "ThroneDais through RoyalThroneFinial; VisualFactoryLobbyArchitecture beam/arch/crest",
+      "audit_status": "2026-11-11 source-hash-verified; RPG native integration; user visual acceptance pending",
+      "runtime_path": "src/shared/TDLobbyThroneGeometry.luau",
+      "provenance": "assets/shared/td-lobby-throne/provenance.json",
+      "role": "Dawnspire royal chair, translate source geometry only; separate personal Crownheart pedestal",
+      "permissions": "Existing user instruction to reuse same-owner TD originals; TD read-only",
+      "not_included": "Combat pink crystal, unpublished authored Blender citadel, optional protected gold MaterialVariant"
     }
   ]
 }

@@ -54,6 +54,19 @@ for _,size in ipairs({Vector2.new(800,510),Vector2.new(726,299),Vector2.new(270,
  check(map.Route.Size.X.Offset>0,'local map route visible')
  guide.close()
 end
+-- Enlarged lobby positions use the shared size and the actual streamed NPC.
+local design=require(RS.Shared.DawnspireDesign)
+part.Position=Vector3.new(0,96,512)+design.tessaOffset
+local character=Instance.new('Model');local root=Instance.new('Part');root.Name='HumanoidRootPart';root.Anchored=true;root.Position=Vector3.new(130,96,642);root.Parent=character;character.Parent=workspace;player.Character=character
+host.Size=UDim2.fromOffset(800,510);guide.update(snapshot(p));guide.find();task.wait(.1)
+local map=guide.panel.Requests.DawnspireMap.Courtyard
+check(map.You.Position.X.Offset>map.AbsoluteSize.X*.8,'expanded east position is not clamped to the old fifty-stud limit')
+check(map.Tessa.Position.X.Offset<map.AbsoluteSize.X*.4,'map follows relocated Tessa')
+for _,pin in ipairs({map.You,map.Tessa})do
+ check(pin.AbsolutePosition.X>=map.AbsolutePosition.X-.1 and pin.AbsolutePosition.X+pin.AbsoluteSize.X<=map.AbsolutePosition.X+map.AbsoluteSize.X+.1,'expanded map pin fits horizontally')
+ check(pin.AbsolutePosition.Y>=map.AbsolutePosition.Y-.1 and pin.AbsolutePosition.Y+pin.AbsoluteSize.Y<=map.AbsolutePosition.Y+map.AbsoluteSize.Y+.1,'expanded map pin fits vertically')
+end
+player.Character=nil;character:Destroy();guide.close()
 local c=C.byId['DW-Q1'];p=assert(A.begin(p,'hero',c.id,'Easy','native-guide',p.revision,R,Items))
 for _,g in ipairs(c.goals)do if P.required(A.projection(p.heroes.hero),g)and g.id~=c.quest.turnIn then for _,s in ipairs(g.activity and g.activity.steps or {false})do
  p=assert(A.event(p,'hero',c.id,g.id,s and s.choices and s.choices[1].id or nil,s and s.id or nil,R,Items,'native-guide'))

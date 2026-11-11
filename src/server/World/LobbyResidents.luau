@@ -3,7 +3,7 @@ local Catalog=require(game:GetService('ReplicatedStorage').Shared.NPCCatalog)
 local R={}
 local Facilities=require(game.ReplicatedStorage.Shared.LobbyFacilities)
 local Shop=Facilities.itemShop
-local positions={mira=Shop.offset+Vector3.new(0,0,5*(Shop.scale or 1)),rowan=Facilities.training.offset+Vector3.new(10,0,11),tessa=Vector3.new(-29,0,-24),oren=Vector3.new(18,0,25),selene=(Facilities.portal.offset+Facilities.defense.offset)/2,nia=Vector3.new(-18,0,25)}
+local positions={mira=Shop.offset+Vector3.new(0,0,5*(Shop.scale or 1)),rowan=Facilities.training.offset+Vector3.new(10,0,11),tessa=require(game.ReplicatedStorage.Shared.DawnspireDesign).tessaOffset,oren=Vector3.new(18,0,25),selene=(Facilities.portal.offset+Facilities.defense.offset)/2,nia=Vector3.new(-18,0,25)}
 function R.create(lobby,facilities,storagePrompt)
  local old=lobby.folder:FindFirstChild('DawnspireResidents');if old then old:Destroy() end
  local folder=Instance.new('Folder');folder.Name='DawnspireResidents';folder.Parent=lobby.folder

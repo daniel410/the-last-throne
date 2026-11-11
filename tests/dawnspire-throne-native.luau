@@ -12,7 +12,15 @@ end
 local world=require(server.World.LobbyWorld)
 local lobby=world.create()
 check(world.create().folder==lobby.folder,'repeat world creation reuses the same lobby')
+check(lobby.folder.Ground.Size==Vector3.new(300,4,300),'expanded floor is 300 by 300 studs')
+check(lobby.bounds.size.X==300 and lobby.bounds.size.Z==300,'server lobby bounds cover the expanded floor')
 local throne=lobby.folder.DawnspireThrone
+check(throne:GetAttribute('ThroneSource')=='TDLobbyRoyalChair','royal chair comes from the TD lobby source')
+check(throne.RoyalThroneSeat.Size==Vector3.new(12,2,8),'TD seat proportions are preserved')
+check(throne.RoyalThroneBack.Size==Vector3.new(11,21,2),'TD tall back proportions are preserved')
+check(throne.RoyalThroneCushion.Material==Enum.Material.Fabric and throne.RoyalThroneCushion.Color==Color3.fromRGB(37,62,109),'TD blue fabric is preserved')
+check(throne.RoyalThroneSeat.Material==Enum.Material.Metal and throne.RoyalThroneSeat.Color==Color3.fromRGB(240,175,50),'TD final gold body is preserved')
+check(throne:FindFirstChild('CrystalSpire')==nil and throne:FindFirstChild('ThroneChairPointedCrown')~=nil,'old crystal chair is replaced by TD pointed crown')
 check(throne.ModelStreamingMode==Enum.ModelStreamingMode.Atomic,'throne streams as a single model')
 check(throne:FindFirstChild('Crownheart',true)==nil,'shared throne has no restored heart')
 local parts=0
@@ -28,17 +36,23 @@ local function ground(at)
  check(hit~=nil,'walk route has ground')
  return hit.Position
 end
+for _, direction in ipairs({Vector3.new(1,0,0),Vector3.new(-1,0,0),Vector3.new(0,0,1),Vector3.new(0,0,-1)}) do
+ ground(lobby.origin+direction*130)
+ local wall=workspace:Raycast(lobby.origin+direction*140+Vector3.new(0,3,0),direction*15,params)
+ check(wall and wall.Instance:GetAttribute('SafetyBoundary')==true,'expanded perimeter remains closed')
+end
 local routes=0
 local function walk(a,b)
  local last=ground(a)
- for i=1,40 do
-  local next=ground(a:Lerp(b,i/40))
+ local samples=math.max(1,math.ceil((b-a).Magnitude/.75))
+ for i=1,samples do
+  local next=ground(a:Lerp(b,i/samples))
   check(math.abs(next.Y-last.Y)<.6,'walk route has no jump or abrupt drop')
   check(workspace:Raycast(last+Vector3.new(0,2.5,0),next-last,params)==nil,'walk route has no body obstruction')
   last=next;routes+=1
  end
 end
-walk(lobby.origin+Vector3.new(0,0,24),lobby.origin+Vector3.new(0,0,-62))
+walk(lobby.origin+Vector3.new(0,0,24),lobby.origin+require(game.ReplicatedStorage.Shared.DawnspireDesign).throneOffset+Vector3.new(0,0,8))
 local facilities=require(server.World.LobbyLandmarks).create(lobby)
 facilities.forge=require(server.World.WeaponMerchant).create(lobby)
 local _, storagePrompt=require(server.World.StorageChest).create(lobby)

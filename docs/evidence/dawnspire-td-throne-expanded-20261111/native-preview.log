@@ -1,0 +1,2 @@
+LOBBY_SIDE_QUESTS_NATIVE {"scope":"isolated native constructors, marker states, text geometry; not real input or device acceptance","checks":82}
+DAWNSPIRE_THRONE_NATIVE {"coverage":"Native geometry and actual personal projection and expansion integration; no real client/device/Teleport acceptance","checks":3033,"sceneryParts":391,"pass":true,"routeSamples":713}

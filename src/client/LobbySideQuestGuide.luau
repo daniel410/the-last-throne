@@ -1,6 +1,7 @@
 -- Personal TD-themed guide, world marker and local directions; server owns all rewards.
 local RS=game:GetService('ReplicatedStorage')
 local S=require(RS.Shared.LobbySideQuests)
+local Design=require(RS.Shared.DawnspireDesign)
 local Text=require(RS.Shared.LobbySideQuestText)
 local T=require(script.Parent.TDInventoryTheme)
 local Chrome=require(script.Parent.LobbyChromeVisibility)
@@ -56,13 +57,21 @@ function Guide.create(parent,options)
   line(box,'MapTitle',Text.mapTitle,8,26,14,T.color.gold)
   local area=Instance.new('Frame');area.Name='Courtyard';area.Position=UDim2.fromOffset(12,38);area.Size=UDim2.new(1,-24,0,152);area.BackgroundColor3=T.color.ink;area.BorderSizePixel=0;area.Parent=box
   local function dot(name,caption,x,z,color)
-   local v=T.button(area,name,caption,UDim2.fromScale((x+60)/120,(z+60)/120),UDim2.fromOffset(88,44));v.AnchorPoint=Vector2.new(.5,.5);v.Caption.TextSize=11;v.Caption.TextColor3=color;return v
+   local v=T.button(area,name,caption,UDim2.new(),UDim2.fromOffset(88,44));v.AnchorPoint=Vector2.new(.5,.5);v.Caption.TextSize=11;v.Caption.TextColor3=color
+   local function place()
+    local width,depth=area.AbsoluteSize.X,area.AbsoluteSize.Y
+    local px=(x/Design.floorSize.X+.5)*width;local pz=(z/Design.floorSize.Z+.5)*depth
+    v.Position=UDim2.fromOffset(math.clamp(px,math.min(44,width/2),math.max(width-44,width/2)),math.clamp(pz,math.min(22,depth/2),math.max(depth-22,depth/2)))
+   end
+   area:GetPropertyChangedSignal('AbsoluteSize'):Connect(place);task.defer(function()if area.Parent then place()end end)
+   return v
   end
-  local tessa=dot('Tessa',(state and state.symbol or '')..' '..Text.tessa,-29,-24,T.color.gold);tessa.Activated:Connect(function()showMap=false;render()end)
+  local origin=Vector3.new(0,96,512)
+  local tessaAt=target and target.Parent and target.Position-origin or Design.tessaOffset
+  local tessa=dot('Tessa',(state and state.symbol or '')..' '..Text.tessa,tessaAt.X,tessaAt.Z,T.color.gold);tessa.Activated:Connect(function()showMap=false;render()end)
   local character=player and player.Character;local root=character and character:FindFirstChild('HumanoidRootPart')
-  local origin=Vector3.new(0,96,512);local relative=root and root.Position-origin or Vector3.new(0,0,30)
-  local x,z=math.clamp(relative.X,-50,50),math.clamp(relative.Z,-50,50)
-  local you=dot('You',Text.you,x,z,T.color.silver)
+  local relative=root and root.Position-origin or Vector3.new(0,0,30)
+  local you=dot('You',Text.you,relative.X,relative.Z,T.color.silver)
   local route=Instance.new('Frame');route.Name='Route';route.AnchorPoint=Vector2.new(.5,.5);route.BackgroundColor3=T.color.gold;route.BorderSizePixel=0;route.ZIndex=1;route.Parent=area
   local function routeLayout()
    local a,b=you.AbsolutePosition+you.AbsoluteSize/2,tessa.AbsolutePosition+tessa.AbsoluteSize/2

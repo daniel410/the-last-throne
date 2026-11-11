@@ -6,10 +6,13 @@ local Workspace = game:GetService("Workspace")
 local LobbyWorld = {}
 local MODEL_NAME = "DawnspireLobbyPrototype"
 local OWNER_ATTRIBUTE = "TLTLobbyWorld"
-local VERSION = 4
+local VERSION = 5
 local ORIGIN = Vector3.new(0, 96, 512)
 local SPAWN_OFFSET = Vector3.new(0, 0.1, 24)
-local FLOOR_SIZE = Vector3.new(200, 4, 200)
+local Design = require(game.ReplicatedStorage.Shared.DawnspireDesign)
+local Facilities = require(game.ReplicatedStorage.Shared.LobbyFacilities)
+local FLOOR_SIZE = Design.floorSize
+local HALF = FLOOR_SIZE.X / 2
 local BOUNDARY_HEIGHT = 32
 
 local COLORS = {
@@ -88,10 +91,10 @@ end
 
 local function safetySpecs()
 	return {
-		{ name = "West", size = Vector3.new(4, BOUNDARY_HEIGHT, FLOOR_SIZE.Z), offset = Vector3.new(-98, BOUNDARY_HEIGHT / 2, 0) },
-		{ name = "East", size = Vector3.new(4, BOUNDARY_HEIGHT, FLOOR_SIZE.Z), offset = Vector3.new(98, BOUNDARY_HEIGHT / 2, 0) },
-		{ name = "North", size = Vector3.new(FLOOR_SIZE.X, BOUNDARY_HEIGHT, 4), offset = Vector3.new(0, BOUNDARY_HEIGHT / 2, -98) },
-		{ name = "South", size = Vector3.new(FLOOR_SIZE.X, BOUNDARY_HEIGHT, 4), offset = Vector3.new(0, BOUNDARY_HEIGHT / 2, 98) },
+		{ name = "West", size = Vector3.new(4, BOUNDARY_HEIGHT, FLOOR_SIZE.Z), offset = Vector3.new(-HALF + 2, BOUNDARY_HEIGHT / 2, 0) },
+		{ name = "East", size = Vector3.new(4, BOUNDARY_HEIGHT, FLOOR_SIZE.Z), offset = Vector3.new(HALF - 2, BOUNDARY_HEIGHT / 2, 0) },
+		{ name = "North", size = Vector3.new(FLOOR_SIZE.X, BOUNDARY_HEIGHT, 4), offset = Vector3.new(0, BOUNDARY_HEIGHT / 2, -HALF + 2) },
+		{ name = "South", size = Vector3.new(FLOOR_SIZE.X, BOUNDARY_HEIGHT, 4), offset = Vector3.new(0, BOUNDARY_HEIGHT / 2, HALF - 2) },
 	}
 end
 
@@ -110,41 +113,41 @@ local function enclosure(model)
 	walls.Name = "CitadelWalls"
 	walls.Parent = model
 	for _, spec in ipairs({
-		{ "WestWall", Vector3.new(4, 14, 192), Vector3.new(-96, 7, 0) },
-		{ "EastWall", Vector3.new(4, 14, 192), Vector3.new(96, 7, 0) },
-		{ "NorthWall", Vector3.new(192, 14, 4), Vector3.new(0, 7, -96) },
-		{ "SouthWall", Vector3.new(192, 14, 4), Vector3.new(0, 7, 96) },
+		{ "WestWall", Vector3.new(4, 14, FLOOR_SIZE.Z - 8), Vector3.new(-HALF + 4, 7, 0) },
+		{ "EastWall", Vector3.new(4, 14, FLOOR_SIZE.Z - 8), Vector3.new(HALF - 4, 7, 0) },
+		{ "NorthWall", Vector3.new(FLOOR_SIZE.X - 8, 14, 4), Vector3.new(0, 7, -HALF + 4) },
+		{ "SouthWall", Vector3.new(FLOOR_SIZE.X - 8, 14, 4), Vector3.new(0, 7, HALF - 4) },
 	}) do
 		-- The transparent enclosure owns the continuous collision contract.
 		-- Ornamenting a visible wall never opens a gap in that enclosure.
 		part(walls, spec[1], spec[2], spec[3], COLORS.stone, Enum.Material.Slate, false)
 	end
-	for _, x in ipairs({ -91, 91 }) do
-		for _, z in ipairs({ -91, 91 }) do
+	for _, x in ipairs({ -HALF + 9, HALF - 9 }) do
+		for _, z in ipairs({ -HALF + 9, HALF - 9 }) do
 			part(walls, "CornerTower", Vector3.new(10, 17, 10), Vector3.new(x, 8.5, z), COLORS.stone, Enum.Material.Slate, false)
 			part(walls, "TowerCap", Vector3.new(11, 1, 11), Vector3.new(x, 17.5, z), COLORS.stoneLight, Enum.Material.Slate, false)
 		end
 	end
  -- Pale battlements and two taller rear towers give the sanctuary a citadel silhouette.
- for n = -11, 11 do
-  for _, z in ipairs({-96, 96}) do
+ for n = -17, 17 do
+  for _, z in ipairs({-HALF + 4, HALF - 4}) do
    part(walls, "Battlement", Vector3.new(3.5, 2.5, 4.5), Vector3.new(n * 8, 15.25, z), COLORS.stoneLight, Enum.Material.Slate, false)
   end
-  for _, x in ipairs({-96, 96}) do
+  for _, x in ipairs({-HALF + 4, HALF - 4}) do
    part(walls, "Battlement", Vector3.new(4.5, 2.5, 3.5), Vector3.new(x, 15.25, n * 8), COLORS.stoneLight, Enum.Material.Slate, false)
   end
  end
  for _, x in ipairs({-36, 36}) do
-  part(walls, "SanctuaryTower", Vector3.new(13, 33, 13), Vector3.new(x, 16.5, -86), COLORS.stoneLight, Enum.Material.Slate, false)
+  part(walls, "SanctuaryTower", Vector3.new(13, 33, 13), Vector3.new(x, 16.5, Design.throneOffset.Z - 10), COLORS.stoneLight, Enum.Material.Slate, false)
   for _, y in ipairs({8, 23, 33}) do
-   part(walls, "TowerCornice", Vector3.new(14, .6, 14), Vector3.new(x, y, -86), COLORS.gold, Enum.Material.Metal, false)
+   part(walls, "TowerCornice", Vector3.new(14, .6, 14), Vector3.new(x, y, Design.throneOffset.Z - 10), COLORS.gold, Enum.Material.Metal, false)
   end
-  part(walls, "TowerWindow", Vector3.new(3, 8, .2), Vector3.new(x, 23, -79.4), COLORS.stoneDark, Enum.Material.Glass, false)
+  part(walls, "TowerWindow", Vector3.new(3, 8, .2), Vector3.new(x, 23, Design.throneOffset.Z - 3.4), COLORS.stoneDark, Enum.Material.Glass, false)
   for _, dx in ipairs({-5, 0, 5}) do
-   part(walls, "TowerMerlon", Vector3.new(3, 3, 3), Vector3.new(x + dx, 35, -80.5), COLORS.stone, Enum.Material.Slate, false)
+   part(walls, "TowerMerlon", Vector3.new(3, 3, 3), Vector3.new(x + dx, 35, Design.throneOffset.Z - 4.5), COLORS.stone, Enum.Material.Slate, false)
   end
-  part(walls, "TowerBanner", Vector3.new(5, 10, .2), Vector3.new(x, 13, -79.3), COLORS.blue, Enum.Material.Fabric, false)
-  part(walls, "TowerBannerEmblem", Vector3.new(1.4, 2.4, .25), Vector3.new(x, 14, -79.1), COLORS.gold, Enum.Material.Metal, false)
+  part(walls, "TowerBanner", Vector3.new(5, 10, .2), Vector3.new(x, 13, Design.throneOffset.Z - 3.3), COLORS.blue, Enum.Material.Fabric, false)
+  part(walls, "TowerBannerEmblem", Vector3.new(1.4, 2.4, .25), Vector3.new(x, 14, Design.throneOffset.Z - 3.1), COLORS.gold, Enum.Material.Metal, false)
  end
 
 end
@@ -184,19 +187,19 @@ local function courtyard(model)
  local scenery = Instance.new("Folder")
  scenery.Name = "CourtyardScenery"
  scenery.Parent = model
- part(scenery, "InnerPlaza", Vector3.new(184, .08, 180), Vector3.new(0, .04, 0), COLORS.plaza, Enum.Material.Cobblestone, false)
+ part(scenery, "InnerPlaza", Vector3.new(FLOOR_SIZE.X - 16, .08, FLOOR_SIZE.Z - 20), Vector3.new(0, .04, 0), COLORS.plaza, Enum.Material.Cobblestone, false)
  -- A long, clear sightline joins arrival, gathering court and the empty throne.
- part(scenery, "RoyalProcessional", Vector3.new(14, .04, 144), Vector3.new(0, .1, -8), COLORS.blue, Enum.Material.Fabric, false)
+ part(scenery, "RoyalProcessional", Vector3.new(14, .04, 224), Vector3.new(0, .1, -8), COLORS.blue, Enum.Material.Fabric, false)
  for _, x in ipairs({-7.3, 7.3}) do
-  part(scenery, "ProcessionalGoldBorder", Vector3.new(.22, .04, 144), Vector3.new(x, .13, -8), COLORS.gold, Enum.Material.Metal, false)
+  part(scenery, "ProcessionalGoldBorder", Vector3.new(.22, .04, 224), Vector3.new(x, .13, -8), COLORS.gold, Enum.Material.Metal, false)
  end
  for i = 0, 31 do
   local angle = i * math.pi * 2 / 32
   local segment = part(scenery, "GatheringCourtInlay", Vector3.new(.3, .04, 4.2), Vector3.new(math.cos(angle) * 21, .16, math.sin(angle) * 21), COLORS.gold, Enum.Material.Metal, false)
   segment.CFrame = CFrame.new(segment.Position) * CFrame.Angles(0, -angle, 0)
  end
- for _, x in ipairs({-82, 82}) do
-  for _, z in ipairs({-65, -5, 55}) do
+ for _, x in ipairs({-126, 126}) do
+  for _, z in ipairs({-105, -45, 35, 105}) do
    part(scenery, "GardenBorder", Vector3.new(12, .6, 16), Vector3.new(x, .3, z), COLORS.stoneLight, Enum.Material.Slate, false)
    part(scenery, "GardenLawn", Vector3.new(10.6, .7, 14.6), Vector3.new(x, .6, z), COLORS.grass, Enum.Material.Grass, false)
    local shrub = part(scenery, "CypressCanopy", Vector3.new(5, 10, 5), Vector3.new(x, 6, z), COLORS.green, Enum.Material.SmoothPlastic, false)
@@ -205,25 +208,26 @@ local function courtyard(model)
   end
  end
  for _, x in ipairs({-12, 12}) do
-  for _, z in ipairs({-47, -7, 58}) do lamp(scenery, x, z) end
+  for _, z in ipairs({-81, -41, -1, 79}) do lamp(scenery, x, z) end
  end
  -- Class standards sit in the rear wings, outside service approaches.
- for _, spec in ipairs({{-70, COLORS.blue, LABELS.knight}, {-48, COLORS.green, LABELS.elf}, {48, COLORS.copper, LABELS.dwarf}, {70, COLORS.violet, LABELS.mage}}) do
+ for _, spec in ipairs({{-96, COLORS.blue, LABELS.knight}, {-65, COLORS.green, LABELS.elf}, {65, COLORS.copper, LABELS.dwarf}, {96, COLORS.violet, LABELS.mage}}) do
   banner(scenery, spec[1], spec[2], spec[3])
  end
  for _, child in ipairs(scenery:GetChildren()) do
-  if child:IsA('Model') and child.Name:sub(1,7) == 'Banner_' then child:PivotTo(child:GetPivot() + Vector3.new(0,0,-38)) end
+  if child:IsA('Model') and child.Name:sub(1,7) == 'Banner_' then child:PivotTo(child:GetPivot() + Vector3.new(0,0,-72)) end
  end
- for _, spec in ipairs({
-  {'PortalPath',Vector3.new(43,.05,9),Vector3.new(-22,.18,-20)},
-  {'DefensePath',Vector3.new(36,.05,9),Vector3.new(22,.18,-20)},
-  {'TrainingPath',Vector3.new(42,.05,9),Vector3.new(-23,.18,56)},
-  {'TrainingApproach',Vector3.new(12,.05,16),Vector3.new(0,.18,50)},
-  {'PotionShopPath',Vector3.new(46,.05,8),Vector3.new(-23,.18,15)},
-  {'SmithPath',Vector3.new(37,.05,9),Vector3.new(24,.18,23)},
- }) do part(scenery,spec[1],spec[2],spec[3],COLORS.stoneLight,Enum.Material.Cobblestone,false) end
+ local function approach(name, target, frontOffset)
+  local z = target.Z + frontOffset
+  part(scenery, name, Vector3.new(math.abs(target.X) + 8, .05, 12), Vector3.new(target.X / 2, .18, z), COLORS.stoneLight, Enum.Material.Cobblestone, false)
+ end
+ approach('PortalPath', Facilities.portal.offset, 13)
+ approach('DefensePath', Facilities.defense.offset, 13)
+ approach('TrainingPath', Facilities.training.offset, 19)
+ approach('PotionShopPath', Facilities.itemShop.offset, 11)
+ approach('SmithPath', Facilities.forge.offset, 17)
  require(script.Parent.DawnspireThrone).create({folder=model, origin=ORIGIN})
- local title = part(scenery, "ArrivalWelcome", Vector3.new(23, 3, .4), Vector3.new(0, 5, 78), COLORS.stoneDark, Enum.Material.Slate, false)
+ local title = part(scenery, "ArrivalWelcome", Vector3.new(23, 3, .4), Vector3.new(0, 5, 120), COLORS.stoneDark, Enum.Material.Slate, false)
  label(title, "LobbyTitle", LABELS.title)
 end
 

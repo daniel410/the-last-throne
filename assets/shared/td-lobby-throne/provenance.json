@@ -1,0 +1,25 @@
+{
+  "kind": "td-native-lobby-throne-snapshot",
+  "date": "2026-11-11",
+  "sourceProject": "../throne-defense",
+  "sourceFiles": [
+    {
+      "path": "src/Server/VisualFactoryLobby.lua",
+      "sha256": "1c3fd2aae2a190000b41606e47709861331ce0ee90bdd0fdc184aeb503a11fce"
+    },
+    {
+      "path": "src/Server/VisualFactoryLobbyArchitecture.lua",
+      "sha256": "e2e7754a24e559eabfa5d9942e41052cecbf1cad6265861f17647db1c878eeb1"
+    },
+    {
+      "path": "src/Server/VisualFactoryLobbyGold.lua",
+      "sha256": "eba61fb942179e453e488186afeea3fd816153e469f8e6977c6f59a6da2710d3"
+    }
+  ],
+  "extraction": "ThroneDais through RoyalThroneFinial; exact beam/arch/crest helpers",
+  "adapter": "Translate geometry only; apply TD native lobby final gold body RGB240/175/50 and reflectance0.18, retain fabric colors",
+  "runtimeModule": "src/shared/TDLobbyThroneGeometry.luau",
+  "runtimeSha256": "5d0a398ce781b0415919d03b54198bb6f1ff8b82fa7c583838a1e7089b4e0e7a",
+  "permissions": "Same owner TD/RPG shared asset instruction; TD source read-only",
+  "scope": "Native lobby gold chair; not combat pink crystal or unpublished Blender citadel mesh"
+}
