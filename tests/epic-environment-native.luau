@@ -11,7 +11,7 @@ for id,z in pairs(C.zones)do
  local root=site:FindFirstChild('BiomeDetails');check(root~=nil,'biome details '..id)
  local n,clusters=0,0
  for _,m in ipairs(root:GetChildren())do if m:IsA('Model')then
-  clusters+=1;check(m:GetAttribute('BlenderEnvironmentSource')~=nil,'source attribution')
+  clusters+=1;check(m:GetAttribute('BlenderEnvironmentSource')~=nil or m:GetAttribute('TDEnvironmentSource')~=nil,'source attribution')
  end end
  for _,p in ipairs(root:GetDescendants())do if p:IsA('BasePart')then
   n+=1

@@ -102,7 +102,7 @@ function D.build(site,id,c,size,pal,theme,safe,ground)
   end
   if occupied or radius>190 then m:Destroy()
   else
-   m.Name='RegionalBackdrop';m:SetAttribute('BlenderEnvironmentSource','TDBackdrop_'..source)
+   m.Name='RegionalBackdrop';m:SetAttribute('EnvironmentDetailSource','TDBackdrop_'..source)
    m:SetAttribute('RegionalBackdrop',true)
    for _,part in ipairs(m:GetDescendants())do if part:IsA('BasePart')then
     part:SetAttribute('TLTSceneryDistance',900)
