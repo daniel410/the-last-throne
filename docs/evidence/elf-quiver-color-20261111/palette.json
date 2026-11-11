@@ -1,0 +1,77 @@
+[
+  {
+    "source": "assets/models/four-family-weapons-meshy-v1/source/sentinel_bow.glb",
+    "sha256": "a918a6d0b44bb3d9a2e61c5ea9f93356dd5ac7a456e602b34a10f76b23c1c8a0",
+    "texture": "rbxassetid://138212965806098",
+    "body": [
+      17,
+      49,
+      81
+    ],
+    "trim": [
+      215,
+      175,
+      110
+    ]
+  },
+  {
+    "source": "assets/models/four-family-weapons-meshy-v1/source/veteran_bow.glb",
+    "sha256": "8b449879bb20d8d0833e5fb373d42d452058d1ee5fecc75b886c5ba61d515856",
+    "texture": "rbxassetid://81876101157285",
+    "body": [
+      110,
+      79,
+      49
+    ],
+    "trim": [
+      197,
+      147,
+      87
+    ]
+  },
+  {
+    "source": "assets/models/four-family-weapons-meshy-v1/source/tempered_bow.glb",
+    "sha256": "fc5403d5b0059f13df789e8d764207239edc240dfe082cea69303d6f9db3cb95",
+    "texture": "rbxassetid://124825290649611",
+    "body": [
+      79,
+      45,
+      21
+    ],
+    "trim": [
+      181,
+      136,
+      79
+    ]
+  },
+  {
+    "source": "assets/models/four-family-weapons-meshy-v1/source/traveler_bow.glb",
+    "sha256": "61ef36aaa8185bcb9e6f792a700a1c692a6ef1a8855524296fe9ff45d03eec3e",
+    "texture": "rbxassetid://103084256928023",
+    "body": [
+      75,
+      41,
+      7
+    ],
+    "trim": [
+      235,
+      198,
+      142
+    ]
+  },
+  {
+    "source": "assets/shared/td-player-weapons/source/ElfBow-td-derived-review.glb",
+    "sha256": "e8e51d71bceab81e7dfbb727f1a32cdd4904f0368661bb5e2f6ea0e88b350167",
+    "texture": "rbxassetid://115101390772936",
+    "body": [
+      107,
+      56,
+      20
+    ],
+    "trim": [
+      173,
+      135,
+      77
+    ]
+  }
+]

@@ -29,6 +29,33 @@ for _,rig in {Enum.HumanoidRigType.R15,Enum.HumanoidRigType.R6}do
  for i=1,3 do
   check(q['QuiverArrow'..i].MeshId==model.NockedArrow.MeshId and q['QuiverArrow'..i].Size==model.NockedArrow.Size,'Stored arrows share the actual fired arrow geometry')
  end
+ -- Texture-backed bows have a white mesh tint; use their actual texture palette.
+ local palettes=require(game.ServerScriptService.Server.Cosmetics.ElfQuiverPalette)
+ local bow=model.Bow;local tint=bow.Color;local surface=bow:FindFirstChildOfClass('SurfaceAppearance')
+ local originalMap=surface and surface.ColorMap;local originalTexture=bow.TextureID
+ if surface then surface.Parent=nil end
+ for texture,palette in pairs(palettes)do
+  bow.TextureID=texture;bow.Color=Color3.new(1,1,1)
+  assert(A.attachInto(model,c,'elf'))
+  check(model.ElfQuiver==q,'Changing bow palette preserves the quiver and draw socket')
+  check(q.QuiverFront.Color==palette.body and q.QuiverHarness.Color==palette.body,'Body and harness match the bow texture')
+  check(q['QuiverRimX1'].Color==palette.trim,'Rim matches the bow accent')
+  check(A.isAttached(model,c,'elf'),'Updated palette remains attached')
+  bow.Color=Color3.new(.5,.75,1);assert(A.attachInto(model,c,'elf'))
+  check(q.QuiverFront.Color==Color3.fromRGB(math.round(palette.body.R*bow.Color.R*255),math.round(palette.body.G*bow.Color.G*255),math.round(palette.body.B*bow.Color.B*255)),'Bow tint also affects the quiver palette')
+  check(A.isAttached(model,c,'elf'),'Rounded tinted colors do not trigger endless appearance rebuilding')
+ end
+ bow.TextureID='';bow.Color=Color3.fromRGB(40,120,190)
+ check(not A.isAttached(model,c,'elf'),'Stale colors request appearance synchronization')
+ assert(A.attachInto(model,c,'elf'))
+ check(q.QuiverFront.Color==bow.Color and q.QuiverRimX1.Color==bow.Color,'Untextured bows automatically use their mesh color')
+ if surface then
+  surface.ColorMap=originalMap;surface.Parent=bow
+  bow.TextureID='rbxassetid://138212965806098';bow.Color=Color3.new(1,1,1)
+  assert(A.attachInto(model,c,'elf'))
+  check(q.QuiverFront.Color==palettes[originalMap].body,'SurfaceAppearance takes precedence over TextureID')
+ end
+ bow.TextureID=originalTexture;bow.Color=tint;assert(A.attachInto(model,c,'elf'))
  c:SetAttribute('K0ClassId','elf');c:SetAttribute('K0Combo',1);c:SetAttribute('K0SkillId',nil);c:SetAttribute('K0BasicAttackRate',1)
  local d=Config.BasicAttackProfiles.elf.attacks[1]
  local function sample(t,start)
