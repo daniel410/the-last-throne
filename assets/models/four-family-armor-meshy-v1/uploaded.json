@@ -1,0 +1,702 @@
+[
+  {
+    "id": "traveler_robe",
+    "operationId": "41568889-7f7e-4145-95e1-eff0e5d58176",
+    "path": "operations/41568889-7f7e-4145-95e1-eff0e5d58176",
+    "done": true,
+    "response": {
+      "path": "assets/82203126964364",
+      "revisionId": "2",
+      "revisionCreateTime": "2026-11-11T16:17:54.783Z",
+      "assetId": "82203126964364",
+      "displayName": "TLT Traveler Robe Armor v1",
+      "description": "The Last Throne original Meshy armor; articulated rigid panels; source task 01a1cb34-1677-7680-b01a-1787e37cce1a.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "sentinel_robe",
+    "operationId": "bf28d9d8-b763-4484-b65c-ca992e3dba6f",
+    "path": "operations/bf28d9d8-b763-4484-b65c-ca992e3dba6f",
+    "done": true,
+    "response": {
+      "path": "assets/128202732647870",
+      "revisionId": "2",
+      "revisionCreateTime": "2026-11-11T16:17:58.053Z",
+      "assetId": "128202732647870",
+      "displayName": "TLT sentinel robe Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb4a-c161-719a-8f5d-9b068be8c3cd. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "sentinel_hood",
+    "operationId": "7ed7dd88-e674-43e3-adf6-c1735c0e05c8",
+    "path": "operations/7ed7dd88-e674-43e3-adf6-c1735c0e05c8",
+    "done": true,
+    "response": {
+      "path": "assets/87287290899344",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:28.006Z",
+      "assetId": "87287290899344",
+      "displayName": "TLT sentinel hood Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb4a-ac7c-765b-b9d1-5368b75a47af. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "sentinel_coat",
+    "operationId": "ef907265-38ae-4538-a700-12d935c45c40",
+    "path": "operations/ef907265-38ae-4538-a700-12d935c45c40",
+    "done": true,
+    "response": {
+      "path": "assets/125810632383782",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:23.823Z",
+      "assetId": "125810632383782",
+      "displayName": "TLT sentinel coat Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb4a-8380-7359-a194-e723587945a1. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "veteran_robe",
+    "operationId": "391fe7ee-136d-4b68-b804-ec9ae2dc21b2",
+    "path": "operations/391fe7ee-136d-4b68-b804-ec9ae2dc21b2",
+    "done": true,
+    "response": {
+      "path": "assets/90816930527008",
+      "revisionId": "2",
+      "revisionCreateTime": "2026-11-11T16:17:53.960Z",
+      "assetId": "90816930527008",
+      "displayName": "TLT veteran robe Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb4f-1be0-730d-9e0a-ebc043b67a04. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "sentinel_gloves",
+    "operationId": "06128f05-4a2a-4024-88d0-8944faea94d7",
+    "path": "operations/06128f05-4a2a-4024-88d0-8944faea94d7",
+    "done": true,
+    "response": {
+      "path": "assets/123670964201535",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:24.626Z",
+      "assetId": "123670964201535",
+      "displayName": "TLT sentinel gloves Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb4a-8ec4-7335-ad41-fe204c5c9dd3. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "sentinel_boots",
+    "operationId": "335c4bea-783f-4fab-ae62-2876ff36f19c",
+    "path": "operations/335c4bea-783f-4fab-ae62-2876ff36f19c",
+    "done": true,
+    "response": {
+      "path": "assets/78197699860118",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:24.642Z",
+      "assetId": "78197699860118",
+      "displayName": "TLT sentinel boots Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb4a-77e2-706d-bf7c-55ef2ce3cb7a. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "sentinel_helmet",
+    "operationId": "a976f36d-c7e6-4761-ba22-35c51becb1ee",
+    "path": "operations/a976f36d-c7e6-4761-ba22-35c51becb1ee",
+    "done": true,
+    "response": {
+      "path": "assets/85589459709245",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:23.873Z",
+      "assetId": "85589459709245",
+      "displayName": "TLT sentinel helmet Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb4a-8b4e-70aa-af5c-4dfe143550a6. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "veteran_gloves",
+    "operationId": "66106b0f-bdf4-4ce4-8a52-1811fd24408e",
+    "path": "operations/66106b0f-bdf4-4ce4-8a52-1811fd24408e",
+    "done": true,
+    "response": {
+      "path": "assets/131973966990234",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:25.017Z",
+      "assetId": "131973966990234",
+      "displayName": "TLT veteran gloves Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb49-f478-76b7-9393-002cfb6b1125. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "veteran_helmet",
+    "operationId": "91bad0a6-555e-4af7-b82d-bb5c3066d0a1",
+    "path": "operations/91bad0a6-555e-4af7-b82d-bb5c3066d0a1",
+    "done": true,
+    "response": {
+      "path": "assets/102519838555934",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:30.233Z",
+      "assetId": "102519838555934",
+      "displayName": "TLT veteran helmet Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb4a-062a-7556-96fc-1bcc173f64f2. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "veteran_boots",
+    "operationId": "eca6ed94-736a-45b1-b679-abad437cde23",
+    "path": "operations/eca6ed94-736a-45b1-b679-abad437cde23",
+    "done": true,
+    "response": {
+      "path": "assets/95326182015755",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:28.323Z",
+      "assetId": "95326182015755",
+      "displayName": "TLT veteran boots Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb49-c70c-7065-9b06-c05477f9a290. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "veteran_hood",
+    "operationId": "2d74d882-cf19-4738-b468-81590ba92498",
+    "path": "operations/2d74d882-cf19-4738-b468-81590ba92498",
+    "done": true,
+    "response": {
+      "path": "assets/101521922564216",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:27.627Z",
+      "assetId": "101521922564216",
+      "displayName": "TLT veteran hood Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb4a-2bc8-747a-8a41-dc25fe7f264b. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "tempered_robe",
+    "operationId": "716842fe-9fc7-48c9-9f69-869ad40ade53",
+    "path": "operations/716842fe-9fc7-48c9-9f69-869ad40ade53",
+    "done": true,
+    "response": {
+      "path": "assets/81075764659104",
+      "revisionId": "2",
+      "revisionCreateTime": "2026-11-11T16:17:52.093Z",
+      "assetId": "81075764659104",
+      "displayName": "TLT tempered robe Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb49-a761-7360-894d-6387185c41ee. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "tempered_hood",
+    "operationId": "73a91bca-90e1-4dc2-bda1-acadb098f51c",
+    "path": "operations/73a91bca-90e1-4dc2-bda1-acadb098f51c",
+    "done": true,
+    "response": {
+      "path": "assets/128639893484372",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:32.209Z",
+      "assetId": "128639893484372",
+      "displayName": "TLT tempered hood Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb49-a2f7-7261-9dc6-a0e7d34c6a93. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "veteran_coat",
+    "operationId": "49bae973-2323-4054-84c4-89670e6ccee3",
+    "path": "operations/49bae973-2323-4054-84c4-89670e6ccee3",
+    "done": true,
+    "response": {
+      "path": "assets/116371447479354",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:31.323Z",
+      "assetId": "116371447479354",
+      "displayName": "TLT veteran coat Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb49-c4df-70e8-872e-dbe210f53556. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "veteran_hat",
+    "operationId": "cad211a3-a7c2-4843-bfc1-cad72fe7316f",
+    "path": "operations/cad211a3-a7c2-4843-bfc1-cad72fe7316f",
+    "done": true,
+    "response": {
+      "path": "assets/80678160565531",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:27.660Z",
+      "assetId": "80678160565531",
+      "displayName": "TLT veteran hat Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb3a-e692-74c1-b906-83f6058f2c0c. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "tempered_gloves",
+    "operationId": "87d881a7-c884-4156-89c4-7043fc662753",
+    "path": "operations/87d881a7-c884-4156-89c4-7043fc662753",
+    "done": true,
+    "response": {
+      "path": "assets/125103485426992",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:30.929Z",
+      "assetId": "125103485426992",
+      "displayName": "TLT tempered gloves Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb49-687f-762b-a240-1621406127d2. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "tempered_coat",
+    "operationId": "990e443b-9aa3-4673-90b2-8e91f54b00f7",
+    "path": "operations/990e443b-9aa3-4673-90b2-8e91f54b00f7",
+    "done": true,
+    "response": {
+      "path": "assets/75615355537041",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:31.092Z",
+      "assetId": "75615355537041",
+      "displayName": "TLT tempered coat Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb49-5d83-733b-a8c6-7bc598657eef. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "tempered_helmet",
+    "operationId": "1022717e-18d7-4c45-a3f9-acede8b382ab",
+    "path": "operations/1022717e-18d7-4c45-a3f9-acede8b382ab",
+    "done": true,
+    "response": {
+      "path": "assets/130086610382275",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:30.955Z",
+      "assetId": "130086610382275",
+      "displayName": "TLT tempered helmet Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb49-81cd-71ca-aacb-6c32cc646832. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "tempered_boots",
+    "operationId": "eb8cee48-46b0-4291-8e7e-c715e2729588",
+    "path": "operations/eb8cee48-46b0-4291-8e7e-c715e2729588",
+    "done": true,
+    "response": {
+      "path": "assets/117307839558492",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:32.134Z",
+      "assetId": "117307839558492",
+      "displayName": "TLT tempered boots Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb49-1be1-73be-9f4a-87e039d3e827. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "traveler_hat",
+    "operationId": "be7ff927-f5a5-47b3-8006-949676a594d6",
+    "path": "operations/be7ff927-f5a5-47b3-8006-949676a594d6",
+    "done": true,
+    "response": {
+      "path": "assets/129677703256866",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:33.088Z",
+      "assetId": "129677703256866",
+      "displayName": "TLT traveler hat Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb3a-d201-7553-9609-223b5bc438a0. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "tempered_hat",
+    "operationId": "ae6b1f2b-18f4-49a6-9845-b6962518cc54",
+    "path": "operations/ae6b1f2b-18f4-49a6-9845-b6962518cc54",
+    "done": true,
+    "response": {
+      "path": "assets/115671763678989",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:35.036Z",
+      "assetId": "115671763678989",
+      "displayName": "TLT tempered hat Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb3a-b445-7574-8e8d-3cb45883a260. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "sentinel_hat",
+    "operationId": "9dab609c-acbf-4462-8f5c-54c1f1686e38",
+    "path": "operations/9dab609c-acbf-4462-8f5c-54c1f1686e38",
+    "done": true,
+    "response": {
+      "path": "assets/106918412233018",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:36.111Z",
+      "assetId": "106918412233018",
+      "displayName": "TLT sentinel hat Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb3a-a1cd-765a-9eeb-09276c582912. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "traveler_coat",
+    "operationId": "bb8fb499-7f5d-4034-b15a-e3a075c6e514",
+    "path": "operations/bb8fb499-7f5d-4034-b15a-e3a075c6e514",
+    "done": true,
+    "response": {
+      "path": "assets/83545138985014",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:32.414Z",
+      "assetId": "83545138985014",
+      "displayName": "TLT traveler coat Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb33-a667-728c-9dd4-9a1b3eb3e694. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "traveler_boots",
+    "operationId": "68f56a76-9a54-4f52-8ed4-d528c60f7740",
+    "path": "operations/68f56a76-9a54-4f52-8ed4-d528c60f7740",
+    "done": true,
+    "response": {
+      "path": "assets/126319276476133",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:33.566Z",
+      "assetId": "126319276476133",
+      "displayName": "TLT traveler boots Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb33-911a-75a9-b8d9-b43d230cc3be. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "traveler_hood",
+    "operationId": "dd8c5f36-4cd6-4d3a-8c09-bc62d65e99c7",
+    "path": "operations/dd8c5f36-4cd6-4d3a-8c09-bc62d65e99c7",
+    "done": true,
+    "response": {
+      "path": "assets/100140448902883",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:36.827Z",
+      "assetId": "100140448902883",
+      "displayName": "TLT traveler hood Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb33-fc5b-7518-b7ef-d5b1dc173a92. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "traveler_helmet",
+    "operationId": "51cef82d-9d2d-4647-a67c-3f46417732c6",
+    "path": "operations/51cef82d-9d2d-4647-a67c-3f46417732c6",
+    "done": true,
+    "response": {
+      "path": "assets/121574048040573",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:36.200Z",
+      "assetId": "121574048040573",
+      "displayName": "TLT traveler helmet Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb33-e891-72a7-9a0e-9db218e5fbf9. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  {
+    "id": "traveler_gloves",
+    "operationId": "47dffbc1-bf2d-4866-a3ea-f9cb199d7607",
+    "path": "operations/47dffbc1-bf2d-4866-a3ea-f9cb199d7607",
+    "done": true,
+    "response": {
+      "path": "assets/135245552316364",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-11T16:15:39.024Z",
+      "assetId": "135245552316364",
+      "displayName": "TLT traveler gloves Armor v1",
+      "description": "The Last Throne Meshy armor. Source task 01a1cb33-ca30-74a0-97c5-19269d911c26. UV-preserving articulated panels.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  }
+]

@@ -1,0 +1,390 @@
+{
+  "initial": [
+    {
+      "id": "traveler_robe",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/6bfbd32e-42dd-4b5e-b545-1248b3f91c13\",\"operationId\":\"6bfbd32e-42dd-4b5e-b545-1248b3f91c13\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "sentinel_robe",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/5345c92f-0130-4ed4-b6c0-56a783aa0657\",\"operationId\":\"5345c92f-0130-4ed4-b6c0-56a783aa0657\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "sentinel_hood",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/7ed7dd88-e674-43e3-adf6-c1735c0e05c8\",\"operationId\":\"7ed7dd88-e674-43e3-adf6-c1735c0e05c8\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "sentinel_coat",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/ef907265-38ae-4538-a700-12d935c45c40\",\"operationId\":\"ef907265-38ae-4538-a700-12d935c45c40\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "veteran_robe",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/e562afe0-9436-4495-86b2-d7a87a6ea609\",\"operationId\":\"e562afe0-9436-4495-86b2-d7a87a6ea609\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "sentinel_gloves",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/06128f05-4a2a-4024-88d0-8944faea94d7\",\"operationId\":\"06128f05-4a2a-4024-88d0-8944faea94d7\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "sentinel_boots",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/335c4bea-783f-4fab-ae62-2876ff36f19c\",\"operationId\":\"335c4bea-783f-4fab-ae62-2876ff36f19c\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "sentinel_helmet",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/a976f36d-c7e6-4761-ba22-35c51becb1ee\",\"operationId\":\"a976f36d-c7e6-4761-ba22-35c51becb1ee\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "veteran_gloves",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/66106b0f-bdf4-4ce4-8a52-1811fd24408e\",\"operationId\":\"66106b0f-bdf4-4ce4-8a52-1811fd24408e\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "veteran_helmet",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/91bad0a6-555e-4af7-b82d-bb5c3066d0a1\",\"operationId\":\"91bad0a6-555e-4af7-b82d-bb5c3066d0a1\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "veteran_boots",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/eca6ed94-736a-45b1-b679-abad437cde23\",\"operationId\":\"eca6ed94-736a-45b1-b679-abad437cde23\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "veteran_hood",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/2d74d882-cf19-4738-b468-81590ba92498\",\"operationId\":\"2d74d882-cf19-4738-b468-81590ba92498\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "tempered_robe",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/e59743a5-31de-424f-a456-1239659cbdf7\",\"operationId\":\"e59743a5-31de-424f-a456-1239659cbdf7\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "tempered_hood",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/73a91bca-90e1-4dc2-bda1-acadb098f51c\",\"operationId\":\"73a91bca-90e1-4dc2-bda1-acadb098f51c\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "veteran_coat",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/49bae973-2323-4054-84c4-89670e6ccee3\",\"operationId\":\"49bae973-2323-4054-84c4-89670e6ccee3\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "veteran_hat",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/cad211a3-a7c2-4843-bfc1-cad72fe7316f\",\"operationId\":\"cad211a3-a7c2-4843-bfc1-cad72fe7316f\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "tempered_gloves",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/87d881a7-c884-4156-89c4-7043fc662753\",\"operationId\":\"87d881a7-c884-4156-89c4-7043fc662753\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "tempered_coat",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/990e443b-9aa3-4673-90b2-8e91f54b00f7\",\"operationId\":\"990e443b-9aa3-4673-90b2-8e91f54b00f7\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "tempered_helmet",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/1022717e-18d7-4c45-a3f9-acede8b382ab\",\"operationId\":\"1022717e-18d7-4c45-a3f9-acede8b382ab\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "tempered_boots",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/eb8cee48-46b0-4291-8e7e-c715e2729588\",\"operationId\":\"eb8cee48-46b0-4291-8e7e-c715e2729588\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "traveler_hat",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/be7ff927-f5a5-47b3-8006-949676a594d6\",\"operationId\":\"be7ff927-f5a5-47b3-8006-949676a594d6\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "tempered_hat",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/ae6b1f2b-18f4-49a6-9845-b6962518cc54\",\"operationId\":\"ae6b1f2b-18f4-49a6-9845-b6962518cc54\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "sentinel_hat",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/9dab609c-acbf-4462-8f5c-54c1f1686e38\",\"operationId\":\"9dab609c-acbf-4462-8f5c-54c1f1686e38\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "traveler_coat",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/bb8fb499-7f5d-4034-b15a-e3a075c6e514\",\"operationId\":\"bb8fb499-7f5d-4034-b15a-e3a075c6e514\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "traveler_boots",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/68f56a76-9a54-4f52-8ed4-d528c60f7740\",\"operationId\":\"68f56a76-9a54-4f52-8ed4-d528c60f7740\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "traveler_hood",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/dd8c5f36-4cd6-4d3a-8c09-bc62d65e99c7\",\"operationId\":\"dd8c5f36-4cd6-4d3a-8c09-bc62d65e99c7\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "traveler_helmet",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/51cef82d-9d2d-4647-a67c-3f46417732c6\",\"operationId\":\"51cef82d-9d2d-4647-a67c-3f46417732c6\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "traveler_gloves",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "POST https://apis.roblox.com/assets/v1/assets -> 200 OK\n\n{\"path\":\"operations/47dffbc1-bf2d-4866-a3ea-f9cb199d7607\",\"operationId\":\"47dffbc1-bf2d-4866-a3ea-f9cb199d7607\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "revisions": [
+    {
+      "id": "sentinel_robe",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "PATCH https://apis.roblox.com/assets/v1/assets/128202732647870 -> 200 OK\n\n{\"path\":\"operations/bf28d9d8-b763-4484-b65c-ca992e3dba6f\",\"operationId\":\"bf28d9d8-b763-4484-b65c-ca992e3dba6f\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "veteran_robe",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "PATCH https://apis.roblox.com/assets/v1/assets/90816930527008 -> 200 OK\n\n{\"path\":\"operations/391fe7ee-136d-4b68-b804-ec9ae2dc21b2\",\"operationId\":\"391fe7ee-136d-4b68-b804-ec9ae2dc21b2\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "tempered_robe",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "PATCH https://apis.roblox.com/assets/v1/assets/81075764659104 -> 200 OK\n\n{\"path\":\"operations/716842fe-9fc7-48c9-9f69-869ad40ade53\",\"operationId\":\"716842fe-9fc7-48c9-9f69-869ad40ade53\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "id": "traveler_robe",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "PATCH https://apis.roblox.com/assets/v1/assets/82203126964364 -> 200 OK\n\n{\"path\":\"operations/41568889-7f7e-4145-95e1-eff0e5d58176\",\"operationId\":\"41568889-7f7e-4145-95e1-eff0e5d58176\",\"done\":false}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ]
+}

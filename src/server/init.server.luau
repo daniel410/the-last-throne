@@ -82,6 +82,7 @@ sessionOptions={inventory=inventory,lobbySpawn=lobby.spawn,tutorialSpawn=lobby.s
  lobbyBounds=lobby.bounds,requestSpawn=spawnService.requestSpawn,network=expedition}
 heroSession.start(sessionOptions)
 require(script.Cosmetics.KnightAppearance).start()
+require(script.Cosmetics.ArmorAppearance).start()
 require(script.Cosmetics.HeroPalette).start()
 local merchant=role=='Lobby' and require(script.World.WeaponMerchant).create(lobby) or nil
 require(script.Lobby.MerchantService).start({inventory=inventory,merchant=merchant})

@@ -71,6 +71,9 @@
       },
       "FourFamilyShieldModels": {
         "$path": "assets/models/four-family-shields-meshy-v1/runtime.rbxm"
+      },
+      "FourFamilyArmorModels": {
+        "$path": "assets/models/four-family-armor-meshy-v1/runtime.rbxm"
       }
     },
     "StarterPlayer": {

@@ -57,11 +57,11 @@ function Rules.quantity(profile, heroId, definitionId)
 	return count
 end
 function Rules.stats(profile, heroId, catalog)
-	local result = {power = 0, armor = 0, health = 0, mana = 0, dexterity = 0, weapon = false, offhand = false}
+	local result = {power = 0, armor = 0, health = 0, mana = 0, dexterity = 0, weapon = false, offhand = false, head = false, body = false, hands = false, feet = false}
 	for _, item in pairs(profile.items) do
 		if item.location.kind == "equipped" and item.location.heroId == heroId then
 			for key, value in pairs(Enhancement.stats(catalog.items[item.definitionId],item)) do result[key] = result[key] + value end
-			if item.location.slot == "weapon" or item.location.slot == "offhand" then result[item.location.slot] = item.definitionId end
+			if item.location.slot == "weapon" or item.location.slot == "offhand" or item.location.slot == "head" or item.location.slot == "body" or item.location.slot == "hands" or item.location.slot == "feet" then result[item.location.slot] = item.definitionId end
 		end
 	end
 	result.specialEffects=Effects.collect(profile.items,heroId,catalog)

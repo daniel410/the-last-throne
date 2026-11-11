@@ -1,0 +1,1854 @@
+[
+  {
+    "id": "sentinel_robe",
+    "parts": [
+      {
+        "nativeVertices": 275,
+        "rotationToSource": 180,
+        "name": "RightUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.9984691739082336,
+          -1.795005440711975,
+          -0.0026110708713531494
+        ],
+        "meshId": "rbxassetid://71004788989896",
+        "size": [
+          2.153061628341675,
+          2.3658807277679443,
+          1.3447778224945068
+        ],
+        "textureId": "rbxassetid://82596225649809"
+      },
+      {
+        "nativeVertices": 778,
+        "rotationToSource": 180,
+        "name": "UpperTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.016336560249328613,
+          0.18443885445594788,
+          -0.02872423827648163
+        ],
+        "meshId": "rbxassetid://110082271030368",
+        "size": [
+          2.8901119232177734,
+          1.6711223125457764,
+          0.7990322113037109
+        ],
+        "textureId": "rbxassetid://82596225649809"
+      },
+      {
+        "nativeVertices": 182,
+        "rotationToSource": 180,
+        "name": "LeftLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.1979577541351318,
+          -0.3221161663532257,
+          -0.04569539427757263
+        ],
+        "meshId": "rbxassetid://100099931031199",
+        "size": [
+          1.25675630569458,
+          1.2157676219940186,
+          0.66847163438797
+        ],
+        "textureId": "rbxassetid://82596225649809"
+      },
+      {
+        "nativeVertices": 150,
+        "rotationToSource": 180,
+        "name": "LowerTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.009075462818145752,
+          -0.8135058283805847,
+          -0.12272737920284271
+        ],
+        "meshId": "rbxassetid://81365419246662",
+        "size": [
+          2.3600168228149414,
+          0.9660838842391968,
+          0.7363616228103638
+        ],
+        "textureId": "rbxassetid://82596225649809"
+      },
+      {
+        "nativeVertices": 117,
+        "rotationToSource": 180,
+        "name": "LeftUpperArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.4484069347381592,
+          0.3477127254009247,
+          0.0665864422917366
+        ],
+        "meshId": "rbxassetid://139669622538679",
+        "size": [
+          0.7558580636978149,
+          0.7469859719276428,
+          0.5979666113853455
+        ],
+        "textureId": "rbxassetid://82596225649809"
+      },
+      {
+        "nativeVertices": 268,
+        "rotationToSource": 180,
+        "name": "LeftUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.0184382200241089,
+          -1.785754680633545,
+          0
+        ],
+        "meshId": "rbxassetid://108232998690865",
+        "size": [
+          2.113123655319214,
+          2.388490676879883,
+          1.3499999046325684
+        ],
+        "textureId": "rbxassetid://82596225649809"
+      },
+      {
+        "nativeVertices": 134,
+        "rotationToSource": 180,
+        "name": "RightUpperArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.4062747955322266,
+          0.3486230969429016,
+          0.02937529981136322
+        ],
+        "meshId": "rbxassetid://137488125990482",
+        "size": [
+          1.0351170301437378,
+          0.7524559497833252,
+          0.5705512762069702
+        ],
+        "textureId": "rbxassetid://82596225649809"
+      },
+      {
+        "nativeVertices": 190,
+        "rotationToSource": 180,
+        "name": "RightLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.2425955533981323,
+          -0.3212057650089264,
+          -0.06984994560480118
+        ],
+        "meshId": "rbxassetid://90430878773420",
+        "size": [
+          1.3624756336212158,
+          1.2175884246826172,
+          0.5731609463691711
+        ],
+        "textureId": "rbxassetid://82596225649809"
+      }
+    ],
+    "meshyTaskId": "01a1cb4a-c161-719a-8f5d-9b068be8c3cd",
+    "definitionId": "mage_sentinel_coat"
+  },
+  {
+    "id": "sentinel_hood",
+    "parts": [
+      {
+        "nativeVertices": 2111,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          1.6859999895095825,
+          0
+        ],
+        "meshId": "rbxassetid://116855335967443",
+        "size": [
+          1.899999976158142,
+          1.8999998569488525,
+          1.7000000476837158
+        ],
+        "textureId": "rbxassetid://119712782246516"
+      }
+    ],
+    "meshyTaskId": "01a1cb4a-ac7c-765b-b9d1-5368b75a47af",
+    "definitionId": "sentinel_tier_hood"
+  },
+  {
+    "id": "sentinel_coat",
+    "parts": [
+      {
+        "nativeVertices": 286,
+        "rotationToSource": 180,
+        "name": "LowerTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          -0.8491787910461426,
+          -0.02264145016670227
+        ],
+        "meshId": "rbxassetid://120877871628215",
+        "size": [
+          2.3340656757354736,
+          0.7601591944694519,
+          1.1688652038574219
+        ],
+        "textureId": "rbxassetid://125930347379082"
+      },
+      {
+        "nativeVertices": 1152,
+        "rotationToSource": 180,
+        "name": "UpperTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          0.172431081533432,
+          -0.02901005744934082
+        ],
+        "meshId": "rbxassetid://75257430562430",
+        "size": [
+          3.049999952316284,
+          1.6951377391815186,
+          1.1193394660949707
+        ],
+        "textureId": "rbxassetid://125930347379082"
+      },
+      {
+        "nativeVertices": 250,
+        "rotationToSource": 180,
+        "name": "LeftUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.6857053637504578,
+          -1.407981038093567,
+          0.012735754251480103
+        ],
+        "meshId": "rbxassetid://114976471487634",
+        "size": [
+          1.504442811012268,
+          1.2003324031829834,
+          1.324528455734253
+        ],
+        "textureId": "rbxassetid://125930347379082"
+      },
+      {
+        "nativeVertices": 282,
+        "rotationToSource": 180,
+        "name": "RightUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.634911835193634,
+          -1.4189075231552124,
+          0
+        ],
+        "meshId": "rbxassetid://103912731185356",
+        "size": [
+          1.610864520072937,
+          1.2221853733062744,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://125930347379082"
+      }
+    ],
+    "meshyTaskId": "01a1cb4a-8380-7359-a194-e723587945a1",
+    "definitionId": "sentinel_tier_coat"
+  },
+  {
+    "id": "veteran_robe",
+    "parts": [
+      {
+        "nativeVertices": 352,
+        "rotationToSource": 180,
+        "name": "RightUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.0221186876296997,
+          -1.7367842197418213,
+          0
+        ],
+        "meshId": "rbxassetid://133773408898746",
+        "size": [
+          2.05107045173645,
+          2.48643159866333,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://108161156081985"
+      },
+      {
+        "nativeVertices": 800,
+        "rotationToSource": 180,
+        "name": "UpperTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.0017083287239074707,
+          -0.03478735685348511,
+          -0.04816640913486481
+        ],
+        "meshId": "rbxassetid://76328286148569",
+        "size": [
+          2.929616928100586,
+          2.109574794769287,
+          0.9079188108444214
+        ],
+        "textureId": "rbxassetid://108161156081985"
+      },
+      {
+        "nativeVertices": 362,
+        "rotationToSource": 180,
+        "name": "LeftUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.9725483059883118,
+          -1.7367842197418213,
+          0
+        ],
+        "meshId": "rbxassetid://104641364783133",
+        "size": [
+          2.1570441722869873,
+          2.48643159866333,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://108161156081985"
+      },
+      {
+        "nativeVertices": 153,
+        "rotationToSource": 180,
+        "name": "RightLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.2656350135803223,
+          -0.3208017945289612,
+          -0.14450058341026306
+        ],
+        "meshId": "rbxassetid://139588841595138",
+        "size": [
+          1.3466525077819824,
+          1.2183964252471924,
+          0.5938425064086914
+        ],
+        "textureId": "rbxassetid://108161156081985"
+      },
+      {
+        "nativeVertices": 83,
+        "rotationToSource": 180,
+        "name": "LowerTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.0017082691192626953,
+          -0.6840459108352661,
+          -0.11612828075885773
+        ],
+        "meshId": "rbxassetid://101958723848677",
+        "size": [
+          2.3006205558776855,
+          1.1920084953308105,
+          0.7904702425003052
+        ],
+        "textureId": "rbxassetid://108161156081985"
+      },
+      {
+        "nativeVertices": 80,
+        "rotationToSource": 180,
+        "name": "RightUpperArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.4775896072387695,
+          0.35193556547164917,
+          -0.03628966212272644
+        ],
+        "meshId": "rbxassetid://93020502732887",
+        "size": [
+          0.7868245840072632,
+          0.8750184774398804,
+          0.5885615348815918
+        ],
+        "textureId": "rbxassetid://108161156081985"
+      },
+      {
+        "nativeVertices": 70,
+        "rotationToSource": 180,
+        "name": "LeftUpperArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.4796701669692993,
+          0.35193556547164917,
+          -0.03233030438423157
+        ],
+        "meshId": "rbxassetid://110010311948529",
+        "size": [
+          0.7841525077819824,
+          0.8750184774398804,
+          0.580642819404602
+        ],
+        "textureId": "rbxassetid://108161156081985"
+      },
+      {
+        "nativeVertices": 133,
+        "rotationToSource": 180,
+        "name": "LeftLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.1852539777755737,
+          -0.31353887915611267,
+          -0.13460351526737213
+        ],
+        "meshId": "rbxassetid://110655080917940",
+        "size": [
+          1.5074145793914795,
+          1.2329223155975342,
+          0.5740483999252319
+        ],
+        "textureId": "rbxassetid://108161156081985"
+      }
+    ],
+    "meshyTaskId": "01a1cb4f-1be0-730d-9e0a-ebc043b67a04",
+    "definitionId": "mage_veteran_coat"
+  },
+  {
+    "id": "sentinel_gloves",
+    "parts": [
+      {
+        "nativeVertices": 442,
+        "rotationToSource": 180,
+        "name": "LeftLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.5155901908874512,
+          -0.3380182385444641,
+          0.024664372205734253
+        ],
+        "meshId": "rbxassetid://129155655902355",
+        "size": [
+          1.0613813400268555,
+          0.6960363388061523,
+          1.1006712913513184
+        ],
+        "textureId": "rbxassetid://126918373929127"
+      },
+      {
+        "nativeVertices": 504,
+        "rotationToSource": 180,
+        "name": "LeftHand",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.5,
+          -0.8691093921661377,
+          -0.2389405071735382
+        ],
+        "meshId": "rbxassetid://112508757719848",
+        "size": [
+          1.1200000047683716,
+          0.6017813086509705,
+          0.6721189618110657
+        ],
+        "textureId": "rbxassetid://126918373929127"
+      },
+      {
+        "nativeVertices": 516,
+        "rotationToSource": 180,
+        "name": "RightHand",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.5,
+          -0.8691093921661377,
+          -0.23954033851623535
+        ],
+        "meshId": "rbxassetid://114769397178438",
+        "size": [
+          1.1200000047683716,
+          0.6017813086509705,
+          0.6709192991256714
+        ],
+        "textureId": "rbxassetid://126918373929127"
+      },
+      {
+        "nativeVertices": 429,
+        "rotationToSource": 180,
+        "name": "RightLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.5149489641189575,
+          -0.3380182385444641,
+          0.024620354175567627
+        ],
+        "meshId": "rbxassetid://122904638651463",
+        "size": [
+          1.0601990222930908,
+          0.6960363388061523,
+          1.1007592678070068
+        ],
+        "textureId": "rbxassetid://126918373929127"
+      }
+    ],
+    "meshyTaskId": "01a1cb4a-8ec4-7335-ad41-fe204c5c9dd3",
+    "definitionId": "sentinel_tier_gloves"
+  },
+  {
+    "id": "sentinel_boots",
+    "parts": [
+      {
+        "nativeVertices": 628,
+        "rotationToSource": 180,
+        "name": "LeftLowerLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.4999999701976776,
+          -2.0686612129211426,
+          -0.08077478408813477
+        ],
+        "meshId": "rbxassetid://99919318466843",
+        "size": [
+          1.1399998664855957,
+          1.3673222064971924,
+          1.2715495824813843
+        ],
+        "textureId": "rbxassetid://94298946243705"
+      },
+      {
+        "nativeVertices": 341,
+        "rotationToSource": 180,
+        "name": "LeftFoot",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.5287396907806396,
+          -2.766979694366455,
+          -0.1600419580936432
+        ],
+        "meshId": "rbxassetid://104983314008059",
+        "size": [
+          1.0195646286010742,
+          0.5360407829284668,
+          1.26991605758667
+        ],
+        "textureId": "rbxassetid://94298946243705"
+      },
+      {
+        "nativeVertices": 368,
+        "rotationToSource": 180,
+        "name": "RightFoot",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.527371883392334,
+          -2.766796112060547,
+          -0.1600419580936432
+        ],
+        "meshId": "rbxassetid://131459224318544",
+        "size": [
+          1.016829013824463,
+          0.5364081859588623,
+          1.26991605758667
+        ],
+        "textureId": "rbxassetid://94298946243705"
+      },
+      {
+        "nativeVertices": 637,
+        "rotationToSource": 180,
+        "name": "RightLowerLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.4999999701976776,
+          -2.0677943229675293,
+          -0.0824090838432312
+        ],
+        "meshId": "rbxassetid://120474873514507",
+        "size": [
+          1.1399998664855957,
+          1.3655884265899658,
+          1.2748181819915771
+        ],
+        "textureId": "rbxassetid://94298946243705"
+      }
+    ],
+    "meshyTaskId": "01a1cb4a-77e2-706d-bf7c-55ef2ce3cb7a",
+    "definitionId": "sentinel_tier_boots"
+  },
+  {
+    "id": "sentinel_helmet",
+    "parts": [
+      {
+        "nativeVertices": 1966,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          1.6859999895095825,
+          0
+        ],
+        "meshId": "rbxassetid://93785567878875",
+        "size": [
+          1.8999998569488525,
+          1.8999998569488525,
+          1.7000000476837158
+        ],
+        "textureId": "rbxassetid://119249030645968"
+      }
+    ],
+    "meshyTaskId": "01a1cb4a-8b4e-70aa-af5c-4dfe143550a6",
+    "definitionId": "sentinel_tier_hood"
+  },
+  {
+    "id": "veteran_gloves",
+    "parts": [
+      {
+        "nativeVertices": 448,
+        "rotationToSource": 180,
+        "name": "LeftLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.4922940731048584,
+          -0.3640803396701813,
+          0.0017286241054534912
+        ],
+        "meshId": "rbxassetid://108955711754700",
+        "size": [
+          1.1045880317687988,
+          0.7481605410575867,
+          1.1465427875518799
+        ],
+        "textureId": "rbxassetid://134766072116171"
+      },
+      {
+        "nativeVertices": 520,
+        "rotationToSource": 180,
+        "name": "LeftHand",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.5,
+          -0.8772680759429932,
+          -0.16823622584342957
+        ],
+        "meshId": "rbxassetid://73861381723790",
+        "size": [
+          1.119999885559082,
+          0.5854640007019043,
+          0.813527524471283
+        ],
+        "textureId": "rbxassetid://134766072116171"
+      },
+      {
+        "nativeVertices": 484,
+        "rotationToSource": 180,
+        "name": "RightHand",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.5,
+          -0.8771162033081055,
+          -0.16823622584342957
+        ],
+        "meshId": "rbxassetid://71654525527791",
+        "size": [
+          1.119999885559082,
+          0.5857678055763245,
+          0.813527524471283
+        ],
+        "textureId": "rbxassetid://134766072116171"
+      },
+      {
+        "nativeVertices": 450,
+        "rotationToSource": 180,
+        "name": "RightLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.4922940731048584,
+          -0.3644932210445404,
+          0.0017286241054534912
+        ],
+        "meshId": "rbxassetid://99832617128426",
+        "size": [
+          1.1045880317687988,
+          0.7489863038063049,
+          1.1465427875518799
+        ],
+        "textureId": "rbxassetid://134766072116171"
+      }
+    ],
+    "meshyTaskId": "01a1cb49-f478-76b7-9393-002cfb6b1125",
+    "definitionId": "veteran_gloves"
+  },
+  {
+    "id": "veteran_helmet",
+    "parts": [
+      {
+        "nativeVertices": 1935,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          1.6859999895095825,
+          0
+        ],
+        "meshId": "rbxassetid://108508434199665",
+        "size": [
+          1.899999976158142,
+          1.8999998569488525,
+          1.7000001668930054
+        ],
+        "textureId": "rbxassetid://76553786176759"
+      }
+    ],
+    "meshyTaskId": "01a1cb4a-062a-7556-96fc-1bcc173f64f2",
+    "definitionId": "veteran_hood"
+  },
+  {
+    "id": "veteran_boots",
+    "parts": [
+      {
+        "nativeVertices": 609,
+        "rotationToSource": 180,
+        "name": "LeftLowerLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.47007474303245544,
+          -2.043323278427124,
+          -0.00359189510345459
+        ],
+        "meshId": "rbxassetid://71461991813171",
+        "size": [
+          1.0801494121551514,
+          1.3166465759277344,
+          1.1021112203598022
+        ],
+        "textureId": "rbxassetid://87898515860536"
+      },
+      {
+        "nativeVertices": 233,
+        "rotationToSource": 180,
+        "name": "LeftFoot",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.5384746789932251,
+          -2.785508155822754,
+          -0.12000000476837158
+        ],
+        "meshId": "rbxassetid://116626470470226",
+        "size": [
+          1.0630505084991455,
+          0.49898362159729004,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://87898515860536"
+      },
+      {
+        "nativeVertices": 259,
+        "rotationToSource": 180,
+        "name": "RightFoot",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.5378098487854004,
+          -2.7853493690490723,
+          -0.12000000476837158
+        ],
+        "meshId": "rbxassetid://77664374534239",
+        "size": [
+          1.064380168914795,
+          0.4993011951446533,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://87898515860536"
+      },
+      {
+        "nativeVertices": 715,
+        "rotationToSource": 180,
+        "name": "RightLowerLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.4700373411178589,
+          -2.043217182159424,
+          -0.00359189510345459
+        ],
+        "meshId": "rbxassetid://123281604124176",
+        "size": [
+          1.0800745487213135,
+          1.316434383392334,
+          1.1021112203598022
+        ],
+        "textureId": "rbxassetid://87898515860536"
+      }
+    ],
+    "meshyTaskId": "01a1cb49-c70c-7065-9b06-c05477f9a290",
+    "definitionId": "veteran_boots"
+  },
+  {
+    "id": "veteran_hood",
+    "parts": [
+      {
+        "nativeVertices": 2030,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          1.6859999895095825,
+          0
+        ],
+        "meshId": "rbxassetid://86197903498039",
+        "size": [
+          1.899999976158142,
+          1.8999998569488525,
+          1.7000000476837158
+        ],
+        "textureId": "rbxassetid://75656002869818"
+      }
+    ],
+    "meshyTaskId": "01a1cb4a-2bc8-747a-8a41-dc25fe7f264b",
+    "definitionId": "veteran_hood"
+  },
+  {
+    "id": "tempered_robe",
+    "parts": [
+      {
+        "nativeVertices": 308,
+        "rotationToSource": 180,
+        "name": "RightUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.0073421001434326,
+          -1.7855418920516968,
+          0
+        ],
+        "meshId": "rbxassetid://109460277313478",
+        "size": [
+          2.135315418243408,
+          2.388916254043579,
+          1.3499999046325684
+        ],
+        "textureId": "rbxassetid://101496271168683"
+      },
+      {
+        "nativeVertices": 1111,
+        "rotationToSource": 180,
+        "name": "UpperTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.019562184810638428,
+          0.1641775369644165,
+          -0.008009552955627441
+        ],
+        "meshId": "rbxassetid://94135433183075",
+        "size": [
+          2.4352312088012695,
+          1.7116448879241943,
+          0.9262104034423828
+        ],
+        "textureId": "rbxassetid://101496271168683"
+      },
+      {
+        "nativeVertices": 299,
+        "rotationToSource": 180,
+        "name": "LeftUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.9502946138381958,
+          -1.7855418920516968,
+          0
+        ],
+        "meshId": "rbxassetid://102416736325668",
+        "size": [
+          2.249410390853882,
+          2.388916254043579,
+          1.3499999046325684
+        ],
+        "textureId": "rbxassetid://101496271168683"
+      },
+      {
+        "nativeVertices": 129,
+        "rotationToSource": 180,
+        "name": "LeftLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.1467881202697754,
+          -0.3242799639701843,
+          0.0007292330265045166
+        ],
+        "meshId": "rbxassetid://104590555159564",
+        "size": [
+          0.9864572286605835,
+          1.211440086364746,
+          0.7135922908782959
+        ],
+        "textureId": "rbxassetid://101496271168683"
+      },
+      {
+        "nativeVertices": 222,
+        "rotationToSource": 180,
+        "name": "LowerTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.030972301959991455,
+          -0.9215085506439209,
+          -0.04150478541851044
+        ],
+        "meshId": "rbxassetid://97881952372835",
+        "size": [
+          2.2820053100585938,
+          1.3709602355957031,
+          0.8912642002105713
+        ],
+        "textureId": "rbxassetid://101496271168683"
+      },
+      {
+        "nativeVertices": 120,
+        "rotationToSource": 180,
+        "name": "RightLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.1275962591171265,
+          -0.34883880615234375,
+          0.0007292330265045166
+        ],
+        "meshId": "rbxassetid://72970908223322",
+        "size": [
+          0.9937275052070618,
+          1.1623224020004272,
+          0.7135922908782959
+        ],
+        "textureId": "rbxassetid://101496271168683"
+      },
+      {
+        "nativeVertices": 28,
+        "rotationToSource": 180,
+        "name": "LeftUpperArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.344254493713379,
+          0.3187309205532074,
+          0.046601928770542145
+        ],
+        "meshId": "rbxassetid://107259139444219",
+        "size": [
+          0.5047473907470703,
+          0.5475549101829529,
+          0.4820382595062256
+        ],
+        "textureId": "rbxassetid://101496271168683"
+      },
+      {
+        "nativeVertices": 24,
+        "rotationToSource": 180,
+        "name": "RightUpperArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.31365168094635,
+          0.264157235622406,
+          0.046601928770542145
+        ],
+        "meshId": "rbxassetid://104308265683297",
+        "size": [
+          0.5268287658691406,
+          0.48206353187561035,
+          0.4820382595062256
+        ],
+        "textureId": "rbxassetid://101496271168683"
+      }
+    ],
+    "meshyTaskId": "01a1cb49-a761-7360-894d-6387185c41ee",
+    "definitionId": "mage_tempered_coat"
+  },
+  {
+    "id": "tempered_hood",
+    "parts": [
+      {
+        "nativeVertices": 2051,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          1.6859999895095825,
+          0
+        ],
+        "meshId": "rbxassetid://108386692353907",
+        "size": [
+          1.899999976158142,
+          1.8999998569488525,
+          1.7000000476837158
+        ],
+        "textureId": "rbxassetid://85446010336183"
+      }
+    ],
+    "meshyTaskId": "01a1cb49-a2f7-7261-9dc6-a0e7d34c6a93",
+    "definitionId": "tempered_hood"
+  },
+  {
+    "id": "veteran_coat",
+    "parts": [
+      {
+        "nativeVertices": 271,
+        "rotationToSource": 180,
+        "name": "RightUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.7618789076805115,
+          -1.4173399209976196,
+          0
+        ],
+        "meshId": "rbxassetid://120982814604653",
+        "size": [
+          1.5262421369552612,
+          1.2253201007843018,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://87016661336967"
+      },
+      {
+        "nativeVertices": 1094,
+        "rotationToSource": 180,
+        "name": "UpperTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.011186957359313965,
+          0.21720445156097412,
+          -0.06549292802810669
+        ],
+        "meshId": "rbxassetid://117059563388712",
+        "size": [
+          2.063156843185425,
+          1.605591058731079,
+          1.0372271537780762
+        ],
+        "textureId": "rbxassetid://87016661336967"
+      },
+      {
+        "nativeVertices": 287,
+        "rotationToSource": 180,
+        "name": "LeftUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.7233493328094482,
+          -1.414992332458496,
+          0
+        ],
+        "meshId": "rbxassetid://85850037929129",
+        "size": [
+          1.6033012866973877,
+          1.2300152778625488,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://87016661336967"
+      },
+      {
+        "nativeVertices": 401,
+        "rotationToSource": 180,
+        "name": "LowerTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.09694379568099976,
+          -0.9118766188621521,
+          -0.056805700063705444
+        ],
+        "meshId": "rbxassetid://102406898704071",
+        "size": [
+          2.6323928833007812,
+          0.7840179204940796,
+          1.1080689430236816
+        ],
+        "textureId": "rbxassetid://87016661336967"
+      }
+    ],
+    "meshyTaskId": "01a1cb49-c4df-70e8-872e-dbe210f53556",
+    "definitionId": "veteran_coat"
+  },
+  {
+    "id": "veteran_hat",
+    "parts": [
+      {
+        "nativeVertices": 1989,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          3.135999917984009,
+          0
+        ],
+        "meshId": "rbxassetid://135267903349045",
+        "size": [
+          2.517249822616577,
+          2.049999713897705,
+          2.517249822616577
+        ],
+        "textureId": "rbxassetid://135275386201923"
+      }
+    ],
+    "meshyTaskId": "01a1cb3a-e692-74c1-b906-83f6058f2c0c",
+    "definitionId": "mage_veteran_hat"
+  },
+  {
+    "id": "tempered_gloves",
+    "parts": [
+      {
+        "nativeVertices": 489,
+        "rotationToSource": 180,
+        "name": "LeftLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.5017483234405518,
+          -0.3438716530799866,
+          0.0070559680461883545
+        ],
+        "meshId": "rbxassetid://102848279035279",
+        "size": [
+          0.9999585151672363,
+          0.7077431678771973,
+          1.1358880996704102
+        ],
+        "textureId": "rbxassetid://124097635684065"
+      },
+      {
+        "nativeVertices": 417,
+        "rotationToSource": 180,
+        "name": "LeftHand",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.5,
+          -0.875481367111206,
+          -0.1816719025373459
+        ],
+        "meshId": "rbxassetid://109655173645999",
+        "size": [
+          1.119999885559082,
+          0.5890374779701233,
+          0.7866561412811279
+        ],
+        "textureId": "rbxassetid://124097635684065"
+      },
+      {
+        "nativeVertices": 421,
+        "rotationToSource": 180,
+        "name": "RightHand",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.5,
+          -0.8759624361991882,
+          -0.1816719025373459
+        ],
+        "meshId": "rbxassetid://110263385602404",
+        "size": [
+          1.1200000047683716,
+          0.5880752801895142,
+          0.7866561412811279
+        ],
+        "textureId": "rbxassetid://124097635684065"
+      },
+      {
+        "nativeVertices": 471,
+        "rotationToSource": 180,
+        "name": "RightLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.4835647344589233,
+          -0.3436794579029083,
+          0.0070559680461883545
+        ],
+        "meshId": "rbxassetid://93927115707139",
+        "size": [
+          1.0311317443847656,
+          0.7073587775230408,
+          1.1358880996704102
+        ],
+        "textureId": "rbxassetid://124097635684065"
+      }
+    ],
+    "meshyTaskId": "01a1cb49-687f-762b-a240-1621406127d2",
+    "definitionId": "tempered_gloves"
+  },
+  {
+    "id": "tempered_coat",
+    "parts": [
+      {
+        "nativeVertices": 1236,
+        "rotationToSource": 180,
+        "name": "UpperTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          0.14734238386154175,
+          -0.04363641142845154
+        ],
+        "meshId": "rbxassetid://85259264601916",
+        "size": [
+          2.3176069259643555,
+          1.7453151941299438,
+          1.0309083461761475
+        ],
+        "textureId": "rbxassetid://115042128815648"
+      },
+      {
+        "nativeVertices": 439,
+        "rotationToSource": 180,
+        "name": "LowerTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          -0.85343998670578,
+          -0.012272655963897705
+        ],
+        "meshId": "rbxassetid://119417723940859",
+        "size": [
+          2.3126845359802246,
+          0.9562495946884155,
+          1.137274980545044
+        ],
+        "textureId": "rbxassetid://115042128815648"
+      },
+      {
+        "nativeVertices": 166,
+        "rotationToSource": 180,
+        "name": "LeftUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.7631140351295471,
+          -1.3550000190734863,
+          0
+        ],
+        "meshId": "rbxassetid://134039810795549",
+        "size": [
+          1.52377188205719,
+          1.3499999046325684,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://115042128815648"
+      },
+      {
+        "nativeVertices": 158,
+        "rotationToSource": 180,
+        "name": "RightUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.761885941028595,
+          -1.3542191982269287,
+          0
+        ],
+        "meshId": "rbxassetid://94004261097711",
+        "size": [
+          1.5262280702590942,
+          1.3515615463256836,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://115042128815648"
+      }
+    ],
+    "meshyTaskId": "01a1cb49-5d83-733b-a8c6-7bc598657eef",
+    "definitionId": "tempered_coat"
+  },
+  {
+    "id": "tempered_helmet",
+    "parts": [
+      {
+        "nativeVertices": 1960,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          1.6859999895095825,
+          0
+        ],
+        "meshId": "rbxassetid://132959069310652",
+        "size": [
+          1.899999976158142,
+          1.8999998569488525,
+          1.7000001668930054
+        ],
+        "textureId": "rbxassetid://132460926954614"
+      }
+    ],
+    "meshyTaskId": "01a1cb49-81cd-71ca-aacb-6c32cc646832",
+    "definitionId": "tempered_hood"
+  },
+  {
+    "id": "tempered_boots",
+    "parts": [
+      {
+        "nativeVertices": 640,
+        "rotationToSource": 180,
+        "name": "LeftLowerLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.49525564908981323,
+          -2.049908399581909,
+          -0.09362277388572693
+        ],
+        "meshId": "rbxassetid://78369961096555",
+        "size": [
+          1.1305111646652222,
+          1.3298168182373047,
+          1.2972455024719238
+        ],
+        "textureId": "rbxassetid://88685501020728"
+      },
+      {
+        "nativeVertices": 235,
+        "rotationToSource": 180,
+        "name": "LeftFoot",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.582010805606842,
+          -2.768925189971924,
+          -0.1338372826576233
+        ],
+        "meshId": "rbxassetid://130193772917900",
+        "size": [
+          0.9759784936904907,
+          0.5321497917175293,
+          1.3223254680633545
+        ],
+        "textureId": "rbxassetid://88685501020728"
+      },
+      {
+        "nativeVertices": 230,
+        "rotationToSource": 180,
+        "name": "RightFoot",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.572546124458313,
+          -2.7633469104766846,
+          -0.13339567184448242
+        ],
+        "meshId": "rbxassetid://113597112719754",
+        "size": [
+          0.9949076771736145,
+          0.5433063507080078,
+          1.3232086896896362
+        ],
+        "textureId": "rbxassetid://88685501020728"
+      },
+      {
+        "nativeVertices": 636,
+        "rotationToSource": 180,
+        "name": "RightLowerLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.49516355991363525,
+          -2.0510244369506836,
+          -0.09363970160484314
+        ],
+        "meshId": "rbxassetid://81139849352447",
+        "size": [
+          1.1303272247314453,
+          1.3320491313934326,
+          1.2972793579101562
+        ],
+        "textureId": "rbxassetid://88685501020728"
+      }
+    ],
+    "meshyTaskId": "01a1cb49-1be1-73be-9f4a-87e039d3e827",
+    "definitionId": "tempered_boots"
+  },
+  {
+    "id": "traveler_hat",
+    "parts": [
+      {
+        "nativeVertices": 2059,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          3.135999917984009,
+          0
+        ],
+        "meshId": "rbxassetid://76764477708092",
+        "size": [
+          2.3534810543060303,
+          2.049999713897705,
+          2.3522796630859375
+        ],
+        "textureId": "rbxassetid://122205085408075"
+      }
+    ],
+    "meshyTaskId": "01a1cb3a-d201-7553-9609-223b5bc438a0",
+    "definitionId": "mage_traveler_hat"
+  },
+  {
+    "id": "tempered_hat",
+    "parts": [
+      {
+        "nativeVertices": 2042,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          3.135999917984009,
+          0
+        ],
+        "meshId": "rbxassetid://118023385339630",
+        "size": [
+          2.4141430854797363,
+          2.049999713897705,
+          2.331995725631714
+        ],
+        "textureId": "rbxassetid://120143933315769"
+      }
+    ],
+    "meshyTaskId": "01a1cb3a-b445-7574-8e8d-3cb45883a260",
+    "definitionId": "mage_tempered_hat"
+  },
+  {
+    "id": "sentinel_hat",
+    "parts": [
+      {
+        "nativeVertices": 2049,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          3.135999917984009,
+          0
+        ],
+        "meshId": "rbxassetid://119091803976460",
+        "size": [
+          2.460253953933716,
+          2.049999713897705,
+          2.0776031017303467
+        ],
+        "textureId": "rbxassetid://75176857840095"
+      }
+    ],
+    "meshyTaskId": "01a1cb3a-a1cd-765a-9eeb-09276c582912",
+    "definitionId": "mage_sentinel_hat"
+  },
+  {
+    "id": "traveler_coat",
+    "parts": [
+      {
+        "nativeVertices": 1306,
+        "rotationToSource": 180,
+        "name": "UpperTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          0.17225578427314758,
+          -0.03298881649971008
+        ],
+        "meshId": "rbxassetid://127419256768677",
+        "size": [
+          3.049999952316284,
+          1.695488452911377,
+          1.2062058448791504
+        ],
+        "textureId": "rbxassetid://82286199708395"
+      },
+      {
+        "nativeVertices": 195,
+        "rotationToSource": 180,
+        "name": "LeftUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.7083759307861328,
+          -1.3597819805145264,
+          0
+        ],
+        "meshId": "rbxassetid://111693945311277",
+        "size": [
+          1.43593430519104,
+          1.340436577796936,
+          1.3499999046325684
+        ],
+        "textureId": "rbxassetid://82286199708395"
+      },
+      {
+        "nativeVertices": 328,
+        "rotationToSource": 180,
+        "name": "LowerTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          -1.0336651802062988,
+          -0.10404214262962341
+        ],
+        "meshId": "rbxassetid://84286388608822",
+        "size": [
+          2.7923996448516846,
+          1.1730777025222778,
+          1.0979351997375488
+        ],
+        "textureId": "rbxassetid://82286199708395"
+      },
+      {
+        "nativeVertices": 180,
+        "rotationToSource": 180,
+        "name": "RightUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.6152048110961914,
+          -1.3597819805145264,
+          0
+        ],
+        "meshId": "rbxassetid://104591179055922",
+        "size": [
+          1.6222765445709229,
+          1.340436577796936,
+          1.3499999046325684
+        ],
+        "textureId": "rbxassetid://82286199708395"
+      }
+    ],
+    "meshyTaskId": "01a1cb33-a667-728c-9dd4-9a1b3eb3e694",
+    "definitionId": "traveler_coat"
+  },
+  {
+    "id": "traveler_boots",
+    "parts": [
+      {
+        "nativeVertices": 646,
+        "rotationToSource": 180,
+        "name": "LeftLowerLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.4999999701976776,
+          -2.0353314876556396,
+          -0.1150810718536377
+        ],
+        "meshId": "rbxassetid://112913942709338",
+        "size": [
+          1.1399998664855957,
+          1.3006629943847656,
+          1.238760232925415
+        ],
+        "textureId": "rbxassetid://77094584375016"
+      },
+      {
+        "nativeVertices": 340,
+        "rotationToSource": 180,
+        "name": "LeftFoot",
+        "matchedSourceSamples": 24,
+        "center": [
+          -0.4911886155605316,
+          -2.773681879043579,
+          -0.12000000476837158
+        ],
+        "meshId": "rbxassetid://104871760691993",
+        "size": [
+          1.019355297088623,
+          0.5226364135742188,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://77094584375016"
+      },
+      {
+        "nativeVertices": 322,
+        "rotationToSource": 180,
+        "name": "RightFoot",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.4911886155605316,
+          -2.805934190750122,
+          -0.12000000476837158
+        ],
+        "meshId": "rbxassetid://113263411373548",
+        "size": [
+          1.019355297088623,
+          0.4581317901611328,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://77094584375016"
+      },
+      {
+        "nativeVertices": 657,
+        "rotationToSource": 180,
+        "name": "RightLowerLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.4999999701976776,
+          -2.035691022872925,
+          -0.1150810718536377
+        ],
+        "meshId": "rbxassetid://121497631583498",
+        "size": [
+          1.1399998664855957,
+          1.301382064819336,
+          1.238760232925415
+        ],
+        "textureId": "rbxassetid://77094584375016"
+      }
+    ],
+    "meshyTaskId": "01a1cb33-911a-75a9-b8d9-b43d230cc3be",
+    "definitionId": "traveler_boots"
+  },
+  {
+    "id": "traveler_robe",
+    "parts": [
+      {
+        "nativeVertices": 280,
+        "rotationToSource": 180,
+        "name": "RightUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.9829835295677185,
+          -1.792916178703308,
+          0
+        ],
+        "meshId": "rbxassetid://116187269579806",
+        "size": [
+          2.184032917022705,
+          2.3741676807403564,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://135706649658831"
+      },
+      {
+        "nativeVertices": 1231,
+        "rotationToSource": 180,
+        "name": "UpperTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.003356337547302246,
+          0.19990795850753784,
+          -0.1337331235408783
+        ],
+        "meshId": "rbxassetid://70924281263584",
+        "size": [
+          2.640296220779419,
+          1.6401840448379517,
+          0.7225337624549866
+        ],
+        "textureId": "rbxassetid://135706649658831"
+      },
+      {
+        "nativeVertices": 227,
+        "rotationToSource": 180,
+        "name": "LowerTorso",
+        "matchedSourceSamples": 24,
+        "center": [
+          0.00838923454284668,
+          -0.7903517484664917,
+          -0.14577491581439972
+        ],
+        "meshId": "rbxassetid://86579160972848",
+        "size": [
+          2.2209360599517822,
+          0.7708876132965088,
+          0.6604231595993042
+        ],
+        "textureId": "rbxassetid://135706649658831"
+      },
+      {
+        "nativeVertices": 293,
+        "rotationToSource": 180,
+        "name": "LeftUpperLeg",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.038338303565979,
+          -1.7918915748596191,
+          0
+        ],
+        "meshId": "rbxassetid://77260270306965",
+        "size": [
+          2.0733234882354736,
+          2.3762168884277344,
+          1.350000023841858
+        ],
+        "textureId": "rbxassetid://135706649658831"
+      },
+      {
+        "nativeVertices": 75,
+        "rotationToSource": 180,
+        "name": "LeftUpperArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.3884820938110352,
+          0.24585109949111938,
+          -0.11915498226881027
+        ],
+        "meshId": "rbxassetid://116745931467044",
+        "size": [
+          0.5658563375473022,
+          0.8032231330871582,
+          0.46774399280548096
+        ],
+        "textureId": "rbxassetid://135706649658831"
+      },
+      {
+        "nativeVertices": 180,
+        "rotationToSource": 180,
+        "name": "RightLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.2824254035949707,
+          -0.25843545794487,
+          -0.12105529755353928
+        ],
+        "meshId": "rbxassetid://123113162495855",
+        "size": [
+          1.0247340202331543,
+          1.321138620376587,
+          0.6185902953147888
+        ],
+        "textureId": "rbxassetid://135706649658831"
+      },
+      {
+        "nativeVertices": 178,
+        "rotationToSource": 180,
+        "name": "LeftLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.2820528745651245,
+          -0.25843545794487,
+          -0.1216900423169136
+        ],
+        "meshId": "rbxassetid://119454025717307",
+        "size": [
+          1.0254790782928467,
+          1.321138620376587,
+          0.6198598146438599
+        ],
+        "textureId": "rbxassetid://135706649658831"
+      },
+      {
+        "nativeVertices": 68,
+        "rotationToSource": 180,
+        "name": "RightUpperArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.3884820938110352,
+          0.24585109949111938,
+          -0.11978971213102341
+        ],
+        "meshId": "rbxassetid://113221320172726",
+        "size": [
+          0.5658563375473022,
+          0.8032231330871582,
+          0.4690134525299072
+        ],
+        "textureId": "rbxassetid://135706649658831"
+      }
+    ],
+    "meshyTaskId": "01a1cb34-1677-7680-b01a-1787e37cce1a",
+    "definitionId": "mage_traveler_coat"
+  },
+  {
+    "id": "traveler_hood",
+    "parts": [
+      {
+        "nativeVertices": 2018,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          1.6859999895095825,
+          0
+        ],
+        "meshId": "rbxassetid://130188442010267",
+        "size": [
+          1.9000000953674316,
+          1.8999998569488525,
+          1.6999999284744263
+        ],
+        "textureId": "rbxassetid://118555737326705"
+      }
+    ],
+    "meshyTaskId": "01a1cb33-fc5b-7518-b7ef-d5b1dc173a92",
+    "definitionId": "traveler_hood"
+  },
+  {
+    "id": "traveler_helmet",
+    "parts": [
+      {
+        "nativeVertices": 1979,
+        "rotationToSource": 180,
+        "name": "Head",
+        "matchedSourceSamples": 24,
+        "center": [
+          0,
+          1.6859999895095825,
+          0
+        ],
+        "meshId": "rbxassetid://132304520832796",
+        "size": [
+          1.899999976158142,
+          1.8999998569488525,
+          1.6999999284744263
+        ],
+        "textureId": "rbxassetid://76529897483175"
+      }
+    ],
+    "meshyTaskId": "01a1cb33-e891-72a7-9a0e-9db218e5fbf9",
+    "definitionId": "traveler_hood"
+  },
+  {
+    "id": "traveler_gloves",
+    "parts": [
+      {
+        "nativeVertices": 514,
+        "rotationToSource": 180,
+        "name": "LeftLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.4891612529754639,
+          -0.35463401675224304,
+          0.027871519327163696
+        ],
+        "meshId": "rbxassetid://134932090199360",
+        "size": [
+          1.0332932472229004,
+          0.7292678952217102,
+          1.09425687789917
+        ],
+        "textureId": "rbxassetid://114285371301153"
+      },
+      {
+        "nativeVertices": 476,
+        "rotationToSource": 180,
+        "name": "LeftHand",
+        "matchedSourceSamples": 24,
+        "center": [
+          -1.5,
+          -0.8503789305686951,
+          -0.1805586814880371
+        ],
+        "meshId": "rbxassetid://119851748669436",
+        "size": [
+          1.119999885559082,
+          0.6392422914505005,
+          0.7888826131820679
+        ],
+        "textureId": "rbxassetid://114285371301153"
+      },
+      {
+        "nativeVertices": 485,
+        "rotationToSource": 180,
+        "name": "RightHand",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.5,
+          -0.850542426109314,
+          -0.17874078452587128
+        ],
+        "meshId": "rbxassetid://115294370768791",
+        "size": [
+          1.119999885559082,
+          0.6389153003692627,
+          0.7925183773040771
+        ],
+        "textureId": "rbxassetid://114285371301153"
+      },
+      {
+        "nativeVertices": 497,
+        "rotationToSource": 180,
+        "name": "RightLowerArm",
+        "matchedSourceSamples": 24,
+        "center": [
+          1.467132806777954,
+          -0.35474926233291626,
+          0.027871519327163696
+        ],
+        "meshId": "rbxassetid://84709649786514",
+        "size": [
+          1.0542657375335693,
+          0.7294983863830566,
+          1.09425687789917
+        ],
+        "textureId": "rbxassetid://114285371301153"
+      }
+    ],
+    "meshyTaskId": "01a1cb33-ca30-74a0-97c5-19269d911c26",
+    "definitionId": "traveler_gloves"
+  }
+]

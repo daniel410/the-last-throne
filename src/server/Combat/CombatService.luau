@@ -1914,6 +1914,9 @@ local function setupCharacter(player, character)
 		if state.inventoryManaged then
 			character:SetAttribute("TLTEquippedWeapon", state.equipment and state.equipment.weapon or "")
 			character:SetAttribute("TLTEquippedOffhand", state.equipment and state.equipment.offhand or "")
+			for slot,suffix in pairs({head="Head",body="Body",hands="Hands",feet="Feet"}) do
+				character:SetAttribute("TLTEquipped"..suffix,state.equipment and state.equipment[slot] or "")
+			end
 			for index = 1, 2 do character:SetAttribute("K0ItemDefinition" .. index, context.itemSlots[index]) end
 		end
 		character:SetAttribute("K0ClassId", classId)
@@ -2019,6 +2022,9 @@ function CombatService.refreshEquipment(player, equipment)
 	end
 	state.character:SetAttribute("TLTEquippedWeapon", equipment.weapon or "")
 	state.character:SetAttribute("TLTEquippedOffhand", equipment.offhand or "")
+	for slot,suffix in pairs({head="Head",body="Body",hands="Hands",feet="Feet"}) do
+		state.character:SetAttribute("TLTEquipped"..suffix,equipment[slot] or "")
+	end
 	state.character:SetAttribute("TLTEquipmentPower", equipment.power)
 	state.character:SetAttribute("TLTEquipmentArmor", equipment.armor)
  state.character:SetAttribute("TLTEquipmentDexterity",equipment.dexterity or 0)

@@ -69,6 +69,9 @@ local function changed(state)
   local equipment=hero and settings.inventory and settings.inventory.stats(state.player,hero.heroId)
   character:SetAttribute("TLTEquippedWeapon",equipment and equipment.weapon or (settings.inventory and "" or nil))
   character:SetAttribute("TLTEquippedOffhand",equipment and equipment.offhand or (settings.inventory and "" or nil))
+  for slot,suffix in pairs({head="Head",body="Body",hands="Hands",feet="Feet"}) do
+   character:SetAttribute("TLTEquipped"..suffix,equipment and equipment[slot] or (settings.inventory and "" or nil))
+  end
   character:SetAttribute("K0ClassId",hero and hero.baseClassId or nil)
  end
 	state.revision = state.revision + 1
