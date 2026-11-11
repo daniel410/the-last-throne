@@ -4,7 +4,7 @@ local K=require(script.Parent.EpicEnvironmentKit)
 local Templates=require(script.Parent.EpicDetailTemplates)
 local Content=require(game.ReplicatedStorage.Shared.CampaignContent)
 local Areas=require(game.ReplicatedStorage.Shared.CampaignAreas)
-local D={version=1}
+local D={version=2}
 local V=Vector3.new
 local heroes={Deepwood='DeepwoodRelic',Gloamwood='GloamwoodRoots',FrozenVale='FrozenValeShards',EmberCaldera='EmberCalderaColumns',HauntedGraveyard='HauntedMemorial'}
 local function kit(parent,key,position,scale,yaw)
@@ -23,7 +23,6 @@ local function kit(parent,key,position,scale,yaw)
   p:SetAttribute('EpicDetailSolid',not soft and size.Magnitude>4 and math.max(size.X,size.Y,size.Z)>2)
   p:SetAttribute('TLTSceneryDistance',key:find('Groundcover')and 230 or 650)
  end
- m:PivotTo(m:GetPivot())
  m.Parent=parent
  return m
 end
@@ -40,38 +39,41 @@ function D.build(site,id,c,size,pal,theme,safe,ground)
   end
   return true
  end
- local function supported(p,r)
+ local function supported(p,r,large)
   local q,valid=ground(p)
   if not valid or math.abs(q.Y-c.Y)>22 then return nil end
+  local low=q.Y
   for _,d in ipairs({V(r,0,0),V(-r,0,0),V(0,0,r),V(0,0,-r)})do
    local s,ok=ground(q+d)
-   if not ok or math.abs(s.Y-q.Y)>1.8 then return nil end
+   if not ok or math.abs(s.Y-q.Y)>(large and 8 or 1.8) then return nil end
+   low=math.min(low,s.Y)
   end
-  return q
+  return large and V(q.X,low,q.Z)or q
  end
- local placed=0
+ local placed,largeCount=0,0
  -- Unequal groups form a broken verge, rather than a repeated fence of props.
  for side=-1,1,2 do
-  for i=1,9 do
-   local q=c+V(side*(size[1]*.5-rng:NextNumber(28,76)),0,(i/10-.5)*size[2])
-   local large=i==3 or i==7
+  for i=1,13 do
+   local q=c+V(side*(size[1]*.5-rng:NextNumber(28,76)),0,(i/14-.5)*size[2])
+   local large=largeCount<2 and i%2==1
    local radius=large and 24 or 7
    if clear(q,radius)then
-    local p=supported(q,radius)
+    local p=supported(q,radius,large)
     if p then
      kit(group,large and heroes[theme]or theme..'Groundcover',p,large and rng:NextNumber(1,1.35)or rng:NextNumber(1.3,2),rng:NextNumber(-math.pi,math.pi))
      placed+=1
+     if large then largeCount+=1 end
     end
    end
   end
  end
  -- Thin ellipsoids add broad patches with irregular overlapping edges. They
  -- never own collision, cover objectives, emit light, or lift a character.
- local mat=theme=='FrozenVale'and Enum.Material.Glacier or theme=='EmberCaldera'and Enum.Material.CrackedLava or theme=='HauntedGraveyard'and Enum.Material.Ground or Enum.Material.Ground
- for i=1,54 do
+ local mat=theme=='FrozenVale'and Enum.Material.Glacier or theme=='EmberCaldera'and Enum.Material.Basalt or theme=='HauntedGraveyard'and Enum.Material.Ground or Enum.Material.Ground
+ for i=1,110 do
   local p=c+V(rng:NextNumber(-size[1]*.47,size[1]*.47),0,rng:NextNumber(-size[2]*.46,size[2]*.46))
-  local radius=rng:NextNumber(4,11)
-  if clear(p,radius)then
+  local radius=rng:NextNumber(7,17)
+  if true then
    local q=supported(p,radius)
    if q then
     local col=pal.ground:Lerp(pal.rock,theme=='FrozenVale'and .20 or .32)
@@ -80,7 +82,7 @@ function D.build(site,id,c,size,pal,theme,safe,ground)
    end
   end
  end
- site:SetAttribute('BiomeDetailVersion',D.version);site:SetAttribute('BiomeDetailClusters',placed)
+ site:SetAttribute('BiomeHeroDetails',largeCount);site:SetAttribute('BiomeDetailVersion',D.version);site:SetAttribute('BiomeDetailClusters',placed)
  return group
 end
 return D

@@ -39,7 +39,7 @@ def part(name,pos,size,color,material='Slate',shape='Block',rot=(0,0,0)):
   bpy.ops.mesh.primitive_cube_add(size=1);o=bpy.context.object;o.scale=(s.x,s.z,s.y)
  # Yaw only for exported primitives, plus a lean around Roblox Z.
  yaw,lean=rot[1],rot[2]
- o.rotation_euler=(0,lean,-yaw);o.location=state['offset']+Vector((p.x,-p.z,p.y));o.name=state['current']+'_'+name
+ o.rotation_euler=(0,-lean,-yaw);o.location=state['offset']+Vector((p.x,-p.z,p.y));o.name=state['current']+'_'+name
  key=(color,material)
  if key not in materials:
   mat=bpy.data.materials.new(material+'_'+str(color));mat.use_nodes=True

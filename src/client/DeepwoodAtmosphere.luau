@@ -20,8 +20,8 @@ local function clearOwned()
 end
 profiles.FrozenVale={FogStart=180,FogEnd=700,FogColor=Color3.fromRGB(180,208,227),Brightness=2.4,Ambient=Color3.fromRGB(130,154,178),OutdoorAmbient=Color3.fromRGB(157,183,207),ClockTime=10.2,ExposureCompensation=0,ColorShift_Top=Color3.fromRGB(12,26,43)}
 profiles.EmberCaldera={FogStart=165,FogEnd=650,FogColor=Color3.fromRGB(177,132,109),Brightness=2.5,Ambient=Color3.fromRGB(145,116,109),OutdoorAmbient=Color3.fromRGB(176,139,116),ClockTime=16.4,ExposureCompensation=.12,ColorShift_Top=Color3.fromRGB(30,15,8)}
-profiles.Gloamwood={FogStart=120,FogEnd=600,FogColor=Color3.fromRGB(112,139,157),Brightness=2.4,Ambient=Color3.fromRGB(114,138,124),OutdoorAmbient=Color3.fromRGB(138,158,143),ClockTime=5.6,ExposureCompensation=.28,ColorShift_Top=Color3.fromRGB(14,24,30)}
-profiles.HauntedGraveyard={FogStart=140,FogEnd=660,FogColor=Color3.fromRGB(104,124,155),Brightness=2.3,Ambient=Color3.fromRGB(112,128,155),OutdoorAmbient=Color3.fromRGB(137,152,178),ClockTime=5.25,ExposureCompensation=.24,ColorShift_Top=Color3.fromRGB(21,22,35)}
+profiles.Gloamwood={FogStart=120,FogEnd=600,FogColor=Color3.fromRGB(112,139,157),Brightness=2.4,Ambient=Color3.fromRGB(114,138,124),OutdoorAmbient=Color3.fromRGB(138,158,143),ClockTime=0,ExposureCompensation=.38,ColorShift_Top=Color3.fromRGB(14,24,30)}
+profiles.HauntedGraveyard={FogStart=140,FogEnd=660,FogColor=Color3.fromRGB(104,124,155),Brightness=2.3,Ambient=Color3.fromRGB(112,128,155),OutdoorAmbient=Color3.fromRGB(137,152,178),ClockTime=.1,ExposureCompensation=.3,ColorShift_Top=Color3.fromRGB(21,22,35)}
 function Mood.update(mode)
  -- Preserve the previous boolean API used by scenery tests and other callers.
  if mode==true then mode='Deepwood' elseif mode==false then mode=nil end
@@ -55,8 +55,8 @@ function Mood.update(mode)
   -- Atmosphere blends sky and terrain; a short white fog curtain hid the authored skyline.
   atmosphere=Instance.new('Atmosphere');atmosphere.Name='TLTRegionalAtmosphere'
   atmosphere.Color=profiles[mode].FogColor;atmosphere.Decay=profiles[mode].Ambient
-  atmosphere.Density=(mode=='Gloamwood' or mode=='HauntedGraveyard') and .34 or .28
-  atmosphere.Offset=.08;atmosphere.Haze=mode=='EmberCaldera' and 2.1 or 1.4;atmosphere.Glare=.03;atmosphere.Parent=Lighting
+  atmosphere.Density=(mode=='Gloamwood' or mode=='HauntedGraveyard') and .22 or .24
+  atmosphere.Offset=.1;atmosphere.Haze=mode=='EmberCaldera' and .9 or .45;atmosphere.Glare=.03;atmosphere.Parent=Lighting
   bloom=Instance.new('BloomEffect');bloom.Name='TLTLocalGlow';bloom.Intensity=.14;bloom.Size=14;bloom.Threshold=1.2;bloom.Parent=Lighting
  end
  current=mode
@@ -64,8 +64,8 @@ end
 function Mood.restoration(s)
  valleyRestored=s and s.clears and s.clears['FV-07']==true or false
  if current=='FrozenVale'and atmosphere then
-  atmosphere.Density=valleyRestored and .12 or .28
-  atmosphere.Haze=valleyRestored and .4 or 1.4
+  atmosphere.Density=valleyRestored and .12 or .24
+  atmosphere.Haze=valleyRestored and .25 or .45
   Lighting.FogStart=valleyRestored and 400 or profiles.FrozenVale.FogStart
   Lighting.FogEnd=valleyRestored and 1200 or profiles.FrozenVale.FogEnd
  end

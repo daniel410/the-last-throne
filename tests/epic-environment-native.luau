@@ -22,8 +22,8 @@ for id,z in pairs(C.zones)do
   if p.CanCollide then report.solid+=1 end
  end end
  check(clusters>0,'at least one grounded cluster '..id)
- check(n<=500,'per-zone detail instance ceiling '..id)
- report.zones[id]={clusters=clusters,parts=n};report.parts+=n
+ check(n<=650,'per-zone detail instance ceiling '..id)
+ report.zones[id]={clusters=clusters,parts=n,heroes=site:GetAttribute('BiomeHeroDetails')};report.parts+=n
 end
 local n=#world.folder:GetDescendants()
 for i=1,5 do require(W.CampaignWorld).create(i,world)end

@@ -9,7 +9,7 @@ local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
 local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
-local Art={version=11}
+local Art={version=12}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -102,7 +102,7 @@ local function terrainSite(parent,c,size,pal,theme,safe)
  for _,s in ipairs({-1,1})do for i=1,3 do
   local p=c+V(s*(size[1]/2+310),20,-size[2]/2+(i-.5)*size[2]/3)
   if not Bounds.region(p.X,p.Z,170)then
-   local h=100+i%2*43;K.rock(m,p+V(0,h*.15,0),V(220,h,230),theme=='FrozenVale'and pal.ground or pal.rock,i+s)
+   local h=220+i%2*75;K.rock(m,p+V(0,h*.12,0),V(250,h,250),theme=='FrozenVale'and pal.ground or pal.rock,i+s)
   end
  end end
  range(m,900)
