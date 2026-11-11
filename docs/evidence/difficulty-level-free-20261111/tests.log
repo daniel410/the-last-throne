@@ -1,0 +1,37 @@
+$ lua tests/difficulty-level-free.spec.lua
+exit=0
+Difficulty level-free admission: 633 checks passed
+
+$ lua tests/expedition-presentation.spec.lua
+exit=0
+Expedition presentation: 24 checks passed
+
+$ lua tests/expedition-departure.spec.lua
+exit=0
+Expedition departure: 42 checks passed
+
+$ lua tests/difficulty-balance.spec.lua
+exit=0
+Difficulty balance: 2665 checks passed
+
+$ lua tests/difficulty-enhancement.spec.lua
+exit=1
+Difficulty level-free admission: 633 checks passed
+lua: tests/difficulty-enhancement.spec.lua:23: StoryLocked
+stack traceback:
+	[C]: in global 'assert'
+	tests/difficulty-enhancement.spec.lua:23: in local 'complete'
+	tests/difficulty-enhancement.spec.lua:32: in main chunk
+	[C]: in ?
+
+HEAD 원본 Difficulty/종합 테스트를 /tmp 사본으로 실행 (작업트리 미변경)
+exit=1
+lua: /tmp/tlt-difficulty-enhancement-baseline.lua:23: StoryLocked
+stack traceback:
+	[C]: in global 'assert'
+	/tmp/tlt-difficulty-enhancement-baseline.lua:23: in local 'complete'
+	/tmp/tlt-difficulty-enhancement-baseline.lua:54: in main chunk
+	[C]: in upvalue 'original'
+	(command line):1: in global 'dofile'
+	(command line):1: in main chunk
+	[C]: in ?

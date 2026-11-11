@@ -8,8 +8,8 @@ local profile=assert(R.addHero(R.new(42),'h','knight',C));local hero=profile.her
 local missions=P.missions(hero);local first=missions[1]
 check(first.id=='DW-01'and #first.title>0 and #first.region>0 and #first.objective>0,'named mission with objective and region')
 check(first.modes.Easy.allowed and first.modes.Easy.level==1,'Easy Lv1 visible')
-check(first.modes.Hard.reason=='DifficultyLevel'and first.modes.Hard.level==30,'Hard entry level reason')
-check(first.modes.Insane.reason=='DifficultyLevel'and first.modes.Insane.level==60,'Insane entry level reason')
+check(first.modes.Hard.reason=='PreviousDifficulty'and first.modes.Hard.level==0,'Hard has no level floor')
+check(first.modes.Insane.reason=='PreviousDifficulty'and first.modes.Insane.level==0,'Insane has no level floor')
 check(first.modes.Easy.firstXP==140 and first.modes.Easy.firstGold==150,'first story reward remains canonical')
 check(first.modes.Easy.repeatGold==36 and first.modes.Easy.gems==6 and first.modes.Easy.stones==1,'repeat and forge summary match run rules')
 hero.level=80;hero.progression=G.new(80)
@@ -19,7 +19,7 @@ check(hell.allowed and hell.repeatGold==314 and hell.stones==10 and hell.gems==2
 local party={id='party',hostId=42,target=2,status='forming',missionId='DW-01',difficultyId='Hell',members={['42']={userId=42,heroId='h',name='Knight',classId='knight',main=0,level=80,arrived=true,ready=true},['43']={userId=43,heroId='h2',name='Mage',classId='mage',main=0,level=1,arrived=true,ready=true}}}
 local other=R.copy(hero);other.level=1;other.progression=G.new(1)
 local function view()return P.party(party,function(m)return m.userId==42 and hero or other end)end
-local v=view();check(not v.launchAllowed and v.members[2].reason=='DifficultyLevel'and v.members[2].requiredLevel==80,'nameable underlevel member blocks party')
+local v=view();check(v.launchAllowed and v.members[2].eligible and v.members[2].requiredLevel==0,'level one member can join Hell with prior clear')
 other.level=80;other.progression=G.new(80);party.members['43'].level=80;other.expeditions.clears={}
 v=view();check(not v.launchAllowed and v.members[2].reason=='PreviousDifficulty'and v.members[2].previous=='Insane','previous difficulty reason')
 other.expeditions=R.copy(hero.expeditions);party.members['43'].ready=false
@@ -31,16 +31,17 @@ other.level=79;v=view();check(not v.launchAllowed and not v.members[2].ready,'st
 party.target=3;other.level=80;v=view();check(not v.launchAllowed,'partial roster blocks launch')
 party.target=2;party.status='launching';v=view();check(not v.launchAllowed,'launching state blocks another departure')
 for _,row in ipairs(v.members)do check(row.token==nil and row.heroId==nil and row.ticket==nil,'party projection omits server capabilities')end
-for mode,required in pairs({Hard=30,Insane=60})do
+for _,mode in ipairs({'Hard','Insane','Hell'})do
  party.status='forming';party.difficultyId=mode;party.target=4
- for uid=44,45 do party.members[tostring(uid)]={userId=uid,name='Ally',classId='knight',main=0,level=required,arrived=true,ready=true}end
- for _,m in pairs(party.members)do m.level=required end
- hero.level=required;hero.progression=G.new(required)
- other.level=required-1;other.progression=G.new(required-1)
+ for uid=44,45 do party.members[tostring(uid)]={userId=uid,name='Ally',classId='knight',main=0,level=80,arrived=true,ready=true}end
+ for _,m in pairs(party.members)do m.level=80 end
+ hero.level=80;hero.progression=G.new(80)
+ other.level=1;other.progression=G.new(1);party.members['43'].level=1
  local row=P.party(party,function(m)return m.userId==43 and other or hero end)
- check(not row.launchAllowed and row.members[2].reason=='DifficultyLevel'and row.members[2].requiredLevel==required,'one underlevel member blocks four-player '..mode)
- other.level=required;other.progression=G.new(required)
+ check(row.launchAllowed and row.members[2].requiredLevel==0,'four-player '..mode..' permits level one member')
+ other.expeditions.clears={}
  row=P.party(party,function(m)return m.userId==43 and other or hero end)
- check(row.launchAllowed,'four eligible members launch at exact '..mode..' boundary')
+ check(not row.launchAllowed and row.members[2].reason=='PreviousDifficulty','four-player '..mode..' still checks each prior clear')
+ other.expeditions=R.copy(hero.expeditions)
 end
 print('Expedition presentation: '..n..' checks passed')

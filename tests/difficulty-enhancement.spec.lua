@@ -27,29 +27,7 @@ local function complete(p,run)
 end
 local p=new();local hero=p.heroes.hero
 check(D.allowed(hero,'DW-01','Easy'),'Easy begins at level one')
-for mode,level in pairs({Hard=30,Insane=60,Hell=80})do
- hero.level=level-1;hero.progression=Growth.new(level-1)
- local ok,reason=D.allowed(hero,'DW-01',mode);check(not ok and reason=='DifficultyLevel','below '..mode..' boundary blocked')
- hero.level=level;hero.progression=Growth.new(level)
- local ok,reason=D.allowed(hero,'DW-01',mode);check(not ok and reason=='PreviousDifficulty','level alone cannot bypass previous clear')
-end
--- Current admission applies even to cleared missions and old balance manifests.
-for mode,level in pairs({Hard=30,Insane=60})do
- local candidate=new();local h=candidate.heroes.hero
- h.expeditions={version=1,clears={['DW-01']={Easy=true,Hard=true}},cacheProgress={}}
- h.level=level-1;h.progression=Growth.new(level-1)
- for version=1,D.version do
-  local denied,reason=A.begin(candidate,'hero','DW-01',mode,'entry_boundary',candidate.revision,R,C,version)
-  check(not denied and reason=='DifficultyLevel','below boundary cannot enter through balance version '..version)
- end
- check(not h.expeditions.active,'denied entry preserves saved checkpoint')
- h.level=level;h.progression=Growth.new(level)
- local admitted=assert(A.begin(candidate,'hero','DW-01',mode,'entry_boundary',candidate.revision,R,C))
- check(D.verifyRun(admitted.heroes.hero,{id='entry_boundary',missionId='DW-01',difficultyId=mode,rulesVersion=D.version}),'exact boundary admits and verifies '..mode)
- local resumed=R.copy(admitted);resumed.heroes.hero.level=level-1;resumed.heroes.hero.progression=Growth.new(level-1)
- local valid,reason=D.verifyRun(resumed.heroes.hero,{id='entry_boundary',missionId='DW-01',difficultyId=mode,rulesVersion=D.version})
- check(not valid and reason=='DifficultyLevel','saved run verification cannot bypass current '..mode..' entry level')
-end
+dofile('tests/difficulty-level-free.spec.lua')
 p=new();p=assert(A.begin(p,'hero','DW-01','Easy','easy1',p.revision,R,C))
 p=complete(p,'easy1');eq(p.heroes.hero.deepwood.main,1,'original story advances once')
 local originalGold=p.wallet.gold;local originalDiamonds=p.wallet.diamonds
