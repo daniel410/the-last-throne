@@ -42,11 +42,7 @@ for _,id in ipairs(C.tierEquipment)do
  check(bought.items[instanceId].definitionId==id,'acquisition preserves exact family '..id)
  local cmd={action='Equip',requestId='wear',heroId='h',revision=bought.revision,instanceId=instanceId,itemVersion=1}
  local worn,err=R.apply(bought,cmd,{safe=true},C)
- if d.level>1 then
-  check(not worn and err=='LevelRequired','low level cannot equip '..id)
-  bought.heroes.h.level=d.level;bought.heroes.h.progression=G.new(d.level)
-  worn=assert(R.apply(bought,cmd,{safe=true},C))
- end
+ check(worn and not err and worn.heroes.h.level==1,'level one equips '..id)
  check(R.validate(worn,C)and worn.items[instanceId].location.kind=='equipped','valid equipped family '..id)
 end
 check(C.items.copper_ring.stats.dexterity==3 and not C.items.copper_ring.stats.power,'Copper Ring DEX +3 only')
@@ -87,19 +83,19 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  local opened,why=store:open(42);check(not opened and why=='SaveUnknown','lost response never opens blank profile')
  check(db.items[weapon.instanceId].definitionId==class..'_weapon_traveler','starter migration commits under account lease')
  check(db.items[weapon.instanceId].enhancementLevel==9 and db.items[weapon.instanceId].locked,'enhancement and lock preserved')
- check(db.items[hood.instanceId].location.kind=='bag','underlevel worn Veteran returned to bag')
+ check(db.items[hood.instanceId].location.kind=='equipped','level-free Veteran stays equipped on migration')
  check(db.items[coat.instanceId].definitionId==(class=='mage'and 'mage_traveler_coat'or 'traveler_coat'),'old starter coat migrates for mage')
  check(equal(db.wallet,oldStats.wallet)and equal(db.operations,oldStats.operations),'wallet and receipts preserved')
  fail=false;opened=assert(store:open(42));local snap=R.copy(opened);check(equal(R.upgrade(R.copy(opened),C),snap),'migration idempotent')
  assert(store:close(42));opened=assert(store:open(42));check(equal(opened.items,snap.items),'reconnect never duplicates or reverts gear')
- -- Full bag returns ineligible worn gear to pending; no destruction or over-capacity.
+ -- Full bags do not displace equipped gear during level-free migration.
  local full=R.copy(old)
  for i=1,C.bagCapacity-R.count(full,'bag','h')do
   local item=R.copy(full.items[hood.instanceId]);item.instanceId='fill-'..i;item.location={kind='bag',heroId='h'};full.items[item.instanceId]=item
  end
  check(R.validate(full,C),'full legacy bag valid')
  local migrated=R.upgrade(full,C)
- check(R.validate(migrated,C)and migrated.items[hood.instanceId].location.kind=='pending','full bag uses unclaimed safely')
+ check(R.validate(migrated,C)and migrated.items[hood.instanceId].location.kind=='equipped','full bag preserves worn gear safely')
 end
 for oldId,slot in pairs(F.legacy)do
  local p=assert(R.addHero(R.new(42),'h','knight',C));p.equipmentRulesVersion=nil;p.heroes.h.level=10;p.heroes.h.progression=G.new(10)

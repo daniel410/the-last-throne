@@ -4,36 +4,38 @@
 
 2026-11-09 · TLT-029/041/052/057/084 · 사용자 옵션 확인/Copper Ring 수정/Amber Mana Charm 추가 반영 · ENG→QA
 
-| 장비군 | 등급 | 요구 레벨 | 무기 공격력/방패·후드 방어력 | 장갑 공격력/신발 방어력 | 일반 상의 HP / 마법사 로브 MP |
+| 장비군 | 등급 | 착용 레벨 제한 | 무기 공격력/방패·후드 방어력 | 장갑 공격력/신발 방어력 | 일반 상의 HP / 마법사 로브 MP |
 | --- | --- | ---: | ---: | ---: | ---: |
-| Traveler | Common | 1 | +3 | +2 | +20 |
-| Tempered | Common | 1 | +6 | +4 | +30 |
-| Veteran | Uncommon | 10 | +15 | +10 | +50 |
-| Sentinel | Rare | 10 | +30 | +20 | +80 |
+| Traveler | Common | 없음 | +3 | +2 | +20 |
+| Tempered | Common | 없음 | +6 | +4 | +30 |
+| Veteran | Uncommon | 없음 | +15 | +10 | +50 |
+| Sentinel | Rare | 없음 | +30 | +20 | +80 |
 
-사용자는 장비당 공격력/방어력/HP/MP 중 옵션1개, 부위별 고정값, 마법사 자원 옵션은MP·다른 클래스는HP로 확정했다. 2026-11-10 최신 지시로 무기/방패/투구·장갑/부츠·상의HP/로브MP를 Tempered6/4/30, Veteran15/10/50, Sentinel30/20/80으로 적용했다. 기존 등급/요구레벨과 Traveler3/2/20은 유지하며 기존 보유품도 같은 정의의 새 기본값을 따른다. 무기는 검/도끼/활/지팡이, 방패는 기사 전용이다. 일반 상의는 기존 공용 착용 자격을 유지하며 마법사는 별도 전용 로브를 기본 지급/착용한다. 마법사도 기존 공용 HP 상의를 선택할 수 있다. MP 없는 클래스에 MP 자원을 새로 만들지 않는다.
+사용자는 장비당 공격력/방어력/HP/MP 중 옵션1개, 부위별 고정값, 마법사 자원 옵션은MP·다른 클래스는HP로 확정했다. 2026-11-10 최신 지시로 무기/방패/투구·장갑/부츠·상의HP/로브MP를 Tempered6/4/30, Veteran15/10/50, Sentinel30/20/80으로 적용했다. 기존 등급과 Traveler3/2/20은 유지하며 기존 보유품도 같은 정의의 새 기본값을 따른다. 무기는 검/도끼/활/지팡이, 방패는 기사 전용이다. 일반 상의는 기존 공용 착용 자격을 유지하며 마법사는 별도 전용 로브를 기본 지급/착용한다. 마법사도 기존 공용 HP 상의를 선택할 수 있다. MP 없는 클래스에 MP 자원을 새로 만들지 않는다.
 
-Traveler는 기본 지급·자동 착용용이다. 신규 기본 무기를 Tempered에서 Traveler로 전환하고 마법사 기본 상의를 Traveler Mage Robe로 분리한다. 기존 소모품·Ore·영웅별1회 보급·계정 권리 계약을 유지한다. 기존 보너스 Veteran Hood는 가방에 유지하며 새 요구Lv10을 따른다.
+Traveler는 기본 지급·자동 착용용이다. 신규 기본 무기를 Tempered에서 Traveler로 전환하고 마법사 기본 상의를 Traveler Mage Robe로 분리한다. 기존 소모품·Ore·영웅별1회 보급·계정 권리 계약을 유지한다. 기존 보너스 Veteran Hood는 가방에 유지하며 레벨과 무관하게 수동 착용할 수 있다.
 
 장신구 최신 사용자 지시:
 
-| 이름 | 등급 | 레벨 | 유일 옵션 |
+| 이름 | 등급 | 착용 레벨 제한 | 유일 옵션 |
 | --- | --- | ---: | --- |
-| Copper Ring | Common | 1 | 민첩(DEX)+3 |
-| Amber Charm | Uncommon | 1 | HP+30 |
-| Amber Mana Charm | Uncommon | 1 | MP+30 |
+| Copper Ring | Common | 없음 | 민첩(DEX)+3 |
+| Amber Charm | Uncommon | 없음 | HP+30 |
+| Amber Mana Charm | Uncommon | 없음 | MP+30 |
 
 Copper Ring은 최신 사용자 지시로 공격력+3을 제거하고 DEX+3으로 변경했다. 기존 보유품/강화도 현재 정의를 따른다. Amber Mana Charm은 별도 정의/보유품이며 기존 Amber Charm을 변환하지 않는다. MP가 있는 영웅(마법사/해금한 마법궁수)의 최대MP에 적용한다. 기존 HP Charm 아이콘을 재사용하고 새 업로드/3D 외형을 제작했다고 보고하지 않는다.
+
+2026-11-11 사용자 지시로 무기·방패·머리·상의/로브·장갑·신발·장신구 전부 착용 레벨 제한을 제거한다. 신규/기존 보유·퇴역 비삭제 장비에 동일 적용한다. 클래스·슬롯·귀속·소유권·안전 조건은 유지하고 가방/상점 요구 레벨 표시를 제거한다. [검증/미검증](../evidence/equipment-level-free-20261111/README.md).
 
 ## 데이터·경제·저장
 
 `EquipmentFamilies`의 순수 표/ID 매핑을 사용한다. 가족당4무기+방패/투구/상의/장갑/신발+마법사 로브=10종,4가족40종+장신구3종=활성43종(Common21/Uncommon12/Rare10)이다. 기존 비삭제 Epic/퇴역 장신구는 추가 삭제/재활성화하지 않는다. 새 가족별 외형 제작은 별도이며 기존 클래스/슬롯 원본 아이콘/무기 외형을 사용한다.
 
-기존 Tempered/Veteran/Traveler 방어구 ID를 보존한다. 새 Traveler 무기와 Sentinel 계열은 삭제한 Training/Dawnforge/Gauntlets와 별개ID를 사용한다. `equipmentRulesVersion=1`을 계정에 저장한다. 최초이관 때 기존 시작 지급 Tempered만 Traveler로, 기존 마법사 Traveler 상의는 전용로브로 바꾸며 인스턴스ID·강화·잠금·위치·귀속·보상/구매 영수증을 보존한다. 비삭제 옛 Rare Sentinel 방패/투구/상의/신발은 새Lv10 동등 부위로 옮긴다. 새 레벨을 충족하지 못하는 착용품은 가방으로, 가방이 꽉 찼으면 미수령으로 옮긴다. 저레벨의 기존 착용분만 구 요구레벨로 선검증한 다음 세션 잠금 아래 이관·재검증·저장한다. 이미 삭제한 장비는 부활시키지 않는다. 거래 재시도/응답유실/재접속 때 이관을 반복하지 않는다.
+기존 Tempered/Veteran/Traveler 방어구 ID를 보존한다. 새 Traveler 무기와 Sentinel 계열은 삭제한 Training/Dawnforge/Gauntlets와 별개ID를 사용한다. `equipmentRulesVersion=1`을 계정에 저장한다. 최초이관 때 기존 시작 지급 Tempered만 Traveler로, 기존 마법사 Traveler 상의는 전용로브로 바꾸며 인스턴스ID·강화·잠금·위치·귀속·보상/구매 영수증을 보존한다. 비삭제 옛 Rare Sentinel 방패/투구/상의/신발은 새Lv10 동등 부위로 옮긴다. 레벨 제한은 없으며 기존 착용품은 이관 때도 같은 슬롯에 보존한다. 이미 삭제한 장비는 부활시키지 않는다. 거래 재시도/응답유실/재접속 때 이관을 반복하지 않는다.
 
 2026-11-09 최신 사용자 가격 재검토/개선 지시로 이전 임시 가격 승계 기준을 대체했다. Traveler는 기본 지급용으로 Gold/Diamonds 구매 상품에서 전부 제외하되 보유품·자동착용/기존 되팔기·시작 장비 판매 제한은 유지한다. Tempered는 무기500/방패400/후드300/상의·로브400/장갑·부츠250Gold, Veteran은1,200/1,000/800/1,000/650Gold다. Sentinel은60/48/42/45/32Diamonds로 Rare Gold판매 금지를 유지한다. Copper Ring300Gold/6Diamonds, Amber Charm/Amber Mana Charm400Gold/8Diamonds. 비Traveler 상품ID와 기존 완료 영수증을 보존하며 과거 구매 차액을 소급 청구하지 않는다. 대체 Diamonds SKU는1Diamond→50Gold 환전 기회비용으로 맞추고 Tempered/Veteran/장신구 되팔기는 해당 Gold 기준가20%이며 Sentinel은 성능 상향에도 기존 매입가(무기400/방패320/투구280/상의320/장갑·부츠240Gold)를 유지한다. 물약/리셋권/환전/강화·재료 비용과 승인 스토리 보상은 유지한다. [가격 재계산·전체 근거/수용 한계](../research/2026-11-09-equipment-price-review.md) · [검증/빌드](../evidence/equipment-price-review-20261109/README.md).
 
-기존Lv5상자는 새Lv10 Veteran을 선택하게 하며 상자ID·보상수량을 보존한다. Lv1/10 상자는 같은 요구레벨 조건으로 선택한다. Sentinel은 상점에서 구입 가능하며 자동으로 새 보상/XP를 만들지 않는다.
+기존 상자의 장비 선택군·상자ID·보상수량을 보존한다. 내부 `level/cacheTier` 값1/5/10은 보상 선택군 메타데이터이며 영웅 착용 자격이 아니다. Sentinel은 상점에서 구입 가능하며 자동으로 새 보상/XP를 만들지 않는다.
 
 ## DEX·MP 적용과 검증
 

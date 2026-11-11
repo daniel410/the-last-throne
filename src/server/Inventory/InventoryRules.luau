@@ -87,7 +87,7 @@ local function grantStarterSupplies(profile, heroId, catalog)
 		local location = Rules.count(profile, "bag", heroId) < catalog.bagCapacity
 			and {kind = "bag", heroId = heroId} or {kind = "pending"}
 		local definition = catalog.items[definitionId]
-		if definition.slot and (definition.level or 1) <= hero.level then
+		if definition.slot then
 			local slot = EquipmentSlots.resolve(heroId, profile.items, definition, catalog)
 			if slot and not Rules.equipped(profile, heroId, slot) then
 				location = {kind = "equipped", heroId = heroId, slot = slot}
@@ -179,7 +179,7 @@ function Rules.validate(profile, catalog)
 			local validSlot = false
 			for _, slot in ipairs(catalog.slots) do if slot == loc.slot then validSlot = true end end
 			if not validSlot or not def.slot or def.slot ~= loc.slot and not (def.slot == "accessory" and (loc.slot == "accessory1" or loc.slot == "accessory2"))
-				or def.classId and def.classId ~= hero.baseClassId or (def.level or 1) > hero.level and not (profile.equipmentRulesVersion==nil and def.legacyLevel and hero.level>=def.legacyLevel) then return false end
+				or def.classId and def.classId ~= hero.baseClassId then return false end
 			local key = loc.heroId .. ":" .. loc.slot
 			if slots[key] then return false end
 			slots[key] = true
@@ -230,7 +230,6 @@ function Rules.apply(profile, command, context, catalog)
 	if action == "Equip" then
 		if loc.kind ~= "bag" or not def.slot then return nil, "BagOnly" end
 		if def.classId and def.classId ~= hero.baseClassId then return nil, "WrongClass" end
-		if hero.level < (def.level or 1) then return nil, "LevelRequired" end
 		local slot,slotError = EquipmentSlots.resolve(hero.heroId,nextProfile.items,def,catalog,command.slot)
 		if not slot then return nil,slotError end
 		local equipped = Rules.equipped(nextProfile, hero.heroId, slot)
@@ -367,11 +366,6 @@ function Rules.upgrade(profile,catalog)
     end
     local wearer=hero or sourceHero
     if wearer and wearer.baseClassId=='mage' and item.definitionId=='traveler_coat' then item.definitionId=Families.mageBody('traveler');item.version=item.version+1 end
-   end
-   local def=catalog.items[item.definitionId]
-   if loc.kind=='equipped' and hero and hero.level<(def.level or 1)then
-    item.location=Rules.count(profile,'bag',hero.heroId)<catalog.bagCapacity and {kind='bag',heroId=hero.heroId}or {kind='pending'}
-    item.version=item.version+1
    end
   end
   profile.equipmentRulesVersion=1;changed=true

@@ -1,5 +1,6 @@
 -- Equipment power is a flat physical/magic attack bonus in points.
 -- Current Traveler/Tempered/Veteran/Sentinel gear uses fixed flat bonuses.
+-- Equipment level is loot/cache metadata, never a hero equip requirement.
 -- Trial equipment values, not story rewards, shop products or final balance.
 -- Starter bonuses are deliberately small; shared definitions also retune owned copies.
 -- Existing rarity assignments are explicit. Keep canonical spelling Uncommon.
@@ -20,7 +21,7 @@ end
 for classId, name in pairs({knight = "Sword", elf = "Bow", dwarf = "Axe", mage = "Staff"}) do
 	gear(classId .. "_weapon", "Training " .. name, "weapon", classId, {}, name:sub(1, 2):upper(), {rarity = "Common", retired = true, deleted = true, cacheEligible = false})
 	gear(classId .. "_weapon_fine", "Tempered " .. name, "weapon", classId, {power = 3}, name:sub(1, 2):upper(), {rarity = "Common"})
- gear(classId..'_weapon_veteran',"Veteran's "..name,'weapon',classId,{power=4},name:sub(1,2):upper(),{level=5,rarity='Uncommon',description='A Dawnspire weapon for experienced adventurers. Requires level 5. Available for Gold or Diamonds.'})
+ gear(classId..'_weapon_veteran',"Veteran's "..name,'weapon',classId,{power=4},name:sub(1,2):upper(),{level=5,rarity='Uncommon',description='A Dawnspire weapon for experienced adventurers. Available for Gold or Diamonds.'})
 end
 gear("knight_shield", "Dawnspire Shield", "offhand", "knight", {}, "SH", {rarity = "Common"})
 gear("knight_shield_fine", "Citadel Shield", "offhand", "knight", {armor = 4}, "SH", {rarity = "Uncommon"})
@@ -33,7 +34,7 @@ gear("amber_charm", "Amber Charm", "accessory", nil, {health = 30}, "CH", {rarit
 gear("veteran_hood", "Veteran's Hood", "head", nil, {armor = 2}, "HD", {level = 5, rarity = "Uncommon"})
 -- Provisional Lv10 forge stock. Existing stable definitions/rewards stay intact.
 for classId,name in pairs({knight='Sword',elf='Bow',dwarf='Axe',mage='Staff'})do
- gear(classId..'_weapon_forged','Dawnforge '..name,'weapon',classId,{power=5},name:sub(1,2):upper(),{level=10,rarity='Rare',description='Forged in Dawnspire for seasoned adventurers. Requires level 10.'})
+ gear(classId..'_weapon_forged','Dawnforge '..name,'weapon',classId,{power=5},name:sub(1,2):upper(),{level=10,rarity='Rare',description='Forged in Dawnspire for seasoned adventurers.'})
 end
 for _,row in ipairs({
  {'sentinel_shield','Sentinel Shield','offhand','knight',{armor=8},'SH'},
@@ -44,7 +45,7 @@ for _,row in ipairs({
  {'ruby_ring','Ruby Ring','accessory',false,{power=10},'RG'},
  {'guardian_charm','Guardian Charm','accessory',false,{health=100,armor=2},'CH'},
  {'storm_pendant','Storm Pendant','accessory',false,{power=6,health=50},'CH'},
-})do gear(row[1],row[2],row[3],row[4]or nil,row[5],row[6],{level=10,rarity='Rare',description='Dawnspire forge equipment. Requires level 10. Balance values are provisional.',uniqueGroup=row[3]=='accessory' and row[1]or nil})end
+})do gear(row[1],row[2],row[3],row[4]or nil,row[5],row[6],{level=10,rarity='Rare',description='Dawnspire forge equipment. Balance values are provisional.',uniqueGroup=row[3]=='accessory' and row[1]or nil})end
 -- Existing forge-stock Epic counterparts, separate from the 40-family art proposals.
 -- Keep old Rare definitions/instances intact; the new IDs are fixed deterministic goods.
 for _,baseId in ipairs({"knight_weapon_forged","elf_weapon_forged","dwarf_weapon_forged","mage_weapon_forged",
@@ -55,7 +56,7 @@ for _,baseId in ipairs({"knight_weapon_forged","elf_weapon_forged","dwarf_weapon
  if base.slot=="weapon" then stats.power=6 end
  gear(baseId.."_epic","Epic "..base.name,base.slot,base.classId,stats,base.glyph,
   {level=base.level,rarity="Epic",uniqueGroup=base.uniqueGroup,forgeBaseId=baseId,cacheEligible=false,
-   description="Epic Dawnspire forge equipment. Requires level 10. Purchase with Diamonds at the blacksmith. Balance values are provisional."})
+   description="Epic Dawnspire forge equipment. Purchase with Diamonds at the blacksmith. Balance values are provisional."})
 end
 -- Retired Lv10 trial stock: retained solely to deserialize owned gear/receipts.
 -- No active shop, cache choice or new grant may issue these definitions.
@@ -88,7 +89,7 @@ Catalog.tierEquipment={}
 for _,tier in ipairs(Families.tiers)do
  local function add(id,name,slot,class,stats,glyph,extra)
   extra=extra or {};extra.level=tier.level;extra.rarity=tier.rarity;extra.family=tier.id
-  extra.description=tier.name..' equipment. One fixed bonus. Requires level '..tier.level..'.'
+  extra.description=tier.name..' equipment. One fixed bonus. No level requirement.'
   if Catalog.items[id]then extra.legacyLevel=Catalog.items[id].level end
   gear(id,name,slot,class,stats,glyph,extra);table.insert(Catalog.tierEquipment,id)
  end

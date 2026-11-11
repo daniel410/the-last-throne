@@ -4,13 +4,15 @@
 
 ## 최근 승인
 
+- 모든 무기·장비는 착용 레벨 제한이 없다. 클래스·슬롯·귀속·소유권·안전 조건은 유지한다. [장비 사양](production/equipment-four-tier-reorganization-2026-11-09.md).
+
 - Hard/Insane/Hell은 영웅 레벨 제한 없이 입장한다. 스토리 선행·같은 임무의 이전 난이도 완료는 유지하며 솔로·파티·도착/재접속에 공통 적용한다. [입장 사양](production/difficulty-rewards-and-entry-plan-2026-11-02.md#2-난이도와-입장-조건).
 
 - 스토리 통행 차단은 유리벽 대신 지역 장애물로 표현하고, 해제 시 형상과 충돌을 함께 제거한다. 확장 사건 이동 표지판은 저장된 다음 필수 목표로 연결한다. [구현/검증/미검증](evidence/story-obstacles-travel-20261111/README.md).
 
 - 본편: Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. 35본편·12선택, 전투량/몬스터/보상을 유지하며 반복 웨이브를 이동 경로 교전으로 분산한다. [동선](production/campaign-combat-routes-2026-11-10.md), [맥락](production/campaign-context-review-2026-11-10.md).
 - Dawnspire: TD 전투 맵의 분홍 크리스탈 왕좌 원본을 균일2배로 재사용한다. 로비300×300, HG07 완료 영웅만 심장을 개인 복원한다. 금색 의자 해석은 폐기했다. [증거](evidence/dawnspire-crystal-throne-20261111/README.md).
-- 장비 부위 수치: 무기/방패/투구·장갑/신발·상의HP/로브MP 순서로 Tempered6/4/30, Veteran15/10/50, Sentinel30/20/80. Traveler·장신구·가격/레벨·강화·보유품 유지. [증거](evidence/equipment-values-20261110/README.md).
+- 장비 부위 수치: 무기/방패/투구·장갑/신발·상의HP/로브MP 순서로 Tempered6/4/30, Veteran15/10/50, Sentinel30/20/80. Traveler·장신구·가격·강화·보유품 유지. [증거](evidence/equipment-values-20261110/README.md).
 - 마법사 모자4계열의 기본 옵션은 최대 MP다. 사용자 지정 Traveler +10, Tempered +20, Veteran +30, Sentinel +60을 적용하며 강화3%/단계를 따른다. 지력·마법 공격력·방어력은 추가하지 않고 현재 MP를 회복하지 않는다. [검증](evidence/mage-hat-mp-20261111/README.md).
 - 기본 옵션1개와 별도로 선택형 `specialEffects`를 허용한다. 서버 정의 기반 피해 증감·스킬 지정·합산 상한·영어 표시를 사용하며 기존 장비에 자동 배정하지 않는다. [계약](production/equipment-special-effects-2026-11-10.md).
 - 전직은 Lv20/40/60/80·자기 클래스와 선택 계열의 순차 진행만 요구하며 모험/전투 중 선택 가능하다. 거점·처치 수·시험을 요구하지 않는다. 소유권/로드/저장/중복 검사는 유지한다.

@@ -324,8 +324,6 @@ function InventoryGui.create(onVisibility, feedback)
 			detailLabel("ActionBlockedReason",Text.EquipHint,y,64,13,Color.error);y=y+68
 		elseif def.slot and item.location.kind=="bag" and def.classId and hero and def.classId~=hero.baseClassId then
 			detailLabel("ActionBlockedReason",Text.Errors.WrongClass,y,56,13,Color.error);y=y+60
-		elseif def.slot and item.location.kind=="bag" and hero and hero.level<(def.level or 1) then
-			detailLabel("ActionBlockedReason",Text.Errors.LevelRequired,y,48,13,Color.error);y=y+52
 		end
 		local heading=detailLabel("ItemName",Enhance.name(def,item,itemVisualClass(item)),y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
   if def.restore and item.location.kind=="bag" then
@@ -338,7 +336,7 @@ function InventoryGui.create(onVisibility, feedback)
 		Artwork.create(detailScroll,def,UDim2.fromOffset(12,y),UDim2.new(1,-32,0,156),itemVisualClass(item)); y=y+160
 		rarityLabel(def,y); y=y+38
 		local classText=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or (def.slot and Text.Compatible or Text.AllClasses)
-		detailLabel("Requirements",classText.."  •  "..string.format(Text.Level,def.level or 1),y,48,13,Color.silver); y=y+52
+		detailLabel("Requirements",classText,y,48,13,Color.silver); y=y+52
 		if def.restore then detailLabel("RestoreAmount",string.format(Text.RestoreAmount,def.amount,def.glyph),y,30,16,def.restore=="health" and Color.error or Color.silver); y=y+34 end
 		if expandedDetails then
 			detailLabel("Binding",(item.binding=="character" and Text.CharacterBound or Text.Bound)..(item.locked and "  •  "..Text.Locked or ""),y,26,11,Color.gold); y=y+30
@@ -442,7 +440,7 @@ function InventoryGui.create(onVisibility, feedback)
 			if actionForSelection=="Claim" then enabled=enabled and snapshot.atHub end
 			if actionForSelection=="Use" and snapshot.atHub then enabled=false end
    if actionForSelection=="ResetPoints" then enabled=enabled and resetSpent>0 end
-			if actionForSelection=="Equip" then enabled=enabled and (not def.classId or hero.baseClassId==def.classId) and hero.level>=(def.level or 1) end
+			if actionForSelection=="Equip" then enabled=enabled and (not def.classId or hero.baseClassId==def.classId) end
 			if actionForSelection=="Equip" and not snapshot.safe then primary.Caption.Text=Text.CombatLocked end
 			Theme.enabled(primary,enabled==true)
 		end

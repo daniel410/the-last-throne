@@ -106,7 +106,7 @@ equal(denied,nil,"changed request denied"); equal(reason,"RequestConflict","chan
 denied,reason=apply(first,find(first,"traveler_hood","equipped"),"Unequip",nil,{safe=false})
 equal(denied,nil,"combat cannot change equipment"); equal(reason,"InCombat","combat reason")
 denied,reason=apply(first,find(first,"veteran_hood","bag"),"Equip")
-equal(reason,"LevelRequired","level checked on server")
+check(denied~=nil and reason==nil,"level one equips Veteran hood on server"); valid(denied)
 
 p=profile()
 local ring=find(p,"copper_ring","bag")

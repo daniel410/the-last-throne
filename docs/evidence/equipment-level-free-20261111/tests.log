@@ -1,0 +1,43 @@
+$ lua tests/equipment-level-free.spec.lua
+exit=0
+Equipment level-free: 929 checks passed across 57 owned gear definitions and four classes
+
+$ lua tests/inventory.spec.lua
+exit=0
+Inventory: 276 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+
+$ lua tests/equipment-families.spec.lua
+exit=0
+Equipment families: 514 checks passed
+
+$ lua tests/equipment-impact.spec.lua
+exit=0
+Equipment impact: 52 checks passed
+
+$ lua tests/enhancement-current-equipment.spec.lua
+exit=0
+Current equipment enhancement: 8792 checks passed (47 definitions; all 9 targets; success/failure boundaries)
+
+$ lua tests/enhancement-probability.spec.lua
+exit=0
+Enhancement probability: 2869 checks passed (including 90000 outcome boundaries)
+
+$ lua tests/retired-forge-equipment.spec.lua
+exit=0
+Retired forge equipment: 486 checks passed
+
+$ lua tests/deleted-equipment.spec.lua
+exit=0
+Deleted equipment: 171 checks passed
+
+$ lua tests/equipment-special-effects.spec.lua
+exit=0
+Equipment special effects: 281 checks passed
+
+$ lua tests/inventory-double-click.spec.lua
+exit=0
+inventory-double-click: 26 checks PASS
+
+$ lua tests/advancement-level-only.spec.lua
+exit=0
+Level-only advancement: 539 checks passed
