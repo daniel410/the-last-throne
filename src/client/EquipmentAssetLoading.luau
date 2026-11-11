@@ -27,6 +27,31 @@ local function restore(part)
  end
 end
 
+-- Request images through a texture-bearing instance. Raw image IDs can request
+-- the wrong asset representation, and SurfaceAppearance itself cannot preload.
+function Assets.preload(part, callback)
+ local inputs, textures, seen = {part}, {}, {}
+ local function texture(id)
+  if id == "" or seen[id] then return end
+  seen[id] = true
+  local decal = Instance.new("Decal")
+  decal.Texture = id
+  table.insert(textures, decal)
+  table.insert(inputs, decal)
+ end
+ texture(part.TextureID)
+ for _, child in ipairs(part:GetChildren()) do
+  if child:IsA("SurfaceAppearance") then
+   for _, property in ipairs({"ColorMap", "NormalMap", "MetalnessMap", "RoughnessMap"}) do
+    texture(child[property])
+   end
+  end
+ end
+ local ok, err = pcall(function() ContentProvider:PreloadAsync(inputs, callback) end)
+ for _, decal in ipairs(textures) do decal:Destroy() end
+ if not ok then error(err) end
+end
+
 function Assets.start()
  if started then return end
  started = true
@@ -39,18 +64,7 @@ function Assets.start()
     if pending[part] ~= state or not part:IsDescendantOf(workspace) then return end
     local succeeded, count = true, 0
     local ok = pcall(function()
-     -- MeshPart includes TextureID. SurfaceAppearance is not supported by
-     -- PreloadAsync, so request its source maps explicitly as well.
-     local inputs = {part}
-     for _, child in ipairs(part:GetChildren()) do
-      if child:IsA("SurfaceAppearance") then
-       for _, property in ipairs({"ColorMap", "NormalMap", "MetalnessMap", "RoughnessMap"}) do
-        local id = child[property]
-        if id ~= "" then table.insert(inputs, id) end
-       end
-      end
-     end
-     ContentProvider:PreloadAsync(inputs, function(_, status)
+     Assets.preload(part, function(_, status)
       count = count + 1
       if status ~= Enum.AssetFetchStatus.Success then succeeded = false end
      end)

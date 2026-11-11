@@ -49,7 +49,7 @@ local ok,result=xpcall(function()
  end
  check(pending==0,'Native asset fetch timed out')
  check(failures==0,'Native asset fetch failed')
- check(fetches>=#parts,'Expected mesh and texture callbacks')
+ check(fetches>=#parts*2,'Expected mesh and explicit texture callbacks')
  for _,part in ipairs(parts)do check(math.abs(part.LocalTransparencyModifier-.35)<.0001,'Existing visibility not restored')end
  return {models=models,meshParts=#parts,fetchCallbacks=fetches,fetchFailures=failures}
 end,debug.traceback)

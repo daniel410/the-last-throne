@@ -4,7 +4,7 @@
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
-local ContentProvider = game:GetService("ContentProvider")
+local EquipmentAssets = require(script.Parent.EquipmentAssetLoading)
 local Workspace = game:GetService("Workspace")
 local Config = require(game:GetService("ReplicatedStorage").Shared.K0Config)
 local AdvancedMotion = require(script.Parent.AdvancedSkillMotion)
@@ -168,7 +168,7 @@ local function monitorKnightMeshes(character)
 								or not model:IsDescendantOf(character) then return end
 							local status, allLoaded = nil, true
 							local ok = pcall(function()
-								ContentProvider:PreloadAsync({ expectedMesh }, function(id, result)
+								EquipmentAssets.preload(expectedMesh, function(id, result)
 									if id == expectedMesh.MeshId then status = result end
 									if result ~= Enum.AssetFetchStatus.Success then allLoaded = false end
 								end)

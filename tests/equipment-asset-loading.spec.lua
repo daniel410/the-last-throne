@@ -7,7 +7,7 @@ local function signal()
 end
 local world={DescendantAdded=signal(),DescendantRemoving=signal()}
 local function mesh(name, modifier, attrs, parent)
- local p={Name=name,Parent=parent or world,LocalTransparencyModifier=modifier,attrs=attrs or {},children={}}
+ local p={Name=name,TextureID="base",Parent=parent or world,LocalTransparencyModifier=modifier,attrs=attrs or {},children={}}
  function p:IsA(kind) return kind=='MeshPart' end
  function p:GetAttribute(key) return self.attrs[key] end
  function p:IsDescendantOf() return self.Parent~=nil end
@@ -33,12 +33,13 @@ end
 local services={ContentProvider=provider,RunService=run}
 local env=setmetatable({workspace=world,game={GetService=function(_,key)return services[key] end},
  Enum={AssetFetchStatus={Success='Success'},RenderPriority={Last={Value=2000}}},
+ Instance={new=function(kind) check(kind=='Decal','image representation uses Decal');return {Destroy=function(self)self.destroyed=true end}end},
  task={spawn=function(fn)local co=coroutine.create(fn);jobs[#jobs+1]=co;assert(coroutine.resume(co))end,wait=function()coroutine.yield('retry')end},
  warn=function(message) warnings[#warnings+1]=message end},{__index=_G})
 local assets=assert(loadfile('src/client/EquipmentAssetLoading.luau','t',env))()
 assets.start();assets.start()
 check(#fetches==3,'start once, only weapon/shield/armor fetched')
-check(#fetches[1].inputs==4,'explicit nonempty PBR maps requested')
+check(#fetches[1].inputs==5,'base texture and explicit nonempty PBR maps requested as Decals')
 run.render()
 check(weapon.LocalTransparencyModifier==1 and armor.LocalTransparencyModifier==1,'pending textured meshes concealed')
 check(scenery.LocalTransparencyModifier==0,'scenery unaffected')
@@ -48,6 +49,7 @@ check(shield.LocalTransparencyModifier==.4,'existing local mask restored before 
 fetches[1].callback('mesh','Success');run.render()
 check(weapon.LocalTransparencyModifier==1,'geometry callback alone does not reveal equipment')
 fetches[1].callback('texture','Success');assert(coroutine.resume(fetches[1].thread))
+check(fetches[1].inputs[2].Texture=='base' and fetches[1].inputs[2].destroyed,'texture proxy cleaned after preload')
 run.PreSimulation:fire();weapon.LocalTransparencyModifier=.7;run.render()
 check(weapon.LocalTransparencyModifier==.7,'ready equipment preserves current animation mask')
 -- A streaming removal cancels the old request; its late result cannot unmask re-entry.
