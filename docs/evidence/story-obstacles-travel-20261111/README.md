@@ -14,9 +14,16 @@
 ## 검증
 
 - `lua tests/campaign-expansion.spec.lua`: **7,698 PASS** (35본편·12선택·82사건·246단계). 기존 보상·저장/선택·개인 진행 회귀.
-- `lua tests/checkpoint-travel.spec.lua`: 결과는 [체크포인트 로그](checkpoint-travel.log)에 보존한다.
+- `lua tests/checkpoint-travel.spec.lua`: **1,927 PASS**. [체크포인트 로그](checkpoint-travel.log).
 - `python3 tools/prepare-story-obstacles-travel-native.py --preview`, `run-in-roblox --place builds/0.103.8/TheLastThrone-0.103.8.rbxlx --script /tmp/tlt-story-obstacles-travel-native.luau`: **914 PASS**, 수정 소스를 주입한 격리 엔진 검증. [로그](native-preview.log).
 - 전용 엔진 검사는 개인별 바위/전체5에픽 자산·해제 시 삭제·영웅 전환/트레이닝·늦은 복제·파괴 후 정리, 본편70개 출구의 다음 필수 목표·접근 자격, 구호 장면의 판자 부재/천 재질·높이/NPC7stud 간격, 서버 목적지 어댑터, 전체 런타임 Luau 문법을 검사한다. 출구에서 다음 목표까지 최소 약218stud다.
+
+## 최종 빌드
+
+- 버전 **0.103.9**, 입력 커밋 `f7040e7cdfe4591bc812ceb6be192eb8899cb717`. 커밋·origin/main 푸시 및 원격 일치를 확인한 뒤 정본 빌드 도구를 실행했다.
+- 산출물 `builds/0.103.9/TheLastThrone-0.103.9.rbxlx` · SHA-256 `2f2f8f31da46562e13b73ed48515c2747e2f50ee51a77169fbf9ae4c0ef796f3`. [LFS 입력/빌드 기록](build.json).
+- `python3 tools/prepare-story-obstacles-travel-native.py` 후 위 산출물에서 재실행: 변경10모듈 Source 일치, **914 PASS**, 본편70출구·Deepwood 개인 장애물9개(다른 에픽 미할당), 다음 목표 최소218.4488stud. [최종 엔진 로그](native.log).
+- Roblox 게시·릴리스 태그는 생성하지 않았다.
 
 ## 미검증·다음 담당
 
