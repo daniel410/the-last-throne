@@ -12,6 +12,9 @@ local accounts, options, store, stateRemote, openRemote
 accounts = {}
 local token = HttpService:GenerateGUID(false)
 local sessionOnly = RunService:IsStudio()
+if sessionOnly then
+	Rules = require(script.Parent.StudioTestRules).wrap(Rules, Growth)
+end
 local started = false
 
 local function deathNotice(player,id,status,lost)
