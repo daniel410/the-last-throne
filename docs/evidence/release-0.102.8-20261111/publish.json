@@ -1,0 +1,43 @@
+{
+  "version": "0.102.8",
+  "sourceCommit": "a50c20a88fb858b0d52691499c3221cd164027ee",
+  "artifact": "builds/0.102.8/TheLastThrone-0.102.8.rbxlx",
+  "sha256": "8ec1b2f21a94c3351354e34b5c622fa48e292e2e474afe3beac5131eb2394fb5",
+  "diskHashUnchanged": true,
+  "published": true,
+  "method": "Roblox Studio Publish As, existing TLT experience and places",
+  "universeId": 10773575153,
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": 93,
+      "localPublishedTime": "2026-11-11 14:04 America/Toronto",
+      "verification": "Studio Successfully published! 및 Creator Dashboard Show published only 활성 상태의 최신 버전 확인",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/70829337938054/version-history"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": 20,
+      "localPublishedTime": "2026-11-11 14:06 America/Toronto",
+      "verification": "Studio Successfully published! 및 Creator Dashboard Show published only 활성 상태의 최신 버전 확인",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history"
+    }
+  ],
+  "audience": "Private (unchanged)",
+  "assetPermissions": "Grant Permissions and Publish로 TLT Experience의 누락된 자산 사용 권한 연결",
+  "studioRunningAfter": false,
+  "releaseTag": "v0.102.8",
+  "preservedSessions": [
+    "builds/0.102.0/TheLastThrone-0.102.0-session-preserved-20261111.rbxl",
+    "builds/0.102.3/TheLastThrone-0.102.3-session-preserved-20261111.rbxl",
+    "builds/0.102.5/TheLastThrone-0.102.5-session-preserved-20261111.rbxl",
+    "builds/0.102.6/TheLastThrone-0.102.6-session-preserved-20261111.rbxl"
+  ],
+  "unverified": [
+    "게시 클라이언트의 캐시 없는 첫 접속/색상 표시",
+    "실계정 저장·재접속 및 Experience 간 실제 이동",
+    "실기기·다인 성능·사용자 미술 수용"
+  ]
+}
