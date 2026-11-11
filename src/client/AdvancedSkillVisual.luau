@@ -8,10 +8,12 @@ local Geometry=require(script.Parent.SkillEffectGeometry)
 local BowMotion=require(script.Parent.K0BowMotion)
 local WindLance=require(script.Parent.WindLanceVisual)
 local PixelFX=require(script.Parent.PixelFX)
+local HeroVFX=require(script.Parent.HeroVFX)
 local Visual={}
 local byId={};for _,list in pairs(Config.Skills) do for _,d in ipairs(list) do byId[d.id]=d end end
 local colors={wind=Color3.fromRGB(180,255,218),arcane=Color3.fromRGB(180,153,255),steel=Color3.fromRGB(255,215,133),holy=Color3.fromRGB(255,239,167),gun=Color3.fromRGB(255,210,80),bomb=Color3.fromRGB(255,133,57),shell=Color3.fromRGB(255,87,55),nature=Color3.fromRGB(104,238,157),fire=Color3.fromRGB(255,101,41),earth=Color3.fromRGB(176,126,76),water=Color3.fromRGB(73,178,255),frost=Color3.fromRGB(141,234,255),lightning=Color3.fromRGB(222,198,255)}
 local active=0
+local confirmed=setmetatable({},{__mode="k"})
 local function part(name,color,shape,size,cf,life,transparency)
  if active>=128 then return nil end
  active+=1
@@ -150,6 +152,13 @@ end
 function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,startedAt)
  local d=byId[id];if not d or not d.advanced or typeof(origin)~="Vector3" or typeof(center)~="Vector3" then return end
  local profile=Presentation.get(d);if not profile then return end
+ if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse%1~=0 then return end
+ if type(firedAt)=="number" and (firedAt~=firedAt or workspace:GetServerTimeNow()-firedAt>.6 or firedAt-workspace:GetServerTimeNow()>.5) then return end
+ if character and type(attackSeq)=="number" and pulse>0 then
+  local old=confirmed[character]
+  if old and (attackSeq<old.seq or attackSeq==old.seq and old.id==id and pulse<=old.pulse) then return end
+  confirmed[character]={seq=attackSeq,id=id,pulse=pulse}
+ end
  if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
  if pulse~=0 then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
@@ -177,6 +186,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local floor=ground(d.form=="area" and center or origin,character)
  local targetFloor=ground(center,character)
  local effect=profile.effect
+ HeroVFX.skill(character,id,origin,center,pulse)
  -- Core geometry is rendered before optional impact decoration.
  if d.form=="chain" then
   local from=first

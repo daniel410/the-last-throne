@@ -25,7 +25,11 @@ assert(groundSlam and overheadSmash, "Dwarf skill configuration is missing")
 local HitFeedback = require(script.Parent.K0PlayerHitFeedback)
 local CombatAudio = require(script.Parent.K0CombatAudio)
 local HitStop = require(script.Parent.K0HitStop)
+local HeroVFX = require(script.Parent.HeroVFX)
 local Visual = {}
+local seenHeroEffects = setmetatable({}, {__mode="k"})
+local commonDefinitions = {}
+for _, list in pairs(Config.Skills) do for _, d in ipairs(list) do if not d.advanced then commonDefinitions[d.id] = d end end end
 local SideDiveMotion = require(script.Parent.K0SideDiveMotion)
 local shieldSkills={}
 for _,d in ipairs(Config.Skills.knight) do if d.requiresShield or d.shield or d.counterPosture or d.name:find("SHIELD",1,true) then shieldSkills[d.id]=true end end
@@ -93,7 +97,9 @@ local function meleeEffect(model, joint, classId)
 	local trail = Instance.new("Trail")
 	trail.Name = classId == "knight" and "K0SwordTrail" or "K0WeaponTrail"
 	trail.Attachment0, trail.Attachment1 = bottom, top
-	trail.Lifetime = 0.15
+	trail.Lifetime = classId == "dwarf" and 0.11 or 0.14
+	trail.MinLength = .035
+	trail.WidthScale = NumberSequence.new({NumberSequenceKeypoint.new(0, .45), NumberSequenceKeypoint.new(.18, 1), NumberSequenceKeypoint.new(1, 0)})
 	trail.LightEmission = 0.6
 	local colors = {
 		knight = { Color3.fromRGB(255, 235, 171), Color3.fromRGB(114, 183, 255) },
@@ -713,12 +719,17 @@ local function emitArrow(character, first, last, payload, showImpact)
 		shaft.Transparency=0;shaft.LocalTransparencyModifier=0;shaft.Parent=model
 		tip.Transparency,feather.Transparency=1,1;sourceLength=shaft.Size.Z
 	end
-	local tipTrail = Instance.new("Attachment"); tipTrail.Position = Vector3.new(0, 0, -0.5); tipTrail.Parent = shaft
-	local tailTrail = Instance.new("Attachment"); tailTrail.Position = Vector3.new(0, 0, 0.5); tailTrail.Parent = shaft
+	local skillId=character:GetAttribute("K0SkillId")
+ local width=skillId=="elf.common.aimed" and .12 or skillId=="elf.common.rapid" and .055 or .08
+ local tipTrail = Instance.new("Attachment"); tipTrail.Position = Vector3.new(-width, 0, 0); tipTrail.Parent = shaft
+ local tailTrail = Instance.new("Attachment"); tailTrail.Position = Vector3.new(width, 0, 0); tailTrail.Parent = shaft
 	local trail = Instance.new("Trail")
 	trail.Attachment0, trail.Attachment1 = tipTrail, tailTrail
-	trail.Color = ColorSequence.new(Color3.fromRGB(170, 255, 178), Color3.fromRGB(255, 242, 180))
-	trail.Transparency, trail.Lifetime, trail.LightEmission = NumberSequence.new(0.25), 0.16, 0.5
+	trail.Color = ColorSequence.new(skillId=="elf.common.aimed" and Color3.fromRGB(242,246,177)
+  or skillId=="elf.common.multi" and Color3.fromRGB(115,220,204) or Color3.fromRGB(170,255,178), Color3.fromRGB(255,242,180))
+	trail.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0,.22),NumberSequenceKeypoint.new(1,1)})
+	trail.WidthScale = NumberSequence.new({NumberSequenceKeypoint.new(0,1),NumberSequenceKeypoint.new(1,0)})
+	trail.Lifetime, trail.LightEmission = skillId=="elf.common.aimed" and .19 or .12, .45
 	trail.Parent = shaft
 	local pose = CFrame.lookAt(first, last)
 	shaft.CFrame = pose*CFrame.new(0,0,sourceLength*.5)
@@ -938,11 +949,13 @@ local function consumeSpell(character)
 	if not heldWeapon then
 		local light = Instance.new("PointLight"); light.Color = orb.Color; light.Brightness = 2; light.Range = 8; light.Parent = orb
 	end
-	local front = Instance.new("Attachment"); front.Position = Vector3.new(0, 0, -0.3); front.Parent = orb
-	local back = Instance.new("Attachment"); back.Position = Vector3.new(0, 0, 0.3); back.Parent = orb
+	local front = Instance.new("Attachment"); front.Position = Vector3.new(-.18, 0, 0); front.Parent = orb
+	local back = Instance.new("Attachment"); back.Position = Vector3.new(.18, 0, 0); back.Parent = orb
 	local trail = Instance.new("Trail"); trail.Attachment0, trail.Attachment1 = front, back
 	trail.Color = ColorSequence.new(color, Color3.fromRGB(230, 238, 255))
-	trail.Transparency, trail.Lifetime, trail.LightEmission = NumberSequence.new(0.2), 0.25, 1
+	trail.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0,.2),NumberSequenceKeypoint.new(1,1)})
+	trail.WidthScale = NumberSequence.new({NumberSequenceKeypoint.new(0,1),NumberSequenceKeypoint.new(1,0)})
+	trail.Lifetime, trail.LightEmission = .20, .7
 	if heldWeapon then
 		-- A short, pale blade-tip sweep leaves the rotating silhouette readable.
 		front.Position = Vector3.new(-0.12, orb.Size.Y * 0.35, 0)
@@ -1109,6 +1122,18 @@ end
 function Visual.renderCharacter(character, dt, now)
 	CombatAudio.renderCharacter(character, now or Workspace:GetServerTimeNow())
 	local classId = character:GetAttribute("K0ClassId") or "knight"
+ local id=character:GetAttribute("K0SkillId")
+ local d=commonDefinitions[id]
+ local seq=character:GetAttribute("K0AttackSeq")
+ local root=character:FindFirstChild("HumanoidRootPart")
+ local start=character:GetAttribute("K0SkillStartedAt")
+ if d and root and seq and type(start)=="number" and character:GetAttribute("K0State")=="Attack" then
+  local age=(now or Workspace:GetServerTimeNow())-start-d.windup-(d.hitDelay or 0)
+  if age>=0 and age<=.15 and seenHeroEffects[character]~=seq then
+   seenHeroEffects[character]=seq
+   if not d.ranged then HeroVFX.skill(character,id,root.Position,root.Position+root.CFrame.LookVector*(d.range or 5),1) end
+  end
+ end
 	if classId == "knight" and character:GetAttribute("K0AttackPhase") == "Active" then
 		local skillId, seq = character:GetAttribute("K0SkillId"), character:GetAttribute("K0AttackSeq")
 		local root = character:FindFirstChild("HumanoidRootPart")
@@ -1134,7 +1159,11 @@ function Visual.renderCharacter(character, dt, now)
 			seenGravityAreas[character] = payload
 			local seq, x, y, z = payload:match("^(%d+)|([%d%.%-]+)|([%d%.%-]+)|([%d%.%-]+)$")
 			x, y, z = tonumber(x), tonumber(y), tonumber(z)
-			if seq and finite(x) and finite(y) and finite(z) then areaPulse(Vector3.new(x, y, z), Color3.fromRGB(126, 65, 211), gravity.areaRadius) end
+			if seq and finite(x) and finite(y) and finite(z) then
+    local at=Vector3.new(x,y,z)
+    areaPulse(at, Color3.fromRGB(126, 65, 211), gravity.areaRadius)
+    HeroVFX.skill(character,"mage.common.gravity",at,at,1)
+   end
 		end
 	end
 	if classId == "dwarf" then consumeSpell(character) end

@@ -1,0 +1,8 @@
+Luau compile PASS src/client/HeroVFX.luau
+Luau compile PASS src/client/AdvancedSkillVisual.luau
+Luau compile PASS src/client/K0HitEffects.luau
+Luau compile PASS src/client/K0SwordVisual.luau
+Luau compile PASS tests/hero-vfx-native.luau
+Skill effects CPU: 11978 checks PASS; all 116 advanced casts/pulses, geometry, cosmetic budget, cancellation. No engine QA.
+Advanced skills: 1435 checks passed
+Hero progression: 3711 checks passed

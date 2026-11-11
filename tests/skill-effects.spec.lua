@@ -38,8 +38,9 @@ local Config=dofile('src/shared/K0Config.luau');local Advanced=dofile('src/share
 local pixelPulses=0
 local modules={AdvancedSkills=Advanced,K0Config=Config,PixelFX={skill=function(_,_,_,_,pulse)assert(pulse>0);pixelPulses=pixelPulses+1 end}}
 require=function(name)return assert(modules[name],tostring(name))end
-script={Parent={AdvancedSkills='AdvancedSkills',SkillEffectGeometry='Geometry',K0BowMotion='Bow',WindLanceVisual='Wind',PixelFX='PixelFX'}}
+script={Parent={AdvancedSkills='AdvancedSkills',SkillEffectGeometry='Geometry',K0BowMotion='Bow',WindLanceVisual='Wind',PixelFX='PixelFX',HeroVFX='HeroVFX'}}
 local P=dofile('src/shared/SkillPresentation.luau');modules.SkillPresentation=P;modules.Geometry=dofile('src/client/SkillEffectGeometry.luau')
+modules.HeroVFX={skill=function()end}
 modules.Bow={confirmPulse=function()end};modules.Wind={play=function()end}
 local rs={Shared={K0Config='K0Config',SkillPresentation='SkillPresentation'}}
 local event=signal();rs.WaitForChild=function()return {WaitForChild=function()return {OnClientEvent=event}end}end
