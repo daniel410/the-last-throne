@@ -1,0 +1,5439 @@
+{
+  "schema": 1,
+  "source": "Blender MCP authored primitives",
+  "colorSpace": "sRGB",
+  "models": {
+    "DeepwoodRelic": [
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -9,
+          1.2,
+          0
+        ],
+        "size": [
+          6,
+          3,
+          6
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -5,
+          1.2,
+          1.178059378731055
+        ],
+        "size": [
+          6,
+          3,
+          6
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0.8,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -1,
+          1.2,
+          1.2730163975559543
+        ],
+        "size": [
+          6,
+          3,
+          6
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 1.6,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          3,
+          1.2,
+          0.1975680112838141
+        ],
+        "size": [
+          6,
+          3,
+          6
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 2.4000000000000004,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          7,
+          1.2,
+          -1.0595234934310995
+        ],
+        "size": [
+          6,
+          3,
+          6
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 3.2,
+        "lean": 0
+      },
+      {
+        "name": "RelicFoot",
+        "position": [
+          -8,
+          1,
+          0
+        ],
+        "size": [
+          6,
+          2,
+          6
+        ],
+        "color": [
+          157,
+          166,
+          139
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "RelicCourse",
+        "position": [
+          -8,
+          3,
+          0
+        ],
+        "size": [
+          3.8,
+          2.8,
+          3.8
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "RelicCourse",
+        "position": [
+          -8,
+          6,
+          0
+        ],
+        "size": [
+          3.8,
+          2.8,
+          3.8
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0.04,
+        "lean": 0
+      },
+      {
+        "name": "RelicCourse",
+        "position": [
+          -8,
+          9,
+          0
+        ],
+        "size": [
+          3.8,
+          2.8,
+          3.8
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "RelicCourse",
+        "position": [
+          -8,
+          12,
+          0
+        ],
+        "size": [
+          3.8,
+          2.8,
+          3.8
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0.04,
+        "lean": 0
+      },
+      {
+        "name": "RelicCourse",
+        "position": [
+          -8,
+          15,
+          0
+        ],
+        "size": [
+          3.8,
+          2.8,
+          3.8
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "RelicCapital",
+        "position": [
+          -8,
+          16,
+          0
+        ],
+        "size": [
+          5,
+          1,
+          5
+        ],
+        "color": [
+          157,
+          166,
+          139
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "RelicFoot",
+        "position": [
+          8,
+          1,
+          0
+        ],
+        "size": [
+          6,
+          2,
+          6
+        ],
+        "color": [
+          157,
+          166,
+          139
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "RelicCourse",
+        "position": [
+          8,
+          3,
+          0
+        ],
+        "size": [
+          3.8,
+          2.8,
+          3.8
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "RelicCourse",
+        "position": [
+          8,
+          6,
+          0
+        ],
+        "size": [
+          3.8,
+          2.8,
+          3.8
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0.04,
+        "lean": 0
+      },
+      {
+        "name": "RelicCourse",
+        "position": [
+          8,
+          9,
+          0
+        ],
+        "size": [
+          3.8,
+          2.8,
+          3.8
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "RelicCapital",
+        "position": [
+          8,
+          11,
+          0
+        ],
+        "size": [
+          5,
+          1,
+          5
+        ],
+        "color": [
+          157,
+          166,
+          139
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "FallenMasonry",
+        "position": [
+          -5,
+          1.1,
+          5
+        ],
+        "size": [
+          2,
+          2,
+          4
+        ],
+        "color": [
+          157,
+          166,
+          139
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0.1
+      },
+      {
+        "name": "FallenMasonry",
+        "position": [
+          -2.7,
+          1.1,
+          5
+        ],
+        "size": [
+          2,
+          2,
+          4
+        ],
+        "color": [
+          157,
+          166,
+          139
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0.3,
+        "lean": 0.1
+      },
+      {
+        "name": "FallenMasonry",
+        "position": [
+          -0.40000000000000036,
+          1.1,
+          5
+        ],
+        "size": [
+          2,
+          2,
+          4
+        ],
+        "color": [
+          157,
+          166,
+          139
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0.6,
+        "lean": 0.1
+      },
+      {
+        "name": "FallenMasonry",
+        "position": [
+          1.8999999999999995,
+          1.1,
+          5
+        ],
+        "size": [
+          2,
+          2,
+          4
+        ],
+        "color": [
+          157,
+          166,
+          139
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0.8999999999999999,
+        "lean": 0.1
+      },
+      {
+        "name": "FallenMasonry",
+        "position": [
+          4.199999999999999,
+          1.1,
+          5
+        ],
+        "size": [
+          2,
+          2,
+          4
+        ],
+        "color": [
+          157,
+          166,
+          139
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 1.2,
+        "lean": 0.1
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -9.2,
+          1.35,
+          5
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -10.443769410125094,
+          1.35,
+          6.711901729331276
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -12.456230589874906,
+          1.35,
+          6.058013454126452
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -12.456230589874906,
+          1.35,
+          3.9419865458735486
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -10.443769410125094,
+          1.35,
+          3.2880982706687236
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          8.8,
+          1.35,
+          -4
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          7.556230589874906,
+          1.35,
+          -2.2880982706687236
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          5.543769410125095,
+          1.35,
+          -2.941986545873548
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          5.543769410125094,
+          1.35,
+          -5.058013454126451
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          7.556230589874905,
+          1.35,
+          -5.711901729331276
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.8,
+          1.35,
+          6
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.5562305898749055,
+          1.35,
+          7.711901729331276
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -1.4562305898749053,
+          1.35,
+          7.058013454126452
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -1.4562305898749055,
+          1.35,
+          4.941986545873549
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.556230589874905,
+          1.35,
+          4.288098270668724
+        ],
+        "size": [
+          0.63,
+          0.63,
+          5.4
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "OldLintel",
+        "position": [
+          -2,
+          13.5,
+          0
+        ],
+        "size": [
+          10,
+          2,
+          4
+        ],
+        "color": [
+          100,
+          111,
+          103
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": -0.16
+      }
+    ],
+    "GloamwoodRoots": [
+      {
+        "name": "RootColumn",
+        "position": [
+          -12,
+          2,
+          0
+        ],
+        "size": [
+          6,
+          6.5,
+          5
+        ],
+        "color": [
+          63,
+          57,
+          51
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": -0.22
+      },
+      {
+        "name": "RootColumn",
+        "position": [
+          -10.6,
+          7.2,
+          0
+        ],
+        "size": [
+          5.35,
+          6.5,
+          4.5
+        ],
+        "color": [
+          66,
+          59,
+          52
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": -0.22
+      },
+      {
+        "name": "RootColumn",
+        "position": [
+          -9.2,
+          12.4,
+          0
+        ],
+        "size": [
+          4.7,
+          6.5,
+          4
+        ],
+        "color": [
+          69,
+          61,
+          53
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": -0.22
+      },
+      {
+        "name": "RootColumn",
+        "position": [
+          -7.800000000000001,
+          17.6,
+          0
+        ],
+        "size": [
+          4.05,
+          6.5,
+          3.5
+        ],
+        "color": [
+          72,
+          63,
+          54
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": -0.22
+      },
+      {
+        "name": "RootColumn",
+        "position": [
+          -6.4,
+          22.8,
+          0
+        ],
+        "size": [
+          3.4,
+          6.5,
+          3
+        ],
+        "color": [
+          75,
+          65,
+          55
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": -0.22
+      },
+      {
+        "name": "RootButtress",
+        "position": [
+          -11,
+          2.2,
+          2
+        ],
+        "size": [
+          4,
+          5,
+          7
+        ],
+        "color": [
+          80,
+          59,
+          41
+        ],
+        "material": "Wood",
+        "shape": "Wedge",
+        "yaw": -0.6,
+        "lean": 0
+      },
+      {
+        "name": "RootButtress",
+        "position": [
+          -14,
+          1.6,
+          3
+        ],
+        "size": [
+          4,
+          4,
+          7
+        ],
+        "color": [
+          80,
+          59,
+          41
+        ],
+        "material": "Wood",
+        "shape": "Wedge",
+        "yaw": -0.6,
+        "lean": 0
+      },
+      {
+        "name": "RootButtress",
+        "position": [
+          -17,
+          1.0000000000000002,
+          4
+        ],
+        "size": [
+          4,
+          3,
+          7
+        ],
+        "color": [
+          80,
+          59,
+          41
+        ],
+        "material": "Wood",
+        "shape": "Wedge",
+        "yaw": -0.6,
+        "lean": 0
+      },
+      {
+        "name": "RootColumn",
+        "position": [
+          12,
+          2,
+          0
+        ],
+        "size": [
+          6,
+          6.5,
+          5
+        ],
+        "color": [
+          63,
+          57,
+          51
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0.22
+      },
+      {
+        "name": "RootColumn",
+        "position": [
+          10.6,
+          7.2,
+          0
+        ],
+        "size": [
+          5.35,
+          6.5,
+          4.5
+        ],
+        "color": [
+          66,
+          59,
+          52
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0.22
+      },
+      {
+        "name": "RootColumn",
+        "position": [
+          9.2,
+          12.4,
+          0
+        ],
+        "size": [
+          4.7,
+          6.5,
+          4
+        ],
+        "color": [
+          69,
+          61,
+          53
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0.22
+      },
+      {
+        "name": "RootColumn",
+        "position": [
+          7.800000000000001,
+          17.6,
+          0
+        ],
+        "size": [
+          4.05,
+          6.5,
+          3.5
+        ],
+        "color": [
+          72,
+          63,
+          54
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0.22
+      },
+      {
+        "name": "RootColumn",
+        "position": [
+          6.4,
+          22.8,
+          0
+        ],
+        "size": [
+          3.4,
+          6.5,
+          3
+        ],
+        "color": [
+          75,
+          65,
+          55
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0.22
+      },
+      {
+        "name": "RootButtress",
+        "position": [
+          11,
+          2.2,
+          2
+        ],
+        "size": [
+          4,
+          5,
+          7
+        ],
+        "color": [
+          80,
+          59,
+          41
+        ],
+        "material": "Wood",
+        "shape": "Wedge",
+        "yaw": 0.6,
+        "lean": 0
+      },
+      {
+        "name": "RootButtress",
+        "position": [
+          14,
+          1.6,
+          3
+        ],
+        "size": [
+          4,
+          4,
+          7
+        ],
+        "color": [
+          80,
+          59,
+          41
+        ],
+        "material": "Wood",
+        "shape": "Wedge",
+        "yaw": 0.6,
+        "lean": 0
+      },
+      {
+        "name": "RootButtress",
+        "position": [
+          17,
+          1.0000000000000002,
+          4
+        ],
+        "size": [
+          4,
+          3,
+          7
+        ],
+        "color": [
+          80,
+          59,
+          41
+        ],
+        "material": "Wood",
+        "shape": "Wedge",
+        "yaw": 0.6,
+        "lean": 0
+      },
+      {
+        "name": "SilkSpan",
+        "position": [
+          -9,
+          18,
+          0.5
+        ],
+        "size": [
+          0.09,
+          0.09,
+          16
+        ],
+        "color": [
+          167,
+          186,
+          183
+        ],
+        "material": "Fabric",
+        "shape": "Block",
+        "yaw": 0.8,
+        "lean": 0
+      },
+      {
+        "name": "SilkSpan",
+        "position": [
+          -4.5,
+          15.847931727301432,
+          0.5
+        ],
+        "size": [
+          0.09,
+          0.09,
+          16
+        ],
+        "color": [
+          167,
+          186,
+          183
+        ],
+        "material": "Fabric",
+        "shape": "Block",
+        "yaw": 0.8,
+        "lean": 0
+      },
+      {
+        "name": "SilkSpan",
+        "position": [
+          0,
+          15.001279190875485,
+          0.5
+        ],
+        "size": [
+          0.09,
+          0.09,
+          16
+        ],
+        "color": [
+          167,
+          186,
+          183
+        ],
+        "material": "Fabric",
+        "shape": "Block",
+        "yaw": 0.8,
+        "lean": 0
+      },
+      {
+        "name": "SilkSpan",
+        "position": [
+          4.5,
+          15.973610458346549,
+          0.5
+        ],
+        "size": [
+          0.09,
+          0.09,
+          16
+        ],
+        "color": [
+          167,
+          186,
+          183
+        ],
+        "material": "Fabric",
+        "shape": "Block",
+        "yaw": 0.8,
+        "lean": 0
+      },
+      {
+        "name": "SilkSpan",
+        "position": [
+          9,
+          18.17512243028274,
+          0.5
+        ],
+        "size": [
+          0.09,
+          0.09,
+          16
+        ],
+        "color": [
+          167,
+          186,
+          183
+        ],
+        "material": "Fabric",
+        "shape": "Block",
+        "yaw": 0.8,
+        "lean": 0
+      },
+      {
+        "name": "SilkCocoon",
+        "position": [
+          -6,
+          15,
+          1.5
+        ],
+        "size": [
+          1.5,
+          3.8,
+          1.5
+        ],
+        "color": [
+          164,
+          181,
+          168
+        ],
+        "material": "Fabric",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "SilkCocoon",
+        "position": [
+          -2,
+          12,
+          1.5
+        ],
+        "size": [
+          1.5,
+          3.8,
+          1.5
+        ],
+        "color": [
+          164,
+          181,
+          168
+        ],
+        "material": "Fabric",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "SilkCocoon",
+        "position": [
+          2,
+          15,
+          1.5
+        ],
+        "size": [
+          1.5,
+          3.8,
+          1.5
+        ],
+        "color": [
+          164,
+          181,
+          168
+        ],
+        "material": "Fabric",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "SilkCocoon",
+        "position": [
+          6,
+          12,
+          1.5
+        ],
+        "size": [
+          1.5,
+          3.8,
+          1.5
+        ],
+        "color": [
+          164,
+          181,
+          168
+        ],
+        "material": "Fabric",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -11.3,
+          1.275,
+          4
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -12.474671109562589,
+          1.275,
+          5.6167960777017605
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -14.37532889043741,
+          1.275,
+          4.999234928897204
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -14.37532889043741,
+          1.275,
+          3.000765071102796
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -12.474671109562589,
+          1.275,
+          2.3832039222982386
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          10.7,
+          1.275,
+          5
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          9.525328890437411,
+          1.275,
+          6.6167960777017605
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          7.624671109562589,
+          1.275,
+          5.999234928897204
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          7.624671109562589,
+          1.275,
+          4.000765071102796
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          9.525328890437411,
+          1.275,
+          3.3832039222982386
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.7,
+          1.275,
+          2
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.5253288904374106,
+          1.275,
+          3.616796077701761
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -1.3753288904374104,
+          1.275,
+          2.9992349288972044
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -1.3753288904374106,
+          1.275,
+          1.000765071102796
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.5253288904374103,
+          1.275,
+          0.38320392229823885
+        ],
+        "size": [
+          0.595,
+          0.595,
+          5.1
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      }
+    ],
+    "FrozenValeShards": [
+      {
+        "name": "GlacierColumn",
+        "position": [
+          -9,
+          5.04,
+          0
+        ],
+        "size": [
+          5,
+          10.08,
+          6
+        ],
+        "color": [
+          91,
+          150,
+          178
+        ],
+        "material": "Glacier",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0.13
+      },
+      {
+        "name": "GlacierCrown",
+        "position": [
+          -9,
+          11.62,
+          0
+        ],
+        "size": [
+          5,
+          4.2,
+          6
+        ],
+        "color": [
+          151,
+          203,
+          219
+        ],
+        "material": "Ice",
+        "shape": "Wedge",
+        "yaw": 0,
+        "lean": 0.13
+      },
+      {
+        "name": "SnowCollar",
+        "position": [
+          -9,
+          1,
+          0
+        ],
+        "size": [
+          8,
+          2,
+          9
+        ],
+        "color": [
+          216,
+          228,
+          229
+        ],
+        "material": "Snow",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "GlacierColumn",
+        "position": [
+          -4,
+          9.719999999999999,
+          2
+        ],
+        "size": [
+          5,
+          19.439999999999998,
+          6
+        ],
+        "color": [
+          99,
+          155,
+          184
+        ],
+        "material": "Glacier",
+        "shape": "Block",
+        "yaw": 0.71,
+        "lean": -0.13
+      },
+      {
+        "name": "GlacierCrown",
+        "position": [
+          -4,
+          22.41,
+          2
+        ],
+        "size": [
+          5,
+          8.1,
+          6
+        ],
+        "color": [
+          151,
+          203,
+          219
+        ],
+        "material": "Ice",
+        "shape": "Wedge",
+        "yaw": 0.71,
+        "lean": -0.13
+      },
+      {
+        "name": "SnowCollar",
+        "position": [
+          -4,
+          1,
+          2
+        ],
+        "size": [
+          8,
+          2,
+          9
+        ],
+        "color": [
+          216,
+          228,
+          229
+        ],
+        "material": "Snow",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "GlacierColumn",
+        "position": [
+          2,
+          12.24,
+          0
+        ],
+        "size": [
+          5,
+          24.48,
+          6
+        ],
+        "color": [
+          107,
+          160,
+          190
+        ],
+        "material": "Glacier",
+        "shape": "Block",
+        "yaw": 1.42,
+        "lean": 0.13
+      },
+      {
+        "name": "GlacierCrown",
+        "position": [
+          2,
+          28.22,
+          0
+        ],
+        "size": [
+          5,
+          10.2,
+          6
+        ],
+        "color": [
+          151,
+          203,
+          219
+        ],
+        "material": "Ice",
+        "shape": "Wedge",
+        "yaw": 1.42,
+        "lean": 0.13
+      },
+      {
+        "name": "SnowCollar",
+        "position": [
+          2,
+          1,
+          0
+        ],
+        "size": [
+          8,
+          2,
+          9
+        ],
+        "color": [
+          216,
+          228,
+          229
+        ],
+        "material": "Snow",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "GlacierColumn",
+        "position": [
+          8,
+          6.84,
+          3
+        ],
+        "size": [
+          5,
+          13.68,
+          6
+        ],
+        "color": [
+          115,
+          165,
+          196
+        ],
+        "material": "Glacier",
+        "shape": "Block",
+        "yaw": 2.13,
+        "lean": -0.13
+      },
+      {
+        "name": "GlacierCrown",
+        "position": [
+          8,
+          15.77,
+          3
+        ],
+        "size": [
+          5,
+          5.7,
+          6
+        ],
+        "color": [
+          151,
+          203,
+          219
+        ],
+        "material": "Ice",
+        "shape": "Wedge",
+        "yaw": 2.13,
+        "lean": -0.13
+      },
+      {
+        "name": "SnowCollar",
+        "position": [
+          8,
+          1,
+          3
+        ],
+        "size": [
+          8,
+          2,
+          9
+        ],
+        "color": [
+          216,
+          228,
+          229
+        ],
+        "material": "Snow",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "GlacierColumn",
+        "position": [
+          4,
+          3.96,
+          -5
+        ],
+        "size": [
+          5,
+          7.92,
+          6
+        ],
+        "color": [
+          123,
+          170,
+          202
+        ],
+        "material": "Glacier",
+        "shape": "Block",
+        "yaw": 2.84,
+        "lean": 0.13
+      },
+      {
+        "name": "GlacierCrown",
+        "position": [
+          4,
+          9.129999999999999,
+          -5
+        ],
+        "size": [
+          5,
+          3.3,
+          6
+        ],
+        "color": [
+          151,
+          203,
+          219
+        ],
+        "material": "Ice",
+        "shape": "Wedge",
+        "yaw": 2.84,
+        "lean": 0.13
+      },
+      {
+        "name": "SnowCollar",
+        "position": [
+          4,
+          1,
+          -5
+        ],
+        "size": [
+          8,
+          2,
+          9
+        ],
+        "color": [
+          216,
+          228,
+          229
+        ],
+        "material": "Snow",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -12,
+          0.5,
+          7
+        ],
+        "size": [
+          4,
+          1.3,
+          3
+        ],
+        "color": [
+          132,
+          178,
+          190
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -9,
+          0.5,
+          7.841470984807897
+        ],
+        "size": [
+          4,
+          1.3,
+          3
+        ],
+        "color": [
+          132,
+          178,
+          190
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 1,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -6,
+          0.5,
+          7.909297426825682
+        ],
+        "size": [
+          4,
+          1.3,
+          3
+        ],
+        "color": [
+          132,
+          178,
+          190
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 2,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -3,
+          0.5,
+          7.141120008059867
+        ],
+        "size": [
+          4,
+          1.3,
+          3
+        ],
+        "color": [
+          132,
+          178,
+          190
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 3,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          0,
+          0.5,
+          6.243197504692072
+        ],
+        "size": [
+          4,
+          1.3,
+          3
+        ],
+        "color": [
+          132,
+          178,
+          190
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 4,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          3,
+          0.5,
+          6.041075725336862
+        ],
+        "size": [
+          4,
+          1.3,
+          3
+        ],
+        "color": [
+          132,
+          178,
+          190
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 5,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          6,
+          0.5,
+          6.720584501801074
+        ],
+        "size": [
+          4,
+          1.3,
+          3
+        ],
+        "color": [
+          132,
+          178,
+          190
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 6,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          9,
+          0.5,
+          7.656986598718789
+        ],
+        "size": [
+          4,
+          1.3,
+          3
+        ],
+        "color": [
+          132,
+          178,
+          190
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 7,
+        "lean": 0
+      }
+    ],
+    "EmberCalderaColumns": [
+      {
+        "name": "BasaltColumn",
+        "position": [
+          -10,
+          5.5,
+          0
+        ],
+        "size": [
+          5,
+          11,
+          5
+        ],
+        "color": [
+          53,
+          49,
+          51
+        ],
+        "material": "Basalt",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -10,
+          3,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -10,
+          8,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "CooledCrown",
+        "position": [
+          -10,
+          11.2,
+          0
+        ],
+        "size": [
+          5.2,
+          0.5,
+          5.2
+        ],
+        "color": [
+          102,
+          77,
+          63
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltColumn",
+        "position": [
+          -6,
+          11,
+          2
+        ],
+        "size": [
+          5,
+          22,
+          5
+        ],
+        "color": [
+          55,
+          50,
+          52
+        ],
+        "material": "Basalt",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -6,
+          3,
+          2
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -6,
+          8,
+          2
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -6,
+          13,
+          2
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -6,
+          18,
+          2
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "CooledCrown",
+        "position": [
+          -6,
+          22.2,
+          2
+        ],
+        "size": [
+          5.2,
+          0.5,
+          5.2
+        ],
+        "color": [
+          102,
+          77,
+          63
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltColumn",
+        "position": [
+          -1,
+          14.5,
+          0
+        ],
+        "size": [
+          5,
+          29,
+          5
+        ],
+        "color": [
+          57,
+          51,
+          53
+        ],
+        "material": "Basalt",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -1,
+          3,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -1,
+          8,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -1,
+          13,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -1,
+          18,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -1,
+          23,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          -1,
+          28,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "CooledCrown",
+        "position": [
+          -1,
+          29.2,
+          0
+        ],
+        "size": [
+          5.2,
+          0.5,
+          5.2
+        ],
+        "color": [
+          102,
+          77,
+          63
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltColumn",
+        "position": [
+          4,
+          12.5,
+          1
+        ],
+        "size": [
+          5,
+          25,
+          5
+        ],
+        "color": [
+          59,
+          52,
+          54
+        ],
+        "material": "Basalt",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          4,
+          3,
+          1
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          4,
+          8,
+          1
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          4,
+          13,
+          1
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          4,
+          18,
+          1
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          4,
+          23,
+          1
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "CooledCrown",
+        "position": [
+          4,
+          25.2,
+          1
+        ],
+        "size": [
+          5.2,
+          0.5,
+          5.2
+        ],
+        "color": [
+          102,
+          77,
+          63
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltColumn",
+        "position": [
+          9,
+          7.5,
+          0
+        ],
+        "size": [
+          5,
+          15,
+          5
+        ],
+        "color": [
+          61,
+          53,
+          55
+        ],
+        "material": "Basalt",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          9,
+          3,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          9,
+          8,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          9,
+          13,
+          0
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "CooledCrown",
+        "position": [
+          9,
+          15.2,
+          0
+        ],
+        "size": [
+          5.2,
+          0.5,
+          5.2
+        ],
+        "color": [
+          102,
+          77,
+          63
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltColumn",
+        "position": [
+          4,
+          6,
+          -4
+        ],
+        "size": [
+          5,
+          12,
+          5
+        ],
+        "color": [
+          63,
+          54,
+          56
+        ],
+        "material": "Basalt",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          4,
+          3,
+          -4
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "BasaltSeam",
+        "position": [
+          4,
+          8,
+          -4
+        ],
+        "size": [
+          5.08,
+          0.18,
+          5.08
+        ],
+        "color": [
+          81,
+          65,
+          57
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "CooledCrown",
+        "position": [
+          4,
+          12.2,
+          -4
+        ],
+        "size": [
+          5.2,
+          0.5,
+          5.2
+        ],
+        "color": [
+          102,
+          77,
+          63
+        ],
+        "material": "Slate",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -10,
+          1,
+          6
+        ],
+        "size": [
+          7,
+          2.8,
+          5
+        ],
+        "color": [
+          66,
+          57,
+          56
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "EmberCrevice",
+        "position": [
+          -8,
+          0.28,
+          6.4
+        ],
+        "size": [
+          2.5,
+          0.12,
+          0.3
+        ],
+        "color": [
+          225,
+          114,
+          43
+        ],
+        "material": "Neon",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -5,
+          1,
+          6
+        ],
+        "size": [
+          7,
+          2.8,
+          5
+        ],
+        "color": [
+          66,
+          57,
+          56
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 1,
+        "lean": 0
+      },
+      {
+        "name": "EmberCrevice",
+        "position": [
+          -4,
+          0.28,
+          6.4
+        ],
+        "size": [
+          2.5,
+          0.12,
+          0.3
+        ],
+        "color": [
+          225,
+          114,
+          43
+        ],
+        "material": "Neon",
+        "shape": "Block",
+        "yaw": 0.6,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          0,
+          1,
+          6
+        ],
+        "size": [
+          7,
+          2.8,
+          5
+        ],
+        "color": [
+          66,
+          57,
+          56
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 2,
+        "lean": 0
+      },
+      {
+        "name": "EmberCrevice",
+        "position": [
+          0,
+          0.28,
+          6.4
+        ],
+        "size": [
+          2.5,
+          0.12,
+          0.3
+        ],
+        "color": [
+          225,
+          114,
+          43
+        ],
+        "material": "Neon",
+        "shape": "Block",
+        "yaw": 1.2,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          5,
+          1,
+          6
+        ],
+        "size": [
+          7,
+          2.8,
+          5
+        ],
+        "color": [
+          66,
+          57,
+          56
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 3,
+        "lean": 0
+      },
+      {
+        "name": "EmberCrevice",
+        "position": [
+          4,
+          0.28,
+          6.4
+        ],
+        "size": [
+          2.5,
+          0.12,
+          0.3
+        ],
+        "color": [
+          225,
+          114,
+          43
+        ],
+        "material": "Neon",
+        "shape": "Block",
+        "yaw": 1.7999999999999998,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          10,
+          1,
+          6
+        ],
+        "size": [
+          7,
+          2.8,
+          5
+        ],
+        "color": [
+          66,
+          57,
+          56
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 4,
+        "lean": 0
+      },
+      {
+        "name": "EmberCrevice",
+        "position": [
+          8,
+          0.28,
+          6.4
+        ],
+        "size": [
+          2.5,
+          0.12,
+          0.3
+        ],
+        "color": [
+          225,
+          114,
+          43
+        ],
+        "material": "Neon",
+        "shape": "Block",
+        "yaw": 2.4,
+        "lean": 0
+      }
+    ],
+    "HauntedMemorial": [
+      {
+        "name": "MemorialPlinth",
+        "position": [
+          0,
+          0.6,
+          0
+        ],
+        "size": [
+          20,
+          1,
+          9
+        ],
+        "color": [
+          87,
+          96,
+          113
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialPlinth",
+        "position": [
+          0,
+          1.6,
+          0
+        ],
+        "size": [
+          18,
+          1,
+          9
+        ],
+        "color": [
+          87,
+          96,
+          113
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialPier",
+        "position": [
+          -7,
+          8,
+          0
+        ],
+        "size": [
+          3,
+          13,
+          4
+        ],
+        "color": [
+          87,
+          96,
+          113
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialMoulding",
+        "position": [
+          -7,
+          3,
+          0
+        ],
+        "size": [
+          4.1,
+          0.65,
+          5
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialMoulding",
+        "position": [
+          -7,
+          12,
+          0
+        ],
+        "size": [
+          4.1,
+          0.65,
+          5
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialMoulding",
+        "position": [
+          -7,
+          15,
+          0
+        ],
+        "size": [
+          4.1,
+          0.65,
+          5
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialPinnacle",
+        "position": [
+          -7,
+          18,
+          0
+        ],
+        "size": [
+          3,
+          6,
+          4
+        ],
+        "color": [
+          87,
+          96,
+          113
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialPier",
+        "position": [
+          7,
+          8,
+          0
+        ],
+        "size": [
+          3,
+          13,
+          4
+        ],
+        "color": [
+          87,
+          96,
+          113
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialMoulding",
+        "position": [
+          7,
+          3,
+          0
+        ],
+        "size": [
+          4.1,
+          0.65,
+          5
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialMoulding",
+        "position": [
+          7,
+          12,
+          0
+        ],
+        "size": [
+          4.1,
+          0.65,
+          5
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialMoulding",
+        "position": [
+          7,
+          15,
+          0
+        ],
+        "size": [
+          4.1,
+          0.65,
+          5
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialPinnacle",
+        "position": [
+          7,
+          18,
+          0
+        ],
+        "size": [
+          3,
+          6,
+          4
+        ],
+        "color": [
+          87,
+          96,
+          113
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "PointedArch",
+        "position": [
+          -5.8,
+          14,
+          0
+        ],
+        "size": [
+          2.15,
+          1.3,
+          3
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0.63
+      },
+      {
+        "name": "PointedArch",
+        "position": [
+          -4.3,
+          15.1,
+          0
+        ],
+        "size": [
+          2.15,
+          1.3,
+          3
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0.63
+      },
+      {
+        "name": "PointedArch",
+        "position": [
+          -2.8,
+          16.2,
+          0
+        ],
+        "size": [
+          2.15,
+          1.3,
+          3
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0.63
+      },
+      {
+        "name": "PointedArch",
+        "position": [
+          -1.2999999999999998,
+          17.3,
+          0
+        ],
+        "size": [
+          2.15,
+          1.3,
+          3
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0.63
+      },
+      {
+        "name": "PointedArch",
+        "position": [
+          5.8,
+          14,
+          0
+        ],
+        "size": [
+          2.15,
+          1.3,
+          3
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": -0.63
+      },
+      {
+        "name": "PointedArch",
+        "position": [
+          4.3,
+          15.1,
+          0
+        ],
+        "size": [
+          2.15,
+          1.3,
+          3
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": -0.63
+      },
+      {
+        "name": "PointedArch",
+        "position": [
+          2.8,
+          16.2,
+          0
+        ],
+        "size": [
+          2.15,
+          1.3,
+          3
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": -0.63
+      },
+      {
+        "name": "PointedArch",
+        "position": [
+          1.2999999999999998,
+          17.3,
+          0
+        ],
+        "size": [
+          2.15,
+          1.3,
+          3
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": -0.63
+      },
+      {
+        "name": "TombChest",
+        "position": [
+          0,
+          3,
+          1
+        ],
+        "size": [
+          8,
+          2,
+          4.8
+        ],
+        "color": [
+          87,
+          96,
+          113
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "TombCover",
+        "position": [
+          0,
+          4.2,
+          1
+        ],
+        "size": [
+          9,
+          0.5,
+          5.8
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialRelief",
+        "position": [
+          -3,
+          3,
+          3.45
+        ],
+        "size": [
+          0.45,
+          1.25,
+          0.12
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialRelief",
+        "position": [
+          0,
+          3,
+          3.45
+        ],
+        "size": [
+          0.45,
+          1.25,
+          0.12
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MemorialRelief",
+        "position": [
+          3,
+          3,
+          3.45
+        ],
+        "size": [
+          0.45,
+          1.25,
+          0.12
+        ],
+        "color": [
+          150,
+          159,
+          166
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -8.8,
+          0.8999999999999999,
+          4
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -9.629179606750062,
+          0.8999999999999999,
+          5.141267819554184
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -10.970820393249937,
+          0.8999999999999999,
+          4.705342302750968
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -10.970820393249937,
+          0.8999999999999999,
+          3.2946576972490322
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -9.629179606750064,
+          0.8999999999999999,
+          2.8587321804458155
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          11.2,
+          0.8999999999999999,
+          3
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          10.370820393249938,
+          0.8999999999999999,
+          4.141267819554184
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          9.029179606750063,
+          0.8999999999999999,
+          3.7053423027509678
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          9.029179606750063,
+          0.8999999999999999,
+          2.2946576972490322
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          10.370820393249936,
+          0.8999999999999999,
+          1.8587321804458157
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          6.2,
+          0.8999999999999999,
+          -5
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          5.370820393249937,
+          0.8999999999999999,
+          -3.858732180445816
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          4.029179606750064,
+          0.8999999999999999,
+          -4.294657697249032
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          4.029179606750063,
+          0.8999999999999999,
+          -5.705342302750967
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          5.370820393249937,
+          0.8999999999999999,
+          -6.1412678195541845
+        ],
+        "size": [
+          0.42,
+          0.42,
+          3.5999999999999996
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      }
+    ],
+    "DeepwoodGroundcover": [
+      {
+        "name": "FernFrond",
+        "position": [
+          -0.6000000000000001,
+          1.0499999999999998,
+          0
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -1.5673762078750735,
+          1.0499999999999998,
+          1.3314791228132148
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -3.1326237921249263,
+          1.0499999999999998,
+          0.8228993532094625
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -3.1326237921249263,
+          1.0499999999999998,
+          -0.8228993532094622
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -1.567376207875074,
+          1.0499999999999998,
+          -1.331479122813215
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          2.9,
+          0.675,
+          1
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          2.278115294937453,
+          0.675,
+          1.8559508646656382
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.2718847050625475,
+          0.675,
+          1.529006727063226
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.2718847050625472,
+          0.675,
+          0.4709932729367743
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          2.2781152949374524,
+          0.675,
+          0.1440491353343617
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.1,
+          0.8250000000000001,
+          -2
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.3399186938124422,
+          0.8250000000000001,
+          -0.9538378320753311
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -0.8899186938124422,
+          0.8250000000000001,
+          -1.3534362224782792
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -0.8899186938124423,
+          0.8250000000000001,
+          -2.6465637775217203
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.339918693812442,
+          0.8250000000000001,
+          -3.046162167924669
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          77,
+          111,
+          54
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "MushroomStem",
+        "position": [
+          -2,
+          0.7,
+          2
+        ],
+        "size": [
+          0.22,
+          1.4,
+          0.22
+        ],
+        "color": [
+          150,
+          141,
+          113
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomCap",
+        "position": [
+          -2,
+          1.4,
+          2
+        ],
+        "size": [
+          0.9,
+          0.4,
+          0.9
+        ],
+        "color": [
+          151,
+          122,
+          81
+        ],
+        "material": "SmoothPlastic",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomStem",
+        "position": [
+          -0.6000000000000001,
+          0.7,
+          2
+        ],
+        "size": [
+          0.22,
+          1.4,
+          0.22
+        ],
+        "color": [
+          150,
+          141,
+          113
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomCap",
+        "position": [
+          -0.6000000000000001,
+          1.4,
+          2
+        ],
+        "size": [
+          0.9,
+          0.4,
+          0.9
+        ],
+        "color": [
+          151,
+          122,
+          81
+        ],
+        "material": "SmoothPlastic",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomStem",
+        "position": [
+          0.7999999999999998,
+          0.7,
+          2
+        ],
+        "size": [
+          0.22,
+          1.4,
+          0.22
+        ],
+        "color": [
+          150,
+          141,
+          113
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomCap",
+        "position": [
+          0.7999999999999998,
+          1.4,
+          2
+        ],
+        "size": [
+          0.9,
+          0.4,
+          0.9
+        ],
+        "color": [
+          151,
+          122,
+          81
+        ],
+        "material": "SmoothPlastic",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      }
+    ],
+    "GloamwoodGroundcover": [
+      {
+        "name": "FernFrond",
+        "position": [
+          -0.6000000000000001,
+          1.0499999999999998,
+          0
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -1.5673762078750735,
+          1.0499999999999998,
+          1.3314791228132148
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -3.1326237921249263,
+          1.0499999999999998,
+          0.8228993532094625
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -3.1326237921249263,
+          1.0499999999999998,
+          -0.8228993532094622
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -1.567376207875074,
+          1.0499999999999998,
+          -1.331479122813215
+        ],
+        "size": [
+          0.48999999999999994,
+          0.48999999999999994,
+          4.199999999999999
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          2.9,
+          0.675,
+          1
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          2.278115294937453,
+          0.675,
+          1.8559508646656382
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.2718847050625475,
+          0.675,
+          1.529006727063226
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.2718847050625472,
+          0.675,
+          0.4709932729367743
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          2.2781152949374524,
+          0.675,
+          0.1440491353343617
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.1,
+          0.8250000000000001,
+          -2
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.3399186938124422,
+          0.8250000000000001,
+          -0.9538378320753311
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -0.8899186938124422,
+          0.8250000000000001,
+          -1.3534362224782792
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          -0.8899186938124423,
+          0.8250000000000001,
+          -2.6465637775217203
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.339918693812442,
+          0.8250000000000001,
+          -3.046162167924669
+        ],
+        "size": [
+          0.385,
+          0.385,
+          3.3000000000000003
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      },
+      {
+        "name": "MushroomStem",
+        "position": [
+          -2,
+          0.7,
+          2
+        ],
+        "size": [
+          0.22,
+          1.4,
+          0.22
+        ],
+        "color": [
+          150,
+          141,
+          113
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomCap",
+        "position": [
+          -2,
+          1.4,
+          2
+        ],
+        "size": [
+          0.9,
+          0.4,
+          0.9
+        ],
+        "color": [
+          116,
+          160,
+          147
+        ],
+        "material": "SmoothPlastic",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomStem",
+        "position": [
+          -0.6000000000000001,
+          0.7,
+          2
+        ],
+        "size": [
+          0.22,
+          1.4,
+          0.22
+        ],
+        "color": [
+          150,
+          141,
+          113
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomCap",
+        "position": [
+          -0.6000000000000001,
+          1.4,
+          2
+        ],
+        "size": [
+          0.9,
+          0.4,
+          0.9
+        ],
+        "color": [
+          116,
+          160,
+          147
+        ],
+        "material": "SmoothPlastic",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomStem",
+        "position": [
+          0.7999999999999998,
+          0.7,
+          2
+        ],
+        "size": [
+          0.22,
+          1.4,
+          0.22
+        ],
+        "color": [
+          150,
+          141,
+          113
+        ],
+        "material": "Wood",
+        "shape": "Cylinder",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "MushroomCap",
+        "position": [
+          0.7999999999999998,
+          1.4,
+          2
+        ],
+        "size": [
+          0.9,
+          0.4,
+          0.9
+        ],
+        "color": [
+          116,
+          160,
+          147
+        ],
+        "material": "SmoothPlastic",
+        "shape": "Ball",
+        "yaw": 0,
+        "lean": 0
+      }
+    ],
+    "FrozenValeGroundcover": [
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -3,
+          1.2,
+          0
+        ],
+        "size": [
+          2.5,
+          3,
+          2.6
+        ],
+        "color": [
+          131,
+          182,
+          201
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -1.4,
+          2.2,
+          1.682941969615793
+        ],
+        "size": [
+          2.5,
+          4,
+          2.6
+        ],
+        "color": [
+          131,
+          182,
+          201
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0.7,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          0.20000000000000018,
+          1.2,
+          1.8185948536513634
+        ],
+        "size": [
+          2.5,
+          5,
+          2.6
+        ],
+        "color": [
+          131,
+          182,
+          201
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 1.4,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          1.8000000000000007,
+          2.2,
+          0.2822400161197344
+        ],
+        "size": [
+          2.5,
+          3,
+          2.6
+        ],
+        "color": [
+          131,
+          182,
+          201
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 2.0999999999999996,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          3.4000000000000004,
+          1.2,
+          -1.5136049906158566
+        ],
+        "size": [
+          2.5,
+          4,
+          2.6
+        ],
+        "color": [
+          131,
+          182,
+          201
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 2.8,
+        "lean": 0
+      }
+    ],
+    "EmberCalderaGroundcover": [
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -3,
+          0.6,
+          0
+        ],
+        "size": [
+          3,
+          1.7,
+          3
+        ],
+        "color": [
+          78,
+          65,
+          59
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          -1.4,
+          0.6,
+          1.682941969615793
+        ],
+        "size": [
+          3,
+          2.7,
+          3
+        ],
+        "color": [
+          78,
+          65,
+          59
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 0.7,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          0.20000000000000018,
+          0.6,
+          1.8185948536513634
+        ],
+        "size": [
+          3,
+          1.7,
+          3
+        ],
+        "color": [
+          78,
+          65,
+          59
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 1.4,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          1.8000000000000007,
+          0.6,
+          0.2822400161197344
+        ],
+        "size": [
+          3,
+          2.7,
+          3
+        ],
+        "color": [
+          78,
+          65,
+          59
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 2.0999999999999996,
+        "lean": 0
+      },
+      {
+        "name": "WeatheredStone",
+        "position": [
+          3.4000000000000004,
+          0.6,
+          -1.5136049906158566
+        ],
+        "size": [
+          3,
+          1.7,
+          3
+        ],
+        "color": [
+          78,
+          65,
+          59
+        ],
+        "material": "Slate",
+        "shape": "Wedge",
+        "yaw": 2.8,
+        "lean": 0
+      }
+    ],
+    "HauntedGraveyardGroundcover": [
+      {
+        "name": "FallenGraveTile",
+        "position": [
+          -3,
+          0.35,
+          0
+        ],
+        "size": [
+          2.5,
+          0.6,
+          2
+        ],
+        "color": [
+          111,
+          119,
+          121
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0,
+        "lean": 0
+      },
+      {
+        "name": "FallenGraveTile",
+        "position": [
+          -1.2,
+          0.35,
+          1.682941969615793
+        ],
+        "size": [
+          2.5,
+          0.6,
+          2
+        ],
+        "color": [
+          111,
+          119,
+          121
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 0.5,
+        "lean": 0
+      },
+      {
+        "name": "FallenGraveTile",
+        "position": [
+          0.6000000000000001,
+          0.35,
+          1.8185948536513634
+        ],
+        "size": [
+          2.5,
+          0.6,
+          2
+        ],
+        "color": [
+          111,
+          119,
+          121
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 1,
+        "lean": 0
+      },
+      {
+        "name": "FallenGraveTile",
+        "position": [
+          2.4000000000000004,
+          0.35,
+          0.2822400161197344
+        ],
+        "size": [
+          2.5,
+          0.6,
+          2
+        ],
+        "color": [
+          111,
+          119,
+          121
+        ],
+        "material": "Slate",
+        "shape": "Block",
+        "yaw": 1.5,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.9,
+          0.675,
+          2
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 1.5707963267948966,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.2781152949374528,
+          0.675,
+          2.855950864665638
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": 0.3141592653589793,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.27188470506254736,
+          0.675,
+          2.529006727063226
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -0.9424777960769379,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          0.27188470506254725,
+          0.675,
+          1.4709932729367743
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -2.199114857512855,
+        "lean": 0
+      },
+      {
+        "name": "FernFrond",
+        "position": [
+          1.2781152949374526,
+          0.675,
+          1.1440491353343618
+        ],
+        "size": [
+          0.315,
+          0.315,
+          2.7
+        ],
+        "color": [
+          53,
+          89,
+          65
+        ],
+        "material": "Grass",
+        "shape": "Wedge",
+        "yaw": -3.4557519189487724,
+        "lean": 0
+      }
+    ]
+  }
+}

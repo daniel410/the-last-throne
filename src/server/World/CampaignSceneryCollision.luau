@@ -32,7 +32,7 @@ function Collision.isSolid(part,root)
   return template~=nil and template~='TDWaterfallGorge'and template~='TDCanopyCrown'
    and meshSolids[part.Name]==true
  end
- return solids[part.Name]==true
+ return solids[part.Name]==true or part:GetAttribute('EpicDetailSolid')==true
 end
 function Collision.apply(root)
  local count=0
