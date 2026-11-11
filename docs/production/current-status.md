@@ -4,6 +4,7 @@
 
 - 로컬 최신: TD 분홍 크리스탈 왕좌 원본 교정·300×300 Dawnspire 로비·HG07 완료 영웅의 개인 심장 복원. [검증/미게시](../evidence/dawnspire-crystal-throne-20261111/README.md).
 - 본편: Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. 35본편·12선택, 반복 웨이브를 경로 교전으로 분산. [검증/미게시·남은 수용](../evidence/campaign-combat-routes-20261110/README.md).
+- 마법사 모자:0.101.0에4계열 Mage Hat 전용 장비·PNG·신규 Traveler 착용·상점/강화를 연결했다. 기존 후드/보유품 유지, 착용3D는 별도. [엔진/회귀 검증·미게시](../evidence/mage-hats-20261111/README.md).
 - 최근 장비: Tempered/Veteran/Sentinel 부위별 재지정과 선택형 특수 효과. [수치 검증](../evidence/equipment-values-20261110/README.md), [효과 계약](equipment-special-effects-2026-11-10.md). 기존 장비 효과 자동 배정 없음.
 - 최근 게시 기준은 [0.95.1 방패 확대 기록](../evidence/shield-size-20261109/README.md) 및 [0.95.0 게시 기록](../evidence/release-0.95.0-20261109/README.md)에서 확인한다. 로컬 버전을 게시 완료로 간주하지 않는다.
 - 남은 수용: 게시 클라이언트/실계정 저장·재접속, 각 Experience 실제 이동, 1~4인+AI, 모바일/실기기 성능·전투 밸런스·사용자 미술 수용. 상세 범위는 해당 증거와 [QA 계획](qa-and-release-plan.md)을 따른다.

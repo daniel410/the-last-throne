@@ -25,7 +25,13 @@ PNG는 가방/상세·창고/미수령·PC/모바일 기어·대장간·강화�
 - `lua tests/inventory.spec.lua`:274검사, `lua tests/economy.spec.lua`:38검사 통과.
 - PNG4개 업로드/최종 Approved 확인. Tempered는 최초 Reviewing 이후 `/assets/v1/assets/98802336961905` 재조회에서 Approved를 확인했다.
 
-빌드 소스 고정 후 `build.json`·네이티브 UI 결과를 추가한다. 실제 게시 클라이언트·실기기/미술 수용은 미검증이다. Place 게시/릴리스 태그는 수행하지 않는다. 다음 담당은 UI QA/3D ART다.
+고정 소스 `9f4ee10109bb5f4954a4aecd83b48ff8df439394`, 버전0.101.0. [빌드 기록](build.json), SHA256 `5dd9181de85a12dba89d994cb31ddb2e3979cb015f366e918ccd64b37396b35b`.
+
+- `run-in-roblox --place builds/0.101.0/TheLastThrone-0.101.0.rbxlx --script tests/four-family-armor-icons-native.luau`:275검사 통과. 모자4개 포함36개 이미지 ContentProvider Success. 실제 메뉴 생성기로 마법사 모자4개를 대장간/강화·가방/상세/착용·창고/미수령·PC/모바일 기어에서 검사했다. 다른3클래스 이미지 회귀 포함. [결과](native.json) / [원문](native.log). 로컬 복제 모듈의 테스트용 입력/원격 파사드를 사용한 엔진 검증이며 실제 유저 조작/기기 검증은 아니다.
+- `python3 tests/single-build.spec.py --artifact builds/0.101.0/TheLastThrone-0.101.0.rbxlx`: 역할10/도착192·프로젝트/실제 산출물 검사 통과.
+- [보존 검사](preservation.json): PNG4개 원본 해시·기존 Atlas 모든 행 유지 확인. 새 PNG 업로드만 수행해 추가 LFS 원본은 없다.
+
+ 실제 게시 클라이언트·실기기/미술 수용은 미검증이다. Place 게시/릴리스 태그는 수행하지 않는다. 다음 담당은 UI QA/3D ART다.
 
 ## MCP 권한 원인과 운영
 
