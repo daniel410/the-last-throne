@@ -22,6 +22,7 @@ body='function Service.shop(player,command)'+body
 prefix=r'''
 do
 local R=require(game.ServerScriptService.Server.Inventory.InventoryRules)
+local Rules=R
 local Catalog=require(game.ReplicatedStorage.Shared.ItemCatalog)
 local E=require(game.ReplicatedStorage.Shared.Enhancement)
 local F=require(game.ReplicatedStorage.Shared.EquipmentTransactions)

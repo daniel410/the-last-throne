@@ -1,0 +1,10 @@
+Enhancement probability: 2869 checks passed (including 90000 outcome boundaries)
+Current equipment enhancement: 8044 checks passed (43 definitions; all 9 targets; success/failure boundaries)
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:198: attempt to index nil with 'copy'
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:198 function shop
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:213
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
