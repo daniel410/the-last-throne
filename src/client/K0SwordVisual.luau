@@ -166,13 +166,14 @@ local function monitorKnightMeshes(character)
 						for attempt = 1, 3 do
 							if tracked[meshKind] ~= expectedMesh or not expectedMesh:IsDescendantOf(model)
 								or not model:IsDescendantOf(character) then return end
-							local status
+							local status, allLoaded = nil, true
 							local ok = pcall(function()
 								ContentProvider:PreloadAsync({ expectedMesh }, function(id, result)
 									if id == expectedMesh.MeshId then status = result end
+									if result ~= Enum.AssetFetchStatus.Success then allLoaded = false end
 								end)
 							end)
-							if ok and status == Enum.AssetFetchStatus.Success and tracked[meshKind] == expectedMesh
+							if ok and allLoaded and status == Enum.AssetFetchStatus.Success and tracked[meshKind] == expectedMesh
 								and expectedMesh:IsDescendantOf(model) and model:IsDescendantOf(character) then
 								Visual.setKnightMeshReady(model, meshKind, true)
 								return
