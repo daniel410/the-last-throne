@@ -1,0 +1,3 @@
+SOVEREIGN_REVIEW connectedToRig=false bodyAnchored=false bodyCanCollide=false rootMove=10 bodyMove=0
+SOVEREIGN_REVIEW confirmsMissingWeld=true
+ContentId: rbxassetid://139387289433234 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
