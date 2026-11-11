@@ -8,7 +8,7 @@ local K=require(script.Parent.EpicEnvironmentKit)
 local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
 local Composition=require(script.Parent.EpicScenicComposition)
-local Art={version=8}
+local Art={version=9}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -45,6 +45,11 @@ local function reservation(world,id)
   end
  end end
  for _,edge in ipairs(Access.edges)do if edge[1]==id or edge[2]==id then table.insert(lanes,{center,vec(Content.zones[edge[1]==id and edge[2] or edge[1]].center)})end end
+ for _,trail in ipairs(world.folder:GetDescendants())do
+  if trail:IsA('BasePart')and trail.Name=='RegionalReturnTrail'and math.abs(trail.Position.Y-center.Y)<24 then
+   table.insert(lanes,{trail.Position-trail.CFrame.LookVector*trail.Size.Z/2,trail.Position+trail.CFrame.LookVector*trail.Size.Z/2})
+  end
+ end
  local actors=world.folder:FindFirstChild('NPCActors')
  if actors then for _,actor in ipairs(actors:GetChildren())do
   local root=actor:IsA('Model')and actor.PrimaryPart
@@ -323,6 +328,15 @@ local function carve(world,Content,Access)
   end
   task.wait()
  end
+ -- The client now returns through regional corridors; clear its actual local
+ -- approach legs as well as the combat objectives and incident ramps.
+ for _,trail in ipairs(world.folder:GetDescendants())do
+  if trail:IsA('BasePart')and trail.Name=='RegionalReturnTrail'then
+   local a,b=trail.Position-trail.CFrame.LookVector*trail.Size.Z/2,trail.Position+trail.CFrame.LookVector*trail.Size.Z/2
+   local n=math.max(1,math.ceil((b-a).Magnitude/16))
+   for i=0,n do clear(a:Lerp(b,i/n),18)end
+  end
+ end
  -- Incident navigation bends through the connector mouth. Straight chords
  -- between story steps miss these elbows and can leave a Terrain voxel ridge
  -- above the real floor, disconnecting an otherwise clear-looking wing.
@@ -429,7 +443,7 @@ function Art.create(world,scope)
  local floors={workspace.Terrain};local raisedSurfaces={}
  for _,p in ipairs(world.folder:GetDescendants())do
   if p:IsA('BasePart')and p.CanCollide and (p.Name=='RavineIceWall'or p.Name=='TrailEarthSlope')then table.insert(raisedSurfaces,p)end
-  if p:IsA('BasePart') and p.CanCollide and (p.Name=='JourneyGround' or p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name=='Ground' or p.Name=='ForestBedrock' or p.Name=='TrailEmbankment' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_') or p.Name:match('^ConnectedPath_') or p.Name:match('^SnowTrail_') or p.Name:match('^CalderaTrail_') or p.Name:match('^LateTrail_'))then
+  if p:IsA('BasePart') and p.CanCollide and (p.Name=='JourneyGround' or p.Name=='JourneyPass' or p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name=='Ground' or p.Name=='ForestBedrock' or p.Name=='TrailEmbankment' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_') or p.Name:match('^ConnectedPath_') or p.Name:match('^SnowTrail_') or p.Name:match('^CalderaTrail_') or p.Name:match('^LateTrail_'))then
    table.insert(floors,p)
    if p.Name=='WalkableRamp' or p.Name=='WalkableTerrace' or p.Name=='TerraceLanding'then table.insert(raisedSurfaces,p)end
   end

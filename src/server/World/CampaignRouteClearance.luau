@@ -23,7 +23,7 @@ end
 function Safety.apply(world,art)
  require(script.Parent.EmberCalderaWorld).repairEntrance(world)
  local roads={}
- for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail'or p.Name=='ExpansionWalkingLine')and p.Transparency<.5 then table.insert(roads,p)end end
+ for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail'or p.Name=='ExpansionWalkingLine'or p.Name=='RegionalReturnTrail')and p.Transparency<.5 then table.insert(roads,p)end end
  local places=world.terrain:FindFirstChild('DeepwoodPlaces')
  if places then for _,p in ipairs(places:GetDescendants())do if p:IsA('BasePart')and p.Name=='ReturnLoop'and p.Transparency<.5 then table.insert(roads,p)end end end
  Safety.retireBlockouts(world)

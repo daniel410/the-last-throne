@@ -4,7 +4,7 @@
 local Shared=game.ReplicatedStorage.Shared
 local C=require(Shared.CampaignContent)
 local K=require(script.Parent.EpicEnvironmentKit)
-local W={version=1};local V=Vector3.new
+local W={version=2};local V=Vector3.new
 local themes={DW='Deepwood',GW='Gloamwood',FV='FrozenVale',EC='EmberCaldera',HG='HauntedGraveyard'}
 local function vec(p)return V(table.unpack(p))end
 function W.create(world,scope)
@@ -17,6 +17,54 @@ function W.create(world,scope)
   local material=theme=='FrozenVale'and Enum.Material.Snow or theme=='EmberCaldera'and Enum.Material.Basalt or theme=='HauntedGraveyard'and Enum.Material.Slate or Enum.Material.Grass
   local floor=K.part(foundation,'JourneyGround',V(z.size[1],64,z.size[2]),CFrame.new(vec(z.center)-V(0,32,0)),pal.ground,material)
   floor.CanCollide=true;floor.CanQuery=true;floor:SetAttribute('RouteZone',id)
+ end
+ -- The expanded regional rectangles changed corridor mouths too. Replace the
+ -- archived slopes with persistent floors on the SAME endpoints as authority.
+ local Bounds=require(Shared.CampaignBounds)
+ for _,edge in ipairs(scope.access.edges)do
+  local first,last=Bounds.ends(edge);local a,b=vec(first),vec(last);local delta=b-a
+  if delta.Magnitude>1 then
+   local theme=themes[edge[1]:sub(1,2)];local pal=K.palette[theme]
+   local material=theme=='FrozenVale'and Enum.Material.Snow or theme=='EmberCaldera'and Enum.Material.Basalt or theme=='HauntedGraveyard'and Enum.Material.Slate or Enum.Material.Grass
+   local cf=CFrame.lookAt((a+b)/2,b)
+   local floor=K.part(foundation,'JourneyPass',V(Bounds.trailHalfWidth*2,2,delta.Magnitude+2),cf*CFrame.new(0,-1,0),pal.ground,material)
+   floor.CanCollide=true;floor.CanQuery=true;floor:SetAttribute('FromZone',edge[1]);floor:SetAttribute('ToZone',edge[2])
+  end
+ end
+ if scope.epic==1 then
+  local legacy=world.folder:FindFirstChild('GroundedForest')
+  if legacy then for _,p in ipairs(legacy:GetDescendants())do
+   if p:IsA('BasePart')and(p.Name:match('^TrailSupport_')or p.Name=='TrailEmbankment'or p.Name=='TrailEarthSlope')then
+    p.CanCollide=false;p.CanQuery=false;p.CanTouch=false;p.Transparency=1;p.CastShadow=false;p:SetAttribute('LegacyPassRetired',true)
+   end
+  end end
+ end
+ for _,p in ipairs(world.terrain:GetChildren())do
+  if p:IsA('BasePart')and(p.Name:match('^ConnectedPath_')or p.Name:match('^SnowTrail_')or p.Name:match('^CalderaTrail_')or p.Name:match('^LateTrail_'))then
+   p.CanCollide=false;p.CanQuery=false;p.CanTouch=false;p.Transparency=1;p.CastShadow=false;p:SetAttribute('LegacyPassRetired',true)
+  end
+ end
+ -- Materialize the same cross-region report routes used by the arrows.
+ -- Their local legs need real reserved/cleared lanes, not chords through groves.
+ local Guide=require(Shared.CampaignNavigationRoute)
+ for _,c in ipairs(scope.content.chapters)do
+  local previous=world.spawns[c.zone].Position
+  for _,g in ipairs(c.goals)do
+   for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do if step.position then
+    local target=vec(step.position);local _,from=Bounds.region(previous.X,previous.Z);local _,to=Bounds.region(target.X,target.Z)
+    if from and to and from~=to and C.zones[from].epic==C.zones[to].epic then
+     local points=Guide.route({previous.X,previous.Y,previous.Z},step.position)
+     for i=2,#points do
+      local a,b=vec(points[i-1]),vec(points[i]);local pal=K.palette[themes[c.id:sub(1,2)]]
+      if (b-a).Magnitude>.1 then
+       local trail=K.beam(scene,'RegionalReturnTrail',a+V(0,.09,0),b+V(0,.09,0),16,pal.ground:Lerp(pal.trim,.28),Enum.Material.Ground)
+       trail.Size=V(16,.12,trail.Size.Z+2);trail:SetAttribute('ChapterId',c.id)
+      end
+     end
+    end
+    previous=target
+   end end
+  end
  end
  for _,c in ipairs(scope.content.chapters)do
   local theme=themes[c.id:sub(1,2)];local pal=K.palette[theme]
@@ -91,7 +139,7 @@ function W.finish(world,scope)
    for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then anchors[#anchors+1]={vec(step.position),30}end end
   end
  end
- for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail'or p.Name=='ReturnLoop')then
+ for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail'or p.Name=='ReturnLoop'or p.Name=='RegionalReturnTrail')then
   lines[#lines+1]={p.CFrame:PointToWorldSpace(V(0,0,-p.Size.Z/2)),p.CFrame:PointToWorldSpace(V(0,0,p.Size.Z/2))}
  end end
  local groves=Instance.new('Folder');groves.Name='RouteMidground';groves.Parent=root

@@ -44,7 +44,7 @@ check(target.chapter.id=='DW-07' and target.goal.id=='restoration','lobby return
 local report=Log.tracker(view,target)
 check(report.title=='MAIN STORY 7 / 7 · REPORT TO ERYN','story 7 names the required report instead of suggesting completion')
 check(report.objective=='Return to Eryn and report your findings.','HUD explicitly tells the player to return and report')
-check(report.note:find('not complete yet',1,true) and report.note:find('MAP [M]',1,true),'HUD explains pending completion and checkpoint travel')
+check(report.note:find('MAP [M]',1,true) and report.note:find('ERYN',1,true),'HUD names the map action and report checkpoint')
 local blocked=R.copy(view);blocked.expeditionMission='DW-Q3'
 report=Log.tracker(blocked)
 check(report.objective:find('final Deepwood report',1,true) and report.note:find('Story 7',1,true),'different admission still explains pending Eryn report and how to resume it')

@@ -36,7 +36,7 @@ local function routes(world)
  end
  -- Visible curved roads/return loops have their own authored approach lanes.
  for _,p in ipairs(world.folder:GetDescendants())do
-  if p:IsA('BasePart')and p.Transparency<.5 and (p.Name=='WornCurvedRoute'or p.Name=='ReturnLoop')then
+  if p:IsA('BasePart')and p.Transparency<.5 and (p.Name=='WornCurvedRoute'or p.Name=='ReturnLoop'or p.Name=='RegionalReturnTrail')then
    for _,side in ipairs({-1,0,1})do
     local x=side*math.min(6,math.max(0,p.Size.X/2-2))
     add(p.CFrame:PointToWorldSpace(V(x,0,-p.Size.Z/2)),p.CFrame:PointToWorldSpace(V(x,0,p.Size.Z/2)),true)

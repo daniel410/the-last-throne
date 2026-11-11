@@ -1,17 +1,17 @@
--- Local straight-line direction guidance; never moves the hero.
+-- Corridor-aware objective guidance; never moves the hero.
 local Players=game:GetService('Players')
 local RunService=game:GetService('RunService')
 local Settings=require(script.Parent.GameSettings)
 local Navigation={}
 local function flat(p) return Vector3.new(p.X,0,p.Z) end
 local function isSurface(p)
- return p:IsA('BasePart') and (p==workspace.Terrain or p:GetAttribute('ExpansionFloor')==true or p.Name=='Ground' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround'
+ return p:IsA('BasePart') and (p==workspace.Terrain or p:GetAttribute('ExpansionFloor')==true or p.Name=='JourneyGround' or p.Name=='JourneyPass' or p.Name=='Ground' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround'
   or p.Name=='TrailEmbankment' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_')
-  or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_'))
+  or p.Name:match('^LateTrail_') or p.Name:match('^CalderaTrail_') or p.Name:match('^SnowTrail_') or p.Name:match('^ConnectedPath_'))
 end
--- Direction guidance points at the objective; roads and region centers do not alter it.
+-- Keep local incident ramps and regional return corridors on the authored route.
 function Navigation.route(origin,destination)
- local points=require(game.ReplicatedStorage.Shared.CampaignIncidentRoute).route({origin.X,origin.Y,origin.Z},{destination.X,destination.Y,destination.Z})
+ local points=require(game.ReplicatedStorage.Shared.CampaignNavigationRoute).route({origin.X,origin.Y,origin.Z},{destination.X,destination.Y,destination.Z})
  local result={};for _,p in ipairs(points)do table.insert(result,Vector3.new(table.unpack(p)))end
  return result
 end
@@ -46,7 +46,8 @@ function Navigation.start()
    params.FilterDescendantsInstances=surfaces
   end
   local destination=Vector3.new(target.X,root.Position.Y,target.Z)
-  local route=Navigation.route(root.Position,destination)
+  local route=Navigation.route(root.Position,target)
+  if #route<2 then hide();return end
   -- Keep an arrival chevron visible until the active objective changes.
   local arrival=flat(target-root.Position).Magnitude<12
   local phase=(os.clock()*5)%6
@@ -73,7 +74,7 @@ function Navigation.start()
   end
   if not firstVisible then
    -- Keep a local bearing even while nearby floor geometry is streaming in.
-   local direction=flat(target-root.Position)
+   local direction=flat(route[2]-root.Position)
    if direction.Magnitude<.1 then direction=flat(root.CFrame.LookVector) end
    if direction.Magnitude<.1 then direction=Vector3.new(0,0,-1)else direction=direction.Unit end
    local hit=workspace:Raycast(root.Position+Vector3.new(0,8,0),Vector3.new(0,-24,0),params)

@@ -21,7 +21,7 @@ function Log.reportGuidance(s)
  if s.main~=6 or not s.flags or not s.flags['DW-07:separate'] or s.flags['DW-07:restoration'] then return nil end
  local chapter=Content.byId['DW-07'];local goal=P.goal(chapter,'restoration')
  if P.available(s,chapter,goal) then
-  return {objective='Return to Eryn and report your findings.',note='Deepwood is not complete yet. Follow the gold waypoint, use the return portal, or open MAP [M] to travel to Eryn.'}
+  return {objective='Return to Eryn and report your findings.',note='Open MAP [M] and travel to ERYN, or follow the gold trail back.'}
  end
  return {objective='Eryn is waiting for your final Deepwood report.',note='Return to Lobby and select Deepwood Story 7 in ADVENTURES to finish your report.'}
 end
