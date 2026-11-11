@@ -21,6 +21,9 @@ function S.create(scene,c,g,area)
    p:SetAttribute('ExpansionTransparency',p.Transparency)
    p.CanCollide=false;p.CanQuery=false;p.CanTouch=false
    if first>0 then p.Transparency=1 end
+  elseif p:IsA('Decal')or p:IsA('Texture')then
+   p:SetAttribute('ExpansionTransparency',p.Transparency)
+   if first>0 then p.Transparency=1 end
   elseif p:IsA('BillboardGui')or p:IsA('PointLight')then p.Enabled=first==0 end end
   return m
  end

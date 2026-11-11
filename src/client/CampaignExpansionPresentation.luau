@@ -19,7 +19,7 @@ local function paint(m,record)
   record.count=count;record.visible=visible
  end
  for _,v in ipairs(m:GetDescendants())do
-  if v:IsA('BasePart')then v.Transparency=visible and (v:GetAttribute('ExpansionTransparency')or 0)or 1
+  if v:IsA('BasePart')or v:IsA('Decal')or v:IsA('Texture')then v.Transparency=visible and (v:GetAttribute('ExpansionTransparency')or 0)or 1
   elseif v:IsA('BillboardGui')or v:IsA('PointLight')or v:IsA('ProximityPrompt')then v.Enabled=visible end
  end
 end
@@ -54,7 +54,7 @@ local function start()
  workspace.DescendantAdded:Connect(function(v)
   add(v)
   -- Descendants can arrive after a server model; reapply its current projection.
-  if v:IsA('BasePart')or v:IsA('ProximityPrompt')or v:IsA('BillboardGui')then
+  if v:IsA('BasePart')or v:IsA('Decal')or v:IsA('Texture')or v:IsA('PointLight')or v:IsA('ProximityPrompt')or v:IsA('BillboardGui')then
    local p=v.Parent
    while p and p~=workspace do
     local record=models[p]

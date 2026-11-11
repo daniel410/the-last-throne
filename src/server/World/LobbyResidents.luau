@@ -33,7 +33,7 @@ function R.create(lobby,facilities,storagePrompt)
   local prompt=Instance.new('ProximityPrompt');prompt.Name='ReunionTalk';prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.ObjectText=row[1]..' · Welcome Home';prompt.ActionText='Celebrate';prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.RequiresLineOfSight=false;prompt.MaxActivationDistance=10;prompt.HoldDuration=0;prompt.Enabled=true;prompt.Parent=npc.PrimaryPart
   result['homecoming'..index]={model=npc,prompt=prompt,homecoming=true,name=row[1],text=row[4]}
  end
- for _,part in ipairs(reunion:GetDescendants())do if part:IsA('BasePart')then part:SetAttribute('ExpansionTransparency',part.Transparency);part.Transparency=1;part.CanCollide=false elseif part:IsA('BillboardGui')then part.Enabled=false end end
+ for _,part in ipairs(reunion:GetDescendants())do if part:IsA('BasePart')then part:SetAttribute('ExpansionTransparency',part.Transparency);part.Transparency=1;part.CanCollide=false elseif part:IsA('Decal')or part:IsA('Texture')then part:SetAttribute('ExpansionTransparency',part.Transparency);part.Transparency=1 elseif part:IsA('BillboardGui')then part.Enabled=false end end
  reunion.Parent=lobby.folder
  require(script.Parent.CampaignReturnScenes).lobby(lobby)
  -- Existing server-authorized facilities retain their inputs and validation paths.

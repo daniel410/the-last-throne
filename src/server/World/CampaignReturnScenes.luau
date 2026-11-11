@@ -33,7 +33,7 @@ function R.create(parent,at,id)
  end
  local gui=Instance.new('BillboardGui');gui.Name='ReturnStoryCaption';gui.Size=UDim2.fromOffset(270,68);gui.StudsOffset=V(0,4,0);gui.MaxDistance=40;gui.Enabled=false;gui.Parent=sign
  local text=Instance.new('TextLabel');text.Size=UDim2.fromScale(1,1);text.BackgroundTransparency=1;text.TextWrapped=true;text.Font=Enum.Font.GothamBold;text.TextSize=13;text.TextColor3=gold;text.TextStrokeTransparency=.2;text.Text=messages[id];text.AutoLocalize=false;text.Parent=gui
- for _,p in ipairs(m:GetDescendants())do if p:IsA('BasePart')then p:SetAttribute('ExpansionTransparency',p.Transparency);p.Transparency=1;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false elseif p:IsA('BillboardGui')then p.Enabled=false end end
+ for _,p in ipairs(m:GetDescendants())do if p:IsA('BasePart')then p:SetAttribute('ExpansionTransparency',p.Transparency);p.Transparency=1;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false elseif p:IsA('Decal')or p:IsA('Texture')then p:SetAttribute('ExpansionTransparency',p.Transparency);p.Transparency=1 elseif p:IsA('BillboardGui')then p.Enabled=false end end
  m.Parent=parent;return m
 end
 function R.lobby(lobby)
