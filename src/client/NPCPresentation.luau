@@ -10,7 +10,7 @@ function View.create(player,world,readState)
  local records={};local api={}
  local function restore(record)
   for object,value in pairs(record)do if object.Parent then
-   if object:IsA('BasePart') then object.LocalTransparencyModifier=value else object.Enabled=value end
+   if object:IsA('BasePart') or object:IsA('Decal') or object:IsA('Texture') then object.LocalTransparencyModifier=value else object.Enabled=value end
   end end
  end
  function api.update()
@@ -46,7 +46,7 @@ function View.create(player,world,readState)
    if private and private~=player.UserId then shown=false end
    local record=records[model];if not record then record={};records[model]=record end
    for _,object in ipairs(model:GetDescendants())do
-    if object:IsA('BasePart') then
+    if object:IsA('BasePart') or object:IsA('Decal') or object:IsA('Texture') then
      if record[object]==nil then record[object]=object.LocalTransparencyModifier end
      object.LocalTransparencyModifier=shown and record[object] or 1
     elseif object:IsA('BillboardGui') or object:IsA('ProximityPrompt') then
@@ -71,8 +71,18 @@ function View.create(player,world,readState)
  local removed=Tags:GetInstanceRemovedSignal('TLTStoryNPC'):Connect(function(model)
   if records[model] then api.update()end
  end)
+ -- Streamed face surfaces inherit the actor mask as soon as they arrive.
+ local descendants=world.DescendantAdded:Connect(function(object)
+  if not (object:IsA('BasePart') or object:IsA('Decal') or object:IsA('Texture')
+   or object:IsA('BillboardGui') or object:IsA('ProximityPrompt')) then return end
+  local parent=object.Parent
+  while parent and parent~=world do
+   if records[parent] then api.update();break end
+   parent=parent.Parent
+  end
+ end)
  function api.destroy()
-  added:Disconnect();removed:Disconnect()
+  added:Disconnect();removed:Disconnect();descendants:Disconnect()
   for _,record in pairs(records)do restore(record)end;table.clear(records)
  end
  return api
