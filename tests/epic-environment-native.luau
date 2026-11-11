@@ -16,14 +16,14 @@ for id,z in pairs(C.zones)do
  for _,p in ipairs(root:GetDescendants())do if p:IsA('BasePart')then
   n+=1
   check(p.Anchored and not p.CanTouch,'anchored non-touch scenery')
-  check(p.CanCollide==(p:GetAttribute('EpicDetailSolid')==true),'physical large geometry')
+  check(p.CanCollide==require(W.CampaignSceneryCollision).isSolid(p,root),'physical large geometry')
   check(p.CanQuery==p.CanCollide,'solid queries agree')
   check(p:GetAttribute('TLTSceneryDistance')~=nil,'distance budget')
   if p.CanCollide then report.solid+=1 end
  end end
  check(clusters>0,'at least one grounded cluster '..id)
  check(n<=650,'per-zone detail instance ceiling '..id)
- report.zones[id]={clusters=clusters,parts=n,heroes=site:GetAttribute('BiomeHeroDetails')};report.parts+=n
+ report.zones[id]={clusters=clusters,parts=n,heroes=site:GetAttribute('BiomeHeroDetails'),backdrops=site:GetAttribute('RegionalBackdrops')};report.parts+=n
 end
 local n=#world.folder:GetDescendants()
 for i=1,5 do require(W.CampaignWorld).create(i,world)end

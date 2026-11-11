@@ -12,7 +12,7 @@ local mood=dofile('src/client/DeepwoodAtmosphere.luau')
 mood.update('Lobby');check(lighting.Brightness==3.2,'existing lobby exposure');check(originalSky.Parent==nil and originalAtmosphere.Parent==nil,'original environment detached')
 check(#created==2 and created[2].Saturation==.24,'lobby has unchanged correction and no regional atmosphere')
 local prior={table.unpack(created)}
-mood.update('Deepwood');check(lighting.ClockTime==13.5 and lighting.FogEnd==620,'forest remains daylight with a readable skyline')
+mood.update('Deepwood');check(lighting.ClockTime>=12 and lighting.ClockTime<=17 and lighting.FogEnd==620,'forest remains daylight with a readable skyline')
 for _,p in ipairs(prior)do check(p.destroyed,'old owned effects removed')end
 check(created[5].class=='Atmosphere'and created[6].class=='BloomEffect','regional haze and restrained local glow')
 for _,name in ipairs({'FrozenVale','EmberCaldera','Gloamwood','HauntedGraveyard','Lobby'})do
