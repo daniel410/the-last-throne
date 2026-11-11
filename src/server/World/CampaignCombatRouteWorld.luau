@@ -91,7 +91,7 @@ function W.finish(world,scope)
    for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then anchors[#anchors+1]={vec(step.position),30}end end
   end
  end
- for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail')then
+ for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail'or p.Name=='ReturnLoop')then
   lines[#lines+1]={p.CFrame:PointToWorldSpace(V(0,0,-p.Size.Z/2)),p.CFrame:PointToWorldSpace(V(0,0,p.Size.Z/2))}
  end end
  local groves=Instance.new('Folder');groves.Name='RouteMidground';groves.Parent=root

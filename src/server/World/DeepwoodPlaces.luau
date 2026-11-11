@@ -5,7 +5,7 @@ local Content=require(Shared.CampaignContent).region('DW')
 local Bounds=require(Shared.DeepwoodBounds)
 local Access=require(Shared.DeepwoodAccess)
 local Env=require(script.Parent.DeepwoodEnvironment)
-local Places={version=4}
+local Places={version=5}
 local C={earth=Color3.fromRGB(128,116,77),stone=Color3.fromRGB(137,148,119),moss=Color3.fromRGB(101,126,79),wood=Color3.fromRGB(105,76,46),gold=Color3.fromRGB(219,176,82),cloth=Color3.fromRGB(38,86,133),root=Color3.fromRGB(73,68,66),water=Color3.fromRGB(104,182,186)}
 local themes={['DW-01']='Old Pilgrim Grove',['DW-02']='Scattered Caravan',['DW-03']='Ranger Overlook',['DW-04']='Ruined Cloister',['DW-05']='Occupied Courtyard',['DW-06']='Root Sanctuary',['DW-07']='Broken Seal Circle',['DW-S1']='Stolen Supply Camp',['DW-S2']='Quarry Watercourse',['DW-S3']='Fallen Standard Ridge'}
 local function part(parent,name,size,cf,color,material,solid)
@@ -47,8 +47,8 @@ local function location(world,id)
  local z=Content.zones[id];local center=Vector3.new(table.unpack(z.center));local anchors,lanes,props=reservations(world,id)
  local small=id:find('DW-S',1,true)~=nil;local halfX,halfZ=small and 50 or 68,small and 26 or 36
  local best,score
- for x=-z.size[1]/2+halfX+24,z.size[1]/2-halfX-24,12 do
-  for zz=-z.size[2]/2+halfZ+24,z.size[2]/2-halfZ-24,12 do
+ for x=-z.size[1]/2+halfX+36,z.size[1]/2-halfX-36,12 do
+  for zz=-z.size[2]/2+halfZ+36,z.size[2]/2-halfZ-36,12 do
    local p=center+Vector3.new(x,0,zz);local clearance=math.huge
    for _,a in ipairs(anchors) do
     local dx,dz=math.max(0,math.abs(p.X-a.X)-halfX),math.max(0,math.abs(p.Z-a.Z)-halfZ)
