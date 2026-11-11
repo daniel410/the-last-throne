@@ -59,7 +59,7 @@ function V.render(scroll,s,send,saving,notice)
     local n=item.enhancementLevel or 0;local cost=E.cost(def,n+1);local before=E.stats(def,item)
     local after=E.stats(def,{enhancementLevel=math.max(n,math.min(E.cap(def),n+1))})
     local lines={n>=E.cap(def)and Text.MaxEnhancement or string.format(Text.Success,E.successPercent(n+1),100-E.successPercent(n+1))}
-    for _,key in ipairs({'power','armor','health','mana','dexterity','intelligence'})do if (before[key]or 0)>0 then table.insert(lines,key=='power' and string.format(Text.PowerChange,before[key],after[key]) or string.format(Text.StatChange,key=='armor'and Text.Armor or key=='mana'and 'Max MP' or key=='dexterity'and 'Dexterity' or key=='intelligence'and 'Intelligence' or Text.Health,before[key],after[key]))end end
+    for _,key in ipairs({'power','armor','health','mana','dexterity'})do if (before[key]or 0)>0 then table.insert(lines,key=='power' and string.format(Text.PowerChange,before[key],after[key]) or string.format(Text.StatChange,key=='armor'and Text.Armor or key=='mana'and 'Max MP' or key=='dexterity'and 'Dexterity' or Text.Health,before[key],after[key]))end end
     local effectText=Effects.text(def)
     if effectText~=''then table.insert(lines,effectText);table.insert(lines,EffectText.Unchanged)end
     table.insert(lines,string.format(Text.EnhanceCost,E.cap(def),cost.gold,cost.gems,cost.stones))

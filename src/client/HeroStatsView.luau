@@ -92,7 +92,7 @@ function View.render(body,hero,snapshot,derived,draft,pending,redraw,send,resetD
   Glyph.draw(symbol,key=='STR' and 'dwarf' or key=='DEX' and 'elf' or key=='INT' and 'mage' or 'knight',{root=1},36,true)
   if mobile or threeColumn then symbol.Visible=false end
   local value=Theme.label(row,'Value',key..'  '..derived.totalStats[key],UDim2.fromOffset((mobile or threeColumn) and 12 or 64,0),UDim2.new(1,(mobile or threeColumn) and -126 or -174,0,32),mobile and 16 or 18,Theme.color.text)
-  Theme.label(row,'Meaning',full[key]..'  '..Growth.bases[classId].stats[key]..' + '..g.stats[key]..' + '..draft[key]..((key=='DEX'or key=='INT')and string.format(CombatText.GearDexSuffix,(snapshot.stats or {})[key=='INT'and 'intelligence'or 'dexterity'] or 0)or ''),UDim2.fromOffset((mobile or threeColumn) and 12 or 64,threeColumn and 24 or 28),UDim2.new(1,(mobile or threeColumn) and -126 or -174,0,threeColumn and 20 or 26),10,Theme.color.silver)
+  Theme.label(row,'Meaning',full[key]..'  '..Growth.bases[classId].stats[key]..' + '..g.stats[key]..' + '..draft[key]..(key=='DEX'and string.format(CombatText.GearDexSuffix,(snapshot.stats or {}).dexterity or 0)or ''),UDim2.fromOffset((mobile or threeColumn) and 12 or 64,threeColumn and 24 or 28),UDim2.new(1,(mobile or threeColumn) and -126 or -174,0,threeColumn and 20 or 26),10,Theme.color.silver)
   Theme.label(row,'EffectHint',Preview.statHint(classId,key,g),UDim2.fromOffset(12,threeColumn and 44 or 56),UDim2.new(1,-24,0,threeColumn and 20 or 28),threeColumn and 9 or 10,Theme.color.muted)
   local minus=Theme.button(row,'Minus','−',UDim2.new(1,-104,0,11),UDim2.fromOffset(44,44))
   local plus=Theme.button(row,'Plus','+',UDim2.new(1,-56,0,11),UDim2.fromOffset(44,44))

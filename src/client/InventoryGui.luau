@@ -319,14 +319,14 @@ function InventoryGui.create(onVisibility, feedback)
 			end
 			local isStaff=def.slot=="weapon" and def.classId=="mage"
 			local lines={Text.Current.."  →  "..Text.Selected}
-			for _, key in ipairs({"power","armor","health","mana","dexterity","intelligence"}) do
+			for _, key in ipairs({"power","armor","health","mana","dexterity"}) do
 				local before,after=current and current.stats[key] or 0,Enhance.stats(def,item)[key] or 0
 				local suffix=" pts"
 				local deltaSuffix=suffix
 				local format=key=="power" and "%s   %.1f%s → %.1f%s   (%+.1f%s)" or "%s   %.2f%s → %.2f%s   (%+.2f%s)"
 				lines[#lines+1]=string.format(format,key=="power" and isStaff and Text.StaffPower or Text.Stats[key],before,suffix,after,suffix,after-before,deltaSuffix)
 			end
-			detailLabel("Comparison",table.concat(lines,"\n"),y,158,13,Color.text); y=y+164
+			detailLabel("Comparison",table.concat(lines,"\n"),y,138,13,Color.text); y=y+144
 			local effectText=Effects.text(def)
 			if effectText~=''then
 			 local h=game:GetService('TextService'):GetTextSize(effectText,13,Enum.Font.GothamMedium,Vector2.new(math.max(160,detailScroll.AbsoluteSize.X-8),10000)).Y+12

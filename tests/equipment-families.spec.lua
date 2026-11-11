@@ -24,9 +24,9 @@ for _,id in ipairs(C.tierEquipment)do
  local d=C.items[id];local v=expected[d.family];local count=0;for _ in pairs(d.stats)do count=count+1 end
  check(count==1,'single fixed option '..id);check(not d.retired and not d.deleted,'current gear active '..id)
  check(d.level==v[1] and d.rarity==v[2],'level/grade '..id)
- local key=d.slot=='weapon' and 'power'or d.slot=='body' and (d.classId=='mage' and 'mana'or 'health')or d.slot=='hands' and 'power'or (d.slot=='head'and d.classId=='mage')and 'intelligence'or 'armor'
+ local key=d.slot=='weapon' and 'power'or d.slot=='body' and (d.classId=='mage' and 'mana'or 'health')or d.slot=='hands' and 'power'or (d.slot=='head'and d.classId=='mage')and 'mana'or 'armor'
  local secondary=({traveler=2,tempered=4,veteran=10,sentinel=20})[d.family]
- local amount=(d.slot=='hands'or d.slot=='feet')and secondary or d.slot=='body' and v[5]or (d.slot=='weapon'or d.slot=='offhand')and v[4]or v[3]
+ local amount=(d.slot=='head'and d.classId=='mage')and ({traveler=10,tempered=20,veteran=30,sentinel=60})[d.family]or (d.slot=='hands'or d.slot=='feet')and secondary or d.slot=='body' and v[5]or (d.slot=='weapon'or d.slot=='offhand')and v[4]or v[3]
  check(d.stats[key]==amount,'fixed bonus '..id)
  near(E.stats(d,{enhancementLevel=9})[key],amount*1.27,'all four stat types enhance at3 percent')
  local p=assert(R.addHero(R.new(42),'h',d.classId or 'knight',C));p.wallet.gold=10000;p.wallet.diamonds=10000
@@ -58,7 +58,7 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  check(R.equipped(p,'h','body').definitionId==(class=='mage'and 'mage_traveler_coat'or 'traveler_coat'),'starter body follows class')
  check(R.quantity(p,'h','veteran_hood')==1,'future veteran hood preserved in bag')
  check(stats.power==5 and stats.dexterity==3 and stats.armor==(class=='knight'and 8 or class=='mage'and 2 or 5),'starter fixed attack and defense')
- check(stats.health==(class=='mage'and 30 or 50)and stats.mana==(class=='mage'and 20 or 0),'starter HP/MP classification')
+ check(stats.health==(class=='mage'and 30 or 50)and stats.mana==(class=='mage'and 30 or 0),'starter HP/MP classification')
  assert(T.grant(p,R,C,'h','amber_mana_charm',1,'mana'))
  local charm=p.items['mana-1'];local cmd={action='Equip',requestId='charm',heroId='h',revision=p.revision,instanceId=charm.instanceId,itemVersion=1}
  local worn=assert(R.apply(p,cmd,{safe=true},C));check(R.validate(worn,C),'charm equippable')
@@ -70,7 +70,7 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  worn.wallet.gold=100
  assert(T.grant(worn,R,C,'h','enhancement_gem',2,'gems'))
  local enhanced=assert(R.shop(worn,{action='Enhance',store='blacksmith',requestId='mp-enhance',heroId='h',revision=worn.revision,instanceId=charm.instanceId,itemVersion=worn.items[charm.instanceId].version,rulesVersion=E.version,expectedLevel=0},{atLobby=true,enhancementRoll=0},C))
- near(R.stats(enhanced,'h',C).mana,(class=='mage'and 20 or 0)+30.9,'authoritative enhancement aggregates MP')
+ near(R.stats(enhanced,'h',C).mana,(class=='mage'and 30 or 0)+30.9,'authoritative enhancement aggregates MP')
  check(enhanced.wallet.gold==50 and enhanced.items[charm.instanceId].enhancementLevel==1,'MP enhancement costs50 Gold once')
  -- Actual 0.89.4 save shape: old starter fine, old Mage coat and worn Lv5 hood.
  local old=R.copy(p);old.items['mana-1']=nil;old.equipmentRulesVersion=nil

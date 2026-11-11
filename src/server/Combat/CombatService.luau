@@ -2022,7 +2022,6 @@ function CombatService.refreshEquipment(player, equipment)
 	state.character:SetAttribute("TLTEquipmentPower", equipment.power)
 	state.character:SetAttribute("TLTEquipmentArmor", equipment.armor)
  state.character:SetAttribute("TLTEquipmentDexterity",equipment.dexterity or 0)
- state.character:SetAttribute("TLTEquipmentIntelligence",equipment.intelligence or 0)
 end
 
 function CombatService.canUseInventoryItem(player, definition)

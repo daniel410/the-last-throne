@@ -54,7 +54,7 @@ function View.render(parent,hero,snapshot,draft,position,width,state,redraw)
   for _,source in ipairs(sources) do
    local _,nameH=label('Gear_'..source.slot,string.format(Text.GearItem,InventoryText.Slots[source.slot],source.name),y,13,Theme.color.gold);y+=nameH
    local parts={}
-   for _,entry in ipairs({{'power',Text.GearPower},{'armor',Text.GearArmor},{'health',Text.GearHealth},{'mana',Text.GearMana},{'dexterity',Text.GearDexterity},{'intelligence',Text.GearIntelligence}}) do
+   for _,entry in ipairs({{'power',Text.GearPower},{'armor',Text.GearArmor},{'health',Text.GearHealth},{'mana',Text.GearMana},{'dexterity',Text.GearDexterity}}) do
     local value=source.stats[entry[1]] or 0
     if value~=0 then table.insert(parts,string.format(entry[2],entry[1]=='power' and value or signed(value))) end
    end
