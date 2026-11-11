@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-10",
+  "scope": "pure Lua narrative and progress contract regression; not player/device acceptance",
+  "checks": 17040,
+  "tests": [
+    {
+      "command": "lua tests/campaign-context-review.spec.lua",
+      "checks": 1034,
+      "status": "pass"
+    },
+    {
+      "command": "lua tests/campaign-expansion.spec.lua",
+      "checks": 7698,
+      "status": "pass"
+    },
+    {
+      "command": "lua tests/story-fun.spec.lua",
+      "checks": 1722,
+      "status": "pass"
+    },
+    {
+      "command": "lua tests/story-rpg-guide.spec.lua",
+      "checks": 985,
+      "status": "pass"
+    },
+    {
+      "command": "lua tests/campaign-expansion-review.spec.lua",
+      "checks": 3362,
+      "status": "pass"
+    },
+    {
+      "command": "lua tests/story-completion.spec.lua",
+      "checks": 356,
+      "status": "pass"
+    },
+    {
+      "command": "lua tests/campaign-reorder.spec.lua",
+      "checks": 1870,
+      "status": "pass"
+    },
+    {
+      "command": "lua tests/journal-missing-target.spec.lua",
+      "checks": 13,
+      "status": "pass"
+    }
+  ]
+}

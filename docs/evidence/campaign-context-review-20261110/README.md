@@ -24,8 +24,18 @@
 - `lua tests/campaign-context-review.spec.lua`: **1,034 PASS**,47개 목적/결과 구별,정보 선공개·상위/단계 일치·맥락 계약·35장/405개 저장 전이.
 - 기존 확장7,698·인물 원고1,722·스토리 가이드985·확장 리뷰3,362·완료356·순서/구저장1,870·목표 누락13 **PASS**. 새 검사 포함 총**17,040**개. Easy 순차 경로와 기존 본편Lv44 산술 유지.
 - Python으로 실제 영어47개와 한국어 장별 표의47개 ID 일치를 검사했고 PASS했다. 변경 범위 `git diff --check` PASS.
-- 고정 빌드/엔진 검증은 아래 마감 기록에 추가한다. 실제 플레이 시간/이해/재미를 정적 검사로 통과 처리하지 않는다.
+- 고정 빌드/엔진 검증은 아래 마감 기록을 따른다. 실제 플레이 시간/이해/재미를 정적 검사로 통과 처리하지 않는다.
 
 미검증: 신규 유저의 전체 이야기 이해·인물 기억·재미, PC/터치/패드 실제 입력, 실제 계정/서버 이동·저사양/4인+AI 수용. 다음 담당 QA는 ‘왜 사람을 돕는가/심장은 어디에 있는가/친구는 왜 합류했는가/무엇이 복구됐는가/마지막 조작 순서’의 설명 가능 여부를 연속 플레이와 중단 복귀에서 관찰한다. 부모 티켓은 수용 증거 전 미완료다.
 
 이 작업은 원고 교정이며 새 장면/보스·타이머·축제 컷신을 제작했다고 보고하지 않는다. Roblox 게시·릴리스 태그·TD 운영·live DataStore는 변경하지 않는다.
+
+## 고정 빌드·엔진 마감
+
+최종 **0.98.3 성공**. 입력 소스 `ce7fc2a7891e74659482f02200feb08dab3fb626`을 origin/main에 푸시해 고정한 뒤 `python3 tools/build-game.py --source ce7fc2a7 --record docs/evidence/campaign-context-review-20261110/build.json`으로 단일 Place를 생성했다. 산출물 `builds/0.98.3/TheLastThrone-0.98.3.rbxlx`, SHA256 `a41a2b6103ba09853be40988abfffaa9ff6bcf56c5ef8569863f2cad560364fe`를 별도 재확인했다. [빌드](build.json)·[회귀17,040](regressions.json)·[엔진9,630](native-result.json)·[원본 로그](native.log).
+
+`python3 tools/prepare-story-rpg-native.py` 후 `run-in-roblox --place builds/0.98.3/TheLastThrone-0.98.3.rbxlx --script /tmp/tlt-story-rpg-native.luau`를 Place0/접속0 격리 편집 엔진에서 실행했다. 현재 콘텐츠/최종 원고를 포함한14개 모듈 Source 일치와 전체 Luau 문법 확인 후 캠페인9,192·로비 저널70·스토리 가이드/장면93·새 원고/완료 카드275, 총**9,630 PASS**다.
+
+5지역82사건/246단계와3,974개 동선 표본 차단0, 기존 호위·회로·부분 저장·장면 재유입 검사 통과. 실제 로드된47개 원고의 구별/단일 단계 원문 일치,5에픽 종료 카드를800×510/726×299/270×510에서 표시해 텍스트 높이와 스크롤 영역을 검사했다. 동시 생성48,719 BasePart는 엔진 객체 수이며 실제 FPS·저사양 성능 수용으로 해석하지 않는다.
+
+`python3 tests/single-build.spec.py --artifact builds/0.98.3/TheLastThrone-0.98.3.rbxlx`: 역할10/도착 로딩192·프로젝트/실제 산출물 검사 PASS. 최종 미술/사용자 조작·서사 이해/재미 수용은 여전히 별도다. 이전 개선 적용0.98.2의 [검증 기록](../story-rpg-improvements-20261110/README.md)은 당시 결과로 보존하며 이번 빌드가 그 기능과 최신 맥락 교정을 함께 포함한다.

@@ -1,0 +1,13 @@
+EXPANSION_NATIVE_EPIC 1
+EXPANSION_NATIVE_EPIC 2
+EXPANSION_NATIVE_EPIC 3
+EXPANSION_NATIVE_EPIC 4
+EXPANSION_NATIVE_EPIC 5
+EXPANSION_NATIVE_GEOMETRY {"blockerCount":0,"samples":3974,"blockers":[],"parts":48719}
+CAMPAIGN_EXPANSION_NATIVE {"generationSeconds":16.6712139583542,"scope":"isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance","blockers":[],"checks":9192,"steps":246,"samples":3974,"incidents":82,"parts":48719}
+STORY_RPG_NATIVE_SUITE {"generationSeconds":16.6712139583542,"scope":"isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance","blockers":[],"checks":9192,"steps":246,"samples":3974,"incidents":82,"parts":48719}
+STORY_RPG_NATIVE_SUITE {"failures":[],"kind":"LOBBY_QUEST_JOURNAL_NATIVE","pass":true,"checks":70}
+STORY_RPG_GUIDE_NATIVE {"kind":"STORY_RPG_GUIDE_NATIVE","failures":[],"checks":93}
+STORY_RPG_NATIVE_SUITE {"kind":"STORY_RPG_GUIDE_NATIVE","failures":[],"checks":93}
+CAMPAIGN_CONTEXT_REVIEW_NATIVE {"kind":"CAMPAIGN_CONTEXT_REVIEW_NATIVE","failures":[],"checks":275}
+STORY_RPG_NATIVE_SUITE {"kind":"CAMPAIGN_CONTEXT_REVIEW_NATIVE","failures":[],"checks":275}
