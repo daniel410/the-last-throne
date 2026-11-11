@@ -1,0 +1,54 @@
+CAPTIVE_RESCUE_QA {"saves":3,"passed":true,"checks":12468}
+ARCHITECTURE_GROUNDING_QA {"byEpic":[{"footings":44,"units":31},{"footings":0,"units":27},{"footings":19,"units":45},{"footings":37,"units":48},{"footings":33,"units":41}],"checks":125411}
+SCENERY_COLLISION_NATIVE {"failureCount":0,"casts":{"4arches":true,"3arches":true,"5arches":true,"3sceneWalls":true,"3trunks":true,"2trunks":true,"1trunks":true,"5rocks":true,"3rocks":true,"4rocks":true,"1rocks":true,"2rocks":true,"5trunks":true,"5walls":true,"2arches":true,"1arches":true,"2walls":true,"1walls":true,"4walls":true,"3walls":true},"decorations":8506,"checks":29322,"solids":9069,"failures":[],"pass":true,"byEpic":[{"trunks":294,"sceneWalls":0,"arches":120,"rocks":56,"walls":943},{"trunks":293,"sceneWalls":0,"arches":172,"rocks":25,"walls":879},{"trunks":204,"sceneWalls":60,"arches":126,"rocks":49,"walls":1335},{"trunks":0,"sceneWalls":0,"arches":138,"rocks":25,"walls":1837},{"trunks":303,"sceneWalls":0,"arches":160,"rocks":24,"walls":2026}]}
+STORY_OBSTACLES_TRAVEL {"onwardRoutes":70,"roadblocks":9,"minDistance":218.44879150390626,"checks":917}
+COMBAT_ROUTE_WORLD {"floorFailures":[],"kind":"COMBAT_ROUTE_WORLD","blockers":[],"checks":5623}
+EXPANSION_NATIVE_EPIC 1
+EXPANSION_NATIVE_EPIC 2
+EXPANSION_NATIVE_EPIC 3
+EXPANSION_NATIVE_EPIC 4
+EXPANSION_NATIVE_EPIC 5
+EXPANSION_NATIVE_GEOMETRY {"blockerCount":0,"samples":3974,"blockers":[],"parts":61462}
+EPIC_MAP_CHAPTER GW-01
+EPIC_MAP_CHAPTER GW-02
+EPIC_MAP_CHAPTER GW-03
+EPIC_MAP_CHAPTER GW-04
+EPIC_MAP_CHAPTER GW-05
+EPIC_MAP_CHAPTER GW-06
+EPIC_MAP_CHAPTER GW-07
+EPIC_MAP_EPIC 2 {"chapters":7,"lowSteps":0,"connectors":6,"steps":4654,"samples":4870,"targets":87,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}
+EPIC_MAP_CHAPTER FV-01
+EPIC_MAP_CHAPTER FV-02
+EPIC_MAP_CHAPTER FV-03
+EPIC_MAP_CHAPTER FV-04
+EPIC_MAP_CHAPTER FV-05
+EPIC_MAP_CHAPTER FV-06
+EPIC_MAP_CHAPTER FV-07
+EPIC_MAP_CHAPTER FV-Q1
+EPIC_MAP_CHAPTER FV-Q2
+EPIC_MAP_CHAPTER FV-Q3
+EPIC_MAP_CHAPTER FV-Q4
+EPIC_MAP_EPIC 3 {"chapters":11,"lowSteps":0,"connectors":9,"steps":5808,"samples":6177,"targets":142,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}
+EPIC_MAP_CHAPTER EC-01
+EPIC_MAP_CHAPTER EC-02
+EPIC_MAP_CHAPTER EC-03
+EPIC_MAP_CHAPTER EC-04
+EPIC_MAP_CHAPTER EC-05
+EPIC_MAP_CHAPTER EC-06
+EPIC_MAP_CHAPTER EC-07
+EPIC_MAP_CHAPTER EC-Q1
+EPIC_MAP_CHAPTER EC-Q2
+EPIC_MAP_CHAPTER EC-Q3
+EPIC_MAP_CHAPTER EC-Q4
+EPIC_MAP_EPIC 4 {"chapters":11,"lowSteps":6,"connectors":9,"steps":8020,"samples":8323,"targets":141,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}
+EPIC_MAP_CHAPTER HG-01
+EPIC_MAP_CHAPTER HG-02
+EPIC_MAP_CHAPTER HG-03
+EPIC_MAP_CHAPTER HG-04
+EPIC_MAP_CHAPTER HG-05
+EPIC_MAP_CHAPTER HG-06
+EPIC_MAP_CHAPTER HG-07
+EPIC_MAP_EPIC 5 {"chapters":7,"lowSteps":0,"connectors":6,"steps":4179,"samples":4368,"targets":87,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}
+EPIC_MAP_NAVIGATION {"lowSteps":[{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.EC-05.BasaltGround","at":"590.8320922851562, 130.6981964111328, -9818.4560546875","rise":1.3018066436052323,"label":"EC-04 -> EC-05"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-05","at":"590.8320922851562, 130.6981964111328, -9818.4560546875","rise":1.3018035888671876,"label":"EC-04 -> EC-05"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround","at":"590.8320922851562, 130.6981964111328, -9818.4560546875","rise":1.3018035888671876,"label":"EC-04 -> EC-05"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.EC-06.BasaltGround","at":"-9.167885780334473, 138.6981964111328, -10298.4560546875","rise":1.3018066436052323,"label":"EC-05 -> EC-06"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-06","at":"-9.167885780334473, 138.6981964111328, -10298.4560546875","rise":1.3018035888671876,"label":"EC-05 -> EC-06"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround","at":"-9.167885780334473, 138.6981964111328, -10298.4560546875","rise":1.3018035888671876,"label":"EC-05 -> EC-06"}],"floors":[],"corrections":[],"returns":[{"chapter":"FV-Q1","to":[-260,60,-4680],"label":"FV-Q1:report","epic":3,"from":[-764.98828125,57,-4542.52734375]},{"chapter":"EC-Q1","to":[-260,108,-8565],"label":"EC-Q1:report","epic":4,"from":[-918.3255615234375,103,-8437.1337890625]},{"chapter":"EC-Q2","to":[-260,108,-8565],"label":"EC-Q2:report","epic":4,"from":[-680.5358276367188,119,-9163.443359375]},{"chapter":"EC-Q3","to":[-260,108,-8565],"label":"EC-Q3:report","epic":4,"from":[1568.7265625,127,-9869.8916015625]},{"chapter":"EC-Q4","to":[-260,108,-8565],"label":"EC-Q4:report","epic":4,"from":[-1874.6793212890626,161,-10985.7001953125]}],"epics":{"5":{"chapters":7,"lowSteps":0,"connectors":6,"steps":4179,"samples":4368,"targets":87,"floors":0,"corrections":0,"blockers":0,"routeFailures":0},"4":{"chapters":11,"lowSteps":6,"connectors":9,"steps":8020,"samples":8323,"targets":141,"floors":0,"corrections":0,"blockers":0,"routeFailures":0},"3":{"chapters":11,"lowSteps":0,"connectors":9,"steps":5808,"samples":6177,"targets":142,"floors":0,"corrections":0,"blockers":0,"routeFailures":0},"2":{"chapters":7,"lowSteps":0,"connectors":6,"steps":4654,"samples":4870,"targets":87,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}},"routeFailures":[],"blockers":[]}
+DEEPWOOD_REPORT_NAVIGATION {"bodyBlockers":[],"floorIssues":[],"checks":1574,"steps":787,"relocations":[],"connectorSamples":414,"complete":true}
+GROUNDING_REVIEW_READY
