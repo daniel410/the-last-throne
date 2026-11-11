@@ -13,12 +13,16 @@ local function run(role, incoming, failStream, demandStream, slowGates)
  local deferred = {}
  local parent = {}
  local gui = {Parent=nil}
+ function gui:FindFirstChild() return nil end
  function gui:Destroy() destroyedAt=frame;self.Parent=nil end
  local human = {Health=100}
  local root = {Position=pos(100)}
  local character = {spawnReady=false}
  function character:IsDescendantOf() return true end
- function character:GetAttribute() return self.spawnReady end
+ function character:GetAttribute(key)
+  if key=='TLTLocalAppearanceReady' then return frame>=26 end
+  return self.spawnReady
+ end
  function character:FindFirstChild() return root end
  function character:FindFirstChildOfClass() return human end
  local attrs = {K0SessionPhase='Lobby',TLTTravelLock=true}
@@ -49,7 +53,7 @@ local function run(role, incoming, failStream, demandStream, slowGates)
   if slowGates and frame<=23 then check(not destroyedAt,'streaming alone cannot bypass battle UI or party lock') end
   if frame==10 then camera.Focus.Position=pos(100);player.GameplayPaused=true end
   if frame==11 then player.GameplayPaused=false end
-  if frame<=12 then check(not destroyedAt,'no reveal before destination streams') end
+  if frame<=25 then check(not destroyedAt,'no reveal before destination streams') end
   if frame==13 then
    -- Invalidate readiness during the async streaming request.
    character.spawnReady=false
@@ -77,7 +81,7 @@ local function run(role, incoming, failStream, demandStream, slowGates)
  if role=='Lobby' and not incoming then
   check(not removed and created==0,'ordinary lobby retains its normal startup')
  else
-  check(removed and destroyedAt>=17,'wait through readiness regression and rendered frames')
+  check(removed and destroyedAt>=28,'wait through readiness regression and rendered frames')
   check(created==(incoming and 0 or 1),'reuse arriving artwork or use approved fallback')
   check(requests==(failStream and 2 or 1),'stream request errors retry without exposing platform')
  end

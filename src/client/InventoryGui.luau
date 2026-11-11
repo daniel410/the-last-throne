@@ -217,15 +217,28 @@ function InventoryGui.create(onVisibility, feedback)
 		mobileDetail=true
 		resize(); render()
 	end
+	local warming=false
 	local function command(action,slot,destination)
 		local item=getSelected()
-		if not item or not snapshot or pending then return end
+		if not item or not snapshot or pending or warming then return end
 		if quantityBox then quantity=tonumber(quantityBox.Text) end
 		if action=="Deposit" or action=="Withdraw" or action=="Claim" then
 			if not quantity or quantity%1~=0 or quantity<1 or quantity>item.quantity then setMessage(Text.Errors.InvalidQuantity,true); return end
 		end
-		send({requestId=HttpService:GenerateGUID(false),action=action,heroId=snapshot.heroId,instanceId=item.instanceId,
-			itemVersion=item.version,revision=snapshot.revision,slot=slot,quantity=quantity,destination=destination})
+  local value={requestId=HttpService:GenerateGUID(false),action=action,heroId=snapshot.heroId,instanceId=item.instanceId,
+   itemVersion=item.version,revision=snapshot.revision,slot=slot,quantity=quantity,destination=destination}
+  if action~='Equip' then send(value);return end
+  warming=true;setMessage('Preparing equipment...')
+  local classId=itemVisualClass(item)
+  task.spawn(function()
+   local ok,prepared=pcall(function() return require(script.Parent.EquipmentWarmup).prepare(item.definitionId,classId) end)
+   warming=false
+   if not ok or not prepared then setMessage('Equipment could not load. Please try again.',true);return end
+   -- Selection or profile may have changed during the download. Never send stale intent.
+   if not gui.Parent or not snapshot or snapshot.heroId~=value.heroId or snapshot.revision~=value.revision
+    or selectedId~=value.instanceId or pending then return end
+   send(value)
+  end)
 	end
 	-- Item cards are rebuilt by choose(), so track clicks across button instances.
 	local function activateItem(item,input)

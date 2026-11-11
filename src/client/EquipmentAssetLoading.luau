@@ -52,6 +52,13 @@ function Assets.preload(part, callback)
  if not ok then error(err) end
 end
 
+function Assets.isReady(character)
+ for part,state in pairs(pending) do
+  if part:IsDescendantOf(character) and not state.ready then return false end
+ end
+ return true
+end
+
 function Assets.start()
  if started then return end
  started = true

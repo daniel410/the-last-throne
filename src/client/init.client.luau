@@ -9,6 +9,7 @@ local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 require(script.EquipmentAssetLoading).start()
+require(script.CharacterAssetLoading).start(player)
 require(script.TravelLoadingScreen).start(player)
 task.spawn(function() require(script.LobbyCommerce).start() end)
 task.spawn(function() require(script.LobbyLandmarkVisuals).start() end)

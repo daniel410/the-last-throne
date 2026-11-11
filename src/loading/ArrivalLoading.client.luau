@@ -36,6 +36,7 @@ local function destination()
 end
 
 local function ready(character, root, human)
+ if character:GetAttribute('TLTLocalAppearanceReady') ~= true then return end
  if role == 'Battle' and (player:GetAttribute('TLTBattleClientReady') ~= true
   or player:GetAttribute('TLTTravelLock') == true) then return end
  local camera = workspace.CurrentCamera
@@ -64,6 +65,8 @@ local stableFrames = 0
 while gui.Parent do
  Run.RenderStepped:Wait()
  local character, root, human = destination()
+ local label=gui:FindFirstChild('Loading',true)
+ if label then label.Text=character and character:GetAttribute('TLTLocalAppearanceError') and 'Equipment could not load. Retrying...' or 'LOADING...' end
  if character then
   if character ~= streamingCharacter or (root.Position - streamingPosition).Magnitude > 16 then
    streamingCharacter, streamingPosition, streamingComplete = character, root.Position, false
