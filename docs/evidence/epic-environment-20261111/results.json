@@ -1,0 +1,584 @@
+{
+  "EPIC_ENVIRONMENT_QA": {
+    "zones": {
+      "GW-03": {
+        "backdrops": 1,
+        "clusters": 9,
+        "heroes": 2,
+        "parts": 286
+      },
+      "EC-S1": {
+        "backdrops": 1,
+        "clusters": 5,
+        "heroes": 2,
+        "parts": 173
+      },
+      "DW-03": {
+        "backdrops": 0,
+        "clusters": 5,
+        "heroes": 2,
+        "parts": 209
+      },
+      "FV-05": {
+        "backdrops": 0,
+        "clusters": 7,
+        "heroes": 2,
+        "parts": 146
+      },
+      "DW-01": {
+        "backdrops": 1,
+        "clusters": 14,
+        "heroes": 2,
+        "parts": 398
+      },
+      "FV-S2": {
+        "backdrops": 0,
+        "clusters": 2,
+        "heroes": 1,
+        "parts": 81
+      },
+      "GW-07": {
+        "backdrops": 2,
+        "clusters": 11,
+        "heroes": 2,
+        "parts": 313
+      },
+      "EC-03": {
+        "backdrops": 0,
+        "clusters": 4,
+        "heroes": 2,
+        "parts": 181
+      },
+      "EC-S2": {
+        "backdrops": 1,
+        "clusters": 3,
+        "heroes": 2,
+        "parts": 153
+      },
+      "GW-01": {
+        "backdrops": 1,
+        "clusters": 12,
+        "heroes": 2,
+        "parts": 350
+      },
+      "FV-02": {
+        "backdrops": 0,
+        "clusters": 9,
+        "heroes": 2,
+        "parts": 149
+      },
+      "FV-S3": {
+        "backdrops": 0,
+        "clusters": 5,
+        "heroes": 2,
+        "parts": 113
+      },
+      "FV-04": {
+        "backdrops": 0,
+        "clusters": 1,
+        "heroes": 0,
+        "parts": 73
+      },
+      "HG-03": {
+        "backdrops": 1,
+        "clusters": 9,
+        "heroes": 2,
+        "parts": 203
+      },
+      "HG-02": {
+        "backdrops": 1,
+        "clusters": 11,
+        "heroes": 2,
+        "parts": 225
+      },
+      "GW-05": {
+        "backdrops": 1,
+        "clusters": 16,
+        "heroes": 2,
+        "parts": 431
+      },
+      "DW-S3": {
+        "backdrops": 2,
+        "clusters": 12,
+        "heroes": 2,
+        "parts": 343
+      },
+      "EC-07": {
+        "backdrops": 1,
+        "clusters": 10,
+        "heroes": 2,
+        "parts": 197
+      },
+      "DW-05": {
+        "backdrops": 1,
+        "clusters": 9,
+        "heroes": 2,
+        "parts": 293
+      },
+      "FV-03": {
+        "backdrops": 0,
+        "clusters": 4,
+        "heroes": 2,
+        "parts": 119
+      },
+      "FV-06": {
+        "backdrops": 0,
+        "clusters": 6,
+        "heroes": 2,
+        "parts": 148
+      },
+      "EC-04": {
+        "backdrops": 0,
+        "clusters": 10,
+        "heroes": 2,
+        "parts": 212
+      },
+      "FV-01": {
+        "backdrops": 0,
+        "clusters": 6,
+        "heroes": 2,
+        "parts": 136
+      },
+      "EC-S3": {
+        "backdrops": 1,
+        "clusters": 5,
+        "heroes": 1,
+        "parts": 118
+      },
+      "HG-06": {
+        "backdrops": 1,
+        "clusters": 7,
+        "heroes": 2,
+        "parts": 196
+      },
+      "HG-07": {
+        "backdrops": 2,
+        "clusters": 8,
+        "heroes": 2,
+        "parts": 203
+      },
+      "EC-06": {
+        "backdrops": 1,
+        "clusters": 13,
+        "heroes": 2,
+        "parts": 230
+      },
+      "DW-S2": {
+        "backdrops": 1,
+        "clusters": 4,
+        "heroes": 1,
+        "parts": 160
+      },
+      "EC-01": {
+        "backdrops": 1,
+        "clusters": 12,
+        "heroes": 2,
+        "parts": 220
+      },
+      "EC-02": {
+        "backdrops": 0,
+        "clusters": 13,
+        "heroes": 2,
+        "parts": 219
+      },
+      "FV-S1": {
+        "backdrops": 0,
+        "clusters": 11,
+        "heroes": 2,
+        "parts": 161
+      },
+      "DW-07": {
+        "backdrops": 1,
+        "clusters": 16,
+        "heroes": 2,
+        "parts": 440
+      },
+      "EC-05": {
+        "backdrops": 0,
+        "clusters": 6,
+        "heroes": 2,
+        "parts": 194
+      },
+      "GW-02": {
+        "backdrops": 0,
+        "clusters": 11,
+        "heroes": 2,
+        "parts": 346
+      },
+      "HG-05": {
+        "backdrops": 1,
+        "clusters": 8,
+        "heroes": 2,
+        "parts": 212
+      },
+      "DW-06": {
+        "backdrops": 0,
+        "clusters": 8,
+        "heroes": 2,
+        "parts": 284
+      },
+      "DW-02": {
+        "backdrops": 0,
+        "clusters": 1,
+        "heroes": 0,
+        "parts": 103
+      },
+      "HG-01": {
+        "backdrops": 1,
+        "clusters": 7,
+        "heroes": 2,
+        "parts": 199
+      },
+      "GW-04": {
+        "backdrops": 1,
+        "clusters": 4,
+        "heroes": 1,
+        "parts": 155
+      },
+      "GW-06": {
+        "backdrops": 1,
+        "clusters": 14,
+        "heroes": 2,
+        "parts": 388
+      },
+      "HG-04": {
+        "backdrops": 1,
+        "clusters": 5,
+        "heroes": 2,
+        "parts": 179
+      },
+      "DW-S1": {
+        "backdrops": 1,
+        "clusters": 5,
+        "heroes": 1,
+        "parts": 175
+      },
+      "FV-07": {
+        "backdrops": 0,
+        "clusters": 5,
+        "heroes": 2,
+        "parts": 140
+      },
+      "DW-04": {
+        "backdrops": 1,
+        "clusters": 8,
+        "heroes": 2,
+        "parts": 257
+      }
+    },
+    "solid": 2642,
+    "parts": 9511,
+    "checks": 38562
+  },
+  "SCENERY_COLLISION_NATIVE": {
+    "failureCount": 0,
+    "casts": {
+      "4arches": true,
+      "3arches": true,
+      "5arches": true,
+      "3sceneWalls": true,
+      "3trunks": true,
+      "2trunks": true,
+      "1trunks": true,
+      "5rocks": true,
+      "3rocks": true,
+      "4rocks": true,
+      "1rocks": true,
+      "2rocks": true,
+      "5trunks": true,
+      "5walls": true,
+      "2arches": true,
+      "1arches": true,
+      "2walls": true,
+      "1walls": true,
+      "4walls": true,
+      "3walls": true
+    },
+    "decorations": 8507,
+    "checks": 29130,
+    "solids": 8972,
+    "failures": [],
+    "pass": true,
+    "byEpic": [
+      {
+        "trunks": 294,
+        "sceneWalls": 0,
+        "arches": 120,
+        "rocks": 56,
+        "walls": 930
+      },
+      {
+        "trunks": 293,
+        "sceneWalls": 0,
+        "arches": 172,
+        "rocks": 25,
+        "walls": 866
+      },
+      {
+        "trunks": 204,
+        "sceneWalls": 60,
+        "arches": 126,
+        "rocks": 49,
+        "walls": 1316
+      },
+      {
+        "trunks": 0,
+        "sceneWalls": 0,
+        "arches": 138,
+        "rocks": 25,
+        "walls": 1818
+      },
+      {
+        "trunks": 303,
+        "sceneWalls": 0,
+        "arches": 160,
+        "rocks": 24,
+        "walls": 1993
+      }
+    ]
+  },
+  "TD_SCENIC_QA": {
+    "zones": {
+      "GW-03": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Root Refuge"
+      },
+      "EC-S1": {
+        "models": 1,
+        "hero": 1,
+        "composition": "Raider Spires"
+      },
+      "DW-03": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Elder Sanctuary"
+      },
+      "FV-05": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Frozen Procession"
+      },
+      "DW-01": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Trailhead Grove"
+      },
+      "FV-S2": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Blue Lake Shelf"
+      },
+      "GW-07": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Web Queen Canopy"
+      },
+      "EC-03": {
+        "models": 1,
+        "hero": 1,
+        "composition": "Fractured Mine"
+      },
+      "EC-S2": {
+        "models": 1,
+        "hero": 1,
+        "composition": "Shaman Rift"
+      },
+      "GW-01": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Lantern Grove"
+      },
+      "FV-02": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Sheltered Hearth"
+      },
+      "FV-S3": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Ancient Glacier Watch"
+      },
+      "FV-04": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Archive Ice Shelf"
+      },
+      "HG-03": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Garden of Names"
+      },
+      "HG-02": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Keepers Chapel"
+      },
+      "GW-05": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Venomcoil Hollow"
+      },
+      "DW-S3": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Battlefield Ridge"
+      },
+      "EC-07": {
+        "models": 1,
+        "hero": 1,
+        "composition": "Great Furnace Crown"
+      },
+      "DW-05": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Occupied Keep"
+      },
+      "FV-03": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Split Glacier Gorge"
+      },
+      "FV-06": {
+        "models": 5,
+        "hero": 1,
+        "composition": "Sentinel Ice Gate"
+      },
+      "EC-04": {
+        "models": 1,
+        "hero": 1,
+        "composition": "Cooling Rift"
+      },
+      "FV-01": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Blizzard Ice Gate"
+      },
+      "EC-S3": {
+        "models": 1,
+        "hero": 1,
+        "composition": "Titan Caldera Rim"
+      },
+      "HG-06": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Royal Tomb Spire"
+      },
+      "HG-07": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Last Throne Ruin"
+      },
+      "EC-06": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Heatworks Spires"
+      },
+      "DW-S2": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Waterfall Quarry"
+      },
+      "EC-01": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Ash Spire Gate"
+      },
+      "EC-02": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Foundry Skyline"
+      },
+      "FV-S1": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Supply Cave Crest"
+      },
+      "DW-07": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Seal Sanctuary"
+      },
+      "EC-05": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Ancestral Foundry"
+      },
+      "GW-02": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Silk Watch"
+      },
+      "HG-05": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Royal Gate Chapel"
+      },
+      "DW-06": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Twisted Rootwood"
+      },
+      "DW-02": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Convoy Overlook"
+      },
+      "HG-01": {
+        "models": 2,
+        "hero": 1,
+        "composition": "Lost Chapel"
+      },
+      "GW-04": {
+        "models": 5,
+        "hero": 1,
+        "composition": "Ancient Rootway"
+      },
+      "GW-06": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Widow Ruins"
+      },
+      "HG-04": {
+        "models": 1,
+        "hero": 1,
+        "composition": "Fallen Belfry"
+      },
+      "DW-S1": {
+        "models": 5,
+        "hero": 1,
+        "composition": "Supply Camp Grove"
+      },
+      "FV-07": {
+        "models": 4,
+        "hero": 1,
+        "composition": "Mirror Palace Crest"
+      },
+      "DW-04": {
+        "models": 3,
+        "hero": 1,
+        "composition": "Watchtower Ridge"
+      }
+    },
+    "meshes": 5397,
+    "heroes": 44,
+    "checks": 1149,
+    "compositionModels": 126,
+    "parts": 61573
+  },
+  "MAP_TRAVERSAL_SUMMARY": {
+    "anchorIssues": 2,
+    "floorIssues": 0,
+    "anchors": 688,
+    "pass": false,
+    "obstacles": 4,
+    "roads": 3553,
+    "pathCount": 551,
+    "failures": [],
+    "paths": {
+      "Success": 546,
+      "SamePoint": 5
+    },
+    "roadSamples": 32727
+  }
+}

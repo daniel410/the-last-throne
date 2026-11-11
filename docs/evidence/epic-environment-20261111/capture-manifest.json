@@ -1,0 +1,25 @@
+{
+  "kind": "Studio edit-time generated world review, not published",
+  "sourceCommit": "c17f9a7b5d7d46a139556e98c9a249c5941f5737",
+  "preview": "builds/0.103.4/EnvironmentReview.rbxlx",
+  "sha256": "e37b2180b5480711235c1bf3848043f71c7c60648d10b90547eb479c5f0473ed",
+  "bytes": 338392794,
+  "images": {
+    "detail-EC-07.jpg": "31d7459816c54c54deb168cbc19a9bfd8b2d6e7fd3dbec5bf73ab4a9f3657024",
+    "detail-DW-03.jpg": "fe519ea0da60500ea4adc1506f88d75b3be53bc7d4b3e1b06a00fd0e45bb755c",
+    "before-DW-03.jpg": "e005aa237c59c84bbd1a793930e43056def4b21f0f4145a4653d5b61397d952d",
+    "after-HG-05.jpg": "4b3a295784c9d164ccb25b1175e12f504656b2ae2eae08742dbdf9b6a9d2776e",
+    "before-EC-07.jpg": "736f00045ffcd92a4213b62146348365cc4f0d1416a8ef777709cde96eb9aa6e",
+    "before-GW-04.jpg": "14742c442c0cbf48420d0df25e43294bc1243d4a3834b3d14cb6a29105c15308",
+    "detail-GW-04.jpg": "935186e921243e851831223b542b46add1d6f695e726b9b6bf637cbc20a34089",
+    "after-FV-03.jpg": "291a44f11b5cab5d2f4f9a89f8e34ff153dabea28cfd6a3d611e618fd5d0157e",
+    "after-DW-03.jpg": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e",
+    "before-HG-05.jpg": "674466ea9f0006dd8cee9becb113475e1b713019c25d6f39c473df034b504974",
+    "after-EC-07.jpg": "44586eb432e19ff5c98b44be4629c6919c8790ef342c441a1b934fd42a8e2539",
+    "detail-HG-05.jpg": "7a8470f6d4a465cb08dfe6630681fec102c53de42514793c33dbb4fded63637a",
+    "before-FV-03.jpg": "a2e1d531b1dde704cdeb089ea36aa56774631b386a821404c1eac9aee0f2e1ca",
+    "detail-FV-03.jpg": "61dbf0f5de9aee27fd3225b5256103ef6527ef325c2f6dd3562eb9b621f56d05",
+    "after-GW-04.jpg": "f228772066db883d594973c3c4cac5186c8e485199df80cf13abc6e70848f2fc"
+  },
+  "transportNote": "Final full traversal execute_luau response timed out after 300s; completed MAP_TRAVERSAL_SUMMARY remains in native-final.log and was independently read back from Studio."
+}

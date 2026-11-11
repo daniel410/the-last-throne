@@ -1,0 +1,8 @@
+ENVIRONMENT_SOURCE_AND_COMPILE_PASS
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18: forge gate grounded: Workspace.DeepwoodCampaign.TerrainBlockout.EC-03.ForgeGate.ForgePillar / 121.179931640625 > 116
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

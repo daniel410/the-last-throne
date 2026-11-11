@@ -1,0 +1,56 @@
+{
+  "floors": [],
+  "routeFailures": [],
+  "epics": {
+    "2": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4654,
+      "samples": 4870,
+      "targets": 87,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "3": {
+      "chapters": 11,
+      "lowSteps": 0,
+      "connectors": 9,
+      "steps": 5808,
+      "samples": 6177,
+      "targets": 142,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "4": {
+      "chapters": 11,
+      "lowSteps": 6,
+      "connectors": 9,
+      "steps": 8020,
+      "samples": 8323,
+      "targets": 141,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    },
+    "5": {
+      "chapters": 7,
+      "lowSteps": 0,
+      "connectors": 6,
+      "steps": 4179,
+      "samples": 4368,
+      "targets": 87,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 0
+    }
+  },
+  "blockers": [],
+  "corrections": []
+}

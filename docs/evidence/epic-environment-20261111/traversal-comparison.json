@@ -1,0 +1,47 @@
+{
+  "baseline-traversal.log": {
+    "anchorIssues": 2,
+    "floorIssues": 0,
+    "anchors": 688,
+    "pass": false,
+    "obstacles": 4,
+    "roads": 3553,
+    "pathCount": 551,
+    "failures": [],
+    "paths": {
+      "Success": 546,
+      "SamePoint": 5
+    },
+    "roadSamples": 32727
+  },
+  "native-01030.log": {
+    "anchorIssues": 2,
+    "floorIssues": 0,
+    "anchors": 688,
+    "pass": false,
+    "obstacles": 4,
+    "roads": 3553,
+    "pathCount": 551,
+    "failures": [],
+    "paths": {
+      "Success": 546,
+      "SamePoint": 5
+    },
+    "roadSamples": 32727
+  },
+  "native-final.log": {
+    "anchorIssues": 2,
+    "floorIssues": 0,
+    "anchors": 688,
+    "pass": false,
+    "obstacles": 4,
+    "roads": 3553,
+    "pathCount": 551,
+    "failures": [],
+    "paths": {
+      "Success": 546,
+      "SamePoint": 5
+    },
+    "roadSamples": 32727
+  }
+}

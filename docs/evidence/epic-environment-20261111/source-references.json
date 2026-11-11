@@ -1,0 +1,26 @@
+[
+  {
+    "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+    "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+  },
+  {
+    "path": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+    "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+  },
+  {
+    "path": "../throne-defense/assets/concepts/maps-battle-target-v1/snow.png",
+    "sha256": "e67b1502ef0ba7c6d56a0b57253ab20b44fa8e82f04e14d19621e2e3acf218db"
+  },
+  {
+    "path": "../throne-defense/assets/concepts/maps-battle-target-v1/volcano.png",
+    "sha256": "907400eaad2d8dea84d89e2321622c2f71a601d2f53bdaf422056c24d6ae1a4b"
+  },
+  {
+    "path": "../throne-defense/assets/concepts/maps-battle-target-v1/cemetery.png",
+    "sha256": "683d4339e3a36ce0e5cc469cccc7b505b2d463f3c8ddd9a5a24ccb10c6cb1872"
+  },
+  {
+    "path": "assets/shared/td-deepwood-environment/maps.rbxmx",
+    "sha256": "4374cb7c66869fc1e9e9a8a3cc2f1fe5ee70564b5b875ed79232adf9542cfc39"
+  }
+]
