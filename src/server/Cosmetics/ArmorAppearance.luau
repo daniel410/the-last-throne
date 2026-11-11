@@ -41,6 +41,10 @@ local function build(character, slot, key, classId, definitionId, r15)
  local scale=sizeScale(character,slot,r15)
  if not scale or scale.X<.25 or scale.Y<.25 or scale.Z<.25 or scale.Magnitude>8 then return nil,"UnsupportedBodyScale" end
  local clone=template:Clone()
+ local isRobe=key:match("_robe$")~=nil
+ local isHat=key:match("_hat$")~=nil
+ local isHelmet=key:match("_helmet$")~=nil
+ local fittedScale=multiply(scale,Vector3.new(1,1,isRobe and Visuals.fit.robeDepth or 1))
  local count=0
  for _,part in clone:GetDescendants() do
   if part:IsA("BasePart") then
@@ -54,9 +58,11 @@ local function build(character, slot, key, classId, definitionId, r15)
    if not anchor or not anchor:IsA("BasePart") then clone:Destroy();return nil,"MissingBodyPart" end
    local offset=center-reference
    if alias then offset+=reference-alias[2] end
+   if isHat then offset-=Vector3.new(0,Visuals.fit.hatLowering,0) end
+   if isHelmet then offset+=Vector3.new(0,Visuals.fit.helmetLift,0) end
    local rotation=part.CFrame.Rotation
-   part.Size=multiply(part.Size,scale)
-   part.CFrame=anchor.CFrame*CFrame.new(multiply(offset,scale))*rotation
+   part.Size=multiply(part.Size,fittedScale)
+   part.CFrame=anchor.CFrame*CFrame.new(multiply(offset,fittedScale))*rotation
    part.Anchored=false;part.Massless=true;part.CanCollide=false;part.CanTouch=false;part.CanQuery=false
    local weld=Instance.new("WeldConstraint");weld.Name="ArmorWeld";weld.Part0=anchor;weld.Part1=part;weld.Parent=part
    count+=1
@@ -70,6 +76,7 @@ local function build(character, slot, key, classId, definitionId, r15)
  clone:SetAttribute("ArmorSlot",slot);clone:SetAttribute("ArmorVisualKey",key)
  clone:SetAttribute("ArmorDefinitionId",definitionId);clone:SetAttribute("ArmorClassId",classId)
  clone:SetAttribute("ArmorScale",scale)
+ clone:SetAttribute("ArmorFitVersion",Visuals.version)
  return clone
 end
 local function refreshVisibility(character)
@@ -92,7 +99,8 @@ local function refreshVisibility(character)
  if has.feet then hide("LeftFoot");hide("RightFoot");hide("LeftLowerLeg");hide("RightLowerLeg") end
  if has.head then
   for _,accessory in character:GetChildren() do
-   if accessory:IsA("Accessory") and (accessory.AccessoryType==Enum.AccessoryType.Hat or accessory.AccessoryType==Enum.AccessoryType.Hair) then
+   local hidesHair=not string.match(has.head,"_hat$")
+   if accessory:IsA("Accessory") and (accessory.AccessoryType==Enum.AccessoryType.Hat or hidesHair and accessory.AccessoryType==Enum.AccessoryType.Hair) then
     for _,p in accessory:GetDescendants() do if p:IsA("BasePart") then wanted[p]=true end end
    end
   end
@@ -125,6 +133,7 @@ function Armor.sync(character)
    for _,child in character:GetChildren() do if owned(child) and child:GetAttribute("ArmorSlot")==slot then table.insert(old,child) end end
    local existing=old[1]
    local healthy=existing and #old==1 and existing:GetAttribute("ArmorVisualKey")==key
+    and existing:GetAttribute("ArmorFitVersion")==Visuals.version
     and existing:GetAttribute("ArmorDefinitionId")==definitionId and existing:GetAttribute("ArmorClassId")==classId
     and existing:GetAttribute("ArmorScale")==sizeScale(character,slot,r15)
    if healthy then

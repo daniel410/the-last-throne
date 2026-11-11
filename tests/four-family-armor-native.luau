@@ -68,7 +68,7 @@ local ok,err=xpcall(function()
      check(count==visual:GetAttribute('ArmorPartCount'),'no missing or duplicate panels')
      Armor.sync(character);check(character['TLTArmor_'..slot]==visual,'idempotent sync')
     end
-    check(handle.Transparency==1,'equipped headwear hides original hair')
+    check(handle.Transparency==(classId=='mage' and .25 or 1),'Mage Hat preserves hair; enclosing headwear masks it')
     local torso=character:FindFirstChild('UpperTorso')or character:FindFirstChild('Torso')
     check(torso.Transparency==1,'opaque body clothing masks original torso')
     -- Drive the existing production action renderer; weld anchors must follow

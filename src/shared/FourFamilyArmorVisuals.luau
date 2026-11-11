@@ -1,5 +1,5 @@
 -- Exact Meshy task/asset provenance: assets/models/four-family-armor-meshy-v1.
-return {version=1,folderName="FourFamilyArmorModels",models={
+return {version=2,folderName="FourFamilyArmorModels",fit={robeDepth=1.85,hatLowering=.25,helmetLift=.32},models={
  ["mage_sentinel_coat"]={mage="sentinel_robe"},
  ["sentinel_tier_hood"]={elf="sentinel_hood",mage="sentinel_hood",knight="sentinel_helmet",dwarf="sentinel_helmet"},
  ["sentinel_tier_coat"]={knight="sentinel_coat",elf="sentinel_coat",dwarf="sentinel_coat",mage="sentinel_coat"},
