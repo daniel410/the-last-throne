@@ -6,7 +6,7 @@ local Workspace = game:GetService("Workspace")
 local LobbyWorld = {}
 local MODEL_NAME = "DawnspireLobbyPrototype"
 local OWNER_ATTRIBUTE = "TLTLobbyWorld"
-local VERSION = 3
+local VERSION = 4
 local ORIGIN = Vector3.new(0, 96, 512)
 local SPAWN_OFFSET = Vector3.new(0, 0.1, 24)
 local FLOOR_SIZE = Vector3.new(200, 4, 200)
@@ -117,7 +117,7 @@ local function enclosure(model)
 	}) do
 		-- The transparent enclosure owns the continuous collision contract.
 		-- Ornamenting a visible wall never opens a gap in that enclosure.
-		part(walls, spec[1], spec[2], spec[3], COLORS.stoneDark, Enum.Material.Slate, false)
+		part(walls, spec[1], spec[2], spec[3], COLORS.stone, Enum.Material.Slate, false)
 	end
 	for _, x in ipairs({ -91, 91 }) do
 		for _, z in ipairs({ -91, 91 }) do
@@ -125,6 +125,28 @@ local function enclosure(model)
 			part(walls, "TowerCap", Vector3.new(11, 1, 11), Vector3.new(x, 17.5, z), COLORS.stoneLight, Enum.Material.Slate, false)
 		end
 	end
+ -- Pale battlements and two taller rear towers give the sanctuary a citadel silhouette.
+ for n = -11, 11 do
+  for _, z in ipairs({-96, 96}) do
+   part(walls, "Battlement", Vector3.new(3.5, 2.5, 4.5), Vector3.new(n * 8, 15.25, z), COLORS.stoneLight, Enum.Material.Slate, false)
+  end
+  for _, x in ipairs({-96, 96}) do
+   part(walls, "Battlement", Vector3.new(4.5, 2.5, 3.5), Vector3.new(x, 15.25, n * 8), COLORS.stoneLight, Enum.Material.Slate, false)
+  end
+ end
+ for _, x in ipairs({-36, 36}) do
+  part(walls, "SanctuaryTower", Vector3.new(13, 33, 13), Vector3.new(x, 16.5, -86), COLORS.stoneLight, Enum.Material.Slate, false)
+  for _, y in ipairs({8, 23, 33}) do
+   part(walls, "TowerCornice", Vector3.new(14, .6, 14), Vector3.new(x, y, -86), COLORS.gold, Enum.Material.Metal, false)
+  end
+  part(walls, "TowerWindow", Vector3.new(3, 8, .2), Vector3.new(x, 23, -79.4), COLORS.stoneDark, Enum.Material.Glass, false)
+  for _, dx in ipairs({-5, 0, 5}) do
+   part(walls, "TowerMerlon", Vector3.new(3, 3, 3), Vector3.new(x + dx, 35, -80.5), COLORS.stone, Enum.Material.Slate, false)
+  end
+  part(walls, "TowerBanner", Vector3.new(5, 10, .2), Vector3.new(x, 13, -79.3), COLORS.blue, Enum.Material.Fabric, false)
+  part(walls, "TowerBannerEmblem", Vector3.new(1.4, 2.4, .25), Vector3.new(x, 14, -79.1), COLORS.gold, Enum.Material.Metal, false)
+ end
+
 end
 
 local function lamp(parent, x, z)
@@ -159,54 +181,50 @@ local function banner(parent, x, color, content)
 end
 
 local function courtyard(model)
-	local scenery = Instance.new("Folder")
-	scenery.Name = "CourtyardScenery"
-	scenery.Parent = model
-	part(scenery, "InnerPlaza", Vector3.new(176, 0.08, 144), Vector3.new(0, 0.04, 0), COLORS.plaza, Enum.Material.Cobblestone, false)
-	part(scenery, "ArrivalCarpet", Vector3.new(12, 0.04, 65), Vector3.new(0, 0.1, 11.5), COLORS.blue, Enum.Material.Fabric, false)
-	for _, x in ipairs({ -6.3, 6.3 }) do
-		part(scenery, "CarpetBorder", Vector3.new(0.35, 0.03, 65), Vector3.new(x, 0.13, 11.5), COLORS.gold, Enum.Material.Metal, false)
-	end
-	for _, x in ipairs({ -28, 28 }) do
-		for _, z in ipairs({ -14, 24 }) do
-			local bed = part(scenery, "GardenBorder", Vector3.new(12, 0.6, 10), Vector3.new(x, 0.3, z), COLORS.stoneLight, Enum.Material.Slate, false)
-			bed:SetAttribute("DecorativeOnly", true)
-			part(scenery, "GardenLawn", Vector3.new(10.6, 0.7, 8.6), Vector3.new(x, 0.6, z), COLORS.grass, Enum.Material.Grass, false)
-			local shrub = part(scenery, "Shrub", Vector3.new(7, 2.2, 5.5), Vector3.new(x, 1.8, z), COLORS.green, Enum.Material.SmoothPlastic, false)
-			shrub.Shape = Enum.PartType.Ball
-		end
-	end
-	for _, x in ipairs({ -18, 18 }) do
-		lamp(scenery, x, 5)
-		lamp(scenery, x, 42)
-	end
-	-- Class banners frame the rear porch, leaving the facility approaches clear.
-	banner(scenery, -39, COLORS.blue, LABELS.knight)
-	banner(scenery, -13, COLORS.green, LABELS.elf)
-	banner(scenery, 13, COLORS.copper, LABELS.dwarf)
-	banner(scenery, 39, COLORS.violet, LABELS.mage)
-	for _,child in ipairs(scenery:GetChildren()) do
-		if child:IsA('Model') and child.Name:sub(1,7)=='Banner_' then child:PivotTo(child:GetPivot()+Vector3.new(0,0,-27)) end
-	end
-	for _,spec in ipairs({{'PortalPath',Vector3.new(43,.05,9),Vector3.new(-22,.18,-20)},
-		{'TrainingPath',Vector3.new(42,.05,9),Vector3.new(-23,.18,56)},
-		{'TrainingApproach',Vector3.new(12,.05,16),Vector3.new(0,.18,50)},
-		{'PotionShopPath',Vector3.new(46,.05,8),Vector3.new(-23,.18,15)},
-		{'SmithPath',Vector3.new(37,.05,9),Vector3.new(24,.18,23)}}) do
-		part(scenery,spec[1],spec[2],spec[3],COLORS.stoneLight,Enum.Material.Cobblestone,false)
-	end
-
-	-- An open, purely decorative porch gives the arrival view a focal point.
-	for _, x in ipairs({ -42, 42 }) do
-		part(scenery, "PorchColumnFoot", Vector3.new(7, 0.6, 7), Vector3.new(x, 0.3, -55), COLORS.stoneLight, Enum.Material.Slate, false)
-		part(scenery, "PorchColumn", Vector3.new(4, 17, 4), Vector3.new(x, 8.5, -55), COLORS.stone, Enum.Material.Slate, false)
-		part(scenery, "PorchCapital", Vector3.new(7, 1, 7), Vector3.new(x, 17.5, -55), COLORS.gold, Enum.Material.Metal, false)
-	end
-	part(scenery, "PorchLintel", Vector3.new(91, 3, 7), Vector3.new(0, 19.5, -55), COLORS.stoneLight, Enum.Material.Slate, false)
-	local title = part(scenery, "TitleBoard", Vector3.new(35, 4, 0.5), Vector3.new(0, 14.7, -54), COLORS.stoneDark, Enum.Material.Slate, false)
-	label(title, "LobbyTitle", LABELS.title)
-	local subtitle = part(scenery, "SubtitleBoard", Vector3.new(35, 2, 0.5), Vector3.new(0, 11.3, -54), COLORS.stoneDark, Enum.Material.Slate, false)
-	label(subtitle, "LobbySubtitle", LABELS.subtitle)
+ local scenery = Instance.new("Folder")
+ scenery.Name = "CourtyardScenery"
+ scenery.Parent = model
+ part(scenery, "InnerPlaza", Vector3.new(184, .08, 180), Vector3.new(0, .04, 0), COLORS.plaza, Enum.Material.Cobblestone, false)
+ -- A long, clear sightline joins arrival, gathering court and the empty throne.
+ part(scenery, "RoyalProcessional", Vector3.new(14, .04, 144), Vector3.new(0, .1, -8), COLORS.blue, Enum.Material.Fabric, false)
+ for _, x in ipairs({-7.3, 7.3}) do
+  part(scenery, "ProcessionalGoldBorder", Vector3.new(.22, .04, 144), Vector3.new(x, .13, -8), COLORS.gold, Enum.Material.Metal, false)
+ end
+ for i = 0, 31 do
+  local angle = i * math.pi * 2 / 32
+  local segment = part(scenery, "GatheringCourtInlay", Vector3.new(.3, .04, 4.2), Vector3.new(math.cos(angle) * 21, .16, math.sin(angle) * 21), COLORS.gold, Enum.Material.Metal, false)
+  segment.CFrame = CFrame.new(segment.Position) * CFrame.Angles(0, -angle, 0)
+ end
+ for _, x in ipairs({-82, 82}) do
+  for _, z in ipairs({-65, -5, 55}) do
+   part(scenery, "GardenBorder", Vector3.new(12, .6, 16), Vector3.new(x, .3, z), COLORS.stoneLight, Enum.Material.Slate, false)
+   part(scenery, "GardenLawn", Vector3.new(10.6, .7, 14.6), Vector3.new(x, .6, z), COLORS.grass, Enum.Material.Grass, false)
+   local shrub = part(scenery, "CypressCanopy", Vector3.new(5, 10, 5), Vector3.new(x, 6, z), COLORS.green, Enum.Material.SmoothPlastic, false)
+   shrub.Shape = Enum.PartType.Ball
+   part(scenery, "CypressTrunk", Vector3.new(1.3, 4, 1.3), Vector3.new(x, 2, z), COLORS.copper, Enum.Material.Wood, false)
+  end
+ end
+ for _, x in ipairs({-12, 12}) do
+  for _, z in ipairs({-47, -7, 58}) do lamp(scenery, x, z) end
+ end
+ -- Class standards sit in the rear wings, outside service approaches.
+ for _, spec in ipairs({{-70, COLORS.blue, LABELS.knight}, {-48, COLORS.green, LABELS.elf}, {48, COLORS.copper, LABELS.dwarf}, {70, COLORS.violet, LABELS.mage}}) do
+  banner(scenery, spec[1], spec[2], spec[3])
+ end
+ for _, child in ipairs(scenery:GetChildren()) do
+  if child:IsA('Model') and child.Name:sub(1,7) == 'Banner_' then child:PivotTo(child:GetPivot() + Vector3.new(0,0,-38)) end
+ end
+ for _, spec in ipairs({
+  {'PortalPath',Vector3.new(43,.05,9),Vector3.new(-22,.18,-20)},
+  {'DefensePath',Vector3.new(36,.05,9),Vector3.new(22,.18,-20)},
+  {'TrainingPath',Vector3.new(42,.05,9),Vector3.new(-23,.18,56)},
+  {'TrainingApproach',Vector3.new(12,.05,16),Vector3.new(0,.18,50)},
+  {'PotionShopPath',Vector3.new(46,.05,8),Vector3.new(-23,.18,15)},
+  {'SmithPath',Vector3.new(37,.05,9),Vector3.new(24,.18,23)},
+ }) do part(scenery,spec[1],spec[2],spec[3],COLORS.stoneLight,Enum.Material.Cobblestone,false) end
+ require(script.Parent.DawnspireThrone).create({folder=model, origin=ORIGIN})
+ local title = part(scenery, "ArrivalWelcome", Vector3.new(23, 3, .4), Vector3.new(0, 5, 78), COLORS.stoneDark, Enum.Material.Slate, false)
+ label(title, "LobbyTitle", LABELS.title)
 end
 
 local function resultFor(model)
