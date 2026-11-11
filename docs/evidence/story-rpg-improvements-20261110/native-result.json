@@ -1,0 +1,34 @@
+{
+  "version": "0.98.2",
+  "sourceCommit": "f7ab0cb32948e5a01ca223e710774cedb0e2cc66",
+  "artifact": "builds/0.98.2/TheLastThrone-0.98.2.rbxlx",
+  "sha256": "04f90d049ba59251d47a1fda7b7ceea9ef47c8432f862ebafa90e3c9e69ae1fe",
+  "checks": 9355,
+  "suites": [
+    {
+      "generationSeconds": 16.216821041656658,
+      "scope": "isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9192,
+      "steps": 246,
+      "samples": 3974,
+      "incidents": 82,
+      "parts": 48719
+    },
+    {
+      "failures": [],
+      "kind": "LOBBY_QUEST_JOURNAL_NATIVE",
+      "pass": true,
+      "checks": 70
+    },
+    {
+      "kind": "STORY_RPG_GUIDE_NATIVE",
+      "failures": [],
+      "checks": 93
+    }
+  ],
+  "published": false,
+  "realDeviceAccepted": false,
+  "realPlayerStudyPerformed": false,
+  "sourceBytesVerified": 12
+}

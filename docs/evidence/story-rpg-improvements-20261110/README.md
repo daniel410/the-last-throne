@@ -30,7 +30,7 @@
 - `lua tests/story-rpg-guide.spec.lua`: **985 PASS**,35장/405개 확정 전이에서 읽기 불변식·순차 완주·구완료/면제·부분 저장·영웅 전환·지역 연결·장비 의미·관찰기 경계 검사.
 - 기존 스토리 재미1,722·확장 리뷰3,362·특수효과277·완료356·목표 누락13·전체 확장7,698·순서/구저장1,870·장비 영향52검사 **PASS**. 새 검사 포함 총16,335개. 성장 정적 결과는 기존 본편Lv44로 유지한다.
 - `python3 -m py_compile tools/prepare-story-rpg-native.py`와 변경 범위 `git diff --check` PASS.
-- 고정 소스 빌드/실제 엔진 검증 결과는 아래 마감 기록에 추가한다. 자료/정적 검사를 실제 사용자 플레이로 보고하지 않는다.
+- 고정 소스 빌드/실제 엔진 검증은 아래 마감 기록을 따른다. 자료/정적 검사를 실제 사용자 플레이로 보고하지 않는다.
 
 ## QA 인계
 
@@ -41,3 +41,17 @@ Studio/별도 테스트 클라이언트에서 로컬 플레이어의 `TLTStoryOb
 미검증: 신규 유저 이해/재미/동선20% 감소, PC/터치/패드 실제 입력, 실계정 저장·네트워크/스트리밍, 저사양 성능·4인+AI, 게시 클라이언트 연속 완주. 코드의 순차 완주 검사는 실제 조작/전투 난도 수용이 아니다. 다음 담당 QA는 위 고정 조건으로 측정하고, 부모 티켓은 실제 수용 전 미완료로 유지한다.
 
 Roblox 게시·릴리스 태그·live DataStore·TD 운영 변경은 이번 작업에 포함하지 않는다. 롤백은 이번 소스 변경을 되돌린 새 빌드로 수행하며 저장 스키마 이관은 필요 없다.
+
+## 고정 빌드·엔진 마감
+
+최종 **0.98.2 성공**, 입력 소스 `f7ab0cb32948e5a01ca223e710774cedb0e2cc66`을 origin/main에 먼저 푸시해 고정했다. `python3 tools/build-game.py --source f7ab0cb3 --record docs/evidence/story-rpg-improvements-20261110/build.json`으로 생성한 단일 파일은 `builds/0.98.2/TheLastThrone-0.98.2.rbxlx`, SHA256 `04f90d049ba59251d47a1fda7b7ceea9ef47c8432f862ebafa90e3c9e69ae1fe`다. [빌드 정본](build.json)·[회귀 결과](regressions.json)·[엔진 요약](native-result.json)·[실행 로그](native.log).
+
+`python3 tools/prepare-story-rpg-native.py` 후 `run-in-roblox --place builds/0.98.2/TheLastThrone-0.98.2.rbxlx --script /tmp/tlt-story-rpg-native.luau`를 **Place0/접속0 격리 편집 엔진**에서 실행했다. 변경12개 모듈의 Source 일치와 전체 Luau 문법 확인 후 다음 **9,355 PASS**를 얻었다.
+
+- 기존 캠페인 엔진9,192:5지역/82사건/246단계, 실제 Finn 호위·부분 저장 재개·개인 장면/스트리밍·안전 회로/장치,3,974개 동선 표본 차단0. 동시 생성48,719 BasePart는 인벤토리 측정이며 FPS 통과 근거가 아니다.
+- 로비 저널70: 실제 TD 메뉴와 본편/선택·구완료·지역 순서,800×510/726×299/270×510의 상세 패널 치수 검사.
+- 신규 저널/장면93: PEOPLE/CLUES/OUTCOMES의44px 조작부·발견 단계 공개·Selene 선택 읽기·영웅 전환·원본 저널 불변,680×510/680×275/270×510 저널의 본문 높이와 스크롤, 실제 대화 생성 코드의 긴 원문을800×510/726×299/270×510에서 스크롤, 최종 clear 이전 지역 승리 숨김·확정 후 표시, 회로 화살촉6개·결과 모델의 비충돌 검증.
+
+`python3 tests/single-build.spec.py --artifact builds/0.98.2/TheLastThrone-0.98.2.rbxlx`: 역할10/도착 로딩192·프로젝트 바인딩·실제 산출물 검사 PASS. 파일 해시는 별도 재확인했다. 이는 UI 인스턴스/텍스트 치수 검사이며 사람이 본 최종 미술·기기 입력·재미 수용과 구분한다.
+
+중간 [0.98.0](build-0.98.0.json)/[0.98.1](build-0.98.1.json) 빌드와 각각 [엔진 로그](native-0.98.0.log)/[엔진 로그](native-0.98.1.log)는 보존했다. 0.98.1은 긴 원문 자동8초 닫기 제외,0.98.2는 서버가 `active=false`로 표시한 원거리 전투 때문에 안전한 대화까지 숨기지 않도록 수정한 최종본이다. 테스트 하네스의 Unicode 이스케이프 오류와 스크롤을 요구하기에 너무 짧았던 원문 fixture 실패도 [초기 로그](native-harness-failed.log)/[fixture 로그](native-layout-fixture-failed.log)에 보존했다. 하네스/fixture를 고친 뒤 실제 고정 산출물에서 재실행했으며 실패를 성공으로 합산하지 않았다. 최종 순수16,335/엔진9,355 결과만 이번 검증 총계로 사용한다.

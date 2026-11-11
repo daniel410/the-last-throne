@@ -1,0 +1,22 @@
+ContentId: rbxassethash://e3f17049d801a9aba2a3fecb56bcba72 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://9f652390a8f570eb1c9c469037d6382b failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://45a84a576ad52cab4163fe70de30a0c0 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+EXPANSION_NATIVE_EPIC 1
+EXPANSION_NATIVE_EPIC 2
+EXPANSION_NATIVE_EPIC 3
+EXPANSION_NATIVE_EPIC 4
+EXPANSION_NATIVE_EPIC 5
+EXPANSION_NATIVE_GEOMETRY {"blockerCount":0,"samples":3974,"blockers":[],"parts":48719}
+CAMPAIGN_EXPANSION_NATIVE {"generationSeconds":18.101628625008745,"scope":"isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance","blockers":[],"checks":9192,"steps":246,"samples":3974,"incidents":82,"parts":48719}
+STORY_RPG_NATIVE_SUITE {"generationSeconds":18.101628625008745,"scope":"isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance","blockers":[],"checks":9192,"steps":246,"samples":3974,"incidents":82,"parts":48719}
+STORY_RPG_NATIVE_SUITE {"failures":[],"kind":"LOBBY_QUEST_JOURNAL_NATIVE","pass":true,"checks":70}
+[string "tests/story-rpg-guide-native.luau"]:8: long dialogue can be read by scrolling instead of clipping
+[string "tests/story-rpg-guide-native.luau"]:8
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:24
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
