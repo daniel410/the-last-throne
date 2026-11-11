@@ -1,0 +1,20 @@
+REPORT_NAVIGATION_SOURCES_AND_COMPILE_PASS
+DEEPWOOD_REPORT_NAVIGATION {"bodyBlockers":[],"floorIssues":[],"checks":1570,"steps":785,"relocations":[],"connectorSamples":414,"complete":true}
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+REPORT_WALK_PROGRESS 1339
+REPORT_WALK_PROGRESS 1255
+REPORT_WALK_PROGRESS 726
+DEEPWOOD_REPORT_WALK {"jumps":0,"arrived":true,"updates":853,"distance":4.7120232582092289,"elapsed":98.02956850000192,"relocations":0,"stalled":false,"at":"-182.79409790039062, 21.272417068481445, -1595.12451171875"}
+REPORT_NAVIGATION_ALL_PASS

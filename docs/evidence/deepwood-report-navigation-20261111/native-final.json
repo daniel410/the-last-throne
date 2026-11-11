@@ -1,0 +1,103 @@
+{
+  "DEEPWOOD_REPORT_NAVIGATION": {
+    "bodyBlockers": [],
+    "floorIssues": [],
+    "checks": 1570,
+    "steps": 785,
+    "relocations": [],
+    "connectorSamples": 414,
+    "complete": true
+  },
+  "COMBAT_ROUTE_WORLD": {
+    "floorFailures": [],
+    "kind": "COMBAT_ROUTE_WORLD",
+    "blockers": [],
+    "checks": 5623
+  },
+  "EXPANSION_NATIVE_GEOMETRY": {
+    "blockerCount": 0,
+    "samples": 3974,
+    "blockers": [],
+    "parts": 53374
+  },
+  "SCENERY_COLLISION_NATIVE": {
+    "failureCount": 0,
+    "casts": {
+      "4arches": true,
+      "3arches": true,
+      "5arches": true,
+      "3sceneWalls": true,
+      "3trunks": true,
+      "2trunks": true,
+      "1trunks": true,
+      "5rocks": true,
+      "3rocks": true,
+      "4rocks": true,
+      "1rocks": true,
+      "2rocks": true,
+      "5trunks": true,
+      "5walls": true,
+      "2arches": true,
+      "1arches": true,
+      "2walls": true,
+      "1walls": true,
+      "4walls": true,
+      "3walls": true
+    },
+    "decorations": 8464,
+    "checks": 24043,
+    "solids": 6439,
+    "failures": [],
+    "pass": true,
+    "byEpic": [
+      {
+        "trunks": 309,
+        "sceneWalls": 0,
+        "arches": 120,
+        "rocks": 56,
+        "walls": 562
+      },
+      {
+        "trunks": 285,
+        "sceneWalls": 0,
+        "arches": 172,
+        "rocks": 26,
+        "walls": 658
+      },
+      {
+        "trunks": 212,
+        "sceneWalls": 60,
+        "arches": 126,
+        "rocks": 49,
+        "walls": 730
+      },
+      {
+        "trunks": 0,
+        "sceneWalls": 0,
+        "arches": 138,
+        "rocks": 25,
+        "walls": 785
+      },
+      {
+        "trunks": 321,
+        "sceneWalls": 0,
+        "arches": 160,
+        "rocks": 26,
+        "walls": 1619
+      }
+    ]
+  },
+  "DEEPWOOD_REPORT_WALK": {
+    "jumps": 0,
+    "arrived": true,
+    "updates": 850,
+    "distance": 5.334683418273926,
+    "elapsed": 97.74638399999822,
+    "relocations": 0,
+    "stalled": false,
+    "at": "-182.2407989501953, 21.272417068481445, -1595.41015625"
+  },
+  "sourceCommit": "d88ca008c7ab3cca47e8cd079062ae90267349b8",
+  "version": "0.102.9",
+  "allPass": true
+}

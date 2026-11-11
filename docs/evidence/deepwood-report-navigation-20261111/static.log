@@ -1,0 +1,4 @@
+CAMPAIGN_NAVIGATION_ROUTE 7032 checks PASS; old rejected 70; returns 10; live steps 525; walking distance 3124
+CAMPAIGN_EXPANSION_REVIEW 3362 checks passed; 82 outcome deliveries, safe circuit choices and connector routes
+Checkpoint travel: 1927 checks passed
+Story lobby resume: 33 checks passed

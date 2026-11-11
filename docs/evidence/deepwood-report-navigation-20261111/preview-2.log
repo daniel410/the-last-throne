@@ -1,0 +1,9 @@
+REPORT_NAVIGATION_SOURCES_AND_COMPILE_PASS
+[string "-- Exercise the actual arrow route against physical ground AND the live server gate...."]:9: current client has a valid return route
+[string "-- Exercise the actual arrow route against physical ground AND the live server gate...."]:9
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:11
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

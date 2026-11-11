@@ -1,0 +1,26 @@
+REPORT_NAVIGATION_SOURCES_AND_COMPILE_PASS
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+NAVIGATION_ALWAYS_ON PASS: distance, direct bearing, story support and elevation, streamed-floor fallback, settings, training and death
+DEEPWOOD_REPORT_NAVIGATION {"bodyBlockers":[{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.DW-03.ForestGround","edge":["DW-02","DW-03"],"at":"-550.3236083984375, 17.076908111572266, -1390.8626708984375"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.DW-05.ForestGround","edge":["DW-04","DW-05"],"at":"771.0665893554688, 37.00001525878906, -2262.171875"}],"floorIssues":[],"checks":1570,"steps":785,"relocations":[],"connectorSamples":414,"complete":true}
+[string "-- Exercise the actual arrow route against physical ground AND the live server gate...."]:9: return guide has full body clearance
+[string "-- Exercise the actual arrow route against physical ground AND the live server gate...."]:9
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:14
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

@@ -1,0 +1,36 @@
+{
+  "reportedStage": "Deepwood main story 7/7: Return to Eryn and report your findings",
+  "reportedBuild": "not supplied; latest published build is 0.102.8",
+  "previousAuditLimitation": "PathfindingService routes were checked independently; they were not the actual arrows and did not run DeepwoodRegionAccess.",
+  "oldClientRoute": {
+    "from": [
+      -726,
+      54,
+      -3317
+    ],
+    "to": [
+      -187,
+      18,
+      -1593
+    ],
+    "points": 2,
+    "unsupportedSamples": 70,
+    "samples": 201
+  },
+  "legacyPassMismatch": {
+    "at": [
+      -414.13327,
+      50.67205,
+      -3038.70996
+    ],
+    "physicalFloor": 50.67205,
+    "authorityFloor": 52.69521449,
+    "rootHeightInProbe": 3,
+    "serverRequiredMinimumY": 53.69521449
+  },
+  "physicsExitCapRegression": [
+    761.84991455,
+    33.1199646,
+    -2236.34228516
+  ]
+}
