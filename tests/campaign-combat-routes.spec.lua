@@ -42,7 +42,8 @@ for _,c in ipairs(C.chapters)do
    check(equal(R.entry(c,g,run,party),points[math.min(#points,2)]),'rejoin guides directly beyond confirmed clearings')
    for _,pack in ipairs(packs)do for _,unit in ipairs(pack)do run.kills[R.killId(c,g,run.missionId,unit)]=true end end
    check(R.clearedPrefix(c,g,packs,run)==#packs,'all confirmed packs recover without combat')
-   check(R.plan(c,g,13)==nil,'old run retains old encounter lifecycle')
+   check(R.plan(c,g,12)==nil,'pre-expansion run retains old lifecycle')
+   check(R.plan(c,g,13)~=nil,'existing expanded run gains spatial routes without reward migration')
   end
  end end
 end

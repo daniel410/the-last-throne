@@ -2,7 +2,7 @@
   {
     "command": "lua tests/campaign-combat-routes.spec.lua",
     "exit": 0,
-    "output": "Campaign combat routes: 65199 checks passed; 75 battles, 276 sites, real ground 94.3% larger\n"
+    "output": "Campaign combat routes: 65499 checks passed; 75 battles, 276 sites, real ground 94.3% larger\n"
   },
   {
     "command": "lua tests/deepwood-encounter-balance.spec.lua",

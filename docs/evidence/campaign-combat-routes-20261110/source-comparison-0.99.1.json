@@ -1,0 +1,10 @@
+{
+  "geometrySource": "1ac70cf7",
+  "finalSource": "d53b269b",
+  "changedGameFiles": [
+    "src/server/Story/DeepwoodService.luau"
+  ],
+  "artifact": "builds/0.99.1/TheLastThrone-0.99.1.rbxlx",
+  "sha256": "3aa7f1f217fe99f94f93f299a38e166729e42877f3bf635740f8fce504be1822",
+  "sameWorldSharedClientSources": true
+}

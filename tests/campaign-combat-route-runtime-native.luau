@@ -97,5 +97,13 @@ check(service.encounterState(players[4],'4')[c.id..':'..g.id]==nil,'not-yet-admi
 runs[players[4]].runId='route-qa';service.stepEncounters()
 check(service.encounterState(players[4],'4')[c.id..':'..g.id]~=nil,'late admitted member joins the current route automatically')
 check(#living()==#B.encounterWaves(c,g,3)[1],'late arrival does not duplicate or rewrite the active pack')
+-- The current saved expansion generation must improve on Continue as well.
+for _,m in ipairs(enemies:GetChildren())do m:Destroy()end
+for i=1,4 do journals[players[i]].flags[c.id..':'..g.id]=nil;runs[players[i]].kills={};runs[players[i]].balanceVersion=13;awards[players[i]]=0 end
+players[1].Character.PrimaryPart.Position=Vector3.new(table.unpack(R.entry(c,g,runs[players[1]],4)))
+service=create();service.interact(players[1],c.id,g.id);service.stepEncounters()
+local savedPack=living();check(#savedPack==#batches[1],'saved rule13 keeps identical initial population')
+for _,m in ipairs(savedPack)do m:FindFirstChildOfClass('Humanoid').Health=0;service.defeated(m)end
+check(#living()==0 and projection().waiting,'saved rule13 also leaves cleared ground instead of respawning')
 parent:Destroy()
 print('COMBAT_ROUTE_RUNTIME '..game.HttpService:JSONEncode(report));return report

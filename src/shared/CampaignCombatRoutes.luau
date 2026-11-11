@@ -1,6 +1,6 @@
 -- Spatial plans consume the exact production packs, never a reduced population.
 local Population=game and require(script.Parent.EncounterPopulation)or dofile('src/shared/EncounterPopulation.luau')
-local R={version=1,ruleVersion=14,spacing=92,approach=38}
+local R={version=1,ruleVersion=13,spacing=92,approach=38}
 local names={
  DW={'Convoy woodland trail','Broken-cart approach','Sanctuary paths','Watchtower approaches','Occupied keep perimeter','Twisted root trail','Altar approach'},
  GW={'Scout lantern trail','Silken watch road','Refuge approaches','Hollowbark rootway','Venomcoil banks','Scout extraction route','Northern ridge'},
