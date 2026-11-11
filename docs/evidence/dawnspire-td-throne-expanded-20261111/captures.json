@@ -1,0 +1,16 @@
+[
+  {
+    "file": "overview.jpg",
+    "sha256": "662df276daeb36c94715e1f248f0325131598d444ac29451a60f4d238283cbc5",
+    "sourceCommit": "fc7ee80bfbe073c65a81b2666ef1c8d97d05acca",
+    "mode": "isolated Studio Edit with final source injection, old0.100.0 host",
+    "realPlayerClient": false
+  },
+  {
+    "file": "throne.jpg",
+    "sha256": "2bf54857ccfbdb2a8ef8716900efe421654fd73016dc83603aac39b8bb07af1e",
+    "sourceCommit": "fc7ee80bfbe073c65a81b2666ef1c8d97d05acca",
+    "mode": "isolated Studio Edit with final source injection, old0.100.0 host",
+    "realPlayerClient": false
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "sourceCommit": "fc7ee80bfbe073c65a81b2666ef1c8d97d05acca",
+  "version": "0.100.2",
+  "results": [
+    {
+      "kind": "LOBBY_SIDE_QUESTS_NATIVE",
+      "scope": "isolated native constructors, marker states, text geometry; not real input or device acceptance",
+      "checks": 82
+    },
+    {
+      "kind": "DAWNSPIRE_THRONE_NATIVE",
+      "coverage": "Native geometry and actual personal projection and expansion integration; no real client/device/Teleport acceptance",
+      "checks": 3033,
+      "sceneryParts": 391,
+      "pass": true,
+      "routeSamples": 713
+    }
+  ]
+}
