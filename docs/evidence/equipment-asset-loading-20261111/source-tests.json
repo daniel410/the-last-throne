@@ -1,0 +1,12 @@
+{
+  "equipmentAssetLoading": {
+    "checks": 21,
+    "pass": true,
+    "command": "lua tests/equipment-asset-loading.spec.lua"
+  },
+  "arrivalLoadingRegression": {
+    "checks": 192,
+    "pass": true,
+    "command": "lua tests/arrival-loading.spec.lua"
+  }
+}

@@ -1,0 +1,57 @@
+ContentId: rbxassetid://125930347379082 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://119712782246516 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://124825290649611 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://122205085408075 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://122152502851499 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://114285371301153 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://118555737326705 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://82286199708395 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://88685501020728 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://124097635684065 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://87016661336967 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://101496271168683 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://75656002869818 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://119249030645968 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://94298946243705 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://85446010336183 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://135706649658831 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://126918373929127 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://108161156081985 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://82596225649809 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://75817121826228 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://85092901344189 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://90427189221041 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://130938966338330 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://120143933315769 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://71888804230122 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://93293621299549 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://135275386201923 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://111610252510810 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://119527577099781 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://132460926954614 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://138212965806098 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://103084256928023 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://134766072116171 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://87898515860536 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://82493427368399 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://92416668275380 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+Equipment assets could not be fully loaded: Workspace.EquipmentLoadingQA.elf_weapon_sentinel.String
+Equipment assets could not be fully loaded: Workspace.EquipmentLoadingQA.elf_weapon_sentinel.NockedArrow
+Equipment assets could not be fully loaded: Workspace.EquipmentLoadingQA.elf_weapon_veteran.String
+Equipment assets could not be fully loaded: Workspace.EquipmentLoadingQA.elf_weapon_veteran.NockedArrow
+Equipment assets could not be fully loaded: Workspace.EquipmentLoadingQA.elf_weapon_fine.String
+Equipment assets could not be fully loaded: Workspace.EquipmentLoadingQA.elf_weapon_fine.NockedArrow
+Equipment assets could not be fully loaded: Workspace.EquipmentLoadingQA.elf_weapon_traveler.String
+Equipment assets could not be fully loaded: Workspace.EquipmentLoadingQA.elf_weapon_traveler.NockedArrow
+EQUIPMENT_ASSET_LOADING_NATIVE {"result":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:42: Native asset fetch failed\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:42\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:43\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","pass":false,"checks":122}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:59: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:42: Native asset fetch failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:42
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:43
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:59
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

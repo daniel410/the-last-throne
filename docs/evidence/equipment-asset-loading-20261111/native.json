@@ -1,0 +1,10 @@
+{
+  "result": {
+    "models": 48,
+    "fetchFailures": 0,
+    "fetchCallbacks": 368,
+    "meshParts": 120
+  },
+  "pass": true,
+  "checks": 243
+}
