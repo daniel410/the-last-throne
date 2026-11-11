@@ -25,6 +25,16 @@ for id,z in pairs(C.zones)do
  check(n<=650,'per-zone detail instance ceiling '..id)
  report.zones[id]={clusters=clusters,parts=n,heroes=site:GetAttribute('BiomeHeroDetails'),backdrops=site:GetAttribute('RegionalBackdrops')};report.parts+=n
 end
+-- Regression: a moved forge gate must not raycast onto its own lintel.
+local terrainOnly=RaycastParams.new();terrainOnly.FilterType=Enum.RaycastFilterType.Include;terrainOnly.FilterDescendantsInstances={workspace.Terrain}
+local bounds=require(game.ReplicatedStorage.Shared.CampaignBounds)
+for _,p in ipairs(world.terrain:GetDescendants())do if p:IsA('BasePart')and p.Name=='ForgePillar'then
+ local bottom=p.Position.Y-p.Size.Y/2
+ local y=bounds.surface(p.Position.X,p.Position.Z)
+ local hit=workspace:Raycast(p.Position+Vector3.new(0,60,0),Vector3.new(0,-180,0),terrainOnly)
+ local ground=math.max(y or -math.huge,hit and hit.Position.Y or -math.huge)
+ check(bottom<=ground+2,'forge gate grounded: '..p:GetFullName()..' / '..bottom..' > '..ground)
+end end
 local n=#world.folder:GetDescendants()
 for i=1,5 do require(W.CampaignWorld).create(i,world)end
 check(#world.folder:GetDescendants()==n,'cached create is idempotent')

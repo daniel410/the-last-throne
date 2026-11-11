@@ -111,7 +111,15 @@ function M.apply(world,root)
   end
   return false
  end
- local floorRay=RaycastParams.new();floorRay.FilterType=Enum.RaycastFilterType.Include;floorRay.FilterDescendantsInstances={world.terrain,workspace.Terrain};floorRay.RespectCanCollide=true
+ local floorRay=RaycastParams.new();floorRay.FilterType=Enum.RaycastFilterType.Include;floorRay.RespectCanCollide=true
+ -- Never ground on the assembly being moved (legacy gates live inside terrain),
+ -- or on another prop. A ray hitting its own lintel lifted both feet into the air.
+ local floors={workspace.Terrain}
+ local floorNames={JourneyGround=true,JourneyPass=true,ForestGround=true,SnowGround=true,BasaltGround=true,Ground=true,ForestBedrock=true,TrailEmbankment=true,WalkableTerrace=true,WalkableRamp=true,TerraceLanding=true}
+ for _,p in ipairs(world.folder:GetDescendants())do
+  if p:IsA('BasePart')and p.CanCollide and (floorNames[p.Name]or p.Name:match('^Support_')or p.Name:match('^TrailSupport_')or p.Name:match('^ConnectedPath_')or p.Name:match('^SnowTrail_')or p.Name:match('^CalderaTrail_')or p.Name:match('^LateTrail_'))then table.insert(floors,p)end
+ end
+ floorRay.FilterDescendantsInstances=floors
  local units={}
  for _,site in ipairs(root:GetChildren())do
   for _,group in ipairs(site:GetChildren())do
