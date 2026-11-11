@@ -13,7 +13,7 @@ local function sample(p,key,width)
  local floor=workspace:Raycast(p+V(0,2,0),V(0,-10,0),ray)
  if not floor or math.abs(floor.Position.Y-p.Y)>1.1 then report.floorFailures[#report.floorFailures+1]={key=key,at={p.X,p.Y,p.Z},floor=floor and floor.Position.Y}end
  for _,part in ipairs(workspace:GetPartBoundsInBox(CFrame.new(p+V(0,3.7,0)),V(width or 12,5,12),params))do
-  if part.CanCollide and part.Transparency<.95 then local id=key..':'..part:GetFullName()
+  if part.CanCollide then local id=key..':'..part:GetFullName()
    if not seen[id]then seen[id]=true;report.blockers[#report.blockers+1]={key=key,part=part:GetFullName(),at={p.X,p.Y,p.Z}}end
   end
  end

@@ -20,6 +20,7 @@ function W.create(epic,world)
  if not epic then for id=1,#Content.epics do world=W.create(id,world)end;return world end
  local scope=W.scope(epic)
  if world and world.loadedEpics and world.loadedEpics[epic]then
+  require(script.Parent.CampaignRouteClearance).retireBlockouts(world)
   require(script.Parent.CampaignSceneryCollision).apply(world.folder.EpicWorldArt['EpicWorldArt_'..epic])
   require(script.Parent.CampaignSceneryCollision).apply(world.folder.CampaignExpansion['Epic'..epic])
   return world

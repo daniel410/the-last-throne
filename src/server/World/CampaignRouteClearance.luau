@@ -3,26 +3,30 @@
 local Shared=game.ReplicatedStorage.Shared
 local Content=require(Shared.CampaignContent)
 local Bounds=require(Shared.CampaignBounds)
-local Safety={version=1}
+local Areas=require(Shared.CampaignAreas)
+local Safety={version=2}
 local V=Vector3.new
-local retired={OccupiedRuins=true,RavineIceWall=true,IceCitadelPillar=true,IceCitadelLintel=true,CoolantPipe=true,EmergencyCoolantPipe=true,WatchtowerPillar=true,AncientTrunk=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true}
+local retired={ForestBoundary=true,OccupiedRuins=true,RavineIceWall=true,IceCitadelPillar=true,IceCitadelLintel=true,CoolantPipe=true,EmergencyCoolantPipe=true,WatchtowerPillar=true,AncientTrunk=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true}
 local movable={TreeCollision=true,GroveTrunk=true,OccupiedRuins=true,AltarObelisk=true,FrozenRouteMonument=true,CampBoard=true,BlueprintTable=true}
 local function distance(p,a,b)
  local d=V(b.X-a.X,0,b.Z-a.Z);local offset=V(p.X-a.X,0,p.Z-a.Z)
  local t=math.clamp(offset:Dot(d)/math.max(.001,d:Dot(d)),0,1)
  return (offset-d*t).Magnitude
 end
-function Safety.apply(world,art)
- require(script.Parent.EmberCalderaWorld).repairEntrance(world)
- local roads={}
- for _,p in ipairs(art:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail')and p.Transparency<.5 then table.insert(roads,p)end end
- local places=world.terrain:FindFirstChild('DeepwoodPlaces')
- if places then for _,p in ipairs(places:GetDescendants())do if p:IsA('BasePart')and p.Name=='ReturnLoop'and p.Transparency<.5 then table.insert(roads,p)end end end
+function Safety.retireBlockouts(world)
  -- StoryProps and the new architecture replace these exact blockout objects.
  -- Do not confuse an intentionally invisible foundation/boundary with a proxy.
  for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and (p:GetAttribute('StoryBlockoutProxy') or retired[p.Name] and p.Transparency>=.95)then
   p.CanCollide=false;p.CanQuery=false;p.CanTouch=false
  end end
+end
+function Safety.apply(world,art)
+ require(script.Parent.EmberCalderaWorld).repairEntrance(world)
+ local roads={}
+ for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail'or p.Name=='ExpansionWalkingLine')and p.Transparency<.5 then table.insert(roads,p)end end
+ local places=world.terrain:FindFirstChild('DeepwoodPlaces')
+ if places then for _,p in ipairs(places:GetDescendants())do if p:IsA('BasePart')and p.Name=='ReturnLoop'and p.Transparency<.5 then table.insert(roads,p)end end end
+ Safety.retireBlockouts(world)
  local params=OverlapParams.new();params.FilterType=Enum.RaycastFilterType.Include;params.FilterDescendantsInstances={world.terrain};params.RespectCanCollide=true
  local candidates={}
  for _,road in ipairs(roads)do
@@ -48,7 +52,17 @@ function Safety.apply(world,art)
   end
  end
  for _,s in pairs(world.spawns)do table.insert(anchors,s.Position)end
+ -- Expanded combat trails live beside the art root. Reserve their arrival
+ -- clearings too, including the invisible simple colliders of legacy TD trees.
+ for _,at in ipairs(anchors)do
+  for _,p in ipairs(workspace:GetPartBoundsInBox(CFrame.new(at+V(0,3.7,0)),V(48,5,48),params))do
+   if movable[p.Name]then candidates[p]=true end
+  end
+ end
  local function free(at,r)
+  for _,z in pairs(Content.zones)do for _,a in ipairs(z.expansionAreas or {})do
+   if Areas.contains(a,at.X,at.Z,r+8)or Areas.contains(a.connector,at.X,at.Z,r+8)then return false end
+  end end
   for _,road in ipairs(roads)do
    if math.abs(at.Y-road.Position.Y)<24 and distance(at,road.Position-road.CFrame.LookVector*road.Size.Z/2,road.Position+road.CFrame.LookVector*road.Size.Z/2)<road.Size.X/2+r+4 then return false end
   end

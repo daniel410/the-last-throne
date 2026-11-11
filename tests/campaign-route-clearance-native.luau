@@ -31,7 +31,7 @@ local ref={folder=world,terrain=world.TerrainBlockout,spawns={}}
 for p in pairs(spawns)do ref.spawns[p.Name:gsub('_SP$','')]=p end
 for epic=1,5 do
  local scope=World.scope(epic);local root=world.EpicWorldArt['EpicWorldArt_'..epic]
- check(root and root:GetAttribute('RouteClearanceVersion')==1,'clearance applied to epic '..epic)
+ check(root and root:GetAttribute('RouteClearanceVersion')==2,'clearance applied to epic '..epic)
  local moves=root:GetAttribute('RelocatedRoadsideProps')
  Art.create(ref,scope)
  check(root:GetAttribute('RelocatedRoadsideProps')==moves,'cached repeat never moves scenery again '..epic)
