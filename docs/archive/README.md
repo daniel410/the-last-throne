@@ -1,7 +1,8 @@
-# 기획 원문 보관
+# 과거 기획 조회
 
-[최초 제안서](the-last-throne-rpg-proposal-initial-2026-10-26.md)는 처음 전달된 파일의 내용을 그대로 보관한 기록이다. 작성일은2026-10-26이며, 최신 결정과 다른 게임명·레벨·클래스 전환·경제/Experience 구성이 포함돼 있다.
+현재 계약과 충돌하는 최초 제안서·8에픽 제안서 사본은 삭제했다. 필요한 경우 아래 고정 Git 이력에서 조회한다.
 
-현재 기준은 [통합 제안서](../../the-last-throne-rpg-proposal.md), [기획 결정](../decisions.md), [개발 기획안](../game-design.md)을 따른다.
+- [the-last-throne-rpg-proposal-initial-2026-10-26.md](https://github.com/daniel410/the-last-throne/blob/4fcf084a4d85416010213b07aedf3e0ed13b6da4/docs/archive/the-last-throne-rpg-proposal-initial-2026-10-26.md)
+- [eight-epic-proposal-before-five-epics-2026-10-30.md](https://github.com/daniel410/the-last-throne/blob/4fcf084a4d85416010213b07aedf3e0ed13b6da4/docs/archive/eight-epic-proposal-before-five-epics-2026-10-30.md)
 
-원문 안의 상대 링크는 최초 작성 위치의 맥락을 포함하므로 보관 폴더에서 그대로 열리지 않을 수 있다. 출처 탐색은 현재 문서의 링크를 사용한다. 원문의 바이트를 보존하기 위해 본문이나 링크를 수정하지 않았다.
+현재 기준은 [제품 계약](../product-contracts.md)과 [결정 조회](../decisions.md)를 따른다.

@@ -443,7 +443,7 @@ TD 전용은 TD 성장/전투 기록, RPG 전용은 캐릭터·전직·스킬트
 
 기반 자료는 TD의 [업데이트 제안서](../../throne-defense/docs/throne-chronicles-rpg-proposal.md), [제품 목표](../../throne-defense/GOAL.md), [Config](../../throne-defense/src/Shared/Config.lua), [영웅별 성장](../../throne-defense/docs/hero-class-progression.md), [미술 기준](../../throne-defense/docs/art-style-guide.md)이다. 기존 TD 코드/운영 기록과 RPG 기획 제안은 구분한다. 외부 자료의 오래된 사양보다 최신 사용자 결정을 우선한다.
 
-최초 원문은 [보관본](archive/the-last-throne-rpg-proposal-initial-2026-10-26.md), 변경 과정은 [이력](CHANGELOG.md)에 둔다. 분야별 규칙을 바꾸면 결정표와 관련 문서도 함께 갱신한다.
+최초 원문은 [보관본](https://github.com/daniel410/the-last-throne/blob/4fcf084a4d85416010213b07aedf3e0ed13b6da4/docs/archive/the-last-throne-rpg-proposal-initial-2026-10-26.md), 변경 과정은 [이력](CHANGELOG.md)에 둔다. 분야별 규칙을 바꾸면 결정표와 관련 문서도 함께 갱신한다.
 
 ## Deepwood 시나리오 구현 계약 보충
 

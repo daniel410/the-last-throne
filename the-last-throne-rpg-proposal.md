@@ -16,7 +16,7 @@
 
 이 문서는 전체 서사와 제품 완성상을 설명하는 현재 통합 제안서다. 사용자 결정은 [기획 결정표](docs/decisions.md), 실제 제작 기준은 [개발 기획안](docs/game-design.md), 전직·기술의 세부 규칙은 [클래스 설계](docs/class-advancement-and-skill-trees.md)를 따른다. 신규 인물·역사·상위 전직명·수치·콘텐츠 시간은 검증할 설계 제안이다.
 
-처음 전달된 원문은 [보관본](docs/archive/the-last-throne-rpg-proposal-initial-2026-10-26.md)에 내용 변경 없이 남겼다. 현재 문서에는 이후의 클래스 고정·두 전직 계열·Lv80 성장·마법 단계·자산 활용·Experience/지갑 연동을 반영했다.
+처음 전달된 원문은 [보관본](https://github.com/daniel410/the-last-throne/blob/4fcf084a4d85416010213b07aedf3e0ed13b6da4/docs/archive/the-last-throne-rpg-proposal-initial-2026-10-26.md)에 내용 변경 없이 남겼다. 현재 문서에는 이후의 클래스 고정·두 전직 계열·Lv80 성장·마법 단계·자산 활용·Experience/지갑 연동을 반영했다.
 
 ## 1 게임이 약속하는 경험
 
@@ -78,7 +78,7 @@
 
 10~15세 플레이어를 위한 모험 본편이다. Dawnspire의 수정 왕좌는 몬스터 세계로 통하는 거대한 문을 봉인한다. 중심 수정인 왕관의 심장(Crownheart)을 도둑맞자 보라색 포탈이 열리고 각지에 몬스터가 나타난다. 견습 수호자인 플레이어는 주민을 구하고 동료들과 도둑을 추적한다. 왕관의 심장을 되찾고 Veyr의 침공을 막는 것이 끝까지 이어지는 목표다. 친구를 돕고 용기를 얻으며, 지역이 다시 활기를 찾는 밝은 모험으로 전개한다.
 
-Crownheart와 Gloamwood는 영문 가칭이다. [승인 개요](docs/production/five-epic-adventure-story-2026-10-30.md)를 기준으로 하며, 기억 착취·강제 희생·통치 체제의 비밀을 본편의 설명 과제로 사용하지 않는다. [이전 8에픽 원고](docs/archive/eight-epic-proposal-before-five-epics-2026-10-30.md)는 참고로 보존한다.
+Crownheart와 Gloamwood는 영문 가칭이다. [승인 개요](docs/production/five-epic-adventure-story-2026-10-30.md)를 기준으로 하며, 기억 착취·강제 희생·통치 체제의 비밀을 본편의 설명 과제로 사용하지 않는다. [이전 8에픽 원고](https://github.com/daniel410/the-last-throne/blob/4fcf084a4d85416010213b07aedf3e0ed13b6da4/docs/archive/eight-epic-proposal-before-five-epics-2026-10-30.md)는 참고로 보존한다.
 
 ## 5 주요 인물과 관계
 
@@ -453,7 +453,7 @@ PM은 세계와 시스템의 의존성과 수용조건을 관리한다. 시나�
 - [Throne Defense 제품 목표](../throne-defense/GOAL.md): 기존 세계관·영웅·왕좌·포탈의 기반.
 - [TD 용어](../throne-defense/Terminology.md), [공유 Config](../throne-defense/src/Shared/Config.lua): 기존 게임 용어와 자산 원형.
 - [TD 미술 기준](../throne-defense/docs/art-style-guide.md): 색·무기·재질·시각 정체성.
-- [최초 원문 보관본](docs/archive/the-last-throne-rpg-proposal-initial-2026-10-26.md): 초기 제안의 기록. 현재 사양은 이 문서와 상세 문서를 따른다.
+- [최초 원문 보관본](https://github.com/daniel410/the-last-throne/blob/4fcf084a4d85416010213b07aedf3e0ed13b6da4/docs/archive/the-last-throne-rpg-proposal-initial-2026-10-26.md): 초기 제안의 기록. 현재 사양은 이 문서와 상세 문서를 따른다.
 
 상충하는 참고 자료가 있으면 최신 사용자 결정과 [기획 결정표](docs/decisions.md)를 기준으로 정리한다. 외부 TD 문서와 실제 코드는 이번 정리 작업에서 수정하지 않았다.
 

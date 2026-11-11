@@ -344,4 +344,4 @@ TD 쪽 업데이트 제안서 반영. 별도 Experience·Diamonds 미공유 초�
 
 전체 서사와5클래스·전투·협동·성장·자산·로드맵 작성. 이후 사용자 결정으로 클래스 외부 전직 금지·클래스별 두 전직 계열·스킬트리 구체화.
 
-최초 원문은 [보관본](archive/the-last-throne-rpg-proposal-initial-2026-10-26.md)에 남긴다. v0.1~v0.10은 문서 수정 순서이며 각 변경의 개별 시각은 별도 기록하지 않았다.
+최초 원문은 [보관본](https://github.com/daniel410/the-last-throne/blob/4fcf084a4d85416010213b07aedf3e0ed13b6da4/docs/archive/the-last-throne-rpg-proposal-initial-2026-10-26.md)에 남긴다. v0.1~v0.10은 문서 수정 순서이며 각 변경의 개별 시각은 별도 기록하지 않았다.

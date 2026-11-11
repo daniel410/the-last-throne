@@ -73,7 +73,7 @@ TD 파일/XML의 읽기 전용 표본 조사와 최신성 차이는 제작 입�
 
 DIR/ENG 문서 정리: [현재 상태](current-status.md)를 0.12.0 빌드 기록·코드와 대조하고, 사용자가 이후 확정한 물리 스킬 Stamina/마법 MP, 자원 없는 공통 액션, 숫자 스킬 키, 첫 전직 전3/완료 후5 슬롯을 구현 상태와 구분했다. README·AGENTS·계획/백로그 및 기존 기획/디자인/엔지니어링/QA 문서의 3+1 고정·공통 MP 미정 표현을 정렬했다. 과거 결정과 Studio 증거는 당시 결과로 보존했다.
 
-검증: `git diff --check` 통과, 변경 문서의 로컬 Markdown 링크 467개 확인·누락0, `git diff 1be1c39..HEAD -- src default.project.json VERSION`에 차이 없음. TD 이야기의 이동된 보관 경로는 로컬에서 확인했다. 게임 빌드·Studio·게시·실기기 검증은 이 문서 작업에서 새로 실행하지 않았다. 다음 담당은 [우선 작업](../../backlog.md#현재-우선-작업-최신-전투-계약-반영)의 ENG·DES·QA다.
+검증: `git diff --check` 통과, 변경 문서의 로컬 Markdown 링크 467개 확인·누락0, `git diff 1be1c39..HEAD -- src default.project.json VERSION`에 차이 없음. TD 이야기의 이동된 보관 경로는 로컬에서 확인했다. 게임 빌드·Studio·게시·실기기 검증은 이 문서 작업에서 새로 실행하지 않았다. 다음 담당은 [우선 작업](../tasks/04.md#현재-우선-작업-최신-전투-계약-반영)의 ENG·DES·QA다.
 
 ## 2026-10-28 전직별 슬롯 결정 정렬 · TLT-004/006/008/014/041/042/052
 
