@@ -17,3 +17,11 @@ RPG 지면은 기존 성소 단상이 담당한다. TD 원본 장식은 원래�
 `python3 tools/prepare-dawnspire-throne-native.py --preview` 후0.100.2 격리 호스트에서 검사: **사이드 안내82·왕좌/월드3,074 PASS**, **705 보행 표본**, 기본 월드454 Part. 분홍/연분홍 원본색·균일 배율·좌석 비율·뾰족 수정/주변 조각·금색 의자 부재와 기존300크기/경계·시설 접근/영웅별 복원 회귀를 검사했다. [로그](native-preview.log).
 
 이미지는 최종 기하 소스를 주입한 격리 TLT 편집 화면, 검토 조명 ClockTime10/Brightness2/Ambient90,90,100이다. 실계정/실제 클라이언트/기기·20인 FPS·사용자 미술 수용과 게시 검증은 후속이다. TD 프로젝트는 읽기 전용이며 새 메시/텍스처 업로드·Place 게시·릴리스 태그는 수행하지 않는다. 고정 빌드/최종 결과는 아래에 추가한다.
+
+## 최종 고정 빌드
+
+**0.100.3 성공**, 입력 `06104729c9251fa43087e01c14772ae33abe1628`을 main에 푸시한 후 단일 Place 생성. [빌드](build.json). 산출물 `builds/0.100.3/TheLastThrone-0.100.3.rbxlx`, SHA256 `9fec2100bacc59946beb7538b07fded7bd850567b09fb09f2a1e6be48c2edc83` 별도 재확인.
+
+`python3 tools/prepare-dawnspire-throne-native.py` 후 `run-in-roblox --place builds/0.100.3/TheLastThrone-0.100.3.rbxlx --script /tmp/tlt-dawnspire-throne-native.luau`:8모듈 Source 일치, **사이드 UI82·왕좌/월드3,073, 총3,155 PASS**,705 보행 표본. 예비 호스트에는 남아 있던 금색 소스 모듈이 최종 산출물에서는 제거돼 문법 검사 수가1개 줄었다. [원본](native.log)·[결과](native-result.json).
+
+`python3 tests/single-build.spec.py --artifact builds/0.100.3/TheLastThrone-0.100.3.rbxlx`: 역할10/도착 로딩192·실제 산출물 계약 PASS. `git diff --check` PASS. 이미지 LFS 포인터와 전송1/1(약465KB) 성공 확인. [화면 해시](captures.json). 코드/증거 main 커밋·푸시, 일반 빌드로 릴리스 태그/Roblox 게시 없음. 최종 미술/실기기·계정 수용은 QA 후속이다.
