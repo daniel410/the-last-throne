@@ -1,0 +1,12 @@
+HEADGEAR_HAIR_JSON {"error":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8: unequip removes owned hair and restores original\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","checks":141,"pass":false,"kind":"HEADGEAR_HAIR_NATIVE","cases":16,"loads":{"rbxassetid://123818886438150":"Success","rbxassetid://124342786696688":"Success","rbxassetid://113518745787964":"Success"}}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:55: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8: unequip removes owned hair and restores original
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:9
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:55
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

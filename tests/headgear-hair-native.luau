@@ -44,7 +44,7 @@ local ok,err=xpcall(function()
   check(c.TLTArmor_head==previous and c:GetAttribute('TLTArmorHeadError')=='MissingHeadgearHair','missing hair preserves complete prior headwear')
   template.Parent=f;A.sync(c);check(c.TLTArmor_head~=previous,'complete hairstyle recovered')
   c:SetAttribute('TLTEquippedHead','');A.sync(c)
-  check(not c:FindFirstChild('TLTArmor_head')and h.Transparency==.3,'unequip removes owned hair and restores original')
+  check(not c:FindFirstChild('TLTArmor_head')and math.abs(h.Transparency-.3)<.00001,'unequip removes owned hair and restores original')
   check(c.HumanoidRootPart.CFrame==before and c.Humanoid.Health==health,'root and health unchanged')
   c:Destroy()
  end
