@@ -4,7 +4,7 @@ return {
  EnhancementSucceeded='Enhancement succeeded! Equipment is now +%d. Cost: %d Gold plus materials. Result saved.',
  EnhancementFailed='Enhancement failed. Equipment stays +%d. Cost: %d Gold plus materials. Result saved.',
  EnhancementHelp='ENHANCEMENT GUIDE',
- EnhancementHelpIntro='Enhance supported equipment from +0 to +9. Each level adds 3% of its base Power, Armor and HP, up to 27%. Other stats and special effects do not change.',
+ EnhancementHelpIntro='Enhance supported equipment from +0 to +9. Each level adds 3% of its base Power, Defense, Max HP, Max MP or DEX, up to 27%. Special effects do not change.',
  EnhancementHelpRules='Each attempt costs %d Gold plus the listed Gems and Magic Stones, on success or failure. Diamonds are not charged. Gems are separate from Diamonds. Failure keeps your equipment and its level. Each attempt has the same chance for that target level; there is no pity bonus or guaranteed number of attempts.',
  EnhancementHelpRecovery='RECOVER MATERIALS resets equipment to +0 and returns 80% of materials spent on successful enhancements, rounded down by material type. Materials spent on failures are not returned. Old Ore and Cores are returned in their original types. Previously spent Gold is not refunded.',
  EnhancementHelpExchange='Earn Gems and Magic Stones in combat missions. Spend %d Gold to buy %d Gem, or exchange %d Gems + %d Gold for %d Magic Stone. Old Ore and Cores can be converted one at a time. Claim rewards into this hero\'s bag and unlock materials before use.',
