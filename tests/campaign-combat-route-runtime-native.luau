@@ -63,6 +63,7 @@ for index,batch in ipairs(batches)do
   service.stepEncounters();check(#living()==0,'other run and downed member cannot activate pack')
   local checkpoint=service.destination(players[1],'1');check(checkpoint:IsA('SpawnLocation')and checkpoint.Enabled,'real route respawn destination')
   check((checkpoint.Position-at).Magnitude<2,'respawn uses cleared route ground')
+  check(checkpoint~=service.destination(players[2],'2'),'another hero cannot move this pending respawn anchor')
  end
 end
 task.wait(.1)

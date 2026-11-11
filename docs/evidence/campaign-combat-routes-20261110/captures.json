@@ -1,0 +1,37 @@
+[
+  {
+    "file": "deepwood-review.png",
+    "sha256": "d512224ac6ee3a24fc17707f1b3101477a956be0ae9e9e5f1f46b70dac251c18",
+    "sourceVersion": "0.99.0",
+    "sourceCommit": "1ac70cf7bdfffbb4d7c5ab8be1280744b682f057",
+    "mode": "isolated Studio Edit, neutral lighting"
+  },
+  {
+    "file": "ember-caldera-review.png",
+    "sha256": "06ff12106e079760dbbc1fc055b5b0e9c5081258c93396f0494d6715e697d1a0",
+    "sourceVersion": "0.99.0",
+    "sourceCommit": "1ac70cf7bdfffbb4d7c5ab8be1280744b682f057",
+    "mode": "isolated Studio Edit, neutral lighting"
+  },
+  {
+    "file": "frozen-vale-review.png",
+    "sha256": "92b945cf42f5861f904a5dcd0091ed2d5e2a6f8118451be3a9c42d56249b2977",
+    "sourceVersion": "0.99.0",
+    "sourceCommit": "1ac70cf7bdfffbb4d7c5ab8be1280744b682f057",
+    "mode": "isolated Studio Edit, neutral lighting"
+  },
+  {
+    "file": "gloamwood-review.png",
+    "sha256": "4bd4a56b323de47097b20f2ef0d62abb89aea1adc18861e9b402a8d8862efc45",
+    "sourceVersion": "0.99.0",
+    "sourceCommit": "1ac70cf7bdfffbb4d7c5ab8be1280744b682f057",
+    "mode": "isolated Studio Edit, neutral lighting"
+  },
+  {
+    "file": "haunted-graveyard-review.png",
+    "sha256": "35c6dad9ec3a02cec4f7e32fa738c8885e35330bb8b381f69b4395681c678cfe",
+    "sourceVersion": "0.99.0",
+    "sourceCommit": "1ac70cf7bdfffbb4d7c5ab8be1280744b682f057",
+    "mode": "isolated Studio Edit, neutral lighting"
+  }
+]

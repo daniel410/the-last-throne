@@ -69,7 +69,9 @@ function Service.destination(player,heroId)
   local cleared=e.waiting and e.wave or e.wave-1
   local at=Vector3.new(table.unpack(e.routePoints[math.max(1,cleared)]))
   if cleared<1 then at=at+Vector3.new(-38,0,0)end
-  local name='RouteRespawn_'..e.chapter.id..'_'..e.goal.id
+  -- A shared chapter anchor can be moved by another party while this
+  -- character is loading. Keep one bounded checkpoint per player/hero.
+  local name='RouteRespawn_'..player.UserId..'_'..heroId
   local anchor=options.world.folder:FindFirstChild(name)
   if not anchor then anchor=Instance.new('SpawnLocation');anchor.Name=name;anchor.Anchored=true;anchor.Neutral=true;anchor.Enabled=true;anchor.Duration=0;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanQuery=false;anchor.CanTouch=false;anchor.Size=Vector3.new(1,1,1);anchor.Parent=options.world.folder end
   anchor.Position=at+Vector3.new(0,.1,0);return anchor

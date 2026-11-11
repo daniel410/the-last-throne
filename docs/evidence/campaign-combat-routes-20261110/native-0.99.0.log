@@ -1,0 +1,12 @@
+ContentId: rbxassethash://e3f17049d801a9aba2a3fecb56bcba72 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://9f652390a8f570eb1c9c469037d6382b failed due to: Request must have a PlaceId set.
+COMBAT_ROUTE_RUNTIME {"checks":735,"kind":"COMBAT_ROUTE_RUNTIME"}
+COMBAT_ROUTE_WORLD {"floorFailures":[],"kind":"COMBAT_ROUTE_WORLD","blockers":[],"checks":5623}
+EXPANSION_NATIVE_EPIC 1
+EXPANSION_NATIVE_EPIC 2
+EXPANSION_NATIVE_EPIC 3
+EXPANSION_NATIVE_EPIC 4
+EXPANSION_NATIVE_EPIC 5
+EXPANSION_NATIVE_GEOMETRY {"blockerCount":0,"samples":3974,"blockers":[],"parts":53297}
+CAMPAIGN_EXPANSION_NATIVE {"generationSeconds":0.825695583363995,"scope":"isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance","blockers":[],"checks":9192,"steps":246,"samples":3974,"incidents":82,"parts":53297}
+ROUTE_WORLD_READY
