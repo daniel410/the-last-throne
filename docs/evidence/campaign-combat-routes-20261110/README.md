@@ -41,3 +41,13 @@
 0.99.1은 영웅별 복귀 앵커 보강 빌드로 성공 생성했고 실제 서버743검사를 통과했다. [빌드](build-0.99.1.json)·[로그](native-0.99.1.log). 최초 엔진 실행은 이전 격리 검증기가 포트50312를 점유해 시작하지 못했으며 종료 확인 후 동일 고정 산출물의 엔진 검증을 재실행했다. [하네스 시작 실패](native-launch-retry.log). 빌드 실패나 게임 검증 통과로 혼동하지 않는다.
 
 최종0.99.2는 새 원정을 시작해야만 개선을 볼 수 있던 적용 범위를 보강해 기존 확장 원정13의 Continue에도 공간 분산을 적용한다. 새14와13의 기존 적/처치ID/수치/보상은 같으며1~12 콘텐츠는 그대로다. 최종 고정 빌드에 전체 엔진 검증을 다시 실행한다.
+
+## 최종0.99.2 마감
+
+입력 소스 `03ccc4cadedeb4163a2607c489412deff22c8d0c`을 원격에 고정하고 `python3 tools/build-game.py --source 03ccc4ca --record docs/evidence/campaign-combat-routes-20261110/build.json`으로 단일 Place를 성공 생성했다. [최종 빌드](build.json). 산출물 `builds/0.99.2/TheLastThrone-0.99.2.rbxlx`, SHA256 `46e36a36f137cd1a1222fc3cf72913d6cbb9ceaa09b8c27a88c51672d4df489e`를 재확인했다.
+
+`python3 tools/prepare-campaign-combat-routes-native.py` 후 `run-in-roblox --place builds/0.99.2/TheLastThrone-0.99.2.rbxlx --script /tmp/tlt-combat-routes-native.luau` 실행 완료. 실제 고정 산출물의15개 모듈 Source 일치와 전체 Luau 문법 검사 후 서버817·교전 기하5,623·기존 캠페인9,192, 총15,632 PASS. [결과](native-final.json)·[로그](native-final.log). 새/기존 경로의 바닥 누락/신체 차단0, 새14와 저장13의 다음 장소 접근 전 생성0, 다른 원정/다운 상태의 시작0, 늦게 입장한 원정원 합류·영웅별 독립 복귀·확정 처치 복구를 검사했다.
+
+`python3 tests/single-build.spec.py --artifact builds/0.99.2/TheLastThrone-0.99.2.rbxlx`: 역할10·도착 로딩192 및 실제 프로젝트/산출물 검사 PASS. [출력](artifact-check.log). 최종 정적 회귀 통과86,580개, 기준 커밋에서도 실패하는 기존 강화 검사1건은 위 설명대로 분리했다. 새 검사를 포함한 전체가 무조건 통과했다고 보고하지 않는다.
+
+검토 화면5장은0.99.0 편집 엔진 화면이다.0.99.2에서 같은 월드 기하를 전수 재생성해 검증했으며, 미술/실제 기기 수용은 여전히 별도다. Roblox 게시와 릴리스 태그는 만들지 않았다. 코드/문서/이미지는 선별 커밋·원격 푸시하며 이미지5개는 Git LFS 포인터와 전송을 확인한다.
