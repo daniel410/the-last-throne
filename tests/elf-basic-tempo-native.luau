@@ -40,17 +40,18 @@ local ok,err=xpcall(function()
   api.enemies[target]={id=1,model=target,root=tr,humanoid=th,mode='Idle',kind='Goblin',config=Config.Enemy.Goblin,
    posture=100000,postureImmuneUntil=0,lastPostureDamage=0,spawnPosition=tr.Position}
   c:SetAttribute('K0State','Dodge');Bow.forCharacter(c,99)
+  c:SetAttribute('K0ArrowReleaseProtocol',1);c:SetAttribute('K0ArrowRelease',nil);c:SetAttribute('K0ArrowVisual',nil)
   api.start(state,100,target);c:SetAttribute('K0AttackStartedAt',100)
   near(state.attack.definition.windup,release,'Server release respects DEX')
   near(state.attack.definition.windup+state.attack.definition.active+state.attack.definition.recovery,duration,'Server cadence respects DEX')
   api.sample(100+release-.00001)
   near(th.Health,100000,'No damage before the visible release')
   check(Bow.forCharacter(c,100+release-.00001).nocked,'Arrow is still nocked immediately before server release')
-  check(not Bow.forCharacter(c,100+release+.00001).nocked,'Arrow disappears at server release')
+  check(Bow.forCharacter(c,100+release+.00001).nocked,'Arrow waits for the actual due server sample')
   local firstHit
   for frame=0,math.ceil(duration*fps)-1 do
    local now=100+frame/fps;local before=th.Health;api.sample(now)
-   if th.Health<before then firstHit=firstHit or now-100 end
+   if th.Health<before then firstHit=firstHit or now-100;check(not Bow.forCharacter(c,now+.00001).nocked,'Confirmed server shot releases the visible arrow')end
    local after=th.Health;api.sample(now);near(th.Health,after,'Repeated sample cannot duplicate damage')
   end
   check(firstHit and firstHit>=release-.000001 and firstHit<=release+1/fps+.000001,'Damage occurs on first due server frame')

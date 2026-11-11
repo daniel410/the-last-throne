@@ -33,6 +33,9 @@ return {start=startAttack,shot=applyArrowShot,clear=clearAction,enemies=enemySta
   check(root.CFrame.LookVector:Dot(state.attack.direction)>.9999,'Accepted target turns bow and locked aim together')
   check(not h.AutoRotate,'Basic windup prevents movement AutoRotate')
   api.shot(state,101)
+  local confirmation=string.split(c:GetAttribute('K0ArrowRelease'),'|')
+  check(tonumber(confirmation[1])==state.attackSeq and tonumber(confirmation[2])==100 and tonumber(confirmation[3])==101,'Release metadata belongs to accepted attack and time')
+  check(tonumber(confirmation[4])==state.arrowSeq,'Release confirmation names the same projectile sequence')
   check((c:GetAttribute('K0ArrowTo')-er.Position).Magnitude<.001,'Selected side target is still usable after accepted turn')
   api.clear(state);check(h.AutoRotate==autoRotate,'Clear/cancel restores original rotation policy')
  end

@@ -73,6 +73,20 @@ function Motion.confirmPulse(character,skillId,pulse,attackSeq,firedAt,startedAt
  record.pulse=pulse;record.pulseAt=firedAt
 end
 
+-- Release metadata and projectile attributes may replicate in either order.
+local function confirmedRelease(character,record,now)
+ local payload=character:GetAttribute("K0ArrowRelease")
+ local visual=character:GetAttribute("K0ArrowVisual")
+ if type(payload)~="string"or #payload>128 or type(visual)~="string"then return end
+ local fields=string.split(payload,"|")
+ if #fields~=4 then return end
+ local seq,started,at,arrowSeq=tonumber(fields[1]),tonumber(fields[2]),tonumber(fields[3]),tonumber(fields[4])
+ if not validNumber(seq)or not validNumber(started)or not validNumber(at)or not validNumber(arrowSeq)
+  or seq~=character:GetAttribute("K0AttackSeq")or math.abs(started-record.started)>.002
+  or at<started or at>now+.002 or tonumber(visual:match("^(%d+)|"))~=arrowSeq then return end
+ return at
+end
+
 function Motion.forCharacter(character,now)
  if character:GetAttribute("K0ClassId")~="elf" then records[character]=nil;return nil end
  local mode=character:GetAttribute("K0State")
@@ -103,6 +117,7 @@ function Motion.forCharacter(character,now)
  if age>=total then records[character]=nil;return rest(rigType) end
  local release=d.windup
  local t
+ local awaitingShot=false
  local advancedMulti=d.advanced and type(d.pulses)=="number" and d.pulses>1
  local repeated=d.effect=="rapid" or advancedMulti
  if repeated and age>=d.windup then
@@ -123,6 +138,17 @@ function Motion.forCharacter(character,now)
  elseif age<release then t=.8*math.clamp(age/release,0,1)
  elseif age<release+.04 then t=.8+.1*(age-release)/.04
  else t=.9+.1*math.clamp((age-release-.04)/math.max(.01,total-release-.04),0,1) end
+ -- Predicted windup completion is not proof that the server fired. A delayed
+ -- or interrupted attack must keep its nocked arrow instead of faking a shot.
+ if not repeated and not d.advanced and character:GetAttribute("K0ArrowReleaseProtocol")==1 and age>=release then
+  local firedAt=confirmedRelease(character,record,now)
+  if not firedAt then t=.8;awaitingShot=true
+  else
+   local since=math.max(0,now-firedAt)*(record.rate or 1)
+   local remaining=total-(firedAt-record.started)*(record.rate or 1)
+   t=since<.04 and .8+.1*since/.04 or .9+.1*math.clamp((since-.04)/math.max(.01,remaining-.04),0,1)
+  end
+ end
  local reload=d==Config.BasicAttackProfiles.elf.attacks[1] and rigType~=Enum.HumanoidRigType.R6
  local pose=reload and Motion.sampleBasic(t,rigType) or Motion.sample(t)
  pose.time=t;pose.nocked=t<.8
@@ -152,6 +178,7 @@ function Motion.forCharacter(character,now)
    end
   end
  end
+ if awaitingShot then pose.nocked=true;pose.ikWeight=1 end
  -- Lob ground-targeted arrows upward; direct shots retain their reviewed aim.
  if d.form=="ground" then
   local fade=math.clamp((total-age)/math.max(.01,d.recovery),0,1)

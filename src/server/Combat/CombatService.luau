@@ -996,6 +996,11 @@ local function applyArrowShot(state, current)
 		state.character:SetAttribute("K0ArrowTo", endpoint)
 		state.character:SetAttribute("K0ArrowSeq", sequence)
 	end
+	if visualName == "K0ArrowVisual" then
+		-- Match draw release to this accepted attack and this exact projectile.
+		state.character:SetAttribute("K0ArrowRelease", string.format("%d|%.6f|%.6f|%d",
+			state.attackSeq, attack.started, current, sequence))
+	end
 	-- A single replicated snapshot avoids combining endpoints from two shots
 	-- if separate attributes arrive in different replication updates.
 	if attack.isSkill and attack.definition.effect == "throw" then
@@ -1926,6 +1931,8 @@ local function setupCharacter(player, character)
 		character:SetAttribute("K0AttackProfileId", attackProfile.id)
 		character:SetAttribute("K0AttackSeq", 0)
 		character:SetAttribute("K0DodgeSeq", 0)
+		character:SetAttribute("K0ArrowReleaseProtocol", 1)
+		character:SetAttribute("K0ArrowRelease", nil)
 		character:SetAttribute("K0ArrowSeq", 0)
 		character:SetAttribute("K0ArrowFrom", nil)
 		character:SetAttribute("K0ArrowTo", nil)

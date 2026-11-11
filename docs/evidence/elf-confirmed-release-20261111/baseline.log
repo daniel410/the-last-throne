@@ -1,0 +1,7 @@
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8: predicted release must not erase the arrow before a real server shot
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
