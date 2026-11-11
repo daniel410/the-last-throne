@@ -22,9 +22,13 @@ local function routes(world)
  for _,c in ipairs(C.chapters)do
   local previous=world.spawns[c.zone]and world.spawns[c.zone].Position
   if previous then for _,g in ipairs(c.goals)do
-   local targets=g.activity and g.activity.steps or {{position=g.position}}
+   local targets={}
+   for _,point in ipairs(c.combatRoutes and c.combatRoutes[g.id]and c.combatRoutes[g.id].points or {})do targets[#targets+1]={position=point}end
+   for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do targets[#targets+1]=step end
    for _,s in ipairs(targets)do if s.position then
-    local at=vec(s.position);local path=Route.route({previous.X,previous.Y,previous.Z},s.position)
+    local at=vec(s.position)
+    if c.combatRoutes and c.combatRoutes[g.id]then add(at-V(24,0,0),at+V(24,0,0));add(at-V(0,0,24),at+V(0,0,24))end
+    local path=Route.route({previous.X,previous.Y,previous.Z},s.position)
     for i=2,#path do add(vec(path[i-1]),vec(path[i]))end
     previous=at
    end end
@@ -125,12 +129,12 @@ function M.apply(world,root)
   if obstructed then
    local origin=m:GetPivot();local cf,size=m:GetBoundingBox();local base=cf.Position-V(0,size.Y/2,0)
    local found=false
-   for ring=1,12 do
+   for ring=1,16 do
     for _,dir in ipairs({V(1,0,0),V(-1,0,0),V(0,0,-1),V(0,0,1),V(1,0,-1),V(-1,0,-1),V(1,0,1),V(-1,0,1)})do
      local delta=dir*ring*24
-     local hit=workspace:Raycast(base+delta+V(0,8,0),V(0,-16,0),floorRay)
-     if hit and math.abs(hit.Position.Y-base.Y)<4 then
-      m:PivotTo(origin+delta)
+     local hit=workspace:Raycast(base+delta+V(0,80,0),V(0,-176,0),floorRay)
+     if hit and math.abs(hit.Position.Y-base.Y)<48 then
+      m:PivotTo(origin+delta+V(0,hit.Position.Y-base.Y,0))
       if not blocked(m)then found=true;break end
      end
     end

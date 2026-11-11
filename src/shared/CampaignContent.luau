@@ -63,8 +63,10 @@ function C.region(prefix)
  return r
 end
 load('QuestCompletionRewards').install(C)
+load('CampaignRouteFootprint').install(C)
 load('CampaignExpansion').install(C)
 load('CampaignStoryBeats').install(C)
 -- Final narrative review includes incident text; archived authoring remains save-compatible.
 load('CampaignStoryText').install(C)
+load('CampaignCombatRoutes').install(C)
 return C

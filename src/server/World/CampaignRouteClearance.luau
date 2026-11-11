@@ -5,7 +5,7 @@ local Content=require(Shared.CampaignContent)
 local Bounds=require(Shared.CampaignBounds)
 local Safety={version=1}
 local V=Vector3.new
-local retired={WatchtowerPillar=true,AncientTrunk=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true}
+local retired={OccupiedRuins=true,RavineIceWall=true,IceCitadelPillar=true,IceCitadelLintel=true,CoolantPipe=true,EmergencyCoolantPipe=true,WatchtowerPillar=true,AncientTrunk=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true}
 local movable={TreeCollision=true,GroveTrunk=true,OccupiedRuins=true,AltarObelisk=true,FrozenRouteMonument=true,CampBoard=true,BlueprintTable=true}
 local function distance(p,a,b)
  local d=V(b.X-a.X,0,b.Z-a.Z);local offset=V(p.X-a.X,0,p.Z-a.Z)
@@ -15,7 +15,7 @@ end
 function Safety.apply(world,art)
  require(script.Parent.EmberCalderaWorld).repairEntrance(world)
  local roads={}
- for _,p in ipairs(art:GetDescendants())do if p:IsA('BasePart')and p.Name=='WornCurvedRoute'and p.Transparency<.5 then table.insert(roads,p)end end
+ for _,p in ipairs(art:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail')and p.Transparency<.5 then table.insert(roads,p)end end
  local places=world.terrain:FindFirstChild('DeepwoodPlaces')
  if places then for _,p in ipairs(places:GetDescendants())do if p:IsA('BasePart')and p.Name=='ReturnLoop'and p.Transparency<.5 then table.insert(roads,p)end end end
  -- StoryProps and the new architecture replace these exact blockout objects.
@@ -35,6 +35,10 @@ function Safety.apply(world,art)
   local previous=world.spawns[c.zone]and world.spawns[c.zone].Position
   for _,g in ipairs(c.goals)do
    local p=V(table.unpack(g.position));table.insert(anchors,p)
+   local last=p
+   for _,point in ipairs(c.combatRoutes and c.combatRoutes[g.id]and c.combatRoutes[g.id].points or {})do
+    local at=V(table.unpack(point));table.insert(anchors,at);table.insert(lanes,{last,at});last=at
+   end
    local steps=g.activity and g.activity.steps
    for _,step in ipairs(steps and #steps>0 and steps or {{position=g.position}})do if step.position then
     local at=V(table.unpack(step.position));table.insert(anchors,at)

@@ -1,0 +1,6 @@
+{
+  "source": "d5330fd589680d23e3fb4a6a8d8f6a18162f1f98",
+  "command": "lua tests/difficulty-enhancement.spec.lua",
+  "exit": 1,
+  "output": "lua: tests/difficulty-enhancement.spec.lua:23: StoryLocked\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/difficulty-enhancement.spec.lua:23: in local 'complete'\n\ttests/difficulty-enhancement.spec.lua:54: in main chunk\n\t[C]: in ?\n"
+}

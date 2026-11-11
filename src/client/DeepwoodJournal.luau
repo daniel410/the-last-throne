@@ -14,6 +14,7 @@ local Settings=require(script.Parent.GameSettings)
 local Completion=require(RS.Shared.StoryCompletion)
 local Checkpoints=require(RS.Shared.CheckpointTravel)
 local Guide=require(RS.Shared.CampaignStoryGuide)
+local Routes=require(RS.Shared.CampaignCombatRoutes)
 local Journal={}
 function Journal.guidance(current,target,origin)
  if not current or current.training or not target or target.lobby then return nil end
@@ -33,6 +34,8 @@ function Journal.guidance(current,target,origin)
  local step=Progress.nextStep(current.journal,chapter,goal)
  local a=goal.activity
  local destination=Vector3.new(table.unpack(goal.position))
+ local plan=Routes.plan(chapter,goal,current.expedition and current.expedition.balanceVersion)
+ if plan then destination=Vector3.new(table.unpack(Routes.entry(chapter,goal,current.expedition,current.routePartySize or 1)))end
  local hint=#goal.enemies>0 and (a and a.mode=='battle' and 'Approach the ambush area. Stay alert for the raiders.' or Text.StoryBeginEncounter) or goal.id==chapter.quest.turnIn and 'Talk to '..chapter.quest.giver..' to report your findings.' or Text.StoryInteract
  if step then
   local count=(current.journal.activities or {})[chapter.id..':'..goal.id] or 0
@@ -53,9 +56,12 @@ function Journal.guidance(current,target,origin)
   elseif a.mode~='dialogue' then destination=Vector3.new(table.unpack(step.position)) end
  end
  if fight then
+  if fight.route and fight.position then destination=Vector3.new(table.unpack(fight.position))end
   hint=(fight.pillars or 0)>0 and string.format(Text.StoryPillarsLeft,fight.pillars)
    or fight.remaining>0 and string.format(Text.StoryEnemiesLeft,fight.remaining) or Text.StorySaving
-  if fight.waves and fight.waves>1 then hint=string.format('Wave %d / %d · %s',fight.wave,fight.waves,hint) end
+  if fight.route then
+   hint=fight.waiting and string.format('Route %d / %d · Follow the trail to the next enemy position.',fight.wave+1,fight.waves)or string.format('Route %d / %d · %s',fight.wave,fight.waves,hint)
+  elseif fight.waves and fight.waves>1 then hint=string.format('Wave %d / %d · %s',fight.wave,fight.waves,hint)end
  end
  return {position=destination,objective=goal.title,note=hint}
 end

@@ -1,0 +1,555 @@
+{
+  "chapters": [
+    {
+      "id": "DW-01",
+      "title": "Goblin Forest Trail",
+      "epic": "Deepwood",
+      "battles": 2,
+      "sites": 12,
+      "soloUnits": 30,
+      "fourPlayerUnits": 60,
+      "goals": "trail_guards, supply_guards",
+      "baseAreaIncreasePercent": 62.6
+    },
+    {
+      "id": "DW-02",
+      "title": "Broken Cart Clearing",
+      "epic": "Deepwood",
+      "battles": 2,
+      "sites": 8,
+      "soloUnits": 24,
+      "fourPlayerUnits": 48,
+      "goals": "cart_guards, escape_guards",
+      "baseAreaIncreasePercent": 0.0
+    },
+    {
+      "id": "DW-03",
+      "title": "Elder Tree Outpost",
+      "epic": "Deepwood",
+      "battles": 0,
+      "sites": 0,
+      "soloUnits": 0,
+      "fourPlayerUnits": 0,
+      "goals": "",
+      "baseAreaIncreasePercent": 53.6
+    },
+    {
+      "id": "DW-04",
+      "title": "Abandoned Watchtower",
+      "epic": "Deepwood",
+      "battles": 3,
+      "sites": 10,
+      "soloUnits": 36,
+      "fourPlayerUnits": 72,
+      "goals": "courtyard, west_link, east_link",
+      "baseAreaIncreasePercent": 87.7
+    },
+    {
+      "id": "DW-05",
+      "title": "Orc Occupied Ruins",
+      "epic": "Deepwood",
+      "battles": 5,
+      "sites": 20,
+      "soloUnits": 73,
+      "fourPlayerUnits": 145,
+      "goals": "ruin_guards, prison_guards, first_ogre, barracks, warlord",
+      "baseAreaIncreasePercent": 45.8
+    },
+    {
+      "id": "DW-06",
+      "title": "Corrupted Rootwood",
+      "epic": "Deepwood",
+      "battles": 3,
+      "sites": 7,
+      "soloUnits": 30,
+      "fourPlayerUnits": 60,
+      "goals": "root_west, root_east, root_depth",
+      "baseAreaIncreasePercent": 48.0
+    },
+    {
+      "id": "DW-07",
+      "title": "Black Root Altar",
+      "epic": "Deepwood",
+      "battles": 4,
+      "sites": 18,
+      "soloUnits": 91,
+      "fourPlayerUnits": 181,
+      "goals": "corridor, outer_west, outer_east, king_shaman",
+      "baseAreaIncreasePercent": 97.6
+    },
+    {
+      "id": "DW-Q1",
+      "title": "Supplies in the Marsh",
+      "epic": "Deepwood",
+      "battles": 1,
+      "sites": 4,
+      "soloUnits": 12,
+      "fourPlayerUnits": 24,
+      "goals": "marsh_slimes",
+      "baseAreaIncreasePercent": 62.6
+    },
+    {
+      "id": "DW-Q2",
+      "title": "The Stolen Food",
+      "epic": "Deepwood",
+      "battles": 1,
+      "sites": 11,
+      "soloUnits": 49,
+      "fourPlayerUnits": 97,
+      "goals": "goblin_king",
+      "baseAreaIncreasePercent": 140.2
+    },
+    {
+      "id": "DW-Q3",
+      "title": "Quarry Below the Falls",
+      "epic": "Deepwood",
+      "battles": 2,
+      "sites": 11,
+      "soloUnits": 55,
+      "fourPlayerUnits": 109,
+      "goals": "quarry_slimes, king_ogre",
+      "baseAreaIncreasePercent": 140.2
+    },
+    {
+      "id": "DW-Q4",
+      "title": "Remnants of the Red Battlefield",
+      "epic": "Deepwood",
+      "battles": 1,
+      "sites": 12,
+      "soloUnits": 67,
+      "fourPlayerUnits": 133,
+      "goals": "enraged_warlord",
+      "baseAreaIncreasePercent": 97.6
+    },
+    {
+      "id": "GW-01",
+      "title": "Lantern Trail",
+      "epic": "Gloamwood",
+      "battles": 1,
+      "sites": 3,
+      "soloUnits": 18,
+      "fourPlayerUnits": 36,
+      "goals": "trail",
+      "baseAreaIncreasePercent": 138.8
+    },
+    {
+      "id": "GW-02",
+      "title": "A Light in the Webs",
+      "epic": "Gloamwood",
+      "battles": 1,
+      "sites": 3,
+      "soloUnits": 18,
+      "fourPlayerUnits": 36,
+      "goals": "web_guards",
+      "baseAreaIncreasePercent": 100.6
+    },
+    {
+      "id": "GW-03",
+      "title": "Lantern Refuge",
+      "epic": "Gloamwood",
+      "battles": 0,
+      "sites": 0,
+      "soloUnits": 0,
+      "fourPlayerUnits": 0,
+      "goals": "",
+      "baseAreaIncreasePercent": 100.6
+    },
+    {
+      "id": "GW-04",
+      "title": "The Ancient Rootway",
+      "epic": "Gloamwood",
+      "battles": 2,
+      "sites": 5,
+      "soloUnits": 25,
+      "fourPlayerUnits": 49,
+      "goals": "roots, ent",
+      "baseAreaIncreasePercent": 100.6
+    },
+    {
+      "id": "GW-05",
+      "title": "Venomcoil Crossing",
+      "epic": "Gloamwood",
+      "battles": 2,
+      "sites": 5,
+      "soloUnits": 25,
+      "fourPlayerUnits": 49,
+      "goals": "centipedes, king",
+      "baseAreaIncreasePercent": 100.6
+    },
+    {
+      "id": "GW-06",
+      "title": "One Brave Step",
+      "epic": "Gloamwood",
+      "battles": 2,
+      "sites": 6,
+      "soloUnits": 31,
+      "fourPlayerUnits": 61,
+      "goals": "bats, rear_guard",
+      "baseAreaIncreasePercent": 100.6
+    },
+    {
+      "id": "GW-07",
+      "title": "The Queen of the Webs",
+      "epic": "Gloamwood",
+      "battles": 2,
+      "sites": 7,
+      "soloUnits": 37,
+      "fourPlayerUnits": 73,
+      "goals": "nest, queen",
+      "baseAreaIncreasePercent": 108.2
+    },
+    {
+      "id": "FV-01",
+      "title": "Blizzard Gate",
+      "epic": "Frozen Vale",
+      "battles": 2,
+      "sites": 8,
+      "soloUnits": 24,
+      "fourPlayerUnits": 48,
+      "goals": "snow_guards, troll",
+      "baseAreaIncreasePercent": 134.3
+    },
+    {
+      "id": "FV-02",
+      "title": "Ember Refuge",
+      "epic": "Frozen Vale",
+      "battles": 0,
+      "sites": 0,
+      "soloUnits": 0,
+      "fourPlayerUnits": 0,
+      "goals": "",
+      "baseAreaIncreasePercent": 104.0
+    },
+    {
+      "id": "FV-03",
+      "title": "Wolf Ravine",
+      "epic": "Frozen Vale",
+      "battles": 2,
+      "sites": 11,
+      "soloUnits": 42,
+      "fourPlayerUnits": 84,
+      "goals": "wolves, bear",
+      "baseAreaIncreasePercent": 92.5
+    },
+    {
+      "id": "FV-04",
+      "title": "Subglacial Archive",
+      "epic": "Frozen Vale",
+      "battles": 2,
+      "sites": 7,
+      "soloUnits": 30,
+      "fourPlayerUnits": 60,
+      "goals": "guards, elf_guards",
+      "baseAreaIncreasePercent": 104.0
+    },
+    {
+      "id": "FV-05",
+      "title": "Silent Battlefield",
+      "epic": "Frozen Vale",
+      "battles": 2,
+      "sites": 9,
+      "soloUnits": 42,
+      "fourPlayerUnits": 84,
+      "goals": "crossing, patrol",
+      "baseAreaIncreasePercent": 107.4
+    },
+    {
+      "id": "FV-06",
+      "title": "Frost Citadel Gate",
+      "epic": "Frozen Vale",
+      "battles": 2,
+      "sites": 7,
+      "soloUnits": 31,
+      "fourPlayerUnits": 61,
+      "goals": "gate_guards, king_golem",
+      "baseAreaIncreasePercent": 92.5
+    },
+    {
+      "id": "FV-07",
+      "title": "Ice Mirror Palace",
+      "epic": "Frozen Vale",
+      "battles": 2,
+      "sites": 7,
+      "soloUnits": 31,
+      "fourPlayerUnits": 61,
+      "goals": "hall, queen",
+      "baseAreaIncreasePercent": 104.0
+    },
+    {
+      "id": "FV-Q1",
+      "title": "A Name in the Snow",
+      "epic": "Frozen Vale",
+      "battles": 0,
+      "sites": 0,
+      "soloUnits": 0,
+      "fourPlayerUnits": 0,
+      "goals": "",
+      "baseAreaIncreasePercent": 134.3
+    },
+    {
+      "id": "FV-Q2",
+      "title": "Frostfang Supply Cave",
+      "epic": "Frozen Vale",
+      "battles": 1,
+      "sites": 2,
+      "soloUnits": 7,
+      "fourPlayerUnits": 13,
+      "goals": "guardian",
+      "baseAreaIncreasePercent": 148.0
+    },
+    {
+      "id": "FV-Q3",
+      "title": "Blue Lake Return Route",
+      "epic": "Frozen Vale",
+      "battles": 1,
+      "sites": 2,
+      "soloUnits": 7,
+      "fourPlayerUnits": 13,
+      "goals": "guardian",
+      "baseAreaIncreasePercent": 138.3
+    },
+    {
+      "id": "FV-Q4",
+      "title": "Ancient Glacier Watch",
+      "epic": "Frozen Vale",
+      "battles": 1,
+      "sites": 2,
+      "soloUnits": 7,
+      "fourPlayerUnits": 13,
+      "goals": "guardian",
+      "baseAreaIncreasePercent": 148.0
+    },
+    {
+      "id": "EC-01",
+      "title": "Ash Gate",
+      "epic": "Ember Caldera",
+      "battles": 2,
+      "sites": 9,
+      "soloUnits": 36,
+      "fourPlayerUnits": 72,
+      "goals": "ash_raiders, gear",
+      "baseAreaIncreasePercent": 127.7
+    },
+    {
+      "id": "EC-02",
+      "title": "Forge City",
+      "epic": "Ember Caldera",
+      "battles": 0,
+      "sites": 0,
+      "soloUnits": 0,
+      "fourPlayerUnits": 0,
+      "goals": "",
+      "baseAreaIncreasePercent": 86.5
+    },
+    {
+      "id": "EC-03",
+      "title": "Collapsed Resonance Mine",
+      "epic": "Ember Caldera",
+      "battles": 2,
+      "sites": 9,
+      "soloUnits": 42,
+      "fourPlayerUnits": 84,
+      "goals": "mine_guards, worm",
+      "baseAreaIncreasePercent": 86.5
+    },
+    {
+      "id": "EC-04",
+      "title": "Split Coolant Canals",
+      "epic": "Ember Caldera",
+      "battles": 2,
+      "sites": 8,
+      "soloUnits": 36,
+      "fourPlayerUnits": 72,
+      "goals": "canal_guards, east_guards",
+      "baseAreaIncreasePercent": 86.5
+    },
+    {
+      "id": "EC-05",
+      "title": "Ancestral Design Vault",
+      "epic": "Ember Caldera",
+      "battles": 1,
+      "sites": 3,
+      "soloUnits": 18,
+      "fourPlayerUnits": 36,
+      "goals": "vault_guards",
+      "baseAreaIncreasePercent": 86.5
+    },
+    {
+      "id": "EC-06",
+      "title": "Geothermal Heart Testworks",
+      "epic": "Ember Caldera",
+      "battles": 2,
+      "sites": 6,
+      "soloUnits": 31,
+      "fourPlayerUnits": 61,
+      "goals": "outer_guards, magma_golem",
+      "baseAreaIncreasePercent": 86.5
+    },
+    {
+      "id": "EC-07",
+      "title": "Great Furnace",
+      "epic": "Ember Caldera",
+      "battles": 2,
+      "sites": 8,
+      "soloUnits": 43,
+      "fourPlayerUnits": 85,
+      "goals": "furnace_guards, overlord",
+      "baseAreaIncreasePercent": 106.2
+    },
+    {
+      "id": "EC-Q1",
+      "title": "A Worker's Lost Mark",
+      "epic": "Ember Caldera",
+      "battles": 0,
+      "sites": 0,
+      "soloUnits": 0,
+      "fourPlayerUnits": 0,
+      "goals": "",
+      "baseAreaIncreasePercent": 127.7
+    },
+    {
+      "id": "EC-Q2",
+      "title": "Ember Raider Nest",
+      "epic": "Ember Caldera",
+      "battles": 1,
+      "sites": 2,
+      "soloUnits": 7,
+      "fourPlayerUnits": 13,
+      "goals": "boss",
+      "baseAreaIncreasePercent": 147.5
+    },
+    {
+      "id": "EC-Q3",
+      "title": "Volcano Shaman Altar",
+      "epic": "Ember Caldera",
+      "battles": 1,
+      "sites": 2,
+      "soloUnits": 7,
+      "fourPlayerUnits": 13,
+      "goals": "boss",
+      "baseAreaIncreasePercent": 121.7
+    },
+    {
+      "id": "EC-Q4",
+      "title": "Caldera Titan Basin",
+      "epic": "Ember Caldera",
+      "battles": 1,
+      "sites": 2,
+      "soloUnits": 7,
+      "fourPlayerUnits": 13,
+      "goals": "boss",
+      "baseAreaIncreasePercent": 140.5
+    },
+    {
+      "id": "HG-01",
+      "title": "Mist Gate",
+      "epic": "Haunted Graveyard",
+      "battles": 2,
+      "sites": 5,
+      "soloUnits": 30,
+      "fourPlayerUnits": 60,
+      "goals": "mist, lantern_guards",
+      "baseAreaIncreasePercent": 140.0
+    },
+    {
+      "id": "HG-02",
+      "title": "Friends at the Old Shelter",
+      "epic": "Haunted Graveyard",
+      "battles": 0,
+      "sites": 0,
+      "soloUnits": 0,
+      "fourPlayerUnits": 0,
+      "goals": "",
+      "baseAreaIncreasePercent": 95.0
+    },
+    {
+      "id": "HG-03",
+      "title": "Lumi Secret Passage",
+      "epic": "Haunted Graveyard",
+      "battles": 2,
+      "sites": 5,
+      "soloUnits": 30,
+      "fourPlayerUnits": 60,
+      "goals": "crypt, mummy",
+      "baseAreaIncreasePercent": 95.0
+    },
+    {
+      "id": "HG-04",
+      "title": "The Alliance Opens the Gate",
+      "epic": "Haunted Graveyard",
+      "battles": 2,
+      "sites": 5,
+      "soloUnits": 25,
+      "fourPlayerUnits": 49,
+      "goals": "wall, commander",
+      "baseAreaIncreasePercent": 95.0
+    },
+    {
+      "id": "HG-05",
+      "title": "The Black Throne Devices",
+      "epic": "Haunted Graveyard",
+      "battles": 2,
+      "sites": 5,
+      "soloUnits": 25,
+      "fourPlayerUnits": 49,
+      "goals": "hellhounds, lich",
+      "baseAreaIncreasePercent": 140.0
+    },
+    {
+      "id": "HG-06",
+      "title": "The Royal Tomb",
+      "epic": "Haunted Graveyard",
+      "battles": 2,
+      "sites": 4,
+      "soloUnits": 19,
+      "fourPlayerUnits": 37,
+      "goals": "knights, sovereign",
+      "baseAreaIncreasePercent": 95.0
+    },
+    {
+      "id": "HG-07",
+      "title": "Together We Bring Back the Light",
+      "epic": "Haunted Graveyard",
+      "battles": 2,
+      "sites": 6,
+      "soloUnits": 31,
+      "fourPlayerUnits": 61,
+      "goals": "guard, veyr",
+      "baseAreaIncreasePercent": 95.0
+    }
+  ],
+  "viewedReferences": [
+    {
+      "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+      "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+    },
+    {
+      "path": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+      "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+    },
+    {
+      "path": "assets/maps/frozen-vale-v1/frozen-vale-masterplan.png",
+      "sha256": "a7127a495ab0740d0fb526f571744342c86e81ec3c76eb84e808b1e53460531e"
+    },
+    {
+      "path": "assets/maps/ember-caldera-v1/ember-caldera-masterplan.png",
+      "sha256": "63eb1ed5828dadd8eacb66f79ad9270ba9307fdf7d0e760cb424b936794f9ed2"
+    },
+    {
+      "path": "assets/maps/haunted-graveyard-v1/haunted-graveyard-masterplan.png",
+      "sha256": "828534774ae725434dedcec8904076f1fa9c1246f69630dfaa6e5bf5fbe26e6c"
+    },
+    {
+      "path": "assets/marketing/loading-screens-v1/frozen-vale.png",
+      "sha256": "dbfc729167159d6b3e4a8afb75312e4aac774ceea8a1b5779baf31606268a0c5"
+    },
+    {
+      "path": "assets/marketing/loading-screens-v1/ember-caldera.png",
+      "sha256": "be8c4d1c51858a1e6c5f507dba293d30474af9b11a71eebc3345a3adcdd3aac2"
+    },
+    {
+      "path": "assets/concepts/2026-10-31-npc-cast-v1/haunted-graveyard.png",
+      "sha256": "526bfad46ba76c3bf8a0898429d11aa65f527220f38bb0a9879eaebaff6f7407"
+    }
+  ]
+}

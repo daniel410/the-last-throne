@@ -5,6 +5,7 @@ local Effects=require(ReplicatedStorage.Shared.EquipmentEffects)
 local Content=require(ReplicatedStorage.Shared.CampaignContent)
 local Progress=require(ReplicatedStorage.Shared.DeepwoodProgress)
 local Balance=require(ReplicatedStorage.Shared.DeepwoodEncounterBalance)
+local Routes=require(ReplicatedStorage.Shared.CampaignCombatRoutes)
 local Rig=require(script.Parent.Parent.World.TrainingField)
 local Sizing=require(script.Parent.Parent.World.StoryMonsterSizing)
 local QuestLog=require(ReplicatedStorage.Shared.DeepwoodQuestLog)
@@ -25,6 +26,18 @@ local function context(player)
 end
 local function state(player,heroId) return options.inventory.storyState(player,heroId) end
 local function active(player) return options.heroSession.getActiveHero(player) end
+local function admittedCount(player,run)
+ local count=1
+ if run then for _,p in ipairs(Players:GetPlayers())do if p~=player then
+  local h=active(p);local a=h and not h.training and options.inventory.expedition(p,h.heroId)
+  if a and a.runId==run.runId then count=math.min(4,count+1)end
+ end end end
+ return count
+end
+local function entryPosition(c,g,run,count)
+ local plan=Routes.plan(c,g,run and run.balanceVersion)
+ if plan then return Vector3.new(table.unpack(Routes.entry(c,g,run,count or 1)))end
+end
 -- Read-only encounter projection: clients can explain the current blocker,
 -- but cannot declare a kill or complete an objective from this data.
 function Service.encounterState(player,heroId)
@@ -33,6 +46,7 @@ function Service.encounterState(player,heroId)
   if e.participants[player]==heroId then
    local ctx,root=context(player)
    result[e.chapter.id..':'..e.goal.id]={wave=e.wave,waves=e.waveCount,remaining=e.remaining,pillars=e.shield and e.pillars or 0,
+    route=e.routePoints~=nil,waiting=e.waiting==true,routeTitle=e.routeTitle,
     position={e.position.X,e.position.Y,e.position.Z},boss=e.goal.bossEncounter~=nil or (e.chapter.epic or 1)>=2 and e.boss~=nil,active=not e.completed and ctx~=nil and ctx.heroId==heroId and root~=nil and (root.Position-e.position).Magnitude<=110}
   end
  end
@@ -45,10 +59,21 @@ local function publish(player,message,notice,completion)
  local activityState,dialogue
  if activities then activityState,dialogue=activities.projection(player,h.heroId) end
  local offer=offers[player];local ctx,root=context(player)
+ local admission=options.inventory.expedition(player,h.heroId)
  if offer and (not ctx or ctx.heroId~=offer.heroId or player.Character~=offer.character or not root or (root.Position-offer.node.part.Position).Magnitude>16) then offers[player]=nil;offer=nil end
- remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),supporter=companion and companion.details(player),heroId=h.heroId,training=h.training,journal=s,expedition=options.inventory.expedition(player,h.heroId),encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
+ remote:FireClient(player,{questOffer=offer and {id=offer.node.chapter.id,discovery=offer.discovery} or nil,completion=completion,notice=notice,activities=activityState,dialogue=dialogue,selene=companion and companion.projection(player),supporter=companion and companion.details(player),routePartySize=admittedCount(player,admission),heroId=h.heroId,training=h.training,journal=s,expedition=admission,encounters=Service.encounterState(player,h.heroId),message=message,mode=player:GetAttribute('K0SessionPhase')})
 end
 function Service.destination(player,heroId)
+ local run=options.inventory.expedition(player,heroId)
+ for _,e in pairs(encounters)do if e.routePoints and not e.completed and e.participants[player]==heroId and run and run.runId==e.runId then
+  local cleared=e.waiting and e.wave or e.wave-1
+  local at=Vector3.new(table.unpack(e.routePoints[math.max(1,cleared)]))
+  if cleared<1 then at=at+Vector3.new(-38,0,0)end
+  local name='RouteRespawn_'..e.chapter.id..'_'..e.goal.id
+  local anchor=options.world.folder:FindFirstChild(name)
+  if not anchor then anchor=Instance.new('SpawnLocation');anchor.Name=name;anchor.Anchored=true;anchor.Neutral=true;anchor.Enabled=true;anchor.Duration=0;anchor.Transparency=1;anchor.CanCollide=false;anchor.CanQuery=false;anchor.CanTouch=false;anchor.Size=Vector3.new(1,1,1);anchor.Parent=options.world.folder end
+  anchor.Position=at+Vector3.new(0,.1,0);return anchor
+ end end
  local s=state(player,heroId)
  if s and s.expansionVersion==1 then
   local admitted=s.expeditionMission and Content.byId[s.expeditionMission]
@@ -250,7 +275,8 @@ end
 
 spawnWave=function(e)
  local batch=e.batches[e.nextWave];if not batch then return end
- e.nextWave=e.nextWave+1;e.wave=e.wave+1
+ if e.routePoints then e.position=Vector3.new(table.unpack(e.routePoints[e.nextWave]))end
+ e.waiting=false;e.nextWave=e.nextWave+1;e.wave=e.wave+1
  for index,spec in ipairs(batch) do
   local a=index*math.pi*2/#batch
   local p=e.position+Vector3.new(math.cos(a)*13,-1,math.sin(a)*13)
@@ -269,6 +295,9 @@ spawnWave=function(e)
 end
 local function begin(player,node,automatic)
  local c,g=node.chapter,node.goal;local position=node.part.Position
+ local hero=active(player);local admission=hero and options.inventory.expedition(player,hero.heroId)
+ local route=Routes.plan(c,g,admission and admission.balanceVersion)
+ if route then position=entryPosition(c,g,admission,admittedCount(player,admission))end
  local ctx=eligible(player,c,g,automatic and 36 or 16,position);if not ctx then publish(player,'Complete the earlier objectives and move closer to this marker.');return end
  local run=options.inventory.expedition(player,ctx.heroId)
  local key=c.id..':'..g.id..':'..(run and run.runId or 'legacy');local e=encounters[key]
@@ -287,7 +316,21 @@ local function begin(player,node,automatic)
  end end
  e.partySize=count;e.packSize=Balance.packCapacity(c,g,count);e.batches=Balance.encounterWaves(c,g,count)
  e.waveCount=#e.batches;e.wave=0;e.nextWave=1;e.guardsRemaining=0
- spawnWave(e)
+ e.routePoints=Routes.points(c,g,e.waveCount,e.rulesVersion);e.routeTitle=route and route.title
+ if e.routePoints then
+  -- Recover only the prefix saved for every admitted member. Unsaved/partial
+  -- packs stay playable; the existing stable kill receipts reject duplicate pay.
+  local cleared=e.waveCount
+  for ally,id in pairs(e.participants)do cleared=math.min(cleared,Routes.clearedPrefix(c,g,e.batches,options.inventory.expedition(ally,id)))end
+  e.wave=cleared;e.nextWave=cleared+1
+  if cleared==e.waveCount then
+   e.completed=true
+   for ally,id in pairs(e.participants)do enqueue(ally,id,c,g)end
+   task.delay(3,function()destroyEncounter(e)end)
+  else
+   e.position=Vector3.new(table.unpack(e.routePoints[e.nextWave]));e.waiting=true
+  end
+ else spawnWave(e)end
  for ally in pairs(e.participants) do publish(ally,g.activity and g.activity.intro or 'Encounter started. Watch enemy attack warnings and use the open ground.') end
 end
 local function offerQuest(player,node,discovery)
@@ -299,6 +342,7 @@ local function offerQuest(player,node,discovery)
 end
 function Service.acceptQuest(player,id)
  local offer=offers[player];local ctx,root=context(player)
+ local admission=options.inventory.expedition(player,h.heroId)
  if not offer or offer.node.chapter.id~=id or not ctx or ctx.heroId~=offer.heroId or player.Character~=offer.character or not root or (root.Position-offer.node.part.Position).Magnitude>16 then return false end
  local journal=state(player,ctx.heroId)
  if not journal or not Progress.canAccept(journal,offer.node.chapter) then return false end
@@ -321,7 +365,9 @@ local function interact(player,node)
    return
   elseif node.goal==node.chapter.goals[1] and Progress.canAccept(journal,node.chapter) then offerQuest(player,node,true);return end
  end
- local ctx=node and eligible(player,node.chapter,node.goal,16,node.part.Position)
+ local hero=active(player);local admission=hero and options.inventory.expedition(player,hero.heroId)
+ local position=node and (#node.goal.enemies>0 and entryPosition(node.chapter,node.goal,admission,admittedCount(player,admission))or node.part.Position)
+ local ctx=node and eligible(player,node.chapter,node.goal,16,position or node.part.Position)
  if not ctx then publish(player,'Complete the earlier objectives and move closer to this marker.');return end
  if activities and activities.interact(player,node) then return end
  if #node.goal.enemies>0 then begin(player,node)
@@ -366,9 +412,36 @@ function Service.defeated(model,_winner)
   for p in pairs(e.participants) do publish(p,'The encounter is clear.') end
   task.delay(3,function() destroyEncounter(e) end)
  elseif e.remaining==0 and e.nextWave<=#e.batches then
-  spawnWave(e)
-  for p in pairs(e.participants) do publish(p,'The next group is approaching. Watch their attack warnings!') end
+  if e.routePoints then
+   e.waiting=true;e.position=Vector3.new(table.unpack(e.routePoints[e.nextWave]))
+   for p in pairs(e.participants)do publish(p,'This stretch is clear. Follow the trail to the next enemy position.')end
+  else
+   spawnWave(e)
+   for p in pairs(e.participants) do publish(p,'The next group is approaching. Watch their attack warnings!') end
+  end
  end
+end
+-- Only a living admitted member approaching the next clearing activates its pack.
+function Service.stepEncounters()
+ for _,e in pairs(encounters)do if e.routePoints and not e.completed then
+  local count=0;for _ in pairs(e.participants)do count=count+1 end
+  for _,p in ipairs(Players:GetPlayers())do if not e.participants[p]and count<4 then
+   local h=active(p);local run=h and not h.training and options.inventory.expedition(p,h.heroId)
+   local journal=h and state(p,h.heroId)
+   if run and run.runId==e.runId and journal and Progress.available(journal,e.chapter,e.goal)then
+    e.participants[p]=h.heroId;count=count+1;publish(p,'Join your party on the current stretch of the route.')
+   end
+  end end
+  if e.waiting then for p,heroId in pairs(e.participants)do
+   local ctx,root=context(p);local run=ctx and options.inventory.expedition(p,heroId)
+   if ctx and ctx.heroId==heroId and run and run.runId==e.runId and root and (root.Position-e.position).Magnitude<=Routes.approach then
+    spawnWave(e)
+    for ally in pairs(e.participants)do publish(ally,'Enemies ahead. Clear this stretch of the route.')end
+    break
+   end
+  end
+  end
+ end end
 end
 function Service.travelCheckpoint(player,id)
  if not travelCheckpoint then return false end
@@ -438,7 +511,9 @@ function Service.start(settings)
    local ctx=context(player);if ctx then options.heroSession.restartAdventure(player) end
   elseif action=='Choose' and (argument=='sanctuary' or argument=='shared') then
    local node=options.world.nodes['DW-07:restoration']
-   local ctx=node and eligible(player,node.chapter,node.goal,16,node.part.Position)
+   local hero=active(player);local admission=hero and options.inventory.expedition(player,hero.heroId)
+ local position=node and (#node.goal.enemies>0 and entryPosition(node.chapter,node.goal,admission,admittedCount(player,admission))or node.part.Position)
+ local ctx=node and eligible(player,node.chapter,node.goal,16,position or node.part.Position)
    if ctx then enqueue(player,ctx.heroId,node.chapter,node.goal,argument) end
   end
  end)
@@ -460,16 +535,21 @@ function Service.start(settings)
    local hero=active(p);local ctx,root=context(p)
    if hero and not hero.training and ctx and root then
     local s=state(p,ctx.heroId)
+    local admission=options.inventory.expedition(p,ctx.heroId)
+    local rules=admission and admission.balanceVersion
     -- Battle markers hide their prompts; accepted side quests need the same proximity entry.
     -- Progress.available retains acceptance, prerequisites and expedition mission gates.
     if s then for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
-     if g.activity and g.activity.mode=='battle' and Progress.available(s,c,g) and not encounters[c.id..':'..g.id..':'..((options.inventory.expedition(p,ctx.heroId)or {}).runId or 'legacy')] then
+     if #g.enemies>0 and (g.activity and g.activity.mode=='battle' or Routes.enabled(rules)) and Progress.available(s,c,g) and not encounters[c.id..':'..g.id..':'..(admission and admission.runId or 'legacy')] then
       local node=options.world.nodes[c.id..':'..g.id]
-      if node and (root.Position-node.part.Position).Magnitude<32 then begin(p,node,true) end
+      local plan=Routes.plan(c,g,rules)
+      local at=plan and entryPosition(c,g,admission,admittedCount(p,admission))or node and node.part.Position
+      if node and at and (root.Position-at).Magnitude<32 then begin(p,node,true) end
      end
     end end end
    end
   end
+  Service.stepEncounters()
   partyStory.replay()
   activities.update(tick);companion.update(tick)
  end)
@@ -482,7 +562,14 @@ function Service.start(settings)
    for p,heroId in pairs(e.participants) do local ctx,root=context(p);if ctx and ctx.heroId==heroId and root and (root.Position-e.position).Magnitude<110 then present=true end end
    if present then e.lastPresent=os.clock() end
    if (e.phase3 or e.hellPhase or (e.chapter.id:sub(1,2)=='EC' or e.chapter.id:sub(1,2)=='GW') and e.phase2) and not e.completed and os.clock()>=(e.nextHazard or math.huge) then e.nextHazard=os.clock()+(e.hellPhase and 4 or 6);floorHazard(e) end
-   if os.clock()-e.lastPresent>8 then destroyEncounter(e) end
+   if e.routePoints then
+    -- Walking onward, being downed, or reading clues must not reset a cleared
+    -- stretch. Retain it while any member is still admitted to this exact run.
+    for p,id in pairs(e.participants)do local h=active(p);local run=h and h.heroId==id and options.inventory.expedition(p,id)
+     if run and run.runId==e.runId then e.lastPresent=os.clock();break end
+    end
+   end
+   if os.clock()-e.lastPresent>(e.routePoints and 90 or 8)then destroyEncounter(e)end
   end
  end)
 end

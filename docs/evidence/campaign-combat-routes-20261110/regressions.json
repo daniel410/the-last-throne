@@ -1,0 +1,52 @@
+[
+  {
+    "command": "lua tests/campaign-combat-routes.spec.lua",
+    "exit": 0,
+    "output": "Campaign combat routes: 65199 checks passed; 75 battles, 276 sites, real ground 94.3% larger\n"
+  },
+  {
+    "command": "lua tests/deepwood-encounter-balance.spec.lua",
+    "exit": 0,
+    "output": "Deepwood encounter balance: 3111 checks passed; authored enemies 82 -> 467\n"
+  },
+  {
+    "command": "lua tests/campaign-expansion.spec.lua",
+    "exit": 0,
+    "output": "CAMPAIGN_EXPANSION 7698 checks passed; 35 main / 12 side / 82 incidents / 246 new steps\n"
+  },
+  {
+    "command": "lua tests/campaign-expansion-review.spec.lua",
+    "exit": 0,
+    "output": "CAMPAIGN_EXPANSION_REVIEW 3362 checks passed; 82 outcome deliveries, safe circuit choices and connector routes\n"
+  },
+  {
+    "command": "lua tests/campaign-reorder.spec.lua",
+    "exit": 0,
+    "output": "CAMPAIGN_REORDER 1870 checks passed; mandatory solo final level 44\n"
+  },
+  {
+    "command": "lua tests/campaign-context-review.spec.lua",
+    "exit": 0,
+    "output": "CAMPAIGN_CONTEXT_REVIEW 1034 checks passed; 405 saved transitions, 47 distinct stories, unchanged runtime contracts\n"
+  },
+  {
+    "command": "lua tests/story-rpg-guide.spec.lua",
+    "exit": 0,
+    "output": "STORY_RPG_GUIDE 985 checks passed; 405 saved transitions, discoveries/waivers/solo/handoffs/combat/metrics\n"
+  },
+  {
+    "command": "lua tests/story-completion.spec.lua",
+    "exit": 0,
+    "output": "Story completion: 356 checks passed\n"
+  },
+  {
+    "command": "lua tests/difficulty-balance.spec.lua",
+    "exit": 0,
+    "output": "Difficulty balance: 2665 checks passed\n"
+  },
+  {
+    "command": "lua tests/difficulty-enhancement.spec.lua",
+    "exit": 1,
+    "output": "lua: tests/difficulty-enhancement.spec.lua:23: StoryLocked\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/difficulty-enhancement.spec.lua:23: in local 'complete'\n\ttests/difficulty-enhancement.spec.lua:54: in main chunk\n\t[C]: in ?\n"
+  }
+]

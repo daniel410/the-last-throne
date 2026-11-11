@@ -8,12 +8,12 @@ local K=require(script.Parent.EpicEnvironmentKit)
 local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
 local Composition=require(script.Parent.EpicScenicComposition)
-local Art={version=7}
+local Art={version=8}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
 local landmarkNames={DW={'Pilgrim Cloister','Convoy Watch','Elder Sanctuary','Lost Abbey','Occupied Keep','Root Cathedral','Seal Sanctuary'},FV={'Glacier Citadel','Hearth Refuge','Blue Ice Gorge','Relay Aqueduct','Frozen Procession','Sentinel Keep','Mirror Palace'},EC={'Freight Foundry','Workers Quarter','Braced Mine','Cooling Aqueduct','Engineers Archive','Heatworks','Great Furnace'},GW={'Lantern Monastery','Webbed Watch','Root Refuge','Hollowbark Grove','Venomcoil Burrow','Widow Cathedral','Hidden Cemetery Gate'},HG={'Mist Cathedral','Keepers Shelter','Garden of Names','Fallen Belfry','Royal Gate','Crownheart Bastion','Last Throne'}}
-local obsolete={Snowbank=true,GlacierSpire=true,PineTrunk=true,SnowPineCrown=true,CalderaRim=true,DistantLavaFissure=true,AncientTrunk=true,Canopy=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true,ForestBoundary=true,OptionalMarsh=true,Waterfall=true,WatchtowerPillar=true,WatchtowerCrown=true}
+local obsolete={OccupiedRuins=true,RavineIceWall=true,IceCitadelPillar=true,IceCitadelLintel=true,CoolantPipe=true,EmergencyCoolantPipe=true,Snowbank=true,GlacierSpire=true,PineTrunk=true,SnowPineCrown=true,CalderaRim=true,DistantLavaFissure=true,AncientTrunk=true,Canopy=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true,ForestBoundary=true,OptionalMarsh=true,Waterfall=true,WatchtowerPillar=true,WatchtowerCrown=true}
 local function vec(p)return V(table.unpack(p))end
 local function model(parent,name)
  local m=Instance.new('Model');m.Name=name;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic;m.Parent=parent;return m
@@ -34,6 +34,10 @@ local function reservation(world,id)
   for _,g in ipairs(chapter.goals)do
    local p=vec(g.position);table.insert(anchors,{p=p,r=#g.enemies>0 and 74 or 20});table.insert(lanes,{previous,p});previous=p
    local stepPrevious=p
+   local combatRoute=chapter.combatRoutes and chapter.combatRoutes[g.id]
+   for _,at in ipairs(combatRoute and combatRoute.points or {})do
+    local q=vec(at);table.insert(anchors,{p=q,r=44});table.insert(lanes,{stepPrevious,q});stepPrevious=q
+   end
    for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then
     local at=vec(step.position);table.insert(anchors,{p=at,r=24});table.insert(lanes,{stepPrevious,at});stepPrevious=at
    end end
@@ -301,6 +305,13 @@ local function carve(world,Content,Access)
    local d=p-prev;local n=math.max(1,math.ceil(d.Magnitude/25))
    for i=0,n do clear(prev:Lerp(p,i/n),25)end
    local stepPrevious=p
+   local combatRoute=chapter.combatRoutes and chapter.combatRoutes[g.id]
+   for _,point in ipairs(combatRoute and combatRoute.points or {})do
+    local at=vec(point);clear(at,46)
+    local n=math.max(1,math.ceil((at-stepPrevious).Magnitude/15))
+    for i=0,n do clear(stepPrevious:Lerp(at,i/n),34)end
+    stepPrevious=at
+   end
    for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then
     local at=vec(step.position);local count=math.max(1,math.ceil((at-stepPrevious).Magnitude/20))
     for i=0,count do clear(stepPrevious:Lerp(at,i/count),27)end
@@ -418,7 +429,7 @@ function Art.create(world,scope)
  local floors={workspace.Terrain};local raisedSurfaces={}
  for _,p in ipairs(world.folder:GetDescendants())do
   if p:IsA('BasePart')and p.CanCollide and p.Name=='RavineIceWall'then table.insert(raisedSurfaces,p)end
-  if p:IsA('BasePart') and p.CanCollide and (p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name=='Ground' or p.Name=='ForestBedrock' or p.Name=='TrailEmbankment' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_') or p.Name:match('^ConnectedPath_') or p.Name:match('^SnowTrail_') or p.Name:match('^CalderaTrail_') or p.Name:match('^LateTrail_'))then
+  if p:IsA('BasePart') and p.CanCollide and (p.Name=='JourneyGround' or p.Name=='ForestGround' or p.Name=='SnowGround' or p.Name=='BasaltGround' or p.Name=='Ground' or p.Name=='ForestBedrock' or p.Name=='TrailEmbankment' or p.Name=='WalkableTerrace' or p.Name=='WalkableRamp' or p.Name=='TerraceLanding' or p.Name:match('^Support_') or p.Name:match('^TrailSupport_') or p.Name:match('^ConnectedPath_') or p.Name:match('^SnowTrail_') or p.Name:match('^CalderaTrail_') or p.Name:match('^LateTrail_'))then
    table.insert(floors,p)
    if p.Name=='WalkableRamp' or p.Name=='WalkableTerrace' or p.Name=='TerraceLanding'then table.insert(raisedSurfaces,p)end
   end

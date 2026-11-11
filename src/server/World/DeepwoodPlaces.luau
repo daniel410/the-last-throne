@@ -1,11 +1,11 @@
 -- Authored places and optional walking loops inside the existing story footprint.
 -- Small height changes use two wide ramps; no jump, reward or story gate is added.
 local Shared=game:GetService('ReplicatedStorage').Shared
-local Content=require(Shared.DeepwoodContent)
+local Content=require(Shared.CampaignContent).region('DW')
 local Bounds=require(Shared.DeepwoodBounds)
 local Access=require(Shared.DeepwoodAccess)
 local Env=require(script.Parent.DeepwoodEnvironment)
-local Places={version=3}
+local Places={version=4}
 local C={earth=Color3.fromRGB(128,116,77),stone=Color3.fromRGB(137,148,119),moss=Color3.fromRGB(101,126,79),wood=Color3.fromRGB(105,76,46),gold=Color3.fromRGB(219,176,82),cloth=Color3.fromRGB(38,86,133),root=Color3.fromRGB(73,68,66),water=Color3.fromRGB(104,182,186)}
 local themes={['DW-01']='Old Pilgrim Grove',['DW-02']='Scattered Caravan',['DW-03']='Ranger Overlook',['DW-04']='Ruined Cloister',['DW-05']='Occupied Courtyard',['DW-06']='Root Sanctuary',['DW-07']='Broken Seal Circle',['DW-S1']='Stolen Supply Camp',['DW-S2']='Quarry Watercourse',['DW-S3']='Fallen Standard Ridge'}
 local function part(parent,name,size,cf,color,material,solid)
@@ -30,6 +30,10 @@ local function reservations(world,id)
    local p=Vector3.new(table.unpack(g.position))
    if math.abs(p.Y-center.Y)<1 and math.abs(p.X-center.X)<z.size[1]/2 and math.abs(p.Z-center.Z)<z.size[2]/2 then
     table.insert(anchors,p);table.insert(lanes,{center,p})
+    local last=p
+    for _,point in ipairs(ch.combatRoutes and ch.combatRoutes[g.id]and ch.combatRoutes[g.id].points or {})do
+     local at=Vector3.new(table.unpack(point));table.insert(anchors,at);table.insert(lanes,{last,at});last=at
+    end
     if ch.zone==id then table.insert(lanes,{previous,p});previous=p end
     for _,step in ipairs(g.activity and g.activity.steps or {}) do table.insert(anchors,Vector3.new(table.unpack(step.position))) end
    end
@@ -188,7 +192,7 @@ function Places.create(world)
   else
    -- A dense authored activity area takes priority; keep this pocket decorative.
    place:SetAttribute('TerraceSkipped',true)
-   dress(place,id,p,.7)
+   -- The route now owns this space; the themed grove pass supplies the verge.
   end
   scatter(world,place,id,clearance>=0 and p or nil)
   place.Parent=folder;task.wait()

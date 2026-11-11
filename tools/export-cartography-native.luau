@@ -32,7 +32,7 @@ for _,id in ipairs(ids)do
   pixels[(y-1)*n+x]=hit and (hit.Instance==workspace.Terrain and (hit.Material==Enum.Material.Water and 6 or hit.Position.Y>z.center[2]+14 and 3 or 1) or category(hit.Instance)) or 0
  end end
  local roads={}
- for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and p.Transparency<.5 and (p.Name=='WornCurvedRoute' or p.Name=='ReturnLoop')then
+ for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and p.Transparency<.5 and (p.Name=='WornCurvedRoute' or p.Name=='ReturnLoop' or p.Name=='JourneyWalkingTrail')then
   if math.abs(p.Position.X-z.center[1])<=z.size[1]/2 and math.abs(p.Position.Z-z.center[3])<=z.size[2]/2 then
    local a=p.CFrame:PointToWorldSpace(Vector3.new(0,0,-p.Size.Z/2));local b=p.CFrame:PointToWorldSpace(Vector3.new(0,0,p.Size.Z/2))
    table.insert(roads,{a.X,a.Z,b.X,b.Z,p.Size.X})

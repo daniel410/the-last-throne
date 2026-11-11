@@ -38,6 +38,7 @@ function W.create(epic,world)
  elseif epic==4 then require(script.Parent.EmberCalderaWorld).create(world)
  elseif epic==2 or epic==5 then require(script.Parent.LateEpicWorld).create(world,epic)end
  require(script.Parent.CampaignExpansionWorld).create(world,scope)
+ require(script.Parent.CampaignCombatRouteWorld).create(world,scope)
  -- Archived Deepwood geometry still supplies anchors; live story metadata comes
  -- from the canonical campaign so outcomes and expansion gates agree with saves.
  for _,node in pairs(world.nodes)do
@@ -52,6 +53,7 @@ function W.create(epic,world)
  require(script.Parent.CampaignSceneryCollision).apply(world.folder.EpicWorldArt['EpicWorldArt_'..epic])
  require(script.Parent.CampaignSceneryCollision).apply(world.folder.CampaignExpansion['Epic'..epic])
  require(script.Parent.CampaignSceneryPlacement).apply(world,world.folder.EpicWorldArt['EpicWorldArt_'..epic])
+ require(script.Parent.CampaignCombatRouteWorld).finish(world,scope)
  world.loadedEpics[epic]=true
  world.folder:SetAttribute('Epic'..epic..'Ready',true)
  return world
