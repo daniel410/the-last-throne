@@ -1,0 +1,132 @@
+{
+  "kind": "Blender geometry and fitting only",
+  "styles": [
+    {
+      "style": "elf",
+      "triangles": 3692,
+      "nonManifoldEdges": 0,
+      "eyeRays": 18,
+      "eyeHits": 0
+    },
+    {
+      "style": "mage",
+      "triangles": 9128,
+      "nonManifoldEdges": 0,
+      "eyeRays": 18,
+      "eyeHits": 0
+    },
+    {
+      "style": "knight",
+      "triangles": 2880,
+      "nonManifoldEdges": 0,
+      "eyeRays": 18,
+      "eyeHits": 0
+    },
+    {
+      "style": "dwarf",
+      "triangles": 12820,
+      "nonManifoldEdges": 0,
+      "eyeRays": 18,
+      "eyeHits": 0
+    }
+  ],
+  "fits": [
+    {
+      "style": "elf",
+      "family": "traveler",
+      "headgearSha256": "31710f17c31d51c890ea333ded4d843ed1835eb4ba0caa5f9fd035da20517d2b",
+      "render": "elf-traveler.png"
+    },
+    {
+      "style": "elf",
+      "family": "tempered",
+      "headgearSha256": "a2f0120933088c6758075134227924e37caecc633b2a941010ab2a1eb7ae985b",
+      "render": "elf-tempered.png"
+    },
+    {
+      "style": "elf",
+      "family": "veteran",
+      "headgearSha256": "185d6014809fae744668294f6e6d160d891cf9c3ba7b0a78aff9e56833ec307c",
+      "render": "elf-veteran.png"
+    },
+    {
+      "style": "elf",
+      "family": "sentinel",
+      "headgearSha256": "d4358ee49439d2e73b6c04469747e374a2dba42e2652bbf1962bd5ee8b7c6840",
+      "render": "elf-sentinel.png"
+    },
+    {
+      "style": "mage",
+      "family": "traveler",
+      "headgearSha256": "ee74f472ff1bd61898f122f394bee3804c9815ef06b80f61c3b106d20f8e00a1",
+      "render": "mage-traveler.png"
+    },
+    {
+      "style": "mage",
+      "family": "tempered",
+      "headgearSha256": "6333e63fb8def8406d368ca71e925fcb483660b1834d7e85edabb63a69bdd55c",
+      "render": "mage-tempered.png"
+    },
+    {
+      "style": "mage",
+      "family": "veteran",
+      "headgearSha256": "0c857b88a60a5e1090e2f86c35257fc5977b54288d472dc01d69bad6e1fe9c57",
+      "render": "mage-veteran.png"
+    },
+    {
+      "style": "mage",
+      "family": "sentinel",
+      "headgearSha256": "2444164e656179ee82735e69320376fdd506c3ddee4779665fd8307436148843",
+      "render": "mage-sentinel.png"
+    },
+    {
+      "style": "knight",
+      "family": "traveler",
+      "headgearSha256": "7ec9b9251dde270f430530ccf063062987126d48f50fc85d1518897673582d9a",
+      "render": "knight-traveler.png"
+    },
+    {
+      "style": "knight",
+      "family": "tempered",
+      "headgearSha256": "052ba7d91499f85695a6ed17014c981322be574679bd811b1c4e99ab3f904c8f",
+      "render": "knight-tempered.png"
+    },
+    {
+      "style": "knight",
+      "family": "veteran",
+      "headgearSha256": "6f3a5b91edb1a383be8fab4c18da1defbdaaa1677f67efa3249791f66413bc4b",
+      "render": "knight-veteran.png"
+    },
+    {
+      "style": "knight",
+      "family": "sentinel",
+      "headgearSha256": "c25bedfbe41da0c49a2e8b95efe9359899d2df6e520d0ff4a6c114dc3a584509",
+      "render": "knight-sentinel.png"
+    },
+    {
+      "style": "dwarf",
+      "family": "traveler",
+      "headgearSha256": "7ec9b9251dde270f430530ccf063062987126d48f50fc85d1518897673582d9a",
+      "render": "dwarf-traveler.png"
+    },
+    {
+      "style": "dwarf",
+      "family": "tempered",
+      "headgearSha256": "052ba7d91499f85695a6ed17014c981322be574679bd811b1c4e99ab3f904c8f",
+      "render": "dwarf-tempered.png"
+    },
+    {
+      "style": "dwarf",
+      "family": "veteran",
+      "headgearSha256": "6f3a5b91edb1a383be8fab4c18da1defbdaaa1677f67efa3249791f66413bc4b",
+      "render": "dwarf-veteran.png"
+    },
+    {
+      "style": "dwarf",
+      "family": "sentinel",
+      "headgearSha256": "c25bedfbe41da0c49a2e8b95efe9359899d2df6e520d0ff4a6c114dc3a584509",
+      "render": "dwarf-sentinel.png"
+    }
+  ],
+  "runtimeVerified": false
+}
