@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "creeks": [
+    {
+      "before": "8, 8, 149.60879516601562",
+      "path": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-01_exp_1.CreekWater",
+      "after": "8, 0.11999999731779099, 149.60879516601562",
+      "position": "-2085.719970703125, -0.019999999552965164, -833.4500122070312",
+      "surfaceY": 0.03999999910593033
+    },
+    {
+      "before": "8, 8, 149.60888671875",
+      "path": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-01_exp_2.CreekWater",
+      "after": "8, 0.11999999731779099, 149.60888671875",
+      "position": "-1544.969970703125, 9.979999542236328, -404.8999938964844",
+      "surfaceY": 10.039999540895224
+    },
+    {
+      "before": "8, 8, 144.86741638183594",
+      "path": "Workspace.DeepwoodCampaign.CampaignExpansion.Epic1.DW-Q1_exp_1.CreekWater",
+      "after": "8, 0.11999999731779099, 144.86741638183594",
+      "position": "-1544.5799560546875, -0.019999999552965164, -1262",
+      "surfaceY": 0.03999999910593033
+    }
+  ]
+}

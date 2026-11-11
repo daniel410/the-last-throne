@@ -65,7 +65,9 @@ function S.create(scene,c,g,area)
  if prefix=='DW'then
   -- Creek timber, shelters, watchtower galleries and prison yards frame different lanes.
   if area.layout=='creek'then
-   beam(scene,'CreekWater',center+V(-width*.43,-.02,-depth*.35),center+V(width*.4,-.02,depth*.35),8,Color3.fromRGB(103,160,169),Enum.Material.Glass)
+   local water=beam(scene,'CreekWater',center+V(-width*.43,-.02,-depth*.35),center+V(width*.4,-.02,depth*.35),8,Color3.fromRGB(103,160,169),Enum.Material.Glass)
+   -- Beam thickness also sets height; a creek needs only a shallow surface.
+   water.Size=V(water.Size.X,.12,water.Size.Z)
    for i=-1,1 do part(scene,'CreekCrossingStone',V(7,.25,5),center+V(i*6,.12,i*3),pal.rock,Enum.Material.Slate)end
   elseif area.layout=='tower'then
    for _,x in ipairs({-width*.4,width*.4})do part(scene,'TowerFrame',V(3,18,3),center+V(x,9,-depth*.4))end
