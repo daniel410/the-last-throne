@@ -51,11 +51,6 @@ local function cart(parent,p)
  end end
  for i=1,3 do part(parent,'SupplyCrate',Vector3.new(3,3,3),p+Vector3.new(i*3-6,5,0),C.wood,Enum.Material.Wood,true) end
 end
-local function cage(parent,p)
- part(parent,'CageRoof',Vector3.new(9,1,9),p+Vector3.new(0,9,0),C.wood,nil,false)
- for _,x in ipairs({-4,4}) do for _,z in ipairs({-4,4}) do part(parent,'CageBar',Vector3.new(.6,9,.6),p+Vector3.new(x,4.5,z),C.wood,Enum.Material.Wood,true) end end
- ball(parent,'CaptiveSpirit',Vector3.new(3,4,3),p+Vector3.new(0,4,0),Color3.fromRGB(112,230,194),Enum.Material.Neon)
-end
 -- Preserve authored collision exactly while replacing only the visible blockout.
 local function dressed(legacy,key)
  return function(parent,p)
@@ -69,7 +64,6 @@ local function dressed(legacy,key)
 end
 lamp=dressed(lamp,'RouteLantern')
 cart=dressed(cart,'CartWreck')
-cage=dressed(cage,'PrisonCage')
 arch=dressed(arch,'RuinedArch')
 local function npc(parent,p,name,_goblin,role)
  local world=parent
@@ -156,14 +150,14 @@ function World.create(world)
    cart(region,center+Vector3.new(-15,0,12))
   elseif id=='DW-02' then cart(region,center);npc(region,center+Vector3.new(-25,0,10),'Supply Survivor',false);npc(region,center+Vector3.new(-30,0,10),'Wounded Scout',false)
   elseif id=='DW-03' then
-   tree(region,center+Vector3.new(0,0,-45),3.4,false);banner(region,center+Vector3.new(-12,0,-22));banner(region,center+Vector3.new(12,0,-22))
+   tree(region,center+Vector3.new(-100,0,-100),3.4,false);banner(region,center+Vector3.new(-12,0,-22));banner(region,center+Vector3.new(12,0,-22))
    part(region,'OutpostDeck',Vector3.new(35,1,24),center+Vector3.new(0,.5,-28),C.wood,Enum.Material.Wood,true)
    npc(region,center+Vector3.new(0,0,-5),'Eryn',false);npc(region,center+Vector3.new(-45,0,50),'Quartermaster',false);npc(region,center+Vector3.new(-64,0,35),'Fen',false)
   elseif id=='DW-04' then
    for _,x in ipairs({-15,15}) do for _,zz in ipairs({-18,18}) do part(region,'WatchtowerPillar',Vector3.new(5,42,5),center+Vector3.new(x,21,zz),C.stone,nil,false) end end
-   part(region,'WatchtowerCrown',Vector3.new(38,5,44),center+Vector3.new(0,43,0),C.moss,nil,false);cage(region,center+Vector3.new(0,0,-25));banner(region,center+Vector3.new(20,0,20))
+   part(region,'WatchtowerCrown',Vector3.new(38,5,44),center+Vector3.new(0,43,0),C.moss,nil,false);banner(region,center+Vector3.new(20,0,20))
   elseif id=='DW-05' then
-   arch(region,center+Vector3.new(-85,0,45));cage(region,center+Vector3.new(-65,0,-15))
+   arch(region,center+Vector3.new(-85,0,45))
    for i=1,4 do part(region,'OccupiedRuins',Vector3.new(5,13,5),center+Vector3.new(i*23-60,6.5,-100),C.stone,nil,true) end
   elseif id=='DW-06' then
    npc(region,center+Vector3.new(-75,0,48),'Goblin Refugee',true)

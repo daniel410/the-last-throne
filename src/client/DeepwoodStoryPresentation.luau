@@ -1,6 +1,10 @@
 -- Personal completion visuals; shared portal never disappears for unfinished players.
 local View={}
-function View.update(journal)
+local captives
+
+function View.update(journal,snapshot)
+ if not captives then captives=require(script.Parent.DeepwoodCaptivePresentation).create()end
+ captives.update(snapshot or {journal=journal})
  local world=workspace:FindFirstChild('DeepwoodCampaign');local portal=world and world:FindFirstChild('MonsterPortal')
  if not portal then return end
  for _,item in ipairs(portal:GetDescendants()) do if item:IsA('BasePart') then

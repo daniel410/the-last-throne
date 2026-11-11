@@ -170,8 +170,9 @@ function A.cabin(parent,p,pal,snow)
 end
 function A.foundry(parent,c,size,pal,index)
  -- Leave the eastern exit from the final furnace clear of the facade/chimneys.
- local m=model(parent,'GreatFoundry');local p=c+V(index==7 and -200 or 0,0,-size[2]/2-38)
- for _,s in ipairs({-1,1})do
+ local m=model(parent,'GreatFoundry');local p=c+V(index==7 and -200 or index==1 and 200 or 0,0,-size[2]/2-38)
+ -- Keep the outgoing eastern campaign road open at the first foundry.
+ for _,s in ipairs(index==1 and {-1}or {-1,1})do
   wing(m,p+V(s*94,0,0),100,40,pal,'EmberCaldera')
   for i=0,1 do
    local q=p+V(s*(84+i*47),0,-27);local h=92+index*3+i*11

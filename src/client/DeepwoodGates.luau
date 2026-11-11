@@ -1,6 +1,7 @@
 local RS=game:GetService('ReplicatedStorage')
 local Content=require(RS.Shared.CampaignContent)
 local Access=require(RS.Shared.CampaignAccess)
+local Bounds=require(RS.Shared.CampaignBounds)
 local Gates={}
 local biomes={'CliffRock','CliffRock','SnowCliff','VolcanoCliff','CemeteryCliff'}
 -- Overlapping, irregular boulders span the former 30 x 14 road seal.
@@ -42,9 +43,13 @@ function Gates.create()
  for _,edge in ipairs(Access.edges) do
   local a,b=Content.zones[edge[1]],Content.zones[edge[2]]
   if a.epic==b.epic then
-   local first,second=Vector3.new(table.unpack(a.center)),Vector3.new(table.unpack(b.center))
-   local middle=(first+second)/2
-   table.insert(gates,{frame=CFrame.lookAt(middle,Vector3.new(second.X,middle.Y,second.Z)),zone=edge[2],required=b.requiresMain,epic=b.epic})
+   -- Zone-center midpoints can sit inside the camp or an incident connector.
+   -- Put the seal inside the locked destination, beyond neighboring incident wings.
+   local aa,bb=Bounds.ends(edge)
+   local first,second=Vector3.new(table.unpack(aa)),Vector3.new(table.unpack(bb))
+   local direction=Vector3.new(second.X-first.X,0,second.Z-first.Z).Unit
+   local middle=second+direction*20
+   table.insert(gates,{frame=CFrame.lookAt(middle,middle+direction),zone=edge[2],required=b.requiresMain,epic=b.epic})
   end
  end
  local current,destroyed

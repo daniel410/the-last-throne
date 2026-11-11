@@ -15,7 +15,7 @@ SarcophagusChest TombPlinth TombLid StoneBase Headstone
 MineTimber MineLintel MineShadow
 IceGalleryWall ArchivePillar TowerFrame RootGallery
 ]],'%S+')do solids[name]=true end
-local meshSolids={trunk_geom=true,body_geom=true,walls_geom=true,door_geom=true,
+local meshSolids={roots_geom=true,trunk_geom=true,body_geom=true,walls_geom=true,door_geom=true,
  ['glacier peaks_geom']=true,['rune stone arch_geom']=true,
  ['basalt columns_geom']=true,['forge arch_geom']=true}
 function Collision.isSolid(part,root)

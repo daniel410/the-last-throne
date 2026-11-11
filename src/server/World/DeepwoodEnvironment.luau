@@ -12,7 +12,13 @@ local function place(template,parent,name,position,height)
  local _,size=copy:GetBoundingBox();copy:ScaleTo(copy:GetScale()*height/size.Y)
  local bounds,newSize=copy:GetBoundingBox();copy:PivotTo(CFrame.new(position+Vector3.new(0,newSize.Y/2,0))*bounds:ToObjectSpace(copy:GetPivot()))
  copy.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
- copy:SetAttribute('TDEnvironmentSource',name);copy.Parent=parent;return copy
+ copy:SetAttribute('TDEnvironmentSource',name)
+ if name=='TDElderTree'then
+  for _,p in ipairs(copy:GetDescendants())do if p:IsA('MeshPart')and (p.Name=='trunk_geom'or p.Name=='roots_geom')then
+   p.CanCollide=true;p.CanQuery=true;p.CollisionFidelity=Enum.CollisionFidelity.PreciseConvexDecomposition
+  end end
+ end
+ copy.Parent=parent;return copy
 end
 function Env.tree(parent,position,height,landmark)
  local models=Storage:FindFirstChild('TDMapModels');assert(models,'Missing pinned TDMapModels')

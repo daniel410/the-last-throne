@@ -1,0 +1,19 @@
+Scenery route relocation unavailable: Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-01.AuthoredVista.GreatFoundry / ButtressBase / -950, 103.69999694824219, -8352 -> -950, 103.69999694824219, -8404
+ARCHITECTURE_GROUNDING_QA {"byEpic":[{"footings":44,"units":31},{"footings":0,"units":27},{"footings":19,"units":45},{"footings":41,"units":48},{"footings":33,"units":41}],"checks":125726}
+SCENERY_COLLISION_NATIVE {"failureCount":0,"casts":{"4arches":true,"3arches":true,"5arches":true,"3sceneWalls":true,"3trunks":true,"2trunks":true,"1trunks":true,"5rocks":true,"3rocks":true,"4rocks":true,"1rocks":true,"2rocks":true,"5trunks":true,"5walls":true,"2arches":true,"1arches":true,"2walls":true,"1walls":true,"4walls":true,"3walls":true},"decorations":8506,"checks":29367,"solids":9091,"failures":[],"pass":true,"byEpic":[{"trunks":294,"sceneWalls":0,"arches":120,"rocks":56,"walls":943},{"trunks":293,"sceneWalls":0,"arches":172,"rocks":25,"walls":879},{"trunks":204,"sceneWalls":60,"arches":126,"rocks":49,"walls":1335},{"trunks":0,"sceneWalls":0,"arches":138,"rocks":25,"walls":1859},{"trunks":303,"sceneWalls":0,"arches":160,"rocks":24,"walls":2026}]}
+STORY_OBSTACLES_TRAVEL {"onwardRoutes":70,"roadblocks":9,"minDistance":218.44879150390626,"checks":915}
+COMBAT_ROUTE_WORLD {"floorFailures":[],"kind":"COMBAT_ROUTE_WORLD","blockers":[],"checks":5623}
+EXPANSION_NATIVE_EPIC 1
+EXPANSION_NATIVE_EPIC 2
+EXPANSION_NATIVE_EPIC 3
+EXPANSION_NATIVE_EPIC 4
+EXPANSION_NATIVE_EPIC 5
+EXPANSION_NATIVE_GEOMETRY {"blockerCount":7,"samples":3974,"blockers":[{"chapter":"EC-Q1","goal":"exp_1","part":"Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-01.AuthoredVista.GreatFoundry.ArcadedWing.WingWall","kind":"body","at":[-950,100,-8390.3330078125]},{"chapter":"EC-Q1","goal":"exp_1","part":"Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-01.AuthoredVista.GreatFoundry.ArcadedWing.WingWall","kind":"body","at":[-950,100,-8393.599609375]},{"chapter":"EC-Q1","goal":"exp_1","part":"Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-01.AuthoredVista.GreatFoundry.FurnaceChimney","kind":"body","at":[-969.7999877929688,100,-8414.8798828125]},{"chapter":"EC-Q1","goal":"exp_1","part":"Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-01.AuthoredVista.GreatFoundry.FurnaceChimney","kind":"body","at":[-979.699951171875,100,-8420.3203125]},{"chapter":"EC-Q1","goal":"exp_1","part":"Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-01.AuthoredVista.GreatFoundry.FurnaceChimney","kind":"body","at":[-989.5999755859375,100,-8425.759765625]},{"chapter":"EC-Q1","goal":"exp_1","part":"Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-01.AuthoredVista.GreatFoundry.FurnaceChimney","kind":"body","at":[-989.5999755859375,100,-8425.759765625]},{"chapter":"EC-Q1","goal":"exp_1","part":"Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-01.AuthoredVista.GreatFoundry.FurnaceChimney","kind":"body","at":[-989.5999755859375,100,-8425.759765625]}],"parts":61663}
+[string "-- Real generated terrain/objects/GUI and escort motion in an isolated edit engine...."]:12: new wings and connectors have no holes or body blockers
+[string "-- Real generated terrain/objects/GUI and escort motion in an isolated edit engine...."]:12
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:16
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

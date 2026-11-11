@@ -25,6 +25,7 @@ local function prop(parent,chapter,goal,step,p)
  return require(script.Parent.StoryProps).activity(parent,chapter,goal,step,p)
 end
 function W.create(world)
+ if world.nodes['DW-04:spirit']then require(script.Parent.CaptiveSceneTemplates).prepare()end
  local folder=world.folder:FindFirstChild('AdventureActivities') or Instance.new('Folder');folder.Name='AdventureActivities';folder.Parent=world.folder
  local nodes=world.activityNodes or {};world.activityNodes=nodes
  for _,c in ipairs(Content.chapters) do for _,g in ipairs(c.goals) do
@@ -38,6 +39,7 @@ function W.create(world)
    node.activityBuilt=true
    node.part.Transparency=1;local gem=node.part:FindFirstChild('ObjectiveGem');if gem then gem.Transparency=1 end
    node.prompt.Enabled=a.mode=='dialogue' or a.mode=='escort'
+   if (c.id=='DW-04'and g.id=='spirit')or(c.id=='DW-05'and g.id=='prisoners')or(c.id=='DW-07'and g.id=='rescue_captives')then node.prompt.ActionText='Unlock cage';node.prompt.ObjectText='Captive resident' end
    if a.actor and a.mode=='dialogue' then W.actor(folder,a.actor,Vector3.new(table.unpack(g.position)),a.spirit,{world=world.folder,role='dialogue',scope=(c.id:sub(1,2)=='GW'or c.id:sub(1,2)=='HG')and c.zone or nil}) end
    if a.steps then
     for _,step in ipairs(a.steps) do

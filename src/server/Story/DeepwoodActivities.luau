@@ -4,6 +4,7 @@ local Content=require(game:GetService('ReplicatedStorage').Shared.CampaignConten
 local Progress=require(game:GetService('ReplicatedStorage').Shared.DeepwoodProgress)
 local Actors=require(script.Parent.Parent.World.DeepwoodActivityWorld)
 local Engine={}
+local cageRescues={['DW-04:spirit']=true,['DW-05:prisoners']=true,['DW-07:rescue_captives']=true}
 function Engine.create(o)
  local attempts,dialogs={},{}
  local api={}
@@ -22,6 +23,7 @@ function Engine.create(o)
   local count=(s.activities or {})[c.id..':'..g.id] or 0
   local p=count>0 and g.activity.steps[count].position or g.position
   attempts[player]={heroId=ctx.heroId,c=c,g=g,actor=Actors.actor(o.world.folder,g.activity.actor,Vector3.new(table.unpack(p)),g.activity.spirit,{dynamic=true,role='escort',ownerUserId=player.UserId}),status='Follow the rescued resident.'}
+  if count==0 and cageRescues[c.id..':'..g.id]then attempts[player].cageExit=Vector3.new(table.unpack(g.position))+Vector3.new(0,0,7)end
   if g.activity.actor=='Finn'then require(script.Parent.Parent.World.ScoutLantern).attach(attempts[player].actor)end
  end
  function api.projection(player,heroId)
@@ -112,6 +114,10 @@ function Engine.create(o)
        end
        while a.routeIndex<#a.route and (Vector3.new(table.unpack(a.route[a.routeIndex]))-pos).Magnitude<1 do a.routeIndex+=1 end
        target=Vector3.new(table.unpack(a.route[a.routeIndex]));following=a.routeIndex<#a.route
+      end
+      -- Leave through the opened front door before joining the saved escort route.
+      if a.cageExit then
+       if (pos-a.cageExit).Magnitude<1 then a.cageExit=nil else target=a.cageExit;following=true end
       end
       local delta=target-pos
       if delta.Magnitude<=1 and not following then a.waiting=step.id;o.enqueue(p,ctx.heroId,a.c,a.g,nil,step.id)

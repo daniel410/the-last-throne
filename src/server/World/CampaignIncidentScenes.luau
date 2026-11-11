@@ -75,8 +75,6 @@ function S.create(scene,c,g,area)
   elseif area.layout=='prison'then
    for i=-2,2 do part(scene,'EmptyPrisonFence',V(.5,8,.5),center+V(i*8,4,-depth*.43),pal.rock,Enum.Material.Metal)end
   else
-   for _,x in ipairs({-width*.4,width*.4})do part(scene,'ReliefAwningPost',V(.5,7,.5),center+V(x,3.5,-depth*.4))end
-   part(scene,'ReliefAwning',V(width*.8,.25,12),center+V(0,7,-depth*.4),pal.trim,Enum.Material.Fabric)
   end
   if c.id=='DW-02'and g.id=='exp_1'then
    actor('Selene',result+V(-5,0,-8),result+V(-5,0,-8),0,3)

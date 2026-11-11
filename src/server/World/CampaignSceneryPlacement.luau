@@ -3,6 +3,7 @@
 local C=require(game.ReplicatedStorage.Shared.CampaignContent)
 local Route=require(game.ReplicatedStorage.Shared.CampaignNavigationRoute)
 local Bounds=require(game.ReplicatedStorage.Shared.CampaignBounds)
+local Grounding=require(script.Parent.ArchitectureGrounding)
 local M={};local V=Vector3.new
 local function vec(t)return V(table.unpack(t))end
 local function routes(world)
@@ -137,9 +138,13 @@ function M.apply(world,root)
  for _,m in ipairs(world.terrain:GetDescendants())do if m:IsA('Model')and m:GetAttribute('LegacyForgeGate')then table.insert(units,m)end end
  local moved=0
  for index,m in ipairs(units)do
+  local authored=m:FindFirstAncestor('AuthoredVista')
+  local structural=authored~=nil or m:GetAttribute('LegacyForgeGate')
+  if structural then Grounding.apply(m,floorRay)end
   local obstructed,obstacle,line=blocked(m)
   if obstructed then
    local origin=m:GetPivot();local cf,size=m:GetBoundingBox();local base=cf.Position-V(0,size.Y/2,0)
+   m.WorldPivot=origin
    local gateFeet={}
    if m:GetAttribute('LegacyForgeGate')then for _,foot in ipairs(m:GetChildren())do if foot:IsA('BasePart')and foot.Name=='ForgePillar'then table.insert(gateFeet,foot.Position-V(0,foot.Size.Y/2,0))end end end
    local found=false
@@ -154,9 +159,14 @@ function M.apply(world,root)
       local support=workspace:Raycast(foot+delta+V(0,80,0),V(0,-176,0),floorRay)
       if support and floorY then floorY=math.min(floorY,support.Position.Y)else floorY=nil;break end
      end
+     if structural and not m:GetAttribute('LegacyForgeGate')and floorY then floorY=base.Y end
      if floorY and math.abs(floorY-base.Y)<48 then
+      local old=m:FindFirstChild('ArchitectureFoundations');if old then old:Destroy()end
       m:PivotTo(origin+delta+V(0,floorY-base.Y,0))
-      if not blocked(m)then found=true;break end
+      if not blocked(m)then
+       if structural then Grounding.apply(m,floorRay)end
+       if not blocked(m)then found=true;break end
+      end
      end
     end
     if found then break end
@@ -166,7 +176,7 @@ function M.apply(world,root)
     local delta=m:GetPivot().Position-origin.Position
     local ground=m:GetAttribute('GroundPosition');if ground then m:SetAttribute('GroundPosition',ground+delta)end
     m:SetAttribute('SceneryOriginalPivot',m:GetAttribute('SceneryOriginalPivot')or origin);moved+=1
-   else m:PivotTo(origin);warn('Scenery route relocation unavailable: '..m:GetFullName()..' / '..obstacle.Name..' / '..tostring(line[1])..' -> '..tostring(line[2]))end
+   else m:PivotTo(origin);if structural then Grounding.apply(m,floorRay)end;warn('Scenery route relocation unavailable: '..m:GetFullName()..' / '..obstacle.Name..' / '..tostring(line[1])..' -> '..tostring(line[2]))end
   end
   if index%20==0 then task.wait()end
  end

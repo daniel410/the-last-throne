@@ -146,9 +146,9 @@ function Journal.start(hud)
  local promptsDirty=true
  render=function()
   if not current then return end
+  require(script.Parent.DeepwoodStoryPresentation).update(current.journal,current)
   if current.training then hud.setStory(nil);target=nil;marker.Adornee=nil;closeDialogue();setOpen(false);return end
   target=selectTarget();book.render(current);updateTracker();promptsDirty=true
-  require(script.Parent.DeepwoodStoryPresentation).update(current.journal)
   require(script.Parent.CampaignExpansionPresentation).update(current)
   require(script.Parent.EmberCalderaPresentation).update(current.journal)
   require(script.Parent.LateEpicPresentation).update(current.journal)

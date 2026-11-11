@@ -1,0 +1,9 @@
+Scenery route relocation unavailable: Workspace.DeepwoodCampaign.EpicWorldArt.EpicWorldArt_4.EC-01.AuthoredVista.GreatFoundry / ButtressBase / -950, 103.69999694824219, -8352 -> -950, 103.69999694824219, -8404
+[string "assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'isolated engine only')..."]:5: Story 3 return crosses locked roadblock exp_1
+[string "assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'isolated engine only')..."]:5
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:12
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

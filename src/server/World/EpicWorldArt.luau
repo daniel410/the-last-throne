@@ -9,7 +9,7 @@ local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
 local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
-local Art={version=13}
+local Art={version=14}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -252,11 +252,9 @@ local function vista(parent,c,size,pal,theme,index,id,safe)
   elseif index==4 then Architecture.belfry(m,c,size,pal)
   elseif index>=6 then Architecture.cloister(m,c,size,pal,index)end
  end
- -- Real original TD waterfall meshes, no transparent rectangular water panel.
- if theme=='Deepwood'and (id=='DW-03'or id=='DW-S2')then
-  local gorge=Env.kit(m,'WaterfallGorge',c,100)
-  Env.fit(gorge,c+V(-size[1]/2-46,-25,-42),V(105,65,155));paletteKit(gorge,pal,theme)
- elseif theme=='EmberCaldera'then
+ -- Fused waterfall exports contain detached horizontal water/terrain islands.
+ -- Remove the broken backdrop until a connected source-to-basin asset exists.
+ if theme=='EmberCaldera'then
   for _,s in ipairs({-1,1})do
    local lava=K.part(m,'LavaBelowCliff',V(26,.6,size[2]+40),c+V(s*(size[1]/2+68),-12,0),pal.accent,Enum.Material.Neon);lava.CastShadow=false
    for i=1,3 do
@@ -403,9 +401,7 @@ local function cutScenicWater(plans)
      workspace.Terrain:FillBlock(CFrame.new(q),V(34,400,53),Enum.Material.Air)
     end
    end end
-  elseif p.theme=='Deepwood'and (p.id=='DW-03'or p.id=='DW-S2')then
-   local q=c+V(-size[1]/2-54,132,-42)
-   workspace.Terrain:FillBlock(CFrame.new(q),V(106,400,162),Enum.Material.Air)
+
   end
   task.wait()
  end
