@@ -102,7 +102,10 @@ function Journal.start(hud)
   left.Visible=first~=nil;right.Visible=second~=nil;dismiss.Visible=not first
   if first then left.Caption.Text=first;right.Caption.Text=second end
   setOpen(panel.Visible)
-  if not first then task.delay(8,function() if token==dialogToken then closeDialogue() end end) end
+  -- Overflow needs deliberate scrolling; leave it open until CONTINUE or combat.
+  if not first and prose.Size.Y.Offset<=dialog.Size.Y.Offset-64 then
+   task.delay(8,function() if token==dialogToken then closeDialogue() end end)
+  end
  end
  local function answer(index)
   if dialogKind=='offer' and current and current.questOffer then request:FireServer(index==1 and 'AcceptQuest' or 'LaterQuest',current.questOffer.id)

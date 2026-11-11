@@ -41,6 +41,19 @@ book.render({heroId='other',journal=P.new()})
 check(not book.openDiscovery('people','finn'),'hero switch removes unearned discoveries')
 check(not contains('Finn was frightened'),'previous hero prose does not survive the next render')
 check(game.HttpService:JSONEncode(saved)==before,'all real GUI reads preserve the saved journal')
+-- Exercise the production dialogue builder itself, including long text on landscape touch.
+local journalSource=Client.DeepwoodJournal.Source
+local dialogueSource=assert(journalSource:match('( local dialog=Theme.frame.-) local navigation='),'production dialogue builder')
+local construct=assert(loadstring('return function(Theme,gui,workspace)\n'..dialogueSource..'\nreturn dialog,prose,dialogueScroll,layoutDialogue\nend'))()
+for _,size in ipairs({Vector2.new(800,510),Vector2.new(726,299),Vector2.new(270,510)})do
+ local panel,prose,scroll,layout=construct(require(Client.TDInventoryTheme),gui,{CurrentCamera={ViewportSize=size}})
+ prose.Text=string.rep('Selene: Every traveler has a place to come home to. ',80)
+ layout(prose.Text);panel.Visible=true;task.wait()
+ check(panel.AbsoluteSize.Y<=size.Y*.65+1,'long dialogue remains within its height budget')
+ check(prose.AbsoluteSize.Y>scroll.AbsoluteSize.Y,'long dialogue can be read by scrolling instead of clipping')
+ check(scroll.AbsoluteSize.Y>0,'dialogue retains a readable area on short landscape screens')
+ panel:Destroy()
+end
 local layer=workspace.DeepwoodCampaign.CampaignExpansion
 local result=layer.Epic3['FV-07_exp_2'].ConfirmedRegionalResult
 local present=require(Client.CampaignExpansionPresentation)
