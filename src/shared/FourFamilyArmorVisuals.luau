@@ -1,5 +1,5 @@
 -- Exact Meshy task/asset provenance: assets/models/four-family-armor-meshy-v1.
-return {version=2,folderName="FourFamilyArmorModels",fit={robeDepth=1.85,hatLowering=.25,helmetLift=.32},models={
+return {version=3,folderName="FourFamilyArmorModels",fit={robeDepth=1.85,hatLowering=.25,helmetLift=.32},hair={folderName="HeadgearHairModels",templates={hat="MageHair",helmet="HelmetHair",hood="ShortHair"},colors={traveler={169,132,75},tempered={56,75,88},veteran={63,96,47},sentinel={38,60,112}},shortColors={traveler={98,64,37},tempered={59,53,48},veteran={77,63,42},sentinel={42,45,55}}},models={
  ["mage_sentinel_coat"]={mage="sentinel_robe"},
  ["sentinel_tier_hood"]={elf="sentinel_hood",mage="sentinel_hood",knight="sentinel_helmet",dwarf="sentinel_helmet"},
  ["sentinel_tier_coat"]={knight="sentinel_coat",elf="sentinel_coat",dwarf="sentinel_coat",mage="sentinel_coat"},

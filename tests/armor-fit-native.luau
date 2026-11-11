@@ -50,9 +50,11 @@ local ok,err=xpcall(function()
    local after=blocked(mesh,head,mesh.CFrame)
    local before=blocked(mesh,head,mesh.CFrame-head.CFrame.UpVector*(V.fit.helmetLift*head.Size.Y/1.182))
    table.insert(report.eyes,{rig=rig.Name,family=family,beforeBlocked=before,afterBlocked=after,samples=18})
+   check(blocked(c.TLTArmor_head.Hair,head,c.TLTArmor_head.Hair.CFrame)==0,'helmet hair leaves eyes clear')
    check(after==0,'helmet leaves both eye regions clear '..rig.Name..'/'..family..' hits='..after)
    c:SetAttribute('K0ClassId','dwarf');A.sync(c)
    check(blocked(c.TLTArmor_head.Head,head,c.TLTArmor_head.Head.CFrame)==0,'Dwarf eyes clear '..family)
+   check(blocked(c.TLTArmor_head.Hair,head,c.TLTArmor_head.Hair.CFrame)==0,'Dwarf hair leaves eyes clear')
    c:SetAttribute('K0ClassId','mage');c:SetAttribute('TLTEquippedHead','mage_'..family..'_hat')
    c:SetAttribute('TLTEquippedBody','mage_'..family..'_coat');A.sync(c)
    local torso=c:FindFirstChild('UpperTorso')or c:FindFirstChild('Torso')
@@ -60,6 +62,7 @@ local ok,err=xpcall(function()
    local ratio=shell.Size.Z/torso.Size.Z
    check(ratio>1.2,'robe encloses body depth with cloth margin '..family)
    table.insert(report.robes,{rig=rig.Name,family=family,torsoDepth=torso.Size.Z,robeDepth=shell.Size.Z,ratio=ratio})
+   check(blocked(c.TLTArmor_head.Hair,head,c.TLTArmor_head.Hair.CFrame)==0,'Mage forelocks leave eyes clear')
    local hat=c.TLTArmor_head.Head
    local ref=folder[family..'_hat'].Head
    local relative=head.CFrame:ToObjectSpace(hat.CFrame).Position.Y
@@ -70,6 +73,8 @@ local ok,err=xpcall(function()
    table.insert(report.hats,{rig=rig.Name,family=family,brimBottomFromHeadCenter=brimLow,headTop=head.Size.Y/2})
    local previous=c.TLTArmor_head;previous:SetAttribute('ArmorFitVersion',1);A.sync(c)
    check(c.TLTArmor_head~=previous and c.TLTArmor_head:GetAttribute('ArmorFitVersion')==V.version,'old fitting is rebuilt once')
+   c:SetAttribute('K0ClassId','elf');c:SetAttribute('TLTEquippedHead',prefix..'_hood');A.sync(c)
+   check(blocked(c.TLTArmor_head.Hair,head,c.TLTArmor_head.Hair.CFrame)==0,'Elf forelocks leave eyes clear')
   end
   c:Destroy()
  end

@@ -44,11 +44,21 @@ local function build(character, slot, key, classId, definitionId, r15)
  local isRobe=key:match("_robe$")~=nil
  local isHat=key:match("_hat$")~=nil
  local isHelmet=key:match("_helmet$")~=nil
+ if slot=="head" then
+  local hairFolder=Storage:FindFirstChild(Visuals.hair.folderName)
+  local sourceHair=hairFolder and hairFolder:FindFirstChild(Visuals.hair.templates[isHat and "hat" or isHelmet and "helmet" or "hood"])
+  local family=key:match("^(%a+)_")
+  local color=(isHat and Visuals.hair.colors or Visuals.hair.shortColors)[family]
+  if not sourceHair or not sourceHair:IsA("MeshPart") or not color then clone:Destroy();return nil,"MissingHeadgearHair" end
+  local hair=sourceHair:Clone();hair.Name="Hair";hair:SetAttribute("HeadgearHair",true)
+  hair.Color=Color3.fromRGB(color[1],color[2],color[3]);hair.Parent=clone
+ end
  local fittedScale=multiply(scale,Vector3.new(1,1,isRobe and Visuals.fit.robeDepth or 1))
  local count=0
  for _,part in clone:GetDescendants() do
   if part:IsA("BasePart") then
-   if not part:IsA("MeshPart") or part.MeshId=="" or part.TextureID=="" then clone:Destroy();return nil,"InvalidMesh" end
+   local isHair=part:GetAttribute("HeadgearHair")==true
+   if not part:IsA("MeshPart") or part.MeshId=="" or (part.TextureID=="" and not isHair) then clone:Destroy();return nil,"InvalidMesh" end
    local anchorName=part:GetAttribute("ArmorAnchor")
    local reference=part:GetAttribute("ArmorReferenceAnchor")
    local center=part:GetAttribute("ArmorLocalCenter")
@@ -58,8 +68,9 @@ local function build(character, slot, key, classId, definitionId, r15)
    if not anchor or not anchor:IsA("BasePart") then clone:Destroy();return nil,"MissingBodyPart" end
    local offset=center-reference
    if alias then offset+=reference-alias[2] end
-   if isHat then offset-=Vector3.new(0,Visuals.fit.hatLowering,0) end
-   if isHelmet then offset+=Vector3.new(0,Visuals.fit.helmetLift,0) end
+   if isHat and not isHair then offset-=Vector3.new(0,Visuals.fit.hatLowering,0) end
+   if isHelmet and not isHair then offset+=Vector3.new(0,Visuals.fit.helmetLift,0) end
+   if isHair and not isHat and not isHelmet then offset+=Vector3.new(0,.05,-.13) end
    local rotation=part.CFrame.Rotation
    part.Size=multiply(part.Size,fittedScale)
    part.CFrame=anchor.CFrame*CFrame.new(multiply(offset,fittedScale))*rotation
@@ -77,6 +88,7 @@ local function build(character, slot, key, classId, definitionId, r15)
  clone:SetAttribute("ArmorDefinitionId",definitionId);clone:SetAttribute("ArmorClassId",classId)
  clone:SetAttribute("ArmorScale",scale)
  clone:SetAttribute("ArmorFitVersion",Visuals.version)
+ clone:SetAttribute("ArmorPartCount",count)
  return clone
 end
 local function refreshVisibility(character)
@@ -99,8 +111,7 @@ local function refreshVisibility(character)
  if has.feet then hide("LeftFoot");hide("RightFoot");hide("LeftLowerLeg");hide("RightLowerLeg") end
  if has.head then
   for _,accessory in character:GetChildren() do
-   local hidesHair=not string.match(has.head,"_hat$")
-   if accessory:IsA("Accessory") and (accessory.AccessoryType==Enum.AccessoryType.Hat or hidesHair and accessory.AccessoryType==Enum.AccessoryType.Hair) then
+   if accessory:IsA("Accessory") and (accessory.AccessoryType==Enum.AccessoryType.Hat or accessory.AccessoryType==Enum.AccessoryType.Hair) then
     for _,p in accessory:GetDescendants() do if p:IsA("BasePart") then wanted[p]=true end end
    end
   end

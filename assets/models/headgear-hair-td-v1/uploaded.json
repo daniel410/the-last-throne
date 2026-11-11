@@ -1,0 +1,59 @@
+[
+  {
+    "path": "assets/111855007956452",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-11T16:57:44.068Z",
+    "assetId": "111855007956452",
+    "displayName": "TLT Mage Hat Hair TD v1",
+    "description": "Five original TD Arcanist hair pieces, normalized for The Last Throne Mage hats. Tintable untextured hair only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  },
+  {
+    "path": "assets/133876699652217",
+    "revisionId": "2",
+    "revisionCreateTime": "2026-11-11T17:05:15.629Z",
+    "assetId": "133876699652217",
+    "displayName": "TLT Hood Helmet Hair TD v1",
+    "description": "Three original TD Elf Archer short hair pieces, normalized for The Last Throne hoods and Knight/Dwarf helmets. Tintable hair only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  },
+  {
+    "path": "assets/74548520297829",
+    "revisionId": "1",
+    "revisionCreateTime": "2026-11-11T17:04:06.350Z",
+    "assetId": "74548520297829",
+    "displayName": "TLT Helmet Nape Hair TD v1",
+    "description": "TD Arcanist side and back hair adapted below Knight/Dwarf helmet rims. Forelocks omitted for eye clearance. Tintable mesh only.",
+    "assetType": "Model",
+    "creationContext": {
+      "creator": {
+        "userId": "9156786071"
+      }
+    },
+    "moderationResult": {
+      "moderationState": "Approved"
+    },
+    "state": "Active",
+    "isPublished": true
+  }
+]

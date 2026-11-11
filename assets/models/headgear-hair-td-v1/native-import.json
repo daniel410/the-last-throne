@@ -1,0 +1,59 @@
+[
+  {
+    "nativeVertices": 5200,
+    "rotationToSource": 180,
+    "matchedSourceSamples": 48,
+    "modelAssetId": "111855007956452",
+    "center": [
+      0,
+      1.628631830215454,
+      0.00511208176612854
+    ],
+    "meshId": "rbxassetid://124342786696688",
+    "size": [
+      1.3135331869125366,
+      1.147499442100525,
+      1.3663597106933594
+    ],
+    "textureId": "",
+    "template": "MageHair"
+  },
+  {
+    "nativeVertices": 1416,
+    "rotationToSource": 180,
+    "template": "ShortHair",
+    "meshId": "rbxassetid://123818886438150",
+    "textureId": "",
+    "modelAssetId": "133876699652217",
+    "matchedSourceSamples": 48,
+    "center": [
+      0,
+      1.9651108980178833,
+      -0.035178422927856445
+    ],
+    "size": [
+      1.1731655597686768,
+      0.47454142570495605,
+      1.2857787609100342
+    ]
+  },
+  {
+    "nativeVertices": 4776,
+    "rotationToSource": 180,
+    "template": "HelmetHair",
+    "meshId": "rbxassetid://113518745787964",
+    "textureId": "",
+    "modelAssetId": "74548520297829",
+    "matchedSourceSamples": 48,
+    "center": [
+      0,
+      1.4737484455108643,
+      0.1491343080997467
+    ],
+    "size": [
+      1.3135331869125366,
+      1.3688502311706543,
+      1.078315258026123
+    ]
+  }
+]
