@@ -4,6 +4,13 @@ local function load(name)return game and require(script.Parent[name])or dofile('
 local C,A,B,Incident=load('CampaignContent'),load('CampaignAreas'),load('CampaignBounds'),load('CampaignIncidentRoute')
 local N={}
 local function distance(a,b)return math.sqrt((a[1]-b[1])^2+(a[3]-b[3])^2)end
+-- Mouths remain on the authoritative boundary; transit waypoints sit safely
+-- inside it so real Humanoid steering error cannot hug the forbidden edge.
+function N.inset(id,p)
+ local z=C.zones[id];local x0,x1=z.center[1]-z.size[1]/2+12,z.center[1]+z.size[1]/2-12
+ local z0,z1=z.center[3]-z.size[2]/2+12,z.center[3]+z.size[2]/2-12
+ return {math.max(x0,math.min(x1,p[1])),p[2],math.max(z0,math.min(z1,p[3]))}
+end
 local neighbors={}
 for _,edge in ipairs(C.edges)do
  -- Crossing an epic boundary is a server transfer, never an overland shortcut.
@@ -11,7 +18,7 @@ for _,edge in ipairs(C.edges)do
   local first,last=B.ends(edge)
   for _,row in ipairs({{edge[1],edge[2],first,last},{edge[2],edge[1],last,first}})do
    neighbors[row[1]]=neighbors[row[1]]or {}
-   table.insert(neighbors[row[1]],{to=row[2],entry=row[3],exit=row[4],cost=distance(C.zones[row[1]].center,C.zones[row[2]].center)})
+   table.insert(neighbors[row[1]],{to=row[2],from=row[1],entry=row[3],exit=row[4],cost=distance(C.zones[row[1]].center,C.zones[row[2]].center)})
   end
  end
 end
@@ -82,7 +89,16 @@ function N.route(origin,target)
   local points=Incident.route(result[#result],targetPoint)
   for i=2,#points do add(points[i])end
  end
- for _,link in ipairs(links)do localLeg(link.entry);add(link.exit)end
+ for _,link in ipairs(links)do
+  local inner=N.inset(link.from,link.entry);local current=result[#result]
+  local dx,dz=link.entry[1]-inner[1],link.entry[3]-inner[3];local length2=dx*dx+dz*dz
+  local t=length2>.001 and ((current[1]-inner[1])*dx+(current[3]-inner[3])*dz)/length2 or -1
+  local projection={inner[1]+dx*math.max(0,math.min(1,t)),inner[2],inner[3]+dz*math.max(0,math.min(1,t))}
+  -- Once inside the short outgoing apron, continue across its mouth instead
+  -- of steering back to the inner waypoint on every frame.
+  if not (#result==1 and t>=-.02 and distance(current,projection)<=6)then localLeg(inner)end
+  add(link.entry);add(link.exit);add(N.inset(link.to,link.exit))
+ end
  localLeg(target)
  return result
 end

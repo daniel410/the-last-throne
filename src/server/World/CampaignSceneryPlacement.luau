@@ -1,7 +1,7 @@
 -- Move complete scenery assemblies off authored walking/escort lines. Never
 -- solve an obstruction by making a visible wall or tree non-physical again.
 local C=require(game.ReplicatedStorage.Shared.CampaignContent)
-local Route=require(game.ReplicatedStorage.Shared.CampaignIncidentRoute)
+local Route=require(game.ReplicatedStorage.Shared.CampaignNavigationRoute)
 local Bounds=require(game.ReplicatedStorage.Shared.CampaignBounds)
 local M={};local V=Vector3.new
 local function vec(t)return V(table.unpack(t))end
@@ -16,15 +16,16 @@ local function routes(world)
   local count=math.max(1,math.ceil((b-a).Magnitude/256))
   for i=1,count do
    local f,t=a:Lerp(b,(i-1)/count),a:Lerp(b,i/count)
-   table.insert(lines,{f,t,low=V(math.min(f.X,t.X)-3,math.min(f.Y,t.Y)-3,math.min(f.Z,t.Z)-3),high=V(math.max(f.X,t.X)+3,math.max(f.Y,t.Y)+3,math.max(f.Z,t.Z)+3)})
+   table.insert(lines,{f,t,low=V(math.min(f.X,t.X)-10,math.min(f.Y,t.Y)-3,math.min(f.Z,t.Z)-10),high=V(math.max(f.X,t.X)+10,math.max(f.Y,t.Y)+3,math.max(f.Z,t.Z)+10)})
   end
  end
  for _,c in ipairs(C.chapters)do
   local previous=world.spawns[c.zone]and world.spawns[c.zone].Position
   if previous then for _,g in ipairs(c.goals)do
    local targets={}
-   for _,point in ipairs(c.combatRoutes and c.combatRoutes[g.id]and c.combatRoutes[g.id].points or {})do targets[#targets+1]={position=point}end
-   for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do targets[#targets+1]=step end
+   local points=c.combatRoutes and c.combatRoutes[g.id]and c.combatRoutes[g.id].points
+   if points and #points>0 then for _,point in ipairs(points)do targets[#targets+1]={position=point}end
+   else for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do targets[#targets+1]=step end end
    for _,s in ipairs(targets)do if s.position then
     local at=vec(s.position)
     if c.combatRoutes and c.combatRoutes[g.id]then add(at-V(24,0,0),at+V(24,0,0));add(at-V(0,0,24),at+V(0,0,24))end
@@ -92,7 +93,7 @@ function M.openGalleries(world,root)
 end
 function M.apply(world,root)
  local lines=routes(world)
- local probe=Instance.new('Part');probe.Name='SceneryPlacementProbe';probe.Size=V(4,5,4);probe.Anchored=true;probe.Transparency=1;probe.CanCollide=false;probe.CanQuery=false;probe.CanTouch=false;probe.Parent=workspace
+ local probe=Instance.new('Part');probe.Name='SceneryPlacementProbe';probe.Size=V(16,5,16);probe.Anchored=true;probe.Transparency=1;probe.CanCollide=false;probe.CanQuery=false;probe.CanTouch=false;probe.Parent=workspace
  local overlap=OverlapParams.new();overlap.FilterType=Enum.RaycastFilterType.Include;overlap.RespectCanCollide=true
  local ray=RaycastParams.new();ray.FilterType=Enum.RaycastFilterType.Include;ray.RespectCanCollide=true
  local function blocked(m)
@@ -123,6 +124,9 @@ function M.apply(world,root)
    end
   end
  end
+ -- Legacy forge gates are complete three-part assemblies. Move both posts
+ -- and their lintel together instead of leaving a displaced support behind.
+ for _,m in ipairs(world.terrain:GetDescendants())do if m:IsA('Model')and m:GetAttribute('LegacyForgeGate')then table.insert(units,m)end end
  local moved=0
  for index,m in ipairs(units)do
   local obstructed,obstacle,line=blocked(m)

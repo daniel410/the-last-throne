@@ -7,7 +7,7 @@ local Areas=require(Shared.CampaignAreas)
 local Safety={version=2}
 local V=Vector3.new
 local retired={ForestBoundary=true,OccupiedRuins=true,RavineIceWall=true,IceCitadelPillar=true,IceCitadelLintel=true,CoolantPipe=true,EmergencyCoolantPipe=true,WatchtowerPillar=true,AncientTrunk=true,BoundaryPillar=true,Memorial=true,GatePillar=true,GateLintel=true}
-local movable={TreeCollision=true,GroveTrunk=true,OccupiedRuins=true,AltarObelisk=true,FrozenRouteMonument=true,CampBoard=true,BlueprintTable=true}
+local movable={BracedMineSupport=true,TestworksHeatTower=true,TreeCollision=true,GroveTrunk=true,OccupiedRuins=true,AltarObelisk=true,FrozenRouteMonument=true,CampBoard=true,BlueprintTable=true}
 local function distance(p,a,b)
  local d=V(b.X-a.X,0,b.Z-a.Z);local offset=V(p.X-a.X,0,p.Z-a.Z)
  local t=math.clamp(offset:Dot(d)/math.max(.001,d:Dot(d)),0,1)
@@ -35,20 +35,21 @@ function Safety.apply(world,art)
   end
  end
  local anchors,lanes={},{}
+ local Guide=require(Shared.CampaignNavigationRoute)
  for _,c in ipairs(Content.chapters)do
   local previous=world.spawns[c.zone]and world.spawns[c.zone].Position
   for _,g in ipairs(c.goals)do
-   local p=V(table.unpack(g.position));table.insert(anchors,p)
-   local last=p
-   for _,point in ipairs(c.combatRoutes and c.combatRoutes[g.id]and c.combatRoutes[g.id].points or {})do
-    local at=V(table.unpack(point));table.insert(anchors,at);table.insert(lanes,{last,at});last=at
-   end
-   local steps=g.activity and g.activity.steps
-   for _,step in ipairs(steps and #steps>0 and steps or {{position=g.position}})do if step.position then
-    local at=V(table.unpack(step.position));table.insert(anchors,at)
-    if previous and math.abs(previous.Y-at.Y)<1 then table.insert(lanes,{previous,at})end
+   table.insert(anchors,V(table.unpack(g.position)))
+   local targets={};local points=c.combatRoutes and c.combatRoutes[g.id]and c.combatRoutes[g.id].points
+   if points and #points>0 then for _,p in ipairs(points)do targets[#targets+1]=p end
+   else for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do if step.position then targets[#targets+1]=step.position end end end
+   for _,p in ipairs(targets)do
+    local at=V(table.unpack(p));table.insert(anchors,at)
+    if previous then local path=Guide.route({previous.X,previous.Y,previous.Z},p)
+     for i=2,#path do table.insert(lanes,{V(table.unpack(path[i-1])),V(table.unpack(path[i]))})end
+    end
     previous=at
-   end end
+   end
   end
  end
  for _,s in pairs(world.spawns)do table.insert(anchors,s.Position)end
@@ -57,6 +58,13 @@ function Safety.apply(world,art)
  for _,at in ipairs(anchors)do
   for _,p in ipairs(workspace:GetPartBoundsInBox(CFrame.new(at+V(0,3.7,0)),V(48,5,48),params))do
    if movable[p.Name]then candidates[p]=true end
+  end
+ end
+ for _,lane in ipairs(lanes)do
+  local a,b=lane[1],lane[2];local delta=b-a
+  if delta.Magnitude>.1 then
+   local cf=CFrame.lookAt((a+b)/2,b)+V(0,3.7,0)
+   for _,p in ipairs(workspace:GetPartBoundsInBox(cf,V(12,5,delta.Magnitude+4),params))do if movable[p.Name]then candidates[p]=true end end
   end
  end
  local function free(at,r)

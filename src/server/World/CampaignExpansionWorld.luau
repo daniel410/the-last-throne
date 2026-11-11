@@ -75,7 +75,7 @@ function W.create(world,scope)
    for _,pair in ipairs({{entry,edge},{edge,vec(area.connector.rampEnd)},{vec(area.connector.rampEnd),center}})do local path=K.beam(scene,'ExpansionWalkingLine',pair[1]+V(0,.05,0),pair[2]+V(0,.05,0),5,pal.trim,Enum.Material.Ground);path.Size=V(12,.08,path.Size.Z)end
    local arch=Instance.new('Model');arch.Name='IncidentEntranceArch';arch.Parent=scene
    local threshold=entry
-   K.arch(arch,threshold,64,26,pal)
+   K.arch(arch,threshold,80,26,pal)
    -- The default arch opens along Z; east/west connectors need a quarter turn.
    arch.WorldPivot=CFrame.new(threshold)
    if area.axis=='x'then arch:PivotTo(CFrame.new(threshold)*CFrame.Angles(0,math.pi/2,0))end

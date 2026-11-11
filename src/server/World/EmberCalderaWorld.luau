@@ -17,6 +17,7 @@ local function lamp(parent,p)
 end
 
 local function gate(parent,p,width,height)
+ local assembly=Instance.new('Model');assembly.Name='ForgeGate';assembly:SetAttribute('LegacyForgeGate',true);assembly.Parent=parent;parent=assembly
  for _,x in ipairs({-width/2,width/2})do part(parent,'ForgePillar',Vector3.new(7,height,9),p+Vector3.new(x,height/2,0),C.iron,Enum.Material.Metal,true)end
  part(parent,'ForgeGateLintel',Vector3.new(width+7,6,9),p+Vector3.new(0,height,0),C.basalt,Enum.Material.Basalt,true)
 end

@@ -4,7 +4,7 @@
 local Shared=game.ReplicatedStorage.Shared
 local C=require(Shared.CampaignContent)
 local K=require(script.Parent.EpicEnvironmentKit)
-local W={version=2};local V=Vector3.new
+local W={version=3};local V=Vector3.new
 local themes={DW='Deepwood',GW='Gloamwood',FV='FrozenVale',EC='EmberCaldera',HG='HauntedGraveyard'}
 local function vec(p)return V(table.unpack(p))end
 function W.create(world,scope)
@@ -44,9 +44,30 @@ function W.create(world,scope)
    p.CanCollide=false;p.CanQuery=false;p.CanTouch=false;p.Transparency=1;p.CastShadow=false;p:SetAttribute('LegacyPassRetired',true)
   end
  end
+ -- Transit through a region joins its corridor mouths directly. Reserve
+ -- those generic legs too, including spawn-to-mouth/hub approaches, even when
+ -- no authored report currently crosses the region (GW and HG in particular).
+ local Guide=require(Shared.CampaignNavigationRoute)
+ local mouths={}
+ for _,edge in ipairs(scope.access.edges)do
+  local a,b=Bounds.ends(edge)
+  mouths[edge[1]]=mouths[edge[1]]or {};mouths[edge[1]][#mouths[edge[1]]+1]=vec(Guide.inset(edge[1],a))
+  mouths[edge[2]]=mouths[edge[2]]or {};mouths[edge[2]][#mouths[edge[2]]+1]=vec(Guide.inset(edge[2],b))
+ end
+ for id,points in pairs(mouths)do
+  local nodes={world.spawns[id].Position}
+  for _,p in ipairs(points)do nodes[#nodes+1]=p end
+  local pal=K.palette[themes[id:sub(1,2)]]
+  for i=1,#nodes-1 do for j=i+1,#nodes do
+   local a,b=nodes[i],nodes[j]
+   if (b-a).Magnitude>.1 then
+    local trail=K.beam(scene,'RegionalReturnTrail',a+V(0,.09,0),b+V(0,.09,0),16,pal.ground:Lerp(pal.trim,.28),Enum.Material.Ground)
+    trail.Size=V(16,.12,trail.Size.Z+2);trail:SetAttribute('TransitZone',id)
+   end
+  end end
+ end
  -- Materialize the same cross-region report routes used by the arrows.
  -- Their local legs need real reserved/cleared lanes, not chords through groves.
- local Guide=require(Shared.CampaignNavigationRoute)
  for _,c in ipairs(scope.content.chapters)do
   local previous=world.spawns[c.zone].Position
   for _,g in ipairs(c.goals)do
@@ -137,6 +158,23 @@ function W.finish(world,scope)
     local at=vec(point);anchors[#anchors+1]={at,43};lines[#lines+1]={previous,at};previous=at
    end
    for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then anchors[#anchors+1]={vec(step.position),30}end end
+  end
+ end
+ -- Reserve the current arrow legs between all goal/incident/combat points,
+ -- not only the curved paint and the space immediately around each anchor.
+ local Guide=require(Shared.CampaignNavigationRoute)
+ for _,c in ipairs(scope.content.chapters)do
+  local previous=world.spawns[c.zone].Position
+  for _,g in ipairs(c.goals)do
+   local targets={}
+   local points=c.combatRoutes[g.id]and c.combatRoutes[g.id].points
+   if points and #points>0 then for _,p in ipairs(points)do targets[#targets+1]=p end
+   else for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do if step.position then targets[#targets+1]=step.position end end end
+   for _,p in ipairs(targets)do
+    local route=Guide.route({previous.X,previous.Y,previous.Z},p)
+    for i=2,#route do lines[#lines+1]={vec(route[i-1]),vec(route[i])}end
+    previous=vec(p)
+   end
   end
  end
  for _,p in ipairs(world.folder:GetDescendants())do if p:IsA('BasePart')and (p.Name=='WornCurvedRoute'or p.Name=='JourneyWalkingTrail'or p.Name=='ReturnLoop'or p.Name=='RegionalReturnTrail')then
