@@ -12,7 +12,7 @@
 
 ## 검증
 
-재현: `python3 tools/prepare-hero-vfx-native.py` 후 출력된 `run-in-roblox` 명령 실행. 생성 Place는 Shared/Client만 포함하며 저장·상품·실계정·TD 운영 서비스를 실행하지 않는다. 실제 제출 소스 해시는 [입력 목록](native-inputs.json)으로 고정했다.
+재현: `python3 tools/prepare-hero-vfx-native.py` 후 출력된 `run-in-roblox` 명령 실행. 생성 Place는 Shared/Client만 포함하며 저장·상품·실계정·TD 운영 서비스를 실행하지 않는다. 실제 제출 소스 해시는 [입력 목록](native-inputs.json)으로 고정했으며352개 항목 모두 빌드 입력 커밋과 일치함을 확인했다.
 
 | 조건 | 결과/증거 |
 | --- | --- |
@@ -21,13 +21,14 @@
 | advanced 스킬 / 영웅 성장 회귀 | 1,435 / 3,711검사 통과 |
 | 신규 VFX 네이티브 | 128스킬·4클래스 기본 타격, 각 기술 생성/좌표/정리/충돌 없음, 실제 advanced 연결, 공통 근접 속성 연결/첫 타격 지연·한 번 실행, 중복/늦은 펄스·거리·동시 상한: 4,622검사 통과 |
 | 기존 Wind Lance / 명중 표현 네이티브 | 98 / 102검사 통과. [엔진 로그](native-final.log) |
+| 실제0.104.0 빌드 파일 회귀 | 위 엔진4,822검사 및 엘프 발사 확인9검사 재실행 통과. [빌드 파일 엔진 로그](build-native.log). 게임 시작 Script는 fixture에서 비활성화했으며 전체 게임 플레이 수용은 아니다. |
 | 기존 `skill-presentation.spec.lua` | 변경하지 않은 `K0MeleeMotion.luau:127`의 Luau 복합 대입을 Lua fixture가 변환하지 못해 실행 실패. 통과로 간주하지 않는다. |
 
 실행 환경: 로컬 macOS Roblox Studio 엔진·PlaceId0, 합성 캐릭터/서버 이벤트 인자. 네트워크 전송·실사용자 입력·게임 전체 프레임 성능·실제 무기 애니메이션의 시각 품질을 증명하지 않는다. 별도 fixture Place 생성은 검증 산출물이며 배포 게임 빌드와 구분한다.
 
 ## 빌드·남은 수용
 
-게임 버전0.104.0으로 예약했다. 커밋된 트리의 정식 로컬 빌드 결과는 `build.json`에 기록한다. 게시/릴리스 태그는 만들지 않는다.
+게임 버전 **0.104.0**, 소스 커밋 `535447767195edd932705ea9eb9ebc98511af721`의 로컬 게임 빌드가 통과했다. [빌드 결과·명령·SHA-256](build.json). 산출물은 `builds/0.104.0/TheLastThrone-0.104.0.rbxlx`이며 게시/릴리스 태그는 만들지 않았다.
 
 Studio 앱과 로컬 파일 열기 명령은 성공했으나 MCP는 `Place is not open`, CUA는 timeout을 반환했다. 따라서 화면을 실제 확인했다거나 MCP 성능/장면 분석 스킬을 실행했다고 주장하지 않는다. 사용자 요청으로 조사한 MCP 스킬의 용도와 제한은 리서치 문서에 남겼다.
 
