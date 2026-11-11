@@ -160,6 +160,7 @@ function InventoryGui.create(onVisibility, feedback)
  local resetConfirmation
 	local quantity=1
 	local compact=false
+	local lastItemClick
 	local render,resize,send
 	local previousFocus
 	local function requestState()
@@ -183,6 +184,7 @@ function InventoryGui.create(onVisibility, feedback)
 		launcher.Visible=phase~=nil and phase~="LoadingLobby" and phase~="ReturningLobby" and not opened and not player:GetAttribute("TLTProgressionOpen") and not player:GetAttribute("TLTSettingsOpen") and phase~="Lobby" and phase~="Tutorial" and phase~="Respawning" and phase~="LoadingTutorial"
 	end
 	local function setOpen(value)
+		lastItemClick=nil
   if not value then resetConfirmation=nil end
 		if value and player:GetAttribute("K0SessionPhase")=="Respawning" then return end
 		opened=value; shade.Visible=value; showLauncher()
@@ -224,6 +226,26 @@ function InventoryGui.create(onVisibility, feedback)
 		end
 		send({requestId=HttpService:GenerateGUID(false),action=action,heroId=snapshot.heroId,instanceId=item.instanceId,
 			itemVersion=item.version,revision=snapshot.revision,slot=slot,quantity=quantity,destination=destination})
+	end
+	-- Item cards are rebuilt by choose(), so track clicks across button instances.
+	local function activateItem(item,input)
+		local now=os.clock()
+		local mouse=input and input.UserInputType==Enum.UserInputType.MouseButton1
+		local previous=lastItemClick
+		local doubleClick=mouse and previous and previous.instanceId==item.instanceId
+			and selectedId==item.instanceId and snapshot and previous.heroId==snapshot.heroId
+			and previous.revision==snapshot.revision and previous.sourceTab==sourceTab
+			and previous.storageMode==storageMode and previous.gearMode==gearMode
+			and now-previous.time<=0.35
+		lastItemClick=nil
+		if mouse and not doubleClick and snapshot then
+			lastItemClick={instanceId=item.instanceId,time=now,heroId=snapshot.heroId,
+				revision=snapshot.revision,sourceTab=sourceTab,storageMode=storageMode,gearMode=gearMode}
+		end
+		choose(item)
+		if doubleClick and item.location.kind=="bag" and actionForSelection=="Equip" and primary.Active then
+			command("Equip")
+		end
 	end
 	local function detailLabel(name,text,y,height,size,color)
 		return Theme.label(detailScroll,name,text,UDim2.fromOffset(2,y),UDim2.new(1,-8,0,height),size,color)
@@ -455,7 +477,7 @@ function InventoryGui.create(onVisibility, feedback)
      local count=itemBadge(card,"ItemStatus",flag,item.locked and UDim2.fromOffset(6,6) or UDim2.new(1,-6,0,6),item.locked and UDim2.new(1,-12,0,24) or UDim2.fromOffset(50,24),Color.text,item.locked and 12 or 14)
      if not item.locked then count.AnchorPoint=Vector2.new(1,0) end
     end
-				card.Activated:Connect(function() choose(item) end)
+				card.Activated:Connect(function(input) activateItem(item,input) end)
 			else
 				local empty=Theme.label(card,"EmptyMark","◇",UDim2.fromScale(.25,.25),UDim2.fromScale(.5,.5),22,Color3.fromRGB(40,62,83)); empty.TextXAlignment=Enum.TextXAlignment.Center
 			end
@@ -481,7 +503,7 @@ function InventoryGui.create(onVisibility, feedback)
 				local short=shell.AbsoluteSize.Y>0 and shell.AbsoluteSize.Y<400
 				local slotPosition=short and UDim2.new(((index-1)%4+.5)/4,-26,0,34+math.floor((index-1)/4)*60) or UDim2.new(right and 1 or 0,right and -60 or 8,0,54+row*62)
 				local cell=Chrome.card(equipmentSlots,"EquipSlot_"..slot,slotPosition,UDim2.fromOffset(52,54),item and selectedId==item.instanceId,item~=nil)
-				if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(4,1),UDim2.fromOffset(44,38),itemVisualClass(item)); cell.Activated:Connect(function() choose(item) end) end
+				if item then Artwork.create(cell,Catalog.items[item.definitionId],UDim2.fromOffset(4,1),UDim2.fromOffset(44,38),itemVisualClass(item)); cell.Activated:Connect(function(input) activateItem(item,input) end) end
 				local caption=Theme.label(cell,"SlotLabel",Text.Slots[slot],UDim2.fromOffset(0,38),UDim2.fromOffset(52,14),8,Color.silver); caption.TextXAlignment=Enum.TextXAlignment.Center
 			end
 		end
