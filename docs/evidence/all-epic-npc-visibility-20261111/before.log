@@ -1,0 +1,13 @@
+ALL_EPIC_NPC_GENERATED {"epic":1,"surfaces":8,"npcs":5,"scenes":44}
+ALL_EPIC_NPC_GENERATED {"epic":2,"surfaces":8,"npcs":4,"scenes":63}
+ALL_EPIC_NPC_GENERATED {"epic":3,"surfaces":16,"npcs":8,"scenes":55}
+ALL_EPIC_NPC_GENERATED {"epic":4,"surfaces":20,"npcs":6,"scenes":101}
+ALL_EPIC_NPC_GENERATED {"epic":5,"surfaces":26,"npcs":9,"scenes":49}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8: body and surfaces share personal mask Workspace.DeepwoodCampaign.NPCVisibilityCases.DW-01static.FaceRig.Head.FaceDecal
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:8 function mask
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:100
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

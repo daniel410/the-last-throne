@@ -1,0 +1,15 @@
+NPC_SCENE_VISIBILITY {"actors":17,"decals":126,"pass":true,"checks":12084}
+ContentId: rbxassethash://10c6dc0caca16336fb7ffdbc6916a243 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassethash://10c6dc0caca16336fb7ffdbc6916a243 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassethash://10c6dc0caca16336fb7ffdbc6916a243 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassethash://10c6dc0caca16336fb7ffdbc6916a243 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassethash://10c6dc0caca16336fb7ffdbc6916a243 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassethash://10c6dc0caca16336fb7ffdbc6916a243 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+NPC_ROLE_UNIFICATION_NATIVE {"failures":["Rest is not a valid member of Part \"Workspace.DeepwoodCampaign.Selene_91.ActorRoot\"50312.rbxmx.run-in-roblox-plugin.Main:145\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:105\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n"],"kind":"NPC_ROLE_UNIFICATION_NATIVE","pass":false,"checks":27}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:186: NPC role unification failed
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:186
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

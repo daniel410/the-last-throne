@@ -1,0 +1,6 @@
+ALL_EPIC_NPC_GENERATED {"epic":1,"surfaces":8,"npcs":5,"scenes":44}
+ALL_EPIC_NPC_GENERATED {"epic":2,"surfaces":8,"npcs":4,"scenes":63}
+ALL_EPIC_NPC_GENERATED {"epic":3,"surfaces":16,"npcs":8,"scenes":55}
+ALL_EPIC_NPC_GENERATED {"epic":4,"surfaces":20,"npcs":6,"scenes":101}
+ALL_EPIC_NPC_GENERATED {"epic":5,"surfaces":26,"npcs":9,"scenes":49}
+ALL_EPIC_NPC_VISIBILITY {"checks":24233,"surfaces":78,"epics":[{"epic":1,"surfaces":8,"npcs":5,"scenes":44},{"epic":2,"surfaces":8,"npcs":4,"scenes":63},{"epic":3,"surfaces":16,"npcs":8,"scenes":55},{"epic":4,"surfaces":20,"npcs":6,"scenes":101},{"epic":5,"surfaces":26,"npcs":9,"scenes":49}],"pass":true,"scenes":312}
