@@ -1,0 +1,629 @@
+{
+  "tool": "image_gen (built-in)",
+  "assets": [
+    {
+      "key": "traveler_hood",
+      "tier": "traveler",
+      "category": "hood",
+      "prompt": "Use case: stylized-concept. Create a 3D modeling reference PNG cutout for The Last Throne Roblox RPG. The attached board is the exact design reference. Reproduce ONLY the LEFTMOST TRAVELER COMMON item, preserving its silhouette, construction, materials, colors and fittings. Ignore the other three tiers entirely. Polished chunky beveled stylized 3D game equipment. One isolated full item centered large in a square canvas with comfortable clear margins. Slight front three-quarter view with minimal perspective, neutral even studio lighting, legible geometry and material boundaries, no dramatic shadows. Genuine transparent alpha background, no backdrop, no floor, no cast shadow outside the object, no pedestal. No text, labels, borders, human, mannequin, face, body, weapons, shield, bonus props or multiple views. Beige linen #C5AF88, walnut leather #79513B, dull iron #92989E, small muted teal #38585A; do not upgrade or ornament the starter design.\nSubject: Soft low rounded beige cloth hood, brown leather face-opening trim with stitching, small muted teal side tabs, beige folded neck cowl. Empty dark cloth interior; no face or head.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-ab097f1b-bd58-4df8-81f0-8c31503a24a0.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/hood.png",
+      "file": "traveler/hood.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "5ff8687e8d381375b7e596c841f7f8229ab6a4f3ff05616bd6c0a3db8736afcc",
+      "reference_sha256": "da05e6d369035522b57d41c12c3283f27e20192aebedb770690ec12971dde1db",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 783661,
+      "silhouette_bbox": [
+        169,
+        50,
+        1071,
+        1230
+      ]
+    },
+    {
+      "key": "traveler_helmet",
+      "tier": "traveler",
+      "category": "helmet",
+      "prompt": "Use case: stylized-concept. Create a 3D modeling reference PNG cutout for The Last Throne Roblox RPG. The attached board is the exact design reference. Reproduce ONLY the LEFTMOST TRAVELER COMMON item, preserving its silhouette, construction, materials, colors and fittings. Ignore the other three tiers entirely. Polished chunky beveled stylized 3D game equipment. One isolated full item centered large in a square canvas with comfortable clear margins. Slight front three-quarter view with minimal perspective, neutral even studio lighting, legible geometry and material boundaries, no dramatic shadows. Genuine transparent alpha background, no backdrop, no floor, no cast shadow outside the object, no pedestal. No text, labels, borders, human, mannequin, face, body, weapons, shield, bonus props or multiple views. Beige linen #C5AF88, walnut leather #79513B, dull iron #92989E, small muted teal #38585A; do not upgrade or ornament the starter design.\nSubject: One knight iron helmet with a raised front-to-back central ridge, brow band and small shield-shaped muted teal forehead inset, angular cheek guards, brown leather lower side straps, beige interior. No head or face.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-c0fffa4e-2fba-4e4b-92f8-373e8471de4d.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/knight_helmet.png",
+      "file": "traveler/helmet.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "539fea1acd43c654ed0a82055ededcfdc9dc32c3b3488ac0fa399542e306f968",
+      "reference_sha256": "9d021a10a1ea795032e132cc913fa20eac5b17ff94494aa408d10f204e4f5368",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 844062,
+      "silhouette_bbox": [
+        222,
+        21,
+        1026,
+        1238
+      ]
+    },
+    {
+      "key": "traveler_coat",
+      "tier": "traveler",
+      "category": "coat",
+      "prompt": "Use case: stylized-concept. Create a 3D modeling reference PNG cutout for The Last Throne Roblox RPG. The attached board is the exact design reference. Reproduce ONLY the LEFTMOST TRAVELER COMMON item, preserving its silhouette, construction, materials, colors and fittings. Ignore the other three tiers entirely. Polished chunky beveled stylized 3D game equipment. One isolated full item centered large in a square canvas with comfortable clear margins. Slight front three-quarter view with minimal perspective, neutral even studio lighting, legible geometry and material boundaries, no dramatic shadows. Genuine transparent alpha background, no backdrop, no floor, no cast shadow outside the object, no pedestal. No text, labels, borders, human, mannequin, face, body, weapons, shield, bonus props or multiple views. Beige linen #C5AF88, walnut leather #79513B, dull iron #92989E, small muted teal #38585A; do not upgrade or ornament the starter design.\nSubject: One short sleeveless beige adventurer coat, brown leather shoulder cape and tall collar, muted teal central underpanel, two chest buckles plus waist belt and silver buckle, two leather hip pockets and split short skirt hem. Empty neck and arm openings, no body.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-867fdf29-cc64-4af2-9bca-a3688d2503d7.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/coat.png",
+      "file": "traveler/coat.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "f6d4bed2fbf20eca7f1c203b1f94ab7f59ead98d17fb83d788a391e3b109efe2",
+      "reference_sha256": "c0d4e7b628a03ff2f5b79f31748ad5d698f857fde0ea55c6635a2e377daba7ed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 910915,
+      "silhouette_bbox": [
+        245,
+        23,
+        999,
+        1228
+      ]
+    },
+    {
+      "key": "traveler_robe",
+      "tier": "traveler",
+      "category": "robe",
+      "prompt": "Use case: stylized-concept. Create a 3D modeling reference PNG cutout for The Last Throne Roblox RPG. The attached board is the exact design reference. Reproduce ONLY the LEFTMOST TRAVELER COMMON item, preserving its silhouette, construction, materials, colors and fittings. Ignore the other three tiers entirely. Polished chunky beveled stylized 3D game equipment. One isolated full item centered large in a square canvas with comfortable clear margins. Slight front three-quarter view with minimal perspective, neutral even studio lighting, legible geometry and material boundaries, no dramatic shadows. Genuine transparent alpha background, no backdrop, no floor, no cast shadow outside the object, no pedestal. No text, labels, borders, human, mannequin, face, body, weapons, shield, bonus props or multiple views. Beige linen #C5AF88, walnut leather #79513B, dull iron #92989E, small muted teal #38585A; do not upgrade or ornament the starter design.\nSubject: One full long beige mage robe with lowered hood/collar, short shoulder cape, long empty sleeves, muted teal edging and long central panel, two small chest buckles and brown waist belt with silver buckle. No attached head hood raised over imaginary head. No hands feet or body.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-e1e369f1-3950-41eb-a4bf-2a0ff48b3aef.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/mage_robe.png",
+      "file": "traveler/robe.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "542ae3e28d1948ed97a92412ff70e5d327b1342fee8eb2efe4e5cef868aa42b2",
+      "reference_sha256": "601dac9c01eeef72f2e3a4d62a9f2ecf6f5b06c94a91ce4d078612ae3a55bc3a",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 935175,
+      "silhouette_bbox": [
+        275,
+        9,
+        977,
+        1238
+      ]
+    },
+    {
+      "key": "traveler_gloves",
+      "tier": "traveler",
+      "category": "gloves",
+      "prompt": "Use case: stylized-concept. Create a 3D modeling reference PNG cutout for The Last Throne Roblox RPG. The attached board is the exact design reference. Reproduce ONLY the LEFTMOST TRAVELER COMMON item, preserving its silhouette, construction, materials, colors and fittings. Ignore the other three tiers entirely. Polished chunky beveled stylized 3D game equipment. One isolated full item centered large in a square canvas with comfortable clear margins. Slight front three-quarter view with minimal perspective, neutral even studio lighting, legible geometry and material boundaries, no dramatic shadows. Genuine transparent alpha background, no backdrop, no floor, no cast shadow outside the object, no pedestal. No text, labels, borders, human, mannequin, face, body, weapons, shield, bonus props or multiple views. Beige linen #C5AF88, walnut leather #79513B, dull iron #92989E, small muted teal #38585A; do not upgrade or ornament the starter design.\nSubject: One matched LEFT AND RIGHT pair of full finger brown leather gloves, beige extended cuffs with brown rolled edges, muted teal wrist straps and small silver buckles, visible stitched back-of-hand leather panels. Exactly two gloves, all five fingers correctly constructed per glove, relaxed slightly curved empty gloves, side by side separated with no overlap. No hands or arms.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-db4adf7f-da3f-4421-bbf3-48bc497af506.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/gloves.png",
+      "file": "traveler/gloves.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "6e4d4f40ad979e6d16b99e51984433a8b6c15fa3006db9bb71b35ab68de006e9",
+      "reference_sha256": "6289de2217ed1076feb1cd95aa42e33c9fa83deff1dfc86d96d8775b8f2aec5c",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 684052,
+      "silhouette_bbox": [
+        84,
+        80,
+        1169,
+        1207
+      ]
+    },
+    {
+      "key": "traveler_boots",
+      "tier": "traveler",
+      "category": "boots",
+      "prompt": "Use case: stylized-concept. Create a 3D modeling reference PNG cutout for The Last Throne Roblox RPG. The attached board is the exact design reference. Reproduce ONLY the LEFTMOST TRAVELER COMMON item, preserving its silhouette, construction, materials, colors and fittings. Ignore the other three tiers entirely. Polished chunky beveled stylized 3D game equipment. One isolated full item centered large in a square canvas with comfortable clear margins. Slight front three-quarter view with minimal perspective, neutral even studio lighting, legible geometry and material boundaries, no dramatic shadows. Genuine transparent alpha background, no backdrop, no floor, no cast shadow outside the object, no pedestal. No text, labels, borders, human, mannequin, face, body, weapons, shield, bonus props or multiple views. Beige linen #C5AF88, walnut leather #79513B, dull iron #92989E, small muted teal #38585A; do not upgrade or ornament the starter design.\nSubject: One matched LEFT AND RIGHT pair of brown leather boots, beige rolled cloth cuffs, muted teal ankle straps and silver buckles, modest dull iron toe caps, broad dark brown thick soles. Exactly two boots, side by side slightly separated with no overlap, three-quarter front view. Empty openings, no legs.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-e1b7610a-8fb0-46a3-9a37-b7c1943e8f43.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/boots.png",
+      "file": "traveler/boots.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "a5fd6eb802d78fddbf193b7ce05f5ea81ca30c1c88408b5c2fd1e89e59357ab8",
+      "reference_sha256": "015cf8015993b3e23ea2ea08469565b79e2f3c5b95c0939799f99613411e7d31",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 667935,
+      "silhouette_bbox": [
+        86,
+        78,
+        1203,
+        1212
+      ]
+    },
+    {
+      "key": "tempered_hood",
+      "tier": "tempered",
+      "category": "hood",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY SECOND from left, TEMPERED COMMON. Palette: slate blue-gray cloth #485B68, dark brown leather #543B30, clean steel #BAC4CE and pale steel edges; no gems.\nSubject: One rounded soft cloth hood with empty interior and neck cowl, not a rigid helmet.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-b806131c-d41f-4ccf-9cad-869825b3bffc.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/hood.png",
+      "file": "tempered/hood.png",
+      "size": [
+        1312,
+        1199
+      ],
+      "sha256": "9e98a88c34d0ac596756275e45289be194c7df130244df95bd5c3f520c7ce81f",
+      "reference_sha256": "da05e6d369035522b57d41c12c3283f27e20192aebedb770690ec12971dde1db",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 737129,
+      "silhouette_bbox": [
+        188,
+        9,
+        1124,
+        1162
+      ]
+    },
+    {
+      "key": "tempered_helmet",
+      "tier": "tempered",
+      "category": "helmet",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY SECOND from left, TEMPERED COMMON. Palette: slate blue-gray cloth #485B68, dark brown leather #543B30, clean steel #BAC4CE and pale steel edges; no gems.\nSubject: One knight metal helmet with central ridge and angular cheek guards; no head.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-08a9b8cd-185b-4a2a-a142-2e85168bac5a.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/knight_helmet.png",
+      "file": "tempered/helmet.png",
+      "size": [
+        1161,
+        1354
+      ],
+      "sha256": "4f0abbaef44086b7b955214fcd5927a4421d573e016e134e6f241ead8c7ab73f",
+      "reference_sha256": "9d021a10a1ea795032e132cc913fa20eac5b17ff94494aa408d10f204e4f5368",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 825160,
+      "silhouette_bbox": [
+        162,
+        72,
+        999,
+        1295
+      ]
+    },
+    {
+      "key": "tempered_coat",
+      "tier": "tempered",
+      "category": "coat",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY SECOND from left, TEMPERED COMMON. Palette: slate blue-gray cloth #485B68, dark brown leather #543B30, clean steel #BAC4CE and pale steel edges; no gems.\nSubject: One short sleeveless coat with belt, shoulder protection and split skirt hem. Empty neck and arm openings.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-b1c1693e-e0ad-4685-a0a2-82dda8dc330d.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/coat.png",
+      "file": "tempered/coat.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "sha256": "1a18ae04243dfec8949d85cb9e78c1e3e53cf4ca2772a9bc0a02a8d51e356b8b",
+      "reference_sha256": "c0d4e7b628a03ff2f5b79f31748ad5d698f857fde0ea55c6635a2e377daba7ed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 669721,
+      "silhouette_bbox": [
+        87,
+        34,
+        998,
+        1424
+      ]
+    },
+    {
+      "key": "tempered_robe",
+      "tier": "tempered",
+      "category": "robe",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY SECOND from left, TEMPERED COMMON. Palette: slate blue-gray cloth #485B68, dark brown leather #543B30, clean steel #BAC4CE and pale steel edges; no gems.\nSubject: One long mage robe with empty long sleeves and waist belt. No hands feet or head.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-bd1abaf9-18a7-424b-833d-bbcfdebba9ff.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/mage_robe.png",
+      "file": "tempered/robe.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "1ffd57b4cbd8d93e79999cacd42ab4faf2f089400f9a2c736eb27870055548a5",
+      "reference_sha256": "601dac9c01eeef72f2e3a4d62a9f2ecf6f5b06c94a91ce4d078612ae3a55bc3a",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 671428,
+      "silhouette_bbox": [
+        90,
+        33,
+        942,
+        1504
+      ]
+    },
+    {
+      "key": "tempered_gloves",
+      "tier": "tempered",
+      "category": "gloves",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY SECOND from left, TEMPERED COMMON. Palette: slate blue-gray cloth #485B68, dark brown leather #543B30, clean steel #BAC4CE and pale steel edges; no gems.\nSubject: One matched LEFT AND RIGHT pair of gloves, exactly two, five fingers each, visible backs of hands, side by side with separation, no overlap or arms.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-65262feb-ee30-4e3a-aca2-d949b48d7e37.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/gloves.png",
+      "file": "tempered/gloves.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "46827772021ef1a5f95dc067255c22d4988427075450be230438db3e805d85ec",
+      "reference_sha256": "6289de2217ed1076feb1cd95aa42e33c9fa83deff1dfc86d96d8775b8f2aec5c",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 839335,
+      "silhouette_bbox": [
+        254,
+        19,
+        1281,
+        1014
+      ]
+    },
+    {
+      "key": "tempered_boots",
+      "tier": "tempered",
+      "category": "boots",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY SECOND from left, TEMPERED COMMON. Palette: slate blue-gray cloth #485B68, dark brown leather #543B30, clean steel #BAC4CE and pale steel edges; no gems.\nSubject: One matched LEFT AND RIGHT pair of boots, exactly two, side by side with separation, no overlap or legs.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-1c23d5f3-0de0-4c0d-b42b-dba1a4eb763e.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/boots.png",
+      "file": "tempered/boots.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "f36adb12a563a8ae86874cf0113df6b0110fdc2ad43a3817c6c4da470e02012a",
+      "reference_sha256": "015cf8015993b3e23ea2ea08469565b79e2f3c5b95c0939799f99613411e7d31",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 861431,
+      "silhouette_bbox": [
+        248,
+        54,
+        1347,
+        972
+      ]
+    },
+    {
+      "key": "veteran_hood",
+      "tier": "veteran",
+      "category": "hood",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY THIRD from left, VETERAN UNCOMMON. Palette: deep olive cloth #3F513C, dark brown leather #51392E, brushed steel #A8B5BC, restrained bronze #94734C; small practical forge mark. No gems.\nSubject: One rounded soft cloth hood with empty interior and neck cowl, not a rigid helmet.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-9ec3b97e-8e3b-47e5-99d8-ab1480aae281.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/hood.png",
+      "file": "veteran/hood.png",
+      "size": [
+        1312,
+        1199
+      ],
+      "sha256": "ac7557309ad5bdea34a3458c101b18023efc07acaa3b74881226f0f6c941831d",
+      "reference_sha256": "da05e6d369035522b57d41c12c3283f27e20192aebedb770690ec12971dde1db",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 823972,
+      "silhouette_bbox": [
+        193,
+        43,
+        1108,
+        1144
+      ]
+    },
+    {
+      "key": "veteran_helmet",
+      "tier": "veteran",
+      "category": "helmet",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY THIRD from left, VETERAN UNCOMMON. Palette: deep olive cloth #3F513C, dark brown leather #51392E, brushed steel #A8B5BC, restrained bronze #94734C; small practical forge mark. No gems.\nSubject: One knight metal helmet with central ridge and angular cheek guards; no head.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-d3c4e072-5612-4324-89e7-382dc5e36fad.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/knight_helmet.png",
+      "file": "veteran/helmet.png",
+      "size": [
+        1264,
+        1244
+      ],
+      "sha256": "66c1996115f217219bbeff260b55a2bf37aa33f8b945a57acf6e9d80f2e369ae",
+      "reference_sha256": "9d021a10a1ea795032e132cc913fa20eac5b17ff94494aa408d10f204e4f5368",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 846719,
+      "silhouette_bbox": [
+        214,
+        20,
+        1068,
+        1228
+      ]
+    },
+    {
+      "key": "veteran_coat",
+      "tier": "veteran",
+      "category": "coat",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY THIRD from left, VETERAN UNCOMMON. Palette: deep olive cloth #3F513C, dark brown leather #51392E, brushed steel #A8B5BC, restrained bronze #94734C; small practical forge mark. No gems.\nSubject: One short sleeveless coat with belt, shoulder protection and split skirt hem. Empty neck and arm openings.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-52ae20c3-739f-4678-92e5-487d36f7f3a9.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/coat.png",
+      "file": "veteran/coat.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "sha256": "1723216723f8d0ee1ac1487ba3a19a58f1563e96918c2914b8df20b0e678fb7d",
+      "reference_sha256": "c0d4e7b628a03ff2f5b79f31748ad5d698f857fde0ea55c6635a2e377daba7ed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 640082,
+      "silhouette_bbox": [
+        91,
+        17,
+        993,
+        1422
+      ]
+    },
+    {
+      "key": "veteran_robe",
+      "tier": "veteran",
+      "category": "robe",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY THIRD from left, VETERAN UNCOMMON. Palette: deep olive cloth #3F513C, dark brown leather #51392E, brushed steel #A8B5BC, restrained bronze #94734C; small practical forge mark. No gems.\nSubject: One long mage robe with empty long sleeves and waist belt. No hands feet or head.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-cb870081-8aec-493b-ba00-dd29cb27348c.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/mage_robe.png",
+      "file": "veteran/robe.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "7e8e994667301dd8f64cf6f4111f992359ef93a79f2687989fb157fd0d00c945",
+      "reference_sha256": "601dac9c01eeef72f2e3a4d62a9f2ecf6f5b06c94a91ce4d078612ae3a55bc3a",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 659438,
+      "silhouette_bbox": [
+        112,
+        23,
+        928,
+        1492
+      ]
+    },
+    {
+      "key": "veteran_gloves",
+      "tier": "veteran",
+      "category": "gloves",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY THIRD from left, VETERAN UNCOMMON. Palette: deep olive cloth #3F513C, dark brown leather #51392E, brushed steel #A8B5BC, restrained bronze #94734C; small practical forge mark. No gems.\nSubject: One matched LEFT AND RIGHT pair of gloves, exactly two, five fingers each, visible backs of hands, side by side with separation, no overlap or arms.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-598eb519-ed54-49ac-9844-fcb9adbc4b83.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/gloves.png",
+      "file": "veteran/gloves.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "e2b55d3e775e1c1744e29035794e48464b9738e798916749f551370f9984431f",
+      "reference_sha256": "6289de2217ed1076feb1cd95aa42e33c9fa83deff1dfc86d96d8775b8f2aec5c",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 887361,
+      "silhouette_bbox": [
+        293,
+        18,
+        1239,
+        1013
+      ]
+    },
+    {
+      "key": "veteran_boots",
+      "tier": "veteran",
+      "category": "boots",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY THIRD from left, VETERAN UNCOMMON. Palette: deep olive cloth #3F513C, dark brown leather #51392E, brushed steel #A8B5BC, restrained bronze #94734C; small practical forge mark. No gems.\nSubject: One matched LEFT AND RIGHT pair of boots, exactly two, side by side with separation, no overlap or legs.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-429c42e7-c2c7-4ee6-b04f-8e3344f1aca7.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/boots.png",
+      "file": "veteran/boots.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "78068043510eae072f30a85054f75445b6a54833c61cc502bc7f0c657091d425",
+      "reference_sha256": "015cf8015993b3e23ea2ea08469565b79e2f3c5b95c0939799f99613411e7d31",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 837784,
+      "silhouette_bbox": [
+        248,
+        42,
+        1366,
+        995
+      ]
+    },
+    {
+      "key": "sentinel_hood",
+      "tier": "sentinel",
+      "category": "hood",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY RIGHTMOST FOURTH, SENTINEL RARE. Palette: dark navy cloth #234461, dark brown leather #42332D, bright silver #C9D1D7, cobalt accent #3C6D9B; small watch tower crest and only the small blue insets shown.\nSubject: One rounded soft cloth hood with empty interior and neck cowl, not a rigid helmet.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-2d2f3409-7d55-4cc4-8d47-4b34cde96e81.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/hood.png",
+      "file": "sentinel/hood.png",
+      "size": [
+        1312,
+        1199
+      ],
+      "sha256": "03f8067bf4e4032e9c84f1c5eb71ebaa8795c6afc0dc99b797e44fea34f17ba2",
+      "reference_sha256": "da05e6d369035522b57d41c12c3283f27e20192aebedb770690ec12971dde1db",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 742545,
+      "silhouette_bbox": [
+        164,
+        28,
+        1137,
+        1173
+      ]
+    },
+    {
+      "key": "sentinel_helmet",
+      "tier": "sentinel",
+      "category": "helmet",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY RIGHTMOST FOURTH, SENTINEL RARE. Palette: dark navy cloth #234461, dark brown leather #42332D, bright silver #C9D1D7, cobalt accent #3C6D9B; small watch tower crest and only the small blue insets shown.\nSubject: One knight metal helmet with central ridge and angular cheek guards; no head.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-60d7e1f6-b7ce-44e2-a133-ee99d370b538.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/knight_helmet.png",
+      "file": "sentinel/helmet.png",
+      "size": [
+        1161,
+        1355
+      ],
+      "sha256": "e24706052096c35db1a722420a47799cc73522cc1c204df793dca66f19707233",
+      "reference_sha256": "9d021a10a1ea795032e132cc913fa20eac5b17ff94494aa408d10f204e4f5368",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 793609,
+      "silhouette_bbox": [
+        175,
+        48,
+        1018,
+        1313
+      ]
+    },
+    {
+      "key": "sentinel_coat",
+      "tier": "sentinel",
+      "category": "coat",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY RIGHTMOST FOURTH, SENTINEL RARE. Palette: dark navy cloth #234461, dark brown leather #42332D, bright silver #C9D1D7, cobalt accent #3C6D9B; small watch tower crest and only the small blue insets shown.\nSubject: One short sleeveless coat with belt, shoulder protection and split skirt hem. Empty neck and arm openings.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-24ad6124-9e0b-41dc-8e16-570b395117e3.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/coat.png",
+      "file": "sentinel/coat.png",
+      "size": [
+        1086,
+        1448
+      ],
+      "sha256": "e980c01d402ffea51589d00a2f3409341c1f7981d6ee86dba30598569a42de41",
+      "reference_sha256": "c0d4e7b628a03ff2f5b79f31748ad5d698f857fde0ea55c6635a2e377daba7ed",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 639577,
+      "silhouette_bbox": [
+        97,
+        14,
+        993,
+        1425
+      ]
+    },
+    {
+      "key": "sentinel_robe",
+      "tier": "sentinel",
+      "category": "robe",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY RIGHTMOST FOURTH, SENTINEL RARE. Palette: dark navy cloth #234461, dark brown leather #42332D, bright silver #C9D1D7, cobalt accent #3C6D9B; small watch tower crest and only the small blue insets shown.\nSubject: One long mage robe with empty long sleeves and waist belt. No hands feet or head.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-556cbb5f-6a8d-41a0-8cc9-ff6b69697ee3.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/mage_robe.png",
+      "file": "sentinel/robe.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "sha256": "03592fd669201ce311230fdc7bfdee877321bf3a693c640c43b81f24c06a1729",
+      "reference_sha256": "601dac9c01eeef72f2e3a4d62a9f2ecf6f5b06c94a91ce4d078612ae3a55bc3a",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 613832,
+      "silhouette_bbox": [
+        105,
+        20,
+        934,
+        1512
+      ]
+    },
+    {
+      "key": "sentinel_gloves",
+      "tier": "sentinel",
+      "category": "gloves",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY RIGHTMOST FOURTH, SENTINEL RARE. Palette: dark navy cloth #234461, dark brown leather #42332D, bright silver #C9D1D7, cobalt accent #3C6D9B; small watch tower crest and only the small blue insets shown.\nSubject: One matched LEFT AND RIGHT pair of gloves, exactly two, five fingers each, visible backs of hands, side by side with separation, no overlap or arms.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-58cf2c21-0289-4ca2-9592-a4a40754d9da.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/gloves.png",
+      "file": "sentinel/gloves.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "12a6138efb5548600f0038433e0d28f7b2e3c99c9740ed3d1e19ee5f14f3c869",
+      "reference_sha256": "6289de2217ed1076feb1cd95aa42e33c9fa83deff1dfc86d96d8775b8f2aec5c",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 872557,
+      "silhouette_bbox": [
+        284,
+        14,
+        1252,
+        1018
+      ]
+    },
+    {
+      "key": "sentinel_boots",
+      "tier": "sentinel",
+      "category": "boots",
+      "prompt": "Use case: stylized-concept. Make ONE isolated 3D modeling reference asset cutout PNG for The Last Throne Roblox RPG. The attached four-column board is the exact design reference. Reproduce ONLY the specified column's item, preserving its silhouette, construction, seams, metal fittings, colors and materials. Do not mix tiers or invent ornament. Polished chunky beveled stylized 3D game art. Single full object centered large, generous clear margins, front slightly three-quarter view with minimal perspective. Neutral even studio light for legible geometry. Genuinely transparent alpha background. No background, floor, shadow outside object, pedestal, text, labels, border, mannequin, human body, face, weapons, shield, extra props or extra views.\nSELECT ONLY RIGHTMOST FOURTH, SENTINEL RARE. Palette: dark navy cloth #234461, dark brown leather #42332D, bright silver #C9D1D7, cobalt accent #3C6D9B; small watch tower crest and only the small blue insets shown.\nSubject: One matched LEFT AND RIGHT pair of boots, exactly two, side by side with separation, no overlap or legs.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-53ddebee-200c-410f-aec4-e5feba0c7fe9.png",
+      "reference": "assets/concepts/2026-11-09-starter-equipment-v1/boards/boots.png",
+      "file": "sentinel/boots.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "df3544a102dfdbd85f63b04de3030e08168339a41a1031347d1e9e8af16675b3",
+      "reference_sha256": "015cf8015993b3e23ea2ea08469565b79e2f3c5b95c0939799f99613411e7d31",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 863656,
+      "silhouette_bbox": [
+        285,
+        40,
+        1330,
+        989
+      ]
+    }
+  ]
+}
