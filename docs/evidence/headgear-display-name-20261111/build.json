@@ -1,0 +1,26 @@
+{
+  "version": "0.103.6",
+  "sourceCommit": "6ddaf899696ac29e33d4ae23349dfeb11a3a8763",
+  "freeze": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-6ddaf899-d_4fi4vl",
+  "lfsVerified": [],
+  "published": false,
+  "releaseTag": null,
+  "outputs": [
+    {
+      "role": "Game",
+      "command": [
+        "rojo",
+        "build",
+        "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-game-freeze-6ddaf899-d_4fi4vl/default.project.json",
+        "-o",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/builds/0.103.6/TheLastThrone-0.103.6.rbxlx"
+      ],
+      "status": "success",
+      "stdout": "Building project 'the-last-throne'\nBuilt project to TheLastThrone-0.103.6.rbxlx\n",
+      "stderr": "",
+      "path": "builds/0.103.6/TheLastThrone-0.103.6.rbxlx",
+      "sha256": "2ab0b55fb5591141db32457821b841bb2760fcf7855ebb77f6eb02e51bfc5685",
+      "bytes": 18532430
+    }
+  ]
+}
