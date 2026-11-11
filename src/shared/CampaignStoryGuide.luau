@@ -113,7 +113,7 @@ function G.completedRegion(s,chapter)
 end
 function G.inCombat(value)
  for _,fight in pairs(value and value.encounters or {})do
-  if (fight.remaining or 0)>0 or (fight.pillars or 0)>0 then return true end
+  if fight.active~=false and ((fight.remaining or 0)>0 or (fight.pillars or 0)>0)then return true end
  end
  return false
 end

@@ -32,6 +32,7 @@ check(equal(original,selene),'reading dialogue does not consume trial, credit, c
 check(not G.inCombat({encounters={one={remaining=0,pillars=0}}}),'completed encounter does not suppress safe dialogue')
 check(G.inCombat({encounters={one={remaining=1}}}),'active enemies suppress informational overlay')
 check(G.inCombat({encounters={one={pillars=1}}}),'active encounter devices preserve visibility')
+check(not G.inCombat({encounters={one={active=false,remaining=3}}}),'leaving an encounter restores safe dialogue even while enemies remain')
 check(not State.requires(P.new(),'FV-07'),'region result cannot be shown for an unfinished final incident')
 check(State.requires({clears={['FV-07']=true}},'FV-07'),'actual saved region clear unlocks result scene')
 local s=assert(P.enableExpansion(P.new()))
