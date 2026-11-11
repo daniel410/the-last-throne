@@ -5,12 +5,13 @@ local P=require(RS.Shared.DeepwoodProgress)
 local Log=require(RS.Shared.DeepwoodQuestLog)
 local Theme=require(script.Parent.TDInventoryTheme)
 local Navigation=require(RS.Shared.NavigationText)
+local Guide=require(RS.Shared.CampaignStoryGuide)
 local Book={}
 function Book.create(parent,track)
  local panel=Theme.frame(parent,'Journal',UDim2.fromScale(.5,.5),UDim2.fromOffset(680,540));panel.AnchorPoint=Vector2.new(.5,.5);panel.Visible=false
  Theme.label(panel,'Title',Navigation.quest,UDim2.fromOffset(18,12),UDim2.new(1,-80,0,30),18,Theme.color.gold)
  local close=Theme.button(panel,'Close','X',UDim2.new(1,-52,0,12),UDim2.fromOffset(40,40))
- local tab='Main';local last
+ local tab='Main';local last;local discoveryKind='people';local discoveryId
  local buttons={}
  for index,row in ipairs({{'Main','MAIN STORY'},{'Side','SIDE QUESTS'},{'Chronicle','CHRONICLE'}}) do
   local b=Theme.button(panel,row[1]..'Tab',row[2],UDim2.new((index-1)/3,10,0,58),UDim2.new(1/3,-20,0,38));b.Caption.TextSize=12;buttons[row[1]]=b
@@ -19,7 +20,7 @@ function Book.create(parent,track)
  local layout=Instance.new('UIListLayout');layout.Padding=UDim.new(0,10);layout.Parent=list
  local retry=Theme.button(panel,'Retry','RETURN TO CHECKPOINT',UDim2.new(0,14,1,-50),UDim2.new(.5,-21,0,38));retry.Caption.TextSize=11
  local coins=Theme.label(panel,'Coins','',UDim2.new(.5,0,1,-50),UDim2.new(.5,-16,0,38),11)
- local render
+ local render,openDiscovery
  local function card(title,lines,action,caption)
   local width=math.max(200,panel.Size.X.Offset-52);local height=14
   local values={{text=title,size=15,color=Theme.color.gold}}
@@ -43,12 +44,18 @@ function Book.create(parent,track)
    local epic=math.min(#Content.epics,math.floor(s.main/7)+1);local info=Content.epics[epic]
    card('EPIC '..epic..' · '..info.title,{info.promise,string.format('%d / 7 stories completed · Side quests are optional.',math.clamp(s.main-(epic-1)*7,0,7))})
    if c then
+    local context=Guide.context(s,c)
+    card(Guide.text.purpose,{context.question,context.purpose})
+    local recap=Guide.recap(s,c)
+    if recap then card(Guide.text.recap,{recap})end
     local phase,index,total=Log.phase(s,c)
     card(string.format('MAIN STORY %d / 7 · %s',(c.number-1)%7+1,c.quest.title),{c.quest.brief,string.format('Phase %d / %d · %s',index,total,phase),Log.reward(c)},function() track(c.id) end,s.expeditionMission and Content.byId[s.expeditionMission] and Content.byId[s.expeditionMission].side and 'CONTINUE MAIN STORY' or 'TRACK MAIN STORY')
     local currentPhase=c.quest.phases[index];local lines={}
     for _,id in ipairs(currentPhase.goals) do local g=P.goal(c,id);if P.required(s,g)then table.insert(lines,(s.flags[c.id..':'..id] and '✓ ' or '□ ')..g.title)end end
     card('CURRENT PHASE',lines)
     local target=Log.target(s,c);local g=target and target.goal
+    local lesson=Guide.lesson(g)
+    if #lesson>0 then card('READ THE NEXT ATTACK',lesson)end
     if g and g.activity and g.activity.steps then
      local lines={g.activity.mode=='investigate' and 'Gather the evidence in any order.' or g.activity.mode=='sequence' and g.activity.clue or 'Each confirmed step is saved.'}
      for i,step in ipairs(g.activity.steps) do table.insert(lines,(P.collected(s,c,g,i) and '✓ ' or '□ ')..step.title) end
@@ -57,9 +64,10 @@ function Book.create(parent,track)
     for _,g in ipairs(c.goals) do if g.optional and not g.expansion and P.available(s,c,g) then
      card('OPTIONAL · '..g.title,{'This does not block the main story.','Rescuing the altar captives creates an opening during King Shaman\'s final phase.'},function() track(c.id,g.id) end,'TRACK OPTIONAL RESCUE')
     end end
-    card('NEXT STORY',{'Complete this story to open the next region. Combat alone may not finish an investigation, rescue, or report.'})
+    card('NEXT STORY',{'Complete the current objectives to continue. The final story in each epic opens the next region. Investigations, rescues, and reports also matter.'})
    else card('EPIC COMPLETE',{'The Crownheart is safe and the invasion portal is closed! Return to Dawnspire to celebrate with your friends. You have saved all five regions together.'}) end
-   card('SELENE · PRIESTESS',{current.selene or (P.seleneUnlocked(s) and 'Available · Invite Selene at the elder tree camp.' or 'Help the convoy reach camp, then report to Selene to unlock her for free.')})
+   card('SELENE · PRIESTESS',{current.selene or (P.seleneUnlocked(s) and 'Unlocked · Read her story here, or visit Selene for support.' or 'Help the convoy reach camp, then report to Selene to unlock her for free.')},P.seleneUnlocked(s)and function()openDiscovery('people','selene')end or nil,Guide.text.read)
+   card(Guide.text.combatTitle,{Guide.text.combat,Guide.text.assistance})
   elseif tab=='Side' then
    card('OPTIONAL STORIES',{'Discover a field clue or speak to a resident. Read the request, then choose ACCEPT or LATER.','Accepted quests never block the main stories. Report to the named resident when the work is done.'})
    local count=0
@@ -72,6 +80,27 @@ function Book.create(parent,track)
    end end
    if count==0 then card('NO OPEN REQUESTS',{'Explore for field clues and continue the main story. Hidden discoveries appear here after you accept them.'}) end
   else
+   -- Detail-only controls keep the approved main menu and three journal tabs intact.
+   local filters=Instance.new('Frame');filters.Name='DiscoveryFilters';filters.BackgroundTransparency=1;filters.Size=UDim2.new(1,-8,0,44);filters.Parent=list
+   for i,kind in ipairs({'people','clues','outcomes'})do
+    local b=Theme.button(filters,kind,Guide.text[kind],UDim2.new((i-1)/3,2,0,0),UDim2.new(1/3,-4,0,44));b.Caption.TextSize=11
+    b.Caption.TextColor3=kind==discoveryKind and Theme.color.gold or Theme.color.text
+    b.Activated:Connect(function()openDiscovery(kind)end)
+   end
+   local entries=Guide.discoveries(s,discoveryKind)
+   local selected
+   for _,entry in ipairs(entries)do if entry.id==discoveryId then selected=entry end end
+   if selected then
+    local lines={Guide.text.optional};for _,line in ipairs(selected.lines)do table.insert(lines,line)end
+    card(selected.title,lines,function()discoveryId=nil;render(last)end,Guide.text.back)
+   else
+    if #entries==0 then card(Guide.text.discoveries,{Guide.text.empty})end
+    for _,entry in ipairs(entries)do
+     local id=entry.id
+     card(entry.title,{entry.lines[#entry.lines]or Guide.text.optional},function()openDiscovery(discoveryKind,id)end,Guide.text.read)
+    end
+   end
+   card('SAVED STORY OUTCOMES',{'Review any confirmed story below. Reading never changes progress or repeats a reward.'})
    local count=0
    for _,c in ipairs(Content.chapters) do if s.clears[c.id] then
     count+=1;local lines={c.quest.outcome}
@@ -81,11 +110,26 @@ function Book.create(parent,track)
     end
     for _,choice in ipairs(Log.choices(s,c)) do table.insert(lines,'Your response: '..choice) end
     card((c.side and 'SIDE QUEST · ' or 'MAIN STORY · ')..(c.quest.title or c.title),lines)
+   elseif not c.side then
+    local lines={}
+    for _,g in ipairs(c.expansionGoals or {})do local key=c.id..':'..g.id
+     if s.flags[key]and not (s.expansionWaivers or {})[key]then table.insert(lines,g.text)end
+    end
+    if #lines>0 then count+=1;card('IN PROGRESS · '..(c.quest.title or c.title),lines)end
    end end
    if count==0 then card('YOUR CHRONICLE',{'Complete a story or report an optional quest to record its outcome here.'}) end
   end
  end
+ openDiscovery=function(kind,id)
+  if kind~='people'and kind~='clues'and kind~='outcomes'then return false end
+  if id then
+   local found=false
+   for _,entry in ipairs(Guide.discoveries(last and last.journal,kind))do if entry.id==id then found=true;break end end
+   if not found then return false end
+  end
+  discoveryKind=kind;discoveryId=id;tab='Chronicle';list.CanvasPosition=Vector2.zero;render(last);return true
+ end
  for name,b in pairs(buttons) do b.Activated:Connect(function() tab=name;list.CanvasPosition=Vector2.zero;render(last) end) end
- return {panel=panel,close=close,retry=retry,render=render,setTab=function(value) tab=value;render(last) end}
+ return {panel=panel,close=close,retry=retry,render=render,openDiscovery=openDiscovery,setTab=function(value) tab=value;render(last) end}
 end
 return Book

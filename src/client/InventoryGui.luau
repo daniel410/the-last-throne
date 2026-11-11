@@ -334,6 +334,9 @@ function InventoryGui.create(onVisibility, feedback)
 			end
 			local impact,reason=EquipmentImpact.compare(hero,snapshot.items,item,compareSlot,Catalog)
 			if impact then
+				local meaning=EquipmentImpact.meaning(impact)
+				local meaningHeight=game:GetService('TextService'):GetTextSize(meaning,12,Enum.Font.GothamMedium,Vector2.new(math.max(160,detailScroll.AbsoluteSize.X-8),10000)).Y+12
+				detailLabel('EquipmentMeaning',meaning,y,meaningHeight,12,Color.gold);y=y+meaningHeight+6
 				local impactHeight=math.max(160,(#impact+1)*22,game:GetService('TextService'):GetTextSize(EquipmentImpact.text(impact),13,Enum.Font.GothamMedium,Vector2.new(math.max(160,detailScroll.AbsoluteSize.X-8),10000)).Y+12)
     detailLabel("ActualStatChanges",EquipmentImpact.text(impact),y,impactHeight,13,Color.silver);y=y+impactHeight+6
 				local note=CombatText.EquipmentNote..(impact.specialEffects~='' and ('\n'..require(ReplicatedStorage.Shared.EquipmentEffectText).Note)or '')..(isStaff and ("\n"..Text.StaffPowerNote) or "")

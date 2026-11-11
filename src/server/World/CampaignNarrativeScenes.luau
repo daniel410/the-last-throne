@@ -1,6 +1,7 @@
 -- Readable character causes and payoffs, projected from existing journal flags.
 local N={};local V=Vector3.new
 local Lantern=require(script.Parent.ScoutLantern)
+local Guide=require(game.ReplicatedStorage.Shared.CampaignStoryGuide)
 local function label(part,text)
  local gui=Instance.new('BillboardGui');gui.Name='NarrativeClue';gui.Size=UDim2.fromOffset(260,64);gui.StudsOffset=V(0,4,0);gui.MaxDistance=45;gui.Parent=part
  local t=Instance.new('TextLabel');t.Size=UDim2.fromScale(1,1);t.BackgroundTransparency=1;t.TextWrapped=true;t.Font=Enum.Font.GothamBold;t.TextSize=13;t.TextColor3=Color3.fromRGB(247,227,169);t.TextStrokeTransparency=.2;t.Text=text;t.AutoLocalize=false;t.Parent=gui
@@ -61,6 +62,11 @@ function N.create(scene,c,g,area,k)
    k.actor('Freya',result+V(-18,0,-4),result+V(-6,0,-4),3,3,key)
   end,key)
  elseif c.id=='FV-07'and g.id=='exp_2'then
+  k.model('ShelterSignalsRemembered',3,3,function(m)
+   board(m,'GuardianResolution',result+V(6,0,-5),'SHELTER SIGNAL RESTORED\nThe guardians protect the travelers again.')
+   k.beam(m,'ShelterArrow',result+V(6,.2,-1),result+V(6,.2,9),.3,pal.accent,Enum.Material.Neon)
+   for _,side in ipairs({-1,1})do k.beam(m,'ShelterArrowHead',result+V(6,.2,9),result+V(6+side*2,.2,6),.3,pal.accent,Enum.Material.Neon)end
+  end)
   for i,name in ipairs({'West Village Traveler','East Village Traveler'})do
    local start=center+V((i==1 and -1 or 1)*area.size[1]*.3,0,-area.size[2]*.3)
    local finish=result+V(i==1 and -14 or -20,0,5)
@@ -78,6 +84,11 @@ function N.create(scene,c,g,area,k)
    board(scene,'CrewCircuitDrawing'..i,at+V(0,0,7),captions[i])
    local arrow=k.part(scene,'FlowDirection',V(1,.1,3),at+V(0,.15,5),pal.accent,Enum.Material.Neon)
    arrow.CFrame*=CFrame.Angles(0,i==2 and math.pi or 0,0)
+   for _,side in ipairs({-1,1})do
+    local tip=arrow.CFrame:PointToWorldSpace(V(0,0,-1.5))
+    local tail=arrow.CFrame:PointToWorldSpace(V(side*.9,0,-.5))
+    k.beam(scene,'FlowArrowHead',tip,tail,.16,pal.accent,Enum.Material.Neon)
+   end
   end
   k.model('CrewStartsItsWork',3,3,function(m)
    board(m,'SharedWorkPlan',result+V(-5,0,4),'Dagna: inlet ready\nOrik: return ready\nBrann: city shield ready')
@@ -92,6 +103,13 @@ function N.create(scene,c,g,area,k)
    k.actor('Finn',result+V(-23,0,8),result+V(-10,0,8),1,3)
    k.actor('Tali',result+V(-26,0,11),result+V(-14,0,11),2,3)
   end
+ end
+ if not c.side and c.number%7==0 and g.id=='exp_2'then
+  local resultScene=k.model('ConfirmedRegionalResult',3,3,function(m)
+   board(m,'SavedRegionSummary',result+V(9,0,5),Guide.regions[c.epic].result)
+  end)
+  -- The final incident alone is not the region clear or the reward receipt.
+  resultScene:SetAttribute('ExpansionRequires',c.id)
  end
  if c.id=='DW-07'and g.id=='exp_2'or c.id=='FV-04'and g.id=='exp_1'or c.id=='EC-07'and g.id=='exp_2'or c.id=='HG-06'and g.id=='exp_1'then
   motif(scene,result+V(7,0,0))

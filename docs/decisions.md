@@ -1229,3 +1229,8 @@ TLT-027/029/041/044/052/057/084. 사용자는 무기 및 장비에 특수 효과
 ## 2026-11-10 Tempered·Veteran·Sentinel 부위별 수치 재지정
 
 TLT-029/041/052/057/084. 사용자는 직전 부위별 표를 기준으로 Tempered +6/+4/+30, Veteran +15/+10/+50, Sentinel +30/+20/+80을 명시했다. 첫 숫자는 무기 공격력·방패/투구 방어력, 둘째는 장갑 공격력·신발 방어력, 셋째는 일반 상의 최대HP·Mage Robe 최대MP다. [장비 정본](production/equipment-four-tier-reorganization-2026-11-09.md)을 수정하며 Traveler·장신구·가격/등급/요구레벨·강화율/비용·인스턴스/영수증·특수효과 배정 상태는 유지한다. [검증/미게시](evidence/equipment-values-20261110/README.md).
+
+
+## 2026-11-10 스토리 RPG 개선 계획 전체 적용
+
+TLT-001/028/050/052/057/061~065/084. 사용자는 Roblox·Diablo·WoW 조사 기반 [개선 계획](production/story-rpg-improvement-plan-2026-11-10.md)을 전부 적용하도록 지시했다. 기존 장면 보강과 지역 목적/성과, 발견 단계별 인물/단서 Chronicle, Selene 선택 대화, 전투 학습/장비 의미, 대화 가독성 및 로컬 QA 관찰을 연결한다. 원고의 미채택 후보 중 이 범위의 Chronicle/선택 대화/설명 개선은 이번 지시로 구현 대상으로 전환한다. 새 던전·보상/효과 배정·전투 수치·AI 상한·계정 공유 본편 같은 명시적 보류/제외는 그대로다. 실유저 이해·재미 목표는 구현으로 수용 완료 처리하지 않는다. [구현·검증·미게시](evidence/story-rpg-improvements-20261110/README.md).

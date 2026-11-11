@@ -22,11 +22,14 @@ function R.create(parent,at,id)
    part('ReturnedFood',V(1.6,.5,1.4),V(i*3,2.6,0),gold)
    part('SharedMealBench',V(8,.4,1.5),V(0,1,i*4),wood)
   end
-  Visual.actor(m,'Liora',at+V(-6,0,0));sign=part('MealSign',V(5,3,.3),V(0,3,-5),wood)
+  Visual.actor(m,'Liora',at+V(-6,0,0))
+  Visual.actor(m,'Convoy Survivor',at+V(5,0,4))
+  sign=part('MealSign',V(5,3,.3),V(0,3,-5),wood)
  else
   sign=part('NamedReturnBoard',V(7,5,.4),V(0,3,0),wood)
   part(id=='FV-Q1'and 'ReturnedBadge'or 'ReturnedWorkMark',V(1.4,1.4,.2),V(0,3,-.4),gold,Enum.Material.Metal)
   Visual.actor(m,id=='FV-Q1'and 'Nell'or 'Miner Jori',at+V(-5,0,2))
+  Visual.actor(m,id=='FV-Q1'and 'Nessa'or 'Ketta',at+V(5,0,2))
  end
  local gui=Instance.new('BillboardGui');gui.Name='ReturnStoryCaption';gui.Size=UDim2.fromOffset(270,68);gui.StudsOffset=V(0,4,0);gui.MaxDistance=40;gui.Enabled=false;gui.Parent=sign
  local text=Instance.new('TextLabel');text.Size=UDim2.fromScale(1,1);text.BackgroundTransparency=1;text.TextWrapped=true;text.Font=Enum.Font.GothamBold;text.TextSize=13;text.TextColor3=gold;text.TextStrokeTransparency=.2;text.Text=messages[id];text.AutoLocalize=false;text.Parent=gui

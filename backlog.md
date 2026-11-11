@@ -1,3 +1,5 @@
+> **2026-11-10 · TLT-001/028/050/052/057/061~065/084 · 0.98.0:** Roblox/Diablo/WoW 개선 계획 전체 적용 지시로 지역 목적/성과·인물/단서 Chronicle·선택 대화·전투 학습/장비 의미·전투 중 정보 대화 억제·로컬 QA 관찰기를 연결했다. 기존 진행/보상/수치 유지. [검증·미게시·실제 유저 수용 후속](docs/evidence/story-rpg-improvements-20261110/README.md).
+
 > **2026-11-10 장비 수치 재지정 · TLT-029/041/052/057/084 · 0.97.1:** 무기/방패/투구·장갑/신발·상의HP/로브MP를 Tempered6/4/30, Veteran15/10/50, Sentinel30/20/80으로 적용한다. Traveler·장신구·가격/요구레벨·강화/보유품·특수효과 배정 상태 유지. [검증](docs/evidence/equipment-values-20261110/README.md).
 
 > **2026-11-10 · TLT-027/029/041/044/052/057/084:** 정의 기반 무기/장비 특수 효과·서버/미리보기·가방/상점/강화 표시에 연결했다. [계약](docs/production/equipment-special-effects-2026-11-10.md) · [증거](docs/evidence/equipment-special-effects-20261110/README.md). 실제 아이템 배정/전투 밸런스·게시/실기기 수용은 후속이다.

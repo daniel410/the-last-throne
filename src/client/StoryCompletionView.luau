@@ -22,7 +22,8 @@ function View.create(parent,onContinue)
   accent.Position=UDim2.fromOffset(20,headingHeight+22)
   list.Position=UDim2.fromOffset(20,headingHeight+36);list.Size=UDim2.new(1,-40,1,-headingHeight-106)
   for _,v in ipairs(list:GetChildren())do if v:IsA('GuiObject')then v:Destroy()end end
-  local lines={{current.title,18,Theme.color.gold},{current.outcome,14},{current.reward,17,Theme.color.green},{current.saved,12},
+  local lines={{current.title,18,Theme.color.gold},{current.outcome,14},{current.regionResult,14,Theme.color.gold},{current.reward,17,Theme.color.green},{current.saved,12},
+   {current.nextReason,14},
    {current.nextTitle,17,Theme.color.gold},{current.region,13},{current.objective,14},{current.guidance,14},{current.support,13,Theme.color.gold}}
   for i,row in ipairs(lines)do if row[1] and row[1]~='' then
    local h=game.TextService:GetTextSize(row[1],row[2],Enum.Font.GothamMedium,Vector2.new(math.max(180,panel.Size.X.Offset-68),2000)).Y+8

@@ -5,6 +5,7 @@ local Progress=require(RS.Shared.DeepwoodProgress)
 local Log=require(RS.Shared.DeepwoodQuestLog)
 local Text=require(RS.Shared.LobbyQuestText)
 local T=require(script.Parent.TDInventoryTheme)
+local Guide=require(RS.Shared.CampaignStoryGuide)
 local Journal={}
 local epics={}
 for _,epic in ipairs(Content.epics)do table.insert(epics,{epic.region,epic.hub:sub(1,3)})end
@@ -44,6 +45,20 @@ function Journal.create(panel)
   local chapters={};for _,c in ipairs(Content.chapters)do if c.id:sub(1,3)==spec[2]then table.insert(chapters,c)end end
   table.sort(chapters,function(a,b)if a.side~=b.side then return not a.side end;if not a.side then return a.number<b.number end;return a.id<b.id end)
   summary.Text=h and (spec[1]:upper()..' · '..#chapters..' QUESTS')or Text.SelectHero
+  if journal then
+   local region=Guide.regions[epic]
+   local nextChapter=Log.main(journal)
+   local known=journal.main>=(epic-1)*7
+   if known then
+    local lines={region.question,region.purpose}
+    local recap=Guide.recap(journal,nextChapter)
+    if recap and nextChapter and nextChapter.epic==epic then table.insert(lines,Guide.text.recap..' · '..recap)end
+    local text=table.concat(lines,'\n')
+    local height=game:GetService('TextService'):GetTextSize(text,12,Enum.Font.GothamMedium,Vector2.new(math.max(120,root.AbsoluteSize.X-40),2000)).Y+22
+    local row=T.frame(list,'StoryContext',UDim2.new(),UDim2.new(1,-8,0,height));row.LayoutOrder=0
+    T.label(row,'Purpose',text,UDim2.fromOffset(12,8),UDim2.new(1,-24,1,-16),12,T.color.gold)
+   end
+  end
   for i,c in ipairs(chapters)do
    local current,hint=status(journal,c)
    local row=T.frame(list,'Quest_'..c.id,UDim2.new(),UDim2.new(1,-8,0,124));row.LayoutOrder=i;row:SetAttribute('QuestStatus',current)

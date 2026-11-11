@@ -49,4 +49,22 @@ function Impact.summary(rows)
  local extra=values.dexterity and ('\nDEX '..values.dexterity..' · Attack speed '..values.attackRate..'x · Move speed '..values.moveRate..'x')or ''
  return string.format('On equip (pts): ATK %s · MATK %s\nDEF %s · Max HP %s · Max MP %s',values.physicalPower,values.magicPower,values.armor,values.health,values.mana)..extra..(rows.specialEffects and rows.specialEffects~=''and ('\n'..rows.specialEffects)or '')
 end
+function Impact.meaning(rows)
+ local explanations={physicalPower={'Physical attacks hit harder.','Physical attacks deal less damage.'},
+  magicPower={'Magic attacks and spells hit harder.','Magic attacks and spells deal less damage.'},
+  armor={'Defense reduces more incoming damage.','Defense reduces less incoming damage.'},
+  health={'Your maximum HP increases; current HP is not restored.','Your maximum HP decreases; current HP is not restored.'},
+  mana={'Your maximum MP increases; current MP is not restored.','Your maximum MP decreases; current MP is not restored.'},
+  attackRate={'Your basic attacks become faster.','Your basic attacks become slower.'},
+  moveRate={'Your movement becomes faster.','Your movement becomes slower.'}}
+ local lines={}
+ for _,row in ipairs(rows or {})do
+  local pair=explanations[row.key]
+  if pair and math.abs(row.delta)>.00001 then table.insert(lines,pair[row.delta>0 and 1 or 2])end
+ end
+ if rows and rows.specialEffects and rows.specialEffects~=''then
+  table.insert(lines,'Special effects apply only to their named attack, skill, or damage type. Matching bonuses share their listed cap.')
+ end
+ return #lines>0 and table.concat(lines,'\n')or 'No change to your current combat stats or special effects.'
+end
 return Impact

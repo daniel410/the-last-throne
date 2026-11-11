@@ -14,7 +14,7 @@ function M.requires(s,keys)
  if not s then return false end
  for key in keys:gmatch('[^|]+')do
   local chapter=key:match('^([^:]+):')
-  if not ((s.flags or {})[key]or chapter and (s.clears or {})[chapter])then return false end
+  if not ((s.clears or {})[key]or (s.flags or {})[key]or chapter and (s.clears or {})[chapter])then return false end
  end
  return true
 end

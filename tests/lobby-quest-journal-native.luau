@@ -5,7 +5,7 @@ local gui=Instance.new('ScreenGui');gui.Name='LobbyQuestQA';gui.Parent=game.Core
 local host=Instance.new('Frame');host.Size=UDim2.fromOffset(800,510);host.Parent=gui
 local report={kind='LOBBY_QUEST_JOURNAL_NATIVE',checks=0,failures={}}
 local function check(v,m)report.checks+=1;assert(v,m)end
-local function count(list)local n=0;for _,v in ipairs(list:GetChildren())do if v:IsA('GuiObject')then n+=1 end end;return n end
+local function count(list)local n=0;for _,v in ipairs(list:GetChildren())do if v:IsA('GuiObject')and v.Name:sub(1,6)=='Quest_'then n+=1 end end;return n end
 local ok,err=xpcall(function()
  local view=require(client.LobbyQuestJournal).create(host);view.show(nil)
  local list=view.root.Quests

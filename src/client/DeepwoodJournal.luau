@@ -13,6 +13,7 @@ local Gates=require(script.Parent.DeepwoodGates)
 local Settings=require(script.Parent.GameSettings)
 local Completion=require(RS.Shared.StoryCompletion)
 local Checkpoints=require(RS.Shared.CheckpointTravel)
+local Guide=require(RS.Shared.CampaignStoryGuide)
 local Journal={}
 function Journal.guidance(current,target,origin)
  if not current or current.training or not target or target.lobby then return nil end
@@ -64,6 +65,9 @@ function Journal.start(hud)
  local gui=Instance.new('ScreenGui');gui.Name='DeepwoodJournal';gui.ResetOnSpawn=false;gui.DisplayOrder=42;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;gui.Parent=player:WaitForChild('PlayerGui')
  remotes:WaitForChild('DeepwoodPartyState').OnClientEvent:Connect(MapState.setParty)
  local current,target,selectedChapter,selectedGoal,lastMessage,render,setOpen,track
+ local metrics=require(RS.Shared.StoryPlaytestMetrics).new();local metricSession;local metricPosition
+ -- QA may explicitly enable this local sampler; release sessions send nothing.
+ Journal.playtestSnapshot=function()return metrics.snapshot()end
  local book=require(script.Parent.DeepwoodQuestBook).create(gui,function(id,goal) track(id,goal) end)
  local panel=book.panel
  local completionView=require(script.Parent.StoryCompletionView).create(gui,function(id)
@@ -71,7 +75,8 @@ function Journal.start(hud)
  end)
  local dialog=Theme.frame(gui,'StoryMessage',UDim2.new(.5,0,1,-195),UDim2.fromOffset(620,160));dialog.AnchorPoint=Vector2.new(.5,1);dialog.Visible=false;dialog.BackgroundTransparency=.6
  dialog.TDPanelArt:Destroy();dialog:FindFirstChildOfClass('UIStroke').Transparency=1
- local prose=Theme.label(dialog,'Dialogue','',UDim2.fromOffset(16,8),UDim2.new(1,-32,1,-64),16);prose.Font=Enum.Font.GothamBold;prose.TextColor3=Color3.new(1,1,1);prose.TextStrokeColor3=Color3.new(0,0,0);prose.TextStrokeTransparency=.1
+ local dialogueScroll=Instance.new('ScrollingFrame');dialogueScroll.Name='DialogueScroll';dialogueScroll.Position=UDim2.fromOffset(16,8);dialogueScroll.Size=UDim2.new(1,-32,1,-64);dialogueScroll.BackgroundTransparency=1;dialogueScroll.BorderSizePixel=0;dialogueScroll.ScrollBarThickness=5;dialogueScroll.AutomaticCanvasSize=Enum.AutomaticSize.Y;dialogueScroll.CanvasSize=UDim2.new();dialogueScroll.Parent=dialog
+ local prose=Theme.label(dialogueScroll,'Dialogue','',UDim2.new(),UDim2.new(1,-8,0,96),16);prose.TextYAlignment=Enum.TextYAlignment.Top;prose.Font=Enum.Font.GothamBold;prose.TextColor3=Color3.new(1,1,1);prose.TextStrokeColor3=Color3.new(0,0,0);prose.TextStrokeTransparency=.1
  local dismiss=Theme.button(dialog,'Continue','CONTINUE',UDim2.new(1,-150,1,-50),UDim2.fromOffset(136,38))
  local left=Theme.button(dialog,'Sanctuary','',UDim2.new(0,12,1,-50),UDim2.new(.5,-18,0,38));left.Visible=false
  local right=Theme.button(dialog,'Share','',UDim2.new(.5,6,1,-50),UDim2.new(.5,-18,0,38));right.Visible=false
@@ -79,7 +84,9 @@ function Journal.start(hud)
  local function layoutDialogue(text)
   local camera=workspace.CurrentCamera;if not camera then return end
   local width=math.min(680,camera.ViewportSize.X-20)
-  local height=game:GetService('TextService'):GetTextSize(text,prose.TextSize,prose.Font,Vector2.new(width-32,2000)).Y+78
+  local proseHeight=game:GetService('TextService'):GetTextSize(text,prose.TextSize,prose.Font,Vector2.new(math.max(1,width-40),10000)).Y+8
+  prose.Size=UDim2.new(1,-8,0,proseHeight)
+  local height=proseHeight+78
   dialog.Size=UDim2.fromOffset(width,math.min(camera.ViewportSize.Y*.65,math.max(160,height)))
   dialog.Position=UDim2.new(.5,0,1,-math.min(195,camera.ViewportSize.Y*.2))
  end
@@ -90,7 +97,8 @@ function Journal.start(hud)
  setOpen=function(open) panel.Visible=open;player:SetAttribute('TLTStoryOpen',open or (dialog.Visible and left.Visible)) end
  local function closeDialogue() dialog.Visible=false;dialogKind=nil;dialogToken+=1;setOpen(panel.Visible) end
  local function showDialogue(text,kind,first,second)
-  dialogToken+=1;local token=dialogToken;dialog.Visible=true;dialogKind=kind;prose.Text=text;layoutDialogue(text)
+  if kind=='message'and Guide.inCombat(current)then return end
+  dialogToken+=1;local token=dialogToken;dialog.Visible=true;dialogKind=kind;prose.Text=text;layoutDialogue(text);dialogueScroll.CanvasPosition=Vector2.zero
   left.Visible=first~=nil;right.Visible=second~=nil;dismiss.Visible=not first
   if first then left.Caption.Text=first;right.Caption.Text=second end
   setOpen(panel.Visible)
@@ -175,6 +183,7 @@ function Journal.start(hud)
   local pass=value.supporter and value.supporter.pass
   if pass and pass.active then supportedStories[value.heroId]=pass.story end
   current=value;gates.update(value)
+  if dialogKind=='message'and Guide.inCombat(value)then closeDialogue()end
   if Log.followNext(value,previous) then selectedChapter=nil;selectedGoal=nil;book.setTab('Main')end
   local event=value.completion
   if event then
@@ -201,11 +210,23 @@ function Journal.start(hud)
  end)
  local elapsed=0
  RunService.Heartbeat:Connect(function(dt)
-  elapsed+=dt;if elapsed<.2 then return end;elapsed=0
+  elapsed+=dt;if elapsed<.2 then return end;local sampleDt=elapsed;elapsed=0
   local alive=player:GetAttribute('K0SessionPhase')=='Tutorial' and current and not current.training
   gui.Enabled=alive==true;marker.Enabled=alive==true and Settings.enabled(player,'waypoints')
   if not alive then table.clear(supportedStories);completionView:dismiss();navigation.setTarget(nil);panel.Visible=false;closeDialogue();return end
+  if dialogKind=='message'and Guide.inCombat(current)then closeDialogue()end
   local root=player.Character and player.Character:FindFirstChild('HumanoidRootPart');local guidance=updateTracker()
+  if player:GetAttribute('TLTStoryObservationEnabled')==true and root then
+   local session=tostring(current.heroId)..':'..tostring(current.expedition and current.expedition.runId or '')
+   if session~=metricSession then metrics=require(RS.Shared.StoryPlaytestMetrics).new();metricSession=session;metricPosition=nil end
+   local s=current.journal;local progress=s.main
+   for _,v in pairs(s.activities or {})do progress+=v end
+   for _,v in pairs(s.flags or {})do if v then progress+=1 end end
+   metrics.sample(sampleDt,{distance=metricPosition and (root.Position-metricPosition).Magnitude or 0,
+    progress=progress,goal=target and target.chapter.id..':'..target.goal.id or '',combat=Guide.inCombat(current),reading=panel.Visible or dialog.Visible,
+    dead=root.Parent:GetAttribute('K0State')=='Dead',nearObjective=guidance and (root.Position-guidance.position).Magnitude<=16})
+   metricPosition=root.Position
+  else metricPosition=nil end
   navigation.setTarget(guidance and guidance.position);MapState.target=guidance and guidance.position
   marker.Adornee=guidance and anchor or nil
   if guidance and root then anchor.Position=guidance.position;waypoint.Text=(target.chapter.side and '◇ ' or '◆ ')..guidance.objective..'\n'..math.floor((root.Position-guidance.position).Magnitude)..' studs' end
