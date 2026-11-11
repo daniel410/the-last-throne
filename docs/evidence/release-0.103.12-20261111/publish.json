@@ -1,0 +1,40 @@
+{
+  "version": "0.103.12",
+  "sourceCommit": "c4e817807fb7d4b58dbd9bba02b3545eb90c289a",
+  "artifact": "builds/0.103.12/TheLastThrone-0.103.12.rbxlx",
+  "sha256": "aecd1070397a8746084160846d347737e1bbd7ee44d98b6d75fe6302c43cae96",
+  "diskHashUnchanged": true,
+  "published": true,
+  "method": "Roblox Studio Publish As → existing TLT places; Creator Dashboard Show published only verification",
+  "universeId": 10773575153,
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": 94,
+      "localPublishedTime": "2026-11-11 18:25 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/70829337938054/version-history"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": 21,
+      "localPublishedTime": "2026-11-11 18:26 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history"
+    }
+  ],
+  "audience": "Private (unchanged)",
+  "assetPermissions": "Studio Grant Permissions and Publish for destination TLT Experience",
+  "studioRunningAfter": false,
+  "releaseTag": "v0.103.12",
+  "compiledScripts": 449,
+  "preservedSessions": [
+    "builds/0.103.4/TheLastThrone-0.103.4-session-preserved-release-20261111.rbxl",
+    "builds/0.103.5/TheLastThrone-0.103.5-session-preserved-release-20261111.rbxl"
+  ],
+  "unverified": [
+    "게시 클라이언트 플레이·실계정 저장·재접속·실제 Place 이동",
+    "실기기·다인 성능·사용자 수용"
+  ],
+  "knownRegressionLimit": "기존 k0-basic-attacks-native 동일24실패, elf-confirmed-release-20261111 참조"
+}
