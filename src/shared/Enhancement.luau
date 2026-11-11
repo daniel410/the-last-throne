@@ -39,5 +39,12 @@ function E.valid(item,def)
  if ((old and old.ore or 0)+(paid and paid.gems or 0))>total.gems or ((old and old.cores or 0)+(paid and paid.stones or 0))>total.stones then return false end
  return true
 end
-function E.name(def,item)return def.name..((item and (item.enhancementLevel or 0)>0)and ' +'..item.enhancementLevel or '')end
+function E.name(def,item,classId)
+ local name=def.name
+ -- Shared head items keep their saved IDs; their label follows the wearer.
+ if def.family and def.slot=='head' and (classId=='knight' or classId=='dwarf') then
+  name=name:gsub('Hood$', 'Helmet')
+ end
+ return name..((item and (item.enhancementLevel or 0)>0)and ' +'..item.enhancementLevel or '')
+end
 return E

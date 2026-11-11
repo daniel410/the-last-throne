@@ -49,7 +49,7 @@ function View.render(parent,hero,snapshot,draft,position,width,state,redraw)
  toggle.Activated:Connect(function() state.gearExpanded=not state.gearExpanded;redraw() end)
  y+=52
  if state.gearExpanded then
-  local sources=Preview.gearSources(hero.heroId,snapshot.items,Catalog)
+  local sources=Preview.gearSources(hero.heroId,snapshot.items,Catalog,hero.baseClassId)
   if #sources==0 then local _,height=label('NoGear',Text.NoGear,y,12,Theme.color.muted);y+=height+6 end
   for _,source in ipairs(sources) do
    local _,nameH=label('Gear_'..source.slot,string.format(Text.GearItem,InventoryText.Slots[source.slot],source.name),y,13,Theme.color.gold);y+=nameH

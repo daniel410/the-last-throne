@@ -258,7 +258,7 @@ function InventoryGui.create(onVisibility, feedback)
 		local hero=snapshot.heroes[snapshot.heroId]
 		if storageMode and not compact and sourceTab~="pending" then
 			Artwork.create(detailScroll,def,UDim2.fromOffset(0,0),UDim2.fromOffset(90,90),itemVisualClass(item))
-			local name=detailLabel("ItemName",Enhance.name(def,item),0,36,20,Color.text); name.Position=UDim2.fromOffset(106,0); name.Size=UDim2.new(1,-112,0,36)
+			local name=detailLabel("ItemName",Enhance.name(def,item,itemVisualClass(item)),0,36,20,Color.text); name.Position=UDim2.fromOffset(106,0); name.Size=UDim2.new(1,-112,0,36)
 			if def.slot then
 				local requirement=def.classId and string.format(Text.Class,Catalog.classes[def.classId]) or Text.Compatible
 				local label=detailLabel("Requirements",requirement,42,44,12,Color.silver); label.Position=UDim2.fromOffset(106,40); label.Size=UDim2.new(1,-112,0,44)
@@ -292,7 +292,7 @@ function InventoryGui.create(onVisibility, feedback)
 		elseif def.slot and item.location.kind=="bag" and hero and hero.level<(def.level or 1) then
 			detailLabel("ActionBlockedReason",Text.Errors.LevelRequired,y,48,13,Color.error);y=y+52
 		end
-		local heading=detailLabel("ItemName",Enhance.name(def,item),y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
+		local heading=detailLabel("ItemName",Enhance.name(def,item,itemVisualClass(item)),y,46,20,Color.text); heading.TextXAlignment=Enum.TextXAlignment.Center; heading.Font=Enum.Font.GothamBold; y=y+48
   if def.restore and item.location.kind=="bag" then
    local keys=potionKeys(hero,item.definitionId)
    local status=detailLabel("QuickSlotStatus",keys~="" and string.format(Text.QuickSlotAssigned,keys) or Text.QuickSlotUnassigned,y,30,16,keys~="" and Color.gold or Color.muted)
@@ -312,7 +312,7 @@ function InventoryGui.create(onVisibility, feedback)
 			local compareSlot=EquipmentSlots.resolve(snapshot.heroId,snapshot.items,def,Catalog,item.location.kind=="equipped" and item.location.slot or nil)
 			local current
 			for _, other in ipairs(snapshot.items) do
-				if other.location.kind=="equipped" and other.location.heroId==snapshot.heroId and other.location.slot==compareSlot then current={stats=Enhance.stats(Catalog.items[other.definitionId],other),name=Enhance.name(Catalog.items[other.definitionId],other)} end
+				if other.location.kind=="equipped" and other.location.heroId==snapshot.heroId and other.location.slot==compareSlot then current={stats=Enhance.stats(Catalog.items[other.definitionId],other),name=Enhance.name(Catalog.items[other.definitionId],other,itemVisualClass(other))} end
 			end
 			if def.slot=="accessory" and item.location.kind=="bag" and not storageMode then
 				detailLabel("AutoEquipTarget",current and string.format(Text.AutoAccessoryReplace,current.name) or Text.AutoAccessoryEmpty,y,48,13,Color.silver);y=y+52
@@ -439,7 +439,7 @@ function InventoryGui.create(onVisibility, feedback)
 			card.LayoutOrder=index
 			if def then
 				Artwork.create(card,def,UDim2.fromOffset(7,3),UDim2.new(1,-14,.67,-3),itemVisualClass(item))
-				local name=Theme.label(card,"ItemName",Enhance.name(def,item),UDim2.new(0,4,.68,0),UDim2.new(1,-8,.3,-2),10,Color.text)
+				local name=Theme.label(card,"ItemName",Enhance.name(def,item,itemVisualClass(item)),UDim2.new(0,4,.68,0),UDim2.new(1,-8,.3,-2),10,Color.text)
 				name.TextXAlignment=Enum.TextXAlignment.Center
 
     if def.restore and kind=="bag" then
@@ -687,16 +687,16 @@ function InventoryGui.create(onVisibility, feedback)
 	discard.Activated:Connect(function()
 		local item=getSelected()
 		if not discard.Active or not item or pending then return end
-		discardTarget={instanceId=item.instanceId,itemVersion=item.version,revision=snapshot.revision,heroId=snapshot.heroId,quantity=item.quantity,definitionId=item.definitionId}
+		discardTarget={instanceId=item.instanceId,itemVersion=item.version,revision=snapshot.revision,heroId=snapshot.heroId,quantity=item.quantity,definitionId=item.definitionId,displayName=Enhance.name(Catalog.items[item.definitionId],item,itemVisualClass(item))}
 		discardQuantity.Text="1"
-		discardPrompt.Text=string.format(Text.DiscardConfirm,1,Catalog.items[item.definitionId].name)
+		discardPrompt.Text=string.format(Text.DiscardConfirm,1,Enhance.name(Catalog.items[item.definitionId],item,itemVisualClass(item)))
 		discardOverlay.Visible=true
 		if UserInputService:GetLastInputType().Name:match("^Gamepad") then GuiService.SelectedObject=cancelDiscard end
 	end)
 	discardQuantity:GetPropertyChangedSignal("Text"):Connect(function()
 		if discardTarget then
 			local n=tonumber(discardQuantity.Text)
-			discardPrompt.Text=n and n%1==0 and n>=1 and n<=discardTarget.quantity and string.format(Text.DiscardConfirm,n,Catalog.items[discardTarget.definitionId].name) or Text.Errors.InvalidQuantity
+			discardPrompt.Text=n and n%1==0 and n>=1 and n<=discardTarget.quantity and string.format(Text.DiscardConfirm,n,discardTarget.displayName) or Text.Errors.InvalidQuantity
 		end
 	end)
 	confirmDiscard.Activated:Connect(function()

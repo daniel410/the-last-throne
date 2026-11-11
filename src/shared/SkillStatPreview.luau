@@ -85,7 +85,7 @@ function Preview.investmentText(classId,g,equipment,draft)
  end
  return table.concat(lines,'\n')
 end
-function Preview.gearSources(heroId,items,catalog)
+function Preview.gearSources(heroId,items,catalog,classId)
  local equipped={}
  for _,item in ipairs(items or {}) do
   local loc=item.location
@@ -96,7 +96,7 @@ function Preview.gearSources(heroId,items,catalog)
   local item=equipped[slot]
   if item then
    local definition=catalog.items[item.definitionId]
-   table.insert(result,{slot=slot,definitionId=item.definitionId,name=Enhance.name(definition,item),stats=Enhance.stats(definition,item)})
+   table.insert(result,{slot=slot,definitionId=item.definitionId,name=Enhance.name(definition,item,classId),stats=Enhance.stats(definition,item)})
   end
  end
  return result

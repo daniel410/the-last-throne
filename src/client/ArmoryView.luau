@@ -213,7 +213,7 @@ function V.create(parent,send,diamondOnly,store)
     local shortfall=type(amount)=='number' and math.max(0,offer.price-amount) or nil
     if shortfall and shortfall>0 then description=description..string.format(ItemText.ShopShortfall,offer.price,currency,shortfall) end
     local caption=string.format('BUY · %d %s',offer.price,currency)
-    row(offer.id,d.name,description,d,caption,{offerId=offer.id,review=d.name..' for '..offer.price..' '..offer.currency},shortfall,currency)
+    row(offer.id,Enhance.name(d,nil,class),description,d,caption,{offerId=offer.id,review=Enhance.name(d,nil,class)..' for '..offer.price..' '..offer.currency},shortfall,currency)
    end
    local hasOffers=false
    for _,child in ipairs(scroll:GetChildren()) do if child:IsA('GuiObject') then hasOffers=true;break end end
@@ -225,7 +225,7 @@ function V.create(parent,send,diamondOnly,store)
     if price and allowed(Items.items[item.definitionId]) and (category=='All' or itemCategory(Items.items[item.definitionId])==category) and item.location.kind=='bag' and item.location.heroId==state.heroId and not item.locked and (item.enhancementLevel or 0)==0 then
      n+=1;local d=Items.items[item.definitionId]
      local fit=d.restore and ItemText.AllClasses or d.classId and string.format(ItemText.Class,Items.classes[d.classId]) or ItemText.Compatible
-     row(item.instanceId,d.name,fit..'\nSell one item permanently. You receive Gold; Diamonds are not refunded.',d,'SELL · '..price..' Gold',{instanceId=item.instanceId,itemVersion=item.version,review=d.name..' for '..price..' Gold'})
+     row(item.instanceId,Enhance.name(d,item,class),fit..'\nSell one item permanently. You receive Gold; Diamonds are not refunded.',d,'SELL · '..price..' Gold',{instanceId=item.instanceId,itemVersion=item.version,review=Enhance.name(d,item,class)..' for '..price..' Gold'})
     end
    end
    if n==0 then T.label(scroll,'Empty','Nothing to sell in this category. Unequip and unlock purchased gear in BAG. Starter gear cannot be sold.',UDim2.new(),UDim2.new(1,-16,0,100),14) end
