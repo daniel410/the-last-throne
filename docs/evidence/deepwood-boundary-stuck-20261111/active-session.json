@@ -1,0 +1,14 @@
+{
+  "scope": "local Studio play session; no publishing or saved progress changes",
+  "host": "TheLastThrone-0.102.3.rbxlx",
+  "studioId": "e3ddff02-71c5-40c8-a583-105f94760fd6",
+  "before": {
+    "characterPosition": [-1773.37109, 3.1763196, -695.241821],
+    "blockers": [
+      {"path": "Workspace.DeepwoodCampaign.GroundedForest.ForestEdge_DW-01.ForestBoundary", "position": [-1778, 3.8, -692.5714], "size": [8, 31.6, 24.0476], "transparency": 1},
+      {"path": "Workspace.DeepwoodCampaign.GroundedForest.ForestEdge_DW-01.ForestBoundary", "position": [-1778, 3.2, -715.6190], "size": [8, 30.4, 24.0476], "transparency": 1}
+    ]
+  },
+  "after": {"retired": 749, "reportedCrossingClear": true},
+  "probe": {"origin": [-1760, 3.7, -695.24], "size": [4, 5, 4], "direction": [-42, 0, 0], "respectCanCollide": true}
+}

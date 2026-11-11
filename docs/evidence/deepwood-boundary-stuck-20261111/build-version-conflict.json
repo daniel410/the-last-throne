@@ -1,0 +1,6 @@
+{
+  "attemptedSource": "1d85648c",
+  "requestedVersion": "0.102.5",
+  "status": "refused before build",
+  "reason": "Existing artifact belongs to concurrent headgear-hair build; not overwritten. Final version 0.102.6."
+}

@@ -1,0 +1,17 @@
+DEEPWOOD_BOUNDARY_STUCK {"zones":{"ForestEdge_DW-06":true,"ForestEdge_DW-S2":true,"ForestEdge_DW-01":true,"ForestEdge_DW-03":true,"ForestEdge_DW-02":true,"ForestEdge_DW-S3":true,"ForestEdge_DW-05":true,"ForestEdge_DW-S1":true,"ForestEdge_DW-07":true,"ForestEdge_DW-04":true},"boundaries":749,"checks":756}
+COMBAT_ROUTE_WORLD {"floorFailures":[],"kind":"COMBAT_ROUTE_WORLD","blockers":[],"checks":5623}
+EXPANSION_NATIVE_EPIC 1
+EXPANSION_NATIVE_EPIC 2
+EXPANSION_NATIVE_EPIC 3
+EXPANSION_NATIVE_EPIC 4
+EXPANSION_NATIVE_EPIC 5
+EXPANSION_NATIVE_GEOMETRY {"blockerCount":2,"samples":3974,"blockers":[{"chapter":"DW-02","goal":"exp_2","part":"Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TreeCollision","kind":"body","at":[-557,6,-1142]},{"chapter":"DW-02","goal":"exp_2","part":"Workspace.DeepwoodCampaign.TerrainBlockout.DW-02.TreeCollision","kind":"body","at":[-561.6666870117188,6,-1142]}],"parts":53297}
+[string "-- Real generated terrain/objects/GUI and escort motion in an isolated edit engine...."]:12: new wings and connectors have no holes or body blockers
+[string "-- Real generated terrain/objects/GUI and escort motion in an isolated edit engine...."]:12 function check
+[string "-- Real generated terrain/objects/GUI and escort motion in an isolated edit engine...."]:60
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:7
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
