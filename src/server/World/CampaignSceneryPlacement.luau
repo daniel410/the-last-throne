@@ -140,13 +140,22 @@ function M.apply(world,root)
   local obstructed,obstacle,line=blocked(m)
   if obstructed then
    local origin=m:GetPivot();local cf,size=m:GetBoundingBox();local base=cf.Position-V(0,size.Y/2,0)
+   local gateFeet={}
+   if m:GetAttribute('LegacyForgeGate')then for _,foot in ipairs(m:GetChildren())do if foot:IsA('BasePart')and foot.Name=='ForgePillar'then table.insert(gateFeet,foot.Position-V(0,foot.Size.Y/2,0))end end end
    local found=false
    for ring=1,16 do
     for _,dir in ipairs({V(1,0,0),V(-1,0,0),V(0,0,-1),V(0,0,1),V(1,0,-1),V(-1,0,-1),V(1,0,1),V(-1,0,1)})do
      local delta=dir*ring*24
      local hit=workspace:Raycast(base+delta+V(0,80,0),V(0,-176,0),floorRay)
-     if hit and math.abs(hit.Position.Y-base.Y)<48 then
-      m:PivotTo(origin+delta+V(0,hit.Position.Y-base.Y,0))
+     local floorY=hit and hit.Position.Y
+     -- Both gate feet must meet the ground. On a slope the central sample
+     -- alone left one pillar suspended; sink the higher foot into its bank.
+     for _,foot in ipairs(gateFeet)do
+      local support=workspace:Raycast(foot+delta+V(0,80,0),V(0,-176,0),floorRay)
+      if support and floorY then floorY=math.min(floorY,support.Position.Y)else floorY=nil;break end
+     end
+     if floorY and math.abs(floorY-base.Y)<48 then
+      m:PivotTo(origin+delta+V(0,floorY-base.Y,0))
       if not blocked(m)then found=true;break end
      end
     end
