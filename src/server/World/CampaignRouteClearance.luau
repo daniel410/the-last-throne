@@ -66,7 +66,9 @@ function Safety.apply(world,art)
   for _,road in ipairs(roads)do
    if math.abs(at.Y-road.Position.Y)<24 and distance(at,road.Position-road.CFrame.LookVector*road.Size.Z/2,road.Position+road.CFrame.LookVector*road.Size.Z/2)<road.Size.X/2+r+4 then return false end
   end
-  for _,p in ipairs(anchors)do if math.abs(at.Y-p.Y)<24 and distance(at,p,p)<r+20 then return false end end
+  -- Clear the diagonal of the 48-stud arrival probe as well as the prop radius,
+  -- so reusing the scene does not collect and move the same tree again.
+  for _,p in ipairs(anchors)do if math.abs(at.Y-p.Y)<24 and distance(at,p,p)<r+38 then return false end end
   for _,lane in ipairs(lanes)do if math.abs(at.Y-lane[1].Y)<1 and distance(at,lane[1],lane[2])<r+8 then return false end end
   return true
  end
