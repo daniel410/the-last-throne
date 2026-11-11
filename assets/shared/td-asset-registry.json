@@ -501,12 +501,23 @@
       "kind": "geometry-source-snapshot",
       "source_path": "../throne-defense/src/Server/VisualFactoryLobby.lua",
       "source_section": "ThroneDais through RoyalThroneFinial; VisualFactoryLobbyArchitecture beam/arch/crest",
-      "audit_status": "2026-11-11 source-hash-verified; RPG native integration; user visual acceptance pending",
-      "runtime_path": "src/shared/TDLobbyThroneGeometry.luau",
+      "audit_status": "archived 2026-11-11: wrong throne reference; replaced by world.crystal-throne.native",
+      "runtime_path": null,
       "provenance": "assets/shared/td-lobby-throne/provenance.json",
-      "role": "Dawnspire royal chair, translate source geometry only; separate personal Crownheart pedestal",
+      "role": "Historical gold-chair extraction only; removed from current runtime",
       "permissions": "Existing user instruction to reuse same-owner TD originals; TD read-only",
       "not_included": "Combat pink crystal, unpublished authored Blender citadel, optional protected gold MaterialVariant"
+    },
+    {
+      "key": "world.crystal-throne.native",
+      "kind": "geometry-source-snapshot",
+      "source_path": "../throne-defense/src/Server/VisualFactoryMap.lua",
+      "source_section": "ornament/facing/crystal/buildThrone",
+      "audit_status": "2026-11-11 user explicitly identified TD crystal throne; actual source reused; native validation",
+      "runtime_path": "src/shared/TDCrystalThroneGeometry.luau",
+      "provenance": "assets/shared/td-crystal-throne/provenance.json",
+      "role": "Dawnspire pink crystal throne; uniform scale2, original palette and pointed silhouettes",
+      "permissions": "Existing same-owner shared-original instruction; TD read-only"
     }
   ]
 }

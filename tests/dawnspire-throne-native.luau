@@ -15,12 +15,14 @@ check(world.create().folder==lobby.folder,'repeat world creation reuses the same
 check(lobby.folder.Ground.Size==Vector3.new(300,4,300),'expanded floor is 300 by 300 studs')
 check(lobby.bounds.size.X==300 and lobby.bounds.size.Z==300,'server lobby bounds cover the expanded floor')
 local throne=lobby.folder.DawnspireThrone
-check(throne:GetAttribute('ThroneSource')=='TDLobbyRoyalChair','royal chair comes from the TD lobby source')
-check(throne.RoyalThroneSeat.Size==Vector3.new(12,2,8),'TD seat proportions are preserved')
-check(throne.RoyalThroneBack.Size==Vector3.new(11,21,2),'TD tall back proportions are preserved')
-check(throne.RoyalThroneCushion.Material==Enum.Material.Fabric and throne.RoyalThroneCushion.Color==Color3.fromRGB(37,62,109),'TD blue fabric is preserved')
-check(throne.RoyalThroneSeat.Material==Enum.Material.Metal and throne.RoyalThroneSeat.Color==Color3.fromRGB(240,175,50),'TD final gold body is preserved')
-check(throne:FindFirstChild('CrystalSpire')==nil and throne:FindFirstChild('ThroneChairPointedCrown')~=nil,'old crystal chair is replaced by TD pointed crown')
+check(throne:GetAttribute('ThroneSource')=='TDCombatCrystalThrone','use the TD combat crystal throne')
+local crystal=throne.TDCrystalThrone
+check(crystal:GetAttribute('TDSourceScale')==2,'uniform enlargement preserves the TD proportions')
+check(crystal.ThroneSeatSupport.Color==Color3.fromRGB(224,66,160),'TD original pink crystal color')
+check(crystal.ThroneSeat.Color==Color3.fromRGB(249,124,204),'TD original pale seat color')
+check((crystal.ThroneSeat.Size-Vector3.new(3.65,.48,3.2)*2).Magnitude<.001,'TD source seat proportions')
+check(crystal:FindFirstChild('ThroneCrownTip1') and crystal:FindFirstChild('ThroneBack5Tip4') and crystal:FindFirstChild('ThroneShard4'),'TD pointed back crystals and surrounding shards')
+check(not throne:FindFirstChild('RoyalThroneSeat',true),'remove the mistaken gold chair')
 check(throne.ModelStreamingMode==Enum.ModelStreamingMode.Atomic,'throne streams as a single model')
 check(throne:FindFirstChild('Crownheart',true)==nil,'shared throne has no restored heart')
 local parts=0
@@ -52,7 +54,7 @@ local function walk(a,b)
   last=next;routes+=1
  end
 end
-walk(lobby.origin+Vector3.new(0,0,24),lobby.origin+require(game.ReplicatedStorage.Shared.DawnspireDesign).throneOffset+Vector3.new(0,0,8))
+walk(lobby.origin+Vector3.new(0,0,24),lobby.origin+require(game.ReplicatedStorage.Shared.DawnspireDesign).throneOffset+Vector3.new(0,0,14))
 local facilities=require(server.World.LobbyLandmarks).create(lobby)
 facilities.forge=require(server.World.WeaponMerchant).create(lobby)
 local _, storagePrompt=require(server.World.StorageChest).create(lobby)

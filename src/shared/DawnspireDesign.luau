@@ -6,7 +6,7 @@ return {
  throneOffset = Vector3.new(0, 0, -110),
  heartOffset = Vector3.new(0, 6.5, 12),
  text = {
-  title = 'THE DAWNSPIRE THRONE',
+  title = 'THE CRYSTAL THRONE',
   missing = 'The Crownheart is missing. Bring our light home.',
   restored = 'The Crownheart is home. Dawnspire shines again.',
   welcome = 'WELCOME HOME, HERO!',

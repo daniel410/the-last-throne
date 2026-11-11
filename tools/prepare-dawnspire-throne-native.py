@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse
 root=Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser();p.add_argument('--preview',action='store_true');args=p.parse_args()
-paths=['src/shared/DawnspireDesign.luau','src/shared/LobbyFacilities.luau','src/shared/TDLobbyThroneGeometry.luau','src/server/World/DawnspireThrone.luau','src/server/World/LobbyWorld.luau','src/server/World/LobbyResidents.luau','src/client/DawnspireHomecoming.luau','src/client/LobbySideQuestGuide.luau']
+paths=['src/shared/DawnspireDesign.luau','src/shared/LobbyFacilities.luau','src/shared/TDCrystalThroneGeometry.luau','src/server/World/DawnspireThrone.luau','src/server/World/LobbyWorld.luau','src/server/World/LobbyResidents.luau','src/client/DawnspireHomecoming.luau','src/client/LobbySideQuestGuide.luau']
 prefix={'shared':'game.ReplicatedStorage.Shared','server':'game.ServerScriptService.Server','client':'game.StarterPlayer.StarterPlayerScripts.Client'}
 code='assert(game.PlaceId==0 and #game.Players:GetPlayers()==0)\n'
 for path in paths:
