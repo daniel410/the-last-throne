@@ -35,7 +35,7 @@ local completed={clears={['HG-07']=true,['DW-Q2']=true,['FV-Q1']=true,['EC-Q1']=
 presentation.update({journal=completed})
 for _,m in ipairs(scenes)do inspect(m,true)end
 local spirit=lobby.folder.HomecomingReunion.Lumi.FaceRig.Head.FaceDecal
-check(spirit.Transparency==.12,'spirit face restores its original translucency')
+check(math.abs(spirit.Transparency-.12)<.00001,'spirit face restores its original translucency')
 -- A late decal/texture must immediately inherit the selected hero state.
 presentation.update({journal={}})
 local face=lobby.folder.HomecomingReunion.Lumi.FaceRig.Head
@@ -43,7 +43,7 @@ for _,class in ipairs({'Decal','Texture'})do
  local v=Instance.new(class);v.Name='LateSurface';v:SetAttribute('ExpansionTransparency',.37);v.Transparency=1;v.Parent=face
  task.wait()
  check(v.Transparency==1,'late surface hidden for unfinished hero')
- presentation.update({journal=completed});check(v.Transparency==.37,'late surface restored for completed hero')
+ presentation.update({journal=completed});check(math.abs(v.Transparency-.37)<.00001,'late surface restored for completed hero')
  presentation.update({journal={}});check(v.Transparency==1,'hero switch hides late surface')
  v:Destroy()
 end

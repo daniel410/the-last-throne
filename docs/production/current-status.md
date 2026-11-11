@@ -2,7 +2,7 @@
 
 2026-11-11 · TLT-001/050/057/084 · 문서 정리 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
-- 최신 빌드: 0.102.0에4계열 Meshy 방어구28종의 서버 착용 투영·부위별 외형·해제/복원을 연결했다. [엔진 검증·착용 화면/미게시](../evidence/four-family-armor-20261111/README.md).
+- 최신 빌드: 0.102.1에서 미완료 이야기 NPC의 몸만 숨고 얼굴이 떠 있던 오류를 수정했다. [엔진12,084검사·미게시](../evidence/npc-floating-faces-20261111/README.md). 4계열 Meshy 방어구28종 적용은 [0.102.0 검증](../evidence/four-family-armor-20261111/README.md)을 따른다.
 - 거점: TD 분홍 크리스탈 왕좌 원본 교정·300×300 Dawnspire 로비·HG07 완료 영웅의 개인 심장 복원. [검증/미게시](../evidence/dawnspire-crystal-throne-20261111/README.md).
 - 본편: Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. 35본편·12선택, 반복 웨이브를 경로 교전으로 분산. [검증/미게시·남은 수용](../evidence/campaign-combat-routes-20261110/README.md).
 - 마법사 모자:사용자 지정 최대 MP +10/+20/+30/+60으로 변경했다. 지력안을 대체하고 기존 서버 MP 집계/강화/메뉴 표시를 사용한다. [소스 회귀·엔진 미검증](../evidence/mage-hat-mp-20261111/README.md). PNG·신규 Traveler 지급은 기존0.101.0 기준이며 최대MP 변경의 전용 엔진·게시·실기기 수용은 후속이다.
