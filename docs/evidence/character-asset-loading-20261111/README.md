@@ -18,6 +18,8 @@
 - `lua tests/character-asset-loading.spec.lua`:6검사, 초기 지연·교체 캐릭터·새 부품·오래된 완료 격리.
 - `lua tests/arrival-loading.spec.lua`:283검사, 맵 도착 후에도 캐릭터 준비26프레임까지 커버 유지·준비 후3프레임 확인.
 - 기존 로더21검사, 가방 더블클릭26검사, 인벤토리 소유권/저장274검사 통과.
-- 실제 Studio 격리 fixture에서 SpecialMesh/Decal 사전 로딩,4클래스의 빈 무기/복제 전/완성/몸 부품 누락 구분 통과. 고정 빌드 전체 자산 엔진 결과는 후속 기록을 참조한다.
+- 실제 Studio 격리 fixture에서 SpecialMesh/Decal 사전 로딩,4클래스의 빈 무기/복제 전/완성/몸 부품 누락 구분 통과. 고정 소스 `08c567ed97af764b5ff604f995ca8436645983c1`의 실제 모듈을 연결된 격리 Edit Studio에서 실행해51묶음 전체 다운로드와4클래스 상태 검사를 통과했다([native.json](native.json)). 테스트 뒤 임시 모듈/마네킹을 제거했다.
+
+**빌드0.103.7**: [build.json](build.json), 입력 소스 `08c567ed`와 단일 rbxlx 해시를 고정했다. `run-in-roblox` 자동 실행은 Studio 온라인 대기 시간 초과로 시작 실패했다([native.log](native.log)). 따라서 성공한51묶음 결과는 연결된 로컬 Studio의 정확한 수정 모듈 fixture이며, 새 빌드 전체를 부팅해 수용한 결과로 보고하지 않는다.
 
 캐시 없는 게시 클라이언트·저속망·실기기·타 플레이어 스트리밍·실제 Teleport 이동·GPU 표시 완료는 미검증이다. 다운로드 callback Success가 GPU 렌더 완료 자체를 보장하지 않는다. 사전 다운로드는 이 클라이언트에서 수행하며 다른 기기의 캐시나 다음 서버의 초기화를 대신하지 않는다. 다음 담당: 고정 빌드의 엔진 fixture, 사용자 첫 접속/배틀 수용. Place 게시는 별도다.

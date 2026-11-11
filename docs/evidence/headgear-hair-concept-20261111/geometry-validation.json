@@ -3,28 +3,28 @@
   "styles": [
     {
       "style": "elf",
-      "triangles": 3692,
+      "triangles": 4064,
       "nonManifoldEdges": 0,
       "eyeRays": 18,
       "eyeHits": 0
     },
     {
       "style": "mage",
-      "triangles": 9128,
+      "triangles": 3368,
       "nonManifoldEdges": 0,
       "eyeRays": 18,
       "eyeHits": 0
     },
     {
       "style": "knight",
-      "triangles": 2880,
+      "triangles": 3368,
       "nonManifoldEdges": 0,
       "eyeRays": 18,
       "eyeHits": 0
     },
     {
       "style": "dwarf",
-      "triangles": 12820,
+      "triangles": 4644,
       "nonManifoldEdges": 0,
       "eyeRays": 18,
       "eyeHits": 0

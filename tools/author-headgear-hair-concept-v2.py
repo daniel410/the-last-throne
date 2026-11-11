@@ -12,75 +12,79 @@ def mat(name,rgb):
 white=mat('TintableHair',(255,255,255));colors={'elf':(100,57,29),'mage':(96,63,40),'knight':(60,43,30),'dwarf':(174,65,23)}
 def lock(name,pts,width,depth):
  # Smooth cubic centerline, sculpted elliptical rings with longitudinal ridges.
- p=[Vector(q) for q in pts];verts=[];faces=[];N=12;S=12
+ p=[Vector(q) for q in pts];verts=[];faces=[];N=10;S=6
  for j in range(N):
   t=j/(N-1);c=(1-t)**3*p[0]+3*(1-t)**2*t*p[1]+3*(1-t)*t*t*p[2]+t**3*p[3]
   tangent=(3*(1-t)**2*(p[1]-p[0])+6*(1-t)*t*(p[2]-p[1])+3*t*t*(p[3]-p[2])).normalized()
   axis=tangent.cross(Vector((0,1,0))).normalized();normal=axis.cross(tangent).normalized()
-  profile=.025+.94*math.sin(math.pi*t)**.8*(1-.60*t)
-  for k in range(S):
-   a=2*math.pi*k/S;ridge=1+.20*math.cos(3*a+1.7*t)
-   v=c+profile*ridge*(axis*math.cos(a)*width+normal*math.sin(a)*depth);v.z+=1.586;verts.append(v)
+  profile=max(.004,(1-t)**.8)
+  for u,w in [(-1,0),(-.45,.72),(0,1),(.48,.62),(1,0),(0,-.28)]:
+   v=c+profile*(axis*u*width+normal*w*depth);v.z+=1.586;verts.append(v)
+
  for j in range(N-1):
   for k in range(S):
    a=j*S+k;b=j*S+(k+1)%S;faces.extend([(a,b,b+S),(a,b+S,a+S)])
  faces.append(tuple(reversed(range(S))));faces.append(tuple((N-1)*S+k for k in range(S)))
  mesh=bpy.data.meshes.new(name);mesh.from_pydata(verts,[],faces);mesh.update();o=bpy.data.objects.new(name,mesh);bpy.context.scene.collection.objects.link(o)
- for f in mesh.polygons:f.use_smooth=True
+ for f in mesh.polygons:f.use_smooth=False
  return o
 def scalp(style):
- # Closed fitted rear/temple foundation; exposed clumps overlap its scalloped hem.
- verts=[];faces=[];n=40
- bottom={'knight':-.39,'elf':-.30,'mage':-.46,'dwarf':-.51}[style]
+ # Complete closed cap: crown, back, temples and short front hairline.
+ verts=[];faces=[];n=64;rings=10
  for inner in range(2):
-  for row in range(2):
-   for i in range(n+1):
-    a=-.20*math.pi+1.40*math.pi*i/n
-    x=math.copysign(abs(math.cos(a))**.45,math.cos(a))*(.61-inner*.045)
-    y=-math.copysign(abs(math.sin(a))**.45,math.sin(a))*(.615-inner*.045)
-    z=.48 if row==0 else bottom+.035*math.cos(i*math.pi/2)
+  for row in range(rings):
+   t=.006+.994*row/(rings-1);radius=min(1,t/.60)
+   for i in range(n):
+    a=2*math.pi*i/n;front=max(0,math.sin(a));back=max(0,-math.sin(a))
+    hem=-.18+.64*front-.22*back
+    z=.64+(.0 if not inner else -.035)+(hem-.64)*max(0,(t-.60)/.40)
+    rx=.65-inner*.035;ry=.65-inner*.035
+    x=math.copysign(abs(math.cos(a))**.25,math.cos(a))*rx*radius
+    y=math.copysign(abs(math.sin(a))**.25,math.sin(a))*ry*radius
     verts.append((x,y,z+1.586))
- stride=n+1
+ layer=n*rings
  for inner in range(2):
-  off=inner*2*stride
-  for i in range(n):faces.append((off+i,off+i+1,off+stride+i+1,off+stride+i))
- for row in range(2):
+  off=inner*layer
+  for row in range(rings-1):
+   for i in range(n):
+    a=off+row*n+i;b=off+row*n+(i+1)%n;faces.append((a,b,b+n,a+n))
+ for row in (rings-1,):
   for i in range(n):
-   a=row*stride+i;faces.append((a,a+1,a+1+2*stride,a+2*stride))
- for i in (0,n):faces.append((i,i+stride,i+3*stride,i+2*stride))
- mesh=bpy.data.meshes.new('FittedScalp');mesh.from_pydata(verts,[],faces);mesh.update();o=bpy.data.objects.new('FittedScalp',mesh);bpy.context.scene.collection.objects.link(o)
+   a=row*n+i;b=row*n+(i+1)%n;faces.append((a,b,b+layer,a+layer))
+ faces.append(tuple(reversed(range(n))));faces.append(tuple(layer+i for i in range(n)))
+ mesh=bpy.data.meshes.new('CompleteCrownAndBack');mesh.from_pydata(verts,[],faces);mesh.update();o=bpy.data.objects.new('CompleteCrownAndBack',mesh);bpy.context.scene.collection.objects.link(o)
  for f in mesh.polygons:f.use_smooth=True
  return o
 records=[]
 for style in colors:
- s=bpy.data.scenes.new(style);bpy.context.window.scene=s;standard(s);pieces=[] if style=='elf' else [scalp(style)]
- # Short overlapping rear locks stay below the enclosing headwear, not a single curtain.
- for row in range(0 if style=='elf' else 1 if style=='knight' else 2):
-  for i in range(9):
-   angle=math.pi*(.02+.96*i/8);x=.63*math.copysign(abs(math.cos(angle))**.45,math.cos(angle));y=-.635*math.sin(angle)**.45
-   length={'knight':.40,'elf':.32,'mage':.52,'dwarf':.68}[style]
-   top=(-.06 if style in ('knight','dwarf') else .18)-row*.20;end=top-length-(.08 if i%2 else 0)
-   pieces.append(lock('Nape',[(x,y,top),(x*1.04,y*1.04,top-.16),(x*1.15,y*1.12,end+.10),(x*.94,y*1.05,end)],.18 if style!='dwarf' else .21,.065))
- if style in ('elf','mage'):
-  # Asymmetrical side sweep: roots inside the hat; pointed tips above eye samples.
+ s=bpy.data.scenes.new(style);bpy.context.window.scene=s;standard(s);pieces=[scalp(style)]
+ # Exposure follows the concept: broad swept Elf fringe; enclosed Mage/Knight.
+ if style in ('knight','mage','elf'):
+  # Only a narrow nape beneath headwear; no invented long bob or fringe.
   for i in range(7):
-   x=-.42+i*.14;z=[.16,.36,.34,.25,.36,.36,.18][i]
-   shift=.045 if i<4 else -.035
-   pieces.append(lock('Fringe',[(x-.06,.28,.51),(x-.025,.55,.47),(x+shift,.64,.40),(x+shift,.63,z)],.125,.045))
-  for side in (-1,1):
-   for j in range(3):
-    end=-.26-j*.07 if style=='mage' else .05-j*.06
-    pieces.append(lock('Temple',[(side*.43,.26-j*.15,.43),(side*.57,.47-j*.13,.30),(side*.60,.48-j*.12,end+.13),(side*(.55+j*.035),.40-j*.12,end)],.12,.055))
+   x=(i-3)*.15
+   pieces.append(lock('HiddenNape',[(x,-.59,.08),(x,-.61,-.12),(x+.025,-.61,-.29),(x+.04,-.59,-.37)],.115,.025))
+ if style=='elf':
+  # Hand-authored root-to-tip sweeps match the side-parted concept silhouette.
+  sweeps=[(.18,-.46,.13,.19),(.20,-.24,.36,.18),(.21,.015,.37,.16),
+          (.24,.39,.38,.13),(.35,.53,.18,.105),(.44,.58,.04,.09)]
+  for i,(root,tip,z,w) in enumerate(sweeps):
+   pieces.append(lock('SweptFringe',[(root,.43,.64),(root-.06,.61,.56),
+    (tip-.025,.68,z+.10),(tip,.65,z)],w,.045))
  if style=='dwarf':
-  for side in (-1,1):
-   for j in range(3):
-    pieces.append(lock('Sideburn',[(side*.51,.36,.08),(side*.64,.46,-.19),(side*.72,.49,-.40-j*.09),(side*(.62+j*.08),.42,-.54-j*.08)],.18,.09))
-   for j in range(3):
-    pieces.append(lock('Mustache',[(side*.005,.64,-.18-j*.035),(side*.22,.80,-.12-j*.05),(side*.44,.78,-.27-j*.07),(side*.61,.66,-.39-j*.06)],.095,.065))
   for row in range(2):
-   for i in range(7):
-    x=(i-3)*.145;end=-.85-(.28*(1-abs(i-3)/3))-row*.14+(.06 if i%2 else 0)
-    pieces.append(lock('Beard',[(x,.52+row*.12,-.35-row*.15),(x*1.12,.75+row*.08,-.55),(x*.82,.81,end+.16),(x*.68,.64,end)],.16,.09))
+   for i in range(9):
+    a=math.pi*(.04+.92*i/8);x=.62*math.cos(a);y=-.63*math.sin(a)**.45
+    top=-.02-row*.16;end=-.43-row*.18-(.08 if i%2 else 0)
+    pieces.append(lock('NapeFan',[(x,y,top),(x*1.06,y*1.06,top-.12),
+     (x*1.19,y*1.09,end+.12),(x*1.15,y*1.02,end)],.19,.035))
+ if style=='elf':
+  for piece in pieces:
+   if not piece.name.startswith('SweptFringe'):continue
+   for vertex in piece.data.vertices:
+    z=vertex.co.z-1.586
+    vertex.co.z=min(1.586+.60,vertex.co.z+.13*max(0,min(1,(.58-z)/.28)))
+    if piece.name.startswith('SweptFringe') and z>.48:vertex.co.y=min(vertex.co.y,.46)
  bpy.ops.object.select_all(action='DESELECT')
  for p in pieces:p.select_set(True)
  bpy.context.view_layer.objects.active=pieces[0];bpy.ops.object.join();obj=bpy.context.object;obj.name=style.title()+'Hair';obj.data.materials.append(white)
@@ -115,5 +119,11 @@ for style in colors:
  s.render.engine='CYCLES';s.cycles.samples=24;s.render.resolution_x=900;s.render.resolution_y=1000;s.render.resolution_percentage=100
  for view,pos in [('front',(0,9,3.5)),('three-quarter',(5,8,3.7)),('back',(3,-8,3.5))]:
   cam.location=pos;cam.rotation_euler=(Vector((0,0,1.9))-cam.location).to_track_quat('-Z','Y').to_euler();s.render.filepath=str(EV/(style+'-'+view+'.png'));standard(s);bpy.ops.render.render(write_still=True)
-(OUT/'manifest.json').write_text(json.dumps({'version':2,'derivation':'New layered closed locks based on approved TD hero concepts, fitted to unchanged TD-derived armor reference frame. No TD originals modified.','viewTransform':'Standard','display':'sRGB','look':'None','records':records},indent=2)+'\n')
+ # Also inspect the complete hair without enclosing headwear.
+ armor=[o for o in s.objects if o.get('ReviewArmorCategory')]
+ for o in armor:o.hide_render=True
+ cam.data.ortho_scale=2.7;cam.location=(4,7,5.3);cam.rotation_euler=(Vector((0,0,1.65))-cam.location).to_track_quat('-Z','Y').to_euler()
+ s.render.filepath=str(EV/(style+'-hair-only.png'));bpy.ops.render.render(write_still=True)
+ for o in armor:o.hide_render=False
+(OUT/'manifest.json').write_text(json.dumps({'version':3,'derivation':'Complete crown and back for every hero, flattened swept locks, no facial hair; based on approved TD hero concepts, fitted to unchanged TD-derived armor reference frame. No TD originals modified.','viewTransform':'Standard','display':'sRGB','look':'None','records':records},indent=2)+'\n')
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'headgear-hair-review.blend'),compress=True)

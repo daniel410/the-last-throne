@@ -1,0 +1,35 @@
+{
+  "keys": 51,
+  "kind": "CHARACTER_ASSET_LOADING_NATIVE",
+  "pass": true,
+  "cases": [
+    {
+      "missingWait": true,
+      "brokenWait": true,
+      "class": "elf",
+      "empty": true,
+      "complete": true
+    },
+    {
+      "missingWait": true,
+      "brokenWait": true,
+      "class": "mage",
+      "empty": true,
+      "complete": true
+    },
+    {
+      "missingWait": true,
+      "brokenWait": true,
+      "class": "knight",
+      "empty": true,
+      "complete": true
+    },
+    {
+      "missingWait": true,
+      "brokenWait": true,
+      "class": "dwarf",
+      "empty": true,
+      "complete": true
+    }
+  ]
+}
