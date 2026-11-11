@@ -85,7 +85,8 @@ Config.BasicAttackProfiles = {
 	},
 	elf = {
 		id = "elf.bow.basic", attackPower = 100, maxTargets = 1, maxHeight = 10,
-		attacks = {{ windup = 0.44, active = 0.16, recovery = 0.60, damage = 0.70, posture = 8, range = 55, angle = 45 }},
+		-- Give the quiver reach and draw most of the unchanged 1.20s cycle.
+		attacks = {{ windup = 0.78, active = 0.16, recovery = 0.26, damage = 0.70, posture = 8, range = 55, angle = 45 }},
 	},
 	dwarf = {
 		id = "dwarf.axe.basic", attackPower = 100, maxTargets = 3, maxHeight = 7,
