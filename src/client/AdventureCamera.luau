@@ -3,7 +3,7 @@
 local Run=game:GetService('RunService')
 local Workspace=game:GetService('Workspace')
 local Bounds=require(game:GetService('ReplicatedStorage').Shared.CampaignBounds)
-local Camera={min=6,max=32,lobbyMax=32,minPitch=math.rad(22),maxPitch=math.rad(72),radius=.6}
+local Camera={min=6,max=32,lobbyMax=32,minPitch=0,maxPitch=math.rad(72),radius=.6}
 function Camera.maximum(phase)
  return phase=='Tutorial' and Camera.max or Camera.lobbyMax
 end

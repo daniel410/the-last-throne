@@ -17,6 +17,14 @@ local ok,err=xpcall(function()
  local blocked=Camera.constrain(focus,focus+Vector3.new(0,10,25),{wall})
  check(blocked.Position.Z<wall.Position.Z-0.5,'collision keeps the camera before a wall')
  local low=Camera.constrain(focus,focus+Vector3.new(0,-10,22),{})
- check((low.Position-focus).Unit.Y>=math.sin(Camera.minPitch)-.001,'downward orbit remains above the minimum pitch')
+ check(math.abs(low.LookVector.Y)<.001,'below-horizontal input stops at a level view')
+ for _,distance in ipairs({6,18,32})do
+  local level=Camera.constrain(focus,focus+Vector3.new(0,0,distance),{})
+  check(math.abs(level.Position.Y-focus.Y)<.001 and math.abs(level.LookVector.Y)<.001,'horizontal view is available at zoom '..distance)
+ end
+ local high=Camera.constrain(focus,focus+Vector3.new(0,30,1),{})
+ check(math.abs(math.asin((high.Position-focus).Unit.Y)-math.rad(72))<.001,'overhead orbit remains limited to 72 degrees')
+ local levelBlocked=Camera.constrain(focus,focus+Vector3.new(0,0,25),{wall})
+ check(levelBlocked.Position.Z<wall.Position.Z-.5 and math.abs(levelBlocked.LookVector.Y)<.001,'horizontal view retains wall collision protection')
 end,debug.traceback)
 fixture:Destroy();if not ok then table.insert(report.failures,tostring(err))end;report.pass=ok;return report
