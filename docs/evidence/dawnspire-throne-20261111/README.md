@@ -26,3 +26,11 @@
 로컬 TLT0.100.0을 별도 Studio로 열어 같은 네이티브 검증기를 실행하고 실제 뷰포트를 확인했다. 첫 심장 모양이 갈라져 보여0.100.1에서 여덟 결정 면의 위치를 맞춰 단일 양뿔 결정으로 수정했다. [전경](overview.jpg)·[미완료 왕좌](missing.jpg)·[완료 왕좌](restored.jpg)는 이 최종 표시 코드를 적용한 격리 편집 화면이다. 실제 플레이/저장 검증 캡처로 해석하지 않는다. 조명은 로컬 검토 ClockTime10/Brightness2/Ambient90,90,100이며 게임의 로비 분위기 프로필과 구분한다. TD 프로젝트는 수정하지 않았다.
 
 0.100.1의 입력 커밋·빌드 해시·최종 엔진 검증은 마감 후 아래에 추가한다. 일반 로컬 빌드이므로 릴리스 태그/Roblox 게시를 수행하지 않는다.
+
+## 최종 마감
+
+**0.100.1 성공**, 입력 소스 `c1545aeb82ca58a7b324b2bb4e4528240fb941f2` 원격 main 반영 후 `python3 tools/build-game.py --source c1545aeb --record docs/evidence/dawnspire-throne-20261111/build.json` 실행. 산출물 `builds/0.100.1/TheLastThrone-0.100.1.rbxlx`, SHA256 `e3de51b0369b582ce60aea2a27c6a582dd6a05530720f264bc79ab8bdd6c3002` 재확인. [빌드](build.json).
+
+`run-in-roblox --place builds/0.100.1/TheLastThrone-0.100.1.rbxlx --script tests/dawnspire-throne-native.luau`: 최종 고정 아티팩트에서 **1,873 PASS /360 보행 표본**, 기본 월드307 Part. [원본](native.log)·[결과](native-result.json). `python3 tests/single-build.spec.py --artifact builds/0.100.1/TheLastThrone-0.100.1.rbxlx`: 역할10·도착 로딩192·실제 프로젝트/산출물 계약 PASS. 이전 예비 결과와 최종 고정 빌드 결과가 같다.
+
+화면3개의 LFS 포인터를 확인하고 원격 전송3/3 성공(약1.3MB)을 확인했다. [화면 해시/조건](captures.json). 코드/설계/검증은 Git main에 커밋·푸시하며 일반 빌드이므로 태그와 Roblox 게시 없음. 기존 미커밋 애니메이션/컨셉 삭제/첨부 파일은 작업에 포함하지 않았다. 다음 담당은 QA의 실제 클라이언트/기기·혼합 진행/사용자 미술 수용이다.

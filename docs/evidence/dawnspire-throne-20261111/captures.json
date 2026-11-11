@@ -1,0 +1,23 @@
+[
+  {
+    "file": "overview.jpg",
+    "sha256": "20cb125ad0466a84291a2b53647714179e09ee5745a02434369d4c6730ffc598",
+    "sourceCommit": "c1545aeb82ca58a7b324b2bb4e4528240fb941f2",
+    "mode": "isolated Studio Edit, final presentation source applied to 0.100.0 review host",
+    "realPlayerClient": false
+  },
+  {
+    "file": "missing.jpg",
+    "sha256": "0608cc34018b2b1f7ebde577234e56d57c80ad41b365ac6f04f7b64d1f251a8b",
+    "sourceCommit": "c1545aeb82ca58a7b324b2bb4e4528240fb941f2",
+    "mode": "isolated Studio Edit, final presentation source applied to 0.100.0 review host",
+    "realPlayerClient": false
+  },
+  {
+    "file": "restored.jpg",
+    "sha256": "7498cd70cca68edd677d9fe66ed2c55343cdf4b0c1516592643389968da859cf",
+    "sourceCommit": "c1545aeb82ca58a7b324b2bb4e4528240fb941f2",
+    "mode": "isolated Studio Edit, final presentation source applied to 0.100.0 review host",
+    "realPlayerClient": false
+  }
+]
