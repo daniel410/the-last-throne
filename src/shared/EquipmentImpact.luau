@@ -13,7 +13,7 @@ function Impact.compare(hero,items,selected,slot,catalog)
  local slotError
  slot,slotError=Slots.resolve(hero.heroId,items,d,catalog,slot or (selected.location and selected.location.kind=='equipped' and selected.location.slot or nil))
  if not slot then return nil,slotError end
- local before={power=0,armor=0,health=0,mana=0,dexterity=0};local current
+ local before={power=0,armor=0,health=0,mana=0,dexterity=0,intelligence=0};local current
  for _,item in ipairs(items or {}) do
   if item.location.kind=='equipped' and item.location.heroId==hero.heroId then
    local def=catalog.items[item.definitionId]
@@ -29,6 +29,9 @@ function Impact.compare(hero,items,selected,slot,catalog)
  local rows={}
  for _,key in ipairs({'physicalPower','magicPower','armor','health','mana'}) do
   table.insert(rows,{key=key,before=a[key],after=b[key],delta=b[key]-a[key]})
+ end
+ if (Enhance.stats(d,selected).intelligence or 0)>0 or (current and (current.intelligence or 0)>0)then
+  table.insert(rows,{key='intelligence',before=a.totalStats.INT,after=b.totalStats.INT,delta=b.totalStats.INT-a.totalStats.INT})
  end
  if (Enhance.stats(d,selected).dexterity or 0)>0 or (current and (current.dexterity or 0)>0)then
   table.insert(rows,{key='dexterity',before=a.totalStats.DEX,after=b.totalStats.DEX,delta=b.totalStats.DEX-a.totalStats.DEX})
@@ -47,6 +50,7 @@ end
 function Impact.summary(rows)
  local values={};for _,r in ipairs(rows) do values[r.key]=(r.delta>=0 and '+' or '')..number(r.delta) end
  local extra=values.dexterity and ('\nDEX '..values.dexterity..' · Attack speed '..values.attackRate..'x · Move speed '..values.moveRate..'x')or ''
+ if values.intelligence then extra=extra..'\nINT '..values.intelligence end
  return string.format('On equip (pts): ATK %s · MATK %s\nDEF %s · Max HP %s · Max MP %s',values.physicalPower,values.magicPower,values.armor,values.health,values.mana)..extra..(rows.specialEffects and rows.specialEffects~=''and ('\n'..rows.specialEffects)or '')
 end
 function Impact.meaning(rows)

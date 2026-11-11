@@ -99,7 +99,7 @@ for _,tier in ipairs(Families.tiers)do
   local slot=row[1];local stats=slot=='body' and {health=tier.resource}or slot=='hands' and {power=tier.secondary}or {armor=slot=='offhand' and tier.high or slot=='feet'and tier.secondary or tier.low}
   add(Families.piece(tier.id,slot),tier.name..' '..row[2],slot,slot=='offhand' and 'knight'or nil,stats,row[3])
  end
- add(Families.mageHat(tier.id),tier.name..' Mage Hat','head','mage',{armor=tier.low},'HT')
+ add(Families.mageHat(tier.id),tier.name..' Mage Hat','head','mage',{intelligence=tier.low},'HT')
  add(Families.mageBody(tier.id),tier.name..' Mage Robe','body','mage',{mana=tier.resource},'BD')
 end
 Catalog.items.copper_ring.stats={dexterity=3}

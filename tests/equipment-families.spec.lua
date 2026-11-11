@@ -24,7 +24,7 @@ for _,id in ipairs(C.tierEquipment)do
  local d=C.items[id];local v=expected[d.family];local count=0;for _ in pairs(d.stats)do count=count+1 end
  check(count==1,'single fixed option '..id);check(not d.retired and not d.deleted,'current gear active '..id)
  check(d.level==v[1] and d.rarity==v[2],'level/grade '..id)
- local key=d.slot=='weapon' and 'power'or d.slot=='body' and (d.classId=='mage' and 'mana'or 'health')or d.slot=='hands' and 'power'or 'armor'
+ local key=d.slot=='weapon' and 'power'or d.slot=='body' and (d.classId=='mage' and 'mana'or 'health')or d.slot=='hands' and 'power'or (d.slot=='head'and d.classId=='mage')and 'intelligence'or 'armor'
  local secondary=({traveler=2,tempered=4,veteran=10,sentinel=20})[d.family]
  local amount=(d.slot=='hands'or d.slot=='feet')and secondary or d.slot=='body' and v[5]or (d.slot=='weapon'or d.slot=='offhand')and v[4]or v[3]
  check(d.stats[key]==amount,'fixed bonus '..id)
@@ -57,7 +57,7 @@ for _,class in ipairs({'knight','elf','dwarf','mage'})do
  check(R.equipped(p,'h','weapon').definitionId==class..'_weapon_traveler','starter uses Traveler '..class)
  check(R.equipped(p,'h','body').definitionId==(class=='mage'and 'mage_traveler_coat'or 'traveler_coat'),'starter body follows class')
  check(R.quantity(p,'h','veteran_hood')==1,'future veteran hood preserved in bag')
- check(stats.power==5 and stats.dexterity==3 and stats.armor==(class=='knight'and 8 or 5),'starter fixed attack and defense')
+ check(stats.power==5 and stats.dexterity==3 and stats.armor==(class=='knight'and 8 or class=='mage'and 2 or 5),'starter fixed attack and defense')
  check(stats.health==(class=='mage'and 30 or 50)and stats.mana==(class=='mage'and 20 or 0),'starter HP/MP classification')
  assert(T.grant(p,R,C,'h','amber_mana_charm',1,'mana'))
  local charm=p.items['mana-1'];local cmd={action='Equip',requestId='charm',heroId='h',revision=p.revision,instanceId=charm.instanceId,itemVersion=1}

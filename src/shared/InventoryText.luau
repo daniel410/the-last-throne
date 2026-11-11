@@ -37,8 +37,8 @@ return {
 	StaffPowerNote = "Staff power boosts basic attacks and magic skill damage. Upgrades and enhancement apply to both.",
 	ShopStaffStats = "%s · %s · Lv%d · Magic Power +%.1f pts%s%s\nBoosts basic attacks and magic skills.\n%s",
 	ShopGearStats = "%s · %s · Lv%d · Attack +%.1f pts%s%s\n%s",
-	FlatDefense = " · Defense +%s pts", FlatHealth = " · Max HP +%s pts", FlatMana = " · Max MP +%s pts", FlatDexterity = " · DEX +%s pts",
-	Stats = {power = "Attack bonus", armor = "Defense", health = "Max HP", mana = "Max MP", dexterity = "Dexterity"},
+	FlatDefense = " · Defense +%s pts", FlatHealth = " · Max HP +%s pts", FlatMana = " · Max MP +%s pts", FlatDexterity = " · DEX +%s pts", FlatIntelligence = " · INT +%s pts",
+	Stats = {power = "Attack bonus", armor = "Defense", health = "Max HP", mana = "Max MP", dexterity = "Dexterity", intelligence = "Intelligence"},
 	Slots = {weapon="Weapon", offhand="Offhand", head="Head", body="Body", hands="Hands", feet="Feet", accessory1="Accessory 1", accessory2="Accessory 2"},
 	Errors = {
   NothingToReset="This hero has no invested points of this type. Your ticket was not used.",

@@ -1,5 +1,5 @@
 -- Pure enhancement math shared by the authoritative reducer and UI.
-local E={version=6,rate=.03,keys={power=true,armor=true,health=true,mana=true,dexterity=true},exchangeVersion=1,gemPurchaseVersion=2,oreConversionGold=50,
+local E={version=6,rate=.03,keys={power=true,armor=true,health=true,mana=true,dexterity=true,intelligence=true},exchangeVersion=1,gemPurchaseVersion=2,oreConversionGold=50,
  exchanges={gems={gold=50,amount=1},stones={gold=50,gems=5,amount=1}}}
 function E.cap(def)return 9 end
 function E.successPercent(target)return 110-10*target end
