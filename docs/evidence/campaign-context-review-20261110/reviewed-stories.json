@@ -1,0 +1,293 @@
+{
+  "summary": {
+    "stories": 47,
+    "main": 35,
+    "side": 12,
+    "briefsChanged": 47,
+    "outcomesChanged": 46
+  },
+  "stories": [
+    {
+      "id": "DW-01",
+      "title": "The Missing Supply Convoy",
+      "brief": "Dawnspire's Crownheart is missing. Help Eryn find the village supply convoy; its route may reveal who is moving through the forest.",
+      "outcome": "The supplies identify the missing convoy. A cloth signal leads to survivors beside the broken cart."
+    },
+    {
+      "id": "DW-02",
+      "title": "Friends to the Rescue",
+      "brief": "Bring the recovered medicine to the survivors, rescue their missing driver, and mark the road to camp.",
+      "outcome": "The survivors and driver are on the safe camp route. Tell Selene the rescue is complete, then follow the driver's watchtower clue."
+    },
+    {
+      "id": "DW-03",
+      "title": "New Friends at Camp",
+      "brief": "Report the rescue to Selene and plan the missing workers' rescue with Eryn. Selene's recruitment is free; story support is separate.",
+      "outcome": "Selene is recruited. The driver's signal sketch gives Eryn a route to the watchtower and its captive forest friend."
+    },
+    {
+      "id": "DW-04",
+      "title": "The Watchtower Rescue",
+      "brief": "Disable the watchtower devices, free the captive forest friend, and reconnect the camp signal.",
+      "outcome": "Your forest friend has a safe way home. The restored signal and raiders' map reveal cages in the occupied ruins."
+    },
+    {
+      "id": "DW-05",
+      "title": "Bring the Workers Home",
+      "brief": "Free the convoy workers, stop the barracks signal, and defeat the Orc Warlord blocking their escape.",
+      "outcome": "The workers are safe. King Shaman's orders lead through a threatened forest village to the Black Root Altar."
+    },
+    {
+      "id": "DW-06",
+      "title": "A Safe Path for Everyone",
+      "brief": "Help the forest families disable the root devices and mark a route safe for residents and rescuers alike.",
+      "outcome": "The families have a way back to camp. Their marked rootway leads to King Shaman's altar."
+    },
+    {
+      "id": "DW-07",
+      "title": "The Forest Is Safe Again",
+      "brief": "Defeat King Shaman, close the local monster portal, and check the stolen Crownheart's delivery orders.",
+      "outcome": "The supply convoy is home and the altar portal is closed. The Crownheart cargo went into Gloamwood; Eryn's scouts followed and have not returned."
+    },
+    {
+      "id": "DW-Q1",
+      "title": "Supplies in the Marsh",
+      "brief": "Recover the convoy's waterproof list so the survivors can account for their missing supplies and workers.",
+      "outcome": "The survivors have their supply record and names list. They can account for the recovered stores and the workers who returned."
+    },
+    {
+      "id": "DW-Q2",
+      "title": "The Stolen Food",
+      "brief": "Recover Liora's stolen food and free the captives so the rescued camp can share a proper meal.",
+      "outcome": "The recovered food reaches Liora's camp table. The rescued travelers prepare a proper meal together."
+    },
+    {
+      "id": "DW-Q3",
+      "title": "Quarry Below the Falls",
+      "brief": "Inspect the quarry transport gear and secure a hauling route the outpost workers can use again.",
+      "outcome": "Fen has the quarry findings. The old hauling route can help the outpost recover its supplies."
+    },
+    {
+      "id": "DW-Q4",
+      "title": "Remnants of the Red Battlefield",
+      "brief": "After the altar is closed, follow the missing scout's trail and stop the separate warband at the old battlefield.",
+      "outcome": "The scout returns and Eryn records the safe route. This remaining warband cannot reopen King Shaman's closed altar portal."
+    },
+    {
+      "id": "GW-01",
+      "title": "Lantern Trail",
+      "brief": "Help Maeve separate the Crownheart cargo trail from the missing scouts' rescue marks.",
+      "outcome": "The cargo wheels continue north, but the scout marks turn into the webs. Finn is waiting near the trapped Tali."
+    },
+    {
+      "id": "GW-02",
+      "title": "A Light in the Webs",
+      "brief": "Help Finn hold a light for Tali, cut her bindings, and prepare her safe return.",
+      "outcome": "Tali is free and confirms the cargo passed ahead of the scouts. Escort her to Maeve at Lantern Refuge."
+    },
+    {
+      "id": "GW-03",
+      "title": "Lantern Refuge",
+      "brief": "Bring Tali to the refuge and use her map to plan a way in and a safe way out for the remaining scouts.",
+      "outcome": "Maeve will hold the refuge. The Wispkeeper points to the rootway, the hunting ground, and the old road beyond."
+    },
+    {
+      "id": "GW-04",
+      "title": "The Ancient Rootway",
+      "brief": "Defeat Ancient Hollowbark and reconnect the inner rootway to the refuge.",
+      "outcome": "The rootway is open. Its ropes and lanterns give the missing scouts a return route through the forest."
+    },
+    {
+      "id": "GW-05",
+      "title": "Venomcoil Crossing",
+      "brief": "Defeat Venomcoil King and mark a crossing that keeps the scouts out of the hunting ground.",
+      "outcome": "The crossing is secure. The last scout signals come from the edge of the queen's territory."
+    },
+    {
+      "id": "GW-06",
+      "title": "One Brave Step",
+      "brief": "Free the last scouts, follow Finn's light, and hold off Hollowbark Sovereign while the group reaches safety.",
+      "outcome": "The scouts reach the refuge route while you hold the rearguard. Finn keeps the group together; the northern exit still lies beyond the queen."
+    },
+    {
+      "id": "GW-07",
+      "title": "The Queen of the Webs",
+      "brief": "Defeat the Widow Queen, open the webbed northern exit, and check Tali's cargo marker.",
+      "outcome": "The scouts are safe and the northern road is open. Tali confirms the Crownheart cargo went toward Frozen Vale."
+    },
+    {
+      "id": "FV-01",
+      "title": "Blizzard Gate",
+      "brief": "Follow Tali's lead into the valley. Help Freya rescue the stormbound travelers and relight the refuge trail.",
+      "outcome": "The travelers can reach Ember Refuge. Their relief supplies and broken village links need attention."
+    },
+    {
+      "id": "FV-02",
+      "title": "Ember Refuge",
+      "brief": "Deliver relief supplies and help Haldor, Nessa, and Freya plan a crossing between the two village beacons.",
+      "outcome": "The refuge has medicine and a rescue plan. Restore the ravine crossing so the beacon teams can reach both sides."
+    },
+    {
+      "id": "FV-03",
+      "title": "Wolf Ravine",
+      "brief": "Rescue the ravine keeper, restore the crossing, and relight both village beacons.",
+      "outcome": "The ravine crossing is safe, but the fortress alarm still drives the storm. Follow the signal line into the archive."
+    },
+    {
+      "id": "FV-04",
+      "title": "Subglacial Archive",
+      "brief": "Compare the false warning with the guardian's behavior. Help Ylva restore the archive's shelter signal.",
+      "outcome": "The archive signal protects the refuge road again. The palace still repeats the false alarm; follow the cargo markers toward its fortress."
+    },
+    {
+      "id": "FV-05",
+      "title": "Silent Battlefield",
+      "brief": "Identify the Crownheart sled marks and reopen the sheltered tunnel so Ivo can confirm their route.",
+      "outcome": "Ivo recognizes the cargo sleds. The tunnel gives travelers a way home while you approach the citadel locks."
+    },
+    {
+      "id": "FV-06",
+      "title": "Frost Citadel Gate",
+      "brief": "Open both ice locks, carry the restored signal to King Ice Golem, and calm its remaining storm magic.",
+      "outcome": "King Ice Golem is resting. The palace road is open, but its final signal mirror still feeds the valley alarm."
+    },
+    {
+      "id": "FV-07",
+      "title": "Ice Mirror Palace",
+      "brief": "Restore the palace mirrors, calm Queen Ice Elf, and end the false alarm across the valley.",
+      "outcome": "The storm eases and the villages reunite. Ivo's records lead to Ember Caldera, where the Crownheart was sent to be fitted into a portal-key frame."
+    },
+    {
+      "id": "FV-Q1",
+      "title": "A Name in the Snow",
+      "brief": "Return the lost badge and luggage so Nessa can reunite Nell with their waiting friends.",
+      "outcome": "Nessa returns Nell's belongings. The arrivals board and the badge help the traveler find their waiting friends."
+    },
+    {
+      "id": "FV-Q2",
+      "title": "Frostfang Supply Cave",
+      "brief": "Recover the stores from Frostfang Cave and calm the guardian blocking the hauling route.",
+      "outcome": "Freya can bring the recovered cave supplies to the refuge along a safe hauling route."
+    },
+    {
+      "id": "FV-Q3",
+      "title": "Blue Lake Return Route",
+      "brief": "Check the abandoned lake-side stores and calm the guardian so Haldor can reopen the sheltered shore route.",
+      "outcome": "The shore markers connect Blue Lake to the refuge. Haldor has another safe return route for travelers."
+    },
+    {
+      "id": "FV-Q4",
+      "title": "Ancient Glacier Watch",
+      "brief": "After the valley storm ends, calm the glacier watch guardian and inspect its old signal route for Ylva.",
+      "outcome": "Ylva has the peaceful watch record. The old glacier signal can guide travelers without restarting the false alarm."
+    },
+    {
+      "id": "EC-01",
+      "title": "Ash Gate",
+      "brief": "Recover the freight-lift gear and help the stranded workers reach Forge City.",
+      "outcome": "The freight lift is working and the city road is open. Brann needs help bringing the trapped mine crew home."
+    },
+    {
+      "id": "EC-02",
+      "title": "Forge City",
+      "brief": "Meet Brann and Ketta. Find the missing crew and prepare the tools needed to repair the city together.",
+      "outcome": "Orik knows the mine, Dagna knows the cooling flow, and Brann knows the protection relay. Rescue Orik and the miners first."
+    },
+    {
+      "id": "EC-03",
+      "title": "Collapsed Resonance Mine",
+      "brief": "Brace the mine, stop the magma worm, and guide Orik and the miners to the safe exit.",
+      "outcome": "The miners can return to the city. Orik's map shows Dagna where the cooling channels have failed."
+    },
+    {
+      "id": "EC-04",
+      "title": "Split Coolant Canals",
+      "brief": "Help Dagna restore the supply and return channels, then recover the complete safety-circuit plan.",
+      "outcome": "Coolant circulates again. The ancestral design vault holds the protection circuit needed for a safe restart."
+    },
+    {
+      "id": "EC-05",
+      "title": "Ancestral Design Vault",
+      "brief": "Combine Dagna's inlet, Orik's return, and Brann's protection clues. Test their complete loop on the model.",
+      "outcome": "The model works because the whole crew helped. Take the repair kit to the testworks before restarting the great furnace."
+    },
+    {
+      "id": "EC-06",
+      "title": "Geothermal Heart Testworks",
+      "brief": "Clear Magma Golem from the testworks and check that the repaired cooling circuit protects the city.",
+      "outcome": "The protected test succeeds. The crew can help you reclaim and restart the great furnace safely."
+    },
+    {
+      "id": "EC-07",
+      "title": "Great Furnace",
+      "brief": "Use the repaired coolers, defeat Inferno Overlord, and reclaim the furnace. Check where the Crownheart cargo was sent.",
+      "outcome": "The city is safe. The Crownheart left before your arrival, but Veyr's dispatch reveals the royal tomb. Brann's route and Maeve's scouts open the approach to Haunted Graveyard."
+    },
+    {
+      "id": "EC-Q1",
+      "title": "A Worker's Lost Mark",
+      "brief": "Return the lost work mark and safety record so Ketta can welcome Jori back to the crew.",
+      "outcome": "Ketta returns Jori's work mark. The rescued worker has their place on the crew board again."
+    },
+    {
+      "id": "EC-Q2",
+      "title": "Ember Raider Nest",
+      "brief": "Recover the stolen freight from the raider nest and secure Ketta's collection route.",
+      "outcome": "Ketta can collect the stolen freight. The repair crew has its materials and a safe road back."
+    },
+    {
+      "id": "EC-Q3",
+      "title": "Volcano Shaman Altar",
+      "brief": "Stop the shaman blocking the heat-altar service path and recover the crew stores left there.",
+      "outcome": "The heat-altar path is clear. Ketta's crews can reach the recovered stores without entering the old ritual ground."
+    },
+    {
+      "id": "EC-Q4",
+      "title": "Caldera Titan Basin",
+      "brief": "After the furnace is safe, investigate the titan basin and secure the old ore-hauling route for Ketta.",
+      "outcome": "The titan basin's hauling route is recorded. The city can use its old freight landing again without delaying the royal-tomb mission."
+    },
+    {
+      "id": "HG-01",
+      "title": "Mist Gate",
+      "brief": "Follow the route secured by the rescued scouts and meet Rook at the graveyard entrance.",
+      "outcome": "The scouts' lanterns connect Brann's approach to the keeper shelter. Gather with the allies preparing the assault."
+    },
+    {
+      "id": "HG-02",
+      "title": "Friends at the Old Shelter",
+      "brief": "Learn the assault plan from Garrick, Eryn, Brann, and Elowen. Find out how Lumi can reach the inner gate.",
+      "outcome": "The scouts hold the approach, the elves guide the return path, and the dwarves ready the gate rig. Take Lumi's service passage to the winch."
+    },
+    {
+      "id": "HG-03",
+      "title": "Lumi Secret Passage",
+      "brief": "Help Lumi reopen the keeper passage so you can reach the fortress-side gate machinery.",
+      "outcome": "The small passage reaches the winch, not the whole allied route. Secure Brann's gate so the crew can bring everyone through."
+    },
+    {
+      "id": "HG-04",
+      "title": "The Alliance Opens the Gate",
+      "brief": "Secure the winch, stop Dread Commander, and answer Finn's signal to bring the allies through Brann's gate.",
+      "outcome": "Brann's gate is secured. The people you rescued hold your way home while you advance to the throne devices."
+    },
+    {
+      "id": "HG-05",
+      "title": "The Black Throne Devices",
+      "brief": "Break the two outer shield links that block the route to Veyr's royal tomb.",
+      "outcome": "Both outer links are broken. The tomb approach is exposed, but Veyr still holds the Crownheart inside."
+    },
+    {
+      "id": "HG-06",
+      "title": "The Royal Tomb",
+      "brief": "Clear the tomb guards and learn how Veyr's binding frame forces the Crownheart to power his invasion gate.",
+      "outcome": "The tomb seal is open and your retreat is secured. Defeat Veyr, release the Crownheart from his frame, then close the portal."
+    },
+    {
+      "id": "HG-07",
+      "title": "Together We Bring Back the Light",
+      "brief": "Defeat Veyr, recover the bound Crownheart, and close the invasion portal before returning to Dawnspire.",
+      "outcome": "Veyr is defeated, the Crownheart is free, and the invasion portal is closed. Return to Dawnspire to restore the throne and meet your friends."
+    }
+  ]
+}

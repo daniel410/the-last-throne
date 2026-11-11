@@ -19,7 +19,7 @@ G.regions={
  result='The scouts are safe and the northern road is open.',next='Tali saw the Crownheart convoy heading toward Frozen Vale. Follow the snowy ridge.'},
  {question='Why are the guardians blocking the refuge road?',purpose='Help the stranded travelers, reconnect their shelters, and discover what is wrong with the valley signals.',
  result='The guardians are calm, the storm has eased, and the villages are reunited.',next='The delivery records lead to the great furnace in Ember Caldera.'},
- {question='What was the stolen Crownheart used to make?',purpose='Free the workers and restore the city\'s equipment. Follow the cargo records to uncover the enemy\'s plan.',
+ {question='Why was the Crownheart taken to the furnace?',purpose='Free the workers and restore the city\'s equipment. Follow the cargo records to uncover the enemy\'s plan.',
  result='The workshops are working again and the invasion plan is exposed.',next='Veyr plans to open an invasion gate at the royal tomb. Your friends are securing the approach.'},
  {question='How will the friends we rescued help us reach the tomb?',purpose='Follow the allied signals, open the royal tomb, and stop Veyr from using the Crownheart against Dawnspire.',
  result='The Crownheart is safe and the invasion portal is closed.',next='Return to Dawnspire. The people you saved are ready to welcome you home.'},
@@ -43,7 +43,7 @@ local records={
   {keys={'EC-05:exp_2'},text='Dagna traced the supply into the tank. Orik found the return line. Brann connected the city shield. Their separate clues made one working circuit.'},
   {keys={'HG-04:exp_2'},text='Brann\'s gate rig and Finn\'s scout signal opened the way for the allies you helped.'}}},
  {id='lumi',kind='people',epic=5,title='Lumi · The heart belongs at home',stages={
-  {keys={'HG-06:exp_1'},text='The Crownheart protects Dawnspire. Veyr forced its protecting power into an invasion gate. Lumi helped you understand what must be freed.'},
+  {keys={'HG-06:exp_1'},text='The Crownheart is intact inside a binding frame. Veyr forced its protecting power into an invasion gate. Lumi helped you understand what must be freed.'},
   {keys={'HG-07'},text='The heart is safe, the portal is closed, and your friends have the way home.'}}},
  {id='cargo',kind='clues',epic=1,title='The broken-crown cargo mark',stages={
   {keys={'DW-07:exp_2'},text='The same broken-crown mark appears on the stolen cargo and its northern route.'},

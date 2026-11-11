@@ -3,6 +3,8 @@ from pathlib import Path
 import json
 
 paths = '''src/shared/CampaignStoryGuide.luau
+src/shared/CampaignContent.luau
+src/shared/CampaignStoryText.luau
 src/shared/StoryPlaytestMetrics.luau
 src/shared/CampaignSceneState.luau
 src/shared/StoryCompletion.luau
@@ -24,7 +26,7 @@ code += '''for _,root in ipairs({game.ReplicatedStorage.Shared,game.ServerScript
  for _,m in ipairs(root:GetDescendants())do if m:IsA('LuaSourceContainer')then local fn,why=loadstring(m.Source,m:GetFullName());assert(fn,why)end end
 end
 '''
-for path in ('tests/campaign-expansion-native.luau', 'tests/lobby-quest-journal-native.luau', 'tests/story-rpg-guide-native.luau'):
+for path in ('tests/campaign-expansion-native.luau', 'tests/lobby-quest-journal-native.luau', 'tests/story-rpg-guide-native.luau', 'tests/campaign-context-review-native.luau'):
     code += f'local result=assert(loadstring({json.dumps(Path(path).read_text(), ensure_ascii=False)},{json.dumps(path)}))()\n'
     code += "assert(not result.failures or #result.failures==0,game.HttpService:JSONEncode(result))\n"
     code += "print('STORY_RPG_NATIVE_SUITE '..game.HttpService:JSONEncode(result))\n"

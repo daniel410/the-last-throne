@@ -41,7 +41,7 @@ C.epics={
  {region='Deepwood',title='FRIENDS OF THE FOREST',promise='Rescue the missing convoy and follow the Crownheart trail into Gloamwood.',hub='DW-03'},
  {region='Gloamwood',title='ONE BRAVE STEP',promise='Rescue the scouts and reopen the northern road to Frozen Vale.',hub='GW-03'},
  {region='Frozen Vale',title='BEYOND THE BLIZZARD',promise='Rescue the travelers, calm the guardians, and follow the delivery records to Ember Caldera.',hub='FV-02'},
- {region='Ember Caldera',title='THE GREAT FURNACE',promise='Save the city and uncover Veyr\'s invasion plans and the royal tomb approach.',hub='EC-02'},
+ {region='Ember Caldera',title='THE GREAT FURNACE',promise='Save the city and uncover where the stolen Crownheart was taken.',hub='EC-02'},
  {region='Haunted Graveyard',title='TOGETHER WE BRING BACK THE LIGHT',promise='Stop Veyr, recover the Crownheart, and save Dawnspire.',hub='HG-02'},
 }
 for i=1,C.mainCount-1 do table.insert(C.edges,{C.mainChapters[i].zone,C.mainChapters[i+1].zone})end
@@ -62,8 +62,9 @@ function C.region(prefix)
  for _,edge in ipairs(C.edges)do if r.zones[edge[1]]and r.zones[edge[2]]then table.insert(r.edges,edge)end end
  return r
 end
-load('CampaignStoryText').install(C)
 load('QuestCompletionRewards').install(C)
 load('CampaignExpansion').install(C)
 load('CampaignStoryBeats').install(C)
+-- Final narrative review includes incident text; archived authoring remains save-compatible.
+load('CampaignStoryText').install(C)
 return C
