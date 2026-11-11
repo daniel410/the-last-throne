@@ -1,0 +1,110 @@
+{
+  "tool": "image_gen (built-in)",
+  "task": "TLT-031/032/033/057/084",
+  "assets": [
+    {
+      "tier": "traveler",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/towers/blocky-v1/mages/arcanist.png",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-11-starter-armor-cutouts-v1/traveler/robe.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create ONE new standalone WIZARD HAT 3D modeling reference PNG for The Last Throne.\nReference image 1 (TD Arcanist) is silhouette/style reference ONLY: recognizable broad flared brim, tall soft conical crown with a tip bent to the right, chunky faceted stylized 3D game construction. Reference image 2 is the EXACT traveler MAGE ROBE that this hat must match in material, palette, edge trim and modest ornament. Do not reproduce either character or robe. Create only the detachable wizard hat, NOT a hood, NOT a helmet. Preserve a coherent consistent TD wizard hat silhouette across all four families; adapt only the family construction and finishes.\nTraveler Common: undyed warm beige linen #C5AF88 crown and brim, muted teal #38585A simple cloth edging, walnut brown leather #79513B band with ONE small dull iron buckle #92989E. Modest seams, no gems, no gold, no crest, no hanging ornaments. Humble clean starter hat.\nComposition: exactly ONE complete hat centered large in a square image, front three-quarter view with minimal perspective, see brim thickness and part of empty underside. Full silhouette and curled tip uncropped with clear margins on every side. Neutral studio light, clear geometry and restrained cloth texture like the robe. Genuine transparent alpha background. No background, scene, floor, cast shadow, haze, glow, magical effects, pedestal, labels, text, borders, face, hair, head, mannequin, robe, character, staff, weapon, shield or additional objects. Not a comparison board, one hat only.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-d7e9cd59-b8c9-443d-bcfe-19ea254f05bf.png",
+      "file": "traveler_mage_hat.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "214df88034dcd864483016c81d74f82c1c16464b8c8801b1838be12f5913b5e4",
+      "alpha_zero_pixels": 902354,
+      "silhouette_bbox": [
+        29,
+        105,
+        1223,
+        1168
+      ],
+      "reference_hashes": [
+        "762e321b899dee983db17065c26d3d532b5b337c2642c35c9b61ee847e47d7b7",
+        "542ae3e28d1948ed97a92412ff70e5d327b1342fee8eb2efe4e5cef868aa42b2"
+      ]
+    },
+    {
+      "tier": "tempered",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/towers/blocky-v1/mages/arcanist.png",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-11-starter-armor-cutouts-v1/tempered/robe.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create ONE new standalone WIZARD HAT 3D modeling reference PNG for The Last Throne.\nReference image 1 (TD Arcanist) is silhouette/style reference ONLY: recognizable broad flared brim, tall soft conical crown with a tip bent to the right, chunky faceted stylized 3D game construction. Reference image 2 is the EXACT tempered MAGE ROBE that this hat must match in material, palette, edge trim and modest ornament. Do not reproduce either character or robe. Create only the detachable wizard hat, NOT a hood, NOT a helmet. Preserve a coherent consistent TD wizard hat silhouette across all four families; adapt only the family construction and finishes.\nTempered Common: slate blue-gray cloth #485B68 crown and brim, dark brown leather #543B30 band, clean tempered steel #BAC4CE buckle and narrow tidy rim reinforcing strips. Match robe's steel-trim cape and rectangular metal fastenings. No gems or gold, no crest, no hanging ornaments.\nComposition: exactly ONE complete hat centered large in a square image, front three-quarter view with minimal perspective, see brim thickness and part of empty underside. Full silhouette and curled tip uncropped with clear margins on every side. Neutral studio light, clear geometry and restrained cloth texture like the robe. Genuine transparent alpha background. No background, scene, floor, cast shadow, haze, glow, magical effects, pedestal, labels, text, borders, face, hair, head, mannequin, robe, character, staff, weapon, shield or additional objects. Not a comparison board, one hat only.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-e536a76f-a018-48c6-9147-53bfcd384195.png",
+      "file": "tempered_mage_hat.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "4f1c951b12dbc600613737c01d9ac61f2b65b356a0a8de514b904806d1da79c8",
+      "alpha_zero_pixels": 917238,
+      "silhouette_bbox": [
+        34,
+        110,
+        1220,
+        1175
+      ],
+      "reference_hashes": [
+        "762e321b899dee983db17065c26d3d532b5b337c2642c35c9b61ee847e47d7b7",
+        "1ffd57b4cbd8d93e79999cacd42ab4faf2f089400f9a2c736eb27870055548a5"
+      ]
+    },
+    {
+      "tier": "veteran",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/towers/blocky-v1/mages/arcanist.png",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-11-starter-armor-cutouts-v1/veteran/robe.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create ONE new standalone WIZARD HAT 3D modeling reference PNG for The Last Throne.\nReference image 1 (TD Arcanist) is silhouette/style reference ONLY: recognizable broad flared brim, tall soft conical crown with a tip bent to the right, chunky faceted stylized 3D game construction. Reference image 2 is the EXACT veteran MAGE ROBE that this hat must match in material, palette, edge trim and modest ornament. Do not reproduce either character or robe. Create only the detachable wizard hat, NOT a hood, NOT a helmet. Preserve a coherent consistent TD wizard hat silhouette across all four families; adapt only the family construction and finishes.\nVeteran Uncommon: deep olive green cloth #3F513C, dark brown leather #51392E band, brushed steel #A8B5BC practical reinforcement, restrained aged bronze #94734C trim and one small bronze anvil badge matching robe's front panel. Layered reinforced band, no gems, no hanging ornaments.\nComposition: exactly ONE complete hat centered large in a square image, front three-quarter view with minimal perspective, see brim thickness and part of empty underside. Full silhouette and curled tip uncropped with clear margins on every side. Neutral studio light, clear geometry and restrained cloth texture like the robe. Genuine transparent alpha background. No background, scene, floor, cast shadow, haze, glow, magical effects, pedestal, labels, text, borders, face, hair, head, mannequin, robe, character, staff, weapon, shield or additional objects. Not a comparison board, one hat only.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-fb892c26-e70d-46b5-9b49-cd41b7a84c6d.png",
+      "file": "veteran_mage_hat.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "a5a1a41b5da192c07a2dff37660c4c957a9f4a2e9027cf1e5875e85faf25933c",
+      "alpha_zero_pixels": 916707,
+      "silhouette_bbox": [
+        45,
+        132,
+        1209,
+        1161
+      ],
+      "reference_hashes": [
+        "762e321b899dee983db17065c26d3d532b5b337c2642c35c9b61ee847e47d7b7",
+        "7e8e994667301dd8f64cf6f4111f992359ef93a79f2687989fb157fd0d00c945"
+      ]
+    },
+    {
+      "tier": "sentinel",
+      "refs": [
+        "/Users/daniel/Workspace/project/roblox/throne-defense/assets/concepts/towers/blocky-v1/mages/arcanist.png",
+        "/Users/daniel/Workspace/project/roblox/the-last-throne/assets/concepts/2026-11-11-starter-armor-cutouts-v1/sentinel/robe.png"
+      ],
+      "prompt": "Use case: stylized-concept. Create ONE new standalone WIZARD HAT 3D modeling reference PNG for The Last Throne.\nReference image 1 (TD Arcanist) is silhouette/style reference ONLY: recognizable broad flared brim, tall soft conical crown with a tip bent to the right, chunky faceted stylized 3D game construction. Reference image 2 is the EXACT sentinel MAGE ROBE that this hat must match in material, palette, edge trim and modest ornament. Do not reproduce either character or robe. Create only the detachable wizard hat, NOT a hood, NOT a helmet. Preserve a coherent consistent TD wizard hat silhouette across all four families; adapt only the family construction and finishes.\nSentinel Rare: dark navy cloth #234461, dark brown leather #42332D band, bright silver steel #C9D1D7 structured trim, one SMALL cobalt-blue diamond-shaped inset in a silver front mount, a modest tower crest below matching robe's belt emblem. Silver details dominate; gold only tiny tower crest. No huge gemstones or hanging ornaments.\nComposition: exactly ONE complete hat centered large in a square image, front three-quarter view with minimal perspective, see brim thickness and part of empty underside. Full silhouette and curled tip uncropped with clear margins on every side. Neutral studio light, clear geometry and restrained cloth texture like the robe. Genuine transparent alpha background. No background, scene, floor, cast shadow, haze, glow, magical effects, pedestal, labels, text, borders, face, hair, head, mannequin, robe, character, staff, weapon, shield or additional objects. Not a comparison board, one hat only.",
+      "source": "/Users/daniel/.codex/generated_images/01a1cb20-c295-7ed0-b7e5-5384bc1be6b2/exec-67474b1c-14c1-42e6-a74a-f3374ff01f2c.png",
+      "file": "sentinel_mage_hat.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "5e4d9a712e0ead77a5e8f45f0edfed9358cb3b05e99ff95f7f921b48affa65eb",
+      "alpha_zero_pixels": 921470,
+      "silhouette_bbox": [
+        42,
+        102,
+        1210,
+        1176
+      ],
+      "reference_hashes": [
+        "762e321b899dee983db17065c26d3d532b5b337c2642c35c9b61ee847e47d7b7",
+        "03592fd669201ce311230fdc7bfdee877321bf3a693c640c43b81f24c06a1729"
+      ]
+    }
+  ]
+}
