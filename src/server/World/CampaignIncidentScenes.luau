@@ -79,9 +79,9 @@ function S.create(scene,c,g,area)
    part(scene,'ReliefAwning',V(width*.8,.25,12),center+V(0,7,-depth*.4),pal.trim,Enum.Material.Fabric)
   end
   if c.id=='DW-02'and g.id=='exp_1'then
-   actor('Selene',result+V(-9,0,-6),result+V(-4,0,-6),0,3)
-   actor('Convoy Survivor',result+V(-16,0,-6),result+V(-8,0,-6),0,3)
-   model('PreparedMedicine',1,3,function(m)part(m,'MedicineCase',V(2.5,1.5,2),result+V(-5,.75,-4),pal.trim)end)
+   actor('Selene',result+V(-5,0,-8),result+V(-5,0,-8),0,3)
+   actor('Convoy Survivor',result+V(-12,0,-8),result+V(-12,0,-8),0,3)
+   model('PreparedMedicine',1,3,function(m)part(m,'MedicineCase',V(2.5,1.5,2),result+V(-16,.75,-4),pal.trim)end)
   elseif c.id=='DW-03'and g.id=='exp_1'then
    actor('Eryn',result+V(-10,0,0),result+V(-3,0,0),0,3)
    model('ReturnedConvoy',3,3,function(m)

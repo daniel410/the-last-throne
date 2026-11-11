@@ -4,7 +4,7 @@
 
 `rg -n "검색어" docs/decisions docs/product-contracts.md`로 필요한 항목만 찾는다.
 
-- [2026-11-11](decisions/2026-11-11.md) · 4개 항목
+- [2026-11-11](decisions/2026-11-11.md) · 5개 항목
 - [2026-11-10](decisions/2026-11-10.md) · 4개 항목
 - [2026-11-09](decisions/2026-11-09.md) · 3개 항목
 - [2026-11-08](decisions/2026-11-08.md) · 1개 항목

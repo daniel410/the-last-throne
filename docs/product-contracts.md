@@ -4,6 +4,8 @@
 
 ## 최근 승인
 
+- 스토리 통행 차단은 유리벽 대신 지역 장애물로 표현하고, 해제 시 형상과 충돌을 함께 제거한다. 확장 사건 이동 표지판은 저장된 다음 필수 목표로 연결한다. [구현/검증/미검증](evidence/story-obstacles-travel-20261111/README.md).
+
 - 본편: Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard. 35본편·12선택, 전투량/몬스터/보상을 유지하며 반복 웨이브를 이동 경로 교전으로 분산한다. [동선](production/campaign-combat-routes-2026-11-10.md), [맥락](production/campaign-context-review-2026-11-10.md).
 - Dawnspire: TD 전투 맵의 분홍 크리스탈 왕좌 원본을 균일2배로 재사용한다. 로비300×300, HG07 완료 영웅만 심장을 개인 복원한다. 금색 의자 해석은 폐기했다. [증거](evidence/dawnspire-crystal-throne-20261111/README.md).
 - 장비 부위 수치: 무기/방패/투구·장갑/신발·상의HP/로브MP 순서로 Tempered6/4/30, Veteran15/10/50, Sentinel30/20/80. Traveler·장신구·가격/레벨·강화·보유품 유지. [증거](evidence/equipment-values-20261110/README.md).

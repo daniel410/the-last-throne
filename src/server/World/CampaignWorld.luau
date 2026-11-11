@@ -16,6 +16,7 @@ function W.scope(epic)
  return {epic=epic,content=content,access=access}
 end
 function W.create(epic,world)
+ require(script.Parent.StoryGateTemplates).prepare()
  -- No-argument creation is retained for offline art/QA tools only.
  if not epic then for id=1,#Content.epics do world=W.create(id,world)end;return world end
  local scope=W.scope(epic)

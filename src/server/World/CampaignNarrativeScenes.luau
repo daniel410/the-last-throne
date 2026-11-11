@@ -17,9 +17,10 @@ function N.create(scene,c,g,area,k)
  end
  if c.id=='DW-02'and g.id=='exp_1'then
   k.model('MedicineReachesSurvivor',1,3,function(m)
-   k.part(m,'PreparedReliefBench',V(10,.5,4),result+V(-9,1,-7),pal.wood)
-   board(m,'BlueClothClue',result+V(-8,0,0),'MEDICINE DELIVERED\nBlue cloth leads to the missing driver.')
-   for i=1,3 do k.part(m,'ClothTrail',V(1.3,1.8,.15),V(table.unpack(g.activity.steps[i].position))+V(4,2,0),Color3.fromRGB(108,166,203),Enum.Material.Fabric)end
+   -- The clue belongs to the recovered supplies, without a board through the cast.
+   local cloth=k.part(m,'BlueClothClue',V(2,.08,1.5),result+V(-16,.08,-11),Color3.fromRGB(108,166,203),Enum.Material.Fabric)
+   label(cloth,'MEDICINE DELIVERED\nBlue cloth leads to the missing driver.')
+   for i=1,3 do k.part(m,'ClothTrail',V(1.3,.08,1.8),V(table.unpack(g.activity.steps[i].position))+V(4,.08,0),Color3.fromRGB(108,166,203),Enum.Material.Fabric)end
   end)
  elseif c.id=='GW-01'and g.id=='exp_1'then
   local a=V(table.unpack(g.activity.steps[1].position));local b=V(table.unpack(g.activity.steps[2].position))

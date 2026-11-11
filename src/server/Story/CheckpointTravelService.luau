@@ -7,7 +7,7 @@ function Service.create(o)
   if o.pending(player)or o.inEncounter(player,ctx.heroId)then return false end
   local target=o.rules.allowed(o.state(player,ctx.heroId),id)
   if not target then return false end
-  local pivot=o.destination(target);if not pivot then return false end
+  local pivot=o.destination(target,player,ctx.heroId);if not pivot then return false end
   -- destination() must be non-yielding; only loaded, authoritative checkpoints.
   return o.relocate(player,pivot)==true,target
  end

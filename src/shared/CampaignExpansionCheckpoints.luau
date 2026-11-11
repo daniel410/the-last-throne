@@ -1,6 +1,15 @@
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
 local C,P=load('CampaignContent'),load('DeepwoodProgress')
 local E={}
+local function nextDestination(s,chapter)
+ for _,goal in ipairs(chapter.goals) do
+  if P.required(s,goal) and P.available(s,chapter,goal) then
+   local step=P.nextStep(s,chapter,goal)
+   return {zone=chapter.zone,chapterId=chapter.id,goalId=goal.id,
+    title=(step and step.title or goal.title):upper(),position=step and step.position or goal.position}
+  end
+ end
+end
 function E.respawn(s,c)
  if not s or s.expansionVersion~=1 or not c or s.clears[c.id]then return nil end
  for i=#(c.expansionGoals or {}),1,-1 do
@@ -22,7 +31,10 @@ function E.list(s)
    local id=c.id..':'..g.id
    result[id]={id=id,zone=c.zone,chapterId=c.id,title=area.name:upper(),position=g.activity.steps[#g.activity.steps].position}
    local exit='exit:'..id
-   result[exit]={id=exit,zone=c.zone,chapterId=c.id,title='RETURN TO THE MAIN ROUTE',position=area.entry,exit=true}
+   local target=nextDestination(s,c) or nextDestination(s,current)
+   if target and C.zones[target.zone].epic==current.epic then
+    target.id=exit;target.exit=true;result[exit]=target
+   end
   end
  end end end
  return result

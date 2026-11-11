@@ -170,7 +170,11 @@ function Journal.start(hud)
   for _,folderName in ipairs({'StoryCheckpointPortals','ExpansionReturnPoints'})do
    local portals=world:FindFirstChild(folderName)
    for _,prompt in ipairs(portals and portals:GetDescendants()or {})do
-    if prompt:IsA('ProximityPrompt')and prompt:GetAttribute('CheckpointTarget')then prompt.Enabled=Checkpoints.allowed(s,prompt:GetAttribute('CheckpointTarget'))~=nil end
+    if prompt:IsA('ProximityPrompt')and prompt:GetAttribute('CheckpointTarget')then
+     local target=Checkpoints.allowed(s,prompt:GetAttribute('CheckpointTarget'))
+     prompt.Enabled=target~=nil
+     if target and target.exit then prompt.ObjectText=target.title;prompt.ActionText='Travel to next objective' end
+    end
    end
   end
   local steps=world:FindFirstChild('AdventureActivities')

@@ -473,9 +473,15 @@ function Service.start(settings)
   ready=function(p)return p:GetAttribute('K0SessionPhase')=='Tutorial' and p:GetAttribute('TLTTravelLock')~=true and (not options.inventory.available or options.inventory.available(p))end,
   pending=Service.hasPendingEvents,
   inEncounter=function(p,id)for _,e in pairs(encounters)do if not e.completed and e.participants[p]==id then return true end end;return false end,
-  destination=function(target)
+  destination=function(target,player,heroId)
    local spawn=options.world.spawns[target.zone];if not spawn then return nil end
-   return target.position and CFrame.new(Vector3.new(table.unpack(target.position))+Vector3.new(0,4,6))or spawn.CFrame+Vector3.new(0,4,0)
+   local chapter=target.exit and Content.byId[target.chapterId]
+   local goal=chapter and Progress.goal(chapter,target.goalId)
+   local admission=goal and options.inventory.expedition(player,heroId)
+   local route=goal and Routes.plan(chapter,goal,admission and admission.balanceVersion)
+   local position=route and entryPosition(chapter,goal,admission,admittedCount(player,admission))
+    or target.position and Vector3.new(table.unpack(target.position))
+   return position and CFrame.new(position+Vector3.new(0,4,6))or spawn.CFrame+Vector3.new(0,4,0)
   end,relocate=function(p,pivot)return options.combat.relocateForStoryGate(p,pivot)end,
  })
  remote=Instance.new('RemoteEvent');remote.Name='DeepwoodState';remote.Parent=ReplicatedStorage.Remotes
