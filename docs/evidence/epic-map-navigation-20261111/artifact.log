@@ -1,0 +1,4 @@
+place-role: 10 checks PASS
+arrival-loading: 192 checks PASS
+single-build: project mounts and compatibility alias PASS
+single-build: actual artifact role/config/loading checks PASS

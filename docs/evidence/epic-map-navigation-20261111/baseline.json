@@ -1,0 +1,273 @@
+{
+  "floors": [],
+  "corrections": [],
+  "returns": [
+    {
+      "chapter": "FV-Q1",
+      "to": [
+        -260,
+        60,
+        -4680
+      ],
+      "label": "FV-Q1:report",
+      "epic": 3,
+      "from": [
+        -764.98828125,
+        57,
+        -4542.52734375
+      ]
+    },
+    {
+      "chapter": "EC-Q1",
+      "to": [
+        -260,
+        108,
+        -8565
+      ],
+      "label": "EC-Q1:report",
+      "epic": 4,
+      "from": [
+        -918.3255615234375,
+        103,
+        -8437.1337890625
+      ]
+    },
+    {
+      "chapter": "EC-Q2",
+      "to": [
+        -260,
+        108,
+        -8565
+      ],
+      "label": "EC-Q2:report",
+      "epic": 4,
+      "from": [
+        -680.5358276367188,
+        119,
+        -9163.443359375
+      ]
+    },
+    {
+      "chapter": "EC-Q3",
+      "to": [
+        -260,
+        108,
+        -8565
+      ],
+      "label": "EC-Q3:report",
+      "epic": 4,
+      "from": [
+        1568.7265625,
+        127,
+        -9869.8916015625
+      ]
+    },
+    {
+      "chapter": "EC-Q4",
+      "to": [
+        -260,
+        108,
+        -8565
+      ],
+      "label": "EC-Q4:report",
+      "epic": 4,
+      "from": [
+        -1874.6793212890625,
+        161,
+        -10985.7001953125
+      ]
+    }
+  ],
+  "epics": {
+    "5": {
+      "chapters": 7,
+      "connectors": 6,
+      "steps": 3133,
+      "samples": 3322,
+      "targets": 128,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 0,
+      "routeFailures": 14
+    },
+    "4": {
+      "chapters": 11,
+      "connectors": 9,
+      "steps": 8618,
+      "samples": 8921,
+      "targets": 188,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 16,
+      "routeFailures": 15
+    },
+    "3": {
+      "chapters": 11,
+      "connectors": 9,
+      "steps": 6325,
+      "samples": 6694,
+      "targets": 181,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 2,
+      "routeFailures": 18
+    },
+    "2": {
+      "chapters": 7,
+      "connectors": 6,
+      "steps": 3205,
+      "samples": 3421,
+      "targets": 126,
+      "floors": 0,
+      "corrections": 0,
+      "blockers": 4,
+      "routeFailures": 14
+    }
+  },
+  "routeFailures": [
+    {
+      "at": "-788.0109252929688, 57, -4442.29541015625",
+      "kind": "loop",
+      "label": "FV-Q1:report"
+    },
+    {
+      "at": "-950, 103, -8332",
+      "kind": "loop",
+      "label": "EC-Q1:report"
+    }
+  ],
+  "blockers": [
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic2.RouteMidground.ForestTree.trunk_geom",
+      "at": "-493.0205993652344, 156, -11589.25390625",
+      "position": "-487.6419372558594, 171.2660369873047, -11587.1044921875",
+      "label": "GW-01:exp_2"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic2.RouteMidground.ForestTree.trunk_geom",
+      "at": "915.8082275390625, 169.96771240234375, -12992.0908203125",
+      "position": "907.3580932617188, 183.2660369873047, -12997.1044921875",
+      "label": "GW-04:exp_1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic2.RouteMidground.ForestTree.trunk_geom",
+      "at": "1305.2069091796875, 168, -13084.9833984375",
+      "position": "1312.4344482421875, 181.4486541748047, -13086.091796875",
+      "label": "GW-04:exp_2"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic2.RouteMidground.ForestTree.trunk_geom",
+      "at": "705.255859375, 172, -13584.4404296875",
+      "position": "712.4345092773438, 185.4486541748047, -13586.091796875",
+      "label": "GW-05:exp_2"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic3.RouteMidground.SnowTree.trunk_geom",
+      "at": "-451.22357177734375, 68, -5301.16259765625",
+      "position": "-456.4432678222656, 78.54083251953125, -5299.072265625",
+      "label": "FV-Q2:exp_1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic3.RouteMidground.SnowTree.trunk_geom",
+      "at": "-1611.22607421875, 100, -7131.16259765625",
+      "position": "-1616.4432373046875, 110.54083251953125, -7129.072265625",
+      "label": "FV-Q4:exp_1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic4.RouteMidground.FacetedOutcrop",
+      "at": "-1082.207763671875, 101.69459533691406, -8124.18115234375",
+      "position": "-1082, 101, -8117",
+      "label": "EC-01:exp_1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic4.RouteMidground.FacetedOutcrop",
+      "at": "-1082.207763671875, 101.69459533691406, -8124.18115234375",
+      "position": "-1088, 104, -8121",
+      "label": "EC-01:exp_1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-03.BracedMineSupport",
+      "at": "179.86184692382812, 116, -8992.8251953125",
+      "position": "175, 128.5, -8996",
+      "label": "EC-03:mine_guards:combat2"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-03.BracedMineSupport",
+      "at": "460.60394287109375, 117.59786224365234, -8993.9521484375",
+      "position": "465, 128.5, -8996",
+      "label": "EC-03:exp_2"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic4.RouteMidground.FacetedOutcrop",
+      "at": "999.61279296875, 125.61557006835938, -9366.015625",
+      "position": "991, 128, -9370",
+      "label": "EC-04:exp_2"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic4.RouteMidground.FacetedOutcrop",
+      "at": "-419.8072204589844, 140, -10508.3837890625",
+      "position": "-424, 144, -10504",
+      "label": "EC-06:exp_1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.CampaignCombatRoutes.Epic4.RouteMidground.FacetedOutcrop",
+      "at": "-535.4474487304688, 140, -10517.505859375",
+      "position": "-538, 144, -10525",
+      "label": "EC-06:exp_1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-06.TestworksHeatTower",
+      "at": "-147.60110473632812, 140, -10535.7705078125",
+      "position": "-140, 158, -10526",
+      "label": "EC-06:exp_2"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-07.ForgePillar",
+      "at": "-939.5771484375, 148, -10911.015625",
+      "position": "-937.5, 166, -10905",
+      "label": "EC-07:exp_1"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-07.ForgePillar",
+      "at": "-933.08740234375, 148, -10910.9306640625",
+      "position": "-937.5, 166, -10905",
+      "label": "EC-Q4:report"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-05.BasaltGround",
+      "at": "590.8320922851562, 130.6981964111328, -9818.4560546875",
+      "position": "300, 131.8000030517578, -10046",
+      "label": "EC-04 -> EC-05"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-05",
+      "at": "590.8320922851562, 130.6981964111328, -9818.4560546875",
+      "position": "300, 77, -10046",
+      "label": "EC-04 -> EC-05"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround",
+      "at": "590.8320922851562, 130.6981964111328, -9818.4560546875",
+      "position": "300, 100, -10046",
+      "label": "EC-04 -> EC-05"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-06.BasaltGround",
+      "at": "-9.167885780334473, 138.6981964111328, -10298.4560546875",
+      "position": "-300, 139.8000030517578, -10526",
+      "label": "EC-05 -> EC-06"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-06",
+      "at": "-9.167885780334473, 138.6981964111328, -10298.4560546875",
+      "position": "-300, 85, -10526",
+      "label": "EC-05 -> EC-06"
+    },
+    {
+      "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround",
+      "at": "-9.167885780334473, 138.6981964111328, -10298.4560546875",
+      "position": "-300, 108, -10526",
+      "label": "EC-05 -> EC-06"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+EPIC_MAP_CHAPTER GW-01
+EPIC_MAP_CHAPTER GW-02
+EPIC_MAP_CHAPTER GW-03
+EPIC_MAP_CHAPTER GW-04
+EPIC_MAP_CHAPTER GW-05
+EPIC_MAP_CHAPTER GW-06
+EPIC_MAP_CHAPTER GW-07
+EPIC_MAP_EPIC 2 {"chapters":7,"lowSteps":0,"connectors":6,"steps":4654,"samples":4870,"targets":87,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}
+EPIC_MAP_CHAPTER FV-01
+EPIC_MAP_CHAPTER FV-02
+EPIC_MAP_CHAPTER FV-03
+EPIC_MAP_CHAPTER FV-04
+EPIC_MAP_CHAPTER FV-05
+EPIC_MAP_CHAPTER FV-06
+EPIC_MAP_CHAPTER FV-07
+EPIC_MAP_CHAPTER FV-Q1
+EPIC_MAP_CHAPTER FV-Q2
+EPIC_MAP_CHAPTER FV-Q3
+EPIC_MAP_CHAPTER FV-Q4
+EPIC_MAP_EPIC 3 {"chapters":11,"lowSteps":0,"connectors":9,"steps":5806,"samples":6175,"targets":142,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}
+EPIC_MAP_CHAPTER EC-01
+EPIC_MAP_CHAPTER EC-02
+EPIC_MAP_CHAPTER EC-03
+EPIC_MAP_CHAPTER EC-04
+EPIC_MAP_CHAPTER EC-05
+EPIC_MAP_CHAPTER EC-06
+EPIC_MAP_CHAPTER EC-07
+EPIC_MAP_CHAPTER EC-Q1
+EPIC_MAP_CHAPTER EC-Q2
+EPIC_MAP_CHAPTER EC-Q3
+EPIC_MAP_CHAPTER EC-Q4
+EPIC_MAP_EPIC 4 {"chapters":11,"lowSteps":6,"connectors":9,"steps":8008,"samples":8311,"targets":141,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}
+EPIC_MAP_CHAPTER HG-01
+EPIC_MAP_CHAPTER HG-02
+EPIC_MAP_CHAPTER HG-03
+EPIC_MAP_CHAPTER HG-04
+EPIC_MAP_CHAPTER HG-05
+EPIC_MAP_CHAPTER HG-06
+EPIC_MAP_CHAPTER HG-07
+EPIC_MAP_EPIC 5 {"chapters":7,"lowSteps":0,"connectors":6,"steps":4179,"samples":4368,"targets":87,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}
+EPIC_MAP_NAVIGATION {"lowSteps":[{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.EC-05.BasaltGround","at":"590.8320922851562, 130.6981964111328, -9818.4560546875","rise":1.3018066436052323,"label":"EC-04 -> EC-05"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-05","at":"590.8320922851562, 130.6981964111328, -9818.4560546875","rise":1.3018035888671876,"label":"EC-04 -> EC-05"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround","at":"590.8320922851562, 130.6981964111328, -9818.4560546875","rise":1.3018035888671876,"label":"EC-04 -> EC-05"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.EC-06.BasaltGround","at":"-9.167885780334473, 138.6981964111328, -10298.4560546875","rise":1.3018066436052323,"label":"EC-05 -> EC-06"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-06","at":"-9.167885780334473, 138.6981964111328, -10298.4560546875","rise":1.3018035888671876,"label":"EC-05 -> EC-06"},{"part":"Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround","at":"-9.167885780334473, 138.6981964111328, -10298.4560546875","rise":1.3018035888671876,"label":"EC-05 -> EC-06"}],"floors":[],"corrections":[],"returns":[{"chapter":"FV-Q1","to":[-260,60,-4680],"label":"FV-Q1:report","epic":3,"from":[-764.98828125,57,-4542.52734375]},{"chapter":"EC-Q1","to":[-260,108,-8565],"label":"EC-Q1:report","epic":4,"from":[-918.3255615234375,103,-8437.1337890625]},{"chapter":"EC-Q2","to":[-260,108,-8565],"label":"EC-Q2:report","epic":4,"from":[-680.5358276367188,119,-9163.443359375]},{"chapter":"EC-Q3","to":[-260,108,-8565],"label":"EC-Q3:report","epic":4,"from":[1568.7265625,127,-9869.8916015625]},{"chapter":"EC-Q4","to":[-260,108,-8565],"label":"EC-Q4:report","epic":4,"from":[-1874.6793212890626,161,-10985.7001953125]}],"epics":{"5":{"chapters":7,"lowSteps":0,"connectors":6,"steps":4179,"samples":4368,"targets":87,"floors":0,"corrections":0,"blockers":0,"routeFailures":0},"4":{"chapters":11,"lowSteps":6,"connectors":9,"steps":8008,"samples":8311,"targets":141,"floors":0,"corrections":0,"blockers":0,"routeFailures":0},"3":{"chapters":11,"lowSteps":0,"connectors":9,"steps":5806,"samples":6175,"targets":142,"floors":0,"corrections":0,"blockers":0,"routeFailures":0},"2":{"chapters":7,"lowSteps":0,"connectors":6,"steps":4654,"samples":4870,"targets":87,"floors":0,"corrections":0,"blockers":0,"routeFailures":0}},"routeFailures":[],"blockers":[]}
+EPIC_MAP_WALK_CASE {"arrived":true,"id":"EC-04_EC-05_verge-4","distance":1.6286067962646485,"stalled":false,"fixedVerge":true,"jumps":0,"updates":32,"corrections":0,"epic":4,"at":"571.9039306640625, 135.19241333007812, -9823.357421875","elapsed":4.266268750012387}
+EPIC_MAP_WALK_CASE {"arrived":true,"id":"EC-04_EC-05_verge4","distance":1.355094075202942,"stalled":false,"fixedVerge":true,"jumps":0,"updates":32,"corrections":0,"epic":4,"at":"576.684814453125, 135.19241333007812, -9829.7705078125","elapsed":4.268262750003487}
+EPIC_MAP_WALK_CASE {"arrived":true,"id":"EC-05_EC-06_verge-4","distance":1.6295150518417359,"stalled":false,"fixedVerge":true,"jumps":0,"updates":32,"corrections":0,"epic":4,"at":"-28.094911575317383, 143.19241333007812, -10303.357421875","elapsed":4.2698974999948409}
+EPIC_MAP_WALK_CASE {"arrived":true,"id":"EC-05_EC-06_verge4","distance":1.3539844751358033,"stalled":false,"fixedVerge":true,"jumps":0,"updates":32,"corrections":0,"epic":4,"at":"-23.315828323364258, 143.19241333007812, -10309.771484375","elapsed":4.271211124956608}
+EPIC_MAP_WALK_CASE {"arrived":true,"id":"FV-Q1:report","distance":5.816147327423096,"stalled":false,"fixedVerge":false,"jumps":0,"updates":164,"corrections":0,"epic":3,"at":"-264.52557373046875, 63.192413330078125, -4676.3466796875","elapsed":21.865874541632367}
+EPIC_WALK_PROGRESS GW-07_to_hub 1721
+EPIC_WALK_PROGRESS EC-Q1:report 62
+EPIC_WALK_PROGRESS EC-Q4:report 2557
+EPIC_WALK_PROGRESS HG-07_to_hub 2152
+EPIC_MAP_WALK_CASE {"arrived":true,"id":"EC-Q1:report","distance":7.144412517547607,"stalled":false,"fixedVerge":false,"jumps":0,"updates":201,"corrections":0,"epic":4,"at":"-265.7701110839844, 111.19239807128906, -8560.787109375","elapsed":26.798762208316476}
+EPIC_WALK_PROGRESS GW-07_to_hub 1140
+EPIC_WALK_PROGRESS EC-Q4:report 2062
+EPIC_WALK_PROGRESS HG-07_to_hub 1769
+EPIC_WALK_PROGRESS GW-07_to_hub 671
+EPIC_WALK_PROGRESS EC-Q4:report 1621
+EPIC_WALK_PROGRESS HG-07_to_hub 1646
+EPIC_MAP_WALK_CASE {"arrived":false,"next":"880, 196, -16561.666015625","id":"HG-07_to_hub","distance":1646.4478759765626,"stalled":true,"fixedVerge":false,"jumps":0,"at":"879.9625854492188, 199.19241333007812, -16954.892578125","updates":622,"corrections":60,"epic":5,"elapsed":82.79666083335178,"nearby":[],"state":"Running"}
+EPIC_MAP_WALK_CASE {"arrived":true,"id":"GW-07_to_hub","distance":7.5136637687683109,"stalled":false,"fixedVerge":false,"jumps":0,"updates":729,"corrections":0,"epic":2,"at":"365.8129577636719, 167.1923828125, -12530.7607421875","elapsed":97.19597850000719}
+EPIC_WALK_PROGRESS EC-Q4:report 1295
+EPIC_WALK_PROGRESS EC-Q4:report 551
+EPIC_MAP_WALK_CASE {"arrived":true,"id":"EC-Q4:report","distance":4.2812628746032719,"stalled":false,"fixedVerge":false,"jumps":0,"updates":1069,"corrections":0,"epic":4,"at":"-256.93988037109375, 111.19239807128906, -8567.994140625","elapsed":142.52541587495944}
+EPIC_MAP_WALK {"EC-04_EC-05_verge-4":{"arrived":true,"id":"EC-04_EC-05_verge-4","distance":1.6286067962646485,"stalled":false,"fixedVerge":true,"jumps":0,"updates":32,"corrections":0,"epic":4,"at":"571.9039306640625, 135.19241333007812, -9823.357421875","elapsed":4.266268750012387},"FV-Q1:report":{"arrived":true,"id":"FV-Q1:report","distance":5.816147327423096,"stalled":false,"fixedVerge":false,"jumps":0,"updates":164,"corrections":0,"epic":3,"at":"-264.52557373046875, 63.192413330078125, -4676.3466796875","elapsed":21.865874541632367},"EC-04_EC-05_verge4":{"arrived":true,"id":"EC-04_EC-05_verge4","distance":1.355094075202942,"stalled":false,"fixedVerge":true,"jumps":0,"updates":32,"corrections":0,"epic":4,"at":"576.684814453125, 135.19241333007812, -9829.7705078125","elapsed":4.268262750003487},"GW-07_to_hub":{"arrived":true,"id":"GW-07_to_hub","distance":7.5136637687683109,"stalled":false,"fixedVerge":false,"jumps":0,"updates":729,"corrections":0,"epic":2,"at":"365.8129577636719, 167.1923828125, -12530.7607421875","elapsed":97.19597850000719},"EC-05_EC-06_verge-4":{"arrived":true,"id":"EC-05_EC-06_verge-4","distance":1.6295150518417359,"stalled":false,"fixedVerge":true,"jumps":0,"updates":32,"corrections":0,"epic":4,"at":"-28.094911575317383, 143.19241333007812, -10303.357421875","elapsed":4.2698974999948409},"HG-07_to_hub":{"arrived":false,"next":"880, 196, -16561.666015625","id":"HG-07_to_hub","distance":1646.4478759765626,"stalled":true,"fixedVerge":false,"jumps":0,"at":"879.9625854492188, 199.19241333007812, -16954.892578125","updates":622,"corrections":60,"epic":5,"elapsed":82.79666083335178,"nearby":[],"state":"Running"},"EC-05_EC-06_verge4":{"arrived":true,"id":"EC-05_EC-06_verge4","distance":1.3539844751358033,"stalled":false,"fixedVerge":true,"jumps":0,"updates":32,"corrections":0,"epic":4,"at":"-23.315828323364258, 143.19241333007812, -10309.771484375","elapsed":4.271211124956608},"EC-Q1:report":{"arrived":true,"id":"EC-Q1:report","distance":7.144412517547607,"stalled":false,"fixedVerge":false,"jumps":0,"updates":201,"corrections":0,"epic":4,"at":"-265.7701110839844, 111.19239807128906, -8560.787109375","elapsed":26.798762208316476},"EC-Q4:report":{"arrived":true,"id":"EC-Q4:report","distance":4.2812628746032719,"stalled":false,"fixedVerge":false,"jumps":0,"updates":1069,"corrections":0,"epic":4,"at":"-256.93988037109375, 111.19239807128906, -8567.994140625","elapsed":142.52541587495944}}
+[string "-- Independent R15 traversals in each epic, plus the two low-step connector verges...."]:79: R15 walk failed HG-07_to_hub
+[string "-- Independent R15 traversals in each epic, plus the two low-step connector verges...."]:79
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:16
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

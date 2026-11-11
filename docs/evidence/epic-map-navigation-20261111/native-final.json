@@ -1,0 +1,388 @@
+{
+  "EPIC_MAP_NAVIGATION": {
+    "lowSteps": [
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-05.BasaltGround",
+        "at": "590.8320922851562, 130.6981964111328, -9818.4560546875",
+        "rise": 1.3018066436052322,
+        "label": "EC-04 -> EC-05"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-05",
+        "at": "590.8320922851562, 130.6981964111328, -9818.4560546875",
+        "rise": 1.3018035888671875,
+        "label": "EC-04 -> EC-05"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround",
+        "at": "590.8320922851562, 130.6981964111328, -9818.4560546875",
+        "rise": 1.3018035888671875,
+        "label": "EC-04 -> EC-05"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EC-06.BasaltGround",
+        "at": "-9.167885780334473, 138.6981964111328, -10298.4560546875",
+        "rise": 1.3018066436052322,
+        "label": "EC-05 -> EC-06"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.EmberCalderaFoundation.Support_EC-06",
+        "at": "-9.167885780334473, 138.6981964111328, -10298.4560546875",
+        "rise": 1.3018035888671875,
+        "label": "EC-05 -> EC-06"
+      },
+      {
+        "part": "Workspace.DeepwoodCampaign.TerrainBlockout.RouteFoundation4.JourneyGround",
+        "at": "-9.167885780334473, 138.6981964111328, -10298.4560546875",
+        "rise": 1.3018035888671875,
+        "label": "EC-05 -> EC-06"
+      }
+    ],
+    "floors": [],
+    "corrections": [],
+    "returns": [
+      {
+        "chapter": "FV-Q1",
+        "to": [
+          -260,
+          60,
+          -4680
+        ],
+        "label": "FV-Q1:report",
+        "epic": 3,
+        "from": [
+          -764.98828125,
+          57,
+          -4542.52734375
+        ]
+      },
+      {
+        "chapter": "EC-Q1",
+        "to": [
+          -260,
+          108,
+          -8565
+        ],
+        "label": "EC-Q1:report",
+        "epic": 4,
+        "from": [
+          -918.3255615234375,
+          103,
+          -8437.1337890625
+        ]
+      },
+      {
+        "chapter": "EC-Q2",
+        "to": [
+          -260,
+          108,
+          -8565
+        ],
+        "label": "EC-Q2:report",
+        "epic": 4,
+        "from": [
+          -680.5358276367188,
+          119,
+          -9163.443359375
+        ]
+      },
+      {
+        "chapter": "EC-Q3",
+        "to": [
+          -260,
+          108,
+          -8565
+        ],
+        "label": "EC-Q3:report",
+        "epic": 4,
+        "from": [
+          1568.7265625,
+          127,
+          -9869.8916015625
+        ]
+      },
+      {
+        "chapter": "EC-Q4",
+        "to": [
+          -260,
+          108,
+          -8565
+        ],
+        "label": "EC-Q4:report",
+        "epic": 4,
+        "from": [
+          -1874.6793212890625,
+          161,
+          -10985.7001953125
+        ]
+      }
+    ],
+    "epics": {
+      "5": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 4179,
+        "samples": 4368,
+        "targets": 87,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "4": {
+        "chapters": 11,
+        "lowSteps": 6,
+        "connectors": 9,
+        "steps": 8020,
+        "samples": 8323,
+        "targets": 141,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "3": {
+        "chapters": 11,
+        "lowSteps": 0,
+        "connectors": 9,
+        "steps": 5808,
+        "samples": 6177,
+        "targets": 142,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      },
+      "2": {
+        "chapters": 7,
+        "lowSteps": 0,
+        "connectors": 6,
+        "steps": 4654,
+        "samples": 4870,
+        "targets": 87,
+        "floors": 0,
+        "corrections": 0,
+        "blockers": 0,
+        "routeFailures": 0
+      }
+    },
+    "routeFailures": [],
+    "blockers": []
+  },
+  "COMBAT_ROUTE_WORLD": {
+    "floorFailures": [],
+    "kind": "COMBAT_ROUTE_WORLD",
+    "blockers": [],
+    "checks": 5623
+  },
+  "EXPANSION_NATIVE_GEOMETRY": {
+    "blockerCount": 0,
+    "samples": 3974,
+    "blockers": [],
+    "parts": 52062
+  },
+  "SCENERY_COLLISION_NATIVE": {
+    "failureCount": 0,
+    "casts": {
+      "4arches": true,
+      "3arches": true,
+      "5arches": true,
+      "3sceneWalls": true,
+      "3trunks": true,
+      "2trunks": true,
+      "1trunks": true,
+      "5rocks": true,
+      "3rocks": true,
+      "4rocks": true,
+      "1rocks": true,
+      "2rocks": true,
+      "5trunks": true,
+      "5walls": true,
+      "2arches": true,
+      "1arches": true,
+      "2walls": true,
+      "1walls": true,
+      "4walls": true,
+      "3walls": true
+    },
+    "decorations": 8507,
+    "checks": 23817,
+    "solids": 6330,
+    "failures": [],
+    "pass": true,
+    "byEpic": [
+      {
+        "trunks": 286,
+        "sceneWalls": 0,
+        "arches": 120,
+        "rocks": 56,
+        "walls": 562
+      },
+      {
+        "trunks": 286,
+        "sceneWalls": 0,
+        "arches": 172,
+        "rocks": 25,
+        "walls": 658
+      },
+      {
+        "trunks": 204,
+        "sceneWalls": 60,
+        "arches": 126,
+        "rocks": 49,
+        "walls": 730
+      },
+      {
+        "trunks": 0,
+        "sceneWalls": 0,
+        "arches": 138,
+        "rocks": 25,
+        "walls": 785
+      },
+      {
+        "trunks": 303,
+        "sceneWalls": 0,
+        "arches": 160,
+        "rocks": 24,
+        "walls": 1561
+      }
+    ]
+  },
+  "EPIC_MAP_WALK": {
+    "EC-04_EC-05_verge-4": {
+      "arrived": true,
+      "id": "EC-04_EC-05_verge-4",
+      "distance": 1.0765736103057861,
+      "stalled": false,
+      "fixedVerge": true,
+      "jumps": 0,
+      "updates": 33,
+      "corrections": 0,
+      "epic": 4,
+      "at": "571.4719848632812, 135.19241333007812, -9823.701171875",
+      "elapsed": 4.39981154166162
+    },
+    "FV-Q1:report": {
+      "arrived": true,
+      "id": "FV-Q1:report",
+      "distance": 5.74753475189209,
+      "stalled": false,
+      "fixedVerge": false,
+      "jumps": 0,
+      "updates": 167,
+      "corrections": 0,
+      "epic": 3,
+      "at": "-264.4728698730469, 63.192413330078125, -4676.390625",
+      "elapsed": 22.266200333368033
+    },
+    "EC-04_EC-05_verge4": {
+      "arrived": true,
+      "id": "EC-04_EC-05_verge4",
+      "distance": 1.147235631942749,
+      "stalled": false,
+      "fixedVerge": true,
+      "jumps": 0,
+      "updates": 32,
+      "corrections": 0,
+      "epic": 4,
+      "at": "576.5233154296875, 135.19241333007812, -9829.9013671875",
+      "elapsed": 4.266848083294462
+    },
+    "GW-07_to_hub": {
+      "arrived": true,
+      "id": "GW-07_to_hub",
+      "distance": 7.667283535003662,
+      "stalled": false,
+      "fixedVerge": false,
+      "jumps": 0,
+      "updates": 733,
+      "corrections": 0,
+      "epic": 2,
+      "at": "365.9323425292969, 167.1923828125, -12530.857421875",
+      "elapsed": 97.729240833316
+    },
+    "Eryn_regression": {
+      "arrived": true,
+      "id": "Eryn_regression",
+      "distance": 5.203365325927734,
+      "stalled": false,
+      "fixedVerge": false,
+      "jumps": 0,
+      "updates": 736,
+      "corrections": 0,
+      "epic": 1,
+      "at": "-182.35560607910156, 21.272417068481445, -1595.34619140625",
+      "elapsed": 98.12772054166999
+    },
+    "EC-05_EC-06_verge-4": {
+      "arrived": true,
+      "id": "EC-05_EC-06_verge-4",
+      "distance": 1.077791690826416,
+      "stalled": false,
+      "fixedVerge": true,
+      "jumps": 0,
+      "updates": 33,
+      "corrections": 0,
+      "epic": 4,
+      "at": "-28.526460647583008, 143.19241333007812, -10303.701171875",
+      "elapsed": 4.402376291691326
+    },
+    "HG-07_to_hub": {
+      "arrived": true,
+      "id": "HG-07_to_hub",
+      "distance": 6.0648884773254395,
+      "stalled": false,
+      "fixedVerge": false,
+      "jumps": 0,
+      "updates": 945,
+      "corrections": 0,
+      "epic": 5,
+      "at": "-169.3070831298828, 191.1923828125, -15693.841796875",
+      "elapsed": 125.99403595831245
+    },
+    "EC-05_EC-06_verge4": {
+      "arrived": true,
+      "id": "EC-05_EC-06_verge4",
+      "distance": 1.1469275951385498,
+      "stalled": false,
+      "fixedVerge": true,
+      "jumps": 0,
+      "updates": 32,
+      "corrections": 0,
+      "epic": 4,
+      "at": "-23.477083206176758, 143.19241333007812, -10309.9013671875",
+      "elapsed": 4.269469874969218
+    },
+    "EC-Q1:report": {
+      "arrived": true,
+      "id": "EC-Q1:report",
+      "distance": 6.5876994132995605,
+      "stalled": false,
+      "fixedVerge": false,
+      "jumps": 0,
+      "updates": 204,
+      "corrections": 0,
+      "epic": 4,
+      "at": "-265.32037353515625, 111.19239807128906, -8561.115234375",
+      "elapsed": 27.19902225001715
+    },
+    "EC-Q4:report": {
+      "arrived": true,
+      "id": "EC-Q4:report",
+      "distance": 4.171139717102051,
+      "stalled": false,
+      "fixedVerge": false,
+      "jumps": 0,
+      "updates": 1077,
+      "corrections": 0,
+      "epic": 4,
+      "at": "-257.0184631347656, 111.19239807128906, -8567.9169921875",
+      "elapsed": 143.5931427499745
+    }
+  },
+  "version": "0.102.10",
+  "sourceCommit": "49c68645686229fc89d5058a76fbea7344f03d87",
+  "sha256": "b8a1d7c9838be62559f651cd4715c7eb0c589d2d676367df26d366b48d73cdc4",
+  "allPass": true
+}
