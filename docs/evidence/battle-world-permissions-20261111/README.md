@@ -18,6 +18,12 @@
 - Luau 컴파일: 변경 런타임3개와 새 native 검사 PASS. `git diff --check` PASS.
 - Lua 소스 회귀: ArrivalLoading283검사, TravelAttempt8검사 PASS. 기존 `battle-startup.spec.lua`는 CampaignWorld의 StoryGateTemplates.prepare를 제공하지 않는 오래된 stub에서 실패했다. 관련 본체/기존 검사는 변경하지 않았으며 통과로 처리하지 않는다. [결과](source-checks.log).
 
+
+- 고정 빌드 **0.104.2**: 입력 커밋 `8f387f6cb1244fe2f0b1f0cad4cf409879bee6e5`, `python3 tools/build-game.py --source 8f387f6cb1244fe2f0b1f0cad4cf409879bee6e5 --record docs/evidence/battle-world-permissions-20261111/build.json` 성공. 단일 파일 `builds/0.104.2/TheLastThrone-0.104.2.rbxlx`, SHA-256 `90cda90fba934381bf6b158c7613944b83423ca51871adc7679aa95f16ee1d90`. [빌드 기록](build.json).
+- 실제 **0.104.2 산출물**에서 `run-in-roblox --place builds/0.104.2/TheLastThrone-0.104.2.rbxlx --script tests/battle-world-runtime-native.luau` 실행: 동일 **34검사 PASS**. [로그](runtime.log). PlaceId0에서 일부 기존 asset hash 경고가 있었으나 5에픽 초기화와 검사 완료를 확인했다.
+- 실제 산출물의 변경3모듈이 고정 커밋과 바이트 일치함을 확인했다. 기존 `single-build.spec.py`의 산출물 전용 부분을 별도 실행해 역할10·ArrivalLoading283검사 PASS. [결과](artifact-check.log). 전체 검사는 기존 `default.project.json` ShadowMap / `battle.project.json` Voxel 차이로 시작 단계에서 실패했다. [실패](build-check.log). 이번 수정은 기본 단일 프로젝트에서 빌드했으며 기존 호환 사본 조명값은 변경하지 않았다.
+- 넓은 충돌/동선 회귀를 추가 시도했으나 `run-in-roblox`가 내부 Rust assertion으로 종료해 결과를 얻지 못했다. [도구 실패](physics-tool-failure.log). 이 범위는 미검증이며, 위 서버 Script의 나무 실제 Blockcast6검사와 구분한다.
+
 ## 미검증과 인계
 
 실제 게시 Lobby→Battle 왕복, 제보 계정/영웅의 원정 재입장, 저장/재접속·모바일 실기기·다인 성능은 미검증이다. 다음 QA는 수정 빌드를 로비·배틀에 함께 게시한 후 새 서버에서 실제 입장/재입장/로비 복귀를 확인한다. 아직 Roblox 게시/릴리스 태그를 만들지 않았다. 이번 빌드에는 기존 미커밋 전투 페이싱·클라이언트·공유 데이터·Blender/자산 작업을 포함하지 않는다.

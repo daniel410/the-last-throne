@@ -1,0 +1,6 @@
+SOURCE_MATCH src/server/init.server.luau
+SOURCE_MATCH src/server/World/DeepwoodEnvironment.luau
+SOURCE_MATCH src/server/Network/ExpeditionService.luau
+place-role: 10 checks PASS
+arrival-loading: 283 checks PASS
+single-build: actual artifact role/config/loading checks PASS

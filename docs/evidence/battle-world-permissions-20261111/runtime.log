@@ -1,0 +1,2 @@
+ContentId: rbxassethash://e3f17049d801a9aba2a3fecb56bcba72 failed due to: Request must have a PlaceId set.
+BATTLE_WORLD_RUNTIME_NATIVE {"checks":34,"kind":"BATTLE_WORLD_RUNTIME_NATIVE","pass":true,"epics":[{"elapsed":8.02814437507186,"instances":27238,"mission":"DW-01"},{"elapsed":3.258039708249271,"instances":40297,"mission":"GW-01"},{"elapsed":4.445771291619167,"instances":54881,"mission":"FV-01"},{"elapsed":4.50934529164806,"instances":67404,"mission":"EC-01"},{"elapsed":3.5575796249322595,"instances":82144,"mission":"HG-01"}]}

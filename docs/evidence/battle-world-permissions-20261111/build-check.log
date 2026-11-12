@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/daniel/Workspace/project/roblox/the-last-throne/tests/single-build.spec.py", line 6, in <module>
+    assert project==json.loads((root/'battle.project.json').read_text()), 'compatibility project must stay identical'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: compatibility project must stay identical
