@@ -1,0 +1,5 @@
+HERO_VFX_NATIVE {"failures":[],"skills":128,"pass":true,"checks":6556}
+WIND_LANCE_VISUAL_NATIVE {"failures":[],"kind":"WIND_LANCE_VISUAL_NATIVE","pass":true,"checks":128}
+SKILL_VFX_INDIVIDUAL_NATIVE {"failures":[],"skills":128,"pass":true,"checks":297}
+HERO_VFX_FLOURISH_NATIVE {"coverage":"Native decoration, budgets and Lua update cost; not GPU or device acceptance","checks":57,"luaUpdateP95ms":0.41695835534483197,"luaUpdateP50ms":0.4129166482016444,"pass":true,"failures":[]}
+K0_HIT_EFFECTS_NATIVE {"coverage":"Native presentation instances and cleanup; no real player, RemoteEvent transport, visual or audible acceptance","checks":102,"samples":[{"speed":1.350000023841858,"class":"knight","sound":"rbxasset://sounds/action_jump_land.mp3"},{"speed":0.892431914806366,"class":"dwarf","sound":"rbxassetid://9118598279"},{"speed":0.8845121264457703,"class":"mage","sound":"rbxassetid://9118598279"},{"speed":0.9129406213760376,"class":"elf","sound":"rbxassetid://9118598279"}],"kind":"K0_HIT_EFFECTS_NATIVE","pass":true,"failures":[]}
