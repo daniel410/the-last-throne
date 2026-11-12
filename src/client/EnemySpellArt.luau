@@ -170,6 +170,17 @@ function A.attach(r)
    end,.22)
   end
   if d.shape~='ring'and magic then flare(r,2.1);particles(r,'GroundPlume',family=='fire'and FIRE or SMOKE,5,.6,.8,.35,nil,family~='fire')end
+  if d.shape=='ring'and magic then
+   -- Upward plumes stay in the hazardous band; never place a flare in its safe center.
+   for i=1,6 do
+    local a=i*math.pi/3;local offset=Vector3.new(math.cos(a)*d.radius*.9,.15,math.sin(a)*d.radius*.9)
+    local before=#r.art.emitters
+    particles(r,'PerimeterSurge',family=='fire'and FIRE or family=='frost'and SMOKE or SPARK,3,family=='fire'and .9 or .55,1.8,.4,nil,false,offset)
+    if #r.art.emitters>before then
+     local e=r.art.emitters[#r.art.emitters].e;e.EmissionDirection=Enum.NormalId.Top;e.SpreadAngle=Vector2.new(16,16);e.Acceleration=Vector3.yAxis*2
+    end
+   end
+  end
  end
  if (r.stage=='impact'or r.stage=='projectile')and magic and used.lights<limits.lights then
   local light=Instance.new('PointLight');light.Name='SpellLocalLight';light.Color=r.color;light.Brightness=.6;light.Range=r.stage=='impact'and 5 or 3;light.Shadows=false;light.Parent=carrier;r.art.light=light;used.lights+=1

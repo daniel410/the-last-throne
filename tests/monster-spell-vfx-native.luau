@@ -54,6 +54,7 @@ for kind,profile in pairs(Patterns.profiles)do
    local r=V.pulse(d,Vector3.zero,direction,at,owner,seq);inspect(r,'pulse',d)
    if d.shape=='ring'then
     for _,v in ipairs(r.parts)do local p=v.part.Position;check(Vector3.new(p.X,0,p.Z).Magnitude>d.innerRadius+.2,'ring safe center remains clear '..d.id)end
+    for _,v in ipairs(r.art.emitters)do check(Vector3.new(v.offset.X,0,v.offset.Z).Magnitude>d.innerRadius+.2,'ring particles preserve safe center '..d.id)end
    end
    V.step(at+.2);V.destroy(r)
   end
