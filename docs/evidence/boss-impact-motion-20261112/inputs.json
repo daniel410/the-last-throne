@@ -1,0 +1,8 @@
+{
+  "src/client/BossHeroImpact.luau": "0036a456336c9996f33d78381abdd4545b9c68c81ceca92ba22dda17445bc391",
+  "src/client/EnemyPatternEffects.luau": "79ccdfcf547b18903176b66a60a4c66d5b9af1ca44bf2c86873d867511f8ea81",
+  "src/client/EnemyPatternPose.luau": "0421bcde00de7e98945df711d51e819f1a9255c835afe144cdf7df13637a6088",
+  "src/client/GloamwoodMotion.luau": "a4b063581f2ace2e2ea56358d6be0f7472367ab6c508ca39bd25974f82f46e83",
+  "tests/enemy-patterns-native.luau": "63890538655119202372cd453bf8e9ce70920e28919a11f046170165e5b3b0fe",
+  "tests/enemy-attack-motion-native.luau": "f93e179adb3173d932fd3bfb21d23d367de1bd603ba924aad9dd006162f0fd5e"
+}
