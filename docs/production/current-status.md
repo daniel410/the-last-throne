@@ -2,7 +2,7 @@
 
 2026-11-11 · TLT-001/050/057/084 · 문서 정리 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
-- 보스 피격·몬스터 공격: 0.104.9에서 영웅에 붙는 속성별 접촉 효과와 각 타격에 맞춘 연속 준비/회수 모션을 보강했다. [50종146공격·고정 빌드 엔진 검증·미게시/남은 수용](../evidence/boss-impact-motion-20261112/README.md).
+- 몬스터 공격: 0.104.10에서 공통 마법 구체를 종별35모티프·50조합으로 나누고 시전/비행/범위/접촉 VFX를 연결했다. [146공격·40투사체·고정 빌드 검증/미게시](../evidence/monster-spell-vfx-20261112/README.md). 기존 [보스 피격 효과·연속 준비/회수 동작](../evidence/boss-impact-motion-20261112/README.md)을 유지한다.
 - 배틀 입장·장비: 0.104.7에 ColorMap 읽기 권한·엘프 몸통 생성 순서·훈련 음악의 스토리 Remote 무한 대기 수정을 포함했다. [최근24시간 CSV·일반 Script63검사·게시/실기기 미검증](../evidence/today-errors-20261111/README.md). 큰 나무 CollisionFidelity 권한 결함의 [5에픽 초기화34검사](../evidence/battle-world-permissions-20261111/README.md)를 유지한다.
 - 장비 착용: 모든 무기·방어구·장신구의 레벨 제한과 가방/상점 요구 레벨 안내를 소스 제거했다. [기존 보유/이관·회귀·미게시](../evidence/equipment-level-free-20261111/README.md).
 - 상위 난이도: Hard/Insane/Hell 레벨 제한 제거를 소스 반영했다. [솔로/파티/재접속 회귀·미게시](../evidence/difficulty-level-free-20261111/README.md).

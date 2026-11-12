@@ -1,0 +1,10 @@
+{
+  "src/shared/EnemySpellProfiles.luau": "3f884b7ae4d797768c9031eb76f657bf509bf0b9c2f676fc4eb3693ada77a99e",
+  "src/client/EnemySpellVFX.luau": "ef511e194db0b5e74ba907b4cae43fbd49bb7ba030cc8b97fe2968e5043c3878",
+  "src/client/EnemyPatternEffects.luau": "3b92e95ce11dea536fe5fb4654335f439e8f35113d7d6aeb8792b8f4b6b0fefd",
+  "src/server/Combat/EnemyPatternRuntime.luau": "d6e96ce8b024eb0b54b115bc0295f27fe7e7d7a9bd58b8eef9f87d8b54b0e95a",
+  "src/server/Combat/CombatService.luau": "95255a8653c0e1e005985107c2636a337d9360f9c8337b1ba457aa605f41b7c3",
+  "tests/monster-spell-vfx-native.luau": "413bcd13017758ca1ae865f673005215c5a727a5b7094525216ff470b67398cd",
+  "tests/enemy-patterns-native.luau": "12753934c05790ab8f7416d8187c26da618a0cb54ad013d31568f661a9f5ad11",
+  "tools/capture-monster-spell-vfx.luau": "89b9e5ef3ed41b4b580569b49c60dd08b1719143125da1dbd76487b0fdfca511"
+}

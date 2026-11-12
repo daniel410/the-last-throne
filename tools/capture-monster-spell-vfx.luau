@@ -8,14 +8,14 @@ local camera=workspace.CurrentCamera;camera.CameraType=Enum.CameraType.Scriptabl
 camera.CFrame=CFrame.lookAt(Vector3.new(0,18,31),Vector3.new(0,1,0))
 game.Lighting.ClockTime=12;game.Lighting.Brightness=2;game.Lighting.Ambient=Color3.fromRGB(160,165,175)
 local stage=Instance.new('Folder');stage.Name='SpellComparison';stage.Parent=workspace
-local floor=Instance.new('Part');floor.Anchored=true;floor.Size=Vector3.new(65,1,55);floor.Position=Vector3.new(0,-1,0);floor.Color=Color3.fromRGB(42,47,58);floor.Material=Enum.Material.Slate;floor.Parent=stage
+local floor=Instance.new('Part');floor.Anchored=true;floor.Size=Vector3.new(65,1,55);floor.Position=Vector3.new(0,-1,0);floor.Color=Color3.fromRGB(42,47,58);floor.Material=Enum.Material.SmoothPlastic;floor.Parent=stage
 local samples={{'Shaman',1},{'KingShaman',1},{'IceElf',1},{'QueenIceElf',2},{'IceTroll',2},{'Imp',1},{'CalderaTitan',1},{'VolcanoShaman',1},{'Silkweaver',1},{'VenomcoilKing',1},{'Lich',1},{'Veyr',4}}
 local positions={}
 for i,row in ipairs(samples)do
  local position=Vector3.new(((i-1)%4-1.5)*6.5,1.7,(math.floor((i-1)/4)-1)*6.5);positions[i]=position
  local anchor=Instance.new('Part');anchor.Anchored=true;anchor.Transparency=1;anchor.CanCollide=false;anchor.Size=Vector3.one*.05;anchor.Position=position;anchor.Parent=stage
- local b=Instance.new('BillboardGui');b.Size=UDim2.fromOffset(150,20);b.StudsOffsetWorldSpace=Vector3.new(0,-1.8,0);b.Adornee=anchor;b.Parent=anchor
- local t=Instance.new('TextLabel');t.Size=UDim2.fromScale(1,1);t.BackgroundTransparency=1;t.Text=row[1];t.TextSize=12;t.TextColor3=Color3.new(1,1,1);t.TextStrokeTransparency=.35;t.Parent=b
+ local b=Instance.new('BillboardGui');b.Size=UDim2.fromOffset(240,36);b.StudsOffsetWorldSpace=Vector3.new(0,-1.8,0);b.Adornee=anchor;b.Parent=anchor
+ local t=Instance.new('TextLabel');t.Size=UDim2.fromScale(1,1);t.BackgroundTransparency=1;t.Text=row[1];t.TextSize=24;t.TextColor3=Color3.new(1,1,1);t.TextStrokeTransparency=.35;t.Parent=b
 end
 local function capture(name)
  task.wait(.15)

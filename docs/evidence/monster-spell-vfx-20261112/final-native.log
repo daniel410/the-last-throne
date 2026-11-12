@@ -1,0 +1,6 @@
+ContentId: rbxassetid://72391808960013 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://88236660743771 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://90157337142817 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://106291858986253 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ENEMY_PATTERN_NATIVE {"checks":218889,"scope":"isolated engine modules; no accounts/normal gameplay/device acceptance","modelParts":16,"actions":146,"kinds":50}
+MONSTER_SPELL_VFX_NATIVE {"attacks":146,"projectiles":40,"kinds":50,"checks":57004}
