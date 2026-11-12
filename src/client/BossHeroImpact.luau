@@ -21,8 +21,9 @@ function Impact.play(target,element,color)
  local holder=Instance.new('Folder');holder.Name='BossHeroImpact';holder.Parent=target
  table.insert(active,holder);Debris:AddItem(holder,.55)
  if element=='web'then
-  for i=1,3 do
-   piece(holder,root,'SilkStrand',CFrame.new(0,(i-2)*.55,-.65)*CFrame.Angles(0,0,math.rad(i%2==0 and 32 or -32)),Vector3.new(2.5,.055,.055),color)
+  for i=1,4 do
+   local side=i<=2 and -1 or 1
+   piece(holder,root,'SilkStrand',CFrame.new(0,(i%2-.5)*.5,side*.65)*CFrame.Angles(0,0,math.rad(i%2==0 and 32 or -32)),Vector3.new(2.5,.055,.055),color)
   end
  elseif element=='frost'then
   for i=1,5 do
@@ -36,7 +37,10 @@ function Impact.play(target,element,color)
    piece(holder,root,flame and 'Ember' or 'VenomDroplet',CFrame.new(math.cos(yaw)*.85,(i%3-1)*.55,math.sin(yaw)*.85),flame and Vector3.new(.15,.65,.15)or Vector3.one*.25,color,flame and Enum.PartType.Block or Enum.PartType.Ball)
   end
  elseif element=='physical'then
-  for i=1,2 do piece(holder,root,'ImpactSlash',CFrame.new(0,(i-1)*.4,-.7)*CFrame.Angles(0,0,math.rad(i==1 and 42 or -42)),Vector3.new(2.3,.09,.06),color)end
+  for i=1,4 do
+   local side=i<=2 and -1 or 1
+   piece(holder,root,'ImpactSlash',CFrame.new(0,(i%2)*.4,side*.7)*CFrame.Angles(0,0,math.rad(i%2==1 and 42 or -42)),Vector3.new(2.3,.09,.06),color)
+  end
  else
   for i=1,4 do
    local yaw=i*math.pi*.5
