@@ -1,0 +1,12 @@
+Luau compile PASS src/client/HeroVFX.luau
+Luau compile PASS src/client/HeroVFXSurfaces.luau
+Luau compile PASS src/client/AdvancedSkillVisual.luau
+Luau compile PASS src/client/WindLanceVisual.luau
+Luau compile PASS tests/hero-vfx-flourish-native.luau
+Luau compile PASS tests/wind-lance-visual-native.luau
+Luau compile PASS tests/skill-vfx-individual-native.luau
+Luau compile PASS tools/capture-skill-vfx-review.luau
+Skill effects CPU: 15938 checks PASS; all 116 advanced casts/pulses, geometry, cosmetic budget, cancellation. No engine QA.
+Advanced skills: 1435 checks passed
+Hero progression: 3711 checks passed
+24 engine image hashes PASS

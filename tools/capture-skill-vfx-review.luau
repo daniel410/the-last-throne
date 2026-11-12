@@ -1,5 +1,7 @@
 -- Local, frozen production VFX samples. Not a gameplay/motion acceptance test.
-assert(game.PlaceId==0)
+assert(game.PlaceId==0 and #game.Players:GetPlayers()==0)
+-- Run the isolated fixture so burst particles advance through engine frames.
+if not game:GetService('RunService'):IsRunning()then game:GetService('RunService'):Run()end
 task.wait(1)
 local Client=game.StarterPlayer.StarterPlayerScripts.Client
 local FX=require(Client.HeroVFX)
@@ -48,7 +50,14 @@ for _,classId in ipairs({'knight','dwarf','elf','mage'})do for _,d in ipairs(Con
  for _,node in ipairs(originals)do node:Destroy()end
  local snapshot=Instance.new('Folder');snapshot.Name='FrozenSkillVFX';snapshot.Parent=workspace
  for _,node in ipairs(clones)do node.Parent=snapshot end
- task.wait(.06)
+ -- Cloning instances does not clone live particles. Recreate the same burst
+ -- and let the engine advance normally.
+ for _,node in ipairs(snapshot:GetDescendants())do
+  if node:IsA("ParticleEmitter")then
+   node:Clear();node:Emit(node:GetAttribute("ReviewBurstCount")or 0)
+  end
+ end
+ task.wait(.10)
  local done=false
  game:GetService('CaptureService'):CaptureScreenshot(function(id)
   local ok,err=pcall(function()

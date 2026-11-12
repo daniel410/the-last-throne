@@ -1,6 +1,7 @@
 -- Local air ribbons for server-confirmed Wind Lance. No damage, physics or remotes.
 local Run=game:GetService('RunService')
 local Debris=game:GetService('Debris')
+local Surfaces=require(script.Parent.HeroVFXSurfaces)
 local Wind={}
 local active={};local seen=setmetatable({},{__mode='k'});local connection
 local WHITE=Color3.fromRGB(230,255,247)
@@ -20,12 +21,13 @@ local function tip(character,fallback)
  return fallback
 end
 local function ribbon(s,name,count,width,color)
+ width*=1.35
  local r={points={},beams={},width=width};table.insert(s.ribbons,r)
  for i=1,count+1 do
   local a=Instance.new('Attachment');a.Name=name..i;a.Parent=s.carrier;table.insert(r.points,a)
   if i>1 then
    local b=Instance.new('Beam');b.Name=name;b.Attachment0=r.points[i-1];b.Attachment1=a;b.FaceCamera=true
-   b.Color=ColorSequence.new(color);b.LightEmission=.75;b.LightInfluence=0;b.Segments=1
+   b.Color=ColorSequence.new(color);b.LightEmission=1;b.LightInfluence=0;b.Segments=1
    b.Width0=width;b.Width1=width;b.Transparency=NumberSequence.new(.2);b.Parent=s.carrier;table.insert(r.beams,b)
   end
  end
@@ -38,7 +40,7 @@ local function fade(r,alpha,scale)
   b.Transparency=NumberSequence.new(math.clamp(alpha,0,1))
  end
 end
-local function remove(i)active[i].folder:Destroy();table.remove(active,i)end
+local function remove(i)if active[i].surface then Surfaces.release(active[i].surface)end;active[i].folder:Destroy();table.remove(active,i)end
 function Wind.clear()
  for i=#active,1,-1 do remove(i)end
  if connection then connection:Disconnect();connection=nil end
@@ -54,6 +56,7 @@ function Wind.step(now)
   if not s.folder.Parent or age>s.life or missing or interrupted then remove(i)
   else
    local u=math.clamp(age/s.life,0,1)
+   if s.surface then Surfaces.step(s.surface,u,u)end
    if s.stage=='Charge'then
     s.carrier.CFrame=CFrame.lookAt(tip(s.character,s.origin),s.center)
     for lane,r in s.spirals do
@@ -126,6 +129,13 @@ function Wind.play(character,origin,center,pulse,points,sequence,firedAt,started
     if vector(points[i])and(points[i]-origin).Magnitude<=38 then table.insert(s.impacts,{ribbon=ribbon(s,'HitGust',8,.16,WHITE),localPoint=p.CFrame:PointToObjectSpace(points[i])})end
    end
   end
+ end
+ if pulse~=0 then
+  s.surface={model=folder,faces={},color=MINT}
+  local frame=CFrame.lookAt(first,center)
+  Surfaces.ribbon(s.surface,"WindSurface",function(t)
+   return first+(center-first)*t+frame.RightVector*math.sin(t*math.pi*2)*.3
+  end,frame.UpVector,1.25,.62)
  end
  folder.Parent=workspace;Debris:AddItem(folder,s.life+.1);table.insert(active,s)
  Wind.step(now)

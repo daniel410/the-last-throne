@@ -39,7 +39,7 @@ local ok,e=xpcall(function()
   if v:IsA('BasePart')then parts+=1;check(v.Anchored and not v.CanCollide and not v.CanTouch and not v.CanQuery,'effects have no physics or hit authority')end
   if v:IsA('Beam')then beams+=1;check(v.Width0>=0 and v.Width0==v.Width0,'finite ribbon geometry')end
  end
- check(parts==1 and beams==71,'bounded single carrier and 71 ribbons for one hit')
+ check(parts>1 and parts<=33 and beams==71,'bounded filled air surface, single carrier and 71 ribbons for one hit')
  Wind.step(101);check(cast.Parent==nil,'expired effect destroys every ribbon and attachment')
  local canceled=assert(Wind.play(character,origin,center,0,nil,2,nil,102,.25,102))
  character:SetAttribute('K0State','Dodge');Wind.step(102.01);check(canceled.Parent==nil,'canceled cast removes windup immediately')

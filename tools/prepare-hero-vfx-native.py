@@ -15,7 +15,7 @@ project={'name':'HeroVFXQA','tree':{'$className':'DataModel',
  'StarterPlayer':{'StarterPlayerScripts':{'Client':{'$path':str(root/'src/client')}}}}}
 (out/'qa.project.json').write_text(json.dumps(project,indent=2)+'\n')
 subprocess.run(['rojo','build',str(out/'qa.project.json'),'-o',str(out/'qa.rbxlx')],check=True)
-suites=['tests/hero-vfx-native.luau','tests/wind-lance-visual-native.luau','tests/skill-vfx-individual-native.luau','tests/k0-hit-effects-native.luau']
+suites=['tests/hero-vfx-native.luau','tests/wind-lance-visual-native.luau','tests/skill-vfx-individual-native.luau','tests/hero-vfx-flourish-native.luau','tests/k0-hit-effects-native.luau']
 if a.review_mode=='tests':
  (out/'probe.luau').write_text('\n'.join('do\n'+(root/name).read_text()+'\nend'for name in suites))
 else:

@@ -191,7 +191,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local floor=ground(d.form=="area" and center or origin,character)
  local targetFloor=ground(center,character)
  local effect=profile.effect
- HeroVFX.skill(character,id,origin,center,pulse,points)
+ HeroVFX.skill(character,id,origin,center,pulse,points,first)
  -- Core geometry is rendered before optional impact decoration.
  if d.form=="chain" then
   local from=first

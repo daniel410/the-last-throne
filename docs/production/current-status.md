@@ -5,7 +5,7 @@
 - 배틀 입장: 큰 나무 생성의 플러그인 전용 CollisionFidelity 쓰기로 발생하는 강제 퇴장을 수정했다. 실제 Battle 서버 Script의5에픽 초기화34검사 통과, 게시 이동/실기기 수용 대기. [재현·수정·검증](../evidence/battle-world-permissions-20261111/README.md).
 - 장비 착용: 모든 무기·방어구·장신구의 레벨 제한과 가방/상점 요구 레벨 안내를 소스 제거했다. [기존 보유/이관·회귀·미게시](../evidence/equipment-level-free-20261111/README.md).
 - 상위 난이도: Hard/Insane/Hell 레벨 제한 제거를 소스 반영했다. [솔로/파티/재접속 회귀·미게시](../evidence/difficulty-level-free-20261111/README.md).
-- 영웅 VFX: 0.104.1에서128스킬의 개별 엔진 화면을 전후 비교하고 동작별 연출·펄스·중심/방향·공통 발사 연결을 조정했다. [개별 검토표·295장·엔진 검증·미게시/남은 수용](../evidence/skill-vfx-individual-20261111/README.md).
+- 영웅 VFX: 0.104.4에서 검기·파도·폭발·원소 마법을 면/체적 중심으로 강화하고 짧은 섬광·입자를 보강했다. [대표12기술 전후·128스킬 엔진 검증·미게시/남은 수용](../evidence/hero-vfx-flourish-20261111/README.md).
 - 엘프 발사: 0.103.11에서 기본 공격의 예상 발사 시간만으로 화살을 숨기던 모션을 서버의 해당 공격/발사체 확인에 연결했다. [재현·피해/속도 회귀·기존 종합 검사 한계](../evidence/elf-confirmed-release-20261111/README.md).
 - 맵 접지·충돌: 0.103.10에서 5에픽 건축 기초·에린 앞 큰 나무 충돌을 보강하고 공중 폭포/천막을 제거했다. 스토리3 복귀 봉쇄를 옮기고 빈 장식 케이지를 실제 NPC 구출/문 열림/호위/저장 복원에 연결했다. [엔진 검증·미게시·남은 수용](../evidence/architecture-grounding-20261111/README.md).
 - 맵 미술: 0.103.4에서 Blender 환경 키트10종·44지역 지면/원경·지역 조명과 화산 대문 접지를 보강했다. [실제 Studio 전후·검증·미게시·남은 시각/성능 수용](../evidence/epic-environment-20261111/README.md).
