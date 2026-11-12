@@ -1,0 +1,382 @@
+{
+  "date": "2026-11-12",
+  "task": "TLT-061/concepts-epic-stories-20261112",
+  "mode": "built-in image_gen",
+  "status": "12개 조감도 제작·파일/시각 검토 완료, 사용자 미술 수용 대기",
+  "storySource": "docs/production/campaign-context-review-2026-11-10.md",
+  "promptSetSha256": "2f9a8cdbe22c88337046cabeaa86d6ba9622c1d8015d9339709d82253a6ee416",
+  "repositoryHeadAtVerification": "ca841541cd5514d72c91e9e37a3f60c3e9473be8",
+  "validation": {
+    "images": 12,
+    "epic": 1,
+    "main": 7,
+    "optional": 4,
+    "pngIntegrity": "PASS: PNG signature/chunk CRC/IEND/IDAT zlib/scanline length and filters",
+    "uniqueSha256": "PASS",
+    "dimensions": [
+      [
+        1672,
+        941
+      ]
+    ],
+    "referenceFilesAndGalleryLinks": "PASS",
+    "visualReview": "12장 직접 확인. 높은 조감도·지역별 장소/동선 구별 확인. 현재 모델의 정밀 구조/좌표·캐릭터 세부 일치는 미검증.",
+    "studioOrPublishedClient": "실행하지 않음: 게임 변경 없는 콘셉트 작업",
+    "userAcceptance": "미검증",
+    "gitIndexLfs": "PASS: 12 PNG 모두 인덱스 LFS 포인터 확인, 작업 파일 16개만 스테이징, cached diff --check 통과"
+  },
+  "assets": [
+    {
+      "id": "DW-EPIC",
+      "title": "Deepwood",
+      "kind": "epic",
+      "file": "DW-EPIC.png",
+      "sha256": "5dbb70505af62c34548524d9bf9ce03e15b48131af536b04c1a4a0284bfca567",
+      "bytes": 3855884,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        },
+        {
+          "path": "docs/evidence/story-map-composition-20261112/after-DW-02.jpg",
+          "sha256": "2cfb077df35acd2d799be81298750cf4b78ee3c5ef0336634814d9a2712fb21b"
+        },
+        {
+          "path": "assets/maps/deepwood-v1/deepwood-masterplan.png",
+          "sha256": "f097d0b1bfda154af0442842c5ed407e2781c019983bbba299b2e6e76c5bc869"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-a751423b-9c21-484e-bb42-668956c82978.png",
+      "visualReview": "7본편과 선택 갈래의 전체 조감도. 정확한 좌표 재현은 아님.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-01",
+      "title": "Goblin Forest Trail",
+      "kind": "main",
+      "file": "DW-01.png",
+      "sha256": "e8069f3cd158ea9c5b7fa3311e0421fd716cc2991bbc1a103f050240e914e730",
+      "bytes": 3851810,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        },
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/story-01-goblin-trail.png",
+          "sha256": "ce838005aade2f9fb81e9a1b2bd4a938f2bf1fe3448e811e313c432d05083950"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-c50bdd5e-1325-4c35-bde1-3b02f874a9ab.png",
+      "visualReview": "입구·보급 단서·매복·습지 분기·수레 공터 연결. 간판 그림은 게임 텍스트가 아님.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-02",
+      "title": "Broken Cart Clearing",
+      "kind": "main",
+      "file": "DW-02.png",
+      "sha256": "77e81f69b216f9a80b7b13bd79c31e28dd4923f2258968998a18368652bc39a1",
+      "bytes": 3552703,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        },
+        {
+          "path": "docs/evidence/story-map-composition-20261112/after-DW-02.jpg",
+          "sha256": "2cfb077df35acd2d799be81298750cf4b78ee3c5ef0336634814d9a2712fb21b"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-aa16601e-e85d-4585-ab4d-96cc01e2de56.png",
+      "visualReview": "수레·구호 공간·운반대·거점행 길. 말 등 세부 장식은 현재 모델 구현을 확정하지 않음.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-03",
+      "title": "Elder Tree Outpost",
+      "kind": "main",
+      "file": "DW-03.png",
+      "sha256": "e8997aa4a2a142bb980f702c646a6f261ccc1222341f6590edc94bffd6c32dae",
+      "bytes": 3632594,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        },
+        {
+          "path": "assets/concepts/2026-10-31-npc-cast-v1/deepwood.png",
+          "sha256": "847741776709e1834fb9d76041a55e7f7fde520e737a701f4a9724b699871c05"
+        },
+        {
+          "path": "assets/animations/selene-repair-v1/Idle-0.5-front.png",
+          "sha256": "ff8bfa5172ee4dddff6b9300ebbad628b59bc082ac6f8c628b11cf1a5553ce1a"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-28949ec3-75e3-4298-8c07-d79202402572.png",
+      "visualReview": "보고·지도·보급·정비 공간과 외부 갈래. 작은 Eryn/Selene는 기존 원형 참조.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-04",
+      "title": "Abandoned Watchtower",
+      "kind": "main",
+      "file": "DW-04.png",
+      "sha256": "968c4ca519a11995859a4fba2952b3603d2cf2f90ef58608c7f373cb7753ae94",
+      "bytes": 3590335,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-b6ce36a1-d0c7-4147-8cd0-5b0facc6b29c.png",
+      "visualReview": "양쪽 장치·포로 구역·감시탑·출입/귀환 갈래. 인물 동작은 위치 설명용 해석.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-05",
+      "title": "Orc Occupied Ruins",
+      "kind": "main",
+      "file": "DW-05.png",
+      "sha256": "b7658b89c8ddc44ed8ea137eb9e1d21615f1a9218e24bdc640a9b114a7ffd58c",
+      "bytes": 3631217,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-f77d2615-f0db-4aa1-bcfb-1849dc8647a5.png",
+      "visualReview": "구조/병영 갈래·보스 공터·뿌리숲 연결. 서류는 읽을 수 없는 그림.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-06",
+      "title": "Corrupted Rootwood",
+      "kind": "main",
+      "file": "DW-06.png",
+      "sha256": "f815ac071cfd8458a26e2484ebeccc6595690e49a97daffd422c1230bb23996a",
+      "bytes": 3494704,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        },
+        {
+          "path": "assets/concepts/2026-10-31-npc-cast-v1/deepwood.png",
+          "sha256": "847741776709e1834fb9d76041a55e7f7fde520e737a701f4a9724b699871c05"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-4011003f-fc65-4442-beaf-2e40922a6320.png",
+      "visualReview": "고블린 가족·뿌리길·장치 공간. 위쪽 제단 모티프는 접근 방향이며 DW-07 완료 상태가 아님.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-07",
+      "title": "Black Root Altar",
+      "kind": "main",
+      "file": "DW-07.png",
+      "sha256": "af598bf38157cb0e04ffa4b5cdf2e40858e596a250bf0a76c0437492c6acda50",
+      "bytes": 3617428,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-5f9b6dae-e02e-4f1e-bc5e-e8862d1f82b6.png",
+      "visualReview": "지역 문·보스 공터·구조 갈래·화물 기록·출구. 심장 회수/Veyr/최종 침공문 표현 없음.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-Q1",
+      "title": "Supplies in the Marsh",
+      "kind": "optional",
+      "file": "DW-Q1.png",
+      "sha256": "87ed2924e6d165575ec6a1c54f41a35aea5bc4012324d31b6827ecc903ae0b43",
+      "bytes": 3821895,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        },
+        {
+          "path": "docs/evidence/story-map-composition-20261112/after-DW-02.jpg",
+          "sha256": "2cfb077df35acd2d799be81298750cf4b78ee3c5ef0336634814d9a2712fb21b"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-3d0675bb-fb75-4081-ade8-cbdacd085ed0.png",
+      "visualReview": "습지·본길·돌다리·방수 기록·귀환 고리.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-Q2",
+      "title": "The Stolen Food",
+      "kind": "optional",
+      "file": "DW-Q2.png",
+      "sha256": "0300923091f4fa9bf7779a7f6949513656f61361a0621188b64d4a7c555a5885",
+      "bytes": 3659852,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        },
+        {
+          "path": "docs/evidence/story-map-composition-20261112/after-DW-02.jpg",
+          "sha256": "2cfb077df35acd2d799be81298750cf4b78ee3c5ef0336634814d9a2712fb21b"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-768dab35-9863-49db-8690-837ab78c3e55.png",
+      "visualReview": "식량 보관·열린 포로 공간·운반대·출입/귀환로.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-Q3",
+      "title": "Quarry Below the Falls",
+      "kind": "optional",
+      "file": "DW-Q3.png",
+      "sha256": "6a394b497e9a72af44a0c84d9324a87129cc0d3998a77201297d6259459e12dc",
+      "bytes": 3850168,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        },
+        {
+          "path": "assets/concepts/2026-10-31-npc-cast-v1/deepwood.png",
+          "sha256": "847741776709e1834fb9d76041a55e7f7fde520e737a701f4a9724b699871c05"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-b48c7048-e5dc-4324-87b1-95ec7c6eefe1.png",
+      "visualReview": "폭포·채석 단·윈치·도구·운반로·거점 연결. 정밀 고저/충돌 설계는 아님.",
+      "acceptance": "사용자 미술 검토 대기"
+    },
+    {
+      "id": "DW-Q4",
+      "title": "Remnants of the Red Battlefield",
+      "kind": "optional",
+      "file": "DW-Q4.png",
+      "sha256": "9d7e2d4a4674ff78c9b06078396a77ef15a1df112c17bd338fb2fe4a0cc1fda6",
+      "bytes": 3724490,
+      "size": [
+        1672,
+        941
+      ],
+      "pngColorType": 2,
+      "references": [
+        {
+          "path": "assets/concepts/2026-10-27-shared-ui-v2/world/epic-01-deepwood.png",
+          "sha256": "358162253f8a0af59764689a7476d960362d7c292e6089b4764357cbe56e1a3d"
+        },
+        {
+          "path": "docs/evidence/epic-environment-20261111/after-DW-03.jpg",
+          "sha256": "fa8987382367a2eb87e4bf60f627d377800dc9cd0acf03acded911f9ec46886e"
+        }
+      ],
+      "generatedOriginal": "/Users/daniel/.codex/generated_images/01a1d212-b47e-7333-bca0-a542bda43227/exec-ae360360-4d2d-42e7-be9c-26a7fd8cf5e9.png",
+      "visualReview": "별도 잔당 야영지·정찰병 접근·귀환 고리. 포탈 재개방 없음.",
+      "acceptance": "사용자 미술 검토 대기"
+    }
+  ]
+}
