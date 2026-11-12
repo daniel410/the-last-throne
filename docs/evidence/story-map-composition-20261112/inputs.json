@@ -1,0 +1,8 @@
+{
+  "src/server/World/CampaignStoryComposition.luau": "399721d42128fe17edd7942d8eb59d03eb07a4384c1b70c6590dca160248379a",
+  "src/server/World/EpicWorldArt.luau": "a9e8ca444f421b06fcdf66b9cba89166fb568dcd8b4bbf11c5bb0d4d1618d939",
+  "tests/campaign-story-composition-native.luau": "8b599f1d140ee201931744378efc13d8d23be98fd502b01fc102e7d1b749a008",
+  "tests/scenery-collision-native.luau": "84f63e87de3262fd7df54458b18f9e6451fdd2d1c90c4324f579be80f0179ac0",
+  "tests/campaign-combat-route-world-native.luau": "fca9e0919051f1be0e797475d525cb260aa002ed97f7bbe1741c2440172d0ad6",
+  "tools/prepare-story-map-native.py": "893669cd13090234a626358c54f10ecd1feec468bf5b97ab890c864019ff6517"
+}

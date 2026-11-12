@@ -1,0 +1,4 @@
+CAMPAIGN_CONTEXT_REVIEW 1054 checks passed; 418 saved transitions, 47 distinct stories, unchanged runtime contracts
+Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger
+CAMPAIGN_NAVIGATION_ROUTE 7142 checks PASS; old rejected 70; returns 10; live steps 525; walking distance 3132
+EPIC_MAP_NAVIGATION 99695 checks PASS; 488 active targets; 24801 moving samples

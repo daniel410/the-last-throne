@@ -1,0 +1,92 @@
+[
+  {
+    "zone": "DW-02",
+    "theme": "Deepwood",
+    "file": "after-DW-02.jpg",
+    "sha256": "2cfb077df35acd2d799be81298750cf4b78ee3c5ef0336634814d9a2712fb21b",
+    "camera": [
+      -835,
+      22,
+      -1028
+    ],
+    "lookAt": [
+      -851.36,
+      11.5,
+      -1047.98
+    ],
+    "sourceCommit": "75f031e73fa56d77be1c3495c7c935e4e3c78e81",
+    "stage": "Studio Edit / runtime regional lighting"
+  },
+  {
+    "zone": "GW-02",
+    "theme": "Gloamwood",
+    "file": "after-GW-02.jpg",
+    "sha256": "c07460430194718ee4c7df9ea360bd43e2b56952b9078aa057750d62d4bdf96a",
+    "camera": [
+      -110.84,
+      175.25,
+      -11913.96
+    ],
+    "lookAt": [
+      -124.84,
+      166,
+      -11931.96
+    ],
+    "sourceCommit": "75f031e73fa56d77be1c3495c7c935e4e3c78e81",
+    "stage": "Studio Edit / runtime regional lighting"
+  },
+  {
+    "zone": "FV-04",
+    "theme": "FrozenVale",
+    "file": "after-FV-04.jpg",
+    "sha256": "8af85b9a20aa2f7a48308161b65303386fb1dc24bc3a56e5103767f25fa18d11",
+    "camera": [
+      697,
+      91,
+      -5647
+    ],
+    "lookAt": [
+      719.26,
+      82,
+      -5665.27
+    ],
+    "sourceCommit": "75f031e73fa56d77be1c3495c7c935e4e3c78e81",
+    "stage": "Studio Edit / runtime regional lighting"
+  },
+  {
+    "zone": "EC-03",
+    "theme": "EmberCaldera",
+    "file": "after-EC-03.jpg",
+    "sha256": "0d4e0a12933c21e2cee0cdd18ddf5286de5dbfe3e88d88c523c05259e202d051",
+    "camera": [
+      158.18,
+      130.53,
+      -8865.42
+    ],
+    "lookAt": [
+      180.18,
+      120,
+      -8881.42
+    ],
+    "sourceCommit": "75f031e73fa56d77be1c3495c7c935e4e3c78e81",
+    "stage": "Studio Edit / runtime regional lighting"
+  },
+  {
+    "zone": "HG-04",
+    "theme": "HauntedGraveyard",
+    "file": "after-HG-04.jpg",
+    "sha256": "aff26f2e34bd3249e251dffb51d56c9516306db422abceffe97fdbdf973d9dad",
+    "camera": [
+      1220.26,
+      213.32,
+      -16659.21
+    ],
+    "lookAt": [
+      1204.26,
+      202,
+      -16679.21
+    ],
+    "sourceCommit": "75f031e73fa56d77be1c3495c7c935e4e3c78e81",
+    "stage": "Studio Edit / runtime regional lighting"
+  }
+]

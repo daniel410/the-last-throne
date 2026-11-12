@@ -1,6 +1,6 @@
 # 현재 개발 상태
 
-2026-11-11 · TLT-001/050/057/084 · 문서 정리 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
+2026-11-12 · TLT-001/050/057/084 · 문서 정리 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
 - 몬스터 공격: 0.104.10에서 공통 마법 구체를 종별35모티프·50조합으로 나누고 시전/비행/범위/접촉 VFX를 연결했다. [146공격·40투사체·고정 빌드 검증/미게시](../evidence/monster-spell-vfx-20261112/README.md). 기존 [보스 피격 효과·연속 준비/회수 동작](../evidence/boss-impact-motion-20261112/README.md)을 유지한다.
 - 배틀 입장·장비: 0.104.7에 ColorMap 읽기 권한·엘프 몸통 생성 순서·훈련 음악의 스토리 Remote 무한 대기 수정을 포함했다. [최근24시간 CSV·일반 Script63검사·게시/실기기 미검증](../evidence/today-errors-20261111/README.md). 큰 나무 CollisionFidelity 권한 결함의 [5에픽 초기화34검사](../evidence/battle-world-permissions-20261111/README.md)를 유지한다.
@@ -9,7 +9,7 @@
 - 영웅 VFX: 0.104.4에서 검기·파도·폭발·원소 마법을 면/체적 중심으로 강화하고 짧은 섬광·입자를 보강했다. [대표12기술 전후·128스킬 엔진 검증·미게시/남은 수용](../evidence/hero-vfx-flourish-20261111/README.md).
 - 엘프 발사: 0.103.11에서 기본 공격의 예상 발사 시간만으로 화살을 숨기던 모션을 서버의 해당 공격/발사체 확인에 연결했다. [재현·피해/속도 회귀·기존 종합 검사 한계](../evidence/elf-confirmed-release-20261111/README.md).
 - 맵 접지·충돌: 0.103.10에서 5에픽 건축 기초·에린 앞 큰 나무 충돌을 보강하고 공중 폭포/천막을 제거했다. 스토리3 복귀 봉쇄를 옮기고 빈 장식 케이지를 실제 NPC 구출/문 열림/호위/저장 복원에 연결했다. [엔진 검증·미게시·남은 수용](../evidence/architecture-grounding-20261111/README.md).
-- 맵 미술: 0.103.4에서 Blender 환경 키트10종·44지역 지면/원경·지역 조명과 화산 대문 접지를 보강했다. [실제 Studio 전후·검증·미게시·남은 시각/성능 수용](../evidence/epic-environment-20261111/README.md).
+- 맵 미술: 0.104.11에서 스토리별 생활/사건 구성88개를44지역에 추가하고 지면·전투 예약·장식길 여유·충돌/거리 예산을 검사했다. [리뷰·고정 빌드·Studio 검증/미게시·남은 수용](../evidence/story-map-composition-20261112/README.md). 기존 [Blender 환경 키트·TD 원경/지역 조명](../evidence/epic-environment-20261111/README.md)을 유지한다.
 - 이동: 스토리 유리벽→개인 지역 바위 장애물, 출구→다음 필수 목표 이동, 구호 NPC 앞 판자 제거를 구현했다. [엔진 검증/미게시/수용 범위](../evidence/story-obstacles-travel-20261111/README.md). 0.102.10에서 나머지4에픽의 보고 안내 반복·통로 물체·경계선 정체를 수정했다. [36스토리/457목표·30연결로·실제 R15 보행10개 통과·미게시](../evidence/epic-map-navigation-20261111/README.md). [Eryn 복귀 수정](../evidence/deepwood-report-navigation-20261111/README.md)을 유지한다.
 - 장비 외형: 로비 장착/해제 저장 후 외형 갱신 누락을 소스 수정했다. [전후 회귀·엔진/게시 미검증](../evidence/equipment-lobby-refresh-20261111/README.md). 0.102.8에서 무기·방패·방어구의 메시/색상 로딩 전 회색 노출을 가리고 텍스처를 명시적으로 프리로드한다. [48모델/120메시 엔진 시험·실기기 미검증](../evidence/equipment-asset-loading-20261111/README.md). 0.102.5에서 TD 파생 머리카락을 마법사 모자·기사/드워프 투구·엘프 후드의 네 계열에 적용했다. [32조합·눈 영역/착용 검증·미게시](../evidence/headgear-hair-20261111/README.md). [로브 볼륨·모자 접합·투구 높이 보정](../evidence/mage-armor-fit-20261111/README.md)을 유지한다. 영웅 컨셉 대조 머리카락 수정본은 [로컬 후보·업로드 권한 대기](../evidence/headgear-hair-concept-20261111/README.md)이며 현재 게임에는 미반영이다.
 - NPC: 0.102.2에서 전체 에픽의 중복/개인 NPC 얼굴 숨김과 거리 최적화 간섭을 수정했다. [5에픽312장면·24,233검사/기존 회귀 한계·미게시](../evidence/all-epic-npc-visibility-20261111/README.md). 4계열 Meshy 방어구28종 적용은 [0.102.0 검증](../evidence/four-family-armor-20261111/README.md)을 따른다.

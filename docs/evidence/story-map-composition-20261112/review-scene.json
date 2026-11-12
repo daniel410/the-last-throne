@@ -1,0 +1,9 @@
+{
+  "path": "builds/0.104.11/TheLastThrone-story-map-review-0.104.11.rbxlx",
+  "sha256": "ed94eb6f64dbf2b5210bda0cfdf4b35951c299fa86b6aca7ab73aff499361d35",
+  "bytes": 333645933,
+  "purpose": "Generated world Studio edit review only; not the immutable game build",
+  "gameSourceCommit": "75f031e73fa56d77be1c3495c7c935e4e3c78e81",
+  "lighting": "Deepwood",
+  "published": false
+}
