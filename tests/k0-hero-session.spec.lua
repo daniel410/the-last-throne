@@ -178,6 +178,12 @@ request(first, "SetSkillSlot", "2:2")
 request(first, "SetSkillSlot", "3:3")
 
 local previousContext
+local checkpoint
+sessionOptions.combat={snapshotVitals=function(person)
+ if checkpoint and checkpoint.character==person.Character then
+  return checkpoint.heroId,{health=checkpoint.health,mana=checkpoint.mana,level=1}
+ end
+end}
 local generation = 1
 for classIndex, classId in ipairs({ "knight", "dwarf", "mage", "elf" }) do
 	value, errorCode = request(first, "SelectHero", heroes[classId])
@@ -192,6 +198,8 @@ for classIndex, classId in ipairs({ "knight", "dwarf", "mage", "elf" }) do
 	generation = generation + 1
 	local actor = ready(first, load.id, generation, Vector3.new(-20, 4, 56))
 	local context = Service.getCombatContext(first, actor)
+	check(context.vitals==nil,'a different hero never inherits another hero resources')
+	checkpoint={character=actor,heroId=heroes[classId],health=37.5,mana=0}
 	check(context and context.heroId == heroes[classId] and context.baseClassId == classId and context.characterGeneration == generation, "same player can play " .. classId .. " using its own identity")
 	check(not previousContext or context.epoch > previousContext.epoch, "hero life epoch increases")
 	context.setSkillReadyAt("test.skill", 12345)
@@ -243,6 +251,8 @@ local load = spawnRequests[#spawnRequests]
 generation = generation + 1
 local life = ready(first, load.id, generation, Vector3.new(-20, 4, 56))
 local beforeDeath = Service.getCombatContext(first, life)
+check(beforeDeath.vitals.health==37.5 and beforeDeath.vitals.mana==0,'lobby round trip preserves depleted HP and zero MP per hero')
+checkpoint={character=life,heroId=heroes.knight,health=37.5,mana=0}
 check(beforeDeath.skillReadyAt["test.skill"] == 12345, "hero cooldown survives lobby and tutorial transition")
 local deathCalls={}
 sessionOptions.inventory={available=function()return true end,penalizeDeath=function(p,id,key,training)table.insert(deathCalls,{player=p,heroId=id,key=key,training=training})end}
@@ -255,6 +265,7 @@ check(Service.getCombatContext(first, life) == nil, "death immediately revokes o
 generation = generation + 1
 local respawned = ready(first, load.id, generation, Vector3.new(-20, 4, 56))
 local afterDeath = Service.getCombatContext(first, respawned)
+check(afterDeath.vitals.health==0,'actual death explicitly retains full respawn recovery')
 check(afterDeath.skillReadyAt["test.skill"] == 12345, "hero cooldown survives respawn")
 check(afterDeath.epoch > beforeDeath.epoch and afterDeath.characterGeneration > beforeDeath.characterGeneration, "respawn is a distinct context")
 Service.onLifeEnded(first, life, generation - 1, load.id, "Removing")

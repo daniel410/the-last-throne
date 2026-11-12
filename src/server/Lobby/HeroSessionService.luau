@@ -113,6 +113,13 @@ end
 local function transition(state, mode)
 	-- Revoke combat before starting any asynchronous Character replacement.
 	invalidateLife(state)
+	if settings.inventory and settings.inventory.captureVitals then
+		local reason=settings.inventory.captureVitals(state.player)
+		if reason then state.phase='SpawnFailed';changed(state);return 'InventoryUnavailable' end
+	elseif settings.combat then
+		local heroId,vitals=settings.combat.snapshotVitals(state.player)
+		if heroId and state.byId[heroId] then state.byId[heroId].vitals=vitals end
+	end
 	state.mode = mode
 	state.phase = mode == "Tutorial" and "LoadingTutorial" or "ReturningLobby"
 	state.transitionId = state.transitionId + 1
@@ -381,6 +388,7 @@ function HeroSessionService.getCombatContext(player, character)
 	local itemCounts, itemSlots
 	if settings.inventory then itemCounts, itemSlots = settings.inventory.counts(player, hero.heroId) end
 	return { heroId = hero.heroId, baseClassId = hero.baseClassId, epoch = state.epoch, characterGeneration = state.generation,
+		vitals = state.respawning and {health=0,mana=0,level=1} or hero.vitals or (settings.inventory and settings.inventory.vitals and settings.inventory.vitals(player,hero.heroId)),
 		growth = growth, equipment = equipment, itemCounts = itemCounts, itemSlots = itemSlots, inventoryManaged = settings.inventory ~= nil,
 		inventoryLocked = settings.inventory and settings.inventory.busy(player) or false,
 		skillSlots = { table.unpack(growth and growth.skillSlots or hero.skillSlots) }, slotCount = growth and Advanced.slotCount(growth) or (hero.practiceAdvanced and 5 or 3), skillReadyAt = ready,
@@ -390,6 +398,7 @@ end
 function HeroSessionService.onLifeStarted(player, character, generation, requestId)
 	local state = sessions[player]
 	if not state or not connected(state) or state.transitionId ~= requestId or player.Character ~= character then return end
+	state.respawning=state.phase=='Respawning'
 	invalidateLife(state)
 	state.character, state.generation = character, generation
 	state.phase = state.mode == "Tutorial" and "LoadingTutorial" or "LoadingLobby"

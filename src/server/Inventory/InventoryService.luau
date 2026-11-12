@@ -58,6 +58,9 @@ function Service.close(player)
 	if not state then return end
  if state.transferPrepared then accounts[player]=nil;return end
 	state.closing = true
+	-- Freeze combat eligibility before reading its final authoritative resources.
+	local heroId,vitals
+	if options.combat.snapshotVitals then heroId,vitals=options.combat.snapshotVitals(player) end
 	-- An in-flight committed mutation must settle before releasing its fence.
 	task.spawn(function()
 		while state.busy do task.wait(0.1) end
@@ -77,6 +80,11 @@ function Service.close(player)
 		end
 		if accounts[player] ~= state then return end
 		state.busy = true
+		if heroId and state.valid then
+			local p,e=store:transact(player.UserId,function(current)return Rules.saveVitals(current,heroId,vitals)end)
+			if not p then state.errorCode=e;accounts[player]=nil;return end
+			state.profile=p
+		end
 		store:close(player.UserId)
 		accounts[player] = nil
 	end)
@@ -130,6 +138,25 @@ function Service.growth(player, heroId)
 	local state=accounts[player]
 	local hero=state and state.profile and state.profile.heroes[heroId]
 	return hero and Growth.copy(hero.progression)
+end
+function Service.vitals(player,heroId)
+ local s=accounts[player]
+ local h=s and s.profile and s.profile.heroes[heroId]
+ return h and Rules.copy(h.vitals)
+end
+-- Only the combat service can supply a checkpoint; no client payload is accepted.
+function Service.captureVitals(player)
+ local s=accounts[player]
+ if not s or not s.valid or s.busy then return 'Unavailable' end
+ local heroId,vitals
+ if options.combat.snapshotVitals then heroId,vitals=options.combat.snapshotVitals(player) end
+ if not heroId then return nil end
+ s.busy=true
+ local p,e=store:transact(player.UserId,function(current)return Rules.saveVitals(current,heroId,vitals)end)
+ s.busy=false
+ if not p then s.valid=false;s.errorCode=e;return e end
+ s.profile=p
+ return nil
 end
 -- One account fence serializes items, point investments and XP. Unknown writes
 -- retry the exact command; no new reward sequence is issued during recovery.
@@ -567,6 +594,7 @@ function Service.prepareTransfer(player)
   s.profile=p;table.remove(s.revealJobs,1)
  end
  if s.rewards and #s.rewards>0 or s.revealJobs and #s.revealJobs>0 or not s.valid then s.closing=false;return false end
+ if Service.captureVitals(player) then s.closing=false;return false end
  s.busy=true;local p,e=store:close(player.UserId);s.busy=false
  if not p then
   -- A release may have committed without acknowledgement. Reacquire only if

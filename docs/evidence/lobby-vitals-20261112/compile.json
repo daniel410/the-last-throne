@@ -1,0 +1,92 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "path": "src/shared/HeroVitals.luau",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "nil"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "path": "src/server/Inventory/InventoryService.luau",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "nil"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "path": "src/server/Lobby/HeroSessionService.luau",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "nil"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "path": "src/server/Inventory/InventoryRules.luau",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "nil"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "path": "src/server/Combat/CombatService.luau",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "nil"
+          }
+        ],
+        "isError": false
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "path": "src/server/init.server.luau",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "nil"
+          }
+        ],
+        "isError": false
+      }
+    }
+  }
+]

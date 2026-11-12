@@ -12,6 +12,7 @@ local CompletionRewards=game and require(game:GetService('ReplicatedStorage').Sh
 local Grants=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentTransactions)or dofile('src/shared/EquipmentTransactions.luau')
 local SideQuests=game and require(game:GetService('ReplicatedStorage').Shared.LobbySideQuests)or dofile('src/shared/LobbySideQuests.luau')
 local Rules = {}
+local Vitals=game and require(game:GetService('ReplicatedStorage').Shared.HeroVitals)or dofile('src/shared/HeroVitals.luau')
 function Rules.copy(value)
 	if type(value) ~= "table" then return value end
 	local result = {}
@@ -23,6 +24,14 @@ function Rules.integer(value, minimum, maximum)
 end
 function Rules.new(userId)
 	return {schemaVersion = 1, userId = userId, revision = 0, epoch = 0, equipmentRulesVersion = 1, heroes = {}, items = {}, operations = {}, operationOrder = {},wallet={version=1,gold=0,diamonds=0,claims={},heroClaims={}}}
+end
+function Rules.saveVitals(profile,heroId,vitals)
+ if not profile.heroes[heroId] then return nil,'HeroNotOwned' end
+ if not Vitals.valid(vitals) then return nil,'InvalidRequest' end
+ local n=Rules.copy(profile)
+ n.heroes[heroId].vitals=Rules.copy(vitals)
+ n.revision=n.revision+1
+ return n
 end
 -- The trusted server fixes request time; calendar record and Gold share one account write.
 function Rules.claimDaily(profile,now,requestId)
@@ -150,6 +159,7 @@ function Rules.validate(profile, catalog)
 	for id, hero in pairs(profile.heroes) do
 		if type(hero) ~= "table" or id ~= hero.heroId or type(id) ~= "string" or not catalog.classes[hero.baseClassId]
 			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, 80) or type(hero.quickSlots) ~= "table" then return false end
+		if hero.vitals~=nil and not Vitals.valid(hero.vitals) then return false end
 		if hero.starterSuppliesClaimed ~= nil and type(hero.starterSuppliesClaimed) ~= "boolean" then return false end
 		if not Adventure.valid(hero) or not CompletionRewards.valid(hero) or not SideQuests.validNotices(hero) then return false end
 		if hero.deepwood~=nil and not Story.validate(hero.deepwood) then return false end

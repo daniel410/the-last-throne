@@ -1859,6 +1859,13 @@ registerEnemy = function(model, savedTemplate, savedPivot, savedId, splitGroup)
 	return enemy
 end
 
+local Vitals=require(ReplicatedStorage.Shared.HeroVitals)
+function CombatService.snapshotVitals(player)
+ local state=playerStates[player]
+ if not state or player.Character~=state.character then return nil end
+ return state.heroId,{health=math.max(0,state.humanoid.Health),mana=state.mana or 0,level=state.growth and state.growth.level or 1}
+end
+
 local function setupCharacter(player, character)
 	if not activePlayers[player] or player.Parent ~= Players or player.Character ~= character then return end
 	local current = playerStates[player]
@@ -1915,7 +1922,9 @@ local function setupCharacter(player, character)
 			for i=1,3 do character:SetAttribute("K0SkillRank"..i,state.growth.mastery[i]) end
 		end
 		humanoid.MaxHealth = (derived and derived.health or Config.MaxHealth) + (state.equipment and state.equipment.health or 0)
-		humanoid.Health = humanoid.MaxHealth
+		local health,mana=Vitals.restore(context.vitals,humanoid.MaxHealth,state.maxMana,state.growth and state.growth.level or 1)
+		humanoid.Health = health
+		if state.mana then state.mana=mana end
 		if state.inventoryManaged then
 			character:SetAttribute("TLTEquippedWeapon", state.equipment and state.equipment.weapon or "")
 			character:SetAttribute("TLTEquippedOffhand", state.equipment and state.equipment.offhand or "")

@@ -1,0 +1,14 @@
+$ lua tests/hero-vitals.spec.lua
+Hero vitals: 25 checks passed
+
+$ lua tests/hero-vitals-service.spec.lua
+Hero vitals service: 20 checks passed
+
+$ lua tests/k0-hero-session.spec.lua
+Hero session: 147 identity, ownership, transitions, four-class, stale-life and boundary checks passed
+
+$ lua tests/inventory.spec.lua
+Inventory: 276 ownership, capacity, stacking, idempotency, binding and recovery checks passed
+
+$ lua tests/expedition-departure.spec.lua
+Expedition departure: 42 checks passed

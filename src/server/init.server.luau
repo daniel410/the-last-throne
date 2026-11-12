@@ -77,7 +77,7 @@ local function trainingDestination()
  return world.spawn
 end
 expedition.start({role=role,heroSession=heroSession,inventory=inventory,previewWorld=previewWorld})
-sessionOptions={inventory=inventory,lobbySpawn=lobby.spawn,tutorialSpawn=lobby.spawn,
+sessionOptions={inventory=inventory,combat=combat,lobbySpawn=lobby.spawn,tutorialSpawn=lobby.spawn,
  trainingDestination=trainingDestination,tutorialDestination=function(p,id)return story.destination(p,id)end,
  lobbyBounds=lobby.bounds,requestSpawn=spawnService.requestSpawn,network=expedition}
 heroSession.start(sessionOptions)
