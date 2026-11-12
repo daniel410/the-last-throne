@@ -1,0 +1,61 @@
+{
+  "version": "0.104.3",
+  "sourceCommit": "05d34b1af06c17ef53033a0909d83399445d34bc",
+  "passed": true,
+  "checks": 23627,
+  "results": [
+    {
+      "label": "COMBAT_ROUTE_RUNTIME",
+      "result": {
+        "checks": 817,
+        "kind": "COMBAT_ROUTE_RUNTIME"
+      }
+    },
+    {
+      "label": "COMBAT_ROUTE_RUNTIME",
+      "result": {
+        "checks": 459,
+        "kind": "COMBAT_ROUTE_RUNTIME"
+      }
+    },
+    {
+      "label": "COMBAT_ROUTE_WORLD",
+      "result": {
+        "floorFailures": [],
+        "kind": "COMBAT_ROUTE_WORLD",
+        "blockers": [],
+        "checks": 6333
+      }
+    },
+    {
+      "label": "CAMPAIGN_EXPANSION_NATIVE",
+      "result": {
+        "generationSeconds": 1.1842052083229646,
+        "scope": "isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+        "blockers": [],
+        "checks": 9192,
+        "steps": 246,
+        "samples": 3974,
+        "incidents": 82,
+        "parts": 62705
+      }
+    },
+    {
+      "label": "STORY_COMBAT_PACING_NATIVE",
+      "result": {
+        "kind": "STORY_COMBAT_PACING_NATIVE",
+        "patrols": 13,
+        "checks": 61
+      }
+    },
+    {
+      "label": "CARTOGRAPHY_QA",
+      "result": {
+        "zones": 44,
+        "roads": 5683,
+        "footprints": 2635,
+        "checks": 6765
+      }
+    }
+  ]
+}

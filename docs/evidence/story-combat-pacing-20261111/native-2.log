@@ -1,0 +1,13 @@
+COMBAT_ROUTE_RUNTIME {"checks":817,"kind":"COMBAT_ROUTE_RUNTIME"}
+COMBAT_ROUTE_WORLD {"floorFailures":[],"kind":"COMBAT_ROUTE_WORLD","blockers":[],"checks":6333}
+EXPANSION_NATIVE_EPIC 1
+EXPANSION_NATIVE_EPIC 2
+EXPANSION_NATIVE_EPIC 3
+EXPANSION_NATIVE_EPIC 4
+EXPANSION_NATIVE_EPIC 5
+EXPANSION_NATIVE_GEOMETRY {"blockerCount":0,"samples":3974,"blockers":[],"parts":62705}
+CAMPAIGN_EXPANSION_NATIVE {"generationSeconds":1.1842052083229647,"scope":"isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance","blockers":[],"checks":9192,"steps":246,"samples":3974,"incidents":82,"parts":62705}
+STORY_COMBAT_PACING_NATIVE {"kind":"STORY_COMBAT_PACING_NATIVE","patrols":13,"checks":61}
+CARTOGRAPHY_QA {"zones":44,"roads":5683,"footprints":2635,"checks":6765}
+COMBAT_ROUTE_RUNTIME {"checks":459,"kind":"COMBAT_ROUTE_RUNTIME"}
+STORY_COMBAT_PACING_COMPLETE

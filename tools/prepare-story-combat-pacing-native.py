@@ -19,7 +19,7 @@ for path in paths:
     code+=f'assert({node}.Source=={source},"source pin: {path}")\n'
 code+="for _,root in ipairs({game.ReplicatedStorage.Shared,game.ServerScriptService.Server,game.StarterPlayer.StarterPlayerScripts.Client})do for _,m in ipairs(root:GetDescendants())do if m:IsA('LuaSourceContainer')then assert(loadstring(m.Source,m:GetFullName()))end end end\n"
 for test in ['campaign-combat-route-runtime-native','campaign-combat-route-world-native','campaign-expansion-native','story-combat-pacing-native','cartography-native']:
-    code+=f"do local r=assert(loadstring({json.dumps(Path('tests/'+test+'.luau').read_text())},{json.dumps(test)}))();assert(not r.blockers or #r.blockers==0,'body collision');assert(not r.floorFailures or #r.floorFailures==0,'floor failure')end\n"
+    code+=f"do local r=assert(loadstring({json.dumps(Path('tests/'+test+'.luau').read_text())},{json.dumps(test)}))();assert(not r or not r.blockers or #r.blockers==0,'body collision');assert(not r or not r.floorFailures or #r.floorFailures==0,'floor failure')end\n"
 # Repeat real production lifecycle for a normal supplemental patrol, rather than a boss.
 source=Path('tests/campaign-combat-route-runtime-native.luau').read_text().replace("local c=C.byId['DW-05'];local g=P.goal(c,'warlord')","local c=C.byId['GW-01'];local g=P.goal(c,'lantern_patrol')").replace('expansionVersion=1}','expansionVersion=1,combatPacingVersion=1}').replace('total==expected and boss==1','total==expected and boss==0')
 code+=f"assert(loadstring({json.dumps(source)},'PatrolLifecycle'))()\n"

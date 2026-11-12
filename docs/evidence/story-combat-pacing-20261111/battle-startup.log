@@ -1,0 +1,5 @@
+lua: src/server/World/CampaignWorld.luau:19: attempt to call a nil value (field 'prepare')
+stack traceback:
+	src/server/World/CampaignWorld.luau:19: in field 'create'
+	tests/battle-startup.spec.lua:47: in main chunk
+	[C]: in ?

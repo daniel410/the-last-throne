@@ -1,0 +1,110 @@
+[
+  {
+    "test": "battle-presentation",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "BATTLE_PRESENTATION 41 checks passed"
+  },
+  {
+    "test": "battle-startup",
+    "pass": false,
+    "baselineFailure": true,
+    "output": "lua: src/server/World/CampaignWorld.luau:19: attempt to call a nil value (field 'prepare')\nstack traceback:\n\tsrc/server/World/CampaignWorld.luau:19: in field 'create'\n\ttests/battle-startup.spec.lua:47: in main chunk\n\t[C]: in ?"
+  },
+  {
+    "test": "campaign-combat-pacing",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "CAMPAIGN_COMBAT_PACING 50349 checks passed"
+  },
+  {
+    "test": "campaign-combat-routes",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger"
+  },
+  {
+    "test": "campaign-context-review",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "CAMPAIGN_CONTEXT_REVIEW 1054 checks passed; 418 saved transitions, 47 distinct stories, unchanged runtime contracts"
+  },
+  {
+    "test": "campaign-expansion-review",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "CAMPAIGN_EXPANSION_REVIEW 3362 checks passed; 82 outcome deliveries, safe circuit choices and connector routes"
+  },
+  {
+    "test": "campaign-expansion",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "CAMPAIGN_EXPANSION 7737 checks passed; 35 main / 12 side / 82 incidents / 246 new steps"
+  },
+  {
+    "test": "campaign-navigation-route",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "CAMPAIGN_NAVIGATION_ROUTE 7142 checks PASS; old rejected 70; returns 10; live steps 525; walking distance 3132"
+  },
+  {
+    "test": "campaign-reorder",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "CAMPAIGN_REORDER 1870 checks passed; mandatory solo final level 47"
+  },
+  {
+    "test": "checkpoint-travel",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "Checkpoint travel: 1927 checks passed"
+  },
+  {
+    "test": "epic-map-navigation",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "EPIC_MAP_NAVIGATION 99695 checks PASS; 488 active targets; 24801 moving samples"
+  },
+  {
+    "test": "late-epics-adventures",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "LATE_EPICS_ADVENTURES 762 checks passed"
+  },
+  {
+    "test": "optional-epic-continuation",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "OPTIONAL_EPIC_CONTINUATION 6280 checks PASS; twelve side quests, all states, five map scopes"
+  },
+  {
+    "test": "quest-completion-rewards",
+    "pass": false,
+    "baselineFailure": true,
+    "output": "lua: tests/quest-completion-rewards.spec.lua:13: expanded runs retain rules 12 completion rewards\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/quest-completion-rewards.spec.lua:13: in local 'check'\n\ttests/quest-completion-rewards.spec.lua:84: in main chunk\n\t[C]: in ?"
+  },
+  {
+    "test": "story-completion",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "Story completion: 356 checks passed"
+  },
+  {
+    "test": "story-continuation",
+    "pass": false,
+    "baselineFailure": true,
+    "output": "lua: tests/story-continuation.spec.lua:52: StoryLocked\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/story-continuation.spec.lua:52: in main chunk\n\t[C]: in ?"
+  },
+  {
+    "test": "story-region-handoff",
+    "pass": false,
+    "baselineFailure": true,
+    "output": "lua: [string \"return function(options,state,Content) local ...\"]:4: bad argument #1 to 'for iterator' (table expected, got nil)\nstack traceback:\n\t[C]: in for iterator 'for iterator'\n\t[string \"return function(options,state,Content) local ...\"]:4: in field 'destination'\n\ttests/story-region-handoff.spec.lua:44: in main chunk\n\t[C]: in ?"
+  },
+  {
+    "test": "story-rpg-guide",
+    "pass": true,
+    "baselineFailure": false,
+    "output": "STORY_RPG_GUIDE 1011 checks passed; 418 saved transitions, discoveries/waivers/solo/handoffs/combat/metrics"
+  }
+]
