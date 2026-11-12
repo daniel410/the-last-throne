@@ -13,7 +13,7 @@ function PotionUseSound.play(character)
 	sound.Name = "PotionDrinkSound"
 	-- Single 1.76-second edit: two gulps, +12 dB; see assets/audio/potion-drink-v1.
 	sound.SoundId = "rbxassetid://103385691872375"
-	sound.Volume = 0.4
+	sound.Volume = 0.5
 	sound.RollOffMode = Enum.RollOffMode.Linear
 	sound.RollOffMinDistance, sound.RollOffMaxDistance = 16, 60
 	sound.Parent = emitter
