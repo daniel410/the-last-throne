@@ -1,0 +1,4 @@
+HERO_VFX_NATIVE {"failures":[],"skills":128,"pass":true,"checks":5132}
+WIND_LANCE_VISUAL_NATIVE {"failures":[],"kind":"WIND_LANCE_VISUAL_NATIVE","pass":true,"checks":98}
+SKILL_VFX_INDIVIDUAL_NATIVE {"failures":[],"skills":128,"pass":true,"checks":295}
+K0_HIT_EFFECTS_NATIVE {"coverage":"Native presentation instances and cleanup; no real player, RemoteEvent transport, visual or audible acceptance","checks":102,"samples":[{"speed":1.350000023841858,"class":"knight","sound":"rbxasset://sounds/action_jump_land.mp3"},{"speed":0.8877289295196533,"class":"dwarf","sound":"rbxassetid://9118598279"},{"speed":0.9047352075576782,"class":"mage","sound":"rbxassetid://9118598279"},{"speed":0.9091665148735046,"class":"elf","sound":"rbxassetid://9118598279"}],"kind":"K0_HIT_EFFECTS_NATIVE","pass":true,"failures":[]}
