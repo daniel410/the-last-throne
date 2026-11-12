@@ -1,0 +1,4 @@
+ContentId: rbxassetid://90157337142817 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://106291858986253 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://72391808960013 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ENEMY_PATTERN_NATIVE {"checks":218878,"scope":"isolated engine modules; no accounts/normal gameplay/device acceptance","modelParts":16,"actions":146,"kinds":50}

@@ -7,6 +7,7 @@ local Players=game:GetService('Players')
 local Patterns=require(RS.Shared.EnemyPatterns)
 local Text=require(RS.Shared.EnemyPatternText)
 local Audio=require(RS.Shared.CombatAudioCatalog)
+local BossImpact=require(script.Parent.BossHeroImpact)
 local Effects={}
 local colors={physical=Color3.fromRGB(255,217,150),arcane=Color3.fromRGB(182,115,255),frost=Color3.fromRGB(121,226,255),fire=Color3.fromRGB(255,133,56),web=Color3.fromRGB(223,218,255),venom=Color3.fromRGB(151,230,90),soul=Color3.fromRGB(109,238,197),shadow=Color3.fromRGB(201,128,255)}
 local definitions={};for _,profile in pairs(Patterns.profiles)do for _,d in ipairs(profile.attacks)do definitions[d.id]=d end end
@@ -97,7 +98,10 @@ function Effects.receive(m)
    local shield=m.target:FindFirstChild('Shield',true)
    if shield and shield:IsA('BasePart')then pos=shield.Position else pos=root.Position+root.CFrame.LookVector*1.1 end
   end
-  burst(pos,m.element,result=='PerfectBlock' and 1.4 or 1,result)
+  local profile=Patterns.get(m.model:GetAttribute('EnemyKind'))
+  local boss=profile and profile.boss
+  burst(pos,m.element,result=='PerfectBlock' and 1.4 or boss and 1.55 or 1,result)
+  if boss and result=='Hit' and m.damage>0 then BossImpact.play(m.target,m.element,color)end
   sound(pos,m.element,result)
   if result~='Hit' then label(m.target,Text[result]or Text.Hit,color)end
   if m.damage>0 then

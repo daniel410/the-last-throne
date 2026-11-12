@@ -64,6 +64,31 @@ for kind,profile in pairs(P.profiles)do
   check(type(pose)=='number' and pose>=0 and pose<=1,'finite native per-strike pose')
  end
 end
+-- Contact synchronization and continuity across all authored attacks and frame rates.
+for kind,profile in pairs(P.profiles)do
+ enemy.model:SetAttribute('EnemyKind',kind)
+ for _,d in ipairs(profile.attacks)do
+  enemy.model:SetAttribute('K0PatternId',d.id)
+  local a={start=0,w=d.windup,a=d.active,r=d.recovery}
+  for pulse=1,d.pulses do
+   local due=d.windup+(pulse-1)*d.interval
+   check(math.abs(deps.EnemyPatternPose.phase(enemy.model,due,a)-.62)<.00001,'clip contacts on pulse '..d.id)
+   local before=deps.EnemyPatternPose.phase(enemy.model,due-.00001,a)
+   local after=deps.EnemyPatternPose.phase(enemy.model,due+.00001,a)
+   check(math.abs(before-after)<.001,'no pulse pose discontinuity '..d.id)
+  end
+  for _,hz in ipairs({30,60,144})do
+   local previous=0
+   for f=0,math.ceil((d.windup+d.active+d.recovery)*hz)do
+    local phase=deps.EnemyPatternPose.phase(enemy.model,f/hz,a)
+    check(phase==phase and phase>=0 and phase<=1,'bounded attack pose '..d.id)
+    check(math.abs(phase-previous)<.15,'smooth frame step '..d.id)
+    previous=phase
+   end
+  end
+  check(deps.EnemyPatternPose.phase(enemy.model,100,a)==1,'recovery settles '..d.id)
+ end
+end
 local nativeKinds={'Webling','Silkweaver','Barkstalker','Gloambat','VenomcoilCentipede','AncientHollowbark','VenomcoilKing','WidowQueen'}
 local modelParts=0
 for _,kind in ipairs(nativeKinds)do
@@ -94,6 +119,42 @@ for i,result in ipairs({'Hit','Blocked','PerfectBlock','Absorbed','Dodged','Prev
  fx.receive({kind='impact',model=enemy.model,target=target.model,sequence=80,pulse=i,position=target.root.Position,source=enemy.root.Position,element='frost',result=result,damage=result=='Hit' and 10 or 0,absorbed=0,at=workspace:GetServerTimeNow()})
 end
 check(workspace:FindFirstChild('EnemyContactFX')~=nil,'native frost contact')
+-- Boss-only target-bound motifs come exclusively from confirmed damage.
+enemy.model:SetAttribute('EnemyKind','KingShaman')
+local impactSequence=900
+local function contact(element,result,damage,pulse,at)
+ fx.receive({kind='impact',model=enemy.model,target=target.model,sequence=impactSequence,pulse=pulse or 1,
+ position=target.root.Position,source=enemy.root.Position,element=element,result=result,damage=damage,at=at or workspace:GetServerTimeNow()})
+end
+for _,element in ipairs({'physical','fire','frost','venom','web','soul','shadow','arcane'})do
+ impactSequence+=1
+ local health=target.humanoid.Health
+ contact(element,'Hit',20)
+ local motif=target.model:FindFirstChild('BossHeroImpact')
+ check(motif~=nil and #motif:GetChildren()>=2,'boss motif '..element)
+ contact(element,'Hit',20)
+ check(target.model:FindFirstChild('BossHeroImpact')==motif,'duplicate contact ignored')
+ for _,part in ipairs(motif:GetChildren())do
+  check(part.Massless and not part.Anchored and not part.CanCollide and not part.CanTouch and not part.CanQuery,'nonblocking boss contact')
+  local weld=part:FindFirstChildOfClass('WeldConstraint')
+  check(weld and weld.Part0==target.root and weld.Part1==part,'contact follows hit hero')
+ end
+ check(target.humanoid.Health==health,'VFX never applies damage')
+ motif:Destroy()
+end
+for _,result in ipairs({'Blocked','PerfectBlock','Absorbed','Dodged','Prevented'})do
+ impactSequence+=1;contact('fire',result,0)
+ check(not target.model:FindFirstChild('BossHeroImpact'),'defense has no damage motif '..result)
+end
+impactSequence+=1;contact('fire','Hit',0)
+check(not target.model:FindFirstChild('BossHeroImpact'),'zero damage has no motif')
+impactSequence+=1;contact('fire','Hit',20,1,workspace:GetServerTimeNow()-1)
+check(not target.model:FindFirstChild('BossHeroImpact'),'stale damage has no motif')
+enemy.model:SetAttribute('EnemyKind','Shaman');impactSequence+=1;contact('fire','Hit',20)
+check(not target.model:FindFirstChild('BossHeroImpact'),'normal monster retains light contact')
+enemy.model:SetAttribute('EnemyKind','KingShaman');impactSequence+=1;contact('fire','Hit',20)
+task.wait(.7)
+check(not target.model:FindFirstChild('BossHeroImpact'),'boss contact expires')
 local hurt=deps.K0PlayerHitFeedback
 local current=workspace:GetServerTimeNow();target.model:SetAttribute('K0HurtAt',current-.05)
 target.model:SetAttribute('K0HurtSource',target.root.Position+Vector3.new(10,0,0))

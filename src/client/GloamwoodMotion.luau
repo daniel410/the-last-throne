@@ -69,7 +69,8 @@ function M.stepSkinned(c,s,dt,current,attackPhase)
  -- Imported Root has a baked 180-degree rest rotation; convert reactions once.
  -- Legacy R6 bob/squash is bypassed for skinned monsters.
  local basis=c.bones.Root.CFrame.Rotation
- c.bones.Root.Transform=c.pose.Root*basis:Inverse()*HitReaction.sample(model,current)*basis
+ local accent=active and PatternPose.accent(model,current,c.attack)or CFrame.identity
+ c.bones.Root.Transform=c.pose.Root*basis:Inverse()*HitReaction.sample(model,current)*accent*basis
  c.clip=clip;c.samplePhase=phase;c.active=active==true;s.attack=c.attack
 end
 return M
