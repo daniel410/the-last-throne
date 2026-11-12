@@ -101,7 +101,6 @@ local function updateSessionView()
  if not battle and not startingBattle and (phase=='LoadingTutorial' or phase=='Tutorial' or phase=='Respawning')then
   startingBattle=true
   task.spawn(function()
-   require(script.DeepwoodAtmosphere).start()
    battle=require(script.BattleController).start({inventory=inventory,growthGui=growthGui,settingsGui=settingsGui,requestHero=requestHero,snapshot=heroSnapshot})
    startingBattle=false;battle.update(heroSnapshot)
    player:SetAttribute('TLTBattleClientReady',true)

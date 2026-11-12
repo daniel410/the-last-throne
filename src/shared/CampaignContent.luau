@@ -68,5 +68,6 @@ load('CampaignExpansion').install(C)
 load('CampaignStoryBeats').install(C)
 -- Final narrative review includes incident text; archived authoring remains save-compatible.
 load('CampaignStoryText').install(C)
+load('CampaignCombatPacing').install(C)
 load('CampaignCombatRoutes').install(C)
 return C

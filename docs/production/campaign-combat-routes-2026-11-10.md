@@ -6,9 +6,9 @@
 
 ## 기존 문제와 새 흐름
 
-기존75교전은 모든 무리를 한 전투 중심 주변에 생성했다. 현재 무리를 전멸시키면 같은 위치에 다음 무리가 즉시 생성되어, 유한 웨이브여도 몬스터가 되살아나는 것으로 보일 수 있었다. 새 원정14와 기존 확장 원정13은 **현재 무리 처치 → 확보한 길로 이동 → 다른 교전 지점 접근 → 다음 무리**로 바꾼다. 후속 무리는38stud 이내로 실제 생존 파티원이 접근할 때 생성한다. 관전자/다른 원정/쓰러진 영웅은 시작 권한이 없다. 한 번에 모든 몬스터를 월드에 활성화하지 않는다.
+기존75교전은 모든 무리를 한 전투 중심 주변에 생성했다. 당시 현재 무리를 전멸시키면 같은 위치에 다음 무리가 즉시 생성되어, 유한 웨이브여도 몬스터가 되살아나는 것으로 보일 수 있었다. 새 원정14와 기존 확장 원정13은 **현재 무리 처치 → 확보한 길로 이동 → 다른 교전 지점 접근 → 다음 무리**로 바꾼다. 후속 무리는38stud 이내로 실제 생존 파티원이 접근할 때 생성한다. 관전자/다른 원정/쓰러진 영웅은 시작 권한이 없다. 한 번에 모든 몬스터를 월드에 활성화하지 않는다.
 
-일반 적·보스·난이도별 능력치·파티별 총량과 기존 적 분할/안정 처치ID는 유지한다. 각 전투 목표의 보스는 여전히 마지막 무리에 한 번만 나온다. 각 목표 내부의 교전 위치를 최소80stud 떨어뜨려 같은 자리의 연속 전투를 제거했다. 모든 파티 크기의 편성을 수용하는 공간 계획은 총276지점이다. 이 숫자는 한 플레이어가 모든 지점을 싸운다는 뜻이 아니며 파티 크기별 기존 무리 수만큼만 사용한다.
+일반 적·보스·난이도별 능력치·파티별 총량과 기존 적 분할/안정 처치ID는 유지한다. 각 전투 목표의 보스는 여전히 마지막 무리에 한 번만 나온다. 각 목표 내부의 교전 위치를 최소80stud 떨어뜨려 같은 자리의 연속 전투를 제거했다. 2026-11-11에는 GW/HG 전투 장12개·EC-05의 공백에 일반 길목 교전13개를 추가해 총88전투 목표가 됐다. 기존75전투 편성은 보존하며 새 적의 정상 처치 XP/Gold 유입은 증가한다. 완료 보상은 유지한다. [추가 교전·저장 이관·검증](../evidence/story-combat-pacing-20261111/README.md). 모든 파티 크기의 편성을 수용하는 공간 계획은 총315지점이다(2026-11-11 길목 전투13개/39지점 추가 전276). 이 숫자는 한 플레이어가 모든 지점을 싸운다는 뜻이 아니며 파티 크기별 기존 무리 수만큼만 사용한다.
 
 ## 컨셉을 확인하고 유지한 지역별 원리
 
@@ -53,13 +53,13 @@
 | DW-Q2 | The Stolen Food | 1 | 11 | 49 / 97 | +140.2% |
 | DW-Q3 | Quarry Below the Falls | 2 | 11 | 55 / 109 | +140.2% |
 | DW-Q4 | Remnants of the Red Battlefield | 1 | 12 | 67 / 133 | +97.6% |
-| GW-01 | Lantern Trail | 1 | 3 | 18 / 36 | +138.8% |
-| GW-02 | A Light in the Webs | 1 | 3 | 18 / 36 | +100.6% |
+| GW-01 | Lantern Trail | 2 | 6 | 36 / 72 | +138.8% |
+| GW-02 | A Light in the Webs | 2 | 6 | 36 / 72 | +100.6% |
 | GW-03 | Lantern Refuge | 0 | 0 | 0 / 0 | +100.6% |
-| GW-04 | The Ancient Rootway | 2 | 5 | 25 / 49 | +100.6% |
-| GW-05 | Venomcoil Crossing | 2 | 5 | 25 / 49 | +100.6% |
-| GW-06 | One Brave Step | 2 | 6 | 31 / 61 | +100.6% |
-| GW-07 | The Queen of the Webs | 2 | 7 | 37 / 73 | +108.2% |
+| GW-04 | The Ancient Rootway | 3 | 8 | 43 / 85 | +100.6% |
+| GW-05 | Venomcoil Crossing | 3 | 8 | 43 / 85 | +100.6% |
+| GW-06 | One Brave Step | 3 | 9 | 49 / 97 | +100.6% |
+| GW-07 | The Queen of the Webs | 3 | 10 | 55 / 109 | +108.2% |
 | FV-01 | Blizzard Gate | 2 | 8 | 24 / 48 | +134.3% |
 | FV-02 | Ember Refuge | 0 | 0 | 0 / 0 | +104.0% |
 | FV-03 | Wolf Ravine | 2 | 11 | 42 / 84 | +92.5% |
@@ -75,20 +75,20 @@
 | EC-02 | Forge City | 0 | 0 | 0 / 0 | +86.5% |
 | EC-03 | Collapsed Resonance Mine | 2 | 9 | 42 / 84 | +86.5% |
 | EC-04 | Split Coolant Canals | 2 | 8 | 36 / 72 | +86.5% |
-| EC-05 | Ancestral Design Vault | 1 | 3 | 18 / 36 | +86.5% |
+| EC-05 | Ancestral Design Vault | 2 | 6 | 36 / 72 | +86.5% |
 | EC-06 | Geothermal Heart Testworks | 2 | 6 | 31 / 61 | +86.5% |
 | EC-07 | Great Furnace | 2 | 8 | 43 / 85 | +106.2% |
 | EC-Q1 | A Worker's Lost Mark | 0 | 0 | 0 / 0 | +127.7% |
 | EC-Q2 | Ember Raider Nest | 1 | 2 | 7 / 13 | +147.5% |
 | EC-Q3 | Volcano Shaman Altar | 1 | 2 | 7 / 13 | +121.7% |
 | EC-Q4 | Caldera Titan Basin | 1 | 2 | 7 / 13 | +140.5% |
-| HG-01 | Mist Gate | 2 | 5 | 30 / 60 | +140.0% |
+| HG-01 | Mist Gate | 3 | 8 | 48 / 96 | +140.0% |
 | HG-02 | Friends at the Old Shelter | 0 | 0 | 0 / 0 | +95.0% |
-| HG-03 | Lumi Secret Passage | 2 | 5 | 30 / 60 | +95.0% |
-| HG-04 | The Alliance Opens the Gate | 2 | 5 | 25 / 49 | +95.0% |
-| HG-05 | The Black Throne Devices | 2 | 5 | 25 / 49 | +140.0% |
-| HG-06 | The Royal Tomb | 2 | 4 | 19 / 37 | +95.0% |
-| HG-07 | Together We Bring Back the Light | 2 | 6 | 31 / 61 | +95.0% |
+| HG-03 | Lumi Secret Passage | 3 | 8 | 48 / 96 | +95.0% |
+| HG-04 | The Alliance Opens the Gate | 3 | 8 | 43 / 85 | +95.0% |
+| HG-05 | The Black Throne Devices | 3 | 8 | 43 / 85 | +140.0% |
+| HG-06 | The Royal Tomb | 3 | 7 | 37 / 73 | +95.0% |
+| HG-07 | Together We Bring Back the Light | 3 | 9 | 49 / 97 | +95.0% |
 
 ## 수용·인계
 

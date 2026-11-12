@@ -1,0 +1,5 @@
+lua: tests/story-continuation.spec.lua:52: StoryLocked
+stack traceback:
+	[C]: in global 'assert'
+	tests/story-continuation.spec.lua:52: in main chunk
+	[C]: in ?

@@ -56,7 +56,7 @@ function A.projection(hero)
  local a=hero and hero.expeditions and hero.expeditions.active
  if not a then return nil end
  local view=P.copy(a.completed and a.returnToCampaign and hero.deepwood or a.journal)
- if (a.balanceVersion or 1)>=13 and view.expansionVersion~=1 then view=assert(P.enableExpansion(view))end
+ if (a.balanceVersion or 1)>=13 and (view.expansionVersion~=1 or view.combatPacingVersion~=1) then view=assert(P.enableExpansion(view))end
  for id,cells in pairs(hero.deepwood and hero.deepwood.explored or {})do
   local zone=Content.zones[id]
   if zone and Content.accessible(view,zone.requiresMain,zone.legacyRequiresMain) then
@@ -75,7 +75,7 @@ local function resetJournal(base,c)
  if c.side then
   local s=P.copy(base);s.clears[c.id]=nil;s.accepted=s.accepted or {};s.accepted[c.id]=true
   for _,g in ipairs(c.goals)do
-   local key=c.id..':'..g.id;s.flags[key]=nil;if s.expansionWaivers then s.expansionWaivers[key]=nil end
+   local key=c.id..':'..g.id;s.flags[key]=nil;if s.expansionWaivers then s.expansionWaivers[key]=nil end;if s.pacingWaivers then s.pacingWaivers[key]=nil end
    for _,field in ipairs({'activities','clues'})do if s[field]then s[field][key]=nil end end
    for _,step in ipairs(g.activity and g.activity.steps or {})do if s.decisions then s.decisions[key..':'..step.id]=nil end end
   end
@@ -93,7 +93,7 @@ local function resetJournal(base,c)
    s.clears[chapter.id]=true;s.coins=s.coins+(chapter.journalCoins or chapter.reward.coins)
    for _,g in ipairs(chapter.goals)do
     local key=chapter.id..':'..g.id
-    if not g.expansion and (not g.optional or base.flags[key])then
+    if not g.expansion and not g.pacing and (not g.optional or base.flags[key])then
      s.flags[key]=true
      local steps=g.activity and g.activity.steps
      if steps then
@@ -161,14 +161,16 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
  local c=Content.byId[chapterId];local p,why,journal,reward
  local firstClear=not (hero.deepwood and hero.deepwood.clears[chapterId])
  if firstClear then
-  if (active.balanceVersion or 1)>=13 and (not hero.deepwood or hero.deepwood.expansionVersion~=1)then
+  if (active.balanceVersion or 1)>=13 and (not hero.deepwood or hero.deepwood.expansionVersion~=1 or hero.deepwood.combatPacingVersion~=1)then
    profile=R.copy(profile);profile.heroes[heroId].deepwood=assert(P.enableExpansion(hero.deepwood or P.new()))
   end
   p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId)
   if not p then return nil,why end
   journal=P.copy(p.heroes[heroId].deepwood)
  else
-  journal,why,reward=P.apply(active.journal,chapterId,goalId,choice,stepId)
+  local source=active.journal
+  if (active.balanceVersion or 1)>=13 then source=assert(P.enableExpansion(source))end
+  journal,why,reward=P.apply(source,chapterId,goalId,choice,stepId)
   if not journal then return nil,why end
   if reward.repeated then return R.copy(profile),nil,true end
   p=R.copy(profile);p.revision=p.revision+1

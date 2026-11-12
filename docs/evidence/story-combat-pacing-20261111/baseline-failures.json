@@ -1,0 +1,30 @@
+[
+  {
+    "test": "story-region-handoff",
+    "baseline": "177423d13d8a4bf4c236e45d16fcf45f8371fd8f",
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "lua: [string \"return function(options,state,Content) local ...\"]:4: bad argument #1 to 'for iterator' (table expected, got nil)\nstack traceback:\n\t[C]: in for iterator 'for iterator'\n\t[string \"return function(options,state,Content) local ...\"]:4: in field 'destination'\n\ttests/story-region-handoff.spec.lua:44: in main chunk\n\t[C]: in ?\n"
+  },
+  {
+    "test": "battle-startup",
+    "baseline": "177423d13d8a4bf4c236e45d16fcf45f8371fd8f",
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "lua: src/server/World/CampaignWorld.luau:19: attempt to call a nil value (field 'prepare')\nstack traceback:\n\tsrc/server/World/CampaignWorld.luau:19: in field 'create'\n\ttests/battle-startup.spec.lua:47: in main chunk\n\t[C]: in ?\n"
+  },
+  {
+    "test": "story-continuation",
+    "baseline": "8f387f6cb1244fe2f0b1f0cad4cf409879bee6e5",
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "lua: tests/story-continuation.spec.lua:52: StoryLocked\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/story-continuation.spec.lua:52: in main chunk\n\t[C]: in ?\n"
+  },
+  {
+    "test": "quest-completion-rewards",
+    "baseline": "8f387f6cb1244fe2f0b1f0cad4cf409879bee6e5",
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": "lua: tests/quest-completion-rewards.spec.lua:13: expanded runs retain rules 12 completion rewards\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/quest-completion-rewards.spec.lua:13: in local 'check'\n\ttests/quest-completion-rewards.spec.lua:84: in main chunk\n\t[C]: in ?\n"
+  }
+]

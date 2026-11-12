@@ -1,0 +1,7 @@
+Unable to assign property Source. Provided string length (256221) is greater than or equal to max length (200000)
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:7
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

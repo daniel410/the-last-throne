@@ -17,15 +17,7 @@ local Targeting = require(script.K0Targeting)
 local Settings = require(script.GameSettings)
 local hud = require(script.K0Hud).create()
 hud.setVisible(false)
-require(script.K0BackgroundMusic).start()
-require(script.K0Telegraphs).start()
-require(script.K0SwordVisual).start()
-require(script.K0EnemyVisual).start()
-require(script.K0HitEffects).start()
-require(script.K0PlayerHitFeedback).start()
-require(script.AdvancedSkillVisual).start()
-require(script.PixelFXController).start()
-require(script.K0CombatAudio).start()
+local Presentation=require(script.BattlePresentation)
 local actionRemote
 local heldBlock = false
 local heldSprint = false
@@ -509,13 +501,16 @@ end)
   updateSessionView()
   if not journalStarted and player:GetAttribute('TLTRoute')~='Training' and player:GetAttribute('K0SessionPhase')=='Tutorial'then
    journalStarted=true
-   require(script.DeepwoodMap).start(hud.mapMenu)
-   task.spawn(function()require(script.DeepwoodJournal).start(hud)end)
+   Presentation.launch('StoryNavigation',function()
+    require(script.DeepwoodMap).start(hud.mapMenu)
+    require(script.DeepwoodJournal).start(hud)
+   end)
   end
  end
  player:GetAttributeChangedSignal('K0SessionPhase'):Connect(update)
  player:GetAttributeChangedSignal('TLTRoute'):Connect(update)
  update()
+ Presentation.start(script)
  return api
 end
 return Controller

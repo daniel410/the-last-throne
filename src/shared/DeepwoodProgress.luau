@@ -38,8 +38,10 @@ function P.eligible(s,c)
  if c.side then return Content.accessible(s,c.minMain,c.legacyMinMain) and P.accepted(s,c) and not s.clears[c.id] end
  return not s.clears[c.id]and (s.main+1==(s.version==1 and c.legacyNumber or c.number)or s.version==2 and s.legacyResume==c.id)
 end
-function P.required(s,g)return g.expansion and s.expansionVersion==1 or not g.expansion and not g.optional end
+function P.required(s,g)if g.pacing then return s.combatPacingVersion==1 end;return g.expansion and s.expansionVersion==1 or not g.expansion and not g.optional end
 function P.available(s,c,g)
+ if g.pacing and s.combatPacingVersion~=1 then return false end
+ if s.combatPacingVersion==1 then for _,id in ipairs(g.pacingRequires or {})do if not s.flags[c.id..':'..id]then return false end end end
  if g.expansion and s.expansionVersion~=1 then return false end
  if s.expansionVersion==1 then for _,id in ipairs(g.expansionRequires or {})do if not s.flags[c.id..':'..id]then return false end end end
  if not Content.accessible(s,g.minMain or 0,g.legacyMinMain)then return false end
@@ -65,6 +67,8 @@ function P.validate(s)
  or (s.choice~='' and s.choice~='sanctuary' and s.choice~='shared') then return false end
  if s.expansionVersion~=nil and s.expansionVersion~=1 then return false end
  if s.expansionWaivers~=nil and type(s.expansionWaivers)~='table'then return false end
+ if s.combatPacingVersion~=nil and (s.combatPacingVersion~=1 or s.expansionVersion~=1)then return false end
+ if s.pacingWaivers~=nil and type(s.pacingWaivers)~='table'then return false end
  local legacy=s.version==1
  if s.legacyMain~=nil and (legacy or type(s.legacyMain)~='number'or s.legacyMain%1~=0 or s.legacyMain<0 or s.legacyMain>Content.mainCount)then return false end
  if s.legacyResume~=nil then
@@ -82,10 +86,17 @@ function P.validate(s)
   local cid,gid
   if type(key)=='string' then cid,gid=key:match('^([^:]+):(.+)$') end
   local c=cid and Content.byId[cid];local g=c and P.goal(c,gid)
+  if g and (g.pacing and s.combatPacingVersion~=1)then return false end
+  if g and s.combatPacingVersion==1 then for _,id in ipairs(g.pacingRequires or {})do if not s.flags[c.id..':'..id]then return false end end end
   if v~=true or not g or g.expansion and s.expansionVersion~=1 then return false end
   if s.expansionVersion==1 then for _,id in ipairs(g.expansionRequires or {})do if not s.flags[c.id..':'..id]then return false end end end
   if not recorded(c,false)then return false end
   for _,r in ipairs(g.requires) do if not s.flags[c.id..':'..r] then return false end end
+ end
+ for key,v in pairs(s.pacingWaivers or {})do
+  local cid,gid;if type(key)=='string'then cid,gid=key:match('^([^:]+):(.+)$')end
+  local c=cid and Content.byId[cid];local g=c and P.goal(c,gid)
+  if v~=true or not g or not g.pacing or s.combatPacingVersion~=1 or not s.flags[key]or not (s.flags[cid..':'..g.before]or ((s.activities or {})[cid..':'..g.before]or 0)>0)then return false end
  end
  for key,v in pairs(s.expansionWaivers or {})do
   local cid,gid
@@ -195,16 +206,28 @@ function P.apply(s,chapterId,goalId,choice,stepId)
 end
 -- New runs import only events whose original gate was already confirmed.
 -- This never pays a reward or removes an existing step/choice/receipt.
+function P.enableCombatPacing(s)
+ if not P.validate(s)then return nil,'Incompatible'end
+ local n=P.copy(s)
+ if n.combatPacingVersion==1 then return n end
+ if n.expansionVersion~=1 then return n end
+ n.combatPacingVersion=1;n.pacingWaivers={}
+ for _,c in ipairs(Content.chapters)do for _,g in ipairs(c.pacingGoals or {})do
+  if n.flags[c.id..':'..g.before]or ((n.activities or {})[c.id..':'..g.before]or 0)>0 then n.flags[c.id..':'..g.id]=true;n.pacingWaivers[c.id..':'..g.id]=true end
+ end end
+ if not P.validate(n)then return nil,'Incompatible'end
+ return n
+end
 function P.enableExpansion(s)
  if not P.validate(s)then return nil,'Incompatible'end
  local n=P.copy(s)
- if n.expansionVersion==1 then return n end
+ if n.expansionVersion==1 then return P.enableCombatPacing(n) end
  n.expansionVersion=1;n.expansionWaivers={}
  for _,c in ipairs(Content.chapters)do for _,g in ipairs(c.expansionGoals or {})do
   if n.flags[c.id..':'..g.before]then n.flags[c.id..':'..g.id]=true;n.expansionWaivers[c.id..':'..g.id]=true end
  end end
  if not P.validate(n)then return nil,'Incompatible'end
- return n
+ return P.enableCombatPacing(n)
 end
 -- Upgrade only a validated old journal, preserving every receipt and partial objective.
 -- legacyMain grants historical access; main is the new contiguous clear frontier.

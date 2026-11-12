@@ -214,10 +214,11 @@ shield=applyGoal(shield,sc,P.goal(sc,'west'));presentation.update({journal=shiel
 check(conduit:FindFirstChildWhichIsA('BasePart',true).Transparency==1,'actual saved western device disables its own shield connection')
 -- Existing restored throne was already implemented; verify it instead of claiming it missing.
 local home=Instance.new('Folder');home.Name='DawnspireLobbyPrototype';home.Parent=workspace
+local throne=Instance.new('Model');throne.Name='DawnspireThrone';throne:SetAttribute('HeartPosition',Vector3.new(0,12,0));throne.Parent=home
 require(Client.DawnspireHomecoming).update({heroId='done',heroes={done={deepwood=all}}})
-check(home:FindFirstChild('DawnspireHomecoming')and home.DawnspireHomecoming:FindFirstChild('Crownheart'),'existing throne and Crownheart restoration render for final clear')
+check(throne:FindFirstChild('DawnspireHomecoming')and throne.DawnspireHomecoming:FindFirstChild('Crownheart'),'existing throne and Crownheart restoration render for final clear')
 require(Client.DawnspireHomecoming).update({heroId='new',heroes={new={deepwood=P.new()}}})
-check(not home:FindFirstChild('DawnspireHomecoming'),'switching heroes clears personal throne restoration')
+check(not throne:FindFirstChild('DawnspireHomecoming'),'switching heroes clears personal throne restoration')
 home:Destroy()
 -- Story causes, earned callbacks, physical circuit controls and side returns.
 local medicine,mc,mg=reach('DW-02','exp_1')

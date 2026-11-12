@@ -47,7 +47,7 @@ for _,c in ipairs(C.chapters)do
   end
  end end
 end
-check(battles==75 and sites==276,'complete five-epic battle census')
+check(battles==88 and sites==315,'complete five-epic battle census including thirteen supplemental patrols')
 for epic=1,5 do check(epics[epic],'every epic reviewed')end
 check(totalNew>totalOld*1.5,'substantial real footprint expansion')
 check(D.compatible(13)and D.compatible(14),'old and new admitted rules supported')

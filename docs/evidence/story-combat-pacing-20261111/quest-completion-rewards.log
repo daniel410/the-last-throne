@@ -1,0 +1,6 @@
+lua: tests/quest-completion-rewards.spec.lua:13: expanded runs retain rules 12 completion rewards
+stack traceback:
+	[C]: in global 'assert'
+	tests/quest-completion-rewards.spec.lua:13: in local 'check'
+	tests/quest-completion-rewards.spec.lua:84: in main chunk
+	[C]: in ?

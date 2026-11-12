@@ -1,0 +1,6 @@
+lua: [string "return function(options,state,Content) local ..."]:4: bad argument #1 to 'for iterator' (table expected, got nil)
+stack traceback:
+	[C]: in for iterator 'for iterator'
+	[string "return function(options,state,Content) local ..."]:4: in field 'destination'
+	tests/story-region-handoff.spec.lua:44: in main chunk
+	[C]: in ?

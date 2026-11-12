@@ -1,0 +1,46 @@
+[
+  {
+    "label": "COMBAT_ROUTE_RUNTIME",
+    "result": {
+      "checks": 817,
+      "kind": "COMBAT_ROUTE_RUNTIME"
+    }
+  },
+  {
+    "label": "COMBAT_ROUTE_RUNTIME",
+    "result": {
+      "checks": 459,
+      "kind": "COMBAT_ROUTE_RUNTIME"
+    }
+  },
+  {
+    "label": "COMBAT_ROUTE_WORLD",
+    "result": {
+      "floorFailures": [],
+      "kind": "COMBAT_ROUTE_WORLD",
+      "blockers": [],
+      "checks": 6333
+    }
+  },
+  {
+    "label": "CAMPAIGN_EXPANSION_NATIVE",
+    "result": {
+      "generationSeconds": 1.1816480417037383,
+      "scope": "isolated geometry, server activity/escort, saved checkpoints and native TD map; no live DataStore or real device acceptance",
+      "blockers": [],
+      "checks": 9192,
+      "steps": 246,
+      "samples": 3974,
+      "incidents": 82,
+      "parts": 62705
+    }
+  },
+  {
+    "label": "STORY_COMBAT_PACING_NATIVE",
+    "result": {
+      "kind": "STORY_COMBAT_PACING_NATIVE",
+      "patrols": 13,
+      "checks": 61
+    }
+  }
+]
