@@ -17,20 +17,21 @@ local ok,err=xpcall(function()
   end end
   check(count==#spec.parts and count<=130,key..' bounded reproducible part count');report.models[key]=count
  end
- check(kit.forStep('EC-04','west_valve',{kind='lever',title='Open the western coolant valve'})=='CoolantValve','coolant uses pipe/handwheel, not generic lever')
- check(kit.forStep('DW-02','testimony',{kind='ledger',title="Find the convoy captain's badge"})=='ConvoyBadge','badge differs from a book')
- check(kit.forStep('DW-01','supplies',{kind='bindings',title='Find the loose travel ropes'})=='TravelBindings','ropes do not become machinery')
+ check(kit.forStep('EC-04','west_valve',{id='operate',kind='lever'})=='CoolantValve','coolant uses pipe/handwheel, not generic lever')
+ check(kit.forStep('DW-02','testimony',{id='crest',kind='ledger'})=='ConvoyBadge','badge differs from a book')
+ check(kit.forStep('DW-01','supplies',{id='bindings',kind='bindings'})=='TravelBindings','ropes do not become machinery')
  local manifestStep=require(game.ReplicatedStorage.Shared.DeepwoodAdventure).goals['DW-01:supplies'].steps[1]
  local cargo=kit.activity(fixture,'DW-01','supplies',manifestStep,Vector3.new(0,0,0))
  check(cargo:GetAttribute('StoryPropKey')=='ConvoySupplyCrate' and cargo:FindFirstChild('CargoLid') and cargo:FindFirstChild('PackingList'),'roadside packing list belongs to fallen supply cargo')
  for _,p in ipairs(cargo:GetDescendants())do if p:IsA('BasePart')then check(not p.CanCollide and not p.CanTouch and not p.CanQuery,'fallen cargo preserves interaction and navigation')end end
- check(kit.goal(fixture,'FV-07',{id='mirror',title='Restore the first signal mirror',position={0,0,0}}):GetAttribute('StoryPropKey')=='SignalMirror','mirror uses an optical instrument')
+ check(kit.goal(fixture,'FV-07',{id='mirror_west',title='Restore the first signal mirror',position={0,0,0}}):GetAttribute('StoryPropKey')=='SignalMirror','mirror uses an optical instrument')
  fixture:Destroy()
  Run:Run();task.wait(3)
  local world=require(Server.World.CampaignWorld).create();local content=require(game.ReplicatedStorage.Shared.CampaignContent)
  local artCount,parts=0,0
  for _,d in ipairs(world.folder:GetDescendants())do if d:IsA('Model') and d:GetAttribute('StoryPropKey')then
   artCount+=1
+  check(d:GetAttribute('StoryPropKey')~='LedgerDesk','no freestanding desk used as a campaign story object')
   for _,p in ipairs(d:GetDescendants())do if p:IsA('BasePart')then
    parts+=1;check(not p.CanCollide and not p.CanTouch and not p.CanQuery,'placed art preserves navigation and raycasts')
   end end
@@ -61,6 +62,14 @@ local ok,err=xpcall(function()
  check(valve:FindFirstChild('ValveHandwheel').Color==Color3.fromRGB(85,202,196),'completed valve handle shows saved state')
  presentation.update({flags={}})
  check(valve:FindFirstChild('ValveHandwheel').Color==Color3.fromRGB(163,125,63),'incomplete valve handle restores authored color')
+ local relay=world.folder.AdventureActivities:FindFirstChild('EC-07_restart_operate_Art')
+ local handle=relay and relay:FindFirstChild('RelayBridge')
+ check(handle~=nil,'furnace restart uses the protection relay, not a gate winch')
+ local original=handle.Color
+ presentation.update({flags={['EC-07:restart']=true}})
+ check(handle.Color==Color3.fromRGB(85,202,196),'replacement mechanism shows personal completion')
+ presentation.update({flags={}})
+ check(handle.Color==original,'replacement mechanism restores its authored color')
  report.placedModels=artCount;report.placedParts=parts
 end,debug.traceback)
 if not ok then table.insert(report.failures,tostring(err))end

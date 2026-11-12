@@ -13,9 +13,9 @@ function V.update(journal)
   if key then
    local done=journal.flags[key]==true
    for _,piece in ipairs(model:GetChildren()) do if piece:IsA('BasePart') and
-    (piece.Name=='ValveHandwheel' or piece.Name=='HandwheelSpoke' or piece.Name=='WinchCrank' or piece.Name=='CrankGrip') then
+    (piece.Name=='ValveHandwheel' or piece.Name=='HandwheelSpoke' or piece.Name=='WinchCrank' or piece.Name=='CrankGrip' or piece:GetAttribute('StoryHandleOriginalColor')) then
      -- Personal completion changes the operative handle only; wood/iron keep their authored materials.
-     piece.Color=done and Color3.fromRGB(85,202,196) or Color3.fromRGB(163,125,63)
+     piece.Color=done and Color3.fromRGB(85,202,196) or piece:GetAttribute('StoryHandleOriginalColor') or Color3.fromRGB(163,125,63)
    end end
   end
  end end

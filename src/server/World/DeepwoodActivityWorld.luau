@@ -49,7 +49,7 @@ function W.create(world)
      if a.mode~='dialogue' and a.mode~='escort' then
       prop(folder,c.id,g.id,step,p)
       if a.mode~='travel' and a.mode~='trail' then
-       prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.ObjectText=step.title;prompt.ActionText=a.mode=='sequence' and 'Activate rune' or a.mode=='mechanism' and 'Operate' or 'Examine';prompt.HoldDuration=.45;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.Parent=anchor
+       prompt=Instance.new('ProximityPrompt');prompt.Style=Enum.ProximityPromptStyle.Custom;prompt.KeyboardKeyCode=Enum.KeyCode.F;prompt.GamepadKeyCode=Enum.KeyCode.ButtonX;prompt.ObjectText=step.title;prompt.ActionText=require(script.Parent.StoryPropAssignments).actions[c.id..':'..g.id] or a.mode=='sequence' and 'Activate rune' or a.mode=='mechanism' and 'Operate' or 'Examine';prompt.HoldDuration=.45;prompt.MaxActivationDistance=12;prompt.RequiresLineOfSight=false;prompt.Parent=anchor
       end
      end
      if step.circuitControls then require(script.Parent.CampaignCircuitWorld).create(world,folder,c,g,step)end

@@ -1,13 +1,15 @@
 -- Story-specific, upload-free native model kit. All detail is decorative.
--- Geometry source and Blender exports: assets/models/story-props-v1.
+-- Legacy exports: assets/models/story-props-v1; authored quest geometry: StoryQuestGeometry.
 local Geometry=require(script.Parent.StoryPropGeometry)
+local QuestGeometry=require(script.Parent.StoryQuestGeometry)
+local Assignments=require(script.Parent.StoryPropAssignments)
 -- The roadside manifest belongs to fallen convoy cargo, not office furniture.
 local convoyCargo={purpose='Convoy food and medicine crate dropped during the ambush, with its packing list secured beneath the delivery seal.',parts=table.clone(Geometry.SupplyCrate.parts)}
 table.insert(convoyCargo.parts,{name='PackingList',size={1.25,.035,1.5},position={-.2,2.17,0},color={223,207,164},material='Fabric',rotation={0,0,0},shape='Block'})
 for i=1,4 do
  table.insert(convoyCargo.parts,{name='PackingListLine',size={.75,.012,.045},position={-.25,2.195,-.5+i*.22},color={74,62,46},material='Fabric',rotation={0,0,0},shape='Block'})
 end
-local P={version=1}
+local P={version=2}
 local function theme(chapter)
  if chapter and chapter:match('^GW')then return 'Gloamwood'end
  if chapter and chapter:match('^HG')then return 'HauntedGraveyard'end
@@ -16,7 +18,7 @@ local function theme(chapter)
  return 'Deepwood'
 end
 function P.build(parent,key,position,options)
- options=options or {};local spec=assert(key=='ConvoySupplyCrate' and convoyCargo or Geometry[key],'Unknown story prop: '..tostring(key))
+ options=options or {};local spec=assert(key=='ConvoySupplyCrate' and convoyCargo or QuestGeometry[key] or Geometry[key],'Unknown story prop: '..tostring(key))
  local model=Instance.new('Model');model.Name=options.name or key
  model.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
  model:SetAttribute('StoryPropVersion',P.version);model:SetAttribute('StoryPropKey',key)
@@ -45,52 +47,36 @@ function P.build(parent,key,position,options)
   p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false
   p.CastShadow=p.Size.Magnitude>1;p.TopSurface=Enum.SurfaceType.Smooth;p.BottomSurface=Enum.SurfaceType.Smooth
   p:SetAttribute('TLTDecorative',true);p.Parent=model
+  if s.name=='RelayBridge' or s.name=='BraceHandle' then p:SetAttribute('StoryHandleOriginalColor',p.Color) end
   if not model.PrimaryPart then model.PrimaryPart=p end
   end
  end
  model.WorldPivot=origin;model.Parent=parent;return model
 end
 function P.forStep(chapter,goal,step)
- if chapter=='DW-01' and goal=='supplies' and step.id=='manifest' then return 'ConvoySupplyCrate' end
- local kind=step.kind;local title=string.lower(step.title or '')
- -- Resolve the actual story object before using the reusable activity type.
- if title:find('badge',1,true) then return 'ConvoyBadge' end
- if title:find('crate',1,true) or title:find('medicine',1,true) or title:find('supplies',1,true) then return 'SupplyCrate' end
- if kind=='lever' then
-  if title:find('cool',1,true) or title:find('valve',1,true) or title:find('intake',1,true) then return 'CoolantValve' end
-  return 'GateWinch'
- end
- if kind=='ledger' or (kind=='relic' and title:find('order',1,true)) then return 'LedgerDesk' end
- if kind=='rune' then return title:find('portal',1,true) and 'PortalAnchor' or 'SealWaystone' end
- if kind=='lantern' then return 'RouteLantern' end
- if kind=='relic' then return 'SupplyCrate' end
- if kind=='tracks' or kind=='arrival' or kind=='resin' then
-  return title:find('portal',1,true) and 'PortalAnchor' or 'TrailEvidence'
- end
- if kind=='bindings' then return 'TravelBindings' end
- if kind=='actor' then return nil end
- return 'LedgerDesk'
+ if step.kind=='actor' then return nil end
+ return Assignments.forStep(chapter,goal,step)
 end
 function P.activity(parent,chapter,goal,step,position)
  if goal:match('^exp_')then return require(script.Parent.CampaignIncidentProps).create(parent,chapter,goal,step,position)end
  local key=P.forStep(chapter,goal,step)
  if not key then return end
- local model=P.build(parent,key,position,{theme=theme(chapter),name=chapter..'_'..goal..'_'..step.id..'_Art',detail=goal:match('^exp_')and 'incident'or nil})
+ local model=P.build(nil,key,position,{theme=theme(chapter),name=chapter..'_'..goal..'_'..step.id..'_Art'})
+ model:SetAttribute('StoryObjective',chapter..':'..goal..':'..step.id)
+ model:SetAttribute('StoryObjectTitle',step.title)
  if chapter:match('^EC') and step.kind=='lever' then model:SetAttribute('StoryVisualKey',chapter..':'..goal) end
+ model.Parent=parent
  return model
 end
 function P.goal(parent,chapter,goal)
  -- Later epic objects without multi-step activities still need meaningful art.
  if goal.activity or #(goal.enemies or {})>0 then return end
- local title=string.lower(goal.title or '')
- local key
- if title:find('lantern',1,true) or title:find('beacon',1,true) then key='RouteLantern'
- elseif title:find('mirror',1,true) then key='SignalMirror'
- elseif title:find('relay',1,true) or title:find('marker',1,true) then key='SealWaystone'
- elseif title:find('lock',1,true) then key='GateWinch'
- elseif title:find('record',1,true) or title:find('order',1,true) or title:find('plan',1,true) or title:find('map',1,true) then key='LedgerDesk'
- elseif title:find('suppl',1,true) or title:find('kit',1,true) then key='SupplyCrate'
- elseif title:find('seal',1,true) or title:find('portal',1,true) or title:find('core',1,true) then key='PortalAnchor' end
- if key then return P.build(parent,key,Vector3.new(table.unpack(goal.position)),{theme=theme(chapter),name=chapter..'_'..goal.id..'_Art'}) end
+ local key=Assignments.goals[chapter..':'..goal.id]
+ if key then
+  local model=P.build(nil,key,Vector3.new(table.unpack(goal.position)),{theme=theme(chapter),name=chapter..'_'..goal.id..'_Art'})
+  model:SetAttribute('StoryObjective',chapter..':'..goal.id);model:SetAttribute('StoryObjectTitle',goal.title)
+  model.Parent=parent
+  return model
+ end
 end
 return P

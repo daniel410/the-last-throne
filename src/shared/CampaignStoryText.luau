@@ -107,13 +107,13 @@ local revisions={
  {chapter='HG-06',goal='exp_1',step='step2',text='The furnace-made frame redirects the intact Crownheart into Veyr\'s invasion gate. Freeing it after Veyr falls will let you close that gate.'},
  {chapter='HG-07',goal='crownheart',step='confirmed',text='The Crownheart comes free of the binding frame and shines again. Shut the portal control before leaving with your friends.'},
  {chapter='HG-07',goal='exp_2',step='step1',text='The heart is already free. Release the empty frame\'s last catch so the portal control can shut safely.'},
- {chapter='FV-Q3',goal='inspect',text='The lake stores sit beside old shore markers. Haldor can use this sheltered return route once its guardian is calm.'},
+ {chapter='FV-Q3',goal='inspect',title='Inspect the sheltered shore handrail',text='The lake stores sit beside old shore markers. Haldor can use this sheltered return route once its guardian is calm.'},
  {chapter='FV-Q3',goal='report',text='Haldor: The shore markers lead home again. I can guide the next travelers by the lake. Thank you!'},
- {chapter='FV-Q4',goal='inspect',text='The storm has ended, but this old watch is still receiving a local warning. Ylva needs its duty record and a safe way to the relay.'},
+ {chapter='FV-Q4',goal='inspect',title='Inspect the watch relay plate',text='The storm has ended, but this old watch is still receiving a local warning. Ylva needs its duty record and a safe way to the relay.'},
  {chapter='FV-Q4',goal='report',text='Ylva: The watch record matches the peaceful signal. We can keep this glacier path safe without waking the valley alarm again.'},
- {chapter='EC-Q3',goal='inspect',text='Crew stores were abandoned by the heat altar. The shaman blocks the service path the workers need to recover them.'},
+ {chapter='EC-Q3',goal='inspect',title='Inspect the abandoned service tools',text='Crew stores were abandoned by the heat altar. The shaman blocks the service path the workers need to recover them.'},
  {chapter='EC-Q3',goal='report',text='Ketta: The heat-altar service path is clear. Our crew can bring those stores home without crossing the ritual ground.'},
- {chapter='EC-Q4',goal='inspect',text='The city furnace is safe. These ore sleds mark an older hauling route through the titan basin; Ketta wants it checked for the returning crew.'},
+ {chapter='EC-Q4',goal='inspect',title='Inspect the old ore sleds',text='The city furnace is safe. These ore sleds mark an older hauling route through the titan basin; Ketta wants it checked for the returning crew.'},
  {chapter='EC-Q4',goal='report',text='Ketta: I have your hauling record. We can reopen the freight landing while you follow the royal-tomb mission.'},
 }
 for _,row in ipairs(revisions)do table.insert(rows,row)end
@@ -137,7 +137,7 @@ function T.install(content)
    -- Single-step objectives share the same authored instruction in HUD and phases.
    if row.step and #goal.activity.steps==1 then goal.title=target.title;goal.text=target.text end
    if row.title and (not row.step or #goal.activity.steps==1)then
-    for _,phase in ipairs(chapter.quest.phases)do
+    for _,phase in ipairs(chapter.quest.phases or {})do
      if #phase.goals==1 and phase.goals[1]==goal.id then phase.title=goal.title end
     end
    end
