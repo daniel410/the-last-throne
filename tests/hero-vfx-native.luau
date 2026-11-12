@@ -15,10 +15,11 @@ local ok,err=xpcall(function()
  for class,list in pairs(Config.Skills)do
   for _,d in ipairs(list)do
    FX.clear()
-   local model=FX.skill(char,d.id,first,last,1)
+   local model=FX.skill(char,d.id,first,last,1,{last,last+Vector3.new(3,0,-2)})
+   if d.id=="mage_wind_lance"then check(model==nil,"dedicated wind renderer is not duplicated")else
    check(model~=nil,'skill resolves '..d.id)
    local count,beams,chips=FX.count()
-   check(count==1 and beams<=36 and chips<=7,'per skill budget '..d.id)
+   check(count==1 and beams<=48 and chips<=7,'per skill budget '..d.id)
    -- Wind Lance has its own existing renderer; all other styles must draw geometry.
    check(beams+chips>0 or d.id=='mage_wind_lance','authored silhouette '..d.id)
    for _,v in ipairs(model:GetDescendants())do
@@ -30,6 +31,7 @@ local ok,err=xpcall(function()
    end
    FX.step(workspace:GetServerTimeNow()+2)
    check(model.Parent==nil and FX.count()==0,'complete cleanup')
+   end
    local hit=FX.contact(last,class,d.id,Vector3.new(0,0,-1),1)
    check(hit~=nil and hit:GetAttribute('Style')==Catalog.byId[d.id].key,'elemental contact '..d.id)
    report.skills+=1

@@ -844,7 +844,12 @@ local function consumeArrow(character)
 	if payload == nil or seenShots[character] == payload then return end
 	seenShots[character] = payload
 	local first, last = decodeShot(payload)
-	if first then emitArrow(character, weaponOrigin(character, first, last, "elf"), last, payload) end
+	if first then
+  local muzzle=weaponOrigin(character,first,last,"elf")
+  emitArrow(character,muzzle,last,payload)
+  local id=character:GetAttribute("K0SkillId")
+  if commonDefinitions[id]then HeroVFX.skill(character,id,muzzle,last,1,id=="elf.common.multi"and{last}or nil)end
+ end
 end
 
 local function consumeMultiShot(character)
@@ -860,6 +865,7 @@ local function consumeMultiShot(character)
 	end
 	if values[1] < 1 or values[1] % 1 ~= 0 then return end
 	local origin = Vector3.new(values[2], values[3], values[4])
+ local endpoints={}
 	for index = 5, #values, 3 do
 		local endpoint = Vector3.new(values[index], values[index + 1], values[index + 2])
 		local length = (endpoint - origin).Magnitude
@@ -867,8 +873,10 @@ local function consumeMultiShot(character)
 			-- Spread comes from the server endpoints. Each released arrow keeps
 			-- that straight ray rather than bending sideways during flight.
 			emitArrow(character, weaponOrigin(character, origin, endpoint, "elf"), endpoint, payload, false)
+   table.insert(endpoints,endpoint)
 		end
 	end
+ if #endpoints>0 then HeroVFX.skill(character,"elf.common.multi",origin,endpoints[1],1,endpoints)end
 end
 
 local function destroySpell(spell)
@@ -967,7 +975,7 @@ local function consumeSpell(character)
 	trail.Parent = orb
 	local distance = (last - first).Magnitude
 	table.insert(spells, { part = orb, character = character, owner = Players:GetPlayerFromCharacter(character),
-		payload = payload, first = first, direction = (last - first).Unit, distance = distance, elapsed = 0, waterDroplets = waterDroplets,
+		payload = payload, first = first, direction = (last - first).Unit, distance = distance, elapsed = 0, waterDroplets = waterDroplets, skillId = skillId,
 		launchRotation = launchRotation,
 		heldWeapon = heldWeapon, heldTransparency = heldTransparency,
 		arcHeight = heldWeapon and math.clamp(distance * 0.06, 0.45, 1.8) or 0,
@@ -1003,6 +1011,7 @@ local function advanceSpells(dt)
 			end
 			if spell.elapsed >= spell.duration then
 				if not spell.heldWeapon then impact(position, spell.part.Color) end
+    if commonDefinitions[spell.skillId]and spell.skillId~="mage.common.gravity"then HeroVFX.skill(spell.character,spell.skillId,spell.first,position,1)end
 				destroySpell(spell); table.remove(spells, index)
 			end
 		end

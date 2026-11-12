@@ -1,0 +1,16 @@
+Luau compile PASS src/client/SkillVFXProfiles.luau
+Luau compile PASS src/client/HeroVFX.luau
+Luau compile PASS src/client/AdvancedSkillVisual.luau
+Luau compile PASS src/client/K0SwordVisual.luau
+Luau compile PASS tests/hero-vfx-native.luau
+Luau compile PASS tests/skill-vfx-individual-native.luau
+Luau compile PASS tools/capture-skill-vfx-review.luau
+Python parse PASS tools/prepare-hero-vfx-native.py
+Python parse PASS tools/author-skill-vfx-profiles.py
+Python parse PASS tools/decode-skill-vfx-captures.py
+Skill effects CPU: 15938 checks PASS; all 116 advanced casts/pulses, geometry, cosmetic budget, cancellation. No engine QA.
+Advanced skills: 1435 checks passed
+Hero progression: 3711 checks passed
+Engine image hashes PASS before: 128
+Engine image hashes PASS after: 128
+Engine image hashes PASS last-pulse: 39

@@ -36,8 +36,11 @@ local function ground(position,character)
  return hit and hit.Position+Vector3.new(0,.08,0) or position-Vector3.new(0,2.7,0)
 end
 local function arc(center,direction,radius,angle,color,life,name)
- local points=Geometry.sector(center,direction,radius,angle,angle>=359 and 16 or 8)
- for i=1,#points-1 do segment(points[i],points[i+1],color,life,.09,name) end
+ local points=Geometry.sector(center,direction,radius,angle,angle>=359 and 24 or 12)
+ for i=1,#points-1 do
+  local p=segment(points[i],points[i+1],color,life,.07,name)
+  if p and(name=="SkillSector"or name=="SkillTelegraph")then p.Transparency=.65 end
+ end
 end
 local function impact(center,color,scale)
  local p=part("SkillContact",color,Enum.PartType.Ball,Vector3.one*.25,CFrame.new(center),.18,.1)
@@ -178,6 +181,8 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   end
   return
  end
+ -- The server rotates its line hit direction but retains cast.center in the
+ -- visual event. Project the same single 18-degree rotation for the even beat.
  if d.crosscut and d.form=="line" and pulse%2==0 then
   direction=CFrame.Angles(0,math.rad(18),0):VectorToWorldSpace(direction)
   center=origin+direction
@@ -186,7 +191,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local floor=ground(d.form=="area" and center or origin,character)
  local targetFloor=ground(center,character)
  local effect=profile.effect
- HeroVFX.skill(character,id,origin,center,pulse)
+ HeroVFX.skill(character,id,origin,center,pulse,points)
  -- Core geometry is rendered before optional impact decoration.
  if d.form=="chain" then
   local from=first
@@ -251,7 +256,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
   arc(floor,direction,radius,angle,color,.3,"SkillSector")
   if effect=="earth" or effect=="frost" then spikes(floor,direction,radius,angle,color,effect)
-  elseif effect=="slash" then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
+  elseif effect=="slash" and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    local flat=Vector3.new(direction.X,0,direction.Z)
    local delta=flat.Magnitude>.001 and flat.Unit or Vector3.new(0,0,-1)

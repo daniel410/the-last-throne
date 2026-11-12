@@ -6,7 +6,7 @@ local Input=game:GetService("UserInputService")
 local Debris=game:GetService("Debris")
 local Catalog=require(RS.Shared.PixelFXCatalog)
 local Geometry=require(script.Parent.SkillEffectGeometry)
-local Presentation=require(RS.Shared.SkillPresentation)
+local Profiles=require(script.Parent.SkillVFXProfiles)
 local FX={}
 local active={}
 local connection
@@ -56,11 +56,11 @@ local function curve(r,name,path,count,width,color)
   line(r,name,function(u)return path(from,u),path(to,u)end,width*(.4+.6*math.sin((i-.5)/count*math.pi)),color)
  end
 end
-local function ring(r,name,center,radius,width,vertical,inward,color)
+local function ring(r,name,center,radius,width,vertical,inward,color,basis)
  curve(r,name,function(t,u)
   local angle=t*math.pi*2+u*.7;local size=radius*(inward and(1-u*.8)or(.22+.78*(1-(1-u)^3)))
   local offset=vertical and Vector3.new(math.cos(angle)*size,math.sin(angle)*size,0)or Vector3.new(math.cos(angle)*size,0,math.sin(angle)*size)
-  return center+offset
+  return center+(basis and basis:VectorToWorldSpace(offset)or offset)
  end,12,width,color)
 end
 local function debris(r,center,count,kind,scale)
@@ -108,133 +108,204 @@ local function forward(first,last)
  local d=last-first;return d.Magnitude>.01 and d.Unit or Vector3.new(0,0,-1)
 end
 -- Every authored skill resolves through the same stable server skill catalog.
-function FX.skill(character,id,first,last,pulse)
- local row=Catalog.byId[id]
- if not row or not vector(first)or not vector(last)or not finite(pulse)or pulse<1 then return end
- local d=row.definition;local key=row.key;local effect=row.effect
- local motion=Presentation.get(d).motion
- local r=make(first,last,d.ultimate and .8 or .52,key,id);if not r then return end
- local dir=forward(first,last);local flat=Vector3.new(dir.X,0,dir.Z)
- flat=flat.Magnitude>.01 and flat.Unit or Vector3.new(0,0,-1)
+function FX.skill(character,id,first,last,pulse,points)
+ local row=Catalog.byId[id];local profile=Profiles.get(id)
+ if not row or not profile or not vector(first)or not vector(last)or not finite(pulse)or pulse<1 then return end
+ local d=row.definition
+ -- The dedicated Wind Lance renderer owns its release; no empty duplicate model.
+ if profile.shape=="wind"then return end
+ local r=make(first,last,profile.life,row.key,id);if not r then return end
+ if row.classId=="dwarf"and row.key=="steel"then r.color=palette.axe end
+ r.model:SetAttribute("Silhouette",profile.shape);r.model:SetAttribute("Pulse",pulse)
+ local dir=forward(first,last)
+ if(first-last).Magnitude<.01 then
+  local root=character and character:FindFirstChild("HumanoidRootPart")
+  dir=root and root.CFrame.LookVector or Vector3.new(0,0,-1)
+ end
+ local flat=Vector3.new(dir.X,0,dir.Z);flat=flat.Magnitude>.01 and flat.Unit or Vector3.new(0,0,-1)
  local right=Vector3.new(-flat.Z,0,flat.X)
  local area=d.form=="ground"or d.form=="area"or d.detonate or d.areaRadius~=nil
- local center=d.form=="area" and first or last
- local floor=floorAt(area and center or first,character)
- local radius=math.min(d.areaRadius or(d.form=="ground"or d.detonate)and d.radius or d.range or 5,20)
- local angle=d.angle or 80
- local strength=d.ultimate and 1.5 or d.stage and(1+d.stage*.08)or 1
- if effect=="slash" and motion=="thrust"then
-  line(r,"ThrustEdge",function(u)return first+dir*u*math.min(2,(last-first).Magnitude),last end,.2,WHITE)
-  for side=-1,1,2 do
-   line(r,"ThrustPressure",function(u)return first+right*side*.5+dir*u,last+right*side*.12 end,.07)
+ -- For originArea, the server's center is the departure point, not current origin.
+ local center=area and last or first
+ local floor=floorAt(center,character)
+ local radius=d.areaRadius or((d.form=="ground"or d.detonate)and d.radius)or d.range or 5
+ local angle=d.form=="area"and 360 or d.angle or 80
+ local width,count,shape=profile.width,profile.lanes,profile.shape
+ local phase=(pulse-1)*1.3
+ local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w or width,color)end
+ local function sector(name,at,rad,arc,lane,low)
+  curve(r,name,function(t,u)
+   local a=math.rad(-arc/2+arc*t)+(arc>=359 and phase+u*.8 or 0)
+   local v=flat*math.cos(a)+right*math.sin(a)
+   return at+v*rad+Vector3.yAxis*(low and .12 or math.sin(t*math.pi)*.35+(lane-1)*.22)
+  end,12,width*(1-(lane-1)*.12))
+ end
+ if shape=="thrust"then
+  stroke("ThrustEdge",first,last,width,WHITE)
+  for lane=1,count do local side=lane%2==0 and -1 or 1
+   stroke("ThrustPressure",first+right*side*.45,last+right*side*.08,width*.4)
   end
- elseif effect=="slash" and motion=="chop"then
-  curve(r,"DescendingCleave",function(t,u)
+ elseif shape=="cleave"then
+  for lane=1,count do curve(r,"DescendingCleave",function(t,u)
    local a=t*math.pi*.8
-   return first+flat*(math.sin(a)*math.min(radius,5)) + Vector3.yAxis*(math.cos(a)*2.6-u*.6)
-  end,12,.27*strength)
- elseif effect=="slash"then
-  local path=Geometry.sector(first,flat,math.min(radius,8)*.8,angle,12)
-  for i=1,#path-1 do
-   local a,b=path[i],path[i+1]
-   line(r,"BladeRibbon",function(u)
-    local rise=Vector3.yAxis*(math.sin((i/12)*math.pi)*.55+u*.25)
-    return a+rise,b+rise
-   end,.24*strength*(.3+.7*math.sin(i/13*math.pi)))
+   return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*(math.cos(a)*2.8-u*.5)+right*(lane-(count+1)/2)*.3
+  end,12,width)end
+ elseif shape=="slash"or shape=="crescent"or shape=="areslash"or shape=="spin"or shape=="low"or shape=="counter"then
+  local at=shape=="low"and floor or first
+  local arc=shape=="spin"and 360 or angle
+  for lane=1,count do sector(shape=="low"and"LowSweep"or"BladeRibbon",at,math.min(radius,8)*(.72+lane*.08),arc,lane,shape=="low")end
+  if shape=="counter"then sector("CounterGuard",floor,2.4,110,1,true)end
+ elseif shape=="cross"then
+  for side=-1,1,2 do
+   stroke("SunwardCross",first+flat*.5+right*side*1.6+Vector3.yAxis*1.2,first+flat*math.min(radius,6)-right*side*1.6-Vector3.yAxis*.6,width,WHITE)
   end
-  if d.form=="line"then line(r,"ThrustEdge",function(u)return first+dir*u*2,last end,.18,WHITE)end
- elseif effect=="shield"or effect=="taunt"then
-  local at=effect=="taunt" and floor or first+flat*2
-  ring(r,effect=="taunt"and"WarcryWave"or"GuardHalo",at,math.min(radius,6),.18,effect~="taunt",false)
-  if effect=="shield"then
-   for side=-1,1,2 do line(r,"GuardChevron",function(u)return at+right*side*(1+u),at+Vector3.yAxis*1.7+flat*u end,.16,WHITE)end
-  end
- elseif effect=="arrow"or effect=="rain"or effect=="axe"or effect=="bullet"then
-  if effect=="rain"then
-   for i=1,5 do
-    local a=i*2.39996;local target=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*math.sqrt(i/6)
-    line(r,"RainFeather",function(u)local p=target+Vector3.yAxis*(8*(1-u));return p+Vector3.yAxis*1.2,p end,.09)
-   end
-  elseif effect=="axe"then
-   ring(r,"AxeAirCut",last,1.2,.12,true,false)
+ elseif shape=="guard"or shape=="warcry"or shape=="holy"or shape=="ward"then
+  if shape=="guard"and d.form~="area"then
+   local at=first+flat*2;local basis=CFrame.lookAt(at,at+flat)
+   ring(r,"GuardHalo",at,1.8,width,true,false,nil,basis)
+   for side=-1,1,2 do stroke("GuardChevron",at+right*side*1.2,at+Vector3.yAxis*1.7,width*.6,WHITE)end
+  elseif shape=="warcry"then
+   for lane=1,count do sector("WarcryWave",floor,radius*lane/count,angle,lane,true)end
   else
-   -- Double taper and fletching distinguish precision shots from thick magic beams.
-   line(r,effect=="bullet"and"MuzzleStreak"or"PiercingWake",function(u)return first+dir*math.min((last-first).Magnitude,u*5),last end,effect=="bullet"and .055 or .10)
-   if d.form=="line"then ring(r,"PressureHalo",first+dir*2,.55,.08,true,false)end
-  end
- elseif effect=="earth"or effect=="lava"or effect=="bomb"or effect=="shell"then
-  ring(r,"GroundPressure",floor,radius,.15,false,false)
-  debris(r,floor,6,effect=="earth"and"RockChip"or"Ember",strength*1.6)
-  if effect=="earth"or effect=="lava"then
-   for i=1,3 do
-    local heading=CFrame.Angles(0,math.rad((i-2)*30),0):VectorToWorldSpace(flat)
-    curve(r,"GroundFissure",function(t,u)return floor+heading*radius*t+right*(math.sin(t*19+i)*.25)+Vector3.yAxis*.03*u end,5,.12,effect=="lava"and palette.fire or palette.axe)
+   for lane=1,count do
+    if shape=="ward"then
+     local basis=CFrame.Angles(0,lane*math.pi/3+phase,0)
+     ring(r,"WardOrbit",first,2.2,width,true,false,nil,basis)
+    else ring(r,"DawnSeal",floor,radius*(.55+lane*.12),width,false,false)end
    end
+  end
+ elseif shape=="axe"then
+  local from,to=first,last;if d.returning and pulse%2==0 then from,to=last,first end
+  r.model:SetAttribute("Returning",d.returning and pulse%2==0 or false)
+  stroke("AxeWake",from,to,width*.45)
+  local axis=forward(from,to);local basis=CFrame.lookAt(to,to+axis)
+  curve(r,"AxeRotation",function(t,u)
+   local a=t*math.pi*1.6+u*7+phase
+   return to+basis.RightVector*math.cos(a)*.7+basis.UpVector*math.sin(a)*.7
+  end,8,width)
+ elseif shape=="arrow"or shape=="fan"or shape=="bullet"then
+  local targets={last}
+  if shape=="fan"then
+   targets=Geometry.sector(first,flat,math.min(radius,50),angle,count-1)
+   if id=="elf.common.multi"and type(points)=="table"and #points>0 then
+    targets={};for i=1,math.min(#points,5)do if vector(points[i])then table.insert(targets,points[i])end end
+   end
+  end
+  for lane,target in ipairs(targets)do
+   for wake=1,(shape=="fan"and 1 or count)do
+    local offset=right*(wake-((shape=="fan"and 1 or count)+1)/2)*.08
+    stroke(shape=="bullet"and"RifleTracer"or"ArrowPressure",first+offset,target+offset,width/wake^.3)
+   end
+   local axis=forward(first,target);local cf=CFrame.lookAt(target,target+axis)
+   if shape~="bullet"then
+    for side=-1,1,2 do stroke("ArrowEdge",target-axis*.7+cf.RightVector*side*.18,target,width*.6,WHITE)end
+   end
+  end
+  if row.key~="arrow"and shape~="bullet"and shape~="fan"then
+   local basis=CFrame.lookAt(first,first+dir)
+   curve(r,row.key=="lightning"and"ArrowSpark"or"EnchantedArrow",function(t,u)
+    local a=t*math.pi*4+phase+u*6
+    return first+(last-first)*t+basis.RightVector*math.cos(a)*.22+basis.UpVector*math.sin(a)*.22
+   end,8,width*.6)
+  end
+ elseif shape=="rain"or shape=="ash"or shape=="hail"or shape=="mortar"then
+  local at=floorAt(last,character)
+  for lane=1,count do
+   local a=lane*2.39996+phase;local rad=shape=="mortar"and .3 or radius*math.sqrt(lane/(count+1))*.85
+   local target=at+Vector3.new(math.cos(a)*rad,0,math.sin(a)*rad)
+   line(r,shape=="hail"and"HailDescent"or shape=="ash"and"AshDescent"or shape=="mortar"and"MortarDescent"or"ArrowRain",function(u)
+    local height=(1-u)*8
+    return target+Vector3.yAxis*(height+1.1),target+Vector3.yAxis*height
+   end,width)
+  end
+  ring(r,"LandingRipple",at,math.min(radius,4),width*.5,false,false)
+ elseif shape=="blast"or shape=="earth"or shape=="lava"then
+  local at=area and floorAt(last,character)or floor
+  if area or angle>=359 then ring(r,"GroundPressure",at,radius,width*.6,false,false)
+  else sector("GroundSector",at,radius,angle,1,true)end
+  if shape=="blast"then
+   debris(r,at,math.min(count,7),"Ember",1.4)
+   if not area and angle<359 then sector("BlastCone",at+Vector3.yAxis*.7,radius*.7,angle,1,false)end
   else
-   ring(r,"BlastFront",center,math.min(radius,5),.22,true,false,WHITE)
+   for lane=1,count do
+    local a=(area or angle>=359)and(lane/count*math.pi*2)or math.rad(-angle/2+angle*(lane-.5)/count)
+    local heading=flat*math.cos(a)+right*math.sin(a)
+    curve(r,shape=="lava"and"LavaFissure"or"EarthFissure",function(t,u)
+     return at+heading*radius*t+right*math.sin(t*17+lane)*.18+Vector3.yAxis*.03
+    end,4,width,shape=="lava"and palette.fire or palette.earth)
+   end
+   debris(r,at,4,shape=="lava"and"Ember"or"RockChip",1.4)
   end
- elseif effect=="frost"or effect=="hail"then
-  if area then ring(r,"FrostBloom",floor,radius,.12,false,false)end
-  debris(r,area and floor or last,7,"IceShard",strength*1.7)
-  if not area then line(r,"IceNeedle",function(u)return first+dir*u*2,last end,.20,WHITE)end
- elseif effect=="lightning"then
-  local points=Geometry.lightning(area and center+Vector3.yAxis*10 or first,last,7)
-  for i=1,#points-1 do
-   local a,b=points[i],points[i+1]
-   line(r,"ElectricCore",function()return a,b end,.12,WHITE)
-   if i%2==0 then line(r,"ElectricBranch",function(u)return a,a+(b-a)*.4+right*(1-u)*1.5+Vector3.yAxis*.6 end,.06)end
+ elseif shape=="stone"or shape=="frost"and not area then
+  stroke(shape=="stone"and"StoneLanceAxis"or"FrostLanceAxis",first,last,width,WHITE)
+  local basis=CFrame.lookAt(last,last+dir)
+  for lane=1,math.min(count,3)do
+   local side=lane%2==0 and -1 or 1
+   stroke("CrystalFacet",last-dir*2+basis.RightVector*side*.5,last,width*.65)
   end
- elseif effect=="vine"then
-  for lane=1,3 do
-   curve(r,"RootHelix",function(t,u)
-    local a=t*math.pi*2+lane*math.pi*2/3+u
-    return floor+Vector3.new(math.cos(a)*radius*.5,t*3*(1-u*.4),math.sin(a)*radius*.5)
-   end,7,.15)
+  debris(r,last,3,shape=="stone"and"RockChip"or"IceShard",1)
+ elseif shape=="frost"then
+  ring(r,"FrostBloom",floorAt(last,character),radius,width*.6,false,false)
+  debris(r,floorAt(last,character),math.min(count,7),"IceShard",1.7)
+ elseif shape=="lightning"then
+  local path={}
+  if d.form=="chain"then
+   local from=first
+   for i=1,math.min(type(points)=="table"and #points or 0,d.maxTargets or 4)do
+    if vector(points[i])then table.insert(path,{from,points[i]});from=points[i]end
+   end
+  else table.insert(path,{d.form=="ground"and last+Vector3.yAxis*10 or first,last})end
+  for _,link in ipairs(path)do
+   local bolts=Geometry.lightning(link[1],link[2],6)
+   for i=1,#bolts-1 do stroke("ElectricCore",bolts[i],bolts[i+1],width,WHITE)end
   end
- elseif effect=="gravity"then
-  for lane=1,2 do
-   curve(r,"GravityInfall",function(t,u)
-    local a=t*math.pi*3+lane*math.pi+u*3;local rad=radius*(1-t)*(.8-u*.6)
-    return floor+Vector3.new(math.cos(a)*rad,.3+t*1.6,math.sin(a)*rad)
-   end,10,.14)
+ elseif shape=="vine"then
+  for lane=1,count do
+   local at=floor
+   if d.form=="cone"then
+    local a=math.rad(-angle/2+angle*(lane-.5)/count)
+    at=floor+(flat*math.cos(a)+right*math.sin(a))*radius*.7
+   else local a=lane/count*math.pi*2;at=floorAt(last,character)+Vector3.new(math.cos(a),0,math.sin(a))*radius*.55 end
+   curve(r,"RootingVine",function(t,u)local a=t*5+phase;return at+Vector3.new(math.cos(a)*.35,t*2.8,math.sin(a)*.35)end,6,width)
   end
- elseif effect=="water"or effect=="steam"then
-  ring(r,"TidalLip",area and floor or last,area and radius or 1.8,.25,false,false)
-  debris(r,area and floor or last,6,"WaterSpray",strength)
-  if effect=="steam"then
-   for lane=1,2 do curve(r,"SteamCurl",function(t,u)local a=t*5+lane*math.pi;return floor+Vector3.new(math.cos(a)*(.4+u),t*3+u,math.sin(a)*(.4+u))end,6,.2,WHITE)end
+ elseif shape=="gravity"then
+  local at=floorAt(last,character)
+  for lane=1,count do curve(r,"GravityInfall",function(t,u)
+   local a=t*math.pi*3+lane*math.pi+u*3;local rad=radius*(1-t)*(.8-u*.6)
+   return at+Vector3.new(math.cos(a)*rad,.3+t*1.6,math.sin(a)*rad)
+  end,10,width)end
+ elseif shape=="water"or shape=="steam"then
+  local at=area and floorAt(last,character)or last
+  ring(r,"TidalLip",at,area and radius or 1.8,width,false,false)
+  debris(r,at,math.min(count,6),"WaterSpray",1)
+  if shape=="steam"then
+   for lane=1,count do curve(r,"SteamCurl",function(t,u)local a=t*5+lane*math.pi;return at+Vector3.new(math.cos(a)*(.4+u),t*3+u,math.sin(a)*(.4+u))end,6,width,WHITE)end
   end
- elseif effect=="fire"or effect=="ash"or effect=="holy"or effect=="arcane"then
-  if area or d.form=="self"then
-   ring(r,effect=="holy"and"DawnSeal"or"ElementalCrown",floor,math.min(radius,8),.17,false,false)
-  end
-  for lane=1,2 do
-   curve(r,effect=="fire"and"FlameTongue"or effect=="holy"and"SunRay"or"ArcaneHelix",function(t,u)
-    local a=t*math.pi*3+lane*math.pi+u*4
-    if area or d.form=="self"then return floor+Vector3.new(math.cos(a)*radius*.4,t*3+u*.6,math.sin(a)*radius*.4)end
-    local axis=forward(first,last);local cf=CFrame.lookAt(first,first+axis)
-    return first+(last-first)*t+cf.RightVector*math.cos(a)*.35+cf.UpVector*math.sin(a)*.35
-   end,9,.15*strength)
-  end
-  if effect=="fire"or effect=="ash"then debris(r,center,4,"Ember",strength)end
+ elseif shape=="fire"or shape=="arcane"then
+  local at=area and floorAt(last,character)or first
+  if area then ring(r,"CinderRing",at,radius,width*.6,false,false)end
+  local basis=CFrame.lookAt(first,first+dir)
+  for lane=1,count do curve(r,shape=="fire"and"FlameTongue"or"ArcaneHelix",function(t,u)
+   local a=t*math.pi*3+lane*math.pi*2/count+u*4+phase
+   if area then
+    local heading=lane*math.pi*2/count+phase+math.sin(t*math.pi)*.18+u*.25
+    local rad=radius*(.65+t*.12)
+    return at+Vector3.new(math.cos(heading)*rad,t*2.2,math.sin(heading)*rad)
+   end
+   return first+(last-first)*t+basis.RightVector*math.cos(a)*.32+basis.UpVector*math.sin(a)*.32
+  end,8,width)end
  end
- if effect=="arrow" and key~="arrow" then
-  local cf=CFrame.lookAt(first,first+dir)
-  curve(r,"EnchantedArrowFilament",function(t,u)
-   local a=t*math.pi*5+u*8
-   return first+(last-first)*t+cf.RightVector*math.cos(a)*.22+cf.UpVector*math.sin(a)*.22
-  end,8,.065)
- end
- FX.step(r.at)
- return r.model
+ FX.step(r.at);return r.model
 end
 function FX.contact(at,classId,id,direction,scale)
  local row=Catalog.get(classId,id);if not row or not vector(at)then return end
  local r=make(at,at,.3,row.key,id);if not r then return end
  local dir=vector(direction)and forward(Vector3.zero,direction)or Vector3.new(0,0,-1)
  local cf=CFrame.lookAt(at,at+dir);local size=math.clamp(scale or 1,.4,2)
+ local profile=Profiles.get(id)
+ if profile then size*=math.clamp(profile.width/.18,.65,1.6)end
  if row.key=="water"or row.key=="gravity"then
-  ring(r,row.key=="water"and"WaterContact"or"GravityContact",at,1.3*size,.12,true,row.key=="gravity")
+  ring(r,row.key=="water"and"WaterContact"or"GravityContact",at,1.3*size,.12,true,row.key=="gravity",nil,cf)
  else
   for i=1,5 do
    local angle=i*2.39996;local offset=(cf.RightVector*math.cos(angle)+cf.UpVector*math.sin(angle))*size
