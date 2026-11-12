@@ -1,0 +1,46 @@
+{
+  "version": "0.104.1",
+  "sourceCommit": "bfa0dc4c33d71a6e8ed4f66da76abff88a5a0099",
+  "artifact": "builds/0.104.1/TheLastThrone-0.104.1.rbxlx",
+  "sha256": "bdb6bb07c116fecbeb178f227c7adc2d129407a94124cb4673f48811a1e8bbad",
+  "bytes": 18599416,
+  "diskHashUnchanged": true,
+  "headRuntimeMatchesBuildSource": true,
+  "published": true,
+  "method": "Roblox Studio Publish As → existing TLT places; Creator Dashboard Show published only verification",
+  "universeId": 10773575153,
+  "places": [
+    {
+      "role": "Lobby",
+      "placeId": 70829337938054,
+      "publishedVersion": 95,
+      "localPublishedTime": "2026-11-11 19:24 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/70829337938054/version-history"
+    },
+    {
+      "role": "Battle",
+      "placeId": 129388473517823,
+      "publishedVersion": 22,
+      "localPublishedTime": "2026-11-11 19:25 America/Toronto",
+      "versionHistoryUrl": "https://create.roblox.com/dashboard/creations/experiences/10773575153/places/129388473517823/version-history"
+    }
+  ],
+  "audience": "Private (unchanged)",
+  "assetPermissions": "Studio Grant Permissions and Publish for destination TLT Experience",
+  "releaseTag": "v0.104.1",
+  "nativeChecksReused": 5627,
+  "studioRunningAfter": true,
+  "studioExitLimit": "게시 창 종료 후 읽기 전용 중복 0.104.1 창이 남았다. Quit Roblox Studio가 disabled인 상태여서 강제 종료하지 않았다.",
+  "preservedSessions": [
+    "builds/0.103.12/TheLastThrone-0.103.12-session-preserved-release-0.104.1.rbxl"
+  ],
+  "unverified": [
+    "게시 클라이언트 플레이·실계정 저장·재접속·실제 Place 이동",
+    "실기기·다인 성능·사용자 수용",
+    "복구 리허설"
+  ],
+  "rollbackPublishedVersions": {
+    "Lobby": 94,
+    "Battle": 21
+  }
+}
