@@ -9,7 +9,8 @@ local Env=require(script.Parent.DeepwoodEnvironment)
 local Architecture=require(script.Parent.EpicArchitecture)
 local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
-local Art={version=14}
+local StoryComposition=require(script.Parent.CampaignStoryComposition)
+local Art={version=15}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -453,6 +454,7 @@ function Art.create(world,scope)
   floorDetails(p.site,p.c,p.z.size,p.pal,p.theme,p.safe,p.rng,Content.byId[p.id])
   vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index,p.id,p.safe)
   Detail.build(p.site,p.id,p.c,p.z.size,p.pal,p.theme,p.safe,ground)
+  StoryComposition.build(p.site,p.id,p.c,p.z.size,p.pal,p.theme,p.safe,ground,world)
   task.wait()
  end
  for i,edge in ipairs(Access.edges)do pass(root,edge,i);task.wait()end
