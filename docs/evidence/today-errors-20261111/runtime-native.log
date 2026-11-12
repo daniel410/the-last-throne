@@ -1,0 +1,7 @@
+ContentId: rbxassetid://115101390772936 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://105500976380479 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://110003398368829 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://103084256928023 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://124825290649611 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://138212965806098 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+EQUIPMENT_PERMISSIONS_RUNTIME {"fetches":116,"checks":63,"failures":[],"kind":"EQUIPMENT_PERMISSIONS_RUNTIME","pass":true,"bows":5}

@@ -1,0 +1,8 @@
+{
+  "fetches": 116,
+  "checks": 63,
+  "failures": [],
+  "kind": "EQUIPMENT_PERMISSIONS_RUNTIME",
+  "pass": true,
+  "bows": 5
+}

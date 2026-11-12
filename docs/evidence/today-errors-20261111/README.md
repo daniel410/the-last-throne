@@ -27,3 +27,17 @@ Creator Hub Error report에서 Experience 전체의 `Last 1 day`를 선택해 [�
 - `git diff --check`: 통과.
 
 다음 담당: 빌드/엔진 검증 후 게시 QA. 실제 게시 계정의 배틀/훈련 진입, 엘프 재스폰·무기/화살통, 음악, 이후 Creator Hub 새 오류를 확인한다. 게시 클라이언트·실기기·실제 Teleport·사용자 수용은 별도이며 소스 통과만으로 완료 처리하지 않는다.
+
+
+## 빌드·일반 서버 Script 결과
+
+**0.104.7 빌드 성공**. [입력 커밋·산출물 SHA-256](build.json), 소스 `85cd9487d8b1433a6b2a5ad1927d546757e6a2c8`, 단일 파일 `builds/0.104.7/TheLastThrone-0.104.7.rbxlx`.
+
+`run-in-roblox --place builds/0.104.7/TheLastThrone-0.104.7.rbxlx --script tests/equipment-permissions-runtime-native.luau`: **일반 서버 Script63검사 통과**. [결과](runtime-native.json), [로그](runtime-native.log).
+
+- 기존 ColorMap 읽기 거부/MapContent 읽기 허용 대조, 기본+4계열 활5종의 무기/화살통 팔레트·다운로드116콜백·최종 실패0개를 확인했다.
+- 실제 Roblox R6/R15 리그를 사용해 손 준비 뒤 몸통 지연, 몸통 복귀 시 무기/화살통 생성, 중복 생성 없음, 몸통 제거 시 잘못된 재생성 없음, 복귀 후 회복10검사를 추가했다. 플레이어 계정 없이 재현하기 위해 Players 서비스 경계만 BindableEvent 기반 fixture로 치환한 동일 KnightAppearance 소스를 일반 Script에서 호출했다. 실제 플레이어 세션 수용과 구분한다.
+- 엔진의 일부 `No asset content representation found while do_not_fallback_to_baseline is set to true` 경고는 남았으며 최종 실패 콜백은 없었다. 화살통 몸통 미준비/ColorMap 권한 경고는 이 시험에서 발생하지 않았다.
+- 배경음악 지연 연결은10검사 단위 회귀로 검증했으며 실제 클라이언트 오디오/볼륨 전환 수용은 미검증이다.
+
+Roblox 게시와 릴리스 태그는 수행하지 않았다. 원본 CSV의 과거 누적 건수는 수정만으로 없어지지 않으며 새 게시 버전 이후의 신규 발생 건수로 재확인해야 한다.
