@@ -18,7 +18,7 @@ local shared={FourFamilyArmorVisuals={models={}}}
 local env=setmetatable({game={GetService=function(_,name)
  if name=='ContentProvider'then return provider elseif name=='ReplicatedStorage'then return {Shared=shared} else return {}end end},
  script={Parent={EquipmentAssetLoading=equipment,EquipmentWarmup={prepare=function()return true end}}},require=function(x)return x end,
- Enum={AssetFetchStatus={Success='Success'}},task={spawn=function(fn)local co=coroutine.create(fn);table.insert(jobs,co);assert(coroutine.resume(co))end,wait=function()coroutine.yield('wait')end}},{__index=_G})
+ warn=function()end,Enum={AssetFetchStatus={Success='Success'}},task={spawn=function(fn)local co=coroutine.create(fn);table.insert(jobs,co);assert(coroutine.resume(co))end,wait=function()coroutine.yield('wait')end}},{__index=_G})
 local C=assert(loadfile('src/client/CharacterAssetLoading.luau','t',env))()
 C.snapshot=function(c)return c.key,c.complete,{}, {},'elf',{}end
 C.start(player);check(a.attrs.TLTLocalAppearanceReady==false,'initial character remains covered during fetch')
@@ -32,4 +32,21 @@ check(b.attrs.TLTLocalAppearanceReady==false,'new replicated equipment invalidat
 assert(coroutine.resume(jobs[2]));check(#fetches==3,'new wardrobe must preload again')
 b.key='newer-body';fetches[3].callback('body','Success');assert(coroutine.resume(fetches[3].co))
 check(b.attrs.TLTLocalAppearanceReady==false,'a changed wardrobe cannot use stale completion')
-print('character-asset-loading: '..checks..' checks PASS')
+-- Stable permanent failures cannot strand an admitted returning hero forever.
+local function resume()assert(coroutine.resume(jobs[2]))end
+resume()
+for attempt=1,3 do
+ local fetch=fetches[#fetches];fetch.callback('legacy-texture','Failure');assert(coroutine.resume(fetch.co))
+ if attempt<3 then
+  check(not b.attrs.TLTLocalAppearanceReady,'retry remains covered before bounded fallback')
+  resume();resume()
+ end
+end
+check(b.attrs.TLTLocalAppearanceReady and b.attrs.TLTLocalAppearanceDegraded,'persistent cosmetic failure releases stable complete character')
+check(b.attrs.TLTLocalAppearanceError==nil,'completed fallback clears retry message')
+b.complete=false;b.DescendantRemoving:fire();resume()
+check(not b.attrs.TLTLocalAppearanceReady,'fallback cannot bypass missing replicated equipment')
+b.complete=true;b.key='recovered-body';resume()
+local recovery=fetches[#fetches];recovery.callback('fixed-texture','Success');assert(coroutine.resume(recovery.co))
+check(b.attrs.TLTLocalAppearanceReady and b.attrs.TLTLocalAppearanceDegraded==nil,'later wardrobe success clears degraded state')
+print('character-asset-loading: ' ..checks..' checks PASS')

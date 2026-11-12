@@ -67,28 +67,42 @@ function M.start(player)
    table.insert(connections,character:GetAttributeChangedSignal('TLTEquipped'..suffix):Connect(invalidate))
   end
   task.spawn(function()
-   local prepared
+   local prepared,attemptKey,failures
    while player.Character==character do
     local key,complete,definitions,meshes,classId,content=M.snapshot(character)
     if not complete or key~=prepared then
      character:SetAttribute('TLTLocalAppearanceReady',false)
      if complete then
-      local success=true
-      for _,id in ipairs(definitions) do
-       if not Warmup.prepare(id,classId) then success=false;break end
+      if attemptKey~=key then attemptKey,failures=key,0 end
+      local success,failedAsset=true,nil
+      local function fetched(id,status)
+       if status~=Enum.AssetFetchStatus.Success then success=false;failedAsset=tostring(id)..' ('..tostring(status)..')' end
       end
-      local ok=pcall(function()
-       Content:PreloadAsync(content,function(_,status) if status~=Enum.AssetFetchStatus.Success then success=false end end)
-       for _,mesh in ipairs(meshes) do
-        Equipment.preload(mesh,function(_,status) if status~=Enum.AssetFetchStatus.Success then success=false end end)
+      local ok,err=pcall(function()
+       for _,id in ipairs(definitions) do
+        if not Warmup.prepare(id,classId) then success=false;failedAsset='equipment '..id;break end
        end
+       Content:PreloadAsync(content,fetched)
+       for _,mesh in ipairs(meshes) do Equipment.preload(mesh,fetched) end
       end)
       local current,stillComplete=M.snapshot(character)
       if player.Character~=character then break end
-      if ok and success and stillComplete and current==key then
-       prepared=key;character:SetAttribute('TLTLocalAppearanceError',nil)
-      else
-       character:SetAttribute('TLTLocalAppearanceError','Retrying');task.wait(2)
+      if stillComplete and current==key then
+       if ok and success then
+        prepared=key;character:SetAttribute('TLTLocalAppearanceError',nil)
+        character:SetAttribute('TLTLocalAppearanceDegraded',nil)
+       else
+        failures=failures+1
+        warn('Character appearance download attempt '..failures..' failed: '..tostring(failedAsset or err))
+        if failures>=3 then
+         -- Cosmetic download failure must not permanently deny an admitted player.
+         -- Keep replication and Equipment.isReady gates; never change saved gear.
+         prepared=key;character:SetAttribute('TLTLocalAppearanceError',nil)
+         character:SetAttribute('TLTLocalAppearanceDegraded',true)
+        else
+         character:SetAttribute('TLTLocalAppearanceError','Retrying');task.wait(2)
+        end
+       end
       end
      end
     end
