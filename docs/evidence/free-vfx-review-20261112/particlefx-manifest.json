@@ -1,0 +1,218 @@
+[
+  {
+    "file": "anime-impact-frame-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 162953,
+    "sha256": "8a50e36372d14fbf3092db64c8a2bbb714e4655a0968beb4f3ff3e45f586859a",
+    "peakFrame": 15
+  },
+  {
+    "file": "counter-hit-flash-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 437574,
+    "sha256": "96fb24f26e5fa54075c67c4fb7076c9909041363b01f892bdbac48913315a96a",
+    "peakFrame": 14
+  },
+  {
+    "file": "ground-slam-crater-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 540611,
+    "sha256": "f194e270f39daae8ebdb1e90aab2156a5ba035835a11149f746bd96a3a051f38",
+    "peakFrame": 19
+  },
+  {
+    "file": "katana-combo-roblox-4x4.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 4,
+    "bytes": 279785,
+    "sha256": "1a406d8144ba93b765fc365111d262537d64bb3866b35adf07989949304663b5",
+    "peakFrame": 2
+  },
+  {
+    "file": "blazing-combo-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 355400,
+    "sha256": "da1f321286ebde0cb5831630625918ad0afc2e11afa12c84890a7bdbf5b70684",
+    "peakFrame": 44
+  },
+  {
+    "file": "frost-edge-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 396668,
+    "sha256": "d3816aefc3ec9f966b7d1475f30f6097d8ab918a098b965e21aeea114443960e",
+    "peakFrame": 26
+  },
+  {
+    "file": "lightning-charge-aura-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 753414,
+    "sha256": "271c66f877cd0312f5dd1e1ea5cf3fdc9c5c8c7b96ccfdf5f3607a890a92f4d5",
+    "peakFrame": 34
+  },
+  {
+    "file": "energy-aura-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 824079,
+    "sha256": "17e48b5780623641a3db91e81e2e04c471d691971d9508c7ad9662903b0948b3",
+    "peakFrame": 9
+  },
+  {
+    "file": "regeneration-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 681098,
+    "sha256": "aa45e1c7ac77b0bae31a22dc81d293b5bb34570162a16cde4b391c780194846e",
+    "peakFrame": 45
+  },
+  {
+    "file": "rolling-fireball-explosion-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 405360,
+    "sha256": "b6a143d507aa5a722e0dac2a6f68b3e6baefe48a21be2f889fa929713fb2b713",
+    "peakFrame": 46
+  },
+  {
+    "file": "plasma-detonation-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 658077,
+    "sha256": "6ef8047e04dbb83d0da9e4847f5015a17224b55b651a06cc2d65a12d50d0a9d5",
+    "peakFrame": 0
+  },
+  {
+    "file": "comic-kaboom-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 686762,
+    "sha256": "c5913224eae7f62469826d0c651ea02dfc6c7d509454343803cd29bc3da5f202",
+    "peakFrame": 5
+  },
+  {
+    "file": "rebirth-burst-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 536035,
+    "sha256": "28b8ef9e9b22dc4142ec66230abda522ddbca6cf91ac3ce6211f6c0e10e16b27",
+    "peakFrame": 18
+  },
+  {
+    "file": "pet-egg-hatch-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 598482,
+    "sha256": "5fe8f72f9f0fcd262d7f8539024ba56e382765795c8e308fa51f708646d48e58",
+    "peakFrame": 39
+  },
+  {
+    "file": "gem-shower-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 701204,
+    "sha256": "8761562beeda5bdbf39148937482432709a8710517d522794763b147617ddd39",
+    "peakFrame": 39
+  },
+  {
+    "file": "tower-upgrade-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 463627,
+    "sha256": "4face2c5b24dd7f2681223d5d07625ef796c378c94c5e41b194f9ebd20cb5984",
+    "peakFrame": 11
+  },
+  {
+    "file": "enemy-defeat-coin-drop-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 486806,
+    "sha256": "5626757ebd17d9c253f8e7aac7994477c14201974c774bc562a8207a6e62214b",
+    "peakFrame": 15
+  },
+  {
+    "file": "frost-nova-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 632842,
+    "sha256": "b79f74037263bfa0ccdbcb8714bb83720ff7bed56bb7e4a1fc94458d0539f0b2",
+    "peakFrame": 13
+  },
+  {
+    "file": "win-pad-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 1072225,
+    "sha256": "b31f0174cab73a1dde1b1dadcdcd7e8c89ee531a40ec5a59975abbd9dad89b95",
+    "peakFrame": 18
+  },
+  {
+    "file": "checkpoint-activated-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 37772,
+    "sha256": "a449b9558048115b9a6763c2be96be0cb409615063c0924cd438b11556eb0025",
+    "peakFrame": 24
+  },
+  {
+    "file": "speed-boost-pad-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 340636,
+    "sha256": "3ec27177bf2e93a8a5c9f538ff42e0754bfb5de6fa257f226934bcf556ee913e",
+    "peakFrame": 24
+  },
+  {
+    "file": "achievement-unlocked-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 644897,
+    "sha256": "4e857d2e4f80410dbe7b4e0d354396a6c47a848298decb6ad110d86be2d05b31",
+    "peakFrame": 9
+  },
+  {
+    "file": "quest-complete-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 324876,
+    "sha256": "5792570149ce49aaca2959236cfa98d9f4a9574b6b8988ec6d283f56ea6c6c7b",
+    "peakFrame": 22
+  },
+  {
+    "file": "cooldown-ready-roblox-8x8.png",
+    "width": 1024,
+    "height": 1024,
+    "grid": 8,
+    "bytes": 269836,
+    "sha256": "194e925ca04741cb771f598ee1177f90618f33493d2c8d4ef2f5fa05dbb18fa7",
+    "peakFrame": 29
+  }
+]

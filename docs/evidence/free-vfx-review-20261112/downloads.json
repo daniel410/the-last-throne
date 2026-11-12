@@ -1,0 +1,37 @@
+{
+  "checked": "2026-11-12",
+  "artifacts": [
+    {
+      "file": "lightning-strike.rbxl",
+      "bytes": 124906,
+      "sha256": "8e7d75c1355e776243fffd1d2c5292f9e4e28928db855b76588943d820cb11bb"
+    },
+    {
+      "file": "arrow-rain.rbxl",
+      "bytes": 47618,
+      "sha256": "effd1433dab418070fdb24fdf10c4cab685f72ede9ec314f412f92013db8bb66"
+    },
+    {
+      "file": "healing.rbxl",
+      "bytes": 48889,
+      "sha256": "a7184331606cc63f6a035e331101e659e1af7723d8da75cb83aebbd94e76b776"
+    },
+    {
+      "file": "free-roblox-vfx-pack.zip",
+      "bytes": 12299866,
+      "sha256": "c71d48ef599b2fbd02d18eeeb85134f3228165ec9dc2e484c8283a289524ae15"
+    }
+  ],
+  "method": "ParticleFX browser ZIP download; Yuruzuu public DevForum attachment HTTPS download. RBXL INST/PROP chunks decompressed for static class/string inspection; no source executed.",
+  "binaryDependencies": {
+    "lz4": "4.4.5",
+    "zstandard": "0.25.0"
+  },
+  "limitations": "Class counts cover entire example Places, not runtime emission counts. Static inspection does not establish safety, texture permissions, or engine rendering.",
+  "sources": {
+    "healing.rbxl": "https://devforum.roblox.com/uploads/short-url/4VStF5HK8IBD9g7ZGemINSWbLpO.rbxl",
+    "arrow-rain.rbxl": "https://devforum.roblox.com/secure-uploads/uploads/original/5X/5/2/9/a/529a3081460e53461175842ed23ad013b7ee5c68.rbxl",
+    "lightning-strike.rbxl": "https://devforum.roblox.com/secure-uploads/uploads/original/5X/6/1/b/5/61b5c7d9db7af79ec108e045d99bdfebf5faca55.rbxl",
+    "free-roblox-vfx-pack.zip": "https://www.particlefx.studio/roblox/free-vfx-pack"
+  }
+}
