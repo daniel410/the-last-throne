@@ -73,7 +73,15 @@ for _,x in ipairs({-1.2,1.2})do for i=1,4 do box('WheelRut',{.2,.035,.9},{x,.025
 finish('WheelRuts','Parallel heavy cargo wheel ruts pressed into the trail.')
 box('SplitBark',{1.4,1.9,.25},{0,.98,0});for _,x in ipairs({-.4,.4})do beam('RaiderCut',{x,.3,.2},{-x,1.7,.2},.12,{150,73,107})end
 finish('RaiderSigil','Raider portal sign cut into a discarded strip of bark, not a magical convoy residue.')
-for i=1,4 do local a=i*math.pi/2;beam('BindingRoot',{math.cos(a)*2,.15,math.sin(a)*2},{math.cos(a)*.5,1.7,math.sin(a)*.5},.42,wood,'Wood')end
+for i=1,4 do
+ local a=i*math.pi/2+.18;local darkRoot={70,65,48}
+ local outer={math.cos(a)*2.4,.18,math.sin(a)*2.4}
+ local bend={math.cos(a+.22)*1.25,.45,math.sin(a+.22)*1.25}
+ local inner={math.cos(a)*.7,1.15,math.sin(a)*.7}
+ beam('BlackRootOuter',outer,bend,.4,darkRoot,'Wood')
+ beam('BlackRootKnot',bend,inner,.5,darkRoot,'Wood')
+ beam('BlackRootTendril',bend,{math.cos(a-.35)*1.8,.12,math.sin(a-.35)*1.8},.16,darkRoot,'Wood')
+end
 box('RootSealSocket',{1.8,.5,1.8},{0,.3,0},stone,'Slate');ring('SealCollar',{0,1.4,0},.8,.14,brass,'xz')
 box('RootSealPlate',{1.2,1.5,.18},{0,1.4,.55},iron,'Metal');beam('SealInlay',{-.4,1,.68},{.4,1.9,.68},.1,blue)
 finish('RootSeal','A portal cutoff socket bound into black roots, with a metal locking collar and local seal inlay.')

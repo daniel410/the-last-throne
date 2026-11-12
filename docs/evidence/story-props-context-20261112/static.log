@@ -1,4 +1,4 @@
-STORY_PROP_CONTEXT 3929 checks passed; 292 physical step models, 63 distinct used assets, all 47 stories audited
+STORY_PROP_CONTEXT 4129 checks passed; 292 physical step models, 63 distinct used assets, all 47 stories audited
 CAMPAIGN_CONTEXT_REVIEW 1054 checks passed; 418 saved transitions, 47 distinct stories, unchanged runtime contracts
 CAMPAIGN_EXPANSION 7737 checks passed; 35 main / 12 side / 82 incidents / 246 new steps
 STORY_FUN 1761 checks passed; progression/answers unchanged, earned callbacks and partial-save resume
