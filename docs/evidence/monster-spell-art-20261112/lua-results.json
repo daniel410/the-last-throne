@@ -1,0 +1,17 @@
+{
+  "enemy-patterns": {
+    "exitCode": 0,
+    "stdout": "enemy-patterns: 3717 checks PASS;50 kinds/23 bosses, geometry, version8/9 stats/rewards",
+    "stderr": ""
+  },
+  "deepwood-bosses": {
+    "exitCode": 0,
+    "stdout": "Deepwood bosses: 96 checks passed",
+    "stderr": ""
+  },
+  "boss-pressure-boost": {
+    "exitCode": 0,
+    "stdout": "Boss pressure boost: 392158 checks passed; 23 boss kinds",
+    "stderr": ""
+  }
+}

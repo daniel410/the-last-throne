@@ -20,15 +20,18 @@ local target=Instance.new('Model');target.Name='TrainingTarget';target.Parent=st
 for _,row in ipairs({{'HumanoidRootPart',Vector3.new(1.6,2.2,1),Vector3.new(0,2.1,-13)},{'Head',Vector3.one,Vector3.new(0,3.8,-13)}, {'LeftArm',Vector3.new(.55,1.8,.65),Vector3.new(-1.1,2.1,-13)},{'RightArm',Vector3.new(.55,1.8,.65),Vector3.new(1.1,2.1,-13)}, {'LeftLeg',Vector3.new(.6,1.2,.6),Vector3.new(-.45,.7,-13)},{'RightLeg',Vector3.new(.6,1.2,.6),Vector3.new(.45,.7,-13)}})do
  local p=Instance.new('Part');p.Name=row[1];p.Size=row[2];p.Position=row[3];p.Anchored=true;p.CanCollide=false;p.Color=row[1]=='Head'and Color3.fromRGB(194,172,143)or Color3.fromRGB(103,125,154);p.Parent=target
 end
+if definition.shape~='projectile'then for _,part in target:GetChildren()do if part:IsA('BasePart')then part.Position+=Vector3.new(0,0,7)end end end
+local cameraPosition=definition.shape=='projectile'and Vector3.new(11,13,12)or Vector3.new(18,24,20)
+local cameraTarget=definition.shape=='projectile'and Vector3.new(0,2,-6)or Vector3.new(0,2,-1)
 local camera=workspace.CurrentCamera;camera.CameraType=Enum.CameraType.Scriptable;camera.FieldOfView=40
-camera.CFrame=CFrame.lookAt(Vector3.new(11,13,12),Vector3.new(0,2,-6))
+camera.CFrame=CFrame.lookAt(cameraPosition,cameraTarget)
 local light=game.Lighting;light.ClockTime=14;light.Brightness=2;light.Ambient=Color3.fromRGB(128,134,145);light.OutdoorAmbient=Color3.fromRGB(140,145,150)
 local encoding=game:GetService('EncodingService')
 local frameIndex=0
 local function capture(phase,age)
  task.wait(.07);frameIndex+=1
  workspace.CurrentCamera.CameraType=Enum.CameraType.Scriptable
- workspace.CurrentCamera.CFrame=CFrame.lookAt(Vector3.new(11,13,12),Vector3.new(0,2,-6))
+ workspace.CurrentCamera.CFrame=CFrame.lookAt(cameraPosition,cameraTarget)
  task.wait(.06)
  for _,node in workspace:GetChildren()do
   assert(node==stage or node:IsA('Terrain')or node:IsA('Camera')or node.Name=='EnemyMagicProjectile'or node.Name:match('^EnemySpell')or node.Name=='PixelFXAccent','foreign QA scene detected: '..node.Name)
@@ -37,7 +40,7 @@ local function capture(phase,age)
  game:GetService('CaptureService'):CaptureScreenshot(function(id)
   local ok,err=pcall(function()
    local image=game:GetService('AssetService'):CreateEditableImageAsync(Content.fromUri(id));local raw=image:ReadPixelsBuffer(Vector2.zero,image.Size)
-   local w,h=640,360;local rgb=buffer.create(w*h*3)
+   local w=640;local h=math.floor(w*image.Size.Y/image.Size.X+.5);local rgb=buffer.create(w*h*3)
    for y=0,h-1 do for x=0,w-1 do
     local at=(math.floor(y/h*image.Size.Y)*image.Size.X+math.floor(x/w*image.Size.X))*4
     local to=(y*w+x)*3
@@ -58,7 +61,7 @@ local function capture(phase,age)
  assert(done,'spell art capture timeout')
 end
 -- Continuous native playback keeps particles, trails, geometry and pose on one clock.
-local flightSeconds=.7;local cycleStart=workspace:GetServerTimeNow();local lastPhase;local charge,shot
+local flightSeconds=definition.shape=='projectile'and .7 or 0;local cycleStart=workspace:GetServerTimeNow();local lastPhase;local charge,shot
 local origin,contact,direction;local currentPhase='charge';local phaseAge=0
 local seq=0
 local connection=Run.Heartbeat:Connect(function(dt)
@@ -80,7 +83,11 @@ local connection=Run.Heartbeat:Connect(function(dt)
    shot=V.projectile(definition,caster,seq,origin,direction,cycleStart+definition.windup)
   elseif phase=='impact'then
    V.destroy(shot);shot=nil
-   V.impact(definition,contact,cycleStart+definition.windup+flightSeconds,caster,seq,-direction)
+   if definition.shape=='projectile'then V.impact(definition,contact,cycleStart+definition.windup+flightSeconds,caster,seq,-direction)
+   else
+    local center=(definition.shape=='circle'or definition.shape=='trail')and Vector3.new(0,.04,-6)or Vector3.new(0,.04,0)
+    V.pulse(definition,center,Vector3.new(0,0,-1),cycleStart+definition.windup,caster,seq)
+   end
   else V.clear()end
   lastPhase=phase
  end
@@ -98,6 +105,6 @@ local connection=Run.Heartbeat:Connect(function(dt)
  V.step(now)
 end)
 if _G.SpellArtHold then print('SPELL_ART_RECORD_READY',kind);task.wait(_G.SpellArtHold)
-else for i=1,18 do capture(currentPhase,phaseAge);task.wait(.08)end end
+else task.wait(1.5);for i=1,18 do capture(currentPhase,phaseAge);task.wait(.08)end end
 connection:Disconnect();V.clear();Motion.unbind(motion);stage:Destroy()
 print('SPELL_ART_CAPTURE_COMPLETE',kind,frameIndex)

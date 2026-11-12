@@ -1,0 +1,2 @@
+ENEMY_PATTERN_NATIVE {"checks":218890,"scope":"isolated engine modules; no accounts/normal gameplay/device acceptance","modelParts":16,"actions":146,"kinds":50}
+MONSTER_SPELL_VFX_NATIVE {"attacks":146,"projectiles":40,"kinds":50,"checks":63078}

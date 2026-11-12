@@ -43,3 +43,6 @@ assets/audio/**/*.wav filter=lfs diff=lfs merge=lfs -text
 # Concept and model delivery archives
 assets/**/*.zip filter=lfs diff=lfs merge=lfs -text
 assets/**/*.7z filter=lfs diff=lfs merge=lfs -text
+
+# Native VFX review recordings
+docs/evidence/**/*.mp4 filter=lfs diff=lfs merge=lfs -text

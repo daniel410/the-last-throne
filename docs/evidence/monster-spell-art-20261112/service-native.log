@@ -1,0 +1,22 @@
+ENEMY_PATTERN_SERVICE_NATIVE {"coverage":"Actual server service/callback code, identity mocks, native rig/physics, synthetic clock; no transport, real player or client animation","checks":72,"pass":true,"kind":"ENEMY_PATTERN_SERVICE_NATIVE","cases":[{"id":"service-melee-only-Goblin","pass":true,"checks":3},{"id":"service-melee-only-Orc","pass":true,"checks":3},{"id":"service-melee-only-Ogre","pass":true,"checks":3},{"id":"service-melee-only-IceWolf","pass":true,"checks":3},{"id":"service-melee-only-IceBear","pass":true,"checks":3},{"id":"service-ice-elf-ranged","pass":true,"checks":2},{"id":"service-projectile-knight","pass":true,"checks":7},{"id":"service-projectile-elf","pass":true,"checks":7},{"id":"service-projectile-dwarf","pass":true,"checks":7},{"id":"service-projectile-mage","pass":true,"checks":7},{"id":"service-old-run-preserved","pass":true,"checks":1},{"id":"service-wall-cover","pass":true,"checks":1},{"id":"service-run-isolation","pass":true,"checks":1},{"id":"service-cancel-pause","pass":true,"checks":2},{"id":"service-outcome-Hit","pass":true,"checks":2},{"id":"service-outcome-Blocked","pass":true,"checks":2},{"id":"service-outcome-PerfectBlock","pass":true,"checks":3},{"id":"service-outcome-Absorbed","pass":true,"checks":3},{"id":"service-outcome-Dodged","pass":true,"checks":3},{"id":"service-ground-uses-defense","pass":true,"checks":2},{"id":"service-partial-shield","pass":true,"checks":3},{"id":"service-ForceField-zero-hurt","pass":true,"checks":2},{"id":"service-front-guard-has-side-counter","pass":true,"checks":2}],"failures":[]}
+[Roblox][sabuiltin_Gen3d.rbxm.Gen3d.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default] builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:316: builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:293:
+------ Error caught by React ------
+attempt to call a nil value
+------ Error caught by React ------
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberHostContext.new:73 function pushHostContainer
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:1203 function updateHostRoot
+MaterialManager.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberBeginWork.new:3529 function beginWork
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:253
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1975
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1951
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:1894
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:913
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.ReactReconciler.ReactReconciler.ReactFiberWorkLoop.new:858
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.Scheduler.Scheduler.Scheduler:320
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.Scheduler.Scheduler.Scheduler:268
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:241 function doWork
+builtin_MaterialManager.rbxm.MaterialManager.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default:277 function performWorkUntilDeadline
+
+Stack Begin
+Script 'sabuiltin_Gen3d.rbxm.Gen3d.Packages._Index.Scheduler.Scheduler.forks.SchedulerHostConfig.default', Line 316
+Stack End
