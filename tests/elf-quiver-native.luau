@@ -32,7 +32,7 @@ for _,rig in {Enum.HumanoidRigType.R15,Enum.HumanoidRigType.R6}do
  -- Texture-backed bows have a white mesh tint; use their actual texture palette.
  local palettes=require(game.ServerScriptService.Server.Cosmetics.ElfQuiverPalette)
  local bow=model.Bow;local tint=bow.Color;local surface=bow:FindFirstChildOfClass('SurfaceAppearance')
- local originalMap=surface and surface.ColorMap;local originalTexture=bow.TextureID
+ local originalMap=surface and surface.ColorMapContent.Uri;local originalTexture=bow.TextureID
  if surface then surface.Parent=nil end
  for texture,palette in pairs(palettes)do
   bow.TextureID=texture;bow.Color=Color3.new(1,1,1)
@@ -50,7 +50,7 @@ for _,rig in {Enum.HumanoidRigType.R15,Enum.HumanoidRigType.R6}do
  assert(A.attachInto(model,c,'elf'))
  check(q.QuiverFront.Color==bow.Color and q.QuiverRimX1.Color==bow.Color,'Untextured bows automatically use their mesh color')
  if surface then
-  surface.ColorMap=originalMap;surface.Parent=bow
+  surface.Parent=bow
   bow.TextureID='rbxassetid://138212965806098';bow.Color=Color3.new(1,1,1)
   assert(A.attachInto(model,c,'elf'))
   check(q.QuiverFront.Color==palettes[originalMap].body,'SurfaceAppearance takes precedence over TextureID')

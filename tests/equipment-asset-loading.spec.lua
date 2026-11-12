@@ -19,7 +19,9 @@ local weapon=mesh('Axe',0,{TLTPlayerWeaponPart=true})
 local shield=mesh('Shield',.4,{TLTPlayerShieldPart=true})
 local armor=mesh('Hat',0,{}, {Parent=world,GetAttribute=function(_,key)return key=='TLTArmorAppearance' end})
 local scenery=mesh('Scenery',0)
-local surface={ColorMap='color',NormalMap='normal',MetalnessMap='',RoughnessMap='rough',IsA=function(_,kind)return kind=='SurfaceAppearance' end}
+local surface=setmetatable({ColorMapContent={Uri='color'},NormalMapContent={Uri='normal'},MetalnessMapContent={},RoughnessMapContent={Uri='rough'},IsA=function(_,kind)return kind=='SurfaceAppearance' end},{__index=function(_,key)
+ error("The current thread cannot read '"..key.."' (lacking capability Plugin)")
+end})
 weapon.children={surface}
 function world:GetDescendants() return {weapon,shield,armor,scenery} end
 local jobs,fetches,warnings={},{},{}

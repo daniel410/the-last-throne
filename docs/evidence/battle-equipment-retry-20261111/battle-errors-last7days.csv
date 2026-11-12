@@ -1,0 +1,25 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+238,Warning,Server,Wed Nov 11 2026 20:23:25 GMT-0500 (Eastern Standard Time),V23,K0 elf appearance could not be attached: ServerScriptService.Server.Cosmetics.KnightAppearance:56: K0 elf appearance is unavailable: The current thread cannot read 'ColorMap' (lacking capability Plugin),,
+19,Warning,Server,Wed Nov 11 2026 20:23:25 GMT-0500 (Eastern Standard Time),V23,K0 elf appearance could not be attached: ServerScriptService.Server.Cosmetics.KnightAppearance:56: K0 elf appearance is unavailable: ServerScriptService.Server.Cosmetics.ElfQuiverAppearance:55: Elf quiver torso is not ready,,
+8,Warning,Server,Mon Nov 09 2026 21:57:50 GMT-0500 (Eastern Standard Time),V18,K0 safe spawn is unavailable; character loading will retry.,,
+8,Error,Client,Thu Nov 05 2026 20:10:50 GMT-0500 (Eastern Standard Time),V12,Remote event invocation queue exhausted; did you forget to implement OnClientEvent? (events dropped),ReplicatedStorage.Remotes.DeepwoodPartyState,
+5,Warning,Client,Wed Nov 11 2026 14:15:50 GMT-0500 (Eastern Standard Time),V20,Equipment assets could not be fully loaded: Workspace.<Player>.TLT_K0_KnightAppearance.NockedArrow,,
+5,Warning,Client,Wed Nov 11 2026 14:15:50 GMT-0500 (Eastern Standard Time),V20,Equipment assets could not be fully loaded: Workspace.<Player>.TLT_K0_KnightAppearance.String,,
+3,Error,Client,Fri Nov 06 2026 15:20:20 GMT-0500 (Eastern Standard Time),V13,Players.<Player>.PlayerScripts.Client.LobbyHeroDock:121: attempt to index boolean with 'level',"Script 'Players.<Player>.PlayerScripts.Client.LobbyHeroDock', Line 121 - function render",
+2,Warning,Server,Sun Nov 08 2026 21:55:10 GMT-0500 (Eastern Standard Time),V17,K0 elf appearance could not be attached: ServerScriptService.Server.Cosmetics.KnightAppearance:56: K0 elf appearance is unavailable: ServerScriptService.Server.Cosmetics.ElfQuiverAppearance:28: Elf quiver torso is not ready,,
+2,Error,Client,Fri Nov 06 2026 15:20:20 GMT-0500 (Eastern Standard Time),V13,Players.<Player>.PlayerScripts.Client.LobbyHeroDock:118: attempt to index boolean with 'level',"Script 'Players.<Player>.PlayerScripts.Client.LobbyHeroDock', Line 118 - function render
+    Script 'Players.<Player>.PlayerScripts.Client.LobbyHeroDock', Line 131 - function update
+    Script 'Players.<Player>.PlayerScripts.Client.HeroLobbyGui', Line 241
+    Script 'Players.<Player>.PlayerScripts.Client.HeroLobbyGui', Line 350",
+2,Error,Client,Fri Nov 06 2026 15:20:20 GMT-0500 (Eastern Standard Time),V13,Players.<Player>.PlayerScripts.Client.LobbyHeroDock:118: attempt to index boolean with 'level',"Script 'Players.<Player>.PlayerScripts.Client.LobbyHeroDock', Line 118 - function render",
+2,Warning,Client,Wed Nov 11 2026 20:23:35 GMT-0500 (Eastern Standard Time),V23,Equipment assets could not be fully loaded: Workspace.tpop1230.TLT_K0_KnightAppearance.NockedArrow,,
+2,Error,Client,Fri Nov 06 2026 15:20:20 GMT-0500 (Eastern Standard Time),V13,Players.<Player>.PlayerScripts.Client.LobbyHeroDock:121: attempt to index boolean with 'level',"Script 'Players.<Player>.PlayerScripts.Client.LobbyHeroDock', Line 121 - function render
+    Script 'Players.<Player>.PlayerScripts.Client.LobbyHeroDock', Line 132 - function inventory",
+2,Error,Server,Sat Oct 31 2026 13:10:40 GMT-0400 (Eastern Daylight Time),V5,"MemoryStoreService: InternalError: Internal Error. API: HashMap.Update, Data Structure: TLT_Expedition_v1.",,
+2,Warning,Client,Wed Nov 11 2026 20:23:35 GMT-0500 (Eastern Standard Time),V23,Equipment assets could not be fully loaded: Workspace.tpop1230.TLT_K0_KnightAppearance.String,,
+1,Warning,Client,Wed Nov 11 2026 20:33:50 GMT-0500 (Eastern Standard Time),V23,Equipment assets could not be fully loaded: Workspace.<Player>.TLT_K0_KnightAppearance.Weapon,,
+1,Error,Client,Fri Nov 06 2026 15:20:20 GMT-0500 (Eastern Standard Time),V13,Players.<Player>.PlayerScripts.Client.LobbyHeroDock:118: attempt to index boolean with 'level',"Script 'Players.<Player>.PlayerScripts.Client.LobbyHeroDock', Line 118 - function render
+    Script 'Players.<Player>.PlayerScripts.Client.LobbyHeroDock', Line 131 - function update
+    Script 'Players.<Player>.PlayerScripts.Client.HeroLobbyGui', Line 241
+    Script 'Players.<Player>.PlayerScripts.Client.HeroLobbyGui', Line 374 - function setBusy
+    Script 'Players.<Player>.PlayerScripts.Client', Line 126",

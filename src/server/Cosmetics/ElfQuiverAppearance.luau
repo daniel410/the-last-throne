@@ -7,7 +7,7 @@ local TRIM={'QuiverRimZ-1','QuiverRimZ1','QuiverRimX-1','QuiverRimX1'}
 local function colors(model)
  local bow=assert(model:FindFirstChild('Bow'),'Elf quiver requires a bow visual')
  local surface=bow:FindFirstChildOfClass('SurfaceAppearance')
- local palette=Palette[surface and surface.ColorMap or bow.TextureID]
+ local palette=Palette[surface and surface.ColorMapContent.Uri or bow.TextureID]
  -- Parts store 8-bit colors; round before comparing during synchronization.
  local function tinted(color)return Color3.fromRGB(math.round(color.R*bow.Color.R*255),math.round(color.G*bow.Color.G*255),math.round(color.B*bow.Color.B*255))end
  return palette and tinted(palette.body)or bow.Color,palette and tinted(palette.trim)or bow.Color

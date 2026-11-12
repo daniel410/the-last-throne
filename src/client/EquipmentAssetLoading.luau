@@ -32,7 +32,7 @@ end
 function Assets.preload(part, callback)
  local inputs, textures, seen = {part}, {}, {}
  local function texture(id)
-  if id == "" or seen[id] then return end
+  if not id or id == "" or seen[id] then return end
   seen[id] = true
   local decal = Instance.new("Decal")
   decal.Texture = id
@@ -42,8 +42,9 @@ function Assets.preload(part, callback)
  texture(part.TextureID)
  for _, child in ipairs(part:GetChildren()) do
   if child:IsA("SurfaceAppearance") then
-   for _, property in ipairs({"ColorMap", "NormalMap", "MetalnessMap", "RoughnessMap"}) do
-    texture(child[property])
+   for _, property in ipairs({"ColorMapContent", "NormalMapContent", "MetalnessMapContent", "RoughnessMapContent"}) do
+    -- Legacy map IDs require Plugin capability even for reads.
+    texture(child[property].Uri)
    end
   end
  end
