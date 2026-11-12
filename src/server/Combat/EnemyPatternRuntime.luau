@@ -106,7 +106,7 @@ function R.step(enemy,current,targets,ctx)
   p.distance+=step;p.position=last
   if p.distance>=d.range then remove=true end
   if remove then
-   ctx.emit({kind='projectileEnd',model=enemy.model,sequence=enemy.attackSeq,id=d.id,pulse=p.pulse,shot=p.shot,position=last})
+   ctx.emit({kind='projectileEnd',model=enemy.model,sequence=enemy.attackSeq,id=d.id,pulse=p.pulse,shot=p.shot,position=closest and closest.root.Position+Vector3.yAxis or last})
    table.remove(a.projectiles,i)
   end
  end

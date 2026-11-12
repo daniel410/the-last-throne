@@ -44,6 +44,7 @@ end
 local cast=P.get('Shaman').attacks[1]
 check(simulate(cast,12)==1,'traveling magic hits exactly once')
 check(target.humanoid.Health==880,'authoritative payload damage')
+for _,event in ipairs(events)do if event.kind=='projectileEnd'then check(event.position==target.root.Position+Vector3.yAxis,'VFX ends on actual struck hero')end end
 wallEnabled=true;check(simulate(cast,12)==0,'wall stops magic');wallEnabled=false
 allowed=false;check(simulate(cast,12)==0,'different run target immune');allowed=true
 local fan=P.get('KingShaman').attacks[2]
@@ -111,6 +112,7 @@ local fx=deps.EnemyPatternEffects
 local before=#workspace:GetDescendants()
 check(pcall(fx.receive,{kind='projectile',id=cast.id,origin=Vector3.zero}),'streamed-out model ignored')
 check(pcall(fx.receive,{kind='impact',position=Vector3.zero,target=target.model}),'streamed-out attacker ignored')
+enemy.model:SetAttribute('K0AttackSeq',555)
 fx.receive({kind='projectile',model=enemy.model,sequence=555,id=cast.id,origin=Vector3.new(0,5,0),direction=Vector3.new(0,0,-1),pulse=1,shot=1,at=workspace:GetServerTimeNow()})
 check(workspace:FindFirstChild('EnemyMagicProjectile')~=nil,'magic native geometry')
 fx.receive({kind='projectileEnd',model=enemy.model,sequence=555,pulse=1,shot=1})

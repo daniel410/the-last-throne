@@ -670,7 +670,7 @@ end
 local function playerImpact(enemy,state,attack,result,damage,absorbed)
  if not patternRemote or not attack.pattern then return end
  patternEmit({kind='impact',model=enemy.model,target=state.character,sequence=attack.sequence,pulse=attack.pulse,
-  position=attack.impact or state.root.Position,source=attack.origin,element=attack.pattern.element,
+  id=attack.pattern.id,position=attack.impact or state.root.Position,source=attack.origin,element=attack.pattern.element,
   result=result,damage=damage or 0,absorbed=absorbed or 0,at=workspace:GetServerTimeNow()})
 end
 local function applyPlayerHit(enemy, playerState, attack, current)

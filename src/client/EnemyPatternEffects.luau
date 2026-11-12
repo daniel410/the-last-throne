@@ -8,9 +8,21 @@ local Patterns=require(RS.Shared.EnemyPatterns)
 local Text=require(RS.Shared.EnemyPatternText)
 local Audio=require(RS.Shared.CombatAudioCatalog)
 local BossImpact=require(script.Parent.BossHeroImpact)
+local Spell=require(script.Parent.EnemySpellVFX)
 local Effects={}
 local colors={physical=Color3.fromRGB(255,217,150),arcane=Color3.fromRGB(182,115,255),frost=Color3.fromRGB(121,226,255),fire=Color3.fromRGB(255,133,56),web=Color3.fromRGB(223,218,255),venom=Color3.fromRGB(151,230,90),soul=Color3.fromRGB(109,238,197),shadow=Color3.fromRGB(201,128,255)}
 local definitions={};for _,profile in pairs(Patterns.profiles)do for _,d in ipairs(profile.attacks)do definitions[d.id]=d end end
+local ground
+local visualEvents=setmetatable({},{__mode='k'})
+local function acceptVisual(m)
+ if not m.model or not m.model:IsDescendantOf(workspace)or m.model:GetAttribute('K0AttackSeq')~=m.sequence then return false end
+ local h=m.model:FindFirstChildOfClass('Humanoid');if h and h.Health<=0 then return false end
+ local row=visualEvents[m.model]
+ if not row or row.sequence~=m.sequence then row={sequence=m.sequence,keys={}};visualEvents[m.model]=row end
+ if row.cancelled then return false end
+ local key=m.kind..':'..tostring(m.pulse)..':'..tostring(m.shot)
+ if row.keys[key]then return false end;row.keys[key]=true;return true
+end
 local soundHolders={}
 local attacks=setmetatable({},{__mode='k'});local impacts={};local bursts={};local projectiles={};local soundAt={};local started=false
 local function part(parent,name,position,size,color)
@@ -59,8 +71,8 @@ local function label(target,message,color)
  Tween:Create(t,TweenInfo.new(.5),{TextTransparency=1,TextStrokeTransparency=1}):Play();Debris:AddItem(b,.55)
 end
 local function destroyAttack(model)
- local old=attacks[model];if old and old.folder then old.folder:Destroy()end;if old and old.charge then old.charge:Destroy()end;attacks[model]=nil
- for i=#projectiles,1,-1 do if projectiles[i].model==model then projectiles[i].part:Destroy();table.remove(projectiles,i)end end
+ local old=attacks[model];if old and old.folder then old.folder:Destroy()end;if old and old.charge then Spell.destroy(old.charge)end;attacks[model]=nil;Spell.cancel(model)
+ for i=#projectiles,1,-1 do if projectiles[i].model==model then Spell.destroy(projectiles[i].visual);table.remove(projectiles,i)end end
 end
 local function begin(message)
  local d=definitions[message.id];if not d or not message.model then return end
@@ -78,7 +90,11 @@ end
 function Effects.receive(m)
  if type(m)~='table'then return end
  if m.kind=='begin'then begin(m)
- elseif m.kind=='cancel'then local a=attacks[m.model];if a and a.sequence==m.sequence then destroyAttack(m.model)end
+ elseif m.kind=='cancel'then
+  Spell.cancel(m.model,m.sequence)
+  local row=visualEvents[m.model]
+  if not row or row.sequence==m.sequence then visualEvents[m.model]={sequence=m.sequence,keys={},cancelled=true}end
+  local a=attacks[m.model];if a and a.sequence==m.sequence then destroyAttack(m.model)end
  elseif m.kind=='impact'then
   if not m.model or not m.target or not m.target.Parent or not permitted(m.position)or workspace:GetServerTimeNow()-m.at>.5 then return end
   local targets=impacts[m.model]or {};impacts[m.model]=targets
@@ -102,6 +118,8 @@ function Effects.receive(m)
   local boss=profile and profile.boss
   burst(pos,m.element,result=='PerfectBlock' and 1.4 or boss and 1.55 or 1,result)
   if boss and result=='Hit' and m.damage>0 then BossImpact.play(m.target,m.element,color)end
+  local d=definitions[m.id]or (attacks[m.model]and attacks[m.model].d)
+  if d and d.shape~='projectile' and result=='Hit' and m.damage>0 then Spell.impact(d,pos,workspace:GetServerTimeNow(),m.model,m.sequence)end
   sound(pos,m.element,result)
   if result~='Hit' then label(m.target,Text[result]or Text.Hit,color)end
   if m.damage>0 then
@@ -122,15 +140,31 @@ function Effects.receive(m)
     end
    end
   end
- elseif m.kind=='pulse'then local d=definitions[m.id];if d then burst(m.position,d.element,1.5)end
+ elseif m.kind=='pulse'then
+  local d=definitions[m.id]
+  if d and m.model and m.model.Parent and permitted(m.position)and workspace:GetServerTimeNow()-m.at<=.5 and acceptVisual(m)then
+   local floor=ground(m.position)
+   if floor then
+    local direction=m.model:GetAttribute('K0PatternDirection')or Vector3.new(0,0,-1)
+    Spell.pulse(d,floor,direction,workspace:GetServerTimeNow(),m.model,m.sequence)
+   end
+  end
  elseif m.kind=='projectile'then
   local d=definitions[m.id];if not m.model or not d or not permitted(m.origin)then return end
-  if #projectiles>=48 then projectiles[1].part:Destroy();table.remove(projectiles,1)end
+  if workspace:GetServerTimeNow()-m.at>.5 or workspace:GetServerTimeNow()<m.at-.1 then return end
+  if not acceptVisual(m)then return end
+  if #projectiles>=48 then Spell.destroy(projectiles[1].visual);table.remove(projectiles,1)end
   if m.shot==1 then sound(m.origin,d.element,'Release')end
-  local p=part(workspace,'EnemyMagicProjectile',m.origin,Vector3.one*.7,colors[d.element]or colors.physical);p.Shape=Enum.PartType.Ball
-  table.insert(projectiles,{model=m.model,sequence=m.sequence,pulse=m.pulse,shot=m.shot,part=p,origin=m.origin,direction=m.direction,at=m.at,d=d})
+  local visual=Spell.projectile(d,m.model,m.sequence,m.origin,m.direction,m.at)
+  if visual then table.insert(projectiles,{model=m.model,sequence=m.sequence,pulse=m.pulse,shot=m.shot,visual=visual,origin=m.origin,direction=m.direction,at=m.at,d=d})end
  elseif m.kind=='projectileEnd'then
-  for i=#projectiles,1,-1 do local p=projectiles[i];if p.model==m.model and p.sequence==m.sequence and p.pulse==m.pulse and p.shot==m.shot then p.part:Destroy();table.remove(projectiles,i)end end
+  for i=#projectiles,1,-1 do
+   local p=projectiles[i]
+   if p.model==m.model and p.sequence==m.sequence and p.pulse==m.pulse and p.shot==m.shot then
+    Spell.destroy(p.visual);table.remove(projectiles,i)
+    if typeof(m.position)=='Vector3'and permitted(m.position)then Spell.impact(p.d,m.position,workspace:GetServerTimeNow(),m.model,m.sequence)end
+   end
+  end
  end
 end
 -- Match authored walkable floors, never character bodies, props or warning FX.
@@ -149,7 +183,7 @@ local function floorChanged(p)
 end
 workspace.DescendantAdded:Connect(floorChanged)
 workspace.DescendantRemoving:Connect(floorChanged)
-local function ground(v)
+ground=function(v)
  if floorDirty then
   local floors={workspace.Terrain}
   for _,name in ipairs({'DeepwoodCampaign','DeepwoodK0'})do
@@ -166,10 +200,13 @@ local function draw(a,model,now)
  if age<d.windup and d.element~='physical' and permitted(a.origin)then
   local socket=model:FindFirstChild('EnemyCastSocket',true)
   if socket then
-   if not a.charge or not a.charge.Parent then a.charge=part(workspace,'EnemySpellCharge',socket.WorldPosition,Vector3.one*.2,colors[d.element]or colors.arcane);a.charge.Shape=Enum.PartType.Ball;Debris:AddItem(a.charge,d.windup+.2)end
-   a.charge.Position=socket.WorldPosition;a.charge.Size=Vector3.one*(.2+.35*math.clamp(age/d.windup,0,1))
+   if not a.charge or a.charge.dead then a.charge=Spell.charge(d,model,a.sequence,a.at)end
+   if a.charge then
+    local progress=math.clamp(age/d.windup,0,1)
+    Spell.pose(a.charge,CFrame.new(socket.WorldPosition)*CFrame.Angles(0,age*1.7,0),age,.3+progress*.65)
+   end
   end
- elseif a.charge then a.charge:Destroy();a.charge=nil end
+ elseif a.charge then Spell.destroy(a.charge);a.charge=nil end
  local warning=age<d.windup+(d.pulses-1)*d.interval+.22
  if not warning or not permitted(a.origin)then if a.folder then a.folder:Destroy();a.folder=nil end;return end
  if a.lines and #a.lines>0 and a.folder then
@@ -216,14 +253,19 @@ function Effects.start()
  Run.RenderStepped:Connect(function()Effects.render(workspace:GetServerTimeNow())end)
 end
 function Effects.render(now)
+  Spell.step(now)
   for model,a in pairs(attacks)do
    local h=model:FindFirstChildOfClass('Humanoid')
    if not model:IsDescendantOf(workspace)or not h or h.Health<=0 or model:GetAttribute('K0AttackSeq')~=a.sequence or not model:GetAttribute('K0PatternId')then destroyAttack(model)
    elseif now-(a.drawAt or 0)>.05 then a.drawAt=now;draw(a,model,now)end
   end
   for i=#projectiles,1,-1 do local p=projectiles[i];local age=now-p.at
-   if age<0 or age*p.d.speed>p.d.range or not p.model:IsDescendantOf(workspace)then p.part:Destroy();table.remove(projectiles,i)
-   else p.part.Position=p.origin+p.direction*age*p.d.speed end
+   local h=p.model:FindFirstChildOfClass('Humanoid')
+   if age<0 or age*p.d.speed>p.d.range or not p.model:IsDescendantOf(workspace)or h and h.Health<=0 or p.model:GetAttribute('K0AttackSeq')~=p.sequence or p.visual.dead then Spell.destroy(p.visual);table.remove(projectiles,i)
+   else
+    local position=p.origin+p.direction*age*p.d.speed
+    Spell.pose(p.visual,CFrame.lookAt(position,position+p.direction)*CFrame.Angles(0,0,age*(p.d.heavy and 3 or 5)),age,1)
+   end
   end
 end
 return Effects
