@@ -42,3 +42,12 @@ Studio 엔진·게시 테스트 Experience 간 실제 Teleport·기존 계정 �
 공식 [SurfaceAppearance 스키마](https://github.com/Roblox/creator-docs/blob/main/content/en-us/reference/engine/classes/SurfaceAppearance.yaml),2026-11-11확인: 기존 Map 속성은 read=PluginSecurity, 대응 MapContent 속성은 read=None/write=PluginSecurity다. 두 경로를 읽기 허용된 `*MapContent.Uri`로 수정하고 빈 Content는 다운로드 입력에서 제외한다. 외형/팔레트/PBR·서버 권위를 유지한다.
 
 단위 회귀 mock은 구 Map 속성을 읽으면 실제와 같은 권한 예외를 발생시키도록 수정했다. 수정 전 소스에서 실패하고 수정 후21검사 통과했다. 이전 Studio 플러그인 권한 fixture는 이 결함을 잡지 못했으므로 별도의 일반 서버 Script 권한 시험을 추가했다. 화살통 몸통 미준비 경고와 나머지 과거 오류는 이 수정으로 해결됐다고 판단하지 않는다.
+
+
+검증 결과:
+
+- `lua tests/equipment-asset-loading.spec.lua`, `character-asset-loading.spec.lua`, `equipment-warmup.spec.lua`, `arrival-loading.spec.lua`: 총329검사 통과.
+- **0.104.6 실제 빌드**에서 `run-in-roblox --place builds/0.104.6/TheLastThrone-0.104.6.rbxlx --script tests/equipment-permissions-runtime-native.luau`: 일반 서버 Script로53검사 통과. 기존 ColorMap 읽기는 실제로 거부되고 새 ColorMapContent 읽기는 허용됨을 대조했다. 기존 기본 활과4계열 활 총5종의 무기/화살통 생성·팔레트·실제116다운로드 콜백을 확인했고 최종 실패 콜백0개다. [JSON](permissions-native.json), [로그](permissions-native.log). 일부 자산에 `No asset content representation found while do_not_fallback_to_baseline is set to true` 엔진 경고는 남았으며 최종 콜백 실패와 구분한다.
+- [빌드0.104.6 기록](build-0.104.6.json): 입력 소스 `3c56efef3d44c5a3cf5b6332eb825a6496b4e184`. 단일 산출물 `builds/0.104.6/TheLastThrone-0.104.6.rbxlx`.
+
+이 일반 서버 Script 검증은 사용자 기존 계정의 게시 클라이언트·실제 Teleport·모바일 표시 수용을 대신하지 않는다. 게시·릴리스 태그는 수행하지 않았다. 다음 담당: 게시/QA.0.104.6 반영 후 배틀 V23에서 관측된 기존 계정의 엘프 입장, 활/화살통 표시, 공격·재접속과 새 오류 보고서를 확인한다. 몸통 미준비 경고는 실제 캐릭터 생성 시점에 별도 재현해야 한다.
