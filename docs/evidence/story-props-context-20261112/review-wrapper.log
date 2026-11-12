@@ -1,0 +1,10 @@
+STORY_PROP_CONTEXT_NATIVE {"models":55,"kind":"STORY_PROP_CONTEXT_NATIVE","parts":543,"checks":1690}
+STORY_PROPS_NATIVE {"models":{"TrailEvidence":16,"ConvoyBadge":6,"SupplyCrate":22,"RouteLantern":23,"CartWreck":124,"TravelBindings":39,"SealWaystone":10,"GateWinch":97,"LedgerDesk":38,"PrisonCage":59,"PortalAnchor":30,"CoolantValve":70,"SignalMirror":29,"RuinedArch":26},"regions":[true,true,true,true,true],"failures":[],"checks":11430,"placedModels":482,"kind":"STORY_PROPS_NATIVE","pass":true,"placedParts":7717}
+STORY_PROP_CONTEXT_REVIEW_READY
+Server is not a valid member of ServerScriptService "ServerScriptService"
+user_run_in_roblox-50316.rbxmx.run-in-roblox-plugin.Main:3
+user_run_in_roblox-50316.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50316.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

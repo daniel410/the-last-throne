@@ -1,0 +1,12 @@
+{
+  "src/server/World/StoryQuestGeometry.luau": "9642d1b85711c4e76649591ba5e3560042659f1852caaf7316fe1f43d3434a26",
+  "src/server/World/StoryPropAssignments.luau": "7f072cb1dda3513957df55abfb41b52afdf06cd06ddc3779be085e3f55a33371",
+  "src/server/World/StoryProps.luau": "445d25afdc644cc827201c776377d51bf495c3fecb17b23d1acaca0cb184ab6c",
+  "src/server/World/CampaignIncidentProps.luau": "5ac0a6e414299e095910d95829af07a3096eb2c2ab1aca151d7b51958b35b952",
+  "src/server/World/DeepwoodActivityWorld.luau": "2bb671d6d32a5b2e5f724223e3b280a51db8d140744db6e381bb827dc9f18892",
+  "src/client/EmberCalderaPresentation.luau": "dae3c88272363a20f0cb6a414fd3ad2c5b685bd4be8cdffefd0ed1203eee5654",
+  "src/shared/CampaignStoryText.luau": "7e89b43015aa615adb0a09da3bbdd2f17ce5ca5964359ad509b12ca6aefb3161",
+  "tests/story-prop-context-native.luau": "43ad8d49c447f608a463498ae65d175344442c2e6abece433bf1219d2de38053",
+  "tests/story-props-native.luau": "a267e6c31ef85f8f793c99888fea74427101017be4e8f75a2336e97765ee1271",
+  "tools/prepare-story-prop-context-native.py": "45cbf375e455fa36d3626607edbe10108d70246bc5d79fd53f1a681e1b106b99"
+}
