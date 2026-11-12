@@ -84,6 +84,13 @@ function methods:GetChildren()
   for _, child in ipairs(self._children) do table.insert(result, child) end
   return result
 end
+function methods:GetDescendants()
+ local result={}
+ local function visit(node)
+  for _,child in ipairs(node:GetChildren())do table.insert(result,child);visit(child)end
+ end
+ visit(self);return result
+end
 function methods:FindFirstChild(name, recursive)
   for _, child in ipairs(self._children) do
     if child.Name == name then return child end
@@ -216,11 +223,16 @@ players.list = {p1}
 -- Actual TD MeshParts and the real adapter are covered by the native fixture.
 local actualRequire = require
 local weaponModule = {}
+local elfBuilds=0
 script = { Parent = { WeaponAppearance = weaponModule } }
 require = function(module)
   if module == weaponModule then
     return {
-      attachInto = function() return nil, "fixture_missing_td_model" end,
+      attachInto = function(_,_,classId)
+        if classId=="elf" then elfBuilds=elfBuilds+1;return {} end
+        return nil, "fixture_missing_td_model"
+      end,
+      isAttached = function()return true end,
       attachShieldInto = function() return nil, "fixture_missing_td_shield" end,
     }
   end
@@ -287,6 +299,20 @@ p2.Character = fourth
 p2.CharacterAdded:Fire(fourth)
 addRig(fourth, "R15")
 assert(#owned(fourth) == 0, "player removal should disconnect listeners")
+for _,rig in ipairs({"R15","R6"})do
+ local elf=character();elf:SetAttribute("K0ClassId","elf")
+ local p=makePlayer(elf);local before=elfBuilds;local warningCount=#warnings
+ players.PlayerAdded:Fire(p);addRig(elf,rig)
+ assert(elfBuilds==before and #owned(elf)==0 and #warnings==warningCount,"elf must wait quietly for torso after hands")
+ local torso=put("Part",rig=="R15" and "UpperTorso" or "Torso",elf)
+ assert(elfBuilds==before+1 and #owned(elf)==1,"late torso builds elf appearance once")
+ put("Part","Unrelated",elf);assert(elfBuilds==before+1,"complete elf appearance is idempotent")
+ torso:Destroy();flushDeferred()
+ assert(#owned(elf)==0 and elfBuilds==before+1 and #warnings==warningCount,"torso removal cannot rebuild incomplete quiver")
+ put("Part",rig=="R15" and "UpperTorso" or "Torso",elf)
+ assert(#owned(elf)==1 and elfBuilds==before+2,"restored torso recovers appearance")
+ players.PlayerRemoving:Fire(p)
+end
 assert(#warnings > 0, "the fallback must be visibly reported")
 local swordWarnings, shieldWarnings = 0, 0
 for _, message in ipairs(warnings) do

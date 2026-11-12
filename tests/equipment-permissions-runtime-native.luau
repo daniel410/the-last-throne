@@ -3,6 +3,16 @@ assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,'isolated fixture only'
 local Run=game:GetService('RunService')
 assert(not Run:IsRunning(),'fresh edit session required')
 game.ServerScriptService.Server.Disabled=true
+-- Replace only the Players service boundary to drive real rig lifecycle without accounts.
+local cosmetics=game.ServerScriptService.Server.Cosmetics
+local signals=Instance.new('Folder');signals.Name='EquipmentRigSignals';signals.Parent=cosmetics
+for _,name in ipairs({'Join','Leave'})do local event=Instance.new('BindableEvent');event.Name=name;event.Parent=signals end
+local observer=Instance.new('ModuleScript');observer.Name='EquipmentRigObserver'
+observer.Source=cosmetics.KnightAppearance.Source:gsub('local Players = game:GetService%("Players"%)',[[
+local signals=script.Parent.EquipmentRigSignals
+local Players={PlayerAdded=signals.Join.Event,PlayerRemoving=signals.Leave.Event,GetPlayers=function()return {}end}
+]])
+observer.Parent=cosmetics
 local fixture=Instance.new('Script');fixture.Name='EquipmentPermissionsRuntime'
 fixture.Source=[[
 local report={kind='EQUIPMENT_PERMISSIONS_RUNTIME',checks=0,bows=0,fetches=0,failures={}}
@@ -35,6 +45,30 @@ local ok,err=xpcall(function()
    check(count>0,'actual geometry/texture fetch callbacks '..part.Name)
   end end
   character:Destroy();report.bows+=1
+ end
+ local cosmetics=game.ServerScriptService.Server.Cosmetics
+ require(cosmetics.EquipmentRigObserver).start()
+ for _,rig in ipairs({Enum.HumanoidRigType.R15,Enum.HumanoidRigType.R6})do
+  local desc=Instance.new('HumanoidDescription')
+  local character=game.Players:CreateHumanoidModelFromDescriptionAsync(desc,rig);desc:Destroy()
+  local torso=character:FindFirstChild(rig==Enum.HumanoidRigType.R15 and 'UpperTorso' or 'Torso')
+  character.Humanoid.RequiresNeck=false;character.Humanoid.BreakJointsOnDeath=false
+  torso.Parent=nil;character:SetAttribute('K0ClassId','elf')
+  local added,removed=Instance.new('BindableEvent'),Instance.new('BindableEvent')
+  local player={Character=character,CharacterAdded=added.Event,CharacterRemoving=removed.Event}
+  cosmetics.EquipmentRigSignals.Join:Fire(player);task.wait(.1)
+  check(not character:FindFirstChild('TLT_K0_KnightAppearance'),'real hands without torso defer appearance')
+  torso.Parent=character;task.wait(.1)
+  local model=character:FindFirstChild('TLT_K0_KnightAppearance')
+  check(model and model.ElfQuiver and A.isAttached(model,character,'elf'),'real torso replication recovers full bow and quiver')
+  local unrelated=Instance.new('Part');unrelated.Parent=character;task.wait(.1)
+  check(character:FindFirstChild('TLT_K0_KnightAppearance')==model,'complete real rig does not rebuild')
+  torso.Parent=nil;task.wait(.1)
+  check(not character:FindFirstChild('TLT_K0_KnightAppearance'),'real torso removal detaches without partial rebuild')
+  torso.Parent=character;task.wait(.1)
+  check(character:FindFirstChild('TLT_K0_KnightAppearance')~=nil,'real torso restoration recovers')
+  cosmetics.EquipmentRigSignals.Leave:Fire(player);task.wait(.1)
+  character:Destroy();added:Destroy();removed:Destroy()
  end
  check(#report.failures==0,'all reviewed bow visual assets downloaded')
 end,debug.traceback)

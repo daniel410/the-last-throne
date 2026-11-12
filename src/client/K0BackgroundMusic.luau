@@ -52,10 +52,24 @@ function Music.start()
  player.CharacterAdded:Connect(function() snapshot=nil;refresh() end)
  player:GetAttributeChangedSignal('K0SessionPhase'):Connect(refresh);player:GetAttributeChangedSignal('TLTRoute'):Connect(refresh)
  local elapsed=0;Run.Heartbeat:Connect(function(dt) elapsed+=dt;if elapsed>=.2 then elapsed=0;refresh() end end)
- task.spawn(function()
-  local event=RS:WaitForChild('Remotes'):WaitForChild('DeepwoodState')
+ -- Training has no story service; a campaign creates its remotes on admission.
+ -- Observe replication without an infinite WaitForChild or blocking normal music.
+ local folderConnection,eventConnection,boundFolder,boundEvent
+ local function bindEvent(event)
+  if boundEvent or event.Name~='DeepwoodState' or not event:IsA('RemoteEvent') then return end
+  boundEvent=event
   event.OnClientEvent:Connect(function(value) snapshot=value;received=os.clock();refresh() end)
- end)
+  if eventConnection then eventConnection:Disconnect();eventConnection=nil end
+ end
+ local function bindFolder(folder)
+  if boundFolder or folder.Name~='Remotes' or not folder:IsA('Folder') then return end
+  boundFolder=folder
+  eventConnection=folder.ChildAdded:Connect(bindEvent)
+  local event=folder:FindFirstChild('DeepwoodState');if event then bindEvent(event) end
+  if folderConnection then folderConnection:Disconnect();folderConnection=nil end
+ end
+ folderConnection=RS.ChildAdded:Connect(bindFolder)
+ local folder=RS:FindFirstChild('Remotes');if folder then bindFolder(folder) end
  -- Keep normal music until the boss asset is ready; failed/denied audio never mutes it.
  task.spawn(function()
   if controller.boss then pcall(function() game:GetService('ContentProvider'):PreloadAsync({controller.boss}) end);refresh() end

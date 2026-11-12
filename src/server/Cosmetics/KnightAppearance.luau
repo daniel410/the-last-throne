@@ -169,6 +169,13 @@ local function syncAppearance(character)
 		local supported = type(classId) == "string" and SUPPORTED_CLASSES[classId] == true
 		local rightHand, leftHand = findHands(character)
 		local ready = supported and rightHand ~= nil and ((classId ~= "knight" and classId ~= "elf") or leftHand ~= nil)
+  if classId == "elf" then
+   -- Hands can arrive before the torso, or outlive it during rig removal.
+   -- ChildAdded retries when the body exists; never build a partial quiver.
+   local humanoid = character:FindFirstChildOfClass("Humanoid")
+   local torso = character:FindFirstChild(humanoid and humanoid.RigType == Enum.HumanoidRigType.R15 and "UpperTorso" or "Torso")
+   ready = ready and torso ~= nil and torso:IsA("BasePart")
+  end
 		local attached = false
 		for _, child in ipairs(character:GetChildren()) do
 			if child:IsA("Model") and child.Name == MODEL_NAME and child:GetAttribute(OWNED_ATTRIBUTE) == true then
