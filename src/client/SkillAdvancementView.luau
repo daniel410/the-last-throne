@@ -40,7 +40,7 @@ function View.render(body,hero,snapshot,state,send,redraw,pending,top,width)
   value.TextYAlignment=Enum.TextYAlignment.Top;y+=h+4
   return value
  end
- line('PathStatus',string.format(g.branch==c.path and Text.saved or Text.preview,c.branch.name),14,Theme.color.gold)
+ line('PathStatus',string.format(not c.samePath and Text.lockedStatus or g.branch==c.path and Text.saved or Text.preview,c.branch.name),14,c.samePath and Theme.color.gold or Theme.color.muted)
  line('PathRole',Text.roles[c.path],12,Theme.color.text)
  if not c.samePath then
   line('Requirements',string.format(Text.pathLocked,Advanced.branches[g.branch].name),12,Theme.color.muted)

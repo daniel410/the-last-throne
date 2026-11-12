@@ -10,12 +10,26 @@ local Preview=require(RS.Shared.SkillStatPreview)
 local SkillText=require(RS.Shared.SkillStatText)
 local Glyph=require(script.Parent.SkillGlyph)
 local Advancement=require(script.Parent.SkillAdvancementView)
+local AdvancementText=require(RS.Shared.AdvancementText)
 local Tree={}
 local portraits={knight='103255177842108',elf='80894238854345',dwarf='74628903359757',mage='91907986271282'}
 local classNames={knight='Knight',elf='Elf Archer',dwarf='Dwarf Axe Thrower',mage='Mage'}
 local defaultIcons={knight='shieldbearer',elf='archer',dwarf='axe',mage='arcanist'}
 local function label(p,n,t,x,y,w,h,size,color)
  return Theme.label(p,n,t,UDim2.fromOffset(x,y),UDim2.fromOffset(w,h),size or 12,color)
+end
+local function pathLocked(g,path)
+ return g.stage>0 and g.branch~='' and g.branch~=path
+end
+local function grayNode(node)
+ node.BackgroundColor3=Color3.fromRGB(37,37,37)
+ for _,v in ipairs(node:GetDescendants()) do
+  if v:IsA('Frame') then
+   local c=v.BackgroundColor3;local gray=c.R*.299+c.G*.587+c.B*.114
+   v.BackgroundColor3=Color3.new(gray,gray,gray)
+  elseif v:IsA('UIStroke') then v.Color=Color3.fromRGB(117,117,117)
+  elseif v:IsA('UIGradient') then v.Color=ColorSequence.new(Color3.new(1,1,1),Color3.fromRGB(55,55,55)) end
+ end
 end
 local function line(p,n,a,b,active)
  local v=Instance.new('Frame');v.Name=n;v.AnchorPoint=Vector2.new(.5,.5);v.Position=UDim2.fromOffset((a.X+b.X)/2,(a.Y+b.Y)/2);v.Size=UDim2.fromOffset((a-b).Magnitude,active and 3 or 2);v.Rotation=math.deg(math.atan2(b.Y-a.Y,b.X-a.X));v.BackgroundColor3=active and Color3.fromRGB(63,178,255) or Color3.fromRGB(75,94,117);v.BorderSizePixel=0;v.Parent=p
@@ -56,7 +70,14 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  label(header,'SkillPoints','SKILL POINTS  '..points,98,43,200,28,15,Theme.color.gold)
  local branchWidth=narrow and (width-40)/2 or math.min(170,(width-390)/2)
  for i,id in ipairs(Advanced.order[classId]) do
-  local b=Theme.button(header,'Path'..i,Advanced.branches[id].name,UDim2.fromOffset(narrow and 12+(i-1)*(branchWidth+8) or width-24-(3-i)*branchWidth-(2-i)*8,narrow and 96 or 24),UDim2.fromOffset(branchWidth,42),id==path)
+  local blocked=pathLocked(g,id)
+  local caption=blocked and string.format(AdvancementText.lockedTab,Advanced.branches[id].name) or Advanced.branches[id].name
+  local b=Theme.button(header,'Path'..i,caption,UDim2.fromOffset(narrow and 12+(i-1)*(branchWidth+8) or width-24-(3-i)*branchWidth-(2-i)*8,narrow and 96 or 24),UDim2.fromOffset(branchWidth,42),id==path and not blocked)
+  b:SetAttribute('PathLocked',blocked)
+  if blocked then
+   b.BackgroundColor3=Color3.fromRGB(49,49,49);b.TDButtonArt.ImageTransparency=.7
+   b.Caption.TextColor3=Theme.color.muted
+  end
   b.Caption.TextSize=12;b.Activated:Connect(function() Tree.selectPath(classId,state,id);redraw() end)
  end
  local top=narrow and 174 or 116
@@ -98,7 +119,10 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
      if found then previous=found;break end
     end
     local a,b=positions[previous],positions[index]
-    if a and b then line(map,'FamilyLink'..index,a,b,Advanced.unlocked(g,classId,index)) end
+    if a and b then
+     local link=line(map,'FamilyLink'..index,a,b,Advanced.unlocked(g,classId,index))
+     if pathLocked(g,base.branch) then link.BackgroundColor3=Color3.fromRGB(75,75,75) end
+    end
    end
   end
  end
@@ -106,17 +130,20 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
   for _,index in ipairs(row.indices) do
    local base=Config.Skills[classId][index]
    local learned=Advanced.unlocked(g,classId,index)
+   local blocked=base.branch and pathLocked(g,base.branch) or false
    local pos=positions[index]
    local node=Menu.node(map,'Skill'..index,'',UDim2.fromOffset(pos.X-size/2,pos.Y-size/2),size,learned,index==selected)
    node:SetAttribute('SkillIndex',index);node:SetAttribute('Unlocked',learned)
    local symbol=table.clone(base);symbol.root=index<=3 and index or base.root;Glyph.draw(node,classId,symbol,size*.72,learned)
-   local badge=label(node,'Rank',learned and ('Lv.'..(1+g.mastery[index])) or 'LOCKED',-5,size-3,size+10,20,9,learned and Theme.color.gold or Theme.color.muted)
+   node:SetAttribute('PathLocked',blocked)
+   if blocked then grayNode(node) end
+   local badge=label(node,'Rank',blocked and AdvancementText.lockedSkill or learned and ('Lv.'..(1+g.mastery[index])) or 'LOCKED',-5,size-3,size+10,20,blocked and 8 or 9,learned and Theme.color.gold or Theme.color.muted)
    badge.BackgroundTransparency,badge.BackgroundColor3=0,Theme.color.ink;badge.TextXAlignment=Enum.TextXAlignment.Center
    local title=label(map,'SkillName'..index,base.name,pos.X-((treeWidth-90)/math.max(#row.indices,3)-6)/2,pos.Y+size/2+22,(treeWidth-90)/math.max(#row.indices,3)-6,38,treeWidth<440 and 8 or 10,learned and Theme.color.text or Theme.color.muted);title.TextXAlignment=Enum.TextXAlignment.Center
    node.Activated:Connect(function() state.selected=index;redraw() end)
   end
  end
- label(map,'MapNote','Lines group action families. Each skill uses its own level and advancement requirement.',16,treeHeight-40,treeWidth-32,30,10,Theme.color.muted)
+ label(map,'MapNote',pathLocked(g,path) and AdvancementText.lockedMap or 'Lines group action families. Each skill uses its own level and advancement requirement.',16,treeHeight-40,treeWidth-32,30,10,Theme.color.muted)
  local detailX=narrow and 4 or treeWidth+24
  local detailY=narrow and top+treeHeight+20 or top
  local detailW=narrow and width-8 or width-detailX-4
@@ -124,9 +151,11 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  local base=Config.Skills[classId][selected]
  local skill=Growth.skill(classId,selected,base,g)
  local learned=Advanced.unlocked(g,classId,selected)
+ local blocked=base.branch and pathLocked(g,base.branch) or false
  local heading=Menu.plaque(detail,'SkillTitle',base.name,UDim2.fromOffset(10,10),UDim2.new(1,-20,0,50));heading.Caption.TextSize=15
  local detailIcon=Menu.node(detail,'SelectedSkillIcon','',UDim2.new(.5,-44,0,84),88,learned,true)
  local symbol=table.clone(base);symbol.root=selected<=3 and selected or base.root;Glyph.draw(detailIcon,classId,symbol,66,learned)
+ if blocked then grayNode(detailIcon) end
  local rank=label(detail,'Mastery','MASTERY  '..(1+g.mastery[selected])..' / '..Growth.maxSkillLevel,12,196,detailW-24,28,15,Theme.color.gold);rank.TextXAlignment=Enum.TextXAlignment.Center
  local effect=skill.form=='self' and string.format('Barrier: %.0f%% max HP / %gs',skill.shield*100,skill.shieldDuration) or skill.damage>0 and string.format(SkillText.DamageMultiplier,skill.damage) or string.format('Provoke %.1fs',skill.provokeDuration or 0)
  if skill.pulses and skill.pulses>1 then effect=effect..'  /  '..skill.pulses..' hits' end
@@ -137,11 +166,11 @@ function Tree.render(body,hero,snapshot,state,send,redraw,pending)
  detail.Size=UDim2.fromOffset(detailW,500+detailExtra)
  label(detail,'Effect',effectText,18,226,detailW-36,effectHeight,12,Theme.color.text)
  label(detail,'Cost',string.format('%gs cooldown%s',skill.cooldown,skill.manaCost and '  /  '..skill.manaCost..' MP' or ''),18,274+detailExtra,detailW-36,30,12,Theme.color.silver)
- label(detail,'Requirements',learned and (base.ultimate and 'LEARNED  /  Dedicated ultimate button. Does not use slots 1–5.' or 'LEARNED  /  Select a combat slot below to equip.') or base.common and string.format('LOCKED  /  Reach Level %d. No advancement required.',base.level) or string.format('LOCKED  /  Level %d + advancement stage %d\nPreview only. Complete this path first.',base.level or 1,base.stage or 0),18,310+detailExtra,detailW-36,66,12,learned and Theme.color.green or Theme.color.muted)
+ label(detail,'Requirements',blocked and AdvancementText.lockedHint or learned and (base.ultimate and 'LEARNED  /  Dedicated ultimate button. Does not use slots 1–5.' or 'LEARNED  /  Select a combat slot below to equip.') or base.common and string.format('LOCKED  /  Reach Level %d. No advancement required.',base.level) or string.format('LOCKED  /  Level %d + advancement stage %d\nPreview only. Complete this path first.',base.level or 1,base.stage or 0),18,310+detailExtra,detailW-36,66,12,learned and Theme.color.green or Theme.color.muted)
  local train=Theme.button(detail,'Train','+1 MASTERY  /  1 SP',UDim2.fromOffset(14,386+detailExtra),UDim2.new(1,-28,0,44),true)
  Theme.enabled(train,canTrain and learned and points>0 and g.mastery[selected]<Growth.maxMasteryRank)
  train.Activated:Connect(function() if train.Active then send('TrainSkill',{skill=selected}) end end)
- local hint=learned and (g.mastery[selected]>=Growth.maxMasteryRank and 'Maximum mastery reached.' or 'Mastery strengthens this skill. Skills are learned automatically when eligible.') or 'Locked nodes remain available to inspect.'
+ local hint=blocked and AdvancementText.lockedSkill..' · Preview only.' or learned and (g.mastery[selected]>=Growth.maxMasteryRank and 'Maximum mastery reached.' or 'Mastery strengthens this skill. Skills are learned automatically when eligible.') or 'Locked nodes remain available to inspect.'
  label(detail,'MasteryHint',hint,18,442+detailExtra,detailW-36,44,11,Theme.color.muted)
  local loadY=math.max(top+treeHeight,narrow and detailY+500+detailExtra or 0)+24
  local load=Menu.frame(body,'CombatLoadout',UDim2.fromOffset(4,loadY),UDim2.fromOffset(width-8,narrow and 200 or 120))

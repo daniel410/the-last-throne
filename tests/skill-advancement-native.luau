@@ -64,6 +64,45 @@ local ok,err=xpcall(function()
    body:ClearAllChildren();View.render(body,hero,snapshot,state,send,function()end,nil,4,700)
    check(not body.SkillAdvancement:FindFirstChild('CompleteAdvancement'),'completed final stage has no extra advance button')
    check(body.SkillAdvancement.Unlocks.Text:find(A.branches[path].skills[13].name,1,true)~=nil,'ultimate remains named after final advancement')
+   local other=paths[1]==path and paths[2] or paths[1]
+   snapshot.canInvest=true
+   for stage=1,4 do
+    g.stage=stage;g.level=stage*20;g.branch=path
+    for _,size in ipairs({Vector2.new(1160,650),Vector2.new(702,193),Vector2.new(390,650)}) do
+     body.Size=UDim2.fromOffset(size.X,size.Y);task.wait()
+     Tree.selectPath(classId,state,other)
+     body:ClearAllChildren();Tree.render(body,hero,snapshot,state,send,function()end,nil);task.wait()
+     local panel=body.SkillAdvancement
+     check(panel.PathStatus.Text:find('PATH LOCKED',1,true)~=nil,'excluded path explicitly named')
+     check(not panel:FindFirstChild('CompleteAdvancement'),'excluded path has no advance action')
+     for i,id in ipairs(paths) do
+      local tab=body.SkillHeader['Path'..i]
+      check(tab:GetAttribute('PathLocked')==(id==other),'only other path tab is gray')
+      check(tab.Active and tab.Selectable,'preview remains accessible to all inputs')
+      check(tab.Caption.TextFits,'path caption fits '..id..' '..tostring(size))
+     end
+     for _,skill in ipairs(A.branches[other].skills) do
+      local node=body.SkillMap['Skill'..skill.index]
+      check(node:GetAttribute('PathLocked') and node.Rank.Text=='PATH LOCKED','all excluded skills marked')
+      check(node.BackgroundColor3.R==node.BackgroundColor3.G and node.BackgroundColor3.G==node.BackgroundColor3.B,'excluded node is grayscale')
+     end
+     check(not body.SkillDetails.Train.Active,'excluded skill cannot train')
+     for slot=1,5 do check(not body.CombatLoadout['Slot'..slot].Active,'excluded skill cannot equip') end
+     local before=#sent
+     check(not View.request(hero,snapshot,state,send,function()end) and #sent==before,'excluded preview sends no advancement')
+     for _,label in panel:GetDescendants() do if label:IsA('TextLabel')then check(label.TextFits,'locked panel text fits '..label.Name)end end
+     state.selected=1
+     body:ClearAllChildren();Tree.render(body,hero,snapshot,state,send,function()end,nil)
+     check(not body.SkillMap.Skill1:GetAttribute('PathLocked'),'shared skill not path locked')
+     check(body.SkillDetails.Train.Active and body.CombatLoadout.Slot1.Active,'shared skill can train and equip in excluded preview')
+     Tree.selectPath(classId,state,path)
+     body:ClearAllChildren();Tree.render(body,hero,snapshot,state,send,function()end,nil)
+     check(not body.SkillMap['Skill'..A.branches[path].skills[13].index]:GetAttribute('PathLocked'),'future saved path skill is ordinary level lock')
+    end
+    check(not G.apply(g,{action='Advance',branch=other,stage=stage+1},classId),'server rules reject other path advancement')
+    check(not G.apply(g,{action='TrainSkill',skill=A.branches[other].skills[1].index},classId),'server rules reject other path training')
+    check(not G.apply(g,{action='SetSkillSlot',slot=1,skill=A.branches[other].skills[1].index},classId),'server rules reject other path equip')
+   end
    table.insert(report.cases,{classId=classId,path=path,stages=4,sizes=3})
   end
  end
