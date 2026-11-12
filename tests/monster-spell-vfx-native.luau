@@ -4,6 +4,7 @@ local Client=game.StarterPlayer.StarterPlayerScripts.Client
 local Patterns=require(RS.Shared.EnemyPatterns)
 local Profiles=require(RS.Shared.EnemySpellProfiles)
 local V=require(Client.EnemySpellVFX)
+local Art=require(Client.EnemySpellArt)
 local Pixel=require(Client.PixelFX)
 local checks,kinds,attacks,projectiles=0,0,0,0
 local function check(v,m)checks+=1;assert(v,m)end
@@ -21,6 +22,13 @@ local function inspect(r,stage,d)
   for _,n in ipairs({p.CFrame:GetComponents()})do check(n==n and math.abs(n)<10000,'finite transform '..d.id)end
  end
  check(r.model:GetAttribute('SpellId')==d.id,'spell identity '..d.id)
+ check(r.profile.family~=nil,'defined art family '..d.id)
+ if r.art then
+  for _,v in ipairs(r.art.lines)do
+   check(v.beam.FaceCamera and v.beam.Segments>=8,'curved camera-facing ribbon '..d.id)
+   check(v.a.Parent~=nil and v.b.Parent~=nil,'live beam attachments '..d.id)
+  end
+ end
 end
 for kind,profile in pairs(Patterns.profiles)do
  kinds+=1
@@ -51,12 +59,40 @@ for kind,profile in pairs(Patterns.profiles)do
   end
   local r=V.impact(d,Vector3.new(0,2,0),at,owner,seq);inspect(r,'impact',d)
   V.step(at+1);check(V.count()==0,'all phases expire '..d.id);Pixel.clear()
+  local b,p,l,f=Art.count();check(b==0 and p==0 and l==0 and f==0,'all art reservations released '..d.id)
  end
+end
+-- Motion and impact quality must change over time, not only vary the mesh's color.
+do
+ local d=Patterns.get('Shaman').attacks[1];owner:SetAttribute('K0AttackSeq',seq)
+ local r=V.projectile(d,owner,seq,Vector3.zero,direction,at)
+ V.pose(r,CFrame.identity,0,1);local first=r.art.lines[1].a.WorldPosition
+ V.pose(r,CFrame.identity,.25,1)
+ check((first-r.art.lines[1].a.WorldPosition).Magnitude>.05,'arcane helix animates independently of travel')
+ V.clear()
+ local ice=Patterns.get('IceElf').attacks[1]
+ local r=V.projectile(ice,owner,seq,Vector3.zero,direction,at)
+ check(r.parts[1].part.Material==Enum.Material.Glass,'ice uses translucent facets')
+ check(math.abs(V.roll(ice,.4))<.1,'ice spear keeps a steady forward silhouette')
+ V.clear()
+ local r=V.impact(ice,Vector3.new(0,3,0),at,owner,seq)
+ local before=r.parts[1].part.Position
+ V.step(at+.2)
+ check((r.parts[1].part.Position-before).Magnitude>.2,'impact ejects actual shards')
+ check(r.parts[1].part.Size==r.parts[1].size,'impact does not uniformly inflate the projectile')
+ V.clear()
+ local surface=V.impact(ice,Vector3.zero,at,owner,seq,Vector3.zAxis)
+ check(surface.position.Z>.7,'contact flash stays on the visible target surface')
+ V.clear()
+ local safe=V.impact(ice,Vector3.zero,at,owner,seq,Vector3.zero)
+ check(safe.position==Vector3.zero,'zero contact normal remains finite')
+ V.clear()
 end
 local d=Patterns.get('QueenIceElf').attacks[2]
 owner:SetAttribute('K0AttackSeq',seq)
 for i=1,100 do V.projectile(d,owner,seq,Vector3.new(i,3,0),direction,at)end
 local count,parts=V.count();check(count<=64 and parts<=640,'global geometry budget')
+local b,p,l,f=Art.count();check(b<=192 and p<=480 and l<=6 and f<=32,'bounded ribbons particles lights flares')
 V.cancel(owner,seq);check(V.count()==0,'cancel removes every phase')
 for i=1,100 do V.impact(d,Vector3.zero,at,owner,seq)end
 local important=V.projectile(d,owner,seq,Vector3.zero,direction,at)
@@ -102,4 +138,5 @@ check(V.count()==0,'old pulse ignored')
 health.Health=0;message.sequence=903;message.at=workspace:GetServerTimeNow();FX.receive(message)
 check(V.count()==0,'dead caster cannot recreate projectile')
 caster:Destroy();floorWorld:Destroy();V.clear();Pixel.clear()
+local b,p,l,f=Art.count();check(b==0 and p==0 and l==0 and f==0,'event cancellation releases all art')
 print('MONSTER_SPELL_VFX_NATIVE '..game.HttpService:JSONEncode({checks=checks,kinds=kinds,attacks=attacks,projectiles=projectiles}))

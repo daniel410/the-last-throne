@@ -1,13 +1,12 @@
 -- Cosmetic spell geometry. Never moves a gameplay root or performs a hit test.
 local RS=game:GetService('ReplicatedStorage')
 local Profiles=require(RS.Shared.EnemySpellProfiles)
-local Pixel=require(script.Parent.PixelFX)
+local Art=require(script.Parent.EnemySpellArt)
 local V={}
 local records={};local budget=0
 local MAX_PARTS=640;local MAX_RECORDS=64
-local pixels={physical='earth',arcane='arcane',fire='fire',frost='frost',web='nature',venom='nature',soul='holy',shadow='gravity'}
 local function remove(r)
- if r.dead then return end;r.dead=true;budget-=#r.parts
+ if r.dead then return end;r.dead=true;budget-=#r.parts;Art.release(r)
  if r.model.Parent then r.model:Destroy()end
 end
 local function prune()
@@ -35,8 +34,15 @@ end
 local function part(r,name,size,cf,shape,color,alpha)
  if budget>=MAX_PARTS then return end
  local p=Instance.new(shape=='wedge'and 'WedgePart'or 'Part');p.Name=name;p.Size=size;p.CFrame=cf;p.Color=color or r.color
- p.Material=Enum.Material.Neon;p.Transparency=alpha or .15;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false
+ p.Material=Enum.Material.Neon;p.Transparency=alpha or .28;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false
  if shape=='ball'then p.Shape=Enum.PartType.Ball end
+ if name=='CrystalBlade'or name=='IceSpire'or name=='IceFacet'then
+  p.Material=Enum.Material.Glass;p.Reflectance=.16;p.Transparency=.25;p.Color=p.Color:Lerp(Color3.fromRGB(220,252,255),.25)
+ elseif name=='FlameTongue'then p.Transparency=.96
+ elseif name=='MeteorFlame'then p.Transparency=.72
+ elseif name:match('^Accent_')then p.Transparency=.84;p.Color=r.color:Lerp(Color3.fromRGB(255,247,218),.4)
+ elseif name=='SpiritMask'then p.Transparency=.6
+ end
  p.Parent=r.model;r.parts[#r.parts+1]={part=p,cf=cf,size=size,alpha=p.Transparency};budget+=1
  return p
 end
@@ -81,6 +87,8 @@ local function motif(r)
   elseif m=='knife'then part(r,'KnifeGuard',Vector3.new(.65,.12,.12),CFrame.new(0,0,.4))
   elseif m=='scythe'then line(r,Vector3.new(-.8,0,-.5),Vector3.new(.3,0,.4),.22,'CrescentEdge')end
  elseif m=='ember' or m=='cinder' or m=='lava' or m=='inferno' or m=='volcano'then
+  part(r,'EmberHeart',Vector3.new(.46,.46,.9),CFrame.new(0,0,-.15),'ball',white,.18)
+  part(r,'EmberShell',Vector3.new(.72,.72,1.2),CFrame.new(0,0,.05),'ball',nil,.8)
   local n=m=='ember'and 3 or 5
   for i=1,n do local a=i*math.pi*2/n;part(r,'FlameTongue',Vector3.new(.28,.28,.9+i*.08),CFrame.new(math.cos(a)*.25,math.sin(a)*.25,.2)*CFrame.Angles(0,0,a),'wedge',i%2==0 and white or nil)end
  elseif m=='soul' or m=='seal' or m=='rift' or m=='hex' or m=='totem'then
@@ -113,11 +121,34 @@ end
 function V.destroy(r)if r then remove(r)end end
 function V.pose(r,cf,age,scale,fade)
  if not r or r.dead then return end
- for _,v in ipairs(r.parts)do
-  v.part.CFrame=cf*CFrame.new(v.cf.Position*scale)*v.cf.Rotation
-  v.part.Size=v.size*scale;v.part.Transparency=v.alpha+(1-v.alpha)*(fade or 0)
+ for i,v in ipairs(r.parts)do
+  local localCF=v.cf;local size=v.size
+  if r.stage=='impact'and v.velocity then
+   local t=math.max(0,age)
+   local position=v.cf.Position+v.velocity*t+cf:VectorToObjectSpace(Vector3.yAxis)*(v.gravity or -5)*t*t*.5
+   localCF=CFrame.new(position)*v.cf.Rotation*CFrame.Angles(t*i*1.1,t*.7,0)
+  elseif r.stage=='pulse'then
+   -- Immediate contact, then a quick rise and slower settling; the footprint never grows.
+   local u=math.clamp(age/r.life,0,1);local rise=math.sin(math.min(1,u/.2)*math.pi*.5)*(1-u*.55)
+   size=Vector3.new(v.size.X,v.size.Y*(.55+rise*.7),v.size.Z)
+  elseif r.profile.ornament and v.part.Name:match('^Accent_')then
+   local drift=math.sin(age*3+i)*.08
+   localCF=CFrame.new(0,drift,0)*localCF
+  end
+  v.part.CFrame=cf*CFrame.new(localCF.Position*scale)*localCF.Rotation
+  v.part.Size=size*scale
+  local alpha=fade or 0
+  if r.stage=='impact'then alpha=math.clamp((age/r.life-.2)/.8,0,1)end
+  v.part.Transparency=v.alpha+(1-v.alpha)*alpha
  end
  r.position=cf.Position
+ Art.pose(r,cf,age,scale,fade)
+end
+function V.roll(d,age)
+ local p=Profiles.get(d);if not p then return 0 end
+ if p.family=='frost'or p.family=='soul'or p.family=='venom'then return math.sin(age*3)*.08 end
+ if p.family=='physical'or p.family=='earth'then return age*2 end
+ return age*(p.family=='fire'and .6 or 1.1)
 end
 function V.projectile(d,owner,sequence,origin,direction,at)
  local r=make(d,'projectile',owner,sequence,at,d.range/d.speed+.2);if not r then return nil end
@@ -129,19 +160,30 @@ function V.projectile(d,owner,sequence,origin,direction,at)
   local trail=Instance.new('Trail');trail.Name='SpellWake';trail.Attachment0=a;trail.Attachment1=b;trail.Lifetime=.18;trail.MinLength=.08
   trail.Color=ColorSequence.new(r.color);trail.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.35),NumberSequenceKeypoint.new(1,1)});trail.Parent=main
  end
- V.pose(r,CFrame.lookAt(origin,origin+direction),0,1)
- if d.element~='physical'then Pixel.emit(pixels[d.element]or 'arcane',origin,1.8,.24,{character=owner,seq=sequence,follow=main})end
+ Art.attach(r);V.pose(r,CFrame.lookAt(origin,origin+direction),0,1)
  return r
 end
 function V.charge(d,owner,sequence,at)
  local r=make(d,'charge',owner,sequence,at,d.windup+.2);if not r then return nil end
- motif(r);return r
+ motif(r);Art.attach(r);return r
 end
-function V.impact(d,position,now,owner,sequence)
- local r=make(d,'impact',owner,sequence,now,.38);if not r then return end
- motif(r);r.cf=CFrame.new(position);r.burst=true
- V.pose(r,r.cf,0,1)
- Pixel.emit(pixels[d.element]or 'arcane',position,2.4,.3,{character=owner,seq=sequence})
+function V.impact(d,position,now,owner,sequence,normal)
+ local r=make(d,'impact',owner,sequence,now,.68);if not r then return end
+ local family=r.profile.family
+ local count=family=='frost'and 9 or family=='web'and 6 or 7
+ for i=1,count do
+  local a=i*2.39996;local ice=family=='frost';local stone=family=='earth'
+  local p=part(r,ice and 'CrystalBlade'or stone and 'StoneDebris'or family=='venom'and 'AcidDroplet'or 'ImpactFragment',
+   ice and Vector3.new(.12,.55,.18)or stone and Vector3.one*.2 or Vector3.new(.08,.2,.08),CFrame.Angles(a,.3,a),ice and 'wedge'or nil)
+  if stone then p.Material=Enum.Material.Slate;p.Color=Color3.fromRGB(132,112,90)end
+  local v=r.parts[#r.parts]
+  v.velocity=Vector3.new(math.cos(a),.5+(i%3)*.22,math.sin(a))*(ice and 3.2 or 2.4)
+  v.gravity=family=='soul'and 1 or -5
+ end
+ local surface=position
+ if normal and normal.Magnitude>.001 then normal=normal.Unit;surface+=normal*.8 else normal=nil end
+ r.cf=normal and CFrame.lookAt(surface,surface+normal)or CFrame.new(surface);r.burst=true
+ Art.attach(r);V.pose(r,r.cf,0,1)
  return r
 end
 local function crest(r,cf,height)
@@ -167,7 +209,7 @@ local function crest(r,cf,height)
  end
 end
 function V.pulse(d,position,direction,now,owner,sequence)
- local r=make(d,'pulse',owner,sequence,now,.42);if not r then return end
+ local r=make(d,'pulse',owner,sequence,now,.65);if not r then return end
  local cf=CFrame.lookAt(position,position+direction)
  -- Shape ornaments stay on the authoritative footprint, including the safe ring center.
  if d.shape=='ring'then
@@ -184,8 +226,7 @@ function V.pulse(d,position,direction,now,owner,sequence)
   local first=#r.parts;motif(r)
   for i=first+1,#r.parts do local v=r.parts[i];v.cf=CFrame.new(0,.65,0)*v.cf end
  end
- r.cf=cf;r.pulse=true;V.pose(r,cf,0,1)
- if d.shape~='ring'then Pixel.emit(pixels[d.element]or 'arcane',position,3,.35,{character=owner,seq=sequence})end
+ r.cf=cf;r.pulse=true;Art.attach(r);V.pose(r,cf,0,1)
  return r
 end
 function V.step(now)
@@ -196,7 +237,7 @@ function V.step(now)
   if r.dead or not r.model.Parent or age>r.life or invalid then remove(r);table.remove(records,i)
   elseif r.cf then
    local u=math.clamp(age/r.life,0,1)
-   V.pose(r,r.cf,age,r.burst and 1+u*.7 or 1,u*u)
+   V.pose(r,r.cf,age,1,u*u)
   end
  end
 end

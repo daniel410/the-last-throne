@@ -4,7 +4,7 @@ import argparse,hashlib,json,subprocess
 root=Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser();p.add_argument('--output',type=Path,default=Path('/tmp/tlt-monster-spell-vfx'));p.add_argument('--capture',action='store_true');a=p.parse_args()
 out=a.output.resolve();out.mkdir(parents=True,exist_ok=True)
-client=['EnemySpellVFX','EnemyPatternEffects','BossHeroImpact','PixelFX']
+client=['EnemySpellArt','EnemySpellVFX','EnemyPatternEffects','BossHeroImpact','PixelFX']
 project={'name':'MonsterSpellVFXQA','tree':{'$className':'DataModel','ReplicatedStorage':{'Shared':{'$path':str(root/'src/shared')}},'StarterPlayer':{'StarterPlayerScripts':{'Client':{'$className':'Folder',**{name:{'$path':str(root/f'src/client/{name}.luau')}for name in client}}}}}}
 (out/'qa.project.json').write_text(json.dumps(project,indent=2)+'\n')
 subprocess.run(['rojo','build',str(out/'qa.project.json'),'-o',str(out/'qa.rbxlx')],check=True)

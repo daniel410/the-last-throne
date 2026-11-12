@@ -119,7 +119,7 @@ function Effects.receive(m)
   burst(pos,m.element,result=='PerfectBlock' and 1.4 or boss and 1.55 or 1,result)
   if boss and result=='Hit' and m.damage>0 then BossImpact.play(m.target,m.element,color)end
   local d=definitions[m.id]or (attacks[m.model]and attacks[m.model].d)
-  if d and d.shape~='projectile' and result=='Hit' and m.damage>0 then Spell.impact(d,pos,workspace:GetServerTimeNow(),m.model,m.sequence)end
+  if d and d.shape~='projectile' and result=='Hit' and m.damage>0 then Spell.impact(d,pos,workspace:GetServerTimeNow(),m.model,m.sequence,m.source and m.source-pos)end
   sound(pos,m.element,result)
   if result~='Hit' then label(m.target,Text[result]or Text.Hit,color)end
   if m.damage>0 then
@@ -162,7 +162,7 @@ function Effects.receive(m)
    local p=projectiles[i]
    if p.model==m.model and p.sequence==m.sequence and p.pulse==m.pulse and p.shot==m.shot then
     Spell.destroy(p.visual);table.remove(projectiles,i)
-    if typeof(m.position)=='Vector3'and permitted(m.position)then Spell.impact(p.d,m.position,workspace:GetServerTimeNow(),m.model,m.sequence)end
+    if typeof(m.position)=='Vector3'and permitted(m.position)then Spell.impact(p.d,m.position,workspace:GetServerTimeNow(),m.model,m.sequence,-p.direction)end
    end
   end
  end
@@ -264,7 +264,7 @@ function Effects.render(now)
    if age<0 or age*p.d.speed>p.d.range or not p.model:IsDescendantOf(workspace)or h and h.Health<=0 or p.model:GetAttribute('K0AttackSeq')~=p.sequence or p.visual.dead then Spell.destroy(p.visual);table.remove(projectiles,i)
    else
     local position=p.origin+p.direction*age*p.d.speed
-    Spell.pose(p.visual,CFrame.lookAt(position,position+p.direction)*CFrame.Angles(0,0,age*(p.d.heavy and 3 or 5)),age,1)
+    Spell.pose(p.visual,CFrame.lookAt(position,position+p.direction)*CFrame.Angles(0,0,Spell.roll(p.d,age)),age,1)
    end
   end
 end
