@@ -15,7 +15,8 @@ local function place(template,parent,name,position,height)
  copy:SetAttribute('TDEnvironmentSource',name)
  if name=='TDElderTree'then
   for _,p in ipairs(copy:GetDescendants())do if p:IsA('MeshPart')and (p.Name=='trunk_geom'or p.Name=='roots_geom')then
-   p.CanCollide=true;p.CanQuery=true;p.CollisionFidelity=Enum.CollisionFidelity.PreciseConvexDecomposition
+   -- CollisionFidelity is authored in the pinned mesh; runtime servers cannot write it.
+   p.CanCollide=true;p.CanQuery=true
   end end
  end
  copy.Parent=parent;return copy

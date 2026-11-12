@@ -2,6 +2,7 @@
 
 2026-11-11 · TLT-001/050/057/084 · 문서 정리 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
+- 배틀 입장: 큰 나무 생성의 플러그인 전용 CollisionFidelity 쓰기로 발생하는 강제 퇴장을 수정했다. 실제 Battle 서버 Script의5에픽 초기화34검사 통과, 게시 이동/실기기 수용 대기. [재현·수정·검증](../evidence/battle-world-permissions-20261111/README.md).
 - 장비 착용: 모든 무기·방어구·장신구의 레벨 제한과 가방/상점 요구 레벨 안내를 소스 제거했다. [기존 보유/이관·회귀·미게시](../evidence/equipment-level-free-20261111/README.md).
 - 상위 난이도: Hard/Insane/Hell 레벨 제한 제거를 소스 반영했다. [솔로/파티/재접속 회귀·미게시](../evidence/difficulty-level-free-20261111/README.md).
 - 영웅 VFX: 0.104.1에서128스킬의 개별 엔진 화면을 전후 비교하고 동작별 연출·펄스·중심/방향·공통 발사 연결을 조정했다. [개별 검토표·295장·엔진 검증·미게시/남은 수용](../evidence/skill-vfx-individual-20261111/README.md).

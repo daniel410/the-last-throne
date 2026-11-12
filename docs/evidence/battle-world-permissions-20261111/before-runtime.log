@@ -1,0 +1,22 @@
+ContentId: rbxassethash://e3f17049d801a9aba2a3fecb56bcba72 failed due to: Request must have a PlaceId set.
+ARRIVAL_RUNTIME_REPRO false ServerScriptService.Server:63: The current thread cannot write 'CollisionFidelity' (lacking capability PluginOrOpenCloud)
+ServerScriptService.Server:63 function previewWorld
+ServerScriptService.Server:106
+ServerScriptService.Server:106
+
+ARRIVAL_RUNTIME_RESULT ServerScriptService.Server:63: The current thread cannot write 'CollisionFidelity' (lacking capability PluginOrOpenCloud)
+ServerScriptService.Server:63 function previewWorld
+ServerScriptService.Server:106
+ServerScriptService.Server:106
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:15: ServerScriptService.Server:63: The current thread cannot write 'CollisionFidelity' (lacking capability PluginOrOpenCloud)
+ServerScriptService.Server:63 function previewWorld
+ServerScriptService.Server:106
+ServerScriptService.Server:106
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:15
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

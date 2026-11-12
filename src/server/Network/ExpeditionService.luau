@@ -145,8 +145,11 @@ function Service.admitArrival(p)
  if battleRun and battleRun.id~=r.id then return nil,'This battle server belongs to another expedition.' end
  battleRun=r;battleStarted=battleStarted or os.clock();admitted[p]=r.members[tostring(p.UserId)]
  p:SetAttribute('TLTTravelLock',true)
- local ready=pcall(o.previewWorld,r.missionId)
- if not ready then return nil,'The adventure could not load. Return to the lobby and rejoin.'end
+ local ready,loadError=xpcall(function()o.previewWorld(r.missionId)end,debug.traceback)
+ if not ready then
+  warn(string.format('[Expedition] World load failed: mission=%s place=%s\n%s',r.missionId,tostring(game.PlaceId),tostring(loadError)))
+  return nil,'The adventure could not load. Return to the lobby and rejoin.'
+ end
  return {heroId=admitted[p].heroId}
 end
 local function startRunLocked(p,party,runId)

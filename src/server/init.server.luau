@@ -45,7 +45,7 @@ local function previewWorld(missionId)
  if buildFailure then error(buildFailure)end
  if deepwood and deepwood.loadedEpics[epic]then return end
  building=true
- local ok,err=pcall(function()
+ local ok,err=xpcall(function()
   startCombat()
   deepwood=require(script.World.CampaignWorld).create(epic,deepwood)
   if deepwood.positions['DW-03']and sessionOptions then
@@ -58,7 +58,7 @@ local function previewWorld(missionId)
   if not storyStarted then
    story.start({world=deepwood,enemies=world.enemies,inventory=inventory,heroSession=heroSession,combat=combat,prepareStory=previewWorld});storyStarted=true
   else story.refreshWorld()end
- end)
+ end,debug.traceback)
  building=false
  if not ok then buildFailure=tostring(err);error(err)end
 end
