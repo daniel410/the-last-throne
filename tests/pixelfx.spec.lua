@@ -5,6 +5,8 @@ local function check(v,s)count=count+1;assert(v,s)end
 math.clamp=math.clamp or function(x,a,b)return math.max(a,math.min(b,x))end
 local Config=dofile('src/shared/K0Config.luau')
 local modules={K0Config=Config,AdvancedSkills=dofile('src/shared/AdvancedSkills.luau')}
+-- The imported ParticleEmitter renderer is exercised with real instances in curated-vfx-native.
+modules.CuratedVFX={keyFor=function()end,duration=function()return 1.25 end,mount=function()end,play=function()end,step=function()end,release=function()end}
 require=function(k)return assert(modules[k],tostring(k))end
 script={Parent={AdvancedSkills='AdvancedSkills'}}
 modules.SkillPresentation=dofile('src/shared/SkillPresentation.luau')
@@ -46,7 +48,7 @@ local function loadModule(path)
  source=source:gsub('r.age%+=dt','r.age=r.age+dt')
  return assert(load(source,'@'..path))()
 end
-script={Parent={PixelFX='PixelFX'}}
+script={Parent={PixelFX='PixelFX',CuratedVFX='CuratedVFX'}}
 modules.PixelFX=loadModule('src/client/PixelFX.luau')
 local FX=modules.PixelFX
 local Controller=loadModule('src/client/PixelFXController.luau')

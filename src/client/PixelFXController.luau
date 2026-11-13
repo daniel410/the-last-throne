@@ -49,6 +49,7 @@ function Controller.start()
  task.spawn(function()
   local list={};for _,id in pairs(Assets) do table.insert(list,id) end
   pcall(function() game:GetService("ContentProvider"):PreloadAsync(list) end)
+  pcall(FX.preloadCurated)
  end)
  Run.RenderStepped:Connect(function()
   local now=workspace:GetServerTimeNow()

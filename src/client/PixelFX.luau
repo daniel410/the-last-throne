@@ -4,6 +4,7 @@ local RS=game:GetService("ReplicatedStorage")
 local Run=game:GetService("RunService")
 local Assets=require(RS.Shared.PixelFXAssets)
 local Catalog=require(RS.Shared.PixelFXCatalog)
+local Curated=require(script.Parent.CuratedVFX)
 local FX={}
 local records={}
 local connection
@@ -13,6 +14,7 @@ local function finite(n) return type(n)=="number" and n==n and math.abs(n)<1e7 e
 local function vector(v) return typeof(v)=="Vector3" and finite(v.X) and finite(v.Y) and finite(v.Z) end
 local function remove(index)
  local r=table.remove(records,index)
+ if r then Curated.release(r.curated) end
  if r and r.holder.Parent then r.holder:Destroy() end
 end
 local function cancelled(r)
@@ -35,9 +37,12 @@ function FX.step(dt)
   if not r.holder.Parent or r.age>=r.duration or cancelled(r) or r.follow and not r.follow:IsDescendantOf(workspace) then remove(i)
   else
    if r.follow then r.holder.Position=r.follow.Position+r.offset end
-   local index=math.min(15,math.floor(r.age/r.duration*16))
-   r.image.ImageRectOffset=Vector2.new(index%4*128,math.floor(index/4)*128)
-   r.image.ImageTransparency=.12+math.clamp((r.age/r.duration-.7)/.3,0,1)*.88
+   Curated.step(r.curated,r.age)
+   if r.image then
+    local index=math.min(15,math.floor(r.age/r.duration*16))
+    r.image.ImageRectOffset=Vector2.new(index%4*128,math.floor(index/4)*128)
+    r.image.ImageTransparency=.12+math.clamp((r.age/r.duration-.7)/.3,0,1)*.88
+   end
   end
  end
  if #records==0 and connection then connection:Disconnect();connection=nil end
@@ -53,15 +58,20 @@ function FX.emit(key,position,size,duration,options)
  holder.Name="PixelFXAccent";holder.Size=Vector3.one*.05;holder.Position=position
  holder.Anchored=true;holder.Transparency=1;holder.CanCollide=false;holder.CanTouch=false;holder.CanQuery=false;holder.CastShadow=false
  holder:SetAttribute("PixelFXKey",key)
+ local curated=options.curated and Curated.mount(holder,options.curated,math.clamp(size,.3,6))
+ local image
+ if not curated then
  local gui=Instance.new("BillboardGui")
  gui.Name="PixelFXSprite";gui.Size=UDim2.fromScale(math.clamp(size,.3,6),math.clamp(size,.3,6))
  gui.AlwaysOnTop=false;gui.LightInfluence=0;gui.MaxDistance=MAX_DISTANCE;gui.Adornee=holder;gui.Parent=holder
- local image=Instance.new("ImageLabel")
+ image=Instance.new("ImageLabel")
  image.Name="Frame";image.Size=UDim2.fromScale(1,1);image.BackgroundTransparency=1
  image.Image=Assets[key];image.ImageRectSize=Vector2.new(128,128);image.ImageRectOffset=Vector2.zero
  image.ResampleMode=Enum.ResamplerMode.Pixelated;image.ImageTransparency=.12;image.Parent=gui
+ end
  holder.Parent=workspace
- local r={holder=holder,image=image,key=key,age=0,duration=math.clamp(duration,.12,1.6),character=options.character,seq=options.seq,follow=options.follow,offset=options.offset or Vector3.zero}
+ Curated.play(curated)
+ local r={holder=holder,image=image,curated=curated,key=key,age=0,duration=math.clamp(duration,.12,1.6),character=options.character,seq=options.seq,follow=options.follow,offset=options.offset or Vector3.zero}
  table.insert(records,r)
  -- Fixtures can step explicitly without leaving a frame connection behind.
  if not options.manual and not connection and Run:IsClient() then connection=Run.RenderStepped:Connect(FX.step) end
@@ -94,14 +104,27 @@ function FX.skill(character,id,origin,center,pulse,points,seq,firedAt)
   at=origin+(delta.Magnitude>.01 and delta.Unit or Vector3.new(0,0,-1))*((d.form=="self" or d.form=="area") and 0 or 2)
  end
  local opts={character=character,seq=seq}
+ local imported=Curated.keyFor(id)
+ if imported then
+  opts.curated=imported
+  -- Ground-centered artwork follows the same world floor as the existing 3D.
+  local params=RaycastParams.new();params.FilterType=Enum.RaycastFilterType.Exclude
+  params.FilterDescendantsInstances=character and {character}or{};params.RespectCanCollide=true
+  local hit=workspace:Raycast(at+Vector3.new(0,2,0),Vector3.new(0,-18,0),params)
+  at=hit and hit.Position+Vector3.new(0,.12,0)or at-Vector3.new(0,2.7,0)
+  -- Keep the camera-facing burst above the floor; it is not the area boundary.
+  if imported=='blast'or imported=='frost'then at=at+Vector3.new(0,imported=='blast'and 1.6 or 1.4,0)end
+  return FX.emit(row.key,at,imported=='blast'and 3.2 or 4.5,Curated.duration(imported),opts)
+ end
  return FX.emit(row.key,at,area and 4.5 or d.form=="self" and 3.5 or 2.5,area and .7 or .4,opts)
 end
 function FX.support(character,action)
  local root=character and character:FindFirstChild("HumanoidRootPart")
  local key=({Heal="heal",Protect="ward",Cleanse="cleanse"})[action]
  if not root or not key then return false end
- return FX.emit(key,root.Position,3.8,.8,{character=character,follow=root})
+ return FX.emit(key,root.Position,3.8,action=='Heal'and Curated.duration('heal')or .8,{character=character,follow=root,curated=action=='Heal'and'heal'or nil})
 end
+function FX.preloadCurated()Curated.preload()end
 local seenEnemies=setmetatable({},{__mode="k"})
 function FX.enemy(model,now)
  if model:GetAttribute("K0EnemyState")~="Active" then return false end

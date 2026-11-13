@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "review": "docs/research/2026-11-12-free-roblox-vfx-review.md",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "file": "arrow-rain.rbxl",
+      "bytes": 47618,
+      "sha256": "effd1433dab418070fdb24fdf10c4cab685f72ede9ec314f412f92013db8bb66"
+    },
+    {
+      "file": "healing.rbxl",
+      "bytes": 48889,
+      "sha256": "a7184331606cc63f6a035e331101e659e1af7723d8da75cb83aebbd94e76b776"
+    }
+  ],
+  "textureUploads": [
+    {
+      "file": "frost-nova-roblox-8x8.png",
+      "sha256": "b79f74037263bfa0ccdbcb8714bb83720ff7bed56bb7e4a1fc94458d0539f0b2",
+      "assetId": "72083342328059"
+    },
+    {
+      "file": "rolling-fireball-explosion-roblox-8x8.png",
+      "sha256": "b6a143d507aa5a722e0dac2a6f68b3e6baefe48a21be2f889fa929713fb2b713",
+      "assetId": "125374985892345"
+    }
+  ],
+  "yuruzuu": "https://devforum.roblox.com/t/yuruzuus-open-source-vfx/1840021",
+  "particlefx": "https://www.particlefx.studio/roblox/free-vfx-pack",
+  "mapping": {
+    "Selene:Heal": "Yuruzuu Healing Effect (4 emitters)",
+    "elf.magic_archer.spirit_rain": "Yuruzuu Arrow Rain (3 emitter designs at 5 contact positions)",
+    "mage.cryo.frost_ring": "ParticleFX Frost Nova",
+    "dwarf.gunner.bomb_toss": "ParticleFX Rolling Fireball Explosion"
+  },
+  "derivatives": [
+    "No imported scripts, characters, lighting or services.",
+    "Yuruzuu size/lifetime curves and textures reused; colors, velocity, positions, emission counts and occlusion adapted to current game.",
+    "ParticleFX 1024x1024/8x8 PNGs unchanged; smooth ImageLabel atlas playback in an occluded BillboardGui for 0.6/0.85 seconds. Native ParticleEmitter flipbook rejected these uploads despite successful baseline preload.",
+    "Original detailed emitter data in yuruzuu-emitter-source.json; only 7 selected emitter definitions retained."
+  ],
+  "rights": {
+    "Yuruzuu": "Game use and customization allowed; credit optional; do not claim authorship. Third-party DevForum mirrors; equality to original author files unverified.",
+    "ParticleFX": "Commercial game use allowed without credit; no reselling/reuploading the pack itself. Two images stored as game inputs, not redistributed as a VFX library."
+  }
+}

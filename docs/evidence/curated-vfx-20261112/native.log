@@ -1,0 +1,2 @@
+CURATED_VFX_NATIVE {"assets":{"rbxassetid://8196169974":true,"rbxassetid://9937082969":true,"rbxassetid://9997556038":true,"rbxassetid://72083342328059":true,"rbxassetid://8030734851":true,"rbxassetid://125374985892345":true},"failures":[],"pass":true,"checks":148}
+{"assets":20,"failures":[],"checks":1690,"status":"PASS","kind":"PIXELFX_NATIVE","basic":4,"skills":128}

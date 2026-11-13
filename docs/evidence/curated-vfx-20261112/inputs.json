@@ -1,0 +1,10 @@
+{
+  "src/client/CuratedVFX.luau": "829020b22341a67501317c2a88b6258dfd6f67109c900321da8dad4cffd5909b",
+  "src/client/PixelFX.luau": "491274aa39ec51e1bf06f8d21db38e82d824f861b7c748528527fd30100f6a82",
+  "src/client/PixelFXController.luau": "687f9cc5434a166cb14e27d61f5f578a9492fec94b4dfb6b4c340968d5f7a0cd",
+  "src/client/SelenePresentation.luau": "a7e4f350236601ad9ce75b7905c12fb3dadd1d50e4baec3be4c3820054d534cb",
+  "tests/curated-vfx-native.luau": "f270c0c8562a1a32e5f6de4d1808ee4bc6394df0334b6e93a06854c5206eeaa0",
+  "tests/pixelfx-native.luau": "a73d25286add286f6bb940c7d2ccfabef7b277e2e63526ac065b14438114f371",
+  "tests/pixelfx.spec.lua": "55f9ea2225332216525eebdbbb6a248fcc23e90c032787609983c09651cd2a13",
+  "tools/capture-curated-vfx-review.luau": "e1e88c2731e29975f5446b720d038c39f73ae1eeb190974cdfefad7da5a99ebf"
+}

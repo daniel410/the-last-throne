@@ -45,7 +45,8 @@ function View.bind(model,resolveCharacter)
   local color=action=='Heal' and MINT or action=='Protect' and GOLD or Color3.fromRGB(187,224,255)
   local source=Instance.new('Attachment');source.Name='SeleneHealingHand';source.CFrame=arm.CFrame:ToObjectSpace(Skin.hand(self.skin));source.Parent=arm
   local target=Instance.new('Attachment');target.Name='SeleneSupportRecipient';target.Parent=targetRoot
-  emitter(source,GOLD):Emit(12);emitter(target,color):Emit(action=='Heal' and 32 or 24)
+  emitter(source,GOLD):Emit(12)
+  if action~='Heal'then emitter(target,color):Emit(24)end
   local beam=Instance.new('Beam');beam.Name='BlessingLink';beam.Attachment0=source;beam.Attachment1=target
   beam.FaceCamera=true;beam.Segments=16;beam.CurveSize0=1.4;beam.CurveSize1=-1.4
   beam.Width0=.18;beam.Width1=.4;beam.LightEmission=1;beam.Color=ColorSequence.new(GOLD,color)

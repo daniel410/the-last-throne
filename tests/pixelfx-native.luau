@@ -19,11 +19,15 @@ local function inspect()
  check(FX.count()>0,"effect exists")
  for _,p in ipairs(workspace:GetChildren()) do if p.Name=="PixelFXAccent" then
   check(p.CanCollide==false and p.CanTouch==false and p.CanQuery==false,"cosmetic physics only")
+  if p:GetAttribute('CuratedVFXKey')then
+   check(p:FindFirstChild('PixelFXSprite')==nil,'imported artwork replaces pixel layer')
+  else
   check(p.PixelFXSprite.AlwaysOnTop==false,"world occlusion preserved")
   local image=p.PixelFXSprite.Frame
   check(image.ResampleMode==Enum.ResamplerMode.Pixelated,"pixelated sampling")
   check(image.ImageRectSize==Vector2.new(128,128),"padded atlas cell")
   check(image.ImageRectOffset.X%128==0 and image.ImageRectOffset.Y%128==0,"aligned frame")
+  end
  end end
 end
 local ok,err=xpcall(function()

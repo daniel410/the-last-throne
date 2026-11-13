@@ -1,0 +1,85 @@
+{
+  "scope": "Isolated Studio production-renderer stills, instances cloned/frozen, sprite image decode awaited, source frames selected by production Curated.step. Not first-use latency or gameplay/device acceptance.",
+  "captures": [
+    {
+      "index": 1,
+      "id": "heal",
+      "height": 240,
+      "name": "Selene Heal",
+      "width": 320,
+      "file": "heal.png",
+      "sha256": "ab6088ffb6c53314d8fa5776ff00cd7ce0734421e7e309fe188debd5c164496b"
+    },
+    {
+      "index": 2,
+      "id": "elf.magic_archer.spirit_rain",
+      "height": 240,
+      "name": "Spirit Rain",
+      "width": 320,
+      "file": "elf_magic_archer_spirit_rain.png",
+      "sha256": "3ede329c9f3bde4a5ad9275e9646a106ffc619688bddac8eefc4d4ac9e9ceffa"
+    },
+    {
+      "index": 3,
+      "id": "mage.cryo.frost_ring",
+      "height": 240,
+      "name": "Frost Ring",
+      "width": 320,
+      "file": "mage_cryo_frost_ring.png",
+      "sha256": "87526500eb71c2239a0fb08dc06c91ce4524e7db1e7bcf381017d0ea3ee472fb"
+    },
+    {
+      "index": 4,
+      "id": "dwarf.gunner.bomb_toss",
+      "height": 240,
+      "name": "Bomb Toss",
+      "width": 320,
+      "file": "dwarf_gunner_bomb_toss.png",
+      "sha256": "4cb5ed1dd054fdfedb7dce2b25aff8614e73eb46a5c018aa391a46e1cdb9e165"
+    }
+  ],
+  "preload": [
+    {
+      "ok": true,
+      "statuses": {
+        "rbxassetid://8196169974": "Success",
+        "rbxassetid://9937082969": "Success",
+        "rbxassetid://9997556038": "Success",
+        "rbxassetid://72083342328059": "Success",
+        "rbxassetid://8030734851": "Success",
+        "rbxassetid://125374985892345": "Success"
+      }
+    },
+    {
+      "ok": true,
+      "statuses": {
+        "rbxassetid://8196169974": "Success",
+        "rbxassetid://9937082969": "Success",
+        "rbxassetid://9997556038": "Success",
+        "rbxassetid://72083342328059": "Success",
+        "rbxassetid://8030734851": "Success",
+        "rbxassetid://125374985892345": "Success"
+      }
+    }
+  ],
+  "renderStates": [
+    {
+      "key": "heal",
+      "position": "0, 3, 0"
+    },
+    {
+      "image": "rbxassetid://72083342328059",
+      "key": "frost",
+      "position": "0, 1.5199999809265137, 0",
+      "loaded": true,
+      "frame": "640, 256"
+    },
+    {
+      "image": "rbxassetid://125374985892345",
+      "key": "blast",
+      "position": "0, 1.7200000286102295, -6",
+      "loaded": true,
+      "frame": "896, 128"
+    }
+  ]
+}
