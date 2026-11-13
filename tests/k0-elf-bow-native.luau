@@ -81,7 +81,7 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15}) do
     check(root.CFrame==origin,"Bow presentation cannot move authoritative root")
     local first=arrow.NockedArrowVisualJoint.Transform
     local expected=assert(Bow.forCharacter(character,now))
-    near(first.Position,Vector3.new(0,0,.86*math.clamp(expected.draw,0,1)),.0001,"String and arrow use the same authored displacement")
+    near(first.Position,Vector3.new(.18,-.32,.86)*math.clamp(expected.draw,0,1),.0001,"String and arrow share the lowered, cheek-clear anchor")
     Visual.renderCharacter(character,1/144,now)
     near(arrow.NockedArrowVisualJoint.Transform.Position,first.Position,.0001,"Draw is independent of FPS and render-call count")
     check((arrow.Transparency==0)==expected.nocked,"Nocked arrow visibility follows release/redraw")

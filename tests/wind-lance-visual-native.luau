@@ -51,6 +51,9 @@ local ok,e=xpcall(function()
  Wind.clear();check(not workspace:FindFirstChild('WindLanceVFX'),'clear removes all transient instances')
  camera.CFrame=CFrame.new(1000,5,0)
  check(Wind.play(character,origin,center,1,{},9,105,nil,.25,105)==nil,'distant casts are culled')
+ camera.CFrame=CFrame.new(0,8,12)
+ check(Wind.play(character,origin,center,1,{},20,100.25,100,.25,100.25)~=nil,'release can arrive without a charge')
+ check(Wind.play(character,origin,center,0,nil,20,nil,100.2,.25,100.26)==nil,'late charge cannot follow an already released lance')
 end,debug.traceback)
 Wind.clear();character:Destroy();camera.CFrame=old
 if not ok then table.insert(report.failures,e)end

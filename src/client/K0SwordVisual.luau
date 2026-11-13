@@ -299,7 +299,7 @@ local function updateElfIK(character, mode, phase, dt, bowPose)
 		control.SmoothTime, control.Weight = 0.04, 1
 		local upperTorso=character:FindFirstChild("UpperTorso")
 		if upperTorso then
-			local pole=Instance.new("Attachment");pole.Name="K0BowElbowPole";pole.Position=Vector3.new(1.5,.7,.8);pole.Parent=upperTorso
+			local pole=Instance.new("Attachment");pole.Name="K0BowElbowPole";pole.Position=Vector3.new(1.5,.35,.8);pole.Parent=upperTorso
 			control.Pole=pole
 		end
 		control.Parent = humanoid
@@ -1011,7 +1011,9 @@ local function advanceSpells(dt)
 			end
 			if spell.elapsed >= spell.duration then
 				if not spell.heldWeapon then impact(position, spell.part.Color) end
-    if commonDefinitions[spell.skillId]and spell.skillId~="mage.common.gravity"then HeroVFX.skill(spell.character,spell.skillId,spell.first,position,1)end
+    -- Flight owns the path. Arrival can only create a local terminal burst;
+    -- it must never redraw a path from the caster after the projectile lands.
+    if not spell.heldWeapon and commonDefinitions[spell.skillId]and spell.skillId~="mage.common.gravity"then HeroVFX.skill(spell.character,spell.skillId,position,position,1)end
 				destroySpell(spell); table.remove(spells, index)
 			end
 		end

@@ -6,6 +6,13 @@ local function smooth(u)u=math.clamp(u,0,1);return u*u*(3-2*u)end
 local function clearHeld(state)
  if state and state.arrow then state.arrow:Destroy();state.arrow=nil end
 end
+local function reconcileHeld(quiver,state)
+ if not quiver then return end
+ -- A replaced renderer must not leave an unowned visible arrow on the hand.
+ for _,child in quiver:GetChildren()do
+  if child.Name=='QuiverCarriedArrow' and (not state or child~=state.arrow)then child:Destroy()end
+ end
+end
 function Q.render(model,pose)
  local character=model.Parent
  local quiver=model:FindFirstChild('ElfQuiver')
@@ -13,6 +20,7 @@ function Q.render(model,pose)
  local source=model:FindFirstChild('NockedArrow')
  local hand=character and character:FindFirstChild('RightHand')
  local state=states[model]
+ reconcileHeld(quiver,state)
  local dead=character and(character:GetAttribute('K0State')=='Dead'or character:GetAttribute('TLTDeathFalling'))
  local allowed=character and character:GetAttribute('K0ClassId')=='elf'and character:GetAttribute('K0State')=='Attack'
   and character:GetAttribute('TLTEquippedWeapon')~=''and not dead
@@ -27,13 +35,14 @@ function Q.render(model,pose)
   end
  end
  if not holding then
-  if state and state.arrow then state.arrow.Transparency=1 end
+  clearHeld(state)
   return
  end
  if not state then state={};states[model]=state end
  if state.source~=source or state.hand~=hand or not state.arrow or not state.arrow.Parent then
   clearHeld(state)
   local arrow=source:Clone();arrow.Name='QuiverCarriedArrow'
+  arrow.Transparency=1;arrow.LocalTransparencyModifier=1
   for _,child in arrow:GetChildren()do if not child:IsA('SurfaceAppearance')then child:Destroy()end end
   arrow:SetAttribute('TLTPlayerWeaponPart',nil);arrow:SetAttribute('TLTElfQuiverPart',nil);arrow:SetAttribute('TLTElfCarriedArrow',true)
   arrow.Anchored=false;arrow.Massless=true;arrow.CanCollide=false;arrow.CanTouch=false;arrow.CanQuery=false

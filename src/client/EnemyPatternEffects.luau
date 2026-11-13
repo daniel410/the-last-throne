@@ -21,7 +21,7 @@ local function acceptVisual(m)
  if not row or row.sequence~=m.sequence then row={sequence=m.sequence,keys={}};visualEvents[m.model]=row end
  if row.cancelled then return false end
  local key=m.kind..':'..tostring(m.pulse)..':'..tostring(m.shot)
- if row.keys[key]then return false end;row.keys[key]=true;return true
+ if row.keys[key]then return false end;row.keys[key]=true;row.released=true;return true
 end
 local soundHolders={}
 local attacks=setmetatable({},{__mode='k'});local impacts={};local bursts={};local projectiles={};local soundAt={};local started=false
@@ -76,6 +76,9 @@ local function destroyAttack(model)
 end
 local function begin(message)
  local d=definitions[message.id];if not d or not message.model then return end
+ if message.model:GetAttribute('K0AttackSeq')~=message.sequence then return end
+ local row=visualEvents[message.model]
+ if row and row.sequence==message.sequence and (row.cancelled or row.released)then return end
  local old=attacks[message.model];if old and old.sequence==message.sequence then return end
  destroyAttack(message.model)
  attacks[message.model]={d=d,sequence=message.sequence,origin=message.origin,direction=message.direction,aim=message.aim,at=message.at}
@@ -158,6 +161,12 @@ function Effects.receive(m)
   local visual=Spell.projectile(d,m.model,m.sequence,m.origin,m.direction,m.at)
   if visual then table.insert(projectiles,{model=m.model,sequence=m.sequence,pulse=m.pulse,shot=m.shot,visual=visual,origin=m.origin,direction=m.direction,at=m.at,d=d})end
  elseif m.kind=='projectileEnd'then
+  -- Remember an end even when streaming/event order hid the corresponding
+  -- launch. A later launch must not resurrect an already landed projectile.
+  if not m.model or m.model:GetAttribute('K0AttackSeq')~=m.sequence then return end
+  local row=visualEvents[m.model]
+  if not row or row.sequence~=m.sequence then row={sequence=m.sequence,keys={}};visualEvents[m.model]=row end
+  row.keys['projectile:'..tostring(m.pulse)..':'..tostring(m.shot)]=true;row.released=true
   for i=#projectiles,1,-1 do
    local p=projectiles[i]
    if p.model==m.model and p.sequence==m.sequence and p.pulse==m.pulse and p.shot==m.shot then

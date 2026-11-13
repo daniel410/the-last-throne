@@ -2,6 +2,9 @@
 local Data=require(script.Parent.ElfBowClip).model
 local Geometry={version=2}
 local function vector(v) return Vector3.new(unpack(v)) end
+-- Lower the drawn anchor below the face and keep it outside the right cheek.
+-- The arrow tail, both string strands and hand IK share this displacement.
+local drawOffset=Vector3.new(.18,-.32,Data.drawDistance)
 
 function Geometry.valid(model,grip)
  local bow=model:FindFirstChild("Bow");local nock=grip:FindFirstChild("BowNock")
@@ -54,8 +57,8 @@ function Geometry.pose(model,draw,visible)
  if typeof(size)~="Vector3" then return false end
  local height,depth=1+Data.heightFlex*amount,1+Data.depthFlex*amount
  bow.Size=Vector3.new(size.X,size.Y*height,size.Z*depth)
- nock.Position=(nock:GetAttribute("ElfBowRestPosition") or vector(Data.nock))+Vector3.new(0,0,Data.drawDistance*amount)
- joint.Transform=CFrame.new(0,0,Data.drawDistance*amount)
+ nock.Position=(nock:GetAttribute("ElfBowRestPosition") or vector(Data.nock))+drawOffset*amount
+ joint.Transform=CFrame.new(drawOffset*amount)
  for _,name in ipairs({"Upper","Lower"}) do
   local tip=bow:FindFirstChild("BowString"..name)
   local beam=grip:FindFirstChild("BowStrand"..name)

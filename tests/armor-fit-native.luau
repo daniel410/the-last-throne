@@ -15,11 +15,11 @@ local function meshData(part)
  local faces={};for _,id in e:GetFaces()do table.insert(faces,e:GetFaceVertices(id))end
  e:Destroy();local data={points=points,faces=faces,center=(lo+hi)/2,size=hi-lo};geometry[part.MeshId]=data;return data
 end
-local function blocked(part,head,frame)
+local function blocked(part,head,frame,heights)
  local data=meshData(part);local scale=Vector3.new(part.Size.X/data.size.X,part.Size.Y/data.size.Y,part.Size.Z/data.size.Z)
  local points={};for id,p in data.points do points[id]=frame:PointToWorldSpace(mul(p-data.center,scale))end
  local hits=0
- for _,sign in {-1,1}do for _,y in {.18,.23,.28}do for _,dx in {-.025,0,.025}do
+ for _,sign in {-1,1}do for _,y in heights or {.18,.23,.28}do for _,dx in {-.025,0,.025}do
   local target=head.CFrame:PointToWorldSpace(Vector3.new(sign*(.18+dx)*head.Size.X,y*head.Size.Y,-head.Size.Z*.5))
   local origin=target+head.CFrame.LookVector*3;local direction=-head.CFrame.LookVector
   local occluded=false
@@ -75,6 +75,9 @@ local ok,err=xpcall(function()
    check(c.TLTArmor_head~=previous and c.TLTArmor_head:GetAttribute('ArmorFitVersion')==V.version,'old fitting is rebuilt once')
    c:SetAttribute('K0ClassId','elf');c:SetAttribute('TLTEquippedHead',prefix..'_hood');A.sync(c)
    check(blocked(c.TLTArmor_head.Hair,head,c.TLTArmor_head.Hair.CFrame)==0,'Elf forelocks leave eyes clear')
+   local hood=c.TLTArmor_head.Head
+   check(blocked(hood,head,hood.CFrame)==0,'Hood leaves both eyes clear '..rig.Name..'/'..family)
+   check(blocked(hood,head,hood.CFrame,{-.10,-.15,-.20})==0,'Hood cowl leaves the mouth clear '..rig.Name..'/'..family)
   end
   c:Destroy()
  end

@@ -54,7 +54,7 @@ for _,rig in ipairs({Enum.HumanoidRigType.R6,Enum.HumanoidRigType.R15})do
     check(rest==result.grip.BowNockRest.Position,'Nock comes from this model')
     for _,draw in ipairs({0,.5,1,0})do
      check(G.pose(model,draw,true),'Draw pose supported')
-     check((nock.Position-rest-Vector3.new(0,0,.86*draw)).Magnitude<.0001,'Draw follows existing time curve')
+     check((nock.Position-rest-Vector3.new(.18,-.32,.86)*draw).Magnitude<.0001,'Each bow shares the lowered cheek-clear anchor')
     end
     check(model.String.Transparency==1,'Old baked source string stays hidden')
     check(result.grip.BowStrandUpper.Enabled and result.grip.BowStrandLower.Enabled,'Two beams remain visible')

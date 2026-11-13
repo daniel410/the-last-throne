@@ -6,6 +6,13 @@ copy.Name = "AxeThrowVisualQA"
 copy.Source = copy.Source:gsub("return Visual%s*$", "Visual.advanceSpellsQA = advanceSpells\nreturn Visual")
 copy.Parent = source.Parent
 local V = require(copy)
+local FX=require(source.Parent.HeroVFX)
+local originalSkill=FX.skill
+local lateAxeEffects=0
+FX.skill=function(character,id,...)
+ if id=='dwarf.common.throw'then lateAxeEffects+=1;return end
+ return originalSkill(character,id,...)
+end
 local checks, seq = 0, 0
 local function check(value, label) checks += 1; assert(value, label) end
 local function send(c, distance)
@@ -59,6 +66,7 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 			V.advanceSpellsQA(dt)
 			check(not axe.Parent and math.abs(held.LocalTransparencyModifier - .2) < .0001, "arrival restores held weapon")
 			check(not workspace:FindFirstChild("K0VisualImpact"), "axe arrival does not explode like a missile")
+			check(lateAxeEffects==0,"Axe flight never replays a second throw effect on arrival")
 		end
 	end
 	local first = assert(send(c, 32))
@@ -75,5 +83,6 @@ for _, rig in ipairs({ Enum.HumanoidRigType.R6, Enum.HumanoidRigType.R15 }) do
 	model:Destroy(); check(send(c, 32) == nil and not workspace:FindFirstChild("K0VisualSpell"), "missing axe never falls back to a missile orb")
 	c:Destroy()
 end
+FX.skill=originalSkill
 copy:Destroy()
 print("DWARF_AXE_THROW_NATIVE PASS checks=" .. checks)

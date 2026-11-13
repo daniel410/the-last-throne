@@ -158,7 +158,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  local profile=Presentation.get(d);if not profile then return end
  if type(pulse)~="number" or pulse~=pulse or pulse<0 or pulse%1~=0 then return end
  if type(firedAt)=="number" and (firedAt~=firedAt or workspace:GetServerTimeNow()-firedAt>.6 or firedAt-workspace:GetServerTimeNow()>.5) then return end
- if character and type(attackSeq)=="number" and pulse>0 then
+ if character and type(attackSeq)=="number" then
   local old=confirmed[character]
   if old and (attackSeq<old.seq or attackSeq==old.seq and old.id==id and pulse<=old.pulse) then return end
   confirmed[character]={seq=attackSeq,id=id,pulse=pulse}

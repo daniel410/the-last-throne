@@ -81,6 +81,13 @@ local ok,err=xpcall(function()
  for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do if d.advanced and d.id~='mage_wind_lance'then
   FX.clear();Visual.play(char,d.id,first,last,1,{},nil,workspace:GetServerTimeNow())
   check(FX.count()==1,'advanced event wiring '..d.id)
+  -- Same sequence: a charge packet cannot run after its release, including
+  -- ground telegraphs and temporary weapon props.
+  local sequence=2000+report.skills
+  Visual.play(char,d.id,first,last,1,{},sequence,workspace:GetServerTimeNow())
+  local before=#workspace:GetDescendants()
+  Visual.play(char,d.id,first,last,0,nil,sequence)
+  check(#workspace:GetDescendants()==before,'late preparation does not replay after release '..d.id)
  end end end
 end,debug.traceback)
 FX.clear();char:Destroy();camera.CFrame=old

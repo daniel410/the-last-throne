@@ -83,7 +83,7 @@ for _,rig in {Enum.HumanoidRigType.R15,Enum.HumanoidRigType.R6}do
      check(carried.MeshId==model.NockedArrow.MeshId and carried.Size==model.NockedArrow.Size,'Carried mesh and scale match the nocked arrow')
      check(carried.Massless and not carried.CanCollide and not carried.CanQuery,'Carried arrow is inert')
     elseif t==.70 then
-     check(carried and carried.Transparency==1 and model.NockedArrow.Transparency==0,'Handoff seats the arrow on the bow before firing')
+     check(not carried and model.NockedArrow.Transparency==0,'Handoff removes the carried copy and seats the arrow on the bow before firing')
      check(c.Humanoid.K0BowDrawIK.Target~=socket,'Hand IK returns from quiver to bow nock')
     end
    else
@@ -91,6 +91,11 @@ for _,rig in {Enum.HumanoidRigType.R15,Enum.HumanoidRigType.R6}do
    end
   end
   c:SetAttribute('K0State','Idle');sample(3,start)
+  check(not q:FindFirstChild('QuiverCarriedArrow'),'Idle never retains an arrow in the right hand')
+  -- Simulate renderer replacement with a visible orphan from an earlier state.
+  local orphan=model.NockedArrow:Clone();orphan.Name='QuiverCarriedArrow';orphan.Transparency=0;orphan.Parent=q
+  sample(3,start)
+  check(not orphan.Parent and not q:FindFirstChild('QuiverCarriedArrow'),'Idle removes orphaned carried arrows after renderer replacement')
   check(q.QuiverArrow1.LocalTransparencyModifier==0,'Stored visual arrow resets for the next attack without ammunition bookkeeping')
  end
  -- A late observer starts in the carried phase without a preceding pickup event.

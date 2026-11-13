@@ -125,6 +125,15 @@ check(not workspace:FindFirstChild('EnemyMagicProjectile'),'ended shot cannot re
 FX.receive({kind='cancel',model=caster,sequence=901})
 check(V.count()==0,'cancel clears travel and impact')
 FX.receive(message);check(V.count()==0,'canceled sequence cannot recreate VFX')
+FX.receive({kind='begin',model=caster,id=d.id,sequence=901,origin=message.origin,direction=direction,aim=Vector3.new(0,3,-5),at=current})
+FX.render(current+.01);check(V.count()==0,'late begin cannot recreate charge after cancellation')
+caster:SetAttribute('K0AttackSeq',904)
+FX.receive({kind='projectileEnd',model=caster,sequence=904,pulse=1,shot=1,position=Vector3.new(0,3,-5)})
+message.sequence=904;message.at=workspace:GetServerTimeNow();FX.receive(message)
+check(not workspace:FindFirstChild('EnemyMagicProjectile'),'end received before launch prevents a late traveling replay')
+FX.receive({kind='begin',model=caster,id=d.id,sequence=904,origin=message.origin,direction=direction,aim=Vector3.new(0,3,-5),at=message.at})
+FX.render(message.at+.01);check(V.count()==0,'late begin cannot restart a completed projectile cast')
+message.sequence=901
 caster:SetAttribute('K0AttackSeq',902)
 local d=Patterns.get('KingIceGolem').attacks[4]
 local pulse={kind='pulse',id=d.id,model=caster,sequence=902,pulse=1,position=Vector3.new(0,3,0),at=workspace:GetServerTimeNow()}

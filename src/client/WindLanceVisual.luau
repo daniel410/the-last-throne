@@ -107,7 +107,7 @@ function Wind.play(character,origin,center,pulse,points,sequence,firedAt,started
  local camera=workspace.CurrentCamera;if camera and(camera.CFrame.Position-origin).Magnitude>110 then return end
  if character and sequence~=nil then
   local old=seen[character]
-  if old and old.sequence==sequence and old[pulse] then return end
+  if old and old.sequence==sequence and (old[pulse] or pulse==0 and old[1]) then return end
   if old and finite(sequence)and finite(old.sequence)and sequence<old.sequence then return end
   if not old or old.sequence~=sequence then old={sequence=sequence};seen[character]=old end
   old[pulse]=true

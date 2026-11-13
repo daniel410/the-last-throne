@@ -44,6 +44,7 @@ local function build(character, slot, key, classId, definitionId, r15)
  local isRobe=key:match("_robe$")~=nil
  local isHat=key:match("_hat$")~=nil
  local isHelmet=key:match("_helmet$")~=nil
+ local hoodFit=Visuals.fit.hoods[key]
  if slot=="head" then
   local hairFolder=Storage:FindFirstChild(Visuals.hair.folderName)
   local sourceHair=hairFolder and hairFolder:FindFirstChild(Visuals.hair.templates[isHat and "hat" or isHelmet and "helmet" or "hood"])
@@ -71,8 +72,14 @@ local function build(character, slot, key, classId, definitionId, r15)
    if isHat and not isHair then offset-=Vector3.new(0,Visuals.fit.hatLowering,0) end
    if isHelmet and not isHair then offset+=Vector3.new(0,Visuals.fit.helmetLift,0) end
    if isHair and not isHat and not isHelmet then offset+=Vector3.new(0,.05,-.13) end
+   local partScale=fittedScale
+   if hoodFit and not isHair then
+    -- Keep the crown seated while extending the cowl below the chin.
+    partScale=multiply(fittedScale,Vector3.new(1,hoodFit.height,hoodFit.depth))
+    offset-=Vector3.new(0,hoodFit.lowering,0)
+   end
    local rotation=part.CFrame.Rotation
-   part.Size=multiply(part.Size,fittedScale)
+   part.Size=multiply(part.Size,partScale)
    part.CFrame=anchor.CFrame*CFrame.new(multiply(offset,fittedScale))*rotation
    part.Anchored=false;part.Massless=true;part.CanCollide=false;part.CanTouch=false;part.CanQuery=false
    local weld=Instance.new("WeldConstraint");weld.Name="ArmorWeld";weld.Part0=anchor;weld.Part1=part;weld.Parent=part

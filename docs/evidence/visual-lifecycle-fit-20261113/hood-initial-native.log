@@ -1,0 +1,18 @@
+DWARF_AXE_THROW_NATIVE PASS checks=468
+ContentId: rbxassetid://122205085408075 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://135706649658831 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://132460926954614 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://76553786176759 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ContentId: rbxassetid://75656002869818 failed due to: No asset content representation found while do_not_fallback_to_baseline is set to true.
+ARMOR_FIT_JSON {"eyes":[{"samples":18,"family":"traveler","beforeBlocked":18,"afterBlocked":0,"rig":"R6"},{"samples":18,"family":"tempered","beforeBlocked":18,"afterBlocked":0,"rig":"R6"},{"samples":18,"family":"veteran","beforeBlocked":18,"afterBlocked":0,"rig":"R6"},{"samples":18,"family":"sentinel","beforeBlocked":18,"afterBlocked":0,"rig":"R6"}],"robes":[{"torsoDepth":1,"robeDepth":1.336687445640564,"family":"traveler","ratio":1.336687445640564,"rig":"R6"},{"torsoDepth":1,"robeDepth":1.713489294052124,"family":"tempered","ratio":1.713489294052124,"rig":"R6"},{"torsoDepth":1,"robeDepth":1.679649829864502,"family":"veteran","ratio":1.679649829864502,"rig":"R6"},{"torsoDepth":1,"robeDepth":1.4782096147537232,"family":"sentinel","ratio":1.4782096147537232,"rig":"R6"}],"checks":47,"error":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:101: Hood leaves both eyes clear R6/sentinel\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:101\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:136\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","kind":"ARMOR_FIT_NATIVE","pass":false,"hats":[{"family":"traveler","headTop":0.5,"brimBottomFromHeadCenter":0.2326793670654297,"rig":"R6"},{"family":"tempered","headTop":0.5,"brimBottomFromHeadCenter":0.2326793670654297,"rig":"R6"},{"family":"veteran","headTop":0.5,"brimBottomFromHeadCenter":0.2326793670654297,"rig":"R6"},{"family":"sentinel","headTop":0.5,"brimBottomFromHeadCenter":0.2326793670654297,"rig":"R6"}]}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:182: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:101: Hood leaves both eyes clear R6/sentinel
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:101
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:136
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:182
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
