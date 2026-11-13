@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,json,hashlib
 root=Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser();p.add_argument('--overlay',action='store_true');p.add_argument('--output',type=Path,default=Path('/tmp/tlt-deepwood-concept-native.luau'));a=p.parse_args()
-paths=['src/server/World/DeepwoodArchitectureTemplates.luau','src/server/World/DeepwoodArchitecture.luau','src/server/World/DeepwoodConceptArt.luau','src/server/World/EpicWorldArt.luau','src/server/World/CampaignWorld.luau','src/client/DeepwoodAtmosphere.luau']
+paths=['src/server/World/DeepwoodElderGrove.luau','src/server/World/DeepwoodElderGroveGeometry.luau','src/server/World/CampaignSceneryCollision.luau','src/server/World/DeepwoodArchitectureTemplates.luau','src/server/World/DeepwoodArchitecture.luau','src/server/World/DeepwoodConceptArt.luau','src/server/World/EpicWorldArt.luau','src/server/World/CampaignWorld.luau','src/client/DeepwoodAtmosphere.luau']
 code="assert(game.PlaceId==0 and #game.Players:GetPlayers()==0)\nfor _,s in game:GetDescendants()do if s:IsA('BaseScript')then s.Enabled=false end end\nlocal bp=workspace:FindFirstChild('Baseplate');if bp then bp:Destroy()end\n"
 for path in paths:
  name=Path(path).stem;source=(root/path).read_text();parent='game.StarterPlayer.StarterPlayerScripts.Client'if '/client/'in path else 'game.ServerScriptService.Server.World'
@@ -35,6 +35,6 @@ assert(summary.noPath==0,'Deepwood pathfinding regression')
 '''
 code+="require(game.StarterPlayer.StarterPlayerScripts.Client.DeepwoodAtmosphere).update('Deepwood')\nprint('DEEPWOOD_CONCEPT_REVIEW_READY');for i=1,900 do if _G.TLTReviewDone then break end task.wait(1)end\n"
 a.output.write_text(code)
-paths.append('tools/prepare-deepwood-concept-native.py')
+paths.extend(['tools/prepare-deepwood-concept-native.py','assets/models/deepwood-elder-grove-v1/runtime.rbxmx'])
 a.output.with_suffix('.inputs.json').write_text(json.dumps({f:hashlib.sha256((root/f).read_bytes()).hexdigest()for f in paths},indent=2)+'\n')
 print(a.output)

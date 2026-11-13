@@ -1,0 +1,293 @@
+{
+  "import": {
+    "yawCorrection": -3.141592773538488,
+    "meshes": 34,
+    "sourceModelId": "110278314469184",
+    "solidMeshes": 16,
+    "scale": 1.0000000300929142,
+    "collisionErrors": [],
+    "centerError": 0.000015407080354634672,
+    "textureId": "rbxassetid://130333344924030"
+  },
+  "instancePreload": {
+    "ok": true,
+    "done": true,
+    "error": "nil",
+    "results": {
+      "1": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "2": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "3": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "4": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "5": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "6": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "7": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "8": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "9": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "10": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "11": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "12": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "13": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "14": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "15": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "16": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "17": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "18": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "19": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "20": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "21": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "22": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "23": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "24": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "25": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "26": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "27": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "28": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "29": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "30": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "31": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "32": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "33": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "34": {
+        "status": "Success",
+        "id": "rbxassetid://130333344924030"
+      },
+      "35": {
+        "status": "Success",
+        "id": "rbxassetid://92649342059690"
+      },
+      "36": {
+        "status": "Success",
+        "id": "rbxassetid://127149534758992"
+      },
+      "37": {
+        "status": "Success",
+        "id": "rbxassetid://75666771301694"
+      },
+      "38": {
+        "status": "Success",
+        "id": "rbxassetid://130966873805210"
+      },
+      "39": {
+        "status": "Success",
+        "id": "rbxassetid://106933066321889"
+      },
+      "40": {
+        "status": "Success",
+        "id": "rbxassetid://106914141083477"
+      },
+      "41": {
+        "status": "Success",
+        "id": "rbxassetid://93579138793041"
+      },
+      "42": {
+        "status": "Success",
+        "id": "rbxassetid://95887025623311"
+      },
+      "43": {
+        "status": "Success",
+        "id": "rbxassetid://137644523146956"
+      },
+      "44": {
+        "status": "Success",
+        "id": "rbxassetid://96612170677531"
+      },
+      "45": {
+        "status": "Success",
+        "id": "rbxassetid://138212605941852"
+      },
+      "46": {
+        "status": "Success",
+        "id": "rbxassetid://140518451533954"
+      },
+      "47": {
+        "status": "Success",
+        "id": "rbxassetid://109692403514771"
+      },
+      "48": {
+        "status": "Success",
+        "id": "rbxassetid://93160454361269"
+      },
+      "49": {
+        "status": "Success",
+        "id": "rbxassetid://109215186918549"
+      },
+      "50": {
+        "status": "Success",
+        "id": "rbxassetid://89058376661981"
+      },
+      "51": {
+        "status": "Success",
+        "id": "rbxassetid://83394742611510"
+      },
+      "52": {
+        "status": "Success",
+        "id": "rbxassetid://70795685175049"
+      },
+      "53": {
+        "status": "Success",
+        "id": "rbxassetid://89707677706587"
+      },
+      "54": {
+        "status": "Success",
+        "id": "rbxassetid://82109678386062"
+      },
+      "55": {
+        "status": "Success",
+        "id": "rbxassetid://76652639672092"
+      },
+      "56": {
+        "status": "Success",
+        "id": "rbxassetid://125702201682712"
+      },
+      "57": {
+        "status": "Success",
+        "id": "rbxassetid://131188725550659"
+      },
+      "58": {
+        "status": "Success",
+        "id": "rbxassetid://89041307783254"
+      },
+      "59": {
+        "status": "Success",
+        "id": "rbxassetid://86734771135498"
+      },
+      "60": {
+        "status": "Success",
+        "id": "rbxassetid://70584817723595"
+      },
+      "61": {
+        "status": "Success",
+        "id": "rbxassetid://100623757566509"
+      },
+      "62": {
+        "status": "Success",
+        "id": "rbxassetid://112044901356542"
+      },
+      "63": {
+        "status": "Success",
+        "id": "rbxassetid://121636969791729"
+      },
+      "64": {
+        "status": "Success",
+        "id": "rbxassetid://135248291668730"
+      },
+      "65": {
+        "status": "Success",
+        "id": "rbxassetid://112937479287315"
+      },
+      "66": {
+        "status": "Success",
+        "id": "rbxassetid://117753353912225"
+      },
+      "67": {
+        "status": "Success",
+        "id": "rbxassetid://126418438530780"
+      },
+      "68": {
+        "status": "Success",
+        "id": "rbxassetid://127697601897446"
+      }
+    }
+  },
+  "hiddenPaint": 104,
+  "replacedElderTrees": 1
+}

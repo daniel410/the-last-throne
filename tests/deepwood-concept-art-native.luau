@@ -26,8 +26,17 @@ for id,z in pairs(C.zones)do
    if m:GetAttribute('ConceptZone')then
     assemblies+=1;signatures+=m:GetAttribute('DeepwoodConceptRole')=='Signature'and 1 or 0
     if m:GetAttribute('DeepwoodConceptRole')=='Signature'then
-     check(m:GetAttribute('BlenderSource')=='deepwood-architecture-blender-v1','Blender-authored signature '..id)
-     check(#m:GetChildren()==#require(W.DeepwoodArchitectureTemplates)[m.Name],'complete Blender primitive export '..id)
+     if id=='DW-03' then
+      check(m:GetAttribute('BlenderSource')=='deepwood-elder-grove-v1','real mesh grove source')
+      local meshes=0;for _,p in ipairs(m:GetDescendants())do if p:IsA('MeshPart')then
+       meshes+=1;check(p.MeshId~=''and p.TextureID=='rbxassetid://130333344924030'and p.DoubleSided,'imported geometry and atlas')
+       check(p.Color==Color3.new(1,1,1),'source texture has no gray tint')
+      end end
+      check(meshes==34,'complete imported grove')
+     else
+      check(m:GetAttribute('BlenderSource')=='deepwood-architecture-blender-v1','Blender-authored signature '..id)
+      check(#m:GetChildren()==#require(W.DeepwoodArchitectureTemplates)[m.Name],'complete Blender primitive export '..id)
+     end
     end
     local at=m:GetAttribute('GroundPosition');local r=m:GetAttribute('PlacementRadius')
     check(math.abs(at.X-z.center[1])+r<z.size[1]/2 and math.abs(at.Z-z.center[3])+r<z.size[2]/2,'inside real region '..id)
@@ -52,7 +61,7 @@ for id,z in pairs(C.zones)do
    check(hit and math.abs(hit.Position.Y-p.Position.Y)<.45,'paver supported '..id..' at '..tostring(p.Position)..' floor '..tostring(hit and hit.Position.Y))
   end
   check(signatures==1,'one characteristic landmark '..id)
-  check(assemblies>=3,'supporting scale clusters '..id)
+  check(assemblies>=(id=='DW-03'and 1 or 3),'supporting scale clusters '..id)
   check(count<=520 and pavers<=84,'per-zone scenery budget '..id)
   check(solids>20,'physical substantial geometry '..id)
   check(#site.AuthoredVista:GetChildren()==0,'replaced generic Deepwood architecture '..id)

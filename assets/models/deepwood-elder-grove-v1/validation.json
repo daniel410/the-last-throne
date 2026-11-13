@@ -1,5 +1,5 @@
 {
-  "scope": "Local GLB only; Studio import/collision/client/device acceptance unverified",
+  "scope": "Local GLB structure only; see separate engine evidence for import and world acceptance",
   "meshes": 34,
   "triangles": 53810,
   "maximumMeshTriangles": 7014,
@@ -45,6 +45,7 @@
     "Wildflowers.003": 1000
   },
   "sha256": {
+    "asset-manifest.json": "95dff90896b424ca7b4218b7d82331f4cee220fd9e97ea06d3c8b214271bfaed",
     "camp-detail.png": "b38e8ba4b6171209be083ac6d09d2b7e2f465ca8c94c116ccbe2ef2526d94fa5",
     "elder-grove.glb": "c17f4ca019f5520024141a44b328b254ca35bf1fdbc99b7028ac5335082e516c",
     "geometry.json": "a31f1e01fcb1a0723cf98d4a03fe67662104a87d2d607522adfbce7e743e6c27",

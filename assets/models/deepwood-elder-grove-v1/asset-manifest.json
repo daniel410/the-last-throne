@@ -1,0 +1,297 @@
+{
+  "version": 1,
+  "sourceModelAssetId": "110278314469184",
+  "textureImageAssetId": "130333344924030",
+  "ownerUserId": "9156786071",
+  "authorizationUniverseId": "10773575153",
+  "authorizationPlaceId": "129388473517823",
+  "moderation": "Approved",
+  "uploadCount": 1,
+  "automaticallyCreatedMeshAssets": 34,
+  "automaticallyCreatedTextureImages": 1,
+  "normalizedTemplate": "runtime.rbxmx",
+  "uploadedAssetIsUnrepaired": true,
+  "templateUnlinked": true,
+  "repairs": {
+    "yawRadians": -3.141592653589793,
+    "sourceUnit": "one authoring unit = one intended stud",
+    "color": "white; source texture has no gray tint",
+    "doubleSided": true,
+    "anchored": true,
+    "collision": "16 substantial meshes authored PreciseConvexDecomposition"
+  },
+  "parts": [
+    {
+      "solid": false,
+      "name": "CourtGround",
+      "doubleSided": true,
+      "meshId": "rbxassetid://93160454361269",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "CourtPavers",
+      "doubleSided": true,
+      "meshId": "rbxassetid://83394742611510",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "ElderBranches",
+      "doubleSided": true,
+      "meshId": "rbxassetid://75666771301694",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "ElderCrown0",
+      "doubleSided": true,
+      "meshId": "rbxassetid://89058376661981",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "ElderCrown1",
+      "doubleSided": true,
+      "meshId": "rbxassetid://89707677706587",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "ElderCrown2",
+      "doubleSided": true,
+      "meshId": "rbxassetid://121636969791729",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "ElderCrown3",
+      "doubleSided": true,
+      "meshId": "rbxassetid://127149534758992",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot00",
+      "doubleSided": true,
+      "meshId": "rbxassetid://112044901356542",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot01",
+      "doubleSided": true,
+      "meshId": "rbxassetid://76652639672092",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot02",
+      "doubleSided": true,
+      "meshId": "rbxassetid://140518451533954",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot03",
+      "doubleSided": true,
+      "meshId": "rbxassetid://109215186918549",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot04",
+      "doubleSided": true,
+      "meshId": "rbxassetid://112937479287315",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot05",
+      "doubleSided": true,
+      "meshId": "rbxassetid://93579138793041",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot06",
+      "doubleSided": true,
+      "meshId": "rbxassetid://131188725550659",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot07",
+      "doubleSided": true,
+      "meshId": "rbxassetid://106933066321889",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot08",
+      "doubleSided": true,
+      "meshId": "rbxassetid://100623757566509",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderRoot09",
+      "doubleSided": true,
+      "meshId": "rbxassetid://130966873805210",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "ElderTrunk",
+      "doubleSided": true,
+      "meshId": "rbxassetid://82109678386062",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "Ferns",
+      "doubleSided": true,
+      "meshId": "rbxassetid://106914141083477",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "GardenShrubs0",
+      "doubleSided": true,
+      "meshId": "rbxassetid://135248291668730",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "GardenShrubs1",
+      "doubleSided": true,
+      "meshId": "rbxassetid://137644523146956",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "GardenStone",
+      "doubleSided": true,
+      "meshId": "rbxassetid://70795685175049",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "Gateway",
+      "doubleSided": true,
+      "meshId": "rbxassetid://95887025623311",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "GroundCover",
+      "doubleSided": true,
+      "meshId": "rbxassetid://86734771135498",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "GroveGround",
+      "doubleSided": true,
+      "meshId": "rbxassetid://117753353912225",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "GroveSaplings",
+      "doubleSided": true,
+      "meshId": "rbxassetid://96612170677531",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "Lanterns",
+      "doubleSided": true,
+      "meshId": "rbxassetid://126418438530780",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "MapTable",
+      "doubleSided": true,
+      "meshId": "rbxassetid://109692403514771",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "OutpostCanopy",
+      "doubleSided": true,
+      "meshId": "rbxassetid://70584817723595",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "RootOutpost",
+      "doubleSided": true,
+      "meshId": "rbxassetid://138212605941852",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "Standards",
+      "doubleSided": true,
+      "meshId": "rbxassetid://92649342059690",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "SupplyCart",
+      "doubleSided": true,
+      "meshId": "rbxassetid://125702201682712",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": true,
+      "name": "SupplyProps",
+      "doubleSided": true,
+      "meshId": "rbxassetid://127697601897446",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    },
+    {
+      "solid": false,
+      "name": "Wildflowers",
+      "doubleSided": true,
+      "meshId": "rbxassetid://89041307783254",
+      "collision": "Default",
+      "textureId": "rbxassetid://130333344924030"
+    }
+  ]
+}

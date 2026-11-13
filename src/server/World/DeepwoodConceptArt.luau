@@ -7,7 +7,7 @@ local K=require(script.Parent.EpicEnvironmentKit)
 local Collision=require(script.Parent.CampaignSceneryCollision)
 local V=Vector3.new
 local C=Color3.fromRGB
-local D={version=2}
+local D={version=3}
 local colors={stone=C(149,151,117),light=C(191,183,141),moss=C(91,123,59),wood=C(116,83,48),
  dark=C(72,57,38),blue=C(36,77,145),gold=C(224,178,77),red=C(129,57,42),cloth=C(194,174,124),
  path=C(170,153,107),root=C(77,65,46)}
@@ -175,7 +175,10 @@ function D.build(site,id,c,size,safe,ground,world)
   task.wait()
   return result
  end
- place(profile[2],'Signature',1)
+ if id=='DW-03'then
+  local m,p,r=require(script.Parent.DeepwoodElderGrove).build(group,ground)
+  placed[#placed+1]={p=p,r=r}
+ else place(profile[2],'Signature',1)end
  for i=1,5 do place(profile[3],'Supporting',i+1)end
  -- Low grouped vegetation, limestone and earth create depth without a new
  -- canopy over the camera. Substantial stones retain collision off the routes.
@@ -284,7 +287,7 @@ function D.finish(world)
   local site=world.folder.EpicWorldArt.EpicWorldArt_1[id]
   local group=site and site:FindFirstChild('DeepwoodConcept')
   if group then for _,m in ipairs(group:GetChildren())do if m:GetAttribute('DeepwoodConceptRole')=='Signature'then
-   landmarks[#landmarks+1]={at=m:GetAttribute('GroundPosition'),radius=m:GetAttribute('PlacementRadius'),center=V(table.unpack(z.center))}
+   landmarks[#landmarks+1]={at=m:GetAttribute('GroundPosition'),radius=m:GetAttribute('GrovePruneRadius')or m:GetAttribute('PlacementRadius'),center=V(table.unpack(z.center))}
   end end end
  end end
  -- Legacy perimeter groves can sit directly in front of a newly authored
@@ -326,6 +329,7 @@ function D.finish(world)
    end
   end
  end
+ require(script.Parent.DeepwoodElderGrove).finish(world,ray)
  world.folder:SetAttribute('DeepwoodFinishedPaths',painted)
  world.folder:SetAttribute('DeepwoodGroundedVergeCliffs',(world.folder:GetAttribute('DeepwoodGroundedVergeCliffs')or 0)+grounded)
  world.folder:SetAttribute('DeepwoodLandmarkPrunedTrees',(world.folder:GetAttribute('DeepwoodLandmarkPrunedTrees')or 0)+pruned)
