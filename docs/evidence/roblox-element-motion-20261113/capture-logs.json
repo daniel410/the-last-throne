@@ -1,0 +1,10 @@
+{
+  "before": {
+    "path": "/tmp/tlt-rpg-pass2-before/final-capture.log",
+    "sha256": "6dfbe7029121245a2f06aa6c6c5b3d8b367e714e839240693339c3e3f100b287"
+  },
+  "after": {
+    "path": "/tmp/tlt-rpg-pass2-after/final-capture.log",
+    "sha256": "32fd4eb7ff42dc95566e497bbaec364dd1426647d612fdaa23b41d762871f970"
+  }
+}

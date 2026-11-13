@@ -1,0 +1,68 @@
+{
+  "engineChecks": 10663,
+  "suites": [
+    {
+      "suite": "RPG_ELEMENT_MOTION_NATIVE",
+      "checks": 78,
+      "pass": true
+    },
+    {
+      "suite": "RPG_VFX_MOTION_NATIVE",
+      "checks": 190,
+      "pass": true
+    },
+    {
+      "suite": "ELEMENT_VFX_NATIVE",
+      "checks": 84,
+      "pass": true
+    },
+    {
+      "suite": "WOW_VFX_NATIVE",
+      "checks": 231,
+      "pass": true
+    },
+    {
+      "suite": "VFX_STYLE_FIT_NATIVE",
+      "checks": 58,
+      "pass": true
+    },
+    {
+      "suite": "CURATED_VFX_NATIVE",
+      "checks": 182,
+      "pass": true
+    },
+    {
+      "suite": "PIXELFX_NATIVE",
+      "checks": 1690,
+      "pass": true
+    },
+    {
+      "suite": "HERO_VFX_NATIVE",
+      "checks": 7566,
+      "pass": true
+    },
+    {
+      "suite": "WIND_LANCE_VISUAL_NATIVE",
+      "checks": 128,
+      "pass": true
+    },
+    {
+      "suite": "SKILL_VFX_INDIVIDUAL_NATIVE",
+      "checks": 297,
+      "pass": true
+    },
+    {
+      "suite": "HERO_VFX_FLOURISH_NATIVE",
+      "checks": 57,
+      "pass": true
+    },
+    {
+      "suite": "K0_HIT_EFFECTS_NATIVE",
+      "checks": 102,
+      "pass": true
+    }
+  ],
+  "captureScriptSha256": "86bb5304c6cfaaf77d7e54b0ce75146cf8aa92a688e9c10de6c2a57fb4312955",
+  "coverage": "Isolated Studio; not published client, GPU/device or user acceptance.",
+  "sourceCommit": "796a05bfd1b3c57804d11118d1deb77710841069"
+}

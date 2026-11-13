@@ -1,0 +1,83 @@
+[
+  {
+    "index": 1,
+    "id": "mage.cryo.lightning_line",
+    "height": 240,
+    "name": "Lightning Line",
+    "width": 320,
+    "beforeSha256": "89bfd292a287448607e3c8a4ed915786b306f1d316f588c901955bc8167f180d",
+    "afterSha256": "318f6255deb39074bcd00de177f18e9223d1ba9c7c96f4b0ddd21a7d54c39438"
+  },
+  {
+    "index": 2,
+    "id": "mage.cryo.chain_lightning",
+    "height": 240,
+    "name": "Chain Lightning",
+    "width": 320,
+    "beforeSha256": "3b856e0737b810a89c90d8d724f48a023804fb0e99b70d269500fee26589a143",
+    "afterSha256": "55771c999308bacc1431fad5336e277473c8dd3aa182f5c9c25fde7e18aef8c4"
+  },
+  {
+    "index": 3,
+    "id": "elf.magic_archer.storm_arrow",
+    "height": 240,
+    "name": "Storm Arrow",
+    "width": 320,
+    "beforeSha256": "cb71cf7b94a1a45549994f8ba35a490c5a9a4e0f35fcdca139ec8be2a9b9547b",
+    "afterSha256": "96c233bed9f14a767313c36709edd0df3eeb52fd2abb6bdfd650f25e686ec1a9"
+  },
+  {
+    "index": 4,
+    "id": "mage.cryo.frost_lance",
+    "height": 240,
+    "name": "Frost Lance",
+    "width": 320,
+    "beforeSha256": "56594fd2de222813c5aabb36aa11d2a9606cf421ddf908d18e3a94f95f150d94",
+    "afterSha256": "dc52b912937889c0c681d0b8fa57a048d45aa2b0158bdd126a53dc9b8e93fd48"
+  },
+  {
+    "index": 5,
+    "id": "mage.cryo.frost_ring",
+    "height": 240,
+    "name": "Frost Ring",
+    "width": 320,
+    "beforeSha256": "08b370660fbacb53ffe9a81c5e69105833c054499afac8f8bed8279efd43e2ea",
+    "afterSha256": "4243fa79a643ba45ed55846c41d53458b862ecbeaba91c55fd04f3ae0c7416cb"
+  },
+  {
+    "index": 6,
+    "id": "mage.cryo.eternal_tempest",
+    "height": 240,
+    "name": "Eternal Tempest",
+    "width": 320,
+    "beforeSha256": "d1ad65e016f4a4f4e19109742db7a787260cce3623c90e001e35bfdca16e7419",
+    "afterSha256": "62cf77472f2e4f6746f78e94868667702d46cd82e7c81d6ad686fbfacc87424a"
+  },
+  {
+    "index": 7,
+    "id": "mage.cryo.hailfall",
+    "height": 240,
+    "name": "Hailfall",
+    "width": 320,
+    "beforeSha256": "8d3c20d377441fce9f109fa04b6ce4c4b401ae125f59c6068c7ed16fb3ac558f",
+    "afterSha256": "54af9b4135da5286f711553dcc439c744b82b7a88c2355fc7a92423708bd020d"
+  },
+  {
+    "index": 8,
+    "id": "elf.marksman.arrow_rain",
+    "height": 240,
+    "name": "Arrow Rain",
+    "width": 320,
+    "beforeSha256": "6fefbfc4d7efac6c11e4b64efcc0ab3e0f38e751c81df9c33f7f13ea0fa38f7c",
+    "afterSha256": "bfd724043ee8e95cfcda573490b1eed357b88ecadf2ffe351109eddb83c9e700"
+  },
+  {
+    "index": 9,
+    "id": "elf.magic_archer.spirit_rain",
+    "height": 240,
+    "name": "Spirit Rain",
+    "width": 320,
+    "beforeSha256": "765066b50aa9283ab07405c9bc35e9328e5423bcecb4bd3f96d6a1e6f203af90",
+    "afterSha256": "bdbb43398ddb7bae2b60b7146467a441c722abec8f443cc32a39284d6452912c"
+  }
+]
