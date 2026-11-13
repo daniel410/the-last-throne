@@ -44,7 +44,7 @@ local ok,err=xpcall(function()
  for _,entry in ipairs(fragments)do check((entry.part.Position-entry.at).Magnitude>.2,'casing moves outward after contact')end
  Hero.clear()
  local control=assert(Hero.skill(char,'dwarf.gunner.shell_burst',from,target,1,{}))
- check(control:FindFirstChild('BlastVolume',true)~=nil,'other explosion skills retain their authored surface')
+ check(control:FindFirstChild('BlastShockwave',true)~=nil and not control:FindFirstChild('BlastVolume',true),'other explosions use open pressure waves instead of spherical shells')
  Hero.clear();Pixel.support(char,'Heal')
  local plus
  for _,p in ipairs(workspace:GetChildren())do if p:GetAttribute('CuratedVFXKey')=='heal'then plus=p:FindFirstChild('Plus',true)end end

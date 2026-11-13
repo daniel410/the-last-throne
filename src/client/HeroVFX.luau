@@ -190,7 +190,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w or width,color)end
  local function sector(name,at,rad,arc,lane,low)
   curve(r,name,function(t,u)
-   local a=math.rad(-arc/2+arc*t)+(arc>=359 and phase+u*.8 or 0)
+   local a=math.rad(-arc/2+arc*t)+(arc>=359 and phase+u*.8 or (1-(1-u)^3-.5)*.6)
    local v=flat*math.cos(a)+right*math.sin(a)
    return at+v*rad+Vector3.yAxis*(low and .12 or math.sin(t*math.pi)*.35+(lane-1)*.22)
   end,12,width*(1-(lane-1)*.12))
@@ -354,12 +354,16 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  local surfaceOrigin=shape=="low"and floor or first
  if shape=="slash"or shape=="crescent"or shape=="areslash"or shape=="spin"or shape=="low"or shape=="counter"then
   local sweep=shape=="spin"and 360 or angle
+  local start=#r.faces
   Surfaces.ribbon(r,"BladeSurface",function(t)
    local a=math.rad(-sweep/2+sweep*t)+(shape=="spin"and phase or 0)
    return surfaceOrigin+(flat*math.cos(a)+right*math.sin(a))*math.min(radius,8)*.8
-  end,Vector3.yAxis,shape=="spin"and 1.4 or 1.8,.28)
+  end,Vector3.yAxis,shape=="spin"and 1.6 or 2.1,.28)
+  Surfaces.animate(r,start,surfaceOrigin,Vector3.yAxis,shape=="spin"and 1.8 or .6,false,r.life)
  elseif shape=="cleave"then
+  local start=#r.faces
   Surfaces.ribbon(r,"CleaveSurface",function(t)local a=t*math.pi*.8;return first+flat*math.sin(a)*math.min(radius,5)+Vector3.yAxis*math.cos(a)*2.8 end,right,1.5,.25)
+  Surfaces.animate(r,start,first,right,.65,false,r.life)
  elseif shape=="cross"then
   for side=-1,1,2 do
    local a=first+flat*.5+right*side*1.6+Vector3.yAxis*1.2
@@ -386,7 +390,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   end
  elseif shape=="fire"or shape=="arcane"or shape=="stone"or(shape=="frost"and not area)then
   if area then
-   Surfaces.disc(r,"ElementalGround",floor,radius*.72,nil,.78)
+   local start=#r.faces
+   Surfaces.arc(r,"CinderShockwave",floor,radius*.78,math.min(radius*.13,.8),nil,.48)
+   Surfaces.animate(r,start,floor,Vector3.yAxis,.3,true,r.life)
    for i=1,4 do
     local a=i*math.pi/2+phase;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.6+Vector3.yAxis
     Surfaces.volume(r,"FlameVolume",at,Vector3.new(1.1,2.8,1.1),nil,.42,shape=="fire"and'wedge'or'ball',nil,false,.8)
@@ -395,6 +401,15 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    local length=math.min((last-first).Magnitude,10)
    if length>.1 then
     if shape=="fire"then
+     local basis=CFrame.lookAt(last,last+dir)
+     for side=-1,1,2 do
+      local start=#r.faces
+      Surfaces.ribbon(r,"FlameWake",function(t)
+       local tail=last-dir*math.min(length,5)*(1-t)
+       return tail+basis.RightVector*side*math.sin(t*math.pi)*.65+basis.UpVector*math.sin(t*math.pi*2)*.28
+      end,basis.UpVector,.8,.4,side==1 and Color3.fromRGB(255,171,41)or r.color)
+      Surfaces.animate(r,start,last,dir,side*.7,false,r.life*.85)
+     end
      for i=1,3 do
       local at=last-dir*(i-.5)*.85
       local p=Surfaces.volume(r,"FlameJet",at,Vector3.new(.55,.85-i*.12,1.3),i==1 and Color3.fromRGB(255,183,47)or nil,.3+i*.05,'wedge',nil,false,.5)
@@ -422,11 +437,18 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
      end
     end
    else
-   Surfaces.volume(r,"BlastVolume",at,Vector3.one*3.2,nil,.48,'ball',nil,true)
-   Surfaces.volume(r,"BlastCore",at,Vector3.one*1.5,WHITE,.28,'ball',nil,true)
+   local flash=Surfaces.volume(r,"BlastCore",at,Vector3.one*.9,r.hot,.2,'ball')
+   if flash then r.faces[#r.faces].fadeDuration=.09 end
+   local start=#r.faces
+   Surfaces.arc(r,"BlastShockwave",at-Vector3.yAxis*.7,math.min(radius,4),.55,nil,.38)
+   Surfaces.animate(r,start,at-Vector3.yAxis*.7,Vector3.yAxis,.4,true,math.min(r.life,.32))
    end
   else
-   if area then Surfaces.disc(r,"RuptureSurface",floor,radius*.72,shape=="lava"and palette.fire or r.color,.78)end
+   if area then
+    local start=#r.faces
+    Surfaces.arc(r,"RuptureShockwave",floor,radius*.72,math.min(radius*.12,.8),shape=="lava"and palette.fire or r.color,.55)
+    Surfaces.animate(r,start,floor,Vector3.yAxis,0,true,r.life)
+   end
    for i=1,4 do
     local a=(area or angle>=359)and(i*math.pi/2)or math.rad(-angle/2+angle*(i-.5)/4)
     local at=floor+(flat*math.cos(a)+right*math.sin(a))*radius*.6+Vector3.yAxis*.6
@@ -441,7 +463,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    local at=floor+radial*radius*.67+Vector3.yAxis*.05
    Surfaces.triangle(r,"DawnSealRay",at-tangent*.2,at+radial*math.min(radius*.18,1.4),at+tangent*.2,nil,.42)
    local height=1.2+(i%2)*.65
-   Surfaces.volume(r,"DawnAscendingLight",at+Vector3.yAxis*height*.5,Vector3.new(.1,height,.1),nil,.58,'ball',nil,false,.9)
+   Surfaces.volume(r,"DawnAscendingLight",at+Vector3.yAxis*height*.5,Vector3.new(.14,height,.14),nil,.48,'ball',nil,false,1.4)
   end
  elseif shape=="water"or shape=="steam"or(shape=="frost"and area)or shape=="gravity"then
   if shape=="frost"then
@@ -452,7 +474,10 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
     if facet then local face=r.faces[#r.faces];face.cf=CFrame.lookAt(facet.Position,facet.Position+radial);facet.CFrame=face.cf end
    end
   else
-  Surfaces.disc(r,"ElementalSurface",area and floorAt(last,character)or last,area and radius*.78 or 1.7,nil,.72)
+  local at=area and floorAt(last,character)or last
+  local start=#r.faces
+  Surfaces.arc(r,"ElementalSurface",at,area and radius*.78 or 1.7,shape=="gravity"and .4 or .65,nil,.55)
+  Surfaces.animate(r,start,at,Vector3.yAxis,shape=="gravity"and -1.2 or .35,true,r.life)
   end
   if shape=="water"or shape=="steam"then
    Surfaces.volume(r,"WaterVolume",area and floor+Vector3.yAxis*.35 or last,Vector3.new(2.2,.8,2.2),nil,.62,'ball',nil,true)
@@ -535,7 +560,16 @@ function FX.contact(at,classId,id,direction,scale)
  if row.key=="frost"or row.key=="earth"or row.key=="fire"or row.key=="bomb"then
   debris(r,at,3,row.key=="frost"and"IceShard"or row.key=="earth"and"RockChip"or"Ember",size)
  end
- Surfaces.volume(r,"ContactVolume",at,Vector3.one*.8*size,r.hot,.38,"ball",nil,true)
+ local flash=Surfaces.volume(r,"ContactVolume",at,Vector3.one*.65*size,r.hot,.25,"ball")
+ if flash then r.faces[#r.faces].fadeDuration=.08 end
+ -- Only confirmed hit events reach this entry point. A short open pressure
+ -- crown replaces a lingering generic sphere; water retains its own ripple.
+ if row.key~="water"and row.key~="gravity"and row.key~="frost"and row.key~="earth"then
+  local start=#r.faces
+  local basis=CFrame.lookAt(at,at+dir)*CFrame.Angles(math.pi/2,0,0)
+  Surfaces.arc(r,"ContactPressure",at,1.35*size,.28*size,r.color,.32,basis,280)
+  Surfaces.animate(r,start,at,dir,.35,true,.23)
+ end
  flourish(r,at,1.5*size,row.key,false)
  FX.step(r.at);return r.model
 end

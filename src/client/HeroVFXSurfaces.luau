@@ -25,7 +25,7 @@ function S.triangle(r,name,a,b,c,color,alpha)
   if v[4]>.01 then part(r,name,Vector3.new(.055,height,v[4]),CFrame.fromMatrix((a+v[1])*.5,v[2],up,v[3]),color,alpha,'wedge')end
  end
 end
-function S.ribbon(r,name,path,normal,width,alpha)
+function S.ribbon(r,name,path,normal,width,alpha,color)
  local prevL,prevR
  for i=0,8 do
   local t=i/8;local at=path(t)
@@ -33,8 +33,28 @@ function S.ribbon(r,name,path,normal,width,alpha)
   local side=normal:Cross(direction);side=side.Magnitude>.001 and side.Unit or Vector3.xAxis
   local half=width*(.025+.5*math.sin(t*math.pi)^.6)
   local left,right=at+side*half,at-side*half
-  if prevL then S.triangle(r,name,prevL,prevR,left,nil,alpha);S.triangle(r,name,prevR,right,left,nil,alpha)end
+  if prevL then S.triangle(r,name,prevL,prevR,left,color,alpha);S.triangle(r,name,prevR,right,left,color,alpha)end
   prevL,prevR=left,right
+ end
+end
+-- An open annulus leaves the actor, target and ground telegraphs visible.
+function S.arc(r,name,at,radius,width,color,alpha,basis,arc)
+ local span=math.rad(arc or 300)
+ local function point(a,rad)
+  local offset=Vector3.new(math.cos(a)*rad,0,math.sin(a)*rad)
+  return at+(basis and basis:VectorToWorldSpace(offset)or offset)
+ end
+ for i=1,8 do
+  local a,b=(i-1)/8*span,i/8*span
+  local inner=math.max(.05,radius-width*math.sin((i-.5)/8*math.pi))
+  local p,q,s,t=point(a,inner),point(a,radius),point(b,inner),point(b,radius)
+  S.triangle(r,name,p,q,s,color,alpha);S.triangle(r,name,q,t,s,color,alpha)
+ end
+end
+-- Transform authored surfaces from immutable rest poses; never accumulate dt.
+function S.animate(r,start,pivot,axis,turn,expand,duration)
+ for i=start+1,#r.faces do
+  r.faces[i].motion={pivot=pivot,axis=axis,turn=turn,expand=expand,duration=duration}
  end
 end
 function S.volume(r,name,at,size,color,alpha,shape,material,grow,rise)
@@ -49,6 +69,14 @@ function S.step(r,u,fade)
   v.part.Transparency=v.alpha+(1-v.alpha)*faceFade
   if v.grow then v.part.Size=v.size*(.72+u*.65)end
   if v.rise or v.drift then v.part.CFrame=v.cf+(v.drift or Vector3.zero)*u+Vector3.yAxis*u*(v.rise or 0)end
+  if v.motion then
+   local m=v.motion;local t=math.clamp(u*r.life/m.duration,0,1)
+   local ease=1-(1-t)^3;local scale=m.expand and(.38+ease*.82)or 1
+   local rotation=CFrame.fromAxisAngle(m.axis,(ease-.5)*(m.turn or 0))
+   v.part.CFrame=CFrame.new(m.pivot)*rotation*CFrame.new((v.cf.Position-m.pivot)*scale)*v.cf.Rotation
+   v.part.Size=v.size*scale
+   v.part.Transparency=v.alpha+(1-v.alpha)*t^1.4
+  end
  end
 end
 return S
