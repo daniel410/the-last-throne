@@ -387,8 +387,21 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  elseif shape=="earth"or shape=="lava"or shape=="blast"or shape=="mortar"then
   if shape=="blast"or shape=="mortar"then
    local at=area and floorAt(last,character)+Vector3.yAxis or first+flat*2
+   if id=='dwarf.gunner.bomb_toss'then
+    local flash=Surfaces.volume(r,'BombContactFlash',at,Vector3.one*.6,WHITE,.18,'ball')
+    if flash then r.faces[#r.faces].fadeDuration=.09 end
+    for i=1,5 do
+     local a=i*math.pi*2/5;local direction=Vector3.new(math.cos(a),.2,math.sin(a))
+     local fragment=Surfaces.volume(r,'BombCasingFragment',at+direction*.25,Vector3.new(.15,.3,.6),Color3.fromRGB(95,75,58),.15,'wedge',Enum.Material.Slate)
+     if fragment then
+      local face=r.faces[#r.faces];face.cf=CFrame.lookAt(fragment.Position,fragment.Position+direction);fragment.CFrame=face.cf
+      face.drift=direction*2.4
+     end
+    end
+   else
    Surfaces.volume(r,"BlastVolume",at,Vector3.one*3.2,nil,.48,'ball',nil,true)
    Surfaces.volume(r,"BlastCore",at,Vector3.one*1.5,WHITE,.28,'ball',nil,true)
+   end
   else
    if area then Surfaces.disc(r,"RuptureSurface",floor,radius*.72,shape=="lava"and palette.fire or r.color,.78)end
    for i=1,4 do
@@ -398,7 +411,16 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    end
   end
  elseif shape=="water"or shape=="steam"or(shape=="frost"and area)or shape=="holy"or shape=="gravity"then
+  if id=='mage.cryo.frost_ring'then
+   local at=floorAt(last,character)
+   for i=1,8 do
+    local a=i*math.pi/4;local radial=Vector3.new(math.cos(a),0,math.sin(a))
+    local facet=Surfaces.volume(r,'FrostRimFacet',at+radial*radius*.83+Vector3.yAxis*.18,Vector3.new(math.min(radius*.55,2.5),.35,.42),nil,.3,'wedge',Enum.Material.Ice)
+    if facet then local face=r.faces[#r.faces];face.cf=CFrame.lookAt(facet.Position,facet.Position+radial);facet.CFrame=face.cf end
+   end
+  else
   Surfaces.disc(r,"ElementalSurface",area and floorAt(last,character)or last,area and radius*.78 or 1.7,nil,.72)
+  end
   if shape=="water"or shape=="steam"then
    Surfaces.volume(r,"WaterVolume",area and floor+Vector3.yAxis*.35 or last,Vector3.new(2.2,.8,2.2),nil,.62,'ball',nil,true)
   end

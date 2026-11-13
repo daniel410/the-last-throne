@@ -1,0 +1,9 @@
+{
+  "src/client/CuratedVFX.luau": "2262dfaab35f40b131b7acd2c596afa5e8d2423abc1df2df735e5c5558ac071c",
+  "src/client/PixelFX.luau": "0946bd368ceebc2ad5d03e99af52baab13787469b086d097aa03e1d806ca95d5",
+  "src/client/HeroVFX.luau": "a2118ee0ac5fddd15275875b2afbbf5b740578617b987505a4cb8d75ed2c5d82",
+  "src/client/HeroVFXSurfaces.luau": "bfb9d9a38dface8b9dd203e6a76c99d5a9059b4ae8f40f0147b0715771f8f837",
+  "tests/curated-vfx-native.luau": "70ea2cb7aa9d59b8e42461fd1ce24b2c040de870a5940644426b3f633288fb44",
+  "tests/vfx-style-fit-native.luau": "01c666a293f77f97e7f4337baa2ec99ded2e727e2e3264154e58ac93047e2338",
+  "tools/capture-curated-vfx-review.luau": "e1e88c2731e29975f5446b720d038c39f73ae1eeb190974cdfefad7da5a99ebf"
+}

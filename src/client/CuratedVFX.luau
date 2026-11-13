@@ -6,11 +6,11 @@ local reserved=0
 local blocked={}
 local textures={
  shard='rbxassetid://8030734851',plus='rbxassetid://9937082969',spec='rbxassetid://9997556038',
- gradient='rbxassetid://8196169974',frost='rbxassetid://72083342328059',blast='rbxassetid://125374985892345',
+ gradient='rbxassetid://8196169974',blast='rbxassetid://125374985892345',
 }
 local skills={['elf.magic_archer.spirit_rain']='spiritRain',['mage.cryo.frost_ring']='frost',['dwarf.gunner.bomb_toss']='blast'}
 local lifetimes={heal=1.25,spiritRain=.45,frost=.6,blast=.85}
-local costs={heal=16,spiritRain=15,frost=1,blast=1}
+local costs={heal=12,spiritRain=15,frost=8,blast=1}
 function C.keyFor(id)return skills[id]end
 function C.duration(key)return lifetimes[key]end
 local function sequence(points)
@@ -33,23 +33,31 @@ function C.mount(holder,key,size)
  local cost=costs[key];if not cost then return nil end
  local limit=Input.TouchEnabled and 96 or 192
  if reserved+cost>limit then return nil end
- local required=key=='heal'and{'shard','plus','spec'}or key=='spiritRain'and{'shard','gradient'}or{key}
+ local required=key=='heal'and{'shard','plus','spec'}or key=='spiritRain'and{'shard','gradient'}or key=='frost'and{'shard'}or{key}
  for _,name in ipairs(required)do if blocked[textures[name]]then return nil end end
  local emitters={}
  local function add(e)table.insert(emitters,e);return e end
  if key=='heal'then
   local mint=Color3.fromRGB(145,255,200)
   local rows={
-   {'Shards','shard',-.9,3,{.55,.8},{4,5.4},{{0,0},{.35,.8},{1,0}},2.5},
-   {'Plus','plus',.8,5,{.85,1.25},{3,4.5},{{0,0},{.25,.65},{1,0}},3},
-   {'ShardsBigger','shard',.4,2,{.5,.75},{4,6},{{0,0},{.35,.9},{1,0}},5},
-   {'Specs','spec',-.4,6,{.85,1.25},{3,4.5},{{0,0},{.25,.5,.2},{1,0}},3},
+   {'Shards','shard',-.7,3,{.55,.8},{3,4.5},{{0,0},{.35,.45},{1,0}},2.5},
+   {'Plus','plus',.65,2,{.85,1.25},{1.5,2.4},{{0,0},{.25,.2},{1,0}},3},
+   {'ShardsBigger','shard',.4,2,{.5,.75},{3.5,5},{{0,0},{.35,.55},{1,0}},5},
+   {'Specs','spec',-.4,5,{.85,1.25},{3,4.5},{{0,0},{.25,.18,.06},{1,0}},3},
   }
   for _,r in ipairs(rows)do
    local a=attachment(holder,r[1]..'Origin',Vector3.new(r[3],-.4,0))
    local e=add(emitter(a,r[1],textures[r[2]],mint,r[5],r[6],r[7],r[4]));e.Drag=r[8]
-   e.LockedToPart=true;e.SpreadAngle=Vector2.new(12,12)
+   e.LockedToPart=true;e.SpreadAngle=Vector2.new(12,12);e.LightEmission=.25
    if r[1]=='Specs'then e.Rotation=NumberRange.new(-180,180);e.RotSpeed=NumberRange.new(-300,300)end
+  end
+ elseif key=='frost'then
+  -- Small world-positioned ice glints; no baked ground perspective or floating card.
+  for i=1,8 do
+   local angle=i*math.pi/4;local radius=math.min(size*.3,1.4)
+   local a=attachment(holder,'FrostShardOrigin',Vector3.new(math.cos(angle)*radius,.1,math.sin(angle)*radius))
+   local e=add(emitter(a,'FrostGlint',textures.shard,Color3.fromRGB(175,237,255),{.3,.55},{.8,1.8},{{0,0},{.25,.38},{1,0}},1))
+   e.Orientation=Enum.ParticleOrientation.VelocityParallel;e.Drag=2;e.LightEmission=.35
   end
  elseif key=='spiritRain'then
   local color=Color3.fromRGB(125,233,184)

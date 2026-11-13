@@ -1,0 +1,99 @@
+{
+  "scope": "Frozen isolated production-renderer stills, same gray actor and camera; not gameplay or user art acceptance",
+  "beforeSource": "add51d7b6b669d7d12bda8a51187e68526709bf5",
+  "before": [
+    {
+      "file": "docs/evidence/curated-vfx-20261112/mage_cryo_frost_ring.png",
+      "sha256": "87526500eb71c2239a0fb08dc06c91ce4524e7db1e7bcf381017d0ea3ee472fb"
+    },
+    {
+      "file": "docs/evidence/curated-vfx-20261112/dwarf_gunner_bomb_toss.png",
+      "sha256": "4cb5ed1dd054fdfedb7dce2b25aff8614e73eb46a5c018aa391a46e1cdb9e165"
+    },
+    {
+      "file": "docs/evidence/curated-vfx-20261112/heal.png",
+      "sha256": "ab6088ffb6c53314d8fa5776ff00cd7ce0734421e7e309fe188debd5c164496b"
+    }
+  ],
+  "after": [
+    {
+      "index": 1,
+      "id": "heal",
+      "height": 240,
+      "name": "Selene Heal",
+      "width": 320,
+      "file": "heal.png",
+      "sha256": "7ed6e58ff17953d42259b7b321d0afa83f088295de81dadb42033e0a9da2a1be"
+    },
+    {
+      "index": 2,
+      "id": "elf.magic_archer.spirit_rain",
+      "height": 240,
+      "name": "Spirit Rain",
+      "width": 320,
+      "file": "elf_magic_archer_spirit_rain.png",
+      "sha256": "dc091d406695566176a24372f2ea13d25768c8961957e271aae66a0b3c992a9f"
+    },
+    {
+      "index": 3,
+      "id": "mage.cryo.frost_ring",
+      "height": 240,
+      "name": "Frost Ring",
+      "width": 320,
+      "file": "mage_cryo_frost_ring.png",
+      "sha256": "554acd20bd5ccb9be7085556c0b5674105bfd143013dfe3b30af60c1827fa661"
+    },
+    {
+      "index": 4,
+      "id": "dwarf.gunner.bomb_toss",
+      "height": 240,
+      "name": "Bomb Toss",
+      "width": 320,
+      "file": "dwarf_gunner_bomb_toss.png",
+      "sha256": "d27f74afaaf9463e09617f43088dd11df74906bebe2288fe477b010fcd886e08"
+    }
+  ],
+  "preload": [
+    {
+      "ok": true,
+      "statuses": {
+        "rbxassetid://8196169974": "Success",
+        "rbxassetid://9937082969": "Success",
+        "rbxassetid://9997556038": "Success",
+        "rbxassetid://8030734851": "Success",
+        "rbxassetid://125374985892345": "Success"
+      }
+    },
+    {
+      "ok": true,
+      "statuses": {
+        "rbxassetid://8196169974": "Success",
+        "rbxassetid://9937082969": "Success",
+        "rbxassetid://9997556038": "Success",
+        "rbxassetid://8030734851": "Success",
+        "rbxassetid://125374985892345": "Success"
+      }
+    }
+  ],
+  "renderStates": [
+    {
+      "key": "heal",
+      "position": "0, 3, 0"
+    },
+    {
+      "key": "spiritRain",
+      "position": "0, 0.11999999731779099, -6"
+    },
+    {
+      "key": "frost",
+      "position": "0, 0.11999999731779099, 0"
+    },
+    {
+      "image": "rbxassetid://125374985892345",
+      "key": "blast",
+      "position": "0, 1.7200000286102295, -6",
+      "loaded": true,
+      "frame": "896, 128"
+    }
+  ]
+}

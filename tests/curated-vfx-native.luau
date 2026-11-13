@@ -43,7 +43,7 @@ local function inspect(key,count)
 end
 local ok,err=xpcall(function()
  FX.clear();check(FX.support(char,'Heal'),'confirmed healing route')
- local holder,emitters=inspect('heal',16);check(emitters==4,'four source-derived healing emitters')
+ local holder,emitters=inspect('heal',12);check(emitters==4,'four source-derived healing emitters')
  local plus=holder:FindFirstChild('Plus',true);check(plus.Texture=='rbxassetid://9937082969','Yuruzuu plus texture')
  local at=holder.Position;root.Position+=Vector3.new(2,0,0);FX.step(.1)
  check(holder.Position==root.Position and holder.Position~=at,'heal follows recipient')
@@ -53,16 +53,16 @@ local ok,err=xpcall(function()
   FX.clear();char:SetAttribute('K0AttackSeq',9002)
   local now=workspace:GetServerTimeNow()
   Visual.play(char,id,root.Position,Vector3.new(0,3,-5),1,{},9002,now,now-1)
-  local cost=key=='spiritRain'and 15 or 1
+  local cost=key=='spiritRain'and 15 or key=='frost'and 8 or 1
   local p,n=inspect(key,cost)
   check(key~='spiritRain'or n==15,'five localized arrow contacts')
-  if key~='spiritRain'then
+  if key=='blast'then
    local sprite=p.CuratedSprite
    check(sprite.Frame.ImageRectSize==Vector2.new(128,128),'64-frame atlas cell size')
    FX.step(Curated.duration(key)*.5)
    check(sprite.Frame.ImageRectOffset==Vector2.new(0,512),'atlas reaches frame32 once')
   end
-  check(math.abs(p.Position.Y-(key=='blast'and 1.72 or key=='frost'and 1.52 or .12))<.01,'ground-relative burst placement')
+  check(math.abs(p.Position.Y-(key=='blast'and 1.72 or .12))<.01,'ground-relative burst placement')
   Visual.play(char,id,root.Position,Vector3.new(0,3,-5),1,{},9002,now,now-1)
   check(FX.count()==1,'duplicate confirmed pulse suppressed')
   char:SetAttribute('K0State','Dodge');FX.step(.01)

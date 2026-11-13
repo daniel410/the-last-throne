@@ -45,9 +45,10 @@ function S.disc(r,name,at,radius,color,alpha)
 end
 function S.step(r,u,fade)
  for _,v in ipairs(r.faces)do
-  v.part.Transparency=v.alpha+(1-v.alpha)*fade
+  local faceFade=v.fadeDuration and math.clamp(u*r.life/v.fadeDuration,0,1)or fade
+  v.part.Transparency=v.alpha+(1-v.alpha)*faceFade
   if v.grow then v.part.Size=v.size*(.72+u*.65)end
-  if v.rise then v.part.CFrame=v.cf+Vector3.yAxis*u*v.rise end
+  if v.rise or v.drift then v.part.CFrame=v.cf+(v.drift or Vector3.zero)*u+Vector3.yAxis*u*(v.rise or 0)end
  end
 end
 return S

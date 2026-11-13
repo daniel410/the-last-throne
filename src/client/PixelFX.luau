@@ -113,7 +113,7 @@ function FX.skill(character,id,origin,center,pulse,points,seq,firedAt)
   local hit=workspace:Raycast(at+Vector3.new(0,2,0),Vector3.new(0,-18,0),params)
   at=hit and hit.Position+Vector3.new(0,.12,0)or at-Vector3.new(0,2.7,0)
   -- Keep the camera-facing burst above the floor; it is not the area boundary.
-  if imported=='blast'or imported=='frost'then at=at+Vector3.new(0,imported=='blast'and 1.6 or 1.4,0)end
+  if imported=='blast'then at=at+Vector3.new(0,1.6,0)end
   return FX.emit(row.key,at,imported=='blast'and 3.2 or 4.5,Curated.duration(imported),opts)
  end
  return FX.emit(row.key,at,area and 4.5 or d.form=="self" and 3.5 or 2.5,area and .7 or .4,opts)
