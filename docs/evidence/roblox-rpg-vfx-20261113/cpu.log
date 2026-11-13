@@ -1,0 +1,2 @@
+PixelFX CPU: 634 checks PASS; 128 skills, 4 basic profiles, 185 advanced pulses, support, hostile accents, frame playback, cancellation and budgets. No engine rendering.
+Skill effects CPU: 15938 checks PASS; all 116 advanced casts/pulses, geometry, cosmetic budget, cancellation. No engine QA.

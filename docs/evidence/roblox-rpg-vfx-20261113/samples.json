@@ -1,0 +1,101 @@
+[
+  {
+    "index": 1,
+    "id": "mage.pyro.ember_lance",
+    "height": 240,
+    "name": "Fire",
+    "width": 320,
+    "beforeSha256": "0508c8d8cbc6aa017fff784257185799d7ec87e8d8dbf45359e6a5d77c5b8076",
+    "afterSha256": "78e4026f2e2625d2148e503ee8184819c8a09b4664cb4adef6d984ccea07c7bc"
+  },
+  {
+    "index": 2,
+    "id": "mage_tidal_ring",
+    "height": 240,
+    "name": "Water",
+    "width": 320,
+    "beforeSha256": "fe5f2ff23325d395b5d5c4af87e3ca3fe085aff7d9da481ec50d87606b980837",
+    "afterSha256": "f0b6e5d07dc6a37befb2ae788d02737c4c152b93e4b917f3fd755c28c734a30f"
+  },
+  {
+    "index": 3,
+    "id": "mage_wind_lance",
+    "height": 240,
+    "name": "Wind",
+    "width": 320,
+    "beforeSha256": "ca0b60d7a4dfb4d506ec661c85d324fecd941cb8f5e76770ebc76163ee18fc12",
+    "afterSha256": "4b8bf1083a913d410b58342c0856512cc9ab3bb2eb1572f0299f870bfa610280"
+  },
+  {
+    "index": 4,
+    "id": "mage.cryo.lightning_line",
+    "height": 240,
+    "name": "Lightning",
+    "width": 320,
+    "beforeSha256": "15d90ef483168d7a8a3b1a64b146f4bb03ea0c5828edd5017815ca12d163d27f",
+    "afterSha256": "a420bc86af6869d2d3953bca7660054701abca07a3b40c9e66efb80a71316adc"
+  },
+  {
+    "index": 5,
+    "id": "mage.cryo.frost_lance",
+    "height": 240,
+    "name": "Ice",
+    "width": 320,
+    "beforeSha256": "fcf4bbeecfe316e15eb9b254d5797acf509b802c22fe2a74b2ca4cd302ee6921",
+    "afterSha256": "c306556a7ba9d1a3677ac5b9212922ad3e852426bcbc200b2bb9bbe7cf433d42"
+  },
+  {
+    "index": 6,
+    "id": "mage.pyro.earth_rise",
+    "height": 240,
+    "name": "Earth",
+    "width": 320,
+    "beforeSha256": "1a8313354a243cf199e3c0310cc3d2bddf11f2d3b3506a01f0f50673d608c08e",
+    "afterSha256": "7674365866fd01cc8e1dc48ca8bdb4d205b636955ba7fdea02f554e0c7fc54e2"
+  },
+  {
+    "index": 7,
+    "id": "knight.paladin.shield_verdict",
+    "height": 240,
+    "name": "Holy Gold",
+    "width": 320,
+    "beforeSha256": "bdc7ff408d5ca7a0c9855573452507ce871019f0594ca70e982919d68785ed43",
+    "afterSha256": "0f99a272755ae0772aae927c41f0816b6e86dba5979cd1ffdbca16c0e9570475"
+  },
+  {
+    "index": 8,
+    "id": "knight.paladin.dawn_burst",
+    "height": 240,
+    "name": "Holy Seal",
+    "width": 320,
+    "beforeSha256": "cd6a81f66348bfbe14239546ab4858f0e4863c55c293349de86d61c2f13cd253",
+    "afterSha256": "b818d553611031f72e35a6c4b4057d373974bbe6c5f629c2f3bd7f1c5861c356"
+  },
+  {
+    "index": 9,
+    "id": "knight_crescent_cut",
+    "height": 240,
+    "name": "Blade Sweep",
+    "width": 320,
+    "beforeSha256": "86b394350df141cdb3d71fa1cbe8213f7df1b99a5898f044f63fee1a4c0ff240",
+    "afterSha256": "b94ba03e11cf4d08d83e1826daf6c1f9557ef9f75718e540b45c4737c0caa7e4"
+  },
+  {
+    "index": 10,
+    "id": "dwarf.gunner.shell_burst",
+    "height": 240,
+    "name": "Shell Burst",
+    "width": 320,
+    "beforeSha256": "4cc1575f1f2f68e987d88e6820d5342221607194d934cb01cd114e75a5f94c2e",
+    "afterSha256": "363d31da276a796c858df9d56518a16376e3a0194137c7ff8aebbe93431d6227"
+  },
+  {
+    "index": 11,
+    "id": "knight.paladin.oathblade",
+    "height": 240,
+    "name": "Holy Impact",
+    "width": 320,
+    "beforeSha256": "1ad1795ed56bbbbbb89507ae0533560de5e90d2716bde2f2826499e479945324",
+    "afterSha256": "a72ce57174bdd270e70b958d9af15fe6377f80433102a04424313316dfe4657d"
+  }
+]

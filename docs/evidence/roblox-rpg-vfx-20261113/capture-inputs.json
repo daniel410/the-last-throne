@@ -1,0 +1,10 @@
+{
+  "before": {
+    "logSha256": "8b3001274df68e76df79da87250c7580adb7ea10df7ab8be33b299d5bbc59c37",
+    "inputsSha256": "6453cdab0ab022acce58301965fa0799375d486afcfd0df2f334c0046a9e777a"
+  },
+  "after": {
+    "logSha256": "41d46becb9b17d20203ad5604aec8e5cfb09992afdff53c848e05332cf7f9216",
+    "inputsSha256": "509a9e4bf2a4d98933aaa3e758d48676c7af106e9d4c56b4502826e0d57c0252"
+  }
+}
