@@ -1,0 +1,15 @@
+{
+  "tool": "Roblox_Studio.open_cloud_invoke",
+  "method": "POST",
+  "endpoint": "/assets/v1/assets",
+  "requestedScopes": [
+    "asset:read",
+    "asset:write"
+  ],
+  "filePath": "assets/models/deepwood-elder-grove-v1/elder-grove.glb",
+  "intendedCreatorUserId": "9156786071",
+  "result": "Token acquisition denied before upload",
+  "error": "Could not acquire an Open Cloud access token: Scope 'asset:read' has not been granted. Ask the creator to grant the required scope in the Assistant MCP Permissions settings, then retry.",
+  "assetCreated": false,
+  "attemptedFileNote": "An earlier local iteration at the same path; final local package was subsequently refined. No file content was transmitted."
+}

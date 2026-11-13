@@ -1,0 +1,4 @@
+Python authoring/validation/review generators: syntax PASS
+GLB: 34 meshes; 53810 triangles; maximum mesh 7014 triangles; 87169 UV vertices; one material; one embedded image; external URIs 0; degenerate triangles 0
+Review harness: Studio Edit loadstring compile PASS; solid name classification PASS; not executed
+Roblox asset import, candidate placement, collision/pathfinding, client/device/art acceptance: NOT RUN; blocked on Studio MCP asset scope

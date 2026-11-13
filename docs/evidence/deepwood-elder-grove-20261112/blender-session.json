@@ -1,0 +1,17 @@
+{
+  "scene": "TLT_Deepwood_ElderGrove_v1",
+  "viewTransform": "Standard",
+  "displayDevice": "sRGB",
+  "look": "None",
+  "exposure": 0,
+  "gamma": 1,
+  "curves": false,
+  "blender": "5.2.0 LTS",
+  "priorArchitectureScenePreserved": true,
+  "camera": [
+    205,
+    -335,
+    235
+  ],
+  "orthoScale": 415
+}

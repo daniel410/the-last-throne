@@ -1,0 +1,13 @@
+{
+  "assets/models/deepwood-elder-grove-v1/README.md": "73fc7c0263f18315b5dbace05bd6a2c6a131f83e1a2a6558f47bb143d0f2f166",
+  "assets/models/deepwood-elder-grove-v1/camp-detail.png": "b38e8ba4b6171209be083ac6d09d2b7e2f465ca8c94c116ccbe2ef2526d94fa5",
+  "assets/models/deepwood-elder-grove-v1/elder-grove.glb": "c17f4ca019f5520024141a44b328b254ca35bf1fdbc99b7028ac5335082e516c",
+  "assets/models/deepwood-elder-grove-v1/geometry.json": "a31f1e01fcb1a0723cf98d4a03fe67662104a87d2d607522adfbce7e743e6c27",
+  "assets/models/deepwood-elder-grove-v1/grove-atlas.png": "a7cb4683344ced68563d210fee086acab1fa9cca1970da494f4fb1d3ac5a200a",
+  "assets/models/deepwood-elder-grove-v1/grove-preview.png": "e21e7efb5edee0fccffe3c1ed2a7ea5d039d606a6ef567320cc7c5ef2d10ab6a",
+  "assets/models/deepwood-elder-grove-v1/grove-side.png": "01628c5956bf860ef09528f7ab3d6d6e0afe34aea6b79bb48bf9a7428ee73770",
+  "assets/models/deepwood-elder-grove-v1/validation.json": "d72ebdbb82047334426058e3cd5ebc2209c7f1b7dd3707e27fb056743e8a369c",
+  "tools/build-deepwood-elder-grove-blender.py": "27d71c1c403d020e381169f3637f47fd26ec5801702ab5775d4bee91bf59a21e",
+  "tools/prepare-deepwood-elder-grove-review.py": "4e69bb21738d2d69850c3e6684bdbfe8b0021c7da264bab8136f04a7b28c3bcf",
+  "tools/validate-deepwood-elder-grove.py": "6d260944b21df90b2986c9455b3344cc1027e550ecc6c462888b494959e680eb"
+}
