@@ -41,4 +41,4 @@ Diablo IV의 타격 방향·정보 강도 위계, Minecraft Dungeons/Vesteria의
 
 ## 빌드
 
-0.104.19로 고정 소스 빌드를 준비하고 최종 경로·SHA256은 `build.json`에 기록한다. Roblox 게시·릴리스 태그는 만들지 않는다.
+소스 `a7488f9d122c3f995fb907c186a413cf1a6d3698`를 커밋·푸시한 뒤0.104.19 단일 Rojo 빌드가 성공했다. [build.json](build.json)에 경로·바이트·SHA256을 기록했다. 빌드 XML 안의 CuratedVFX/PixelFX/HeroVFX/HeroVFXSurfaces4개 모듈이 고정 소스와 정확히 일치하는지 [검사](build-checks.log)했다. LFS 이미지5개 전송을 확인했다. Roblox 게시·릴리스 태그는 만들지 않았다.
