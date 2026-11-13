@@ -8,7 +8,7 @@
 - 제품 변경은 `docs/product-contracts.md`의 관련 항목과 `docs/decisions.md`에서 해당 결정만 확인한다. 최신 사용자 지시가 우선한다.
 - 작업ID는 `backlog.md`, 단계/게이트는 `plan.md`, 역할은 `agent.md`, 제작 절차는 `skills/the-last-throne-production/SKILL.md`에서 필요한 부분만 읽는다.
 - 편집 전 변경 파일·산출물·검증 범위를 정한다. 사용자 파일·기존 미커밋 변경을 보존하고 작업 파일만 스테이징한다.
-- 신규 기능/개선의 게임성 리서치는 Diablo 우선, RPG/Roblox 사례로 보완한다. 기존 결정을 자동 변경하지 않는다. 단순 문서 정리·오탈자·명확한 결함 수정은 별도 조사 불필요.
+- 신규 기능/개선의 게임성 리서치는 Diablo와 World of Warcraft를 우선 조사하고, 다른 RPG/Roblox 사례로 보완한다. 기존 결정을 자동 변경하지 않는다. 단순 문서 정리·오탈자·명확한 결함 수정은 별도 조사 불필요.
 
 ## 구현·검증
 
