@@ -43,6 +43,8 @@
 
 ## 빌드와 남은 수용
 
-0.104.27 소스를 고정한 뒤 단일 빌드와 동일 산출물 재검증 결과를 추가한다. 재현 도구는 `tools/prepare-visual-lifecycle-tests.py --place <고정 rbxlx> --output <임시 폴더>`이며 입력 원문 일치와 SHA256을 기록한다.
+소스 `176e26d781dd8a18773286cbcb4c4d93c40c3f7d`를 origin/main에 푸시하고 원격 일치를 확인한 뒤 **0.104.27** 단일 빌드를 만들었다. [build.json](build.json)의 산출물은 `builds/0.104.27/TheLastThrone-0.104.27.rbxlx`, SHA256 `aa3e25c8a31cb92b542a4f6150a152f024475d314504ccf57a338c1157ac0392`다. 변경8모듈 원문 일치와 같은 산출물의14개 엔진 검사 **88,962개 통과**를 확인했다([원문](pinned-native.log), [결과](pinned-results.json), [입력 해시](pinned-inputs.json)). 4계열 무기700검사도 포함한다. 실제 산출물 역할10·도착 로딩283·프로젝트 호환 검사를 통과했다. Roblox 게시/릴리스 태그 없음.
+
+재현 도구는 `tools/prepare-visual-lifecycle-tests.py --place <고정 rbxlx> --output <임시 폴더>`이며 입력 원문 일치와 SHA256을 기록한다. 검사 준비 도구는 Rojo의 string Source와 기존 ProtectedString Source를 모두 읽는다. 최종 검사 포트가 별도 작업에 점유된 동안 대기한 뒤 재실행해 `VISUAL_LIFECYCLE_ALL_PASS`를 확인했다.
 
 현재 Play에는 화살 정리/접점·후드 착용·Axe Throw 늦은 재생 제거의 임시 표시 보정을 적용했다. Play 종료 시 사라지며 영구 소스/고정 빌드를 대신하지 않는다. 진단용 복제본·임시 모듈은 Play에만 존재했고 Play 종료 후 소멸했다. TD 운영/재화/권리 변경 없음. 게시 클라이언트·저FPS/지연 실기기·다인·사용자 최종 수용은 미검증이다. 다음 담당 QA/DES는 네 후드 교체·연속 사격·회피 취소와 영웅/몬스터 실제 전투를 새 빌드에서 확인한다.

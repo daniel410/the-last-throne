@@ -12,7 +12,7 @@ p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
 a.output.mkdir(parents=True, exist_ok=True)
 tree = ET.parse(a.place)
-modules = {n.findtext('./Properties/string[@name="Name"]'): n.findtext('./Properties/ProtectedString[@name="Source"]') for n in tree.iter('Item') if n.get('class') == 'ModuleScript'}
+modules = {n.findtext('./Properties/string[@name="Name"]'): (n.findtext('./Properties/ProtectedString[@name="Source"]') or n.findtext('./Properties/string[@name="Source"]')) for n in tree.iter('Item') if n.get('class') == 'ModuleScript'}
 changed = ['src/client/AdvancedSkillVisual.luau', 'src/client/ElfQuiverVisual.luau', 'src/client/EnemyPatternEffects.luau', 'src/client/K0SwordVisual.luau', 'src/client/WindLanceVisual.luau', 'src/server/Cosmetics/ArmorAppearance.luau', 'src/shared/ElfBowGeometry.luau', 'src/shared/FourFamilyArmorVisuals.luau']
 for name in changed:
     path = root / name
