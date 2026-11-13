@@ -1,0 +1,16 @@
+ContentId: rbxassethash://9f652390a8f570eb1c9c469037d6382b failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://76ce1126a1b938ce199c09f0734eefec failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e03089ac0c0daafd08cbe278f0bd2771 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://45a84a576ad52cab4163fe70de30a0c0 failed due to: Request must have a PlaceId set.
+ContentId: rbxassethash://e3f17049d801a9aba2a3fecb56bcba72 failed due to: Request must have a PlaceId set.
+DEEPWOOD_CONCEPT_SOURCE_COMPILE_PASS
+DEEPWOOD_CONCEPT_QA {"zones":{"DW-S1":{"rejections":"Ground=49, Neighbor=62, Occupied=59, Reserved=905, Road=36, Slope=76","skipped":0,"solids":85,"pavers":12,"assemblies":6,"parts":133},"DW-03":{"rejections":"Ground=1, Neighbor=28, Occupied=36, Reserved=183, Road=14, Slope=27","skipped":0,"solids":105,"pavers":30,"assemblies":6,"parts":144},"DW-S3":{"rejections":"Ground=5, Neighbor=69, Occupied=23, Reserved=1752, Road=23, Slope=60","skipped":3,"solids":57,"pavers":12,"assemblies":3,"parts":69},"DW-05":{"rejections":"Ground=18, Neighbor=66, Occupied=40, Reserved=581, Road=20, Slope=15","skipped":0,"solids":157,"pavers":54,"assemblies":6,"parts":186},"DW-02":{"rejections":"Ground=33, Neighbor=116, Occupied=2, Reserved=929, Road=162, Slope=51","skipped":0,"solids":79,"pavers":39,"assemblies":6,"parts":132},"DW-01":{"rejections":"Ground=7, Neighbor=31, Occupied=9, Reserved=317, Road=18, Slope=5","skipped":0,"solids":76,"pavers":42,"assemblies":6,"parts":119},"DW-04":{"rejections":"Ground=3, Neighbor=26, Occupied=25, Reserved=134, Road=10, Slope=11","skipped":0,"solids":265,"pavers":54,"assemblies":6,"parts":335},"DW-06":{"rejections":"Ground=46, Neighbor=105, Occupied=81, Reserved=896, Road=26, Slope=70","skipped":0,"solids":93,"pavers":51,"assemblies":6,"parts":112},"DW-07":{"rejections":"Ground=4, Neighbor=36, Occupied=39, Reserved=186, Road=6, Slope=4","skipped":0,"solids":135,"pavers":75,"assemblies":6,"parts":174},"DW-S2":{"rejections":"Ground=25, Neighbor=23, Occupied=27, Reserved=487, Road=13, Slope=31","skipped":0,"solids":44,"pavers":12,"assemblies":6,"parts":55}},"failures":["one characteristic landmark DW-S3","paver supported DW-07 at -774.148193359375, 54.16999816894531, -3223.341064453125 floor 55","all seven main + three shared optional regions"],"checks":8345,"solids":1096,"signatureCount":9,"pavers":381,"parts":1459}
+DEEPWOOD_INSPECT_READY
+Server is not a valid member of ServerScriptService "ServerScriptService"
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:5
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
+CURATED_ASSET_LOAD {"ok":true,"error":"nil","statuses":{"rbxassetid://8196169974":"Failure","rbxassetid://9937082969":"Failure","rbxassetid://125374985892345":"Failure","rbxassetid://72083342328059":"Failure","rbxassetid://8030734851":"Failure","rbxassetid://9997556038":"Failure"}}

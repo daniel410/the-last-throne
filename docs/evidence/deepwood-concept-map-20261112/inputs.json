@@ -1,0 +1,12 @@
+{
+  "src/server/World/DeepwoodConceptArt.luau": "a030e6ebd55b9c0e44123290f9349826581165fb890bcdb697581110bef622f0",
+  "src/server/World/EpicWorldArt.luau": "d08783ff2a68739f135186c99ccd794db24cfe3bee85fc643d1be4fd0256522d",
+  "src/server/World/CampaignWorld.luau": "c4ef655ddc11b5013b606c7b265cf86322b31324f59846990989dc15eb508616",
+  "src/client/DeepwoodAtmosphere.luau": "ff120ee4d0ecfa4e46ebcaf3d20fff3cfd0f502b344f5e5aa4f3290551b1b1ef",
+  "tests/deepwood-concept-art-native.luau": "414ef258f1a67668d33ab8aef726fc984ada5d8b0759883019c20f6da742e050",
+  "tests/campaign-story-composition-native.luau": "8b599f1d140ee201931744378efc13d8d23be98fd502b01fc102e7d1b749a008",
+  "tests/scenery-collision-native.luau": "84f63e87de3262fd7df54458b18f9e6451fdd2d1c90c4324f579be80f0179ac0",
+  "tests/campaign-combat-route-world-native.luau": "fca9e0919051f1be0e797475d525cb260aa002ed97f7bbe1741c2440172d0ad6",
+  "tests/epic-environment-native.luau": "64261fd65d9f7d28ee53aeabbc254873028c54b9099f6121409a13326941ea83",
+  "tools/prepare-deepwood-concept-native.py": "7b68b39b773112517685cf6b235c90ce3409f0b95d163324a0ecfb7ba2c4242c"
+}

@@ -1,0 +1,14 @@
+{
+  "blender": "5.2.0 LTS",
+  "scene": "TLT_Deepwood_Architecture_20261112",
+  "scenesPreserved": 14,
+  "previousScene": "TLT_EpicEnvironment_20261111",
+  "models": 10,
+  "parts": 691,
+  "viewTransform": "Standard",
+  "displayDevice": "sRGB",
+  "look": "None",
+  "exposure": 0,
+  "gamma": 1,
+  "curves": false
+}

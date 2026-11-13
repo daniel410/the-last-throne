@@ -1,0 +1,262 @@
+{
+  "version": "0.104.18",
+  "studioFile": "TLT18.rbxlx",
+  "sourceCommit": "842a159905b0d058bbc173d3cb08832bed6cc99a",
+  "captures": [
+    {
+      "id": "DW-01",
+      "kind": "aerial",
+      "camera": [
+        -1694.2200000000003,
+        690.03,
+        -345.38000000000005
+      ],
+      "target": [
+        -1542.7500000000002,
+        0,
+        -833.45
+      ],
+      "file": "blender-DW-01-aerial.jpg",
+      "sha256": "4fff96570ed82f2ee23e70efadf51530ad531585e98226f63fb07408bcb719a6",
+      "bytes": 435652
+    },
+    {
+      "id": "DW-02",
+      "kind": "aerial",
+      "camera": [
+        -931.0400000000001,
+        438.96,
+        -835.76
+      ],
+      "target": [
+        -836.0000000000001,
+        6,
+        -1142
+      ],
+      "file": "blender-DW-02-aerial.jpg",
+      "sha256": "055a177f391469b6cba5764cd3692f7d3f0b31f42698913d37f4e763b8f8cac8",
+      "bytes": 571452
+    },
+    {
+      "id": "DW-03",
+      "kind": "aerial",
+      "camera": [
+        -312.56,
+        626.44,
+        -1296.29
+      ],
+      "target": [
+        -179,
+        18,
+        -1726.65
+      ],
+      "file": "blender-DW-03-aerial.jpg",
+      "sha256": "73c72ab8267c14fd253e1fdfd766b9008627ae34fccb1a342c58fdc61d6537b4",
+      "bytes": 567576
+    },
+    {
+      "id": "DW-04",
+      "kind": "aerial",
+      "camera": [
+        444.7540000000001,
+        667.304,
+        -1396.624
+      ],
+      "target": [
+        584.6500000000001,
+        30,
+        -1847.4
+      ],
+      "file": "blender-DW-04-aerial.jpg",
+      "sha256": "95b5d599a4f8a2a7611cce45a610cb21ac41cd061595059e3fd4c95f7b1f1a53",
+      "bytes": 537441
+    },
+    {
+      "id": "DW-05",
+      "kind": "aerial",
+      "camera": [
+        775.2800000000001,
+        728.03,
+        -2102.93
+      ],
+      "target": [
+        926.7500000000001,
+        38,
+        -2591
+      ],
+      "file": "blender-DW-05-aerial.jpg",
+      "sha256": "c29ea7ee7430c29b6cab8ca69622536c2fd5a33c1765339ba543e078d0d18aed",
+      "bytes": 469977
+    },
+    {
+      "id": "DW-06",
+      "kind": "aerial",
+      "camera": [
+        -112.24000000000001,
+        757.7600000000001,
+        -2413.96
+      ],
+      "target": [
+        44.00000000000003,
+        46,
+        -2917.4
+      ],
+      "file": "blender-DW-06-aerial.jpg",
+      "sha256": "dd242a4c6fe99da3bae56a5f15ee5cc3e404c486ed186fc5e7f3653c9c95844b",
+      "bytes": 458573
+    },
+    {
+      "id": "DW-07",
+      "kind": "aerial",
+      "camera": [
+        -1066.7140000000002,
+        836.9359999999999,
+        -2612.216
+      ],
+      "target": [
+        -894.8500000000001,
+        54,
+        -3166
+      ],
+      "file": "blender-DW-07-aerial.jpg",
+      "sha256": "254b7574448dbfd016e71301ba898a3d266a10eba709f85e26c21b9ddb8940f0",
+      "bytes": 397765
+    },
+    {
+      "id": "DW-S1",
+      "kind": "aerial",
+      "camera": [
+        407.79200000000003,
+        465.392,
+        -847.552
+      ],
+      "target": [
+        506,
+        18,
+        -1164
+      ],
+      "file": "blender-DW-S1-aerial.jpg",
+      "sha256": "f8618c13be4faeda9c54c684087ec45523127a0672ca96c1233d1107f6c45dca",
+      "bytes": 553907
+    },
+    {
+      "id": "DW-S2",
+      "kind": "aerial",
+      "camera": [
+        -1132.208,
+        465.392,
+        -1419.5520000000001
+      ],
+      "target": [
+        -1034,
+        18,
+        -1736
+      ],
+      "file": "blender-DW-S2-aerial.jpg",
+      "sha256": "cbc69ccbc873ed0c64d5519d8ddee93d94330f7153e6d4e757ba3fc5d37eb517",
+      "bytes": 479137
+    },
+    {
+      "id": "DW-S3",
+      "kind": "aerial",
+      "camera": [
+        1287.792,
+        485.392,
+        -2825.902
+      ],
+      "target": [
+        1386,
+        38,
+        -3142.35
+      ],
+      "file": "blender-DW-S3-aerial.jpg",
+      "sha256": "3e5395228edae09b004fba8a9aaf52533c768ae4e879fe0b8f5c19d6dc553611",
+      "bytes": 418845
+    },
+    {
+      "id": "DW-02",
+      "kind": "detail",
+      "file": "blender-DW-02-detail.jpg",
+      "camera": [
+        -847.2340943455164,
+        57.015625,
+        -1069.1322075558926
+      ],
+      "target": [
+        -795.0030517578125,
+        19.015625,
+        -1014.497802734375
+      ],
+      "sha256": "5203ad24bcd61a0e26bfde88f1d841be8730980c6e621653fbe4abe811f308f8",
+      "bytes": 544185
+    },
+    {
+      "id": "DW-03",
+      "kind": "detail",
+      "file": "blender-DW-03-detail.jpg",
+      "camera": [
+        -296.3492639319929,
+        69.015625,
+        -1831.1851482412999
+      ],
+      "target": [
+        -371.7772521972656,
+        31.015625,
+        -1836.0450439453125
+      ],
+      "sha256": "1e54460e11493d02106eea8810604224a913d18968fa1f80b4021e9b2f9d4792",
+      "bytes": 552717
+    },
+    {
+      "id": "DW-04",
+      "kind": "detail",
+      "file": "blender-DW-04-detail.jpg",
+      "camera": [
+        502.3337661570099,
+        81.015625,
+        -1764.7363522919554
+      ],
+      "target": [
+        498.957275390625,
+        43.015625,
+        -1689.2274169921875
+      ],
+      "sha256": "5cdedf673045af44a2747ef78bee7abeb332fe08a43a3f4d5ad98e3a86a2b13a",
+      "bytes": 512842
+    },
+    {
+      "id": "DW-07",
+      "kind": "detail",
+      "file": "blender-DW-07-detail.jpg",
+      "camera": [
+        -814.3526708678248,
+        105.015625,
+        -2960.3567254394557
+      ],
+      "target": [
+        -751.7949829101562,
+        67.015625,
+        -2917.935791015625
+      ],
+      "sha256": "9f2b0d7054a3bf07899bcdaf376a20d31717e290703a0646ec78fb025059c48f",
+      "bytes": 519880
+    },
+    {
+      "id": "DW-S2",
+      "kind": "detail",
+      "file": "blender-DW-S2-detail.jpg",
+      "camera": [
+        -1176.1505968573688,
+        69.015625,
+        -1629.4283243269754
+      ],
+      "target": [
+        -1197.679931640625,
+        31.015625,
+        -1556.9749755859375
+      ],
+      "sha256": "e3bf2a90c7bcbf9eee063b4399b3eff55abc08dbecf6f5f095c890d3a1c64c6c",
+      "bytes": 522864
+    }
+  ]
+}

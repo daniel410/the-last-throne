@@ -1,0 +1,10 @@
+DEEPWOOD_CONCEPT_SOURCE_COMPILE_PASS
+DEEPWOOD_CONCEPT_QA {"zones":{"DW-S1":{"rejections":"{\"Reserved\":825,":78,":36,":38,":52,":58}","skipped":2,"solids":47,"pavers":12,"assemblies":4,"parts":82},"DW-03":{"rejections":"{\"Reserved\":183,":1,":14,":28,":27,":36}","skipped":0,"solids":105,"pavers":30,"assemblies":6,"parts":144},"DW-S3":{"rejections":"{\"Reserved\":1203,":11,":12,":36,":44,":5}","skipped":5,"solids":21,"pavers":12,"assemblies":1,"parts":27},"DW-05":{"rejections":"{\"Reserved\":581,":18,":20,":66,":15,":40}","skipped":0,"solids":157,"pavers":54,"assemblies":6,"parts":186},"DW-02":{"rejections":"{\"Ground\":24,":753,":66,":124,":44,":4,":1}","skipped":4,"solids":25,"pavers":39,"assemblies":2,"parts":44},"DW-01":{"rejections":"{\"Reserved\":317,":7,":18,":31,":5,":9}","skipped":0,"solids":76,"pavers":42,"assemblies":6,"parts":119},"DW-04":{"rejections":"{\"Reserved\":134,":3,":10,":26,":25,":11}","skipped":0,"solids":265,"pavers":54,"assemblies":6,"parts":335},"DW-06":{"rejections":"{\"Reserved\":726,":48,":23,":73,":75,":67}","skipped":4,"solids":48,"pavers":51,"assemblies":2,"parts":66},"DW-07":{"rejections":"{\"Reserved\":186,":4,":6,":36,":39,":4}","skipped":0,"solids":135,"pavers":75,"assemblies":6,"parts":174},"DW-S2":{"rejections":"{\"Reserved\":576,":25,":15,":19,":40,":31}","skipped":1,"solids":30,"pavers":12,"assemblies":5,"parts":35}},"failures":["one characteristic landmark DW-S1","one characteristic landmark DW-S3","supporting scale clusters DW-S3","one characteristic landmark DW-S2","paver supported","supporting scale clusters DW-06","one characteristic landmark DW-02","supporting scale clusters DW-02","all seven main + three shared optional regions"],"checks":7071,"solids":909,"signatureCount":6,"pavers":381,"parts":1212}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:74: Deepwood concept regression; see report
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:74
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:77
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End
