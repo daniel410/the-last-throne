@@ -1,0 +1,37 @@
+{
+  "baselineCommit": "43bb0ed2835548144f0aed1f0df3683ee0d449f2",
+  "files": [
+    {
+      "path": "src/client/DeepwoodAtmosphere.luau",
+      "sha256": "f5bbd2811d0c02a0042ec57df74b16a31cda6b39f1f91b51316ea6b336dcf802",
+      "baselineExact": true
+    },
+    {
+      "path": "src/server/World/CampaignWorld.luau",
+      "sha256": "f81fec406ec398df142da59deb27a44c1050a9ae449e93325b2f0aa98fad40f7",
+      "baselineExact": true
+    },
+    {
+      "path": "src/server/World/EpicWorldArt.luau",
+      "sha256": "a9e8ca444f421b06fcdf66b9cba89166fb568dcd8b4bbf11c5bb0d4d1618d939",
+      "baselineExact": true
+    },
+    {
+      "path": "src/server/World/CampaignSceneryCollision.luau",
+      "sha256": "fb0e2d34e089c0e12ac3a9553863ee3750eea4ac840ba87d8c88eec3b9548758",
+      "baselineExact": true
+    },
+    {
+      "path": "default.project.json",
+      "sha256": "7b4c6fab0f93f34cda217a8a7ccedba30464eb00688524775de5ffbe99d37a16",
+      "baselineExact": true
+    },
+    {
+      "path": "battle.project.json",
+      "sha256": "7b4c6fab0f93f34cda217a8a7ccedba30464eb00688524775de5ffbe99d37a16",
+      "baselineExact": true
+    }
+  ],
+  "runtimeReferencesToRemovedModules": 0,
+  "published": false
+}

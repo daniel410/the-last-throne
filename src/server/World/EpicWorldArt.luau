@@ -10,8 +10,7 @@ local Architecture=require(script.Parent.EpicArchitecture)
 local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
-local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=18}
+local Art={version=15}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -225,11 +224,8 @@ local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
 end
 local function vista(parent,c,size,pal,theme,index,id,safe)
  local m=model(parent,'AuthoredVista')
- if theme~='Deepwood'and(index==1 or index==7)then Architecture.entry(m,c,size,pal)end
- if theme=='Deepwood'then
-  -- Deepwood's trail/outpost/ruins are authored by its concept pass below,
-  -- rather than repeating the other epics' cloisters, keep and graveyard belfry.
- elseif theme=='EmberCaldera'then
+ if index==1 or index==7 then Architecture.entry(m,c,size,pal)end
+ if theme=='EmberCaldera'then
   if index==2 then Architecture.camp(m,c,size,pal,false,0,id=='EC-02'and 180 or 0)
   elseif index==3 then Architecture.mine(m,c,size,pal)
   elseif index==4 then Architecture.aqueduct(m,c,size,pal,theme)
@@ -269,7 +265,7 @@ local function vista(parent,c,size,pal,theme,index,id,safe)
   end
  end
  Composition.build(parent,id,c,size,pal,theme,safe,ground)
- if theme~='Deepwood'then for _,s in ipairs({-1,1})do Architecture.flame(m,c+V(s*108,0,124),pal,true)end end
+ for _,s in ipairs({-1,1})do Architecture.flame(m,c+V(s*108,0,124),pal,true)end
  range(m,900)
 end
 local function pass(parent,edge,index)
@@ -459,11 +455,6 @@ function Art.create(world,scope)
   vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index,p.id,p.safe)
   Detail.build(p.site,p.id,p.c,p.z.size,p.pal,p.theme,p.safe,ground)
   StoryComposition.build(p.site,p.id,p.c,p.z.size,p.pal,p.theme,p.safe,ground,world)
-  if p.theme=='Deepwood'then
-   require(script.Parent.CampaignSceneryCollision).apply(p.site)
-   DeepwoodConcept.build(p.site,p.id,p.c,p.z.size,p.safe,ground,world)
-   DeepwoodConcept.paths(p.site,ground,world)
-  end
   task.wait()
  end
  for i,edge in ipairs(Access.edges)do pass(root,edge,i);task.wait()end

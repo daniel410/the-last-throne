@@ -1,6 +1,6 @@
 -- Only permanent, visible scenery owns shared collision. Personal story poses
 -- and their disappearing actors/bridges/gates must never become shared walls.
-local Collision={version=2}
+local Collision={version=1}
 local solids={}
 for name in string.gmatch([[
 PineTrunk WeatheredTrunk FacetedOutcrop
@@ -20,17 +20,15 @@ local meshSolids={roots_geom=true,trunk_geom=true,body_geom=true,walls_geom=true
  ['basalt columns_geom']=true,['forge arch_geom']=true}
 function Collision.isSolid(part,root)
  if not part:IsA('BasePart')or part.Transparency>=.95 then return false end
- local node=part.Parent;local template;local grove=root:GetAttribute('BlenderSource')=='deepwood-elder-grove-v1'
+ local node=part.Parent;local template
  while node and node~=root do
   if node:GetAttribute('ExpansionEvent')or node:GetAttribute('ExpansionStepEvent')or node:GetAttribute('NPCActor')then return false end
   template=template or node:GetAttribute('TDEnvironmentSource')
-  grove=grove or node:GetAttribute('BlenderSource')=='deepwood-elder-grove-v1'
   node=node.Parent
  end
  -- Material-fused terrain kits contain disconnected islands and waterfalls;
  -- retained Terrain/foundations already supply their traversable surfaces.
  if part:IsA('MeshPart')then
-  if grove then return part:GetAttribute('ElderGroveSolid')==true end
   return template~=nil and template~='TDWaterfallGorge'and template~='TDCanopyCrown'
    and meshSolids[part.Name]==true
  end

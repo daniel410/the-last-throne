@@ -77,9 +77,6 @@
       },
       "HeadgearHairModels": {
         "$path": "assets/models/headgear-hair-td-v1/runtime.rbxm"
-      },
-      "DeepwoodElderGroveTemplate": {
-        "$path": "assets/models/deepwood-elder-grove-v1/runtime.rbxmx"
       }
     },
     "StarterPlayer": {

@@ -50,13 +50,13 @@ function Mood.update(mode)
  sky=Instance.new('Sky');sky.Name='TLTClearDaySky';sky.CelestialBodiesShown=true;sky.StarCount=(mode=='Gloamwood' or mode=='HauntedGraveyard') and 900 or 0;sky.MoonAngularSize=11;sky.Parent=Lighting
  correction=Instance.new('ColorCorrectionEffect');correction.Name='TLTVividDaylight'
  correction.Brightness=.015;correction.Contrast=mode=='Lobby' and .025 or .09;correction.Saturation=mode=='Lobby' and .24 or mode=='Deepwood' and .10 or .04
- correction.TintColor=mode=='Deepwood'and Color3.fromRGB(255,247,229)or mode=='Gloamwood' and Color3.fromRGB(219,237,225) or mode=='HauntedGraveyard' and Color3.fromRGB(216,228,246) or Color3.fromRGB(244,250,255);correction.Parent=Lighting
+ correction.TintColor=mode=='Gloamwood' and Color3.fromRGB(219,237,225) or mode=='HauntedGraveyard' and Color3.fromRGB(216,228,246) or Color3.fromRGB(244,250,255);correction.Parent=Lighting
  if mode~='Lobby' then
   -- Atmosphere blends sky and terrain; a short white fog curtain hid the authored skyline.
   atmosphere=Instance.new('Atmosphere');atmosphere.Name='TLTRegionalAtmosphere'
   atmosphere.Color=profiles[mode].FogColor;atmosphere.Decay=profiles[mode].Ambient
-  atmosphere.Density=mode=='Deepwood'and .12 or(mode=='Gloamwood' or mode=='HauntedGraveyard') and .22 or .24
-  atmosphere.Offset=.1;atmosphere.Haze=mode=='Deepwood'and .18 or mode=='EmberCaldera' and .9 or .45;atmosphere.Glare=.03;atmosphere.Parent=Lighting
+  atmosphere.Density=(mode=='Gloamwood' or mode=='HauntedGraveyard') and .22 or .24
+  atmosphere.Offset=.1;atmosphere.Haze=mode=='EmberCaldera' and .9 or .45;atmosphere.Glare=.03;atmosphere.Parent=Lighting
   bloom=Instance.new('BloomEffect');bloom.Name='TLTLocalGlow';bloom.Intensity=.14;bloom.Size=14;bloom.Threshold=1.2;bloom.Parent=Lighting
  end
  current=mode
