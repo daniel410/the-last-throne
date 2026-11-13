@@ -47,14 +47,17 @@ local function previewWorld(missionId)
  building=true
  local ok,err=xpcall(function()
   startCombat()
-  deepwood=require(script.World.CampaignWorld).create(epic,deepwood)
-  if deepwood.positions['DW-03']and sessionOptions then
-   sessionOptions.outpostBounds={center=deepwood.positions['DW-03'],size=Vector3.new(220,24,200)}
-  end
-  local hub=Content.epics[epic].hub
-  local offset=epic==1 and Vector3.new(-55,0,-10)or Vector3.new(45,0,epic==3 and 75 or 80)
-  local chest,prompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions[hub]+offset})
-  chest.Parent.Name=hub..'AccountStorage';prompt.ObjectText=Content.zones[hub].name..' Storage';inventory.addStorage(chest,prompt)
+  -- Returning to earlier unlocked epics remains possible after reconnecting.
+  for id=1,epic do if not deepwood or not deepwood.loadedEpics[id]then
+   deepwood=require(script.World.CampaignWorld).create(id,deepwood)
+   if deepwood.positions['DW-03']and sessionOptions then
+    sessionOptions.outpostBounds={center=deepwood.positions['DW-03'],size=Vector3.new(220,24,200)}
+   end
+   local hub=Content.epics[id].hub
+   local offset=id==1 and Vector3.new(-55,0,-10)or Vector3.new(45,0,id==3 and 75 or 80)
+   local chest,prompt=require(script.World.StorageChest).create({folder=deepwood.folder,origin=deepwood.positions[hub]+offset})
+   chest.Parent.Name=hub..'AccountStorage';prompt.ObjectText=Content.zones[hub].name..' Storage';inventory.addStorage(chest,prompt)
+  end end
   if not storyStarted then
    story.start({world=deepwood,enemies=world.enemies,inventory=inventory,heroSession=heroSession,combat=combat,prepareStory=previewWorld});storyStarted=true
   else story.refreshWorld()end

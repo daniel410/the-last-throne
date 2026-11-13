@@ -30,7 +30,13 @@ for _,c in ipairs(C.chapters)do if c.epic>=2 then
 end end
 -- Coordinates captured from the actual stalled return routes in 0.102.9.
 for _,case in ipairs({{'FV-Q1',{-788.0109252929688,57,-4442.29541015625},15},{'EC-Q1',{-950,103,-8332},22}})do
+ local delta=C.epicOffsets[C.byId[case[1]].epic];for axis=1,3 do case[2][axis]=case[2][axis]+delta[axis]end
  for _,g in ipairs(C.byId[case[1]].goals)do if g.id=='report'then follow(case[2],g.position,case[3],case[1]..':regression')end end
 end
-follow({879.9625854492188,199.19241333007812,-16954.892578125},C.zones['HG-02'].center,35,'HG boundary steering regression')
+local oldHG={879.9625854492188,199.19241333007812,-16954.892578125};for axis=1,3 do oldHG[axis]=oldHG[axis]+C.epicOffsets[5][axis]end
+follow(oldHG,C.zones['HG-02'].center,35,'HG boundary steering regression')
+for index,edge in ipairs(C.overlandLinks)do
+ follow(C.zones[edge[1]].center,C.zones[edge[2]].center,index*7,'overland forward '..edge[1])
+ follow(C.zones[edge[2]].center,C.zones[edge[1]].center,index*7,'overland return '..edge[2])
+end
 print('EPIC_MAP_NAVIGATION '..checks..' checks PASS; '..targets..' active targets; '..steps..' moving samples')

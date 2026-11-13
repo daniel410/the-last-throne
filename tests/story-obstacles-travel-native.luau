@@ -40,8 +40,9 @@ for epic=1,5 do
  a.update({journal=journal})
  check(#folders[1]:GetChildren()>0,'each epic has locked roadblocks')
  for _,m in ipairs(folders[1]:GetChildren())do
-  check(C.zones[m:GetAttribute('StoryZone')].epic==epic,'distant epics do not allocate meshes')
-  check(m:GetAttribute('TDEnvironmentSource')==({'CliffRock','CliffRock','SnowCliff','VolcanoCliff','CemeteryCliff'})[epic],'each biome uses its original TD asset')
+  local id=m:GetAttribute('StoryZone');local zone=C.zones[id]
+  check(zone.epic==epic or epic<5 and id==C.overlandLinks[epic][2],'only current epic and its outgoing boundary allocate meshes')
+  check(m:GetAttribute('TDEnvironmentSource')==({'CliffRock','CliffRock','SnowCliff','VolcanoCliff','CemeteryCliff'})[zone.epic],'each biome uses its original TD asset')
  end
 end
 local cleared={version=2,main=35,flags={},clears={}}

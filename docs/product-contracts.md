@@ -4,6 +4,8 @@
 
 ## 최근 승인
 
+- 에픽 마지막 스토리 완료 뒤 다음 에픽으로 강제 순간이동하지 않는다. Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard를 인접 배치하고 선행 완료 후 열린 길로 왕복 보행한다. [결정·검증](evidence/epic-overland-20261113/README.md).
+
 - 원소 VFX는 불·물·바람·번개·얼음·땅의 형상/움직임이 각각 분명해야 하며, 성속성은 금빛으로 표현한다. [속성별 미술 기준](production/element-vfx.md).
 
 - 모든 무기·장비는 착용 레벨 제한이 없다. 클래스·슬롯·귀속·소유권·안전 조건은 유지한다. [장비 사양](production/equipment-four-tier-reorganization-2026-11-09.md).

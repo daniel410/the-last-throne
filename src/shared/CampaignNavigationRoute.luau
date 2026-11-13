@@ -13,14 +13,11 @@ function N.inset(id,p)
 end
 local neighbors={}
 for _,edge in ipairs(C.edges)do
- -- Crossing an epic boundary is a server transfer, never an overland shortcut.
- if C.zones[edge[1]].epic==C.zones[edge[2]].epic then
   local first,last=B.ends(edge)
   for _,row in ipairs({{edge[1],edge[2],first,last},{edge[2],edge[1],last,first}})do
    neighbors[row[1]]=neighbors[row[1]]or {}
    table.insert(neighbors[row[1]],{to=row[2],from=row[1],entry=row[3],exit=row[4],cost=distance(C.zones[row[1]].center,C.zones[row[2]].center)})
   end
- end
 end
 local function chain(from,to)
  local costs,previous,visited={[from]=0},{},{}
@@ -57,8 +54,7 @@ function N.route(origin,target)
   -- cost. Nearest-zone selection can reverse the arrows halfway down a pass.
   local best
   for _,edge in ipairs(C.edges)do
-   local z1,z2=C.zones[edge[1]],C.zones[edge[2]]
-   if z1.epic==z2.epic and z1.epic==C.zones[to].epic then
+   do
     local first,last=B.ends(edge)
     local dx,dz=last[1]-first[1],last[3]-first[3];local length2=dx*dx+dz*dz
     local t=length2>0 and ((origin[1]-first[1])*dx+(origin[3]-first[3])*dz)/length2 or -1
@@ -93,11 +89,15 @@ function N.route(origin,target)
   local inner=N.inset(link.from,link.entry);local current=result[#result]
   local dx,dz=link.entry[1]-inner[1],link.entry[3]-inner[3];local length2=dx*dx+dz*dz
   local t=length2>.001 and ((current[1]-inner[1])*dx+(current[3]-inner[3])*dz)/length2 or -1
-  local projection={inner[1]+dx*math.max(0,math.min(1,t)),inner[2],inner[3]+dz*math.max(0,math.min(1,t))}
+  local projection={inner[1]+dx*math.max(0,t),inner[2],inner[3]+dz*math.max(0,t)}
   -- Once inside the short outgoing apron, continue across its mouth instead
   -- of steering back to the inner waypoint on every frame.
-  if not (#result==1 and t>=-.02 and distance(current,projection)<=6)then localLeg(inner)end
-  add(link.entry);add(link.exit);add(N.inset(link.to,link.exit))
+  local onward=#result==1 and t>=-.02 and distance(current,projection)<=6
+  if not onward then localLeg(inner)end
+  -- Incident connectors can extend beyond the regional mouth. Once across
+  -- its plane, never steer back to that mouth on alternating update frames.
+  if not onward or t<1 then add(link.entry)end
+  add(link.exit);add(N.inset(link.to,link.exit))
  end
  localLeg(target)
  return result

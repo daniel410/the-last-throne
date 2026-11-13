@@ -138,11 +138,9 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
      and after.expeditionMission==nextChapter.id and options.prepareStory then
      publish(player,Text.StoryPreparingRegion)
      local prepared=pcall(options.prepareStory,nextChapter.id)
-     local destination=prepared and options.world.spawns[nextChapter.zone]
-     local ctx=context(player)
-     if destination and ctx and ctx.heroId==e.heroId and (options.inventory.expedition(player,e.heroId)or {}).runId==e.runId then
-      options.combat.relocateForStoryGate(player,destination.CFrame+Vector3.new(0,4,0))
-     elseif not destination then transitionNotice=Text.StoryRegionLoadFailed end
+     if prepared and options.world.spawns[nextChapter.zone]then
+      transitionNotice='The road to '..Content.epics[nextChapter.epic].region..' is open. Follow the gold trail on foot.'
+     else transitionNotice=Text.StoryRegionLoadFailed end
     end
     local run=options.inventory.expedition(player,e.heroId)
     local firstClear=before and before.expeditionFirstClear

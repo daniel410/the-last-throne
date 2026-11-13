@@ -42,14 +42,14 @@ function Gates.create()
  local gates={}
  for _,edge in ipairs(Access.edges) do
   local a,b=Content.zones[edge[1]],Content.zones[edge[2]]
-  if a.epic==b.epic then
+  do
    -- Zone-center midpoints can sit inside the camp or an incident connector.
    -- Put the seal inside the locked destination, beyond neighboring incident wings.
    local aa,bb=Bounds.ends(edge)
    local first,second=Vector3.new(table.unpack(aa)),Vector3.new(table.unpack(bb))
    local direction=Vector3.new(second.X-first.X,0,second.Z-first.Z).Unit
    local middle=second+direction*20
-   table.insert(gates,{frame=CFrame.lookAt(middle,middle+direction),zone=edge[2],required=b.requiresMain,epic=b.epic})
+   table.insert(gates,{frame=CFrame.lookAt(middle,middle+direction),zone=edge[2],required=b.requiresMain,epic=b.epic,fromEpic=a.epic})
   end
  end
  local current,destroyed
@@ -65,7 +65,7 @@ function Gates.create()
   local journal=current and current.journal
   local chapter=journal and (Content.byId[journal.expeditionMission] or Content.mainChapters[math.min(Content.mainCount,journal.main+1)])
   for _,g in ipairs(gates) do
-   local locked=chapter and not current.training and chapter.epic==g.epic and not Access.allowed(journal,g.zone)
+   local locked=chapter and not current.training and (chapter.epic==g.epic or chapter.epic==g.fromEpic) and not Access.allowed(journal,g.zone)
    if locked and templates then
     if not g.model then g.model=obstacle(g,templates);g.model.Parent=folder end
    elseif g.model then

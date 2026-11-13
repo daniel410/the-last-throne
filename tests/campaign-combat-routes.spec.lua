@@ -4,7 +4,16 @@ local n=0;local function check(v,m)n=n+1;assert(v,m)end
 local old=assert(io.open('src/shared/CampaignContent.luau')):read('*a')
 old=old:gsub("load%('CampaignRouteFootprint'%).install%(C%)",''):gsub("load%('CampaignCombatRoutes'%).install%(C%)",'')
 local before=assert(loadstring and loadstring(old)or _G.load(old))()
-local function equal(a,b)if type(a)~=type(b)then return false end;if type(a)~='table'then return a==b end;for k,v in pairs(a)do if not equal(v,b[k])then return false end end;for k in pairs(b)do if a[k]==nil then return false end end;return true end
+local function equal(a,b)if type(a)~=type(b)then return false end;if type(a)=='number'then return math.abs(a-b)<1e-7 end;if type(a)~='table'then return a==b end;for k,v in pairs(a)do if not equal(v,b[k])then return false end end;for k in pairs(b)do if a[k]==nil then return false end end;return true end
+local function localGoals(goals,delta)
+ local function copy(t,key)
+  if type(t)~='table'then return t end
+  local r={};for k,v in pairs(t)do r[k]=copy(v,k)end
+  if key=='position'then for axis=1,3 do r[axis]=r[axis]-delta[axis]end end
+  return r
+ end
+ return copy(goals)
+end
 local battles,sites,epics=0,0,{}
 local totalOld,totalNew=0,0
 for id,z in pairs(C.zones)do
@@ -15,7 +24,7 @@ for id,z in pairs(C.zones)do
  end end
 end
 for _,c in ipairs(C.chapters)do
- local prior=before.byId[c.id];check(equal(c.reward,prior.reward),'fixed story reward '..c.id);check(equal(c.coreGoals,prior.coreGoals),'stable core goals/IDs/requires/anchors '..c.id)
+ local prior=before.byId[c.id];check(equal(c.reward,prior.reward),'fixed story reward '..c.id);check(equal(localGoals(c.coreGoals,C.epicOffsets[c.epic]),localGoals(prior.coreGoals,before.epicOffsets[c.epic])),'stable core goals/IDs/requires/anchors '..c.id)
  for _,g in ipairs(c.goals)do if #g.enemies>0 then
   battles=battles+1;local plan=c.combatRoutes[g.id];check(plan~=nil,'every battle has a route');sites=sites+#plan.points;epics[c.epic]=true
   for _,point in ipairs(plan.points)do check(Areas.contains(C.zones[c.zone],point[1],point[3],-35),'real supported combat clearing '..c.id..g.id)end

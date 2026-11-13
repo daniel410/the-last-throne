@@ -481,4 +481,34 @@ function Art.create(world,scope)
  require(script.Parent.CampaignRouteClearance).apply(world,root)
  root:SetAttribute('BuildComplete',true);world.folder:SetAttribute('EpicWorldArtVersion',Art.version);return world
 end
+-- Joined only after both regions exist. No prompts, touch handlers or relocation.
+function Art.connectOverland(world)
+ local parent=world.folder:FindFirstChild('OverlandRoads')or Instance.new('Folder')
+ parent.Name='OverlandRoads';parent.Parent=world.folder
+ for index,edge in ipairs(Content.overlandLinks)do
+  local name=edge[1]..'_'..edge[2]
+  if world.spawns[edge[1]]and world.spawns[edge[2]]and not parent:FindFirstChild(name)then
+   local root=model(parent,name);root.ModelStreamingMode=Enum.ModelStreamingMode.Persistent
+   local aa,bb=Bounds.ends(edge);local a,b=vec(aa),vec(bb)
+   connectGround(edge)
+   -- Clear voxel overhangs through the full playable width, including mouths.
+   local direction=(b-a).Unit;local start,finish=a-direction*28,b+direction*28
+   local count=math.ceil((finish-start).Magnitude/24)
+   for i=0,count do
+    local at=start:Lerp(finish,i/count)
+    workspace.Terrain:FillBlock(CFrame.lookAt(at+V(0,100,0),at+V(0,100,0)+direction),V(108,208,48),Enum.Material.Air)
+   end
+   local floor=Instance.new('Part');floor.Name='JourneyPass';floor.Anchored=true
+   -- Overlap the carved voxel ends so neither approach has a four-stud lip.
+   floor.Size=V(96,4,(finish-start).Magnitude+64)
+   floor.CFrame=CFrame.lookAt((start+finish)/2,finish)-V(0,2,0)
+   floor.Material=groundMaterial(names[edge[2]:sub(1,2)]);floor.Color=K.palette[names[edge[2]:sub(1,2)]].ground
+   floor.CanTouch=false;floor.Parent=root
+   pass(root,edge,index)
+   require(script.Parent.CampaignRouteClearance).apply(world,root)
+   root:SetAttribute('BuildComplete',true)
+   task.wait()
+  end
+ end
+end
 return Art

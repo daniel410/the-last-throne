@@ -48,7 +48,10 @@ for _,c in ipairs(C.chapters)do
   end end
  end
 end
-check(#R.route(C.zones['DW-07'].center,C.zones['GW-01'].center)==1,'inter-epic transfer is never an overland route')
+for _,edge in ipairs(C.overlandLinks)do
+ supported(R.route(C.zones[edge[1]].center,C.zones[edge[2]].center),'overland forward '..edge[1])
+ supported(R.route(C.zones[edge[2]].center,C.zones[edge[1]].center),'overland return '..edge[2])
+end
 local localTarget={start[1]+8,start[2],start[3]+3}
 check(#R.route(start,localTarget)==2,'same-region objective keeps direct guidance')
 print('CAMPAIGN_NAVIGATION_ROUTE '..checks..' checks PASS; old rejected '..rejected..'; returns '..returns..'; live steps '..iterations..'; walking distance '..math.floor(traveled))
