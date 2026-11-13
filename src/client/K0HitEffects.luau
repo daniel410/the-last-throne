@@ -48,7 +48,7 @@ for _,classId in ipairs({'knight','dwarf'})do
   local shape=classId=='knight' and (shield and 'shield' or d.root==3 and 'weaken' or 'sweep')
    or (d.root==3 and 'shockwave' or d.root==2 and 'axe' or 'chop')
   if d.branch=='gunner' then shape=(d.element=='bomb' or d.element=='shell') and 'shockwave' or 'precision' end
-  skillProfiles[d.id]={class=classId,shape=shape,color=shield and Color3.fromRGB(100,208,255) or profiles[classId].color,secondary=profiles[classId].secondary}
+  skillProfiles[d.id]={class=classId,shape=shape,color=d.element=='holy' and Color3.fromRGB(255,189,50) or shield and Color3.fromRGB(100,208,255) or profiles[classId].color,secondary=d.element=='holy' and Color3.fromRGB(255,226,128) or profiles[classId].secondary}
  end
  for index,d in ipairs(Config.Skills[classId])do local base=table.clone(d);base.root=base.root or index;add(base)end
 end

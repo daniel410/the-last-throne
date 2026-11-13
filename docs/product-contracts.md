@@ -4,6 +4,8 @@
 
 ## 최근 승인
 
+- 원소 VFX는 불·물·바람·번개·얼음·땅의 형상/움직임이 각각 분명해야 하며, 성속성은 금빛으로 표현한다. [속성별 미술 기준](production/element-vfx.md).
+
 - 모든 무기·장비는 착용 레벨 제한이 없다. 클래스·슬롯·귀속·소유권·안전 조건은 유지한다. [장비 사양](production/equipment-four-tier-reorganization-2026-11-09.md).
 
 - Hard/Insane/Hell은 영웅 레벨 제한 없이 입장한다. 스토리 선행·같은 임무의 이전 난이도 완료는 유지하며 솔로·파티·도착/재접속에 공통 적용한다. [입장 사양](production/difficulty-rewards-and-entry-plan-2026-11-02.md#2-난이도와-입장-조건).

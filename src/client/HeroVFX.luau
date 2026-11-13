@@ -16,7 +16,7 @@ local chips=0
 local glowCount=0
 local particleCount=0
 local WHITE=Color3.fromRGB(248,248,229)
-local palette={steel=Color3.fromRGB(163,210,244),axe=Color3.fromRGB(243,172,89),shield=Color3.fromRGB(102,211,255),holy=Color3.fromRGB(255,220,116),arrow=Color3.fromRGB(192,232,170),nature=Color3.fromRGB(93,219,135),arcane=Color3.fromRGB(181,139,255),gravity=Color3.fromRGB(144,83,226),wind=Color3.fromRGB(173,249,225),water=Color3.fromRGB(81,186,249),fire=Color3.fromRGB(255,112,45),earth=Color3.fromRGB(176,136,91),frost=Color3.fromRGB(142,231,255),lightning=Color3.fromRGB(214,197,255),gun=Color3.fromRGB(255,215,133),bomb=Color3.fromRGB(255,144,66)}
+local palette={steel=Color3.fromRGB(163,210,244),axe=Color3.fromRGB(243,172,89),shield=Color3.fromRGB(102,211,255),holy=Color3.fromRGB(255,189,50),arrow=Color3.fromRGB(192,232,170),nature=Color3.fromRGB(93,219,135),arcane=Color3.fromRGB(181,139,255),gravity=Color3.fromRGB(144,83,226),wind=Color3.fromRGB(173,249,225),water=Color3.fromRGB(81,186,249),fire=Color3.fromRGB(255,112,45),earth=Color3.fromRGB(176,136,91),frost=Color3.fromRGB(142,231,255),lightning=Color3.fromRGB(90,164,255),gun=Color3.fromRGB(255,215,133),bomb=Color3.fromRGB(255,144,66)}
 local function finite(n)return type(n)=="number" and n==n and math.abs(n)<math.huge end
 local function vector(v)return typeof(v)=="Vector3" and finite(v.X)and finite(v.Y)and finite(v.Z)and math.abs(v.X)<1e7 and math.abs(v.Y)<1e7 and math.abs(v.Z)<1e7 end
 local function erase(i)
@@ -39,7 +39,7 @@ local function make(first,last,life,key,id)
  local carrier=Instance.new("Part");carrier.Name="VFXCarrier";carrier.Size=Vector3.one*.05;carrier.Transparency=1
  carrier.Anchored=true;carrier.CanCollide=false;carrier.CanTouch=false;carrier.CanQuery=false;carrier.CastShadow=false
  carrier.Position=first;carrier.Parent=m;m.Parent=workspace;Debris:AddItem(m,life+.2)
- local r={model=m,carrier=carrier,at=workspace:GetServerTimeNow(),life=life,lines={},chips={},glows={},flares={},faces={},particles=0,color=palette[key]or palette.steel}
+ local r={model=m,carrier=carrier,at=workspace:GetServerTimeNow(),life=life,lines={},chips={},glows={},flares={},faces={},particles=0,color=palette[key]or palette.steel,key=key,hot=key=="holy"and Color3.fromRGB(255,226,128)or WHITE}
  table.insert(active,r)
  if not connection and Run:IsClient()then connection=Run.RenderStepped:Connect(function()FX.step(workspace:GetServerTimeNow())end)end
  return r
@@ -51,7 +51,7 @@ local function line(r,name,path,width,color,endWidth)
  local a=Instance.new("Attachment");a.Parent=r.carrier
  local b=Instance.new("Attachment");b.Parent=r.carrier
  local beam=Instance.new("Beam");beam.Name=name;beam.Attachment0=a;beam.Attachment1=b;beam.FaceCamera=true;beam.Segments=1
- beam.Width0=width;beam.Width1=endWidth;beam.Color=ColorSequence.new(color or r.color,WHITE)
+ beam.Width0=width;beam.Width1=endWidth;beam.Color=ColorSequence.new(r.key=="holy"and(color==WHITE and r.hot or color or r.color)or color or r.color,r.hot)
  beam.LightEmission=1;beam.LightInfluence=0;beam.Transparency=NumberSequence.new(.18);beam.Parent=r.carrier
  local glow
  if glowCount<(Input.TouchEnabled and 48 or 96)and #r.glows<24 and width>=.10 then
@@ -77,9 +77,10 @@ end
 local function debris(r,center,count,kind,scale)
  for i=1,count do
   if chips>=48 then break end
-  local p=Instance.new("Part");p.Name=kind;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false
+  local p=Instance.new((kind=="IceShard"or kind=="RockChip")and"WedgePart"or"Part");p.Name=kind;p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false
   p.Material=kind=="IceShard" and Enum.Material.Ice or kind=="RockChip" and Enum.Material.Slate or Enum.Material.Neon
-  p.Color=r.color;p.Size=(kind=="IceShard" and Vector3.new(.18,.7,.18)or Vector3.one*.18)*scale
+  if kind=="WaterSpray"then p.Shape=Enum.PartType.Ball;p.Material=Enum.Material.Glass;p.Transparency=.18 end
+  p.Color=r.color;p.Size=(kind=="WaterSpray"and Vector3.new(.22,.42,.22)or kind=="IceShard" and Vector3.new(.18,.7,.18)or Vector3.one*.18)*scale
   p.CFrame=CFrame.new(center);p.Parent=r.model
   local angle=i*2.39996;local offset=Vector3.new(math.cos(angle),.5+i%3*.2,math.sin(angle))*scale
   table.insert(r.chips,{part=p,center=center,offset=offset,size=p.Size,spin=angle});chips+=1
@@ -94,7 +95,7 @@ local function flourish(r,position,scale,key,strong)
  halo.Image="rbxasset://textures/particles/sparkles_main.dds";halo.ImageColor3=r.color;halo.ImageTransparency=.25;halo.Parent=gui
  local aura=halo:Clone();aura.Name="SoftFlare";aura.Image="rbxasset://textures/particles/smoke_main.dds";aura.Size=UDim2.fromScale(1.5,1.5);aura.Position=UDim2.fromScale(-.25,-.25);aura.ImageTransparency=.55;aura.ZIndex=1;aura.Parent=gui
  halo.ZIndex=2
- local core=halo:Clone();core.Name="WhiteHotCore";core.Size=UDim2.fromScale(.38,.38);core.Position=UDim2.fromScale(.31,.31);core.ImageColor3=WHITE;core.ZIndex=3;core.Parent=gui
+ local core=halo:Clone();core.Name="WhiteHotCore";core.Size=UDim2.fromScale(.38,.38);core.Position=UDim2.fromScale(.31,.31);core.ImageColor3=r.hot;core.ZIndex=3;core.Parent=gui
  table.insert(r.flares,{gui=gui,halo=halo,core=core,aura=aura,size=scale})
  local function burst(name,texture,count,size,speed,smoke)
   local available=(Input.TouchEnabled and 96 or 192)-particleCount
@@ -102,11 +103,14 @@ local function flourish(r,position,scale,key,strong)
   local e=Instance.new("ParticleEmitter");e.Name=name;e.Texture=texture;e.Rate=0;e.Enabled=false
   e.Lifetime=NumberRange.new(math.min(r.life*.55,.28),math.min(r.life*.85,.5))
   e.Speed=NumberRange.new(speed*.5,speed);e.Drag=smoke and 3 or 5;e.SpreadAngle=Vector2.new(180,180)
-  e.LightEmission=1;e.LightInfluence=0;e.Color=ColorSequence.new(r.color,WHITE)
+  e.LightEmission=1;e.LightInfluence=0;e.Color=ColorSequence.new(r.color,r.hot)
   e.Rotation=NumberRange.new(0,360);e.RotSpeed=NumberRange.new(-100,100)
   e.Size=NumberSequence.new({NumberSequenceKeypoint.new(0,size*.3),NumberSequenceKeypoint.new(.18,size),NumberSequenceKeypoint.new(1,0)})
   e.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,.15),NumberSequenceKeypoint.new(.25,smoke and .65 or .25),NumberSequenceKeypoint.new(1,1)})
-  e.Acceleration=Vector3.yAxis*(key=="gravity"and -2 or smoke and 3 or -4)
+  e.Acceleration=Vector3.yAxis*(key=="fire"and 8 or key=="holy"and 3 or key=="water"and -10 or key=="gravity"and -2 or smoke and 3 or -4)
+  if key=="fire"or key=="holy"then e.EmissionDirection=Enum.NormalId.Top;e.SpreadAngle=Vector2.new(25,25)end
+  if key=="fire"then e.Color=ColorSequence.new(Color3.fromRGB(255,199,64),Color3.fromRGB(207,46,18))end
+  if key=="lightning"then e.Lifetime=NumberRange.new(.05,.11);e.Size=NumberSequence.new(size*.5)end
   e:SetAttribute("ReviewBurstCount",count);e.Parent=a;e:Emit(count)
   r.particles+=count;particleCount+=count
  end
@@ -121,7 +125,7 @@ function FX.step(now)
   local r=active[i];local u=math.clamp((now-r.at)/r.life,0,1)
   if not r.model.Parent or now-r.at>=r.life then erase(i)
   else
-   local fade=math.clamp((u-.12)/.88,0,1)
+   local fade=r.key=="lightning"and math.clamp((now-r.at)/.16,0,1)or math.clamp((u-.12)/.88,0,1)
    local bucket=math.floor(fade*24)
    local changed=r.fadeBucket~=bucket
    if changed then r.fadeBucket=bucket;r.alpha=NumberSequence.new(.18+fade*.82);r.glowAlpha=NumberSequence.new(.62+fade*.38)end
@@ -385,13 +389,22 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    Surfaces.disc(r,"ElementalGround",floor,radius*.72,nil,.78)
    for i=1,4 do
     local a=i*math.pi/2+phase;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.6+Vector3.yAxis
-    Surfaces.volume(r,"FlameVolume",at,Vector3.new(1.1,2.8,1.1),nil,.42,'ball',nil,false,.8)
+    Surfaces.volume(r,"FlameVolume",at,Vector3.new(1.1,2.8,1.1),nil,.42,shape=="fire"and'wedge'or'ball',nil,false,.8)
    end
   else
    local length=math.min((last-first).Magnitude,10)
    if length>.1 then
-    local p=Surfaces.volume(r,shape=="frost"and"IceLanceVolume"or shape=="stone"and"StoneLanceVolume"or"SpellVolume",last-dir*length*.5,Vector3.new(.85,.85,length),nil,.35,'ball',shape=="stone"and Enum.Material.Slate or nil)
-    if p then local entry=r.faces[#r.faces];entry.cf=CFrame.lookAt(p.Position,p.Position+dir);p.CFrame=entry.cf end
+    if shape=="fire"then
+     for i=1,3 do
+      local at=last-dir*(i-.5)*.85
+      local p=Surfaces.volume(r,"FlameJet",at,Vector3.new(.55,.85-i*.12,1.3),i==1 and Color3.fromRGB(255,183,47)or nil,.3+i*.05,'wedge',nil,false,.5)
+      if p then local face=r.faces[#r.faces];face.cf=CFrame.lookAt(at,at+dir);p.CFrame=face.cf end
+     end
+    else
+     local solid=shape=="frost"or shape=="stone"
+     local p=Surfaces.volume(r,shape=="frost"and"IceLanceVolume"or shape=="stone"and"StoneLanceVolume"or"SpellVolume",last-dir*length*.5,Vector3.new(.85,.85,length),nil,.35,solid and'wedge'or'ball',shape=="stone"and Enum.Material.Slate or shape=="frost"and Enum.Material.Ice or nil)
+     if p then local entry=r.faces[#r.faces];entry.cf=CFrame.lookAt(p.Position,p.Position+dir);p.CFrame=entry.cf end
+    end
    end
   end
  elseif shape=="earth"or shape=="lava"or shape=="blast"or shape=="mortar"then
@@ -431,7 +444,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    Surfaces.volume(r,"DawnAscendingLight",at+Vector3.yAxis*height*.5,Vector3.new(.1,height,.1),nil,.58,'ball',nil,false,.9)
   end
  elseif shape=="water"or shape=="steam"or(shape=="frost"and area)or shape=="gravity"then
-  if id=='mage.cryo.frost_ring'then
+  if shape=="frost"then
    local at=floorAt(last,character)
    for i=1,8 do
     local a=i*math.pi/4;local radial=Vector3.new(math.cos(a),0,math.sin(a))
@@ -443,6 +456,13 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   end
   if shape=="water"or shape=="steam"then
    Surfaces.volume(r,"WaterVolume",area and floor+Vector3.yAxis*.35 or last,Vector3.new(2.2,.8,2.2),nil,.62,'ball',nil,true)
+   for i=1,4 do
+    local a=i*math.pi/2;local radial=Vector3.new(math.cos(a),0,math.sin(a))
+    local at=(area and floor or last)+radial*(area and math.min(radius*.55,3)or 1.2)+Vector3.yAxis*.35
+    local crest=Surfaces.volume(r,"WaterCrest",at,Vector3.new(1.3,.18,.7),nil,.3,'ball',Enum.Material.Glass,false,.35)
+    if crest then local face=r.faces[#r.faces];face.cf=CFrame.lookAt(at,at+radial)*CFrame.Angles(-.45,0,0);crest.CFrame=face.cf;face.drift=radial*.7 end
+    Surfaces.volume(r,"WaterFoam",at+Vector3.yAxis*.18,Vector3.new(.8,.08,.12),Color3.fromRGB(192,235,255),.35,'ball',nil,false,.35)
+   end
   end
  elseif shape=="arrow"or shape=="fan"or shape=="bullet"or shape=="axe"then
   local targets={last}
@@ -470,6 +490,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
      local a,b=bolt[j],bolt[j+1]
      Surfaces.triangle(r,"LightningSurface",a-right*.22,b,a+right*.22,WHITE,.38)
     end
+    for side=-1,1,2 do
+     local at=from+(targets[i]-from)*.6
+     local tip=at+right*side*.9+forward(from,targets[i])*.6
+     Surfaces.triangle(r,"LightningBranch",at-Vector3.yAxis*.08,tip,at+Vector3.yAxis*.08,nil,.25)
+    end
     from=targets[i]
    end
   end
@@ -485,8 +510,9 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   local at=area and floorAt(last,character)or floor
   for lane=1,2 do Surfaces.ribbon(r,"VineSurface",function(t)local a=t*math.pi*1.4+lane*math.pi;return at+Vector3.new(math.cos(a)*radius*.45,t*2.5,math.sin(a)*radius*.45)end,Vector3.yAxis,.65,.35)end
  end
+ if row.key=="lightning"then for _,face in ipairs(r.faces)do face.fadeDuration=.16 end end
  if d.form~="chain"or type(points)=="table"and #points>0 then
-  local at=area and floorAt(last,character)+Vector3.yAxis*.35 or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
+  local at=area and floorAt(last,character)+Vector3.yAxis*.35 or row.key=="fire"and last or (vector(muzzle)and(muzzle-first).Magnitude>.35 and(muzzle-first).Magnitude<=8 and muzzle or first+dir*1.6)
   flourish(r,at,d.ultimate and 4.5 or area and 3.2 or 2.2,row.key,d.ultimate)
  end
  FX.step(r.at);return r.model
@@ -509,7 +535,7 @@ function FX.contact(at,classId,id,direction,scale)
  if row.key=="frost"or row.key=="earth"or row.key=="fire"or row.key=="bomb"then
   debris(r,at,3,row.key=="frost"and"IceShard"or row.key=="earth"and"RockChip"or"Ember",size)
  end
- Surfaces.volume(r,"ContactVolume",at,Vector3.one*.8*size,WHITE,.38,"ball",nil,true)
+ Surfaces.volume(r,"ContactVolume",at,Vector3.one*.8*size,r.hot,.38,"ball",nil,true)
  flourish(r,at,1.5*size,row.key,false)
  FX.step(r.at);return r.model
 end

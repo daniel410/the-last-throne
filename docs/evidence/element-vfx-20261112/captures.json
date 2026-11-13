@@ -1,0 +1,151 @@
+{
+  "before": [
+    {
+      "index": 1,
+      "id": "mage.pyro.ember_lance",
+      "height": 240,
+      "name": "Fire",
+      "width": 320,
+      "file": "before-fire.png",
+      "logSha256": "eeedfd1a455850f37be94288d438a04672e883ad443b8392b00715fca8ead753"
+    },
+    {
+      "index": 2,
+      "id": "mage_tidal_ring",
+      "height": 240,
+      "name": "Water",
+      "width": 320,
+      "file": "before-water.png",
+      "logSha256": "eeedfd1a455850f37be94288d438a04672e883ad443b8392b00715fca8ead753"
+    },
+    {
+      "index": 3,
+      "id": "mage_wind_lance",
+      "height": 240,
+      "name": "Wind",
+      "width": 320,
+      "file": "before-wind.png",
+      "logSha256": "8d548cbb5cd3bdf9b55472444653305b86fce4b3eeafabe017ea4b45b71991d7"
+    },
+    {
+      "index": 4,
+      "id": "mage.cryo.lightning_line",
+      "height": 240,
+      "name": "Lightning",
+      "width": 320,
+      "file": "before-lightning.png",
+      "logSha256": "8d548cbb5cd3bdf9b55472444653305b86fce4b3eeafabe017ea4b45b71991d7"
+    },
+    {
+      "index": 5,
+      "id": "mage.cryo.frost_lance",
+      "height": 240,
+      "name": "Ice",
+      "width": 320,
+      "file": "before-ice.png",
+      "logSha256": "9d97e5211009e5cbee7b74dfe1563b8ce06f3686846b25689a60753b8268a234"
+    },
+    {
+      "index": 6,
+      "id": "mage.pyro.earth_rise",
+      "height": 240,
+      "name": "Earth",
+      "width": 320,
+      "file": "before-earth.png",
+      "logSha256": "9d97e5211009e5cbee7b74dfe1563b8ce06f3686846b25689a60753b8268a234"
+    },
+    {
+      "index": 7,
+      "id": "knight.paladin.shield_verdict",
+      "height": 240,
+      "name": "Holy Gold",
+      "width": 320,
+      "file": "before-holy-gold.png",
+      "logSha256": "dc1ec755ff51e50e2a2c1da9234d16a807179e85f871d1bbc045c078c46ec689"
+    },
+    {
+      "index": 8,
+      "id": "knight.paladin.dawn_burst",
+      "height": 240,
+      "name": "Holy Seal",
+      "width": 320,
+      "file": "before-holy-seal.png",
+      "logSha256": "dc1ec755ff51e50e2a2c1da9234d16a807179e85f871d1bbc045c078c46ec689"
+    }
+  ],
+  "after": [
+    {
+      "index": 1,
+      "id": "mage.pyro.ember_lance",
+      "height": 240,
+      "name": "Fire",
+      "width": 320,
+      "file": "after-fire.png",
+      "logSha256": "2050f75d51e042ccaf934ad5d39d91f264cad8b5512009ad22a8c3290bf2fe57"
+    },
+    {
+      "index": 2,
+      "id": "mage_tidal_ring",
+      "height": 240,
+      "name": "Water",
+      "width": 320,
+      "file": "after-water.png",
+      "logSha256": "2050f75d51e042ccaf934ad5d39d91f264cad8b5512009ad22a8c3290bf2fe57"
+    },
+    {
+      "index": 3,
+      "id": "mage_wind_lance",
+      "height": 240,
+      "name": "Wind",
+      "width": 320,
+      "file": "after-wind.png",
+      "logSha256": "99b0a4b4befcc8b80a84a0e408dac22001e6713f9487face4063c852e0fbcd46"
+    },
+    {
+      "index": 4,
+      "id": "mage.cryo.lightning_line",
+      "height": 240,
+      "name": "Lightning",
+      "width": 320,
+      "file": "after-lightning.png",
+      "logSha256": "99b0a4b4befcc8b80a84a0e408dac22001e6713f9487face4063c852e0fbcd46"
+    },
+    {
+      "index": 5,
+      "id": "mage.cryo.frost_lance",
+      "height": 240,
+      "name": "Ice",
+      "width": 320,
+      "file": "after-ice.png",
+      "logSha256": "2b2b58607d591f3ae4fe643dacf1012bea5f1893081d2775421813a153b0efc4"
+    },
+    {
+      "index": 6,
+      "id": "mage.pyro.earth_rise",
+      "height": 240,
+      "name": "Earth",
+      "width": 320,
+      "file": "after-earth.png",
+      "logSha256": "2b2b58607d591f3ae4fe643dacf1012bea5f1893081d2775421813a153b0efc4"
+    },
+    {
+      "index": 7,
+      "id": "knight.paladin.shield_verdict",
+      "height": 240,
+      "name": "Holy Gold",
+      "width": 320,
+      "file": "after-holy-gold.png",
+      "logSha256": "fc9883721e29482aa70859ae78a4986bf62e66b7ebefd2a602c9df99ca1140ae"
+    },
+    {
+      "index": 8,
+      "id": "knight.paladin.dawn_burst",
+      "height": 240,
+      "name": "Holy Seal",
+      "width": 320,
+      "file": "after-holy-seal.png",
+      "logSha256": "fc9883721e29482aa70859ae78a4986bf62e66b7ebefd2a602c9df99ca1140ae"
+    }
+  ],
+  "helperSha256": "8794a541e3a696941a3eef6558aa3c046b0248461bd3e93280765d02ef67abc5"
+}

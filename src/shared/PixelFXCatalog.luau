@@ -8,7 +8,7 @@ for classId, list in pairs(Config.Skills) do
  for _, d in ipairs(list) do
   local p = assert(Presentation.get(d), "PixelFX presentation missing: " .. d.id)
   local key = elements[d.element] or effects[p.effect] or p.effect
-  if p.effect == "shield" then key="shield" end
+  if p.effect == "shield" and d.element ~= "holy" then key="shield" end
   if p.effect == "gravity" then key="gravity" end
   if p.effect == "arrow" and (d.element=="steel" or not d.element) then key="arrow" end
   if p.effect == "axe" and (d.element=="steel" or not d.element) then key="axe" end
