@@ -1,0 +1,12 @@
+{
+  "models": 10,
+  "parts": 691,
+  "glbMeshes": 691,
+  "maximumBasisError": 1.9558954100773462e-07,
+  "files": {
+    "deepwood-architecture.glb": "a7562495ff2f9371840c320ab2aefa93f4cb4f8e4f036b5c8267926e795c2de8",
+    "outpost-preview.png": "c00876dc1117a14a0170228a70dc9f43c572ec063e5c68826a26c05050c98397",
+    "kit-preview.png": "1ad088bb295f9d5e5fe36b52c8940969b3cd057649c74ee7daf18044d9c30747",
+    "kit.json": "4bb8f6e36ba298411d348c7005c4f73f2369ed644e197103c8908baa1f095d94"
+  }
+}

@@ -7,7 +7,7 @@ local K=require(script.Parent.EpicEnvironmentKit)
 local Collision=require(script.Parent.CampaignSceneryCollision)
 local V=Vector3.new
 local C=Color3.fromRGB
-local D={version=1}
+local D={version=2}
 local colors={stone=C(149,151,117),light=C(191,183,141),moss=C(91,123,59),wood=C(116,83,48),
  dark=C(72,57,38),blue=C(36,77,145),gold=C(224,178,77),red=C(129,57,42),cloth=C(194,174,124),
  path=C(170,153,107),root=C(77,65,46)}
@@ -26,6 +26,7 @@ local profiles={
 function D.profile(id)return profiles[id]end
 
 local function assembly(kind,role)
+ if role=='Signature'then return require(script.Parent.DeepwoodArchitecture).build(kind)end
  local m=Instance.new('Model');m.Name=kind;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
  m:SetAttribute('DeepwoodConceptRole',role)
  local function part(name,size,at,color,material,yaw,shape,soft)
@@ -87,62 +88,7 @@ local function assembly(kind,role)
    beam('RootTaper',at+d*9+V(0,2,0),at+d*17+V(0,.8,0),1.6,colors.root)
   end
  end
- if kind=='Waystation'then
-  wall(V(-11,0,-4),18,9);wall(V(11,0,-9),12,5)
-  standard(V(-17,0,5));crate(V(12,0,2));tableAt(V(-5,0,-1))
- elseif kind=='Shelter'or kind=='Outpost'or kind=='Storehouse'then
-  local width=kind=='Outpost'and 34 or 25
-  awning(V(0,0,0),width,18)
-  wall(V(0,0,-12),width+2,5)
-  tableAt(V(-5,0,0));crate(V(10,0,-5));crate(V(10,0,1))
-  if kind=='Outpost'then
-   part('MapCloth',V(9,.08,4),V(-5,4.25,0),colors.cloth,Enum.Material.Fabric,0,nil,true)
-   for _,s in ipairs({-1,1})do standard(V(s*21,0,-5))end
-   part('RepairRack',V(1,6,7),V(-20,3,1));beam('RepairCrossbeam',V(-20,6,-3),V(-20,6,4),1)
-  elseif kind=='Shelter'then
-   for i=1,3 do part('Bedroll',V(4,.35,7),V((i-2)*5,.3,10),colors.cloth,Enum.Material.Fabric,0,nil,true)end
-   standard(V(-16,0,-4))
-  else
-   crate(V(-11,0,7));crate(V(-5,0,7));standard(V(17,0,-6),true)
-  end
- elseif kind=='Watchtower'then
-  -- A single readable tower replaces a second graveyard-style belfry.
-  for _,s in ipairs({-1,1})do wall(V(s*10,0,0),22,32,math.pi/2)end
-  wall(V(0,0,-10),16,32)
-  for _,s in ipairs({-1,1})do wall(V(s*8,0,10),6,21)end
-  for _,s in ipairs({-1,1})do
-   part('TowerCoping',V(28,2,4),V(0,33,s*12),colors.light,Enum.Material.Slate)
-   for i=-1,1 do part('TowerMerlon',V(5,5,5),V(i*10,36,s*12),colors.stone,Enum.Material.Brick)end
-  end
-  standard(V(0,14,12));wall(V(-23,0,-9),15,6,math.pi/2)
- elseif kind=='Barracks'or kind=='AltarRuins'then
-  local hostile=kind~='AltarRuins'
-  wall(V(0,0,-17),38,kind=='Barracks'and 15 or 9)
-  wall(V(-19,0,-6),20,10,math.pi/2);wall(V(19,0,-11),12,6,math.pi/2)
-  standard(V(-16,0,5),hostile,kind=='Battlefield');standard(V(16,0,-12),hostile)
-  if kind=='Barracks'then awning(V(2,0,-3),22,13,true);tableAt(V(0,0,-4));crate(V(-12,0,-9))
-  elseif kind=='AltarRuins'then roots(V(-13,0,-8));roots(V(12,0,-10))
-  else
-   for i=1,3 do beam('FallenPalisade',V(-13+i*5,.8,4),V(-10+i*5,2,12),1.7)end
-   crate(V(6,0,-10))
-  end
- elseif kind=='Battlefield'then
-  -- The old battlefield is a ruined field camp, not another standing keep.
-  wall(V(0,0,-5),15,5);standard(V(-7,0,3),true,true)
-  for i=1,3 do beam('FallenPalisade',V(-7+i*3,.6,0),V(-4+i*3,1.5,7),1.2)end
-  crate(V(4,0,1))
- elseif kind=='Rootwood'then
-  roots(V(-10,0,-9));roots(V(11,0,-6));awning(V(0,0,12),21,12)
-  crate(V(-6,0,12));part('RefugeBench',V(12,1.8,4),V(5,.9,13));standard(V(-18,0,8),false,true)
- elseif kind=='Quarry'then
-  -- A grounded hauling yard, not a new mandatory interactable or high terrace.
-  for _,s in ipairs({-1,1})do part('QuarryGantry',V(2,24,3),V(s*13,12,-4))end
-  beam('HaulingCrossbeam',V(-15,24,-4),V(15,24,-4),2.4)
-  local drum=part('HaulingDrum',V(10,5,5),V(0,10,-4),colors.dark,Enum.Material.Wood);drum.Shape=Enum.PartType.Cylinder
-  beam('HaulingCable',V(0,23,-4),V(0,4,5),.22,colors.cloth,true)
-  for i=1,5 do part('CutLimestone',V(6,4,6),V((i%3-1)*7,2,9+math.floor(i/3)*7),i%2==0 and colors.light or colors.stone,Enum.Material.Slate)end
-  tableAt(V(-8,0,-12));standard(V(17,0,-11))
- elseif kind=='Market'then
+ if kind=='Market'then
   awning(V(0,0,0),20,11);tableAt(V(0,0,1));crate(V(-7,0,-3));crate(V(7,0,-3))
  elseif kind=='Supply'then
   crate(V(-5,0,0));crate(V(2,0,-2));crate(V(5,0,4));standard(V(-9,0,-4))

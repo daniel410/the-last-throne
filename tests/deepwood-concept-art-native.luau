@@ -25,6 +25,10 @@ for id,z in pairs(C.zones)do
   for _,m in ipairs(group:GetChildren())do
    if m:GetAttribute('ConceptZone')then
     assemblies+=1;signatures+=m:GetAttribute('DeepwoodConceptRole')=='Signature'and 1 or 0
+    if m:GetAttribute('DeepwoodConceptRole')=='Signature'then
+     check(m:GetAttribute('BlenderSource')=='deepwood-architecture-blender-v1','Blender-authored signature '..id)
+     check(#m:GetChildren()==#require(W.DeepwoodArchitectureTemplates)[m.Name],'complete Blender primitive export '..id)
+    end
     local at=m:GetAttribute('GroundPosition');local r=m:GetAttribute('PlacementRadius')
     check(math.abs(at.X-z.center[1])+r<z.size[1]/2 and math.abs(at.Z-z.center[3])+r<z.size[2]/2,'inside real region '..id)
     local hit=workspace:Raycast(at+V(0,15,0),V(0,-30,0),floor)
