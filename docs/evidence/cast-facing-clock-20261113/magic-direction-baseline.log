@@ -1,0 +1,12 @@
+MAGIC_SHOT_DIRECTION_NATIVE {"error":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18: Mage spell cannot home sideways or behind the prepared cast\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:19\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","pass":false,"checks":3}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:38: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18: Mage spell cannot home sideways or behind the prepared cast
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:18
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:19
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:38
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

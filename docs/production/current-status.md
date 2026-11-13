@@ -9,7 +9,7 @@
 - 상위 난이도: Hard/Insane/Hell 레벨 제한 제거를 소스 반영했다. [솔로/파티/재접속 회귀·미게시](../evidence/difficulty-level-free-20261111/README.md).
 - 영웅 VFX: 속성별 주 형상·금빛 성속성·전용 바람, 번개 분기·냉기 성장·가속 하강을 유지한다. [미술 기준](element-vfx.md), [무료 원천/권한](../evidence/curated-vfx-20261112/README.md).
 - VFX 미술 개선: 0.104.28에서 아트 리뷰의 우선·후속 구현을 반영했다. 전방/산탄/포격/자연/증기/용암·궁극기8종, 통합 명중 팔레트·국소광, 몬스터 예고/종별 형상, Heal/Cleanse·길안내를 정리했다. [23항목 대응·3인 재검토·고정 빌드/엔진·전후 화면·남은 실제 수용](../evidence/vfx-art-improvements-20261113/README.md).
-- 엘프 발사 방향: 공통 사격 기술의 준비 중 옆/뒤 추적, 근접 활 끝 보정의 과도한 꺾임, 몸 회전과 활 방향 불일치를 수정했다. [기존14실패 재현·후보/고정 빌드 검사·Studio 적용·미검증](../evidence/elf-arrow-heading-20261113/README.md).
+- 화살·마법의 발사 방향: 실제0.104.29 Play에서 몸/발사선32.73도 차이와 발사 확인의 시간 기준 불일치를 재현했다. 로컬 소유자의 시전 방향 제어·회전 정책 복원, 최종 서버 발사선 공유, 마법 정면/근접 원점을 수정했다. [실제 기록·엔진/Play 검증·미게시/남은 수용](../evidence/cast-facing-clock-20261113/README.md).
 - 맵 접지·충돌: 0.103.10에서 5에픽 건축 기초·에린 앞 큰 나무 충돌을 보강하고 공중 폭포/천막을 제거했다. 스토리3 복귀 봉쇄를 옮기고 빈 장식 케이지를 실제 NPC 구출/문 열림/호위/저장 복원에 연결했다. [엔진 검증·미게시·남은 수용](../evidence/architecture-grounding-20261111/README.md).
 - 맵 미술: Deepwood 조감도12장과 Blender MCP 직접 조형10종을 기준으로10구역의 전용 장소 구성·주/귀환 길 마감·접근 시야·옛 절벽 접지·지역 안개를 개선했다. [구현·후보/고정 빌드 검증·실제 화면·미게시/남은 수용](../evidence/deepwood-concept-map-20261112/README.md). 최근 DW-03 거목 메시 수정만 사용자 요청으로 철회하고 직전 구성을 복구했다. [복구 기준·검증·미게시](../evidence/deepwood-map-restore-20261113/README.md). 기존 [44지역 생활 구성](../evidence/story-map-composition-20261112/README.md)과 [TD 원경/환경 키트](../evidence/epic-environment-20261111/README.md)를 유지한다.
 - 스토리 물품: 0.104.13에서 숲길 책상 반복을 제거하고 사건별 물품을 직접 연결했다. [물품 사양·엔진/화면 검증·미게시/남은 수용](../evidence/story-props-context-20261112/README.md).

@@ -40,7 +40,7 @@ end
 -- matching prevents late events from changing a later cast of the same skill.
 local function validNumber(v) return type(v)=="number" and v==v and math.abs(v)<math.huge end
 local function lockedAim(character)
- local packed=character:GetAttribute("K0BowAim")
+ local packed=character:GetAttribute("K0AttackAim")or character:GetAttribute("K0BowAim")
  if type(packed)~="string" or #packed>128 then return end
  local fields=string.split(packed,"|");if #fields~=4 or tonumber(fields[1])~=character:GetAttribute("K0AttackSeq") then return end
  local x,y,z=tonumber(fields[2]),tonumber(fields[3]),tonumber(fields[4])

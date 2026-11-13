@@ -50,6 +50,7 @@ for _,yaw in {90,-90,180}do
  test('Bow heading while root turns '..yaw,function()
   c:SetAttribute('K0State','Attack');c:SetAttribute('K0SkillId',nil);c:SetAttribute('K0AttackStartedAt',200);c:SetAttribute('K0AttackSeq',44)
   c:SetAttribute('K0BowAim','44|0|0|-1');root.CFrame=CFrame.new(root.Position)*CFrame.Angles(0,math.rad(yaw),0)
+  c:SetAttribute('K0AttackAim',nil)
   local before=root.CFrame;visual.render(model,'Windup',1,1/60,'Basic',200+.875*Config.BasicAttackProfiles.elf.attacks[1].windup)
   check((root.CFrame*joint.C0*joint.Transform).LookVector:Dot(Vector3.new(0,0,-1))>.9999,'Nocked arrow keeps accepted server heading instead of following current body yaw')
   check(root.CFrame==before,'Presentation never rotates or moves the authority root')

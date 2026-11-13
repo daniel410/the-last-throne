@@ -159,6 +159,8 @@ local function clearAction(state)
 	state.character:SetAttribute("K0AttackKind", nil)
 	state.character:SetAttribute("K0AttackStartedAt", nil)
 	state.character:SetAttribute("K0BowAim", nil)
+	state.character:SetAttribute("K0AttackAim", nil)
+	state.character:SetAttribute("K0AttackAutoRotate", nil)
 	state.character:SetAttribute("K0SkillId", nil)
 	state.character:SetAttribute("K0Invulnerable", false)
 	state.character:SetAttribute("K0DodgeKind", nil)
@@ -310,8 +312,13 @@ local function targetForMovement(state, targetModel)
 end
 
 local function publishBowAim(state,direction)
- if state.baseClassId=="elf" then
-  state.character:SetAttribute("K0BowAim",string.format("%d|%.6f|%.6f|%.6f",state.attackSeq,direction.X,direction.Y,direction.Z))
+ if state.baseClassId=="elf" or state.baseClassId=="mage" then
+  local packet=string.format("%d|%.6f|%.6f|%.6f",state.attackSeq,direction.X,direction.Y,direction.Z)
+  state.character:SetAttribute("K0AttackAim",packet)
+  local restoreRotate=state.savedAutoRotate
+  if restoreRotate==nil then restoreRotate=state.humanoid.AutoRotate end
+  state.character:SetAttribute("K0AttackAutoRotate",restoreRotate)
+  if state.baseClassId=="elf"then state.character:SetAttribute("K0BowAim",packet)end
  end
 end
 
@@ -948,7 +955,7 @@ local function applyArrowShot(state, current)
 	-- A target moving out of the bow's accepted forward sector must not
 	-- turn the released arrow into a sideways/homing shot. Keep the selected
 	-- intent, but release a straight miss along the locked aim for this attack.
-	local offAxisBow = state.baseClassId == "elf" and selected and enemyAlive(selected)
+	local offAxisBow = (state.baseClassId == "elf" or state.baseClassId == "mage") and selected and enemyAlive(selected)
 		and facingDot(origin, attack.direction, selected.root.Position) < math.cos(math.rad(attack.definition.angle * .5))
 	if attack.targetModel and not offAxisBow then
 		if selected and enemyAlive(selected) then
@@ -994,6 +1001,9 @@ local function applyArrowShot(state, current)
 		local wall = workspace:Raycast(origin, delta, combatRayParams(state.character, enemyFolder))
 		endpoint = wall and wall.Position or origin + delta
 	end
+	-- Match the body and cast pose to the final server-resolved ray as well as
+	-- the prepared heading; bounded aim assist may adjust it before release.
+	publishBowAim(state,horizontalUnit(endpoint-origin,attack.direction))
 	local sequence, visualName
 	if attack.isSpell or (attack.isSkill and state.baseClassId == "dwarf") then
 		state.spellSeq = state.spellSeq + 1
@@ -1007,8 +1017,9 @@ local function applyArrowShot(state, current)
 	end
 	if visualName == "K0ArrowVisual" then
 		-- Match draw release to this accepted attack and this exact projectile.
+		local publicStarted=state.character:GetAttribute("K0AttackStartedAt") or workspace:GetServerTimeNow()-(current-attack.started)
 		state.character:SetAttribute("K0ArrowRelease", string.format("%d|%.6f|%.6f|%d",
-			state.attackSeq, attack.started, current, sequence))
+			state.attackSeq, publicStarted, publicStarted+(current-attack.started), sequence))
 	end
 	-- A single replicated snapshot avoids combining endpoints from two shots
 	-- if separate attributes arrive in different replication updates.

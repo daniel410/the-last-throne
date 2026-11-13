@@ -1,0 +1,12 @@
+ARROW_PUBLIC_CLOCK_NATIVE {"error":"user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:21: Public start is not the unrelated monotonic combat clock\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:21\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:22\nuser_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79\n","pass":false,"checks":1}
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:28: user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:21: Public start is not the unrelated monotonic combat clock
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:21
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:22
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin.Main:28
+user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin:79
+
+Stack Begin
+Script 'user_run_in_roblox-50312.rbxmx.run-in-roblox-plugin', Line 84
+Stack End

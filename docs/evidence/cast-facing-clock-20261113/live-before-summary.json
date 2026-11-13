@@ -1,0 +1,48 @@
+{
+  "shots": [
+    {
+      "sequence": 33,
+      "skill": null,
+      "rootToShotDegrees": 2.7241896872160742,
+      "publicTime": 1794604971.168451,
+      "releaseTime": 146.114357
+    },
+    {
+      "sequence": 34,
+      "skill": "elf.common.multi",
+      "rootToShotDegrees": 0.3647226380301825,
+      "publicTime": 1794604974.451286,
+      "releaseTime": 149.397134
+    },
+    {
+      "sequence": 35,
+      "skill": null,
+      "rootToShotDegrees": 3.697758678605991,
+      "publicTime": 1794604977.150899,
+      "releaseTime": 152.096955
+    },
+    {
+      "sequence": 36,
+      "skill": null,
+      "rootToShotDegrees": 13.818326115320948,
+      "publicTime": 1794604980.718996,
+      "releaseTime": 155.66378
+    },
+    {
+      "sequence": 37,
+      "skill": null,
+      "rootToShotDegrees": 32.72529709065018,
+      "publicTime": 1794604982.251448,
+      "releaseTime": 157.213696
+    },
+    {
+      "sequence": 38,
+      "skill": null,
+      "rootToShotDegrees": 2.1764532846357443,
+      "publicTime": 1794604984.550446,
+      "releaseTime": 159.496508
+    }
+  ],
+  "maximumRootToShotDegrees": 32.72529709065018,
+  "postPatchPlayClosedBeforeReadback": true
+}

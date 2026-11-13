@@ -833,7 +833,7 @@ local function weaponOrigin(character, snapshotOrigin, endpoint, wantedClass)
 				and (endpoint - snapshotOrigin):Dot(endpoint - position) > 0 then
     -- Project extreme close-range parallax onto the server ray. Re-aiming
     -- from a lateral bow tip can otherwise turn a forward shot sideways.
-    if wantedClass=="elf" then
+    if wantedClass=="elf" or wantedClass=="mage" then
      local shot=endpoint-snapshotOrigin;local direction=shot.Unit
      if direction:Dot((endpoint-position).Unit)<math.cos(math.rad(15)) then
       return snapshotOrigin+direction*math.clamp((position-snapshotOrigin):Dot(direction),0,math.max(0,shot.Magnitude-.05))

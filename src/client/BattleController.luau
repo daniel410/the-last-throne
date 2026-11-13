@@ -9,6 +9,8 @@ function Controller.start(services)
  local GuiService=game:GetService('GuiService')
  local RunService=game:GetService('RunService')
  local player=Players.LocalPlayer
+ local AttackFacing=require(modules.AttackFacing)
+ RunService.PreSimulation:Connect(function()AttackFacing.update(player.Character)end)
  local inventory,growthGui,settingsGui=services.inventory,services.growthGui,services.settingsGui
  local requestHero=services.requestHero
  local heroSnapshot=services.snapshot
