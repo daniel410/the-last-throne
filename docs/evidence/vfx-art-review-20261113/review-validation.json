@@ -1,0 +1,102 @@
+{
+  "sourceCommit": "974c2553639691eea8141c2302a09b2d257f4850",
+  "gameVersion": "0.104.25",
+  "roles": [
+    "art_hero_review",
+    "art_enemy_review",
+    "art_common_review"
+  ],
+  "captureCounts": {
+    "hero": 128,
+    "enemy": 60,
+    "enemy-rings": 12,
+    "enemy-impacts": 20,
+    "warnings": 12,
+    "common": 31,
+    "hero-retry": 1,
+    "hero-early": 1
+  },
+  "gameSourceChanged": false,
+  "newGameBuild": false,
+  "published": false,
+  "sourceInputs": 360,
+  "logs": {
+    "hero": {
+      "path": "/tmp/tlt-vfx-art-review/hero-final.log",
+      "sha256": "37e0f323715feed93aa479c3fe2bd4a5558adfb2007f7e01a70f56d7f995181f"
+    },
+    "enemy": {
+      "path": "/tmp/tlt-vfx-art-review/enemy-final.log",
+      "sha256": "5834a538835333bf845b20214e747560bc3001b321278bad243ac944d4c513bc"
+    },
+    "warnings": {
+      "path": "/tmp/tlt-vfx-art-review/warnings.log",
+      "sha256": "cfdeb61c8def78f1624fe45082b05880220ab617ad23ed75805148ce17d82652"
+    },
+    "common": {
+      "path": "/tmp/tlt-vfx-art-review/common.log",
+      "sha256": "898a2e68da624e63a679b373e281d5e2d90ffe481bc4362a7800416a799162d8"
+    },
+    "enemy-rings": {
+      "path": "/tmp/tlt-vfx-art-review/rings.log",
+      "sha256": "9d54526945da7af02104e2d8462c1c1bfbcf0cd2121bae4b620517850cb2ce95"
+    },
+    "enemy-impacts": {
+      "path": "/tmp/tlt-vfx-art-review/impacts.log",
+      "sha256": "00b2a1f3ad81cb7e97aec49ac6b2feb78635731b98ed7570ff5ab81cd6c200b0"
+    },
+    "hero-retry": {
+      "path": "/tmp/tlt-vfx-art-review/hero-retry.log",
+      "sha256": "533d379b8b42add45c62a24acad1e09bd7e6216e11a53359471ca20350d735e4"
+    },
+    "hero-early": {
+      "path": "/tmp/tlt-vfx-art-review/hero-early.log",
+      "sha256": "d6bd9a8787a6e00e9a5722a3f8511135a6f31f3afb2a84c7b05d9b8e28d96539"
+    }
+  },
+  "captureToolsSha256": {
+    "hero-retry-capture.luau": "34f20dc66cbf209b30a86e7a496b7714e2e43d387425d2fa33d9390d0db5d89d",
+    "enemy-capture.luau": "f2c82b6eb426894b4be8875f39c679945fd20b05da6e96529c09f41c81ee3c54",
+    "hero-capture.luau": "660aeb6a6577b7bbba7ae20c8e523feeec0654918f501fc962ecbc0579ffc458",
+    "common-capture.luau": "f387b089ce6675d6cd059139599af3613666d9ded54626e29164ae53df58ba14",
+    "enemy-ring-capture.luau": "aa91e56d87cda7a5c86aff158f3b718817f25291755b02c837113dfbe7853311",
+    "enemy-warning-capture.luau": "7d29683ea19d6dc6634fd0bca64e543bc9ca56246c758a1a12c7193a6b752cca",
+    "hero-early-capture.luau": "8e7b7bc18adabe00d044a5575ac64c6e26b532100b8787d3911ccbb241197589",
+    "enemy-impact-capture.luau": "e781ece29de16fd14614a0e68b2086bbbd9c41d5a7a0f6247733bd935af3e9d9"
+  },
+  "limits": [
+    "Still/normalized library samples and selected native trails; no live gameplay acceptance.",
+    "24 common-effect groups have source review only.",
+    "74 enemy attacks have no separate primary screenshot; all146 source definitions reviewed.",
+    "Actual TD actors/weapons, regional lighting, multiplayer, device/GPU and user art acceptance remain open."
+  ],
+  "reviewCounts": {
+    "hero": {
+      "KeepCandidate": 106,
+      "Improve": 22
+    },
+    "enemyAttacksSourceReviewed": 146,
+    "enemyDirectPrimarySamples": 72,
+    "enemyPrimaryNotIndividuallyCaptured": 74,
+    "commonGroups": 55,
+    "commonVisualGroups": 31,
+    "commonSourceOnlyGroups": 24
+  },
+  "reviewDocumentsSha256": {
+    "hero-review.md": "7d2116fbda4252d3ed0f7857081ca6289fc4ad0de52767591c50458d20ac5351",
+    "hero-review.json": "005c7fbc6c81994597214e4f671a07a65df501e4484786faadf4da4a0d0bbed3",
+    "enemy-review.md": "037dd6eb55706cb7c2883338ca0f80d1db085040c8b9c372e8ccd0db64560049",
+    "enemy-review.json": "63fb622ccd9a7559ae8d81f6559e68c3060fd0519b1a2e44f9744b6408215a6d",
+    "common-review.md": "648b12049390668546a75472c78936954340c21f3c8209ad3e7b621559cedae8",
+    "common-review.json": "8aef405eef2af57d066723985afd84c1102e8ec67f72bf6ce31aa8b7c54ba3dd"
+  },
+  "checks": [
+    "All manifest PNG hashes match",
+    "128 unique hero skills / 32 per class",
+    "146 enemy attack definitions",
+    "55 common-effect groups / 31 current scene samples",
+    "All Markdown artifact links resolve",
+    "Captured game modules match recorded inputs",
+    "All eight Luau capture tools compile"
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "path": "src/client/EnemySpellVFX.luau",
+    "baselineCommit": "09176c8110843350b77dcf4a4b6d9c0675a09514",
+    "unchanged": true,
+    "sha256": "3f41ff92e0c4439b43aca595f3a3b5265a264d028eb4a0eb0d5a9bdcbb56fab5"
+  },
+  {
+    "path": "src/client/EnemySpellArt.luau",
+    "baselineCommit": "09176c8110843350b77dcf4a4b6d9c0675a09514",
+    "unchanged": true,
+    "sha256": "0ff7672f7d3e6a4a222b890fad3187e4ac62e58e67b9b7518c5c67a9e6e29586"
+  },
+  {
+    "path": "src/shared/EnemySpellProfiles.luau",
+    "baselineCommit": "09176c8110843350b77dcf4a4b6d9c0675a09514",
+    "unchanged": true,
+    "sha256": "fbced7b3c67ef8bb11ba4eac847e853691c38c8608e1b279f9d88a1fd3c48639"
+  },
+  {
+    "path": "src/client/EnemyPatternEffects.luau",
+    "baselineCommit": "09176c8110843350b77dcf4a4b6d9c0675a09514",
+    "unchanged": true,
+    "sha256": "13d1abf5d020852f1a26f6f802eb69a96c22297e2f08877ad65b3c5dfe84145e"
+  },
+  {
+    "path": "src/client/K0EnemyControlEffects.luau",
+    "baselineCommit": "09176c8110843350b77dcf4a4b6d9c0675a09514",
+    "unchanged": true,
+    "sha256": "22b5c00c5da0447289f30010e93e461ceb722d23a68ff63d46fb980d334cbefb"
+  }
+]

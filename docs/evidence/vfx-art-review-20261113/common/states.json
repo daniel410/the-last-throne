@@ -1,0 +1,1564 @@
+[
+  {
+    "actualElapsed": 0.2167189121246338,
+    "index": 1,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          1,
+          1,
+          0.9411764740943909
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.9098039269447327,
+          0.5882353186607361
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.9098039269447327,
+          0.5882353186607361
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.9098039269447327,
+          0.5882353186607361
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.9098039269447327,
+          0.5882353186607361
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.9098039269447327,
+          0.5882353186607361
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://126195196879627",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "basic_knight",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.33251500129699707,
+    "index": 2,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          1,
+          0.8588235378265381,
+          0.5176470875740051
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://79156590926728",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "basic_dwarf",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.3301661014556885,
+    "index": 3,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          0.9686274528503418,
+          1,
+          0.8784313797950745
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://70394998889278",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "basic_elf",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.3955860137939453,
+    "index": 4,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          0.929411768913269,
+          0.7529411911964417,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://82824010689746",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "basic_mage",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.339461088180542,
+    "index": 5,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          0.929411768913269,
+          0.7529411911964417,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://125880857986566",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalPlume",
+        "texture": "rbxasset://textures/particles/fire_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "mage.pyro.ember_lance",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.33153820037841797,
+    "index": 6,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          0.6823529601097107,
+          0.9098039269447327,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.2705882489681244,
+          0.6078431606292725,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.2705882489681244,
+          0.6078431606292725,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.2705882489681244,
+          0.6078431606292725,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.2705882489681244,
+          0.6078431606292725,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.2705882489681244,
+          0.6078431606292725,
+          1
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://104644824235390",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "mage.common.water_ball",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.32938718795776367,
+    "index": 7,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          0.929411768913269,
+          0.7529411911964417,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://114563012327470",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "mage.cryo.frost_lance",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.34882402420043945,
+    "index": 8,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          0.929411768913269,
+          0.7529411911964417,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://109873337649969",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "mage.cryo.lightning_line",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.33139610290527344,
+    "index": 9,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          0.929411768913269,
+          0.7529411911964417,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.7450980544090271,
+          0.49803921580314636,
+          1
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://96300147364691",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalPlume",
+        "texture": "rbxasset://textures/particles/smoke_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "mage.pyro.stone_lance",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.3473072052001953,
+    "index": 10,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          0.8392156958580017,
+          0.6627451181411743,
+          1
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.4941176474094391,
+          0.2549019753932953,
+          0.8274509906768799
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.4941176474094391,
+          0.2549019753932953,
+          0.8274509906768799
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.4941176474094391,
+          0.2549019753932953,
+          0.8274509906768799
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.4941176474094391,
+          0.2549019753932953,
+          0.8274509906768799
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.4941176474094391,
+          0.2549019753932953,
+          0.8274509906768799
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://103583951750488",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "mage.common.gravity",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.19476795196533203,
+    "index": 11,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          1,
+          0.8784313797950745,
+          0.615686297416687
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.5921568870544434,
+          0.24705882370471954
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.5921568870544434,
+          0.24705882370471954
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.5921568870544434,
+          0.24705882370471954
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.5921568870544434,
+          0.24705882370471954
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.5921568870544434,
+          0.24705882370471954
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://126195196879627",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "dwarf.common.overhead",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.2094719409942627,
+    "index": 12,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          1,
+          0.8588235378265381,
+          0.5176470875740051
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          1,
+          0.615686297416687,
+          0.2549019753932953
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://126195196879627",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "dwarf.iron_axe.armor_splitter",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.15459299087524414,
+    "index": 13,
+    "diagnostics": [
+      {
+        "name": "SmallCrystal",
+        "color": [
+          0.6784313917160034,
+          0.545098066329956,
+          0.9372549057006836
+        ]
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "K0StaffFocus",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "id": "focus_arcane",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.14663314819335938,
+    "index": 14,
+    "diagnostics": [
+      {
+        "name": "SmallCrystal",
+        "color": [
+          0.3686274588108063,
+          0.7215686440467834,
+          0.9372549057006836
+        ]
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "K0StaffFocus",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "id": "focus_water",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.14562201499938965,
+    "index": 15,
+    "diagnostics": [
+      {
+        "name": "SmallCrystal",
+        "color": [
+          0.6039215922355652,
+          0.8941176533699036,
+          0.8196078538894653
+        ]
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "K0StaffFocus",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "id": "focus_wind",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.1444718837738037,
+    "index": 16,
+    "diagnostics": [
+      {
+        "name": "SmallCrystal",
+        "color": [
+          0.9372549057006836,
+          0.545098066329956,
+          0.29411765933036804
+        ]
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "K0StaffFocus",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "id": "focus_fire",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.14693713188171387,
+    "index": 17,
+    "diagnostics": [
+      {
+        "name": "SmallCrystal",
+        "color": [
+          0.6549019813537598,
+          0.8549019694328308,
+          0.9372549057006836
+        ]
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "K0StaffFocus",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "id": "focus_frost",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.14920496940612793,
+    "index": 18,
+    "diagnostics": [
+      {
+        "name": "SmallCrystal",
+        "color": [
+          0.8549019694328308,
+          0.6745098233222961,
+          0.41960784792900085
+        ]
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "K0StaffFocus",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "id": "focus_earth",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.14493513107299805,
+    "index": 19,
+    "diagnostics": [
+      {
+        "name": "SmallCrystal",
+        "color": [
+          0.7411764860153198,
+          0.686274528503418,
+          0.9372549057006836
+        ]
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "K0StaffFocus",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "id": "focus_lightning",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.1450340747833252,
+    "index": 20,
+    "diagnostics": [
+      {
+        "key": "heal",
+        "position": "0, 3, 0"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "Shards",
+        "texture": "rbxassetid://8030734851"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "Plus",
+        "texture": "rbxassetid://9937082969"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ShardsBigger",
+        "texture": "rbxassetid://8030734851"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "Specs",
+        "texture": "rbxassetid://9997556038"
+      }
+    ],
+    "id": "support_Heal",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.3327748775482178,
+    "index": 21,
+    "diagnostics": [
+      {
+        "loaded": true,
+        "image": "rbxassetid://116376069982468",
+        "name": "Frame"
+      }
+    ],
+    "id": "support_Protect",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.3132820129394531,
+    "index": 22,
+    "diagnostics": [
+      {
+        "loaded": true,
+        "image": "rbxassetid://134457115562528",
+        "name": "Frame"
+      }
+    ],
+    "id": "support_Cleanse",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.15397906303405762,
+    "index": 23,
+    "diagnostics": [
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "UpgradeSparkles",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "id": "hero_level_up",
+    "sample": 0.055
+  },
+  {
+    "id": "trail_knight",
+    "mode": "live_native_trail_manual_fixture_transform",
+    "index": 24,
+    "diagnostics": [
+      {
+        "color": [
+          [
+            0,
+            1,
+            0.9215686321258545,
+            0.6705882549285889
+          ],
+          [
+            1,
+            0.4470588266849518,
+            0.7176470756530762,
+            1
+          ]
+        ],
+        "enabled": true,
+        "name": "K0SwordTrail",
+        "lifetime": 0.14000000059604645
+      }
+    ]
+  },
+  {
+    "id": "trail_dwarf",
+    "mode": "live_native_trail_manual_fixture_transform",
+    "index": 25,
+    "diagnostics": [
+      {
+        "color": [
+          [
+            0,
+            1,
+            0.8666666746139526,
+            0.48235294222831726
+          ],
+          [
+            1,
+            0.9254902005195618,
+            0.48235294222831726,
+            0.2078431397676468
+          ]
+        ],
+        "enabled": true,
+        "name": "K0WeaponTrail",
+        "lifetime": 0.10999999940395355
+      }
+    ]
+  },
+  {
+    "id": "trail_mage",
+    "mode": "live_native_trail_manual_fixture_transform",
+    "index": 26,
+    "diagnostics": [
+      {
+        "color": [
+          [
+            0,
+            0.8823529481887817,
+            0.658823549747467,
+            1
+          ],
+          [
+            1,
+            0.40392157435417175,
+            0.6745098233222961,
+            1
+          ]
+        ],
+        "enabled": true,
+        "name": "K0WeaponTrail",
+        "lifetime": 0.14000000059604645
+      }
+    ]
+  },
+  {
+    "id": "trail_elf",
+    "mode": "live_native_trail_manual_fixture_transform",
+    "index": 27,
+    "diagnostics": [
+      {
+        "color": [
+          [
+            0,
+            0.6666666865348816,
+            1,
+            0.6980392336845398
+          ],
+          [
+            1,
+            1,
+            0.9490196108818054,
+            0.7058823704719543
+          ]
+        ],
+        "enabled": true,
+        "name": "Trail",
+        "lifetime": 0.11999999731779099
+      }
+    ]
+  },
+  {
+    "actualElapsed": 0.14816999435424805,
+    "index": 28,
+    "diagnostics": [
+      {
+        "key": "heal",
+        "position": "0, 3, 0"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "Shards",
+        "texture": "rbxassetid://8030734851"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "Plus",
+        "texture": "rbxassetid://9937082969"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ShardsBigger",
+        "texture": "rbxassetid://8030734851"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "Specs",
+        "texture": "rbxassetid://9997556038"
+      }
+    ],
+    "id": "selene_Heal",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.21303391456604004,
+    "index": 29,
+    "diagnostics": [
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://116376069982468",
+        "name": "Frame"
+      }
+    ],
+    "id": "selene_Protect",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.2116098403930664,
+    "index": 30,
+    "diagnostics": [
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://134457115562528",
+        "name": "Frame"
+      }
+    ],
+    "id": "selene_Cleanse",
+    "sample": 0.055
+  },
+  {
+    "actualElapsed": 0.1965799331665039,
+    "index": 31,
+    "diagnostics": [
+      {
+        "name": "K0ImpactFlash",
+        "color": [
+          0.9686274528503418,
+          1,
+          0.8784313797950745
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "name": "K0ImpactSpark",
+        "color": [
+          0.6784313917160034,
+          0.9647058844566345,
+          0.6313725709915161
+        ]
+      },
+      {
+        "loaded": true,
+        "image": "rbxassetid://109873337649969",
+        "name": "Frame"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ElementalSparks",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "ElementalFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/smoke_main.dds",
+        "name": "SoftFlare"
+      },
+      {
+        "loaded": true,
+        "image": "rbxasset://textures/particles/sparkles_main.dds",
+        "name": "WhiteHotCore"
+      },
+      {
+        "name": "ContactVolume",
+        "color": [
+          0.9725490212440491,
+          0.9725490212440491,
+          0.8980392217636108
+        ]
+      }
+    ],
+    "id": "elf.magic_archer.storm_arrow",
+    "sample": 0.055
+  }
+]

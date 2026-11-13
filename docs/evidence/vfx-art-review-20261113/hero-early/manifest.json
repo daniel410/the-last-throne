@@ -1,0 +1,47 @@
+[
+  {
+    "index": 52,
+    "id": "dwarf.gunner.quickfire",
+    "classId": "dwarf",
+    "pulse": 1,
+    "width": 320,
+    "name": "QUICKFIRE",
+    "diagnostics": {
+      "beams": 1,
+      "images": [
+        {
+          "image": "rbxassetid://114949276584790",
+          "name": "Frame",
+          "loaded": true,
+          "rect": "128, 0",
+          "size": "128, 128"
+        },
+        {
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "ElementalFlare",
+          "loaded": true,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "image": "rbxasset://textures/particles/smoke_main.dds",
+          "name": "SoftFlare",
+          "loaded": true,
+          "rect": "0, 0",
+          "size": "0, 0"
+        },
+        {
+          "image": "rbxasset://textures/particles/sparkles_main.dds",
+          "name": "WhiteHotCore",
+          "loaded": true,
+          "rect": "0, 0",
+          "size": "0, 0"
+        }
+      ],
+      "parts": 5
+    },
+    "height": 240,
+    "sampleAge": 0.035,
+    "sha256": "3db68e6e5f303f53d336f21d4fb16c59b76a26ae72fbd102629076ea11ae4ca5"
+  }
+]

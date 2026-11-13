@@ -1,0 +1,1235 @@
+{
+  "taskIds": [
+    "TLT-033",
+    "TLT-057",
+    "TLT-084"
+  ],
+  "version": "0.104.25",
+  "sourceCommit": "974c2553639691eea8141c2302a09b2d257f4850",
+  "role": "ART common-effect review",
+  "coverageUnit": "효과군/표시경로 단위. 128스킬 전용 및 몬스터 공격 전용은 별도 리뷰에서 합산하며 이 수를 스킬/자산 총수로 해석하지 않는다.",
+  "entries": [
+    {
+      "id": "common.hit.basic.knight",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 1,
+      "findings": [
+        "ART-COMMON-03"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/001-Basic_Knight_Hit.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "옅은 흰 원형 접촉띠와 중심 섬광이 몸통 앞에 강하게 보인다. 접촉점은 읽히지만 물리 검 타격보다 보호막 모양이 우세할 여지가 있다.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.hit.basic.dwarf",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 2,
+      "findings": [
+        "ART-COMMON-03"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/002-Basic_Dwarf_Hit.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "따뜻한 노랑/주황 접촉띠와 중심 섬광이 읽힌다. 기본 Knight/Elf/Mage와 큰 원형 실루엣은 같다.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.hit.basic.elf",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 3,
+      "findings": [
+        "ART-COMMON-03"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/003-Basic_Elf_Hit.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "옅은 녹색 접촉띠/섬광이 읽히지만 작은 화살의 찌름보다 큰 원형이 주가 된다.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.hit.basic.mage",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 4,
+      "findings": [
+        "ART-COMMON-03"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/004-Basic_Mage_Hit.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "보라색 원형과 몸 Highlight가 함께 읽힌다. 기본 비전 명중의 색은 맞으나 다른 클래스와 형상 차이는 약하다.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.hit.mage.pyro.ember_lance",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 5,
+      "findings": [
+        "ART-COMMON-01"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/005-Fire_Hit_Composite.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "주황색 접촉띠 안쪽에 분홍/보라 섬광, 보라색 타깃 몸이 함께 보인다. 불 단일원소 명중의 팔레트가 섞인다.",
+      "artVerdict": "needs_palette_correction"
+    },
+    {
+      "id": "common.hit.mage.common.water_ball",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 6,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/006-Water_Hit_Composite.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "청색 물방울/접촉층과 푸른 몸 강조가 이어져 고급 Mage 원소 fallback 대표들과 구별된다.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.hit.mage.cryo.frost_lance",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 7,
+      "findings": [
+        "ART-COMMON-01"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/007-Frost_Hit_Composite.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "옅은 얼음 파편 뒤에 분홍 섬광과 보라색 몸 강조가 보인다. 냉기 명중의 주색 일관성이 깨진다.",
+      "artVerdict": "needs_palette_correction"
+    },
+    {
+      "id": "common.hit.mage.cryo.lightning_line",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 8,
+      "findings": [
+        "ART-COMMON-01"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/008-Lightning_Hit_Composite.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "청색 접촉띠 안에 분홍 섬광과 보라색 몸 강조가 보인다. 번개보다 비전색이 몸 전체를 덮는다.",
+      "artVerdict": "needs_palette_correction"
+    },
+    {
+      "id": "common.hit.mage.pyro.stone_lance",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 9,
+      "findings": [
+        "ART-COMMON-01"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/009-Earth_Hit_Composite.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "작은 갈색 파편보다 분홍/보라 섬광과 몸 강조가 크게 보여 대지 타격 의미가 약하다.",
+      "artVerdict": "needs_palette_correction"
+    },
+    {
+      "id": "common.hit.mage.common.gravity",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 10,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/010-Gravity_Hit_Composite.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "보라색 중심과 접촉층이 중력 계열과 맞는다. 흡입 방향/연속 움직임은 스틸로 판정하지 않는다.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.hit.dwarf.common.overhead",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 11,
+      "findings": [
+        "ART-COMMON-04"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/011-Dwarf_Overhead_Contact.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "노란 세로 타격선 밖에 옅은 청색 큰 접촉띠가 보여 온색·냉색이 혼합된다. 실제무기의 금속 섬광인지 원소 오해인지는 추가판단.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.hit.dwarf.iron_axe.armor_splitter",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 12,
+      "findings": [
+        "ART-COMMON-04"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/012-Dwarf_Armor_Splitter_Contact.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "Overhead와 매우 유사한 노란 세로선+청색 접촉띠다. 단순명중의 무게감/절단형상 차이는 실제모션에서 비교 필요.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.focus.arcane",
+      "category": "weapon_focus",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 13,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/013-Arcane_Staff_Focus.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "보석과 얼굴옆 국소광이 보라색으로 읽혀 Arcane 정체성에 맞는다. 몸 전체를 덮는 큰 오라는 없다.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.focus.water",
+      "category": "weapon_focus",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 14,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/014-Water_Staff_Focus.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "푸른 보석/국소광이 읽힌다. 물 준비색은 Arcane과 구별된다.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.focus.wind",
+      "category": "weapon_focus",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 15,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/015-Wind_Staff_Focus.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "민트 보석/국소광이 읽힌다. 바람 방향/기류는 실제 발사 장면과 연결해 판정해야 한다.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.focus.fire",
+      "category": "weapon_focus",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 16,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/016-Fire_Staff_Focus.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "주황 보석/국소광이 읽힌다. 화염 준비색은 차가운 원소와 구별된다.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.focus.frost",
+      "category": "weapon_focus",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 17,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/017-Frost_Staff_Focus.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "옅은 청색 보석/국소광이 읽힌다. Water와 형상은 같은 Focus이므로 발사/결정 형태와 함께 구별해야 한다.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.focus.earth",
+      "category": "weapon_focus",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 18,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/018-Earth_Staff_Focus.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "따뜻한 황토/금빛 보석과 국소광이 보인다. 실제 대지의 갈색 불투명 형상과 이어지는지 전체시전 비교 필요.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.focus.lightning",
+      "category": "weapon_focus",
+      "sourceFiles": [
+        "src/client/K0MageFocus.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 19,
+      "findings": [
+        "ART-COMMON-02"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/019-Lightning_Staff_Focus.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "보석과 얼굴옆 국소광이 Arcane과 유사한 연보라로 보인다. 청색 번개 발사/명중의 정본과 맞지 않는다.",
+      "artVerdict": "needs_palette_correction"
+    },
+    {
+      "id": "common.support.pixel.Heal",
+      "category": "support_accent",
+      "sourceFiles": [
+        "src/client/PixelFX.luau",
+        "src/client/CuratedVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 20,
+      "findings": [
+        "ART-COMMON-05"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/020-Heal_Pixel_Accent.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "이 초기 스틸에서 단독 치유 입자는 거의 읽히지 않는다. 입자 IsLoaded/방향/시점을 분리하지 않아 전체재생 실패로 단정하지 않는다.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.support.pixel.Protect",
+      "category": "support_accent",
+      "sourceFiles": [
+        "src/client/PixelFX.luau",
+        "src/client/CuratedVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 21,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/021-Protect_Pixel_Accent.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "Frame IsLoaded=true지만 이 초기 atlas 스틸에서 단독 보호 accent는 거의 읽히지 않는다. FullProtect의 구형 외피는 별도 관찰에서 확인된다.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.support.pixel.Cleanse",
+      "category": "support_accent",
+      "sourceFiles": [
+        "src/client/PixelFX.luau",
+        "src/client/CuratedVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 22,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/022-Cleanse_Pixel_Accent.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "작고 옅은 별/점이 몸 옆에 보인다. 단독형태의 의미는 약하며 전체 Cleanse 문구/링/연결선과 함께 봐야 한다.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.level_up",
+      "category": "progression",
+      "sourceFiles": [
+        "src/server/Combat/HeroLevelUpEffect.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 23,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/023-Hero_Level_Up.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "금빛 바닥띠와 세로로 흩어진 작은 불빛이 보이고 몸 실루엣은 유지된다. 완전한 상승 시퀀스와 전투 중 다른 금빛효과와의 구별은 미검증.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.weapon_trail.knight",
+      "category": "basic_weapon",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 24,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/024-Knight_Native_Trail.png",
+        "common/states.json"
+      ],
+      "captureLimit": "생산 Trail을 임시 모형 수동변환 중 캡처. 실제 TD 무기·공격 클립·소켓 정렬은 미검증.",
+      "artObservation": "단순모형의 무기 주변에 좁고 옅은 날/잔상이 읽히며 화면을 크게 덮지 않는다. 실제 TD 검의 관절/공격 클립 정렬은 미검증.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.weapon_trail.dwarf",
+      "category": "basic_weapon",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 25,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/025-Dwarf_Native_Trail.png",
+        "common/states.json"
+      ],
+      "captureLimit": "생산 Trail을 임시 모형 수동변환 중 캡처. 실제 TD 무기·공격 클립·소켓 정렬은 미검증.",
+      "artObservation": "따뜻한 도끼 계열 잔상이 좁게 보이며 기본 클래스색은 이어진다. 실제 도끼 형상/접촉 정렬은 이 수동모형 캡처로 판정하지 않는다.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.weapon_trail.mage",
+      "category": "basic_weapon",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 26,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/026-Mage_Native_Trail.png",
+        "common/states.json"
+      ],
+      "captureLimit": "생산 Trail을 임시 모형 수동변환 중 캡처. 실제 TD 무기·공격 클립·소켓 정렬은 미검증.",
+      "artObservation": "보라 계열 무기 잔상이 좁게 보이며 기본 Arcane/Staff와 어울린다. 실제 스태프 타격모션의 손/무기 정렬은 미검증.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.projectile.arrow",
+      "category": "basic_weapon",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 27,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/027-Elf_Native_Arrow_Trail.png",
+        "common/states.json"
+      ],
+      "captureLimit": "생산 Trail을 임시 모형 수동변환 중 캡처. 실제 TD 무기·공격 클립·소켓 정렬은 미검증.",
+      "artObservation": "나무 화살 본체와 짧은 밝은 잔상이 보인다. 큰 구형/광선 없이 화살의 길이 방향이 남는다. 실제 활 시위/발사소켓은 미검증.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.projectile.axe",
+      "category": "basic_weapon",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.projectile.arcane",
+      "category": "basic_weapon",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.support.selene.Heal",
+      "category": "support_full",
+      "sourceFiles": [
+        "src/client/SelenePresentation.luau",
+        "src/client/SeleneSkinMotion.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 28,
+      "findings": [
+        "ART-COMMON-06"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/028-Selene_Full_Heal.png",
+        "common/states.json"
+      ],
+      "captureLimit": "생산 Selene 전체지원 경로. 단순4파트/15Bone 모형으로 실제 TD 외형·손소켓·모션은 미검증.",
+      "artObservation": "시전자-수신자 연결선·수신자 바닥링·+12HP가 보인다. 수신자의 몸이 남는다. Cleanse와 큰 형상은 유사하다.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.support.selene.Protect",
+      "category": "support_full",
+      "sourceFiles": [
+        "src/client/SelenePresentation.luau",
+        "src/client/SeleneSkinMotion.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 29,
+      "findings": [
+        "ART-COMMON-06"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/029-Selene_Full_Protect.png",
+        "common/states.json"
+      ],
+      "captureLimit": "생산 Selene 전체지원 경로. 단순4파트/15Bone 모형으로 실제 TD 외형·손소켓·모션은 미검증.",
+      "artObservation": "금빛 구형 외피로 Heal/Cleanse와 구별되고 내부 수신자 몸통이 보인다. 실제 갑옷·다인/카메라 혼합의 가림은 미검증.",
+      "artVerdict": "preserve_direction_with_acceptance_limits"
+    },
+    {
+      "id": "common.support.selene.Cleanse",
+      "category": "support_full",
+      "sourceFiles": [
+        "src/client/SelenePresentation.luau",
+        "src/client/SeleneSkinMotion.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 30,
+      "findings": [
+        "ART-COMMON-06"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "evidence": [
+        "common/030-Selene_Full_Cleanse.png",
+        "common/states.json"
+      ],
+      "captureLimit": "생산 Selene 전체지원 경로. 단순4파트/15Bone 모형으로 실제 TD 외형·손소켓·모션은 미검증.",
+      "artObservation": "연결선·바닥링·작은 옅은 입자·CLEANSED 문구가 보인다. Heal과 문구/색 외 큰 형상 차이가 약해 흐름 구별이 필요하다.",
+      "artVerdict": "polish_or_targeted_validation"
+    },
+    {
+      "id": "common.player_hit.screen",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/K0PlayerHitFeedback.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.player_hit.pose",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/K0PlayerHitFeedback.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.hit_stop",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/K0HitStop.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.death_camera",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/HeroDeathCamera.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.action.block",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "observation": "source_review_no_independent_particle_overlay_path",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.action.dodge",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau",
+        "src/client/K0SideDiveMotion.luau"
+      ],
+      "observation": "source_review_no_independent_particle_overlay_path",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.action.sprint",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/K0SwordVisual.luau"
+      ],
+      "observation": "source_review_no_independent_particle_overlay_path",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.action.death",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/HeroDeathCamera.luau"
+      ],
+      "observation": "source_review_no_independent_particle_overlay_path",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.homecoming",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/DawnspireHomecoming.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.navigation",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/DeepwoodNavigation.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [
+        "ART-COMMON-07"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.quest_guide",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/LobbySideQuestGuide.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.story_state",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/LateEpicPresentation.luau",
+        "src/client/EmberCalderaPresentation.luau",
+        "src/client/CampaignExpansionPresentation.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.lights",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/server/World/LobbyWorld.luau",
+        "src/server/World/LobbyArchitecture.luau",
+        "src/server/World/DeepwoodWorld.luau",
+        "src/server/World/FrozenValeWorld.luau",
+        "src/server/World/EmberCalderaWorld.luau",
+        "src/server/World/EpicArchitecture.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.forge",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/server/World/WeaponMerchant.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.decorative_budget",
+      "category": "world_or_common",
+      "sourceFiles": [
+        "src/client/WorldPresentationBudget.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.atmosphere.Lobby",
+      "category": "regional_lighting",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [
+        "ART-COMMON-08"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.atmosphere.Deepwood",
+      "category": "regional_lighting",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [
+        "ART-COMMON-08"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.atmosphere.FrozenVale",
+      "category": "regional_lighting",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [
+        "ART-COMMON-08"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.atmosphere.EmberCaldera",
+      "category": "regional_lighting",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [
+        "ART-COMMON-08"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.atmosphere.Gloamwood",
+      "category": "regional_lighting",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [
+        "ART-COMMON-08"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.atmosphere.HauntedGraveyard",
+      "category": "regional_lighting",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [
+        "ART-COMMON-08"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "world.atmosphere.FrozenValeRestored",
+      "category": "regional_lighting",
+      "sourceFiles": [
+        "src/client/DeepwoodAtmosphere.luau"
+      ],
+      "observation": "source_review_visual_pending",
+      "captureIndex": null,
+      "findings": [
+        "ART-COMMON-08"
+      ],
+      "acceptance": "실제 영웅/장비·지역·카메라·다인 교전·터치에서 읽힘과 가림 검증 후 수용",
+      "artObservation": "해당 표시경로의 소스 구성은 검토했지만 현행 실제 환경의 화면·동작을 직접 관찰하지 않았다. 미술 합격 판정 없음.",
+      "artVerdict": "source_review_only_visual_unverified"
+    },
+    {
+      "id": "common.hit.elf.magic_archer.storm_arrow",
+      "category": "confirmed_hit",
+      "sourceFiles": [
+        "src/client/K0HitEffects.luau",
+        "src/client/PixelFX.luau",
+        "src/client/HeroVFX.luau"
+      ],
+      "observation": "current_fixture_image_reviewed",
+      "captureIndex": 31,
+      "findings": [
+        "ART-COMMON-01"
+      ],
+      "acceptance": "번개 시전/명중 합성에서 원소색 유지; 실제 영웅/적·지역·다인에서 가림/위계 확인",
+      "evidence": [
+        "common/031-Elf_Storm_Arrow_Hit_Composite.png",
+        "common/states.json"
+      ],
+      "captureLimit": "모형/중립조명. 입자 재방출·스틸 동결로 실제 시간/첫 로드/다인 가림 수용 아님.",
+      "artObservation": "청색 접촉띠와 녹색 타깃/중심 파편이 함께 보인다. Elf번개 원소의 합성팔레트가 클래스 기본 녹색으로 섞인다.",
+      "artVerdict": "needs_palette_correction"
+    }
+  ],
+  "sourceSha256": {
+    "src/client/K0HitEffects.luau": "db97468a6efa7fefec9ac6a6ff2ac1855e466341c0767847702666dee9a0ec64",
+    "src/client/PixelFX.luau": "0946bd368ceebc2ad5d03e99af52baab13787469b086d097aa03e1d806ca95d5",
+    "src/client/HeroVFX.luau": "cb05601884f1de7e5b852892591f03669c21813f4064d02c2518e8ffcb0b12e3",
+    "src/client/K0MageFocus.luau": "6021e0178bcb37cd903786b39f9eaa3db0d61322ae386cbe7983437216db78a8",
+    "src/client/CuratedVFX.luau": "2262dfaab35f40b131b7acd2c596afa5e8d2423abc1df2df735e5c5558ac071c",
+    "src/server/Combat/HeroLevelUpEffect.luau": "3e66908f1a0aa567be650a554a8651fa8aa4be5a60a9081e423df1501b2fa388",
+    "src/client/K0SwordVisual.luau": "94df0c9612fdc841b55d79dc9d01c7a53006c40474ead8693c788bf51c5193a9",
+    "src/client/SelenePresentation.luau": "a7e4f350236601ad9ce75b7905c12fb3dadd1d50e4baec3be4c3820054d534cb",
+    "src/client/SeleneSkinMotion.luau": "5d0880076bdb97a4d11b41acbe04f03348bd21e404323082b9b669509d93bf4a",
+    "src/client/K0PlayerHitFeedback.luau": "6db1f0bf753821cdad644f4f41114de733cf9cd51ce01dc17e80d26377fabc79",
+    "src/client/K0HitStop.luau": "0bcdab2103d43bd07f35edfcf54424f713520ecce5d0180e81438527fea965ad",
+    "src/client/HeroDeathCamera.luau": "9b53bfbc1ebe65c9ccbe9a2c353c1574e046d9c66c96bfc14b9a39b86cee6f93",
+    "src/client/K0SideDiveMotion.luau": "0fef32706f4bcd6f5b033929039ba2141cfbf53900942838898f93eb4d6a0c57",
+    "src/client/DawnspireHomecoming.luau": "6de918e81d1953dcb56271d3806bd799ab4db56fdaf0fb2627e2a0f05efd3fde",
+    "src/client/DeepwoodNavigation.luau": "9f987aa8efefd6c0600bf7da7c79672ceca9870a2dc60c592908957b9aa03ee0",
+    "src/client/LobbySideQuestGuide.luau": "098ed08272df6e7b24e146c5924e0d6457a1250da47311f053832631570b3607",
+    "src/client/LateEpicPresentation.luau": "52fcee378abc933663c89c198028dc63ea8acf04f7a66a4cc8897f4055a6fc48",
+    "src/client/EmberCalderaPresentation.luau": "dae3c88272363a20f0cb6a414fd3ad2c5b685bd4be8cdffefd0ed1203eee5654",
+    "src/client/CampaignExpansionPresentation.luau": "217d0b5a296e2b3660b64764c283fa1b80377980e102cb11ba11a7f7434301b7",
+    "src/server/World/LobbyWorld.luau": "4036e1d757beb743febea8ee55ae1aa696e7ad53538e76ac8948856826c9b811",
+    "src/server/World/LobbyArchitecture.luau": "be73feff348a2b9f7aa8d8bd5561f5d52e462304f186acd948c12cb17edaf4c3",
+    "src/server/World/DeepwoodWorld.luau": "5b5a26118c9a670e5727253ca8aeda91da7764be2270991fe33774345d636e3f",
+    "src/server/World/FrozenValeWorld.luau": "96e9978ebc7737c725ae0caafa2cd920027b6f6a8be80d2c347c6f0b2095cc2b",
+    "src/server/World/EmberCalderaWorld.luau": "3f3ccb5756ec70a1d6409584bb01878be6f5d8aca83751eaaa776c99c4cd38e8",
+    "src/server/World/EpicArchitecture.luau": "b5974b2167e7eb829e81a222d05b7be08ee6eaf016c937381332f6b1c7ff0e3a",
+    "src/server/World/WeaponMerchant.luau": "8f135cd6ff9f0aa18a4986b05680b16679c695e2741411d03347fd36319b3ed3",
+    "src/client/WorldPresentationBudget.luau": "d776af1be3b80e3ddd7512142dfa60c2f88a792478121e357d1cbd5286be3994",
+    "src/client/DeepwoodAtmosphere.luau": "ff120ee4d0ecfa4e46ebcaf3d20fff3cfd0f502b344f5e5aa4f3290551b1b1ef"
+  },
+  "currentFixtureCapturesExpected": 31,
+  "currentFixtureCapturesReviewed": 31,
+  "imagesDirectlyViewed": [
+    "docs/evidence/vfx-style-fit-20261112/heal.png",
+    "docs/evidence/selene-motion-20261101/healing.png",
+    "docs/evidence/selene-td-0431/local-play-0432.png"
+  ],
+  "limits": [
+    "현재 캐릭터/장비 실제 조합 미검증",
+    "다인 교전·실기기/GPU 미검증",
+    "화면 피격·카메라/이동 및 환경 효과는 소스 리뷰, 현재 엔진 화면 미검증"
+  ],
+  "findings": [
+    {
+      "id": "ART-COMMON-01",
+      "priority": "P1",
+      "status": "source_and_current_fixture_visual_confirmed",
+      "title": "고급 Mage 원소/Elf 번개의 legacy 명중이 클래스색으로 되돌아감",
+      "sourceEvidence": [
+        "src/client/K0HitEffects.luau:19",
+        "src/client/K0HitEffects.luau:44",
+        "src/client/K0HitEffects.luau:80",
+        "src/client/K0HitEffects.luau:99"
+      ],
+      "detail": "전체스킬 palette 확장은 Knight/Dwarf만 처리한다. Mage Fire/Frost/Lightning/Earth 및 Elf Storm Arrow는 legacy flash/highlight/sparks가 Mage 보라/Elf 녹색 기본값이고, 동시에 호출하는 HeroVFX.contact와 PixelFX.hit는 실제 원소색이다. 소스 값 불일치와 최신5대표의 시각 혼합을 함께 확인했다.",
+      "action": "서버 스킬 정의를 변경하지 않고 순수표시 palette 조회를 Catalog의 원소정본과 맞춘 뒤 전체 합성 시전/명중 색 일관성을 검증한다.",
+      "acceptance": "Fire/Water/Wind/Lightning/Ice/Earth/Holy의 시전·지팡이·명중을 한 화면에서 비교해 다른 원소색 층이 덮지 않을 것. 격리/실제 TD 영웅·적·밝고 어두운 지역을 구분.",
+      "affectedSkillIdsFromSource": [
+        "elf.magic_archer.spark_volley",
+        "elf.magic_archer.storm_arrow",
+        "mage.cryo.chain_lightning",
+        "mage.cryo.eternal_tempest",
+        "mage.cryo.frost_lance",
+        "mage.cryo.frost_ring",
+        "mage.cryo.frost_step",
+        "mage.cryo.froststorm",
+        "mage.cryo.glacial_spike",
+        "mage.cryo.hailfall",
+        "mage.cryo.ice_shard",
+        "mage.cryo.ice_ward",
+        "mage.cryo.lightning_line",
+        "mage.cryo.shatter_dart",
+        "mage.cryo.thunder_spear",
+        "mage.pyro.ashfall",
+        "mage.pyro.caldera_s_judgment",
+        "mage.pyro.cinder_ring",
+        "mage.pyro.earth_rise",
+        "mage.pyro.ember_lance",
+        "mage.pyro.ember_step",
+        "mage.pyro.flame_dart",
+        "mage.pyro.lava_eruption",
+        "mage.pyro.magma_spear",
+        "mage.pyro.molten_line",
+        "mage.pyro.searing_ward",
+        "mage.pyro.steam_burst",
+        "mage.pyro.stone_lance",
+        "mage_tidal_ring",
+        "mage_wind_lance"
+      ],
+      "sourcePaletteMismatchCount": 30,
+      "currentImageEvidence": [
+        "common/005-Fire_Hit_Composite.png",
+        "common/007-Frost_Hit_Composite.png",
+        "common/008-Lightning_Hit_Composite.png",
+        "common/009-Earth_Hit_Composite.png",
+        "common/031-Elf_Storm_Arrow_Hit_Composite.png"
+      ],
+      "observation": "05 Fire의 주황 접촉띠,07 Frost 파편,08 Lightning 청색띠,09 Earth 갈색 파편에 보라색 몸 Highlight/중심 섬광이 혼합되어 보인다.31 ElfStormArrow는 청색 접촉띠와 녹색 몸/파편이 함께 보인다. source불일치30기술 중 이5대표를 직접 확인했으며30개전체화면관찰로확대하지 않는다. 해당 Frame 메타데이터는 IsLoaded=true이며3D Highlight/파편의색문제는외부텍스처로드와별개다."
+    },
+    {
+      "id": "ART-COMMON-02",
+      "priority": "P1",
+      "status": "source_and_current_fixture_visual_confirmed",
+      "title": "번개 지팡이 Focus가 보라색이다",
+      "sourceEvidence": [
+        "src/client/K0MageFocus.luau:5",
+        "src/client/K0MageMotion.luau:67"
+      ],
+      "detail": "K0MageMotion은 실제 d.element를 pose.element로 전달하며 Focus.colors.lightning은 RGB197/180/255다. 청색 번개 정본 RGB90/164/255와 색 계열이 다르다.",
+      "action": "원소정본을 표시모듈이 공유하게 하고 시전 준비와 발사/명중을 묶어 검토한다.",
+      "acceptance": "번개 준비광/발사/명중의 청색 계열이 이어지고 보라 비전/중력과 구별될 것.",
+      "currentImageEvidence": [
+        "common/013-Arcane_Staff_Focus.png",
+        "common/019-Lightning_Staff_Focus.png"
+      ],
+      "observation": "Arcane13/Lightning19 모두 보석과 얼굴옆 준비광이 보라 계열로 읽히며, Water14/Wind15/Fire16/Frost17/Earth18은 각각의 계열색이 보인다.19의 SmallCrystal 진단도 보라RGB 약189/175/239로 기록됐다."
+    },
+    {
+      "id": "ART-COMMON-03",
+      "priority": "P2",
+      "status": "current_single_hit_silhouette_observed_crowd_unverified",
+      "title": "한 번의 명중에 여러 광원/입자/도형 층이 겹침",
+      "sourceEvidence": [
+        "src/client/K0HitEffects.luau:99",
+        "src/client/K0HitEffects.luau:102",
+        "src/client/K0HitEffects.luau:113",
+        "src/client/K0HitEffects.luau:119",
+        "src/client/K0HitEffects.luau:168"
+      ],
+      "detail": "PixelFX, HeroVFX.contact, legacy Flash/Highlight/ContactRay/SkillImpact/ImpactSpark 및 숫자를 동시에 사용한다. 과다 가림은 실제 다인 장면 미관찰이며 단일 프레임의 화려함만으로 결함 확정하지 않는다.",
+      "action": "3D접촉방향·원소핵심형태·피해숫자 순서로 위계를 정하고 같은표적 동시명중의 legacy 층 A/B를 비교한다.",
+      "acceptance": "4인+AI 동시명중에서 대상 외형/체력바/위험바닥이 읽히며 일반공격보다 중요 예고가 먼저 보일 것.",
+      "currentImageEvidence": [
+        "common/001-Basic_Knight_Hit.png",
+        "common/002-Basic_Dwarf_Hit.png",
+        "common/003-Basic_Elf_Hit.png",
+        "common/004-Basic_Mage_Hit.png"
+      ],
+      "observation": "01~04 모두 몸통을 감싸는 열린 원형띠가 주 실루엣이고 색 차이가 강하다. 물리 Knight/Dwarf/Elf 타격도 작은 보호막/마법 원형처럼 읽힐 여지가 있다. 이는 현재 단일명중 미술 판단이며 다인 위험가림은 미검증이다."
+    },
+    {
+      "id": "ART-COMMON-04",
+      "priority": "P2",
+      "status": "current_fixture_color_variation_observed_art_judgment",
+      "title": "드워프 강철 스킬의 시전/접촉 주색이 다름",
+      "sourceEvidence": [
+        "src/client/HeroVFX.luau:173",
+        "src/client/HeroVFX.luau:574",
+        "src/client/HeroVFX.luau:576"
+      ],
+      "detail": "HeroVFX.skill은 dwarf+steel에 axe 주황 팔레트를 사용하지만 contact는 steel 청색 팔레트를 유지한다. 금속 접촉의 의도적 보색일 수도 있어 색 차이만으로 결함 확정하지 않는다.",
+      "action": "Overhead/Armor Splitter 시전과 접촉을 실제무기와 나란히 놓고 금속 섬광인지 원소 오해인지 판단한다.",
+      "acceptance": "드워프 물리 도끼 타격이 얼음/번개로 오해되지 않고 클래스 무게감이 유지될 것.",
+      "currentImageEvidence": [
+        "common/011-Dwarf_Overhead_Contact.png",
+        "common/012-Dwarf_Armor_Splitter_Contact.png"
+      ],
+      "observation": "11/12의 주황/노랑 세로 타격선 밖에 옅은 청색 큰 접촉띠가 함께 보인다. 금속의 보색 섬광으로 읽힐 수 있어 다른 원소 오해 여부는 실제무기/동작에서 추가 판단한다."
+    },
+    {
+      "id": "ART-COMMON-05",
+      "priority": "P2",
+      "status": "current_early_still_low_salience_observed_cause_unverified",
+      "title": "치유 단독 입자가 매우 작고 약함",
+      "sourceEvidence": [
+        "docs/evidence/vfx-style-fit-20261112/heal.png",
+        "src/client/CuratedVFX.luau:40"
+      ],
+      "detail": "직접 열람한 기존 회색모형 Heal PNG에서는 몸 옆에 작은 민트 파편 하나 정도가 주로 보인다. CuratedVFX/PixelFX의 현재 소스해시는 해당 기록 입력과 동일함을 확인했다. 전체 Selene 링크/+HP가 함께 나오는 실제지원 가독성까지 실패한 증거는 아니다.",
+      "action": "치유량 숫자/시전자 연결/수신자 상승입자의 전체합성으로 조용함과 인지성 균형을 판단한다.",
+      "acceptance": "색·문구를 가려도 도움받은 수신자가 인지되고, 반복 십자/큰 오라가 몸과 위험 바닥을 덮지 않을 것.",
+      "currentImageEvidence": [
+        "common/020-Heal_Pixel_Accent.png",
+        "common/028-Selene_Full_Heal.png"
+      ],
+      "observation": "20 단독 Heal accent는 이 스틸에서 거의 읽히지 않는다. 입자 Texture ID는 있으나 IsLoaded를 제공하지 않아 로드/시점/방향/크기 원인을 분리하지 못했다.28 full Heal은 연결선·수신자 링·+12HP가 읽혀 전체치유 실패로판정하지 않는다."
+    },
+    {
+      "id": "ART-COMMON-06",
+      "priority": "P2",
+      "status": "current_fixture_heal_cleanse_similarity_observed_rig_crowd_unverified",
+      "title": "지원3종의 겹치는 레이어와 현재 TD 손소켓 수용이 남음",
+      "sourceEvidence": [
+        "src/client/SelenePresentation.luau:43",
+        "src/client/SelenePresentation.luau:50",
+        "src/client/SelenePresentation.luau:59",
+        "docs/evidence/selene-motion-20261101/healing.png"
+      ],
+      "detail": "기존 Heal 화면은 시전자·링·링크·+HP가 구별된다. 현재 Protect는 PixelAccent3.8 + ForceField4.5×5.6 + 링/링크/문구이며 전체3지원의 현행 TD 모델/장비/손소켓·다인 가림 확인이 남는다.",
+      "action": "단순모형 full경로 캡처와 실제TD자산 수용을 분리하고 Protect/Cleanse가 같은 버프로 보이는지/몸을 가리는지 확인한다.",
+      "acceptance": "Heal/Protect/Cleanse를 효과모양과 흐름으로 구별하고 손-수신자 연결이 실제모션과 이탈하지 않을 것.",
+      "currentImageEvidence": [
+        "common/028-Selene_Full_Heal.png",
+        "common/029-Selene_Full_Protect.png",
+        "common/030-Selene_Full_Cleanse.png"
+      ],
+      "observation": "29 Protect는 구형 외피로 구별되고 내부 몸통이 보인다.28 Heal/30 Cleanse는 링+연결선의 큰 형상이 같고 문구/미세입자·색 외 차이가 약하다. 단일 초기스틸 판정이므로 다른시점/실제애니메이션의 흐름은 미검증이다."
+    },
+    {
+      "id": "ART-COMMON-07",
+      "priority": "P2",
+      "status": "source_risk_requires_navigation_and_telegraph_overlap",
+      "title": "항상 위에 보이는 금빛 길안내와 위험 정보의 위계 검증 필요",
+      "sourceEvidence": [
+        "src/client/DeepwoodNavigation.luau:31",
+        "src/client/DeepwoodNavigation.luau:32"
+      ],
+      "detail": "GuideOverlay는 AlwaysOnTop=true다. 실제 위험바닥을 가렸다는 화면은 없으므로 결함 확정이 아니라 검증 가설이다.",
+      "action": "길안내 ON/OFF, 지형/적/위험예고 겹침과 터치 카메라에서 비교한다.",
+      "acceptance": "피해야 할 정보가 길안내보다 먼저 읽히며 안내가 벽 너머 안전경로로 오해되지 않을 것."
+    },
+    {
+      "id": "ART-COMMON-08",
+      "priority": "P1",
+      "status": "acceptance_evidence_gap",
+      "title": "실제 지역·영웅·다인·실기기 전체합성의 미술 수용 근거 부족",
+      "sourceEvidence": [
+        "src/client/DeepwoodAtmosphere.luau",
+        "docs/production/element-vfx.md"
+      ],
+      "detail": "현재 대부분 VFX 근거는 중립조명/회색모형/격리 스틸이다. 6지역 조명/후처리와 실제 캐릭터/장비의 합성, 4인+AI와 위험예고·표적 가림, GPU/터치 수용을 대체하지 못한다.",
+      "action": "새 효과를 추가하기 전에 대표 원소/공통지원/동시명중을 동일카메라·밝은/어두운 지역·실제 TD 자산으로 비교하고 독립 QA에 인계한다.",
+      "acceptance": "지역별 원소 식별·캐릭터 실루엣·목표/위험 읽힘 증거와 실기기 관측이 연결돼야 최종 미술 수용."
+    }
+  ],
+  "reviewedAt": "2026-11-13",
+  "currentImagesDirectlyViewed": [
+    "common/sheet-01.png",
+    "common/sheet-02.png",
+    "common/sheet-03.png",
+    "common/sheet-04.png"
+  ],
+  "overallArtAcceptance": "보류: 확인된 원소 팔레트 불일치와 실제 TD 자산/지역/다인/실기기 검증 공백",
+  "observationSummary": {
+    "confirmedVisualPaletteIssues": [
+      "ART-COMMON-01",
+      "ART-COMMON-02"
+    ],
+    "singleFixtureArtJudgments": [
+      "ART-COMMON-03",
+      "ART-COMMON-04",
+      "ART-COMMON-05",
+      "ART-COMMON-06"
+    ],
+    "sourceHypothesisOnly": [
+      "ART-COMMON-07"
+    ],
+    "acceptanceGap": [
+      "ART-COMMON-08"
+    ],
+    "preserve": [
+      "기본무기 잔상이 몸 전체를 덮지 않는 짧은 수명",
+      "Protect의 열린 내부/구형 외피",
+      "Full Heal의 시전자-수신자 연결선/바닥링/+HP",
+      "레벨업의 금빛 상승 방향/모형실루엣 유지"
+    ]
+  },
+  "validation": {
+    "inventoryUnique": true,
+    "capturedCoverage": "31/55효과군, 31개 최신 PNG 직접열람; 24효과군은 소스리뷰/현행시각미검증",
+    "sourceHashesMatch": true,
+    "evidenceLinksExist": true,
+    "gameCodeModified": false
+  }
+}

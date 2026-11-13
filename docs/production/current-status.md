@@ -1,12 +1,13 @@
 # 현재 개발 상태
 
-2026-11-12 · TLT-001/050/057/084 · 문서 정리 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
+2026-11-13 · TLT-001/050/057/084 · 현재 문서 기준. 빌드 버전은 루트 `VERSION`을 읽는다.
 
 - 몬스터 공격: 0.104.15에서 기존35모티프·50조합에 원소별 재질/곡선 흐름·입자/국소광·표면 충돌/방사 파편을 보강했다. [실제 연속 재생·조사·고정 빌드 검증/미게시](../evidence/monster-spell-art-20261112/README.md). 기존 [종별 공격 연결](../evidence/monster-spell-vfx-20261112/README.md)과 [보스 피격·연속 준비/회수](../evidence/boss-impact-motion-20261112/README.md)를 유지하며 최종 미술/기기 수용은 별도다.
 - 배틀 입장·장비: 0.104.7에 ColorMap 읽기 권한·엘프 몸통 생성 순서·훈련 음악의 스토리 Remote 무한 대기 수정을 포함했다. [최근24시간 CSV·일반 Script63검사·게시/실기기 미검증](../evidence/today-errors-20261111/README.md). 큰 나무 CollisionFidelity 권한 결함의 [5에픽 초기화34검사](../evidence/battle-world-permissions-20261111/README.md)를 유지한다.
 - 장비 착용: 모든 무기·방어구·장신구의 레벨 제한과 가방/상점 요구 레벨 안내를 소스 제거했다. [기존 보유/이관·회귀·미게시](../evidence/equipment-level-free-20261111/README.md).
 - 상위 난이도: Hard/Insane/Hell 레벨 제한 제거를 소스 반영했다. [솔로/파티/재접속 회귀·미게시](../evidence/difficulty-level-free-20261111/README.md).
 - 영웅 VFX: 0.104.25에서 실제 꺾인 경로에 붙는 번개 분기·지면에서 자라는 냉기 결정·본체/잔광이 함께 내려오는 우박/화살비를 보강했다. [9기술 전후·128기술 회귀/미게시·남은 수용](../evidence/roblox-element-motion-20261113/README.md). 이전 [검기·화염·열린 충격파](../evidence/roblox-rpg-vfx-20261113/README.md)와 원소별 형상/금빛 성속성/전용 바람을 유지한다. [미술 기준](element-vfx.md), [무료 원천/권한](../evidence/curated-vfx-20261112/README.md).
+- VFX 미술 리뷰: 0.104.25 고정 기준 영웅128기술·몬스터146공격·공통55효과군의 목록을 검토했다. 영웅22개 개선/106개 유지 후보, 공통 원소 명중/준비광과 방향·예고 표현을 우선 정리하며 전체 미술 수용은 보류한다. [아트3인 독립 판정·시각/소스 범위·증거·다음 담당](../evidence/vfx-art-review-20261113/README.md).
 - 엘프 발사: 0.103.11에서 기본 공격의 예상 발사 시간만으로 화살을 숨기던 모션을 서버의 해당 공격/발사체 확인에 연결했다. [재현·피해/속도 회귀·기존 종합 검사 한계](../evidence/elf-confirmed-release-20261111/README.md).
 - 맵 접지·충돌: 0.103.10에서 5에픽 건축 기초·에린 앞 큰 나무 충돌을 보강하고 공중 폭포/천막을 제거했다. 스토리3 복귀 봉쇄를 옮기고 빈 장식 케이지를 실제 NPC 구출/문 열림/호위/저장 복원에 연결했다. [엔진 검증·미게시·남은 수용](../evidence/architecture-grounding-20261111/README.md).
 - 맵 미술: Deepwood 조감도12장과 Blender MCP 직접 조형10종을 기준으로10구역의 전용 장소 구성·주/귀환 길 마감·접근 시야·옛 절벽 접지·지역 안개를 개선했다. [구현·후보/고정 빌드 검증·실제 화면·미게시/남은 수용](../evidence/deepwood-concept-map-20261112/README.md). 최근 DW-03 거목 메시 수정만 사용자 요청으로 철회하고 직전 구성을 복구했다. [복구 기준·검증·미게시](../evidence/deepwood-map-restore-20261113/README.md). 기존 [44지역 생활 구성](../evidence/story-map-composition-20261112/README.md)과 [TD 원경/환경 키트](../evidence/epic-environment-20261111/README.md)를 유지한다.
