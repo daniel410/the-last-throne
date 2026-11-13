@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "e1b87d534e538cccba389e81ae04cd924a200239",
+  "buildVersion": "0.105.0",
+  "files": {
+    "src/client/DeepwoodGates.luau": "0aa97582a11e95624f3586ae64b5b86f760b20d497c0ccba453cb3a4047107cb",
+    "src/server/Story/DeepwoodService.luau": "3104541f1269b19f7037290940231817803235065b60efa5bf0a8622474710fa",
+    "src/server/World/CampaignWorld.luau": "801dd07c3932307cb34dc844bec16f6e5419ad7bbd05ddbe367fdf8765491931",
+    "src/server/World/EpicWorldArt.luau": "93a5719ffa6c9081535a7e879df8922abc8606d3eeb9c48b5e878f3ae3803fd7",
+    "src/server/init.server.luau": "1168138bfb2504366eaf2206069d8a963e824d981f8b57c94b3f6381b385c3ec",
+    "src/shared/CampaignContent.luau": "32b2c93d34f8dc7b06f7d8114846ba99417702064e7a0c9d0d52d92a47bd6169",
+    "src/shared/CampaignNavigationRoute.luau": "454618527253af96ccb6b18102abb68cc08e83527225e372bceddadf7c08dc88",
+    "src/shared/CampaignOverland.luau": "5e8754d3cc1b9d669690ee711b2a6cf8a4d40f1ce2d6bb7bdf45b7d540ccf12b",
+    "tests/campaign-combat-routes.spec.lua": "8cc7fe31c48b9783888199a3e26a8d0f3d74843abbacd649cb9bdeeb84c69e21",
+    "tests/campaign-navigation-route.spec.lua": "9aa288db913918a2aeb8d97979e24bcff1ef7dde3b223b9853297fe65ae12cc1",
+    "tests/epic-map-navigation.spec.lua": "6f5eef37acb9ceda0231275e123a2e882d29bf03f3587b1532e93dfcc982dd6f",
+    "tests/epic-overland-native.luau": "d181e816d5298c37f00a99892977724269e112b1bd1176b0d14f82314542f390",
+    "tests/epic-overland-service-native.luau": "6c487c3dd4b97806796f812ad25d8a5e71710e5e6db5139de10f7b9b80ee7af3",
+    "tests/story-obstacles-travel-native.luau": "8025a40ee2ce36cba78d41c4d7bc14b968005e5aad7d56f5494fca14ac849164",
+    "tools/prepare-epic-overland-native.py": "e1be0db79fccf3a3c64ae5b30e3d3060f08986cb1c42421822b276ea13dcdcb2"
+  },
+  "mode": "fixed: compares game sources before require; no injection",
+  "command": "python3 tools/prepare-epic-overland-native.py --fixed; run-in-roblox --place builds/0.105.0/TheLastThrone-0.105.0.rbxlx --script /tmp/tlt-epic-overland-native.luau"
+}
