@@ -1,24 +1,50 @@
 {
-  "baselineCommit": "43bb0ed2835548144f0aed1f0df3683ee0d449f2",
+  "baselineCommit": "4f3be92876a7983a4206e49b6a25da120dbc1fa3",
+  "scope": "Only recent elder-grove integration reverted; previous concept architecture, paths and atmosphere retained",
   "files": [
     {
       "path": "src/client/DeepwoodAtmosphere.luau",
-      "sha256": "f5bbd2811d0c02a0042ec57df74b16a31cda6b39f1f91b51316ea6b336dcf802",
+      "sha256": "ff120ee4d0ecfa4e46ebcaf3d20fff3cfd0f502b344f5e5aa4f3290551b1b1ef",
       "baselineExact": true
     },
     {
       "path": "src/server/World/CampaignWorld.luau",
-      "sha256": "f81fec406ec398df142da59deb27a44c1050a9ae449e93325b2f0aa98fad40f7",
+      "sha256": "c4ef655ddc11b5013b606c7b265cf86322b31324f59846990989dc15eb508616",
       "baselineExact": true
     },
     {
       "path": "src/server/World/EpicWorldArt.luau",
-      "sha256": "a9e8ca444f421b06fcdf66b9cba89166fb568dcd8b4bbf11c5bb0d4d1618d939",
+      "sha256": "3deb890906633e13763b28ca59f00d4cd85207a9146e370a1f46ba976d2210d4",
       "baselineExact": true
     },
     {
       "path": "src/server/World/CampaignSceneryCollision.luau",
       "sha256": "fb0e2d34e089c0e12ac3a9553863ee3750eea4ac840ba87d8c88eec3b9548758",
+      "baselineExact": true
+    },
+    {
+      "path": "src/server/World/DeepwoodArchitecture.luau",
+      "sha256": "404cbb915b4d9827b5b9943fc183b45cd0c0ae6b7c70adf91e3c8748ff3aca7e",
+      "baselineExact": true
+    },
+    {
+      "path": "src/server/World/DeepwoodArchitectureTemplates.luau",
+      "sha256": "e5554eb8526747616821ea6de038b527e5930ae06f7292557e976be032beff05",
+      "baselineExact": true
+    },
+    {
+      "path": "src/server/World/DeepwoodConceptArt.luau",
+      "sha256": "7779d5dbc036355cb829f06cef91d7e3c776aec8694ba9c11002028c6adfafdd",
+      "baselineExact": true
+    },
+    {
+      "path": "tests/deepwood-concept-art-native.luau",
+      "sha256": "6619e8669b9a785566236825e9b9f2393fcd82c3f7354fde4ac51a6aa9c7e59d",
+      "baselineExact": true
+    },
+    {
+      "path": "tools/prepare-deepwood-concept-native.py",
+      "sha256": "9c4bc114ea281fbab0495297c42c0e40c67686ab4a3a2cd5b5931cea02b5a410",
       "baselineExact": true
     },
     {
@@ -32,6 +58,5 @@
       "baselineExact": true
     }
   ],
-  "runtimeReferencesToRemovedModules": 0,
   "published": false
 }
