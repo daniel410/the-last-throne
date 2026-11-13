@@ -1,0 +1,106 @@
+{
+  "build": "0.105.1",
+  "elf": {
+    "maxFacingDegrees": 0,
+    "pass": true,
+    "class": "elf",
+    "frames": 225,
+    "ended": 1794606876.475274,
+    "autoRotateAfter": true,
+    "maxFlightYawDegrees": 0.019782341029446364,
+    "events": [
+      {
+        "at": 1794606870.258269,
+        "started": 1794606869.442397,
+        "release": "1|1794606869.442397|1794606870.226144|1",
+        "seq": 1,
+        "aim": "1|0.000000|0.000000|-1.000000"
+      },
+      {
+        "at": 1794606871.624909,
+        "started": 1794606871.142357,
+        "release": "2|1794606871.142357|1794606871.592672|2",
+        "skill": "elf.common.aimed",
+        "seq": 2,
+        "aim": "2|0.207842|0.000000|-0.978163"
+      },
+      {
+        "at": 1794606873.141559,
+        "started": 1794606872.859153,
+        "release": "3|1794606872.859153|1794606873.109109|3",
+        "skill": "elf.common.rapid",
+        "seq": 3,
+        "aim": "3|-0.027879|0.000000|-0.999611"
+      },
+      {
+        "at": 1794606873.324987,
+        "started": 1794606872.859153,
+        "release": "3|1794606872.859153|1794606873.292600|4",
+        "skill": "elf.common.rapid",
+        "seq": 3,
+        "aim": "3|-0.027879|0.000000|-0.999611"
+      },
+      {
+        "at": 1794606873.491425,
+        "started": 1794606872.859153,
+        "release": "3|1794606872.859153|1794606873.459234|5",
+        "skill": "elf.common.rapid",
+        "seq": 3,
+        "aim": "3|-0.027879|0.000000|-0.999611"
+      },
+      {
+        "at": 1794606874.908028,
+        "started": 1794606874.575596,
+        "release": "4|1794606874.575596|1794606874.875771|6",
+        "skill": "elf.common.multi",
+        "seq": 4,
+        "aim": "4|0.157048|0.000000|-0.987591"
+      }
+    ],
+    "finalState": "Idle",
+    "started": 1794606869.411822,
+    "nockedAfterRelease": 0,
+    "movementDistance": 25.68303453449198,
+    "projectileFrames": 15
+  },
+  "mage": {
+    "maxFacingDegrees": 0,
+    "pass": true,
+    "class": "mage",
+    "frames": 164,
+    "ended": 1794606838.576577,
+    "autoRotateAfter": true,
+    "maxFlightYawDegrees": 0.019782341029446364,
+    "events": [
+      {
+        "at": 1794606833.760112,
+        "started": 1794606833.260669,
+        "skill": "mage.common.mana_bolt",
+        "seq": 1,
+        "aim": "1|0.000000|0.000000|-1.000000"
+      },
+      {
+        "at": 1794606835.326347,
+        "started": 1794606834.960417,
+        "skill": "mage.common.water_ball",
+        "seq": 2,
+        "aim": "2|0.207842|0.000000|-0.978163"
+      },
+      {
+        "at": 1794606837.109688,
+        "started": 1794606836.676966,
+        "skill": "mage.common.gravity",
+        "seq": 3,
+        "aim": "3|-0.031849|0.000000|-0.999493"
+      }
+    ],
+    "finalState": "Idle",
+    "started": 1794606833.237657,
+    "nockedAfterRelease": 0,
+    "movementDistance": 18.916892848050338,
+    "projectileFrames": 25
+  },
+  "fanLanesExcludedFromSingleRayYaw": true,
+  "sessionOnly": true,
+  "published": false
+}
