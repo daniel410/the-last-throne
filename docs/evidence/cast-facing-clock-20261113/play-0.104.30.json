@@ -1,0 +1,81 @@
+{
+  "elf": {
+    "started": 1794606291.641581,
+    "class": "elf",
+    "frames": 89,
+    "ended": 1794606300.927835,
+    "releases": [
+      {
+        "received": 1794606292.476465,
+        "publicStart": 1794606291.660453,
+        "packetStart": 1794606291.660453,
+        "seq": 1,
+        "packetRelease": 1794606292.444476
+      },
+      {
+        "received": 1794606293.976447,
+        "publicStart": 1794606293.160626,
+        "packetStart": 1794606293.160626,
+        "seq": 2,
+        "packetRelease": 1794606293.944505
+      },
+      {
+        "received": 1794606295.493054,
+        "publicStart": 1794606294.677735,
+        "packetStart": 1794606294.677735,
+        "seq": 3,
+        "packetRelease": 1794606295.4611
+      },
+      {
+        "received": 1794606296.677125,
+        "publicStart": 1794606296.193565,
+        "packetStart": 1794606296.193565,
+        "seq": 4,
+        "packetRelease": 1794606296.644504
+      },
+      {
+        "received": 1794606297.993506,
+        "publicStart": 1794606297.710548,
+        "packetStart": 1794606297.710548,
+        "seq": 5,
+        "packetRelease": 1794606297.960986
+      },
+      {
+        "received": 1794606298.176386,
+        "publicStart": 1794606297.710548,
+        "packetStart": 1794606297.710548,
+        "seq": 5,
+        "packetRelease": 1794606298.144346
+      },
+      {
+        "received": 1794606298.342939,
+        "publicStart": 1794606297.710548,
+        "packetStart": 1794606297.710548,
+        "seq": 5,
+        "packetRelease": 1794606298.311816
+      },
+      {
+        "received": 1794606299.559523,
+        "publicStart": 1794606299.226912,
+        "packetStart": 1794606299.226912,
+        "seq": 6,
+        "packetRelease": 1794606299.527584
+      }
+    ],
+    "autoRotateAfter": true,
+    "finalState": "Idle",
+    "nockedAfterRelease": 0,
+    "maxFacingDegrees": 0
+  },
+  "mage": {
+    "class": "mage",
+    "frames": 40,
+    "maxFacingDegrees": 0,
+    "maxFlightYawDegrees": 13.027253701766677,
+    "movementDistance": 19.80736995307734,
+    "projectileFrames": 6,
+    "autoRotateAfter": true,
+    "finalState": "Idle",
+    "casts": 3
+  }
+}

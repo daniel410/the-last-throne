@@ -36,13 +36,14 @@ local visual=instrument(Client.K0SwordVisual,'return {origin=weaponOrigin,render
 local model=Instance.new('Model');model:SetAttribute('WeaponClassId','elf');model.Parent=c
 local grip=Instance.new('Part');grip.Name='WeaponGrip';grip.Anchored=true;grip.CanCollide=false;grip.Parent=model
 local tip=Instance.new('Attachment');tip.Name='WeaponTip';tip.Parent=grip
-for _,row in {{-1.5,-3,3.2},{1.5,-3,3.2},{0,-3,2},{-1.5,-2,40}}do
+for _,row in {{-1.5,-3,3.2},{1.5,-3,3.2},{0,-3,2},{-1.5,-2,40},{1.5,-2,14.5,.8},{-1.5,-2,40,.8}}do
  test('Muzzle parallax '..table.concat(row,','),function()
-  grip.CFrame=CFrame.new(root.Position+Vector3.new(row[1],0,row[2]))
+  grip.CFrame=CFrame.new(root.Position+Vector3.new(row[1],row[4]or 0,row[2]))
   local endpoint=root.Position+Vector3.new(0,0,-row[3])
   local from=visual.origin(c,root.Position,endpoint,'elf')
-  check((endpoint-from).Unit:Dot(Vector3.new(0,0,-1))>=math.cos(math.rad(15)),'Socket correction never creates a sideways or backward flight')
-  if row[3]==40 then check((from-tip.WorldPosition).Magnitude<.001,'Distant arrows retain actual bow release socket')end
+  local flight=endpoint-from;local flat=Vector3.new(flight.X,0,flight.Z).Unit
+  check(flat:Dot(Vector3.new(0,0,-1))>.99999,'No lateral socket component remains, including previously allowed small angles')
+  if row[3]==40 then check(math.abs(from.Y-tip.WorldPosition.Y)<.001 and math.abs(from.X-root.Position.X)<.001,'Distant arrows preserve launch height without lateral socket parallax')end
  end)
 end
 local joint=Instance.new('Motor6D');joint.Name='PlayerWeaponJoint';joint.Part0=root;joint.Part1=grip;joint.Parent=grip

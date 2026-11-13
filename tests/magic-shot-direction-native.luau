@@ -39,10 +39,12 @@ local ok,err=xpcall(function()
  local model=Instance.new('Model');model:SetAttribute('WeaponClassId','mage');model.Parent=c
  local grip=Instance.new('Part');grip.Name='WeaponGrip';grip.Anchored=true;grip.Parent=model
  local tip=Instance.new('Attachment');tip.Name='WeaponTip';tip.Parent=grip
- for _,x in {-1.5,1.5}do
-  grip.Position=root.Position+Vector3.new(x,0,-3);local endpoint=root.Position+Vector3.new(0,0,-3.2)
-  check((endpoint-Visual.origin(c,root.Position,endpoint,'mage')).Unit:Dot(Vector3.new(0,0,-1))>.9999,'Near staff tip cannot turn a forward magic projectile sideways')
- end
+ for _,x in {-1.5,1.5}do for _,distance in {3.2,14.5,40}do for _,height in {0,.8}do
+  grip.Position=root.Position+Vector3.new(x,height,-3);local endpoint=root.Position+Vector3.new(0,0,-distance)
+  local first=Visual.origin(c,root.Position,endpoint,'mage');local flight=endpoint-first
+  check(Vector3.new(flight.X,0,flight.Z).Unit:Dot(Vector3.new(0,0,-1))>.99999,'Staff height and small socket parallax never add a sideways magic flight component')
+  check(math.abs(first.Y-tip.WorldPosition.Y)<.001,'Horizontal alignment preserves real staff launch height')
+ end end end
 end,debug.traceback)
 for _,m in copies do m:Destroy()end;folder:Destroy()
 print('MAGIC_SHOT_DIRECTION_NATIVE '..game.HttpService:JSONEncode({pass=ok,checks=checks,error=err}));assert(ok,err)

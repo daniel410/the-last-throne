@@ -831,12 +831,15 @@ local function weaponOrigin(character, snapshotOrigin, endpoint, wantedClass)
 			if position and finite(position.X) and finite(position.Y) and finite(position.Z)
 				and (position - snapshotOrigin).Magnitude <= 8 and (position - endpoint).Magnitude >= 0.05
 				and (endpoint - snapshotOrigin):Dot(endpoint - position) > 0 then
-    -- Project extreme close-range parallax onto the server ray. Re-aiming
-    -- from a lateral bow tip can otherwise turn a forward shot sideways.
+    -- All ranged visuals share the server's horizontal ray, including small
+    -- socket offsets. Keep launch height so arrows/spells still leave at the
+    -- weapon's height without acquiring a sideways flight component.
     if wantedClass=="elf" or wantedClass=="mage" then
-     local shot=endpoint-snapshotOrigin;local direction=shot.Unit
-     if direction:Dot((endpoint-position).Unit)<math.cos(math.rad(15)) then
-      return snapshotOrigin+direction*math.clamp((position-snapshotOrigin):Dot(direction),0,math.max(0,shot.Magnitude-.05))
+     local shot=endpoint-snapshotOrigin;local flat=Vector3.new(shot.X,0,shot.Z)
+     if flat.Magnitude>.05 then
+      local direction=flat.Unit
+      local onRay=snapshotOrigin+direction*math.clamp((position-snapshotOrigin):Dot(direction),0,math.max(0,flat.Magnitude-.05))
+      return Vector3.new(onRay.X,position.Y,onRay.Z)
      end
     end
 				return position
