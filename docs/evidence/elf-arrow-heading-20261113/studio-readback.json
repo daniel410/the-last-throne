@@ -1,0 +1,23 @@
+{
+  "studioFile": "TheLastThrone-0.104.25.rbxlx",
+  "mode": "Edit",
+  "modules": [
+    {
+      "path": "ServerScriptService.Server.Combat.CombatService",
+      "matchedHunks": 5,
+      "compiled": true
+    },
+    {
+      "path": "StarterPlayer.StarterPlayerScripts.Client.K0BowMotion",
+      "matchedHunks": 2,
+      "compiled": true
+    },
+    {
+      "path": "StarterPlayer.StarterPlayerScripts.Client.K0SwordVisual",
+      "matchedHunks": 2,
+      "compiled": true
+    }
+  ],
+  "saved": false,
+  "published": false
+}

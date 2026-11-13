@@ -13,7 +13,7 @@ a = p.parse_args()
 a.output.mkdir(parents=True, exist_ok=True)
 tree = ET.parse(a.place)
 modules = {n.findtext('./Properties/string[@name="Name"]'): (n.findtext('./Properties/ProtectedString[@name="Source"]') or n.findtext('./Properties/string[@name="Source"]')) for n in tree.iter('Item') if n.get('class') == 'ModuleScript'}
-changed = ['src/client/AdvancedSkillVisual.luau', 'src/client/ElfQuiverVisual.luau', 'src/client/EnemyPatternEffects.luau', 'src/client/K0SwordVisual.luau', 'src/client/WindLanceVisual.luau', 'src/server/Cosmetics/ArmorAppearance.luau', 'src/shared/ElfBowGeometry.luau', 'src/shared/FourFamilyArmorVisuals.luau']
+changed = ['src/client/AdvancedSkillVisual.luau', 'src/client/ElfQuiverVisual.luau', 'src/client/EnemyPatternEffects.luau', 'src/client/K0SwordVisual.luau', 'src/client/K0BowMotion.luau', 'src/client/WindLanceVisual.luau', 'src/server/Combat/CombatService.luau', 'src/server/Cosmetics/ArmorAppearance.luau', 'src/shared/ElfBowGeometry.luau', 'src/shared/FourFamilyArmorVisuals.luau']
 for name in changed:
     path = root / name
     assert modules[path.stem] == path.read_text(), f'Build source mismatch: {name}'
@@ -25,7 +25,7 @@ def lua(value):
         return '{' + ','.join(map(lua, value)) + '}'
     return json.dumps(value)
 
-tests = ['projectile-vfx-timing-native', 'dwarf-axe-throw-native', 'four-family-weapons-native', 'armor-fit-native', 'headgear-hair-native', 'four-family-armor-native', 'hero-vfx-native', 'wind-lance-visual-native', 'monster-spell-vfx-native', 'elf-basic-tempo-native', 'mixamo-elf-native', 'k0-elf-bow-native', 'elf-quiver-native', 'elf-straight-shot-native']
+tests = ['projectile-vfx-timing-native', 'dwarf-axe-throw-native', 'four-family-weapons-native', 'armor-fit-native', 'headgear-hair-native', 'four-family-armor-native', 'hero-vfx-native', 'wind-lance-visual-native', 'monster-spell-vfx-native', 'elf-basic-tempo-native', 'mixamo-elf-native', 'k0-elf-bow-native', 'elf-quiver-native', 'elf-straight-shot-native', 'elf-arrow-direction-native', 'elf-confirmed-release-native']
 code = 'assert(game.PlaceId==0 and #game.Players:GetPlayers()==0,"Private empty fixture required")\n'
 inputs = changed + ['tests/' + n + '.luau' for n in tests] + ['tests/elf-bow-golden.luau', 'assets/animations/mixamo-elf-v1/blender-golden.json']
 for name in tests:

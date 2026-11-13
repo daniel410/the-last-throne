@@ -158,6 +158,7 @@ local function clearAction(state)
 	state.character:SetAttribute("K0AttackPhase", "None")
 	state.character:SetAttribute("K0AttackKind", nil)
 	state.character:SetAttribute("K0AttackStartedAt", nil)
+	state.character:SetAttribute("K0BowAim", nil)
 	state.character:SetAttribute("K0SkillId", nil)
 	state.character:SetAttribute("K0Invulnerable", false)
 	state.character:SetAttribute("K0DodgeKind", nil)
@@ -308,6 +309,12 @@ local function targetForMovement(state, targetModel)
 	return targetModel
 end
 
+local function publishBowAim(state,direction)
+ if state.baseClassId=="elf" then
+  state.character:SetAttribute("K0BowAim",string.format("%d|%.6f|%.6f|%.6f",state.attackSeq,direction.X,direction.Y,direction.Z))
+ end
+end
+
 local function startAttack(state, current, targetModel)
 	-- Buffered attacks must recheck the current movement, not an old client aim.
 	targetModel = targetForMovement(state, targetModel)
@@ -356,6 +363,7 @@ local function startAttack(state, current, targetModel)
 		state.savedAutoRotate = state.humanoid.AutoRotate
 		state.humanoid.AutoRotate = false
 	end
+	publishBowAim(state,direction)
 	state.attack = {
 		started = current,
 		definition = Config.scaledBasicAttack(profile.attacks[nextCombo], state.derived and state.derived.attackRate or 1),
@@ -497,6 +505,7 @@ local function startSkill(state, slot, current, targetModel)
 	state.attackSeq = state.attackSeq + 1
 	state.character:SetAttribute("K0AttackSeq", state.attackSeq)
 	if skill.advanced and advancedEffectRemote then advancedEffectRemote:FireAllClients(state.character,skill.id,state.root.Position,advancedCast.center,0,nil,state.attackSeq) end
+	publishBowAim(state,direction)
 	updateFeedback(state, "ActionStarted")
 end
 
@@ -936,12 +945,12 @@ local function applyArrowShot(state, current)
 	local origin, target, nearest = state.root.Position, nil, math.huge
 	local selected = attack.targetModel and enemyStates[attack.targetModel]
 	local selectedEndpoint
-	-- A target moving out of the basic bow's accepted forward sector must not
+	-- A target moving out of the bow's accepted forward sector must not
 	-- turn the released arrow into a sideways/homing shot. Keep the selected
 	-- intent, but release a straight miss along the locked aim for this attack.
-	local offAxisBasic = state.baseClassId == "elf" and not attack.isSkill and selected and enemyAlive(selected)
+	local offAxisBow = state.baseClassId == "elf" and selected and enemyAlive(selected)
 		and facingDot(origin, attack.direction, selected.root.Position) < math.cos(math.rad(attack.definition.angle * .5))
-	if attack.targetModel and not offAxisBasic then
+	if attack.targetModel and not offAxisBow then
 		if selected and enemyAlive(selected) then
 			local position = selected.root.Position
 			local delta = position - origin

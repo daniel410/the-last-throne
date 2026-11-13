@@ -39,6 +39,15 @@ end
 -- Advanced pulses are presentation events confirmed by the server. Sequence
 -- matching prevents late events from changing a later cast of the same skill.
 local function validNumber(v) return type(v)=="number" and v==v and math.abs(v)<math.huge end
+local function lockedAim(character)
+ local packed=character:GetAttribute("K0BowAim")
+ if type(packed)~="string" or #packed>128 then return end
+ local fields=string.split(packed,"|");if #fields~=4 or tonumber(fields[1])~=character:GetAttribute("K0AttackSeq") then return end
+ local x,y,z=tonumber(fields[2]),tonumber(fields[3]),tonumber(fields[4])
+ if not validNumber(x)or not validNumber(y)or not validNumber(z)then return end
+ local direction=Vector3.new(x,0,z)
+ if direction.Magnitude>.01 and direction.Magnitude<2 then return direction.Unit end
+end
 function Motion.confirmPulse(character,skillId,pulse,attackSeq,firedAt,startedAt,now,firstReceived)
  if not character or type(skillId)~="string" or not validNumber(attackSeq) or attackSeq%1~=0
   or not validNumber(pulse) or pulse%1~=0 or not validNumber(now) or not validNumber(firedAt)
@@ -151,7 +160,7 @@ function Motion.forCharacter(character,now)
  end
  local reload=d==Config.BasicAttackProfiles.elf.attacks[1] and rigType~=Enum.HumanoidRigType.R6
  local pose=reload and Motion.sampleBasic(t,rigType) or Motion.sample(t)
- pose.time=t;pose.nocked=t<.8
+ pose.time=t;pose.nocked=t<.8;pose.aimDirection=lockedAim(character)
  -- Hold the hand at anchor on release; move it behind the cheek instead of
  -- chasing the string as it snaps forward. IK weight is sampled, never integrated.
  pose.ikWeight=t<.8 and math.clamp(t/.18,0,1) or math.clamp(1-(t-.8)/.035,0,1)

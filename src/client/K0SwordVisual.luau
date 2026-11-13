@@ -831,6 +831,14 @@ local function weaponOrigin(character, snapshotOrigin, endpoint, wantedClass)
 			if position and finite(position.X) and finite(position.Y) and finite(position.Z)
 				and (position - snapshotOrigin).Magnitude <= 8 and (position - endpoint).Magnitude >= 0.05
 				and (endpoint - snapshotOrigin):Dot(endpoint - position) > 0 then
+    -- Project extreme close-range parallax onto the server ray. Re-aiming
+    -- from a lateral bow tip can otherwise turn a forward shot sideways.
+    if wantedClass=="elf" then
+     local shot=endpoint-snapshotOrigin;local direction=shot.Unit
+     if direction:Dot((endpoint-position).Unit)<math.cos(math.rad(15)) then
+      return snapshotOrigin+direction*math.clamp((position-snapshotOrigin):Dot(direction),0,math.max(0,shot.Magnitude-.05))
+     end
+    end
 				return position
 			end
 		end
@@ -1084,7 +1092,8 @@ function Visual.render(model, phase, combo, dt, attackKind, now)
 		local root=character:FindFirstChild("HumanoidRootPart")
 		if root then
 			local basis=(joint.Part0.CFrame*joint.C0).Rotation
-			target=basis:Inverse()*root.CFrame.Rotation*CFrame.Angles(math.rad(bowPose.aimPitch or 0),0,math.rad(bowPose.angles.weapon.Z))
+			local heading=bowPose.aimDirection and CFrame.lookAt(Vector3.zero,bowPose.aimDirection) or root.CFrame.Rotation
+			target=basis:Inverse()*heading*CFrame.Angles(math.rad(bowPose.aimPitch or 0),0,math.rad(bowPose.angles.weapon.Z))
 		end
 	end
 	if character and character:GetAttribute("K0State") == "Block" then
