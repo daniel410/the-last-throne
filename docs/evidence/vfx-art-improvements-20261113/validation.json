@@ -1,0 +1,74 @@
+{
+  "sourceCommit": "c1b578d470a26536bd1a22895f265b91d3c16669",
+  "version": "0.104.28",
+  "buildSha256": "a22deaffd6179b419a1075e6a6166cdf6629367816ea97027732733dd77d311d",
+  "matchingProductionModules": [
+    {
+      "file": "src/shared/CombatVFXPalette.luau",
+      "sha256": "c0278e987dd330895eccdc7783c18f1dd36b3c65b587b64cc426bde57161bb5f"
+    },
+    {
+      "file": "src/shared/EnemySpellProfiles.luau",
+      "sha256": "b8e3e9074968996f2b69b6514431f45de7f6e407b493db47ecaf6eff1352ae73"
+    },
+    {
+      "file": "src/client/SkillVFXProfiles.luau",
+      "sha256": "901c36a098a9f6ab3d6683f4477ebf602b374567f6c2066a07bd70ef44682c70"
+    },
+    {
+      "file": "src/client/HeroVFX.luau",
+      "sha256": "912754dbef9894916f39b988c0ad1fc4aa018f19fbf27a12d599f5fec7b97c18"
+    },
+    {
+      "file": "src/client/HeroVFXSurfaces.luau",
+      "sha256": "5287a8eb273c7dcefcac5b0da310e36894d9d41cc926c479cad921c345db38f0"
+    },
+    {
+      "file": "src/client/AdvancedSkillVisual.luau",
+      "sha256": "84a0b60bf3c0e6f8ba7b1d263abf1f7a361c10295caa105bf57ca5d60ee1e797"
+    },
+    {
+      "file": "src/client/K0HitEffects.luau",
+      "sha256": "af4bf51b18c29f1fc29fcbd9ffc68a6d1de87095b39a5be2bca88fffc051c582"
+    },
+    {
+      "file": "src/client/K0MageFocus.luau",
+      "sha256": "9f2241317c9a802177dd76634f5504e510ccb54cf0cc7137bc749effa63b85a4"
+    },
+    {
+      "file": "src/client/EnemyPatternEffects.luau",
+      "sha256": "5a75ec93aea51975709b49cdd0cdf179b99cbef1f66a287621dc2a53294a7e37"
+    },
+    {
+      "file": "src/client/EnemySpellVFX.luau",
+      "sha256": "d1f0570ec774b9e5cd2d12e5ca841a346f6a87759f37123b943dd468b752ffd8"
+    },
+    {
+      "file": "src/client/EnemySpellArt.luau",
+      "sha256": "14880e11545b17c98a23fdb0f60ce730b4bc07e4cb1eb191f4ff68bbf09a4797"
+    },
+    {
+      "file": "src/client/SelenePresentation.luau",
+      "sha256": "ee70d204748a27393164e9434438705a4e584f130a7cce24297c410b7506ee43"
+    },
+    {
+      "file": "src/client/CuratedVFX.luau",
+      "sha256": "a5e05643b01a7d4ac2f125258d2c4241187b9e09b34a614d50a15d7eff32316b"
+    },
+    {
+      "file": "src/client/PixelFX.luau",
+      "sha256": "2de48d6e4908c487aa8a08e256aa85872f7b68b8a4dbf59f1a8634f648bf0cce"
+    },
+    {
+      "file": "src/client/DeepwoodNavigation.luau",
+      "sha256": "041e66ba7e66a12a086eebdc3e9640405247e72847c3118d85073c904ce120c8"
+    }
+  ],
+  "nativeSuites": 17,
+  "nativeChecks": 95423,
+  "cpuChecks": 16456,
+  "navigation": "See nav.log",
+  "publishedClient": "not tested",
+  "realDevice": "not tested",
+  "userArtAcceptance": "pending"
+}

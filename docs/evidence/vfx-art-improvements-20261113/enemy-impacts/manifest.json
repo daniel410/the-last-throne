@@ -1,0 +1,502 @@
+[
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 1,
+    "normalized": true,
+    "signature": "frost/100,220,255/false",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "AncientGlacierKing.1",
+    "width": 640,
+    "motif": "glacier",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "frost",
+    "kind": "AncientGlacierKing",
+    "shape": "projectile",
+    "height": 437,
+    "file": "001-AncientGlacierKing.png",
+    "sha256": "f7af4db9df16c748cb4763e4f83c20250456c16b5324ea1eb31032a725f18428"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 2,
+    "normalized": true,
+    "signature": "frost/100,220,255/true",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "AncientGlacierKing.4",
+    "width": 640,
+    "motif": "glacier",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "frost",
+    "kind": "AncientGlacierKing",
+    "shape": "line",
+    "height": 437,
+    "file": "002-AncientGlacierKing.png",
+    "sha256": "9d25482e9b436ee1a8fc69614ee564789fbc65587056488d3f8f7cd38a7bc864"
+  },
+  {
+    "ornament": "branch",
+    "encoding": "zstd-hex",
+    "index": 3,
+    "normalized": true,
+    "signature": "earth/255,214,144/shared",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "AncientHollowbark.1",
+    "width": 640,
+    "motif": "root",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "earth",
+    "kind": "AncientHollowbark",
+    "shape": "cone",
+    "height": 437,
+    "file": "003-AncientHollowbark.png",
+    "sha256": "0bc187c02daf376e3b4c5213aa2f68444cfc7689666075e6495e5484c77a759d"
+  },
+  {
+    "ornament": "rubble",
+    "encoding": "zstd-hex",
+    "index": 4,
+    "normalized": true,
+    "signature": "fire/255,112,36/false",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "CalderaTitan.1",
+    "width": 640,
+    "motif": "meteor",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "fire",
+    "kind": "CalderaTitan",
+    "shape": "projectile",
+    "height": 437,
+    "file": "004-CalderaTitan.png",
+    "sha256": "b94be3fdd9dc834dca27c9bd9a86384946ed298c82ce4c20134fe7cead1b3ca4"
+  },
+  {
+    "ornament": "rubble",
+    "encoding": "zstd-hex",
+    "index": 5,
+    "normalized": true,
+    "signature": "fire/255,112,36/true",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "CalderaTitan.4",
+    "width": 640,
+    "motif": "meteor",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "fire",
+    "kind": "CalderaTitan",
+    "shape": "line",
+    "height": 437,
+    "file": "005-CalderaTitan.png",
+    "sha256": "711630f7d6e513184763558841a47112f823dcebf516796463ef98a239f9d275"
+  },
+  {
+    "ornament": "shield",
+    "encoding": "zstd-hex",
+    "index": 6,
+    "normalized": true,
+    "signature": "shadow/193,112,255/false",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "DeathKnight.1",
+    "width": 640,
+    "motif": "scythe",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "shadow",
+    "kind": "DeathKnight",
+    "shape": "line",
+    "height": 437,
+    "file": "006-DeathKnight.png",
+    "sha256": "b5d83a45e81a02fe44d13bea8d564e9954f7f3b9bb732066aa9032ec7dfcf87b"
+  },
+  {
+    "ornament": "shield",
+    "encoding": "zstd-hex",
+    "index": 7,
+    "normalized": true,
+    "signature": "shadow/193,112,255/true",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "DreadCommander.4",
+    "width": 640,
+    "motif": "banner",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "shadow",
+    "kind": "DreadCommander",
+    "shape": "cone",
+    "height": 437,
+    "file": "007-DreadCommander.png",
+    "sha256": "578572676b0d1fabcf05d6f07e49bb62b85bd69cd34ddeb950a8e3fd11486499"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 8,
+    "normalized": true,
+    "signature": "physical/255,214,144/shared",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "EnragedWarlord.1",
+    "width": 640,
+    "motif": "cleaver",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "physical",
+    "kind": "EnragedWarlord",
+    "shape": "cone",
+    "height": 437,
+    "file": "008-EnragedWarlord.png",
+    "sha256": "7e8b6ae2d6407d43571581cda2904936ba2bc0495fd14b0993bb490723758b4d"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 9,
+    "normalized": true,
+    "signature": "fire/255,214,144/true",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "GoblinKing.4",
+    "width": 640,
+    "motif": "bomb",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "fire",
+    "kind": "GoblinKing",
+    "shape": "trail",
+    "height": 437,
+    "file": "009-GoblinKing.png",
+    "sha256": "5adbbd356d08b0585d8cf2759335ec3dd9f7b30ffaa50d2ab1c008d40d0e14b3"
+  },
+  {
+    "ornament": "rune",
+    "encoding": "zstd-hex",
+    "index": 10,
+    "normalized": true,
+    "signature": "arcane/185,105,255/false",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "KingShaman.1",
+    "width": 640,
+    "motif": "totem",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "arcane",
+    "kind": "KingShaman",
+    "shape": "projectile",
+    "height": 437,
+    "file": "010-KingShaman.png",
+    "sha256": "ab0134c665878d3129f77726b4e30160216534ae35348a71378ddac577a8583a"
+  },
+  {
+    "ornament": "rune",
+    "encoding": "zstd-hex",
+    "index": 11,
+    "normalized": true,
+    "signature": "arcane/185,105,255/true",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "KingShaman.4",
+    "width": 640,
+    "motif": "totem",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "arcane",
+    "kind": "KingShaman",
+    "shape": "ring",
+    "height": 437,
+    "file": "011-KingShaman.png",
+    "sha256": "51a08ecfbf09d819706bca76bad83aa77750cee4d2ae4ea036c09ca443fbbf7b"
+  },
+  {
+    "ornament": "rune",
+    "encoding": "zstd-hex",
+    "index": 12,
+    "normalized": true,
+    "signature": "soul/100,245,207/false",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "Lich.1",
+    "width": 640,
+    "motif": "soul",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "soul",
+    "kind": "Lich",
+    "shape": "projectile",
+    "height": 437,
+    "file": "012-Lich.png",
+    "sha256": "319bb2a47c90314a07a7aa3bd32e755297758a1443cee4bbbae33279ea03139a"
+  },
+  {
+    "ornament": "rune",
+    "encoding": "zstd-hex",
+    "index": 13,
+    "normalized": true,
+    "signature": "soul/100,245,207/true",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "Lich.4",
+    "width": 640,
+    "motif": "soul",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "soul",
+    "kind": "Lich",
+    "shape": "line",
+    "height": 437,
+    "file": "013-Lich.png",
+    "sha256": "22cc850986fafaacb35ea4b52a2fc22179afdcfbf4d6c5b2ea2d7b275cc1cc7c"
+  },
+  {
+    "ornament": "rune",
+    "encoding": "zstd-hex",
+    "index": 14,
+    "normalized": true,
+    "signature": "earth/225,192,123/shared",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "Mummy.1",
+    "width": 640,
+    "motif": "sand",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "earth",
+    "kind": "Mummy",
+    "shape": "projectile",
+    "height": 437,
+    "file": "014-Mummy.png",
+    "sha256": "9ebdd08c2ff286ccb6b99db3f1579fb4ae18719a720ccd40606c80dd18accf84"
+  },
+  {
+    "ornament": "spindle",
+    "encoding": "zstd-hex",
+    "index": 15,
+    "normalized": true,
+    "signature": "web/230,224,255/shared",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "Silkweaver.1",
+    "width": 640,
+    "motif": "web",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "web",
+    "kind": "Silkweaver",
+    "shape": "projectile",
+    "height": 437,
+    "file": "015-Silkweaver.png",
+    "sha256": "5a1e7ebfd1ddf785d5cb8b70cef16f88cf381677f7d35b851783de278f912d22"
+  },
+  {
+    "ornament": "droplet",
+    "encoding": "zstd-hex",
+    "index": 16,
+    "normalized": true,
+    "signature": "venom/255,214,144/false",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "Slime.1",
+    "width": 640,
+    "motif": "gel",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "venom",
+    "kind": "Slime",
+    "shape": "circle",
+    "height": 437,
+    "file": "016-Slime.png",
+    "sha256": "98fceb0e14301395b2929acd6f6d0d910e38cc2738307b360a3ecb9f749f6577"
+  },
+  {
+    "ornament": "fang",
+    "encoding": "zstd-hex",
+    "index": 17,
+    "normalized": true,
+    "signature": "venom/155,237,65/false",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "VenomcoilCentipede.1",
+    "width": 640,
+    "motif": "venom",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "venom",
+    "kind": "VenomcoilCentipede",
+    "shape": "line",
+    "height": 437,
+    "file": "017-VenomcoilCentipede.png",
+    "sha256": "57ac968922c0c3aa33810bddece89766a18b545175f2f5a993feefa4537f5b23"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 18,
+    "normalized": true,
+    "signature": "venom/155,237,65/true",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "VenomcoilKing.4",
+    "width": 640,
+    "motif": "venom",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "venom",
+    "kind": "VenomcoilKing",
+    "shape": "trail",
+    "height": 437,
+    "file": "018-VenomcoilKing.png",
+    "sha256": "dc54d7aa4c72e48b794e2498643b95f901d86f4285787fdb2d53fb24249c4515"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 19,
+    "normalized": true,
+    "signature": "shadow/255,214,144/false",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "Warlord.1",
+    "width": 640,
+    "motif": "banner",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "shadow",
+    "kind": "Warlord",
+    "shape": "cone",
+    "height": 437,
+    "file": "019-Warlord.png",
+    "sha256": "648929a097b7fbbc37d20493f8903c3832572a6c687d33cfed8ebf6f62ac217c"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 20,
+    "normalized": true,
+    "signature": "shadow/255,214,144/true",
+    "stages": [
+      "impact"
+    ],
+    "isImpactSupplement": true,
+    "isSpeciesBase": false,
+    "id": "Warlord.4",
+    "width": 640,
+    "motif": "banner",
+    "runtimeCharge": false,
+    "scales": [
+      1.4
+    ],
+    "family": "shadow",
+    "kind": "Warlord",
+    "shape": "line",
+    "height": 437,
+    "file": "020-Warlord.png",
+    "sha256": "2ae9f5a333a236489fcdf4f0df55b2198b0120f7291b717d0173aab1a4ddd1af"
+  }
+]

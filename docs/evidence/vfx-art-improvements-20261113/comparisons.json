@@ -1,0 +1,409 @@
+[
+  {
+    "file": "hero-comparison-01.png",
+    "sha256": "9ba9a8bbb64c91c7fe649cb16a43f52fae9c0698fca12bfaf257f3ec2fa7e717",
+    "ids": [
+      "knight.steel_knight.steel_sweep",
+      "knight.steel_knight.warcry_assault",
+      "knight.steel_knight.unyielding_front",
+      "knight.paladin.radiant_sweep",
+      "knight.paladin.oath_challenge",
+      "knight.paladin.oath_of_dawn"
+    ]
+  },
+  {
+    "file": "hero-comparison-02.png",
+    "sha256": "265d5cf632b180ed6c972beb29839e9cc7ab2aeda0cc91fd4265329c7c71d704",
+    "ids": [
+      "knight_crescent_cut",
+      "dwarf.common.overhead",
+      "dwarf.iron_axe.armor_splitter",
+      "dwarf.iron_axe.mountain_sweep",
+      "dwarf.iron_axe.crag_cleave",
+      "dwarf.iron_axe.stonebound_leap"
+    ]
+  },
+  {
+    "file": "hero-comparison-03.png",
+    "sha256": "7a31b1af9ec6ff4e6628c8523d47a0fcce3091e17acfe4eaa7c378767976070a",
+    "ids": [
+      "dwarf.iron_axe.mountain_strike",
+      "dwarf.iron_axe.shatter_blow",
+      "dwarf.iron_axe.tremor_guard",
+      "dwarf.iron_axe.mountain_collapse",
+      "dwarf.gunner.shell_burst",
+      "dwarf.gunner.scatter_shot"
+    ]
+  },
+  {
+    "file": "hero-comparison-04.png",
+    "sha256": "dd851482f43cf17409fb0153e108c9f2a4538785e00233accb776e317b144b1b",
+    "ids": [
+      "dwarf.gunner.field_mortar",
+      "dwarf.gunner.siege_pattern",
+      "dwarf.gunner.siege_barrage",
+      "dwarf_hooking_chop",
+      "dwarf_low_sweep",
+      "elf.marksman.grand_volley"
+    ]
+  },
+  {
+    "file": "hero-comparison-05.png",
+    "sha256": "ca61d768ce046f5d265695cbf004793dd56126579b8ea3d88518c41a42b05b39",
+    "ids": [
+      "elf.magic_archer.vine_trap",
+      "elf.magic_archer.rooting_fan",
+      "elf.magic_archer.vine_burst",
+      "elf.magic_archer.spirit_arrowfall",
+      "mage.pyro.steam_burst",
+      "mage.pyro.cinder_ring"
+    ]
+  },
+  {
+    "file": "hero-comparison-06.png",
+    "sha256": "86cd5727acaad78e5a21d992d09fdaf42df7cb17134a2c42f48e527d951f36ec",
+    "ids": [
+      "mage.pyro.ember_step",
+      "mage.pyro.searing_ward",
+      "mage.pyro.lava_eruption",
+      "mage.pyro.caldera_s_judgment",
+      "mage.cryo.eternal_tempest"
+    ]
+  },
+  {
+    "file": "common-comparison-01.png",
+    "sha256": "9414391dd675dbc8207bec8cafdae1b83f6e687c88a5ca1c346990c5a14d37dd",
+    "ids": [
+      "basic_knight",
+      "basic_dwarf",
+      "basic_elf",
+      "basic_mage",
+      "mage.pyro.ember_lance",
+      "mage.common.water_ball"
+    ]
+  },
+  {
+    "file": "common-comparison-02.png",
+    "sha256": "da9e6081d87b93c3c22c08fd37b8a0bde51695914afe983d48cbcec6ea4306bb",
+    "ids": [
+      "mage.cryo.frost_lance",
+      "mage.cryo.lightning_line",
+      "mage.pyro.stone_lance",
+      "mage.common.gravity",
+      "dwarf.common.overhead",
+      "dwarf.iron_axe.armor_splitter"
+    ]
+  },
+  {
+    "file": "common-comparison-03.png",
+    "sha256": "17bc0f34ee9d184f2eb393d0006d88e423e8c1c18ec412cd1edb7d846e20e6ce",
+    "ids": [
+      "focus_arcane",
+      "focus_water",
+      "focus_wind",
+      "focus_fire",
+      "focus_frost",
+      "focus_earth"
+    ]
+  },
+  {
+    "file": "common-comparison-04.png",
+    "sha256": "14ace837c1067f80a167f55fcda26223c620e393e3b4cce7e5fb7f5206d506b4",
+    "ids": [
+      "focus_lightning",
+      "support_Heal",
+      "support_Protect",
+      "support_Cleanse",
+      "hero_level_up",
+      "trail_knight"
+    ]
+  },
+  {
+    "file": "common-comparison-05.png",
+    "sha256": "31ec6c4482925e6dd01b989af07b843132e61e41ceaedd1d4f9ff8c2e7a1c274",
+    "ids": [
+      "trail_dwarf",
+      "trail_mage",
+      "trail_elf",
+      "selene_Heal",
+      "selene_Protect",
+      "selene_Cleanse"
+    ]
+  },
+  {
+    "file": "common-comparison-06.png",
+    "sha256": "09e87fd4815ea20934d57bd46162c8a8a6aebfeccf6d2a2432a713714b86268f",
+    "ids": [
+      "elf.magic_archer.storm_arrow"
+    ]
+  },
+  {
+    "file": "enemy-comparison-01.png",
+    "sha256": "040828ec207a77027e062ae5b580bfe08ee044e39036bf50d468a008801aee2e",
+    "ids": [
+      "AncientGlacierKing.1",
+      "AncientHollowbark.1",
+      "Barkstalker.1",
+      "CalderaTitan.1",
+      "CalderaTitan.3",
+      "DeathKnight.1"
+    ]
+  },
+  {
+    "file": "enemy-comparison-02.png",
+    "sha256": "c41d4406b3c92c2cee86e2dca6442aac951c04a953618e04e649c435e4f5cc4f",
+    "ids": [
+      "DreadCommander.1",
+      "EnragedWarlord.1",
+      "Ghoul.1",
+      "Gloambat.1",
+      "Goblin.1",
+      "GoblinKing.1"
+    ]
+  },
+  {
+    "file": "enemy-comparison-03.png",
+    "sha256": "eb5373662b4aaa568764d8412b4cdf4288469b378061ecdb92531ae246ddd101",
+    "ids": [
+      "GoblinKing.4",
+      "Golem.1",
+      "Hellhound.1",
+      "HollowbarkSovereign.1",
+      "IceBear.1",
+      "IceElf.1"
+    ]
+  },
+  {
+    "file": "enemy-comparison-04.png",
+    "sha256": "9b63a37c7ae2881040b9ec6cf62474943feb7d6bcb43da86364070f188e2c69f",
+    "ids": [
+      "IceGolem.1",
+      "IceTroll.1",
+      "IceTrollKing.1",
+      "IceTrollKing.3",
+      "IceWolf.1",
+      "Imp.1"
+    ]
+  },
+  {
+    "file": "enemy-comparison-05.png",
+    "sha256": "0d041c25f1eda3657bf84708982578d640090d2dfedbefef686faa339dc04ace",
+    "ids": [
+      "InfernoOverlord.1",
+      "KingIceBear.1",
+      "KingIceGolem.1",
+      "KingOgre.1",
+      "KingShaman.1",
+      "KingShaman.3"
+    ]
+  },
+  {
+    "file": "enemy-comparison-06.png",
+    "sha256": "d22e2bba0b01e57c70b25cee43578d0e8b1cf6d031e7fc4137eb4f36548871ad",
+    "ids": [
+      "KingVolcanoShaman.1",
+      "KingVolcanoShaman.3",
+      "LavaSlime.1",
+      "Lich.1",
+      "LichSovereign.1",
+      "LichSovereign.2"
+    ]
+  },
+  {
+    "file": "enemy-comparison-07.png",
+    "sha256": "74406b0b660f7ddb6ead5e7e0d01699d69d685b4e8cc4a516eec39c5e5e225c1",
+    "ids": [
+      "MagmaGolem.1",
+      "MagmaImp.1",
+      "MagmaWorm.1",
+      "Mummy.1",
+      "Ogre.1",
+      "Orc.1"
+    ]
+  },
+  {
+    "file": "enemy-comparison-08.png",
+    "sha256": "e1630b91e52301e1a3d3c5fb8045ceed7cfcefcb5bd51e40beac6f3ad5ed915e",
+    "ids": [
+      "QueenIceElf.1",
+      "QueenIceElf.4",
+      "Shaman.1",
+      "Silkweaver.1",
+      "Skeleton.1",
+      "SkeletonKnight.1"
+    ]
+  },
+  {
+    "file": "enemy-comparison-09.png",
+    "sha256": "aa0ebbf3a56dad41c301558582904b0b59ef47cb3c46d70d0552c4dc597ca750",
+    "ids": [
+      "Slime.1",
+      "VenomcoilCentipede.1",
+      "VenomcoilKing.1",
+      "Veyr.1",
+      "Veyr.4",
+      "VolcanoShaman.1"
+    ]
+  },
+  {
+    "file": "enemy-comparison-10.png",
+    "sha256": "0cc4888ae7087a9897b2a2a1c35b04cead219d13a27ff3fefc40a2d44aa88bb2",
+    "ids": [
+      "Warlord.1",
+      "Webling.1",
+      "WidowQueen.1",
+      "WidowQueen.2",
+      "WidowQueen.3",
+      "Zombie.1"
+    ]
+  },
+  {
+    "file": "enemy-rings-comparison-01.png",
+    "sha256": "3a7a1771c185d55833e490be8322507421bfeb7e74698550dc71f15dea212bac",
+    "ids": [
+      "AncientHollowbark.4",
+      "Golem.2",
+      "HollowbarkSovereign.4",
+      "InfernoOverlord.4",
+      "KingIceBear.4",
+      "KingIceGolem.4"
+    ]
+  },
+  {
+    "file": "enemy-rings-comparison-02.png",
+    "sha256": "94c0ea977fef725d8301408cbdc09b6afa38b7dfdc41f98dee4ce9373cac0c3c",
+    "ids": [
+      "KingOgre.4",
+      "KingShaman.4",
+      "KingVolcanoShaman.4",
+      "LichSovereign.4",
+      "Mummy.2",
+      "Veyr.3"
+    ]
+  },
+  {
+    "file": "enemy-impacts-comparison-01.png",
+    "sha256": "ed17c1b9ec991d7751e5d18ba3a6f445db380fe6196503b5bbfec8d2214d69fd",
+    "ids": [
+      "AncientGlacierKing.1",
+      "AncientGlacierKing.4",
+      "AncientHollowbark.1",
+      "CalderaTitan.1",
+      "CalderaTitan.4",
+      "DeathKnight.1"
+    ]
+  },
+  {
+    "file": "enemy-impacts-comparison-02.png",
+    "sha256": "ffab41eea8f00a49b5c71856a520c1bf1cc141a2c30512f61eb6bb15c7d6565e",
+    "ids": [
+      "DreadCommander.4",
+      "EnragedWarlord.1",
+      "GoblinKing.4",
+      "KingShaman.1",
+      "KingShaman.4",
+      "Lich.1"
+    ]
+  },
+  {
+    "file": "enemy-impacts-comparison-03.png",
+    "sha256": "97e301c1e9016e433f92d16e1798d24b4ac8b59870ba49a908d2dd8a9aff3dec",
+    "ids": [
+      "Lich.4",
+      "Mummy.1",
+      "Silkweaver.1",
+      "Slime.1",
+      "VenomcoilCentipede.1",
+      "VenomcoilKing.4"
+    ]
+  },
+  {
+    "file": "enemy-impacts-comparison-04.png",
+    "sha256": "3d3e16619cabd8596af5a96fce394e000a5acce803b24145b6d9eba24ee8af49",
+    "ids": [
+      "Warlord.1",
+      "Warlord.4"
+    ]
+  },
+  {
+    "file": "warnings-comparison-01.png",
+    "sha256": "351a1fa8eeaf2dd80e63b331468c7fc84face1004f2e52b502a808cbd8659070",
+    "ids": [
+      "KingShaman.1",
+      "Veyr.4",
+      "Goblin.1",
+      "Ghoul.2",
+      "Orc.1",
+      "IceWolf.2"
+    ]
+  },
+  {
+    "file": "warnings-comparison-02.png",
+    "sha256": "96f4d3b9fce08b6a65a517457dafe6ebe1bd87917e77aa7a1ac9311c3dd94116",
+    "ids": [
+      "Slime.1",
+      "Shaman.2",
+      "Veyr.3",
+      "KingShaman.4",
+      "CalderaTitan.2",
+      "LavaSlime.2"
+    ]
+  },
+  {
+    "file": "hero-final-comparison-01.png",
+    "sha256": "c2eb6a69110189f0843d4c68261d6cb11c41b7c1bfc13fdeb0bb12c61385e057",
+    "ids": [
+      "knight.steel_knight.unyielding_front",
+      "knight.paladin.oath_of_dawn",
+      "dwarf.iron_axe.mountain_collapse",
+      "dwarf.gunner.siege_barrage",
+      "elf.marksman.grand_volley",
+      "elf.magic_archer.vine_trap"
+    ]
+  },
+  {
+    "file": "hero-final-comparison-02.png",
+    "sha256": "e5b4c8bf52fbe8a549e59e339313ebd9cbc33226c0e916e9dac1c9fd9a1bb100",
+    "ids": [
+      "elf.magic_archer.rooting_fan",
+      "elf.magic_archer.vine_burst",
+      "elf.magic_archer.spirit_arrowfall",
+      "mage.pyro.caldera_s_judgment",
+      "mage.cryo.eternal_tempest"
+    ]
+  },
+  {
+    "file": "warnings-final-comparison-01.png",
+    "sha256": "60cc714e5e31dbea85ae3e84e2edd396eb8c5928375bd9261d143a0f76f6213d",
+    "ids": [
+      "KingShaman.1",
+      "Veyr.4",
+      "Goblin.1",
+      "Ghoul.2",
+      "Orc.1",
+      "IceWolf.2"
+    ]
+  },
+  {
+    "file": "warnings-final-comparison-02.png",
+    "sha256": "1631d95d44ba3a0031f076946cae534faea3b19df0c70156ad57be96e0f58909",
+    "ids": [
+      "Slime.1",
+      "Shaman.2",
+      "Veyr.3",
+      "KingShaman.4",
+      "CalderaTitan.2",
+      "LavaSlime.2"
+    ]
+  },
+  {
+    "file": "support-final-comparison-01.png",
+    "sha256": "37ffd8bb0d67ffafc8db473d78b3e5f60c74ce0f38bf22cd7629f3ce72d482b7",
+    "ids": [
+      "support_Heal",
+      "support_Protect",
+      "support_Cleanse",
+      "selene_Heal"
+    ]
+  }
+]

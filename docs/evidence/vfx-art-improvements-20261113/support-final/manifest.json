@@ -1,0 +1,38 @@
+[
+  {
+    "index": 20,
+    "id": "support_Heal",
+    "height": 240,
+    "name": "Heal Pixel Accent",
+    "width": 320,
+    "file": "020-Heal_Pixel_Accent.png",
+    "sha256": "f89cecee33c7ae6339cdcfa2df6d69c18d3a708504917b2bd90a669304ecb743"
+  },
+  {
+    "index": 21,
+    "id": "support_Protect",
+    "height": 240,
+    "name": "Protect Pixel Accent",
+    "width": 320,
+    "file": "021-Protect_Pixel_Accent.png",
+    "sha256": "bc63ff1c7af5954e747f42b51217900374e0d31c76442626aec00f7f73be4a4c"
+  },
+  {
+    "index": 22,
+    "id": "support_Cleanse",
+    "height": 240,
+    "name": "Cleanse Pixel Accent",
+    "width": 320,
+    "file": "022-Cleanse_Pixel_Accent.png",
+    "sha256": "94017d6d1a89fac53b1ea348d7f8d3d95e47c401385a4b1f1ce5ef3db6eef235"
+  },
+  {
+    "index": 28,
+    "id": "selene_Heal",
+    "height": 240,
+    "name": "Selene Full Heal",
+    "width": 320,
+    "file": "028-Selene_Full_Heal.png",
+    "sha256": "3cd71b1a3438459cb83e3e61ff9f8531061c791aa0f113feaf79968e9ee0c037"
+  }
+]

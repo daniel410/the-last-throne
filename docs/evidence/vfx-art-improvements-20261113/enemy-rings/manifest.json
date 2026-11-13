@@ -1,0 +1,338 @@
+[
+  {
+    "ornament": "branch",
+    "encoding": "zstd-hex",
+    "index": 1,
+    "isSpeciesBase": false,
+    "id": "AncientHollowbark.4",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": false,
+    "motif": "root",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "earth",
+    "kind": "AncientHollowbark",
+    "shape": "ring",
+    "height": 437,
+    "file": "001-AncientHollowbark.png",
+    "sha256": "e562d7a6adc05c99a72549e363a787f371705d38a26cecb085de2b238ebb2c55"
+  },
+  {
+    "ornament": "core",
+    "encoding": "zstd-hex",
+    "index": 2,
+    "isSpeciesBase": false,
+    "id": "Golem.2",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": false,
+    "motif": "rock",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "earth",
+    "kind": "Golem",
+    "shape": "ring",
+    "height": 437,
+    "file": "002-Golem.png",
+    "sha256": "de8839a701c6dffa843d57d432334aeb04cb8d006907ac5373d4a8e0c8bbdff5"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 3,
+    "isSpeciesBase": false,
+    "id": "HollowbarkSovereign.4",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": false,
+    "motif": "root",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "earth",
+    "kind": "HollowbarkSovereign",
+    "shape": "ring",
+    "height": 437,
+    "file": "003-HollowbarkSovereign.png",
+    "sha256": "54a57476ecc94a189cabd8ad1ab59bf2cfb8ccfac091be94b69050bc49854828"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 4,
+    "isSpeciesBase": false,
+    "id": "InfernoOverlord.4",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": true,
+    "motif": "inferno",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "fire",
+    "kind": "InfernoOverlord",
+    "shape": "ring",
+    "height": 437,
+    "file": "004-InfernoOverlord.png",
+    "sha256": "418bff0bb4442ad8a966eeb057ee300b2dc15d13ac7ae172d6f59a6de4b42694"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 5,
+    "isSpeciesBase": false,
+    "id": "KingIceBear.4",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": true,
+    "motif": "snow",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "frost",
+    "kind": "KingIceBear",
+    "shape": "ring",
+    "height": 437,
+    "file": "005-KingIceBear.png",
+    "sha256": "3e014275fa913a58316accb94ca0e198b34cece3dd8838b02a2554444d38c479"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 6,
+    "isSpeciesBase": false,
+    "id": "KingIceGolem.4",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": true,
+    "motif": "crystal",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "frost",
+    "kind": "KingIceGolem",
+    "shape": "ring",
+    "height": 437,
+    "file": "006-KingIceGolem.png",
+    "sha256": "19e1c3a83f79c6c4e4ccabf64543b61a0054a3cfb69d5957342b302805ac909a"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 7,
+    "isSpeciesBase": false,
+    "id": "KingOgre.4",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": false,
+    "motif": "rock",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "earth",
+    "kind": "KingOgre",
+    "shape": "ring",
+    "height": 437,
+    "file": "007-KingOgre.png",
+    "sha256": "289e43363bce88e6eeffd18ceedd917998d99993a04a4ba13ad5a2b0d764d8f4"
+  },
+  {
+    "ornament": "rune",
+    "encoding": "zstd-hex",
+    "index": 8,
+    "isSpeciesBase": false,
+    "id": "KingShaman.4",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": true,
+    "motif": "totem",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "arcane",
+    "kind": "KingShaman",
+    "shape": "ring",
+    "height": 437,
+    "file": "008-KingShaman.png",
+    "sha256": "45934607244729ae7ecd81594b0398f438cfc2ecf5782341f7ec270345cfaade"
+  },
+  {
+    "ornament": "rune",
+    "encoding": "zstd-hex",
+    "index": 9,
+    "isSpeciesBase": false,
+    "id": "KingVolcanoShaman.4",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": true,
+    "motif": "volcano",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "fire",
+    "kind": "KingVolcanoShaman",
+    "shape": "ring",
+    "height": 437,
+    "file": "009-KingVolcanoShaman.png",
+    "sha256": "4af6ed06621db0604eab1048ed4b9e9bc8929b9f1f4b3179713f83fa67aff86d"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 10,
+    "isSpeciesBase": false,
+    "id": "LichSovereign.4",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": true,
+    "motif": "seal",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "soul",
+    "kind": "LichSovereign",
+    "shape": "ring",
+    "height": 437,
+    "file": "010-LichSovereign.png",
+    "sha256": "3d82c0d05835ee9216c97ffc4da0b3795dc6a1718394441ddfbfa71332de70b5"
+  },
+  {
+    "ornament": "rune",
+    "encoding": "zstd-hex",
+    "index": 11,
+    "isSpeciesBase": false,
+    "id": "Mummy.2",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": true,
+    "motif": "sand",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "earth",
+    "kind": "Mummy",
+    "shape": "ring",
+    "height": 437,
+    "file": "011-Mummy.png",
+    "sha256": "a5e4cc5c8382c0bdb18ccecf87a4f868d3769c11f552c142f1be0dbc10974278"
+  },
+  {
+    "ornament": "crown",
+    "encoding": "zstd-hex",
+    "index": 12,
+    "isSpeciesBase": false,
+    "id": "Veyr.3",
+    "scales": [
+      1.65,
+      0.45,
+      1.4
+    ],
+    "normalized": true,
+    "width": 640,
+    "runtimeCharge": true,
+    "motif": "rift",
+    "stages": [
+      "charge",
+      "primary",
+      "impact"
+    ],
+    "isRingSupplement": true,
+    "family": "shadow",
+    "kind": "Veyr",
+    "shape": "ring",
+    "height": 437,
+    "file": "012-Veyr.png",
+    "sha256": "2d81ed7c2868738fd81298085793af7accd268b77159f7c04885986c4b31fb41"
+  }
+]

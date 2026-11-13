@@ -1,0 +1,1098 @@
+[
+  {
+    "syntheticStage": true,
+    "actualTDSelene": true,
+    "index": 1,
+    "images": [],
+    "acceptanceLimit": "Not live account/server support, actual campaign terrain, moving multiplayer, device/GPU or final user acceptance.",
+    "preload": {
+      "ok": true,
+      "timedOut": false,
+      "statuses": {
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": "Success",
+        "https://www.roblox.com//asset/?id=13251297525": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": "Success",
+        "https://www.roblox.com//asset/?id=13251297529": "Success",
+        "rbxassetid://114742581761477": "Success",
+        "https://www.roblox.com//asset/?id=13251297522": "Success",
+        "rbxassetid://82286199708395": "Success",
+        "https://www.roblox.com//asset/?id=13251297577": "Success",
+        "rbxassetid://111610252510810": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": "Success",
+        "rbxassetid://112913942709338": "Success",
+        "https://www.roblox.com//asset/?id=13251297558": "Success",
+        "rbxassetid://76529897483175": "Success",
+        "rbxassetid://134932090199360": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": "Success",
+        "rbxassetid://77094584375016": "Success",
+        "rbxassetid://113363552204383": "Success",
+        "https://www.roblox.com//asset/?id=13251297556": "Success",
+        "rbxassetid://115398847151392": "Success",
+        "https://www.roblox.com//asset/?id=13251297527": "Success",
+        "rbxassetid://119851748669436": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": "Success",
+        "rbxassetid://104871760691993": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": "Success",
+        "https://www.roblox.com//asset/?id=13251297526": "Success",
+        "rbxassetid://113263411373548": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": "Success",
+        "https://www.roblox.com//asset/?id=13251297565": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": "Success",
+        "rbxassetid://114285371301153": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": "Success",
+        "rbxassetid://87898672902618": "Success",
+        "rbxassetid://127419256768677": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": "Success",
+        "rbxassetid://124870344953912": "Success",
+        "https://www.roblox.com//asset/?id=110944204503586": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": "Success",
+        "rbxassetid://132304520832796": "Success",
+        "https://www.roblox.com//asset/?id=13251297561": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": "Success",
+        "rbxassetid://111693945311277": "Success",
+        "rbxassetid://121497631583498": "Success",
+        "https://www.roblox.com//asset/?id=13251297557": "Success",
+        "https://www.roblox.com//asset/?id=13251297523": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": "Success",
+        "https://www.roblox.com//asset/?id=13251297563": "Success",
+        "https://www.roblox.com//asset/?id=13251297524": "Success",
+        "rbxassetid://115294370768791": "Success",
+        "rbxassetid://84709649786514": "Success",
+        "rbxassetid://113518745787964": "Success",
+        "rbxassetid://84286388608822": "Success",
+        "rbxassetid://104591179055922": "Success"
+      },
+      "completed": true
+    },
+    "actualRegionalMap": false,
+    "disabledRuntimeScripts": 5,
+    "regionalLightingOnly": true,
+    "particles": [
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "links": [
+      {
+        "targetInside": true,
+        "sourceInside": true
+      }
+    ],
+    "id": "support_context.Deepwood.Heal",
+    "realPlayers": 0,
+    "sourceContents": {
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": true,
+      "rbxassetid://114742581761477": true,
+      "rbxassetid://82286199708395": true,
+      "rbxassetid://111610252510810": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": true,
+      "rbxassetid://112913942709338": true,
+      "rbxassetid://134932090199360": true,
+      "rbxassetid://77094584375016": true,
+      "rbxassetid://115398847151392": true,
+      "rbxassetid://104871760691993": true,
+      "rbxassetid://119851748669436": true,
+      "rbxassetid://113363552204383": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": true,
+      "rbxassetid://113263411373548": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": true,
+      "rbxassetid://114285371301153": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": true,
+      "rbxassetid://87898672902618": true,
+      "rbxassetid://127419256768677": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": true,
+      "rbxassetid://84286388608822": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": true,
+      "rbxassetid://111693945311277": true,
+      "rbxassetid://121497631583498": true,
+      "rbxassetid://113518745787964": true,
+      "rbxassetid://124870344953912": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": true,
+      "rbxassetid://76529897483175": true,
+      "rbxassetid://132304520832796": true,
+      "rbxassetid://115294370768791": true,
+      "rbxassetid://84709649786514": true,
+      "rbxassetid://104591179055922": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": true
+    },
+    "width": 320,
+    "equipment": {
+      "armorSlots": {
+        "hands": {
+          "visualKey": "traveler_gloves",
+          "present": true
+        },
+        "head": {
+          "visualKey": "traveler_helmet",
+          "present": true
+        },
+        "body": {
+          "visualKey": "traveler_coat",
+          "present": true
+        },
+        "feet": {
+          "visualKey": "traveler_boots",
+          "present": true
+        }
+      },
+      "weaponApplied": true,
+      "weaponDefinitionId": "knight_weapon_traveler",
+      "classId": "knight",
+      "armorApplied": true,
+      "armorDefinitionIds": {
+        "hands": "traveler_gloves",
+        "feet": "traveler_boots",
+        "body": "traveler_coat",
+        "head": "traveler_hood"
+      }
+    },
+    "particleReplaySeconds": 0.1,
+    "name": "Deepwood Light / Heal",
+    "geometrySampleSeconds": 0.34,
+    "height": 240,
+    "action": "Heal",
+    "profile": "Deepwood",
+    "receiver": "stock Roblox R15 with attempted pinned Traveler equipment",
+    "file": "001-Deepwood_Light_Heal.png",
+    "sha256": "71ae8bc6044956ab13364245d61141d14f1c56021bcb1b61284d1aa1e5e9a19c"
+  },
+  {
+    "syntheticStage": true,
+    "actualTDSelene": true,
+    "index": 2,
+    "images": [
+      {
+        "loaded": false,
+        "image": "rbxassetid://116376069982468",
+        "name": "Frame"
+      }
+    ],
+    "acceptanceLimit": "Not live account/server support, actual campaign terrain, moving multiplayer, device/GPU or final user acceptance.",
+    "preload": {
+      "ok": true,
+      "timedOut": false,
+      "statuses": {
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": "Success",
+        "https://www.roblox.com//asset/?id=13251297525": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": "Success",
+        "https://www.roblox.com//asset/?id=13251297529": "Success",
+        "rbxassetid://114742581761477": "Success",
+        "https://www.roblox.com//asset/?id=13251297522": "Success",
+        "rbxassetid://82286199708395": "Success",
+        "https://www.roblox.com//asset/?id=13251297577": "Success",
+        "rbxassetid://111610252510810": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": "Success",
+        "rbxassetid://112913942709338": "Success",
+        "https://www.roblox.com//asset/?id=13251297558": "Success",
+        "rbxassetid://76529897483175": "Success",
+        "rbxassetid://134932090199360": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": "Success",
+        "rbxassetid://77094584375016": "Success",
+        "rbxassetid://113363552204383": "Success",
+        "https://www.roblox.com//asset/?id=13251297556": "Success",
+        "rbxassetid://115398847151392": "Success",
+        "https://www.roblox.com//asset/?id=13251297527": "Success",
+        "rbxassetid://119851748669436": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": "Success",
+        "rbxassetid://104871760691993": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": "Success",
+        "https://www.roblox.com//asset/?id=13251297526": "Success",
+        "rbxassetid://113263411373548": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": "Success",
+        "https://www.roblox.com//asset/?id=13251297565": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": "Success",
+        "rbxassetid://114285371301153": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": "Success",
+        "rbxassetid://87898672902618": "Success",
+        "rbxassetid://127419256768677": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": "Success",
+        "rbxassetid://124870344953912": "Success",
+        "https://www.roblox.com//asset/?id=110944204503586": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": "Success",
+        "rbxassetid://132304520832796": "Success",
+        "https://www.roblox.com//asset/?id=13251297561": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": "Success",
+        "rbxassetid://111693945311277": "Success",
+        "rbxassetid://121497631583498": "Success",
+        "https://www.roblox.com//asset/?id=13251297557": "Success",
+        "https://www.roblox.com//asset/?id=13251297523": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": "Success",
+        "https://www.roblox.com//asset/?id=13251297563": "Success",
+        "https://www.roblox.com//asset/?id=13251297524": "Success",
+        "rbxassetid://115294370768791": "Success",
+        "rbxassetid://84709649786514": "Success",
+        "rbxassetid://113518745787964": "Success",
+        "rbxassetid://84286388608822": "Success",
+        "rbxassetid://104591179055922": "Success"
+      },
+      "completed": true
+    },
+    "actualRegionalMap": false,
+    "disabledRuntimeScripts": 6,
+    "regionalLightingOnly": true,
+    "particles": [
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "links": [
+      {
+        "targetInside": true,
+        "sourceInside": true
+      }
+    ],
+    "id": "support_context.Deepwood.Protect",
+    "realPlayers": 0,
+    "sourceContents": {
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": true,
+      "rbxassetid://114742581761477": true,
+      "rbxassetid://82286199708395": true,
+      "rbxassetid://111610252510810": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": true,
+      "rbxassetid://112913942709338": true,
+      "rbxassetid://134932090199360": true,
+      "rbxassetid://77094584375016": true,
+      "rbxassetid://115398847151392": true,
+      "rbxassetid://104871760691993": true,
+      "rbxassetid://119851748669436": true,
+      "rbxassetid://113363552204383": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": true,
+      "rbxassetid://113263411373548": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": true,
+      "rbxassetid://114285371301153": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": true,
+      "rbxassetid://87898672902618": true,
+      "rbxassetid://127419256768677": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": true,
+      "rbxassetid://84286388608822": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": true,
+      "rbxassetid://111693945311277": true,
+      "rbxassetid://121497631583498": true,
+      "rbxassetid://113518745787964": true,
+      "rbxassetid://124870344953912": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": true,
+      "rbxassetid://76529897483175": true,
+      "rbxassetid://132304520832796": true,
+      "rbxassetid://115294370768791": true,
+      "rbxassetid://84709649786514": true,
+      "rbxassetid://104591179055922": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": true
+    },
+    "width": 320,
+    "equipment": {
+      "armorSlots": {
+        "hands": {
+          "visualKey": "traveler_gloves",
+          "present": true
+        },
+        "head": {
+          "visualKey": "traveler_helmet",
+          "present": true
+        },
+        "body": {
+          "visualKey": "traveler_coat",
+          "present": true
+        },
+        "feet": {
+          "visualKey": "traveler_boots",
+          "present": true
+        }
+      },
+      "weaponApplied": true,
+      "weaponDefinitionId": "knight_weapon_traveler",
+      "classId": "knight",
+      "armorApplied": true,
+      "armorDefinitionIds": {
+        "hands": "traveler_gloves",
+        "feet": "traveler_boots",
+        "body": "traveler_coat",
+        "head": "traveler_hood"
+      }
+    },
+    "particleReplaySeconds": 0.1,
+    "name": "Deepwood Light / Protect",
+    "geometrySampleSeconds": 0.24,
+    "height": 240,
+    "action": "Protect",
+    "profile": "Deepwood",
+    "receiver": "stock Roblox R15 with attempted pinned Traveler equipment",
+    "file": "002-Deepwood_Light_Protect.png",
+    "sha256": "13d13a269ca502e7f5b0fc5c4cb5384f4eefb78c83569583cae4827fe2f1d3f6"
+  },
+  {
+    "syntheticStage": true,
+    "actualTDSelene": true,
+    "index": 3,
+    "images": [],
+    "acceptanceLimit": "Not live account/server support, actual campaign terrain, moving multiplayer, device/GPU or final user acceptance.",
+    "preload": {
+      "ok": true,
+      "timedOut": false,
+      "statuses": {
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": "Success",
+        "https://www.roblox.com//asset/?id=13251297525": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": "Success",
+        "https://www.roblox.com//asset/?id=13251297529": "Success",
+        "rbxassetid://114742581761477": "Success",
+        "https://www.roblox.com//asset/?id=13251297522": "Success",
+        "rbxassetid://82286199708395": "Success",
+        "https://www.roblox.com//asset/?id=13251297577": "Success",
+        "rbxassetid://111610252510810": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": "Success",
+        "rbxassetid://112913942709338": "Success",
+        "https://www.roblox.com//asset/?id=13251297558": "Success",
+        "rbxassetid://76529897483175": "Success",
+        "rbxassetid://134932090199360": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": "Success",
+        "rbxassetid://77094584375016": "Success",
+        "rbxassetid://113363552204383": "Success",
+        "https://www.roblox.com//asset/?id=13251297556": "Success",
+        "rbxassetid://115398847151392": "Success",
+        "https://www.roblox.com//asset/?id=13251297527": "Success",
+        "rbxassetid://119851748669436": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": "Success",
+        "rbxassetid://104871760691993": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": "Success",
+        "https://www.roblox.com//asset/?id=13251297526": "Success",
+        "rbxassetid://113263411373548": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": "Success",
+        "https://www.roblox.com//asset/?id=13251297565": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": "Success",
+        "rbxassetid://114285371301153": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": "Success",
+        "rbxassetid://87898672902618": "Success",
+        "rbxassetid://127419256768677": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": "Success",
+        "rbxassetid://124870344953912": "Success",
+        "https://www.roblox.com//asset/?id=110944204503586": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": "Success",
+        "rbxassetid://132304520832796": "Success",
+        "https://www.roblox.com//asset/?id=13251297561": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": "Success",
+        "rbxassetid://111693945311277": "Success",
+        "rbxassetid://121497631583498": "Success",
+        "https://www.roblox.com//asset/?id=13251297557": "Success",
+        "https://www.roblox.com//asset/?id=13251297523": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": "Success",
+        "https://www.roblox.com//asset/?id=13251297563": "Success",
+        "https://www.roblox.com//asset/?id=13251297524": "Success",
+        "rbxassetid://115294370768791": "Success",
+        "rbxassetid://84709649786514": "Success",
+        "rbxassetid://113518745787964": "Success",
+        "rbxassetid://84286388608822": "Success",
+        "rbxassetid://104591179055922": "Success"
+      },
+      "completed": true
+    },
+    "actualRegionalMap": false,
+    "disabledRuntimeScripts": 7,
+    "regionalLightingOnly": true,
+    "particles": [
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "CleanseRelease",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "CleanseRelease",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "CleanseRelease",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "CleanseRelease",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "links": [
+      {
+        "targetInside": true,
+        "sourceInside": true
+      }
+    ],
+    "id": "support_context.Deepwood.Cleanse",
+    "realPlayers": 0,
+    "sourceContents": {
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": true,
+      "rbxassetid://114742581761477": true,
+      "rbxassetid://82286199708395": true,
+      "rbxassetid://111610252510810": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": true,
+      "rbxassetid://112913942709338": true,
+      "rbxassetid://134932090199360": true,
+      "rbxassetid://77094584375016": true,
+      "rbxassetid://115398847151392": true,
+      "rbxassetid://104871760691993": true,
+      "rbxassetid://119851748669436": true,
+      "rbxassetid://113363552204383": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": true,
+      "rbxassetid://113263411373548": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": true,
+      "rbxassetid://114285371301153": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": true,
+      "rbxassetid://87898672902618": true,
+      "rbxassetid://127419256768677": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": true,
+      "rbxassetid://84286388608822": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": true,
+      "rbxassetid://111693945311277": true,
+      "rbxassetid://121497631583498": true,
+      "rbxassetid://113518745787964": true,
+      "rbxassetid://124870344953912": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": true,
+      "rbxassetid://76529897483175": true,
+      "rbxassetid://132304520832796": true,
+      "rbxassetid://115294370768791": true,
+      "rbxassetid://84709649786514": true,
+      "rbxassetid://104591179055922": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": true
+    },
+    "width": 320,
+    "equipment": {
+      "armorSlots": {
+        "hands": {
+          "visualKey": "traveler_gloves",
+          "present": true
+        },
+        "head": {
+          "visualKey": "traveler_helmet",
+          "present": true
+        },
+        "body": {
+          "visualKey": "traveler_coat",
+          "present": true
+        },
+        "feet": {
+          "visualKey": "traveler_boots",
+          "present": true
+        }
+      },
+      "weaponApplied": true,
+      "weaponDefinitionId": "knight_weapon_traveler",
+      "classId": "knight",
+      "armorApplied": true,
+      "armorDefinitionIds": {
+        "hands": "traveler_gloves",
+        "feet": "traveler_boots",
+        "body": "traveler_coat",
+        "head": "traveler_hood"
+      }
+    },
+    "particleReplaySeconds": 0.1,
+    "name": "Deepwood Light / Cleanse",
+    "geometrySampleSeconds": 0.16,
+    "height": 240,
+    "action": "Cleanse",
+    "profile": "Deepwood",
+    "receiver": "stock Roblox R15 with attempted pinned Traveler equipment",
+    "file": "003-Deepwood_Light_Cleanse.png",
+    "sha256": "5abd7c554be9f614b8bdfae44ea14ff1aa115ded828aa204ce0987cbf0672731"
+  },
+  {
+    "syntheticStage": true,
+    "actualTDSelene": true,
+    "index": 4,
+    "images": [],
+    "acceptanceLimit": "Not live account/server support, actual campaign terrain, moving multiplayer, device/GPU or final user acceptance.",
+    "preload": {
+      "ok": true,
+      "timedOut": false,
+      "statuses": {
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": "Success",
+        "https://www.roblox.com//asset/?id=13251297525": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": "Success",
+        "https://www.roblox.com//asset/?id=13251297529": "Success",
+        "rbxassetid://114742581761477": "Success",
+        "https://www.roblox.com//asset/?id=13251297522": "Success",
+        "rbxassetid://82286199708395": "Success",
+        "https://www.roblox.com//asset/?id=13251297577": "Success",
+        "rbxassetid://111610252510810": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": "Success",
+        "rbxassetid://112913942709338": "Success",
+        "https://www.roblox.com//asset/?id=13251297558": "Success",
+        "rbxassetid://76529897483175": "Success",
+        "rbxassetid://134932090199360": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": "Success",
+        "rbxassetid://77094584375016": "Success",
+        "rbxassetid://113363552204383": "Success",
+        "https://www.roblox.com//asset/?id=13251297556": "Success",
+        "rbxassetid://115398847151392": "Success",
+        "https://www.roblox.com//asset/?id=13251297527": "Success",
+        "rbxassetid://119851748669436": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": "Success",
+        "rbxassetid://104871760691993": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": "Success",
+        "https://www.roblox.com//asset/?id=13251297526": "Success",
+        "rbxassetid://113263411373548": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": "Success",
+        "https://www.roblox.com//asset/?id=13251297565": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": "Success",
+        "rbxassetid://114285371301153": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": "Success",
+        "rbxassetid://87898672902618": "Success",
+        "rbxassetid://127419256768677": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": "Success",
+        "rbxassetid://124870344953912": "Success",
+        "https://www.roblox.com//asset/?id=110944204503586": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": "Success",
+        "rbxassetid://132304520832796": "Success",
+        "https://www.roblox.com//asset/?id=13251297561": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": "Success",
+        "rbxassetid://111693945311277": "Success",
+        "rbxassetid://121497631583498": "Success",
+        "https://www.roblox.com//asset/?id=13251297557": "Success",
+        "https://www.roblox.com//asset/?id=13251297523": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": "Success",
+        "https://www.roblox.com//asset/?id=13251297563": "Success",
+        "https://www.roblox.com//asset/?id=13251297524": "Success",
+        "rbxassetid://115294370768791": "Success",
+        "rbxassetid://84709649786514": "Success",
+        "rbxassetid://113518745787964": "Success",
+        "rbxassetid://84286388608822": "Success",
+        "rbxassetid://104591179055922": "Success"
+      },
+      "completed": true
+    },
+    "actualRegionalMap": false,
+    "disabledRuntimeScripts": 8,
+    "regionalLightingOnly": true,
+    "particles": [
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "Shards",
+        "texture": "rbxassetid://8030734851"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "Plus",
+        "texture": "rbxassetid://9937082969"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "ShardsBigger",
+        "texture": "rbxassetid://8030734851"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "Specs",
+        "texture": "rbxassetid://9997556038"
+      }
+    ],
+    "links": [
+      {
+        "targetInside": true,
+        "sourceInside": true
+      }
+    ],
+    "id": "support_context.HauntedGraveyard.Heal",
+    "realPlayers": 0,
+    "sourceContents": {
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": true,
+      "rbxassetid://114742581761477": true,
+      "rbxassetid://82286199708395": true,
+      "rbxassetid://111610252510810": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": true,
+      "rbxassetid://112913942709338": true,
+      "rbxassetid://134932090199360": true,
+      "rbxassetid://77094584375016": true,
+      "rbxassetid://115398847151392": true,
+      "rbxassetid://104871760691993": true,
+      "rbxassetid://119851748669436": true,
+      "rbxassetid://113363552204383": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": true,
+      "rbxassetid://113263411373548": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": true,
+      "rbxassetid://114285371301153": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": true,
+      "rbxassetid://87898672902618": true,
+      "rbxassetid://127419256768677": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": true,
+      "rbxassetid://84286388608822": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": true,
+      "rbxassetid://111693945311277": true,
+      "rbxassetid://121497631583498": true,
+      "rbxassetid://113518745787964": true,
+      "rbxassetid://124870344953912": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": true,
+      "rbxassetid://76529897483175": true,
+      "rbxassetid://132304520832796": true,
+      "rbxassetid://115294370768791": true,
+      "rbxassetid://84709649786514": true,
+      "rbxassetid://104591179055922": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": true
+    },
+    "width": 320,
+    "equipment": {
+      "armorSlots": {
+        "hands": {
+          "visualKey": "traveler_gloves",
+          "present": true
+        },
+        "head": {
+          "visualKey": "traveler_helmet",
+          "present": true
+        },
+        "body": {
+          "visualKey": "traveler_coat",
+          "present": true
+        },
+        "feet": {
+          "visualKey": "traveler_boots",
+          "present": true
+        }
+      },
+      "weaponApplied": true,
+      "weaponDefinitionId": "knight_weapon_traveler",
+      "classId": "knight",
+      "armorApplied": true,
+      "armorDefinitionIds": {
+        "hands": "traveler_gloves",
+        "feet": "traveler_boots",
+        "body": "traveler_coat",
+        "head": "traveler_hood"
+      }
+    },
+    "particleReplaySeconds": 0.1,
+    "name": "HauntedGraveyard Light / Heal",
+    "geometrySampleSeconds": 0.34,
+    "height": 240,
+    "action": "Heal",
+    "profile": "HauntedGraveyard",
+    "receiver": "stock Roblox R15 with attempted pinned Traveler equipment",
+    "file": "004-HauntedGraveyard_Light_Heal.png",
+    "sha256": "2fc2b88fed9fbdf5d2e82b0b04f377a93e9462941cf48a7f7c3495ca2312fcfc"
+  },
+  {
+    "syntheticStage": true,
+    "actualTDSelene": true,
+    "index": 5,
+    "images": [
+      {
+        "loaded": true,
+        "image": "rbxassetid://116376069982468",
+        "name": "Frame"
+      }
+    ],
+    "acceptanceLimit": "Not live account/server support, actual campaign terrain, moving multiplayer, device/GPU or final user acceptance.",
+    "preload": {
+      "ok": true,
+      "timedOut": false,
+      "statuses": {
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": "Success",
+        "https://www.roblox.com//asset/?id=13251297525": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": "Success",
+        "https://www.roblox.com//asset/?id=13251297529": "Success",
+        "rbxassetid://114742581761477": "Success",
+        "https://www.roblox.com//asset/?id=13251297522": "Success",
+        "rbxassetid://82286199708395": "Success",
+        "https://www.roblox.com//asset/?id=13251297577": "Success",
+        "rbxassetid://111610252510810": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": "Success",
+        "rbxassetid://112913942709338": "Success",
+        "https://www.roblox.com//asset/?id=13251297558": "Success",
+        "rbxassetid://76529897483175": "Success",
+        "rbxassetid://134932090199360": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": "Success",
+        "rbxassetid://77094584375016": "Success",
+        "rbxassetid://113363552204383": "Success",
+        "https://www.roblox.com//asset/?id=13251297556": "Success",
+        "rbxassetid://115398847151392": "Success",
+        "https://www.roblox.com//asset/?id=13251297527": "Success",
+        "rbxassetid://119851748669436": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": "Success",
+        "rbxassetid://104871760691993": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": "Success",
+        "https://www.roblox.com//asset/?id=13251297526": "Success",
+        "rbxassetid://113263411373548": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": "Success",
+        "https://www.roblox.com//asset/?id=13251297565": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": "Success",
+        "rbxassetid://114285371301153": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": "Success",
+        "rbxassetid://87898672902618": "Success",
+        "rbxassetid://127419256768677": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": "Success",
+        "rbxassetid://124870344953912": "Success",
+        "https://www.roblox.com//asset/?id=110944204503586": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": "Success",
+        "rbxassetid://132304520832796": "Success",
+        "https://www.roblox.com//asset/?id=13251297561": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": "Success",
+        "rbxassetid://111693945311277": "Success",
+        "rbxassetid://121497631583498": "Success",
+        "https://www.roblox.com//asset/?id=13251297557": "Success",
+        "https://www.roblox.com//asset/?id=13251297523": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": "Success",
+        "https://www.roblox.com//asset/?id=13251297563": "Success",
+        "https://www.roblox.com//asset/?id=13251297524": "Success",
+        "rbxassetid://115294370768791": "Success",
+        "rbxassetid://84709649786514": "Success",
+        "rbxassetid://113518745787964": "Success",
+        "rbxassetid://84286388608822": "Success",
+        "rbxassetid://104591179055922": "Success"
+      },
+      "completed": true
+    },
+    "actualRegionalMap": false,
+    "disabledRuntimeScripts": 9,
+    "regionalLightingOnly": true,
+    "particles": [
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "links": [
+      {
+        "targetInside": true,
+        "sourceInside": true
+      }
+    ],
+    "id": "support_context.HauntedGraveyard.Protect",
+    "realPlayers": 0,
+    "sourceContents": {
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": true,
+      "rbxassetid://114742581761477": true,
+      "rbxassetid://82286199708395": true,
+      "rbxassetid://111610252510810": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": true,
+      "rbxassetid://112913942709338": true,
+      "rbxassetid://134932090199360": true,
+      "rbxassetid://77094584375016": true,
+      "rbxassetid://115398847151392": true,
+      "rbxassetid://104871760691993": true,
+      "rbxassetid://119851748669436": true,
+      "rbxassetid://113363552204383": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": true,
+      "rbxassetid://113263411373548": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": true,
+      "rbxassetid://114285371301153": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": true,
+      "rbxassetid://87898672902618": true,
+      "rbxassetid://127419256768677": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": true,
+      "rbxassetid://84286388608822": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": true,
+      "rbxassetid://111693945311277": true,
+      "rbxassetid://121497631583498": true,
+      "rbxassetid://113518745787964": true,
+      "rbxassetid://124870344953912": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": true,
+      "rbxassetid://76529897483175": true,
+      "rbxassetid://132304520832796": true,
+      "rbxassetid://115294370768791": true,
+      "rbxassetid://84709649786514": true,
+      "rbxassetid://104591179055922": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": true
+    },
+    "width": 320,
+    "equipment": {
+      "armorSlots": {
+        "hands": {
+          "visualKey": "traveler_gloves",
+          "present": true
+        },
+        "head": {
+          "visualKey": "traveler_helmet",
+          "present": true
+        },
+        "body": {
+          "visualKey": "traveler_coat",
+          "present": true
+        },
+        "feet": {
+          "visualKey": "traveler_boots",
+          "present": true
+        }
+      },
+      "weaponApplied": true,
+      "weaponDefinitionId": "knight_weapon_traveler",
+      "classId": "knight",
+      "armorApplied": true,
+      "armorDefinitionIds": {
+        "hands": "traveler_gloves",
+        "feet": "traveler_boots",
+        "body": "traveler_coat",
+        "head": "traveler_hood"
+      }
+    },
+    "particleReplaySeconds": 0.1,
+    "name": "HauntedGraveyard Light / Protect",
+    "geometrySampleSeconds": 0.24,
+    "height": 240,
+    "action": "Protect",
+    "profile": "HauntedGraveyard",
+    "receiver": "stock Roblox R15 with attempted pinned Traveler equipment",
+    "file": "005-HauntedGraveyard_Light_Protect.png",
+    "sha256": "e03a9773914c6a0da091983fbf806e097ebd83fa8dda6cd584df93b362a8c51b"
+  },
+  {
+    "syntheticStage": true,
+    "actualTDSelene": true,
+    "index": 6,
+    "images": [],
+    "acceptanceLimit": "Not live account/server support, actual campaign terrain, moving multiplayer, device/GPU or final user acceptance.",
+    "preload": {
+      "ok": true,
+      "timedOut": false,
+      "statuses": {
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": "Success",
+        "https://www.roblox.com//asset/?id=13251297525": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": "Success",
+        "https://www.roblox.com//asset/?id=13251297529": "Success",
+        "rbxassetid://114742581761477": "Success",
+        "https://www.roblox.com//asset/?id=13251297522": "Success",
+        "rbxassetid://82286199708395": "Success",
+        "https://www.roblox.com//asset/?id=13251297577": "Success",
+        "rbxassetid://111610252510810": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": "Success",
+        "rbxassetid://112913942709338": "Success",
+        "https://www.roblox.com//asset/?id=13251297558": "Success",
+        "rbxassetid://76529897483175": "Success",
+        "rbxassetid://134932090199360": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": "Success",
+        "rbxassetid://77094584375016": "Success",
+        "rbxassetid://113363552204383": "Success",
+        "https://www.roblox.com//asset/?id=13251297556": "Success",
+        "rbxassetid://115398847151392": "Success",
+        "https://www.roblox.com//asset/?id=13251297527": "Success",
+        "rbxassetid://119851748669436": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": "Success",
+        "rbxassetid://104871760691993": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": "Success",
+        "https://www.roblox.com//asset/?id=13251297526": "Success",
+        "rbxassetid://113263411373548": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": "Success",
+        "https://www.roblox.com//asset/?id=13251297565": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": "Success",
+        "rbxassetid://114285371301153": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": "Success",
+        "rbxassetid://87898672902618": "Success",
+        "rbxassetid://127419256768677": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": "Success",
+        "rbxassetid://124870344953912": "Success",
+        "https://www.roblox.com//asset/?id=110944204503586": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": "Success",
+        "rbxassetid://132304520832796": "Success",
+        "https://www.roblox.com//asset/?id=13251297561": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": "Success",
+        "rbxassetid://111693945311277": "Success",
+        "rbxassetid://121497631583498": "Success",
+        "https://www.roblox.com//asset/?id=13251297557": "Success",
+        "https://www.roblox.com//asset/?id=13251297523": "Success",
+        "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": "Success",
+        "https://www.roblox.com//asset/?id=13251297563": "Success",
+        "https://www.roblox.com//asset/?id=13251297524": "Success",
+        "rbxassetid://115294370768791": "Success",
+        "rbxassetid://84709649786514": "Success",
+        "rbxassetid://113518745787964": "Success",
+        "rbxassetid://84286388608822": "Success",
+        "rbxassetid://104591179055922": "Success"
+      },
+      "completed": true
+    },
+    "actualRegionalMap": false,
+    "disabledRuntimeScripts": 10,
+    "regionalLightingOnly": true,
+    "particles": [
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "SupportMotes",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "CleanseRelease",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "CleanseRelease",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "CleanseRelease",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      },
+      {
+        "loaded": "notExposedByParticleEmitterAPI",
+        "name": "CleanseRelease",
+        "texture": "rbxasset://textures/particles/sparkles_main.dds"
+      }
+    ],
+    "links": [
+      {
+        "targetInside": true,
+        "sourceInside": true
+      }
+    ],
+    "id": "support_context.HauntedGraveyard.Cleanse",
+    "realPlayers": 0,
+    "sourceContents": {
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071119": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071065": true,
+      "rbxassetid://114742581761477": true,
+      "rbxassetid://82286199708395": true,
+      "rbxassetid://111610252510810": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071041": true,
+      "rbxassetid://112913942709338": true,
+      "rbxassetid://134932090199360": true,
+      "rbxassetid://77094584375016": true,
+      "rbxassetid://115398847151392": true,
+      "rbxassetid://104871760691993": true,
+      "rbxassetid://119851748669436": true,
+      "rbxassetid://113363552204383": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070991": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071013": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=111092388570647": true,
+      "rbxassetid://113263411373548": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071082": true,
+      "rbxassetid://114285371301153": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071105": true,
+      "rbxassetid://87898672902618": true,
+      "rbxassetid://127419256768677": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=123480233606534": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071109": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071039": true,
+      "rbxassetid://84286388608822": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071038": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071005": true,
+      "rbxassetid://111693945311277": true,
+      "rbxassetid://121497631583498": true,
+      "rbxassetid://113518745787964": true,
+      "rbxassetid://124870344953912": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071044": true,
+      "rbxassetid://76529897483175": true,
+      "rbxassetid://132304520832796": true,
+      "rbxassetid://115294370768791": true,
+      "rbxassetid://84709649786514": true,
+      "rbxassetid://104591179055922": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430070997": true,
+      "https://assetdelivery.roblox.com/v1/asset/?id=7430071049": true
+    },
+    "width": 320,
+    "equipment": {
+      "armorSlots": {
+        "hands": {
+          "visualKey": "traveler_gloves",
+          "present": true
+        },
+        "head": {
+          "visualKey": "traveler_helmet",
+          "present": true
+        },
+        "body": {
+          "visualKey": "traveler_coat",
+          "present": true
+        },
+        "feet": {
+          "visualKey": "traveler_boots",
+          "present": true
+        }
+      },
+      "weaponApplied": true,
+      "weaponDefinitionId": "knight_weapon_traveler",
+      "classId": "knight",
+      "armorApplied": true,
+      "armorDefinitionIds": {
+        "hands": "traveler_gloves",
+        "feet": "traveler_boots",
+        "body": "traveler_coat",
+        "head": "traveler_hood"
+      }
+    },
+    "particleReplaySeconds": 0.1,
+    "name": "HauntedGraveyard Light / Cleanse",
+    "geometrySampleSeconds": 0.16,
+    "height": 240,
+    "action": "Cleanse",
+    "profile": "HauntedGraveyard",
+    "receiver": "stock Roblox R15 with attempted pinned Traveler equipment",
+    "file": "006-HauntedGraveyard_Light_Cleanse.png",
+    "sha256": "d2bac24b7367b36e8640e9cfe441a54707ab6232ab9b2e5aefb7a3ae98dc2427"
+  }
+]

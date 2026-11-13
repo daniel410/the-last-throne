@@ -1,0 +1,66 @@
+[
+  {
+    "scene": "hero",
+    "sourceCommit": "7a80c50d2198b7233ea42330dc6c12dbde4a5944",
+    "script": "hero-capture.luau",
+    "scriptSha256": "6f4894746822a03f115e10d081f19c8f3108c810c594bd37e3d9286520fc1138",
+    "rawLogSha256": "65b7e2da833811f240b125d5e5aa4faa581b62858b8eb1670cb211dbcb825522",
+    "frames": 35
+  },
+  {
+    "scene": "hero-last",
+    "sourceCommit": "7a80c50d2198b7233ea42330dc6c12dbde4a5944",
+    "script": "hero-last-capture.luau",
+    "scriptSha256": "f6759350bd4131ed4347c9423baf038fba2934f2a8da49f6fed5ec4bf2c0c305",
+    "rawLogSha256": "94b73cb6a0b3093f8fc7f84d4c60a97d9bf7bb9e05abd999bc7aa05eeb04f11e",
+    "frames": 13
+  },
+  {
+    "scene": "common",
+    "sourceCommit": "7a80c50d2198b7233ea42330dc6c12dbde4a5944",
+    "script": "common-capture.luau",
+    "scriptSha256": "0967ee70c6d8cbd2072a6064f2d96ebf21461ec52603aabfca56e689086b79c8",
+    "rawLogSha256": "0f36634d167c5c12b1811e92cf6efbe82a234a90e6c534ada1e7876478eaaf21",
+    "frames": 31
+  },
+  {
+    "scene": "warnings",
+    "sourceCommit": "7a80c50d2198b7233ea42330dc6c12dbde4a5944",
+    "script": "enemy-warning-capture.luau",
+    "scriptSha256": "7babd3f1c4c54c180cc555827b354ec8b2b6ddb1ae41521203d907e8083b0073",
+    "rawLogSha256": "e5dcf0e5d2e4d0d7603900fb72c3568d0c960c76c589bde36369f2dc482760d8",
+    "frames": 12
+  },
+  {
+    "scene": "enemy",
+    "sourceCommit": "7a80c50d2198b7233ea42330dc6c12dbde4a5944",
+    "script": "enemy-capture.luau",
+    "scriptSha256": "8910dde10d5722949ed9c010c6eb5bc22f2f4ae677d3b58b3c79ddd7d577e3e2",
+    "rawLogSha256": "c6154f9342686f9b4f9702d6dad06bd7aeab627e8533d336473ccf1f6cd31ae2",
+    "frames": 60
+  },
+  {
+    "scene": "enemy-rings",
+    "sourceCommit": "7a80c50d2198b7233ea42330dc6c12dbde4a5944",
+    "script": "enemy-ring-capture.luau",
+    "scriptSha256": "282241a15699d5e9675d2efa8faf1f598d07bff9ce5f09b93fdb083841036d23",
+    "rawLogSha256": "160a48af51d95d09f6c027243bfffd62cc71046744e141b583e7670a6786499f",
+    "frames": 12
+  },
+  {
+    "scene": "enemy-impacts",
+    "sourceCommit": "7a80c50d2198b7233ea42330dc6c12dbde4a5944",
+    "script": "enemy-impact-capture.luau",
+    "scriptSha256": "a2566da937ee04d674d5d0d4db2e911e57a46681e074472b1997e974b0a2275a",
+    "rawLogSha256": "012add71e1dcd7104b6ebc3bfd6eda04817c599f012c52eedf8ad30cceb29fa1",
+    "frames": 20
+  },
+  {
+    "scene": "support-context",
+    "sourceCommit": "7a80c50d2198b7233ea42330dc6c12dbde4a5944",
+    "script": "support-context-capture.luau",
+    "scriptSha256": "b1cd1752782a232c4f10f86b310c057f8d5d7c9297b1f8b65555b964124c879f",
+    "rawLogSha256": "c463b94b14d0321aa48c16f2560525b33c3801c926bcbea76c3dca7d8cb735a9",
+    "frames": 6
+  }
+]

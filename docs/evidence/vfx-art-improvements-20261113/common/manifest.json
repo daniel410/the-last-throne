@@ -1,0 +1,281 @@
+[
+  {
+    "index": 1,
+    "id": "basic_knight",
+    "height": 240,
+    "name": "Basic Knight Hit",
+    "width": 320,
+    "file": "001-Basic_Knight_Hit.png",
+    "sha256": "b545c17ec78dc2530ac7d58c97f5d56de4ed260af920bb61d11db30711c8665c"
+  },
+  {
+    "index": 2,
+    "id": "basic_dwarf",
+    "height": 240,
+    "name": "Basic Dwarf Hit",
+    "width": 320,
+    "file": "002-Basic_Dwarf_Hit.png",
+    "sha256": "0bbb508d3b4c7c505cde0aca5bd1c7bfcd7f9253cc4e7d9cfcf2350d634345e3"
+  },
+  {
+    "index": 3,
+    "id": "basic_elf",
+    "height": 240,
+    "name": "Basic Elf Hit",
+    "width": 320,
+    "file": "003-Basic_Elf_Hit.png",
+    "sha256": "ab5247aae7927bb649876d8a3769d7f9ae537d4e666e9de08cde2e7ebb8c6191"
+  },
+  {
+    "index": 4,
+    "id": "basic_mage",
+    "height": 240,
+    "name": "Basic Mage Hit",
+    "width": 320,
+    "file": "004-Basic_Mage_Hit.png",
+    "sha256": "1ffad41e8137ab46dea7d3cab3ca25bdb7b9d41084008e9340616e1beaedbb5a"
+  },
+  {
+    "index": 5,
+    "id": "mage.pyro.ember_lance",
+    "height": 240,
+    "name": "Fire Hit Composite",
+    "width": 320,
+    "file": "005-Fire_Hit_Composite.png",
+    "sha256": "f48ef10ced316b0e42459a715149751086b553b5b7e9d0bc67e4f4ae9ac83ac8"
+  },
+  {
+    "index": 6,
+    "id": "mage.common.water_ball",
+    "height": 240,
+    "name": "Water Hit Composite",
+    "width": 320,
+    "file": "006-Water_Hit_Composite.png",
+    "sha256": "3c8a2488c5c47f2da0838d0842b21fc1f551153551a8df1f1329a7bf3be3bdd0"
+  },
+  {
+    "index": 7,
+    "id": "mage.cryo.frost_lance",
+    "height": 240,
+    "name": "Frost Hit Composite",
+    "width": 320,
+    "file": "007-Frost_Hit_Composite.png",
+    "sha256": "72efa92d8ba2d47826082cbbb3a9b88fd9299965828df3faa7609bb246ac0450"
+  },
+  {
+    "index": 8,
+    "id": "mage.cryo.lightning_line",
+    "height": 240,
+    "name": "Lightning Hit Composite",
+    "width": 320,
+    "file": "008-Lightning_Hit_Composite.png",
+    "sha256": "f64711000e9f4b805b337095b8fc20846e98a4c74c5fe75040aa9064ef515917"
+  },
+  {
+    "index": 9,
+    "id": "mage.pyro.stone_lance",
+    "height": 240,
+    "name": "Earth Hit Composite",
+    "width": 320,
+    "file": "009-Earth_Hit_Composite.png",
+    "sha256": "4f0372c1a41f13ea1c6f8119c4b8e8514d481163275b9bdce494c28f488d6cbb"
+  },
+  {
+    "index": 10,
+    "id": "mage.common.gravity",
+    "height": 240,
+    "name": "Gravity Hit Composite",
+    "width": 320,
+    "file": "010-Gravity_Hit_Composite.png",
+    "sha256": "a37ec0a9ff41966d9b2817246bd874b5859ac6eb1e9136dfeeefe16b0138f12a"
+  },
+  {
+    "index": 11,
+    "id": "dwarf.common.overhead",
+    "height": 240,
+    "name": "Dwarf Overhead Contact",
+    "width": 320,
+    "file": "011-Dwarf_Overhead_Contact.png",
+    "sha256": "567bd340eab7f13a5cc467f49d7c06efc5b10236402c1277d2a2880888d318e5"
+  },
+  {
+    "index": 12,
+    "id": "dwarf.iron_axe.armor_splitter",
+    "height": 240,
+    "name": "Dwarf Armor Splitter Contact",
+    "width": 320,
+    "file": "012-Dwarf_Armor_Splitter_Contact.png",
+    "sha256": "73df76d211f8bb07899ae2057c86316fdd00d72ef2aafbf9fb701c8c39083825"
+  },
+  {
+    "index": 13,
+    "id": "focus_arcane",
+    "height": 240,
+    "name": "Arcane Staff Focus",
+    "width": 320,
+    "file": "013-Arcane_Staff_Focus.png",
+    "sha256": "04ff497e0dc9f0f9248a8ffa02faa3306a88e4fedc5c153a8f3de49b9a301f3e"
+  },
+  {
+    "index": 14,
+    "id": "focus_water",
+    "height": 240,
+    "name": "Water Staff Focus",
+    "width": 320,
+    "file": "014-Water_Staff_Focus.png",
+    "sha256": "1d24005ab9db5abb2b96f13686f57f062e1972d2e5932cdb08f42fa96a7354fe"
+  },
+  {
+    "index": 15,
+    "id": "focus_wind",
+    "height": 240,
+    "name": "Wind Staff Focus",
+    "width": 320,
+    "file": "015-Wind_Staff_Focus.png",
+    "sha256": "763595458e9e1dbae612846f2494c7fbf0aa444e46d4dbfa89d4a61aae4b642c"
+  },
+  {
+    "index": 16,
+    "id": "focus_fire",
+    "height": 240,
+    "name": "Fire Staff Focus",
+    "width": 320,
+    "file": "016-Fire_Staff_Focus.png",
+    "sha256": "a13637f4734895d56a9b11f12dc95aed26fa716ca9056a585500f26c61522554"
+  },
+  {
+    "index": 17,
+    "id": "focus_frost",
+    "height": 240,
+    "name": "Frost Staff Focus",
+    "width": 320,
+    "file": "017-Frost_Staff_Focus.png",
+    "sha256": "ae0fb5909b3a7b13a39cc6cb779fa17ad136f25949633cede56b1dd62f1fb548"
+  },
+  {
+    "index": 18,
+    "id": "focus_earth",
+    "height": 240,
+    "name": "Earth Staff Focus",
+    "width": 320,
+    "file": "018-Earth_Staff_Focus.png",
+    "sha256": "a5e18a26c1ca122cdf4892d66a62002f1d7049597b05b3418ca42db3e08e1364"
+  },
+  {
+    "index": 19,
+    "id": "focus_lightning",
+    "height": 240,
+    "name": "Lightning Staff Focus",
+    "width": 320,
+    "file": "019-Lightning_Staff_Focus.png",
+    "sha256": "f90c04d65592e8e008cbfbc9dd98c9838023552dd28b88bb57224086a2426a8d"
+  },
+  {
+    "index": 20,
+    "id": "support_Heal",
+    "height": 240,
+    "name": "Heal Pixel Accent",
+    "width": 320,
+    "file": "020-Heal_Pixel_Accent.png",
+    "sha256": "87066c3ece3fb8f92cace99b1719ad6b944587e0f0331a5a343812d26ec282a7"
+  },
+  {
+    "index": 21,
+    "id": "support_Protect",
+    "height": 240,
+    "name": "Protect Pixel Accent",
+    "width": 320,
+    "file": "021-Protect_Pixel_Accent.png",
+    "sha256": "beadb2bc3e36603bdd8da9e11cf4bf1bd75e33229c21cf48052e1d9777bdb4e2"
+  },
+  {
+    "index": 22,
+    "id": "support_Cleanse",
+    "height": 240,
+    "name": "Cleanse Pixel Accent",
+    "width": 320,
+    "file": "022-Cleanse_Pixel_Accent.png",
+    "sha256": "09855e06fe8b0383e630a1ab713f1c09f3c7c1ca56c4a181df0aa334ef123b1e"
+  },
+  {
+    "index": 23,
+    "id": "hero_level_up",
+    "height": 240,
+    "name": "Hero Level Up",
+    "width": 320,
+    "file": "023-Hero_Level_Up.png",
+    "sha256": "e4311b19ed1da3665bba906aa7edc2e61e8c508efeaa5d2244f03771a687356b"
+  },
+  {
+    "index": 24,
+    "id": "trail_knight",
+    "height": 240,
+    "name": "Knight Native Trail",
+    "width": 320,
+    "file": "024-Knight_Native_Trail.png",
+    "sha256": "cd8f9ace89ccbf092082862518cdc53be7e48388a2156ff7799eb6de4e4c05be"
+  },
+  {
+    "index": 25,
+    "id": "trail_dwarf",
+    "height": 240,
+    "name": "Dwarf Native Trail",
+    "width": 320,
+    "file": "025-Dwarf_Native_Trail.png",
+    "sha256": "a3663c8ca151d82b93ebadf73030be1e28f688bf94cc1789c0472da9587796ce"
+  },
+  {
+    "index": 26,
+    "id": "trail_mage",
+    "height": 240,
+    "name": "Mage Native Trail",
+    "width": 320,
+    "file": "026-Mage_Native_Trail.png",
+    "sha256": "bdbeaabbc91efcc8b46ad41921531635a34b436a41e1d2e168c49f6fb47e9d35"
+  },
+  {
+    "index": 27,
+    "id": "trail_elf",
+    "height": 240,
+    "name": "Elf Native Arrow Trail",
+    "width": 320,
+    "file": "027-Elf_Native_Arrow_Trail.png",
+    "sha256": "3bd9e41c23d9d86913cd0054010b7eb55f63ebd297ed60c5bf9d5559eb24dbbd"
+  },
+  {
+    "index": 28,
+    "id": "selene_Heal",
+    "height": 240,
+    "name": "Selene Full Heal",
+    "width": 320,
+    "file": "028-Selene_Full_Heal.png",
+    "sha256": "3056a744e24001ba6d7d702cbd722371228156b509fa8732b1cf3ba30989d7dc"
+  },
+  {
+    "index": 29,
+    "id": "selene_Protect",
+    "height": 240,
+    "name": "Selene Full Protect",
+    "width": 320,
+    "file": "029-Selene_Full_Protect.png",
+    "sha256": "14ac66e95811ed766d8219ca64b4337bd73fb57c620c47bade2cc467d27c3892"
+  },
+  {
+    "index": 30,
+    "id": "selene_Cleanse",
+    "height": 240,
+    "name": "Selene Full Cleanse",
+    "width": 320,
+    "file": "030-Selene_Full_Cleanse.png",
+    "sha256": "fe422680bebb03cd7b64bb36c1678b25dee3873b85af7b76a4b7678cb35179d7"
+  },
+  {
+    "index": 31,
+    "id": "elf.magic_archer.storm_arrow",
+    "height": 240,
+    "name": "Elf Storm Arrow Hit Composite",
+    "width": 320,
+    "file": "031-Elf_Storm_Arrow_Hit_Composite.png",
+    "sha256": "d937ce9e8229ba2758f0f43fe0c2b2fb23e310315ca30a449c5525d9780ffacc"
+  }
+]

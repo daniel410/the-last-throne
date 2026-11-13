@@ -1,0 +1,74 @@
+{
+  "sourceCommit": "7a80c50d2198b7233ea42330dc6c12dbde4a5944",
+  "version": "0.104.26",
+  "buildSha256": "292f2f6a74a4de44bb28fba9d4622e1fb3f8d3d0c4df6282f23724f3b073122d",
+  "matchingProductionModules": [
+    {
+      "file": "src/client/AdvancedSkillVisual.luau",
+      "sha256": "09e05d85b190ab43e25705c7d83494b25baa7c5572b303ee5b8f41c7cb6aafa7"
+    },
+    {
+      "file": "src/client/CuratedVFX.luau",
+      "sha256": "cca503d1cf70a02f6a1526a9d41ca32e71cb197f323d5b5c6004854a4e240073"
+    },
+    {
+      "file": "src/client/DeepwoodNavigation.luau",
+      "sha256": "041e66ba7e66a12a086eebdc3e9640405247e72847c3118d85073c904ce120c8"
+    },
+    {
+      "file": "src/client/EnemyPatternEffects.luau",
+      "sha256": "a93665cb6e4cee364e0819f95c28d248074ef903d8084a6a3d21088219ac77b2"
+    },
+    {
+      "file": "src/client/EnemySpellArt.luau",
+      "sha256": "14880e11545b17c98a23fdb0f60ce730b4bc07e4cb1eb191f4ff68bbf09a4797"
+    },
+    {
+      "file": "src/client/EnemySpellVFX.luau",
+      "sha256": "d1f0570ec774b9e5cd2d12e5ca841a346f6a87759f37123b943dd468b752ffd8"
+    },
+    {
+      "file": "src/client/HeroVFX.luau",
+      "sha256": "834f136f1125bd645972a0fd6c0647ffccd067f3d53ebc6fa71b694890c3dccd"
+    },
+    {
+      "file": "src/client/HeroVFXSurfaces.luau",
+      "sha256": "5287a8eb273c7dcefcac5b0da310e36894d9d41cc926c479cad921c345db38f0"
+    },
+    {
+      "file": "src/client/K0HitEffects.luau",
+      "sha256": "af4bf51b18c29f1fc29fcbd9ffc68a6d1de87095b39a5be2bca88fffc051c582"
+    },
+    {
+      "file": "src/client/K0MageFocus.luau",
+      "sha256": "9f2241317c9a802177dd76634f5504e510ccb54cf0cc7137bc749effa63b85a4"
+    },
+    {
+      "file": "src/client/PixelFX.luau",
+      "sha256": "2de48d6e4908c487aa8a08e256aa85872f7b68b8a4dbf59f1a8634f648bf0cce"
+    },
+    {
+      "file": "src/client/SelenePresentation.luau",
+      "sha256": "ee70d204748a27393164e9434438705a4e584f130a7cce24297c410b7506ee43"
+    },
+    {
+      "file": "src/client/SkillVFXProfiles.luau",
+      "sha256": "901c36a098a9f6ab3d6683f4477ebf602b374567f6c2066a07bd70ef44682c70"
+    },
+    {
+      "file": "src/shared/CombatVFXPalette.luau",
+      "sha256": "c0278e987dd330895eccdc7783c18f1dd36b3c65b587b64cc426bde57161bb5f"
+    },
+    {
+      "file": "src/shared/EnemySpellProfiles.luau",
+      "sha256": "b8e3e9074968996f2b69b6514431f45de7f6e407b493db47ecaf6eff1352ae73"
+    }
+  ],
+  "nativeSuites": 17,
+  "nativeChecks": 96293,
+  "cpuChecks": 16420,
+  "navigation": "PASS",
+  "publishedClient": "not tested",
+  "realDevice": "not tested",
+  "userArtAcceptance": "pending"
+}

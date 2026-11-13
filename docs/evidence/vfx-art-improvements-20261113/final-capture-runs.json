@@ -1,0 +1,47 @@
+[
+  {
+    "sourceCommit": "c1b578d470a26536bd1a22895f265b91d3c16669",
+    "scene": "hero-final",
+    "frames": 11,
+    "script": "hero-final-capture.luau",
+    "scriptSha256": "b667ef240134c3747b2ddbd5787241483e56fc74901d7a57d2fdf34e4a6d7f29",
+    "rawLogSha256": "a2d8005409f7fbcf6e29d4dc99aff8bfb169e6df3b3755d46276e910529bca2a",
+    "exitCode": 0
+  },
+  {
+    "sourceCommit": "c1b578d470a26536bd1a22895f265b91d3c16669",
+    "scene": "hero-final-last",
+    "frames": 9,
+    "script": "hero-final-last-capture.luau",
+    "scriptSha256": "0092b5262f41ba8418fb3ef745a5a1598c00f001d6c2304634b5d03f0c7562eb",
+    "rawLogSha256": "7e774be6c10488cee6521a8843ba3c4c242528fd7fb9f550e4fe2c9ebb683367",
+    "exitCode": 0
+  },
+  {
+    "sourceCommit": "c1b578d470a26536bd1a22895f265b91d3c16669",
+    "scene": "warnings-final",
+    "frames": 12,
+    "script": "enemy-warning-capture.luau",
+    "scriptSha256": "7babd3f1c4c54c180cc555827b354ec8b2b6ddb1ae41521203d907e8083b0073",
+    "rawLogSha256": "c9d4c7b6b39a83d9620ab16ca2c89f30943cf1bd422c16fd8971cf51ab980d95",
+    "exitCode": 0
+  },
+  {
+    "sourceCommit": "c1b578d470a26536bd1a22895f265b91d3c16669",
+    "scene": "support-final",
+    "frames": 4,
+    "script": "support-final-capture.luau",
+    "scriptSha256": "caec06e274d5b661d5593ba135077d5add767d0ec49e36c6ff31931b48a4352e",
+    "rawLogSha256": "d795876b458ac0ed0f067b43337da137d5e773ea922147f42175374ab5b8edd7",
+    "exitCode": 0
+  },
+  {
+    "sourceCommit": "c1b578d470a26536bd1a22895f265b91d3c16669",
+    "scene": "support-context-final",
+    "frames": 6,
+    "script": "support-context-capture.luau",
+    "scriptSha256": "b1cd1752782a232c4f10f86b310c057f8d5d7c9297b1f8b65555b964124c879f",
+    "rawLogSha256": "2daafd222a2510decd49ac4032b02eb8a5c238c793db1b664ebb821cf1d59d53",
+    "exitCode": 0
+  }
+]
