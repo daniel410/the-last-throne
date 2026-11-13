@@ -186,9 +186,10 @@ local function tongue(r,name,at,height,width,heading,color)
 end
 local function shell(r,at,lane,strong)
  local height=strong and 7 or 6;local delay=((lane-1)%3)*.018
- local p=Surfaces.volume(r,'MortarShellBody',at+Vector3.yAxis*.45,Vector3.new(.36,.9,.36),Color3.fromRGB(74,83,94),.08,'ball',Enum.Material.Metal)
+ local size=strong and Vector3.new(.62,1.4,.62)or Vector3.new(.36,.9,.36)
+ local p=Surfaces.volume(r,'MortarShellBody',at+Vector3.yAxis*size.Y*.5,size,strong and Color3.fromRGB(144,151,157)or Color3.fromRGB(74,83,94),.08,'ball',Enum.Material.Metal)
  if p then r.faces[#r.faces].fall={height=height,duration=r.life*.72,delay=delay}end
- local nose=Surfaces.volume(r,'MortarShellNose',at+Vector3.yAxis*.12,Vector3.new(.3,.25,.3),palette.bomb,.22,'wedge')
+ local nose=Surfaces.volume(r,'MortarShellNose',at+Vector3.yAxis*.12,strong and Vector3.new(.48,.36,.48)or Vector3.new(.3,.25,.3),palette.bomb,.18,'wedge')
  if nose then r.faces[#r.faces].fall={height=height,duration=r.life*.72,delay=delay}end
  line(r,'MortarShortWake',function(u)
   local t=math.clamp((u*r.life-delay)/(r.life*.72),0,1);local y=height*(1-t*t)
@@ -196,28 +197,31 @@ local function shell(r,at,lane,strong)
  end,.09,palette.bomb)
 end
 local function rootBranch(r,first,last,width,delay)
- local p=Surfaces.bar(r,'GroundRootBody',first,last,width,Color3.fromRGB(70,111,64),.16,Enum.Material.Wood)
- if p then Surfaces.growLine(r,first,last,r.life*.45,delay)end
+ local p=Surfaces.bar(r,'GroundRootBody',first,last,width,Color3.fromRGB(130,163,96),.08,Enum.Material.Wood)
+ if p then Surfaces.growLine(r,first,last,math.min(.14,r.life*.3),delay)end
  line(r,'RootingVine',function(u)
-  local growth=math.clamp((u*r.life-delay)/(r.life*.45),0,1)
+  local growth=math.clamp((u*r.life-delay)/math.min(.14,r.life*.3),0,1)
   return first,first+(last-first)*math.max(.01,growth)
- end,width*.35,palette.nature)
+ end,width*.65,palette.nature:Lerp(r.hot,.22))
 end
 local function roots(r,at,flat,right,radius,angle,count)
  for lane=1,math.min(count,5)do
   local a=angle<359 and math.rad(-angle/2+angle*(lane-.5)/count)or lane/count*math.pi*2
   local radial=flat*math.cos(a)+right*math.sin(a)
   local from=at+radial*math.min(radius*.1,.6)+Vector3.yAxis*.12
-  local bend=at+radial*radius*.38+right*math.sin(lane*2.4)*.18+Vector3.yAxis*.18
-  local tip=at+radial*radius*.7+Vector3.yAxis*.22
-  rootBranch(r,from,bend,.22,0);rootBranch(r,bend,tip,.16,.025)
+  local bend=at+radial*radius*.38+right*math.sin(lane*2.4)*.18+Vector3.yAxis*.3
+  local tip=at+radial*radius*.7+Vector3.yAxis*.4
+  rootBranch(r,from,bend,.38,0);rootBranch(r,bend,tip,.28,.025)
   local side=Vector3.new(-radial.Z,0,radial.X)*(lane%2==0 and -1 or 1)
   local fork=bend+radial*radius*.13+side*math.min(radius*.18,1.2)
-  rootBranch(r,bend,fork,.12,.055)
+  rootBranch(r,bend,fork,.22,.045)
+  local upTip=tip+radial*.2+Vector3.yAxis*(.7+(lane%2)*.25)
+  local stem=Surfaces.bar(r,'RootAscendingTip',tip,upTip,.24,palette.nature:Lerp(r.hot,.28),.2,Enum.Material.Neon)
+  if stem then Surfaces.growLine(r,tip,upTip,.12,.02)end
   for n=1,2 do
    local pos=bend+(tip-bend)*(n*.25)
-   local thorn=Surfaces.volume(r,'RootThorn',pos+Vector3.yAxis*.2,Vector3.new(.13,.5,.16),palette.nature,.28,'wedge',Enum.Material.SmoothPlastic)
-   if thorn then r.faces[#r.faces].emerge={duration=.16,delay=.04+n*.015}end
+   local thorn=Surfaces.volume(r,'RootThorn',pos+Vector3.yAxis*.35,Vector3.new(.24,.85,.25),palette.nature:Lerp(r.hot,.2),.2,'wedge',Enum.Material.SmoothPlastic)
+   if thorn then r.faces[#r.faces].emerge={duration=.12,delay=.02+n*.012}end
   end
  end
 end
@@ -226,16 +230,17 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
  local function stroke(name,a,b,width,color)line(r,name,function()return a,b end,width or .14,color)end
  if key=='FrontWall'then
   for lane=-1,1 do
-   local at=first+flat*2.2+right*lane*2.1
+   local at=first+flat*2.2+right*lane*2.35
    local points={at-right*.8+Vector3.yAxis*1.6,at+right*.8+Vector3.yAxis*1.6,at+right*.65-Vector3.yAxis*.6,at-Vector3.yAxis*1.3,at-right*.65-Vector3.yAxis*.6}
-   for i=1,#points do Surfaces.triangle(r,'UltimateFrontPanel',at,points[i],points[i%#points+1],nil,.67,Enum.Material.SmoothPlastic)end
+   for i=1,#points do Surfaces.triangle(r,'UltimateFrontPanel',at,points[i],points[i%#points+1],nil,.56,Enum.Material.SmoothPlastic)end
    stroke('FrontWallCrest',points[1],points[2],.13);stroke('FrontWallChevron',at-right*.55,at+Vector3.yAxis*.8,.12);stroke('FrontWallChevron',at+right*.55,at+Vector3.yAxis*.8,.12)
   end
  elseif key=='DawnBlade'then
-  local at=floor+flat*1.6
-  stroke('DawnSolarBlade',at+Vector3.yAxis*.3,at+Vector3.yAxis*4.2,.3,r.hot)
-  stroke('DawnSolarHilt',at-right*.8+Vector3.yAxis*1.3,at+right*.8+Vector3.yAxis*1.3,.16)
-  Surfaces.triangle(r,'DawnBladePoint',at-right*.32+Vector3.yAxis*3.2,at+Vector3.yAxis*4.7,at+right*.32+Vector3.yAxis*3.2,nil,.38)
+  local at=floor+flat*2+right*1.8
+  stroke('DawnSolarBlade',at+Vector3.yAxis*.5,at+Vector3.yAxis*5.2,.42,r.hot)
+  stroke('DawnSolarHilt',at-right*.95+Vector3.yAxis*1.6,at+right*.95+Vector3.yAxis*1.6,.2)
+  Surfaces.bar(r,'DawnBladeSpine',at+Vector3.yAxis*1.3,at+Vector3.yAxis*4.7,.25,r.color,.25,Enum.Material.Neon)
+  Surfaces.triangle(r,'DawnBladePoint',at-right*.45+Vector3.yAxis*3.8,at+Vector3.yAxis*5.6,at+right*.45+Vector3.yAxis*3.8,nil,.28)
   for i=1,6 do local a=i*math.pi/3;local radial=Vector3.new(math.cos(a),0,math.sin(a));local pos=floor+radial*radius*.55
    stroke('DawnSunRay',pos,pos+radial*.65+Vector3.yAxis*.6,.1)
    Surfaces.volume(r,'DawnAscendingLight',pos+Vector3.yAxis*.75,Vector3.new(.12,1.5,.12),nil,.62,'ball',nil,false,1.1)
@@ -249,6 +254,9 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
    if p then local face=r.faces[#r.faces];face.cf=CFrame.lookAt(p.Position,p.Position+radial)*CFrame.Angles(.22,0,0);face.emerge={duration=.2,delay=(i%2)*.035}end
    curve(r,'UltimateGroundFracture',function(t)local bend=math.sin(t*9+i)*.18;return floor+radial*radius*.85*t+right*bend+Vector3.yAxis*.04 end,3,.14,palette.earth)
   end
+  local focus=floor+flat*radius*.45
+  local ridge=Surfaces.volume(r,'MountainRidgeFocus',focus+Vector3.yAxis*2.4,Vector3.new(2.6,4.8,2.5),Color3.fromRGB(158,126,82),.08,'wedge',Enum.Material.Slate)
+  if ridge then r.faces[#r.faces].emerge={duration=.16,delay=0}end
   debris(r,floor+flat*radius*.35,5,'RockChip',1.8)
  elseif key=='SiegeShells'then
   for i=1,3 do local a=i*math.pi*2/3;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*math.min(radius*.28,3)
@@ -258,23 +266,25 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
  elseif key=='VolleyCrown'then
   for lane,target in ipairs(Geometry.sector(first,flat,math.min(radius,38),angle,6))do
    local axis=forward(first,target);local side=axis:Cross(Vector3.yAxis);side=side.Magnitude>.01 and side.Unit or right
-   stroke('UltimateArrowWake',first,target,.085)
-   for sign=-1,1,2 do stroke('UltimateArrowCrest',target-axis*1.5+side*sign*.25,target,.11,r.hot)end
-   if lane%2==0 then Surfaces.triangle(r,'UltimateArrowHead',target-axis*2-side*.28,target,target-axis*2+side*.28,nil,.35,Enum.Material.SmoothPlastic)end
+   stroke('UltimateArrowWake',first,target,.12)
+   for sign=-1,1,2 do stroke('UltimateArrowCrest',target-axis*2+side*sign*.4,target,.18,r.hot)end
+   if lane%2==0 then Surfaces.triangle(r,'UltimateArrowHead',target-axis*3-side*.45,target,target-axis*3+side*.45,nil,.3,Enum.Material.SmoothPlastic)end
   end
-  curve(r,'VolleyDrawCrown',function(t)local a=math.rad(-55+110*t);return first+(flat*math.cos(a)+right*math.sin(a))*2+Vector3.yAxis*(.5+math.sin(t*math.pi)*.8)end,6,.08)
+  curve(r,'VolleyDrawCrown',function(t)local a=math.rad(-angle*.42+angle*.84*t);return first+(flat*math.cos(a)+right*math.sin(a))*math.min(radius*.2,9)+Vector3.yAxis*(1+math.sin(t*math.pi)*2.2)end,6,.18)
  elseif key=='SpiritCanopy'then
   for i=1,3 do local a=i*math.pi*2/3;local radial=Vector3.new(math.cos(a),0,math.sin(a))
-   curve(r,'SpiritCanopyBranch',function(t)return floor+Vector3.yAxis*(4+math.sin(t*math.pi)*2)+radial*radius*.36*t end,5,.11,palette.nature)
+   local function path(t)return floor+Vector3.yAxis*(4.2+math.sin(t*math.pi)*2.2)+radial*radius*.36*t end
+   curve(r,'SpiritCanopyBranch',function(t)return path(t)end,5,.18,palette.nature:Lerp(r.hot,.25))
+   for n=1,3 do Surfaces.bar(r,'SpiritCanopyBough',path((n-1)/3),path(n/3),.2,palette.nature:Lerp(r.hot,.3),.24,Enum.Material.SmoothPlastic)end
   end
   for i=1,6 do local a=i*2.39996;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.45
-   local leaf=Surfaces.volume(r,'SpiritCanopyLeaf',at+Vector3.yAxis*.6,Vector3.new(.35,1.3,.16),palette.nature,.3,'wedge')
+   local leaf=Surfaces.volume(r,'SpiritCanopyLeaf',at+Vector3.yAxis*.6,Vector3.new(.65,1.9,.22),palette.nature:Lerp(r.hot,.2),.22,'wedge')
    if leaf then r.faces[#r.faces].fall={height=5,duration=r.life*.78,delay=(i%3)*.015}end
    line(r,'SpiritCanopyRain',function(u)local t=math.clamp((u*r.life-(i%3)*.015)/(r.life*.78),0,1);local y=5*(1-t*t);return at+Vector3.yAxis*(y+1),at+Vector3.yAxis*(y+.4)end,.08,palette.nature)
   end
  elseif key=='CalderaVents'then
   for i=1,3 do local a=i*math.pi*2/3;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.22
-   tongue(r,'CalderaEruptionTongue',at,3.2+(i%2)*.9,1.1,a,palette.fire);atmosphere(r,'CalderaFire',at,true,3,1.4)
+   tongue(r,'CalderaEruptionTongue',at,5.2+(i%2)*.8,1.55,a,palette.fire);atmosphere(r,'CalderaFire',at,true,4,1.5)
   end
   for i=1,5 do local a=i*math.pi*2/5;local radial=Vector3.new(math.cos(a),0,math.sin(a))
    curve(r,'CalderaHotFissure',function(t)return floor+radial*radius*.78*t+right*math.sin(t*9+i)*.2+Vector3.yAxis*.05 end,3,.16,palette.fire)
@@ -282,10 +292,10 @@ local function signature(r,key,first,floor,flat,right,radius,angle)
   end
  elseif key=='FrostFunnel'then
   for lane=1,3 do
-   curve(r,'TempestSpiral',function(t,u)local a=t*math.pi*2.2+lane*math.pi*2/3+u*1.5;local rad=radius*(.12+t*.2);return floor+Vector3.new(math.cos(a)*rad,.4+t*4,math.sin(a)*rad)end,7,.1,palette.frost)
+   curve(r,'TempestSpiral',function(t,u)local a=t*math.pi*2.2+lane*math.pi*2/3+u*1.5;local rad=radius*(.1+t*.23);return floor+Vector3.new(math.cos(a)*rad,.4+t*6,math.sin(a)*rad)end,7,.16,palette.frost:Lerp(r.hot,.2))
   end
   for i=1,6 do local a=i*math.pi/3;local radial=Vector3.new(math.cos(a),0,math.sin(a))
-   local p=Surfaces.volume(r,'TempestSuspendedCrystal',floor+radial*radius*.28+Vector3.yAxis*(1.4+i%3*.6),Vector3.new(.35,1.4,.4),palette.frost,.25,'wedge',Enum.Material.Ice)
+   local p=Surfaces.volume(r,'TempestSuspendedCrystal',floor+radial*radius*.28+Vector3.yAxis*(1.8+i%3*.8),Vector3.new(.55,2,.6),palette.frost:Lerp(r.hot,.25),.2,'wedge',Enum.Material.Ice)
    if p then r.faces[#r.faces].drift=radial*.5+Vector3.yAxis*.7 end
   end
   for i=1,3 do local a=i*math.pi*2/3;local at=floor+Vector3.new(math.cos(a),0,math.sin(a))*radius*.5

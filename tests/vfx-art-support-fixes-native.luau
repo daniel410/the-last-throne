@@ -39,6 +39,8 @@ local ok,err=xpcall(function()
  local shard=assert(holder:FindFirstChild('Shards',true));local plus=assert(holder:FindFirstChild('Plus',true))
  check(shard.Size.Keypoints[1].Value>0 and shard.Parent.Position.X<-.9 and shard.Parent.Position.Y<-1,'healing begins visible beside the body rather than hidden at its center')
  check(shard.EmissionDirection==Enum.NormalId.Top,'healing life flow rises')
+ check(shard.Size.Keypoints[1].Value>=.3 and holder:FindFirstChild('ShardsBigger',true).Size.Keypoints[1].Value>=.3,'standalone healing has readable initial shards without increasing their peak')
+ check(shard.Transparency.Keypoints[1].Value<=.05 and holder:FindFirstChild('Specs',true).Size.Keypoints[1].Value>0,'life accents begin visible and fade after the initial rise')
  local largest=0;for _,k in ipairs(plus.Size.Keypoints)do largest=math.max(largest,k.Value+k.Envelope)end
  check(plus:GetAttribute('ReviewBurstCount')==2 and largest<=.21,'no enlarged medical plus or extra crosses')
  root.Position+=Vector3.xAxis*2;Pixel.step(.1);check(holder.Position==root.Position,'heal follows the actual recipient')

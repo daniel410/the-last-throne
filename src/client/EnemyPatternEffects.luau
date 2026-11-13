@@ -222,7 +222,7 @@ local function draw(a,model,now)
   for _,p in ipairs(a.lines)do if p.Parent then p.Transparency=.08+(.18*(1-math.clamp(age/d.windup,0,1)))end end;return
  end
  if not a.folder then a.lines=nil;a.folder=Instance.new('Folder');a.folder.Name='EnemyPatternWarning';a.folder.Parent=workspace end
- local vertices={};local right=Vector3.new(-a.direction.Z,0,a.direction.X)
+ local vertices={};local outerCount;local right=Vector3.new(-a.direction.Z,0,a.direction.X)
  local function line(x,y)
   -- Short edges follow slopes; missing floors and cliffs leave a gap instead of an airborne beam.
   local steps=math.max(1,math.ceil((y-x).Magnitude/3));local previous=ground(x)
@@ -237,7 +237,7 @@ local function draw(a,model,now)
  end
  if d.shape=='circle'then circle(a.aim,d.radius)
  elseif d.shape=='trail'then for pulse=1,d.pulses do circle(a.aim+right*((pulse-(d.pulses+1)/2)*d.radius*2.5),d.radius)end
- elseif d.shape=='ring'then circle(a.origin,d.radius);circle(a.origin,d.innerRadius)
+ elseif d.shape=='ring'then circle(a.origin,d.radius);outerCount=#vertices;circle(a.origin,d.innerRadius)
  elseif d.shape=='cone'then
   local prev=a.origin
   for i=0,16 do local angle=math.rad(-d.angle/2+i*d.angle/16);local v=a.origin+(a.direction*math.cos(angle)+right*math.sin(angle))*d.range;line(prev,v);prev=v end;line(prev,a.origin)
@@ -255,18 +255,33 @@ local function draw(a,model,now)
   local p=a.lines[i];if not p or not p.Parent then p=part(a.folder,'WarningEdge',v[1],Vector3.one*.1,color);a.lines[i]=p end
   p.Color=color;p.Size=Vector3.new(.13,.08,math.max(.01,(v[2]-v[1]).Magnitude));p.CFrame=CFrame.lookAt((v[1]+v[2])*.5,v[2]);p.Transparency=.08+(.18*(1-math.clamp(age/d.windup,0,1)))
   p:SetAttribute('WarningBlockable',d.blockable)
-  if not d.blockable and not p:FindFirstChild('UnblockablePattern')then
-   -- A paired white dash is embedded in the exact existing boundary surface.
-   -- No extra world parts, expanded footprint or marks inside a safe ring hole.
-   local gui=Instance.new('SurfaceGui');gui.Name='UnblockablePattern';gui.Face=Enum.NormalId.Top
-   gui.CanvasSize=Vector2.new(16,128);gui.AlwaysOnTop=false;gui.LightInfluence=0;gui.Adornee=p;gui.Parent=p
-   for _,offset in ipairs({.24,.64})do
-    local dash=Instance.new('Frame');dash.Name='WarningDash';dash.BorderSizePixel=0
-    dash.Position=UDim2.fromScale(0,offset);dash.Size=UDim2.fromScale(1,.12)
-    dash.BackgroundColor3=Color3.fromRGB(255,249,232);dash.BackgroundTransparency=.05;dash.Parent=gui
+
+ end
+ -- Pixel-sized paired slashes survive foreshortening on long and cone edges.
+ -- They annotate existing boundaries, never add or move world geometry. Ring
+ -- markers select only the outer contour so the safe-hole contour stays clear.
+ if not d.blockable then
+  local count=outerCount or #a.lines
+  local marks=math.min(4,count)
+  for slot=1,marks do
+   local index=math.floor((slot-.5)*count/marks)+1
+   local p=a.lines[index]
+   if p and not p:FindFirstChild('UnblockablePattern')then
+    local gui=Instance.new('BillboardGui');gui.Name='UnblockablePattern'
+    gui.Size=UDim2.fromOffset(20,20);gui.AlwaysOnTop=false;gui.LightInfluence=0
+    gui.StudsOffsetWorldSpace=Vector3.zero;gui.MaxDistance=100;gui.Adornee=p;gui.Parent=p
+    for _,x in ipairs({6,13})do
+     local dash=Instance.new('Frame');dash.Name='WarningDash';dash.BorderSizePixel=0
+     dash.AnchorPoint=Vector2.new(.5,.5);dash.Position=UDim2.fromOffset(x,10)
+     dash.Size=UDim2.fromOffset(3,16);dash.Rotation=32
+     dash.BackgroundColor3=Color3.fromRGB(255,249,232);dash.Parent=gui
+     local outline=Instance.new('UIStroke');outline.Color=Color3.fromRGB(45,24,21)
+     outline.Thickness=1;outline.Parent=dash
+    end
    end
   end
  end
+
 end
 function Effects.start()
  if started then return end;started=true

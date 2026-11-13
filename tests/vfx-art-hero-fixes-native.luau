@@ -35,6 +35,9 @@ local ok,err=xpcall(function()
  for _,id in ipairs({'elf.magic_archer.vine_trap','elf.magic_archer.rooting_fan','elf.magic_archer.vine_burst'})do
   local m=cast(id);check(m:FindFirstChild('GroundRootBody',true)and m:FindFirstChild('RootThorn',true),'root has grounded branches and thorns '..id)
   check(not m:FindFirstChild('VineSurface',true),'large spring silhouette removed '..id)
+  local root=assert(m:FindFirstChild('GroundRootBody',true));local tip=assert(m:FindFirstChild('RootAscendingTip',true))
+  check(root.Size.X>=.22 and root.Color.G>.6,'ground root retains readable body width and contrast '..id)
+  check(tip.Color.G>.85 and tip.Material==Enum.Material.Neon,'root tip has a local mint contrast cue '..id)
  end
  local steam=cast('mage.pyro.steam_burst');local vapor=assert(steam:FindFirstChild('SteamVapor',true))
  check(not steam:FindFirstChild('WaterVolume',true)and not steam:FindFirstChild('SteamJet',true),'steam does not reuse a water mass or white rods')
@@ -49,6 +52,14 @@ local ok,err=xpcall(function()
   local m=cast(id);local key=m:GetAttribute('UltimateSignature')
   check(type(key)=='string'and not signatures[key],'ultimate owns a unique focal form '..id);signatures[key]=true;ultimates+=1
   check(key==Profiles.get(id).signature,'signature follows the authored profile '..id)
+  if key=='FrontWall'then check(m:FindFirstChild('UltimateFrontPanel',true).Transparency<=.6,'front panels retain contrast')
+  elseif key=='DawnBlade'then check(m:FindFirstChild('DawnBladeSpine',true).Position.X-first.X>1,'solar blade focus is offset from the actor silhouette')
+  elseif key=='MountainRidge'then Hero.step(workspace:GetServerTimeNow()+.15);check(m:FindFirstChild('MountainRidgeFocus',true).Size.Y>3,'mountain focus grows into a heavy ridge')
+  elseif key=='SiegeShells'then check(m:FindFirstChild('MortarShellBody',true).Size.X>=.6,'siege shell keeps a visible metal body')
+  elseif key=='VolleyCrown'then check((m:FindFirstChild('VolleyDrawCrown',true).Attachment0.WorldPosition-first).Magnitude>3,'volley crown occupies a readable forward focus')
+  elseif key=='SpiritCanopy'then check(m:FindFirstChild('SpiritCanopyBough',true)and m:FindFirstChild('SpiritCanopyLeaf',true).Size.Y>=1.8,'spirit canopy has body branches and distinct leaves')
+  elseif key=='CalderaVents'then local high=0;for _,v in ipairs(m:GetDescendants())do if v.Name=='CalderaEruptionTongue'and v:IsA('BasePart')then high=math.max(high,v.Position.Y)end end;check(high>3,'caldera focal flames retain vertical presence')
+  elseif key=='FrostFunnel'then local high=0;for _,v in ipairs(m:GetDescendants())do if v.Name=='TempestSpiral'and v:IsA('Beam')then high=math.max(high,v.Attachment0.WorldPosition.Y,v.Attachment1.WorldPosition.Y)end end;check(high>5,'tempest spiral retains a vertical focus')end
   local n,b,c,g,p,f=Hero.count();check(n==1 and b<=48 and c<=7 and g<=96 and p<=192 and f<=160,'signature obeys original budgets '..id)
   for _,part in ipairs(m:GetDescendants())do if part:IsA('BasePart')then check(part.Anchored and not part.CanCollide and not part.CanTouch and not part.CanQuery,'ultimate has no physics authority')end end
  end end

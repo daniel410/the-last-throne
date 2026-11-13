@@ -1,4 +1,4 @@
--- ART revisions: real engine geometry, warning surface cues, ring safety and cleanup.
+-- ART revisions: real engine geometry, warning pixel cues, ring safety and cleanup.
 assert(game.PlaceId==0 and game.GameId==0 and #game.Players:GetPlayers()==0,'Local fixture only')
 local Client=game.StarterPlayer.StarterPlayerScripts.Client
 local V=require(Client.EnemySpellVFX);local Art=require(Client.EnemySpellArt)
@@ -32,21 +32,26 @@ local ok,err=xpcall(function()
   actor:SetAttribute('K0EnemyAttackClock',string.format('%d|%.6f|%.6f|%.6f|%.6f|%d',seq,now,d.windup,d.active,d.recovery,d.heavy and 1 or 0))
   actor:SetAttribute('K0PatternOrigin',Vector3.new(0,2,0));actor:SetAttribute('K0PatternDirection',-Vector3.zAxis);actor:SetAttribute('K0PatternAim',Vector3.new(0,2,-8))
   Effects.observe(actor,now);Effects.render(now+d.windup*.8)
-  local warning=assert(workspace:FindFirstChild('EnemyPatternWarning'));local edges=0
+  local warning=assert(workspace:FindFirstChild('EnemyPatternWarning'));local edges=0;local marks=0
   for _,part in ipairs(warning:GetDescendants())do if part:IsA('BasePart')then
    edges+=1;check(part.Name=='WarningEdge','non-color cues add no world geometry')
    check(part.Anchored and not part.CanCollide and not part.CanTouch and not part.CanQuery,'warning remains cosmetic')
    local pattern=part:FindFirstChild('UnblockablePattern')
-   check((pattern~=nil)==(not d.blockable),'every un-blockable boundary has a shape cue '..d.id)
    if pattern then
-    check(pattern.Adornee==part and pattern.Face==Enum.NormalId.Top and not pattern.AlwaysOnTop,'dash stays on the exact occluded boundary surface')
-    check(#pattern:GetChildren()==2,'paired dash is visibly different from a plain line')
+    marks+=1;check(not d.blockable,'blockable warnings keep a plain boundary '..d.id)
+    check(pattern:IsA('BillboardGui')and pattern.Adornee==part and not pattern.AlwaysOnTop,'pixel cue remains occluded and attached to its original edge')
+    check(pattern.StudsOffsetWorldSpace==Vector3.zero and pattern.Size==UDim2.fromOffset(20,20)and pattern.MaxDistance==100,'cue has a fixed readable pixel size and no world displacement')
+    check(#pattern:GetChildren()==2,'cue has two parallel slashes')
     for _,dash in ipairs(pattern:GetChildren())do
-     check(dash.Position.Y.Scale>=0 and dash.Position.Y.Scale+dash.Size.Y.Scale<=1 and dash.Size.X.Scale==1,'dash lies within existing edge surface')
+     check(dash.Size==UDim2.fromOffset(3,16)and dash.Rotation==32 and dash:FindFirstChildOfClass('UIStroke')~=nil,'slashes have readable thickness and a contrast outline')
+    end
+    if d.shape=='ring'then
+     local q=part.Position;check(Vector3.new(q.X,0,q.Z).Magnitude>d.innerRadius+1,'ring cues attach only to outer boundary, never the safe-hole contour')
     end
    end
   end end
   check(edges>0,'all shape warnings remain present')
+  check(marks==(d.blockable and 0 or math.min(4,edges)),'non-color markers are bounded to four per warning '..d.id)
   Effects.receive({kind='cancel',model=actor,sequence=seq});check(not workspace:FindFirstChild('EnemyPatternWarning'),'cancel removes cue and original boundary together')
  end
  local styles={};local impSize,bossSize

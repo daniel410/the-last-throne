@@ -40,15 +40,17 @@ function C.mount(holder,key,size)
  if key=='heal'then
   local mint=Color3.fromRGB(145,255,200)
   local rows={
-   {'Shards','shard',-.95,3,{.55,.8},{2.8,3.6},{{0,.16},{.2,.48},{1,0}},2.5},
+   {'Shards','shard',-.95,3,{.55,.8},{2.8,3.6},{{0,.32},{.16,.48},{.7,.3},{1,0}},2.5},
    {'Plus','plus',.65,2,{.85,1.25},{1.5,2.4},{{0,0},{.25,.2},{1,0}},3},
-   {'ShardsBigger','shard',.95,2,{.5,.75},{3,4},{{0,.16},{.2,.55},{1,0}},3.5},
-   {'Specs','spec',-.4,5,{.85,1.25},{3,4.5},{{0,0},{.25,.18,.06},{1,0}},3},
+   {'ShardsBigger','shard',.95,2,{.5,.75},{3,4},{{0,.36},{.16,.55},{.7,.34},{1,0}},3.5},
+   {'Specs','spec',-.4,5,{.85,1.25},{3,4.5},{{0,.1},{.2,.18,.06},{1,0}},3},
   }
   for _,r in ipairs(rows)do
    local a=attachment(holder,r[1]..'Origin',Vector3.new(r[3],r[1]=='Plus'and -.4 or -1.1,.15))
    local e=add(emitter(a,r[1],textures[r[2]],mint,r[5],r[6],r[7],r[4]));e.Drag=r[8]
    e.LockedToPart=true;e.SpreadAngle=Vector2.new(12,12);e.LightEmission=r[1]=='Plus'and .25 or .45
+   -- Keep the small ascent legible from its first frame, with no larger peak or extra burst.
+   if r[1]~='Plus'then e.Transparency=sequence({{0,.04},{.5,.04},{.8,.35},{1,1}})end
    if r[1]=='Specs'then e.Rotation=NumberRange.new(-180,180);e.RotSpeed=NumberRange.new(-300,300)end
   end
  elseif key=='cleanse'then
