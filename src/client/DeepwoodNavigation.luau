@@ -15,6 +15,15 @@ function Navigation.route(origin,destination)
  local result={};for _,p in ipairs(points)do table.insert(result,Vector3.new(table.unpack(p)))end
  return result
 end
+function Navigation.createChevron(parent)
+ local p=Instance.new('Part');p.Name='GuideChevron';p.Size=Vector3.new(.18,.09,1.65);p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false
+ p.Material=Enum.Material.Neon;p.Color=Color3.fromRGB(255,224,137);p.Transparency=1;p.Parent=parent
+ local overlay=Instance.new('BoxHandleAdornment');overlay.Name='GuideOverlay';overlay.Adornee=p;overlay.Size=p.Size;overlay.Color3=p.Color
+ -- Guidance shares world depth with targets and danger, instead of drawing
+ -- through them. The route, arrival marker and nearby fallback stay intact.
+ overlay.AlwaysOnTop=false;overlay.ZIndex=1;overlay.Transparency=1;overlay.Parent=p
+ return p
+end
 function Navigation.start()
  local player=Players.LocalPlayer
  local folder=Instance.new('Folder');folder.Name='DeepwoodNavigation';folder.Parent=workspace
@@ -26,10 +35,7 @@ function Navigation.start()
  for i=1,20 do
   local pair={}
   for j=1,2 do
-   local p=Instance.new('Part');p.Name='GuideChevron';p.Size=Vector3.new(.18,.09,1.65);p.Anchored=true;p.CanCollide=false;p.CanTouch=false;p.CanQuery=false;p.CastShadow=false
-   p.Material=Enum.Material.Neon;p.Color=Color3.fromRGB(255,224,137);p.Transparency=1;p.Parent=folder
-   local overlay=Instance.new('BoxHandleAdornment');overlay.Name='GuideOverlay';overlay.Adornee=p;overlay.Size=p.Size;overlay.Color3=p.Color
-   overlay.AlwaysOnTop=true;overlay.ZIndex=1;overlay.Transparency=1;overlay.Parent=p;pair[j]=p
+   pair[j]=Navigation.createChevron(folder)
   end
   arrows[i]=pair
  end

@@ -9,8 +9,8 @@ local textures={
  gradient='rbxassetid://8196169974',blast='rbxassetid://125374985892345',
 }
 local skills={['elf.magic_archer.spirit_rain']='spiritRain',['mage.cryo.frost_ring']='frost',['dwarf.gunner.bomb_toss']='blast'}
-local lifetimes={heal=1.25,spiritRain=.45,frost=.6,blast=.85}
-local costs={heal=12,spiritRain=15,frost=8,blast=1}
+local lifetimes={heal=1.25,cleanse=.65,spiritRain=.45,frost=.6,blast=.85}
+local costs={heal=12,cleanse=12,spiritRain=15,frost=8,blast=1}
 function C.keyFor(id)return skills[id]end
 function C.duration(key)return lifetimes[key]end
 local function sequence(points)
@@ -33,23 +33,33 @@ function C.mount(holder,key,size)
  local cost=costs[key];if not cost then return nil end
  local limit=Input.TouchEnabled and 96 or 192
  if reserved+cost>limit then return nil end
- local required=key=='heal'and{'shard','plus','spec'}or key=='spiritRain'and{'shard','gradient'}or key=='frost'and{'shard'}or{key}
+ local required=key=='cleanse'and{}or key=='heal'and{'shard','plus','spec'}or key=='spiritRain'and{'shard','gradient'}or key=='frost'and{'shard'}or{key}
  for _,name in ipairs(required)do if blocked[textures[name]]then return nil end end
  local emitters={}
  local function add(e)table.insert(emitters,e);return e end
  if key=='heal'then
   local mint=Color3.fromRGB(145,255,200)
   local rows={
-   {'Shards','shard',-.7,3,{.55,.8},{3,4.5},{{0,0},{.35,.45},{1,0}},2.5},
+   {'Shards','shard',-.95,3,{.55,.8},{2.8,3.6},{{0,.16},{.2,.48},{1,0}},2.5},
    {'Plus','plus',.65,2,{.85,1.25},{1.5,2.4},{{0,0},{.25,.2},{1,0}},3},
-   {'ShardsBigger','shard',.4,2,{.5,.75},{3.5,5},{{0,0},{.35,.55},{1,0}},5},
+   {'ShardsBigger','shard',.95,2,{.5,.75},{3,4},{{0,.16},{.2,.55},{1,0}},3.5},
    {'Specs','spec',-.4,5,{.85,1.25},{3,4.5},{{0,0},{.25,.18,.06},{1,0}},3},
   }
   for _,r in ipairs(rows)do
-   local a=attachment(holder,r[1]..'Origin',Vector3.new(r[3],-.4,0))
+   local a=attachment(holder,r[1]..'Origin',Vector3.new(r[3],r[1]=='Plus'and -.4 or -1.1,.15))
    local e=add(emitter(a,r[1],textures[r[2]],mint,r[5],r[6],r[7],r[4]));e.Drag=r[8]
-   e.LockedToPart=true;e.SpreadAngle=Vector2.new(12,12);e.LightEmission=.25
+   e.LockedToPart=true;e.SpreadAngle=Vector2.new(12,12);e.LightEmission=r[1]=='Plus'and .25 or .45
    if r[1]=='Specs'then e.Rotation=NumberRange.new(-180,180);e.RotSpeed=NumberRange.new(-300,300)end
+  end
+ elseif key=='cleanse'then
+  -- A brief outward wash uses engine-bundled dust: no new upload or atlas card.
+  for i=1,4 do
+   local angle=i*math.pi/2;local radial=Vector3.new(math.cos(angle),0,math.sin(angle))
+   local a=attachment(holder,'CleanseReleaseOrigin',radial*.75-Vector3.yAxis*.65)
+   a.CFrame=CFrame.lookAt(a.Position,a.Position+radial)
+   local e=add(emitter(a,'CleanseRelease','rbxasset://textures/particles/sparkles_main.dds',Color3.fromRGB(187,224,255),{.25,.45},{4,6},{{0,.14},{.18,.22},{1,0}},3))
+   e.EmissionDirection=Enum.NormalId.Front;e.SpreadAngle=Vector2.new(12,18);e.Drag=4
+   e.Acceleration=Vector3.new(0,-2,0);e.LightEmission=.45
   end
  elseif key=='frost'then
   -- Small world-positioned ice glints; no baked ground perspective or floating card.

@@ -27,6 +27,7 @@ local function make(d,stage,owner,sequence,now,lifetime)
  if #records>=MAX_RECORDS or budget>MAX_PARTS-32 then return nil end
  local model=Instance.new('Model');model.Name=stage=='projectile' and 'EnemyMagicProjectile'or 'EnemySpell'..stage
  model:SetAttribute('SpellId',d.id);model:SetAttribute('SpellMotif',p.motif);model:SetAttribute('SpellOrnament',p.ornament);model:SetAttribute('SpellStage',stage)
+ model:SetAttribute('SpellStyle',p.fireStyle or p.motif)
  model.Parent=workspace
  local r={model=model,parts={},profile=p,definition=d,owner=owner,sequence=sequence,at=now,life=lifetime,stage=stage,color=Color3.fromRGB(table.unpack(p.color))}
  records[#records+1]=r;return r
@@ -38,7 +39,7 @@ local function part(r,name,size,cf,shape,color,alpha)
  if shape=='ball'then p.Shape=Enum.PartType.Ball end
  if name=='CrystalBlade'or name=='IceSpire'or name=='IceFacet'then
   p.Material=Enum.Material.Glass;p.Reflectance=.16;p.Transparency=.25;p.Color=p.Color:Lerp(Color3.fromRGB(220,252,255),.25)
- elseif name=='FlameTongue'then p.Transparency=.96
+ elseif name=='FlameTongue'then p.Transparency=r.profile.fireStyle and .5 or .96
  elseif name=='MeteorFlame'then p.Transparency=.72
  elseif name:match('^Accent_')then p.Transparency=.84;p.Color=r.color:Lerp(Color3.fromRGB(255,247,218),.4)
  elseif name=='SpiritMask'then p.Transparency=.6
@@ -87,8 +88,18 @@ local function motif(r)
   elseif m=='knife'then part(r,'KnifeGuard',Vector3.new(.65,.12,.12),CFrame.new(0,0,.4))
   elseif m=='scythe'then line(r,Vector3.new(-.8,0,-.5),Vector3.new(.3,0,.4),.22,'CrescentEdge')end
  elseif m=='ember' or m=='cinder' or m=='lava' or m=='inferno' or m=='volcano'then
-  part(r,'EmberHeart',Vector3.new(.46,.46,.9),CFrame.new(0,0,-.15),'ball',white,.18)
-  part(r,'EmberShell',Vector3.new(.72,.72,1.2),CFrame.new(0,0,.05),'ball',nil,.8)
+  local style=r.profile.fireStyle
+  part(r,'EmberHeart',style and Vector3.new(.24,.3,.85)or Vector3.new(.46,.46,.9),CFrame.new(0,0,-.15),style and 'wedge'or 'ball',white,style and .32 or .18)
+  part(r,'EmberShell',Vector3.new(.72,.72,1.2),CFrame.new(0,0,.05),'ball',nil,style and .94 or .8)
+  if style=='fork'then
+   for side=-1,1,2 do part(r,'ForkedFlame',Vector3.new(.24,.65,1.15),CFrame.new(side*.3,0,-.1)*CFrame.Angles(0,side*.24,side*.2),'wedge',nil,.22)end
+  elseif style=='cinderfan'then
+   for i=-1,1 do part(r,'CinderFanBlade',Vector3.new(.18,.38,1.6),CFrame.new(i*.29,0,0)*CFrame.Angles(0,i*.36,0),'wedge',nil,.24)end
+  elseif style=='vent'then
+   for i=-1,1 do part(r,'VentFlame',Vector3.new(.24,.9-math.abs(i)*.25,1.2),CFrame.new(i*.32,math.abs(i)*.22,-.05)*CFrame.Angles(0,i*.18,i*.2),'wedge',nil,.2)end
+  elseif style=='crownfire'then
+   for i=-1,1 do part(r,'InfernoCrown',Vector3.new(.24,i==0 and .7 or 1.25,1.1),CFrame.new(i*.48,math.abs(i)*.18,-.2)*CFrame.Angles(0,i*.16,i*.34),'wedge',nil,.18)end
+  end
   local n=m=='ember'and 3 or 5
   for i=1,n do local a=i*math.pi*2/n;part(r,'FlameTongue',Vector3.new(.28,.28,.9+i*.08),CFrame.new(math.cos(a)*.25,math.sin(a)*.25,.2)*CFrame.Angles(0,0,a),'wedge',i%2==0 and white or nil)end
  elseif m=='soul' or m=='seal' or m=='rift' or m=='hex' or m=='totem'then
@@ -105,8 +116,17 @@ local function motif(r)
   for i=1,3 do part(r,'ThornRoot',Vector3.new(.2,.25,1.2),CFrame.new((i-2)*.3,0,0)*CFrame.Angles(0,(i-2)*.4,0),'wedge')end
  elseif m=='wing'then
   for _,x in ipairs({-1,1})do part(r,'ShadowWing',Vector3.new(.8,.12,.8),CFrame.new(x*.3,0,0)*CFrame.Angles(0,x*.6,0),'wedge')end
- elseif m=='snow' or m=='sand' or m=='dust'then
-  for i=1,6 do local a=i*math.pi/3;line(r,Vector3.zero,Vector3.new(math.cos(a),math.sin(a),0)*.6,.08,m=='snow'and 'SnowRay'or 'SandRay')end
+ elseif m=='snow'then
+  for i=1,6 do
+   local a=i*math.pi/3;local axis=Vector3.new(math.cos(a),math.sin(a),0);local side=Vector3.new(-axis.Y,axis.X,0)
+   line(r,Vector3.zero,axis*.6,.075,'SnowRay')
+   line(r,axis*.34,axis*.46+side*.16,.06,'SnowBranch')
+  end
+ elseif m=='sand' or m=='dust'then
+  for i=1,5 do
+   local a=i*2.39996;local p=part(r,m=='sand'and 'SandGrain'or 'DustGrain',Vector3.new(.19,.12,.26),CFrame.new(math.cos(a)*.46,math.sin(a)*.25,(i%2-.5)*.18)*CFrame.Angles(.2,a,.4),'wedge',nil,.12)
+   if p then p.Material=m=='sand'and Enum.Material.Sand or Enum.Material.Ground end
+  end
  elseif m=='bomb'then
   part(r,'CrownBomb',Vector3.one*.7,CFrame.Angles(.3,.4,.1));line(r,Vector3.new(0,.35,0),Vector3.new(.2,.7,0),.1,'BombFuse',white)
  end
@@ -123,7 +143,10 @@ function V.pose(r,cf,age,scale,fade)
  if not r or r.dead then return end
  for i,v in ipairs(r.parts)do
   local localCF=v.cf;local size=v.size
-  if r.stage=='impact'and v.velocity then
+  if r.stage=='impact'and v.silkAxis then
+   local length=v.size.Z*(.6+.4*math.min(1,age/.16));local center=v.silkAxis*(.1+length*.5)
+   localCF=CFrame.lookAt(center,center+v.silkAxis);size=Vector3.new(v.size.X,v.size.Y,length)
+  elseif r.stage=='impact'and v.velocity then
    local t=math.max(0,age)
    local position=v.cf.Position+v.velocity*t+cf:VectorToObjectSpace(Vector3.yAxis)*(v.gravity or -5)*t*t*.5
    localCF=CFrame.new(position)*v.cf.Rotation*CFrame.Angles(t*i*1.1,t*.7,0)
@@ -173,12 +196,21 @@ function V.impact(d,position,now,owner,sequence,normal)
  local count=family=='frost'and 9 or family=='web'and 6 or 7
  for i=1,count do
   local a=i*2.39996;local ice=family=='frost';local stone=family=='earth'
-  local p=part(r,ice and 'CrystalBlade'or stone and 'StoneDebris'or family=='venom'and 'AcidDroplet'or 'ImpactFragment',
-   ice and Vector3.new(.12,.55,.18)or stone and Vector3.one*.2 or Vector3.new(.08,.2,.08),CFrame.Angles(a,.3,a),ice and 'wedge'or nil)
+  local name=ice and 'CrystalBlade'or stone and 'StoneDebris'or family=='venom'and 'AcidDroplet'or family=='arcane'and 'RunicImpactShard'or family=='soul'and 'SoulWisp'or family=='shadow'and 'RiftFragment'or family=='web'and 'ImpactSilk'or 'ImpactFragment'
+  local size=ice and Vector3.new(.12,.55,.18)or stone and Vector3.one*.2 or family=='web'and Vector3.new(.035,.035,.85)or family=='soul'and Vector3.new(.09,.42,.09)or family=='arcane'and Vector3.new(.14,.3,.1)or family=='shadow'and Vector3.new(.16,.32,.08)or Vector3.new(.08,.2,.08)
+  local p=part(r,name,size,CFrame.Angles(a,.3,a),(ice or family=='arcane'or family=='shadow')and 'wedge'or family=='soul'and 'ball'or nil)
   if stone then p.Material=Enum.Material.Slate;p.Color=Color3.fromRGB(132,112,90)end
   local v=r.parts[#r.parts]
   v.velocity=Vector3.new(math.cos(a),.5+(i%3)*.22,math.sin(a))*(ice and 3.2 or 2.4)
   v.gravity=family=='soul'and 1 or -5
+  if family=='soul'then
+   v.velocity=Vector3.new(math.cos(a)*.6,1.9+i%3*.25,math.sin(a)*.6)
+  elseif family=='shadow'then
+   local offset=Vector3.new(math.cos(a),math.sin(a),0)*.9;v.cf=CFrame.new(offset)*v.cf.Rotation
+   v.velocity=-offset*2;v.gravity=0
+  elseif family=='web'then
+   v.silkAxis=Vector3.new(math.cos(i*math.pi/3),math.sin(i*math.pi/3),0)
+  end
  end
  local surface=position
  if normal and normal.Magnitude>.001 then normal=normal.Unit;surface+=normal*.8 else normal=nil end
@@ -214,6 +246,15 @@ function V.pulse(d,position,direction,now,owner,sequence)
  -- Shape ornaments stay on the authoritative footprint, including the safe ring center.
  if d.shape=='ring'then
   for i=1,8 do local a=i*math.pi/4;crest(r,CFrame.new(math.cos(a)*d.radius*.94,0,math.sin(a)*d.radius*.94)*CFrame.Angles(0,a,0),1.1)end
+  -- Short radial cracks occupy the real hazardous band, never its safe center.
+  local band=d.radius-d.innerRadius
+  if band>1 then
+   local middle=(d.radius+d.innerRadius)*.5;local length=math.min(band*.5,2)
+   for i=1,8 do
+    local a=(i-.5)*math.pi/4;local axis=Vector3.new(math.cos(a),0,math.sin(a));local at=axis*middle+Vector3.yAxis*.08
+    part(r,'HazardBandCrack',Vector3.new(.09,.045,length),CFrame.lookAt(at,at+axis),nil,nil,.32)
+   end
+  end
  elseif d.shape=='circle'or d.shape=='trail'then
   for i=1,7 do local a=i*math.pi*2/7;crest(r,CFrame.new(math.cos(a)*d.radius*.65,0,math.sin(a)*d.radius*.65)*CFrame.Angles(0,a,0),1.6)end
  elseif d.shape=='line'then

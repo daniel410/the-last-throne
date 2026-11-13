@@ -122,7 +122,8 @@ function FX.support(character,action)
  local root=character and character:FindFirstChild("HumanoidRootPart")
  local key=({Heal="heal",Protect="ward",Cleanse="cleanse"})[action]
  if not root or not key then return false end
- return FX.emit(key,root.Position,3.8,action=='Heal'and Curated.duration('heal')or .8,{character=character,follow=root,curated=action=='Heal'and'heal'or nil})
+ local curated=action=='Heal'and'heal'or action=='Cleanse'and'cleanse'or nil
+ return FX.emit(key,root.Position,3.8,curated and Curated.duration(curated)or .8,{character=character,follow=root,curated=curated})
 end
 function FX.preloadCurated()Curated.preload()end
 local seenEnemies=setmetatable({},{__mode="k"})

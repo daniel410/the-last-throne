@@ -21,6 +21,7 @@ local overrides={
  ['CalderaTitan.3']={'meteor','crown'},['KingVolcanoShaman.3']={'volcano','crown'},
 }
 P.species=rows
+local fireStyles={Imp='spark',MagmaImp='fork',VolcanoShaman='cinderfan',KingVolcanoShaman='vent',InfernoOverlord='crownfire'}
 local families={icespear='frost',frostfang='frost',prism='frost',crystal='frost',glacier='frost',iceboulder='frost',snow='frost',
  ember='fire',cinder='fire',lava='fire',inferno='fire',volcano='fire',meteor='fire',magma='fire',bomb='fire',
  soul='soul',seal='soul',rift='shadow',banner='shadow',scythe='shadow',wing='shadow',hex='arcane',totem='arcane',
@@ -30,7 +31,7 @@ function P.get(d)
  local row=overrides[d.id]or base
  local rgb=palette[d.element]or palette.physical
  if row[1]=='web'then rgb=palette.web elseif row[1]=='sand'then rgb={225,192,123}end
- return {kind=kind,motif=row[1],ornament=row[2],family=families[row[1]]or 'physical',color=rgb,index=tonumber(d.id:match('%.(%d+)$'))or 1,
+ return {kind=kind,motif=row[1],ornament=row[2],family=families[row[1]]or 'physical',color=rgb,index=tonumber(d.id:match('%.(%d+)$'))or 1,fireStyle=fireStyles[kind],
   -- Separate attacks of a species also vary their orbit/rune arrangement.
   heavy=d.heavy==true,shape=d.shape,element=d.element}
 end

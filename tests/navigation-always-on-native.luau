@@ -48,15 +48,15 @@ for i=1,#rendered,2 do
  end
 end
 assert(pairsChecked>0,'moving player keeps visible direct guidance')
--- World geometry may cover the entire line of sight; every active arrow has
--- a matching depth-independent overlay, and hidden arrows must hide it too.
+-- Navigation retains its active/hidden contract while its overlay obeys
+-- world depth, so it cannot paint over a foreground enemy or warning.
 local occluder=Instance.new('Part');occluder.Name='NavigationOccluder';occluder.Anchored=true
 occluder.Size=Vector3.new(200,6,200);occluder.Position=at(0,12,0);occluder.Parent=field
 local function checkOverlay()
  for _,p in ipairs(workspace.DeepwoodNavigation:GetChildren())do
   local overlay=p:FindFirstChild('GuideOverlay')
   assert(overlay and overlay:IsA('BoxHandleAdornment') and overlay.Adornee==p,'each chevron has an overlay')
-  assert(overlay.AlwaysOnTop and overlay.ZIndex>=0,'terrain cannot occlude the overlay')
+  assert(not overlay.AlwaysOnTop and overlay.ZIndex>=0,'foreground world geometry can occlude the overlay')
   assert(overlay.Transparency==p.Transparency,'overlay follows active/hidden state')
  end
 end

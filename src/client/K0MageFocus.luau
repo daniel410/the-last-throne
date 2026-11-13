@@ -2,7 +2,7 @@
 -- Charge follows the authored clip. Flash is called only for a server shot.
 local Focus={}
 local states=setmetatable({},{__mode="k"})
-local colors={arcane=Color3.fromRGB(178,138,255),gravity=Color3.fromRGB(146,85,232),water=Color3.fromRGB(85,190,255),wind=Color3.fromRGB(155,242,220),fire=Color3.fromRGB(255,138,62),frost=Color3.fromRGB(170,230,255),earth=Color3.fromRGB(230,177,100),lightning=Color3.fromRGB(197,180,255)}
+local colors=require(game:GetService('ReplicatedStorage').Shared.CombatVFXPalette).colors
 function Focus.clear(model)
  local s=states[model];if not s then return end
  s.emitter.Rate=0;s.emitter:Clear();s.light.Enabled=false

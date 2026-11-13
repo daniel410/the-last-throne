@@ -13,7 +13,7 @@ local function part(r,name,size,cf,color,alpha,shape,material,grow,rise)
  p.Parent=r.model;table.insert(r.faces,{part=p,cf=cf,size=size,alpha=p.Transparency,grow=grow,rise=rise});count+=1
  return p
 end
-function S.triangle(r,name,a,b,c,color,alpha)
+function S.triangle(r,name,a,b,c,color,alpha,material)
  local ab,ac,bc=b-a,c-a,c-b
  local aa,bb,cc=ab:Dot(ab),ac:Dot(ac),bc:Dot(bc)
  if aa>bb and aa>cc then c,a=a,c elseif bb>aa and bb>cc then a,b=b,a end
@@ -22,20 +22,29 @@ function S.triangle(r,name,a,b,c,color,alpha)
  local right=normal.Unit;local back=bc.Unit;local up=back:Cross(right)
  local height=math.abs(ab:Dot(up));if height<.01 then return end
  for _,v in ipairs({{b,right,back,math.abs(ab:Dot(back))},{c,-right,-back,math.abs(ac:Dot(back))}})do
-  if v[4]>.01 then part(r,name,Vector3.new(.055,height,v[4]),CFrame.fromMatrix((a+v[1])*.5,v[2],up,v[3]),color,alpha,'wedge')end
+  if v[4]>.01 then part(r,name,Vector3.new(.018,height,v[4]),CFrame.fromMatrix((a+v[1])*.5,v[2],up,v[3]),color,alpha,'wedge',material)end
  end
 end
-function S.ribbon(r,name,path,normal,width,alpha,color)
+function S.ribbon(r,name,path,normal,width,alpha,color,segments,material)
  local prevL,prevR
- for i=0,8 do
-  local t=i/8;local at=path(t)
+ segments=segments or 8
+ for i=0,segments do
+  local t=i/segments;local at=path(t)
   local direction=path(math.min(1,t+.01))-path(math.max(0,t-.01))
   local side=normal:Cross(direction);side=side.Magnitude>.001 and side.Unit or Vector3.xAxis
   local half=width*(.025+.5*math.sin(t*math.pi)^.6)
   local left,right=at+side*half,at-side*half
-  if prevL then S.triangle(r,name,prevL,prevR,left,color,alpha);S.triangle(r,name,prevR,right,left,color,alpha)end
+  if prevL then S.triangle(r,name,prevL,prevR,left,color,alpha,material);S.triangle(r,name,prevR,right,left,color,alpha,material)end
   prevL,prevR=left,right
  end
+end
+function S.bar(r,name,first,last,width,color,alpha,material)
+ local delta=last-first;if delta.Magnitude<.02 then return end
+ return part(r,name,Vector3.new(width,width,delta.Magnitude),CFrame.lookAt((first+last)*.5,last),color,alpha,'ball',material or Enum.Material.SmoothPlastic)
+end
+function S.growLine(r,first,last,duration,delay)
+ local face=r.faces[#r.faces]
+ if face then face.growLine={first=first,last=last,duration=duration,delay=delay or 0}end
 end
 -- An open annulus leaves the actor, target and ground telegraphs visible.
 function S.arc(r,name,at,radius,width,color,alpha,basis,arc)
@@ -87,6 +96,12 @@ function S.step(r,u,fade)
    local t=math.clamp((u*r.life-v.fall.delay)/v.fall.duration,0,1)
    v.part.CFrame=v.cf+Vector3.yAxis*v.fall.height*(1-t*t)
    v.part.Transparency=v.alpha+(1-v.alpha)*math.clamp((t-.72)/.28,0,1)
+  end
+  if v.growLine then
+   local g=v.growLine;local t=math.clamp((u*r.life-g.delay)/g.duration,0,1)
+   local tip=g.first+(g.last-g.first)*math.max(.01,t)
+   v.part.Size=Vector3.new(v.size.X,v.size.Y,math.max(.025,(tip-g.first).Magnitude))
+   v.part.CFrame=CFrame.lookAt((g.first+tip)*.5,tip)
   end
  end
 end

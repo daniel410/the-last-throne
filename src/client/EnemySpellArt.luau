@@ -101,7 +101,7 @@ local function shockwave(r,radius,ground)
    local u=smooth(t/r.life);local rad=radius*(.18+u*.82)
    if r.definition.shape=='ring'and ground then
     -- Keep the safe hole completely empty, even during the expansion.
-    rad=r.definition.innerRadius+(radius-r.definition.innerRadius)*(.8+u*.2)
+    rad=r.definition.innerRadius+(radius-r.definition.innerRadius)*(.38+u*.62)
    end
    local a,b=start,start+math.pi*.5
    local p=Vector3.new(math.cos(a)*rad,math.sin(a)*rad,0)
@@ -129,9 +129,13 @@ function A.attach(r)
    particles(r,'GatheringMotes',SPARK,0,.15,.3,.35,9,false)
   elseif family=='web'then orbit(r,'SilkGather',.6,0,.4,0,.025)end
  elseif r.stage=='projectile'then
-  if magic then flare(r,family=='fire'and 2.2 or family=='shadow'and 1.65 or 1.45)end
+  if magic then
+   local fireSize=({spark=1.4,fork=1.8,cinderfan=1.8,vent=2.1,crownfire=2.4})[r.profile.fireStyle]or 2.2
+   flare(r,family=='fire'and fireSize or family=='shadow'and 1.65 or 1.45)
+  end
   if family=='fire'then
-   wake(r,3,.34,3.2)
+   local style=r.profile.fireStyle
+   wake(r,(style=='spark'or style=='fork')and 2 or 3,style=='spark'and .18 or style=='cinderfan'and .22 or .34,style=='spark'and 2 or style=='crownfire'and 3.8 or style=='vent'and 3.6 or 3.2)
    particles(r,'TurbulentFlame',FIRE,0,.65,.6,.28,22,false,Vector3.new(0,0,.3))
    particles(r,'CoolingSmoke',SMOKE,0,.45,.5,.38,7,true,Vector3.new(0,0,.8))
   elseif family=='frost'then
@@ -145,12 +149,41 @@ function A.attach(r)
   else particles(r,'DustWake',SMOKE,0,.25,.5,.25,6,true)end
  elseif r.stage=='impact'then
   if magic then flare(r,r.profile.heavy and 3.8 or 2.8)end
-  if magic or family=='web'then shockwave(r,family=='fire'and 1.6 or 1.25,false)end
+  if family=='arcane'then
+   orbit(r,'ArcaneContactRune',.7,0,.35,0,.065);orbit(r,'ArcaneContactCrossing',.7,0,-.55,math.pi*.5,.045)
+  elseif family=='soul'then
+   for lane=1,3 do
+    ribbon(r,'SoulContactAscent',function(t)
+     local u=smooth(t/r.life);local x=(lane-2)*.35
+     return Vector3.new(x,-.1,0),Vector3.new(x*.3,.5+u*1.15,.12),Vector3.yAxis,Vector3.yAxis,.45,.6
+    end,.07)
+   end
+  elseif family=='shadow'then
+   for lane=1,4 do
+    local a=lane*math.pi*.5;local axis=Vector3.new(math.cos(a),math.sin(a),0)
+    ribbon(r,'ShadowContactInfall',function(t)
+     local u=smooth(t/r.life);local p=axis*(1-u*.65)
+     return p,axis*.08,-axis,-axis,.16,-.12
+    end,.075)
+   end
+  elseif family=='web'then
+   for lane=1,3 do
+    local a=lane*math.pi/3;local axis=Vector3.new(math.cos(a),math.sin(a),0)
+    ribbon(r,'WebContactThread',function(t)
+     local reach=.55+.3*smooth(t/.18)
+     return -axis*reach,axis*reach,axis,axis,0,0
+    end,.027)
+   end
+  elseif magic then shockwave(r,family=='fire'and 1.6 or 1.25,false)end
   particles(r,'ImpactSparks',SPARK,magic and 12 or 5,.13,3,.32,nil,false)
   if family=='fire'then particles(r,'ImpactFlame',FIRE,8,1.2,1.6,.4,nil,false);particles(r,'AfterSmoke',SMOKE,4,.8,.5,.55,nil,true)
   elseif family=='frost'then particles(r,'FrostMist',SMOKE,5,.75,.7,.38,nil,true)
   elseif family=='venom'then particles(r,'AcidSpray',SMOKE,6,.45,2,.38,nil,false)
-  elseif family=='soul'or family=='shadow'then particles(r,'SpiritRelease',SMOKE,5,.5,1,.45,nil,false)
+  elseif family=='soul'then
+   particles(r,'SoulAscentMotes',SMOKE,5,.35,.7,.45,nil,false)
+   local last=r.art.emitters[#r.art.emitters]
+   if last and last.e.Name=='SoulAscentMotes'then last.e.EmissionDirection=Enum.NormalId.Top;last.e.SpreadAngle=Vector2.new(18,18);last.e.Acceleration=Vector3.yAxis*3 end
+  elseif family=='shadow'then particles(r,'VoidDissolve',SMOKE,5,.4,.35,.4,nil,true)
   elseif family=='earth'then particles(r,'StoneDust',SMOKE,5,.65,.7,.4,nil,true)end
  elseif r.stage=='pulse'then
   local d=r.definition
@@ -173,7 +206,9 @@ function A.attach(r)
   if d.shape=='ring'and magic then
    -- Upward plumes stay in the hazardous band; never place a flare in its safe center.
    for i=1,6 do
-    local a=i*math.pi/3;local offset=Vector3.new(math.cos(a)*d.radius*.9,.15,math.sin(a)*d.radius*.9)
+    local a=i*math.pi/3;local band=d.radius-d.innerRadius;local margin=math.min(1.2,band*.32)
+    local radius=d.innerRadius+margin+(band-margin*2)*(i%2==0 and .75 or .3)
+    local offset=Vector3.new(math.cos(a)*radius,.15,math.sin(a)*radius)
     local before=#r.art.emitters
     particles(r,'PerimeterSurge',family=='fire'and FIRE or family=='frost'and SMOKE or SPARK,3,family=='fire'and .9 or .55,1.8,.4,nil,false,offset)
     if #r.art.emitters>before then

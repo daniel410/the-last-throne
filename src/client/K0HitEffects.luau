@@ -9,6 +9,7 @@ local PixelFX = require(script.Parent.PixelFX)
 local CombatAudio = require(script.Parent.K0CombatAudio)
 local HitStop = require(script.Parent.K0HitStop)
 local HeroVFX = require(script.Parent.HeroVFX)
+local Palette = require(ReplicatedStorage.Shared.CombatVFXPalette)
 
 local HitEffects = {}
 local started = false
@@ -53,6 +54,17 @@ for _,classId in ipairs({'knight','dwarf'})do
  for index,d in ipairs(Config.Skills[classId])do local base=table.clone(d);base.root=base.root or index;add(base)end
 end
 
+-- Every class resolves its confirmed ID through the same presentation catalog.
+-- Existing shape overrides remain; all authored spell colors share one source.
+for classId,list in pairs(Config.Skills)do for _,d in ipairs(list)do
+ local color,hot,key=Palette.resolve(classId,d.id)
+ if not skillProfiles[d.id]then
+  local shape=key=='water'and'water'or key=='gravity'and'gravity'or key=='frost'and'frost'or key=='lightning'and'lightning'or key=='earth'and'earth'or key=='fire'and'fire'or'precision'
+  skillProfiles[d.id]={class=classId,shape=shape}
+ end
+ skillProfiles[d.id].color=color;skillProfiles[d.id].secondary=hot
+end end
+
 local function finite(value)
 	return type(value) == "number" and value == value and math.abs(value) < 10000000
 end
@@ -78,6 +90,8 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		profile.color, profile.secondary = skill.color, skill.secondary
 	else
 		skill = nil
+		local color,hot=Palette.resolve(classId,nil)
+		profile=table.clone(profile);profile.color=color;profile.secondary=hot
 	end
 	for i = #active, 1, -1 do if not active[i].Parent then table.remove(active, i) end end
 	if #active >= MAX_ACTIVE then table.remove(active, 1):Destroy() end
@@ -98,27 +112,29 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 	HitReaction.record(model, flat)
 	PixelFX.hit(position, classId, skillId, scale)
 	HeroVFX.contact(position, classId, skillId, flat, scale)
-	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.25 * scale * impactScale, profile.secondary)
-	TweenService:Create(flash, TweenInfo.new(0.20, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-		{ Size = Vector3.one * 1.65 * scale * impactScale, Transparency = 1 }):Play()
+	local flash = part(holder, "K0ImpactFlash", position, Vector3.one * 0.20 * scale * impactScale, profile.secondary)
+	TweenService:Create(flash, TweenInfo.new(0.09, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+		{ Size = Vector3.one * .8 * scale * impactScale, Transparency = 1 }):Play()
 	if model and model:IsDescendantOf(workspace) then
 		local highlight = Instance.new("Highlight")
 		highlight.Name, highlight.Adornee = "K0HitFlash", model
-		highlight.FillColor, highlight.FillTransparency, highlight.OutlineTransparency = profile.secondary, 0.32, 0.35
+		highlight.FillColor, highlight.FillTransparency, highlight.OutlineTransparency = profile.color, 0.78, 0.55
 		highlight.OutlineColor = profile.color
 		highlight.DepthMode, highlight.Parent = Enum.HighlightDepthMode.Occluded, holder
-		TweenService:Create(highlight, TweenInfo.new(0.18), { FillTransparency = 1, OutlineTransparency = 1 }):Play()
+		TweenService:Create(highlight, TweenInfo.new(0.12), { FillTransparency = 1, OutlineTransparency = 1 }):Play()
 	end
 	for index = 1, 2 do
 		local ray = part(holder, "K0ContactRay", position, Vector3.new(.08, 1.5, .08) * scale, profile.secondary)
+		ray.Size=Vector3.new(.045,skill and skill.shape=='chop'and 1.2 or .8,.045)*scale;ray.Transparency=.35
 		ray.Shape = Enum.PartType.Block
 		ray.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(index == 1 and 35 or -55))
 		TweenService:Create(ray, TweenInfo.new(.17), {Size = ray.Size * 1.4, Transparency = 1}):Play()
 	end
 	if skill then
 		local accent = part(holder, "K0SkillImpact", position, Vector3.new(0.12, 0.45, 0.45) * scale, skill.color)
+		accent.Transparency=.3
 		accent:SetAttribute("Style", skill.shape)
-		local isRing = skill.shape == "shield" or skill.shape == "sweep" or skill.shape == "shockwave" or skill.shape == "gravity" or skill.shape == "water"
+		local isRing = skill.shape == "gravity" or skill.shape == "water"
 		if isRing then
 			accent.Shape = Enum.PartType.Cylinder
 			accent.CFrame = CFrame.new(position) * CFrame.Angles(0, 0, math.rad(90))
@@ -164,7 +180,7 @@ function HitEffects.show(model, position, damage, classId, enemyKind, direction,
 		streak.CFrame = CFrame.lookAt(position, position + flat) * CFrame.Angles(0, 0, math.rad(classId == "knight" and 45 or -35))
 		TweenService:Create(streak, TweenInfo.new(0.18), { Transparency = 1, Size = streak.Size * 1.2 }):Play()
 	end
-	for index = 1, 5 do
+	for index = 1, 3 do
 		local angle = (index - 1) * (math.pi * 2 / 5) + 0.35
 		local offset = Vector3.new(math.cos(angle), 0.45 + (index % 2) * 0.4, math.sin(angle)) * scale
 		local particle = part(holder, slime and "K0GelDroplet" or "K0ImpactSpark", position,

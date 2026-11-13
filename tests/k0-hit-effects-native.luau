@@ -32,7 +32,7 @@ local ok, err = xpcall(function()
 		check(h:FindFirstChild("K0DamageNumber").Amount.Text == "75", "actual damage number shown")
 		check(h.K0DamageNumber.StudsOffsetWorldSpace.Y >= 3.8, "damage number clears the health bar")
 		local particles = 0; for _, child in ipairs(h:GetChildren()) do if child.Name == (classId == "dwarf" and "K0GelDroplet" or "K0ImpactSpark") then particles += 1 end end
-		check(particles == 5, "material-appropriate particles")
+		check(particles == 3, "small material-appropriate burst preserves target readability")
 		local sound
 		for _, emitter in ipairs(workspace:GetChildren()) do
 			if emitter.Name == "K0CombatAudioEmitter" and not emittersBefore[emitter] then sound = emitter:FindFirstChild("K0HitSound") or sound end
@@ -55,7 +55,7 @@ local ok, err = xpcall(function()
 		check(h.K0SkillImpact:GetAttribute("Style") == item[3], "correct skill impact style")
 		if item[3] == "chop" then
 			check(h.K0SkillImpact.Size.Y >= 3.79 and h.K0SkillImpact.Size.X >= 0.199, "overhead smash has a larger vertical impact")
-			check(h.K0ImpactFlash.Size.X >= 0.374, "overhead smash has a larger flash")
+			check(h.K0ImpactFlash.Size.X >= 0.299 and h.K0ImpactFlash.Size.X < .4, "overhead core is heavier but stays localized")
 		end
 		if item[3] == "water" then
 			local droplets = 0; for _, part in ipairs(h:GetChildren()) do if part.Name == "K0WaterSplash" then droplets += 1 end end

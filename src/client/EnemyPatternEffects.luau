@@ -245,6 +245,18 @@ local function draw(a,model,now)
  for i,v in ipairs(vertices)do
   local p=a.lines[i];if not p or not p.Parent then p=part(a.folder,'WarningEdge',v[1],Vector3.one*.1,color);a.lines[i]=p end
   p.Color=color;p.Size=Vector3.new(.13,.08,math.max(.01,(v[2]-v[1]).Magnitude));p.CFrame=CFrame.lookAt((v[1]+v[2])*.5,v[2]);p.Transparency=.08+(.18*(1-math.clamp(age/d.windup,0,1)))
+  p:SetAttribute('WarningBlockable',d.blockable)
+  if not d.blockable and not p:FindFirstChild('UnblockablePattern')then
+   -- A paired white dash is embedded in the exact existing boundary surface.
+   -- No extra world parts, expanded footprint or marks inside a safe ring hole.
+   local gui=Instance.new('SurfaceGui');gui.Name='UnblockablePattern';gui.Face=Enum.NormalId.Top
+   gui.CanvasSize=Vector2.new(16,128);gui.AlwaysOnTop=false;gui.LightInfluence=0;gui.Adornee=p;gui.Parent=p
+   for _,offset in ipairs({.24,.64})do
+    local dash=Instance.new('Frame');dash.Name='WarningDash';dash.BorderSizePixel=0
+    dash.Position=UDim2.fromScale(0,offset);dash.Size=UDim2.fromScale(1,.12)
+    dash.BackgroundColor3=Color3.fromRGB(255,249,232);dash.BackgroundTransparency=.05;dash.Parent=gui
+   end
+  end
  end
 end
 function Effects.start()

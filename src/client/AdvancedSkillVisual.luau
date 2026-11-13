@@ -9,9 +9,10 @@ local BowMotion=require(script.Parent.K0BowMotion)
 local WindLance=require(script.Parent.WindLanceVisual)
 local PixelFX=require(script.Parent.PixelFX)
 local HeroVFX=require(script.Parent.HeroVFX)
+local Palette=require(RS.Shared.CombatVFXPalette)
 local Visual={}
 local byId={};for _,list in pairs(Config.Skills) do for _,d in ipairs(list) do byId[d.id]=d end end
-local colors={wind=Color3.fromRGB(180,255,218),arcane=Color3.fromRGB(180,153,255),steel=Color3.fromRGB(255,215,133),holy=Color3.fromRGB(255,189,50),gun=Color3.fromRGB(255,210,80),bomb=Color3.fromRGB(255,133,57),shell=Color3.fromRGB(255,87,55),nature=Color3.fromRGB(104,238,157),fire=Color3.fromRGB(255,101,41),earth=Color3.fromRGB(176,126,76),water=Color3.fromRGB(73,178,255),frost=Color3.fromRGB(141,234,255),lightning=Color3.fromRGB(90,164,255)}
+local colors=Palette.colors
 local active=0
 local confirmed=setmetatable({},{__mode="k"})
 local function part(name,color,shape,size,cf,life,transparency)
@@ -165,7 +166,7 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
  if pulse~=0 then BowMotion.confirmPulse(character,id,pulse,attackSeq,firedAt,startedAt,workspace:GetServerTimeNow()) end
  if pulse~=0 then PixelFX.skill(character,id,origin,center,pulse,points,attackSeq,firedAt) end
  if id=="mage_wind_lance" then WindLance.play(character,origin,center,pulse,points,attackSeq,firedAt,startedAt,d.windup);return end
- local color=colors[d.element] or colors.steel
+ local color=Palette.resolve(id:match('^(%a+)'),id)or colors.steel
  local direction=center-origin
  if direction.Magnitude<.01 then
   local root=character and character:FindFirstChild("HumanoidRootPart")
@@ -219,22 +220,23 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   if effect=="rain" or effect=="hail" or effect=="ash" then rain(targetFloor,d.radius,color,effect,character)
   elseif effect=="lightning" then lightning(center+Vector3.new(0,12,0),center,color)
   elseif effect=="vine" then
-   for i=1,4 do
-    local a=i*math.pi/2;local at=targetFloor+Vector3.new(math.cos(a),0,math.sin(a))*d.radius*.55
-    segment(at,at+Vector3.new(-math.sin(a),2.3,math.cos(a)),color,.5,.14,"RootingVine")
-   end
+   -- HeroVFX owns ground-planted roots; no duplicate upright helix.
   elseif effect=="earth" or effect=="lava" or effect=="frost" then
    spikes(targetFloor,direction,d.radius,360,color,effect)
    if effect=="lava" then arc(targetFloor+Vector3.new(0,.1,0),direction,d.radius*.6,360,colors.fire,.4,"LavaFissure") end
-  elseif effect=="shell" then segment(center+Vector3.new(0,16,0),center,color,.18,.3,"MortarDescent")
+  elseif effect=="shell" then
+   -- HeroVFX owns the falling metal shell and short wake.
   elseif effect=="bomb" then
    local p=part("BlastSmoke",Color3.fromRGB(105,99,93),Enum.PartType.Ball,Vector3.one,CFrame.new(center),.4,.7)
    if p then Tween:Create(p,TweenInfo.new(.4),{Size=Vector3.one*3}):Play() end
   elseif effect=="steam" then
-   for i=-1,1 do segment(targetFloor+Vector3.new(i,0,0),targetFloor+Vector3.new(i,3,0),Color3.fromRGB(213,237,246),.4,.3,"SteamJet") end
+   -- HeroVFX owns short translucent rising vapor.
   end
   impact(center,color,2)
- elseif effect=="arrow" or effect=="vine" then
+ elseif effect=="vine" then
+  -- Keep the actual cone boundary if optional roots are culled.
+  if d.form=='cone'then arc(floor,direction,d.range,d.angle,color,.3,'SkillSector')end
+ elseif effect=="arrow" then
   if d.form=="cone" then
    for _,target in ipairs(Geometry.sector(first,direction,d.range,d.angle,4)) do arrow(first,target,color,character) end
   else arrow(first,center,color,character) end

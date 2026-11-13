@@ -40,9 +40,16 @@ local modules={AdvancedSkills=Advanced,K0Config=Config,PixelFX={skill=function(_
 require=function(name)return assert(modules[name],tostring(name))end
 script={Parent={AdvancedSkills='AdvancedSkills',SkillEffectGeometry='Geometry',K0BowMotion='Bow',WindLanceVisual='Wind',PixelFX='PixelFX',HeroVFX='HeroVFX'}}
 local P=dofile('src/shared/SkillPresentation.luau');modules.SkillPresentation=P;modules.Geometry=dofile('src/client/SkillEffectGeometry.luau')
+table.freeze=table.freeze or function(value)return value end
+local previousScript=script
+script={Parent={K0Config='K0Config',SkillPresentation='SkillPresentation'}}
+modules.PixelFXCatalog=dofile('src/shared/PixelFXCatalog.luau')
+script={Parent={PixelFXCatalog='PixelFXCatalog'}}
+modules.CombatVFXPalette=dofile('src/shared/CombatVFXPalette.luau')
+script=previousScript
 modules.HeroVFX={skill=function()end}
 modules.Bow={confirmPulse=function()end};modules.Wind={play=function()end}
-local rs={Shared={K0Config='K0Config',SkillPresentation='SkillPresentation'}}
+local rs={Shared={K0Config='K0Config',SkillPresentation='SkillPresentation',CombatVFXPalette='CombatVFXPalette'}}
 local event=signal();rs.WaitForChild=function()return {WaitForChild=function()return {OnClientEvent=event}end}end
 local services={ReplicatedStorage=rs,TweenService={Create=function(self,p,info,props)return {Play=function()for k,v in pairs(props)do p[k]=v end end}end},Debris={AddItem=function(self,p)task.delay(0,function()p:Destroy()end)end}}
 game={GetService=function(self,k)return services[k]end}
@@ -75,7 +82,8 @@ check(count==116,'execute all advanced skills and all pulses')
 local expectedPulses=0
 for _,list in pairs(Config.Skills)do for _,d in ipairs(list)do if d.advanced then expectedPulses=expectedPulses+d.pulses end end end
 check(pixelPulses==expectedPulses,'every advanced pulse forwards to PixelFX exactly once; no windup emission')
-for _,name in ipairs({'SkillTelegraph','ImpactBoundary','ArrowShaft','LightningFork','RootingVine','IceCrystal','EarthRupture','SteamJet','MortarDescent','RifleTracer','ShotPellet','ThrownAxeBlade','BladeCrescent','PersonalWard','ShieldContact','LavaFissure','HailShard','AshfallEmber'})do check(seen[name],name..' has exercised renderer')end
+for _,name in ipairs({'SkillTelegraph','ImpactBoundary','ArrowShaft','LightningFork','IceCrystal','EarthRupture','RifleTracer','ShotPellet','ThrownAxeBlade','BladeCrescent','PersonalWard','ShieldContact','LavaFissure','HailShard','AshfallEmber'})do check(seen[name],name..' has exercised renderer')end
+check(not seen.RootingVine and not seen.SteamJet and not seen.MortarDescent,'specialized roots, vapor and shells have one renderer owner')
 -- Gunner cancellation restores held weapon and removes temporary props.
 local character=Instance.new('Model');character.Parent=workspace;character.attributes={K0State='Attack',K0AttackSeq=5}
 local hand=Instance.new('Part');hand.Name='RightHand';hand.Parent=character;hand.CFrame=CFrame.new()

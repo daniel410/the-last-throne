@@ -129,5 +129,17 @@ local Profiles = {byId = {
  ["mage_tidal_ring"] = {shape="water",lanes=6,width=.19,life=.46},
  ["mage_arcane_ward"] = {shape="ward",lanes=3,width=.12,life=.56},
 }}
+-- Each ultimate replaces the generic decoration with one readable focal form.
+local signatures={
+ ['knight.steel_knight.unyielding_front']='FrontWall',
+ ['knight.paladin.oath_of_dawn']='DawnBlade',
+ ['dwarf.iron_axe.mountain_collapse']='MountainRidge',
+ ['dwarf.gunner.siege_barrage']='SiegeShells',
+ ['elf.marksman.grand_volley']='VolleyCrown',
+ ['elf.magic_archer.spirit_arrowfall']='SpiritCanopy',
+ ['mage.pyro.caldera_s_judgment']='CalderaVents',
+ ['mage.cryo.eternal_tempest']='FrostFunnel',
+}
+for id,signature in pairs(signatures)do Profiles.byId[id].signature=signature end
 function Profiles.get(id) return Profiles.byId[id] end
 return Profiles

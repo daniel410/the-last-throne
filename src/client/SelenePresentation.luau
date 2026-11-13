@@ -46,7 +46,9 @@ function View.bind(model,resolveCharacter)
   local source=Instance.new('Attachment');source.Name='SeleneHealingHand';source.CFrame=arm.CFrame:ToObjectSpace(Skin.hand(self.skin));source.Parent=arm
   local target=Instance.new('Attachment');target.Name='SeleneSupportRecipient';target.Parent=targetRoot
   emitter(source,GOLD):Emit(12)
-  if action~='Heal'then emitter(target,color):Emit(24)end
+  -- Heal rises through PixelFX's small life motes; Cleanse uses its own
+  -- outward release. Do not stack a second generic recipient burst over them.
+  if action=='Protect'then emitter(target,color):Emit(24)end
   local beam=Instance.new('Beam');beam.Name='BlessingLink';beam.Attachment0=source;beam.Attachment1=target
   beam.FaceCamera=true;beam.Segments=16;beam.CurveSize0=1.4;beam.CurveSize1=-1.4
   beam.Width0=.18;beam.Width1=.4;beam.LightEmission=1;beam.Color=ColorSequence.new(GOLD,color)
@@ -54,14 +56,17 @@ function View.bind(model,resolveCharacter)
   local light=Instance.new('PointLight');light.Color=GOLD;light.Brightness=1.5;light.Range=7;light.Parent=source
   local glow=part(folder,'HealingFocus',Vector3.one*.24,GOLD);glow.Shape=Enum.PartType.Ball
   local ring={}
-  for i=1,24 do ring[i]=part(folder,'BlessingRing',Vector3.new(.07,.045,.55),color) end
+  for i=1,24 do
+   local name=action=='Heal'and((i-1)%3==0 and'HealingLifeStem'or'HealingLifeLeaf')or action=='Cleanse'and'CleanseSweep'or'BlessingRing'
+   ring[i]=part(folder,name,Vector3.new(.07,.045,.55),color)
+  end
   local shield
   if action=='Protect' then shield=part(folder,'ProtectiveBlessing',Vector3.new(4.5,5.6,4.5),GOLD);shield.Shape=Enum.PartType.Ball;shield.Material=Enum.Material.ForceField;shield.Transparency=.75 end
   local gui=Instance.new('BillboardGui');gui.Name='SupportResult';gui.Size=UDim2.fromOffset(180,40);gui.StudsOffsetWorldSpace=Vector3.new(0,3.2,0);gui.AlwaysOnTop=false;gui.MaxDistance=65;gui.Parent=target
   local label=Instance.new('TextLabel');label.BackgroundTransparency=1;label.Size=UDim2.fromScale(1,1);label.Font=Enum.Font.GothamBold
   label.TextSize=20;label.TextColor3=color;label.TextStrokeTransparency=.4;label.AutoLocalize=false
   label.Text=action=='Heal' and ('+'..tostring(amount)..' HP') or action=='Protect' and 'PROTECTED' or 'CLEANSED';label.Parent=gui
-  self.effect={folder=folder,source=source,target=target,root=targetRoot,character=character,at=at,beam=beam,light=light,glow=glow,ring=ring,shield=shield,gui=gui,label=label,duration=action=='Protect' and 3 or 1.65}
+  self.effect={folder=folder,source=source,target=target,root=targetRoot,character=character,action=action,at=at,beam=beam,light=light,glow=glow,ring=ring,shield=shield,gui=gui,label=label,duration=action=='Protect' and 3 or 1.65}
  end
  function record:update(dt,now)
   if not root.Parent then return end
@@ -97,11 +102,28 @@ function View.bind(model,resolveCharacter)
    e.glow.CFrame=e.source.WorldCFrame;e.glow.Transparency=math.clamp(t,0,1)
    local h=e.character:FindFirstChildOfClass('Humanoid')
    local foot=e.root.Position.Y-(h and h.HipHeight+e.root.Size.Y*.5 or 3)+.08
-   local radius=1.8+math.min(t,.55)*.9
    for i,p in ipairs(e.ring) do
-    local a=i/24*math.pi*2
-    p.CFrame=CFrame.new(e.root.Position.X,foot,e.root.Position.Z)*CFrame.Angles(0,a,0)*CFrame.new(radius,0,0)
-    p.Size=Vector3.new(.07,.045,radius*math.pi*2/24+.04);p.Transparency=.18+fade*.82
+    if e.action=='Heal'then
+     -- Eight tiny open seedlings rise beside the body, never a large plus
+     -- or an opaque aura. Reuse the original 24-part support allowance.
+     local lane=math.floor((i-1)/3);local piece=(i-1)%3
+     local u=math.clamp((t-lane*.02)/.65,0,1);local a=lane*math.pi/4
+     local cf=CFrame.new(e.root.Position.X,foot+.45+u*1.9,e.root.Position.Z)*CFrame.Angles(0,a,0)*CFrame.new(1.05,0,0)
+     if piece==0 then p.Size=Vector3.new(.045,.32,.045);p.CFrame=cf
+     else local side=piece==1 and -1 or 1;p.Size=Vector3.new(.23,.055,.06);p.CFrame=cf*CFrame.new(side*.1,.13,0)*CFrame.Angles(0,0,side*.65)end
+     p.Transparency=.26+.74*math.clamp((u-.65)/.35,0,1)
+    elseif e.action=='Cleanse'then
+     -- Short horizontal strokes carry the removed state away from the
+     -- recipient, unlike healing's upward life flow or protection's shell.
+     local lane=math.floor((i-1)/3);local piece=(i-1)%3;local a=lane*math.pi/4
+     local u=math.clamp(t/.58,0,1);local radius=.7+u*1.75+piece*.19
+     p.CFrame=CFrame.new(e.root.Position.X,foot+1.3+(piece-1)*.12,e.root.Position.Z)*CFrame.Angles(0,a,0)*CFrame.new(radius,0,0)*CFrame.Angles(0,math.pi/2,0)
+     p.Size=Vector3.new(.06,.05,.3*(1-u*.45));p.Transparency=math.clamp(.2+piece*.06+u^1.5,0,1)
+    else
+     local radius=1.8+math.min(t,.55)*.9;local a=i/24*math.pi*2
+     p.CFrame=CFrame.new(e.root.Position.X,foot,e.root.Position.Z)*CFrame.Angles(0,a,0)*CFrame.new(radius,0,0)
+     p.Size=Vector3.new(.07,.045,radius*math.pi*2/24+.04);p.Transparency=.18+fade*.82
+    end
    end
    if e.shield then e.shield.CFrame=e.root.CFrame;e.shield.Transparency=.7+fade*.3 end
    e.gui.StudsOffsetWorldSpace=Vector3.new(0,3.2+math.min(t,1)*.9,0);e.label.TextTransparency=fade;e.label.TextStrokeTransparency=.4+.6*fade
