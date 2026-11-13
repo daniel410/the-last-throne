@@ -187,6 +187,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
  local angle=d.form=="area"and 360 or d.angle or 80
  local width,count,shape=profile.width,profile.lanes,profile.shape
  local phase=(pulse-1)*1.3
+ local electricLinks={}
+ local function fallHeight(lane,u)
+  local t=math.clamp((u*r.life-((lane-1)%3)*.012)/(r.life*.78),0,1)
+  return 8*(1-t*t)
+ end
  local function stroke(name,a,b,w,color)line(r,name,function()return a,b end,w or width,color)end
  local function sector(name,at,rad,arc,lane,low)
   curve(r,name,function(t,u)
@@ -269,7 +274,7 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    local a=lane*2.39996+phase;local rad=shape=="mortar"and .3 or radius*math.sqrt(lane/(count+1))*.85
    local target=at+Vector3.new(math.cos(a)*rad,0,math.sin(a)*rad)
    line(r,shape=="hail"and"HailDescent"or shape=="ash"and"AshDescent"or shape=="mortar"and"MortarDescent"or"ArrowRain",function(u)
-    local height=(1-u)*8
+    local height=fallHeight(lane,u)
     return target+Vector3.yAxis*(height+1.1),target+Vector3.yAxis*height
    end,width)
   end
@@ -312,7 +317,20 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   else table.insert(path,{d.form=="ground"and last+Vector3.yAxis*10 or first,last})end
   for _,link in ipairs(path)do
    local bolts=Geometry.lightning(link[1],link[2],6)
+   local forks={};local axis=forward(link[1],link[2]);local side=axis:Cross(Vector3.yAxis)
+   side=side.Magnitude>.01 and side.Unit or Vector3.xAxis
+   local extent=math.min(1.6,(link[2]-link[1]).Magnitude*.18)
+   for fork=1,(#path>3 and 1 or 3)do
+    local at=bolts[fork*2];local sign=fork%2==0 and -1 or 1
+    local tip=at+side*sign*extent+axis*extent*.45
+    local kink=at+(tip-at)*.5+Vector3.yAxis*extent*.25
+    table.insert(forks,{at,kink,tip})
+   end
+   table.insert(electricLinks,{bolts=bolts,forks=forks,side=side})
    for i=1,#bolts-1 do stroke("ElectricCore",bolts[i],bolts[i+1],width,WHITE)end
+   for _,fork in ipairs(forks)do
+    for i=1,2 do stroke("ElectricFork",fork[i],fork[i+1],width*.42,r.color)end
+   end
   end
  elseif shape=="vine"then
   for lane=1,count do
@@ -419,6 +437,14 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
      local solid=shape=="frost"or shape=="stone"
      local p=Surfaces.volume(r,shape=="frost"and"IceLanceVolume"or shape=="stone"and"StoneLanceVolume"or"SpellVolume",last-dir*length*.5,Vector3.new(.85,.85,length),nil,.35,solid and'wedge'or'ball',shape=="stone"and Enum.Material.Slate or shape=="frost"and Enum.Material.Ice or nil)
      if p then local entry=r.faces[#r.faces];entry.cf=CFrame.lookAt(p.Position,p.Position+dir);p.CFrame=entry.cf end
+     if shape=="frost"then
+      local basis=CFrame.lookAt(last,last+dir)
+      for side=-1,1,2 do
+       local at=last-dir*length*.4+basis.RightVector*side*.42
+       local shard=Surfaces.volume(r,"IceLanceFacet",at,Vector3.new(.24,.5,length*.65),Color3.fromRGB(198,244,255),.22,'wedge',Enum.Material.Ice)
+       if shard then local face=r.faces[#r.faces];face.cf=CFrame.lookAt(at,at+dir)*CFrame.Angles(0,side*.13,0);shard.CFrame=face.cf end
+      end
+     end
     end
    end
   end
@@ -470,8 +496,12 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    local at=floorAt(last,character)
    for i=1,8 do
     local a=i*math.pi/4;local radial=Vector3.new(math.cos(a),0,math.sin(a))
-    local facet=Surfaces.volume(r,'FrostRimFacet',at+radial*radius*.83+Vector3.yAxis*.18,Vector3.new(math.min(radius*.55,2.5),.35,.42),nil,.3,'wedge',Enum.Material.Ice)
-    if facet then local face=r.faces[#r.faces];face.cf=CFrame.lookAt(facet.Position,facet.Position+radial);facet.CFrame=face.cf end
+    local height=math.min(2.6,1+radius*.1)*(i%2==0 and 1 or .65)
+    local facet=Surfaces.volume(r,'FrostRimFacet',at+radial*radius*.8+Vector3.yAxis*height*.5,Vector3.new(.5,height,.65),i%2==0 and r.color or Color3.fromRGB(198,244,255),.24,'wedge',Enum.Material.Ice)
+    if facet then
+     local face=r.faces[#r.faces];face.cf=CFrame.lookAt(facet.Position,facet.Position+radial)*CFrame.Angles(.18,0,(i%2==0 and 1 or -1)*.12)
+     facet.CFrame=face.cf;face.emerge={duration=.18,delay=(i%3)*.012}
+    end
    end
   else
   local at=area and floorAt(last,character)or last
@@ -507,27 +537,26 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
    end
   end
  elseif shape=="lightning"then
-  local from=d.form=="ground"and last+Vector3.yAxis*10 or first;local targets=d.form=="chain"and(type(points)=="table"and points or{})or{last}
-  for i=1,math.min(#targets,4)do
-   if vector(targets[i])then
-    local bolt=Geometry.lightning(from,targets[i],6)
+  for _,link in ipairs(electricLinks)do
+    local bolt=link.bolts;local side=link.side
     for j=1,#bolt-1 do
      local a,b=bolt[j],bolt[j+1]
-     Surfaces.triangle(r,"LightningSurface",a-right*.22,b,a+right*.22,WHITE,.38)
+     Surfaces.triangle(r,"LightningSurface",a-side*.3,b,a+side*.3,nil,.24)
     end
-    for side=-1,1,2 do
-     local at=from+(targets[i]-from)*.6
-     local tip=at+right*side*.9+forward(from,targets[i])*.6
-     Surfaces.triangle(r,"LightningBranch",at-Vector3.yAxis*.08,tip,at+Vector3.yAxis*.08,nil,.25)
+    for _,fork in ipairs(link.forks)do for j=1,2 do
+     Surfaces.triangle(r,"LightningBranch",fork[j]-Vector3.yAxis*.075,fork[j+1],fork[j]+Vector3.yAxis*.075,nil,.25)
     end
-    from=targets[i]
-   end
+    end
   end
  elseif shape=="rain"or shape=="hail"or shape=="ash"then
   local at=floorAt(last,character)
   for lane=1,math.min(count,6)do
    local a=lane*2.39996+phase;local target=at+Vector3.new(math.cos(a),0,math.sin(a))*radius*math.sqrt(lane/(count+1))*.85
-   Surfaces.volume(r,"FallingShardVolume",target+Vector3.yAxis*(2+lane%3),Vector3.new(.38,1.4,.45),nil,.38,'wedge',shape=="hail"and Enum.Material.Ice or nil)
+   local shard=Surfaces.volume(r,"FallingShardVolume",target+Vector3.yAxis*.55,shape=="rain"and Vector3.new(.16,1.65,.22)or Vector3.new(.45,1.45,.55),nil,.28,'wedge',shape=="hail"and Enum.Material.Ice or nil)
+   if shard then
+    local face=r.faces[#r.faces];face.cf=CFrame.new(shard.Position)*CFrame.Angles(math.pi,0,.12)
+    face.fall={height=8,duration=r.life*.78,delay=((lane-1)%3)*.012}
+   end
   end
  elseif shape=="warcry"then
   Surfaces.disc(r,"WarcrySurface",floor,radius*.7,nil,.85)

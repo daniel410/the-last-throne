@@ -77,6 +77,17 @@ function S.step(r,u,fade)
    v.part.Size=v.size*scale
    v.part.Transparency=v.alpha+(1-v.alpha)*t^1.4
   end
+  if v.emerge then
+   local t=math.clamp((u*r.life-v.emerge.delay)/v.emerge.duration,0,1)
+   local height=v.size.Y*(.08+.92*(1-(1-t)^3))
+   v.part.Size=Vector3.new(v.size.X,height,v.size.Z)
+   v.part.CFrame=v.cf*CFrame.new(0,(height-v.size.Y)*.5,0)
+  end
+  if v.fall then
+   local t=math.clamp((u*r.life-v.fall.delay)/v.fall.duration,0,1)
+   v.part.CFrame=v.cf+Vector3.yAxis*v.fall.height*(1-t*t)
+   v.part.Transparency=v.alpha+(1-v.alpha)*math.clamp((t-.72)/.28,0,1)
+  end
  end
 end
 return S
