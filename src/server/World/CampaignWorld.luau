@@ -56,6 +56,7 @@ function W.create(epic,world)
  require(script.Parent.CampaignSceneryCollision).apply(world.folder.CampaignExpansion['Epic'..epic])
  require(script.Parent.CampaignSceneryPlacement).apply(world,world.folder.EpicWorldArt['EpicWorldArt_'..epic])
  require(script.Parent.CampaignCombatRouteWorld).finish(world,scope)
+ if epic==1 then require(script.Parent.DeepwoodConceptArt).finish(world)end
  world.loadedEpics[epic]=true
  world.folder:SetAttribute('Epic'..epic..'Ready',true)
  return world
