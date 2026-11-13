@@ -21,6 +21,6 @@ TD 원본 화살의 실제 Native Mesh도 확인했다. 주요 길이는Z축3.85
 
 ## 고정 빌드·남은 수용
 
-0.104.29 소스 고정·빌드·동일 산출물 회귀 결과를 마감 때 추가한다. 재현 도구는 `tools/prepare-visual-lifecycle-tests.py --place <빌드> --output <임시 폴더>`다.
+소스 `3eac48ac6052b4bdf72e03cc72a5e9920b5ffd9a`를 origin/main에 푸시하고 원격 일치를 확인한 뒤 **0.104.29** 단일 빌드를 생성했다. [빌드 기록](build.json)의 산출물은 `builds/0.104.29/TheLastThrone-0.104.29.rbxlx`, SHA256 `d843d95c0087b33b699f3fc6d93c6ef1cde4e9aecb301872443b86f1fb21d0de`다. 변경/연관10모듈 원문 일치 후 같은 산출물에서16개 엔진 suite **89,054검사 통과**를 확인했다([원문](pinned-native.log), [집계](pinned-results.json), [입력 해시](pinned-inputs.json)). 영웅128기술·몬스터50종146공격·방어구/무기 기존 회귀를 포함한다. 별도 역할10·도착 로딩283·프로젝트 호환 검사도 통과했다. 자산 resolver 경고는 최종120콘텐츠 Preload Success와 구분한다. Roblox 게시·릴리스 태그 없음. 재현 도구는 `tools/prepare-visual-lifecycle-tests.py --place <빌드> --output <임시 폴더>`다.
 
 게시 클라이언트·다인 지연/소유권·모바일·사용자 실제 조작 수용은 미검증이다. 다음 담당 QA/사용자는 근접 사격, 이동하며 연속 사격, 적이 등 뒤로 지나가는 준비 동작, 회피 직후 속사/다중 사격을 새 빌드에서 확인한다. 상위 티켓 완료 상태는 변경하지 않는다.
