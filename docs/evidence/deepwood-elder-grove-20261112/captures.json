@@ -1,0 +1,55 @@
+{
+  "version": "0.104.22",
+  "sourceCommit": "756d8f9def51e1e9b07d48c73d54c457acd5a574",
+  "context": "Local Studio fixed build, no source overlay",
+  "captures": [
+    {
+      "file": "DW-03-fixed-aerial.jpg",
+      "fov": 42,
+      "camera": [
+        -75,
+        253.08,
+        -1393
+      ],
+      "target": [
+        -272,
+        58.08,
+        -1670
+      ],
+      "sha256": "ff5a7a160bf0db938e7986ca47792c52fa755d9ac268f56b0bb7c3dd4fbaea95",
+      "bytes": 562042
+    },
+    {
+      "file": "DW-03-fixed-camp.jpg",
+      "fov": 42,
+      "camera": [
+        -135,
+        111.08,
+        -1523
+      ],
+      "target": [
+        -284,
+        46.08,
+        -1689
+      ],
+      "sha256": "6485a8731aa5d1abf28c70881ca4ad805fb354a9957cf1e52e8a14a247427c42",
+      "bytes": 594068
+    },
+    {
+      "file": "DW-03-fixed-approach.jpg",
+      "fov": 70,
+      "camera": [
+        -272,
+        32.08,
+        -1603
+      ],
+      "target": [
+        -286,
+        32.08,
+        -1693
+      ],
+      "sha256": "3d7c031bf6303292a26791514af0f54f4364b276d4e67acdce44b1a86d0526ec",
+      "bytes": 441972
+    }
+  ]
+}

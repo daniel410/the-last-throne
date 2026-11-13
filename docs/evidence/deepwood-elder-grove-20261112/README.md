@@ -32,7 +32,11 @@
 
 후보2는 소스 일치/전체 Luau 컴파일·새 구성·기존 생활/실제 충돌·전투 경로·환경·171구간 길찾기를 통과했다. `candidate-native.log`다. 후보1의 환경 복원 실패는 검수 전에 조명 모듈을 활성화해 이전 기준 상태를 보유한 캐시 때문이었다. 조명을 해제하고 새로운 World 모듈/월드로 재검증했다. 실패는 통과 합계에 넣지 않는다.
 
-0.104.22는 소스/VERSION을 고정해 `tools/build-game.py`로 생성하고, 같은 SHA의 새 로컬 사본에서 소스 주입 없이 검증한다. 최종 입력 커밋·빌드/실행 로그·실제 화면 해시는 후속 검증 결과로 기록한다. 로컬 GLB 구조 검사는 모델 폴더 `validation.json`, 제작 기준 색상은 `blender-session.json`이다.
+0.104.22는 소스 커밋 `756d8f9def51e1e9b07d48c73d54c457acd5a574`와 VERSION을 고정해 `tools/build-game.py`로 생성했다. 빌드 SHA256은 `23b840f6447ad445102951ba968bb9f1c6d52f4ecd5d57965d394e665663fa17`이다. 같은 SHA의 새 로컬 사본에서 소스 주입 없이 검증했다. 빌드 기록은 `build.json`, 검수 입력은 `fixed-inputs.json`, 최종 실행은 `final-native.log`다. 기존 `inputs.json`과 `local-validation.log`는 최초 로컬 제작 단계의 기록이다.
+
+최종 엔진 검사는 구성12231·생활5456·충돌31875·전투 경로6333·환경38808, 합94703개 항목을 검사했다. 각 검사 실패/누락/차단 목록은 비어 있다. 길찾기는171구간 중166 Success·5 SamePoint·0 NoPath이며 전체 보고는 `final-routes.json`에 보존했다. 별도 정적 검사는 문맥1054·전투 경로77381·진행570·탐색99695, 합178700개를 통과했다. 각 `static-*.log`를 연결한다.
+
+실제 고정 빌드의 [조감도](DW-03-fixed-aerial.jpg), [천막과 광장](DW-03-fixed-camp.jpg), [진입 시점](DW-03-fixed-approach.jpg)을 확인했다. 카메라/FOV·파일 해시는 `captures.json`에 기록했다. `candidate-world.jpg`는 이전 후보 캡처다. 로컬 GLB 구조 검사는 모델 폴더 `validation.json`, 제작 기준 색상은 `blender-session.json`이다. 게임 게시와 릴리스 태그는 생성하지 않았다.
 
 ## 남은 수용
 

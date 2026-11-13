@@ -1,0 +1,41 @@
+{
+  "context": {
+    "studioName": "The Last Throne Battles",
+    "placeId": "129388473517823",
+    "universeId": "10773575153",
+    "creatorUserId": "9156786071",
+    "assetReadProbe": "200 OK",
+    "assetWriteProbe": "200 OK"
+  },
+  "operation": {
+    "path": "operations/c7aa31ba-c041-4ab9-bbab-66967e56c97b",
+    "operationId": "c7aa31ba-c041-4ab9-bbab-66967e56c97b",
+    "done": true,
+    "response": {
+      "path": "assets/110278314469184",
+      "revisionId": "1",
+      "revisionCreateTime": "2026-11-13T02:28:15.764Z",
+      "assetId": "110278314469184",
+      "displayName": "TLT Deepwood Elder Grove v1",
+      "description": "Original Blender-authored DW-03 grove with atlas UVs. Private RPG environment asset.",
+      "assetType": "Model",
+      "creationContext": {
+        "creator": {
+          "userId": "9156786071"
+        }
+      },
+      "moderationResult": {
+        "moderationState": "Approved"
+      },
+      "state": "Active",
+      "isPublished": true
+    }
+  },
+  "insert": {
+    "assetId": "110278314469184",
+    "destination": "game.ServerStorage.DeepwoodElderGroveImport",
+    "studioFile": "TLT-Elder-Grove-Review.rbxlx"
+  },
+  "uploads": 1,
+  "gamePublished": false
+}

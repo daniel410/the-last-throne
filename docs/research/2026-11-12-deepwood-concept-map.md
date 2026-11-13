@@ -76,7 +76,9 @@ Blender는 계약의 Standard/sRGB/Look None/Exposure0/Gamma1/Curves Off를 유�
 
 Blender 작업 → UV/텍스처 정리 → FBX 또는 glTF/GLB 내보내기 → Studio Importer → MeshPart/SurfaceAppearance·피벗·크기 확인 → 승인된 소유자/Experience에서 자산 ID 확인 → 프로젝트 템플릿으로 연결한다. 공식 [Importer](https://create.roblox.com/docs/studio/importer)와 [Blender export settings](https://create.roblox.com/docs/art/modeling/export-requirements)를 기준으로 한다. 수입 포맷별 계층 차이와 스케일은 작은 시험 자산으로 먼저 확인한다.
 
-기존 JSON → Part 재구성 경로는 유지 가능한 보조 수단이지만 임의 메시의 곡면/UV/텍스처를 운반하지 않는다. 새 주요 자산은 실제 MeshPart를 써야 한다. 이번 조사에서는 수입·업로드를 실행하지 않았다. 로컬 GLB가 있다는 사실과 Roblox 자산으로 수입·권한 검증됐다는 사실을 구분한다.
+Open Cloud 인증은 [공식 MCP 문서](https://create.roblox.com/docs/studio/mcp-open-cloud)에 따라 **게시된 게임을 연 Studio 연결**에서 확인해야 한다. 권한과 업로드 폴더는 게임별로 적용된다. PlaceId=0인 로컬 검수 파일의 권한 오류를 계정 전체의 권한 미설정으로 단정하지 않는다. 업로드 인증 문맥과 로컬 맵 검수 문맥을 구분하고, 준비한 실제 자산은 로컬 검수 사본에서 수입/검증할 수 있다.
+
+기존 JSON → Part 재구성 경로는 유지 가능한 보조 수단이지만 임의 메시의 곡면/UV/텍스처를 운반하지 않는다. 새 주요 자산은 실제 MeshPart를 써야 한다. 본 조사 작성 단계에서는 수입·업로드를 실행하지 않았다. 후속 제작 결과는 [거목 실제 메시 연결 증거](../evidence/deepwood-elder-grove-20261112/README.md)에서 확인한다. 로컬 GLB가 있다는 사실과 Roblox 자산으로 수입·권한 검증됐다는 사실을 구분한다.
 
 현재 도구 목록에서 Blender MCP는 제작/내보내기, Studio MCP는 배치·검사·캡처·기존 자산 삽입에 활용할 수 있다. 임의 로컬 메시를 기존 ID처럼 즉시 삽입할 수 있다고 가정하지 않는다. Importer 또는 확인된 자산 업로드 경로를 별도 통합 단계로 두고, 실제 ID와 소유자/Experience 권한을 검증한다. MCP 자체가 완성도나 자산 권한을 보장하지 않는다.
 
