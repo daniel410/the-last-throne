@@ -32,7 +32,11 @@
 
 > Could not acquire an Open Cloud access token: Scope 'asset:read' has not been granted.
 
-이는 제작 작업의 재승인 요청이나 SKILL.md의 별도 승인 규칙 때문이 아니다. **Roblox Studio MCP 도구가 요구하는 실제 연결 권한**이다. Studio의 Assistant → MCP Permissions에서 `asset:read`·`asset:write`를 부여해야 수입 요청을 진행할 수 있다. API 키/쿠키/비밀을 요청하거나, 다른 자격증명/수입 경로로 거부를 우회하지 않았다. 사용자에게 해당 권한 요청을 보냈으며 답변 대기 중이다. 파일 전송·assetId 생성·게임 수입 성공으로 보고하지 않는다.
+이는 제작 작업의 재승인 요청이나 SKILL.md의 별도 승인 규칙 때문이 아니다. **Roblox Studio MCP 도구가 요구하는 실제 연결 권한**이다. Studio의 Assistant → MCP Permissions에서 `asset:read`·`asset:write`를 부여해야 수입 요청을 진행할 수 있다. API 키/쿠키/비밀을 요청하거나, 다른 자격증명/수입 경로로 거부를 우회하지 않았다. 사용자에게 해당 권한 요청을 보냈다. 사용자의 후속 지시로 Studio 전체 종료·재시작 후 재시도했지만 같은 권한 오류가 발생했다. 파일 전송·assetId 생성·게임 수입 성공으로 보고하지 않는다.
+
+## 전체 종료·재시작 후 재시도
+
+사용자 요청에 따라 열린4개 로컬 문서를 복구용 사본으로 보존하고 원래 파일 바이트를 복원했다. 남은 파일 대화상자가 일반 종료에 반응하지 않아, 정상 종료 요청 후에도 남은 프로세스는 저장 보존을 확인한 뒤 종료했다. Studio 프로세스7개가 모두 사라진 것을 확인한 다음,0.104.21 고정 빌드의 로컬 사본 `TLT-Elder-Grove-Review.rbxlx`만 다시 열었다. 프로세스와 MCP 연결 모두1개인 상태에서 같은 계정/GLB로 자산 수입을 재시도했다. 결과는 여전히 토큰 획득 단계의 `asset:read` 미부여였다. 재시작으로 권한 문제가 해소되지 않았으며 파일 업로드·자산 생성은 발생하지 않았다. 상세는 `restart-retry.json`이다. 기존 게임/TD 빌드 원본은 재시작 후에도 보존 전 SHA256과 일치함을 확인했다.
 
 ## 남은 작업과 다음 담당
 

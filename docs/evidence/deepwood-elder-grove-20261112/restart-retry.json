@@ -1,0 +1,40 @@
+{
+  "requestedAction": "Close all Roblox Studios and retry after restart",
+  "oldProcessesClosed": 7,
+  "savedReviewOrUserDocuments": 4,
+  "originalBytesRestored": [
+    {
+      "name": "TLT17.rbxlx",
+      "originalBytesRestored": true
+    },
+    {
+      "name": "TLT18.rbxlx",
+      "originalBytesRestored": true
+    },
+    {
+      "name": "TheLastThrone-Deepwood-Concept-Review.rbxlx",
+      "originalBytesRestored": true
+    },
+    {
+      "name": "ThroneDefense-8.8.2.rbxlx",
+      "originalBytesRestored": true
+    }
+  ],
+  "studioProcessesAfterRestart": 1,
+  "connectedStudiosAfterRestart": 1,
+  "newStudioId": "13589927-e2bc-437a-a2ba-33770e249cf4",
+  "localReviewFile": "/tmp/TLT-Elder-Grove-Review.rbxlx",
+  "baseBuild": "0.104.21",
+  "uploadFile": "assets/models/deepwood-elder-grove-v1/elder-grove.glb",
+  "uploadSHA256": "c17f4ca019f5520024141a44b328b254ca35bf1fdbc99b7028ac5335082e516c",
+  "method": "POST",
+  "endpoint": "/assets/v1/assets",
+  "requestedScopes": [
+    "asset:read",
+    "asset:write"
+  ],
+  "result": "Token acquisition denied before upload",
+  "error": "Scope 'asset:read' has not been granted.",
+  "assetCreated": false,
+  "gamePublished": false
+}
