@@ -10,7 +10,9 @@
 
 ## 검증과 빌드
 
-0.104.23에 최종 범위를 고정한다. 빌드 및 실제 검수 결과는 이 폴더에 기록한다. Roblox 게임 게시·원격 모델 삭제·릴리스 태그는 수행하지 않는다.
+소스 `5a8435e510a5aa7d0ee2cd0a98febd9aeb3f9572`에서0.104.23을 고정 빌드했다(`build.json`). SHA256은 `0d6e577eba8fd4590025f2cb18e866071828c0d31b498bba8c647328c21d4481`이다. 새 로컬 Studio에서 소스 주입 없이 맵 검수5종과 길찾기171구간(166 Success·5 SamePoint·0 NoPath)을 통과했다. `native.log`와 `fixed-inputs.json`을 연결한다. 최근 거목 인스턴스0·ServerStorage 템플릿 없음도 확인했다. [복구 실제 화면](DW-03-restored.jpg)은 이전과 동일한 조감 카메라/FOV42에서 캡처했다.
+
+로컬 PlaceId=0에서 기존 자산 해시5개에 `Request must have a PlaceId set` 경고가 있어 로그에 보존했다. 이를 게시 클라이언트 자산 로딩 통과로 보고하지 않는다. Roblox 게임 게시·원격 모델 삭제·릴리스 태그는 수행하지 않았다.
 
 ## 미검증과 다음 담당
 

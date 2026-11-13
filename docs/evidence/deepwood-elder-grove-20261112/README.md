@@ -1,6 +1,8 @@
 # DW-03 실제 거목 메시 연결
 
-2026-11-12 · TLT-061/elder-grove · 모델링/ENG → QA · 로컬 구현·미게시
+2026-11-12 · TLT-061/elder-grove · 당시 구현·검증 증거
+
+2026-11-13 사용자 요청으로 이 거목 메시 연결을 철회했다. 현재 실행 상태는 [최근 거목 수정 철회](../deepwood-map-restore-20261113/README.md)를 따른다. 아래는 당시 결과이며 현재 맵 적용 상태가 아니다.
 
 [콘셉트 DW-03](../../../assets/concepts/2026-11-12-deepwood-epic-stories-v1/DW-03.png)과 [Diablo·WoW·Roblox 제작 조사](../../research/2026-11-12-deepwood-concept-map.md)를 바탕으로 거목·뿌리·천막·광장·길·입구·식생·생활 소품을 제작했다. [원본·수입 ID·교정된 게임 템플릿](../../../assets/models/deepwood-elder-grove-v1/README.md).
 
