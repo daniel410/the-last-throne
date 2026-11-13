@@ -47,4 +47,4 @@ No asset content representation found while do_not_fallback_to_baseline is set t
 
 ## 빌드
 
-0.104.16을 예약한다. 고정 소스 빌드의 최종 경로/해시는 `build.json`에 기록한다. Roblox 게시·릴리스 태그는 만들지 않는다.
+소스 `add51d7b6b669d7d12bda8a51187e68526709bf5`를 커밋·푸시한 뒤0.104.16 단일 Rojo 빌드가 성공했다. [build.json](build.json)에 경로·바이트·SHA256·입력 LFS 검증을 기록했다. 빌드 XML의 CuratedVFX/PixelFX/PixelFXController/SelenePresentation4개 모듈 Source가 고정 커밋과 정확히 일치하는지 확인했다. Roblox 게시·릴리스 태그는 만들지 않았다. 이미지 권한 변경은 여전히 사용자 응답 대기이며 이 빌드를 게시/실기기 수용 완료로 표시하지 않는다.
