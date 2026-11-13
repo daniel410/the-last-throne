@@ -218,11 +218,11 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   elseif shape=="warcry"then
    for lane=1,count do sector("WarcryWave",floor,radius*lane/count,angle,lane,true)end
   else
-   for lane=1,count do
+   for lane=1,(shape=="holy"and 1 or shape=="ward"and 2 or count)do
     if shape=="ward"then
      local basis=CFrame.Angles(0,lane*math.pi/3+phase,0)
      ring(r,"WardOrbit",first,2.2,width,true,false,nil,basis)
-    else ring(r,"DawnSeal",floor,radius*(.55+lane*.12),width,false,false)end
+    else ring(r,"DawnSeal",floor,radius*(shape=="holy"and .87 or(.55+lane*.12)),width,false,false)end
    end
   end
  elseif shape=="axe"then
@@ -364,7 +364,17 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
   end
  elseif shape=="thrust"then
   Surfaces.triangle(r,"ThrustSurface",first-right*.65,last,first+right*.65,nil,.27)
- elseif shape=="guard"or shape=="ward"then
+ elseif shape=="ward"then
+  -- Open magical facets surround the caster; the martial guard stays frontal.
+  for i=1,6 do
+   local a=i*math.pi/3;local radial=Vector3.new(math.cos(a),0,math.sin(a))
+   local tangent=Vector3.new(-radial.Z,0,radial.X)
+   local at=first+radial*2.1
+   local top,bottom=at+Vector3.yAxis*.95,at-Vector3.yAxis*.95
+   Surfaces.triangle(r,"ArcaneWardFacet",top,at-tangent*.52,bottom,nil,.62)
+   Surfaces.triangle(r,"ArcaneWardFacet",top,bottom,at+tangent*.52,nil,.62)
+  end
+ elseif shape=="guard"then
   local at=first+flat*1.8;local verts={Vector2.new(-1.3,1.3),Vector2.new(1.3,1.3),Vector2.new(1,-.4),Vector2.new(0,-1.5),Vector2.new(-1,-.4)}
   for i=1,#verts do
    local a,b=verts[i],verts[i%#verts+1]
@@ -410,7 +420,17 @@ function FX.skill(character,id,first,last,pulse,points,muzzle)
     Surfaces.volume(r,"RisingCrag",at,Vector3.new(1.1,1.8,1.2),nil,.32,'wedge',shape=="earth"and Enum.Material.Slate or nil,false,.5)
    end
   end
- elseif shape=="water"or shape=="steam"or(shape=="frost"and area)or shape=="holy"or shape=="gravity"then
+ elseif shape=="holy"then
+  -- An open sun seal and ascending light distinguish holy magic from water pools.
+  for i=1,6 do
+   local a=i*math.pi/3;local radial=Vector3.new(math.cos(a),0,math.sin(a))
+   local tangent=Vector3.new(-radial.Z,0,radial.X)
+   local at=floor+radial*radius*.67+Vector3.yAxis*.05
+   Surfaces.triangle(r,"DawnSealRay",at-tangent*.2,at+radial*math.min(radius*.18,1.4),at+tangent*.2,nil,.42)
+   local height=1.2+(i%2)*.65
+   Surfaces.volume(r,"DawnAscendingLight",at+Vector3.yAxis*height*.5,Vector3.new(.1,height,.1),nil,.58,'ball',nil,false,.9)
+  end
+ elseif shape=="water"or shape=="steam"or(shape=="frost"and area)or shape=="gravity"then
   if id=='mage.cryo.frost_ring'then
    local at=floorAt(last,character)
    for i=1,8 do

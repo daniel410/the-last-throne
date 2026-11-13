@@ -1,0 +1,45 @@
+{
+  "before": {
+    "logSha256": "422c6abe98e80f9d6e716374de3e44b8bf4113fc5f96b56b1a174e85f8ac6f97",
+    "samples": [
+      {
+        "index": 1,
+        "id": "knight.paladin.dawn_burst",
+        "height": 240,
+        "name": "Dawn Burst",
+        "width": 320,
+        "file": "before-knight_paladin_dawn_burst.png"
+      },
+      {
+        "index": 2,
+        "id": "mage_arcane_ward",
+        "height": 240,
+        "name": "Arcane Ward",
+        "width": 320,
+        "file": "before-mage_arcane_ward.png"
+      }
+    ]
+  },
+  "after": {
+    "logSha256": "a84bc726209d5a62273d420fc57bffd43f6dda81a0d7a260ea8519e6414550bb",
+    "samples": [
+      {
+        "index": 1,
+        "id": "knight.paladin.dawn_burst",
+        "height": 240,
+        "name": "Dawn Burst",
+        "width": 320,
+        "file": "after-knight_paladin_dawn_burst.png"
+      },
+      {
+        "index": 2,
+        "id": "mage_arcane_ward",
+        "height": 240,
+        "name": "Arcane Ward",
+        "width": 320,
+        "file": "after-mage_arcane_ward.png"
+      }
+    ]
+  },
+  "helperSha256": "557ede72c72c0dbfd6550dadb8dc263e6d839fae3d58705fc3923cb6881fc344"
+}
