@@ -1,0 +1,18 @@
+{
+  "src/server/World/CampaignWorld.luau": "d2aa31ae93f08e9d24a3e294e11bf9a06705f5ada86cdac8d5c3911ee49a76bc",
+  "src/server/World/RegionalArchitectureTemplates.luau": "bd2aed1a7b87be3ffaff2c81a11d29a107f34e964cd115e0fca9220b7d58b7da",
+  "src/server/World/RegionalArchitecture.luau": "978956ec3518a4074b62dc1353c3523bb63a8fd274bdf805553230d2e3a9f426",
+  "src/server/World/RegionalConceptProfiles.luau": "5e9c5637fd192c36b4430b389bab57c091f9d2c9f94bac49fecaa1ff0ec69777",
+  "src/server/World/RegionalConceptArt.luau": "0432eee80db04a13830cb6e2b35c0f6b6695c7ee982c4ff6989ddd64da5e7aa9",
+  "src/server/World/EpicEnvironmentKit.luau": "0737498a31cb2e1b740df1612686554425a4f3d0a0bdec47dc69c1d12dbad16d",
+  "src/server/World/EpicWorldArt.luau": "1e4f74925167da08710e9521da9036a86d509113b12e054239b33d1a42110605",
+  "src/client/DeepwoodAtmosphere.luau": "195d6d91fc2defb45a951c7ece321b7b7a1d19beea692a011339d9735d21ac1d",
+  "tests/campaign-story-composition-native.luau": "8b599f1d140ee201931744378efc13d8d23be98fd502b01fc102e7d1b749a008",
+  "tests/scenery-collision-native.luau": "84f63e87de3262fd7df54458b18f9e6451fdd2d1c90c4324f579be80f0179ac0",
+  "tests/campaign-combat-route-world-native.luau": "fca9e0919051f1be0e797475d525cb260aa002ed97f7bbe1741c2440172d0ad6",
+  "tests/epic-environment-native.luau": "64261fd65d9f7d28ee53aeabbc254873028c54b9099f6121409a13326941ea83",
+  "tests/epic-overland-native.luau": "d181e816d5298c37f00a99892977724269e112b1bd1176b0d14f82314542f390",
+  "tests/regional-concept-art-native.luau": "3525004f2e77bfe597327bbda892c6638e1a63f2e376d205a27977f8a6e9cf69",
+  "tests/epic-map-navigation-native.luau": "81d3400afd57a4f93af9a021d20956e3cb9520945f56dda64b8834a440fb76d6",
+  "tools/prepare-regional-concept-native.py": "902a93bc978c5d2a8a3053c1aab966b016bbe4d326d891dda983876457a7f2a5"
+}

@@ -22,7 +22,14 @@
 - 기존 생활 구성·실제 고체 충돌·315교전 위치·환경 검사 통과. 다음 에픽으로 정/역 R15 실제 보행8방향에서 점프/서버 위치 보정0. GW/FV/EC/HG36스토리·496목표·30연결로의 바닥·몸체 충돌·서버 보정·길 안내 실패0. 기존 EC 경사 끝 약1.30stud 낮은 단차6건은 별도 측정이며 몸체 차단으로 합산하지 않는다.
 - 후보1에서 새 에픽이 경계 지형을 깎은 뒤 길 포장3개가 떠 있는 문제를 발견해 전체 도보 연결 생성 후 실제 바닥으로 다시 접지했다. 후보2의14개 몸체 충돌은 실제 안내가 꺾여 들어가는 사건 접근로를 추가 예약해 수정했다. 실패 후보를 통과로 합산하지 않는다.
 
-실행은 `python3 tools/prepare-regional-concept-native.py --overlay --review`와 `run-in-roblox --place builds/0.105.1/TheLastThrone-0.105.1.rbxlx --script /tmp/tlt-regional-concept-native.luau`다. 후보만 소스를 주입하며 고정 빌드는 `--overlay` 없이 소스 바이트 일치 후 검사한다. 최종 빌드·화면 증거는 마감 기록으로 추가한다. 후보 화면2개는 구현 방향 점검이며 콘셉트 그림/최종 고정 화면과 구별한다.
+실행은 `python3 tools/prepare-regional-concept-native.py --overlay --review`와 `run-in-roblox --place builds/0.105.1/TheLastThrone-0.105.1.rbxlx --script /tmp/tlt-regional-concept-native.luau`다. 후보만 소스를 주입하며 고정 빌드는 `--overlay` 없이 소스 바이트 일치 후 검사한다. 최종 고정 결과는 아래 기록을 따른다. 후보 화면2개는 구현 방향 점검이며 콘셉트 그림/최종 고정 화면과 구별한다.
+
+## 고정 빌드와 실제 화면
+
+- [0.105.2 빌드](build.json): 소스 `02790e2f653f2e62d26147740c766f5c8a3209d9`, `.rbxlx` SHA256 `04e3710929cf26c4a290a235ef64f2fd1545dad61a539b7438196704e7690432`. 해당 커밋으로 소스를 동결해 빌드했다.
+- `--overlay` 없이 실행해 변경8모듈 소스 바이트 일치·전체 Luau 컴파일 확인 후 위 전체 엔진 검사를 재통과했다. [원본 로그](fixed-native.log) · [전체 구조화 결과/종료0](fixed-native.json) · [입력 해시](fixed-inputs.json). 새 구성17170검사·대표34개·충돌 실패0, 도보8방향·496목표 검사를 후보와 동일하게 통과했다.
+- [콘셉트/실제 화면 비교34쌍](index.html) · [카메라/파일 해시](captures.json). 격리 Studio Edit에서 실제 맵 대표 건축을 구역별로 촬영하고 지역별 실제 조명을 적용했다. Play 전투/개인 NPC를 검증한 화면으로 간주하지 않는다. 콘셉트와 실제 구조물의 규모·표현 차이를 숨기지 않도록 분리 표기했다.
+- 산출물과 검증 기록은 Git/LFS로 커밋·원격 반영한다. 사용자 Blender 원본 수정 및 다른 미커밋 삭제 파일은 포함하지 않았다.
 
 ## 미검증과 다음 담당
 
