@@ -1,0 +1,34 @@
+{
+  "REGIONAL_CONCEPT_ART": {
+    "checks": 17170,
+    "parts": 3052,
+    "solids": 2265,
+    "pavers": 556,
+    "signatureCount": 34,
+    "failures": []
+  },
+  "STORY_COMPOSITION_QA": {
+    "checks": 5456,
+    "parts": 950
+  },
+  "SCENERY_COLLISION_NATIVE": {
+    "checks": 29072,
+    "solids": 9271,
+    "failureCount": 0,
+    "failures": []
+  },
+  "COMBAT_ROUTE_WORLD": {
+    "checks": 6333,
+    "floorFailures": [],
+    "blockers": []
+  },
+  "EPIC_ENVIRONMENT_QA": {
+    "checks": 38450,
+    "parts": 9486
+  },
+  "OVERLAND_CASE": {},
+  "OVERLAND_RESULT": {},
+  "EPIC_MAP_NAVIGATION": {
+    "blockers": []
+  }
+}

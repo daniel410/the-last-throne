@@ -1,0 +1,14 @@
+# 나머지4에픽 스토리 맵의 장소 구별
+
+2026-11-13 · TLT-062/063/064/065/concept-map · Research/DES/ENG
+
+사용자는 Deepwood 제작 방식으로 나머지 에픽의 스토리별 콘셉트와 실제 맵 개선을 요청했고, Gloamwood가 Deepwood처럼 보인다는 후속 지시로 기존 Gloamwood 원본 참조를 명시했다.
+
+| 공식 근거·관찰 | 적용 판단과 차이 |
+| --- | --- |
+| [Diablo IV 2022년3월 환경 미술 개발 설명](https://news.blizzard.com/en-us/article/23788294/diablo-iv-quarterly-updatemarch-2022): 지역의 장소 이야기, 제한된 팔레트와 디테일, 지역 전환의 생태적 단서를 설명한다. 출시 전 환경 설계 자료이며 현행 시즌 규칙의 근거가 아니다. | 같은 수도원/성채 반복 대신 사건별 대표 구조물과 작은 생활 구성을 만든다. 어둡게 만드는 것 자체를 품질로 보지 않고 실제 길/전투 바닥의 가독성을 유지한다. |
+| [World of Warcraft: Dragonflight Deep Dive](https://news.blizzard.com/en-us/article/23785116/world-of-warcraft-dragonflight-deep-dive): Retail 확장팩의 지형·수목·안개·높이 변화가 지역의 성격을 만든다는 개발 설명이다. | 숲·설원·공업 화산·왕실 묘역의 재료와 실루엣을 구별한다. 이번에는 기존 권한 경계·목표·바닥 높이를 변경하지 않고 건축/중간 규모 환경·길 마감에 적용한다. |
+
+고유 미술 기준은 다른 게임보다 프로젝트 원본이 우선한다. Gloamwood는 `assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png`와 여왕 둥지의 푸른 밤숲·상부 은백색 거미줄·뿌리 침식 석조 감시성채·작은 호박색 피난처를 따른다. 초반 Deepwood형 목조 마을 시안은 채택하지 않았다. 그림과 고유 문구/자산을 다른 게임에서 복제하지 않는다.
+
+실험은 콘셉트40장→실제 Blender MCP 원본34종→34구역 배치→정적 데이터/엔진 충돌·목표 경로/실제 R15 왕복으로 나눈다. 선행 완료·보상·NPC/교전·공통 UI·에픽 간 도보 길을 유지한다. 새 메시 업로드 없이 Blender의 정확한 기본형/CFrame/색을 재구성하는 기존 Deepwood 방식을 사용한다. 게시/멀티플레이/실기기 성능과 사용자 미술 수용은 별도이며 이번 수치 검사를 재미 평가로 확대하지 않는다.

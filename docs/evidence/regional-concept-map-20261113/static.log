@@ -1,0 +1,11 @@
+campaign-reorder exit=0
+CAMPAIGN_REORDER 1870 checks passed; mandatory solo final level 47
+
+campaign-context-review exit=0
+CAMPAIGN_CONTEXT_REVIEW 1054 checks passed; 418 saved transitions, 47 distinct stories, unchanged runtime contracts
+
+campaign-combat-routes exit=0
+Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger
+
+epic-map-navigation exit=0
+EPIC_MAP_NAVIGATION 106051 checks PASS; 488 active targets; 26388 moving samples

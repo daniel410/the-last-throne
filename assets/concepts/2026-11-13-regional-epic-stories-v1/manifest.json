@@ -1,0 +1,619 @@
+{
+  "date": "2026-11-13",
+  "task": "TLT-062/063/064/065/regional-concept-map",
+  "mode": "built-in image_gen",
+  "counts": {
+    "epics": 4,
+    "main": 28,
+    "optional": 8,
+    "images": 40,
+    "physicalZones": 34
+  },
+  "assets": [
+    {
+      "id": "GW-01",
+      "title": "Lantern Trail",
+      "file": "GW-01.png",
+      "kind": "SilkWatchApproach",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "a97dd586f606392a74e4cf38ebc40cf9fb24a4ab970e5bf5f6c3044bb0a9efa7",
+      "references": [
+        {
+          "file": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+          "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+        }
+      ],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-97582563-8978-463f-8720-0052a2f67372.png",
+      "promptKey": "GW-01"
+    },
+    {
+      "id": "GW-02",
+      "title": "A Light in the Webs",
+      "file": "GW-02.png",
+      "kind": "WebRescueCourt",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "94da2d67503e3c5b03792d5110ea6c312777dd95aee33bec8713b63abaf4ddab",
+      "references": [
+        {
+          "file": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+          "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+        }
+      ],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-802ca3bb-0694-40db-bae7-9cbb5895a47a.png",
+      "promptKey": "GW-02"
+    },
+    {
+      "id": "GW-03",
+      "title": "Lantern Refuge",
+      "file": "GW-03.png",
+      "kind": "LanternRootRefuge",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "19ce98c6c05c302892bff8742165845d54922d596d7236ebb12f41b3070def55",
+      "references": [
+        {
+          "file": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+          "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+        }
+      ],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-f6230d72-d948-4635-beff-3b5f4a32543f.png",
+      "promptKey": "GW-03"
+    },
+    {
+      "id": "GW-04",
+      "title": "The Ancient Rootway",
+      "file": "GW-04.png",
+      "kind": "HollowbarkRootBastion",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "1792603f18fa13ed41fd25c54c50ea10e10215b2264fe83ed9f985f279fb454e",
+      "references": [
+        {
+          "file": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+          "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+        }
+      ],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-17aaa08e-b291-499c-becc-d1ab3fe3eb98.png",
+      "promptKey": "GW-04"
+    },
+    {
+      "id": "GW-05",
+      "title": "Venomcoil Crossing",
+      "file": "GW-05.png",
+      "kind": "SilkenBankAnchors",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "09bbb96461487138f9033efb561f70bcffaaa51bf17d546da2a5f4f6ef9f6605",
+      "references": [
+        {
+          "file": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+          "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+        }
+      ],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-0249761f-bcb6-4537-8892-2b0b87dde29c.png",
+      "promptKey": "GW-05"
+    },
+    {
+      "id": "GW-06",
+      "title": "One Brave Step",
+      "file": "GW-06.png",
+      "kind": "ScoutExtractionWall",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "bfb945b26adeb6668e358aa698a4144e2954757a1696f52a4f8ea60fa676771c",
+      "references": [
+        {
+          "file": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+          "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+        }
+      ],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-3627423f-6cee-45bf-89cd-aefaf6758bd7.png",
+      "promptKey": "GW-06"
+    },
+    {
+      "id": "GW-07",
+      "title": "The Queen of the Webs",
+      "file": "GW-07.png",
+      "kind": "WidowWatchfortGate",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "bc4c3bdac67fa50a41f80df2aadc955bb92e611806c70999f15c1f7af3ca3017",
+      "references": [
+        {
+          "file": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+          "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+        }
+      ],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-51260672-8c56-4034-95a2-a41c6a33af8b.png",
+      "promptKey": "GW-07"
+    },
+    {
+      "id": "GW-EPIC",
+      "title": "Gloamwood",
+      "file": "GW-EPIC.png",
+      "kind": "EpicOverview",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "6560f976c9bf928cd420f7dd4bc5f33cb18711d1ad5c481902f07ff351b56b70",
+      "references": [
+        {
+          "file": "assets/concepts/2026-10-30-gloamwood-v1/gloamwood-environment.png",
+          "sha256": "c88cb3cefea6ec4951aa191f828cadb084c3261d898ffa3e8d088d792e123cbf"
+        }
+      ],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-dfa17b39-8704-4499-8f1b-4819f7c4daab.png",
+      "promptKey": "GW-EPIC"
+    },
+    {
+      "id": "FV-01",
+      "title": "Blizzard Gate",
+      "file": "FV-01.png",
+      "kind": "StormRescueHut",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "3501b1005900c0aca5d79f373c2149a84ab43be9c86a864a74979967efd9e5b6",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-7933d597-f175-4e01-bcb3-e42f74f55dc4.png",
+      "promptKey": "FV-01"
+    },
+    {
+      "id": "FV-02",
+      "title": "Ember Refuge",
+      "file": "FV-02.png",
+      "kind": "HearthLonghouse",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "294cc2b25c46982d8ee3c9fe9702f58520662b4aa409389ee86ceecbc7fd87d4",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-7b650ff4-f895-484b-863c-d3e25a1baece.png",
+      "promptKey": "FV-02"
+    },
+    {
+      "id": "FV-03",
+      "title": "Wolf Ravine",
+      "file": "FV-03.png",
+      "kind": "TwinBeaconBridgehead",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "fe4090afe94a6af54c49ae8001885953f87562c375edcb0ead13f31d22947107",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-813fbefa-4a31-4b4c-91f6-4d11e38fe807.png",
+      "promptKey": "FV-03"
+    },
+    {
+      "id": "FV-04",
+      "title": "Subglacial Archive",
+      "file": "FV-04.png",
+      "kind": "SubglacialRelayHall",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "b1269fc1efdedea0c7e6eee3ee2f29ab38e386a041f1b0a0ec135dc126644ba2",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-f7667aea-b712-45fc-9d59-638d14e44eae.png",
+      "promptKey": "FV-04"
+    },
+    {
+      "id": "FV-05",
+      "title": "Silent Battlefield",
+      "file": "FV-05.png",
+      "kind": "BuriedSledDepot",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "ebf3b69b367bc5cffc38c9c6f8faf3ac211a327eab2af07f939fc25ce10ce05d",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-5ab30552-6e14-407c-8618-9e404b66ee56.png",
+      "promptKey": "FV-05"
+    },
+    {
+      "id": "FV-06",
+      "title": "Frost Citadel Gate",
+      "file": "FV-06.png",
+      "kind": "TwinLockGatehouse",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "d6ef6f518e2219ba2f3efb04e0a1d93c729321f490462bfac343da8c08c0ac64",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-8b93ab39-cd2a-4a37-8f44-3b1e367a5d42.png",
+      "promptKey": "FV-06"
+    },
+    {
+      "id": "FV-07",
+      "title": "Ice Mirror Palace",
+      "file": "FV-07.png",
+      "kind": "MirrorPavilion",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "4c8cbdd7ee1bf1ce8754cd13f5f1064f3fdd33f15f9e5f204680260891908006",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-026df60f-2435-44de-a7ed-d470bd776790.png",
+      "promptKey": "FV-07"
+    },
+    {
+      "id": "FV-EPIC",
+      "title": "Frozen Vale",
+      "file": "FV-EPIC.png",
+      "kind": "EpicOverview",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "d84d61ceab05260b840ff5b75b10d0c8e19598ddedd08a4218ec3787fcfcf132",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-6523eb3d-ae46-47c1-9346-12f772b88d13.png",
+      "promptKey": "FV-EPIC"
+    },
+    {
+      "id": "FV-Q1",
+      "title": "A Name in the Snow",
+      "file": "FV-Q1.png",
+      "kind": "StormRescueHut",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "780953e509c38f096d7240292ad266f25f831af7598408e7970f522df1e17482",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-29978703-d0b6-4a97-84ff-ba03cc538c0d.png",
+      "promptKey": "FV-Q1"
+    },
+    {
+      "id": "FV-Q2",
+      "title": "Frostfang Supply Cave",
+      "file": "FV-Q2.png",
+      "kind": "CaveSupplyStore",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "25eec7194bc5e44487ef7c912289310da6ced903d009fbd3a9f6973c8a4be090",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-b14b0d5e-b91a-4f9e-b5f5-9c93db865945.png",
+      "promptKey": "FV-Q2"
+    },
+    {
+      "id": "FV-Q3",
+      "title": "Blue Lake Return Route",
+      "file": "FV-Q3.png",
+      "kind": "ShoreReturnJetty",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "0f528043567814dc0e2c5ba98252f733f783b95180c652f062d5a5341781bfcf",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-9965b44d-aa7d-4ff0-89c3-5e4d5aa27a1b.png",
+      "promptKey": "FV-Q3"
+    },
+    {
+      "id": "FV-Q4",
+      "title": "Ancient Glacier Watch",
+      "file": "FV-Q4.png",
+      "kind": "GlacierWatchSpire",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "436d1e20cd7eb24b1e2584bc3542299a87be3820a9e143b7b1d6a949b0d5d5f7",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-956f813c-7713-422e-8ca0-aee2c498fb72.png",
+      "promptKey": "FV-Q4"
+    },
+    {
+      "id": "EC-01",
+      "title": "Ash Gate",
+      "file": "EC-01.png",
+      "kind": "FreightLiftHead",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "93c94dbd718dee1e9966aaee66f0b77a83ab0d473607a1d8305711437cfeabd7",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-65a60f77-aaca-4747-874e-1c059f301dee.png",
+      "promptKey": "EC-01"
+    },
+    {
+      "id": "EC-02",
+      "title": "Forge City",
+      "file": "EC-02.png",
+      "kind": "CrewWorkshop",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "a52f33554b0f006cb109bb039672c333baf54f85e1afd77ed3d06fc3c11ca382",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-8d463ca6-3409-4ab2-90e2-06735fb54c56.png",
+      "promptKey": "EC-02"
+    },
+    {
+      "id": "EC-03",
+      "title": "Collapsed Resonance Mine",
+      "file": "EC-03.png",
+      "kind": "BracedMineHead",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "0d92a2f32fc35d026edebd87c78c95b0999416073a5be7ec43ae66bcf2ffa95e",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-c22bd010-2593-4e1f-b738-94104975f4b9.png",
+      "promptKey": "EC-03"
+    },
+    {
+      "id": "EC-04",
+      "title": "Split Coolant Canals",
+      "file": "EC-04.png",
+      "kind": "TwinPumpHouse",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "4a68a9f43b21c29e18b682ec3ce1002af81177c82ee531d031c2b2e0151f948a",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-4c4cf613-96bb-40e4-8401-3bd285545b58.png",
+      "promptKey": "EC-04"
+    },
+    {
+      "id": "EC-05",
+      "title": "Ancestral Design Vault",
+      "file": "EC-05.png",
+      "kind": "CircuitArchive",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "34e94f534cc13d728c6254f3577740a9492050c72db7991d2754499c9c2fb064",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-cd015ddc-94e2-418d-9910-e4111ad9659a.png",
+      "promptKey": "EC-05"
+    },
+    {
+      "id": "EC-06",
+      "title": "Geothermal Heart Testworks",
+      "file": "EC-06.png",
+      "kind": "HeatTestFrame",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "828d3f89fa491a169bfadd0a8acbc7c23331824c9760066dcd6525f170314335",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-29bb7f71-489c-4e28-98d3-891d0adef644.png",
+      "promptKey": "EC-06"
+    },
+    {
+      "id": "EC-07",
+      "title": "Great Furnace",
+      "file": "EC-07.png",
+      "kind": "GreatFurnaceCrown",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "79583b1de6a318a215005a0c1f83fd00285ce538ce576cb6671a0cca25849a82",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-baef969b-1cb0-4b9c-a492-7c3ea17bc330.png",
+      "promptKey": "EC-07"
+    },
+    {
+      "id": "EC-EPIC",
+      "title": "Ember Caldera",
+      "file": "EC-EPIC.png",
+      "kind": "EpicOverview",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "1d8805212d1e05bc4c66999ad1ebbefa2a784c83067708d1d7b9980ac772973b",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-8c9d0189-b239-4dc1-88d9-ba458f260a0f.png",
+      "promptKey": "EC-EPIC"
+    },
+    {
+      "id": "EC-Q1",
+      "title": "A Worker's Lost Mark",
+      "file": "EC-Q1.png",
+      "kind": "FreightLiftHead",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "fb3f3e511fb0abd7bede520618ca8ee44cf5de53405eba873fb53e305e27a1d4",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-3e38644e-bf53-4e13-8eed-f29793acfd60.png",
+      "promptKey": "EC-Q1"
+    },
+    {
+      "id": "EC-Q2",
+      "title": "Ember Raider Nest",
+      "file": "EC-Q2.png",
+      "kind": "RaiderFreightShed",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "1f92b16f5f5b7048b94f4617bdb8992b9f7c66a8838b1895e5d30d14641d16f3",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-812f4189-7a6d-469f-a035-36345fd4ef69.png",
+      "promptKey": "EC-Q2"
+    },
+    {
+      "id": "EC-Q3",
+      "title": "Volcano Shaman Altar",
+      "file": "EC-Q3.png",
+      "kind": "HeatAltarService",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "a47a0c69d4310f5f78e7a9155444db6f4b4520129e83369eec1c6c519506ef5a",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-726f01d7-066a-477d-a23b-2d549e7416df.png",
+      "promptKey": "EC-Q3"
+    },
+    {
+      "id": "EC-Q4",
+      "title": "Caldera Titan Basin",
+      "file": "EC-Q4.png",
+      "kind": "CalderaOreDerrick",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "68b14133e083eeaa1919b0646f75ab37e46c6e90118cc78448f2343ee4b392cf",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-6828879d-be31-4e0d-8303-754e556d7e05.png",
+      "promptKey": "EC-Q4"
+    },
+    {
+      "id": "HG-01",
+      "title": "Mist Gate",
+      "file": "HG-01.png",
+      "kind": "KeeperGate",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "62cac6aab596275a3ec0f375adb6b7d70d3e4777710941680aac74cb75549f21",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-d12367a3-8b00-457d-8b6a-8ce3a6d2f32f.png",
+      "promptKey": "HG-01"
+    },
+    {
+      "id": "HG-02",
+      "title": "Friends at the Old Shelter",
+      "file": "HG-02.png",
+      "kind": "AlliedShelter",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "e1fb80bf3b71194e61525607bdf09417ff67837d3e3aa0ffeae13d5cba8d2053",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-0a577347-6744-4d56-ad31-00ed6fe86c11.png",
+      "promptKey": "HG-02"
+    },
+    {
+      "id": "HG-03",
+      "title": "Lumi Secret Passage",
+      "file": "HG-03.png",
+      "kind": "KeeperCryptStair",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "179b04f89ca109ac1771b18c134ad1e4c9ae80afbab6fcd0ad33c0b93252fe00",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-2e3cc258-53e9-465d-ad2f-759f767d7151.png",
+      "promptKey": "HG-03"
+    },
+    {
+      "id": "HG-04",
+      "title": "The Alliance Opens the Gate",
+      "file": "HG-04.png",
+      "kind": "SiegeWinchGate",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "92f4d818cc2aab3c5194d9e2b37631331a00a2f2865cc9fdd30cfbb8aa19a432",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-256149e1-e126-415f-87eb-f49897cbd8fc.png",
+      "promptKey": "HG-04"
+    },
+    {
+      "id": "HG-05",
+      "title": "The Black Throne Devices",
+      "file": "HG-05.png",
+      "kind": "TwinShieldPylons",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "f15f1b2099fad14d30ac5558ec3ad4002c0be81286507376046c2b0fe86f1bfd",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-ef8903b7-fa11-43b4-b03d-d671ad4f55cd.png",
+      "promptKey": "HG-05"
+    },
+    {
+      "id": "HG-06",
+      "title": "The Royal Tomb",
+      "file": "HG-06.png",
+      "kind": "RoyalSealMausoleum",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "cabb7566cdbc9aa48609d610a7cad843f7740ee461eea266d96ad6048e6846d6",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-528ef3ce-4c08-4ad5-9f0f-04793b23c64d.png",
+      "promptKey": "HG-06"
+    },
+    {
+      "id": "HG-07",
+      "title": "Together We Bring Back the Light",
+      "file": "HG-07.png",
+      "kind": "BindingThroneDais",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "69184569ad9092ce5e1d06e6c4625573d602f70e55b41aa462e34212e282530f",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-61fda0d7-98a5-4d95-ae91-c84d29994dea.png",
+      "promptKey": "HG-07"
+    },
+    {
+      "id": "HG-EPIC",
+      "title": "Haunted Graveyard",
+      "file": "HG-EPIC.png",
+      "kind": "EpicOverview",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "4cf3cd6a2554c903338e23c7005a64aeadd6f08080a674e300f50fd00e135b13",
+      "references": [],
+      "source": "/Users/daniel/.codex/generated_images/01a1d6d6-0ae8-7c01-9782-b1f7c8d090d0/exec-e46ac483-c7e9-4ad2-bf93-36204d061539.png",
+      "promptKey": "HG-EPIC"
+    }
+  ],
+  "unverified": [
+    "최종 사용자 미술 수용",
+    "게시/실기기",
+    "콘셉트 전체 지형/높이의 일대일 구현"
+  ]
+}

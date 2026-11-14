@@ -11,7 +11,7 @@ local Composition=require(script.Parent.EpicScenicComposition)
 local Detail=require(script.Parent.EpicBiomeDetail)
 local StoryComposition=require(script.Parent.CampaignStoryComposition)
 local DeepwoodConcept=require(script.Parent.DeepwoodConceptArt)
-local Art={version=17}
+local Art={version=18}
 local V=Vector3.new
 local C=Color3.fromRGB
 local names={DW='Deepwood',FV='FrozenVale',EC='EmberCaldera',GW='Gloamwood',HG='HauntedGraveyard'}
@@ -225,10 +225,13 @@ local function floorDetails(parent,c,size,pal,theme,safe,rng,chapter)
 end
 local function vista(parent,c,size,pal,theme,index,id,safe)
  local m=model(parent,'AuthoredVista')
- if theme~='Deepwood'and(index==1 or index==7)then Architecture.entry(m,c,size,pal)end
+ local regional=require(script.Parent.RegionalConceptArt).profile(id)
+ if not regional and theme~='Deepwood'and(index==1 or index==7)then Architecture.entry(m,c,size,pal)end
  if theme=='Deepwood'then
   -- Deepwood's trail/outpost/ruins are authored by its concept pass below,
   -- rather than repeating the other epics' cloisters, keep and graveyard belfry.
+ elseif regional then
+  -- Each story now receives its own concept landmark after the life scenes.
  elseif theme=='EmberCaldera'then
   if index==2 then Architecture.camp(m,c,size,pal,false,0,id=='EC-02'and 180 or 0)
   elseif index==3 then Architecture.mine(m,c,size,pal)
@@ -459,6 +462,10 @@ function Art.create(world,scope)
   vista(p.site,p.c,p.z.size,p.pal,p.theme,p.index,p.id,p.safe)
   Detail.build(p.site,p.id,p.c,p.z.size,p.pal,p.theme,p.safe,ground)
   StoryComposition.build(p.site,p.id,p.c,p.z.size,p.pal,p.theme,p.safe,ground,world)
+  if p.theme~='Deepwood'then
+   require(script.Parent.RegionalConceptArt).build(p.site,p.id,p.c,p.z.size,p.safe,ground,world)
+   require(script.Parent.RegionalConceptArt).paths(p.site,ground,world)
+  end
   if p.theme=='Deepwood'then
    require(script.Parent.CampaignSceneryCollision).apply(p.site)
    DeepwoodConcept.build(p.site,p.id,p.c,p.z.size,p.safe,ground,world)
