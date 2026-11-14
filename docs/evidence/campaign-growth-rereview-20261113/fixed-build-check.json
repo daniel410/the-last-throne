@@ -1,0 +1,27 @@
+{
+  "version": "0.106.2",
+  "sourceCommit": "6399e5024e67022894c1deed93bced322cb24f19",
+  "path": "builds/0.106.2/TheLastThrone-0.106.2.rbxlx",
+  "bytes": 19136696,
+  "sha256": "630f3e3316495608a2438044bf0005ba5fe4a462fd1a7ca8795ac49a83981756",
+  "matchedSources": [
+    {
+      "path": "src/shared/CampaignGrowthBudget.luau",
+      "sha256": "362cd3ed98d23564361535ee6ee30922ff7d057d51a9f1bcbff8fbac95b4a03a"
+    },
+    {
+      "path": "src/shared/CampaignXPRewards.luau",
+      "sha256": "dc374307edcfdc5d402fe03aec8b5a4a584dd64f5d3df22ffd0d483f3c4caf0d"
+    },
+    {
+      "path": "src/shared/Difficulty.luau",
+      "sha256": "a64f765e0f1c2fb91a685e90aa60a8e66460400b24e1cc3f40a341e7bfdbf26b"
+    },
+    {
+      "path": "src/shared/HeroProgression.luau",
+      "sha256": "9a6304aef4e35493a92fb5cf614db02225023d4fb4d067da498b61b5f1d3b8ce"
+    }
+  ],
+  "published": false,
+  "releaseTag": null
+}

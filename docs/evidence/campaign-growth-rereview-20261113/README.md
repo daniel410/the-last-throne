@@ -10,6 +10,7 @@
 
 ## 산출물·검증
 
+- [0.106.2 빌드](build.json)·[고정 입력 일치](fixed-build-check.json): 소스 `6399e5024e67022894c1deed93bced322cb24f19`, `builds/0.106.2/TheLastThrone-0.106.2.rbxlx`, 변경된4개 런타임 모듈과 빌드 내부 소스 일치. 게시/릴리스 태그 없음.
 - [수정 후](after.json)·[에픽별 누적](growth.csv): Easy10/17/23/27/30, Hard60, Insane80, Hell90/95/97/98/99. 완료 시 남은 레벨 내 XP도 기록한다. 기준 경로의 숫자이며 개별 플레이 결과를 강제하지 않는다.
 - [review.lua](review.lua): 실제 InventoryRules/AdventureRules에 사망과5~6회차를 적용했다. 수정 후5회차 사망 손실4,017XP로 Lv98+46,568XP가 남아도6회차 정상 지급으로932XP를 더 모아99에 도달했다.6회차 완료 횟수도 정상 기록된다. 초과 XP가 저장되지 않는 이유는 Lv99 상한이다.
 - [회귀](regression.json): 성장/정상 XP/요구량/포인트·입장·UI·기존 보상·방어 자원·사망 손실·경로11묶음 전부 통과.
