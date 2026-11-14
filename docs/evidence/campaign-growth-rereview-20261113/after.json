@@ -1,0 +1,830 @@
+{
+  "baseline": [
+    {
+      "cycle": 1,
+      "epics": [
+        {
+          "epic": 1,
+          "finish": {
+            "level": 10,
+            "totalXP": 1862,
+            "xp": 62.0
+          },
+          "killXP": 1012,
+          "questXP": 850,
+          "xp": 1862
+        },
+        {
+          "epic": 2,
+          "finish": {
+            "level": 17,
+            "totalXP": 4862,
+            "xp": 262.0
+          },
+          "killXP": 1693,
+          "questXP": 1307,
+          "xp": 3000
+        },
+        {
+          "epic": 3,
+          "finish": {
+            "level": 23,
+            "totalXP": 8288,
+            "xp": 313.0
+          },
+          "killXP": 1770,
+          "questXP": 1656,
+          "xp": 3426
+        },
+        {
+          "epic": 4,
+          "finish": {
+            "level": 27,
+            "totalXP": 11130,
+            "xp": 405.0
+          },
+          "killXP": 1280,
+          "questXP": 1562,
+          "xp": 2842
+        },
+        {
+          "epic": 5,
+          "finish": {
+            "level": 30,
+            "totalXP": 13667,
+            "xp": 617.0
+          },
+          "killXP": 1122,
+          "questXP": 1415,
+          "xp": 2537
+        }
+      ],
+      "finish": {
+        "level": 30,
+        "totalXP": 13667,
+        "xp": 617.0
+      },
+      "killXP": 6877,
+      "mode": "Easy",
+      "questXP": 6790
+    },
+    {
+      "cycle": 1,
+      "epics": [
+        {
+          "epic": 1,
+          "finish": {
+            "level": 36,
+            "totalXP": 19054,
+            "xp": 679.0
+          },
+          "killXP": 3043,
+          "questXP": 2344,
+          "xp": 5387
+        },
+        {
+          "epic": 2,
+          "finish": {
+            "level": 42,
+            "totalXP": 25479,
+            "xp": 879.0
+          },
+          "killXP": 3805,
+          "questXP": 2620,
+          "xp": 6425
+        },
+        {
+          "epic": 3,
+          "finish": {
+            "level": 48,
+            "totalXP": 32655,
+            "xp": 930.0
+          },
+          "killXP": 3755,
+          "questXP": 3421,
+          "xp": 7176
+        },
+        {
+          "epic": 4,
+          "finish": {
+            "level": 54,
+            "totalXP": 40772,
+            "xp": 1022.0
+          },
+          "killXP": 3782,
+          "questXP": 4335,
+          "xp": 8117
+        },
+        {
+          "epic": 5,
+          "finish": {
+            "level": 60,
+            "totalXP": 49909,
+            "xp": 1234.0
+          },
+          "killXP": 4396,
+          "questXP": 4741,
+          "xp": 9137
+        }
+      ],
+      "finish": {
+        "level": 60,
+        "totalXP": 49909,
+        "xp": 1234.0
+      },
+      "killXP": 18781,
+      "mode": "Hard",
+      "questXP": 17461
+    },
+    {
+      "cycle": 1,
+      "epics": [
+        {
+          "epic": 1,
+          "finish": {
+            "level": 64,
+            "totalXP": 56421,
+            "xp": 1296.0
+          },
+          "killXP": 3695,
+          "questXP": 2817,
+          "xp": 6512
+        },
+        {
+          "epic": 2,
+          "finish": {
+            "level": 68,
+            "totalXP": 63471,
+            "xp": 1496.0
+          },
+          "killXP": 4195,
+          "questXP": 2855,
+          "xp": 7050
+        },
+        {
+          "epic": 3,
+          "finish": {
+            "level": 72,
+            "totalXP": 70772,
+            "xp": 1547.0
+          },
+          "killXP": 3818,
+          "questXP": 3483,
+          "xp": 7301
+        },
+        {
+          "epic": 4,
+          "finish": {
+            "level": 76,
+            "totalXP": 78514,
+            "xp": 1639.0
+          },
+          "killXP": 3601,
+          "questXP": 4141,
+          "xp": 7742
+        },
+        {
+          "epic": 5,
+          "finish": {
+            "level": 80,
+            "totalXP": 86776,
+            "xp": 1851.0
+          },
+          "killXP": 3963,
+          "questXP": 4299,
+          "xp": 8262
+        }
+      ],
+      "finish": {
+        "level": 80,
+        "totalXP": 86776,
+        "xp": 1851.0
+      },
+      "killXP": 19272,
+      "mode": "Insane",
+      "questXP": 17595
+    },
+    {
+      "cycle": 1,
+      "epics": [
+        {
+          "epic": 1,
+          "finish": {
+            "level": 83,
+            "totalXP": 95188,
+            "xp": 1163.0
+          },
+          "killXP": 4772,
+          "questXP": 3640,
+          "xp": 8412
+        },
+        {
+          "epic": 2,
+          "finish": {
+            "level": 85,
+            "totalXP": 103938,
+            "xp": 2313.0
+          },
+          "killXP": 5208,
+          "questXP": 3542,
+          "xp": 8750
+        },
+        {
+          "epic": 3,
+          "finish": {
+            "level": 87,
+            "totalXP": 112739,
+            "xp": 1914.0
+          },
+          "killXP": 4578,
+          "questXP": 4223,
+          "xp": 8801
+        },
+        {
+          "epic": 4,
+          "finish": {
+            "level": 88,
+            "totalXP": 121781,
+            "xp": 5656.0
+          },
+          "killXP": 4198,
+          "questXP": 4844,
+          "xp": 9042
+        },
+        {
+          "epic": 5,
+          "finish": {
+            "level": 90,
+            "totalXP": 131143,
+            "xp": 2468.0
+          },
+          "killXP": 4470,
+          "questXP": 4892,
+          "xp": 9362
+        }
+      ],
+      "finish": {
+        "level": 90,
+        "totalXP": 131143,
+        "xp": 2468.0
+      },
+      "killXP": 23226,
+      "mode": "Hell",
+      "questXP": 21141
+    },
+    {
+      "cycle": 2,
+      "epics": [
+        {
+          "epic": 1,
+          "finish": {
+            "level": 91,
+            "totalXP": 139555,
+            "xp": 3880.0
+          },
+          "killXP": 4772,
+          "questXP": 3640,
+          "xp": 8412
+        },
+        {
+          "epic": 2,
+          "finish": {
+            "level": 92,
+            "totalXP": 148305,
+            "xp": 4880.0
+          },
+          "killXP": 5208,
+          "questXP": 3542,
+          "xp": 8750
+        },
+        {
+          "epic": 3,
+          "finish": {
+            "level": 93,
+            "totalXP": 157106,
+            "xp": 5181.0
+          },
+          "killXP": 4578,
+          "questXP": 4223,
+          "xp": 8801
+        },
+        {
+          "epic": 4,
+          "finish": {
+            "level": 94,
+            "totalXP": 166148,
+            "xp": 4723.0
+          },
+          "killXP": 4198,
+          "questXP": 4844,
+          "xp": 9042
+        },
+        {
+          "epic": 5,
+          "finish": {
+            "level": 95,
+            "totalXP": 175510,
+            "xp": 3085.0
+          },
+          "killXP": 4470,
+          "questXP": 4892,
+          "xp": 9362
+        }
+      ],
+      "finish": {
+        "level": 95,
+        "totalXP": 175510,
+        "xp": 3085.0
+      },
+      "killXP": 23226,
+      "mode": "Hell",
+      "questXP": 21141
+    },
+    {
+      "cycle": 3,
+      "epics": [
+        {
+          "epic": 1,
+          "finish": {
+            "level": 95,
+            "totalXP": 183922,
+            "xp": 11497.0
+          },
+          "killXP": 4772,
+          "questXP": 3640,
+          "xp": 8412
+        },
+        {
+          "epic": 2,
+          "finish": {
+            "level": 96,
+            "totalXP": 192672,
+            "xp": 247.0
+          },
+          "killXP": 5208,
+          "questXP": 3542,
+          "xp": 8750
+        },
+        {
+          "epic": 3,
+          "finish": {
+            "level": 96,
+            "totalXP": 201473,
+            "xp": 9048.0
+          },
+          "killXP": 4578,
+          "questXP": 4223,
+          "xp": 8801
+        },
+        {
+          "epic": 4,
+          "finish": {
+            "level": 96,
+            "totalXP": 210515,
+            "xp": 18090.0
+          },
+          "killXP": 4198,
+          "questXP": 4844,
+          "xp": 9042
+        },
+        {
+          "epic": 5,
+          "finish": {
+            "level": 97,
+            "totalXP": 219877,
+            "xp": 3702.0
+          },
+          "killXP": 4470,
+          "questXP": 4892,
+          "xp": 9362
+        }
+      ],
+      "finish": {
+        "level": 97,
+        "totalXP": 219877,
+        "xp": 3702.0
+      },
+      "killXP": 23226,
+      "mode": "Hell",
+      "questXP": 21141
+    },
+    {
+      "cycle": 4,
+      "epics": [
+        {
+          "epic": 1,
+          "finish": {
+            "level": 97,
+            "totalXP": 228289,
+            "xp": 12114.0
+          },
+          "killXP": 4772,
+          "questXP": 3640,
+          "xp": 8412
+        },
+        {
+          "epic": 2,
+          "finish": {
+            "level": 97,
+            "totalXP": 237039,
+            "xp": 20864.0
+          },
+          "killXP": 5208,
+          "questXP": 3542,
+          "xp": 8750
+        },
+        {
+          "epic": 3,
+          "finish": {
+            "level": 97,
+            "totalXP": 245840,
+            "xp": 29665.0
+          },
+          "killXP": 4578,
+          "questXP": 4223,
+          "xp": 8801
+        },
+        {
+          "epic": 4,
+          "finish": {
+            "level": 97,
+            "totalXP": 254882,
+            "xp": 38707.0
+          },
+          "killXP": 4198,
+          "questXP": 4844,
+          "xp": 9042
+        },
+        {
+          "epic": 5,
+          "finish": {
+            "level": 98,
+            "totalXP": 264244,
+            "xp": 8069.0
+          },
+          "killXP": 4470,
+          "questXP": 4892,
+          "xp": 9362
+        }
+      ],
+      "finish": {
+        "level": 98,
+        "totalXP": 264244,
+        "xp": 8069.0
+      },
+      "killXP": 23226,
+      "mode": "Hell",
+      "questXP": 21141
+    },
+    {
+      "cycle": 5,
+      "epics": [
+        {
+          "epic": 1,
+          "finish": {
+            "level": 98,
+            "totalXP": 272656,
+            "xp": 16481.0
+          },
+          "killXP": 4772,
+          "questXP": 3640,
+          "xp": 8412
+        },
+        {
+          "epic": 2,
+          "finish": {
+            "level": 98,
+            "totalXP": 281406,
+            "xp": 25231.0
+          },
+          "killXP": 5208,
+          "questXP": 3542,
+          "xp": 8750
+        },
+        {
+          "epic": 3,
+          "finish": {
+            "level": 98,
+            "totalXP": 290207,
+            "xp": 34032.0
+          },
+          "killXP": 4578,
+          "questXP": 4223,
+          "xp": 8801
+        },
+        {
+          "epic": 4,
+          "finish": {
+            "level": 98,
+            "totalXP": 299249,
+            "xp": 43074.0
+          },
+          "killXP": 4198,
+          "questXP": 4844,
+          "xp": 9042
+        },
+        {
+          "epic": 5,
+          "finish": {
+            "level": 99,
+            "totalXP": 303675.0,
+            "xp": 0.0
+          },
+          "killXP": 4470,
+          "questXP": 4892,
+          "xp": 9362
+        }
+      ],
+      "finish": {
+        "level": 99,
+        "totalXP": 303675.0,
+        "xp": 0.0
+      },
+      "killXP": 23226,
+      "mode": "Hell",
+      "questXP": 21141
+    }
+  ],
+  "edgeCases": {
+    "growthBlockedAfterDeath": false,
+    "hardFrom47": {
+      "level": 70,
+      "totalXP": 66717.0,
+      "xp": 1167.0
+    },
+    "hell5AfterDeath": {
+      "completedPasses": 5,
+      "earnedXP": 40350.0,
+      "finish": {
+        "level": 98,
+        "totalXP": 302743.0,
+        "xp": 46568.0
+      },
+      "lostXP": 4017.0
+    },
+    "hell6AfterDeath": {
+      "completedPasses": 6,
+      "earnedXP": 932.0,
+      "finish": {
+        "level": 99,
+        "totalXP": 303675.0,
+        "xp": 0.0
+      },
+      "lostXP": 4017.0
+    },
+    "repeatLowerModesFrom80": {
+      "Hard": [
+        {
+          "cycle": 2,
+          "level": 88,
+          "xp": 5042,
+          "xpAward": 36242
+        },
+        {
+          "cycle": 3,
+          "level": 93,
+          "xp": 5484,
+          "xpAward": 36242
+        }
+      ],
+      "Insane": [
+        {
+          "cycle": 2,
+          "level": 88,
+          "xp": 5667,
+          "xpAward": 36867
+        },
+        {
+          "cycle": 3,
+          "level": 93,
+          "xp": 6734,
+          "xpAward": 36867
+        }
+      ]
+    },
+    "skipEasyThroughHell5": {
+      "level": 98,
+      "totalXP": 294944,
+      "xp": 38769.0
+    }
+  },
+  "maxLevel": 99,
+  "rules": 17,
+  "withAllEasySideCombat": [
+    {
+      "additionalXP": 1748,
+      "epic": 1,
+      "finish": {
+        "level": 14,
+        "totalXP": 3610,
+        "xp": 360.0
+      }
+    },
+    {
+      "additionalXP": 0,
+      "epic": 2,
+      "finish": {
+        "level": 20,
+        "totalXP": 6610,
+        "xp": 435.0
+      }
+    },
+    {
+      "additionalXP": 1798,
+      "epic": 3,
+      "finish": {
+        "level": 28,
+        "totalXP": 11834,
+        "xp": 359.0
+      }
+    },
+    {
+      "additionalXP": 2482,
+      "epic": 4,
+      "finish": {
+        "level": 34,
+        "totalXP": 17158,
+        "xp": 658.0
+      }
+    },
+    {
+      "additionalXP": 0,
+      "epic": 5,
+      "finish": {
+        "level": 37,
+        "totalXP": 19695,
+        "xp": 345.0
+      }
+    }
+  ],
+  "zeroXP": [
+    {
+      "count": 1238,
+      "cycle": 1,
+      "killXP": 23226,
+      "party": 1,
+      "zero": 0
+    },
+    {
+      "count": 1238,
+      "cycle": 2,
+      "killXP": 23226,
+      "party": 1,
+      "zero": 0
+    },
+    {
+      "count": 1238,
+      "cycle": 3,
+      "killXP": 23226,
+      "party": 1,
+      "zero": 0
+    },
+    {
+      "count": 1238,
+      "cycle": 4,
+      "killXP": 23226,
+      "party": 1,
+      "zero": 0
+    },
+    {
+      "count": 1238,
+      "cycle": 5,
+      "killXP": 23226,
+      "party": 1,
+      "zero": 0
+    },
+    {
+      "count": 1238,
+      "cycle": 6,
+      "killXP": 23226,
+      "party": 1,
+      "zero": 0
+    },
+    {
+      "count": 1646,
+      "cycle": 1,
+      "killXP": 23226,
+      "party": 2,
+      "zero": 0
+    },
+    {
+      "count": 1646,
+      "cycle": 2,
+      "killXP": 23226,
+      "party": 2,
+      "zero": 0
+    },
+    {
+      "count": 1646,
+      "cycle": 3,
+      "killXP": 23226,
+      "party": 2,
+      "zero": 0
+    },
+    {
+      "count": 1646,
+      "cycle": 4,
+      "killXP": 23226,
+      "party": 2,
+      "zero": 0
+    },
+    {
+      "count": 1646,
+      "cycle": 5,
+      "killXP": 23226,
+      "party": 2,
+      "zero": 0
+    },
+    {
+      "count": 1646,
+      "cycle": 6,
+      "killXP": 23226,
+      "party": 2,
+      "zero": 0
+    },
+    {
+      "count": 2054,
+      "cycle": 1,
+      "killXP": 23226,
+      "party": 3,
+      "zero": 0
+    },
+    {
+      "count": 2054,
+      "cycle": 2,
+      "killXP": 23226,
+      "party": 3,
+      "zero": 0
+    },
+    {
+      "count": 2054,
+      "cycle": 3,
+      "killXP": 23226,
+      "party": 3,
+      "zero": 0
+    },
+    {
+      "count": 2054,
+      "cycle": 4,
+      "killXP": 23226,
+      "party": 3,
+      "zero": 0
+    },
+    {
+      "count": 2054,
+      "cycle": 5,
+      "killXP": 23226,
+      "party": 3,
+      "zero": 0
+    },
+    {
+      "count": 2054,
+      "cycle": 6,
+      "killXP": 23226,
+      "party": 3,
+      "zero": 0
+    },
+    {
+      "count": 2462,
+      "cycle": 1,
+      "killXP": 23226,
+      "party": 4,
+      "zero": 0
+    },
+    {
+      "count": 2462,
+      "cycle": 2,
+      "killXP": 23226,
+      "party": 4,
+      "zero": 0
+    },
+    {
+      "count": 2462,
+      "cycle": 3,
+      "killXP": 23226,
+      "party": 4,
+      "zero": 0
+    },
+    {
+      "count": 2462,
+      "cycle": 4,
+      "killXP": 23226,
+      "party": 4,
+      "zero": 0
+    },
+    {
+      "count": 2462,
+      "cycle": 5,
+      "killXP": 23226,
+      "party": 4,
+      "zero": 0
+    },
+    {
+      "count": 2462,
+      "cycle": 6,
+      "killXP": 23226,
+      "party": 4,
+      "zero": 0
+    }
+  ]
+}

@@ -28,7 +28,7 @@ for _,mode in ipairs(D.order)do for cycle=1,(mode=='Hell'and 5 or 1)do for epic=
   quests=quests+M.questXP(c.id,mode,16,cycle)
   for _,g in ipairs(c.goals)do for _,wave in ipairs(B.encounterWaves(c,g,1,mode,16))do for _,s in ipairs(wave)do kills=kills+B.rewards(s,mode,16,cycle)end end end
  end end
- total=total+quests+kills
+ total=math.min(G.xpAtLevel(G.maxLevel),total+quests+kills)
  local level=1;while level<G.maxLevel and G.xpAtLevel(level+1)<=total do level=level+1 end
  print(table.concat({mode,cycle,epic,quests,kills,quests+kills,total,level,total-G.xpAtLevel(level)},','))
 end end end

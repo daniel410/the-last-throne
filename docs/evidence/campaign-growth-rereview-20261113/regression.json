@@ -1,0 +1,57 @@
+[
+  {
+    "test": "campaign-growth-v16",
+    "exitCode": 0,
+    "output": "Easy pass 1: +13667 XP, total 13667, Lv30\nHard pass 1: +36242 XP, total 49909, Lv60\nInsane pass 1: +36867 XP, total 86776, Lv80\nHell pass 1: +44367 XP, total 131143, Lv90\nHell pass 2: +44367 XP, total 175510, Lv95\nHell pass 3: +44367 XP, total 219877, Lv97\nHell pass 4: +44367 XP, total 264244, Lv98\nHell pass 5: +44367 XP, total 308611, Lv99\nCampaign growth rules 17: 389857 checks passed\n"
+  },
+  {
+    "test": "campaign-xp-requirements",
+    "exitCode": 0,
+    "output": "Fixed XP and increasing requirements: 301935 checks passed\n"
+  },
+  {
+    "test": "hero-progression",
+    "exitCode": 0,
+    "output": "Hero progression: 3710 checks passed\n"
+  },
+  {
+    "test": "difficulty-balance",
+    "exitCode": 0,
+    "output": "Difficulty balance: 2665 checks passed\n"
+  },
+  {
+    "test": "difficulty-level-free",
+    "exitCode": 0,
+    "output": "Difficulty level-free admission: 698 checks passed\n"
+  },
+  {
+    "test": "expedition-presentation",
+    "exitCode": 0,
+    "output": "Expedition presentation: 24 checks passed\n"
+  },
+  {
+    "test": "gold-diamond-tuning",
+    "exitCode": 0,
+    "output": "Gold/Diamond tuning: 1892 checks passed\n"
+  },
+  {
+    "test": "difficulty-reward-rates",
+    "exitCode": 0,
+    "output": "Difficulty reward rates: 2162 checks passed\n"
+  },
+  {
+    "test": "hero-vitals",
+    "exitCode": 0,
+    "output": "Hero vitals: 25 checks passed\n"
+  },
+  {
+    "test": "death-xp-penalty",
+    "exitCode": 0,
+    "output": "Death XP penalty: 3575 checks passed\n"
+  },
+  {
+    "test": "campaign-combat-routes",
+    "exitCode": 0,
+    "output": "Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger\n"
+  }
+]

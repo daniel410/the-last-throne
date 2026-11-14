@@ -18,6 +18,7 @@ def add(path):
 
 
 add('tests/campaign-growth-v16.spec.lua')
+add('tests/campaign-xp-requirements.spec.lua')
 add('tests/expedition-presentation.spec.lua')
 add('tests/hero-progression.spec.lua')
 add('tests/difficulty-reward-rates.spec.lua')
@@ -41,6 +42,7 @@ local function pure(path)
  cache[path]=fn()or true;return cache[path]
 end
 pure('tests/campaign-growth-v16.spec.lua')
+pure('tests/campaign-xp-requirements.spec.lua')
 pure('tests/expedition-presentation.spec.lua')
 pure('tests/hero-progression.spec.lua')
 pure('tests/difficulty-reward-rates.spec.lua')
@@ -63,7 +65,7 @@ local ok,reason=xpcall(function()
  end end;task.wait()end
 end,debug.traceback)
 model:Destroy();assert(ok,reason)
-return {kind='CAMPAIGN_GROWTH_V16',runtime='Studio Luau',accountAccess=false,compiledSources=compiled,modelAttributeCases=attributes,results=output}
+return {kind='CAMPAIGN_GROWTH_FIXED_XP',runtime='Studio Luau',accountAccess=false,compiledSources=compiled,modelAttributeCases=attributes,results=output}
 '''
 destination = Path('/tmp/tlt-growth16-native')
 destination.mkdir(exist_ok=True)

@@ -30,6 +30,7 @@ for _,mode in ipairs(D.order)do for cycle=1,(mode=='Hell'and 5 or 1)do
       local oldSpec=oldUnits[s.killIndex]
       check(oldSpec and s.kind==oldSpec.kind and s.level==oldSpec.level,'receipt identity preserved')
       local x,gold=B.rewards(s,mode,16,cycle);local _,oldGold=B.rewards(oldSpec,mode,15)
+      check(x>0,'every actual enemy pays positive XP, including late Hell passes')
       check(gold==oldGold,'Gold unaffected by growth curve');xp=xp+x
       local hp,damage,level=B.unitStats(s,party,mode,16,i)
       check(hp>0 and damage>0 and level>=M.starts[mode]and level<=M.targets[mode][5],'bounded combat level')
@@ -53,7 +54,7 @@ for _,mode in ipairs(D.order)do for cycle=1,(mode=='Hell'and 5 or 1)do
   amount=amount or xp;check(xp==amount,'party-independent full-campaign XP')
  end
  previousTotal=previousTotal+amount
- check(previousTotal==G.xpAtLevel(expected),'exact ordered campaign milestone '..mode..cycle)
+ check(previousTotal>=G.xpAtLevel(expected)and(expected==G.maxLevel or previousTotal<G.xpAtLevel(expected+1)),'XP naturally reaches estimated checkpoint '..mode..cycle)
  print(string.format('%s pass %d: +%d XP, total %d, Lv%d',mode,cycle,amount,previousTotal,expected))
 end end
 -- Full runtime reducers: chapter receipts, no-death growth, reconnect, and all eight campaigns.
@@ -83,7 +84,7 @@ for _,mode in ipairs(D.order)do for cycle=1,(mode=='Hell'and 5 or 1)do
  end
  local hero=profile.heroes.hero
  local expected=mode=='Hell'and M.hellEnds[cycle]or M.targets[mode][5]
- check(hero.level==expected and hero.progression.xp==0,'runtime account hits milestone')
+ check(hero.level==expected,'runtime XP accumulation reaches estimated checkpoint')
  check(hero.expeditions.campaignProgress[mode].clears==cycle,'full campaign recorded once')
  local again=assert(A.begin(profile,'hero','DW-01',mode,runId,profile.revision,R,Items))
  check(same(again,profile),'rejoin keeps pinned pass and receipts')
@@ -104,4 +105,4 @@ local granted=assert(G.apply(g,{action='AwardXP',stream='cap',sequence=1,amount=
 check(granted.level==99 and granted.xp==0,'new cap discards XP but accepts reward receipt')
 local old=assert(A.begin(profile,'hero','DW-01','Easy','legacy15',profile.revision,R,Items,15))
 check(old.heroes.hero.expeditions.active.growthCycle==nil and R.validate(old,Items),'old run keeps original contract')
-print('Campaign growth v16: '..checks..' checks passed')
+print('Campaign growth rules '..D.version..': '..checks..' checks passed')

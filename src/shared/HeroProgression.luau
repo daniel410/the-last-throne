@@ -1,9 +1,14 @@
 -- Pure hero growth. Starting resources are user decisions; growth coefficients
--- and mastery effects are trial balance. XP mirrors story-reward-budget.json.
+-- and mastery effects are trial balance. XP awards and requirements are independent.
 local Advanced=game and require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
 local Growth={maxLevel=99,maxSkillLevel=9,xpBase=100,xpPerLevel=25,statKeys={"STR","DEX","INT","VIT"}}
 -- Learned skills start at level 1; each invested SP adds one mastery rank.
 Growth.maxMasteryRank=Growth.maxSkillLevel-1
+-- Late growth slows through increasing requirements, never reduced XP rewards.
+Growth.highLevelXP={
+ [80]=2800,[81]=3000,[82]=3300,[83]=3600,[84]=4000,[85]=4400,[86]=4800,[87]=5300,[88]=5900,[89]=6650,
+ [90]=7000,[91]=7750,[92]=8500,[93]=9500,[94]=11000,[95]=20000,[96]=23750,[97]=40000,[98]=47500,
+}
 Growth.bases={
 	knight={health=250,healthPerLevel=15,mana=0,stats={STR=12,DEX=6,INT=4,VIT=12}},
 	dwarf={health=200,healthPerLevel=13,mana=0,stats={STR=11,DEX=7,INT=4,VIT=10}},
@@ -16,11 +21,13 @@ function Growth.copy(t)
 	if type(t)~="table" then return t end
 	local n={}; for k,v in pairs(t) do n[k]=Growth.copy(v) end; return n
 end
-function Growth.xpToNext(level) return level<Growth.maxLevel and Growth.xpBase+Growth.xpPerLevel*(level-1) or 0 end
+function Growth.xpToNext(level) return level<Growth.maxLevel and (Growth.highLevelXP[level]or Growth.xpBase+Growth.xpPerLevel*(level-1))or 0 end
 -- Display cumulative progression XP without changing saved within-level XP.
 function Growth.xpAtLevel(level)
- local completed=level-1
- return completed*Growth.xpBase+Growth.xpPerLevel*completed*(completed-1)/2
+ local completed=math.min(level-1,79)
+ local xp=completed*Growth.xpBase+Growth.xpPerLevel*completed*(completed-1)/2
+ for current=80,level-1 do xp=xp+Growth.xpToNext(current)end
+ return xp
 end
 function Growth.totalXP(g) return Growth.xpAtLevel(g.level)+g.xp end
 -- Lose only within-level progress: 10%, rounded up, never an earned level.
