@@ -18,7 +18,7 @@ eq(g.level,3,'multi-level XP'); eq(g.xp,0,'XP remainder'); local st,sp=G.points(
 local same,err,repeated=G.apply(g,{action='AwardXP',stream='server-a',sequence=1,amount=225});check(repeated,'highwater replay'); eq(same.level,3,'no duplicate XP')
 check(not G.apply(g,{action='AwardXP',stream='server-a',sequence=3,amount=100}),'reject skipped sequence')
 check(not G.apply(g,{action='AwardXP',stream='',sequence=1,amount=100}),'reject empty stream')
-for _,bad in ipairs({-1,0,0/0,math.huge,1.5,1000001}) do check(not G.apply(g,{action='AwardXP',stream='x',sequence=1,amount=bad}),'reject invalid XP') end
+for _,bad in ipairs({-1,0/0,math.huge,1.5,1000001}) do check(not G.apply(g,{action='AwardXP',stream='x',sequence=1,amount=bad}),'reject invalid XP') end
 check(not G.apply(g,{action='AllocateStats',stats={VIT=9}}),'overspend')
 check(not G.apply(g,{action='AllocateStats',stats={VIT=-1}}),'no refund')
 check(not G.apply(g,{action='AllocateStats',stats={Luck=1}}),'unknown stat')
@@ -29,7 +29,7 @@ local base={damage=.8,posture=55,cooldown=10,id='bash'}
 local skill=G.skill('knight',1,base,g); check(math.abs(skill.damage-.84)<.00001,'mastery damage');eq(skill.posture,58,'mastery posture');eq(base.posture,55,'base immutable');eq(skill.cooldown,10,'CD unchanged')
 g=assert(G.apply(g,{action='SetSkillSlot',slot=1,skill=3}));eq(g.skillSlots[1],3,'slot swap');eq(g.skillSlots[3],1,'unique loadout')
 check(not G.apply(g,{action='SetSkillSlot',slot=4,skill=2}),'advancement slot locked')
-local cap=assert(G.apply(g,{action='AwardXP',stream='server-a',sequence=2,amount=1000000}));eq(cap.level,80,'cap80');eq(cap.xp,0,'capXP0');st,sp=G.points(cap);eq(st+8,316,'316 stat budget');eq(sp+1,79,'79 skill budget')
+local cap=assert(G.apply(g,{action='AwardXP',stream='server-a',sequence=2,amount=1000000}));eq(cap.level,99,'cap99');eq(cap.xp,0,'capXP0');st,sp=G.points(cap);eq(st+8,392,'392 stat budget');eq(sp+1,98,'98 skill budget')
 for i=2,8 do cap=assert(G.apply(cap,{action='TrainSkill',skill=1})) end
 eq(cap.mastery[1]+1,9,'skill reaches level9')
 local rejected,capError=G.apply(cap,{action='TrainSkill',skill=1})

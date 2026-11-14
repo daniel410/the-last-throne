@@ -4,7 +4,7 @@
 
 ## 최근 승인
 
-- 난이도 보상은 Easy/Hard/Insane/Hell 순으로 최초 Diamonds 3/5/7/10, Gold·XP 모드 배율 모두1/1.5/2/3이다. 영웅·본편·난이도별1회 지급과 기존 수령 영수증을 보존한다. 새 원정 규칙15, 기존1~14 Gold/XP 보존. [보상 사양](production/difficulty-rewards-and-entry-plan-2026-11-02.md)·[검증](evidence/difficulty-reward-rates-20261113/README.md).
+- 난이도 보상의 Diamonds3/5/7/10·Gold1/1.5/2/3배와 영웅별 초회 영수증을 유지한다. 본편 XP는 최신 사용자 성장 목표에 따라 새 원정 규칙16의 [완주 예산](production/campaign-growth-balance-2026-11-13.md)을 사용하며, 규칙1~15의 XP/전투·기존 수령/보유품은 보존한다. 선택 임무 XP·재료·장비는 유지한다.
 
 - 에픽 마지막 스토리 완료 뒤 다음 에픽으로 강제 순간이동하지 않는다. Deepwood → Gloamwood → Frozen Vale → Ember Caldera → Haunted Graveyard를 인접 배치하고 선행 완료 후 열린 길로 왕복 보행한다. [결정·검증](evidence/epic-overland-20261113/README.md).
 
@@ -31,7 +31,7 @@
 
 - 플레이어는 Knight, Elf Archer, Dwarf Axe Thrower, Mage의 4클래스다. 최초 클래스는 불변이다. Priestess/Selene는 NPC·선택형 지원이며 플레이어 전직/트리를 만들지 않는다.
 - 클래스별 2계열, Lv20/40/60/80 전직을 유지한다. 강철기사 이외의 상위 전직 이름과 신규 영문 번역은 가칭으로 표시한다.
-- STR/DEX/INT/VIT의 스탯 포인트는 `4 × (level - 1)`, Lv80 총316이다. 스킬포인트 기준안 `level - 1`, 총79와 별도다. 기본 능력치·파생 능력치·배분 포인트를 혼용하지 않는다.
+- 영웅 최고 레벨은99다. STR/DEX/INT/VIT 스탯은 `4 × (level - 1)`, Lv99 총392이며 스킬은 `level - 1`, 총98로 별도다. 전직은20/40/60/80을 유지한다. Easy 에픽 완료10/17/23/27/30 → Hard60 → Insane80 → Hell1~5회90/95/97/98/99를 목표로 하며, 사망·선택/반복 플레이 없는 연속 본편 기준이다. [현재 성장·난이도 사양](production/campaign-growth-balance-2026-11-13.md).
 - 2026-11-05 방어 리뷰 지시: STR 투자는 방어력을 올리지 않는다. 기사·드워프가 VIT에 많이 투자해 방어력이 커지는 방향은 허용하되, 엘프·마법사가 VIT 무투자 상태에서 장비만으로 과도한 방어력을 얻지 않도록 한다. 구체 장비 효율/방어 공식은 리뷰·수치 수용 후 적용하며 이 지시 기록만으로 런타임 조정 완료로 간주하지 않는다.
 - Mage는 비전/바람 훈련과 기초 물 → Lv20 Pyro/Cryo → Lv40 Pyro 대지/Cryo 번개 → Lv60 대규모 광역 → Lv80 최강 주문의 성장 방향을 지킨다.
 - 공격·블록·회피·스프린트는 네 영웅 공통 액션이며 Stamina를 소비하지 않는다. 기본 공격·회피는 별도 쿨다운이 없다. Stamina는 제거한다. 물리 스킬은 기술별 쿨다운, 마법 스킬은 MP와 기술별 쿨다운을 사용한다. 0.18.8 시험 런타임에서 Stamina를 제거했으며 정식 밸런스/실기기 수용은 후속이다. 엘프 마법궁수는 첫 전직 시 마법용 MP를 추가한다.

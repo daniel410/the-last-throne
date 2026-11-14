@@ -83,7 +83,7 @@ function D.build(site,id,c,size,safe,ground,world)
   local spawn=world.spawns[id].Position;local previous={spawn.X,spawn.Y,spawn.Z}
   for _,goal in ipairs(chapter.goals)do
    local targets={};local route=chapter.combatRoutes and chapter.combatRoutes[goal.id]
-   if route and #route.points>0 then targets=route.points
+   if route and #(route.worldPoints or route.points)>0 then targets=route.worldPoints or route.points
    else for _,step in ipairs(goal.activity and goal.activity.steps or {{position=goal.position}})do if step.position then targets[#targets+1]=step.position end end end
    for _,target in ipairs(targets)do
     local path=Nav.route(previous,target)

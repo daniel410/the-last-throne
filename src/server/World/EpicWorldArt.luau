@@ -38,7 +38,7 @@ local function reservation(world,id)
    local p=vec(g.position);table.insert(anchors,{p=p,r=#g.enemies>0 and 74 or 20});table.insert(lanes,{previous,p});previous=p
    local stepPrevious=p
    local combatRoute=chapter.combatRoutes and chapter.combatRoutes[g.id]
-   for _,at in ipairs(combatRoute and combatRoute.points or {})do
+   for _,at in ipairs(combatRoute and (combatRoute.worldPoints or combatRoute.points) or {})do
     local q=vec(at);table.insert(anchors,{p=q,r=44});table.insert(lanes,{stepPrevious,q});stepPrevious=q
    end
    for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then
@@ -318,7 +318,7 @@ local function carve(world,Content,Access)
    for i=0,n do clear(prev:Lerp(p,i/n),25)end
    local stepPrevious=p
    local combatRoute=chapter.combatRoutes and chapter.combatRoutes[g.id]
-   for _,point in ipairs(combatRoute and combatRoute.points or {})do
+   for _,point in ipairs(combatRoute and (combatRoute.worldPoints or combatRoute.points) or {})do
     local at=vec(point);clear(at,46)
     local n=math.max(1,math.ceil((at-stepPrevious).Magnitude/15))
     for i=0,n do clear(stepPrevious:Lerp(at,i/n),34)end

@@ -40,7 +40,7 @@ function Safety.apply(world,art)
   local previous=world.spawns[c.zone]and world.spawns[c.zone].Position
   for _,g in ipairs(c.goals)do
    table.insert(anchors,V(table.unpack(g.position)))
-   local targets={};local points=c.combatRoutes and c.combatRoutes[g.id]and c.combatRoutes[g.id].points
+   local targets={};local points=c.combatRoutes and c.combatRoutes[g.id]and (c.combatRoutes[g.id].worldPoints or c.combatRoutes[g.id].points)
    if points and #points>0 then for _,p in ipairs(points)do targets[#targets+1]=p end
    else for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do if step.position then targets[#targets+1]=step.position end end end
    for _,p in ipairs(targets)do

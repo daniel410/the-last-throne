@@ -1,0 +1,931 @@
+{
+  "tests": 131,
+  "passed": 107,
+  "baselineComparison": "isolated pre-change HEAD archive, VERSION 0.105.6; 23 failing legacy tests reproduced before contract updates",
+  "newFailures": [],
+  "results": [
+    {
+      "file": "tests/accessory-auto-equip.spec.lua",
+      "code": 1,
+      "seconds": 1.23,
+      "output": "lua: tests/accessory-auto-equip.spec.lua:10: copper_ring\nstack traceback:\n\t[C]: in global 'error'\n\ttests/accessory-auto-equip.spec.lua:10: in local 'find'\n\ttests/accessory-auto-equip.spec.lua:36: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/advanced-skills.spec.lua",
+      "code": 0,
+      "seconds": 1.27,
+      "output": "Advanced skills: 1435 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/advancement-level-only.spec.lua",
+      "code": 0,
+      "seconds": 1.23,
+      "output": "Level-only advancement: 539 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/all-epic-diamonds.spec.lua",
+      "code": 0,
+      "seconds": 3.47,
+      "output": "All epic Diamonds: 1099 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/arrival-loading.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "arrival-loading: 283 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/auto-target.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "PASS auto target: 215 checks\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/background-music-late-story.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "background-music-late-story: 10 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/battle-presentation.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "BATTLE_PRESENTATION 41 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/battle-startup.spec.lua",
+      "code": 1,
+      "seconds": 0.1,
+      "output": "lua: src/server/World/CampaignWorld.luau:19: attempt to call a nil value (field 'prepare')\nstack traceback:\n\tsrc/server/World/CampaignWorld.luau:19: in field 'create'\n\ttests/battle-startup.spec.lua:47: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/blacksmith-stock.spec.lua",
+      "code": 0,
+      "seconds": 1.51,
+      "output": "Blacksmith active stock: 487 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/boss-combat-tuning.spec.lua",
+      "code": 0,
+      "seconds": 2.21,
+      "output": "Boss combat tuning: 392158 checks passed; 23 boss kinds\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/boss-final-escort.spec.lua",
+      "code": 1,
+      "seconds": 1.24,
+      "output": "lua: tests/boss-final-escort.spec.lua:5: all twenty-two bosses covered, fourteen formerly solo\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/boss-final-escort.spec.lua:5: in local 'check'\n\ttests/boss-final-escort.spec.lua:50: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/boss-pressure-boost.spec.lua",
+      "code": 0,
+      "seconds": 2.21,
+      "output": "Boss pressure boost: 392158 checks passed; 23 boss kinds\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/campaign-biome.spec.lua",
+      "code": 0,
+      "seconds": 0.12,
+      "output": "Campaign biome/client 1100 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/campaign-combat-pacing.spec.lua",
+      "code": 0,
+      "seconds": 1.97,
+      "output": "CAMPAIGN_COMBAT_PACING 50349 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/campaign-combat-routes.spec.lua",
+      "code": 0,
+      "seconds": 0.49,
+      "output": "Campaign combat routes: 77381 checks passed; 88 battles, 315 sites, real ground 94.3% larger\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/campaign-context-review.spec.lua",
+      "code": 0,
+      "seconds": 0.4,
+      "output": "CAMPAIGN_CONTEXT_REVIEW 1054 checks passed; 418 saved transitions, 47 distinct stories, unchanged runtime contracts\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/campaign-expansion-review.spec.lua",
+      "code": 0,
+      "seconds": 0.4,
+      "output": "CAMPAIGN_EXPANSION_REVIEW 3362 checks passed; 82 outcome deliveries, safe circuit choices and connector routes\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/campaign-expansion.spec.lua",
+      "code": 0,
+      "seconds": 29.89,
+      "output": "CAMPAIGN_EXPANSION 7737 checks passed; 35 main / 12 side / 82 incidents / 246 new steps\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/campaign-growth-v16.spec.lua",
+      "code": 0,
+      "seconds": 8.01,
+      "output": "Easy pass 1: +13050 XP, total 13050, Lv30\nHard pass 1: +35625 XP, total 48675, Lv60\nInsane pass 1: +36250 XP, total 84925, Lv80\nHell pass 1: +21875 XP, total 106800, Lv90\nHell pass 2: +11875 XP, total 118675, Lv95\nHell pass 3: +4925 XP, total 123600, Lv97\nHell pass 4: +2500 XP, total 126100, Lv98\nHell pass 5: +2525 XP, total 128625, Lv99\nCampaign growth v16: 330657 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/campaign-navigation-route.spec.lua",
+      "code": 0,
+      "seconds": 0.6,
+      "output": "CAMPAIGN_NAVIGATION_ROUTE 8791 checks PASS; old rejected 70; returns 10; live steps 525; walking distance 3132\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/campaign-reorder.spec.lua",
+      "code": 0,
+      "seconds": 3.13,
+      "output": "CAMPAIGN_REORDER 1870 checks passed; mandatory solo final level 39\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/character-asset-loading.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "character-asset-loading: 12 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/checkpoint-map-layout.spec.lua",
+      "code": 0,
+      "seconds": 0.53,
+      "output": "Checkpoint map layout: 36 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/checkpoint-travel.spec.lua",
+      "code": 0,
+      "seconds": 84.09,
+      "output": "Checkpoint travel: 1927 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/copper-dexterity.spec.lua",
+      "code": 0,
+      "seconds": 1.0,
+      "output": "Copper DEX and secondary gear: 130 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/daily-login.spec.lua",
+      "code": 0,
+      "seconds": 1.1,
+      "output": "Daily login: 73 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/daylight-atmosphere.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "Regional atmosphere 67 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/death-xp-penalty.spec.lua",
+      "code": 0,
+      "seconds": 1.0,
+      "output": "Death XP penalty: 3575 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/deepwood-bosses.spec.lua",
+      "code": 0,
+      "seconds": 0.05,
+      "output": "Deepwood bosses: 96 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/deepwood-encounter-balance.spec.lua",
+      "code": 0,
+      "seconds": 0.14,
+      "output": "Deepwood encounter balance: 3111 checks passed; authored enemies 82 -> 467\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/deepwood-music-policy.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "Deepwood music policy: 13 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/deepwood-progress.spec.lua",
+      "code": 0,
+      "seconds": 1.07,
+      "output": "Deepwood progression: 515 checks passed\nDeepwood total: 520 checks passed\nDeepwood extended total: 570 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/deepwood-quests.spec.lua",
+      "code": 0,
+      "seconds": 1.45,
+      "output": "Deepwood quest contract: 31 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/deleted-equipment.spec.lua",
+      "code": 0,
+      "seconds": 1.21,
+      "output": "Deleted equipment: 171 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/delivery.spec.lua",
+      "code": 0,
+      "seconds": 1.08,
+      "output": "Delivery: 34 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/diamond-gold-exchange.spec.lua",
+      "code": 0,
+      "seconds": 1.03,
+      "output": "Diamond Gold exchange: 25 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/diamond-weapons.spec.lua",
+      "code": 1,
+      "seconds": 0.98,
+      "output": "lua: tests/diamond-weapons.spec.lua:15: attempt to index a nil value\nstack traceback:\n\ttests/diamond-weapons.spec.lua:15: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/difficulty-balance.spec.lua",
+      "code": 0,
+      "seconds": 2.03,
+      "output": "Difficulty balance: 2665 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/difficulty-diamonds.spec.lua",
+      "code": 0,
+      "seconds": 24.7,
+      "output": "Difficulty Diamonds: 3180 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/difficulty-enhancement.spec.lua",
+      "code": 1,
+      "seconds": 5.72,
+      "output": "Difficulty level-free admission: 692 checks passed\nlua: tests/difficulty-enhancement.spec.lua:23: StoryLocked\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/difficulty-enhancement.spec.lua:23: in local 'complete'\n\ttests/difficulty-enhancement.spec.lua:32: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/difficulty-level-free.spec.lua",
+      "code": 0,
+      "seconds": 3.9,
+      "output": "Difficulty level-free admission: 692 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/difficulty-reward-rates.spec.lua",
+      "code": 0,
+      "seconds": 1.64,
+      "output": "Difficulty reward rates: 2162 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/dodge-double-tap.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "Dodge double tap: 983 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/dwarf-stun-and-first-story.spec.lua",
+      "code": 0,
+      "seconds": 0.14,
+      "output": "Dwarf stun/first story: 57 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/economy.spec.lua",
+      "code": 0,
+      "seconds": 0.99,
+      "output": "Economy: 38 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/elf-movement-target.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "PASS auto target: 215 checks\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/ember-caldera.spec.lua",
+      "code": 1,
+      "seconds": 0.38,
+      "output": "lua: tests/ember-caldera.spec.lua:8: ordered goal available DW-01:exp_1\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/ember-caldera.spec.lua:8: in local 'check'\n\ttests/ember-caldera.spec.lua:14: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/enemy-patterns.spec.lua",
+      "code": 0,
+      "seconds": 0.29,
+      "output": "enemy-patterns: 3717 checks PASS;50 kinds/23 bosses, geometry, version8/9 stats/rewards\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/enhancement-current-equipment.spec.lua",
+      "code": 0,
+      "seconds": 1.4,
+      "output": "Current equipment enhancement: 8792 checks passed (47 definitions; all 9 targets; success/failure boundaries)\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/enhancement-probability.spec.lua",
+      "code": 0,
+      "seconds": 1.17,
+      "output": "Enhancement probability: 2869 checks passed (including 90000 outcome boundaries)\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/epic-map-navigation.spec.lua",
+      "code": 0,
+      "seconds": 2.52,
+      "output": "EPIC_MAP_NAVIGATION 106051 checks PASS; 488 active targets; 26388 moving samples\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/epic-monster-progression.spec.lua",
+      "code": 0,
+      "seconds": 2.21,
+      "output": "Epic monster progression: 255468 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/equipment-asset-loading.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "equipment-asset-loading: 21 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/equipment-families.spec.lua",
+      "code": 0,
+      "seconds": 1.03,
+      "output": "Equipment families: 514 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/equipment-flat-power.spec.lua",
+      "code": 0,
+      "seconds": 1.0,
+      "output": "Flat equipment power: 110 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/equipment-impact.spec.lua",
+      "code": 0,
+      "seconds": 0.99,
+      "output": "Equipment impact: 52 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/equipment-level-free.spec.lua",
+      "code": 0,
+      "seconds": 1.02,
+      "output": "Equipment level-free: 929 checks passed across 57 owned gear definitions and four classes\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/equipment-lobby-refresh.spec.lua",
+      "code": 0,
+      "seconds": 1.0,
+      "output": "equipment-lobby-refresh: 35 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/equipment-special-effects.spec.lua",
+      "code": 0,
+      "seconds": 0.97,
+      "output": "Equipment special effects: 281 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/equipment-warmup.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "equipment-warmup: 13 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/expedition-departure.spec.lua",
+      "code": 0,
+      "seconds": 1.33,
+      "output": "Expedition departure: 42 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/expedition-presentation.spec.lua",
+      "code": 0,
+      "seconds": 1.85,
+      "output": "Expedition presentation: 24 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/expedition-store.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "Expedition store: 43 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/frozen-vale.spec.lua",
+      "code": 1,
+      "seconds": 0.37,
+      "output": "lua: tests/frozen-vale.spec.lua:8: ordered goal available DW-01:exp_1\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/frozen-vale.spec.lua:8: in local 'check'\n\ttests/frozen-vale.spec.lua:14: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/gold-diamond-tuning.spec.lua",
+      "code": 0,
+      "seconds": 1.45,
+      "output": "Gold/Diamond tuning: 1892 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/hard-unlock.spec.lua",
+      "code": 0,
+      "seconds": 1.39,
+      "output": "Hard unlock rewards: 56 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/headgear-display-name.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "PASS: 64 class/family headgear name, enhancement, model mapping and stat-source checks; default hood and Mage hats preserved\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/hero-progression.spec.lua",
+      "code": 0,
+      "seconds": 1.08,
+      "output": "Hero progression: 3710 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/hero-stat-effects.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "Hero stat effects: 576 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/hero-vitals-service.spec.lua",
+      "code": 1,
+      "seconds": 0.99,
+      "output": "lua: src/server/Inventory/InventoryService.luau:638: attempt to index a nil value (field 'Parent')\nstack traceback:\n\tsrc/server/Inventory/InventoryService.luau:638: in main chunk\n\ttests/hero-vitals-service.spec.lua:30: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/hero-vitals.spec.lua",
+      "code": 0,
+      "seconds": 0.99,
+      "output": "Hero vitals: 25 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/hollowbark-sovereign.spec.lua",
+      "code": 0,
+      "seconds": 0.26,
+      "output": "HOLLOWBARK_SOVEREIGN 12687 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/inventory-double-click.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "inventory-double-click: 26 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/inventory.spec.lua",
+      "code": 0,
+      "seconds": 0.98,
+      "output": "Inventory: 276 ownership, capacity, stacking, idempotency, binding and recovery checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/item-shop-categories.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "item-shop-categories: category mapping and buy/sell filter PASS; native UI NOT RUN\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/journal-missing-target.spec.lua",
+      "code": 0,
+      "seconds": 1.72,
+      "output": "Journal missing target: 13 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/k0-appearance.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "PASS: explicit sword/shield fallback, deferred repair and cancellation, R15/R6 rigs, idempotence, respawn, hand replacement, player removal, owned visuals, and Motor6D contract; no native MeshPart/physics acceptance\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/k0-hero-palette.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "PASS HeroPalette Lua mock lifecycle: delayed/current appearance, four palettes, neutral/unsupported, class restore, BodyColors replacement, late old event, life/player cleanup, idempotent start. Not Studio/device QA.\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/k0-hero-session.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "Hero session: 147 identity, ownership, transitions, four-class, stale-life and boundary checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/k0-rules.spec.lua",
+      "code": 1,
+      "seconds": 0.01,
+      "output": "lua: tests/k0-rules.spec.lua:123: [string \"K0 actual attack-start contract\"]:14: syntax error near '+'\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/k0-rules.spec.lua:123: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/k0-spawn.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "K0 spawn lifecycle: 4 players, retry/backoff, late Humanoid, per-player routes, load races, stale lives, respawn and leave passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/last-selected-hero.spec.lua",
+      "code": 0,
+      "seconds": 0.97,
+      "output": "Last selected hero: 21 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/late-epics-adventures.spec.lua",
+      "code": 0,
+      "seconds": 2.41,
+      "output": "LATE_EPICS_ADVENTURES 762 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/late-epics.spec.lua",
+      "code": 1,
+      "seconds": 0.71,
+      "output": "lua: tests/late-epics.spec.lua:9: next goal available DW-01:exp_1\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/late-epics.spec.lua:9: in local 'check'\n\ttests/late-epics.spec.lua:21: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/lobby-hero-progress.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "Lobby hero progress: 8 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/lobby-return-hero.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "Lobby return hero: 27 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/lobby-side-quests.spec.lua",
+      "code": 0,
+      "seconds": 16.62,
+      "output": "LOBBY_SIDE_QUESTS 539 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/mage-hats.spec.lua",
+      "code": 0,
+      "seconds": 0.99,
+      "output": "Mage hats: 129 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/material-exchange.spec.lua",
+      "code": 1,
+      "seconds": 1.04,
+      "output": "lua: tests/material-exchange.spec.lua:87: attempt to index a nil value (upvalue 'gear')\nstack traceback:\n\ttests/material-exchange.spec.lua:87: in local 'attempt'\n\ttests/material-exchange.spec.lua:89: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/merchant-exchange.spec.lua",
+      "code": 0,
+      "seconds": 1.01,
+      "output": "Merchant remote exchanges: 10 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/monster-damage-boost.spec.lua",
+      "code": 0,
+      "seconds": 2.07,
+      "output": "Monster damage boost: 112574 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/monster-damage-tuning.spec.lua",
+      "code": 1,
+      "seconds": 0.7,
+      "output": "lua: tests/monster-damage-tuning.spec.lua:6: old journals remain supported, unknown versions rejected\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/monster-damage-tuning.spec.lua:6: in local 'check'\n\ttests/monster-damage-tuning.spec.lua:38: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/monster-health-boost.spec.lua",
+      "code": 0,
+      "seconds": 2.08,
+      "output": "Monster health boost: 112574 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/optional-epic-continuation.spec.lua",
+      "code": 0,
+      "seconds": 1.96,
+      "output": "OPTIONAL_EPIC_CONTINUATION 6280 checks PASS; twelve side quests, all states, five map scopes\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/party-map.spec.lua",
+      "code": 0,
+      "seconds": 0.01,
+      "output": "Party map: 96 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/party-story.spec.lua",
+      "code": 0,
+      "seconds": 0.24,
+      "output": "Party story and final boss: 3693 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/pixelfx.spec.lua",
+      "code": 0,
+      "seconds": 0.02,
+      "output": "PixelFX CPU: 634 checks PASS; 128 skills, 4 basic profiles, 185 advanced pulses, support, hostile accents, frame playback, cancellation and budgets. No engine rendering.\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/place-role.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "place-role: 10 checks PASS\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/quest-completion-rewards.spec.lua",
+      "code": 1,
+      "seconds": 2.61,
+      "output": "lua: tests/quest-completion-rewards.spec.lua:13: expanded runs retain rules 12 completion rewards\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/quest-completion-rewards.spec.lua:13: in local 'check'\n\ttests/quest-completion-rewards.spec.lua:84: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/reset-tickets.spec.lua",
+      "code": 0,
+      "seconds": 0.98,
+      "output": "Reset tickets: 316 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/retired-forge-equipment.spec.lua",
+      "code": 0,
+      "seconds": 1.0,
+      "output": "Retired forge equipment: 486 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/reward-materials.spec.lua",
+      "code": 1,
+      "seconds": 1.69,
+      "output": "lua: tests/reward-materials.spec.lua:39: attempt to index a nil value (local 'item')\nstack traceback:\n\ttests/reward-materials.spec.lua:39: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/selene-departure.spec.lua",
+      "code": 1,
+      "seconds": 1.74,
+      "output": "lua: tests/selene-departure.spec.lua:64: StoryLocked\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/selene-departure.spec.lua:64: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/selene-recruitment.spec.lua",
+      "code": 0,
+      "seconds": 1.04,
+      "output": "Selene recruitment: 23 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/selene-trial.spec.lua",
+      "code": 1,
+      "seconds": 1.95,
+      "output": "lua: tests/selene-trial.spec.lua:16: StoryLocked\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/selene-trial.spec.lua:16: in local 'finish'\n\ttests/selene-trial.spec.lua:27: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/side-quest-battle-start.spec.lua",
+      "code": 1,
+      "seconds": 0.09,
+      "output": "lua: [string \"production proximity heartbeat\"]:18: attempt to index a nil value (global 'Routes')\nstack traceback:\n\t[string \"production proximity heartbeat\"]:18: in upvalue 'callback'\n\ttests/side-quest-battle-start.spec.lua:31: in local 'tick'\n\ttests/side-quest-battle-start.spec.lua:34: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/side-quest-guidance.spec.lua",
+      "code": 1,
+      "seconds": 0.19,
+      "output": "lua: [string \"production journal guidance\"]:19: attempt to index a nil value (global 'Routes')\nstack traceback:\n\t[string \"production journal guidance\"]:19: in field 'guidance'\n\ttests/side-quest-guidance.spec.lua:23: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/side-quest-review.spec.lua",
+      "code": 0,
+      "seconds": 2.26,
+      "output": "SIDE_QUEST_REVIEW 1610 checks PASS; 12 quests, 44 goals, 11 combats, 2 optional goals\nDW-Q1 | Supplies in the Marsh | 2 | 3 | Easy/replay/Hard/Insane/Hell\nDW-Q2 | The Stolen Food | 4 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q3 | Quarry Below the Falls | 5 | 5 | Easy/replay/Hard/Insane/Hell\nDW-Q4 | Remnants of the Red Battlefield | 7 | 4 | Easy/replay/Hard/Insane/Hell\nFV-Q1 | A Name in the Snow | 15 | 3 | Easy/replay\nFV-Q2 | Frostfang Supply Cave | 17 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q3 | Blue Lake Return Route | 18 | 3 | Easy/replay/Hard/Insane/Hell\nFV-Q4 | Ancient Glacier Watch | 21 | 3 | Easy/replay/Hard/Insane/Hell\nEC-Q1 | A Worker's Lost Mark | 22 | 3 | Easy/replay\nEC-Q2 | Ember Raider Nest | 24 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q3 | Volcano Shaman Altar | 25 | 4 | Easy/replay/Hard/Insane/Hell\nEC-Q4 | Caldera Titan Basin | 28 | 4 | Easy/replay/Hard/Insane/Hell\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/skill-action-interrupt.spec.lua",
+      "code": 1,
+      "seconds": 0.01,
+      "output": "lua: [string \"startSkill\"]:24: attempt to index a nil value (global 'TargetAssistRules')\nstack traceback:\n\t[string \"startSkill\"]:24: in global 'startSkill'\n\t[string \"acceptAction\"]:58: in field 'acceptAction'\n\ttests/skill-action-interrupt.spec.lua:54: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/skill-effects.spec.lua",
+      "code": 0,
+      "seconds": 0.03,
+      "output": "Skill effects CPU: 15030 checks PASS; all 116 advanced casts/pulses, geometry, cosmetic budget, cancellation. No engine QA.\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/skill-presentation.spec.lua",
+      "code": 1,
+      "seconds": 0.01,
+      "output": "lua: tests/skill-presentation.spec.lua:42: K0MeleeMotion.luau:127: syntax error near '*'\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/skill-presentation.spec.lua:42: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/skill-stat-preview.spec.lua",
+      "code": 0,
+      "seconds": 0.02,
+      "output": "HYBRID magic_archer Lv20 STR=76 INT=0 starter=447 branch=251\nHYBRID magic_archer Lv20 STR=38 INT=38 starter=340 branch=365\nHYBRID magic_archer Lv20 STR=0 INT=76 starter=234 branch=479\nHYBRID gunner Lv20 STR=76 DEX=0 starter=447 branch=510\nHYBRID gunner Lv20 STR=38 DEX=38 starter=340 branch=389\nHYBRID gunner Lv20 STR=0 DEX=76 starter=234 branch=267\nHYBRID magic_archer Lv40 STR=156 INT=0 starter=755 branch=341\nHYBRID magic_archer Lv40 STR=78 INT=78 starter=536 branch=575\nHYBRID magic_archer Lv40 STR=0 INT=156 starter=318 branch=809\nHYBRID gunner Lv40 STR=156 DEX=0 starter=755 branch=862\nHYBRID gunner Lv40 STR=78 DEX=78 starter=536 branch=613\nHYBRID gunner Lv40 STR=0 DEX=156 starter=318 branch=363\nHYBRID magic_archer Lv80 STR=316 INT=0 starter=1371 branch=521\nHYBRID magic_archer Lv80 STR=158 INT=158 starter=928 branch=995\nHYBRID magic_archer Lv80 STR=0 INT=316 starter=486 branch=1469\nHYBRID gunner Lv80 STR=316 DEX=0 starter=1371 branch=1566\nHYBRID gunner Lv80 STR=158 DEX=158 starter=928 branch=1061\nHYBRID gunner Lv80 STR=0 DEX=316 starter=486 branch=555\nSkill stat preview: 1392 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/sprint-input.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "Sprint input: 67 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/starter-gear-balance.spec.lua",
+      "code": 0,
+      "seconds": 1.0,
+      "output": "Starter gear balance: 206 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/starter-material-cleanup.spec.lua",
+      "code": 0,
+      "seconds": 1.01,
+      "output": "Starter material cleanup: 36 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/starter-potions-and-shop.spec.lua",
+      "code": 0,
+      "seconds": 0.99,
+      "output": "Starter potions and shop: 316 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/stat-investment-preview.spec.lua",
+      "code": 1,
+      "seconds": 0.01,
+      "output": "lua: tests/stat-investment-preview.spec.lua:5: expected Physical Power: 177.41 → 186.45 (+9.04) in HOW ATTACK POWER WORKS\nPhysical Power = 100 + 3 per level after Lv1 + 2 per assigned STR + equipped power.\nMagic Power = 100 + 3 per level after Lv1 + 2 per assigned INT + equipped power.\nEach hit uses the matching power multiplied by its attack or skill multiplier. Power is not damage per hit.\nBasic attacks and physical skills use Physical Power (STR). Magic skills use Magic Power (INT). INT adds +3 Max MP per point only after this hero has an MP pool; it does not unlock MP by itself.\nCurrent → After confirm (increase). Includes equipped gear. Changes are unsaved.\nBASIC ATTACK DAMAGE\nHit 1: 178 → 187 (+9)\nHit 2: 214 → 224 (+10)\nHit 3: 286 → 299 (+13)\nDamage per enemy hit before combat effects. Combo hits are listed separately. Power is a calculation value, not damage per hit.\nPhysical Power: 170 → 178 (+8)\nMagic Power: 170 → 172 (+2)\nDefense: 2 → 3 (+1)\nMax HP: 595 → 605 (+10)\nMax MP: 0 → 0 (+0; not unlocked)\nBasic Attack Speed: 1x → 1.005x (+0.5% of base)\nMovement Speed: 1x → 1.001x (+0.1% of base)\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/stat-investment-preview.spec.lua:5: in upvalue 'check'\n\ttests/stat-investment-preview.spec.lua:6: in local 'has'\n\ttests/stat-investment-preview.spec.lua:12: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/store-split.spec.lua",
+      "code": 0,
+      "seconds": 0.99,
+      "output": "Store split: 14 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/story-completion.spec.lua",
+      "code": 0,
+      "seconds": 0.32,
+      "output": "Story completion: 356 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/story-continuation.spec.lua",
+      "code": 1,
+      "seconds": 2.16,
+      "output": "lua: tests/story-continuation.spec.lua:52: StoryLocked\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/story-continuation.spec.lua:52: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/story-fun.spec.lua",
+      "code": 0,
+      "seconds": 0.25,
+      "output": "STORY_FUN 1761 checks passed; progression/answers unchanged, earned callbacks and partial-save resume\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/story-lobby-resume.spec.lua",
+      "code": 0,
+      "seconds": 1.58,
+      "output": "Story lobby resume: 33 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/story-prop-context.spec.lua",
+      "code": 0,
+      "seconds": 0.05,
+      "output": "STORY_PROP_CONTEXT 4129 checks passed; 292 physical step models, 63 distinct used assets, all 47 stories audited\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/story-region-handoff.spec.lua",
+      "code": 1,
+      "seconds": 0.14,
+      "output": "lua: tests/story-region-handoff.spec.lua:11: epic handoff prepares and moves without lobby return\nstack traceback:\n\t[C]: in global 'assert'\n\ttests/story-region-handoff.spec.lua:11: in local 'check'\n\ttests/story-region-handoff.spec.lua:27: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/story-respawn.spec.lua",
+      "code": 1,
+      "seconds": 1.32,
+      "output": "lua: [string \"return function(options,state,Content,Replica...\"]:4: bad argument #1 to 'for iterator' (table expected, got nil)\nstack traceback:\n\t[C]: in for iterator 'for iterator'\n\t[string \"return function(options,state,Content,Replica...\"]:4: in field 'destination'\n\t[string \"return function(heroSession,world,story) loca...\"]:3: in local 'resolve'\n\ttests/story-respawn.spec.lua:41: in main chunk\n\t[C]: in ?\n",
+      "baselineFailed": true
+    },
+    {
+      "file": "tests/story-rpg-guide.spec.lua",
+      "code": 0,
+      "seconds": 0.62,
+      "output": "STORY_RPG_GUIDE 1011 checks passed; 418 saved transitions, discoveries/waivers/solo/handoffs/combat/metrics\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/studio-test-defaults.spec.lua",
+      "code": 0,
+      "seconds": 1.0,
+      "output": "PASS: Studio defaults, four classes, account validation, mutation/rejoin preservation, fresh session and production isolation\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/support-passes.spec.lua",
+      "code": 0,
+      "seconds": 1.34,
+      "output": "Support passes: 30 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/supporter-info.spec.lua",
+      "code": 0,
+      "seconds": 0.05,
+      "output": "Supporter info: 45 checks passed\n",
+      "baselineFailed": false
+    },
+    {
+      "file": "tests/travel-attempt.spec.lua",
+      "code": 0,
+      "seconds": 0.0,
+      "output": "Travel attempt: 8 checks passed\n",
+      "baselineFailed": false
+    }
+  ],
+  "concurrentChanges": [
+    {
+      "file": "tests/hero-vitals-service.spec.lua",
+      "reason": "Concurrent InventoryService delivery requires access script.Parent.Parent.Lobby; existing stub only supplies script.Parent. InventoryService/Delivery changes are outside this patch."
+    }
+  ]
+}

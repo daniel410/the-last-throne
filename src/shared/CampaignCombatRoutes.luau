@@ -1,5 +1,6 @@
 -- Spatial plans consume the exact production packs, never a reduced population.
 local Population=game and require(script.Parent.EncounterPopulation)or dofile('src/shared/EncounterPopulation.luau')
+local Easy=game and require(script.Parent.EasyCampaignTuning)or dofile('src/shared/EasyCampaignTuning.luau')
 local R={version=1,ruleVersion=13,spacing=92,approach=38}
 local names={
  DW={'Convoy woodland trail','Broken-cart approach','Sanctuary paths','Watchtower approaches','Occupied keep perimeter','Twisted root trail','Altar approach'},
@@ -69,13 +70,45 @@ function R.install(C)
    c.combatRoutes[g.id]=route
   end end
  end
+ -- Allocate only extra Easy clearings after the full legacy pass. Old saved
+ -- journals keep exactly the same points, and world art clears the union.
+ for _,c in ipairs(C.chapters)do for _,g in ipairs(c.goals)do
+  local route=c.combatRoutes[g.id]
+  if route then
+   local maximum,boss=0,false;route.easyCounts={}
+   for party=1,4 do
+    local waves=Population.encounterWaves(c,g,party,'Easy',Easy.rulesVersion)
+    route.easyCounts[party]=#waves;maximum=math.max(maximum,#waves)
+    for _,batch in ipairs(waves)do for _,spec in ipairs(batch)do if Population.isBoss(spec.kind)then boss=true end end end
+   end
+   local points={};for _,p in ipairs(route.points)do points[#points+1]=p end
+   if boss then table.remove(points)end
+   while #points<maximum-(boss and 1 or 0)do
+    local previous=points[#points]or g.position;local best,score
+    for _,p in ipairs(pools[c.zone])do
+     local free=true
+     for _,a in ipairs(reserved[c.zone])do if distance(p,a.point)<a.radius then free=false;break end end
+     if free then for _,p2 in ipairs(used[c.zone])do if distance(p,p2)<80 then free=false;break end end end
+     if free then
+      local value=distance(p,previous)+distance(p,g.position)*.08
+      if not score or value<score then best,score=p,value end
+     end
+    end
+    assert(best,'Insufficient Easy combat ground: '..c.id..':'..g.id)
+    points[#points+1]=best;used[c.zone][#used[c.zone]+1]=best
+   end
+   if boss then points[#points+1]=g.position end
+   route.easyPoints=points;route.worldPoints=points
+  end
+ end end
 end
 function R.plan(c,g,version)return R.enabled(version)and c.combatRoutes and c.combatRoutes[g.id]or nil end
-function R.points(c,g,count,version)
+function R.points(c,g,count,version,mode)
  local plan=R.plan(c,g,version);if not plan then return nil end
- assert(count>=1 and count<=#plan.points,'Unsupported combat route length')
+ local source=Easy.enabled(mode,version)and plan.easyPoints or plan.points
+ assert(count>=1 and count<=#source,'Unsupported combat route length')
  local points={}
- for i=1,count do points[i]=plan.points[i==count and #plan.points or i]end
+ for i=1,count do points[i]=source[i==count and #source or i]end
  return points
 end
 -- Recover only packs with confirmed kill receipts. A partial or unconfirmed pack
@@ -90,8 +123,8 @@ function R.clearedPrefix(c,g,batches,run)
 end
 function R.entry(c,g,run,partySize)
  local plan=R.plan(c,g,run and run.balanceVersion);if not plan then return nil end
- local batches=Population.encounterWaves(c,g,partySize or 1)
- local points=R.points(c,g,#batches,run.balanceVersion)
+ local batches=Population.encounterWaves(c,g,partySize or 1,run.difficultyId,run.balanceVersion)
+ local points=R.points(c,g,#batches,run.balanceVersion,run.difficultyId)
  return points[math.min(#points,R.clearedPrefix(c,g,batches,run)+1)]
 end
 return R

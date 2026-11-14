@@ -44,8 +44,8 @@ function S.project(snapshot)
     or not accepted and string.format(Text.accept,c.quest.giver or 'the quest giver',region)or string.format(Text.next,region)
    if accepted and not canReport then local target=Log.target(j,c);if target then hint=(target.goal.title or '')..' · '..string.format(Text.next,region)end end
    local reward=Log.reward(c)
-   if hero.level==80 then reward=reward:gsub('^On quest completion: %d+ XP','On quest completion: 0 XP')end
-   if active and hero.deepwood.clears[c.id]then local payout=D.completion(c,active.difficultyId,active.balanceVersion or 1);reward=string.format(Text.repeatReward,hero.level==80 and 0 or payout.xp,payout.gold)end
+   if hero.level>=99 then reward=reward:gsub('^On quest completion: %d+ XP','On quest completion: 0 XP')end
+   if active and hero.deepwood.clears[c.id]then local payout=D.completion(c,active.difficultyId,active.balanceVersion or 1);reward=string.format(Text.repeatReward,hero.level>=99 and 0 or payout.xp,payout.gold)end
    local row={id=c.id,title=c.quest.title or c.title,region=region,epic=c.epic,phase=phase,runId=runId or 'campaign',
     difficultyId=active and active.difficultyId or 'Easy',hint=hint,brief=not accepted and c.quest.discoveryOnly and ''or c.quest.brief or '',reward=reward,canReport=canReport,
     action=canReport and Text.report or accepted and Text.continue or c.quest.discoveryOnly and Text.clue or Text.view,

@@ -133,9 +133,9 @@ no,why=broken:open(902);check(not no and why=='SaveUnknown'and broken.profiles[9
 local busy=R.copy(legacy);busy.lease={token='other',epoch=busy.epoch,expiresAt=200}
 local blocked=Store.new({UpdateAsync=function(_,_,fn)return fn(R.copy(busy))end},R,C,function()return 100 end,function()end,'blocked')
 no,why=blocked:open(902);check(not no and why=='AccountBusy'and busy.wallet.gold==1000,'another live lease blocks catch-up')
--- Lv80 keeps Gold/material awards and cannot accumulate capped XP.
-local capped=R.copy(legacy);capped.heroes.hero.level=80;capped.heroes.hero.progression=G.new(80)
-capped=R.upgrade(capped,C);check(capped.heroes.hero.progression.xp==0 and capped.wallet.gold==1000+addedGold,'Lv80 caps only XP')
+-- Lv99 keeps Gold/material awards and cannot accumulate capped XP.
+local capped=R.copy(legacy);capped.heroes.hero.level=99;capped.heroes.hero.progression=G.new(99)
+capped=R.upgrade(capped,C);check(capped.heroes.hero.progression.xp==0 and capped.wallet.gold==1000+addedGold,'Lv99 caps only XP')
 local overflow=R.copy(legacy);overflow.wallet.gold=1e12
 local deferred=R.upgrade(overflow,C);check(deferred.wallet.gold==1e12 and deferred.heroes.hero.completionRewardClaims==nil,'wallet cap defers missing awards without a false receipt')
 deferred.wallet.gold=0;check(R.upgrade(deferred,C).wallet.gold==addedGold,'deferred catch-up recovers after wallet room exists')

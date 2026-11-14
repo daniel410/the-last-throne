@@ -1,11 +1,12 @@
 -- Server checkpoints preserve absolute resources across character/place changes.
+local Growth=game and require(script.Parent.HeroProgression)or dofile('src/shared/HeroProgression.luau')
 local Vitals = {}
 local function finite(value)
  return type(value)=='number' and value==value and value>=0 and value<math.huge
 end
 function Vitals.valid(value)
  return type(value)=='table' and finite(value.health) and finite(value.mana)
-  and finite(value.level) and value.level%1==0 and value.level>=1 and value.level<=80
+  and finite(value.level) and value.level%1==0 and value.level>=1 and value.level<=Growth.maxLevel
 end
 function Vitals.restore(value,maxHealth,maxMana,level)
  -- Legacy heroes start full. Death and level-up retain their existing refill.

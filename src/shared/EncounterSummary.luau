@@ -1,14 +1,16 @@
 -- Display/audit projection over the same finite waves, stats and reward splitter.
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
 local B=load('DeepwoodEncounterBalance')
+local currentVersion=load('Difficulty').version
 local S={}
-function S.mission(chapter,mode,players,version)
+function S.mission(chapter,mode,players,version,cycle)
+ version=version or currentVersion
  local result={count=0,health=0,xp=0,gold=0,players=players or 1}
  for _,g in ipairs(chapter.goals)do
-  local groups=B.encounterWaves(chapter,g,players)
+  local groups=B.encounterWaves(chapter,g,players,mode,version)
   for _,group in ipairs(groups)do for index,spec in ipairs(group)do
    local hp,damage,level=B.unitStats(spec,players or 1,mode,version,index)
-   local xp,gold=B.rewards(spec,mode,version)
+   local xp,gold=B.rewards(spec,mode,version,cycle)
    local key=B.isBoss(spec.kind)and 'boss'or 'normal';local row=result[key]
    if not row then row={levelMin=level,levelMax=level,hpMin=hp,hpMax=hp,damageMin=damage,damageMax=damage};result[key]=row end
    row.levelMin=math.min(row.levelMin,level);row.levelMax=math.max(row.levelMax,level)

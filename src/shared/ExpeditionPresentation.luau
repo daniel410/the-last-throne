@@ -2,6 +2,7 @@
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
 local D,Content,Summary=load('Difficulty'),load('CampaignContent'),load('EncounterSummary')
 local Economy=load('EconomyCatalog')
+local GrowthBudget=load('CampaignGrowthBudget')
 local P={}
 function P.missions(hero,players)
  local list={}
@@ -9,11 +10,13 @@ function P.missions(hero,players)
   local modes={};local combat=D.combat(c)
   for _,mode in ipairs(D.order)do
    local m=D.modes[mode];local ok,why=D.allowed(hero,c.id,mode)
-   local reward=D.completion(c,mode)
+   local cycle=GrowthBudget.cycle(hero,mode)
+   local reward=D.completion(c,mode,D.version,cycle)
+   local firstXP=GrowthBudget.questXP(c.id,mode,D.version,cycle)or c.reward.xp
    modes[mode]={allowed=ok,reason=why,level=D.requiredLevel(c,mode),previous=m.previous,
     storyMain=D.requiredMain(c),firstClear=not(hero and hero.deepwood and hero.deepwood.clears[c.id]),
-    storyDiamonds=Economy.storyDiamondIds[c.id]and Economy.storyDiamondsByMode[mode] or 0,firstXP=c.reward.xp,firstGold=c.reward.coins,firstOre=c.reward.ore or 0,firstGems=c.reward.gems or 0,repeatXP=reward.xp,repeatGold=reward.gold,
-    xpCapped=hero and hero.level>=80 or false,ore=reward.ore,cores=reward.cores,gems=reward.gems,stones=reward.stones,rewardLevel=reward.rewardLevel,rewardBand=reward.rewardBand,cache=reward.cache,encounter=Summary.mission(c,mode,players),
+    storyDiamonds=Economy.storyDiamondIds[c.id]and Economy.storyDiamondsByMode[mode] or 0,firstXP=firstXP,firstGold=c.reward.coins,firstOre=c.reward.ore or 0,firstGems=c.reward.gems or 0,repeatXP=reward.xp,repeatGold=reward.gold,
+    xpCapped=hero and hero.level>=99 or false,ore=reward.ore,cores=reward.cores,gems=reward.gems,stones=reward.stones,rewardLevel=reward.rewardLevel,rewardBand=reward.rewardBand,cache=reward.cache,encounter=Summary.mission(c,mode,players,D.version,cycle),campaignCycle=cycle,
     hp=m.hp,damage=m.damage,bossHP=m.bossHP,bossDamage=m.bossDamage}
   end
   local epic=Content.epics[c.epic or 1]

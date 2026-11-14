@@ -9,6 +9,7 @@ local Growth = game and require(game:GetService("ReplicatedStorage").Shared.Hero
 local Daily=game and require(game:GetService('ReplicatedStorage').Shared.DailyLogin) or dofile('src/shared/DailyLogin.luau')
 local Pass=game and require(game:GetService('ReplicatedStorage').Shared.SupportPassRules) or dofile('src/shared/SupportPassRules.luau')
 local CompletionRewards=game and require(game:GetService('ReplicatedStorage').Shared.QuestCompletionRewards)or dofile('src/shared/QuestCompletionRewards.luau')
+local GrowthBudget=game and require(game:GetService('ReplicatedStorage').Shared.CampaignGrowthBudget)or dofile('src/shared/CampaignGrowthBudget.luau')
 local Grants=game and require(game:GetService('ReplicatedStorage').Shared.EquipmentTransactions)or dofile('src/shared/EquipmentTransactions.luau')
 local SideQuests=game and require(game:GetService('ReplicatedStorage').Shared.LobbySideQuests)or dofile('src/shared/LobbySideQuests.luau')
 local Rules = {}
@@ -158,7 +159,7 @@ function Rules.validate(profile, catalog)
 		or not Rules.integer(profile.lease.expiresAt, 0, 1e12) or profile.lease.epoch ~= profile.epoch) then return false end
 	for id, hero in pairs(profile.heroes) do
 		if type(hero) ~= "table" or id ~= hero.heroId or type(id) ~= "string" or not catalog.classes[hero.baseClassId]
-			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, 80) or type(hero.quickSlots) ~= "table" then return false end
+			or classes[hero.baseClassId] or not Rules.integer(hero.level, 1, Growth.maxLevel) or type(hero.quickSlots) ~= "table" then return false end
 		if hero.vitals~=nil and not Vitals.valid(hero.vitals) then return false end
 		if hero.starterSuppliesClaimed ~= nil and type(hero.starterSuppliesClaimed) ~= "boolean" then return false end
 		if not Adventure.valid(hero) or not CompletionRewards.valid(hero) or not SideQuests.validNotices(hero) then return false end
@@ -335,14 +336,14 @@ function Rules.apply(profile, command, context, catalog)
 end
 -- Clear receipt and award are committed together. Reopening a historic account
 -- catches up missing awards without modifying journal checksums or reissuing them.
-local function grantCompletion(profile,heroId,chapterId,catalog)
+local function grantCompletion(profile,heroId,chapterId,catalog,xpOverride)
  local award=CompletionRewards.awards[chapterId];local h=profile.heroes[heroId]
  if not award or not(h.deepwood and h.deepwood.clears[chapterId])or(h.completionRewardClaims or {})[chapterId]then return false end
  if profile.wallet.gold+award.coins>1e12 then return false end
  local g=h.progression or Growth.new(h.level)
- g.xp=g.xp+award.xp
- while g.level<80 and g.xp>=Growth.xpToNext(g.level)do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end
- if g.level==80 then g.xp=0 end
+ g.xp=g.xp+(xpOverride or award.xp)
+ while g.level<Growth.maxLevel and g.xp>=Growth.xpToNext(g.level)do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end
+ if g.level==Growth.maxLevel then g.xp=0 end
  g.revision=g.revision+1;h.progression=g;h.level=g.level
  profile.wallet.gold=profile.wallet.gold+award.coins
  local prefix='quest-award-v1-'..heroId..'-'..chapterId
@@ -470,7 +471,7 @@ function Rules.progress(profile,command,context,catalog)
 	return nextProfile
 end
 -- Journal, first-clear receipt, Coins and quest XP commit in one account write.
-function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,difficultyId)
+function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,difficultyId,balanceVersion,growthCycle)
  local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
  local journal,reason,reward=Story.apply(hero.deepwood or Story.new(),chapterId,goalId,choice,stepId)
  if not journal then return nil,reason end
@@ -479,15 +480,17 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,diffi
  -- Migrate historic earnings before assigning the new journal, then credit only this event.
  local migrated=Rules.copy(profile);Economy.upgrade(migrated);n.wallet=migrated.wallet
  local added=reward.chapter and CompletionRewards.awards[reward.chapter]
+ local xpOverride=reward.chapter and GrowthBudget.questXP(reward.chapter,difficultyId or 'Easy',balanceVersion,growthCycle)
  if added then
-  if not grantCompletion(n,heroId,reward.chapter,catalog)then return nil,'BalanceLimit'end
+  if not grantCompletion(n,heroId,reward.chapter,catalog,xpOverride)then return nil,'BalanceLimit'end
   reward={xp=0,coins=0,chapter=reward.chapter}
  end
  Economy.story(n,reward,heroId,difficultyId)
  local g=h.progression or Growth.new(h.level)
+ if not added and xpOverride~=nil then reward.xp=xpOverride end
  g.xp=g.xp+reward.xp
- while g.level<80 and g.xp>=Growth.xpToNext(g.level) do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end
- if g.level==80 then g.xp=0 end
+ while g.level<Growth.maxLevel and g.xp>=Growth.xpToNext(g.level) do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end
+ if g.level==Growth.maxLevel then g.xp=0 end
  g.revision=g.revision+1
  h.progression=g;h.level=g.level;n.revision=n.revision+1
  local function grant(id,quantity,suffix)

@@ -93,7 +93,7 @@ function W.create(world,scope)
    if plan then
     local site=Instance.new('Model');site.Name=c.id..'_'..g.id;site.ModelStreamingMode=Enum.ModelStreamingMode.Atomic;site:SetAttribute('ChapterId',c.id);site:SetAttribute('GoalId',g.id);site:SetAttribute('Theme',theme);site:SetAttribute('RouteTitle',plan.title);site.Parent=scene
     local previous=vec(g.position)
-    for index,point in ipairs(plan.points)do
+    for index,point in ipairs(plan.worldPoints or plan.points)do
      local at=vec(point)
      local start=previous;local delta=at-start
      if delta.Magnitude>1 then
@@ -154,7 +154,7 @@ function W.finish(world,scope)
   for _,g in ipairs(c.goals)do
    anchors[#anchors+1]={vec(g.position),#g.enemies>0 and 76 or 28}
    local previous=vec(g.position)
-   for _,point in ipairs(c.combatRoutes[g.id]and c.combatRoutes[g.id].points or {})do
+   for _,point in ipairs(c.combatRoutes[g.id]and (c.combatRoutes[g.id].worldPoints or c.combatRoutes[g.id].points) or {})do
     local at=vec(point);anchors[#anchors+1]={at,43};lines[#lines+1]={previous,at};previous=at
    end
    for _,step in ipairs(g.activity and g.activity.steps or {})do if step.position then anchors[#anchors+1]={vec(step.position),30}end end
@@ -167,7 +167,7 @@ function W.finish(world,scope)
   local previous=world.spawns[c.zone].Position
   for _,g in ipairs(c.goals)do
    local targets={}
-   local points=c.combatRoutes[g.id]and c.combatRoutes[g.id].points
+   local points=c.combatRoutes[g.id]and (c.combatRoutes[g.id].worldPoints or c.combatRoutes[g.id].points)
    if points and #points>0 then for _,p in ipairs(points)do targets[#targets+1]=p end
    else for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do if step.position then targets[#targets+1]=step.position end end end
    for _,p in ipairs(targets)do
@@ -192,7 +192,7 @@ function W.finish(world,scope)
  for _,c in ipairs(scope.content.chapters)do
   local theme=themes[c.id:sub(1,2)];local pal=K.palette[theme];local z=C.zones[c.zone]
   for _,g in ipairs(c.goals)do local plan=c.combatRoutes[g.id]
-   for index,point in ipairs(plan and plan.points or {})do
+   for index,point in ipairs(plan and (plan.worldPoints or plan.points) or {})do
     local at=vec(point);local count=0
     for _,offset in ipairs({V(-62,0,47),V(67,0,-42),V(-84,0,-54),V(83,0,58),V(12,0,86),V(-14,0,-89)})do
      local q=at+offset;local radius=(theme=='Deepwood'or theme=='Gloamwood')and 17 or 13

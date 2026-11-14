@@ -42,7 +42,8 @@ for _,mode in ipairs({'Hard','Insane','Hell'})do
  end
 end
 for _,c in ipairs(Content.chapters)do
- eq(D.requiredLevel(c,'Easy'),D.entry(c),'Easy mission gate preserved '..c.id)
+ eq(D.requiredLevel(c,'Easy',15),D.entry(c,15),'saved Easy mission gate preserved '..c.id)
+ eq(D.requiredLevel(c,'Easy'),dofile('src/shared/CampaignGrowthBudget.luau').entryLevel(c),'Easy gate follows new growth '..c.id)
  if not D.combat(c)then
   for _,mode in ipairs({'Hard','Insane','Hell'})do
    local ok,why=D.allowed(hero,c.id,mode)

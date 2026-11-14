@@ -1,0 +1,6 @@
+epic,levelMin,levelMax,normalHPMin,normalHPMax,normalDamageMin,normalDamageMax,bossHPMin,bossHPMax,bossDamageMin,bossDamageMax,count,peak
+1,1,10,110,558,13,29,1870,1980,83,95,284,7
+2,10,17,442,668,31,40,2851,3208,113,125,262,8
+3,18,23,810,1489,52,59,4116,5322,141,144,200,7
+4,23,27,1111,1960,57,71,4925,5510,162,166,224,8
+5,27,30,1381,1515,61,66,5560,5702,163,167,268,8

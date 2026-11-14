@@ -1,8 +1,10 @@
 -- Trial tuning; Easy Lv1 and repeatable Hell are user decisions.
 local BossTuning=game and require(script.Parent.BossCombatTuning)or dofile('src/shared/BossCombatTuning.luau')
 local Content=game and require(script.Parent.CampaignContent) or dofile('src/shared/CampaignContent.luau')
+local Easy=game and require(script.Parent.EasyCampaignTuning)or dofile('src/shared/EasyCampaignTuning.luau')
+local CampaignGrowth=game and require(script.Parent.CampaignGrowthBudget)or dofile('src/shared/CampaignGrowthBudget.luau')
 -- Balance/rule generation is pinned by the run and persisted hero journal.
-local D={version=15,order={'Easy','Hard','Insane','Hell'},legacyModes={
+local D={version=16,order={'Easy','Hard','Insane','Hell'},legacyModes={
  Easy={level=1,hp=1,damage=1,bossHP=1,bossDamage=1,xp=1,gold=1,ore=6,cores=0,cache=1},
  Hard={level=20,previous='Easy',hp=1.35,damage=1.2,bossHP=1.25,bossDamage=1.15,xp=1.15,gold=1.5,ore=8,cores=1,cache=2},
  Insane={level=40,previous='Hard',hp=1.7,damage=1.4,bossHP=1.5,bossDamage=1.3,xp=1.3,gold=2,ore=10,cores=2,cache=3},
@@ -43,13 +45,14 @@ D.families={
  IceTrollKing={hp=1.1,damage=1},KingIceBear={hp=1.15,damage=1},KingIceGolem={hp=1.2,damage=1},QueenIceElf={hp=.9,damage=1},AncientGlacierKing={hp=1.15,damage=1.05},
  MagmaImp={hp=.9,damage=1},MagmaGolem={hp=1.15,damage=1},InfernoOverlord={hp=1,damage=1},CalderaTitan={hp=1.2,damage=1.05},KingVolcanoShaman={hp=.9,damage=1},
 }
-function D.compatible(version)return version==1 or version==2 or version==3 or version==4 or version==5 or version==6 or version==7 or version==8 or version==9 or version==10 or version==11 or version==12 or version==13 or version==14 or version==D.version end
+function D.compatible(version)return version==1 or version==2 or version==3 or version==4 or version==5 or version==6 or version==7 or version==8 or version==9 or version==10 or version==11 or version==12 or version==13 or version==14 or version==15 or version==D.version end
 function D.mode(mode,version)
  if version~=nil and not D.compatible(version)then return nil end
  return (version==1 and D.legacyModes or version==2 and D.previousModes or version~=nil and version<=14 and D.previousGoldModes or D.modes)[mode]
 end
 function D.enemyLevel(level,mode,version)
  local m=assert(D.mode(mode,version),'Unsupported difficulty rules')
+ if CampaignGrowth.enabled(version or D.version)then return CampaignGrowth.enemyLevel(level,mode)end
  return version==1 and math.max(level,m.level)or math.max(m.level,level+(m.levelShift or 0))
 end
 function D.rewardLevel(c,mode,version)
@@ -58,13 +61,14 @@ function D.rewardLevel(c,mode,version)
   for _,unit in ipairs(g.enemies or {})do authored=math.max(authored,version~=nil and version<10 and (unit.legacyLevel or unit.level)or unit.level)end
   for _,wave in ipairs(g.bossEncounter and g.bossEncounter.waves or {})do for _,unit in ipairs(wave.enemies)do authored=math.max(authored,version~=nil and version<10 and (unit.legacyLevel or unit.level)or unit.level)end end
  end
- return D.enemyLevel(authored,mode,version)
+ return D.enemyLevel(authored,mode,(version==nil or version>=16)and 15 or version)
 end
 function D.goldMultiplier(level,mode,version)
  local m=assert(D.mode(mode,version),'Unsupported difficulty rules')
- return m.gold*(version==1 and 1 or Economy.band(D.enemyLevel(level,mode,version)).gold)
+ local economicVersion=(version==nil or version>=16)and 15 or version
+ return m.gold*(version==1 and 1 or Economy.band(D.enemyLevel(level,mode,economicVersion)).gold)
 end
-function D.completion(c,mode,version)
+function D.completion(c,mode,version,cycle)
  local m=assert(D.mode(mode,version),'Unsupported difficulty rules')
  local added=c.journalCoins~=nil
  local base
@@ -77,7 +81,8 @@ function D.completion(c,mode,version)
  local gold=math.floor(base.gold*m.gold*(version==1 and 1 or band.gold))
  -- Reduce only repeat completion Gold; runs pinned to rules 1-10 keep their payout.
  if version==nil or version>=11 then gold=math.floor(gold*4/5)end
- return {xp=math.floor(base.xp*m.xp),gold=gold,
+ local xp=CampaignGrowth.questXP(c.id,mode,version or D.version,cycle)
+ return {xp=xp or math.floor(base.xp*m.xp),gold=gold,
   ore=version==1 and D.combat(c)and m.ore or 0,cores=version==1 and D.combat(c)and m.cores or 0,
   gems=gems,stones=stones,rewardLevel=level,rewardBand=band.level,cache=D.combat(c)and m.cache or 0}
 end
@@ -88,7 +93,7 @@ function D.combat(c)
  for _,g in ipairs(c and c.goals or {})do if #(g.enemies or {})>0 then return true end end
  return false
 end
--- Keep existing FV/EC/HG gates; the new GW route follows the Lv12 Deepwood exit.
+-- Historic authored admission/reward bands; current Easy gates follow the XP schedule.
 function D.entry(c,version)
  if (version==nil or version>=10)and c.id:sub(1,2)=='GW'then return 12 end
  local epic=c.legacyEpic or c.epic or 1
@@ -96,6 +101,7 @@ function D.entry(c,version)
 end
 function D.requiredLevel(c,mode,version)
  local minimum=assert(D.entryLevels[mode],'Unsupported difficulty')
+ if mode=='Easy'and CampaignGrowth.enabled(version or D.version)then return CampaignGrowth.entryLevel(c)end
  return minimum==0 and 0 or math.max(D.entry(c,version),minimum)
 end
 function D.tier(c)return D.entry(c)>=10 and 10 or D.entry(c)>=5 and 5 or 1 end
@@ -132,7 +138,7 @@ function D.verifyRun(hero,run)
  if not run or not D.compatible(run.rulesVersion) or not a or a.runId~=run.id or a.missionId~=run.missionId or a.difficultyId~=run.difficultyId or (a.balanceVersion or 1)~=run.rulesVersion then return false,'AdventureChanged'end
  return D.allowed(hero,run.missionId,run.difficultyId)
 end
--- Easy solo targets at authored Lv9; preserve level and party scaling.
+-- Legacy Easy Lv9 role ratios remain the baseline before rule16 curve scaling.
 local easyHealthAtLevel9={Orc=450,Ogre=600}
 -- Authored chapter identity, never player level, controls regional progression.
 -- Rules 1-3 remain pinned for saved runs. Rules 4 keep their mode/reward rows.
@@ -162,6 +168,7 @@ function D.stats(kind,level,partySize,boss,mode,version,epic)
  local effective=D.enemyLevel(level,mode or 'Easy',version)
  local family=version==1 and {hp=1,damage=1}or D.families[kind]or {hp=1,damage=1}
  local party=(boss and {1,1.7,2.3,2.8}or {1,1.5,2,2.5})[math.max(1,math.min(4,partySize or 1))]
+ if not boss and Easy.enabled(mode or 'Easy',version)then party=Easy.partyHealth(partySize)end
  local healthFactor=family.hp
  if version~=1 and not boss and (mode or 'Easy')=='Easy' and easyHealthAtLevel9[kind]then
   healthFactor=easyHealthAtLevel9[kind]/(100+9*25)
@@ -170,6 +177,10 @@ function D.stats(kind,level,partySize,boss,mode,version,epic)
  local scale=D.epicScale(epic,version)
  hp=hp*scale.hp
  local damage=(boss and 28+effective*2 or 10+effective)*(boss and m.bossDamage or m.damage)*family.damage*scale.damage*BossTuning.forRun(boss,version).damage
+ if Easy.current(version)then
+  local healthScale,damageScale=Easy.factors(kind,boss,epic)
+  hp=hp*healthScale;damage=damage*damageScale
+ end
  return math.floor(hp+.5),math.floor(damage*(1+.1*(math.max(1,math.min(4,partySize or 1))-1))+.5),effective
 end
 return D

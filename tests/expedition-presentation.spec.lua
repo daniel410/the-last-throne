@@ -10,12 +10,13 @@ check(first.id=='DW-01'and #first.title>0 and #first.region>0 and #first.objecti
 check(first.modes.Easy.allowed and first.modes.Easy.level==1,'Easy Lv1 visible')
 check(first.modes.Hard.allowed and first.modes.Hard.previous==nil and first.modes.Hard.level==0,'Hard unlocked without Easy clear')
 check(first.modes.Insane.reason=='PreviousDifficulty'and first.modes.Insane.level==0,'Insane has no level floor')
-check(first.modes.Easy.firstXP==140 and first.modes.Easy.firstGold==150,'first story reward remains canonical')
+check(first.modes.Easy.firstXP==dofile('src/shared/CampaignGrowthBudget.luau').questXP('DW-01','Easy',16,1) and first.modes.Easy.firstGold==150,'first XP follows campaign budget and Gold remains canonical')
 check(first.modes.Easy.repeatGold==36 and first.modes.Easy.gems==6 and first.modes.Easy.stones==1,'repeat and forge summary match run rules')
-hero.level=80;hero.progression=G.new(80)
+hero.level=99;hero.progression=G.new(99)
 hero.expeditions={version=1,clears={['DW-01']={Easy=true,Hard=true,Insane=true}},cacheProgress={}}
 local hell=P.missions(hero)[1].modes.Hell
 check(hell.allowed and hell.repeatGold==188 and hell.stones==10 and hell.gems==28 and hell.cache==4 and hell.xpCapped,'Hell repeat values and cap')
+hero.level=80;hero.progression=G.new(80)
 local party={id='party',hostId=42,target=2,status='forming',missionId='DW-01',difficultyId='Hell',members={['42']={userId=42,heroId='h',name='Knight',classId='knight',main=0,level=80,arrived=true,ready=true},['43']={userId=43,heroId='h2',name='Mage',classId='mage',main=0,level=1,arrived=true,ready=true}}}
 local other=R.copy(hero);other.level=1;other.progression=G.new(1)
 local function view()return P.party(party,function(m)return m.userId==42 and hero or other end)end

@@ -22,7 +22,7 @@ for _,row in ipairs({{'Orc',450,924},{'Ogre',600,1134}})do
 end
 local hp,damage,level=D.stats('Goblin',5,1,false,'Hell',5)
 check(hp==3465 and damage==203 and level==80,'reference Hell guard')
-local hp2,damage2,level2=D.stats('Goblin',12,1,false,'Hell')
+local hp2,damage2,level2=D.stats('Goblin',12,1,false,'Hell',15)
 check(level2==87 and hp2>hp and damage2>damage,'later mission retains level progression inside Hell')
 local oldHP,oldDamage,oldLevel=D.stats('Goblin',5,1,false,'Hell',1)
 check(oldHP==4410 and oldDamage==149 and oldLevel==80,'old run keeps original combat rules')
@@ -48,9 +48,9 @@ for _,c in ipairs(C.chapters)do for _,mode in ipairs(D.order)do
 end end
 local first=S.mission(C.byId['DW-01'],'Easy',1,5)
 check(first.normal.hpMin==180 and first.normal.hpMax==250,'preview includes authored Slime replacement')
-local hard=S.mission(C.byId['DW-01'],'Hard',1)
+local hard=S.mission(C.byId['DW-01'],'Hard',1,15)
 check(hard.xp==144 and hard.gold==43,'whole first mission scales kill budgets')
-local hell=S.mission(C.byId['DW-01'],'Hell',1)
+local hell=S.mission(C.byId['DW-01'],'Hell',1,15)
 check(hell.xp==288 and hell.gold==145,'Hell kill XP/Gold actually increase')
 local plain=D.stats('Goblin',5,1,false,'Hell');local elite=B.unitStats({kind='Goblin',level=5},1,'Hell',nil,1)
 check(elite==math.floor(plain*1.15+.5),'armored elite applied once')

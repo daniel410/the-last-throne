@@ -1,7 +1,7 @@
 -- Pure hero growth. Starting resources are user decisions; growth coefficients
 -- and mastery effects are trial balance. XP mirrors story-reward-budget.json.
 local Advanced=game and require(game:GetService("ReplicatedStorage").Shared.AdvancedSkills) or dofile("src/shared/AdvancedSkills.luau")
-local Growth={maxLevel=80,maxSkillLevel=9,xpBase=100,xpPerLevel=25,statKeys={"STR","DEX","INT","VIT"}}
+local Growth={maxLevel=99,maxSkillLevel=9,xpBase=100,xpPerLevel=25,statKeys={"STR","DEX","INT","VIT"}}
 -- Learned skills start at level 1; each invested SP adds one mastery rank.
 Growth.maxMasteryRank=Growth.maxSkillLevel-1
 Growth.bases={
@@ -56,7 +56,7 @@ function Growth.upgrade(g)
 end
 function Growth.validate(g,classId)
  if type(g)=="table" and (g.version==1 or g.version==2) then g=Growth.upgrade(g) end
- if type(g)~="table" or g.version~=3 or not Growth.integer(g.revision,0,1e12) or not Growth.integer(g.level,1,80)
+ if type(g)~="table" or g.version~=3 or not Growth.integer(g.revision,0,1e12) or not Growth.integer(g.level,1,Growth.maxLevel)
   or not Growth.integer(g.xp,0,math.max(0,Growth.xpToNext(g.level)-1)) or type(g.stats)~="table"
   or type(g.mastery)~="table" or type(g.skillSlots)~="table" or type(g.rewardStream)~="string" or #g.rewardStream>64
   or not Growth.integer(g.rewardSequence,0,1e12) or not Growth.integer(g.stage,0,4) or not Growth.integer(g.battleWins,0,1e12) then return false end
@@ -65,7 +65,7 @@ function Growth.validate(g,classId)
  elseif not branch or classId and branch.classId~=classId or g.level<g.stage*20 then return false end
  local resolvedClass=classId or branch and branch.classId or "knight"
  local spent=0;for k in pairs(g.stats) do if k~="STR" and k~="DEX" and k~="INT" and k~="VIT" then return false end end
- for _,k in ipairs(Growth.statKeys) do if not Growth.integer(g.stats[k],0,316) then return false end;spent=spent+g.stats[k] end
+ for _,k in ipairs(Growth.statKeys) do if not Growth.integer(g.stats[k],0,4*(Growth.maxLevel-1)) then return false end;spent=spent+g.stats[k] end
  if spent>4*(g.level-1) then return false end
  local sp=0
  for k,v in pairs(g.mastery) do if not Growth.integer(k,1,32) or not Growth.integer(v,0,Growth.maxMasteryRank) then return false end end
@@ -123,24 +123,24 @@ function Growth.apply(g,command,classId)
 	local nextG=Growth.copy(g)
 	if command.action=="AwardXP" then
 		if type(command.stream)~="string" or #command.stream<1 or #command.stream>64 or not Growth.integer(command.sequence,1,1e12)
-			or not Growth.integer(command.amount,1,1000000) then return nil,"InvalidRequest" end
+			or not Growth.integer(command.amount,0,1000000) then return nil,"InvalidRequest" end
 		local old=g.rewardStream==command.stream and g.rewardSequence or 0
 		if command.sequence<=old then return nextG,nil,true end
 		if command.sequence~=old+1 then return nil,"Changed" end
 		nextG.rewardStream,nextG.rewardSequence=command.stream,command.sequence
 		if command.rewardKind=="Defeat" then nextG.battleWins=nextG.battleWins+1 end
 		nextG.xp=nextG.xp+command.amount
-		while nextG.level<80 and nextG.xp>=Growth.xpToNext(nextG.level) do
+		while nextG.level<Growth.maxLevel and nextG.xp>=Growth.xpToNext(nextG.level) do
 			nextG.xp=nextG.xp-Growth.xpToNext(nextG.level); nextG.level=nextG.level+1
 		end
-		if nextG.level==80 then nextG.xp=0 end
+		if nextG.level==Growth.maxLevel then nextG.xp=0 end
 	elseif command.action=="DeathPenalty" then
   if command.training~=false then return nil,"InvalidRequest" end
   nextG.xp=math.max(0,g.xp-Growth.deathXPLoss(g))
 	elseif command.action=="AllocateStats" then
 		if type(command.stats)~="table" then return nil,"InvalidRequest" end
 		local cost=0; for k,v in pairs(command.stats) do
-			if nextG.stats[k]==nil or not Growth.integer(v,0,316) then return nil,"InvalidRequest" end
+			if nextG.stats[k]==nil or not Growth.integer(v,0,4*(Growth.maxLevel-1)) then return nil,"InvalidRequest" end
 			cost=cost+v; nextG.stats[k]=nextG.stats[k]+v
 		end
 		local points=Growth.points(g); if cost<=0 or cost>points then return nil,"NotEnoughStatPoints" end

@@ -24,7 +24,7 @@ local function routes(world)
   local previous=world.spawns[c.zone]and world.spawns[c.zone].Position
   if previous then for _,g in ipairs(c.goals)do
    local targets={}
-   local points=c.combatRoutes and c.combatRoutes[g.id]and c.combatRoutes[g.id].points
+   local points=c.combatRoutes and c.combatRoutes[g.id]and (c.combatRoutes[g.id].worldPoints or c.combatRoutes[g.id].points)
    if points and #points>0 then for _,point in ipairs(points)do targets[#targets+1]={position=point}end
    else for _,step in ipairs(g.activity and g.activity.steps or {{position=g.position}})do targets[#targets+1]=step end end
    for _,s in ipairs(targets)do if s.position then

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"accountAccess\":false,\"modelAttributeCases\":7694,\"runtime\":\"Studio Luau\",\"compiledSources\":65,\"kind\":\"CAMPAIGN_GROWTH_V16\",\"results\":{\"1\":\"Easy pass 1: +13050 XP, total 13050, Lv30\",\"3\":\"Insane pass 1: +36250 XP, total 84925, Lv80\",\"2\":\"Hard pass 1: +35625 XP, total 48675, Lv60\",\"5\":\"Hell pass 2: +11875 XP, total 118675, Lv95\",\"4\":\"Hell pass 1: +21875 XP, total 106800, Lv90\",\"7\":\"Hell pass 4: +2500 XP, total 126100, Lv98\",\"6\":\"Hell pass 3: +4925 XP, total 123600, Lv97\",\"9\":\"Campaign growth v16: 330657 checks passed\",\"8\":\"Hell pass 5: +2525 XP, total 128625, Lv99\",\"12\":\"Difficulty reward rates: 2162 checks passed\",\"11\":\"Hero progression: 3710 checks passed\",\"10\":\"Expedition presentation: 24 checks passed\"}}"
+    }
+  ],
+  "isError": false
+}

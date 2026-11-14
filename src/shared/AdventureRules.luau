@@ -1,6 +1,7 @@
 local function load(name)return game and require(script.Parent[name])or dofile('src/shared/'..name..'.luau')end
 local D,P,G,Content,F=load('Difficulty'),load('DeepwoodProgress'),load('HeroProgression'),load('CampaignContent'),load('EquipmentTransactions')
 local Economy=load('EconomyRules')
+local GrowthBudget=load('CampaignGrowthBudget')
 local A={}
 -- Admission stays bound to the launch mission; every main story in the run
 -- follows the journal, including replays, higher difficulties and epic borders.
@@ -33,10 +34,23 @@ local function integer(n,min,max)return type(n)=='number'and n%1==0 and n>=min a
 function A.valid(hero)
  local e=hero.expeditions;if e==nil then return true end
  if type(e)~='table'or e.version~=1 or type(e.clears)~='table'or type(e.cacheProgress)~='table'then return false end
+ if e.campaignProgress~=nil then
+  if type(e.campaignProgress)~='table'then return false end
+  for mode,progress in pairs(e.campaignProgress)do
+   if not D.modes[mode]or type(progress)~='table'or not integer(progress.clears,0,1e9)or type(progress.chapters)~='table'then return false end
+   for id,value in pairs(progress.chapters)do
+    local chapter=Content.byId[id]
+    if value~=true or not chapter or chapter.side or not D.combat(chapter)then return false end
+   end
+  end
+ end
  for id,modes in pairs(e.clears)do if not Content.byId[id]or type(modes)~='table'then return false end;for mode,v in pairs(modes)do if not D.modes[mode]or v~=true then return false end end end
  for tier,n in pairs(e.cacheProgress)do if (tier~='1'and tier~='5'and tier~='10')or not integer(n,0,3)then return false end end
  local a=e.active
  if a~=nil then
+  if type(a)~='table'then return false end
+  if a.growthCycle~=nil and(not integer(a.growthCycle,1,1e9)or not GrowthBudget.enabled(a.balanceVersion))then return false end
+  if GrowthBudget.enabled(a.balanceVersion)and a.growthCycle==nil then return false end
   if type(a)~='table'or type(a.runId)~='string'or #a.runId<1 or #a.runId>64 or not a.runId:match('^[%w_-]+$')or not Content.byId[a.missionId]or not D.modes[a.difficultyId]or a.version~=1 or (a.balanceVersion~=nil and not D.compatible(a.balanceVersion)) or type(a.completed)~='boolean'or type(a.firstClear)~='boolean'or not P.validate(a.journal)or type(a.kills)~='table'then return false end
   if a.returnToCampaign~=nil and type(a.returnToCampaign)~='boolean'or a.returnToCampaign and not integer(a.campaignMain,0,Content.mainCount)then return false end
   if a.completedChapters~=nil then
@@ -136,6 +150,7 @@ function A.begin(profile,heroId,missionId,mode,runId,revision,R,C,version)
  if c.side then journal.accepted=journal.accepted or {};journal.accepted[c.id]=true;if first then h.deepwood=P.copy(journal)end end
  h.expeditions.active={version=1,balanceVersion=version,runId=runId,missionId=missionId,difficultyId=mode,journal=journal,completed=false,firstClear=first,kills={},completedChapters={}}
  local active=h.expeditions.active
+ if GrowthBudget.enabled(version)then active.growthCycle=GrowthBudget.cycle(h,mode)end
  if not c.side and not first and h.deepwood and h.deepwood.main<c.number-1 then
   active.returnToCampaign=true;active.campaignMain=h.deepwood.main
  end
@@ -164,7 +179,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   if (active.balanceVersion or 1)>=13 and (not hero.deepwood or hero.deepwood.expansionVersion~=1 or hero.deepwood.combatPacingVersion~=1)then
    profile=R.copy(profile);profile.heroes[heroId].deepwood=assert(P.enableExpansion(hero.deepwood or P.new()))
   end
-  p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId,active.difficultyId)
+  p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId,active.difficultyId,active.balanceVersion,active.growthCycle)
   if not p then return nil,why end
   journal=P.copy(p.heroes[heroId].deepwood)
  else
@@ -181,12 +196,12 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   if not c.side then a.completedChapters=a.completedChapters or {};a.completedChapters[chapterId]=true end
   a.completed=true;e.clears[chapterId]=e.clears[chapterId]or {};e.clears[chapterId][a.difficultyId]=true
   Economy.claimDifficulty(p,chapterId,a.difficultyId,heroId)
-  local reward=D.completion(c,a.difficultyId,a.balanceVersion or 1)
+  local reward=D.completion(c,a.difficultyId,a.balanceVersion or 1,a.growthCycle)
   if not firstClear then
    local xp,gold=reward.xp,reward.gold
    h.progression.xp=h.progression.xp+xp
-   while h.level<80 and h.progression.xp>=G.xpToNext(h.level)do h.progression.xp=h.progression.xp-G.xpToNext(h.level);h.level=h.level+1 end
-   if h.level==80 then h.progression.xp=0 end
+   while h.level<G.maxLevel and h.progression.xp>=G.xpToNext(h.level)do h.progression.xp=h.progression.xp-G.xpToNext(h.level);h.level=h.level+1 end
+   if h.level==G.maxLevel then h.progression.xp=0 end
    h.progression.level=h.level;h.progression.revision=h.progression.revision+1;p.wallet.gold=p.wallet.gold+gold
   end
   if D.combat(c)then
@@ -199,6 +214,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
    local caches=math.floor(progress/4);e.cacheProgress[tier]=progress%4
    F.grant(p,R,C,heroId,'equipment_cache_'..tier,caches,prefix..'-cache')
   end
+  if GrowthBudget.enabled(a.balanceVersion)then GrowthBudget.record(h,c.id,a.difficultyId,a.growthCycle)end
  end
  if not R.validate(p,C)then return nil,'Incompatible'end
  return p

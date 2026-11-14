@@ -27,7 +27,7 @@ function O.install(C)
    if visited[t]then return end;visited[t]=true
    for key,value in pairs(t)do if type(value)=='table'then
     if pointKeys[key]then point(value)
-    elseif key=='points'then for _,p in ipairs(value)do point(p)end
+    elseif key=='points'or key=='easyPoints'or key=='worldPoints'then for _,p in ipairs(value)do point(p)end
     else walk(value)end
    end end
   end

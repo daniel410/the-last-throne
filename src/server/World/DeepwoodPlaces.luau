@@ -31,7 +31,7 @@ local function reservations(world,id)
    if math.abs(p.Y-center.Y)<1 and math.abs(p.X-center.X)<z.size[1]/2 and math.abs(p.Z-center.Z)<z.size[2]/2 then
     table.insert(anchors,p);table.insert(lanes,{center,p})
     local last=p
-    for _,point in ipairs(ch.combatRoutes and ch.combatRoutes[g.id]and ch.combatRoutes[g.id].points or {})do
+    for _,point in ipairs(ch.combatRoutes and ch.combatRoutes[g.id]and (ch.combatRoutes[g.id].worldPoints or ch.combatRoutes[g.id].points) or {})do
      local at=Vector3.new(table.unpack(point));table.insert(anchors,at);table.insert(lanes,{last,at});last=at
     end
     if ch.zone==id then table.insert(lanes,{previous,p});previous=p end

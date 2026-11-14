@@ -146,7 +146,11 @@ local function enqueuePersonal(player,heroId,c,g,choice,stepId)
     local firstClear=before and before.expeditionFirstClear
     if firstClear==nil then firstClear=not run or run.firstClear end
     local reward=run and not firstClear and Difficulty.completion(e.c,run.difficultyId,run.balanceVersion or 1)or {xp=e.c.reward.xp,gold=e.c.reward.coins}
-    local xp=growthBefore and growthBefore.level>=80 and 0 or reward.xp
+    if run and (run.balanceVersion or 1)>=16 then
+     local budget=require(ReplicatedStorage.Shared.CampaignGrowthBudget)
+     reward.xp=budget.questXP(e.c.id,run.difficultyId,run.balanceVersion,run.growthCycle)or reward.xp
+    end
+    local xp=growthBefore and growthBefore.level>=99 and 0 or reward.xp
     publish(player,text~='' and text or nil,transitionNotice,complete and {id=e.c.id,title=e.c.quest.title or e.c.title,kind=e.c.side and 'Side quest' or 'Story',xp=xp,coins=reward.gold,ore=firstClear and e.c.reward.ore or 0,gems=firstClear and e.c.reward.gems or 0,outcome=e.c.quest.outcome} or nil)
     end
    end
@@ -283,6 +287,7 @@ spawnWave=function(e)
   local kind=spec.kind;local boss=Balance.isBoss(kind)
   local scale,visual=Sizing.forStory(kind,boss)
   local m=Rig.makeEnemy(options.enemies,kind,p.X,p.Z,scale,visual)
+  e.unitSpecs=e.unitSpecs or {};e.unitSpecs[m]=spec
   m:PivotTo(m:GetPivot()+Vector3.new(0,p.Y,0));m:SetAttribute('DeepwoodEncounter',e.key)
   e.spawnCount=(e.spawnCount or 0)+1;m:SetAttribute('StoryKillId',(e.launchMission and e.chapter.id~=e.launchMission and e.chapter.id..':' or '')..e.goal.id..'_'..(spec.killIndex or e.spawnCount))
   m:SetAttribute('StoryWave',e.wave);applyBalance(m,spec,e.partySize,e.difficultyId,e.rulesVersion,index)
@@ -314,9 +319,9 @@ local function begin(player,node,automatic)
   local ally=other and e.runId and other.runId==e.runId and not h.training and h or eligible(p,c,g,65,position)
   if ally and count<4 and (other and other.runId or nil)==e.runId then e.participants[p]=ally.heroId;count=count+1 end
  end end
- e.partySize=count;e.packSize=Balance.packCapacity(c,g,count);e.batches=Balance.encounterWaves(c,g,count)
+ e.partySize=count;e.packSize=Balance.packCapacity(c,g,count,e.difficultyId,e.rulesVersion);e.batches=Balance.encounterWaves(c,g,count,e.difficultyId,e.rulesVersion)
  e.waveCount=#e.batches;e.wave=0;e.nextWave=1;e.guardsRemaining=0
- e.routePoints=Routes.points(c,g,e.waveCount,e.rulesVersion);e.routeTitle=route and route.title
+ e.routePoints=Routes.points(c,g,e.waveCount,e.rulesVersion,e.difficultyId);e.routeTitle=route and route.title
  if e.routePoints then
   -- Recover only the prefix saved for every admitted member. Unsaved/partial
   -- packs stay playable; the existing stable kill receipts reject duplicate pay.
@@ -403,7 +408,9 @@ function Service.defeated(model,_winner)
   else ctx=eligible(p,e.chapter,e.goal,100,e.position) end
   if ctx and ctx.heroId==heroId then
    local level=model:GetAttribute('StoryLevel') or 1;local multiplier=model:GetAttribute('StoryBoss') and 5 or 1
-   options.inventory.awardXP(p,heroId,model:GetAttribute('StoryRewardXP') or (8+2*level)*multiplier,true,model:GetAttribute('StoryRewardGold') or (3+math.floor(level/2))*(model:GetAttribute('StoryBoss') and 10 or 1),e.runId,model:GetAttribute('StoryKillId'))
+   local spec=e.unitSpecs and e.unitSpecs[model]
+   local xp=spec and Balance.rewards(spec,e.difficultyId,e.rulesVersion,run and run.growthCycle)or model:GetAttribute('StoryRewardXP')or(8+2*level)*multiplier
+   options.inventory.awardXP(p,heroId,xp,true,model:GetAttribute('StoryRewardGold') or (3+math.floor(level/2))*(model:GetAttribute('StoryBoss') and 10 or 1),e.runId,model:GetAttribute('StoryKillId'))
    if complete then enqueue(p,heroId,e.chapter,e.goal) end
   end
  end
