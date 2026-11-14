@@ -19,5 +19,6 @@ code+='assert(loadstring('+json.dumps(Path('tests/story-terrain-fixes-native.lua
 code+="print('REGIONAL_CONCEPT_ALL_PASS')\n"
 if a.review:code+="_G.RegionalConceptWorld=qaWorld;for i=1,600 do if _G.TLTReviewDone then break end task.wait(1)end\n"
 out=Path('/tmp/tlt-regional-concept-native.luau');out.write_text(code)
+paths+=['tests/regional-concept-art-native.luau','tests/story-terrain-fixes-native.luau','tests/epic-map-navigation-native.luau']
 out.with_suffix('.inputs.json').write_text(json.dumps({p:hashlib.sha256(Path(p).read_bytes()).hexdigest()for p in paths},indent=2)+'\n')
 print(out)

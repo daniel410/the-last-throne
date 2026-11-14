@@ -1,7 +1,7 @@
 -- Blender-authored primitives retain their exact local rotations and proportions.
 local Templates=require(script.Parent.RegionalArchitectureTemplates)
 local K=require(script.Parent.EpicEnvironmentKit)
-local Architecture={version=2}
+local Architecture={version=3}
 function Architecture.build(kind)
  local rows=assert(Templates[kind],'Unknown regional architecture '..kind)
  local m=Instance.new('Model');m.Name=kind;m.ModelStreamingMode=Enum.ModelStreamingMode.Atomic
@@ -22,6 +22,25 @@ function Architecture.build(kind)
  end
  m:SetAttribute('BlenderPrimitiveCount',#rows)
  local details=0
+ if kind=='SilkWatchApproach'or kind=='WebRescueCourt'or kind=='LanternRootRefuge'or kind=='HollowbarkRootBastion'or kind=='SilkenBankAnchors'or kind=='ScoutExtractionWall'or kind=='WidowWatchfortGate'then
+  -- Connect the high web to the architecture; suspended geometry must have
+  -- visible anchors rather than reading as a floating wireframe triangle.
+  for _,side in ipairs({-1,1})do
+   local high=Vector3.new(side*15.5,kind=='WidowWatchfortGate'and 28 or 23,-3)
+   local low=Vector3.new(side*11,8,2)
+   for i=0,2 do
+    local top=high+Vector3.new(-side*i*2,0,0)
+    local foot=low+Vector3.new(side*i*.35,0,i*2)
+    local strand=K.beam(m,'AttachedSilverSilk',top,foot,.48,Color3.fromRGB(216,228,240),Enum.Material.Fabric)
+    strand:SetAttribute('EpicDetailSolid',false);strand:SetAttribute('TLTSceneryDistance',700);details+=1
+   end
+   for i=1,3 do
+    local t=i/4;local a=high:Lerp(low,t);local b=(high+Vector3.new(-side*4,0,0)):Lerp(low+Vector3.new(side*.7,0,4),t)
+    local band=K.beam(m,'AnchoredSilkBand',a,b,.36,Color3.fromRGB(201,217,234),Enum.Material.Fabric)
+    band:SetAttribute('EpicDetailSolid',false);band:SetAttribute('TLTSceneryDistance',700);details+=1
+   end
+  end
+ end
  if kind=='GreatFurnaceCrown'then
   -- A tall flue and contained furnace heat give the final works a skyline
   -- without widening its reserved ground footprint or adding any light/loop.

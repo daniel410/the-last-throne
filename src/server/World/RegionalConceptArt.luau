@@ -123,7 +123,10 @@ function D.build(site,id,c,size,safe,ground,world)
   return q
  end
  local function place(kind,role,index)
-  local m=role=='Signature'and require(script.Parent.RegionalArchitecture).build(kind)or assembly(role,colors,profile.epic)
+  local satellite=role=='Supporting'and index<=3 and(id=='EC-02'or id=='FV-07')
+  local m=(role=='Signature'or satellite)and require(script.Parent.RegionalArchitecture).build(kind)or assembly(role,colors,profile.epic)
+  m:SetAttribute('RegionalConceptRole',role)
+  if satellite then m:ScaleTo(id=='EC-02'and .85 or .6)end
   -- Side pockets and the convoy clearing have tighter existing encounter
   -- envelopes. Their landmarks use the same kit at a village-scale footprint.
   if role=='Signature'then

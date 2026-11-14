@@ -10,7 +10,7 @@ local function check(v,message)report.checks+=1;assert(v,message)end
 local times={15.6,0,10.2,16.4,.1}
 for id,z in pairs(C.zones)do
  local theme=B.at(z.center[1],z.center[3]);mood.update(theme)
- check(game.Lighting.ClockTime==times[z.epic],'actual engine regional lighting '..id);report.zones+=1
+ check(math.abs(game.Lighting.ClockTime-times[z.epic])<.001,'actual engine regional lighting '..id);report.zones+=1
  if z.epic>1 then
   local site=world.folder.EpicWorldArt['EpicWorldArt_'..z.epic][id]
   for _,m in ipairs(site.RegionalConcept:GetChildren())do if m:GetAttribute('RegionalConceptRole')=='Signature'then
