@@ -1,0 +1,250 @@
+{
+  "version": "0.105.4",
+  "sourceCommit": "a5c458258ab7faf8c45bd5408b3aff62c64292fb",
+  "mode": "Studio Edit; actual CampaignBiome selector and authored Mood; no players",
+  "studioId": "5779a394-1664-4a9f-be70-e46090b1b64b",
+  "captures": [
+    {
+      "camera": [
+        132.63999938964844,
+        500.29998779296875,
+        -1289.0699462890625
+      ],
+      "model": "Outpost",
+      "id": "DW-03",
+      "lookAt": [
+        -179,
+        26,
+        -1726.6500244140625
+      ],
+      "wide": true,
+      "scale": 1,
+      "file": "DW-03-fixed.jpg",
+      "sha256": "14c27f16117cbd58c1e61205963810540e157b399068d590fa723e8bfac5ca1e",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        1280.1800537109375,
+        584.9749755859375,
+        -2198.60009765625
+      ],
+      "model": "Barracks",
+      "id": "DW-05",
+      "lookAt": [
+        926.75,
+        46,
+        -2591
+      ],
+      "wide": true,
+      "scale": 1,
+      "file": "DW-05-fixed.jpg",
+      "sha256": "8df015e9ca9143cac58a2a571413af5ef7438f22353db9e6ea989362c9030a47",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        262.69573974609375,
+        112.42130279541016,
+        -6202.07373046875
+      ],
+      "model": "SilkenBankAnchors",
+      "id": "GW-05",
+      "lookAt": [
+        246.9915771484375,
+        88.42130279541016,
+        -6264.03125
+      ],
+      "wide": false,
+      "scale": 1.2999999523162842,
+      "file": "GW-05-fixed.jpg",
+      "sha256": "9eb0045ef77bc56af39808dea2cb3a2a2d561f7ff4da669d5f7c547df5b5045c",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        -580.6900024414062,
+        564.2000122070312,
+        -6844.39990234375
+      ],
+      "model": "WidowWatchfortGate",
+      "id": "GW-07",
+      "lookAt": [
+        -894.8499755859375,
+        86,
+        -7138.39990234375
+      ],
+      "wide": true,
+      "scale": 1.2999999523162842,
+      "file": "GW-07-fixed.jpg",
+      "sha256": "d34df8d1f5d560babc61d96a608add3f5345340dbe0cb0dd311b06eb90dcd4cb",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        -908.387451171875,
+        172.8480224609375,
+        -10860.53515625
+      ],
+      "model": "MirrorPavilion",
+      "id": "FV-07",
+      "lookAt": [
+        -855.7727661132812,
+        148.8480224609375,
+        -10894.25
+      ],
+      "wide": false,
+      "scale": 1.649999976158142,
+      "file": "FV-07-fixed.jpg",
+      "sha256": "6941a793a8affbb94ea60cdf04ac635963fa42cdcab7e86897fb3ceac719fab0",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        -251.00999450683594,
+        474.79998779296875,
+        -9887.75
+      ],
+      "model": "TwinLockGatehouse",
+      "id": "FV-06",
+      "lookAt": [
+        -482.8500061035156,
+        124,
+        -10221.650390625
+      ],
+      "wide": true,
+      "scale": 1.2999999523162842,
+      "file": "FV-06-fixed.jpg",
+      "sha256": "6336e165f2614c20edd653dddbf46149e250ee2ad098d4d37083f30d59614521",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        1440.8349609375,
+        131.23672485351562,
+        -9394.6181640625
+      ],
+      "model": "ShoreReturnJetty",
+      "id": "FV-S2",
+      "lookAt": [
+        1471.566162109375,
+        107.23673248291016,
+        -9356.287109375
+      ],
+      "wide": false,
+      "scale": 0.8500000238418579,
+      "file": "FV-S2-fixed.jpg",
+      "sha256": "4aecceda2befae3ab68e1d834655295de0e6589c01a0943dc65f0212af635589",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        -274.3501281738281,
+        182.71087646484375,
+        -12239.1572265625
+      ],
+      "model": "CrewWorkshop",
+      "id": "EC-02",
+      "lookAt": [
+        -359.9571838378906,
+        158.71087646484375,
+        -12279.8779296875
+      ],
+      "wide": false,
+      "scale": 1.649999976158142,
+      "file": "EC-02-fixed.jpg",
+      "sha256": "777cd8b367e7acd98219282c3ed2ec200caae0e7a2dc631a71e021cfca3e3e67",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        -797.208251953125,
+        222.46556091308594,
+        -14686.2880859375
+      ],
+      "model": "GreatFurnaceCrown",
+      "id": "EC-07",
+      "lookAt": [
+        -753.3619384765625,
+        198.46556091308594,
+        -14690.650390625
+      ],
+      "wide": false,
+      "scale": 1,
+      "file": "EC-07-fixed.jpg",
+      "sha256": "bbc702daf3ee3744a3e97cd8bc54ca3b2840ac15022769d32b603612f8a0ec23",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        121.39724731445312,
+        217.67433166503906,
+        -16217.009765625
+      ],
+      "model": "KeeperCryptStair",
+      "id": "HG-03",
+      "lookAt": [
+        46.70994567871094,
+        193.67433166503906,
+        -16242.1201171875
+      ],
+      "wide": false,
+      "scale": 1.2999999523162842,
+      "file": "HG-03-fixed.jpg",
+      "sha256": "2cf9338ca8bbaffd23ec9db5343e4c662e38d7c36dd9c831d69c055123970f0e",
+      "pixels": [
+        1581,
+        1080
+      ]
+    },
+    {
+      "camera": [
+        -566.886962890625,
+        240.66873168945312,
+        -17659.068359375
+      ],
+      "model": "RoyalSealMausoleum",
+      "id": "HG-06",
+      "lookAt": [
+        -577.5443115234375,
+        216.66873168945312,
+        -17584.341796875
+      ],
+      "wide": false,
+      "scale": 1.649999976158142,
+      "file": "HG-06-fixed.jpg",
+      "sha256": "4c96b6487c67f74cc4ebf84f50af6e12d835063b74ec2873de368c054a3605bc",
+      "pixels": [
+        1581,
+        1080
+      ]
+    }
+  ]
+}

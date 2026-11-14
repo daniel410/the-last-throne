@@ -1,0 +1,20 @@
+{
+  "src/shared/CampaignBiome.luau": "312a753f240989389354c240cd8f3d2c9afba29584ec749d716f95a04e6c3d33",
+  "src/server/World/CampaignSurfaceFinish.luau": "416701f8182d871aca5f694a04eddcbcecf53e9f22f515b6b4c40cbd3a2f3a8e",
+  "src/server/World/CampaignWorld.luau": "77f8592c8c863fa5fa9ce0d5d679e5d689f4a446718cc5417e92402086e2ac83",
+  "src/server/World/RegionalArchitectureTemplates.luau": "bd2aed1a7b87be3ffaff2c81a11d29a107f34e964cd115e0fca9220b7d58b7da",
+  "src/server/World/RegionalArchitecture.luau": "bef7576d3a8401305d4adc2b43b5aeed5ce6d2f5871c23ab36dfe5f96b016f0b",
+  "src/server/World/RegionalConceptProfiles.luau": "5e9c5637fd192c36b4430b389bab57c091f9d2c9f94bac49fecaa1ff0ec69777",
+  "src/server/World/RegionalConceptArt.luau": "242c1494542a34dd12cbc3bf04b6ac41f0619168ebe2b017f5c87b60db768781",
+  "src/server/World/EpicEnvironmentKit.luau": "d863ec3b8cb4a67e4b6b00bb9b87ef277bc4f81e86f79c3240a2a7913119f5cf",
+  "src/server/World/EpicWorldArt.luau": "3aca4ba7eb708bc664768fe425c53698e484865a335368092e9521afb81ab464",
+  "src/client/DeepwoodAtmosphere.luau": "9b205af182f0da8299627bc3e5e6bf2f8b80cc6c1b594f6449164cd67be0ba21",
+  "tests/campaign-story-composition-native.luau": "8b599f1d140ee201931744378efc13d8d23be98fd502b01fc102e7d1b749a008",
+  "tests/scenery-collision-native.luau": "84f63e87de3262fd7df54458b18f9e6451fdd2d1c90c4324f579be80f0179ac0",
+  "tests/campaign-combat-route-world-native.luau": "fca9e0919051f1be0e797475d525cb260aa002ed97f7bbe1741c2440172d0ad6",
+  "tests/epic-environment-native.luau": "64261fd65d9f7d28ee53aeabbc254873028c54b9099f6121409a13326941ea83",
+  "tests/epic-overland-native.luau": "d181e816d5298c37f00a99892977724269e112b1bd1176b0d14f82314542f390",
+  "tests/regional-concept-art-native.luau": "ef84cd759edf27841853dba5545732451f78d8ad21188d57f32d3c0ee899ed64",
+  "tests/story-terrain-fixes-native.luau": "82275e38e4f4129cf7975a13bdc1992f8874df1f6272b1bf648ef353a35d021b",
+  "tests/epic-map-navigation-native.luau": "81d3400afd57a4f93af9a021d20956e3cb9520945f56dda64b8834a440fb76d6"
+}
