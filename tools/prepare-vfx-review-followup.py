@@ -1,4 +1,4 @@
-"""커밋 기반 VFX 격리 장소를 준비한다. --candidate는 작업 VFX 두 모듈만 덮는다."""
+"""커밋 기반 VFX 격리 장소를 준비한다. --candidate는 작업 VFX 세 모듈만 덮는다."""
 from pathlib import Path
 import argparse
 import hashlib
@@ -22,7 +22,7 @@ provenance = json.loads((output / 'provenance.json').read_text())
 source = Path(provenance['sourceRoot'])
 overlays = {}
 if args.candidate:
-    for relative in ['src/client/HeroVFX.luau', 'src/client/EnemyPatternEffects.luau',
+    for relative in ['src/client/HeroVFX.luau', 'src/client/EnemyPatternEffects.luau', 'src/client/AdvancedSkillVisual.luau',
                      'tests/vfx-review-followup-native.luau']:
         data = (ROOT / relative).read_bytes()
         (source / relative).write_bytes(data)
@@ -34,7 +34,7 @@ if not args.capture:
     probe = output / 'probe.luau'
     probe.write_text(probe.read_text() + '\nlocal function followup()\n' + followup + '\nend\nfollowup()\n')
 inputs = json.loads((output / 'inputs.json').read_text())
-for relative in ['src/client/HeroVFX.luau', 'src/client/EnemyPatternEffects.luau',
+for relative in ['src/client/HeroVFX.luau', 'src/client/EnemyPatternEffects.luau', 'src/client/AdvancedSkillVisual.luau',
                  'tests/vfx-review-followup-native.luau']:
     if (source / relative).exists():
         inputs[relative] = hashlib.sha256((source / relative).read_bytes()).hexdigest()

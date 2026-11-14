@@ -109,6 +109,20 @@ local siege=cast('dwarf.gunner.siege_barrage');local shell=assert(siege:FindFirs
 check(shell.Size.X>=1 and shell.Size.Y>=2,'siege has a substantial metal shell')
 local start=shell.Position;Hero.step(workspace:GetServerTimeNow()+.12)
 check(shell.Position.Y<start.Y,'siege shell still descends')
+-- Test the composed production path, including legacy decoration and range cues.
+local Visual=require(Client.AdvancedSkillVisual)
+for _,id in ipairs({'knight.steel_knight.twin_cyclone','knight.steel_knight.blade_storm',
+ 'mage.pyro.cinder_ring','mage.pyro.ember_step','mage.pyro.searing_ward'})do
+ Hero.clear();local before={};for _,v in ipairs(workspace:GetChildren())do before[v]=true end
+ Visual.play(nil,id,first,last,1,{})
+ local bounds=0
+ for _,v in ipairs(workspace:GetChildren())do if not before[v]then
+  check(v.Name~='BladeCrescent'and v.Name~='ElementalWave','composed silhouette has no duplicate legacy ring '..id)
+  if v.Name=='SkillSector'then bounds+=1 end
+  v:Destroy()
+ end end
+ check(bounds>0,'exact range outline survives decoration removal '..id)
+end
 Hero.clear();Spell.clear();Effects.receive({kind='cancel',model=actor,sequence=seq})
 check(Hero.count()==0 and Spell.count()==0,'effect records clear after inspection')
 world:Destroy();viewer:Destroy();camera.CFrame=oldCamera

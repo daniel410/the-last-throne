@@ -258,13 +258,16 @@ function Visual.play(character,id,origin,center,pulse,points,attackSeq,firedAt,s
   local angle=Presentation.sector(d);local radius=Presentation.radius(d)
   arc(floor,direction,radius,angle,color,.3,"SkillSector")
   if effect=="earth" or effect=="frost" then spikes(floor,direction,radius,angle,color,effect)
-  elseif effect=="slash" and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
+  elseif effect=="slash" and profile.motion~="spin"and profile.motion~="chop"and profile.motion~="cross"and profile.motion~="thrust"and profile.motion~="counter"and id~="dwarf_low_sweep"then arc(origin,direction,radius*.75,angle,color,.16,"BladeCrescent")
   elseif effect=="shield" then
    local flat=Vector3.new(direction.X,0,direction.Z)
    local delta=flat.Magnitude>.001 and flat.Unit or Vector3.new(0,0,-1)
    local at=origin+delta*2
    part("ShieldContact",color,Enum.PartType.Block,Vector3.new(2.2,2.6,.12),CFrame.lookAt(at,at+delta),.18,.65)
-  elseif effect=="fire" or effect=="holy" or effect=="water" then arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave") end
+  elseif effect=="fire"then
+   -- HeroVFX owns the cinder circle, ember wake and searing crown. A second
+   -- full ring would erase their silhouettes; the SkillSector above remains.
+  elseif effect=="holy" or effect=="water" then arc(floor+Vector3.new(0,.55,0),direction,radius*.65,angle,color,.35,"ElementalWave") end
  else
   if effect=="lightning" then lightning(first,center,color)
   else
