@@ -41,7 +41,9 @@ function M.create(player,actions)
   {'PROGRESS','LoginRewards',Navigation.loginRewards,'login_rewards'},
   {'','Hero','Stats & Skills','hero'},
   {'','Journal',Navigation.questButton,'quests'},
-  {'MORE','Settings','Settings','settings'},
+  {'MORE','Mailbox','Mailbox','mailbox'},
+  {'','RedeemCode','Redeem Code','redeem'},
+  {'','Settings','Settings','settings'},
  }
  for i,row in ipairs(entries)do
   if row[1]~='' then
@@ -63,6 +65,11 @@ function M.create(player,actions)
   b.Caption.TextStrokeColor3=Color3.fromRGB(8,16,30);b.Caption.TextStrokeTransparency=.1
   buttons[row[2]]=b
  end
+ local function mailboxBadge()
+  local unread=player:GetAttribute('TLTMailboxUnread')or 0
+  buttons.Mailbox.Caption.Text=unread>0 and 'Mailbox ('..unread..')'or 'Mailbox'
+ end
+ mailboxBadge()
  local function resize(size)
   size=size or gui.AbsoluteSize
   local w=math.min(232,math.max(1,size.X-24))
@@ -88,6 +95,7 @@ function M.create(player,actions)
  toggle.Activated:Connect(function()setOpen(not open)end)
  for id,b in pairs(buttons)do local key=id;b.Activated:Connect(function()choose(key)end)end
  local connections={}
+ table.insert(connections,player:GetAttributeChangedSignal('TLTMailboxUnread'):Connect(mailboxBadge))
  table.insert(connections,gui:GetPropertyChangedSignal("AbsoluteSize"):Connect(resize))
  resize()
  for _,attribute in ipairs({'TLTHeroSelectionOpen','K0SessionPhase','TLTInventoryOpen','TLTProgressionOpen','TLTSettingsOpen','TLTLobbyPanelOpen','TLTSupporterOpen','TLTTravelLock'})do

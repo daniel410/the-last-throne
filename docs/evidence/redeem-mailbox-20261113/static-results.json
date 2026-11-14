@@ -1,0 +1,28 @@
+{
+  "sourceTree": "a9151fc09601ecafac4db1c2f49c0b3c75ea80a6",
+  "isolatedSource": "/var/folders/j3/13wj_sb54mbfn15pfphgy8tm0000gn/T/tlt-delivery-review-rh6qyz7j",
+  "results": [
+    {
+      "test": "delivery.spec.lua",
+      "exitCode": 0,
+      "output": "Delivery: 34 checks passed\n"
+    },
+    {
+      "test": "delivery-remote.spec.lua",
+      "exitCode": 0,
+      "output": "Delivery remote: 9 checks passed\n"
+    },
+    {
+      "test": "daily-login.spec.lua",
+      "exitCode": 0,
+      "output": "Daily login: 73 checks passed\n"
+    },
+    {
+      "test": "inventory.spec.lua",
+      "exitCode": 0,
+      "output": "Inventory: 276 ownership, capacity, stacking, idempotency, binding and recovery checks passed\n"
+    }
+  ],
+  "studioTested": false,
+  "published": false
+}

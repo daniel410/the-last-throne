@@ -37,20 +37,29 @@ function M.start()
  local expedition=require(script.Parent.ExpeditionView).create(gui,function(command) networkRequest:FireServer(command) end)
  local dailyRequest=remotes:WaitForChild('DailyLoginRequest')
  local daily=require(script.Parent.DailyLoginGui).create(gui,function(command) dailyRequest:FireServer(command) end)
+ local deliveryRequest=remotes:WaitForChild('DeliveryRequest')
+ local delivery=require(script.Parent.DeliveryGui).create(gui,function(command)deliveryRequest:FireServer(command)end)
+ remotes:WaitForChild('DeliveryState').OnClientEvent:Connect(function(data)
+  delivery.receive(data)
+  if type(data)=='table'and type(data.state)=='table'and type(data.state.unread)=='number'then p:SetAttribute('TLTMailboxUnread',data.state.unread)end
+ end)
  local navigation,sideGuide
  remotes:WaitForChild('DailyLoginState').OnClientEvent:Connect(function(data)
   daily.receive(data)
   if navigation and type(data)=='table' and type(data.state)=='table' then navigation.dailyAvailable(data.state.status=='Ready' and data.state.canClaim==true)end
  end)
  local function lock()
-  local open=(navigation and navigation.panel.Visible) or armory.panel.Visible or items.panel.Visible or diamonds.panel.Visible or expedition.panel.Visible or daily.panel.Visible or (sideGuide and sideGuide.panel.Visible);p:SetAttribute('TLTLobbyPanelOpen',open)
+  local open=(navigation and navigation.panel.Visible) or armory.panel.Visible or items.panel.Visible or diamonds.panel.Visible or expedition.panel.Visible or daily.panel.Visible or delivery.panels[1].Visible or delivery.panels[2].Visible or (sideGuide and sideGuide.panel.Visible);p:SetAttribute('TLTLobbyPanelOpen',open)
  end
+ for _,panel in ipairs(delivery.panels)do panel:GetPropertyChangedSignal('Visible'):Connect(lock)end
  gui.Destroying:Connect(function()p:SetAttribute('TLTLobbyPanelOpen',false)end)
  armory.panel:GetPropertyChangedSignal('Visible'):Connect(lock);items.panel:GetPropertyChangedSignal('Visible'):Connect(lock);diamonds.panel:GetPropertyChangedSignal('Visible'):Connect(lock);expedition.panel:GetPropertyChangedSignal('Visible'):Connect(lock);daily.panel:GetPropertyChangedSignal('Visible'):Connect(lock)
  local function closePanels()
+  delivery.close()
   armory.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;expedition.panel.Visible=false;daily.panel.Visible=false;if sideGuide then sideGuide.close()end
  end
  local function openStore(kind)
+  if kind=='Mailbox'or kind=='RedeemCode'then closePanels();delivery.open(kind);return end
   if kind=='LoginRewards' then local wasOpen=daily.panel.Visible;closePanels();if not wasOpen then daily.open()end;return end
   local target=kind=='Blacksmith' and armory or kind=='DiamondShop' and diamonds or items;local wasOpen=target.panel.Visible
   closePanels();target.panel.Visible=not wasOpen
@@ -71,7 +80,7 @@ function M.start()
   if p:GetAttribute('K0SessionPhase')~='Lobby' or workspace:GetAttribute('TLTServerRole')=='Battle' then return end
   if action=='SideQuests'then sideGuide.open();return end
   if action=='FindTessa'then sideGuide.find();return end
-  if action=='DiamondShop' or action=='LoginRewards' then navigation.panel.Visible=false;openStore(action);return end
+  if action=='Mailbox' or action=='RedeemCode' or action=='DiamondShop' or action=='LoginRewards' then navigation.panel.Visible=false;openStore(action);return end
   if action~='Play' then return end
   closePanels();navigation.panel.Visible=false;expedition.panel.Visible=true
   networkRequest:FireServer({action='GetState'})
@@ -112,8 +121,8 @@ function M.start()
  local function phase()
   local lobby=p:GetAttribute('K0SessionPhase')=='Lobby' and workspace:GetAttribute('TLTServerRole')~='Battle'
   refreshNavigation()
-  if lobby then task.delay(.3,function()if p.Parent and p:GetAttribute('K0SessionPhase')=='Lobby'then dailyRequest:FireServer({action='GetState'})end end)end
-  if not lobby then sideGuide.close();sideGuide.toast.Visible=false;navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;daily.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
+  if lobby then task.delay(.6,function()if p.Parent and p:GetAttribute('K0SessionPhase')=='Lobby'then deliveryRequest:FireServer({action='GetState'})end end);task.delay(.3,function()if p.Parent and p:GetAttribute('K0SessionPhase')=='Lobby'then dailyRequest:FireServer({action='GetState'})end end)end
+  if not lobby then delivery.close();sideGuide.close();sideGuide.toast.Visible=false;navigation.panel.Visible=false;items.panel.Visible=false;diamonds.panel.Visible=false;armory.panel.Visible=false;daily.panel.Visible=false;if not p:GetAttribute('TLTTravelLock') then expedition.panel.Visible=false end end
  end
  p:GetAttributeChangedSignal('K0SessionPhase'):Connect(phase)
  phase()

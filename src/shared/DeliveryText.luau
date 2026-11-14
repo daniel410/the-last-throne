@@ -1,0 +1,15 @@
+return {
+ RedeemTitle='REDEEM CODE',MailTitle='MAILBOX',CodeHint='Enter a promotional code',Redeem='REDEEM',
+ Subtitle='News and gifts from The Last Throne team.',Claim='CLAIM GIFT',Read='MARK AS READ',Claimed='RECEIVED',
+ Empty='Your mailbox is empty.',Loading='Loading your mailbox...',Sending='SAVING...',Check='CHECK SAVE',
+ Success='Saved! Gifts have been delivered. Items are in Gear & Bag > Claims.',ReadSuccess='Message received. Any gifts are saved; items are in Gear & Bag > Claims.',
+ AlreadyRedeemed='This account has already redeemed this code.',MailAlreadyClaimed='This message has already been received.',
+ InvalidCode='This code is invalid, expired, or unavailable for your account.',InvalidRequest='Please enter a valid code.',
+ MailUnavailable='This message is unavailable.',Busy='Your account is busy. Please retry.',
+ SaveUnknown='Save confirmation is pending. Use CHECK SAVE to retry safely.',
+ AccountBusy='Your account is active elsewhere. Rejoin to restore access.',
+ Unavailable='Your account is unavailable. Please retry or rejoin.',
+ LoadingAccount='Your account is still loading.',LobbyOnly='Return to the lobby to receive gifts.',
+ BalanceLimit='Your wallet is full. Spend currency before claiming.',ReceiptLimit='Please contact support to receive more gifts.',
+ Refresh='REFRESH',Retry='RETRY',Close='X',Gold='%d Gold',Diamonds='%d Diamonds',Item='%s x%d',
+}

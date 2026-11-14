@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-13",
+  "files": [
+    {
+      "path": "../throne-defense/src/Client/RedeemCodeUI.lua",
+      "sha256": "f6e3c85529785307f710684ada77417dfb44c44ac2f33b56b296a95e7d2484ad"
+    },
+    {
+      "path": "../throne-defense/src/Client/MailboxUI.lua",
+      "sha256": "0726c2fd8cf0d0e5d3521f4c81d6c14d13c3b06126c062ed2171b3cbee7cb5c1"
+    },
+    {
+      "path": "../throne-defense/src/Client/UIController.lua",
+      "sha256": "8bcee1631ccb745f493bcdf4783228fd9a1701cb0da23cbdacd69d6916cc6b93"
+    },
+    {
+      "path": "../throne-defense/src/Shared/UIIconAssets.lua",
+      "sha256": "f8cbf2854e6cc32d0cd8bc79f1b58ed1b241c29ae778c65b56654e7c62086bc5"
+    },
+    {
+      "path": "src/shared/TDUI/UIIconAssets.luau",
+      "sha256": "b6de17e2c894b51e527c27109db1c4598739a87e517b3e6b6a7dec23c936330b"
+    }
+  ]
+}

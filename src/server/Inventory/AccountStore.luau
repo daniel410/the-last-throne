@@ -1,4 +1,5 @@
 -- Adapter owns UpdateAsync; this module never replaces a failed read with a new profile.
+local Delivery=game and require(script.Parent.Parent.Lobby.DeliveryRules)or dofile('src/server/Lobby/DeliveryRules.luau')
 local AccountStore = {}
 AccountStore.__index = AccountStore
 function AccountStore.new(adapter, rules, catalog, clock, waitForRetry, token)
@@ -12,7 +13,7 @@ function AccountStore:update(userId, transform)
 		local ok, result = pcall(function()
 			return self.adapter:UpdateAsync("account:" .. userId, function(current)
 				outcome, replayed = nil, nil
-				if current ~= nil and (type(current) ~= "table" or current.userId ~= userId or not self.rules.validate(current, self.catalog)) then outcome = "Incompatible"; return nil end
+				if current ~= nil and (type(current) ~= "table" or current.userId ~= userId or (not self.rules.validate(current, self.catalog) or not Delivery.valid(current))) then outcome = "Incompatible"; return nil end
 				local nextProfile, errorCode, repeated = transform(current, time)
 				outcome, replayed = errorCode, repeated
 				return nextProfile
@@ -51,7 +52,7 @@ function AccountStore:transact(userId, transform)
 			or profile.lease.expiresAt <= time then return nil, "AccountBusy" end
 		local nextProfile, errorCode, repeated = transform(self.rules.copy(profile))
 		if not nextProfile then return nil, errorCode end
-		if not self.rules.validate(nextProfile, self.catalog) then return nil, "Incompatible" end
+		if (not self.rules.validate(nextProfile, self.catalog) or not Delivery.valid(nextProfile)) then return nil, "Incompatible" end
 		if nextProfile.lease then nextProfile.lease.expiresAt = time + self.leaseSeconds end
 		return nextProfile, nil, repeated
 	end)

@@ -634,6 +634,35 @@ function Service.claimDaily(player,requestId)
  s.busy=false;publish(player,requestId,reason)
  return reason,replayed
 end
+-- Reuse the account fence; never maintain a second wallet or overwrite an uncertain load.
+local Delivery=require(script.Parent.Parent.Lobby.DeliveryRules)
+local DeliveryCatalog=require(script.Parent.Parent.Lobby.DeliveryCatalog)
+function Service.deliveryStatus(player)
+ local s=accounts[player]
+ if not s or not s.profile then return {status='Loading'}end
+ if not s.valid then return {status=s.errorCode or 'Unavailable'}end
+ local result=Delivery.project(s.profile,DeliveryCatalog,os.time(),Rules)
+ if s.busy then result.status='Busy'end
+ return result
+end
+function Service.claimDelivery(player,command)
+ local s=accounts[player]
+ if not s or s.busy or s.closing then return 'Busy'end
+ if workspace:GetAttribute('TLTServerRole')=='Battle' or player:GetAttribute('K0SessionPhase')~='Lobby'then return 'LobbyOnly'end
+ local pending=s.deliveryPending
+ if pending and (pending.requestId~=command.requestId or pending.action~=command.action or pending.value~=command.value)then return 'RequestConflict'end
+ if not s.valid and not pending then return s.errorCode or 'Unavailable'end
+ pending=pending or {requestId=command.requestId,action=command.action,value=command.value,at=os.time()}
+ s.deliveryPending=pending;s.busy=true
+ local profile,reason,replayed=store:transact(player.UserId,function(current)
+  return Delivery.claim(current,pending.action,pending.value,pending.at,DeliveryCatalog,Rules,Catalog,pending.requestId)
+ end)
+ if profile then s.profile=profile;s.valid=true;s.errorCode=nil;s.deliveryPending=nil
+ elseif reason=='SaveUnknown'or reason=='AccountBusy'then s.valid=false;s.errorCode=reason
+ else s.deliveryPending=nil end
+ s.busy=false;publish(player,command.requestId,reason)
+ return reason,replayed
+end
 function Service.shop(player,command)
  local s=accounts[player];if not s or s.busy or s.closing then return 'Busy' end
  if not s.valid and not (s.shopPending and s.shopPending.requestId==command.requestId) then return s.errorCode or 'Unavailable' end

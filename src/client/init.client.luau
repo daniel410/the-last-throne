@@ -93,6 +93,8 @@ require(script.LobbyTopMenu).create(player,{
  DiamondShop=function()require(script.LobbyMenuBridge):Fire('DiamondShop')end,
  LoginRewards=function()require(script.LobbyMenuBridge):Fire('LoginRewards')end,
  Journal=function()require(script.LobbyMenuBridge):Fire('Quest')end,
+ Mailbox=function()require(script.LobbyMenuBridge):Fire('Mailbox')end,
+ RedeemCode=function()require(script.LobbyMenuBridge):Fire('RedeemCode')end,
  Settings=settingsGui.open,
 })
 
