@@ -60,6 +60,7 @@ function W.create(epic,world)
  require(script.Parent.EpicWorldArt).connectOverland(world)
  require(script.Parent.RegionalConceptArt).finish(world)
  require(script.Parent.CampaignSurfaceFinish).apply(world)
+ require(script.Parent.CampaignQuestSetpieces).create(world,epic)
  world.loadedEpics[epic]=true
  world.folder:SetAttribute('Epic'..epic..'Ready',true)
  return world
