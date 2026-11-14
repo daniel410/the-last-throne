@@ -49,7 +49,7 @@ local function completed(hero,id,mode)
  local modes=hero.expeditions and hero.expeditions.clears[id]
  return modes and modes[mode]==true
 end
-function E.upgrade(p)
+function E.upgrade(p,pendingHeroId,pendingChapter)
  local changed=false
  if not p.wallet then
   p.wallet={version=1,gold=0,diamonds=0,claims={}};changed=true
@@ -83,7 +83,10 @@ function E.upgrade(p)
  for _,heroId in ipairs(heroIds)do
   local h=p.heroes[heroId]
   for id in pairs(h.deepwood and h.deepwood.clears or {})do
-   if claim(p,heroId,id,'Easy')then changed=true end
+   -- A story journal can now be first completed on Hard. Only infer Easy
+   -- for legacy story-only clears or an explicitly completed Easy expedition.
+   local modes=h.expeditions and h.expeditions.clears[id]
+   if not(heroId==pendingHeroId and id==pendingChapter)and (not modes or modes.Easy)and claim(p,heroId,id,'Easy')then changed=true end
   end
   for id,modes in pairs(h.expeditions and h.expeditions.clears or {})do
    for mode,cleared in pairs(modes)do
@@ -98,9 +101,9 @@ function E.claimDifficulty(p,id,mode,heroId)
  if not p.wallet or not p.wallet.heroClaims then E.upgrade(p)end
  return claim(p,heroId,id,mode)
 end
-function E.story(p,reward,heroId)
- E.upgrade(p);p.wallet.gold=p.wallet.gold+reward.coins
- E.claimDifficulty(p,reward.chapter,'Easy',heroId)
+function E.story(p,reward,heroId,difficultyId)
+ E.upgrade(p,heroId,difficultyId and difficultyId~='Easy' and reward.chapter or nil);p.wallet.gold=p.wallet.gold+reward.coins
+ E.claimDifficulty(p,reward.chapter,difficultyId or 'Easy',heroId)
 end
 function E.sellPrice(item)
  if type(item.sourceGrantId)=='string' and item.sourceGrantId:sub(1,8)=='starter:' and not item.definitionId:match('^%a+_potion') then return nil end

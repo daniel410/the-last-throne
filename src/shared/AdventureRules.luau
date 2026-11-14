@@ -164,7 +164,7 @@ function A.event(profile,heroId,chapterId,goalId,choice,stepId,R,C,runId)
   if (active.balanceVersion or 1)>=13 and (not hero.deepwood or hero.deepwood.expansionVersion~=1 or hero.deepwood.combatPacingVersion~=1)then
    profile=R.copy(profile);profile.heroes[heroId].deepwood=assert(P.enableExpansion(hero.deepwood or P.new()))
   end
-  p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId)
+  p,why=R.story(profile,heroId,chapterId,goalId,choice,C,stepId,active.difficultyId)
   if not p then return nil,why end
   journal=P.copy(p.heroes[heroId].deepwood)
  else

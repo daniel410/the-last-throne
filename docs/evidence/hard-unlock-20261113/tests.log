@@ -1,0 +1,41 @@
+$ lua tests/hard-unlock.spec.lua
+Hard unlock rewards: 56 checks passed
+exit=0
+$ lua tests/difficulty-level-free.spec.lua
+Difficulty level-free admission: 633 checks passed
+exit=0
+$ lua tests/expedition-presentation.spec.lua
+Expedition presentation: 24 checks passed
+exit=0
+$ lua tests/expedition-departure.spec.lua
+Expedition departure: 42 checks passed
+exit=0
+$ lua tests/difficulty-balance.spec.lua
+Difficulty balance: 2665 checks passed
+exit=0
+$ lua tests/difficulty-diamonds.spec.lua
+Difficulty Diamonds: 3180 checks passed
+exit=0
+$ lua tests/all-epic-diamonds.spec.lua
+All epic Diamonds: 1099 checks passed
+exit=0
+$ lua tests/quest-completion-rewards.spec.lua
+lua: tests/quest-completion-rewards.spec.lua:13: expanded runs retain rules 12 completion rewards
+stack traceback:
+	[C]: in global 'assert'
+	tests/quest-completion-rewards.spec.lua:13: in local 'check'
+	tests/quest-completion-rewards.spec.lua:84: in main chunk
+	[C]: in ?
+exit=1
+
+Baseline HEAD original modules: quest-completion-rewards
+lua: tests/quest-completion-rewards.spec.lua:13: expanded runs retain rules 12 completion rewards
+stack traceback:
+	[C]: in global 'assert'
+	tests/quest-completion-rewards.spec.lua:13: in local 'check'
+	tests/quest-completion-rewards.spec.lua:84: in main chunk
+	[C]: in upvalue 'original'
+	(command line):1: in global 'dofile'
+	(command line):1: in main chunk
+	[C]: in ?
+exit=1

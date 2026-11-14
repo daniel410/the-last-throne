@@ -12,7 +12,7 @@ local D={version=14,order={'Easy','Hard','Insane','Hell'},legacyModes={
 D.entryLevels={Easy=1,Hard=0,Insane=0,Hell=0}
 D.modes={
  Easy={level=1,levelShift=0,hp=1,damage=1,bossHP=1,bossDamage=1,xp=1,gold=1,cache=1},
- Hard={level=20,levelShift=15,previous='Easy',hp=1.2,damage=1.15,bossHP=1.15,bossDamage=1.1,xp=1.5,gold=2,cache=2},
+ Hard={level=20,levelShift=15,hp=1.2,damage=1.15,bossHP=1.15,bossDamage=1.1,xp=1.5,gold=2,cache=2},
  Insane={level=40,levelShift=35,previous='Hard',hp=1.4,damage=1.3,bossHP=1.3,bossDamage=1.2,xp=2,gold=3,cache=3},
  Hell={level=80,levelShift=75,previous='Insane',hp=1.65,damage=1.5,bossHP=1.5,bossDamage=1.35,xp=3,gold=5,cache=4},
 }

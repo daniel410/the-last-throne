@@ -12,7 +12,7 @@ local function new()return assert(R.addHero(R.new(42),'hero','knight',C))end
 local hero=new().heroes.hero
 for _,mode in ipairs({'Hard','Insane','Hell'})do
  local ok,reason=D.allowed(hero,'DW-01',mode)
- check(not ok and reason=='PreviousDifficulty','level one still requires previous clear '..mode)
+ check(mode=='Hard' and ok or mode~='Hard' and not ok and reason=='PreviousDifficulty','only Insane/Hell require previous clear '..mode)
 end
 -- Level-free admission applies to every combat mission and pinned balance version.
 for _,c in ipairs(Content.chapters)do if D.combat(c)then
@@ -24,7 +24,7 @@ for _,c in ipairs(Content.chapters)do if D.combat(c)then
   check(D.allowed(h,c.id,mode),'level one qualifies after story and prior clear '..c.id..' '..mode)
   h.expeditions.clears[c.id]={}
   local ok,reason=D.allowed(h,c.id,mode)
-  check(not ok and reason=='PreviousDifficulty','prior clear required '..c.id..' '..mode)
+  check(mode=='Hard' and ok or mode~='Hard' and not ok and reason=='PreviousDifficulty','Hard unlocked, upper gates preserved '..c.id..' '..mode)
   if D.requiredMain(c)>0 then
    h.deepwood.main=0
    ok,reason=D.allowed(h,c.id,mode)
@@ -34,7 +34,7 @@ for _,c in ipairs(Content.chapters)do if D.combat(c)then
 end end
 for _,mode in ipairs({'Hard','Insane','Hell'})do
  local candidate=new();local h=candidate.heroes.hero
- h.expeditions={version=1,clears={['DW-01']={Easy=true,Hard=true,Insane=true}},cacheProgress={}}
+ h.expeditions={version=1,clears={['DW-01']=mode=='Hard' and {} or {Hard=true,Insane=true}},cacheProgress={}}
  for version=1,D.version do
   local admitted=assert(A.begin(candidate,'hero','DW-01',mode,'level_free',candidate.revision,R,C,version))
   check(D.verifyRun(admitted.heroes.hero,{id='level_free',missionId='DW-01',difficultyId=mode,rulesVersion=version}),'level one enters and rejoins pinned version '..version..' '..mode)

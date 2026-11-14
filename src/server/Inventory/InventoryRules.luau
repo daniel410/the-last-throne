@@ -470,7 +470,7 @@ function Rules.progress(profile,command,context,catalog)
 	return nextProfile
 end
 -- Journal, first-clear receipt, Coins and quest XP commit in one account write.
-function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId)
+function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId,difficultyId)
  local hero=profile.heroes[heroId];if not hero then return nil,'HeroNotOwned' end
  local journal,reason,reward=Story.apply(hero.deepwood or Story.new(),chapterId,goalId,choice,stepId)
  if not journal then return nil,reason end
@@ -483,7 +483,7 @@ function Rules.story(profile,heroId,chapterId,goalId,choice,catalog,stepId)
   if not grantCompletion(n,heroId,reward.chapter,catalog)then return nil,'BalanceLimit'end
   reward={xp=0,coins=0,chapter=reward.chapter}
  end
- Economy.story(n,reward,heroId)
+ Economy.story(n,reward,heroId,difficultyId)
  local g=h.progression or Growth.new(h.level)
  g.xp=g.xp+reward.xp
  while g.level<80 and g.xp>=Growth.xpToNext(g.level) do g.xp=g.xp-Growth.xpToNext(g.level);g.level=g.level+1 end

@@ -8,7 +8,7 @@ local profile=assert(R.addHero(R.new(42),'h','knight',C));local hero=profile.her
 local missions=P.missions(hero);local first=missions[1]
 check(first.id=='DW-01'and #first.title>0 and #first.region>0 and #first.objective>0,'named mission with objective and region')
 check(first.modes.Easy.allowed and first.modes.Easy.level==1,'Easy Lv1 visible')
-check(first.modes.Hard.reason=='PreviousDifficulty'and first.modes.Hard.level==0,'Hard has no level floor')
+check(first.modes.Hard.allowed and first.modes.Hard.previous==nil and first.modes.Hard.level==0,'Hard unlocked without Easy clear')
 check(first.modes.Insane.reason=='PreviousDifficulty'and first.modes.Insane.level==0,'Insane has no level floor')
 check(first.modes.Easy.firstXP==140 and first.modes.Easy.firstGold==150,'first story reward remains canonical')
 check(first.modes.Easy.repeatGold==36 and first.modes.Easy.gems==6 and first.modes.Easy.stones==1,'repeat and forge summary match run rules')
@@ -41,7 +41,7 @@ for _,mode in ipairs({'Hard','Insane','Hell'})do
  check(row.launchAllowed and row.members[2].requiredLevel==0,'four-player '..mode..' permits level one member')
  other.expeditions.clears={}
  row=P.party(party,function(m)return m.userId==43 and other or hero end)
- check(not row.launchAllowed and row.members[2].reason=='PreviousDifficulty','four-player '..mode..' still checks each prior clear')
+ check(mode=='Hard' and row.launchAllowed or mode~='Hard' and not row.launchAllowed and row.members[2].reason=='PreviousDifficulty','four-player Hard unlocked; upper modes retain prior clear '..mode)
  other.expeditions=R.copy(hero.expeditions)
 end
 print('Expedition presentation: '..n..' checks passed')

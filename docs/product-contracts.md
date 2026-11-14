@@ -10,7 +10,7 @@
 
 - 모든 무기·장비는 착용 레벨 제한이 없다. 클래스·슬롯·귀속·소유권·안전 조건은 유지한다. [장비 사양](production/equipment-four-tier-reorganization-2026-11-09.md).
 
-- Hard/Insane/Hell은 영웅 레벨 제한 없이 입장한다. 스토리 선행·같은 임무의 이전 난이도 완료는 유지하며 솔로·파티·도착/재접속에 공통 적용한다. [입장 사양](production/difficulty-rewards-and-entry-plan-2026-11-02.md#2-난이도와-입장-조건).
+- Hard/Insane/Hell은 영웅 레벨 제한 없이 입장한다. 스토리 선행은 유지한다. 2026-11-13 지시로 Hard는 Easy 완료 없이 개방하고 Insane은 같은 임무 Hard 완료, Hell은 Insane 완료를 유지하며 솔로·파티·도착/재접속에 공통 적용한다. [입장 사양](production/difficulty-rewards-and-entry-plan-2026-11-02.md#2-난이도와-입장-조건).
 
 - 스토리 통행 차단은 유리벽 대신 지역 장애물로 표현하고, 해제 시 형상과 충돌을 함께 제거한다. 확장 사건 이동 표지판은 저장된 다음 필수 목표로 연결한다. [구현/검증/미검증](evidence/story-obstacles-travel-20261111/README.md).
 
